@@ -1,4 +1,5 @@
 // AQUILA - wybór profesji przy dołączaniu w trakcie rundy (aquila/code/modules/mob/dead/new_player/latejoin_menu.dm)
+import { ComponentProps } from 'react';
 import {
   Box,
   Button,
@@ -69,7 +70,7 @@ const JobButton = (props: { job: JobInfo; status: JobStatus }) => {
         </Stack.Item>
         <Stack.Item grow bold={job.command}>
           {job.title}
-          {status.prioritized && <Icon name="star" ml={0.5} />}
+          {!!status.prioritized && <Icon name="star" ml={0.5} />}
         </Stack.Item>
         <Stack.Item color={full ? 'bad' : 'label'}>
           {slotsText(status)}
@@ -78,6 +79,17 @@ const JobButton = (props: { job: JobInfo; status: JobStatus }) => {
     </Button>
   );
 };
+
+// Dark plate under the text, so every department colour reads well on the light section title bar
+const TitlePlate = (props: ComponentProps<typeof Box>) => (
+  <Box
+    inline
+    px={0.75}
+    backgroundColor="rgba(0, 0, 0, 0.75)"
+    style={{ borderRadius: '3px' }}
+    {...props}
+  />
+);
 
 const DepartmentSection = (props: { department: Department }) => {
   const { data } = useBackend<Data>();
@@ -93,11 +105,15 @@ const DepartmentSection = (props: { department: Department }) => {
       }}
     >
       <Section
-        title={<Box color={department.color}>{department.name}</Box>}
+        title={
+          <TitlePlate bold color={department.color}>
+            {department.name}
+          </TitlePlate>
+        }
         buttons={
-          <Box color="label" mt={0.5}>
+          <TitlePlate mt={0.5} color="label">
             otwarte: {open}
-          </Box>
+          </TitlePlate>
         }
       >
         {jobs.length ? (
