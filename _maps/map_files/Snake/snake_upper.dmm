@@ -4021,6 +4021,21 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"jH" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/science/explab)
+"jI" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
 "jK" = (
 /obj/item/ship_weapon/ammunition/torpedo/freight,
 /obj/machinery/door/window/westleft{
@@ -4029,6 +4044,47 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"jL" = (
+/obj/machinery/airalarm/directional/east,
+/obj/structure/table/glass,
+/obj/item/xenoarchaeology_labeler{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/clothing/gloves/artifact_pinchers{
+	pixel_y = 5;
+	pixel_x = 9
+	},
+/obj/item/book/manual/wiki/xenoarchaeology,
+/obj/item/sticky_note_pile,
+/turf/open/floor/plating,
+/area/science/explab)
+"jM" = (
+/obj/machinery/firealarm/directional/west,
+/obj/structure/table/glass,
+/obj/item/nanite_remote{
+	pixel_x = -8
+	},
+/obj/item/nanite_scanner{
+	pixel_y = 8
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 8
+	},
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
+"jN" = (
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plating,
+/area/science/explab)
+"jO" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plating,
+/area/science/explab)
 "jV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/curtain/obscuring/grey{
@@ -40542,9 +40598,9 @@ hb
 gL
 Qx
 gd
-gs
-fu
-gB
+jM
+jH
+jI
 Qx
 le
 aM
@@ -40801,7 +40857,7 @@ Qx
 gg
 fe
 fv
-ga
+jN
 Qx
 le
 aM
@@ -41315,7 +41371,7 @@ Qx
 gj
 fe
 fz
-fe
+jO
 Qx
 TB
 aM
@@ -41570,7 +41626,7 @@ gH
 fR
 Qx
 gl
-gw
+jL
 fB
 gC
 Qx
