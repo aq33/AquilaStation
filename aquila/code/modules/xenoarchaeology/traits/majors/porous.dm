@@ -1,0 +1,69 @@
+/*
+	Porous
+	The artifact replaces one random gas with another
+*/
+/datum/xenoartifact_trait/major/gas
+	label_name = "Porous"
+	label_desc = "Porous: The artifact seems to contain porous components. Triggering these components will cause the artifact to exchange one gas with another."
+	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
+	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
+	weight = 15
+	register_targets = FALSE
+	///Possible target gasses
+	var/list/target_gasses = list(
+		GAS_O2 = 6,
+		GAS_N2 = 3,
+		GAS_PLASMA = 1,
+		GAS_CO2 = 1,
+		GAS_H2O = 3
+	)
+	///Possible exchange gasses
+	var/list/exchange_gasses = list(
+		GAS_BZ = 3,
+		GAS_HYPERNOB = 1,
+		GAS_PLASMA = 3,
+		GAS_TRITIUM = 2,
+		GAS_NITRYL = 1
+	)
+	///Choosen target gas (id auxmos)
+	var/choosen_target
+	///Choosen exchange gas (id auxmos)
+	var/choosen_exchange
+	///Max amount of moles we exchange at once
+	var/max_moles = 10
+
+/datum/xenoartifact_trait/major/gas/New(atom/_parent)
+	. = ..()
+	choosen_target = pickweight(target_gasses)
+	choosen_exchange = pickweight(exchange_gasses)
+
+/datum/xenoartifact_trait/major/gas/register_parent(datum/source)
+	. = ..()
+	if(!component_parent?.parent)
+		return
+	setup_generic_item_hint()
+
+/datum/xenoartifact_trait/major/gas/trigger(datum/source, _priority, atom/override)
+	. = ..()
+	if(!.)
+		return
+	var/turf/open/T = get_turf(component_parent.parent)
+	var/datum/gas_mixture/air = T.air
+	if(!istype(T) || !air)
+		return
+	var/moles = min(air.get_moles(choosen_target), max_moles)
+	if(!moles)
+		return
+
+	air.adjust_moles(choosen_target, -moles)
+	air.adjust_moles(choosen_exchange, moles)
+	T.air_update_turf()
+
+/datum/xenoartifact_trait/major/gas/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_DETECT("gas analyzer, which will also reveal what gasses the artifact exchanges."))
+
+/datum/xenoartifact_trait/major/gas/do_hint(mob/user, atom/item)
+	if(istype(item, /obj/item/analyzer))
+		to_chat(user, span_warning("[item] detects [GLOB.gas_data.names[choosen_target]] exchanging into [GLOB.gas_data.names[choosen_exchange]] at a rate of [max_moles] moles!"))
+		return ..()

@@ -183,7 +183,7 @@
 	display_name = "Badania anomalii"
 	description = "Uwolnij potencjał tajemniczych anomalii pojawiających się na stacji."
 	prereq_ids = list("adv_engi", "practical_bluespace")
-	design_ids = list("reactive_armour", "anomaly_neutralizer", "xenoa_list_console", "xenoa_list_pad", "xenoa_gloves")
+	design_ids = list("reactive_armour", "anomaly_neutralizer", "xenoa_list_console", "xenoa_gloves", "xenoa_scale", "xenoa_conductor", "xenoa_calibrator", "xenoa_tracker")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
 
