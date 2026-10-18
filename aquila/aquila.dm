@@ -874,6 +874,7 @@
 #include "code\modules\unit_tests\aquila_wounds.dm"
 #include "code\modules\unit_tests\aquila_votes.dm"
 #include "code\modules\unit_tests\aquila_xenobio_tubes.dm"
+#include "code\modules\unit_tests\atoms_init_state.dm"
 #include "code\modules\unit_tests\bee_floor_sprites.dm"
 #include "code\modules\unit_tests\bluespace_locker.dm"
 #include "code\modules\unit_tests\bounty_market.dm"
