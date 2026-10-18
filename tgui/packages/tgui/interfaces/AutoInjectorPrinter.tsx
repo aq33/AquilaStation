@@ -214,6 +214,7 @@ const PackagingControlsItem = (props) => {
 
 const PackagingControls = (props) => {
   const { act, data } = useBackend<Data>();
+  // AQ EDIT - NumberInput z tgui-core woła onChange(value), a nie (e, value); undefined w shared state wywalał okno
   const [medipenAmount, setmedipenAmount] = useSharedState('medipenAmount', 1);
   const { condi } = data;
   return (
@@ -224,7 +225,7 @@ const PackagingControls = (props) => {
           amount={medipenAmount}
           amountUnit="injectors"
           sideNote="max 10u"
-          onChangeAmount={(e, value) => setmedipenAmount(value)}
+          onChangeAmount={(value) => setmedipenAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'medipen',
