@@ -128,7 +128,10 @@
 /datum/component/shielded/proc/on_update_overlays(atom/parent_atom, list/overlays)
 	SIGNAL_HANDLER
 
-	overlays += mutable_appearance(shield_icon_file, (current_charges > 0 ? shield_icon : "broken"), MOB_SHIELD_LAYER)
+	// AQ EDIT - effects.dmi nie ma stanu "broken"; brakujący stan pokazywał na 516 losowy sprite przy animacji chodu
+	var/state = current_charges > 0 ? shield_icon : "broken"
+	if(icon_exists(shield_icon_file, state))
+		overlays += mutable_appearance(shield_icon_file, state, MOB_SHIELD_LAYER)
 
 /**
  * This proc fires when we're hit, and is responsible for checking if we're charged, then deducting one + returning that we're blocking if so.

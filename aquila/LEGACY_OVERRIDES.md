@@ -39,6 +39,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `icon_exists()` check before the shield overlay | `code/datums/components/shielded.dm` (`on_update_overlays()`) | `icons/effects/effects.dmi` has no `broken` state; a depleted shield drew a missing state, which showed a random sprite with the walk animation on 516 |
 | Lower `LATTICE_LAYER` … `CATWALK_LAYER`, new `GRILLE_LAYER` | `code/__DEFINES/layers.dm` | Floor-level objects (lattices, disposals, hidden pipes, cables, catwalks, grilles) go below `CLOSED_TURF_LAYER` like in Paradise, so the 8 px overhang of 3/4 walls covers them |
 | `A.bitmask_smooth_icon()` branch in `smooth_icon()` | `code/__HELPERS/icon_smoothing.dm` | Paradise walls, windows and doors (32x40, 47-state bitmask) skip corner and legacy smoothing; logic in `aquila/code/modules/paradise_struktury/smoothing.dm` |
 | `QDEL_IN(src, 20)` in `/obj/effect/particle_effect/sparks/Initialize()` | `code/game/objects/effects/effect_system/effects_sparks.dm` | Sparks are cleaned up even if their `LateInitialize()` never runs |
