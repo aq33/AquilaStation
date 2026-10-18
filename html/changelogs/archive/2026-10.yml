@@ -453,3 +453,5 @@
       zostaje wyłączony.'
   - bugfix: Naprawiono zawieszanie się serwera po restarcie rundy (przy uruchomieniu
       przez watchdog).
+  - bugfix: Kable położone przez graczy znowu łączą się ze sobą i przewodzą prąd.
+  - bugfix: Obiekty budowane w trakcie rundy znowu kończą inicjalizację (LateInitialize).
