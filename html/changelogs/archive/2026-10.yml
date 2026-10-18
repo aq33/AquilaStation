@@ -455,3 +455,11 @@
       przez watchdog).
   - bugfix: Kable położone przez graczy znowu łączą się ze sobą i przewodzą prąd.
   - bugfix: Obiekty budowane w trakcie rundy znowu kończą inicjalizację (LateInitialize).
+  - bugfix: Naprawiono crash okna ChemMastera i drukarki autoinjektorów po zmianie
+      ilości.
+  - bugfix: Tarcza w MODsuicie czarodzieja nie pokazuje już losowego sprite'a podczas
+      chodzenia.
+  - bugfix: Spalona i zniszczona durastal oraz sztuczny bazalt nie pokazują już brakującej
+      tekstury.
+  - balance: Osobliwość nie odkręca przykręconych okien przed osiągnięciem 5. stopnia.
+  - code_imp: Usunięto ostrzeżenia dreamcheckera w kodzie restartu serwera.
