@@ -256,6 +256,7 @@
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\stairs_dummy.dm"
 #include "code\game\objects\structures\watercloset.dm"
+#include "code\game\objects\structures\window.dm"
 #include "code\game\objects\structures\signs\signs_departments.dm"
 #include "code\game\objects\structures\signs\signs_maps.dm"
 #include "code\game\objects\structures\signs\signs_warning.dm"
@@ -901,5 +902,6 @@
 #include "code\modules\unit_tests\vending_spritesheet.dm"
 #include "code\modules\unit_tests\voidwalker.dm"
 #include "code\modules\unit_tests\weighted_rotation.dm"
+#include "code\modules\unit_tests\window_singularity_pull.dm"
 #include "code\modules\vehicles\ridden.dm"
 #endif
