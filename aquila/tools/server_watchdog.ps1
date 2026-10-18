@@ -3,7 +3,7 @@
 # because a BYOND 516 soft reboot hangs for minutes, and starts a fresh one.
 # If DreamDaemon exits without the marker (normal shutdown, closed window), the watchdog ends too.
 param(
-	[int]$Port = 1337,
+	[int]$Port = 2137,
 	[string]$ByondBin = ""
 )
 $ErrorActionPreference = "Stop"
