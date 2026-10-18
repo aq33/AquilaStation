@@ -315,6 +315,7 @@ GLOBAL_VAR(restart_counter)
 	if (debug_server)
 		LIBCALL(debug_server, "auxtools_shutdown")()
 	auxmos_cleanup() // AQ EDIT - auxmos outlives the world, see aquila/code/game/world.dm
+	request_watchdog_restart() // AQ EDIT - a 516 soft reboot hangs for minutes, see aquila/code/game/world.dm
 	..()
 
 /world/Del()
