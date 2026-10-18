@@ -9,33 +9,51 @@
 	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
 	burnt_states = list("floorscorched1", "floorscorched2")
 
+// Podtypy durastali miały własne stany uszkodzeń z floors.dmi NSV13, których nie ma w floors.dmi Bee;
+// spalona albo zniszczona podłoga pokazywała wtedy szachownicę brakującej tekstury.
 /turf/open/floor/durasteel/alt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/riveted
 	icon_state = "textured"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/padded
 	icon_state = "darkfull"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/eris_techfloor
 	icon_state = "techmaint"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/eris_techfloor_alt
 	icon_state = "techmaint"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/lino
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "darkfull"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/techfloor
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "techfloor_grey"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/durasteel/techfloor_grid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "techfloor_grid"
+	broken_states = list("damaged1", "damaged2", "damaged3", "damaged4", "damaged5")
+	burnt_states = list("floorscorched1", "floorscorched2")
 
 /turf/open/floor/monofloor/corner
 	icon = 'icons/turf/floors.dmi'
@@ -230,6 +248,14 @@
 	icon = 'aquila/icons/bee/turf/floors/reinf_glass.dmi'
 	icon_state = "reinf_glass-0"
 	base_icon_state = "reinf_glass"
+
+// Sztuczny bazalt też dziedziczy po trawie, ale ma grafikę z floors.dmi, bez stanów bitmaski trawy
+/turf/open/floor/grass/fakebasalt
+	base_icon_state = null
+	broken_states = list("sand")
+	layer = TURF_LAYER
+	smooth = SMOOTH_FALSE
+	bitmask_smooth = FALSE
 
 // Śnieg dziedziczy po trawie, ale ma własną ikonę bez bitmaski
 /turf/open/floor/grass/snow
