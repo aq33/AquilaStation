@@ -446,3 +446,10 @@
   - bugfix: przywrócone catwalki wokół kadłuba Serendipity
   - code_imp: nowy tryb wygładzania bitmaską dla sprite'ów z Paradise
   - rscdel: polskie wersje sprite'ów śluz i drzwi przeciwpożarowych
+'2026-10-18':
+  sh4dow321:
+  - server: 'Nowy skrypt server_watchdog.bat: serwer po restarcie rundy uruchamia
+      się sam od nowa zamiast zawieszać się na kilka minut, a po normalnym wyłączeniu
+      zostaje wyłączony.'
+  - bugfix: Naprawiono zawieszanie się serwera po restarcie rundy (przy uruchomieniu
+      przez watchdog).
