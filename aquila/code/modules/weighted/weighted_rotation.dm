@@ -42,6 +42,12 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	var/list/cached_lobby_odds
 	var/cached_lobby_players = -1
 	var/cached_lobby_time = 0
+	/// Pool weights an admin set by hand (pool -> weight), they replace the survey tilt until cleared. Null = automatic
+	var/list/admin_weights
+	/// Pool an admin forced for the next draw only, null = normal draw
+	var/forced_pool
+	/// Forced pool the last draw used, so a pool forced after the draw is not used up by this round
+	var/drawn_forced_pool
 
 /datum/weighted_rotation/New()
 	load()
@@ -54,6 +60,13 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	if(!islist(data))
 		return
 	bias = clamp(text2num("[data["bias"]]") || 0, -1, 1)
+	var/list/saved_weights = data["admin_weights"]
+	if(islist(saved_weights))
+		admin_weights = list()
+		for(var/pool in list(WEIGHTED_POOL_LOW, WEIGHTED_POOL_MEDIUM, WEIGHTED_POOL_HIGH))
+			admin_weights[pool] = max(0, text2num("[saved_weights[pool]]") || 0)
+	if(data["forced_pool"] in list(WEIGHTED_POOL_LOW, WEIGHTED_POOL_MEDIUM, WEIGHTED_POOL_HIGH))
+		forced_pool = data["forced_pool"]
 	var/list/votes = data["pending_votes"]
 	if(!islist(votes))
 		return
@@ -63,7 +76,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 			pending_votes[ckey] = vote
 
 /datum/weighted_rotation/proc/save()
-	var/list/data = list("bias" = bias, "pending_votes" = pending_votes)
+	var/list/data = list("bias" = bias, "pending_votes" = pending_votes, "admin_weights" = admin_weights, "forced_pool" = forced_pool)
 	fdel(WEIGHTED_PACE_FILE)
 	text2file(json_encode(data), WEIGHTED_PACE_FILE)
 
@@ -104,6 +117,14 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 
 /// Weight of every pool before empty pools are dropped
 /datum/weighted_rotation/proc/pool_weights()
+	if(forced_pool)
+		return list(
+			WEIGHTED_POOL_LOW = forced_pool == WEIGHTED_POOL_LOW ? 1 : 0,
+			WEIGHTED_POOL_MEDIUM = forced_pool == WEIGHTED_POOL_MEDIUM ? 1 : 0,
+			WEIGHTED_POOL_HIGH = forced_pool == WEIGHTED_POOL_HIGH ? 1 : 0,
+		)
+	if(admin_weights)
+		return admin_weights.Copy()
 	return list(
 		WEIGHTED_POOL_LOW = 1 - WEIGHTED_SURVEY_STRENGTH * bias,
 		WEIGHTED_POOL_MEDIUM = 1,
@@ -152,7 +173,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 			mode.maximum_players = max_pop[mode.config_tag]
 		if(max_antags[mode.config_tag])
 			// Blood brothers come in pairs, and the mixed traitor modes always keep a place for a traitor
-			var/smallest = (istype(mode, /datum/game_mode/traitor/bros) || istype(mode, /datum/game_mode/traitor/changeling) || istype(mode, /datum/game_mode/traitor/vampire)) ? 2 : 1
+			var/smallest = (istype(mode, /datum/game_mode/traitor/bros) || istype(mode, /datum/game_mode/traitor/changeling) || istype(mode, /datum/game_mode/traitor/vampire) || istype(mode, /datum/game_mode/traitor/horror)) ? 2 : 1
 			if(max_antags[mode.config_tag] < smallest) // a limit the mode can't fit in, it is left out instead of going over it
 				qdel(mode)
 				continue
@@ -186,7 +207,14 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	for(var/pool in odds)
 		if(odds[pool] > 0)
 			pool_draw[pool] = odds[pool]
+	if(!length(pool_draw)) // an admin gave weight only to pools nothing can start from
+		message_admins("Weighted: żadna pula z wagą większą od 0 nie ma trybu, który może wystartować (wagi admina: [admin_summary()]).")
+		for(var/pool in pools)
+			for(var/datum/game_mode/mode as anything in pools[pool])
+				qdel(mode)
+		return null
 	round_pool = pickweight(pool_draw)
+	drawn_forced_pool = forced_pool
 	var/datum/game_mode/picked = pickweight(pools[round_pool])
 
 	// Like secret, the roundstart "Możliwości" message lists every mode that could have started
@@ -200,7 +228,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 		pool_lines += "[pool_name(pool)] [odds[pool]]% ([mode_names.Join(", ")])"
 
 	var/cap_text = isnull(picked.weighted_antag_cap) ? "bez limitu" : "max [picked.weighted_antag_cap]"
-	message_admins("Weighted: ankiety - [load_report]. Szanse: [pool_lines.Join("; ")]. Wylosowano pulę [pool_name(round_pool)], tryb [picked.config_tag] (antagoniści: [cap_text]).")
+	message_admins("Weighted: ankiety - [load_report]. Wagi admina: [admin_summary()]. Szanse: [pool_lines.Join("; ")]. Wylosowano pulę [pool_name(round_pool)], tryb [picked.config_tag] (antagoniści: [cap_text]).")
 	log_game("WEIGHTED: [load_report]. Odds: [pool_lines.Join("; ")]. Picked pool [round_pool], mode [picked.config_tag], antag cap [cap_text].")
 
 	// pre_setup runs again when the round fails to start, the callback is only needed once
@@ -228,6 +256,10 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 /datum/weighted_rotation/proc/on_round_start()
 	if(GLOB.master_mode != "weighted")
 		return
+	// Only for the round it was forced for. Forced after the draw and too late to redraw: kept for the next round
+	if(forced_pool && forced_pool == drawn_forced_pool)
+		forced_pool = null
+		save()
 	ghost_midround = new
 	ghost_midround.schedule()
 	if(SSticker.mode.config_tag == "wizard")

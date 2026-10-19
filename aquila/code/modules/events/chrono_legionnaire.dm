@@ -1,6 +1,6 @@
 // AQUILA - Chrono Legionnaire midround ghost antagonist event.
 // Only possible while a living player's character is named after a historical tyrant (see GLOB.aquila_chrono_historical_names)
-// or a paradox clone is around; the clone itself is then the target.
+// or a paradox clone is around; the clone itself is then the target. An admin forcing the event may pick any living player.
 // A ghost becomes a time agent with the chronosuit and T.E.D., whose only goal is to eliminate that player.
 
 /datum/round_event_control/aquila_chrono_legionnaire
@@ -26,13 +26,17 @@
 	if(!check_rights(R_FUN))
 		return
 	forced_target = null
+	// Admin może wysłać legionistę na każdego żywego gracza, nie tylko na imiona z listy
 	var/list/choices = list()
-	for(var/mob/living/carbon/human/H as anything in aquila_chrono_find_targets())
-		choices["[H.real_name] ([aquila_chrono_target_reason(H)])"] = H
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!aquila_chrono_valid_target(H))
+			continue
+		var/reason = aquila_chrono_target_reason(H)
+		choices["[H.real_name][reason ? " ([reason])" : ""] - [H.ckey]"] = H // ckey, bo imiona się powtarzają
 	if(!length(choices))
-		to_chat(usr, "<span class='warning'>Nikt na serwerze nie ma imienia z config/chrono_legionnaire_names.txt ani nie jest Klonem Paradoksu, legionista się nie pojawi.</span>")
+		to_chat(usr, "<span class='warning'>Nie ma żadnego żywego gracza, na którego można wysłać legionistę.</span>")
 		return
-	var/choice = tgui_input_list(usr, "Kogo ma ścigać legionista? Brak wyboru = losowy gracz z listy.", "Chrono Legionnaire", sortList(choices))
+	var/choice = tgui_input_list(usr, "Kogo ma ścigać legionista? Brak wyboru = losowy gracz z imieniem z listy albo Klon Paradoksu.", "Chrono Legionnaire", sortList(choices))
 	var/mob/living/carbon/human/picked = choices[choice]
 	if(picked)
 		forced_target = WEAKREF(picked)
@@ -47,10 +51,10 @@
 	var/mob/living/carbon/human/forced = chrono_control?.forced_target?.resolve()
 	if(chrono_control)
 		chrono_control.forced_target = null
-	if(forced && !(forced in aquila_chrono_find_targets())) // only players named from the list, even when an admin picks
+	if(forced && !aquila_chrono_valid_target(forced)) // an admin may pick anyone alive
 		forced = null
 	if(!forced && !length(aquila_chrono_find_targets()))
-		message_admins("Chrono Legionnaire event found no target (tyrant name or paradox clone), nothing was spawned.")
+		message_admins("Chrono Legionnaire event found no target (tyrant name, paradox clone or admin pick), nothing was spawned.")
 		return NOT_ENOUGH_PLAYERS
 
 	var/list/candidates = get_candidates(ROLE_CHRONO_LEGIONNAIRE, /datum/role_preference/midround_ghost/chrono_legionnaire)
@@ -59,7 +63,7 @@
 
 	// The poll takes a while, pick the target afterwards so they are still around
 	var/mob/living/carbon/human/target
-	if(forced && (forced in aquila_chrono_find_targets()))
+	if(forced && aquila_chrono_valid_target(forced))
 		target = forced
 	else
 		var/list/targets = aquila_chrono_find_targets()
