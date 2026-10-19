@@ -1,6 +1,7 @@
 // AQUILA - Weighted rotation: every 30-60 minutes ghosts are offered a midround antagonist,
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
 // The heavy ones (slaughter demon, space dragon, blob, wizard, nuclear assault) are only offered in rounds from the high pool.
+// Blood worms are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
 #define WEIGHTED_MIDROUND_MIN_DELAY (30 MINUTES)
@@ -54,11 +55,17 @@
 				optional_events += event_path
 	return events + optional_events
 
+/// Ghost antagonist events offered in rounds from the medium and high pools
+/datum/weighted_ghost_midround/proc/medium_events()
+	var/static/list/events = list(
+		/datum/round_event_control/blood_worm,
+	)
+	return events
+
 /// Ghost antagonist events offered only in rounds from the high pool
 /datum/weighted_ghost_midround/proc/heavy_events()
 	var/static/list/events = list(
 		/datum/round_event_control/blob,
-		/datum/round_event_control/blood_worm,
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/space_dragon,
 		/datum/round_event_control/spider_infestation,
@@ -106,6 +113,8 @@
 	var/heavy = (GLOB.weighted_rotation.round_pool == WEIGHTED_POOL_HIGH)
 	var/list/event_types = list()
 	event_types += common_events()
+	if(heavy || GLOB.weighted_rotation.round_pool == WEIGHTED_POOL_MEDIUM)
+		event_types += medium_events()
 	if(heavy)
 		event_types += heavy_events()
 	var/players = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)

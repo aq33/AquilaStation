@@ -32,7 +32,7 @@
 	typepath = /datum/round_event/ghost_role/blood_worm
 	max_occurrences = 1
 	weight = 4
-	min_players = 20 // Robaki potrzebują krwi, na małej populacji trudno im się rozkręcić
+	min_players = 15
 	dynamic_should_hijack = TRUE
 	cannot_spawn_after_shuttlecall = TRUE
 
@@ -85,7 +85,7 @@
 	required_applicants = 1
 	weight = 2
 	cost = 10
-	minimum_players = 20
+	minimum_players = 15
 	repeatable = FALSE
 	var/list/vents
 
