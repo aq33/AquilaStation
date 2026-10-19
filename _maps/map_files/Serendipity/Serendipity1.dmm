@@ -1591,6 +1591,28 @@
 	},
 /turf/open/floor/engine/light,
 /area/ai_monitored/nuke_storage)
+"dw" = (
+/obj/structure/table/glass/plasma,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/item/relic,
+/obj/item/paper_bin,
+/obj/item/binoculars,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"dx" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/clothing/gloves/artifact_pinchers,
+/obj/item/sticky_note_pile,
+/obj/item/xenoartifact,
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1753,11 +1775,46 @@
 /obj/effect/spawner/lootdrop/gizmo,
 /turf/open/floor/plasteel/tiled/light,
 /area/science/lab)
+"dR" = (
+/obj/structure/table/glass/plasma,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/mineral/copper/five,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 3
+	},
+/obj/item/clothing/gloves/color/purple,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"dS" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dT" = (
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"dU" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Research Director's Desk";
+	departmentType = 5;
+	name = "Research Director RC";
+	pixel_y = -30;
+	receive_ore_updates = 1
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dV" = (
 /obj/structure/guncase{
 	capacity = 12;
@@ -1772,6 +1829,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"dX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/costume,
@@ -46028,7 +46095,7 @@ rC
 MP
 EX
 mJ
-dJ
+By
 dn
 dg
 aA
@@ -46283,7 +46350,7 @@ aQ
 We
 Gi
 pD
-dQ
+sQ
 sQ
 Mn
 hg
@@ -46801,7 +46868,7 @@ OW
 sQ
 jd
 Us
-dC
+dx
 SI
 Ag
 Gd
@@ -47315,7 +47382,7 @@ nq
 nq
 ZA
 AF
-dN
+Lm
 Km
 Wo
 MD
@@ -47829,7 +47896,7 @@ Tn
 Tn
 EJ
 mZ
-dF
+dS
 aA
 eV
 aA
@@ -48084,9 +48151,9 @@ Vq
 KZ
 cg
 sQ
-qg
+dw
 pY
-cS
+dU
 aA
 aA
 aA
@@ -48341,7 +48408,7 @@ SD
 KZ
 Ht
 aH
-RV
+dR
 Us
 Ij
 fe
@@ -48599,7 +48666,7 @@ KZ
 Hd
 sQ
 sq
-Us
+dX
 Ij
 nB
 Pu
