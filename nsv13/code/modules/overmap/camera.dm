@@ -166,6 +166,12 @@
 	ship = null
 	return ..()
 
+/datum/action/innate/camera_off/overmap/owner_deleted(datum/source)
+	. = ..()
+	// Właściciel znika, więc oko też - inaczej zostaje zarejestrowane na statku
+	if(remote_eye)
+		qdel(remote_eye)
+
 /datum/action/innate/camera_off/overmap/Activate()
 	if(!target || !isliving(target))
 		return
