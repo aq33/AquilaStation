@@ -66,6 +66,8 @@ Adding tasks is easy! Just define a datum for it.
 	var/list/shared_targets = list()
 
 /datum/fleet/Destroy()
+	shared_targets = null
+	QDEL_LIST(lances)
 	QDEL_LIST(all_ships) //We're taking the ships with us
 	current_system.fleets -= src
 	. = ..()
@@ -1758,9 +1760,10 @@ Seek a ship thich we'll station ourselves around
 		return FALSE
 
 	var/list/choices = flist("_maps/map_files/Instanced/")
-	var/ship_file = file("_maps/map_files/Instanced/"+input(usr, "What ship would you like to load?","Ship Instancing", null) as null|anything in choices)
-	if(!ship_file)
+	var/choice = input(usr, "What ship would you like to load?","Ship Instancing", null) as null|anything in choices
+	if(!choice)
 		return
+	var/ship_file = file("_maps/map_files/Instanced/[choice]")
 	if(instance_ship_from_json(ship_file))
 		message_admins("[key_name(src)] has instanced a copy of [ship_file]!")
 	else

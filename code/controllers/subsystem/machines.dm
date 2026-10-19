@@ -69,9 +69,10 @@ SUBSYSTEM_DEF(machines)
 		// Shorten the queue without needing to propogate the entire list
 		dirty_powernets.len--
 		// Do processing
-		first_powernet.dirty = FALSE
-		if (!QDELETED(first_powernet))
-			first_powernet.repropogate_cables()
+		if (first_powernet)
+			first_powernet.dirty = FALSE
+			if (!QDELETED(first_powernet))
+				first_powernet.repropogate_cables()
 		// Explicitly doesn't use SPLIT_TICK because we need to recalibrate the powernets
 		// before we calculate power consumption, otherwise machines not connected may
 		// get 1 tick of bluespace power transfer.

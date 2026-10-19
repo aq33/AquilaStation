@@ -142,8 +142,12 @@
 /mob/camera/ai_eye/remote/overmap_observer/Destroy()
 	UnregisterSignal(origin, COMSIG_MOVABLE_MOVED)
 	if(ship_target)
-		UnregisterSignal(ship_target, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(ship_target, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 		ship_target = null
+	// AQ EDIT - cykl eyeobj.off_action <-> off_action.remote_eye blokował GC obu
+	if(off_action)
+		off_action.remote_eye = null
+		QDEL_NULL(off_action)
 	return ..()
 
 /datum/action/innate/camera_off/overmap
@@ -153,6 +157,14 @@
 	var/mob/camera/ai_eye/remote/overmap_observer/remote_eye
 	var/mob/living/user
 	var/obj/structure/overmap/ship = null
+
+/datum/action/innate/camera_off/overmap/Destroy()
+	if(remote_eye?.off_action == src)
+		remote_eye.off_action = null
+	remote_eye = null
+	user = null
+	ship = null
+	return ..()
 
 /datum/action/innate/camera_off/overmap/Activate()
 	if(!target || !isliving(target))
