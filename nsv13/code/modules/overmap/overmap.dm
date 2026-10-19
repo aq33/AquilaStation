@@ -528,7 +528,8 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		fleet.stop_reporting_all(src)
 	// AQ EDIT - enemies/last_target są jednokierunkowe; bez tego martwy statek wisiał w cudzych listach (GC fail, hard delete ~50 ms)
 	for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
-		LAZYREMOVE(OM.enemies, src)
+		if(OM.enemies) // nie LAZYREMOVE - add_enemy() robi enemies += bez inicjalizacji
+			OM.enemies -= src
 		if(OM.last_target == src)
 			OM.last_target = null
 		if(OM.target_lock == src)

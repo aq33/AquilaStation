@@ -207,6 +207,7 @@
 		clear_character_preview_map()
 		QDEL_NULL(character_preview_view)
 	preview_gear = null
+	return ..()
 
 /datum/preferences/proc/create_character_preview(mob/user)
 	if(character_preview_view)

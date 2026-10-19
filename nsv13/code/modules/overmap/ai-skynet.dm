@@ -1611,7 +1611,7 @@ Seek a ship thich we'll station ourselves around
 			addtimer(VARSET_CALLBACK(src, ai_can_launch_fighters, TRUE), 3 MINUTES)
 	if(OM in enemies) //If target's in enemies, return
 		return
-	enemies += target
+	LAZYADD(enemies, target)
 	if(OM.role == MAIN_OVERMAP)
 		if(GLOB.security_level < SEC_LEVEL_RED)	//Lets not pull them out of Zebra / Delta
 			set_security_level(SEC_LEVEL_RED) //Action stations when the ship is under attack, if it's the main overmap.

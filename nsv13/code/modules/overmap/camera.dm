@@ -170,8 +170,8 @@
 	if(!target || !isliving(target))
 		return
 	if(!remote_eye?.origin)
+		qdel(remote_eye) // najpierw kamera - Destroy() akcji zeruje remote_eye
 		qdel(src)
-		qdel(remote_eye)
 	else if(ship.stop_piloting(target))
 		qdel(remote_eye)
 		qdel(src)
