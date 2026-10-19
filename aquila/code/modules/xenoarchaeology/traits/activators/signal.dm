@@ -26,9 +26,8 @@
 	signal = new(list("code" = code))
 	//Frequency
 	radio_connection = SSradio.add_object(src, FREQ_SIGNALER, "[RADIO_XENOA]_[REF(src)]")
-	radio_connection.add_listener(src)
 
-/datum/xenoartifact_trait/minor/signaller/Destroy(force)
+/datum/xenoartifact_trait/activator/signal/Destroy(force)
 	SSradio.remove_object(src, FREQ_SIGNALER)
 	QDEL_NULL(signal)
 	return ..()
@@ -76,7 +75,7 @@
 	XENOA_TRAIT_HINT_SOUND("piknięcia sonaru"))
 
 /datum/xenoartifact_trait/activator/signal/proc/receive_signal(datum/signal/signal)
-	if(!signal)
+	if(!signal || !component_parent)
 		return
 	if(signal.data["code"] != code)
 		return

@@ -249,7 +249,7 @@
 /datum/xenoartifact_trait/proc/pry_action(mob/living/user, obj/item/I)
 	var/atom/movable/movable = component_parent.parent
 	to_chat(user, "<span class='warning'>Zaczynasz podważać [movable] za pomocą [I].</span>")
-	if(do_after(user, 8 SECONDS, movable) && component_parent)
+	if(do_after(user, 8 SECONDS, target = movable) && component_parent)
 		new /obj/item/sticker/trait_pearl(get_turf(movable), src)
 		component_parent?.remove_individual_trait(src) //You never know...
 		remove_parent(pensive = FALSE)

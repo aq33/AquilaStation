@@ -115,6 +115,22 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 /// Holder bez zaklęcia źródłowego - oryginalne casterDeath odwołuje się do source
 /obj/shapeshift_holder/artifact
 
+/// Bez darmowego pełnego leczenia przy powrocie (oryginalne restore robi revive(full_heal))
+/obj/shapeshift_holder/artifact/restore(death = FALSE, convert_damage = FALSE)
+	if(!stored)
+		return FALSE
+	restoring = TRUE
+	qdel(slink)
+	stored.forceMove(get_turf(src))
+	stored.notransform = FALSE
+	if(shape.mind)
+		shape.mind.transfer_to(stored)
+	if(death)
+		stored.death()
+	if(!QDELETED(shape))
+		qdel(shape)
+	qdel(src)
+
 /obj/shapeshift_holder/artifact/casterDeath()
 	restore(death = TRUE)
 

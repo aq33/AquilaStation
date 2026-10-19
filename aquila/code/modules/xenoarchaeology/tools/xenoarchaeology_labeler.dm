@@ -254,13 +254,16 @@
 /obj/item/sticker/xenoartifact_label/unstick(atom/override)
 	if(QDELETED(src))
 		return
-
+	//aquila: z Moved() przychodzi stare miejsce w override, loc to już nowe
+	var/atom/stuck_to = override || loc
+	if(!stuck_to)
+		return ..()
 	if(sticker_state == STICKER_STATE_STUCK)
-		UnregisterSignal(loc, COMSIG_PARENT_EXAMINE)
+		UnregisterSignal(stuck_to, COMSIG_PARENT_EXAMINE)
 	//Set custom price back
-	var/datum/component/xenoartifact/artifact = loc.GetComponent(/datum/component/xenoartifact)
+	var/datum/component/xenoartifact/artifact = stuck_to.GetComponent(/datum/component/xenoartifact)
 	if(artifact)
-		loc.item_price = old_custom_price
+		stuck_to.item_price = old_custom_price
 	. = ..()
 
 /obj/item/sticker/xenoartifact_label/proc/parent_examine(datum/source, mob/user, list/examine_text)

@@ -11,7 +11,7 @@
 	extra_target_range = 2
 	weight = 21
 	///List of projectiles we *could* shoot
-	var/list/possible_projectiles = list(/obj/item/projectile/beam/disabler, /obj/item/projectile/tentacle, /obj/item/projectile/beam/lasertag, /obj/item/projectile/energy/electrode)
+	var/list/possible_projectiles = list(/obj/item/projectile/beam/disabler, /obj/item/projectile/beam/lasertag, /obj/item/projectile/energy/electrode)
 	///The projectile type we *will* shoot
 	var/obj/item/projectile/choosen_projectile
 

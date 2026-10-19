@@ -364,7 +364,9 @@
 	if(!get_turf(target) || locate(parent) in target.contents)
 		return
 	var/atom/atom_parent = parent
-	var/datum/beam/xenoa_beam/B = new((!isturf(atom_parent.loc) ? atom_parent.loc : atom_parent), (!isturf(target.loc) ? target.loc : target), time=1.5 SECONDS, beam_color = artifact_material.material_color, icon='icons/obj/xenoarchaeology/xenoartifact.dmi', icon_state="xenoa_beam", beam_type=/obj/effect/ebeam/xenoa_ebeam)
+	//aquila: nasz /datum/beam/New ma inne argumenty niż Bee (pozycyjne, bez koloru)
+	var/datum/beam/xenoa_beam/B = new((!isturf(atom_parent.loc) ? atom_parent.loc : atom_parent), (!isturf(target.loc) ? target.loc : target), 'icons/obj/xenoarchaeology/xenoartifact.dmi', "xenoa_beam", 1.5 SECONDS, 10, /obj/effect/ebeam/xenoa_ebeam)
+	B.beam_color = artifact_material.material_color
 	INVOKE_ASYNC(B, TYPE_PROC_REF(/datum/beam, Start))
 
 /datum/component/xenoartifact/proc/anti_check(atom/target, activation_type = XENOA_ACTIVATION_CONTACT)
@@ -404,10 +406,11 @@
 /obj/effect/ebeam/xenoa_ebeam
 	name = "artifact beam"
 
-/datum/beam/xenoa_beam/redrawing(atom/movable/mover, atom/oldloc, direction)
-	//Add a custom check to stop the beam shooting off into infinity, artifact traits fuck with default beam stuff
-	if(!isturf(target?.loc) || oldloc?.z != target?.z)
-		target = get_turf(oldloc)
-	if(!target)
-		qdel(src)
-	return ..()
+/datum/beam/xenoa_beam
+	///Kolor wiązki (Bee przekazywało go w New)
+	var/beam_color
+
+//aquila: nasza wiązka sama kończy się po przekroczeniu max_distance, więc bez nadpisania redrawing() z Bee
+/datum/beam/xenoa_beam/afterDraw()
+	for(var/obj/effect/ebeam/E in elements)
+		E.color = beam_color

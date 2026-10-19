@@ -48,8 +48,10 @@
 	if(!.)
 		return
 	var/turf/open/T = get_turf(component_parent.parent)
+	if(!istype(T))
+		return
 	var/datum/gas_mixture/air = T.air
-	if(!istype(T) || !air)
+	if(!air)
 		return
 	var/moles = min(air.get_moles(choosen_target), max_moles)
 	if(!moles)

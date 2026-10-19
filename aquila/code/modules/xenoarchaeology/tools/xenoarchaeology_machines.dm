@@ -14,7 +14,9 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_ARTIFACT_IGNORE, INNATE_TRAIT)
 
-/obj/machinery/xenoarchaeology_machine/attackby(obj/item/I, mob/living/user, list/modifiers)
+/obj/machinery/xenoarchaeology_machine/attackby(obj/item/I, mob/living/user, params)
+	//aquila: u nas attackby dostaje parametry kliknięcia jako tekst
+	var/list/modifiers = islist(params) ? params : params2list(params)
 	if(user.combat_mode || (I.item_flags & ABSTRACT))
 		return ..()
 	if(move_inside && length(held_contents) >= max_contents)
@@ -22,15 +24,15 @@
 	var/atom/target = get_target()
 	///Move the item to our target, so we can work with it, like we're a table
 	if(user.transferItemToLoc(I, target, silent = FALSE))
+		//Handle contents - najpierw, żeby brak pozycji kliknięcia nie zostawił przedmiotu w środku bez rejestracji
+		if(move_inside)
+			register_contents(I)
 		//Center the icon where the user clicked.
 		if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
 			return
 		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 		I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(ICON_SIZE_X/2), ICON_SIZE_X/2)
 		I.pixel_y = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(ICON_SIZE_Y/2), ICON_SIZE_Y/2)
-		//Handle contents
-		if(move_inside)
-			register_contents(I)
 
 /obj/machinery/xenoarchaeology_machine/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -205,13 +207,13 @@
 	var/cooking_timer
 	///How effective are our parts, for making DP
 	var/reward_rate = 1 / 16
+	///Kto uruchomił kalibrację - pytamy go o usterki (w callbacku timera usr jest pusty)
+	var/datum/weakref/cooking_user
 
 /obj/machinery/xenoarchaeology_machine/calibrator/Initialize(mapload, _artifact_type)
 	. = ..()
 	radio = new /obj/item/radio/headset/headset_sci(src)
-
-/obj/machinery/xenoarchaeology_machine/calibrator/LateInitialize()
-	. = ..()
+	//aquila: nasze maszyny nie wołają LateInitialize, a SSresearch startuje przed atomami
 	if(!linked_techweb)
 		linked_techweb = SSresearch.science_tech
 
@@ -252,6 +254,7 @@
 		register_contents(item)
 
 /obj/machinery/xenoarchaeology_machine/calibrator/alt_activate_machine(mob/user)
+	cooking_user = WEAKREF(user)
 	if(!length(held_contents) || cooking_timer)
 		playsound(get_turf(src), 'sound/machines/uplinkerror.ogg', 60)
 		return
@@ -328,7 +331,7 @@
 	//Calibrate the artifact
 	artifact_component.calibrate()
 	//Prompt user to delete or keep malfunctions
-	var/decision = tgui_alert(usr, "Czy chcesz zwapnić usterki artefaktu [atom_target]?", "Usuwanie usterek", list("Tak", "Nie"))
+	var/decision = tgui_alert(cooking_user?.resolve(), "Czy chcesz zwapnić usterki artefaktu [atom_target]?", "Usuwanie usterek", list("Tak", "Nie"))
 	if(decision == "Tak")
 		for(var/i in artifact_component.traits_catagories)
 			for(var/datum/xenoartifact_trait/trait_datum in artifact_component.traits_catagories[i])

@@ -43,7 +43,9 @@
 	. = ..()
 	if(!can_stick(target) || !proximity_flag)
 		return
-	stick_to(target, text2num(LAZYACCESS(modifiers, ICON_X)), text2num(LAZYACCESS(modifiers, ICON_Y)))
+	//aquila: u nas afterattack dostaje parametry kliknięcia jako tekst
+	var/list/mods = islist(modifiers) ? modifiers : params2list(modifiers)
+	stick_to(target, text2num(LAZYACCESS(mods, ICON_X)), text2num(LAZYACCESS(mods, ICON_Y)))
 
 /obj/item/sticker/attack_hand(mob/living/user)
 	if(user.combat_mode && sticker_state == STICKER_STATE_STUCK)

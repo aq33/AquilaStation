@@ -28,8 +28,9 @@
 	Lets crew discover / play with artifacts without blowing shit up
 */
 /obj/item/xenoartifact/maint/Initialize(mapload, _artifact_type)
-	. = ..()
+	//aquila: materiał przed ..(), bo komponent powstaje w Initialize rodzica
 	artifact_material = prob(90) ? /datum/xenoartifact_material/bluespace : null
+	. = ..()
 
 /*
 	objective variant

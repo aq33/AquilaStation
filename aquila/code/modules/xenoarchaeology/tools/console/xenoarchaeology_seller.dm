@@ -116,7 +116,7 @@
 	desc = "Zawiera potencjalnie niebezpieczne materiały albo absurdalne krawaty."
 	hidden = TRUE
 	crate_name = "research material container"
-	crate_type = /obj/structure/closet/crate/science
+	crate_type = /obj/structure/closet/crate/secure/science //aquila: zabezpieczona, żeby błąd manifestu nie kasował opłaconego artefaktu
 	max_supply = 1
 	current_supply = 1
 	cost = 0

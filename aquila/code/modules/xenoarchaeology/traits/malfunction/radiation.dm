@@ -15,10 +15,10 @@
 		return
 
 	var/atom/atom_parent = component_parent.parent
-	radiation_pulse(atom_parent, component_parent.trait_strength * 5)
+	radiation_pulse(atom_parent, component_parent.trait_strength * 3, can_contaminate = FALSE)
 
 	for(var/atom/target in focus)
-		target.rad_act(500)
+		target.rad_act(250)
 
 	dump_targets()
 	clear_focus()

@@ -57,7 +57,7 @@
 		indicator_hint()
 
 /datum/xenoartifact_trait/activator/flammable/process(delta_time)
-	if(!lit)
+	if(!lit || !component_parent)
 		return ..()
 	if(search_cooldown_timer)
 		return

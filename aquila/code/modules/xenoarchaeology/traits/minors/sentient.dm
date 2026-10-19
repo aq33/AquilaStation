@@ -145,6 +145,18 @@
 	sentient_artifact = artifact
 	range = sentient_artifact?.target_range || range
 
+//aquila: pointed spell sam nie sprawdza zasięgu
+/obj/effect/proc_holder/spell/pointed/artifact_senitent_action/intercept_check(mob/user, atom/target)
+	var/datum/component/xenoartifact/artifact = sentient_artifact
+	if(!artifact?.parent || get_dist(get_turf(artifact.parent), get_turf(target)) > range)
+		to_chat(user, "<span class='warning'>Cel jest poza zasięgiem artefaktu!</span>")
+		return FALSE
+	return TRUE
+
+//aquila: bazowe update_icon ustawia stany projectile0/1, których nie ma w ikonie revenanta
+/obj/effect/proc_holder/spell/pointed/artifact_senitent_action/update_icon()
+	return
+
 /obj/effect/proc_holder/spell/pointed/artifact_senitent_action/cast(list/targets, mob/user)
 	. = ..()
 	var/atom/target = targets[1]

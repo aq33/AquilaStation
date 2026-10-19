@@ -14,6 +14,8 @@
 	var/datum/component/deadchat_control/controller
 	///How long between moves
 	var/move_delay = 8 SECONDS
+	///Artefakt dopisany do listy POI (orbit/obserwuj)
+	var/atom/poi_atom
 
 /datum/xenoartifact_trait/minor/haunted/register_parent(datum/source)
 	. = ..()
@@ -27,12 +29,24 @@
 			"right" = CALLBACK(src, PROC_REF(haunted_step), atom_parent, EAST),
 			"activate" = CALLBACK(src, PROC_REF(activate_parent), atom_parent)), move_delay))
 	addtimer(CALLBACK(src, PROC_REF(do_wail)), 35 SECONDS)
-	//Landmark
-	GLOB.poi_list |= component_parent?.parent
+	//Landmark (aquila: zamiast elementu point_of_interest z Bee, sprzątamy sami)
+	poi_atom = component_parent.parent
+	GLOB.poi_list |= poi_atom
+	RegisterSignal(poi_atom, COMSIG_PARENT_QDELETING, PROC_REF(clear_poi))
 
 /datum/xenoartifact_trait/minor/haunted/Destroy(force)
 	QDEL_NULL(controller)
+	clear_poi()
 	return ..()
+
+/datum/xenoartifact_trait/minor/haunted/proc/clear_poi(datum/source)
+	SIGNAL_HANDLER
+
+	if(!poi_atom)
+		return
+	GLOB.poi_list -= poi_atom
+	UnregisterSignal(poi_atom, COMSIG_PARENT_QDELETING)
+	poi_atom = null
 
 /datum/xenoartifact_trait/minor/haunted/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/storage/book/bible))

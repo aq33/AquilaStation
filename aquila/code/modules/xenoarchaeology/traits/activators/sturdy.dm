@@ -39,7 +39,8 @@
 	var/atom/atom_parent = component_parent?.parent
 	if(!isliving(atom_parent?.loc) && !atom_parent?.density || check_item_safety(item))
 		return
-	trigger_artifact(target || item, XENOA_ACTIVATION_TOUCH)
+	//aquila: COMSIG_ATOM_ATTACK_HAND podaje tu listę modyfikatorów, nie atom
+	trigger_artifact(isatom(target) ? target : item, XENOA_ACTIVATION_TOUCH)
 
 /datum/xenoartifact_trait/activator/sturdy/translation_type_a(datum/source, atom/target)
 	var/atom/atom_parent = component_parent?.parent

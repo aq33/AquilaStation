@@ -53,9 +53,7 @@
 	radio = new /obj/item/radio/headset/headset_sci(src)
 	//Look for sold artifacts
 	RegisterSignal(SSdcs, COMSIG_GLOB_ATOM_SOLD, PROC_REF(check_sold))
-
-/obj/machinery/computer/xenoarchaeology_console/LateInitialize()
-	. = ..()
+	//aquila: nasze maszyny nie wołają LateInitialize, a SSresearch startuje przed atomami
 	if(!linked_techweb)
 		linked_techweb = SSresearch.science_tech
 
@@ -95,7 +93,7 @@
 		for(var/datum/supply_order/console_order in console_orders)
 			if(!(console_order in SSshuttle.shoppinglist))
 				console_orders -= console_order
-				qdel(console_order)
+				//aquila: bez qdel - wysłane zamówienie siedzi jeszcze w SSshuttle.orderhistory
 				continue
 			data["active_request"] += list(list(
 				"object" = console_order.pack.name,
@@ -119,7 +117,7 @@
 			var/datum/rnd_lister/seller = locate(params["seller_id"])
 			var/obj/item/item = locate(params["item_id"])
 			//Check if this is even possible
-			if(!(item in seller.current_stock))
+			if(!istype(seller) || !item || !(item in seller.current_stock))
 				return
 			//If we got no cash
 			if(seller.get_price(item) > budget.account_balance)
@@ -161,7 +159,7 @@
 					return
 				else if(!(current_order in SSshuttle.shoppinglist))
 					console_orders -= current_order
-					qdel(current_order)
+					//aquila: bez qdel - wysłane zamówienie siedzi jeszcze w SSshuttle.orderhistory
 			//If we can't, make a new order
 			current_pack = new /datum/supply_pack/science_listing()
 			current_pack.contains = list()

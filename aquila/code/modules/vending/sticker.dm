@@ -35,10 +35,11 @@
 /obj/item/sticker_gacha/interact(mob/user)
 	. = ..()
 	to_chat(user, "<span class='notice'>Zaczynasz podważać [src].</span>")
-	if(do_after(user, 2.5 SECONDS, src))
+	if(do_after(user, 2.5 SECONDS, target = src))
 		playsound(user, 'sound/effects/cartoon_pop.ogg', 35, TRUE)
 		//Build prize
 		user.dropItemToGround(src)
+		fill_sticker_globals()
 		var/obj/item/sticker/S = pick(GLOB.stickers_by_series["[series]"])
 		S = new S(get_turf(src))
 		user.put_in_active_hand(S)
