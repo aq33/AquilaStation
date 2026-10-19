@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(parent)
 		parent.elements -= src
 		UnregisterSignal(parent, COMSIG_PARENT_QDELETING)
+		parent = null
 	. = ..()
 
 /atom/movable/screen/radial/proc/set_parent(new_value)
@@ -327,8 +328,15 @@ GLOBAL_LIST_EMPTY(radial_menus)
 
 /datum/radial_menu/Destroy()
 	QDEL_LIST(elements)
+	QDEL_NULL(close_button)
 	Reset()
 	hide()
+	// AQ EDIT - cykl slice.parent -> menu -> menu_holder.vis_contents -> slice blokował GC
+	if(menu_holder)
+		menu_holder.vis_contents.Cut()
+		menu_holder = null
+	current_user = null
+	anchor = null
 	QDEL_NULL(custom_check_callback)
 	. = ..()
 

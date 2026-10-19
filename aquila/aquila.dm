@@ -742,6 +742,7 @@
 #include "code\modules\test_chamber\kits\pr_457_medycyna.dm"
 #include "code\modules\test_chamber\kits\pr_458_jajo_squid.dm"
 #include "code\modules\test_chamber\kits\pr_467_blood_worm.dm"
+#include "code\modules\test_chamber\kits\pr_471_logi_rund.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
 #include "code\modules\weighted\weighted_pace_vote.dm"

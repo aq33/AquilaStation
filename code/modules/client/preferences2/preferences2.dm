@@ -145,7 +145,7 @@
 	if(!SSdbcore.IsConnected())
 		return
 
-	if(IS_GUEST_KEY(parent.ckey))
+	if(!parent?.ckey || IS_GUEST_KEY(parent.ckey))
 		return
 
 	var/list/datum/DBQuery/write_queries = list() // do not rename this you muppet

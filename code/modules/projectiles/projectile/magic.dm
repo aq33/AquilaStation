@@ -683,6 +683,8 @@
 
 /obj/item/projectile/magic/fireball/New(loc, spell_level)
 	. = ..()
+	if(!isnum(spell_level)) // ammo_casing/newshot() podaje tu łuskę
+		spell_level = 0
 	exp_fire += spell_level
 	exp_flash += spell_level
 	exp_light += spell_level

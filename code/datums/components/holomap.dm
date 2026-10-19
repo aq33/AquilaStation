@@ -83,7 +83,10 @@
 /datum/component/holomap/Destroy(force, silent)
 	if(holobutton)
 		holobutton.Remove(get_user())
-		qdel(holobutton)
+		// AQ EDIT - akcja trzymała komponent i PDA (holder/holo), więc PDA i długopisy nie schodziły przez GC
+		holobutton.holder = null
+		holobutton.holo = null
+		QDEL_NULL(holobutton)
 	. = ..()
 
 /datum/component/holomap/proc/summon_holomap(datum/user)
