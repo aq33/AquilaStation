@@ -10,7 +10,7 @@
 	items = list(
 		/obj/item/clothing/gloves/artifact_pinchers = 1,
 		/obj/item/xenoartifact/tutorial = 1,
-		/obj/item/xenoartifact = 2,
+		/obj/item/xenoartifact/maint = 2,
 		/obj/item/xenoartifact/pre_labeled = 1,
 		/obj/machinery/xenoarchaeology_machine/scale = 1,
 		/obj/machinery/xenoarchaeology_machine/conductor = 1,
@@ -22,7 +22,7 @@
 		/obj/item/sticky_note_pile = 1,
 		/obj/item/analyzer = 1,
 		/obj/item/healthanalyzer = 1,
-		/obj/machinery/gizmo = 1,
+		/obj/machinery/gizmo/toggle = 1,
 		/obj/machinery/gizmo/voice = 1,
 		/obj/item/gizmo = 1,
 		/obj/item/multitool = 1,
