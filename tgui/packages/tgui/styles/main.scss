@@ -5,10 +5,10 @@
 
 @use 'sass:meta';
 @use 'base';
-@use '~tgui-core/styles';
 
 // Core styles
 @include meta.load-css('./reset.scss');
+@include meta.load-css('./tgui-core-compat.scss');
 
 // Atomic classes
 @include meta.load-css('./atomic/candystripe.scss');

@@ -1,7 +1,6 @@
 @use 'sass:meta';
 @use 'sass:color';
 // Components
-@use '~tgui-core/styles';
 
 @use '~tgui/styles/base.scss' with (
   $color-fg: #dbd8ef,

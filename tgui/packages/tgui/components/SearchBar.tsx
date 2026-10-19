@@ -24,7 +24,7 @@ type Props = RequiredProps & OptionalProps;
  * Simple component for searching.
  * This component does not accept box props - just recreate it if needed
  */
-export const SearchBar = (props: Props, content) => {
+export const SearchBar = (props: Props) => {
   const {
     autoFocus,
     noIcon = false,

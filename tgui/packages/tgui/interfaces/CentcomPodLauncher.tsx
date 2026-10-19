@@ -427,7 +427,12 @@ const EFFECTS_HARM = [
     act: 'effectOrgans',
   },
 ];
-const EFFECTS_ALL = [
+const EFFECTS_ALL: {
+  list: any[];
+  label: string;
+  alt_label?: string;
+  tooltipPosition: 'right' | 'bottom';
+}[] = [
   {
     list: EFFECTS_LOAD,
     label: 'Load From',

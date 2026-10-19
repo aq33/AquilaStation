@@ -61,10 +61,10 @@ export const MaterialAccessBar = (props: {
   );
 };
 
-const MaterialCounter = (
-  props: { material: Material; onEjectRequested: (amount: number) => void },
-  context,
-) => {
+const MaterialCounter = (props: {
+  material: Material;
+  onEjectRequested: (amount: number) => void;
+}) => {
   const [hovering, setHovering] = useLocalState(
     `MaterialCounter__${props.material.name}`,
     false,

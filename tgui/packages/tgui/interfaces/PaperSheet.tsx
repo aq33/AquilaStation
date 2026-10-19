@@ -72,7 +72,7 @@ type PaperSheetStamperState = {
 };
 
 type PaperSheetStamperProps = {
-  scrollableRef: RefObject<HTMLDivElement>;
+  scrollableRef: RefObject<HTMLDivElement | null>;
 };
 
 type FieldCreationReturn = {
@@ -94,7 +94,7 @@ enum InteractionType {
 }
 
 type PreviewViewProps = {
-  scrollableRef: RefObject<HTMLDivElement>;
+  scrollableRef: RefObject<HTMLDivElement | null>;
   handleOnScroll: (ev: any) => any;
   textArea: string;
 };
@@ -116,7 +116,7 @@ class PaperSheetStamper extends Component<PaperSheetStamperProps> {
   // It works on TG for almost 4 months as of November 2022, so it's probably fine.
   // eslint-disable-next-line react/state-in-constructor
   state: PaperSheetStamperState = { x: 0, y: 0, rotation: 0, yOffset: 0 };
-  scrollableRef: RefObject<HTMLDivElement>;
+  scrollableRef: RefObject<HTMLDivElement | null>;
 
   constructor(props) {
     super(props);
@@ -271,7 +271,7 @@ export class PrimaryView extends Component<any, any> {
   // Reference that gets passed to the <Section> holding the main preview.
   // Eventually gets filled with a reference to the section's scroll bar
   // funtionality.
-  scrollableRef: RefObject<HTMLDivElement>;
+  scrollableRef: RefObject<HTMLDivElement | null>;
 
   // The last recorded distance the scrollbar was from the bottom.
   // Used to implement "text scrolls up instead of down" behaviour.

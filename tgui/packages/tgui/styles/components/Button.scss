@@ -97,6 +97,19 @@ $bg-map: colors.$bg-map !default;
   }
 }
 
+// tgui-core 2+ Button no longer puts an inline margin on its icon and marks
+// buttons by Button--empty / Button--icon-right instead of Button--hasContent.
+// Keep the old spacing between the icon and the text.
+.Button:not(.Button--empty):not(.Button--icon-right)
+  > .Button__content
+  > .Button--icon {
+  margin-right: 0.25rem;
+}
+
+.Button--icon-right:not(.Button--empty) > .Button__content > .Button--icon {
+  margin-left: 0.25rem;
+}
+
 .Button--hasContent.Button--iconPosition--right {
   .fa,
   .fas,

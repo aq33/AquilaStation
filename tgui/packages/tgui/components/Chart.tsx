@@ -71,7 +71,7 @@ const dataToPolylinePoints = (data) => {
 };
 
 class LineChart extends Component<Props> {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLDivElement | null>;
   state: State;
 
   constructor(props: Props) {

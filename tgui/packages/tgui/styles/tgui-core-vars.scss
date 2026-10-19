@@ -1,0 +1,343 @@
+/**
+ * CSS variables copied from tgui-core 2.1.1 (styles/vars-*.scss).
+ * The package only exports its full stylesheet, which would also pull in
+ * every core component style on top of ours. Keep in sync on version bumps.
+ */
+
+// --- vars-values.scss
+:root {
+  /* Font */
+  --font-size: 12px;
+  --font-family: Verdana, Geneva, sans-serif;
+  --font-family-mono: Consolas, monospace;
+
+  /* Border thickness */
+  --border-thickness-unit: 0.5em;
+  /* 1px | 0.085em */
+  --border-thickness-tiny: calc(var(--border-thickness-unit) * 0.5 * 0.34);
+  /* 2px | 0.17em */
+  --border-thickness-small: calc(var(--border-thickness-unit) * 0.34);
+  /* 3px | 0.25em */
+  --border-thickness-medium: calc(var(--border-thickness-unit) * 0.5);
+  /* 4px | 0.33em */
+  --border-thickness-large: calc(var(--border-thickness-unit) * 0.66);
+  /* 6px | 0.5em */
+  --border-thickness-larger: var(--border-thickness-unit);
+
+  /* Border radius */
+  --border-radius-unit: 1rem;
+  /* 2px | 0.17rem */
+  --border-radius-tiny: calc(var(--border-radius-unit) * 0.25 * 0.68);
+  /* 3px | 0.25rem */
+  --border-radius-small: calc(var(--border-radius-unit) * 0.25);
+  /* 4px | 0.33rem */
+  --border-radius-medium: calc(var(--border-radius-unit) * 0.33);
+  /* 6px | 0.5rem */
+  --border-radius-large: calc(var(--border-radius-unit) * 0.5);
+  /* 10px | 0.75rem */
+  --border-radius-larger: calc(var(--border-radius-unit) * 0.75);
+  /* 12px | 1rem*/
+  --border-radius-huge: var(--border-radius-unit);
+  /* 24px | 2rem*/
+  --border-radius-giant: calc(var(--border-radius-unit) * 2);
+  /* Maximum border radius. Makes perfect circles */
+  --border-radius-circular: 99999px;
+
+  /* Spacing */
+  --space-unit: 1em;
+  /* 1px | 0.085em */
+  --space-xxs: calc(var(--space-unit) * 0.25 * 0.34);
+  /* 2px | 0.17em */
+  --space-xs: calc(var(--space-unit) * 0.25 * 0.68);
+  /* 3px | 0.25em */
+  --space-s: calc(var(--space-unit) * 0.25);
+  /* 4px | 0.33em */
+  --space-sm: calc(var(--space-unit) * 0.33);
+  /* 6px | 0.5em */
+  --space-m: calc(var(--space-unit) * 0.5);
+  /* 8px | 0.66em */
+  --space-ml: calc(var(--space-unit) * 0.66);
+  /* 10px | 0.75em */
+  --space-l: calc(var(--space-unit) * 0.75);
+  /* 12px | 1em*/
+  --space-xl: var(--space-unit);
+  /* 24px | 2em*/
+  --space-xxl: calc(var(--space-unit) * 2);
+
+  /* Transition */
+  --transition-time-unit: 1s;
+  /* 0.1s | 100ms */
+  --transition-time-fast: calc(var(--transition-time-unit) * 0.1);
+  /* 0.2s | 200ms */
+  --transition-time-medium: calc(var(--transition-time-unit) * 0.2);
+  /* 0.5s | 500ms */
+  --transition-time-slow: calc(var(--transition-time-unit) * 0.5);
+  /* 1s | 1000ms */
+  --transition-time-slowest: var(--transition-time-unit);
+
+  /* Shadows */
+  --shadow-unit: 1rem;
+  /* 0 0 0.5rem */
+  --shadow-glow-small: 0 0 calc(var(--shadow-unit) * 0.5);
+  /* 0 0 1rem */
+  --shadow-glow-medium: 0 0 var(--shadow-unit);
+  /* 0 0 2rem */
+  --shadow-glow-large: 0 0 calc(var(--shadow-unit) * 2);
+
+  /* Blur */
+  --blur-small: blur(6px);
+  --blur-medium: blur(12px);
+  --blur-large: blur(24px);
+
+  /* Adjustments */
+  /* Color lightness multiplier. + for FG - for BG */
+  --adjust-color: 5;
+  /* Color lightness multiplier wneh hovered */
+  --adjust-hover: 10;
+  /* Color lightness multiplier when active (clicked) */
+  --adjust-active: 7.5;
+
+  /* Cursors */
+  --cursor-default: default;
+  --cursor-pointer: pointer;
+  --cursor-disabled: var(--cursor-default);
+  --cursor-n-resize: n-resize;
+  --cursor-s-resize: s-resize;
+  --cursor-se-resize: se-resize;
+  --cursor-e-resize: e-resize;
+}
+
+// --- vars-colors.scss
+:root {
+  /* Background colors */
+  --color-base: hsl(0, 0%, 15%);
+  --color-section: hsla(0, 0%, 0%, 0.33);
+  --color-secondary: hsl(
+    from var(--color-base) var(--secondary-hue) var(--secondary-saturation)
+      calc(l + var(--secondary-lightness-adjustment))
+  );
+  --secondary-hue: h;
+  --secondary-saturation: s;
+  --secondary-lightness-adjustment: 7.5;
+  --base-gradient-spread: 2;
+  --color-base-start: hsl(
+    from var(--color-base) h s calc(l + var(--base-gradient-spread))
+  );
+  --color-base-end: hsl(
+    from var(--color-base) h s calc(l - var(--base-gradient-spread))
+  );
+
+  /* Scrollbar */
+  --color-scrollbar-base: var(--color-section);
+  --color-scrollbar-thumb: hsl(from var(--color-base) h s calc(l + 9.25));
+
+  /* Candystripe */
+  --candystripe-odd: hsla(0, 0%, 0%, 0.25);
+  --candystripe-even: transparent;
+
+  /* Base colors */
+  --color-red: hsl(0, 70%, 50%);
+  --color-orange: hsl(25, 90%, 50%);
+  --color-yellow: hsl(50, 97.5%, 50%);
+  --color-olive: hsl(70, 75%, 45%);
+  --color-green: hsl(140, 70%, 40%);
+  --color-teal: hsl(180, 100%, 35%);
+  --color-blue: hsl(210, 65%, 47.5%);
+  --color-violet: hsl(260, 60%, 50%);
+  --color-purple: hsl(290, 60%, 50%);
+  --color-pink: hsl(325, 70%, 50%);
+  --color-brown: hsl(25, 47.5%, 45%);
+
+  /* Grayscale colors */
+  --color-black: hsl(0, 0%, 0%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-grey: hsl(0, 0%, 50%);
+  --color-light-grey: hsl(0, 0%, 66.6%);
+  --color-gray: var(--color-grey);
+  --color-light-gray: var(--color-light-grey);
+
+  /* Action colors */
+  --color-action: hsl(0, 0%, 50%);
+  --color-hover: hsl(from var(--color-action) h s l / 0.25);
+  --color-active: hsl(from var(--color-action) h s l / 0.3);
+  --color-selected: hsl(from var(--color-action) h s l / 0.4);
+
+  /* Semantic colors */
+  --primary-hue: 210;
+  --primary-saturation: 37.5%;
+  --primary-lightness: 45%;
+  /* prettier-ignore */
+  --color-primary: hsl(var(--primary-hue), var(--primary-saturation), var(--primary-lightness));
+  --color-good: hsl(95, 62.5%, 40%);
+  --color-average: hsl(32.5, 90%, 50%);
+  --color-bad: hsl(0, 72.5%, 50%);
+  --color-label: hsl(from var(--color-primary) h 17.5 57.5);
+
+  /* Text colors */
+  --color-text: var(--color-white);
+  --color-text-translucent: hsl(from var(--color-text) h s l / 0.5);
+  --color-text-translucent-light: hsl(from var(--color-text) h s l / 0.75);
+  --color-text-fixed-white: var(--color-white);
+  --color-text-fixed-black: var(--color-black);
+
+  /* Link colors */
+  --color-hyperlink: hsl(220, 100%, 70%);
+  --color-hyperlink-visited: hsl(260, 100%, 70%);
+  --color-hyperlink-new: hsl(0, 100%, 70%);
+  --color-hyperlink-new-visited: hsl(15, 100%, 70%);
+
+  /* Border */
+  --color-border: hsla(0, 0%, 100%, 0.1);
+  --color-border-dark: hsla(0, 0%, 0%, 0.33);
+  --border-primary-saturation: 100;
+  --border-primary-lightness: 75;
+  --border-primary-alpha: 0.75;
+  --color-border-primary: hsl(
+    from var(--color-primary) h var(--border-primary-saturation)
+      var(--border-primary-lightness) / var(--border-primary-alpha)
+  );
+  --color-border-secondary: hsl(from var(--color-border-primary) h s l / 1);
+}
+
+// --- vars-components.scss
+:root {
+  /* BlockQuote */
+  --blockquote-color: hsl(
+    from var(--color-label) h s calc(l + var(--adjust-color))
+  );
+  --blockquote-border: var(--border-thickness-small) solid;
+
+  /* Button */
+  --button-color: var(--color-white);
+  --button-color-transparent: var(--color-text-translucent);
+  --button-background-default: var(--color-primary);
+  --button-background-selected: var(--color-green);
+  --button-background-caution: var(--color-yellow);
+  --button-background-danger: var(--color-red);
+  --button-border-radius: var(--border-radius-tiny);
+  --button-transition: var(--transition-time-medium);
+  --button-transition-timing: ease;
+
+  /* Dialog */
+  --dialog-background: hsl(from var(--color-section) h s l / 0.5);
+
+  /* Dimmer */
+  --dimmer-background-opacity: 0.75;
+  --dimmer-background: hsl(
+    from var(--color-base) h s 5 / var(--dimmer-background-opacity)
+  );
+
+  /* Divider */
+  --divider-color: var(--color-border);
+  --divider-border: var(--border-thickness-small) solid var(--divider-color);
+
+  /* Dropdown */
+  --dropdown-transition: var(--transition-time-medium);
+  --dropdown-menu-color: var(--color-text);
+  --dropdown-menu-background: hsl(
+    from var(--color-base) h s calc(l - 5.5) / 0.85
+  );
+  --dropdown-menu-border: var(--border-thickness-tiny) solid var(--color-border);
+  --dropdown-menu-border-radius: var(--border-radius-large);
+  --dropdown-menu-blur: var(--blur-medium);
+  --dropdown-entry-background-hover: var(--color-hover);
+  --dropdown-entry-background-active: var(--color-active);
+  --dropdown-entry-background-selected: var(--color-selected);
+  --dropdown-entry-border-radius: var(--border-radius-small);
+  --dropdown-entry-transition: var(--transition-time-fast);
+
+  /* Floating */
+  --floating-transition-time: var(--transition-time-medium);
+  --floating-transition-timing: ease;
+
+  /* Tabs */
+  --tab-background: transparent;
+  --tab-background-hover: hsl(from var(--color-hover) h s calc(l * 0.75));
+  --tab-background-selected: hsl(from var(--color-selected) h s calc(l * 0.75));
+  --tab-color: var(--color-text-translucent);
+  --tab-color-selected: hsl(from var(--color-primary) h s 90);
+  --tab-border-radius: var(--border-radius-small);
+  --tab-indicator-size: var(--border-thickness-small);
+  --tab-transition: var(--transition-time-medium);
+  --tabs-container-background: var(--color-section);
+
+  /* Input */
+  --input-background-lightness: 5;
+  --input-background: hsl(
+    from var(--color-base) h s var(--input-background-lightness)
+  );
+  --input-color: var(--color-text);
+  --input-color-placeholder: var(--color-text-translucent);
+  --input-border-color: var(--color-border-primary);
+  --input-border-color-focus: var(--color-border-secondary);
+  --input-border-radius: var(--border-radius-tiny);
+  --input-transition: var(--transition-time-medium);
+  --input-font-family: var(--font-family);
+  --input-font-family-mono: var(--font-family-mono);
+
+  /* Knob */
+  --knob-color: hsl(from var(--color-base) h 5 20);
+  --knob-ring-color: var(--input-border-color);
+  --knob-popup-background: var(--tooltip-background);
+  --knob-popup-color: var(--tooltip-color);
+  --knob-popup-border-radius: var(--tooltip-border-radius);
+  --knob-popup-blur: var(--tooltip-blur);
+  --knob-inner-padding: var(--space-xs);
+
+  /* Menu Bar */
+  --menu-bar-background: var(--color-base);
+  --menu-bar-font-family: var(--font-family);
+  --menu-bar-transition: var(--transition-time-medium);
+
+  /* Modal */
+  --modal-background: var(--color-base);
+  --modal-padding: var(--space-xl);
+
+  /* Notice Box */
+  --notice-box-stripes: hsla(0, 0%, 0%, 0.1);
+  --notice-box-background: hsl(37.5, 40%, 57.5%);
+  --notice-box-color: var(--color-text-fixed-black);
+
+  /* Number Input */
+  --number-input-background: var(--input-background);
+  --number-input-color: var(--input-color);
+  --number-input-border-color: var(--input-border-color);
+  --number-input-border-color-active: var(--input-border-color-focus);
+  --number-input-border-radius: var(--input-border-radius);
+  --number-input-transition: var(--input-transition);
+
+  /* Progress Bar */
+  --progress-bar-fill: var(--color-primary);
+  --progress-bar-background: transparent;
+  --progress-bar-border-radius: var(--border-radius-tiny);
+  --progress-bar-transition: var(--transition-time-slowest);
+
+  /* Round Gauge */
+  --round-gauge-ring-color: var(--input-border-color);
+  --round-gauge-transition: var(--transition-time-medium);
+  --round-gauge-alert-animation: var(--transition-time-slowest);
+  --round-gauge-needle-alert-animation: var(--transition-time-fast);
+  --round-gauge-needle-alert-rotation: 2.5deg;
+
+  /* Section - Why not? */
+  --section-title-color: var(--color-text);
+  --section-background: var(--color-section);
+  --section-separator-color: var(--color-primary);
+  --section-separator-thickness: var(--border-thickness-small);
+
+  /* Slider */
+  --slider-cursor-color: var(--color-text);
+  --slider-popup-background: var(--tooltip-background);
+  --slider-popup-color: var(--tooltip-color);
+  --slider-popup-border-radius: var(--tooltip-border-radius);
+  --slider-popup-blur: var(--tooltip-blur);
+
+  /* Tooltip */
+  --tooltip-color: var(--color-text);
+  --tooltip-background-lightness: 5;
+  --tooltip-background: hsl(
+    from var(--color-base) h s var(--tooltip-background-lightness) / 0.85
+  );
+  --tooltip-border-radius: var(--border-radius-medium);
+  --tooltip-blur: var(--blur-medium);
+}

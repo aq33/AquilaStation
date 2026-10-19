@@ -17,7 +17,7 @@ import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
 import { Design, FabricatorData, MaterialMap } from './Fabrication/Types';
 
-export const Fabricator = (props, context) => {
+export const Fabricator = (props) => {
   const { act, data } = useBackend<FabricatorData>();
   const available: MaterialMap = {};
   for (const material of data.materials || []) {
@@ -133,7 +133,7 @@ const ReagentBar = () => {
   );
 };
 
-const Recipe = (props: { design: Design; available: MaterialMap }, context) => {
+const Recipe = (props: { design: Design; available: MaterialMap }) => {
   const { act, data } = useBackend<FabricatorData>();
   const availableReagents = loadedReagents(data);
   const canPrint = (amount: number) =>

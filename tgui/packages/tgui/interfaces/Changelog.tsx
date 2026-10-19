@@ -61,7 +61,7 @@ type ChangelogData = {
   testmerges?: Testmerge[];
 };
 
-const ChangeRow = (props: { kind: string; content: string }, _context) => {
+const ChangeRow = (props: { kind: string; content: string }) => {
   return (
     <Table.Row>
       <Table.Cell
@@ -81,7 +81,7 @@ const ChangeRow = (props: { kind: string; content: string }, _context) => {
   );
 };
 
-const Header = (props: { dropdown: any }, _context) => {
+const Header = (props: { dropdown: any }) => {
   return (
     <Section>
       {/* AQUILA: our project instead of BeeStation's links */}
@@ -107,7 +107,7 @@ const Header = (props: { dropdown: any }, _context) => {
   );
 };
 
-const Footer = (props: { dropdown: any }, _context) => {
+const Footer = (props: { dropdown: any }) => {
   return (
     <Section>
       {props.dropdown}

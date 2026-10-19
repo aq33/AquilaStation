@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const SearchBar = (props: Props) => {
-  const timeout = useRef<ReturnType<typeof setTimeout>>();
+  const timeout = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   return (
     <Stack align="baseline">
