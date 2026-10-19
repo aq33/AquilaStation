@@ -194,6 +194,9 @@
 
 	leech.next_move = 0
 	while(blood_worm_do_after(leech, 1 SECONDS, container, CALLBACK(src, PROC_REF(leech_container_active_check), leech, container)))
+		var/datum/reagents/holder = get_container_holder(container)
+		if(!holder)
+			break
 		blood = get_blood_in_container(container)
 		total_volume = 0
 		for(var/datum/reagent/reagent as anything in blood)
@@ -204,7 +207,7 @@
 			if(reagent.type != /datum/reagent/blood)
 				reagent_synth = 1
 			var/amount = min(reagent.volume, leech_rate * (reagent.volume / total_volume))
-			container.reagents.remove_reagent(reagent.type, amount)
+			holder.remove_reagent(reagent.type, amount)
 			leech.consume_blood(amount, reagent_synth)
 		playsound(container, 'aquila/sound/blood_worm/splatter.ogg', 80, TRUE)
 
@@ -229,12 +232,16 @@
 	return TRUE
 
 /// Cała krew w pojemniku
-/datum/action/cooldown/spell/blood_worm/leech/proc/get_blood_in_container(obj/container)
-	. = list()
-	var/datum/reagents/holder = container.reagents
+/// Odczynniki pojemnika, a w kroplówce odczynniki podłączonej zlewki
+/datum/action/cooldown/spell/blood_worm/leech/proc/get_container_holder(obj/container)
 	if(istype(container, /obj/machinery/iv_drip))
 		var/obj/machinery/iv_drip/drip = container
-		holder = drip.beaker?.reagents
+		return drip.beaker?.reagents
+	return container.reagents
+
+/datum/action/cooldown/spell/blood_worm/leech/proc/get_blood_in_container(obj/container)
+	. = list()
+	var/datum/reagents/holder = get_container_holder(container)
 	if(!holder || holder.total_volume <= 0)
 		return
 	for(var/datum/reagent/reagent as anything in holder.reagent_list)

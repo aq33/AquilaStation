@@ -67,7 +67,6 @@
 #define ROLE_SHADOW_DEMON		"Shadow Demon" //AQ - port z ParadiseSS13
 #define ROLE_DARKSPAWN			"Darkspawn" //AQ - port z Yogstation
 #define ROLE_BLOOD_WORM			"Blood Worm" //AQ - port z tgstation
-#define ROLE_BLOOD_WORM_INFESTATION	"Blood Worm Infestation" //AQ - port z tgstation
 
 /// Roles that are antagonists, roundstart or not, and have passes to do.. antagonistry
 GLOBAL_LIST_INIT(antagonist_bannable_roles, list(

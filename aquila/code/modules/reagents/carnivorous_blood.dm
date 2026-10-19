@@ -42,6 +42,8 @@
 // Wlana do pojemnika z krwią od razu uczy się jej DNA, zanim ją zje
 /datum/reagent/toxin/carnivorousblood/on_new(list/new_data)
 	. = ..()
+	// Przy przelewaniu dostajemy listę źródła, więc robimy własną kopię
+	data = islist(new_data) ? new_data.Copy() : list()
 	if(!holder)
 		return
 	for(var/datum/reagent/blood/blood in holder.reagent_list)

@@ -54,7 +54,7 @@
 	if(!length(vents))
 		message_admins("An event attempted to spawn blood worms but no suitable vents were found. Shutting down.")
 		return MAP_ERROR
-	var/list/candidates = get_candidates(ROLE_BLOOD_WORM_INFESTATION, /datum/role_preference/midround_ghost/blood_worm, POLL_IGNORE_BLOOD_WORM)
+	var/list/candidates = get_candidates(ROLE_BLOOD_WORM, /datum/role_preference/midround_ghost/blood_worm, POLL_IGNORE_BLOOD_WORM)
 	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
 	var/spawncount = rand(1, 2)
