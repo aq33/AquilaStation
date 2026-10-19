@@ -2326,10 +2326,11 @@
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
 "eg" = (
-/obj/machinery/iv_drip,
-/obj/structure/closet/crate/freezer/blood,
-/turf/open/floor/monotile/steel,
-/area/security/brig)
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/science/explab)
 "eh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3239,11 +3240,8 @@
 /turf/open/floor/durasteel/eris_techfloor_alt,
 /area/engine/shield_generator)
 "fP" = (
-/obj/machinery/computer/xenoarchaeology_console{
-	dir = 8
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/science/explab)
+/turf/closed/wall/steel,
+/area/quartermaster/bitrunning/den)
 "fQ" = (
 /obj/effect/turf_decal/box/white,
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
@@ -3273,27 +3271,28 @@
 /turf/open/floor/plating,
 /area/hydroponics)
 "fT" = (
-/obj/effect/turf_decal/tile/ship/green{
+/obj/structure/sign/directions/supply{
+	dir = 4;
+	pixel_y = -6
+	},
+/obj/structure/sign/directions/science{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 1
-	},
-/obj/machinery/newscaster/directional/north,
-/obj/machinery/vending/sticker,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
+/turf/closed/wall/steel,
+/area/quartermaster/bitrunning/den)
 "fU" = (
-/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
-/turf/open/floor/circuit/orange,
-/area/science/explab)
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "fV" = (
-/obj/effect/turf_decal/tile/purple{
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/lootdrop/gizmo,
-/turf/open/floor/monotile/dark,
-/area/science/explab)
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "fW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -3307,21 +3306,12 @@
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
 "fY" = (
-/obj/structure/table/glass,
-/obj/item/xenoarchaeology_labeler,
-/obj/item/xenoarchaeology_labeler{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/structure/sign/poster/official/xenoarchaeology{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
+/obj/effect/landmark/start/bitrunner,
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/monotile/dark,
-/area/science/explab)
+/area/quartermaster/bitrunning/den)
 "fZ" = (
 /turf/open/floor/monotile/dark,
 /area/science/explab)
@@ -3395,9 +3385,11 @@
 /turf/open/floor/monotile/steel,
 /area/security/brig)
 "gh" = (
-/obj/machinery/xenoarchaeology_machine/scale,
-/turf/open/floor/monotile/dark,
-/area/science/explab)
+/obj/machinery/quantum_server,
+/obj/effect/turf_decal/box,
+/obj/machinery/status_display/ai/west,
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "gi" = (
 /obj/machinery/vending/security,
 /obj/structure/sign/poster/official/random{
@@ -3438,27 +3430,21 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "gn" = (
-/obj/machinery/xenoarchaeology_machine/conductor,
-/turf/open/floor/monotile/dark,
-/area/science/explab)
-"go" = (
-/obj/structure/table/glass,
-/obj/item/multitool{
-	pixel_x = 3
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 1
 	},
-/obj/item/assembly/igniter,
-/obj/item/geiger_counter{
-	pixel_y = 15;
-	pixel_x = -6
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
+/obj/effect/turf_decal/tile/ship/brown{
 	dir = 8
 	},
-/obj/machinery/firealarm/directional/west,
-/obj/item/analyzer,
-/obj/item/sticky_note_pile,
+/obj/machinery/airalarm/directional/north,
 /turf/open/floor/monotile/dark,
-/area/science/explab)
+/area/quartermaster/bitrunning/den)
+"go" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "gp" = (
 /obj/effect/turf_decal/tile/green/tile_side{
 	dir = 8
@@ -3478,17 +3464,15 @@
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
 "gr" = (
-/obj/structure/table/glass,
-/obj/item/tank/internals/oxygen,
-/obj/item/clothing/mask/gas,
-/obj/machinery/airalarm/directional/north,
-/obj/effect/turf_decal/tile/ship/half/purple{
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/ship/brown{
 	dir = 1
 	},
-/obj/machinery/camera/autoname,
-/obj/item/xenoartifact,
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 4
+	},
 /turf/open/floor/monotile/dark,
-/area/science/explab)
+/area/quartermaster/bitrunning/den)
 "gs" = (
 /obj/structure/railing{
 	dir = 4
@@ -3504,18 +3488,16 @@
 /turf/open/floor/engine,
 /area/quartermaster/storage)
 "gt" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 8
+/obj/machinery/computer/quantum_console{
+	dir = 4
 	},
-/obj/structure/table/glass,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high{
-	charge = 100;
-	maxcharge = 15000
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 4
 	},
-/obj/item/xenoartifact/tutorial,
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
 /turf/open/floor/monotile/dark,
-/area/science/explab)
+/area/quartermaster/bitrunning/den)
 "gu" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/red/line,
@@ -3548,6 +3530,13 @@
 /area/crew_quarters/abandoned_gambling_den{
 	name = "Abandoned Bar"
 	})
+"gy" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "gz" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/power/terminal{
@@ -3613,6 +3602,13 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
+"gG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "gH" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -3650,6 +3646,44 @@
 /obj/machinery/recharger,
 /turf/open/floor/monotile/steel,
 /area/security/brig)
+"gJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"gK" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"gL" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet/west,
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
+"gM" = (
+/obj/machinery/byteforge,
+/obj/effect/turf_decal/ship/delivery/yellow,
+/obj/machinery/light{
+	dir = 2
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/bitrunning/den)
 "gN" = (
 /obj/machinery/atmospherics/pipe/simple/purple/hidden{
 	dir = 9
@@ -3686,6 +3720,25 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/armour_pump)
+"gR" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/food/cornchips{
+	pixel_y = 2
+	},
+/obj/item/toy/figure/bitrunner{
+	pixel_x = -8;
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
 "gS" = (
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
@@ -3701,6 +3754,15 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/monotile/steel,
 /area/security/brig)
+"gU" = (
+/obj/machinery/computer/arcade/battle{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
 "gV" = (
 /obj/machinery/atmospherics/pipe/manifold/general/hidden/layer2{
 	dir = 1
@@ -3754,6 +3816,16 @@
 /obj/item/clothing/head/helmet/decktech,
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons/gauss/battery/deck2/port)
+"hb" = (
+/obj/machinery/computer/order_console/bitrunning{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/south,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "hc" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -3772,6 +3844,28 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"hd" = (
+/obj/machinery/door/airlock/ship/cargo/glass{
+	name = "Pracownia Bitrunnerów";
+	req_one_access_txt = "78"
+	},
+/obj/effect/turf_decal/ship/delivery/yellow,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/bitrunning/den)
 "he" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3926,6 +4020,10 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"hu" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/quartermaster/bitrunning/den)
 "hv" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
@@ -4021,6 +4119,10 @@
 /obj/item/stock_parts/manipulator,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"hE" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/circuit/orange,
+/area/science/explab)
 "hG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrous_input{
 	dir = 1
@@ -4069,6 +4171,22 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/shield_generator)
+"hN" = (
+/obj/structure/table/glass,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/xenoarchaeology_labeler{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/structure/sign/poster/official/xenoarchaeology{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/computer/ship/viewscreen,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "hO" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/storage/box/rubbershot,
@@ -4163,6 +4281,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
+"hY" = (
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
+"hZ" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ia" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -4243,6 +4369,24 @@
 /obj/machinery/light/floor,
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/notkmcstupidhanger)
+"ij" = (
+/obj/structure/table/glass,
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/obj/item/assembly/igniter,
+/obj/item/geiger_counter{
+	pixel_y = 15;
+	pixel_x = -6
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/obj/item/analyzer,
+/obj/item/sticky_note_pile,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ik" = (
 /obj/machinery/airalarm/server{
 	pixel_y = 23
@@ -4251,6 +4395,18 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/nsv/hanger/notkmcstupidhanger)
+"il" = (
+/obj/structure/table/glass,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/obj/item/xenoartifact,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "im" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -4296,9 +4452,33 @@
 /obj/machinery/vendor/mining,
 /turf/open/floor/monotile/steel,
 /area/quartermaster/miningoffice)
+"iq" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ir" = (
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/port)
+"is" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/machinery/newscaster/directional/north,
+/obj/machinery/vending/sticker,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "it" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -4342,6 +4522,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/nsv/weapons)
+"iw" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "iy" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -8389,6 +8576,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"tS" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlas_141_140"
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlas_141_140";
+	pixel_y = -32
+	},
+/turf/open/floor/monotile/steel,
+/area/security/brig)
 "tT" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -14713,6 +14912,17 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/quartermaster/miningoffice)
+"Mr" = (
+/obj/machinery/stasis{
+	id_tag = "aq_vitals_atlas_141_140"
+	},
+/obj/structure/window/reinforced/spawner/east,
+/obj/machinery/vitals_reader{
+	id_tag = "aq_vitals_atlas_141_140";
+	pixel_y = -32
+	},
+/turf/open/floor/monotile/steel,
+/area/security/brig)
 "Ms" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance/three,
@@ -15645,6 +15855,12 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/kitchen/coldroom)
+"OZ" = (
+/obj/machinery/iv_drip,
+/obj/structure/closet/crate/freezer/blood,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/monotile/steel,
+/area/security/brig)
 "Pb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/durasteel/riveted,
@@ -16744,12 +16960,6 @@
 	},
 /turf/open/floor/engine,
 /area/quartermaster/storage)
-"RY" = (
-/obj/machinery/stasis,
-/obj/structure/window/reinforced/spawner/east,
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/monotile/steel,
-/area/security/brig)
 "RZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -49198,7 +49408,7 @@ wd
 So
 oQ
 qI
-fT
+is
 un
 Ef
 lw
@@ -52050,9 +52260,9 @@ Qk
 rW
 lG
 ob
-LH
-LH
-LH
+fP
+fP
+fP
 tw
 tw
 tw
@@ -52307,9 +52517,9 @@ XU
 OO
 vC
 ob
-Ff
-cv
-Uo
+gh
+gt
+gL
 tw
 qY
 uM
@@ -52564,9 +52774,9 @@ qT
 qT
 ob
 ob
-og
-ud
-cT
+gn
+gy
+gM
 tw
 CU
 Ih
@@ -52818,12 +53028,12 @@ IW
 cj
 Jt
 uX
-LH
-UA
-ty
-Lo
-uv
-oC
+fP
+fU
+fY
+go
+gG
+gR
 tw
 hx
 In
@@ -53075,12 +53285,12 @@ yQ
 dt
 dn
 RR
-LH
-Tv
-sy
-vS
-Yw
-aw
+fP
+fV
+fY
+go
+gJ
+gU
 tw
 ND
 Vj
@@ -53332,12 +53542,12 @@ IW
 wN
 JW
 Sn
-LH
-VA
-Bi
-RG
-PM
-em
+fP
+fU
+fY
+gr
+gK
+hb
 tw
 Ae
 qn
@@ -53589,12 +53799,12 @@ jR
 IW
 IW
 IW
-RI
-PC
-Rm
-af
-zA
-dd
+fT
+hu
+hu
+fP
+hd
+hu
 tw
 tw
 yl
@@ -55358,7 +55568,7 @@ PO
 tq
 cF
 xH
-eg
+OZ
 WN
 gi
 kk
@@ -55615,7 +55825,7 @@ WN
 WN
 cO
 Rg
-RY
+Mr
 WN
 WN
 WN
@@ -59237,11 +59447,11 @@ fo
 eY
 eY
 pW
-go
-gt
-fV
+ij
+iq
+iw
 Vl
-gh
+hY
 ua
 es
 ku
@@ -59493,12 +59703,12 @@ he
 ZW
 rO
 eY
-gr
+il
 dU
 ZC
 Iy
 Gd
-gn
+hZ
 ZT
 eu
 zB
@@ -60007,9 +60217,9 @@ dk
 MF
 Nk
 eY
-fY
-fP
-fU
+hN
+eg
+hE
 LG
 Cs
 Jb

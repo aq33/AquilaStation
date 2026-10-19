@@ -2220,10 +2220,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/science/explab)
-"fu" = (
-/obj/effect/spawner/lootdrop/gizmo,
-/turf/open/floor/plating,
-/area/science/explab)
 "fv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3989,20 +3985,28 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "jH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/turf/closed/wall/steel,
+/area/quartermaster/bitrunning/den)
+"jI" = (
+/obj/machinery/door/airlock/ship/cargo{
+	name = "Pracownia Bitrunnerów";
+	req_one_access_txt = "78"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/quartermaster/bitrunning/den)
+"jJ" = (
+/obj/item/kirbyplants/random,
 /obj/machinery/power/apc/auto_name/west,
 /obj/structure/cable,
-/obj/machinery/computer/xenoarchaeology_console{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/science/explab)
-"jI" = (
-/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
-/turf/open/floor/plating,
-/area/science/explab)
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
 "jK" = (
 /obj/item/ship_weapon/ammunition/torpedo/freight,
 /obj/machinery/door/window/westleft{
@@ -4012,46 +4016,92 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "jL" = (
-/obj/machinery/airalarm/directional/east,
-/obj/structure/table/glass,
-/obj/item/xenoarchaeology_labeler{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/item/clothing/gloves/artifact_pinchers{
-	pixel_y = 5;
-	pixel_x = 9
-	},
-/obj/item/book/manual/wiki/xenoarchaeology,
-/obj/item/sticky_note_pile,
-/turf/open/floor/plating,
-/area/science/explab)
-"jM" = (
-/obj/machinery/firealarm/directional/west,
-/obj/structure/table/glass,
-/obj/item/nanite_remote{
-	pixel_x = -8
-	},
-/obj/item/nanite_scanner{
-	pixel_y = 8
-	},
-/obj/item/storage/box/disks_nanite{
-	pixel_x = 8
-	},
-/obj/item/xenoartifact/tutorial,
-/turf/open/floor/plating,
-/area/science/explab)
-"jN" = (
-/obj/machinery/light{
+/obj/structure/chair/fancy/sofa/corp/left{
 	dir = 2
 	},
-/obj/machinery/xenoarchaeology_machine/scale,
-/turf/open/floor/plating,
-/area/science/explab)
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
+"jM" = (
+/obj/effect/turf_decal/ship/delivery/yellow,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"jN" = (
+/obj/structure/chair/fancy/sofa/corp/right{
+	dir = 2
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
 "jO" = (
-/obj/machinery/xenoarchaeology_machine/conductor,
-/turf/open/floor/plating,
-/area/science/explab)
+/obj/machinery/computer/order_console/bitrunning{
+	dir = 2
+	},
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"jP" = (
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
+"jQ" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/food/cornchips{
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
+"jR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"jS" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/toy/figure/bitrunner{
+	pixel_x = -8;
+	pixel_y = 14
+	},
+/turf/open/floor/carpet/ship/beige_carpet,
+/area/quartermaster/bitrunning/den)
+"jT" = (
+/obj/effect/landmark/start/bitrunner,
+/obj/machinery/airalarm/directional/east,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"jU" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 8
+	},
+/obj/machinery/light_switch/west,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "jV" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/curtain/obscuring/grey{
@@ -4061,10 +4111,30 @@
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office)
+"jW" = (
+/obj/machinery/computer/arcade/battle{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "jX" = (
 /obj/machinery/door/airlock/ship/maintenance/defaultaccess,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"jY" = (
+/obj/effect/landmark/start/bitrunner,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"jZ" = (
+/obj/machinery/computer/arcade/orion_trail{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"ka" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "kb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -4075,6 +4145,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/cmo)
+"kc" = (
+/obj/machinery/door/airlock/ship/cargo/glass{
+	name = "Serwerownia Bitrunnerów";
+	req_one_access_txt = "78"
+	},
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/bitrunning/den)
+"kd" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "ke" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4093,6 +4176,17 @@
 /obj/machinery/power/apc/auto_name/north,
 /turf/open/floor/plasteel/dark/side,
 /area/ai_monitored/storage/eva)
+"kg" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
+"kh" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "ki" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
@@ -4104,6 +4198,25 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/maintenance/fore)
+"kj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"kk" = (
+/obj/effect/landmark/start/bitrunner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"kl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "km" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -4118,9 +4231,30 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/science)
+"kn" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"ko" = (
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "kp" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"kq" = (
+/obj/structure/chair/office{
+	dir = 2
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"kr" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "ks" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -4142,6 +4276,33 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/ai_upload)
+"ku" = (
+/obj/machinery/quantum_server,
+/obj/effect/turf_decal/box,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
+"kv" = (
+/obj/machinery/computer/quantum_console{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating_new/dark{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"kw" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
+"kx" = (
+/obj/effect/turf_decal/tile/ship/brown{
+	dir = 2
+	},
+/turf/open/floor/monotile/dark,
+/area/quartermaster/bitrunning/den)
 "ky" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -4149,10 +4310,44 @@
 /obj/effect/landmark/start/master_at_arms,
 /turf/open/floor/carpet/orange,
 /area/nsv/crew_quarters/heads/maa)
+"kz" = (
+/obj/machinery/byteforge,
+/obj/effect/turf_decal/ship/delivery/yellow,
+/turf/open/floor/plasteel/tech/grid,
+/area/quartermaster/bitrunning/den)
 "kA" = (
 /obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"kB" = (
+/obj/machinery/camera/motion{
+	c_tag = "Vault";
+	dir = 8
+	},
+/obj/item/documents/nanotrasen,
+/obj/item/grenade/clusterbuster/smoke,
+/obj/item/fakeartefact,
+/obj/item/book/random,
+/obj/item/book/random,
+/obj/item/book/random,
+/obj/structure/safe,
+/obj/item/bikehorn/golden,
+/obj/item/radio/intercom/directional/south,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/plasteel/dark,
+/area/security/nuke_storage)
+"kC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/science/explab)
 "kD" = (
 /obj/effect/turf_decal/tile/ship/orange{
 	dir = 1
@@ -4175,6 +4370,10 @@
 "kF" = (
 /turf/open/openspace/airless,
 /area/science/test_area)
+"kG" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
 "kH" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/ridged/steel,
@@ -4191,6 +4390,21 @@
 /obj/structure/cable/multiz,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"kL" = (
+/obj/machinery/airalarm/directional/east,
+/obj/structure/table/glass,
+/obj/item/xenoarchaeology_labeler{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/clothing/gloves/artifact_pinchers{
+	pixel_y = 5;
+	pixel_x = 9
+	},
+/obj/item/book/manual/wiki/xenoarchaeology,
+/obj/item/sticky_note_pile,
+/turf/open/floor/plating,
+/area/science/explab)
 "kM" = (
 /obj/effect/turf_decal/tile/ship/red{
 	dir = 8
@@ -4222,6 +4436,36 @@
 /obj/effect/turf_decal/tile/ship/purple,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"kO" = (
+/obj/machinery/firealarm/directional/west,
+/obj/structure/table/glass,
+/obj/item/nanite_remote{
+	pixel_x = -8
+	},
+/obj/item/nanite_scanner{
+	pixel_y = 8
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 8
+	},
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
+"kP" = (
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plating,
+/area/science/explab)
+"kQ" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plating,
+/area/science/explab)
+"kR" = (
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plating,
+/area/science/explab)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -9210,22 +9454,6 @@
 "Qx" = (
 /turf/closed/wall/steel,
 /area/maintenance/aft)
-"Qy" = (
-/obj/machinery/camera/motion{
-	c_tag = "Vault";
-	dir = 8
-	},
-/obj/item/documents/nanotrasen,
-/obj/item/grenade/clusterbuster/smoke,
-/obj/item/fakeartefact,
-/obj/item/book/random,
-/obj/item/book/random,
-/obj/item/book/random,
-/obj/structure/safe,
-/obj/item/bikehorn/golden,
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/plasteel/dark,
-/area/security/nuke_storage)
 "Qz" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
@@ -40565,9 +40793,9 @@ hb
 gL
 Qx
 gd
-jM
-jH
-jI
+kO
+kC
+kG
 Qx
 le
 aM
@@ -40822,9 +41050,9 @@ fi
 gI
 Qx
 gg
-fu
+kR
 fv
-jN
+kP
 Qx
 le
 aM
@@ -41338,7 +41566,7 @@ Qx
 gj
 fe
 fz
-jO
+kQ
 Qx
 TB
 aM
@@ -41593,7 +41821,7 @@ gH
 fR
 Qx
 gl
-jL
+kL
 fB
 gC
 Qx
@@ -48283,14 +48511,14 @@ Hl
 lE
 gp
 KB
-cJ
-cH
-cC
-ao
-ct
-cx
-ct
-bz
+jJ
+jP
+jU
+kc
+kd
+kj
+ko
+ku
 Hl
 mv
 zQ
@@ -48540,14 +48768,14 @@ Hl
 XH
 gp
 KB
-cU
-ct
-cQ
-ae
-cN
-cL
-cK
-ct
+jL
+jQ
+jW
+jH
+kg
+kk
+kq
+kv
 Hl
 zQ
 zQ
@@ -48796,15 +49024,15 @@ uH
 gm
 au
 hV
-aG
-df
-db
-ct
-ae
-cZ
-cW
-cV
-ct
+jI
+jM
+jR
+jY
+jH
+kg
+kl
+ko
+kw
 Hl
 zQ
 zQ
@@ -49054,14 +49282,14 @@ gm
 SK
 hX
 KB
-dC
-ct
-dB
-ae
-dt
-dn
-dg
-ct
+jN
+jS
+jZ
+jH
+kg
+kl
+ko
+kx
 Hl
 zQ
 zQ
@@ -49311,14 +49539,14 @@ gm
 QF
 ia
 KB
-dZ
-dX
-dS
-ae
-ct
-dR
-ct
-ct
+jO
+jT
+ka
+jH
+kh
+kn
+kr
+kz
 Hl
 zQ
 zQ
@@ -54967,7 +55195,7 @@ iJ
 JP
 Nd
 LX
-Qy
+kB
 ZO
 fI
 PI

@@ -35,5 +35,5 @@
 #define COMSIG_GLOB_ATOM_SOLD "!atom_sold"
 
 //aquila edit
-#define COMSIG_GLOB_STROMDRIVE_EXPLOSION "!stormdrive_boom"								//! Sent if any stormdrive explodes
+#define COMSIG_GLOB_STROMDRIVE_EXPLOSION "!stormdrive_boom"								//! Sent if any stormdrive explodes: (obj/machinery/reactor)
 //aquila edit end
