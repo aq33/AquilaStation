@@ -32,7 +32,7 @@
 		if(!aquila_chrono_valid_target(H))
 			continue
 		var/reason = aquila_chrono_target_reason(H)
-		choices["[H.real_name][reason ? " ([reason])" : ""]"] = H
+		choices["[H.real_name][reason ? " ([reason])" : ""] - [H.ckey]"] = H // ckey, bo imiona się powtarzają
 	if(!length(choices))
 		to_chat(usr, "<span class='warning'>Nie ma żadnego żywego gracza, na którego można wysłać legionistę.</span>")
 		return

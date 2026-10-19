@@ -16,7 +16,10 @@
 	save()
 	log_admin("[key_name(admin)] changed the weighted rotation: [text]")
 	message_admins("<span class='adminnotice'>Weighted - zmiana od [key_name_admin(admin)]: [text].</span>")
-	if(GLOB.master_mode == "weighted" && SSticker.current_state == GAME_STATE_PREGAME && SSticker.pre_setup_completed && !SSticker.gamemode_hotswap_disabled)
+	if(GLOB.master_mode == "weighted" && SSticker.current_state == GAME_STATE_PREGAME && SSticker.pre_setup_completed)
+		if(SSticker.gamemode_hotswap_disabled)
+			message_admins("Weighted: tryb [SSticker.mode?.config_tag] załadował już mapy, nowe wagi zadziałają od następnej rundy.")
+			return
 		SSticker.pre_setup_completed = FALSE
 		message_admins("Weighted: tryb [SSticker.mode?.config_tag] zostanie wylosowany ponownie z nowymi wagami.")
 

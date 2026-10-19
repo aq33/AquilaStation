@@ -46,6 +46,8 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 	var/list/admin_weights
 	/// Pool an admin forced for the next draw only, null = normal draw
 	var/forced_pool
+	/// Forced pool the last draw used, so a pool forced after the draw is not used up by this round
+	var/drawn_forced_pool
 
 /datum/weighted_rotation/New()
 	load()
@@ -171,7 +173,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 			mode.maximum_players = max_pop[mode.config_tag]
 		if(max_antags[mode.config_tag])
 			// Blood brothers come in pairs, and the mixed traitor modes always keep a place for a traitor
-			var/smallest = (istype(mode, /datum/game_mode/traitor/bros) || istype(mode, /datum/game_mode/traitor/changeling) || istype(mode, /datum/game_mode/traitor/vampire)) ? 2 : 1
+			var/smallest = (istype(mode, /datum/game_mode/traitor/bros) || istype(mode, /datum/game_mode/traitor/changeling) || istype(mode, /datum/game_mode/traitor/vampire) || istype(mode, /datum/game_mode/traitor/horror)) ? 2 : 1
 			if(max_antags[mode.config_tag] < smallest) // a limit the mode can't fit in, it is left out instead of going over it
 				qdel(mode)
 				continue
@@ -212,6 +214,7 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 				qdel(mode)
 		return null
 	round_pool = pickweight(pool_draw)
+	drawn_forced_pool = forced_pool
 	var/datum/game_mode/picked = pickweight(pools[round_pool])
 
 	// Like secret, the roundstart "Możliwości" message lists every mode that could have started
@@ -253,7 +256,8 @@ GLOBAL_DATUM_INIT(weighted_rotation, /datum/weighted_rotation, new)
 /datum/weighted_rotation/proc/on_round_start()
 	if(GLOB.master_mode != "weighted")
 		return
-	if(forced_pool) // only for the round it was forced for
+	// Only for the round it was forced for. Forced after the draw and too late to redraw: kept for the next round
+	if(forced_pool && forced_pool == drawn_forced_pool)
 		forced_pool = null
 		save()
 	ghost_midround = new
