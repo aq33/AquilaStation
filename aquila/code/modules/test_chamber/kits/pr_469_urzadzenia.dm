@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_000
+/datum/test_chamber_kit/pr_469
 	name = "Urządzenia z Paradise"
-	pr = "aq33/AquilaStation#000"
+	pr = "aq33/AquilaStation#469"
 	description = "Rząd ścian z urządzeniami naściennymi (czujnik powietrza, alarm pożarowy, gaśnica, włącznik światła, guzik) \
 		i urządzenia na podłodze: automat, SMES, generator PACMAN, ładowarki, holopad, went i scrubber. \
 		Sprawdź, czy naścienne siedzą na ścianie, a nie w powietrzu, i czy animacje działają (włącz went i scrubber, otwórz automat)."
@@ -15,7 +15,7 @@
 		/obj/machinery/atmospherics/components/unary/vent_scrubber/on = 1
 	)
 
-/datum/test_chamber_kit/pr_000/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_469/setup(list/spawned, list/turfs, turf/center, mob/user)
 	// Ściana dwa kafle nad środkiem, urządzenia naścienne na podłodze pod nią
 	var/list/mounts = list(
 		/obj/machinery/airalarm/directional/north,

@@ -726,7 +726,7 @@
 #include "code\modules\test_chamber\kits\pr_447_mule_poczta.dm"
 #include "code\modules\test_chamber\kits\pr_451_animacje.dm"
 #include "code\modules\test_chamber\kits\pr_460_resprite.dm"
-#include "code\modules\test_chamber\kits\pr_000_urzadzenia.dm"
+#include "code\modules\test_chamber\kits\pr_469_urzadzenia.dm"
 #include "code\modules\test_chamber\kits\pr_456_przepisy.dm"
 #include "code\modules\test_chamber\kits\pr_461_changelog_fixy.dm"
 #include "code\modules\test_chamber\kits\pr_457_medycyna.dm"
