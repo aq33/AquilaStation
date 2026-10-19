@@ -86,7 +86,11 @@ const useRemappedBackend = () => {
   const { data, ...rest } = useBackend<Data>();
   // Only remap the static data once, cache for future use
   if (!remappedStaticData) {
-    const id_cache = data.static_data.id_cache;
+    const id_cache = data.static_data?.id_cache;
+    // Static data can arrive after the first render when the window is reopened
+    if (!id_cache) {
+      return { data, ...rest };
+    }
     for (let i = 0; i < id_cache.length; i++) {
       remappingIdCache[i + 1] = id_cache[i];
     }
@@ -115,6 +119,9 @@ const abbreviateName = (name) => abbreviations[name] ?? name;
 export const Techweb = (props) => {
   const { act, data } = useRemappedBackend();
   const { locked } = data;
+  if (!remappedStaticData) {
+    return null;
+  }
   return (
     <Window width={947} height={735}>
       <Window.Content>
@@ -137,6 +144,9 @@ export const Techweb = (props) => {
 export const AppTechweb = (props) => {
   const { act, data } = useRemappedBackend();
   const { locked } = data;
+  if (!remappedStaticData) {
+    return null;
+  }
   return (
     <NtosWindow width={640} height={735}>
       <NtosWindow.Content scrollable>

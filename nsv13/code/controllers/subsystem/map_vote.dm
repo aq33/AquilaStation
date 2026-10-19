@@ -125,6 +125,8 @@
 
 		all_map_info[key] = map_info
 
+	qdel(stability_query) // AQ EDIT - "Undeleted query" przy każdym otwarciu panelu
+	qdel(endings_query)
 	var/list/data = ..() // AQ EDIT - port BeeStation #13247: VotePanel needs VoteCD from SSvote
 	data["mapInfo"] = all_map_info
 	return data

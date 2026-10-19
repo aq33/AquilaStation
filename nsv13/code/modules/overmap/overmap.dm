@@ -526,6 +526,16 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 
 	if(fleet)
 		fleet.stop_reporting_all(src)
+	// AQ EDIT - enemies/last_target są jednokierunkowe; bez tego martwy statek wisiał w cudzych listach (GC fail, hard delete ~50 ms)
+	for(var/obj/structure/overmap/OM as anything in GLOB.overmap_objects)
+		if(OM.enemies) // nie LAZYREMOVE - add_enemy() robi enemies += bez inicjalizacji
+			OM.enemies -= src
+		if(OM.last_target == src)
+			OM.last_target = null
+		if(OM.target_lock == src)
+			OM.target_lock = null
+		if(OM.fleet?.shared_targets)
+			OM.fleet.shared_targets -= src
 
 	STOP_PROCESSING(SSphysics_processing, src)
 	for(var/mob/living/M in operators)
@@ -573,6 +583,7 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 		free_treadmills += reserved_z
 		reserved_z = null
 	current_system = null //I'm not sure why we never dropped this variable.
+	fleet = null
 	return ..()
 
 /obj/structure/overmap/forceMove(atom/destination)

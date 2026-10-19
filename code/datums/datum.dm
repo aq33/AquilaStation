@@ -133,6 +133,8 @@
 		comp_lookup = lookup = null
 
 	for(var/target in signal_procs)
+		if(!target) // AQ EDIT - cel twardo skasowany bez Destroy() (np. klient)
+			continue
 		UnregisterSignal(target, signal_procs[target])
 
 #ifdef DATUMVAR_DEBUGGING_MODE

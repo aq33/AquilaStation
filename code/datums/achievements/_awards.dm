@@ -79,6 +79,8 @@
 
 /datum/award/achievement/on_unlock(mob/user)
 	. = ..()
+	if(!user?.client)
+		return
 	for(var/client/C in GLOB.clients)
 		to_chat(C, "<span class='greenannounce'><B>[user.client.key] zdobywa osiągnięcie: [name]</B></span>")
 	user.client.inc_metabalance(reward, reason="Zdobyto osiągnięcie!")

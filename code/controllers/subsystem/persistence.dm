@@ -109,10 +109,8 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/LoadAntagReputation()
 	var/json = rustg_file_read(FILE_ANTAG_REP)
 	if(!json)
-		var/json_file = file(FILE_ANTAG_REP)
-		if(!fexists(json_file))
+		if(fexists(FILE_ANTAG_REP)) // AQ EDIT - brak pliku przed pierwszym zapisem to nie błąd
 			WARNING("Failed to load antag reputation. File likely corrupt.")
-			return
 		return
 	antag_rep = json_decode(json)
 

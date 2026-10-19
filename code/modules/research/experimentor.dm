@@ -139,7 +139,7 @@
 		if(istype(loaded_item,/obj/item/relic))
 			dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_DISCOVER]'>Discover</A></b>"
 		dat += "<b><a href='byond://?src=[REF(src)];function=eject'>Eject</A>"
-		var/list/listin = techweb_item_boost_check(src)
+		var/list/listin = techweb_item_boost_check(loaded_item)
 		if(listin)
 			var/list/output = list("<b><font color='purple'>Dane wzmocnienia badań:</font></b>")
 			var/list/res = list("<b><font color='blue'>Już zbadane:</font></b>")
