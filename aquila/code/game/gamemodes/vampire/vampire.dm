@@ -1,156 +1,146 @@
-/datum/game_mode
-	var/list/datum/mind/vampires = list()
-
-/mob/living/carbon/human/Stat()
-	. = ..()
-	var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-	if(vamp && statpanel("Status"))
-		stat("Krew łącznie", vamp.total_blood)
-		stat("Krew do wykorzystania", vamp.usable_blood)
-
-/mob/living/carbon/human/Life()
-	. = ..()
-	if(is_vampire(src))
-		var/datum/antagonist/vampire/vamp = mind.has_antag_datum(/datum/antagonist/vampire)
-		vamp.vampire_life()
-
+// Tryby rundy dla wampira z BeeStation (/datum/antagonist/vampire). Bee daje go przez dynamic,
+// u nas zostają stare tryby "vampire" i "traitorvamp" (config + weighted).
 
 /datum/game_mode/vampire
 	name = "vampire"
 	config_tag = "vampire"
-	antag_datum = /datum/antagonist/vampire
+	report_type = "vampire"
 	role_preference = /datum/role_preference/antagonist/vampire
+	antag_datum = /datum/antagonist/vampire
 	false_report_weight = 1
-	restricted_jobs = list(JOB_NAME_AI, JOB_NAME_CYBORG)
+	restricted_jobs = list(JOB_NAME_AI, JOB_NAME_CYBORG, JOB_NAME_CURATOR)
 	protected_jobs = list(JOB_NAME_HEADOFSECURITY, JOB_NAME_CAPTAIN, JOB_NAME_HEADOFPERSONNEL, JOB_NAME_RESEARCHDIRECTOR, JOB_NAME_CHIEFENGINEER, JOB_NAME_CHIEFMEDICALOFFICER, JOB_NAME_SECURITYOFFICER, JOB_NAME_CHAPLAIN, JOB_NAME_DETECTIVE, JOB_NAME_WARDEN, JOB_NAME_BRIGPHYSICIAN, JOB_NAME_PILOT, JOB_NAME_MASTERATARMS) //AQ EDIT: NSV pilots and master at arms
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 3
 
-	announce_text = "Na pokładzie są wampiry!\n\
-		+	<span class='danger'>Wampiry</span>: wysysajcie krew załogi i wykonajcie cele!\n\
-		+	<span class='notice'>Załoga</span>: zabijcie nieświęte wampiry!"
+	announce_text = "There are vampires onboard the station!\n\
+		+	<span class='danger'>Vampires</span>: Feed on the crew, keep the Masquerade and complete your objectives!\n\
+		+	<span class='notice'>Crew</span>: Find the undead and stake them!"
 
-	var/vampires_possible = 4 //hard limit on vampires if scaling is turned off
+	/// Twardy limit wampirów, gdy skalowanie jest wyłączone
+	var/vampires_possible = 4
 	var/num_modifier = 0
 	var/list/datum/mind/pre_vamps = list()
 
 /datum/game_mode/vampire/pre_setup()
-
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += JOB_NAME_ASSISTANT
 
 	var/num_vamps = 1
-
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
 	if(tsc)
 		num_vamps = max(1, min(round(num_players() / (tsc * 2)) + 2 + num_modifier, round(num_players() / tsc) + num_modifier))
 	else
 		num_vamps = max(1, min(num_players(), vampires_possible))
-	num_vamps = weighted_cap(num_vamps) // weighted rotation antagonist limit
 
-	for(var/j = 0, j < num_vamps, j++)
-		if (!antag_candidates.len)
+	for(var/j in 1 to num_vamps)
+		if(!length(antag_candidates))
 			break
-		var/datum/mind/vamp = pick(antag_candidates)
+		var/datum/mind/vamp = antag_pick(antag_candidates, /datum/role_preference/antagonist/vampire)
+		antag_candidates -= vamp
 		pre_vamps += vamp
-		vamp.special_role = "Vampire"
+		vamp.special_role = ROLE_VAMPIRE
 		vamp.restricted_roles = restricted_jobs
-		log_game("[vamp.key] (ckey) has been selected as a Vampire")
-		antag_candidates.Remove(vamp)
+		log_game("[key_name(vamp)] has been selected as a Vampire")
 
-	return pre_vamps.len > 0
-
+	return length(pre_vamps) > 0
 
 /datum/game_mode/vampire/post_setup()
 	for(var/datum/mind/vamp in pre_vamps)
 		vamp.add_antag_datum(/datum/antagonist/vampire)
-	..()
-	return TRUE
-
-/datum/game_mode/proc/auto_declare_completion_vampire()
-	if(vampires.len)
-		var/text = "<br><font size=3><b>Wampiry:</b></font>"
-		for(var/datum/mind/vamp in vampires)
-			var/vampwin = 1
-			if(!vamp.current)
-				vampwin = 0
-
-			var/datum/antagonist/vampire/V = vamp.has_antag_datum(/datum/antagonist/vampire)
-
-			if(!V)
-				continue
-
-			text += printplayer(vamp)
-
-			//Removed sanity if(vampire) because we -want- a runtime to inform us that the vampire list is incorrect and needs to be fixed.
-			text += "<br><b>Krew do wykorzystania:</b> [V.usable_blood]."
-			text += "<br><b>Krew łącznie:</b> [V.total_blood]"
-
-			if(V.objectives.len)
-				var/count = 1
-				for(var/datum/objective/objective in V.objectives)
-					if(objective.check_completion())
-						text += "<br><b>Cel nr [count]</b>: [objective.explanation_text] <font color='green'><b>Sukces!</b></font>"
-						SSblackbox.record_feedback("tally", "vampire_objective", 1, "[objective.type]|SUCCESS")
-					else
-						text += "<br><b>Cel nr [count]</b>: [objective.explanation_text] <span class='danger'>Porażka.</span>"
-						SSblackbox.record_feedback("tally", "vampire_objective", 1, "[objective.type]|FAIL")
-						vampwin = 0
-					count++
-
-			if(vampwin)
-				text += "<br><font color='green'><b>Wampir odniósł sukces!</b></font>"
-				SSblackbox.record_feedback("tally", "vampire_success", 1, "SUCCESS")
-			else
-				text += "<br><span class='boldannounce'>Wampir poniósł porażkę.</span>"
-				SSblackbox.record_feedback("tally", "vampire_success", 1, "FAIL")
-			text += "<br>"
-
-		to_chat(world, text)
-
-
-	return 1
-
-
-/proc/add_vampire(mob/living/L, full_vampire = TRUE)
-    if(!L || !L.mind || is_vampire(L))
-        return FALSE
-    var/datum/antagonist/vampire/vamp
-    if(full_vampire == TRUE)
-        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire)
-    else
-        vamp = L.mind.add_antag_datum(/datum/antagonist/vampire/new_blood)
-    return vamp
-
-/proc/remove_vampire(mob/living/L)
-	if(!L || !L.mind || !is_vampire(L))
-		return FALSE
-	var/datum/antagonist/vamp = L.mind.has_antag_datum(/datum/antagonist/vampire)
-	vamp.on_removal()
-	return TRUE
-
-/proc/is_vampire(mob/living/M)
-	return M && M.mind && M.mind.has_antag_datum(/datum/antagonist/vampire)
-
-/datum/game_mode/proc/update_vampire_icons_added(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
-	vamphud.join_hud(traitor_mind.current)
-	set_antag_hud(traitor_mind.current, "vampire")
-
-/datum/game_mode/proc/update_vampire_icons_removed(datum/mind/traitor_mind)
-	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
-	vamphud.leave_hud(traitor_mind.current)
-	set_antag_hud(traitor_mind.current, null)
-
+	return ..()
 
 /datum/game_mode/vampire/generate_report()
-	return "Federacja Czarodziejów stworzyła nową istotę na podstawie pradawnej mitologii. \
-	Istoty te znane są jako wampiry i potrafią wysysać krew z członków załogi. \
-	Na razie nic więcej nie wiadomo."
+	return "Several stations in adjacent sectors have reported a statistically anomalous uptick in space rabies. Please be aware of potential medical emergencies resultant of this. Security personnel are advised to escort affected crew to Medical and report \
+	any unusual findings to Central Command via secure channel."
+
+/datum/game_mode/traitor/vampire
+	name = "traitor+vampire"
+	config_tag = "traitorvamp"
+	report_type = "traitorvamp"
+	false_report_weight = 10
+	traitors_possible = 3
+	restricted_jobs = list(JOB_NAME_AI, JOB_NAME_CYBORG, JOB_NAME_CURATOR)
+	required_players = 15
+	required_enemies = 1
+	recommended_enemies = 3
+	reroll_friendly = 1
+	num_modifier = -2 // mniej zdrajców, bo są wampiry
+
+	var/list/datum/mind/pre_vamps = list()
+	/// Twardy limit wampirów, gdy skalowanie jest wyłączone
+	var/const/vampire_amt = 2
+
+/datum/game_mode/traitor/vampire/announce()
+	to_chat(world, "<B>The current game mode is - Traitor+Vampire!</B>")
+	to_chat(world, "<B>There are vampires on the station along with some syndicate operatives out for their own gain! Do not let the vampires and the traitors succeed!</B>")
+
+/datum/game_mode/traitor/vampire/can_start()
+	if(!..())
+		return FALSE
+	var/list/possible_vampires = get_players_for_role(/datum/antagonist/vampire, /datum/role_preference/antagonist/vampire)
+	return length(possible_vampires) >= required_enemies
+
+/datum/game_mode/traitor/vampire/pre_setup()
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
+		restricted_jobs += protected_jobs
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
+		restricted_jobs += JOB_NAME_ASSISTANT
+
+	// kapelan nie może być wampirem w traitor+vamp
+	var/list/vampire_restricted_jobs = restricted_jobs + JOB_NAME_CHAPLAIN
+	restricted_jobs += JOB_NAME_CHAPLAIN
+	var/list/datum/mind/possible_vamps = get_players_for_role(/datum/antagonist/vampire, /datum/role_preference/antagonist/vampire)
+	restricted_jobs -= JOB_NAME_CHAPLAIN
+
+	var/num_vamp = 1
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+	if(tsc)
+		num_vamp = max(1, min(round(num_players() / (tsc * 4)) + 2, round(num_players() / (tsc * 2))))
+	else
+		num_vamp = max(1, min(num_players(), vampire_amt / 2))
+
+	if(!length(possible_vamps))
+		return FALSE
+	var/list/old_antag_candidates = antag_candidates.Copy()
+	for(var/j in 1 to num_vamp)
+		if(!length(possible_vamps))
+			break
+		var/datum/mind/vamp = antag_pick(possible_vamps, /datum/role_preference/antagonist/vampire)
+		possible_vamps -= vamp
+		antag_candidates -= vamp
+		pre_vamps += vamp
+		vamp.special_role = ROLE_VAMPIRE
+		vamp.restricted_roles = vampire_restricted_jobs
+	antag_candidates = old_antag_candidates
+	return ..()
+
+/datum/game_mode/traitor/vampire/post_setup()
+	for(var/datum/mind/vamp in pre_vamps)
+		vamp.add_antag_datum(/datum/antagonist/vampire)
+	return ..()
+
+/datum/game_mode/traitor/vampire/make_antag_chance(mob/living/carbon/human/character) // wampiry z latejoinu
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+	var/vampcap = min(round(length(GLOB.joined_player_list) / (tsc * 4)) + 2, round(length(GLOB.joined_player_list) / (tsc * 2)))
+	var/vamp_count = length(get_antag_minds(/datum/antagonist/vampire))
+	if(vamp_count >= vampcap)
+		return ..()
+	if(vamp_count <= (vampcap - 2) || prob(100 / (tsc * 4)))
+		if(!QDELETED(character) && character.mind && character.client?.should_include_for_role(
+			banning_key = ROLE_VAMPIRE,
+			role_preference_key = /datum/role_preference/antagonist/vampire,
+		))
+			if(!(character.job in restricted_jobs) && character.job != JOB_NAME_CHAPLAIN)
+				character.mind.add_antag_datum(/datum/antagonist/vampire)
+	return ..()
+
+/datum/game_mode/traitor/vampire/generate_report()
+	return "We have received some fuzzy reports about the Syndicate cooperating with a bluespace demon.\
+			Keep a watch out for syndicate agents, and have your Chaplain on standby."
 
 /datum/role_preference/antagonist/vampire
 	name = "Wampir"

@@ -247,6 +247,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_HIVE_BURNT		 "hive-burnt"
 ///Prevents natural body temperature stabilization.
 #define TRAIT_COLDBLOODED		"cold_blooded" //NSV13 species trait.
+#define TRAIT_MASQUERADE "trait_masquerade" // AQ EDIT - wampir z Bee: skaner zdrowia pokazuje pełną krew
+#define TRAIT_WHISPER_ONLY "whisper_only" // AQ EDIT - wampir z Bee: mob może tylko szeptać
 #define TRAIT_BLEED_HELD		"bleed_held" // For when a mob is holding their wounds, preventing them from bleeding further
 #define TRAIT_NO_BLOOD			"no_blood" // Bleeding heals itself and bleeding is impossible
 #define TRAIT_NO_BLEEDING		"no_bleed" // The user can acquire the bleeding status effect, but will no lose blood

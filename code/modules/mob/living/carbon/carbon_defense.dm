@@ -290,6 +290,9 @@
 	else if(M.zone_selected == BODY_ZONE_CHEST)
 		M.visible_message("<span class='notice'>[M] przytula [src], żeby poprawić humor!</span>", \
 					"<span class='notice'>Przytulasz [src], żeby poprawić humor!</span>")
+		SEND_SIGNAL(M, COMSIG_LIVING_HUG_CARBON, src) // AQ EDIT - Humanity wampira z Bee
+		if(M.mind?.has_antag_datum(/datum/antagonist/vampire) && M.has_status_effect(/datum/status_effect/vampire_sol)) // AQ EDIT - wampir w czasie Sol jest rozpalony
+			to_chat(src, "<span class='warning'>Wydaje się, że [M] jest rozgrzany do czerwoności.</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
 		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
 			var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)

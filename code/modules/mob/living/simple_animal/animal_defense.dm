@@ -8,6 +8,7 @@
 				visible_message("<span class='notice'>[M] [response_help] [src].</span>", \
 					"<span class='notice'>[M] [response_help] cię.</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				SEND_SIGNAL(M, COMSIG_LIVING_PET_ANIMAL, src) // AQ EDIT - Humanity wampira z Bee
 
 		if("harm")
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
