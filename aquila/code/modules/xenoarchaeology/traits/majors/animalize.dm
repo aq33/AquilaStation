@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/animalize
 	label_name = "Bestialized"
-	label_desc = "Bestialized: The artifact contains transforming components. Triggering these components transforms the target into an animal."
+	label_desc = "Bestialized: artefakt zawiera elementy przemieniające. Ich aktywacja zamienia cel w zwierzę."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	weight = 15
@@ -49,7 +49,7 @@
 
 /datum/xenoartifact_trait/major/animalize/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("turn the target into a dog"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel w psa"))
 
 
 /datum/xenoartifact_trait/major/animalize/vermin
@@ -59,7 +59,7 @@
 
 /datum/xenoartifact_trait/major/animalize/vermin/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("turn the target into a vermin"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel w szkodnika"))
 
 /datum/xenoartifact_trait/major/animalize/dangerous
 	label_name = "Bestialized Σ"
@@ -68,4 +68,4 @@
 
 /datum/xenoartifact_trait/major/animalize/dangerous/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("turn the target into a hostile animal"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel we wrogie zwierzę"))

@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/noise
 	label_name = "Echoing"
-	label_desc = "Echoing: The artifact seems to contain echoing components. Triggering these components will cause the artifact to make a noise."
+	label_desc = "Echoing: artefakt wydaje się zawierać elementy dźwiękowe. Ich aktywacja sprawi, że artefakt wyda jakiś dźwięk."
 	cooldown = XENOA_TRAIT_COOLDOWN_EXTRA_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE

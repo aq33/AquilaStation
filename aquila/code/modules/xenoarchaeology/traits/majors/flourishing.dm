@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/growing
 	label_name = "Flourishing"
-	label_desc = "Flourishing: The artifact seems to contain flourishing components. Triggering these components will age up plant targets."
+	label_desc = "Flourishing: artefakt wydaje się zawierać elementy przyspieszające wzrost. Ich aktywacja postarzy rośliny będące celem."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 6
 	weight = 6
@@ -22,15 +22,15 @@
 
 /datum/xenoartifact_trait/major/growing/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("make plants age up"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("postarzać rośliny"))
 
 //Makes plants younger
 /datum/xenoartifact_trait/major/growing/youth
 	label_name = "Flourishing Δ"
-	label_desc = "Flourishing Δ: The artifact seems to contain flourishing components. Triggering these components will age down plant targets."
+	label_desc = "Flourishing Δ: artefakt wydaje się zawierać elementy przyspieszające wzrost. Ich aktywacja odmłodzi rośliny będące celem."
 	max_aging = -5
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/growing/youth/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("make plants age down"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("odmładzać rośliny"))

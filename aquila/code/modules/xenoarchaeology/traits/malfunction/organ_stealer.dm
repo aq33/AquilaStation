@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/organ_stealer
 	label_name = "I.O.E"
-	alt_label_name = "Immediate Organ Extraction"
-	label_desc = "Immediate Organ Extraction: A strange malfunction causes the Artifact to extract the target's appendix."
+	alt_label_name = "Natychmiastowa Ekstrakcja Organów"
+	label_desc = "Immediate Organ Extraction: dziwna usterka sprawia, że artefakt wyciąga celowi wyrostek robaczkowy."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 	///What organ slot do we yank from
@@ -24,16 +24,16 @@
 
 /datum/xenoartifact_trait/malfunction/organ_stealer/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("steal the target's appendix"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("kraść celowi wyrostek robaczkowy"))
 
 //This variant will steal the target's tongue
 /datum/xenoartifact_trait/malfunction/organ_stealer/tongue
 	label_name = "I.O.E Δ"
-	alt_label_name = "Immediate Organ Extraction Δ"
-	label_desc = "Immediate Organ Extraction Δ: A strange malfunction causes the Artifact to extract the target's tongue."
+	alt_label_name = "Natychmiastowa Ekstrakcja Organów Δ"
+	label_desc = "Immediate Organ Extraction Δ: dziwna usterka sprawia, że artefakt wyciąga celowi język."
 	target_organ_slot = ORGAN_SLOT_TONGUE
 	conductivity = 14
 
 /datum/xenoartifact_trait/malfunction/organ_stealer/tongue/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("steal the target's tongue"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("kraść celowi język"))

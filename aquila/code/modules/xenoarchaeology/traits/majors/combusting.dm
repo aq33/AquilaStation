@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/combusting
 	label_name = "Combusting"
-	label_desc = "Combusting: The artifact seems to contain combusting components. Triggering these components will ignite the target."
+	label_desc = "Combusting: artefakt wydaje się zawierać elementy zapalające. Ich aktywacja podpali cel."
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 24
 	weight = 12

@@ -1,7 +1,7 @@
 /obj/machinery/vending/sticker
 	name = "\improper Sticker Vendor"
-	desc = "Surprise mechanics!"
-	product_ads = "Stick with me!;Be sure to stick around.;Stick to it."
+	desc = "Mechanika niespodzianek!"
+	product_ads = "Przyklej się do mnie!;Zostań na dłużej, przylgnij!;Trzymaj się tego!"
 	icon = 'icons/obj/vending_sticker.dmi'
 	icon_state = "gacha"
 	light_color = LIGHT_COLOR_CYAN
@@ -21,7 +21,7 @@
 //You can make this generic if you want to use it elsehwere
 /obj/item/sticker_gacha
 	name = "sticker gacha ball - series 1"
-	desc = "A prize ball. What could be inside!"
+	desc = "Kula z nagrodą. Co może być w środku?!"
 	icon = 'icons/obj/sticker.dmi'
 	icon_state = "gacha_red"
 	w_class = WEIGHT_CLASS_SMALL
@@ -34,7 +34,7 @@
 
 /obj/item/sticker_gacha/interact(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>You begin to pry open [src].</span>")
+	to_chat(user, "<span class='notice'>Zaczynasz podważać [src].</span>")
 	if(do_after(user, 2.5 SECONDS, src))
 		playsound(user, 'sound/effects/cartoon_pop.ogg', 35, TRUE)
 		//Build prize
@@ -48,7 +48,7 @@
 		//Kill ourselves
 		qdel(src)
 	else
-		to_chat(user, "<span class='warning'>You fail to pry [src] open.</span>")
+		to_chat(user, "<span class='warning'>Nie udaje ci się otworzyć [src].</span>")
 
 /obj/item/sticker_gacha/series_1
 	series = STICKER_SERIES_1

@@ -3,7 +3,7 @@
 */
 
 /obj/item/sticker/series_1/get_stats()
-	. = "<span class='notice'>Series 1</span>\n"
+	. = "<span class='notice'>Seria 1</span>\n"
 	. += ..()
 
 /obj/item/sticker/series_1/generate_unusual()

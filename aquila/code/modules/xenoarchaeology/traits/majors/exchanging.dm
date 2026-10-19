@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/exchange
 	label_name = "Exchanging"
-	label_desc = "Exchanging: The artifact seems to contain exchanging components. Triggering these components will exchange the damage of the last two targets."
+	label_desc = "Exchanging: artefakt wydaje się zawierać elementy wymieniające. Ich aktywacja zamieni obrażenia dwóch ostatnich celów."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 9
@@ -79,14 +79,14 @@
 	return ..()
 
 /datum/xenoartifact_trait/major/exchange/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("exchange brute damage between two targets"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać obrażenia fizyczne między dwoma celami"))
 
 //Burn variant
 /datum/xenoartifact_trait/major/exchange/burn
 	label_name = "Exchanging Δ"
-	label_desc = "Exchanging Δ: The artifact seems to contain exchanging components. Triggering these components will exchange the damage of the last two targets."
+	label_desc = "Exchanging Δ: artefakt wydaje się zawierać elementy wymieniające. Ich aktywacja zamieni obrażenia dwóch ostatnich celów."
 	damage_type = BURN
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/exchange/burn/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("exchange burn damage between two targets"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać oparzenia między dwoma celami"))

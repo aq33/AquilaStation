@@ -62,7 +62,7 @@
 
 
 /obj/structure/closet/artifact
-	name = "The Bishop" //Proper name
+	name = "Biskup" //Proper name
 
 /obj/structure/closet/artifact/Initialize(mapload)
 	. = ..()

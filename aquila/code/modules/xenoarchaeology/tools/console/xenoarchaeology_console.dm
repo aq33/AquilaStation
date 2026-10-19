@@ -5,7 +5,7 @@
 
 /obj/machinery/computer/xenoarchaeology_console
 	name = "research and development listing console"
-	desc = "A science console used to source sellers, and buyers, for various blacklisted research objects."
+	desc = "Konsola naukowa do wyszukiwania sprzedawców i kupców różnych zakazanych obiektów badawczych."
 	icon_screen = "xenoartifact_console"
 	icon_keyboard = "rd_key"
 	circuit = /obj/item/circuitboard/computer/xenoarchaeology_console
@@ -123,15 +123,15 @@
 				return
 			//If we got no cash
 			if(seller.get_price(item) > budget.account_balance)
-				say("Insufficient funds!")
+				say("Niewystarczające środki!")
 				return
 			//Annouce it
 			if(radio_purchase_notice && radio)
-				radio.talk_into(src, "[item] was requested for purchase, for [seller.get_price(item)] credits, at [station_time_timestamp()].", RADIO_CHANNEL_SCIENCE)
-			history += "[item] was requested for purchase, for [seller.get_price(item)] credits, at [station_time_timestamp()]."
+				radio.talk_into(src, "Złożono zamówienie na [item] za [seller.get_price(item)] kr o [station_time_timestamp()].", RADIO_CHANNEL_SCIENCE)
+			history += "Złożono zamówienie na [item] za [seller.get_price(item)] kr o [station_time_timestamp()]."
 			//handle ID and such
-			var/name = "*None Provided*"
-			var/rank = "*None Provided*"
+			var/name = "*Nie podano*"
+			var/rank = "*Nie podano*"
 			var/ckey = usr.ckey
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -154,7 +154,7 @@
 					SSshuttle.shoppinglist -= current_order
 					console_orders -= current_order
 					qdel(current_order)
-					current_order = new /datum/supply_order(current_pack, name, rank, ckey, "Research Material Requisition", budget)
+					current_order = new /datum/supply_order(current_pack, name, rank, ckey, "Zamówienie materiałów badawczych", budget)
 					SSshuttle.shoppinglist += current_order
 					console_orders[current_order] = current_pack
 					ui_update()
@@ -169,7 +169,7 @@
 			current_pack?.current_supply = max(1, current_pack.current_supply)
 			current_pack.cost += seller?.get_price(item)
 			current_pack.contains += seller?.buy_stock(item)
-			current_order = new /datum/supply_order(current_pack, name, rank, ckey, "Research Material Requisition", budget)
+			current_order = new /datum/supply_order(current_pack, name, rank, ckey, "Zamówienie materiałów badawczych", budget)
 			current_order.generateRequisition(get_turf(src))
 			SSshuttle.shoppinglist += current_order
 			console_orders[current_order] = current_pack
@@ -237,20 +237,20 @@
 	var/success_type
 	switch(success_rate)
 		if(0.3 to 0.69)
-			success_type = "sufficient research"
+			success_type = "wystarczające badania"
 		if(0.7 to 0.89)
-			success_type = "admirable research"
+			success_type = "godne podziwu badania"
 		if(0.9 to INFINITY)
-			success_type = "incredible discovery"
+			success_type = "niesamowite odkrycie"
 		else
-			success_type = prob(99) ? "scientific failure." : "who let the clown in?"
+			success_type = prob(99) ? "naukowa porażka" : "kto wpuścił klauna?"
 	if(radio_solved_notice)
-		radio?.talk_into(src, "[artifact] has been submitted with a success rate of [100*success_rate]% '[success_type]', \
-		[attempted_bonus ? "with a bonus achieved of [100 * (bonus / (max_bonus||1))]%, " : ""]\
-		at [station_time_timestamp()]. The Research Department has been awarded [rnd_reward] Research Points, [dp_reward] Discovery Points, and a monetary commision of [monetary_reward] credits.",\
+		radio?.talk_into(src, "Przekazano [artifact] ze skutecznością [100*success_rate]% '[success_type]', \
+		[attempted_bonus ? "z osiągniętym bonusem [100 * (bonus / (max_bonus||1))]%, " : ""]\
+		o [station_time_timestamp()]. Dział Badawczy otrzymuje [rnd_reward] punktów badawczych, [dp_reward] punktów odkryć oraz prowizję w wysokości [monetary_reward] kr.",\
 	RADIO_CHANNEL_SCIENCE)
-	history += "[artifact] has been submitted with a success rate of [100*success_rate]% '[success_type]', \
-	at [station_time_timestamp()]. The Research Department has been awarded [rnd_reward] Research Points, [dp_reward] Discovery Points, and a monetary commision of [monetary_reward] credits."
+	history += "Przekazano [artifact] ze skutecznością [100*success_rate]% '[success_type]', \
+	o [station_time_timestamp()]. Dział Badawczy otrzymuje [rnd_reward] punktów badawczych, [dp_reward] punktów odkryć oraz prowizję w wysokości [monetary_reward] kr."
 
 /obj/machinery/computer/xenoarchaeology_console/proc/be_the_guy(datum/source)
 	SIGNAL_HANDLER

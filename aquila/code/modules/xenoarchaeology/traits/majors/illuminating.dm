@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/illuminating
 	label_name = "Illuminating"
-	label_desc = "Illuminating: The artifact seems to contain illuminating components. Triggering these components will cause the artifact to illuminate."
+	label_desc = "Illuminating: artefakt wydaje się zawierać elementy świetlne. Ich aktywacja sprawi, że artefakt zacznie świecić."
 	cooldown = XENOA_TRAIT_COOLDOWN_EXTRA_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE
@@ -28,7 +28,7 @@
 
 /datum/xenoartifact_trait/major/illuminating/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("produce a randomly colored light"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("emitować światło w losowym kolorze"))
 
 /datum/xenoartifact_trait/major/illuminating/proc/do_light(force = FALSE)
 	if(!force)
@@ -48,12 +48,12 @@
 
 /datum/xenoartifact_trait/major/illuminating/shadow
 	label_name = "Illuminating Δ"
-	label_desc = "Illuminating Δ: The artifact seems to contain de-illuminating components. Triggering these components will cause the artifact to de-illuminate."
+	label_desc = "Illuminating Δ: artefakt wydaje się zawierać elementy pochłaniające światło. Ich aktywacja sprawi, że artefakt zacznie pochłaniać światło."
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/illuminating/shadow/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("create a localised shadow"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("tworzyć miejscowy cień"))
 
 /datum/xenoartifact_trait/major/illuminating/shadow/do_light()
 	lit = !lit

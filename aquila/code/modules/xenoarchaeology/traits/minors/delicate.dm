@@ -3,9 +3,9 @@
 	The artifact has limited uses
 */
 /datum/xenoartifact_trait/minor/delicate
-	material_desc = "delicate"
+	material_desc = "delikatny"
 	label_name = "Delicate"
-	label_desc = "Delicate: The artifact's design seems to delicate cooling elements. This will cause the artifact to potentially break."
+	label_desc = "Delicate: konstrukcja artefaktu zdaje się zawierać kruche elementy. Przez nie artefakt może się rozpaść."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = -5
 	incompatabilities = TRAIT_INCOMPATIBLE_MOB
@@ -41,4 +41,4 @@
 
 /datum/xenoartifact_trait/minor/delicate/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_APPEARANCE("This trait will make the artifact noticeably transparent."))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_APPEARANCE("Artefakt staje się wyraźnie przezroczysty."))

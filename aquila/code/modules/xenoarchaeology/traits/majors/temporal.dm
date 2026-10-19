@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/timestop
 	label_name = "Temporal"
-	label_desc = "Temporal: The artifact seems to contain temporal components. Triggering these components will create a temporal rift."
+	label_desc = "Temporal: artefakt wydaje się zawierać elementy czasowe. Ich aktywacja otworzy szczelinę czasową."
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	flags = XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE

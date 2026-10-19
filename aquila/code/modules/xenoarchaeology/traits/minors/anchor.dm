@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/anchor
 	label_name = "Anchor"
-	label_desc = "Anchor: The artifact's design seems to incorporate anchoring elements. This will cause the artifact to anchor when triggered, it can also be unanchored with typical tools."
+	label_desc = "Anchor: konstrukcja artefaktu zdaje się zawierać elementy kotwiczące. Po aktywacji artefakt przytwierdza się do podłoża; można go odczepić zwykłymi narzędziami."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 10
 	incompatabilities = TRAIT_INCOMPATIBLE_MOB | TRAIT_INCOMPATIBLE_STRUCTURE
@@ -44,4 +44,4 @@
 		movable.anchored = !movable.anchored
 		playsound(get_turf(component_parent?.parent), 'sound/items/handling/wrench_pickup.ogg', 50, TRUE)
 	//Message
-	movable.visible_message("<span class='warning'>[movable] [movable.anchored ? "anchors to" : "unanchors from"] [get_turf(movable)]!</span>", allow_inside_usr = TRUE)
+	movable.visible_message("<span class='warning'>[movable] [movable.anchored ? "przytwierdza się do podłoża" : "odczepia się od podłoża"]!</span>", allow_inside_usr = TRUE)

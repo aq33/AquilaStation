@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/gas
 	label_name = "Porous"
-	label_desc = "Porous: The artifact seems to contain porous components. Triggering these components will cause the artifact to exchange one gas with another."
+	label_desc = "Porous: artefakt wydaje się zawierać elementy porowate. Ich aktywacja sprawi, że artefakt zamieni jeden gaz w inny."
 	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 15
@@ -61,9 +61,9 @@
 
 /datum/xenoartifact_trait/major/gas/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_DETECT("gas analyzer, which will also reveal what gasses the artifact exchanges."))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_DETECT("analizator gazów, który pokaże też, jakie gazy artefakt wymienia"))
 
 /datum/xenoartifact_trait/major/gas/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/analyzer))
-		to_chat(user, span_warning("[item] detects [GLOB.gas_data.names[choosen_target]] exchanging into [GLOB.gas_data.names[choosen_exchange]] at a rate of [max_moles] moles!"))
+		to_chat(user, span_warning("[item] wykrywa zamianę gazu [GLOB.gas_data.names[choosen_target]] w [GLOB.gas_data.names[choosen_exchange]] w tempie [max_moles] moli!"))
 		return ..()

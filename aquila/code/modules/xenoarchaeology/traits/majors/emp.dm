@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/emp
 	label_name = "EMP"
-	label_desc = "EMP: The artifact seems to contain electromagnetic pulsing components. Triggering these components will create an EMP."
+	label_desc = "EMP: artefakt wydaje się zawierać elementy emitujące impulsy elektromagnetyczne. Ich aktywacja wywoła EMP."
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE

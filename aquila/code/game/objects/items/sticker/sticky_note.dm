@@ -1,6 +1,6 @@
 /obj/item/sticker/sticky_note
 	name = "office note"
-	desc = "An adhesive office note."
+	desc = "Samoprzylepna karteczka biurowa."
 	icon_state = "sticky_note"
 	sticker_icon_state = "sticky_note_sticker"
 	do_outline = FALSE
@@ -52,7 +52,7 @@
 */
 /obj/item/sticky_note_pile
 	name = "office note pad"
-	desc = "A stack of adhesive office notes."
+	desc = "Bloczek samoprzylepnych karteczek biurowych."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "sticky_note_pile"
 	throwforce = 0
@@ -91,7 +91,7 @@
 		if(!(L.mobility_flags & MOBILITY_PICKUP))
 			return
 	if(current_notes <= 0)
-		to_chat(user, "<span class='warning'>[src] is empty!</span>")
+		to_chat(user, "<span class='warning'>[src] jest pusty!</span>")
 		return
 	//Give the note
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -99,13 +99,13 @@
 	N.add_fingerprint(user)
 	N.forceMove(user.loc)
 	user.put_in_hands(N)
-	to_chat(user, "<span class='notice'>You take [N] out of \the [src].</span>")
+	to_chat(user, "<span class='notice'>Wyjmujesz [N] z [src].</span>")
 	//Deitterate notes
 	current_notes -= 1
 
 /obj/item/sticky_note_pile/examine(mob/user)
 	. = ..()
 	if(current_notes)
-		. += "It contains [current_notes] [current_notes > 1 ? "notes" : "note"]."
+		. += "Zostało karteczek: [current_notes]."
 	else
-		. += "It doesn't contain anything."
+		. += "Nic w nim nie zostało."

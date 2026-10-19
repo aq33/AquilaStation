@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/trauma
 	label_name = "C.D.E."
-	alt_label_name = "Cerebral Dysfunction Emergence"
-	label_desc = "Cerebral Dysfunction Emergence: A strange malfunction causes the Artifact to cause traumas to emerge in the target."
+	alt_label_name = "Wystąpienie Dysfunkcji Mózgowej"
+	label_desc = "Cerebral Dysfunction Emergence: dziwna usterka sprawia, że artefakt wywołuje u celu urazy mózgu."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 	///Possbile traumas

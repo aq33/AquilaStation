@@ -3,9 +3,9 @@
 	Allows the artifact to be worn in the glove slot
 */
 /datum/xenoartifact_trait/minor/ringed
-	material_desc = "ringed"
+	material_desc = "pierścieniowy"
 	label_name = "Ringed"
-	label_desc = "Ringed: The artifact's design seems to incorporate ringed elements. This will allow the artifact to be worn, and catch information from the wearer."
+	label_desc = "Ringed: konstrukcja artefaktu zdaje się zawierać elementy pierścieniowe. Dzięki nim artefakt można nosić, a on przechwytuje informacje od noszącego."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense, /datum/xenoartifact_trait/minor/ringed/attack)
 	incompatabilities = TRAIT_INCOMPATIBLE_MOB | TRAIT_INCOMPATIBLE_STRUCTURE
@@ -35,7 +35,7 @@
 
 /datum/xenoartifact_trait/minor/ringed/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("pass attacks on the user to the artifact, when worn. This only applies to attacks involving items"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przekazywać artefaktowi ataki wymierzone w noszącego. Dotyczy to tylko ataków przedmiotami"))
 
 /datum/xenoartifact_trait/minor/ringed/proc/equip_action(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -60,9 +60,9 @@
 
 //Variant for when the user attacks
 /datum/xenoartifact_trait/minor/ringed/attack
-	material_desc = "ringed"
+	material_desc = "pierścieniowy"
 	label_name = "Ringed Δ"
-	label_desc = "Ringed Δ: The artifact's design seems to incorporate ringed elements. This will allow the artifact to be worn, and catch information from the wearer."
+	label_desc = "Ringed Δ: konstrukcja artefaktu zdaje się zawierać elementy pierścieniowe. Dzięki nim artefakt można nosić, a on przechwytuje informacje od noszącego."
 	conductivity = 15
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense, /datum/xenoartifact_trait/minor/ringed)
 
@@ -75,7 +75,7 @@
 
 /datum/xenoartifact_trait/minor/ringed/attack/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("pass attacks from the user to the artifact, when worn"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przekazywać artefaktowi ataki wyprowadzane przez noszącego"))
 
 /datum/xenoartifact_trait/minor/ringed/attack/proc/catch_user_attack(datum/source, mob/user, mob/target, list/modifiers)
 	SIGNAL_HANDLER

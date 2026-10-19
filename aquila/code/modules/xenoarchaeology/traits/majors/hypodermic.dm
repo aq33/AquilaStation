@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/chem
 	label_name = "Hypodermic"
-	label_desc = "Hypodermic: The artifact seems to contain chemical components. Triggering these components will inject the target with a chemical."
+	label_desc = "Hypodermic: artefakt wydaje się zawierać elementy chemiczne. Ich aktywacja wstrzyknie celowi substancję chemiczną."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 30
@@ -38,16 +38,16 @@
 
 /datum/xenoartifact_trait/major/chem/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("inject the target with a random generic chemical"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wstrzykiwać celowi losową zwykłą substancję chemiczną"))
 
 //Evil jonkler version
 /datum/xenoartifact_trait/major/chem/fun
 	label_name = "Hypodermic Δ"
-	label_desc = "Hypodermic Δ: The artifact seems to contain chemical components. Triggering these components will inject the target with a chemical."
+	label_desc = "Hypodermic Δ: artefakt wydaje się zawierać elementy chemiczne. Ich aktywacja wstrzyknie celowi substancję chemiczną."
 	chem_category = CHEMICAL_RNG_FUN
 	rarity = XENOA_TRAIT_WEIGHT_RARE
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/chem/fun/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("inject the target with a random fun chemical"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wstrzykiwać celowi losową ciekawą substancję chemiczną"))

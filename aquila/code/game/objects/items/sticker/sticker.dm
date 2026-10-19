@@ -1,6 +1,6 @@
 /obj/item/sticker
 	name = "sticker" //Don't bother changing the name or desc for subtypes
-	desc = "An adhesive graphic."
+	desc = "Samoprzylepna grafika."
 	icon = 'icons/obj/sticker.dmi'
 	icon_state = "happy"
 	flags_1 = IS_ONTOP_1
@@ -164,20 +164,20 @@
 	//use this switch to give the rarity name, color, and any other effects you want to add
 	switch(rarity)
 		if(STICKER_RARITY_COMMON)
-			. += span_notice("Common")
+			. += span_notice("Pospolita")
 		if(STICKER_RARITY_UNCOMMON)
-			. += span_green("Uncommon")
+			. += span_green("Niepospolita")
 		if(STICKER_RARITY_RARE)
-			. += span_cult("Rare")
+			. += span_cult("Rzadka")
 		if(STICKER_RARITY_EXOTIC)
-			. += span_revennotice("Exotic")
+			. += span_revennotice("Egzotyczna")
 		if(STICKER_RARITY_MYTHIC)
-			. += span_alien("Mythic")
+			. += span_alien("Mityczna")
 		else
-			. += span_warning("GARBAGE")
+			. += span_warning("ŚMIEĆ")
 	//Append unusual status
 	if(is_unusual)
-		. += span_purple("Unusual")
+		. += span_purple("Niezwykła")
 
 /obj/item/sticker/proc/stick_to(atom/movable/target, x_offset, y_offset)
 	// Move to our target

@@ -3,9 +3,9 @@
 	Increases the artifact trait strength by 25%
 */
 /datum/xenoartifact_trait/minor/charged
-	material_desc = "charged"
+	material_desc = "naładowany"
 	label_name = "Charged"
-	label_desc = "Charged: The artifact's design seems to incorporate looping elements. This will cause the artifact to produce more powerful effects."
+	label_desc = "Charged: konstrukcja artefaktu zdaje się zawierać zapętlone elementy. Dzięki nim efekty artefaktu są silniejsze."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 10
 	conductivity = 15
@@ -27,7 +27,7 @@
 
 /datum/xenoartifact_trait/minor/charged/do_hint(mob/user, atom/item)
 	. = ..()
-	to_chat(user, "<span class='warning'>Your hair stands on end!</span>")
+	to_chat(user, "<span class='warning'>Włosy stają ci dęba!</span>")
 
 /datum/xenoartifact_trait/minor/charged/generate_trait_appearance(atom/movable/target)
 	. = ..()
@@ -48,4 +48,4 @@
 
 /datum/xenoartifact_trait/minor/charged/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_INHAND, XENOA_TRAIT_HINT_APPEARANCE("This trait will make static particles appear around the artifact."))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_INHAND, XENOA_TRAIT_HINT_APPEARANCE("Wokół artefaktu pojawiają się iskierki elektrostatyczne."))

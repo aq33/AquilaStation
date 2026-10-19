@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/activator/pitched
 	label_name = "Pitched"
-	label_desc = "Pitched: The artifact seems to be made of an aerodynamic material. This material seems to be triggered by motion, such as being thrown."
+	label_desc = "Pitched: artefakt wygląda na wykonany z aerodynamicznego materiału. Materiał ten zdaje się aktywować pod wpływem ruchu, na przykład po rzuceniu."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	weight = -8

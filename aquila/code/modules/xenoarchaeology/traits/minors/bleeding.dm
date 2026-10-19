@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/bleed
 	label_name = "Bleeding"
-	label_desc = "Bleeding: The artifact's design seems to incorporate bleeding elements. This will cause the artifact to bleed when triggered."
+	label_desc = "Bleeding: konstrukcja artefaktu zdaje się zawierać krwawiące elementy. Po aktywacji artefakt krwawi."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 15
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/bleed/fun)
@@ -25,7 +25,7 @@
 
 /datum/xenoartifact_trait/minor/bleed/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("bleed red blood"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("krwawić czerwoną krwią"))
 
 /datum/xenoartifact_trait/minor/bleed/catch_move(datum/source, atom/target, dir)
 	. = ..()
@@ -54,7 +54,7 @@
 
 /datum/xenoartifact_trait/minor/bleed/fun
 	label_name = "Bleeding Δ"
-	label_desc = "Bleeding Δ: The artifact's design seems to incorporate bleeding elements. This will cause the artifact to bleed when triggered."
+	label_desc = "Bleeding Δ: konstrukcja artefaktu zdaje się zawierać krwawiące elementy. Po aktywacji artefakt krwawi."
 	conductivity = 15
 	flags = XENOA_MISC_TRAIT | XENOA_HIDE_TRAIT //Delete this line when the blood changes come back
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/bleed)
@@ -63,4 +63,4 @@
 
 /datum/xenoartifact_trait/minor/bleed/fun/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("bleed 'clown' blood"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("krwawić 'klaunią' krwią"))

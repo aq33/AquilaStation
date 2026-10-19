@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/shadow_realm
 	label_name = "Destabilizing"
-	label_desc = "Destabilizing: The artifact seems to contain destabilizing components. Triggering these components will cause the artifact transport the target to another realm."
+	label_desc = "Destabilizing: artefakt wydaje się zawierać elementy destabilizujące. Ich aktywacja przeniesie cel do innego wymiaru."
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	flags = XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	rarity = XENOA_TRAIT_WEIGHT_EPIC

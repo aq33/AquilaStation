@@ -3,9 +3,9 @@
 	Makes the artifact sharp
 */
 /datum/xenoartifact_trait/minor/sharp
-	material_desc = "sharp"
+	material_desc = "ostry"
 	label_name = "Sharp"
-	label_desc = "Sharp: The artifact's design seems to incorporate sharp elements. This will cause the artifact to pbe sharper than usual."
+	label_desc = "Sharp: konstrukcja artefaktu zdaje się zawierać ostre elementy. Przez nie artefakt jest ostrzejszy niż zwykle."
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)

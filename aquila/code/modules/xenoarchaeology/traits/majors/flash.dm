@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/flash
 	label_name = "Flashing"
-	label_desc = "Flashing: The artifact seems to contain flashing components. Triggering these components will create a blinding flash."
+	label_desc = "Flashing: artefakt wydaje się zawierać elementy błyskowe. Ich aktywacja wywoła oślepiający błysk."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE
@@ -47,7 +47,7 @@
 	if(M.stat == DEAD)
 		return
 	var/distance = max(0,get_dist(get_turf(src),T))
-	M.show_message("<span class='warning'>BANG</span>", MSG_AUDIBLE)
+	M.show_message("<span class='warning'>BUM</span>", MSG_AUDIBLE)
 	var/atom/atom_parent = component_parent.parent
 	if(!distance || atom_parent.loc == M || atom_parent.loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(20)

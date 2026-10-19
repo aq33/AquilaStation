@@ -5,8 +5,8 @@
 */
 /datum/xenoartifact_trait/malfunction/strip
 	label_name = "B.A.D."
-	alt_label_name = "Bluespace Axis Desync"
-	label_desc = "Bluespace Axis Desync: A strange malfunction causes the Artifact to remove articles from the target."
+	alt_label_name = "Rozsynchronizowanie Osi Bluespace"
+	label_desc = "Bluespace Axis Desync: dziwna usterka sprawia, że artefakt zdejmuje z celu części garderoby."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 

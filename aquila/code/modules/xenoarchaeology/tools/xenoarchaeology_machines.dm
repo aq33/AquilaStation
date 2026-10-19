@@ -89,13 +89,13 @@
 */
 /obj/machinery/xenoarchaeology_machine/scale
 	name = "industrial scale"
-	desc = "A piece of industrial equipment, designed to weigh thousands of kilograms."
+	desc = "Przemysłowe urządzenie zdolne zważyć tysiące kilogramów."
 	icon_state = "scale"
 	circuit = /obj/item/circuitboard/machine/xenoarchaeology_machine/scale
 
 /obj/machinery/xenoarchaeology_machine/scale/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Interact to measure artifact weight.\nLabeled artifacts will also show label weights, against the total.</span>"
+	. += "<span class='notice'>Użyj, aby zmierzyć masę artefaktu.\nDla oznaczonych artefaktów pokazane zostaną też masy cech z etykiety na tle sumy.</span>"
 
 /obj/machinery/xenoarchaeology_machine/scale/activate_machine(mob/living/user)
 	empty_contents()
@@ -111,21 +111,21 @@
 		var/obj/item/sticker/xenoartifact_label/label = locate(/obj/item/sticker/xenoartifact_label) in atom_target.contents
 		if(label)
 			for(var/datum/xenoartifact_trait/T as anything in label.traits)
-				say("[initial(T.label_name)] - Weight: [initial(T.weight)]")
+				say("[initial(T.label_name)] - masa: [initial(T.weight)]")
 				label_weight += initial(T.weight)
 		else if(isitem(atom_target) || isliving(atom_target))
 			if(isliving(atom_target))
 				if(prob(1))
-					say("Unexpected Fatass Detected!")
-					say("Get the fuck off me, lardass!")
+					say("Wykryto nieoczekiwanego grubasa!")
+					say("Złaź ze mnie, ty spaślaku!")
 					playsound(get_turf(src), 'sound/vehicles/clowncar_fart.ogg', 100)
 				else
-					say("Unexpected Item Detected!")
+					say("Wykryto nieoczekiwany przedmiot!")
 				return
 	if(total_weight)
-		say("Total Mass: [total_weight] KG.\n[label_weight ? "Label Mass: [label_weight] KG." : ""]")
+		say("Masa całkowita: [total_weight] kg.\n[label_weight ? "Masa z etykiety: [label_weight] kg." : ""]")
 	else
-		say("No Mass Detected!")
+		say("Nie wykryto masy!")
 	playsound(src, 'sound/machines/uplinkpurchase.ogg', 50, TRUE)
 
 //Circuitboard
@@ -140,13 +140,13 @@
 */
 /obj/machinery/xenoarchaeology_machine/conductor
 	name = "conducting plate"
-	desc = "A piece of industrial equipment for measuring material conductivity."
+	desc = "Przemysłowe urządzenie do pomiaru przewodności materiałów."
 	icon_state = "conductor"
 	circuit = /obj/item/circuitboard/machine/xenoarchaeology_machine/conductor
 
 /obj/machinery/xenoarchaeology_machine/conductor/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Interact to measure artifact conductivity.\nLabeled artifacts will also show label conductivity, against the total.</span>"
+	. += "<span class='notice'>Użyj, aby zmierzyć przewodność artefaktu.\nDla oznaczonych artefaktów pokazana zostanie też przewodność cech z etykiety na tle sumy.</span>"
 
 /obj/machinery/xenoarchaeology_machine/conductor/activate_machine(mob/living/user)
 	empty_contents()
@@ -163,21 +163,21 @@
 		var/obj/item/sticker/xenoartifact_label/label = locate(/obj/item/sticker/xenoartifact_label) in atom_target.contents
 		if(label)
 			for(var/datum/xenoartifact_trait/T as anything in label.traits)
-				say("[initial(T.label_name)] - conductivity: [initial(T.conductivity)]")
+				say("[initial(T.label_name)] - przewodność: [initial(T.conductivity)]")
 				label_conductivity += initial(T.conductivity)
 		else if(isitem(atom_target) || isliving(atom_target))
 			if(isliving(atom_target))
 				if(prob(1))
-					say("Unexpected Fatass Detected!")
-					say("Get the fuck off me, lardass!")
+					say("Wykryto nieoczekiwanego grubasa!")
+					say("Złaź ze mnie, ty spaślaku!")
 					playsound(get_turf(src), 'sound/vehicles/clowncar_fart.ogg', 100)
 				else
-					say("Unexpected Item Detected!")
+					say("Wykryto nieoczekiwany przedmiot!")
 				return
 	if(total_conductivity)
-		say("Total Conductivity: [total_conductivity] MPC.\n[label_conductivity ? "Label Conductivity: [label_conductivity] MPC." : ""]")
+		say("Przewodność całkowita: [total_conductivity] MPC.\n[label_conductivity ? "Przewodność z etykiety: [label_conductivity] MPC." : ""]")
 	else
-		say("No Conductivity Detected!")
+		say("Nie wykryto przewodności!")
 	playsound(src, 'sound/machines/uplinkpurchase.ogg', 50, TRUE)
 
 //Circuitboard
@@ -192,7 +192,7 @@
 */
 /obj/machinery/xenoarchaeology_machine/calibrator
 	name = "anomalous material calibrator"
-	desc = "An experimental piece of scientific equipment, designed to calibrate anomalous materials."
+	desc = "Eksperymentalne urządzenie naukowe służące do kalibracji anomalnych materiałów."
 	icon_state = "calibrator"
 	move_inside = TRUE
 	circuit = /obj/item/circuitboard/machine/xenoarchaeology_machine/calibrator
@@ -237,7 +237,7 @@
 
 /obj/machinery/xenoarchaeology_machine/calibrator/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Right-Click to calibrate inserted artifacts.\nArtifacts can be calibrated by labeling them 100% correctly, excluding malfunctions.</span>"
+	. += "<span class='notice'>Kliknij prawym przyciskiem, aby skalibrować włożone artefakty.\nArtefakt da się skalibrować, jeśli jego etykieta jest w 100% poprawna (nie licząc usterek).</span>"
 
 /obj/machinery/xenoarchaeology_machine/calibrator/activate_machine(mob/living/user)
 	if(length(held_contents))
@@ -264,12 +264,12 @@
 		var/obj/item/sticker/xenoartifact_label/label = locate(/obj/item/sticker/xenoartifact_label) in atom_target.contents
 		//Early checks
 		if(!artifact_component || !label || artifact_component?.calibrated || artifact_component?.calcified)
-			var/decision = "No"
+			var/decision = "Nie"
 			if(!label && artifact_component)
-				say("No label detected!")
+				say("Nie wykryto etykiety!")
 				if(!artifact_component.calcified)
-					decision = tgui_alert(user, "Do you want to continue, this will destroy [atom_target]?", "Calcify Artifact", list("Yes", "No"))
-			if(decision == "No")
+					decision = tgui_alert(user, "Czy chcesz kontynuować? To zniszczy [atom_target].", "Zwapnienie artefaktu", list("Tak", "Nie"))
+			if(decision == "Nie")
 				//This stops us from spitting out stuff we shouldn't, mostly
 				if(atom_target in held_contents)
 					empty_contents(atom_target)
@@ -322,14 +322,14 @@
 		var/dp_reward = max(0, (atom_target.item_price*artifact_component.artifact_material.dp_rate)*success_rate) * reward_rate
 		linked_techweb?.add_point_type(TECHWEB_POINT_TYPE_DISCOVERY, dp_reward)
 		//Announce this, for honor or shame
-		var/message = "[atom_target] has been calibrated, and generated [dp_reward] Discovery Points!"
+		var/message = "Skalibrowano [atom_target], co dało [dp_reward] punktów odkryć!"
 		say(message)
 		radio?.talk_into(src, message, RADIO_CHANNEL_SCIENCE)
 	//Calibrate the artifact
 	artifact_component.calibrate()
 	//Prompt user to delete or keep malfunctions
-	var/decision = tgui_alert(usr, "Do you want to calcify [atom_target]'s malfunctions?", "Remove Malfunctions", list("Yes", "No"))
-	if(decision == "Yes")
+	var/decision = tgui_alert(usr, "Czy chcesz zwapnić usterki artefaktu [atom_target]?", "Usuwanie usterek", list("Tak", "Nie"))
+	if(decision == "Tak")
 		for(var/i in artifact_component.traits_catagories)
 			for(var/datum/xenoartifact_trait/trait_datum in artifact_component.traits_catagories[i])
 				if(istype(trait_datum, /datum/xenoartifact_trait/malfunction))

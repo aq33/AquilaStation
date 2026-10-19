@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/signaller
 	label_name = "Signaller"
-	label_desc = "Signaller: The artifact's design seems to incorporate signalling elements. This will cause the artifact to send a signal when activated."
+	label_desc = "Signaller: konstrukcja artefaktu zdaje się zawierać elementy sygnałowe. Po aktywacji artefakt wysyła sygnał."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 15
 	var/atom/movable/artifact_particle_holder/particle_holder
@@ -45,7 +45,7 @@
 
 /datum/xenoartifact_trait/minor/signaller/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/analyzer))
-		to_chat(user, "<span class='warning'>[item] detects an output frequency & code of [FREQ_SIGNALER]-[code]!</span>")
+		to_chat(user, "<span class='warning'>[item] wykrywa częstotliwość i kod wyjściowy: [FREQ_SIGNALER]-[code]!</span>")
 		return ..()
 
 /datum/xenoartifact_trait/minor/signaller/generate_trait_appearance(atom/movable/target)
@@ -80,6 +80,6 @@
 
 /datum/xenoartifact_trait/minor/signaller/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_DETECT("analyzer, which will also reveal its output code & frequency"),
-	XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_APPEARANCE("This trait will make radar particles appear around the artifact."),
-	XENOA_TRAIT_HINT_SOUND("sonar ping"))
+	return list(XENOA_TRAIT_HINT_DETECT("analizator, który ujawni też kod i częstotliwość wyjściową"),
+	XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_APPEARANCE("Wokół artefaktu pojawiają się cząsteczki przypominające radar."),
+	XENOA_TRAIT_HINT_SOUND("piknięcia sonaru"))

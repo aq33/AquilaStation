@@ -3,9 +3,9 @@
 	Makes the artifact act like a shield
 */
 /datum/xenoartifact_trait/minor/shielded
-	material_desc = "shielded"
+	material_desc = "osłonowy"
 	label_name = "Shielded"
-	label_desc = "Shielded: The artifact's design seems to incorporate shielded elements. This will allow the artifact to be used like a shield."
+	label_desc = "Shielded: konstrukcja artefaktu zdaje się zawierać elementy osłonowe. Dzięki nim artefakt może służyć jako tarcza."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	weight = 15

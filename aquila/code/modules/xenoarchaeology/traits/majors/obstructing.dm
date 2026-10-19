@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/forcefield
 	label_name = "Obstructing"
-	label_desc = "Obstructing: The artifact seems to contain obstructing components. Triggering these components will cause the artifact to build walls around itself."
+	label_desc = "Obstructing: artefakt wydaje się zawierać elementy blokujące. Ich aktywacja sprawi, że artefakt otoczy się ścianami."
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE
@@ -45,4 +45,4 @@
 
 //Special wall type for artifact. Throw any extra code or special logic in here
 /obj/effect/forcefield/xenoartifact_type
-	desc = "An impenetrable artifact wall."
+	desc = "Nieprzenikniona ściana artefaktu."

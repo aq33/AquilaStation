@@ -230,7 +230,7 @@
 		return
 	if(target.x % (weight || target.x || 1) == 0 && target.y % (conductivity || target.y || 1) == 0)
 		var/atom/target_loc = atom_parent.loc
-		target_loc.visible_message("<span class='warning'>[atom_parent] develops a slight opening!</span>\n<span class='notice'>You could probably use a screwdriver on [atom_parent]!</span>", allow_inside_usr = TRUE)
+		target_loc.visible_message("<span class='warning'>W [atom_parent] pojawia się niewielka szczelina!</span>\n<span class='notice'>Chyba dałoby się ją podważyć śrubokrętem!</span>", allow_inside_usr = TRUE)
 		//Do effects
 		playsound(atom_parent, 'sound/machines/clockcult/ark_damage.ogg', 50, TRUE)
 
@@ -248,13 +248,13 @@
 
 /datum/xenoartifact_trait/proc/pry_action(mob/living/user, obj/item/I)
 	var/atom/movable/movable = component_parent.parent
-	to_chat(user, "<span class='warning'>You begin to pry [movable] open with [I].</span>")
+	to_chat(user, "<span class='warning'>Zaczynasz podważać [movable] za pomocą [I].</span>")
 	if(do_after(user, 8 SECONDS, movable) && component_parent)
 		new /obj/item/sticker/trait_pearl(get_turf(movable), src)
 		component_parent?.remove_individual_trait(src) //You never know...
 		remove_parent(pensive = FALSE)
 	else
-		to_chat(user, "<span class='warning'>You reconsider...</span>")
+		to_chat(user, "<span class='warning'>Rozmyślasz się...</span>")
 
 ///Particle holder for trait appearances - Throw any extras you want in here
 /atom/movable/artifact_particle_holder

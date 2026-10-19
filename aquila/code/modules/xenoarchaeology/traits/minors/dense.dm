@@ -3,9 +3,9 @@
 	Makes the artifact behave like a structure
 */
 /datum/xenoartifact_trait/minor/dense
-	material_desc = "dense"
+	material_desc = "gęsty"
 	label_name = "Dense"
-	label_desc = "Dense: The artifact's design seems to incorporate dense elements. This will cause the artifact to be much heavier than usual."
+	label_desc = "Dense: konstrukcja artefaktu zdaje się zawierać gęste elementy. Przez nie artefakt jest znacznie cięższy niż zwykle."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/sharp, /datum/xenoartifact_trait/minor/ringed, /datum/xenoartifact_trait/minor/shielded,
 	/datum/xenoartifact_trait/minor/aerodynamic, /datum/xenoartifact_trait/minor/slippery, /datum/xenoartifact_trait/minor/ringed/attack)

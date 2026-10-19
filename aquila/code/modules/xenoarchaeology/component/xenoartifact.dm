@@ -187,7 +187,7 @@
 	//Hint sound
 	var/atom/atom_parent = parent
 	playsound(atom_parent, 'sound/effects/light_flicker.ogg', 60)
-	atom_parent.visible_message("<span class='warning'>[atom_parent] makes a concerning sound, as if something has gone terribly wrong...</span>")
+	atom_parent.visible_message("<span class='warning'>[atom_parent] wydaje niepokojący dźwięk, jakby coś poszło bardzo nie tak...</span>")
 	//Build malfunctions
 	var/list/focus_traits
 	focus_traits = artifact_material.get_malfunctions()
@@ -227,7 +227,7 @@
 
 	var/mob/living/carbon/M = user
 	if(iscarbon(user) && M.can_see_reagents() || isobserver(user))
-		examine_text += "<span class='notice'>[parent] seems to be made from a [material_description]material.</span>"
+		examine_text += "<span class='notice'>[parent] wygląda na wykonany z materiału o cechach: [trim(material_description)].</span>"
 	//Special case for observers that shows all the traits
 	if(isobserver(user))
 		for(var/i in traits_catagories)
@@ -253,7 +253,7 @@
 		if(length(description_category[i]))
 			temp = "[temp][pick(description_category[i])] "
 		else if(!unknown_used)
-			temp = "unknown [temp]"
+			temp = "nieznany [temp]"
 			unknown_used = TRUE
 	return temp
 

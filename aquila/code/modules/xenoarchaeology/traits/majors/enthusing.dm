@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/emote
 	label_name = "Enthusing"
-	label_desc = "Enthusing: The artifact seems to contain emoting components. Triggering these components will cause the target to emote."
+	label_desc = "Enthusing: artefakt wydaje się zawierać elementy wywołujące emocje. Ich aktywacja zmusi cel do wykonania emotki."
 	cooldown = XENOA_TRAIT_COOLDOWN_EXTRA_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	///List of possible emotes

@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/aura
 	label_name = "Aura"
-	label_desc = "Aura: The artifact's design seems to incorporate aura elements. This will cause the artifact to target things nearby."
+	label_desc = "Aura: konstrukcja artefaktu zdaje się zawierać elementy aury. Dzięki nim artefakt obiera za cel wszystko w pobliżu."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	extra_target_range = 2

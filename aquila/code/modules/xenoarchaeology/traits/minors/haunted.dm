@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/haunted
 	label_name = "Haunted"
-	label_desc = "Haunted: The artifact's design seems to incorporate incorporeal elements. This will cause the artifact to move unexpectedly."
+	label_desc = "Haunted: konstrukcja artefaktu zdaje się zawierać bezcielesne elementy. Przez nie artefakt potrafi niespodziewanie się poruszyć."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 35
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/haunted/instant)
@@ -36,13 +36,13 @@
 
 /datum/xenoartifact_trait/minor/haunted/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/storage/book/bible))
-		to_chat(user, "<span class='warning'>[item] upsets the sprits of [component_parent?.parent]!</span>")
+		to_chat(user, "<span class='warning'>[item] niepokoi duchy zamieszkujące artefakt [component_parent?.parent]!</span>")
 		return ..()
 
 /datum/xenoartifact_trait/minor/haunted/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_DETECT("bible"),
-	XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("allow the artifact to be moved, by ghosts, every 8 seconds"),
-	XENOA_TRAIT_HINT_SOUND("ghost moaning"))
+	return list(XENOA_TRAIT_HINT_DETECT("biblia"),
+	XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("pozwalać duchom przesuwać artefakt co 8 sekund"),
+	XENOA_TRAIT_HINT_SOUND("jęki duchów"))
 
 /datum/xenoartifact_trait/minor/haunted/proc/do_wail(repeat = TRUE)
 	if(QDELETED(src))
@@ -77,7 +77,7 @@
 //Instant variant, no move delay. Can only move when not seen
 /datum/xenoartifact_trait/minor/haunted/instant
 	label_name = "Haunted Δ"
-	label_desc = "Haunted Δ: The artifact's design seems to incorporate incorporeal elements. This will cause the artifact to move unexpectedly, when not observed."
+	label_desc = "Haunted Δ: konstrukcja artefaktu zdaje się zawierać bezcielesne elementy. Przez nie artefakt potrafi niespodziewanie się poruszyć, gdy nikt nie patrzy."
 	move_delay = 1 SECONDS
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/haunted)
 	conductivity = 5
@@ -103,9 +103,9 @@
 		return ..()
 
 /datum/xenoartifact_trait/minor/haunted/instant/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_DETECT("bible"),
-	XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("allow the artifact to be moved, by ghosts, when no-one is looking"),
-	XENOA_TRAIT_HINT_SOUND("ghost moaning"))
+	return list(XENOA_TRAIT_HINT_DETECT("biblia"),
+	XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("pozwalać duchom przesuwać artefakt, gdy nikt nie patrzy"),
+	XENOA_TRAIT_HINT_SOUND("jęki duchów"))
 
 /datum/xenoartifact_trait/minor/haunted/instant/proc/reset_action_timer()
 	if(action_cooldown)

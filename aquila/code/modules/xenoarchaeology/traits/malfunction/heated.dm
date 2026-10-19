@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/heated
 	label_name = "M.A.C."
-	alt_label_name = "Mass Area Combustion"
-	label_desc = "Mass Area Combustion: A strange malfunction that causes the Artifact to violently combust."
+	alt_label_name = "Masowe Spalanie Obszarowe"
+	label_desc = "Mass Area Combustion: dziwna usterka, która sprawia, że artefakt gwałtownie się zapala."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 
 /datum/xenoartifact_trait/malfunction/heated/trigger(datum/source, _priority, atom/override)

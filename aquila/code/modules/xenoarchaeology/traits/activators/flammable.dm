@@ -3,9 +3,9 @@
 	This trait activates the artifact when it's lit
 */
 /datum/xenoartifact_trait/activator/flammable
-	material_desc = "flammable"
+	material_desc = "łatwopalny"
 	label_name = "Flammable"
-	label_desc = "Flammable: The artifact seems to be made of a flammable material. This material seems to be triggered by heat interaction."
+	label_desc = "Flammable: artefakt wygląda na wykonany z łatwopalnego materiału. Materiał ten zdaje się aktywować pod wpływem ciepła."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	///Are we 'lit' and looking for targets
 	var/lit = FALSE
@@ -73,7 +73,7 @@
 
 /datum/xenoartifact_trait/activator/flammable/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TRIGGER("'hot' tool"), list("icon" = "exclamation", "desc" = "This trait will, after an arming time, activate on the nearest living target."))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TRIGGER("'gorące' narzędzie"), list("icon" = "exclamation", "desc" = "Ta cecha po czasie uzbrajania aktywuje się na najbliższym żywym celu."))
 
 /datum/xenoartifact_trait/activator/flammable/proc/reset_timer()
 	if(search_cooldown_timer)
@@ -82,4 +82,4 @@
 
 /datum/xenoartifact_trait/activator/flammable/proc/indicator_hint(engaging = FALSE)
 	var/atom/atom_parent = component_parent?.parent
-	atom_parent?.balloon_alert_to_viewers("[atom_parent] [engaging ? "flicks on" : "snuffs out."]!")
+	atom_parent?.balloon_alert_to_viewers("[atom_parent] [engaging ? "zapala się" : "gaśnie"]!")

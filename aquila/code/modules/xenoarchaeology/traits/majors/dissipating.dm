@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/smoke
 	label_name = "Dissipating"
-	label_desc = "Dissipating: The artifact seems to contain dissipating components. Triggering these components will cause the artifact to create a cloud of smoke."
+	label_desc = "Dissipating: artefakt wydaje się zawierać elementy rozpraszające. Ich aktywacja sprawi, że artefakt wytworzy chmurę dymu."
 	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = FALSE
@@ -14,7 +14,7 @@
 
 /datum/xenoartifact_trait/major/smoke/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("produce a harmless cloud of smoke"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wytwarzać nieszkodliwą chmurę dymu"))
 
 /datum/xenoartifact_trait/major/smoke/trigger(datum/source, _priority, atom/override)
 	. = ..()
@@ -30,13 +30,13 @@
 //Foam variant
 /datum/xenoartifact_trait/major/smoke/foam
 	label_name = "Dissipating Σ"
-	label_desc = "Dissipating: The artifact seems to contain dissipating components. Triggering these components will cause the artifact to create a body of foam."
+	label_desc = "Dissipating: artefakt wydaje się zawierać elementy rozpraszające. Ich aktywacja sprawi, że artefakt wytworzy masę piany."
 	max_size = 5
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/smoke/foam/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("produce a harmless body of foam"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wytwarzać nieszkodliwą masę piany"))
 
 /datum/xenoartifact_trait/major/smoke/foam/make_smoke()
 	var/datum/effect_system/foam_spread/E = new()
@@ -46,7 +46,7 @@
 //Chem smoke variant
 /datum/xenoartifact_trait/major/smoke/chem
 	label_name = "Dissipating Δ"
-	label_desc = "Dissipating Δ: The artifact seems to contain dissipating components. Triggering these components will cause the artifact to create a cloud of smoke containing a random chemical."
+	label_desc = "Dissipating Δ: artefakt wydaje się zawierać elementy rozpraszające. Ich aktywacja sprawi, że artefakt wytworzy chmurę dymu z losową substancją chemiczną."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 12
@@ -70,13 +70,13 @@
 
 /datum/xenoartifact_trait/major/smoke/chem/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("create a cloud of smoke containing a random chemical"), XENOA_TRAIT_HINT_RANDOMISED)
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wytwarzać chmurę dymu z losową substancją chemiczną"), XENOA_TRAIT_HINT_RANDOMISED)
 
 
 //Chem foam variant
 /datum/xenoartifact_trait/major/smoke/chem/foam
 	label_name = "Dissipating Ω"
-	label_desc = "Dissipating Ω: The artifact seems to contain dissipating components. Triggering these components will cause the artifact to create a body of foam containing a random chemical."
+	label_desc = "Dissipating Ω: artefakt wydaje się zawierać elementy rozpraszające. Ich aktywacja sprawi, że artefakt wytworzy masę piany z losową substancją chemiczną."
 	max_size = 5
 	conductivity = 21
 
@@ -89,4 +89,4 @@
 
 /datum/xenoartifact_trait/major/smoke/chem/foam/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("create a body of foam containing a random chemical"), XENOA_TRAIT_HINT_RANDOMISED)
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wytwarzać masę piany z losową substancją chemiczną"), XENOA_TRAIT_HINT_RANDOMISED)

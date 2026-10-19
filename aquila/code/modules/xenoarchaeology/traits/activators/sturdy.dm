@@ -3,9 +3,9 @@
 	This trait activates the artifact when it's used, like a generic item
 */
 /datum/xenoartifact_trait/activator/sturdy
-	material_desc = "sturdy"
+	material_desc = "wytrzymały"
 	label_name = "Sturdy"
-	label_desc = "Sturdy: The artifact seems to be made of a sturdy material. This material seems to be triggered by physical interaction."
+	label_desc = "Sturdy: artefakt wygląda na wykonany z wytrzymałego materiału. Materiał ten zdaje się aktywować przy fizycznym kontakcie."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 16
 
@@ -57,7 +57,7 @@
 */
 /datum/xenoartifact_trait/activator/sturdy/timed
 	label_name = "Timed"
-	label_desc = "Timed: The artifact seems to be made of a harmonizing material. This material seems to activate on a timer, which can be enabled or disabled."
+	label_desc = "Timed: artefakt wygląda na wykonany z harmonizującego materiału. Materiał ten zdaje się aktywować według zegara, który można włączać i wyłączać."
 	material_desc = null
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 32
@@ -103,7 +103,7 @@
 
 /datum/xenoartifact_trait/activator/sturdy/timed/get_dictionary_hint()
 	. = ..()
-	return list(list("icon" = "exclamation", "desc" = "This trait will, after an arming time, activate on the nearest living target, periodically."))
+	return list(list("icon" = "exclamation", "desc" = "Ta cecha po czasie uzbrajania będzie cyklicznie aktywować się na najbliższym żywym celu."))
 
 /datum/xenoartifact_trait/activator/sturdy/timed/proc/reset_timer()
 	if(search_cooldown_timer)
@@ -112,7 +112,7 @@
 
 /datum/xenoartifact_trait/activator/sturdy/timed/proc/indicator_hint(engaging = FALSE)
 	var/atom/atom_parent = component_parent?.parent
-	atom_parent?.balloon_alert_to_viewers("[atom_parent] [!engaging ? "stops ticking" : "starts ticking"]!")
+	atom_parent?.balloon_alert_to_viewers("[atom_parent] [!engaging ? "przestaje tykać" : "zaczyna tykać"]!")
 
 /*
 	Hungry
@@ -121,7 +121,7 @@
 /datum/xenoartifact_trait/activator/sturdy/hungry
 	material_desc = null
 	label_name = "Hungry"
-	label_desc = "Hungry: The artifact seems to be made of a semi-living, hungry, material. This material seems to be triggered by feeding interactions."
+	label_desc = "Hungry: artefakt wygląda na wykonany z na wpół żywego, głodnego materiału. Materiał ten zdaje się aktywować, gdy się go karmi."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 32
 	///How much damage do we deal per bite?
@@ -160,15 +160,15 @@
 		M.apply_damage(15, BRUTE, affecting, armour_block)
 		bite_timer = addtimer(CALLBACK(src, PROC_REF(handle_timer)), bite_cooldown, TIMER_STOPPABLE)
 		if(!maneater)
-			M.visible_message("<span class='warning'>[movable] bites [M], it didn't quite like the taste!</span>", "<span class='warning'>[movable] bites you!\n[movable] doesn't like that taste!</span>")
+			M.visible_message("<span class='warning'>[movable] gryzie: [M]. Chyba nie zasmakowało!</span>", "<span class='warning'>[movable] gryzie cię!\nNie smakujesz temu artefaktowi!</span>")
 			return FALSE
 		else
-			M.visible_message("<span class='warning'>[movable] bites [M], it loves the taste!</span>", "<span class='warning'>[movable] bites you!\n[movable] loves that taste!</span>")
+			M.visible_message("<span class='warning'>[movable] gryzie: [M]. Wyraźnie smakuje!</span>", "<span class='warning'>[movable] gryzie cię!\nTemu artefaktowi bardzo smakujesz!</span>")
 			return ..()
 	return FALSE
 
 /datum/xenoartifact_trait/activator/sturdy/hungry/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("only eat food items"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zjadać tylko jedzenie"))
 
 /datum/xenoartifact_trait/activator/sturdy/hungry/proc/handle_timer()
 	if(bite_timer)
@@ -179,10 +179,10 @@
 /datum/xenoartifact_trait/activator/sturdy/hungry/maneater
 	material_desc = null
 	label_name = "Hungry Δ"
-	label_desc = "Hungry Δ: The artifact seems to be made of a semi-living, hungry, material. This material seems to be triggered by feeding interactions."
+	label_desc = "Hungry Δ: artefakt wygląda na wykonany z na wpół żywego, głodnego materiału. Materiał ten zdaje się aktywować, gdy się go karmi."
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	maneater = TRUE
 	conductivity = 8
 
 /datum/xenoartifact_trait/activator/sturdy/hungry/maneater/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("eat food items, and mobs"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zjadać jedzenie, a także żywe istoty"))

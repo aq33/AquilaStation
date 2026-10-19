@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/animal
 	label_name = "P.E.R."
-	alt_label_name = "Parallel Entity Retrieval"
-	label_desc = "Parallel Entity Retrieval: A strange malfunction causes the Artifact to open a gateway to another plane that summons a random entity."
+	alt_label_name = "Przywołanie Równoległych Istot"
+	label_desc = "Parallel Entity Retrieval: dziwna usterka sprawia, że artefakt otwiera przejście do innego wymiaru, przyzywając losową istotę."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	///List of our current summons
 	var/list/summons = list()
@@ -23,7 +23,7 @@
 	build_summon()
 
 /datum/xenoartifact_trait/malfunction/animal/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("summon bears"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przyzywać niedźwiedzie"))
 
 //Keep this here so inheritance & poly is easier
 /datum/xenoartifact_trait/malfunction/animal/proc/build_summon()
@@ -41,22 +41,22 @@
 //carp variant
 /datum/xenoartifact_trait/malfunction/animal/carp
 	label_name = "P.E.R. Δ"
-	alt_label_name = "Parallel Entity Retrieval Δ"
-	label_desc = "Parallel Entity Retrieval Δ: A strange malfunction causes the Artifact to open a gateway to another plane that summons a random entity."
+	alt_label_name = "Przywołanie Równoległych Istot Δ"
+	label_desc = "Parallel Entity Retrieval Δ: dziwna usterka sprawia, że artefakt otwiera przejście do innego wymiaru, przyzywając losową istotę."
 	max_summons = 6
 	summon_type = /mob/living/simple_animal/hostile/carp
 	conductivity = 7
 
 /datum/xenoartifact_trait/malfunction/animal/carp/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("summon space carps"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przyzywać kosmiczne karpie"))
 
 /*	Mirrored Bluespace Collapse
 	Makes evil clones!
 */
 /datum/xenoartifact_trait/malfunction/animal/twin
 	label_name = "M.B.C."
-	alt_label_name = "Mirrored Bluespace Collapse"
-	label_desc = "Mirrored Bluespace Collapse: The Artifact produces an arguably malevolent clone of target."
+	alt_label_name = "Lustrzane Załamanie Bluespace"
+	label_desc = "Mirrored Bluespace Collapse: artefakt tworzy klona celu o raczej złych zamiarach."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 
@@ -83,8 +83,8 @@
 	RegisterSignal(T, COMSIG_PARENT_QDELETING, PROC_REF(handle_death))
 
 /mob/living/simple_animal/hostile/twin
-	name = "evil twin"
-	desc = "It looks so familiar."
+	name = "zły bliźniak"
+	desc = "Wygląda dziwnie znajomo."
 	mob_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	speak_chance = 0
 	turns_per_move = 5

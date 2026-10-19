@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/minor/impulse
 	label_name = "Impulsing"
-	label_desc = "Impulsing: The artifact's design seems to incorporate impulsing elements. This will cause the artifact to have a impulsing away from its current position, when triggered."
+	label_desc = "Impulsing: konstrukcja artefaktu zdaje się zawierać elementy impulsowe. Po aktywacji artefakt zostaje odrzucony ze swojego miejsca."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 15
 	conductivity = 10

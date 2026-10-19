@@ -3,7 +3,7 @@
 	icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
 	icon_state = "trait_pearl"
 	w_class = WEIGHT_CLASS_TINY
-	desc = "A smooth alien pearl."
+	desc = "Gładka obca perła."
 	sticker_icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
 	sticker_icon_state = "trait_pearl_sticker"
 	do_outline = FALSE
@@ -19,7 +19,7 @@
 	if(!can_stick(target) || !proximity_flag)
 		return
 	if(isliving(target) || isstructure(target) || target.GetComponent(/datum/component/xenoartifact) || target.GetComponent(/datum/component/storage) || istype(target, /obj/item/sticker/trait_pearl))
-		to_chat(user, "<span class='warning'>You are unable to affix [src] to [target].</span>")
+		to_chat(user, "<span class='warning'>Nie możesz przyczepić [src] do [target].</span>")
 		return
 	//Stop people adding too many traits, and check the trait limits
 	var/list/pearl_index = list(TRAIT_PRIORITY_ACTIVATOR = 0, TRAIT_PRIORITY_MINOR = 0, TRAIT_PRIORITY_MAJOR = 0, TRAIT_PRIORITY_MALFUNCTION = 0)
@@ -38,21 +38,21 @@
 		else if(istype(pearl.stored_trait, /datum/xenoartifact_trait/malfunction) && pearl_index[TRAIT_PRIORITY_MALFUNCTION] < initial(material.trait_malfunctions))
 			pearl_index[TRAIT_PRIORITY_MALFUNCTION] += 1
 		else
-			to_chat(user, "<span class='warning'>You are unable to affix [src] to [target].</span>")
+			to_chat(user, "<span class='warning'>Nie możesz przyczepić [src] do [target].</span>")
 			return
 	//Go through blacklist manually becuase ``in`` is a bitch and doesn't work right, even with ``.type``
 	for(var/trait in trait_blacklist)
 		if(istype(stored_trait, trait))
-			to_chat(user, "<span class='warning'>You are unable to affix [src] to [target].</span>")
+			to_chat(user, "<span class='warning'>Nie możesz przyczepić [src] do [target].</span>")
 			return
 	//Affix if we're chilling
-	to_chat(user, "<span class='notice'>You affix [src] to [target].</span>")
+	to_chat(user, "<span class='notice'>Przyczepiasz [src] do [target].</span>")
 	return ..()
 
 /obj/item/sticker/trait_pearl/examine(mob/user)
 	. = ..()
 	if(user.can_see_reagents())
-		. += "<span class='notice'>[src] holds '[initial(stored_trait.label_name) || "nothing"]'.\nYou can affix it to an item.</span>"
+		. += "<span class='notice'>[src] zawiera '[initial(stored_trait.label_name) || "nic"]'.\nMożesz ją przyczepić do przedmiotu.</span>"
 
 /obj/item/sticker/trait_pearl/build_stuck_appearance()
 	var/mutable_appearance/MA = setup_appearance(mutable_appearance(sticker_icon || src.icon, sticker_icon_state || src.icon_state))
@@ -64,7 +64,7 @@
 /obj/item/sticker/trait_pearl/debug/AltClick(mob/user)
 	. = ..()
 	var/list/options = SSxenoarchaeology.xenoa_all_traits
-	var/datum/xenoartifact_trait/decision = tgui_input_list(user, "Choose a trait", "Traits", options)
+	var/datum/xenoartifact_trait/decision = tgui_input_list(user, "Wybierz cechę", "Cechy", options)
 	if(decision)
 		QDEL_NULL(stored_trait)
 		stored_trait = new decision()

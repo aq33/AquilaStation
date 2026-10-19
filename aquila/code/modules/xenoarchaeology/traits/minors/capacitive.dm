@@ -3,9 +3,9 @@
 	Gives the artifact extra uses
 */
 /datum/xenoartifact_trait/minor/capacitive
-	material_desc = "capacitive"
+	material_desc = "pojemnościowy"
 	label_name = "Capacitive"
-	label_desc = "Capacitive: The artifact's design seems to incorporate a capacitive elements. This will cause the artifact to have more uses."
+	label_desc = "Capacitive: konstrukcja artefaktu zdaje się zawierać elementy pojemnościowe. Dzięki nim artefakt ma więcej użyć."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 15
 	conductivity = 30
@@ -37,9 +37,9 @@
 
 /datum/xenoartifact_trait/minor/capacitive/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/multitool))
-		to_chat(user, "<span class='warning'>[item] detects [current_charge] additional charges!</span>")
+		to_chat(user, "<span class='warning'>[item] wykrywa dodatkowe ładunki: [current_charge]!</span>")
 		return ..()
 
 /datum/xenoartifact_trait/minor/capacitive/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_DETECT("multitool, which will also reveal the artifact's additional charges."))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_DETECT("multitool, który ujawni też dodatkowe ładunki artefaktu"))

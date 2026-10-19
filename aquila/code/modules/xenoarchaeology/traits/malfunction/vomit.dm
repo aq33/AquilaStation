@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/vomit
 	label_name = "S.S.E."
-	alt_label_name = "Spontaneous Stomach Evacuation"
-	label_desc = "Spontaneous Stomach Evacuationc: A strange malfunction causes the Artifact to make the target vomit."
+	alt_label_name = "Samoistna Ewakuacja Żołądka"
+	label_desc = "Spontaneous Stomach Evacuation: dziwna usterka sprawia, że artefakt wywołuje u celu wymioty."
 	flags = XENOA_BLUESPACE_TRAIT| XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 

@@ -3,9 +3,9 @@
 	makes the artifact slippery
 */
 /datum/xenoartifact_trait/minor/slippery
-	material_desc = "slippery"
+	material_desc = "śliski"
 	label_name = "Slippery"
-	label_desc = "Slippery: The artifact's design seems to incorporate slippery elements. This will cause the artifact to be slippery."
+	label_desc = "Slippery: konstrukcja artefaktu zdaje się zawierać śliskie elementy. Przez nie artefakt jest śliski."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	conductivity = 5

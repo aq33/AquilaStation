@@ -3,9 +3,9 @@
 	Makes the artifact easy to throw
 */
 /datum/xenoartifact_trait/minor/aerodynamic
-	material_desc = "aerodynamic"
+	material_desc = "aerodynamiczny"
 	label_name = "Aerodynamic"
-	label_desc = "Aerodynamic: The artifact's design seems to incorporate aerodynamicded elements. This will allow the artifact to be thrown further."
+	label_desc = "Aerodynamic: konstrukcja artefaktu zdaje się zawierać elementy aerodynamiczne. Dzięki nim artefakt można rzucić dalej."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	weight = -5

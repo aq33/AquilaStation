@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/color
 	label_name = "Marking"
-	label_desc = "Marking: The artifact seems to contain colorizing components. Triggering these components will color the target."
+	label_desc = "Marking: artefakt wydaje się zawierać elementy barwiące. Ich aktywacja zabarwi cel."
 	cooldown = XENOA_TRAIT_COOLDOWN_EXTRA_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	///Possible colors
@@ -27,17 +27,17 @@
 
 /datum/xenoartifact_trait/major/color/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("apply a set color to the target"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("barwić cel na ustalony kolor"))
 
 //Random variant
 /datum/xenoartifact_trait/major/color/random
 	label_name = "Marking Δ"
-	label_desc = "Marking Δ: The artifact seems to contain colorizing components. Triggering these components will color the target."
+	label_desc = "Marking Δ: artefakt wydaje się zawierać elementy barwiące. Ich aktywacja zabarwi cel."
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/color/random/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("apply a random color to the target"))
+	return list(XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("barwić cel na losowy kolor"))
 
 /datum/xenoartifact_trait/major/color/trigger(datum/source, _priority, atom/override)
 	color = pick(possible_colors)

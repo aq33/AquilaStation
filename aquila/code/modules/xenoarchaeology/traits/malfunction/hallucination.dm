@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/hallucination
 	label_name = "M.H.I."
-	alt_label_name = "Mass Hallucinatory Injection"
-	label_desc = "Mass Hallucinatory Injection: The Artifact causes the target to hallucinate."
+	alt_label_name = "Masowa Iniekcja Halucynacyjna"
+	label_desc = "Mass Hallucinatory Injection: artefakt wywołuje u celu halucynacje."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_PLASMA_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 

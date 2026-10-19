@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/activator/weighted
 	label_name = "Weighted"
-	label_desc = "Weighted: The artifact seems to be made of a weighted material. This material seems to be triggered by motion, such as being picked up."
+	label_desc = "Weighted: artefakt wygląda na wykonany z obciążonego materiału. Materiał ten zdaje się aktywować pod wpływem ruchu, na przykład po podniesieniu."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	weight = 32

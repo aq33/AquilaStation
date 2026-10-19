@@ -2,7 +2,7 @@
 	name = "artifact labeler"
 	icon = 'icons/obj/xenoarchaeology/xenoartifact_tech.dmi'
 	icon_state = "labeler"
-	desc = "A tool scientists use to label their alien bombs."
+	desc = "Narzędzie, którym naukowcy oznaczają swoje obce bomby."
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -14,14 +14,14 @@
 	var/list/label_traits = list()
 	///List of possible trait filters
 	var/list/trait_filters = list(
-	list("icon" = "eye", "desc" = "Traits that can appear in the material description."),
-	list("icon" = "hand-sparkles", "desc" = "Traits that can be detected by 'feeling' the artifact."),
-	list("icon" = "wrench", "desc" = "Traits that can be triggered with specific items."),
-	list("icon" = "search", "desc" = "Traits that can be detected with specific items."),
-	list("icon" = "clone", "desc" = "Traits that have 'clones' or 'twins'."),
-	list("icon" = "dice", "desc" = "Traits with randomized effects."),
-	list("icon" = "snowflake", "desc" = "Traits that spawn particles, or change the artifact's appearance."),
-	list("icon" = "volume-up", "desc" = "Traits that passively make noise"))
+	list("icon" = "eye", "desc" = "Cechy, które mogą pojawić się w opisie materiału."),
+	list("icon" = "hand-sparkles", "desc" = "Cechy, które można wykryć, „wyczuwając” artefakt."),
+	list("icon" = "wrench", "desc" = "Cechy, które można aktywować konkretnymi przedmiotami."),
+	list("icon" = "search", "desc" = "Cechy, które można wykryć konkretnymi przedmiotami."),
+	list("icon" = "clone", "desc" = "Cechy, które mają „klony” lub „bliźniaki”."),
+	list("icon" = "dice", "desc" = "Cechy o losowych efektach."),
+	list("icon" = "snowflake", "desc" = "Cechy, które tworzą cząsteczki lub zmieniają wygląd artefaktu."),
+	list("icon" = "volume-up", "desc" = "Cechy, które biernie wydają dźwięki."))
 	///List of currently enabled trait filters
 	var/list/enabled_trait_filters = list()
 	///List of filtered traits
@@ -74,7 +74,7 @@
 				COOLDOWN_START(src, sticker_cooldown_timer, sticker_cooldown)
 				create_label()
 			else if(!COOLDOWN_FINISHED(src, sticker_cooldown_timer) && isliving(loc))
-				to_chat(loc, "<span class='warning'>The labeler is still printing.</span>")
+				to_chat(loc, "<span class='warning'>Etykieciarka wciąż drukuje.</span>")
 			return
 		if("clear_traits")
 			clear_selection()
@@ -118,7 +118,7 @@
 		COOLDOWN_START(src, sticker_cooldown_timer, 5 SECONDS)
 		create_label(target, user)
 	else if(!COOLDOWN_FINISHED(src, sticker_cooldown_timer))
-		to_chat(user, "<span class='warning'>The labeler is still printing.</span>")
+		to_chat(user, "<span class='warning'>Etykieciarka wciąż drukuje.</span>")
 
 ///reset all the options
 /obj/item/xenoarchaeology_labeler/proc/clear_selection()
@@ -139,7 +139,7 @@
 */
 /obj/item/xenoarchaeology_labeler/debug
 	name = "xenoartifact debug labeler"
-	desc = "Use to create specific Xenoartifacts"
+	desc = "Służy do tworzenia konkretnych ksenoartefaktów."
 	icon_state = "labeler_debug"
 	sticker_cooldown = 0 SECONDS
 	///Flag for enabling or disabling trait patches
@@ -157,18 +157,18 @@
 
 /obj/item/xenoarchaeology_labeler/debug/AltClick(mob/user)
 	. = ..()
-	var/choice = tgui_alert(user, "Select Action", "Select Action", list("Toggle Patch", "Change Material"))
+	var/choice = tgui_alert(user, "Wybierz akcję", "Wybierz akcję", list("Przełącz łatanie", "Zmień materiał"))
 	switch(choice)
-		if("Toggle Patch")
+		if("Przełącz łatanie")
 			patch_traits = !patch_traits
-			to_chat(user, "<span class='notice'>Toggled patch: [patch_traits ? "On" : "Off"].</span>")
-		if("Change Material")
+			to_chat(user, "<span class='notice'>Łatanie cech: [patch_traits ? "włączone" : "wyłączone"].</span>")
+		if("Zmień materiał")
 			var/list/possible_materials = typesof(/datum/xenoartifact_material)
-			material = tgui_input_list(user, "Select artifact material.", "Select Material", possible_materials, /datum/xenoartifact_material)
+			material = tgui_input_list(user, "Wybierz materiał artefaktu.", "Wybierz materiał", possible_materials, /datum/xenoartifact_material)
 
 /obj/item/xenoarchaeology_labeler/debug/examine(mob/user)
 	. = ..()
-	. += "<span>Alt+Click to toggle settings.</span>"
+	. += "<span>Alt+klik, aby zmienić ustawienia.</span>"
 
 /obj/item/xenoarchaeology_labeler/debug/create_label()
 	if(skip_label)
@@ -185,7 +185,7 @@
 	icon = 'icons/obj/xenoarchaeology/xenoartifact_sticker.dmi'
 	icon_state = "sticker_star"
 	name = "artifact label"
-	desc = "An adhesive label, for artifacts."
+	desc = "Samoprzylepna etykieta na artefakty."
 	do_outline = FALSE
 	roll_unusual = FALSE
 	///List of artifact traits we're labelling
@@ -210,7 +210,7 @@
 	//Setup traits & examine desc
 	traits = _traits?.Copy()
 	if(length(traits))
-		examine_override = "Traits:"
+		examine_override = "Cechy:"
 		for(var/datum/xenoartifact_trait/trait_datum as anything in traits)
 			examine_override = "[examine_override]\n	- [initial(trait_datum.label_name)]"
 	//Setup a random appearance
@@ -229,7 +229,7 @@
 /obj/item/sticker/xenoartifact_label/afterattack(atom/movable/target, mob/user, proximity_flag, list/modifiers)
 	//If you somehow make traits start working with mobs, remove this isliving() check
 	if(ismob(target) && !isliving(target) || (locate(/obj/item/sticker/xenoartifact_label) in target.contents))
-		to_chat(user, "<span class='warning'>[target] already has a label!</span>")
+		to_chat(user, "<span class='warning'>[target] ma już etykietę!</span>")
 		return
 	. = ..()
 	if(!can_stick(target) || !proximity_flag)
@@ -266,5 +266,5 @@
 /obj/item/sticker/xenoartifact_label/proc/parent_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += "<span class='notice'>There is an artifact label attached.</span>"
+	examine_text += "<span class='notice'>Przyklejono do tego etykietę artefaktu.</span>"
 	examine_text += examine_override

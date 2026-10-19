@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/shock
 	label_name = "Electrified"
-	label_desc = "Electrified: The artifact seems to contain electrifying components. Triggering these components will shock the target."
+	label_desc = "Electrified: artefakt wydaje się zawierać elementy elektryzujące. Ich aktywacja porazi cel prądem."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 27

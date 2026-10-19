@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/activator/examine
 	label_name = "Observational"
-	label_desc = "Observational: The artifact seems to be made of a light-sensitive material. This material seems to be triggered by observational interaction."
+	label_desc = "Observational: artefakt wygląda na wykonany z materiału światłoczułego. Materiał ten zdaje się aktywować, gdy ktoś mu się przygląda."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 16
 

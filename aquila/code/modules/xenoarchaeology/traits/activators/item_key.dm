@@ -35,7 +35,7 @@
 */
 /datum/xenoartifact_trait/activator/item_key/cell
 	label_name = "Cell"
-	label_desc = "Cell: The artifact seems to be made of a capacitive material. This material seems to be triggered by eletric currents, such as cells."
+	label_desc = "Cell: artefakt wygląda na wykonany z materiału pojemnościowego. Materiał ten zdaje się aktywować pod wpływem prądu, na przykład z ogniw."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	conductivity = 32
 	key_item = /obj/item/stock_parts/cell
@@ -52,21 +52,21 @@
 
 /datum/xenoartifact_trait/activator/item_key/cell/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/multitool))
-		to_chat(user, "<span class='warning'>[item] detects a capacitive draw of 25%!</span>")
+		to_chat(user, "<span class='warning'>[item] wykrywa pobór pojemnościowy na poziomie 25%!</span>")
 		return ..()
 
 /datum/xenoartifact_trait/activator/item_key/cell/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TRIGGER("charged cell"), XENOA_TRAIT_HINT_DETECT("multitool"))
+	return list(XENOA_TRAIT_HINT_TRIGGER("naładowane ogniwo"), XENOA_TRAIT_HINT_DETECT("multitool"))
 
 /*
 	Greedy
 	This trait activates the artifact when a coin is used
 */
 /datum/xenoartifact_trait/activator/item_key/greedy
-	material_desc = "slotted"
+	material_desc = "szczelinowy"
 	label_name = "Greedy"
-	label_desc = "Greedy: The artifact seems to be made of a collective material. This material seems to be triggered by inserting coins."
+	label_desc = "Greedy: artefakt wygląda na wykonany z kolekcjonerskiego materiału. Materiał ten zdaje się aktywować po wrzuceniu monet."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 32
 	key_item = /obj/item/coin
@@ -79,7 +79,7 @@
 
 /datum/xenoartifact_trait/activator/item_key/greedy/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TRIGGER("coin"), XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("accept coins to activate"))
+	return list(XENOA_TRAIT_HINT_TRIGGER("moneta"), XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przyjmować monety jako aktywator"))
 
 /datum/xenoartifact_trait/activator/item_key/greedy/proc/handle_input(atom/item, atom/target)
 	var/atom/movable/movable = item
@@ -90,7 +90,7 @@
 //Credit variant
 /datum/xenoartifact_trait/activator/item_key/greedy/credit
 	label_name = "Greedy Δ"
-	label_desc = "Greedy Δ: The artifact seems to be made of a collective material. This material seems to be triggered by inserting credit holochips."
+	label_desc = "Greedy Δ: artefakt wygląda na wykonany z kolekcjonerskiego materiału. Materiał ten zdaje się aktywować po włożeniu holochipów kredytowych."
 	key_item = /obj/item/holochip
 	conductivity = 8
 	///How many credits we need to activate
@@ -98,12 +98,12 @@
 
 /datum/xenoartifact_trait/activator/item_key/greedy/credit/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_TRIGGER("credit holochip"), XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("accept credit holochips to activate"))
+	return list(XENOA_TRAIT_HINT_TRIGGER("holochip kredytowy"), XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przyjmować holochipy kredytowe jako aktywator"))
 
 /datum/xenoartifact_trait/activator/item_key/greedy/credit/handle_input(atom/item, atom/target)
 	var/obj/item/holochip/C = item
 	if(C.credits < credit_requirement)
-		to_chat(target, "<span class='warning'>[component_parent.parent] demands more than your meager offering!</span>")
+		to_chat(target, "<span class='warning'>[component_parent.parent] żąda czegoś więcej niż twoja nędzna ofiara!</span>")
 		playsound(component_parent.parent, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 		return
 	C.forceMove(component_parent.parent)

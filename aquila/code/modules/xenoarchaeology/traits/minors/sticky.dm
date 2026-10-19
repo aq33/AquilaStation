@@ -3,9 +3,9 @@
 	The artifact briefly becomes sticky when activated
 */
 /datum/xenoartifact_trait/minor/sticky
-	material_desc = "sticky"
+	material_desc = "lepki"
 	label_name = "Sticky"
-	label_desc = "Sticky: The artifact's design seems to incorporate sticky elements. This will cause the artifact to briefly become sticky, when triggered."
+	label_desc = "Sticky: konstrukcja artefaktu zdaje się zawierać lepkie elementy. Po aktywacji artefakt na krótko staje się lepki."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	incompatabilities = TRAIT_INCOMPATIBLE_MOB | TRAIT_INCOMPATIBLE_STRUCTURE
@@ -28,7 +28,7 @@
 	if(!.)
 		return
 	var/atom/movable/movable = component_parent.parent
-	movable.visible_message("<span class='warning'>[movable] starts secreting a sticky substance!</span>", TRUE, allow_inside_usr = TRUE)
+	movable.visible_message("<span class='warning'>[movable] zaczyna wydzielać lepką substancję!</span>", TRUE, allow_inside_usr = TRUE)
 	if(HAS_TRAIT_FROM(movable, TRAIT_NODROP, "[REF(src)]"))
 		return
 	ADD_TRAIT(movable, TRAIT_NODROP, "[REF(src)]")

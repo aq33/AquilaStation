@@ -3,9 +3,9 @@
 	This trait activates the artifact when it is eaten
 */
 /datum/xenoartifact_trait/activator/edible
-	material_desc = "edible"
+	material_desc = "jadalny"
 	label_name = "Edible"
-	label_desc = "Edible: The artifact seems to be made of an edible material. This material seems to be triggered by being consumed."
+	label_desc = "Edible: artefakt wygląda na wykonany z jadalnego materiału. Materiał ten zdaje się aktywować, gdy ktoś go zje."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	blacklist_traits = list(/datum/xenoartifact_trait/minor/dense)
 	weight = 16
@@ -42,7 +42,7 @@
 	do_hint(target, item)
 
 /datum/xenoartifact_trait/activator/edible/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TWIN,  XENOA_TRAIT_HINT_DETECT("health analyzer"), XENOA_TRAIT_HINT_TWIN_VARIANT("start with nutrients"))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TWIN,  XENOA_TRAIT_HINT_DETECT("analizator zdrowia"), XENOA_TRAIT_HINT_TWIN_VARIANT("zawierać na starcie składniki odżywcze"))
 
 /datum/xenoartifact_trait/activator/edible/do_hint(mob/user, atom/item)
 	if(istype(item, /obj/item/healthanalyzer))
@@ -51,7 +51,7 @@
 		for(var/datum/reagent/r as anything in food_reagents)
 			message = "[message][initial(r.name)][index+1 < length(food_reagents) ? ", " : ""]"
 			index += 1
-		to_chat(user, "<span class='notice'>[item] detects [message].</span>")
+		to_chat(user, "<span class='notice'>[item] wykrywa: [message].</span>")
 		return ..()
 
 /datum/xenoartifact_trait/activator/edible/proc/pre_eat(eater, feeder)
@@ -63,7 +63,7 @@
 //CRAZY WACKY VARIANT!
 /datum/xenoartifact_trait/activator/edible/random
 	label_name = "Edible Δ"
-	label_desc = "Edible Δ: The artifact seems to be made of an edible material. This material seems to be triggered by being consumed."
+	label_desc = "Edible Δ: artefakt wygląda na wykonany z jadalnego materiału. Materiał ten zdaje się aktywować, gdy ktoś go zje."
 	bite_time = 6 SECONDS
 	food_reagents = list()
 	conductivity = 8
@@ -78,7 +78,7 @@
 	return ..()
 
 /datum/xenoartifact_trait/activator/edible/random/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_DETECT("health analyzer"), XENOA_TRAIT_HINT_TWIN_VARIANT("start with 1-3 random chemicals"))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_DETECT("analizator zdrowia"), XENOA_TRAIT_HINT_TWIN_VARIANT("zawierać na starcie 1-3 losowe chemikalia"))
 
 /datum/xenoartifact_trait/activator/edible/random/after_eat(mob/living/eater, mob/feeder, bitecount, bitesize)
 	. = ..()

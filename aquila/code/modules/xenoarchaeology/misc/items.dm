@@ -7,7 +7,7 @@
 	icon = 'icons/obj/xenoarchaeology/xenoartifact.dmi'
 	icon_state = "map_editor"
 	w_class = WEIGHT_CLASS_SMALL //This stops certain traits being broken by our shitty movement code when thrown
-	desc = "A strange alien artifact. What could it possibly do?"
+	desc = "Dziwny obcy artefakt. Co on właściwie robi?"
 	throw_range = 3
 	///What type of artifact
 	var/datum/xenoartifact_material/artifact_material

@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/radiation
 	label_name = "R.P.E."
-	alt_label_name = "Rapid Particle Emmision"
-	label_desc = "Rapid Particle Emmision: A strange malfunction that causes the Artifact to irradiate itself and its targets."
+	alt_label_name = "Gwałtowna Emisja Cząstek"
+	label_desc = "Rapid Particle Emmision: dziwna usterka, która sprawia, że artefakt napromieniowuje siebie i swoje cele."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	register_targets = TRUE
 

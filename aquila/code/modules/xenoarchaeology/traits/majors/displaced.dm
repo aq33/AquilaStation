@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/displaced
 	label_name = "Displaced"
-	label_desc = "Displaced: The artifact seems to contain displacing components. Triggering these components will displace the target."
+	label_desc = "Displaced: artefakt wydaje się zawierać elementy przemieszczające. Ich aktywacja przeniesie cel w inne miejsce."
 	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
 	flags =  XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 15

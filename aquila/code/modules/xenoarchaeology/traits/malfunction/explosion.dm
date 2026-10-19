@@ -4,8 +4,8 @@
 */
 /datum/xenoartifact_trait/malfunction/explosion
 	label_name = "E.E.E."
-	alt_label_name = "Expansive Explosive Emmission"
-	label_desc = "Expansive Explosive Emmission: A strange malfunction that causes the Artifact to explode."
+	alt_label_name = "Rozległa Emisja Wybuchowa"
+	label_desc = "Expansive Explosive Emmission: dziwna usterka, która sprawia, że artefakt wybucha."
 	flags = XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	rarity = XENOA_TRAIT_WEIGHT_RARE
 	can_pearl = FALSE
@@ -43,7 +43,7 @@
 	if(!. || exploding)
 		return
 	var/atom/atom_parent = component_parent.parent
-	atom_parent.visible_message("<span class='warning'>The [atom_parent] begins to heat up, it's delaminating!</span>", allow_inside_usr = TRUE)
+	atom_parent.visible_message("<span class='warning'>[atom_parent] zaczyna się nagrzewać, ulega delaminacji!</span>", allow_inside_usr = TRUE)
 	exploding = addtimer(CALLBACK(src, PROC_REF(explode)), 30*(component_parent.trait_strength/100) SECONDS, TIMER_STOPPABLE)
 	//Fancy effect to alert players
 	atom_parent.add_filter("explosion_indicator", 1.1, layering_filter(render_source = exploding_indicator.render_target, blend_mode = BLEND_INSET_OVERLAY))

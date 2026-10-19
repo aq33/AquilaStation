@@ -36,7 +36,7 @@
 
 /obj/item/sticker/artifact_tracker/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-Click to disable the radio & reward notice.")
+	. += span_notice("Alt+klik, aby wyłączyć radio i powiadomienia o nagrodach.")
 
 /obj/item/sticker/artifact_tracker/afterattack(atom/movable/target, mob/user, proximity_flag, list/modifiers)
 	. = ..()
@@ -50,15 +50,15 @@
 			RegisterSignal(artifact_component, COMSIG_XENOA_TRIGGER, PROC_REF(catch_activation))
 			RegisterSignal(artifact_component, COMSIG_PARENT_QDELETING, PROC_REF(clean_up))
 		else
-			say("Error: [target] needs to be calibrated.")
+			say("Błąd: [target] wymaga kalibracji.")
 	else
-		say("Error: [target] is not compatible with [src].")
+		say("Błąd: [target] nie jest kompatybilny z [src].")
 	playsound(src, sound_in, 50, TRUE)
 
 /obj/item/sticker/artifact_tracker/AltClick(mob/user)
 	. = ..()
 	use_radio = !use_radio
-	to_chat(user, "<span class='[use_radio ? "notice" : "warning"]'>Internal radio [use_radio ? "enabled" : "disabled"].</span>")
+	to_chat(user, "<span class='[use_radio ? "notice" : "warning"]'>Wewnętrzne radio [use_radio ? "włączone" : "wyłączone"].</span>")
 
 
 /obj/item/sticker/artifact_tracker/unstick(atom/override)
@@ -87,6 +87,6 @@
 		if(!use_radio)
 			return
 		var/datum/component/xenoartifact/artifact_component = source
-		var/message = "[artifact_component.parent] has generated [reward_amount] points of [reward] at [get_area(get_turf(src))]."
+		var/message = "[artifact_component.parent] wygenerował [reward_amount] pkt ([reward]) w lokacji [get_area(get_turf(src))]."
 		say(message)
 		radio?.talk_into(src, message, RADIO_CHANNEL_SCIENCE)

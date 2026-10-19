@@ -3,9 +3,9 @@
 	The artifact shoots the target with a random projectile
 */
 /datum/xenoartifact_trait/major/projectile
-	material_desc = "barreled"
+	material_desc = "lufowy"
 	label_name = "Barreled"
-	label_desc = "Barreled: The artifact seems to contain projectile components. Triggering these components will produce a 'safe' projectile."
+	label_desc = "Barreled: artefakt wydaje się zawierać elementy miotające. Ich aktywacja wystrzeli 'bezpieczny' pocisk."
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	extra_target_range = 2
@@ -36,16 +36,16 @@
 
 /datum/xenoartifact_trait/major/projectile/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("produce a 'safe' projectile"))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wystrzeliwać 'bezpieczny' pocisk"))
 
 /*
 	Barreled Δ
 	Barreled but scary
 */
 /datum/xenoartifact_trait/major/projectile/unsafe
-	material_desc = "barreled"
+	material_desc = "lufowy"
 	label_name = "Barreled Δ"
-	label_desc = "Barreled Δ: The artifact seems to contain projectile components. Triggering these components will produce an unsafe projectile."
+	label_desc = "Barreled Δ: artefakt wydaje się zawierać elementy miotające. Ich aktywacja wystrzeli niebezpieczny pocisk."
 	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
 	possible_projectiles = list(/obj/item/projectile/beam/laser, /obj/item/projectile/bullet/c38, /obj/item/projectile/energy/tesla)
@@ -53,4 +53,4 @@
 
 /datum/xenoartifact_trait/major/projectile/unsafe/get_dictionary_hint()
 	. = ..()
-	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("produce an unsafe projectile"))
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wystrzeliwać niebezpieczny pocisk"))

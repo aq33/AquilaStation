@@ -80,7 +80,7 @@
 //Will sell random artifacts equally
 /datum/rnd_lister/artifact_seller/bastard
 	name = "Sidorovich"
-	dialogue = "What are you standing there for? come closer."
+	dialogue = "Czego tak stoisz? Podejdź bliżej."
 	personality = SELLER_PERSONALITY_NORMAL
 	max_stock = 2
 
@@ -94,7 +94,7 @@
 //Sells bluespace
 /datum/rnd_lister/artifact_seller/bluespace
 	name = "Raichovich"
-	dialogue = "These things make my head hurt, take the from me!"
+	dialogue = "Od tych rzeczy boli mnie głowa, zabierz je ode mnie!"
 	personality = SELLER_PERSONALITY_NORMAL
 	artifact_types = list(XENOA_BLUESPACE = 1)
 	max_stock = 3
@@ -102,7 +102,7 @@
 //Sells plasma & bluespace
 /datum/rnd_lister/artifact_seller/plasma_bluespace
 	name = "Shalashaska"
-	dialogue = "Maybe I'm colorblind, but some of these don't look blue..."
+	dialogue = "Może jestem daltonistą, ale niektóre z nich nie wyglądają na niebieskie..."
 	personality = SELLER_PERSONALITY_STINGY
 	artifact_types = list(XENOA_BLUESPACE = 1, XENOA_PLASMA = 1)
 	max_stock = 2
@@ -113,7 +113,7 @@
 */
 /datum/supply_pack/science_listing
 	name = "Research Material Listing"
-	desc = "Contains potentially hazardous materials, or ridiculous ties."
+	desc = "Zawiera potencjalnie niebezpieczne materiały albo absurdalne krawaty."
 	hidden = TRUE
 	crate_name = "research material container"
 	crate_type = /obj/structure/closet/crate/science

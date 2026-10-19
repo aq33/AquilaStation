@@ -4,7 +4,7 @@
 */
 /datum/xenoartifact_trait/major/force
 	label_name = "Forcing"
-	label_desc = "Forcing: The artifact seems to contain impulsing components. Triggering these components will impulse, push or pull, the target."
+	label_desc = "Forcing: artefakt wydaje się zawierać elementy impulsowe. Ich aktywacja odepchnie lub przyciągnie cel."
 	cooldown = XENOA_TRAIT_COOLDOWN_SAFE
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = 21
@@ -20,7 +20,7 @@
 	conductivity = 3
 
 /datum/xenoartifact_trait/major/force/pull/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("pull the target"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("przyciągać cel"))
 
 /datum/xenoartifact_trait/major/force/trigger(datum/source, _priority, atom/override)
 	. = ..()
@@ -41,4 +41,4 @@
 	clear_focus()
 
 /datum/xenoartifact_trait/major/force/get_dictionary_hint()
-	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("push the target"))
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("odpychać cel"))

@@ -3,9 +3,9 @@
 	Captures the target for an amount of time
 */
 /datum/xenoartifact_trait/major/hollow
-	material_desc = "hollow"
+	material_desc = "pusty"
 	label_name = "Hollow"
-	label_desc = "Hollow: The artifact seems to contain hollow components. Triggering these components will capture the target."
+	label_desc = "Hollow: artefakt wydaje się zawierać puste elementy. Ich aktywacja uwięzi cel."
 	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
 	flags = XENOA_BLUESPACE_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
 	weight = -15
