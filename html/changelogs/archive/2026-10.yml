@@ -478,3 +478,8 @@
   - bugfix: Liczne runtime'y (ksenomorfy, PDA na promie, działa gaussa, czat, preferencje,
       SQL, okna Techweb i wyboru profesji).
   - config: Usunięte nieistniejące wpisy z game_options.txt.
+  - rscadd: 'Płynny ruch: postacie i obiekty przesuwają się między kratkami z prędkością
+      dopasowaną do szybkości ruchu.'
+  - tweak: Domyślne FPS klienta podniesione do 60.
+  - bugfix: Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę
+      przed dojechaniem sprite'a.
