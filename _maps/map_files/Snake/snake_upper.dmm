@@ -2220,6 +2220,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/science/explab)
+"fu" = (
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plating,
+/area/science/explab)
 "fv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -40818,7 +40822,7 @@ fi
 gI
 Qx
 gg
-fe
+fu
 fv
 jN
 Qx

@@ -26,6 +26,11 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
+"ad" = (
+/obj/structure/cable,
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -46014,7 +46019,7 @@ aQ
 We
 Gi
 pD
-sQ
+ad
 sQ
 Mn
 hg

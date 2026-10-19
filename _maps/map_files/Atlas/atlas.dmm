@@ -3287,6 +3287,13 @@
 /obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
 /turf/open/floor/circuit/orange,
 /area/science/explab)
+"fV" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "fW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -59232,7 +59239,7 @@ eY
 pW
 go
 gt
-KK
+fV
 Vl
 gh
 ua
