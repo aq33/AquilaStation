@@ -515,6 +515,7 @@
 #include "code\modules\mob\dead\crew_manifest.dm"
 #include "code\modules\mob\dead\new_player\latejoin_menu.dm"
 #include "code\modules\munitions\gauss_gunner_actions.dm"
+#include "code\modules\mob\dead\new_player\lobby_manifest.dm"
 #include "code\modules\mob\dead\new_player\lobby_menu.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessories.dm"
 #include "code\modules\mob\dead\observer\haunt.dm"
