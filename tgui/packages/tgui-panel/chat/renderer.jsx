@@ -464,6 +464,15 @@ class ChatRenderer {
         for (let i = 0; i < nodes.length; i++) {
           const childNode = nodes[i];
           const targetName = childNode.getAttribute('data-component');
+          // Unknown component (e.g. stale chat history) would throw React #130
+          if (
+            !Object.prototype.hasOwnProperty.call(
+              TGUI_CHAT_COMPONENTS,
+              targetName,
+            )
+          ) {
+            continue;
+          }
           // Let's pull out the attibute info we need
           let outputProps = {};
           for (let j = 0; j < childNode.attributes.length; j++) {

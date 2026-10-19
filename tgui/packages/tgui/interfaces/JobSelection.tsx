@@ -136,7 +136,7 @@ const DepartmentSection = (props: { department: Department }) => {
 
 export const JobSelection = () => {
   const { data } = useBackend<Data>();
-  const { departments, round_duration, evacuation, jobs } = data;
+  const { departments = [], round_duration, evacuation, jobs = {} } = data;
   const anyPrioritized = Object.values(jobs).some((job) => job.prioritized);
   return (
     <Window title="Wybierz profesję" width={900} height={680}>

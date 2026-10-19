@@ -271,7 +271,8 @@
 
 /obj/item/reagent_containers/glass/bucket/dropped(mob/user)
 	..()
-	reagents.flags = initial(reagent_flags)
+	if(reagents)
+		reagents.flags = initial(reagent_flags)
 
 /obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head

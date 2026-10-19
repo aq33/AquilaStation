@@ -173,9 +173,10 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 			else
 				newTurf.turf_fire = old_fire
 		if (!istype(newTurf.air, /datum/gas_mixture/immutable/space))
-			QDEL_NULL(newTurf.air)
-			newTurf.air = stashed_air
+			// AQ EDIT - kopiujemy do istniejącej mieszaniny zamiast qdel turfowej (~26% nie schodziło przez GC)
+			newTurf.air.copy_from(stashed_air)
 			update_air_ref(planetary_atmos ? 1 : 2)
+		QDEL_NULL(stashed_air)
 	else
 		if(turf_fire)
 			QDEL_NULL(turf_fire)
