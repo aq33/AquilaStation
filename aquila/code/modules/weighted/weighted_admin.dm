@@ -1,4 +1,4 @@
-// AQUILA - admin controls of the weighted rotation (Server -> "Weighted: wagi pul").
+// AQUILA - admin controls of the weighted rotation (Server -> "Wagi trybu weighted", bez dwukropka: panel statystyk uruchamia czasowniki po nazwie).
 // An admin can set the survey tilt, replace the pool weights by hand until cleared, or force one pool for the next round.
 
 /// Short description of what admins changed in the weighted rotation, for the admin messages
@@ -25,7 +25,7 @@
 
 /client/proc/weighted_settings()
 	set category = "Server"
-	set name = "Weighted: wagi pul"
+	set name = "Wagi trybu weighted"
 	set desc = "Ustaw wagi pul zagrożeń trybu weighted"
 
 	if(!check_rights(R_ADMIN|R_SERVER))

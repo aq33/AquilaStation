@@ -13,6 +13,12 @@ GLOBAL_DATUM_INIT(lobby_manifest, /datum/lobby_manifest, new)
 	var/list/cached_entries
 	/// Kiedy ostatnio liczyliśmy
 	var/last_update = -INFINITY
+	/// Ilu gotowych graczy wzięło udział w ostatnim liczeniu
+	var/ready_count = 0
+
+/// Gotowość albo preferencje prac się zmieniły, przy następnym odświeżeniu panelu liczymy od nowa
+/datum/lobby_manifest/proc/invalidate()
+	cached_entries = null
 
 /// Zwraca wpisy do panelu, licząc je ponownie najwyżej co LOBBY_MANIFEST_REFRESH
 /datum/lobby_manifest/proc/get_entries()
@@ -41,12 +47,14 @@ GLOBAL_DATUM_INIT(lobby_manifest, /datum/lobby_manifest, new)
 /// Sumuje preferencje gotowych graczy: wysoka = 1, średnia = 0.5, niska = 0.125
 /datum/lobby_manifest/proc/score_jobs()
 	var/list/job_to_score = list()
+	ready_count = 0
 	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 		if(player.ready != PLAYER_READY_TO_PLAY)
 			continue
 		var/datum/character_save/character = player.client?.prefs?.active_character
 		if(!character)
 			continue
+		ready_count++
 		var/list/prefs = character.job_preferences
 		var/has_overflow = FALSE
 		for(var/job_title in prefs)
@@ -107,9 +115,26 @@ GLOBAL_DATUM_INIT(lobby_manifest, /datum/lobby_manifest, new)
 		for(var/row in rows)
 			entries[row] = rows[row]
 
-	if(!anything)
-		entries["Możliwa obsada"] = GENERATE_STAT_TEXT("nikt jeszcze")
+	if(!ready_count)
+		entries["Możliwa obsada"] = GENERATE_STAT_TEXT("nikt nie kliknął Gotowy")
+	else if(!anything)
+		entries["Możliwa obsada"] = GENERATE_STAT_TEXT("gotowi: [ready_count], brak pewnych obsad")
+	else
+		entries["Możliwa obsada"] = GENERATE_STAT_TEXT("gotowi: [ready_count]")
 	return entries
+
+/mob/dead/new_player/ui_act(action, list/params)
+	. = ..()
+	if(action == "ready")
+		GLOB.lobby_manifest.invalidate()
+
+/datum/preference_middleware/jobs/set_job_preference(list/params, mob/user)
+	. = ..()
+	GLOB.lobby_manifest.invalidate()
+
+/datum/preference_middleware/jobs/clear_job_preferences(list/params, mob/user)
+	. = ..()
+	GLOB.lobby_manifest.invalidate()
 
 /mob/dead/new_player/get_stat_tab_status()
 	var/list/tab_data = ..()
