@@ -2,7 +2,7 @@
 	name = "Urządzenia z Paradise"
 	pr = "aq33/AquilaStation#469"
 	description = "Rząd ścian z urządzeniami naściennymi (czujnik powietrza, alarm pożarowy, gaśnica, włącznik światła, guzik) \
-		i urządzenia na podłodze: automat, SMES, generator PACMAN, ładowarki, holopad, went i scrubber. \
+		i urządzenia na podłodze: automat, SMES, generator PACMAN, ładowarki, holopad, sleeper, went i scrubber. \
 		Sprawdź, czy naścienne siedzą na ścianie, a nie w powietrzu, i czy animacje działają (włącz went i scrubber, otwórz automat)."
 	items = list(
 		/obj/machinery/vending/cola = 1,
@@ -11,6 +11,7 @@
 		/obj/machinery/cell_charger = 1,
 		/obj/machinery/recharger = 1,
 		/obj/machinery/holopad = 1,
+		/obj/machinery/sleeper = 1,
 		/obj/machinery/atmospherics/components/unary/vent_pump/on = 1,
 		/obj/machinery/atmospherics/components/unary/vent_scrubber/on = 1
 	)
