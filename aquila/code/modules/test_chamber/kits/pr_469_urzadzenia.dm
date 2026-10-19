@@ -26,7 +26,7 @@
 	for(var/i in 1 to length(mounts))
 		var/turf/wall_spot = locate(center.x - 3 + i, center.y + 3, center.z)
 		var/turf/floor_spot = locate(center.x - 3 + i, center.y + 2, center.z)
-		if(!wall_spot || !floor_spot || !istype(wall_spot.loc, /area/test_chamber/arena))
+		if(!wall_spot || !floor_spot || !(wall_spot in turfs) || !(floor_spot in turfs))
 			continue
 		wall_spot.PlaceOnTop(/turf/closed/wall)
 		var/mount_type = mounts[i]

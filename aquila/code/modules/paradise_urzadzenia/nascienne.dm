@@ -31,9 +31,10 @@
 /obj/machinery/power/apc
 	icon = 'aquila/icons/paradise/obj/wallbumps/apc.dmi'
 
-/obj/machinery/power/apc/Initialize(mapload)
+// Po New(), bo ten na końcu ustawia dir = SOUTH i stare przesunięcie, także przy budowie z ramki
+/obj/machinery/power/apc/New(turf/loc, ndir, building = 0)
 	. = ..()
-	var/wall_dir = paradise_wall_dir_from_pixels(src) || dir
+	var/wall_dir = tdir || paradise_wall_dir_from_pixels(src) || SOUTH
 	setDir(wall_dir)
 	paradise_wallmount_offset(src, wall_dir)
 
