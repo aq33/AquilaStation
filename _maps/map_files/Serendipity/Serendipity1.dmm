@@ -26,15 +26,6 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
-"ad" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/machinery/xenoartifact_inbox,
-/obj/item/xenoartifact,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -900,16 +891,6 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"bT" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/structure/table/glass/plasma,
-/obj/item/xenoartifact_labeler,
-/obj/item/xenoartifact_label,
-/obj/item/clothing/gloves/artifact_pinchers,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "bU" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/ship/blue{
@@ -990,6 +971,18 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"cc" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 4
+	},
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "cd" = (
 /obj/effect/turf_decal/tile/ship/half/purple,
 /obj/effect/turf_decal/tile/ship/purple{
@@ -1053,6 +1046,14 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
+"ck" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "cl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1070,6 +1071,42 @@
 /obj/machinery/light/floor,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat_interior)
+"cr" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/clothing/gloves/artifact_pinchers,
+/obj/item/sticky_note_pile,
+/obj/item/xenoartifact,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"cs" = (
+/obj/structure/table/glass/plasma,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/binoculars,
+/obj/item/clothing/glasses/welding,
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"ct" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "cu" = (
 /obj/item/toy/plush/moth,
 /obj/structure/falsewall/durasteel{
@@ -1093,6 +1130,12 @@
 /obj/structure/disposalpipe/junction/yjunction,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/brig)
+"cx" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "cy" = (
 /obj/machinery/suit_storage_unit/cmo,
 /obj/structure/sign/poster/official/random{
@@ -2170,18 +2213,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/gateway)
-"gB" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 4
-	},
-/obj/machinery/computer/xenoartifact_console{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "gC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -45728,9 +45759,9 @@ rC
 MP
 EX
 mJ
-By
-ad
-gB
+ct
+ck
+cc
 aA
 Pk
 MZ
@@ -46501,7 +46532,7 @@ OW
 sQ
 jd
 Us
-bT
+cr
 SI
 Ag
 Gd
@@ -47015,7 +47046,7 @@ nq
 nq
 ZA
 AF
-Lm
+cx
 Km
 Wo
 MD
@@ -47529,7 +47560,7 @@ Tn
 Tn
 EJ
 mZ
-PP
+cs
 aA
 eV
 aA
