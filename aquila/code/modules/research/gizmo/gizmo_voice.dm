@@ -46,29 +46,18 @@ GLOBAL_LIST_INIT(gizmo_words, world.file2list("strings/gizmo_words.txt"))
 	var/haystack = hearing_args[HEARING_RAW_MESSAGE]
 	if(!istext(haystack))
 		return
-	var/list/text_position_index = list()
+	//aquila: całe słowa zamiast fragmentów tekstu - sylaby typu "na", "po", "do" siedzą w prawie każdym polskim zdaniu
+	var/list/matched_words = list()
+	for(var/token in splittext(lowertext(haystack), regex(@"[^a-ząćęłńóśźż0-9]+")))
+		if(token in active_words)
+			matched_words += token
 
-	for(var/needle in active_words)
-		var/position = 1
-		// we can have multiple of the same keyword in one sequence
-		for(var/i in 1 to puzzle.code_length)
-			position = findtext(haystack, needle, position)
-
-			if(!position)
-				break
-
-			/// needle + position because assocs need to be unique, we splice it away later when sending it
-			text_position_index[needle + "[position]"] = position
-			// So for the next loop we dont find the exact same word again
-			position++
-
-	if(!text_position_index.len)
+	if(!length(matched_words))
 		return
 
-	sortTim(text_position_index, GLOBAL_PROC_REF(cmp_numeric_asc), associative = TRUE)
-	for(var/thing in text_position_index)
+	for(var/i in 1 to length(matched_words))
 		// Only send feedback for the last speech packet
-		var/no_feedback = text_position_index.Find(thing) != text_position_index.len
+		var/no_feedback = i != length(matched_words)
 		// When solved, accept no further packets from this
-		if(puzzle.on_pulse(active_words.Find(copytext(thing, 1, 3)), hearing_args[HEARING_SPEAKER], parent, no_feedback = no_feedback) == GIZMO_PUZZLE_SOLVED)
+		if(puzzle.on_pulse(active_words.Find(matched_words[i]), hearing_args[HEARING_SPEAKER], parent, no_feedback = no_feedback) == GIZMO_PUZZLE_SOLVED)
 			return

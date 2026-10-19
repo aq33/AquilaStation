@@ -63,7 +63,7 @@
 		return
 	var/atom/atom_parent = component_parent.parent
 	if(isturf(atom_parent.loc))
-		playsound(get_turf(component_parent?.parent), 'sound/spookoween/ghost_whisper_short.ogg', 30, TRUE)
+		playsound(get_turf(component_parent?.parent), 'aquila/sound/spookoween/ghost_whisper_short.ogg', 30, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(do_wail)), 35 SECONDS)
 
 

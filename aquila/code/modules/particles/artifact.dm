@@ -24,7 +24,7 @@
 	color = "#0081ff"
 	scale = list(2, 2)
 	grow = list(-0.1, -0.1)
-	icon = 'icons/effects/particles/misc.dmi'
+	icon = 'aquila/icons/effects/particles/misc.dmi'
 	icon_state = list("circle_1")
 
 /particles/sonar/out
@@ -38,7 +38,7 @@
 	particles = new/particles/snow
 
 /particles/snow
-	icon = 'icons/effects/particles/weather.dmi'
+	icon = 'aquila/icons/effects/particles/weather.dmi'
 	icon_state = list("snow_1" = 1, "snow_2" = 1, "snow_3" = 2)
 	color = "#b8fffd"
 	count = 10
@@ -78,7 +78,7 @@
 	color = "#94f3ff"
 	scale = list(0.14, 0.14)
 	grow = list(0.08, 0.08)
-	icon = 'icons/effects/particles/misc.dmi'
+	icon = 'aquila/icons/effects/particles/misc.dmi'
 	icon_state = list("static_1", "static_2")
 
 ///Calibartion spiral thing
@@ -107,7 +107,7 @@
 	color = "#94f3ff"
 	scale = generator("box", list(1.5, 1.5, 1.5), list(2, 2, 2), UNIFORM_RAND)
 	grow = list(-0.5, -0.5)
-	icon = 'icons/effects/particles/misc.dmi'
+	icon = 'aquila/icons/effects/particles/misc.dmi'
 	icon_state = list("line_1", "line_2", "line_3")
 
 /particles/spiral/New(_color)
@@ -135,6 +135,6 @@
 	velocity = generator("box", list(-4, 15, -4), list(4, 10, 4), NORMAL_RAND)
 	rotation = generator("num", 0, 360, UNIFORM_RAND)
 	spin = generator("num", 5, 15, UNIFORM_RAND)
-	icon = 'icons/effects/particles/misc.dmi'
+	icon = 'aquila/icons/effects/particles/misc.dmi'
 	drift = generator("box", list(0.3, 0, 0.3), list(-0.3, 0, -0.3), NORMAL_RAND)
 	icon_state = list("line_4")

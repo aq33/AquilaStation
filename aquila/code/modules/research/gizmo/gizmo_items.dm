@@ -2,7 +2,7 @@
 /obj/item/gizmo
 	name = "gizmo"
 	desc = "Fligguje giggola, kiedy jego piec jest gorący w urządzeniu."
-	icon = 'icons/obj/science/gizmos.dmi'
+	icon = 'aquila/icons/obj/science/gizmos.dmi'
 	icon_state = "gizmo_item_1"
 
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF

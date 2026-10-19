@@ -22,6 +22,7 @@
 		return ..()
 	var/atom/movable/movable = component_parent.parent
 	if(ismovable(movable))
+		UnregisterSignal(movable, COMSIG_ATOM_TOOL_ACT(TOOL_WRENCH))
 		movable.anchored = FALSE
 	return ..()
 

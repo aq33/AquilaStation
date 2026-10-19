@@ -3,7 +3,7 @@
 	name = "gizmo"
 	desc = "Robi funkcję, kiedy przyłożysz dżygacz do drugiego końca tej rzeczy."
 	icon_state = "gizmo_1"
-	icon = 'icons/obj/science/gizmos.dmi'
+	icon = 'aquila/icons/obj/science/gizmos.dmi'
 
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
 

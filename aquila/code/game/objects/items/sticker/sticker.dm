@@ -1,7 +1,7 @@
 /obj/item/sticker
 	name = "sticker" //Don't bother changing the name or desc for subtypes
 	desc = "Samoprzylepna grafika."
-	icon = 'icons/obj/sticker.dmi'
+	icon = 'aquila/icons/obj/sticker.dmi'
 	icon_state = "happy"
 	flags_1 = IS_ONTOP_1
 	w_class = WEIGHT_CLASS_TINY
@@ -62,12 +62,20 @@
 	if(user.combat_mode && sticker_state == STICKER_STATE_STUCK)
 		var/atom/A = loc
 		A.attack_alien(user)
+		if(prob(33)) //We have a 1/3 chance of falling off
+			unstick()
+			forceMove(get_turf(user))
+		return
 	return attack_hand(user) //can be picked up by aliens
 
 /obj/item/sticker/attack_animal(mob/living/simple_animal/M)
 	if(M.combat_mode && sticker_state == STICKER_STATE_STUCK)
 		var/atom/A = loc
 		A.attack_animal(M)
+		if(prob(33)) //We have a 1/3 chance of falling off
+			unstick()
+			forceMove(get_turf(M))
+		return
 	return attack_hand(M)
 
 /obj/item/sticker/CtrlClick(mob/living/user)

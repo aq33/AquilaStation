@@ -22,6 +22,12 @@
 	component_parent.cooldown_disabled = TRUE
 	setup_generic_item_hint()
 
+//aquila: po wyjęciu cechy (perła) artefakt nie może zostać bez cooldownu
+/datum/xenoartifact_trait/minor/capacitive/remove_parent(datum/source, pensive)
+	if(component_parent)
+		component_parent.cooldown_disabled = FALSE
+	return ..()
+
 /datum/xenoartifact_trait/minor/capacitive/trigger(datum/source, _priority, atom/override)
 	. = ..()
 	if(!.)

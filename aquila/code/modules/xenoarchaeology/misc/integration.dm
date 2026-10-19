@@ -87,7 +87,7 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 	\n\
 	Artefakty można opisać etykietą i sprzedać przez cargo, zdobywając punkty badań i odkryć.\n\
 	Źle opisane artefakty dają mniejsze nagrody niż trafnie opisane."
-	icon = 'icons/obj/xenoarchaeology/xenoartifact_poster.dmi'
+	icon = 'aquila/icons/obj/xenoarchaeology/xenoartifact_poster.dmi'
 	icon_state = "poster52"
 
 /obj/structure/sign/poster/official/xenoarchaeology_pearl
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 	Legenda głosi, że artefakty można stworzyć, trafiając przedmioty cząsteczkami jądrowymi, gdy leżą w trycie. \
 	Mówi też, że ustabilizowane artefakty zachowują się dziwnie, gdy ułoży się je na pewnych siatkach, \
 	zależnych od właściwości ich cech."
-	icon = 'icons/obj/xenoarchaeology/xenoartifact_poster.dmi'
+	icon = 'aquila/icons/obj/xenoarchaeology/xenoartifact_poster.dmi'
 	icon_state = "poster52"
 
 /atom

@@ -67,3 +67,12 @@
 /obj/structure/closet/artifact/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/xenoartifact, /datum/xenoartifact_material, list(/datum/xenoartifact_trait/activator/weighted/closet, /datum/xenoartifact_trait/minor/charged, /datum/xenoartifact_trait/minor/cooling, /datum/xenoartifact_trait/minor/capacitive, /datum/xenoartifact_trait/major/animalize), FALSE, FALSE)
+
+//aquila: szafa nie wysyła COMSIG_ITEM_EQUIPPED, więc aktywator odpala się przy otwarciu
+/obj/structure/closet/artifact/open(mob/living/user)
+	. = ..()
+	if(. != TRUE)
+		return
+	var/datum/component/xenoartifact/artifact_component = GetComponent(/datum/component/xenoartifact)
+	var/datum/xenoartifact_trait/activator/weighted/closet/closet_trait = locate() in artifact_component?.traits_catagories[TRAIT_PRIORITY_ACTIVATOR]
+	closet_trait?.trigger_artifact(user)

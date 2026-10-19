@@ -85,7 +85,7 @@
 		linked_techweb?.add_point_type(reward, reward_amount)
 		//Message
 		if(!use_radio)
-			return
+			continue
 		var/datum/component/xenoartifact/artifact_component = source
 		var/message = "[artifact_component.parent] wygenerował [reward_amount] pkt ([reward]) w lokacji [get_area(get_turf(src))]."
 		say(message)

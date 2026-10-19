@@ -12,4 +12,13 @@
 
 /datum/export/artifact/applies_to(obj/O, allowed_categories = NONE)
 	. = ..()
-	return O.GetComponent(/datum/component/xenoartifact) ? TRUE : .
+	if(.)
+		return
+	//aquila: dowolny przedmiot z komponentem artefaktu (perły), ale z tymi samymi warunkami co bazowe applies_to
+	if(!O.GetComponent(/datum/component/xenoartifact))
+		return FALSE
+	if((allowed_categories & export_category) != export_category)
+		return FALSE
+	if(O.flags_1 & HOLOGRAM_1)
+		return FALSE
+	return TRUE

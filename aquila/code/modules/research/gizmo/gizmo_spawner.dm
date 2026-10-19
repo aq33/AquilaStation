@@ -1,7 +1,7 @@
 /// Losowe gizmo (tg: /obj/effect/spawner/random/gizmo)
 /obj/effect/spawner/lootdrop/gizmo
 	name = "gizmo spawner"
-	icon = 'icons/effects/random_spawners_gizmo.dmi'
+	icon = 'aquila/icons/effects/random_spawners_gizmo.dmi'
 	icon_state = "gizmo"
 	loot = list(
 		/obj/machinery/gizmo = 6,
