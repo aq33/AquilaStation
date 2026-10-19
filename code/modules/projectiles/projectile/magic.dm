@@ -216,6 +216,7 @@
 
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
+							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
 							/mob/living/simple_animal/hostile/bear,
 							/mob/living/simple_animal/hostile/mushroom,
 							/mob/living/simple_animal/hostile/statue,

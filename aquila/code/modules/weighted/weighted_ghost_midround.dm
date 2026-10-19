@@ -58,6 +58,7 @@
 /datum/weighted_ghost_midround/proc/heavy_events()
 	var/static/list/events = list(
 		/datum/round_event_control/blob,
+		/datum/round_event_control/blood_worm,
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/space_dragon,
 		/datum/round_event_control/spider_infestation,
