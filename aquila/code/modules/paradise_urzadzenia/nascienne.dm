@@ -1,5 +1,6 @@
-// Urządzenia naścienne z Paradise (ParadiseSS13/Paradise, grafiki CC BY-SA 3.0): APC, czujnik powietrza, alarm pożarowy.
-// Ich sprite'y mają 32x48 i 4 kierunki, narysowane pod ściany 3/4, więc siedzą 32 px od środka kafla (jak w Paradise),
+// Urządzenia naścienne z Paradise (ParadiseSS13/Paradise, grafiki CC BY-SA 3.0): APC, czujnik powietrza, alarm pożarowy,
+// a na końcu pliku 32x32: włącznik światła, newscaster, request console i szafka gaśnicy.
+// Pierwsze trzy mają sprite'y 32x48 i 4 kierunki, narysowane pod ściany 3/4, więc siedzą 32 px od środka kafla (jak w Paradise),
 // a nie 23-24 px jak stare 32x32. Przesunięcie liczymy z kierunku ściany po inicjalizacji, więc działa dla map,
 // budowania z ramki i egzemplarzy z ręcznym przesunięciem na mapie.
 
@@ -54,5 +55,36 @@
 	var/wall_dir = paradise_wall_dir_from_pixels(src) || turn(src.dir, 180)
 	setDir(turn(wall_dir, 180))
 	paradise_wallmount_offset(src, wall_dir)
+
+// Urządzenia 32x32 z Paradise w 4 kierunkach; zostają na przesunięciu z mapy, kierunek bierzemy z niego.
+// Włącznik światła: dir = od ściany, jak w Paradise
+/obj/machinery/light_switch/Initialize(mapload)
+	. = ..()
+	var/wall_dir = paradise_wall_dir_from_pixels(src)
+	if(wall_dir)
+		setDir(turn(wall_dir, 180))
+
+// Newscaster i request console: dir = strona ściany
+/obj/machinery/newscaster/Initialize(mapload, ndir, building)
+	. = ..()
+	var/wall_dir = paradise_wall_dir_from_pixels(src)
+	if(wall_dir)
+		setDir(wall_dir)
+
+/obj/machinery/requests_console/Initialize(mapload)
+	. = ..()
+	var/wall_dir = paradise_wall_dir_from_pixels(src)
+	if(wall_dir)
+		setDir(wall_dir)
+
+// Gaśnica: zamknięta szafka pokazuje za szybą, czy gaśnica jest w środku
+/obj/structure/extinguisher_cabinet/update_icon()
+	. = ..()
+	if(opened || !stored_extinguisher)
+		return
+	if(istype(stored_extinguisher, /obj/item/extinguisher/mini))
+		icon_state = "extinguisher_mini_closed"
+	else
+		icon_state = "extinguisher_full_closed"
 
 #undef PARADISE_WALLMOUNT_OFFSET
