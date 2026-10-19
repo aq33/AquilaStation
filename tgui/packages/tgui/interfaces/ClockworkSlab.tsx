@@ -12,7 +12,7 @@ import {
 
 import { useBackend, useLocalState } from '../backend';
 import { Grid } from '../components';
-import { TableRow } from '../components/Table';
+import { TableRow } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

@@ -8,7 +8,7 @@ import { decodeHtmlEntities } from 'common/string';
 import { Button, Input, Section, Table } from 'tgui-core/components';
 
 import { useBackend, useLocalState } from '../backend';
-import { Popper } from '../components/Popper';
+import { Popper } from '../components';
 import { Window } from '../layouts';
 
 type Data = {

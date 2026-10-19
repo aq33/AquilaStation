@@ -12,7 +12,7 @@ import {
   Table,
   Tabs,
 } from '../components';
-import { ButtonConfirm } from '../components/Button';
+import { ButtonConfirm } from '../components';
 import { Window } from '../layouts';
 import { sanitizeText } from '../sanitize';
 import { MessageContent } from './NtosMessenger';

@@ -7,7 +7,7 @@
 import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
 
-import { computeBoxClassName, computeBoxProps } from '../components/Box';
+import { computeBoxClassName, computeBoxProps } from '../components';
 import { addScrollableNode, removeScrollableNode } from '../events';
 
 export const Layout = (props) => {

@@ -10,7 +10,7 @@ import { PropsWithChildren, ReactNode, useEffect } from 'react';
 
 import { backendSuspendStart, useBackend } from '../backend';
 import { globalStore } from '../backend';
-import { BoxProps } from '../components/Box';
+import { BoxProps } from '../components';
 import { UI_DISABLED, UI_INTERACTIVE } from '../constants';
 import { useDebug } from '../debug';
 import {

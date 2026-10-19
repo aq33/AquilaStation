@@ -3,7 +3,7 @@ import { classes } from 'common/react';
 import { Box, Button, Flex, NumberInput } from 'tgui-core/components';
 
 import { useSharedState } from '../../backend';
-import { BoxProps } from '../../components/Box';
+import { BoxProps } from '../../components';
 import { formatMoney, formatSiUnit } from '../../format';
 
 export const MATERIAL_KEYS = {
