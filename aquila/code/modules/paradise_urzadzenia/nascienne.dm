@@ -33,8 +33,9 @@
 
 // Po New(), bo ten na końcu ustawia dir = SOUTH i stare przesunięcie, także przy budowie z ramki
 /obj/machinery/power/apc/New(turf/loc, ndir, building = 0)
+	var/map_wall_dir = paradise_wall_dir_from_pixels(src) // ręczne przesunięcie z mapy, zanim New() je nadpisze
 	. = ..()
-	var/wall_dir = tdir || paradise_wall_dir_from_pixels(src) || SOUTH
+	var/wall_dir = map_wall_dir || tdir || SOUTH
 	setDir(wall_dir)
 	paradise_wallmount_offset(src, wall_dir)
 
