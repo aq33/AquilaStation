@@ -74,15 +74,17 @@ GLOBAL_LIST_INIT(aquila_chrono_name_exceptions, list(
 		return "Klon Paradoksu"
 	return aquila_chrono_historical_figure(H.real_name)
 
+/// Whether the legion can be sent after this mob at all: a living, connected player who is not a legionnaire
+/proc/aquila_chrono_valid_target(mob/living/carbon/human/player)
+	if(QDELETED(player) || !player.client || !player.mind || player.stat == DEAD)
+		return FALSE
+	return !player.mind.has_antag_datum(/datum/antagonist/chrono_legionnaire)
+
 /// Living, connected players named after a historical tyrant, plus paradox clones
 /proc/aquila_chrono_find_targets()
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(!player.client || !player.mind || player.stat == DEAD)
-			continue
-		if(player.mind.has_antag_datum(/datum/antagonist/chrono_legionnaire))
-			continue
-		if(aquila_chrono_target_reason(player))
+		if(aquila_chrono_valid_target(player) && aquila_chrono_target_reason(player))
 			. += player
 
 /datum/antagonist/chrono_legionnaire
@@ -190,6 +192,9 @@ GLOBAL_LIST_INIT(aquila_chrono_name_exceptions, list(
 		return
 	if(target.has_antag_datum(/datum/antagonist/paradox_clone))
 		explanation_text = "Wyeliminuj [target.name]. To klon z innej rzeczywistości, paradoks rozdzierający linię czasu. Nie krzywdź nikogo innego, chyba że musisz."
+		return
+	if(!historical_figure) // cel wskazany przez admina, bez imienia z listy
+		explanation_text = "Wyeliminuj [target.name], [!target_role_type ? target.assigned_role : target.special_role]. Legion Czasu uznał tę osobę za zagrożenie dla linii czasu. Nie krzywdź nikogo innego, chyba że musisz."
 		return
 	explanation_text = "Wyeliminuj [target.name], [!target_role_type ? target.assigned_role : target.special_role]. To imię nie może dać [historical_figure || "tyranowi"] drugiej szansy w historii. Nie krzywdź nikogo innego, chyba że musisz."
 
