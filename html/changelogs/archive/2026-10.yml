@@ -463,3 +463,18 @@
       tekstury.
   - balance: Osobliwość nie odkręca przykręconych okien przed osiągnięciem 5. stopnia.
   - code_imp: Usunięto ostrzeżenia dreamcheckera w kodzie restartu serwera.
+'2026-10-19':
+  Joker66613:
+  - bugfix: Zlewki, skrzynki z narzędziami i inne przedmioty z materiałów znów można
+      zniszczyć.
+  - bugfix: Modlitwy znów docierają do adminów.
+  - bugfix: Kroplówka przełącza tryb po kliknięciu, recykler nie wyrzuca z powrotem
+      zmielonych rzeczy, experimentor pokazuje dane wzmocnienia badań.
+  - bugfix: Samouczek nie przenosi już umysłu do rundy.
+  - bugfix: 'Mniej przycięć serwera: menu radialne, holomapa, kamery i statki AI na
+      overmapie, sieci energetyczne i powietrze przy zmianie podłogi nie blokują już
+      GC.'
+  - balance: Event Wormholes tworzy 100 portali zamiast 400.
+  - bugfix: Liczne runtime'y (ksenomorfy, PDA na promie, działa gaussa, czat, preferencje,
+      SQL, okna Techweb i wyboru profesji).
+  - config: Usunięte nieistniejące wpisy z game_options.txt.
