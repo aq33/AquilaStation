@@ -730,6 +730,7 @@
 #include "code\modules\test_chamber\kits\pr_460_resprite.dm"
 #include "code\modules\test_chamber\kits\pr_456_przepisy.dm"
 #include "code\modules\test_chamber\kits\pr_461_changelog_fixy.dm"
+#include "code\modules\test_chamber\kits\pr_470_admin_mix.dm"
 #include "code\modules\test_chamber\kits\pr_457_medycyna.dm"
 #include "code\modules\test_chamber\kits\pr_458_jajo_squid.dm"
 #include "code\modules\weighted\weighted_admin.dm"
