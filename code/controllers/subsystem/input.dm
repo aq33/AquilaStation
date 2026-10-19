@@ -106,4 +106,6 @@ SUBSYSTEM_DEF(input)
 
 /datum/controller/subsystem/input/fire()
 	for(var/mob/user as anything in GLOB.player_list)
-		user?.focus?.keyLoop(user.client)
+		var/client/C = user?.client
+		if(C) // AQ EDIT - mob bywa jeszcze w player_list po zniknięciu klienta
+			user.focus?.keyLoop(C)

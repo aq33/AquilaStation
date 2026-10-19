@@ -83,6 +83,8 @@
  * as soon as the window sends the "ready" message.
  */
 /datum/tgui_say/proc/load()
+	if(QDELETED(client) || !client.mob) // AQ EDIT - klient wyrzucany (np. CID check) dostawał "bad client"
+		return FALSE
 	window_open = FALSE
 	// Width and height are from skin.dmf, no way to not hardcode these unfortunately.
 	client.center_window("tgui_say", 231, 30)

@@ -174,11 +174,11 @@ GLOBAL_LIST_EMPTY_TYPED(ongoing_tutorials, /datum/tutorial)
 	var/mob/dead/observer/ghost = isobserver(player?.mob) ? player.mob : null
 
 	var/mob/dead/new_player/lobby_mob = new()
-	var/datum/mind/mind = old_tutorial_mob.mind
-	if(mind)
-		mind.transfer_to(lobby_mob, TRUE)
-	else if(player)
-		lobby_mob.key = player.key
+	// Bez mind.transfer_to: new_player nie ma hud_list (runtime w set_antag_hud), a przy latejoin
+	// umysł z samouczka przeszedłby na postać w rundzie. Mind zostaje ze starym mobem.
+	var/key_to_move = player?.key || old_tutorial_mob.key
+	if(key_to_move)
+		lobby_mob.key = key_to_move
 
 	if(ghost && !ghost.client)
 		qdel(ghost)

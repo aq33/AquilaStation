@@ -279,6 +279,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 		IO |= text[1]
 	if(!IO.len)
 		to_chat(user, "<span class='alert'>Nie wykryto urządzeń.</span>")
+		return
 	var/S = input("Wybierz zestaw urządzeń: ", "Selection", IO[1]) as anything in sortList(IO)
 	if(src)
 		src.input_tag = "[S]_in"

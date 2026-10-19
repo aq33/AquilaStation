@@ -32,6 +32,10 @@
 		M.powernet = null
 
 	SSmachines.powernets -= src
+	// AQ EDIT - Smartwires: inaczej kolejka trzyma referencję (GC fail, hard delete i null.dirty w SSmachines)
+	if(dirty)
+		SSmachines.dirty_powernets -= src
+		dirty = FALSE
 	return ..()
 
 /datum/powernet/proc/is_empty()

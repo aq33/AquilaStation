@@ -66,6 +66,8 @@ Adding tasks is easy! Just define a datum for it.
 	var/list/shared_targets = list()
 
 /datum/fleet/Destroy()
+	shared_targets = null
+	QDEL_LIST(lances)
 	QDEL_LIST(all_ships) //We're taking the ships with us
 	current_system.fleets -= src
 	. = ..()
@@ -1609,7 +1611,7 @@ Seek a ship thich we'll station ourselves around
 			addtimer(VARSET_CALLBACK(src, ai_can_launch_fighters, TRUE), 3 MINUTES)
 	if(OM in enemies) //If target's in enemies, return
 		return
-	enemies += target
+	LAZYADD(enemies, target)
 	if(OM.role == MAIN_OVERMAP)
 		if(GLOB.security_level < SEC_LEVEL_RED)	//Lets not pull them out of Zebra / Delta
 			set_security_level(SEC_LEVEL_RED) //Action stations when the ship is under attack, if it's the main overmap.
@@ -1758,9 +1760,10 @@ Seek a ship thich we'll station ourselves around
 		return FALSE
 
 	var/list/choices = flist("_maps/map_files/Instanced/")
-	var/ship_file = file("_maps/map_files/Instanced/"+input(usr, "What ship would you like to load?","Ship Instancing", null) as null|anything in choices)
-	if(!ship_file)
+	var/choice = input(usr, "What ship would you like to load?","Ship Instancing", null) as null|anything in choices
+	if(!choice)
 		return
+	var/ship_file = file("_maps/map_files/Instanced/[choice]")
 	if(instance_ship_from_json(ship_file))
 		message_admins("[key_name(src)] has instanced a copy of [ship_file]!")
 	else

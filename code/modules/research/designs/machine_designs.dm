@@ -619,6 +619,22 @@
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
+/datum/design/board/processing_unit
+	name = "Machine Design (Furnace Board)"
+	desc = "The circuit board for a furnace."
+	id = "furnace"
+	build_path = /obj/item/circuitboard/machine/processing_unit
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/processing_unit_console
+	name = "Machine Design (Furnace Console Board)"
+	desc = "The circuit board for a furnace console."
+	id = "furnace_console"
+	build_path = /obj/item/circuitboard/machine/processing_unit_console
+	category = list ("Misc. Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+
 /datum/design/board/stacking_machine
 	name = "Machine Design (Stacking Machine)"
 	desc = "The circuit board for a Stacking Machine."

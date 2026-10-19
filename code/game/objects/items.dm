@@ -1216,7 +1216,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	..() //contents explosion
-	if(QDELETED(src))
+	if(QDELETED(src) || obj_integrity <= 0)
 		return
 	if(target == src)
 		take_damage(INFINITY, BRUTE, "bomb", 0)

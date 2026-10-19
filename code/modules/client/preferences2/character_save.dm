@@ -371,7 +371,7 @@
 	if(!SSdbcore.IsConnected())
 		return
 
-	if(IS_GUEST_KEY(C.ckey))
+	if(!C?.ckey || IS_GUEST_KEY(C.ckey))
 		return
 
 	// Get ready for a disgusting query //NSV13 adds squads, pilot role and roleplaying prefs

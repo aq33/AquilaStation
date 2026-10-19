@@ -39,7 +39,7 @@
 	var/obj/structure/overmap/ship = get_overmap()
 	if(ship)
 		// Najpierw z listy strzelców, inaczej stop_piloting() wyrzuciłoby gracza z działa
-		LAZYREMOVE(ship.gauss_gunners, user)
+		ship.gauss_gunners -= user // nie LAZYREMOVE - 50Cal.dm robi gauss_gunners.Add() bez sprawdzania nulla
 		ship.stop_piloting(user)
 	STOP_PROCESSING(SSfastprocess, gunning)
 	qdel(gunning)
