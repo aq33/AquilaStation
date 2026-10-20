@@ -209,6 +209,8 @@ RLD
 	var/canRturf = FALSE //Variable for R walls to deconstruct them
 	/// Integrated airlock electronics for setting access to a newly built airlocks
 	var/obj/item/electronics/airlock/airlock_electronics
+	/// AQUILA: otwarta zakładka okna TGUI ("construction" albo "access")
+	var/rcd_ui_root = "construction"
 
 	COOLDOWN_DECLARE(destructive_scan_cooldown)
 
@@ -524,67 +526,139 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 /obj/item/construction/rcd/attack_self(mob/user)
 	..()
-	var/list/choices = list(
-		"Airlock" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlock"),
-		"Deconstruct" = image(icon= 'icons/mob/radial.dmi', icon_state = "delete"),
-		"Grilles & Windows" = image(icon = 'icons/mob/radial.dmi', icon_state = "grillewindow"),
-		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor")
+	ui_interact(user)
+
+// Okno TGUI z tg (RapidConstructionDevice) zamiast menu radialnego.
+// Projekty to u nas tryby i ustawienia RCD (śluza, okno, kierunek komputera).
+#define RCD_ROOT_CONSTRUCTION "construction"
+#define RCD_ROOT_ACCESS "access"
+
+/obj/item/construction/rcd/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/construction/rcd/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RapidConstructionDevice", name)
+		ui.open()
+
+/// Zwraca listę kategorii: nazwa kategorii = lista projektów (title, icon, mode + ustawienia)
+/obj/item/construction/rcd/proc/get_rcd_designs()
+	var/list/designs = list()
+	var/list/structures = list(
+		list("title" = "podłogi i ściany", "icon" = "border-all", "mode" = RCD_FLOORWALL),
+		list("title" = "demontaż", "icon" = "trash", "mode" = RCD_DECONSTRUCT),
 	)
 	if(upgrade & RCD_UPGRADE_FRAMES)
-		choices += list(
-		"Machine Frames" = image(icon = 'icons/mob/radial.dmi', icon_state = "machine"),
-		"Computer Frames" = image(icon = 'icons/mob/radial.dmi', icon_state = "computer_dir"),
-		"Ladders" = image(icon = 'icons/mob/radial.dmi', icon_state = "ladder")
+		structures += list(list("title" = "drabina", "icon" = "stairs", "mode" = RCD_LADDER))
+	designs["Konstrukcje"] = structures
+
+	designs["Okna"] = list(
+		list("title" = "kratka i szyba", "icon" = "border-none", "mode" = RCD_WINDOWGRILLE, "window_type" = /obj/structure/window/fulltile),
+		list("title" = "kratka i wzmocniona szyba", "icon" = "border-style", "mode" = RCD_WINDOWGRILLE, "window_type" = /obj/structure/window/reinforced/fulltile/ship/interior), //NSV13
+	)
+
+	var/list/airlocks = list()
+	var/list/airlock_types = get_rcd_airlock_types()
+	for(var/airlock_name in airlock_types)
+		var/list/airlock_info = airlock_types[airlock_name]
+		airlocks += list(list("title" = airlock_name, "icon" = airlock_info[2] ? "door-open" : "door-closed", "mode" = RCD_AIRLOCK, "airlock_type" = airlock_info[1], "airlock_glass" = airlock_info[2]))
+	designs["Śluzy"] = airlocks
+
+	if(upgrade & RCD_UPGRADE_FRAMES)
+		designs["Maszyny"] = list(
+			list("title" = "rama maszyny", "icon" = "server", "mode" = RCD_MACHINE),
+			list("title" = "rama komputera (północ)", "icon" = "desktop", "mode" = RCD_COMPUTER, "computer_dir" = NORTH),
+			list("title" = "rama komputera (wschód)", "icon" = "desktop", "mode" = RCD_COMPUTER, "computer_dir" = EAST),
+			list("title" = "rama komputera (południe)", "icon" = "desktop", "mode" = RCD_COMPUTER, "computer_dir" = SOUTH),
+			list("title" = "rama komputera (zachód)", "icon" = "desktop", "mode" = RCD_COMPUTER, "computer_dir" = WEST),
 		)
-	if(upgrade & RCD_UPGRADE_SILO_LINK)
-		choices += list(
-		"Silo Link" = image(icon = 'icons/obj/mining.dmi', icon_state = "silo"),
-		)
-	if(mode == RCD_AIRLOCK)
-		choices += list(
-		"Change Access" = image(icon = 'icons/mob/radial.dmi', icon_state = "access"),
-		"Change Airlock Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlocktype")
-		)
-	else if(mode == RCD_WINDOWGRILLE)
-		choices += list(
-			"Change Window Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "windowtype")
-		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
-	if(!check_menu(user))
+	return designs
+
+/// Czy projekt odpowiada obecnym ustawieniom RCD
+/obj/item/construction/rcd/proc/is_selected_design(list/design)
+	if(design["mode"] != mode)
+		return FALSE
+	if(design["window_type"] && design["window_type"] != window_type)
+		return FALSE
+	if(design["airlock_type"] && design["airlock_type"] != airlock_type)
+		return FALSE
+	if(design["computer_dir"] && design["computer_dir"] != computer_dir)
+		return FALSE
+	return TRUE
+
+/obj/item/construction/rcd/proc/get_matter_left(mob/user)
+	return matter
+
+/obj/item/construction/rcd/borg/get_matter_left(mob/user)
+	var/mob/living/silicon/robot/borgy = user
+	if(!istype(borgy) || !borgy.cell)
+		return 0
+	return round(borgy.cell.charge / energyfactor)
+
+/obj/item/construction/rcd/ui_static_data(mob/user)
+	var/list/data = airlock_electronics?.ui_static_data(user) || list()
+	data["root_categories"] = list(RCD_ROOT_CONSTRUCTION, RCD_ROOT_ACCESS)
+	data["silo_upgraded"] = !!(upgrade & RCD_UPGRADE_SILO_LINK)
+	data["display_tabs"] = TRUE
+	return data
+
+/obj/item/construction/rcd/ui_data(mob/user)
+	var/list/data = airlock_electronics?.ui_data(user) || list()
+	data["matterLeft"] = get_matter_left(user)
+	data["silo_enabled"] = silo_link
+	data["selected_root"] = rcd_ui_root
+	var/list/categories = list()
+	var/list/designs = get_rcd_designs()
+	data["selected_category"] = null
+	data["selected_design"] = null
+	for(var/category in designs)
+		var/list/category_designs = list()
+		for(var/list/design as anything in designs[category])
+			category_designs += list(list("title" = design["title"], "icon" = design["icon"]))
+			if(!data["selected_design"] && is_selected_design(design))
+				data["selected_category"] = category
+				data["selected_design"] = design["title"]
+		categories += list(list("cat_name" = category, "designs" = category_designs))
+	data["categories"] = categories
+	return data
+
+/obj/item/construction/rcd/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
-	switch(choice)
-		if("Floors & Walls")
-			mode = RCD_FLOORWALL
-		if("Airlock")
-			mode = RCD_AIRLOCK
-		if("Deconstruct")
-			mode = RCD_DECONSTRUCT
-		if("Grilles & Windows")
-			mode = RCD_WINDOWGRILLE
-		if("Machine Frames")
-			mode = RCD_MACHINE
-		if("Computer Frames")
-			mode = RCD_COMPUTER
-			change_computer_dir(user)
-		if("Ladders")
-			mode = RCD_LADDER
-			return
-		if("Change Access")
-			airlock_electronics.ui_interact(user)
-			return
-		if("Change Airlock Type")
-			change_airlock_setting(user)
-			return
-		if("Change Window Type")
-			toggle_window_type(user)
-			return
-		if("Silo Link")
-			toggle_silo_link(user)
-			return
-		else
-			return
-	playsound(src, 'sound/effects/pop.ogg', 50, 0)
-	to_chat(user, "<span class='notice'>Zmieniasz tryb RCD na „[choice]”.</span>")
+	switch(action)
+		if("root_category")
+			var/new_root = params["root_category"]
+			if(new_root in list(RCD_ROOT_CONSTRUCTION, RCD_ROOT_ACCESS))
+				rcd_ui_root = new_root
+			return TRUE
+		if("toggle_silo")
+			toggle_silo_link(usr)
+			return TRUE
+		if("design")
+			var/list/designs = get_rcd_designs()
+			var/list/category = designs[params["category"]]
+			var/index = text2num(params["index"])
+			if(!islist(category) || !index || index < 1 || index > length(category))
+				return
+			var/list/design = category[index]
+			mode = design["mode"]
+			if(design["window_type"])
+				window_type = design["window_type"]
+			if(design["airlock_type"])
+				airlock_type = design["airlock_type"]
+				airlock_glass = design["airlock_glass"]
+			if(design["computer_dir"])
+				computer_dir = design["computer_dir"]
+			playsound(src, 'sound/effects/pop.ogg', 50, 0)
+			return TRUE
+	// Reszta akcji to ustawienia dostępu wbudowanej elektroniki śluzy
+	if(airlock_electronics)
+		return airlock_electronics.ui_act(action, params, ui, state)
+
+#undef RCD_ROOT_CONSTRUCTION
+#undef RCD_ROOT_ACCESS
 
 /obj/item/construction/rcd/proc/target_check(atom/A, mob/user) // only returns true for stuff the device can actually work with
 	if((isturf(A) && A.density && mode==RCD_DECONSTRUCT) || (isturf(A) && !A.density) || (istype(A, /obj/machinery/door/airlock) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/grille) || (istype(A, /obj/structure/window) && mode==RCD_DECONSTRUCT) || istype(A, /obj/structure/girder || istype(A, /obj/structure/ladder)))

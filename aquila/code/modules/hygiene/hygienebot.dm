@@ -16,7 +16,7 @@
 	model = "Hygienebot"
 	bot_core_type = /obj/machinery/bot_core/hygienebot
 	window_id = "autoclean"
-	window_name = "Automatic Crew Cleaner X2"
+	window_name = "Automatyczny Czyściciel Załogi X2"
 	pass_flags = PASSMOB
 	path_image_color = "#993299"
 	allow_pai = FALSE
@@ -252,19 +252,6 @@
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		H.adjust_hygiene(HYGIENEBOT_WASH_AMOUNT)
-
-/mob/living/simple_animal/bot/hygienebot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-<TT><B>Hygienebot X2 controls</B></TT><BR><BR>
-Status: <A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>
-Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
-Maintenance panel is [open ? "opened" : "closed"]"})
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "<BR>Auto Patrol: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"
-	return dat
 
 /obj/machinery/bot_core/hygienebot
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)

@@ -625,6 +625,210 @@
 	if(density && !(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
 
+/*
+ * Admin library console (tg LibraryAdmin)
+ * Konsola w nullspace otwierana werbem admina "Library Management", zastępuje stary "Delete Book".
+ * AQUILA: bez historii akcji (nie mamy tabeli library_action), powód ukrycia/przywrócenia idzie do logów admina.
+ */
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker
+	name = "admin library console"
+	interface_type = "LibraryAdmin"
+	/// If we should show deleted entries or not
+	var/show_deleted = TRUE
+	/// The current ckey we're looking for
+	var/ckey = ""
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/can_db_request()
+	if(sending_request)
+		return FALSE
+	return TRUE
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/hash_search_info()
+	. = ..()
+	return "[.]-[ckey]-[show_deleted]"
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/update_page_contents()
+	if(sending_request) //Final defense against nerds spamming db requests
+		return
+	sending_request = TRUE
+	search_page = clamp(search_page, 0, page_count)
+	var/datum/DBQuery/query_library_list_books = SSdbcore.NewQuery({"
+		SELECT id, author, title, category, ckey, deleted
+		FROM [format_table_name("library")]
+		WHERE author LIKE CONCAT('%',:author,'%')
+			[show_deleted ? "" : "AND isnull(deleted)"]
+			AND title LIKE CONCAT('%',:title,'%')
+			AND (:category = 'Any' OR category = :category)
+			[book_id ? "AND id = :book_id" : ""]
+			AND ckey LIKE CONCAT('%',:ckey,'%')
+		ORDER BY id DESC
+		LIMIT :skip, :take
+	"}, list("author" = author, "title" = title, "book_id" = book_id, "category" = category, "ckey" = ckey, "skip" = BOOKS_PER_PAGE * search_page, "take" = BOOKS_PER_PAGE))
+
+	var/query_succeeded = query_library_list_books.Execute()
+	sending_request = FALSE
+	page_content.Cut()
+	if(!query_succeeded)
+		qdel(query_library_list_books)
+		return
+	while(query_library_list_books.NextRow())
+		page_content += list(list(
+			"id" = query_library_list_books.item[1],
+			"author" = html_decode(query_library_list_books.item[2]),
+			"title" = html_decode(query_library_list_books.item[3]),
+			"category" = query_library_list_books.item[4],
+			"author_ckey" = query_library_list_books.item[5],
+			"deleted" = query_library_list_books.item[6],
+		))
+	qdel(query_library_list_books)
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/update_page_count()
+	var/bookcount = 0
+	var/datum/DBQuery/query_library_count_books = SSdbcore.NewQuery({"
+		SELECT COUNT(id) FROM [format_table_name("library")]
+		WHERE author LIKE CONCAT('%',:author,'%')
+			[show_deleted ? "" : "AND isnull(deleted)"]
+			AND title LIKE CONCAT('%',:title,'%')
+			AND (:category = 'Any' OR category = :category)
+			[book_id ? "AND id = :book_id" : ""]
+			AND ckey LIKE CONCAT('%',:ckey,'%')
+	"}, list("author" = author, "title" = title, "book_id" = book_id, "category" = category, "ckey" = ckey))
+
+	if(!query_library_count_books.warn_execute())
+		qdel(query_library_count_books)
+		return
+	if(query_library_count_books.NextRow())
+		bookcount = text2num(query_library_count_books.item[1])
+	qdel(query_library_count_books)
+
+	page_count = round(max(bookcount - 1, 0) / BOOKS_PER_PAGE) //This is just floor()
+	search_page = clamp(search_page, 0, page_count)
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/ui_status(mob/user, datum/ui_state/state)
+	if(!check_rights_for(user.client, R_ADMIN))
+		return UI_CLOSE
+	if(!SSdbcore.Connect())
+		can_connect = FALSE
+		return UI_CLOSE
+	return UI_INTERACTIVE
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/ui_data(mob/user)
+	. = ..()
+	.["show_deleted"] = show_deleted
+	.["author_ckey"] = ckey
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/ui_act(action, params, datum/tgui/ui)
+	. = ..()
+	if(.)
+		// We'll always trigger a search attempt if the parent does something, this ensures the ui is v fast to update
+		INVOKE_ASYNC(src, PROC_REF(update_db_info))
+		return
+	switch(action)
+		if("set_search_ckey")
+			ckey = ckey(params["ckey"])
+			INVOKE_ASYNC(src, PROC_REF(update_db_info))
+			return TRUE
+		if("refresh")
+			last_search_hash = ""
+			INVOKE_ASYNC(src, PROC_REF(update_db_info))
+			return TRUE
+		if("hide_book")
+			var/client/actor = usr?.client
+			if(!actor)
+				return
+			INVOKE_ASYNC(src, PROC_REF(set_book_hidden), text2num("[params["book_id"]]"), "[params["reason"]]", actor, TRUE)
+			return TRUE
+		if("unhide_book")
+			var/client/actor = usr?.client
+			if(!actor)
+				return
+			INVOKE_ASYNC(src, PROC_REF(set_book_hidden), text2num("[params["book_id"]]"), "[params["reason"]]", actor, FALSE)
+			return TRUE
+		if("view_book")
+			INVOKE_ASYNC(src, PROC_REF(view_book), text2num("[params["book_id"]]"), usr)
+			return TRUE
+		if("toggle_deleted")
+			show_deleted = !show_deleted
+			INVOKE_ASYNC(src, PROC_REF(update_db_info))
+			return TRUE
+
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/view_book(id, mob/show_to)
+	if(!id || !SSdbcore.Connect())
+		return
+	var/datum/DBQuery/query_library_view = SSdbcore.NewQuery(
+		"SELECT author, title, content FROM [format_table_name("library")] WHERE id=:id",
+		list("id" = id)
+	)
+	if(!query_library_view.Execute())
+		qdel(query_library_view)
+		return
+	if(query_library_view.NextRow())
+		var/datum/admin_book_viewer/viewer = new()
+		viewer.author = html_decode(query_library_view.item[1])
+		viewer.title = "#[id]: [html_decode(query_library_view.item[2])]"
+		viewer.content = query_library_view.item[3]
+		viewer.ui_interact(show_to)
+	qdel(query_library_view)
+
+/// Ukrywa (hide = TRUE) albo przywraca książkę w bazie; całkowite usuwanie zostaje dla administratora bazy.
+/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/proc/set_book_hidden(id, reason, client/admin, hide)
+	if(!id)
+		return
+	if(!SSdbcore.Connect())
+		can_connect = FALSE
+		to_chat(admin, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
+		return
+	if(!check_rights_for(admin, R_ADMIN))
+		log_admin_private("[admin.ckey] tried to [hide ? "hide" : "unhide"] a book without the required perms")
+		message_admins("[admin.ckey] tried to [hide ? "hide" : "unhide"] a book without the required perms")
+		return
+
+	var/datum/DBQuery/query_hide_book = SSdbcore.NewQuery({"
+		UPDATE [format_table_name("library")]
+		SET deleted = [hide ? "1" : "NULL"]
+		WHERE id = :id
+	"}, list("id" = id))
+	if(!query_hide_book.warn_execute())
+		qdel(query_hide_book)
+		return
+	qdel(query_hide_book)
+
+	reason = trim(reason)
+	var/log_text = "[key_name(admin)] [hide ? "deleted" : "restored"] book number [id][reason ? ": \"[reason]\"" : ""]"
+	message_admins(log_text)
+	log_admin(log_text)
+	last_search_hash = ""
+	update_db_info()
+
+/// Podgląd treści książki z bazy dla admina (okno BookViewer)
+/datum/admin_book_viewer
+	var/author
+	var/title
+	var/content
+
+/datum/admin_book_viewer/ui_status(mob/user, datum/ui_state/state)
+	if(!check_rights_for(user.client, R_ADMIN))
+		return UI_CLOSE
+	return UI_INTERACTIVE
+
+/datum/admin_book_viewer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BookViewer", title)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/datum/admin_book_viewer/ui_close(mob/user)
+	. = ..()
+	qdel(src)
+
+/datum/admin_book_viewer/ui_data(mob/user)
+	var/list/data = list()
+	data["title"] = title
+	data["author"] = author
+	data["content"] = content
+	return data
+
 #undef PRINTER_COOLDOWN
 #undef NEWSCASTER_COOLDOWN
 #undef LIBRARY_NEWSFEED

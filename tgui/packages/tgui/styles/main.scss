@@ -40,6 +40,9 @@
 @include meta.load-css('./interfaces/Safe.scss');
 @include meta.load-css('./interfaces/LibraryComputer.scss');
 @include meta.load-css('./interfaces/HotKeysHelp.scss');
+@include meta.load-css('./interfaces/HellishRunes.scss');
+@include meta.load-css('./interfaces/SlotMachine.scss');
+@include meta.load-css('./interfaces/Trophycase.scss');
 @include meta.load-css('./interfaces/ChessBoard.scss');
 @include meta.load-css('./interfaces/ClockworkSlab.scss');
 @include meta.load-css('./interfaces/ColorPicker.scss');

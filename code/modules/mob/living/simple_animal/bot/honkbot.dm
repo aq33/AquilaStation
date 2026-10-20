@@ -83,21 +83,6 @@
 	text_dehack = "Restartujesz [name] i przywracasz system sterowania dźwiękiem."
 	text_dehack_fail = "[name] nie uznaje twojego autorytetu!"
 
-/mob/living/simple_animal/bot/honkbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-<TT><B>Sterowanie Honkomatyczną Jednostką Klaksonową v1.0.7</B></TT><BR><BR>\nStan: []<BR>\nSterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>\nPanel serwisowy jest [open ? "otwarty" : "zamknięty"]"},
-
-"<A href='byond://?src=[REF(src)];power=[TRUE]'>[on ? "On" : "Off"]</A>" )
-
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += text({"<BR> Autopatrol: []"},
-
-"<A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
-	return	dat
-
 /mob/living/simple_animal/bot/honkbot/proc/judgment_criteria()
 	var/final = NONE
 	if(check_records)

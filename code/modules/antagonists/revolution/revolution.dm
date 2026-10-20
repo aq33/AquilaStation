@@ -11,6 +11,7 @@
 	antag_moodlet = /datum/mood_event/revolution
 	var/hud_type = "rev"
 	var/datum/team/revolution/rev_team
+	ui_name = "AntagInfoRevolution"
 
 	/// What message should the player receive when they are being demoted, and the revolution has won?
 	var/victory_message = "Rewolucja obaliła dowództwo! Viva la revolución! Straćcie każdego szefa działu i ochroniarza, jeśli znajdziecie ich żywych."
@@ -73,6 +74,20 @@
 
 /datum/antagonist/rev/get_team()
 	return rev_team
+
+// Okno AntagInfoRevolution z tg: szefowie do obalenia zmieniają się w trakcie rundy, więc są w ui_data
+/datum/antagonist/rev/ui_data(mob/user)
+	var/list/data = list()
+	data["leader"] = istype(src, /datum/antagonist/rev/head)
+	data["lone_wolf"] = length(rev_team?.head_revolutionaries()) <= 1
+	var/list/heads = list()
+	for(var/datum/objective/mutiny/objective in rev_team?.objectives)
+		var/datum/mind/head = objective.target
+		if(!head)
+			continue
+		heads += list(list("name" = head.name, "role" = head.assigned_role))
+	data["heads"] = heads
+	return data
 
 /datum/antagonist/rev/proc/create_objectives()
 	if(!give_objectives)

@@ -268,6 +268,10 @@
 	data["id"] = id
 	return data
 
+/// MULE ma własne okno (Mule), nie używa wspólnego SimpleBot
+/mob/living/simple_animal/bot/mulebot/simple_bot_act(action, list/params, mob/user)
+	return FALSE
+
 /mob/living/simple_animal/bot/mulebot/ui_act(action, params)
 	if(..() || (locked && !usr.has_unlimited_silicon_privilege))
 		return

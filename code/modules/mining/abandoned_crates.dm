@@ -5,7 +5,8 @@
 	desc = "What could be inside?"
 	integrity_failure = 0 //no breaking open the crate
 	var/code = null
-	var/lastattempt = null
+	/// Lista poprzednich prób: list("attempt", "bulls", "cows") - pokazywana w oknie TGUI po użyciu multitoola
+	var/list/previous_attempts = list()
 	var/attempts = 10
 	var/codelen = 4
 	var/spawned_loot = FALSE
@@ -22,40 +23,58 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/closet/crate/secure/loot/attack_hand(mob/user)
-	if(locked)
-		to_chat(user, "<span class='notice'>Skrzynia jest zamknięta zamkiem Deca-code.</span>")
-		var/input = capped_input(usr, "Wpisz [codelen] cyfr. Wszystkie cyfry muszą być różne.", "Zamek Deca-code")
-		if(user.canUseTopic(src, BE_CLOSE))
-			var/list/sanitised = list()
-			var/sanitycheck = TRUE
-			var/char = ""
-			var/length_input = length(input)
-			for(var/i = 1, i <= length_input, i += length(char)) //put the guess into a list
-				char = input[i]
-				sanitised += text2num(char)
-			for(var/i = 1, i <= length(sanitised) - 1, i++) //compare each digit in the guess to all those following it
-				for(var/j = i + 1, j <= length(sanitised), j++)
-					if(sanitised[i] == sanitised[j])
-						sanitycheck = FALSE //if a digit is repeated, reject the input
-			if(input == code)
-				to_chat(user, "<span class='notice'>Skrzynia się otwiera!</span>")
-				locked = FALSE
-				cut_overlays()
-				add_overlay("securecrateg")
-				add_overlay("[icon_door || icon_state]_door") //needs to put the door overlayer back cause of this snowflake code
-				tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
-				if(!spawned_loot)
-					spawn_loot()
-			else if(!input || !sanitycheck || length(sanitised) != codelen)
-				to_chat(user, "<span class='notice'>Zostawiasz skrzynię w spokoju.</span>")
-			else
-				to_chat(user, "<span class='warning'>Miga czerwona lampka.</span>")
-				lastattempt = input
-				attempts--
-				if(attempts == 0)
-					boom(user)
-	else
+	if(!locked)
 		return ..()
+	to_chat(user, "<span class='notice'>Skrzynia jest zamknięta zamkiem Deca-code.</span>")
+	var/input = tgui_input_text(user, "Wpisz [codelen] cyfr. Wszystkie cyfry muszą być różne.", "Zamek Deca-code", max_length = codelen)
+	if(!locked || !user.canUseTopic(src, BE_CLOSE))
+		return
+	if(input == code)
+		to_chat(user, "<span class='notice'>Skrzynia się otwiera!</span>")
+		locked = FALSE
+		cut_overlays()
+		add_overlay("securecrateg")
+		add_overlay("[icon_door || icon_state]_door") //needs to put the door overlayer back cause of this snowflake code
+		tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
+		if(!spawned_loot)
+			spawn_loot()
+		SStgui.close_uis(src)
+		return
+	if(!validate_input(input))
+		to_chat(user, "<span class='notice'>Zostawiasz skrzynię w spokoju.</span>")
+		return
+	to_chat(user, "<span class='warning'>Miga czerwona lampka.</span>")
+	previous_attempts += list(bulls_and_cows(input))
+	attempts--
+	SStgui.update_uis(src)
+	if(attempts <= 0)
+		boom(user)
+
+/// Sprawdza, czy próba to [codelen] różnych cyfr
+/obj/structure/closet/crate/secure/loot/proc/validate_input(input)
+	if(!input || length(input) != codelen)
+		return FALSE
+	var/list/used_digits = list()
+	for(var/i in 1 to length(input))
+		var/char = input[i]
+		if(!(char >= "0" && char <= "9"))
+			return FALSE
+		if(char in used_digits)
+			return FALSE
+		used_digits += char
+	return TRUE
+
+/// Byki i krowy: cyfry na dobrych pozycjach i dobre cyfry na złych pozycjach
+/obj/structure/closet/crate/secure/loot/proc/bulls_and_cows(guess)
+	var/bulls = 0
+	var/cows = 0
+	for(var/i in 1 to length(guess))
+		var/char = guess[i]
+		if(char == code[i])
+			bulls++
+		else if(findtext(code, char))
+			cows++
+	return list("attempt" = guess, "bulls" = bulls, "cows" = cows)
 
 /obj/structure/closet/crate/secure/loot/AltClick(mob/living/user)
 	if(!user.canUseTopic(src, BE_CLOSE))
@@ -63,39 +82,23 @@
 	return attack_hand(user) //this helps you not blow up so easily by overriding unlocking which results in an immediate boom.
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
-	if(locked)
-		if(W.tool_behaviour == TOOL_MULTITOOL)
-			to_chat(user, "<span class='notice'>RAPORT ZAMKA DECA-CODE:</span>")
-			if(attempts == 1)
-				to_chat(user, "<span class='warning'>* Bomba przeciwwłamaniowa uruchomi się przy następnej nieudanej próbie.</span>")
-			else
-				to_chat(user, "<span class='notice'>* Bomba przeciwwłamaniowa uruchomi się po [attempts] nieudanych próbach.</span>")
-			if(lastattempt != null)
-				var/bulls = 0 //right position, right number
-				var/cows = 0 //wrong position but in the puzzle
-
-				var/lastattempt_char = ""
-				var/length_lastattempt = length(lastattempt)
-				var/lastattempt_it = 1
-
-				var/code_char = ""
-				var/length_code = length(code)
-				var/code_it = 1
-
-				while(lastattempt_it <= length_lastattempt && code_it <= length_code) // Go through list and count matches
-					lastattempt_char = lastattempt[lastattempt_it]
-					code_char = code[code_it]
-					if(lastattempt_char == code_char)
-						++bulls
-					else if(findtext(code, lastattempt_char))
-						++cows
-
-					lastattempt_it += length(lastattempt_char)
-					code_it += length(code_char)
-
-				to_chat(user, "<span class='notice'>Ostatnia próba, [lastattempt], miała [bulls] poprawnych cyfr na poprawnych pozycjach i [cows] poprawnych cyfr na niepoprawnych pozycjach.</span>")
-			return
+	if(locked && W.tool_behaviour == TOOL_MULTITOOL)
+		if(Adjacent(user))
+			ui_interact(user)
+		return
 	return ..()
+
+/obj/structure/closet/crate/secure/loot/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AbandonedCrate", name)
+		ui.open()
+
+/obj/structure/closet/crate/secure/loot/ui_data(mob/user)
+	var/list/data = list()
+	data["previous_attempts"] = previous_attempts
+	data["attempts_left"] = attempts
+	return data
 
 /obj/structure/closet/secure/loot/dive_into(mob/living/user)
 	if(!locked)

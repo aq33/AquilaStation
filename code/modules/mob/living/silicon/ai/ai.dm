@@ -95,6 +95,10 @@
 	var/list/all_eyes = list()
 	var/max_multicams = 6
 	var/display_icon_override
+	/// Okno wyboru wyglądu rdzenia (AiCoreDisplayPicker)
+	var/datum/ai_core_display_picker/core_display_picker
+	/// Okno wyboru emocji na ekranach statusu (AiStatusDisplayPicker)
+	var/datum/ai_status_display_picker/status_display_picker
 
 	var/list/cam_hotkeys = new/list(9)
 	var/cam_prev
@@ -203,6 +207,8 @@
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
 	QDEL_NULL(alerts_panel) // AQ EDIT
+	QDEL_NULL(core_display_picker)
+	QDEL_NULL(status_display_picker)
 	ShutOffDoomsdayDevice()
 	. = ..()
 
@@ -224,27 +230,80 @@
 	set name = "Set AI Core Display"
 	if(incapacitated())
 		return
-	icon = initial(icon)
-	icon_state = "ai"
-	cut_overlays()
-	var/list/iconstates = GLOB.ai_core_display_screens
-	for(var/option in iconstates)
-		if(option == "Random")
-			iconstates[option] = image(icon = src.icon, icon_state = "ai-random")
-			continue
-		if(option == "Portrait")
-			iconstates[option] = image(icon = src.icon, icon_state = "ai-portrait")
-			continue
-		iconstates[option] = image(icon = src.icon, icon_state = resolve_ai_icon(option))
-
 	view_core()
-	var/ai_core_icon = show_radial_menu(src, src , iconstates, radius = 42)
+	if(!core_display_picker)
+		core_display_picker = new(src)
+	core_display_picker.ui_interact(src)
 
-	if(!ai_core_icon || incapacitated())
+/// Okno TGUI wyboru wyglądu rdzenia SI (AiCoreDisplayPicker)
+/datum/ai_core_display_picker
+	var/mob/living/silicon/ai/ai_user
+
+/datum/ai_core_display_picker/New(mob/living/silicon/ai/user)
+	ai_user = user
+
+/datum/ai_core_display_picker/Destroy(force, ...)
+	ai_user = null
+	return ..()
+
+/datum/ai_core_display_picker/ui_status(mob/user, datum/ui_state/state)
+	if(!ai_user || user != ai_user || ai_user.incapacitated())
+		return UI_CLOSE
+	return ..()
+
+/datum/ai_core_display_picker/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/ai_core_display_picker/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiCoreDisplayPicker")
+		ui.open()
+
+/datum/ai_core_display_picker/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/options = list()
+	for(var/option_name in GLOB.ai_core_display_screens)
+		var/icon_state
+		// resolve_ai_icon() dla "Portrait" otwiera wybór portretu, a "Random" losuje, więc tu tylko podgląd
+		if(option_name == "Random")
+			icon_state = "ai-random"
+		else if(option_name == "Portrait")
+			icon_state = "ai-portrait"
+		else
+			icon_state = resolve_ai_icon(option_name)
+		options += list(list(
+			"name" = option_name,
+			"icon_state" = icon_state,
+			"icon" = 'icons/mob/ai.dmi'
+		))
+	data["options"] = options
+	return data
+
+/datum/ai_core_display_picker/ui_data(mob/user)
+	var/list/data = list()
+	data["current_display"] = ai_user.display_icon_override || ai_user.client?.prefs?.active_character.preferred_ai_core_display
+	data["current_icon"] = list(
+		"icon" = 'icons/mob/ai.dmi',
+		"icon_state" = ai_user.icon_state
+	)
+	return data
+
+/datum/ai_core_display_picker/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
 
-	display_icon_override = ai_core_icon
-	set_core_display_icon(ai_core_icon)
+	switch(action)
+		if("select_option")
+			var/chosen_option = params["option"]
+			if(!(chosen_option in GLOB.ai_core_display_screens))
+				return
+			ai_user.icon = initial(ai_user.icon)
+			ai_user.cut_overlays()
+			ai_user.display_icon_override = chosen_option
+			ai_user.set_core_display_icon(chosen_option)
+			return TRUE
 
 /mob/living/silicon/ai/get_stat_tab_status()
 	var/list/tab_data = ..()
@@ -785,7 +844,7 @@
 	set category = "Malfunction"
 	set name = "Choose Module"
 
-	malf_picker.use(src)
+	malf_picker.ui_interact(src)
 
 /mob/living/silicon/ai/proc/ai_statuschange()
 	set category = "AI Commands"
@@ -793,8 +852,14 @@
 
 	if(incapacitated())
 		return
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Thinking", "Friend Computer", "Dorfy", "Blue Glow", "Red Glow")
-	var/emote = input("Wybierz status!", "Status SI", null, null) in sortList(ai_emotions)
+	if(!status_display_picker)
+		status_display_picker = new(src)
+	status_display_picker.ui_interact(src)
+
+/// Ustawia emocję na wszystkich ekranach statusu SI
+/mob/living/silicon/ai/proc/set_status_display_emotion(emote)
+	if(!(emote in GLOB.ai_status_display_emotes))
+		return
 	for (var/each in GLOB.ai_status_displays) //change status of displays
 		var/obj/machinery/status_display/ai/M = each
 		M.emotion = emote
@@ -807,7 +872,67 @@
 
 		var/datum/signal/status_signal = new(list("command" = "friendcomputer"))
 		frequency.post_signal(src, status_signal)
-	return
+
+/// Okno TGUI wyboru emocji na ekranach statusu SI (AiStatusDisplayPicker)
+/datum/ai_status_display_picker
+	var/mob/living/silicon/ai/ai_user
+
+/datum/ai_status_display_picker/New(mob/living/silicon/ai/user)
+	ai_user = user
+
+/datum/ai_status_display_picker/Destroy(force, ...)
+	ai_user = null
+	return ..()
+
+/datum/ai_status_display_picker/ui_status(mob/user, datum/ui_state/state)
+	if(!ai_user || user != ai_user || ai_user.incapacitated())
+		return UI_CLOSE
+	return ..()
+
+/datum/ai_status_display_picker/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/ai_status_display_picker/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiStatusDisplayPicker")
+		ui.open()
+
+/datum/ai_status_display_picker/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/options = list()
+	for(var/option_name in GLOB.ai_status_display_emotes)
+		options += list(list(
+			"name" = option_name,
+			"icon_state" = GLOB.ai_status_display_emotes[option_name],
+			"icon" = 'icons/obj/status_display.dmi'
+		))
+	data["options"] = options
+	return data
+
+/datum/ai_status_display_picker/ui_data(mob/user)
+	var/list/data = list()
+	var/obj/machinery/status_display/ai/first_display = locate() in GLOB.ai_status_displays
+	var/current_emotion = first_display?.emotion
+	data["current_emotion"] = current_emotion
+	data["current_icon"] = list(
+		"icon" = 'icons/obj/status_display.dmi',
+		"icon_state" = GLOB.ai_status_display_emotes[current_emotion] || "ai_off"
+	)
+	return data
+
+/datum/ai_status_display_picker/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("select_option")
+			var/selected_option = params["option"]
+			if(!(selected_option in GLOB.ai_status_display_emotes))
+				return
+			ai_user.set_status_display_emotion(selected_option)
+			return TRUE
 
 //I am the icon meister. Bow fefore me.	//>fefore
 /mob/living/silicon/ai/proc/ai_hologram_change()

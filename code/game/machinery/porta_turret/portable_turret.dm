@@ -197,66 +197,78 @@
 	return GLOB.default_state
 
 /obj/machinery/porta_turret/ui_interact(mob/user, datum/tgui/ui)
-	. = ..()
-	var/dat
-	dat += "Status: <a href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</a><br>"
-	dat += "Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<br>"
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableTurret")
+		ui.open()
 
-	if(!locked)
-		dat += "Sprawdzaj zezwolenie na broń: <A href='byond://?src=[REF(src)];operation=authweapon'>[auth_weapons ? "Tak" : "Nie"]</A><BR>"
-		dat += "Sprawdzaj akta ochrony: <A href='byond://?src=[REF(src)];operation=checkrecords'>[check_records ? "Tak" : "Nie"]</A><BR>"
-		dat += "Neutralizuj zidentyfikowanych przestępców: <A href='byond://?src=[REF(src)];operation=shootcrooks'>[criminals ? "Tak" : "Nie"]</A><BR>"
-		dat += "Neutralizuj cały personel spoza ochrony i dowództwa: <A href='byond://?src=[REF(src)];operation=shootall'>[stun_all ? "Tak" : "Nie"]</A><BR>"
-		dat += "Neutralizuj wszystkie niezidentyfikowane formy życia: <A href='byond://?src=[REF(src)];operation=checkxenos'>[check_anomalies ? "Tak" : "Nie"]</A><BR>"
-		dat += "Neutralizuj cały personel bez implantu lojalności: <A href='byond://?src=[REF(src)];operation=checkloyal'>[shoot_unloyal ? "Tak" : "Nie"]</A><BR>"
-		dat += "Neutralizuj wszystkie cyborgi: <A href='byond://?src=[REF(src)];operation=checkborg'>[target_cyborgs ? "Tak" : "Nie"]</A><BR>"
+/obj/machinery/porta_turret/ui_data(mob/user)
+	var/list/data = list(
+		"locked" = locked,
+		"on" = on,
+		"check_weapons" = auth_weapons,
+		"check_records" = check_records,
+		"neutralize_criminals" = criminals,
+		"neutralize_all" = stun_all,
+		"neutralize_unidentified" = check_anomalies,
+		"neutralize_nonmindshielded" = shoot_unloyal,
+		"neutralize_cyborgs" = target_cyborgs,
+		"manual_control" = manual_control,
+		"silicon_user" = FALSE,
+		"allow_manual_control" = FALSE,
+		"lasertag_turret" = istype(src, /obj/machinery/porta_turret/lasertag),
+	)
 	if(issilicon(user))
+		data["silicon_user"] = TRUE
 		if(!manual_control)
 			var/mob/living/silicon/S = user
 			if(S.hack_software)
-				dat += "Przejmij bezpośrednią kontrolę: <a href='byond://?src=[REF(src)];operation=manual'>Sterowanie ręczne</a><br>"
-		else
-			dat += "Uwaga! Włączono protokół zdalnego sterowania.<br>"
+				data["allow_manual_control"] = TRUE
+	return data
 
-
-	var/datum/browser/popup = new(user, "autosec", "Automatyczna instalacja przenośnej wieżyczki", 300, 300)
-	popup.set_content(dat)
-	popup.open()
-
-/obj/machinery/porta_turret/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
-
-	if(href_list["power"] && !locked)
-		if(anchored)	//you can't turn a turret on/off if it's not anchored/secured
-			on = !on	//toggle on/off
-		else
-			to_chat(usr, "<span class='notice'>Najpierw trzeba ją zamocować!</span>")
-		interact(usr)
+/obj/machinery/porta_turret/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 
-	if(href_list["operation"])
-		switch(href_list["operation"])	//toggles customizable behavioural protocols
-			if("authweapon")
-				auth_weapons = !auth_weapons
-			if("checkrecords")
-				check_records = !check_records
-			if("shootcrooks")
-				criminals = !criminals
-			if("shootall")
-				stun_all = !stun_all
-			if("checkxenos")
-				check_anomalies = !check_anomalies
-			if("checkloyal")
-				shoot_unloyal = !shoot_unloyal
-			if("checkborg")
-				target_cyborgs = !target_cyborgs
-			if("manual")
-				if(issilicon(usr) && !manual_control)
-					give_control(usr)
-		interact(usr)
+	if(action == "manual")
+		if(issilicon(usr) && !manual_control)
+			var/mob/living/silicon/S = usr
+			if(S.hack_software)
+				give_control(usr)
+		return TRUE
+
+	if(locked)
+		return
+
+	switch(action)
+		if("power")
+			if(anchored)	//you can't turn a turret on/off if it's not anchored/secured
+				toggle_on()
+			else
+				to_chat(usr, "<span class='notice'>Najpierw trzeba ją zamocować!</span>")
+		if("authweapon")
+			auth_weapons = !auth_weapons
+		if("checkrecords")
+			check_records = !check_records
+		if("shootcrooks")
+			criminals = !criminals
+		if("shootall")
+			stun_all = !stun_all
+		if("checkxenos")
+			check_anomalies = !check_anomalies
+		if("checkloyal")
+			shoot_unloyal = !shoot_unloyal
+		if("checkborg")
+			target_cyborgs = !target_cyborgs
+	return TRUE
+
+/obj/machinery/porta_turret/ui_host(mob/user)
+	if(has_cover && cover)
+		return cover
+	if(base)
+		return base
+	return src
 
 /obj/machinery/porta_turret/power_change()
 	. = ..()
@@ -1118,20 +1130,19 @@
 	if(properties["team_color"])
 		team_color = properties["team_color"]
 
-/obj/machinery/porta_turret/lasertag/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/porta_turret/lasertag/ui_interact(mob/user, datum/tgui/ui)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(team_color == "blue" && istype(H.wear_suit, /obj/item/clothing/suit/redtag))
 			return
 		if(team_color == "red" && istype(H.wear_suit, /obj/item/clothing/suit/bluetag))
 			return
+	return ..()
 
-	var/dat = "Status: <a href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</a>"
-
-	var/datum/browser/popup = new(user, "autosec", "Automatyczna instalacja przenośnej wieżyczki", 300, 300)
-	popup.set_content(dat)
-	popup.open()
+/obj/machinery/porta_turret/lasertag/ui_act(action, list/params)
+	if(action != "power")
+		return TRUE
+	return ..()
 
 //lasertag presets
 /obj/machinery/porta_turret/lasertag/red
