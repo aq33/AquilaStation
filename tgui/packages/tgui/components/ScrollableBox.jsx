@@ -8,11 +8,11 @@ export const ScrollableBox = (props) => {
   const node = useRef(null);
   useEffect(() => {
     const self = node.current;
-    if (self && scrollable) {
+    if (self) {
       addScrollableNode(self);
     }
     return () => {
-      if (self && scrollable) {
+      if (self) {
         removeScrollableNode(self);
       }
     };

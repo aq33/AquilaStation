@@ -92,13 +92,10 @@ const StatVerbSearch = (props) => {
         value={search}
         placeholder="Szukaj komendy we wszystkich zakładkach…"
         onChange={(value) => setSearch(value)}
-        onEscape={(e) => {
-          e.target.value = '';
-          setSearch('');
-        }}
-        onEnter={(value) => {
+        onEscape={() => setSearch('')}
+        onEnter={(value, e) => {
           // Enter w trakcie kompozycji IME tylko zatwierdza znak.
-          if (e.nativeEvent?.isComposing || e.isComposing) {
+          if (e?.nativeEvent?.isComposing) {
             return;
           }
           // Enter odpala komendę tylko, gdy wynik jest jednoznaczny.
@@ -110,7 +107,6 @@ const StatVerbSearch = (props) => {
             action_id: results[0].data.action,
             params: results[0].data.params || [],
           });
-          e.target.value = '';
           setSearch('');
         }}
       />
