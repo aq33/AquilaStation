@@ -6,7 +6,7 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Icon, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 import { AntagInfoHeader } from './common/AntagInfoHeader';
-import { Objective, ObjectivesSection } from './common/Objectives';
+import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
 type VampireInformation = {
   clan: ClanInfo[];
