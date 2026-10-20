@@ -160,7 +160,7 @@
 	if(istype(info_alert)) // throw_alert zwraca 0, gdy alert już jest
 		info_alert.worm_owner = src
 	if(slide_under_doors_delay)
-		to_chat(src, "<span class='notice'>Potrafisz wślizgnąć się pod drzwi! <b>Kliknij drzwi prawym przyciskiem, żeby się pod nie wcisnąć.</b></span>")
+		to_chat(src, "<span class='notice'>Potrafisz wślizgnąć się pod drzwi! <b>Kliknij drzwi [secondary_click_text()], żeby się pod nie wcisnąć.</b></span>")
 
 /mob/living/simple_animal/hostile/blood_worm/Logout()
 	clear_alert(ALERT_BLOODWORM_INFO)

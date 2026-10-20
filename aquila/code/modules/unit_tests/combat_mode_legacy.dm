@@ -95,5 +95,66 @@
 	modifiers = list(LEFT_CLICK = "1")
 	TEST_ASSERT(!victim.translate_legacy_intent_click(user, modifiers), "A combat mode player's click was translated")
 
+/// A simple animal whose player picked the legacy intent controls
+/mob/living/simple_animal/hostile/carp/legacy_intents_test
+
+/mob/living/simple_animal/hostile/carp/legacy_intents_test/uses_legacy_intents()
+	return TRUE
+
+/// Remembers the params of the last click it intercepted
+/datum/legacy_intents_test_intercept
+	var/last_params
+
+/datum/legacy_intents_test_intercept/proc/InterceptClickOn(mob/user, params, atom/target)
+	last_params = params
+	return TRUE
+
+/// AQUILA - standaryzacja combat mode: every living mob gets all four intents in the legacy controls
+/datum/unit_test/combat_mode_legacy_simple_animal
+
+/datum/unit_test/combat_mode_legacy_simple_animal/Run()
+	var/mob/living/simple_animal/hostile/carp/legacy_intents_test/animal = allocate(/mob/living/simple_animal/hostile/carp/legacy_intents_test)
+	animal.set_combat_mode(FALSE)
+	TEST_ASSERT_EQUAL(length(animal.legacy_intent_choices()), 4, "A legacy simple animal does not get all four intents")
+
+	animal.a_intent_change(INTENT_HARM)
+	TEST_ASSERT(animal.combat_mode, "Harm did not turn combat mode on for a simple animal")
+	animal.a_intent_change(INTENT_DISARM)
+	TEST_ASSERT_EQUAL(animal.a_intent, INTENT_DISARM, "A simple animal could not pick the disarm intent")
+	TEST_ASSERT(!animal.combat_mode, "Leaving harm did not turn combat mode off for a simple animal")
+
+	// Disarm is the secondary action, also outside ClickOn
+	TEST_ASSERT(animal.is_secondary_click(list(LEFT_CLICK = "1")), "A disarm click is not the secondary action")
+	TEST_ASSERT(!animal.is_secondary_click(list(LEFT_CLICK = "1", SHIFT_CLICK = "1")), "A disarm shift click is the secondary action")
+	animal.a_intent_change(INTENT_HELP)
+	TEST_ASSERT(!animal.is_secondary_click(list(LEFT_CLICK = "1")), "A help click is the secondary action")
+	TEST_ASSERT(animal.is_secondary_click(list(RIGHT_CLICK = "1")), "A right click is not the secondary action")
+
+	// Players on the combat mode controls keep the mob's own intents
+	var/mob/living/simple_animal/hostile/carp/plain = allocate(/mob/living/simple_animal/hostile/carp)
+	TEST_ASSERT_EQUAL(plain.legacy_intent_choices(), plain.possible_a_intents, "A combat mode player got the legacy intents")
+	TEST_ASSERT(!plain.is_secondary_click(list(LEFT_CLICK = "1")), "A combat mode left click is the secondary action")
+
+/// AQUILA - standaryzacja combat mode: abilities that intercept clicks see the disarm intent as a right click
+/datum/unit_test/combat_mode_legacy_intercept
+
+/datum/unit_test/combat_mode_legacy_intercept/Run()
+	var/mob/living/carbon/human/legacy_intents_test/user = allocate(/mob/living/carbon/human/legacy_intents_test)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
+	var/datum/legacy_intents_test_intercept/intercept = new()
+	user.click_intercept = intercept
+
+	user.a_intent_change(INTENT_DISARM)
+	TEST_ASSERT(user.check_click_intercept(list2params(list(LEFT_CLICK = "1")), victim), "The click was not intercepted")
+	TEST_ASSERT(LAZYACCESS(params2list(intercept.last_params), RIGHT_CLICK), "An intercepted disarm click is not a right click")
+
+	// Grab stays a plain click for abilities, it only means ctrl click in the normal click chain
+	user.a_intent_change(INTENT_GRAB)
+	user.check_click_intercept(list2params(list(LEFT_CLICK = "1")), victim)
+	TEST_ASSERT(!LAZYACCESS(params2list(intercept.last_params), CTRL_CLICK), "An intercepted grab click became a ctrl click")
+
+	user.click_intercept = null
+	qdel(intercept)
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

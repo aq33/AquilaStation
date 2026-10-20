@@ -5,6 +5,20 @@
 /datum/keybinding/carbon/can_use(client/user)
 	return iscarbon(user.mob)
 
+// AQ EDIT - standaryzacja combat mode: wybór intencji (i przełączanie combat mode) działa dla każdego żywego moba
+/datum/keybinding/carbon/select_help_intent/can_use(client/user)
+	return isliving(user.mob)
+
+/datum/keybinding/carbon/select_disarm_intent/can_use(client/user)
+	return isliving(user.mob)
+
+/datum/keybinding/carbon/select_grab_intent/can_use(client/user)
+	return isliving(user.mob)
+
+/datum/keybinding/carbon/select_harm_intent/can_use(client/user)
+	return isliving(user.mob)
+// AQ EDIT END
+
 /datum/keybinding/carbon/toggle_throw_mode
 	key = "R"
 	name = "toggle_throw_mode"
@@ -50,8 +64,8 @@
 	. = ..()
 	if(.)
 		return
-	if (!iscarbon(user.mob)) return
-	var/mob/living/carbon/C = user.mob
+	if (!isliving(user.mob)) return // AQ EDIT - standaryzacja combat mode: intencje dla każdego żywego moba, nie tylko carbonów
+	var/mob/living/C = user.mob
 	C.a_intent_change(INTENT_DISARM)
 	return TRUE
 
@@ -68,8 +82,8 @@
 	. = ..()
 	if(.)
 		return
-	if (!iscarbon(user.mob)) return
-	var/mob/living/carbon/C = user.mob
+	if (!isliving(user.mob)) return // AQ EDIT - standaryzacja combat mode: intencje dla każdego żywego moba, nie tylko carbonów
+	var/mob/living/C = user.mob
 	C.a_intent_change(INTENT_GRAB)
 	return TRUE
 

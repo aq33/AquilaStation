@@ -239,7 +239,7 @@
 
 /obj/machinery/xenoarchaeology_machine/calibrator/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Kliknij prawym przyciskiem, aby skalibrować włożone artefakty.\nArtefakt da się skalibrować, jeśli jego etykieta jest w 100% poprawna (nie licząc usterek).</span>"
+	. += "<span class='notice'>Kliknij [user.secondary_click_text()], aby skalibrować włożone artefakty.\nArtefakt da się skalibrować, jeśli jego etykieta jest w 100% poprawna (nie licząc usterek).</span>"
 
 /obj/machinery/xenoarchaeology_machine/calibrator/activate_machine(mob/living/user)
 	if(length(held_contents))

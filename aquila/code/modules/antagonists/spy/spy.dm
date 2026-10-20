@@ -55,7 +55,7 @@
 
 /datum/antagonist/spy/greet()
 	to_chat(owner.current, "<span class='alertsyndie'>Jesteś szpiegiem.</span>")
-	to_chat(owner.current, "<span class='notice'>Twój uplink szpiega jest ukryty jako: [uplink_location || "coś przy tobie"]. Użyj go w ręce, żeby zobaczyć zlecenia, i kliknij go <b>prawym przyciskiem</b> na celu zlecenia, żeby go ukraść.</span>")
+	to_chat(owner.current, "<span class='notice'>Twój uplink szpiega jest ukryty jako: [uplink_location || "coś przy tobie"]. Użyj go w ręce, żeby zobaczyć zlecenia, i kliknij go <b>[owner.current.secondary_click_text()]</b> na celu zlecenia, żeby go ukraść.</span>")
 	owner.announce_objectives()
 	owner.current.client?.tgui_panel?.give_antagonist_popup("Szpieg",
 		"Kradnij cele zleceń i odbieraj nagrody.")

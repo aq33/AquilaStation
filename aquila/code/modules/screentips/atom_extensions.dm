@@ -97,14 +97,14 @@
 		if (cache?.generated && (!held_item || GLOB.screentip_contextless_items["[held_item.type]"]))
 			if (held_item?.tool_behaviour || client.show_extended_screentips)
 				if (ishuman(user) && !held_item)
-					user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.attack_hand][cache.message][cache.tool_message]")]</span>")]</span>"
+					user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.attack_hand][cache.message][cache.tool_message]")]</span>")]</span>")
 				else
-					user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.message][cache.tool_message]")]</span>")]</span>"
+					user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.message][cache.tool_message]")]</span>")]</span>")
 			else
 				if (ishuman(user) && !held_item)
-					user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.attack_hand][cache.message]")]</span>")]</span>"
+					user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.attack_hand][cache.message]")]</span>")]</span>")
 				else
-					user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.message]")]</span>")]</span>"
+					user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[cache.message]")]</span>")]</span>")
 			return
 	// =====================================================
 	// Build the context
@@ -180,11 +180,11 @@
 	// Screentips only show if you are a silicon, carbon, or you explicitly request the mob type to show
 	if (issilicon(user) || iscarbon(user) || context.relevant_type)
 		if (held_item?.tool_behaviour || client.show_extended_screentips)
-			user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[shown_attack_hand][screen_tip_message][tool_message]")]</span>")]</span>"
+			user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[shown_attack_hand][screen_tip_message][tool_message]")]</span>")]</span>")
 		else
-			user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[shown_attack_hand][screen_tip_message]")]</span>")]</span>"
+			user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message][MAPTEXT("<span style='color:[SCREEN_TIP_NORMAL]'>[CENTER("[shown_attack_hand][screen_tip_message]")]</span>")]</span>")
 	else
-		user.hud_used.screentip.maptext = "<span valign='top'>[screentip_message]</span>"
+		user.hud_used.screentip.maptext = user.adapt_screentip_controls("<span valign='top'>[screentip_message]</span>")
 	// =====================================================
 	// Populate the screentip cache to prevent unnecessary re-generation
 	// =====================================================
