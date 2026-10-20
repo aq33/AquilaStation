@@ -49,6 +49,7 @@
 					/datum/objective/plant_device/bomb = kill_allowed ? TRAITOR_OBJECTIVE_WEIGHT : 0,
 					/datum/objective/plant_device/bug = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/plant_device/tide = TRAITOR_OBJECTIVE_WEIGHT,
+					/datum/objective/plant_device/mapping = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/poison_items = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/sabotage/power_sink = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/sabotage/integrity = TRAITOR_OBJECTIVE_WEIGHT,

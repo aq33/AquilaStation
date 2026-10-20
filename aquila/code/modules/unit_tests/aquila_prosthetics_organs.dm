@@ -1,0 +1,82 @@
+// The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copy
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+
+/// AQUILA - tgstation#91573: an item becomes the arm, falls off while loose, takes the arm with it
+/datum/unit_test/aquila_item_prosthetic
+
+/datum/unit_test/aquila_item_prosthetic/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
+	var/obj/item/extinguisher/tool = allocate(/obj/item/extinguisher)
+	var/obj/item/bodypart/old_arm = patient.get_bodypart(BODY_ZONE_R_ARM)
+	old_arm.drop_limb()
+	qdel(old_arm)
+
+	var/obj/item/bodypart/pseudo = patient.make_item_prosthetic(tool, BODY_ZONE_R_ARM, 100)
+	TEST_ASSERT(pseudo?.is_pseudopart, "No pseudopart arm was made")
+	TEST_ASSERT(patient.get_item_for_held_index(pseudo.held_index) == tool, "The item is not held by its arm")
+	TEST_ASSERT(HAS_TRAIT_FROM(tool, TRAIT_NODROP, PROSTHETIC_ITEM_TRAIT), "The item arm can be dropped")
+	TEST_ASSERT(tool.item_flags & ABSTRACT, "The item arm is not abstract")
+	TEST_ASSERT(length(patient.prosthetic_item_examine_lines(victim)), "The item arm is missing from examine")
+
+	// a loose arm falls off on the first swing
+	patient.a_intent = INTENT_HARM
+	tool.attack(victim, patient)
+	TEST_ASSERT(!patient.get_bodypart(BODY_ZONE_R_ARM), "The loose item arm did not fall off")
+	TEST_ASSERT(tool.loc == get_turf(patient), "The item did not land under the patient")
+	TEST_ASSERT(!HAS_TRAIT(tool, TRAIT_NODROP) && !(tool.item_flags & ABSTRACT), "The fallen item kept its arm flags")
+	TEST_ASSERT(QDELETED(pseudo), "The pseudopart stayed after the item fell off")
+
+	// a secured arm stays on
+	pseudo = patient.make_item_prosthetic(tool, BODY_ZONE_R_ARM, 100)
+	var/datum/component/item_as_prosthetic_limb/prosthetic = pseudo.GetComponent(/datum/component/item_as_prosthetic_limb)
+	prosthetic.secure()
+	tool.attack(victim, patient)
+	TEST_ASSERT(patient.get_bodypart(BODY_ZONE_R_ARM) == pseudo, "The secured item arm fell off")
+
+	// deleting the item takes the arm
+	qdel(tool)
+	TEST_ASSERT(!patient.get_bodypart(BODY_ZONE_R_ARM), "The arm stayed after its item was deleted")
+
+/// AQUILA - tgstation#98023: an opened chest exposes the organs until the operation ends
+/datum/unit_test/aquila_exposed_organs
+
+/datum/unit_test/aquila_exposed_organs/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	var/datum/surgery/organ_manipulation/surgery = new(patient, BODY_ZONE_CHEST, chest)
+	var/saw_index = surgery.steps.Find(/datum/surgery_step/saw)
+	TEST_ASSERT(saw_index, "Organ manipulation has no saw step")
+
+	surgery.status = saw_index // the saw is the current step, not done yet
+	patient.update_exposed_organs()
+	TEST_ASSERT(!length(patient.exposed_organ_zones), "Organs got exposed before the bone was sawed")
+
+	surgery.status = saw_index + 1
+	patient.update_exposed_organs()
+	TEST_ASSERT(BODY_ZONE_CHEST in patient.exposed_organ_zones, "Sawed chest does not expose the organs")
+	TEST_ASSERT(patient.alerts[ALERT_EXPOSED_ORGANS], "No exposed organs alert")
+
+	qdel(surgery)
+	TEST_ASSERT(!length(patient.exposed_organ_zones), "Organs stayed exposed after the operation ended")
+	TEST_ASSERT(!patient.alerts[ALERT_EXPOSED_ORGANS], "Exposed organs alert stayed after the operation ended")
+
+	var/datum/surgery/dental_implant/dental = new(patient, BODY_ZONE_PRECISE_MOUTH, patient.get_bodypart(BODY_ZONE_HEAD))
+	dental.status = length(dental.steps)
+	patient.update_exposed_organs()
+	TEST_ASSERT(!length(patient.exposed_organ_zones), "Drilling a tooth exposed the organs")
+	qdel(dental)
+
+/// AQUILA - tgstation#94761: every SDSM-35 entry is filled in and every phobia has a page
+/datum/unit_test/aquila_sdsm_book
+
+/datum/unit_test/aquila_sdsm_book/Run()
+	var/obj/item/tgui_book/manual/dsm/book = allocate(/obj/item/tgui_book/manual/dsm)
+	for(var/list/entry as anything in book.build_dsm_entries())
+		for(var/field in list("full_name", "scan_name", "desc", "symptoms", "id"))
+			TEST_ASSERT(length(entry[field]), "SDSM-35 entry [entry["id"]] has no [field]")
+	var/list/phobias = book.dsm_phobia_texts()
+	for(var/phobia_type in SStraumas.phobia_types)
+		TEST_ASSERT(phobias[phobia_type], "SDSM-35 has no page for the [phobia_type] phobia")
+
+#undef TEST_ASSERT

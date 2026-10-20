@@ -2220,6 +2220,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/science/explab)
+"fu" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
 "fv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -43887,7 +43898,7 @@ hf
 fW
 he
 gS
-gR
+fu
 gv
 gu
 gt

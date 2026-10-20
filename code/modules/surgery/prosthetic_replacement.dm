@@ -18,9 +18,35 @@
 
 /datum/surgery_step/add_prosthetic
 	name = "add prosthetic"
-	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100)
+	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100, /obj/item/chainsaw = 100, /obj/item/melee/synthetic_arm_blade = 100, /obj/item = 100) // AQUILA EDIT - any item (tgstation#91573)
 	time = 32
 	var/organ_rejection_dam = 0
+	// AQUILA EDIT START - any item as a prosthetic arm (tgstation#91573)
+	/// Items that are always allowed to be an arm replacement, even if they fail another requirement
+	var/list/always_accepted_prosthetics = list(
+		/obj/item/chainsaw, // the OG, too large otherwise
+		/obj/item/melee/synthetic_arm_blade, // also too large otherwise
+		/obj/item/food/pizzaslice, // he's turning her into a papa john's
+	)
+
+/datum/surgery_step/add_prosthetic/tool_check(mob/user, obj/item/tool)
+	if(istype(tool, /obj/item/organ_storage))
+		if(!length(tool.contents))
+			return FALSE
+		tool = tool.contents[1]
+	if(tool.item_flags & (ABSTRACT|DROPDEL))
+		return FALSE
+	if(isbodypart(tool))
+		return TRUE // auto pass - "intended" use case
+	if(is_type_in_list(tool, always_accepted_prosthetics))
+		return TRUE // auto pass - soulful prosthetics
+	if(tool.w_class < WEIGHT_CLASS_NORMAL || tool.w_class > WEIGHT_CLASS_BULKY)
+		return FALSE // too large or too small items don't make sense as a limb replacement
+	var/datum/component/two_handed/two_handed = tool.GetComponent(/datum/component/two_handed)
+	if(two_handed && (two_handed.wielded || two_handed.require_twohands))
+		return FALSE // prevents exploits from weird edge cases - either unwield or get out
+	return TRUE
+	// AQUILA EDIT END
 
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(istype(tool, /obj/item/organ_storage))
@@ -79,7 +105,7 @@
 			"[user] pomyślnie wymienia [strefa_pl(target_zone, TRUE)] [target]!")
 		target.cauterise_wounds()
 		return 1
-	else
+	else if(istype(tool, /obj/item/chainsaw) || istype(tool, /obj/item/melee/synthetic_arm_blade)) // AQUILA EDIT - chainsaws and arm blades keep their mounted versions
 		var/obj/item/bodypart/L = target.newBodyPart(target_zone, FALSE, FALSE)
 		L.is_pseudopart = TRUE
 		L.attach_limb(target)
@@ -108,3 +134,57 @@
 			target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 			target.cauterise_wounds()
 			return 1
+		return 1
+	// AQUILA EDIT START - any other item becomes the arm itself, loose until secured (tgstation#91573)
+	if(!user.temporarilyRemoveItemFromInventory(tool))
+		to_chat(user, "<span class='warning'>Nie potrafisz rozstać się z [tool]!</span>")
+		return 0
+	if(!target.make_item_prosthetic(tool, target_zone, PROSTHETIC_LOOSE_DROP_PROB))
+		tool.forceMove(target.drop_location())
+		return 0
+	target.cauterise_wounds()
+	display_results(user, target, "<span class='notice'>Mocujesz [tool].</span>",
+		"[user] kończy mocować [tool]!",
+		"[user] kończy procedurę mocowania!")
+	display_pain(target, "Czujesz coś bardzo dziwnego, gdy [tool] zajmuje miejsce ręki!", TRUE)
+	surgery.steps += /datum/surgery_step/secure_arbitrary_prosthetic
+	return 1
+
+/// Optional last step after an item was attached as an arm: without it the item falls off on attacks
+/datum/surgery_step/secure_arbitrary_prosthetic
+	name = "secure prosthetic (suture/tape)"
+	implements = list(
+		/obj/item/stack/medical/suture = 100,
+		/obj/item/stack/sticky_tape/super = 80,
+		/obj/item/stack/sticky_tape = 50,
+	)
+	time = 48
+	pain_message = "Coś przyszywa ci ciało do protezy (%ZONE%)!"
+
+/datum/surgery_step/secure_arbitrary_prosthetic/tool_check(mob/user, obj/item/tool)
+	var/obj/item/stack/stack = tool
+	return istype(stack) && stack.amount >= 1
+
+/datum/surgery_step/secure_arbitrary_prosthetic/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	var/obj/item/bodypart/limb = target.get_bodypart(target_zone)
+	if(!limb?.GetComponent(/datum/component/item_as_prosthetic_limb))
+		to_chat(user, "<span class='warning'>Nie ma tu czego mocować.</span>")
+		return -1
+	display_results(user, target, "<span class='notice'>Zaczynasz mocować [limb] do ciała [target] przy pomocy [tool]...</span>",
+		"[user] zaczyna mocować [limb] do ciała [target] przy pomocy [tool].",
+		"[user] zaczyna coś mocować do ciała [target].")
+
+/datum/surgery_step/secure_arbitrary_prosthetic/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results = FALSE)
+	var/obj/item/bodypart/limb = target.get_bodypart(target_zone)
+	var/datum/component/item_as_prosthetic_limb/prosthetic = limb?.GetComponent(/datum/component/item_as_prosthetic_limb)
+	if(!prosthetic)
+		return FALSE
+	var/obj/item/stack/stack = tool
+	stack.use(1)
+	prosthetic.secure()
+	display_results(user, target, "<span class='notice'>[limb] trzyma się teraz pewnie.</span>",
+		"[user] pewnie mocuje [limb] do ciała [target]!",
+		"[user] kończy mocowanie!")
+	target.cauterise_wounds()
+	return TRUE
+	// AQUILA EDIT END
