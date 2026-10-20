@@ -19,7 +19,6 @@
 		/obj/structure/closet/secure_closet/freezer/kitchen = 1,
 		/obj/structure/closet/secure_closet/personal = 1,
 		/obj/structure/closet/crate/secure/weapon = 1,
-		/obj/structure/closet/crate = 1,
 		/obj/structure/closet/crate/bin = 1,
 		/obj/item/reagent_containers/glass/beaker/large = 1,
 		/obj/item/reagent_containers/glass/bottle/epinephrine = 1,

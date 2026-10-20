@@ -8,3 +8,12 @@
 	var/wall_dir = paradise_wall_dir_from_pixels(src)
 	if(wall_dir)
 		setDir(wall_dir)
+
+// Nakładki SS220 zamiast intercom-mic/intercom-bc
+/obj/item/radio/intercom/update_icon()
+	. = ..()
+	cut_overlays()
+	if(listening)
+		add_overlay("intercom_s")
+	if(broadcasting)
+		add_overlay("intercom_m")
