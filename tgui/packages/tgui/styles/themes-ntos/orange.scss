@@ -1,7 +1,0 @@
-@use './ntos-colors.scss' with (
-  $ntos-color: hsl(24, 81.1%, 43.5%)
-);
-
-.theme-ntos-orange {
-  @include ntos-colors.theme-ntos;
-}

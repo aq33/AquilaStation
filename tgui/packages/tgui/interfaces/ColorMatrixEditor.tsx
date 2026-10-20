@@ -46,13 +46,14 @@ export const ColorMatrixEditor = (props) => {
                                 {`${prefixes[row]}${prefixes[col]}:`}
                               </Box>
                               <NumberInput
+                                tickWhileDragging
                                 value={currentColor[row * 4 + col]}
                                 minValue={-Infinity}
                                 maxValue={Infinity}
                                 step={0.01}
                                 width="50px"
                                 format={(value) => toFixed(value, 2)}
-                                onDrag={(value) => {
+                                onChange={(value) => {
                                   let retColor = currentColor;
                                   retColor[row * 4 + col] = value;
                                   act('transition_color', { color: retColor });

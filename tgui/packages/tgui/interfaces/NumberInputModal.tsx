@@ -112,12 +112,12 @@ const InputArea = (props) => {
           autoSelect
           fluid
           allowFloats={!round_value}
-          minValue={min_value}
-          maxValue={max_value}
-          onChange={(_, value) => {
+          minValue={min_value ?? undefined}
+          maxValue={max_value ?? undefined}
+          onBlur={(value) => {
             setInputValue(value); // Update the input state when the user types
           }}
-          onEnter={(_, value) => act('submit', { entry: value })}
+          onEnter={(value) => act('submit', { entry: value })}
           value={inputValue} // Ensure the input field reflects the current state
         />
       </Stack.Item>

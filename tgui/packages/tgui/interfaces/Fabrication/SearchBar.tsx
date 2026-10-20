@@ -22,7 +22,7 @@ export const SearchBar = (props: Props) => {
           fluid
           placeholder={props.hint ?? 'Search for...'}
           value={props.searchText}
-          onInput={(_event, value: string) => {
+          onChange={(value: string) => {
             clearTimeout(timeout.current);
             timeout.current = setTimeout(
               () => props.onSearchTextChanged(value),

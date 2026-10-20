@@ -138,7 +138,7 @@ const MessageModal = (props) => {
             height="20vh"
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setInput(value.substring(0, maxMessageLength));
             }}
             value={input}
@@ -343,7 +343,7 @@ const PageChangingStatus = (props) => {
               maxLength={maxStatusLineLength}
               value={lineOne}
               width="200px"
-              onChange={(_, value) => setLineOne(value)}
+              onBlur={(value) => setLineOne(value)}
             />
           </Flex.Item>
 
@@ -352,7 +352,7 @@ const PageChangingStatus = (props) => {
               maxLength={maxStatusLineLength}
               value={lineTwo}
               width="200px"
-              onChange={(_, value) => setLineTwo(value)}
+              onBlur={(value) => setLineTwo(value)}
             />
           </Flex.Item>
 
@@ -444,7 +444,7 @@ const PageMain = (props) => {
             tooltip={
               canRecallShuttles
                 ? !shuttleRecallable &&
-                  "Na odwołanie promu ewakuacyjnego jest już za późno."
+                  'Na odwołanie promu ewakuacyjnego jest już za późno.'
                 : 'Nie masz uprawnień do odwołania promu ewakuacyjnego.'
             }
             tooltipPosition="bottom-end"
@@ -471,7 +471,12 @@ const PageMain = (props) => {
               Ostatnie wezwanie/odwołanie promu namierzono do:{' '}
               <b>{shuttleLastCalled}</b>
             </Box>
-          )) || <Box>Nie udało się namierzyć ostatniego sygnału wezwania/odwołania promu.</Box>)}
+          )) || (
+            <Box>
+              Nie udało się namierzyć ostatniego sygnału wezwania/odwołania
+              promu.
+            </Box>
+          ))}
       </Section>
 
       {!!canSetAlertLevel && (
@@ -764,7 +769,7 @@ const PageMessages = (props) => {
               <Box mt={1}>
                 {Object.entries(message.possibleAnswers).map((answer) => (
                   <Button
-                    content={answer[1]}
+                    content={String(answer[1])}
                     color={message.answered === answer[0] ? 'good' : undefined}
                     key={answer[0]}
                     onClick={
@@ -842,7 +847,9 @@ const PageObjectives = (props) => {
 
   return (
     <Section fill scrollable title="Status misji">
-      {(!data.announced_objectives && <>Oczekuj na przydział zadań misji.</>) || (
+      {(!data.announced_objectives && (
+        <>Oczekuj na przydział zadań misji.</>
+      )) || (
         <>
           {data.mission_briefing}
           <br />
@@ -924,7 +931,6 @@ export const CommunicationsConsole = (props) => {
                   <Section title="Menu" fitted>
                     <Tabs>
                       <Tabs.Tab
-                        fluid
                         icon="desktop"
                         selected={page === STATE_CHANGING_STATUS}
                         onClick={() =>
@@ -935,7 +941,6 @@ export const CommunicationsConsole = (props) => {
                       </Tabs.Tab>
 
                       <Tabs.Tab
-                        fluid
                         icon="envelope-o"
                         selected={page === STATE_MESSAGES}
                         onClick={() =>
@@ -951,7 +956,6 @@ export const CommunicationsConsole = (props) => {
                           content={canBuyShuttles}
                         >
                           <Tabs.Tab
-                            fluid
                             icon="shopping-cart"
                             selected={page === STATE_BUYING_SHUTTLE}
                             onClick={() =>
@@ -964,7 +968,6 @@ export const CommunicationsConsole = (props) => {
                       )}
 
                       <Tabs.Tab
-                        fluid
                         icon="dot-circle-o"
                         selected={page === STATE_OBJECTIVES}
                         onClick={() =>

@@ -59,7 +59,7 @@ export const NtosCardContent = (props) => {
             <Input
               value={id_owner}
               width="250px"
-              onInput={(e, value) =>
+              onChange={(value) =>
                 act('PRG_edit', {
                   name: value,
                 })
@@ -142,8 +142,8 @@ export const NtosCardContent = (props) => {
             >
               <Button.Input
                 fluid
-                content="Custom..."
-                onCommit={(e, value) =>
+                buttonText="Custom..."
+                onCommit={(value) =>
                   act('PRG_assign', {
                     assign_target: 'Custom',
                     custom_name: value,

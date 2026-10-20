@@ -118,6 +118,7 @@ export const PDSRManipulator = (props) => {
                     </LabeledList.Item>
                     <LabeledList.Item label="Input Power">
                       <Slider
+                        tickWhileDragging
                         value={data.r_power_input}
                         minValue={0}
                         maxValue={data.r_max_power_input * 1.25}
@@ -134,7 +135,7 @@ export const PDSRManipulator = (props) => {
                           ],
                           red: [-Infinity, Infinity],
                         }}
-                        onDrag={(e, value) =>
+                        onChange={(e, value) =>
                           act('power_allocation', {
                             adjust: value,
                           })
@@ -205,13 +206,14 @@ export const PDSRManipulator = (props) => {
             />
             Screen Hardening:
             <Slider
+              tickWhileDragging
               value={data.s_hardening}
               fillValue={data.s_hardening}
               minValue={0}
               maxValue={100}
               step={1}
               stepPixelSize={6.4}
-              onDrag={(e, value) =>
+              onChange={(e, value) =>
                 act('hardening', {
                   adjust: value,
                 })
@@ -221,12 +223,13 @@ export const PDSRManipulator = (props) => {
             </Slider>
             Screen Regeneration:
             <Slider
+              tickWhileDragging
               value={data.s_regen}
               minValue={0}
               maxValue={100}
               step={1}
               stepPixelSize={6.4}
-              onDrag={(e, value) =>
+              onChange={(e, value) =>
                 act('regen', {
                   adjust: value,
                 })

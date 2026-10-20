@@ -46,13 +46,14 @@ export const RbmkControlRods = (props) => {
           Target criticality:
           <br />
           <Slider
+            tickWhileDragging
             value={desiredK}
             fillValue={k}
             minValue={0}
             maxValue={3}
             step={0.1}
             stepPixelSize={5}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('input', {
                 target: value,
               })

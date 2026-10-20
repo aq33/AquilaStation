@@ -215,15 +215,16 @@ const StripMenuRow = (props: StripMenuRowProps) => {
             <Flex.Item>
               <Button
                 compact
-                content={name}
                 disabled={props.obscured === ObscuringLevel.Completely}
                 color={props.empty ? 'transparent' : undefined}
                 ellipsis
                 maxWidth="100%"
-                icon={props.interacting && 'spinner'}
+                icon={props.interacting ? 'spinner' : undefined}
                 iconSpin
                 onClick={() => act('use', { key: props.slotID })}
-              />
+              >
+                {name ?? ''}
+              </Button>
             </Flex.Item>
           )}
           {props.alternates?.map((alternate) => (

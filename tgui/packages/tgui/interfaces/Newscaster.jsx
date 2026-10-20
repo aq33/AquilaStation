@@ -13,6 +13,7 @@ import { useBackend, useLocalState } from '../backend';
 import {
   BlockQuote,
   Box,
+  Image,
   Button,
   Divider,
   Icon,
@@ -100,7 +101,7 @@ const NewscasterChannelModal = ({ header, submit_content, override_bg }) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Box as="label" color="label" htmlFor="create_channel_name">
+              <Box inline color="label">
                 Channel Name:{' '}
               </Box>
             </Stack.Item>
@@ -109,7 +110,7 @@ const NewscasterChannelModal = ({ header, submit_content, override_bg }) => {
                 id="create_channel_name"
                 width="100%"
                 maxLength={42}
-                onChange={(e, name) =>
+                onBlur={(name) =>
                   act('setChannelName', {
                     channeltext: name,
                   })
@@ -122,7 +123,7 @@ const NewscasterChannelModal = ({ header, submit_content, override_bg }) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Box as="label" color="label" htmlFor="create_channel_name">
+              <Box inline color="label">
                 Channel Privacy:{' '}
               </Box>
             </Stack.Item>
@@ -145,7 +146,7 @@ const NewscasterChannelModal = ({ header, submit_content, override_bg }) => {
         <Stack.Item>
           <Stack vertical>
             <Stack.Item>
-              <Box as="label" color="label" htmlFor="create_channel_desc">
+              <Box inline color="label">
                 Channel Description
               </Box>
             </Stack.Item>
@@ -155,7 +156,7 @@ const NewscasterChannelModal = ({ header, submit_content, override_bg }) => {
                 height="150px"
                 width="100%"
                 maxLength={512}
-                onChange={(e, desc) =>
+                onBlur={(desc) =>
                   act('setChannelDesc', {
                     channeldesc: desc,
                   })
@@ -249,7 +250,7 @@ const NewscasterCommentCreation = (props) => {
             backgroundColor="black"
             textColor="white"
             maxLength={512}
-            onChange={(e, comment) =>
+            onBlur={(comment) =>
               act('setCommentBody', {
                 commenttext: comment,
               })
@@ -306,7 +307,7 @@ const NewscasterWantedScreen = (props) => {
                     </Box>
                     <Section>
                       {activeWanted.has_image ? (
-                        <Box as="img" src={activeWanted.image} />
+                        <Image src={activeWanted.image} />
                       ) : null}
                       <Box bold>{activeWanted.criminal}</Box>
                       <Box italic>{activeWanted.crime}</Box>
@@ -628,12 +629,8 @@ const NewscasterChannelSelector = (_) => {
 const processedText = (value) => {
   const textHtml = {
     __html: sanitizeText(
-      marked(value, {
-        breaks: true,
-        smartypants: true,
-        smartLists: true,
-        baseUrl: 'thisshouldbreakhttp',
-      }),
+      // marked 15 dropped smartypants/smartLists/baseUrl options
+      marked.parse(value, { breaks: true, async: false }),
     ),
   };
   return textHtml;
@@ -675,7 +672,7 @@ const NewscasterChannelMessages = (_) => {
             title={
               <i>
                 {message.censored_author ? (
-                  <Box as="span" color="red" style={{ display: 'inline' }}>
+                  <Box inline color="red" style={{ display: 'inline' }}>
                     By: [REDACTED] (D-Notice)
                   </Box>
                 ) : (
@@ -744,7 +741,7 @@ const NewscasterChannelMessages = (_) => {
               )}
               {message.photo !== null && !message.censored_message && (
                 <>
-                  <Box as="img" src={message.photo} />
+                  <Image src={message.photo} />
                   {message.photo_caption && (
                     <Section
                       dangerouslySetInnerHTML={processedText(

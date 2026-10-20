@@ -62,6 +62,7 @@ export const Radio = (props) => {
                 </Box>
               )) || (
                 <NumberInput
+                  tickWhileDragging
                   animated
                   unit="kHz"
                   step={0.2}
@@ -70,7 +71,7 @@ export const Radio = (props) => {
                   maxValue={maxFrequency / 10}
                   value={frequency / 10}
                   format={(value) => toFixed(value, 1)}
-                  onDrag={(value) =>
+                  onChange={(value) =>
                     act('frequency', {
                       adjust: value - frequency / 10,
                     })

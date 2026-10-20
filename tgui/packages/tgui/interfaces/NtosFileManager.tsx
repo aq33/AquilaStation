@@ -77,10 +77,10 @@ const FileTable = (props) => {
             {!file.undeletable ? (
               <Button.Input
                 fluid
-                content={file.name}
-                currentValue={file.name}
+                buttonText={file.name}
+                value={file.name}
                 tooltip="Rename"
-                onCommit={(e, value) => onRename(file.name, value)}
+                onCommit={(value) => onRename(file.name, value)}
               />
             ) : (
               file.name

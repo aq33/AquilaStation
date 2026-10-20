@@ -81,7 +81,7 @@ export const BiogeneratorContent = (props) => {
           Search
           <Input
             value={searchText}
-            onInput={(e, value) => setSearchText(value)}
+            onChange={(value) => setSearchText(value)}
             mx={1}
           />
           <Button icon="eject" content="Eject" onClick={() => act('detach')} />

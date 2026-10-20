@@ -107,6 +107,7 @@ export const SolarControl = (props) => {
             <LabeledList.Item label="Angle">
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
+                  tickWhileDragging
                   width="52px"
                   unit="°"
                   step={1}
@@ -115,11 +116,12 @@ export const SolarControl = (props) => {
                   maxValue={+720}
                   value={angle}
                   format={(angle) => String(Math.round(360 + angle) % 360)}
-                  onDrag={(value) => act('angle', { value })}
+                  onChange={(value) => act('angle', { value })}
                 />
               )}
               {tracking_state === 1 && (
                 <NumberInput
+                  tickWhileDragging
                   width="80px"
                   unit="°/h"
                   step={5}
@@ -131,7 +133,7 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? '+' : '-';
                     return sign + toFixed(Math.abs(rate));
                   }}
-                  onDrag={(value) => act('rate', { value })}
+                  onChange={(value) => act('rate', { value })}
                 />
               )}
               {tracking_state === 2 && (

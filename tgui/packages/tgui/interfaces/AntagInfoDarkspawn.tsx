@@ -2,7 +2,7 @@
 import { BooleanLike } from 'common/react';
 
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Section, Stack, Tabs } from '../components';
+import { Box, Button, Image, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
@@ -148,8 +148,8 @@ const FlavorSection = (_props) => {
         </Stack.Item>
         <Stack.Item>
           Fale zwiastują chaos, gdy{' '}
-          <span style={Lucidity}>jasne niebieskie światło</span> wyrywa cię
-          ze snu.
+          <span style={Lucidity}>jasne niebieskie światło</span> wyrywa cię ze
+          snu.
         </Stack.Item>
         <Stack.Item>
           Wpadając w zwykłą przestrzeń, gwałtownie{' '}
@@ -179,8 +179,8 @@ const GuideSection = (_props) => {
   return (
     <Stack vertical fontSize="14px">
       <Stack.Item>
-        - Współpracuj z innymi darkspawnami. Rozmawiasz z nimi przez Mindlink
-        po :j.
+        - Współpracuj z innymi darkspawnami. Rozmawiasz z nimi przez Mindlink po
+        :j.
       </Stack.Item>
       {!has_class && (
         <Stack.Item>
@@ -197,12 +197,12 @@ const GuideSection = (_props) => {
       )}
       <Stack.Item>
         - Obezwładniaj załogę i pożeraj jej wolę, żeby zdobywać{' '}
-        <span style={Lucidity}>jasność</span> i{' '}
-        <span style={Velvet}>wolę</span>.
+        <span style={Lucidity}>jasność</span> i <span style={Velvet}>wolę</span>
+        .
       </Stack.Item>
       <Stack.Item>
-        - Wydawaj <span style={Velvet}>wolę</span> w Psi Web na nowe zdolności
-        i ulepszenia.
+        - Wydawaj <span style={Velvet}>wolę</span> w Psi Web na nowe zdolności i
+        ulepszenia.
       </Stack.Item>
       <Stack.Item>
         - Gdy zbierzesz dość <span style={Lucidity}>jasności</span>, odpraw
@@ -366,8 +366,7 @@ const KnowledgePreview = (_props) => {
         </Stack.Item>
         {!!selectedKnowledge.icon && (
           <Stack.Item>
-            <Box
-              as="img"
+            <Image
               src={`data:image/png;base64,${selectedKnowledge.icon}`}
               height="128px"
               style={{

@@ -12,7 +12,6 @@ import {
 
 import { useBackend, useLocalState } from '../backend';
 import { Grid } from '../components';
-import { TableRow } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -250,7 +249,7 @@ export const ClockworkSpellList = (props) => {
       {scriptures.map((script) =>
         script.type === selectedTab ? (
           <Fragment key={script}>
-            <TableRow>
+            <Table.Row>
               <Table.Cell bold>{script.name}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -269,8 +268,8 @@ export const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </TableRow>
-            <TableRow>
+            </Table.Row>
+            <Table.Row>
               <Table.Cell>{script.desc}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
@@ -284,7 +283,7 @@ export const ClockworkSpellList = (props) => {
                   }
                 />
               </Table.Cell>
-            </TableRow>
+            </Table.Row>
             <Table.Cell>
               <Divider />
             </Table.Cell>

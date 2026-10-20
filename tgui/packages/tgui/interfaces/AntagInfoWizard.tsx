@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Section, Stack } from '../components';
+import { Box, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
@@ -40,13 +40,10 @@ const IntroSection = (_props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Box
-          inline
-          as="img"
+        <Image
           src={resolveAsset('wizard.png')}
           width="64px"
           style={{
-            msInterpolationMode: 'nearest-neighbor',
             imageRendering: 'pixelated',
           }}
         />

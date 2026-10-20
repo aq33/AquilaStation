@@ -3,6 +3,8 @@
  */
 
 import { marked } from 'marked';
+import { baseUrl } from 'marked-base-url';
+import { markedSmartypants } from 'marked-smartypants';
 import { Component, createRef, RefObject } from 'react';
 import { Box, Button, Flex, Section, TextArea } from 'tgui-core/components';
 
@@ -383,15 +385,13 @@ export class PrimaryView extends Component<any, any> {
                 }
               >
                 <TextArea
-                  scrollbar
-                  noborder
                   value={textAreaText}
                   textColor={useColor}
                   fontFamily={useFont}
                   bold={useBold}
                   height={'100%'}
                   backgroundColor={paper_color}
-                  onInput={(e, text) => {
+                  onChange={(text) => {
                     setTextAreaText(text);
 
                     if (this.scrollableRef.current) {
@@ -624,17 +624,20 @@ export class PreviewView extends Component<PreviewViewProps> {
       },
     };
 
-    // marked.use({ tokenizer });
-    marked.use({ extensions: [inputField] });
-
-    return marked.parse(rawText, {
-      breaks: true,
-      smartypants: true,
-      smartLists: true,
-      walkTokens,
+    // marked 15 moved smartypants and baseUrl into extensions (same as tg).
+    marked.use(
+      {
+        breaks: true,
+        gfm: true,
+        extensions: [inputField],
+        walkTokens,
+      },
+      markedSmartypants(),
       // Once assets are fixed might need to change this for them
-      baseUrl: 'thisshouldbreakhttp',
-    });
+      baseUrl('thisshouldbreakhttp'),
+    );
+
+    return marked.parse(rawText, { async: false });
   };
 
   // Fully formats, sanitises and parses the provided raw text and wraps it

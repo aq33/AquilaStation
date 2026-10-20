@@ -226,7 +226,7 @@ const ContactsScreen = (props) => {
             width="300px"
             placeholder="Search by name or job"
             value={searchUser}
-            onInput={(e, value) => setSearchUser(value)}
+            onChange={(value) => setSearchUser(value)}
           />
         </Section>
       </Stack>

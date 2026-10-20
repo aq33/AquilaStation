@@ -403,11 +403,9 @@ const DescriptionLines = (props: { data?: Faction }) => {
         {data?.name}
       </Stack.Item>
       {data?.description?.split('\n').map((value, index) => (
-        <Stack.Item
-          key={'desc-' + index}
-          maxWidth="70vw"
-          dangerouslySetInnerHTML={{ __html: value }}
-        />
+        <Stack.Item key={'desc-' + index} maxWidth="70vw">
+          <div dangerouslySetInnerHTML={{ __html: value }} />
+        </Stack.Item>
       ))}
     </>
   );

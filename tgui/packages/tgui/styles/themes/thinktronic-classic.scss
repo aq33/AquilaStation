@@ -1,26 +1,20 @@
-@use 'sass:color';
-@use 'sass:meta';
+/**
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
 
-@use '../base.scss' with (
-  $color-fg: black
-);
-@use '../colors.scss' with (
-  $primary: black
-);
+.theme-thinktronic-classic:root {
+  --color-text: black;
+  --color-primary: black;
 
-$disabled-color: hsl(0, 0%, 18.8%);
+  .Layout__content {
+    background-image: none;
+  }
 
-.theme-thinktronic-classic {
-  @include meta.load-css('../components/Tabs.scss');
-  @include meta.load-css('../components/Section.scss');
-  @include meta.load-css('../components/Button.scss');
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss');
   ul,
   ol {
     list-style-type: none;
   }
+
   a,
   a:link,
   a:visited,
@@ -29,9 +23,11 @@ $disabled-color: hsl(0, 0%, 18.8%);
     color: hsl(0, 0%, 0%);
     text-decoration: none;
   }
+
   img {
     border-style: none;
   }
+
   a img {
     padding-right: 9px;
   }
@@ -43,13 +39,11 @@ $disabled-color: hsl(0, 0%, 18.8%);
 
   .Button {
     color: black !important;
+    background-color: transparent !important;
 
     &:hover {
       transition: color 0ms !important;
-    }
-
-    &:hover {
-      color: $disabled-color !important;
+      color: hsl(0, 0%, 18.8%) !important;
     }
 
     * {
@@ -61,37 +55,14 @@ $disabled-color: hsl(0, 0%, 18.8%);
     text-decoration: underline !important;
   }
 
-  @each $color-name, $color-value in colors.$bg-map {
-    .Button--color--#{$color-name} {
-      background-color: transparent !important;
-    }
-  }
-
-  .Button--color--default {
-    background-color: transparent !important;
-  }
-
-  .Button--color--caution {
-    background-color: transparent !important;
-  }
-
-  .Button--color--danger {
-    background-color: transparent !important;
-  }
-
-  .Button--color--transparent {
-    background-color: transparent !important;
-  }
-
   .Button--disabled {
     background-color: transparent !important;
     text-decoration: none !important;
-    color: $disabled-color !important;
+    color: hsl(0, 0%, 18.8%) !important;
+
     .fa,
     .fas,
-    .far {
-      text-decoration: none !important;
-    }
+    .far,
     .Button__content {
       text-decoration: none !important;
     }
@@ -102,9 +73,7 @@ $disabled-color: hsl(0, 0%, 18.8%);
     color: black !important;
   }
 
-  .Button--hasContent,
   .Button:not(.Button--empty) {
-    // Add a margin to the icon to keep it separate from the text
     .fa,
     .fas,
     .far {
@@ -127,17 +96,13 @@ $disabled-color: hsl(0, 0%, 18.8%);
     font-weight: normal;
   }
 
-  .Layout__content {
-    background-image: none;
-  }
-
   .Window {
     color: black;
     background-image: none;
   }
 
   .Window__dimmer {
-    background-color: hsl(0, 0%, 0%) 20;
+    background-color: hsla(0, 0%, 0%, 0.2);
   }
 
   .color-label {
@@ -145,25 +110,12 @@ $disabled-color: hsl(0, 0%, 18.8%);
   }
 
   .ProgressBar {
-    color: $disabled-color !important;
+    color: hsl(0, 0%, 18.8%) !important;
     border-radius: 0;
-  }
-
-  .ProgressBar--color--default {
-    border: base.em(1px) solid black;
+    border: 0.0833em solid black !important;
 
     .ProgressBar__fill {
-      background-color: black;
-    }
-  }
-
-  @each $color-name, $color-value in colors.$bg-map {
-    .ProgressBar--color--#{$color-name} {
-      border: base.em(1px) solid black !important;
-
-      .ProgressBar__fill {
-        background-color: black;
-      }
+      background-color: black !important;
     }
   }
 
@@ -176,16 +128,12 @@ $disabled-color: hsl(0, 0%, 18.8%);
     font-weight: bold;
   }
 
-  .Tabs--horizontal {
-    .Tab--selected {
-      border-bottom: 1px solid black;
-    }
+  .Tabs--horizontal .Tab--selected {
+    border-bottom: 1px solid black;
   }
 
-  .Tabs--vertical {
-    .Tab--selected {
-      border-right: 0;
-    }
+  .Tabs--vertical .Tab--selected {
+    border-right: 0;
   }
 
   .ColorBox {

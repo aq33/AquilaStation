@@ -18,6 +18,6 @@ export { OrbitalMapComponent } from './OrbitalMapComponent';
 export { OrbitalMapSvg } from './OrbitalMapSvg';
 export { RadarChart } from './RadarChart';
 export { ScrollableBox } from './ScrollableBox';
-export { ScrollingChart } from './ScrollingChart';
+export { default as ScrollingChart } from './ScrollingChart';
 export { SearchBar } from './SearchBar';
 export { StarButton } from './StarButton';

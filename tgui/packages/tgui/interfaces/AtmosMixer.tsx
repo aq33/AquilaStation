@@ -60,6 +60,7 @@ export const AtmosMixer = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Node 1">
               <NumberInput
+                tickWhileDragging
                 step={1}
                 animated
                 value={data.node1_concentration}
@@ -68,7 +69,7 @@ export const AtmosMixer = (props) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value) =>
+                onChange={(value) =>
                   act('node1', {
                     concentration: value,
                   })
@@ -77,6 +78,7 @@ export const AtmosMixer = (props) => {
             </LabeledList.Item>
             <LabeledList.Item label="Node 2">
               <NumberInput
+                tickWhileDragging
                 step={1}
                 animated
                 value={data.node2_concentration}
@@ -85,7 +87,7 @@ export const AtmosMixer = (props) => {
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value) =>
+                onChange={(value) =>
                   act('node2', {
                     concentration: value,
                   })

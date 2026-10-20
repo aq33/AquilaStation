@@ -69,6 +69,7 @@ export const Jukebox = (props) => {
             <LabeledControls.Item label="Volume">
               <Box position="relative">
                 <Knob
+                  tickWhileDragging
                   size={3.2}
                   color={volume >= 50 ? 'red' : 'green'}
                   value={volume}
@@ -77,7 +78,7 @@ export const Jukebox = (props) => {
                   maxValue={100}
                   step={1}
                   stepPixelSize={1}
-                  onDrag={(e, value) =>
+                  onChange={(e, value) =>
                     act('set_volume', {
                       volume: value,
                     })

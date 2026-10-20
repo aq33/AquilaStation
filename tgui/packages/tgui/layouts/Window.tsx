@@ -6,11 +6,13 @@
 
 import { BooleanLike, classes } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
-import { PropsWithChildren, ReactNode, useEffect } from 'react';
+import { ComponentProps, PropsWithChildren, ReactNode, useEffect } from 'react';
 
 import { backendSuspendStart, useBackend } from '../backend';
 import { globalStore } from '../backend';
-import { BoxProps } from '../components';
+import { Box } from '../components';
+
+type BoxProps = ComponentProps<typeof Box>;
 import { UI_DISABLED, UI_INTERACTIVE } from '../constants';
 import { useDebug } from '../debug';
 import {

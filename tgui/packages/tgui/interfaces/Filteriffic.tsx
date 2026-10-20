@@ -29,13 +29,14 @@ const FilterIntegerEntry = (props) => {
   const { act } = useBackend<Data>();
   return (
     <NumberInput
+      tickWhileDragging
       step={1}
       value={value}
       minValue={-500}
       maxValue={500}
       stepPixelSize={5}
       width="39px"
-      onDrag={(value) =>
+      onChange={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
@@ -54,6 +55,7 @@ const FilterFloatEntry = (props) => {
   return (
     <>
       <NumberInput
+        tickWhileDragging
         value={value}
         minValue={-500}
         maxValue={500}
@@ -61,7 +63,7 @@ const FilterFloatEntry = (props) => {
         step={step}
         format={(value) => toFixed(value, numberOfDecimalDigits(step))}
         width="80px"
-        onDrag={(value) =>
+        onChange={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {
@@ -94,7 +96,7 @@ const FilterTextEntry = (props) => {
     <Input
       value={value}
       width="250px"
-      onInput={(e, value) =>
+      onChange={(value) =>
         act('modify_filter_value', {
           name: filterName,
           new_data: {
@@ -123,7 +125,7 @@ const FilterColorEntry = (props) => {
       <Input
         value={value}
         width="90px"
-        onInput={(e, value) =>
+        onChange={(value) =>
           act('transition_filter_value', {
             name: filterName,
             new_data: {
@@ -250,9 +252,9 @@ const FilterEntry = (props) => {
             }
           />
           <Button.Input
-            content="Rename"
-            placeholder={name}
-            onCommit={(e, new_name) =>
+            buttonText="Rename"
+            value={name}
+            onCommit={(new_name) =>
               act('rename_filter', {
                 name: name,
                 new_name: new_name,
@@ -315,7 +317,7 @@ export const Filteriffic = (props) => {
                 <Input
                   value={massApplyPath}
                   width="100px"
-                  onInput={(e, value) => setMassApplyPath(value)}
+                  onChange={(value) => setMassApplyPath(value)}
                 />
                 <Button.Confirm
                   content="Apply"

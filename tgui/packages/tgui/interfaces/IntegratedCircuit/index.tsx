@@ -66,7 +66,7 @@ const FUNDAMENTAL_DATA_TYPES = {
         <Input
           placeholder={name}
           value={value}
-          onChange={(e, val) => setValue(val)}
+          onBlur={(val) => setValue(val)}
         />
       </BasicInput>
     );
@@ -135,7 +135,7 @@ const FUNDAMENTAL_DATA_TYPES = {
             <Input
               placeholder={name}
               value={value}
-              onChange={(e, val) => setValue(val)}
+              onBlur={(val) => setValue(val)}
             />
           </Stack.Item>
         </Stack>
@@ -233,9 +233,7 @@ export class IntegratedCircuit extends Component<any, any> {
             fluid
             placeholder="Circuit Name"
             value={display_name}
-            onChange={(e, value) =>
-              act('set_display_name', { display_name: value })
-            }
+            onBlur={(value) => act('set_display_name', { display_name: value })}
           />
         }
       >

@@ -109,7 +109,7 @@ export const CameraConsoleContent = (props) => {
           fluid
           mt={1}
           placeholder="Search for a camera"
-          onInput={(e, value) => setSearchText(value)}
+          onChange={(value) => setSearchText(value)}
         />
       </Flex.Item>
       <Flex.Item height="100%">

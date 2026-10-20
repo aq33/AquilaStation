@@ -1155,6 +1155,7 @@ const RadiationEmitterSettings = (props) => {
       <LabeledList>
         <LabeledList.Item label="Output level">
           <NumberInput
+            tickWhileDragging
             step={1}
             animated
             width="32px"
@@ -1162,7 +1163,7 @@ const RadiationEmitterSettings = (props) => {
             value={radStrength}
             minValue={1}
             maxValue={RADIATION_STRENGTH_MAX}
-            onDrag={(value) =>
+            onChange={(value) =>
               act('set_pulse_strength', {
                 val: value,
               })
@@ -1171,6 +1172,7 @@ const RadiationEmitterSettings = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Pulse duration">
           <NumberInput
+            tickWhileDragging
             step={1}
             animated
             width="32px"
@@ -1178,7 +1180,7 @@ const RadiationEmitterSettings = (props) => {
             value={radDuration}
             minValue={1}
             maxValue={RADIATION_DURATION_MAX}
-            onDrag={(value) =>
+            onChange={(value) =>
               act('set_pulse_duration', {
                 val: value,
               })
@@ -1490,9 +1492,9 @@ const DnaConsoleAdvancedInjectors = (props) => {
       <Box mt={2}>
         <Button.Input
           minWidth="200px"
-          content="Create new injector"
+          buttonText="Create new injector"
           disabled={advInjectors.length >= maxAdvInjectors}
-          onCommit={(e, value) =>
+          onCommit={(value) =>
             act('new_adv_inj', {
               name: value,
             })

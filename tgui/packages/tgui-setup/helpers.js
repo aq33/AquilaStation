@@ -278,7 +278,10 @@
           options.attempt += 1;
           loadAsset(options);
         },
-        Math.min(RETRY_WAIT_INITIAL + attempt * RETRY_WAIT_INCREMENT, RETRY_WAIT_MAX)
+        Math.min(
+          RETRY_WAIT_INITIAL + attempt * RETRY_WAIT_INCREMENT,
+          RETRY_WAIT_MAX
+        )
       );
     };
     // JS specific code

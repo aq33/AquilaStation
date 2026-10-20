@@ -1,5 +1,13 @@
 import { createSearch } from 'common/string';
-import { Box, Button, Flex, Icon, Input, Section } from 'tgui-core/components';
+import {
+  Box,
+  Image,
+  Button,
+  Flex,
+  Icon,
+  Input,
+  Section,
+} from 'tgui-core/components';
 
 import { resolveAsset } from '../assets';
 import { useBackend, useLocalState } from '../backend';
@@ -114,7 +122,7 @@ const OrbitedButton = (props) => {
         <Box inline ml={1}>
           {'('}
           {thing.orbiters}{' '}
-          <Box as="img" src={resolveAsset('ghost.png')} opacity={0.7} />
+          <Image src={resolveAsset('ghost.png')} opacity={0.7} />
           {')'}
         </Box>
       )}
@@ -173,8 +181,8 @@ export const Orbit = (props) => {
                 placeholder="Search..."
                 fluid
                 value={searchText}
-                onInput={(_, value) => setSearchText(value)}
-                onEnter={(_, value) => orbitMostRelevant(value)}
+                onChange={(value) => setSearchText(value)}
+                onEnter={(value) => orbitMostRelevant(value)}
               />
             </Flex.Item>
           </Flex>

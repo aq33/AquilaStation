@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Section, Stack } from '../components';
+import { Box, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
@@ -80,13 +80,10 @@ const IntroductionSection = (_props) => {
     <Section fill>
       <Stack>
         <Stack.Item>
-          <Box
-            inline
-            as="img"
+          <Image
             src={resolveAsset('changeling.gif')}
             width="64px"
             style={{
-              msInterpolationMode: 'nearest-neighbor',
               imageRendering: 'pixelated',
             }}
           />

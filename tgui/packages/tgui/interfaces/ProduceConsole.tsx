@@ -121,7 +121,7 @@ function ShoppingTab(props) {
                 width="150px"
                 placeholder="Szukaj przedmiotu..."
                 value={searchItem}
-                onChange={(_, value) => setSearchItem(value)}
+                onBlur={(value) => setSearchItem(value)}
               />
             </Stack.Item>
           </Tabs>

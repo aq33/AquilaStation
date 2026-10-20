@@ -1,112 +1,89 @@
-@use 'sass:meta';
+/**
+ * Aquila chat panel theme (default), same palette as the "computer" window theme.
+ * Ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
+
 @use 'sass:color';
-// Components
+@use 'sass:meta';
 
-@use '~tgui/styles/base.scss' with (
-  $color-fg: #dbd8ef,
-  $color-bg: #11121c
-);
+$primary: #162c59;
+$bg: #11121c;
 
-@use '~tgui/styles/colors.scss' with (
-  $red: #ac0c0c,
-  $orange: #9c450b,
-  $yellow: #dece78,
-  $olive: #788a05,
-  $green: #56ba13,
-  $teal: #03807a,
-  $blue: #0b4d80,
-  $violet: #340e86,
-  $purple: #5b0d76,
-  $pink: #9a125f,
-  $brown: #6b3511,
-  $grey: #535353,
-  $light-grey: #848484,
-  $primary: #162c59,
-  $good: #4a9c13,
-  $average: #b16b11,
-  $bad: #ac0c0c,
-  $bg-lightness: -40%
-);
+.theme-blue:root {
+  --color-base: #{$bg};
+  --color-text: #dbd8ef;
+  --color-primary: #{$primary};
+  --color-red: #ac0c0c;
+  --color-orange: #9c450b;
+  --color-yellow: #dece78;
+  --color-olive: #788a05;
+  --color-green: #56ba13;
+  --color-teal: #03807a;
+  --color-blue: #0b4d80;
+  --color-violet: #340e86;
+  --color-purple: #5b0d76;
+  --color-pink: #9a125f;
+  --color-brown: #6b3511;
+  --color-grey: #535353;
+  --color-light-grey: #848484;
+  --color-good: #4a9c13;
+  --color-average: #b16b11;
+  --color-bad: #ac0c0c;
+  --button-background-default: #{color.scale($bg, $lightness: 10%)};
+  --section-title-color: #{$bg};
+  --titlebar-background: #181a21;
 
-.theme-blue {
-  // Base overrides
-  @include meta.load-css('~tgui/styles/atomic/color.scss');
-  // Uses color-fg/color-bg
-  @include meta.load-css('~tgui/styles/components/ColorSelectBox.scss');
-  @include meta.load-css('~tgui/styles/components/Input.scss');
-  @include meta.load-css('~tgui/styles/components/Modal.scss');
-  @include meta.load-css(
-    '~tgui/styles/components/Section.scss',
-    $with: ('title-text-color': base.$color-bg)
-  );
-  @include meta.load-css('~tgui/styles/components/Slider.scss');
-  @include meta.load-css('~tgui/styles/components/Tabs.scss');
-  @include meta.load-css('~tgui/styles/interfaces/RequestManager.scss');
-  @include meta.load-css('~tgui/styles/layouts/Layout.scss');
-  @include meta.load-css('~tgui/styles/layouts/PopupWindow.scss');
-  @include meta.load-css('~tgui/styles/layouts/Window.scss');
-  // Uses colors.scss
-  @include meta.load-css('~tgui/styles/components/ProgressBar.scss');
-  @include meta.load-css('~tgui/styles/components/NoticeBox.scss');
-  @include meta.load-css('~tgui/styles/interfaces/AlertModal.scss');
-  @include meta.load-css('~tgui/styles/interfaces/ChemDispenser.scss');
-  @include meta.load-css('~tgui/styles/interfaces/ListInput.scss');
-  @include meta.load-css('~tgui/styles/interfaces/Fabricator.scss');
-  @include meta.load-css('~tgui/styles/interfaces/Techweb.scss');
-  // Button overrides
-  @include meta.load-css(
-    '~tgui/styles/components/Button.scss',
-    $with: ('color-default': colors.fg(base.$color-bg))
-  );
   // Section overrides
   .Section {
-    border-bottom: 1px solid colors.$primary;
+    border-bottom: 1px solid $primary;
     display: flex;
     flex-direction: column;
   }
+
   .Section__title {
     padding: 0.2em;
     padding-left: 0.5em;
     margin-bottom: 0.4em;
-    background-color: colors.$primary;
-    box-shadow: 0px 0px 6px 0px colors.$primary;
+    background-color: $primary;
+    box-shadow: 0px 0px 6px 0px $primary;
     border-bottom: unset;
   }
+
   .Section__rest {
     flex-grow: 1;
-    border: 1px solid colors.$primary;
+    border: 1px solid $primary;
     border-bottom: none;
   }
+
   .Section__content {
-    box-shadow: 0px 0px 4px -2px colors.$primary;
+    box-shadow: 0px 0px 4px -2px $primary;
     height: 100%;
   }
+
   .Section__buttons {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
   }
+
   // Progress bar
   .ProgressBar {
     min-height: 1.5em;
   }
+
   @supports (margin-left: auto) {
     .ProgressBar__content {
       margin-left: auto;
       width: fit-content;
-      background-color: color.adjust(base.$color-bg, $alpha: -0.3);
-      box-shadow: 0px 0px 4px 4px color.adjust(base.$color-bg, $alpha: -0.3);
+      background-color: color.adjust($bg, $alpha: -0.3);
+      box-shadow: 0px 0px 4px 4px color.adjust($bg, $alpha: -0.3);
       height: 1.25em;
     }
   }
-  // Title-bar overrides
-  @include meta.load-css(
-    '~tgui/styles/layouts/TitleBar.scss',
-    $with: ('background-color': #181a21)
-  );
-  //Stat styles
+
+  // Stat styles
   @include meta.load-css(
     '../components/Stat.scss',
-    $with: ('border-color': color.adjust(colors.$primary, $lightness: 40%))
+    $with: ('border-color': color.adjust($primary, $lightness: 40%))
   );
 }

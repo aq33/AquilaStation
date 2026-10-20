@@ -110,6 +110,7 @@ const Options = (props) => {
         </Flex.Item>
         <Flex.Item>
           <NumberInput
+            tickWhileDragging
             animated
             width={2.6}
             height={1.65}
@@ -118,7 +119,7 @@ const Options = (props) => {
             minValue={1}
             maxValue={10}
             value={num_copies}
-            onDrag={(value) =>
+            onChange={(value) =>
               act('set_copies', {
                 num_copies: value,
               })

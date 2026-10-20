@@ -328,9 +328,7 @@ const TempScreen = (props: { temp: Temp }) => {
       <Stack wrap mt={1}>
         {temp.buttons.map((button, index) => (
           <Stack.Item key={index}>
-            <Button onClick={() => topic(button.params)}>
-              {button.label}
-            </Button>
+            <Button onClick={() => topic(button.params)}>{button.label}</Button>
           </Stack.Item>
         ))}
       </Stack>
@@ -396,7 +394,7 @@ const RecordList = () => {
         mb={1}
         placeholder="Szukaj po nazwisku, ID, stanowisku, odciskach lub DNA..."
         value={search}
-        onInput={(e, value) => setSearch(value)}
+        onChange={(value) => setSearch(value)}
       />
       <Table>
         <Table.Row header>
@@ -415,7 +413,10 @@ const RecordList = () => {
           <Table.Cell>Stan psychiczny</Table.Cell>
         </Table.Row>
         {shown.map((record) => (
-          <Table.Row key={`${record.name}|${record.id}`} className="candystripe">
+          <Table.Row
+            key={`${record.name}|${record.id}`}
+            className="candystripe"
+          >
             <Table.Cell>
               <Button
                 fluid
@@ -699,9 +700,7 @@ const MedicalData = (props: { medical: MedicalRecord }) => {
           </TopicButton>
         }
       >
-        {medical.comments.length === 0 && (
-          <Box color="label">Brak wpisów.</Box>
-        )}
+        {medical.comments.length === 0 && <Box color="label">Brak wpisów.</Box>}
         {medical.comments.map((comment) =>
           comment.deleted ? (
             <Box key={comment.index} color="label" italic mb={1}>
@@ -748,7 +747,7 @@ const VirusDatabase = () => {
             mb={1}
             placeholder="Szukaj..."
             value={search}
-            onInput={(e, value) => setSearch(value)}
+            onChange={(value) => setSearch(value)}
           />
           <Tabs vertical>
             {shown.map((entry) => (
@@ -777,7 +776,9 @@ const VirusDatabase = () => {
                 </Box>
               </LabeledList.Item>
               {!!virus.agent && (
-                <LabeledList.Item label="Czynnik">{virus.agent}</LabeledList.Item>
+                <LabeledList.Item label="Czynnik">
+                  {virus.agent}
+                </LabeledList.Item>
               )}
               <LabeledList.Item label="Liczba stadiów">
                 {virus.stages}

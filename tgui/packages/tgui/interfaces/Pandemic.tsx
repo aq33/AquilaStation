@@ -113,7 +113,7 @@ export const PandemicDiseaseDisplay = (props) => {
           virus.can_rename ? (
             <Input
               value={virus.name}
-              onChange={(e, value) =>
+              onBlur={(value) =>
                 act('rename_disease', {
                   index: virus.index,
                   name: value,
@@ -327,7 +327,7 @@ export const PandemicSymptomCatalog = (props) => {
             autoFocus
             placeholder="Szukaj symptomu…"
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
           <Box mt={1} mb={1}>
             Poziom:{' '}

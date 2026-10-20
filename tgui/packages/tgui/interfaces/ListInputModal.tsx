@@ -191,7 +191,7 @@ const ListDisplay = (props) => {
     props;
 
   return (
-    <Section fill scrollable tabIndex={0}>
+    <Section fill scrollable>
       {filteredItems.map((item, index) => {
         return (
           <Button
@@ -238,11 +238,11 @@ const SearchBar = (props) => {
       autoFocus
       autoSelect
       fluid
-      onEnter={(event) => {
-        event.preventDefault();
+      onEnter={(_value, event) => {
+        event?.preventDefault();
         act('submit', { entry: filteredItems[selected] });
       }}
-      onInput={(_, value) => onSearch(value)}
+      onChange={(value) => onSearch(value)}
       placeholder="Search..."
       value={searchQuery}
     />

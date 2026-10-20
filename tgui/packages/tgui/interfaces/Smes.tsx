@@ -109,6 +109,7 @@ export const Smes = (props) => {
                 </Flex.Item>
                 <Flex.Item grow={1} mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={inputLevel / POWER_MUL}
                     fillValue={inputAvailable / POWER_MUL}
                     minValue={0}
@@ -116,7 +117,7 @@ export const Smes = (props) => {
                     step={5}
                     stepPixelSize={4}
                     format={(value) => formatPower(value * POWER_MUL, 1)}
-                    onDrag={(e, value) =>
+                    onChange={(e, value) =>
                       act('input', {
                         target: value * POWER_MUL,
                       })
@@ -196,13 +197,14 @@ export const Smes = (props) => {
                 </Flex.Item>
                 <Flex.Item grow={1} mx={1}>
                   <Slider
+                    tickWhileDragging
                     value={outputLevel / POWER_MUL}
                     minValue={0}
                     maxValue={outputLevelMax / POWER_MUL}
                     step={5}
                     stepPixelSize={4}
                     format={(value) => formatPower(value * POWER_MUL, 1)}
-                    onDrag={(e, value) =>
+                    onChange={(e, value) =>
                       act('output', {
                         target: value * POWER_MUL,
                       })

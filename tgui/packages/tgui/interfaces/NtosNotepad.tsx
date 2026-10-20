@@ -33,7 +33,7 @@ export const NtosNotepad = (props) => {
             style={{ height: '100%' }}
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               act('UpdateNote', { newnote: value });
             }}
             value={note}

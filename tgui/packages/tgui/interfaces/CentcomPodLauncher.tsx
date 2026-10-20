@@ -949,7 +949,7 @@ class PresetsPage extends Component<any, any> {
               inline
               autoFocus
               placeholder="Preset Name"
-              onChange={(e, value) => setText(value)}
+              onBlur={(value) => setText(value)}
             />
             <Divider />
           </>
@@ -1171,6 +1171,7 @@ const DelayHelper = (props) => {
           label={data.custom_rev_delay ? '' : delay.title}
         >
           <Knob
+            tickWhileDragging
             inline
             step={0.02}
             size={data.custom_rev_delay ? 0.75 : 1}
@@ -1185,7 +1186,7 @@ const DelayHelper = (props) => {
                 ? 'orange'
                 : 'default'
             }
-            onDrag={(e, value) => {
+            onChange={(e, value) => {
               act('editTiming', {
                 timer: '' + (i + 1),
                 value: Math.max(value, 0),

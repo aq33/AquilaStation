@@ -1,5 +1,5 @@
 import { resolveAsset } from '../../assets';
-import { Box, Section, Stack } from '../../components';
+import { Box, Image, Section, Stack } from '../../components';
 
 type Props = {
   name: string;
@@ -14,13 +14,10 @@ export const AntagInfoHeader = (props: Props) => {
       <Stack className="AntagInfo__header_outer">
         {!!asset && (
           <Stack.Item className="AntagInfo__header_img">
-            <Box
-              inline
-              as="img"
+            <Image
               src={resolveAsset(asset)}
               width="64px"
               style={{
-                msInterpolationMode: 'nearest-neighbor',
                 imageRendering: 'pixelated',
               }}
             />

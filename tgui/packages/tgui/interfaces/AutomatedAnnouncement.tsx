@@ -48,7 +48,7 @@ export const AutomatedAnnouncement = (props) => {
               <Input
                 fluid
                 value={arrival}
-                onChange={(e, value) =>
+                onBlur={(value) =>
                   act('ArrivalText', {
                     newText: value,
                   })
@@ -82,7 +82,7 @@ export const AutomatedAnnouncement = (props) => {
               <Input
                 fluid
                 value={newhead}
-                onChange={(e, value) =>
+                onBlur={(value) =>
                   act('NewheadText', {
                     newText: value,
                   })

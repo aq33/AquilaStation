@@ -62,7 +62,7 @@ export const NtosStatus = (props) => {
           <Input
             fluid
             value={upper}
-            onChange={(e, value) =>
+            onBlur={(value) =>
               act('stat_update', {
                 position: 'upper',
                 text: value,
@@ -73,7 +73,7 @@ export const NtosStatus = (props) => {
           <Input
             fluid
             value={lower}
-            onChange={(e, value) =>
+            onBlur={(value) =>
               act('stat_update', {
                 position: 'lower',
                 text: value,

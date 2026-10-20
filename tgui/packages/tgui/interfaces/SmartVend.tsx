@@ -64,7 +64,7 @@ export const SmartVend = (props) => {
                       autoFocus
                       placeholder={'Search...'}
                       value={searchText}
-                      onInput={(e, value) => setSearchText(value)}
+                      onChange={(value) => setSearchText(value)}
                     />
                   </Stack.Item>
                   <LayoutToggle state={displayMode} setState={setDisplayMode} />

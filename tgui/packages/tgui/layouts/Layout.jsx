@@ -7,7 +7,7 @@
 import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
 
-import { computeBoxClassName, computeBoxProps } from '../components';
+import { computeBoxClassName, computeBoxProps } from 'tgui-core/ui';
 import { addScrollableNode, removeScrollableNode } from '../events';
 
 export const Layout = (props) => {

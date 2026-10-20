@@ -64,10 +64,10 @@ function QuirkDisplay(props: QuirkDisplayProps) {
   }
 
   const child = (
-    <Box
+    <div
       className={className}
       role="button"
-      tabIndex="1"
+      tabIndex={1}
       // AQUILA: niedostępne cechy są wyszarzone, powód jest w dymku
       style={failTooltip ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
       onClick={(event) => {
@@ -143,7 +143,7 @@ function QuirkDisplay(props: QuirkDisplayProps) {
           </Stack>
         </Stack.Item>
       </Stack>
-    </Box>
+    </div>
   );
 
   if (failTooltip) {

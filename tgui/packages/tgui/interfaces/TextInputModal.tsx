@@ -107,14 +107,14 @@ const InputArea = (props) => {
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}
       onEscape={() => act('cancel')}
-      onEnter={(event) => {
-        if (visualMultiline && event.shiftKey) {
+      onEnter={(_value, event) => {
+        if (visualMultiline && event?.shiftKey) {
           return;
         }
-        event.preventDefault();
+        event?.preventDefault();
         act('submit', { entry: input });
       }}
-      onInput={(_, value) => onType(value)}
+      onChange={(value) => onType(value)}
       placeholder="Type something..."
       value={input}
     />

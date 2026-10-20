@@ -50,6 +50,7 @@ export const ChemHeater = (props) => {
           <LabeledList>
             <LabeledList.Item label="Target">
               <NumberInput
+                tickWhileDragging
                 width="65px"
                 unit="K"
                 step={10}
@@ -57,7 +58,7 @@ export const ChemHeater = (props) => {
                 value={round(targetTemp, 0)}
                 minValue={0}
                 maxValue={1000}
-                onDrag={(value) =>
+                onChange={(value) =>
                   act('temperature', {
                     target: value,
                   })

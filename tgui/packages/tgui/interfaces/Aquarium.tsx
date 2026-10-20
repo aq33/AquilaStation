@@ -37,6 +37,7 @@ export const Aquarium = (props) => {
           <LabeledControls>
             <LabeledControls.Item label="Temperature">
               <Knob
+                tickWhileDragging
                 size={1.25}
                 mb={1}
                 value={temperature}
@@ -45,7 +46,7 @@ export const Aquarium = (props) => {
                 maxValue={maxTemperature}
                 step={1}
                 stepPixelSize={1}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('temperature', {
                     temperature: value,
                   })

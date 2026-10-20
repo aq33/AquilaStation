@@ -57,7 +57,7 @@ export const NetpodOutfits = (props) => {
               buttons={
                 <Input
                   autoFocus
-                  onChange={(_, value) => setSearch(value)}
+                  onBlur={(value) => setSearch(value)}
                   placeholder="Szukaj"
                   value={search}
                 />

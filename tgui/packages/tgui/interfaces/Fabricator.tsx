@@ -264,8 +264,8 @@ const CustomPrint = (props: { design: Design; available: MaterialMap }) => {
     >
       <Button.Input
         color="transparent"
-        content={`×${max}`}
-        onCommit={(_event, value: string) =>
+        buttonText={`×${max}`}
+        onCommit={(value: string) =>
           act('build', { ref: props.design.id, amount: value })
         }
       />

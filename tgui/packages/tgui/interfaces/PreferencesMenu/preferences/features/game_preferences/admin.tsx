@@ -101,7 +101,7 @@ export const brief_outfit: Feature<string> = {
                     width="350px"
                     placeholder="Search outfits"
                     value={searchText}
-                    onInput={(_, value) => setSearchText(value)}
+                    onChange={(value) => setSearchText(value)}
                   />
                 </Box>
               </Section>
@@ -163,7 +163,7 @@ export const brief_outfit: Feature<string> = {
           </Flex.Item>
           <Flex.Item>
             <Button
-              style={{ 'word-break': 'break-all' }}
+              style={{ wordBreak: 'break-all' }}
               mt={1}
               onClick={(event) => {
                 event.stopPropagation();

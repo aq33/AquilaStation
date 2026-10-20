@@ -179,7 +179,9 @@ export const SecurityRecordsConsole = (_) => {
 
 const LoginScreen = () => (
   <Section>
-    <NoticeBox info>Zaloguj się kartą z dostępem do rekordów ochrony.</NoticeBox>
+    <NoticeBox info>
+      Zaloguj się kartą z dostępem do rekordów ochrony.
+    </NoticeBox>
     <ChoiceButton choice="Log In" icon="sign-in-alt">
       Zaloguj
     </ChoiceButton>
@@ -246,7 +248,9 @@ const SortHeader = (props: { sort: string; label: string }) => {
     <ChoiceButton
       choice="Sorting"
       extra={{ sort: props.sort }}
-      icon={active ? (order === 1 ? 'sort-alpha-down' : 'sort-alpha-up') : 'sort'}
+      icon={
+        active ? (order === 1 ? 'sort-alpha-down' : 'sort-alpha-up') : 'sort'
+      }
     >
       {props.label}
     </ChoiceButton>
@@ -284,7 +288,7 @@ const RecordList = () => {
         mb={1}
         placeholder="Szukaj po nazwisku, ID, stanowisku lub odciskach..."
         value={search}
-        onInput={(e, value) => setSearch(value)}
+        onChange={(value) => setSearch(value)}
       />
       <Table>
         <Table.Row header>

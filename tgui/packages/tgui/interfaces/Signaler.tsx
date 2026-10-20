@@ -34,6 +34,7 @@ export const SignalerContent = (props) => {
         </Grid.Column>
         <Grid.Column>
           <NumberInput
+            tickWhileDragging
             animated
             unit="kHz"
             step={0.2}
@@ -43,7 +44,7 @@ export const SignalerContent = (props) => {
             value={frequency / 10 || minFrequency / 10}
             format={(value) => toFixed(value, 1)}
             width="80px"
-            onDrag={(value) =>
+            onChange={(value) =>
               act('freq', {
                 freq: value,
               })
@@ -69,6 +70,7 @@ export const SignalerContent = (props) => {
         </Grid.Column>
         <Grid.Column>
           <NumberInput
+            tickWhileDragging
             animated
             step={1}
             stepPixelSize={6}
@@ -76,7 +78,7 @@ export const SignalerContent = (props) => {
             maxValue={100}
             value={code || 1}
             width="80px"
-            onDrag={(value) =>
+            onChange={(value) =>
               act('code', {
                 code: value,
               })

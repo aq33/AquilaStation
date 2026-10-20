@@ -161,7 +161,7 @@ export const TicketChatWindow = (props) => {
       <Input
         fluid
         selfClear
-        onEnter={(e, value) =>
+        onEnter={(value) =>
           act('sendpm', {
             text: value,
           })

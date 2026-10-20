@@ -2,10 +2,17 @@ import { binaryInsertWith } from 'common/collections';
 import { createSearch } from 'common/string';
 import { sortBy } from 'es-toolkit';
 import { ReactNode } from 'react';
-import { ButtonCheckbox } from 'tgui/components/Button';
 
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Flex, Icon, Input, Section, Tooltip } from '../../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Input,
+  Section,
+  Tooltip,
+} from '../../components';
 import { PreferencesMenuData } from './data';
 import features from './preferences/features';
 import { FeatureValueInput } from './preferences/features/base';
@@ -302,18 +309,18 @@ export const GamePreferencesPage = (props) => {
             fluid
             placeholder="Search options"
             value={searchText}
-            onInput={(_, value) => setSearchText(value)}
+            onChange={(value) => setSearchText(value)}
           />
         </Flex.Item>
         <Flex.Item>
-          <ButtonCheckbox
+          <Button.Checkbox
             checked={advancedSettings}
             onClick={() => {
               setAdvancedSettings(!advancedSettings);
             }}
           >
             Show Advanced Settings
-          </ButtonCheckbox>
+          </Button.Checkbox>
         </Flex.Item>
       </Flex>
     </TabbedMenu>

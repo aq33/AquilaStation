@@ -54,7 +54,7 @@ export const AdminSecretsPanel = (props) => {
               <Input
                 placeholder="Search"
                 value={searchText}
-                onInput={(e, value) => setSearchText(value)}
+                onChange={(value) => setSearchText(value)}
                 mx={1}
               />
             </Table.Cell>

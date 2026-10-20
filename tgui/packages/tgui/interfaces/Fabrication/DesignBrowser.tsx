@@ -305,7 +305,6 @@ const CategoryView = <T extends Design>(props: CategoryViewProps<T>) => {
   return (
     // independent opts out of the nested-Section rules, which outdent a section past its container by half an em on each side.
     <Section
-      independent
       title={category.title}
       id={category.anchorKey}
       buttons={

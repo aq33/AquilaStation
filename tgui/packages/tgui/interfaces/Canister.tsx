@@ -83,6 +83,7 @@ export const Canister = (props) => {
             <LabeledControls.Item label="Regulator">
               <Box position="relative" left="-8px">
                 <Knob
+                  tickWhileDragging
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
                   value={releasePressure}
@@ -91,7 +92,7 @@ export const Canister = (props) => {
                   maxValue={maxReleasePressure}
                   step={5}
                   stepPixelSize={1}
-                  onDrag={(e, value) =>
+                  onChange={(e, value) =>
                     act('pressure', {
                       pressure: value,
                     })

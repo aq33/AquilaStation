@@ -172,7 +172,7 @@ const FaxMessageModal = (props) => {
         {selectedSenderName === 'Custom Name' && (
           <Flex.Item maxWidth="100%">
             <LabeledList.Item label="Custom name for the sender: ">
-              <Input onInput={(_, value) => setCustomSenderName(value)} />
+              <Input onChange={(value) => setCustomSenderName(value)} />
             </LabeledList.Item>
           </Flex.Item>
         )}
@@ -183,7 +183,7 @@ const FaxMessageModal = (props) => {
             width="80vw"
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setMessageInput(value.substring(0, 5000));
             }}
             value={messageInput}

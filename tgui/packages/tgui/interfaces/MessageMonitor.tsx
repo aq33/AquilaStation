@@ -12,7 +12,6 @@ import {
   Table,
   Tabs,
 } from '../components';
-import { ButtonConfirm } from '../components';
 import { Window } from '../layouts';
 import { sanitizeText } from '../sanitize';
 import { MessageContent } from './NtosMessenger';
@@ -218,7 +217,7 @@ Please Wait...`}
                       onClick={() => act('admin_message')}
                     />
                   ) : null}
-                  <ButtonConfirm
+                  <Button.Confirm
                     icon="times"
                     content="Clear Logs"
                     color="bad"
@@ -234,7 +233,7 @@ Please Wait...`}
                   key={message.ref}
                   title={`${message.sender} to ${message.recipient}`}
                   buttons={
-                    <ButtonConfirm
+                    <Button.Confirm
                       icon="times"
                       content="Delete"
                       onClick={() =>
@@ -259,7 +258,7 @@ Please Wait...`}
                   key={request.ref}
                   title={`${request.sending_department} to ${request.receiving_department}`}
                   buttons={
-                    <ButtonConfirm
+                    <Button.Confirm
                       icon="times"
                       content="Delete"
                       onClick={() =>
@@ -429,7 +428,6 @@ class PasswordScroller extends Component<any, any> {
         style={{
           color: 'red',
           whiteSpace: 'pre-wrap',
-          '-ms-overflow-style': 'none',
           scrollbarWidth: 'none',
         }}
       >

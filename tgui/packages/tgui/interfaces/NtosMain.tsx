@@ -1,7 +1,7 @@
 import { Button, ColorBox, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { ButtonCheckbox } from '../components';
+
 import { NtosWindow } from '../layouts';
 
 type Data = {
@@ -83,7 +83,7 @@ export const NtosMain = (props) => {
                       }
                       onClick={() => act('PC_Imprint_ID', { name: 'ID' })}
                     />
-                    <ButtonCheckbox
+                    <Button.Checkbox
                       checked={auto_imprint}
                       content="Auto"
                       onClick={() => act('PC_Toggle_Auto_Imprint')}

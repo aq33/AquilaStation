@@ -239,7 +239,7 @@ export const CargoCatalog = (props) => {
                     fluid
                     placeholder="Search..."
                     value={searchText}
-                    onInput={(e, value) => {
+                    onChange={(value) => {
                       if (value === searchText) {
                         return;
                       }
@@ -451,7 +451,7 @@ const CargoCart = (props) => {
                     minValue={0}
                     maxValue={50}
                     value={entry.amount}
-                    onEnter={(e, value) =>
+                    onEnter={(value) =>
                       act('modify', {
                         order_name: entry.object,
                         amount: value,

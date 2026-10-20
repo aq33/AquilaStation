@@ -1,0 +1,19 @@
+/**
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
+
+.theme-ntos-light:root {
+  --color-base: hsl(0, 0%, 50.49%);
+  --color-primary: hsl(212, 37.6%, 45.9%);
+  --base-gradient-spread: 2;
+  --button-background-default: hsl(0, 8%, 92.21%);
+  --button-color-transparent: rgba(227, 240, 255, 0.75);
+  --progress-bar-fill: hsl(0, 0%, 91.8%);
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --titlebar-background: hsl(0, 0%, 68.85%);
+  --color-text: rgb(241, 241, 241);
+
+  .ProgressBar--color--default * {
+    color: black;
+  }
+}

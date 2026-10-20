@@ -1,6 +1,6 @@
 import { isEscape } from 'common/keys';
 import { Component, createRef } from 'react';
-import { TextArea } from 'tgui/components';
+import { TextArea } from '../components/LegacyTextArea';
 import { dragStartHandler } from 'tgui/drag';
 
 import { CHANNEL_LABELS, WINDOW_SIZES } from '../constants';

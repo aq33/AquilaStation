@@ -228,7 +228,7 @@ const ProductDisplay = (props: {
           )}
           <Stack.Item>
             <Input
-              onInput={(_, value) => setStockSearch(value)}
+              onChange={(value) => setStockSearch(value)}
               placeholder="Search..."
               value={stockSearch}
             />

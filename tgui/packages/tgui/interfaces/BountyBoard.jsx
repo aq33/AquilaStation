@@ -46,7 +46,7 @@ export const BountyBoardContent = (_) => {
             buttons={
               <>
                 <Icon name="coins" />
-                <Box as="span" ml={1} mr={1}>
+                <Box inline ml={1} mr={1}>
                   {formatMoney(request.value)}cr
                 </Box>
                 <Button
@@ -159,7 +159,7 @@ const NewBountyMenu = (_) => {
         height="60px"
         backgroundColor="black"
         textColor="white"
-        onChange={(e, value) =>
+        onBlur={(value) =>
           act('bountyText', {
             bountytext: value,
           })

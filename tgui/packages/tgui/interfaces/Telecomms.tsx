@@ -77,7 +77,7 @@ export const Telecomms = (props) => {
                 <Input
                   width={13}
                   value={id}
-                  onChange={(e, value) => act('id', { value })}
+                  onBlur={(value) => act('id', { value })}
                 />
               }
             />
@@ -87,7 +87,7 @@ export const Telecomms = (props) => {
                 <Input
                   width={10}
                   value={network}
-                  onChange={(e, value) => act('network', { value })}
+                  onBlur={(value) => act('network', { value })}
                 />
               }
             />

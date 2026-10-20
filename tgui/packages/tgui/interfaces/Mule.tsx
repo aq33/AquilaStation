@@ -116,10 +116,7 @@ export const Mule = (props) => {
           >
             <LabeledList>
               <LabeledList.Item label="ID">
-                <Input
-                  value={id}
-                  onChange={(e, value) => act('setid', { value })}
-                />
+                <Input value={id} onBlur={(value) => act('setid', { value })} />
               </LabeledList.Item>
               <LabeledList.Item label="Destination">
                 <Dropdown

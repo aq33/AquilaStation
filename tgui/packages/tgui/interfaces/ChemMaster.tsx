@@ -192,7 +192,7 @@ const ChemMasterContent = (props) => {
               fluid
               value={saved_name}
               placeholder="Name"
-              onInput={(e, value) => {
+              onChange={(value) => {
                 act('setSavedName', { name: value });
               }}
             />
