@@ -508,7 +508,7 @@
 	..()
 
 /obj/item/bodypart/chest/monkey
-	icon = 'nsv13/icons/mob/legacy_monkey.dmi' //NSV13 - old monkey sprites
+	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_chest"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
@@ -584,7 +584,7 @@
 			L.update_icon()
 
 /obj/item/bodypart/l_arm/monkey
-	icon = 'nsv13/icons/mob/legacy_monkey.dmi' //NSV13 - old monkey sprites
+	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_arm"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
@@ -654,7 +654,7 @@
 			R.update_icon()
 
 /obj/item/bodypart/r_arm/monkey
-	icon = 'nsv13/icons/mob/legacy_monkey.dmi' //NSV13 - old monkey sprites
+	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_arm"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
@@ -717,7 +717,7 @@
 
 
 /obj/item/bodypart/l_leg/monkey
-	icon = 'nsv13/icons/mob/legacy_monkey.dmi' //NSV13 - old monkey sprites
+	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_l_leg"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART
@@ -782,7 +782,7 @@
 
 
 /obj/item/bodypart/r_leg/monkey
-	icon = 'nsv13/icons/mob/legacy_monkey.dmi' //NSV13 - old monkey sprites
+	icon = 'icons/mob/animal_parts.dmi'
 	icon_state = "default_monkey_r_leg"
 	limb_id = SPECIES_MONKEY
 	animal_origin = MONKEY_BODYPART

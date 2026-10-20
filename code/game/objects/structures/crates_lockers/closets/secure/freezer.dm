@@ -1,4 +1,7 @@
 /obj/structure/closet/secure_closet/freezer
+	icon_emagged = "freezer_emagged" //AQUILA EDIT - Bee#10136
+	icon_locked = "freezer_locked"
+	icon_unlocked = "freezer_unlocked"
 	icon_state = "freezer"
 	var/jones = FALSE
 	door_anim_squish = 0.22
