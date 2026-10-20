@@ -8845,6 +8845,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"tgui-escape-menu@workspace:packages/tgui-escape-menu":
+  version: 0.0.0-use.local
+  resolution: "tgui-escape-menu@workspace:packages/tgui-escape-menu"
+  dependencies:
+    "@types/react": "npm:^19.1.0"
+    "@types/react-dom": "npm:^19.1.0"
+    common: "workspace:*"
+    react: "npm:19.2.7"
+    react-dom: "npm:19.2.7"
+    tgui: "workspace:*"
+    tgui-core: "npm:6.1.1"
+  languageName: unknown
+  linkType: soft
+
 "tgui-panel@workspace:packages/tgui-panel":
   version: 0.0.0-use.local
   resolution: "tgui-panel@workspace:packages/tgui-panel"

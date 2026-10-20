@@ -1,8 +1,12 @@
 // AQUILA - konsola akt medycznych (aquila/code/game/machinery/computer/medical_records_ui.dm)
-import { useState } from 'react';
+// Układ z tg (MedicalRecords: lista po lewej, akta po prawej, przyciski stanów z ikonami),
+// dane i akcje nasze przez dawny Topic(); baza wirusów i roboty medyczne zostają jako osobne zakładki.
+import { sortBy } from 'es-toolkit';
+import { type ReactNode, useState } from 'react';
 import {
   Box,
   Button,
+  Icon,
   Input,
   LabeledList,
   NoticeBox,
@@ -11,6 +15,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -55,7 +60,7 @@ type General = {
 type Comment = {
   index: number;
   text: string;
-  deleted: boolean;
+  deleted: BooleanLike;
 };
 
 type MedicalRecord = {
@@ -88,14 +93,14 @@ type Medbot = {
   x: number;
   y: number;
   area: string;
-  on: boolean;
+  on: BooleanLike;
 };
 
 type Data = {
   authenticated: string | null;
   rank: string | null;
   screen: number | null;
-  printing: boolean;
+  printing: BooleanLike;
   temp: Temp | null;
   records?: RecordRow[];
   general?: General | null;
@@ -104,28 +109,89 @@ type Data = {
   medbots?: Medbot[];
 };
 
-/** Statusy zostają w aktach po angielsku (czytają je HUD-y i inne konsole), tu tylko je tłumaczymy */
-const STATUS_NAMES = {
-  '*Deceased*': 'Zmarły',
-  '*Unconscious*': 'Nieprzytomny',
-  Active: 'Aktywny',
-  'Physically Unfit': 'Niezdolny fizycznie',
-  '*Insane*': 'Niepoczytalny',
-  '*Unstable*': 'Niestabilny',
-  '*Watch*': 'Obserwacja',
-  Stable: 'Stabilny',
+type StatusOption = {
+  value: string;
+  param: string;
+  name: string;
+  icon: string;
+  color: string;
+  desc: string;
 };
 
-const STATUS_COLORS = {
-  '*Deceased*': 'bad',
-  '*Insane*': 'bad',
-  '*Unconscious*': 'orange',
-  '*Unstable*': 'orange',
-  'Physically Unfit': 'blue',
-  '*Watch*': 'blue',
-  Active: 'good',
-  Stable: 'good',
-};
+/** Statusy zostają w aktach po angielsku (czytają je HUD-y i inne konsole), tu tylko je tłumaczymy */
+const PHYSICAL_STATUSES: StatusOption[] = [
+  {
+    value: 'Active',
+    param: 'active',
+    name: 'Aktywny',
+    icon: 'person-running',
+    color: 'green',
+    desc: 'Aktywny. Przytomny i zdrowy.',
+  },
+  {
+    value: 'Physically Unfit',
+    param: 'unfit',
+    name: 'Niezdolny fizycznie',
+    icon: 'crutch',
+    color: 'purple',
+    desc: 'Niezdolny fizycznie. Przytomny, ale nie w pełni zdrowy.',
+  },
+  {
+    value: '*Unconscious*',
+    param: 'unconscious',
+    name: 'Nieprzytomny',
+    icon: 'moon',
+    color: 'orange',
+    desc: 'Nieprzytomny. Może potrzebować pomocy medycznej.',
+  },
+  {
+    value: '*Deceased*',
+    param: 'deceased',
+    name: 'Zmarły',
+    icon: 'skull',
+    color: 'red',
+    desc: 'Zmarły. Zgon stwierdzony, ciało ulega rozkładowi.',
+  },
+];
+
+const MENTAL_STATUSES: StatusOption[] = [
+  {
+    value: 'Stable',
+    param: 'stable',
+    name: 'Stabilny',
+    icon: 'face-smile',
+    color: 'green',
+    desc: 'Stabilny. Zdrowy psychicznie, bez zaburzeń.',
+  },
+  {
+    value: '*Watch*',
+    param: 'watch',
+    name: 'Obserwacja',
+    icon: 'eye',
+    color: 'purple',
+    desc: 'Obserwacja. Objawy choroby psychicznej, pilnuj tej osoby.',
+  },
+  {
+    value: '*Unstable*',
+    param: 'unstable',
+    name: 'Niestabilny',
+    icon: 'scale-unbalanced-flip',
+    color: 'orange',
+    desc: 'Niestabilny. Co najmniej jedna choroba psychiczna.',
+  },
+  {
+    value: '*Insane*',
+    param: 'insane',
+    name: 'Niepoczytalny',
+    icon: 'head-side-virus',
+    color: 'red',
+    desc: 'Niepoczytalny. Poważne, nienormalne zachowania.',
+  },
+];
+
+const ALL_STATUSES = [...PHYSICAL_STATUSES, ...MENTAL_STATUSES];
+const findStatus = (value: string) =>
+  ALL_STATUSES.find((status) => status.value === value);
 
 /** Domyślne wpisy nowych akt (code/datums/datacore.dm) */
 const DEFAULT_TEXTS = {
@@ -185,7 +251,7 @@ const SPREAD_NAMES = {
 };
 
 const translate = (text: string | null | undefined) =>
-  (text && (STATUS_NAMES[text] || DEFAULT_TEXTS[text])) || text;
+  (text && (findStatus(text)?.name || DEFAULT_TEXTS[text])) || text;
 
 const useTopic = () => {
   const { act } = useBackend<Data>();
@@ -196,10 +262,10 @@ const TopicButton = (props: {
   params: Record<string, string | number>;
   icon?: string;
   color?: string;
-  disabled?: boolean;
+  disabled?: BooleanLike;
   tooltip?: string;
   fluid?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }) => {
   const topic = useTopic();
   return (
@@ -226,97 +292,137 @@ const EditField = (props: { field: string; icon?: string }) => (
 
 export const MedicalRecordsConsole = (_) => {
   const { data } = useBackend<Data>();
-  const { authenticated, screen, temp } = data;
+  const { authenticated } = data;
   return (
-    <Window width={780} height={640}>
-      <Window.Content scrollable>
-        {!authenticated ? (
-          <LoginScreen />
-        ) : (
-          <>
-            <Header />
-            {temp && <TempScreen temp={temp} />}
-            {!temp && (screen === 1 || screen === 2) && <RecordList />}
-            {!temp && screen === 3 && <Maintenance />}
-            {!temp && screen === 4 && <RecordView />}
-            {!temp && screen === 5 && <VirusDatabase />}
-            {!temp && screen === 6 && <MedbotTracking />}
-          </>
-        )}
+    <Window title="Akta medyczne" width={860} height={640}>
+      <Window.Content>
+        {!authenticated ? <RestrictedView /> : <AuthView />}
       </Window.Content>
     </Window>
   );
 };
 
-const LoginScreen = () => (
-  <Section title="Konsola akt medycznych">
-    <NoticeBox info>
-      Zaloguj się kartą z dostępem medycznym albo kryminalistycznym.
-    </NoticeBox>
-    <TopicButton params={{ login: 1 }} icon="sign-in-alt">
-      Zaloguj
-    </TopicButton>
-  </Section>
+/** Ekran przed zalogowaniem */
+const RestrictedView = () => (
+  <Stack fill vertical>
+    <Stack.Item grow />
+    <Stack.Item align="center" grow={2}>
+      <Icon color="teal" name="staff-snake" size={15} />
+    </Stack.Item>
+    <Stack.Item align="center" grow>
+      <Box color="teal" fontSize="18px" bold mt={5}>
+        Nanotrasen HealthPRO
+      </Box>
+    </Stack.Item>
+    <Stack.Item>
+      <NoticeBox align="right">
+        Nie jesteś zalogowany. Użyj karty z dostępem medycznym albo
+        kryminalistycznym.
+        <TopicButton params={{ login: 1 }} icon="lock-open">
+          Zaloguj
+        </TopicButton>
+      </NoticeBox>
+    </Stack.Item>
+  </Stack>
 );
 
-const Header = () => {
+const AuthView = () => {
   const { data } = useBackend<Data>();
-  const { authenticated, rank, screen } = data;
-  const tab = screen === 1 || screen === 4 ? 2 : screen;
-  const topic = useTopic();
-  return (
-    <Section>
-      <Stack align="center">
+  const { authenticated, rank, screen, temp } = data;
+
+  let content: ReactNode;
+  if (temp) {
+    content = <TempScreen temp={temp} />;
+  } else if (screen === 3) {
+    content = <Maintenance />;
+  } else if (screen === 5) {
+    content = <VirusDatabase />;
+  } else if (screen === 6) {
+    content = <MedbotTracking />;
+  } else {
+    content = (
+      <Stack fill>
+        <Stack.Item width="32%">
+          <RecordTabs />
+        </Stack.Item>
         <Stack.Item grow>
-          <Tabs>
-            <Tabs.Tab
-              icon="notes-medical"
-              selected={tab === 2}
-              onClick={() => topic({ screen: 2 })}
-            >
-              Akta
-            </Tabs.Tab>
-            <Tabs.Tab
-              icon="virus"
-              selected={tab === 5}
-              onClick={() => topic({ screen: 5 })}
-            >
-              Baza wirusów
-            </Tabs.Tab>
-            <Tabs.Tab
-              icon="robot"
-              selected={tab === 6}
-              onClick={() => topic({ screen: 6 })}
-            >
-              Roboty medyczne
-            </Tabs.Tab>
-            <Tabs.Tab
-              icon="tools"
-              selected={tab === 3}
-              onClick={() => topic({ screen: 3 })}
-            >
-              Konserwacja
-            </Tabs.Tab>
-          </Tabs>
-        </Stack.Item>
-        <Stack.Item color="label">
-          <b>{authenticated}</b> ({rank})
-        </Stack.Item>
-        <Stack.Item>
-          <TopicButton params={{ logout: 1 }} icon="sign-out-alt">
-            Wyloguj
-          </TopicButton>
+          {screen === 4 ? (
+            <RecordView />
+          ) : (
+            <Section fill>
+              <NoticeBox>Nie wybrano akt.</NoticeBox>
+            </Section>
+          )}
         </Stack.Item>
       </Stack>
-    </Section>
+    );
+  }
+
+  return (
+    <Stack fill vertical>
+      <Stack.Item>
+        <MenuTabs />
+      </Stack.Item>
+      <Stack.Item grow>{content}</Stack.Item>
+      <Stack.Item>
+        <NoticeBox align="right" info>
+          {authenticated} ({rank}). Zabezpiecz stanowisko.
+          <TopicButton params={{ logout: 1 }} icon="lock" color="good">
+            Wyloguj
+          </TopicButton>
+        </NoticeBox>
+      </Stack.Item>
+    </Stack>
   );
 };
 
+const MenuTabs = () => {
+  const topic = useTopic();
+  const { data } = useBackend<Data>();
+  const { screen } = data;
+  const tab = screen === 1 || screen === 4 ? 2 : screen;
+  return (
+    <Tabs>
+      <Tabs.Tab
+        icon="notes-medical"
+        selected={tab === 2}
+        onClick={() => topic({ screen: 2 })}
+      >
+        Akta
+      </Tabs.Tab>
+      <Tabs.Tab
+        icon="virus"
+        selected={tab === 5}
+        onClick={() => topic({ screen: 5 })}
+      >
+        Baza wirusów
+      </Tabs.Tab>
+      <Tabs.Tab
+        icon="robot"
+        selected={tab === 6}
+        onClick={() => topic({ screen: 6 })}
+      >
+        Roboty medyczne
+      </Tabs.Tab>
+      <Tabs.Tab
+        icon="tools"
+        selected={tab === 3}
+        onClick={() => topic({ screen: 3 })}
+      >
+        Konserwacja
+      </Tabs.Tab>
+    </Tabs>
+  );
+};
+
+/** Podmenu z DM (potwierdzenia, grupy krwi itp.) */
 const TempScreen = (props: { temp: Temp }) => {
   const topic = useTopic();
   const { temp } = props;
   return (
     <Section
+      fill
+      scrollable
       title="Wybierz"
       buttons={
         <TopicButton params={{ temp: 1 }} icon="times">
@@ -336,116 +442,85 @@ const TempScreen = (props: { temp: Temp }) => {
   );
 };
 
-const SORT_KEYS = {
-  name: (record: RecordRow) => record.name,
-  id: (record: RecordRow) => record.id,
-  rank: (record: RecordRow) => record.rank,
-  blood_type: (record: RecordRow) => record.blood_type,
-  physical: (record: RecordRow) => record.physical,
-};
-
-const RecordList = () => {
+/** Lista akt po lewej, z wyszukiwarką */
+const RecordTabs = () => {
   const topic = useTopic();
   const { data } = useBackend<Data>();
-  const { records = [] } = data;
+  const { records = [], general, screen } = data;
   const [search, setSearch] = useState('');
-  const [sortBy, setSortBy] = useState('name');
-  const [ascending, setAscending] = useState(true);
   const query = search.toLowerCase();
-  const shown = records
-    .filter((record) =>
+
+  const shown = sortBy(
+    records.filter((record) =>
       [record.name, record.id, record.rank, record.fingerprint, record.dna]
         .join(' ')
         .toLowerCase()
         .includes(query),
-    )
-    .sort((a, b) => {
-      const key = SORT_KEYS[sortBy];
-      const result = `${key(a) || ''}`.localeCompare(`${key(b) || ''}`);
-      return ascending ? result : -result;
-    });
-
-  const SortHeader = (props: { sort: string; label: string }) => {
-    const active = sortBy === props.sort;
-    return (
-      <Button
-        icon={
-          active ? (ascending ? 'sort-alpha-down' : 'sort-alpha-up') : 'sort'
-        }
-        selected={active}
-        onClick={() => {
-          if (active) {
-            setAscending(!ascending);
-          } else {
-            setSortBy(props.sort);
-            setAscending(true);
-          }
-        }}
-      >
-        {props.label}
-      </Button>
-    );
-  };
+    ),
+    [(record) => record.name],
+  );
 
   return (
-    <Section title={`Akta (${shown.length})`}>
-      <Input
-        fluid
-        mb={1}
-        placeholder="Szukaj po nazwisku, ID, stanowisku, odciskach lub DNA..."
-        value={search}
-        onChange={(value) => setSearch(value)}
-      />
-      <Table>
-        <Table.Row header>
-          <Table.Cell>
-            <SortHeader sort="name" label="Nazwisko" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="rank" label="Stanowisko" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="blood_type" label="Krew" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="physical" label="Stan fizyczny" />
-          </Table.Cell>
-          <Table.Cell>Stan psychiczny</Table.Cell>
-        </Table.Row>
-        {shown.map((record) => (
-          <Table.Row
-            key={`${record.name}|${record.id}`}
-            className="candystripe"
-          >
-            <Table.Cell>
-              <Button
-                fluid
-                icon="file-medical"
-                onClick={() => topic({ d_rec: record.id })}
-              >
-                {record.name}
-              </Button>
-            </Table.Cell>
-            <Table.Cell>{record.rank}</Table.Cell>
-            <Table.Cell bold color="red">
-              {translate(record.blood_type) || '—'}
-            </Table.Cell>
-            <Table.Cell color={STATUS_COLORS[record.physical] || 'label'}>
-              {translate(record.physical)}
-            </Table.Cell>
-            <Table.Cell color={STATUS_COLORS[record.mental] || 'label'}>
-              {translate(record.mental)}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table>
-      {shown.length === 0 && <Box color="label">Brak akt.</Box>}
-    </Section>
+    <Stack fill vertical>
+      <Stack.Item>
+        <Input
+          fluid
+          placeholder="Nazwisko/stanowisko/odciski/DNA"
+          value={search}
+          onChange={setSearch}
+        />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Section fill scrollable>
+          <Tabs vertical>
+            {!shown.length ? (
+              <NoticeBox>
+                {!records.length
+                  ? 'Brak akt.'
+                  : 'Brak wyników. Zawęź wyszukiwanie.'}
+              </NoticeBox>
+            ) : (
+              shown.map((record) => {
+                const isSelected =
+                  screen === 4 &&
+                  general?.id === record.id &&
+                  general?.name === record.name;
+                const physical = findStatus(record.physical);
+                return (
+                  <Tabs.Tab
+                    key={`${record.name}|${record.id}`}
+                    className="candystripe"
+                    selected={isSelected}
+                    onClick={() =>
+                      isSelected
+                        ? topic({ screen: 2 })
+                        : topic({ d_rec: record.id })
+                    }
+                  >
+                    <Box bold={isSelected} color={physical?.color}>
+                      <Icon name={physical?.icon || 'question'} /> {record.name}
+                    </Box>
+                    <Box fontSize="0.9em" color="label">
+                      {record.rank}
+                      {!!record.blood_type && (
+                        <Box as="span" color="red" ml={1}>
+                          {record.blood_type}
+                        </Box>
+                      )}
+                    </Box>
+                  </Tabs.Tab>
+                );
+              })
+            )}
+          </Tabs>
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
 };
 
 const Maintenance = () => (
-  <Section title="Konserwacja akt">
+  <Section fill title="Konserwacja akt">
     <NoticeBox>
       Usunięcie akt medycznych zostawia dane ogólne. Tego nie da się cofnąć.
     </NoticeBox>
@@ -486,113 +561,144 @@ const Photo = (props: { src: string | null; side: boolean }) => {
   );
 };
 
+/** Przyciski stanu jak w tg: ikony, opis w podpowiedzi */
+const StatusButtons = (props: {
+  options: StatusOption[];
+  current: string;
+  param: 'p_stat' | 'm_stat';
+}) => {
+  const topic = useTopic();
+  const { options, current, param } = props;
+  return (
+    <>
+      {options.map((option) => {
+        const isSelected = option.value === current;
+        return (
+          <Button
+            key={option.value}
+            color={isSelected ? option.color : 'transparent'}
+            icon={option.icon}
+            tooltip={option.desc}
+            tooltipPosition="bottom-start"
+            onClick={() => topic({ [param]: option.param })}
+          />
+        );
+      })}
+    </>
+  );
+};
+
 const RecordView = () => {
   const { data } = useBackend<Data>();
   const { general, medical, printing } = data;
-  return (
-    <>
-      <Section
-        title={general ? general.name : 'Akta'}
-        buttons={
-          <>
-            <TopicButton params={{ screen: 2 }} icon="arrow-left">
-              Lista
-            </TopicButton>
-            <TopicButton
-              params={{ print_p: 1 }}
-              icon="print"
-              disabled={printing}
-            >
-              {printing ? 'Drukowanie...' : 'Drukuj'}
-            </TopicButton>
-          </>
-        }
-      >
-        {!general ? (
-          <NoticeBox danger>Utracono akta ogólne!</NoticeBox>
-        ) : (
-          <Stack>
-            <Stack.Item grow>
-              <LabeledList>
-                <LabeledList.Item label="ID">{general.id}</LabeledList.Item>
-                <LabeledList.Item label="Stanowisko">
-                  {general.rank}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Płeć"
-                  buttons={<EditField field="gender" icon="sync" />}
-                >
-                  {translate(general.gender)}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Płeć biologiczna"
-                  buttons={<EditField field="sex" icon="sync" />}
-                >
-                  {translate(general.sex)}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Wiek"
-                  buttons={<EditField field="age" />}
-                >
-                  {general.age}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Gatunek"
-                  buttons={<EditField field="species" />}
-                >
-                  {general.species}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Odcisk palca"
-                  buttons={<EditField field="fingerprint" />}
-                >
-                  {general.fingerprint}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Stan fizyczny"
-                  buttons={<EditField field="p_stat" icon="list" />}
-                >
-                  <Box bold color={STATUS_COLORS[general.physical]}>
-                    {translate(general.physical)}
-                  </Box>
-                </LabeledList.Item>
-                {general.physical === '*Deceased*' && (
-                  <LabeledList.Item
-                    label="Przyczyna zgonu"
-                    buttons={<EditField field="cause_of_death" />}
-                  >
-                    {general.cause_of_death || (
-                      <Box color="label">nieustalona</Box>
-                    )}
-                  </LabeledList.Item>
-                )}
-                <LabeledList.Item
-                  label="Stan psychiczny"
-                  buttons={<EditField field="m_stat" icon="list" />}
-                >
-                  <Box bold color={STATUS_COLORS[general.mental]}>
-                    {translate(general.mental)}
-                  </Box>
-                </LabeledList.Item>
-                <LabeledList.Item label="Akta ogólne">
-                  <TopicButton
-                    params={{ choice: 'View Past General' }}
-                    icon="book"
-                  >
-                    Pokaż
-                  </TopicButton>
-                </LabeledList.Item>
-              </LabeledList>
-            </Stack.Item>
-            <Stack.Item>
-              <Photo src={general.photo_front} side={false} />
-            </Stack.Item>
-            <Stack.Item>
-              <Photo src={general.photo_side} side />
-            </Stack.Item>
-          </Stack>
-        )}
+
+  if (!general) {
+    return (
+      <Section fill>
+        <NoticeBox danger>Utracono akta ogólne!</NoticeBox>
       </Section>
+    );
+  }
+
+  const physical = findStatus(general.physical);
+  const mental = findStatus(general.mental);
+
+  return (
+    <Section
+      fill
+      scrollable
+      title={general.name}
+      buttons={
+        <TopicButton params={{ print_p: 1 }} icon="print" disabled={printing}>
+          {printing ? 'Drukowanie...' : 'Drukuj'}
+        </TopicButton>
+      }
+    >
+      <Stack>
+        <Stack.Item grow>
+          <LabeledList>
+            <LabeledList.Item label="ID">{general.id}</LabeledList.Item>
+            <LabeledList.Item label="Stanowisko">
+              {general.rank}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Płeć"
+              buttons={<EditField field="gender" icon="sync" />}
+            >
+              {translate(general.gender)}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Płeć biologiczna"
+              buttons={<EditField field="sex" icon="sync" />}
+            >
+              {translate(general.sex)}
+            </LabeledList.Item>
+            <LabeledList.Item label="Wiek" buttons={<EditField field="age" />}>
+              {general.age}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Gatunek"
+              buttons={<EditField field="species" />}
+            >
+              {general.species}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Odcisk palca"
+              color="good"
+              buttons={<EditField field="fingerprint" />}
+            >
+              {general.fingerprint}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Stan fizyczny"
+              buttons={
+                <StatusButtons
+                  options={PHYSICAL_STATUSES}
+                  current={general.physical}
+                  param="p_stat"
+                />
+              }
+            >
+              <Box bold color={physical?.color}>
+                {translate(general.physical)}
+              </Box>
+            </LabeledList.Item>
+            {general.physical === '*Deceased*' && (
+              <LabeledList.Item
+                label="Przyczyna zgonu"
+                buttons={<EditField field="cause_of_death" />}
+              >
+                {general.cause_of_death || <Box color="label">nieustalona</Box>}
+              </LabeledList.Item>
+            )}
+            <LabeledList.Item
+              label="Stan psychiczny"
+              buttons={
+                <StatusButtons
+                  options={MENTAL_STATUSES}
+                  current={general.mental}
+                  param="m_stat"
+                />
+              }
+            >
+              <Box bold color={mental?.color}>
+                {translate(general.mental)}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Akta ogólne">
+              <TopicButton params={{ choice: 'View Past General' }} icon="book">
+                Pokaż
+              </TopicButton>
+            </LabeledList.Item>
+          </LabeledList>
+        </Stack.Item>
+        <Stack.Item>
+          <Photo src={general.photo_front} side={false} />
+        </Stack.Item>
+        <Stack.Item>
+          <Photo src={general.photo_side} side />
+        </Stack.Item>
+      </Stack>
       {medical ? (
         <MedicalData medical={medical} />
       ) : (
@@ -603,7 +709,7 @@ const RecordView = () => {
           </TopicButton>
         </Section>
       )}
-    </>
+    </Section>
   );
 };
 
@@ -630,108 +736,130 @@ const ConditionItem = (props: {
   </>
 );
 
+enum MEDTAB {
+  Data,
+  Comments,
+}
+
 const MedicalData = (props: { medical: MedicalRecord }) => {
   const { medical } = props;
+  const [tab, setTab] = useState(MEDTAB.Data);
   return (
     <>
-      <Section
-        title="Dane medyczne"
-        buttons={
-          <>
-            <TopicButton params={{ choice: 'View Past Medical' }} icon="book">
-              Historia choroby
-            </TopicButton>
-            <TopicButton params={{ del_r: 1 }} icon="trash" color="bad">
-              Usuń akta medyczne
-            </TopicButton>
-          </>
-        }
-      >
-        <LabeledList>
-          <LabeledList.Item
-            label="Grupa krwi"
-            buttons={<EditField field="blood_type" icon="list" />}
-          >
-            <Box bold color="red">
-              {translate(medical.blood_type)}
-            </Box>
-          </LabeledList.Item>
-          <LabeledList.Item label="DNA" buttons={<EditField field="b_dna" />}>
-            {translate(medical.dna)}
-          </LabeledList.Item>
-          <LabeledList.Divider />
-          <ConditionItem
-            label="Drobne niepełnosprawności"
-            field="mi_dis"
-            value={medical.mi_dis}
-            details={medical.mi_dis_d}
-          />
-          <ConditionItem
-            label="Poważne niepełnosprawności"
-            field="ma_dis"
-            value={medical.ma_dis}
-            details={medical.ma_dis_d}
-          />
-          <ConditionItem
-            label="Alergie"
-            field="alg"
-            value={medical.alg}
-            details={medical.alg_d}
-          />
-          <ConditionItem
-            label="Obecne choroby"
-            field="cdi"
-            value={medical.cdi}
-            details={medical.cdi_d}
-          />
-          <LabeledList.Item
-            label="Ważne uwagi"
-            buttons={<EditField field="notes" />}
-          >
-            {translate(medical.notes)}
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-      <Section
-        title="Komentarze i log"
-        buttons={
-          <TopicButton params={{ add_c: 1 }} icon="plus">
-            Dodaj wpis
-          </TopicButton>
-        }
-      >
-        {medical.comments.length === 0 && <Box color="label">Brak wpisów.</Box>}
-        {medical.comments.map((comment) =>
-          comment.deleted ? (
-            <Box key={comment.index} color="label" italic mb={1}>
-              Wpis usunięty.
-            </Box>
-          ) : (
-            <Section
-              key={comment.index}
-              buttons={
-                <TopicButton
-                  params={{ del_c: comment.index }}
-                  icon="times"
-                  color="bad"
-                  tooltip="Usuń wpis"
-                />
-              }
+      <Tabs fluid mt={1}>
+        <Tabs.Tab
+          icon="file-medical"
+          selected={tab === MEDTAB.Data}
+          onClick={() => setTab(MEDTAB.Data)}
+        >
+          Dane medyczne
+        </Tabs.Tab>
+        <Tabs.Tab
+          icon="comment-medical"
+          selected={tab === MEDTAB.Comments}
+          onClick={() => setTab(MEDTAB.Comments)}
+        >
+          Komentarze i log: {medical.comments.length}
+        </Tabs.Tab>
+      </Tabs>
+      {tab === MEDTAB.Data && (
+        <Section
+          buttons={
+            <>
+              <TopicButton params={{ choice: 'View Past Medical' }} icon="book">
+                Historia choroby
+              </TopicButton>
+              <TopicButton params={{ del_r: 1 }} icon="trash" color="bad">
+                Usuń akta medyczne
+              </TopicButton>
+            </>
+          }
+        >
+          <LabeledList>
+            <LabeledList.Item
+              label="Grupa krwi"
+              buttons={<EditField field="blood_type" icon="list" />}
             >
-              <Box dangerouslySetInnerHTML={{ __html: comment.text }} />
-            </Section>
-          ),
-        )}
-      </Section>
+              <Box bold color="red">
+                {translate(medical.blood_type)}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="DNA" buttons={<EditField field="b_dna" />}>
+              {translate(medical.dna)}
+            </LabeledList.Item>
+            <LabeledList.Divider />
+            <ConditionItem
+              label="Drobne niepełnosprawności"
+              field="mi_dis"
+              value={medical.mi_dis}
+              details={medical.mi_dis_d}
+            />
+            <ConditionItem
+              label="Poważne niepełnosprawności"
+              field="ma_dis"
+              value={medical.ma_dis}
+              details={medical.ma_dis_d}
+            />
+            <ConditionItem
+              label="Alergie"
+              field="alg"
+              value={medical.alg}
+              details={medical.alg_d}
+            />
+            <ConditionItem
+              label="Obecne choroby"
+              field="cdi"
+              value={medical.cdi}
+              details={medical.cdi_d}
+            />
+            <LabeledList.Item
+              label="Ważne uwagi"
+              buttons={<EditField field="notes" />}
+            >
+              {translate(medical.notes)}
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      )}
+      {tab === MEDTAB.Comments && (
+        <Section
+          buttons={
+            <TopicButton params={{ add_c: 1 }} icon="plus">
+              Dodaj wpis
+            </TopicButton>
+          }
+        >
+          {medical.comments.length === 0 && <NoticeBox>Brak wpisów.</NoticeBox>}
+          {medical.comments.map((comment) =>
+            comment.deleted ? (
+              <Box key={comment.index} color="label" italic mb={1}>
+                Wpis usunięty.
+              </Box>
+            ) : (
+              <Section
+                key={comment.index}
+                buttons={
+                  <TopicButton
+                    params={{ del_c: comment.index }}
+                    icon="times"
+                    color="bad"
+                    tooltip="Usuń wpis"
+                  />
+                }
+              >
+                <Box dangerouslySetInnerHTML={{ __html: comment.text }} />
+              </Section>
+            ),
+          )}
+        </Section>
+      )}
     </>
   );
 };
 
 const VirusDatabase = () => {
   const { data } = useBackend<Data>();
-  const viruses = [...(data.viruses || [])].sort((a, b) =>
-    a.name.localeCompare(b.name),
-  );
+  const viruses = sortBy(data.viruses || [], [(virus) => virus.name]);
   const [selected, setSelected] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const shown = viruses.filter((virus) =>
@@ -739,35 +867,41 @@ const VirusDatabase = () => {
   );
   const virus = viruses.find((entry) => entry.name === selected);
   return (
-    <Stack>
-      <Stack.Item width="35%">
-        <Section title="Baza wirusów">
-          <Input
-            fluid
-            mb={1}
-            placeholder="Szukaj..."
-            value={search}
-            onChange={(value) => setSearch(value)}
-          />
-          <Tabs vertical>
-            {shown.map((entry) => (
-              <Tabs.Tab
-                key={entry.name}
-                selected={entry.name === selected}
-                onClick={() => setSelected(entry.name)}
-              >
-                <Box inline color={DANGER_COLORS[entry.danger]}>
-                  {entry.name}
-                </Box>
-              </Tabs.Tab>
-            ))}
-          </Tabs>
-        </Section>
+    <Stack fill>
+      <Stack.Item width="32%">
+        <Stack fill vertical>
+          <Stack.Item>
+            <Input
+              fluid
+              placeholder="Szukaj choroby..."
+              value={search}
+              onChange={setSearch}
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            <Section fill scrollable>
+              <Tabs vertical>
+                {shown.map((entry) => (
+                  <Tabs.Tab
+                    key={entry.name}
+                    className="candystripe"
+                    selected={entry.name === selected}
+                    onClick={() => setSelected(entry.name)}
+                  >
+                    <Box inline color={DANGER_COLORS[entry.danger]}>
+                      {entry.name}
+                    </Box>
+                  </Tabs.Tab>
+                ))}
+              </Tabs>
+            </Section>
+          </Stack.Item>
+        </Stack>
       </Stack.Item>
       <Stack.Item grow>
-        <Section title={virus ? virus.name : 'Szczegóły'}>
+        <Section fill scrollable title={virus ? virus.name : 'Szczegóły'}>
           {!virus ? (
-            <Box color="label">Wybierz chorobę z listy.</Box>
+            <NoticeBox>Wybierz chorobę z listy.</NoticeBox>
           ) : (
             <LabeledList>
               <LabeledList.Item label="Zagrożenie">
@@ -802,7 +936,7 @@ const MedbotTracking = () => {
   const { data } = useBackend<Data>();
   const { medbots = [] } = data;
   return (
-    <Section title="Roboty medyczne na tym pokładzie">
+    <Section fill scrollable title="Roboty medyczne na tym pokładzie">
       {medbots.length === 0 ? (
         <NoticeBox>Nie wykryto robotów medycznych.</NoticeBox>
       ) : (

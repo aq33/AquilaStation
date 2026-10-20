@@ -53,6 +53,8 @@
 	var/list/default_access_list = list()
 	var/obj/item/card/id/internal_id_card
 	var/currently_stating_laws = FALSE
+	/// AQUILA - okno TGUI wyboru ogłaszanych praw
+	var/datum/state_laws_ui/state_laws_ui
 
 	mobchatspan = "centcom"
 
@@ -112,6 +114,7 @@
 	aicamera = null
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(internal_id_card)
+	QDEL_NULL(state_laws_ui) // AQUILA EDIT
 	GLOB.silicon_mobs -= src
 	return ..()
 
@@ -216,45 +219,7 @@
 	return FALSE
 
 /mob/living/silicon/Topic(href, href_list)
-	if (href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawc"])
-		switch(lawcheck[L+1])
-			if ("Yes")
-				lawcheck[L+1] = "No"
-			if ("No")
-				lawcheck[L+1] = "Yes"
-		checklaws()
-
-	if (href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawi"])
-		switch(ioncheck[L])
-			if ("Yes")
-				ioncheck[L] = "No"
-			if ("No")
-				ioncheck[L] = "Yes"
-		checklaws()
-
-	if (href_list["lawh"])
-		var/L = text2num(href_list["lawh"])
-		switch(hackedcheck[L])
-			if ("Yes")
-				hackedcheck[L] = "No"
-			if ("No")
-				hackedcheck[L] = "Yes"
-		checklaws()
-
-	if (href_list["lawdevil"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawdevil"])
-		switch(devillawcheck[L])
-			if ("Yes")
-				devillawcheck[L] = "No"
-			if ("No")
-				devillawcheck[L] = "Yes"
-		checklaws()
-
-
-	if (href_list["laws"] && !currently_stating_laws) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
-		statelaws()
+	// AQUILA EDIT - przełączniki praw do ogłoszenia są teraz w oknie TGUI (/datum/state_laws_ui)
 
 	if (href_list["printlawtext"]) // this is kinda backwards
 		to_chat(usr, href_list["printlawtext"])
@@ -343,60 +308,152 @@
 	currently_stating_laws = FALSE
 
 /mob/living/silicon/proc/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
+	// AQUILA EDIT - okno TGUI (StateLawUi z tg) zamiast starego okna HTML
+	laws_sanity_check()
+	if(!state_laws_ui)
+		state_laws_ui = new(src)
+	state_laws_ui.ui_interact(src)
 
-	var/list = "<b>Które prawa chcesz uwzględnić, ogłaszając je załodze?</b><br><br>"
+/// AQUILA - okno wyboru ogłaszanych praw (port StateLawUi z tg), działa na lawcheck/ioncheck/hackedcheck/devillawcheck
+/datum/state_laws_ui
+	var/mob/living/silicon/owner
+	/// Numery praw jonowych/zhakowanych, żeby nie losowały się przy każdym odświeżeniu okna
+	var/list/cached_ion_nums = list()
 
-	if (laws.devillaws && laws.devillaws.len)
-		for(var/index = 1, index <= laws.devillaws.len, index++)
-			if (!devillawcheck[index])
-				devillawcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawdevil=[index]'>[devillawcheck[index]] 666:</A> <font color='#cc5500'>[laws.devillaws[index]]</font><BR>"}
+/datum/state_laws_ui/New(mob/living/silicon/new_owner)
+	owner = new_owner
 
-	if (laws.zeroth)
-		if (!lawcheck[1])
-			lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
-		list += {"<A href='byond://?src=[REF(src)];lawc=0'>[lawcheck[1]] 0:</A> <font color='#ff0000'><b>[laws.zeroth]</b></font><BR>"}
+/datum/state_laws_ui/Destroy()
+	owner = null
+	return ..()
 
-	for (var/index = 1, index <= laws.hacked.len, index++)
-		var/law = laws.hacked[index]
-		if (length(law) > 0)
-			if (!hackedcheck[index])
-				hackedcheck[index] = "No"
-			list += {"<A href='byond://?src=[REF(src)];lawh=[index]'>[hackedcheck[index]] [ion_num()]:</A> <font color='#660000'>[law]</font><BR>"}
-			hackedcheck.len += 1
+/datum/state_laws_ui/ui_state(mob/user)
+	return GLOB.not_incapacitated_state
 
-	for (var/index = 1, index <= laws.ion.len, index++)
-		var/law = laws.ion[index]
+/datum/state_laws_ui/ui_interact(mob/user, datum/tgui/ui)
+	if(user != owner)
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StateLawUi")
+		ui.open()
 
-		if (length(law) > 0)
-			if (!ioncheck[index])
-				ioncheck[index] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawi=[index]'>[ioncheck[index]] [ion_num()]:</A> <font color='#547DFE'>[law]</font><BR>"}
-			ioncheck.len += 1
+/datum/state_laws_ui/proc/get_ion_num(law)
+	if(!cached_ion_nums[law])
+		cached_ion_nums[law] = ion_num()
+	return cached_ion_nums[law]
+
+/datum/state_laws_ui/proc/law_entry(text, number, type, category, index, check)
+	return list(list(
+		"text" = text,
+		"number" = number,
+		"type" = type,
+		"category" = category,
+		"index" = index,
+		"checked" = (check == "Yes"),
+	))
+
+/// Zbiera prawa w tej samej kolejności i z tymi samymi domyślnymi wartościami co dawne checklaws()
+/datum/state_laws_ui/proc/get_laws_ui_data()
+	var/list/law_data = list()
+	var/datum/ai_laws/L = owner?.laws
+	if(!L)
+		return law_data
+
+	if(length(L.devillaws))
+		if(length(owner.devillawcheck) < length(L.devillaws))
+			owner.devillawcheck.len = length(L.devillaws)
+		for(var/index in 1 to length(L.devillaws))
+			if(!owner.devillawcheck[index])
+				owner.devillawcheck[index] = "No"
+			law_data += law_entry(L.devillaws[index], "666", LAW_DEVIL, "devil", index, owner.devillawcheck[index])
+
+	if(L.zeroth)
+		if(!owner.lawcheck[1])
+			owner.lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
+		law_data += law_entry(L.zeroth, "0", LAW_ZEROTH, "law", 0, owner.lawcheck[1])
+
+	for(var/index in 1 to length(L.hacked))
+		var/law = L.hacked[index]
+		if(!length(law))
+			continue
+		if(length(owner.hackedcheck) < index)
+			owner.hackedcheck.len = index
+		if(!owner.hackedcheck[index])
+			owner.hackedcheck[index] = "No"
+		law_data += law_entry(law, get_ion_num(law), LAW_HACKED, "hacked", index, owner.hackedcheck[index])
+
+	for(var/index in 1 to length(L.ion))
+		var/law = L.ion[index]
+		if(!length(law))
+			continue
+		if(length(owner.ioncheck) < index)
+			owner.ioncheck.len = index
+		if(!owner.ioncheck[index])
+			owner.ioncheck[index] = "Yes"
+		law_data += law_entry(law, get_ion_num(law), LAW_ION, "ion", index, owner.ioncheck[index])
 
 	var/number = 1
-	for (var/index = 1, index <= laws.inherent.len, index++)
-		var/law = laws.inherent[index]
+	for(var/law in L.inherent)
+		if(!length(law))
+			continue
+		if(length(owner.lawcheck) < number + 1)
+			owner.lawcheck.len = number + 1
+		if(!owner.lawcheck[number + 1])
+			owner.lawcheck[number + 1] = "Yes"
+		law_data += law_entry(law, "[number]", LAW_INHERENT, "law", number, owner.lawcheck[number + 1])
+		number++
 
-		if (length(law) > 0)
-			lawcheck.len += 1
+	for(var/law in L.supplied)
+		if(!length(law))
+			continue
+		if(length(owner.lawcheck) < number + 1)
+			owner.lawcheck.len = number + 1
+		if(!owner.lawcheck[number + 1])
+			owner.lawcheck[number + 1] = "Yes"
+		law_data += law_entry(law, "[number]", LAW_SUPPLIED, "law", number, owner.lawcheck[number + 1])
+		number++
 
-			if (!lawcheck[number+1])
-				lawcheck[number+1] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> [law]<BR>"}
-			number++
+	return law_data
 
-	for (var/index = 1, index <= laws.supplied.len, index++)
-		var/law = laws.supplied[index]
-		if (length(law) > 0)
-			lawcheck.len += 1
-			if (!lawcheck[number+1])
-				lawcheck[number+1] = "Yes"
-			list += {"<A href='byond://?src=[REF(src)];lawc=[number]'>[lawcheck[number+1]] [number]:</A> <font color='#990099'>[law]</font><BR>"}
-			number++
-	list += {"<br><br><A href='byond://?src=[REF(src)];laws=1'>Ogłoś prawa</A>"}
+/datum/state_laws_ui/ui_data(mob/user)
+	var/list/data = list()
+	data["locked"] = owner.currently_stating_laws
+	data["all_laws"] = get_laws_ui_data()
+	return data
 
-	usr << browse(HTML_SKELETON(list), "window=laws")
+/datum/state_laws_ui/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(usr != owner)
+		return
+	switch(action)
+		if("toggle_stated")
+			var/index = text2num(params["index"])
+			if(isnull(index))
+				return
+			var/list/checklist
+			switch(params["category"])
+				if("law")
+					checklist = owner.lawcheck
+					index += 1
+				if("ion")
+					checklist = owner.ioncheck
+				if("hacked")
+					checklist = owner.hackedcheck
+				if("devil")
+					checklist = owner.devillawcheck
+			if(!checklist || index < 1 || index > length(checklist))
+				return
+			checklist[index] = (checklist[index] == "Yes") ? "No" : "Yes"
+			return TRUE
+		if("state_laws")
+			if(owner.currently_stating_laws)
+				return
+			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob/living/silicon, statelaws))
+			SStgui.close_uis(src)
+			return TRUE
 
 /mob/living/silicon/proc/ai_roster()
 	if(!client)

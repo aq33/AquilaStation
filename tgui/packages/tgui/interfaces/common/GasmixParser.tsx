@@ -80,11 +80,11 @@ export const GasmixParser = (props: GasmixParserProps) => {
                 label={
                   temperatureOnClick ? (
                     <Button
-                      content={'Temperature'}
+                      content={'Temperatura'}
                       onClick={() => temperatureOnClick()}
                     />
                   ) : (
-                    'Temperature'
+                    'Temperatura'
                   )
                 }
               >
@@ -94,11 +94,11 @@ export const GasmixParser = (props: GasmixParserProps) => {
                 label={
                   volumeOnClick ? (
                     <Button
-                      content={'Volume'}
+                      content={'Objętość'}
                       onClick={() => volumeOnClick()}
                     />
                   ) : (
-                    'Volume'
+                    'Objętość'
                   )
                 }
               >
@@ -108,11 +108,11 @@ export const GasmixParser = (props: GasmixParserProps) => {
                 label={
                   pressureOnClick ? (
                     <Button
-                      content={'Pressure'}
+                      content={'Ciśnienie'}
                       onClick={() => pressureOnClick()}
                     />
                   ) : (
-                    'Pressure'
+                    'Ciśnienie'
                   )
                 }
               >

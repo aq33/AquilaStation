@@ -26,7 +26,9 @@ type BeakerProps = {
   replace_contents?: BeakerReagent[];
   title_label?: string;
   showpH?: BooleanLike;
+  // eslint-disable-next-line react/no-unused-prop-types
   showInsertButton?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
   hasBeakerInHand?: BooleanLike;
 };
 
@@ -38,7 +40,7 @@ export const BeakerDisplay = (props: BeakerProps) => {
   return (
     <LabeledList>
       <LabeledList.Item
-        label="Beaker"
+        label="Zlewka"
         buttons={
           !!beaker && (
             <Button icon="eject" onClick={() => act('eject')}>
@@ -54,12 +56,12 @@ export const BeakerDisplay = (props: BeakerProps) => {
               {beaker.maxVolume} units
             </>
           )) ||
-          'No beaker'}
+          'Brak zlewki'}
       </LabeledList.Item>
-      <LabeledList.Item label="Contents">
+      <LabeledList.Item label="Zawartość">
         <Box color="label">
           {(!title_label && !beaker && 'N/A') ||
-            (beakerContents.length === 0 && 'Nothing')}
+            (beakerContents.length === 0 && 'Pusta')}
         </Box>
         {beakerContents.map((chemical) => (
           <Box key={chemical.name} color="label">
@@ -94,7 +96,7 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
 
   return (
     <Section
-      title={title_label || 'Beaker'}
+      title={title_label || 'Zlewka'}
       buttons={
         isBeakerLoaded ? (
           <>
@@ -113,9 +115,7 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
               style={{
                 opacity: hasBeakerInHand ? 1 : 0.5,
               }}
-              tooltip={
-                !hasBeakerInHand && 'You need to hold a container in your hand'
-              }
+              tooltip={!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce'}
               tooltipPosition="bottom-start"
             >
               Insert
@@ -125,8 +125,8 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
       }
     >
       <Box color="label">
-        {(!beaker && 'No beaker loaded') ||
-          (beakerContents.length === 0 && 'Nothing')}
+        {(!beaker && 'Nie włożono zlewki') ||
+          (beakerContents.length === 0 && 'Pusta')}
       </Box>
       {beakerContents.map((chemical) => (
         <Box key={chemical.name} color="label">

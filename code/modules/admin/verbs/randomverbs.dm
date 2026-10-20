@@ -566,24 +566,155 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/input = capped_multiline_input(usr, "Wpisz raport Dowództwa. Upewnij się, że ma sens IC.", "What?")
-	if(!input)
+	// AQUILA EDIT - okno TGUI (CommandReport z tg) zamiast serii input()/alert()
+	var/datum/command_report_menu/tgui = new(usr)
+	tgui.ui_interact(usr)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+#define REPORT_DEFAULT_SOUND "domyślny"
+#define REPORT_CUSTOM_SOUND "własny plik"
+#define REPORT_CENTCOM_PRESET "Centrala"
+#define REPORT_SYNDICATE_PRESET "Syndykat"
+#define REPORT_WIZARD_PRESET "Federacja Czarodziejów"
+#define REPORT_CUSTOM_PRESET "Własna nazwa"
+
+/// AQUILA - okno raportu Dowództwa (port CommandReport z tg)
+/datum/command_report_menu
+	/// The mob using the UI.
+	var/mob/ui_user
+	/// The name of central command that will accompany our report
+	var/command_name = REPORT_CENTCOM_PRESET
+	/// Whether we are using a custom name instead of a preset.
+	var/custom_name = FALSE
+	/// The actual contents of the report we're going to send.
+	var/command_report_content
+	/// Whether the report's contents are announced.
+	var/announce_contents = TRUE
+	/// Whether a copy of the report is printed at every console.
+	var/print_report = FALSE
+	/// The sound that's going to accompany our message.
+	var/played_sound = REPORT_DEFAULT_SOUND
+	/// The subheader to include when sending the announcement. Keep blank to not include a subheader
+	var/subheader = ""
+	/// A list of preset names that can be chosen.
+	var/list/preset_names = list(REPORT_CENTCOM_PRESET, REPORT_SYNDICATE_PRESET, REPORT_WIZARD_PRESET, REPORT_CUSTOM_PRESET)
+
+/datum/command_report_menu/New(mob/user)
+	ui_user = user
+	if(command_name() != REPORT_CENTCOM_PRESET)
+		command_name = command_name()
+		preset_names.Insert(1, command_name())
+
+/datum/command_report_menu/Destroy()
+	ui_user = null
+	return ..()
+
+/datum/command_report_menu/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/command_report_menu/ui_close(mob/user)
+	qdel(src)
+
+/datum/command_report_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CommandReport")
+		ui.open()
+
+/datum/command_report_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["command_name"] = command_name
+	data["custom_name"] = custom_name
+	data["command_report_content"] = command_report_content
+	data["announce_contents"] = announce_contents
+	data["print_report"] = print_report
+	data["played_sound"] = isfile(played_sound) ? "[played_sound]" : played_sound
+	data["subheader"] = subheader
+	return data
+
+/datum/command_report_menu/ui_static_data(mob/user)
+	var/list/data = list()
+	data["command_name_presets"] = preset_names
+	var/list/sounds = list(REPORT_DEFAULT_SOUND)
+	for(var/sound_key in SSstation.announcer?.event_sounds)
+		sounds += sound_key
+	sounds += REPORT_CUSTOM_SOUND
+	data["announcer_sounds"] = sounds
+	return data
+
+/datum/command_report_menu/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Czy chcesz ogłosić treść raportu załodze?", "Announce", "Yes", "No", "Cancel")
-	var/announce_command_report = TRUE
-	switch(confirm)
-		if("Yes")
-			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), has_important_message = TRUE)
-			announce_command_report = FALSE
-		if("Cancel")
-			return
+	switch(action)
+		if("update_command_name")
+			var/new_name = params["updated_name"]
+			if(!new_name)
+				return
+			if(new_name == REPORT_CUSTOM_PRESET)
+				custom_name = TRUE
+			else if(new_name in preset_names)
+				custom_name = FALSE
+			command_name = new_name
+		if("set_report_sound")
+			var/picked = params["picked_sound"]
+			if(picked == REPORT_CUSTOM_SOUND)
+				played_sound = REPORT_DEFAULT_SOUND // fallback by default
+				var/sound_file = input(ui_user, "Wybierz plik dźwiękowy", "Własny dźwięk") as sound|null
+				if(!sound_file)
+					return TRUE
+				played_sound = sound_file
+			else if(picked == REPORT_DEFAULT_SOUND || (picked in SSstation.announcer?.event_sounds))
+				played_sound = picked
+		if("toggle_announce")
+			announce_contents = !announce_contents
+		if("toggle_printing")
+			print_report = !print_report
+		if("set_subheader")
+			subheader = params["new_subheader"]
+		if("submit_report")
+			if(!command_name)
+				to_chat(ui_user, "<span class='danger'>Raport musi mieć nadawcę.</span>")
+				return
+			if(!params["report"])
+				to_chat(ui_user, "<span class='danger'>Raport nie może być pusty.</span>")
+				return
+			command_report_content = params["report"]
+			send_announcement()
 
-	print_command_report(input, "[announce_command_report ? "Classified " : ""][command_name()] Update", announce_command_report)
+	return TRUE
 
-	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/// Wysyła ogłoszenie i/lub drukuje raport według ustawień z okna
+/datum/command_report_menu/proc/send_announcement()
+	var/original_command_name = command_name()
+	change_command_name(command_name)
+
+	var/report_sound = played_sound
+	if(played_sound == REPORT_DEFAULT_SOUND)
+		report_sound = SSstation.announcer.get_rand_report_sound()
+
+	if(announce_contents)
+		priority_announce(command_report_content, subheader == "" ? null : subheader, report_sound, has_important_message = TRUE)
+
+	if(!announce_contents || print_report)
+		print_command_report(command_report_content, "[announce_contents ? "Komunikat" : "Tajny komunikat"]: [command_name]", !announce_contents)
+
+	change_command_name(original_command_name)
+
+	log_admin("[key_name(ui_user)] has created a command report: \"[command_report_content]\", sent from \"[command_name]\" with the sound \"[played_sound]\".")
+	message_admins("[key_name_admin(ui_user)] has created a command report, sent from \"[command_name]\"")
+	if(!announce_contents)
+		message_admins("The message was: [command_report_content]")
+
+#undef REPORT_DEFAULT_SOUND
+#undef REPORT_CUSTOM_SOUND
+#undef REPORT_CENTCOM_PRESET
+#undef REPORT_SYNDICATE_PRESET
+#undef REPORT_WIZARD_PRESET
+#undef REPORT_CUSTOM_PRESET
 
 /client/proc/cmd_change_command_name()
 	set category = "Round"

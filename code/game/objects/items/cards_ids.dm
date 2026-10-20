@@ -428,8 +428,9 @@ update_label("John Doe", "Clowny")
 			if(user.mind.special_role || anyone)
 				to_chat(usr, "<span class='notice'>Mikroskanery karty aktywują się, gdy przesuwasz ją nad kartą ID, kopiując jej dostępy.</span>")
 
-/obj/item/card/id/syndicate/attack_self(mob/user)
-	var/valid_jobs = list( // copy-paste from hop card paint machine, but this has more options, and valid to be static.
+/// AQUILA: lista wyglądów karty (dawniej w attack_self); nagłówki "----X----" nie są wyborem
+/obj/item/card/id/syndicate/proc/get_valid_styles()
+	var/static/list/valid_jobs = list( // copy-paste from hop card paint machine, but this has more options, and valid to be static.
 		"----Command----", "Command (Custom)",JOB_NAME_CAPTAIN,
 		"----Service----", "Service (Custom)", JOB_NAME_ASSISTANT, JOB_NAME_HEADOFPERSONNEL, JOB_NAME_BARTENDER, JOB_NAME_COOK,
 			JOB_NAME_BOTANIST, JOB_NAME_JANITOR, JOB_NAME_CURATOR,JOB_NAME_CHAPLAIN, JOB_NAME_LAWYER,
@@ -444,69 +445,78 @@ update_label("John Doe", "Clowny")
 		"----Munitions----","Munitions (Custom)",JOB_NAME_MASTERATARMS, JOB_NAME_BRIDGESTAFF, JOB_NAME_AIRTRAFFICCONTROLLER, JOB_NAME_MUNITIONSTECHNICIAN, JOB_NAME_PILOT, JOB_NAME_DECKTECHNICIAN,
 		"----MISC----","Unassigned",JOB_NAME_PRISONER,"CentCom (Custom)","CentCom","ERT",JOB_NAME_VIP,JOB_NAME_KING,"Syndicate","Clown Operative"
 	)
-	if(isliving(user) && user.mind)
-		var/first_use = registered_name ? FALSE : TRUE
-		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
-			if(first_use) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
-				anyone = TRUE
-			else
-				return ..()
+	return valid_jobs
 
-		var/popup_input = alert(user, "Wybierz akcję", "Karta agenta", "Show", "Forge/Reset", "Change Account ID")
-		if(user.incapacitated())
-			return
-		if(popup_input == "Forge/Reset" && !forged)
-			var/input_name = stripped_input(user, "Jakie imię chcesz umieścić na tej karcie? Zostaw puste, by wylosować.", "Imię na karcie agenta", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
-			input_name = reject_bad_name(input_name)
-			if(!input_name)
-				// Invalid/blank names give a randomly generated one.
-				input_name = human_full_name_random()
-				/* // AQ EDIT START
-				if(user.gender == MALE)
-					input_name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
-				else if(user.gender == FEMALE)
-					input_name = "[pick(GLOB.first_names_female)] [pick(GLOB.last_names)]"
-				else
-					input_name = "[pick(GLOB.first_names)] [pick(GLOB.last_names)]"
-				*/ // AQ EDIT END
+/// AQUILA: czy ten użytkownik może fałszować kartę (antag, karta "anyone" albo pierwszy użytkownik)
+/obj/item/card/id/syndicate/proc/can_forge(mob/user, first_use_unlock = FALSE)
+	if(!isliving(user) || !user.mind)
+		return FALSE
+	if(user.mind.special_role || anyone) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
+		return TRUE
+	if(first_use_unlock && !registered_name) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
+		anyone = TRUE
+		return TRUE
+	return FALSE
 
-			var/target_occupation = stripped_input(user, "Jaki zawód chcesz umieścić na tej karcie?\nUwaga: nie da to żadnych dostępów poza tunelami technicznymi.", "Stanowisko na karcie agenta", assignment ? assignment : JOB_NAME_ASSISTANT, MAX_MESSAGE_LEN)
-			if(!target_occupation)
+/obj/item/card/id/syndicate/attack_self(mob/user)
+	if(!can_forge(user, TRUE))
+		return ..()
+	ui_interact(user)
+
+// AQUILA: okno TGUI ChameleonCard zamiast serii alert()/input()
+/obj/item/card/id/syndicate/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/card/id/syndicate/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ChameleonCard", "Karta agenta")
+		ui.open()
+
+/obj/item/card/id/syndicate/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/styles = list()
+	for(var/style in get_valid_styles())
+		if(copytext(style, 1, 2) == "-")
+			continue
+		styles += style
+	data["styles"] = styles
+	return data
+
+/obj/item/card/id/syndicate/ui_data(mob/user)
+	var/list/data = list()
+	data["registered_name"] = registered_name
+	data["assignment"] = assignment
+	data["default_name"] = ishuman(user) ? user.real_name : user.name
+	data["forged"] = forged
+	data["account_id"] = registered_account?.account_id
+	data["account_holder"] = registered_account?.account_holder
+	var/list/access_names = list()
+	for(var/A in access)
+		var/desc = get_access_desc(A)
+		if(desc)
+			access_names += desc
+	data["accesses"] = sort_list(access_names)
+	return data
+
+/obj/item/card/id/syndicate/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	var/mob/living/user = usr
+	if(!can_forge(user))
+		return
+	switch(action)
+		if("show")
+			user.visible_message("<span class='notice'>[user] pokazuje ci: [icon2html(src, viewers(user))] [src.name].</span>", "<span class='notice'>Pokazujesz [src.name].</span>")
+			add_fingerprint(user)
+			return TRUE
+		if("change_account")
+			INVOKE_ASYNC(src, PROC_REF(set_new_account), user)
+			return TRUE
+		if("reset")
+			if(!forged)
 				return
-
-			// copy paste from HoP card painting machine
-			var/target_id_style = "-"
-			while(target_id_style[1] == "-") // trick. "-" is only non-valid option here.
-				target_id_style = input(user, "Wybierz wygląd karty (Anuluj, by niczego nie zmieniać)\nIkona karty na HUD-zie będzie odpowiadać wybranemu stanowisku.", "Kształt karty kameleona") as null|anything in valid_jobs
-				if(!target_id_style)
-					break
-
-			log_id("[key_name(user)] forged agent ID [src] name to [input_name] and occupation to [target_occupation][target_id_style ? " with [target_id_style] card style" : " with non changed [icon_state] shape, [hud_state] hud style"] at [AREACOORD(user)].")
-			registered_name = input_name
-			assignment = target_occupation
-			if(target_id_style)
-				icon_state = get_cardstyle_by_jobname(target_id_style)
-				hud_state = get_hud_by_jobname(target_id_style)
-				var/mob/living/carbon/human/H = user
-				H.sec_hud_set_ID()
-			update_label()
-			forged = TRUE
-			to_chat(user, "<span class='notice'>Pomyślnie fałszujesz kartę ID.</span>")
-			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\"[target_id_style ? " with [target_id_style] card style" : " with non changed [icon_state] shape, [hud_state] hud style"].")
-
-			// First time use automatically sets the account id to the user.
-			if (first_use && !registered_account)
-				if(ishuman(user))
-					var/mob/living/carbon/human/accountowner = user
-
-					for(var/bank_account in SSeconomy.bank_accounts)
-						var/datum/bank_account/account = bank_account
-						if(account.account_id == accountowner.account_id)
-							account.bank_cards += src
-							registered_account = account
-							to_chat(user, "<span class='notice'>Numer twojego konta został przypisany automatycznie.</span>")
-			return
-		else if (popup_input == "Forge/Reset" && forged)
 			registered_name = initial(registered_name)
 			assignment = initial(assignment)
 			log_id("[key_name(user)] reset agent ID [src] name to default at [AREACOORD(user)].")
@@ -514,11 +524,45 @@ update_label("John Doe", "Clowny")
 			update_label()
 			forged = FALSE
 			to_chat(user, "<span class='notice'>Pomyślnie resetujesz kartę ID.</span>")
-			return
-		else if (popup_input == "Change Account ID")
-			set_new_account(user)
-			return
-	return ..()
+			return TRUE
+		if("forge")
+			var/first_use = registered_name ? FALSE : TRUE
+			var/input_name = reject_bad_name(trim(html_encode(params["name"]), MAX_NAME_LEN))
+			if(!input_name)
+				// Invalid/blank names give a randomly generated one.
+				input_name = human_full_name_random()
+			var/target_occupation = trim(html_encode(params["assignment"]), MAX_MESSAGE_LEN)
+			if(!target_occupation)
+				to_chat(user, "<span class='warning'>Podaj stanowisko na karcie.</span>")
+				return
+			var/target_id_style = params["style"]
+			if(!(target_id_style in get_valid_styles()) || copytext(target_id_style, 1, 2) == "-")
+				target_id_style = null
+
+			log_id("[key_name(user)] forged agent ID [src] name to [input_name] and occupation to [target_occupation][target_id_style ? " with [target_id_style] card style" : " with non changed [icon_state] shape, [hud_state] hud style"] at [AREACOORD(user)].")
+			registered_name = input_name
+			assignment = target_occupation
+			if(target_id_style)
+				icon_state = get_cardstyle_by_jobname(target_id_style)
+				hud_state = get_hud_by_jobname(target_id_style)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					H.sec_hud_set_ID()
+			update_label()
+			forged = TRUE
+			to_chat(user, "<span class='notice'>Pomyślnie fałszujesz kartę ID.</span>")
+			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\"[target_id_style ? " with [target_id_style] card style" : " with non changed [icon_state] shape, [hud_state] hud style"].")
+
+			// First time use automatically sets the account id to the user.
+			if(first_use && !registered_account && ishuman(user))
+				var/mob/living/carbon/human/accountowner = user
+				for(var/bank_account in SSeconomy.bank_accounts)
+					var/datum/bank_account/account = bank_account
+					if(account.account_id == accountowner.account_id)
+						account.bank_cards += src
+						registered_account = account
+						to_chat(user, "<span class='notice'>Numer twojego konta został przypisany automatycznie.</span>")
+			return TRUE
 
 
 /obj/item/card/id/syndicate/emp_act(severity)

@@ -556,7 +556,13 @@
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/chosen = pick_closest_path(object)
+	// AQUILA EDIT - bez jednoznacznego dopasowania otwiera wyszukiwarkę TGUI (SpawnSearch z tg) zamiast długiej listy input()
+	var/search = trim("[object]")
+	var/list/matches = length(search) ? filter_fancy_list(get_fancy_list_of_atom_types(), search) : list()
+	if(length(matches) != 1)
+		open_spawn_menu(usr, search)
+		return
+	var/chosen = matches[matches[1]]
 	if(!chosen)
 		return
 	var/turf/T = get_turf(usr)
@@ -683,6 +689,217 @@
 
 	if(!ai_number)
 		to_chat(usr, "<b>Nie znaleziono SI</b>" )
+
+/// AQUILA - panel praw SI dla adminów (port Lawpanel z tg), zastępuje wypisywanie praw na czat w "Check AI Laws"
+/datum/law_panel
+
+/datum/law_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Lawpanel")
+		ui.open()
+
+/datum/law_panel/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/law_panel/ui_close(mob/user)
+	qdel(src)
+
+/datum/law_panel/proc/log_panel_change(mob/user, message)
+	log_law("[key_name(user)] [message]")
+	log_admin("[key_name(user)] [message]")
+	message_admins("[key_name_admin(user)] [message]")
+
+/datum/law_panel/proc/law_list_for_type(datum/ai_laws/lawset, lawtype)
+	switch(lawtype)
+		if(LAW_DEVIL)
+			return lawset.devillaws
+		if(LAW_HACKED)
+			return lawset.hacked
+		if(LAW_ION)
+			return lawset.ion
+		if(LAW_INHERENT)
+			return lawset.inherent
+		if(LAW_SUPPLIED)
+			return lawset.supplied
+
+/datum/law_panel/proc/add_law_helper(mob/user, mob/living/silicon/borgo)
+	var/list/lawtypes = list(LAW_ZEROTH, LAW_HACKED, LAW_ION, LAW_INHERENT, LAW_SUPPLIED) // in order of priority
+	var/lawtype = tgui_input_list(user, "Wybierz rodzaj prawa", "Rodzaj prawa", lawtypes)
+	if(isnull(lawtype))
+		return FALSE
+	var/lawtext = tgui_input_text(user, "Wpisz treść prawa", "Treść prawa")
+	if(!lawtext)
+		return FALSE
+	if(QDELETED(src) || QDELETED(borgo))
+		return FALSE
+	borgo.laws_sanity_check()
+	switch(lawtype)
+		if(LAW_ZEROTH)
+			if(borgo.laws.zeroth)
+				if(tgui_alert(user, "Ta jednostka ma już prawo zerowe, nowe je zastąpi. Na pewno?", "Zastąpienie prawa zerowego", list("Tak", "Nie")) != "Tak")
+					return FALSE
+				if(QDELETED(src) || QDELETED(borgo))
+					return FALSE
+			borgo.laws.set_zeroth_law(lawtext)
+		if(LAW_HACKED)
+			borgo.laws.add_hacked_law(lawtext)
+		if(LAW_ION)
+			borgo.laws.add_ion_law(lawtext)
+		if(LAW_INHERENT)
+			borgo.laws.add_inherent_law(lawtext)
+		if(LAW_SUPPLIED)
+			borgo.laws.supplied += lawtext // Just goes to the end of the list
+	log_panel_change(user, "has UPLOADED a [lawtype] law to [key_name(borgo)] stating: [lawtext]")
+	return TRUE
+
+/datum/law_panel/proc/move_law_helper(mob/user, mob/living/silicon/borgo, direction, law)
+	var/list/relevant_laws = borgo.laws.inherent
+	var/lawindex = relevant_laws.Find(law)
+	if(!lawindex)
+		to_chat(user, "<span class='danger'>Coś poszło nie tak, nie udało się przesunąć prawa.</span>")
+		return FALSE
+	switch(direction)
+		if("up")
+			if(lawindex == 1)
+				return FALSE
+			relevant_laws.Swap(lawindex - 1, lawindex)
+		if("down")
+			if(lawindex == length(relevant_laws))
+				return FALSE
+			relevant_laws.Swap(lawindex + 1, lawindex)
+		else
+			return FALSE
+	log_panel_change(user, "has MOVED a [LAW_INHERENT] law for [key_name(borgo)] [direction]. LAW: [law]")
+	return TRUE
+
+/datum/law_panel/proc/edit_law_text_helper(mob/user, mob/living/silicon/borgo, lawtype, oldlaw)
+	var/newlaw = tgui_input_text(user, "Zmień treść prawa.", "Edycja prawa", oldlaw)
+	if(!newlaw || QDELETED(src) || QDELETED(borgo))
+		return FALSE
+	if(lawtype == LAW_ZEROTH)
+		borgo.laws.set_zeroth_law(newlaw)
+	else
+		var/list/relevant_laws = law_list_for_type(borgo.laws, lawtype)
+		var/lawindex = relevant_laws ? relevant_laws.Find(oldlaw) : 0
+		if(!lawindex)
+			to_chat(user, "<span class='danger'>Coś poszło nie tak, nie udało się zmienić prawa.</span>")
+			return FALSE
+		relevant_laws[lawindex] = newlaw
+	log_panel_change(user, "has EDITED [key_name(borgo)] [lawtype] law. OLD LAW: [oldlaw] NEW LAW: [newlaw]")
+	return TRUE
+
+/datum/law_panel/proc/remove_law_helper(mob/user, mob/living/silicon/borgo, lawtype, law)
+	if(lawtype == LAW_ZEROTH)
+		borgo.laws.clear_zeroth_law(TRUE)
+	else
+		var/list/relevant_laws = law_list_for_type(borgo.laws, lawtype)
+		if(!relevant_laws || !(law in relevant_laws))
+			return FALSE
+		relevant_laws -= law
+	log_panel_change(user, "has REMOVED a [lawtype] law from [key_name(borgo)]. LAW: [law]")
+	return TRUE
+
+/// Po zmianie praw SI synchronizuje podłączone cyborgi
+/datum/law_panel/proc/sync_laws(mob/living/silicon/borgo)
+	if(!isAI(borgo))
+		return
+	var/mob/living/silicon/ai/ai = borgo
+	for(var/mob/living/silicon/robot/R as anything in ai.connected_robots)
+		if(R.lawupdate)
+			R.lawsync()
+
+/datum/law_panel/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		qdel(src)
+		return FALSE
+
+	var/mob/living/silicon/borgo
+	if(params["ref"])
+		borgo = locate(params["ref"]) in GLOB.silicon_mobs
+	if(QDELETED(borgo))
+		to_chat(usr, "<span class='danger'>Ta jednostka już nie istnieje.</span>")
+		return TRUE
+
+	switch(action)
+		if("force_state_laws")
+			INVOKE_ASYNC(borgo, TYPE_PROC_REF(/mob/living/silicon, statelaws), TRUE)
+			return FALSE
+		if("announce_law_changes")
+			borgo.show_laws()
+			return FALSE
+		if("laws_updated_alert")
+			borgo.post_lawchange(TRUE)
+			return FALSE
+		if("give_law_datum")
+			borgo.make_laws()
+			return TRUE
+		if("add_law")
+			. = add_law_helper(usr, borgo)
+		if("remove_law")
+			. = remove_law_helper(usr, borgo, params["lawtype"], params["law"])
+		if("move_law")
+			. = move_law_helper(usr, borgo, params["direction"], params["law"])
+		if("edit_law_text")
+			. = edit_law_text_helper(usr, borgo, params["lawtype"], params["law"])
+
+	if(. && !QDELETED(borgo))
+		sync_laws(borgo)
+
+/datum/law_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/all_silicons = list()
+	for(var/mob/living/silicon/borgo as anything in GLOB.silicon_mobs)
+		var/list/borg_information = list()
+		if(iscyborg(borgo))
+			var/mob/living/silicon/robot/cyborg = borgo
+			if(cyborg.shell)
+				continue
+			borg_information["master_ai"] = cyborg.connected_ai?.real_name
+			borg_information["borg_synced"] = cyborg.lawupdate
+			borg_information["borg_type"] = "Cyborg"
+		else if(isAI(borgo))
+			borg_information["borg_type"] = "SI"
+		else if(ispAI(borgo))
+			borg_information["borg_type"] = "pAI"
+		else
+			borg_information["borg_type"] = "Nieznany"
+
+		borg_information["borg_name"] = borgo.real_name
+		borg_information["ref"] = REF(borgo)
+
+		var/datum/ai_laws/lawset = borgo.laws
+		if(isnull(lawset))
+			borg_information["laws"] = null
+		else
+			var/list/borg_laws = list()
+			for(var/law in lawset.devillaws)
+				borg_laws += list(list("lawtype" = LAW_DEVIL, "law" = law, "num" = 666))
+			if(lawset.zeroth)
+				borg_laws += list(list("lawtype" = LAW_ZEROTH, "law" = lawset.zeroth, "num" = 0))
+			for(var/law in lawset.hacked)
+				if(length(law))
+					borg_laws += list(list("lawtype" = LAW_HACKED, "law" = law, "num" = -1))
+			for(var/law in lawset.ion)
+				if(length(law))
+					borg_laws += list(list("lawtype" = LAW_ION, "law" = law, "num" = -1))
+			var/lawnum = 1
+			for(var/law in lawset.inherent)
+				borg_laws += list(list("lawtype" = LAW_INHERENT, "law" = law, "num" = lawnum))
+				lawnum += 1
+			for(var/law in lawset.supplied)
+				if(length(law)) // Supplied is full of a bunch of empties
+					borg_laws += list(list("lawtype" = LAW_SUPPLIED, "law" = law, "num" = lawnum))
+					lawnum += 1
+			borg_information["laws"] = borg_laws
+
+		all_silicons += list(borg_information)
+
+	data["all_silicons"] = all_silicons
+	return data
 
 /datum/admins/proc/output_all_devil_info()
 	var/devil_number = 0

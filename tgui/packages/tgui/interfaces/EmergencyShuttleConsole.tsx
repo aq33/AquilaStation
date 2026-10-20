@@ -1,28 +1,34 @@
-import { Box, Button, Section } from 'tgui-core/components';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  authorizations: any;
-  authorizations_remaining: any;
-  emagged: any;
-  enabled: any;
-  engines_started: any;
-  timer_str: any;
+  authorizations_remaining: number;
+  authorizations: Authorization[];
+  emagged: BooleanLike;
+  enabled: BooleanLike;
+  engines_started: BooleanLike;
+  timer_str: string;
 };
 
-export const EmergencyShuttleConsole = (props) => {
+type Authorization = {
+  job: string;
+  name: string;
+};
+
+export function EmergencyShuttleConsole(props) {
   const { act, data } = useBackend<Data>();
   const {
-    timer_str,
-    enabled,
-    emagged,
-    engines_started,
-    authorizations_remaining,
     authorizations = [],
+    authorizations_remaining,
+    emagged,
+    enabled,
+    engines_started,
+    timer_str,
   } = data;
+
   return (
     <Window width={400} height={350}>
       <Window.Content>
@@ -32,55 +38,62 @@ export const EmergencyShuttleConsole = (props) => {
           </Box>
           <Box textAlign="center" fontSize="16px" mb={1}>
             <Box inline bold>
-              ENGINES:
+              SILNIKI:
             </Box>
             <Box inline color={engines_started ? 'good' : 'average'} ml={1}>
-              {engines_started ? 'Online' : 'Idle'}
+              {engines_started ? 'Uruchomione' : 'Bezczynne'}
             </Box>
           </Box>
           <Section
-            title="Early Launch Authorization"
+            title="Zgoda na wcześniejszy start"
             buttons={
               <Button
-                icon="times"
-                content="Repeal All"
                 color="bad"
                 disabled={!enabled}
+                icon="times"
                 onClick={() => act('abort')}
-              />
+              >
+                Cofnij wszystkie
+              </Button>
             }
           >
-            <Grid>
-              <Grid.Column>
+            <Stack>
+              <Stack.Item grow>
                 <Button
+                  color="good"
+                  disabled={!enabled}
                   fluid
                   icon="exclamation-triangle"
-                  color="good"
-                  content="AUTHORIZE"
-                  disabled={!enabled}
                   onClick={() => act('authorize')}
-                />
-              </Grid.Column>
-              <Grid.Column>
+                >
+                  AUTORYZUJ
+                </Button>
+              </Stack.Item>
+              <Stack.Item grow>
                 <Button
+                  disabled={!enabled}
                   fluid
                   icon="minus"
-                  content="REPEAL"
-                  disabled={!enabled}
                   onClick={() => act('repeal')}
-                />
-              </Grid.Column>
-            </Grid>
+                >
+                  COFNIJ
+                </Button>
+              </Stack.Item>
+            </Stack>
             <Section
-              title="Authorizations"
+              title="Autoryzacje"
               minHeight="150px"
               buttons={
                 <Box inline bold color={emagged ? 'bad' : 'good'}>
-                  {emagged ? 'ERROR' : 'Remaining: ' + authorizations_remaining}
+                  {emagged ? 'BŁĄD' : `Pozostało: ${authorizations_remaining}`}
                 </Box>
               }
             >
-              {authorizations.length > 0 ? (
+              {authorizations.length === 0 ? (
+                <Box bold textAlign="center" fontSize="16px" color="average">
+                  Brak aktywnych autoryzacji
+                </Box>
+              ) : (
                 authorizations.map((authorization) => (
                   <Box
                     key={authorization.name}
@@ -91,10 +104,6 @@ export const EmergencyShuttleConsole = (props) => {
                     {authorization.name} ({authorization.job})
                   </Box>
                 ))
-              ) : (
-                <Box bold textAlign="center" fontSize="16px" color="average">
-                  No Active Authorizations
-                </Box>
               )}
             </Section>
           </Section>
@@ -102,4 +111,4 @@ export const EmergencyShuttleConsole = (props) => {
       </Window.Content>
     </Window>
   );
-};
+}

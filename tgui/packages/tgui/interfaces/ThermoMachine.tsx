@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import {
   AnimatedNumber,
   Button,
@@ -6,36 +5,39 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  cooling: any;
-  initial: any;
-  max: any;
-  min: any;
-  on: any;
-  pressure: any;
-  target: any;
-  temperature: any;
+  on: BooleanLike;
+  // AQUILA: jedna maszyna grzeje albo chłodzi, przełącznik trybu
+  cooling: BooleanLike;
+  initial: number;
+  max: number;
+  min: number;
+  pressure: number;
+  target: number;
+  temperature: number;
 };
 
 export const ThermoMachine = (props) => {
   const { act, data } = useBackend<Data>();
   return (
-    <Window width={300} height={250}>
+    <Window width={300} height={270}>
       <Window.Content>
-        <Section title="Status">
+        <Section title="Stan">
           <LabeledList>
-            <LabeledList.Item label="Temperature">
+            <LabeledList.Item label="Temperatura">
               <AnimatedNumber
                 value={data.temperature}
                 format={(value) => toFixed(value, 2)}
               />
               {' K'}
             </LabeledList.Item>
-            <LabeledList.Item label="Pressure">
+            <LabeledList.Item label="Ciśnienie">
               <AnimatedNumber
                 value={data.pressure}
                 format={(value) => toFixed(value, 2)}
@@ -45,29 +47,29 @@ export const ThermoMachine = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Controls"
+          title="Sterowanie"
           buttons={
             <Button
               icon={data.on ? 'power-off' : 'times'}
-              content={data.on ? 'On' : 'Off'}
+              content={data.on ? 'Wł.' : 'Wył.'}
               selected={data.on}
               onClick={() => act('power')}
             />
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Setting">
+            <LabeledList.Item label="Tryb">
               <Button
-                icon={data.cooling ? 'cooling' : 'heating'}
-                content={data.cooling ? 'Cooling' : 'Heating'}
+                icon={data.cooling ? 'snowflake' : 'fire'}
+                content={data.cooling ? 'Chłodzenie' : 'Grzanie'}
                 selected={data.cooling}
                 onClick={() => act('cooling')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Target Temperature">
+            <LabeledList.Item label="Temperatura docelowa">
               <NumberInput
-                tickWhileDragging
                 animated
+                tickWhileDragging
                 value={Math.round(data.target)}
                 unit="K"
                 width="62px"
@@ -82,11 +84,11 @@ export const ThermoMachine = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Presets">
+            <LabeledList.Item label="Ustawienia">
               <Button
                 icon="fast-backward"
                 disabled={data.target === data.min}
-                tooltip="Minimum temperature"
+                tooltip="Temperatura minimalna"
                 onClick={() =>
                   act('target', {
                     target: data.min,
@@ -96,7 +98,7 @@ export const ThermoMachine = (props) => {
               <Button
                 icon="sync"
                 disabled={data.target === data.initial}
-                tooltip="Room Temperature"
+                tooltip="Temperatura pokojowa"
                 onClick={() =>
                   act('target', {
                     target: data.initial,
@@ -106,7 +108,7 @@ export const ThermoMachine = (props) => {
               <Button
                 icon="fast-forward"
                 disabled={data.target === data.max}
-                tooltip="Maximum Temperature"
+                tooltip="Temperatura maksymalna"
                 onClick={() =>
                   act('target', {
                     target: data.max,

@@ -1,7 +1,7 @@
-import { BooleanLike, classes } from 'common/react';
+import { Button, Flex, Table } from 'tgui-core/components';
+import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Button, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
 type AlternateAction = {
@@ -11,15 +11,15 @@ type AlternateAction = {
 
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
   enable_internals: {
-    text: 'Enable internals',
+    text: 'Włącz oddychanie z butli',
   },
 
   disable_internals: {
-    text: 'Disable internals',
+    text: 'Wyłącz oddychanie z butli',
   },
 
   adjust_sensors: {
-    text: 'Adjust suit sensors',
+    text: 'Ustaw czujniki kombinezonu',
   },
 };
 
@@ -37,27 +37,27 @@ type Unavailable = {
 };
 
 const SLOTS: Record<string, string> = {
-  left_hand: 'Left hand',
-  right_hand: 'Right hand',
-  back: 'Backpack',
-  head: 'Headwear',
-  mask: 'Mask',
-  neck: 'Neckwear',
-  corgi_collar: 'Collar',
-  parrot_headset: 'Headset',
-  eyes: 'Eyewear',
-  ears: 'Earwear',
-  suit: 'Suit',
-  suit_storage: 'Suit storage',
-  shoes: 'Shoes',
-  gloves: 'Gloves',
+  left_hand: 'Lewa ręka',
+  right_hand: 'Prawa ręka',
+  back: 'Plecy',
+  head: 'Głowa',
+  mask: 'Maska',
+  neck: 'Szyja',
+  corgi_collar: 'Obroża',
+  parrot_headset: 'Słuchawka',
+  eyes: 'Oczy',
+  ears: 'Uszy',
+  suit: 'Odzież wierzchnia',
+  suit_storage: 'Uchwyt na kombinezonie',
+  shoes: 'Buty',
+  gloves: 'Rękawice',
   jumpsuit: 'Uniform',
-  belt: 'Belt',
-  left_pocket: 'Left pocket',
-  right_pocket: 'Right pocket',
+  belt: 'Pas',
+  left_pocket: 'Lewa kieszeń',
+  right_pocket: 'Prawa kieszeń',
   id: 'ID',
-  handcuffs: 'Handcuffs',
-  legcuffs: 'Legcuffs',
+  handcuffs: 'Kajdanki',
+  legcuffs: 'Kajdany na nogi',
 };
 
 type Layout = Array<
@@ -193,9 +193,9 @@ const StripMenuRow = (props: StripMenuRowProps) => {
   const { act, data } = useBackend<StripMenuData>();
 
   const name = props.obscured
-    ? 'Obscured'
+    ? 'Zasłonięte'
     : props.empty
-      ? 'Empty'
+      ? 'Pusto'
       : props.itemName;
 
   return (
@@ -276,7 +276,7 @@ export const StripMenu = (props) => {
     // If any valid slots were found in this section, add a spacer
     if (rows.length) {
       rows.push(
-        <Table.Row className="spacer">
+        <Table.Row className="spacer" key="spacer">
           <Table.Cell />
           <Table.Cell />
         </Table.Row>,
@@ -288,7 +288,7 @@ export const StripMenu = (props) => {
 
   return (
     <Window
-      title={`Stripping ${data.name}`}
+      title={`Przeszukiwanie: ${data.name}`}
       // Enough width to fit "atmospheric technician's jumpsuit"
       width={400}
       // Enough height to fit human with internals,

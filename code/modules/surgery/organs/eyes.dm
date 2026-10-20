@@ -250,7 +250,7 @@
 		activate()
 
 /obj/item/organ/eyes/robotic/glow/proc/prompt_for_controls(mob/user)
-	var/C = input(owner, "Wybierz kolor", "Wybierz kolor", "#ffffff") as color|null
+	var/C = tgui_color_picker(owner, "Wybierz kolor", "Wybierz kolor", "#ffffff")
 	if(!C || QDELETED(src) || QDELETED(user) || QDELETED(owner) || owner != user)
 		return
 	var/range = input(user, "Podaj zasięg (0 - [max_light_beam_distance])", "Wybór zasięgu", 0) as null|num

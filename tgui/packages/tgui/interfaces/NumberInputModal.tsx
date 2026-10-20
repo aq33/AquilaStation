@@ -1,50 +1,45 @@
-import { isEscape, KEY } from 'common/keys';
-import { clamp } from 'common/math';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import {
+  Box,
+  Button,
+  RestrictedInput,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import { isEscape, KEY } from 'tgui-core/keys';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Box, Button, RestrictedInput, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
-type NumberInputData = {
+type Data = {
   init_value: number;
-  large_buttons: boolean;
-  max_value: number | null;
+  large_buttons: BooleanLike;
+  max_value: number;
   message: string;
-  min_value: number | null;
+  min_value: number;
+  round_value: BooleanLike;
   timeout: number;
   title: string;
-  round_value: boolean;
 };
 
-export const NumberInputModal = (_) => {
-  const { act, data } = useBackend<NumberInputData>();
+export function NumberInputModal(props) {
+  const { act, data } = useBackend<Data>();
   const {
     init_value,
     large_buttons,
+    max_value = 10000,
     message = '',
+    min_value = 0,
+    round_value,
     timeout,
     title,
-    min_value,
-    max_value,
   } = data;
-  const [input, setInput] = useState(init_value);
 
-  const [clampedInput, setClampedInput] = useState(
-    clamp(input, min_value, max_value),
-  );
-  const setValue = (value: number) => {
-    if (value === input) {
-      return;
-    }
-    setInput(value);
-  };
-
-  useEffect(() => {
-    setClampedInput(clamp(input, min_value, max_value));
-  }, [input]);
+  const [value, setValue] = useState(init_value);
+  const [isValid, setIsValid] = useState(true);
 
   // Dynamically changes the window height based on the message.
   const windowHeight =
@@ -52,97 +47,91 @@ export const NumberInputModal = (_) => {
     (message.length > 30 ? Math.ceil(message.length / 3) : 0) +
     (message.length && large_buttons ? 5 : 0);
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === KEY.Enter && isValid) {
+      act('submit', { entry: value });
+    }
+    if (isEscape(event.key)) {
+      act('cancel');
+    }
+  }
+
   return (
-    <Window title={title} width={270} height={windowHeight} theme="generic">
+    <Window title={title} width={270} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
-      <Window.Content
-        onKeyDown={(event) => {
-          if (event.key === KEY.Enter) {
-            act('submit', { entry: clampedInput });
-          }
-          if (isEscape(event.key)) {
-            act('cancel');
-          }
-        }}
-      >
+      <Window.Content onKeyDown={handleKeyDown}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item grow>
               <Box color="label">{message}</Box>
             </Stack.Item>
             <Stack.Item>
-              <InputArea input={input} onClick={setValue} onChange={setValue} />
+              <Stack fill>
+                <Stack.Item>
+                  <Button
+                    disabled={value === min_value}
+                    icon="angle-double-left"
+                    onClick={() => setValue(min_value ?? 0)}
+                    tooltip={min_value ? `Min (${min_value})` : 'Min'}
+                  />
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Button
+                    icon="angle-down"
+                    disabled={value <= min_value}
+                    onClick={() => setValue((value) => value - 1)}
+                  />
+                </Stack.Item>
+
+                <Stack.Item grow>
+                  <RestrictedInput
+                    autoFocus
+                    autoSelect
+                    fluid
+                    allowFloats={!round_value}
+                    minValue={min_value}
+                    maxValue={max_value}
+                    onChange={setValue}
+                    onValidationChange={setIsValid}
+                    value={value}
+                  />
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Button
+                    icon="angle-up"
+                    disabled={value >= max_value}
+                    onClick={() => setValue((value) => value + 1)}
+                  />
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Button
+                    disabled={value === max_value}
+                    icon="angle-double-right"
+                    onClick={() => setValue(max_value ?? 10000)}
+                    tooltip={max_value ? `Max (${max_value})` : 'Max'}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    disabled={value === init_value}
+                    icon="redo"
+                    onClick={() => setValue(init_value ?? 0)}
+                    tooltip={
+                      init_value ? `Przywróć (${init_value})` : 'Przywróć'
+                    }
+                  />
+                </Stack.Item>
+              </Stack>
             </Stack.Item>
             <Stack.Item>
-              <InputButtons input={clampedInput} />
+              <InputButtons input={value} disabled={!isValid} />
             </Stack.Item>
           </Stack>
         </Section>
       </Window.Content>
     </Window>
   );
-};
-
-/** Gets the user input and invalidates if there's a constraint. */
-const InputArea = (props) => {
-  const { act, data } = useBackend<NumberInputData>();
-  const { min_value, max_value, init_value, round_value } = data;
-  const { input, onClick, onChange } = props;
-  const [inputValue, setInputValue] = useState(input);
-  useEffect(() => {
-    onChange(clamp(inputValue, min_value, max_value));
-  }, [inputValue]);
-
-  return (
-    <Stack fill>
-      <Stack.Item>
-        <Button
-          disabled={input === min_value}
-          icon="angle-double-left"
-          onClick={() => {
-            const newValue = min_value ?? 0; // Ensure a valid number
-            setInputValue(newValue); // Update the input state
-          }}
-          tooltip={min_value ? `Min (${min_value})` : 'Min'}
-        />
-      </Stack.Item>
-      <Stack.Item grow>
-        <RestrictedInput
-          autoFocus
-          autoSelect
-          fluid
-          allowFloats={!round_value}
-          minValue={min_value ?? undefined}
-          maxValue={max_value ?? undefined}
-          onBlur={(value) => {
-            setInputValue(value); // Update the input state when the user types
-          }}
-          onEnter={(value) => act('submit', { entry: value })}
-          value={inputValue} // Ensure the input field reflects the current state
-        />
-      </Stack.Item>
-      <Stack.Item>
-        <Button
-          disabled={input === max_value}
-          icon="angle-double-right"
-          onClick={() => {
-            const newValue = max_value ?? 0; // Ensure a valid number
-            setInputValue(newValue); // Update the input state
-          }}
-          tooltip={max_value ? `Max (${max_value})` : 'Max'}
-        />
-      </Stack.Item>
-      <Stack.Item>
-        <Button
-          disabled={input === init_value}
-          icon="redo"
-          onClick={() => {
-            const newValue = init_value; // Reset to the initial value
-            setInputValue(newValue); // Update the input state
-          }}
-          tooltip={init_value ? `Reset (${init_value})` : 'Reset'}
-        />
-      </Stack.Item>
-    </Stack>
-  );
-};
+}

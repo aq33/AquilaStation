@@ -220,11 +220,14 @@
 			var/chemname = temp.name
 			if(is_hallucinating && prob(5))
 				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "color" = temp.color))) // AQUILA EDIT - kolor przycisku jak w tg
 	data["chemicals"] = chemicals
 	data["recipes"] = saved_recipes
 
 	data["recordingRecipe"] = recording_recipe
+	// AQUILA - przycisk „Włóż” w oknie z tg
+	var/obj/item/held_item = user.get_active_held_item()
+	data["hasBeakerInHand"] = istype(held_item, /obj/item/reagent_containers) && !(held_item.item_flags & ABSTRACT) && held_item.is_open_container()
 	return data
 
 /obj/machinery/chem_dispenser/ui_act(action, params)
@@ -235,6 +238,15 @@
 	switch(action)
 		if("eject")
 			replace_beaker(usr)
+			. = TRUE
+		// AQUILA - wkładanie zlewki z ręki przyciskiem w oknie
+		if("insert")
+			var/obj/item/reagent_containers/container = usr.get_active_held_item()
+			if(!istype(container) || (container.item_flags & ABSTRACT) || !container.is_open_container())
+				return
+			if(!usr.transferItemToLoc(container, src))
+				return
+			replace_beaker(usr, container)
 			. = TRUE
 
 	if(!is_operational)

@@ -4,43 +4,46 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  max_pressure: any;
-  max_rate: any;
-  on: any;
-  pressure: any;
-  rate: any;
+  on: BooleanLike;
+  max_rate: number;
+  rate: number;
+  pressure: number;
+  max_pressure: number;
 };
 
 export const AtmosPump = (props) => {
   const { act, data } = useBackend<Data>();
+  const { on, max_rate, max_pressure, rate, pressure } = data;
+
   return (
     <Window width={335} height={115}>
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="Zasilanie">
               <Button
-                icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
-                selected={data.on}
+                icon={on ? 'power-off' : 'times'}
+                content={on ? 'Wł.' : 'Wył.'}
+                selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            {data.max_rate ? (
-              <LabeledList.Item label="Transfer Rate">
+            {max_rate ? (
+              <LabeledList.Item label="Przepływ">
                 <NumberInput
-                  step={1}
                   animated
-                  value={parseFloat(data.rate)}
+                  value={rate}
+                  step={1}
                   width="63px"
                   unit="L/s"
                   minValue={0}
-                  maxValue={data.max_rate}
+                  maxValue={max_rate}
                   onChange={(value) =>
                     act('rate', {
                       rate: value,
@@ -51,7 +54,7 @@ export const AtmosPump = (props) => {
                   ml={1}
                   icon="plus"
                   content="Max"
-                  disabled={data.rate === data.max_rate}
+                  disabled={rate === max_rate}
                   onClick={() =>
                     act('rate', {
                       rate: 'max',
@@ -60,14 +63,14 @@ export const AtmosPump = (props) => {
                 />
               </LabeledList.Item>
             ) : (
-              <LabeledList.Item label="Output Pressure">
+              <LabeledList.Item label="Ciśnienie wyjściowe">
                 <NumberInput
                   animated
-                  value={parseFloat(data.pressure)}
+                  value={pressure}
                   unit="kPa"
                   width="75px"
                   minValue={0}
-                  maxValue={data.max_pressure}
+                  maxValue={max_pressure}
                   step={10}
                   onChange={(value) =>
                     act('pressure', {
@@ -79,7 +82,7 @@ export const AtmosPump = (props) => {
                   ml={1}
                   icon="plus"
                   content="Max"
-                  disabled={data.pressure === data.max_pressure}
+                  disabled={pressure === max_pressure}
                   onClick={() =>
                     act('pressure', {
                       pressure: 'max',

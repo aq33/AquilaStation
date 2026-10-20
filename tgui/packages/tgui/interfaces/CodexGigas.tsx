@@ -4,10 +4,12 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  currentSection: any;
-  name: any;
+  name: string;
+  currentSection: number;
 };
 
+// Napisy na przyciskach to zarazem akcje porównywane w DM z listami
+// diabelskich imion — nie tłumaczyć.
 const PREFIXES = [
   'Dark',
   'Hellish',
@@ -16,7 +18,7 @@ const PREFIXES = [
   'Sinful',
   'Blood',
   'Fluffy',
-];
+] as const;
 
 const TITLES = [
   'Lord',
@@ -26,7 +28,7 @@ const TITLES = [
   'Vizier',
   'Elder',
   'Adept',
-];
+] as const;
 
 const NAMES = [
   'hal',
@@ -44,7 +46,7 @@ const NAMES = [
   'twou',
   'phi',
   'coa',
-];
+] as const;
 
 const SUFFIXES = [
   'the Red',
@@ -52,67 +54,111 @@ const SUFFIXES = [
   'the Master',
   'the Lord of all things',
   'Jr.',
-];
+] as const;
 
-// TODO: refactor the backend of this it's a trainwreck
 export const CodexGigas = (props) => {
   const { act, data } = useBackend<Data>();
+  const { name, currentSection } = data;
+
   return (
-    <Window theme="generic" width={450} height={450}>
+    <Window width={450} height={450}>
       <Window.Content>
         <Section>
-          {data.name}
+          {name}
           <LabeledList>
-            <LabeledList.Item label="Prefix">
-              {PREFIXES.map((prefix) => (
-                <Button
-                  key={prefix.toLowerCase()}
-                  content={prefix}
-                  disabled={data.currentSection !== 1}
-                  onClick={() => act(prefix + ' ')}
-                />
-              ))}
-            </LabeledList.Item>
-            <LabeledList.Item label="Title">
-              {TITLES.map((title) => (
-                <Button
-                  key={title.toLowerCase()}
-                  content={title}
-                  disabled={data.currentSection > 2}
-                  onClick={() => act(title + ' ')}
-                />
-              ))}
-            </LabeledList.Item>
-            <LabeledList.Item label="Name">
-              {NAMES.map((name) => (
-                <Button
-                  key={name.toLowerCase()}
-                  content={name}
-                  disabled={data.currentSection > 4}
-                  onClick={() => act(name)}
-                />
-              ))}
-            </LabeledList.Item>
-            <LabeledList.Item label="Suffix">
-              {SUFFIXES.map((suffix) => (
-                <Button
-                  key={suffix.toLowerCase()}
-                  content={suffix}
-                  disabled={data.currentSection !== 4}
-                  onClick={() => act(' ' + suffix)}
-                />
-              ))}
-            </LabeledList.Item>
-            <LabeledList.Item label="Submit">
+            <Prefixes />
+            <Titles />
+            <Names />
+            <Suffixes />
+            <LabeledList.Item label="Zatwierdź">
               <Button
-                content="Search"
-                disabled={data.currentSection < 4}
+                disabled={currentSection < 4}
                 onClick={() => act('search')}
-              />
+              >
+                Szukaj
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>
     </Window>
+  );
+};
+
+const Prefixes = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { currentSection } = data;
+
+  return (
+    <LabeledList.Item label="Przedrostek">
+      {PREFIXES.map((prefix) => (
+        <Button
+          key={prefix.toLowerCase()}
+          disabled={currentSection !== 1}
+          onClick={() => act(`${prefix} `)}
+        >
+          {prefix}
+        </Button>
+      ))}
+    </LabeledList.Item>
+  );
+};
+
+// Nasz DM: tytuły w GLOB.devil_title kończą się spacją, a sekcje to
+// PRE_TITLE=1, TITLE=2, SYLLABLE=3, MULTIPLE_SYLLABLE=4, SUFFIX=5.
+const Titles = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { currentSection } = data;
+
+  return (
+    <LabeledList.Item label="Tytuł">
+      {TITLES.map((title) => (
+        <Button
+          key={title.toLowerCase()}
+          disabled={currentSection > 2}
+          onClick={() => act(`${title} `)}
+        >
+          {title}
+        </Button>
+      ))}
+    </LabeledList.Item>
+  );
+};
+
+const Names = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { currentSection } = data;
+
+  return (
+    <LabeledList.Item label="Imię">
+      {NAMES.map((name) => (
+        <Button
+          key={name.toLowerCase()}
+          disabled={currentSection > 4}
+          onClick={() => act(name)}
+        >
+          {name}
+        </Button>
+      ))}
+    </LabeledList.Item>
+  );
+};
+
+const Suffixes = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { currentSection } = data;
+
+  return (
+    <LabeledList.Item label="Przydomek">
+      {SUFFIXES.map((suffix) => (
+        <Button
+          key={suffix.toLowerCase()}
+          disabled={currentSection !== 4}
+          onClick={() => act(` ${suffix}`)}
+        >
+          {suffix}
+        </Button>
+      ))}
+    </LabeledList.Item>
   );
 };

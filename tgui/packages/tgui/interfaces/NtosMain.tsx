@@ -1,129 +1,166 @@
-import { Button, ColorBox, Section, Table } from 'tgui-core/components';
+import { Button, ColorBox, Section, Stack, Table } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-
 import { NtosWindow } from '../layouts';
 
+type Program = {
+  name: string;
+  desc: string;
+  running: boolean;
+  icon: string;
+  alert: boolean;
+};
+
+type Login = {
+  IDName?: string;
+  IDJob?: string;
+};
+
 type Data = {
-  auto_imprint: any;
-  cardholder: any;
-  comp_light_color: any;
-  disk: any;
-  disk_name: any;
-  disk_programs: any;
-  has_light: any;
-  light_on: any;
-  login: any;
-  programs: any;
-  proposed_login: any;
-  removable_media: any;
-  show_imprint: any;
-  stored_pai: any;
-  stored_pai_name: any;
+  PC_device_theme: string;
+  show_imprint: boolean;
+  programs: Program[];
+  has_light: boolean;
+  light_on: boolean;
+  comp_light_color: string;
+  removable_media: string[];
+  // AQUILA: czytnik ID jest osobnym podzespołem, a nadruk może być automatyczny
+  cardholder: boolean;
+  auto_imprint: boolean;
+  login: Login;
+  proposed_login: Login;
+  // AQUILA: dysk z programami pracy (role SSD)
+  disk: unknown;
+  disk_name: string;
+  disk_programs: Program[];
+  stored_pai: boolean;
+  stored_pai_name: string;
+};
+
+// Nazwy nośników przychodzą z DM i są też parametrem akcji, więc tłumaczymy tylko wyświetlanie.
+const MEDIA_NAMES: Record<string, string> = {
+  'removable storage disk': 'Wysuń dysk przenośny',
+  intelliCard: 'Wysuń intelliCard',
+  'secondary RFID card': 'Wysuń drugą kartę RFID',
 };
 
 export const NtosMain = (props) => {
   const { act, data } = useBackend<Data>();
   const {
+    PC_device_theme,
     show_imprint,
-    programs = [],
     has_light,
     light_on,
     comp_light_color,
     removable_media = [],
     cardholder,
     auto_imprint,
-    login = [],
-    proposed_login = [],
+    login = {},
+    proposed_login = {},
     disk,
     disk_name,
     disk_programs = [],
     stored_pai,
     stored_pai_name,
   } = data;
+
   return (
-    <NtosWindow width={400} height={500}>
+    <NtosWindow
+      title={
+        (PC_device_theme === 'syndicate' && 'Menu główne Syndix') ||
+        'Menu główne NtOS'
+      }
+      width={400}
+      height={500}
+    >
       <NtosWindow.Content scrollable>
-        {!!has_light && (
+        {!!removable_media.length && (
           <Section>
-            <Button
-              width="144px"
-              icon="lightbulb"
-              selected={light_on}
-              onClick={() => act('PC_toggle_light')}
-            >
-              Flashlight: {light_on ? 'ON' : 'OFF'}
-            </Button>
-            <Button ml={1} onClick={() => act('PC_light_color')}>
-              Color:
-              <ColorBox ml={1} color={comp_light_color} />
-            </Button>
+            <Stack wrap>
+              {removable_media.map((device) => (
+                <Stack.Item key={device}>
+                  <Button
+                    icon="eject"
+                    onClick={() => act('PC_Eject_Disk', { name: device })}
+                    disabled={!device}
+                  >
+                    {MEDIA_NAMES[device] || device}
+                  </Button>
+                </Stack.Item>
+              ))}
+            </Stack>
           </Section>
         )}
-        {!!cardholder && (
-          <Section
-            title="User Login"
-            buttons={
-              <>
+        <Section
+          title="Szczegóły"
+          buttons={
+            <>
+              {!!has_light && (
+                <>
+                  <Button
+                    tooltip="Kolor latarki"
+                    onClick={() => act('PC_light_color')}
+                  >
+                    <ColorBox color={comp_light_color} />
+                  </Button>
+                  <Button
+                    icon="lightbulb"
+                    color={light_on ? 'good' : 'bad'}
+                    selected={light_on}
+                    tooltip={light_on ? 'Wyłącz latarkę' : 'Włącz latarkę'}
+                    onClick={() => act('PC_toggle_light')}
+                  />
+                </>
+              )}
+              {!!cardholder && (
                 <Button
                   icon="eject"
-                  content="Eject ID"
                   disabled={!proposed_login.IDName}
                   onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
-                />
-                {!!show_imprint && (
-                  <>
-                    <Button
-                      icon="dna"
-                      content="Imprint"
-                      disabled={
-                        !proposed_login.IDName ||
-                        (proposed_login.IDName === login.IDName &&
-                          proposed_login.IDJob === login.IDJob)
-                      }
-                      onClick={() => act('PC_Imprint_ID', { name: 'ID' })}
-                    />
-                    <Button.Checkbox
-                      checked={auto_imprint}
-                      content="Auto"
-                      onClick={() => act('PC_Toggle_Auto_Imprint')}
-                    />
-                  </>
-                )}
-              </>
-            }
-          >
+                >
+                  Wysuń ID
+                </Button>
+              )}
+              {!!cardholder && !!show_imprint && (
+                <>
+                  <Button
+                    icon="dna"
+                    disabled={
+                      !proposed_login.IDName ||
+                      (proposed_login.IDName === login.IDName &&
+                        proposed_login.IDJob === login.IDJob)
+                    }
+                    onClick={() => act('PC_Imprint_ID', { name: 'ID' })}
+                  >
+                    Nadrukuj ID
+                  </Button>
+                  <Button.Checkbox
+                    checked={auto_imprint}
+                    tooltip="Automatycznie nadrukowuj włożone ID"
+                    onClick={() => act('PC_Toggle_Auto_Imprint')}
+                  >
+                    Auto
+                  </Button.Checkbox>
+                </>
+              )}
+            </>
+          }
+        >
+          {cardholder ? (
             <Table>
               <Table.Row>
-                ID Name: {login.IDName}
-                {proposed_login?.IDName ? ` (${proposed_login.IDName})` : ``}
+                Właściciel: {login.IDName}
+                {proposed_login.IDName ? ` (${proposed_login.IDName})` : ''}
               </Table.Row>
               <Table.Row>
-                Assignment: {login.IDJob}
-                {proposed_login?.IDJob ? ` (${proposed_login.IDJob})` : ``}
+                Stanowisko: {login.IDJob}
+                {proposed_login.IDJob ? ` (${proposed_login.IDJob})` : ''}
               </Table.Row>
             </Table>
-          </Section>
-        )}
-        {!!removable_media.length && (
-          <Section title="Media Eject">
-            <Table>
-              {removable_media.map((device) => (
-                <Table.Row key={device}>
-                  <Table.Cell>
-                    <Button
-                      fluid
-                      color="transparent"
-                      icon="eject"
-                      content={device}
-                      onClick={() => act('PC_Eject_Disk', { name: device })}
-                    />
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table>
-          </Section>
-        )}
+          ) : (
+            'Brak czytnika kart ID.'
+          )}
+        </Section>
         {!!stored_pai && (
           <Section title={stored_pai_name ? `pAI (${stored_pai_name})` : 'pAI'}>
             <Table>
@@ -131,129 +168,114 @@ export const NtosMain = (props) => {
                 <Table.Cell>
                   <Button
                     fluid
-                    icon="cat"
+                    icon="eject"
                     color="transparent"
-                    content="Configure pAI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
-                        option: 'interact',
+                        option: 'eject',
                       })
                     }
-                  />
+                  >
+                    Wysuń pAI
+                  </Button>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
                   <Button
                     fluid
-                    icon="eject"
+                    icon="cat"
                     color="transparent"
-                    content="Eject pAI"
                     onClick={() =>
                       act('PC_Pai_Interact', {
-                        option: 'eject',
+                        option: 'interact',
                       })
                     }
-                  />
+                  >
+                    Konfiguruj pAI
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             </Table>
           </Section>
         )}
-        <Section title="Programs">
-          <Table>
-            {programs.map((program) => (
-              <Table.Row key={program.name}>
-                <Table.Cell>
-                  <Button
-                    fluid
-                    lineHeight="24px"
-                    color={program.alert ? 'yellow' : 'transparent'}
-                    icon={program.icon}
-                    content={program.desc}
-                    onClick={() =>
-                      act('PC_runprogram', {
-                        name: program.name,
-                        is_disk: false,
-                      })
-                    }
-                  />
-                </Table.Cell>
-                <Table.Cell collapsing width="18px">
-                  {!!program.running && (
-                    <Button
-                      lineHeight="24px"
-                      color="transparent"
-                      icon="times"
-                      tooltip="Close program"
-                      tooltipPosition="left"
-                      onClick={() =>
-                        act('PC_killprogram', {
-                          name: program.name,
-                        })
-                      }
-                    />
-                  )}
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        </Section>
+        <ProgramsTable />
         {!!disk && (
           <Section
-            // pain
             title={
               disk_name
                 ? disk_name.substring(0, disk_name.length - 5)
-                : 'No Job Disk Inserted'
+                : 'Brak dysku pracy'
             }
             buttons={
               <Button
                 icon="eject"
-                content="Eject Job Disk"
                 disabled={!disk_name}
                 onClick={() => act('PC_Eject_Disk', { name: 'job disk' })}
-              />
+              >
+                Wysuń dysk pracy
+              </Button>
             }
           >
-            <Table>
-              {disk_programs.map((program) => (
-                <Table.Row key={program.name}>
-                  <Table.Cell>
-                    <Button
-                      fluid
-                      color={program.alert ? 'yellow' : 'transparent'}
-                      icon={program.icon}
-                      content={program.desc}
-                      onClick={() =>
-                        act('PC_runprogram', {
-                          name: program.name,
-                          is_disk: true,
-                        })
-                      }
-                    />
-                  </Table.Cell>
-                  <Table.Cell collapsing width="18px">
-                    {!!program.running && (
-                      <Button
-                        color="transparent"
-                        icon="times"
-                        tooltip="Close program"
-                        tooltipPosition="left"
-                        onClick={() =>
-                          act('PC_killprogram', {
-                            name: program.name,
-                          })
-                        }
-                      />
-                    )}
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table>
+            <ProgramList programs={disk_programs} is_disk />
           </Section>
         )}
       </NtosWindow.Content>
     </NtosWindow>
+  );
+};
+
+const ProgramsTable = (props) => {
+  const { data } = useBackend<Data>();
+  const { programs = [] } = data;
+
+  return (
+    <Section title="Programy">
+      <ProgramList programs={programs} is_disk={false} />
+    </Section>
+  );
+};
+
+const ProgramList = (props: { programs: Program[]; is_disk: boolean }) => {
+  const { act } = useBackend();
+  const { programs, is_disk } = props;
+
+  return (
+    <Table>
+      {programs.map((program) => (
+        <Table.Row key={program.name}>
+          <Table.Cell>
+            <Button
+              fluid
+              color={program.alert ? 'yellow' : 'transparent'}
+              icon={program.icon}
+              onClick={() =>
+                act('PC_runprogram', {
+                  name: program.name,
+                  is_disk: is_disk,
+                })
+              }
+            >
+              {program.desc}
+            </Button>
+          </Table.Cell>
+          <Table.Cell collapsing width="18px">
+            {!!program.running && (
+              <Button
+                color="transparent"
+                icon="times"
+                tooltip="Zamknij program"
+                tooltipPosition="left"
+                onClick={() =>
+                  act('PC_killprogram', {
+                    name: program.name,
+                  })
+                }
+              />
+            )}
+          </Table.Cell>
+        </Table.Row>
+      ))}
+    </Table>
   );
 };

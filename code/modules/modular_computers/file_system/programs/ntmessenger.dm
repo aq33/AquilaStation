@@ -130,8 +130,26 @@
 			viewing_messages = !viewing_messages
 			return TRUE
 		if("PDA_clearMessages")
-			messages = list()
+			//AQUILA EDIT START - okno czatów z tg: usuwanie pojedynczej rozmowy
+			var/chat_ref = params["ref"]
+			if(!chat_ref)
+				messages = list()
+				return TRUE
+			var/list/all_messages = messages
+			for(var/list/message as anything in all_messages.Copy())
+				var/message_chat = message["outgoing"] ? (message["everyone"] ? "everyone" : message["target_ref"]) : message["ref"]
+				if(message_chat == chat_ref)
+					all_messages -= list(message)
+			//AQUILA EDIT END
 			return TRUE
+		//AQUILA EDIT START - okno czatów z tg: oznaczanie wiadomości jako przeczytanych
+		if("PDA_clearUnreads")
+			var/chat_ref = params["ref"]
+			for(var/list/message as anything in messages)
+				if(!message["outgoing"] && message["ref"] == chat_ref)
+					message["unread"] = FALSE
+			return TRUE
+		//AQUILA EDIT END
 		if("PDA_changeSortStyle")
 			sort_by_job = !sort_by_job
 			return TRUE
@@ -155,7 +173,7 @@
 				if(last_text_everyone && world.time < (last_text_everyone + PDA_SPAM_DELAY * disk.spam_delay))
 					to_chat(usr, "<span class='warning'>Funkcja „Wyślij do wszystkich” wciąż się odnawia. Dostępna za [(last_text_everyone + PDA_SPAM_DELAY * disk.spam_delay - world.time)/10] s.")
 					return
-				send_message(usr, targets, TRUE, multi_delay = disk.spam_delay)
+				send_message(usr, targets, TRUE, multi_delay = disk.spam_delay, preset_message = params["message"]) //AQUILA EDIT - treść z okna
 
 			return TRUE
 		if("PDA_sendMessage")
@@ -180,7 +198,7 @@
 					if(istype(disk))
 						disk.send_virus(target, usr)
 						return TRUE
-				send_message(usr, list(target))
+				send_message(usr, list(target), preset_message = params["message"]) //AQUILA EDIT - treść z okna
 				return TRUE
 		if("PDA_clearPhoto")
 			computer.saved_image = null
@@ -251,10 +269,14 @@
 
 // Gets the input for a message being sent.
 
-/datum/computer_file/program/messenger/proc/msg_input(mob/living/user = usr, target_name = null)
+/datum/computer_file/program/messenger/proc/msg_input(mob/living/user = usr, target_name = null, preset_message = null)
 	var/message = null
 
-	if(mime_mode)
+	if(istext(preset_message)) //AQUILA EDIT - okno czatów z tg wysyła treść od razu, bez okienka
+		message = trim(preset_message, MAX_MESSAGE_LEN)
+		if(mime_mode)
+			message = emoji_sanitize(message)
+	else if(mime_mode)
 		message = emoji_sanitize(tgui_input_emoji(user, "NT Messaging"))
 	else
 		message = tgui_input_text(user, "Enter a message", "NT Messaging[target_name ? " ([target_name])" : ""]")
@@ -265,11 +287,11 @@
 		return
 	return sanitize(message)
 
-/datum/computer_file/program/messenger/proc/send_message(mob/living/user, list/obj/item/modular_computer/targets, everyone = FALSE, fake_name = null, fake_job = null, multi_delay = 0)
+/datum/computer_file/program/messenger/proc/send_message(mob/living/user, list/obj/item/modular_computer/targets, everyone = FALSE, fake_name = null, fake_job = null, multi_delay = 0, preset_message = null)
 	if(!targets.len)
 		return FALSE
 	var/target_name = length(targets) == 1 ? targets[1].saved_identification : "Everyone"
-	var/message = msg_input(user, target_name)
+	var/message = msg_input(user, target_name, preset_message) //AQUILA EDIT - preset_message
 	if(!message)
 		return FALSE
 	// notifying is done somewhere else, this is just a sanity check
@@ -331,6 +353,11 @@
 	message_data["ref"] = signal.data["ref"]
 	message_data["photo_obj"] = signal.data["photo"]
 	message_data["emojis"] = signal.data["emojis"]
+	//AQUILA EDIT START - okno czatów z tg: do kogo poszło i kiedy
+	message_data["target_ref"] = (!everyone && length(targets) == 1) ? REF(targets[1]) : null
+	message_data["everyone"] = everyone
+	message_data["timestamp"] = station_time_timestamp("hh:mm")
+	//AQUILA EDIT END
 
 	// Parse emojis before to_chat
 	if(allow_emojis)
@@ -370,6 +397,10 @@
 	message_data["automated"] = signal.data["automated"]
 	message_data["photo_obj"] = signal.data["photo"]
 	message_data["emojis"] = signal.data["emojis"]
+	//AQUILA EDIT START - okno czatów z tg
+	message_data["timestamp"] = station_time_timestamp("hh:mm")
+	message_data["unread"] = TRUE
+	//AQUILA EDIT END
 	messages += list(message_data)
 
 	var/mob/living/L = null

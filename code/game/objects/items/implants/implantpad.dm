@@ -28,50 +28,56 @@
 	if(A == case)
 		case = null
 	update_icon()
-	updateSelfDialog()
+	SStgui.update_uis(src)
 	. = ..()
 
 /obj/item/implantpad/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	if(!case)
-		to_chat(user, "<span class='warning'>W [src] nie ma implantu do wyjęcia.</span>")
-		return
-
-	user.put_in_hands(case)
-
-	add_fingerprint(user)
-	case.add_fingerprint(user)
-	case = null
-
-	updateSelfDialog()
-	update_icon()
+	remove_implant(user)
 
 /obj/item/implantpad/attackby(obj/item/implantcase/C, mob/user, params)
 	if(istype(C, /obj/item/implantcase) && !case)
 		if(!user.transferItemToLoc(C, src))
 			return
 		case = C
-		updateSelfDialog()
+		SStgui.update_uis(src)
 		update_icon()
 	else
 		return ..()
 
-/obj/item/implantpad/ui_interact(mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		user.unset_machine(src)
-		user << browse(null, "window=implantpad")
-		return
+/// AQUILA: wyjmuje obudowę implantu z minikomputera (Alt-klik i przycisk w oknie TGUI)
+/obj/item/implantpad/proc/remove_implant(mob/user)
+	if(!case)
+		to_chat(user, "<span class='warning'>W [src] nie ma implantu do wyjęcia.</span>")
+		return FALSE
+	user.put_in_hands(case)
+	add_fingerprint(user)
+	case.add_fingerprint(user)
+	case = null
+	SStgui.update_uis(src)
+	update_icon()
+	return TRUE
 
-	user.set_machine(src)
-	var/dat = "<B>Minikomputer implantów:</B><HR>"
-	if(case)
-		if(case.imp)
-			if(istype(case.imp, /obj/item/implant))
-				dat += case.imp.get_data()
-		else
-			dat += "Obudowa implantu jest pusta."
-	else
-		dat += "Włóż obudowę implantu!"
-	user << browse(HTML_SKELETON(dat), "window=implantpad")
-	onclose(user, "implantpad")
+/obj/item/implantpad/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ImplantPad", name)
+		ui.open()
+
+/obj/item/implantpad/ui_data(mob/user)
+	var/list/data = list()
+	data["has_case"] = !!case
+	data["has_implant"] = !!case?.imp
+	data["case_information"] = case?.imp ? case.imp.get_data() : null
+	return data
+
+/obj/item/implantpad/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(action == "eject_implant")
+		if(!usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+			return
+		remove_implant(usr)
+		return TRUE

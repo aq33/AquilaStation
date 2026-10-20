@@ -1,47 +1,78 @@
-import { Flex, Icon } from '../../components';
-import { MaterialIcon } from './MaterialIcon';
-import { Design, formatSheets, MaterialMap } from './Types';
+import { Flex, Icon } from 'tgui-core/components';
 
-type Props = {
+import { MaterialIcon } from './MaterialIcon';
+import { type Design, formatSheets, type MaterialMap } from './Types';
+
+export type MaterialCostSequenceProps = {
+  /** A map of available materials. */
   available?: MaterialMap;
-  /** Reagent name -> units loaded, for colouring the reagent costs. */
+
+  /** AQUILA: reagent name -> units loaded, for colouring the reagent costs. */
   availableReagents?: MaterialMap;
-  /** The materials to be consumed. Merged with the cost of `design`. */
+
+  /**
+   * If provided, the materials to be consumed. Merged with the cost of
+   * `design`.
+   */
   costMap?: MaterialMap;
+
+  /** A design to generate the cost map from. */
   design?: Design;
-  /** How many times the design will be printed. Defaults to one. */
+
+  /** The amount of times the provided design will be printed. By default, one. */
   amount?: number;
+
+  /** The `align-items` flex property provided to the generated list. */
   align?: string;
+
+  /** The `justify-content` flex property provided to the generated list. */
   justify?: string;
 };
 
+/** Label colour for a cost against what is available. */
+const costColor = (quantity: number, available?: number) => {
+  if (available === undefined) {
+    return undefined;
+  }
+  if (quantity * 2 <= available) {
+    return '#fff';
+  }
+  return quantity <= available ? '#f08f11' : '#db2828';
+};
+
 /**
- * A horizontal list of material costs. Costs that can only be afforded once
- * are labelled orange, costs that can't be afforded at all are labelled red.
+ * A horizontal list of material costs, with labels.
+ *
+ * For a given material set that can only be printed once, the label for
+ * offending materials is orange.
+ *
+ * For a given material set that can't be printed at all, the label for
+ * offending materials is red.
+ *
+ * Otherwise, the labels are white.
  */
-export const MaterialCostSequence = (props: Props) => {
-  if (!props.costMap && !props.design) {
+export const MaterialCostSequence = (props: MaterialCostSequenceProps) => {
+  const { design, amount, available, availableReagents, align, justify } =
+    props;
+
+  if (!props.costMap && !design) {
     return null;
   }
 
-  const multiplier = props.amount || 1;
+  const multiplier = amount || 1;
   const costMap: MaterialMap = { ...props.costMap };
 
-  if (props.design) {
-    for (const [name, value] of Object.entries(props.design.cost)) {
+  if (design) {
+    for (const [name, value] of Object.entries(design.cost)) {
       costMap[name] = (costMap[name] || 0) + value;
     }
   }
 
   return (
-    <Flex
-      wrap
-      justify={props.justify ?? 'space-around'}
-      align={props.align ?? 'center'}
-    >
+    <Flex wrap justify={justify ?? 'space-around'} align={align ?? 'center'}>
       {Object.entries(costMap).map(([material, cost]) => {
         const quantity = cost * multiplier;
-        const available = props.available?.[material];
+        const color = costColor(quantity, available?.[material]);
 
         return (
           <Flex.Item key={material} style={{ padding: '0.25em' }}>
@@ -49,48 +80,33 @@ export const MaterialCostSequence = (props: Props) => {
               <Flex.Item>
                 <MaterialIcon materialName={material} amount={quantity} />
               </Flex.Item>
-              <Flex.Item
-                style={
-                  available !== undefined
-                    ? {
-                        color:
-                          quantity * 2 <= available
-                            ? '#fff'
-                            : quantity <= available
-                              ? '#f08f11'
-                              : '#db2828',
-                      }
-                    : undefined
-                }
-              >
+              <Flex.Item style={color ? { color } : undefined}>
                 {formatSheets(quantity)}
               </Flex.Item>
             </Flex>
           </Flex.Item>
         );
       })}
-      {Object.entries(props.design?.reagentCost || {}).map(
-        ([reagent, volume]) => (
-          <Flex.Item key={reagent} style={{ padding: '0.25em' }}>
-            <Flex direction="column" align="center">
-              <Flex.Item>
-                <Icon name="flask" size={1.5} />
-              </Flex.Item>
-              <Flex.Item
-                style={{
-                  color:
-                    (props.availableReagents?.[reagent] || 0) >=
-                    volume * multiplier
-                      ? '#fff'
-                      : '#db2828',
-                }}
-              >
-                {volume * multiplier}u {reagent}
-              </Flex.Item>
-            </Flex>
-          </Flex.Item>
-        ),
-      )}
+      {/* AQUILA: designs that also need reagents poured into the machine */}
+      {Object.entries(design?.reagentCost || {}).map(([reagent, volume]) => (
+        <Flex.Item key={reagent} style={{ padding: '0.25em' }}>
+          <Flex direction="column" align="center">
+            <Flex.Item>
+              <Icon name="flask" size={1.5} />
+            </Flex.Item>
+            <Flex.Item
+              style={{
+                color:
+                  (availableReagents?.[reagent] || 0) >= volume * multiplier
+                    ? '#fff'
+                    : '#db2828',
+              }}
+            >
+              {volume * multiplier}u {reagent}
+            </Flex.Item>
+          </Flex>
+        </Flex.Item>
+      ))}
     </Flex>
   );
 };

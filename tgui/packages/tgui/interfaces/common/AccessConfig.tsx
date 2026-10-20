@@ -97,7 +97,7 @@ export function AccessConfig(props: ConfigProps) {
   return (
     <Section
       fill
-      title="Access"
+      title="Dostępy"
       buttons={
         <>
           <Button icon="check-double" color="good" onClick={grantAll}>

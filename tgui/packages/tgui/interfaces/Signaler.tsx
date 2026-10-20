@@ -1,21 +1,22 @@
-import { toFixed } from 'common/math';
-import { Button, NumberInput, Section } from 'tgui-core/components';
+import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  code: any;
-  connection: any;
-  frequency: any;
-  maxFrequency: any;
-  minFrequency: any;
+  code: number;
+  frequency: number;
+  minFrequency: number;
+  maxFrequency: number;
+  // AQUILA: przycisk wysyłania wyłączony, gdy sygnalizator nie ma połączenia radiowego
+  connection: BooleanLike;
 };
 
 export const Signaler = (props) => {
   return (
-    <Window width={280} height={132}>
+    <Window width={280} height={128}>
       <Window.Content>
         <SignalerContent />
       </Window.Content>
@@ -26,16 +27,15 @@ export const Signaler = (props) => {
 export const SignalerContent = (props) => {
   const { act, data } = useBackend<Data>();
   const { code, frequency, minFrequency, maxFrequency, connection } = data;
+
   return (
     <Section>
-      <Grid>
-        <Grid.Column size={1.4} color="label">
-          Frequency:
-        </Grid.Column>
-        <Grid.Column>
+      <Stack>
+        <Stack.Item color="label">Częstotliwość:</Stack.Item>
+        <Stack.Item>
           <NumberInput
-            tickWhileDragging
             animated
+            tickWhileDragging
             unit="kHz"
             step={0.2}
             stepPixelSize={6}
@@ -50,28 +50,29 @@ export const SignalerContent = (props) => {
               })
             }
           />
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             ml={1.3}
             icon="sync"
-            content="Reset"
             onClick={() =>
               act('reset', {
                 reset: 'freq',
               })
             }
-          />
-        </Grid.Column>
-      </Grid>
-      <Grid mt={0.6}>
-        <Grid.Column size={1.4} color="label">
-          Code:
-        </Grid.Column>
-        <Grid.Column>
+          >
+            Reset
+          </Button>
+        </Stack.Item>
+      </Stack>
+      <Stack mt={0.6}>
+        <Stack.Item pr={6.3} color="label">
+          Kod:
+        </Stack.Item>
+        <Stack.Item>
           <NumberInput
-            tickWhileDragging
             animated
+            tickWhileDragging
             step={1}
             stepPixelSize={6}
             minValue={1}
@@ -84,33 +85,36 @@ export const SignalerContent = (props) => {
               })
             }
           />
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             ml={1.3}
             icon="sync"
-            content="Reset"
             onClick={() =>
               act('reset', {
                 reset: 'code',
               })
             }
-          />
-        </Grid.Column>
-      </Grid>
-      <Grid mt={0.8}>
-        <Grid.Column>
+          >
+            Reset
+          </Button>
+        </Stack.Item>
+      </Stack>
+      <Stack mt={0.8}>
+        <Stack.Item ml={10.5}>
           <Button
             mb={-0.1}
             fluid
             icon="arrow-up"
-            content="Send Signal"
             textAlign="center"
             disabled={!connection}
+            tooltip={!connection ? 'Brak połączenia radiowego' : undefined}
             onClick={() => act('signal')}
-          />
-        </Grid.Column>
-      </Grid>
+          >
+            Wyślij sygnał
+          </Button>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

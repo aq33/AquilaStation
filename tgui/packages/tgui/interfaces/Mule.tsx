@@ -1,174 +1,195 @@
 import {
   Button,
   Dropdown,
-  Flex,
   Input,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
+// AQUILA EDIT - układ z tg na naszych kluczach z mulebot.dm; bez zmiany
+// nazwy i osobowości z ghostroli (nie mamy ich), ID i baza ustawiane w oknie.
 type Data = {
-  autoPickup: any;
-  autoReturn: any;
-  cell: any;
-  cellPercent: any;
-  destination: any;
-  destinations: any;
-  haspai: any;
-  home: any;
-  id: any;
-  load: any;
-  locked: any;
-  mode: any;
-  modeStatus: any;
-  on: any;
-  reportDelivery: any;
-  siliconUser: any;
+  on: BooleanLike;
+  cell: BooleanLike;
+  cellPercent: number | null;
+  load: string | null;
+  locked: BooleanLike;
+  siliconUser: BooleanLike;
+  mode: string;
+  modeStatus: string;
+  autoReturn: BooleanLike;
+  autoPickup: BooleanLike;
+  reportDelivery: BooleanLike;
+  destination: string | null;
+  destinations: string[];
+  home: string | null;
+  id: string;
+  haspai: BooleanLike;
 };
 
-export const Mule = (props) => {
+const MuleControls = (props) => {
   const { act, data } = useBackend<Data>();
   const {
-    on,
-    cell,
-    cellPercent,
     load,
-    mode,
-    modeStatus,
-    haspai,
     autoReturn,
     autoPickup,
     reportDelivery,
     destination,
     home,
     id,
+    haspai,
     destinations = [],
   } = data;
-  const locked = data.locked && !data.siliconUser;
+
   return (
-    <Window width={350} height={425}>
-      <Window.Content>
+    <>
+      <Section
+        title="Sterowanie"
+        buttons={
+          <>
+            {!!load && (
+              <Button icon="eject" onClick={() => act('unload')}>
+                Rozładuj
+              </Button>
+            )}
+            {!!haspai && (
+              <Button icon="eject" onClick={() => act('ejectpai')}>
+                Wyjmij pAI
+              </Button>
+            )}
+          </>
+        }
+      >
+        <LabeledList>
+          <LabeledList.Item label="ID">
+            <Input
+              width="188px"
+              value={id}
+              onBlur={(value) => act('setid', { value })}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Baza">
+            <Dropdown
+              over
+              selected={home || 'Brak'}
+              options={destinations}
+              width="188px"
+              onSelected={(value) => act('sethome', { value })}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Cel">
+            <Dropdown
+              over
+              selected={destination || 'Brak'}
+              options={destinations}
+              width="188px"
+              onSelected={(value) => act('destination', { value })}
+            />
+          </LabeledList.Item>
+        </LabeledList>
+      </Section>
+      <Section title="Polecenia">
+        <Stack style={{ padding: '0px 30px' }}>
+          <Stack.Item grow>
+            <Button
+              width="70px"
+              icon="stop"
+              color="bad"
+              onClick={() => act('stop')}
+            >
+              Stój
+            </Button>
+          </Stack.Item>
+          <Stack.Item grow>
+            <Button
+              width="70px"
+              icon="play"
+              color="average"
+              onClick={() => act('go')}
+            >
+              Jedź
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button width="70px" icon="home" onClick={() => act('home')}>
+              Do bazy
+            </Button>
+          </Stack.Item>
+        </Stack>
+      </Section>
+      <Section title="Ustawienia">
+        <Button.Checkbox checked={autoReturn} onClick={() => act('autoret')}>
+          Automatyczny powrót
+        </Button.Checkbox>
+        <br />
+        <Button.Checkbox checked={autoPickup} onClick={() => act('autopick')}>
+          Automatyczny załadunek
+        </Button.Checkbox>
+        <br />
+        <Button.Checkbox checked={reportDelivery} onClick={() => act('report')}>
+          Zgłaszaj dostawy
+        </Button.Checkbox>
+      </Section>
+    </>
+  );
+};
+
+export const Mule = (props) => {
+  const { act, data } = useBackend<Data>();
+  const { on, cell, cellPercent, load, mode, modeStatus, locked, siliconUser } =
+    data;
+
+  const mulebotLocked = locked && !siliconUser;
+
+  return (
+    <Window width={350} height={500}>
+      <Window.Content scrollable>
         <InterfaceLockNoticeBox />
         <Section
-          title="Status"
-          minHeight="110px"
+          title="Stan"
           buttons={
-            !locked && (
+            !mulebotLocked && (
               <Button
                 icon={on ? 'power-off' : 'times'}
-                content={on ? 'On' : 'Off'}
                 selected={on}
                 onClick={() => act('power')}
-              />
+              >
+                {on ? 'Wł.' : 'Wył.'}
+              </Button>
             )
           }
         >
           <ProgressBar
-            value={cell ? cellPercent / 100 : 0}
+            value={cell && cellPercent ? cellPercent / 100 : 0}
             color={cell ? 'good' : 'bad'}
-          />
-          <Flex mt={1}>
-            <Flex.Item grow={1} basis={0}>
+          >
+            {cell ? `${Math.round(cellPercent ?? 0)}%` : 'Brak ogniwa'}
+          </ProgressBar>
+          <Stack mt={1} vertical>
+            <Stack.Item grow>
               <LabeledList>
-                <LabeledList.Item label="Mode" color={modeStatus}>
+                <LabeledList.Item label="Tryb" color={modeStatus}>
                   {mode}
                 </LabeledList.Item>
-              </LabeledList>
-            </Flex.Item>
-            <Flex.Item grow={1} basis={0}>
-              <LabeledList>
                 <LabeledList.Item
-                  label="Load"
+                  label="Ładunek"
                   color={load ? 'good' : 'average'}
                 >
-                  {load || 'None'}
+                  {load ? capitalize(load) : 'Brak'}
                 </LabeledList.Item>
               </LabeledList>
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
-        {!locked && (
-          <Section
-            title="Controls"
-            buttons={
-              <>
-                {!!load && (
-                  <Button
-                    icon="eject"
-                    content="Unload"
-                    onClick={() => act('unload')}
-                  />
-                )}
-                {!!haspai && (
-                  <Button
-                    icon="eject"
-                    content="Eject PAI"
-                    onClick={() => act('ejectpai')}
-                  />
-                )}
-              </>
-            }
-          >
-            <LabeledList>
-              <LabeledList.Item label="ID">
-                <Input value={id} onBlur={(value) => act('setid', { value })} />
-              </LabeledList.Item>
-              <LabeledList.Item label="Destination">
-                <Dropdown
-                  over
-                  selected={destination || 'None'}
-                  options={destinations}
-                  width="150px"
-                  onSelected={(value) => act('destination', { value })}
-                />
-                <Button
-                  icon="stop"
-                  content="Stop"
-                  onClick={() => act('stop')}
-                />
-                <Button icon="play" content="Go" onClick={() => act('go')} />
-              </LabeledList.Item>
-              <LabeledList.Item label="Home">
-                <Dropdown
-                  over
-                  selected={home}
-                  options={destinations}
-                  width="150px"
-                  onSelected={(value) => act('destination', { value })}
-                />
-                <Button
-                  icon="home"
-                  content="Go Home"
-                  onClick={() => act('home')}
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Settings">
-                <Button.Checkbox
-                  checked={autoReturn}
-                  content="Auto-Return"
-                  onClick={() => act('autored')}
-                />
-                <br />
-                <Button.Checkbox
-                  checked={autoPickup}
-                  content="Auto-Pickup"
-                  onClick={() => act('autopick')}
-                />
-                <br />
-                <Button.Checkbox
-                  checked={reportDelivery}
-                  content="Report Delivery"
-                  onClick={() => act('report')}
-                />
-              </LabeledList.Item>
-            </LabeledList>
-          </Section>
-        )}
+        {!mulebotLocked && <MuleControls />}
       </Window.Content>
     </Window>
   );

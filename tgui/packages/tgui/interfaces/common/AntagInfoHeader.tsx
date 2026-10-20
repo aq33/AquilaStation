@@ -25,7 +25,7 @@ export const AntagInfoHeader = (props: Props) => {
         )}
         <Stack.Item grow className="AntagInfo__header_text">
           <h1>
-            You are the{' '}
+            Jesteś:{' '}
             <Box inline textColor={color || 'red'}>
               {name}
             </Box>

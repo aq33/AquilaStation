@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../../layouts';
 
 export type BookEntry<Type> = {
@@ -81,7 +82,9 @@ type EntryComponentProps<Type> = {
   renderEntry: (entry: PageEntry<Type>) => React.ReactNode;
 };
 
-const EntryComponent = <Type,>(props: EntryComponentProps<Type>) => {
+const EntryComponent = <Type extends unknown>(
+  props: EntryComponentProps<Type>,
+) => {
   const { entry, renderEntry } = props;
   return <Section fitted>{renderEntry(entry)}</Section>;
 };
@@ -92,7 +95,9 @@ type TOCEntryComponentProps<Type> = {
   renderTOCEntry: (entry: TOCEntry<Type>) => React.ReactNode;
 };
 
-const TOCEntryComponent = <Type,>(props: TOCEntryComponentProps<Type>) => {
+const TOCEntryComponent = <Type extends unknown>(
+  props: TOCEntryComponentProps<Type>,
+) => {
   const { entry, setPage, renderTOCEntry } = props;
   return (
     <Stack textAlign="center" fontSize="13px">
@@ -131,7 +136,7 @@ type FakePageProps<Type> = {
   blankPage?: React.ReactNode;
 };
 
-const FakePage = <Type,>(props: FakePageProps<Type>) => {
+const FakePage = <Type extends unknown>(props: FakePageProps<Type>) => {
   const {
     tocDisplay,
     entryDisplay,
@@ -161,7 +166,7 @@ const FakePage = <Type,>(props: FakePageProps<Type>) => {
         {!tocDisplay?.length &&
           !entryDisplay?.length &&
           (blankPage || (
-            <Stack.Item italic>This page intentionally left blank.</Stack.Item>
+            <Stack.Item italic>Strona celowo pozostawiona pusta.</Stack.Item>
           ))}
       </Stack>
     </Section>
@@ -178,7 +183,7 @@ type FakePagesProps<Type> = {
   blankPage?: React.ReactNode;
 };
 
-const FakePages = <Type,>(props: FakePagesProps<Type>) => {
+const FakePages = <Type extends unknown>(props: FakePagesProps<Type>) => {
   const {
     tocDisplay,
     entryDisplay,
@@ -314,10 +319,10 @@ type BookUIProps<Type> = {
  * @prop estimateHeight A function that estimates the height of a given entry. Used for pagination.
  * @prop renderEntry A function that renders a given entry. Used for displaying entries on pages.
  * @prop renderTOCEntry A function that renders a given entry for the table of contents. Used for displaying entries in the TOC.
- * @prop blankPage An optional React node to display on blank pages. If not provided, blank pages will display "This page intentionally left blank."
+ * @prop blankPage An optional React node to display on blank pages. If not provided, blank pages will display "Strona celowo pozostawiona pusta."
  *
  */
-export const BookUI = <Type,>(props: BookUIProps<Type>) => {
+export const BookUI = <Type extends unknown>(props: BookUIProps<Type>) => {
   const {
     bookData,
     title,

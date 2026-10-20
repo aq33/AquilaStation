@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(squid_names_female, world.file2list("strings/names/squid_female
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
 		return
-	var/new_color = input(H, "Wybierz nowy kolor skóry:", "Zmiana koloru", "#[H.dna.features["mcolor"]]") as color|null
+	var/new_color = tgui_color_picker(H, "Wybierz nowy kolor skóry:", "Zmiana koloru", "#[H.dna.features["mcolor"]]")
 	if(!new_color || QDELETED(H) || !IsAvailable())
 		return
 	var/list/hsv = ReadHSV(RGBtoHSV(new_color))

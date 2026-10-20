@@ -65,7 +65,7 @@ export const EditableText = (props: Props) => {
           onClick={() =>
             act('edit_field', { field: field, ref: target_ref, value: '' })
           }
-          tooltip="Clear"
+          tooltip="Wyczyść"
           tooltipPosition="bottom"
         />
       </Stack.Item>

@@ -1,3 +1,6 @@
+// AQUILA: zostaje wersja z Bee — okno z tg korzysta z innego DM konsoli
+// (ekrany, hasło w oknie, sfałszowane wiadomości), a nasza ma zdjęcia,
+// emoji, priorytety i pieczątki w logach.
 import { Component, createRef } from 'react';
 
 import { useBackend, useSharedState } from '../backend';
@@ -73,8 +76,8 @@ export const MessageMonitorContent = (_) => {
             {`-------------------
 Crypto-Breaker 5000
 -------------------
-Brute Force In Progress
-Please Wait...`}
+Trwa łamanie klucza
+Proszę czekać...`}
           </Section>
         </Flex.Item>
         <Flex.Item mt={1} grow={1} basis="78vh">
@@ -89,7 +92,7 @@ Please Wait...`}
         <Section
           title={
             <Box inline fontSize={1.25}>
-              <Icon name="server" mr={0.5} /> SERVER CONNECTION
+              <Icon name="server" mr={0.5} /> POŁĄCZENIE Z SERWEREM
             </Box>
           }
           fontSize={1.25}
@@ -101,7 +104,7 @@ Please Wait...`}
                   fontSize={1.15}
                   mt={0.25}
                   icon="power-off"
-                  content={server_on ? 'Disable Server' : 'Enable Server'}
+                  content={server_on ? 'Wyłącz serwer' : 'Włącz serwer'}
                   color={server_on ? 'bad' : 'good'}
                   onClick={() => act('power')}
                 />
@@ -110,14 +113,14 @@ Please Wait...`}
                 fontSize={1.15}
                 mt={0.25}
                 icon="sync-alt"
-                content={no_server ? 'Link' : 'Re-Link'}
+                content={no_server ? 'Połącz' : 'Połącz ponownie'}
                 color={no_server ? 'good' : undefined}
                 onClick={() => act('link')}
               />
             </>
           }
         >
-          {no_server ? 'NOT FOUND' : server_on ? 'OK' : 'OFFLINE'}
+          {no_server ? 'NIE ZNALEZIONO' : server_on ? 'OK' : 'WYŁĄCZONY'}
         </Section>
       </Flex.Item>
       <Flex.Item
@@ -134,14 +137,14 @@ Please Wait...`}
             >
               <Flex direction="column" align="center" fontSize="15px">
                 <Flex.Item fontSize="20px">
-                  Awaiting Decryption Key...
+                  Oczekiwanie na klucz deszyfrujący...
                 </Flex.Item>
                 <Flex direction="column" align="stretch">
                   <Flex.Item mt={1}>
                     <Button
                       align="center"
                       fluid
-                      content="Enter Key"
+                      content="Wpisz klucz"
                       color="good"
                       onClick={() => act('login')}
                     />
@@ -152,7 +155,7 @@ Please Wait...`}
                         align="center"
                         fluid
                         icon="exclamation-circle"
-                        content="Brute Force"
+                        content="Złam siłowo"
                         color="bad"
                         onClick={() => act('hack')}
                       />
@@ -166,18 +169,18 @@ Please Wait...`}
               <Table.Row>
                 <Table.Cell collapsing verticalAlign="middle" fontSize={1.25}>
                   <strong>
-                    <Icon name="key" mr={0.5} /> AUTHENTICATION
+                    <Icon name="key" mr={0.5} /> UWIERZYTELNIENIE
                   </strong>
                 </Table.Cell>
                 <Table.Cell />
                 <Table.Cell collapsing verticalAlign="middle">
                   <Button
                     icon="key"
-                    content="Reset Encryption Key"
+                    content="Zmień klucz szyfrujący"
                     onClick={() => act('reset_key')}
                   />
                   <Button
-                    content="Log Out"
+                    content="Wyloguj"
                     color="bad"
                     onClick={() => act('logout')}
                   />
@@ -198,13 +201,13 @@ Please Wait...`}
                       selected={selectedTab === 'pda'}
                       onClick={() => setSelectedTab('pda')}
                     >
-                      PDA Logs
+                      Logi PDA
                     </Tabs.Tab>
                     <Tabs.Tab
                       selected={selectedTab === 'request'}
                       onClick={() => setSelectedTab('request')}
                     >
-                      Request Logs
+                      Logi zgłoszeń
                     </Tabs.Tab>
                   </Tabs>
                 </Table.Cell>
@@ -213,13 +216,14 @@ Please Wait...`}
                   {selectedTab === 'pda' ? (
                     <Button
                       icon="envelope"
-                      content="Send Admin Message"
+                      content="Wyślij wiadomość admina"
                       onClick={() => act('admin_message')}
                     />
                   ) : null}
                   <Button.Confirm
+                    confirmContent="Na pewno?"
                     icon="times"
-                    content="Clear Logs"
+                    content="Wyczyść logi"
                     color="bad"
                     onClick={() => act('clear_logs', { type: selectedTab })}
                   />
@@ -231,11 +235,12 @@ Please Wait...`}
             ? pda_messages.map((message) => (
                 <Section
                   key={message.ref}
-                  title={`${message.sender} to ${message.recipient}`}
+                  title={`${message.sender} do ${message.recipient}`}
                   buttons={
                     <Button.Confirm
+                      confirmContent="Na pewno?"
                       icon="times"
-                      content="Delete"
+                      content="Usuń"
                       onClick={() =>
                         act('delete_log', { type: 'pda', ref: message.ref })
                       }
@@ -256,11 +261,12 @@ Please Wait...`}
             : request_messages.map((request) => (
                 <Section
                   key={request.ref}
-                  title={`${request.sending_department} to ${request.receiving_department}`}
+                  title={`${request.sending_department} do ${request.receiving_department}`}
                   buttons={
                     <Button.Confirm
+                      confirmContent="Na pewno?"
                       icon="times"
-                      content="Delete"
+                      content="Usuń"
                       onClick={() =>
                         act('delete_log', { type: 'request', ref: request.ref })
                       }
@@ -272,7 +278,7 @@ Please Wait...`}
                     bold={request.priority !== 'Normal'}
                     color={request.priority !== 'Normal' ? 'bad' : null}
                   >
-                    {request.priority} Priority
+                    Priorytet: {request.priority}
                   </Box>
                   <br />
                   {request.stamp && request.stamp !== 'Unstamped' ? (
@@ -306,7 +312,7 @@ Please Wait...`}
                   backgroundColor: 'transparent',
                 }}
               >
-                No Data
+                Brak danych
               </Dimmer>
             </Section>
           ) : null}
@@ -367,7 +373,7 @@ class PasswordScroller extends Component<any, any> {
     this.timer = null;
     this.reset();
     this.state = {
-      text: '---DECRYPTION KEY BRUTE-FORCE BEGIN---\n',
+      text: '---POCZĄTEK ŁAMANIA KLUCZA DESZYFRUJĄCEGO---\n',
     };
     this.endRef = createRef();
   }
@@ -400,7 +406,7 @@ class PasswordScroller extends Component<any, any> {
         } else {
           this.index1 = 0;
           this.setState({
-            text: '---DECRYPTION KEY BRUTE-FORCE BEGIN---\n',
+            text: '---POCZĄTEK ŁAMANIA KLUCZA DESZYFRUJĄCEGO---\n',
           });
         }
         this.index2 = 0;

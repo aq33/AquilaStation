@@ -1,6 +1,7 @@
-import { classes } from 'common/react';
+import { Icon } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
-import { Icon } from '../../components';
+import { SHEET_MATERIAL_AMOUNT } from './Types';
 
 const MATERIAL_ICONS: Record<string, [number, string][]> = {
   iron: [
@@ -69,7 +70,8 @@ export const MaterialIcon = (props: {
   let active = 0;
   while (
     icons[active + 1] &&
-    icons[active + 1][0] <= (props.amount ?? 200000) / 2000
+    icons[active + 1][0] <=
+      (props.amount ?? 100 * SHEET_MATERIAL_AMOUNT) / SHEET_MATERIAL_AMOUNT
   ) {
     active++;
   }

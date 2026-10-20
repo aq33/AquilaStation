@@ -28,9 +28,15 @@
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');
 @include meta.load-css('./interfaces/AntagInfo.scss');
-@include meta.load-css('./interfaces/CameraConsole.scss');
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/ChemDispenser.scss');
+@include meta.load-css('./interfaces/CivCargoHoldTerminal.scss');
+@include meta.load-css('./interfaces/NtosMessenger.scss');
+@include meta.load-css('./interfaces/OperatingComputer.scss');
+@include meta.load-css('./interfaces/Orbit.scss');
+@include meta.load-css('./interfaces/Safe.scss');
+@include meta.load-css('./interfaces/LibraryComputer.scss');
+@include meta.load-css('./interfaces/HotKeysHelp.scss');
 @include meta.load-css('./interfaces/ChessBoard.scss');
 @include meta.load-css('./interfaces/ClockworkSlab.scss');
 @include meta.load-css('./interfaces/ColorPicker.scss');

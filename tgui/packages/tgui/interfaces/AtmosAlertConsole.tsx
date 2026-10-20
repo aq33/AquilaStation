@@ -4,23 +4,23 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  minor: any;
-  priority: any;
+  priority: string[];
+  minor: string[];
 };
 
 export const AtmosAlertConsole = (props) => {
   const { act, data } = useBackend<Data>();
-  const priorityAlerts = data.priority || [];
-  const minorAlerts = data.minor || [];
+  const { priority = [], minor = [] } = data;
+
   return (
     <Window width={350} height={300}>
       <Window.Content scrollable>
-        <Section title="Alarms">
+        <Section title="Alarmy">
           <ul>
-            {priorityAlerts.length === 0 && (
-              <li className="color-good">No Priority Alerts</li>
+            {priority.length === 0 && (
+              <li className="color-good">Brak alarmów priorytetowych</li>
             )}
-            {priorityAlerts.map((alert) => (
+            {priority.map((alert) => (
               <li key={alert}>
                 <Button
                   icon="times"
@@ -30,10 +30,10 @@ export const AtmosAlertConsole = (props) => {
                 />
               </li>
             ))}
-            {minorAlerts.length === 0 && (
-              <li className="color-good">No Minor Alerts</li>
+            {minor.length === 0 && (
+              <li className="color-good">Brak drobnych alarmów</li>
             )}
-            {minorAlerts.map((alert) => (
+            {minor.map((alert) => (
               <li key={alert}>
                 <Button
                   icon="times"

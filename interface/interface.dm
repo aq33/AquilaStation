@@ -82,21 +82,76 @@
 	set name = "hotkeys-help"
 	set category = "OOC"
 
-	var/adminhotkeys = {"<font color='purple'>
-Admin:
-\tF3 = asay
-\tF4 = msay
-\tF5 = Aghost (admin-ghost)
-\tF6 = player-panel
-\tF7 = Buildmode
-\tF8 = Invisimin
-\tCtrl+F8 = Stealthmin
-</font>"}
+	// AQ EDIT - port z tgstation: okno TGUI HotkeysHelp zamiast listy w czacie
+	if(!GLOB.hotkeys_tgui)
+		GLOB.hotkeys_tgui = new /datum/hotkeys_help()
+	GLOB.hotkeys_tgui.ui_interact(mob)
 
-	mob.hotkey_help()
+// AQ EDIT START - port z tgstation: okno pomocy skrótów klawiszowych
+GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 
-	if(holder)
-		to_chat(src, adminhotkeys)
+/datum/hotkeys_help
+
+/datum/hotkeys_help/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/hotkeys_help/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "HotkeysHelp")
+		ui.open()
+
+/datum/hotkeys_help/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = ui.user
+	if(action == "open_keybindings")
+		if(!user?.client?.prefs)
+			return
+		user.client.prefs.ShowKeybindings(user)
+		ui.close()
+		return TRUE
+
+// Not static data since user could rebind keys.
+/datum/hotkeys_help/ui_data(mob/user)
+	var/list/keys_list = list()
+	var/datum/preferences/prefs = user.client?.prefs
+	if(!prefs)
+		return list("hotkeys" = keys_list)
+
+	// Show them in alphabetical order by key
+	var/list/key_bindings_by_key = sortList(prefs.key_bindings.Copy(), GLOBAL_PROC_REF(cmp_text_asc))
+
+	for(var/key in key_bindings_by_key)
+		if(key == "Unbound")
+			continue
+		// Get the full names
+		var/list/binding_names = list()
+		for(var/kb_name in key_bindings_by_key[key])
+			var/datum/keybinding/binding = GLOB.keybindings_by_name[kb_name]
+			if(!binding)
+				continue
+			// Admin hotkeys only for admins
+			if(binding.category == CATEGORY_ADMIN && !user.client.holder)
+				continue
+			binding_names += list(list(
+				"name" = binding.full_name,
+				"desc" = binding.description
+			))
+		if(!length(binding_names))
+			continue
+
+		// Add to list
+		keys_list += list(list(
+			"key" = key,
+			"bindings" = binding_names
+		))
+
+	return list(
+		"hotkeys" = keys_list
+	)
+// AQ EDIT END
 
 /client/verb/changelog()
 	set name = "Changelog"
@@ -111,31 +166,6 @@ Admin:
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
 
-
-/mob/proc/hotkey_help()
-	var/hotkey_mode = {"<font color='purple'>
-Tryb skrótów: (tryb skrótów musi być włączony)\n\tTAB = przełącz tryb skrótów\n\ta = w lewo\n\ts = w dół\n\td = w prawo\n\tw = w górę\n\tq = upuść\n\te = załóż\n\tr = rzuć\n\tm = emotka\n\tt = powiedz\n\to = OOC\n\tb = stawiaj opór\n\t<B></B>h = przestań ciągnąć\n\tx = zmień rękę\n\tz = użyj trzymanego przedmiotu (lub y)\n\tShift+e = włóż trzymany przedmiot do pasa (lub w miejsce pasa) albo wyjmij ostatnio włożony.\n\tShift+b = włóż trzymany przedmiot do plecaka (lub w miejsce na plecach) albo wyjmij ostatnio włożony.\n\tf = poprzednia intencja\n\tg = następna intencja\n\t1 = intencja pomocy\n\t2 = intencja rozbrojenia\n\t3 = intencja chwytu\n\t4 = intencja krzywdzenia\n\tNumpad = wybór celu na ciele (naciskaj 8, by przełączać głowa->oczy->usta)\n\tAlt (przytrzymaj) = zmień tryb ruchu
-</font>"}
-
-	var/other = {"<font color='purple'>
-Każdy tryb: (tryb skrótów nie musi być włączony)\n\tCtrl+a = w lewo\n\tCtrl+s = w dół\n\tCtrl+d = w prawo\n\tCtrl+w = w górę\n\tCtrl+q = upuść\n\tCtrl+e = załóż\n\tCtrl+r = rzuć\n\tCtrl+b = stawiaj opór\n\tCtrl+h = przestań ciągnąć\n\tCtrl+o = OOC\n\tCtrl+x = zmień rękę\n\tCtrl+z = użyj trzymanego przedmiotu (lub Ctrl+y)\n\tCtrl+f = poprzednia intencja\n\tCtrl+g = następna intencja\n\tCtrl+1 = intencja pomocy\n\tCtrl+2 = intencja rozbrojenia\n\tCtrl+3 = intencja chwytu\n\tCtrl+4 = intencja krzywdzenia\n\tCtrl+'+/-' LUB\n\tShift+kółko myszy = przybliżanie/oddalanie ducha\n\tDEL = przestań ciągnąć\n\tINS = następna intencja\n\tHOME = upuść\n\tPGUP = zmień rękę\n\tPGDN = użyj trzymanego przedmiotu\n\tEND = rzuć\n\tCtrl+Numpad = wybór celu na ciele (naciskaj 8, by przełączać głowa->oczy->usta)
-</font>"}
-
-	to_chat(src, hotkey_mode)
-	to_chat(src, other)
-
-/mob/living/silicon/robot/hotkey_help()
-	//h = talk-wheel has a nonsense tag in it because \th is an escape sequence in BYOND.
-	var/hotkey_mode = {"<font color='purple'>
-Tryb skrótów: (tryb skrótów musi być włączony)\n\tTAB = przełącz tryb skrótów\n\ta = w lewo\n\ts = w dół\n\td = w prawo\n\tw = w górę\n\tq = zdejmij aktywny moduł\n\t<B></B>h = przestań ciągnąć\n\tm = emotka\n\tt = powiedz\n\to = OOC\n\tx = przełączaj aktywne moduły\n\tb = stawiaj opór\n\tz = użyj trzymanego przedmiotu (lub y)\n\tf = poprzednia intencja\n\tg = następna intencja\n\t1 = aktywuj moduł 1\n\t2 = aktywuj moduł 2\n\t3 = aktywuj moduł 3\n\t4 = przełącz intencje
-</font>"}
-
-	var/other = {"<font color='purple'>
-Każdy tryb: (tryb skrótów nie musi być włączony)\n\tCtrl+a = w lewo\n\tCtrl+s = w dół\n\tCtrl+d = w prawo\n\tCtrl+w = w górę\n\tCtrl+q = zdejmij aktywny moduł\n\tCtrl+x = przełączaj aktywne moduły\n\tCtrl+b = stawiaj opór\n\tCtrl+h = przestań ciągnąć\n\tCtrl+o = OOC\n\tCtrl+z = użyj trzymanego przedmiotu (lub Ctrl+y)\n\tCtrl+f = poprzednia intencja\n\tCtrl+g = następna intencja\n\tCtrl+1 = aktywuj moduł 1\n\tCtrl+2 = aktywuj moduł 2\n\tCtrl+3 = aktywuj moduł 3\n\tCtrl+4 = przełącz intencje\n\tDEL = przestań ciągnąć\n\tINS = przełącz intencje\n\tPGUP = przełączaj aktywne moduły\n\tPGDN = użyj trzymanego przedmiotu
-</font>"}
-
-	to_chat(src, hotkey_mode)
-	to_chat(src, other)
 
 
 

@@ -1,256 +1,403 @@
-import { sortBy } from 'common/collections';
+import { useState } from 'react';
 import {
   Box,
   Button,
-  Dropdown,
-  Flex,
-  NumberInput,
+  Input,
+  LabeledList,
   ProgressBar,
   Section,
+  Slider,
+  Stack,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+// Układ jak w tg. Nasz DM nie ma zapasu papieru, kolejki ani rodzajów papieru,
+// a formularze drukuje z nazwy i treści (config/blanks.json), nie z kodu.
 type Data = {
-  blanks: any;
-  can_AI_print: any;
-  category: any;
-  color_mode: any;
-  current_toner: any;
-  forms_exist: any;
-  has_enough_toner: any;
-  has_item: any;
-  has_toner: any;
-  isAI: any;
-  is_photo: any;
-  max_toner: any;
-  num_copies: any;
+  has_item: BooleanLike;
+  has_toner: BooleanLike;
+  has_enough_toner: BooleanLike;
+  can_AI_print: BooleanLike;
+  isAI: BooleanLike;
+  is_photo: BooleanLike;
+  forms_exist: BooleanLike;
+  color_mode: string;
+  num_copies: number;
+  max_copies: number;
+  max_toner: number;
+  current_toner: number;
+  blanks?: Blank[];
 };
 
+type Blank = {
+  name: string;
+  category: string;
+  code: string;
+  info: string[];
+};
+
+const ALL_BLANKS = 'Wszystkie formularze';
+
 export const Photocopier = (props) => {
-  const { data } = useBackend<Data>();
-  const { isAI, has_toner, has_item, forms_exist } = data;
+  const [selectedBlank, setSelectedBlank] = useState<Blank | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
-    <Window title="Photocopier" width={320} height={512}>
+    <Window
+      title="Kserokopiarka"
+      width={selectedCategory ? 550 : 325}
+      height={525}
+    >
       <Window.Content>
-        {has_toner ? (
-          <Toner />
-        ) : (
-          <Section title="Toner">
-            <Box color="average">No inserted toner cartridge.</Box>
-          </Section>
-        )}
-        {forms_exist ? (
-          <Blanks />
-        ) : (
-          <Section title="Blanks">
-            <Box color="average">
-              No forms found. Please contact your system administrator.
-            </Box>
-          </Section>
-        )}
-        {has_item ? (
-          <Options />
-        ) : (
-          <Section title="Options">
-            <Box color="average">No inserted item.</Box>
-          </Section>
-        )}
-        {!!isAI && <AIOptions />}
+        <Stack fill>
+          <Stack.Item basis={selectedCategory ? '40%' : '100%'}>
+            <Stack fill vertical>
+              <Stack.Item>
+                <Status selectedBlank={selectedBlank} />
+              </Stack.Item>
+              <Stack.Item>
+                <Actions selectedBlank={selectedBlank} />
+              </Stack.Item>
+              <Stack.Item grow>
+                <Categories
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          {!!selectedCategory && (
+            <Stack.Item basis="60%">
+              <Blanks
+                selectedCategory={selectedCategory}
+                selectedBlank={selectedBlank}
+                setSelectedBlank={setSelectedBlank}
+              />
+            </Stack.Item>
+          )}
+        </Stack>
       </Window.Content>
     </Window>
   );
 };
 
-const Toner = (props) => {
+type SelectedBlankProps = {
+  selectedBlank: Blank | null;
+};
+
+const Status = (props: SelectedBlankProps) => {
   const { act, data } = useBackend<Data>();
-  const { has_toner, max_toner, current_toner } = data;
+  const { selectedBlank } = props;
+  const { has_toner, current_toner, max_toner } = data;
 
   const average_toner = max_toner * 0.66;
   const bad_toner = max_toner * 0.33;
 
   return (
     <Section
-      title="Toner"
+      fill
+      title="Stan"
       buttons={
         <Button
+          icon="eject"
           disabled={!has_toner}
           onClick={() => act('remove_toner')}
-          icon="eject"
         >
-          Eject
+          Wyjmij toner
         </Button>
       }
     >
-      <ProgressBar
-        ranges={{
-          good: [average_toner, max_toner],
-          average: [bad_toner, average_toner],
-          bad: [0, bad_toner],
-        }}
-        value={current_toner}
-        minValue={0}
-        maxValue={max_toner}
-      />
+      <LabeledList>
+        <LabeledList.Item label="Toner">
+          {has_toner ? (
+            <ProgressBar
+              minValue={0}
+              value={current_toner}
+              maxValue={max_toner}
+              ranges={{
+                good: [average_toner, Infinity],
+                average: [bad_toner, average_toner],
+                bad: [-Infinity, bad_toner],
+              }}
+            />
+          ) : (
+            <ProgressBar color="bad" minValue={0} value={0} maxValue={1}>
+              Brak kartridża
+            </ProgressBar>
+          )}
+        </LabeledList.Item>
+        <LabeledList.Item label="Formularz">
+          <b>{selectedBlank ? selectedBlank.name : 'Nie wybrano'}</b>
+        </LabeledList.Item>
+      </LabeledList>
     </Section>
   );
 };
 
-const Options = (props) => {
+const Actions = (props: SelectedBlankProps) => {
   const { act, data } = useBackend<Data>();
-  const { color_mode, is_photo, num_copies, has_enough_toner } = data;
+  const { selectedBlank } = props;
+  const {
+    has_item,
+    has_toner,
+    has_enough_toner,
+    is_photo,
+    num_copies,
+    max_copies = 10,
+    color_mode,
+    isAI,
+    can_AI_print,
+  } = data;
 
   return (
-    <Section title="Options">
-      <Flex>
-        <Flex.Item mt={0.4} width={11} color="label">
-          Make copies:
-        </Flex.Item>
-        <Flex.Item>
-          <NumberInput
-            tickWhileDragging
-            animated
-            width={2.6}
-            height={1.65}
-            step={1}
-            stepPixelSize={8}
-            minValue={1}
-            maxValue={10}
-            value={num_copies}
-            onChange={(value) =>
-              act('set_copies', {
-                num_copies: value,
-              })
-            }
-          />
-        </Flex.Item>
-        <Flex.Item>
+    <Section fill title="Działania">
+      <Stack fill vertical textAlign="center">
+        <Stack.Item>
+          <Stack align="center" textAlign="left">
+            <Stack.Item grow color="label">
+              Liczba kopii:
+            </Stack.Item>
+            <Stack.Item grow>
+              <Slider
+                animated
+                step={1}
+                minValue={1}
+                value={num_copies}
+                maxValue={max_copies}
+                stepPixelSize={10}
+                onChange={(e, value) =>
+                  act('set_copies', {
+                    num_copies: value,
+                  })
+                }
+              />
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+        {!!isAI && (
+          <Stack.Item>
+            <Button
+              fluid
+              icon="images"
+              disabled={!can_AI_print}
+              onClick={() => act('ai_photo')}
+            >
+              Wydrukuj zdjęcie z bazy danych
+            </Button>
+          </Stack.Item>
+        )}
+        <Stack.Item>
+          <Stack>
+            <Stack.Item grow>
+              <Button
+                fluid
+                icon="print"
+                disabled={!selectedBlank || !has_toner}
+                onClick={() =>
+                  selectedBlank &&
+                  act('print_blank', {
+                    name: selectedBlank.name,
+                    info: selectedBlank.info,
+                  })
+                }
+              >
+                Drukuj
+              </Button>
+            </Stack.Item>
+            <Stack.Item grow>
+              <Button
+                fluid
+                icon="copy"
+                disabled={!has_item || !has_enough_toner}
+                tooltip={
+                  has_item && !has_enough_toner
+                    ? 'Za mało tonera na tyle kopii'
+                    : undefined
+                }
+                onClick={() => act('make_copy')}
+              >
+                Kopiuj
+              </Button>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+        {!!has_item && !!is_photo && (
+          <Stack.Item>
+            <Stack>
+              <Stack.Item grow>
+                <Button
+                  fluid
+                  icon="palette"
+                  selected={color_mode === 'Color'}
+                  onClick={() =>
+                    act('color_mode', {
+                      mode: 'Color',
+                    })
+                  }
+                >
+                  Kolor
+                </Button>
+              </Stack.Item>
+              <Stack.Item grow>
+                <Button
+                  fluid
+                  icon="pen"
+                  selected={color_mode === 'Greyscale'}
+                  onClick={() =>
+                    act('color_mode', {
+                      mode: 'Greyscale',
+                    })
+                  }
+                >
+                  Skala szarości
+                </Button>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        )}
+        <Stack.Item>
           <Button
-            ml={0.2}
-            icon="copy"
-            textAlign="center"
-            disabled={!has_enough_toner}
-            onClick={() => act('make_copy')}
+            fluid
+            icon={has_item ? 'eject' : 'times'}
+            disabled={!has_item}
+            onClick={() => act('remove')}
           >
-            Copy
+            Wyjmij przedmiot
           </Button>
-        </Flex.Item>
-      </Flex>
-      {!!is_photo && (
-        <Flex mt={0.5}>
-          <Flex.Item mr={0.4} width="50%">
-            <Button
-              fluid
-              textAlign="center"
-              selected={color_mode === 'Greyscale'}
-              onClick={() =>
-                act('color_mode', {
-                  mode: 'Greyscale',
-                })
-              }
-            >
-              Greyscale
-            </Button>
-          </Flex.Item>
-          <Flex.Item ml={0.4} width="50%">
-            <Button
-              fluid
-              textAlign="center"
-              selected={color_mode === 'Color'}
-              onClick={() =>
-                act('color_mode', {
-                  mode: 'Color',
-                })
-              }
-            >
-              Color
-            </Button>
-          </Flex.Item>
-        </Flex>
-      )}
-      <Button
-        mt={0.5}
-        textAlign="center"
-        icon="reply"
-        fluid
-        onClick={() => act('remove')}
-      >
-        Remove item
-      </Button>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
 
-const Blanks = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { blanks, category, has_toner } = data;
+type CategoriesProps = {
+  selectedCategory: string | null;
+  setSelectedCategory: (category: string) => void;
+};
 
-  const sortedBlanks = sortBy((blank) => blanks.category)(blanks || []);
+const Categories = (props: CategoriesProps) => {
+  const { data } = useBackend<Data>();
+  const { forms_exist, blanks = [] } = data;
+  const { selectedCategory, setSelectedCategory } = props;
 
-  const categories: any[] = [];
-  for (let blank of sortedBlanks) {
+  const categories: string[] = [];
+  for (const blank of blanks) {
     if (!categories.includes(blank.category)) {
       categories.push(blank.category);
     }
   }
-
-  const selectedCategory = category ?? categories[0];
-  const visibleBlanks = sortedBlanks.filter(
-    (blank) => blank.category === selectedCategory,
-  );
+  categories.sort();
 
   return (
-    <Section title="Blanks">
-      <Dropdown
-        width="100%"
-        options={categories}
-        selected={selectedCategory}
-        onSelected={(value) =>
-          act('choose_category', {
-            category: value,
-          })
-        }
-      />
-      <Box mt={0.4}>
-        {visibleBlanks.map((blank) => (
-          <Button
-            key={blank.code}
-            tooltip={blank.name}
-            disabled={!has_toner}
-            onClick={() =>
-              act('print_blank', {
-                name: blank.name,
-                info: blank.info,
-              })
-            }
-          >
-            {blank.code}
-          </Button>
-        ))}
-      </Box>
+    <Section
+      fill
+      scrollable
+      title="Formularze"
+      buttons={
+        <Button
+          icon="times"
+          tooltip="Zamknij wybraną kategorię"
+          disabled={!selectedCategory}
+          onClick={() => {
+            setSelectedCategory('');
+          }}
+        />
+      }
+    >
+      {!forms_exist ? (
+        <Box color="average">
+          Nie znaleziono formularzy. Skontaktuj się z administratorem systemu.
+        </Box>
+      ) : (
+        <Stack fill vertical zebra g={0.2}>
+          <Stack.Item>
+            <Button
+              fluid
+              icon="chevron-right"
+              color="transparent"
+              selected={selectedCategory === ALL_BLANKS}
+              onClick={() => {
+                setSelectedCategory(ALL_BLANKS);
+              }}
+            >
+              {ALL_BLANKS}
+            </Button>
+          </Stack.Item>
+          {categories.map((category) => (
+            <Stack.Item key={category}>
+              <Button
+                fluid
+                icon="chevron-right"
+                color="transparent"
+                selected={selectedCategory === category}
+                onClick={() => {
+                  setSelectedCategory(category);
+                }}
+              >
+                {category}
+              </Button>
+            </Stack.Item>
+          ))}
+        </Stack>
+      )}
     </Section>
   );
 };
 
-const AIOptions = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { can_AI_print } = data;
+type BlanksProps = {
+  selectedCategory: string;
+  selectedBlank: Blank | null;
+  setSelectedBlank: (blank: Blank) => void;
+};
+
+const Blanks = (props: BlanksProps) => {
+  const { data } = useBackend<Data>();
+  const { selectedCategory, selectedBlank, setSelectedBlank } = props;
+  const { blanks = [] } = data;
+
+  const [searchText, setSearchText] = useState('');
+  const search = createSearch(searchText, (blank: Blank) => blank.name);
+  const sortedBlanks = [...blanks].sort((a, b) => (a.name > b.name ? 1 : -1));
+  const visibleBlanks = searchText
+    ? sortedBlanks.filter(search)
+    : selectedCategory === ALL_BLANKS
+      ? sortedBlanks
+      : sortedBlanks.filter((blank) => blank.category === selectedCategory);
 
   return (
-    <Section title="AI Options">
-      <Box>
-        <Button
-          fluid
-          icon="images"
-          textAlign="center"
-          disabled={!can_AI_print}
-          onClick={() => act('ai_photo')}
-        >
-          Print photo from database
-        </Button>
-      </Box>
+    <Section
+      fill
+      scrollable
+      title={selectedCategory}
+      buttons={
+        <Input
+          width={8.75}
+          value={searchText}
+          placeholder="Szukaj formularza..."
+          onChange={setSearchText}
+        />
+      }
+    >
+      <Stack fill vertical zebra g={0.5}>
+        {visibleBlanks.map((blank) => (
+          <Stack.Item key={blank.code}>
+            <Button
+              fluid
+              ellipsis
+              color="transparent"
+              tooltip={blank.code}
+              selected={blank.code === selectedBlank?.code}
+              onClick={() => setSelectedBlank(blank)}
+            >
+              {blank.name}
+            </Button>
+          </Stack.Item>
+        ))}
+      </Stack>
     </Section>
   );
 };

@@ -1,4 +1,5 @@
-import { map } from 'common/collections';
+import { map } from 'es-toolkit/compat';
+import { useState } from 'react';
 import {
   Button,
   Flex,
@@ -7,31 +8,56 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type Shuttle = {
+  id: string;
+  name: string;
+  status: string;
+  mode: string;
+  timer: BooleanLike;
+  timeleft: string;
+  can_fly: BooleanLike;
+  can_fast_travel: BooleanLike;
+};
+
+type ShuttleTemplate = {
+  name: string;
+  shuttle_id: string;
+  description?: string;
+  admin_notes?: string;
+};
+
+type TemplateGroup = {
+  port_id: string;
+  templates: ShuttleTemplate[];
+};
+
 type Data = {
-  existing_shuttle: any;
-  selected: any;
-  shuttles: any;
-  templates: any;
+  shuttles: Shuttle[];
+  templates: Record<string, TemplateGroup>;
+  selected: ShuttleTemplate | null;
+  existing_shuttle: Shuttle | null;
 };
 
 export const ShuttleManipulator = (props) => {
-  const [tab, setTab] = useLocalState('tab', 1);
+  const [tab, setTab] = useState(1);
+
   return (
-    <Window width={800} height={600}>
+    <Window title="Manipulator promów" width={800} height={600} theme="admin">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Status
+            Stan
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Templates
+            Szablony
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-            Modification
+            Modyfikacja
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <ShuttleManipulatorStatus />}
@@ -52,27 +78,28 @@ export const ShuttleManipulatorStatus = (props) => {
           <Table.Row key={shuttle.id}>
             <Table.Cell>
               <Button
-                content="JMP"
-                key={shuttle.id}
+                tooltip="Przeskocz do promu"
                 onClick={() =>
                   act('jump_to', {
                     type: 'mobile',
                     id: shuttle.id,
                   })
                 }
-              />
+              >
+                JMP
+              </Button>
             </Table.Cell>
             <Table.Cell>
               <Button
-                content="Fly"
-                key={shuttle.id}
                 disabled={!shuttle.can_fly}
                 onClick={() =>
                   act('fly', {
                     id: shuttle.id,
                   })
                 }
-              />
+              >
+                Leć
+              </Button>
             </Table.Cell>
             <Table.Cell>{shuttle.name}</Table.Cell>
             <Table.Cell>{shuttle.id}</Table.Cell>
@@ -83,15 +110,15 @@ export const ShuttleManipulatorStatus = (props) => {
                 <>
                   ({shuttle.timeleft})
                   <Button
-                    content="Fast Travel"
-                    key={shuttle.id}
                     disabled={!shuttle.can_fast_travel}
                     onClick={() =>
                       act('fast_travel', {
                         id: shuttle.id,
                       })
                     }
-                  />
+                  >
+                    Szybka podróż
+                  </Button>
                 </>
               )}
             </Table.Cell>
@@ -105,18 +132,18 @@ export const ShuttleManipulatorStatus = (props) => {
 export const ShuttleManipulatorTemplates = (props) => {
   const { act, data } = useBackend<Data>();
   const templateObject = data.templates || {};
-  const selected = data.selected || {};
-  const [selectedTemplateId, setSelectedTemplateId] = useLocalState(
-    'templateId',
+  const selected = data.selected || ({} as Partial<ShuttleTemplate>);
+  const [selectedTemplateId, setSelectedTemplateId] = useState(
     Object.keys(templateObject)[0],
   );
-  const actualTemplates = templateObject[selectedTemplateId]?.templates;
+  const actualTemplates = templateObject[selectedTemplateId]?.templates || [];
+
   return (
     <Section>
       <Flex>
         <Flex.Item>
           <Tabs vertical>
-            {map((template, templateId) => (
+            {map(templateObject, (template, templateId) => (
               <Tabs.Tab
                 key={templateId}
                 selected={selectedTemplateId === templateId}
@@ -124,7 +151,7 @@ export const ShuttleManipulatorTemplates = (props) => {
               >
                 {template.port_id}
               </Tabs.Tab>
-            ))(templateObject)}
+            ))}
           </Tabs>
         </Flex.Item>
         <Flex.Item grow={1} basis={0}>
@@ -138,26 +165,27 @@ export const ShuttleManipulatorTemplates = (props) => {
                 key={actualTemplate.shuttle_id}
                 buttons={
                   <Button
-                    content={isSelected ? 'Selected' : 'Select'}
                     selected={isSelected}
                     onClick={() =>
                       act('select_template', {
                         shuttle_id: actualTemplate.shuttle_id,
                       })
                     }
-                  />
+                  >
+                    {isSelected ? 'Wybrany' : 'Wybierz'}
+                  </Button>
                 }
               >
                 {(!!actualTemplate.description ||
                   !!actualTemplate.admin_notes) && (
                   <LabeledList>
                     {!!actualTemplate.description && (
-                      <LabeledList.Item label="Description">
+                      <LabeledList.Item label="Opis">
                         {actualTemplate.description}
                       </LabeledList.Item>
                     )}
                     {!!actualTemplate.admin_notes && (
-                      <LabeledList.Item label="Admin Notes">
+                      <LabeledList.Item label="Notatki admina">
                         {actualTemplate.admin_notes}
                       </LabeledList.Item>
                     )}
@@ -174,8 +202,8 @@ export const ShuttleManipulatorTemplates = (props) => {
 
 export const ShuttleManipulatorModification = (props) => {
   const { act, data } = useBackend<Data>();
-  const selected = data.selected || {};
-  const existingShuttle = data.existing_shuttle || {};
+  const selected = data.selected;
+  const existingShuttle = data.existing_shuttle;
   return (
     <Section>
       {selected ? (
@@ -184,12 +212,12 @@ export const ShuttleManipulatorModification = (props) => {
             {(!!selected.description || !!selected.admin_notes) && (
               <LabeledList>
                 {!!selected.description && (
-                  <LabeledList.Item label="Description">
+                  <LabeledList.Item label="Opis">
                     {selected.description}
                   </LabeledList.Item>
                 )}
                 {!!selected.admin_notes && (
-                  <LabeledList.Item label="Admin Notes">
+                  <LabeledList.Item label="Notatki admina">
                     {selected.admin_notes}
                   </LabeledList.Item>
                 )}
@@ -197,20 +225,21 @@ export const ShuttleManipulatorModification = (props) => {
             )}
           </Section>
           {existingShuttle ? (
-            <Section title={'Existing Shuttle: ' + existingShuttle.name}>
+            <Section title={`Obecny prom: ${existingShuttle.name}`}>
               <LabeledList>
                 <LabeledList.Item
-                  label="Status"
+                  label="Stan"
                   buttons={
                     <Button
-                      content="Jump To"
                       onClick={() =>
                         act('jump_to', {
                           type: 'mobile',
                           id: existingShuttle.id,
                         })
                       }
-                    />
+                    >
+                      Przeskocz
+                    </Button>
                   }
                 >
                   {existingShuttle.status}
@@ -219,30 +248,33 @@ export const ShuttleManipulatorModification = (props) => {
               </LabeledList>
             </Section>
           ) : (
-            <Section title="Existing Shuttle: None" />
+            <Section title="Obecny prom: brak" />
           )}
-          <Section title="Status">
+          <Section title="Stan">
             <Button
-              content="Preview"
               onClick={() =>
                 act('preview', {
                   shuttle_id: selected.shuttle_id,
                 })
               }
-            />
+            >
+              Podgląd
+            </Button>
             <Button
-              content="Load"
               color="bad"
+              tooltip="Zastępuje obecny prom wybranym szablonem"
               onClick={() =>
                 act('load', {
                   shuttle_id: selected.shuttle_id,
                 })
               }
-            />
+            >
+              Załaduj
+            </Button>
           </Section>
         </>
       ) : (
-        'No shuttle selected'
+        'Nie wybrano promu'
       )}
     </Section>
   );

@@ -125,7 +125,7 @@
 /datum/action/innate/mecha/mech_view_stats/Activate()
 	if(!owner || !chassis || chassis.occupant != owner)
 		return
-	chassis.occupant << browse(chassis.get_stats_html(), "window=exosuit")
+	chassis.ui_interact(chassis.occupant) // AQUILA: panel TGUI "Mecha" zamiast starego okna HTML
 
 
 /datum/action/innate/mecha/strafe

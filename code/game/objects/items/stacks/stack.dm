@@ -183,13 +183,18 @@
   * * R - The stack recipe we are using to get a list of properties
   */
 /obj/item/stack/proc/build_recipe(datum/stack_recipe/R)
+	// AQUILA EDIT - ikona wyniku dla okna z tg
+	var/atom/result = R.result_type
 	return list(
 		"title" = R.title,
 		"res_amount" = R.res_amount,
 		"max_res_amount" = R.max_res_amount,
 		"req_amount" = R.req_amount,
 		"ref" = "\ref[R]",
+		"icon" = ispath(result, /atom) ? initial(result.icon) : null,
+		"icon_state" = ispath(result, /atom) ? initial(result.icon_state) : null,
 	)
+	// AQUILA EDIT END
 
 /**
   * Checks if the recipe is valid to be used

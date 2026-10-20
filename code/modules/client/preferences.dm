@@ -1241,6 +1241,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
 			HTML += "<label>[kb.full_name]</label> <a href ='byond://?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[url_encode(bound_key)]'>[bound_key == "Unbound" ? "Brak" : bound_key] Domyślnie: ( [kb.key == "Unbound" ? "brak" : kb.key] )</a>"
+			// AQ EDIT - czyszczenie skrótu bez okna przechwytywania (w oknie TGUI Esc tylko anuluje)
+			if(bound_key != "Unbound")
+				HTML += " <a href ='byond://?_src_=prefs;preference=keybindings_set;keybinding=[kb.name];old_key=[url_encode(bound_key)];clear_key=1'>Wyczyść</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -2301,6 +2304,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("keybindings_capture")
 					var/datum/keybinding/kb = GLOB.keybindings_by_name[href_list["keybinding"]]
 					var/old_key = href_list["old_key"]
+					// AQ EDIT START - okno TGUI KeyComboModal (tgui_input_keycombo), gdy gracz ma włączone okna TGUI
+					if(kb && (toggles2 & PREFTOGGLE_2_TGUI_INPUT))
+						var/new_key = tgui_input_keycombo(user, "Skrót: [kb.full_name]\n[kb.description]", "Skróty klawiszowe", old_key == "Unbound" ? "" : old_key)
+						if(new_key && new_key != old_key)
+							if(old_key && (old_key in key_bindings))
+								key_bindings[old_key] -= kb.name
+							key_bindings[new_key] += list(kb.name)
+							key_bindings[new_key] = sortList(key_bindings[new_key])
+							save_preferences()
+						ShowKeybindings(user)
+						return
+					// AQ EDIT END
 					CaptureKeybinding(user, kb, old_key)
 					return
 

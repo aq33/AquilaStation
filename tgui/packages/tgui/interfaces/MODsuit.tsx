@@ -1,7 +1,4 @@
-import { BooleanLike } from 'common/react';
-import { Dropdown } from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
+import { useState } from 'react';
 import {
   AnimatedNumber,
   Box,
@@ -9,6 +6,7 @@ import {
   Collapsible,
   ColorBox,
   Dimmer,
+  Dropdown,
   Icon,
   LabeledList,
   NoticeBox,
@@ -17,8 +15,11 @@ import {
   Section,
   Stack,
   Table,
-} from '../components';
-import { formatSiUnit } from '../format';
+} from 'tgui-core/components';
+import { formatSiUnit } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type MODsuitData = {
@@ -43,6 +44,7 @@ type PartData = {
 
 type SuitStatus = {
   core_name: string;
+  // AQUILA: ładunek liczony w oknie (tg wysyła gotowy pasek z DM)
   cell_charge_current: number;
   cell_charge_max: number;
   active: BooleanLike;
@@ -115,7 +117,7 @@ type ModuleConfig = {
 };
 
 export const MODsuit = (props) => {
-  const { act, data } = useBackend<MODsuitData>();
+  const { data } = useBackend<MODsuitData>();
   const { ui_theme } = data;
   const { interface_break } = data.suit_status;
   return (
@@ -123,7 +125,7 @@ export const MODsuit = (props) => {
       width={600}
       height={600}
       theme={ui_theme}
-      title="MOD Interface Panel"
+      title="Panel interfejsu MOD"
     >
       <Window.Content scrollable={!interface_break}>
         <MODsuitContent />
@@ -133,7 +135,7 @@ export const MODsuit = (props) => {
 };
 
 export const MODsuitContent = (props) => {
-  const { act, data } = useBackend<MODsuitData>();
+  const { data } = useBackend<MODsuitData>();
   const { interface_break } = data.suit_status;
   return (
     <Box>
@@ -171,8 +173,8 @@ const ConfigureNumberEntry = (props) => {
       value={value}
       minValue={-50}
       maxValue={50}
-      stepPixelSize={5}
       step={1}
+      stepPixelSize={5}
       width="39px"
       onChange={(value) =>
         act('configure', {
@@ -227,7 +229,6 @@ const ConfigureListEntry = (props) => {
   return (
     <Dropdown
       selected={value}
-      displayText={value}
       options={values}
       onSelected={(value) =>
         act('configure', {
@@ -236,6 +237,22 @@ const ConfigureListEntry = (props) => {
           ref: module_ref,
         })
       }
+    />
+  );
+};
+
+const ConfigurePinEntry = (props) => {
+  const { name, value, module_ref } = props;
+  const { act } = useBackend();
+  return (
+    <Button
+      onClick={() =>
+        act('configure', { key: name, value: !value, ref: module_ref })
+      }
+      icon="thumbtack"
+      selected={value}
+      tooltip="Przypnij"
+      tooltipPosition="left"
     />
   );
 };
@@ -252,13 +269,14 @@ const ConfigureButtonEntry = (props) => {
 };
 
 const ConfigureDataEntry = (props) => {
-  const { name, display_name, type, value, values, module_ref } = props;
+  const { display_name, type } = props;
   const configureEntryTypes = {
     number: <ConfigureNumberEntry {...props} />,
     bool: <ConfigureBoolEntry {...props} />,
     color: <ConfigureColorEntry {...props} />,
     list: <ConfigureListEntry {...props} />,
     button: <ConfigureButtonEntry {...props} />,
+    pin: <ConfigurePinEntry {...props} />,
   };
   return (
     <LabeledList.Item label={display_name}>
@@ -271,26 +289,23 @@ const LockedInterface = () => (
   <Section align="center" fill>
     <Icon color="red" name="exclamation-triangle" size={15} />
     <Box fontSize="30px" color="red">
-      ERROR: INTERFACE UNRESPONSIVE
+      BŁĄD: INTERFEJS NIE ODPOWIADA
     </Box>
   </Section>
 );
 
-const LockedModule = (props) => {
-  const { act, data } = useBackend();
-  return (
-    <Dimmer>
-      <Stack>
-        <Stack.Item fontSize="16px" color="blue">
-          SUIT UNPOWERED
-        </Stack.Item>
-      </Stack>
-    </Dimmer>
-  );
-};
+const LockedModule = (props) => (
+  <Dimmer>
+    <Stack>
+      <Stack.Item fontSize="16px" color="blue">
+        SKAFANDER BEZ ZASILANIA
+      </Stack.Item>
+    </Stack>
+  </Dimmer>
+);
 
 const ConfigureScreen = (props) => {
-  const { configuration_data, module_ref, module_name } = props;
+  const { configuration_data, module_ref } = props;
   const configuration_keys = Object.keys(configuration_data);
   return (
     <Box pb={1}>
@@ -299,7 +314,7 @@ const ConfigureScreen = (props) => {
           const data = configuration_data[key];
           return (
             <ConfigureDataEntry
-              key={data.key}
+              key={key}
               name={key}
               display_name={data.display_name}
               type={data.type}
@@ -317,24 +332,24 @@ const ConfigureScreen = (props) => {
 const moduleTypeAction = (param) => {
   switch (param) {
     case 1:
-      return 'Use';
+      return 'Użyj';
     case 2:
-      return 'Toggle';
+      return 'Przełącz';
     case 3:
-      return 'Select';
+      return 'Wybierz';
   }
 };
 
 const radiationLevels = (param) => {
   switch (param) {
     case 1:
-      return 'Low';
+      return 'niskie';
     case 2:
-      return 'Medium';
+      return 'średnie';
     case 3:
-      return 'High';
+      return 'wysokie';
     case 4:
-      return 'Extreme';
+      return 'ekstremalne';
   }
 };
 
@@ -354,30 +369,29 @@ const SuitStatusSection = (props) => {
     is_ai,
   } = data.suit_status;
   const { display_time, shift_time, shift_id } = data.module_custom_status;
-  const status = malfunctioning
-    ? 'Malfunctioning'
-    : active
-      ? 'Active'
-      : 'Inactive';
+  const status = malfunctioning ? 'Awaria' : active ? 'Aktywny' : 'Nieaktywny';
+  // AQUILA: opis ładunku w dżulach (u nas 1 jednostka ogniwa = 1 kJ),
+  // w tg ten tekst przychodzi gotowy z DM (chargebar_string)
   const charge_percent = Math.round(
     (100 * cell_charge_current) / cell_charge_max,
   );
 
   return (
     <Section
-      title="Suit Status"
+      title="Stan skafandra"
       fill
       buttons={
         <Button
           icon="power-off"
           color={active ? 'good' : 'default'}
-          content={status}
           onClick={() => act('activate')}
-        />
+        >
+          {status}
+        </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Charge">
+        <LabeledList.Item label="Ładunek">
           <ProgressBar
             value={cell_charge_current / cell_charge_max}
             ranges={{
@@ -390,56 +404,58 @@ const SuitStatusSection = (props) => {
             }}
           >
             {!core_name
-              ? 'No Core Detected'
+              ? 'Nie wykryto rdzenia'
               : cell_charge_max === 1
-                ? 'Power Cell Missing'
+                ? 'Brak ogniwa zasilającego'
                 : cell_charge_current === 1e31
-                  ? 'Infinite'
-                  : `${formatSiUnit(cell_charge_current * 1000, 0, 'J')} of ${formatSiUnit(
+                  ? 'Nieskończony'
+                  : `${formatSiUnit(cell_charge_current * 1000, 0, 'J')} z ${formatSiUnit(
                       cell_charge_max * 1000,
                       0,
                       'J',
                     )} (${charge_percent}%)`}
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="ID Lock">
+        <LabeledList.Item label="Blokada ID">
           <Button
             icon={locked ? 'lock' : 'lock-open'}
             color={locked ? 'good' : 'default'}
-            content={locked ? 'Locked' : 'Unlocked'}
             onClick={() => act('lock')}
-          />
+          >
+            {locked ? 'Zablokowany' : 'Odblokowany'}
+          </Button>
         </LabeledList.Item>
         {!!open && (
-          <LabeledList.Item label="Cover">
-            <Box color="red">Open</Box>
+          <LabeledList.Item label="Pokrywa">
+            <Box color="red">Otwarta</Box>
           </LabeledList.Item>
         )}
         {!!seconds_electrified && (
-          <LabeledList.Item label="Circuits">
-            <Box color="red">Shorted</Box>
+          <LabeledList.Item label="Obwody">
+            <Box color="red">Zwarte</Box>
           </LabeledList.Item>
         )}
         {!!ai_name && (
-          <LabeledList.Item label="pAI Control">
+          <LabeledList.Item label="Sterowanie pAI">
             {!!has_pai && (
               <Button
                 icon="eject"
-                content="Eject pAI"
                 disabled={is_ai}
                 onClick={() => act('eject_pai')}
-              />
+              >
+                Wysuń pAI
+              </Button>
             )}
           </LabeledList.Item>
         )}
       </LabeledList>
 
       {!!display_time && (
-        <Section title="Operation" mt={2}>
-          <LabeledList.Item label="Time">
+        <Section title="Operacja" mt={2}>
+          <LabeledList.Item label="Czas">
             {active ? shift_time : '00:00:00'}
           </LabeledList.Item>
-          <LabeledList.Item label="Number">
+          <LabeledList.Item label="Numer">
             {active && shift_id ? shift_id : '???'}
           </LabeledList.Item>
         </Section>
@@ -449,19 +465,21 @@ const SuitStatusSection = (props) => {
 };
 
 const HardwareSection = (props) => {
-  const { act, data } = useBackend<MODsuitData>();
+  const { data } = useBackend<MODsuitData>();
   const { control } = data;
   const { ai_name, core_name } = data.suit_status;
   return (
-    <Section title="Hardware" style={{ textTransform: 'capitalize' }}>
+    <Section title="Sprzęt" style={{ textTransform: 'capitalize' }}>
       <LabeledList>
-        <LabeledList.Item label="Control Unit">{control}</LabeledList.Item>
-        <LabeledList.Item label="Core">
-          {core_name || 'No Core Detected'}
+        <LabeledList.Item label="Jednostka sterująca">
+          {control}
+        </LabeledList.Item>
+        <LabeledList.Item label="Rdzeń">
+          {core_name || 'Nie wykryto rdzenia'}
         </LabeledList.Item>
         <ModParts />
-        <LabeledList.Item label="AI Assistant">
-          {ai_name || 'No AI Detected'}
+        <LabeledList.Item label="Asystent SI">
+          {ai_name || 'Nie wykryto SI'}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -477,14 +495,15 @@ const ModParts = (props) => {
         return (
           <LabeledList.Item
             key={part.slot}
-            label={part.slot + ' Slot'}
+            label={`Slot: ${part.slot}`}
             buttons={
               <Button
                 selected={part.deployed}
                 icon={part.deployed ? 'arrow-down' : 'arrow-up'}
-                content={part.deployed ? 'Retract' : 'Deploy'}
                 onClick={() => act('deploy', { ref: part.ref })}
-              />
+              >
+                {part.deployed ? 'Schowaj' : 'Rozłóż'}
+              </Button>
             }
           >
             {part.name}
@@ -496,7 +515,7 @@ const ModParts = (props) => {
 };
 
 const UserStatusSection = (props) => {
-  const { act, data } = useBackend<MODsuitData>();
+  const { data } = useBackend<MODsuitData>();
   const { active } = data.suit_status;
   const { user_name, user_assignment } = data.user_status;
   const {
@@ -515,11 +534,11 @@ const UserStatusSection = (props) => {
     viruses,
   } = data.module_custom_status;
   return (
-    <Section title="User Status" fill>
+    <Section title="Stan użytkownika" fill>
       {!active && <LockedModule />}
       <LabeledList>
         {health !== undefined && (
-          <LabeledList.Item label="Health">
+          <LabeledList.Item label="Zdrowie">
             <ProgressBar
               value={active ? health / health_max : 0}
               ranges={{
@@ -533,7 +552,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_brute !== undefined && (
-          <LabeledList.Item label="Brute Damage">
+          <LabeledList.Item label="Obrażenia fizyczne">
             <ProgressBar
               value={active ? loss_brute / health_max : 0}
               ranges={{
@@ -547,7 +566,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_fire !== undefined && (
-          <LabeledList.Item label="Burn Damage">
+          <LabeledList.Item label="Oparzenia">
             <ProgressBar
               value={active ? loss_fire / health_max : 0}
               ranges={{
@@ -561,7 +580,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_oxy !== undefined && (
-          <LabeledList.Item label="Oxy Damage">
+          <LabeledList.Item label="Niedotlenienie">
             <ProgressBar
               value={active ? loss_oxy / health_max : 0}
               ranges={{
@@ -575,7 +594,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {loss_tox !== undefined && (
-          <LabeledList.Item label="Tox Damage">
+          <LabeledList.Item label="Zatrucie">
             <ProgressBar
               value={active ? loss_tox / health_max : 0}
               ranges={{
@@ -589,30 +608,36 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {background_radiation_level !== undefined && (
-          <LabeledList.Item label="Radiation">
+          <LabeledList.Item label="Promieniowanie">
             {!active ? (
-              'Unknown'
+              'Nieznane'
             ) : is_user_irradiated ? (
-              <NoticeBox danger>User Irradiated</NoticeBox>
+              <NoticeBox danger>Użytkownik napromieniowany</NoticeBox>
             ) : background_radiation_level ? (
-              <NoticeBox>{`Background: ${radiationLevels(background_radiation_level)}`}</NoticeBox>
+              <NoticeBox>
+                {`Tło: ${radiationLevels(background_radiation_level)}`}
+              </NoticeBox>
             ) : (
-              <NoticeBox info>Not Detected</NoticeBox>
+              <NoticeBox info>Nie wykryto</NoticeBox>
             )}
           </LabeledList.Item>
         )}
         {body_temperature !== undefined && (
-          <LabeledList.Item label="Body Temp">{`${active ? Math.round(body_temperature) : 0} K`}</LabeledList.Item>
+          <LabeledList.Item label="Temp. ciała">
+            {`${active ? Math.round(body_temperature) : 0} K`}
+          </LabeledList.Item>
         )}
         {nutrition !== undefined && (
-          <LabeledList.Item label="Satiety Level">{`${active ? Math.round(nutrition) : 0}`}</LabeledList.Item>
+          <LabeledList.Item label="Sytość">
+            {`${active ? Math.round(nutrition) : 0}`}
+          </LabeledList.Item>
         )}
-        <LabeledList.Item label="Name">{user_name}</LabeledList.Item>
-        <LabeledList.Item label="Assignment">
+        <LabeledList.Item label="Imię">{user_name}</LabeledList.Item>
+        <LabeledList.Item label="Stanowisko">
           {user_assignment}
         </LabeledList.Item>
         {dna_unique_identity !== undefined && (
-          <LabeledList.Item label="Fingerprints">
+          <LabeledList.Item label="Odciski palców">
             <Box
               style={{
                 wordBreak: 'break-all',
@@ -624,7 +649,7 @@ const UserStatusSection = (props) => {
           </LabeledList.Item>
         )}
         {dna_unique_enzymes !== undefined && (
-          <LabeledList.Item label="Enzymes">
+          <LabeledList.Item label="Enzymy">
             <Box
               style={{
                 wordBreak: 'break-all',
@@ -637,18 +662,20 @@ const UserStatusSection = (props) => {
         )}
       </LabeledList>
       {!!viruses && (
-        <Section title="Diseases">
+        <Section title="Choroby">
           {viruses.map((virus) => {
             return (
               <Collapsible title={virus.name} key={virus.name}>
                 <LabeledList>
-                  <LabeledList.Item label="Spread">
+                  <LabeledList.Item label="Rozprzestrzenianie">
                     {virus.type}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Stage">
+                  <LabeledList.Item label="Stadium">
                     {virus.stage}/{virus.maxstage}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Cure">{virus.cure}</LabeledList.Item>
+                  <LabeledList.Item label="Lekarstwo">
+                    {virus.cure}
+                  </LabeledList.Item>
                 </LabeledList>
               </Collapsible>
             );
@@ -663,28 +690,26 @@ const ModuleSection = (props) => {
   const { act, data } = useBackend<MODsuitData>();
   const { complexity_max, module_info } = data;
   const { complexity } = data.suit_status;
-  const [configureState, setConfigureState] = useLocalState(
-    'module_configuration',
-    '',
-  );
+  const [configureState, setConfigureState] = useState('');
+
   return (
     <Section
-      title="Modules"
+      title="Moduły"
       fill
-      buttons={`${complexity} of ${complexity_max} complexity used`}
+      buttons={`Złożoność: ${complexity} z ${complexity_max}`}
     >
       {!module_info.length ? (
-        <NoticeBox>No Modules Detected</NoticeBox>
+        <NoticeBox>Nie wykryto modułów</NoticeBox>
       ) : (
         <Table>
           <Table.Row header>
-            <Table.Cell colSpan={3}>Actions</Table.Cell>
-            <Table.Cell>Name</Table.Cell>
+            <Table.Cell colSpan={3}>Akcje</Table.Cell>
+            <Table.Cell>Nazwa</Table.Cell>
             <Table.Cell width={1} textAlign="center">
               <Button
                 color="transparent"
                 icon="plug"
-                tooltip="Idle Power Cost"
+                tooltip="Pobór energii w spoczynku"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -692,7 +717,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="lightbulb"
-                tooltip="Active Power Cost"
+                tooltip="Pobór energii przy działaniu"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -700,7 +725,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="bolt"
-                tooltip="Use Power Cost"
+                tooltip="Koszt energii za użycie"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -708,7 +733,7 @@ const ModuleSection = (props) => {
               <Button
                 color="transparent"
                 icon="save"
-                tooltip="Complexity"
+                tooltip="Złożoność"
                 tooltipPosition="top"
               />
             </Table.Cell>
@@ -741,7 +766,7 @@ const ModuleSection = (props) => {
                     }
                     icon="cog"
                     selected={configureState === module.ref}
-                    tooltip="Configure"
+                    tooltip="Konfiguruj"
                     tooltipPosition="left"
                     disabled={module.configuration_data.length === 0}
                   />
@@ -751,7 +776,7 @@ const ModuleSection = (props) => {
                     onClick={() => act('pin', { ref: module.ref })}
                     icon="thumbtack"
                     selected={module.pinned}
-                    tooltip="Pin"
+                    tooltip="Przypnij"
                     tooltipPosition="left"
                     disabled={!module.module_type}
                   />
@@ -767,10 +792,10 @@ const ModuleSection = (props) => {
                     <ConfigureScreen
                       configuration_data={module.configuration_data}
                       module_ref={module.ref}
-                      module_name={module.module_name}
                     />
                   )}
                 </Table.Cell>
+                {/* AQUILA: koszty w jednostkach ogniwa (Bee), bez jednostek SI z tg */}
                 <Table.Cell textAlign="center">{module.idle_power}</Table.Cell>
                 <Table.Cell textAlign="center">
                   {module.active_power}

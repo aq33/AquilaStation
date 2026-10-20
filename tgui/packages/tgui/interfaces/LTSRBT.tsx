@@ -85,7 +85,7 @@ export const LTSRBT = (props) => {
           <Stack.Item>
             <Button.Confirm
               fluid
-              icon="truck"
+              icon="truck-arrow-right"
               confirmContent="Na pewno?"
               onClick={() => act('place_on_market')}
             >

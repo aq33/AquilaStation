@@ -1,5 +1,3 @@
-import { round } from 'common/math';
-import { decodeHtmlEntities } from 'common/string';
 import {
   Box,
   Button,
@@ -8,6 +6,8 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { round } from 'tgui-core/math';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -28,7 +28,7 @@ type Data = {
 
 export const TicketMessenger = (props) => {
   return (
-    <Window theme="admin" width={620} height={500}>
+    <Window title="Zgłoszenie" theme="admin" width={620} height={500}>
       <Window.Content>
         <Section height="85px">
           <TicketActionBar />
@@ -58,37 +58,37 @@ export const TicketActionBar = (props) => {
   return (
     <Box>
       <Box bold inline>
-        Admin Help Ticket #{id} : {sender}
+        Zgłoszenie do adminów #{id}: {sender}
       </Box>
       <Box inline color={antag_status === 'None' ? 'green' : 'red'}>
-        Antag: {antag_status}
+        Antagonista: {antag_status === 'None' ? 'brak' : antag_status}
       </Box>
       <Box />
       <Box inline color={claimee_key ? 'blue' : 'red'} bold>
-        Claimed by {claimee_key ? claimee_key : 'Nobody'}
+        Przejął: {claimee_key ? claimee_key : 'nikt'}
       </Box>
       <Box inline>|</Box>
       <Box inline bold>
-        Opened {round((world_time - time_opened) / 600, 0)} minutes ago
+        Otwarte {round((world_time - time_opened) / 600, 0)} min temu
       </Box>
       <Box inline>
         {' |'}
         <Button
           color="transparent"
-          content="Re-title"
+          content="Zmień tytuł"
           onClick={() => act('retitle')}
         />
         |
         <Button
           color="transparent"
-          content="Reopen"
+          content="Otwórz ponownie"
           onClick={() => act('reopen')}
         />
         |
       </Box>
       <Divider />
       <Box>
-        {disconnected ? 'DISCONNECTED' : <TicketFullMonty />}
+        {disconnected ? 'ROZŁĄCZONY' : <TicketFullMonty />}
         <TicketClosureStates />
       </Box>
     </Box>
@@ -139,14 +139,11 @@ export const TicketChatWindow = (props) => {
                   <Box>
                     <Box inline bold>
                       {message.from && message.to
-                        ? 'PM from ' +
-                          decodeHtmlEntities(message.from) +
-                          ' to ' +
-                          decodeHtmlEntities(message.to)
+                        ? `PW od ${decodeHtmlEntities(message.from)} do ${decodeHtmlEntities(message.to)}`
                         : decodeHtmlEntities(message.from)
-                          ? 'Reply PM from ' + decodeHtmlEntities(message.from)
+                          ? `Odpowiedź od ${decodeHtmlEntities(message.from)}`
                           : decodeHtmlEntities(message.to)
-                            ? 'PM to ' + decodeHtmlEntities(message.to)
+                            ? `PW do ${decodeHtmlEntities(message.to)}`
                             : ''}
                     </Box>
                     <Box inline>{decodeHtmlEntities(message.message)}</Box>

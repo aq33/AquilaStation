@@ -1,15 +1,21 @@
 // AQUILA - konsola rekordów ochrony (aquila/code/game/machinery/computer/security_records_ui.dm)
-import { useState } from 'react';
+// Układ z tg (SecurityRecords: lista po lewej, rekord po prawej), dane i akcje nasze:
+// przyciski idą przez dawny Topic(), więc logi, dostęp, mandaty i wydruki działają bez zmian.
+import { sortBy } from 'es-toolkit';
+import { type ReactNode, useState } from 'react';
 import {
   Box,
   Button,
+  Icon,
   Input,
   LabeledList,
   NoticeBox,
   Section,
   Stack,
   Table,
+  Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -67,7 +73,7 @@ type Crime = {
 type Comment = {
   index: number;
   text: string;
-  deleted: boolean;
+  deleted: BooleanLike;
 };
 
 type SecurityRecord = {
@@ -82,23 +88,22 @@ type Data = {
   authenticated: string | null;
   rank: string | null;
   screen: number | null;
-  printing: boolean;
-  sort_by: string;
-  order: number;
+  printing: BooleanLike;
   temp: Temp | null;
   records?: RecordRow[];
+  active_ref?: string | null;
   general?: General | null;
   security?: SecurityRecord | null;
 };
 
 const STATUS_COLORS = {
   Arrest: 'bad',
-  Incarcerated: 'orange',
+  Incarcerated: 'average',
   Search: 'purple',
-  Monitor: 'bad',
-  Paroled: 'average',
+  Monitor: 'teal',
+  Paroled: 'good',
   Discharged: 'blue',
-  None: 'good',
+  None: 'label',
 };
 
 const STATUS_NAMES = {
@@ -111,6 +116,41 @@ const STATUS_NAMES = {
   None: 'Brak',
 };
 
+// Wartość statusu w DM -> parametr criminal2 dla "Change Criminal Status"
+const STATUS_BUTTONS = [
+  { status: 'None', param: 'none', desc: 'Brak. Nic nie jest zarzucane.' },
+  {
+    status: 'Arrest',
+    param: 'arrest',
+    desc: 'Do aresztowania. Ochrona ma zatrzymać osobę.',
+  },
+  {
+    status: 'Search',
+    param: 'search',
+    desc: 'Do przeszukania. Ochrona ma przeszukać osobę.',
+  },
+  {
+    status: 'Monitor',
+    param: 'monitor',
+    desc: 'Obserwacja. Pilnuj tej osoby pod kątem przestępstw.',
+  },
+  {
+    status: 'Incarcerated',
+    param: 'incarcerated',
+    desc: 'Uwięziony. Osoba odbywa obecnie wyrok.',
+  },
+  {
+    status: 'Paroled',
+    param: 'paroled',
+    desc: 'Zwolniony warunkowo. Na wolności, ale pod nadzorem.',
+  },
+  {
+    status: 'Discharged',
+    param: 'released',
+    desc: 'Zwolniony. Osoba odbyła karę lub ją uniewinniono.',
+  },
+];
+
 const useTopic = () => {
   const { act } = useBackend<Data>();
   return (params: Record<string, string | number>) => act('topic', params);
@@ -121,9 +161,9 @@ const ChoiceButton = (props: {
   extra?: Record<string, string | number>;
   icon?: string;
   color?: string;
-  disabled?: boolean;
+  disabled?: BooleanLike;
   tooltip?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }) => {
   const topic = useTopic();
   return (
@@ -141,7 +181,7 @@ const ChoiceButton = (props: {
 
 const EditField = (props: {
   field: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   icon?: string;
   tooltip?: string;
 }) => (
@@ -157,68 +197,169 @@ const EditField = (props: {
 
 export const SecurityRecordsConsole = (_) => {
   const { data } = useBackend<Data>();
-  const { authenticated, screen, temp } = data;
+  const { authenticated } = data;
   return (
-    <Window width={760} height={640}>
-      <Window.Content scrollable>
-        {!authenticated ? (
-          <LoginScreen />
-        ) : (
-          <>
-            <Header />
-            {temp && <TempScreen temp={temp} />}
-            {!temp && screen === 1 && <RecordList />}
-            {!temp && screen === 2 && <Maintenance />}
-            {!temp && screen === 3 && <RecordView />}
-          </>
-        )}
+    <Window title="Rekordy ochrony" width={820} height={620}>
+      <Window.Content>
+        <Stack fill>{!authenticated ? <RestrictedView /> : <AuthView />}</Stack>
       </Window.Content>
     </Window>
   );
 };
 
-const LoginScreen = () => (
-  <Section>
-    <NoticeBox info>
-      Zaloguj się kartą z dostępem do rekordów ochrony.
-    </NoticeBox>
-    <ChoiceButton choice="Log In" icon="sign-in-alt">
-      Zaloguj
-    </ChoiceButton>
-  </Section>
+/** Ekran przed zalogowaniem */
+const RestrictedView = () => (
+  <Stack.Item grow>
+    <Stack fill vertical>
+      <Stack.Item grow />
+      <Stack.Item align="center" grow={2}>
+        <Icon color="average" name="exclamation-triangle" size={15} />
+      </Stack.Item>
+      <Stack.Item align="center" grow>
+        <Box color="red" fontSize="18px" bold mt={5}>
+          Nanotrasen SecurityHUB
+        </Box>
+      </Stack.Item>
+      <Stack.Item>
+        <NoticeBox align="right">
+          Nie jesteś zalogowany. Użyj karty z dostępem do rekordów ochrony.
+          <ChoiceButton choice="Log In" icon="lock-open">
+            Zaloguj
+          </ChoiceButton>
+        </NoticeBox>
+      </Stack.Item>
+    </Stack>
+  </Stack.Item>
 );
 
-const Header = () => {
+const AuthView = () => {
   const { data } = useBackend<Data>();
-  const { authenticated, rank, screen } = data;
+  const { authenticated, rank, screen, temp } = data;
+
+  let content: ReactNode;
+  if (temp) {
+    content = <TempScreen temp={temp} />;
+  } else if (screen === 2) {
+    content = <Maintenance />;
+  } else if (screen === 3) {
+    content = <RecordView />;
+  } else {
+    content = (
+      <Section fill>
+        <NoticeBox>Nie wybrano rekordu.</NoticeBox>
+      </Section>
+    );
+  }
+
   return (
-    <Section>
-      <Stack align="center">
-        <Stack.Item grow>
-          Zalogowano: <b>{authenticated}</b> ({rank})
-        </Stack.Item>
-        {screen !== 1 && (
+    <>
+      <Stack.Item width="32%">
+        <RecordTabs />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Stack fill vertical>
+          <Stack.Item grow>{content}</Stack.Item>
           <Stack.Item>
-            <ChoiceButton choice="Return" icon="arrow-left">
-              Lista rekordów
-            </ChoiceButton>
+            <NoticeBox align="right" info>
+              {authenticated} ({rank}). Zabezpiecz stanowisko.
+              <ChoiceButton choice="Log Out" icon="lock" color="good">
+                Wyloguj
+              </ChoiceButton>
+            </NoticeBox>
           </Stack.Item>
-        )}
-        <Stack.Item>
-          <ChoiceButton choice="Log Out" icon="sign-out-alt">
-            Wyloguj
-          </ChoiceButton>
-        </Stack.Item>
-      </Stack>
-    </Section>
+        </Stack>
+      </Stack.Item>
+    </>
   );
 };
 
+/** Lista rekordów po lewej, z wyszukiwarką */
+const RecordTabs = () => {
+  const topic = useTopic();
+  const { data } = useBackend<Data>();
+  const { records = [], active_ref } = data;
+  const [search, setSearch] = useState('');
+  const query = search.toLowerCase();
+
+  const shown = sortBy(
+    records.filter((record) =>
+      [record.name, record.id, record.rank, record.fingerprint]
+        .join(' ')
+        .toLowerCase()
+        .includes(query),
+    ),
+    [(record) => record.name],
+  );
+
+  return (
+    <Stack fill vertical>
+      <Stack.Item>
+        <Input
+          fluid
+          placeholder="Nazwisko/stanowisko/ID/odciski"
+          value={search}
+          onChange={setSearch}
+        />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Section fill scrollable>
+          <Tabs vertical>
+            {!shown.length ? (
+              <NoticeBox>
+                {!records.length
+                  ? 'Brak rekordów.'
+                  : 'Brak wyników. Zawęź wyszukiwanie.'}
+              </NoticeBox>
+            ) : (
+              shown.map((record) => {
+                const isSelected = record.ref === active_ref;
+                return (
+                  <Tabs.Tab
+                    key={record.ref}
+                    className="candystripe"
+                    selected={isSelected}
+                    onClick={() =>
+                      isSelected
+                        ? topic({ choice: 'Return' })
+                        : topic({ choice: 'Browse Record', d_rec: record.ref })
+                    }
+                  >
+                    <Box
+                      bold={isSelected}
+                      color={STATUS_COLORS[record.criminal] || 'label'}
+                    >
+                      {record.name}
+                    </Box>
+                    <Box fontSize="0.9em" color="label">
+                      {record.rank}
+                    </Box>
+                  </Tabs.Tab>
+                );
+              })
+            )}
+          </Tabs>
+        </Section>
+      </Stack.Item>
+      <Stack.Item align="center">
+        <ChoiceButton choice="New Record (General)" icon="plus">
+          Nowy rekord
+        </ChoiceButton>
+        <ChoiceButton choice="Record Maintenance" icon="tools">
+          Konserwacja
+        </ChoiceButton>
+      </Stack.Item>
+    </Stack>
+  );
+};
+
+/** Podmenu z DM (potwierdzenia, wybór stanowiska itp.) */
 const TempScreen = (props: { temp: Temp }) => {
   const topic = useTopic();
   const { temp } = props;
   return (
     <Section
+      fill
+      scrollable
       title="Wybierz"
       buttons={
         <ChoiceButton choice="Clear Screen" icon="times">
@@ -240,99 +381,8 @@ const TempScreen = (props: { temp: Temp }) => {
   );
 };
 
-const SortHeader = (props: { sort: string; label: string }) => {
-  const { data } = useBackend<Data>();
-  const { sort_by, order } = data;
-  const active = sort_by === props.sort;
-  return (
-    <ChoiceButton
-      choice="Sorting"
-      extra={{ sort: props.sort }}
-      icon={
-        active ? (order === 1 ? 'sort-alpha-down' : 'sort-alpha-up') : 'sort'
-      }
-    >
-      {props.label}
-    </ChoiceButton>
-  );
-};
-
-const RecordList = () => {
-  const topic = useTopic();
-  const { data } = useBackend<Data>();
-  const { records = [] } = data;
-  const [search, setSearch] = useState('');
-  const query = search.toLowerCase();
-  const shown = records.filter((record) =>
-    [record.name, record.id, record.rank, record.fingerprint]
-      .join(' ')
-      .toLowerCase()
-      .includes(query),
-  );
-  return (
-    <Section
-      title="Rekordy"
-      buttons={
-        <>
-          <ChoiceButton choice="New Record (General)" icon="plus">
-            Nowy rekord
-          </ChoiceButton>
-          <ChoiceButton choice="Record Maintenance" icon="tools">
-            Konserwacja
-          </ChoiceButton>
-        </>
-      }
-    >
-      <Input
-        fluid
-        mb={1}
-        placeholder="Szukaj po nazwisku, ID, stanowisku lub odciskach..."
-        value={search}
-        onChange={(value) => setSearch(value)}
-      />
-      <Table>
-        <Table.Row header>
-          <Table.Cell>
-            <SortHeader sort="name" label="Nazwisko" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="id" label="ID" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="rank" label="Stanowisko" />
-          </Table.Cell>
-          <Table.Cell>
-            <SortHeader sort="fingerprint" label="Odciski" />
-          </Table.Cell>
-          <Table.Cell>Status</Table.Cell>
-        </Table.Row>
-        {shown.map((record) => (
-          <Table.Row key={record.ref} className="candystripe">
-            <Table.Cell>
-              <Button
-                fluid
-                onClick={() =>
-                  topic({ choice: 'Browse Record', d_rec: record.ref })
-                }
-              >
-                {record.name}
-              </Button>
-            </Table.Cell>
-            <Table.Cell>{record.id}</Table.Cell>
-            <Table.Cell>{record.rank}</Table.Cell>
-            <Table.Cell>{record.fingerprint}</Table.Cell>
-            <Table.Cell color={STATUS_COLORS[record.criminal] || 'label'}>
-              {STATUS_NAMES[record.criminal] || 'Brak rekordu'}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table>
-    </Section>
-  );
-};
-
 const Maintenance = () => (
-  <Section title="Konserwacja rekordów">
+  <Section fill title="Konserwacja rekordów">
     <ChoiceButton choice="Delete All Records" icon="trash" color="bad">
       Usuń wszystkie rekordy ochrony
     </ChoiceButton>
@@ -359,12 +409,16 @@ const Photo = (props: { src: string | null; side: boolean }) => {
         )}
       </Stack.Item>
       <Stack.Item>
-        <EditField field={`upd_photo_${suffix}`} icon="camera">
-          Zmień
-        </EditField>
-        <EditField field={`print_photo_${suffix}`} icon="print">
-          Drukuj
-        </EditField>
+        <EditField
+          field={`upd_photo_${suffix}`}
+          icon="camera"
+          tooltip="Zmień"
+        />
+        <EditField
+          field={`print_photo_${suffix}`}
+          icon="print"
+          tooltip="Drukuj"
+        />
       </Stack.Item>
     </Stack>
   );
@@ -373,103 +427,130 @@ const Photo = (props: { src: string | null; side: boolean }) => {
 const RecordView = () => {
   const { data } = useBackend<Data>();
   const { general, security, printing } = data;
-  return (
-    <>
-      <Section
-        title="Dane ogólne"
-        buttons={
-          <>
-            <ChoiceButton
-              choice="Print Record"
-              icon="print"
-              disabled={printing}
-            >
-              Drukuj rekord
-            </ChoiceButton>
-            <ChoiceButton
-              choice="Print Poster"
-              icon="exclamation-triangle"
-              disabled={printing}
-            >
-              List gończy
-            </ChoiceButton>
-            <ChoiceButton
-              choice="Print Missing"
-              icon="question"
-              disabled={printing}
-            >
-              Zaginiony
-            </ChoiceButton>
-          </>
-        }
-      >
-        {!general ? (
-          <NoticeBox danger>Rekord ogólny utracony.</NoticeBox>
-        ) : (
-          <Stack>
-            <Stack.Item grow>
-              <LabeledList>
-                <LabeledList.Item
-                  label="Nazwisko"
-                  buttons={<EditField field="name" />}
-                >
-                  {general.name}
-                </LabeledList.Item>
-                <LabeledList.Item label="ID" buttons={<EditField field="id" />}>
-                  {general.id}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Płeć"
-                  buttons={<EditField field="gender" icon="sync" />}
-                >
-                  {general.gender}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Wiek"
-                  buttons={<EditField field="age" />}
-                >
-                  {general.age}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Gatunek"
-                  buttons={<EditField field="species" />}
-                >
-                  {general.species}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Stanowisko"
-                  buttons={<EditField field="rank" />}
-                >
-                  {general.rank}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Odciski"
-                  buttons={<EditField field="fingerprint" />}
-                >
-                  {general.fingerprint}
-                </LabeledList.Item>
-                <LabeledList.Item label="Stan fizyczny">
-                  {general.physical}
-                </LabeledList.Item>
-                <LabeledList.Item label="Stan psychiczny">
-                  {general.mental}
-                </LabeledList.Item>
-                <LabeledList.Item label="Przeszłość">
-                  <ChoiceButton choice="View Past General" icon="book">
-                    Pokaż
-                  </ChoiceButton>
-                </LabeledList.Item>
-              </LabeledList>
-            </Stack.Item>
-            <Stack.Item>
-              <Photo src={general.photo_front} side={false} />
-            </Stack.Item>
-            <Stack.Item>
-              <Photo src={general.photo_side} side />
-            </Stack.Item>
-          </Stack>
-        )}
+
+  if (!general) {
+    return (
+      <Section fill>
+        <NoticeBox danger>Rekord ogólny utracony.</NoticeBox>
       </Section>
+    );
+  }
+
+  const status = security?.criminal || 'None';
+
+  return (
+    <Section
+      fill
+      scrollable
+      title={
+        <Box as="span" color={security ? STATUS_COLORS[status] : undefined}>
+          {general.name}
+        </Box>
+      }
+      buttons={
+        <>
+          <ChoiceButton
+            choice="Print Record"
+            icon="print"
+            disabled={printing}
+            tooltip="Drukuj rekord"
+          />
+          <ChoiceButton
+            choice="Print Poster"
+            icon="exclamation-triangle"
+            disabled={printing}
+            tooltip="Drukuj list gończy"
+          />
+          <ChoiceButton
+            choice="Print Missing"
+            icon="question"
+            disabled={printing}
+            tooltip="Drukuj plakat o zaginięciu"
+          />
+          <ChoiceButton
+            choice="Delete Record (Security)"
+            icon="eraser"
+            tooltip="Usuń tylko dane ochrony"
+          />
+          <ChoiceButton
+            choice="Delete Record (ALL)"
+            icon="trash"
+            color="bad"
+            tooltip="Usuń cały rekord"
+          />
+        </>
+      }
+    >
+      {security && (
+        <LabeledList>
+          <LabeledList.Item label="Status">
+            <Box color={STATUS_COLORS[status]} bold mb={0.5}>
+              {STATUS_NAMES[status] || status}
+            </Box>
+            <StatusButtons current={status} />
+          </LabeledList.Item>
+        </LabeledList>
+      )}
+      <Stack mt={1}>
+        <Stack.Item grow>
+          <LabeledList>
+            <LabeledList.Item
+              label="Nazwisko"
+              buttons={<EditField field="name" />}
+            >
+              {general.name}
+            </LabeledList.Item>
+            <LabeledList.Item label="ID" buttons={<EditField field="id" />}>
+              {general.id}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Stanowisko"
+              buttons={<EditField field="rank" />}
+            >
+              {general.rank}
+            </LabeledList.Item>
+            <LabeledList.Item label="Wiek" buttons={<EditField field="age" />}>
+              {general.age}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Gatunek"
+              buttons={<EditField field="species" />}
+            >
+              {general.species}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Płeć"
+              buttons={<EditField field="gender" icon="sync" />}
+            >
+              {general.gender}
+            </LabeledList.Item>
+            <LabeledList.Item
+              label="Odciski"
+              color="good"
+              buttons={<EditField field="fingerprint" />}
+            >
+              {general.fingerprint}
+            </LabeledList.Item>
+            <LabeledList.Item label="Stan fizyczny">
+              {general.physical}
+            </LabeledList.Item>
+            <LabeledList.Item label="Stan psychiczny">
+              {general.mental}
+            </LabeledList.Item>
+            <LabeledList.Item label="Przeszłość">
+              <ChoiceButton choice="View Past General" icon="book">
+                Pokaż
+              </ChoiceButton>
+            </LabeledList.Item>
+          </LabeledList>
+        </Stack.Item>
+        <Stack.Item>
+          <Photo src={general.photo_front} side={false} />
+        </Stack.Item>
+        <Stack.Item>
+          <Photo src={general.photo_side} side />
+        </Stack.Item>
+      </Stack>
       {security ? (
         <SecurityData security={security} />
       ) : (
@@ -480,33 +561,53 @@ const RecordView = () => {
           </ChoiceButton>
         </Section>
       )}
-      <Section title="Usuwanie">
-        <ChoiceButton choice="Delete Record (Security)" icon="trash">
-          Usuń tylko dane ochrony
-        </ChoiceButton>
-        <ChoiceButton choice="Delete Record (ALL)" icon="trash" color="bad">
-          Usuń cały rekord
-        </ChoiceButton>
-      </Section>
+    </Section>
+  );
+};
+
+/** Przyciski statusu jak w tg (pierwsza litera, opis w podpowiedzi) */
+const StatusButtons = (props: { current: string }) => {
+  const topic = useTopic();
+  const { current } = props;
+  return (
+    <>
+      {STATUS_BUTTONS.map((button) => {
+        const isSelected = button.status === current;
+        return (
+          <Button
+            key={button.status}
+            color={isSelected ? STATUS_COLORS[button.status] : 'grey'}
+            icon={isSelected ? 'check' : undefined}
+            tooltip={button.desc}
+            tooltipPosition="bottom-start"
+            onClick={() =>
+              topic({
+                choice: 'Change Criminal Status',
+                criminal2: button.param,
+              })
+            }
+          >
+            {STATUS_NAMES[button.status]}
+          </Button>
+        );
+      })}
     </>
   );
 };
 
+enum SECURETAB {
+  Crimes,
+  Citations,
+  Comments,
+}
+
 const SecurityData = (props: { security: SecurityRecord }) => {
-  const topic = useTopic();
   const { security } = props;
+  const [tab, setTab] = useState(SECURETAB.Crimes);
   return (
     <>
       <Section title="Dane ochrony">
         <LabeledList>
-          <LabeledList.Item
-            label="Status"
-            buttons={<EditField field="criminal">Zmień</EditField>}
-          >
-            <Box color={STATUS_COLORS[security.criminal]} bold>
-              {STATUS_NAMES[security.criminal] || security.criminal}
-            </Box>
-          </LabeledList.Item>
           <LabeledList.Item
             label="Ważne uwagi"
             buttons={<EditField field="notes" />}
@@ -520,156 +621,202 @@ const SecurityData = (props: { security: SecurityRecord }) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section
-        title="Mandaty"
-        buttons={
-          <EditField field="citation_add" icon="plus">
-            Dodaj
-          </EditField>
-        }
-      >
-        {security.citations.length === 0 ? (
-          <Box color="label">Brak mandatów.</Box>
-        ) : (
-          <Table>
-            <Table.Row header>
-              <Table.Cell>Wykroczenie</Table.Cell>
-              <Table.Cell>Kwota</Table.Cell>
-              <Table.Cell>Wystawił</Table.Cell>
-              <Table.Cell>Czas</Table.Cell>
-              <Table.Cell>Do zapłaty</Table.Cell>
-              <Table.Cell collapsing />
-            </Table.Row>
-            {security.citations.map((citation) => (
-              <Table.Row key={citation.id} className="candystripe">
-                <Table.Cell>{citation.name}</Table.Cell>
-                <Table.Cell>{citation.fine} cr</Table.Cell>
-                <Table.Cell>{citation.author}</Table.Cell>
-                <Table.Cell>{citation.time}</Table.Cell>
-                <Table.Cell>
-                  {citation.owed > 0 ? (
-                    <Button
-                      icon="money-bill"
-                      tooltip="Zapłać holoczipem trzymanym w ręce"
-                      onClick={() =>
-                        topic({
-                          choice: 'Pay',
-                          field: 'citation_pay',
-                          cdataid: citation.id,
-                        })
-                      }
-                    >
-                      {citation.owed} cr
-                    </Button>
-                  ) : (
-                    <Box color="good">Spłacony</Box>
-                  )}
-                </Table.Cell>
-                <Table.Cell collapsing>
+      <Tabs fluid>
+        <Tabs.Tab
+          selected={tab === SECURETAB.Crimes}
+          onClick={() => setTab(SECURETAB.Crimes)}
+        >
+          Przestępstwa: {security.crimes.length}
+        </Tabs.Tab>
+        <Tabs.Tab
+          selected={tab === SECURETAB.Citations}
+          onClick={() => setTab(SECURETAB.Citations)}
+        >
+          Mandaty: {security.citations.length}
+        </Tabs.Tab>
+        <Tabs.Tab
+          selected={tab === SECURETAB.Comments}
+          onClick={() => setTab(SECURETAB.Comments)}
+        >
+          Komentarze: {security.comments.length}
+        </Tabs.Tab>
+      </Tabs>
+      {tab === SECURETAB.Crimes && <CrimeList crimes={security.crimes} />}
+      {tab === SECURETAB.Citations && (
+        <CitationList citations={security.citations} />
+      )}
+      {tab === SECURETAB.Comments && (
+        <CommentList comments={security.comments} />
+      )}
+    </>
+  );
+};
+
+const CrimeList = (props: { crimes: Crime[] }) => {
+  const topic = useTopic();
+  const { crimes } = props;
+  return (
+    <Section
+      buttons={
+        <EditField field="crim_add" icon="plus">
+          Dodaj przestępstwo
+        </EditField>
+      }
+    >
+      {crimes.length === 0 ? (
+        <NoticeBox>Brak przestępstw.</NoticeBox>
+      ) : (
+        <Table>
+          <Table.Row header>
+            <Table.Cell>Przestępstwo</Table.Cell>
+            <Table.Cell>Szczegóły</Table.Cell>
+            <Table.Cell>Dodał</Table.Cell>
+            <Table.Cell>Czas</Table.Cell>
+            <Table.Cell collapsing />
+          </Table.Row>
+          {crimes.map((crime) => (
+            <Table.Row key={crime.id} className="candystripe">
+              <Table.Cell>{crime.name}</Table.Cell>
+              <Table.Cell>
+                {crime.details || (
                   <Button
-                    icon="times"
-                    color="bad"
+                    icon="plus"
                     onClick={() =>
                       topic({
                         choice: 'Edit Field',
-                        field: 'citation_delete',
-                        cdataid: citation.id,
-                      })
-                    }
-                  />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        )}
-      </Section>
-      <Section
-        title="Przestępstwa"
-        buttons={
-          <EditField field="crim_add" icon="plus">
-            Dodaj
-          </EditField>
-        }
-      >
-        {security.crimes.length === 0 ? (
-          <Box color="label">Brak przestępstw.</Box>
-        ) : (
-          <Table>
-            <Table.Row header>
-              <Table.Cell>Przestępstwo</Table.Cell>
-              <Table.Cell>Szczegóły</Table.Cell>
-              <Table.Cell>Dodał</Table.Cell>
-              <Table.Cell>Czas</Table.Cell>
-              <Table.Cell collapsing />
-            </Table.Row>
-            {security.crimes.map((crime) => (
-              <Table.Row key={crime.id} className="candystripe">
-                <Table.Cell>{crime.name}</Table.Cell>
-                <Table.Cell>
-                  {crime.details || (
-                    <Button
-                      icon="plus"
-                      onClick={() =>
-                        topic({
-                          choice: 'Edit Field',
-                          field: 'add_details',
-                          cdataid: crime.id,
-                        })
-                      }
-                    >
-                      Dodaj
-                    </Button>
-                  )}
-                </Table.Cell>
-                <Table.Cell>{crime.author}</Table.Cell>
-                <Table.Cell>{crime.time}</Table.Cell>
-                <Table.Cell collapsing>
-                  <Button
-                    icon="times"
-                    color="bad"
-                    onClick={() =>
-                      topic({
-                        choice: 'Edit Field',
-                        field: 'crim_delete',
+                        field: 'add_details',
                         cdataid: crime.id,
                       })
                     }
-                  />
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table>
-        )}
-      </Section>
-      <Section
-        title="Komentarze"
-        buttons={
-          <ChoiceButton choice="Add Entry" icon="plus">
-            Dodaj
-          </ChoiceButton>
-        }
-      >
-        {security.comments.length === 0 && (
-          <Box color="label">Brak komentarzy.</Box>
-        )}
-        {security.comments.map((comment) => (
-          <Section
-            key={comment.index}
-            buttons={
-              !comment.deleted && (
-                <ChoiceButton
-                  choice="Delete Entry"
-                  extra={{ del_c: comment.index }}
+                  >
+                    Dodaj
+                  </Button>
+                )}
+              </Table.Cell>
+              <Table.Cell>{crime.author}</Table.Cell>
+              <Table.Cell>{crime.time}</Table.Cell>
+              <Table.Cell collapsing>
+                <Button
                   icon="times"
                   color="bad"
+                  tooltip="Usuń"
+                  onClick={() =>
+                    topic({
+                      choice: 'Edit Field',
+                      field: 'crim_delete',
+                      cdataid: crime.id,
+                    })
+                  }
                 />
-              )
-            }
-          >
-            <Box dangerouslySetInnerHTML={{ __html: comment.text }} />
-          </Section>
-        ))}
-      </Section>
-    </>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table>
+      )}
+    </Section>
+  );
+};
+
+const CitationList = (props: { citations: Citation[] }) => {
+  const topic = useTopic();
+  const { citations } = props;
+  return (
+    <Section
+      buttons={
+        <EditField field="citation_add" icon="plus">
+          Wystaw mandat
+        </EditField>
+      }
+    >
+      {citations.length === 0 ? (
+        <NoticeBox>Brak mandatów.</NoticeBox>
+      ) : (
+        <Table>
+          <Table.Row header>
+            <Table.Cell>Wykroczenie</Table.Cell>
+            <Table.Cell>Kwota</Table.Cell>
+            <Table.Cell>Wystawił</Table.Cell>
+            <Table.Cell>Czas</Table.Cell>
+            <Table.Cell>Do zapłaty</Table.Cell>
+            <Table.Cell collapsing />
+          </Table.Row>
+          {citations.map((citation) => (
+            <Table.Row key={citation.id} className="candystripe">
+              <Table.Cell>{citation.name}</Table.Cell>
+              <Table.Cell>{citation.fine} cr</Table.Cell>
+              <Table.Cell>{citation.author}</Table.Cell>
+              <Table.Cell>{citation.time}</Table.Cell>
+              <Table.Cell>
+                {citation.owed > 0 ? (
+                  <Button
+                    icon="money-bill"
+                    color="average"
+                    tooltip="Zapłać holoczipem trzymanym w ręce"
+                    onClick={() =>
+                      topic({
+                        choice: 'Pay',
+                        field: 'citation_pay',
+                        cdataid: citation.id,
+                      })
+                    }
+                  >
+                    {citation.owed} cr
+                  </Button>
+                ) : (
+                  <Box color="good">Spłacony</Box>
+                )}
+              </Table.Cell>
+              <Table.Cell collapsing>
+                <Button
+                  icon="times"
+                  color="bad"
+                  tooltip="Usuń"
+                  onClick={() =>
+                    topic({
+                      choice: 'Edit Field',
+                      field: 'citation_delete',
+                      cdataid: citation.id,
+                    })
+                  }
+                />
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table>
+      )}
+    </Section>
+  );
+};
+
+const CommentList = (props: { comments: Comment[] }) => {
+  const { comments } = props;
+  return (
+    <Section
+      buttons={
+        <ChoiceButton choice="Add Entry" icon="plus">
+          Dodaj komentarz
+        </ChoiceButton>
+      }
+    >
+      {comments.length === 0 && <NoticeBox>Brak komentarzy.</NoticeBox>}
+      {comments.map((comment) => (
+        <Section
+          key={comment.index}
+          buttons={
+            !comment.deleted && (
+              <ChoiceButton
+                choice="Delete Entry"
+                extra={{ del_c: comment.index }}
+                icon="times"
+                color="bad"
+                tooltip="Usuń"
+              />
+            )
+          }
+        >
+          <Box dangerouslySetInnerHTML={{ __html: comment.text }} />
+        </Section>
+      ))}
+    </Section>
   );
 };

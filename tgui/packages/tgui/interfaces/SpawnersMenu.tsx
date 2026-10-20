@@ -1,56 +1,91 @@
-import { Box, Button, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { capitalizeAll } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  spawners: any;
+  spawners: Spawner[];
 };
+
+type Spawner = {
+  name: string;
+  amount_left: number;
+  infinite: BooleanLike;
+} & Partial<{
+  desc: string;
+  short_desc: string;
+  flavor_text: string;
+  important_info: string;
+}>;
 
 export const SpawnersMenu = (props) => {
   const { act, data } = useBackend<Data>();
-  const spawners = data.spawners || [];
+  const { spawners = [] } = data;
+
   return (
-    <Window theme="generic" width={700} height={600}>
+    <Window title="Menu spawnerów" width={700} height={525}>
       <Window.Content scrollable>
-        <Section>
+        <Stack vertical>
           {spawners.map((spawner) => (
-            <Section
-              key={spawner.name}
-              title={spawner.name + ' (' + spawner.amount_left + ' left)'}
-              buttons={
-                <>
-                  <Button
-                    content="Jump"
-                    onClick={() =>
-                      act('jump', {
-                        name: spawner.name,
-                      })
-                    }
-                  />
-                  <Button
-                    content="Spawn"
-                    onClick={() =>
-                      act('spawn', {
-                        name: spawner.name,
-                      })
-                    }
-                  />
-                </>
-              }
-            >
-              <Box bold mb={1} fontSize="20px">
-                {spawner.short_desc}
-              </Box>
-              <Box>{spawner.flavor_text}</Box>
-              {!!spawner.important_info && (
-                <Box mt={1} bold color="bad" fontSize="26px">
-                  {spawner.important_info}
-                </Box>
-              )}
-            </Section>
+            <Stack.Item key={spawner.name}>
+              <Section
+                fill
+                title={capitalizeAll(spawner.name)}
+                buttons={
+                  <Stack>
+                    <Stack.Item fontSize="14px" color="green">
+                      {spawner.infinite
+                        ? 'Bez limitu'
+                        : `Zostało: ${spawner.amount_left}`}
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        onClick={() =>
+                          act('jump', {
+                            name: spawner.name,
+                          })
+                        }
+                      >
+                        Skocz
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          act('spawn', {
+                            name: spawner.name,
+                          })
+                        }
+                      >
+                        Odródź się
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
+                }
+              >
+                <LabeledList>
+                  {spawner.desc ? (
+                    <LabeledList.Item label="Opis">
+                      {spawner.desc}
+                    </LabeledList.Item>
+                  ) : (
+                    <>
+                      <LabeledList.Item label="Pochodzenie">
+                        {spawner.short_desc || 'Nieznane'}
+                      </LabeledList.Item>
+                      <LabeledList.Item label="Wytyczne">
+                        {spawner.flavor_text || 'Brak'}
+                      </LabeledList.Item>
+                      <LabeledList.Item color="bad" label="Warunki">
+                        {spawner.important_info || 'Brak'}
+                      </LabeledList.Item>
+                    </>
+                  )}
+                </LabeledList>
+              </Section>
+            </Stack.Item>
           ))}
-        </Section>
+        </Stack>
       </Window.Content>
     </Window>
   );

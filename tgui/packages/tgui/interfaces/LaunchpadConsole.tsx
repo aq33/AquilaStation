@@ -1,286 +1,260 @@
 import {
   Box,
   Button,
-  Divider,
-  Flex,
+  Icon,
   Input,
   NoticeBox,
   NumberInput,
   Section,
+  Stack,
+  Tabs,
 } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  launchpads: any;
-  pad_name: any;
-  range: any;
-  selected_id: any;
-  x: any;
-  y: any;
+  launchpads: LaunchPad[];
+  pad_active: number;
+  pad_name: string;
+  range: number;
+  selected_id: number;
+  selected_pad: string;
+  x: number;
+  y: number;
 };
 
-const LaunchpadButtonPad = (props) => {
-  const { act } = useBackend<Data>();
-  return (
-    <Grid width="1px">
-      <Grid.Column>
-        <Button
-          fluid
-          icon="arrow-left"
-          iconRotation={45}
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: -1,
-              y: 1,
-            })
-          }
-        />
-        <Button
-          fluid
-          icon="arrow-left"
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: -1,
-            })
-          }
-        />
-        <Button
-          fluid
-          icon="arrow-down"
-          iconRotation={45}
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: -1,
-              y: -1,
-            })
-          }
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Button
-          fluid
-          icon="arrow-up"
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              y: 1,
-            })
-          }
-        />
-        <Button
-          fluid
-          content="R"
-          mb={1}
-          onClick={() =>
-            act('set_pos', {
-              x: 0,
-              y: 0,
-            })
-          }
-        />
-        <Button
-          fluid
-          icon="arrow-down"
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              y: -1,
-            })
-          }
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Button
-          fluid
-          icon="arrow-up"
-          iconRotation={45}
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: 1,
-              y: 1,
-            })
-          }
-        />
-        <Button
-          fluid
-          icon="arrow-right"
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: 1,
-            })
-          }
-        />
-        <Button
-          fluid
-          icon="arrow-right"
-          iconRotation={45}
-          mb={1}
-          onClick={() =>
-            act('move_pos', {
-              x: 1,
-              y: -1,
-            })
-          }
-        />
-      </Grid.Column>
-    </Grid>
-  );
+type LaunchPad = {
+  id: number;
+  name: string;
 };
 
-export const LaunchpadControl = (props) => {
-  const { topLevel } = props;
-  const { act, data } = useBackend<Data>();
-  const { x, y, pad_name, range } = data;
-  return (
-    <Section
-      title={
-        <Input
-          value={pad_name}
-          width="170px"
-          onBlur={(value) =>
-            act('rename', {
-              name: value,
-            })
-          }
-        />
-      }
-      buttons={
-        <Button
-          icon="times"
-          content="Remove"
-          color="bad"
-          onClick={() => act('remove')}
-        />
-      }
-    >
-      <Grid>
-        <Grid.Column>
-          <Section title="Controls">
-            <LaunchpadButtonPad />
-          </Section>
-        </Grid.Column>
-        <Grid.Column>
-          <Section title="Target">
-            <Box fontSize="26px">
-              <Box mb={1}>
-                <Box inline bold mr={1}>
-                  X:
-                </Box>
-                <NumberInput
-                  step={1}
-                  value={x}
-                  minValue={-range}
-                  maxValue={range}
-                  lineHeight="30px"
-                  fontSize="26px"
-                  width="90px"
-                  height="30px"
-                  stepPixelSize={10}
-                  onChange={(value) =>
-                    act('set_pos', {
-                      x: value,
-                    })
-                  }
-                />
-              </Box>
-              <Box>
-                <Box inline bold mr={1}>
-                  Y:
-                </Box>
-                <NumberInput
-                  step={1}
-                  value={y}
-                  minValue={-range}
-                  maxValue={range}
-                  stepPixelSize={10}
-                  lineHeight="30px"
-                  fontSize="26px"
-                  width="90px"
-                  height="30px"
-                  onChange={(value) =>
-                    act('set_pos', {
-                      y: value,
-                    })
-                  }
-                />
-              </Box>
-            </Box>
-          </Section>
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
-          <Button
-            fluid
-            icon="upload"
-            content="Launch"
-            textAlign="center"
-            onClick={() => act('launch')}
-          />
-        </Grid.Column>
-        <Grid.Column>
-          <Button
-            fluid
-            icon="download"
-            content="Pull"
-            textAlign="center"
-            onClick={() => act('pull')}
-          />
-        </Grid.Column>
-      </Grid>
-    </Section>
-  );
-};
+const buttonConfigs = [
+  [
+    { icon: 'arrow-left', iconRotation: 45, x: -1, y: 1 },
+    { icon: 'arrow-left', x: -1 },
+    { icon: 'arrow-down', iconRotation: 45, x: -1, y: -1 },
+  ],
+  [
+    { icon: 'arrow-up', y: 1 },
+    { text: 'R', x: 0, y: 0 },
+    { icon: 'arrow-down', y: -1 },
+  ],
+  [
+    { icon: 'arrow-up', iconRotation: 45, x: 1, y: 1 },
+    { icon: 'arrow-right', x: 1 },
+    { icon: 'arrow-right', iconRotation: 45, x: 1, y: -1 },
+  ],
+] as const;
 
-export const LaunchpadConsole = (props) => {
-  const { act, data } = useBackend<Data>();
+export function LaunchpadConsole(props) {
+  const { data } = useBackend<Data>();
   const { launchpads = [], selected_id } = data;
+
   return (
-    <Window width={475} height={260}>
-      <Window.Content scrollable>
-        {(launchpads.length === 0 && (
-          <NoticeBox>No Pads Connected</NoticeBox>
-        )) || (
-          <Section>
-            <Flex minHeight="190px">
-              <Flex.Item width="140px" minHeight="190px">
-                {launchpads.map((launchpad) => (
-                  <Button
-                    fluid
-                    ellipsis
-                    key={launchpad.name}
-                    selected={selected_id === launchpad.id}
-                    color="transparent"
-                    onClick={() =>
-                      act('select_pad', {
-                        id: launchpad.id,
-                      })
-                    }
-                  >
-                    {launchpad.name}
-                  </Button>
-                ))}
-              </Flex.Item>
-              <Flex.Item minHeight="100%">
-                <Divider vertical />
-              </Flex.Item>
-              <Flex.Item grow={1} basis={0} minHeight="100%">
-                {(selected_id && <LaunchpadControl />) || (
-                  <Box>Please select a pad</Box>
-                )}
-              </Flex.Item>
-            </Flex>
-          </Section>
+    <Window title="Konsola wyrzutni" width={475} height={275}>
+      <Window.Content>
+        {launchpads.length === 0 ? (
+          <NoticeBox>Brak podłączonych wyrzutni</NoticeBox>
+        ) : (
+          <Stack fill>
+            <Stack.Item grow>
+              <LaunchpadTabs />
+            </Stack.Item>
+
+            <Stack.Item grow={3}>
+              {!selected_id ? (
+                <Box>Wybierz wyrzutnię</Box>
+              ) : (
+                <LaunchpadControl />
+              )}
+            </Stack.Item>
+          </Stack>
         )}
       </Window.Content>
     </Window>
   );
-};
+}
+
+export function LaunchpadControl(props) {
+  return (
+    <Stack fill vertical>
+      <Stack.Item>
+        <LaunchpadTitle />
+      </Stack.Item>
+      <Stack.Item grow>
+        <Section fill>
+          <Stack fill>
+            <Stack.Item grow>
+              <LaunchpadButtonPad />
+            </Stack.Item>
+            <Stack.Item grow>
+              <TargetingControls />
+            </Stack.Item>
+          </Stack>
+        </Section>
+      </Stack.Item>
+      <Stack.Item>
+        <DeliveryButtons />
+      </Stack.Item>
+    </Stack>
+  );
+}
+
+function LaunchpadTabs(props) {
+  const { act, data } = useBackend<Data>();
+  const { launchpads = [], selected_id } = data;
+
+  return (
+    <Section fill>
+      <Tabs vertical>
+        {launchpads.map((pad) => (
+          <Tabs.Tab
+            key={pad.id}
+            selected={pad.id === selected_id}
+            onClick={() =>
+              act('select_pad', {
+                id: pad.id,
+              })
+            }
+          >
+            {pad.name}
+          </Tabs.Tab>
+        ))}
+      </Tabs>
+    </Section>
+  );
+}
+
+function LaunchpadTitle(props) {
+  const { act, data } = useBackend<Data>();
+  const { pad_name } = data;
+
+  return (
+    <Section>
+      <Stack fill>
+        <Stack.Item grow>
+          <Input
+            value={pad_name}
+            width="170px"
+            onBlur={(value) =>
+              act('rename', {
+                name: value,
+              })
+            }
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Button icon="times" color="bad" onClick={() => act('remove')}>
+            Usuń
+          </Button>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+}
+
+function LaunchpadButtonPad(props) {
+  const { act } = useBackend();
+
+  return (
+    <Section fill title="Sterowanie" align="center">
+      <Stack fill justify="center">
+        {buttonConfigs.map((buttonRow, i) => (
+          <Stack.Item key={i}>
+            {buttonRow.map((buttonConfig, j) => (
+              <Button
+                fluid
+                icon={buttonConfig.icon}
+                iconRotation={buttonConfig.iconRotation}
+                key={j}
+                mb={1}
+                onClick={() =>
+                  act('move_pos', {
+                    x: buttonConfig.x,
+                    y: buttonConfig.y,
+                  })
+                }
+              >
+                {buttonConfig.text}
+              </Button>
+            ))}
+          </Stack.Item>
+        ))}
+      </Stack>
+    </Section>
+  );
+}
+
+function TargetingControls(props) {
+  const { act, data } = useBackend<Data>();
+  const { x, y, range } = data;
+
+  const inputConfigs = [
+    { value: x, axis: 'x', icon: 'arrows-alt-h' },
+    { value: y, axis: 'y', icon: 'arrows-alt-v' },
+  ];
+
+  return (
+    <Section fill title="Cel" align="center">
+      {inputConfigs.map((inputConfig, i) => (
+        <Stack key={i} mb={2}>
+          <Stack.Item grow>
+            <Box fontSize="26px">
+              {inputConfig.axis.toUpperCase()} <Icon name={inputConfig.icon} />
+            </Box>
+          </Stack.Item>
+          <Stack.Item>
+            <NumberInput
+              fontSize="26px"
+              height="30px"
+              lineHeight="30px"
+              maxValue={range}
+              minValue={-range}
+              onChange={(value) =>
+                act('set_pos', {
+                  [inputConfig.axis]: value,
+                })
+              }
+              step={1}
+              stepPixelSize={10}
+              value={inputConfig.value}
+              width="90px"
+            />
+          </Stack.Item>
+        </Stack>
+      ))}
+    </Section>
+  );
+}
+
+function DeliveryButtons(props) {
+  const { act } = useBackend();
+
+  return (
+    <Section fill>
+      <Stack fill>
+        <Stack.Item grow>
+          <Button
+            fluid
+            icon="upload"
+            onClick={() => act('launch')}
+            textAlign="center"
+          >
+            Wyślij
+          </Button>
+        </Stack.Item>
+        <Stack.Item grow>
+          <Button
+            fluid
+            icon="download"
+            onClick={() => act('pull')}
+            textAlign="center"
+          >
+            Ściągnij
+          </Button>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+}

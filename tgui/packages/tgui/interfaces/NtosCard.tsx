@@ -44,11 +44,7 @@ export const NtosCardContent = (props) => {
     Object.keys(jobs)[0],
   );
   if (!have_id_slot) {
-    return (
-      <NoticeBox>
-        This program requires an ID slot in order to function
-      </NoticeBox>
-    );
+    return <NoticeBox>Ten program wymaga czytnika kart ID.</NoticeBox>;
   }
   const departmentJobs = jobs[selectedDepartment] || [];
   return (
@@ -59,27 +55,28 @@ export const NtosCardContent = (props) => {
             <Input
               value={id_owner}
               width="250px"
-              onChange={(value) =>
+              onBlur={(value) =>
+                value !== id_owner &&
                 act('PRG_edit', {
                   name: value,
                 })
               }
             />
           ) : (
-            id_owner || 'No Card Inserted'
+            id_owner || 'Brak karty'
           )
         }
         buttons={
           <>
             <Button
               icon="print"
-              content="Print"
+              content="Drukuj"
               disabled={!have_printer || !has_id}
               onClick={() => act('PRG_print')}
             />
             <Button
               icon={authenticated ? 'sign-out-alt' : 'sign-in-alt'}
-              content={authenticated ? 'Log Out' : 'Log In'}
+              content={authenticated ? 'Wyloguj' : 'Zaloguj'}
               color={authenticated ? 'bad' : 'good'}
               onClick={() => {
                 act(authenticated ? 'PRG_logout' : 'PRG_authenticate');
@@ -99,10 +96,10 @@ export const NtosCardContent = (props) => {
         <Box>
           <Tabs>
             <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-              Access
+              Dostępy
             </Tabs.Tab>
             <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-              Jobs
+              Stanowiska
             </Tabs.Tab>
           </Tabs>
           {tab === 1 && (
@@ -134,7 +131,8 @@ export const NtosCardContent = (props) => {
               buttons={
                 <Button.Confirm
                   icon="exclamation-triangle"
-                  content="Terminate"
+                  content="Zwolnij"
+                  confirmContent="Zwolnić pracownika?"
                   color="bad"
                   onClick={() => act('PRG_terminate')}
                 />
@@ -142,7 +140,7 @@ export const NtosCardContent = (props) => {
             >
               <Button.Input
                 fluid
-                buttonText="Custom..."
+                buttonText="Własne stanowisko..."
                 onCommit={(value) =>
                   act('PRG_assign', {
                     assign_target: 'Custom',

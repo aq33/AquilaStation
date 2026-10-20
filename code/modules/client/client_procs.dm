@@ -349,6 +349,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	tgui_say.initialize()
 
+	initialize_escape_menu() // AQ EDIT - menu pod Esc (aquila/code/modules/escape_menu)
+
 	if(alert_mob_dupe_login && !holder)
 		var/dupe_login_message = "Twój ComputerID zalogował się już w tej rundzie z innego konta - wyloguj się z tego NATYCHMIAST albo ryzykujesz bana!"
 		if (alert_admin_multikey)

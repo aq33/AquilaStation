@@ -462,6 +462,7 @@
 #include "code\modules\clothing\under\jobs\rnd.dm"
 #include "code\modules\clothing\under\syndicate.dm"
 #include "code\modules\emote_panel\emote_panel.dm"
+#include "code\modules\escape_menu\escape_menu.dm"
 #include "code\modules\events\monkey_uprising.dm"
 #include "code\modules\events\chrono_legionnaire.dm"
 #include "code\modules\events\portal_storm_kurwinox.dm"

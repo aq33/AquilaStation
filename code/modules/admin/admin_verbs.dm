@@ -706,7 +706,11 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Check AI Laws"
 	set category = "Admin"
 	if(holder)
-		src.holder.output_ai_laws()
+		// AQUILA EDIT - panel praw TGUI (Lawpanel z tg) zamiast listy na czacie
+		if(!isobserver(mob) && SSticker.HasRoundStarted())
+			message_admins("[key_name_admin(src)] checked AI laws via the Law Panel.")
+		var/datum/law_panel/panel = new()
+		panel.ui_interact(mob)
 
 /client/proc/deadmin()
 	set name = "Deadmin"

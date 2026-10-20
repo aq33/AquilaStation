@@ -178,13 +178,34 @@
 
 /obj/structure/aquarium/ui_data(mob/user)
 	. = ..()
-	.["fluid_type"] = fluid_type
+	.["fluidType"] = fluid_type
 	.["temperature"] = fluid_temp
 	.["allow_breeding"] = allow_breeding
-	var/list/content_data = list()
-	for(var/atom/movable/fish in contents)
-		content_data += list(list("name"=fish.name,"ref"=ref(fish)))
-	.["contents"] = content_data
+	// AQUILA EDIT START - okno z tg: ryby i dekoracje osobno
+	var/list/fish_data = list()
+	var/list/prop_data = list()
+	for(var/atom/movable/thing in contents)
+		var/datum/component/aquarium_content/content_component = thing.GetComponent(/datum/component/aquarium_content)
+		if(istype(content_component?.properties, /datum/aquarium_behaviour/fish))
+			var/datum/aquarium_behaviour/fish/fish_properties = content_component.properties
+			fish_data += list(list(
+				"fish_ref" = ref(thing),
+				"fish_name" = thing.name,
+				"fish_icon" = "[thing.icon]",
+				"fish_icon_state" = thing.icon_state,
+				"fish_alive" = fish_properties.status != FISH_DEAD,
+				"fish_health" = fish_properties.health,
+			))
+		else
+			prop_data += list(list(
+				"prop_ref" = ref(thing),
+				"prop_name" = thing.name,
+				"prop_icon" = "[thing.icon]",
+				"prop_icon_state" = thing.icon_state,
+			))
+	.["fishData"] = fish_data
+	.["propData"] = prop_data
+	// AQUILA EDIT END
 
 /obj/structure/aquarium/ui_static_data(mob/user)
 	. = ..()
@@ -220,6 +241,7 @@
 				else
 					inside.forceMove(get_turf(src))
 				to_chat(user,"<span class='notice'>Wyjmujesz [inside] z [src].</span>")
+				. = TRUE // AQUILA EDIT - odśwież okno po wyjęciu
 
 /obj/structure/aquarium/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
