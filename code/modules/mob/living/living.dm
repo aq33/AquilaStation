@@ -1294,7 +1294,7 @@
 	if(!(mobility_flags & MOBILITY_UI))
 		unset_machine()
 	density = !lying
-	var/changed = lying == lying_prev
+	var/changed = lying != lying_prev // AQ EDIT - było ==, przez co każde update_mobility() (np. z updatehealth() co Life) resetowało move_delay w trakcie chodzenia
 	if(lying)
 		if(!lying_prev)
 			fall(!canstand_involuntary)
