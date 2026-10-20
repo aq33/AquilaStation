@@ -56,3 +56,5 @@
 #define COMSIG_EDIBLE_ON_COMPOST "on_compost"
 	// Used to stop food from being composted.
 	#define COMPONENT_EDIBLE_BLOCK_COMPOST 1
+///Called when we try to feed food to an object (aquila, xenoarch z Bee)
+#define COMSIG_FOOD_FEED_ITEM "feed_item"

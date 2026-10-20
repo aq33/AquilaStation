@@ -18,7 +18,9 @@
 
 /obj/item/export_scanner/afterattack(obj/O, mob/user, proximity)
 	. = ..()
-	if(!istype(O) || !proximity)
+	if(!istype(O) || !proximity || HAS_TRAIT(O, TRAIT_IGNORE_EXPORT_SCAN))
+		if(HAS_TRAIT(O, TRAIT_IGNORE_EXPORT_SCAN))
+			to_chat(user, "<span class='warning'>Nie da się zeskanować [O]!</span>")
 		return
 
 	if(istype(O, /obj/machinery/computer/cargo))

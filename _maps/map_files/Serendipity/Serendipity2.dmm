@@ -343,6 +343,17 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"aQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/item/radio/intercom/directional/west,
+/obj/machinery/vending/sticker,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
 "aR" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -40207,7 +40218,7 @@ Ne
 Kt
 Vk
 FQ
-lp
+aQ
 bu
 ig
 Sq

@@ -1,0 +1,71 @@
+/*
+	Bestialized
+	The artifact shoots the target with a random projectile
+*/
+/datum/xenoartifact_trait/major/animalize
+	label_name = "Bestialized"
+	label_desc = "Bestialized: artefakt zawiera elementy przemieniające. Ich aktywacja zamienia cel w zwierzę."
+	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
+	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
+	weight = 15
+	conductivity = 12
+	///List of potential animals we could turn people into
+	var/list/possible_animals = list(/mob/living/simple_animal/pet/dog/corgi, /mob/living/simple_animal/pet/dog/bullterrier, /mob/living/simple_animal/pet/dog/pug)
+	///The animal we will turn people into
+	var/mob/choosen_animal
+	///How long we keep them as animals
+	var/animal_time = 15 SECONDS
+
+/datum/xenoartifact_trait/major/animalize/New(atom/_parent)
+	. = ..()
+	choosen_animal = pick(possible_animals)
+
+/datum/xenoartifact_trait/major/animalize/trigger(datum/source, _priority, atom/override)
+	. = ..()
+	if(!.)
+		return
+	for(var/mob/living/target in focus)
+		if(istype(target, choosen_animal) || IS_DEAD_OR_INCAP(target))
+			continue
+		artifact_shapeshift(target, choosen_animal)
+		var/atom/log_atom = component_parent.parent
+		log_game("[component_parent] in [log_atom] transformed [key_name_admin(target)] into [choosen_animal] at [world.time]. [log_atom] located at [AREACOORD(log_atom)]")
+		//Add timer to undo this
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/xenoartifact_trait, un_trigger), target), animal_time*(component_parent.trait_strength/100))
+	clear_focus()
+
+/datum/xenoartifact_trait/major/animalize/un_trigger(atom/override, handle_parent = FALSE)
+	focus = override ? list(override) : targets
+	if(!length(focus))
+		return ..()
+	//Restore every swap holder
+	for(var/mob/living/target in focus)
+		var/obj/shapeshift_holder/holder = target.loc
+		if(istype(holder))
+			holder.shape?.forceMove(get_turf(holder.shape))
+			holder.restore()
+		target.Knockdown(2 SECONDS)
+	return ..()
+
+/datum/xenoartifact_trait/major/animalize/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel w psa"))
+
+
+/datum/xenoartifact_trait/major/animalize/vermin
+	label_name = "Bestialized Δ"
+	possible_animals = list(/mob/living/simple_animal/mothroach, /mob/living/simple_animal/mouse, /mob/living/simple_animal/cockroach/strong)
+	conductivity = 6
+
+/datum/xenoartifact_trait/major/animalize/vermin/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel w szkodnika"))
+
+/datum/xenoartifact_trait/major/animalize/dangerous
+	label_name = "Bestialized Σ"
+	possible_animals = list(/mob/living/simple_animal/hostile/bear, /mob/living/simple_animal/hostile/carp, /mob/living/simple_animal/hostile/killertomato)
+	conductivity = 3
+
+/datum/xenoartifact_trait/major/animalize/dangerous/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("zamieniać cel we wrogie zwierzę"))

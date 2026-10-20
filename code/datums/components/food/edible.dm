@@ -79,6 +79,7 @@ Behavior that's still missing from this component that original food items had t
 	RegisterSignal(parent, COMSIG_ITEM_MICROWAVE_COOKED, PROC_REF(on_microwave_cooked))
 	RegisterSignal(parent, COMSIG_FOOD_INGREDIENT_ADDED, PROC_REF(edible_ingredient_added))
 	RegisterSignal(parent, COMSIG_EDIBLE_ON_COMPOST, PROC_REF(compost))
+	RegisterSignal(parent, COMSIG_FOOD_FEED_ITEM, PROC_REF(feed_to_item))
 
 	if(isitem(parent))
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(use_from_hand))
@@ -558,6 +559,19 @@ Behavior that's still missing from this component that original food items had t
 	if(bitecount >= 5)
 		var/satisfaction_text = pick("beka z zadowolenia.", "ujada, prosząc o więcej!", "szczeka dwa razy.", "patrzy w miejsce, gdzie było [parent].")
 		L.manual_emote(satisfaction_text)
+		qdel(parent)
+
+///Ability to feed food to items? (aquila, xenoarch z Bee)
+/datum/component/edible/proc/feed_to_item(datum/source, atom/movable/eater)
+	SIGNAL_HANDLER
+
+	if(bitecount == 0 || prob(50))
+		eater.visible_message("[eater] podgryza [parent].", allow_inside_usr = TRUE)
+	bitecount++
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
+	if(bitecount >= 5)
+		var/satisfaction_text = pick("beka z zadowolenia.", "spogląda w miejsce, gdzie było [parent].")
+		eater.visible_message("[eater] [satisfaction_text]", allow_inside_usr = TRUE)
 		qdel(parent)
 
 ///Response to being used to customize something

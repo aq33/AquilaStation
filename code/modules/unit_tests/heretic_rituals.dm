@@ -105,6 +105,10 @@
 		for(var/atom/thing as anything in nearby_atoms)
 			if(!ismovable(thing))
 				continue
+			// AQ EDIT - dym i inne efekty z poprzednich testów (np. 1% "steamed ham" w food_edibility_check) to nie pozostałość rytuału
+			if(istype(thing, /obj/effect/particle_effect))
+				qdel(thing)
+				continue
 
 			// There are atoms around the rune still, and there shouldn't be.
 			// All component atoms were consumed, and all resulting atoms were cleaned up.

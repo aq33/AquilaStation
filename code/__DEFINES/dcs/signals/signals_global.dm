@@ -31,6 +31,9 @@
 /// research has been researched
 #define COMSIG_GLOB_NEW_RESEARCH "!remote_research_changed"
 
+/// Called whenever something is sold through exports (aquila, xenoarch z Bee)
+#define COMSIG_GLOB_ATOM_SOLD "!atom_sold"
+
 //aquila edit
 #define COMSIG_GLOB_STROMDRIVE_EXPLOSION "!stormdrive_boom"								//! Sent if any stormdrive explodes: (obj/machinery/reactor)
 //aquila edit end
