@@ -234,9 +234,6 @@
 /obj/structure/window/bronze/fulltile
 	canSmoothWith = PARADISE_MAP_SMOOTHING_GROUP
 
-/obj/structure/window/depleteduranium/fulltile
-	canSmoothWith = PARADISE_MAP_SMOOTHING_GROUP
-
 /obj/structure/window/fulltile
 	canSmoothWith = PARADISE_MAP_SMOOTHING_GROUP
 

@@ -36,14 +36,20 @@
 		/mob/living/simple_animal/bot/mulebot = 1
 	)
 
-/datum/test_chamber_kit/pr_474/setup(list/spawned, list/turfs, turf/center, mob/user)
-	// Rząd stołów i drewnianych stołów pod środkiem komory, żeby było widać bitmaskę
+// Stoły stoją przed zrzuceniem items i ich pola wypadają z listy, żeby nie zasłaniały przedmiotów
+/datum/test_chamber_kit/pr_474/spawn_kit(list/turfs, turf/center, mob/user)
+	turfs = turfs.Copy()
 	for(var/i in -2 to 2)
 		var/turf/table_spot = locate(center.x + i, center.y - 2, center.z)
 		if(table_spot && (table_spot in turfs))
+			turfs -= table_spot
 			new /obj/structure/table(table_spot)
 		var/turf/wood_spot = locate(center.x + i, center.y - 3, center.z)
 		if(wood_spot && (wood_spot in turfs))
+			turfs -= wood_spot
 			new /obj/structure/table/wood(wood_spot)
+	return ..(turfs, center, user)
+
+/datum/test_chamber_kit/pr_474/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/obj/item/reagent_containers/glass/beaker/large/beaker = locate() in spawned
 	beaker?.reagents.add_reagent(/datum/reagent/water, 60)
