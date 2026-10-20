@@ -139,9 +139,11 @@
 	if(!user.temporarilyRemoveItemFromInventory(tool))
 		to_chat(user, "<span class='warning'>Nie potrafisz rozstać się z [tool]!</span>")
 		return 0
-	if(!target.make_item_prosthetic(tool, target_zone, PROSTHETIC_LOOSE_DROP_PROB))
+	var/obj/item/bodypart/item_arm = target.make_item_prosthetic(tool, target_zone, PROSTHETIC_LOOSE_DROP_PROB)
+	if(!item_arm)
 		tool.forceMove(target.drop_location())
 		return 0
+	surgery.operated_bodypart = item_arm // so the surgery ends if the loose item falls off before it is secured
 	target.cauterise_wounds()
 	display_results(user, target, "<span class='notice'>Mocujesz [tool].</span>",
 		"[user] kończy mocować [tool]!",

@@ -185,7 +185,9 @@ const TOCEntryComponent = (props: TocEntryComponentProps) => {
       <Stack.Item width="10%">
         <Button
           fluid
-          onClick={() => setPage(entry.entry_page - (entry.entry_page % 2))}
+          onClick={() =>
+            setPage(entry.entry_page - ((entry.entry_page + 1) % 2))
+          }
         >
           {entry.entry_page}
         </Button>
@@ -255,7 +257,7 @@ const PageTurn = (props: PageTurnProps) => {
         <Button
           icon="angles-right"
           onClick={() => {
-            setPage(maxPage - (maxPage % 2));
+            setPage(maxPage - ((maxPage + 1) % 2));
             act('play_flip_sound');
           }}
           fluid

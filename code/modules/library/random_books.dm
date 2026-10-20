@@ -4,7 +4,7 @@
 /obj/item/book/manual/random/Initialize(mapload)
 	..()
 	var/static/banned_books = list(/obj/item/book/manual/random, /obj/item/book/manual/nuclear, /obj/item/book/manual/wiki)
-	var/newtype = pick(subtypesof(/obj/item/book/manual) - banned_books + /obj/item/tgui_book/manual/dsm) // AQUILA EDIT - SDSM-35 (tgstation#94761)
+	var/newtype = pick(subtypesof(/obj/item/book/manual) - banned_books)
 	new newtype(loc)
 	return INITIALIZE_HINT_QDEL
 

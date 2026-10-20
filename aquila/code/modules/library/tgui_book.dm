@@ -117,7 +117,7 @@
 		/datum/brain_trauma/magic/poltergeist = list("Poltergeist",
 			"Pacjent wydaje się celem agresywnej, niewidzialnej istoty.",
 			"Częste i niesprowokowane zakłócenia w otoczeniu pacjenta, na przykład przedmioty rzucane lub przesuwane bez widocznej przyczyny."),
-		/datum/brain_trauma/magic/antimagic = list("Atałmazja",
+		/datum/brain_trauma/magic/antimagic = list("Ataumazja",
 			"Pacjent jest całkowicie odporny na siły magiczne.",
 			"Pełna odporność na zjawiska, których nie tłumaczy nauka, takie jak zdolności członków Federacji Czarodziejów."),
 		/datum/brain_trauma/magic/stalker = list("Prześladujący fantom",
