@@ -15,7 +15,7 @@
 		/obj/item/modular_computer/tablet/pda = 1,
 		/obj/item/stack/sheet/iron/fifty = 1,
 		/obj/item/stack/sheet/glass/fifty = 1,
-		/obj/item/stack/ore/gold = 5,
+		/obj/item/stack/ore/gold = 1,
 		/obj/structure/closet/secure_closet/freezer/kitchen = 1,
 		/obj/structure/closet/secure_closet/personal = 1,
 		/obj/structure/closet/crate/secure/weapon = 1,
