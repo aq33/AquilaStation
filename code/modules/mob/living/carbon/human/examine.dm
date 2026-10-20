@@ -245,7 +245,7 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "Wygląda na skrajnie zdegustowanego.\n"
 
-	if(blood_volume < BLOOD_VOLUME_SAFE)
+	if(get_shown_blood_volume() < BLOOD_VOLUME_SAFE) // AQ EDIT - krwawe robaki
 		msg += "Ma bladą skórę.\n"
 
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
