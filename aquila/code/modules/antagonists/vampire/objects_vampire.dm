@@ -125,10 +125,11 @@
 			. += span_warning("You cannot create any more vassals at the moment!")
 
 /obj/structure/vampire/vassalrack/deconstruct(disassembled = TRUE)
-	. = ..()
-	new /obj/item/stack/sheet/iron(src.loc, 4)
-	new /obj/item/stack/rods(loc, 4)
-	qdel(src)
+	// Materiały przed ..(), bo bazowe deconstruct usuwa stół
+	var/turf/drop_turf = get_turf(src)
+	new /obj/item/stack/sheet/iron(drop_turf, 4)
+	new /obj/item/stack/rods(drop_turf, 4)
+	return ..()
 
 /obj/structure/vampire/vassalrack/MouseDrop_T(atom/movable/movable_atom, mob/user)
 	if(..())
@@ -282,8 +283,14 @@
 
 	if(wants_vassilization || !(HAS_TRAIT(living_target, TRAIT_MINDSHIELD) || length(living_target.mind.antag_datums)))
 		living_vampire.balloon_alert_to_viewers("smears blood...", "paints bloody marks...")
+		// Blokada, żeby kilka konwersji nie szło równolegle
+		is_torturing = TRUE
 		if(!vampire_do_after(living_vampire, 5 SECONDS, living_target))
+			is_torturing = FALSE
 			balloon_alert(living_vampire, "interrupted!")
+			return
+		is_torturing = FALSE
+		if(!vampiredatum.can_make_vassal(living_target))
 			return
 
 		// Make our target into a vassal
@@ -468,6 +475,8 @@
 	density = FALSE
 	. = ..()
 	density = TRUE
+	if(!.)
+		return
 	user.visible_message(
 		span_notice("[user] sits down on \the [src]."),
 		span_boldnotice("You sit down onto [src]."),
@@ -487,8 +496,7 @@
 // Unbuckling
 /obj/structure/vampire/bloodthrone/unbuckle_mob(mob/living/user, force = FALSE, can_fall = TRUE)
 	visible_message(span_danger("[user] unbuckles [user.p_them()]self from \the [src]."))
-	if(IS_VAMPIRE(user))
-		UnregisterSignal(user, COMSIG_MOB_SAY)
+	UnregisterSignal(user, COMSIG_MOB_SAY)
 	. = ..()
 
 /obj/structure/vampire/bloodthrone/post_unbuckle_mob(mob/living/target)

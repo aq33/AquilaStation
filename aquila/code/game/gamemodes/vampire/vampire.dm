@@ -125,11 +125,15 @@
 
 /datum/game_mode/traitor/vampire/make_antag_chance(mob/living/carbon/human/character) // wampiry z latejoinu
 	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
-	var/vampcap = min(round(length(GLOB.joined_player_list) / (tsc * 4)) + 2, round(length(GLOB.joined_player_list) / (tsc * 2)))
+	var/vampcap
+	if(tsc)
+		vampcap = min(round(length(GLOB.joined_player_list) / (tsc * 4)) + 2, round(length(GLOB.joined_player_list) / (tsc * 2)))
+	else
+		vampcap = max(1, vampire_amt / 2)
 	var/vamp_count = length(get_antag_minds(/datum/antagonist/vampire))
 	if(vamp_count >= vampcap)
 		return ..()
-	if(vamp_count <= (vampcap - 2) || prob(100 / (tsc * 4)))
+	if(vamp_count <= (vampcap - 2) || (tsc && prob(100 / (tsc * 4))))
 		if(!QDELETED(character) && character.mind && character.client?.should_include_for_role(
 			banning_key = ROLE_VAMPIRE,
 			role_preference_key = /datum/role_preference/antagonist/vampire,

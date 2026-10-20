@@ -91,7 +91,7 @@
 	else
 		if(owner.current.stat == CONSCIOUS)
 			current.apply_damage(20, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
-			current.emote("scream")
+			INVOKE_ASYNC(current, TYPE_PROC_REF(/mob, emote), "scream") // emote może spać, a handle_sol to obsługa sygnału
 		else
 			current.apply_damage(50, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_HEAD, BODY_ZONE_CHEST, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
 

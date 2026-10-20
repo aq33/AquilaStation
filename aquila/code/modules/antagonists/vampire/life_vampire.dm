@@ -161,7 +161,7 @@
 
 /datum/antagonist/vampire/proc/try_regenerate_limbs(cost_muliplier = 1)
 	var/mob/living/carbon/carbon_owner = owner.current
-	var/limb_regen_cost = 50 * -cost_muliplier
+	var/limb_regen_cost = 50 * cost_muliplier
 
 	var/list/missing = carbon_owner.get_missing_limbs()
 	if(missing.len && (current_vitae < limb_regen_cost + 5))

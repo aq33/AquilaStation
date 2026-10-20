@@ -1069,13 +1069,13 @@ const PowerSection = (_props) => {
                       <>BLOOD DRAIN: {power.constant_cost}</>
                     )}
                     {(power.cost !== '0' || power.constant_cost !== '0') &&
-                      power.cooldown !== '0' && (
+                      Number(power.cooldown) !== 0 && (
                         <>
                           <br />
                           <br />
                         </>
                       )}
-                    {power.cooldown !== '0' && (
+                    {Number(power.cooldown) !== 0 && (
                       <>
                         COOLDOWN: {power.cooldown} seconds
                         <br />

@@ -27,10 +27,13 @@
 	var/obj/item/projectile/magic/blood_drain/drain = new(living_owner.loc)
 	drain.firer = living_owner
 	drain.fired_from = living_owner
+	drain.source_power = src
 	drain.original = target_atom
 	drain.def_zone = ran_zone(living_owner.get_combat_bodyzone())
 	drain.preparePixelProjectile(target_atom, living_owner)
 	INVOKE_ASYNC(drain, TYPE_PROC_REF(/obj/item/projectile, fire))
+	// Bee nie pobierało kosztu: moc nie woła power_activated_sucessfully()
+	pay_cost()
 
 	playsound(living_owner, 'sound/magic/wandodeath.ogg', 60, TRUE)
 
@@ -45,6 +48,8 @@
 	alpha = 0 // AQUILA - u nas nie ma pustego stanu "nothing", widać tylko promień
 	range = 7
 	var/datum/beam/drain_beam
+	/// Moc, która wystrzeliła pocisk (fired_from to mob)
+	var/datum/action/vampire/targeted/blooddrain/source_power
 
 /obj/item/projectile/magic/blood_drain/fire(angle, atom/direct_target)
 	if(!firer)
@@ -56,9 +61,10 @@
 	. = ..()
 	if(!isliving(target))
 		return
-	target.apply_status_effect(/datum/status_effect/blood_drain, firer, fired_from)
+	target.apply_status_effect(/datum/status_effect/blood_drain, firer, source_power)
 
 /obj/item/projectile/magic/blood_drain/Destroy()
+	source_power = null
 	if(!QDELETED(drain_beam))
 		QDEL_NULL(drain_beam)
 	return ..()

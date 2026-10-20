@@ -42,4 +42,7 @@
 
 /datum/action/vampire/exactitude/deactivate_power()
 	. = ..()
-	qdel(item_ref)
+	var/obj/item/clothing/gloves/rapid/vampire/the_gloves = item_ref?.resolve()
+	if(the_gloves)
+		qdel(the_gloves)
+	item_ref = null

@@ -32,6 +32,8 @@
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 75
 	cooldown_time = 60 SECONDS
+	/// Gracz anulował okno komendy, więc bez kosztu i odnowienia
+	var/command_cancelled = FALSE
 
 /datum/action/vampire/voice_of_domination/can_use()
 	. = ..()
@@ -49,9 +51,20 @@
 		return FALSE
 	return TRUE
 
+/datum/action/vampire/voice_of_domination/on_activate(mob/user, atom/target)
+	. = ..()
+	// Anulowana komenda nie zaczyna odnowienia
+	if(command_cancelled)
+		command_cancelled = FALSE
+		reset_next_use_time()
+
 /datum/action/vampire/voice_of_domination/activate_power()
 	var/command = tgui_input_text(owner, "Speak with the Voice of Domination", "Command")
 	if(QDELETED(src) || QDELETED(owner) || !command)
+		// Zwrot kosztu pobranego w on_activate() przed oknem komendy
+		if(!QDELETED(src) && vampiredatum_power && !vampiredatum_power.frenzied)
+			vampiredatum_power.adjust_vitae(vitaecost)
+		command_cancelled = TRUE
 		return
 	playsound(get_turf(owner), 'sound/magic/clockwork/invoke_general.ogg', 100, TRUE, 3)
 	var/command_cooldown = voice_of_god(command, owner, list("colossus","commands"), base_multiplier = 2)

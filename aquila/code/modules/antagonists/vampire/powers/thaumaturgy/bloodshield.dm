@@ -33,8 +33,10 @@
 
 /datum/action/vampire/bloodshield/deactivate_power()
 	. = ..()
-	to_chat(owner, span_notice("Blood shield couldn't be activated as your off hand is full."))
-	QDEL_NULL(blood_shield)
+	var/obj/item/shield/vampire/shield = blood_shield?.resolve()
+	if(shield)
+		qdel(shield)
+	blood_shield = null
 
 /**
  *	# Blood Shield

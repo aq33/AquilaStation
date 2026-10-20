@@ -283,8 +283,6 @@
 	if(!can_drink(victim, attacker))
 		return ..()
 
-	var/to_feed = reagents.total_volume
-
 	var/datum/antagonist/vampire/vampiredatum = IS_VAMPIRE(victim)
 
 	if(victim != attacker)
@@ -297,11 +295,11 @@
 			span_notice("[attacker] forces [victim] to drink from \the [src]."),
 			span_notice("You force [victim] to drink from \the [src]."))
 
-		reagents.trans_to(victim, to_feed, transfered_by = attacker, method = INGEST)
+		var/fed = reagents.trans_to(victim, reagents.total_volume, transfered_by = attacker, method = INGEST)
 
 		// I would add more flavor, but I don't want to make this an antag check
 		if(vampiredatum?.my_clan?.blood_drink_type != VAMPIRE_DRINK_SNOBBY)
-			vampiredatum?.adjust_vitae(to_feed / 4)
+			vampiredatum?.adjust_vitae(fed / 4)
 		playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
 		return TRUE
 
@@ -320,8 +318,8 @@
 		span_notice("[victim] sucks the contents out of \the [src]!"),
 		span_notice("You feed from \the [src]."))
 
-	reagents.trans_to(victim, to_feed, transfered_by = attacker, method = INGEST)
-	vampiredatum?.adjust_vitae(to_feed / 4)
+	var/fed = reagents.trans_to(victim, reagents.total_volume, transfered_by = attacker, method = INGEST)
+	vampiredatum?.adjust_vitae(fed / 4)
 	playsound(victim.loc, 'sound/items/drink.ogg', 30, 1)
 
 	return TRUE

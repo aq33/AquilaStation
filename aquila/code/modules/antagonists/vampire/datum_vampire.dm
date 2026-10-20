@@ -323,13 +323,7 @@
 			all_powers.Remove(old_body)
 		all_powers.Grant(new_body)
 
-	// Transfer humanity gain signal registrations
-	if(old_body)
-		UnregisterSignal(old_body, list(COMSIG_LIVING_PET_ANIMAL, COMSIG_LIVING_HUG_CARBON, COMSIG_LIVING_APPRAISE_ART))
-	if(new_body)
-		RegisterSignal(new_body, COMSIG_LIVING_PET_ANIMAL, PROC_REF(on_pet_animal))
-		RegisterSignal(new_body, COMSIG_LIVING_HUG_CARBON, PROC_REF(on_hug_carbon))
-		RegisterSignal(new_body, COMSIG_LIVING_APPRAISE_ART, PROC_REF(on_appraise_art))
+	// Sygnały Humanity przenoszą remove_innate_effects()/apply_innate_effects() w ..()
 
 	// Update punch damage
 	var/mob/living/carbon/human/human_new_body = new_body
@@ -338,11 +332,12 @@
 	if(ishuman(human_new_body))
 		human_new_body.dna.species.inherent_traits += TRAIT_DRINKSBLOOD
 		human_new_body.unarmed_damage_bonus = 2 // AQUILA - premia do ciosów zamiast obrażeń rąk z Bee
+		human_new_body.physiology.stamina_mod *= VAMPIRE_INHERENT_STAMINA_RESIST
 
 	if(ishuman(human_old_body))
 		human_old_body.dna.species.inherent_traits -= TRAIT_DRINKSBLOOD
 		human_old_body.unarmed_damage_bonus = 0
-		human_new_body.physiology.stamina_mod *= VAMPIRE_INHERENT_STAMINA_RESIST
+		human_old_body.physiology.stamina_mod /= VAMPIRE_INHERENT_STAMINA_RESIST
 
 
 	// Vampire Traits
@@ -514,6 +509,7 @@
 		var/mob/living/carbon/human/human_user = user
 		user_species.inherent_traits -= TRAIT_DRINKSBLOOD
 		human_user.physiology.stamina_mod /= VAMPIRE_INHERENT_STAMINA_RESIST
+		human_user.unarmed_damage_bonus = 0
 
 	// Remove all vampire traits
 	user.remove_traits(vampire_traits, TRAIT_VAMPIRE)

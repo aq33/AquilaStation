@@ -85,6 +85,8 @@
 	if(stun)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_VAMPIRE) // They'll get stun resistance + this, who cares.
 
+	if(!ishuman(owner))
+		return
 	var/mob/living/carbon/human/user = owner
 	user.physiology.brute_mod *= resistance
 	user.physiology.stamina_mod *= resistance * 2 // Stamina resistance is half as effective because they have it inherently.
@@ -97,18 +99,17 @@
 
 	var/mob/living/carbon/user = owner
 	if(user.buckled && istype(user.buckled, /obj/vehicle))
-		user.buckled.unbuckle_mob(src, force = TRUE)
+		user.buckled.unbuckle_mob(user, force = TRUE)
 
 /datum/action/vampire/fortitude/deactivate_power()
-	if(!ishuman(owner))
-		return
+	if(!currently_active || !ishuman(owner))
+		return ..()
 
+	// Te same współczynniki co w activate_power()
 	var/mob/living/carbon/human/vampire_user = owner
 	vampire_user.physiology.brute_mod /= resistance
 	vampire_user.physiology.burn_mod /= calculated_burn_resist
-
-	if(!HAS_TRAIT_FROM(vampire_user, TRAIT_STUNIMMUNE, TRAIT_VAMPIRE))
-		vampire_user.physiology.stamina_mod /= resistance
+	vampire_user.physiology.stamina_mod /= resistance * 2
 
 	// Remove Traits & Effects
 	REMOVE_TRAIT(owner, TRAIT_PIERCEIMMUNE, TRAIT_VAMPIRE)

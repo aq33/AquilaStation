@@ -437,6 +437,8 @@
 	if(feed_target)
 		// Call cure_blind after a (truly tiny) delay to make sure they don't see NOTHING
 		addtimer(CALLBACK(feed_target, TYPE_PROC_REF(/mob/living, cure_blind), TRAIT_FEED), 1 SECONDS)
+		// Głuchota z pre-feedu schodzi też wtedy, gdy karmienie przerwano przed jego rozpoczęciem
+		REMOVE_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
 
 	if(feed_target && currently_feeding)
 		REMOVE_TRAITS_IN(feed_target, TRAIT_FEED)
@@ -519,7 +521,9 @@
 
 	// Shift body temperature (toward target's temp, by volume taken)
 	// ((vamp_blood_volume * vamp_temp) + (target_blood_volume * target_temp)) / (vamp_blood_volume + blood_to_take)
-	owner.bodytemperature = ((vampiredatum_power.current_vitae * owner.bodytemperature) + (blood_to_take * target.bodytemperature)) / (vampiredatum_power.current_vitae + blood_to_take)
+	var/total_volume = vampiredatum_power.current_vitae + blood_to_take
+	if(total_volume > 0)
+		owner.bodytemperature = ((vampiredatum_power.current_vitae * owner.bodytemperature) + (blood_to_take * target.bodytemperature)) / total_volume
 
 	// Penalty for frenzy(messy eater)
 	if(vampiredatum_power.frenzied)
