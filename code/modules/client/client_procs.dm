@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
-	fps = prefs.clientfps
+	fps = prefs.get_client_fps() // AQ EDIT - -1 = zalecane FPS
 
 	prefs.handle_donator_items()
 
@@ -974,6 +974,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, "<span class='danger'>Twoje poprzednie kliknięcie zostało zignorowane, bo klikasz za dużo w ciągu sekundy</span>")
 			return
+
+	// AQ EDIT - port tgstation/tgstation#65589: przy przeciążonym ticku kliknięcie w mapę idzie do SSinput na następny tick
+	if(!QDELETED(object) && TRY_QUEUE_VERB(VERB_CALLBACK(object, TYPE_PROC_REF(/atom, _Click), location, control, params), VERB_HIGH_PRIORITY_QUEUE_THRESHOLD, SSinput, control))
+		return
 
 	if (prefs.toggles2 & PREFTOGGLE_2_HOTKEYS)
 		// If hotkey mode is enabled, then clicking the map will automatically

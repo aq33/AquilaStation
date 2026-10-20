@@ -491,7 +491,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	else
 		..()
 
-/mob/living/simple_animal/bot/medbot/examinate(atom/A as mob|obj|turf in view())
+/mob/living/simple_animal/bot/medbot/run_examinate(atom/A) // AQ EDIT - examinate idzie przez kolejkę verbów
 	..()
 	if(!is_blind(src))
 		chemscan(src, A)
