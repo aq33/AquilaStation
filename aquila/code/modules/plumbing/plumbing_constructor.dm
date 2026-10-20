@@ -19,7 +19,7 @@
 	var/list/design_types = list(
 		"Synthesizers" = list(
 			/obj/machinery/plumbing/synthesizer = 15,
-			/obj/machinery/plumbing/reaction_chamber = 15,
+			/obj/machinery/plumbing/reaction_chamber/chem = 15,
 			/obj/machinery/plumbing/grinder_chemical = 30,
 			/obj/machinery/plumbing/fermenter = 30,
 			/obj/machinery/plumbing/disposer = 10,

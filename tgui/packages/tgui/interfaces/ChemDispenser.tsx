@@ -18,6 +18,7 @@ import { Recipe, RecipeLookup } from './common/RecipeLookup';
 type Data = {
   amount: any;
   beakerContents: any;
+  beakerPh: number | null;
   beakerCurrentVolume: any;
   beakerMaxVolume: any;
   beakerTransferAmounts: any;
@@ -212,6 +213,9 @@ export const ChemDispenser = (props) => {
                   of {chemical.name}
                 </Box>
               ))}
+              {!recording && beakerContents.length > 0 && (
+                <Box>pH: {data.beakerPh}</Box>
+              )}
             </LabeledList.Item>
           </LabeledList>
         </Section>

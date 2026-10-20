@@ -26,7 +26,7 @@
 
 /// Everything we wanted is inside, react and start draining
 /obj/machinery/plumbing/reaction_chamber/proc/start_reacting()
-	//our reactions are instant, so wait until the mix reaches the target temperature
+	//wait until the mix reaches the target temperature, instant reactions (and the start of slow ones) use the current temperature
 	if(abs(target_temperature - reagents.chem_temp) > 1 && !(machine_stat & NOPOWER))
 		return
 	reagents.flags &= ~NO_REACT
@@ -45,13 +45,28 @@
 	reagents.flags |= NO_REACT
 
 /obj/machinery/plumbing/reaction_chamber/process(delta_time)
-	if(machine_stat & NOPOWER || !reagents.total_volume || emptying)
+	if(machine_stat & NOPOWER || !reagents.total_volume)
+		return
+	//fermichem: keep heating while the reaction is still going, products only drain after it's done
+	if(emptying && !reagents.is_reacting)
 		return
 
 	//adjust temperature of final solution
 	if(abs(target_temperature - reagents.chem_temp) > 0.5)
-		reagents.chem_temp = clamp(reagents.chem_temp + (target_temperature - reagents.chem_temp) * min(CHAMBER_HEATER_COEFFICIENT * delta_time, 1), 2.7, 1000)
+		reagents.set_temperature(clamp(reagents.chem_temp + (target_temperature - reagents.chem_temp) * min(CHAMBER_HEATER_COEFFICIENT * delta_time, 1), 2.7, 1000))
 		use_power(active_power_usage)
+
+	//do other stuff with final solution
+	handle_reagents(delta_time)
+
+/**
+ * For subtypes that want to do additional reagent handling
+ * Arguments
+ *
+ * * delta_time - passed down from process()
+ */
+/obj/machinery/plumbing/reaction_chamber/proc/handle_reagents(delta_time)
+	return
 
 /obj/machinery/plumbing/reaction_chamber/power_change()
 	. = ..()
@@ -89,7 +104,7 @@
 	.["emptying"] = emptying
 	.["temperature"] = round(reagents.chem_temp, 0.1)
 	.["targetTemp"] = target_temperature
-	.["isReacting"] = FALSE
+	.["isReacting"] = reagents.is_reacting
 
 /obj/machinery/plumbing/reaction_chamber/ui_act(action, params)
 	. = ..()
@@ -146,5 +161,82 @@
 				required_reagents[reagent] = catalysts[reagent]
 				catalysts -= reagent
 				return TRUE
+
+	return handle_ui_act(action, params)
+
+/// For custom handling of ui actions from inside a subtype
+/obj/machinery/plumbing/reaction_chamber/proc/handle_ui_act(action, params)
+	return FALSE
+
+///Chemistry version of reaction chamber that allows for acid and base buffers to be used while reacting (fermichem z tg)
+/obj/machinery/plumbing/reaction_chamber/chem
+	name = "reaction chamber"
+	desc = "Trzyma chemikalia osobno, dopóki nie zostaną spełnione warunki. Ma dwa dodatkowe wejścia na bufory pH: kwaśny z zachodu, zasadowy ze wschodu."
+
+	///If below this pH, we start dumping buffer into it
+	var/acidic_limit = 5
+	///If above this pH, we start dumping acid into it
+	var/alkaline_limit = 9
+
+	///beaker that holds the acidic buffer(50u)
+	var/datum/reagents/acidic_beaker
+	///beaker that holds the alkaline buffer(50u).
+	var/datum/reagents/alkaline_beaker
+
+/obj/machinery/plumbing/reaction_chamber/chem/Initialize(mapload, layer)
+	. = ..()
+	var/datum/component/plumbing/buffered/acidic_input = AddComponent(/datum/component/plumbing/buffered/acidic_input)
+	var/datum/component/plumbing/buffered/basic_input = AddComponent(/datum/component/plumbing/buffered/alkaline_input)
+	acidic_beaker = acidic_input.recipient_reagents_holder()
+	alkaline_beaker = basic_input.recipient_reagents_holder()
+
+/obj/machinery/plumbing/reaction_chamber/chem/handle_reagents(delta_time)
+	if(reagents.ph >= acidic_limit && reagents.ph <= alkaline_limit)
+		return
+	//nothing to react with
+	var/num_of_reagents = length(reagents.reagent_list)
+	if(!num_of_reagents)
+		return
+
+	//figure out which buffer to transfer to restore balance
+	//if solution is getting too basic(high ph) add some acid to lower its value
+	//else if solution is getting too acidic(low ph) add some base to increase its value
+	var/datum/reagents/buffer_holder = reagents.ph > alkaline_limit ? acidic_beaker : alkaline_beaker
+	if(!buffer_holder?.total_volume)
+		return
+
+	//transfer buffer and handle reactions
+	var/ph_change = max((reagents.ph > alkaline_limit ? (reagents.ph - alkaline_limit) : (acidic_limit - reagents.ph)), 0.25)
+	var/buffer_amount = ((ph_change * reagents.total_volume) / (BUFFER_IONIZING_STRENGTH * num_of_reagents)) * delta_time
+	if(!buffer_holder.trans_to(reagents, buffer_amount))
+		return
+
+	//some power for accurate ph balancing
+	use_power(active_power_usage * 0.03 * buffer_amount)
+
+/obj/machinery/plumbing/reaction_chamber/chem/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ChemReactionChamber", name)
+		ui.open()
+		ui.set_autoupdate(TRUE)
+
+/obj/machinery/plumbing/reaction_chamber/chem/ui_data(mob/user)
+	. = ..()
+	.["ph"] = round(reagents.ph, 0.01)
+	.["reagentAcidic"] = acidic_limit
+	.["reagentAlkaline"] = alkaline_limit
+	.["acidicBuffer"] = round(acidic_beaker?.total_volume, 0.1)
+	.["alkalineBuffer"] = round(alkaline_beaker?.total_volume, 0.1)
+
+/obj/machinery/plumbing/reaction_chamber/chem/handle_ui_act(action, params)
+	switch(action)
+		if("acidic")
+			acidic_limit = clamp(round(text2num(params["target"])), CHEMICAL_MIN_PH, alkaline_limit - 1)
+			return TRUE
+		if("alkaline")
+			alkaline_limit = clamp(round(text2num(params["target"])), acidic_limit + 1, CHEMICAL_MAX_PH)
+			return TRUE
+	return FALSE
 
 #undef CHAMBER_HEATER_COEFFICIENT

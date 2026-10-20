@@ -15,7 +15,10 @@
 	if(!G.reagents)
 		return
 	DISABLE_BITFIELD(G.reagents.flags, NO_REACT)
+	// fermichem: the squashed mix reacts all at once before it splashes, like a grenade
+	ENABLE_BITFIELD(G.reagents.flags, REAGENT_HOLDER_INSTANT_REACT)
 	G.reagents.handle_reactions()
+	DISABLE_BITFIELD(G.reagents.flags, REAGENT_HOLDER_INSTANT_REACT)
 
 /obj/item/food/grown
 	/// AQUILA - Separated Chemicals: TRUE once squashed, while the contents mix; stops a second squash

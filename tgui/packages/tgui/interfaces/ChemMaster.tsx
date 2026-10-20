@@ -13,11 +13,13 @@ import {
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
+import { PurityLabel } from './common/BeakerDisplay';
 
 type Data = {
   analyzeVars: any;
   autoCondiStyle: any;
   beakerContents: any;
+  beakerPh: number | null;
   beakerCurrentVolume: any;
   beakerMaxVolume: any;
   bufferContents: any;
@@ -99,6 +101,9 @@ const ChemMasterContent = (props) => {
           <Box color="label" mt="3px" mb="5px">
             Beaker is empty.
           </Box>
+        )}
+        {!!isBeakerLoaded && beakerContents.length > 0 && (
+          <Box color="label">pH: {data.beakerPh}</Box>
         )}
         <ChemicalBuffer>
           {beakerContents.map((chemical) => (
@@ -234,6 +239,7 @@ const ChemicalBufferEntry = (props) => {
       <Table.Cell color="label">
         <AnimatedNumber value={chemical.volume} initial={0} />
         {` units of ${chemical.name}`}
+        <PurityLabel purity={chemical.purity} />
       </Table.Cell>
       <Table.Cell collapsing>
         <Button

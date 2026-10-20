@@ -37,10 +37,14 @@
 	berry_copy.genes += new /datum/plant_gene/trait/noreact
 	TEST_ASSERT(!berry_seed.get_gene(/datum/plant_gene/trait/noreact), "Adding the gene to a copy changed the original seed")
 
-	// Without the gene, the reagents react as they are added
+	// Without the gene, the reagents react as they are added (fermichem: over time, so let it finish)
 	var/obj/item/food/grown/plain = grow(salt_parts, FALSE)
 	TEST_ASSERT(!(plain.reagents.flags & NO_REACT), "A plant without the gene has NO_REACT")
-	TEST_ASSERT_EQUAL(plain.reagents.get_reagent_amount(/datum/reagent/consumable/sodiumchloride), 18, "A plant without the gene didn't react")
+	for(var/step in 1 to 60)
+		if(!plain.reagents.is_reacting)
+			break
+		plain.reagents.process(1)
+	TEST_ASSERT_EQUAL(round(plain.reagents.get_reagent_amount(/datum/reagent/consumable/sodiumchloride), 0.1), 18, "A plant without the gene didn't react")
 	TEST_ASSERT_EQUAL(plain.reagents.get_reagent_amount(/datum/reagent/water), 0, "A plant without the gene kept unreacted water")
 
 	// With the gene, they sit side by side

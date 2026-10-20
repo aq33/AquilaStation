@@ -15,6 +15,9 @@
 				Fail("Chemical recipe conflict between [r1.type] and [r2.type]")
 
 /datum/unit_test/reagent_recipe_collisions/proc/recipes_do_conflict(datum/chemical_reaction/r1, datum/chemical_reaction/r2)
+	// AQ EDIT - fermichem z tg: competitive reactions are supposed to conflict
+	if((r1.reaction_flags & REACTION_COMPETITIVE) || (r2.reaction_flags & REACTION_COMPETITIVE))
+		return FALSE
 	//do the non-list tests first, because they are cheaper
 	if(r1.required_container != r2.required_container)
 		return FALSE

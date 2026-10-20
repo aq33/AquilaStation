@@ -200,6 +200,7 @@
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
+	data["beakerPh"] = beaker ? round(beaker.reagents.ph, 0.01) : null // AQ EDIT - fermichem
 
 	if (beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume

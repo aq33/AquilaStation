@@ -17,6 +17,15 @@ export type Recipe = {
   temp: number;
   cold: boolean;
   container: string | null;
+  // fermichem
+  instant: boolean;
+  optimalTemp: number;
+  overheatTemp: number | null;
+  phMin: number;
+  phMax: number;
+  /** 1 = wydziela ciepło, -1 = pochłania ciepło */
+  thermic: number;
+  purityMin: number;
 };
 
 type Props = {
@@ -28,6 +37,8 @@ type Props = {
 };
 
 const MAX_SHOWN = 40;
+/** Temperatura pokojowa - wymagania niższe od niej są spełnione bez grzania */
+const ROOM_TEMPERATURE = 300;
 
 type SearchMode = 'product' | 'ingredient';
 
@@ -201,9 +212,45 @@ const RecipeEntry = (props: EntryProps) => {
           ))}
         </Box>
       )}
-      {recipe.temp > 0 && (
+      {(recipe.cold || recipe.temp > ROOM_TEMPERATURE) && (
         <Box mt={0.5} color={recipe.cold ? 'blue' : 'orange'}>
           Temperatura {recipe.cold ? 'poniżej' : 'co najmniej'} {recipe.temp} K
+        </Box>
+      )}
+      {!recipe.instant &&
+        (recipe.cold || recipe.optimalTemp > ROOM_TEMPERATURE) && (
+          <Box mt={0.5} color={recipe.cold ? 'blue' : 'orange'}>
+            Najszybciej {recipe.cold ? 'poniżej' : 'od'} {recipe.optimalTemp} K
+          </Box>
+        )}
+      {!recipe.instant && (
+        <>
+          {recipe.overheatTemp !== null && recipe.overheatTemp > 0 && (
+            <Box mt={0.5} color="red">
+              Przegrzewa się {recipe.cold ? 'poniżej' : 'powyżej'}{' '}
+              {recipe.overheatTemp} K
+            </Box>
+          )}
+          {(recipe.phMin > 0 || recipe.phMax < 14) && (
+            <Box mt={0.5} color="teal">
+              Najczystsza przy pH {recipe.phMin}–{recipe.phMax}
+            </Box>
+          )}
+          {recipe.thermic !== 0 && (
+            <Box mt={0.5} color="label">
+              {recipe.thermic > 0 ? 'Wydziela ciepło' : 'Pochłania ciepło'}
+            </Box>
+          )}
+          {recipe.purityMin > 0 && (
+            <Box mt={0.5} color="label">
+              Psuje się poniżej {Math.round(recipe.purityMin * 100)}% czystości
+            </Box>
+          )}
+        </>
+      )}
+      {!!recipe.instant && (
+        <Box mt={0.5} color="label">
+          Reaguje od razu
         </Box>
       )}
       {!!recipe.container && (

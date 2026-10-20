@@ -149,8 +149,8 @@
 
 	var/obj/machinery/plumbing/reaction_chamber/reaction_chamber = parent
 
-	//cannot give when we outselves are requesting the reagents
-	if(amount <= 0 || !reagents.total_volume || !reaction_chamber.emptying)
+	//cannot give when we outselves are requesting or reacting the reagents
+	if(amount <= 0 || !reagents.total_volume || !reaction_chamber.emptying || reagents.is_reacting)
 		return
 
 	//check to see if we can give catalysts only if they are in excess
@@ -272,3 +272,41 @@
 	if(received)
 		tray.adjustWater(round(received))
 	reagents.clear_reagents()
+
+/// Separate input with its own small holder, used by the chemistry reaction chamber for its pH buffers (fermichem z tg)
+/datum/component/plumbing/buffered
+	///The reagent to request into this buffer
+	var/datum/reagent/request
+	///The buffer meant to store reagents
+	var/datum/reagents/buffer
+
+/datum/component/plumbing/buffered/Initialize(ducting_layer)
+	. = ..()
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+	buffer = new /datum/reagents(50, NO_REACT)
+	buffer.my_atom = parent
+
+/datum/component/plumbing/buffered/Destroy()
+	QDEL_NULL(buffer)
+	return ..()
+
+/datum/component/plumbing/buffered/recipient_reagents_holder()
+	return buffer
+
+/datum/component/plumbing/buffered/send_request(dir)
+	process_request(reagent = request, dir = dir)
+
+///Acidic buffer input of the chemistry reaction chamber
+/datum/component/plumbing/buffered/acidic_input
+	demand_connects = WEST
+	demand_color = COLOR_YELLOW
+	ducting_layer = SECOND_DUCT_LAYER
+	request = /datum/reagent/reaction_agent/acidic_buffer
+
+///Basic buffer input of the chemistry reaction chamber
+/datum/component/plumbing/buffered/alkaline_input
+	demand_connects = EAST
+	demand_color = COLOR_LIME
+	ducting_layer = FOURTH_DUCT_LAYER
+	request = /datum/reagent/reaction_agent/basic_buffer

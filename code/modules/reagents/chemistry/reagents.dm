@@ -41,6 +41,20 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/self_consuming = FALSE
 	var/reagent_weight = 1 //affects how far it travels when sprayed
 	var/metabolizing = FALSE
+	// AQ EDIT START - fermichem z tg
+	/// pH of the reagent
+	var/ph = CHEMICAL_NORMAL_PH
+	/// Purity of the reagent - for use with internal reaction mechanics only. Use creation_purity if you're writing purity effects into a reagent's use mechanics.
+	var/purity = 1
+	/// the purity of the reagent on creation (i.e. when it's added to a mob and its purity split it into 2 chems; the purity of the resultant chems are kept as 1, this tracks what the purity was before that)
+	var/creation_purity = 1
+	/// If the purity is below this, ALL of the chem is replaced with inverse_chem when it enters a mob
+	var/inverse_chem_val = 0.25
+	/// What chem is metabolised when purity is below inverse_chem_val
+	var/inverse_chem = /datum/reagent/inverse
+	/// REAGENT_SNEAKYNAME, REAGENT_DONOTSPLIT, REAGENT_DEAD_PROCESS - see aquila/code/__DEFINES/fermichem.dm
+	var/fermi_flags = NONE
+	// AQ EDIT END
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -162,6 +176,32 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	if(prob(30))
 		to_chat(M, "<span class='boldannounce'>W ogóle nie czujesz się dobrze! Naprawdę potrzebujesz trochę [name].</span>")
 	return
+
+// AQ EDIT START - fermichem z tg
+/**
+ * Helper function to return a ratio of the creation purity relative to the default purity of the reagent
+ * Used to scale purity effects of a reagent: 1 means "as pure as usual", above 1 is purer than normal
+ */
+/datum/reagent/proc/normalise_creation_purity(normalise_num_to, creation_purity)
+	if(!normalise_num_to)
+		normalise_num_to = initial(purity)
+	if(!creation_purity)
+		creation_purity = src.creation_purity
+	return creation_purity / normalise_num_to
+
+/**
+ * Gets the inverse purity of this reagent. Mostly used when converting from a normal reagent to its inverse one.
+ *
+ * Arguments
+ * * purity - Overrides the purity used for determining the inverse purity.
+ */
+/datum/reagent/proc/get_inverse_purity(purity)
+	if(!inverse_chem || !inverse_chem_val)
+		return 0
+	if(!purity)
+		purity = src.purity
+	return min(1 - inverse_chem_val + purity + 0.01, 1) //Gives inverse reactions a 1% purity threshold for being 100% pure
+// AQ EDIT END
 
 /proc/pretty_string_from_reagent_list(list/reagent_list)
 	//Convert reagent list to a printable string for logging etc

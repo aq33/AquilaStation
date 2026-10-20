@@ -32,7 +32,7 @@
 
 /obj/effect/particle_effect/smoke/Initialize(mapload)
 	. = ..()
-	create_reagents(500)
+	create_reagents(500, REAGENT_HOLDER_INSTANT_REACT) // AQ EDIT - fermichem: reakcje w dymie od razu, jak w tg
 	START_PROCESSING(SSobj, src)
 
 
@@ -256,7 +256,7 @@
 /datum/effect_system/smoke_spread/chem/New()
 	..()
 	chemholder = new /obj()
-	var/datum/reagents/R = new/datum/reagents(500)
+	var/datum/reagents/R = new/datum/reagents(500, REAGENT_HOLDER_INSTANT_REACT) // AQ EDIT - fermichem
 	chemholder.reagents = R
 	R.my_atom = chemholder
 
