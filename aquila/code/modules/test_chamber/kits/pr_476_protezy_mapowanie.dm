@@ -1,8 +1,8 @@
-// aq33/AquilaStation#NNN - przedmiot jako proteza ręki (tg#91573), wypadające organy (tg#98023), SDSM-35 (tg#94761), cel mapowania stacji
+// aq33/AquilaStation#476 - przedmiot jako proteza ręki (tg#91573), wypadające organy (tg#98023), SDSM-35 (tg#94761), cel mapowania stacji
 
-/datum/test_chamber_kit/pr_NNN
-	name = "PR NNN: protezy z przedmiotów i organy"
-	pr = "aq33/AquilaStation#NNN"
+/datum/test_chamber_kit/pr_476
+	name = "PR 476: protezy z przedmiotów i organy"
+	pr = "aq33/AquilaStation#476"
 	description = "Weź też \"Króliki doświadczalne\". Pacjentowi utnij rękę (amputacja), potem operacja protezy: nacięcie, zaciski, rozwarcie i przyłóż gaśnicę albo pizzę. \
 	Bez szwu przedmiot odpada przy pierwszym ciosie; po kroku z nićmi/taśmą trzyma się. Piła łańcuchowa nadal daje starą zamontowaną piłę. \
 	Organy: zacznij manipulację organami na klatce, po piłowaniu postaw pacjenta i każ mu biegać - pojawi się alert i co jakiś czas wypadnie organ. Chodzenie i leżenie są bezpieczne. \
@@ -23,13 +23,13 @@
 	)
 
 /// Makes the user a traitor with a mapping objective in the chamber
-/datum/test_chamber_kit/pr_NNN_mapping
-	name = "PR NNN: cel mapowania stacji"
-	pr = "aq33/AquilaStation#NNN"
+/datum/test_chamber_kit/pr_476_mapping
+	name = "PR 476: cel mapowania stacji"
+	pr = "aq33/AquilaStation#476"
 	description = "Robi z ciebie zdrajcę z celem mapowania komory (trzeba być człowiekiem w komorze). Użyj skanera w ręce, żeby go zamocować; \
 	skan trwa 3 minuty, skaner co 20 s cicho piszczy. Odczepienie ręką przerywa skan. Po skanie skaner się rozpada, cel jest wykonany i dostajesz 1000 aquilosów."
 
-/datum/test_chamber_kit/pr_NNN_mapping/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_476_mapping/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/mob/living/carbon/human/H = user
 	if(!istype(H) || !H.mind)
 		to_chat(user, "<span class='warning'>Musisz być człowiekiem w komorze, żeby zostać zdrajcą.</span>")
