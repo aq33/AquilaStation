@@ -82,7 +82,7 @@
 	name = "Berry Juice"
 	description = "Pyszna mieszanka kilku rodzajów jagód."
 	color = "#863333" // rgb: 134, 51, 51
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "jagody"
 	glass_icon_state = "berryjuice"
 	glass_name = "glass of berry juice"
@@ -93,7 +93,7 @@
 	name = "Apple Juice"
 	description = "Słodki sok z jabłka, dla każdego, w każdym wieku."
 	color = "#ECFF56" // rgb: 236, 255, 86
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "jabłka"
 	glass_icon_state = "glass_orange"
 	glass_name = "glass of apple juice"
@@ -104,7 +104,7 @@
 	name = "Poison Berry Juice"
 	description = "Smaczny sok z różnych bardzo śmiercionośnych i trujących jagód."
 	color = "#863353" // rgb: 134, 51, 83
-	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BARTENDER_SERVING
+	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BARTENDER_SERVING | CHEMICAL_RNG_BOTANY
 	taste_description = "jagody"
 	glass_icon_state = "poisonberryjuice"
 	glass_name = "glass of berry juice"
@@ -120,7 +120,7 @@
 	name = "Watermelon Juice"
 	description = "Pyszny sok z arbuza."
 	color = "#863333" // rgb: 134, 51, 51
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "soczysty arbuz"
 	glass_icon_state = "glass_red"
 	glass_name = "glass of watermelon juice"
@@ -142,7 +142,7 @@
 	name = "Banana Juice"
 	description = "Surowa esencja banana. HONK"
 	color = "#863333" // rgb: 175, 175, 0
-	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST
+	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_RNG_BOTANY
 	taste_description = "banan"
 	glass_icon_state = "banana"
 	glass_name = "glass of banana juice"
@@ -158,7 +158,7 @@
 /datum/reagent/consumable/nothing
 	name = "Nothing"
 	description = "Absolutnie nic."
-	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST
+	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_RNG_BOTANY
 	taste_description = "nic"
 	glass_icon_state = "nothing"
 	glass_name = "nothing"
@@ -180,7 +180,7 @@
 	description = "Niektórzy mówią, że to najlepsze lekarstwo, ale najnowsze badania dowiodły, że to nieprawda."
 	metabolization_rate = INFINITY
 	color = "#FF4DD2"
-	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST
+	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_RNG_BOTANY
 	taste_description = "śmiech"
 
 
@@ -218,7 +218,7 @@
 	description = "Sok z ziemniaka. Bleh."
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "irlandzki smutek"
 	glass_icon_state = "glass_brown"
 	glass_name = "glass of potato juice"
@@ -229,7 +229,7 @@
 	name = "Grape Juice"
 	description = "Sok z kiści winogron. Gwarantowanie bezalkoholowy."
 	color = "#290029" // dark purple
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "napój winogronowy"
 	hydration_factor = 12 * REAGENTS_METABOLISM
 
@@ -992,7 +992,7 @@
 	name = "Parsnip Juice"
 	description = "Czemu..."
 	color = "#FFA500"
-	chem_flags = NONE
+	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "pasternak"
 	glass_name = "glass of parsnip juice"
 	hydration_factor = 10 * REAGENTS_METABOLISM

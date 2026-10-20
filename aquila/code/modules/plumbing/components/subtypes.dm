@@ -248,27 +248,3 @@
 	var/obj/machinery/plumbing/acclimator/myacclimator = parent
 	myacclimator.check_emptied()
 
-/// Hydroponics trays only take water from the pipes, straight into their water level.
-/datum/component/plumbing/fixture/hydroponics
-
-/datum/component/plumbing/fixture/hydroponics/Initialize(ducting_layer)
-	if(!istype(parent, /obj/machinery/hydroponics))
-		return COMPONENT_INCOMPATIBLE
-	return ..()
-
-/datum/component/plumbing/fixture/hydroponics/on_examine(atom/movable/source, mob/user, list/examine_list)
-	if(length(ducts))
-		examine_list += "<span class='notice'>Jest podłączona do rury i sama uzupełnia wodę.</span>"
-	else
-		examine_list += "<span class='notice'>Można ją podłączyć do rury z wodą na sąsiednim polu.</span>"
-
-/datum/component/plumbing/fixture/hydroponics/send_request(dir)
-	var/obj/machinery/hydroponics/tray = parent
-	var/wanted = min(tray.maxwater - tray.waterlevel, MACHINE_REAGENT_TRANSFER)
-	if(wanted < 1)
-		return
-	process_request(wanted, /datum/reagent/water, dir)
-	var/received = reagents.get_reagent_amount(/datum/reagent/water)
-	if(received)
-		tray.adjustWater(round(received))
-	reagents.clear_reagents()

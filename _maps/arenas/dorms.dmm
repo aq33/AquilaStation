@@ -36,7 +36,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
@@ -47,7 +47,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
@@ -59,12 +59,12 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/green,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
 "h" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plating,
 /area/tdome/arena)
 "i" = (
@@ -110,7 +110,7 @@
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
 /obj/item/cultivator,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
@@ -123,7 +123,7 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
@@ -133,7 +133,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
@@ -146,7 +146,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/tdome/arena)

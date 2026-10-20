@@ -720,7 +720,7 @@
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 1
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
 "bt" = (
@@ -2530,7 +2530,7 @@
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
 "fT" = (
-/obj/item/kirbyplants/random/plush,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
 "fX" = (
@@ -4191,7 +4191,7 @@
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6716,7 +6716,7 @@
 /turf/open/floor/durasteel/alt,
 /area/medical/medbay/lobby)
 "ub" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/ship/bar,
 /obj/effect/turf_decal/tile/ship/bar{
 	dir = 8
@@ -13713,7 +13713,7 @@
 /turf/open/floor/plasteel/techmaint,
 /area/science/xenobiology)
 "Qo" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/requests_console{
 	department = "Detective's Office";
 	departmentType = 5;
@@ -14238,7 +14238,7 @@
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	dir = 8
 	},

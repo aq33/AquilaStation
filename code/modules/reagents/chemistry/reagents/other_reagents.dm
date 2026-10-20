@@ -943,6 +943,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	chem_flags = CHEMICAL_BASIC_ELEMENT
 	taste_description = "chlor"
+	weed_kill = 0.3
 
 /datum/reagent/chlorine/on_mob_life(mob/living/carbon/M)
 	M.take_bodypart_damage(1*REM, 0, 0, 0)
@@ -957,6 +958,7 @@
 	chem_flags = CHEMICAL_BASIC_ELEMENT
 	taste_description = "kwas"
 	process_flags = ORGANIC | SYNTHETIC
+	weed_kill = 0.1
 
 /datum/reagent/fluorine/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(1*REM, 0)
@@ -978,6 +980,7 @@
 	color = "#832828" // rgb: 131, 40, 40
 	chem_flags = CHEMICAL_BASIC_ELEMENT
 	taste_description = "ocet"
+	weed_kill = 0.2
 
 /datum/reagent/lithium
 	name = "Lithium"
@@ -1611,14 +1614,14 @@
 
 /datum/reagent/plantnutriment/left4zednutriment
 	name = "Left 4 Zed"
-	description = "Niestabilny nawóz, przez który rośliny mutują częściej niż zwykle."
+	description = "Niestabilny nawóz, który skutecznie leczy rośliny, ale sprawia, że populacja szkodników eksploduje."
 	color = "#1A1E4D" // RBG: 26, 30, 77
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	tox_prob = 25
 
 /datum/reagent/plantnutriment/robustharvestnutriment
 	name = "Robust Harvest"
-	description = "Bardzo silny nawóz, który zapobiega mutacjom roślin."
+	description = "Bardzo silny nawóz, który zwiększa plony roślin."
 	color = "#9D9D00" // RBG: 157, 157, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	tox_prob = 15

@@ -29,8 +29,8 @@
 /area/ruin/unpowered)
 "fL" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/grass,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/grass,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -58,7 +58,7 @@
 /turf/open/floor/plating,
 /area/ruin/unpowered)
 "kJ" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
@@ -126,8 +126,8 @@
 /area/ruin/unpowered)
 "sa" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/potato,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/potato,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -139,7 +139,7 @@
 /area/ruin/unpowered)
 "sx" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/item/cultivator,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -235,8 +235,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered)
 "Bh" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/glowshroom,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -298,8 +298,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "FW" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/carrot,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/carrot,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -316,7 +316,7 @@
 /area/ruin/unpowered)
 "HD" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/item/cultivator,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -328,8 +328,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Jw" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/ambrosia,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -492,15 +492,15 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "Wr" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
-/obj/machinery/hydroponics/soil,
-/obj/item/plant_analyzer,
+/obj/item/plant_tray/soil,
+/obj/item/plant_scanner,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},

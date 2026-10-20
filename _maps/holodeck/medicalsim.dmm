@@ -275,9 +275,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -676,9 +674,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -701,9 +697,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-08"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},

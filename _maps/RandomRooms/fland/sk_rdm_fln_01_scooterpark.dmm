@@ -210,7 +210,7 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "R" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},

@@ -2177,21 +2177,19 @@
 	desc = "Any entrepreneuring botanist's dream. Contains fourteen different seeds, including three replica-pod seeds and two mystery seeds!"
 	cost = 1000
 	access_budget = ACCESS_HYDROPONICS
-	contains = list(/obj/item/seeds/nettle,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/plump,
-					/obj/item/seeds/liberty,
-					/obj/item/seeds/amanita,
-					/obj/item/seeds/reishi,
-					/obj/item/seeds/banana,
-					/obj/item/seeds/bamboo,
-					/obj/item/seeds/eggplant/eggy,
-					/obj/item/seeds/rainbow_bunch,
-					/obj/item/seeds/rainbow_bunch,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random)
+	contains = list(/obj/item/plant_seeds/preset/nettle,
+					/obj/item/plant_seeds/preset/diona_pod,
+					/obj/item/plant_seeds/preset/diona_pod,
+					/obj/item/plant_seeds/preset/diona_pod,
+					/obj/item/plant_seeds/preset/plump,
+					/obj/item/plant_seeds/preset/liberty,
+					/obj/item/plant_seeds/preset/amanita,
+					/obj/item/plant_seeds/preset/reishi,
+					/obj/item/plant_seeds/preset/banana,
+					/obj/item/plant_seeds/preset/bamboo,
+					/obj/item/plant_seeds/preset/eggy_plant,
+					/obj/item/plant_seeds/preset/rainbow,
+					/obj/item/plant_seeds/preset/rainbow)
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2250,7 +2248,7 @@
 					/obj/item/reagent_containers/glass/bottle/ammonia,
 					/obj/item/hatchet,
 					/obj/item/cultivator,
-					/obj/item/plant_analyzer,
+					/obj/item/plant_scanner,
 					/obj/item/clothing/gloves/botanic_leather,
 					/obj/item/clothing/suit/apron,
 					/obj/item/storage/box/disks_plantgene)
@@ -2350,11 +2348,11 @@
 	name = "Potted Plants Crate"
 	desc = "Spruce up the station with these lovely plants! Contains a random assortment of five potted plants from Nanotrasen's potted plant research division. Warranty void if thrown."
 	cost = 550
-	contains = list(/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random)
+	contains = list(/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random)
 	crate_name = "potted plants crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -2362,20 +2360,20 @@
 	name = "Seeds Crate"
 	desc = "Big things have small beginnings. Contains fourteen different seeds."
 	cost = 800
-	contains = list(/obj/item/seeds/chili,
-					/obj/item/seeds/cotton,
-					/obj/item/seeds/berry,
-					/obj/item/seeds/corn,
-					/obj/item/seeds/eggplant,
-					/obj/item/seeds/tomato,
-					/obj/item/seeds/soya,
-					/obj/item/seeds/wheat,
-					/obj/item/seeds/wheat/rice,
-					/obj/item/seeds/carrot,
-					/obj/item/seeds/sunflower,
-					/obj/item/seeds/chanter,
-					/obj/item/seeds/potato,
-					/obj/item/seeds/sugarcane)
+	contains = list(/obj/item/plant_seeds/preset/chili,
+					/obj/item/plant_seeds/preset/cotton,
+					/obj/item/plant_seeds/preset/berry,
+					/obj/item/plant_seeds/preset/corn,
+					/obj/item/plant_seeds/preset/eggplant,
+					/obj/item/plant_seeds/preset/tomato,
+					/obj/item/plant_seeds/preset/soybean,
+					/obj/item/plant_seeds/preset/wheat,
+					/obj/item/plant_seeds/preset/rice,
+					/obj/item/plant_seeds/preset/carrot,
+					/obj/item/plant_seeds/preset/sunflower,
+					/obj/item/plant_seeds/preset/chanterelle,
+					/obj/item/plant_seeds/preset/potato,
+					/obj/item/plant_seeds/preset/sugarcane)
 	crate_name = "seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 

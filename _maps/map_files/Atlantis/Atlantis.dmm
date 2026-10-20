@@ -9342,7 +9342,7 @@
 /area/crew_quarters/heads/hor)
 "hSF" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/monotile/dark,
 /area/security/prison)
 "hSG" = (
@@ -11926,7 +11926,7 @@
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "jYl" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
 /area/security/prison)
@@ -12867,7 +12867,7 @@
 /turf/open/floor/monotile/dark,
 /area/security/brig)
 "kMW" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/tile/ship/half/red{
 	dir = 8
 	},
@@ -16305,8 +16305,8 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
 "ntB" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/plant_analyzer,
+/obj/item/plant_tray,
+/obj/item/plant_scanner,
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/turf_decal/tile/ship/half/red,
 /obj/machinery/camera/autoname,
@@ -17036,7 +17036,7 @@
 /area/hallway/secondary/exit)
 "oaq" = (
 /obj/effect/turf_decal/tile/ship/half/red,
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/security/prison)
@@ -23461,11 +23461,11 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "twW" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/ambrosia,
 /obj/item/cultivator,
-/obj/item/seeds/carrot,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/glowshroom,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/effect/turf_decal/tile/ship/half/red,
 /obj/structure/cable,
@@ -28487,8 +28487,8 @@
 /turf/open/floor/wood,
 /area/science/xenobiology)
 "xFx" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/ambrosia,
 /obj/item/cultivator,
 /obj/effect/turf_decal/tile/ship/red{
 	dir = 8

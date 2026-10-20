@@ -276,7 +276,7 @@
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "be" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "bf" = (

@@ -117,6 +117,26 @@ h1.alert, h2.alert		{color: #000000;}
 
 .deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
 
+.plant_scan {
+  display: block;
+  color: white;
+  text-align: center;
+  background-color: black;
+  border: 2px solid rgb(67, 224, 35);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 20px;
+}
+.plant_sub {
+  display: grid;
+  color: white;
+  text-align: center;
+  background-color: black;
+  border: 2px solid rgb(224, 35, 224);
+  border-radius: 10px;
+  padding: 1px;
+  margin: 1px 2px;
+}
 .brass					{color: #BE8700;}
 .heavy_brass			{color: #BE8700; font-weight: bold; font-style: italic;}
 .large_brass			{color: #BE8700; font-size: 3;}

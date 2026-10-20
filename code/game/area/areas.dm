@@ -204,6 +204,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
   */
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
+	if(area_flags & MAINT_FLORA)
+		SSbotany.generate_maint_flora(src)
 
 /area/proc/RunGeneration()
 	if(map_generator)

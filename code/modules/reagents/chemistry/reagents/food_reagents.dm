@@ -199,6 +199,7 @@
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	metabolization_rate = 2 * REAGENTS_METABOLISM
 	overdose_threshold = 100 // Hyperglycaemic shock
+	weed_kill = -0.1
 	taste_description = "słodycz"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)

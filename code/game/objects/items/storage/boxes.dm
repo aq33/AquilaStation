@@ -142,7 +142,7 @@
 
 /obj/item/storage/box/disks_plantgene/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/disk/plantgene(src)
+		new /obj/item/disk/plant_disk(src)
 
 /obj/item/storage/box/disks_nanite
 	name = "nanite program disks box"
@@ -1158,7 +1158,7 @@
 	new /obj/item/food/grown/wheat(src)
 	new /obj/item/food/grown/cocoapod(src)
 	new /obj/item/reagent_containers/honeycomb(src)
-	new /obj/item/seeds/poppy(src)
+	new /obj/item/plant_seeds/preset/poppy(src)
 
 /obj/item/storage/box/ingredients/carnivore
 	theme_name = "carnivore"

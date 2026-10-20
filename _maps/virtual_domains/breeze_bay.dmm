@@ -47,7 +47,7 @@
 /turf/open/indestructible/hotelwood,
 /area/virtual_domain/safehouse)
 "l" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/indestructible/hotelwood,
 /area/virtual_domain/safehouse)
 "m" = (

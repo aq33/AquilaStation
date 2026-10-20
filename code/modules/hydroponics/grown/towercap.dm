@@ -1,37 +1,5 @@
-/obj/item/seeds/tower
-	name = "pack of tower-cap mycelium"
-	desc = "This mycelium grows into tower-cap mushrooms."
-	icon_state = "mycelium-tower"
-	species = "towercap"
-	plantname = "Tower Caps"
-	product = /obj/item/grown/log
-	lifespan = 80
-	endurance = 50
-	maturation = 15
-	production = 1
-	yield = 5
-	potency = 50
-	growthstages = 3
-	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	icon_dead = "towercap-dead"
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
-	mutatelist = list(/obj/item/seeds/tower/steel)
-
-/obj/item/seeds/tower/steel
-	name = "pack of steel-cap mycelium"
-	desc = "This mycelium grows into steel logs."
-	icon_state = "mycelium-steelcap"
-	species = "steelcap"
-	plantname = "Steel Caps"
-	product = /obj/item/grown/log/steel
-	mutatelist = list()
-	rarity = 20
-
-
-
-
 /obj/item/grown/log
-	seed = /obj/item/seeds/tower
+	seed = /obj/item/plant_seeds/preset/tower
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
 	icon_state = "logs"
@@ -51,9 +19,7 @@
 /obj/item/grown/log/attackby(obj/item/W, mob/user, params)
 	if(W.is_sharp())
 		user.show_message("<span class='notice'>Robisz z [src]: [plank_name]!</span>", MSG_VISUAL)
-		var/seed_modifier = 0
-		if(seed)
-			seed_modifier = round(seed.potency / 25)
+		var/seed_modifier = get_fruit_trait_power(src)
 		var/obj/item/stack/plank = new plank_type(user.loc, 1 + seed_modifier)
 		var/old_plank_amount = plank.amount
 		for(var/obj/item/stack/ST in user.loc)
@@ -87,7 +53,7 @@
 	desc = "TIMMMMM-BERRRRRRRRRRR!"
 
 /obj/item/grown/log/steel
-	seed = /obj/item/seeds/tower/steel
+	seed = /obj/item/plant_seeds/preset/steel
 	name = "steel-cap log"
 	desc = "It's made of metal."
 	icon_state = "steellogs"
@@ -97,25 +63,9 @@
 
 /obj/item/grown/log/steel/CheckAccepted(obj/item/I)
 	return FALSE
-/obj/item/seeds/bamboo
-	name = "pack of bamboo seeds"
-	desc = "Plant known for their flexible and resistant logs."
-	icon_state = "seed-bamboo"
-	species = "bamboo"
-	plantname = "Bamboo"
-	product = /obj/item/grown/log/bamboo
-	lifespan = 80
-	endurance = 70
-	maturation = 15
-	production = 2
-	yield = 5
-	potency = 50
-	growthstages = 3
-	growing_icon = 'icons/obj/hydroponics/growing.dmi'
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
-
+//bamboo
 /obj/item/grown/log/bamboo
-	seed = /obj/item/seeds/bamboo
+	seed = /obj/item/plant_seeds/preset/bamboo
 	name = "bamboo log"
 	desc = "A long and resistant bamboo log."
 	icon_state = "bamboo"

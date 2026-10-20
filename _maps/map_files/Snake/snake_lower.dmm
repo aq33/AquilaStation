@@ -2129,7 +2129,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "eP" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/turf_decal/siding/wideplating/terracotta,
 /obj/effect/turf_decal/tile/ship/green,
 /obj/effect/turf_decal/tile/ship/green{
@@ -7628,7 +7628,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "ux" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/extinguisher_cabinet/west,
 /turf/open/floor/grass,
 /area/hydroponics)
@@ -7689,7 +7689,7 @@
 /turf/open/floor/plating,
 /area/library)
 "uL" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -9993,7 +9993,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "CA" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light_switch/west,
 /obj/machinery/light{
 	dir = 8
@@ -11458,7 +11458,7 @@
 /turf/open/floor/plasteel,
 /area/science/robotics)
 "HM" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/firealarm/directional/west,
 /turf/open/floor/grass,
 /area/hydroponics)
@@ -12106,7 +12106,7 @@
 /area/bridge/cic)
 "Kb" = (
 /obj/structure/table/glass,
-/obj/machinery/plantgenes{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/effect/turf_decal/tile/ship/full/green,
@@ -15898,7 +15898,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "WW" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "WX" = (

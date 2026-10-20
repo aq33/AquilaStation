@@ -138,7 +138,7 @@
 		return
 	var/obj/item/food/grown/G = AM
 	if(G.distill_reagent)
-		var/amount = G.seed.potency * 0.25
+		var/amount = get_fruit_trait_power(G) * 12.5
 		reagents.add_reagent(G.distill_reagent, amount)
 		use_power(active_power_usage * amount)
 		qdel(G)

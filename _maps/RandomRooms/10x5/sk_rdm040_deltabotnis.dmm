@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -22,11 +22,11 @@
 /area/template_noop)
 "e" = (
 /obj/structure/table,
-/obj/item/seeds/poppy/lily{
+/obj/item/plant_seeds/preset/lily{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/seeds/poppy/geranium,
+/obj/item/plant_seeds/preset/geranium,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/food/grown/wheat,
 /obj/item/food/grown/corn,
@@ -35,14 +35,14 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "f" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/tea,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/tea,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "g" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
@@ -61,8 +61,8 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "i" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/poppy,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/poppy,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -98,14 +98,14 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "n" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/template_noop)
 "o" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/harebell,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/harebell,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -126,7 +126,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "q" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/machinery/status_display/evac{
 	pixel_y = -32
 	},
@@ -147,8 +147,8 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "u" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/tower,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/tower,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/delivery,

@@ -144,7 +144,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
 "aq" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "ar" = (
@@ -697,9 +697,9 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/apothecary)
 "bB" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/item/cultivator,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_seeds/preset/ambrosia,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
 "bC" = (
@@ -1061,7 +1061,7 @@
 "cn" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
 /turf/open/floor/grass,
 /area/hydroponics)
 "co" = (
@@ -1360,7 +1360,7 @@
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/quartermaster/bitrunning/den)
 "cU" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -3725,7 +3725,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "kD" = (
@@ -5492,10 +5492,10 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
 "qL" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/ambrosia,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
 "qP" = (
@@ -5978,7 +5978,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/science)
 "sy" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/structure/sign/departments/minsky/supply/hydroponics{
 	pixel_y = 32
 	},
@@ -9932,7 +9932,7 @@
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "FE" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/item/radio/intercom/directional/south,
 /obj/structure/extinguisher_cabinet/west,
 /turf/open/floor/carpet/ship,
@@ -10344,7 +10344,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/chemistry)
 "Hj" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
 	},
@@ -10539,7 +10539,7 @@
 	pixel_x = 32;
 	pixel_y = -6
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "HT" = (
@@ -10583,7 +10583,7 @@
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
 "HW" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/newscaster/directional/west,
 /turf/open/floor/carpet/ship,
@@ -12210,7 +12210,7 @@
 /area/medical/chemistry)
 "No" = (
 /obj/machinery/airalarm/directional/north,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "Np" = (
@@ -12658,7 +12658,7 @@
 	dir = 9
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "Pb" = (
@@ -13740,7 +13740,7 @@
 /area/bridge/meeting_room/council)
 "SS" = (
 /obj/structure/table/wood,
-/obj/machinery/plantgenes{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/machinery/status_display/evac/north,
@@ -14473,7 +14473,7 @@
 "UX" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "UZ" = (
@@ -15369,7 +15369,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "Ya" = (
@@ -15510,7 +15510,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/grass,
 /area/hydroponics)
 "YQ" = (

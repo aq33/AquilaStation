@@ -17,11 +17,11 @@
 
 /obj/item/ammo_casing/energy/flora/yield
 	projectile_type = /obj/item/projectile/energy/florayield
-	select_name = "yield"
+	select_name = "plewienie i szkodniki"
 
 /obj/item/ammo_casing/energy/flora/mut
 	projectile_type = /obj/item/projectile/energy/floramut
-	select_name = "mutation"
+	select_name = "pobudzenie pszczół"
 
 /obj/item/ammo_casing/energy/temp
 	projectile_type = /obj/item/projectile/temp

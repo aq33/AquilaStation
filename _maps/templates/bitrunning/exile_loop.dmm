@@ -31,7 +31,7 @@
 /turf/open/floor/circuit/green,
 /area/virtual_domain/exile_loop)
 "h" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/circuit/green,
 /area/virtual_domain/exile_loop)
 "i" = (

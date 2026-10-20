@@ -6903,7 +6903,7 @@
 /turf/closed/wall/steel,
 /area/medical/surgery)
 "gIL" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
 "gIM" = (
@@ -9424,7 +9424,7 @@
 /area/crew_quarters/cafeteria)
 "jqW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/plantgenes{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/item/book/manual/hydroponics_pod_people,
@@ -10336,7 +10336,7 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "kkF" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
@@ -10791,36 +10791,36 @@
 	pixel_y = 28
 	},
 /obj/structure/closet/crate,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/tomato,
-/obj/item/seeds/tomato,
-/obj/item/seeds/tea,
-/obj/item/seeds/tea,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/onion,
-/obj/item/seeds/onion,
-/obj/item/seeds/lime,
-/obj/item/seeds/lime,
-/obj/item/seeds/nettle,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/obj/item/seeds/grass,
-/obj/item/seeds/grass,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/cotton,
-/obj/item/seeds/cotton,
-/obj/item/seeds/carrot,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/apple,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/watermelon,
+/obj/item/plant_seeds/preset/watermelon,
+/obj/item/plant_seeds/preset/wheat,
+/obj/item/plant_seeds/preset/wheat,
+/obj/item/plant_seeds/preset/tomato,
+/obj/item/plant_seeds/preset/tomato,
+/obj/item/plant_seeds/preset/tea,
+/obj/item/plant_seeds/preset/tea,
+/obj/item/plant_seeds/preset/potato,
+/obj/item/plant_seeds/preset/potato,
+/obj/item/plant_seeds/preset/pumpkin,
+/obj/item/plant_seeds/preset/pumpkin,
+/obj/item/plant_seeds/preset/onion,
+/obj/item/plant_seeds/preset/onion,
+/obj/item/plant_seeds/preset/lime,
+/obj/item/plant_seeds/preset/lime,
+/obj/item/plant_seeds/preset/nettle,
+/obj/item/plant_seeds/preset/grape,
+/obj/item/plant_seeds/preset/grape,
+/obj/item/plant_seeds/preset/grass,
+/obj/item/plant_seeds/preset/grass,
+/obj/item/plant_seeds/preset/glowshroom,
+/obj/item/plant_seeds/preset/cotton,
+/obj/item/plant_seeds/preset/cotton,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/cabbage,
+/obj/item/plant_seeds/preset/apple,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
 "kEP" = (
@@ -19523,7 +19523,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/miningdock)
 "tTr" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/monotile/dark,
 /area/hydroponics)
 "tUf" = (
@@ -20221,7 +20221,7 @@
 	pixel_x = 8;
 	pixel_y = 1
 	},
-/obj/item/seeds/coffee/robusta,
+/obj/item/plant_seeds/preset/coffee,
 /turf/open/floor/engine,
 /area/bridge/cic)
 "uAI" = (
@@ -21166,7 +21166,7 @@
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "vzE" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
@@ -22295,7 +22295,7 @@
 /turf/open/floor/monotile/steel,
 /area/security)
 "wzQ" = (
-/obj/item/seeds/bamboo,
+/obj/item/plant_seeds/preset/bamboo,
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
@@ -22346,7 +22346,7 @@
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "wDv" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/monotile/dark,
 /area/hydroponics)
 "wDH" = (

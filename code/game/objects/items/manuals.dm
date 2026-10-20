@@ -456,6 +456,22 @@
 	title = "Chemical Factories Without Narcotics"
 	page_link = "Guide_to_plumbing"
 
+
+/obj/item/book/manual/wiki/hydroponics
+	name = "Botany Field Guide"
+	icon_state ="botany"
+	author = "Yamato"
+	title = "Botany Field Guide"
+	//TODO: Temporary link - Racc
+	page_link = "User:Racc-Off/botany"
+
+/obj/item/book/manual/wiki/hydroponics/tutorial
+	color = "#f00" //Make it easier for mappers to identify
+
+/obj/item/book/manual/wiki/hydroponics/tutorial/Initialize(mapload)
+	. = ..()
+	color = "#fff"
+	new /obj/item/sticker/sticky_note/tutorial/book(src)
 /obj/item/book/manual/wiki/xenoarchaeology
 	name = "Xenoarchaeology Fieldguide"
 	icon_state ="xenoarchaeology"

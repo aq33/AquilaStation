@@ -9,8 +9,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 9;
 	pixel_x = 6
 	},
@@ -82,8 +81,7 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "ak" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 18;
 	pixel_x = -8
 	},
@@ -197,8 +195,7 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "aA" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 3;
 	pixel_x = -6
 	},
@@ -245,20 +242,17 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "aI" = (
-/obj/item/kirbyplants{
-	icon_state = "applebush";
+/obj/item/plant_tray/pot/random{
 	pixel_x = 7
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-17";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 2;
 	pixel_x = -8
 	},
 /turf/open/floor/wood,
 /area/virtual_domain)
 "aJ" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 9;
 	pixel_x = 6
 	},
@@ -330,8 +324,7 @@
 /turf/closed/wall/mineral/wood,
 /area/virtual_domain/fullbright)
 "aV" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-24";
+/obj/item/plant_tray/pot/random{
 	pixel_x = 7;
 	pixel_y = 10
 	},
@@ -446,8 +439,7 @@
 /turf/open/floor/plasteel/dark,
 /area/virtual_domain)
 "bm" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 18;
 	pixel_x = -8
 	},
@@ -1144,8 +1136,7 @@
 /turf/open/floor/plasteel/dark,
 /area/virtual_domain)
 "cW" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 4;
 	pixel_x = 8
 	},
@@ -1188,8 +1179,7 @@
 /area/virtual_domain)
 "dc" = (
 /obj/effect/turf_decal/siding/wood,
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 6
 	},
 /obj/machinery/light{
@@ -1422,8 +1412,7 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "dA" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 5
 	},
 /turf/open/floor/wood,
@@ -2017,7 +2006,7 @@
 	pixel_y = 19;
 	pixel_x = 10
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plating/beach/sand,
 /area/virtual_domain/fullbright)
 "fe" = (
@@ -3665,8 +3654,7 @@
 /obj/structure/railing{
 	dir = 5
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-08";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 3;
 	pixel_x = -2
 	},
