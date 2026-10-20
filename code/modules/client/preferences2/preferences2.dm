@@ -98,7 +98,11 @@
 	default_slot	= sanitize_integer(default_slot, TRUE, max_usable_slots, initial(default_slot))
 	toggles			= sanitize_integer(toggles, FALSE, INFINITY, initial(toggles)) // yes
 	toggles2		= sanitize_integer(toggles2, FALSE, INFINITY, initial(toggles2))
-	clientfps		= sanitize_integer(clientfps, FALSE, 1000, FALSE)
+	// AQ EDIT START - -1 = zalecane FPS; stare domyślne 40 z NSV13 przechodzi na zalecane
+	clientfps		= sanitize_integer(clientfps, -1, 1000, -1)
+	if(clientfps == 40)
+		clientfps = -1
+	// AQ EDIT END
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tesla_volume	= sanitize_integer(tesla_volume, 0, 100, initial(tesla_volume))
 	mod_select		= sanitize_inlist(mod_select, list(MIDDLE_CLICK, ALT_CLICK), initial(mod_select))

@@ -66,6 +66,7 @@
 #include "code\controllers\subsystem\screentips.dm"
 #include "code\controllers\subsystem\stock_market.dm"
 #include "code\controllers\subsystem\timer.dm"
+#include "code\controllers\subsystem\verb_manager.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\datum\wires\wires_jukebox.dm"
 #include "code\datums\actions\spell.dm"

@@ -334,8 +334,8 @@
 	// Pass act type messages to ui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		process_status()
-		if(src_object.ui_act(copytext(type, 5), payload, src, state))
-			SStgui.update_uis(src_object)
+		// AQ EDIT - port tgstation/tgstation#65589: przy przeciążonym ticku akcja z TGUI czeka na następny tick
+		DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(on_act_message), copytext(type, 5), payload, state))
 		return FALSE
 	switch(type)
 		if("ready")
@@ -358,3 +358,10 @@
 			LAZYINITLIST(src_object.tgui_shared_states)
 			src_object.tgui_shared_states[href_list["key"]] = href_list["value"]
 			SStgui.update_uis(src_object)
+
+/// AQ EDIT - akcja z TGUI, wołana od razu albo w następnym ticku przez DEFAULT_QUEUE_OR_CALL_VERB()
+/datum/tgui/proc/on_act_message(act_type, list/payload, datum/ui_state/act_state)
+	if(QDELETED(src) || QDELETED(src_object))
+		return
+	if(src_object.ui_act(act_type, payload, src, act_state))
+		SStgui.update_uis(src_object)

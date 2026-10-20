@@ -537,6 +537,12 @@
 	set name = "Examine"
 	set category = "IC"
 
+	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), A)) // AQ EDIT - kolejka verbów z tg
+
+/// Właściwe oględziny; wołane od razu albo w następnym ticku, patrz DEFAULT_QUEUE_OR_CALL_VERB()
+/mob/proc/run_examinate(atom/A)
+	if(QDELETED(A))
+		return
 	if(isturf(A) && !(sight & SEE_TURFS) && !(A in view(client ? client.view : world.view, src)))
 		// shift-click catcher may issue examinate() calls for out-of-sight turfs
 		return

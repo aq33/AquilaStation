@@ -1,5 +1,10 @@
 /datum/preferences
-	clientfps = 60
+	/// -1 = zalecane (RECOMMENDED_CLIENT_FPS), 0 = zgodnie z tickiem serwera
+	clientfps = -1
+
+/// FPS, które faktycznie dostaje klient
+/datum/preferences/proc/get_client_fps()
+	return clientfps < 0 ? RECOMMENDED_CLIENT_FPS : clientfps
 
 /// Body sizes the active character can pick. "Polak" also needs its loadout unlock.
 /datum/preferences/proc/get_body_size_choices()

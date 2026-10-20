@@ -206,3 +206,6 @@
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9
+
+// AQ EDIT - FPS klienta dla preferencji "zalecane" (zapisane jako -1), jak RECOMMENDED_FPS w tg
+#define RECOMMENDED_CLIENT_FPS 100
