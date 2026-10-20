@@ -65,3 +65,7 @@
 
 /obj/item/ammo_casing/magic/wipe
 	projectile_type = /obj/item/projectile/magic/wipe
+
+//debug item (aquila, xenoarch z Bee)
+/obj/item/ammo_casing/magic/nuclear
+	projectile_type = /obj/item/projectile/energy/nuclear_particle

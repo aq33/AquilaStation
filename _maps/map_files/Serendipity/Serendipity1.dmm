@@ -26,15 +26,6 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
-"ad" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/machinery/xenoartifact_inbox,
-/obj/item/xenoartifact,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -900,16 +891,6 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"bT" = (
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/structure/table/glass/plasma,
-/obj/item/xenoartifact_labeler,
-/obj/item/xenoartifact_label,
-/obj/item/clothing/gloves/artifact_pinchers,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "bU" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/ship/blue{
@@ -1059,6 +1040,12 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
+"ck" = (
+/obj/structure/table/glass/plasma,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/engine/light,
+/area/ai_monitored/nuke_storage)
 "cl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1486,6 +1473,18 @@
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
+"dg" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 4
+	},
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 4
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dh" = (
 /obj/structure/table,
 /obj/item/paper/pamphlet/gateway,
@@ -1528,6 +1527,14 @@
 "dm" = (
 /turf/closed/wall/r_wall/ship,
 /area/maintenance/department/crew_quarters/dorms)
+"dn" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "do" = (
 /turf/closed/wall/ship,
 /area/ai_monitored/turret_protected/aisat_interior)
@@ -1584,6 +1591,28 @@
 	},
 /turf/open/floor/engine/light,
 /area/ai_monitored/nuke_storage)
+"dw" = (
+/obj/structure/table/glass/plasma,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/item/relic,
+/obj/item/paper_bin,
+/obj/item/binoculars,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"dx" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/clothing/gloves/artifact_pinchers,
+/obj/item/sticky_note_pile,
+/obj/item/xenoartifact,
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1602,6 +1631,17 @@
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"dC" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/clothing/gloves/artifact_pinchers,
+/obj/item/sticky_note_pile,
+/obj/item/xenoartifact,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dD" = (
 /obj/structure/cable/multiz,
 /obj/machinery/navbeacon{
@@ -1624,6 +1664,17 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/brig)
+"dF" = (
+/obj/structure/table/glass/plasma,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/binoculars,
+/obj/item/clothing/glasses/welding,
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dG" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/xo)
@@ -1646,6 +1697,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
+"dJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dK" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -1677,6 +1742,12 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
+"dN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dO" = (
 /obj/machinery/stasis{
 	id_tag = "aq_vitals_serendipity1_114_158"
@@ -1699,11 +1770,51 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"dQ" = (
+/obj/structure/cable,
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"dR" = (
+/obj/structure/table/glass/plasma,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/sheet/iron/twenty,
+/obj/item/stack/sheet/mineral/copper/five,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 3
+	},
+/obj/item/clothing/gloves/color/purple,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
+"dS" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dT" = (
 /obj/structure/cable,
 /obj/machinery/newscaster/directional/north,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"dU" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Research Director's Desk";
+	departmentType = 5;
+	name = "Research Director RC";
+	pixel_y = -30;
+	receive_ore_updates = 1
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dV" = (
 /obj/structure/guncase{
 	capacity = 12;
@@ -1718,6 +1829,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"dX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/lab)
 "dY" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/costume,
@@ -2362,18 +2483,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/gateway)
-"gB" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 4
-	},
-/obj/machinery/computer/xenoartifact_console{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/science/lab)
 "gC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
@@ -15776,12 +15885,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/chemistry)
-"ck" = (
-/obj/structure/table/glass/plasma,
-/obj/item/circuitboard/machine/protolathe,
-/obj/item/circuitboard/machine/circuit_imprinter,
-/turf/open/floor/engine/light,
-/area/ai_monitored/nuke_storage)
 
 (1,1,1) = {"
 zP
@@ -45992,8 +46095,8 @@ MP
 EX
 mJ
 By
-ad
-gB
+dn
+dg
 aA
 Pk
 MZ
@@ -46764,7 +46867,7 @@ OW
 sQ
 jd
 Us
-bT
+dx
 SI
 Ag
 Gd
@@ -47792,7 +47895,7 @@ Tn
 Tn
 EJ
 mZ
-PP
+dS
 aA
 eV
 aA
@@ -48047,9 +48150,9 @@ Vq
 KZ
 cg
 sQ
-qg
+dw
 pY
-cS
+dU
 aA
 aA
 aA
@@ -48304,7 +48407,7 @@ SD
 KZ
 Ht
 aH
-RV
+dR
 Us
 Ij
 fe
@@ -48562,7 +48665,7 @@ KZ
 Hd
 sQ
 sq
-Us
+dX
 Ij
 nB
 Pu

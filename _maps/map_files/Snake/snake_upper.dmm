@@ -2220,17 +2220,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/science/explab)
-"fu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/power/apc/auto_name/west,
-/obj/structure/cable,
-/obj/machinery/computer/xenoartifact_console{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/science/explab)
 "fv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2648,20 +2637,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
-"gw" = (
-/obj/machinery/airalarm/directional/east,
-/obj/structure/table/glass,
-/obj/item/xenoartifact_labeler{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/item/clothing/gloves/artifact_pinchers{
-	pixel_y = 5;
-	pixel_x = 9
-	},
-/obj/item/book/manual/wiki/xenoarchaeology,
-/turf/open/floor/plating,
-/area/science/explab)
 "gx" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 4
@@ -2672,14 +2647,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
-"gy" = (
-/obj/machinery/power/apc/auto_name/west,
-/obj/structure/cable,
-/obj/machinery/computer/xenoartifact_console{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/science/explab)
 "gz" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/trunk/multiz/down,
@@ -2689,10 +2656,6 @@
 /obj/machinery/computer/rdconsole/experiment{
 	dir = 8
 	},
-/turf/open/floor/plating,
-/area/science/explab)
-"gB" = (
-/obj/machinery/xenoartifact_inbox,
 /turf/open/floor/plating,
 /area/science/explab)
 "gC" = (
@@ -4356,6 +4319,35 @@
 /obj/machinery/atmospherics/components/unary/tank/nitrogen,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
+"kB" = (
+/obj/machinery/camera/motion{
+	c_tag = "Vault";
+	dir = 8
+	},
+/obj/item/documents/nanotrasen,
+/obj/item/grenade/clusterbuster/smoke,
+/obj/item/fakeartefact,
+/obj/item/book/random,
+/obj/item/book/random,
+/obj/item/book/random,
+/obj/structure/safe,
+/obj/item/bikehorn/golden,
+/obj/item/radio/intercom/directional/south,
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/plasteel/dark,
+/area/security/nuke_storage)
+"kC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc/auto_name/west,
+/obj/structure/cable,
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/science/explab)
 "kD" = (
 /obj/effect/turf_decal/tile/ship/orange{
 	dir = 1
@@ -4378,6 +4370,10 @@
 "kF" = (
 /turf/open/openspace/airless,
 /area/science/test_area)
+"kG" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
 "kH" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/ridged/steel,
@@ -4394,6 +4390,21 @@
 /obj/structure/cable/multiz,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"kL" = (
+/obj/machinery/airalarm/directional/east,
+/obj/structure/table/glass,
+/obj/item/xenoarchaeology_labeler{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/clothing/gloves/artifact_pinchers{
+	pixel_y = 5;
+	pixel_x = 9
+	},
+/obj/item/book/manual/wiki/xenoarchaeology,
+/obj/item/sticky_note_pile,
+/turf/open/floor/plating,
+/area/science/explab)
 "kM" = (
 /obj/effect/turf_decal/tile/ship/red{
 	dir = 8
@@ -4425,6 +4436,36 @@
 /obj/effect/turf_decal/tile/ship/purple,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"kO" = (
+/obj/machinery/firealarm/directional/west,
+/obj/structure/table/glass,
+/obj/item/nanite_remote{
+	pixel_x = -8
+	},
+/obj/item/nanite_scanner{
+	pixel_y = 8
+	},
+/obj/item/storage/box/disks_nanite{
+	pixel_x = 8
+	},
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/plating,
+/area/science/explab)
+"kP" = (
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/plating,
+/area/science/explab)
+"kQ" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/plating,
+/area/science/explab)
+"kR" = (
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/plating,
+/area/science/explab)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -11072,24 +11113,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"kB" = (
-/obj/machinery/camera/motion{
-	c_tag = "Vault";
-	dir = 8
-	},
-/obj/item/documents/nanotrasen,
-/obj/item/grenade/clusterbuster/smoke,
-/obj/item/fakeartefact,
-/obj/item/book/random,
-/obj/item/book/random,
-/obj/item/book/random,
-/obj/structure/safe,
-/obj/item/bikehorn/golden,
-/obj/item/radio/intercom/directional/south,
-/obj/item/circuitboard/machine/protolathe,
-/obj/item/circuitboard/machine/circuit_imprinter,
-/turf/open/floor/plasteel/dark,
-/area/security/nuke_storage)
 
 (1,1,1) = {"
 zQ
@@ -40770,9 +40793,9 @@ hb
 gL
 Qx
 gd
-gs
-fu
-gB
+kO
+kC
+kG
 Qx
 le
 aM
@@ -41027,9 +41050,9 @@ fi
 gI
 Qx
 gg
-fe
+kR
 fv
-ga
+kP
 Qx
 le
 aM
@@ -41543,7 +41566,7 @@ Qx
 gj
 fe
 fz
-fe
+kQ
 Qx
 TB
 aM
@@ -41798,7 +41821,7 @@ gH
 fR
 Qx
 gl
-gw
+kL
 fB
 gC
 Qx

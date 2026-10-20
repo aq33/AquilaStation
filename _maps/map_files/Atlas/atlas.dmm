@@ -2325,6 +2325,12 @@
 /obj/structure/extinguisher_cabinet/north,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"eg" = (
+/obj/machinery/computer/xenoarchaeology_console{
+	dir = 8
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/science/explab)
 "eh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4113,6 +4119,10 @@
 /obj/item/stock_parts/manipulator,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"hE" = (
+/obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
+/turf/open/floor/circuit/orange,
+/area/science/explab)
 "hG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrous_input{
 	dir = 1
@@ -4161,6 +4171,22 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/shield_generator)
+"hN" = (
+/obj/structure/table/glass,
+/obj/item/xenoarchaeology_labeler,
+/obj/item/xenoarchaeology_labeler{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/structure/sign/poster/official/xenoarchaeology{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/computer/ship/viewscreen,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "hO" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/storage/box/rubbershot,
@@ -4255,6 +4281,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
+"hY" = (
+/obj/machinery/xenoarchaeology_machine/scale,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
+"hZ" = (
+/obj/machinery/xenoarchaeology_machine/conductor,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ia" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -4335,6 +4369,24 @@
 /obj/machinery/light/floor,
 /turf/open/floor/monotile/dark/airless,
 /area/nsv/hanger/notkmcstupidhanger)
+"ij" = (
+/obj/structure/table/glass,
+/obj/item/multitool{
+	pixel_x = 3
+	},
+/obj/item/assembly/igniter,
+/obj/item/geiger_counter{
+	pixel_y = 15;
+	pixel_x = -6
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/obj/item/analyzer,
+/obj/item/sticky_note_pile,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ik" = (
 /obj/machinery/airalarm/server{
 	pixel_y = 23
@@ -4343,6 +4395,18 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/nsv/hanger/notkmcstupidhanger)
+"il" = (
+/obj/structure/table/glass,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/gas,
+/obj/machinery/airalarm/directional/north,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/obj/item/xenoartifact,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "im" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -4388,9 +4452,33 @@
 /obj/machinery/vendor/mining,
 /turf/open/floor/monotile/steel,
 /area/quartermaster/miningoffice)
+"iq" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/xenoartifact/tutorial,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "ir" = (
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/port)
+"is" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/machinery/newscaster/directional/north,
+/obj/machinery/vending/sticker,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "it" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -4434,6 +4522,13 @@
 	},
 /turf/open/floor/carpet/red,
 /area/nsv/weapons)
+"iw" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/gizmo,
+/turf/open/floor/monotile/dark,
+/area/science/explab)
 "iy" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -5120,22 +5215,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
-"km" = (
-/obj/structure/table/glass,
-/obj/item/xenoartifact_labeler,
-/obj/item/xenoartifact_labeler{
-	pixel_x = -5;
-	pixel_y = 7
-	},
-/obj/structure/sign/poster/official/random{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/machinery/computer/ship/viewscreen,
-/turf/open/floor/monotile/dark,
-/area/science/explab)
 "kn" = (
 /obj/docking_port/stationary{
 	dwidth = 2;
@@ -11107,11 +11186,6 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel,
 /area/crew_quarters/kitchen)
-"BS" = (
-/obj/machinery/xenoartifact_inbox,
-/obj/item/xenoartifact,
-/turf/open/floor/circuit/orange,
-/area/science/explab)
 "BU" = (
 /obj/machinery/light_switch/west,
 /obj/effect/turf_decal/stripes/corner{
@@ -12000,12 +12074,6 @@
 /obj/effect/turf_decal/tile/ship/blue,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
-"Ez" = (
-/obj/machinery/computer/xenoartifact_console{
-	dir = 8
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/science/explab)
 "EA" = (
 /obj/effect/turf_decal/tile/ship/half/red{
 	dir = 4
@@ -49340,7 +49408,7 @@ wd
 So
 oQ
 qI
-sS
+is
 un
 Ef
 lw
@@ -59379,11 +59447,11 @@ fo
 eY
 eY
 pW
-fu
-iQ
-KK
+ij
+iq
+iw
 Vl
-fZ
+hY
 ua
 es
 ku
@@ -59635,12 +59703,12 @@ he
 ZW
 rO
 eY
-hh
+il
 dU
 ZC
 Iy
 Gd
-fZ
+hZ
 ZT
 eu
 zB
@@ -60149,9 +60217,9 @@ dk
 MF
 Nk
 eY
-km
-Ez
-BS
+hN
+eg
+hE
 LG
 Cs
 Jb
