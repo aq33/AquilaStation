@@ -51,5 +51,6 @@
 	return ..(turfs, center, user)
 
 /datum/test_chamber_kit/pr_474/setup(list/spawned, list/turfs, turf/center, mob/user)
+	..()
 	var/obj/item/reagent_containers/glass/beaker/large/beaker = locate() in spawned
 	beaker?.reagents.add_reagent(/datum/reagent/water, 60)
