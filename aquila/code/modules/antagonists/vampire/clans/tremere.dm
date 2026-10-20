@@ -1,8 +1,8 @@
 /datum/vampire_clan/tremere
 	name = CLAN_TREMERE
-	description = "In the (comparatively) little time since their founding, the Tremere have made incredible inroads within vampiric society and are arguably the most powerful clan in the modern nights.<br><br>\
-		This is due in no small part to their strict hierarchy, secretive nature, and mastery of Thaumaturgy, all of which elicit suspicion, fear, and respect from other Cainites.<br><br>\
-		The Tremere stand as a pillar of the Camarilla and are one of its main defenders, despite the fact that they exist almost as a subsect."
+	description = "W (stosunkowo) krótkim czasie od swojego powstania Tremere zdobyli niesamowite wpływy w wampirzym społeczeństwie i są dziś zapewne najpotężniejszym klanem współczesnych nocy.<br><br>\
+		Zawdzięczają to w niemałej mierze ścisłej hierarchii, skrytości i mistrzostwu w Taumaturgii - wszystko to budzi w innych Kainitach podejrzliwość, strach i szacunek.<br><br>\
+		Tremere są filarem Camarilli i jednym z jej głównych obrońców, choć istnieją niemal jako odrębna podsekta."
 	join_icon_state = "tremere"
 	default_humanity = 7
 	princely_score_bonus = 8

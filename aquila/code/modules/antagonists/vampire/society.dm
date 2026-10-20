@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(all_vampires)
 
 	if(length(GLOB.all_vampires) >= 3)
 		SSvsociety.can_fire = TRUE
-		message_admins("Vampire Society has started, as there are [length(GLOB.all_vampires)] vampires active.")
+		message_admins("Społeczność wampirów wystartowała, bo aktywnych wampirów jest [length(GLOB.all_vampires)].")
 		log_game("Vampire Society has started, as there are [length(GLOB.all_vampires)] vampires active.")
 
 /**
@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(all_vampires)
 
 	if(length(GLOB.all_vampires) < 3)
 		SSvsociety.can_fire = FALSE
-		message_admins("Vampire Society has paused, as there are only [length(GLOB.all_vampires)] vampires active.")
+		message_admins("Społeczność wampirów wstrzymana, bo aktywnych wampirów jest tylko [length(GLOB.all_vampires)].")
 		log_game("Vampire Society has paused, as there are only [length(GLOB.all_vampires)] vampires active.")
 
 /**
@@ -40,12 +40,12 @@ GLOBAL_LIST_EMPTY(all_vampires)
 	SSvsociety.princedatum = WEAKREF(src)
 
 	rank_up(8, TRUE) // Rank up a lot.
-	to_chat(owner.current, span_cultbold("As a true prince, you find some of your old power returning to you!"))
+	to_chat(owner.current, span_cultbold("Jako prawdziwy Książę czujesz, jak wraca do ciebie część dawnej mocy!"))
 	add_team_hud(owner.current, "prince")
 	prince = TRUE
 
 	for(var/datum/antagonist/vampire as anything in GLOB.all_vampires)
-		to_chat(vampire.owner.current, span_narsiesmall("[owner.name] has claimed the role of Prince!"))
+		to_chat(vampire.owner.current, span_narsiesmall("[owner.name] obejmuje rolę Księcia!"))
 
 	grant_power(new /datum/action/vampire/targeted/scourgify)
 
@@ -54,11 +54,11 @@ GLOBAL_LIST_EMPTY(all_vampires)
 	owner.announce_objectives()
 	update_static_data_for_all_viewers()
 
-	message_admins("[ADMIN_LOOKUPFLW(owner.current)] has received the role of Vampire Prince. ([get_princely_score()] princely score, with [my_clan?.princely_score_bonus]/[min(50, owner.current?.client?.get_exp_living(TRUE) / 60) / 10] clan/hour bonus.)")
+	message_admins("[ADMIN_LOOKUPFLW(owner.current)] zostaje Księciem wampirów. (wynik książęcy: [get_princely_score()], premia za klan/godziny: [my_clan?.princely_score_bonus]/[min(50, owner.current?.client?.get_exp_living(TRUE) / 60) / 10])")
 	log_game("[key_name(owner.current)] has become the Vampire Prince. ([get_princely_score()] princely score, with [my_clan?.princely_score_bonus]/[min(50, owner.current?.client?.get_exp_living(TRUE) / 60) / 10] clan/hour bonus.)")
 
 	update_static_data_for_all_viewers() // ensure our new objective shows up in the UI immediately if its open
-	tgui_alert(owner.current, "Congratulations, you have been chosen for Princedom.\nPlease note that this entails a certain responsibility. Your job, now, is to keep order, and to enforce the masquerade.", "Welcome, my Prince.", list("I understand"), 30 SECONDS, TRUE)
+	tgui_alert(owner.current, "Gratulacje, wybrano cię na Księcia.\nPamiętaj, że wiąże się to z odpowiedzialnością. Twoim zadaniem jest teraz utrzymywać porządek i pilnować przestrzegania Maskarady.", "Witaj, mój Książę.", list("Rozumiem"), 30 SECONDS, TRUE)
 
 /**
  * Turns the player into a scourge.
@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(all_vampires)
 	ASSERT(!prince) // Literally how would this happen. Still, just in case.
 
 	rank_up(4, TRUE) // Rank up less.
-	to_chat(owner.current, span_cultbold("As a camarilla scourge, your newfound purpose empowers you!"))
+	to_chat(owner.current, span_cultbold("Jako Bicz Camarilli czerpiesz siłę ze swojego nowego celu!"))
 	add_team_hud(owner.current, "scourge")
 	scourge = TRUE
 
@@ -76,9 +76,9 @@ GLOBAL_LIST_EMPTY(all_vampires)
 	owner.announce_objectives()
 
 	for(var/datum/antagonist/vampire as anything in GLOB.all_vampires)
-		to_chat(vampire.owner.current, span_cultbigbold("Under authority of the Prince, [owner.name] has been raised to the duty of the Scourge!"))
+		to_chat(vampire.owner.current, span_cultbigbold("Z woli Księcia [owner.name] obejmuje funkcję Bicza!"))
 
-	message_admins("[ADMIN_LOOKUPFLW(owner.current)] has been made a Scourge of the Vampires!")
+	message_admins("[ADMIN_LOOKUPFLW(owner.current)] zostaje Biczem wampirów!")
 	log_game("[key_name(owner.current)] has become a Scourge of the Vampires.")
 	update_static_data_for_all_viewers() // ensure our new objective shows up in the UI immediately if its open
 
@@ -97,9 +97,9 @@ GLOBAL_LIST_EMPTY(all_vampires)
 
 // We could put this in objectives but like, it's just two tiny hardcoded things. It's fine here.
 /datum/objective/vampire/scourge
-	name = "Camarilla Scourge"
-	explanation_text = "Obey your prince! Ensure order! Safeguard the Masquerade!"
+	name = "Bicz Camarilli"
+	explanation_text = "Słuchaj swojego Księcia! Pilnuj porządku! Strzeż Maskarady!"
 
 /datum/objective/vampire/prince
-	name = "Camarilla Prince"
-	explanation_text = "Rule your fellow kindred with an iron fist! Ensure the sanctity of the Masquerade, at ALL costs!"
+	name = "Książę Camarilli"
+	explanation_text = "Rządź innymi Spokrewnionymi żelazną ręką! Za WSZELKĄ cenę strzeż świętości Maskarady!"

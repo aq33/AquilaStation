@@ -19,31 +19,31 @@
 	var/mob/living/living_vampire = owner.current
 
 	if(!my_clan)
-		living_vampire.balloon_alert(living_vampire, "enter a clan first.")
+		living_vampire.balloon_alert(living_vampire, "najpierw dołącz do klanu.")
 		return FALSE
 
 	if(length(vassals) >= get_max_vassals())
-		living_vampire.balloon_alert(living_vampire, "too many vassals.")
+		living_vampire.balloon_alert(living_vampire, "masz już za dużo wasali.")
 		return FALSE
 
 #ifndef VAMPIRE_TESTING
 	if(!conversion_target.client)
-		living_vampire.balloon_alert(living_vampire, "can't be vassalized.")
+		living_vampire.balloon_alert(living_vampire, "nie może zostać wasalem.")
 		return FALSE
 #endif
 
 	if(!iscarbon(conversion_target) || !conversion_target.mind || conversion_target.mind.unconvertable || is_blacklisted_antag(conversion_target))
-		living_vampire.balloon_alert(living_vampire, "can't be vassalized.")
+		living_vampire.balloon_alert(living_vampire, "nie może zostać wasalem.")
 		return FALSE
 
 	var/datum/antagonist/vassal/vassaldatum = IS_VASSAL(conversion_target)
 	var/datum/mind/vassal_master = conversion_target.mind.enslaved_to
 	if((vassaldatum && !vassaldatum.master.broke_masquerade) || (vassal_master && vassal_master != owner))
-		living_vampire.balloon_alert(living_vampire, "enslaved to someone else.")
+		living_vampire.balloon_alert(living_vampire, "służy już komuś innemu.")
 		return FALSE
 
 	if(!ignore_concious_check && conversion_target.stat > UNCONSCIOUS)
-		living_vampire.balloon_alert(living_vampire, "must be awake.")
+		living_vampire.balloon_alert(living_vampire, "musi być przytomny.")
 		return FALSE
 
 	return TRUE
@@ -59,7 +59,7 @@
 	vassaldatum.master = src
 	conversion_target.mind.add_antag_datum(vassaldatum)
 
-	message_admins("[ADMIN_LOOKUPFLW(conversion_target)] has become a vassal, and is enslaved to [ADMIN_LOOKUPFLW(owner.current)].")
+	message_admins("[ADMIN_LOOKUPFLW(conversion_target)] zostaje wasalem i służy teraz [ADMIN_LOOKUPFLW(owner.current)].")
 	log_objective("[key_name(conversion_target)] has become a vassal, and is enslaved to [key_name(owner.current)].")
 
 	return TRUE

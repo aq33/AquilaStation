@@ -41,54 +41,54 @@ SUBSYSTEM_DEF(sunlight)
 			time_til_cycle = round(rand((TIME_VAMPIRE_NIGHT-TIME_VAMPIRE_SOL_DELAY), (TIME_VAMPIRE_NIGHT+TIME_VAMPIRE_SOL_DELAY)), 1)
 			if(send_messages)
 				notify_ghosts(
-					"VAMPIRE NOTICE: Daylight Ended. Resetting to Night (Lasts for [time_til_cycle / 60] minutes.)",
+					"KOMUNIKAT WAMPIRZY: Dzień się skończył. Wraca noc (potrwa [time_til_cycle / 60] min).",
 					flashwindow = FALSE
 					)
 			GLOB.news_network.submit_article(
-				"<h1>IWA Status Update - Solar Flare Passed</h1><br><br>\
-				This is an update from the Interstellar Weather Authority. The latest Class I solar flare has now fully passed Station [station_name()]'s orbital path.<br><br>\
-				No anomalies or disruptions have been detected.<br><br>\
-				- IWA Monitoring Admin",
-				"Interstellar Weather Authority (IWA)",
+				"<h1>Aktualizacja MAP - rozbłysk słoneczny minął</h1><br><br>\
+				Oto aktualizacja Międzygwiezdnej Agencji Pogodowej. Ostatni rozbłysk słoneczny klasy I całkowicie minął już orbitę stacji [station_name()].<br><br>\
+				Nie wykryto żadnych anomalii ani zakłóceń.<br><br>\
+				- Administrator monitoringu MAP",
+				"Międzygwiezdna Agencja Pogodowa (MAP)",
 				"AuriNet WeatherCast"
 			)
 			SEND_SIGNAL(src, COMSIG_SOL_END)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ENDED,
-				vampire_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
-				vassal_warning_message = span_announce("The solar flare has ended, and the daylight danger has passed... for now."),
+				vampire_warning_message = span_announce("Rozbłysk słoneczny dobiegł końca, a niebezpieczeństwo dnia minęło... na razie."),
+				vassal_warning_message = span_announce("Rozbłysk słoneczny dobiegł końca, a niebezpieczeństwo dnia minęło... na razie."),
 			)
 		return
 
 	switch(time_til_cycle)
 		if(TIME_VAMPIRE_DAY_WARN_1)
 			SEND_SIGNAL(src, COMSIG_SOL_NEAR_START)
-			GLOB.news_network.submit_article("<h1>IWA Advisory Bulletin - Minor Solar Activity Detected</h1><br><br>\
-												This is a routine advisory from the Interstellar Weather Authority. A <b>Class I solar flare</b> has been observed emanating from Auri Geminae.<br><br>\
-												<b>Projected impact on Station [station_name()] in approximately [TIME_VAMPIRE_DAY_WARN_1 / 60] minutes.</b><br><br>\
-												No shielding protocols are required. Minor fluctuations in long-range sensors and comms may occur. Crew are advised to remain alert and report any anomalies to station operations.<br><br>\
-												- IWA Monitoring Admin",
-												"Interstellar Weather Authority (IWA)",
+			GLOB.news_network.submit_article("<h1>Komunikat MAP - wykryto niewielką aktywność słoneczną</h1><br><br>\
+												To rutynowy komunikat Międzygwiezdnej Agencji Pogodowej. Zaobserwowano <b>rozbłysk słoneczny klasy I</b> pochodzący z Auri Geminae.<br><br>\
+												<b>Przewidywane dotarcie do stacji [station_name()] za około [TIME_VAMPIRE_DAY_WARN_1 / 60] min.</b><br><br>\
+												Procedury osłonowe nie są wymagane. Możliwe drobne zakłócenia sensorów dalekiego zasięgu i łączności. Załoga powinna zachować czujność i zgłaszać wszelkie anomalie dowództwu stacji.<br><br>\
+												- Administrator monitoringu MAP",
+												"Międzygwiezdna Agencja Pogodowa (MAP)",
 												"AuriNet WeatherCast")
 			warn_daylight(
 				danger_level = DANGER_LEVEL_FIRST_WARNING,
-				vampire_warning_message = span_danger("Solar Flares will bombard the station with dangerous UV radiation in [TIME_VAMPIRE_DAY_WARN_1 / 60] minutes. <b>Prepare to seek cover in a coffin or closet.</b>")
+				vampire_warning_message = span_danger("Za [TIME_VAMPIRE_DAY_WARN_1 / 60] min rozbłyski słoneczne zaleją stację niebezpiecznym promieniowaniem UV. <b>Przygotuj się, żeby schronić się w trumnie albo szafce.</b>")
 			)
 		if(TIME_VAMPIRE_DAY_WARN_2)
 			if(send_messages)
 				notify_ghosts(
-					"VAMPIRE NOTICE: Daylight beginning in [TIME_VAMPIRE_DAY_WARN_2] seconds.",
+					"KOMUNIKAT WAMPIRZY: dzień zacznie się za [TIME_VAMPIRE_DAY_WARN_2] s.",
 					flashwindow = FALSE
 				)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SECOND_WARNING,
-				vampire_warning_message = span_dangerbold("Solar Flares are about to bombard the station! You have [TIME_VAMPIRE_DAY_WARN_2] seconds to find cover!"),
-				vassal_warning_message = span_danger("In [TIME_VAMPIRE_DAY_WARN_2] seconds, your master will be at risk of a Solar Flare. Make sure they find cover!"),
+				vampire_warning_message = span_dangerbold("Rozbłyski słoneczne zaraz uderzą w stację! Masz [TIME_VAMPIRE_DAY_WARN_2] sekund, żeby się ukryć!"),
+				vassal_warning_message = span_danger("Za [TIME_VAMPIRE_DAY_WARN_2] sekund twojemu panu zagrozi rozbłysk słoneczny. Dopilnuj, żeby się ukrył!"),
 			)
 		if(TIME_VAMPIRE_DAY_WARN_3)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_THIRD_WARNING,
-				vampire_warning_message = span_narsiesmall("YET AGAIN, SOL RISES!"),
+				vampire_warning_message = span_narsiesmall("SOL ZNÓW WSCHODZI!"),
 			)
 		if(NONE)
 			sunlight_active = TRUE
@@ -96,13 +96,13 @@ SUBSYSTEM_DEF(sunlight)
 			time_til_cycle = TIME_VAMPIRE_DAY
 			if(send_messages)
 				notify_ghosts(
-						"VAMPIRE NOTICE: Daylight Beginning (Lasts for [TIME_VAMPIRE_DAY / 60] minutes.)",
+						"KOMUNIKAT WAMPIRZY: zaczyna się dzień (potrwa [TIME_VAMPIRE_DAY / 60] min).",
 						flashwindow = FALSE
 					)
 			warn_daylight(
 				danger_level = DANGER_LEVEL_SOL_ROSE,
-				vampire_warning_message = span_danger("Solar flares bombard the station with deadly UV light! Stay in cover for the next [TIME_VAMPIRE_DAY / 60] minute\s!"),
-				vassal_warning_message = span_danger("Solar flares bombard the station with UV light!"),
+				vampire_warning_message = span_danger("Rozbłyski słoneczne zalewają stację zabójczym światłem UV! Pozostań w ukryciu przez następne [TIME_VAMPIRE_DAY / 60] min!"),
+				vassal_warning_message = span_danger("Rozbłyski słoneczne zalewają stację światłem UV!"),
 			)
 
 /datum/controller/subsystem/sunlight/proc/warn_daylight(danger_level, vampire_warning_message, vassal_warning_message)

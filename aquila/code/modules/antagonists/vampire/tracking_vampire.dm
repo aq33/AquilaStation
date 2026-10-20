@@ -24,8 +24,8 @@
  * An abstract object contained within the vampire, used to host the team_monitor component.
 **/
 /obj/effect/abstract/vampire_tracker_holder
-	name = "vampire tracker holder"
-	desc = span_danger("You <b>REALLY</b> shouldn't be seeing this!")
+	name = "nośnik namiernika wampira"
+	desc = span_danger("<b>NAPRAWDĘ</b> nie powinieneś tego widzieć!")
 
 	var/datum/component/tracking_beacon/tracking_beacon
 

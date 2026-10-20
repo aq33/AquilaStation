@@ -15,14 +15,14 @@
 /// Modify description to add notice that this is aimed.
 /datum/action/vampire/targeted/update_desc()
 	. = ..()
-	desc += "<br><br><i>Targeted Power</i>"
+	desc += "<br><br><i>Moc celowana</i>"
 
 /datum/action/vampire/targeted/on_activate(mob/user, atom/target)
 	if(currently_active)
 		deactivate_power()
 		return FALSE
 	if(owner.click_intercept)
-		owner.balloon_alert(owner, "already using a targeted power!")
+		owner.balloon_alert(owner, "już używasz mocy celowanej!")
 		return FALSE
 	if(!can_pay_cost(owner) || !can_use())
 		return FALSE
@@ -63,7 +63,7 @@
 	// Check if in range
 	if(target_range && !(target_atom in view(target_range, owner)))
 		if(target_range > 1)
-			owner.balloon_alert(owner, "out of range.")
+			owner.balloon_alert(owner, "poza zasięgiem.")
 		return FALSE
 
 	return TRUE

@@ -72,7 +72,7 @@ export const AntagInfoVampire = (_props) => {
               selected={tab === 1}
               onClick={() => setTab(1)}
             >
-              General Guide
+              Przewodnik
             </Tabs.Tab>
 
             {/* Basics in the middle (slightly larger/bold for emphasis) */}
@@ -81,7 +81,7 @@ export const AntagInfoVampire = (_props) => {
               selected={tab === 2}
               onClick={() => setTab(2)}
             >
-              Basics
+              Podstawy
             </Tabs.Tab>
 
             {/* Powers on the right */}
@@ -90,7 +90,7 @@ export const AntagInfoVampire = (_props) => {
               selected={tab === 3}
               onClick={() => setTab(3)}
             >
-              Powers
+              Moce
             </Tabs.Tab>
           </Tabs>
         </Box>
@@ -110,7 +110,7 @@ const VampireIntroduction = (_props) => {
   return (
     <Stack vertical fill>
       <Stack.Item>
-        <AntagInfoHeader name={'Vampire'} asset="vampire.png" />
+        <AntagInfoHeader name={'Wampir'} asset="vampire.png" />
       </Stack.Item>
       <Stack.Item grow maxHeight="220px">
         <ObjectivesSection objectives={objectives} />
@@ -132,7 +132,7 @@ const VampireGuide = (_props) => {
   const guideTabStyle = { paddingTop: '10px', paddingBottom: '10px' } as const;
 
   return (
-    <Section title="Guide">
+    <Section title="Przewodnik wampira">
       <Stack>
         <Stack.Item>
           <Tabs vertical>
@@ -142,7 +142,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(1)}
               style={guideTabStyle}
             >
-              The Basics
+              Podstawy
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -150,7 +150,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(2)}
               style={guideTabStyle}
             >
-              The Masquerade
+              Maskarada
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -158,7 +158,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(3)}
               style={guideTabStyle}
             >
-              Humanity
+              Człowieczeństwo
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -166,7 +166,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(4)}
               style={guideTabStyle}
             >
-              Princes & Society
+              Książęta i społeczność
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -174,7 +174,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(5)}
               style={guideTabStyle}
             >
-              Sol & Levelling
+              Sol i awanse
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -190,7 +190,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(7)}
               style={guideTabStyle}
             >
-              Combat
+              Walka
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -198,7 +198,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(8)}
               style={guideTabStyle}
             >
-              Your Lair
+              Twoje legowisko
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -206,7 +206,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(9)}
               style={guideTabStyle}
             >
-              Structures
+              Struktury
             </Tabs.Tab>
             <Tabs.Tab
               icon="list"
@@ -214,7 +214,7 @@ const VampireGuide = (_props) => {
               onClick={() => setTab(10)}
               style={guideTabStyle}
             >
-              Vassals
+              Wasale
             </Tabs.Tab>
           </Tabs>
         </Stack.Item>
@@ -224,38 +224,36 @@ const VampireGuide = (_props) => {
             // The Basics
             <Box>
               <Box fontSize="18px" textColor="blue" bold>
-                So you&apos;re a big bad vampire. Congrats.
+                Więc jesteś groźnym wampirem. Gratulacje.
               </Box>
               <Box fontSize="26px" textColor="red" bold>
-                Now keep it to yourself.
+                A teraz zachowaj to dla siebie.
               </Box>
               <Box align="right" fontSize="10px" textColor="grey">
-                - &apos;Smiling&apos; Jack, Los Angeles, circa 2001-2008.
+                - „Uśmiechnięty” Jack, Los Angeles, ok. 2001-2008.
               </Box>
               <br />
-              Vampires survive because mortals think they&apos;re myths.
-              That&apos;s the{' '}
+              Wampiry przetrwały, bo śmiertelnicy uważają je za mit. To właśnie{' '}
               <Box inline textColor="gold">
-                Masquerade
+                Maskarada
               </Box>
-              . The wolf doesn&apos;t want the sheep to know he&apos;s there.
-              Except these sheep have guns.
+              . Wilk nie chce, żeby owce wiedziały, że tu jest. Tyle że te owce
+              mają broń.
               <Box inline fontSize="14px" textColor="red" bold>
                 {' '}
-                You <i>must</i> stay hidden.
+                <i>Musisz</i> pozostać w ukryciu.
               </Box>
               <br />
               <br />
               <Box fontSize="16px" textColor="gold" bold>
-                Blending In
+                Wtapianie się w tłum
               </Box>
-              You&apos;re dead: no breath, heartbeat, or need for food. That
-              makes you stand out. Avoid doctors, health scans, and especially
-              the{' '}
+              Jesteś martwy: nie oddychasz, serce ci nie bije i nie musisz jeść.
+              To cię wyróżnia. Unikaj lekarzy, skanów zdrowia, a zwłaszcza{' '}
               <Box inline textColor="pink">
-                Curator
+                kuratora
               </Box>
-              . They know vampires exist and can expose you.
+              . On wie, że wampiry istnieją, i może cię zdemaskować.
               <Box
                 mt={1}
                 fontSize="13px"
@@ -265,25 +263,25 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                <b>Tip:</b> You have incredible powers, but using them draws
-                attention. Wise kindred blend in by acting like mortals. Use a
-                gun instead of claws. Walk instead of leaping across rooms.
-                Reserve your powers for when you truly need them.
+                <b>Rada:</b> Masz niesamowite moce, ale ich używanie zwraca
+                uwagę. Mądrzy Spokrewnieni wtapiają się w tłum, zachowując się
+                jak śmiertelnicy. Użyj broni palnej zamiast pazurów. Chodź,
+                zamiast skakać przez całe pomieszczenia. Zachowaj moce na
+                chwile, gdy naprawdę ich potrzebujesz.
               </Box>
               <br />
               <Box fontSize="16px" textColor="green" bold>
-                First Steps
+                Pierwsze kroki
               </Box>
-              Take a moment to look at your screen. See those icons on the left?
-              That&apos;s your vampire HUD. Each icon gives you important
-              information, so click through them and learn what they show.
+              Przyjrzyj się przez chwilę ekranowi. Widzisz te ikony po lewej? To
+              twój wampirzy HUD. Każda ikona daje ci ważne informacje, więc
+              przeklikaj je i dowiedz się, co pokazują.
               <br />
               <br />
-              Your next priority should be finding another kindred. They can
-              help you learn the ropes, and they might point you toward the
-              local{' '}
+              Następnym priorytetem powinno być znalezienie innego
+              Spokrewnionego. Pomoże ci się wdrożyć i może wskazać miejscowego{' '}
               <Box inline textColor="red">
-                Prince
+                Księcia
               </Box>
               .
               <br />
@@ -297,16 +295,16 @@ const VampireGuide = (_props) => {
                 }}
               >
                 <Box fontSize="15px" textColor="red" bold textAlign="center">
-                  #1 RULE OF SURVIVAL
+                  ZASADA PRZETRWANIA NR 1
                 </Box>
                 <Box fontSize="18px" textColor="gold" bold textAlign="center">
-                  Keep vitae above 300.
+                  Trzymaj vitae powyżej 300.
                 </Box>
                 <Box fontSize="12px" textAlign="center">
-                  A starving vampire is a dead vampire. Panic leads to mistakes.
+                  Głodny wampir to martwy wampir. Panika prowadzi do błędów.
                 </Box>
                 <Box fontSize="11px" textColor="grey" textAlign="center">
-                  Feed often. Feed smart. Stay alive.
+                  Żeruj często. Żeruj mądrze. Przeżyj.
                 </Box>
               </Box>
             </Box>
@@ -315,67 +313,67 @@ const VampireGuide = (_props) => {
             // The Masquerade
             <Box>
               <Box fontSize="18px" textColor="gold" bold>
-                The Masquerade
+                Maskarada
               </Box>
               <Box fontSize="13px" textColor="gold">
-                How to keep from getting us all killed.
+                Jak nie doprowadzić do tego, że wszyscy zginiemy.
               </Box>
               <br />
-              The{' '}
               <Box inline textColor="gold">
-                Masquerade
+                Maskarada
               </Box>{' '}
-              is an organized disinformation campaign enforced by{' '}
+              to zorganizowana kampania dezinformacyjna, której pilnuje
+              społeczność{' '}
               <Box inline textColor="purple">
-                Kindred
+                Spokrewnionych
               </Box>{' '}
-              society (mainly the{' '}
+              (głównie{' '}
               <Box inline textColor="purple">
                 Camarilla
               </Box>
-              ) to convince humans that vampires do not exist.
+              ), by przekonać ludzi, że wampiry nie istnieją.
               <br />
               <br />
-              If a mortal witnesses anything suspicious, you receive a{' '}
+              Jeśli śmiertelnik zobaczy coś podejrzanego, dostajesz{' '}
               <Box inline textColor="red">
-                Masquerade Infraction
+                wykroczenie przeciw Maskaradzie
               </Box>
-              . After <b>three</b>, you are exiled and{' '}
+              . Po <b>trzech</b> zostajesz wygnany i{' '}
               <Box inline textColor="red" bold>
-                ALL
+                WSZYSTKIE
               </Box>{' '}
-              vampires turn against you.
+              wampiry obracają się przeciwko tobie.
               <br />
               <br />
-              The{' '}
               <Box inline textColor="pink">
-                Curator
+                Kurator
               </Box>{' '}
-              possesses the{' '}
+              ma{' '}
               <Box inline textColor="blue">
-                Archive of the Kindred
+                Archiwum Spokrewnionych
               </Box>
-              , which can instantly expose you. However, if your{' '}
+              , które może cię natychmiast zdemaskować. Jeśli jednak masz
+              aktywną{' '}
               <Box inline textColor="gold">
-                Masquerade Ability
-              </Box>{' '}
-              is active, even this ancient tome cannot see through your
-              disguise.
+                moc Maskarady
+              </Box>
+              , nawet ta pradawna księga nie przejrzy twojego przebrania.
               <br />
               <br />
-              At{' '}
+              Przy{' '}
               <Box inline textColor="blue">
-                humanity
+                Człowieczeństwie
               </Box>{' '}
-              above 7, you gain the{' '}
+              powyżej 7 zyskujesz{' '}
               <Box inline textColor="gold">
-                Masquerade Ability
+                moc Maskarady
               </Box>
-              , which fools health analyzers and the{' '}
+              , która oszukuje analizatory zdrowia i{' '}
               <Box inline textColor="pink">
-                Curator
+                kuratora
               </Box>
-              . <b>However, you will not heal normally while it is active.</b>
+              .{' '}
+              <b>Gdy jest aktywna, nie leczysz się jednak w normalny sposób.</b>
               <Box
                 mt={1}
                 fontSize="13px"
@@ -385,21 +383,21 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                <b>Tip:</b> Too many bloodloss patients in medbay is just as
-                suspicious as a bloodless corpse in the halls.
+                <b>Rada:</b> Zbyt wielu pacjentów z utratą krwi w medbayu jest
+                równie podejrzane jak wykrwawione zwłoki na korytarzu.
               </Box>
               <br />
               <Box fontSize="16px" textColor="red" bold>
-                I broke the Masquerade. Now what?
+                Złamałem Maskaradę. Co teraz?
               </Box>
               <Box fontSize="13px">
-                • Everyone hunts you, vampires more than mortals
+                • Wszyscy na ciebie polują, wampiry bardziej niż śmiertelnicy
                 <br />
-                • Your vassals are up for grabs
+                • Twoi wasale są do wzięcia
                 <br />
-                • Other vampires can feed on you
-                <br />• <b>Draining another vampire grants you their powers</b>
-                <br />• It is too late for mercy
+                • Inne wampiry mogą się tobą żywić
+                <br />• <b>Wyssanie innego wampira daje ci jego moce</b>
+                <br />• Na litość jest już za późno
               </Box>
             </Box>
           )}
@@ -407,46 +405,45 @@ const VampireGuide = (_props) => {
             // Humanity
             <Box>
               <Box fontSize="18px" textColor="blue" bold>
-                Humanity
+                Człowieczeństwo
               </Box>
               <Box fontSize="13px" textColor="blue">
-                Are we human? Or are we dancer?
+                Czy jesteśmy ludźmi? Czy tancerzami?
               </Box>
               <br />
-              Most{' '}
+              Większość{' '}
               <Box inline textColor="purple">
-                Kindred
+                Spokrewnionych
               </Box>{' '}
-              were human before their Embrace. Clinging to{' '}
+              była ludźmi przed Przeistoczeniem. Kurczowe trzymanie się{' '}
               <Box inline textColor="blue">
-                humanity
+                Człowieczeństwa
               </Box>{' '}
-              is how they resist the{' '}
+              to ich sposób na opieranie się dzikiej naturze{' '}
               <Box inline textColor="orange">
-                Beast&apos;s
-              </Box>{' '}
-              feral nature.
+                Bestii
+              </Box>
+              .
               <br />
               <br />
-              Your{' '}
+              Twoje{' '}
               <Box inline textColor="blue">
-                humanity
+                Człowieczeństwo
               </Box>{' '}
-              directly affects the vampiric curse. Lower{' '}
+              bezpośrednio wpływa na wampirzą klątwę. Niższe{' '}
               <Box inline textColor="blue">
-                humanity
+                Człowieczeństwo
               </Box>{' '}
-              means:
+              oznacza:
               <br />
               <Box fontSize="13px" ml={1}>
-                • Harder to interact with mortals
+                • Trudniejszy kontakt ze śmiertelnikami
                 <br />
-                • Difficult to stay active during daylight
-                <br />• Longer{' '}
+                • Trudność z pozostaniem aktywnym za dnia
+                <br />• Dłuższe wychodzenie z{' '}
                 <Box inline textColor="orange">
-                  torpor
-                </Box>{' '}
-                recovery
+                  torporu
+                </Box>
               </Box>
               <br />
               <Box
@@ -457,60 +454,62 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                Click the humanity counter on your HUD for detailed information.
+                Kliknij licznik Człowieczeństwa na HUD-zie, by zobaczyć
+                szczegóły.
               </Box>
               <br />
-              Why call it{' '}
+              Czemu nazywać to{' '}
               <Box inline textColor="blue">
-                Humanity
-              </Box>{' '}
-              when not all{' '}
+                Człowieczeństwem
+              </Box>
+              , skoro nie wszyscy{' '}
               <Box inline textColor="purple">
-                kindred
+                Spokrewnieni
               </Box>{' '}
-              were human? Simple: tradition. Centuries-old vampires are slow to
-              change their ways.
+              byli ludźmi? To proste: tradycja. Wielowiekowe wampiry niechętnie
+              zmieniają swoje zwyczaje.
             </Box>
           )}
           {tab === 4 && (
             // Society
             <Box>
               <Box fontSize="18px" textColor="darkred" bold>
-                Princes & Scourges
+                Książęta i Bicze
               </Box>
-              <br />A{' '}
+              <br />
               <Box inline textColor="red">
-                Prince
+                Książę
               </Box>{' '}
-              is an elder vampire entrusted by the{' '}
+              to starszy wampir, któremu{' '}
               <Box inline textColor="purple">
                 Camarilla
               </Box>{' '}
-              to rule a territory. They keep track of every{' '}
+              powierzyła władzę nad terytorium. Śledzi każdego obecnego{' '}
               <Box inline textColor="purple">
-                kindred
+                Spokrewnionego
               </Box>{' '}
-              present and enforce the{' '}
+              i żelazną ręką pilnuje{' '}
               <Box inline textColor="gold">
-                Masquerade
-              </Box>{' '}
-              with an iron fist.
-              <br />
-              <br />
-              Of course, they do not work alone. Many{' '}
-              <Box inline textColor="red">
-                Princes
-              </Box>{' '}
-              employ a{' '}
-              <Box inline textColor="red">
-                Scourge
+                Maskarady
               </Box>
-              , a personal enforcer loyal only to them. Scourges are often
-              chosen from clans like the Tremere, though some rare{' '}
+              .
+              <br />
+              <br />
+              Oczywiście nie działa sam. Wielu{' '}
               <Box inline textColor="red">
-                Princes
+                Książąt
               </Box>{' '}
-              have been known to employ even Brujah.
+              zatrudnia{' '}
+              <Box inline textColor="red">
+                Bicza
+              </Box>
+              , osobistego egzekutora lojalnego tylko wobec nich. Bicze często
+              wybiera się spośród klanów takich jak Tremere, choć zdarzali się
+              rzadcy{' '}
+              <Box inline textColor="red">
+                Książęta
+              </Box>
+              , którzy zatrudniali nawet Brujah.
               <Box
                 mt={1}
                 fontSize="13px"
@@ -520,43 +519,42 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                <b>Important:</b> Princes have higher expectations placed upon
-                them. They must protect the Masquerade at all costs and deliver
-                final death to misbehaving kindred without hesitation.
+                <b>Ważne:</b> Wobec Książąt oczekiwania są wyższe. Muszą za
+                wszelką cenę chronić Maskaradę i bez wahania zsyłać Ostateczną
+                Śmierć na niesfornych Spokrewnionych.
               </Box>
               <br />
               <Box fontSize="18px" textColor="purple" bold>
-                The Camarilla
+                Camarilla
               </Box>
               <br />
-              The{' '}
               <Box inline textColor="purple">
                 Camarilla
               </Box>{' '}
-              is the most organized vampiric sect: an elite club that favors
-              tradition and covert control of mortals from behind the scenes.
-              Most vampire clans are part of them, though the{' '}
+              to najlepiej zorganizowana wampirza sekta: elitarny klub, który
+              ceni tradycję i potajemne sterowanie śmiertelnikami zza kulis.
+              Należy do niej większość wampirzych klanów, choć{' '}
               <Box inline textColor="orange">
-                Brujah notably insist on remaining independent
+                Brujah wyraźnie upierają się przy niezależności
               </Box>
               .
               <br />
               <br />
-              Every city, station, colony, or outpost with a{' '}
+              Każde miasto, stacja, kolonia czy placówka, gdzie przebywają{' '}
               <Box inline textColor="purple">
-                kindred
-              </Box>{' '}
-              presence has a{' '}
+                Spokrewnieni
+              </Box>
+              , ma{' '}
               <Box inline textColor="red">
-                Prince
+                Księcia
               </Box>{' '}
-              assigned by the{' '}
+              wyznaczonego przez{' '}
               <Box inline textColor="purple">
-                Camarilla
+                Camarillę
               </Box>{' '}
-              to oversee it. They are the chief enforcers of the{' '}
+              do nadzoru. To główni stróże{' '}
               <Box inline textColor="gold">
-                Masquerade
+                Maskarady
               </Box>
               .
             </Box>
@@ -570,56 +568,55 @@ const VampireGuide = (_props) => {
               <Box inline textColor="yellow">
                 Sol
               </Box>{' '}
-              refers to the nearby temperamental star, not Earth&apos;s sun.
-              Vampires do well in space. You are just unlucky enough to be near
-              this one.
+              to pobliska kapryśna gwiazda, a nie ziemskie Słońce. Wampirom w
+              kosmosie wiedzie się dobrze. Po prostu masz pecha być blisko tej
+              jednej.
               <br />
               <br />
               <Box fontSize="14px" bold>
-                Key Facts
+                Najważniejsze fakty
               </Box>
               <Box fontSize="13px">
-                • Click the HUD icon for more detailed information
+                • Kliknij ikonę na HUD-zie, by zobaczyć więcej szczegółów
                 <br />
-                • You cannot die to Sol if you are protected by lockers,
-                maintenance tunnels, or coffins
+                • Sol cię nie zabije, jeśli chronią cię szafki, tunele
+                techniczne albo trumny
                 <br />
-                • If you are caught unprotected, you will burn to dust
-                <br />• Higher humanity grants partial resistance to Sol&apos;s
-                effects
+                • Jeśli Sol zastanie cię bez ochrony, spłoniesz na popiół
+                <br />• Wyższe Człowieczeństwo daje częściową odporność na
+                działanie Sol
               </Box>
               <br />
               <Box fontSize="14px" bold textColor="red">
-                During Sol
+                W czasie Sol
               </Box>
               <Box fontSize="13px">
-                • You cannot passively heal; only coffins can restore you
+                • Nie leczysz się biernie; uleczyć cię może tylko trumna
                 <br />
-                • You take 50% more damage from all sources
-                <br />• Your powers have doubled cooldowns, increased vitae
-                costs, and some are blocked entirely
+                • Otrzymujesz o 50% więcej obrażeń ze wszystkich źródeł
+                <br />• Twoje moce mają podwojone odnowienie, wyższy koszt
+                vitae, a niektóre są całkiem zablokowane
               </Box>
               <br />
               <Box fontSize="16px" textColor="darkred" bold>
-                Growing in Power
+                Rośnięcie w siłę
               </Box>
-              As a vampire, you grow stronger over time by meeting your feeding
-              requirements. Click your blood meter on the HUD to see your
-              current progress toward the next rank.
+              Jako wampir z czasem stajesz się silniejszy, spełniając wymagania
+              żerowania. Kliknij licznik krwi na HUD-zie, by zobaczyć postęp do
+              następnej rangi.
               <br />
               <br />
-              After each Sol cycle, if you have consumed enough vitae to meet
-              your goal, you will gain a Rank. Each rank provides significant
-              benefits:
+              Po każdym cyklu Sol, jeśli wypiłeś dość vitae, by osiągnąć cel,
+              zdobywasz rangę. Każda ranga daje znaczne korzyści:
               <Box fontSize="13px" ml={1}>
-                • Increased physical strength
+                • Większa siła fizyczna
                 <br />
-                • Greater health pool
+                • Więcej zdrowia
                 <br />
-                • Faster feeding rate
+                • Szybsze żerowanie
                 <br />
-                • Higher blood capacity
-                <br />• Additional discipline points to unlock new powers
+                • Większa pojemność krwi
+                <br />• Dodatkowe punkty dyscyplin do odblokowania nowych mocy
               </Box>
             </Box>
           )}
@@ -633,37 +630,36 @@ const VampireGuide = (_props) => {
               <Box inline textColor="red">
                 Vitae
               </Box>{' '}
-              is the lifeblood that sustains every vampire. The{' '}
+              to krew życia, która podtrzymuje każdego wampira.{' '}
               <Box inline textColor="orange">
-                Beast
+                Bestia
               </Box>{' '}
-              within you demands constant feeding, and ignoring this need is not
-              an option. When your blood reserves reach zero, you will
-              experience blurred vision, impaired healing, and far worse
-              consequences.
+              w tobie żąda nieustannego żerowania i zignorowanie tej potrzeby
+              nie wchodzi w grę. Gdy twoje zapasy krwi spadną do zera, czeka cię
+              rozmyty wzrok, osłabione leczenie i znacznie gorsze konsekwencje.
               <br />
               <br />
-              Your current rank determines how much{' '}
+              Twoja obecna ranga decyduje, ile{' '}
               <Box inline textColor="red">
                 vitae
               </Box>{' '}
-              you can store and utilize at any given time.
+              możesz przechowywać i wykorzystywać naraz.
               <br />
               <br />
               <Box bold>
-                Sources of{' '}
+                Źródła{' '}
                 <Box inline textColor="red">
                   vitae
                 </Box>
                 :
               </Box>
               <Box fontSize="13px">
-                • Crewmembers
+                • Członkowie załogi
                 <br />
-                • Monkeys
+                • Małpy
                 <br />
-                • Mice
-                <br />• Bloodbags
+                • Myszy
+                <br />• Worki z krwią
               </Box>
               <Box
                 mt={1}
@@ -674,120 +670,121 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                <b>Tip:</b> Feed from crew regularly. Mice and monkeys will not
-                sustain you in the long run.
+                <b>Rada:</b> Regularnie żeruj na załodze. Myszy i małpy nie
+                utrzymają cię na dłuższą metę.
               </Box>
               <br />
               <Box fontSize="16px" textColor="orange" bold>
-                Frenzy
+                Szał
               </Box>
-              When your{' '}
+              Gdy twoje{' '}
               <Box inline textColor="red">
                 vitae
               </Box>{' '}
-              is completely depleted, you lose control and enter a state known
-              as{' '}
+              całkiem się wyczerpie, tracisz kontrolę i wpadasz w stan zwany{' '}
               <Box inline textColor="orange">
-                frenzy
+                Szałem
               </Box>
-              . In this feral state, the{' '}
+              . W tym dzikim stanie{' '}
               <Box inline textColor="orange">
-                Beast
+                Bestia
               </Box>{' '}
-              takes over and compels you to attack the nearest mortal without
-              hesitation.
+              przejmuje kontrolę i zmusza cię, byś bez wahania zaatakował
+              najbliższego śmiertelnika.
               <br />
-              <br />
-              While in{' '}
+              <br />W{' '}
               <Box inline textColor="orange">
-                frenzy
-              </Box>
-              , you gain the ability to grab victims instantly, making you
-              extremely dangerous but also highly conspicuous. The only way to
-              regain control of yourself is to feed until you have enough{' '}
+                Szale
+              </Box>{' '}
+              możesz natychmiast chwytać ofiary, co czyni cię niezwykle
+              niebezpiecznym, ale też bardzo rzucającym się w oczy. Jedynym
+              sposobem na odzyskanie kontroli jest żerowanie, dopóki nie
+              zgromadzisz dość{' '}
               <Box inline textColor="red">
                 vitae
-              </Box>{' '}
-              to suppress the{' '}
+              </Box>
+              , by stłumić{' '}
               <Box inline textColor="orange">
-                Beast
+                Bestię
               </Box>
               .
               <br />
               <br />
               <Box fontSize="16px" textColor="blue" bold>
-                Powers & Vitae
+                Moce i vitae
               </Box>
-              All of your vampiric powers require{' '}
+              Wszystkie twoje wampirze moce wymagają{' '}
               <Box inline textColor="red">
                 vitae
-              </Box>{' '}
-              to use. Some abilities drain blood continuously while they remain
-              active, while others have an upfront cost when activated. Check
-              the Powers tab for specific costs and details on each ability.
+              </Box>
+              . Niektóre zdolności wysysają krew nieprzerwanie, dopóki są
+              aktywne, inne mają jednorazowy koszt przy aktywacji. Szczegółowe
+              koszty i opisy każdej zdolności znajdziesz w zakładce Moce.
             </Box>
           )}
           {tab === 7 && (
             // Combat
             <Box>
               <Box fontSize="18px" textColor="blue" bold>
-                Combat
+                Walka
               </Box>
               <br />
-              As a vampire, you have significant advantages in combat, but also
-              critical weaknesses that can be exploited.
+              Jako wampir masz w walce znaczne przewagi, ale też krytyczne
+              słabości, które można wykorzystać.
               <br />
               <br />
               <Box fontSize="15px" textColor="green" bold>
-                Strengths
+                Mocne strony
               </Box>
               <Box fontSize="13px">
-                <b>Enhanced Senses:</b> Night vision and thermal vision let you
-                track prey in complete darkness.
+                <b>Wyostrzone zmysły:</b> Widzenie w ciemności i termowizja
+                pozwalają ci tropić ofiary w zupełnych ciemnościach.
                 <br />
                 <br />
-                <b>Undead Physiology:</b> No need to breathe, sleep, or eat. You
-                are immune to disease. Fatal wounds put you into{' '}
+                <b>Fizjologia nieumarłego:</b> Nie musisz oddychać, spać ani
+                jeść. Jesteś odporny na choroby. Śmiertelne rany wprowadzają cię
+                w{' '}
                 <Box inline textColor="orange">
-                  Torpor
+                  torpor
                 </Box>{' '}
-                instead of killing you. You will rise again if you have{' '}
+                zamiast cię zabić. Powstaniesz ponownie, jeśli masz{' '}
                 <Box inline textColor="red">
                   vitae
                 </Box>{' '}
-                and are not staked.
+                i nie tkwi w tobie kołek.
                 <br />
                 <br />
-                <b>Resilience:</b> Immune to cold, radiation, and toxins.
-                Critical injuries do not knock you down.
+                <b>Wytrzymałość:</b> Odporność na zimno, promieniowanie i
+                toksyny. Krytyczne obrażenia cię nie przewracają.
                 <br />
                 <br />
-                <b>Supernatural Strength:</b> Your fists deal devastating
-                damage, scaling with your rank.
+                <b>Nadprzyrodzona siła:</b> Twoje pięści zadają niszczycielskie
+                obrażenia, rosnące wraz z rangą.
               </Box>
               <br />
               <Box fontSize="15px" textColor="red" bold>
-                Weaknesses
+                Słabości
               </Box>
               <Box fontSize="13px">
-                <b>Stakes:</b> Paralyze you, disable powers, halt healing, and
-                prevent revival from{' '}
+                <b>Kołki:</b> Paraliżują cię, wyłączają moce, wstrzymują
+                leczenie i uniemożliwiają powrót z{' '}
                 <Box inline textColor="orange">
-                  Torpor
+                  torporu
                 </Box>
                 .
                 <br />
                 <br />
-                <b>Fire and Lasers:</b> Deal devastating damage. Fortitude
-                offers minimal protection.
+                <b>Ogień i lasery:</b> Zadają niszczycielskie obrażenia. Hart
+                daje minimalną ochronę.
                 <br />
                 <br />
-                <b>Sol:</b> Every ten minutes, sunlight cripples you unless
-                protected by a coffin or similar shelter.
+                <b>Sol:</b> Co dziesięć minut światło słoneczne cię okalecza,
+                chyba że chroni cię trumna albo podobne schronienie.
                 <br />
                 <br />
-                <b>The Masquerade:</b> Break it and every vampire turns against
-                you. You will be hunted by kindred and mortals alike.
+                <b>Maskarada:</b> Złam ją, a każdy wampir obróci się przeciwko
+                tobie. Będą na ciebie polować zarówno Spokrewnieni, jak i
+                śmiertelnicy.
               </Box>
             </Box>
           )}
@@ -795,60 +792,59 @@ const VampireGuide = (_props) => {
             // Lairs
             <Box>
               <Box fontSize="18px" textColor="green" bold>
-                Your Lair
+                Twoje legowisko
               </Box>
-              <br />A{' '}
+              <br />
               <Box inline textColor="green">
-                lair
+                Legowisko
               </Box>{' '}
-              is a location you have claimed as your own, where you can rest in
-              your coffin and perform certain vampiric rituals. Some vampires
-              find them useful. Many more have been caught because of them.
+              to miejsce, które zająłeś na własność, gdzie możesz odpoczywać w
+              trumnie i odprawiać niektóre wampirze rytuały. Niektórym wampirom
+              się przydaje. O wiele więcej wpadło właśnie przez nie.
               <br />
               <br />
               <Box bold>
-                Do You Need a{' '}
+                Czy potrzebujesz{' '}
                 <Box inline textColor="green">
-                  Lair
+                  legowiska
                 </Box>
                 ?
               </Box>
               <Box fontSize="13px">
-                Honestly? Probably not. A{' '}
+                Szczerze? Raczej nie.{' '}
                 <Box inline textColor="green">
-                  lair
+                  Legowisko
                 </Box>{' '}
-                is only necessary if you intend to create{' '}
+                jest potrzebne tylko wtedy, gdy chcesz tworzyć{' '}
                 <Box inline textColor="purple">
-                  vassals
+                  wasali
                 </Box>{' '}
-                or use certain structures. If you just need somewhere to hide
-                during{' '}
+                albo używać niektórych struktur. Jeśli potrzebujesz tylko
+                kryjówki na czas{' '}
                 <Box inline textColor="yellow">
                   Sol
                 </Box>
-                , any dark corner with a locker will do. The more infrastructure
-                you build, the more evidence you leave behind.
+                , wystarczy dowolny ciemny kąt z szafką. Im więcej
+                infrastruktury zbudujesz, tym więcej dowodów zostawisz.
               </Box>
               <br />
               <Box bold>
-                Claiming a{' '}
+                Zajmowanie{' '}
                 <Box inline textColor="green">
-                  Lair
+                  legowiska
                 </Box>
               </Box>
               <Box fontSize="13px">
-                If you still want one: acquire a coffin from the Chapel or craft
-                one via the Furniture category. Find somewhere{' '}
-                <i>truly hidden</i>, place the coffin, and rest inside to claim
-                the area. Once claimed, you can anchor vampiric structures like
-                the{' '}
+                Jeśli nadal go chcesz: zdobądź trumnę z kaplicy albo zrób ją w
+                kategorii Meble. Znajdź miejsce <i>naprawdę ukryte</i>, postaw
+                trumnę i odpocznij w niej, by zająć ten obszar. Potem możesz
+                przytwierdzać wampirze struktury, takie jak{' '}
                 <Box inline textColor="purple">
-                  Vassalization Rack
+                  stół do tortur
                 </Box>{' '}
-                or{' '}
+                czy{' '}
                 <Box inline textColor="darkred">
-                  Blood Throne
+                  tron krwi
                 </Box>
                 .
               </Box>
@@ -862,9 +858,9 @@ const VampireGuide = (_props) => {
                   paddingLeft: '8px',
                 }}
               >
-                <b>Warning:</b> Maintenance is the first place people look. If
-                someone finds your lair, they find everything: your coffin, your
-                structures, your vassals, and you.
+                <b>Uwaga:</b> Tunele techniczne to pierwsze miejsce, gdzie
+                ludzie szukają. Jeśli ktoś znajdzie twoje legowisko, znajdzie
+                wszystko: trumnę, struktury, wasali i ciebie.
               </Box>
             </Box>
           )}
@@ -872,75 +868,76 @@ const VampireGuide = (_props) => {
             // Structures
             <Box>
               <Box fontSize="18px" textColor="blue" bold>
-                Structures
+                Struktury
               </Box>
               <Box fontSize="13px" textColor="blue">
-                These can be built via the Vampire crafting tab.
+                Można je zbudować w wampirzej zakładce craftingu.
               </Box>
               <br />
               <Box textColor="purple" bold>
-                Vassalization Rack
+                Stół do tortur
               </Box>
               <Box fontSize="13px">
-                The vassalization rack is your tool for converting captured
-                crewmembers into loyal{' '}
+                Stół do tortur to twoje narzędzie do przemiany pojmanych
+                członków załogi w lojalnych{' '}
                 <Box inline textColor="purple">
-                  vassals
-                </Box>{' '}
-                who will serve your every command.
+                  wasali
+                </Box>
+                , którzy wykonają każdy twój rozkaz.
                 <br />
                 <br />
-                <b>Usage:</b> Secure the rack in your{' '}
+                <b>Użycie:</b> Przytwierdź stół w swoim{' '}
                 <Box inline textColor="green">
-                  lair
+                  legowisku
                 </Box>{' '}
-                → restrain your target → drag them onto the rack → click the
-                rack to begin the torture process.
+                → skrępuj cel → przeciągnij go na stół → kliknij stół, by
+                rozpocząć tortury.
                 <br />
                 <br />
-                You can speed up the conversion significantly by using{' '}
+                Możesz znacznie przyspieszyć przemianę, używając na skrępowanej
+                ofierze{' '}
                 <Box inline textColor="red">
-                  sharp tools
-                </Box>{' '}
-                on the victim while they are restrained.
+                  ostrych narzędzi
+                </Box>
+                .
               </Box>
               <br />
               <Box fontSize="13px">
-                Crewmembers with{' '}
+                Członkom załogi z{' '}
                 <Box inline textColor="blue">
-                  mindshields
+                  mindshieldem
                 </Box>{' '}
-                or strong loyalties require their mental defenses to be weakened
-                first.{' '}
+                albo silną lojalnością trzeba najpierw osłabić obronę
+                psychiczną.{' '}
                 <Box inline textColor="purple">
-                  Eldritch servants
+                  Słudzy nadprzyrodzonych sił
                 </Box>{' '}
-                are completely immune and can never be converted.
+                są całkowicie odporni i nigdy nie dadzą się przemienić.
               </Box>
               <br />
               <Box textColor="yellow" bold>
-                Candelabrum
+                Kandelabr
               </Box>
               <Box fontSize="13px">
-                A vampiric candelabra that radiates an unsettling aura. Any
-                mortal who gazes upon its{' '}
+                Wampirzy kandelabr, który roztacza niepokojącą aurę. Każdy
+                śmiertelnik, który zapatrzy się w jego{' '}
                 <Box inline textColor="orange">
-                  flame
-                </Box>{' '}
-                will find their sanity slowly draining away.
+                  płomień
+                </Box>
+                , będzie powoli tracił zdrowe zmysły.
               </Box>
               <br />
               <Box textColor="darkred" bold>
-                Blood Throne
+                Tron krwi
               </Box>
               <Box fontSize="13px">
-                When you sit upon a Blood Throne, your words are broadcast
-                telepathically to all{' '}
+                Gdy zasiadasz na tronie krwi, twoje słowa trafiają telepatycznie
+                do wszystkich{' '}
                 <Box inline textColor="purple">
-                  kindred
+                  Spokrewnionych
                 </Box>{' '}
-                on the station. Other vampires will need their own throne if
-                they wish to respond.
+                na stacji. Inne wampiry potrzebują własnego tronu, jeśli chcą
+                odpowiedzieć.
               </Box>
             </Box>
           )}
@@ -948,61 +945,60 @@ const VampireGuide = (_props) => {
             // Vassals
             <Box>
               <Box fontSize="18px" textColor="purple" bold>
-                Vassals
+                Wasale
               </Box>
               <br />
               <Box inline textColor="purple">
-                Vassals
+                Wasale
               </Box>{' '}
-              are mortals who have been broken and bound to your will. They
-              serve as your eyes, ears, and hands among the living, carrying out
-              your commands while you remain hidden in the shadows.
+              to śmiertelnicy, których złamano i związano z twoją wolą. Są
+              twoimi oczami, uszami i rękami wśród żywych i wykonują twoje
+              rozkazy, gdy ty pozostajesz ukryty w cieniu.
               <br />
               <br />
-              <Box bold>Creating Vassals</Box>
+              <Box bold>Tworzenie wasali</Box>
               <Box fontSize="13px">
-                To create a vassal, you will need a{' '}
+                Do stworzenia wasala potrzebujesz{' '}
                 <Box inline textColor="purple">
-                  Vassalization Rack
+                  stołu do tortur
                 </Box>{' '}
-                secured within your{' '}
+                przytwierdzonego w swoim{' '}
                 <Box inline textColor="green">
-                  lair
+                  legowisku
                 </Box>
-                . Capture your target and restrain them so they cannot escape,
-                then drag them onto the rack. Click the rack to begin the{' '}
+                . Pojmij cel i skrępuj go, żeby nie uciekł, a potem przeciągnij
+                go na stół. Kliknij stół, by rozpocząć{' '}
                 <Box inline textColor="red">
-                  torture
-                </Box>{' '}
-                process that will break their will and bind them to you.
+                  tortury
+                </Box>
+                , które złamią jego wolę i zwiążą go z tobą.
                 <br />
                 <br />
-                Using{' '}
+                Używanie{' '}
                 <Box inline textColor="red">
-                  sharp implements
+                  ostrych narzędzi
                 </Box>{' '}
-                on the victim while they are restrained will accelerate the
-                process considerably.
+                na skrępowanej ofierze znacznie przyspiesza ten proces.
               </Box>
               <br />
-              <Box bold>Limitations</Box>
+              <Box bold>Ograniczenia</Box>
               <Box fontSize="13px">
-                Crewmembers protected by{' '}
+                Członków załogi chronionych{' '}
                 <Box inline textColor="blue">
-                  mindshields
+                  mindshieldem
                 </Box>{' '}
-                or those with strong existing loyalties cannot be converted
-                until their mental defenses have been weakened. Those who serve{' '}
+                albo silnie lojalnych nie da się przemienić, dopóki ich obrona
+                psychiczna nie zostanie osłabiona. Ci, którzy służą{' '}
                 <Box inline textColor="purple">
-                  eldritch powers
-                </Box>{' '}
-                are completely immune and can never be turned.
+                  nadprzyrodzonym siłom
+                </Box>
+                , są całkowicie odporni i nigdy nie dadzą się przeciągnąć.
                 <br />
                 <br />
-                Once someone has become your vassal, the only way to free them
-                is through implantation of a{' '}
+                Gdy ktoś zostanie twoim wasalem, jedynym sposobem na jego
+                uwolnienie jest wszczepienie{' '}
                 <Box inline textColor="blue">
-                  mindshield
+                  mindshielda
                 </Box>
                 .
               </Box>
@@ -1023,7 +1019,7 @@ const PowerSection = (_props) => {
 
   const [tab, setTab] = useLocalState('powerTab', 0);
   return (
-    <Section title="Powers">
+    <Section title="Moce">
       <Stack>
         <Stack.Item>
           <Tabs vertical>
@@ -1061,12 +1057,12 @@ const PowerSection = (_props) => {
               tab === index && (
                 <Box key={index}>
                   <Box inline bold textColor="red">
-                    {power.cost !== '0' && <>BLOOD COST: {power.cost}</>}
+                    {power.cost !== '0' && <>KOSZT KRWI: {power.cost}</>}
                     {power.cost !== '0' && power.constant_cost !== '0' && (
                       <br />
                     )}
                     {power.constant_cost !== '0' && (
-                      <>BLOOD DRAIN: {power.constant_cost}</>
+                      <>KOSZT STAŁY: {power.constant_cost}</>
                     )}
                     {(power.cost !== '0' || power.constant_cost !== '0') &&
                       Number(power.cooldown) !== 0 && (
@@ -1077,7 +1073,7 @@ const PowerSection = (_props) => {
                       )}
                     {Number(power.cooldown) !== 0 && (
                       <>
-                        COOLDOWN: {power.cooldown} seconds
+                        ODNOWIENIE: {power.cooldown} s
                         <br />
                         <br />
                       </>
@@ -1106,23 +1102,21 @@ const ClanSection = () => {
 
   if (!in_clan) {
     return (
-      <Section title="Clan">
+      <Section title="Klan">
         <Stack vertical>
           <Stack.Item fontSize="20px">
             <Box inline textColor="red">
-              You are not in a clan!
+              Nie należysz do żadnego klanu!
             </Box>
           </Stack.Item>
-          <Stack.Item>
-            To determine your clan, utilize the clan selection ability.
-          </Stack.Item>
+          <Stack.Item>Aby wybrać klan, użyj mocy Wybór klanu.</Stack.Item>
         </Stack>
       </Section>
     );
   }
 
   return (
-    <Section title="Clan">
+    <Section title="Klan">
       {clan.map((ClanInfo, index) => (
         <Stack key={index}>
           <Stack.Item>
@@ -1139,7 +1133,7 @@ const ClanSection = () => {
           <Stack.Item grow>
             <Stack.Item textAlign="center">
               <Box inline fontSize="20px" textColor="red">
-                You are part of the <b>{ClanInfo.name}!</b>
+                Należysz do: <b>{ClanInfo.name}!</b>
               </Box>
             </Stack.Item>
             <Box

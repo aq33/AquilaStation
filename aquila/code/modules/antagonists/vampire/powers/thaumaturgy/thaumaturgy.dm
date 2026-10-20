@@ -1,6 +1,6 @@
 /datum/discipline/thaumaturgy
-	name = "Thaumaturgy"
-	discipline_explanation = "Thaumaturgy is the closely guarded form of blood magic practiced by the vampiric clan Tremere."
+	name = "Taumaturgia"
+	discipline_explanation = "Taumaturgia to pilnie strzeżona magia krwi, praktykowana przez wampirzy klan Tremere."
 	icon_state = "thaumaturgy"
 
 	// Lists of abilities granted per level

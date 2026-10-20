@@ -3,9 +3,9 @@
 
 /datum/vampire_clan/malkavian
 	name = CLAN_MALKAVIAN
-	description = "Malkavians are the brood of Malkav and one of the great vampiric clans. They are deranged vampires, afflicted with the insanity of their Antediluvian progenitor.<br><br>\
-		Members of the clan have assumed the roles of seers and oracles among Kindred and kine, eerie figures bound by strange compulsions and the ability to perceive what others cannot.<br><br>\
-		They are also notorious pranksters whose 'jokes' range from silly to sadistic. Against all odds, however, the children of Malkav are among the oldest surviving vampiric lineages."
+	description = "Malkavianie to potomstwo Malkava i jeden z wielkich wampirzych klanów. To obłąkane wampiry, dotknięte szaleństwem swego przedpotopowego protoplasty.<br><br>\
+		Członkowie klanu przyjęli role wieszczów i wyroczni wśród Spokrewnionych i śmiertelników - niesamowite postacie spętane dziwnymi przymusami i zdolnością dostrzegania tego, czego inni nie widzą.<br><br>\
+		Słyną też jako notoryczni dowcipnisie, których 'żarty' bywają od głupich po sadystyczne. Wbrew wszelkim przeciwnościom dzieci Malkava należą jednak do najstarszych zachowanych wampirzych linii."
 	join_icon_state = "malkavian"
 	joinable_clan = TRUE
 	default_humanity = 8
@@ -30,7 +30,7 @@
 	vampiredatum.owner.current.update_sight()
 
 	vampiredatum.owner.current.playsound_local(get_turf(vampiredatum.owner.current), 'sound/ambience/antag/creepalert.ogg', 80, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
-	to_chat(vampiredatum.owner.current, span_hypnophrase("Welcome, childe of Malkav..."))
+	to_chat(vampiredatum.owner.current, span_hypnophrase("Witaj, dziecię Malkava..."))
 
 /datum/vampire_clan/malkavian/Destroy(force)
 	REMOVE_TRAIT(vampiredatum.owner.current, TRAIT_XRAY_VISION, TRAIT_VAMPIRE)

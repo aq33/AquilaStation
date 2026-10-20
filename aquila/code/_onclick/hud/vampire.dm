@@ -17,7 +17,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/vampire/blood_counter
-	name = "Vitae"
+	name = "Licznik krwi"
 	icon_state = "blood_display"
 	screen_loc = UI_BLOOD_DISPLAY
 
@@ -30,36 +30,36 @@
 	if(!owner_vamp)
 		return
 
-	msg += span_cultlarge("This is your Vitae-Counter.")
-	msg += span_cult("Here you see your current level of blood-energy. This is used for all of your abilities, and sustains your very being.")
-	msg += span_cult("\n<b>You need to drink a certain amount from living, sentient beings in order to level up.</b>")
-	msg += span_cult("Your healing also depends on it. You reach your maximum healing potential at [BS_BLOOD_VOLUME_MAX_REGEN].")
+	msg += span_cultlarge("To twój licznik krwi.")
+	msg += span_cult("Widzisz tu obecny poziom energii krwi. Zasila wszystkie twoje zdolności i podtrzymuje samo twoje istnienie.")
+	msg += span_cult("\n<b>Żeby awansować, musisz wypić określoną ilość krwi z żywych, świadomych istot.</b>")
+	msg += span_cult("Od niej zależy też twoje leczenie. Pełnię możliwości regeneracji osiągasz przy [BS_BLOOD_VOLUME_MAX_REGEN].")
 
 	var/bloodlevel
 	switch(owner_vamp.current_vitae)
 		if(0 to 200)
-			bloodlevel = "starved"
+			bloodlevel = "zagłodzony"
 		if(201 to 500)
-			bloodlevel = "thirsty"
+			bloodlevel = "spragniony"
 		if(501 to 700)
-			bloodlevel = "peckish"
+			bloodlevel = "lekko głodny"
 		if(701 to INFINITY)
-			bloodlevel = "content"
+			bloodlevel = "syty"
 
-	msg += span_cult("Your current maximum is: [owner_vamp.max_vitae].")
-	msg += span_cult("This shift, you have drank [owner_vamp.total_blood_drank] units of blood.")
+	msg += span_cult("Twoje obecne maksimum to: [owner_vamp.max_vitae].")
+	msg += span_cult("Na tej zmianie wypiłeś już [owner_vamp.total_blood_drank] jednostek krwi.")
 
-	msg += span_cultlarge("\n<b>Right now, you are feeling <i>[bloodlevel].</i></b>")
+	msg += span_cultlarge("\n<b>W tej chwili czujesz się: <i>[bloodlevel].</i></b>")
 
 	if(owner_vamp.vitae_goal_progress <= owner_vamp.current_vitae_goal)
-		msg += span_cultlarge("\n<b>Your progress to the next level is: <i>[owner_vamp.vitae_goal_progress]/[owner_vamp.current_vitae_goal].</i></b>")
+		msg += span_cultlarge("\n<b>Postęp do następnego awansu: <i>[owner_vamp.vitae_goal_progress]/[owner_vamp.current_vitae_goal].</i></b>")
 	else
-		msg += span_cultlarge("\n<b>You have drank deeply and greedily. Upon next sol, you will level up.</b>")
+		msg += span_cultlarge("\n<b>Piłeś głęboko i łapczywie. Przy następnym Sol awansujesz.</b>")
 
 	to_chat(usr, examine_block(msg.Join("\n")))
 
 /atom/movable/screen/vampire/rank_counter
-	name = "Vampire Rank"
+	name = "Licznik rangi"
 	icon_state = "rank"
 	screen_loc = UI_VAMPRANK_DISPLAY
 
@@ -73,28 +73,28 @@
 		return
 
 	var/mob/living/carbon/human/vampire_human = owner_mob
-	msg += span_cultlarge("This is your Rank-Counter.")
-	msg += span_cult("Here you see your current progress in the mastery of your disciplines.")
-	msg += span_cult("This is a measure of your main progress as a vampire, and, should you feed on another vampire(that has broken the masquerade), you will absorb half of their levels.")
-	msg += span_cult("<b>With your current rank, you are considered as [owner_vamp.get_rank_string()] of your craft.</b>")
-	msg += span_cult("\n<b>Currently, your rank affords you the following benefits:</b>")
-	msg += span_cult("Max Regeneration rate: +[owner_vamp.vampire_regen_rate]")
-	msg += span_cult("Max Vitae pool: +[owner_vamp.max_vitae - 600] ")
-	msg += span_cult("Unarmed damage: +[vampire_human.unarmed_damage_bonus]")
+	msg += span_cultlarge("To twój licznik rangi.")
+	msg += span_cult("Widzisz tu, jak daleko zaszło opanowanie twoich dyscyplin.")
+	msg += span_cult("To główna miara twojego rozwoju jako wampira. Jeśli pożywisz się innym wampirem (który złamał Maskaradę), wchłoniesz połowę jego poziomów.")
+	msg += span_cult("<b>Z obecną rangą uchodzisz za: [owner_vamp.get_rank_string()].</b>")
+	msg += span_cult("\n<b>Obecnie twoja ranga daje ci następujące korzyści:</b>")
+	msg += span_cult("Maks. tempo regeneracji: +[owner_vamp.vampire_regen_rate]")
+	msg += span_cult("Maks. zapas vitae: +[owner_vamp.max_vitae - 600] ")
+	msg += span_cult("Obrażenia bez broni: +[vampire_human.unarmed_damage_bonus]")
 
 	var/list/disciplinestext
 	for(var/datum/discipline/discipline in owner_vamp.owned_disciplines)
 		disciplinestext += "\n[discipline.name] - "
-		disciplinestext += "Level:"
+		disciplinestext += "Poziom:"
 		disciplinestext += "[discipline.level - 1]"
 
 	if(disciplinestext)
-		msg += span_cult("\n<b>Your disciplines and their levels are:</b>[disciplinestext]")
+		msg += span_cult("\n<b>Twoje dyscypliny i ich poziomy:</b>[disciplinestext]")
 
 	to_chat(usr, examine_block(msg.Join("\n")))
 
 /atom/movable/screen/vampire/sunlight_counter
-	name = "Solar Flare Timer"
+	name = "Licznik słońca"
 	icon_state = "sunlight"
 	screen_loc = UI_SUNLIGHT_DISPLAY
 
@@ -107,22 +107,22 @@
 	if(!owner_vamp)
 		return
 
-	msg += span_cultlarge("This is the 'Sol' indicator.")
-	msg += span_cult("Here you see the current state of Sol, the frequent solar flares given off by the nearby star.")
-	msg += span_cult("While traditionally, vampires have thrived on space installations, Auri-Geminae's erratic solar behavior risks final death even in a shielded vessel.")
+	msg += span_cultlarge("To wskaźnik Sol.")
+	msg += span_cult("Widzisz tu obecny stan Sol, częstych rozbłysków słonecznych pobliskiej gwiazdy.")
+	msg += span_cult("Choć wampiry od dawna dobrze się miewają na kosmicznych instalacjach, nieprzewidywalne zachowanie słońca Auri-Geminae grozi Ostateczną Śmiercią nawet na osłoniętym statku.")
 
 	var/normal_humanity_divisor = min(2, 1 + (owner_vamp.humanity / 10))
 	var/divisor_turned_percentage = ((normal_humanity_divisor - 1) * 200) / 4
-	msg += span_cult("\n<b>Your current humanity affords you a [divisor_turned_percentage]% resistance to the ravages of Sol.</b>")
+	msg += span_cult("\n<b>Twoje obecne Człowieczeństwo daje ci [divisor_turned_percentage]% odporności na spustoszenia Sol.</b>")
 
-	msg += span_cult("\n<b>When Sol hits, do not be found in the hallways. You will burn, and draw attention. A locker or maintenance can shield you.</b>")
+	msg += span_cult("\n<b>Gdy nadejdzie Sol, nie daj się złapać na korytarzu. Spłoniesz i ściągniesz na siebie uwagę. Osłoni cię szafka albo technicznie.</b>")
 
-	msg += span_cult("\nThe best measure of protection is of course afforded only by the terrible deathless sleep, 'Torpor.'")
+	msg += span_cult("\nNajlepszą ochronę daje oczywiście tylko straszliwy nieśmiertelny sen, torpor.")
 
 	to_chat(usr, examine_block(msg.Join("\n")))
 
 /atom/movable/screen/vampire/humanity_counter
-	name = "Humanity"
+	name = "Licznik Człowieczeństwa"
 	icon_state = "humanity"
 	screen_loc = UI_HUMANITY_DISPLAY
 
@@ -132,56 +132,56 @@
 	var/mob/living/owner_mob = hud.mymob
 	var/datum/antagonist/vampire/owner_vamp = IS_VAMPIRE(owner_mob)
 
-	msg += span_cultlarge("This is your Humanity score.")
-	msg += span_cult("Humanity is a measure of how closely a vampire clings to the morality and values of mortal life, and consequently how well they are able to resist the urges of the Beast.")
-	msg += span_cult("This has an active effect on the curse of all cainites. Vampires with little humanity may find it harder to stay awake during the day, or to awaken from long periods of torpor. If your humanity is particularly low, you may even burst into flames in the presence of god's light.")
+	msg += span_cultlarge("To twój poziom Człowieczeństwa.")
+	msg += span_cult("Człowieczeństwo pokazuje, jak mocno wampir trzyma się moralności i wartości śmiertelnego życia, a co za tym idzie, jak dobrze opiera się żądzom Bestii.")
+	msg += span_cult("Ma ono realny wpływ na klątwę wszystkich Kainitów. Wampirom o niskim Człowieczeństwie trudniej czuwać za dnia czy budzić się z długiego torporu. Jeśli twoje Człowieczeństwo jest wyjątkowo niskie, możesz nawet stanąć w płomieniach w obecności boskiego światła.")
 
 	var/humanitylevel
 	switch(owner_vamp.humanity)
 		if(0)
-			humanitylevel = "Monstrous"
+			humanitylevel = "potworny"
 		if(1)
-			humanitylevel = "Horrific"
+			humanitylevel = "przerażający"
 		if(2)
-			humanitylevel = "Bestial"
+			humanitylevel = "zwierzęcy"
 		if(3)
-			humanitylevel = "Cold"
+			humanitylevel = "zimny"
 		if(4)
-			humanitylevel = "Unfeeling"
+			humanitylevel = "nieczuły"
 		if(5)
-			humanitylevel = "Removed"
+			humanitylevel = "obojętny"
 		if(6)
-			humanitylevel = "Distant"
+			humanitylevel = "zdystansowany"
 		if(7)
-			humanitylevel = "Normal"
+			humanitylevel = "zwyczajny"
 		if(8)
-			humanitylevel = "Caring"
+			humanitylevel = "troskliwy"
 		if(9)
-			humanitylevel = "Compassionate"
+			humanitylevel = "współczujący"
 		if(10)
-			humanitylevel = "Saintly"
+			humanitylevel = "święty"
 
 	// Pardon me for my math, i was never good at this.
 
 	var/normal_humanity_divisor = min(2, 1 + (owner_vamp.humanity / 10))
 	var/divisor_turned_percentage = ((normal_humanity_divisor - 1) * 200) / 4
 
-	msg += span_cult("\n<b>Right now, others would describe you as <i>'[humanitylevel]',</i> giving you a [divisor_turned_percentage]% resistance to the ravages of Sol.</b>")
+	msg += span_cult("\n<b>W tej chwili inni opisaliby cię jako <i>'[humanitylevel]'</i>, co daje ci [divisor_turned_percentage]% odporności na spustoszenia Sol.</b>")
 	if(owner_vamp.humanity > 7)
-		msg += span_cult("Due to your connection to your own human soul, you have achieved the masquerade ability.")
+		msg += span_cult("Dzięki więzi z własną ludzką duszą zyskujesz moc Maskarady.")
 
-	msg += span_cult("\n<b>You may gain humanity by engaging in human activities, such as:</b>")
-	msg += span_cult("Hugging different mortals: [length(owner_vamp.humanity_trackgain_hugged)] of [owner_vamp.humanity_hugging_goal].")
-	msg += span_cult("Petting various animals: [length(owner_vamp.humanity_trackgain_petted)] of [owner_vamp.humanity_petting_goal].")
-	msg += span_cult("Looking at art: [length(owner_vamp.humanity_trackgain_art)] of [owner_vamp.humanity_art_goal].")
+	msg += span_cult("\n<b>Człowieczeństwo możesz odzyskać, robiąc ludzkie rzeczy, na przykład:</b>")
+	msg += span_cult("Przytulanie różnych śmiertelników: [length(owner_vamp.humanity_trackgain_hugged)] z [owner_vamp.humanity_hugging_goal].")
+	msg += span_cult("Głaskanie różnych zwierząt: [length(owner_vamp.humanity_trackgain_petted)] z [owner_vamp.humanity_petting_goal].")
+	msg += span_cult("Oglądanie sztuki: [length(owner_vamp.humanity_trackgain_art)] z [owner_vamp.humanity_art_goal].")
 
 	var/frenzy_modifier = owner_vamp.get_frenzy_humanity_modifier()
 	var/frenzy_enter = FRENZY_THRESHOLD_ENTER + frenzy_modifier
 	var/frenzy_exit = FRENZY_THRESHOLD_EXIT + frenzy_modifier
-	msg += span_cult("\n<b>Due to your current humanity score, your frenzy thresholds are adjusted as follows:</b>")
-	msg += span_cult("\nYou will enter frenzy when you sink below <b>[frenzy_enter]</b>, and will only be sated above <b>[frenzy_exit]</b>.")
+	msg += span_cult("\n<b>Przez obecny poziom Człowieczeństwa progi Szału wyglądają tak:</b>")
+	msg += span_cult("\nWpadniesz w Szał, gdy spadniesz poniżej <b>[frenzy_enter]</b>, a zaspokoisz głód dopiero powyżej <b>[frenzy_exit]</b>.")
 	if(owner_vamp.humanity < 7)
-		msg += span_cult("<i>Your lack of humanity makes the Beast harder to control. (+[frenzy_modifier] from low humanity)</i>")
+		msg += span_cult("<i>Brak Człowieczeństwa utrudnia panowanie nad Bestią. (+[frenzy_modifier] za niskie Człowieczeństwo)</i>")
 
 	to_chat(usr, examine_block(msg.Join("\n")))
 

@@ -24,12 +24,12 @@
 	// Healing
 	if(handle_healing() && !istype(current, /mob/living/simple_animal/hostile))
 		if((COOLDOWN_FINISHED(src, vampire_spam_healing)) && current_vitae > 0)
-			to_chat(owner.current, span_notice("The power of your blood knits your wounds..."))
+			to_chat(owner.current, span_notice("Moc twojej krwi zasklepia rany..."))
 			COOLDOWN_START(src, vampire_spam_healing, VAMPIRE_SPAM_HEALING)
 
 	var/area/current_area = get_area(current)
 	if(istype(current_area, /area/chapel) && humanity <= 2)
-		to_chat(owner, span_warning("Your inhuman nature is rejected by a holy presence!"))
+		to_chat(owner, span_warning("Święta obecność odrzuca twoją nieludzką naturę!"))
 		current.adjustFireLoss(10)
 		current.adjust_fire_stacks(4)
 		current.ignite_mob()
@@ -123,7 +123,7 @@
 		// If not: heal 3x as fast and heal burn damage at 80%
 		if(istype(carbon_owner.loc, /obj/structure/closet/crate/coffin))
 			if(HAS_TRAIT(owner.current, TRAIT_MASQUERADE) && (COOLDOWN_FINISHED(src, vampire_spam_healing)))
-				to_chat(carbon_owner, span_alert("You do not heal while your Masquerade ability is active."))
+				to_chat(carbon_owner, span_alert("Nie leczysz się, dopóki Maskarada jest aktywna."))
 				COOLDOWN_START(src, vampire_spam_healing, VAMPIRE_SPAM_MASQUERADE)
 				return FALSE
 
@@ -171,7 +171,7 @@
 		adjust_vitae(-limb_regen_cost)
 		var/obj/item/bodypart/missing_bodypart = carbon_owner.get_bodypart(missing_limb)
 		missing_bodypart.brute_dam = 60
-		to_chat(carbon_owner, span_notice("Your flesh knits as it regrows your [missing_bodypart]!"))
+		to_chat(carbon_owner, span_notice("Twoje ciało zrasta się i odtwarza utraconą kończynę: [missing_bodypart]!"))
 		playsound(carbon_owner, 'sound/magic/demon_consume.ogg', 50, TRUE)
 		return TRUE
 
@@ -277,7 +277,7 @@
 	// Warn them at low blood - warning scales with the frenzy threshold so it always comes before frenzy
 	var/adjusted_warning = FRENZY_THRESHOLD_ENTER + frenzy_modifier + VAMPIRE_LOW_BLOOD_WARNING
 	if(current_vitae < adjusted_warning && !low_blood_alerted)
-		to_chat(owner.current, span_narsiesmall("Care now. Your vitae runs low! The Beast stirs at [FRENZY_THRESHOLD_ENTER + frenzy_modifier] blood..."), type = MESSAGE_TYPE_WARNING)
+		to_chat(owner.current, span_narsiesmall("Uważaj. Kończy ci się vitae! Bestia budzi się przy [FRENZY_THRESHOLD_ENTER + frenzy_modifier] jednostkach krwi..."), type = MESSAGE_TYPE_WARNING)
 		low_blood_alerted = TRUE
 	else if(current_vitae > adjusted_warning)
 		low_blood_alerted = FALSE
@@ -340,9 +340,9 @@
 
 	// Get dusted lmao
 	body.visible_message(
-		span_warning("[body]'s skin crackles and dries, [body.p_their()] skin and bones withering to dust. A hollow cry whips from what is now a sandy pile of remains."),
-		span_userdanger("Your soul escapes your withering body as the abyss welcomes you to your Final Death."),
-		span_hear("You hear a dry, crackling sound.")
+		span_warning("Skóra [body] trzeszczy i wysycha, a ciało i kości obracają się w proch. Z tego, co zostało tylko kupką piasku, wyrywa się głuchy krzyk."),
+		span_userdanger("Twoja dusza ucieka z obracającego się w proch ciała, a otchłań wita cię w Ostatecznej Śmierci."),
+		span_hear("Słyszysz suchy trzask.")
 	)
 
 	torpor_end() // End it BEFORE we dust them.

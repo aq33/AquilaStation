@@ -25,7 +25,7 @@ GLOBAL_VAR_INIT(vampire_names, shuffle(list(
 /datum/antagonist/vampire/proc/return_full_name()
 	var/fullname = vampire_name || owner.name || owner.current.real_name || owner.current.name
 
-	fullname += " the [get_rank_string(vampire_level)]"
+	fullname += " [get_rank_string(vampire_level)]"
 
 	return fullname
 

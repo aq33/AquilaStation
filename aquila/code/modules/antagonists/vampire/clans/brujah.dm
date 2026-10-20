@@ -1,8 +1,8 @@
 /datum/vampire_clan/brujah
 	name = CLAN_BRUJAH
-	description = "Mostly independent of the Camarilla's strictures, the Brujah prefer their own councils and street courts over princely salons.<br>\
-		They are a fallen clan, a people who have slid from warrior-scholars into fierce, argumentative rebels. Yet the embers of discipline and wisdom still glow beneath the rage.<br><br>\
-		At the same time, many Brujah are pragmatic. They respect competence, reward power, and will accept arrangements that let them keep their autonomy while serving a purpose. For the right price, leverage, or chance to settle scores, princes were known recruit Brujah as scourges or enforcers, so long as those Brujah retain visible independence."
+	description = "W dużej mierze niezależni od reguł Camarilli, Brujah przedkładają własne rady i uliczne sądy nad książęce salony.<br>\
+		To upadły klan, lud, który z wojowników-uczonych stoczył się do roli zażartych, kłótliwych buntowników. A jednak pod gniewem wciąż tlą się iskry dyscypliny i mądrości.<br><br>\
+		Zarazem wielu Brujah to pragmatycy. Szanują kompetencje, nagradzają siłę i przystają na układy, które pozwalają im zachować autonomię, a przy tym służyć jakiemuś celowi. Za odpowiednią cenę, w zamian za haki albo szansę na wyrównanie rachunków książęta werbowali Brujah na Biczów czy egzekutorów, byle tylko ci Brujah zachowali widoczną niezależność."
 	join_icon_state = "brujah"
 	default_humanity = 8
 	princely_score_bonus = 2

@@ -1,6 +1,6 @@
 /datum/discipline/celerity
-	name = "Celerity"
-	discipline_explanation = "Celerity is a Discipline that grants vampires supernatural quickness and reflexes."
+	name = "Akceleracja"
+	discipline_explanation = "Akceleracja to dyscyplina, która daje wampirom nadnaturalną szybkość i refleks."
 	icon_state = "celerity"
 
 	// Lists of abilities granted per level

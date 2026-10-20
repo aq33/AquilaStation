@@ -4,18 +4,18 @@
  *	Like a softer mesmerize - target isn't fully out of commission but is very impaired.
  */
 /datum/action/vampire/targeted/entrance
-	name = "Entrance"
-	desc = "Capture a mortal's attention momentarily, leaving them slowed, muted, and dazed."
+	name = "Oczarowanie"
+	desc = "Na chwilę przykuj uwagę śmiertelnika, spowalniając go, odbierając mu głos i otępiając."
 	button_icon_state = "power_entrance"
-	power_explanation = "Click any player to entrance them, leaving them momentarily impaired.\n\
-		Your target will be slowed, muted, and unable to use items for a short duration.\n\
-		This is a softer form of control - they can still move and resist, but are heavily hindered."
+	power_explanation = "Kliknij dowolnego gracza, żeby go oczarować i na chwilę osłabić.\n\
+		Cel zostanie spowolniony, oniemieje i przez krótki czas nie będzie mógł używać przedmiotów.\n\
+		To łagodniejsza forma kontroli - cel nadal może się ruszać i stawiać opór, ale jest mocno utrudniony."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 80
 	cooldown_time = 60 SECONDS
 	target_range = 7
-	prefire_message = "Who will you entrance?"
+	prefire_message = "Kogo oczarujesz?"
 
 /datum/action/vampire/targeted/entrance/check_valid_target(atom/target_atom)
 	. = ..()
@@ -27,19 +27,19 @@
 	var/mob/living/carbon/carbon_target = target_atom
 
 	if(!carbon_target.mind)
-		owner.balloon_alert(owner, "[carbon_target] is mindless.")
+		owner.balloon_alert(owner, "[carbon_target]: brak umysłu.")
 		return FALSE
 
 	if(HAS_MIND_TRAIT(carbon_target, TRAIT_VAMPIRE_ALIGNED) || is_curator_job(carbon_target?.mind?.assigned_role))
-		owner.balloon_alert(owner, "immune to your presence.")
+		owner.balloon_alert(owner, "odporność na twoją prezencję.")
 		return FALSE
 
 	if(carbon_target.stat != CONSCIOUS)
-		owner.balloon_alert(owner, "[carbon_target] is not [(carbon_target.stat == DEAD || HAS_TRAIT(carbon_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		owner.balloon_alert(owner, "[carbon_target]: [(carbon_target.stat == DEAD || HAS_TRAIT(carbon_target, TRAIT_FAKEDEATH)) ? "nie żyje" : "bez przytomności"].")
 		return FALSE
 
 	if(carbon_target.has_status_effect(/datum/status_effect/entranced))
-		owner.balloon_alert(owner, "[carbon_target] is already entranced.")
+		owner.balloon_alert(owner, "[carbon_target]: już oczarowany.")
 		return FALSE
 
 	return TRUE
@@ -50,9 +50,9 @@
 
 	carbon_target.apply_status_effect(/datum/status_effect/entranced, 20 SECONDS)
 
-	owner.balloon_alert(owner, "entranced [carbon_target]")
-	to_chat(carbon_target, span_awe("Your mind goes blank..."), type = MESSAGE_TYPE_WARNING)
-	to_chat(owner, span_notice("You capture [carbon_target]'s attention, leaving them dazed."), type = MESSAGE_TYPE_INFO)
+	owner.balloon_alert(owner, "oczarowano: [carbon_target]")
+	to_chat(carbon_target, span_awe("W twojej głowie robi się pusto..."), type = MESSAGE_TYPE_WARNING)
+	to_chat(owner, span_notice("Przykuwasz uwagę i otępiasz: [carbon_target]."), type = MESSAGE_TYPE_INFO)
 
 /// Status effect for being entranced
 /datum/status_effect/entranced
@@ -79,15 +79,15 @@
 	owner.remove_traits(list(TRAIT_MUTE, TRAIT_HANDS_BLOCKED), TRAIT_STATUS_EFFECT(id))
 	owner.remove_movespeed_modifier_type(/datum/movespeed_modifier/status_effect/entranced)
 	owner.remove_client_colour(/datum/client_colour/glass_colour/pink)
-	to_chat(owner, span_awe("Your mind clears and you regain your focus."))
+	to_chat(owner, span_awe("Umysł ci się rozjaśnia i odzyskujesz skupienie."))
 
 /datum/status_effect/entranced/get_examine_text()
-	return span_warning("[owner.p_They()] seem[owner.p_s()] dazed and unfocused.")
+	return span_warning("Ma otępiały, nieobecny wzrok.")
 
 /// Alert for entranced status
 /atom/movable/screen/alert/status_effect/entranced
-	name = "Entranced"
-	desc = "Your mind has been captured by a supernatural presence. You cannot speak or use items."
+	name = "Oczarowanie"
+	desc = "Twój umysł pochwyciła nadnaturalna obecność. Nie możesz mówić ani używać przedmiotów."
 	icon_state = "hypnosis"
 
 /// Movespeed modifier for the entranced status effect

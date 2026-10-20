@@ -1,18 +1,18 @@
 /datum/action/vampire/targeted/bloodboil
-	name = "Thaumaturgy: Boil Blood"
-	desc = "Boil the target's blood inside their body."
+	name = "Taumaturgia: Wrzenie krwi"
+	desc = "Zagotuj krew w ciele celu."
 	button_icon_state = "power_bloodboil"
 	background_icon_state_on = "tremere_power_bronze_on"
 	background_icon_state_off = "tremere_power_bronze_off"
-	power_explanation = "Afflict a debilitating status effect on a target within range, causing them to suffer bloodloss, burn damage, and slowing them down.\n\
-						This is the only thaumaturgy ability to scale with level. It will become more powerful, last longer, gain range, and have a shorter cooldown."
+	power_explanation = "Nałóż na cel w zasięgu wyniszczający efekt: traci krew, odnosi oparzenia i zostaje spowolniony.\n\
+						To jedyna moc Taumaturgii, która rośnie z poziomem. Staje się silniejsza, trwa dłużej, zyskuje zasięg i szybciej się odnawia."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 30
 	cooldown_time = 35 SECONDS
 	target_range = 7
 	power_activates_immediately = FALSE
-	prefire_message = "Whom will you afflict?"
+	prefire_message = "Kogo dotkniesz klątwą?"
 
 	var/powerlevel = 1
 
@@ -41,13 +41,13 @@
 
 	// Must be a carbon
 	if(!iscarbon(target_atom) || issilicon(target_atom))
-		owner.balloon_alert(owner, "not a valid target.")
+		owner.balloon_alert(owner, "nieprawidłowy cel.")
 		return FALSE
 	var/mob/living/living_target = target_atom
 
 	// Check for magic immunity
 	if(living_target.can_block_magic(MAGIC_RESISTANCE_HOLY))
-		owner.balloon_alert(owner, "your curse was blocked.")
+		owner.balloon_alert(owner, "twoja klątwa została odparta.")
 		return FALSE
 
 	// Already boiled
@@ -66,31 +66,31 @@
 	switch(powerlevel)
 		if(1)
 			if(living_target.apply_status_effect(/datum/status_effect/bloodboil, owner))
-				to_chat(owner, span_warning("You cause [living_target.name]'s blood to boil inside their body!"))
+				to_chat(owner, span_warning("Krew w ciele celu zaczyna wrzeć: [living_target.name]!"))
 				power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 			else
-				to_chat(owner, span_warning("Your thaumaturgy fails to take hold."))
+				to_chat(owner, span_warning("Twoja Taumaturgia nie zdołała się uchwycić celu."))
 				deactivate_power()
 		if(2)
 			if(living_target.apply_status_effect(/datum/status_effect/bloodboil/strong, owner))
-				to_chat(owner, span_warning("You cause [living_target.name]'s blood to boil inside their body!"))
+				to_chat(owner, span_warning("Krew w ciele celu zaczyna wrzeć: [living_target.name]!"))
 				power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 			else
-				to_chat(owner, span_warning("Your thaumaturgy fails to take hold."))
+				to_chat(owner, span_warning("Twoja Taumaturgia nie zdołała się uchwycić celu."))
 				deactivate_power()
 		if(3)
 			if(living_target.apply_status_effect(/datum/status_effect/bloodboil/stronger, owner))
-				to_chat(owner, span_warning("You cause [living_target.name]'s blood to boil inside their body!"))
+				to_chat(owner, span_warning("Krew w ciele celu zaczyna wrzeć: [living_target.name]!"))
 				power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 			else
-				to_chat(owner, span_warning("Your thaumaturgy fails to take hold."))
+				to_chat(owner, span_warning("Twoja Taumaturgia nie zdołała się uchwycić celu."))
 				deactivate_power()
 		if(4)
 			if(living_target.apply_status_effect(/datum/status_effect/bloodboil/strongest, owner))
-				to_chat(owner, span_warning("You cause [living_target.name]'s blood to boil inside their body!"))
+				to_chat(owner, span_warning("Krew w ciele celu zaczyna wrzeć: [living_target.name]!"))
 				power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 			else
-				to_chat(owner, span_warning("Your thaumaturgy fails to take hold."))
+				to_chat(owner, span_warning("Twoja Taumaturgia nie zdołała się uchwycić celu."))
 				deactivate_power()
 
 /datum/status_effect/bloodboil
@@ -117,8 +117,8 @@
 	power = 4
 
 /atom/movable/screen/alert/status_effect/bloodboil
-	name = "Blood Boil"
-	desc = "You feel an intense heat coursing through your veins. Your blood is boiling!"
+	name = "Wrzenie krwi"
+	desc = "Czujesz, jak żyłami płynie piekielny żar. Twoja krew wrze!"
 	icon_state = "bloodboil"
 
 /datum/status_effect/bloodboil/tick()
@@ -135,28 +135,28 @@
 			carbon_owner.adjustFireLoss(8)
 			owner.blood_volume -= 4
 			if(prob(50))
-				to_chat(owner, span_warning("Oh god! IT BURNS!"))
+				to_chat(owner, span_warning("O Boże! TO PALI!"))
 				owner.emote("screams")
 		if(2)
 			carbon_owner.adjustStaminaLoss(10)
 			carbon_owner.adjustFireLoss(6)
 			owner.blood_volume -= 6
 			if(prob(50))
-				to_chat(owner, span_warning("Oh god! IT BURNS!"))
+				to_chat(owner, span_warning("O Boże! TO PALI!"))
 				owner.emote("screams")
 		if(3)
 			carbon_owner.adjustStaminaLoss(15)
 			carbon_owner.adjustFireLoss(8)
 			owner.blood_volume -= 8
 			if(prob(50))
-				to_chat(owner, span_warning("Oh god! IT BURNS!"))
+				to_chat(owner, span_warning("O Boże! TO PALI!"))
 				owner.emote("screams")
 		if(4)
 			carbon_owner.adjustStaminaLoss(20)
 			carbon_owner.adjustFireLoss(9)
 			owner.blood_volume -= 10
 			if(prob(50))
-				to_chat(owner, span_warning("Oh god! IT BURNS!"))
+				to_chat(owner, span_warning("O Boże! TO PALI!"))
 				owner.emote("screams")
 	return
 
@@ -172,4 +172,4 @@
 /datum/status_effect/bloodboil/on_remove()
 
 /datum/status_effect/bloodboil/get_examine_text()
-	return span_warning("[owner.p_They()] writhe[owner.p_s()] and squirm[owner.p_s()], [owner.p_They()] seem[owner.p_s()] weirdly red?")
+	return span_warning("Wije się i skręca, a skóra jest dziwnie czerwona.")

@@ -1,13 +1,13 @@
 /datum/action/vampire/awe
-	name = "Awe"
-	desc = "Project an aura of supernatural presence that subtly influences those around you."
+	name = "Podziw"
+	desc = "Roztocz aurę nadnaturalnej obecności, która subtelnie wpływa na otoczenie."
 	button_icon_state = "power_awe"
-	power_explanation = "Project an aura around yourself that subtly affects everyone nearby.\n\
-						Effects on those in your aura:\n\
-						- They can only whisper, unable to speak loudly.\n\
-						- They are slightly slowed.\n\
-						- They occasionally lose focus: facing you, stepping towards you, or dropping items.\n\
-						Targets must be able to see you to be affected."
+	power_explanation = "Roztaczasz wokół siebie aurę, która subtelnie działa na wszystkich w pobliżu.\n\
+						Efekty dla osób w zasięgu aury:\n\
+						- Mogą tylko szeptać, nie są w stanie mówić głośno.\n\
+						- Są lekko spowolnione.\n\
+						- Co jakiś czas tracą skupienie: odwracają się do ciebie, robią krok w twoją stronę albo upuszczają przedmioty.\n\
+						Cele muszą cię widzieć, żeby aura zadziałała."
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY
 	vitaecost = 20
@@ -18,11 +18,11 @@
 
 /datum/action/vampire/awe/activate_power()
 	. = ..()
-	to_chat(owner, span_notice("You extend your supernatural presence."), type = MESSAGE_TYPE_INFO)
+	to_chat(owner, span_notice("Roztaczasz swoją nadnaturalną obecność."), type = MESSAGE_TYPE_INFO)
 
 /datum/action/vampire/awe/deactivate_power()
 	. = ..()
-	to_chat(owner, span_notice("You withdraw your supernatural presence."), type = MESSAGE_TYPE_INFO)
+	to_chat(owner, span_notice("Wycofujesz swoją nadnaturalną obecność."), type = MESSAGE_TYPE_INFO)
 
 /datum/action/vampire/awe/use_power()
 	. = ..()
@@ -95,7 +95,7 @@
 		switch(rand(1, 6))
 			// Nothingburger
 			if(1)
-				to_chat(owner, span_awe("Your mind drifts..."))
+				to_chat(owner, span_awe("Twoje myśli odpływają..."))
 			// Only face them, nothing else
 			if(2)
 				owner.face_atom(source_vampire)
@@ -103,28 +103,28 @@
 			if(3)
 				owner.face_atom(source_vampire)
 				owner.emote("smiles")
-				to_chat(owner, span_awe("You find yourself smiling..."))
+				to_chat(owner, span_awe("Łapiesz się na tym, że się uśmiechasz..."))
 			// Step Towards
 			if(4)
 				owner.face_atom(source_vampire)
 				if(owner.get_body_position() == STANDING_UP && get_step(owner.loc, get_dir(owner.loc, source_vampire.loc)) != source_vampire.loc)
-					owner.visible_message(span_warning("[owner] stumbles."), span_awe("You suddenly stumble..."))
+					owner.visible_message(span_warning("[owner] się potyka."), span_awe("Nagle się potykasz..."))
 					owner.Move(get_step(owner.loc, get_dir(owner.loc, source_vampire.loc)))
 			// Wobbly Knees
 			if(5)
 				owner.face_atom(source_vampire)
 				if(owner.get_body_position() == STANDING_UP && owner.getStaminaLoss() == 0)
-					owner.visible_message(span_warning("[owner] seems quite wobbly on [owner.p_their()] feet."), span_awe("Your knees feel wobbly..."))
+					owner.visible_message(span_warning("[owner] chwieje się na nogach."), span_awe("Kolana się pod tobą uginają..."))
 					owner.apply_damage(rand(10,30), STAMINA, owner.get_bodypart(BODY_ZONE_L_LEG), FALSE, TRUE)
 					owner.apply_damage(rand(10,30), STAMINA, owner.get_bodypart(BODY_ZONE_R_LEG), FALSE, TRUE)
 			// Stunned
 			if(6)
 				owner.face_atom(source_vampire)
 				owner.Stun(1 SECONDS, ignore_canstun = TRUE)
-				to_chat(owner, span_awe("What was I doing?"))
+				to_chat(owner, span_awe("Co ja tu właściwie robię?"))
 
 /datum/status_effect/awed/get_examine_text()
-	return span_warning("[owner.p_They()] seem[owner.p_s()] distracted and unfocused.")
+	return span_warning("Ma rozbiegany, nieobecny wzrok.")
 
 /// Movespeed modifier for the awed status effect
 /datum/movespeed_modifier/status_effect/awed

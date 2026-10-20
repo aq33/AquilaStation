@@ -5,24 +5,24 @@
 #define FEED_BLOOD_FROM_MICE 25
 
 /datum/action/vampire/targeted/feed
-	name = "Feed"
-	desc = "Feed blood off of a living creature."
+	name = "Żerowanie"
+	desc = "Pij krew z żywej istoty."
 	button_icon_state = "power_feed"
-	power_explanation = "Activate Feed and select a target to start draining their blood.\n\
-		You will begin to entrance them into accepting your advances.\n\
-		The time needed before you start feeding decreases the higher level you are.\n\
-		If you are feeding normally they will forget that they were ever fed off.\n\
-		Mice can be fed off if you are in desperate need of blood.\n\
-		<b>Feeding off of someone while you have them aggressively grabbed while in combat mode, will put them to sleep and make you feed faster</b>. \
-		This is very obvious and the radius in which you can be detected is much larger!\n\
-		<b>IMPORTANT:</b> You are given a Masquerade Infraction if a mortal witnesses you while feeding.\n\
-		<b>IMPORTANT:</b> You may feed on other vampires if they have broken the masquerade. Should you drain them, you will absorb their power!"
+	power_explanation = "Aktywuj Żerowanie i wybierz cel, żeby zacząć wysysać jego krew.\n\
+		Najpierw wprowadzasz ofiarę w trans, żeby przyjęła twoje zaloty.\n\
+		Im wyższy masz poziom, tym krócej trzeba czekać, zanim zaczniesz pić.\n\
+		Przy zwykłym żerowaniu ofiara zapomni, że ktokolwiek pił jej krew.\n\
+		W desperackiej potrzebie krwi możesz żerować na myszach.\n\
+		<b>Żerowanie na kimś, kogo trzymasz agresywnym chwytem w trybie walki, usypia ofiarę i przyspiesza picie</b>. \
+		To bardzo rzuca się w oczy, a promień, w którym ktoś może cię zauważyć, jest dużo większy!\n\
+		<b>WAŻNE:</b> Jeśli śmiertelnik zobaczy cię przy żerowaniu, dostajesz wykroczenie przeciw Maskaradzie.\n\
+		<b>WAŻNE:</b> Możesz żerować na innych wampirach, jeśli złamały Maskaradę. Jeśli je wyssiesz, przejmiesz ich moc!"
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	special_flags = VAMPIRE_DEFAULT_POWER
 	cooldown_time = 1 SECONDS
 	target_range = 1
-	prefire_message = "Select a target."
+	prefire_message = "Wybierz cel."
 	power_activates_immediately = FALSE
 	/// Amount of blood taken, reset after each Feed. Used for logging.
 	var/blood_taken = 0
@@ -51,7 +51,7 @@
 	// Mouth covered
 	var/mob/living/carbon/user = owner
 	if(user?.is_mouth_covered() && !isplasmaman(user))
-		owner.balloon_alert(owner, "mouth covered!")
+		owner.balloon_alert(owner, "masz zakryte usta!")
 		return FALSE
 
 /datum/action/vampire/targeted/feed/continue_active()
@@ -74,10 +74,10 @@
 			if(!INCAPACITATED_IGNORING(watcher, INCAPABLE_RESTRAINTS))
 				watcher.face_atom(owner)
 			watcher.do_alert_animation(watcher)
-			to_chat(watcher, span_warning("[owner.first_name()] is biting [target.first_name()]'s neck!"), type = MESSAGE_TYPE_WARNING)
+			to_chat(watcher, span_warning("[owner.first_name()] wgryza się w szyję osoby [target.first_name()]!"), type = MESSAGE_TYPE_WARNING)
 			playsound(watcher, 'sound/machines/chime.ogg', 50, FALSE, -5)
 
-			owner.balloon_alert(owner, "feed noticed!")
+			owner.balloon_alert(owner, "ktoś cię zauważył!")
 			if(!masquerade_breached)
 				masquerade_breached = TRUE
 				vampiredatum_power.give_masquerade_infraction()
@@ -91,10 +91,10 @@
 				watcher.face_atom(owner)
 
 			watcher.do_alert_animation(watcher)
-			to_chat(watcher, span_warning("[owner.first_name()] is biting [target.first_name()]'s neck!"), type = MESSAGE_TYPE_WARNING)
+			to_chat(watcher, span_warning("[owner.first_name()] wgryza się w szyję osoby [target.first_name()]!"), type = MESSAGE_TYPE_WARNING)
 			playsound(watcher, 'sound/machines/chime.ogg', 50, FALSE, -5)
 
-			owner.balloon_alert(owner, "feed noticed!")
+			owner.balloon_alert(owner, "ktoś cię zauważył!")
 			if(!masquerade_breached)
 				masquerade_breached = TRUE
 				vampiredatum_power.give_masquerade_infraction()
@@ -113,21 +113,21 @@
 	// Mice check
 	if(istype(target, /mob/living/simple_animal/mouse))
 		if(vampiredatum_power.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY)
-			owner.balloon_alert(owner, "too disgusting!")
+			owner.balloon_alert(owner, "zbyt obrzydliwe!")
 			return FALSE
 		else
 			return TRUE
 	// Has to be human or a monkey
 	if(!ishuman(target) && !ismonkey(target))
-		owner.balloon_alert(owner, "cant feed off!")
+		owner.balloon_alert(owner, "nie możesz na tym żerować!")
 		return FALSE
 	// Mindless and snobby?
 	if(!target.mind && vampiredatum_power.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY && !vampiredatum_power.frenzied)
-		owner.balloon_alert(owner, "ew, no!")
+		owner.balloon_alert(owner, "fuj, nie!")
 		return FALSE
 	// Cannot be a curator
 	if(is_curator_job(target?.mind?.assigned_role))
-		owner.balloon_alert(owner, "[target] is too powerful!")
+		owner.balloon_alert(owner, "[target] ma zbyt wielką moc!")
 		return FALSE
 	// Only allow diablerie for masquerade breakers
 	if(IS_VAMPIRE(target))
@@ -139,23 +139,23 @@
 		// Cannot drink from inorganics
 		var/mob/living/carbon/human/human_target = target
 		if(!human_target.dna?.species || !(human_target.mob_biotypes & MOB_ORGANIC))
-			owner.balloon_alert(owner, "no blood!")
+			owner.balloon_alert(owner, "brak krwi!")
 			return FALSE
 		// Cannot be wearing super thick gear
 		if(!human_target.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
-			owner.balloon_alert(owner, "suit too thick!")
+			owner.balloon_alert(owner, "za gruby strój!")
 			return FALSE
 
 	if(isliving(owner))
 		var/mob/living/living_owner = owner
 		if(living_owner.get_body_position() != STANDING_UP)
-			living_owner.balloon_alert(living_owner, "must be standing!")
+			living_owner.balloon_alert(living_owner, "musisz stać!")
 			return FALSE
 
 	if(iscarbon(owner))
 		var/mob/living/carbon/carbon_owner = owner
 		if(carbon_owner.handcuffed)
-			carbon_owner.balloon_alert(carbon_owner, "can't feed while restrained!")
+			carbon_owner.balloon_alert(carbon_owner, "nie możesz żerować, będąc skrępowanym!")
 			return FALSE
 
 	silent_feed = TRUE
@@ -168,7 +168,7 @@
 
 	// Mice
 	if(istype(feed_target, /mob/living/simple_animal/mouse))
-		to_chat(owner, span_warning("You recoil at the taste of a lesser lifeform."))
+		to_chat(owner, span_warning("Wzdrygasz się na smak niższej formy życia."))
 		vampiredatum_power.adjust_vitae(FEED_BLOOD_FROM_MICE)
 		power_activated_sucessfully()
 		feed_target.death()
@@ -185,16 +185,16 @@
 
 		// Don't allow normal feed on vamps. It's too easy and feels unfair.
 		if(IS_VAMPIRE(feed_target))
-			owner.balloon_alert(owner, "Too powerful. Knock them out and combat feed on them!")
+			owner.balloon_alert(owner, "Zbyt potężny. Ogłusz go i żeruj siłą w trybie walki!")
 			deactivate_power()
 			return
 
 		if(!IS_VASSAL(feed_target)) // Vassals don't need all this shit.
-			owner.balloon_alert(owner, "mesmerizing [feed_target]...")
+			owner.balloon_alert(owner, "hipnotyzujesz: [feed_target]...")
 
 			// Initial ""mesmerize""
 			if(!vampire_do_after(owner, 2 SECONDS, feed_target, NONE, TRUE, hidden = TRUE))
-				owner.balloon_alert(owner, "interrupted!")
+				owner.balloon_alert(owner, "przerwano!")
 				deactivate_power()
 				return
 
@@ -208,12 +208,12 @@
 		feed_target.become_blind(TRAIT_FEED) // AQUILA - u nas zwykła ślepota zamiast nakładki "feed"
 		ADD_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
 
-		to_chat(feed_target, span_awe("You suddenly fall into a deep trance..."), type = MESSAGE_TYPE_WARNING)
-		owner.balloon_alert(owner, "subdued! starting feed...")
+		to_chat(feed_target, span_awe("Nagle zapadasz w głęboki trans..."), type = MESSAGE_TYPE_WARNING)
+		owner.balloon_alert(owner, "obezwładniono! zaczynasz pić...")
 
 		// Do the pre-feed.
 		if(!vampire_do_after(owner, feed_time, feed_target, NONE, TRUE, hidden = TRUE))
-			owner.balloon_alert(owner, "interrupted!")
+			owner.balloon_alert(owner, "przerwano!")
 			deactivate_power()
 			return
 
@@ -273,8 +273,8 @@
 				animate(feed_target, 0.2 SECONDS, pixel_x = -8)
 
 		owner.visible_message(
-			span_notice("[owner.first_name()] grabs [feed_target.first_name()] tightly, biting into their neck!"),
-			span_notice("You slip your fangs into [feed_target.first_name()]'s neck."),
+			span_notice("[owner.first_name()] mocno chwyta osobę [feed_target.first_name()] i wgryza się w jej szyję!"),
+			span_notice("Wsuwasz kły w szyję osoby [feed_target.first_name()]."),
 			vision_distance = FEED_SILENT_NOTICE_RANGE, ignored_mobs = feed_target
 		)
 
@@ -284,13 +284,13 @@
 		feed_target.adjust_jitter((5 + level_current) SECONDS)
 
 		owner.visible_message(
-			span_warning("[owner.first_name()] closes [owner.p_their()] mouth around [feed_target.first_name()]'s neck!"),
-			span_warning("You sink your fangs into [feed_target.first_name()]'s neck."), ignored_mobs = feed_target
+			span_warning("[owner.first_name()] zaciska usta na szyi osoby [feed_target.first_name()]!"),
+			span_warning("Zatapiasz kły w szyi osoby [feed_target.first_name()]."), ignored_mobs = feed_target
 		)
 
-		to_chat(feed_target, span_bolddanger("[owner.first_name()] seizes you with incredible strength, sinking [owner.p_their()] fangs into your neck!"), type = MESSAGE_TYPE_WARNING)
+		to_chat(feed_target, span_bolddanger("[owner.first_name()] chwyta cię z niewiarygodną siłą i wbija kły w twoją szyję!"), type = MESSAGE_TYPE_WARNING)
 
-		to_chat(owner, span_announce("* Vampire Tip: Combat feeding does not erase their memories!"))
+		to_chat(owner, span_announce("* Wskazówka wampira: żerowanie siłą nie wymazuje ofierze pamięci!"))
 
 		currently_feeding = TRUE
 		silent_feed = FALSE
@@ -302,7 +302,7 @@
 		// We check which turf is one step away from our target, in the direction of the angle of the bullet. Christ. We do this twice, for range.
 		var/target_turf = get_step_away(smacked.loc, owner, 2)
 
-		to_chat(owner, span_bighypnophrase("eugh.. garlic..."))
+		to_chat(owner, span_bighypnophrase("fuj... czosnek..."))
 
 		living_owner.Stun(5 SECONDS)
 		living_owner.adjust_dizzy(10 SECONDS)
@@ -322,7 +322,7 @@
 		// Normally removed traits are done. Now we give the victim a lil something to remember us by.
 		feed_target.apply_status_effect(/datum/status_effect/feed_marked)
 	else
-		owner.balloon_alert(owner, "combat feed requires aggressive grab!")
+		owner.balloon_alert(owner, "żerowanie siłą wymaga agresywnego chwytu!")
 		deactivate_power()
 		return FALSE
 
@@ -337,8 +337,8 @@
 	if(!continue_active())
 		if(!silent_feed)
 			user.visible_message(
-				span_warning("[user] is ripped from [feed_target.first_name()]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"),
-				span_warning("Your teeth are ripped from [feed_target.first_name()]'s throat. [feed_target.p_their(TRUE)] blood sprays everywhere!"))
+				span_warning("[user] zostaje oderwany od gardła osoby [feed_target.first_name()]. Krew tryska na wszystkie strony!"),
+				span_warning("Twoje zęby zostają wyrwane z gardła osoby [feed_target.first_name()]. Krew tryska na wszystkie strony!"))
 
 			// Time to start bleeding
 			if(iscarbon(feed_target))
@@ -380,24 +380,24 @@
 
 	// Alert the vampire to the target's blood level
 	if(feed_target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
-		owner.balloon_alert(owner, "your victim's blood is fatally low!")
+		owner.balloon_alert(owner, "twojej ofierze zostało śmiertelnie mało krwi!")
 		feed_fatal = TRUE
 	else if(feed_target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
-		owner.balloon_alert(owner, "your victim's blood is dangerously low.")
+		owner.balloon_alert(owner, "twojej ofierze zostało niebezpiecznie mało krwi.")
 	else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
-		owner.balloon_alert(owner, "your victim's blood is at an unsafe level.")
+		owner.balloon_alert(owner, "poziom krwi ofiary jest już niebezpieczny.")
 	warning_target_bloodvol = feed_target.blood_volume
 
 	// Check if full on blood
 	if(vampiredatum_power.current_vitae >= vampiredatum_power.max_vitae)
 		if(IS_VAMPIRE(feed_target))
-			owner.balloon_alert(owner, "we are full on blood, but we can continue feeding to absorb their power!")
+			owner.balloon_alert(owner, "jesteś syty krwi, ale możesz pić dalej, żeby przejąć jego moc!")
 		else
-			owner.balloon_alert(owner, "we are full on blood!")
+			owner.balloon_alert(owner, "jesteś syty krwi!")
 
 	// Check if target has an acceptable amount of blood left
 	if(feed_target.blood_volume <= 10)
-		owner.balloon_alert(owner, "no blood left!")
+		owner.balloon_alert(owner, "nie zostało już krwi!")
 		if(feed_target.client)
 			vampiredatum_power.thirster_objective = TRUE
 		power_activated_sucessfully()
@@ -448,13 +448,13 @@
 
 		log_combat(owner, feed_target, "fed on blood", addition = "(and took [blood_taken] blood)")
 
-		to_chat(owner, span_notice("You slowly release [feed_target]."))
+		to_chat(owner, span_notice("Powoli puszczasz: [feed_target]."))
 
 		if(feed_target.stat != DEAD && silent_feed)
-			to_chat(owner, span_notice("<i>[feed_target.p_They()] look[feed_target.p_s()] dazed, and will not remember this.</i>"))
-			to_chat(feed_target, span_awe(span_reallybig("You wake from your trance. Everything is so... hazy...")), type = MESSAGE_TYPE_INFO)
+			to_chat(owner, span_notice("<i>Ofiara wygląda na oszołomioną i nie będzie tego pamiętać.</i>"))
+			to_chat(feed_target, span_awe(span_reallybig("Budzisz się z transu. Wszystko jest takie... zamglone...")), type = MESSAGE_TYPE_INFO)
 			if(feed_target.blood_volume >= BLOOD_VOLUME_OKAY)
-				to_chat(feed_target, span_announce("You feel dizzy, but it will probably pass by itself!"))
+				to_chat(feed_target, span_announce("Kręci ci się w głowie, ale pewnie samo przejdzie!"))
 
 		if(feed_target.stat == DEAD)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
@@ -462,7 +462,7 @@
 
 		if(feed_fatal && !humanity_deducted)
 			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
-			to_chat(owner, span_userdanger("No way will [feed_target.p_they()] survive that..."))
+			to_chat(owner, span_userdanger("Nie ma mowy, żeby ofiara to przeżyła..."))
 			vampiredatum_power.adjust_humanity(-1)
 
 		if(iscarbon(feed_target))
@@ -583,8 +583,8 @@
 		playsound(target, 'sound/weapons/cqchit2.ogg', 80)
 
 		owner.visible_message(
-			span_warning("[target.first_name()] struggles, pushing [owner.first_name()] away!"),
-			span_warning("[target.first_name()] manages to struggle free from your grip!"), ignored_mobs = target
+			span_warning("[target.first_name()] szarpie się i odpycha osobę [owner.first_name()]!"),
+			span_warning("[target.first_name()] wyrywa się z twojego uścisku!"), ignored_mobs = target
 		)
 
 		var/shove_dir = get_dir(target.loc, owner.loc)
@@ -594,7 +594,7 @@
 		target.SetStun(0 SECONDS)
 		living_owner.Stun(1 SECONDS)
 
-		owner.balloon_alert(owner, "struggles free!")
+		owner.balloon_alert(owner, "ofiara się wyrwała!")
 		deactivate_power()
 
 #undef FEED_SILENT_NOTICE_RANGE
@@ -627,4 +627,4 @@
 
 /datum/status_effect/feed_marked/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += span_warning("There are two strange punctures on [owner.p_their()] neck.")
+	examine_list += span_warning("Na szyi widać dwa dziwne nakłucia.")

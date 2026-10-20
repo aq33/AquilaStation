@@ -75,16 +75,16 @@
 #define VAMPIRE_SPAM_SOL 30 SECONDS
 
 // Clan defines
-#define CLAN_BRUJAH "Brujah Clan"
-#define CLAN_TOREADOR "Toreador Clan"
-#define CLAN_NOSFERATU "Nosferatu Clan"
-#define CLAN_TREMERE "Tremere Clan"
-#define CLAN_GANGREL "Gangrel Clan"
-#define CLAN_VENTRUE "Ventrue Clan"
-#define CLAN_MALKAVIAN "Malkavian Clan"
-#define CLAN_TZIMISCE "Tzimisce Clan"
-#define CLAN_HECATA "Hecata Clan"
-#define CLAN_LASOMBRA "Lasombra Clan"
+#define CLAN_BRUJAH "Klan Brujah"
+#define CLAN_TOREADOR "Klan Toreador"
+#define CLAN_NOSFERATU "Klan Nosferatu"
+#define CLAN_TREMERE "Klan Tremere"
+#define CLAN_GANGREL "Klan Gangrel"
+#define CLAN_VENTRUE "Klan Ventrue"
+#define CLAN_MALKAVIAN "Klan Malkavian"
+#define CLAN_TZIMISCE "Klan Tzimisce"
+#define CLAN_HECATA "Klan Hecata"
+#define CLAN_LASOMBRA "Klan Lasombra"
 
 // Power defines
 /// This Power can't be used in Torpor

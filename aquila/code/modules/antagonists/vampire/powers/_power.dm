@@ -1,7 +1,7 @@
 /datum/action/vampire
 	abstract_type = /datum/action/vampire
-	name = "Vampiric Gift"
-	desc = "A vampiric gift."
+	name = "Wampirzy dar"
+	desc = "Wampirzy dar."
 	button_icon = 'aquila/icons/vampires/actions_vampire.dmi'
 	background_icon_state = "vamp_power_off"
 	icon_icon = 'aquila/icons/vampires/actions_vampire.dmi'
@@ -16,7 +16,7 @@
 	var/background_icon_state_off = "vamp_power_off"
 
 	/// A sort of tutorial text found in the Antagonist tab.
-	var/power_explanation = "Use this power to do... something"
+	var/power_explanation = "Użyj tej mocy, żeby zrobić... coś"
 	/// The owner's vampire datum
 	var/datum/antagonist/vampire/vampiredatum_power
 
@@ -76,11 +76,11 @@
 /datum/action/vampire/proc/update_desc()
 	desc = initial(desc)
 	if(vitaecost > 0)
-		desc += "<br><br><b>COST:</b> [vitaecost] Blood"
+		desc += "<br><br><b>KOSZT:</b> [vitaecost] krwi"
 	if(constant_vitaecost > 0)
-		desc += "<br><br><b>CONSTANT COST:</b><i> [constant_vitaecost] Blood.</i>"
+		desc += "<br><br><b>STAŁY KOSZT:</b><i> [constant_vitaecost] krwi.</i>"
 	if(power_flags & BP_AM_SINGLEUSE)
-		desc += "<br><br><b>SINGLE USE:</br><i> Can only be used once per night.</i>"
+		desc += "<br><br><b>JEDNORAZOWA:</b><i> Można użyć tylko raz na noc.</i>"
 
 /datum/action/vampire/proc/can_pay_cost()
 	if(QDELETED(owner))
@@ -90,7 +90,7 @@
 	if(!vampiredatum_power)
 		var/mob/living/living_owner = owner
 		if(!HAS_TRAIT(living_owner, TRAIT_NO_BLOOD) && living_owner.blood_volume < vitaecost)
-			living_owner.balloon_alert(living_owner, "not enough blood.")
+			living_owner.balloon_alert(living_owner, "za mało krwi.")
 			return FALSE
 
 		return TRUE
@@ -99,7 +99,7 @@
 	if(vampiredatum_power.frenzied)
 		return TRUE
 	if(vampiredatum_power.current_vitae < vitaecost)
-		owner.balloon_alert(owner, "not enough blood.")
+		owner.balloon_alert(owner, "za mało krwi.")
 		return FALSE
 
 	return TRUE
@@ -112,31 +112,31 @@
 
 	// Torpor?
 	if((check_flags & BP_CANT_USE_IN_TORPOR) && HAS_TRAIT(carbon_owner, TRAIT_TORPOR))
-		to_chat(carbon_owner, span_warning("Not while you're in Torpor."))
+		to_chat(carbon_owner, span_warning("Nie w stanie torporu."))
 		return FALSE
 	// Frenzy?
 	if((check_flags & BP_CANT_USE_IN_FRENZY) && vampiredatum_power?.frenzied)
-		to_chat(carbon_owner, span_warning("You cannot use powers while in a Frenzy!"))
+		to_chat(carbon_owner, span_warning("Nie możesz używać mocy podczas Szału!"))
 		return FALSE
 	// Stake?
 	if((check_flags & BP_CANT_USE_WHILE_STAKED) && vampiredatum_power?.check_if_staked())
-		to_chat(carbon_owner, span_warning("You have a stake in your chest! Your powers are useless."))
+		to_chat(carbon_owner, span_warning("Masz kołek w piersi! Twoje moce są bezużyteczne."))
 		return FALSE
 	// Conscious? -- We use our own (AB_CHECK_CONSCIOUS) here so we can control it more, like the error message.
 	if((check_flags & BP_CANT_USE_WHILE_UNCONSCIOUS) && carbon_owner.stat != CONSCIOUS)
-		to_chat(carbon_owner, span_warning("You can't do this while you are unconcious!"))
+		to_chat(carbon_owner, span_warning("Nie możesz tego zrobić, będąc nieprzytomnym!"))
 		return FALSE
 	// Incapacitated?
 	if((check_flags & BP_CANT_USE_WHILE_INCAPACITATED) && INCAPACITATED_IGNORING(carbon_owner, INCAPABLE_RESTRAINTS|INCAPABLE_GRAB))
-		to_chat(carbon_owner, span_warning("Not while you're incapacitated!"))
+		to_chat(carbon_owner, span_warning("Nie, kiedy jesteś obezwładniony!"))
 		return FALSE
 	// Constant Cost (out of blood)
 	if(constant_vitaecost > 0 && vampiredatum_power?.current_vitae <= 0)
-		to_chat(carbon_owner, span_warning("You don't have the blood to upkeep [src]."))
+		to_chat(carbon_owner, span_warning("Nie masz dość krwi, żeby podtrzymać: [src]."))
 		return FALSE
 	// Sol check
 	if((check_flags & BP_CANT_USE_DURING_SOL) && carbon_owner.has_status_effect(/datum/status_effect/vampire_sol))
-		to_chat(carbon_owner, span_warning("You can't use [src] during Sol!"))
+		to_chat(carbon_owner, span_warning("Nie możesz używać mocy [src] podczas Sol!"))
 		return FALSE
 	return TRUE
 

@@ -6,17 +6,17 @@
 **/
 
 /datum/action/vampire/targeted/brawn/brash
-	name = "Brash"
-	desc = "Break most structures apart with overwhelming force. Cooldown and cost vary depending on the object broken."
+	name = "Zuchwałość"
+	desc = "Rozbijaj większość konstrukcji przytłaczającą siłą. Czas odnowienia i koszt zależą od tego, co niszczysz."
 	button_icon_state = "power_strength_brujah"
-	power_explanation = "This is an enhanced version of the regular 'Brawn' ability.\n\
-		Use on a person to send them flying. Use while restrained, grabbed, or trapped in a locker to break free.\n\
-		Punching a cyborg will temporarily disable it in addition to usual damage. \n\
-		At level 2 this ability will allow you to break through unbolted airlocks. \n\
-		At level 3 this ability will allow you to break through bolted airlocks. \n\
-		At level 4 this ability will allow you to break through normal walls and windows. \n\
-		At level 5 this ability will allow you to break through reinforced walls and windows. \n\
-		Higher levels will increase this ability's damage and knockdown."
+	power_explanation = "To wzmocniona wersja zwykłej mocy 'Krzepa'.\n\
+		Użyj na osobie, żeby posłać ją w powietrze. Użyj, gdy jesteś skrępowany, trzymany albo uwięziony w szafce, żeby się uwolnić.\n\
+		Uderzenie cyborga oprócz zwykłych obrażeń tymczasowo go unieruchamia. \n\
+		Na poziomie 2 możesz przebijać się przez niezablokowane śluzy. \n\
+		Na poziomie 3 możesz przebijać się przez zablokowane śluzy. \n\
+		Na poziomie 4 możesz przebijać się przez zwykłe ściany i okna. \n\
+		Na poziomie 5 możesz przebijać się przez wzmocnione ściany i okna. \n\
+		Wyższe poziomy zwiększają obrażenia i powalenie."
 	power_flags = BP_AM_VERY_DYNAMIC_COOLDOWN
 	vitaecost = 0 // Set on use
 	cooldown_time = 1 SECONDS // Same as above
@@ -77,10 +77,10 @@
 	if(istype(target_atom, /obj/structure/window))
 		var/obj/structure/window/window = target_atom
 		if(istype(target_atom, /obj/structure/window/reinforced) && level_current < 5)
-			window.balloon_alert(owner, "level 5 required!")
+			window.balloon_alert(owner, "wymagany poziom 5!")
 			return
 		else if(level_current < 4)
-			window.balloon_alert(owner, "level 4 required!")
+			window.balloon_alert(owner, "wymagany poziom 4!")
 			return
 
 		if(istype(window, /obj/structure/window/reinforced) || istype(window, /obj/structure/window/plasma))
@@ -102,14 +102,14 @@
 	// Walls
 	if(iswallturf(target_atom))
 		if(isindestructiblewall(target_atom))
-			target_atom.balloon_alert(owner, "this wall is indestructible!")
+			target_atom.balloon_alert(owner, "tej ściany nie da się zniszczyć!")
 			return
 
 		if(istype(target_atom, /turf/closed/wall/r_wall) && level_current < 5)
-			target_atom.balloon_alert(owner, "level 5 required!")
+			target_atom.balloon_alert(owner, "wymagany poziom 5!")
 			return
 		else if(level_current < 4)
-			target_atom.balloon_alert(owner, "level 4 required!")
+			target_atom.balloon_alert(owner, "wymagany poziom 4!")
 			return
 
 		rip_and_tear(owner, target_atom)
@@ -130,9 +130,9 @@
 	while(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/wall = target
 
-		tearer.visible_message(span_warning("[tearer] viciously rips into [wall]!"))
+		tearer.visible_message(span_warning("[tearer] z furią rozdziera: [wall]!"))
 		playsound(tearer, 'sound/machines/airlock_alien_prying.ogg', vol = 50, vary = TRUE, frequency = 2)
-		wall.balloon_alert(tearer, "tearing...")
+		wall.balloon_alert(tearer, "rozdzierasz...")
 
 		if(vampire_do_after(tearer, delay = rip_time, target = wall, interaction_key = "vampire interaction"))
 			playsound(tearer, 'sound/effects/meteorimpact.ogg', 100, TRUE)
@@ -140,7 +140,7 @@
 			wall.dismantle_wall(1)
 			return
 		else
-			tearer.balloon_alert(tearer, "interrupted!")
+			tearer.balloon_alert(tearer, "przerwano!")
 			return
 
 /// TODO: check if switch statements work with istype()

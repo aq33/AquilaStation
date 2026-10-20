@@ -9,12 +9,12 @@
  * Makes them drop everything if someone witnesses the act.
  */
 /datum/action/vampire/gohome
-	name = "Vanishing Act"
-	desc = "As dawn aproaches, disperse into mist and return directly to your lair.<br><b>WARNING:</b> You will drop <b>ALL</b> of your possessions if observed by mortals."
+	name = "Zniknięcie"
+	desc = "Gdy zbliża się świt, rozpłyń się we mgle i wróć prosto do legowiska.<br><b>UWAGA:</b> Jeśli zobaczą cię śmiertelnicy, upuścisz <b>WSZYSTKO</b>, co masz przy sobie."
 	button_icon_state = "power_gohome"
-	power_explanation = "Activating Vanishing Act will, after a short delay, teleport you to your Claimed Coffin.\n\
-		Immediately after activating, lights around the user will begin to flicker.\n\
-		Once the user teleports to their coffin, in their place will be a Rat or Bat."
+	power_explanation = "Zniknięcie po krótkiej chwili teleportuje cię do zajętej przez ciebie trumny.\n\
+		Zaraz po aktywacji światła wokół ciebie zaczną migotać.\n\
+		Gdy przeniesiesz się do trumny, w twoim miejscu zostanie szczur albo nietoperz."
 	power_flags = BP_AM_TOGGLE | BP_AM_SINGLEUSE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED
 	vitaecost = 100
@@ -34,12 +34,12 @@
 
 	/// Have No haven (NOTE: You only got this power if you had a haven, so this means it's destroyed)
 	if(!vampiredatum_power?.coffin)
-		owner.balloon_alert(owner, "coffin was destroyed!")
+		owner.balloon_alert(owner, "trumna została zniszczona!")
 		return FALSE
 
 /datum/action/vampire/gohome/activate_power()
 	. = ..()
-	owner.balloon_alert(owner, "preparing to teleport...")
+	owner.balloon_alert(owner, "przygotowujesz się do teleportacji...")
 	if(vampire_do_after(owner, GOHOME_TELEPORT SECONDS, timed_action_flags=(IGNORE_USER_LOC_CHANGE | IGNORE_INCAPACITATED | IGNORE_HELD_ITEM)))
 		teleport_to_coffin(owner)
 
@@ -65,8 +65,8 @@
 	if(!isturf(owner.loc))
 		return FALSE
 	if(!vampiredatum_power.coffin)
-		owner.balloon_alert(owner, "coffin destroyed!")
-		to_chat(owner, span_warning("Your coffin has been destroyed! You no longer have a destination."))
+		owner.balloon_alert(owner, "trumna zniszczona!")
+		to_chat(owner, span_warning("Twoja trumna została zniszczona! Nie masz już dokąd wrócić."))
 		return FALSE
 	return TRUE
 

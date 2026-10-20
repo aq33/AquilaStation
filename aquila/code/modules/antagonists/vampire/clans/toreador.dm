@@ -1,8 +1,8 @@
 /datum/vampire_clan/toreador
 	name = CLAN_TOREADOR
-	description = "The Toreador are a clan of vampires known for being some of the most beautiful, sensual, seductive, emotional and glamorous of the Kindred.<br><br>\
-		Responsible for the legends of vampires who seduce and entice their prey with beauty, love and sensuality. Famous and infamous as a clan of artists and innovators, they are one of the bastions of the Camarilla, as their very survival depends on the facades of civility and grace on which the sect prides itself. <br><br>\
-		They are inherently divas by blood, and their humanity and sense of morality may plummit as fast as it rises."
+	description = "Toreador to klan wampirów słynących z tego, że należą do najpiękniejszych, najbardziej zmysłowych, uwodzicielskich, uczuciowych i olśniewających spośród Spokrewnionych.<br><br>\
+		To od nich wzięły się legendy o wampirach, które uwodzą i wabią ofiary pięknem, miłością i zmysłowością. Sławni i niesławni jako klan artystów i nowatorów, są jednym z bastionów Camarilli, bo samo ich przetrwanie zależy od fasady ogłady i wdzięku, z której sekta jest tak dumna. <br><br>\
+		Z krwi są urodzonymi divami, a ich Człowieczeństwo i poczucie moralności potrafi spaść równie szybko, jak rośnie."
 	join_icon_state = "toreador"
 	default_humanity = 10
 	princely_score_bonus = 10

@@ -9,14 +9,14 @@
 /obj/structure/closet/crate/coffin/examine(mob/user)
 	. = ..()
 	if(user == resident)
-		. += span_cult("This is your Claimed Coffin.")
-		. += span_cult("Rest in it while injured to enter Torpor. Entering it with unspent Ranks will allow you to spend one.")
-		. += span_cult("Alt-Click while inside the Coffin to Lock/Unlock.")
-		. += span_cult("Alt-Click while outside of your Coffin to Unclaim it, unwrenching it and all your other structures as a result.")
+		. += span_cult("To twoja zajęta trumna.")
+		. += span_cult("Odpocznij w niej, gdy jesteś ranny, aby zapaść w torpor. Jeśli wejdziesz do niej z niewykorzystanymi rangami, możesz wydać jedną.")
+		. += span_cult("Alt-klik w środku trumny, aby ją zamknąć/otworzyć.")
+		. += span_cult("Alt-klik poza trumną, aby z niej zrezygnować - odczepi to ją i wszystkie twoje pozostałe struktury.")
 
 /obj/structure/closet/crate/coffin/blackcoffin
-	name = "black coffin"
-	desc = "For those departed who are not so dear."
+	name = "czarna trumna"
+	desc = "Dla zmarłych, którzy nie byli aż tak drodzy."
 	icon_state = "blackcoffin"
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	open_sound = 'aquila/sound/effects/antag/vampire/coffin_open.ogg'
@@ -30,8 +30,8 @@
 	door_anim_time = 0
 
 /obj/structure/closet/crate/coffin/securecoffin
-	name = "secure coffin"
-	desc = "For those too scared of having their place of rest disturbed."
+	name = "bezpieczna trumna"
+	desc = "Dla tych, którzy zbyt boją się, że ktoś zakłóci im spoczynek."
 	icon_state = "securecoffin"
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	open_sound = 'aquila/sound/effects/antag/vampire/coffin_open.ogg'
@@ -48,8 +48,8 @@
 	door_hinge = 5
 
 /obj/structure/closet/crate/coffin/meatcoffin
-	name = "meat coffin"
-	desc = "When you're ready to meat your maker, the steaks can never be too high."
+	name = "mięsna trumna"
+	desc = "Gdy szykujesz się na spotkanie ze Stwórcą, trzeba mieć mięsną strawę na ostatnią drogę."
 	icon_state = "meatcoffin"
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	resistance_flags = FIRE_PROOF
@@ -63,8 +63,8 @@
 	door_anim_time = 0
 
 /obj/structure/closet/crate/coffin/metalcoffin
-	name = "metal coffin"
-	desc = "A big metal sardine can inside of another big metal sardine can, in space."
+	name = "metalowa trumna"
+	desc = "Wielka metalowa puszka sardynek wewnątrz innej wielkiej metalowej puszki sardynek, w kosmosie."
 	icon_state = "metalcoffin"
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
@@ -130,9 +130,9 @@
 			vampire_structure.unbolt()
 
 	if(manual)
-		to_chat(resident, span_cultitalic("You have unclaimed your coffin! This also unclaims all your other Vampire structures!"))
+		to_chat(resident, span_cultitalic("Rezygnujesz ze swojej trumny! Tracisz też wszystkie pozostałe wampirze struktury!"))
 	else
-		to_chat(resident, span_cultitalic("You sense that the link with your coffin and your lair has been broken! You will need to seek another."))
+		to_chat(resident, span_cultitalic("Czujesz, że więź z twoją trumną i legowiskiem została zerwana! Musisz poszukać nowych."))
 	// Remove resident. Because this objec (GC?) we need to give them a way to see they don't have a home anymore.
 	resident = null
 
@@ -147,7 +147,7 @@
 		locked = FALSE
 		return TRUE
 	playsound(get_turf(src), 'sound/machines/door_locked.ogg', 20, 1)
-	to_chat(user, span_notice("[src] appears to be locked tight from the inside."))
+	to_chat(user, span_notice("[src] wygląda na szczelnie zamkniętą od środka."))
 
 /obj/structure/closet/crate/coffin/close(mob/living/user)
 	. = ..()
@@ -161,10 +161,10 @@
 			return FALSE
 
 		if(!vampire.coffin && !resident)
-			switch(tgui_alert(user, "Do you wish to claim this as your coffin? [get_area(src)] will be your lair.", "Claim lair", list("Yes", "No")))
-				if("Yes")
+			switch(tgui_alert(user, "Czy chcesz zająć tę trumnę? Twoim legowiskiem będzie: [get_area(src)].", "Zajmij legowisko", list("Tak", "Nie")))
+				if("Tak")
 					claim_coffin(user)
-				if("No")
+				if("Nie")
 					return
 		LockMe(user)
 
@@ -177,25 +177,25 @@
 		return ..()
 	if(user != resident)
 		if(item.tool_behaviour == cutting_tool)
-			to_chat(user, span_notice("This is a much more complex mechanical structure than you thought. You don't know where to begin cutting [src]."))
+			to_chat(user, span_notice("To znacznie bardziej skomplikowana konstrukcja, niż myślałeś. Nie wiesz, od czego zacząć cięcie."))
 			return
 
 	if(anchored && item.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, span_danger("The coffin won't detach from the floor.[user == resident ? " You can Alt-Click to unclaim and unwrench your Coffin." : ""]"))
+		to_chat(user, span_danger("Trumna nie chce odczepić się od podłogi.[user == resident ? " Alt-klik pozwala zrezygnować z trumny i ją odczepić." : ""]"))
 		return
 
 	if(locked && item.tool_behaviour == TOOL_CROWBAR)
 		var/pry_time = pry_lid_timer * item.toolspeed // Pry speed must be affected by the speed of the tool.
 		user.visible_message(
-			span_notice("[user] tries to pry the lid off of [src] with [item]."),
-			span_notice("You begin prying the lid off of [src] with [item]. This should take about [DisplayTimeText(pry_time)]."),
+			span_notice("[user] próbuje podważyć wieko: [src] ([item])."),
+			span_notice("Zaczynasz podważać wieko: [src] ([item]). Powinno to zająć około [DisplayTimeText(pry_time)]."),
 		)
 		if(!vampire_do_after(user, pry_time, src))
 			return
 		bust_open()
 		user.visible_message(
-			span_notice("[user] snaps the door of [src] wide open."),
-			span_notice("The door of [src] snaps open."),
+			span_notice("[user] wyłamuje wieko: [src]."),
+			span_notice("Wieko odskakuje: [src]."),
 		)
 		return
 	return ..()
@@ -208,13 +208,13 @@
 		return
 
 	if(user == resident && user.Adjacent(src))
-		balloon_alert(user, "unclaim coffin?")
+		balloon_alert(user, "zrezygnować z trumny?")
 		var/static/list/unclaim_options = list(
-			"Yes" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"))
+			"Tak" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
+			"Nie" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"))
 		var/unclaim_response = show_radial_menu(user, src, unclaim_options, radius = 36, require_near = TRUE)
 		switch(unclaim_response)
-			if("Yes")
+			if("Tak")
 				unclaim_coffin(TRUE)
 
 /obj/structure/closet/crate/proc/LockMe(mob/user, inLocked = TRUE)
@@ -222,17 +222,17 @@
 		if(!broken)
 			locked = inLocked
 			if(locked)
-				to_chat(user, span_notice("You flip a secret latch and lock yourself inside [src]."))
+				to_chat(user, span_notice("Przestawiasz ukryty zatrzask i zamykasz się w środku."))
 			else
-				to_chat(user, span_notice("You flip a secret latch and unlock [src]."))
+				to_chat(user, span_notice("Przestawiasz ukryty zatrzask i otwierasz zamek."))
 			return
 
 		// Broken? Let's fix it.
-		to_chat(resident, span_notice("The secret latch that would lock [src] from the inside is broken. You set it back into place..."))
+		to_chat(resident, span_notice("Ukryty zatrzask, który zamyka trumnę od środka, jest zepsuty. Nastawiasz go z powrotem..."))
 		if(!vampire_do_after(resident, 5 SECONDS, src))
-			to_chat(resident, span_notice("You fail to fix [src]'s mechanism."))
+			to_chat(resident, span_notice("Nie udaje ci się naprawić mechanizmu."))
 			return
-		to_chat(resident, span_notice("You fix the mechanism and lock it."))
+		to_chat(resident, span_notice("Naprawiasz mechanizm i zamykasz zamek."))
 		broken = FALSE
 		locked = TRUE
 
@@ -248,7 +248,7 @@
 // Przepisy trumien (Bee: crafting_lists/structures.dm)
 
 /datum/crafting_recipe/blackcoffin
-	name = "Black Coffin"
+	name = "Czarna trumna"
 	result = /obj/structure/closet/crate/coffin/blackcoffin
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
@@ -260,7 +260,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/securecoffin
-	name = "Secure Coffin"
+	name = "Bezpieczna trumna"
 	result = /obj/structure/closet/crate/coffin/securecoffin
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
 	reqs = list(
@@ -272,7 +272,7 @@
 	category = CAT_FURNITURE
 
 /datum/crafting_recipe/metalcoffin
-	name = "Metal Coffin"
+	name = "Metalowa trumna"
 	result = /obj/structure/closet/crate/coffin/metalcoffin
 	tools = list(TOOL_WRENCH, TOOL_SCREWDRIVER)
 	reqs = list(

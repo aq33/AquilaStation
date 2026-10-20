@@ -1,8 +1,8 @@
 /datum/vampire_clan/ventrue
 	name = CLAN_VENTRUE
-	description = "The Ventrue have long been one of the proudest lines of vampires. Its members work hard to maintain a reputation for honor, genteel behavior, and leadership.<br><br>\
-		A sense of noblesse oblige has long pervaded the clan, accompanied by the genuine belief that the Ventrue know what is best for everyone.<br><br>\
-		They not only consider themselves the oldest clan, but see themselves as the enforcers of tradition and the rightful leaders of Kindred society. "
+	description = "Ventrue od dawna należą do najdumniejszych wampirzych rodów. Członkowie klanu usilnie dbają o reputację ludzi honoru, dobrych manier i przywództwa.<br><br>\
+		Klan od dawna przenika poczucie noblesse oblige, połączone ze szczerym przekonaniem, że Ventrue wiedzą, co jest najlepsze dla wszystkich.<br><br>\
+		Uważają się nie tylko za najstarszy klan, ale też za strażników tradycji i prawowitych przywódców społeczności Spokrewnionych. "
 	join_icon_state = "ventrue"
 	blood_drink_type = VAMPIRE_DRINK_SNOBBY
 	default_humanity = 9

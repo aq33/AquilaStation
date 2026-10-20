@@ -1,5 +1,5 @@
 /datum/crafting_recipe/vassalrack
-	name = "vassalization rack"
+	name = "stół do tortur"
 	result = /obj/structure/vampire/vassalrack
 	time = 5 SECONDS
 
@@ -12,7 +12,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/candelabrum
-	name = "candelabrum"
+	name = "kandelabr"
 	result = /obj/structure/vampire/candelabrum
 	time = 5 SECONDS
 
@@ -26,7 +26,7 @@
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND | CRAFT_MUST_BE_LEARNED
 
 /datum/crafting_recipe/bloodthrone
-	name = "blood throne"
+	name = "tron krwi"
 	result = /obj/structure/vampire/bloodthrone
 	time = 5 SECONDS
 

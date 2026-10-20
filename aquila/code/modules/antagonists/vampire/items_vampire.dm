@@ -5,8 +5,8 @@
 // Kołki
 
 /obj/item/stake
-	name = "wooden stake"
-	desc = "A simple wooden stake carved to a sharp point."
+	name = "drewniany kołek"
+	desc = "Prosty drewniany kołek zaostrzony na końcu."
 	icon = 'aquila/icons/vampires/stakes.dmi'
 	icon_state = "wood"
 	item_state = "wood"
@@ -14,7 +14,7 @@
 	righthand_file = 'aquila/icons/vampires/bs_rightinhand.dmi'
 	slot_flags = ITEM_SLOT_POCKETS
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("staked", "stabbed", "tore into")
+	attack_verb = list("przebija kołkiem", "dźga", "rozdziera")
 	sharpness = IS_SHARP
 	force = 6
 	throwforce = 10
@@ -34,12 +34,12 @@
 		return ..()
 
 	if(HAS_TRAIT(target, TRAIT_BEINGSTAKED))
-		to_chat(user, span_notice("[target] is already having a stake driven into [target.p_their()] chest!"))
+		to_chat(user, span_notice("Ktoś już wbija kołek w pierś ofiary ([target])!"))
 		return
 
 	// lol, cry about it
 	if(HAS_TRAIT(target, TRAIT_PIERCEIMMUNE))
-		to_chat(user, span_notice("[target]'s chest is too thick! [src] won't go in!"))
+		to_chat(user, span_notice("Klatka piersiowa ofiary ([target]) jest zbyt twarda! Kołek nie wejdzie!"))
 		return
 
 	// Cannot have something in your chest
@@ -48,40 +48,43 @@
 	if(!chest)
 		return
 	for(var/obj/item/embedded_object in chest.embedded_objects)
-		to_chat(user, span_boldannounce("[target]'s chest already has [embedded_object] inside of it!"))
+		to_chat(user, span_boldannounce("W piersi ofiary ([target]) już tkwi [embedded_object]!"))
 		return
 
 	playsound(target, 'sound/magic/demon_consume.ogg', 50, 1)
-	to_chat(target, span_userdanger("[user] is driving a stake into your chest!"))
-	to_chat(user, span_notice("You put all your weight into embedding [src] into [target]'s chest..."))
+	to_chat(target, span_userdanger("[user] wbija ci kołek w pierś!"))
+	to_chat(user, span_notice("Napierasz całym ciężarem, wbijając kołek w pierś ofiary ([target])..."))
 
 	ADD_TRAIT(target, TRAIT_BEINGSTAKED, TRAIT_VAMPIRE)
 	if(!vampire_do_after(user, staketime, target))
 		REMOVE_TRAIT(target, TRAIT_BEINGSTAKED, TRAIT_VAMPIRE)
+		to_chat(user, span_warning("Tracisz chwyt - kołek nie wchodzi! ([target])"))
 		return
 
 	REMOVE_TRAIT(target, TRAIT_BEINGSTAKED, TRAIT_VAMPIRE)
 
 	// Actually embed the stake and apply damage
 	if(!tryEmbed(chest, TRUE, TRUE))
+		// AQUILA - pancerz na klatce piersiowej może zablokować wbicie, wtedy mówimy to wprost
+		to_chat(user, span_warning("Kołek nie przebija piersi ofiary ([target])! Może przeszkadza pancerz."))
 		return
 
 	target.apply_damage(force * 2, BRUTE, BODY_ZONE_CHEST)
 
 	playsound(target, 'sound/effects/splat.ogg', 40, 1)
 	user.visible_message(
-		span_danger("[user] drives the [src] into [target]'s chest!"),
-		span_danger("You drive the [src] into [target]'s chest!"),
+		span_danger("[user] wbija kołek w pierś ofiary ([target])!"),
+		span_danger("Wbijasz kołek w pierś ofiary ([target])!"),
 	)
 
 	if(IS_VAMPIRE(target))
-		to_chat(target, span_userdanger("You have been staked! Your powers are useless while it's in your chest!"))
-		target.balloon_alert(target, "you have been staked!")
+		to_chat(target, span_userdanger("Przebito cię kołkiem! Dopóki tkwi w twojej piersi, twoje moce są bezużyteczne!"))
+		target.balloon_alert(target, "przebito cię kołkiem!")
 
 /obj/item/stake/examine(mob/user)
 	. = ..()
-	. += span_notice("To stake someone: Target the chest, activate combat mode, and hit them.")
-	. += span_notice("* Hunter Tip: Remember that they can just pull it out if they are awake. Cuff them or kill them. A stake will stop them from reviving, not from regenerating. It will also stop all of their abilities.")
+	. += span_notice("Aby przebić kogoś kołkiem: celuj w klatkę piersiową, włącz tryb walki i uderz.")
+	. += span_notice("* Porada łowcy: pamiętaj, że przytomny cel może go po prostu wyciągnąć. Skuj go albo zabij. Kołek nie pozwala się ożywić, ale nie powstrzymuje regeneracji. Blokuje też wszystkie zdolności.")
 
 ///Can this target be staked? If someone stands up before this is complete, it fails. Best used on someone stationary.
 /obj/item/stake/proc/can_be_staked(mob/living/carbon/target)
@@ -93,8 +96,8 @@
 
 /// Created by welding and acid-treating a simple stake.
 /obj/item/stake/hardened
-	name = "hardened stake"
-	desc = "A wooden stake carved to a sharp point and hardened by fire."
+	name = "utwardzany kołek"
+	desc = "Drewniany kołek zaostrzony na końcu i utwardzony w ogniu."
 	icon_state = "hardened"
 	force = 8
 	throwforce = 12
@@ -102,8 +105,8 @@
 	staketime = 3 SECONDS
 
 /obj/item/stake/hardened/silver
-	name = "silver stake"
-	desc = "Polished and sharp at the end. For when some mofo is always trying to iceskate uphill."
+	name = "srebrny kołek"
+	desc = "Wypolerowany i ostry na końcu. Na tych drani, którzy zawsze próbują jeździć na łyżwach pod górę."
 	icon_state = "silver"
 	item_state = "silver"
 	siemens_coefficient = 1
@@ -112,7 +115,7 @@
 	staketime = 2 SECONDS
 
 /datum/crafting_recipe/stake
-	name = "Stake"
+	name = "Kołek"
 	result = /obj/item/stake
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	time = 8 SECONDS
@@ -120,7 +123,7 @@
 	dangerous_craft = TRUE
 
 /datum/crafting_recipe/hardened_stake
-	name = "Hardened Stake"
+	name = "Utwardzany kołek"
 	result = /obj/item/stake/hardened
 	tools = list(TOOL_WELDER)
 	reqs = list(/obj/item/stack/rods = 1)
@@ -130,7 +133,7 @@
 	always_available = FALSE
 
 /datum/crafting_recipe/silver_stake
-	name = "Silver Stake"
+	name = "Srebrny kołek"
 	result = /obj/item/stake/hardened/silver
 	tools = list(TOOL_WELDER)
 	reqs = list(
@@ -147,16 +150,16 @@
 	if(!item.is_sharp() || user.combat_mode)
 		return ..()
 	user.visible_message(
-		span_notice("[user] begins whittling [src] into a pointy object."),
-		span_notice("You begin whittling [src] into a sharp point at one end."),
-		span_hear("You hear wood carving."),
+		span_notice("[user] zaczyna strugać z drewna coś ostrego."),
+		span_notice("Zaczynasz strugać drewno, zaostrzając jeden koniec."),
+		span_hear("Słyszysz strugane drewno."),
 	)
 	if(!vampire_do_after(user, 5 SECONDS, src))
 		return
 	var/obj/item/stake/new_item = new(user.loc)
 	user.visible_message(
-		span_notice("[user] finishes carving a stake out of [src]."),
-		span_notice("You finish carving a stake out of [src]."),
+		span_notice("[user] kończy strugać kołek z drewna."),
+		span_notice("Kończysz strugać kołek z drewna."),
 	)
 	var/replace = (user.get_inactive_held_item() == src)
 	use(1)
@@ -166,8 +169,8 @@
 // Rękawice z mocy Exactitude (Celerity)
 
 /obj/item/clothing/gloves/rapid/vampire
-	name = "Strange Blur"
-	desc = "There is a strange, subtle blur surrounding the hands."
+	name = "Dziwne rozmycie"
+	desc = "Dłonie otacza dziwne, subtelne rozmycie."
 	icon = 'aquila/icons/vampires/gloves_vampire.dmi'
 	worn_icon = 'aquila/icons/vampires/gloves_vampire_worn.dmi'
 	icon_state = "exactitude"
@@ -195,15 +198,15 @@
  *	Reading it normally will allow Curators to read what each Clan does, with some extra flavor text ones.
  */
 /obj/item/book/kindred
-	name = "\improper Archive of the Kindred"
-	title = "the Archive of the Kindred"
-	desc = "Cryptic documents explaining hidden truths behind Undead beings. It is said only Curators can decipher what they really mean."
+	name = "\improper Archiwum Spokrewnionych"
+	title = "Archiwum Spokrewnionych"
+	desc = "Zagadkowe dokumenty wyjaśniające ukryte prawdy o istotach nieumarłych. Podobno tylko kuratorzy potrafią odczytać ich prawdziwe znaczenie."
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	lefthand_file = 'aquila/icons/vampires/bs_leftinhand.dmi'
 	righthand_file = 'aquila/icons/vampires/bs_rightinhand.dmi'
 	icon_state = "kindred_book"
 	item_state = "kindred_book"
-	author = "dozens of generations of Curators"
+	author = "dziesiątki pokoleń kuratorów"
 	unique = TRUE
 	throw_speed = 1
 	throw_range = 10
@@ -222,17 +225,17 @@
 		return
 	if(!is_curator_job(user?.mind?.assigned_role))
 		if(IS_VAMPIRE(user))
-			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
+			to_chat(user, span_notice("To archiwum wydaje się dla ciebie zbyt skomplikowane. Najlepiej zostawić je komuś innemu."))
 			return
-		to_chat(user, span_warning("[src] burns your hands as you try to use it!"))
+		to_chat(user, span_warning("Archiwum parzy cię w dłonie, gdy próbujesz go użyć!"))
 		user.apply_damage(3, BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		return
 
 	in_use = TRUE
-	to_chat(user, span_notice("You begin carefully examining [target] while consulting [src]..."))
-	user.visible_message(span_notice("[user] looks at [target] while reading [src]."), ignored_mobs = list(user))
+	to_chat(user, span_notice("Zaczynasz uważnie przyglądać się celowi ([target]), wertując archiwum..."))
+	user.visible_message(span_notice("[user] przygląda się komuś ([target]), czytając jakąś księgę."), ignored_mobs = list(user))
 	if(!vampire_do_after(user, 3 SECONDS, target, timed_action_flags = NONE, progress = TRUE))
-		to_chat(user, span_notice("You quickly close [src]."))
+		to_chat(user, span_notice("Szybko zamykasz archiwum."))
 		in_use = FALSE
 		return
 	in_use = FALSE
@@ -241,19 +244,19 @@
 	// Are we a Vampire | Are we on Masquerade. If one is true, they will fail.
 	if(vampiredatum && !HAS_TRAIT(target, TRAIT_MASQUERADE))
 		if(vampiredatum.broke_masquerade)
-			to_chat(user, span_warning("[target], also known as '[vampiredatum.return_full_name()]', is indeed a Vampire, but you already knew this."))
+			to_chat(user, span_warning("[target], znany też jako '[vampiredatum.return_full_name()]', to rzeczywiście wampir, ale już o tym wiedziałeś."))
 			return
-		to_chat(user, span_warning("[target], also known as '[vampiredatum.return_full_name()]', [vampiredatum.my_clan ? "is part of the [vampiredatum.my_clan]!" : "is not part of a clan."] You quickly note this information down, memorizing it."))
+		to_chat(user, span_warning("[target], znany też jako '[vampiredatum.return_full_name()]', [vampiredatum.my_clan ? "należy do klanu - [vampiredatum.my_clan]!" : "nie należy do żadnego klanu."] Szybko notujesz tę informację i zapamiętujesz ją."))
 		vampiredatum.break_masquerade()
 	else
-		to_chat(user, span_notice("You fail to draw any conclusions to [target] being a Vampire."))
+		to_chat(user, span_notice("Nie udaje ci się ustalić, czy [target] jest wampirem."))
 
 /obj/item/book/kindred/attack_self(mob/living/user)
 	if(!is_curator_job(user?.mind?.assigned_role))
 		if(IS_VAMPIRE(user))
-			to_chat(user, span_notice("[src] seems to be too complicated for you. It would be best to leave this for someone else to take."))
+			to_chat(user, span_notice("To archiwum wydaje się dla ciebie zbyt skomplikowane. Najlepiej zostawić je komuś innemu."))
 		else
-			to_chat(user, span_warning("You feel your eyes unable to read the boring texts..."))
+			to_chat(user, span_warning("Twoje oczy nie są w stanie czytać tych nudnych tekstów..."))
 		return
 	ui_interact(user)
 
@@ -287,13 +290,13 @@
 
 	if(victim != attacker)
 		attacker.visible_message(
-			span_notice("[attacker] puts \the [src] up to [victim]'s mouth."),
-			span_notice("You put \the [src] up to [victim]'s mouth."))
+			span_notice("[attacker] przykłada [src] do ust ofiary ([victim])."),
+			span_notice("Przykładasz [src] do ust ofiary ([victim])."))
 		if(!vampire_do_after(attacker, 5 SECONDS, victim))
 			return
 		attacker.visible_message(
-			span_notice("[attacker] forces [victim] to drink from \the [src]."),
-			span_notice("You force [victim] to drink from \the [src]."))
+			span_notice("[attacker] zmusza [victim] do picia z [src]."),
+			span_notice("Zmuszasz [victim] do picia z [src]."))
 
 		var/fed = reagents.trans_to(victim, reagents.total_volume, transfered_by = attacker, method = INGEST)
 
@@ -304,19 +307,19 @@
 		return TRUE
 
 	if(vampiredatum?.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY)
-		balloon_alert(victim, "Eugh. Not fresh!")
+		balloon_alert(victim, "Fuj. Nieświeża!")
 		return TRUE
 
 	attacker.visible_message(
-			span_notice("[victim] puts \the [src] up to [victim.p_their()] mouth."),
-			span_notice("You put \the [src] up to your mouth."))
+			span_notice("[victim] przykłada [src] do ust."),
+			span_notice("Przykładasz [src] do ust."))
 
 	if(!vampire_do_after(victim, 5 SECONDS, attacker, timed_action_flags = IGNORE_USER_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(can_drink), victim, attacker)))
 		return
 
 	victim.visible_message(
-		span_notice("[victim] sucks the contents out of \the [src]!"),
-		span_notice("You feed from \the [src]."))
+		span_notice("[victim] wysysa zawartość: [src]!"),
+		span_notice("Pożywiasz się: [src]."))
 
 	var/fed = reagents.trans_to(victim, reagents.total_volume, transfered_by = attacker, method = INGEST)
 	vampiredatum?.adjust_vitae(fed / 4)
@@ -330,15 +333,15 @@
 	if(!canconsume(victim, attacker))
 		return FALSE
 	if(!reagents?.total_volume)
-		to_chat(victim, span_warning("[src] is empty!"))
+		to_chat(victim, span_warning("[src] - pusto!"))
 		return FALSE
 	return TRUE
 
 // Flaszka czosnku (Bee: glassbottle.dm)
 
 /obj/item/reagent_containers/food/drinks/bottle/garlic_extract
-	name = "flask of garlic extract"
-	desc = "A flask of concentrated, and sanctified garlic extract. Surely to ward off any vampires trying to bite you. Lucky for you, those don't exist... right?"
+	name = "flaszka ekstraktu czosnkowego"
+	desc = "Flaszka stężonego, poświęconego ekstraktu czosnkowego. Na pewno odstraszy każdego wampira, który spróbuje cię ugryźć. Na szczęście one nie istnieją... prawda?"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/consumable/garlic = 70, /datum/reagent/water/holywater = 30)

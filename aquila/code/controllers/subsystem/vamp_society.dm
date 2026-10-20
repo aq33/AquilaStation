@@ -19,13 +19,13 @@ SUBSYSTEM_DEF(vsociety)
 
 	if(!princedatum && !currently_polling)
 		for(var/datum/antagonist/vampire as anything in GLOB.all_vampires)
-			to_chat(vampire.owner.current, span_announce("* Vampire Tip: A vote for Prince will occur soon. If you are interested in leading your fellow kindred, read up on princes in your info panel now!"))
+			to_chat(vampire.owner.current, span_announce("* Wskazówka wampira: wkrótce odbędzie się wybór Księcia. Jeśli chcesz przewodzić innym Spokrewnionym, przeczytaj teraz o Książętach w Przewodniku wampira!"))
 		addtimer(CALLBACK(src, PROC_REF(poll_for_prince)), 2 MINUTES)
-		message_admins("Vampire society has fired, and a prince poll will occur in 2 minutes.")
+		message_admins("Społeczność wampirów ruszyła, za 2 minuty odbędzie się głosowanie na Księcia.")
 		log_game("Vampire society has fired, and a prince poll will occur soon.")
 
 /datum/controller/subsystem/vsociety/proc/poll_for_prince()
-	message_admins("Vampire society is now polling for a new prince.")
+	message_admins("Społeczność wampirów wybiera teraz nowego Księcia.")
 	log_game("Vampire society is now polling for a new prince.")
 
 	//Build a list of mobs in GLOB.all_vampires
@@ -46,16 +46,16 @@ SUBSYSTEM_DEF(vsociety)
 	// Build a poll_config datum to match the new polling API
 	currently_polling = TRUE
 	var/datum/poll_config/config = new()
-	config.question = "You are eligible for princedom."
+	config.question = "Możesz zostać Księciem."
 	config.poll_time = 3 MINUTES
 	config.flash_window = TRUE
-	config.role_name_text = "Prince"
+	config.role_name_text = "Książę"
 	config.amount_to_pick = length(GLOB.all_vampires)
 	config.announce_chosen = FALSE
 	config.requires_confirmation = TRUE
 	config.custom_response_messages = list(
-		POLL_RESPONSE_SIGNUP = "You have made your bid for princedom. <br>* Note: Princedom has certain expectations placed upon you. If you are not in a position to enforce the masquerade, consider letting someone else take this burden.",
-		POLL_RESPONSE_UNREGISTERED = "You have removed your bid to princedom."
+		POLL_RESPONSE_SIGNUP = "Zgłaszasz swoją kandydaturę na Księcia. <br>* Uwaga: od Księcia wiele się oczekuje. Jeśli nie możesz pilnować przestrzegania Maskarady, pozwól, by ten ciężar wziął ktoś inny.",
+		POLL_RESPONSE_UNREGISTERED = "Wycofujesz swoją kandydaturę na Księcia."
 	)
 
 	var/list/pollers = SSpolling.poll_candidates(config, vampire_living_candidates)

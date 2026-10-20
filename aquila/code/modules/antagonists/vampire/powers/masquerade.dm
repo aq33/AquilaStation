@@ -1,12 +1,12 @@
 /datum/action/vampire/masquerade
-	name = "Masquerade"
-	desc = "Feign the vital signs of a mortal, and escape both casual and medical notice as the monster you truly are."
+	name = "Maskarada"
+	desc = "Udawaj oznaki życia śmiertelnika i umknij uwadze zarówno przypadkowych gapiów, jak i lekarzy, choć naprawdę jesteś potworem."
 	button_icon_state = "power_human"
-	power_explanation = "Masquerade will forge your identity to be practically identical to that of a human.\n\
-		You lose nearly all Vampire benefits, including your passive healing.\n\
-		You gain a Genetic sequence, and appear to have 100% blood when scanned by a Health Analyzer.\n\
-		You won't appear as pale when examined. Anything further than pale, however, will not be hidden.\n\
-		After deactivating Masquerade, you will re-gain your Vampiric abilities, as well as lose any Diseases or mutations you might have gained."
+	power_explanation = "Maskarada podrabia twoją tożsamość tak, że jest praktycznie nie do odróżnienia od ludzkiej.\n\
+		Tracisz prawie wszystkie wampirze korzyści, w tym bierne leczenie.\n\
+		Zyskujesz sekwencję genetyczną, a analizator zdrowia pokaże u ciebie 100% krwi.\n\
+		Przy oględzinach nie będziesz wyglądać na bladego. Niczego ponad bladość to jednak nie ukryje.\n\
+		Po wyłączeniu Maskarady odzyskasz wampirze zdolności i stracisz wszystkie choroby oraz mutacje, których się nabawiłeś."
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN | BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_FRENZY | BP_CANT_USE_DURING_SOL | BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED
 	vitaecost = 15
@@ -16,13 +16,13 @@
 /datum/action/vampire/masquerade/activate_power()
 	. = ..()
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.balloon_alert(carbon_owner, "masquerade turned on.")
+	carbon_owner.balloon_alert(carbon_owner, "Maskarada włączona.")
 	carbon_owner.apply_status_effect(/datum/status_effect/masquerade)
 
 /datum/action/vampire/masquerade/deactivate_power()
 	. = ..()
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.balloon_alert(carbon_owner, "masquerade turned off.")
+	carbon_owner.balloon_alert(carbon_owner, "Maskarada wyłączona.")
 	carbon_owner.remove_status_effect(/datum/status_effect/masquerade)
 
 /datum/status_effect/masquerade
@@ -32,8 +32,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/masquerade
 
 /atom/movable/screen/alert/status_effect/masquerade
-	name = "Masquerade"
-	desc = "You are currently hiding your identity using the Masquerade power. This halts Vampiric healing."
+	name = "Maskarada"
+	desc = "Ukrywasz swoją tożsamość mocą Maskarady. Wstrzymuje to wampirze leczenie."
 	icon = 'aquila/icons/vampires/actions_vampire.dmi'
 	icon_state = "masquerade_alert"
 	alerttooltipstyle = "cult"
@@ -55,8 +55,8 @@
 	var/obj/item/organ/eyes/eyes = carbon_owner.get_organ_by_type(/obj/item/organ/eyes)
 	eyes?.flash_protect = initial(eyes.flash_protect)
 
-	to_chat(carbon_owner, span_notice("Your heart beats falsely within your lifeless chest. You may yet pass for a mortal."))
-	to_chat(carbon_owner, span_warning("Your vampiric healing is halted while imitating life."))
+	to_chat(carbon_owner, span_notice("Twoje serce fałszywie bije w martwej piersi. Możesz jeszcze uchodzić za śmiertelnika."))
+	to_chat(carbon_owner, span_warning("Udając życie, nie leczysz się jak wampir."))
 
 /datum/status_effect/masquerade/on_remove()
 	. = ..()
@@ -80,4 +80,4 @@
 	var/obj/item/organ/eyes/eyes = carbon_owner.get_organ_slot(ORGAN_SLOT_EYES)
 	eyes?.flash_protect = max(initial(eyes.flash_protect) - 1, - 1)
 
-	to_chat(carbon_owner, span_notice("Your heart beats one final time, while your skin dries out and your icy pallor returns."))
+	to_chat(carbon_owner, span_notice("Twoje serce uderza ostatni raz, skóra wysycha i wraca lodowata bladość."))

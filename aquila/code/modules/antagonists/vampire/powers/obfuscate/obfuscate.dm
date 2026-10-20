@@ -1,6 +1,6 @@
 /datum/discipline/obfuscate
-	name = "Obfuscate"
-	discipline_explanation = "Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen."
+	name = "Ukrycie"
+	discipline_explanation = "Ukrycie to dyscyplina, która pozwala wampirom się ukrywać, zwodzić umysły innych albo sprawiać, że ignorują to, czego wampir nie chce im pokazać."
 	icon_state = "obfuscate"
 
 	// Lists of abilities granted per level

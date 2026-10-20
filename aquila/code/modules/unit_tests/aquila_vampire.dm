@@ -81,10 +81,15 @@
 	TEST_ASSERT(!vampire.is_in_torpor(), "The healed vampire did not leave torpor")
 	vampire_mob.forceMove(run_loc_floor_bottom_left)
 
-	// A stake in the chest is detected
+	// A real stake attack (combat mode, chest) embeds the stake and is detected
+	var/mob/living/carbon/human/hunter = allocate(/mob/living/carbon/human)
+	hunter.forceMove(get_step(vampire_mob, EAST) || run_loc_floor_bottom_left)
 	var/obj/item/stake/stake = allocate(/obj/item/stake)
-	stake.tryEmbed(vampire_mob.get_bodypart(BODY_ZONE_CHEST), TRUE, TRUE)
-	TEST_ASSERT(vampire.check_if_staked(), "A stake in the chest was not detected")
+	hunter.put_in_active_hand(stake)
+	hunter.set_combat_mode(TRUE)
+	hunter.zone_selected = BODY_ZONE_CHEST
+	stake.melee_attack_chain(hunter, vampire_mob)
+	TEST_ASSERT(vampire.check_if_staked(), "A stake attack in combat mode at the chest did not stake the vampire")
 
 	// Vassals
 	var/mob/living/carbon/human/vassal_mob = allocate(/mob/living/carbon/human)

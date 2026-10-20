@@ -41,12 +41,12 @@
 		// Try to enter torpor if we're not in a frenzy or staked
 		if(current.has_status_effect(/datum/status_effect/frenzy))
 			if(COOLDOWN_FINISHED(src, vampire_spam_sol_burn))
-				to_chat(current, span_userdanger("You are in a frenzy! You cannot enter Torpor until you have enough blood."))
+				to_chat(current, span_userdanger("Jesteś w Szale! Nie zapadniesz w torpor, dopóki nie zdobędziesz dość krwi."))
 				COOLDOWN_START(src, vampire_spam_sol_burn, VAMPIRE_SPAM_SOL)
 			return
 		if(check_if_staked())
 			if(COOLDOWN_FINISHED(src, vampire_spam_sol_burn))
-				to_chat(current, span_userdanger("You are staked! Remove the offending weapon from your heart before sleeping."))
+				to_chat(current, span_userdanger("Masz kołek w sercu! Wyjmij go, zanim zaśniesz."))
 				COOLDOWN_START(src, vampire_spam_sol_burn, VAMPIRE_SPAM_SOL)
 			return
 		if(!is_in_torpor())
@@ -71,12 +71,12 @@
 		if(current_vitae >= VAMPIRE_SOL_SHIELD_THRESHOLD)
 			adjust_vitae(-sol_burn_calculated / 2)
 		if(shielded != were_shielded)
-			to_chat(current, span_cultbold("This area's shielding affords acceptable safety. <b>Don't worry, blood won't drain below [VAMPIRE_SOL_SHIELD_THRESHOLD].</b>"), type = MESSAGE_TYPE_WARNING)
+			to_chat(current, span_cultbold("Osłony w tym miejscu dają ci wystarczające bezpieczeństwo. <b>Spokojnie, krew nie spadnie poniżej [VAMPIRE_SOL_SHIELD_THRESHOLD].</b>"), type = MESSAGE_TYPE_WARNING)
 	else if(!is_in_torpor())
 		playsound(owner.current, 'sound/machines/grill/grillsizzle.ogg', 10, vary = TRUE)
 		adjust_vitae(-sol_burn_calculated)
 		if(shielded != were_shielded)
-			to_chat(current, span_narsiesmall("IT BURNS!"), type = MESSAGE_TYPE_WARNING)
+			to_chat(current, span_narsiesmall("TO PALI!"), type = MESSAGE_TYPE_WARNING)
 		burn_and_kill()
 
 	were_shielded = shielded
@@ -195,7 +195,7 @@
 
 	disable_all_powers()
 
-	to_chat(living_owner, span_notice("You enter the horrible slumber of deathless Torpor. You will heal until you are renewed."))
+	to_chat(living_owner, span_notice("Zapadasz w straszliwy sen nieśmiertelnego torporu. Będziesz się leczyć, aż w pełni się odnowisz."))
 
 /datum/antagonist/vampire/proc/torpor_end()
 	var/mob/living/living_owner = owner.current
@@ -218,9 +218,9 @@
 
 	if(current_vitae >= 500) // We wake up hungy, but only if it wouldn't kill us. The baby check.
 		current_vitae = 500
-		to_chat(living_owner, span_notice("You use your vitae to revive from the deathless sleep."))
+		to_chat(living_owner, span_notice("Zużywasz vitae, żeby obudzić się z nieśmiertelnego snu."))
 	else
-		to_chat(living_owner, span_notice("You have recovered from Torpor."))
+		to_chat(living_owner, span_notice("Budzisz się z torporu."))
 
 	my_clan?.on_exit_torpor()
 
@@ -238,7 +238,7 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_owner_moved))
 	owner.add_movespeed_modifier_type(/datum/movespeed_modifier/vampire_sol)
 	owner.add_actionspeed_modifier(/datum/actionspeed_modifier/vampire_sol)
-	to_chat(owner, span_userdanger("Sol has risen! Your powers are suppressed, your body is burdened, and you will not heal outside of a coffin!"), type = MESSAGE_TYPE_INFO)
+	to_chat(owner, span_userdanger("Sol wzeszło! Twoje moce są stłumione, ciało ociężałe i poza trumną nie będziesz się leczyć!"), type = MESSAGE_TYPE_INFO)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.physiology?.damage_resistance -= 50
@@ -247,7 +247,7 @@
 			power.vitaecost *= power.sol_multiplier
 			power.constant_vitaecost *= power.sol_multiplier
 			if(power.currently_active)
-				to_chat(owner, span_warning("[power.name] is harder to upkeep during Sol, now requiring [power.constant_vitaecost] blood while the solar flares last!"), type = MESSAGE_TYPE_INFO)
+				to_chat(owner, span_warning("Podtrzymanie mocy [power.name] w czasie Sol jest trudniejsze: dopóki trwa rozbłysk słoneczny, kosztuje [power.constant_vitaecost] krwi!"), type = MESSAGE_TYPE_INFO)
 			LAZYSET(burdened_actions, power, TRUE)
 		power.update_desc()
 		power.update_buttons()
@@ -273,7 +273,7 @@
 /datum/status_effect/vampire_sol/proc/on_sol_end()
 	SIGNAL_HANDLER
 	if(!QDELING(src))
-		to_chat(owner, span_big(span_boldnotice("Sol has ended, your vampiric powers are no longer strained!")), type = MESSAGE_TYPE_INFO)
+		to_chat(owner, span_big(span_boldnotice("Sol dobiegło końca, twoje wampirze moce nie są już osłabione!")), type = MESSAGE_TYPE_INFO)
 		qdel(src)
 
 /datum/status_effect/vampire_sol/proc/on_owner_moved()
@@ -282,8 +282,8 @@
 		qdel(src)
 
 /atom/movable/screen/alert/status_effect/vampire_sol
-	name = "Solar Flares"
-	desc = "Solar flares bombard the station, heavily weakening your vampiric abilities and burdening your body!\nSleep in a coffin to avoid the effects of the solar flare!"
+	name = "Rozbłyski słoneczne"
+	desc = "Rozbłyski słoneczne bombardują stację, mocno osłabiając twoje wampirze zdolności i obciążając ciało!\nŚpij w trumnie, żeby uniknąć skutków rozbłysku słonecznego!"
 	icon = 'aquila/icons/vampires/actions_vampire.dmi'
 	icon_state = "sol_alert"
 

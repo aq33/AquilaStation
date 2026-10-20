@@ -8,18 +8,18 @@
 //	//						   EGO OBJECTIVES 									//	//
 //////////////////////////////////////////////////////////////////////////////////////
 /datum/objective/vampire/ego
-	name = "Dominion"
-	explanation_text = "You crave power, the authority to rule:"
+	name = "Władza"
+	explanation_text = "Pragniesz władzy, prawa do rządzenia:"
 
 //////////////////////////////////////////////////       Lair
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/ego/lair
-	name = "Claim a Lair"
+	name = "Zajmij legowisko"
 
 /datum/objective/vampire/ego/lair/update_explanation_text()
 	. = ..()
-	explanation_text = "[initial(explanation_text)] Establish a lair to rule from and hold it until the shift ends."
+	explanation_text = "[initial(explanation_text)] Urządź legowisko, z którego będziesz rządzić, i utrzymaj je do końca zmiany."
 
 // WIN CONDITIONS?
 /datum/objective/vampire/ego/lair/check_completion()
@@ -37,7 +37,7 @@
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/ego/department_vassal
-	name = "Bind a Department"
+	name = "Podporządkuj dział"
 
 	///The selected department we have to vassalize.
 	var/target_department
@@ -57,7 +57,19 @@
 	return ..()
 
 /datum/objective/vampire/ego/department_vassal/update_explanation_text()
-	explanation_text = "[initial(explanation_text)] Convert a crew member from the [target_department] department into your vassal."
+	var/department_name = target_department
+	switch(target_department)
+		if("engineering")
+			department_name = "inżynieryjnego"
+		if("medical")
+			department_name = "medycznego"
+		if("science")
+			department_name = "naukowego"
+		if("cargo")
+			department_name = "zaopatrzenia"
+		if("service")
+			department_name = "usług"
+	explanation_text = "[initial(explanation_text)] Zrób wasala z członka załogi z działu [department_name]."
 	return ..()
 
 /datum/objective/vampire/ego/department_vassal/proc/get_vassal_occupations()
@@ -115,11 +127,11 @@
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/ego/bigplaces
-	name = "Ascend the Ranks"
+	name = "Wspinaczka po rangach"
 
 /datum/objective/vampire/ego/bigplaces/update_explanation_text()
 	. = ..()
-	explanation_text = "[initial(explanation_text)] Rise in power, reach prince or scourge, or prey on enough mortals to rank up as much as possible. You must reach at least rank 8 by the end of the shift!"
+	explanation_text = "[initial(explanation_text)] Rośnij w siłę: zostań Księciem albo Biczem lub poluj na tylu śmiertelników, żeby awansować jak najwyżej. Do końca zmiany musisz osiągnąć co najmniej rangę 8!"
 
 // WIN CONDITIONS?
 /datum/objective/vampire/ego/bigplaces/check_completion()
@@ -138,15 +150,15 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/hedonism
-	name = "Hunger"
-	explanation_text = "You crave depravity, to sate your thirst on the mortals:"
+	name = "Głód"
+	explanation_text = "Pragniesz zepsucia, chcesz gasić pragnienie krwią śmiertelników:"
 
 
 //////////////////////////////////////////////////     Heart Thief
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/hedonism/heartthief
-	name = "Collect Hearts"
+	name = "Zbierz serca"
 
 /datum/objective/vampire/hedonism/heartthief/New()
 	target_amount = rand(2,3)
@@ -154,7 +166,7 @@
 
 /datum/objective/vampire/hedonism/heartthief/update_explanation_text()
 	. = ..()
-	explanation_text = "[initial(explanation_text)] Keep [target_amount] organic hearts close at hand. They shall be symbols of your dominion."
+	explanation_text = "[initial(explanation_text)] Miej przy sobie organiczne serca (sztuk: [target_amount]). Będą symbolem twojej władzy."
 
 /datum/objective/vampire/hedonism/heartthief/check_completion()
 	if(QDELETED(owner.current))
@@ -176,7 +188,7 @@
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/hedonism/gourmand
-	name = "Gorge"
+	name = "Obżarstwo"
 
 /datum/objective/vampire/hedonism/gourmand/New()
 	target_amount = rand(500, 1000) // This is blood, not vitae.
@@ -184,7 +196,7 @@
 
 /datum/objective/vampire/hedonism/gourmand/update_explanation_text()
 	. = ..()
-	explanation_text = "[initial(explanation_text)] Consume at least [target_amount] units of blood to sate your ravenous thirst."
+	explanation_text = "[initial(explanation_text)] Wypij co najmniej [target_amount] jednostek krwi, żeby zaspokoić swoje wściekłe pragnienie."
 
 /datum/objective/vampire/hedonism/gourmand/check_completion()
 	var/datum/antagonist/vampire/vampiredatum = owner.has_antag_datum(/datum/antagonist/vampire)
@@ -199,11 +211,11 @@
 ////////////////////////////////////////////////////////////////////
 
 /datum/objective/vampire/hedonism/thirster
-	name = "Complete Drain"
+	name = "Wyssij do końca"
 
 /datum/objective/vampire/hedonism/thirster/update_explanation_text()
 	. = ..()
-	explanation_text = "[initial(explanation_text)] Drain a mortal completely, letting their lifeblood become your sustenance and their body fall cold and spent."
+	explanation_text = "[initial(explanation_text)] Wyssij śmiertelnika do ostatniej kropli, niech jego krew stanie się twoim pożywieniem, a ciało zostanie zimne i puste."
 
 /datum/objective/vampire/hedonism/thirster/check_completion()
 	var/datum/antagonist/vampire/vampiredatum = owner.has_antag_datum(/datum/antagonist/vampire)
@@ -220,15 +232,15 @@
 //////////////////////////////////////////////////////////////////////////////////////
 
 /datum/objective/survive/vampire
-	name = "Endure"
-	explanation_text = "Avoid final death at all costs."
+	name = "Przetrwaj"
+	explanation_text = "Za wszelką cenę uniknij Ostatecznej Śmierci."
 
 /**
  * Vassal
  */
 /datum/objective/vampire/vassal
-	name = "assist master"
-	explanation_text = "You crave the blood of your sire! Obey and protect them at all costs!"
+	name = "pomóż panu"
+	explanation_text = "Łakniesz krwi swojego stwórcy! Słuchaj go i chroń za wszelką cenę!"
 
 /datum/objective/vampire/vassal/check_completion()
 	var/datum/antagonist/vassal/vassal_datum = owner.has_antag_datum(/datum/antagonist/vassal)

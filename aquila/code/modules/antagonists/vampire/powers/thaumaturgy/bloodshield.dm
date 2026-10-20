@@ -1,11 +1,11 @@
 /datum/action/vampire/bloodshield
-	name = "Thaumaturgy: Blood Shield"
-	desc = "Create a Blood shield to protect yourself from damage."
+	name = "Taumaturgia: Tarcza krwi"
+	desc = "Stwórz tarczę krwi, która ochroni cię przed obrażeniami."
 	button_icon_state = "power_bloodshield"
 	background_icon_state_on = "tremere_power_gold_on"
 	background_icon_state_off = "tremere_power_gold_off"
-	power_explanation = "Activating Thaumaturgy will temporarily give you a Blood Shield.\n\
-		The blood shield has very good block power, but costs 15 Blood per hit to maintain."
+	power_explanation = "Aktywacja tej mocy daje ci tymczasowo tarczę krwi.\n\
+		Tarcza krwi bardzo dobrze blokuje, ale każde przyjęte uderzenie kosztuje 15 krwi."
 
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
@@ -22,14 +22,14 @@
 	var/obj/item/shield/vampire/new_shield = new
 	blood_shield = WEAKREF(new_shield)
 	if(!owner.put_in_inactive_hand(new_shield))
-		owner.balloon_alert(owner, "off hand is full!")
-		to_chat(owner, span_notice("Blood shield couldn't be activated as your off hand is full."))
+		owner.balloon_alert(owner, "druga ręka jest zajęta!")
+		to_chat(owner, span_notice("Nie da się przywołać tarczy krwi, bo druga ręka jest zajęta."))
 		deactivate_power()
 		return FALSE
 	owner.visible_message(
-		span_warning("[owner] 's hands begins to bleed and forms into a blood shield!"),
-		span_warning("We activate our Blood shield!"),
-		span_hear("You hear liquids forming together."))
+		span_warning("[owner] zaczyna krwawić z dłoni, a krew formuje się w tarczę!"),
+		span_warning("Przywołujesz tarczę krwi!"),
+		span_hear("Słyszysz, jak coś płynnego zlewa się w całość."))
 
 /datum/action/vampire/bloodshield/deactivate_power()
 	. = ..()
@@ -43,8 +43,8 @@
  *	Copied mostly from '/obj/item/shield/changeling'
  */
 /obj/item/shield/vampire
-	name = "blood shield"
-	desc = "A shield made out of blood, requiring blood to sustain hits."
+	name = "tarcza krwi"
+	desc = "Tarcza z krwi. Każde przyjęte uderzenie kosztuje krew."
 	item_flags = ABSTRACT | DROPDEL
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	icon_state = "blood_shield"

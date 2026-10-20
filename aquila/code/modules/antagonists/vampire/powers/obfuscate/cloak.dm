@@ -1,12 +1,12 @@
 /datum/action/vampire/cloak
-	name = "Cloak of Darkness"
-	desc = "Shroud yourself in shadow and become completely invisible. Costs blood to upkeep while in the light, but is free in darkness."
+	name = "Płaszcz Ciemności"
+	desc = "Spowij się cieniem i stań się całkowicie niewidzialny. W świetle podtrzymanie kosztuje krew, w ciemności jest darmowe."
 	button_icon_state = "power_cloak"
-	power_explanation = "Activate this Power to become fully invisible.\n\
-		While in darkness or shadow, the cloak costs no blood to maintain.\n\
-		While in the light, the cloak drains blood to sustain itself.\n\
-		Additionally, while Cloak is active, you are completely invisible to silicons.\n\
-		Attacking, throwing, or being set on fire will break the cloak."
+	power_explanation = "Aktywuj tę moc, żeby stać się całkowicie niewidzialnym.\n\
+		W ciemności lub cieniu utrzymanie płaszcza nie kosztuje krwi.\n\
+		W świetle płaszcz wysysa krew, żeby się utrzymać.\n\
+		Dodatkowo, gdy płaszcz jest aktywny, jesteś całkowicie niewidzialny dla syntetyków.\n\
+		Atak, rzucenie czymś albo podpalenie przerywa płaszcz."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 20
@@ -32,7 +32,7 @@
 	var/mob/living/user = owner
 	user.AddElement(/datum/element/digital_camo)
 	ADD_TRAIT(user, TRAIT_SILENT_FOOTSTEPS, REF(src))
-	user.balloon_alert(user, "cloak turned on.")
+	user.balloon_alert(user, "płaszcz włączony.")
 	animate(user, alpha = 0, time = 1 SECONDS)
 	// Apply the cloaked status effect (handles self-visibility, bump/attack disruption)
 	user.apply_status_effect(/datum/status_effect/vampire_cloaked)
@@ -44,7 +44,7 @@
 
 	var/mob/living/user = owner
 	if(user.stat != CONSCIOUS)
-		to_chat(user, span_warning("Your cloak failed because you fell unconscious!"))
+		to_chat(user, span_warning("Twój płaszcz zawiódł, bo straciłeś przytomność!"))
 		return FALSE
 
 	// Check if the cloak status was broken (by attacking, etc.)
@@ -63,18 +63,18 @@
 			actual_cost *= sol_multiplier
 		if(vampiredatum_power)
 			if(vampiredatum_power.current_vitae < actual_cost)
-				to_chat(user, span_warning("You don't have enough blood to sustain your cloak in the light!"))
+				to_chat(user, span_warning("Nie masz dość krwi, żeby utrzymać płaszcz w świetle!"))
 				return FALSE
 			vampiredatum_power.adjust_vitae(-actual_cost)
 		else
 			if(!HAS_TRAIT(user, TRAIT_NO_BLOOD))
 				if(user.blood_volume < actual_cost)
-					to_chat(user, span_warning("You don't have enough blood to sustain your cloak in the light!"))
+					to_chat(user, span_warning("Nie masz dość krwi, żeby utrzymać płaszcz w świetle!"))
 					return FALSE
 				user.blood_volume -= actual_cost
 	else if(!was_in_shadow && in_shadow)
 		// Just entered shadow
-		to_chat(user, span_notice("The shadows embrace you. Your cloak no longer drains your blood."))
+		to_chat(user, span_notice("Cienie cię obejmują. Płaszcz przestaje wysysać twoją krew."))
 
 	return TRUE
 
@@ -85,7 +85,7 @@
 	user.RemoveElement(/datum/element/digital_camo)
 	REMOVE_TRAIT(user, TRAIT_SILENT_FOOTSTEPS, REF(src))
 	user.remove_status_effect(/datum/status_effect/vampire_cloaked)
-	user.balloon_alert(user, "cloak turned off.")
+	user.balloon_alert(user, "płaszcz wyłączony.")
 	in_shadow = FALSE
 	return ..()
 
@@ -139,6 +139,6 @@
 	qdel(src)
 
 /atom/movable/screen/alert/status_effect/vampire_cloaked
-	name = "Cloaked in Darkness"
-	desc = "You are shrouded in shadow, invisible to the world. Attacking will break the cloak."
+	name = "Spowity ciemnością"
+	desc = "Spowija cię cień, jesteś niewidzialny dla świata. Atak przerwie płaszcz."
 	icon_state = "cloak"

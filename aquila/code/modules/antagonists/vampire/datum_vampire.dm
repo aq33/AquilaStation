@@ -1,5 +1,5 @@
 /datum/antagonist/vampire
-	name = "\improper Vampire"
+	name = "\improper Wampir"
 	roundend_category = "vampires"
 	antagpanel_category = "Vampire"
 	banning_key = ROLE_VAMPIRE
@@ -164,7 +164,7 @@
 	RegisterSignal(current_mob, COMSIG_LIVING_HUG_CARBON, PROC_REF(on_hug_carbon))
 	RegisterSignal(current_mob, COMSIG_LIVING_APPRAISE_ART, PROC_REF(on_appraise_art))
 
-	handle_clown_mutation(current_mob, "Your clownish nature has been subdued by your thirst for blood.")
+	handle_clown_mutation(current_mob, "Twoja błazeńska natura została stłumiona przez głód krwi.")
 
 	current_mob.update_sight()
 
@@ -243,22 +243,22 @@
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
-	.["Level Add"] = CALLBACK(src, PROC_REF(rank_up), 1)
+	.["Dodaj rangę"] = CALLBACK(src, PROC_REF(rank_up), 1)
 
 	if(vampire_level_unspent > 0)
-		.["Level Deduct"] = CALLBACK(src, PROC_REF(rank_down))
+		.["Odejmij rangę"] = CALLBACK(src, PROC_REF(rank_down))
 
 	if(!broke_masquerade)
-		.["Break Masq"] = CALLBACK(src, PROC_REF(break_masquerade))
+		.["Złam Maskaradę"] = CALLBACK(src, PROC_REF(break_masquerade))
 
 	if(!broke_masquerade)
-		.["Add Infraction"] = CALLBACK(src, PROC_REF(give_masquerade_infraction))
+		.["Dodaj wykroczenie"] = CALLBACK(src, PROC_REF(give_masquerade_infraction))
 
 	if(humanity > 0)
-		.["Humanity Deduct"] = CALLBACK(src, PROC_REF(adjust_humanity), -1, FALSE)
+		.["Odejmij Człowieczeństwo"] = CALLBACK(src, PROC_REF(adjust_humanity), -1, FALSE)
 
 	if(humanity < 10)
-		.["Humanity Add"] = CALLBACK(src, PROC_REF(adjust_humanity), 1, FALSE)
+		.["Dodaj Człowieczeństwo"] = CALLBACK(src, PROC_REF(adjust_humanity), 1, FALSE)
 
 /datum/antagonist/vampire/on_gain()
 	. = ..()
@@ -349,31 +349,33 @@
 	var/fullname = return_full_name()
 	var/list/msg = list()
 
-	msg += span_cultlarge("You are a Vampire!\n")
-	msg += span_cult("Open the Vampire Information panel for information about your Powers, Clan, and more. \n\n\
-			You can also click on all of your hud meters for more information about them!")
+	msg += span_cultlarge("Jesteś wampirem!\n")
+	msg += span_cult("Otwórz Przewodnik wampira, aby dowiedzieć się więcej o swoich mocach, klanie i nie tylko. \n\n\
+			Możesz też kliknąć każdy wskaźnik na HUD-zie, żeby dowiedzieć się o nim więcej!")
 
 	to_chat(owner, examine_block(msg.Join("\n")))
 
 	owner.announce_objectives()
 
 	owner.current.playsound_local(null, 'aquila/sound/effects/antag/vampire/lunge_warn.ogg', 100, FALSE, pressure_affected = FALSE)
-	antag_memory += "Although you were born a mortal, in undeath you earned the name <b>[fullname]</b>.<br>"
+	antag_memory += "Choć urodziłeś się śmiertelnikiem, w nieżyciu zyskałeś imię <b>[fullname]</b>.<br>"
 
 /datum/antagonist/vampire/farewell()
-	to_chat(owner.current, span_userdanger("With a snap, your curse has ended. You are no longer a Vampire. You live once more!"))
+	to_chat(owner.current, span_userdanger("Nagle twoja klątwa pęka. Nie jesteś już wampirem. Znów żyjesz!"))
 	// Refill with Blood so they don't instantly die.
 	if(!HAS_TRAIT(owner.current, TRAIT_NO_BLOOD))
 		owner.current.blood_volume = max(owner.current.blood_volume, BLOOD_VOLUME_NORMAL)
 
 // Called when using admin tools to give antag status
 /datum/antagonist/vampire/admin_add(datum/mind/new_owner, mob/admin)
-	var/levels = input("How many unspent Ranks would you like [new_owner] to have?","Vampire Rank", vampire_level_unspent) as null | num
+	var/levels = input("Ile niewydanych rang ma mieć [new_owner]?","Ranga wampira", vampire_level_unspent) as null | num
 	var/msg = "made [key_name_admin(new_owner)] into \a [name]"
+	var/msg_pl = "zmienia [key_name_admin(new_owner)] w wampira"
 	if(levels > 0)
 		vampire_level_unspent = levels
 		msg += " with [levels] extra unspent Ranks."
-	message_admins("[key_name_admin(usr)] [msg]")
+		msg_pl += " z [levels] dodatkowymi niewydanymi rangami."
+	message_admins("[key_name_admin(usr)] [msg_pl]")
 	log_admin("[key_name(usr)] [msg]")
 	new_owner.add_antag_datum(src)
 
@@ -413,7 +415,7 @@
 	report += "<br>[span_header(return_full_name())]"
 	report += printplayer(owner)
 	if(my_clan)
-		report += "They were part of the <b>[my_clan.name]</b>!"
+		report += "Klan: <b>[my_clan.name]</b>"
 
 	// Default Report
 	var/objectives_complete = TRUE
@@ -426,7 +428,7 @@
 
 	// Now list their vassals
 	if(length(vassals))
-		report += span_header("<br>Their vassals were...")
+		report += span_header("<br>Wasale:")
 		for(var/datum/antagonist/vassal/vassal in vassals)
 			if(!vassal.owner)
 				continue
@@ -435,13 +437,13 @@
 			vassal_report += "<b>[vassal.owner.name]</b>"
 
 			if(!is_unassigned_job(vassal.owner.assigned_role))
-				vassal_report += " the [vassal.owner.assigned_role]"
+				vassal_report += " ([vassal.owner.assigned_role])"
 			report += vassal_report.Join()
 
 	if(objectives_complete)
-		report += span_greentextbig("<br>The [name] was successful!")
+		report += span_greentextbig("<br>Wampir odniósł sukces!")
 	else
-		report += span_redtextbig("<br>The [name] has failed!")
+		report += span_redtextbig("<br>Wampir poniósł porażkę!")
 
 	return report.Join("<br>")
 
@@ -538,18 +540,18 @@
 	// ALREADY CLAIMED
 	if(claimed.resident)
 		if(claimed.resident == owner.current)
-			to_chat(owner, "This is your [src].")
+			to_chat(owner, "To twoja trumna.")
 		else
-			to_chat(owner, "This [src] has already been claimed by another.")
+			to_chat(owner, "Ktoś inny już zajął tę trumnę.")
 		return FALSE
 	var/area/coffin_area = get_area(claimed)
 	if(!GLOB.the_station_areas.Find(coffin_area.type))
-		claimed.balloon_alert(owner.current, "not part of station!")
+		claimed.balloon_alert(owner.current, "to nie część stacji!")
 		return
 	// This is my Lair
 	coffin = claimed
 	vampire_lair_area = coffin_area
-	to_chat(owner, span_userdanger("You have claimed [claimed] as your place of immortal rest! Your lair is now [vampire_lair_area]."))
+	to_chat(owner, span_userdanger("Obierasz [claimed] na miejsce swojego nieśmiertelnego spoczynku! Twoje legowisko to teraz: [vampire_lair_area]."))
 	return TRUE
 
 /// Name shown on antag list
@@ -557,7 +559,7 @@
 	return ..() + return_full_name()
 
 /datum/action/antag_info/vampire
-	name = "Vampire Guide"
+	name = "Przewodnik wampira"
 	button_icon = 'aquila/icons/vampires/actions_vampire.dmi'
 	background_icon_state = "vamp_power_off"
 
@@ -632,24 +634,24 @@
 		text = "<img class='icon' src='\ref['aquila/icons/vampires/vampiric.dmi']?state=vampire'> "
 
 	if(IS_VASSAL(examiner) in vassals)
-		text += span_cult("<EM>This is, [return_full_name()] your Master!</EM>")
+		text += span_cult("<EM>To [return_full_name()], twój pan!</EM>")
 		examine_text += text
 		return
 
 	if(IS_VAMPIRE(examiner))
 
 		if(my_clan)
-			text += span_cult("<EM>[return_full_name()], of the [my_clan].</EM>")
+			text += span_cult("<EM>[return_full_name()], [my_clan].</EM>")
 		else
-			text += span_cult("<EM>[return_full_name()], a disgusting caitiff thinblood.</EM>")
+			text += span_cult("<EM>[return_full_name()], odrażający caitiff o rozrzedzonej krwi.</EM>")
 
 		if(examiner != owner.current) // So many ifs. where is yanderedev.
 			if(scourge)
-				text += span_cultlarge("<br><EM>[owner.current.p_They()] [owner.current.p_are()] the Scourge!</EM>")
+				text += span_cultlarge("<br><EM>To Bicz!</EM>")
 			if(prince)
-				text += span_cultlarge("<br><EM>[owner.current.p_They()] [owner.current.p_are()] your Prince!</EM>")
+				text += span_cultlarge("<br><EM>To twój Książę!</EM>")
 			if(broke_masquerade)
-				text += span_cultlarge("<br><EM>You recognize [owner.current.p_Them()] as a masquerade breaker!</EM>")
+				text += span_cultlarge("<br><EM>Rozpoznajesz w tej osobie łamacza Maskarady!</EM>")
 
 		examine_text += text
 		return
@@ -665,13 +667,13 @@
 
 /datum/antagonist/vampire/create_team()
 	vampire_team = new(owner)
-	vampire_team.name = "[owner.current]'s vampire team" // only displayed to admins
+	vampire_team.name = "drużyna wampira [owner.current]" // only displayed to admins
 
 /datum/antagonist/vampire/get_team()
 	return vampire_team
 
 /datum/team/vampire
-	name = "vampire team"
+	name = "drużyna wampira"
 
 /datum/team/vampire/roundend_report()
 	return

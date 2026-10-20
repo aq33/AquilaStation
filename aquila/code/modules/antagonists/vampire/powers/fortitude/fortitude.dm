@@ -1,6 +1,6 @@
 /datum/discipline/fortitude
-	name = "Fortitude"
-	discipline_explanation = "Fortitude is a Discipline that grants Kindred unearthly toughness."
+	name = "Hart"
+	discipline_explanation = "Hart to dyscyplina, która daje Spokrewnionym nieziemską wytrzymałość."
 	icon_state = "fortitude"
 
 	// Lists of abilities granted per level
@@ -20,14 +20,14 @@
  */
 
 /datum/action/vampire/fortitude
-	name = "Fortitude"
-	desc = "Withstand egregious physical wounds and walk away from attacks that would stun, pierce, and dismember lesser beings."
+	name = "Hart"
+	desc = "Znoś straszliwe rany i wychodź cało z ataków, które ogłuszyłyby, przebiły albo rozczłonkowały słabsze istoty."
 	button_icon_state = "power_fortitude"
-	power_explanation = "Grants increasing levels of brute and stamina resistance, as well as various immunities to physical harm.\n\
-						At level 1: Gain pierce resistance.\n\
-						At level 2: Gain push immunity.\n\
-						At level 3: Gain dismember resistance.\n\
-						At level 4: Gain complete stun immunity."
+	power_explanation = "Daje rosnącą odporność na obrażenia fizyczne i utratę wytrzymałości oraz różne odporności na krzywdę fizyczną.\n\
+						Na poziomie 1: odporność na przebicie.\n\
+						Na poziomie 2: odporność na popychanie.\n\
+						Na poziomie 3: odporność na odcięcie kończyn.\n\
+						Na poziomie 4: pełna odporność na ogłuszenie."
 	power_flags = BP_AM_TOGGLE | BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED
 	vitaecost = 20
@@ -70,8 +70,8 @@
 
 /datum/action/vampire/fortitude/activate_power()
 	. = ..()
-	owner.balloon_alert(owner, "fortitude turned on.")
-	to_chat(owner, span_notice("Your flesh has become as hard as steel!"))
+	owner.balloon_alert(owner, "Hart włączony.")
+	to_chat(owner, span_notice("Twoje ciało staje się twarde jak stal!"))
 
 	calculated_burn_resist = min(1, resistance * 3)
 
@@ -117,6 +117,6 @@
 	REMOVE_TRAIT(owner, TRAIT_PUSHIMMUNE, TRAIT_VAMPIRE)
 	REMOVE_TRAIT(owner, TRAIT_STUNIMMUNE, TRAIT_VAMPIRE)
 
-	owner.balloon_alert(owner, "fortitude turned off.")
+	owner.balloon_alert(owner, "Hart wyłączony.")
 
 	return ..()

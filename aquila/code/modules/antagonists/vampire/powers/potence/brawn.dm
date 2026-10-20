@@ -1,11 +1,11 @@
 /datum/action/vampire/targeted/brawn
-	name = "Brawn"
-	desc = "Snap restraints, break lockers and doors, or deal terrible damage with your bare hands."
+	name = "Krzepa"
+	desc = "Zrywaj więzy, rozwalaj szafki i drzwi albo zadawaj straszliwe obrażenia gołymi rękami."
 	button_icon_state = "power_strength"
-	power_explanation = "Use this power to deal a horrific blow. Punching a Cyborg will EMP it and deal high damage.\n\
-		At level 3, you can break closets open and break restraints.\n\
-		At level 4, you can bash airlocks open.\n\
-		Higher ranks will increase the damage when punching someone."
+	power_explanation = "Użyj tej mocy, żeby zadać potworny cios. Uderzenie cyborga razi go EMP i zadaje duże obrażenia.\n\
+		Na poziomie 3 możesz wyłamywać szafki i zrywać więzy.\n\
+		Na poziomie 4 możesz wyważać śluzy.\n\
+		Wyższe rangi zwiększają obrażenia od ciosu."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 50
@@ -13,7 +13,7 @@
 	cooldown_time = 9 SECONDS
 	target_range = 1
 	power_activates_immediately = TRUE
-	prefire_message = "Select a target."
+	prefire_message = "Wybierz cel."
 	level_current = 1
 
 	/// Only changed by the '/brawn/brash' subtype; acts as a general purpose damage multipler.
@@ -57,18 +57,18 @@
 		var/obj/structure/closet/closet = human_owner.loc
 		closet.bust_open()
 		closet.visible_message(
-			span_warning("[closet] tears apart as [human_owner] bashes it open from within!"),
-			span_warning("[closet] tears apart as you bash it open from within!")
+			span_warning("[human_owner] rozwala od środka: [closet]!"),
+			span_warning("Rozwalasz od środka: [closet]!")
 		)
-		to_chat(human_owner, span_warning("We bash [closet] wide open!"))
+		to_chat(human_owner, span_warning("Wyłamujesz na oścież: [closet]!"))
 		used = TRUE
 
 	// Cuffs
 	if(human_owner.handcuffed || human_owner.legcuffed)
 		human_owner.uncuff()
 		human_owner.visible_message(
-			span_warning("[human_owner] discards their restraints like it's nothing!"),
-			span_warning("We break through our restraints!")
+			span_warning("[human_owner] zrzuca więzy, jakby to było nic!"),
+			span_warning("Zrywasz więzy!")
 		)
 		used = TRUE
 
@@ -78,8 +78,8 @@
 		if(straightjacket && human_owner.wear_suit == straightjacket)
 			qdel(straightjacket)
 		human_owner.visible_message(
-			span_warning("[human_owner] rips straight through the [human_owner.p_their()] [straightjacket]!"),
-			span_warning("We tear through our [straightjacket]!")
+			span_warning("[human_owner] rozrywa na sobie [straightjacket]!"),
+			span_warning("Rozrywasz na sobie [straightjacket]!")
 		)
 		used = TRUE
 
@@ -111,8 +111,8 @@
 
 	log_combat(owner, pulled_mob, "used [src.name] power")
 	owner.visible_message(
-		span_warning("[owner] tears free of [pulled_mob]'s grasp!"),
-		span_warning("You shrug off [pulled_mob]'s grasp!")
+		span_warning("[owner] wyrywa się z chwytu, a [pulled_mob] leci w tył!"),
+		span_warning("Strząsasz z siebie chwyt, a [pulled_mob] leci w tył!")
 	)
 	owner.pulledby = null // It's already done, but JUST IN CASE.
 
@@ -135,13 +135,13 @@
 
 		if(rand(5 + powerlevel) >= 5)
 			living_target.visible_message(
-				span_danger("[carbon_owner] lands a vicious punch, sending [living_target] away!"), \
-				span_userdanger("[carbon_owner] has landed a horrifying punch on you, sending you flying!"),
+				span_danger("[carbon_owner] zadaje brutalny cios i [living_target] odlatuje!"), \
+				span_userdanger("[carbon_owner] zadaje ci potworny cios, aż odlatujesz!"),
 			)
 			living_target.Knockdown(min(5, rand(10, 10 * powerlevel)))
 
 		// Attack!
-		owner.balloon_alert(owner, "you punch [living_target]!")
+		owner.balloon_alert(owner, "uderzasz: [living_target]!")
 		playsound(get_turf(living_target), 'sound/weapons/punch4.ogg', 60, 1, -1)
 		check_witnesses(living_target)
 		carbon_owner.do_attack_animation(living_target, ATTACK_EFFECT_SMASH)
@@ -163,11 +163,11 @@
 		var/obj/structure/closet/target_closet = target_atom
 
 		playsound(get_turf(carbon_owner), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
-		carbon_owner.balloon_alert(carbon_owner, "you prepare to bash [target_closet] open...")
+		carbon_owner.balloon_alert(carbon_owner, "szykujesz się do wyłamania...")
 		if(!vampire_do_after(carbon_owner, 2.5 SECONDS, target_closet))
-			carbon_owner.balloon_alert(carbon_owner, "interrupted!")
+			carbon_owner.balloon_alert(carbon_owner, "przerwano!")
 			return FALSE
-		target_closet.visible_message(span_danger("[target_closet] breaks open as [carbon_owner] bashes it!"))
+		target_closet.visible_message(span_danger("[carbon_owner] wyłamuje uderzeniem: [target_closet]!"))
 
 		target_closet.bust_open()
 		playsound(get_turf(carbon_owner), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
@@ -178,13 +178,13 @@
 
 		playsound(get_turf(carbon_owner), 'sound/machines/airlock_alien_prying.ogg', 40, TRUE, -1)
 		check_witnesses()
-		owner.balloon_alert(owner, "you prepare to tear open [target_airlock]...")
+		owner.balloon_alert(owner, "szykujesz się do wyważenia...")
 		if(!vampire_do_after(carbon_owner, 2.5 SECONDS, target_airlock))
-			carbon_owner.balloon_alert(carbon_owner, "interrupted!")
+			carbon_owner.balloon_alert(carbon_owner, "przerwano!")
 			return FALSE
 
 		if(target_airlock.Adjacent(carbon_owner))
-			target_airlock.visible_message(span_danger("[target_airlock] breaks open as [carbon_owner] bashes it!"))
+			target_airlock.visible_message(span_danger("[carbon_owner] wyważa uderzeniem: [target_airlock]!"))
 
 			// Adjust cost and cooldown if Brujah
 			if(brujah)
@@ -218,14 +218,14 @@
 
 	if(istype(target_atom, /obj/machinery/door/airlock))
 		if(level_current < 4)
-			owner.balloon_alert(owner, "level 4 required!")
+			owner.balloon_alert(owner, "wymagany poziom 4!")
 			return FALSE
 
 		return TRUE
 
 	if(istype(target_atom, /obj/structure/closet))
 		if(level_current < 3)
-			owner.balloon_alert(owner, "level 3 required!")
+			owner.balloon_alert(owner, "wymagany poziom 3!")
 			return FALSE
 
 		var/obj/structure/closet/target_closet = target_atom

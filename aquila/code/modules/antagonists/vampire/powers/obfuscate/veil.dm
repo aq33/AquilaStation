@@ -1,9 +1,9 @@
 /datum/action/vampire/veil
-	name = "Veil of Many Faces"
-	desc = "Disguise yourself in the illusion of another identity."
+	name = "Zasłona Wielu Twarzy"
+	desc = "Przybierz iluzję innej tożsamości."
 	button_icon_state = "power_veil"
-	power_explanation = "Activating Veil of Many Faces will shroud you in smoke and forge you a new identity.\n\
-		Your name and appearance will be completely randomized, deactivating the ability will restore you to your former self."
+	power_explanation = "Aktywacja Zasłony Wielu Twarzy spowija cię dymem i wykuwa ci nową tożsamość.\n\
+		Twoje imię i wygląd zostaną całkowicie wylosowane, a wyłączenie mocy przywróci ci dawną postać."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_DURING_SOL
 	vitaecost = 25
@@ -29,7 +29,7 @@
 	. = ..()
 	cast_effect() // POOF
 	veil_user()
-	owner.balloon_alert(owner, "veil turned on.")
+	owner.balloon_alert(owner, "zasłona włączona.")
 
 /datum/action/vampire/veil/proc/veil_user()
 	var/mob/living/carbon/human/user = owner
@@ -77,7 +77,7 @@
 	user.update_hair()
 	user.update_body_parts()
 
-	to_chat(owner, span_warning("You mystify the air around your person. Your identity is now altered."))
+	to_chat(owner, span_warning("Mącisz powietrze wokół siebie. Twoja tożsamość jest teraz inna."))
 
 /datum/action/vampire/veil/deactivate_power()
 	. = ..()
@@ -114,7 +114,7 @@
 	user.update_body_parts() // Body itself, maybe skin color?
 
 	cast_effect() // POOF
-	owner.balloon_alert(owner, "veil turned off.")
+	owner.balloon_alert(owner, "zasłona wyłączona.")
 
 // CAST EFFECT // General effect (poof, splat, etc) when you cast. Doesn't happen automatically!
 /datum/action/vampire/veil/proc/cast_effect()

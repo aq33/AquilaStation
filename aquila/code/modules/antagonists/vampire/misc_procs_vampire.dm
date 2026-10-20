@@ -28,8 +28,8 @@
 		return
 	broke_masquerade = TRUE
 
-	to_chat(owner.current, span_userdanger("You have broken the Masquerade!"))
-	to_chat(owner.current, span_warning("Vampire Tip: When you break the Masquerade, you become open for termination by fellow Vampires, and your vassals are no longer completely loyal to you, as other Vampires can steal them for themselves!"))
+	to_chat(owner.current, span_userdanger("Złamałeś Maskaradę!"))
+	to_chat(owner.current, span_warning("Wskazówka wampira: gdy złamiesz Maskaradę, inne wampiry mogą cię zgładzić, a twoi wasale nie są ci już w pełni wierni, bo inni Spokrewnieni mogą ci ich odebrać!"))
 
 	antag_hud_name = "masquerade_broken"
 	add_team_hud(owner.current)
@@ -50,7 +50,7 @@
 	if(masquerade_infractions >= 3)
 		break_masquerade()
 	else
-		to_chat(owner.current, span_cultbold("You violated the Masquerade! Break the Masquerade [3 - masquerade_infractions] more times and you will become hunted by all other Vampires!"))
+		to_chat(owner.current, span_cultbold("Naruszyłeś Maskaradę! Jeszcze [3 - masquerade_infractions] wykroczenia przeciw Maskaradzie, a wszystkie inne wampiry zaczną na ciebie polować!"))
 
 /**
  * Increase our unspent vampire levels by one and try to rank up if inside a coffin
@@ -61,15 +61,15 @@
 		return
 
 	if(vitae_goal_progress <= current_vitae_goal && !ignore_reqs)
-		to_chat(owner.current, span_notice("Your lack of experience has left you unable to level up. Fulfill your vitae goal next time in order to level up."))
+		to_chat(owner.current, span_notice("Brak doświadczenia nie pozwala ci awansować. Następnym razem osiągnij cel vitae, żeby awansować."))
 		return
 
 	vampire_level_unspent += levels
 	if(!my_clan)
-		to_chat(owner.current, span_notice("You have grown in power. Join a clan to spend it."))
+		to_chat(owner.current, span_notice("Twoja moc rośnie. Dołącz do klanu, żeby ją wykorzystać."))
 		return
 
-	to_chat(owner, span_notice("<EM>You have grown familiar with your powers!"))
+	to_chat(owner, span_notice("<EM>Coraz lepiej znasz swoje moce!"))
 
 	current_vitae_goal += VITAE_GOAL_STANDARD
 	vitae_goal_progress = 0
@@ -148,9 +148,9 @@
 		// Only run this code if there is an actual increase in humanity. Also don't run it if we wanna be silent.
 		if(humanity < temp_humanity && !silent)
 			if(power_given)
-				to_chat(owner.current, span_userdanger("Your closeness to humanity has granted you the ability to feign life!"))
+				to_chat(owner.current, span_userdanger("Bliskość człowieczeństwa pozwala ci udawać życie!"))
 			else
-				to_chat(owner.current, span_userdanger("You have gained humanity."))
+				to_chat(owner.current, span_userdanger("Zyskujesz Człowieczeństwo."))
 	else
 		// We are removing
 		if(temp_humanity < VAMPIRE_HUMANITY_MASQUERADE_POWER)
@@ -161,9 +161,9 @@
 		// Only run this code if there is an actual decrease in humanity
 		if(humanity > temp_humanity && !silent)
 			if(power_removed)
-				to_chat(owner.current, span_userdanger("Your inhuman actions have caused you to lose the masquerade ability!"))
+				to_chat(owner.current, span_userdanger("Przez swoje nieludzkie czyny tracisz moc Maskarady!"))
 			else
-				to_chat(owner.current, span_userdanger("You have lost humanity."))
+				to_chat(owner.current, span_userdanger("Tracisz Człowieczeństwo."))
 
 	// Clamp to valid range, we are so sane we might see the face of god
 	if(temp_humanity > 10)
@@ -255,52 +255,52 @@
 /datum/antagonist/vampire/proc/get_rank_string()
 	switch(vampire_level)
 		if(0 to 1)
-			return "'Initiate'"
+			return "'Inicjowany'"
 		if(2 to 3)
-			return "'Novice'"
+			return "'Nowicjusz'"
 		if(4 to 5)
-			return "'Apprentice'"
+			return "'Uczeń'"
 		if(6 to 7)
 			return "'Adept'"
 		if(8 to 9)
-			return "'Expert'"
+			return "'Ekspert'"
 		if(10 to 11)
-			return "'Master'"
+			return "'Mistrz'"
 		if(12 to 24)
-			return "'Grand Master'"
+			return "'Wielki Mistrz'"
 		if(25 to INFINITY)
-			return "[span_narsiesmall("'Methuselah'")]"
+			return "[span_narsiesmall("'Matuzalem'")]"
 
 /// This is where we store clan descriptions.
 /// We will need to know the description of a clan before we "make" one,
 /// because we can't just get the description from the "not-made" clan ref.
 /datum/antagonist/vampire/proc/get_clan_description(clan_name)
 	/// This makes descriptions about a billion times cleaner: Spans for discipline names and their individual descriptions:
-	var/disciplines = "[span_tooltip("Disciplines are the aspects of the original curse bestowed upon caine, of which every kindred suffers/benefits. In terms of gameplay, they are groups of abilities that you level up.", "Disciplines")]"
-	var/animalism = "[span_tooltip("Animalism is a Discipline that brings the vampire closer to their animalistic nature. This typically allows them to communicate with and gain dominance over creatures of nature.", "Animalism")]"
-	var/auspex = "[span_tooltip("Auspex is a Discipline that grants vampires supernatural senses, letting them peer far further and deeper than any mortal. The malkavians especially have a strong bond with it.", "Auspex")]"
-	var/celerity = "[span_tooltip("Celerity is a Discipline that grants vampires supernatural quickness and reflexes.", "Celerity")]"
-	var/dominate = "[span_tooltip("Dominate is a Discipline that overwhelms another person's mind with the vampire's will.", "Dominate")]"
-	var/fortitude = "[span_tooltip("Fortitude is a Discipline that grants Kindred unearthly toughness.", "Fortitude")]"
-	var/obfuscate = "[span_tooltip("Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen.", "Obfuscate")]"
-	var/potence = "[span_tooltip("Potence is the Discipline that endows vampires with physical vigor and preternatural strength.", "Potence")]"
-	var/presence = "[span_tooltip("Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds.", "Presence")]"
-	var/protean = "[span_tooltip("Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to turning into something entirely different.", "Protean")]"
-	var/thaumaturgy = "[span_tooltip("Thaumaturgy is the secret blood-art of the clan tremere. Allowing them all manners of blood-sorcery and pacts.", "Thaumaturgy")]"
+	var/disciplines = "[span_tooltip("Dyscypliny to aspekty pierwotnej klątwy rzuconej na Kaina, z których cierpi i korzysta każdy ze Spokrewnionych. W rozgrywce to grupy zdolności, które rozwijasz z kolejnymi awansami.", "Dyscypliny")]"
+	var/animalism = "[span_tooltip("Animalizm to dyscyplina, która zbliża wampira do jego zwierzęcej natury. Zwykle pozwala porozumiewać się ze stworzeniami natury i zdobywać nad nimi władzę.", "Animalizm")]"
+	var/auspex = "[span_tooltip("Postrzeganie to dyscyplina, która daje wampirom nadprzyrodzone zmysły, pozwalając widzieć dalej i głębiej niż jakikolwiek śmiertelnik. Szczególnie silną więź mają z nią Malkavianie.", "Postrzeganie")]"
+	var/celerity = "[span_tooltip("Akceleracja to dyscyplina, która daje wampirom nadprzyrodzoną szybkość i refleks.", "Akceleracja")]"
+	var/dominate = "[span_tooltip("Dominacja to dyscyplina, która przytłacza umysł innej osoby wolą wampira.", "Dominacja")]"
+	var/fortitude = "[span_tooltip("Hart to dyscyplina, która daje Spokrewnionym nieziemską wytrzymałość.", "Hart")]"
+	var/obfuscate = "[span_tooltip("Ukrycie to dyscyplina, która pozwala wampirom się ukryć, zwodzić umysły innych albo sprawić, że przeoczą to, czego użytkownik nie chce pokazać.", "Ukrycie")]"
+	var/potence = "[span_tooltip("Potęga to dyscyplina, która obdarza wampiry fizycznym wigorem i nadnaturalną siłą.", "Potęga")]"
+	var/presence = "[span_tooltip("Prezencja to dyscyplina nadprzyrodzonego uroku i manipulacji emocjami, która pozwala Spokrewnionym przyciągać, przekonywać i kontrolować tłumy.", "Prezencja")]"
+	var/protean = "[span_tooltip("Przemiana to dyscyplina, która pozwala wampirom zmieniać postać, od wyrastania dzikich pazurów aż po przemianę w coś zupełnie innego.", "Przemiana")]"
+	var/thaumaturgy = "[span_tooltip("Taumaturgia to tajemna sztuka krwi klanu Tremere. Daje dostęp do wszelkich rodzajów magii krwi i paktów.", "Taumaturgia")]"
 
 	/// All the descriptions:
-	var/ventrue = "The ventrue are the de-facto leaders of the camarilla. They style themselves as kings and emperors, often inhabiting positions of power.\n\
-		<b>IMPORTANT:</b> Members of the Ventrue Clan are eligible for princedom. If there is no current prince, you will become one. Please remember that princes are expected to behave in a manner befitting their office.\n\
+	var/ventrue = "Ventrue to faktyczni przywódcy Camarilli. Uważają się za królów i cesarzy, często zajmują stanowiska władzy.\n\
+		<b>WAŻNE:</b> Członkowie Klanu Ventrue mogą zostać Księciem. Jeśli nie ma obecnie Księcia, zostaniesz nim. Pamiętaj, że od Księcia oczekuje się zachowania godnego tego urzędu.\n\
 		<b>[disciplines]:</b> [dominate], [fortitude], [presence]"
-	var/tremere = "With a powerful ancestry of wizards and magicians, the tremere wield the secret art of blood magic, which they guard with utmost care.\n\
+	var/tremere = "Wywodzący się z potężnego rodu czarodziejów i magów Tremere władają tajemną sztuką magii krwi, której strzegą z najwyższą troską.\n\
 		<b>[disciplines]:</b> [thaumaturgy], [auspex], [dominate]"
-	var/toreador = "Artists, Pleasure-workers, Celebrities. These are the people of the toreador clan. They are by far the closest to humanity of all kindred, each a deeply sensitive individual.\n\
+	var/toreador = "Artyści, kurtyzany, celebryci. Tacy są członkowie klanu Toreador. Ze wszystkich Spokrewnionych są zdecydowanie najbliżej człowieczeństwa, każdy z nich to osoba głęboko wrażliwa.\n\
 		<b>[disciplines]:</b> [presence], [auspex], [celerity]"
-	var/malkavian = "Completely insane. You gain constant hallucinations, become a prophet with unintelligable rambling, and gain insights better left unknown. You can also travel through Phobetor tears, rifts through spacetime only you can travel through.\n\
+	var/malkavian = "Kompletne szaleństwo. Masz ciągłe halucynacje, stajesz się prorokiem bełkoczącym niezrozumiałe słowa i zyskujesz wiedzę, której lepiej nie znać. Możesz też podróżować przez rozdarcia Fobetora, szczeliny w czasoprzestrzeni, przez które przejść możesz tylko ty.\n\
 		<b>[disciplines]:</b> [dominate], [auspex], [obfuscate]"
-	var/gangrel = "Often mistaken as werewolves, gangrel carry the smell of wet dog wherever they go. Their unique bond with the beast within allows them to transform parts of their body into powerful claws, even becoming entirely different beings.\n\
+	var/gangrel = "Często mylonych z wilkołakami Gangreli wszędzie otacza zapach mokrego psa. Ich wyjątkowa więź z wewnętrzną bestią pozwala im zmieniać części ciała w potężne szpony, a nawet stawać się zupełnie innymi istotami.\n\
 		<b>[disciplines]:</b> [animalism], [protean], [fortitude]"
-	var/brujah = "A clan now, of mostly rebels. Though some still show fragments of their lost lineage of warrior-poets. They are long split from the camarilla, and often form their own groups.\n\
+	var/brujah = "Dziś to klan złożony głównie z buntowników, choć niektórzy wciąż noszą ślady utraconego dziedzictwa wojowników-poetów. Dawno oderwali się od Camarilli i często tworzą własne grupy.\n\
 		<b>[disciplines]:</b> [potence], [celerity], [presence]"
 
 	// Now the logic
@@ -319,7 +319,7 @@
 			return gangrel
 
 	log_runtime("Unknown clan name passed to get_clan_description: [clan_name]")
-	return "No description available."
+	return "Brak opisu."
 
 /**
  * Called when a Vampire reaches Final Death

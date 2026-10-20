@@ -303,7 +303,8 @@
 
 	var/source_message = source ? " by [source]" : ""
 	var/rendered = "<span class='deadsay'><b>[victim]</b> has been brainwashed with the following objective[length(directives) > 1 ? "s" : ""][source_message]: [english_list(directives)]</span>"
-	deadchat_broadcast(rendered, follow_target = victim, turf_target = get_turf(victim), message_type = DEADCHAT_REGULAR)
+	var/rendered_pl = "<span class='deadsay'><b>[victim]</b>: pranie mózgu[source ? " ([source])" : ""]. Cel[length(directives) > 1 ? "e" : ""]: [english_list(directives)]</span>"
+	deadchat_broadcast(rendered_pl, follow_target = victim, turf_target = get_turf(victim), message_type = DEADCHAT_REGULAR)
 	victim.log_message(rendered, LOG_ATTACK, color = "#960000")
 
 /// Bee: zdejmuje wybrane cele prania mózgu, a gdy nic nie zostało, usuwa cały status
@@ -328,7 +329,7 @@
 			removed_objectives += directive
 		log_admin("[key_name(victim)] had the following brainwashing objective[length(removed_objectives) > 1 ? "s" : ""] removed: [english_list(removed_objectives)].")
 		if(LAZYLEN(brainwash.objectives))
-			to_chat(victim, "<big><span class='warning'><b>[length(removed_objectives) > 1 ? "Some" : "One"] of your Directives fade away! You only have to obey the remaining Directives now.</b></span></big>")
+			to_chat(victim, "<big><span class='warning'><b>[length(removed_objectives) > 1 ? "Część twoich dyrektyw znika" : "Jedna z twoich dyrektyw znika"]! Musisz już tylko wykonywać pozostałe dyrektywy.</b></span></big>")
 			victim.mind.announce_objectives()
 		else
 			victim.mind.remove_antag_datum(/datum/antagonist/brainwashed)

@@ -4,22 +4,22 @@
  * 	Level 2: Now lasts 180 seconds.
  */
 /datum/action/vampire/targeted/command
-	name = "Command"
-	desc = "Dominate the mind of a mortal with a simple verbal command."
+	name = "Rozkaz"
+	desc = "Zdominuj umysł śmiertelnika prostym słownym rozkazem."
 	button_icon_state = "power_command"
-	power_explanation = "Click any player to attempt to compell them.\n\
-		If your target is already commanded or a Curator, you will fail.\n\
-		Once commanded, the target will do their best to fulfill it, with a duration scaling with level.\n\
-		At level 1, your command will stay for 60 seconds.\n\
-		At level 2, it will remain for 3 minutes.\n\
-		Be smart with your wording. They will become pacified, and won't obey violent commands."
+	power_explanation = "Kliknij dowolnego gracza, żeby spróbować go sobie podporządkować.\n\
+		Jeśli cel już wykonuje rozkaz albo jest kuratorem, nie uda ci się.\n\
+		Cel zrobi wszystko, żeby wykonać rozkaz, a czas działania rośnie z poziomem.\n\
+		Na poziomie 1 rozkaz działa przez 60 sekund.\n\
+		Na poziomie 2 działa przez 3 minuty.\n\
+		Dobieraj słowa z głową. Cel staje się pacyfistą i nie wykona brutalnych rozkazów."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 120
 	cooldown_time = 80 SECONDS
 	target_range = 6
 	power_activates_immediately = FALSE
-	prefire_message = "Whom will you subvert to your will?"
+	prefire_message = "Kogo nagniesz do swojej woli?"
 
 	var/power_time = 60 SECONDS
 
@@ -27,7 +27,7 @@
 	var/datum/weakref/target_ref
 
 /datum/action/vampire/targeted/command/two
-	name = "Command"
+	name = "Rozkaz"
 	power_time = 180 SECONDS
 	vitaecost = 240
 	cooldown_time = 200 SECONDS
@@ -40,16 +40,16 @@
 
 	// Must have ears
 	if(!owner.get_organ_slot(ORGAN_SLOT_TONGUE))
-		to_chat(owner, span_warning("You have no tongue with which to command!"))
+		to_chat(owner, span_warning("Nie masz języka, którym mógłbyś wydać rozkaz!"))
 		return FALSE
 
 	// Must have mouth unobstructed
 	if(carbon_owner.is_mouth_covered() || !isturf(carbon_owner.loc))
-		owner.balloon_alert(owner, "your mouth is blocked.")
+		owner.balloon_alert(owner, "masz zasłonięte usta.")
 		return FALSE
 
 	if(HAS_TRAIT(carbon_owner, TRAIT_MUTE) || !isturf(carbon_owner.loc))
-		owner.balloon_alert(owner, "you cannot speak!")
+		owner.balloon_alert(owner, "nie możesz mówić!")
 		return FALSE
 	return TRUE
 
@@ -65,32 +65,32 @@
 
 	// No mind
 	if(!living_target.mind)
-		owner.balloon_alert(owner, "[living_target] is mindless.")
+		owner.balloon_alert(owner, "[living_target] nie ma umysłu.")
 		return FALSE
 
 	// Vampire/Curator check
 	if(is_curator_job(living_target?.mind?.assigned_role))
-		owner.balloon_alert(owner, "too powerful.")
+		owner.balloon_alert(owner, "zbyt potężny.")
 		return FALSE
 
 	// Is our target alive or unconcious?
 	if(living_target.stat != CONSCIOUS)
-		owner.balloon_alert(owner, "[living_target] is not [(living_target.stat == DEAD || HAS_TRAIT(living_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		owner.balloon_alert(owner, "[living_target] [(living_target.stat == DEAD || HAS_TRAIT(living_target, TRAIT_FAKEDEATH)) ? "nie żyje" : "jest nieprzytomny"].")
 		return FALSE
 
 	// Is our target deaf?
 	if(!living_target.get_organ_slot(ORGAN_SLOT_EARS))
-		owner.balloon_alert(owner, "[living_target] cannot hear you!")
+		owner.balloon_alert(owner, "[living_target] cię nie słyszy!")
 		return FALSE
 
 	// Is our target a silicon?
 	if(issilicon(living_target))
-		owner.balloon_alert(owner, "[living_target] cannot be compelled!")
+		owner.balloon_alert(owner, "[living_target] nie da się podporządkować!")
 		return FALSE
 
 	// Already commanded?
 	if(living_target.has_status_effect(/datum/status_effect/commanded))
-		owner.balloon_alert(owner, "[living_target] is already compelled!")
+		owner.balloon_alert(owner, "[living_target] już wykonuje rozkaz!")
 		return FALSE
 
 /datum/action/vampire/targeted/command/FireTargetedPower(atom/target_atom)
@@ -99,7 +99,7 @@
 	var/mob/living/living_target = target_atom
 	target_ref = WEAKREF(living_target)
 
-	owner.balloon_alert(owner, "commanding [living_target]...")
+	owner.balloon_alert(owner, "wydajesz rozkaz: [living_target]...")
 
 	var/command = get_single_word_command()
 
@@ -127,7 +127,7 @@
 	if(IS_VAMPIRE(living_target))
 		var/datum/antagonist/vampire/target_vampdatum = IS_VAMPIRE(living_target)
 		if(target_vampdatum.vampire_level > vampiredatum_power.vampire_level)
-			owner.balloon_alert(owner, "kindred stronger than you.")
+			owner.balloon_alert(owner, "ten Spokrewniony jest silniejszy od ciebie.")
 			deactivate_power()
 			return
 
@@ -141,22 +141,29 @@
 
 /datum/action/vampire/targeted/command/proc/get_single_word_command()
 	. = TRUE
-	var/command = tgui_input_text(owner, "What would you like to command?", "Input a command", "STOP", encode = FALSE, timeout = 2 MINUTES)
+	var/command = tgui_input_text(owner, "Co chcesz rozkazać?", "Wpisz rozkaz", "STÓJ", encode = FALSE, timeout = 2 MINUTES)
 	if(QDELETED(src))
 		return FALSE
 	if(CHAT_FILTER_CHECK(command))
-		to_chat(owner, span_warning("The command '[span_boldname("[command]")]' is forbidden!"))
+		to_chat(owner, span_warning("Rozkaz '[span_boldname("[command]")]' jest zakazany!"))
 		return FALSE
 	if(findtext(command, " "))
-		to_chat(owner, span_warning("Please only input a single word."))
+		to_chat(owner, span_warning("Wpisz tylko jedno słowo."))
 		return FALSE
 	if(length_char(command) > 7)
-		to_chat(owner, span_warning("Command too long!"))
+		to_chat(owner, span_warning("Za długi rozkaz!"))
 		return FALSE
 	// qol to avoid confusion
-	if(copytext(command, 1, 5) == "kill" || copytext(command, 1, 7) == "murder" || copytext(command, 1, 8) == "suicide" || copytext(command, 1, 4) == "die")
-		owner.balloon_alert(owner, "that won't work!")
-		to_chat(owner, span_warning(" * Remember, victims will be pacified for the duration of the command!"))
+	var/static/list/forbidden_starts = list("kill", "murder", "suicide", "die", "zabij", "zamorduj", "morduj", "zgi", "umrzyj", "samob", "powie") // AQUILA - też polskie formy
+	var/lower_command = lowertext(command)
+	var/forbidden = FALSE
+	for(var/forbidden_start in forbidden_starts)
+		if(findtext(lower_command, forbidden_start) == 1)
+			forbidden = TRUE
+			break
+	if(forbidden)
+		owner.balloon_alert(owner, "to nie zadziała!")
+		to_chat(owner, span_warning(" * Pamiętaj, że na czas rozkazu ofiary stają się pacyfistami!"))
 		return FALSE
 
 	return(command)
@@ -199,14 +206,14 @@
 
 /datum/status_effect/commanded/on_apply()
 	ADD_TRAIT(owner, TRAIT_PACIFISM, TRAIT_STATUS_EFFECT(id))
-	directives = vampire_brainwash(owner, "[command]!", "[caster.real_name]'s Command") // AQUILA - nasze brainwash() nie zwraca celów
+	directives = vampire_brainwash(owner, "[command]!", "Rozkaz od: [caster.real_name]") // AQUILA - nasze brainwash() nie zwraca celów
 
 	// make sure they have a moment to realize what's going on
 	owner.Immobilize(2 SECONDS, TRUE)
 	to_chat(owner, "<br>" + span_awe("<font size='15'>[command]!</font>") + "<br>", type = MESSAGE_TYPE_WARNING)
 
 	// also log it.
-	message_admins("[ADMIN_LOOKUPFLW(caster)] used the COMMAND ability on [ADMIN_LOOKUPFLW(owner)], commanding them to [command].")
+	message_admins("[ADMIN_LOOKUPFLW(caster)] użył mocy ROZKAZ na [ADMIN_LOOKUPFLW(owner)], rozkazując: [command].")
 	log_game("[key_name(caster)] used the command ability on [key_name(owner)], commanding them to [command].")
 
 	/* owner.AddElement(/datum/element/relay_attackers)
@@ -218,7 +225,7 @@
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, TRAIT_STATUS_EFFECT(id))
 	unbrainwash(owner, directives)
 	directives = null
-	owner.balloon_alert(caster, "[owner] snapped out of [owner.p_their()] trance!")
+	owner.balloon_alert(caster, "[owner] wyrywa się z transu!")
 	caster = null
 
 /* /datum/status_effect/commanded/proc/on_attacked(datum/source, atom/attacker, attack_flags)

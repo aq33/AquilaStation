@@ -7,23 +7,23 @@
  * 	Level 5: Doesn't need to be facing you anymore
  */
 /datum/action/vampire/targeted/mesmerize
-	name = "Mesmerize"
-	desc = "Transfix the mind of a mortal who can see your eyes, freezing them in place."
+	name = "Hipnoza"
+	desc = "Zniewól umysł śmiertelnika, który widzi twoje oczy, i unieruchom go w miejscu."
 	button_icon_state = "power_mez"
-	power_explanation = "Click any player to attempt to mesmerize them, and freeze them in place.\n\
-		You cannot wear anything covering your face, and both parties must be facing eachother.\n\
-		If your target is already mesmerized or a Curator, you will fail.\n\
-		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
-		At level 2, your target will additionally be muted.\n\
-		At level 3, you will be able to use the power through masks and helmets.\n\
-		At level 4, you will be able to mesmerize regardless of your target's direction."
+	power_explanation = "Kliknij dowolnego gracza, żeby spróbować go zahipnotyzować i unieruchomić.\n\
+		Nie możesz mieć niczego na twarzy, a obie strony muszą patrzeć na siebie.\n\
+		Jeśli cel jest już zahipnotyzowany albo jest kuratorem, nie uda ci się.\n\
+		Zahipnotyzowany cel nie może się ruszać przez pewien czas, który rośnie z poziomem.\n\
+		Na poziomie 2 cel dodatkowo traci mowę.\n\
+		Na poziomie 3 moc działa przez maski i hełmy.\n\
+		Na poziomie 4 możesz hipnotyzować bez względu na to, w którą stronę patrzy cel."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 75
 	cooldown_time = 20 SECONDS
 	target_range = 8
 	power_activates_immediately = FALSE
-	prefire_message = "Whom will you submit to your will?"
+	prefire_message = "Kogo poddasz swojej woli?"
 	level_current = 1
 
 	/// Reference to the target
@@ -38,7 +38,7 @@
 	level_current = 3
 
 /datum/action/vampire/targeted/mesmerize/four
-	desc = "Transfix the mind of a mortal."
+	desc = "Zniewól umysł śmiertelnika."
 	vitaecost = 85
 	level_current = 4
 
@@ -49,13 +49,13 @@
 
 	// Must have eyes
 	if(!owner.get_organ_slot(ORGAN_SLOT_EYES))
-		to_chat(owner, span_warning("You have no eyes with which to mesmerize."))
+		to_chat(owner, span_warning("Nie masz oczu, którymi mógłbyś hipnotyzować."))
 		return FALSE
 
 	// Must have eyes unobstructed
 	var/mob/living/carbon/carbon_owner = owner
 	if((carbon_owner.is_eyes_covered() && level_current <= 2) || !isturf(carbon_owner.loc))
-		owner.balloon_alert(owner, "your eyes are concealed from sight.")
+		owner.balloon_alert(owner, "masz zasłonięte oczy.")
 		return FALSE
 	return TRUE
 
@@ -71,32 +71,32 @@
 
 	// No mind
 	if(!living_target.mind)
-		owner.balloon_alert(owner, "[living_target] is mindless.")
+		owner.balloon_alert(owner, "[living_target] nie ma umysłu.")
 		return FALSE
 
 	// Vampire/Curator check
 	if(IS_VAMPIRE(living_target) || is_curator_job(living_target?.mind?.assigned_role))
-		owner.balloon_alert(owner, "too powerful.")
+		owner.balloon_alert(owner, "zbyt potężny.")
 		return FALSE
 
 	// Is our target alive or unconcious?
 	if(living_target.stat != CONSCIOUS)
-		owner.balloon_alert(owner, "[living_target] is not [(living_target.stat == DEAD || HAS_TRAIT(living_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		owner.balloon_alert(owner, "[living_target] [(living_target.stat == DEAD || HAS_TRAIT(living_target, TRAIT_FAKEDEATH)) ? "nie żyje" : "jest nieprzytomny"].")
 		return FALSE
 
 	// Is our target blind?
 	if((!living_target.get_organ_slot(ORGAN_SLOT_EYES) || living_target.is_blind()) && !issilicon(living_target))
-		owner.balloon_alert(owner, "[living_target] is blind.")
+		owner.balloon_alert(owner, "[living_target] nic nie widzi.")
 		return FALSE
 
 	// Target facing me? (they face everyone on the floor)
 	if(((living_target.mobility_flags & MOBILITY_STAND) && !is_source_facing_target(living_target, owner) && level_current < 4))
-		owner.balloon_alert(owner, "[living_target] must be facing you.")
+		owner.balloon_alert(owner, "[living_target] musi patrzeć w twoją stronę.")
 		return FALSE
 
 	// Already mesmerized?
 	if(living_target.has_status_effect(/datum/status_effect/mesmerized))
-		owner.balloon_alert(owner, "[living_target] is already in a hypnotic gaze.")
+		owner.balloon_alert(owner, "[living_target] jest już zahipnotyzowany.")
 		return FALSE
 
 /datum/action/vampire/targeted/mesmerize/FireTargetedPower(atom/target_atom)
@@ -108,15 +108,15 @@
 	if(issilicon(living_target))
 		var/mob/living/silicon/silicon_target = living_target
 		silicon_target.emp_act(EMP_HEAVY)
-		owner.balloon_alert(owner, "temporarily shut [silicon_target] down.")
+		owner.balloon_alert(owner, "tymczasowo wyłączono: [silicon_target].")
 		power_activated_sucessfully() // PAY COST! BEGIN COOLDOWN!
 		return
 
-	owner.balloon_alert(owner, "attempting to hypnotize [living_target]...")
+	owner.balloon_alert(owner, "próbujesz zahipnotyzować: [living_target]...")
 	if(!vampire_do_after(owner, 4 SECONDS, living_target, extra_checks = CALLBACK(src, PROC_REF(continue_active)), hidden = TRUE))
 		return
 
-	owner.balloon_alert(owner, "successfully mesmerized [living_target].")
+	owner.balloon_alert(owner, "zahipnotyzowano: [living_target].")
 
 	//Actually mesmerize them now
 	var/power_time = 9 SECONDS + level_current * 1.5 SECONDS
@@ -169,12 +169,12 @@
 /datum/status_effect/mesmerized/on_apply()
 	owner.add_client_colour(/datum/client_colour/glass_colour/pink)
 	owner.add_traits(mesmerized_traits, TRAIT_STATUS_EFFECT(id))
-	to_chat(owner, span_awe("[caster]'s eyes glitter so beautifully... You're mesmerized!"), type = MESSAGE_TYPE_COMBAT)
+	to_chat(owner, span_awe("Oczy osoby [caster] lśnią tak pięknie... Jesteś zahipnotyzowany!"), type = MESSAGE_TYPE_COMBAT)
 	return TRUE
 
 /datum/status_effect/mesmerized/on_remove()
 	owner.remove_client_colour(/datum/client_colour/glass_colour/pink)
 	owner.remove_traits(mesmerized_traits, TRAIT_STATUS_EFFECT(id))
-	to_chat(owner, span_awe(span_big("With the spell waning, so does your memory of being mesmerized.")), type = MESSAGE_TYPE_COMBAT)
+	to_chat(owner, span_awe(span_big("Urok słabnie, a wraz z nim wspomnienie hipnozy.")), type = MESSAGE_TYPE_COMBAT)
 	if(caster in view(6, get_turf(owner)))
-		owner.balloon_alert(caster, "snapped out of [owner.p_their()] trance!")
+		owner.balloon_alert(caster, "wyrywa się z transu!")

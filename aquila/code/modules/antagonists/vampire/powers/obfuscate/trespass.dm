@@ -1,15 +1,15 @@
 /datum/action/vampire/targeted/trespass
-	name = "Trespass"
-	desc = "Become mist and advance two tiles in one direction. Useful for skipping past doors and barricades."
+	name = "Przenikanie"
+	desc = "Zamień się w mgłę i przesuń o dwa pola w jednym kierunku. Przydatne do omijania drzwi i barykad."
 	button_icon_state = "power_tres"
-	power_explanation = "Click anywhere from 1-2 tiles away from you to teleport.\n\
-		This power goes through all obstacles except Walls.\n\
-		Higher levels decrease the sound played from using the Power, and increase the speed of the transition."
+	power_explanation = "Kliknij miejsce oddalone o 1-2 pola, żeby się tam przenieść.\n\
+		Ta moc przechodzi przez wszystkie przeszkody oprócz ścian.\n\
+		Wyższe poziomy ściszają dźwięk mocy i przyspieszają przejście."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 30
 	cooldown_time = 8 SECONDS
-	prefire_message = "Select a destination."
+	prefire_message = "Wybierz cel."
 	//target_range = 2
 	var/turf/target_turf // We need to decide where we're going based on where we clicked. It's not actually the tile we clicked.
 	level_current = 1
@@ -51,8 +51,8 @@
 		starting_turf = get_step(starting_turf, this_dir)
 		// Walls block trespass
 		if(iswallturf(starting_turf))
-			var/wallwarning = (i == 1) ? "in the way" : "at your destination"
-			owner.balloon_alert(owner, "There is a wall [wallwarning].")
+			var/wallwarning = (i == 1) ? "na drodze" : "w miejscu docelowym"
+			owner.balloon_alert(owner, "[wallwarning] jest ściana.")
 			return FALSE
 
 	target_turf = starting_turf
@@ -65,8 +65,8 @@
 	var/turf/my_turf = get_turf(owner)
 
 	user.visible_message(
-		span_warning("[user]'s form dissipates into a cloud of mist!"),
-		span_notice("You disspiate into formless mist."),
+		span_warning("Postać [user] rozwiewa się w obłok mgły!"),
+		span_notice("Rozpraszasz się w bezkształtną mgłę."),
 	)
 	// Effect Origin
 	var/sound_strength = max(40, 100 - level_current * 20)

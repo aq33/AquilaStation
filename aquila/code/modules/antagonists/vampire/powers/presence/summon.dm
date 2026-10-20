@@ -4,19 +4,19 @@
  *	Uses an AI controller to force movement towards the caster.
  */
 /datum/action/vampire/targeted/summon
-	name = "Summon"
-	desc = "Compel a mortal to approach you against their will."
+	name = "Przywołanie"
+	desc = "Zmuś śmiertelnika, żeby wbrew swojej woli podszedł do ciebie."
 	button_icon_state = "power_summon"
-	power_explanation = "Click any player to summon them towards you.\n\
-		Your target will be unable to act and will be compelled to walk towards you.\n\
-		The effect ends when they reach you, after a duration, or if line of sight is broken.\n\
-		They must be able to see you to be affected."
+	power_explanation = "Kliknij dowolnego gracza, żeby przywołać go do siebie.\n\
+		Cel nie będzie mógł nic zrobić i zostanie zmuszony, żeby iść w twoją stronę.\n\
+		Efekt kończy się, gdy cel do ciebie dotrze, po upływie czasu albo gdy straci cię z oczu.\n\
+		Cel musi cię widzieć, żeby moc zadziałała."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 100
 	cooldown_time = 60 SECONDS
 	target_range = 10
-	prefire_message = "Who will you summon to your presence?"
+	prefire_message = "Kogo przywołasz przed swoje oblicze?"
 
 	/// Maximum duration of the summon effect
 	var/summon_duration = 30 SECONDS
@@ -31,27 +31,27 @@
 	var/mob/living/carbon/carbon_target = target_atom
 
 	if(!carbon_target.mind)
-		owner.balloon_alert(owner, "[carbon_target] is mindless.")
+		owner.balloon_alert(owner, "[carbon_target]: brak umysłu.")
 		return FALSE
 
 	if(HAS_MIND_TRAIT(carbon_target, TRAIT_VAMPIRE_ALIGNED) || is_curator_job(carbon_target?.mind?.assigned_role))
-		owner.balloon_alert(owner, "immune to your presence.")
+		owner.balloon_alert(owner, "odporność na twoją prezencję.")
 		return FALSE
 
 	if(carbon_target.has_unlimited_silicon_privilege)
-		owner.balloon_alert(owner, "[carbon_target] is immune.")
+		owner.balloon_alert(owner, "[carbon_target]: odporność.")
 		return FALSE
 
 	if(carbon_target.stat != CONSCIOUS)
-		owner.balloon_alert(owner, "[carbon_target] is not [(carbon_target.stat == DEAD || HAS_TRAIT(carbon_target, TRAIT_FAKEDEATH)) ? "alive" : "conscious"].")
+		owner.balloon_alert(owner, "[carbon_target]: [(carbon_target.stat == DEAD || HAS_TRAIT(carbon_target, TRAIT_FAKEDEATH)) ? "nie żyje" : "bez przytomności"].")
 		return FALSE
 
 	if(carbon_target.is_blind())
-		owner.balloon_alert(owner, "[carbon_target] is blind.")
+		owner.balloon_alert(owner, "[carbon_target]: nic nie widzi.")
 		return FALSE
 
 	if(carbon_target.has_status_effect(/datum/status_effect/summoned))
-		owner.balloon_alert(owner, "[carbon_target] is already being summoned.")
+		owner.balloon_alert(owner, "[carbon_target]: już przywoływany.")
 		return FALSE
 
 	return TRUE
@@ -62,9 +62,9 @@
 
 	carbon_target.apply_status_effect(/datum/status_effect/summoned, summon_duration, owner)
 
-	owner.balloon_alert(owner, "summoning [carbon_target]")
-	to_chat(carbon_target, span_awe("An irresistible compulsion draws you towards [owner]..."), type = MESSAGE_TYPE_WARNING)
-	to_chat(owner, span_notice("You beckon [carbon_target] towards you."), type = MESSAGE_TYPE_INFO)
+	owner.balloon_alert(owner, "przywołujesz: [carbon_target]")
+	to_chat(carbon_target, span_awe("Nieodparty przymus ciągnie cię tam, gdzie stoi [owner]..."), type = MESSAGE_TYPE_WARNING)
+	to_chat(owner, span_notice("Przywołujesz gestem: [carbon_target]."), type = MESSAGE_TYPE_INFO)
 
 /// Status effect for being summoned towards the vampire
 /datum/status_effect/summoned
@@ -137,7 +137,7 @@
 	// Stop any residual movement
 	SSmove_manager.stop_looping(owner)
 
-	to_chat(owner, span_awe("The compulsion fades and you regain control of yourself."))
+	to_chat(owner, span_awe("Przymus słabnie i odzyskujesz panowanie nad sobą."))
 
 /datum/status_effect/summoned/tick(seconds_between_ticks)
 	// Check if vampire is still valid
@@ -147,8 +147,8 @@
 
 	// Check if we've reached the vampire (adjacent)
 	if(owner.Adjacent(source_vampire))
-		to_chat(owner, span_awe("You have arrived before [source_vampire]..."))
-		to_chat(source_vampire, span_notice("[owner] has arrived before you."))
+		to_chat(owner, span_awe("Docierasz na miejsce. Przed tobą stoi [source_vampire]..."))
+		to_chat(source_vampire, span_notice("[owner] staje przed tobą."))
 		// Brief stun when arriving so we don’t look weird with the movespeed
 		owner.Stun(4 SECONDS)
 		qdel(src)
@@ -156,7 +156,7 @@
 
 	// Check line of sight - if broken, end the effect
 	if(!(source_vampire in view(10, owner)))
-		to_chat(owner, span_awe("You lose sight of your summoner and the compulsion breaks."))
+		to_chat(owner, span_awe("Tracisz z oczu tego, kto cię przywołał, i przymus pęka."))
 		qdel(src)
 		return
 
@@ -168,11 +168,11 @@
 		start_movement()
 
 /datum/status_effect/summoned/get_examine_text()
-	return span_warning("[owner.p_They()] [owner.p_are()] walking with a blank expression, as if compelled.")
+	return span_warning("Idzie z pustym wyrazem twarzy, jakby pod przymusem.")
 
 /// Alert for summoned status
 /atom/movable/screen/alert/status_effect/summoned
-	name = "Summoned"
-	desc = "You are being compelled to approach someone. You cannot resist."
+	name = "Przywołanie"
+	desc = "Coś zmusza cię, by podejść do kogoś. Nie możesz się oprzeć."
 	icon_state = "vampire_summon"
 

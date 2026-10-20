@@ -1,9 +1,9 @@
 /datum/action/vampire/astral_projection
-	name = "Astral Projection"
-	desc = "The power of your blood empowers your auspex. Become able to project your consciousness outside your body."
-	power_explanation = "When Activated, you will become a ghost.\n\
-		Visit anywhere you like, watch anyone you want.\n\
-		Talk to the spriits, and know all things."
+	name = "Projekcja astralna"
+	desc = "Moc twojej krwi wzmacnia Postrzeganie. Możesz wysłać świadomość poza własne ciało."
+	power_explanation = "Po aktywacji stajesz się duchem.\n\
+		Odwiedzaj, co chcesz, obserwuj, kogo chcesz.\n\
+		Rozmawiaj z duchami i poznaj wszystko."
 	background_icon_state_on = "tremere_power_gold_on"
 	background_icon_state_off = "tremere_power_gold_off"
 	button_icon_state = "power_astral_projection"
@@ -16,7 +16,7 @@
 	. = ..()
 	var/mob/dead/observer/ghost = owner.ghostize(can_reenter_corpse = TRUE)
 	// cool name + color to make it obvious you're astral projecting
-	var/ghost_name = "Astral Shade of [ghost.name]"
+	var/ghost_name = "Astralny cień – [ghost.name]"
 	ghost.name = ghost_name
 	ghost.deadchat_name = ghost_name
 	ghost.add_filter("astral_projection", 1, outline_filter(size = 1, color = BLOOD_COLOR_RED))

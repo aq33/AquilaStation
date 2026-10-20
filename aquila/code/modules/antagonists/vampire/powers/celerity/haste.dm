@@ -3,13 +3,13 @@
  * Level 3: Stun People Passed
  */
 /datum/action/vampire/targeted/haste
-	name = "Immortal Haste"
-	desc = "Dash somewhere with supernatural speed. Those nearby may be knocked away or stunned."
+	name = "Nieśmiertelny Pośpiech"
+	desc = "Pomknij gdzieś z nadnaturalną szybkością. Ci w pobliżu mogą zostać odrzuceni albo ogłuszeni."
 	button_icon_state = "power_speed"
-	power_explanation = "Click anywhere to immediately dash towards that location.\n\
-		The Power will not work if you are lying down, zero-gravity, or are being aggressively grabbed.\n\
-		Anyone in your way during your Haste will be knocked down.\n\
-		Higher levels will increase the knockdown dealt to enemies."
+	power_explanation = "Kliknij gdziekolwiek, żeby natychmiast pomknąć w to miejsce.\n\
+		Moc nie zadziała, jeśli leżysz, jesteś w stanie nieważkości albo ktoś trzyma cię agresywnym chwytem.\n\
+		Każdy, kto stanie ci na drodze podczas Pośpiechu, zostanie przewrócony.\n\
+		Wyższe poziomy wydłużają przewrócenie przeciwników."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 15
@@ -37,14 +37,14 @@
 
 	// Being Grabbed
 	if(owner.pulledby && owner.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		owner.balloon_alert(owner, "you're being grabbed!")
+		owner.balloon_alert(owner, "ktoś cię trzyma!")
 		return FALSE
 	if(!owner.has_gravity(owner.loc)) //We dont want people to be able to use this to fly around in space
-		owner.balloon_alert(owner, "you cannot dash while floating!")
+		owner.balloon_alert(owner, "nie możesz pomknąć, unosząc się w powietrzu!")
 		return FALSE
 	var/mob/living/carbon/user = owner
 	if(user?.get_body_position() == LYING_DOWN)
-		owner.balloon_alert(owner, "you must be standing to tackle!")
+		owner.balloon_alert(owner, "musisz stać, żeby pomknąć!")
 		return FALSE
 	return TRUE
 
@@ -69,7 +69,7 @@
 	// Go to target turf
 	// DO NOT USE WALK TO.
 	check_witnesses()
-	owner.balloon_alert(owner, "you dash into the air!")
+	owner.balloon_alert(owner, "wyrywasz się do przodu!")
 	playsound(get_turf(owner), 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	var/safety = get_dist(user, targeted_turf) * 3 + 1
 	var/consequetive_failures = 0

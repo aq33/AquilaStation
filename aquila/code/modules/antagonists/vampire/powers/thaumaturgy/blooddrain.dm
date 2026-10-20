@@ -1,17 +1,17 @@
 /datum/action/vampire/targeted/blooddrain
-	name = "Thaumaturgy: Blood Drain"
-	desc = "Cast a beam of draining magic that saps the vitality of your target to steal their blood and heal yourself."
+	name = "Taumaturgia: Wysysanie krwi"
+	desc = "Rzuć promień wysysającej magii, który wyciąga z celu siły witalne, kradnie jego krew i leczy ciebie."
 	button_icon_state = "power_blooddrain"
 	background_icon_state_on = "tremere_power_on"
 	background_icon_state_off = "tremere_power_off"
-	power_explanation = "Cast a beam of draining magic that saps the vitality of your target to steal their blood and heal yourself."
+	power_explanation = "Rzuć promień wysysającej magii, który wyciąga z celu siły witalne, kradnie jego krew i leczy ciebie."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 75
 	cooldown_time = 10 SECONDS	// Very unlikely to ever last past 10 seconds even if the actual duration is longer. Combat is a fuck.
 	target_range = 7
 	power_activates_immediately = FALSE
-	prefire_message = "Select your target."
+	prefire_message = "Wybierz cel."
 
 	var/datum/status_effect/blood_drain/active_effect
 
@@ -43,7 +43,7 @@
 		active_effect.end_drain()
 
 /obj/item/projectile/magic/blood_drain
-	name = "vitality draining stream"
+	name = "strumień wysysający życie"
 	icon_state = "nothing"
 	alpha = 0 // AQUILA - u nas nie ma pustego stanu "nothing", widać tylko promień
 	range = 7
@@ -92,7 +92,7 @@
 	spell.active_effect = src
 	drain_beam = vampire.Beam(new_owner, icon = 'icons/effects/beam.dmi', icon_state = "blood_beam", time = 22 SECONDS, maxdistance = 7)
 	RegisterSignal(drain_beam, COMSIG_QDELETING, PROC_REF(end_drain))
-	new_owner.visible_message(span_warningbold("[vampire] begins draining the life force from [new_owner]!"), span_warningbold("[vampire] is draining your life force! You need to get away from them to stop it!"))
+	new_owner.visible_message(span_warningbold("[vampire] zaczyna wysysać siły życiowe! Ofiara: [new_owner]!"), span_warningbold("[vampire] wysysa z ciebie siły życiowe! Musisz uciec poza zasięg, żeby to przerwać!"))
 	. = ..()
 
 /datum/movespeed_modifier/status_effect/life_drain
@@ -131,7 +131,7 @@
 
 	if(prob(20))
 		owner.emote("screams")
-		owner.visible_message(span_warningbold("[vampire] absorbs blood from [owner]!"), span_warningbold("It BURNS!"))
+		owner.visible_message(span_warningbold("[vampire] wchłania krew! Ofiara: [owner]!"), span_warningbold("To PALI!"))
 
 	//Vampire heals at a steady rate over the duration of the spell regardless of the victim's state
 	vampire.heal_overall_damage(0.5, 0.5, 5, updating_health = TRUE)

@@ -8,7 +8,7 @@
 	/// The name of the clan we're in.
 	var/name = "Caitiff"
 	/// Description of what the clan is, given when joining and through your antag UI.
-	var/description = "Vile thinblooded mongrel. Choose a clan or die like the freak you are."
+	var/description = "Podły kundel o rozrzedzonej krwi. Wybierz klan albo zgiń jak dziwoląg, którym jesteś."
 	/// Description shown when trying to join the clan.
 	var/join_description
 
@@ -62,7 +62,7 @@
 			on_vampire_broke_masquerade(vampiredatum.owner.current, unmasked)
 
 	vampiredatum.owner.current.playsound_local(get_turf(vampiredatum.owner.current), 'aquila/sound/effects/antag/vampire/VampireAlert.ogg', 80, FALSE, pressure_affected = FALSE, use_reverb = FALSE)
-	to_chat(vampiredatum.owner.current, span_narsiesmall("I remember now. I belong with the [name]..."))
+	to_chat(vampiredatum.owner.current, span_narsiesmall("Teraz pamiętam. Moja krew to [name]..."))
 
 /datum/vampire_clan/proc/on_apply()
 	for(var/datum/discipline/disciple as anything in vampiredatum.owned_disciplines)
@@ -136,9 +136,9 @@
 
 	// Show radial menu
 	if(!length(options))
-		to_chat(living_vampire, span_notice("You grow more familiar with your powers!"))
+		to_chat(living_vampire, span_notice("Coraz lepiej znasz swoje moce!"))
 	else
-		to_chat(living_vampire, span_notice("You have the opportunity to grow your expertise. Select a discipline to advance your Rank."))
+		to_chat(living_vampire, span_notice("Masz okazję poszerzyć swoją wiedzę. Wybierz dyscyplinę, aby podnieść swoją rangę."))
 
 		// If we're in a closet, anchor the radial menu to it. If not, anchor it to the vampire body
 		var/datum/discipline/discipline_response
@@ -171,8 +171,8 @@
 		for(var/datum/action/vampire/power_new as anything in chosen_discipline.get_abilities_with_level("current"))
 			vampiredatum.grant_power(new power_new)
 
-		living_vampire.balloon_alert(living_vampire, "learned [discipline_response] level [chosen_discipline.level - 1]!")
-		to_chat(living_vampire, span_notice("You have learned how to use [discipline_response]!"))
+		living_vampire.balloon_alert(living_vampire, "[discipline_response]: poziom [chosen_discipline.level - 1]!")
+		to_chat(living_vampire, span_notice("Nauczyłeś się posługiwać dyscypliną [discipline_response]!"))
 
 	finalize_spend_rank()
 
@@ -194,9 +194,9 @@
 	vampiredatum.vampire_level_unspent--
 
 	// Flavor
-	to_chat(vampiredatum.owner.current, span_notice("You are now a rank [vampiredatum.vampire_level] Vampire. \
-		Your strength, health, feed rate, regen rate, and maximum blood capacity have all increased! \n\
-		* Your existing powers have all ranked up as well!"))
+	to_chat(vampiredatum.owner.current, span_notice("Jesteś teraz wampirem rangi [vampiredatum.vampire_level]. \
+		Twoja siła, zdrowie, tempo żerowania, tempo regeneracji i maksymalny zapas krwi wzrosły! \n\
+		* Twoje dotychczasowe moce również awansowały!"))
 	vampiredatum.update_hud()
 
 /datum/vampire_clan/proc/on_vampire_broke_masquerade(datum/source, datum/antagonist/vampire/masquerade_breaker)
@@ -205,14 +205,14 @@
 	if(masquerade_breaker == vampiredatum)
 		return
 
-	to_chat(vampiredatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] has broken the Masquerade! \
-		We must destroy them at all costs, for the good of all kindred!\n\
-		(Hint: You may feed on a vampire that has broken the masquerade to steal their powers.)"),
+	to_chat(vampiredatum.owner.current, span_userdanger("[masquerade_breaker.owner.current] łamie Maskaradę! \
+		Musimy zniszczyć zdrajcę za wszelką cenę, dla dobra wszystkich Spokrewnionych!\n\
+		(Wskazówka: możesz żerować na wampirze, który złamał Maskaradę, aby ukraść jego moce.)"),
 	)
 
 	var/datum/objective/assassinate/masquerade_objective = new()
 	masquerade_objective.target = masquerade_breaker.owner
-	masquerade_objective.name = "Masquerade Objective"
-	masquerade_objective.explanation_text = "Ensure [masquerade_breaker.owner.current], who has broken the Masquerade, succumbs to Final Death."
+	masquerade_objective.name = "Cel Maskarady"
+	masquerade_objective.explanation_text = "Dopilnuj, aby [masquerade_breaker.owner.current], który złamał Maskaradę, poniósł Ostateczną Śmierć."
 	vampiredatum.objectives += masquerade_objective
 	vampiredatum.owner.announce_objectives()

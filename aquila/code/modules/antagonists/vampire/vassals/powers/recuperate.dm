@@ -1,11 +1,11 @@
 /// Used by vassals
 /datum/action/vampire/recuperate
-	name = "Sanguine Recuperation"
-	desc = "Slowly heals you overtime using your master's blood, in exchange for some of your own blood and effort."
+	name = "Krwawa regeneracja"
+	desc = "Powoli leczy cię krwią twojego pana w zamian za część twojej własnej krwi i wysiłek."
 	button_icon_state = "power_recup"
-	power_explanation = "Activating this Power will begin to heal your wounds.\n\
-		You will heal Brute and Toxin damage at the cost of your Stamina and blood.\n\
-		If you aren't a bloodless race, you will additionally heal Burn damage."
+	power_explanation = "Aktywacja tej mocy zaczyna leczyć twoje rany.\n\
+		Leczysz obrażenia fizyczne i toksyczne kosztem wytrzymałości i krwi.\n\
+		Jeśli twoja rasa ma krew, leczysz dodatkowo oparzenia."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	special_flags = NONE
@@ -18,18 +18,18 @@
 		return FALSE
 
 	if(owner.stat >= DEAD || owner.incapacitated())
-		owner.balloon_alert(owner, "you are incapacitated...")
+		owner.balloon_alert(owner, "jesteś obezwładniony...")
 		return FALSE
 
 	var/mob/living/living_owner = owner
 	if(!HAS_TRAIT(owner, TRAIT_NO_BLOOD) && living_owner.blood_volume <= BLOOD_VOLUME_OKAY)
-		owner.balloon_alert(owner, "not enough blood!")
+		owner.balloon_alert(owner, "za mało krwi!")
 		return FALSE
 
 /datum/action/vampire/recuperate/activate_power()
 	. = ..()
-	to_chat(owner, span_notice("Your muscles clench as your master's immortal blood mixes with your own, knitting your wounds."))
-	owner.balloon_alert(owner, "recuperate turned on.")
+	to_chat(owner, span_notice("Twoje mięśnie się napinają, gdy nieśmiertelna krew twojego pana miesza się z twoją i zasklepia rany."))
+	owner.balloon_alert(owner, "regeneracja włączona.")
 
 /datum/action/vampire/recuperate/use_power()
 	. = ..()
@@ -56,14 +56,14 @@
 	if(owner.stat == DEAD)
 		return FALSE
 	if(owner.incapacitated())
-		owner.balloon_alert(owner, "too exhausted...")
+		owner.balloon_alert(owner, "zbyt wyczerpany...")
 		return FALSE
 	var/mob/living/living_owner = owner
 	if(!HAS_TRAIT(owner, TRAIT_NO_BLOOD) && living_owner.blood_volume <= BLOOD_VOLUME_OKAY)
-		owner.balloon_alert(owner, "not enough blood!")
+		owner.balloon_alert(owner, "za mało krwi!")
 		return FALSE
 	return TRUE
 
 /datum/action/vampire/recuperate/deactivate_power()
-	owner.balloon_alert(owner, "recuperate turned off.")
+	owner.balloon_alert(owner, "regeneracja wyłączona.")
 	return ..()

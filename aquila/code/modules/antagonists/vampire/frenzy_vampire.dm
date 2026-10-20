@@ -5,8 +5,8 @@
  * This deals with everything entering/exiting Frenzy is meant to deal with.
  */
 /atom/movable/screen/alert/status_effect/frenzy
-	name = "Frenzy"
-	desc = "You are in a Frenzy! You are entirely Feral and, depending on your Clan, fighting for your life!"
+	name = "Szał"
+	desc = "Jesteś w Szale! Całkowicie dziczejesz i, zależnie od klanu, walczysz o życie!"
 	icon = 'aquila/icons/vampires/actions_vampire.dmi'
 	icon_state = "frenzy_alert"
 	alerttooltipstyle = "cult"
@@ -31,7 +31,7 @@
 	)
 
 /datum/status_effect/frenzy/get_examine_text()
-	return span_danger("They seem... inhumane, and feral!")
+	return span_danger("Wygląda... nieludzko i dziko!")
 
 /atom/movable/screen/alert/status_effect/masquerade/MouseEntered(location,control,params)
 	desc = initial(desc)
@@ -54,9 +54,9 @@
 	// Alert them
 	vampiredatum.disable_all_powers(forced = TRUE)
 	vampiredatum.adjust_humanity(-2)
-	to_chat(carbon_owner, span_userdanger("<font size='10'>BLOOD! YOU NEED BLOOD NOW!</font>"))
-	to_chat(carbon_owner, span_announce("* Vampire Tip: While in Frenzy, you instantly aggressively grab, have stun immunity, cannot speak, hear, or use any powers outside of Feed and Trespass (If you have it)."))
-	carbon_owner.balloon_alert(carbon_owner, "you enter a frenzy!")
+	to_chat(carbon_owner, span_userdanger("<font size='10'>KREW! POTRZEBUJESZ KRWI, NATYCHMIAST!</font>"))
+	to_chat(carbon_owner, span_announce("* Wskazówka wampira: w Szale od razu chwytasz agresywnie, jesteś odporny na ogłuszenie, nie możesz mówić ani słyszeć i nie użyjesz żadnych mocy poza Żerowaniem i Przenikaniem (jeśli je masz)."))
+	carbon_owner.balloon_alert(carbon_owner, "wpadasz w Szał!")
 
 	// Stamina modifier
 	if (ishuman(carbon_owner))
@@ -78,7 +78,7 @@
 	vampiredatum.frenzied = FALSE
 
 	// Alert them
-	carbon_owner.balloon_alert(carbon_owner, "you come back to your senses.")
+	carbon_owner.balloon_alert(carbon_owner, "odzyskujesz zmysły.")
 
 	// Stamina modifier
 	if (ishuman(carbon_owner))
@@ -109,7 +109,7 @@
 #define MARTIALART_FRENZYGRAB "frenzy grabbing"
 
 /datum/martial_art/frenzygrab
-	name = "Frenzy Grab"
+	name = "Chwyt Szału"
 	id = MARTIALART_FRENZYGRAB
 
 /datum/martial_art/frenzygrab/grab_act(mob/living/user, mob/living/target)

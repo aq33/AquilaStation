@@ -1,7 +1,7 @@
 /datum/discipline/auspex
-	name = "Auspex"
-	discipline_explanation = "Auspex is a Discipline that grants vampires supernatural senses, letting them peer far further and see things best left unseen.\n\
-		The malkavians especially have a bond with it, being seers at heart."
+	name = "Postrzeganie"
+	discipline_explanation = "Postrzeganie to dyscyplina, która daje wampirom nadnaturalne zmysły, pozwalając patrzeć znacznie dalej i widzieć rzeczy, których lepiej nie oglądać.\n\
+		Szczególną więź mają z nią Malkavianie, w głębi duszy jasnowidze."
 	icon_state = "auspex"
 
 	// Lists of abilities granted per level
@@ -23,13 +23,13 @@
  *	Level 5 - For Malkavians: Gain ability to astral project like a wizard.
  */
 /datum/action/vampire/auspex
-	name = "Auspex"
-	desc = "Sense the vitae of any creature directly, and use your keen senses to widen your perception."
+	name = "Postrzeganie"
+	desc = "Wyczuwaj bezpośrednio vitae każdej istoty i wyostrzonymi zmysłami poszerz swoje pole widzenia."
 	button_icon_state = "power_auspex"
-	power_explanation = "- Level 1: When Activated, you will see further. \n\
-					- Level 2: When Activated, you will see further, and be able to sense walls and the layout of rooms. \n\
-					- Level 3: When Activated, You still have meson vision, same as level 3, but even more range. \n\
-					- Level 4: When Activated, you will see further, and be able to sense anything in sight, seeing through walls and barriers as if they were glass."
+	power_explanation = "- Poziom 1: Po aktywacji widzisz dalej. \n\
+					- Poziom 2: Po aktywacji widzisz dalej i wyczuwasz ściany oraz układ pomieszczeń. \n\
+					- Poziom 3: Po aktywacji nadal masz widzenie mezonowe, jak na poziomie 2, ale z jeszcze większym zasięgiem. \n\
+					- Poziom 4: Po aktywacji widzisz dalej i wyczuwasz wszystko w polu widzenia, patrząc przez ściany i bariery jak przez szkło."
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 20
@@ -45,7 +45,7 @@
 	var/mob/listeningTo
 
 /datum/action/vampire/auspex/two
-	name = "Auspex"
+	name = "Postrzeganie"
 	vitaecost = 20
 	constant_vitaecost = 1
 	zoom_out_amt = 4
@@ -53,7 +53,7 @@
 	add_meson = TRUE
 
 /datum/action/vampire/auspex/three
-	name = "Auspex"
+	name = "Postrzeganie"
 	vitaecost = 20
 	constant_vitaecost = 1.25
 	zoom_out_amt = 6
@@ -61,7 +61,7 @@
 	add_meson = TRUE
 
 /datum/action/vampire/auspex/four
-	name = "Auspex"
+	name = "Postrzeganie"
 	vitaecost = 20
 	constant_vitaecost = 1.5
 	zoom_out_amt = 10

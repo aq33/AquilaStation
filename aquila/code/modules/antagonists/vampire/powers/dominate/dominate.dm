@@ -1,6 +1,6 @@
 /datum/discipline/dominate
-	name = "Dominate"
-	discipline_explanation = "Dominate is a Discipline infuses the vampires will into their voice and presence, forcing victims to think or act according to the vampire's decree."
+	name = "Dominacja"
+	discipline_explanation = "Dominacja to dyscyplina, która przelewa wolę wampira w jego głos i obecność, zmuszając ofiary, by myślały i działały zgodnie z jego rozkazami."
 	icon_state = "dominate"
 
 	// Base only has mez, ventrue get command earlier and can upgrade it
@@ -22,12 +22,12 @@
 
 /// Tiny ability datum just to get vampies a voice of god power
 /datum/action/vampire/voice_of_domination
-	name = "Voice of Domination"
-	desc = "Speak with an overwhelmingly dominant voice, forcing mortals to briefly obey your command."
+	name = "Głos Dominacji"
+	desc = "Przemów przytłaczająco władczym głosem, zmuszając śmiertelników do krótkiego posłuszeństwa."
 	button_icon_state = "power_command"
-	power_explanation = "Activate this power to speak a command using the Voice of God.\n\
-		Listeners will be compelled to obey simple commands such as 'stop', 'drop', 'sleep', 'come here', etc.\n\
-		This is a weaker version of the divine Voice of God, granted passively by your mastery of Dominate."
+	power_explanation = "Aktywuj tę moc, żeby wydać rozkaz Głosem Boga.\n\
+		Słuchacze będą musieli wykonać proste polecenia, takie jak 'stop', 'drop', 'sleep', 'come here' (po angielsku) itp.\n\
+		To słabsza wersja boskiego Głosu Boga, którą biernie zapewnia ci opanowanie Dominacji."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 75
@@ -41,13 +41,13 @@
 		return FALSE
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner.get_organ_slot(ORGAN_SLOT_TONGUE))
-		owner.balloon_alert(owner, "you have no tongue!")
+		owner.balloon_alert(owner, "nie masz języka!")
 		return FALSE
 	if(carbon_owner.is_mouth_covered() || !isturf(carbon_owner.loc))
-		owner.balloon_alert(owner, "your mouth is blocked.")
+		owner.balloon_alert(owner, "masz zasłonięte usta.")
 		return FALSE
 	if(HAS_TRAIT(carbon_owner, TRAIT_MUTE))
-		owner.balloon_alert(owner, "you cannot speak!")
+		owner.balloon_alert(owner, "nie możesz mówić!")
 		return FALSE
 	return TRUE
 
@@ -59,7 +59,7 @@
 		reset_next_use_time()
 
 /datum/action/vampire/voice_of_domination/activate_power()
-	var/command = tgui_input_text(owner, "Speak with the Voice of Domination", "Command")
+	var/command = tgui_input_text(owner, "Przemów Głosem Dominacji", "Rozkaz")
 	if(QDELETED(src) || QDELETED(owner) || !command)
 		// Zwrot kosztu pobranego w on_activate() przed oknem komendy
 		if(!QDELETED(src) && vampiredatum_power && !vampiredatum_power.frenzied)

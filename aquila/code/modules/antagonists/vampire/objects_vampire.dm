@@ -17,7 +17,7 @@
 		. += span_cult(ghost_desc)
 	if(IS_VAMPIRE(user) && vampire_desc)
 		if(!owner)
-			. += span_cult("It is unsecured. Click on [src] while in your lair to secure it in place to get its full potential")
+			. += span_cult("Nie jest przytwierdzone. Kliknij je w swoim legowisku, aby je przytwierdzić i wykorzystać w pełni.")
 			return
 		. += span_cult(vampire_desc)
 	if(IS_VASSAL(user) && vassal_desc)
@@ -29,8 +29,8 @@
 /obj/structure/vampire/proc/bolt(mob/user)
 	if(!user)
 		return
-	to_chat(user, span_danger("You have secured [src] in place."))
-	to_chat(user, span_announce("* Vampire Tip: Examine [src] to understand how it functions!"))
+	to_chat(user, span_danger("Przytwierdzasz [src] na miejscu."))
+	to_chat(user, span_announce("* Porada wampira: obejrzyj [src], aby zrozumieć, jak to działa!"))
 	user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 	anchored = TRUE
 	owner = user
@@ -38,7 +38,7 @@
 /// This handles unbolting of the structure.
 /obj/structure/vampire/proc/unbolt(mob/user)
 	if(user)
-		to_chat(user, span_danger("You have unsecured [src]."))
+		to_chat(user, span_danger("Odczepiasz [src]."))
 		user.playsound_local(null, 'sound/items/ratchet.ogg', 70, FALSE, pressure_affected = FALSE)
 	anchored = FALSE
 	owner = null
@@ -47,7 +47,7 @@
 	/// If a Vampire tries to wrench it in place, yell at them.
 	if(item.tool_behaviour == TOOL_WRENCH && !anchored && IS_VAMPIRE(user))
 		user.playsound_local(null, 'sound/machines/buzz-sigh.ogg', 40, FALSE, pressure_affected = FALSE)
-		to_chat(user, span_announce("* Vampire Tip: Examine vampire structures to understand how they function!"))
+		to_chat(user, span_announce("* Porada wampira: oglądaj wampirze struktury, aby zrozumieć, jak działają!"))
 		return
 	return ..()
 
@@ -56,19 +56,19 @@
 	/// Claiming the Rack instead of using it?
 	if(vampiredatum && !owner)
 		if(!vampiredatum.vampire_lair_area)
-			to_chat(user, span_danger("You don't have a lair. Claim a coffin to make that location your lair."))
+			to_chat(user, span_danger("Nie masz legowiska. Zajmij trumnę, aby to miejsce stało się twoim legowiskiem."))
 			return FALSE
 		if(vampiredatum.vampire_lair_area != get_area(src))
-			to_chat(user, span_danger("You may only activate this structure in your lair: [vampiredatum.vampire_lair_area]."))
+			to_chat(user, span_danger("Możesz aktywować tę strukturę tylko w swoim legowisku: [vampiredatum.vampire_lair_area]."))
 			return FALSE
 
 		/// Radial menu for securing your Persuasion rack in place.
-		to_chat(user, span_notice("Do you wish to secure [src] here?"))
+		to_chat(user, span_notice("Czy chcesz przytwierdzić tutaj [src]?"))
 		var/static/list/secure_options = list(
-			"Yes" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"))
+			"Tak" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
+			"Nie" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"))
 		var/secure_response = show_radial_menu(user, src, secure_options, radius = 36, require_near = TRUE)
-		if(secure_response == "Yes")
+		if(secure_response == "Tak")
 			bolt(user)
 		return FALSE
 	return TRUE
@@ -76,34 +76,34 @@
 /obj/structure/vampire/AltClick(mob/user)
 	. = ..()
 	if(user == owner && user.Adjacent(src))
-		balloon_alert(user, "unbolt [src]?")
+		balloon_alert(user, "odczepić?")
 		var/static/list/unsecure_options = list(
-			"Yes" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
-			"No" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"),
+			"Tak" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_yes"),
+			"Nie" = image(icon = 'aquila/icons/vampires/radial_generic.dmi', icon_state = "radial_no"),
 		)
 		var/unsecure_response = show_radial_menu(user, src, unsecure_options, radius = 36, require_near = TRUE)
-		if(unsecure_response == "Yes")
+		if(unsecure_response == "Tak")
 			unbolt(user)
 
 /obj/structure/vampire/vassalrack
-	name = "vassalization rack"
-	desc = "If this wasn't meant for torture, then someone has some fairly horrifying hobbies."
+	name = "stół do tortur"
+	desc = "Jeśli to nie służy do tortur, to ktoś ma naprawdę przerażające hobby."
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	icon_state = "vassalrack"
 	anchored = FALSE
 	density = TRUE
 	can_buckle = TRUE
 	buckle_lying = 180
-	ghost_desc = "This is a vassalization rack, which allows vampires to turn crew members into loyal vassals."
-	vampire_desc = "This is the vassalization rack, which allows you to turn crew members into loyal vassals in your service. This costs blood to do.\n\
-		Simply click and hold on a victim, and then drag their sprite onto the vassalization rack. Right-click on the vassalization rack to unbuckle them.\n\
-		To convert into a vassal, repeatedly click on the vassalization rack. The time required scales with the tool in your hand."
-	vassal_desc = "This is the vassalization rack, which allows your master to turn crew members into loyal vassals.\n\
-		Aid your master in bringing their victims here and keeping them secure.\n\
-		You can secure victims to the vassalization rack by click-dragging the victim onto the rack while it is secured."
-	curator_desc = "This is the vassalization rack, which monsters use to blood-slave crew members into vassals.\n\
-		They usually ensure that victims are handcuffed to prevent them from running away.\n\
-		Their rituals take time, allowing us to disrupt them."
+	ghost_desc = "To stół do tortur, na którym wampiry zmieniają członków załogi w wiernych wasali."
+	vampire_desc = "To stół do tortur, na którym możesz zmieniać członków załogi w wiernych wasali na swoich usługach. Kosztuje to krew.\n\
+		Kliknij i przytrzymaj ofiarę, a potem przeciągnij jej sprite na stół do tortur. Kliknij stół prawym przyciskiem, aby ją odpiąć.\n\
+		Aby zmienić ofiarę w wasala, klikaj stół wielokrotnie. Potrzebny czas zależy od narzędzia w twojej ręce."
+	vassal_desc = "To stół do tortur, na którym twój pan zmienia członków załogi w wiernych wasali.\n\
+		Pomagaj panu sprowadzać tu ofiary i pilnować, żeby nie uciekły.\n\
+		Możesz przypiąć ofiarę do stołu, przeciągając ją na niego, gdy stół jest przytwierdzony."
+	curator_desc = "To stół do tortur, na którym potwory zniewalają krwią członków załogi i robią z nich wasali.\n\
+		Zwykle zakuwają ofiary w kajdanki, żeby nie uciekły.\n\
+		Ich rytuały trwają, co daje nam szansę, by je przerwać."
 
 	/// How many times a buckled person has to be tortured to be converted.
 	var/convert_progress = 3
@@ -120,9 +120,9 @@
 	if(vampiredatum)
 		var/remaining_vassals = vampiredatum.get_max_vassals() - length(vampiredatum.vassals)
 		if(remaining_vassals > 0)
-			. += span_info("You are currently capable of creating <b>[remaining_vassals]</b> more vassal[remaining_vassals == 1 ? "" : "s"].")
+			. += span_info("Możesz jeszcze stworzyć tylu wasali: <b>[remaining_vassals]</b>.")
 		else
-			. += span_warning("You cannot create any more vassals at the moment!")
+			. += span_warning("Nie możesz teraz stworzyć więcej wasali!")
 
 /obj/structure/vampire/vassalrack/deconstruct(disassembled = TRUE)
 	// Materiały przed ..(), bo bazowe deconstruct usuwa stół
@@ -136,15 +136,15 @@
 		return
 	var/mob/living/living_target = movable_atom
 	if(!anchored && IS_VAMPIRE(user))
-		to_chat(user, span_danger("Until this rack is secured in place, it cannot serve its purpose."))
-		to_chat(user, span_announce("* Vampire Tip: Examine the vassal rack to understand how it functions!"))
+		to_chat(user, span_danger("Dopóki stół nie zostanie przytwierdzony, nie spełni swojego zadania."))
+		to_chat(user, span_announce("* Porada wampira: obejrzyj stół do tortur, aby zrozumieć, jak działa!"))
 		return
 	// Default checks
 	if(!isliving(movable_atom) || !living_target.Adjacent(src) || living_target == user || !isliving(user) || has_buckled_mobs() || user.incapacitated() || living_target.buckled)
 		return
 	// Don't buckle Silicon to it please.
 	if(issilicon(living_target))
-		to_chat(user, span_danger("You realize that this machine cannot be vassalized, therefore it is useless to buckle them."))
+		to_chat(user, span_danger("Uświadamiasz sobie, że maszyny nie da się zmienić w wasala, więc przypinanie jej nie ma sensu."))
 		return
 	if(vampire_do_after(user, 5 SECONDS, living_target))
 		density = FALSE // Temporarily set density to false so the target is actually on the rack
@@ -158,8 +158,8 @@
 	if(!buckle_mob(target))
 		return
 	user.visible_message(
-		span_notice("[user] straps [target] into the rack, immobilizing them."),
-		span_boldnotice("You secure [target] tightly in place. They won't escape you now."))
+		span_notice("[user] przypina [target] do stołu, unieruchamiając ofiarę."),
+		span_boldnotice("Mocno przypinasz [target]. Teraz ci już nie ucieknie."))
 
 	playsound(loc, 'sound/effects/pop_expl.ogg', 25, 1)
 	update_appearance(UPDATE_ICON)
@@ -176,17 +176,17 @@
 
 	if(buckled_mob == user)
 		buckled_mob.visible_message(
-			span_danger("[user] tries to release themself from the rack!"),
-			span_danger("You attempt to release yourself from the rack!"),
-			span_hear("You hear a squishy wet noise."),
+			span_danger("[user] próbuje uwolnić się ze stołu!"),
+			span_danger("Próbujesz uwolnić się ze stołu!"),
+			span_hear("Słyszysz mokre mlaśnięcie."),
 		)
 		if(!vampire_do_after(user, 20 SECONDS, buckled_mob))
 			return FALSE
 	else
 		buckled_mob.visible_message(
-			span_danger("[user] tries to pull [buckled_mob] from the rack!"),
-			span_danger("You attempt to release [buckled_mob] from the rack!"),
-			span_hear("You hear a squishy wet noise."),
+			span_danger("[user] próbuje ściągnąć [buckled_mob] ze stołu!"),
+			span_danger("Próbujesz uwolnić [buckled_mob] ze stołu!"),
+			span_hear("Słyszysz mokre mlaśnięcie."),
 		)
 		if(!vampire_do_after(user, 10 SECONDS, buckled_mob))
 			return FALSE
@@ -198,7 +198,7 @@
 	if(!.)
 		return FALSE
 
-	visible_message(span_danger("[buckled_mob][buckled_mob.stat == DEAD ? "'s corpse" : ""] slides off of the rack."))
+	visible_message(span_danger("[buckled_mob.stat == DEAD ? "Zwłoki - " : ""][buckled_mob] zsuwa się ze stołu."))
 	buckled_mob.Paralyze(2 SECONDS)
 	update_appearance(UPDATE_ICON)
 
@@ -252,7 +252,7 @@
 
 	// These if statements can be simplified but aren't for better code-readability.
 	if(convert_progress > 0)
-		balloon_alert(living_vampire, "spilling blood...")
+		balloon_alert(living_vampire, "przelewasz krew...")
 
 		is_torturing = TRUE
 		living_target.Paralyze(1 SECONDS)
@@ -267,27 +267,27 @@
 		convert_progress--
 
 		if(convert_progress > 0)
-			balloon_alert(living_vampire, "needs more persuasion...")
+			balloon_alert(living_vampire, "trzeba więcej perswazji...")
 			return
 
 		// If the victim is mindshielded or an antagonist, they choose to accept or refuse vassilization.
 		if(!wants_vassilization && (HAS_TRAIT(living_target, TRAIT_MINDSHIELD) || length(living_target.mind.antag_datums)))
-			balloon_alert(living_vampire, "has external loyalties! more persuasion required!")
+			balloon_alert(living_vampire, "ma inne lojalności! trzeba więcej perswazji!")
 			if(!ask_for_vassilization(living_vampire, living_target))
-				balloon_alert(living_vampire, "refused persuasion!")
+				balloon_alert(living_vampire, "odmawia!")
 				convert_progress++
 				return
 
-		balloon_alert(living_vampire, "ready for communion!")
+		balloon_alert(living_vampire, "gotowe do komunii!")
 		return
 
 	if(wants_vassilization || !(HAS_TRAIT(living_target, TRAIT_MINDSHIELD) || length(living_target.mind.antag_datums)))
-		living_vampire.balloon_alert_to_viewers("smears blood...", "paints bloody marks...")
+		living_vampire.balloon_alert_to_viewers("rozmazuje krew...", "malujesz krwawe znaki...")
 		// Blokada, żeby kilka konwersji nie szło równolegle
 		is_torturing = TRUE
 		if(!vampire_do_after(living_vampire, 5 SECONDS, living_target))
 			is_torturing = FALSE
-			balloon_alert(living_vampire, "interrupted!")
+			balloon_alert(living_vampire, "przerwano!")
 			return
 		is_torturing = FALSE
 		if(!vampiredatum.can_make_vassal(living_target))
@@ -316,38 +316,38 @@
 
 		var/obj/item/bodypart/selected_bodypart = pick(target.bodyparts)
 		target.visible_message(
-			span_danger("[user] performs a ritual, spilling some of [target]'s blood from [target.p_their()] [selected_bodypart.name]!"),
-			span_userdanger("[user] performs a ritual, spilling some blood from your [selected_bodypart.name]!"))
+			span_danger("[user] odprawia rytuał i upuszcza krew ofiary ([target]) z miejsca: [selected_bodypart.name]!"),
+			span_userdanger("[user] odprawia rytuał i upuszcza ci krew z miejsca: [selected_bodypart.name]!"))
 
 		INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "scream")
 		target.set_jitter_if_lower(10 SECONDS)
 		target.apply_damage(held_item ? held_item.force / 4 : 2, held_item ? held_item.damtype : BRUTE, selected_bodypart)
 		return TRUE
 	else
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "przerwano!")
 		return FALSE
 
 /// Offer them the oppertunity to join now.
 /obj/structure/vampire/vassalrack/proc/ask_for_vassilization(mob/living/user, mob/living/target)
 	if(vassilization_offered)
-		balloon_alert(user, "wait a moment!")
+		balloon_alert(user, "chwilę!")
 		return FALSE
 	vassilization_offered = TRUE
 
-	to_chat(user, span_notice("[target] has been given the opportunity for servitude. You await [target.p_their()] decision..."))
+	to_chat(user, span_notice("[target] dostaje szansę, by zostać sługą. Czekasz na decyzję..."))
 	var/alert_response = tgui_alert(
 		user = target, \
-		message = "You are being tortured! Do you want to give in and pledge your undying loyalty to [user]? \n\
-			You will not lose your current objectives, but they come second to the will of your new master!", \
-		title = "THE HORRIBLE PAIN! WHEN WILL IT END?!",
-		buttons = list("Accept", "Refuse"),
+		message = "Jesteś torturowany! Czy chcesz się poddać i przysiąc dozgonną wierność: [user]? \n\
+			Nie stracisz obecnych celów, ale będą one drugorzędne wobec woli twojego nowego pana!", \
+		title = "STRASZLIWY BÓL! KIEDY TO SIĘ SKOŃCZY?!",
+		buttons = list("Zgadzam się", "Odmawiam"),
 		timeout = 15 SECONDS, \
 		autofocus = TRUE
 	)
-	if(alert_response == "Accept")
+	if(alert_response == "Zgadzam się")
 		wants_vassilization = TRUE
 	else
-		target.balloon_alert_to_viewers("refused vassalization!")
+		target.balloon_alert_to_viewers("odmawia służby!")
 
 	vassilization_offered = FALSE
 
@@ -356,8 +356,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/structure/vampire/candelabrum
-	name = "candelabrum"
-	desc = "It burns slowly, but doesn't radiate any heat."
+	name = "kandelabr"
+	desc = "Pali się powoli, ale nie wydziela ciepła."
 	icon = 'aquila/icons/vampires/vamp_obj.dmi'
 	icon_state = "candelabrum"
 	light_color = "#66FFFF"
@@ -365,10 +365,10 @@
 	density = FALSE
 	can_buckle = TRUE
 	anchored = FALSE
-	ghost_desc = "This is a magical candle which drains the sanity of non-vampires and non-vassals."
-	vampire_desc = "This is a magical candle which drains the sanity of mortals who are not under your command while it is active."
-	vassal_desc = "This is a magical candle which drains the sanity of the fools who haven't yet accepted your master."
-	curator_desc = "This is a blue Candelabrum, which causes insanity to those near it while active."
+	ghost_desc = "To magiczna świeca, która wysysa zdrowe zmysły ze wszystkich poza wampirami i wasalami."
+	vampire_desc = "To magiczna świeca, która, gdy płonie, wysysa zdrowe zmysły ze śmiertelników niebędących pod twoją władzą."
+	vassal_desc = "To magiczna świeca, która wysysa zdrowe zmysły z głupców, którzy jeszcze nie przyjęli twojego pana."
+	curator_desc = "To niebieski kandelabr, który, gdy płonie, doprowadza do szaleństwa wszystkich w pobliżu."
 	var/lit = FALSE
 
 /obj/structure/vampire/candelabrum/Destroy()
@@ -401,7 +401,7 @@
 		set_light(l_range = 2, l_power = 3, l_color = "#66FFFF")
 		START_PROCESSING(SSobj, src)
 	else
-		desc = "Despite not being lit, it makes your skin crawl."
+		desc = "Choć nie płonie, przechodzą cię od niego ciarki."
 		set_light(0)
 		STOP_PROCESSING(SSobj, src)
 	update_icon()
@@ -418,19 +418,19 @@
 
 /// Blood Throne - Allows Vampires to remotely speak with their vassals. - Code (Mostly) stolen from comfy chairs (armrests) and chairs (layers)
 /obj/structure/vampire/bloodthrone
-	name = "blood throne"
-	desc = "Twisted metal shards jut from the arm rests. Very uncomfortable looking. It would take a masochistic sort to sit on this jagged piece of furniture."
+	name = "tron krwi"
+	desc = "Z podłokietników sterczą poskręcane odłamki metalu. Wygląda bardzo niewygodnie. Tylko masochista usiadłby na tym poszarpanym meblu."
 	icon = 'aquila/icons/vampires/vamp_obj_64.dmi'
 	icon_state = "throne"
 	buckle_lying = 0
 	anchored = FALSE
 	density = TRUE
 	can_buckle = TRUE
-	ghost_desc = "This is a blood throne. Any vampire sitting on it can remotely speak to all other vampires by attempting to speak aloud."
-	vampire_desc = "This is a blood throne. Sitting on it will allow you to communicate telepathically to all other vampires by simply speaking."
-	vassal_desc = "This is a blood throne. It allows your master to telepathically speak to all other vampires."
-	curator_desc = "This is a chair that hurts those who try to buckle themselves onto it, though the undead have no problem latching on.\n\
-		While buckled, monsters can use this to telepathically communicate with each other."
+	ghost_desc = "To tron krwi. Każdy siedzący na nim wampir może na odległość mówić do wszystkich innych wampirów, po prostu mówiąc na głos."
+	vampire_desc = "To tron krwi. Gdy na nim siedzisz, możesz telepatycznie porozumiewać się ze wszystkimi innymi wampirami, po prostu mówiąc."
+	vassal_desc = "To tron krwi. Pozwala twojemu panu telepatycznie mówić do wszystkich innych wampirów."
+	curator_desc = "To krzesło rani każdego, kto próbuje na nim usiąść, choć nieumarli nie mają z tym problemu.\n\
+		Siedząc na nim, potwory mogą telepatycznie porozumiewać się ze sobą."
 	var/mutable_appearance/armrest
 
 // Add rotating and armrest
@@ -470,7 +470,7 @@
 // Buckling
 /obj/structure/vampire/bloodthrone/buckle_mob(mob/living/user, force = FALSE, check_loc = TRUE)
 	if(!anchored)
-		to_chat(user, span_announce("[src] is not bolted to the ground!"))
+		to_chat(user, span_announce("Tron krwi nie jest przytwierdzony do podłogi!"))
 		return
 	density = FALSE
 	. = ..()
@@ -478,15 +478,15 @@
 	if(!.)
 		return
 	user.visible_message(
-		span_notice("[user] sits down on \the [src]."),
-		span_boldnotice("You sit down onto [src]."),
+		span_notice("[user] zasiada na tronie krwi."),
+		span_boldnotice("Zasiadasz na tronie krwi."),
 	)
 	if(IS_VAMPIRE(user))
 		RegisterSignal(user, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		unbuckle_mob(user)
 		user.Paralyze(10 SECONDS)
-		to_chat(user, span_cult("The power of the blood throne overwhelms you!"))
+		to_chat(user, span_cult("Moc tronu krwi cię przytłacza!"))
 
 /obj/structure/vampire/bloodthrone/post_buckle_mob(mob/living/target)
 	. = ..()
@@ -495,7 +495,7 @@
 
 // Unbuckling
 /obj/structure/vampire/bloodthrone/unbuckle_mob(mob/living/user, force = FALSE, can_fall = TRUE)
-	visible_message(span_danger("[user] unbuckles [user.p_them()]self from \the [src]."))
+	visible_message(span_danger("[user] wstaje z tronu krwi."))
 	UnregisterSignal(user, COMSIG_MOB_SAY)
 	. = ..()
 

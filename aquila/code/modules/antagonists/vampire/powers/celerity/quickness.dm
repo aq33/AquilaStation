@@ -1,9 +1,9 @@
 /datum/action/vampire/exactitude
-	name = "Exactitude"
-	desc = "Focus your powers into your hands, enabling you to attack with preternatural precision."
+	name = "Precyzja"
+	desc = "Skup moc w dłoniach, żeby atakować z nadnaturalną precyzją."
 	button_icon_state = "power_exactitude"
-	power_explanation = "Imbues your hands with supernatural precision. Cannot be used with gloves on.\n\
-						Use with combat mode. When punching, you will automatically hit the closest being. Best used without moving your mouse at all."
+	power_explanation = "Napełnia twoje dłonie nadnaturalną precyzją. Nie działa w rękawicach.\n\
+						Używaj w trybie walki. Uderzając pięścią, automatycznie trafisz najbliższą istotę. Najlepiej w ogóle nie ruszać przy tym myszką."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	sol_multiplier = 2
@@ -28,7 +28,7 @@
 	if(carbon_owner.gloves)
 		if(istype(carbon_owner.gloves, /obj/item/clothing/gloves/rapid/vampire))
 			return TRUE
-		owner.balloon_alert(owner, "you're wearing gloves!")
+		owner.balloon_alert(owner, "masz na sobie rękawice!")
 		return FALSE
 
 /datum/action/vampire/exactitude/activate_power()

@@ -1,14 +1,14 @@
 #define LUNGE_TIME 3 SECONDS
 
 /datum/action/vampire/targeted/lunge
-	name = "Predatory Lunge"
-	desc = "Spring at your target to grapple them without warning, or tear the dead's heart out. Attacks from concealment or the rear may even knock them down if strong enough."
+	name = "Drapieżny skok"
+	desc = "Skocz na cel, żeby bez ostrzeżenia go pochwycić, albo wyrwij serce martwemu. Atak z ukrycia lub od tyłu może go nawet powalić, jeśli jesteś dość silny."
 	button_icon_state = "power_lunge"
-	power_explanation = "Click any player to start spinning wildly and, after a short delay, lunge at them.\n\
-		You cannot lunge if you are already grabbing someone, or are being grabbed.\n\
-		If you lunge from behind or darkness, you will aggro-grab and knock the target down, scaling with your rank.\n\
-		If used on a dead body, you will tear their organs out.\n\
-		At level 4, you will instantly lunge, but are limited to tackling from only 6 tiles away."
+	power_explanation = "Kliknij dowolnego gracza, żeby zacząć się dziko obracać i po krótkiej chwili skoczyć na niego.\n\
+		Nie możesz skoczyć, jeśli już kogoś trzymasz albo ktoś trzyma ciebie.\n\
+		Jeśli skoczysz od tyłu albo z ciemności, chwycisz cel agresywnie i powalisz go, tym mocniej, im wyższa twoja ranga.\n\
+		Użyte na zwłokach wyrywa z nich organy.\n\
+		Na poziomie 4 skaczesz natychmiast, ale tylko z odległości do 6 pól."
 	power_flags = NONE
 	check_flags =  BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
 	vitaecost = 45
@@ -40,13 +40,13 @@
 		return FALSE
 
 	if(owner.pulledby && owner.pulledby.grab_state >= GRAB_AGGRESSIVE)
-		owner.balloon_alert(owner, "grabbed!")
+		owner.balloon_alert(owner, "ktoś cię trzyma!")
 		return FALSE
 	if(owner.pulling)
-		owner.balloon_alert(owner, "grabbing someone!")
+		owner.balloon_alert(owner, "już kogoś trzymasz!")
 		return FALSE
 	if(datum_flags & DF_ISPROCESSING)
-		owner.balloon_alert(owner, "already lunging!")
+		owner.balloon_alert(owner, "już skaczesz!")
 		return FALSE
 	return TRUE
 
@@ -80,11 +80,11 @@
 ///Starts processing the power and prepares the lunge by spinning, calls lunge at the end of it.
 /datum/action/vampire/targeted/lunge/proc/prepare_target_lunge(atom/target_atom)
 	START_PROCESSING(SSprocessing, src)
-	owner.balloon_alert(owner, "lunge started!")
+	owner.balloon_alert(owner, "szykujesz skok!")
 
 	// Spin
 	owner.spin(8, 1)
-	owner.balloon_alert_to_viewers("spins wildly!", "you spin!")
+	owner.balloon_alert_to_viewers("dziko się obraca!", "obracasz się!")
 	// Smoke
 	do_smoke(0, owner.loc, smoke_type = /obj/effect/particle_effect/smoke/transparent)
 	//animate them shake
@@ -148,16 +148,16 @@
 
 	var/mob/living/carbon/human/human_target = ishuman(target) ? target : null
 	if(is_curator_job(target?.mind?.assigned_role) || human_target?.is_shove_knockdown_blocked())
-		owner.balloon_alert(owner, "pushed away!")
+		owner.balloon_alert(owner, "odepchnięto cię!")
 		target.grabbedby(owner)
 		return
 
-	owner.balloon_alert(owner, "you lunge at [target]!")
+	owner.balloon_alert(owner, "skaczesz na: [target]!")
 	if(target.stat == DEAD)
 		playsound(get_turf(target), 'sound/effects/splat.ogg', 40, TRUE)
 		owner.visible_message(
-			span_warning("[owner] tears into [target]'s chest!"),
-			span_warning("You tear into [target]'s chest!"),
+			span_warning("[owner] rozpruwa klatkę piersiową zwłok: [target]!"),
+			span_warning("Rozpruwasz klatkę piersiową zwłok: [target]!"),
 		)
 		var/obj/item/bodypart/chest/chest = target.get_bodypart(BODY_ZONE_CHEST)
 		chest.dismember()

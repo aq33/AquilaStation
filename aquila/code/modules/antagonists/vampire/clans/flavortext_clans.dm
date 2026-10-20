@@ -1,30 +1,30 @@
 // These have no functionality. They're just flavortext for the Archive of the Kindred
 /datum/vampire_clan/tzimisce
 	name = CLAN_TZIMISCE
-	description = "The Tzimisce Clan has no knowledge about it. \n\
-		If you see one, you should probably run away.\n\
-		*the rest of the page is full of undecipherable scribbles...*"
+	description = "O Klanie Tzimisce nic nie wiadomo. \n\
+		Jeśli któregoś zobaczysz, lepiej uciekaj.\n\
+		*reszta strony jest pełna nieczytelnych bazgrołów...*"
 	joinable_clan = FALSE
 
 /datum/vampire_clan/hecata
 	name = CLAN_HECATA
-	description = "This Clan is composed of curious practioners of dark magic who enjoy toying with the dead. \n\
-		Often compared to the Lasombra, they sometimes act in similar ways and draw power from the void. \n\
-		However, they are also very different, and place an emphasis on creating zombie like puppets from the dead. \n\
-		They are able to raise the dead as temporary vassals, permanently revive dead vassals, communicate to their vassals from afar, and summon wraiths."
+	description = "Ten klan tworzą ciekawscy adepci czarnej magii, którzy lubią igrać z umarłymi. \n\
+		Często porównywani z Lasombra, czasem postępują podobnie i czerpią moc z pustki. \n\
+		Są jednak zupełnie inni i kładą nacisk na tworzenie z umarłych marionetek podobnych do zombie. \n\
+		Potrafią wskrzeszać zmarłych jako tymczasowych wasali, na stałe przywracać do życia martwych wasali, porozumiewać się z wasalami na odległość i przyzywać upiory."
 	joinable_clan = FALSE
 
 /datum/vampire_clan/lasombra
 	name = CLAN_LASOMBRA
-	description = "This Clan seems to adore living in the Shadows, worshipping it's secrets. \n\
-		They take their research and vanity seriously, they are always very proud of themselves after even minor achievements. \n\
-		They appear to be in search of a station with a veil weakness to be able to channel their shadow's abyssal powers. \n\
-		Thanks to this, they have also evolved a dark liquid in their veins, which makes them able to manipulate shadows."
+	description = "Ten klan zdaje się uwielbiać życie w Cieniach i czcić ich tajemnice. \n\
+		Poważnie traktują swoje badania i próżność, zawsze są z siebie bardzo dumni nawet po drobnych osiągnięciach. \n\
+		Wygląda na to, że szukają stacji o osłabionej zasłonie, by móc korzystać z otchłannych mocy swoich cieni. \n\
+		Dzięki temu w ich żyłach wykształciła się też ciemna ciecz, która pozwala im władać cieniami."
 	joinable_clan = FALSE
 
 /datum/vampire_clan/nosferatu
 	name = CLAN_NOSFERATU
-	description = "The Nosferatu Clan is unable to blend in with the crew, with no abilities such as Masquerade and Veil. \n\
-		Additionally, has a permanent bad back and looks like a Vampire upon a simple examine, and is entirely unidentifiable, \n\
-		they can fit in the vents regardless of their form and equipment."
+	description = "Klan Nosferatu nie potrafi wtopić się w załogę i nie ma mocy takich jak Maskarada czy Zasłona. \n\
+		Do tego ma trwale chory kręgosłup, przy zwykłych oględzinach wygląda jak wampir i jest zupełnie nie do zidentyfikowania, \n\
+		za to mieści się w szybach wentylacyjnych bez względu na postać i wyposażenie."
 	joinable_clan = FALSE

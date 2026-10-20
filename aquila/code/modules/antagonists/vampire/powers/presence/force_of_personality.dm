@@ -1,10 +1,10 @@
 /datum/action/vampire/force_of_personality
-	name = "Force of Personality"
-	desc = "Project an overwhelming aura of authority that causes those around you to involuntarily step back."
+	name = "Siła Osobowości"
+	desc = "Roztocz przytłaczającą aurę autorytetu, przed którą otoczenie mimowolnie się cofa."
 	button_icon_state = "power_fop"
-	power_explanation = "Project an aura around yourself that subtly pushes people away.\n\
-						Effects on those in 3 tile range. No one will be able to voluntarily approach you.\n\
-						Targets must be able to see you to be affected."
+	power_explanation = "Roztaczasz wokół siebie aurę, która subtelnie odpycha ludzi.\n\
+						Działa na osoby w promieniu 3 pól. Nikt nie będzie mógł z własnej woli do ciebie podejść.\n\
+						Cele muszą cię widzieć, żeby aura zadziałała."
 	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
 	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_IN_FRENZY
 	vitaecost = 20
@@ -15,11 +15,11 @@
 
 /datum/action/vampire/force_of_personality/activate_power()
 	. = ..()
-	to_chat(owner, span_notice("You project an overwhelming sense of authority."), type = MESSAGE_TYPE_INFO)
+	to_chat(owner, span_notice("Roztaczasz wokół siebie przytłaczający autorytet."), type = MESSAGE_TYPE_INFO)
 
 /datum/action/vampire/force_of_personality/deactivate_power()
 	. = ..()
-	to_chat(owner, span_notice("You withdraw your authoritative presence."), type = MESSAGE_TYPE_INFO)
+	to_chat(owner, span_notice("Wycofujesz swoją władczą obecność."), type = MESSAGE_TYPE_INFO)
 
 /datum/action/vampire/force_of_personality/use_power()
 	. = ..()
@@ -95,8 +95,8 @@
 		if(retreat_turf && !is_blocked_turf(retreat_turf))
 			if(COOLDOWN_FINISHED(src, message_cooldown))
 				COOLDOWN_START(src, message_cooldown, 3 SECONDS)
-				owner.visible_message(span_warning("[owner] takes a hurried step back."), span_awe("You don't dare approach them..."))
+				owner.visible_message(span_warning("[owner] pospiesznie cofa się o krok."), span_awe("Nie śmiesz się zbliżyć..."))
 			owner.Move(retreat_turf, away_dir)
 
 /datum/status_effect/intimidated/get_examine_text()
-	return span_warning("[owner.p_They()] seem[owner.p_s()] intimidated.")
+	return span_warning("Unika wzroku i trzyma się na dystans.")

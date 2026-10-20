@@ -1,6 +1,6 @@
 /datum/antagonist/vassal
-	name = "\improper Vassal"
-	roundend_category = "Vassal"
+	name = "\improper Wasal"
+	roundend_category = "Wasale"
 	antagpanel_category = "Vampire"
 	antag_hud_name = "vassal"
 	banning_key = ROLE_VAMPIRE
@@ -16,7 +16,7 @@
 	var/datum/component/team_monitor/monitor
 
 /datum/antagonist/vassal/antag_panel_data()
-	return "Master : [master.owner.name]"
+	return "Pan : [master.owner.name]"
 
 /datum/antagonist/vassal/get_team()
 	return vampire_team
@@ -110,15 +110,15 @@
 
 	// Alert vassal
 	var/list/msg = list()
-	msg += span_cultlarge("You are now the mortal servant of [living_master], a Vampire!")
-	msg += span_cult("You are not required to obey any other Vampire, for only [living_master] is your master. The laws of Nanotrasen do not apply to you now; only your Master's word must be obeyed.")
+	msg += span_cultlarge("Jesteś teraz śmiertelnym sługą wampira - [living_master]!")
+	msg += span_cult("Nie musisz słuchać żadnego innego wampira, bo tylko [living_master] jest twoim panem. Prawa Nanotrasenu już cię nie obowiązują - musisz być posłuszny wyłącznie słowu swojego pana.")
 	to_chat(living_vassal, examine_block(msg.Join("\n")))
 
 	living_vassal.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
-	antag_memory += "You are the mortal servant of <b>[living_master]</b>, a vampire!<br>"
+	antag_memory += "Jesteś śmiertelnym sługą wampira - <b>[living_master]</b>!<br>"
 
 	// Alert master
-	to_chat(living_master, span_userdanger("[living_vassal] has become addicted to your immortal blood. [living_vassal.p_They()] [living_vassal.p_are()] now your undying servant"))
+	to_chat(living_master, span_userdanger("[living_vassal] uzależnia się od twojej nieśmiertelnej krwi. Od teraz to twój wierny sługa."))
 	living_master.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 
 /datum/antagonist/vassal/farewell()
@@ -126,15 +126,15 @@
 		return
 
 	owner.current.visible_message(
-		span_deconversionmessage("[owner.current]'s eyes dart feverishly from side to side, and then stop. [owner.current.p_They()] seem[owner.current.p_s()] calm, \
-			like [owner.current.p_they()] [owner.current.p_have()] regained some lost part of [owner.current.p_them()]self."),
-		span_deconversionmessage("With a snap, you are no longer enslaved to [master.owner]! You breathe in heavily, having regained your free will.")
+		span_deconversionmessage("Oczy [owner.current] gorączkowo biegają na boki, po czym nieruchomieją. Na twarzy pojawia się spokój, \
+			jakby odzyskana została jakaś utracona cząstka siebie."),
+		span_deconversionmessage("Coś w tobie pęka i nie jesteś już niewolnikiem [master.owner]! Oddychasz ciężko, odzyskawszy wolną wolę.")
 	)
 	owner.current.playsound_local(null, 'sound/magic/mutate.ogg', 100, FALSE, pressure_affected = FALSE)
 
 	// Alert master
 	if(master.owner)
-		to_chat(master.owner, span_cultbold("You feel the bond with your vassal [owner.current] has somehow been broken!"))
+		to_chat(master.owner, span_cultbold("Czujesz, że więź z twoim wasalem ([owner.current]) w jakiś sposób została zerwana!"))
 
 /datum/antagonist/vassal/admin_add(datum/mind/new_owner, mob/admin)
 	var/list/datum/mind/possible_vampires = list()
@@ -151,7 +151,7 @@
 		return
 
 	// CHOOSE A DAMN PERSON
-	var/datum/mind/choice = tgui_input_list(admin, "Which vampire should this vassal belong to?", "Vampire", possible_vampires)
+	var/datum/mind/choice = tgui_input_list(admin, "Do którego wampira ma należeć ten wasal?", "Wampir", possible_vampires)
 	if(!choice)
 		return
 
@@ -160,7 +160,7 @@
 	master = vampire
 	new_owner.add_antag_datum(src)
 
-	to_chat(choice, span_notice("Through divine intervention, you've gained a new vassal!"))
+	to_chat(choice, span_notice("Dzięki boskiej interwencji zyskujesz nowego wasala!"))
 
 /datum/antagonist/vassal/forge_objectives()
 	var/datum/objective/vampire/vassal/vassal_objective = new
@@ -183,8 +183,8 @@
 
 	var/datum/antagonist/vampire/vampiredatum = IS_VAMPIRE(examiner)
 	if(src in vampiredatum?.vassals)
-		text += span_cult("<EM>This is your vassal!</EM>")
+		text += span_cult("<EM>To twój wasal!</EM>")
 		examine_text += text
 	else if(HAS_MIND_TRAIT(examiner, TRAIT_VAMPIRE_ALIGNED) || is_curator_job(examiner?.mind?.assigned_role))
-		text += span_cult("<EM>This is [master.return_full_name()]'s vassal</EM>")
+		text += span_cult("<EM>To wasal, którego panem jest [master.return_full_name()]</EM>")
 		examine_text += text

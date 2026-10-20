@@ -14,9 +14,9 @@
 	required_enemies = 1
 	recommended_enemies = 3
 
-	announce_text = "There are vampires onboard the station!\n\
-		+	<span class='danger'>Vampires</span>: Feed on the crew, keep the Masquerade and complete your objectives!\n\
-		+	<span class='notice'>Crew</span>: Find the undead and stake them!"
+	announce_text = "Na pokładzie stacji są wampiry!\n\
+		+	<span class='danger'>Wampiry</span>: żerujcie na załodze, zachowajcie Maskaradę i wykonajcie swoje cele!\n\
+		+	<span class='notice'>Załoga</span>: znajdźcie nieumarłych i przebijcie ich kołkami!"
 
 	/// Twardy limit wampirów, gdy skalowanie jest wyłączone
 	var/vampires_possible = 4
@@ -54,8 +54,8 @@
 	return ..()
 
 /datum/game_mode/vampire/generate_report()
-	return "Several stations in adjacent sectors have reported a statistically anomalous uptick in space rabies. Please be aware of potential medical emergencies resultant of this. Security personnel are advised to escort affected crew to Medical and report \
-	any unusual findings to Central Command via secure channel."
+	return "Kilka stacji w sąsiednich sektorach zgłosiło statystycznie anomalny wzrost przypadków kosmicznej wścieklizny. Bądźcie przygotowani na wynikające z tego nagłe przypadki medyczne. Ochrona powinna eskortować zarażonych członków załogi do ambulatorium i zgłaszać \
+	wszelkie nietypowe obserwacje Centralnemu Dowództwu bezpiecznym kanałem."
 
 /datum/game_mode/traitor/vampire
 	name = "traitor+vampire"
@@ -75,8 +75,8 @@
 	var/const/vampire_amt = 2
 
 /datum/game_mode/traitor/vampire/announce()
-	to_chat(world, "<B>The current game mode is - Traitor+Vampire!</B>")
-	to_chat(world, "<B>There are vampires on the station along with some syndicate operatives out for their own gain! Do not let the vampires and the traitors succeed!</B>")
+	to_chat(world, "<B>Obecny tryb gry to: Zdrajca+Wampir!</B>")
+	to_chat(world, "<B>Na stacji są wampiry, a do tego agenci Syndykatu działający we własnym interesie! Nie pozwólcie, by wampirom i zdrajcom się udało!</B>")
 
 /datum/game_mode/traitor/vampire/can_start()
 	if(!..())
@@ -143,8 +143,8 @@
 	return ..()
 
 /datum/game_mode/traitor/vampire/generate_report()
-	return "We have received some fuzzy reports about the Syndicate cooperating with a bluespace demon.\
-			Keep a watch out for syndicate agents, and have your Chaplain on standby."
+	return "Otrzymaliśmy niejasne raporty o współpracy Syndykatu z demonem z bluespace. \
+			Uważajcie na agentów Syndykatu i trzymajcie kapelana w gotowości."
 
 /datum/role_preference/antagonist/vampire
 	name = "Wampir"

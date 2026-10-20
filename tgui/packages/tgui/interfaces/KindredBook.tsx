@@ -17,14 +17,14 @@ export const KindredBook = (props) => {
   return (
     <Window width={410} height={460} theme="spooky">
       <Window.Content scrollable>
-        <Section title="Vampire Clans">
+        <Section title="Klany wampirów">
           <Table mb={2}>
             <Table.Row>
-              Written by generations of Curators, this holds all information we
-              the Curators know about the undead threat that looms the
-              station...
+              Spisana przez pokolenia kuratorów, ta księga zawiera wszystko, co
+              my, kuratorzy, wiemy o nieumarłym zagrożeniu czyhającym na
+              stację...
             </Table.Row>
-            <Table.Row>So, what Clan are you interested in?</Table.Row>
+            <Table.Row>Który klan cię zatem interesuje?</Table.Row>
           </Table>
           <Table>
             <Table.Row>
