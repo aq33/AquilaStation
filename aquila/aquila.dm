@@ -740,6 +740,7 @@
 #include "code\modules\test_chamber\kits\pr_447_mule_poczta.dm"
 #include "code\modules\test_chamber\kits\pr_451_animacje.dm"
 #include "code\modules\test_chamber\kits\pr_460_resprite.dm"
+#include "code\modules\test_chamber\kits\pr_469_urzadzenia.dm"
 #include "code\modules\test_chamber\kits\pr_456_przepisy.dm"
 #include "code\modules\test_chamber\kits\pr_461_changelog_fixy.dm"
 #include "code\modules\test_chamber\kits\pr_470_admin_mix.dm"
@@ -932,6 +933,7 @@
 #include "code\modules\paradise_struktury\airlocks.dm"
 #include "code\modules\paradise_struktury\doors.dm"
 #include "code\modules\paradise_struktury\podlogi_bee.dm"
+#include "code\modules\paradise_urzadzenia\nascienne.dm"
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
