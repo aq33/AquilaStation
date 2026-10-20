@@ -1175,14 +1175,72 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	holder.modify_goals()
 
+// AQUILA EDIT - edycja celów stacji w TGUI (okno "StationGoalsPanel") zamiast HTML
 /datum/admins/proc/modify_goals()
-	var/dat = ""
-	for(var/datum/station_goal/S in SSticker.mode.station_goals)
-		dat += "[S.name] - <a href='byond://?src=[REF(S)];[HrefToken()];announce=1'>Announce</a> | <a href='byond://?src=[REF(S)];[HrefToken()];remove=1'>Remove</a><br>"
-	dat += "<br><a href='byond://?src=[REF(src)];[HrefToken()];add_station_goal=1'>Add New Goal</a>"
-	var/datum/browser/browser = new(usr, "goals", "Modify Goals", 400, 400)
-	browser.set_content(dat)
-	browser.open()
+	if(!station_goals_ui)
+		station_goals_ui = new(src)
+	station_goals_ui.ui_interact(usr)
+
+/datum/admins
+	/// AQUILA - okno TGUI celów stacji
+	var/datum/station_goals_panel/station_goals_ui
+
+/datum/station_goals_panel
+	var/datum/admins/holder
+
+/datum/station_goals_panel/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/station_goals_panel/Destroy(force)
+	if(holder?.station_goals_ui == src)
+		holder.station_goals_ui = null
+	holder = null
+	return ..()
+
+/datum/station_goals_panel/ui_state(mob/user)
+	return get_admin_state(0)
+
+/datum/station_goals_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StationGoalsPanel")
+		ui.open()
+
+/datum/station_goals_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/goals = list()
+	if(SSticker.mode)
+		for(var/datum/station_goal/S in SSticker.mode.station_goals)
+			goals += list(list("name" = S.name, "ref" = REF(S)))
+	data["goals"] = goals
+	data["has_mode"] = !!SSticker.mode
+	return data
+
+/datum/station_goals_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	switch(action)
+		if("add")
+			holder.ui_topic(list("add_station_goal" = "1"))
+			return TRUE
+		if("announce", "remove")
+			if(!SSticker.mode)
+				return
+			var/datum/station_goal/S = locate(params["ref"]) in SSticker.mode.station_goals
+			if(!S)
+				return
+			if(action == "announce")
+				S.on_report()
+				S.send_report()
+				log_admin("[key_name(usr)] announced the \"[S.name]\" station goal.")
+			else
+				log_admin("[key_name(usr)] removed the \"[S.name]\" station goal.")
+				qdel(S)
+			return TRUE
 
 
 /client/proc/toggle_hub()
@@ -1409,12 +1467,62 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>")
 		return
 
-	var/list/msg = list()
-	msg += "Playtime:<BR><UL>"
+	// AQUILA EDIT - raport czasu gry w TGUI (okno "PlaytimeReport") zamiast HTML
+	if(!holder.playtime_report_ui)
+		holder.playtime_report_ui = new(holder)
+	holder.playtime_report_ui.ui_interact(mob)
+
+/datum/admins
+	/// AQUILA - okno TGUI raportu czasu gry
+	var/datum/playtime_report/playtime_report_ui
+
+/datum/playtime_report
+	var/datum/admins/holder
+
+/datum/playtime_report/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/playtime_report/Destroy(force)
+	if(holder?.playtime_report_ui == src)
+		holder.playtime_report_ui = null
+	holder = null
+	return ..()
+
+/datum/playtime_report/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/playtime_report/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PlaytimeReport")
+		ui.open()
+
+/datum/playtime_report/ui_data(mob/user)
+	var/list/data = list()
+	var/list/players = list()
 	for(var/client/C in GLOB.clients)
-		msg += "<LI> - [key_name_admin(C)]: <A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(C.mob)]'>" + C.get_exp_living() + "</a></LI>"
-	msg += "</UL>"
-	src << browse(HTML_SKELETON_TITLE("Playtime Report", msg.Join()), "window=Player_playtime_check")
+		players += list(list(
+			"key" = C.key,
+			"ckey" = C.ckey,
+			"name" = C.mob?.real_name,
+			"mob_ref" = C.mob ? REF(C.mob) : null,
+			"living_minutes" = C.get_exp_living(TRUE),
+			"living" = C.get_exp_living(),
+		))
+	data["players"] = players
+	return data
+
+/datum/playtime_report/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	if(action == "playtime")
+		holder.ui_topic(list("getplaytimewindow" = params["ref"]))
+		return
+	return holder.ui_common_action(action, params)
 
 /datum/admins/proc/cmd_show_exp_panel(client/client_to_check)
 	if(!check_rights(R_ADMIN))

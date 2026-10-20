@@ -41,6 +41,9 @@ export type MainData = {
 
   has_cargo: BooleanLike;
   cargo?: CargoItem[];
+
+  /** AQUILA: dźwięki HONK (tylko H.O.N.K) */
+  honk_sounds?: HonkSound[];
 };
 
 export type MechAction = {
@@ -64,4 +67,9 @@ export type MechModule = {
 export type CargoItem = {
   name: string;
   ref: string;
+};
+
+export type HonkSound = {
+  key: string;
+  name: string;
 };

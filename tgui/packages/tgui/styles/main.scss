@@ -18,6 +18,9 @@
 @include meta.load-css('~tgui-core/styles/all-atomic.scss');
 @include meta.load-css('~tgui-core/styles/all-themes.scss');
 
+// AQUILA: zgodność starych okien z tgui-core 6
+@include meta.load-css('./aquila-compat.scss');
+
 // AQUILA / NSV13 atomic classes and components
 @include meta.load-css('./atomic/loading.scss');
 @include meta.load-css('./components/ColorSelectBox.scss');

@@ -109,7 +109,7 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 	if(action == "open_keybindings")
 		if(!user?.client?.prefs)
 			return
-		user.client.prefs.ShowKeybindings(user)
+		user.client.prefs.open_keybindings_menu(user)
 		ui.close()
 		return TRUE
 

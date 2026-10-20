@@ -37,7 +37,7 @@
 	var/requires_power = POWER_REQ_ALL
 	var/can_be_carded = TRUE
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
-	var/datum/weakref/alerts_popup = null
+	var/datum/ai_alerts_panel/alerts_panel = null // AQ EDIT - okno TGUI alarmów zamiast okna HTML
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/obj/mecha/controlled_mech //For controlled_mech a mech, to determine whether to relaymove or use the AI eye.
 	var/obj/controlled_equipment //A non-mech piece of equipment the AI is inside of, like a MODsuit
@@ -202,6 +202,7 @@
 	SSshuttle.autoEvac()
 	qdel(eyeobj) // No AI, no Eye
 	malfhack = null
+	QDEL_NULL(alerts_panel) // AQ EDIT
 	ShutOffDoomsdayDevice()
 	. = ..()
 
@@ -272,48 +273,84 @@
 		tab_data["Systemy"] = GENERATE_STAT_TEXT("niesprawne")
 	return tab_data
 
+// AQ EDIT START - okno TGUI AiStationAlerts (na wzór StationAlertConsole z tg z podglądem kamer) zamiast okna HTML
 /mob/living/silicon/ai/proc/update_ai_alerts()
-	if(!alerts_popup || !alerts_popup.resolve())
-		return
-	var/dat
-	for (var/cat in alarms)
-		dat += text("<B>[]</B><BR>\n", cat)
-		var/list/L = alarms[cat]
-		if (L.len)
-			for (var/alarm in L)
-				var/list/alm = L[alarm]
-				var/area/A = alm[1]
-				var/C = alm[2]
-				var/list/sources = alm[3]
-				dat += "<NOBR>"
-				if (C && istype(C, /list))
-					var/dat2 = ""
-					for (var/obj/machinery/camera/I in C)
-						dat2 += text("[]<A HREF=byond://?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (dat2=="") ? "" : " | ", I.c_tag)
-					dat += text("-- [] ([])", A.name, (dat2!="") ? dat2 : "Brak kamery")
-				else if (C && istype(C, /obj/machinery/camera))
-					var/obj/machinery/camera/Ctmp = C
-					dat += text("-- [] (<A HREF=byond://?src=[REF(src)];switchcamera=[REF(C)]>[]</A>)", A.name, Ctmp.c_tag)
-				else
-					dat += text("-- [] (No Camera)", A.name)
-				if (sources.len > 1)
-					dat += text("- [] sources", sources.len)
-				dat += "</NOBR><BR>\n"
-		else
-			dat += "-- Wszystkie systemy działają prawidłowo<BR>\n"
-		dat += "<BR>\n"
-	var/datum/browser/popup = alerts_popup.resolve()
-	popup.set_content(dat)
-	popup.open()
+	if(alerts_panel)
+		SStgui.update_uis(alerts_panel)
 
 /mob/living/silicon/ai/proc/ai_alerts()
-	var/datum/browser/popup
-	if(!alerts_popup || !alerts_popup.resolve())
-		popup = new(src, "aialerts", "Aktualne alarmy stacji", 387, 420, src) // additional src argument allows calls to our Topic() proc via onclose - is wrapped internally as weakref
-		alerts_popup = WEAKREF(popup) // wrap to prevent harddel
-	update_ai_alerts()
-	popup = alerts_popup.resolve()
-	popup.open()
+	if(!alerts_panel)
+		alerts_panel = new(src)
+	alerts_panel.ui_interact(src)
+
+/datum/ai_alerts_panel
+	var/mob/living/silicon/ai/owner
+
+/datum/ai_alerts_panel/New(mob/living/silicon/ai/new_owner)
+	. = ..()
+	owner = new_owner
+
+/datum/ai_alerts_panel/Destroy()
+	owner = null
+	return ..()
+
+/datum/ai_alerts_panel/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/ai_alerts_panel/ui_status(mob/user, datum/ui_state/state)
+	if(QDELETED(owner) || user != owner)
+		return UI_CLOSE
+	return ..()
+
+/datum/ai_alerts_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiStationAlerts", "Aktualne alarmy stacji")
+		ui.open()
+
+/datum/ai_alerts_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/categories = list()
+	for(var/cat in owner.alarms)
+		var/list/alerts = list()
+		var/list/L = owner.alarms[cat]
+		for(var/alarm in L)
+			var/list/alm = L[alarm]
+			var/area/A = alm[1]
+			var/C = alm[2]
+			var/list/sources = alm[3]
+			var/list/cameras = list()
+			if(islist(C))
+				for(var/obj/machinery/camera/I in C)
+					cameras += list(list("name" = I.c_tag, "ref" = REF(I)))
+			else if(istype(C, /obj/machinery/camera))
+				var/obj/machinery/camera/I = C
+				cameras += list(list("name" = I.c_tag, "ref" = REF(I)))
+			alerts += list(list(
+				"name" = A.name,
+				"sources" = length(sources),
+				"cameras" = cameras,
+			))
+		categories += list(list(
+			"name" = cat,
+			"alerts" = alerts,
+		))
+	data["alarms"] = categories
+	return data
+
+/datum/ai_alerts_panel/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(usr != owner || owner.incapacitated())
+		return
+	switch(action)
+		if("select_camera")
+			var/obj/machinery/camera/C = locate(params["camera"]) in GLOB.cameranet.cameras
+			if(C)
+				owner.switchCamera(C)
+			return TRUE
+// AQ EDIT END
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	if(control_disabled)
@@ -452,8 +489,6 @@
 	..()
 	if(usr != src)
 		return
-	if (href_list["close"])
-		alerts_popup = null
 	if (incapacitated())
 		return
 	if (href_list["mach_close"])

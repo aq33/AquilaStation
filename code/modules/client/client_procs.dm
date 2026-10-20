@@ -120,12 +120,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			hsrc = holder
 		if("usr")
 			hsrc = mob
-		if("prefs")
-			if (inprefs)
-				return
-			inprefs = TRUE
-			. = prefs.process_link(usr,href_list)
-			inprefs = FALSE
+		if("prefs") // AQ EDIT - stare okno preferencji HTML usunięte, wszystko jest w oknie TGUI PreferencesMenu
 			return
 		if("vars")
 			return view_var_Topic(href,href_list,hsrc)

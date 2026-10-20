@@ -18,58 +18,66 @@
 	desc = "Magiczny kontrakt podpisany wcześniej przez ucznia. W zamian za naukę sztuk magicznych jest zobowiązany odpowiedzieć na twoje wezwanie o pomoc."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
+	/// AQ EDIT - czy właśnie trwa szukanie ucznia wśród duchów
+	var/polling = FALSE
 
+// AQ EDIT - okno TGUI ApprenticeContract (port z tg) zamiast okna HTML
 /obj/item/antag_spawner/contract/attack_self(mob/user)
-	user.set_machine(src)
-	var/dat
 	if(used)
-		dat = "<B>Już przywołano twojego ucznia.</B><BR>"
-	else
-		dat = "<B>Umowa terminatorska:</B><BR>"
-		dat += "<I>Dzięki tej umowie możesz przywołać ucznia, który pomoże ci w misji.</I><BR>"
-		dat += "<I>Jeśli nie uda ci się nawiązać kontaktu z uczniem, możesz oddać umowę księdze zaklęć, by odzyskać punkty.</I><BR>"
-		dat += "<B>Jakiej szkoły magii uczy się twój uczeń?</B><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_DESTRUCTION]'>Destruction</A><BR>"
-		dat += "<I>Twój uczeń specjalizuje się w magii ofensywnej. Zna Magiczny Pocisk i Kulę Ognia.</I><BR><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_BLUESPACE]'>Manipulacja bluespace</A><BR>"
-		dat += "<I>Twój uczeń potrafi przeczyć fizyce, przenikając przez ciała stałe i pokonując wielkie odległości w mgnieniu oka. Zna Teleportację i Eteryczny Spacer.</I><BR><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_HEALING]'>Healing</A><BR>"
-		dat += "<I>Twój uczeń szkoli się w zaklęciach pomagających przetrwać. Zna Ścianę Mocy i Ładowanie, a do tego ma Kostur Uzdrawiania.</I><BR><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_ROBELESS]'>Robeless</A><BR>"
-		dat += "<I>Twój uczeń szkoli się w rzucaniu zaklęć bez szat. Zna Pukanie i Zamianę Umysłów.</I><BR><BR>"
-		dat += "<A href='byond://?src=[REF(src)];school=[APPRENTICE_WILDMAGIC]'>Dzika magia</A><BR>"
-		dat += "<I>Twój uczeń ćwiczy dziką magię. Nie wiesz, jakie zaklęcia mu przypadły, ale taka już jest szkoła dzikiej magii.</I><BR><BR>"
-	user << browse(HTML_SKELETON(dat), "window=radio")
-	onclose(user, "radio")
-	return
-
-/obj/item/antag_spawner/contract/Topic(href, href_list)
-	..()
-	var/mob/living/carbon/human/H = usr
-
-	if(H.stat || H.restrained())
+		to_chat(user, "<span class='warning'>Już przywołano twojego ucznia.</span>")
 		return
-	if(!ishuman(H))
-		return 1
+	ui_interact(user)
 
-	if(loc == H || (in_range(src, H) && isturf(loc)))
-		H.set_machine(src)
-		if(href_list["school"])
-			if(used)
-				to_chat(H, "Ta umowa została już wykorzystana!")
+/obj/item/antag_spawner/contract/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ApprenticeContract", name)
+		ui.open()
+
+/obj/item/antag_spawner/contract/ui_state(mob/user)
+	if(used)
+		return GLOB.never_state
+	return GLOB.default_state
+
+/obj/item/antag_spawner/contract/ui_data(mob/user)
+	var/list/data = list()
+	data["polling"] = polling
+	return data
+
+/obj/item/antag_spawner/contract/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("buy")
+			var/mob/living/carbon/human/H = usr
+			if(used || polling || !ishuman(H))
 				return
-			var/list/candidates = pollGhostCandidates("Chcesz zagrać jako uczeń czarodzieja (szkoła: [href_list["school"]])?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 15 SECONDS, ignore_category = POLL_IGNORE_WIZARD_HELPER)
-			if(LAZYLEN(candidates))
-				if(QDELETED(src))
-					return
-				if(used)
-					to_chat(H, "Ta umowa została już wykorzystana!")
-					return
-				used = TRUE
-				var/mob/dead/observer/C = pick(candidates)
-				spawn_antag(C.client, get_turf(src), href_list["school"],H.mind)
-			else
-				to_chat(H, "Nie udało się skontaktować z uczniem! Możesz uderzyć umową w księgę zaklęć, żeby odzyskać punkty, albo spróbować ponownie później.")
+			if(H.stat || H.restrained())
+				return
+			var/selected_school = params["school"]
+			if(!(selected_school in list(APPRENTICE_DESTRUCTION, APPRENTICE_BLUESPACE, APPRENTICE_HEALING, APPRENTICE_ROBELESS, APPRENTICE_WILDMAGIC)))
+				return
+			INVOKE_ASYNC(src, .proc/poll_for_student, H, selected_school)
+			SStgui.close_uis(src)
+			return TRUE
+
+/obj/item/antag_spawner/contract/proc/poll_for_student(mob/living/carbon/human/teacher, apprentice_school)
+	to_chat(teacher, "<span class='notice'>Próbujesz nawiązać kontakt z uczniem...</span>")
+	polling = TRUE
+	var/list/candidates = pollGhostCandidates("Chcesz zagrać jako uczeń czarodzieja (szkoła: [apprentice_school])?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 15 SECONDS, ignore_category = POLL_IGNORE_WIZARD_HELPER)
+	polling = FALSE
+	if(!LAZYLEN(candidates))
+		to_chat(teacher, "Nie udało się skontaktować z uczniem! Możesz uderzyć umową w księgę zaklęć, żeby odzyskać punkty, albo spróbować ponownie później.")
+		return
+	if(QDELETED(src))
+		return
+	if(used)
+		to_chat(teacher, "Ta umowa została już wykorzystana!")
+		return
+	used = TRUE
+	var/mob/dead/observer/C = pick(candidates)
+	spawn_antag(C.client, get_turf(src), apprentice_school, teacher.mind)
 
 /obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind ,datum/mind/user)
 	new /obj/effect/particle_effect/smoke(T)

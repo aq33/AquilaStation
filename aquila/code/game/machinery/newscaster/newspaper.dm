@@ -1,7 +1,3 @@
-/*
-I am begging someone to remake this to be more like the paper UI, it's so bad.
-*/
-
 /obj/item/newspaper
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
@@ -12,8 +8,6 @@ I am begging someone to remake this to be more like the paper UI, it's so bad.
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("bapped")
 	resistance_flags = FLAMMABLE
-	var/screen = 0
-	var/pages = 0
 	var/curr_page = 0
 	var/list/datum/feed_channel/news_content = list()
 	var/scribble=""
@@ -37,81 +31,95 @@ I am begging someone to remake this to be more like the paper UI, it's so bad.
 /obj/item/newspaper/attack_self(mob/user)
 	if(!istype(user) || !user.can_read(src))
 		return
-	var/dat
-	pages = 0
-	switch(screen)
-		if(0) //Cover
-			dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-			dat+="<DIV ALIGN='center'><FONT SIZE=2>Nanotrasen-standard newspaper, for use on Nanotrasen Space Facilities</FONT></div><HR>"
-			if(!length(news_content))
-				if(wantedAuthor)
-					dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
-				else
-					dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
-			else
-				dat+="Contents:<BR><ul>"
-				for(var/datum/feed_channel/NP in news_content)
-					pages++
-				if(wantedAuthor)
-					dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
-				var/temp_page=0
-				for(var/datum/feed_channel/NP in news_content)
-					temp_page++
-					dat+="<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
-				dat+="</ul>"
-			if(scribble_page==curr_page)
-				dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
-			dat+= "<HR><DIV STYLE='float:right;'><A href='byond://?src=[REF(src)];next_page=1'>Next Page</A></DIV> <div style='float:left;'><A href='byond://?src=[REF(user)];mach_close=newspaper_main'>Done reading</A></DIV>"
-		if(1) // X channel pages inbetween.
-			for(var/datum/feed_channel/NP in news_content)
-				pages++
-			var/datum/feed_channel/C = news_content[curr_page]
-			dat += "<FONT SIZE=4><B>[C.channel_name]</B></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.return_author(notContent(C.author_censor_time))]</FONT>\]</FONT><BR><BR>"
-			if(notContent(C.D_class_censor_time))
-				dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
-			else
-				if(!length(C.messages))
-					dat+="No Feed stories stem from this channel..."
-				else
-					var/i = 0
-					for(var/datum/feed_message/MESSAGE in C.messages)
-						if(MESSAGE.creation_time > creation_time)
-							if(i == 0)
-								dat+="No Feed stories stem from this channel..."
-							break
-						if(i == 0)
-							dat+="<ul>"
-						i++
-						dat+="-[MESSAGE.return_body(notContent(MESSAGE.body_censor_time))] <BR>"
-						if(MESSAGE.img)
-							user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-							dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
-						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.return_author(notContent(MESSAGE.author_censor_time))]</FONT>\]</FONT><BR><BR>"
-					dat+="</ul>"
-			if(scribble_page==curr_page)
-				dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
-			dat+= "<BR><HR><DIV STYLE='float:left;'><A href='byond://?src=[REF(src)];prev_page=1'>Previous Page</A></DIV> <DIV STYLE='float:right;'><A href='byond://?src=[REF(src)];next_page=1'>Next Page</A></DIV>"
-		if(2) //Last page
-			for(var/datum/feed_channel/NP in news_content)
-				pages++
-			if(wantedAuthor!=null)
-				dat+="<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT SIZE></DIV><BR><BR>"
-				dat+="<B>Criminal name</B>: <FONT COLOR='maroon'>[wantedCriminal]</FONT><BR>"
-				dat+="<B>Description</B>: [wantedBody]<BR>"
-				dat+="<B>Photo:</B>: "
-				if(wantedPhoto)
-					user << browse_rsc(wantedPhoto, "tmp_photow.png")
-					dat+="<BR><img src='tmp_photow.png' width = '180'>"
-				else
-					dat+="None"
-			else
-				dat+="<I>Apart from some uninteresting classified ads, there's nothing on this page...</I>"
-			if(scribble_page==curr_page)
-				dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"
-			dat+= "<HR><DIV STYLE='float:left;'><A href='byond://?src=[REF(src)];prev_page=1'>Previous Page</A></DIV>"
-	dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
-	user << browse(HTML_SKELETON(dat), "window=newspaper_main;size=300x400")
-	onclose(user, "newspaper_main")
+	ui_interact(user)
+
+/obj/item/newspaper/ui_interact(mob/user, datum/tgui/ui)
+	if(resistance_flags & ON_FIRE)
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Newspaper", name)
+		ui.open()
+
+/obj/item/newspaper/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("next_page")
+			//We're at the very end, nowhere else to go.
+			if(curr_page >= length(news_content) + 1)
+				return TRUE
+			curr_page++
+		if("prev_page")
+			//We haven't started yet, nowhere else to go.
+			if(curr_page <= 0)
+				return TRUE
+			curr_page--
+		else
+			return TRUE
+	playsound(loc, "pageturn", 50, TRUE)
+	return TRUE
+
+/obj/item/newspaper/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/channels = list()
+	var/page = 0
+	for(var/datum/feed_channel/news_channel as anything in news_content)
+		page++
+		channels += list(list(
+			"name" = news_channel.channel_name,
+			"page_number" = page,
+		))
+	data["channels"] = channels
+	return data
+
+/obj/item/newspaper/ui_data(mob/user)
+	var/list/data = list()
+	data["current_page"] = curr_page
+	data["scribble_message"] = (scribble_page == curr_page) ? scribble : null
+	data["wanted_criminal"] = wantedAuthor ? wantedCriminal : null
+	data["wanted_body"] = wantedAuthor ? wantedBody : null
+	data["wanted_photo"] = null
+	if(wantedAuthor && wantedPhoto)
+		user << browse_rsc(wantedPhoto, "tmp_photow.png")
+		data["wanted_photo"] = "tmp_photow.png"
+
+	var/list/channel_data = list()
+	data["channel_has_messages"] = FALSE
+	if(!curr_page || curr_page > length(news_content))
+		channel_data["channel_name"] = null
+		channel_data["author_name"] = null
+		channel_data["is_censored"] = null
+		channel_data["channel_messages"] = list()
+		data["channel_data"] = list(channel_data)
+		return data
+	var/datum/feed_channel/current_channel = news_content[curr_page]
+	if(istype(current_channel))
+		channel_data["channel_name"] = current_channel.channel_name
+		channel_data["author_name"] = current_channel.return_author(notContent(current_channel.author_censor_time))
+		var/censored = notContent(current_channel.D_class_censor_time)
+		channel_data["is_censored"] = censored
+		var/list/messages = list()
+		if(!censored)
+			var/i = 0
+			for(var/datum/feed_message/feed_message as anything in current_channel.messages)
+				i++
+				if(feed_message.creation_time > creation_time)
+					continue
+				data["channel_has_messages"] = TRUE
+				var/photo = null
+				if(feed_message.img)
+					photo = "tmp_photo[curr_page]_[i].png"
+					user << browse_rsc(feed_message.img, photo)
+				messages += list(list(
+					"message" = "-[feed_message.return_body(notContent(feed_message.body_censor_time))]",
+					"photo" = photo,
+					"author" = feed_message.return_author(notContent(feed_message.author_censor_time)),
+				))
+		channel_data["channel_messages"] = messages
+	data["channel_data"] = list(channel_data)
+	return data
 
 /obj/item/newspaper/proc/notContent(list/L)
 	if(!L.len)
@@ -126,34 +134,6 @@ I am begging someone to remake this to be more like the paper UI, it's so bad.
 			else
 				return FALSE
 	return FALSE
-
-/obj/item/newspaper/Topic(href, href_list)
-	var/mob/living/U = usr
-	..()
-	if((src in U.contents) || (isturf(loc) && in_range(src, U)))
-		U.set_machine(src)
-		if(href_list["next_page"])
-			if(curr_page == pages+1)
-				return //Don't need that at all, but anyway.
-			if(curr_page == pages) //We're at the middle, get to the end
-				screen = 2
-			else
-				if(curr_page == 0) //We're at the start, get to the middle
-					screen=1
-			curr_page++
-			playsound(loc, "pageturn", 50, TRUE)
-		else if(href_list["prev_page"])
-			if(curr_page == 0)
-				return
-			if(curr_page == 1)
-				screen = 0
-			else
-				if(curr_page == pages+1) //we're at the end, let's go back to the middle.
-					screen = 1
-			curr_page--
-			playsound(loc, "pageturn", 50, TRUE)
-		if(ismob(loc))
-			attack_self(loc)
 
 /obj/item/newspaper/attackby(obj/item/W, mob/living/user, list/modifiers)
 	if(burn_paper_product_attackby_check(W, user))
@@ -172,7 +152,7 @@ I am begging someone to remake this to be more like the paper UI, it's so bad.
 				return
 			scribble_page = curr_page
 			scribble = s
-			attack_self(user)
+			SStgui.update_uis(src)
 			add_fingerprint(user)
 	else
 		return ..()

@@ -284,7 +284,6 @@
 #include "code\modules\antagonists\horror\horror_abilities_and_upgrades.dm"
 #include "code\modules\antagonists\horror\horror_chemicals.dm"
 #include "code\modules\antagonists\horror\horror_datums.dm"
-#include "code\modules\antagonists\horror\horror_html.dm"
 #include "code\modules\antagonists\horror\horror_mutate.dm"
 #include "code\modules\antagonists\infiltrator\infiltrator.dm"
 #include "code\modules\antagonists\infiltrator\objectives.dm"

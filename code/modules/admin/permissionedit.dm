@@ -6,128 +6,219 @@
 		return
 	usr.client.holder.edit_admin_permissions()
 
+// AQUILA EDIT - Permissions Panel w TGUI (okno "PermissionsPanel").
+// action: null = odśwież obecną zakładkę, 0 = lista adminów, 1 = log, 2 = zarządzanie
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
 	if(!check_rights(R_PERMISSIONS))
 		return
-	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/group/permissions)
-	asset_cache_datum.send(usr)
-	var/head = "<title>Permissions Panel</title><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url("panels.css")]'>"
-	var/body_tag = ""
-	var/list/output = list("<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
-	if(action)
-		output += " | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a> | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowsermanage=1'>\[Management\]</a><hr style='background:#000000; border:0; height:3px'>"
-	else
-		output += "<br><a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a><br><a href='byond://?_src_=holder;[HrefToken()];editrightsbrowsermanage=1'>\[Management\]</a>"
-	if(action == 1)
-		var/logcount = 0
-		var/logssperpage = 20
-		var/pagecount = 0
-		page = text2num(page)
-		var/datum/DBQuery/query_count_admin_logs = SSdbcore.NewQuery(
-			"SELECT COUNT(id) FROM [format_table_name("admin_log")] WHERE (:target IS NULL OR adminckey = :target) AND (:operation IS NULL OR operation = :operation)",
-			list("target" = target, "operation" = operation)
-		)
-		if(!query_count_admin_logs.warn_execute())
-			qdel(query_count_admin_logs)
-			return
-		if(query_count_admin_logs.NextRow())
-			logcount = text2num(query_count_admin_logs.item[1])
-		qdel(query_count_admin_logs)
-		if(logcount > logssperpage)
-			output += "<br><b>Page: </b>"
-			while(logcount > 0)
-				output += "|<a href='byond://?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightstarget=[target];editrightsoperation=[operation];editrightspage=[pagecount]'>[pagecount == page ? "<b>\[[pagecount]\]</b>" : "\[[pagecount]\]"]</a>"
-				logcount -= logssperpage
-				pagecount++
-			output += "|"
-		var/datum/DBQuery/query_search_admin_logs = SSdbcore.NewQuery({"
-			SELECT
-				datetime,
-				round_id,
-				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
-				operation,
-				IF(ckey IS NULL, target, byond_key),
-				log
-			FROM [format_table_name("admin_log")]
-			LEFT JOIN [format_table_name("player")] ON target = ckey
-			WHERE (:target IS NULL OR ckey = :target) AND (:operation IS NULL OR operation = :operation)
-			ORDER BY datetime DESC
-			LIMIT :skip, :take
-		"}, list("target" = target, "operation" = operation, "skip" = logssperpage * page, "take" = logssperpage))
-		if(!query_search_admin_logs.warn_execute())
-			qdel(query_search_admin_logs)
-			return
-		while(query_search_admin_logs.NextRow())
-			var/datetime = query_search_admin_logs.item[1]
-			var/round_id = query_search_admin_logs.item[2]
-			var/admin_key  = query_search_admin_logs.item[3]
-			operation = query_search_admin_logs.item[4]
-			target = query_search_admin_logs.item[5]
-			var/log = query_search_admin_logs.item[6]
-			output += "<p style='margin:0px'><b>[datetime] | Round ID [round_id] | Admin [admin_key] | Operation [operation] on [target]</b><br>[log]</p><hr style='background:#000000; border:0; height:3px'>"
-		qdel(query_search_admin_logs)
-	if(action == 2)
-		output += "<h3>Admin ckeys with invalid ranks</h3>"
-		var/datum/DBQuery/query_check_admin_errors = SSdbcore.NewQuery("SELECT IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("admin")].ckey), ckey), [format_table_name("admin")].`rank` FROM [format_table_name("admin")] LEFT JOIN [format_table_name("admin_ranks")] ON [format_table_name("admin_ranks")].`rank` = [format_table_name("admin")].`rank` WHERE [format_table_name("admin_ranks")].`rank` IS NULL")
-		if(!query_check_admin_errors.warn_execute())
-			qdel(query_check_admin_errors)
-			return
-		while(query_check_admin_errors.NextRow())
-			var/admin_key = query_check_admin_errors.item[1]
-			var/admin_rank = query_check_admin_errors.item[2]
-			output += "[admin_key] has non-existent rank [admin_rank] | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowsermanage=1;editrightschange=[admin_key]'>\[Change Rank\]</a> | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowsermanage=1;editrightsremove=[admin_key]'>\[Remove\]</a>"
-			output += "<hr style='background:#000000; border:0; height:1px'>"
-		qdel(query_check_admin_errors)
-		output += "<h3>Unused ranks</h3>"
-		var/datum/DBQuery/query_check_unused_rank = SSdbcore.NewQuery("SELECT [format_table_name("admin_ranks")].`rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] LEFT JOIN [format_table_name("admin")] ON [format_table_name("admin")].`rank` = [format_table_name("admin_ranks")].`rank` WHERE [format_table_name("admin")].`rank` IS NULL")
-		if(!query_check_unused_rank.warn_execute())
-			qdel(query_check_unused_rank)
-			return
-		while(query_check_unused_rank.NextRow())
-			var/admin_rank = query_check_unused_rank.item[1]
-			output += {"Rank [admin_rank] is not held by any admin | <a href='byond://?_src_=holder;[HrefToken()];editrightsbrowsermanage=1;editrightsremoverank=[admin_rank]'>\[Remove\]</a>
-			<br>Permissions: [rights2text(text2num(query_check_unused_rank.item[2])," ")]
-			<br>Denied: [rights2text(text2num(query_check_unused_rank.item[3])," ", "-")]
-			<br>Allowed to edit: [rights2text(text2num(query_check_unused_rank.item[4])," ", "*")]
-			<hr style='background:#000000; border:0; height:1px'>"}
-		qdel(query_check_unused_rank)
-	else if(!action)
-		body_tag = " onload='selectTextField();updateSearch();'"
-		head += "<script type='text/javascript' src='[SSassets.transport.get_asset_url("search.js")]'></script>"
-		output += {"
-		<div id='main'><table id='searchable' cellspacing='0'>
-		<tr class='title'>
-		<th style='width:150px;'>CKEY <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=add'>\[+\]</a></th>
-		<th style='width:125px;'>RANK</th>
-		<th style='width:40%;'>PERMISSIONS</th>
-		<th style='width:20%;'>DENIED</th>
-		<th style='width:40%;'>ALLOWED TO EDIT</th>
-		</tr>
-		"}
-		for(var/adm_ckey in GLOB.admin_datums+GLOB.deadmins)
-			var/datum/admins/D = GLOB.admin_datums[adm_ckey]
-			if(!D)
-				D = GLOB.deadmins[adm_ckey]
-				if (!D)
-					continue
-			var/deadminlink = ""
-			if(D.owner)
-				adm_ckey = D.owner.key
-			if (D.deadmined)
-				deadminlink = " <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=activate;key=[adm_ckey]'>\[RA\]</a>"
+	if(!permissions_panel_ui)
+		permissions_panel_ui = new(src)
+	var/datum/permissions_panel/panel = permissions_panel_ui
+	if(!isnull(action))
+		action = text2num("[action]")
+		switch(action)
+			if(1)
+				panel.load_log(target, operation, text2num("[page]") || 0)
+			if(2)
+				panel.load_management()
 			else
-				deadminlink = " <a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=deactivate;key=[adm_ckey]'>\[DA\]</a>"
-			output += "<tr>"
-			output += "<td style='text-align:center;'>[adm_ckey]<br>[deadminlink]<a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=remove;key=[adm_ckey]'>\[-\]</a><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=sync;key=[adm_ckey]'>\[SYNC TGDB\]</a></td>"
-			output += "<td><a href='byond://?src=[REF(src)];[HrefToken()];editrights=rank;key=[adm_ckey]'>[D.rank.name]</a></td>"
-			output += "<td><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rank.include_rights," ")]</a></td>"
-			output += "<td><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rank.exclude_rights," ", "-")]</a></td>"
-			output += "<td><a class='small' href='byond://?src=[REF(src)];[HrefToken()];editrights=permissions;key=[adm_ckey]'>[rights2text(D.rank.can_edit_rights," ", "*")]</a></td>"
-			output += "</tr>"
-		output += "</table></div><div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div>"
+				panel.tab = "admins"
+	else if(panel.tab == "management")
+		panel.load_management()
 	if(QDELETED(usr))
 		return
-	usr << browse("<!DOCTYPE html><html><head>[head]</head><body[body_tag]>[jointext(output, "")]</body></html>","window=editrights;size=1000x650")
+	panel.ui_interact(usr)
+	SStgui.update_uis(panel)
+
+/datum/admins
+	/// AQUILA - okno TGUI uprawnień adminów
+	var/datum/permissions_panel/permissions_panel_ui
+
+/datum/permissions_panel
+	var/datum/admins/holder
+	/// "admins", "log" albo "management"
+	var/tab = "admins"
+	var/log_target
+	var/log_operation
+	var/log_page = 0
+	var/log_page_count = 0
+	/// Wpisy logu z bazy, wczytywane tylko przy zmianie strony
+	var/list/log_entries = list()
+	/// Dane zakładki zarządzania z bazy
+	var/list/invalid_ranks = list()
+	var/list/unused_ranks = list()
+
+/datum/permissions_panel/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/permissions_panel/Destroy(force)
+	if(holder?.permissions_panel_ui == src)
+		holder.permissions_panel_ui = null
+	holder = null
+	return ..()
+
+/datum/permissions_panel/ui_state(mob/user)
+	return get_admin_state(R_PERMISSIONS)
+
+/datum/permissions_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PermissionsPanel")
+		ui.open()
+
+/datum/permissions_panel/proc/load_log(target, operation, page)
+	tab = "log"
+	log_target = target || null
+	log_operation = operation || null
+	log_page = max(page, 0)
+	log_entries = list()
+	log_page_count = 0
+	var/logs_per_page = 20
+	var/datum/DBQuery/query_count_admin_logs = SSdbcore.NewQuery(
+		"SELECT COUNT(id) FROM [format_table_name("admin_log")] WHERE (:target IS NULL OR adminckey = :target) AND (:operation IS NULL OR operation = :operation)",
+		list("target" = log_target, "operation" = log_operation)
+	)
+	if(!query_count_admin_logs.warn_execute())
+		qdel(query_count_admin_logs)
+		return
+	var/logcount = 0
+	if(query_count_admin_logs.NextRow())
+		logcount = text2num(query_count_admin_logs.item[1])
+	qdel(query_count_admin_logs)
+	log_page_count = CEILING(logcount / logs_per_page, 1)
+	var/datum/DBQuery/query_search_admin_logs = SSdbcore.NewQuery({"
+		SELECT
+			datetime,
+			round_id,
+			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey),
+			operation,
+			IF(ckey IS NULL, target, byond_key),
+			log
+		FROM [format_table_name("admin_log")]
+		LEFT JOIN [format_table_name("player")] ON target = ckey
+		WHERE (:target IS NULL OR ckey = :target) AND (:operation IS NULL OR operation = :operation)
+		ORDER BY datetime DESC
+		LIMIT :skip, :take
+	"}, list("target" = log_target, "operation" = log_operation, "skip" = logs_per_page * log_page, "take" = logs_per_page))
+	if(!query_search_admin_logs.warn_execute())
+		qdel(query_search_admin_logs)
+		return
+	while(query_search_admin_logs.NextRow())
+		log_entries += list(list(
+			"datetime" = query_search_admin_logs.item[1],
+			"round_id" = query_search_admin_logs.item[2],
+			"admin_key" = query_search_admin_logs.item[3],
+			"operation" = query_search_admin_logs.item[4],
+			"target" = query_search_admin_logs.item[5],
+			"log" = query_search_admin_logs.item[6],
+		))
+	qdel(query_search_admin_logs)
+
+/datum/permissions_panel/proc/load_management()
+	tab = "management"
+	invalid_ranks = list()
+	unused_ranks = list()
+	var/datum/DBQuery/query_check_admin_errors = SSdbcore.NewQuery("SELECT IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("admin")].ckey), ckey), [format_table_name("admin")].`rank` FROM [format_table_name("admin")] LEFT JOIN [format_table_name("admin_ranks")] ON [format_table_name("admin_ranks")].`rank` = [format_table_name("admin")].`rank` WHERE [format_table_name("admin_ranks")].`rank` IS NULL")
+	if(!query_check_admin_errors.warn_execute())
+		qdel(query_check_admin_errors)
+		return
+	while(query_check_admin_errors.NextRow())
+		invalid_ranks += list(list(
+			"key" = query_check_admin_errors.item[1],
+			"rank" = query_check_admin_errors.item[2],
+		))
+	qdel(query_check_admin_errors)
+	var/datum/DBQuery/query_check_unused_rank = SSdbcore.NewQuery("SELECT [format_table_name("admin_ranks")].`rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")] LEFT JOIN [format_table_name("admin")] ON [format_table_name("admin")].`rank` = [format_table_name("admin_ranks")].`rank` WHERE [format_table_name("admin")].`rank` IS NULL")
+	if(!query_check_unused_rank.warn_execute())
+		qdel(query_check_unused_rank)
+		return
+	while(query_check_unused_rank.NextRow())
+		unused_ranks += list(list(
+			"rank" = query_check_unused_rank.item[1],
+			"rights" = rights2text(text2num(query_check_unused_rank.item[2]), " "),
+			"denied" = rights2text(text2num(query_check_unused_rank.item[3]), " ", "-"),
+			"can_edit" = rights2text(text2num(query_check_unused_rank.item[4]), " ", "*"),
+		))
+	qdel(query_check_unused_rank)
+
+/datum/permissions_panel/ui_data(mob/user)
+	var/list/data = list()
+	data["tab"] = tab
+	var/list/admins = list()
+	for(var/adm_ckey in GLOB.admin_datums+GLOB.deadmins)
+		var/datum/admins/D = GLOB.admin_datums[adm_ckey]
+		if(!D)
+			D = GLOB.deadmins[adm_ckey]
+			if(!D)
+				continue
+		var/adm_key = adm_ckey
+		if(D.owner)
+			adm_key = D.owner.key
+		admins += list(list(
+			"key" = adm_key,
+			"deadmined" = !!D.deadmined,
+			"rank" = D.rank?.name,
+			"rights" = rights2text(D.rank?.include_rights, " "),
+			"denied" = rights2text(D.rank?.exclude_rights, " ", "-"),
+			"can_edit" = rights2text(D.rank?.can_edit_rights, " ", "*"),
+		))
+	data["admins"] = admins
+	data["log_entries"] = log_entries
+	data["log_page"] = log_page
+	data["log_page_count"] = log_page_count
+	data["log_target"] = log_target
+	data["log_operation"] = log_operation
+	data["invalid_ranks"] = invalid_ranks
+	data["unused_ranks"] = unused_ranks
+	return data
+
+/datum/permissions_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_PERMISSIONS))
+		return
+	switch(action)
+		if("tab")
+			switch(params["tab"])
+				if("log")
+					holder.edit_admin_permissions(1, null, null, 0)
+				if("management")
+					holder.edit_admin_permissions(2)
+				else
+					holder.edit_admin_permissions(0)
+			return TRUE
+		if("log_page")
+			holder.edit_admin_permissions(1, log_target, log_operation, text2num("[params["page"]]") || 0)
+			return TRUE
+		if("log_clear_filter")
+			holder.edit_admin_permissions(1, null, null, 0)
+			return TRUE
+		if("add")
+			holder.ui_topic(list("editrights" = "add"))
+			return TRUE
+		if("edit")
+			var/task = params["task"]
+			if(!(task in list("activate", "deactivate", "remove", "sync", "rank", "permissions")) || !istext(params["key"]))
+				return
+			holder.ui_topic(list("editrights" = task, "key" = params["key"]))
+			return TRUE
+		if("manage_change_rank")
+			if(!istext(params["key"]))
+				return
+			holder.ui_topic(list("editrightsbrowsermanage" = "1", "editrightschange" = params["key"]))
+			return TRUE
+		if("manage_remove")
+			if(!istext(params["key"]))
+				return
+			holder.ui_topic(list("editrightsbrowsermanage" = "1", "editrightsremove" = params["key"]))
+			return TRUE
+		if("manage_remove_rank")
+			if(!istext(params["rank"]))
+				return
+			holder.ui_topic(list("editrightsbrowsermanage" = "1", "editrightsremoverank" = params["rank"]))
+			return TRUE
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
@@ -137,8 +228,6 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
 		return
-	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
-	permissions_assets.send(owner)
 	var/admin_key = href_list["key"]
 	var/admin_ckey = ckey(admin_key)
 	var/datum/admins/D = GLOB.admin_datums[admin_ckey]

@@ -9,7 +9,13 @@ import type { MainData } from './data';
 // przyciski wyboru i odłączenia.
 export const ModulesPane = (props) => {
   const { act, data } = useBackend<MainData>();
-  const { modules = [], max_equip, has_cargo, cargo = [] } = data;
+  const {
+    modules = [],
+    max_equip,
+    has_cargo,
+    cargo = [],
+    honk_sounds = [],
+  } = data;
   return (
     <Stack fill vertical>
       <Stack.Item grow>
@@ -90,6 +96,21 @@ export const ModulesPane = (props) => {
                   </Button>
                 </Stack.Item>
               </Stack>
+            ))}
+          </Section>
+        </Stack.Item>
+      )}
+      {honk_sounds.length > 0 && (
+        <Stack.Item>
+          <Section title="Dźwięki HONK">
+            {honk_sounds.map((sound) => (
+              <Button
+                key={sound.key}
+                icon="volume-up"
+                onClick={() => act('play_sound', { sound: sound.key })}
+              >
+                {sound.name}
+              </Button>
             ))}
           </Section>
         </Stack.Item>

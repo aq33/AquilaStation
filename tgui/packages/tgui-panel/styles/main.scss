@@ -12,6 +12,7 @@
 // Core styles
 @include meta.load-css('~tgui/styles/reset.scss');
 @include meta.load-css('~tgui/styles/css-variables.scss');
+@include meta.load-css('~tgui/styles/aquila-compat.scss');
 
 // Atomic classes
 @include meta.load-css('~tgui-core/styles/atomic/candystripe.scss');

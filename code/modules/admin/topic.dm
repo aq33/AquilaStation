@@ -11,6 +11,50 @@
 		return TRUE
 	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
 
+/// AQUILA - okna TGUI admina wywołują istniejące gałęzie Topic() tak, jak kliknięcie linku z tokenem.
+/// Każda gałąź Topic() sama sprawdza uprawnienia, więc nic tu nie omijamy.
+/datum/admins/proc/ui_topic(list/href_list)
+	if(!islist(href_list) || !usr?.client || usr.client != owner)
+		return
+	href_list["admin_token"] = href_token
+	Topic(null, href_list)
+
+/// AQUILA - wspólne akcje okien TGUI admina na mobie/umyśle (dawne linki PP, VV, TP, PM, SM, FLW, LOGS, N)
+/// Zwraca TRUE, jeśli okno ma się odświeżyć.
+/datum/admins/proc/ui_common_action(action, list/params)
+	var/ref = params["ref"]
+	switch(action)
+		if("pp")
+			ui_topic(list("adminplayeropts" = ref))
+		if("vv")
+			var/datum/target = locate(ref)
+			if(target)
+				usr.client.debug_variables(target)
+		if("tp")
+			ui_topic(list("traitor" = ref))
+		if("bp")
+			ui_topic(list("borgpanel" = ref))
+		if("pm")
+			if(params["ckey"])
+				usr.client.cmd_admin_pm(params["ckey"], null)
+		if("sm")
+			ui_topic(list("subtlemessage" = ref))
+		if("flw")
+			ui_topic(list("adminplayerobservefollow" = ref))
+		if("logs")
+			var/list/href_list = list("individuallog" = ref)
+			if(params["log_src"])
+				href_list["log_src"] = params["log_src"]
+			ui_topic(href_list)
+		if("notes")
+			if(params["ckey"])
+				ui_topic(list("showmessageckey" = params["ckey"]))
+		if("jumpto")
+			ui_topic(list("jumpto" = ref))
+		else
+			return FALSE
+	return TRUE
+
 /datum/admins/Topic(href, href_list)
 	..()
 
@@ -1839,9 +1883,6 @@
 		tear.investigate_log("Items consumed at [AREACOORD(T)] retrieved by [key_name(usr)].", INVESTIGATE_ENGINES)
 		tear.retrieve_consumed_items()
 
-	else if(href_list["beakerpanel"])
-		beaker_panel_act(href_list)
-
 	else if(href_list["reloadpolls"])
 		GLOB.polls.Cut()
 		GLOB.poll_options.Cut()
@@ -1932,18 +1973,11 @@
 			return
 		return usr.client?.mark_datum(datum_to_mark)
 		
+// AQUILA EDIT - wybór trybu i wymuszenie trybu w secret są teraz sekcjami Game Panelu (TGUI)
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
 		return
-
-	var/dat = {"<B>W jaki tryb chcesz grać?</B><HR>"}
-	for(var/mode in config.modes)
-		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
-	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
-	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=weighted'>Weighted</A><br>"} // AQUILA EDIT
-	dat += {"Now: [GLOB.master_mode]"}
-	usr << browse(HTML_SKELETON(dat), "window=c_mode")
+	Game()
 
 /datum/admins/proc/HandleFSecret()
 	if(!check_rights(R_ADMIN))
@@ -1953,9 +1987,4 @@
 		return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 	if(GLOB.master_mode != "secret")
 		return alert(usr, "The game mode has to be secret!", null, null, null, null)
-	var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
-	for(var/mode in config.modes)
-		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
-	dat += {"Now: [GLOB.secret_force_mode]"}
-	usr << browse(HTML_SKELETON(dat), "window=f_secret")
+	Game()
