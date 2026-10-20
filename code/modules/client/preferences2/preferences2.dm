@@ -62,6 +62,7 @@
 	READPREF_INT(toggles, PREFERENCE_TAG_TOGGLES)
 	READPREF_INT(toggles2, PREFERENCE_TAG_TOGGLES2)
 	READPREF_INT(clientfps, PREFERENCE_TAG_CLIENTFPS)
+	READPREF_INT(clientfps_migrated, PREFERENCE_TAG_CLIENTFPS_MIGRATED) // AQ EDIT
 	READPREF_INT(parallax, PREFERENCE_TAG_PARALLAX)
 	READPREF_INT(pixel_size, PREFERENCE_TAG_PIXELSIZE)
 	READPREF_INT(tip_delay, PREFERENCE_TAG_TIP_DELAY)
@@ -98,10 +99,13 @@
 	default_slot	= sanitize_integer(default_slot, TRUE, max_usable_slots, initial(default_slot))
 	toggles			= sanitize_integer(toggles, FALSE, INFINITY, initial(toggles)) // yes
 	toggles2		= sanitize_integer(toggles2, FALSE, INFINITY, initial(toggles2))
-	// AQ EDIT START - -1 = zalecane FPS; stare domyślne 40 z NSV13 przechodzi na zalecane
+	// AQ EDIT START - -1 = zalecane FPS; stare domyślne 40 z NSV13 przechodzi na zalecane tylko raz,
+	// więc 40 wybrane później przez gracza zostaje
 	clientfps		= sanitize_integer(clientfps, -1, 1000, -1)
-	if(clientfps == 40)
-		clientfps = -1
+	if(!clientfps_migrated)
+		if(clientfps == 40)
+			clientfps = -1
+		clientfps_migrated = TRUE
 	// AQ EDIT END
 	parallax		= sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tesla_volume	= sanitize_integer(tesla_volume, 0, 100, initial(tesla_volume))
@@ -160,6 +164,7 @@
 	PREP_WRITEPREF_RAW(toggles, PREFERENCE_TAG_TOGGLES)
 	PREP_WRITEPREF_RAW(toggles2, PREFERENCE_TAG_TOGGLES2)
 	PREP_WRITEPREF_RAW(clientfps, PREFERENCE_TAG_CLIENTFPS)
+	PREP_WRITEPREF_RAW(clientfps_migrated, PREFERENCE_TAG_CLIENTFPS_MIGRATED) // AQ EDIT
 	PREP_WRITEPREF_RAW(parallax, PREFERENCE_TAG_PARALLAX)
 	PREP_WRITEPREF_RAW(pixel_size, PREFERENCE_TAG_PIXELSIZE)
 	PREP_WRITEPREF_RAW(tip_delay, PREFERENCE_TAG_TIP_DELAY)

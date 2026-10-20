@@ -363,5 +363,9 @@
 /datum/tgui/proc/on_act_message(act_type, list/payload, datum/ui_state/act_state)
 	if(QDELETED(src) || QDELETED(src_object))
 		return
+	// Akcja mogła czekać tick w kolejce, więc status sprawdzamy jeszcze raz
+	process_status()
+	if(status != UI_INTERACTIVE)
+		return
 	if(src_object.ui_act(act_type, payload, src, act_state))
 		SStgui.update_uis(src_object)
