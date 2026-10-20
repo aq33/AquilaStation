@@ -483,3 +483,9 @@
   - tweak: Domyślne FPS klienta podniesione do 60.
   - bugfix: Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę
       przed dojechaniem sprite'a.
+'2026-10-20':
+  Paradise:
+  - imageadd: APC, czujniki powietrza i alarmy pożarowe z Paradise, dopasowane do
+      ścian 3/4
+  - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
+      urządzenia z Paradise
