@@ -116,10 +116,10 @@
 	else
 		icon_state = "intercom-p"
 	cut_overlays()
-	if(listening)
-		add_overlay("intercom-mic")
+	if(listening) //AQUILA EDIT - SS220 overlays (aquila/icons/ss220/intercom.dmi)
+		add_overlay("intercom_s")
 	if(broadcasting)
-		add_overlay("intercom-bc")
+		add_overlay("intercom_m")
 
 /obj/item/radio/intercom/ui_act(action, params, datum/tgui/ui)
 	. = ..()

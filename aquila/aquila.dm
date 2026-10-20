@@ -934,6 +934,7 @@
 #include "code\modules\paradise_struktury\airlocks.dm"
 #include "code\modules\paradise_struktury\doors.dm"
 #include "code\modules\paradise_struktury\podlogi_bee.dm"
+#include "code\modules\paradise_urzadzenia\interkom.dm"
 #include "code\modules\paradise_urzadzenia\nascienne.dm"
 #include "code\modules\paradise_meble\tables.dm"
 #include "code\modules\paradise_struktury\webmap.dm"
