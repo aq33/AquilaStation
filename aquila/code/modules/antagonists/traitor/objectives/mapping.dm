@@ -1,17 +1,15 @@
-// AQUILA - traitor objective "station mapping": anchor a mapping scanner in a picked room of a department
-// and keep it there until the room scan is done. Pays a lot of aquilos once the scan finishes.
+// AQUILA - traitor objective "station mapping": scan 1 to 3 rooms of one department with a mapping scanner.
+// The scanner is anchored in a room and has to stay there until the scan is done, then it comes loose for the next room.
 
-/// How long the scanner has to stay anchored in the room
+/// How long the scanner has to stay anchored in a room
 #define MAPPING_SCAN_TIME (3 MINUTES)
-/// Aquilos paid to every owner when the scan finishes
-#define MAPPING_REWARD 1000
 /// How often a scanning device pings, so the crew can find it
 #define MAPPING_PING_INTERVAL (20 SECONDS)
 
 /datum/objective/plant_device/mapping
 	name = "mapowanie stacji"
 	device_type = /obj/item/traitor_device/mapper
-	/// Department name = room area types the target room is picked from
+	/// Department name = room area types the target rooms are picked from
 	var/static/list/departments = list(
 		"dowodzenie" = list(/area/bridge, /area/crew_quarters/heads/captain, /area/crew_quarters/heads/xo, /area/crew_quarters/heads/hop),
 		"medyczny" = list(/area/medical/medbay, /area/medical/surgery, /area/medical/chemistry, /area/crew_quarters/heads/cmo),
@@ -22,51 +20,58 @@
 		"zaopatrzenie" = list(/area/quartermaster/storage, /area/quartermaster/office, /area/quartermaster/qm),
 		"telekomunikacja" = list(/area/tcommsat/server, /area/tcommsat/computer),
 	)
-	/// Department the room belongs to
+	/// Department the rooms belong to
 	var/department_name
-	/// Ckeys that already got the reward
-	var/list/paid_ckeys = list()
+	/// Rooms that are already scanned
+	var/list/area/scanned_areas = list()
 
 /datum/objective/plant_device/mapping/pick_target_areas()
+	target_area_count = rand(1, 3)
 	var/list/shuffled = shuffle(departments.Copy())
 	for(var/name in shuffled)
 		var/list/rooms = get_station_areas_of_types(departments[name])
-		if(length(rooms))
-			department_name = name
-			target_areas = list(pick(rooms))
-			return TRUE
+		if(!length(rooms))
+			continue
+		department_name = name
+		target_areas = list()
+		while(length(rooms) && length(target_areas) < target_area_count)
+			target_areas += pick_n_take(rooms)
+		return TRUE
 	return FALSE
 
+/// Only rooms that still need a scan count
+/datum/objective/plant_device/mapping/is_target_area(area/A)
+	return (A in target_areas) && !(A in scanned_areas)
+
 /datum/objective/plant_device/mapping/target_area_names()
-	return "[..()] (dział: [department_name])"
+	var/list/names = list()
+	for(var/area/A as anything in target_areas)
+		names += (A in scanned_areas) ? "<s>[A.name]</s>" : A.name
+	return "[english_list(names)] (dział: [department_name])"
 
 /datum/objective/plant_device/mapping/update_explanation_text()
-	explanation_text = "Wywiad Syndykatu potrzebuje dokładnych planów statku. Zamocuj skaner kartograficzny w pomieszczeniu [target_area_names()] \
-		i nie pozwól go ruszyć, dopóki nie skończy skanu ([DisplayTimeText(MAPPING_SCAN_TIME)]). Skaner co jakiś czas cicho piszczy. \
-		Nagroda: [MAPPING_REWARD] [CONFIG_GET(string/metacurrency_name)]."
+	var/rooms = length(target_areas)
+	explanation_text = "Wywiad Syndykatu potrzebuje dokładnych planów statku. Zeskanuj skanerem kartograficznym [rooms == 1 ? "pomieszczenie" : "pomieszczenia"] \
+		[target_area_names()]. Skaner trzeba zamocować w pomieszczeniu i nie pozwolić go ruszyć, dopóki nie skończy skanu ([DisplayTimeText(MAPPING_SCAN_TIME)]); \
+		[rooms > 1 ? "potem sam się odczepi i możesz go przenieść do następnego. " : ""]Skaner co jakiś czas cicho piszczy."
 
 /datum/objective/plant_device/mapping/check_completion()
-	if(completed)
-		pay_owners() // owners that were offline when the scan finished
 	return completed
 
-/// The planted scanner finished: the objective is done for good, even if the scanner is gone later
-/datum/objective/plant_device/mapping/proc/scan_finished(obj/item/traitor_device/mapper/scanner)
-	completed = TRUE
+/// A room got scanned. The objective is done for good once every room is, even if the scanner is gone later.
+/datum/objective/plant_device/mapping/proc/room_scanned(area/scanned)
+	scanned_areas |= scanned
+	planted = FALSE
+	update_explanation_text()
+	var/left = length(target_areas - scanned_areas)
+	if(!left)
+		completed = TRUE
 	for(var/datum/mind/owner_mind as anything in get_owners())
-		to_chat(owner_mind.current, "<span class='greentext'>Skaner kartograficzny ukończył skan [target_area_names()]. Plany są już u Syndykatu.</span>")
-	pay_owners()
-
-/datum/objective/plant_device/mapping/proc/pay_owners()
-	for(var/datum/mind/owner_mind as anything in get_owners())
-		var/owner_ckey = ckey(owner_mind.key)
-		if(!owner_ckey || (owner_ckey in paid_ckeys))
-			continue
-		var/client/owner_client = GLOB.directory[owner_ckey]
-		if(!owner_client)
-			continue
-		paid_ckeys += owner_ckey
-		owner_client.inc_metabalance(MAPPING_REWARD, reason = "Ukończono mapowanie stacji dla Syndykatu!")
+		if(left)
+			to_chat(owner_mind.current, "<span class='notice'>Skaner kartograficzny ukończył skan: [scanned.name]. Zostało pomieszczeń: [left].</span>")
+		else
+			to_chat(owner_mind.current, "<span class='greentext'>Skaner kartograficzny ukończył ostatni skan. Plany są już u Syndykatu.</span>")
+	return !left
 
 /// Mapping scanner: planted like the other devices, then scans the room as long as it stays anchored there
 /obj/item/traitor_device/mapper
@@ -80,8 +85,6 @@
 	var/scan_started = 0
 	/// world.time of the next ping
 	var/next_ping = 0
-	/// TRUE once the scan finished
-	var/scan_done = FALSE
 
 /obj/item/traitor_device/mapper/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -95,7 +98,7 @@
 
 /obj/item/traitor_device/mapper/plant(mob/user)
 	..()
-	if(!planted || scan_done)
+	if(!planted)
 		return
 	scan_started = world.time
 	next_ping = world.time + MAPPING_PING_INTERVAL
@@ -103,31 +106,36 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/item/traitor_device/mapper/process(delta_time)
-	if(!anchored || !objective?.is_target_area(get_area(src)))
+	var/area/here = get_area(src)
+	if(!anchored || !objective?.is_target_area(here))
 		stop_scan()
+		visible_message("<span class='warning'>Czujnik [src] przestaje się obracać.</span>")
 		return
 	if(world.time >= next_ping)
 		next_ping = world.time + MAPPING_PING_INTERVAL
 		playsound(src, 'sound/machines/ping.ogg', 10, FALSE, -4)
 	if(world.time - scan_started < MAPPING_SCAN_TIME)
 		return
-	scan_done = TRUE
-	STOP_PROCESSING(SSobj, src)
-	var/datum/objective/plant_device/mapping/mapping = objective
+	stop_scan()
 	log_game("[src] finished scanning [AREACOORD(src)].")
-	do_sparks(2, FALSE, src)
-	visible_message("<span class='warning'>[src] krótko piszczy i rozpada się na kawałki!</span>")
-	if(istype(mapping))
-		mapping.scan_finished(src)
-	qdel(src)
+	var/datum/objective/plant_device/mapping/mapping = objective
+	if(!istype(mapping) || mapping.room_scanned(here))
+		do_sparks(2, FALSE, src)
+		visible_message("<span class='warning'>[src] krótko piszczy i rozpada się na kawałki!</span>")
+		qdel(src)
+		return
+	// more rooms to go: come loose so the traitor can carry it on
+	planted = FALSE
+	anchored = FALSE
+	alpha = initial(alpha)
+	layer = initial(layer)
+	visible_message("<span class='notice'>[src] piszczy dwa razy i odczepia zatrzaski.</span>")
 
-/// Taken off or moved out of the room: the scan starts over after planting again
+/// Taken off, moved out of the room or done: the next scan starts from zero
 /obj/item/traitor_device/mapper/proc/stop_scan()
 	STOP_PROCESSING(SSobj, src)
 	scan_started = 0
 	icon_state = initial(icon_state)
-	visible_message("<span class='warning'>Czujnik [src] przestaje się obracać.</span>")
 
 #undef MAPPING_SCAN_TIME
-#undef MAPPING_REWARD
 #undef MAPPING_PING_INTERVAL

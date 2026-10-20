@@ -79,4 +79,28 @@
 	for(var/phobia_type in SStraumas.phobia_types)
 		TEST_ASSERT(phobias[phobia_type], "SDSM-35 has no page for the [phobia_type] phobia")
 
+/// AQUILA - station mapping: 1 to 3 rooms, done only after the last one is scanned, no reward
+/datum/unit_test/aquila_mapping_objective
+
+/datum/unit_test/aquila_mapping_objective/Run()
+	var/datum/objective/plant_device/mapping/mapping = new
+	for(var/i in 1 to 20)
+		if(mapping.pick_target_areas())
+			TEST_ASSERT(length(mapping.target_areas) >= 1 && length(mapping.target_areas) <= 3, "Picked [length(mapping.target_areas)] rooms")
+	var/list/rooms = list()
+	for(var/area/A as anything in GLOB.sortedAreas)
+		rooms += A
+		if(length(rooms) == 2)
+			break
+	mapping.target_areas = rooms.Copy()
+	mapping.department_name = "test"
+	mapping.update_explanation_text()
+	TEST_ASSERT(mapping.is_target_area(rooms[1]), "Unscanned room is not a target")
+	TEST_ASSERT(!mapping.room_scanned(rooms[1]), "The objective finished after the first of two rooms")
+	TEST_ASSERT(!mapping.is_target_area(rooms[1]), "A scanned room is still a target")
+	TEST_ASSERT(!mapping.check_completion(), "The objective is complete with a room left")
+	TEST_ASSERT(mapping.room_scanned(rooms[2]), "The objective did not finish after the last room")
+	TEST_ASSERT(mapping.check_completion(), "The objective is not complete after every room was scanned")
+	qdel(mapping)
+
 #undef TEST_ASSERT

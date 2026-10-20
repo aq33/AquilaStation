@@ -26,8 +26,9 @@
 /datum/test_chamber_kit/pr_476_mapping
 	name = "PR 476: cel mapowania stacji"
 	pr = "aq33/AquilaStation#476"
-	description = "Robi z ciebie zdrajcę z celem mapowania komory (trzeba być człowiekiem w komorze). Użyj skanera w ręce, żeby go zamocować; \
-	skan trwa 3 minuty, skaner co 20 s cicho piszczy. Odczepienie ręką przerywa skan. Po skanie skaner się rozpada, cel jest wykonany i dostajesz 1000 aquilosów."
+	description = "Robi z ciebie zdrajcę z celem mapowania (trzeba być człowiekiem w komorze). Pomieszczenia to arena i, jeśli stoisz poza nią, część komory, w której stoisz. \
+	Użyj skanera w ręce, żeby go zamocować; skan trwa 3 minuty, skaner co 20 s cicho piszczy. Odczepienie ręką przerywa skan. \
+	Po skanie pierwszego pomieszczenia skaner sam się odczepia - przenieś go do drugiego. Po ostatnim się rozpada i cel jest wykonany."
 
 /datum/test_chamber_kit/pr_476_mapping/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/mob/living/carbon/human/H = user
@@ -43,6 +44,7 @@
 	mapping.owner = H.mind
 	mapping.department_name = "komora testowa"
 	mapping.target_areas = list(get_area(center))
+	mapping.target_areas |= get_area(H)
 	mapping.update_explanation_text()
 	mapping.give_device()
 	traitor.add_objective(mapping)

@@ -36,6 +36,7 @@
 					/datum/objective/steal/hdd = TRAITOR_OBJECTIVE_WEIGHT, // replaces the old research download
 					/datum/objective/steal/heirloom = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/tcomms_data = TRAITOR_OBJECTIVE_WEIGHT,
+					/datum/objective/plant_device/mapping = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/forged_manifest = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/steal_five_of_type/organs = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/steal_five_of_type/summon_guns/thief = TRAITOR_OBJECTIVE_WEIGHT,
@@ -49,7 +50,6 @@
 					/datum/objective/plant_device/bomb = kill_allowed ? TRAITOR_OBJECTIVE_WEIGHT : 0,
 					/datum/objective/plant_device/bug = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/plant_device/tide = TRAITOR_OBJECTIVE_WEIGHT,
-					/datum/objective/plant_device/mapping = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/poison_items = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/sabotage/power_sink = TRAITOR_OBJECTIVE_WEIGHT,
 					/datum/objective/sabotage/integrity = TRAITOR_OBJECTIVE_WEIGHT,
