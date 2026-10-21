@@ -38,6 +38,9 @@
 	..()
 	conflicts = typesof(/datum/mutation/hulk)
 
+/// Klucze orkowej mowy, które nie są samymi literami (np. "."), zamieniane są zwykłym replacetext
+GLOBAL_DATUM_INIT(ork_nonword_regex, /regex, regex("\[^A-Za-z' \]"))
+
 /datum/mutation/hulk/ork/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message)
@@ -47,8 +50,12 @@
 			var/value = ork_words[key]
 			if(islist(value))
 				value = pick(value)
-			message = replacetextEx(message, "[uppertext(key)]", "[uppertext(value)]")
-			message = replacetextEx(message, "[capitalize(key)]", "[capitalize(value)]")
+			// Słowa tylko w całości - inaczej krótkie klucze ("ce", "cat", "run") psułyby środek innych słów
+			if(!findtext(key, GLOB.ork_nonword_regex))
+				message = replacetextEx(message, regex("\\b[uppertext(key)]\\b", "g"), "[uppertext(value)]")
+				message = replacetextEx(message, regex("\\b[capitalize(key)]\\b", "g"), "[capitalize(value)]")
+				message = replacetextEx(message, regex("\\b[key]\\b", "g"), "[value]")
+				continue
 			message = replacetextEx(message, "[key]", "[value]")
 		speech_args[SPEECH_MESSAGE] = trim(message)
 	return ..()

@@ -13,7 +13,7 @@
 
 /datum/mutation/radproof/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.tox_mod *= 1.5
@@ -37,7 +37,7 @@
 
 /datum/mutation/thickskin/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.brute_mod *= 0.8
@@ -89,10 +89,10 @@
 
 /datum/mutation/densebones/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.armor.melee += 5
+		H.physiology.armor = H.physiology.armor.modifyRating(melee = 5)
 	update_hardly_wounded()
 
 /datum/mutation/densebones/modify()
@@ -104,7 +104,7 @@
 		return
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.armor.melee -= 5
+		H.physiology.armor = H.physiology.armor.modifyRating(melee = -5)
 	if(hardly_wounded)
 		REMOVE_TRAIT(owner, TRAIT_HARDLY_WOUNDED, GENETIC_MUTATION)
 		hardly_wounded = FALSE
@@ -127,7 +127,7 @@
 
 /datum/mutation/cerebral/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.stamina_mod *= 0.7
@@ -158,7 +158,7 @@
 
 /datum/mutation/sapblood/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.physiology.bleed_mod *= passive_bleed_modifier

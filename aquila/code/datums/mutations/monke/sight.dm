@@ -30,6 +30,8 @@
 	instability = 30
 	/// Ochrona przed błyskiem, jaką dostają organiczne oczy (FLASH_PROTECTION_FLASH w tg)
 	var/eye_flash_protect = 1
+	/// Oczy -> premia do flash_protect, którą faktycznie dodała mutacja
+	var/list/protected_eyes = list()
 
 /datum/mutation/flash_protection/on_acquiring(mob/living/carbon/owner)
 	if(..())
@@ -42,14 +44,24 @@
 	if(..())
 		return TRUE
 	UnregisterSignal(owner, list(COMSIG_CARBON_GAIN_ORGAN, COMSIG_CARBON_LOSE_ORGAN))
-	var/obj/item/organ/eyes/eyes = owner.getorganslot(ORGAN_SLOT_EYES)
-	if(eyes)
-		eyes.flash_protect = initial(eyes.flash_protect)
+	for(var/obj/item/organ/eyes/eyes as anything in protected_eyes.Copy())
+		unprotect_eyes(eyes)
 
 /datum/mutation/flash_protection/proc/protect_eyes(obj/item/organ/eyes/eyes)
-	if(!istype(eyes) || eyes.status == ORGAN_ROBOTIC)
+	if(!istype(eyes) || eyes.status == ORGAN_ROBOTIC || (eyes in protected_eyes))
 		return
-	eyes.flash_protect = max(eyes.flash_protect, eye_flash_protect)
+	var/bonus = max(0, eye_flash_protect - eyes.flash_protect)
+	if(!bonus)
+		return
+	eyes.flash_protect += bonus
+	protected_eyes[eyes] = bonus
+
+/// Zdejmuje dokładnie tę premię, którą dodała mutacja, bez ruszania innych zmian flash_protect
+/datum/mutation/flash_protection/proc/unprotect_eyes(obj/item/organ/eyes/eyes)
+	if(!(eyes in protected_eyes))
+		return
+	eyes.flash_protect -= protected_eyes[eyes]
+	protected_eyes -= eyes
 
 /datum/mutation/flash_protection/proc/eye_implanted(mob/living/source, obj/item/organ/gained)
 	SIGNAL_HANDLER
@@ -57,9 +69,7 @@
 
 /datum/mutation/flash_protection/proc/eye_removed(mob/living/source, obj/item/organ/removed)
 	SIGNAL_HANDLER
-	var/obj/item/organ/eyes/eyes = removed
-	if(istype(eyes))
-		eyes.flash_protect = initial(eyes.flash_protect)
+	unprotect_eyes(removed)
 
 /datum/client_colour/monochrome/monke_colorblind
 

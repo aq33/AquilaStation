@@ -60,7 +60,7 @@
 
 /datum/mutation/paraplegic/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	owner.update_disabled_bodyparts()
 
 /datum/mutation/paraplegic/on_losing(mob/living/carbon/owner)
@@ -79,7 +79,7 @@
 
 /datum/mutation/alien_voice/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/mutation/alien_voice/on_losing(mob/living/carbon/owner)
@@ -141,7 +141,7 @@
 
 /datum/mutation/darkcloak/on_acquiring(mob/living/carbon/owner)
 	if(..())
-		return
+		return TRUE
 	owner.alpha = CHAMELEON_MUTATION_DEFAULT_TRANSPARENCY
 
 /datum/mutation/darkcloak/on_life()
