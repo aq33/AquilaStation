@@ -1,4 +1,5 @@
 // AQUILA - wybór profesji przy dołączaniu w trakcie rundy (aquila/code/modules/mob/dead/new_player/latejoin_menu.dm)
+import { ComponentProps } from 'react';
 import {
   Box,
   Button,
@@ -67,9 +68,13 @@ const JobButton = (props: { job: JobInfo; status: JobStatus }) => {
             style={{ verticalAlign: 'middle' }}
           />
         </Stack.Item>
-        <Stack.Item grow bold={job.command}>
+        <Stack.Item
+          grow
+          bold={job.command}
+          color={status.unavailable ? undefined : 'white'}
+        >
           {job.title}
-          {status.prioritized && <Icon name="star" ml={0.5} />}
+          {!!status.prioritized && <Icon name="star" ml={0.5} />}
         </Stack.Item>
         <Stack.Item color={full ? 'bad' : 'label'}>
           {slotsText(status)}
@@ -78,6 +83,17 @@ const JobButton = (props: { job: JobInfo; status: JobStatus }) => {
     </Button>
   );
 };
+
+// Dark plate under the text, so every department colour reads well on the light section title bar
+const TitlePlate = (props: ComponentProps<typeof Box>) => (
+  <Box
+    inline
+    px={0.75}
+    backgroundColor="rgba(0, 0, 0, 0.75)"
+    style={{ borderRadius: '3px' }}
+    {...props}
+  />
+);
 
 const DepartmentSection = (props: { department: Department }) => {
   const { data } = useBackend<Data>();
@@ -93,11 +109,19 @@ const DepartmentSection = (props: { department: Department }) => {
       }}
     >
       <Section
-        title={<Box color={department.color}>{department.name}</Box>}
-        buttons={
-          <Box color="label" mt={0.5}>
-            otwarte: {open}
-          </Box>
+        title={
+          <Stack align="center">
+            <Stack.Item grow>
+              <TitlePlate color={department.color}>
+                {department.name}
+              </TitlePlate>
+            </Stack.Item>
+            <Stack.Item>
+              <TitlePlate color="label" fontSize="11px">
+                otwarte: {open}
+              </TitlePlate>
+            </Stack.Item>
+          </Stack>
         }
       >
         {jobs.length ? (
