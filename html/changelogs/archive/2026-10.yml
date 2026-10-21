@@ -494,3 +494,12 @@
       ścian 3/4
   - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
       urządzenia z Paradise
+'2026-10-21':
+  Joker66613:
+  - rscadd: 'Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity,
+      Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.'
+  - rscadd: Kołki (drewniane, utwardzane, srebrne), nowe trumny, stół do tortur, kandelabr,
+      tron krwi i flaszka czosnku.
+  - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
+  - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
+  - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.

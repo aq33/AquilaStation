@@ -238,6 +238,9 @@
 	return ..()
 
 /obj/item/clothing/neck/necklace/memento_mori/proc/memento(mob/living/carbon/human/user)
+	if(user.mind?.has_antag_datum(/datum/antagonist/vampire)) // AQ EDIT - wampir z Bee
+		to_chat(user, "<span class='warning'>Wisior wyczuwa twoją nieumarłą duszę i nie reaguje...</span>")
+		return
 	to_chat(user, "<span class='warning'>Czujesz, jak wisior wysysa z ciebie życie...</span>")
 	if(do_after(user, 40, target = user))
 		to_chat(user, "<span class='notice'>Twoja siła życiowa jest teraz połączona z wisiorem! Czujesz, że zdjęcie go by cię zabiło, a jednocześnie instynktownie wiesz, że do tego czasu nie umrzesz.</span>")

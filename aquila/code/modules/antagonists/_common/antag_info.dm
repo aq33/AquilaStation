@@ -27,6 +27,7 @@
 		"cult-comms.png" = 'aquila/html/img/cult-comms.png',
 		"cult-forge.gif" = 'aquila/html/img/cult-forge.gif',
 		"cult-pylon.gif" = 'aquila/html/img/cult-pylon.gif',
+		"vampire.png" = 'aquila/html/img/vampire.png',
 	)
 
 /// Button for antags to review their role description and objectives

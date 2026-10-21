@@ -6,14 +6,7 @@
 /datum/dictionary_entry/var/abstract_type
 /obj/item/plant_seeds/var/abstract_type
 
-/// Jak subtypesof, ale bez typów abstrakcyjnych (u Bee: code/__HELPERS/abstract_types.dm). Działa tylko dla typów z var/abstract_type.
-/proc/valid_subtypesof(datum/sometype)
-	. = list()
-	for(var/path in subtypesof(sometype))
-		var/datum/plant_trait/as_trait = path
-		if(initial(as_trait.abstract_type) == path)
-			continue
-		. += path
+// valid_subtypesof jest w aquila/code/modules/antagonists/vampire/_compat.dm (wspólny z wampirem)
 
 /// Bee nazywa reaction() expose(), argumenty i metody (TOUCH, INJECT...) są te same
 /datum/reagents/proc/expose(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, obj/item/bodypart/affecting)

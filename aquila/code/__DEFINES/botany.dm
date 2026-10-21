@@ -115,4 +115,3 @@
 #define TOOL_SEED "seed"
 #define FACTION_PLANTS "plants"
 #define COLOR_VIBRANT_LIME "#00FF00"
-#define pick_weight(L) pickweight(L)

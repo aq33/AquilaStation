@@ -455,7 +455,7 @@
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
-	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
+	if(M.mind?.has_antag_datum(/datum/antagonist/vampire)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit. // AQ EDIT - wampir z Bee
 		if(prob(min(25,current_cycle)))
 			to_chat(M, "<span class='danger'>Nie możesz pozbyć się zapachu czosnku z nosa! Ledwo możesz myśleć...</span>")
 			M.Paralyze(10)
