@@ -822,7 +822,7 @@
 #include "code\modules\test_chamber\kits\pr_474_resprite3.dm"
 #include "code\modules\test_chamber\kits\pr_478_exodrony.dm"
 #include "code\modules\test_chamber\kits\pr_472_wampir.dm"
-#include "code\modules\test_chamber\kits\pr_genetyka.dm"
+#include "code\modules\test_chamber\kits\pr_484_genetyka.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
