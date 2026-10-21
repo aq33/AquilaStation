@@ -86,7 +86,7 @@
 		owner.apply_overlay(layer_used)
 	grant_spell() //we do checks here so nothing about hulk getting magic
 	if(length(mutation_traits))
-		owner.add_traits(mutation_traits, GENETIC_MUTATION)
+		owner.add_traits(mutation_traits, REF(src)) // osobne źródło na mutację - dwie mutacje z tym samym traitem nie zdejmują go sobie
 	if(!modified && can_chromosome == CHROMOSOME_USED)
 		addtimer(CALLBACK(src, PROC_REF(modify), 5)) //gonna want children calling ..() to run first
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
@@ -125,7 +125,7 @@
 		if(action_power)
 			QDEL_NULL(action_power)
 		if(length(mutation_traits))
-			owner.remove_traits(mutation_traits, GENETIC_MUTATION)
+			owner.remove_traits(mutation_traits, REF(src))
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		return 0
 	return 1

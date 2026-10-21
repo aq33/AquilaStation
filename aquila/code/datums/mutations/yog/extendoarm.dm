@@ -129,6 +129,13 @@
 		setAngle(get_angle(src, firer))
 		next_homing_process = 0
 
+// Koniec zasięgu w drodze powrotnej: ręka wraca do właściciela, zamiast spaść gdzieś po drodze
+/obj/item/projectile/extendo_arm/on_range()
+	if(returning && firer && !QDELETED(firer))
+		return_to_owner()
+		return
+	return ..()
+
 /obj/item/projectile/extendo_arm/proc/return_to_owner()
 	var/mob/living/carbon/user = firer
 	if(arm && istype(user) && !QDELETED(user))
