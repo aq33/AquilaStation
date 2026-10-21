@@ -51,11 +51,12 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if(isReadytoRumble(applicant, ROLE_VAMPIRE, /datum/role_preference/antagonist/vampire))
-			if(!(applicant.job in temp.restricted_jobs) && !is_vampire(applicant))
+			if(!(applicant.job in temp.restricted_jobs) && !IS_VAMPIRE(applicant))
 				candidates += applicant
 	if(!LAZYLEN(candidates))
 		return FALSE
-	return add_vampire(pick(candidates)) ? TRUE : FALSE
+	var/mob/living/carbon/human/chosen = pick(candidates)
+	return chosen.mind.add_antag_datum(/datum/antagonist/vampire) ? TRUE : FALSE
 
 /// AQUILA - port BeeStation/BeeStation-Hornet#11415: admin tworzący ERT może pojawić się jako oficer odprawy w wybranym stroju
 /datum/admins/proc/spawn_briefing_officer(mob/user, turf/spawnloc)
