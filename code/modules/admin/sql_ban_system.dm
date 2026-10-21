@@ -20,6 +20,7 @@
 	if(!player_ckey || isnull(roles) || (islist(roles) && !length(roles)))
 		return
 	player_ckey = ckey(player_ckey)
+	roles = add_renamed_job_titles(roles) // AQUILA EDIT - ban na Żandarma obowiązuje Policjanta
 	var/client/C = GLOB.directory[player_ckey]
 	if(C)
 		if(!C.ban_cache)

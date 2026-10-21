@@ -180,7 +180,7 @@
 // Security
 #define JOB_NAME_HEADOFSECURITY "Komendant"
 #define JOB_NAME_WARDEN "Naczelnik"
-#define JOB_NAME_SECURITYOFFICER "Żandarm" //NSV13 - MPs
+#define JOB_NAME_SECURITYOFFICER "Policjant" //NSV13 - MPs
 #define JOB_NAME_DETECTIVE "Detektyw"
 #define JOB_NAME_DEPUTY  "Aspirant"
 

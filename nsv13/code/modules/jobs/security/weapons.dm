@@ -95,7 +95,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/glock/security/hos
 	name = "Winona"
-	desc = "Niewielki pistolet samopowtarzalny kalibru 9mm, ten model został wykonany na zlecenie Komendanta Żandarmerii. Usprawniona konstrukcja broni pozwala na strzelanie z jednej ręki zachowując perfekcyjną precyzję!."
+	desc = "Niewielki pistolet samopowtarzalny kalibru 9mm, ten model został wykonany na zlecenie Komendanta Policji. Usprawniona konstrukcja broni pozwala na strzelanie z jednej ręki zachowując perfekcyjną precyzję!."
 	icon_state = "commandglock"
 	full_auto = TRUE
 	requires_wielding = FALSE //While the HoS's upgraded energy gun gets a ion setting, Winona gets to fire with one hand without decreased accuracy.

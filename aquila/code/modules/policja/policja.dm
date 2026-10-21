@@ -141,3 +141,32 @@ GLOBAL_LIST_INIT(policja_closet_states, list("sec", "warden", "hos", "armory", "
 
 /obj/item/stack/tile/carpet/police/fifty
 	amount = 50
+
+/****************************\
+|***** zmiana nazwy roli *****|
+\****************************/
+/// Stary tytuł => nowy. Preferencje, czas gry i bany w bazie są zapisane po tytule roli, więc stare wpisy przenosimy przy odczycie.
+GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER))
+
+/// Przenosi wpisy starych tytułów na nowe. sum_values sumuje (czas gry), inaczej nowy wpis wygrywa (priorytet w preferencjach).
+/proc/migrate_renamed_job_titles(list/entries, sum_values = FALSE)
+	if(!islist(entries))
+		return
+	for(var/old_title in GLOB.renamed_job_titles)
+		if(!(old_title in entries))
+			continue
+		var/new_title = GLOB.renamed_job_titles[old_title]
+		if(sum_values)
+			entries[new_title] = text2num(entries[new_title]) + text2num(entries[old_title])
+		else if(!entries[new_title])
+			entries[new_title] = entries[old_title]
+		entries -= old_title
+
+/// Ban na stary tytuł obowiązuje też na nowy
+/proc/add_renamed_job_titles(roles)
+	var/list/result = list()
+	result += roles
+	for(var/old_title in GLOB.renamed_job_titles)
+		if((GLOB.renamed_job_titles[old_title] in result) && !(old_title in result))
+			result += old_title
+	return result
