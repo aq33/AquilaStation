@@ -123,14 +123,14 @@
 	name = "Skrzynia z krzewami"
 	desc = "Skrzynia pełna roślin ozdobnych."
 	cost = 1000
-	contains = list(/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random,
-					/obj/item/kirbyplants/random)
+	contains = list(/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random,
+					/obj/item/plant_tray/pot/random)
 	crate_name = "skrzynia z krzewami"
 
 /datum/asset/simple/adventure
