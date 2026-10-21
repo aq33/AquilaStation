@@ -29,11 +29,13 @@
 		return
 
 	// AQUILA EDIT - panel gracza w TGUI (okno "AdminPlayerPanel") zamiast HTML
+	// Wołane jako verb src jest klientem, nie /datum/admins, więc listę okien bierzemy z holdera
+	var/datum/admins/holder = usr.client.holder
 	var/panel_key = REF(M)
-	var/datum/admin_player_panel/panel = LAZYACCESS(player_option_panels, panel_key)
+	var/datum/admin_player_panel/panel = LAZYACCESS(holder.player_option_panels, panel_key)
 	if(!panel)
-		panel = new(src, M)
-		LAZYSET(player_option_panels, panel_key, panel)
+		panel = new(holder, M)
+		LAZYSET(holder.player_option_panels, panel_key, panel)
 	panel.refresh_db_values()
 	panel.ui_interact(usr)
 
@@ -631,7 +633,8 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	var/search = trim("[object]")
 	var/list/matches = length(search) ? filter_fancy_list(get_fancy_list_of_atom_types(), search) : list()
 	if(length(matches) != 1)
-		open_spawn_menu(usr, search)
+		// Wołane jako verb src jest klientem, nie /datum/admins
+		usr.client.holder.open_spawn_menu(usr, search)
 		return
 	var/chosen = matches[matches[1]]
 	if(!chosen)
