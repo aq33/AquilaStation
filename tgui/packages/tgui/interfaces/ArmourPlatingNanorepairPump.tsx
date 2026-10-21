@@ -83,12 +83,13 @@ export const ArmourPlatingNanorepairPump = (props) => {
         </Section>
         <Section title="System Resources Allocated to Armour:">
           <Slider
+            tickWhileDragging
             value={data.armour_allocation}
             minValue={0}
             maxValue={100}
             step={1}
             stepPixelSize={5}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('armour_allocation', {
                 adjust: value,
               })
@@ -97,12 +98,13 @@ export const ArmourPlatingNanorepairPump = (props) => {
         </Section>
         <Section title="System Resources Allocated to Internal Structure:">
           <Slider
+            tickWhileDragging
             value={data.structure_allocation}
             minValue={0}
             maxValue={100}
             step={1}
             stepPixelSize={5}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('structure_allocation', {
                 adjust: value,
               })

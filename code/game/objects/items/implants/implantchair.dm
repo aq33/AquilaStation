@@ -34,7 +34,7 @@
 /obj/machinery/implantchair/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "implantchair")
+		ui = new(user, src, "ImplantChair")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -176,7 +176,7 @@
 /obj/machinery/implantchair/brainwash
 	name = "Neural Imprinter"
 	desc = "Used to <s>indoctrinate</s> rehabilitate hardened recidivists."
-	special_name = "Imprint"
+	special_name = "Wdrukuj"
 	injection_cooldown = 3000
 	auto_inject = FALSE
 	auto_replenish = FALSE

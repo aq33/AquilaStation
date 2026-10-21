@@ -37,97 +37,64 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	GLOB.cryopod_computers -= src
 	..()
 
-/obj/machinery/computer/cryopod/attack_ai()
-	attack_hand()
-
-/obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
+/obj/machinery/computer/cryopod/ui_interact(mob/user, datum/tgui/ui)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CryopodConsole", name)
+		ui.open()
 
-	user.set_machine(src)
-	add_fingerprint(user)
-
-	var/dat
-
-	dat += "<hr/><br/><b>[storage_name]</b><br/>"
-	dat += "<i>Welcome, [user.real_name].</i><br/><br/><hr/>"
-	dat += "<a href='byond://?src=[REF(src)];log=1'>Pokaż log przechowywania</a>.<br>"
+/obj/machinery/computer/cryopod/ui_data(mob/user)
+	var/list/data = list()
+	data["storage_name"] = storage_name
+	data["storage_type"] = storage_type
+	data["user_name"] = user.real_name
+	data["allow_items"] = allow_items
+	data["frozen_crew"] = frozen_crew.Copy()
+	var/list/items = list()
 	if(allow_items)
-		dat += "<a href='byond://?src=[REF(src)];view=1'>Pokaż przedmioty</a>.<br>"
-		dat += "<a href='byond://?src=[REF(src)];item=1'>Odzyskaj przedmiot</a>.<br>"
-		dat += "<a href='byond://?src=[REF(src)];allitems=1'>Odzyskaj wszystkie przedmioty</a>.<br>"
+		for(var/obj/item/I in frozen_items)
+			items += list(list("name" = I.name, "ref" = REF(I)))
+	data["frozen_items"] = items
+	return data
 
-	user << browse(HTML_SKELETON(dat), "window=cryopod_console")
-	onclose(user, "cryopod_console")
-
-/obj/machinery/computer/cryopod/Topic(href, href_list)
-	if(..())
-		return 1
-
+/obj/machinery/computer/cryopod/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 	var/mob/user = usr
-
 	add_fingerprint(user)
-
-	if(href_list["log"])
-
-		var/dat = "<b>Ostatnio przechowane: [storage_type]</b><br/><hr/><br/>"
-		for(var/person in frozen_crew)
-			dat += "[person]<br/>"
-		dat += "<hr/>"
-
-		user << browse(HTML_SKELETON(dat), "window=cryolog")
-
-	if(href_list["view"])
-		if(!allow_items) return
-
-		var/dat = "<b>Ostatnio przechowane przedmioty</b><br/><hr/><br/>"
-		for(var/obj/item/I in frozen_items)
-			dat += "[I.name]<br/>"
-		dat += "<hr/>"
-
-		user << browse(HTML_SKELETON(dat), "window=cryoitems")
-
-	else if(href_list["item"])
-		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Odmowa dostępu.</span>")
-			return
-		if(!allow_items) return
-
-		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>W magazynie nie ma nic do odzyskania.</span>")
-			return
-
-		var/obj/item/I = input(user, "Wybierz przedmiot do odzyskania.","Odzyskiwanie przedmiotu",null) as null|anything in frozen_items
-		if(!I)
-			return
-
-		if(!(I in frozen_items))
-			to_chat(user, "<span class='notice'>[I] nie jest już w magazynie.</span>")
-			return
-
-		visible_message("<span class='notice'>Konsola radośnie pika, wypluwając [I].</span>")
-
-		I.forceMove(get_turf(src))
-		frozen_items -= I
-
-	else if(href_list["allitems"])
-		if(!allowed(user))
-			to_chat(user, "<span class='warning'>Odmowa dostępu.</span>")
-			return
-		if(!allow_items) return
-
-		if(frozen_items.len == 0)
-			to_chat(user, "<span class='notice'>W magazynie nie ma nic do odzyskania.</span>")
-			return
-
-		visible_message("<span class='notice'>Konsola radośnie pika, wypluwając wybrane przedmioty.</span>")
-
-		for(var/obj/item/I in frozen_items)
+	switch(action)
+		if("item")
+			if(!allowed(user))
+				to_chat(user, "<span class='warning'>Odmowa dostępu.</span>")
+				return
+			if(!allow_items)
+				return
+			var/obj/item/I = locate(params["ref"]) in frozen_items
+			if(!I)
+				to_chat(user, "<span class='notice'>Tego przedmiotu nie ma już w magazynie.</span>")
+				return TRUE
+			visible_message("<span class='notice'>Konsola radośnie pika, wypluwając [I].</span>")
 			I.forceMove(get_turf(src))
 			frozen_items -= I
+			return TRUE
+		if("allitems")
+			if(!allowed(user))
+				to_chat(user, "<span class='warning'>Odmowa dostępu.</span>")
+				return
+			if(!allow_items)
+				return
+			if(!length(frozen_items))
+				to_chat(user, "<span class='notice'>W magazynie nie ma nic do odzyskania.</span>")
+				return
+			visible_message("<span class='notice'>Konsola radośnie pika, wypluwając wybrane przedmioty.</span>")
+			for(var/obj/item/I in frozen_items)
+				I.forceMove(get_turf(src))
+				frozen_items -= I
+			return TRUE
 
-	updateUsrDialog()
-	return
 /* Should more cryos be buildable?
     /obj/item/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"

@@ -167,7 +167,7 @@
 	.["isActive"] = on
 	.["upgradeLevel"] = heater_coefficient * 10
 	var/obj/item/held_item = user.get_active_held_item()
-	.["hasBeakerInHand"] = istype(held_item, /obj/item/reagent_containers) && held_item.is_open_container()
+	.["hasBeakerInHand"] = istype(held_item, /obj/item/reagent_containers) && !(held_item.item_flags & ABSTRACT) && held_item.is_open_container()
 
 	var/list/beaker_data = null
 	var/chem_temp = 0

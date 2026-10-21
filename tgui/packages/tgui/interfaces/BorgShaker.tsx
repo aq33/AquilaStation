@@ -3,14 +3,6 @@ import { Button, NoticeBox, Section } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = {
-  alcohols: any;
-  minVolume: any;
-  selectedReagent: any;
-  sodas: any;
-  theme: any;
-};
-
 type BorgShakerContext = {
   minVolume: number;
   theme: string;
@@ -22,12 +14,11 @@ type BorgShakerContext = {
 type Reagent = {
   name: string;
   volume: number;
-  description: string;
 };
 
 export const BorgShaker = (props) => {
   const { data } = useBackend<BorgShakerContext>();
-  const { theme, minVolume, sodas, alcohols, selectedReagent } = data;
+  const { theme, minVolume, sodas = [], alcohols = [], selectedReagent } = data;
 
   const dynamicHeight =
     Math.ceil(sodas.length / 4) * 23 +
@@ -37,14 +28,14 @@ export const BorgShaker = (props) => {
   return (
     <Window width={650} height={dynamicHeight} theme={theme}>
       <Window.Content>
-        <Section title={'Non-Alcoholic'}>
+        <Section title="Bezalkoholowe">
           <ReagentDisplay
             reagents={sodas}
             selected={selectedReagent}
             minimum={minVolume}
           />
         </Section>
-        <Section title={'Alcoholic'}>
+        <Section title="Alkoholowe">
           <ReagentDisplay
             reagents={alcohols}
             selected={selectedReagent}
@@ -56,22 +47,29 @@ export const BorgShaker = (props) => {
   );
 };
 
-const ReagentDisplay = (props) => {
-  const { act } = useBackend<Data>();
+type ReagentDisplayProps = {
+  reagents: Reagent[];
+  selected: string;
+  minimum: number;
+};
+
+const ReagentDisplay = (props: ReagentDisplayProps) => {
+  const { act } = useBackend();
   const { reagents, selected, minimum } = props;
   if (reagents.length === 0) {
-    return <NoticeBox>No reagents available!</NoticeBox>;
+    return <NoticeBox>Brak dostępnych odczynników!</NoticeBox>;
   }
   return reagents.map((reagent) => (
     <Button
-      key={reagent.id}
+      key={reagent.name}
       icon="tint"
       width="150px"
       lineHeight={1.75}
-      content={reagent.name}
       color={reagent.name === selected ? 'green' : 'default'}
       disabled={reagent.volume < minimum}
       onClick={() => act(reagent.name)}
-    />
+    >
+      {reagent.name}
+    </Button>
   ));
 };

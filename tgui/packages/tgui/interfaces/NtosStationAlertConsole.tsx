@@ -1,9 +1,9 @@
 import { NtosWindow } from '../layouts';
 import { StationAlertConsoleContent } from './StationAlertConsole';
 
-export const NtosStationAlertConsole = () => {
+export const NtosStationAlertConsole = (props) => {
   return (
-    <NtosWindow width={315} height={500}>
+    <NtosWindow width={335} height={587}>
       <NtosWindow.Content scrollable>
         <StationAlertConsoleContent />
       </NtosWindow.Content>

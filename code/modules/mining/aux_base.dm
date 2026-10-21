@@ -23,6 +23,10 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 	req_one_access = list(ACCESS_AUX_BASE, ACCESS_HEADS)
 	var/possible_destinations
+	/// AQUILA: id wybranego celu (okno TGUI)
+	var/destination
+	/// AQUILA: czy zrzut na ślepo jest jeszcze dostępny
+	var/blind_drop_ready = TRUE
 	clockwork = TRUE
 	circuit = /obj/item/circuitboard/computer/auxillary_base
 
@@ -30,99 +34,143 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 	. = ..()
 	AddComponent(/datum/component/gps, "NT_AUX")
 
-/obj/machinery/computer/auxillary_base/ui_interact(mob/user)
-	. = ..()
+/obj/machinery/computer/auxillary_base/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AuxBaseConsole", name)
+		ui.open()
+
+/obj/machinery/computer/auxillary_base/ui_data(mob/user)
+	var/list/data = list()
 	var/list/options = params2list(possible_destinations)
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "[is_station_level(z) ? "Docking clamps engaged. Standing by." : "Mining Shuttle Uplink: [M ? M.getStatusText() : "*OFFLINE*"]"]<br>"
-	if(M)
-		var/destination_found
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
-				continue
-			if(!M.check_dock(S, silent=TRUE))
-				continue
-			destination_found = 1
-			dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>Wyślij do [S.name]</A><br>"
-		if(!destination_found && is_station_level(z)) //Only available if miners are lazy and did not set an LZ using the remote.
-			dat += "<A href='byond://?src=[REF(src)];random=1'>Przygotować zrzut na ślepo? (niebezpieczne)</A><br>"
-	if(LAZYLEN(turrets))
-		dat += "<br><b>System obrony obwodowej:</b> <A href='byond://?src=[REF(src)];turrets_power=on'>Włącz wszystkie</A> / <A href='byond://?src=[REF(src)];turrets_power=off'>Wyłącz wszystkie</A><br>Podłączone jednostki: [LAZYLEN(turrets)]<br>Jednostka | Stan | Status | Kierunek | Odległość<br>"
-		for(var/PDT in turrets)
-			var/obj/machinery/porta_turret/aux_base/T = PDT
-			var/integrity = max((T.obj_integrity-T.integrity_failure)/(T.max_integrity-T.integrity_failure)*100, 0)
-			var/status
-			if(T.machine_stat & BROKEN)
-				status = "<span class='bad'>ERROR</span>"
-			else if(!T.on)
-				status = "Disabled"
-			else if(T.raised)
-				status = "<span class='average'><b>Firing</b></span>"
-			else
-				status = "<span class='good'>Wszystko w porządku</span>"
-			dat += "[T.name] | [integrity]% | [status] | [dir2text(get_dir(src, T))] | [get_dist(src, T)] m <A href='byond://?src=[REF(src)];single_turret_power=[REF(T)]'>Przełącz zasilanie</A><br>"
+	data["type"] = shuttleId == "colony_drop" ? "base" : "shuttle"
+	data["docked_location"] = M ? M.getStatusText() : null
+	data["locations"] = list()
+	data["locked"] = FALSE
+	data["timer_str"] = M ? M.getTimerStr() : "00:00"
+	data["destination"] = destination
+	//Zrzut na ślepo tylko ze stacji, dopóki górnicy nie wyznaczyli strefy lądowania
+	data["blind_drop"] = blind_drop_ready && is_station_level(z) && !possible_destinations
+	data["turrets"] = list()
+	for(var/obj/machinery/porta_turret/aux_base/T as anything in turrets)
+		if(QDELETED(T))
+			turrets -= T
+			continue
+		var/integrity = max((T.obj_integrity-T.integrity_failure)/(T.max_integrity-T.integrity_failure)*100, 0)
+		var/status
+		if(T.machine_stat & BROKEN)
+			status = "ERROR"
+		else if(!T.on)
+			status = "Disabled"
+		else if(T.raised)
+			status = "Firing"
+		else
+			status = "All Clear"
+		data["turrets"] += list(list(
+			"name" = T.name,
+			"integrity" = round(integrity),
+			"status" = status,
+			"direction" = dir2text(get_dir(src, T)),
+			"distance" = get_dist(src, T),
+			"ref" = REF(T),
+		))
+	if(!M)
+		data["status"] = "Missing"
+		return data
+	switch(M.mode)
+		if(SHUTTLE_IGNITING)
+			data["status"] = "Igniting"
+		if(SHUTTLE_IDLE)
+			data["status"] = "Idle"
+		if(SHUTTLE_RECHARGING)
+			data["status"] = "Recharging"
+		else
+			data["status"] = "In Transit"
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!options.Find(S.id))
+			continue
+		if(!M.check_dock(S, silent=TRUE))
+			continue
+		data["locations"] += list(list("id" = S.id, "name" = S.name))
+	if(length(data["locations"]) == 1)
+		var/list/only_location = data["locations"][1]
+		destination = only_location["id"]
+		data["destination"] = destination
+	if(!length(data["locations"]))
+		data["locked"] = TRUE
+		data["status"] = "Locked"
+	return data
 
-
-	dat += "<a href='byond://?src=[REF(user)];mach_close=computer'>Close</a>"
-
-	var/datum/browser/popup = new(user, "computer", "base management", 550, 300) //width, height
-	popup.set_content("<center>[dat]</center>")
-	popup.open()
-
-
-/obj/machinery/computer/auxillary_base/Topic(href, href_list)
-	if(..())
+/obj/machinery/computer/auxillary_base/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	usr.set_machine(src)
-	add_fingerprint(usr)
 	if(!allowed(usr))
 		to_chat(usr, "<span class='danger'>Odmowa dostępu.</span>")
 		return
 
-	if(href_list["move"])
-		if(!is_station_level(z) && shuttleId == "colony_drop")
-			to_chat(usr, "<span class='warning'>Nie możesz ponownie przenieść bazy!</span>")
-			return
-		var/shuttle_error = SSshuttle.moveShuttle(shuttleId, href_list["move"], 1)
-		if(launch_warning)
-			say("<span class='danger'>Sekwencja startowa aktywowana! Przygotować się do zrzutu!!</span>")
-			playsound(loc, 'sound/machines/warning-buzzer.ogg', 70, 0)
-			launch_warning = FALSE
-		else if(!shuttle_error)
-			say("Żądanie promu wysłane. Proszę odsunąć się od drzwi.")
-		else
-			say("Błąd interfejsu promu.")
+	switch(action)
+		if("move")
+			if(!is_station_level(z) && shuttleId == "colony_drop")
+				to_chat(usr, "<span class='warning'>Nie możesz ponownie przenieść bazy!</span>")
+				return
+			var/target = params["shuttle_id"]
+			if(!target || !(target in params2list(possible_destinations)))
+				return
+			var/shuttle_error = SSshuttle.moveShuttle(shuttleId, target, 1)
+			if(launch_warning)
+				say("<span class='danger'>Sekwencja startowa aktywowana! Przygotować się do zrzutu!!</span>")
+				playsound(loc, 'sound/machines/warning-buzzer.ogg', 70, 0)
+				launch_warning = FALSE
+				blind_drop_ready = FALSE
+			else if(!shuttle_error)
+				say("Żądanie promu wysłane. Proszę odsunąć się od drzwi.")
+			else
+				say("Błąd interfejsu promu.")
+			return TRUE
 
-	if(href_list["random"] && !possible_destinations)
-		usr.changeNext_move(CLICK_CD_RAPID) //Anti-spam
-		var/list/all_mining_turfs = list()
-		for (var/z_level in SSmapping.levels_by_trait(ZTRAIT_MINING))
-			all_mining_turfs += Z_TURFS(z_level)
-		var/turf/LZ = safepick(all_mining_turfs) //Pick a random mining Z-level turf
-		if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid))
-		//Find a suitable mining turf. Reduces chance of landing in a bad area
-			to_chat(usr, "<span class='warning'>Skan strefy lądowania nieudany. Spróbuj ponownie.</span>")
-			updateUsrDialog()
-			return
-		if(set_landing_zone(LZ, usr) != ZONE_SET)
-			to_chat(usr, "<span class='warning'>Strefa lądowania nie nadaje się. Przelicz ponownie.</span>")
-			updateUsrDialog()
-			return
+		if("random")
+			if(possible_destinations || !blind_drop_ready)
+				return
+			usr.changeNext_move(CLICK_CD_RAPID) //Anti-spam
+			var/list/all_mining_turfs = list()
+			for (var/z_level in SSmapping.levels_by_trait(ZTRAIT_MINING))
+				all_mining_turfs += Z_TURFS(z_level)
+			var/turf/LZ = safepick(all_mining_turfs) //Pick a random mining Z-level turf
+			if(!ismineralturf(LZ) && !istype(LZ, /turf/open/floor/plating/asteroid))
+			//Find a suitable mining turf. Reduces chance of landing in a bad area
+				to_chat(usr, "<span class='warning'>Skan strefy lądowania nieudany. Spróbuj ponownie.</span>")
+				return
+			if(set_landing_zone(LZ, usr) != ZONE_SET)
+				to_chat(usr, "<span class='warning'>Strefa lądowania nie nadaje się. Przelicz ponownie.</span>")
+				return
+			blind_drop_ready = FALSE
+			return TRUE
 
+		if("set_destination")
+			var/target_destination = params["destination"]
+			if(!target_destination || !(target_destination in params2list(possible_destinations)))
+				return
+			destination = target_destination
+			return TRUE
 
-	if(LAZYLEN(turrets))
-		if(href_list["turrets_power"])
+		if("turrets_power")
+			//Jeśli choć jedna działa, wyłączamy wszystkie; inaczej włączamy wszystkie
+			var/any_on = FALSE
 			for(var/obj/machinery/porta_turret/aux_base/T in turrets)
-				if(href_list["turrets_power"] == "on")
-					T.on = TRUE
-				else
-					T.on = FALSE
-		if(href_list["single_turret_power"])
-			var/obj/machinery/porta_turret/aux_base/T = locate(href_list["single_turret_power"]) in turrets
+				if(T.on)
+					any_on = TRUE
+					break
+			for(var/obj/machinery/porta_turret/aux_base/T in turrets)
+				T.on = !any_on
+			return TRUE
+
+		if("single_turret_power")
+			var/obj/machinery/porta_turret/aux_base/T = locate(params["single_turret_power"]) in turrets
 			if(istype(T))
 				T.on = !T.on
-
-	updateUsrDialog()
+			return TRUE
 
 /obj/machinery/computer/auxillary_base/proc/set_mining_mode()
 	if(is_mining_level(z)) //The console switches to controlling the mining shuttle once landed.

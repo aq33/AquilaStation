@@ -1,28 +1,12 @@
-@use 'sass:color';
-@use '../base.scss';
-@use '../functions.scss' as *;
-@use './Layout.scss';
-
+// Aquila: popup windows (e.g. chat popups), styled from the theme's CSS variables.
 .PopupWindow {
-  color: base.$color-fg;
-  background-color: base.$color-bg;
+  color: var(--color-text);
+  background-color: var(--color-base);
   background-image: linear-gradient(
     to bottom,
-    base.$color-bg-start 0%,
-    base.$color-bg-end 100%
+    var(--color-base-start) 0%,
+    var(--color-base-end) 100%
   );
-  @include Layout.fancy-scrollbar(
-    base.$color-bg,
-    Layout.$scrollbar-color-multiplier
-  ); // Fancy scrollbar (IE11)
-  border: 1px solid color.adjust(base.$color-bg, $lightness: 7%);
+  border: 1px solid hsl(from var(--color-base) h s calc(l + 7));
   box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.5);
-}
-
-// Fancy scrollbar (IE11)
-.PopupWindow * {
-  @include Layout.fancy-scrollbar(
-    base.$color-bg,
-    Layout.$scrollbar-color-multiplier
-  );
 }

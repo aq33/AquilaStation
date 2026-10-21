@@ -284,79 +284,61 @@
 /obj/machinery/power/am_control_unit/proc/reset_stored_core_stability_delay()
 	stored_core_stability_delay = 0
 
-/obj/machinery/power/am_control_unit/ui_interact(mob/user)
+/obj/machinery/power/am_control_unit/ui_interact(mob/user, datum/tgui/ui)
+	if(machine_stat & (BROKEN|NOPOWER))
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AntimatterControl", name)
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/obj/machinery/power/am_control_unit/ui_data(mob/user)
+	var/list/data = list()
+	data["active"] = active
+	data["stability"] = stability
+	data["shielding"] = length(linked_shielding)
+	data["cores"] = length(linked_cores)
+	data["efficiency"] = reported_core_efficiency
+	data["core_stability"] = stored_core_stability
+	data["stored_power"] = display_power(stored_power)
+	data["has_jar"] = !!fueljar
+	data["fuel"] = fueljar?.fuel
+	data["fuel_max"] = fueljar?.fuel_max
+	data["fuel_injection"] = fuel_injection
+	return data
+
+/obj/machinery/power/am_control_unit/ui_act(action, list/params)
 	. = ..()
-	if((get_dist(src, user) > 1) || (machine_stat & (BROKEN|NOPOWER)))
-		if(!isAI(user))
-			user.unset_machine()
-			user << browse(null, "window=AMcontrol")
-			return
-
-	var/dat = ""
-	dat += "Panel sterowania antymaterią<BR>"
-	dat += "<A href='byond://?src=[REF(src)];close=1'>Close</A><BR>"
-	dat += "<A href='byond://?src=[REF(src)];refresh=1'>Refresh</A><BR>"
-	dat += "<A href='byond://?src=[REF(src)];refreshicons=1'>Wymuś aktualizację osłon</A><BR><BR>"
-	dat += "Status: [(active?"Injecting":"Standby")] <BR>"
-	dat += "<A href='byond://?src=[REF(src)];togglestatus=1'>Przełącz stan</A><BR>"
-
-	dat += "Stability: [stability]%<BR>"
-	dat += "Części reaktora: [linked_shielding.len]<BR>"//TODO: perhaps add some sort of stability check
-	dat += "Cores: [linked_cores.len]<BR><BR>"
-	dat += "-Obecna wydajność: [reported_core_efficiency]<BR>"
-	dat += "-Średnia stabilność: [stored_core_stability] <A href='byond://?src=[REF(src)];refreshstability=1'>(odśwież)</A><BR>"
-	dat += "Ostatnio wytworzono: [display_power(stored_power)]<BR>"
-
-	dat += "Fuel: "
-	if(!fueljar)
-		dat += "<BR>Nie wykryto pojemnika na paliwo."
-	else
-		dat += "<A href='byond://?src=[REF(src)];ejectjar=1'>Eject</A><BR>"
-		dat += "- [fueljar.fuel]/[fueljar.fuel_max] Units<BR>"
-
-		dat += "- Wtrysk: [fuel_injection] j.<BR>"
-		dat += "- <A href='byond://?src=[REF(src)];strengthdown=1'>--</A>|<A href='byond://?src=[REF(src)];strengthup=1'>++</A><BR><BR>"
-
-
-	user << browse(dat, "window=AMcontrol;size=420x500")
-	onclose(user, "AMcontrol")
-	return
-
-
-/obj/machinery/power/am_control_unit/Topic(href, href_list)
-	if(..())
+	if(.)
+		return
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(href_list["close"])
-		usr << browse(null, "window=AMcontrol")
-		usr.unset_machine()
-		return
-
-	if(href_list["togglestatus"])
-		toggle_power()
-
-	if(href_list["refreshicons"])
-		update_shield_icons = 1
-
-	if(href_list["ejectjar"])
-		if(fueljar)
-			fueljar.forceMove(drop_location())
-			fueljar = null
-			//fueljar.control_unit = null currently it does not care where it is
-			//update_icon() when we have the icon for it
-
-	if(href_list["strengthup"])
-		fuel_injection++
-		investigate_log("increased to [fuel_injection] by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
-
-	if(href_list["strengthdown"])
-		fuel_injection--
-		if(fuel_injection < 0)
-			fuel_injection = 0
-		investigate_log("decreased to [fuel_injection] by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
-
-	if(href_list["refreshstability"])
-		check_core_stability()
-
-	updateDialog()
-	return
+	switch(action)
+		if("togglestatus")
+			toggle_power()
+			return TRUE
+		if("refreshicons")
+			update_shield_icons = 1
+			return TRUE
+		if("ejectjar")
+			if(fueljar)
+				fueljar.forceMove(drop_location())
+				fueljar = null
+				//fueljar.control_unit = null currently it does not care where it is
+				//update_icon() when we have the icon for it
+			return TRUE
+		if("strengthup")
+			fuel_injection++
+			investigate_log("increased to [fuel_injection] by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
+			return TRUE
+		if("strengthdown")
+			fuel_injection--
+			if(fuel_injection < 0)
+				fuel_injection = 0
+			investigate_log("decreased to [fuel_injection] by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
+			return TRUE
+		if("refreshstability")
+			check_core_stability()
+			return TRUE

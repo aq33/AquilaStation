@@ -1,18 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { addScrollableNode, removeScrollableNode } from 'tgui/events';
-
-import { Box } from './Box';
+import { Box } from 'tgui-core/components';
 
 export const ScrollableBox = (props) => {
   const { children, ...rest } = props;
   const node = useRef(null);
   useEffect(() => {
     const self = node.current;
-    if (self && scrollable) {
+    if (self) {
       addScrollableNode(self);
     }
     return () => {
-      if (self && scrollable) {
+      if (self) {
         removeScrollableNode(self);
       }
     };

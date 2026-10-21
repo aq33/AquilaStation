@@ -713,9 +713,82 @@
 	set category = "IC"
 	set desc = "View your character's notes memory."
 	if(mind)
-		mind.show_memory(src)
+		// AQ EDIT - okno TGUI MemoryPanel (port z tgstation) zamiast okna HTML
+		if(!GLOB.memory_panel)
+			GLOB.memory_panel = new /datum/memory_panel()
+		GLOB.memory_panel.ui_interact(src)
 	else
 		to_chat(src, "Z jakiegoś powodu nie masz datumu umysłu, więc nie możesz przejrzeć notatek (jeśli jakieś miałeś).")
+
+// AQ EDIT START - port z tgstation: okno notatek (MemoryPanel) na naszych notatkach i celach
+GLOBAL_DATUM(memory_panel, /datum/memory_panel)
+
+/datum/memory_panel
+
+/datum/memory_panel/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/memory_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MemoryPanel")
+		ui.open()
+
+/datum/memory_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/mind/mind = user?.mind
+	if(!mind)
+		data["has_mind"] = FALSE
+		return data
+	data["has_mind"] = TRUE
+	data["name"] = mind.current?.real_name || mind.name
+	data["notes"] = mind.memory
+
+	var/list/antag_memories = list()
+	for(var/datum/antagonist/antag in mind.antag_datums)
+		if(antag.antag_memory)
+			antag_memories += antag.antag_memory
+	data["antag_memories"] = antag_memories
+
+	var/list/objectives = list()
+	for(var/datum/objective/objective in mind.get_all_antag_objectives())
+		var/list/accomplices = list()
+		for(var/datum/mind/other in objective.get_owners() - mind)
+			accomplices += other.name
+		objectives += list(list(
+			"text" = objective.explanation_text,
+			"optional" = objective.name == "gimmick",
+			"accomplices" = accomplices
+		))
+	data["objectives"] = objectives
+
+	var/list/crew_objectives = list()
+	for(var/datum/objective/objective as() in mind.crew_objectives)
+		crew_objectives += objective.explanation_text
+	data["crew_objectives"] = crew_objectives
+	return data
+
+/datum/memory_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = ui.user
+	if(!user?.mind)
+		return
+	switch(action)
+		if("add_note")
+			var/msg = params["text"]
+			if(!istext(msg) || !length(trim(msg)))
+				return
+			if(world.time < user.memory_throttle_time)
+				to_chat(user, "<span class='warning'>Odczekaj chwilę przed dodaniem kolejnej notatki.</span>")
+				return
+			user.memory_throttle_time = world.time + 5 SECONDS
+			msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
+			msg = sanitize(msg)
+			user.mind.store_memory(msg)
+			return TRUE
+// AQ EDIT END
 
 /**
   * Add a note to the mind datum

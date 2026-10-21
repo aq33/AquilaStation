@@ -16,122 +16,6 @@
 	max_equip = 3
 	var/squeak = 0
 
-/obj/mecha/combat/honker/get_stats_part()
-	var/integrity = obj_integrity/max_integrity*100
-	var/cell_charge = get_charge()
-	var/datum/gas_mixture/int_tank_air = internal_tank.return_air()
-	var/tank_pressure = internal_tank ? round(int_tank_air.return_pressure(),0.01) : "None"
-	var/tank_temperature = internal_tank ? int_tank_air.return_temperature() : "Unknown"
-	var/cabin_pressure = round(return_pressure(),0.01)
-	var/output = {"[report_internal_damage()]
-						[integrity<30?"<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>":null]
-						[internal_damage&MECHA_INT_TEMP_CONTROL?"<font color='red'><b>CLOWN SUPPORT SYSTEM MALFUNCTION</b></font><br>":null]
-						[internal_damage&MECHA_INT_TANK_BREACH?"<font color='red'><b>GAS TANK HONK</b></font><br>":null]
-						[internal_damage&MECHA_INT_CONTROL_LOST?"<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='byond://?src=[REF(src)];repair_int_control_lost=1'>Recalibrate</a><br>":null]
-						<b>IntegriHONK: </b> [integrity]%<br>
-						<b>PowerHONK charge: </b>[isnull(cell_charge)?"No power cell installed":"[cell.percent()]%"]<br>
-						<b>Air source: </b>[use_internal_tank?"Internal Airtank":"Environment"]<br>
-						<b>AirHONK pressure: </b>[tank_pressure]kPa<br>
-						<b>AirHONK temperature: </b>[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C<br>
-						<b>HONK pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
-						<b>HONK temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
-						<b>Lights: </b>[lights?"on":"off"]<br>
-						[dna_lock?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna_lock]</span> \[<a href='byond://?src=[REF(src)];reset_dna=1'>Reset</a>\]<br>":null]
-					"}
-	return output
-
-/obj/mecha/combat/honker/get_stats_html()
-	var/output = {"<html>
-						<head>
-						<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-						<title>[src.name] data</title>
-						<style>
-						body {color: #00ff00; background: #32CD32; font-family:"Courier",monospace; font-size: 12px;}
-						hr {border: 1px solid #0f0; color: #fff; background-color: #000;}
-						a {padding:2px 5px;;color:#0f0;}
-						.wr {margin-bottom: 5px;}
-						.header {cursor:pointer;}
-						.open, .closed {background: #32CD32; color:#000; padding:1px 2px;}
-						.links a {margin-bottom: 2px;padding-top:3px;}
-						.visible {display: block;}
-						.hidden {display: none;}
-						</style>
-						<script language='javascript' type='text/javascript'>
-						[js_byjax]
-						[js_dropdowns]
-						function SSticker() {
-						    setInterval(function(){
-						        window.location='byond://?src=[REF(src)]&update_content=1';
-						        document.body.style.color = get_rand_color_string();
-						      document.body.style.background = get_rand_color_string();
-						    }, 1000);
-						}
-
-						function get_rand_color_string() {
-						    var color = new Array;
-						    for(var i=0;i<3;i++){
-						        color.push(Math.floor(Math.random()*255));
-						    }
-						    return "rgb("+color.toString()+")";
-						}
-
-						window.onload = function() {
-							dropdowns();
-							SSticker();
-						}
-						</script>
-						</head>
-						<body>
-						<div id='content'>
-						[src.get_stats_part()]
-						</div>
-						<div id='eq_list'>
-						[src.get_equipment_list()]
-						</div>
-						<hr>
-						<div id='commands'>
-						[src.get_commands()]
-						</div>
-						</body>
-						</html>
-					 "}
-	return output
-
-/obj/mecha/combat/honker/get_commands()
-	var/output = {"<div class='wr'>
-						<div class='header'>Sounds of HONK:</div>
-						<div class='links'>
-						<a href='byond://?src=[REF(src)];play_sound=sadtrombone'>Sad Trombone</a>
-						<a href='byond://?src=[REF(src)];play_sound=bikehorn'>Bike Horn</a>
-						<a href='byond://?src=[REF(src)];play_sound=airhorn2'>Air Horn</a>
-						<a href='byond://?src=[REF(src)];play_sound=carhorn'>Car Horn</a>
-						<a href='byond://?src=[REF(src)];play_sound=party_horn'>Party Horn</a>
-						<a href='byond://?src=[REF(src)];play_sound=reee'>Reee</a>
-						<a href='byond://?src=[REF(src)];play_sound=weeoo1'>Siren</a>
-						<a href='byond://?src=[REF(src)];play_sound=hiss1'>Hissing Creature</a>
-						<a href='byond://?src=[REF(src)];play_sound=armbomb'>Armed Grenade</a>
-						<a href='byond://?src=[REF(src)];play_sound=saberon'>Energy Sword</a>
-						<a href='byond://?src=[REF(src)];play_sound=airlock_alien_prying'>Airlock Prying</a>
-						<a href='byond://?src=[REF(src)];play_sound=lightningbolt'>Lightning Bolt</a>
-						<a href='byond://?src=[REF(src)];play_sound=explosionfar'>Distant Explosion</a>
-						</div>
-						</div>
-						"}
-	output += ..()
-	return output
-
-
-/obj/mecha/combat/honker/get_equipment_list()
-	if(!equipment.len)
-		return
-	var/output = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
-		output += "<div id='[REF(MT)]'>[MT.get_equip_info()]</div>"
-	output += "</div>"
-	return output
-
-
-
 /obj/mecha/combat/honker/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
@@ -142,37 +26,62 @@
 			squeak = 0
 	return result
 
-/obj/mecha/combat/honker/Topic(href, href_list)
-	..()
-	if (href_list["play_sound"])
-		switch(href_list["play_sound"])
-			if("sadtrombone")
-				playsound(src, 'sound/misc/sadtrombone.ogg', 50)
-			if("bikehorn")
-				playsound(src, 'sound/items/bikehorn.ogg', 50)
-			if("airhorn2")
-				playsound(src, 'sound/items/airhorn2.ogg', 40) //soundfile has higher than average volume
-			if("carhorn")
-				playsound(src, 'sound/items/carhorn.ogg', 80) //soundfile has lower than average volume
-			if("party_horn")
-				playsound(src, 'sound/items/party_horn.ogg', 50)
-			if("reee")
-				playsound(src, 'sound/effects/reee.ogg', 50)
-			if("weeoo1")
-				playsound(src, 'sound/items/weeoo1.ogg', 50)
-			if("hiss1")
-				playsound(src, 'sound/voice/hiss1.ogg', 50)
-			if("armbomb")
-				playsound(src, 'sound/weapons/armbomb.ogg', 50)
-			if("saberon")
-				playsound(src, 'sound/weapons/saberon.ogg', 50)
-			if("airlock_alien_prying")
-				playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50)
-			if("lightningbolt")
-				playsound(src, 'sound/magic/lightningbolt.ogg', 50)
-			if("explosionfar")
-				playsound(src, 'sound/effects/explosionfar.ogg', 50)
-	return
+// AQUILA: dźwięki HONK w oknie TGUI mecha (dawniej w panelu HTML)
+/obj/mecha/combat/honker/ui_static_data(mob/user)
+	var/list/data = ..()
+	data["honk_sounds"] = list(
+		list("key" = "sadtrombone", "name" = "Smutny puzon"),
+		list("key" = "bikehorn", "name" = "Trąbka rowerowa"),
+		list("key" = "airhorn2", "name" = "Syrena pneumatyczna"),
+		list("key" = "carhorn", "name" = "Klakson"),
+		list("key" = "party_horn", "name" = "Trąbka imprezowa"),
+		list("key" = "reee", "name" = "Reee"),
+		list("key" = "weeoo1", "name" = "Syrena"),
+		list("key" = "hiss1", "name" = "Syczące stworzenie"),
+		list("key" = "armbomb", "name" = "Uzbrojony granat"),
+		list("key" = "saberon", "name" = "Miecz energetyczny"),
+		list("key" = "airlock_alien_prying", "name" = "Wyważanie śluzy"),
+		list("key" = "lightningbolt", "name" = "Błyskawica"),
+		list("key" = "explosionfar", "name" = "Odległa eksplozja"),
+	)
+	return data
+
+/obj/mecha/combat/honker/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(action != "play_sound")
+		return
+	if(usr != occupant || usr.incapacitated())
+		return
+	switch(params["sound"])
+		if("sadtrombone")
+			playsound(src, 'sound/misc/sadtrombone.ogg', 50)
+		if("bikehorn")
+			playsound(src, 'sound/items/bikehorn.ogg', 50)
+		if("airhorn2")
+			playsound(src, 'sound/items/airhorn2.ogg', 40) //soundfile has higher than average volume
+		if("carhorn")
+			playsound(src, 'sound/items/carhorn.ogg', 80) //soundfile has lower than average volume
+		if("party_horn")
+			playsound(src, 'sound/items/party_horn.ogg', 50)
+		if("reee")
+			playsound(src, 'sound/effects/reee.ogg', 50)
+		if("weeoo1")
+			playsound(src, 'sound/items/weeoo1.ogg', 50)
+		if("hiss1")
+			playsound(src, 'sound/voice/hiss1.ogg', 50)
+		if("armbomb")
+			playsound(src, 'sound/weapons/armbomb.ogg', 50)
+		if("saberon")
+			playsound(src, 'sound/weapons/saberon.ogg', 50)
+		if("airlock_alien_prying")
+			playsound(src, 'sound/machines/airlock_alien_prying.ogg', 50)
+		if("lightningbolt")
+			playsound(src, 'sound/magic/lightningbolt.ogg', 50)
+		if("explosionfar")
+			playsound(src, 'sound/effects/explosionfar.ogg', 50)
+	return TRUE
 
 /proc/rand_hex_color()
 	var/list/colors = list("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f")

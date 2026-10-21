@@ -1,32 +1,22 @@
-// Zlewka z zawartością, pH i czystością (port tg common/BeakerDisplay pod fermichem)
-import { AnimatedNumber, Box, Button, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  LabeledList,
+  Section,
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../../backend';
 
 export type BeakerReagent = {
   name: string;
   volume: number;
+  /** AQUILA - fermichem: czystość 0-1 */
   purity?: number;
 };
 
-export type Beaker = {
-  maxVolume: number;
-  pH: number;
-  currentVolume: number;
-  contents: BeakerReagent[];
-};
-
-type BeakerProps = {
-  beaker: Beaker | null;
-  title_label?: string;
-  showpH?: BooleanLike;
-  showPurity?: BooleanLike;
-  showInsertButton?: boolean;
-  hasBeakerInHand?: BooleanLike;
-};
-
-/** Czystość jako procent, z kolorem jak w tg (zielona = czysta, czerwona = nieczysta) */
+/** AQUILA - fermichem: czystość jako procent, zielona = czysta, czerwona = nieczysta */
 export const PurityLabel = (props: { purity?: number }) => {
   const { purity } = props;
   if (purity === undefined || purity === null) {
@@ -40,18 +30,84 @@ export const PurityLabel = (props: { purity?: number }) => {
   );
 };
 
+export type Beaker = {
+  maxVolume: number;
+  pH: number;
+  currentVolume: number;
+  contents: BeakerReagent[];
+};
+
+type BeakerProps = {
+  beaker: Beaker;
+  replace_contents?: BeakerReagent[];
+  title_label?: string;
+  showpH?: BooleanLike;
+  // eslint-disable-next-line react/no-unused-prop-types
+  showInsertButton?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
+  hasBeakerInHand?: BooleanLike;
+};
+
+export const BeakerDisplay = (props: BeakerProps) => {
+  const { act } = useBackend();
+  const { beaker, replace_contents, title_label, showpH } = props;
+  const beakerContents = replace_contents || beaker?.contents || [];
+
+  return (
+    <LabeledList>
+      <LabeledList.Item
+        label="Zlewka"
+        buttons={
+          !!beaker && (
+            <Button icon="eject" onClick={() => act('eject')}>
+              Eject
+            </Button>
+          )
+        }
+      >
+        {title_label ||
+          (!!beaker && (
+            <>
+              <AnimatedNumber initial={0} value={beaker.currentVolume} />/
+              {beaker.maxVolume} units
+            </>
+          )) ||
+          'Brak zlewki'}
+      </LabeledList.Item>
+      <LabeledList.Item label="Zawartość">
+        <Box color="label">
+          {(!title_label && !beaker && 'N/A') ||
+            (beakerContents.length === 0 && 'Pusta')}
+        </Box>
+        {beakerContents.map((chemical) => (
+          <Box key={chemical.name} color="label">
+            <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
+            {chemical.name}
+          </Box>
+        ))}
+        {beakerContents.length > 0 && !!showpH && (
+          <Box>
+            pH:
+            <AnimatedNumber value={beaker.pH} />
+          </Box>
+        )}
+      </LabeledList.Item>
+    </LabeledList>
+  );
+};
+
 export const BeakerSectionDisplay = (props: BeakerProps) => {
   const { act } = useBackend();
   const {
     beaker,
+    replace_contents,
     title_label,
     showpH,
-    showPurity,
     showInsertButton = false,
     hasBeakerInHand,
   } = props;
 
-  const beakerContents = beaker?.contents || [];
+  const beakerContents = replace_contents || beaker?.contents || [];
   const isBeakerLoaded = !!beaker;
 
   return (
@@ -61,39 +117,43 @@ export const BeakerSectionDisplay = (props: BeakerProps) => {
         isBeakerLoaded ? (
           <>
             <Box inline color="label" mr={2}>
-              {beaker.currentVolume} / {beaker.maxVolume} j.
+              {beaker.currentVolume} / {beaker.maxVolume} units
             </Box>
-            <Button icon="eject" content="Wysuń" onClick={() => act('eject')} />
+            <Button icon="eject" onClick={() => act('eject')}>
+              Eject
+            </Button>
           </>
         ) : (
           showInsertButton && (
             <Button
               icon="eject"
-              content="Włóż"
               onClick={() => act('insert')}
               style={{
                 opacity: hasBeakerInHand ? 1 : 0.5,
               }}
               tooltip={!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce'}
               tooltipPosition="bottom-start"
-            />
+            >
+              Insert
+            </Button>
           )
         )
       }
     >
       <Box color="label">
-        {(!beaker && 'Brak zlewki') || (beakerContents.length === 0 && 'Pusta')}
+        {(!beaker && 'Nie włożono zlewki') ||
+          (beakerContents.length === 0 && 'Pusta')}
       </Box>
       {beakerContents.map((chemical) => (
         <Box key={chemical.name} color="label">
-          <AnimatedNumber initial={0} value={chemical.volume} /> j.{' '}
+          <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
           {chemical.name}
-          {!!showPurity && <PurityLabel purity={chemical.purity} />}
         </Box>
       ))}
       {beakerContents.length > 0 && !!showpH && (
         <Box>
-          pH: <AnimatedNumber value={beaker!.pH} />
+          pH:
+          <AnimatedNumber value={beaker.pH} />
         </Box>
       )}
     </Section>

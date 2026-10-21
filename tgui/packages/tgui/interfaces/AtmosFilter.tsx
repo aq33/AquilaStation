@@ -4,44 +4,58 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 type Data = {
-  filter_types: any;
-  max_rate: any;
-  on: any;
-  rate: any;
+  filter_types: Filter[];
+  on: BooleanLike;
+  rate: number;
+  max_rate: number;
+};
+
+// AQUILA: nasz filtr odsiewa jeden gaz naraz (DM: filter_type),
+// więc zamiast przełączników wielu gazów z tg jest wybór jednego.
+type Filter = {
+  id: string;
+  name: string;
+  selected: BooleanLike;
 };
 
 export const AtmosFilter = (props) => {
   const { act, data } = useBackend<Data>();
-  const filterTypes = data.filter_types || [];
+  const { filter_types = [], on, rate, max_rate } = data;
+
   return (
-    <Window width={390} height={187}>
+    <Window width={440} height={240}>
       <Window.Content>
-        <Section>
+        <Section
+          buttons={
+            <Button
+              icon={on ? 'power-off' : 'times'}
+              content={on ? 'Wł.' : 'Wył.'}
+              selected={on}
+              onClick={() => act('power')}
+            />
+          }
+          fill
+          title="Filtr gazów"
+        >
           <LabeledList>
-            <LabeledList.Item label="Power">
-              <Button
-                icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
-                selected={data.on}
-                onClick={() => act('power')}
-              />
-            </LabeledList.Item>
-            <LabeledList.Item label="Transfer Rate">
+            <LabeledList.Item label="Przepływ">
               <NumberInput
-                step={1}
                 animated
-                value={parseFloat(data.rate)}
+                tickWhileDragging
+                step={1}
+                value={rate}
                 width="63px"
                 unit="L/s"
                 minValue={0}
-                maxValue={data.max_rate}
-                onDrag={(value) =>
+                maxValue={max_rate}
+                onChange={(value) =>
                   act('rate', {
                     rate: value,
                   })
@@ -51,7 +65,7 @@ export const AtmosFilter = (props) => {
                 ml={1}
                 icon="plus"
                 content="Max"
-                disabled={data.rate === data.max_rate}
+                disabled={rate === max_rate}
                 onClick={() =>
                   act('rate', {
                     rate: 'max',
@@ -59,18 +73,20 @@ export const AtmosFilter = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Filter">
-              {filterTypes.map((filter) => (
+            <LabeledList.Item label="Odsiewany gaz">
+              {filter_types.map(({ id, name, selected }) => (
                 <Button
-                  key={filter.id}
-                  selected={filter.selected}
-                  content={getGasLabel(filter.id, filter.name)}
+                  key={id || 'none'}
+                  icon={selected ? 'check-square-o' : 'square-o'}
+                  selected={selected}
                   onClick={() =>
                     act('filter', {
-                      mode: filter.id,
+                      mode: id,
                     })
                   }
-                />
+                >
+                  {id ? getGasLabel(id, name) : 'Nic'}
+                </Button>
               ))}
             </LabeledList.Item>
           </LabeledList>

@@ -5,18 +5,19 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  cooldown: any;
-  intensity: any;
-  irradiate: any;
-  on_cooldown: any;
-  scanmode: any;
-  stealth: any;
-  wavelength: any;
+  cooldown: string;
+  intensity: number;
+  irradiate: BooleanLike;
+  on_cooldown: BooleanLike;
+  scanmode: BooleanLike;
+  stealth: BooleanLike;
+  wavelength: number;
 };
 
 export const RadioactiveMicrolaser = (props) => {
@@ -31,49 +32,57 @@ export const RadioactiveMicrolaser = (props) => {
     cooldown,
   } = data;
   return (
-    <Window theme="syndicate" width={320} height={335}>
+    <Window
+      title="Radioaktywny mikrolaser"
+      width={320}
+      height={335}
+      theme="syndicate"
+    >
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Laser Status">
+            <LabeledList.Item label="Stan lasera">
               <Box color={on_cooldown ? 'average' : 'good'}>
-                {on_cooldown ? 'Recharging' : 'Ready'}
+                {on_cooldown ? 'Ładowanie' : 'Gotowy'}
               </Box>
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Scanner Controls">
+        <Section title="Sterowanie skanerem">
           <LabeledList>
-            <LabeledList.Item label="Irradiation">
+            <LabeledList.Item label="Napromieniowanie">
               <Button
                 icon={irradiate ? 'power-off' : 'times'}
-                content={irradiate ? 'On' : 'Off'}
                 selected={irradiate}
                 onClick={() => act('irradiate')}
-              />
+              >
+                {irradiate ? 'Wł.' : 'Wył.'}
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Stealth Mode">
+            <LabeledList.Item label="Tryb ukryty">
               <Button
                 icon={stealth ? 'eye-slash' : 'eye'}
-                content={stealth ? 'On' : 'Off'}
                 disabled={!irradiate}
                 selected={stealth}
                 onClick={() => act('stealth')}
-              />
+              >
+                {stealth ? 'Wł.' : 'Wył.'}
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Scan Mode">
+            <LabeledList.Item label="Tryb skanu">
               <Button
                 icon={scanmode ? 'mortar-pestle' : 'heartbeat'}
-                content={scanmode ? 'Scan Reagents' : 'Scan Health'}
-                disabled={irradiate && stealth}
+                disabled={!!irradiate && !!stealth}
                 onClick={() => act('scanmode')}
-              />
+              >
+                {scanmode ? 'Skan odczynników' : 'Skan zdrowia'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Laser Settings">
+        <Section title="Ustawienia lasera">
           <LabeledList>
-            <LabeledList.Item label="Radiation Intensity">
+            <LabeledList.Item label="Natężenie promieniowania">
               <Button
                 icon="fast-backward"
                 onClick={() => act('radintensity', { adjust: -5 })}
@@ -83,11 +92,11 @@ export const RadioactiveMicrolaser = (props) => {
                 onClick={() => act('radintensity', { adjust: -1 })}
               />{' '}
               <NumberInput
-                step={1}
                 value={Math.round(intensity)}
                 width="40px"
                 minValue={1}
                 maxValue={20}
+                step={1}
                 onChange={(value) => {
                   return act('radintensity', {
                     target: value,
@@ -103,7 +112,7 @@ export const RadioactiveMicrolaser = (props) => {
                 onClick={() => act('radintensity', { adjust: 5 })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Radiation Wavelength">
+            <LabeledList.Item label="Długość fali">
               <Button
                 icon="fast-backward"
                 onClick={() => act('radwavelength', { adjust: -5 })}
@@ -113,11 +122,11 @@ export const RadioactiveMicrolaser = (props) => {
                 onClick={() => act('radwavelength', { adjust: -1 })}
               />{' '}
               <NumberInput
-                step={1}
                 value={Math.round(wavelength)}
                 width="40px"
                 minValue={0}
                 maxValue={120}
+                step={1}
                 onChange={(value) => {
                   return act('radwavelength', {
                     target: value,
@@ -133,7 +142,7 @@ export const RadioactiveMicrolaser = (props) => {
                 onClick={() => act('radwavelength', { adjust: 5 })}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Laser Cooldown">
+            <LabeledList.Item label="Czas odnowienia">
               <Box inline bold>
                 {cooldown}
               </Box>

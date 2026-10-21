@@ -1,5 +1,3 @@
-#define LINKIFY_READY(string, value) "<a href='byond://?src=[REF(src)];ready=[value]'>[string]</a>"
-
 /mob/dead/new_player
 	var/ready = 0
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
@@ -34,72 +32,15 @@
 
 /mob/dead/new_player/Destroy()
 	GLOB.new_player_list -= src
+	QDEL_NULL(polls_menu) // AQ EDIT - okno ankiet (TGUI)
 	return ..()
 
 /mob/dead/new_player/prepare_huds()
 	return
 
 /mob/dead/new_player/proc/new_player_panel()
-	if (client?.interviewee)
-		return
-
-	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
-	if(!asset_datum.send(client))
-		return
-	var/output = "<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Ustaw Postać</a></p>"
-
-	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		switch(ready)
-			if(PLAYER_NOT_READY)
-				output += "<p>\[ [LINKIFY_READY("Gotowy", PLAYER_READY_TO_PLAY)] | <b>Nie Gotowy</b> | [LINKIFY_READY("Obserwuj", PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_PLAY)
-				output += "<p>\[ <b>Gotowy</b> | [LINKIFY_READY("Nie Gotowy", PLAYER_NOT_READY)] | [LINKIFY_READY("Obserwuj", PLAYER_READY_TO_OBSERVE)] \]</p>"
-			if(PLAYER_READY_TO_OBSERVE)
-				output += "<p>\[ [LINKIFY_READY("Gotowy", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Niegotowy", PLAYER_NOT_READY)] | <b>Obserwuj</b> \]</p>"
-	else
-		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>Wyświetl listę graczy</a></p>"
-		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Dołącz do gry!</a></p>"
-		output += "<p>[LINKIFY_READY("Obserwuj", PLAYER_READY_TO_OBSERVE)]</p>"
-
-	if(!IS_GUEST_KEY(src.key))
-		if (SSdbcore.Connect())
-			var/isadmin = FALSE
-			if(client?.holder)
-				isadmin = TRUE
-			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery({"
-				SELECT id FROM [format_table_name("poll_question")]
-				WHERE (adminonly = 0 OR :isadmin = 1)
-				AND Now() BETWEEN starttime AND endtime
-				AND deleted = 0
-				AND id NOT IN (
-					SELECT pollid FROM [format_table_name("poll_vote")]
-					WHERE ckey = :ckey
-					AND deleted = 0
-				)
-				AND id NOT IN (
-					SELECT pollid FROM [format_table_name("poll_textreply")]
-					WHERE ckey = :ckey
-					AND deleted = 0
-				)
-			"}, list("isadmin" = isadmin, "ckey" = ckey))
-			var/rs = REF(src)
-			if(!query_get_new_polls.Execute())
-				qdel(query_get_new_polls)
-				return
-			if(query_get_new_polls.NextRow())
-				output += "<p><b><a href='byond://?src=[rs];showpoll=1'>Pokaż ankiety</A> (NOWE!)</b></p>"
-			else
-				output += "<p><a href='byond://?src=[rs];showpoll=1'>Pokaż ankiety</A></p>"
-			qdel(query_get_new_polls)
-			if(QDELETED(src))
-				return
-
-	output += "</center>"
-
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Witaj na Aquila Station!</div>", 250, 265)
-	popup.set_window_options("can_close=0")
-	popup.set_content(output)
-	popup.open(FALSE)
+	// AQ EDIT - okno lobby jest w TGUI (LobbyMenu), właściwa wersja w aquila/code/modules/mob/dead/new_player/lobby_menu.dm
+	return
 
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
@@ -138,7 +79,6 @@
 			return
 
 	if(href_list["refresh"])
-		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
 
 	if(href_list["late_join"])
@@ -194,13 +134,6 @@
 		handle_player_polling()
 		return
 
-	if(href_list["viewpoll"])
-		var/datum/poll_question/poll = locate(href_list["viewpoll"]) in GLOB.polls
-		poll_player(poll)
-
-	if(href_list["votepollref"])
-		var/datum/poll_question/poll = locate(href_list["votepollref"]) in GLOB.polls
-		vote_on_poll_handler(poll, href_list)
 
 //When you cop out of the round (NB: this HAS A SLEEP FOR PLAYER INPUT IN IT)
 /mob/dead/new_player/proc/make_me_an_observer(force_observe=FALSE)
@@ -214,7 +147,6 @@
 
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Tak")
 		ready = PLAYER_NOT_READY
-		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
 		return FALSE
 
@@ -432,13 +364,9 @@
 
 
 /mob/dead/new_player/proc/close_spawn_windows()
-
-	src << browse(null, "window=latechoices") //closes late choices window
 	SStgui.close_user_uis(src, GLOB.latejoin_menu) // AQ EDIT - okno TGUI JobSelection
-	src << browse(null, "window=playersetup") //closes the player setup window
-	src << browse(null, "window=preferences") //closes job selection
-	src << browse(null, "window=mob_occupation")
-	src << browse(null, "window=latechoices") //closes late job selection
+	if(polls_menu) // AQ EDIT - okno TGUI ankiet
+		SStgui.close_user_uis(src, polls_menu)
 
 // Used to make sure that a player has a valid job preference setup, used to knock players out of eligibility for anything if their prefs don't make sense.
 // A "valid job preference setup" in this situation means at least having one job set to low, or not having "return to lobby" enabled

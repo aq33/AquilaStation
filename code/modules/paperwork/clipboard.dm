@@ -116,6 +116,7 @@
 	// prepare data for TGUI
 	var/list/data = list()
 	data["pen"] = "[pen]"
+	data["integrated_pen"] = integrated_pen
 
 	var/obj/item/paper/toppaper = toppaper_ref?.resolve()
 	data["top_paper"] = "[toppaper]"

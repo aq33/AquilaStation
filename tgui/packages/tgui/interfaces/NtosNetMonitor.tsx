@@ -6,23 +6,24 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
 type Data = {
-  config_communication: any;
-  config_peertopeer: any;
-  config_softwaredownload: any;
-  config_systemcontrol: any;
-  idsalarm: any;
-  idsstatus: any;
-  maxlogs: any;
-  minlogs: any;
-  ntnetlogs: any;
-  ntnetmaxlogs: any;
-  ntnetrelays: any;
-  ntnetstatus: any;
+  config_communication: BooleanLike;
+  config_peertopeer: BooleanLike;
+  config_softwaredownload: BooleanLike;
+  config_systemcontrol: BooleanLike;
+  idsalarm: BooleanLike;
+  idsstatus: BooleanLike;
+  maxlogs: number;
+  minlogs: number;
+  ntnetlogs: { entry: string }[];
+  ntnetmaxlogs: number;
+  ntnetrelays: number;
+  ntnetstatus: BooleanLike;
 };
 
 export const NtosNetMonitor = (props) => {
@@ -45,15 +46,16 @@ export const NtosNetMonitor = (props) => {
     <NtosWindow>
       <NtosWindow.Content scrollable>
         <NoticeBox>
-          WARNING: Disabling wireless transmitters when using a wireless device
-          may prevent you from reenabling them!
+          UWAGA: wyłączenie nadajników bezprzewodowych z urządzenia
+          bezprzewodowego może uniemożliwić ich ponowne włączenie!
         </NoticeBox>
         <Section
-          title="Wireless Connectivity"
+          title="Łączność bezprzewodowa"
           buttons={
             <Button.Confirm
+              confirmContent="Na pewno?"
               icon={ntnetstatus ? 'power-off' : 'times'}
-              content={ntnetstatus ? 'ENABLED' : 'DISABLED'}
+              content={ntnetstatus ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
               selected={ntnetstatus}
               onClick={() => act('toggleWireless')}
             />
@@ -61,55 +63,55 @@ export const NtosNetMonitor = (props) => {
         >
           {ntnetrelays ? (
             <LabeledList>
-              <LabeledList.Item label="Active NTNet Relays">
+              <LabeledList.Item label="Aktywne przekaźniki NTNet">
                 {ntnetrelays}
               </LabeledList.Item>
             </LabeledList>
           ) : (
-            'No Relays Connected'
+            'Brak połączonych przekaźników'
           )}
         </Section>
-        <Section title="Firewall Configuration">
+        <Section title="Konfiguracja zapory">
           <LabeledList>
             <LabeledList.Item
-              label="Software Downloads"
+              label="Pobieranie oprogramowania"
               buttons={
                 <Button
                   icon={config_softwaredownload ? 'power-off' : 'times'}
-                  content={config_softwaredownload ? 'ENABLED' : 'DISABLED'}
+                  content={config_softwaredownload ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
                   selected={config_softwaredownload}
                   onClick={() => act('toggle_function', { id: '1' })}
                 />
               }
             />
             <LabeledList.Item
-              label="Peer to Peer Traffic"
+              label="Ruch peer-to-peer"
               buttons={
                 <Button
                   icon={config_peertopeer ? 'power-off' : 'times'}
-                  content={config_peertopeer ? 'ENABLED' : 'DISABLED'}
+                  content={config_peertopeer ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
                   selected={config_peertopeer}
                   onClick={() => act('toggle_function', { id: '2' })}
                 />
               }
             />
             <LabeledList.Item
-              label="Communication Systems"
+              label="Systemy komunikacji"
               buttons={
                 <Button
                   icon={config_communication ? 'power-off' : 'times'}
-                  content={config_communication ? 'ENABLED' : 'DISABLED'}
+                  content={config_communication ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
                   selected={config_communication}
                   onClick={() => act('toggle_function', { id: '3' })}
                 />
               }
             />
             <LabeledList.Item
-              label="Remote System Control"
+              label="Zdalne sterowanie systemami"
               buttons={
                 <Button
                   icon={config_systemcontrol ? 'power-off' : 'times'}
-                  content={config_systemcontrol ? 'ENABLED' : 'DISABLED'}
+                  content={config_systemcontrol ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
                   selected={config_systemcontrol}
                   onClick={() => act('toggle_function', { id: '4' })}
                 />
@@ -117,30 +119,30 @@ export const NtosNetMonitor = (props) => {
             />
           </LabeledList>
         </Section>
-        <Section title="Security Systems">
+        <Section title="Systemy bezpieczeństwa">
           {!!idsalarm && (
             <>
-              <NoticeBox>NETWORK INCURSION DETECTED</NoticeBox>
+              <NoticeBox>WYKRYTO WŁAMANIE DO SIECI</NoticeBox>
               <Box italic>
-                Abnormal activity has been detected in the network. Check system
-                logs for more information
+                W sieci wykryto nietypową aktywność. Szczegóły znajdziesz w
+                logach systemu.
               </Box>
             </>
           )}
           <LabeledList>
             <LabeledList.Item
-              label="IDS Status"
+              label="Status IDS"
               buttons={
                 <>
                   <Button
                     icon={idsstatus ? 'power-off' : 'times'}
-                    content={idsstatus ? 'ENABLED' : 'DISABLED'}
+                    content={idsstatus ? 'WŁĄCZONE' : 'WYŁĄCZONE'}
                     selected={idsstatus}
                     onClick={() => act('toggleIDS')}
                   />
                   <Button
                     icon="sync"
-                    content="Reset"
+                    content="Resetuj"
                     color="bad"
                     onClick={() => act('resetIDS')}
                   />
@@ -148,7 +150,7 @@ export const NtosNetMonitor = (props) => {
               }
             />
             <LabeledList.Item
-              label="Max Log Count"
+              label="Maks. liczba wpisów"
               buttons={
                 <NumberInput
                   step={1}
@@ -166,11 +168,12 @@ export const NtosNetMonitor = (props) => {
             />
           </LabeledList>
           <Section
-            title="System Log"
+            title="Log systemu"
             buttons={
               <Button.Confirm
+                confirmContent="Na pewno?"
                 icon="trash"
-                content="Clear Logs"
+                content="Wyczyść logi"
                 onClick={() => act('purgelogs')}
               />
             }

@@ -1,77 +1,120 @@
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import {
+  Button,
+  Input,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { AccessList } from './common/AccessList';
 
-type Data = {
-  accesses: any;
-  oneAccess: any;
-  regions: any;
-  unres_direction: any;
+type Region = {
+  accesses: { desc: string; ref: number }[];
+  name: string;
+  regid: number;
 };
 
-export const AirlockElectronics = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { oneAccess, unres_direction } = data;
-  const regions = data.regions || [];
-  const accesses = data.accesses || [];
+type Data = {
+  accesses: number[];
+  oneAccess: BooleanLike;
+  passedCycleId: string;
+  passedName: string;
+  regions: Region[];
+  unres_direction: number;
+};
+
+const DIRECTIONS = [
+  { bit: 1, name: 'Północ' },
+  { bit: 2, name: 'Południe' },
+  { bit: 4, name: 'Wschód' },
+  { bit: 8, name: 'Zachód' },
+];
+
+export function AirlockElectronics(props) {
   return (
-    <Window width={420} height={485}>
+    <Window width={420} height={530}>
       <Window.Content>
-        <Section title="Main">
+        <AirLockMainSection />
+      </Window.Content>
+    </Window>
+  );
+}
+
+export function AirLockMainSection(props) {
+  const { act, data } = useBackend<Data>();
+  const {
+    accesses = [],
+    oneAccess,
+    passedName,
+    passedCycleId,
+    regions = [],
+    unres_direction,
+  } = data;
+
+  return (
+    <Stack fill vertical>
+      <Stack.Item>
+        <Section fill>
           <LabeledList>
-            <LabeledList.Item label="Access Required">
+            <LabeledList.Item label="Wymagany dostęp">
               <Button
                 icon={oneAccess ? 'unlock' : 'lock'}
-                content={oneAccess ? 'One' : 'All'}
                 onClick={() => act('one_access')}
+              >
+                {oneAccess ? 'Jeden' : 'Wszystkie'}
+              </Button>
+            </LabeledList.Item>
+            <LabeledList.Item label="Wolny przejazd">
+              {DIRECTIONS.map((direction) => (
+                <Button
+                  key={direction.bit}
+                  icon={
+                    unres_direction & direction.bit
+                      ? 'check-square-o'
+                      : 'square-o'
+                  }
+                  selected={unres_direction & direction.bit}
+                  onClick={() =>
+                    act('direc_set', {
+                      unres_direction: String(direction.bit),
+                    })
+                  }
+                >
+                  {direction.name}
+                </Button>
+              ))}
+            </LabeledList.Item>
+            <LabeledList.Item label="Nazwa śluzy">
+              <Input
+                fluid
+                maxLength={30}
+                value={passedName || ''}
+                onBlur={(value) =>
+                  act('passedName', {
+                    passedName: value,
+                  })
+                }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Unrestricted Access">
-              <Button
-                icon={unres_direction & 1 ? 'check-square-o' : 'square-o'}
-                content="North"
-                selected={unres_direction & 1}
-                onClick={() =>
-                  act('direc_set', {
-                    unres_direction: '1',
-                  })
-                }
-              />
-              <Button
-                icon={unres_direction & 2 ? 'check-square-o' : 'square-o'}
-                content="South"
-                selected={unres_direction & 2}
-                onClick={() =>
-                  act('direc_set', {
-                    unres_direction: '2',
-                  })
-                }
-              />
-              <Button
-                icon={unres_direction & 4 ? 'check-square-o' : 'square-o'}
-                content="East"
-                selected={unres_direction & 4}
-                onClick={() =>
-                  act('direc_set', {
-                    unres_direction: '4',
-                  })
-                }
-              />
-              <Button
-                icon={unres_direction & 8 ? 'check-square-o' : 'square-o'}
-                content="West"
-                selected={unres_direction & 8}
-                onClick={() =>
-                  act('direc_set', {
-                    unres_direction: '8',
+            <LabeledList.Item label="ID cyklowania">
+              <Input
+                fluid
+                maxLength={30}
+                value={passedCycleId || ''}
+                onBlur={(value) =>
+                  act('passedCycleId', {
+                    passedCycleId: value,
                   })
                 }
               />
             </LabeledList.Item>
           </LabeledList>
         </Section>
+      </Stack.Item>
+      <Stack.Item grow>
         <AccessList
           accesses={regions}
           selectedList={accesses}
@@ -93,7 +136,7 @@ export const AirlockElectronics = (props) => {
             })
           }
         />
-      </Window.Content>
-    </Window>
+      </Stack.Item>
+    </Stack>
   );
-};
+}

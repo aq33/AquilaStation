@@ -37,7 +37,7 @@ export const ChemMixingChamber = (props) => {
 };
 
 type MixingChamberContentProps = {
-  /** Dodatkowa sekcja pod warunkami, np. pH w komorze reakcyjnej */
+  /** AQUILA - dodatkowa sekcja pod warunkami, np. pH w komorze reakcyjnej */
   extraConditions?: ReactNode;
 };
 
@@ -54,12 +54,13 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
     <Stack vertical fill>
       <Stack.Item>
         <Section
-          title="Conditions"
+          title="Warunki"
           buttons={
             <Stack>
-              <Stack.Item mt={0.3}>{'Target:'}</Stack.Item>
+              <Stack.Item mt={0.3}>{'Cel:'}</Stack.Item>
               <Stack.Item>
                 <NumberInput
+                  tickWhileDragging
                   width="65px"
                   unit="K"
                   step={10}
@@ -80,7 +81,8 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
           <Stack vertical>
             <Stack.Item>
               <Stack fill>
-                <Stack.Item textColor="label">Current Temperature:</Stack.Item>
+                <Stack.Item textColor="label">Obecna temperatura:</Stack.Item>
+                {extraConditions && <Stack.Item>{extraConditions}</Stack.Item>}
                 <Stack.Item grow>
                   <AnimatedNumber
                     value={temperature}
@@ -92,16 +94,15 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
           </Stack>
         </Section>
       </Stack.Item>
-      {extraConditions && <Stack.Item>{extraConditions}</Stack.Item>}
       <Stack.Item grow>
         <Section
-          title="Settings"
+          title="Ustawienia"
           fill
           scrollable
           buttons={
             (isReacting && (
               <Box inline bold color={'purple'}>
-                {'Reacting'}
+                {'Reakcja'}
               </Box>
             )) || (
               <Box
@@ -110,7 +111,7 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
                 bold
                 color={emptying ? 'bad' : 'good'}
               >
-                {emptying ? 'Emptying' : 'Filling'}
+                {emptying ? 'Opróżnianie' : 'Napełnianie'}
               </Box>
             )
           }
@@ -120,7 +121,7 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
               <Stack fill>
                 <Stack.Item grow>
                   <Button
-                    content="Add Reagent"
+                    content="Dodaj odczynnik"
                     color="good"
                     icon="plus"
                     onClick={() =>
@@ -132,6 +133,7 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
                 </Stack.Item>
                 <Stack.Item>
                   <NumberInput
+                    tickWhileDragging
                     value={reagentQuantity}
                     minValue={1}
                     maxValue={100}

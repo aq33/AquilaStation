@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 	else
 		randomize_human(D)
 		new_name = input(C, "Wybierz imię dla swojego hologramu komunikacyjnego (zostaw puste, by nazywać się po prostu hologram)", "Kreator hologramu") as text
-	C.cmd_admin_dress(D)
+	C.admin_apply_outfit(D, C.robust_dress_shop()) // AQUILA: cmd_admin_dress otwiera teraz okno TGUI (asynchronicznie)
 	for(var/dir in list(2, 1, 4, 8)) //A little bit hacky, but does the trick. BYOND's icon format starts with a south facing dir, while cardinals starts with NORTH.
 		CHECK_TICK
 		D.setDir(dir) //Set the dir of the mannequin to face the next direction

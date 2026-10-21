@@ -10,6 +10,10 @@
 	var/unres_sides = 0
 	/// A holder of the electronics, in case of them working as an integrated part
 	var/holder
+	/// AQUILA: nazwa nadawana śluzie przy budowie (okno z tg)
+	var/passed_name
+	/// AQUILA: ID cyklowania (closeOtherId) nadawane śluzie przy budowie
+	var/passed_cycle_id
 
 /obj/item/electronics/airlock/examine(mob/user)
 	. = ..()
@@ -51,6 +55,8 @@
 	data["accesses"] = accesses
 	data["oneAccess"] = one_access
 	data["unres_direction"] = unres_sides
+	data["passedName"] = passed_name
+	data["passedCycleId"] = passed_cycle_id
 	return data
 
 /obj/item/electronics/airlock/ui_act(action, params)
@@ -89,6 +95,13 @@
 			if(isnull(region))
 				return
 			accesses -= get_region_accesses(region)
+			. = TRUE
+		// AQUILA: nazwa i ID cyklowania z okna tg
+		if("passedName")
+			passed_name = strip_html("[params["passedName"]]", 30)
+			. = TRUE
+		if("passedCycleId")
+			passed_cycle_id = strip_html("[params["passedCycleId"]]", 30)
 			. = TRUE
 
 /obj/item/electronics/airlock/ui_host()

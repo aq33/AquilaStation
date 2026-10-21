@@ -63,6 +63,7 @@ type Data = {
   possibleVotes: Vote[];
   user: UserData;
   voting: string[];
+  deadVoteEnabled: BooleanLike;
   LastVoteTime: number;
   VoteCD: number;
 };
@@ -74,7 +75,7 @@ export const VotePanel = (props) => {
   /**
    * Adds the voting type to title if there is an ongoing vote.
    */
-  let windowTitle = 'Vote';
+  let windowTitle = 'Głosowanie';
   if (currentVote) {
     windowTitle +=
       ': ' +
@@ -88,25 +89,28 @@ export const VotePanel = (props) => {
       <Window.Content>
         <Stack fill vertical>
           <Section
-            title="Create Vote"
+            title="Nowe głosowanie"
             buttons={
               !!user.isLowerAdmin && (
                 <Stack>
                   <Stack.Item>
                     <Button
                       icon="refresh"
-                      content="Reset Cooldown"
                       disabled={LastVoteTime + VoteCD <= 0}
                       onClick={() => act('resetCooldown')}
-                    />
+                    >
+                      Zeruj odstęp
+                    </Button>
                   </Stack.Item>
                   <Stack.Item>
-                    <Button
-                      icon="skull"
-                      content="Toggle dead vote"
+                    <Button.Checkbox
                       disabled={!user.isUpperAdmin}
+                      checked={!!data.deadVoteEnabled}
+                      color="primary"
                       onClick={() => act('toggleDeadVote')}
-                    />
+                    >
+                      Głosy duchów
+                    </Button.Checkbox>
                   </Stack.Item>
                 </Stack>
               )
@@ -131,7 +135,7 @@ const VoteOptionDimmer = (props) => {
     <Dimmer>
       <Box textAlign="center">
         <Box fontSize={2} bold>
-          Vote Cooldown
+          Odstęp między głosowaniami
         </Box>
         <Box fontSize={1.5}>{Math.floor((VoteCD + LastVoteTime) / 10)}s</Box>
       </Box>
@@ -151,7 +155,7 @@ const VoteOptions = (props) => {
 
   return (
     <Stack.Item>
-      <Collapsible title="Start a Vote">
+      <Collapsible title="Rozpocznij głosowanie">
         <Section>
           {LastVoteTime + VoteCD > 0 && <VoteOptionDimmer />}
           <Stack vertical justify="space-between">
@@ -160,7 +164,7 @@ const VoteOptions = (props) => {
                 width={19.5}
                 color={areWeAnonymous ? 'green' : 'red'}
                 checked={areWeAnonymous}
-                content="Remain Anonymous"
+                content="Anonimowo"
                 onClick={() => setAnonymous(!areWeAnonymous)}
               />
             </Stack.Item>
@@ -179,13 +183,13 @@ const VoteOptions = (props) => {
                         }
                         tooltip={
                           option.config === VoteConfig.None
-                            ? 'This vote cannot be disabled.'
+                            ? 'Tego głosowania nie da się wyłączyć.'
                             : null
                         }
                         content={
                           option.config === VoteConfig.Enabled
-                            ? 'Enabled'
-                            : 'Disabled'
+                            ? 'Włączone'
+                            : 'Wyłączone'
                         }
                         onClick={() =>
                           act('toggleVote', {
@@ -230,7 +234,7 @@ const VotersList = (props) => {
   return (
     <Stack.Item>
       <Collapsible
-        title={`View Active Voters${
+        title={`Głosujący${
           data.voting.length ? ` (${data.voting.length})` : ''
         }`}
       >
@@ -254,9 +258,9 @@ const ChoicesPanel = (props) => {
 
   return (
     <Stack.Item grow>
-      <Section fill scrollable title="Active Vote">
+      <Section fill scrollable title="Trwające głosowanie">
         {currentVote && currentVote.countMethod === VoteSystem.VOTE_SINGLE ? (
-          <NoticeBox success>Select one option</NoticeBox>
+          <NoticeBox success>Wybierz jedną opcję</NoticeBox>
         ) : null}
         {currentVote &&
         currentVote.choices.length !== 0 &&
@@ -271,7 +275,7 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={
-                        user.isGhost && 'Ghost voting was disabled by an admin.'
+                        user.isGhost && 'Admin wyłączył głosowanie duchów.'
                       }
                       disabled={
                         user.singleSelection === choice.name || user.isGhost
@@ -280,7 +284,7 @@ const ChoicesPanel = (props) => {
                         act('voteSingle', { voteOption: choice.name });
                       }}
                     >
-                      Vote
+                      Głosuj
                     </Button>
                   }
                 >
@@ -293,8 +297,8 @@ const ChoicesPanel = (props) => {
                         name="vote-yea"
                       />
                     )}
-                  {currentVote.displayStatistics
-                    ? `${choice.votes} Votes`
+                  {currentVote.displayStatistics || user.isLowerAdmin
+                    ? `Głosy: ${choice.votes}`
                     : null}
                 </LabeledList.Item>
                 <LabeledList.Divider />
@@ -303,7 +307,7 @@ const ChoicesPanel = (props) => {
           </LabeledList>
         ) : null}
         {currentVote && currentVote.countMethod === VoteSystem.VOTE_MULTI ? (
-          <NoticeBox success>Select any number of options</NoticeBox>
+          <NoticeBox success>Wybierz dowolną liczbę opcji</NoticeBox>
         ) : null}
         {currentVote &&
         currentVote.choices.length !== 0 &&
@@ -318,14 +322,14 @@ const ChoicesPanel = (props) => {
                   buttons={
                     <Button
                       tooltip={
-                        user.isGhost && 'Ghost voting was disabled by an admin.'
+                        user.isGhost && 'Admin wyłączył głosowanie duchów.'
                       }
                       disabled={user.isGhost}
                       onClick={() => {
                         act('voteMulti', { voteOption: choice.name });
                       }}
                     >
-                      Vote
+                      Głosuj
                     </Button>
                   }
                 >
@@ -333,14 +337,14 @@ const ChoicesPanel = (props) => {
                   user.multiSelection[user.ckey.concat(choice.name)] === 1 ? (
                     <Icon align="right" mr={2} color="blue" name="vote-yea" />
                   ) : null}
-                  {choice.votes} Votes
+                  Głosy: {choice.votes}
                 </LabeledList.Item>
                 <LabeledList.Divider />
               </Box>
             ))}
           </LabeledList>
         ) : null}
-        {currentVote ? null : <NoticeBox>No vote active!</NoticeBox>}
+        {currentVote ? null : <NoticeBox>Nie trwa żadne głosowanie.</NoticeBox>}
       </Section>
     </Stack.Item>
   );
@@ -359,8 +363,9 @@ const TimePanel = (props) => {
       <Section>
         <Stack justify="space-between">
           <Box fontSize={1.5}>
-            Time Remaining:&nbsp;
-            {currentVote?.timeRemaining || 0}s
+            {currentVote
+              ? `Pozostało: ${currentVote.timeRemaining}s`
+              : 'Brak głosowania'}
           </Box>
           {!!user.isLowerAdmin && (
             <Stack>
@@ -370,7 +375,7 @@ const TimePanel = (props) => {
                   disabled={!user.isLowerAdmin || !currentVote}
                   onClick={() => act('endNow')}
                 >
-                  End Now
+                  Zakończ teraz
                 </Button>
               </Stack.Item>
               <Stack.Item>
@@ -379,7 +384,7 @@ const TimePanel = (props) => {
                   disabled={!user.isLowerAdmin || !currentVote}
                   onClick={() => act('cancel')}
                 >
-                  Cancel Vote
+                  Anuluj
                 </Button>
               </Stack.Item>
             </Stack>

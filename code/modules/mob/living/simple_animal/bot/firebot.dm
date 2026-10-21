@@ -102,22 +102,12 @@
 	text_dehack = "Wykrywasz błędy w [name] i resetujesz jego oprogramowanie."
 	text_dehack_fail = "[name] nie reaguje na polecenia resetu!"
 
-/mob/living/simple_animal/bot/firebot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<TT><B>Mobilna Gaśnica v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Panel serwisowy jest [open ? "otwarty" : "zamknięty"]<BR>"
-
-	dat += "Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "Gaszenie pożarów: <A href='byond://?src=[REF(src)];operation=extinguish_fires'>[extinguish_fires ? "Tak" : "Nie"]</A><BR>"
-		dat += "Gaszenie ludzi: <A href='byond://?src=[REF(src)];operation=extinguish_people'>[extinguish_people ? "Tak" : "Nie"]</A><BR>"
-		dat += "Patrolowanie stacji: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</A><BR>"
-		dat += "Tryb stacjonarny: <a href='byond://?src=[REF(src)];operation=stationary_mode'>[stationary_mode ? "Tak" : "Nie"]</a><br>"
-
-	return dat
+/mob/living/simple_animal/bot/firebot/get_custom_controls(mob/user)
+	return list(
+		"extinguish_fires" = extinguish_fires,
+		"extinguish_people" = extinguish_people,
+		"stationary_mode" = stationary_mode,
+	)
 
 /mob/living/simple_animal/bot/firebot/emag_act(mob/user)
 	..()
@@ -139,20 +129,18 @@
 		internal_ext.max_water = INFINITY
 		internal_ext.refill()
 
-/mob/living/simple_animal/bot/firebot/Topic(href, href_list)
-	if(..())
-		return TRUE
-
-	switch(href_list["operation"])
+/mob/living/simple_animal/bot/firebot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
 		if("extinguish_fires")
 			extinguish_fires = !extinguish_fires
 		if("extinguish_people")
 			extinguish_people = !extinguish_people
 		if("stationary_mode")
 			stationary_mode = !stationary_mode
-
-	update_controls()
+		else
+			return FALSE
 	update_icon()
+	return TRUE
 
 /mob/living/simple_animal/bot/firebot/proc/is_burning(atom/target)
 	if(ismob(target))

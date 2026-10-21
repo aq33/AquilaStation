@@ -231,23 +231,34 @@
 			var/amount = mat_container.materials[M]
 			var/sheet_amount = amount / MINERAL_MATERIAL_AMOUNT
 			var/ref = REF(M)
-			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "value" = ore_values[M.type] * point_upgrade))
+			// AQUILA EDIT - ikony arkuszy dla okna z tg
+			var/obj/item/stack/sheet/sheet_icon = M.sheet_type
+			data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "value" = ore_values[M.type] * point_upgrade, "icon" = sheet_icon ? initial(sheet_icon.icon) : null, "icon_state" = sheet_icon ? initial(sheet_icon.icon_state) : null))
 
 		data["alloys"] = list()
 		for(var/v in stored_research.researched_designs)
 			var/datum/design/D = SSresearch.techweb_design_by_id(v)
-			data["alloys"] += list(list("name" = D.name, "id" = D.id, "amount" = can_smelt_alloy(D)))
+			var/obj/item/alloy_icon = D.build_path
+			data["alloys"] += list(list("name" = D.name, "id" = D.id, "amount" = can_smelt_alloy(D), "icon" = ispath(alloy_icon, /obj/item) ? initial(alloy_icon.icon) : null, "icon_state" = ispath(alloy_icon, /obj/item) ? initial(alloy_icon.icon_state) : null))
+			// AQUILA EDIT END
 	else
 		data["alloys"] = null // In case we lose mat_container while UI is open somehow
 
 	if (!mat_container)
-		data["disconnected"] = "local mineral storage is unavailable"
+		data["disconnected"] = "lokalny magazyn minerałów jest niedostępny"
 	else if (!materials.silo)
-		data["disconnected"] = "no ore silo connection is available; storing locally"
+		data["disconnected"] = "brak połączenia z silosem rudy; magazynuję lokalnie"
 	else if (materials.on_hold())
-		data["disconnected"] = "mineral withdrawal is on hold"
+		data["disconnected"] = "wydawanie minerałów jest wstrzymane"
 	else
 		data["disconnected"] = null
+
+	// AQUILA EDIT - karta użytkownika w oknie z tg
+	data["user"] = null
+	var/obj/item/card/id/user_id = user.get_idcard(TRUE)
+	if(user_id)
+		data["user"] = list("name" = user_id.registered_name, "cash" = user_id.mining_points)
+	// AQUILA EDIT END
 
 	data["diskDesigns"] = list()
 	data["hasDisk"] = FALSE

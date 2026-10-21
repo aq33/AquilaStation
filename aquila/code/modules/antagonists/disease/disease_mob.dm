@@ -27,9 +27,6 @@ the new instance inside the host to be updated to the template's stats.
 	var/freemove_end_timerid
 
 	var/datum/action/innate/disease_adapt/adaptation_menu_action
-	var/datum/disease_ability/examining_ability
-	var/datum/browser/browser
-	var/browser_open = FALSE
 
 	var/mob/living/following_host
 	var/list/disease_instances
@@ -65,8 +62,6 @@ the new instance inside the host to be updated to the template's stats.
 	var/datum/atom_hud/my_hud = GLOB.huds[DATA_HUD_SENTIENT_DISEASE]
 	my_hud.add_hud_to(src)
 
-	browser = new /datum/browser(src, "disease_menu", "Menu adaptacji", 1000, 770, src)
-
 	freemove_end = world.time + FREEMOVE_TIME
 	freemove_end_timerid = addtimer(CALLBACK(src, .proc/infect_random_patient_zero), FREEMOVE_TIME, TIMER_STOPPABLE)
 
@@ -78,7 +73,6 @@ the new instance inside the host to be updated to the template's stats.
 		var/datum/disease/advance/sentient_disease/S = V
 		if(S.overmind == src)
 			S.overmind = null
-	browser = null
 
 /mob/camera/disease/Login()
 	..()
@@ -310,88 +304,99 @@ the new instance inside the host to be updated to the template's stats.
 	refresh_adaptation_menu()
 
 /mob/camera/disease/proc/refresh_adaptation_menu()
-	if(browser_open)
-		adaptation_menu()
+	SStgui.update_uis(src)
 
 /mob/camera/disease/proc/adaptation_menu()
-	var/datum/disease/advance/sentient_disease/DT = disease_template
-	if(!DT)
+	if(!disease_template)
 		return
-	var/list/dat = list()
+	ui_interact(src)
 
-	if(examining_ability)
-		dat += "<a href='byond://?src=[REF(src)];main_menu=1'>Back</a><br><h1>[examining_ability.name]</h1>[examining_ability.stat_block][examining_ability.long_desc][examining_ability.threshold_block]"
-	else
-		dat += "<h1>Statystyki choroby</h1><br>\
-			Resistance: [DT.resistance]<br>\
-			Stealth: [DT.stealth]<br>\
-			Szybkość postępu: [DT.stage_rate]<br>\
-			Transmissibility: [DT.transmission]<hr>\
-			Cure: [DT.cure_text]"
-		dat += "<hr><h1>Adaptations</h1>\
-			Points: [points] / [total_points]\
-			<table border=1>\
-			<tr><td>Cost</td><td></td><td>Unlock</td><td width='180px'>Name</td><td>Type</td><td>Description</td></tr>"
-		for(var/V in GLOB.disease_ability_singletons)
-			var/datum/disease_ability/A = V
-			var/purchase_text
-			if(unpurchased_abilities[A])
-				if(A.CanBuy(src))
-					purchase_text = "<a href='byond://?src=[REF(src)];buy_ability=[REF(A)]'>Purchase</a>"
-				else
-					purchase_text = "<span class='linkOff'>Purchase</span>"
-			else
-				if(A.CanRefund(src))
-					purchase_text = "<a href='byond://?src=[REF(src)];refund_ability=[REF(A)]'>Refund</a>"
-				else
-					purchase_text = "<span class='linkOff'>Refund</span>"
-			dat += "<tr><td>[A.cost]</td><td>[purchase_text]</td><td>[A.required_total_points]</td><td><a href='byond://?src=[REF(src)];examine_ability=[REF(A)]'>[A.name]</a></td><td>[A.category]</td><td>[A.short_desc]</td></tr>"
+/mob/camera/disease/ui_state(mob/user)
+	return GLOB.always_state
 
-		dat += "</table><br>Zarażaj wielu nosicieli naraz, by zdobywać punkty adaptacji.<hr><h1>Zarażeni nosiciele</h1>"
-		for(var/V in hosts)
-			var/mob/living/L = V
-			dat += "<br><a href='byond://?src=[REF(src)];follow_instance=[REF(L)]'>[L.real_name]</a>"
+/mob/camera/disease/ui_status(mob/user, datum/ui_state/state)
+	if(user != src)
+		return UI_CLOSE
+	return ..()
 
-	browser.set_content(dat.Join())
-	browser.open()
-	browser_open = TRUE
+/mob/camera/disease/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SentientDiseaseMenu", "Menu adaptacji")
+		ui.open()
 
-/mob/camera/disease/Topic(href, list/href_list)
-	..()
-	if(href_list["close"])
-		browser_open = FALSE
+/mob/camera/disease/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/abilities = list()
+	for(var/datum/disease_ability/ability as anything in GLOB.disease_ability_singletons)
+		abilities += list(list(
+			"ref" = REF(ability),
+			"name" = ability.name,
+			"cost" = ability.cost,
+			"required_total_points" = ability.required_total_points,
+			"category" = ability.category,
+			"short_desc" = ability.short_desc,
+			"long_desc" = ability.long_desc,
+			"stat_block" = ability.stat_block,
+			"threshold_block" = ability.threshold_block,
+		))
+	data["abilities"] = abilities
+	return data
+
+/mob/camera/disease/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/disease/advance/sentient_disease/DT = disease_template
+	data["resistance"] = DT?.resistance
+	data["stealth"] = DT?.stealth
+	data["stage_rate"] = DT?.stage_rate
+	data["transmission"] = DT?.transmission
+	data["cure_text"] = DT?.cure_text
+	data["points"] = points
+	data["total_points"] = total_points
+	var/list/ability_states = list()
+	for(var/datum/disease_ability/ability as anything in GLOB.disease_ability_singletons)
+		var/purchased = !unpurchased_abilities[ability]
+		ability_states[REF(ability)] = list(
+			"purchased" = purchased,
+			"can_act" = purchased ? ability.CanRefund(src) : ability.CanBuy(src),
+		)
+	data["ability_states"] = ability_states
+	var/list/host_list = list()
+	for(var/mob/living/L as anything in hosts)
+		host_list += list(list(
+			"ref" = REF(L),
+			"name" = L.real_name,
+			"following" = (L == following_host),
+		))
+	data["hosts"] = host_list
+	return data
+
+/mob/camera/disease/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 	if(usr != src)
 		return
-	if(href_list["follow_instance"])
-		var/mob/living/L = locate(href_list["follow_instance"]) in hosts
-		set_following(L)
-
-	if(href_list["buy_ability"])
-		var/datum/disease_ability/A = locate(href_list["buy_ability"]) in unpurchased_abilities
-		if(!istype(A))
-			return
-		if(A.CanBuy(src))
-			A.Buy(src)
-		adaptation_menu()
-
-	if(href_list["refund_ability"])
-		var/datum/disease_ability/A = locate(href_list["refund_ability"]) in purchased_abilities
-		if(!istype(A))
-			return
-		if(A.CanRefund(src))
-			A.Refund(src)
-		adaptation_menu()
-
-	if(href_list["examine_ability"])
-		var/datum/disease_ability/A = locate(href_list["examine_ability"]) in GLOB.disease_ability_singletons
-		if(!istype(A))
-			return
-		examining_ability = A
-		adaptation_menu()
-
-	if(href_list["main_menu"])
-		examining_ability = null
-		adaptation_menu()
+	switch(action)
+		if("follow_instance")
+			var/mob/living/L = locate(params["ref"]) in hosts
+			if(L)
+				set_following(L)
+			return TRUE
+		if("buy_ability")
+			var/datum/disease_ability/A = locate(params["ref"]) in unpurchased_abilities
+			if(!istype(A))
+				return
+			if(A.CanBuy(src))
+				A.Buy(src)
+			return TRUE
+		if("refund_ability")
+			var/datum/disease_ability/A = locate(params["ref"]) in purchased_abilities
+			if(!istype(A))
+				return
+			if(A.CanRefund(src))
+				A.Refund(src)
+			return TRUE
 
 
 /datum/action/innate/disease_adapt

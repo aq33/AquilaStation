@@ -23,7 +23,7 @@ export const PortableBasicInfo = (props) => {
   return (
     <>
       <Section
-        title="Status"
+        title="Stan"
         buttons={
           <Button
             icon={on ? 'power-off' : 'times'}
@@ -34,22 +34,22 @@ export const PortableBasicInfo = (props) => {
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Pressure">
+          <LabeledList.Item label="Ciśnienie">
             <AnimatedNumber value={pressure} />
             {' kPa'}
           </LabeledList.Item>
           <LabeledList.Item label="Port" color={connected ? 'good' : 'average'}>
-            {connected ? 'Connected' : 'Not Connected'}
+            {connected ? 'Podłączony' : 'Niepodłączony'}
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
-        title="Holding Tank"
+        title="Butla"
         minHeight="82px"
         buttons={
           <Button
             icon="eject"
-            content="Eject"
+            content="Wysuń"
             disabled={!holding}
             onClick={() => act('eject')}
           />
@@ -57,8 +57,8 @@ export const PortableBasicInfo = (props) => {
       >
         {holding ? (
           <LabeledList>
-            <LabeledList.Item label="Label">{holding.name}</LabeledList.Item>
-            <LabeledList.Item label="Pressure">
+            <LabeledList.Item label="Etykieta">{holding.name}</LabeledList.Item>
+            <LabeledList.Item label="Ciśnienie">
               <AnimatedNumber value={holding.pressure} />
               {' kPa'}
             </LabeledList.Item>

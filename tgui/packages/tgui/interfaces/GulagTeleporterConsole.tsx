@@ -4,11 +4,26 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = Record<string, any>;
+type Data = {
+  teleporter: BooleanLike;
+  teleporter_lock: BooleanLike;
+  teleporter_state_open: BooleanLike;
+  teleporter_location: string;
+  beacon: BooleanLike;
+  beacon_location: string;
+  id: BooleanLike;
+  id_name: string;
+  can_teleport: BooleanLike;
+  goal: number;
+  prisoner: { name?: string; crimstat?: string };
+  /** AQUILA: dożywotni wyrok */
+  permanent: BooleanLike;
+};
 
 export const GulagTeleporterConsole = (props) => {
   const { act, data } = useBackend<Data>();
@@ -26,100 +41,101 @@ export const GulagTeleporterConsole = (props) => {
     prisoner = {},
     permanent,
   } = data;
+
   return (
     <Window width={350} height={295}>
       <Window.Content>
         <Section
-          title="Teleporter Console"
+          title="Konsola teleportera"
           buttons={
             <>
               <Button
-                content={teleporter_state_open ? 'Open' : 'Closed'}
                 disabled={teleporter_lock}
                 selected={teleporter_state_open}
                 onClick={() => act('toggle_open')}
-              />
+              >
+                {teleporter_state_open ? 'Otwarty' : 'Zamknięty'}
+              </Button>
               <Button
                 icon={teleporter_lock ? 'lock' : 'unlock'}
-                content={teleporter_lock ? 'Locked' : 'Unlocked'}
                 selected={teleporter_lock}
                 disabled={teleporter_state_open}
                 onClick={() => act('teleporter_lock')}
-              />
+              >
+                {teleporter_lock ? 'Zablokowany' : 'Odblokowany'}
+              </Button>
             </>
           }
         >
           <LabeledList>
             <LabeledList.Item
-              label="Teleporter Unit"
+              label="Teleporter"
               color={teleporter ? 'good' : 'bad'}
               buttons={
                 !teleporter && (
-                  <Button
-                    content="Reconnect"
-                    onClick={() => act('scan_teleporter')}
-                  />
+                  <Button onClick={() => act('scan_teleporter')}>
+                    Połącz ponownie
+                  </Button>
                 )
               }
             >
-              {teleporter ? teleporter_location : 'Not Connected'}
+              {teleporter ? teleporter_location : 'Brak połączenia'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Receiver Beacon"
+              label="Nadajnik docelowy"
               color={beacon ? 'good' : 'bad'}
               buttons={
                 !beacon && (
-                  <Button
-                    content="Reconnect"
-                    onClick={() => act('scan_beacon')}
-                  />
+                  <Button onClick={() => act('scan_beacon')}>
+                    Połącz ponownie
+                  </Button>
                 )
               }
             >
-              {beacon ? beacon_location : 'Not Connected'}
+              {beacon ? beacon_location : 'Brak połączenia'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Prisoner Details">
+        <Section title="Dane więźnia">
           <LabeledList>
-            <LabeledList.Item label="Prisoner ID">
-              <Button
-                fluid
-                content={id ? id_name : 'No ID'}
-                onClick={() => act('handle_id')}
-              />
+            <LabeledList.Item label="Identyfikator">
+              <Button fluid onClick={() => act('handle_id')}>
+                {id ? id_name : 'Brak karty'}
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Point Goal">
+            <LabeledList.Item label="Limit punktów">
               <NumberInput
-                step={1}
                 value={goal}
+                step={1}
                 width="48px"
                 minValue={1}
                 maxValue={1000}
                 onChange={(value) => act('set_goal', { value })}
               />
               <Button.Checkbox
-                content="Permanent sentence"
                 checked={permanent}
                 onClick={() => act('set_permanent')}
-              />
+              >
+                Dożywocie
+              </Button.Checkbox>
             </LabeledList.Item>
-            <LabeledList.Item label="Occupant">
-              {prisoner.name || 'No Occupant'}
+            <LabeledList.Item label="W komorze">
+              {prisoner.name || 'Pusto'}
             </LabeledList.Item>
-            <LabeledList.Item label="Criminal Status">
-              {prisoner.crimstat || 'No Status'}
+            <LabeledList.Item label="Status karny">
+              {prisoner.crimstat || 'Brak statusu'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Button
           fluid
-          content="Process Prisoner"
           disabled={!can_teleport}
           textAlign="center"
           color="bad"
           onClick={() => act('teleport')}
-        />
+        >
+          Wyślij więźnia
+        </Button>
       </Window.Content>
     </Window>
   );

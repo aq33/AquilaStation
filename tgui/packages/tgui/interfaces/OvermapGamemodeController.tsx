@@ -93,12 +93,13 @@ export const OvermapGamemodeController = (props) => {
                     <br />
                     Adjust Global Difficulty
                     <Slider
+                      tickWhileDragging
                       value={data.current_escalation}
                       minValue={-5}
                       maxValue={5}
                       step={1}
                       stepPixelSize={50}
-                      onDrag={(e, value) =>
+                      onChange={(e, value) =>
                         act('current_escalation', {
                           adjust: value,
                         })

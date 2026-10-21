@@ -64,6 +64,20 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 			"color" = "",
 			"transform" = null,
 			"blend_mode" = BLEND_DEFAULT
+		),
+		// AQUILA EDIT - flagi i opcje dla Filterific z tg
+		"flags" = list(
+			"FILTER_OVERLAY" = FILTER_OVERLAY,
+		),
+		"options" = list(
+			"blend_mode" = list(
+				"BLEND_DEFAULT" = BLEND_DEFAULT,
+				"BLEND_OVERLAY" = BLEND_OVERLAY,
+				"BLEND_ADD" = BLEND_ADD,
+				"BLEND_SUBTRACT" = BLEND_SUBTRACT,
+				"BLEND_MULTIPLY" = BLEND_MULTIPLY,
+				"BLEND_INSET_OVERLAY" = BLEND_INSET_OVERLAY
+			)
 		)
 	),
 	"motion_blur" = list(

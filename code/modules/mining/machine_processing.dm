@@ -309,12 +309,16 @@
 		var/amount = materials.materials[M]
 		var/sheet_amount = amount / MINERAL_MATERIAL_AMOUNT
 		var/ref = REF(M)
-		data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "smelting" = (selected_material == M)))
+		// AQUILA EDIT - ikony dla okna z tg
+		var/obj/item/stack/sheet/sheet_icon = M.sheet_type
+		data["materials"] += list(list("name" = M.name, "id" = ref, "amount" = sheet_amount, "smelting" = (selected_material == M), "icon" = sheet_icon ? initial(sheet_icon.icon) : null, "icon_state" = sheet_icon ? initial(sheet_icon.icon_state) : null))
 
 	data["alloys"] = list()
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/D = SSresearch.techweb_design_by_id(v)
-		data["alloys"] += list(list("name" = D.name, "id" = D.id, "smelting" = (selected_alloy == D.id), "amount" = can_smelt(D)))
+		var/obj/item/alloy_icon = D.build_path
+		data["alloys"] += list(list("name" = D.name, "id" = D.id, "smelting" = (selected_alloy == D.id), "amount" = can_smelt(D), "icon" = ispath(alloy_icon, /obj/item) ? initial(alloy_icon.icon) : null, "icon_state" = ispath(alloy_icon, /obj/item) ? initial(alloy_icon.icon_state) : null))
+		// AQUILA EDIT END
 
 	data["auto_shutdown"] = auto_shutdown
 	data["smelt_amount_limit"] = smelt_amount_limit

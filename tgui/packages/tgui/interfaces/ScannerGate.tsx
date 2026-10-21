@@ -5,95 +5,56 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 type Data = {
-  disease_threshold: any;
-  locked: any;
-  nanite_cloud: any;
-  reverse: any;
-  scan_mode: any;
-  target_hygiene: any;
-  target_nutrition: any;
-  target_species: any;
+  disease_threshold: string;
+  locked: BooleanLike;
+  nanite_cloud: number;
+  reverse: BooleanLike;
+  scan_mode: string;
+  target_hygiene: number;
+  target_nutrition: number;
+  target_species: string;
 };
 
+// Wartości idą do DM bez zmian, tłumaczone są tylko etykiety.
 const DISEASE_THEASHOLD_LIST = [
-  'Positive',
-  'Harmless',
-  'Minor',
-  'Medium',
-  'Harmful',
-  'Dangerous',
-  'BIOHAZARD',
+  { value: 'Positive', name: 'Korzystna' },
+  { value: 'Harmless', name: 'Nieszkodliwa' },
+  { value: 'Minor', name: 'Łagodna' },
+  { value: 'Medium', name: 'Średnia' },
+  { value: 'Harmful', name: 'Szkodliwa' },
+  { value: 'Dangerous', name: 'Niebezpieczna' },
+  { value: 'BIOHAZARD', name: 'ZAGROŻENIE BIOLOGICZNE' },
 ];
 
 const TARGET_SPECIES_LIST = [
-  {
-    name: 'Human',
-    value: 'human',
-  },
-  {
-    name: 'Lizardperson',
-    value: 'lizard',
-  },
-  {
-    name: 'Flyperson',
-    value: 'fly',
-  },
-  {
-    name: 'Felinid',
-    value: 'felinid',
-  },
-  {
-    name: 'Plasmaman',
-    value: 'plasma',
-  },
-  {
-    name: 'Mothperson',
-    value: 'moth',
-  },
-  {
-    name: 'Jellyperson',
-    value: 'jelly',
-  },
-  {
-    name: 'Podperson',
-    value: 'pod',
-  },
-  {
-    name: 'Golem',
-    value: 'golem',
-  },
-  {
-    name: 'Zombie',
-    value: 'zombie',
-  },
+  { name: 'Człowiek', value: 'human' },
+  { name: 'Jaszczuroczłek', value: 'lizard' },
+  { name: 'Muchoczłek', value: 'fly' },
+  { name: 'Felinid', value: 'felinid' },
+  { name: 'Plazmoid', value: 'plasma' },
+  { name: 'Ćmoczłek', value: 'moth' },
+  { name: 'Galaretoczłek', value: 'jelly' },
+  { name: 'Roślinoczłek', value: 'pod' },
+  { name: 'Golem', value: 'golem' },
+  { name: 'Zombie', value: 'zombie' },
 ];
 
+// AQUILA: tryb higieny (gałąź higiena)
 const TARGET_HYGIENE_LIST = [
-  {
-    name: 'Clean',
-    value: 250,
-  },
-  {
-    name: 'Dirty',
-    value: 75,
-  },
+  { name: 'czysta', label: 'Czysta', key: 'Clean', value: 250 },
+  { name: 'brudna', label: 'Brudna', key: 'Dirty', value: 75 },
 ];
 
 const TARGET_NUTRITION_LIST = [
-  {
-    name: 'Starving',
-    value: 150,
-  },
-  {
-    name: 'Obese',
-    value: 600,
-  },
+  { name: 'Głodująca', key: 'Starving', value: 150 },
+  { name: 'Otyła', key: 'Obese', value: 600 },
 ];
 
 export const ScannerGate = (props) => {
@@ -112,39 +73,39 @@ export const ScannerGate = (props) => {
 
 const SCANNER_GATE_ROUTES = {
   Off: {
-    title: 'Scanner Mode: Off',
+    title: 'Tryb skanera: wyłączony',
     component: () => ScannerGateOff,
   },
   Wanted: {
-    title: 'Scanner Mode: Wanted',
+    title: 'Tryb skanera: poszukiwani',
     component: () => ScannerGateWanted,
   },
   Guns: {
-    title: 'Scanner Mode: Guns',
+    title: 'Tryb skanera: broń',
     component: () => ScannerGateGuns,
   },
   Mindshield: {
-    title: 'Scanner Mode: Mindshield',
+    title: 'Tryb skanera: implant lojalności',
     component: () => ScannerGateMindshield,
   },
   Disease: {
-    title: 'Scanner Mode: Disease',
+    title: 'Tryb skanera: choroby',
     component: () => ScannerGateDisease,
   },
   Species: {
-    title: 'Scanner Mode: Species',
+    title: 'Tryb skanera: rasa',
     component: () => ScannerGateSpecies,
   },
   Nutrition: {
-    title: 'Scanner Mode: Nutrition',
+    title: 'Tryb skanera: odżywienie',
     component: () => ScannerGateNutrition,
   },
   Hygiene: {
-    title: 'Scanner Mode: Hygiene',
+    title: 'Tryb skanera: higiena',
     component: () => ScannerGateHygiene,
   },
   Nanites: {
-    title: 'Scanner Mode: Nanites',
+    title: 'Tryb skanera: nanity',
     component: () => ScannerGateNanites,
   },
 };
@@ -161,9 +122,10 @@ const ScannerGateControl = (props) => {
         scan_mode !== 'Off' && (
           <Button
             icon="arrow-left"
-            content="back"
             onClick={() => act('set_mode', { new_mode: 'Off' })}
-          />
+          >
+            Wróć
+          </Button>
         )
       }
     >
@@ -172,43 +134,31 @@ const ScannerGateControl = (props) => {
   );
 };
 
+const SCAN_MODES = [
+  { mode: 'Wanted', name: 'Poszukiwani' },
+  { mode: 'Guns', name: 'Broń' },
+  { mode: 'Mindshield', name: 'Implant lojalności' },
+  { mode: 'Disease', name: 'Choroby' },
+  { mode: 'Species', name: 'Rasa' },
+  { mode: 'Nutrition', name: 'Odżywienie' },
+  { mode: 'Hygiene', name: 'Higiena' },
+  { mode: 'Nanites', name: 'Nanity' },
+];
+
 const ScannerGateOff = (props) => {
   const { act } = useBackend<Data>();
   return (
     <>
-      <Box mb={2}>Select a scanning mode below.</Box>
+      <Box mb={2}>Wybierz tryb skanowania.</Box>
       <Box>
-        <Button
-          content="Wanted"
-          onClick={() => act('set_mode', { new_mode: 'Wanted' })}
-        />
-        <Button
-          content="Guns"
-          onClick={() => act('set_mode', { new_mode: 'Guns' })}
-        />
-        <Button
-          content="Mindshield"
-          onClick={() => act('set_mode', { new_mode: 'Mindshield' })}
-        />
-        <Button
-          content="Disease"
-          onClick={() => act('set_mode', { new_mode: 'Disease' })}
-        />
-        <Button
-          content="Species"
-          onClick={() => act('set_mode', { new_mode: 'Species' })}
-        />
-        <Button
-          content="Nutrition"
-          onClick={() => act('set_mode', { new_mode: 'Nutrition' })}
-        />
-        <Button
-          content="Hygiene"
-          onClick={() => act('set_mode', { new_mode: 'Hygiene' })} />
-        <Button
-          content="Nanites"
-          onClick={() => act('set_mode', { new_mode: 'Nanites' })}
-        />
+        {SCAN_MODES.map((entry) => (
+          <Button
+            key={entry.mode}
+            onClick={() => act('set_mode', { new_mode: entry.mode })}
+          >
+            {entry.name}
+          </Button>
+        ))}
       </Box>
     </>
   );
@@ -220,8 +170,8 @@ const ScannerGateWanted = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        warrants for their arrest.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie jest' : 'jest'} poszukiwana
+        nakazem aresztowania.
       </Box>
       <ScannerGateMode />
     </>
@@ -234,8 +184,8 @@ const ScannerGateGuns = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} any
-        guns.
+        Alarm, jeśli skanowana osoba{' '}
+        {reverse ? 'nie ma przy sobie broni' : 'ma przy sobie broń'}.
       </Box>
       <ScannerGateMode />
     </>
@@ -248,8 +198,8 @@ const ScannerGateMindshield = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        mindshield.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie ma' : 'ma'} implant
+        {reverse ? 'u' : ''} lojalności.
       </Box>
       <ScannerGateMode />
     </>
@@ -259,24 +209,28 @@ const ScannerGateMindshield = (props) => {
 const ScannerGateDisease = (props) => {
   const { act, data } = useBackend<Data>();
   const { reverse, disease_threshold } = data;
+  const threshold = DISEASE_THEASHOLD_LIST.find(
+    (entry) => entry.value === disease_threshold,
+  );
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} a
-        disease equal or worse than {disease_threshold}.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie ma' : 'ma'} choroby co
+        najmniej na poziomie: {threshold?.name ?? disease_threshold}.
       </Box>
       <Box mb={2}>
-        {DISEASE_THEASHOLD_LIST.map((threshold) => (
+        {DISEASE_THEASHOLD_LIST.map((entry) => (
           <Button.Checkbox
-            key={threshold}
-            checked={threshold === disease_threshold}
-            content={threshold}
+            key={entry.value}
+            checked={entry.value === disease_threshold}
             onClick={() =>
               act('set_disease_threshold', {
-                new_threshold: threshold,
+                new_threshold: entry.value,
               })
             }
-          />
+          >
+            {entry.name}
+          </Button.Checkbox>
         ))}
       </Box>
       <ScannerGateMode />
@@ -293,23 +247,24 @@ const ScannerGateSpecies = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned is {reverse ? 'not' : ''} of the{' '}
-        {species?.name} species.
+        Alarm, jeśli rasa skanowanej osoby {reverse ? 'to nie' : 'to'}:{' '}
+        {species?.name}.
         {target_species === 'zombie' &&
-          ' All zombie types will be detected, including dormant zombies.'}
+          ' Wykrywa wszystkie rodzaje zombie, także uśpione.'}
       </Box>
       <Box mb={2}>
         {TARGET_SPECIES_LIST.map((species) => (
           <Button.Checkbox
             key={species.value}
             checked={species.value === target_species}
-            content={species.name}
             onClick={() =>
               act('set_target_species', {
                 new_species: species.value,
               })
             }
-          />
+          >
+            {species.name}
+          </Button.Checkbox>
         ))}
       </Box>
       <ScannerGateMode />
@@ -326,21 +281,22 @@ const ScannerGateNutrition = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} the{' '}
-        {nutrition?.name} nutrition level.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie jest' : 'jest'}:{' '}
+        {nutrition?.name.toLowerCase()}.
       </Box>
       <Box mb={2}>
         {TARGET_NUTRITION_LIST.map((nutrition) => (
           <Button.Checkbox
-            key={nutrition.name}
+            key={nutrition.key}
             checked={nutrition.value === target_nutrition}
-            content={nutrition.name}
             onClick={() =>
               act('set_target_nutrition', {
-                new_nutrition: nutrition.name,
+                new_nutrition: nutrition.key,
               })
             }
-          />
+          >
+            {nutrition.name}
+          </Button.Checkbox>
         ))}
       </Box>
       <ScannerGateMode />
@@ -348,6 +304,7 @@ const ScannerGateNutrition = (props) => {
   );
 };
 
+// AQUILA: tryb higieny (gałąź higiena)
 const ScannerGateHygiene = (props) => {
   const { act, data } = useBackend<Data>();
   const { reverse, target_hygiene } = data;
@@ -357,21 +314,22 @@ const ScannerGateHygiene = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'is not' : 'is'}{' '}
-        {hygiene?.name.toLowerCase()}.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie jest' : 'jest'}{' '}
+        {hygiene?.name}.
       </Box>
       <Box mb={2}>
         {TARGET_HYGIENE_LIST.map((hygiene) => (
           <Button.Checkbox
-            key={hygiene.name}
+            key={hygiene.key}
             checked={hygiene.value === target_hygiene}
-            content={hygiene.name}
             onClick={() =>
               act('set_target_hygiene', {
-                new_hygiene: hygiene.name,
+                new_hygiene: hygiene.key,
               })
             }
-          />
+          >
+            {hygiene.label}
+          </Button.Checkbox>
         ))}
       </Box>
       <ScannerGateMode />
@@ -385,12 +343,12 @@ const ScannerGateNanites = (props) => {
   return (
     <>
       <Box mb={2}>
-        Trigger if the person scanned {reverse ? 'does not have' : 'has'} nanite
-        cloud {nanite_cloud}.
+        Alarm, jeśli skanowana osoba {reverse ? 'nie ma' : 'ma'} nanit
+        {reverse ? 'ów' : 'y'} z chmury {nanite_cloud}.
       </Box>
       <Box mb={2}>
         <LabeledList>
-          <LabeledList.Item label="Cloud ID">
+          <LabeledList.Item label="ID chmury">
             <NumberInput
               step={1}
               value={nanite_cloud}
@@ -417,13 +375,14 @@ const ScannerGateMode = (props) => {
   const { reverse } = data;
   return (
     <LabeledList>
-      <LabeledList.Item label="Scanning Mode">
+      <LabeledList.Item label="Działanie">
         <Button
-          content={reverse ? 'Inverted' : 'Default'}
           icon={reverse ? 'random' : 'long-arrow-alt-right'}
           onClick={() => act('toggle_reverse')}
           color={reverse ? 'bad' : 'good'}
-        />
+        >
+          {reverse ? 'Odwrócone' : 'Domyślne'}
+        </Button>
       </LabeledList.Item>
     </LabeledList>
   );

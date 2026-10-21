@@ -177,12 +177,19 @@
 	if(beaker)
 		data["has_beaker"] = TRUE
 		data["beaker_empty"] = (!beaker.reagents.total_volume || !beaker.reagents.reagent_list)
+		// AQUILA - pojemność zlewki do paska w oknie z tg
+		data["beaker"] = list(
+			"volume" = beaker.reagents.total_volume,
+			"capacity" = beaker.reagents.maximum_volume,
+		)
 		var/datum/reagent/blood/B = locate() in beaker.reagents.reagent_list
 		if(B)
 			data["has_blood"] = TRUE
-			data[/datum/reagent/blood] = list()
-			data[/datum/reagent/blood]["dna"] = B.data["blood_DNA"] || "none"
-			data[/datum/reagent/blood]["type"] = B.data["blood_type"] || "none"
+			// AQUILA EDIT - klucz "blood" zamiast ścieżki typu, okno go czyta
+			data["blood"] = list(
+				"dna" = B.data["blood_DNA"] || "brak",
+				"type" = B.data["blood_type"] || "brak",
+			)
 			data["viruses"] = get_viruses_data(B)
 			data["resistances"] = get_resistance_data(B)
 		else

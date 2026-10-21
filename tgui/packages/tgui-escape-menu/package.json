@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "tgui-escape-menu",
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "common": "workspace:*",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "tgui": "workspace:*",
+    "tgui-core": "6.1.1"
+  }
+}

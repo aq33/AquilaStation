@@ -66,7 +66,7 @@ export const NtosLogProbe = (_) => {
               </LabeledList>
             </Section>
             {!!logging_disabled && (
-              <NoticeBox warning>
+              <NoticeBox>
                 Czytnik ID jest odłączony. Logowanie nie działa.
               </NoticeBox>
             )}

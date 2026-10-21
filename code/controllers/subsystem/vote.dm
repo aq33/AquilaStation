@@ -271,6 +271,7 @@ SUBSYSTEM_DEF(vote)
 	)
 
 	data["voting"] = is_lower_admin ? voting : list()
+	data["deadVoteEnabled"] = !CONFIG_GET(flag/no_dead_vote) // AQUILA EDIT - przełącznik głosów duchów jak w tg
 
 	var/list/all_vote_data = list()
 	for(var/vote_name in possible_votes)

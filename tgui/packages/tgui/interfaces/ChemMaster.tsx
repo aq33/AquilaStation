@@ -1,45 +1,101 @@
-import { classes } from 'common/react';
 import {
   AnimatedNumber,
   Box,
   Button,
   ColorBox,
+  Divider,
   Input,
   LabeledList,
   NumberInput,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
+import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 import { PurityLabel } from './common/BeakerDisplay';
 
+type Chemical = {
+  name: string;
+  id: string;
+  volume: number;
+  purity?: number;
+};
+
+type PillStyle = {
+  id: string;
+  pill_icon_name: string;
+};
+
+type PatchStyle = {
+  id: string;
+  patch_icon_name: string;
+};
+
+type CondiStyle = {
+  id: string;
+  className: string;
+  title: string;
+};
+
+type AnalyzeVars = {
+  name: string;
+  state: string;
+  color: string;
+  description: string;
+  metaRate: number;
+  overD: number;
+  addicD: number;
+};
+
 type Data = {
-  analyzeVars: any;
-  autoCondiStyle: any;
-  beakerContents: any;
+  analyzeVars: AnalyzeVars;
+  autoCondiStyle: string;
+  beakerContents: Chemical[];
   beakerPh: number | null;
-  beakerCurrentVolume: any;
-  beakerMaxVolume: any;
-  bufferContents: any;
-  chosen_condi_style: any;
-  chosen_patch_style: any;
-  chosen_pill_style: any;
-  condi: any;
-  condiStyles: any;
-  isBeakerLoaded: any;
-  isPillBottleLoaded: any;
-  mode: any;
-  patch_styles: any;
-  pillBottleCurrentAmount: any;
-  pillBottleMaxAmount: any;
-  pill_styles: any;
-  saved_name: any;
-  saved_name_state: any;
-  saved_volume: any;
-  saved_volume_state: any;
-  screen: any;
+  beakerCurrentVolume: number | null;
+  beakerMaxVolume: number | null;
+  bufferContents: Chemical[];
+  bufferCurrentVolume: number;
+  bufferMaxVolume: number;
+  chosen_condi_style: string;
+  chosen_patch_style: string;
+  chosen_pill_style: string;
+  condi: BooleanLike;
+  condiStyles: CondiStyle[];
+  hasBeakerInHand: BooleanLike;
+  isBeakerLoaded: BooleanLike;
+  isPillBottleLoaded: BooleanLike;
+  mode: BooleanLike;
+  patch_styles: PatchStyle[];
+  pillBottleCurrentAmount: number;
+  pillBottleMaxAmount: number;
+  pill_styles: PillStyle[];
+  saved_name: string;
+  saved_name_state: 'Auto' | 'Manual';
+  saved_volume: number;
+  saved_volume_state: 'Auto' | 'Exact';
+  screen: string;
+};
+
+// Wartości z DM zostają po angielsku, tu tylko etykiety
+const VOLUME_STATE_LABELS = {
+  Auto: 'Auto',
+  Exact: 'Dokładnie',
+};
+
+const NAME_STATE_LABELS = {
+  Auto: 'Auto',
+  Manual: 'Ręcznie',
+};
+
+const REAGENT_STATE_LABELS = {
+  Solid: 'Stały',
+  Liquid: 'Ciekły',
+  Gas: 'Gaz',
+  Unknown: 'Nieznany',
 };
 
 export const ChemMaster = (props) => {
@@ -59,116 +115,131 @@ const ChemMasterContent = (props) => {
   const { saved_volume, saved_name, saved_volume_state, saved_name_state } =
     data;
   const {
-    screen,
     beakerContents = [],
     bufferContents = [],
     beakerCurrentVolume,
     beakerMaxVolume,
+    bufferCurrentVolume,
+    bufferMaxVolume,
     isBeakerLoaded,
     isPillBottleLoaded,
     pillBottleCurrentAmount,
     pillBottleMaxAmount,
+    hasBeakerInHand,
   } = data;
-  if (screen === 'analyze') {
-    return <AnalysisResults />;
-  }
   return (
-    <>
+    <Box>
       <Section
-        title="Beaker"
+        title="Zlewka"
         buttons={
-          !!data.isBeakerLoaded && (
-            <>
+          isBeakerLoaded ? (
+            <Box>
               <Box inline color="label" mr={2}>
-                <AnimatedNumber value={beakerCurrentVolume} initial={0} />
-                {` / ${beakerMaxVolume} units`}
+                <AnimatedNumber value={beakerCurrentVolume || 0} initial={0} />
+                {` / ${beakerMaxVolume} u`}
               </Box>
-              <Button
-                icon="eject"
-                content="Eject"
-                onClick={() => act('eject')}
-              />
-            </>
+              <Button icon="eject" onClick={() => act('eject')}>
+                Wysuń
+              </Button>
+            </Box>
+          ) : (
+            <Button
+              icon="eject"
+              onClick={() => act('insert')}
+              style={{
+                opacity: hasBeakerInHand ? 1 : 0.5,
+              }}
+              tooltip={!hasBeakerInHand && 'Musisz trzymać pojemnik w ręce.'}
+              tooltipPosition="bottom-start"
+            >
+              Włóż
+            </Button>
           )
         }
       >
-        {!isBeakerLoaded && (
-          <Box color="label" mt="3px" mb="5px">
-            No beaker loaded.
+        {!isBeakerLoaded ? (
+          <Box color="label" my="4px">
+            Nie włożono zlewki.
           </Box>
-        )}
-        {!!isBeakerLoaded && beakerContents.length === 0 && (
-          <Box color="label" mt="3px" mb="5px">
-            Beaker is empty.
+        ) : beakerContents.length === 0 ? (
+          <Box color="label" my="4px">
+            Zlewka jest pusta.
           </Box>
+        ) : (
+          <Table>
+            <Table.Row>
+              <Table.Cell color="label">pH: {data.beakerPh}</Table.Cell>
+            </Table.Row>
+            {beakerContents.map((chemical) => (
+              <ReagentEntry
+                key={chemical.id}
+                chemical={chemical}
+                transferTo="buffer"
+              />
+            ))}
+          </Table>
         )}
-        {!!isBeakerLoaded && beakerContents.length > 0 && (
-          <Box color="label">pH: {data.beakerPh}</Box>
-        )}
-        <ChemicalBuffer>
-          {beakerContents.map((chemical) => (
-            <ChemicalBufferEntry
-              key={chemical.id}
-              chemical={chemical}
-              transferTo="buffer"
-            />
-          ))}
-        </ChemicalBuffer>
       </Section>
       <Section
-        title="Buffer"
+        title="Bufor"
         buttons={
           <>
-            <Box inline color="label" mr={1}>
-              Mode:
-            </Box>
+            {bufferMaxVolume !== undefined && (
+              <Box inline color="label" mr={1}>
+                <AnimatedNumber value={bufferCurrentVolume || 0} initial={0} />
+                {` / ${bufferMaxVolume} u`}
+              </Box>
+            )}
             <Button
               color={data.mode ? 'good' : 'bad'}
-              icon={data.mode ? 'exchange-alt' : 'times'}
-              content={data.mode ? 'Transfer' : 'Destroy'}
+              icon={data.mode ? 'exchange-alt' : 'trash'}
               onClick={() => act('toggleMode')}
-            />
+            >
+              {data.mode ? 'Przenoszenie' : 'Niszczenie'}
+            </Button>
           </>
         }
       >
-        {bufferContents.length === 0 && (
-          <Box color="label" mt="3px" mb="5px">
-            Buffer is empty.
+        {bufferContents.length === 0 ? (
+          <Box color="label" my="4px">
+            Bufor jest pusty.
           </Box>
+        ) : (
+          <Table>
+            {bufferContents.map((chemical) => (
+              <ReagentEntry
+                key={chemical.id}
+                chemical={chemical}
+                transferTo="beaker"
+              />
+            ))}
+          </Table>
         )}
-        <ChemicalBuffer>
-          {bufferContents.map((chemical) => (
-            <ChemicalBufferEntry
-              key={chemical.id}
-              chemical={chemical}
-              transferTo="beaker"
-            />
-          ))}
-        </ChemicalBuffer>
       </Section>
       <Section
-        title="Packaging"
+        title="Pakowanie"
         buttons={
           <>
             <Box inline color="label" mr={1}>
-              Mode:
+              Objętość:
             </Box>
             <Button
               icon={saved_volume_state === 'Exact' ? 'eye-dropper' : 'flask'}
-              content={`${saved_volume_state}`}
-              tooltip="Volume Distribution"
+              tooltip="Podział objętości"
               onClick={() =>
                 act('setSavedVolumeState', {
                   volume_state:
                     saved_volume_state === 'Exact' ? 'Auto' : 'Exact',
                 })
               }
-            />
+            >
+              {VOLUME_STATE_LABELS[saved_volume_state] || saved_volume_state}
+            </Button>
             {saved_volume_state === 'Exact' && (
               <NumberInput
                 step={1}
                 width="84px"
-                unit="units"
+                unit="u"
                 stepPixelSize={15}
                 value={saved_volume}
                 minValue={0.01}
@@ -181,23 +252,24 @@ const ChemMasterContent = (props) => {
       >
         <Box mb={2}>
           <Box inline color="label" mr={1}>
-            Naming Mode:
+            Nazwa:
           </Box>
           <Button
             icon={saved_name_state === 'Manual' ? 'pen' : 'print'}
-            content={`${saved_name_state}`}
             onClick={() =>
               act('setSavedNameState', {
                 name_state: saved_name_state === 'Manual' ? 'Auto' : 'Manual',
               })
             }
-          />
+          >
+            {NAME_STATE_LABELS[saved_name_state] || saved_name_state}
+          </Button>
           {saved_name_state === 'Manual' && (
             <Input
               fluid
               value={saved_name}
-              placeholder="Name"
-              onInput={(e, value) => {
+              placeholder="Nazwa"
+              onChange={(value) => {
                 act('setSavedName', { name: value });
               }}
             />
@@ -210,92 +282,58 @@ const ChemMasterContent = (props) => {
       </Section>
       {!!isPillBottleLoaded && (
         <Section
-          title="Pill Bottle"
+          title="Pojemnik na pigułki"
           buttons={
             <>
               <Box inline color="label" mr={2}>
-                {pillBottleCurrentAmount} / {pillBottleMaxAmount} pills
+                {pillBottleCurrentAmount} / {pillBottleMaxAmount} szt.
               </Box>
-              <Button
-                icon="eject"
-                content="Eject"
-                onClick={() => act('ejectPillBottle')}
-              />
+              <Button icon="eject" onClick={() => act('ejectPillBottle')}>
+                Wysuń
+              </Button>
             </>
           }
         />
       )}
-    </>
+    </Box>
   );
 };
 
-const ChemicalBuffer = Table;
+type ReagentProps = {
+  chemical: Chemical;
+  transferTo: 'buffer' | 'beaker';
+};
 
-const ChemicalBufferEntry = (props) => {
+const ReagentEntry = (props: ReagentProps) => {
   const { act } = useBackend<Data>();
   const { chemical, transferTo } = props;
+  const transfer = (amount: number) =>
+    act('transfer', {
+      id: chemical.id,
+      amount,
+      to: transferTo,
+    });
   return (
     <Table.Row key={chemical.id}>
       <Table.Cell color="label">
+        {`${chemical.name} `}
         <AnimatedNumber value={chemical.volume} initial={0} />
-        {` units of ${chemical.name}`}
+        {'u'}
         <PurityLabel purity={chemical.purity} />
       </Table.Cell>
       <Table.Cell collapsing>
-        <Button
-          content="1"
-          onClick={() =>
-            act('transfer', {
-              id: chemical.id,
-              amount: 1,
-              to: transferTo,
-            })
-          }
-        />
-        <Button
-          content="5"
-          onClick={() =>
-            act('transfer', {
-              id: chemical.id,
-              amount: 5,
-              to: transferTo,
-            })
-          }
-        />
-        <Button
-          content="10"
-          onClick={() =>
-            act('transfer', {
-              id: chemical.id,
-              amount: 10,
-              to: transferTo,
-            })
-          }
-        />
-        <Button
-          content="All"
-          onClick={() =>
-            act('transfer', {
-              id: chemical.id,
-              amount: 1000,
-              to: transferTo,
-            })
-          }
-        />
+        <Button onClick={() => transfer(1)}>1</Button>
+        <Button onClick={() => transfer(5)}>5</Button>
+        <Button onClick={() => transfer(10)}>10</Button>
+        <Button onClick={() => transfer(1000)}>Całość</Button>
         <Button
           icon="ellipsis-h"
-          tooltip="Custom amount"
-          onClick={() =>
-            act('transfer', {
-              id: chemical.id,
-              amount: -1,
-              to: transferTo,
-            })
-          }
+          tooltip="Własna ilość"
+          onClick={() => transfer(-1)}
         />
         <Button
           icon="question"
-          tooltip="Analyze"
+          tooltip="Analizuj"
           onClick={() =>
             act('analyze', {
               id: chemical.id,
@@ -322,7 +360,9 @@ const PackagingControlsItem = (props) => {
         maxValue={10}
         onChange={onChangeAmount}
       />
-      <Button ml={1} content="Create" onClick={onCreate} />
+      <Button ml={1} icon="flask" onClick={onCreate}>
+        Wytwórz
+      </Button>
       <Box inline ml={1} color="label">
         {sideNote}
       </Box>
@@ -350,188 +390,195 @@ const PackagingControls = ({ volume, packagingName }) => {
   } = data;
   const autoCondiStyleChosen = autoCondiStyle === chosen_condi_style;
   return (
-    <LabeledList>
+    <>
       {!condi && (
-        <LabeledList.Item label="Pill type">
-          {pill_styles.map((each_style) => (
-            <Button
-              key={each_style.id}
-              width="30px"
-              height="16px"
-              selected={each_style.id === chosen_pill_style}
-              textAlign="center"
-              color="transparent"
-              onClick={() => act('pillStyle', { id: each_style.id })}
-            >
-              <Box
-                mx={-1}
-                className={classes([
-                  'medicine_containers22x22',
-                  each_style.pill_icon_name,
-                ])}
-              />
-            </Button>
-          ))}
-        </LabeledList.Item>
-      )}
-      {!condi && (
-        <PackagingControlsItem
-          label="Pills"
-          amount={pillAmount}
-          amountUnit="pills"
-          sideNote="max 50u"
-          onChangeAmount={(value) => setPillAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'pill',
-              amount: pillAmount,
-              volume: volume,
-              name: packagingName,
-            })
-          }
-        />
-      )}
-      {!condi && (
-        <LabeledList.Item label="Patch type">
-          {patch_styles.map((each_style) => (
-            <Button
-              key={each_style.id}
-              width="30px"
-              height="25px"
-              selected={each_style.id === chosen_patch_style}
-              textAlign="center"
-              color="transparent"
-              onClick={() => act('patchStyle', { id: each_style.id })}
-            >
-              <Box
-                mx={-1}
-                className={classes([
-                  'medicine_containers22x22',
-                  each_style.patch_icon_name,
-                ])}
-              />
-            </Button>
-          ))}
-        </LabeledList.Item>
-      )}
-      {!condi && (
-        <PackagingControlsItem
-          label="Patches"
-          amount={patchAmount}
-          amountUnit="patches"
-          sideNote="max 40u"
-          onChangeAmount={(value) => setPatchAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'patch',
-              amount: patchAmount,
-              volume: volume,
-              name: packagingName,
-            })
-          }
-        />
-      )}
-      {!condi && (
-        <PackagingControlsItem
-          label="Bottles"
-          amount={bottleAmount}
-          amountUnit="bottles"
-          sideNote="max 30u"
-          onChangeAmount={(value) => setBottleAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'bottle',
-              amount: bottleAmount,
-              volume: volume,
-              name: packagingName,
-            })
-          }
-        />
-      )}
-      {!condi && (
-        <PackagingControlsItem
-          label="Bags"
-          amount={bagAmount}
-          amountUnit="bags"
-          sideNote="max 200u"
-          onChangeAmount={(value) => setBagAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'bag',
-              amount: bagAmount,
-              volume: volume, // NSV13
-              name: packagingName, // NSV13
-            })
-          }
-        />
+        <>
+          <GroupTitle title="Pigułki" />
+          <LabeledList>
+            <LabeledList.Item label="Wygląd">
+              {pill_styles.map((each_style) => (
+                <Button
+                  key={each_style.id}
+                  width="30px"
+                  height="16px"
+                  selected={each_style.id === chosen_pill_style}
+                  textAlign="center"
+                  color="transparent"
+                  onClick={() => act('pillStyle', { id: each_style.id })}
+                >
+                  <Box
+                    mx={-1}
+                    className={classes([
+                      'medicine_containers22x22',
+                      each_style.pill_icon_name,
+                    ])}
+                  />
+                </Button>
+              ))}
+            </LabeledList.Item>
+            <PackagingControlsItem
+              label="Pigułki"
+              amount={pillAmount}
+              amountUnit="szt."
+              sideNote="maks. 50u"
+              onChangeAmount={(value) => setPillAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'pill',
+                  amount: pillAmount,
+                  volume: volume,
+                  name: packagingName,
+                })
+              }
+            />
+          </LabeledList>
+          <GroupTitle title="Plastry" />
+          <LabeledList>
+            <LabeledList.Item label="Wygląd">
+              {patch_styles.map((each_style) => (
+                <Button
+                  key={each_style.id}
+                  width="30px"
+                  height="25px"
+                  selected={each_style.id === chosen_patch_style}
+                  textAlign="center"
+                  color="transparent"
+                  onClick={() => act('patchStyle', { id: each_style.id })}
+                >
+                  <Box
+                    mx={-1}
+                    className={classes([
+                      'medicine_containers22x22',
+                      each_style.patch_icon_name,
+                    ])}
+                  />
+                </Button>
+              ))}
+            </LabeledList.Item>
+            <PackagingControlsItem
+              label="Plastry"
+              amount={patchAmount}
+              amountUnit="szt."
+              sideNote="maks. 40u"
+              onChangeAmount={(value) => setPatchAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'patch',
+                  amount: patchAmount,
+                  volume: volume,
+                  name: packagingName,
+                })
+              }
+            />
+          </LabeledList>
+          <GroupTitle title="Butelki i worki" />
+          <LabeledList>
+            <PackagingControlsItem
+              label="Butelki"
+              amount={bottleAmount}
+              amountUnit="szt."
+              sideNote="maks. 30u"
+              onChangeAmount={(value) => setBottleAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'bottle',
+                  amount: bottleAmount,
+                  volume: volume,
+                  name: packagingName,
+                })
+              }
+            />
+            <PackagingControlsItem
+              label="Worki"
+              amount={bagAmount}
+              amountUnit="szt."
+              sideNote="maks. 200u"
+              onChangeAmount={(value) => setBagAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'bag',
+                  amount: bagAmount,
+                  volume: volume, // NSV13
+                  name: packagingName, // NSV13
+                })
+              }
+            />
+          </LabeledList>
+        </>
       )}
       {!!condi && (
-        <LabeledList.Item label="Bottle type">
-          <Button.Checkbox
-            onClick={() =>
-              act('condiStyle', {
-                id: autoCondiStyleChosen ? condiStyles[0].id : autoCondiStyle,
-              })
-            }
-            checked={autoCondiStyleChosen}
-            disabled={!condiStyles.length}
-          >
-            Guess from contents
-          </Button.Checkbox>
-        </LabeledList.Item>
+        <>
+          <GroupTitle title="Butelki" />
+          <LabeledList>
+            <LabeledList.Item label="Rodzaj butelki">
+              <Button.Checkbox
+                onClick={() =>
+                  act('condiStyle', {
+                    id: autoCondiStyleChosen
+                      ? condiStyles[0].id
+                      : autoCondiStyle,
+                  })
+                }
+                checked={autoCondiStyleChosen}
+                disabled={!condiStyles.length}
+              >
+                Dobierz do zawartości
+              </Button.Checkbox>
+            </LabeledList.Item>
+            {!autoCondiStyleChosen && (
+              <LabeledList.Item label="">
+                {condiStyles.map((style) => (
+                  <Button
+                    key={style.id}
+                    width="30px"
+                    selected={style.id === chosen_condi_style}
+                    textAlign="center"
+                    color="transparent"
+                    tooltip={style.title}
+                    onClick={() => act('condiStyle', { id: style.id })}
+                  >
+                    <Box mx={-1} className={style.className} />
+                  </Button>
+                ))}
+              </LabeledList.Item>
+            )}
+            <PackagingControlsItem
+              label="Butelki"
+              amount={bottleAmount}
+              amountUnit="szt."
+              sideNote="maks. 50u"
+              onChangeAmount={(value) => setBottleAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'condimentBottle',
+                  amount: bottleAmount,
+                  volume: volume,
+                  name: packagingName,
+                })
+              }
+            />
+          </LabeledList>
+          <GroupTitle title="Saszetki" />
+          <LabeledList>
+            <PackagingControlsItem
+              label="Saszetki"
+              amount={packAmount}
+              amountUnit="szt."
+              sideNote="maks. 10u"
+              onChangeAmount={(value) => setPackAmount(value)}
+              onCreate={() =>
+                act('create', {
+                  type: 'condimentPack',
+                  amount: packAmount,
+                  volume: volume, // NSV13
+                  name: packagingName, // NSV13
+                })
+              }
+            />
+          </LabeledList>
+        </>
       )}
-      {!!condi && !autoCondiStyleChosen && (
-        <LabeledList.Item label="">
-          {condiStyles.map((style) => (
-            <Button
-              key={style.id}
-              width="30px"
-              selected={style.id === chosen_condi_style}
-              textAlign="center"
-              color="transparent"
-              tooltip={style.title}
-              onClick={() => act('condiStyle', { id: style.id })}
-            >
-              <Box mx={-1} className={style.className} />
-            </Button>
-          ))}
-        </LabeledList.Item>
-      )}
-      {!!condi && (
-        <PackagingControlsItem
-          label="Bottles"
-          amount={bottleAmount}
-          amountUnit="bottles"
-          sideNote="max 50u"
-          onChangeAmount={(value) => setBottleAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'condimentBottle',
-              amount: bottleAmount,
-              volume: volume,
-              name: packagingName,
-            })
-          }
-        />
-      )}
-      {!!condi && (
-        <PackagingControlsItem
-          label="Packs"
-          amount={packAmount}
-          amountUnit="packs"
-          sideNote="max 10u"
-          onChangeAmount={(value) => setPackAmount(value)}
-          onCreate={() =>
-            act('create', {
-              type: 'condimentPack',
-              amount: packAmount,
-              volume: volume, // NSV13
-              name: packagingName, // NSV13
-            })
-          }
-        />
-      )}
-    </LabeledList>
+    </>
   );
 };
 
@@ -540,39 +587,56 @@ const AnalysisResults = (props) => {
   const { analyzeVars } = data;
   return (
     <Section
-      title="Analysis Results"
+      title="Wyniki analizy"
       buttons={
         <Button
           icon="arrow-left"
-          content="Back"
           onClick={() =>
             act('goScreen', {
               screen: 'home',
             })
           }
-        />
+        >
+          Wróć
+        </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Name">{analyzeVars.name}</LabeledList.Item>
-        <LabeledList.Item label="State">{analyzeVars.state}</LabeledList.Item>
-        <LabeledList.Item label="Color">
+        <LabeledList.Item label="Nazwa">{analyzeVars.name}</LabeledList.Item>
+        <LabeledList.Item label="Stan skupienia">
+          {REAGENT_STATE_LABELS[analyzeVars.state] || analyzeVars.state}
+        </LabeledList.Item>
+        <LabeledList.Item label="Kolor">
           <ColorBox color={analyzeVars.color} mr={1} />
           {analyzeVars.color}
         </LabeledList.Item>
-        <LabeledList.Item label="Description">
+        <LabeledList.Item label="Opis">
           {analyzeVars.description}
         </LabeledList.Item>
-        <LabeledList.Item label="Metabolization Rate">
-          {analyzeVars.metaRate} u/minute
+        <LabeledList.Item label="Tempo metabolizmu">
+          {analyzeVars.metaRate} u/min
         </LabeledList.Item>
-        <LabeledList.Item label="Overdose Threshold">
-          {analyzeVars.overD}
+        <LabeledList.Item label="Próg przedawkowania">
+          {analyzeVars.overD > 0 ? `${analyzeVars.overD} u` : 'Brak'}
         </LabeledList.Item>
-        <LabeledList.Item label="Addiction Threshold">
-          {analyzeVars.addicD}
+        <LabeledList.Item label="Próg uzależnienia">
+          {analyzeVars.addicD > 0 ? `${analyzeVars.addicD} u` : 'Brak'}
         </LabeledList.Item>
       </LabeledList>
     </Section>
+  );
+};
+
+const GroupTitle = ({ title }) => {
+  return (
+    <Stack my={1}>
+      <Stack.Item grow>
+        <Divider />
+      </Stack.Item>
+      <Stack.Item color="gray">{title}</Stack.Item>
+      <Stack.Item grow>
+        <Divider />
+      </Stack.Item>
+    </Stack>
   );
 };

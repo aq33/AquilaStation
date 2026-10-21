@@ -66,7 +66,7 @@ export const NtosSlimeExtracts = (props) => {
             autoFocus
             placeholder="Kolor ekstraktu, odczynnik albo efekt…"
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
           <Box color="label" mt={1}>
             Ekstrakt aktywujesz, wstrzykując do niego odczynnik strzykawką.

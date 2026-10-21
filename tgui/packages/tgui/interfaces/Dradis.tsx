@@ -154,6 +154,7 @@ export const DradisContent = (props) => {
     >
       Allies:
       <Knob
+        tickWhileDragging
         inline
         mx={1}
         color={!!showFriendlies && 'green'}
@@ -163,10 +164,11 @@ export const DradisContent = (props) => {
         maxValue={100}
         step={1}
         stepPixelSize={1}
-        onDrag={(e, value) => act('showFriendlies', { alpha: value })}
+        onChange={(e, value) => act('showFriendlies', { alpha: value })}
       />
       Enemies:
       <Knob
+        tickWhileDragging
         inline
         mx={1}
         color={!!showEnemies && 'green'}
@@ -176,10 +178,11 @@ export const DradisContent = (props) => {
         maxValue={100}
         step={1}
         stepPixelSize={1}
-        onDrag={(e, value) => act('showEnemies', { alpha: value })}
+        onChange={(e, value) => act('showEnemies', { alpha: value })}
       />
       Asteroids:
       <Knob
+        tickWhileDragging
         inline
         mx={1}
         color={!!showAsteroids && 'green'}
@@ -189,10 +192,11 @@ export const DradisContent = (props) => {
         maxValue={100}
         step={1}
         stepPixelSize={1}
-        onDrag={(e, value) => act('showAsteroids', { alpha: value })}
+        onChange={(e, value) => act('showAsteroids', { alpha: value })}
       />
       Anomalies:
       <Knob
+        tickWhileDragging
         inline
         mx={1}
         color={!!showAnomalies && 'green'}
@@ -202,10 +206,11 @@ export const DradisContent = (props) => {
         maxValue={100}
         step={1}
         stepPixelSize={1}
-        onDrag={(e, value) => act('showAnomalies', { alpha: value })}
+        onChange={(e, value) => act('showAnomalies', { alpha: value })}
       />
       Zoom:
       <Knob
+        tickWhileDragging
         inline
         mx={1}
         color="green"
@@ -215,7 +220,7 @@ export const DradisContent = (props) => {
         maxValue={zoom_factor_max * 100}
         step={1}
         stepPixelSize={1}
-        onDrag={(e, value) => act('setZoom', { zoom: value })}
+        onChange={(e, value) => act('setZoom', { zoom: value })}
       />
       {dradis}
     </Section>

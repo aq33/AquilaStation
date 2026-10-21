@@ -1,21 +1,21 @@
-import { decodeHtmlEntities } from 'common/string';
-import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  admin_mode: any;
-  creator_key: any;
-  creator_name: any;
-  has_disliked: any;
-  has_liked: any;
-  hidden_message: any;
-  is_creator: any;
-  num_dislikes: any;
-  num_likes: any;
-  realdate: any;
+  admin_mode: BooleanLike;
+  creator_key: string;
+  creator_name: string;
+  has_liked: BooleanLike;
+  has_disliked: BooleanLike;
+  hidden_message: string;
+  is_creator: BooleanLike;
+  num_likes: number;
+  num_dislikes: number;
+  realdate: string;
 };
 
 export const EngravedMessage = (props) => {
@@ -33,30 +33,33 @@ export const EngravedMessage = (props) => {
     realdate,
   } = data;
   return (
-    <Window theme="generic" width={600} height={300}>
+    <Window width={600} height={300}>
       <Window.Content scrollable>
         <Section>
           <Box bold textAlign="center" fontSize="20px" mb={2}>
             {decodeHtmlEntities(hidden_message)}
           </Box>
-          <Grid>
-            <Grid.Column>
+          <Stack>
+            <Stack.Item grow={1.05}>
               <Button
                 fluid
                 icon="arrow-up"
-                content={' ' + num_likes}
+                tooltip="Podoba mi się"
                 disabled={is_creator}
                 selected={has_liked}
                 textAlign="center"
                 fontSize="16px"
                 lineHeight="24px"
                 onClick={() => act('like')}
-              />
-            </Grid.Column>
-            <Grid.Column>
+              >
+                {` ${num_likes}`}
+              </Button>
+            </Stack.Item>
+            <Stack.Item grow={1}>
               <Button
                 fluid
                 icon="circle"
+                tooltip="Bez oceny"
                 disabled={is_creator}
                 selected={!has_disliked && !has_liked}
                 textAlign="center"
@@ -64,45 +67,43 @@ export const EngravedMessage = (props) => {
                 lineHeight="24px"
                 onClick={() => act('neutral')}
               />
-            </Grid.Column>
-            <Grid.Column>
+            </Stack.Item>
+            <Stack.Item grow={1.05}>
               <Button
                 fluid
                 icon="arrow-down"
-                content={' ' + num_dislikes}
+                tooltip="Nie podoba mi się"
                 disabled={is_creator}
                 selected={has_disliked}
                 textAlign="center"
                 fontSize="16px"
                 lineHeight="24px"
                 onClick={() => act('dislike')}
-              />
-            </Grid.Column>
-          </Grid>
+              >
+                {` ${num_dislikes}`}
+              </Button>
+            </Stack.Item>
+          </Stack>
         </Section>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Created On">{realdate}</LabeledList.Item>
+            <LabeledList.Item label="Wyryto">{realdate}</LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section />
         {!!admin_mode && (
           <Section
-            title="Admin Panel"
+            title="Panel admina"
             buttons={
-              <Button
-                icon="times"
-                content="Delete"
-                color="bad"
-                onClick={() => act('delete')}
-              />
+              <Button icon="times" color="bad" onClick={() => act('delete')}>
+                Usuń
+              </Button>
             }
           >
             <LabeledList>
-              <LabeledList.Item label="Creator Ckey">
+              <LabeledList.Item label="Ckey autora">
                 {creator_key}
               </LabeledList.Item>
-              <LabeledList.Item label="Creator Character Name">
+              <LabeledList.Item label="Postać autora">
                 {creator_name}
               </LabeledList.Item>
             </LabeledList>

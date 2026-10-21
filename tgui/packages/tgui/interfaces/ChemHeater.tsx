@@ -1,5 +1,4 @@
 // Podgrzewacz chemiczny z fermichemem tg: bufory pH, podgląd trwających reakcji
-import { round, toFixed } from 'common/math';
 import {
   AnimatedNumber,
   Box,
@@ -12,12 +11,13 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import { round, toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { COLORS } from '../constants';
 import { Window } from '../layouts';
-import { Beaker, BeakerSectionDisplay } from './common/BeakerDisplay';
+import { type Beaker, BeakerSectionDisplay } from './Chemistry/BeakerDisplay';
 
 export type ActiveReaction = {
   name: string;
@@ -233,9 +233,10 @@ export const ChemHeater = (props) => {
             <Button
               icon={isActive ? 'power-off' : 'times'}
               selected={isActive}
-              content={isActive ? 'Wł.' : 'Wył.'}
               onClick={() => act('power')}
-            />
+            >
+              {isActive ? 'Wł.' : 'Wył.'}
+            </Button>
           }
         >
           <Table>
@@ -257,7 +258,8 @@ export const ChemHeater = (props) => {
                   value={dispenseVolume}
                   minValue={1}
                   maxValue={10}
-                  onDrag={(value) =>
+                  tickWhileDragging
+                  onChange={(value) =>
                     act('disp_vol', {
                       target: value,
                     })
@@ -278,7 +280,8 @@ export const ChemHeater = (props) => {
                   value={round(targetTemp, 0)}
                   minValue={0}
                   maxValue={1000}
-                  onDrag={(value) =>
+                  tickWhileDragging
+                  onChange={(value) =>
                     act('temperature', {
                       target: value,
                     })

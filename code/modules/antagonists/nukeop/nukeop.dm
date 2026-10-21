@@ -398,23 +398,27 @@
 		return "Syndicates"
 
 /datum/team/nuclear/antag_listing_entry()
-	var/disk_report = "<b>Dyski nuklearne</b><br>"
-	disk_report += "<table cellspacing=5>"
+	// AQUILA EDIT - dane dla okna TGUI Check Antagonists zamiast HTML
+	var/list/disk_rows = list()
 	for(var/obj/item/disk/nuclear/N in GLOB.poi_list)
-		disk_report += "<tr><td>[N.name], "
+		var/disk_text = "[N.name], "
+		var/carrier_ref
 		var/atom/disk_loc = N.loc
 		while(!isturf(disk_loc))
 			if(ismob(disk_loc))
 				var/mob/M = disk_loc
-				disk_report += "niesiony przez <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> "
+				disk_text += "niesiony przez [M.real_name] "
+				carrier_ref = REF(M)
 			if(isobj(disk_loc))
 				var/obj/O = disk_loc
-				disk_report += "in \a [O.name] "
+				disk_text += "w [O.name] "
 			disk_loc = disk_loc.loc
-		disk_report += "w [disk_loc.loc] na ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>OBSERWUJ</a></td></tr>"
-	disk_report += "</table>"
-	var/common_part = ..()
-	return common_part + disk_report
+		disk_text += "w [disk_loc.loc] na ([disk_loc.x], [disk_loc.y], [disk_loc.z])"
+		disk_rows += list(list("text" = disk_text, "pp_ref" = carrier_ref, "follow_ref" = REF(N)))
+	var/list/common_part = ..()
+	var/list/extra = common_part["extra"]
+	extra += list(list("title" = "Dyski nuklearne", "rows" = disk_rows))
+	return common_part
 
 /datum/team/nuclear/is_gamemode_hero()
 	return SSticker.mode.name == "nuclear emergency"
