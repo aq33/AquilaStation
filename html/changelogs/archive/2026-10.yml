@@ -511,3 +511,10 @@
   - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
   - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
   - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.
+  - imageadd: 'Nowe sprite''y: łóżko operacyjne, stojak IV, slime''y i golemy z tg;
+      PDA, małpy, strzykawki, MULEboty, materiały, szafki i skrzynie z Bee; zlewki,
+      narzędzia, krzesła, stoły, newscaster i konsola zgłoszeń z Paradise; zbiorniki,
+      interkom, regały i nosze z SS220.'
+  - tweak: Skrzynie i szafki na zamek mają światła jak w Bee, kosz na śmieci pokazuje
+      zapełnienie.
+  - tweak: Na webmapie ściany, okna, stoły i dywany łączą się jak w grze.
