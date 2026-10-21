@@ -165,10 +165,10 @@
 		. += "Zamiast ręki ([strefa_pl(part.body_zone)]) ma [prosthetic.item_limb.get_examine_string(user)][prosthetic.drop_prob ? " - <span class='warning'>trzyma się luźno</span>" : ""]."
 
 // Looks: the human arm is not drawn, the item is the arm. Items with an inhand sprite use it as usual,
-// items without one (food, small trinkets) get their own icon drawn shrunk where the hand would be.
+// items without one (food, small trinkets) get their own icon, turned upright and shrunk, hanging from the shoulder.
 
-/// Size the item icon is shrunk to when it has no inhand sprite
-#define PROSTHETIC_FALLBACK_SIZE 18
+/// Longer side of the item icon when it has no inhand sprite
+#define PROSTHETIC_FALLBACK_SIZE 12
 
 /obj/item/bodypart/get_limb_icon(dropped)
 	if(!dropped && GetComponent(/datum/component/item_as_prosthetic_limb))
@@ -189,18 +189,45 @@
 		return ..()
 	return mutable_appearance(prosthetic_fallback_icon(default_icon_file == righthand_file), "arm", -default_layer)
 
-/// Directional icon of this item drawn small at the hand, for items without an inhand sprite
+/// Bounding box of the visible pixels as list(min_x, min_y, max_x, max_y), BYOND coordinates
+/proc/prosthetic_icon_bounds(icon/I)
+	var/min_x = INFINITY
+	var/min_y = INFINITY
+	var/max_x = 0
+	var/max_y = 0
+	for(var/x in 1 to I.Width())
+		for(var/y in 1 to I.Height())
+			if(isnull(I.GetPixel(x, y)))
+				continue
+			min_x = min(min_x, x)
+			min_y = min(min_y, y)
+			max_x = max(max_x, x)
+			max_y = max(max_y, y)
+	if(!max_x)
+		return null
+	return list(min_x, min_y, max_x, max_y)
+
+/// Directional icon of this item hanging from the shoulder, for items without an inhand sprite
 /obj/item/proc/prosthetic_fallback_icon(right_hand)
 	var/static/list/cache = list()
 	var/key = "[icon]|[icon_state]|[right_hand]"
 	if(cache[key])
 		return cache[key]
-	// hand centers measured on the inhand sprites, in pixels from the top left
-	var/static/list/right_centers = list("[SOUTH]" = list(11, 20), "[NORTH]" = list(21, 20), "[EAST]" = list(16, 20), "[WEST]" = list(14, 20))
-	var/static/list/left_centers = list("[SOUTH]" = list(21, 20), "[NORTH]" = list(11, 20), "[EAST]" = list(18, 20), "[WEST]" = list(16, 20))
+	// where the arm hangs from the shoulder, measured on the human sprites, in pixels from the top left
+	var/static/list/right_centers = list("[SOUTH]" = list(8, 15), "[NORTH]" = list(23, 15), "[EAST]" = list(14, 15), "[WEST]" = list(17, 15))
+	var/static/list/left_centers = list("[SOUTH]" = list(23, 15), "[NORTH]" = list(8, 15), "[EAST]" = list(15, 15), "[WEST]" = list(18, 15))
 	var/list/centers = right_hand ? right_centers : left_centers
 	var/icon/item_icon = icon(icon, icon_state, SOUTH, 1)
-	item_icon.Scale(PROSTHETIC_FALLBACK_SIZE, PROSTHETIC_FALLBACK_SIZE)
+	var/list/bounds = prosthetic_icon_bounds(item_icon)
+	if(bounds && (bounds[3] - bounds[1]) > (bounds[4] - bounds[2]) && item_icon.Width() == item_icon.Height())
+		item_icon.Turn(90) // long side down, like an arm
+		bounds = prosthetic_icon_bounds(item_icon)
+	if(bounds)
+		item_icon.Crop(bounds[1], bounds[2], bounds[3], bounds[4])
+	var/scale = PROSTHETIC_FALLBACK_SIZE / max(item_icon.Width(), item_icon.Height())
+	var/width = max(1, round(item_icon.Width() * scale))
+	var/height = max(1, round(item_icon.Height() * scale))
+	item_icon.Scale(width, height)
 	var/icon/result = new
 	for(var/direction in GLOB.cardinals)
 		var/list/center = centers["[direction]"]
@@ -209,7 +236,7 @@
 		if(direction == WEST)
 			turned.Flip(WEST)
 		// Blend takes the bottom left corner, counted from 1 at the bottom
-		frame.Blend(turned, ICON_OVERLAY, center[1] - PROSTHETIC_FALLBACK_SIZE / 2 + 1, (32 - center[2]) - PROSTHETIC_FALLBACK_SIZE / 2 + 1)
+		frame.Blend(turned, ICON_OVERLAY, round(center[1] - width / 2) + 1, 32 - round(center[2] + height / 2) + 1)
 		result.Insert(frame, "arm", direction)
 	cache[key] = result
 	return result
