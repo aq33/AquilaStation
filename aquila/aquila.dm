@@ -814,6 +814,7 @@
 #include "code\modules\test_chamber\kits\pr_469_urzadzenia.dm"
 #include "code\modules\test_chamber\kits\pr_456_przepisy.dm"
 #include "code\modules\test_chamber\kits\pr_461_changelog_fixy.dm"
+#include "code\modules\test_chamber\kits\pr_475_standaryzacja_cm.dm"
 #include "code\modules\test_chamber\kits\pr_470_admin_mix.dm"
 #include "code\modules\test_chamber\kits\pr_457_medycyna.dm"
 #include "code\modules\test_chamber\kits\pr_458_jajo_squid.dm"

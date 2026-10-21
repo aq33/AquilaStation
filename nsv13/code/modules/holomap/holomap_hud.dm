@@ -20,7 +20,7 @@
 	if(!used_station_map)
 		return
 
-	if(LAZYACCESS(params2list(params), RIGHT_CLICK))
+	if(usr.is_secondary_click(params)) // AQ EDIT - standaryzacja combat mode: w starych intencjach disarm
 		used_station_map.close_map()
 		return
 
