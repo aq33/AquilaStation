@@ -4533,6 +4533,17 @@
 /obj/effect/spawner/lootdrop/gizmo,
 /turf/open/floor/plating,
 /area/science/explab)
+"kS" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -43900,7 +43911,7 @@ hf
 fW
 he
 gS
-gR
+kS
 gv
 gu
 gt

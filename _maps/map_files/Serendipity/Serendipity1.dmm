@@ -27,9 +27,16 @@
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
 "ad" = (
-/obj/machinery/munitions_forge/hammer,
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
+/obj/item/pinpointer/crew,
+/obj/item/storage/fancy/cigarettes/cigpack_uplift,
+/obj/structure/table/glass/plasma,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/machinery/keycard_auth,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -896,9 +903,28 @@
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
 "bT" = (
-/obj/machinery/munitions_forge/crucible,
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/tgui_book/manual/dsm{
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/medbay/lobby)
 "bU" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/ship/blue{
@@ -1508,7 +1534,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/xo)
 "dj" = (
-/obj/machinery/munitions_forge/furnace,
+/obj/machinery/munitions_forge/hammer,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "dk" = (
@@ -1639,7 +1665,7 @@
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/main)
 "dA" = (
-/obj/machinery/munitions_forge/assembler,
+/obj/machinery/munitions_forge/crucible,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "dB" = (
@@ -1863,8 +1889,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
 "dZ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
+/obj/machinery/munitions_forge/furnace,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "ea" = (
@@ -1881,7 +1906,7 @@
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/chemistry)
 "eb" = (
-/obj/machinery/munitions_forge/basin,
+/obj/machinery/munitions_forge/assembler,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "ec" = (
@@ -1889,21 +1914,19 @@
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
 "ed" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ee" = (
+/obj/machinery/munitions_forge/basin,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ef" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
-"ee" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
-"ef" = (
-/obj/structure/sign/directions/plaque/munitions,
-/turf/closed/wall/r_wall/ship,
 /area/nsv/weapons/starboard)
 "eg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -1924,6 +1947,17 @@
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
 "ei" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ej" = (
+/obj/structure/sign/directions/plaque/munitions,
+/turf/closed/wall/r_wall/ship,
+/area/nsv/weapons/starboard)
+"ek" = (
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/door/airlock/highsecurity/ship{
 	name = "Kuźnia Amunicji";
@@ -1931,17 +1965,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel/dark,
-/area/nsv/weapons/starboard)
-"ek" = (
-/obj/structure/cable/multiz,
-/obj/machinery/light/floor,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "el" = (
@@ -1973,8 +1996,15 @@
 "eo" = (
 /turf/closed/wall/r_wall/ship,
 /area/security/main)
-"ep" = (
-/obj/structure/extinguisher_cabinet/south,
+"eq" = (
+/obj/structure/cable/multiz,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
 "er" = (
@@ -1992,6 +2022,10 @@
 /obj/machinery/duct,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"et" = (
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "ev" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 1
@@ -47144,7 +47178,7 @@ zP
 IM
 az
 NY
-jt
+ad
 JT
 yb
 aU
@@ -48182,7 +48216,7 @@ lg
 EE
 wj
 vd
-QF
+bT
 Mz
 Mz
 sJ
@@ -52839,7 +52873,7 @@ Te
 Et
 Et
 Et
-ef
+ej
 VZ
 Et
 pF
@@ -53096,10 +53130,10 @@ Te
 Et
 Lq
 Lq
-bT
+dA
 Lq
 Lq
-ad
+dj
 Et
 lX
 Te
@@ -53613,7 +53647,7 @@ Lq
 Lq
 Lq
 Lq
-dj
+dZ
 Et
 Te
 az
@@ -53865,9 +53899,9 @@ Te
 Et
 Et
 Et
+ee
+ed
 eb
-dZ
-dA
 Lq
 Lq
 Lq
@@ -54377,7 +54411,7 @@ DI
 DI
 Te
 Et
-ep
+et
 Et
 Lq
 Lq
@@ -54634,10 +54668,10 @@ Te
 Te
 Te
 tV
+eq
 ek
 ei
-ee
-ed
+ef
 Lq
 Lq
 Lq
