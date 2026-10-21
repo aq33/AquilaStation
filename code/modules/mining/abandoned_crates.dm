@@ -33,8 +33,8 @@
 		to_chat(user, "<span class='notice'>Skrzynia się otwiera!</span>")
 		locked = FALSE
 		cut_overlays()
-		add_overlay("securecrateg")
 		add_overlay("[icon_door || icon_state]_door") //needs to put the door overlayer back cause of this snowflake code
+		add_overlay(icon_unlocked) //AQUILA EDIT - Bee#10136 lights
 		tamperproof = 0 // set explosion chance to zero, so we dont accidently hit it with a multitool and instantly die
 		if(!spawned_loot)
 			spawn_loot()

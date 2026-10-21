@@ -10,13 +10,19 @@
 /proc/paradise_wall_dir_from_pixels(atom/movable/A)
 	if(!A.pixel_x && !A.pixel_y)
 		return null
+	// Przesunięcie po skosie (np. x=32, y=24): maper przesunął urządzenie wzdłuż ściany, ścianę wyznacza wtedy kierunek
+	if(abs(A.pixel_x) >= 8 && abs(A.pixel_y) >= 8)
+		return null
 	if(abs(A.pixel_y) >= abs(A.pixel_x))
 		return A.pixel_y > 0 ? NORTH : SOUTH
 	return A.pixel_x > 0 ? EAST : WEST
 
 /proc/paradise_wallmount_offset(atom/movable/A, wall_dir)
-	A.pixel_x = 0
-	A.pixel_y = 0
+	// Przesunięcie wzdłuż ściany z mapy zostaje, zerujemy tylko oś prostopadłą do ściany
+	if(wall_dir & (NORTH|SOUTH))
+		A.pixel_y = 0
+	else
+		A.pixel_x = 0
 	switch(wall_dir)
 		if(NORTH)
 			A.pixel_y = PARADISE_WALLMOUNT_OFFSET

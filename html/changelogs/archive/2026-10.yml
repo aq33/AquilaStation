@@ -495,6 +495,14 @@
   - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
       urządzenia z Paradise
 '2026-10-21':
+  AnturK:
+  - rscadd: 'Drony eksploracyjne: anteny skanujące, konsole, wyrzutnia i drony, które
+      eksplorują odległe miejsca, przechodzą przygody i przywożą łup.'
+  - rscadd: Węzeł techwebu „Drony eksploracyjne”, płytki maszyn oraz paczki cargo
+      z dronem i paliwem.
+  - rscadd: Stanowiska dronów na Serendipity, Snake i Atlasie.
+  - admin: Adventure Manager w zakładce Debug do przeglądania i testowania przygód.
+  - imageadd: Ikony dronów, wyrzutni, anten, pelletów i obrazki przygód z /tg/.
   Joker66613:
   - rscadd: 'Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity,
       Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.'
@@ -503,3 +511,10 @@
   - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
   - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
   - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.
+  - imageadd: 'Nowe sprite''y: łóżko operacyjne, stojak IV, slime''y i golemy z tg;
+      PDA, małpy, strzykawki, MULEboty, materiały, szafki i skrzynie z Bee; zlewki,
+      narzędzia, krzesła, stoły, newscaster i konsola zgłoszeń z Paradise; zbiorniki,
+      interkom, regały i nosze z SS220.'
+  - tweak: Skrzynie i szafki na zamek mają światła jak w Bee, kosz na śmieci pokazuje
+      zapełnienie.
+  - tweak: Na webmapie ściany, okna, stoły i dywany łączą się jak w grze.
