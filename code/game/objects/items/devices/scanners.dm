@@ -412,7 +412,9 @@ GENE SCANNER
 				else
 					blood_type = blood_id
 			var/blood_info = "[blood_type] (zgodne: [jointext(get_safe_blood(blood_type), ", ")])"
-			if(shown_blood <= BLOOD_VOLUME_SAFE && shown_blood > BLOOD_VOLUME_OKAY)
+			if(HAS_TRAIT(C, TRAIT_MASQUERADE)) // AQ EDIT - Maskarada wampira z Bee fałszuje poziom krwi
+				message += "<span class='info'>Poziom krwi: 100 %, 560 cl, grupa: [blood_info]</span>"
+			else if(shown_blood <= BLOOD_VOLUME_SAFE && shown_blood > BLOOD_VOLUME_OKAY)
 				message += "<span class='alert'>Poziom krwi: NISKI [blood_percent] %, [shown_blood] cl,</span> <span class='info'>grupa: [blood_info]</span>"
 			else if(shown_blood <= BLOOD_VOLUME_OKAY)
 				message += "<span class='alert'>Poziom krwi: <b>KRYTYCZNY [blood_percent] %</b>, [shown_blood] cl,</span> <span class='info'>grupa: [blood_info]</span>"

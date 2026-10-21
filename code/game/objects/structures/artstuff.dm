@@ -283,6 +283,7 @@
 	if(current_canvas)
 		current_canvas.ui_interact(user)
 		. += "<span class='notice'>Użyj nożyc do drutu, by zdjąć obraz.</span>"
+		SEND_SIGNAL(user, COMSIG_LIVING_APPRAISE_ART, src) // AQ EDIT - Humanity wampira z Bee
 
 /obj/structure/sign/painting/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()

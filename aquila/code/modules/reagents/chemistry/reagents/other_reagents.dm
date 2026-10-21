@@ -2,7 +2,6 @@
 	if(current_cycle >= cycles_to_turn) //overwrite since we want more races
 		var/list/random_races = list(/datum/species/zombie,
 									/datum/species/skeleton,
-									/datum/species/vampire,
 									/datum/species/snail,
 									/datum/species/apid)
 		var/datum/species/species_type = pick(random_races)

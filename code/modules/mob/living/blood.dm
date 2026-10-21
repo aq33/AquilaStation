@@ -262,6 +262,8 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
+	if(mind?.has_antag_datum(/datum/antagonist/vampire)) // AQ EDIT - krwią wampira z Bee zarządza jego datum (vitae)
+		return
 
 	if((NOBLOOD in dna.species.species_traits) || HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		cauterise_wounds()

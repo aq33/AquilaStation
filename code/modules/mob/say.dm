@@ -4,21 +4,23 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
+	set instant = TRUE // AQ EDIT - kolejka mowy z tg
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Mowa jest obecnie wyłączona przez administrację.</span>")
 		return
 	if(message)
-		say(message)
+		QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), message), SSspeech_controller) // AQ EDIT
 
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	set instant = TRUE // AQ EDIT - kolejka mowy z tg
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Mowa jest obecnie wyłączona przez administrację.</span>")
 		return
-	whisper(message)
+	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, whisper), message), SSspeech_controller) // AQ EDIT
 
 ///whisper a message
 /mob/proc/whisper(message, datum/language/language=null)
@@ -29,6 +31,7 @@
 	set name = "Me"
 	set category = "IC"
 	set desc = "Wykonaj własną emotkę. Zostaw puste, aby wybrać, czy ma być słyszalna, widoczna czy obie."
+	set instant = TRUE // AQ EDIT - kolejka mowy z tg
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Mowa jest obecnie wyłączona przez administrację.</span>")
@@ -36,7 +39,8 @@
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	usr.emote("me",EMOTE_VISIBLE|EMOTE_AUDIBLE,message,TRUE)
+	// AQ EDIT - kolejka mowy z tg; emote na src, bo w kolejce usr to i tak ten sam gracz
+	QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, emote), "me", EMOTE_VISIBLE|EMOTE_AUDIBLE, message, TRUE), SSspeech_controller)
 
 ///Speak as a dead person (ghost etc)
 /mob/proc/say_dead(var/message)
