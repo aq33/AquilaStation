@@ -21,11 +21,11 @@
 	required = "/datum/mutation/hulk; /datum/mutation/clumsy"
 	result = /datum/mutation/hulk/ork
 
-// Wymagają Stimmed (tg), którego ten port nie robi. Bez niej da się je zdobyć tylko injectorem.
+// W tg oba wymagają Stimmed, którego u nas nie ma - nowe pary składników
 /datum/generecipe/tonguechem
-	required = "/datum/mutation/tongue_spike; /datum/mutation/stimmed"
+	required = "/datum/mutation/tongue_spike; /datum/mutation/wax_saliva"
 	result = /datum/mutation/tongue_spike/chem
 
 /datum/generecipe/martyrdom
-	required = "/datum/mutation/strong; /datum/mutation/stimmed"
+	required = "/datum/mutation/strong; /datum/mutation/fire"
 	result = /datum/mutation/martyrdom
