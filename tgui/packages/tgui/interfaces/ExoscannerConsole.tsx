@@ -179,6 +179,7 @@ type ExoscannerConsoleData = {
   scan_power: number;
   possible_sites: Array<SiteData>;
   wide_scan_eta: number;
+  wide_scan_exhausted: boolean;
   selected_site: string;
   failed: boolean;
   scan_conditions: Array<string>;
@@ -191,12 +192,13 @@ export const ExoscannerConsole = (props) => {
     scan_power,
     possible_sites = [],
     wide_scan_eta,
+    wide_scan_exhausted,
     selected_site,
     failed,
     scan_conditions = [],
   } = data;
 
-  const can_start_wide_scan = scan_power > 0;
+  const can_start_wide_scan = scan_power > 0 && !wide_scan_exhausted;
 
   return (
     <Window width={550} height={600}>
@@ -255,10 +257,15 @@ export const ExoscannerConsole = (props) => {
                       </BlockQuote>
                     </Stack.Item>
                     <Stack.Item>
-                      Szacowany czas:{' '}
-                      {scan_power > 0
-                        ? formatTime(wide_scan_eta, 'short')
-                        : '∞ minut'}
+                      {(wide_scan_exhausted &&
+                        'Przeskanowano już cały zasięg anten.') || (
+                        <>
+                          Szacowany czas:{' '}
+                          {scan_power > 0
+                            ? formatTime(wide_scan_eta, 'short')
+                            : '∞ minut'}
+                        </>
+                      )}
                     </Stack.Item>
                   </Stack>
                 </Section>

@@ -110,6 +110,7 @@ GLOBAL_LIST_INIT(scan_conditions, init_scan_conditions())
 	else
 		.["scan_power"] = scan_power = GLOB.exoscanner_controller.calculate_scan_power()
 		.["wide_scan_eta"] = scan_power > 0 ? WIDE_SCAN_COST(GLOB.exoscanner_controller.wide_scan_band, scan_power) : 0
+		.["wide_scan_exhausted"] = GLOB.exoscanner_controller.wide_scan_band > MAX_SCAN_DISTANCE
 		.["possible_sites"] = build_exploration_site_ui_data()
 		.["scan_conditions"] = null
 
