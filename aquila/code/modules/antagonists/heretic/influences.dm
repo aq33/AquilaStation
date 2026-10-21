@@ -209,9 +209,10 @@
 	SIGNAL_HANDLER
 	if(!verify_user_can_see(user) || !user.Adjacent(src))
 		return NONE
-	if(attack_hand(user, modifiers))
-		return COMPONENT_NO_ATTACK_HAND
-	return NONE
+	if(!IS_HERETIC(user))
+		return NONE
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom, attack_hand_secondary), user, modifiers)
+	return COMPONENT_NO_ATTACK_HAND
 
 /// AQUILA - kliknięcie prawym przyciskiem pustą ręką w podłogę pod wpływem
 /obj/effect/heretic_influence/proc/on_turf_attack_hand_secondary(turf/source, mob/user, list/modifiers)

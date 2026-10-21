@@ -76,7 +76,6 @@
 #include "code\controllers\subsystem\verb_manager.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\datum\wires\wires_jukebox.dm"
-#include "code\__HELPERS\tg_compat.dm"
 #include "code\datums\actions\spell.dm"
 #include "code\datums\actions\spell_types.dm"
 #include "code\datums\actions\spell_types_tg.dm"

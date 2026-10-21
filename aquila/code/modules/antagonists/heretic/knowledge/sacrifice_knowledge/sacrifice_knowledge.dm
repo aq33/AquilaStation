@@ -596,7 +596,7 @@
 	if(gibbed) // Nothing to return
 		return
 
-	return_target(sac_target)
+	INVOKE_ASYNC(src, PROC_REF(return_target), sac_target)
 
 /**
  * If they somehow cheese the shadow realm by teleporting out, they are disemboweled and killed.

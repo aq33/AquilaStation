@@ -33,8 +33,8 @@
 
 // AQUILA - nasza rama zmienia ikonę zależnie od płótna, a tu obraz jest w ikonie
 /obj/structure/sign/painting/eldritch/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
-	return
 
 /obj/structure/sign/painting/eldritch/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/canvas))

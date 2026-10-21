@@ -193,8 +193,6 @@
 	#define SIGNAL_MESSAGE_MODIFIED (1<<0)
 
 // --- z tg: code/__DEFINES/dcs/signals/signals_atom/signals_atom_main.dm
-///from base of atom/examine(): (/mob, list/examine_text)
-#define COMSIG_ATOM_EXAMINE "atom_examine"
 
 // --- z tg: code/__DEFINES/dcs/signals/signals_atom/signals_atom_movable.dm
 ///Called before a movable is being teleported from `check_teleport_valid()`: (destination, channel)
@@ -214,8 +212,6 @@
 #define COMSIG_USER_ITEM_INTERACTION "user_item_interaction"
 
 // --- z tg: code/__DEFINES/dcs/signals/signals_datum.dm
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_QDELETING "parent_qdeleting"
 
 // --- z tg: code/__DEFINES/dcs/signals/signals_fish.dm
 /// From /datum/fish_source/proc/dispense_reward(), not set if the reward is a dud: (reward, user)
@@ -394,8 +390,6 @@
 /// Change the icon to user's current hud's ui_style
 
 // --- z tg: code/__DEFINES/injection.dm
-/// This injection can penetrate through thick clothing.
-#define INJECT_CHECK_PENETRATE_THICK (1 << 0)
 
 // --- z tg: code/__DEFINES/inventory.dm
 /// Items placed into the left pocket.
@@ -484,8 +478,6 @@
 #define SOUNDBANG_OVERWHELMING 4
 /// Returns whether or not the given mob can succumb
 #define CAN_SUCCUMB(target) ((target.stat == SOFT_CRIT || target.stat == HARD_CRIT) && !HAS_TRAIT(target, TRAIT_NODEATH))
-/// Mob is lying down, usually associated with lying_angle values of 90 or 270.
-#define LYING_DOWN 1
 /// Flag which makes a message send about the vomiting.
 #define MOB_VOMIT_MESSAGE (1<<0)
 /// Flag which makes the mob get stunned upon vomiting.
@@ -566,10 +558,6 @@
 // --- z tg: code/__DEFINES/stat.dm
 
 // --- z tg: code/__DEFINES/status_effects.dm
-/// Use in status effect "duration" to make it last forever
-#define STATUS_EFFECT_PERMANENT -1
-/// Use in status effect "tick_interval" to prevent it from calling tick()
-#define STATUS_EFFECT_NO_TICK -1
 /// If the incapacitated status effect is being caused by stasis (stasis beds)
 /// If the incapacitated status effect is being caused by being agressively grabbed
 /// Checks to see if a mob would be incapacitated even while ignoring some types
@@ -609,8 +597,6 @@
 #define ITEM_INTERACT_SKIP_TO_ATTACK (1<<2)
 
 // --- z tg: code/__DEFINES/traits/_traits.dm
-/// A simple helper for checking traits in a mob's mind
-#define HAS_MIND_TRAIT(target, trait) (HAS_TRAIT(target, trait) || (target.mind ? HAS_TRAIT(target.mind, trait) : FALSE))
 
 // --- z tg: code/__DEFINES/traits/declarations.dm
 /// Forces the user to stay unconscious.
@@ -624,9 +610,6 @@
 /// Always hungry. They can eat as much as they want without eating slowdown.
 #define TRAIT_GLUTTON "glutton"
 #define TRAIT_DISCOORDINATED_TOOL_USER "discoordinated_tool_user"
-/// "Magic" trait that blocks the mob from moving or interacting with anything. Used for transient stuff like mob transformations or incorporality in special cases.
-/// Will block movement, `Life()` (!!!), and other stuff based on the mob.
-#define TRAIT_NO_TRANSFORM "block_transformations"
 #define TRAIT_BATON_RESISTANCE "baton_resistance"
 /// can't be kicked to the side
 #define TRAIT_NO_SIDE_KICK "no_side_kick"
@@ -727,8 +710,6 @@
 #define TRAIT_LESSER_HUMANOID "lesser_humanoid"
 
 // --- z tg: code/__DEFINES/traits/macros.dm
-/// A trait given by a specific status effect (not sure why we need both but whatever!)
-#define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 
 // --- z tg: code/__DEFINES/turfs.dm
 #define RUST_RESISTANCE_TITANIUM 3
@@ -746,15 +727,6 @@
 // --- z tg: code/__DEFINES/wounds.dm
 /// set wound_bonus on an item or attack to this to disable checking wounding for the attack
 #define CANT_WOUND -100
-#define WOUND_SEVERITY_MODERATE 1
-#define WOUND_SEVERITY_SEVERE 2
-#define WOUND_SEVERITY_CRITICAL 3
-/// any brute weapon/attack that doesn't have sharpness. rolls for blunt bone wounds
-#define WOUND_BLUNT "wound_blunt"
-/// any brute weapon/attack with sharpness = SHARP_EDGED. rolls for slash wounds
-#define WOUND_SLASH "wound_slash"
-/// any concentrated burn attack (lasers really). rolls for burning wounds
-#define WOUND_BURN "wound_burn"
 
 // --- z tg: code/__HELPERS/_lists.dm
 ///Like LAZYCOPY - copies an input list if the list has entries, If it doesn't the assigned list is nulled
@@ -783,8 +755,6 @@
 /// Nieprzytomny (u nas bez TRAIT_KNOCKEDOUT)
 #define IS_UNCONSCIOUS(mob) (mob.stat >= UNCONSCIOUS || mob.IsUnconscious() || mob.IsSleeping())
 #define IS_UNCONSCIOUS_OR_CRIT(mob) (mob.stat >= SOFT_CRIT || mob.IsUnconscious() || mob.IsSleeping())
-/// Śmierć moba - u nas sygnał nazywa się COMSIG_MOB_DEATH i ma te same argumenty (gibbed)
-#define COMSIG_LIVING_DEATH COMSIG_MOB_DEATH
 /// Długopis albo kredka
 #define IS_WRITING_UTENSIL(thing) (istype(thing, /obj/item/pen) || istype(thing, /obj/item/toy/crayon))
 /// Kultysta albo mob kultu

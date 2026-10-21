@@ -377,11 +377,11 @@
 
 		if(istype(thing_in_range, /obj/machinery/door) || istype(thing_in_range, /obj/structure/door_assembly))
 			var/obj/affected_door = thing_in_range
-			affected_door.take_damage(rand(60, 80))
+			INVOKE_ASYNC(affected_door, TYPE_PROC_REF(/obj, take_damage), rand(60, 80))
 
 		if(istype(thing_in_range, /obj/structure/window) || istype(thing_in_range, /obj/structure/grille))
 			var/obj/structure/affected_structure = thing_in_range
-			affected_structure.take_damage(rand(20, 40))
+			INVOKE_ASYNC(affected_structure, TYPE_PROC_REF(/obj, take_damage), rand(20, 40))
 
 		if(isturf(thing_in_range))
 			var/turf/affected_turf = thing_in_range

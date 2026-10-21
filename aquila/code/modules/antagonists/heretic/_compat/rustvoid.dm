@@ -266,7 +266,7 @@
 
 	if(ismecha(entered))
 		var/obj/mecha/victim = entered
-		victim.take_damage(20, armour_penetration = 100)
+		INVOKE_ASYNC(victim, TYPE_PROC_REF(/obj/mecha, take_damage), 20)
 		return
 	if(!isliving(entered))
 		return

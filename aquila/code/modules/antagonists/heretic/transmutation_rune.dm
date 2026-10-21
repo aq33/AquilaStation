@@ -64,7 +64,8 @@
 	for(var/datum/heretic_knowledge/ritual as anything in rituals)
 		var/ritual_info = ""
 		var/list/ritual_requirements = list()
-		for(var/req_type, req_amount in ritual.required_atoms)
+		for(var/req_type in ritual.required_atoms)
+			var/req_amount = ritual.required_atoms[req_type]
 			if(islist(req_type))
 				var/list/req_type_list = req_type
 				var/list/req_text_list = list()
@@ -180,7 +181,8 @@
 
 	// All of the atoms have been checked, let's see if the ritual was successful
 	var/list/what_are_we_missing = list()
-	for(var/req_type, fulfilled_amount in requirements_list)
+	for(var/req_type in requirements_list)
+		var/fulfilled_amount = requirements_list[req_type]
 		// <= 0 means it's fulfilled, skip
 		if(fulfilled_amount <= 0)
 			continue
@@ -189,7 +191,7 @@
 		// Lets format the thing they're missing and put it into our list
 		if(islist(req_type))
 			var/list/req_text_list = list()
-			for(var/possible_type, needed_amount in req_type)
+			for(var/possible_type in req_type)
 				req_text_list += ritual.parse_required_item(possible_type, fulfilled_amount)
 			what_are_we_missing += english_list(req_text_list, and_text = " lub ")
 

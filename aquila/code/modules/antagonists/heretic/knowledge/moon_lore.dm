@@ -330,14 +330,18 @@
 			to_chat(carbon_view, span_boldbig(span_red(\
 				"TWOJE ZMYSŁY WIRUJĄ, GDY UMYSŁ OPLATA NIEZIEMSKA SIŁA, PRÓBUJĄCA NAPISAĆ CIĘ OD NOWA. \
 				NIE ZDĄŻYSZ NAWET KRZYKNĄĆ, ZANIM TWÓJ IMPLANT URUCHOMI PSIONICZNE ZABEZPIECZENIE I ZABIERZE ZE SOBĄ TWOJĄ GŁOWĘ.")))
-			var/obj/item/bodypart/head/head = carbon_view.get_bodypart(BODY_ZONE_HEAD)
-			if(!head?.dismember())
-				INVOKE_ASYNC(carbon_view, TYPE_PROC_REF(/mob, gib))
-			var/datum/effect_system/reagents_explosion/explosion = new()
-			explosion.set_up(1, get_turf(carbon_view), 0, 0)
-			explosion.start()
+			INVOKE_ASYNC(src, PROC_REF(explode_head), carbon_view)
 		else
-			attempt_conversion(carbon_view, source)
+			INVOKE_ASYNC(src, PROC_REF(attempt_conversion), carbon_view, source)
+
+/// AQUILA - osobno, bo odcięcie głowy może spać, a on_life nie może
+/datum/heretic_knowledge/ultimate/moon_final/proc/explode_head(mob/living/carbon/carbon_view)
+	var/obj/item/bodypart/head/head = carbon_view.get_bodypart(BODY_ZONE_HEAD)
+	if(!head?.dismember())
+		carbon_view.gib()
+	var/datum/effect_system/reagents_explosion/explosion = new()
+	explosion.set_up(1, get_turf(carbon_view), 0, 0)
+	explosion.start()
 
 
 /datum/heretic_knowledge/ultimate/moon_final/proc/should_mind_explode(mob/living/carbon/target)
