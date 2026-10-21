@@ -125,7 +125,7 @@ export const RADIO_CHANNELS = [
     color: '#f37746',
   },
   {
-    name: 'Security',
+    name: 'Policja',
     freq: 1359,
     color: '#7c8be6',
   },

@@ -274,13 +274,13 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 	name = "night vision police HUD"
 
 /obj/item/clothing/glasses/hud/security/prescription
-	name = "prescription police HUDglasses"
+	name = "prescription police HUD glasses"
 
 /obj/item/clothing/glasses/hud/security/sunglasses
-	name = "police HUDSunglasses"
+	name = "police HUD sunglasses"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/degraded
-	name = "degraded police HUDSunglasses"
+	name = "degraded police HUD sunglasses"
 
 /obj/item/clothing/accessory/armband/deputy
 	name = "police deputy armband"
