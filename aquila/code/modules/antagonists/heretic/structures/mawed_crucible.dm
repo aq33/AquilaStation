@@ -81,16 +81,15 @@
 	return FALSE
 
 /obj/structure/destructible/eldritch_crucible/attackby(obj/item/tool, mob/living/user, params)
-	// AQUILA - przy otwartym menu mikstur nie ruszamy masy
-	if(in_use)
-		balloon_alert(user, "w użyciu!")
-		return TRUE
 	if(istype(tool, /obj/item/codex_cicatrix) || istype(tool, /obj/item/melee/spell_hand/mansus_fist))
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		anchored = !anchored
 		balloon_alert(user, "[anchored ? "przytwierdzono":"odczepiono"]")
 		return TRUE
 	if(istype(tool, /obj/item/reagent_containers/glass/beaker/eldritch))
+		if(in_use) // AQUILA - przy otwartym menu mikstur nie ruszamy masy
+			balloon_alert(user, "w użyciu!")
+			return TRUE
 		if(current_mass < max_mass)
 			balloon_alert(user, "za mało wypełniony!")
 			return TRUE
@@ -117,6 +116,9 @@
 			if(iscarbon(user))
 				bite_the_hand(user)
 			return TRUE
+		if(in_use) // AQUILA - przy otwartym menu mikstur nie ruszamy masy
+			balloon_alert(user, "w użyciu!")
+			return TRUE
 		consume_fuel(user, consumed)
 		return TRUE
 
@@ -133,6 +135,9 @@
 				return ..()
 			if(iscarbon(user))
 				bite_the_hand(user)
+			return TRUE
+		if(in_use) // AQUILA - przy otwartym menu mikstur nie ruszamy masy
+			balloon_alert(user, "w użyciu!")
 			return TRUE
 		consume_fuel(user, consumed)
 		return TRUE
