@@ -10,6 +10,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AdventureBrowser")
+		ui.set_autoupdate(TRUE) // u nas TGUI domyślnie się nie odświeża, a timery lotu, pracy i skanu muszą lecieć
 		ui.open()
 
 /datum/adventure_browser/ui_state(mob/user)

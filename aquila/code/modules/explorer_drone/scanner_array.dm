@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(scan_conditions, init_scan_conditions())
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExoscannerConsole", name)
+		ui.set_autoupdate(TRUE) // u nas TGUI domyślnie się nie odświeża, a timery lotu, pracy i skanu muszą lecieć
 		ui.open()
 
 /obj/machinery/computer/exoscanner_control/ui_data(mob/user)

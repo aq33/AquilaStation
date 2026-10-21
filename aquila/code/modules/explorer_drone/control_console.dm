@@ -16,6 +16,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ExodroneConsole", name)
+		ui.set_autoupdate(TRUE) // u nas TGUI domyślnie się nie odświeża, a timery lotu, pracy i skanu muszą lecieć
 		ui.open()
 
 /obj/machinery/computer/exodrone_control_console/proc/start_drone_control(obj/item/exodrone/drone)
