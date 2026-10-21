@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_genetyka
-	name = "PR PRNR: genetyka (mutacje + DNA Infuser)"
-	pr = "aq33/AquilaStation#PRNR"
+/datum/test_chamber_kit/pr_484
+	name = "PR 484: genetyka (mutacje + DNA Infuser)"
+	pr = "aq33/AquilaStation#484"
 	description = "Skrzynia z injectorami wszystkich nowych mutacji (druga skrzynia: anty-injectory). Wstrzyknij, sprawdź działanie i zdolność na pasku, 	potem konsolą DNA zbadaj, połącz w przepisy (np. Cryokinesis + Fire Sweat = Pyrokinesis) i dodaj chromosomy. Infuser: wejdź do komory, 	włóż martwą mysz / karpia / mięso gondoli, kilka razy aż do bonusu zestawu; nieznana próbka (ruda) ma dać organ muchy. Rock Eater: zjedz rudę."
 	items = list(
 		/obj/machinery/dna_scannernew = 1,
@@ -103,7 +103,7 @@
 		/datum/mutation/webbing,
 	)
 
-/datum/test_chamber_kit/pr_genetyka/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_484/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/obj/structure/closet/crate/plus = new(center)
 	plus.name = "injectory nowych mutacji"
 	var/obj/structure/closet/crate/minus = new(center)
