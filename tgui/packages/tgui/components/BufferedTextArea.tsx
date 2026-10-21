@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import { TextArea } from 'tgui-core/components';
 
 const DEFAULT_UPDATE_INTERVAL = 2000;

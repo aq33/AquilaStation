@@ -1,4 +1,5 @@
 import { sendAct as act } from 'tgui/events/act';
+
 import { colorToHexString } from '../../colorSpaces';
 import { bresenhamLine, constrainToIconGrid, copyLayer } from '../../helpers';
 import { Tool } from '../Tool';

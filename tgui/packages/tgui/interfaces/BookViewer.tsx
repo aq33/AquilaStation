@@ -29,6 +29,7 @@ export const BookViewer = (props) => {
             </Box>
           )}
           <div
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: sanitizeText(content || ''),
             }}

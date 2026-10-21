@@ -10,7 +10,6 @@
 import { isEscape, KEY } from 'common/keys';
 import { classes } from 'common/react';
 import { Component, createRef } from 'react';
-
 import { Box } from 'tgui-core/components';
 
 const toInputValue = (value) =>

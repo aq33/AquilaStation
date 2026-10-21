@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { useFuzzySearch } from 'tgui-core/fuzzysearch';
+
 import { useBackend } from '../../backend';
 
 /**
@@ -213,7 +214,9 @@ function GasHandbook(props: GasHandbookProps) {
                     </Stack.Item>
                     <Stack.Item
                       color={getSpecificHeatColor(relevantGas.specific_heat)}
-                    >{`${relevantGas.specific_heat}`}</Stack.Item>
+                    >
+                      {`${relevantGas.specific_heat}`}
+                    </Stack.Item>
                     <Stack.Item italic>J/(mol * K)</Stack.Item>
                   </Stack>
                 </Stack.Item>
@@ -234,7 +237,9 @@ function GasHandbook(props: GasHandbookProps) {
                       </Stack.Item>
                       <Stack.Item
                         color={getExportValueColor(relevantGas.export_value)}
-                      >{`${relevantGas.export_value}`}</Stack.Item>
+                      >
+                        {`${relevantGas.export_value}`}
+                      </Stack.Item>
                       <Stack.Item italic>{`${moneySymbol}/mol`}</Stack.Item>
                     </Stack>
                   </Stack.Item>

@@ -1,9 +1,9 @@
 import { BooleanLike } from 'common/react';
 import { classes } from 'common/react';
+import { type ComponentProps } from 'react';
 import { Box, Button, Flex, NumberInput } from 'tgui-core/components';
 
 import { useSharedState } from '../../backend';
-import { type ComponentProps } from 'react';
 import { formatMoney, formatSiUnit } from '../../format';
 
 export const MATERIAL_KEYS = {

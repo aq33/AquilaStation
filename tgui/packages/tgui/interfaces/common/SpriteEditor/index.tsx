@@ -4,6 +4,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Floating, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
+
 import {
   colorsAtom,
   currentColorAtom,
@@ -16,6 +17,11 @@ import {
   previewLayerAtom,
   tools,
 } from './atoms';
+import {
+  colorsAreEqual,
+  colorToHexString,
+  parseHexColorString,
+} from './colorSpaces';
 import {
   AdvancedCanvas,
   type AdvancedCanvasPropsBase,
@@ -32,11 +38,6 @@ import {
   Palette as BasePalette,
   type PaletteProps as BasePaletteProps,
 } from './Components/Palette';
-import {
-  colorsAreEqual,
-  colorToHexString,
-  parseHexColorString,
-} from './colorSpaces';
 import { getFlattenedSpriteDir, localizeCoords } from './helpers';
 import type { Tool } from './Types/Tool';
 import {

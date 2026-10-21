@@ -1,8 +1,8 @@
 import { isEscape } from 'common/keys';
 import { Component, createRef } from 'react';
-import { TextArea } from '../components/LegacyTextArea';
 import { dragStartHandler } from 'tgui/drag';
 
+import { TextArea } from '../components/LegacyTextArea';
 import { CHANNEL_LABELS, WINDOW_SIZES } from '../constants';
 import { eventHandlerMap } from '../handlers';
 import { getCss, getTheme, timers } from '../helpers';

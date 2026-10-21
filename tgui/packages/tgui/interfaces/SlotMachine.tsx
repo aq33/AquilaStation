@@ -47,17 +47,17 @@ const credits = (amount: number) => {
 /** Odmiana „raz/razy” */
 const times = (amount: number) => (amount === 1 ? 'raz' : 'razy');
 
-const pickRandomMany = <T,>(items: T[], n: number) => {
+function pickRandomMany<T>(items: T[], n: number) {
   const result: T[] = [];
   for (let i = 0; i < n; i += 1) {
     result.push(pickRandom(items));
   }
   return result;
-};
+}
 
-const pickRandom = <T,>(items: T[]) => {
+function pickRandom<T>(items: T[]) {
   return items[Math.floor(Math.random() * items.length)];
-};
+}
 
 const SymbolGlyph = (props: { symbol?: SlotSymbol }) => {
   const { symbol } = props;

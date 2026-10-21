@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from '../components';
 import { Window } from '../layouts';
+import { sanitizeText } from '../sanitize';
 import { AntagInfoTraitorContent } from './AntagInfoTraitor';
 
 type Faction = {
@@ -404,7 +405,10 @@ const DescriptionLines = (props: { data?: Faction }) => {
       </Stack.Item>
       {data?.description?.split('\n').map((value, index) => (
         <Stack.Item key={'desc-' + index} maxWidth="70vw">
-          <div dangerouslySetInnerHTML={{ __html: value }} />
+          <div
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: sanitizeText(value) }}
+          />
         </Stack.Item>
       ))}
     </>
