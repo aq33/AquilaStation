@@ -26,6 +26,21 @@ def strip_comment(line):
     return ''.join(out).rstrip()
 
 
+def paren_depth(s):
+    """Open minus closed parentheses, ignoring the ones inside DM strings."""
+    depth = 0
+    in_str = False
+    for i, c in enumerate(s):
+        if c == '"' and (i == 0 or s[i - 1] != '\\'):
+            in_str = not in_str
+        elif not in_str:
+            if c == '(':
+                depth += 1
+            elif c == ')':
+                depth -= 1
+    return depth
+
+
 def parse_files(paths):
     types = {}
     procs = {}
@@ -61,12 +76,12 @@ def parse_files(paths):
                 if m:
                     name, val = m.group(1), m.group(2)
                     # join continuation lines for list( ... ) spanning lines
-                    depth = val.count('(') - val.count(')')
+                    depth = paren_depth(val)
                     while depth > 0 and i + 1 < len(lines):
                         i += 1
                         nxt = strip_comment(lines[i]).strip()
                         val += ' ' + nxt
-                        depth = val.count('(') - val.count(')')
+                        depth = paren_depth(val)
                     while val.endswith('\\') and i + 1 < len(lines):
                         i += 1
                         val = val[:-1] + ' ' + strip_comment(lines[i]).strip()

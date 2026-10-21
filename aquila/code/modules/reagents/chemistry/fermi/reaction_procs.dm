@@ -147,10 +147,11 @@
 	var/sum_volume = 0
 	invert_reagents.my_atom = holder.my_atom //Give the gas a fingerprint
 	for(var/datum/reagent/reagent as anything in holder.reagent_list) //make gas for reagents, has to be done this way, otherwise it never stops Exploding
-		if(!(reagent.type in required_reagents) || !(reagent.type in results))
+		if(!(reagent.type in required_reagents) && !(reagent.type in results)) // tg has || here, which skips everything
 			continue
 		if(reagent.inverse_chem)
 			invert_reagents.add_reagent(reagent.inverse_chem, reagent.volume, no_react = TRUE)
+			sum_volume += reagent.volume
 			holder.remove_reagent(reagent.type, reagent.volume)
 			continue
 		invert_reagents.add_reagent(reagent.type, reagent.volume, added_purity = reagent.purity, no_react = TRUE)

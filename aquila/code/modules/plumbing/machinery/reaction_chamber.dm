@@ -45,10 +45,12 @@
 	reagents.flags |= NO_REACT
 
 /obj/machinery/plumbing/reaction_chamber/process(delta_time)
-	if(machine_stat & NOPOWER || !reagents.total_volume)
-		return
 	//fermichem: keep heating while the reaction is still going, products only drain after it's done
 	if(emptying && !reagents.is_reacting)
+		//a slow reaction can use up everything but the catalysts, then nothing drains to call this
+		check_emptied()
+		return
+	if(machine_stat & NOPOWER || !reagents.total_volume)
 		return
 
 	//adjust temperature of final solution

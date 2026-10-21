@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /datum/reagent/proc/get_inverse_purity(purity)
 	if(!inverse_chem || !inverse_chem_val)
 		return 0
-	if(!purity)
+	if(isnull(purity))
 		purity = src.purity
 	return min(1 - inverse_chem_val + purity + 0.01, 1) //Gives inverse reactions a 1% purity threshold for being 100% pure
 // AQ EDIT END

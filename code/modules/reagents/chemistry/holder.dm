@@ -903,9 +903,9 @@
 		return FALSE
 
 	// AQ EDIT START - fermichem z tg
-	if(!added_purity) //Because purity additions can be 0
+	if(isnull(added_purity)) //Because purity additions can be 0
 		added_purity = D.creation_purity //Usually 1
-	if(!added_ph)
+	if(isnull(added_ph))
 		added_ph = D.ph
 
 	//Split up the reagent if it's in a mob

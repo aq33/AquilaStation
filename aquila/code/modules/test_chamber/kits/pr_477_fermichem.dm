@@ -3,7 +3,7 @@
 	pr = "aq33/AquilaStation#477"
 	description = "Podgrzewacz debug ma po 1000 j. obu buforów. \
 	1) Zlewka „amoniak”: włóż do podgrzewacza, ustaw 400 K i włącz – reakcja trwa kilka sekund, widać ją w oknie (pasek, jakość), zlewka się nagrzewa. \
-	2) Zlewka „amoniak kwaśny” ma pH ~1: przed reakcją dolej bufor zasadowy z podgrzewacza i porównaj czystość z analizatorem chemicznym (klik zlewką). \
+	2) Zlewka „amoniak kwaśny” ma pH ~0,1 (poniżej okna 1–12): przed reakcją dolej bufor zasadowy z podgrzewacza i porównaj czystość z analizatorem chemicznym (klik zlewką). \
 	3) Zlewka „meta”: grzej powyżej przegrzania (patrz wyszukiwarka receptur w dispenserze) – wybucha. \
 	4) Strzykawka z nieczystą okuliną: wstrzyknij królikowi albo sobie – w ciele zmieni się w Oculater (ślepota). \
 	5) Papierki pH z książeczki: kliknij nimi zlewkę, zmieniają kolor. \
@@ -29,9 +29,9 @@
 	ammonia.reagents.add_reagent(/datum/reagent/nitrogen, 15, null, 90, TRUE)
 
 	var/obj/item/reagent_containers/glass/beaker/large/acidic = new(drop)
-	acidic.name = "zlewka: amoniak kwaśny (pH ~1)"
-	acidic.reagents.add_reagent(/datum/reagent/hydrogen, 45, null, 90, TRUE, added_ph = 1)
-	acidic.reagents.add_reagent(/datum/reagent/nitrogen, 15, null, 90, TRUE, added_ph = 1)
+	acidic.name = "zlewka: amoniak kwaśny (pH ~0,1)"
+	acidic.reagents.add_reagent(/datum/reagent/hydrogen, 45, null, 90, TRUE, added_ph = 0.1)
+	acidic.reagents.add_reagent(/datum/reagent/nitrogen, 15, null, 90, TRUE, added_ph = 0.1)
 
 	var/obj/item/reagent_containers/glass/beaker/large/meth = new(drop)
 	meth.name = "zlewka: składniki mety"
