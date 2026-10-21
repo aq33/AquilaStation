@@ -117,6 +117,7 @@
 #include "code\datums\mutations\_combined.dm"
 #include "code\datums\mutations\actions.dm"
 #include "code\datums\mutations\body.dm"
+#include "code\datums\mutations\mutation_actions.dm"
 #include "code\datums\votes\_vote_datum.dm"
 #include "code\datums\votes\custom_vote.dm"
 #include "code\datums\votes\votes.dm"
