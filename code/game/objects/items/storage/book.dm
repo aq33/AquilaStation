@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	var/list/skins = list()
 	for(var/i in 1 to GLOB.biblestates.len)
 		skins[GLOB.biblenames[i]] = image(icon = 'icons/obj/storage.dmi', icon_state = GLOB.biblestates[i])
-	var/choice = show_radial_menu(user, src, skins, radius = 40, custom_check = CALLBACK(src, .proc/check_skin_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, skins, radius = 40, custom_check = CALLBACK(src, PROC_REF(check_skin_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!choice || GLOB.bible_icon_state || !check_skin_menu(user))
 		return
 	var/iconi = GLOB.biblenames.Find(choice)

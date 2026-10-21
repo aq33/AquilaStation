@@ -58,7 +58,7 @@
 			var/selected_school = params["school"]
 			if(!(selected_school in list(APPRENTICE_DESTRUCTION, APPRENTICE_BLUESPACE, APPRENTICE_HEALING, APPRENTICE_ROBELESS, APPRENTICE_WILDMAGIC)))
 				return
-			INVOKE_ASYNC(src, .proc/poll_for_student, H, selected_school)
+			INVOKE_ASYNC(src, PROC_REF(poll_for_student), H, selected_school)
 			SStgui.close_uis(src)
 			return TRUE
 

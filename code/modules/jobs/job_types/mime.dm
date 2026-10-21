@@ -78,7 +78,7 @@
 		var/obj/effect/proc_holder/spell/spell_type = routines[routine]
 		choices[routine] = image(icon = initial(spell_type.action_icon), icon_state = initial(spell_type.action_icon_state))
 	to_chat(H, "<span class='notice'>Książka uczy jednego z trzech klasycznych układów pantomimy, pozwalając wprawnemu mimowi przywoływać niewidzialne przedmioty do cielesnego istnienia. Gdy opanujesz swój układ, nie będzie miała ci już nic do powiedzenia.</span>")
-	var/choice = show_radial_menu(H, src, choices, custom_check = CALLBACK(src, .proc/check_mimery_menu, H), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(H, src, choices, custom_check = CALLBACK(src, PROC_REF(check_mimery_menu), H), require_near = TRUE, tooltips = TRUE)
 	if(!choice || !routines[choice] || !check_mimery_menu(H))
 		return
 	var/spell_type = routines[choice]

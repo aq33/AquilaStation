@@ -876,7 +876,7 @@
 	var/list/choices = list()
 	for(var/card in currenthand)
 		choices[card] = image(icon = icon, icon_state = "sc_[card]_[deckstyle]")
-	var/choice = show_radial_menu(cardUser, src, choices, custom_check = CALLBACK(src, .proc/check_card_menu, cardUser), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(cardUser, src, choices, custom_check = CALLBACK(src, PROC_REF(check_card_menu), cardUser), require_near = TRUE, tooltips = TRUE)
 	if(!choice || !check_card_menu(cardUser))
 		return
 	draw_card(cardUser, choice)
