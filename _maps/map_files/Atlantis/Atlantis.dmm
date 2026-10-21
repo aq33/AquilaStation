@@ -8949,16 +8949,6 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/monotile/dark,
 /area/maintenance/nsv/deck2/starboard)
-"hyk" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "hym" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9055,23 +9045,6 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/monotile/dark,
 /area/storage/eva)
-"hFm" = (
-/obj/effect/landmark/zebra_interlock_point,
-/obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/duct,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "hFp" = (
 /obj/machinery/keycard_auth{
 	pixel_x = -25;
@@ -13595,19 +13568,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating,
 /area/nsv/weapons)
-"lmG" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck2/primary)
 "lnK" = (
 /obj/machinery/power/solar{
 	pixel_x = -8;
@@ -19942,16 +19902,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/mixing)
-"qwb" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck2/primary)
 "qws" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -23968,19 +23918,6 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"tOK" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/red,
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "tOS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -26115,12 +26052,6 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"vDX" = (
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 1
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "vEc" = (
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
@@ -27937,13 +27868,6 @@
 /obj/effect/landmark/nuclear_waste_spawner,
 /turf/closed/wall/r_wall,
 /area/storage/tech)
-"xgZ" = (
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 1
-	},
-/obj/machinery/duct,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "xhb" = (
 /obj/effect/landmark/start/roboticist,
 /turf/open/floor/plasteel/ridged/steel,
@@ -28356,16 +28280,6 @@
 	dir = 10
 	},
 /turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck2/primary)
-"xzM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/duct,
-/turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
 "xzN" = (
 /obj/machinery/door/airlock/ship/maintenance,
