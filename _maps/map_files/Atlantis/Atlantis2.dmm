@@ -11125,12 +11125,7 @@
 /turf/open/openspace,
 /area/engine/engineering)
 "kVA" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 2;
-	pixel_y = -2
-	},
+/obj/machinery/dna_infuser,
 /obj/machinery/duct,
 /turf/open/floor/monotile/steel,
 /area/medical/genetics)
@@ -21390,6 +21385,12 @@
 /obj/item/storage/pill_bottle/mannitol,
 /obj/item/storage/pill_bottle/mutadone,
 /obj/item/storage/box/disks,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/book/manual/infuser,
 /obj/machinery/duct,
 /turf/open/floor/monotile/steel,
 /area/medical/genetics)
