@@ -20,7 +20,7 @@ export const ChemReactionChamber = (props) => {
     data;
 
   return (
-    <Window width={290} height={520}>
+    <Window width={340} height={560}>
       <Window.Content>
         <MixingChamberContent
           extraConditions={

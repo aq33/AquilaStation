@@ -132,7 +132,7 @@ export const BeakerSectionDisplay = (props: BeakerSectionProps) => {
       buttons={
         beaker ? (
           <>
-            <Box inline color="label" mr={2}>
+            <Box inline bold mr={2}>
               {beaker.currentVolume} / {beaker.maxVolume} u
             </Box>
             <Button icon="eject" onClick={() => act('eject')}>

@@ -134,7 +134,7 @@ const ChemMasterContent = (props) => {
         buttons={
           isBeakerLoaded ? (
             <Box>
-              <Box inline color="label" mr={2}>
+              <Box inline bold mr={2}>
                 <AnimatedNumber value={beakerCurrentVolume || 0} initial={0} />
                 {` / ${beakerMaxVolume} u`}
               </Box>

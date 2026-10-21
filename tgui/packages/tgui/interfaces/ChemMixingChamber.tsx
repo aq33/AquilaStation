@@ -82,7 +82,6 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
             <Stack.Item>
               <Stack fill>
                 <Stack.Item textColor="label">Obecna temperatura:</Stack.Item>
-                {extraConditions && <Stack.Item>{extraConditions}</Stack.Item>}
                 <Stack.Item grow>
                   <AnimatedNumber
                     value={temperature}
@@ -94,6 +93,7 @@ export const MixingChamberContent = (props: MixingChamberContentProps) => {
           </Stack>
         </Section>
       </Stack.Item>
+      {extraConditions && <Stack.Item>{extraConditions}</Stack.Item>}
       <Stack.Item grow>
         <Section
           title="Ustawienia"
