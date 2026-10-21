@@ -1423,7 +1423,19 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
 "cI" = (
-)
+/obj/machinery/computer/atmos_control/tank/air_tank{
+	input_tag = "sdmix_in";
+	name = "Reactor Mix Control";
+	output_tag = "sdmix_out";
+	sensors = list("sdmix_sensor"="Reactor                Mix                Tank")
+	},
+/obj/effect/turf_decal/tile/ship/blue,
+/obj/effect/turf_decal/tile/ship/yellow{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/engine/atmos)
 "cJ" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -10443,7 +10455,13 @@
 "zt" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4)
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/camera/autoname{
+	dir = 1;
+	network = list("ss13","labor")
+	},
+/turf/open/floor/plasteel/grid/steel,
+/area/hallway/secondary/exit/departure_lounge)
 "zw" = (
 /obj/structure/rack,
 /obj/item/powder_bag{
@@ -12340,7 +12358,20 @@
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
 "Fi" = (
-)
+/obj/machinery/camera{
+	c_tag = "Atlas Hangar Exterior";
+	network = list("ss13","hangar_atlas")
+	},
+/obj/machinery/button/door{
+	id = "atlas_hangar";
+	name = "Pod Bay Doors";
+	pixel_y = 32;
+	req_one_access_txt = "69"
+	},
+/obj/structure/lattice/catwalk,
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/nsv/hanger/notkmcstupidhanger)
 "Fj" = (
 /obj/machinery/button/door{
 	id = "atlas_dropship_hangar";
@@ -13454,7 +13485,14 @@
 /area/space/nearstation)
 "Iu" = (
 /obj/structure/closet/crate,
-/obj/structure/lattice/catwalk)
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "Asteroid Magnet";
+	dir = 8;
+	network = list("ss13","magnet")
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "Iv" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
@@ -13693,7 +13731,15 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "Jn" = (
-/obj/effect/turf_decal/stripes/line)
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/camera{
+	c_tag = "Atlas Hangar #3";
+	dir = 4;
+	network = list("ss13","hangar_atlas")
+	},
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "Jo" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -15476,7 +15522,14 @@
 "Og" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
-	})
+	},
+/obj/machinery/camera{
+	c_tag = "Atlas Hangar #2";
+	dir = 4;
+	network = list("ss13","hangar_atlas")
+	},
+/turf/open/floor/monotile/dark/airless,
+/area/nsv/hanger/notkmcstupidhanger)
 "Oh" = (
 /obj/structure/mecha_wreckage/phazon{
 	layer = 2.1

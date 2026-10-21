@@ -10903,7 +10903,14 @@
 	layer = 3.1;
 	name = "Cyborg Upload Console";
 	req_access_txt = "16"
-	})
+	},
+/obj/machinery/camera/motion{
+	c_tag = "Upload Chamber";
+	dir = 4;
+	network = list("aiupload")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
 "YH" = (
 /obj/machinery/firealarm/directional/south,
 /obj/structure/closet/secure_closet/transport_pilot,

@@ -8,8 +8,6 @@
 		/obj/machinery/exodrone_launcher = 1,
 		/obj/item/exodrone = 1,
 		/obj/item/fuel_pellet = 1,
-		/obj/item/fuel_pellet/advanced = 1,
-		/obj/item/fuel_pellet/exotic = 1,
 		/obj/machinery/exoscanner = 2,
 		/obj/machinery/computer/exodrone_control_console = 1,
 		/obj/machinery/computer/exoscanner_control = 1,
@@ -19,6 +17,11 @@
 	)
 
 /datum/test_chamber_kit/pr_478/setup(list/spawned, list/turfs, turf/center, mob/user)
+	// Podtypy pelletu w pudełku, bo test komory liczy przez istype tylko to, co leży na kratkach
+	var/obj/item/storage/box/pellet_box = new(center)
+	pellet_box.name = "pudełko z pelletami"
+	new /obj/item/fuel_pellet/advanced(pellet_box)
+	new /obj/item/fuel_pellet/exotic(pellet_box)
 	if(!length(GLOB.exploration_sites))
 		generate_exploration_sites()
 	var/datum/supply_pack/pack = /datum/supply_pack/exploration/scrapyard
