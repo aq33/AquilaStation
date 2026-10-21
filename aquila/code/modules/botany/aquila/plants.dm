@@ -69,3 +69,12 @@
 	icon = 'icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-corpse-flower"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle/thistle, /datum/plant_feature/fruit/starthistle/corpse)
+
+/*
+	Pomidor-zabójca jako gotowe nasiona (u Bee tylko mutacja), m.in. dla handlarza z eksploracji dronami
+*/
+/obj/item/plant_seeds/preset/killer_tomato
+	name = "killer tomato seeds"
+	name_override = "killer tomato plant"
+	icon_state = "seed-killertomato"
+	plant_features = list(/datum/plant_feature/roots/dirt, /datum/plant_feature/body/bush_vine/tomato, /datum/plant_feature/fruit/tomato/killer)
