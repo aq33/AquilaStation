@@ -29,5 +29,16 @@
 		/obj/item/clothing/head/beret/sec/garrison = 1,
 		/obj/item/bedsheet/hos = 1,
 		/obj/item/stack/tile/carpet/police/fifty = 1,
-		/obj/effect/turf_decal/tile/ship/police = 1,
 	)
+
+/// Naklejki rozkładają się na podłogę i same znikają, więc nie idą przez items (test liczy obiekty)
+/datum/test_chamber_kit/pr_481/setup(list/spawned, list/turfs, turf/center, mob/user)
+	var/list/decals = list(
+		/obj/effect/turf_decal/tile/ship/police,
+		/obj/effect/turf_decal/tile/ship/half/police,
+		/obj/effect/turf_decal/tile/ship/full/police,
+		/obj/effect/turf_decal/trimline/police/line,
+	)
+	for(var/i in 1 to min(length(decals), length(turfs)))
+		var/decal_type = decals[i]
+		new decal_type(turfs[i])
