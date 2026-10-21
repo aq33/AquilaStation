@@ -396,8 +396,6 @@
 		else
 			. += "Jest w niej coś dziwnie męskiego.\n"
 
-	// AQUILA - człowiek nie woła ..(), więc sygnał oględzin wysyłamy sami (zepsute organy, aura heretyka)
-	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!

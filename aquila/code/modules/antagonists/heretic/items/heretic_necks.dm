@@ -46,6 +46,8 @@
 	var/datum/component/component
 	/// If active or not, used to add and remove its cult and heretic buffs.
 	var/active = FALSE
+	/// AQUILA - zaklęcia, którym skróciliśmy odnowienie (przywracamy tylko je)
+	var/list/datum/weakref/hastened_spells
 
 /obj/item/clothing/neck/heretic_focus/crimson_medallion/equipped(mob/living/user, slot)
 	. = ..()
@@ -59,7 +61,8 @@
 	else if(IS_HERETIC_OR_MONSTER(user) && !active)
 		for(var/datum/action/cooldown/spell/spell_action in user.actions)
 			spell_action.cooldown_time *= 0.5
-			active = TRUE
+			LAZYADD(hastened_spells, WEAKREF(spell_action))
+		active = TRUE
 		team_color = COLOR_GREEN
 	else
 		team_color = pick(COLOR_CULT_RED, COLOR_GREEN)
@@ -90,9 +93,12 @@
 		to_chat(user, span_notice("Twoje serce i krew wracają do dawnego rytmu."))
 
 	if(IS_HERETIC_OR_MONSTER(user) && active)
-		for(var/datum/action/cooldown/spell/spell_action in user.actions)
-			spell_action.cooldown_time *= 2
-			active = FALSE
+		for(var/datum/weakref/spell_ref as anything in hastened_spells)
+			var/datum/action/cooldown/spell/spell_action = spell_ref.resolve()
+			if(spell_action)
+				spell_action.cooldown_time *= 2
+		hastened_spells = null
+		active = FALSE
 	QDEL_NULL(component)
 	user.remove_traits(list(TRAIT_MANSUS_TOUCHED, TRAIT_BLOOD_FOUNTAIN), REF(src))
 

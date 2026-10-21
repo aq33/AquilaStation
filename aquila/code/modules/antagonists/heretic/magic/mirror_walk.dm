@@ -10,7 +10,7 @@
 
 	cooldown_time = 6 SECONDS
 	jaunt_type = /obj/effect/dummy/phased_mob/tg/mirror_walk
-	spell_requirements = NONE
+	spell_requirements = SPELL_CASTABLE_WHILE_PHASED // AQUILA - bez tego nie da się wyjść ze świata luster
 
 	/// The time it takes to enter the mirror / phase out / enter jaunt.
 	var/phase_out_time = 1.5 SECONDS

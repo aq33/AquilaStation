@@ -139,44 +139,20 @@
 	drafting_tier = 2
 
 /datum/heretic_knowledge/painting/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
-	if(locate(/obj/item/organ/eyes) in atoms)
-		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/weeping)
-		src.required_atoms = list(
-			/obj/item/canvas = 1,
-			/obj/item/organ/eyes = 1,
-		)
-		return TRUE
-
-	if(locate(/obj/item/bodypart) in atoms)
-		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/desire)
-		src.required_atoms = list(
-			/obj/item/canvas = 1,
-			/obj/item/bodypart = 1,
-		)
-		return TRUE
-
-	if(locate(/obj/item/food/grown) in atoms)
-		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/vines)
-		src.required_atoms = list(
-			/obj/item/canvas = 1,
-			/obj/item/food/grown = 1,
-		)
-		return TRUE
-
-	if(locate(/obj/item/clothing/gloves) in atoms)
-		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/beauty)
-		src.required_atoms = list(
-			/obj/item/canvas = 1,
-			/obj/item/clothing/gloves = 1,
-		)
-		return TRUE
-
-	if(locate(/obj/item/trash) in atoms)
-		src.result_atoms = list(/obj/item/wallframe/painting/eldritch/rust)
-		src.required_atoms = list(
-			/obj/item/canvas = 1,
-			/obj/item/trash = 1,
-		)
+	// AQUILA - dodatkowy składnik idzie prosto do selected_atoms; zmiana required_atoms działała dopiero przy następnym rytuale
+	var/static/list/extra_ingredients = list(
+		/obj/item/organ/eyes = /obj/item/wallframe/painting/eldritch/weeping,
+		/obj/item/bodypart = /obj/item/wallframe/painting/eldritch/desire,
+		/obj/item/food/grown = /obj/item/wallframe/painting/eldritch/vines,
+		/obj/item/clothing/gloves = /obj/item/wallframe/painting/eldritch/beauty,
+		/obj/item/trash = /obj/item/wallframe/painting/eldritch/rust,
+	)
+	for(var/ingredient_type in extra_ingredients)
+		var/atom/movable/ingredient = locate(ingredient_type) in atoms
+		if(!ingredient)
+			continue
+		src.result_atoms = list(extra_ingredients[ingredient_type])
+		selected_atoms |= ingredient
 		return TRUE
 
 	user.balloon_alert(user, "brak dodatkowego składnika!")

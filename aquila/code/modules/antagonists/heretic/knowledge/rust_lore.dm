@@ -273,9 +273,12 @@
 /datum/heretic_knowledge/ultimate/rust_final/proc/transform_area(list/turfs)
 	turfs = shuffle(turfs)
 	var/numturfs = length(turfs)
-	var/first_third = turfs.Copy(1, round(numturfs * 0.33))
-	var/second_third = turfs.Copy(round(numturfs * 0.33), round(numturfs * 0.66))
-	var/third_third = turfs.Copy(round(numturfs * 0.66), numturfs)
+	// AQUILA - Copy(start, end) pomija end, a przy małych listach tg wychodził poza zakres
+	var/first_cut = round(numturfs / 3) + 1
+	var/second_cut = round(numturfs * 2 / 3) + 1
+	var/first_third = turfs.Copy(1, first_cut)
+	var/second_third = turfs.Copy(first_cut, second_cut)
+	var/third_third = turfs.Copy(second_cut, 0)
 	addtimer(CALLBACK(src, PROC_REF(delay_transform_turfs), first_third), 5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(delay_transform_turfs), second_third), 5 SECONDS * 0.33)
 	addtimer(CALLBACK(src, PROC_REF(delay_transform_turfs), third_third), 5 SECONDS * 0.66)

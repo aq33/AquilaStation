@@ -1,4 +1,4 @@
-// Rust charge, a charge action that can only be started on rust (and only destroys rust tiles)
+// Rust charge, a charge action that can only be started on rust (destroys the walls around the charger, like in tg)
 // AQUILA - w tg to /datum/action/cooldown/mob_cooldown/charge/rust. U nas nie ma akcji mob_cooldown ani move_managera,
 // więc szarża jest zaklęciem z celowaniem, a ruch to pętla kroków (jak w tg: rdza, burzenie otoczenia, obrażenia).
 /datum/action/cooldown/spell/pointed/rust_charge

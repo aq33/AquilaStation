@@ -223,3 +223,8 @@
 /proc/___TraitRemove(datum/target, trait, source)
 	if(istype(target))
 		REMOVE_TRAIT(target, trait, source)
+
+/// tg: oględziny człowieka wysyłają COMSIG_PARENT_EXAMINE (nasze human/examine nie woła ..()); z tego korzystają m.in. zepsute organy i aura heretyka
+/mob/living/carbon/human/examine(mob/user)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)

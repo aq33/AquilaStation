@@ -347,7 +347,7 @@
 		ascended_human.update_sight()
 
 /datum/heretic_knowledge/ultimate/void_final/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
-	on_death() // Losing is pretty much dying. I think
+	on_death(user) // Losing is pretty much dying. I think (AQUILA - z ciałem, inaczej sygnały zostają)
 
 /**
  * Signal proc for [COMSIG_LIVING_LIFE].

@@ -263,24 +263,12 @@
 	announcement_text = "Wykryto anomalię wymiarową klasy Delta%SPOOKY% Rzeczywistość rozdarta, porwana. Bramy otwarte, drzwi otwarte, %NAME% wstąpił! Lękajcie się fali! %SPOOKY%"
 	announcement_sound = 'aquila/sound/music/antag/heretic/ascend_knock.ogg'
 
-/datum/heretic_knowledge/ultimate/lock_final/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
+// AQUILA - warunek „bez organów w klatce” w is_valid_sacrifice, żeby runa liczyła tylko takie ciała
+/datum/heretic_knowledge/ultimate/lock_final/is_valid_sacrifice(mob/living/carbon/human/sacrifice)
 	. = ..()
 	if(!.)
 		return FALSE
-
-	for(var/mob/living/carbon/human/body in atoms)
-		if(body.stat != DEAD)
-			continue
-		if(LAZYLEN(body.getorganszone(BODY_ZONE_CHEST)))
-			to_chat(user, span_hierophant_warning("[body] ma organy w klatce piersiowej."))
-			continue
-
-		selected_atoms += body
-
-	if(!LAZYLEN(selected_atoms))
-		loc.balloon_alert(user, "rytuał nieudany, za mało ciał!")
-		return FALSE
-	return TRUE
+	return !LAZYLEN(sacrifice.getorganszone(BODY_ZONE_CHEST))
 
 /datum/heretic_knowledge/ultimate/lock_final/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()

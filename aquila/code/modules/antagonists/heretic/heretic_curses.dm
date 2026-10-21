@@ -97,7 +97,7 @@
 		if(!to_drain.reagents?.reagent_list)
 			continue
 		for(var/datum/reagent/to_match in to_drain.reagents.reagent_list)
-			if(to_match.data[BLOOD_DATA_DNA] != to_curse.dna.unique_enzymes)
+			if(!islist(to_match.data) || to_match.data[BLOOD_DATA_DNA] != to_curse.dna.unique_enzymes)
 				continue
 			to_drain.reagents.remove_reagent(to_match.type, 5)
 	return TRUE

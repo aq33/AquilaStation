@@ -115,16 +115,4 @@
 	if(chill_effect.stacks >= 5)
 		desc = "Miałeś szansę uciec, teraz jest za późno. Możesz już nigdy nie poczuć ciepła..."
 
-/// tg: nakładka widoczna tylko dla heretyków i ich sług
-/datum/atom_hud/alternate_appearance/basic/heretic
-
-/datum/atom_hud/alternate_appearance/basic/heretic/New()
-	..()
-	for(var/mob in GLOB.player_list)
-		if(mobShouldSee(mob))
-			add_hud_to(mob)
-
-/datum/atom_hud/alternate_appearance/basic/heretic/mobShouldSee(mob/viewer)
-	if(IS_HERETIC_OR_MONSTER(viewer))
-		return TRUE
-	return FALSE
+// Nakładka widoczna tylko dla heretyków: /datum/atom_hud/alternate_appearance/basic/heretic w _compat/core.dm

@@ -301,6 +301,8 @@
 	if(exit_jaunt_sound)
 		playsound(found_exit, exit_jaunt_sound, 50, TRUE)
 	ADD_TRAIT(cast_on, TRAIT_IMMOBILIZED, REF(src))
+	// Zabezpieczenie: gdy pojemnik zniknie w trakcie wyłaniania (np. krytyk), cecha i tak zejdzie
+	addtimer(TRAIT_CALLBACK_REMOVE(cast_on, TRAIT_IMMOBILIZED, REF(src)), 2.5 SECONDS + jaunt_in_time + 1 SECONDS)
 	if(2.5 SECONDS - jaunt_in_time <= 0)
 		do_jaunt_in(cast_on, holder, found_exit)
 	else

@@ -84,13 +84,16 @@
 		effects_we_clear = list(/obj/effect/cosmic_rune), \
 	)
 
-// tg: ranged_interact_with_atom - gwiezdnie naznaczonych dosięgasz z 3 pól
+// tg: ranged_interact_with_atom - cel w zasięgu 3 pól (jak w tg; znak nie jest wymagany)
 /obj/item/melee/spell_hand/star_touch/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(proximity_flag || !isliving(target) || !isliving(user))
 		return
 	var/mob/living/living_target = target
 	if(get_dist(living_target, user) > 3)
+		return
+	// AQUILA - tg nie sprawdza widoczności, więc dłoń sięgała przez ściany
+	if(!(living_target in view(3, user)))
 		return
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/item, melee_attack_chain), user, living_target, click_parameters)
 

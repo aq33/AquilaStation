@@ -495,7 +495,7 @@
 		living_user.apply_status_effect(eldritch_passive)
 
 /datum/heretic_knowledge/limited_amount/starting/on_lose(mob/user, datum/antagonist/heretic/our_heretic)
-	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_HERETIC_BLADE_ATTACK))
+	UnregisterSignal(user, list(COMSIG_HERETIC_MANSUS_GRASP_ATTACK, COMSIG_LIONHUNTER_ON_HIT, COMSIG_HERETIC_BLADE_ATTACK))
 	if(isliving(user))
 		var/mob/living/living_user = user
 		living_user.remove_status_effect(eldritch_passive)

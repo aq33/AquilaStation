@@ -17,7 +17,7 @@
 	var/list/start_knowledges = list()
 	generate_heretic_starting_knowledge(start_knowledges)
 	start_knowledges = flatten_list(start_knowledges)
-	var/list/all_knowledges = start_knowledges
+	var/list/all_knowledges = start_knowledges.Copy() // AQUILA - kopia, bez niej test sprawdzał osiągalność od wszystkich węzłów
 
 	// we need to generate a set of shop_knowledges and drafted knowledges as they're unique per path and slightly random in drafted knowledges
 	for(var/path in GLOB.heretic_path_knowledges)
@@ -72,12 +72,13 @@
 		// we basically need to go through the entire chain of HKT_NEXT's to validate the paths's starting from GLOB.heretic_start_knowledge
 		for(var/next_id in knowledge_node[UT_HKT_NEXT])
 			var/list/next_knowledge_node = find_knowledge_node_by_id(all_knowledges, next_id)
-			var/datum/knowledge_path = next_knowledge_node["type"]
 			if(isnull(next_knowledge_node))
-				Fail("Heretic Knowledge: [next_id] in [knowledge_path] 's next_knowledge list does not point to a valid knowledge node!")
+				Fail("Heretic Knowledge: [next_id] in [knowledge_node["type"]] 's next_knowledge list does not point to a valid knowledge node!")
 				continue
 			if(!istext(next_id))
 				Fail("Heretic Knowledge: [next_id] has an invalid non-string next_knowledge entry (Got: [next_id])!")
+			if(next_knowledge_node in list_to_check) // AQUILA - bez powtórek (lista startowa jest teraz kopią)
+				continue
 			list_to_check += list(next_knowledge_node)
 	return list_to_check
 

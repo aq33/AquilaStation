@@ -108,6 +108,9 @@
 /turf/open/floor/rust_turf(magic = FALSE)
 	if(HAS_TRAIT(src, TRAIT_RUSTY))
 		return FALSE
+	// AQUILA - blokadę sprawdzamy przed zamianą na poszycie (nowe poszycie nie ma już tych flag)
+	if((turf_flags & NO_RUST) || HAS_TRAIT(src, TRAIT_RUSTIMMUNE))
+		return FALSE
 	// AQUILA - podtypów poszycia (np. airless) nie podmieniamy na zwykłe poszycie
 	if(!istype(src, /turf/open/floor/plating))
 		ChangeTurf(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)

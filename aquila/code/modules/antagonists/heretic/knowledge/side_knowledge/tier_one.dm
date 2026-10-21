@@ -363,7 +363,7 @@
 	// Valuable items first, then clothing items (so you can track people wearing them), then weapons (stuff you probably want), then random items
 	var/datum/antagonist/heretic/heretic_datum = GET_HERETIC(user)
 	for(var/obj/new_trackable as anything in valuable_pool | equipment_pool | weapon_pool | item_pool | leftover_pool)
-		LAZYADD(heretic_datum.tracked_items, new_trackable)
+		LAZYADD(heretic_datum.tracked_items, WEAKREF(new_trackable))
 		to_chat(user, span_mansus("Czujesz, jak nowy magnetyt w [new_trackable] zaczyna bić w rytm twojego serca."))
 		lodestones_created += 1
 		if(lodestones_created >= 3)

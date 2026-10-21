@@ -320,7 +320,7 @@
 /datum/status_effect/heretic_passive/cosmic/proc/hit_someone(mob/living/source, mob/living/target, mob/living/user, params)
 	SIGNAL_HANDLER
 
-	if(!isliving(target) || target == source || target.stat <= HARD_CRIT)
+	if(!isliving(target) || target == source || target.stat != CONSCIOUS) // AQUILA - tg ma tu odwrócony warunek (działało tylko na martwych)
 		return
 
 	if(locate(/obj/effect/forcefield/cosmic_field) in range(1, target))
@@ -670,7 +670,7 @@
 	var/delta_time = DELTA_WORLD_TIME(SSmobs) * 0.5 // SSmobs.wait is 2 secs, so this should be halved.
 	var/main_healing = 1 + 1 * passive_level * delta_time
 	var/stam_healing = 5 + 5 * passive_level * delta_time
-	need_mob_update += source.heal_overall_damage(-main_healing, -main_healing, updating_health = FALSE)
+	need_mob_update += source.heal_overall_damage(main_healing, main_healing, updating_health = FALSE) // AQUILA - leczenie dodatnie (w tg znak był odwrotny)
 	need_mob_update += source.adjust_stamina_loss(-stam_healing, updating_stamina = FALSE)
 	need_mob_update += source.adjust_tox_loss(-main_healing, updating_health = FALSE, forced = TRUE) // Slimes are people too
 	need_mob_update += source.adjust_oxy_loss(-main_healing, updating_health = FALSE)

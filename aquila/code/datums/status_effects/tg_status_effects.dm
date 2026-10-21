@@ -173,8 +173,8 @@
 		threshold_crossed = FALSE
 		on_threshold_drop()
 	if(stacks_added > 0 && delay_before_decay)
-		// u nas tick_interval to czas następnego tyknięcia
-		tick_interval = max(tick_interval, world.time) + delay_before_decay
+		// u nas tick_interval to czas następnego tyknięcia; opadanie zaczyna się delay_before_decay po ostatnim dodaniu
+		tick_interval = world.time + delay_before_decay
 	if(status_overlay)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		owner.add_overlay(status_overlay)

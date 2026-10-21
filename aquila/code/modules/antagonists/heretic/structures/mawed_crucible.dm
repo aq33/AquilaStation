@@ -56,7 +56,7 @@
 	if(!IS_HERETIC_OR_MONSTER(user) && !isobserver(user))
 		return
 
-	if(current_mass > 0)
+	if(current_mass >= max_mass)
 		. += span_notice("Możesz tu napełnić flaszkę esencji eldritch.")
 
 	if(current_mass < max_mass)
