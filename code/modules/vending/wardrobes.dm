@@ -7,11 +7,11 @@
 	payment_department = NO_FREEBIES
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper SecDrobe"
+	name = "\improper Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
 	desc = "A vending machine for security and security-related clothing!"
 	icon_state = "secdrobe"
 	product_ads = "Bij opryszkow ze stylem!;Jest czerwone, więc nie zauważysz krwi!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym ochroniarzem, jak zawsze chciałeś!"
-	vend_reply = "Dziękujemy za użycie SecDrobe!"
+	vend_reply = "Dziękujemy za użycie Mundurowni Policyjnej!" //AQUILA EDIT
 	light_color = LIGHT_COLOR_RED
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 3,
 					/obj/item/storage/backpack/security = 3,
@@ -48,7 +48,7 @@
 	payment_department = ACCOUNT_SEC
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "SecDrobe"
+	machine_name = "Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"

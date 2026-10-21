@@ -127,7 +127,7 @@ export const RADIO_CHANNELS = [
   {
     name: 'Security',
     freq: 1359,
-    color: '#dd3535',
+    color: '#7c8be6',
   },
   {
     name: 'AI Private',

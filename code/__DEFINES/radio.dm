@@ -11,7 +11,7 @@
 #define RADIO_CHANNEL_COMMON "Ogólny" //AQ EDIT START
 #define RADIO_KEY_COMMON ";"
 
-#define RADIO_CHANNEL_SECURITY "Ochrona"
+#define RADIO_CHANNEL_SECURITY "Policja" //AQUILA EDIT - kanał Policji
 #define RADIO_KEY_SECURITY "s"
 #define RADIO_TOKEN_SECURITY ":s"
 

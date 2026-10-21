@@ -120,7 +120,7 @@ Jako Naczelnik zawsze pilnie obserwuj zbrojownię, bo to ulubiony cel operatoró
 Jako Naczelnik możesz, za zgodą Komendanta, zamknąć więźnia na zawsze w celi dożywotniej lub gułagu, jeśli jego zbrodnie są wystarczająco ciężkie. Pamiętaj, by co jakiś czas go sprawdzać!
 Jako Naczelnik możesz wszczepiać przestępcom, którzy mogą znów coś przeskrobać, implanty śledzące ich położenie i pozwalające zdalnie wstrzyknąć im obezwładniające substancje.
 Jako Naczelnik możesz założyć kajdanki na pomarańczowe buty więzienne, robiąc z nich skute buty, co zmusza więźniów do chodzenia i może udaremnić ucieczkę.
-Jako Policjant komunikuj się i koordynuj z innymi przez kanał ochrony (:s), by uniknąć zamieszania.
+Jako Policjant komunikuj się i koordynuj z innymi przez kanał policji (:s), by uniknąć zamieszania.
 Jako Policjant pamiętaj, że twój sechud lub okulary HUD pokazują nie tylko stanowisko i status kryminalny załogi, ale też to, czy mają implant mindshield – rozpoznasz to po migającej niebieskiej obwódce wokół ikony stanowiska. Wykorzystaj to podczas rewolucji, by pewnie ustalić, kto jest po twojej stronie!
 Jako Policjant pamiętaj, że implant mindshield tylko zapobiega nawróceniu na kult: w przeciwieństwie do rewolucjonistów nie odwróci nawrócenia kogoś, kto już jest kultystą.
 Jako Policjant możesz, oglądając kogoś w sechudzie lub okularach HUD, ustawić mu status aresztowania, przez co Beepsky i inne boty ochrony zaczną go ścigać.

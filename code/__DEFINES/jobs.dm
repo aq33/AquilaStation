@@ -366,13 +366,13 @@
 #define JOB_CHATCOLOR_EXPLORATIONCREW  "#85D8B8"
 
 // Security
-#define JOB_CHATCOLOR_RAWSECURITY     "#F3BDC0" // custom security color, has some color than deputy
-#define JOB_CHATCOLOR_HEADOFSECURITY  "#D33049"
-#define JOB_CHATCOLOR_WARDEN          "#EA545E"
-#define JOB_CHATCOLOR_SECURITYOFFICER "#E6A3A3"
-#define JOB_CHATCOLOR_DETECTIVE       "#C78B8B"
-#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#B16789"
-#define JOB_CHATCOLOR_DEPUTY          "#FFEEEE"
+#define JOB_CHATCOLOR_RAWSECURITY     "#C3CAF5" // custom security color, has some color than deputy //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_HEADOFSECURITY  "#5C6FE0" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_WARDEN          "#7C8BE6" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_SECURITYOFFICER "#A3AEEB" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_DETECTIVE       "#8E95BF" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_BRIGPHYSICIAN   "#8F86D1" //AQUILA EDIT - granat Policji
+#define JOB_CHATCOLOR_DEPUTY          "#E8EBFF" //AQUILA EDIT - granat Policji
 
 //NSV13 - Munitions
 #define JOB_CHATCOLOR_RAWMUNITIONS "#FF7F00"

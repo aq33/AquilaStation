@@ -170,3 +170,138 @@ GLOBAL_LIST_INIT(renamed_job_titles, list("Żandarm" = JOB_NAME_SECURITYOFFICER)
 		if((GLOB.renamed_job_titles[old_title] in result) && !(old_title in result))
 			result += old_title
 	return result
+
+/****************************\
+|*********** nazwy ***********|
+\****************************/
+// Ubrania i sprzęt ochrony nazwane po policyjnemu, w tym samym języku co dotąd (ubrania tg są po angielsku)
+/obj/item/clothing/under/ship/military_police
+	name = "police uniform"
+	desc = "A durable uniform worn by police officers, who enforce ship-law."
+
+/obj/item/clothing/suit/ship/squad/military_police
+	name = "police armour"
+	desc = "A heavy-duty chestplate and shinpad combo which denotes that the user is a police officer. Protects legs unlike a normal vest."
+
+/obj/item/clothing/under/rank/security/officer
+	name = "police uniform"
+
+/obj/item/clothing/under/rank/security/officer/white
+	name = "police service uniform"
+
+/obj/item/clothing/under/rank/security/officer/formal
+	name = "police officer's formal uniform"
+
+/obj/item/clothing/under/rank/security/officer/mallcop/deputy
+	name = "police deputy uniform"
+
+/obj/item/clothing/under/rank/security/head_of_security
+	name = "police commander's uniform"
+
+/obj/item/clothing/under/rank/security/head_of_security/alt
+	name = "police commander's turtleneck"
+
+/obj/item/clothing/under/rank/security/head_of_security/formal
+	name = "police commander's formal uniform"
+
+/obj/item/clothing/under/rank/security/warden
+	name = "warden's uniform"
+
+/obj/item/clothing/under/rank/security/warden/white
+	name = "warden's service uniform"
+
+/obj/item/clothing/suit/security/officer
+	name = "police officer's jacket"
+
+/obj/item/clothing/suit/security/hos
+	name = "police commander's jacket"
+
+/obj/item/clothing/suit/ship/peacekeeper/jacket/police
+	name = "police commander's armored jacket"
+
+/obj/item/clothing/suit/hooded/wintercoat/security
+	name = "police winter coat"
+
+/obj/item/clothing/suit/toggle/labcoat/brig_physician
+	name = "police medic's labcoat"
+
+/obj/item/clothing/neck/cloak/hos
+	name = "police commander's cloak"
+
+/obj/item/clothing/head/HoS
+	name = "police commander's cap"
+
+/obj/item/clothing/head/HoS/beret
+	name = "police commander's beret"
+
+/obj/item/clothing/head/beret/sec/navyhos
+	name = "police commander's formal beret"
+
+/obj/item/clothing/head/beret/sec
+	name = "police beret"
+
+/obj/item/clothing/head/beret/sec/bandana
+	name = "police bandana"
+
+/obj/item/clothing/head/beret/sec/garrison
+	name = "police garrison cap"
+
+/obj/item/clothing/head/beret/sec/officercap
+	name = "police officer's cap"
+
+/obj/item/clothing/head/soft/sec
+	name = "police cap"
+
+/obj/item/clothing/head/soft/sec/alt
+	name = "alternative police cap"
+
+/obj/item/clothing/head/soft/sec/brig_physician
+	name = "police medic cap"
+
+/obj/item/clothing/mask/gas/sechailer
+	name = "police gas mask"
+
+/obj/item/clothing/mask/gas/sechailer/cyborg
+	name = "police hailer"
+
+/obj/item/clothing/glasses/hud/security
+	name = "police HUD"
+
+/obj/item/clothing/glasses/hud/security/deputy
+	name = "deputy police HUD"
+
+/obj/item/clothing/glasses/hud/security/night
+	name = "night vision police HUD"
+
+/obj/item/clothing/glasses/hud/security/prescription
+	name = "prescription police HUDglasses"
+
+/obj/item/clothing/glasses/hud/security/sunglasses
+	name = "police HUDSunglasses"
+
+/obj/item/clothing/glasses/hud/security/sunglasses/degraded
+	name = "degraded police HUDSunglasses"
+
+/obj/item/clothing/accessory/armband/deputy
+	name = "police deputy armband"
+
+/obj/item/clothing/accessory/medal/silver/security
+	name = "robust police award"
+
+/obj/item/storage/belt/security
+	name = "police belt"
+
+/obj/item/storage/belt/security/deputy
+	name = "deputy police belt"
+
+/obj/item/storage/belt/security/webbing
+	name = "police webbing"
+
+/obj/item/storage/backpack/security
+	name = "plecak policyjny"
+
+/obj/item/storage/backpack/satchel/sec
+	name = "police satchel"
+
+/obj/item/storage/backpack/duffelbag/sec
+	name = "police duffel bag"
