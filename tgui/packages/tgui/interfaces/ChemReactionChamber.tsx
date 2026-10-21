@@ -1,17 +1,9 @@
 // Komora reakcyjna plumbingu z automatycznym buforowaniem pH (fermichem z tg)
-import {
-  Box,
-  NumberInput,
-  RoundGauge,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { round } from 'tgui-core/math';
+import { Box, NumberInput, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { COLORS } from '../constants';
 import { Window } from '../layouts';
-import { PH_RANGES } from './ChemHeater';
+import { BUFFER_COLORS, PhReadout } from './ChemHeater';
 import { MixingChamberContent, MixingData } from './ChemMixingChamber';
 
 type ReactionChamberData = MixingData & {
@@ -32,26 +24,8 @@ export const ChemReactionChamber = (props) => {
       <Window.Content>
         <MixingChamberContent
           extraConditions={
-            <Section
-              title="pH"
-              buttons={
-                <Stack>
-                  <Stack.Item mt={0.3} color="label">
-                    {`pH: ${round(ph, 2)}`}
-                  </Stack.Item>
-                  <Stack.Item>
-                    <RoundGauge
-                      size={1.4}
-                      value={ph}
-                      minValue={0}
-                      maxValue={14}
-                      format={() => ''}
-                      ranges={PH_RANGES}
-                    />
-                  </Stack.Item>
-                </Stack>
-              }
-            >
+            <Section title="pH">
+              <PhReadout ph={ph} />
               <Stack vertical>
                 <Stack.Item>
                   <Stack fill>
@@ -100,11 +74,11 @@ export const ChemReactionChamber = (props) => {
                 <Stack.Item>
                   <Box color="label">
                     Bufory w zapasie:{' '}
-                    <Box inline color={COLORS.reagent.acidicbuffer}>
+                    <Box inline bold color={BUFFER_COLORS.acidic}>
                       kwaśny {acidicBuffer}j.
                     </Box>
                     ,{' '}
-                    <Box inline color={COLORS.reagent.basicbuffer}>
+                    <Box inline bold color={BUFFER_COLORS.basic}>
                       zasadowy {alkalineBuffer}j.
                     </Box>
                   </Box>

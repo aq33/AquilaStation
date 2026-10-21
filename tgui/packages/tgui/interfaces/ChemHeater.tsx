@@ -67,6 +67,52 @@ export const PH_RANGES: Record<string, [number, number]> = {
   violet: [12.5, 14],
 };
 
+/** Wartość alertAfter, przy której zegar nigdy nie miga (jak DISABLE_FLASHING w DM) */
+const DISABLE_FLASHING = 14;
+
+/** Kolor odczytu pH (te same progi co na zegarze) */
+const phColor = (ph: number) =>
+  Object.keys(PH_RANGES).find(
+    (color) => ph >= PH_RANGES[color][0] && ph <= PH_RANGES[color][1],
+  ) || 'label';
+
+/** Jaśniejsze odcienie buforów, czytelne na ciemnym tle */
+export const BUFFER_COLORS = {
+  acidic: COLORS.reagent.acidicbuffer,
+  basic: '#7f9cff',
+};
+
+type PhReadoutProps = {
+  ph: number;
+  isFlashing?: number;
+};
+
+/** Duży, kolorowy odczyt pH z zegarem */
+export const PhReadout = (props: PhReadoutProps) => {
+  const { ph, isFlashing = DISABLE_FLASHING } = props;
+  return (
+    <Flex align="center" mb={1}>
+      <Flex.Item color="label" mr={1}>
+        pH:
+      </Flex.Item>
+      <Flex.Item bold fontSize={1.6} color={phColor(ph)} mr={1.5}>
+        <AnimatedNumber value={ph} format={(value) => toFixed(value, 2)} />
+      </Flex.Item>
+      <Flex.Item>
+        <RoundGauge
+          size={1.8}
+          value={ph}
+          minValue={0}
+          maxValue={14}
+          alertAfter={isFlashing}
+          format={() => ''}
+          ranges={PH_RANGES}
+        />
+      </Flex.Item>
+    </Flex>
+  );
+};
+
 export const ReactionDisplay = (props: ReactionDisplayProps) => {
   const {
     beaker,
@@ -77,30 +123,8 @@ export const ReactionDisplay = (props: ReactionDisplayProps) => {
   } = props;
 
   return (
-    <Section
-      title="Reakcje"
-      buttons={
-        <Flex>
-          <Flex.Item color="label">
-            <AnimatedNumber
-              value={beaker.pH}
-              format={(value) => `pH: ${round(value, 3)}`}
-            />
-          </Flex.Item>
-          <Flex.Item>
-            <RoundGauge
-              size={1.6}
-              value={beaker.pH}
-              minValue={0}
-              maxValue={14}
-              alertAfter={isFlashing}
-              format={() => ''}
-              ranges={PH_RANGES}
-            />
-          </Flex.Item>
-        </Flex>
-      }
-    >
+    <Section title="Reakcje">
+      <PhReadout ph={beaker.pH} isFlashing={isFlashing} />
       {(activeReactions.length === 0 && (
         <Box color="label">Brak trwających reakcji.</Box>
       )) || (
@@ -277,10 +301,7 @@ export const ChemHeater = (props) => {
                   }
                 />
               </Table.Cell>
-              <Table.Cell
-                color={COLORS.reagent.acidicbuffer}
-                textAlign="center"
-              >
+              <Table.Cell bold color={BUFFER_COLORS.acidic} textAlign="center">
                 {`${acidicBufferVol}j.`}
               </Table.Cell>
               <Table.Cell>
@@ -328,7 +349,7 @@ export const ChemHeater = (props) => {
                   }
                 />
               </Table.Cell>
-              <Table.Cell color={COLORS.reagent.basicbuffer} textAlign="center">
+              <Table.Cell bold color={BUFFER_COLORS.basic} textAlign="center">
                 {`${basicBufferVol}j.`}
               </Table.Cell>
               <Table.Cell>
