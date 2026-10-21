@@ -114,6 +114,7 @@
 	if(T)
 		var/obj/item/projectile/proj = linked.fire_projectile(T.projectile_type, target,pixel_speed = T.speed, firing_flags = linked_overmap_ship_weapon.weapon_firing_flags)
 		T.handle_shell_modifiers(proj)
+		transfer_forged_munition(T, proj) // AQUILA EDIT - kuźnia amunicji
 
 /**
  * Attempts to load a new ammo object from a payload gate into the turret itself. Note that this requires both a linked core and a payload gate linked to that core.

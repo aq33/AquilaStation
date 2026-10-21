@@ -4647,6 +4647,13 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/security/brig)
+"iI" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "iJ" = (
 /obj/machinery/ship_weapon/torpedo_launcher/cargo/south{
 	launcher_id = "nt_cargo_torpedo_launcher"
@@ -4656,6 +4663,15 @@
 	},
 /turf/open/floor/engine,
 /area/quartermaster/storage)
+"iK" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "iL" = (
 /obj/structure/cable,
 /obj/machinery/gulag_item_reclaimer{
@@ -4691,6 +4707,13 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/office)
+"iO" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "iP" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -4723,6 +4746,10 @@
 /obj/structure/cable,
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/port)
+"iU" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "iV" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/port/fore)
@@ -4763,6 +4790,10 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
+"iZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "ja" = (
 /obj/structure/fighter_launcher/launch_only{
 	dir = 4;
@@ -4773,6 +4804,21 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/nsv/hanger/notkmcstupidhanger)
+"jb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/munitions_forge/hammer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"jc" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "jd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4803,6 +4849,16 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/monotile/steel,
 /area/maintenance/nsv/deck2/starboard)
+"jg" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "jh" = (
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -4812,6 +4868,11 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
+"ji" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/munitions_forge/crucible,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "jj" = (
 /obj/structure/table/reinforced,
 /obj/machinery/power/battery{
@@ -4886,6 +4947,19 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
+"jp" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/munitions_forge/basin,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
+"jq" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "jr" = (
 /obj/machinery/door/airlock/ship/maintenance,
 /obj/structure/cable,
@@ -4955,6 +5029,10 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"jz" = (
+/obj/machinery/munitions_forge/assembler,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "jA" = (
 /obj/machinery/button/door{
 	id = "gaussgang_atlas";
@@ -5054,6 +5132,10 @@
 /obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
+"jH" = (
+/obj/machinery/munitions_forge/furnace,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "jI" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/machinery/hydroponics/constructable,
@@ -55864,11 +55946,11 @@ Dk
 Te
 Dt
 Cl
+iO
 Te
 Te
 Te
-WW
-Te
+ji
 GK
 Te
 YU
@@ -56121,13 +56203,13 @@ kF
 kP
 kP
 bc
+iK
 kP
 kP
-kP
-PV
+iI
 kP
 rl
-kP
+jp
 Pr
 kP
 kP
@@ -56384,11 +56466,11 @@ mP
 Te
 mP
 DT
-mP
+jq
 fa
-uZ
-mP
-Fq
+iU
+jb
+jc
 Te
 Eu
 Dy
@@ -56641,11 +56723,11 @@ mP
 Te
 SE
 EK
-mP
+jz
 gc
-mk
-mP
-PX
+iZ
+iZ
+jg
 qB
 gk
 Dy
@@ -56901,7 +56983,7 @@ hI
 HR
 pg
 mP
-mP
+jH
 Bd
 eY
 eY

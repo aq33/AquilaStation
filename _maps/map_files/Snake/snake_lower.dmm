@@ -5348,6 +5348,23 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"lS" = (
+/obj/machinery/munitions_forge/crucible,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
+"lT" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/munitions_forge/basin,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
+"lU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/munitions_forge/hammer,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "lV" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -5372,6 +5389,23 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/carpet/orange,
 /area/nsv/crew_quarters/heads/maa)
+"lY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/munitions_forge/furnace,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
+"lZ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
+"ma" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/munitions_forge/assembler,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "mb" = (
 /obj/effect/turf_decal/tile/yellow/tile_side{
 	dir = 4
@@ -66873,10 +66907,10 @@ SP
 fJ
 SP
 SP
+fJ
+lp
 SP
-vD
-SP
-SP
+lS
 fJ
 kw
 yS
@@ -67135,7 +67169,7 @@ lp
 SP
 SP
 SP
-tW
+lT
 cD
 zJ
 EC
@@ -67900,13 +67934,13 @@ SP
 lr
 yS
 yS
-yS
+lY
 aV
 vn
 yS
-yS
+lU
 Ln
-SP
+lZ
 SP
 SP
 ok
@@ -68163,7 +68197,7 @@ wY
 ND
 iG
 Lf
-Vu
+ma
 kv
 jb
 jb
