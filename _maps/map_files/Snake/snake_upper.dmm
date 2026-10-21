@@ -2221,16 +2221,11 @@
 /turf/open/floor/plating,
 /area/science/explab)
 "fu" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table/wood,
-/obj/item/tgui_book/manual/dsm{
-	pixel_x = 6;
-	pixel_y = 2
+/obj/machinery/computer/exodrone_control_console{
+	dir = 1
 	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/cmo)
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "fv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2648,6 +2643,11 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"gw" = (
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "gx" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 4
@@ -2658,6 +2658,15 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/monotile/steel,
 /area/maintenance/department/engine)
+"gy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/computer/exoscanner_control{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "gz" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/trunk/multiz/down,
@@ -2669,6 +2678,10 @@
 	},
 /turf/open/floor/plating,
 /area/science/explab)
+"gB" = (
+/obj/machinery/exoscanner,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "gC" = (
 /obj/machinery/rnd/experimentor,
 /turf/open/floor/plating,
@@ -4401,6 +4414,49 @@
 /obj/structure/cable/multiz,
 /turf/open/floor/plating,
 /area/maintenance/central)
+"kK" = (
+/obj/structure/table,
+/obj/item/stack/wrapping_paper,
+/obj/item/stack/wrapping_paper,
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/stack/package_wrap{
+	pixel_x = 2;
+	pixel_y = -3
+	},
+/obj/item/storage/box/lights/mixed,
+/obj/item/fuel_pellet{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "kL" = (
 /obj/machinery/airalarm/directional/east,
 /obj/structure/table/glass,
@@ -4477,6 +4533,17 @@
 /obj/effect/spawner/lootdrop/gizmo,
 /turf/open/floor/plating,
 /area/science/explab)
+"kS" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
@@ -6716,45 +6783,6 @@
 "Af" = (
 /turf/closed/wall/steel,
 /area/security/brig)
-"Ag" = (
-/obj/structure/table,
-/obj/item/stack/wrapping_paper,
-/obj/item/stack/wrapping_paper,
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/stack/package_wrap{
-	pixel_x = 2;
-	pixel_y = -3
-	},
-/obj/item/storage/box/lights/mixed,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "Ai" = (
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
@@ -7008,12 +7036,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
-"Ct" = (
-/obj/structure/closet/crate,
-/obj/effect/turf_decal/delivery,
-/obj/effect/landmark/trader_drop_point,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "Cz" = (
@@ -9612,15 +9634,6 @@
 	icon_state = "wood-broken"
 	},
 /area/security/detectives_office)
-"Rx" = (
-/obj/structure/closet/crate,
-/obj/effect/turf_decal/delivery,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/trader_drop_point,
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "Rz" = (
 /obj/machinery/ship_weapon/deck_turret/east,
 /obj/structure/hull_plate,
@@ -43898,7 +43911,7 @@ hf
 fW
 he
 gS
-fu
+kS
 gv
 gu
 gt
@@ -60078,10 +60091,10 @@ hH
 xJ
 DU
 DU
-Ct
+fu
 jF
 xB
-Ag
+kK
 lc
 Fq
 GD
@@ -60335,7 +60348,7 @@ lc
 lc
 bg
 Ms
-xB
+gw
 DU
 Ox
 Ak
@@ -60592,7 +60605,7 @@ lc
 lc
 GR
 DU
-Rx
+gy
 Uf
 IU
 yU
@@ -61359,8 +61372,8 @@ zQ
 zQ
 zQ
 lc
-DU
-DU
+gB
+gB
 lG
 Oc
 lc

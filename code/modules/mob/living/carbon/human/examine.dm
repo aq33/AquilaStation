@@ -408,6 +408,9 @@
 			var/new_text = replacetext(E.examine_text, "SUBJECTPRONOUN", pronoun_replacement)
 			new_text = replacetext(new_text, "[pronoun_replacement] is", "[pronoun_replacement] [p_are()]") //To make sure something become "They are" or "She is", not "They are" and "She are"
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
+		var/effect_text = E.get_examine_text() // AQ EDIT - tekst statusu w stylu Bee (wampir)
+		if(effect_text)
+			dat += "[effect_text]\n"
 	if(dat.len)
 		return dat.Join()
 

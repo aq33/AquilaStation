@@ -17,10 +17,10 @@ type Props = {
 export const ObjectivesSection = (props: Props) => {
   const { objectives } = props;
   return (
-    <Section fill title="Objectives" scrollable>
+    <Section fill title="Cele" scrollable>
       <Stack vertical>
         <Stack.Item>
-          {(!objectives && 'None!') ||
+          {(!objectives && 'Brak!') ||
             objectives.map((objective) => (
               <Stack.Item
                 key={objective.count}

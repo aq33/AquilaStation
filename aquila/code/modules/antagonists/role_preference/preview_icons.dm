@@ -91,7 +91,7 @@
 
 /datum/outfit/aquila_preview/vampire
 	uniform = /obj/item/clothing/under/suit/black
-	suit = /obj/item/clothing/suit/draculacoat
+	suit = /obj/item/clothing/suit/dracula
 
 /datum/outfit/aquila_preview/brother
 	uniform = /obj/item/clothing/under/color/grey

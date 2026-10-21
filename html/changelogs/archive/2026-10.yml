@@ -494,3 +494,20 @@
       ścian 3/4
   - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
       urządzenia z Paradise
+'2026-10-21':
+  AnturK:
+  - rscadd: 'Drony eksploracyjne: anteny skanujące, konsole, wyrzutnia i drony, które
+      eksplorują odległe miejsca, przechodzą przygody i przywożą łup.'
+  - rscadd: Węzeł techwebu „Drony eksploracyjne”, płytki maszyn oraz paczki cargo
+      z dronem i paliwem.
+  - rscadd: Stanowiska dronów na Serendipity, Snake i Atlasie.
+  - admin: Adventure Manager w zakładce Debug do przeglądania i testowania przygód.
+  - imageadd: Ikony dronów, wyrzutni, anten, pelletów i obrazki przygód z /tg/.
+  Joker66613:
+  - rscadd: 'Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity,
+      Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.'
+  - rscadd: Kołki (drewniane, utwardzane, srebrne), nowe trumny, stół do tortur, kandelabr,
+      tron krwi i flaszka czosnku.
+  - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
+  - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
+  - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.
