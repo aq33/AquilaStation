@@ -353,6 +353,7 @@
 	display_name = "security jumpskirt"
 	path = /obj/item/clothing/under/rank/security/officer/skirt
 */
+/* AQUILA EDIT - ochrona nosi tylko mundury policji
 /datum/gear/uniform/rank/security/blueshift
 	display_name = "security jumpsuit, blue shirt and tie"
 	path = /obj/item/clothing/under/rank/security/officer/blueshirt
@@ -362,3 +363,4 @@
 	display_name = "security jumpsuit, Nanotrasen mall cop uniform"
 	path = /obj/item/clothing/under/rank/security/officer/mallcop
 	cost = 7500
+*/

@@ -464,7 +464,7 @@
 	new /obj/item/clothing/head/soft/sec(src)
 	new /obj/item/radio/headset/headset_sec(src)
 	new /obj/item/clothing/glasses/hud/security/deputy(src)
-	new /obj/item/clothing/under/rank/security/officer/mallcop(src)
+	new /obj/item/clothing/under/rank/security/officer/mallcop/deputy(src) //AQUILA EDIT - mundur policyjny Aspiranta
 	new /obj/item/clothing/shoes/sneakers/black(src)
 	new /obj/item/storage/belt/security/deputy(src)
 	new /obj/item/clothing/accessory/armband/deputy(src)

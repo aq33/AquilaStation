@@ -1011,6 +1011,7 @@
 #include "code\modules\paradise_urzadzenia\nascienne.dm"
 #include "code\modules\paradise_meble\tables.dm"
 #include "code\modules\paradise_struktury\webmap.dm"
+#include "code\modules\policja\policja.dm"
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
