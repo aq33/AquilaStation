@@ -233,6 +233,7 @@ The forge lives in `aquila/code/modules/munitions_forge/`. Forged ammunition car
 - `code/modules/projectiles/ammunition/_firing.dm`: `ready_proj()` copies the component from the casing to `BB`.
 - `nsv13/code/modules/overmap/weapons/damage.dm`: `forged_munition_overmap_hit()` before `spec_overmap_hit()`.
 - `animate_projectile()` in `deck_guns.dm`, `broadsides.dm`, `gauss_gun.dm`, `torpedo_launcher.dm` and `revision2/vls.dm`: copy from `chambered` to the fired projectile (broadsides and gauss now keep the returned projectile in a var).
+- Fighters: `primary/fire()` and `secondary/ordnance_launcher/fire()` in `_fighters.dm` return the ammo object instead of its `projectile_type`; `async_nonphysical_fire()` in `delta_overmap_ship_weapons/firing.dm` fires its `projectile_type`, copies the component and deletes it.
 - `new_torpedo()` / `new_missile()` in `torpedo_construction.dm` / `missile_construction.dm`: copy from the warhead to the built munition.
 - `railgun_forge.dm`: `getConductivity/getDensity/getHardness` read the shared `/datum/munition_material` table instead of three `switch` blocks (same values).
 - `code/_onclick/adjacent.dm`: `/turf/Adjacent()` treats a multi-tile movable (`length(locs) > 1`) as adjacent through any turf it covers. Without it the 3x3 crucible and 2x2 hammer/furnace are reachable only from their bottom-left tile.

@@ -56,6 +56,9 @@
 	SIGNAL_HANDLER
 	if(QDELETED(target))
 		return
+	// Statki obsługuje forged_munition_overmap_hit() z bullet_act; bez tego efekty odpalałyby się dwa razy
+	if(istype(target, /obj/structure/overmap))
+		return
 	material.on_hit(source, target)
 	filler?.on_hit(source, target, material)
 
