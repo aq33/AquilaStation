@@ -1,5 +1,13 @@
 // AQUILA - injektory mutacji z tgstation (tg_core)
 
+/obj/item/dnainjector/acromegaly
+	name = "\improper DNA injector (Acromegaly)"
+	add_mutations = list(/datum/mutation/acromegaly)
+
+/obj/item/dnainjector/antiacromegaly
+	name = "\improper DNA injector (Anti-Acromegaly)"
+	remove_mutations = list(/datum/mutation/acromegaly)
+
 /obj/item/dnainjector/elastic_arms
 	name = "\improper DNA injector (Elastic Arms)"
 	add_mutations = list(/datum/mutation/elastic_arms)

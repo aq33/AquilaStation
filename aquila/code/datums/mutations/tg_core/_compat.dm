@@ -22,6 +22,11 @@
 #define TRAIT_ROCK_METAMORPHIC "rock_metamorphic"
 #endif
 
+/// Bardzo wysoki (tg TRAIT_TOO_TALL, u nas tylko z akromegalii)
+#ifndef TRAIT_TOO_TALL
+#define TRAIT_TOO_TALL "too_tall"
+#endif
+
 #ifndef TRAIT_STATUS_EFFECT
 #define TRAIT_STATUS_EFFECT(effect_id) "[effect_id]-trait"
 #endif
