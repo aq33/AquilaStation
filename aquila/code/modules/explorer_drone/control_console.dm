@@ -35,6 +35,7 @@
 	//Notify we need human action and switch screeb icon to alert.
 	playsound(src, 'sound/machines/terminal_processing.ogg', 20, TRUE)
 	update_icon()
+	SStgui.update_uis(src)
 
 /obj/machinery/computer/exodrone_control_console/proc/drone_destroyed()
 	SIGNAL_HANDLER
@@ -159,13 +160,13 @@
 				controlled_drone.current_adventure?.select_choice(params["choice"])
 			return TRUE
 		if("start_event")
-			if(controlled_drone && controlled_drone.current_event_ui_data)
+			if(controlled_drone && controlled_drone.current_event_ui_data && controlled_drone.drone_status == EXODRONE_EXPLORATION)
 				var/datum/exploration_event/simple/chosen_event = locate(controlled_drone.current_event_ui_data["ref"]) in controlled_drone.location.events
 				if(chosen_event)
 					chosen_event.fire(controlled_drone)
 			return TRUE
 		if("skip_event")
-			if(controlled_drone && controlled_drone.current_event_ui_data)
+			if(controlled_drone && controlled_drone.current_event_ui_data && controlled_drone.drone_status == EXODRONE_EXPLORATION)
 				var/datum/exploration_event/simple/chosen_event = locate(controlled_drone.current_event_ui_data["ref"]) in controlled_drone.location.events
 				if(chosen_event?.skippable)
 					chosen_event.end(controlled_drone)

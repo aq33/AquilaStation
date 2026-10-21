@@ -297,6 +297,8 @@ GLOBAL_LIST_INIT(scan_conditions, init_scan_conditions())
 	SIGNAL_HANDLER
 	current_scan = null
 	SEND_SIGNAL(src, COMSIG_EXOSCAN_FINISHED, current_scan)
+	for(var/obj/machinery/computer/exoscanner_control/console in GLOB.machines)
+		SStgui.update_uis(console)
 
 /datum/scanner_controller/proc/activate_scanner(obj/machinery/exoscanner/scanner)
 	if(scanner in tracked_dishes)

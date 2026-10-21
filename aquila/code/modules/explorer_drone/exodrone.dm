@@ -113,6 +113,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /// Starts travel for site, does not validate if it's possible
 /obj/item/exodrone/proc/launch_for(datum/exploration_site/target_site)
 	if(!location) //We're launching from station, fuel up
+		if(!target_site) // ze statku można lecieć tylko do konkretnego miejsca
+			return
 		var/obj/machinery/exodrone_launcher/pad = locate() in loc
 		pad.fuel_up(src)
 		pad.launch_effect()
@@ -148,8 +150,8 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		set_status(EXODRONE_IDLE)
 
 /obj/item/exodrone/proc/set_status(new_status)
-	SEND_SIGNAL(src, COMSIG_EXODRONE_STATUS_CHANGED)
 	drone_status = new_status
+	SEND_SIGNAL(src, COMSIG_EXODRONE_STATUS_CHANGED)
 
 /// Cargo space left
 /obj/item/exodrone/proc/space_left()
@@ -337,7 +339,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 				return "Zajęty"
 			return FALSE
 		else
-			return ""
+			return "Zajęty"
 
 /// Deals damage in adventures/events.
 /obj/item/exodrone/proc/damage(amount)
