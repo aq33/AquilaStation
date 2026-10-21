@@ -97,6 +97,7 @@
 		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
 		user.do_attack_animation(src)
 		current_mass--
+		COOLDOWN_START(src, refill_cooldown, 30 SECONDS) // AQUILA - odliczanie od zużycia (pełny tygiel go nie zaczynał)
 		update_icon()
 		balloon_alert(user, "napełniono flaszkę")
 		return TRUE
@@ -201,6 +202,7 @@
 	balloon_alert(user, "uwarzono miksturę")
 
 	current_mass = 0
+	COOLDOWN_START(src, refill_cooldown, 30 SECONDS) // AQUILA - odliczanie od zużycia (pełny tygiel go nie zaczynał)
 	update_icon()
 
 /*
