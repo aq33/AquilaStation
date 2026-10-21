@@ -21,37 +21,32 @@ export const GhostPoolProtection = (props) => {
     minigames,
   } = data;
   return (
-    <Window
-      theme="admin"
-      title="Ghost Pool Protection"
-      width={400}
-      height={285}
-    >
+    <Window theme="admin" title="Ochrona puli duchów" width={400} height={285}>
       <Window.Content>
         <Flex grow={1} height="100%">
           <Section
-            title="Options"
+            title="Opcje"
             buttons={
               <>
                 <Button
                   color="good"
                   icon="plus-circle"
-                  content="Enable Everything"
+                  content="Włącz wszystko"
                   onClick={() => act('all_roles')}
                 />
                 <Button
                   color="bad"
                   icon="minus-circle"
-                  content="Disable Everything"
+                  content="Wyłącz wszystko"
                   onClick={() => act('no_roles')}
                 />
               </>
             }
           >
             <NoticeBox danger>
-              For people creating a sneaky event: If you toggle Station Created
-              Sentience, people may catch on that admins have disabled roles for
-              your event...
+              Dla robiących podstępny event: jeśli przełączysz świadomość
+              tworzoną na stacji, gracze mogą się zorientować, że admini
+              wyłączyli role na potrzeby eventu...
             </NoticeBox>
             <Flex.Item>
               <Button
@@ -60,7 +55,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={events_or_midrounds ? 'good' : 'bad'}
                 icon="meteor"
-                content="Events and Midround Rulesets"
+                content="Eventy i midroundy"
                 onClick={() => act('toggle_events_or_midrounds')}
               />
             </Flex.Item>
@@ -71,7 +66,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={spawners ? 'good' : 'bad'}
                 icon="pastafarianism"
-                content="Ghost Role Spawners"
+                content="Spawnery ról duchów"
                 onClick={() => act('toggle_spawners')}
               />
             </Flex.Item>
@@ -82,7 +77,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={station_sentience ? 'good' : 'bad'}
                 icon="user-astronaut"
-                content="Station Created Sentience"
+                content="Świadomość tworzona na stacji"
                 onClick={() => act('toggle_station_sentience')}
               />
             </Flex.Item>
@@ -93,7 +88,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={silicons ? 'good' : 'bad'}
                 icon="robot"
-                content="Silicons"
+                content="Silikony"
                 onClick={() => act('toggle_silicons')}
               />
             </Flex.Item>
@@ -104,7 +99,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color={minigames ? 'good' : 'bad'}
                 icon="gamepad"
-                content="Minigames"
+                content="Minigry"
                 onClick={() => act('toggle_minigames')}
               />
             </Flex.Item>
@@ -115,7 +110,7 @@ export const GhostPoolProtection = (props) => {
                 textAlign="center"
                 color="orange"
                 icon="check"
-                content="Apply Changes"
+                content="Zastosuj zmiany"
                 onClick={() => act('apply_settings')}
               />
             </Flex.Item>

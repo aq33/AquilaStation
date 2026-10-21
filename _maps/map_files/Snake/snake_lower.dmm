@@ -5210,6 +5210,25 @@
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "lS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/fax{
+	fax_name = "Medical";
+	name = "Medical Fax Machine"
+	},
+/obj/structure/table,
+/obj/item/tgui_book/manual/dsm,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+"lT" = (
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/wood,
+/area/library)
+"lU" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
@@ -5218,26 +5237,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"lT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/hallway/primary/central)
-"lU" = (
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 4;
-	sortType = "29"
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
 "lV" = (
 /obj/structure/table,
@@ -5264,35 +5263,30 @@
 /turf/open/floor/carpet/orange,
 /area/nsv/crew_quarters/heads/maa)
 "lY" = (
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"lZ" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"ma" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/machinery/light{
+/turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
+"lZ" = (
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 4;
+	sortType = "29"
+	},
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/structure/sign/departments/minsky/security/security{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
+"ma" = (
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "mb" = (
 /obj/effect/turf_decal/tile/yellow/tile_side{
@@ -5349,40 +5343,37 @@
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"mi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
+"mj" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"mi" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/item/radio/intercom/directional/east,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=8";
-	location = "Security";
-	name = "Delivery Security"
-	},
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"mj" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
-	dir = 4;
-	sortType = "7"
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
 "mk" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
@@ -5465,11 +5456,20 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
 "mt" = (
+/obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
-	dir = 1
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/item/radio/intercom/directional/east,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	location = "Security";
+	name = "Delivery Security"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -5500,14 +5500,14 @@
 /turf/open/floor/plasteel,
 /area/engine/storage)
 "mx" = (
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 4;
+	sortType = "7"
+	},
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
-	},
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
 "my" = (
 /obj/structure/cable,
@@ -5522,9 +5522,8 @@
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/structure/ladder,
-/obj/structure/sign/poster/official/random{
-	pixel_x = -32
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -5551,17 +5550,14 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge/cic)
 "mD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark/side,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/west,
+/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "mE" = (
 /obj/machinery/door/airlock/ship/medical/glass{
@@ -5590,9 +5586,9 @@
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/machinery/airalarm/directional/west,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
-	dir = 4
+/obj/structure/ladder,
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -5600,9 +5596,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/police{
-	dir = 4
+	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
 "mH" = (
@@ -5618,27 +5618,22 @@
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
 "mJ" = (
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/machinery/airalarm/directional/west,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"mK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
-/obj/structure/sign/departments/minsky/security/security{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/dark/side,
-/area/hallway/primary/central)
-"mK" = (
-/obj/structure/disposalpipe/sorting/mail{
-	dir = 4;
-	sortType = "11"
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only/directional/west,
-/obj/machinery/door/firedoor/border_only/directional/east,
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
 "mL" = (
@@ -5670,6 +5665,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
+"mP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/structure/sign/departments/minsky/security/security{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
 "mQ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/ship/preopen{
@@ -5756,6 +5763,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+"na" = (
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 4;
+	sortType = "11"
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/door/firedoor/border_only/directional/east,
+/turf/open/floor/plasteel/dark/side,
+/area/hallway/primary/central)
 "nc" = (
 /obj/structure/chair/office/light{
 	dir = 8
@@ -51204,7 +51223,7 @@ cd
 nF
 Lt
 fs
-KB
+lS
 zg
 du
 Ky
@@ -52737,7 +52756,7 @@ od
 cC
 sO
 qW
-mK
+na
 gT
 gR
 gQ
@@ -52994,7 +53013,7 @@ qW
 qW
 qW
 qW
-mJ
+mP
 RB
 bS
 Wx
@@ -53246,12 +53265,12 @@ pY
 aG
 Gi
 MF
-lY
-mx
-mF
-mt
+ma
+mD
+mJ
 mz
-mG
+mF
+mK
 aO
 SX
 md
@@ -53503,12 +53522,12 @@ pY
 bi
 GX
 ML
-lZ
-mi
 mh
-lS
-lS
-mD
+mt
+mj
+lU
+lU
+mG
 ug
 KS
 fG
@@ -53765,7 +53784,7 @@ pY
 gH
 Ca
 pY
-ma
+mi
 gW
 JH
 fG
@@ -54022,7 +54041,7 @@ LC
 xw
 Im
 Ca
-lU
+lZ
 hw
 hp
 hm
@@ -54279,7 +54298,7 @@ uW
 Wy
 hF
 hB
-mj
+mx
 RB
 yY
 NL
@@ -54536,7 +54555,7 @@ uW
 HA
 fC
 VG
-lT
+lY
 rg
 OH
 KF
@@ -64296,7 +64315,7 @@ PH
 Cq
 lD
 Tx
-dG
+lT
 PH
 to
 Mr

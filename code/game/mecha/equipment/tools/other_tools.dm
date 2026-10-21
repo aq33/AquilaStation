@@ -94,20 +94,20 @@
 						return
 				locked = target
 				occupant_message("Namierzono [target]")
-				send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+				SStgui.update_uis(chassis)
 			else if(target!=locked)
 				if(locked in view(chassis))
 					var/turf/targ = get_turf(target)
 					var/turf/orig = get_turf(locked)
 					locked.throw_at(target, 14, 1.5)
 					locked = null
-					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+					SStgui.update_uis(chassis)
 					log_game("[key_name(chassis.occupant)] used a Gravitational Catapult to throw [locked] (From [AREACOORD(orig)]) at [target] ([AREACOORD(targ)]).")
 					return TRUE
 				else
 					locked = null
 					occupant_message("Zwolniono namierzenie [locked]")
-					send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+					SStgui.update_uis(chassis)
 		if(2)
 			var/list/atoms = list()
 			if(isturf(target))
@@ -136,7 +136,7 @@
 	..()
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
-		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+		SStgui.update_uis(chassis)
 	return
 
 
@@ -231,7 +231,7 @@
 			log_message("Deactivated.", LOG_MECHA)
 			set_ready_state(1)
 		chassis.add_overlay(droid_overlay)
-		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+		SStgui.update_uis(chassis)
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/process()
@@ -401,7 +401,7 @@
 	if(chassis)
 		var/result = load_fuel(target)
 		if(result)
-			send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+			SStgui.update_uis(chassis)
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount > 0)

@@ -1,10 +1,14 @@
-import { BooleanLike } from 'common/react';
+import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { BlockQuote, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { AntagInfoHeader } from './common/AntagInfoHeader';
-import { Objective, ObjectivesSection } from './common/ObjectiveSection';
+import { type Objective, ObjectivePrintout } from './common/Objectives';
+
+const allystyle = {
+  fontWeight: 'bold',
+  color: 'yellow',
+};
 
 const badstyle = {
   color: 'red',
@@ -21,56 +25,78 @@ type Info = {
   has_codewords: BooleanLike;
   phrases: string;
   responses: string;
+  theme?: string;
+  allies?: string;
+  goal?: string;
+  intro?: string;
   code: string;
   failsafe_code: string;
   has_uplink: BooleanLike;
   uplink_unlock_info: string;
   objectives: Objective[];
-  backup_code: string;
 };
 
-const UplinkSection = (_props) => {
+const IntroductionSection = (props) => {
   const { data } = useBackend<Info>();
-  const { has_uplink, uplink_unlock_info, code, failsafe_code, backup_code } =
-    data;
+  const { antag_name, intro, objectives } = data;
   return (
-    <Section title="Uplink" mb={!has_uplink && -1}>
-      <Stack vertical>
-        <Stack.Item>
-          <BlockQuote>
-            Keep this uplink safe, and don&apos;t feel like you need to buy
-            everything immediately — you can save your telecrystals to use
-            whenever you&apos;re in a tough situation and need help.
-          </BlockQuote>
+    <Section fill title="Wprowadzenie" scrollable>
+      <Stack vertical fill>
+        <Stack.Item fontSize="25px">
+          {intro || `Twoja rola: ${antag_name || 'zdrajca'}.`}
         </Stack.Item>
-        <Stack.Divider />
-        <Stack.Item>
-          <Stack fill>
-            {!!code && (
-              <>
-                <Stack.Item bold>
-                  <span style={goalstyle}>Code: {code}</span>
-                </Stack.Item>
-                <Stack.Divider />
-              </>
-            )}
-            {failsafe_code && (
-              <>
-                <Stack.Item bold>
-                  <span style={goalstyle}>Failsafe: {failsafe_code}</span>
-                </Stack.Item>
-                <Stack.Divider />
-              </>
-            )}
-            <Stack.Item>
-              <BlockQuote>{uplink_unlock_info}</BlockQuote>
-            </Stack.Item>
-            {!!backup_code && (
+        <Stack.Item grow>
+          <ObjectivePrintout
+            objectives={objectives}
+            titleMessage="Twoje obecne cele"
+          />
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+};
+
+const EmployerSection = (props) => {
+  const { data } = useBackend<Info>();
+  const { allies, goal } = data;
+  return (
+    <Section
+      fill
+      title="Pracodawca"
+      scrollable
+      buttons={
+        <Button
+          icon="hammer"
+          tooltip={`
+            To tylko podpowiedź dla znudzonych zdrajców.
+            Nie musisz się jej trzymać, chyba że szukasz
+            pomysłu na spędzenie rundy.`}
+          tooltipPosition="bottom-start"
+        >
+          Polityka
+        </Button>
+      }
+    >
+      <Stack vertical fill>
+        <Stack.Item grow>
+          <Stack vertical>
+            {!!allies && (
               <Stack.Item>
-                <BlockQuote>
-                  Your backup code is <b>{backup_code}</b>. Set any PDA&apod;s
-                  ringtone to this secret code to convert it into an uplink.
-                </BlockQuote>
+                <span style={allystyle}>
+                  Twoje sojusze:
+                  <br />
+                </span>
+                <BlockQuote>{allies}</BlockQuote>
+              </Stack.Item>
+            )}
+            {!!allies && !!goal && <Stack.Divider />}
+            {!!goal && (
+              <Stack.Item mb={1}>
+                <span style={goalstyle}>
+                  Zdanie pracodawcy:
+                  <br />
+                </span>
+                <BlockQuote>{goal}</BlockQuote>
               </Stack.Item>
             )}
           </Stack>
@@ -80,40 +106,65 @@ const UplinkSection = (_props) => {
   );
 };
 
-const CodewordsSection = (_props) => {
+const UplinkSection = (props) => {
+  const { data } = useBackend<Info>();
+  const { uplink_unlock_info, code, failsafe_code } = data;
+  return (
+    <Section title="Uplink">
+      <Stack fill>
+        <Stack.Item bold>
+          Dbaj o uplink i nie kupuj wszystkiego od razu - telekryształy możesz
+          zachować na trudną sytuację.
+          <br />
+          {!!code && <span style={goalstyle}>Kod: {code}</span>}
+          <br />
+          {!!failsafe_code && (
+            <span style={badstyle}>Kod awaryjny: {failsafe_code}</span>
+          )}
+        </Stack.Item>
+        <Stack.Divider />
+        <Stack.Item align="center">
+          <BlockQuote>{uplink_unlock_info}</BlockQuote>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+};
+
+const CodewordsSection = (props) => {
   const { data } = useBackend<Info>();
   const { has_codewords, phrases, responses } = data;
   return (
-    <Section title="Codewords" mb={!has_codewords && -1}>
+    <Section title="Słowa kodowe" mb={!has_codewords && -1}>
       <Stack fill>
         {(!has_codewords && (
           <BlockQuote>
-            You have not been supplied with codewords. You will have to use
-            alternative methods to find potential allies. Proceed with caution,
-            however, as everyone is a potential foe.
+            Nie dostałeś słów kodowych. Potencjalnych sojuszników musisz szukać
+            innymi sposobami. Zachowaj jednak ostrożność - każdy może okazać się
+            wrogiem.
           </BlockQuote>
         )) || (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
-                Your employer provided you with the following codewords to
-                identify fellow agents. Use the codewords during regular
-                conversation to identify other agents. Proceed with caution,
-                however, as everyone is a potential foe.
+                Twój pracodawca przekazał ci poniższe słowa kodowe, po których
+                rozpoznasz innych agentów. Wplataj je w zwykłą rozmowę, aby
+                odnaleźć swoich. Zachowaj jednak ostrożność - każdy może okazać
+                się wrogiem.
                 <span style={badstyle}>
-                  &ensp;You have memorized the codewords, allowing you to
-                  recognise them when heard.
+                  &ensp;Zapamiętałeś słowa kodowe, więc rozpoznasz je, gdy je
+                  usłyszysz.
                 </span>
               </BlockQuote>
             </Stack.Item>
             <Stack.Divider mr={1} />
             <Stack.Item grow basis={0}>
               <Stack vertical>
-                <Stack.Item>Code Phrases:</Stack.Item>
+                <Stack.Item>Hasła:</Stack.Item>
                 <Stack.Item bold textColor="blue">
                   {phrases}
                 </Stack.Item>
-                <Stack.Item>Code Responses:</Stack.Item>
+                <Stack.Item>Odzewy:</Stack.Item>
                 <Stack.Item bold textColor="red">
                   {responses}
                 </Stack.Item>
@@ -126,20 +177,30 @@ const CodewordsSection = (_props) => {
   );
 };
 
-export const AntagInfoTraitorContent = (_props) => {
+// AQUILA: treść okna jest też zakładką „Informacje” w TraitorBackstoryMenu
+export const AntagInfoTraitorContent = (props) => {
   const { data } = useBackend<Info>();
-  const { antag_name, objectives } = data;
+  const { allies, goal, has_uplink } = data;
+  const hasEmployer = !!allies || !!goal;
   return (
     <Stack vertical fill>
-      <Stack.Item>
-        <AntagInfoHeader name={antag_name || 'Traitor'} asset="traitor.png" />
-      </Stack.Item>
       <Stack.Item grow>
-        <ObjectivesSection objectives={objectives} />
+        <Stack fill>
+          <Stack.Item width={hasEmployer ? '70%' : '100%'}>
+            <IntroductionSection />
+          </Stack.Item>
+          {hasEmployer && (
+            <Stack.Item width="30%">
+              <EmployerSection />
+            </Stack.Item>
+          )}
+        </Stack>
       </Stack.Item>
-      <Stack.Item>
-        <UplinkSection />
-      </Stack.Item>
+      {!!has_uplink && (
+        <Stack.Item>
+          <UplinkSection />
+        </Stack.Item>
+      )}
       <Stack.Item>
         <CodewordsSection />
       </Stack.Item>
@@ -147,9 +208,11 @@ export const AntagInfoTraitorContent = (_props) => {
   );
 };
 
-export const AntagInfoTraitor = (_props) => {
+export const AntagInfoTraitor = (props) => {
+  const { data } = useBackend<Info>();
+  const { theme } = data;
   return (
-    <Window width={620} height={620} theme="syndicate">
+    <Window width={620} height={580} theme={theme || 'syndicate'}>
       <Window.Content>
         <AntagInfoTraitorContent />
       </Window.Content>

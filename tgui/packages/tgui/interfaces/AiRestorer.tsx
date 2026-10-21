@@ -6,19 +6,20 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  AI_present: any;
-  ejectable: any;
-  error: any;
-  health: any;
-  isDead: any;
-  laws: any;
-  name: any;
-  restoring: any;
+  AI_present: BooleanLike;
+  error: string;
+  name: string;
+  laws: string[];
+  isDead: BooleanLike;
+  restoring: BooleanLike;
+  health: number;
+  ejectable: BooleanLike;
 };
 
 export const AiRestorer = () => {
@@ -43,9 +44,10 @@ export const AiRestorerContent = (props) => {
     health,
     ejectable,
   } = data;
+
   return (
     <>
-      {error && <NoticeBox textAlign="center">{error}</NoticeBox>}
+      {!!error && <NoticeBox textAlign="center">{error}</NoticeBox>}
       {!!ejectable && (
         <Button
           fluid
@@ -57,15 +59,15 @@ export const AiRestorerContent = (props) => {
       )}
       {!!AI_present && (
         <Section
-          title={ejectable ? 'System Status' : name}
+          title={ejectable ? 'Stan systemu' : name}
           buttons={
             <Box inline bold color={isDead ? 'bad' : 'good'}>
-              {isDead ? 'Nonfunctional' : 'Functional'}
+              {isDead ? 'Niesprawna' : 'Sprawna'}
             </Box>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Integrity">
+            <LabeledList.Item label="Integralność">
               <ProgressBar
                 value={health}
                 minValue={0}
@@ -80,18 +82,18 @@ export const AiRestorerContent = (props) => {
           </LabeledList>
           {!!restoring && (
             <Box bold textAlign="center" fontSize="20px" color="good" mt={1}>
-              RECONSTRUCTION IN PROGRESS
+              TRWA ODBUDOWA
             </Box>
           )}
           <Button
             fluid
             icon="plus"
-            content="Begin Reconstruction"
+            content="Rozpocznij odbudowę"
             disabled={restoring}
             mt={1}
             onClick={() => act('PRG_beginReconstruction')}
           />
-          <Section title="Laws">
+          <Section title="Prawa">
             {laws.map((law) => (
               <Box key={law} className="candystripe">
                 {law}

@@ -7,16 +7,46 @@ import {
   Section,
   Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 
+type Reagent = {
+  reagent_name: string;
+  reagent_amount: number;
+  reagent_type: string;
+};
+
+type Design = {
+  parent_category: string;
+  name: string;
+  id: string;
+  needed_reagents: { name: string; amount: number }[];
+};
+
+type Category = {
+  name: string;
+  designs: Design[];
+};
+
 type Data = {
-  busy: any;
-  categories: any;
-  max_reagents: any;
-  reagents: any;
-  total_reagents: any;
+  busy: BooleanLike;
+  categories: Category[];
+  max_reagents: number;
+  reagents: Reagent[];
+  total_reagents: number;
+};
+
+// Nazwy kategorii z DM to identyfikatory, tu tylko etykiety zakładek
+const CATEGORY_LABELS = {
+  human: 'Ludzie',
+  lizard: 'Jaszczuroludzie',
+  plasmaman: 'Plazmoludzie',
+  ethereal: 'Eterealowie',
+  moth: 'Ćmy',
+  apid: 'Apidzi',
+  other: 'Inne',
 };
 
 export const Limbgrower = (props) => {
@@ -33,17 +63,17 @@ export const Limbgrower = (props) => {
     categories.find((category) => category.name === tab)?.designs || [];
 
   return (
-    <Window title="Limb Grower" width={450} height={550}>
+    <Window title="Hodowla kończyn" width={500} height={550}>
       {!!busy && (
         <Dimmer fontSize="32px">
-          <Icon name="cog" spin={1} />
-          {' Building...'}
+          <Icon name="cog" spin />
+          {' Hodowanie...'}
         </Dimmer>
       )}
       <Window.Content scrollable>
-        <Section title="Reagents">
+        <Section title="Odczynniki">
           <Box mb={1}>
-            {total_reagents} / {max_reagents} reagent capacity used.
+            Zajęte {total_reagents} / {max_reagents} u pojemności.
           </Box>
           <LabeledList>
             {reagents.map((reagent) => (
@@ -54,14 +84,16 @@ export const Limbgrower = (props) => {
                   <Button.Confirm
                     textAlign="center"
                     width="120px"
-                    content="Remove Reagent"
                     color="bad"
+                    confirmContent="Na pewno?"
                     onClick={() =>
                       act('empty_reagent', {
                         reagent_type: reagent.reagent_type,
                       })
                     }
-                  />
+                  >
+                    Usuń odczynnik
+                  </Button.Confirm>
                 }
               >
                 {reagent.reagent_amount}u
@@ -69,15 +101,15 @@ export const Limbgrower = (props) => {
             ))}
           </LabeledList>
         </Section>
-        <Section title="Designs">
-          <Tabs>
+        <Section title="Wzory">
+          <Tabs fluid>
             {categories.map((category) => (
               <Tabs.Tab
                 key={category.name}
                 selected={tab === category.name}
                 onClick={() => setTab(category.name)}
               >
-                {category.name}
+                {CATEGORY_LABELS[category.name] || category.name}
               </Tabs.Tab>
             ))}
           </Tabs>
@@ -88,7 +120,6 @@ export const Limbgrower = (props) => {
                 label={design.name}
                 buttons={
                   <Button
-                    content="Make"
                     color="good"
                     onClick={() =>
                       act('make_limb', {
@@ -96,7 +127,9 @@ export const Limbgrower = (props) => {
                         active_tab: design.parent_category,
                       })
                     }
-                  />
+                  >
+                    Wyhoduj
+                  </Button>
                 }
               >
                 {design.needed_reagents.map((reagent) => (

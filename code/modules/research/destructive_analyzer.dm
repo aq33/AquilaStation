@@ -100,7 +100,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 		update_icon()
 	return TRUE
 
-/obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user)
+/// confirmed - TRUE, gdy gracz potwierdził już w oknie TGUI (wtedy bez input()).
+/obj/machinery/rnd/destructive_analyzer/proc/user_try_decon_id(id, mob/user, confirmed = FALSE)
 	if(!istype(loaded_item) || !istype(linked_console))
 		return FALSE
 
@@ -119,11 +120,12 @@ Note: Must be placed within 3 tiles of the R&D Console
 				differences[i] = value
 		if(length(worths) && !length(differences))
 			return FALSE
-		var/choice = input("Are you sure you want to destroy [loaded_item] to [!length(worths) ? "reveal [TN.display_name]" : "boost [TN.display_name] by [json_encode(differences)] point\s"]?") in list("Proceed", "Cancel")
-		if(choice == "Cancel" || !choice)
-			return FALSE
-		if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
-			return FALSE
+		if(!confirmed)
+			var/choice = input("Are you sure you want to destroy [loaded_item] to [!length(worths) ? "reveal [TN.display_name]" : "boost [TN.display_name] by [json_encode(differences)] point\s"]?") in list("Proceed", "Cancel")
+			if(choice == "Cancel" || !choice)
+				return FALSE
+			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
+				return FALSE
 		SSblackbox.record_feedback("nested tally", "item_deconstructed", 1, list("[TN.id]", "[loaded_item.type]"))
 		if(destroy_item(loaded_item))
 			linked_console.stored_research.boost_with_path(SSresearch.techweb_node_by_id(TN.id), dpath)
@@ -137,11 +139,12 @@ Note: Must be placed within 3 tiles of the R&D Console
 			user_mode_string = " za [json_encode(point_value)] pkt"
 		else if(loaded_item.materials.len)
 			user_mode_string = " w celu odzysku materiałów"
-		var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Proceed", "Cancel")
-		if(choice != "Proceed")
-			return FALSE
-		if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
-			return FALSE
+		if(!confirmed)
+			var/choice = input("Czy na pewno chcesz zniszczyć [loaded_item][user_mode_string]?") in list("Proceed", "Cancel")
+			if(choice != "Proceed")
+				return FALSE
+			if(QDELETED(loaded_item) || QDELETED(linked_console) || !user.Adjacent(linked_console) || QDELETED(src))
+				return FALSE
 		var/loaded_type = loaded_item.type
 		if(destroy_item(loaded_item))
 			linked_console.stored_research.add_point_list(point_value)
@@ -155,3 +158,72 @@ Note: Must be placed within 3 tiles of the R&D Console
 	loaded_item = null
 	update_icon()
 	return TRUE
+
+// AQUILA: samodzielne okno analizatora (port DestructiveAnalyzer z tg) - obok obsługi z konsoli B+R
+/obj/machinery/rnd/destructive_analyzer/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DestructiveAnalyzer")
+		ui.open()
+
+/obj/machinery/rnd/destructive_analyzer/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/techweb/research = linked_console?.stored_research
+	data["server_connected"] = !!(linked_console && research)
+	data["busy"] = busy
+	data["node_data"] = list()
+	data["item_mats"] = list()
+	if(!loaded_item || QDELETED(loaded_item) || !research)
+		data["loaded_item"] = null
+		return data
+	data["loaded_item"] = loaded_item.name
+	data["item_icon"] = icon2base64(getFlatIcon(image(icon = loaded_item.icon, icon_state = loaded_item.icon_state), no_anim = TRUE))
+	data["indestructible"] = !(loaded_item.resistance_flags & INDESTRUCTIBLE)
+	data["already_deconstructed"] = !!research.deconstructed_items[loaded_item.type]
+	var/list/points = techweb_item_point_check(loaded_item)
+	data["recoverable_points"] = length(points) ? techweb_point_display_generic(points, FALSE) : null
+	for(var/material in loaded_item.materials)
+		data["item_mats"] += "[CallMaterialName(material)] x [loaded_item.materials[material]]"
+	for(var/node_id in techweb_item_boost_check(loaded_item))
+		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
+		if(!istype(node))
+			continue
+		var/list/worths = node.boost_item_paths[loaded_item.type]
+		var/list/already_boosted = research.boosted_nodes[node.id]
+		var/list/differences = list()
+		for(var/point_type in worths)
+			var/used = already_boosted ? already_boosted[point_type] : 0
+			var/value = min(worths[point_type], node.research_costs[point_type]) - used
+			if(value > 0)
+				differences[point_type] = value
+		data["node_data"] += list(list(
+			"node_name" = node.display_name,
+			"node_path" = node.id,
+			"node_hidden" = !!research.hidden_nodes[node.id],
+			"node_available" = !research.researched_nodes[node.id] && (!length(worths) || length(differences)),
+			"node_boost" = length(differences) ? techweb_point_display_generic(differences, FALSE) : null,
+		))
+	return data
+
+/obj/machinery/rnd/destructive_analyzer/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("eject_item")
+			if(busy)
+				to_chat(usr, "<span class='warning'>[src] jest teraz zajęty.</span>")
+				return TRUE
+			if(unload_item() && linked_console)
+				linked_console.updateUsrDialog()
+			return TRUE
+		if("deconstruct")
+			if(busy)
+				to_chat(usr, "<span class='warning'>[src] jest teraz zajęty.</span>")
+				return TRUE
+			if(!linked_console || QDELETED(linked_console))
+				say("Brak połączenia z konsolą B+R!")
+				return TRUE
+			if(!user_try_decon_id(params["deconstruct_path"], usr, TRUE))
+				say("Analiza destrukcyjna nie powiodła się!")
+			return TRUE

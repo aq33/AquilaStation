@@ -127,7 +127,7 @@ export const NtosSpaceLaw = (props) => {
             autoFocus
             placeholder="Szukaj artykułu…"
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
         </Section>
         {!anyMatch && <NoticeBox>Nie ma takiego artykułu.</NoticeBox>}

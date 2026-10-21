@@ -39,13 +39,14 @@ export const InertialDampener = (props) => {
             </Box>
             {data.min_strength !== data.max_strength ? (
               <Slider
+                tickWhileDragging
                 value={data.strength}
                 minValue={Math.floor(data.min_strength)}
                 maxValue={Math.ceil(data.max_strength)}
                 unit={'%'}
                 step={1}
                 stepPixelSize={260 / data.max_strength}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('strength', {
                     value: value,
                   })
@@ -62,13 +63,14 @@ export const InertialDampener = (props) => {
             </Box>
             {data.min_range !== data.max_range ? (
               <Slider
+                tickWhileDragging
                 value={data.range}
                 minValue={data.min_range}
                 maxValue={data.max_range}
                 unit={' meters'}
                 step={1}
                 stepPixelSize={270 / data.max_range}
-                onDrag={(e, value) =>
+                onChange={(e, value) =>
                   act('range', {
                     value: value,
                   })

@@ -275,6 +275,11 @@
 	var/nexttime = 0		// time for a panel to rotate of 1 degree in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	// AQUILA: historia mocy do wykresu w oknie SolarControl (jak w tg)
+	var/list/history = list("supply" = list(), "capacity" = list())
+	var/record_size = 60
+	var/record_interval = 50
+	var/next_record = 0
 
 /obj/machinery/power/solar_control/Initialize(mapload)
 	. = ..()
@@ -357,6 +362,10 @@
 	var/data = list()
 
 	data["generated"] = round(lastgen)
+	// AQUILA: dane dla okna z tg
+	data["supply"] = round(lastgen)
+	data["capacity"] = connected_panels.len * SOLARGENRATE
+	data["history"] = history
 	data["angle"] = currentdir
 	data["direction"] = angle2text(currentdir)
 
@@ -460,6 +469,7 @@
 /obj/machinery/power/solar_control/process()
 	lastgen = gen
 	gen = 0
+	record()
 
 	if(machine_stat & (NOPOWER | BROKEN))
 		return
@@ -472,6 +482,22 @@
 		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1°...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
 			nexttime += 36000/abs(trackrate) //reset the counter for the next 1°
+
+// AQUILA: zapis historii mocy dla wykresu w oknie
+/obj/machinery/power/solar_control/proc/record()
+	if(world.time < next_record)
+		return
+	next_record = world.time + record_interval
+
+	var/list/supply = history["supply"]
+	supply += round(lastgen)
+	if(supply.len > record_size)
+		supply.Cut(1, 2)
+
+	var/list/capacity = history["capacity"]
+	capacity += connected_panels.len * SOLARGENRATE
+	if(capacity.len > record_size)
+		capacity.Cut(1, 2)
 
 //rotates the panel to the passed angle
 /obj/machinery/power/solar_control/proc/set_panels(currentdir)

@@ -121,6 +121,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	data["arrivalToggle"] = arrivalToggle
 	data["newhead"] = newhead
 	data["newheadToggle"] = newheadToggle
+	data["max_announcement_len"] = MAX_MESSAGE_LEN // AQUILA EDIT - limit długości w oknie z tg
 	return data
 
 /obj/machinery/announcement_system/ui_act(action, param)

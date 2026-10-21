@@ -211,6 +211,12 @@
 			if(islist(design_ids))
 				for(var/build_design_id in design_ids)
 					add_to_queue(item_queue, build_design_id, 1)
+					// AQUILA: "Build now" in the exosuit window puts the design at the front of the queue
+					if(params["now"] && item_queue["[build_design_id]"])
+						var/list/queue_entry = item_queue["[build_design_id]"]
+						item_queue -= "[build_design_id]"
+						item_queue.Insert(1, "[build_design_id]")
+						item_queue["[build_design_id]"] = queue_entry
 			else
 				add_to_queue(item_queue, params["ref"] || params["design_id"], clamp(text2num(params["amount"]) || 1, 1, 50))
 			queue_stopped = FALSE

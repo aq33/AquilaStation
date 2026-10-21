@@ -1,8 +1,8 @@
-import { resolveAsset } from '../assets';
+import { Section, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { Objective, ObjectivesSection } from './common/ObjectiveSection';
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
 const teleportstyle = {
   color: 'yellow',
@@ -36,112 +36,86 @@ type Info = {
   objectives: Objective[];
 };
 
-const IntroSection = (_props) => {
-  return (
-    <Stack>
-      <Stack.Item>
-        <Box
-          inline
-          as="img"
-          src={resolveAsset('wizard.png')}
-          width="64px"
-          style={{
-            msInterpolationMode: 'nearest-neighbor',
-            imageRendering: 'pixelated',
-          }}
-        />
-      </Stack.Item>
-      <Stack.Item grow>
-        <h1 style={{ position: 'relative', top: '25%', left: '25%' }}>
-          You are the{' '}
-          <Box inline textColor="bad">
-            Wizard
-          </Box>
-          !
-        </h1>
-      </Stack.Item>
-    </Stack>
-  );
-};
-
-const SpellbookSection = (_props) => {
-  return (
-    <Section fill title="Spellbook">
-      <Stack vertical fill>
-        <Stack.Item>
-          You have a spellbook which is bound to you. You can use it to choose a
-          magical arsenal.
-          <br />
-          <span style={destructionstyle}>
-            The deadly page has the offensive spells, to destroy your enemies.
-          </span>
-          <br />
-          <span style={defensestyle}>
-            The defensive page has defensive spells, to keep yourself alive.
-            Remember, you may be powerful, but you are still only human.
-          </span>
-          <br />
-          <span style={transportstyle}>
-            The transport page has mobility spells, very important aspect of
-            staying alive and getting things done.
-          </span>
-          <br />
-          <span style={summonstyle}>
-            The summoning page has summoning and other helpful spells for not
-            fighting alone. Careful, not every summon is on your side.
-          </span>
-          <br />
-          <span style={ritualstyle}>
-            The rituals page has powerful global effects, that will pit the
-            station against itself. Do mind that these are either expensive, or
-            just for panache.
-          </span>
-        </Stack.Item>
-      </Stack>
-    </Section>
-  );
-};
-
-const MiscGearSection = (_props) => {
-  return (
-    <Section title="Misc Gear">
-      <Stack>
-        <Stack.Item>
-          <span style={teleportstyle}>Teleport scroll:</span> 4 uses to teleport
-          wherever you want. You will not be able to come back to the den, so be
-          sure you have everything ready before departing.
-          <br />
-          <span style={robestyle}>Wizard robes:</span> Used to cast most spells.
-          Your spellbook will let you know which spells cannot be cast without a
-          garb.
-        </Stack.Item>
-      </Stack>
-    </Section>
-  );
-};
-
-export const AntagInfoWizard = (_props) => {
+// AQUILA: bez Wielkiego Rytuału, osobistej misji i gotowych zestawów z tg - nie mamy ich
+export const AntagInfoWizard = (props) => {
   const { data } = useBackend<Info>();
   const { objectives } = data;
+
   return (
-    <Window width={620} height={620} theme="wizard">
+    <Window width={620} height={630} theme="wizard">
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item>
-            <IntroSection />
-          </Stack.Item>
           <Stack.Item grow>
-            <ObjectivesSection objectives={objectives} />
+            <Section scrollable fill>
+              <Stack vertical>
+                <Stack.Item textColor="red" fontSize="20px">
+                  Jesteś Kosmicznym Czarodziejem!
+                </Stack.Item>
+                <Stack.Item>
+                  <ObjectivePrintout
+                    objectives={objectives}
+                    titleMessage="Federacja Kosmicznych Czarodziejów powierzyła ci następujące zadania"
+                  />
+                </Stack.Item>
+              </Stack>
+            </Section>
           </Stack.Item>
           <Stack.Item>
-            <SpellbookSection />
+            <Section fill title="Księga zaklęć">
+              <Stack vertical fill>
+                <Stack.Item>
+                  Masz księgę zaklęć, która jest z tobą związana. Wybierzesz w
+                  niej swój magiczny arsenał.
+                  <br />
+                  <span style={destructionstyle}>
+                    Strona ofensywna zawiera zaklęcia bojowe do niszczenia
+                    wrogów.
+                  </span>
+                  <br />
+                  <span style={defensestyle}>
+                    Strona defensywna zawiera zaklęcia obronne, które utrzymają
+                    cię przy życiu. Pamiętaj: możesz być potężny, ale wciąż
+                    jesteś tylko człowiekiem.
+                  </span>
+                  <br />
+                  <span style={transportstyle}>
+                    Strona mobilności zawiera zaklęcia ruchu - bardzo ważne, aby
+                    przeżyć i załatwić swoje sprawy.
+                  </span>
+                  <br />
+                  <span style={summonstyle}>
+                    Strona wsparcia zawiera przywołania i inne pomocne zaklęcia,
+                    dzięki którym nie walczysz sam. Uważaj, nie każde
+                    przywołanie jest po twojej stronie.
+                  </span>
+                  <br />
+                  <span style={ritualstyle}>
+                    Strona rytuałów zawiera potężne efekty globalne, które
+                    nastawią stację przeciwko sobie. Pamiętaj, że są albo
+                    drogie, albo tylko dla efektu.
+                  </span>
+                </Stack.Item>
+              </Stack>
+            </Section>
           </Stack.Item>
           <Stack.Item>
-            <MiscGearSection />
+            <Section title="Pozostały ekwipunek">
+              <Stack>
+                <Stack.Item>
+                  <span style={teleportstyle}>Zwój teleportacji:</span> 4
+                  użycia, aby przenieść się, gdzie zechcesz. Nie wrócisz już do
+                  kryjówki, więc przed wyruszeniem przygotuj wszystko.
+                  <br />
+                  <span style={robestyle}>Szaty czarodzieja:</span> potrzebne do
+                  rzucania większości zaklęć. Księga podpowie ci, których zaklęć
+                  nie rzucisz bez szat.
+                </Stack.Item>
+              </Stack>
+            </Section>
           </Stack.Item>
           <Stack.Item>
             <Section textAlign="center" textColor="red" fontSize="20px">
-              Remember: Do not forget to prepare your spells.
+              Pamiętaj: nie zapomnij przygotować zaklęć.
             </Section>
           </Stack.Item>
         </Stack>

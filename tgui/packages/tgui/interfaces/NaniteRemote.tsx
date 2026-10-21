@@ -69,7 +69,7 @@ export const NaniteRemoteContent = (props) => {
               value={program_name}
               maxLength={14}
               width="130px"
-              onChange={(e, value) =>
+              onBlur={(value) =>
                 act('update_name', {
                   name: value,
                 })
@@ -97,7 +97,7 @@ export const NaniteRemoteContent = (props) => {
               <Input
                 value={message}
                 width="270px"
-                onChange={(e, value) =>
+                onBlur={(value) =>
                   act('set_message', {
                     value: value,
                   })

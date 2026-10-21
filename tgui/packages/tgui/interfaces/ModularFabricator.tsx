@@ -217,8 +217,8 @@ const CustomQueue = (props: { design: Design; available: MaterialMap }) => {
     >
       <Button.Input
         color="transparent"
-        content={`×${max}`}
-        onCommit={(_event, value: string) =>
+        buttonText={`×${max}`}
+        onCommit={(value: string) =>
           act(data.uses_queue ? 'queue_item' : 'build', {
             design_id: props.design.id,
             amount: value,

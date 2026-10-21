@@ -337,3 +337,21 @@ export const getGasFromPath = (gasPath: string): Gas | undefined => {
     }
   }
 };
+
+// --- tgstation additions used by windows ported from tg
+export enum Direction {
+  NONE = 0,
+  NORTH = 1,
+  SOUTH = 2,
+  EAST = 4,
+  WEST = 8,
+  NORTHEAST = NORTH | EAST,
+  NORTHWEST = NORTH | WEST,
+  SOUTHEAST = SOUTH | EAST,
+  SOUTHWEST = SOUTH | WEST,
+  VERTICAL = NORTH | SOUTH,
+  HORIZONTAL = EAST | WEST,
+  ALL = NORTH | SOUTH | EAST | WEST,
+}
+
+export type CssColor = (typeof CSS_COLORS)[number];

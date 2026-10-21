@@ -668,7 +668,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/list/categories = list()
 	.["product_records"] = collect_records_for_static_data(product_records, categories, list("name" = "Produkty", "icon" = "cart-shopping"))
 	.["coin_records"] = collect_records_for_static_data(coin_records, categories, list("name" = "Premium", "icon" = "coins"), premium = TRUE)
-	.["hidden_records"] = collect_records_for_static_data(hidden_records, categories, list("name" = "Contraband", "icon" = "mask"), premium = TRUE)
+	.["hidden_records"] = collect_records_for_static_data(hidden_records, categories, list("name" = "Kontrabanda", "icon" = "mask"), premium = TRUE)
 	.["categories"] = categories
 
 /// Product records for the window, each product put in the given category
@@ -709,7 +709,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				.["user"]["job"] = C.registered_account.account_job.title
 				.["user"]["department"] = C.registered_account.account_department
 			else
-				.["user"]["job"] = "No Job"
+				.["user"]["job"] = "Bez przydziału"
 				.["user"]["department"] = "No Department"
 	.["stock"] = list()
 	for(var/datum/data/vending_product/R in product_records + coin_records + hidden_records)

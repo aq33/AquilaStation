@@ -13,6 +13,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	var/calibrated = TRUE
 	var/list/linked = list()
 	var/can_link = FALSE	//Is this the centerpiece?
+	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE | INTERACT_MACHINE_OFFLINE // AQUILA: okno pokazuje brak zasilania
 
 /obj/machinery/gateway/Initialize(mapload)
 	randomspawns = GLOB.awaydestinations
@@ -59,19 +60,44 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 		return
 	icon_state = "off"
 
-/obj/machinery/gateway/attack_hand(mob/user)
+/obj/machinery/gateway/proc/toggleon(mob/user)
+	return FALSE
+
+// AQUILA: okno TGUI bramy (port Gateway z tg) zamiast przełączania kliknięciem.
+// Otwiera się tylko na środkowym elemencie (can_link); pozostałe części nic nie robią.
+/obj/machinery/gateway/ui_interact(mob/user, datum/tgui/ui)
+	if(!can_link)
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Gateway", name)
+		ui.open()
+
+/obj/machinery/gateway/ui_data(mob/user)
+	var/list/data = list()
+	data["gateway_present"] = detect()
+	data["gateway_status"] = powered()
+	data["active"] = active
+	data["destination"] = get_destination_ui_data()
+	return data
+
+/// Dane celu bramy dla okna: name, available, reason, timeout (0-1), calibrated
+/obj/machinery/gateway/proc/get_destination_ui_data()
+	return null
+
+/obj/machinery/gateway/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
-	if(!detect())
-		return
-	if(!active)
-		toggleon(user)
-		return
-	toggleoff()
-
-/obj/machinery/gateway/proc/toggleon(mob/user)
-	return FALSE
+	switch(action)
+		if("activate")
+			if(!active && detect())
+				toggleon(usr)
+			return TRUE
+		if("deactivate")
+			if(active)
+				toggleoff()
+			return TRUE
 
 /obj/machinery/gateway/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback, force = MOVE_FORCE_STRONG)
 	return
@@ -99,6 +125,20 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	var/wait = 0				//this just grabs world.time at world start
 	var/obj/machinery/gateway/centeraway/awaygate = null
 	can_link = TRUE
+
+/obj/machinery/gateway/centerstation/get_destination_ui_data()
+	if(!awaygate || QDELETED(awaygate))
+		return null
+	var/list/dest = list()
+	var/area/away_area = get_area(awaygate)
+	dest["name"] = away_area ? away_area.name : "Misja zewnętrzna"
+	dest["calibrated"] = awaygate.calibrated
+	dest["available"] = world.time >= wait
+	if(world.time < wait)
+		var/total = CONFIG_GET(number/gateway_delay)
+		dest["reason"] = "Trwa triangulacja przestrzeni warp. Pozostało: [DisplayTimeText(wait - world.time)]."
+		dest["timeout"] = total ? clamp(1 - (wait - world.time) / total, 0, 1) : 0
+	return dest
 
 /obj/machinery/gateway/centerstation/update_icon()
 	if(active)
@@ -188,6 +228,16 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 		icon_state = "oncenter"
 		return
 	icon_state = "offcenter"
+
+/obj/machinery/gateway/centeraway/get_destination_ui_data()
+	if(!stationgate || QDELETED(stationgate))
+		return null
+	var/area/station_area = get_area(stationgate)
+	return list(
+		"name" = station_area ? station_area.name : "Stacja",
+		"calibrated" = TRUE,
+		"available" = TRUE,
+	)
 
 /obj/machinery/gateway/centeraway/toggleon(mob/user)
 	if(!detect())

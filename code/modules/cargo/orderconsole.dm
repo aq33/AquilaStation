@@ -130,7 +130,8 @@
 			"cost" = SO.pack.get_cost(),
 			"orderer" = SO.orderer,
 			"reason" = SO.reason,
-			"id" = SO.id
+			"id" = SO.id,
+			"account" = SO.paying_account ? SO.paying_account.account_holder : null, // AQUILA EDIT
 		))
 
 	return data
@@ -148,14 +149,7 @@
 			)
 		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly)
 			continue
-		data["supplies"][P.group]["packs"] += list(list(
-			"name" = P.name,
-			"cost" = P.get_cost(),
-			"id" = pack,
-			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
-			"small_item" = P.small_item,
-			"access" = P.access
-		))
+		data["supplies"][P.group]["packs"] += list(P.get_ui_data(pack)) // AQUILA EDIT - ikony i zawartość dla okna z tg
 	return data
 
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)

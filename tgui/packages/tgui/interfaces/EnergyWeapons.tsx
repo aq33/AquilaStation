@@ -1,9 +1,4 @@
-import {
-  Button,
-  ProgressBar,
-  Section,
-  Slider,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section, Slider } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -71,12 +66,13 @@ export const EnergyWeapons = (props) => {
         <Section title="Settings:">
           Power Input Level:
           <Slider
+            tickWhileDragging
             value={powerAlloc}
             minValue={0}
             maxValue={maxPower}
             step={0.5}
             stepPixelSize={5}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('power', {
                 input: value,
               })

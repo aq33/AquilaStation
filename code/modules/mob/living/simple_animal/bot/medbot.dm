@@ -149,67 +149,45 @@ GLOBAL_VAR(medibot_unique_id_gen)
 /mob/living/simple_animal/bot/medbot/attack_paw(mob/user)
 	return attack_hand(user)
 
-/mob/living/simple_animal/bot/medbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<TT><B>Sterowanie jednostką medyczną v1.1</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Panel serwisowy jest [open ? "otwarty" : "zamknięty"]<BR>"
-	dat += "<br>Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<hr>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "<TT>Próg leczenia: "
-		dat += "<a href='byond://?src=[REF(src)];adj_threshold=-10'>--</a> "
-		dat += "<a href='byond://?src=[REF(src)];adj_threshold=-5'>-</a> "
-		dat += "[heal_threshold] "
-		dat += "<a href='byond://?src=[REF(src)];adj_threshold=5'>+</a> "
-		dat += "<a href='byond://?src=[REF(src)];adj_threshold=10'>++</a>"
-		dat += "</TT><br>"
-		dat += "Głośnik jest [shut_up ? "wyłączony" : "włączony"]. <a href='byond://?src=[REF(src)];togglevoice=[1]'>Przełącz</a><br>"
-		dat += "Alarmy o pacjentach w stanie krytycznym: <a href='byond://?src=[REF(src)];critalerts=1'>[declare_crit ? "Tak" : "Nie"]</a><br>"
-		dat += "Patrolowanie stacji: <a href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</a><br>"
-		dat += "Tryb stacjonarny: <a href='byond://?src=[REF(src)];stationary=1'>[stationary_mode ? "Tak" : "Nie"]</a><br>"
-		dat += "<a href='byond://?src=[REF(src)];hptech=1'>Szukaj postępów technologicznych</a><br>"
+/mob/living/simple_animal/bot/medbot/get_custom_controls(mob/user)
+	return list(
+		"heal_threshold" = heal_threshold,
+		"speaker" = !shut_up,
+		"critical_alerts" = declare_crit,
+		"stationary_mode" = stationary_mode,
+		"search_tech" = TRUE,
+	)
 
-	return dat
-
-/mob/living/simple_animal/bot/medbot/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(href_list["adj_threshold"])
-		var/adjust_num = text2num(href_list["adj_threshold"])
-		heal_threshold += adjust_num
-		if(heal_threshold < 5)
-			heal_threshold = 5
-		if(heal_threshold > 75)
-			heal_threshold = 75
-
-	else if(href_list["togglevoice"])
-		shut_up = !shut_up
-
-	else if(href_list["critalerts"])
-		declare_crit = !declare_crit
-
-	else if(href_list["stationary"])
-		stationary_mode = !stationary_mode
-		path = list()
-		update_icon()
-
-	else if(href_list["hptech"])
-		var/oldheal_amount = heal_amount
-		var/tech_boosters
-		for(var/i in linked_techweb.researched_designs)
-			var/datum/design/surgery/healing/D = SSresearch.techweb_design_by_id(i)
-			if(!istype(D))
-				continue
-			tech_boosters++
-		if(tech_boosters)
-			heal_amount = (round(tech_boosters/2,0.1)*initial(heal_amount))+initial(heal_amount) //every 2 tend wounds tech gives you an extra 100% healing, adjusting for unique branches (combo is bonus)
-			if(oldheal_amount < heal_amount)
-				speak("Znaleziono dane badań chirurgicznych! Skuteczność wzrasta o [round(heal_amount/oldheal_amount*100)]%!")
-	update_controls()
-	return
+/mob/living/simple_animal/bot/medbot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
+		if("heal_threshold")
+			var/new_threshold = text2num(params["threshold"])
+			if(!isnum(new_threshold))
+				return FALSE
+			heal_threshold = clamp(round(new_threshold), 5, 75)
+		if("speaker")
+			shut_up = !shut_up
+		if("critical_alerts")
+			declare_crit = !declare_crit
+		if("stationary_mode")
+			stationary_mode = !stationary_mode
+			path = list()
+			update_icon()
+		if("search_tech")
+			var/oldheal_amount = heal_amount
+			var/tech_boosters
+			for(var/i in linked_techweb.researched_designs)
+				var/datum/design/surgery/healing/D = SSresearch.techweb_design_by_id(i)
+				if(!istype(D))
+					continue
+				tech_boosters++
+			if(tech_boosters)
+				heal_amount = (round(tech_boosters/2,0.1)*initial(heal_amount))+initial(heal_amount) //every 2 tend wounds tech gives you an extra 100% healing, adjusting for unique branches (combo is bonus)
+				if(oldheal_amount < heal_amount)
+					speak("Znaleziono dane badań chirurgicznych! Skuteczność wzrasta o [round(heal_amount/oldheal_amount*100)]%!")
+		else
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/bot/medbot/attackby(obj/item/W as obj, mob/user as mob, params)
 	var/current_health = health

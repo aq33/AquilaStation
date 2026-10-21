@@ -5,15 +5,16 @@ import {
   NoticeBox,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  connected: any;
-  notice: any;
-  target: any;
-  unlocked: any;
+  connected: BooleanLike;
+  notice: string;
+  target: string;
+  unlocked: BooleanLike;
 };
 
 export const BluespaceArtillery = (props) => {
@@ -26,17 +27,18 @@ export const BluespaceArtillery = (props) => {
         {connected ? (
           <>
             <Section
-              title="Target"
+              title="Cel"
               buttons={
                 <Button
                   icon="crosshairs"
                   disabled={!unlocked}
+                  tooltip="Przekalibruj cel"
                   onClick={() => act('recalibrate')}
                 />
               }
             >
               <Box color={target ? 'average' : 'bad'} fontSize="25px">
-                {target || 'No Target Set'}
+                {target || 'Nie ustawiono celu'}
               </Box>
             </Section>
             <Section>
@@ -44,7 +46,7 @@ export const BluespaceArtillery = (props) => {
                 <Box style={{ margin: 'auto' }}>
                   <Button
                     fluid
-                    content="FIRE"
+                    content="OGNIA"
                     color="bad"
                     disabled={!target}
                     fontSize="30px"
@@ -56,11 +58,11 @@ export const BluespaceArtillery = (props) => {
               ) : (
                 <>
                   <Box color="bad" fontSize="18px">
-                    Bluespace artillery is currently locked.
+                    Artyleria bluespace jest zablokowana.
                   </Box>
                   <Box mt={1}>
-                    Awaiting authorization via keycard reader from at minimum
-                    two station heads.
+                    Oczekiwanie na autoryzację w czytniku kart od co najmniej
+                    dwóch szefów stacji.
                   </Box>
                 </>
               )}
@@ -69,10 +71,10 @@ export const BluespaceArtillery = (props) => {
         ) : (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Maintenance">
+              <LabeledList.Item label="Konserwacja">
                 <Button
                   icon="wrench"
-                  content="Complete Deployment"
+                  content="Zakończ montaż"
                   onClick={() => act('build')}
                 />
               </LabeledList.Item>

@@ -257,7 +257,7 @@
 	cocoon_type = /obj/structure/blood_worm_cocoon/juvenile
 	new_worm_type = /mob/living/simple_animal/hostile/blood_worm/adult
 	total_blood_required = 1500
-	confirm_text = "Na pewno? Po 30 sekundach staniesz się dorosłym robakiem: dostaniesz dużo więcej siły, a poza nosicielem prawym klikiem z Plucia krwią plujesz serią. Dorosły nie wciśnie się już pod drzwi."
+	confirm_text = "Na pewno? Po 30 sekundach staniesz się dorosłym robakiem: dostaniesz dużo więcej siły, a poza nosicielem Pluciem krwią na prawym przycisku (lub intencji rozbrajania) plujesz serią. Dorosły nie wciśnie się już pod drzwi."
 
 /datum/action/cooldown/spell/blood_worm/cocoon/juvenile/transfer(mob/living/simple_animal/hostile/blood_worm/old_worm, mob/living/simple_animal/hostile/blood_worm/new_worm)
 	. = ..()

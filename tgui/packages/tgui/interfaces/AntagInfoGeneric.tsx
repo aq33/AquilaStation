@@ -1,41 +1,43 @@
+import { Box, Section, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { AntagInfoHeader } from './common/AntagInfoHeader';
-import { Objective, ObjectivesSection } from './common/ObjectiveSection';
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
 type Info = {
   antag_name: string;
   objectives: Objective[];
-  // AQUILA: opis roli (np. playstyle_string potwora)
+  // AQUILA: opis roli (np. playstyle_string potwora, demon cieni)
   intro?: string;
 };
 
-export const AntagInfoGeneric = (_props) => {
+export const AntagInfoGeneric = (props) => {
   const { data } = useBackend<Info>();
   const { antag_name, objectives, intro } = data;
   return (
-    <Window width={620} height={intro ? 480 : 250} theme="neutral">
+    <Window width={620} height={intro ? 480 : 250}>
       <Window.Content>
-        <Stack vertical fill>
-          <Stack.Item>
-            <AntagInfoHeader name={antag_name || 'Antagonist'} />
-          </Stack.Item>
-          {!!intro && (
-            <Stack.Item grow={3}>
-              <Section fill scrollable title="Twoja rola">
+        <Section scrollable fill>
+          <Stack vertical>
+            <Stack.Item textColor="red" fontSize="20px">
+              Twoja rola: {antag_name || 'antagonista'}!
+            </Stack.Item>
+            {!!intro && (
+              <Stack.Item>
                 <Box
                   style={{ whiteSpace: 'pre-line' }}
                   dangerouslySetInnerHTML={{ __html: intro }}
                 />
-              </Section>
+              </Stack.Item>
+            )}
+            <Stack.Item>
+              <ObjectivePrintout
+                objectives={objectives}
+                titleMessage="Twoje obecne cele"
+              />
             </Stack.Item>
-          )}
-          {/* Cele też rosną, inaczej sekcja z fill dostaje zero wysokości pod wprowadzeniem */}
-          <Stack.Item grow={2}>
-            <ObjectivesSection objectives={objectives} />
-          </Stack.Item>
-        </Stack>
+          </Stack>
+        </Section>
       </Window.Content>
     </Window>
   );

@@ -1,129 +1,189 @@
-import { map } from 'common/collections';
-import { toFixed } from 'common/math';
+import { useState } from 'react';
 import {
+  Box,
   Button,
+  Dropdown,
   LabeledList,
   NumberInput,
   Section,
+  Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+// AQUILA: układ okna z tg, ale dane z naszej konsoli radiowej
+// (code/game/machinery/computer/atmos_control.dm). Czujniki wysyłają
+// procenty gazów po nazwie, a nie pełną mieszankę, więc zamiast
+// GasmixParser i podręcznika atmosferyki jest prosta lista.
+type Sensor = {
+  id_tag: string;
+  long_name: string;
+  pressure: number;
+  temperature: number;
+  gases: Record<string, number>;
+};
+
 type Data = {
-  inputRate: any;
-  inputting: any;
-  maxInputRate: any;
-  maxOutputPressure: any;
-  outputPressure: any;
-  outputting: any;
-  sensors: any;
-  tank: any;
+  sensors: Sensor[];
+  tank?: BooleanLike;
+  inputting?: BooleanLike;
+  inputRate?: number;
+  maxInputRate?: number;
+  outputting?: BooleanLike;
+  outputPressure?: number;
+  maxOutputPressure?: number;
 };
 
 export const AtmosControlConsole = (props) => {
   const { act, data } = useBackend<Data>();
-  const sensors = data.sensors || [];
+  const {
+    sensors = [],
+    tank,
+    inputting,
+    inputRate = 0,
+    maxInputRate = 0,
+    outputting,
+    outputPressure = 0,
+    maxOutputPressure = 0,
+  } = data;
+  const [sensorId, setSensorId] = useState(sensors[0]?.id_tag);
+  const selectedSensor =
+    sensors.length === 1
+      ? sensors[0]
+      : sensors.find((sensor) => sensor.id_tag === sensorId) || sensors[0];
+
   return (
-    <Window
-      width={400}
-      // NSV13 - height reduced to 400
-      height={400}
-    >
+    <Window width={450} height={tank ? 480 : 400}>
       <Window.Content scrollable>
-        <Section title={!!data.tank && sensors[0]?.long_name}>
-          {sensors.map((sensor) => {
-            const gases = sensor.gases || {};
-            return (
-              <Section
-                key={sensor.id_tag}
-                title={!data.tank && sensor.long_name}
-              >
-                <LabeledList>
-                  <LabeledList.Item label="Pressure">
-                    {toFixed(sensor.pressure, 2) + ' kPa'}
-                  </LabeledList.Item>
-                  {!!sensor.temperature && (
-                    <LabeledList.Item label="Temperature">
-                      {toFixed(sensor.temperature, 2) + ' K'}
-                    </LabeledList.Item>
-                  )}
-                  {map((gasPercent, gasId) => (
-                    <LabeledList.Item label={gasId}>
-                      {toFixed(gasPercent, 2) + '%'}
-                    </LabeledList.Item>
-                  ))(gases)}
-                </LabeledList>
+        <Stack vertical fill>
+          <Stack.Item>
+            {sensors.length > 1 && (
+              <Section title="Wybór komory">
+                <Dropdown
+                  width="100%"
+                  options={sensors.map((sensor) => sensor.long_name)}
+                  selected={selectedSensor?.long_name}
+                  onSelected={(value) =>
+                    setSensorId(
+                      sensors.find((sensor) => sensor.long_name === value)
+                        ?.id_tag || sensors[0].id_tag,
+                    )
+                  }
+                />
               </Section>
-            );
-          })}
-        </Section>
-        {data.tank && (
-          <Section
-            title="Controls"
-            buttons={
-              <Button
-                icon="undo"
-                content="Reconnect"
-                onClick={() => act('reconnect')}
-              />
-            }
-          >
-            <LabeledList>
-              <LabeledList.Item label="Input Injector">
-                <Button
-                  icon={data.inputting ? 'power-off' : 'times'}
-                  content={data.inputting ? 'Injecting' : 'Off'}
-                  selected={data.inputting}
-                  onClick={() => act('input')}
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Input Rate">
-                <NumberInput
-                  step={1}
-                  value={data.inputRate}
-                  unit="L/s"
-                  width="63px"
-                  minValue={0}
-                  maxValue={data.maxInputRate}
-                  // This takes an exceptionally long time to update
-                  // due to being an async signal
-                  onChange={(value) =>
-                    act('rate', {
-                      rate: value,
-                    })
-                  }
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Output Regulator">
-                <Button
-                  icon={data.outputting ? 'power-off' : 'times'}
-                  content={data.outputting ? 'Open' : 'Closed'}
-                  selected={data.outputting}
-                  onClick={() => act('output')}
-                />
-              </LabeledList.Item>
-              <LabeledList.Item label="Output Pressure">
-                <NumberInput
-                  value={parseFloat(data.outputPressure)}
-                  unit="kPa"
-                  width="75px"
-                  minValue={0}
-                  maxValue={data.maxOutputPressure}
-                  step={10}
-                  // This takes an exceptionally long time to update
-                  // due to being an async signal
-                  onChange={(value) =>
-                    act('pressure', {
-                      pressure: value,
-                    })
-                  }
-                />
-              </LabeledList.Item>
-            </LabeledList>
-          </Section>
-        )}
+            )}
+            <Section
+              title={
+                selectedSensor ? selectedSensor.long_name : 'Odczyt komory'
+              }
+              buttons={
+                !!tank && (
+                  <Button
+                    icon="undo"
+                    content="Połącz ponownie"
+                    tooltip="Wyszukaj urządzenia komory na nowo"
+                    onClick={() => act('reconnect')}
+                  />
+                )
+              }
+            >
+              {selectedSensor ? (
+                <SensorReadout sensor={selectedSensor} />
+              ) : (
+                <Box italic>Nie wykryto czujników!</Box>
+              )}
+            </Section>
+            {!!tank && (
+              <Section title="Sterowanie komorą">
+                <Stack>
+                  <Stack.Item grow>
+                    <LabeledList>
+                      <LabeledList.Item label="Wtryskiwacz">
+                        <Button
+                          icon={inputting ? 'power-off' : 'times'}
+                          content={inputting ? 'Wtryskuje' : 'Wył.'}
+                          selected={inputting}
+                          onClick={() => act('input')}
+                        />
+                      </LabeledList.Item>
+                      <LabeledList.Item label="Przepływ">
+                        <NumberInput
+                          step={1}
+                          value={Number(inputRate)}
+                          unit="L/s"
+                          width="63px"
+                          minValue={0}
+                          maxValue={maxInputRate}
+                          // Sygnał radiowy wraca z opóźnieniem
+                          onChange={(value) =>
+                            act('rate', {
+                              rate: value,
+                            })
+                          }
+                        />
+                      </LabeledList.Item>
+                    </LabeledList>
+                  </Stack.Item>
+                  <Stack.Item grow>
+                    <LabeledList>
+                      <LabeledList.Item label="Regulator wyjścia">
+                        <Button
+                          icon={outputting ? 'power-off' : 'times'}
+                          content={outputting ? 'Otwarty' : 'Zamknięty'}
+                          selected={outputting}
+                          onClick={() => act('output')}
+                        />
+                      </LabeledList.Item>
+                      <LabeledList.Item label="Ciśnienie wyjściowe">
+                        <NumberInput
+                          value={Number(outputPressure)}
+                          unit="kPa"
+                          width="75px"
+                          minValue={0}
+                          maxValue={maxOutputPressure}
+                          step={10}
+                          // Sygnał radiowy wraca z opóźnieniem
+                          onChange={(value) =>
+                            act('pressure', {
+                              pressure: value,
+                            })
+                          }
+                        />
+                      </LabeledList.Item>
+                    </LabeledList>
+                  </Stack.Item>
+                </Stack>
+              </Section>
+            )}
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
+  );
+};
+
+const SensorReadout = (props: { sensor: Sensor }) => {
+  const { sensor } = props;
+  const gases = Object.entries(sensor.gases || {}).sort((a, b) => b[1] - a[1]);
+  return (
+    <LabeledList>
+      <LabeledList.Item label="Ciśnienie">
+        {`${toFixed(sensor.pressure, 2)} kPa`}
+      </LabeledList.Item>
+      {!!sensor.temperature && (
+        <LabeledList.Item label="Temperatura">
+          {`${toFixed(sensor.temperature, 2)} K`}
+        </LabeledList.Item>
+      )}
+      {gases.length > 0 && <LabeledList.Divider />}
+      {gases.map(([gasName, gasPercent]) => (
+        <LabeledList.Item key={gasName} label={gasName}>
+          {`${toFixed(gasPercent, 2)}%`}
+        </LabeledList.Item>
+      ))}
+    </LabeledList>
   );
 };

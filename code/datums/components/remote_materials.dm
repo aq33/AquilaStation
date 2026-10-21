@@ -43,7 +43,7 @@ handles linking back and forth.
 /datum/component/remote_materials/Destroy()
 	if (silo)
 		silo.connected -= src
-		silo.updateUsrDialog()
+		SStgui.update_uis(silo)
 		set_silo(null)
 		mat_container = null
 	else if (mat_container)
@@ -106,7 +106,7 @@ handles linking back and forth.
 	if(!disconnect_from(old_silo))
 		return
 	old_silo.connected -= src
-	old_silo.updateUsrDialog()
+	SStgui.update_uis(old_silo)
 	var/atom/P = parent
 	P.visible_message("<span class='warning'>Zarządca materiałów [parent] miga na pomarańczowo: rozłączono.</span>")
 
@@ -127,13 +127,13 @@ handles linking back and forth.
 				return COMPONENT_NO_AFTERATTACK
 			if (silo)
 				silo.connected -= src
-				silo.updateUsrDialog()
+				SStgui.update_uis(silo)
 			else if (mat_container)
 				mat_container.retrieve_all()
 				qdel(mat_container)
 			set_silo(M.buffer)
 			silo.connected += src
-			silo.updateUsrDialog()
+			SStgui.update_uis(silo)
 			mat_container = silo.GetComponent(/datum/component/material_container)
 			to_chat(user, "<span class='notice'>Łączysz [parent] z [silo] z bufora multitoola.</span>")
 			SEND_SIGNAL(parent, COMSIG_REMOTE_MATERIALS_CHANGED)

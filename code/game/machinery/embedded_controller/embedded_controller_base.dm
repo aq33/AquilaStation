@@ -34,16 +34,25 @@
 		QDEL_NULL(program)
 	. = ..()
 
-/obj/machinery/embedded_controller/ui_interact(mob/user)
+/obj/machinery/embedded_controller/ui_interact(mob/user, datum/tgui/ui)
+	if(!tgui_id)
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, tgui_id, name)
+		ui.open()
+
+/// Akcje z okna trafiają do programu jako polecenia użytkownika
+/obj/machinery/embedded_controller/ui_act(action, list/params)
 	. = ..()
-	user.set_machine(src)
-	var/datum/browser/popup = new(user, "computer", name) // Set up the popup browser window
-	popup.set_content(return_text())
-	popup.open()
+	if(.)
+		return
+	if(program)
+		program.receive_user_command(action)
+		addtimer(CALLBACK(program, TYPE_PROC_REF(/datum/computer/file/embedded_program, process)), 5)
+	return TRUE
 
 /obj/machinery/embedded_controller/update_icon()
-
-/obj/machinery/embedded_controller/proc/return_text()
 
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
 	return 0
@@ -52,23 +61,11 @@
 	if(istype(signal) && program)
 		program.receive_signal(signal)
 
-/obj/machinery/embedded_controller/Topic(href, href_list)
-	if(..())
-		return 0
-
-	if(program)
-		program.receive_user_command(href_list["command"])
-		addtimer(CALLBACK(program, TYPE_PROC_REF(/datum/computer/file/embedded_program, process)), 5)
-
-	usr.set_machine(src)
-	addtimer(CALLBACK(src, PROC_REF(updateDialog)), 5)
-
 /obj/machinery/embedded_controller/process(delta_time)
 	if(program)
 		program.process(delta_time)
 
 	update_icon()
-	src.updateDialog()
 
 /obj/machinery/embedded_controller/radio
 	var/frequency

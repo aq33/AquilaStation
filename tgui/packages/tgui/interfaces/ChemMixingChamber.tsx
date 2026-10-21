@@ -40,12 +40,13 @@ export const ChemMixingChamber = (props) => {
         <Stack vertical fill>
           <Stack.Item>
             <Section
-              title="Conditions"
+              title="Warunki"
               buttons={
                 <Stack>
-                  <Stack.Item mt={0.3}>{'Target:'}</Stack.Item>
+                  <Stack.Item mt={0.3}>{'Cel:'}</Stack.Item>
                   <Stack.Item>
                     <NumberInput
+                      tickWhileDragging
                       width="65px"
                       unit="K"
                       step={10}
@@ -67,7 +68,7 @@ export const ChemMixingChamber = (props) => {
                 <Stack.Item>
                   <Stack fill>
                     <Stack.Item textColor="label">
-                      Current Temperature:
+                      Obecna temperatura:
                     </Stack.Item>
                     <Stack.Item grow>
                       <AnimatedNumber
@@ -82,13 +83,13 @@ export const ChemMixingChamber = (props) => {
           </Stack.Item>
           <Stack.Item grow>
             <Section
-              title="Settings"
+              title="Ustawienia"
               fill
               scrollable
               buttons={
                 (isReacting && (
                   <Box inline bold color={'purple'}>
-                    {'Reacting'}
+                    {'Reakcja'}
                   </Box>
                 )) || (
                   <Box
@@ -97,7 +98,7 @@ export const ChemMixingChamber = (props) => {
                     bold
                     color={emptying ? 'bad' : 'good'}
                   >
-                    {emptying ? 'Emptying' : 'Filling'}
+                    {emptying ? 'Opróżnianie' : 'Napełnianie'}
                   </Box>
                 )
               }
@@ -107,7 +108,7 @@ export const ChemMixingChamber = (props) => {
                   <Stack fill>
                     <Stack.Item grow>
                       <Button
-                        content="Add Reagent"
+                        content="Dodaj odczynnik"
                         color="good"
                         icon="plus"
                         onClick={() =>
@@ -119,6 +120,7 @@ export const ChemMixingChamber = (props) => {
                     </Stack.Item>
                     <Stack.Item>
                       <NumberInput
+                        tickWhileDragging
                         value={reagentQuantity}
                         minValue={1}
                         maxValue={100}

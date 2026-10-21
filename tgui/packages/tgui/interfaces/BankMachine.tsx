@@ -1,38 +1,52 @@
-import { Button, LabeledList, NoticeBox, Section } from 'tgui-core/components';
+import {
+  AnimatedNumber,
+  Button,
+  LabeledList,
+  NoticeBox,
+  Section,
+} from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  current_balance: any;
-  siphoning: any;
-  station_name: any;
+  current_balance: number;
+  siphoning: BooleanLike;
+  station_name: string;
 };
 
 export const BankMachine = (props) => {
   const { act, data } = useBackend<Data>();
   const { current_balance, siphoning, station_name } = data;
+
   return (
-    <Window width={335} height={160}>
+    <Window width={350} height={155}>
       <Window.Content>
-        <Section title={station_name + ' Vault'}>
+        <NoticeBox danger>Tylko dla upoważnionego personelu</NoticeBox>
+        <Section title={`Skarbiec ${station_name}`}>
           <LabeledList>
             <LabeledList.Item
-              label="Current Balance"
+              label="Saldo"
               buttons={
                 <Button
                   icon={siphoning ? 'times' : 'sync'}
-                  content={siphoning ? 'Stop Siphoning' : 'Siphon Credits'}
                   selected={siphoning}
                   onClick={() => act(siphoning ? 'halt' : 'siphon')}
-                />
+                >
+                  {siphoning ? 'Przerwij wypłatę' : 'Wyprowadź kredyty'}
+                </Button>
               }
             >
-              {current_balance + ' cr'}
+              <AnimatedNumber
+                value={current_balance}
+                format={(value) => formatMoney(value)}
+              />
+              {' cr'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <NoticeBox textAlign="center">Authorized personnel only</NoticeBox>
       </Window.Content>
     </Window>
   );

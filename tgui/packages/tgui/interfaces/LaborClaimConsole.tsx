@@ -1,54 +1,75 @@
-import { toTitleCase } from 'common/string';
 import { Box, Button, LabeledList, Section, Table } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type Ore = {
+  ore: string;
+  value: number;
+};
+
 type Data = {
-  can_go_home: any;
-  id_points: any;
-  ores: any;
-  status_info: any;
-  unclaimed_points: any;
+  can_go_home: BooleanLike;
+  id_points: number;
+  ores: Ore[];
+  status_info: string;
+  unclaimed_points: number;
 };
 
 export const LaborClaimConsole = (props) => {
   const { act, data } = useBackend<Data>();
-  const { can_go_home, id_points, ores, status_info, unclaimed_points } = data;
+  const {
+    can_go_home,
+    id_points,
+    ores = [],
+    status_info,
+    unclaimed_points,
+  } = data;
+
   return (
-    <Window width={315} height={430}>
-      <Window.Content>
+    <Window width={315} height={440}>
+      <Window.Content scrollable>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Status">{status_info}</LabeledList.Item>
-            <LabeledList.Item label="Shuttle controls">
+            <LabeledList.Item label="Stan">{status_info}</LabeledList.Item>
+            <LabeledList.Item label="Prom">
               <Button
-                content="Move shuttle"
                 disabled={!can_go_home}
                 onClick={() => act('move_shuttle')}
-              />
+              >
+                Wezwij prom
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Points">{id_points}</LabeledList.Item>
+            <LabeledList.Item label="Punkty">{id_points}</LabeledList.Item>
             <LabeledList.Item
-              label="Unclaimed points"
+              label="Nieodebrane punkty"
               buttons={
                 <Button
-                  content="Claim points"
                   disabled={!unclaimed_points}
                   onClick={() => act('claim_points')}
-                />
+                >
+                  Odbierz punkty
+                </Button>
               }
             >
               {unclaimed_points}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Material values">
+        <Section title="Instrukcja">
+          Wydobywaj rudę w kopalni obozu, przetop ją w hucie, a gotowe arkusze
+          wrzuć do maszyny układającej obok tej konsoli. Potem odbierz punkty na
+          swój identyfikator więźnia. Gdy uzbierasz limit, możesz wezwać prom na
+          stację.
+        </Section>
+        <Section title="Wartość materiałów">
           <Table>
             <Table.Row header>
-              <Table.Cell>Material</Table.Cell>
+              <Table.Cell>Materiał</Table.Cell>
               <Table.Cell collapsing textAlign="right">
-                Value
+                Punkty
               </Table.Cell>
             </Table.Row>
             {ores.map((ore) => (

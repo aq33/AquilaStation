@@ -11,6 +11,7 @@
 	antag_moodlet = /datum/mood_event/revolution
 	var/hud_type = "rev"
 	var/datum/team/revolution/rev_team
+	ui_name = "AntagInfoRevolution"
 
 	/// What message should the player receive when they are being demoted, and the revolution has won?
 	var/victory_message = "Rewolucja obaliła dowództwo! Viva la revolución! Straćcie każdego szefa działu i ochroniarza, jeśli znajdziecie ich żywych."
@@ -73,6 +74,20 @@
 
 /datum/antagonist/rev/get_team()
 	return rev_team
+
+// Okno AntagInfoRevolution z tg: szefowie do obalenia zmieniają się w trakcie rundy, więc są w ui_data
+/datum/antagonist/rev/ui_data(mob/user)
+	var/list/data = list()
+	data["leader"] = istype(src, /datum/antagonist/rev/head)
+	data["lone_wolf"] = length(rev_team?.head_revolutionaries()) <= 1
+	var/list/heads = list()
+	for(var/datum/objective/mutiny/objective in rev_team?.objectives)
+		var/datum/mind/head = objective.target
+		if(!head)
+			continue
+		heads += list(list("name" = head.name, "role" = head.assigned_role))
+	data["heads"] = heads
+	return data
 
 /datum/antagonist/rev/proc/create_objectives()
 	if(!give_objectives)
@@ -472,35 +487,34 @@
 	return result.Join()
 
 /datum/team/revolution/antag_listing_entry()
-	var/common_part = ""
-	var/list/parts = list()
-	parts += "<b>[antag_listing_name()]</b><br>"
-	parts += "<table cellspacing=5>"
-
+	// AQUILA EDIT - dane dla okna TGUI Check Antagonists zamiast HTML
+	var/list/antags = list()
 	var/list/heads = get_team_antags(/datum/antagonist/rev/head,TRUE)
-
 	for(var/datum/antagonist/A in heads | get_team_antags())
-		parts += A.antag_listing_entry()
+		antags += list(A.antag_listing_entry())
 
-	parts += "</table>"
-	parts += antag_listing_footer()
-	common_part = parts.Join()
-
-	var/heads_report = "<b>Heads of Staff</b><br>"
-	heads_report += "<table cellspacing=5>"
+	var/list/heads_rows = list()
 	for(var/datum/mind/N in SSjob.get_living_heads())
 		var/mob/M = N.current
 		if(M)
-			heads_report += "<tr><td><a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-			heads_report += "<td><A href='byond://?priv_msg=[M.ckey]'>PM</A></td>"
-			heads_report += "<td><A href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
 			var/turf/mob_loc = get_turf(M)
-			heads_report += "<td>[mob_loc.loc]</td></tr>"
+			heads_rows += list(list(
+				"text" = "[M.real_name][M.client ? "" : " (brak klienta)"][M.stat == DEAD ? " (MARTWY)" : ""] - [mob_loc?.loc]",
+				"pp_ref" = REF(M),
+				"follow_ref" = REF(M),
+				"ckey" = M.ckey,
+			))
 		else
-			heads_report += "<tr><td><a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
-			heads_report += "<td><A href='byond://?priv_msg=[N.key]'>PM</A></td></tr>"
-	heads_report += "</table>"
-	return common_part + heads_report
+			heads_rows += list(list(
+				"text" = "[N.name] ([N.key]) - ciało głowy zniszczone!",
+				"vv_ref" = REF(N),
+				"ckey" = ckey(N.key),
+			))
+	return list(
+		"title" = antag_listing_name(),
+		"antags" = antags,
+		"extra" = list(list("title" = "Głowy stacji", "rows" = heads_rows)),
+	)
 
 /datum/team/revolution/is_gamemode_hero()
 	return SSticker.mode.name == "revolution"

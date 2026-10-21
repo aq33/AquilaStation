@@ -135,7 +135,7 @@
 						saved_stats.range = lvl
 						. = TRUE
 		if("color")
-			var/color = input(usr, "Jaki ma być kolor twojego strażnika?", "Wybierz kolor", "#ffffff") as color|null
+			var/color = tgui_color_picker(usr, "Jaki ma być kolor twojego strażnika?", "Wybierz kolor", "#ffffff")
 			if(color)
 				guardian_color = color
 				. = TRUE

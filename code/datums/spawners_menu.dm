@@ -48,10 +48,13 @@
 		this["important_warning"] = ""
 		this["refs"] = list()
 		var/amount_left = 0
+		var/infinite = FALSE
 		for(var/spawner_obj in GLOB.mob_spawners[spawner])
 			this["refs"] += "[REF(spawner_obj)]"
 			if(istype(spawner_obj, /obj/effect/mob_spawn))
 				var/obj/effect/mob_spawn/spawn_point = spawner_obj
+				if(spawn_point.uses < 0) // AQUILA EDIT - tgui z tg pokazuje nieskończone spawnery
+					infinite = TRUE
 				amount_left += spawn_point.uses > 0 ? spawn_point.uses : 1
 			else
 				amount_left++
@@ -70,6 +73,7 @@
 						this["desc"] = O.desc
 
 		this["amount_left"] = amount_left
+		this["infinite"] = infinite
 		data["spawners"] += list(this)
 
 	return data

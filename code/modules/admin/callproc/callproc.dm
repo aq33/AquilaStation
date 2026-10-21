@@ -2,7 +2,12 @@
 	set category = "Debug"
 	set name = "Advanced ProcCall"
 	set waitfor = FALSE
-	callproc_blocking()
+	if(!check_rights(R_DEBUG))
+		return
+	// AQUILA: okno TGUI (ProcCallMenu) zamiast serii input(); wersja blokująca zostaje dla VV_PROCCALL_RETVAL
+	if(!proccall_menu)
+		proccall_menu = new(src)
+	proccall_menu.ui_interact(mob)
 
 /client/proc/callproc_blocking(list/get_retval)
 	if(!check_rights(R_DEBUG))
@@ -10,7 +15,6 @@
 
 	var/datum/target
 	var/targetselected = FALSE
-	var/returnval
 
 	switch(alert("Proc owned by something?",,"Yes","No"))
 		if("Yes")
@@ -30,12 +34,26 @@
 	if(!procpath)
 		return
 
+	var/procname = callproc_check_path(target, targetselected, procpath)
+	if(!procname)
+		return
+
+	var/list/lst = get_callproc_args()
+	if(!lst)
+		return
+
+	. = callproc_execute(target, targetselected, procname, lst, get_retval)
+
+/// Sprawdza ścieżkę procedury; zwraca samą nazwę procedury albo null (z komunikatem dla admina)
+/client/proc/callproc_check_path(datum/target, targetselected, procpath)
 	//strip away everything but the proc name
 	var/list/proclist = splittext(procpath, "/")
 	if (!length(proclist))
 		return
 
 	var/procname = proclist[proclist.len]
+	if(!procname)
+		return
 	var/proctype = ("verb" in proclist) ? "verb" :"proc"
 
 	if(targetselected)
@@ -47,11 +65,13 @@
 		if(!text2path(procpath))
 			to_chat(usr, "<span class='warning'>Error: callproc(): [procpath] does not exist.</span>")
 			return
+	return procname
 
-	var/list/lst = get_callproc_args()
-	if(!lst)
+/// Loguje i wywołuje procedurę (po callproc_check_path), wypisuje wynik do czatu admina
+/client/proc/callproc_execute(datum/target, targetselected, procname, list/lst, list/get_retval)
+	if(!check_rights(R_DEBUG))
 		return
-
+	var/returnval
 	if(targetselected)
 		if(!target)
 			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
@@ -198,3 +218,195 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 
 	else
 		. = "<font color='blue'>[procname] returned: [!isnull(returnval) ? returnval : "null"]</font>"
+
+// AQUILA: okno TGUI dla Advanced ProcCall (ProcCallMenu z tg, tam konfiguracja komponentu wiremod).
+// Ustawienia zostają na kliencie między otwarciami; referencje do datumów trzymane jako weakref.
+#define PROCCALL_ARG_TEXT "Tekst"
+#define PROCCALL_ARG_NUM "Liczba"
+#define PROCCALL_ARG_NULL "null"
+#define PROCCALL_ARG_VV "Zaawansowany (VV)"
+
+/client/var/datum/proccall_menu/proccall_menu
+
+/datum/proccall_menu
+	var/client/holder
+	/// Czy procedura należy do obiektu (FALSE = procedura globalna)
+	var/target_selected = FALSE
+	var/datum/weakref/target_ref
+	var/target_name
+	var/procpath = ""
+	/// Lista argumentów: list("name", "type", "value", "is_ref", "display")
+	var/list/arguments = list()
+
+/datum/proccall_menu/New(client/C)
+	holder = C
+
+/datum/proccall_menu/Destroy(force)
+	if(holder?.proccall_menu == src)
+		holder.proccall_menu = null
+	holder = null
+	target_ref = null
+	arguments = null
+	return ..()
+
+/datum/proccall_menu/ui_state(mob/user)
+	return GLOB.debug_state
+
+/datum/proccall_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ProcCallMenu", "Advanced ProcCall")
+		ui.open()
+
+/datum/proccall_menu/ui_static_data(mob/user)
+	return list("possible_types" = list(PROCCALL_ARG_TEXT, PROCCALL_ARG_NUM, PROCCALL_ARG_NULL, PROCCALL_ARG_VV))
+
+/datum/proccall_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["target_selected"] = target_selected
+	var/datum/target = target_ref?.resolve()
+	data["target_name"] = target_selected ? (target ? target_name : null) : null
+	data["procpath"] = procpath
+	var/list/arg_data = list()
+	for(var/list/argument as anything in arguments)
+		arg_data += list(list(
+			"name" = argument["name"],
+			"datatype" = argument["type"],
+			"value" = argument["display"],
+		))
+	data["arguments"] = arg_data
+	return data
+
+/// Zwraca listę argumentu o indeksie z okna (od 1) albo null
+/datum/proccall_menu/proc/get_argument(index)
+	index = text2num(index)
+	if(!isnum(index) || index < 1 || index > length(arguments))
+		return null
+	return arguments[index]
+
+/datum/proccall_menu/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!holder || usr?.client != holder || !check_rights(R_DEBUG))
+		return
+	switch(action)
+		if("select_target")
+			var/list/value = holder.vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_MARKED_DATUM, VV_TEXT_LOCATE, VV_PROCCALL_RETVAL))
+			if(QDELETED(src) || !value["class"] || !value["value"])
+				return TRUE
+			var/datum/target = value["value"]
+			if(!istype(target) || istype(target, /datum/weakref))
+				to_chat(usr, "<span class='danger'>Invalid target.</span>")
+				return TRUE
+			target_selected = TRUE
+			target_ref = WEAKREF(target)
+			target_name = "[target] ([target.type])"
+			return TRUE
+		if("clear_target")
+			target_selected = FALSE
+			target_ref = null
+			target_name = null
+			return TRUE
+		if("set_procpath")
+			procpath = trim(copytext("[params["path"]]", 1, 256))
+			return TRUE
+		if("add_argument")
+			arguments += list(list("name" = "", "type" = PROCCALL_ARG_TEXT, "value" = "", "is_ref" = FALSE, "display" = ""))
+			return TRUE
+		if("remove_argument")
+			var/list/argument = get_argument(params["index"])
+			if(argument)
+				arguments -= list(argument)
+			return TRUE
+		if("rename_argument")
+			var/list/argument = get_argument(params["index"])
+			if(argument)
+				argument["name"] = trim(copytext("[params["name"]]", 1, 128))
+			return TRUE
+		if("set_argument_datatype")
+			var/list/argument = get_argument(params["index"])
+			var/datatype = params["datatype"]
+			if(!argument || !(datatype in list(PROCCALL_ARG_TEXT, PROCCALL_ARG_NUM, PROCCALL_ARG_NULL, PROCCALL_ARG_VV)))
+				return TRUE
+			argument["type"] = datatype
+			argument["is_ref"] = FALSE
+			switch(datatype)
+				if(PROCCALL_ARG_TEXT)
+					argument["value"] = ""
+					argument["display"] = ""
+				if(PROCCALL_ARG_NUM)
+					argument["value"] = 0
+					argument["display"] = "0"
+				else
+					argument["value"] = null
+					argument["display"] = (datatype == PROCCALL_ARG_NULL) ? "null" : ""
+			return TRUE
+		if("set_argument_value")
+			var/list/argument = get_argument(params["index"])
+			if(!argument)
+				return TRUE
+			switch(argument["type"])
+				if(PROCCALL_ARG_TEXT)
+					argument["value"] = "[params["value"]]"
+					argument["display"] = argument["value"]
+				if(PROCCALL_ARG_NUM)
+					var/number = text2num("[params["value"]]")
+					argument["value"] = isnum(number) ? number : 0
+					argument["display"] = "[argument["value"]]"
+			return TRUE
+		if("pick_argument_value")
+			var/list/argument = get_argument(params["index"])
+			if(!argument || argument["type"] != PROCCALL_ARG_VV)
+				return TRUE
+			var/list/value = holder.vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
+			if(QDELETED(src) || !value["class"] || !(argument in arguments))
+				return TRUE
+			var/picked = value["value"]
+			if(isdatum(picked) && !istype(picked, /datum/weakref))
+				argument["is_ref"] = TRUE
+				argument["value"] = WEAKREF(picked)
+			else
+				argument["is_ref"] = FALSE
+				argument["value"] = picked
+			argument["display"] = "[value["class"]]: [isnull(picked) ? "null" : picked]"
+			return TRUE
+		if("call")
+			call_proc()
+			return TRUE
+
+/// Składa argumenty i wywołuje procedurę z tymi samymi sprawdzeniami i logami co callproc_blocking
+/datum/proccall_menu/proc/call_proc()
+	var/datum/target = null
+	if(target_selected)
+		target = target_ref?.resolve()
+		if(!target)
+			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
+			return
+	if(!procpath)
+		return
+	var/procname = holder.callproc_check_path(target, target_selected, procpath)
+	if(!procname)
+		return
+	var/list/lst = list()
+	var/list/named_args = list()
+	for(var/list/argument as anything in arguments)
+		var/value = argument["value"]
+		if(argument["is_ref"])
+			var/datum/weakref/ref = value
+			value = ref?.resolve()
+			if(isnull(value))
+				to_chat(usr, "<font color='red'>Error: callproc(): argument [argument["display"]] no longer exists.</font>")
+				return
+		if(argument["name"])
+			named_args[argument["name"]] = value
+		else
+			lst += LIST_VALUE_WRAP_LISTS(value)
+	if(LAZYLEN(named_args))
+		lst += named_args
+	holder.callproc_execute(target, target_selected, procname, lst)
+
+#undef PROCCALL_ARG_TEXT
+#undef PROCCALL_ARG_NUM
+#undef PROCCALL_ARG_NULL
+#undef PROCCALL_ARG_VV

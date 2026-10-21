@@ -212,9 +212,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			if(jobs[I.hud_state] != null)
 				entry["ijob"] = jobs[I.hud_state]
 
-		// Binary living/dead status
+		// Living/dead status - AQUILA: stat zamiast !stat (okno z tg rozróżnia nieprzytomnych i martwych)
 		if (nanite_sensors || uniform.sensor_mode >= SENSOR_LIVING)
-			entry["life_status"] = !tracked_human.stat
+			entry["life_status"] = tracked_human.stat
 
 		// Damage
 		if (nanite_sensors || uniform.sensor_mode >= SENSOR_VITALS)

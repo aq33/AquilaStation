@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 //The datum and interface for the malf unlock menu, which lets them choose actions to unlock.
 /datum/module_picker
-	var/temp
+	var/name = "Menu modułów awarii"
 	var/processing_time = 50
 	var/list/possible_modules
 
@@ -129,72 +129,106 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 			if(istype(A, initial(AM.power_type)))
 				qdel(A)
 
-/datum/module_picker/proc/use(mob/user)
-	var/list/dat = list()
-	dat += "<B>Wybierz, na co przeznaczyć moc obliczeniową (pozostało: [processing_time]).</B><BR>"
-	dat += "<HR>"
-	dat += "<B>Zainstaluj moduł:</B><BR>"
-	dat += "<I>Liczba obok to ilość zużywanej mocy obliczeniowej.</I><BR>"
-	for(var/datum/AI_Module/large/module in possible_modules)
-		dat += "<A href='byond://?src=[REF(src)];[module.mod_pick_name]=1'>[module.module_name]</A><A href='byond://?src=[REF(src)];showdesc=[module.mod_pick_name]'>\[?\]</A> ([module.cost])<BR>"
-	for(var/datum/AI_Module/small/module in possible_modules)
-		dat += "<A href='byond://?src=[REF(src)];[module.mod_pick_name]=1'>[module.module_name]</A><A href='byond://?src=[REF(src)];showdesc=[module.mod_pick_name]'>\[?\]</A> ([module.cost])<BR>"
-	dat += "<HR>"
-	if(temp)
-		dat += "[temp]"
-	var/datum/browser/popup = new(user, "modpicker", "Menu modułów awarii")
-	popup.set_content(dat.Join())
-	popup.open()
+/datum/module_picker/ui_state(mob/user)
+	return GLOB.always_state
 
-/datum/module_picker/Topic(href, href_list)
-	..()
+/datum/module_picker/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MalfunctionModulePicker", name)
+		ui.open()
 
+/datum/module_picker/ui_data(mob/user)
+	var/list/data = list()
+	data["processingTime"] = processing_time
+	var/hacked_apcs = 0
+	if(isAI(user))
+		for(var/obj/machinery/power/apc/apc as anything in GLOB.apcs_list)
+			if(apc.malfai == user)
+				hacked_apcs++
+	data["hackedAPCs"] = hacked_apcs
+	return data
+
+/datum/module_picker/ui_static_data(mob/user)
+	var/list/data = list()
+	data["categories"] = list()
+	data["modules"] = list()
+
+	for(var/datum/AI_Module/module as anything in possible_modules)
+		var/icon
+		var/icon_state
+		if(!module.upgrade && module.power_type)
+			var/datum/action/innate/ai/active_ability = module.power_type
+			icon = initial(active_ability.icon_icon)
+			icon_state = initial(active_ability.button_icon_state)
+		var/category = "Małe moduły"
+		if(module.upgrade)
+			category = "Ulepszenia"
+		else if(istype(module, /datum/AI_Module/large))
+			category = "Duże moduły"
+
+		data["modules"] += list(list(
+			"name" = module.module_name,
+			"icon" = icon,
+			"icon_state" = icon_state,
+			"cost" = module.cost,
+			"desc" = module.description,
+			"category" = category
+		))
+		if(!(category in data["categories"]))
+			data["categories"] += category
+
+	return data
+
+/datum/module_picker/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
 	if(!isAI(usr))
 		return
-	var/mob/living/silicon/ai/A = usr
+	switch(action)
+		if("buy")
+			var/item_name = params["name"]
+			for(var/datum/AI_Module/module as anything in possible_modules)
+				if(module.module_name == item_name)
+					purchase_module(usr, module)
+					return TRUE
 
+/datum/module_picker/proc/purchase_module(mob/living/silicon/ai/A, datum/AI_Module/AM)
+	if(!istype(AM) || !istype(A))
+		return
 	if(A.stat == DEAD)
 		to_chat(A, "<span class='warning'>Już nie żyjesz!</span>")
 		return
+	if(AM.cost > processing_time)
+		to_chat(A, "<span class='warning'>Nie stać cię na ten moduł.</span>")
+		return
 
-	for(var/datum/AI_Module/AM in possible_modules)
-		if (href_list[AM.mod_pick_name])
-
-			// Cost check
-			if(AM.cost > processing_time)
-				temp = "Nie stać cię na ten moduł."
-				break
-
+	// Give the power and take away the money.
+	if(AM.upgrade) //upgrade and upgrade() are separate, be careful!
+		AM.upgrade(A)
+		possible_modules -= AM
+		to_chat(A, AM.unlock_text)
+		A.playsound_local(A, AM.unlock_sound, 50, 0)
+		update_static_data(A)
+	else
+		if(AM.power_type)
 			var/datum/action/innate/ai/action = locate(AM.power_type) in A.actions
-
-			// Give the power and take away the money.
-			if(AM.upgrade) //upgrade and upgrade() are separate, be careful!
-				AM.upgrade(A)
-				possible_modules -= AM
-				to_chat(A, AM.unlock_text)
-				A.playsound_local(A, AM.unlock_sound, 50, 0)
-			else
-				if(AM.power_type)
-					if(!action) //Unlocking for the first time
-						var/datum/action/AC = new AM.power_type
-						AC.Grant(A)
-						A.current_modules += new AM.type
-						temp = AM.description
-						if(AM.one_purchase)
-							possible_modules -= AM
-						if(AM.unlock_text)
-							to_chat(A, AM.unlock_text)
-						if(AM.unlock_sound)
-							A.playsound_local(A, AM.unlock_sound, 50, 0)
-					else //Adding uses to an existing module
-						action.uses += initial(action.uses)
-						temp = "Dodano użycia do [action.name]!"
-			processing_time -= AM.cost
-
-		if(href_list["showdesc"])
-			if(AM.mod_pick_name == href_list["showdesc"])
-				temp = AM.description
-	use(usr)
+			if(!action) //Unlocking for the first time
+				var/datum/action/AC = new AM.power_type
+				AC.Grant(A)
+				A.current_modules += new AM.type
+				if(AM.one_purchase)
+					possible_modules -= AM
+					update_static_data(A)
+				if(AM.unlock_text)
+					to_chat(A, AM.unlock_text)
+				if(AM.unlock_sound)
+					A.playsound_local(A, AM.unlock_sound, 50, 0)
+			else //Adding uses to an existing module
+				action.uses += initial(action.uses)
+				to_chat(A, "<span class='notice'>Dodano użycia do [action.name]!</span>")
+	processing_time -= AM.cost
 
 
 //The base module type, which holds info about each ability.

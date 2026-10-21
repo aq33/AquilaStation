@@ -1894,26 +1894,31 @@
 /turf/closed/wall/steel,
 /area/crew_quarters/heads/xo)
 "dY" = (
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck1/hallway)
-"dZ" = (
-/obj/effect/turf_decal/tile/ship/half/police{
-	dir = 1
-	},
 /obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/bot_elevator,
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck1/hallway)
+/obj/structure/table/reinforced,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/item/stamp/cmo,
+/obj/item/clothing/mask/cigarette/cigar{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
+"dZ" = (
+/obj/structure/table/glass,
+/obj/item/tgui_book/manual/dsm,
+/obj/structure/cable,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "ea" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/poster/contraband/random{
@@ -1922,20 +1927,12 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
 "eb" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/police{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 8
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck1/hallway)
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/light_switch/north,
+/turf/open/floor/wood,
+/area/library)
 "ec" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 8
@@ -1999,6 +1996,16 @@
 	},
 /turf/open/floor/plating,
 /area/library)
+"eh" = (
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck1/hallway)
 "ei" = (
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom,
@@ -2072,6 +2079,32 @@
 /obj/machinery/firealarm/directional/east,
 /turf/open/floor/durasteel/lino,
 /area/medical/surgery)
+"er" = (
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/bot_elevator,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck1/hallway)
+"es" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck1/hallway)
 "et" = (
 /obj/structure/disposaloutlet{
 	dir = 4
@@ -44291,7 +44324,7 @@ oO
 KC
 Xf
 qh
-CN
+dY
 Sk
 Vn
 Ds
@@ -45050,7 +45083,7 @@ Rp
 pc
 jn
 xN
-eb
+es
 ql
 ob
 Sx
@@ -45307,7 +45340,7 @@ LS
 Uy
 hy
 CO
-dZ
+er
 Kr
 Xv
 Nb
@@ -45564,7 +45597,7 @@ fm
 rj
 gQ
 xN
-dY
+eh
 jQ
 Fw
 NL
@@ -53301,7 +53334,7 @@ ew
 wR
 OO
 wV
-tX
+dZ
 cH
 kH
 Ex
@@ -54291,7 +54324,7 @@ sJ
 pF
 SY
 bo
-OG
+eb
 bb
 Ma
 dW

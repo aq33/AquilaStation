@@ -3,25 +3,41 @@ import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = {
-  bodies: any;
+type Body = {
+  htmlcolor: string;
+  area: string;
+  status: string;
+  exoticblood: number;
+  name: string;
+  ref: string;
+  occupied: string;
 };
 
-export const BodyEntry = (props) => {
+type Data = {
+  bodies: Body[];
+};
+
+const statusMap = {
+  Dead: 'bad',
+  Unconscious: 'average',
+  Conscious: 'good',
+};
+
+// Wartości status przychodzą z DM po angielsku, tu tylko je wyświetlamy po polsku
+const statusNames = {
+  Dead: 'Martwe',
+  Unconscious: 'Nieprzytomne',
+  Conscious: 'Przytomne',
+};
+
+const occupiedMap = {
+  owner: 'Tu jesteś',
+  stranger: 'Zajęte',
+  available: 'Przenieś się',
+};
+
+export const BodyEntry = (props: { body: Body; swapFunc: () => void }) => {
   const { body, swapFunc } = props;
-
-  const statusMap = {
-    Dead: 'bad',
-    Unconscious: 'average',
-    Conscious: 'good',
-  };
-
-  const occupiedMap = {
-    owner: 'You Are Here',
-    stranger: 'Occupied',
-    available: 'Swap',
-  };
-
   return (
     <Section
       title={
@@ -31,19 +47,20 @@ export const BodyEntry = (props) => {
       }
       buttons={
         <Button
-          content={occupiedMap[body.occupied]}
           selected={body.occupied === 'owner'}
-          color={body.occupied === 'stranger' && 'bad'}
+          color={body.occupied === 'stranger' ? 'bad' : undefined}
           onClick={() => swapFunc()}
-        />
+        >
+          {occupiedMap[body.occupied]}
+        </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Status" color={statusMap[body.status]}>
-          {body.status}
+        <LabeledList.Item label="Stan" color={statusMap[body.status]}>
+          <Box bold>{statusNames[body.status] || body.status}</Box>
         </LabeledList.Item>
-        <LabeledList.Item label="Jelly">{body.exoticblood}</LabeledList.Item>
-        <LabeledList.Item label="Location">{body.area}</LabeledList.Item>
+        <LabeledList.Item label="Galareta">{body.exoticblood}</LabeledList.Item>
+        <LabeledList.Item label="Położenie">{body.area}</LabeledList.Item>
       </LabeledList>
     </Section>
   );
@@ -51,11 +68,9 @@ export const BodyEntry = (props) => {
 
 export const SlimeBodySwapper = (props) => {
   const { act, data } = useBackend<Data>();
-
   const { bodies = [] } = data;
-
   return (
-    <Window theme="generic" width={400} height={400}>
+    <Window width={400} height={400}>
       <Window.Content scrollable>
         <Section>
           {bodies.map((body) => (

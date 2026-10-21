@@ -122,88 +122,106 @@
 	ejectItem()
 	. = ..(O)
 
-/obj/machinery/rnd/experimentor/ui_interact(mob/user)
-	var/list/dat = list("<center>")
-	if(!linked_console)
-		dat += "<b><a href='byond://?src=[REF(src)];function=search'>Wyszukaj konsolę B+R</A></b>"
+/obj/machinery/rnd/experimentor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Experimentor", name)
+		ui.open()
+
+/obj/machinery/rnd/experimentor/ui_data(mob/user)
+	var/list/data = list()
+	data["hasItem"] = !!loaded_item
+	data["isOnCooldown"] = !!recentlyExperimented
+	data["isConsoleLinked"] = !!linked_console
+
+	var/static/list/experiment_info = list(
+		list("id" = SCANTYPE_POKE, "name" = "Szturchnij", "fa_icon" = "hand-point-right"),
+		list("id" = SCANTYPE_IRRADIATE, "name" = "Napromieniuj", "fa_icon" = "radiation"),
+		list("id" = SCANTYPE_GAS, "name" = "Gaz", "fa_icon" = "cloud"),
+		list("id" = SCANTYPE_HEAT, "name" = "Podpal", "fa_icon" = "fire"),
+		list("id" = SCANTYPE_COLD, "name" = "Zamroź", "fa_icon" = "snowflake"),
+		list("id" = SCANTYPE_OBLITERATE, "name" = "Zniszcz", "fa_icon" = "bomb"),
+		list("id" = SCANTYPE_DISCOVER, "name" = "Odkryj", "fa_icon" = "magnifying-glass"),
+	)
+	var/list/available_experiments = list()
 	if(loaded_item)
-		dat += "<b>Załadowany przedmiot:</b> [loaded_item]"
+		var/is_relic = istype(loaded_item, /obj/item/relic)
+		for(var/list/info in experiment_info)
+			var/is_discover = (info["id"] == SCANTYPE_DISCOVER)
+			available_experiments += list(list(
+				"id" = info["id"],
+				"name" = info["name"],
+				"fa_icon" = info["fa_icon"],
+				"isAvailable" = is_discover ? is_relic : TRUE,
+				"isDiscover" = is_discover,
+			))
+	data["availableExperiments"] = available_experiments
 
-		dat += "<div>Dostępne testy:"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_POKE]'>Poke</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_IRRADIATE];'>Irradiate</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_GAS]'>Gas</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_HEAT]'>Burn</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_COLD]'>Freeze</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_OBLITERATE]'>Destroy</A></b></div>"
-		if(istype(loaded_item,/obj/item/relic))
-			dat += "<b><a href='byond://?src=[REF(src)];item=[REF(loaded_item)];function=[SCANTYPE_DISCOVER]'>Discover</A></b>"
-		dat += "<b><a href='byond://?src=[REF(src)];function=eject'>Eject</A>"
+	if(loaded_item)
+		var/list/item_data = list()
+		item_data["name"] = loaded_item.name
+		item_data["icon"] = icon2base64(getFlatIcon(loaded_item, no_anim = TRUE))
+		item_data["isRelic"] = istype(loaded_item, /obj/item/relic)
+		var/list/nodes = list()
 		var/list/listin = techweb_item_boost_check(loaded_item)
-		if(listin)
-			var/list/output = list("<b><font color='purple'>Dane wzmocnienia badań:</font></b>")
-			var/list/res = list("<b><font color='blue'>Już zbadane:</font></b>")
-			var/list/boosted = list("<b><font color='red'>Już wzmocnione:</font></b>")
-			for(var/node_id in listin)
-				var/datum/techweb_node/N = SSresearch.techweb_node_by_id(node_id)
-				var/str = "<b>[N.display_name]</b>: [listin[N]] points.</b>"
-				if(SSresearch.science_tech.researched_nodes[N.id])
-					res += str
-				else if(SSresearch.science_tech.boosted_nodes[N.id])
-					boosted += str
-				if(SSresearch.science_tech.visible_nodes[N.id])	//JOY OF DISCOVERY!
-					output += str
-			output += boosted + res
-			dat += output
-	else
-		dat += "<b>Nic nie załadowano.</b>"
-	dat += "<a href='byond://?src=[REF(src)];function=refresh'>Refresh</A>"
-	dat += "<a href='byond://?src=[REF(src)];close=1'>Close</A></center>"
-	var/datum/browser/popup = new(user, "experimentor","Experimentor", 700, 400, src)
-	popup.set_content(dat.Join("<br>"))
-	popup.open()
-	onclose(user, "experimentor")
+		for(var/node_id in listin)
+			var/datum/techweb_node/N = SSresearch.techweb_node_by_id(node_id)
+			if(!N || !SSresearch.science_tech.visible_nodes[N.id]) //JOY OF DISCOVERY!
+				continue
+			var/status = "available"
+			if(SSresearch.science_tech.researched_nodes[N.id])
+				status = "researched"
+			else if(SSresearch.science_tech.boosted_nodes[N.id])
+				status = "boosted"
+			nodes += list(list(
+				"name" = N.display_name,
+				"points" = islist(listin[node_id]) ? techweb_point_display_generic(listin[node_id]) : null,
+				"status" = status,
+			))
+		item_data["associatedNodes"] = nodes
+		data["loadedItem"] = item_data
+	return data
 
-/obj/machinery/rnd/experimentor/Topic(href, href_list)
-	if(..())
+/obj/machinery/rnd/experimentor/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	usr.set_machine(src)
 
-	var/scantype = href_list["function"]
-	var/obj/item/process = locate(href_list["item"]) in src
-
-	if(href_list["close"])
-		usr << browse(null, "window=experimentor")
-		return
-	if(scantype == "search")
-		var/obj/machinery/computer/rdconsole/D = locate(/obj/machinery/computer/rdconsole) in oview(3,src)
-		if(D)
-			linked_console = D
-	else if(scantype == "eject")
-		ejectItem()
-	else if(scantype == "refresh")
-		updateUsrDialog()
-	else
-		if(recentlyExperimented)
-			to_chat(usr, "<span class='warning'>[src] był używany zbyt niedawno!</span>")
-		else if(!loaded_item)
-			to_chat(usr, "<span class='warning'>[src] nie jest obecnie załadowany!</span>")
-		else if(!process || process != loaded_item) //Interface exploit protection (such as hrefs or swapping items with interface set to old item)
-			to_chat(usr, "<span class='danger'>Wykryto awarię interfejsu w [src]. Spróbuj ponownie.</span>")
-		else
-			var/dotype
-			if(text2num(scantype) == SCANTYPE_DISCOVER)
-				dotype = SCANTYPE_DISCOVER
+	switch(action)
+		if("search")
+			var/obj/machinery/computer/rdconsole/D = locate(/obj/machinery/computer/rdconsole) in oview(3,src)
+			if(D)
+				linked_console = D
+			return TRUE
+		if("eject")
+			ejectItem()
+			return TRUE
+		if("experiment")
+			var/scantype = text2num(params["id"])
+			if(!scantype)
+				return
+			var/obj/item/process = loaded_item
+			if(recentlyExperimented)
+				to_chat(usr, "<span class='warning'>[src] był używany zbyt niedawno!</span>")
+			else if(!loaded_item)
+				to_chat(usr, "<span class='warning'>[src] nie jest obecnie załadowany!</span>")
+			else if(!(process in src))
+				to_chat(usr, "<span class='danger'>Wykryto awarię interfejsu w [src]. Spróbuj ponownie.</span>")
 			else
-				dotype = matchReaction(process,scantype)
-			experiment(dotype,process)
-			use_power(750)
-			if(dotype != FAIL)
-				var/list/nodes = techweb_item_boost_check(process)
-				var/picked = pickweight(nodes)		//This should work.
-				if(linked_console)
-					linked_console.stored_research.boost_with_path(SSresearch.techweb_node_by_id(picked), process.type)
-	updateUsrDialog()
+				var/dotype
+				if(scantype == SCANTYPE_DISCOVER)
+					dotype = SCANTYPE_DISCOVER
+				else
+					dotype = matchReaction(process,scantype)
+				experiment(dotype,process)
+				use_power(750)
+				if(dotype != FAIL)
+					var/list/nodes = techweb_item_boost_check(process)
+					var/picked = pickweight(nodes)		//This should work.
+					if(linked_console)
+						linked_console.stored_research.boost_with_path(SSresearch.techweb_node_by_id(picked), process.type)
+			return TRUE
 
 /obj/machinery/rnd/experimentor/proc/matchReaction(matching,reaction)
 	var/obj/item/D = matching
@@ -507,6 +525,7 @@
 /obj/machinery/rnd/experimentor/proc/reset_exp()
 	update_icon()
 	recentlyExperimented = FALSE
+	SStgui.update_uis(src)
 
 /obj/machinery/rnd/experimentor/update_icon()
 	icon_state = "h_lathe"

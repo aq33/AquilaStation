@@ -1,50 +1,43 @@
-import {
-  AnimatedNumber,
-  Box,
-  Button,
-  LabeledList,
-  NumberInput,
-  Section,
-} from 'tgui-core/components';
+import { Button, NumberInput, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { BeakerDisplay, legacyBeaker } from './Chemistry/BeakerDisplay';
+import type { BeakerReagent } from './common/BeakerDisplay';
 
 type Data = {
-  amount: any;
-  beakerContents: any;
-  beakerCurrentVolume: any;
-  beakerMaxVolume: any;
-  isBeakerLoaded: any;
+  amount: number;
+  temp: number;
+  isBeakerLoaded: BooleanLike;
+  beakerCurrentVolume: number | null;
+  beakerMaxVolume: number | null;
+  beakerContents: BeakerReagent[];
 };
 
 export const ChemDebugSynthesizer = (props) => {
   const { act, data } = useBackend<Data>();
-  const {
-    amount,
-    beakerCurrentVolume,
-    beakerMaxVolume,
-    isBeakerLoaded,
-    beakerContents = [],
-  } = data;
+  const { amount, temp } = data;
+  const beaker = legacyBeaker(
+    data.isBeakerLoaded,
+    data.beakerCurrentVolume,
+    data.beakerMaxVolume,
+    data.beakerContents,
+  );
+
   return (
     <Window width={390} height={330}>
       <Window.Content scrollable>
         <Section
-          title="Recipient"
+          title="Pojemnik"
           buttons={
-            isBeakerLoaded ? (
+            beaker ? (
               <>
-                <Button
-                  icon="eject"
-                  content="Eject"
-                  onClick={() => act('ejectBeaker')}
-                />
                 <NumberInput
                   value={amount}
                   unit="u"
                   minValue={1}
-                  maxValue={beakerMaxVolume}
+                  maxValue={beaker.maxVolume}
                   step={1}
                   stepPixelSize={2}
                   onChange={(value) =>
@@ -53,42 +46,31 @@ export const ChemDebugSynthesizer = (props) => {
                     })
                   }
                 />
-                <Button
-                  icon="plus"
-                  content="Input"
-                  onClick={() => act('input')}
+                <NumberInput
+                  value={temp}
+                  unit="K"
+                  minValue={0}
+                  maxValue={1000}
+                  step={1}
+                  stepPixelSize={2}
+                  onChange={(value) =>
+                    act('temp', {
+                      amount: value,
+                    })
+                  }
                 />
+                <Button icon="plus" onClick={() => act('input')}>
+                  Dodaj
+                </Button>
               </>
             ) : (
-              <Button
-                icon="plus"
-                content="Create Beaker"
-                onClick={() => act('makecup')}
-              />
+              <Button icon="plus" onClick={() => act('makecup')}>
+                Stwórz zlewkę
+              </Button>
             )
           }
         >
-          {isBeakerLoaded ? (
-            <>
-              <Box>
-                <AnimatedNumber value={beakerCurrentVolume} />
-                {' / ' + beakerMaxVolume + ' u'}
-              </Box>
-              {beakerContents.length > 0 ? (
-                <LabeledList>
-                  {beakerContents.map((chem) => (
-                    <LabeledList.Item key={chem.name} label={chem.name}>
-                      {chem.volume} u
-                    </LabeledList.Item>
-                  ))}
-                </LabeledList>
-              ) : (
-                <Box color="bad">Recipient Empty</Box>
-              )}
-            </>
-          ) : (
-            <Box color="average">No Recipient</Box>
-          )}
+          <BeakerDisplay beaker={beaker} />
         </Section>
       </Window.Content>
     </Window>

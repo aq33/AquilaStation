@@ -106,7 +106,7 @@ export const LoadoutPage = (props) => {
                       width="500px"
                       placeholder="Search items"
                       value={searchText}
-                      onInput={(_, value) => setSearchText(value)}
+                      onChange={(value) => setSearchText(value)}
                     />
                   </Section>
                 </Flex.Item>
@@ -233,7 +233,6 @@ const GearEntry = (props: {
           }`}
           style={{
             verticalAlign: 'middle',
-            horizontalAlign: 'middle',
           }}
         />
       </Table.Cell>

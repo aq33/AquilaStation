@@ -86,6 +86,7 @@
 /obj/item/bodypart/proc/drop_limb(special)
 	if(!owner)
 		return
+	SEND_SIGNAL(src, COMSIG_BODYPART_DROPPED, owner, special) // AQUILA EDIT - item arms (tgstation#91573)
 	var/atom/Tsec = owner.drop_location()
 	var/mob/living/carbon/C = owner
 	update_limb(1)
@@ -139,7 +140,8 @@
 
 	if(is_pseudopart)
 		drop_organs(C)	//Psuedoparts shouldn't have organs, but just in case
-		qdel(src)
+		if(!QDELING(src)) // AQUILA EDIT - we might be removed as a part of something qdeling us (tgstation#91573)
+			qdel(src)
 		return
 
 	forceMove(Tsec)

@@ -7,6 +7,7 @@
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
+	ui_name = "AntagInfoGlitch"
 	/// Strój nakładany przy przemianie i po wejściu na stację
 	var/datum/outfit/outfit_type = /datum/outfit/cyber_police
 	/// Minimum Qserver threat required to spawn this mob. This is subtracted (x/2) from the server thereafter.
@@ -147,6 +148,7 @@
 /datum/antagonist/domain_ghost_actor
 	name = "Aktor domeny wirtualnej"
 	antagpanel_category = "Bitrunning"
+	ui_name = "AntagInfoGlitch"
 	banning_key = ROLE_GLITCH
 	show_to_ghosts = TRUE
 	show_in_roundend = FALSE

@@ -7,41 +7,45 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
-type Data = {
-  PC_device_theme: any;
-  active_channel: any;
-  adminmode: any;
-  all_channels: any;
-  authed: any;
-  can_admin: any;
-  clients: any;
-  is_operator: any;
-  messages: any;
-  owner: any;
-  selfref: any;
-  strong: any;
-  title: any;
-  username: any;
+type Channel = {
+  chan: string;
+  id: number;
 };
 
-// byond defines for the program state
+type Client = {
+  name: string;
+  status: number;
+  muted: BooleanLike;
+  operator: BooleanLike;
+  ref: string;
+};
+
+type Data = {
+  PC_device_theme: string;
+  active_channel: number | null;
+  adminmode: BooleanLike;
+  all_channels: Channel[];
+  authed: BooleanLike;
+  can_admin: BooleanLike;
+  clients: Client[];
+  is_operator: BooleanLike;
+  messages: { msg: string }[];
+  selfref: string;
+  strong: BooleanLike;
+  title: string;
+  username: string;
+};
+
+// stany programu z DM (program_state)
 const CLIENT_ONLINE = 2;
 const CLIENT_AWAY = 1;
-const CLIENT_OFFLINE = 0;
-
-const STATUS2TEXT = {
-  0: 'Offline',
-  1: 'Away',
-  2: 'Online',
-};
 
 const NoChannelDimmer = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { owner } = data;
   return (
     <Dimmer>
       <Stack align="baseline" vertical>
@@ -59,10 +63,10 @@ const NoChannelDimmer = (props) => {
           </Stack>
         </Stack.Item>
         <Stack.Item fontSize="18px">
-          Click a channel to start chatting!
+          Kliknij kanał, żeby zacząć rozmowę!
         </Stack.Item>
         <Stack.Item fontSize="15px">
-          (If you&apos;re new, you may want to set your username below.)
+          (Jeśli jesteś tu nowy, ustaw swoją nazwę w lewym dolnym rogu!)
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -71,7 +75,6 @@ const NoChannelDimmer = (props) => {
 
 export const NtosNetChat = (props) => {
   const { act, data } = useBackend<Data>();
-
   const {
     title,
     can_admin,
@@ -87,21 +90,16 @@ export const NtosNetChat = (props) => {
     messages = [],
     PC_device_theme,
   } = data;
-
-  const in_channel = active_channel !== null;
+  const in_channel = active_channel !== null && active_channel !== undefined;
   const authorized = authed || adminmode;
-
-  // this list has cliented ordered from their status. online > away > offline
-  const displayed_clients = clients.sort((clientA, clientB) => {
-    if (clientA.operator) {
-      return -1;
-    }
-    if (clientB.operator) {
-      return 1;
-    }
-    return clientB.status - clientA.status;
-  });
-  const client_color = (client) => {
+  // Kolejność: operator > status > alfabetycznie
+  const displayed_clients = [...clients].sort(
+    (clientA, clientB) =>
+      Number(!!clientB.operator) - Number(!!clientA.operator) ||
+      clientB.status - clientA.status ||
+      clientA.name.localeCompare(clientB.name),
+  );
+  const client_color = (client: Client) => {
     if (client.operator) {
       return 'green';
     }
@@ -110,13 +108,13 @@ export const NtosNetChat = (props) => {
         return 'white';
       case CLIENT_AWAY:
         return 'yellow';
-      case CLIENT_OFFLINE:
       default:
         return 'label';
     }
   };
-  // client from this computer!
+  // klient z tego komputera
   const this_client = clients.find((client) => client.ref === selfref);
+
   return (
     <NtosWindow width={1000} height={675}>
       <NtosWindow.Content>
@@ -127,8 +125,8 @@ export const NtosNetChat = (props) => {
                 <Stack.Item grow>
                   <Button.Input
                     fluid
-                    content="New Channel..."
-                    onCommit={(e, value) =>
+                    buttonText="Nowy kanał..."
+                    onCommit={(value) =>
                       act('PRG_newchannel', {
                         new_channel_name: value,
                       })
@@ -137,8 +135,7 @@ export const NtosNetChat = (props) => {
                   {all_channels.map((channel) => (
                     <Button
                       fluid
-                      key={channel.chan}
-                      content={channel.chan}
+                      key={channel.id}
                       selected={channel.id === active_channel}
                       color="transparent"
                       onClick={() =>
@@ -146,17 +143,19 @@ export const NtosNetChat = (props) => {
                           id: channel.id,
                         })
                       }
-                    />
+                    >
+                      {channel.chan}
+                    </Button>
                   ))}
                 </Stack.Item>
                 <Stack.Item>
-                  <Box>Username:</Box>
+                  <Box>Nazwa użytkownika:</Box>
                   <Button.Input
                     fluid
                     mt={1}
-                    content={username + '...'}
-                    currentValue={username}
-                    onCommit={(e, value) =>
+                    buttonText={`${username}...`}
+                    value={username}
+                    onCommit={(value) =>
                       act('PRG_changename', {
                         new_name: value,
                       })
@@ -166,10 +165,11 @@ export const NtosNetChat = (props) => {
                     <Button
                       fluid
                       bold
-                      content={'ADMIN MODE: ' + (adminmode ? 'ON' : 'OFF')}
                       color={adminmode ? 'bad' : 'good'}
                       onClick={() => act('PRG_toggleadmin')}
-                    />
+                    >
+                      {`TRYB ADMINA: ${adminmode ? 'WŁ.' : 'WYŁ.'}`}
+                    </Button>
                   )}
                 </Stack.Item>
               </Stack>
@@ -177,13 +177,13 @@ export const NtosNetChat = (props) => {
           </Stack.Item>
           <Stack.Divider />
           <Stack.Item grow={4}>
-            <Stack vertical fill>
+            <Stack fill vertical g={0}>
               <Stack.Item grow>
                 <Section scrollable fill>
                   {(in_channel &&
                     (authorized ? (
-                      messages.map((message) => (
-                        <Box key={message.msg}>{message.msg}</Box>
+                      messages.map((message, i) => (
+                        <Box key={i}>{message.msg}</Box>
                       ))
                     ) : (
                       <Box textAlign="center">
@@ -193,11 +193,12 @@ export const NtosNetChat = (props) => {
                           fontSize="40px"
                         />
                         <Box mt={1} bold fontSize="18px">
-                          THIS CHANNEL IS PASSWORD PROTECTED
+                          TEN KANAŁ JEST CHRONIONY HASŁEM
                         </Box>
-                        <Box mt={1}>INPUT PASSWORD TO ACCESS</Box>
+                        <Box mt={1}>PODAJ HASŁO, ABY WEJŚĆ</Box>
                       </Box>
                     ))) ||
+                    // AQUILA: klasyczny motyw Thinktronic nie ma miejsca na wygaszacz
                     (PC_device_theme !== 'thinktronic-classic' && (
                       <NoChannelDimmer />
                     ))}
@@ -205,16 +206,18 @@ export const NtosNetChat = (props) => {
               </Stack.Item>
               {!!in_channel && (
                 <Input
-                  backgroundColor={this_client && this_client.muted && 'red'}
+                  backgroundColor={this_client?.muted ? 'red' : undefined}
                   height="22px"
                   placeholder={
-                    (this_client && this_client.muted && 'You are muted!') ||
-                    'Message ' + title
+                    this_client?.muted
+                      ? 'Jesteś wyciszony!'
+                      : `Wiadomość na ${title}`
                   }
                   fluid
                   selfClear
                   mt={1}
-                  onEnter={(e, value) =>
+                  disabled={!!this_client?.muted}
+                  onEnter={(value) =>
                     act('PRG_speak', {
                       message: value,
                     })
@@ -232,7 +235,7 @@ export const NtosNetChat = (props) => {
                     <Section scrollable fill>
                       <Stack vertical>
                         {displayed_clients.map((client) => (
-                          <Stack height="18px" fill key={client.name}>
+                          <Stack height="18px" fill key={client.ref}>
                             <Stack.Item
                               basis={0}
                               grow
@@ -244,12 +247,13 @@ export const NtosNetChat = (props) => {
                               <>
                                 <Stack.Item>
                                   <Button
-                                    disabled={this_client?.muted}
+                                    disabled={!!this_client?.muted}
                                     compact
                                     icon="bullhorn"
                                     tooltip={
-                                      (!this_client?.muted && 'Ping') ||
-                                      'You are muted!'
+                                      this_client?.muted
+                                        ? 'Jesteś wyciszony!'
+                                        : 'Zaczep'
                                     }
                                     tooltipPosition="left"
                                     onClick={() =>
@@ -264,15 +268,15 @@ export const NtosNetChat = (props) => {
                                     <Button
                                       compact
                                       icon={
-                                        (!client.muted && 'volume-up') ||
-                                        'volume-mute'
+                                        client.muted
+                                          ? 'volume-mute'
+                                          : 'volume-up'
                                       }
-                                      color={
-                                        (!client.muted && 'green') || 'red'
-                                      }
+                                      color={client.muted ? 'red' : 'green'}
                                       tooltip={
-                                        (!client.muted && 'Mute this User') ||
-                                        'Unmute this User'
+                                        client.muted
+                                          ? 'Cofnij wyciszenie'
+                                          : 'Wycisz użytkownika'
                                       }
                                       tooltipPosition="left"
                                       onClick={() =>
@@ -291,15 +295,14 @@ export const NtosNetChat = (props) => {
                     </Section>
                   </Stack.Item>
                   <Section>
-                    <Stack.Item mb="8px">Settings for {title}:</Stack.Item>
-                    <Stack.Item>
+                    <Stack vertical g={0.5}>
+                      <Stack.Item>Ustawienia kanału {title}:</Stack.Item>
                       {!!(in_channel && authorized) && (
                         <>
                           <Button.Input
                             fluid
-                            content="Save log..."
-                            defaultValue="new_log"
-                            onCommit={(e, value) =>
+                            buttonText="Zapisz log jako..."
+                            onCommit={(value) =>
                               act('PRG_savelog', {
                                 log_name: value,
                               })
@@ -307,24 +310,28 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Confirm
                             fluid
-                            content="Leave Channel"
+                            confirmContent="Na pewno?"
                             onClick={() => act('PRG_leavechannel')}
-                          />
+                          >
+                            Opuść kanał
+                          </Button.Confirm>
                         </>
                       )}
                       {!!(is_operator && authed) && (
                         <>
                           <Button.Confirm
                             fluid
-                            disabled={strong}
-                            content="Delete Channel"
+                            disabled={!!strong}
+                            confirmContent="Na pewno?"
                             onClick={() => act('PRG_deletechannel')}
-                          />
+                          >
+                            Usuń kanał
+                          </Button.Confirm>
                           <Button.Input
                             fluid
-                            disabled={strong}
-                            content="Rename Channel..."
-                            onCommit={(e, value) =>
+                            disabled={!!strong}
+                            buttonText="Zmień nazwę kanału..."
+                            onCommit={(value) =>
                               act('PRG_renamechannel', {
                                 new_name: value,
                               })
@@ -332,8 +339,8 @@ export const NtosNetChat = (props) => {
                           />
                           <Button.Input
                             fluid
-                            content="Set Password..."
-                            onCommit={(e, value) =>
+                            buttonText="Ustaw hasło..."
+                            onCommit={(value) =>
                               act('PRG_setpassword', {
                                 new_password: value,
                               })
@@ -341,7 +348,7 @@ export const NtosNetChat = (props) => {
                           />
                         </>
                       )}
-                    </Stack.Item>
+                    </Stack>
                   </Section>
                 </Stack>
               </Stack.Item>

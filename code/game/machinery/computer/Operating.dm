@@ -77,6 +77,7 @@
 	for(var/X in advanced_surgeries)
 		var/datum/surgery/S = X
 		var/list/surgery = list()
+		surgery["id"] = "[S]" // AQUILA - do oznaczenia w katalogu operacji
 		surgery["name"] = initial(S.name)
 		surgery["desc"] = initial(S.desc)
 		surgeries += list(surgery)
@@ -128,6 +129,10 @@
 	data["patient"]["fireLoss"] = patient.getFireLoss()
 	data["patient"]["toxLoss"] = patient.getToxLoss()
 	data["patient"]["oxyLoss"] = patient.getOxyLoss()
+	// AQUILA - poziom krwi jak w oknie z tg
+	if(!((NOBLOOD in patient.dna?.species?.species_traits) || HAS_TRAIT(patient, TRAIT_NO_BLOOD)))
+		data["patient"]["blood_level"] = patient.blood_volume
+		data["patient"]["standard_blood_level"] = BLOOD_VOLUME_NORMAL
 	data["procedures"] = list()
 	if(patient.surgeries.len)
 		for(var/datum/surgery/procedure in patient.surgeries)
@@ -135,11 +140,13 @@
 			var/chems_needed = surgery_step.get_chem_list()
 			var/alternative_step
 			var/alt_chems_needed = ""
+			var/list/alt_tools // AQUILA - narzędzia kroku alternatywnego
 			if(surgery_step.repeatable)
 				var/datum/surgery_step/next_step = procedure.get_surgery_next_step()
 				if(next_step)
 					alternative_step = capitalize(next_step.name)
 					alt_chems_needed = next_step.get_chem_list()
+					alt_tools = surgery_catalog_step(next_step)["tools"]
 				else
 					alternative_step = "Zakończ operację"
 			data["procedures"] += list(list(
@@ -147,9 +154,18 @@
 				"next_step" = capitalize(surgery_step.name),
 				"chems_needed" = chems_needed,
 				"alternative_step" = alternative_step,
-				"alt_chems_needed" = alt_chems_needed
+				"alt_chems_needed" = alt_chems_needed,
+				// AQUILA - narzędzia do kroków (z katalogu operacji)
+				"next_tools" = surgery_catalog_step(surgery_step)["tools"],
+				"surgery_name" = capitalize(procedure.name),
+				"alt_tools" = alt_tools,
 			))
 	return data
+
+// AQUILA - pełny katalog operacji z krokami i narzędziami (okno z tg)
+/obj/machinery/computer/operating/ui_static_data(mob/user)
+	. = ..()
+	.["surgery_catalog"] = get_surgery_catalog()
 
 /obj/machinery/computer/operating/ui_act(action, params)
 	if(..())

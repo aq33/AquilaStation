@@ -1,24 +1,16 @@
-import { BooleanLike } from 'common/react';
+import { Box, Icon, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Icon, Section, Stack } from '../components';
 import { Window } from '../layouts';
-import { sanitizeText } from '../sanitize';
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
-type Objective = {
-  count: number;
-  name: string;
-  explanation: string;
-  complete: BooleanLike;
-  was_uncompleted: BooleanLike;
-  reward: number;
-};
-
-type Info = {
+type Data = {
   objectives: Objective[];
 };
 
-export const AntagInfoBrainwashed = () => {
+export const AntagInfoBrainwashed = (props) => {
+  const { data } = useBackend<Data>();
+
   return (
     <Window width={400} height={400} theme="abductor">
       <Window.Content backgroundColor="#722e7d">
@@ -31,59 +23,35 @@ export const AntagInfoBrainwashed = () => {
           left="26%"
         />
         <Section fill>
-          <Stack vertical fill textAlign="center">
+          <Stack fill vertical g={0} textAlign="center">
             <Stack.Item fontFamily="Wingdings">
-              Hey, no! Stop translating this!
+              Hej, nie! Przestań to tłumaczyć!
             </Stack.Item>
-            <Stack.Item mt={-0.25} fontSize="20px">
-              Your mind reels...
-            </Stack.Item>
-            <Stack.Item mt={-0.25} fontSize="20px">
-              It is focusing on a single purpose...
+            <Stack.Item fontSize="20px">Twój umysł wiruje...</Stack.Item>
+            <Stack.Item fontSize="20px">
+              Skupia się na jednym celu...
             </Stack.Item>
             <Stack.Item mt={3.5} grow>
-              <ObjectivePrintout />
+              <ObjectivePrintout
+                fill
+                objectives={data.objectives}
+                titleMessage="Twoje obecne dyrektywy"
+                objectiveFollowup={
+                  <Box bold textColor="red">
+                    Tej dyrektywy trzeba przestrzegać.
+                  </Box>
+                }
+              />
             </Stack.Item>
-            <Stack.Item fontSize="20px" textColor="#61e4b9">
-              Follow the directives at <b>any cost</b>!
+            <Stack.Item mb={0.5} fontSize="20px" textColor="#61e4b9">
+              Wykonuj dyrektywy za wszelką cenę!
             </Stack.Item>
             <Stack.Item fontFamily="Wingdings">
-              You ruined my cool font effect.
+              Zepsułeś mi fajny efekt czcionki.
             </Stack.Item>
           </Stack>
         </Section>
       </Window.Content>
     </Window>
-  );
-};
-
-const ObjectivePrintout = (_props) => {
-  const { data } = useBackend<Info>();
-  const { objectives } = data;
-  return (
-    <Stack fill vertical>
-      <Stack.Item bold textColor="#61e4b9">
-        Your current objectives:
-      </Stack.Item>
-      <Stack.Item textAlign="left">
-        {(!objectives && 'None!') ||
-          objectives.map((objective) => (
-            <>
-              <Stack.Item key={objective.count}>
-                {objective.count}.{' '}
-                <span
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{
-                    __html: sanitizeText(objective.explanation, false), // brainwashing objectives are sanitized anyways
-                  }}
-                />
-              </Stack.Item>
-              <Stack.Item bold textColor="red">
-                This Directive must be followed immediately.
-              </Stack.Item>
-            </>
-          ))}
-      </Stack.Item>
-    </Stack>
   );
 };

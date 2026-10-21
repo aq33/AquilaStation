@@ -88,7 +88,7 @@ export const RecipeLookup = (props: Props) => {
               mode === 'product' ? 'Czego szukasz?' : 'Co masz pod ręką?'
             }
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
         </Stack.Item>
         <Stack.Item>

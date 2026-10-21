@@ -74,35 +74,16 @@
 	text_dehack = "Wykrywasz błędy w [name] i resetujesz jego oprogramowanie."
 	text_dehack_fail = "[name] nie reaguje na polecenia resetu!"
 
-/mob/living/simple_animal/bot/floorbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<TT><B>Sterowanie naprawiaczem podłóg v1.1</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Panel serwisowy jest [open ? "otwarty" : "zamknięty"]<BR>"
-	dat += "Płytki specjalne: "
-	if(specialtiles)
-		dat += "<A href='byond://?src=[REF(src)];operation=eject'>Loaded \[[specialtiles]/[maxtiles]\]</a><BR>"
-	else
-		dat += "Brak<BR>"
-
-	dat += "Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "Kładź płytki na nowym poszyciu: <A href='byond://?src=[REF(src)];operation=autotile'>[autotile ? "Tak" : "Nie"]</A><BR>"
-		dat += "Układaj płytki podłogowe: <A href='byond://?src=[REF(src)];operation=place'>[placetiles ? "Tak" : "Nie"]</A><BR>"
-		dat += "Zastępuj istniejące płytki płytkami specjalnymi: <A href='byond://?src=[REF(src)];operation=replace'>[replacetiles ? "Tak" : "Nie"]</A><BR>"
-		dat += "Naprawiaj uszkodzone płytki i poszycie: <A href='byond://?src=[REF(src)];operation=fix'>[fixfloors ? "Tak" : "Nie"]</A><BR>"
-		dat += "Magnesy trakcyjne: <A href='byond://?src=[REF(src)];operation=anchor'>[anchored ? "Włączone" : "Wyłączone"]</A><BR>"
-		dat += "Patrolowanie stacji: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</A><BR>"
-		var/bmode
-		if(targetdirection)
-			bmode = dir2text(targetdirection)
-		else
-			bmode = "disabled"
-		dat += "Tryb liniowy: <A href='byond://?src=[REF(src)];operation=linemode'>[bmode]</A><BR>"
-
-	return dat
+/mob/living/simple_animal/bot/floorbot/get_custom_controls(mob/user)
+	return list(
+		"tile_stack" = specialtiles,
+		"place_tiles" = placetiles,
+		"replace_tiles" = replacetiles,
+		"fix_floors" = fixfloors,
+		"auto_tile" = autotile,
+		"traction_magnets" = anchored,
+		"line_mode" = targetdirection ? dir2text(targetdirection) : FALSE,
+	)
 
 /mob/living/simple_animal/bot/floorbot/attackby(obj/item/W , mob/user, params)
 	if(istype(W, /obj/item/stack/tile/plasteel))
@@ -134,39 +115,37 @@
 		if(user)
 			to_chat(user, "<span class='danger'>[src] brzęczy i pika.</span>")
 
-/mob/living/simple_animal/bot/floorbot/Topic(href, href_list)
-	if(..())
-		return TRUE
-
-	switch(href_list["operation"])
-		if("replace")
+/mob/living/simple_animal/bot/floorbot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
+		if("replace_tiles")
 			replacetiles = !replacetiles
-		if("place")
+		if("place_tiles")
 			placetiles = !placetiles
-		if("fix")
+		if("fix_floors")
 			fixfloors = !fixfloors
-		if("autotile")
+		if("auto_tile")
 			autotile = !autotile
-		if("anchor")
+		if("traction_magnets")
 			anchored = !anchored
-		if("eject")
+		if("eject_tiles")
 			if(specialtiles && tiletype != null)
 				empty_tiles()
-
-		if("linemode")
-			var/setdir = input("Wybierz kierunek budowy:") as null|anything in list("north","east","south","west","disable")
-			switch(setdir)
-				if("north")
-					targetdirection = 1
-				if("south")
-					targetdirection = 2
-				if("east")
-					targetdirection = 4
-				if("west")
-					targetdirection = 8
-				if("disable")
+		if("line_mode")
+			//Kolejno: wyłączony -> północ -> wschód -> południe -> zachód -> wyłączony
+			switch(targetdirection)
+				if(null)
+					targetdirection = NORTH
+				if(NORTH)
+					targetdirection = EAST
+				if(EAST)
+					targetdirection = SOUTH
+				if(SOUTH)
+					targetdirection = WEST
+				else
 					targetdirection = null
-	update_controls()
+		else
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/bot/floorbot/proc/empty_tiles()
 	new tiletype(drop_location(), specialtiles)

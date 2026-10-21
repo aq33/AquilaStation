@@ -53,6 +53,11 @@
 			SendSignal("message")
 		if("stat_update")
 			SetText(params["position"], params["text"])
+		//AQUILA: okno z tg wysyła obie linie naraz
+		if("setStatusMessage")
+			SetText("upper", params["upperText"])
+			SetText("lower", params["lowerText"])
+			SendSignal("message")
 		if("stat_pic")
 			var/chosen_picture = params["picture"]
 			if (!(chosen_picture in GLOB.approved_status_pictures))
@@ -65,5 +70,6 @@
 
 	data["upper"] = upper_text
 	data["lower"] = lower_text
+	data["maxStatusLineLength"] = MAX_STATUS_LINE_LENGTH
 
 	return data

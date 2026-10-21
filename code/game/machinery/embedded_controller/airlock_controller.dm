@@ -202,6 +202,7 @@
 
 	frequency = FREQ_AIRLOCK_CONTROL
 	power_channel = AREA_USAGE_ENVIRON
+	tgui_id = "AirlockController"
 
 	// Setup parameters only
 	var/exterior_door_tag
@@ -264,51 +265,24 @@
 		icon_state = "airlock_control_off"
 
 
-/obj/machinery/embedded_controller/radio/airlock_controller/return_text()
-	var/state_options = null
-
-	var/state = 0
-	var/sensor_pressure = "----"
-	var/exterior_status = "----"
-	var/interior_status = "----"
-	var/pump_status = "----"
-	var/current_status = "Nieaktywny<BR>&nbsp;"
-	if(program)
-		state = program.state
-		sensor_pressure = program.memory["sensor_pressure"] ? program.memory["sensor_pressure"] : "----"
-		exterior_status = program.memory["exterior_status"] ? program.memory["exterior_status"] : "----"
-		interior_status = program.memory["interior_status"] ? program.memory["interior_status"] : "----"
-		pump_status = program.memory["pump_status"] ? program.memory["pump_status"] : "----"
-
-	switch(state)
+/obj/machinery/embedded_controller/radio/airlock_controller/ui_data(mob/user)
+	var/list/data = list()
+	var/current_state = program ? program.state : AIRLOCK_STATE_CLOSED
+	switch(current_state)
 		if(AIRLOCK_STATE_INOPEN)
-			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_closed'>Close Interior Airlock</A><BR>
-<A href='byond://?src=[REF(src)];command=cycle_exterior'>Cycle to Exterior Airlock</A><BR>"}
-			current_status = "Wewnętrzna śluza otwarta<BR><span class='good'>Komora pod ciśnieniem</span>"
+			data["airlockState"] = "inopen"
 		if(AIRLOCK_STATE_PRESSURIZE)
-			state_options = "<A href='byond://?src=[REF(src)];command=abort'>Przerwij cykl</A><BR>"
-			current_status = "Cykl do wewnętrznej śluzy<BR><span class='average'>Napełnianie komory</span>"
+			data["airlockState"] = "pressurize"
 		if(AIRLOCK_STATE_CLOSED)
-			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_interior'>Open Interior Airlock</A><BR>
-<A href='byond://?src=[REF(src)];command=cycle_exterior'>Open Exterior Airlock</A><BR>"}
+			data["airlockState"] = "closed"
 		if(AIRLOCK_STATE_DEPRESSURIZE)
-			state_options = "<A href='byond://?src=[REF(src)];command=abort'>Przerwij cykl</A><BR>"
-			current_status = "Cykl do zewnętrznej śluzy<BR><span class='average'>Opróżnianie komory</span>"
+			data["airlockState"] = "depressurize"
 		if(AIRLOCK_STATE_OUTOPEN)
-			state_options = {"<A href='byond://?src=[REF(src)];command=cycle_interior'>Cycle to Interior Airlock</A><BR>
-<A href='byond://?src=[REF(src)];command=cycle_closed'>Close Exterior Airlock</A><BR>"}
-			current_status = "Zewnętrzna śluza otwarta<BR><span class='bad'>Komora bez ciśnienia</span>"
-
-	var/output = {"<h3>Airlock Status</h3>
-<div class='statusDisplay'>
-<div class='line'><div class='statusLabel'>Current Status:</div><div class='statusValue'>[current_status]</div></div>
-<div class='line'>&nbsp;</div>
-<div class='line'><div class='statusLabel'>\> Chamber Pressure:</div><div class='statusValue'>[sensor_pressure] kPa</div></div>
-<div class='line'><div class='statusLabel'>\> Control Pump:</div><div class='statusValue'>[pump_status]</div></div>
-<div class='line'><div class='statusLabel'>\> Interior Door:</div><div class='statusValue'>[interior_status]</div></div>
-<div class='line'><div class='statusLabel'>\> Exterior Door:</div><div class='statusValue'>[exterior_status]</div></div>
-<div class='clearBoth'></div>
-</div>
-[state_options]"}
-
-	return output
+			data["airlockState"] = "outopen"
+	var/list/memory = program ? program.memory : list()
+	var/sensor_pressure = memory["sensor_pressure"]
+	data["sensorPressure"] = isnum(sensor_pressure) ? round(sensor_pressure, 0.1) : "----"
+	data["pumpStatus"] = memory["pump_status"] || "----"
+	data["interiorStatus"] = memory["interior_status"] || "----"
+	data["exteriorStatus"] = memory["exterior_status"] || "----"
+	return data

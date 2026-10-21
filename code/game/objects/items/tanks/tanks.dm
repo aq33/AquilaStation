@@ -166,6 +166,9 @@
 	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
 	data["minReleasePressure"] = round(TANK_MIN_RELEASE_PRESSURE)
 	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
+	// AQUILA: progi do wskaźnika ciśnienia w oknie z tg
+	data["leakPressure"] = round(TANK_LEAK_PRESSURE)
+	data["fragmentPressure"] = round(TANK_FRAGMENT_PRESSURE)
 
 	var/mob/living/carbon/C = user
 	if(!istype(C))
