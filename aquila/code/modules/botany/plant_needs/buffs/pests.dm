@@ -37,7 +37,7 @@
 	QDEL_NULL(pest_holder)
 
 /datum/plant_need/reagent/buff/pests/process(delta_time)
-	need_description = "[archive_description]\n	 Poziom szkodników: [pest_level]%"
+	need_description = "[archive_description]\n<span>  &#8627; Poziom szkodników: [round(pest_level)]%</span>"
 	if(SEND_SIGNAL(parent.parent.plant_item.loc, COMSIG_PLANTER_PAUSE_PLANT) || SEND_SIGNAL(parent.parent.plant_item.loc, COMSIG_PLANTER_REPEL_PESTS))
 		return
 	if(pest_level < 10) //Pests don't do damage until you see them

@@ -106,7 +106,7 @@
 /datum/plant_feature/proc/get_scan_dialogue()
 	var/list/dialogue = list()
 	//identity
-	dialogue += "[capitalize(name)]([species_name])\n"
+	dialogue += "[capitalize(name)] ([species_name])\n"
 	//Traits
 	var/grouping = ""
 	for(var/datum/plant_trait/trait as anything in plant_traits)

@@ -10,15 +10,12 @@
 /datum/plant_need/reagent/New(datum/plant_feature/_parent)
 	. = ..()
 	success_threshold = auto_threshold ? 1 / length(reagent_needs) : success_threshold
-	var/old_desc = need_description
-	need_description = "<span>Ta roślina ([strip_html(parent.name)]) [buff ? "opcjonalnie potrzebuje:" : "potrzebuje:"]"
-	var/reagent_index = 1
+	// AQUILA - krótszy opis do skanera: "Wymaga/Opcjonalnie: opis", pod spodem odczynniki na sekundę
+	var/list/reagent_texts = list()
 	for(var/datum/reagent/reagent as anything in reagent_needs)
-		need_description = "[need_description] [initial(reagent.name)] ([reagent_needs[reagent]]u)[reagent_index < length(reagent_needs) ? ", " : ""]"
-		if(auto_threshold) //Add 'or' to the last option to show you only need 1 of the ingredients
-			need_description = "[need_description][reagent_index+1 == length(reagent_needs) ? "<b>lub</b>" : ""]"
-		reagent_index++
-	need_description = "<b>'[old_desc]'[buff ? " (opcjonalnie)":""]</b>\n<span>- [need_description][auto_threshold ? " (z zamiennikami)" : ""]</span></span>"
+		reagent_texts += "[initial(reagent.name)] [reagent_needs[reagent]]j./s"
+	var/reagent_line = jointext(reagent_texts, auto_threshold ? " <b>lub</b> " : ", ")
+	need_description = "<b>[buff ? "Opcjonalnie" : "Wymaga"]:</b> [need_description]\n<span>  &#8627; [reagent_line]</span>"
 
 /datum/plant_need/reagent/check_need(_delta_time)
 	. = ..()

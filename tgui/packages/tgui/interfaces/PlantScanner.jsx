@@ -40,88 +40,75 @@ export const PlantScanner = (props) => {
   );
 };
 
-const SeedRule = (props) => {
-  const { act, data } = useBackend();
-  const { buffer, last_target, render_rule } = data;
+// AQUILA - wspólny blok części rośliny: pogrubiony nagłówek, cechy i statystyki, potrzeby jako HTML
+const FeatureBlock = (props) => {
+  const { feature = {}, needs = {} } = props;
+  const lines = Object.values(feature).filter((line) => line !== '');
+  const needList = Object.values(needs);
   return (
-    <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
-      {Object.entries(buffer).map(([buffer_key, buffer_data]) => (
-        <Box key={buffer_key}>
-          <Box
-            className="plant__dialogue"
-            style={{ whiteSpace: 'pre-line' }}
-            my={'2px'}
-          >
-            {Object.entries(buffer_data['feature']).map(
-              ([feature_key, feature_data]) => (
-                <Box key={feature_key}>
-                  {feature_data}
-                  {feature_data === '' ? null : <br />}
-                </Box>
-              ),
-            )}
-            <Divider />
-            {Object.entries(buffer_data['needs']).map(
-              ([need_key, need_data]) => (
-                <Box key={need_key}>
-                  <span
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{
-                      __html: sanitizeText(need_data, false), // This is sanitized in code too
-                    }}
-                  />
-                  <br />
-                  <br />
-                </Box>
-              ),
-            )}
-          </Box>
+    <Box
+      className="plant__dialogue"
+      style={{ whiteSpace: 'pre-line' }}
+      my={'4px'}
+      p={'4px'}
+    >
+      {lines.map((line, index) => (
+        <Box key={index} bold={index === 0} mb={'4px'}>
+          {line}
+        </Box>
+      ))}
+      {needList.length > 0 && <Divider />}
+      {needList.map((need, index) => (
+        <Box key={index} mb={'6px'}>
+          <span
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: sanitizeText(need, false), // This is sanitized in code too
+            }}
+          />
         </Box>
       ))}
     </Box>
   );
 };
 
+const SeedRule = (props) => {
+  const { data } = useBackend();
+  const { buffer } = data;
+  return (
+    <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
+      {Object.entries(buffer).map(([buffer_key, buffer_data]) => (
+        <FeatureBlock
+          key={buffer_key}
+          feature={buffer_data['feature']}
+          needs={buffer_data['needs']}
+        />
+      ))}
+    </Box>
+  );
+};
+
 const FruitRule = (props) => {
-  const { act, data } = useBackend();
-  const { buffer, last_target, render_rule } = data;
+  const { data } = useBackend();
+  const { buffer } = data;
   return (
     <Box className={'scrollbox'} height={'660px'} overflowY="scroll">
       {Object.entries(buffer['genes']).map(([buffer_key, buffer_data]) => (
-        <Box key={buffer_key}>
-          <Box
-            className="plant__dialogue"
-            style={{ whiteSpace: 'pre-line' }}
-            my={'2px'}
-          >
-            {Object.entries(buffer_data['feature']).map(
-              ([feature_key, feature_data]) => (
-                <Box key={feature_key}>
-                  {feature_data}
-                  {feature_data === '' ? null : <br />}
-                </Box>
-              ),
-            )}
-            {Object.entries(buffer_data['needs']).map(
-              ([need_key, need_data]) => (
-                <Box key={need_key}>
-                  {need_data}
-                  <br />
-                  <br />
-                </Box>
-              ),
-            )}
-          </Box>
-        </Box>
+        <FeatureBlock
+          key={buffer_key}
+          feature={buffer_data['feature']}
+          needs={buffer_data['needs']}
+        />
       ))}
       <Box
         className="plant__dialogue"
         style={{ whiteSpace: 'pre-line' }}
-        my={'2px'}
+        my={'4px'}
+        p={'4px'}
       >
-        Zawiera:
-        <br />
-        <br />
+        <Box bold mb={'4px'}>
+          Zawiera:
+        </Box>
         {Object.entries(buffer['reagents']).map(
           ([reagent_key, reagent_data]) => (
             <Box key={reagent_key}>{`${reagent_data}`}</Box>
