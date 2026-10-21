@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 // Called after add_reagents creates a new reagent.
 /datum/reagent/proc/on_new(data)
-	RegisterSignal(holder, COMSIG_PLANTER_TICK_REAGENTS, PROC_REF(tray_tick))
+	return
 
 // Called when two reagents of the same are mixing.
 /datum/reagent/proc/on_merge(data)

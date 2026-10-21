@@ -1152,6 +1152,7 @@
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\aquila_autopsy.dm"
+#include "code\modules\unit_tests\aquila_botany.dm"
 #include "code\modules\unit_tests\aquila_bee_surgeries.dm"
 #include "code\modules\unit_tests\aquila_bee_windows.dm"
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
