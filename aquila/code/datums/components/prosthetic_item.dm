@@ -64,6 +64,8 @@
 			bodyparent.owner.put_in_r_hand(prosthetic_item)
 		if(BODY_ZONE_L_ARM)
 			bodyparent.owner.put_in_l_hand(prosthetic_item)
+	bodyparent.owner.update_body_parts()
+	bodyparent.owner.update_inv_hands()
 	SEND_SIGNAL(prosthetic_item, COMSIG_ITEM_POST_USED_AS_PROSTHETIC, parent)
 
 /datum/component/item_as_prosthetic_limb/proc/unregister_item()
@@ -161,3 +163,55 @@
 		if(!prosthetic?.item_limb)
 			continue
 		. += "Zamiast ręki ([strefa_pl(part.body_zone)]) ma [prosthetic.item_limb.get_examine_string(user)][prosthetic.drop_prob ? " - <span class='warning'>trzyma się luźno</span>" : ""]."
+
+// Looks: the human arm is not drawn, the item is the arm. Items with an inhand sprite use it as usual,
+// items without one (food, small trinkets) get their own icon drawn shrunk where the hand would be.
+
+/// Size the item icon is shrunk to when it has no inhand sprite
+#define PROSTHETIC_FALLBACK_SIZE 18
+
+/obj/item/bodypart/get_limb_icon(dropped)
+	if(!dropped && GetComponent(/datum/component/item_as_prosthetic_limb))
+		icon_state = ""
+		return list()
+	return ..()
+
+/mob/living/carbon/generate_icon_key(obj/item/bodypart/BP)
+	. = ..()
+	if(BP.GetComponent(/datum/component/item_as_prosthetic_limb))
+		. += "-item_arm"
+
+/obj/item/build_worn_icon(default_layer = 0, default_icon_file = null, isinhands = FALSE, femaleuniform = NO_FEMALE_UNIFORM, override_state = null, special_override_flags = NONE)
+	if(!isinhands || !HAS_TRAIT_FROM(src, TRAIT_NODROP, PROSTHETIC_ITEM_TRAIT))
+		return ..()
+	var/inhand_state = override_state || item_state || icon_state
+	if(default_icon_file && icon_exists(default_icon_file, inhand_state))
+		return ..()
+	return mutable_appearance(prosthetic_fallback_icon(default_icon_file == righthand_file), "arm", -default_layer)
+
+/// Directional icon of this item drawn small at the hand, for items without an inhand sprite
+/obj/item/proc/prosthetic_fallback_icon(right_hand)
+	var/static/list/cache = list()
+	var/key = "[icon]|[icon_state]|[right_hand]"
+	if(cache[key])
+		return cache[key]
+	// hand centers measured on the inhand sprites, in pixels from the top left
+	var/static/list/right_centers = list("[SOUTH]" = list(11, 20), "[NORTH]" = list(21, 20), "[EAST]" = list(16, 20), "[WEST]" = list(14, 20))
+	var/static/list/left_centers = list("[SOUTH]" = list(21, 20), "[NORTH]" = list(11, 20), "[EAST]" = list(18, 20), "[WEST]" = list(16, 20))
+	var/list/centers = right_hand ? right_centers : left_centers
+	var/icon/item_icon = icon(icon, icon_state, SOUTH, 1)
+	item_icon.Scale(PROSTHETIC_FALLBACK_SIZE, PROSTHETIC_FALLBACK_SIZE)
+	var/icon/result = new
+	for(var/direction in GLOB.cardinals)
+		var/list/center = centers["[direction]"]
+		var/icon/frame = icon('icons/effects/effects.dmi', "nothing")
+		var/icon/turned = icon(item_icon)
+		if(direction == WEST)
+			turned.Flip(WEST)
+		// Blend takes the bottom left corner, counted from 1 at the bottom
+		frame.Blend(turned, ICON_OVERLAY, center[1] - PROSTHETIC_FALLBACK_SIZE / 2 + 1, (32 - center[2]) - PROSTHETIC_FALLBACK_SIZE / 2 + 1)
+		result.Insert(frame, "arm", direction)
+	cache[key] = result
+	return result
+
+#undef PROSTHETIC_FALLBACK_SIZE

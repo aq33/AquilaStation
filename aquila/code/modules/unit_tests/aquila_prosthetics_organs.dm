@@ -38,6 +38,13 @@
 	qdel(tool)
 	TEST_ASSERT(!patient.get_bodypart(BODY_ZONE_R_ARM), "The arm stayed after its item was deleted")
 
+	// an item without an inhand sprite is drawn from its own icon, and the human arm is hidden
+	var/obj/item/food/pizzaslice/margherita/pizza = allocate(/obj/item/food/pizzaslice/margherita)
+	pseudo = patient.make_item_prosthetic(pizza, BODY_ZONE_R_ARM, 0)
+	TEST_ASSERT(!length(pseudo.get_limb_icon()), "The human arm is still drawn under the item arm")
+	var/mutable_appearance/inhand = pizza.build_worn_icon(HANDS_LAYER, pizza.righthand_file, TRUE)
+	TEST_ASSERT(inhand?.icon_state == "arm" && ("arm" in icon_states(inhand.icon)), "The pizza arm has no fallback sprite")
+
 /// AQUILA - tgstation#98023: an opened chest exposes the organs until the operation ends
 /datum/unit_test/aquila_exposed_organs
 
