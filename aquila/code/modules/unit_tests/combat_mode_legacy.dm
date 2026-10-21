@@ -156,5 +156,20 @@
 	user.click_intercept = null
 	qdel(intercept)
 
+/// AQUILA - standaryzacja combat mode: screentips name the disarm intent, modified right clicks are combat mode only
+/datum/unit_test/combat_mode_legacy_screentips
+
+/datum/unit_test/combat_mode_legacy_screentips/Run()
+	var/mob/living/carbon/human/legacy_intents_test/user = allocate(/mob/living/carbon/human/legacy_intents_test)
+	var/mob/living/carbon/human/plain = allocate(/mob/living/carbon/human)
+	var/tip = "[GLOB.rmb_icon] Popchnij alt-[GLOB.rmb_icon] Obróć ctrl-shift-[GLOB.rmb_icon] Coś"
+
+	TEST_ASSERT_EQUAL(plain.adapt_screentip_controls(tip), tip, "A combat mode player's screentip was changed")
+	var/adapted = user.adapt_screentip_controls(tip)
+	TEST_ASSERT(findtext(adapted, "<b>Rozbrój+LPM:</b> Popchnij"), "A plain right click was not shown as the disarm intent")
+	TEST_ASSERT(findtext(adapted, "alt-PPM (tylko combat mode)"), "An alt right click was not marked as combat mode only")
+	TEST_ASSERT(findtext(adapted, "ctrl-shift-PPM (tylko combat mode)"), "A ctrl shift right click was not marked as combat mode only")
+	TEST_ASSERT(!findtext(adapted, GLOB.rmb_icon), "A right click label was left in a legacy screentip")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

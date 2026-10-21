@@ -66,6 +66,9 @@ GLOBAL_LIST_INIT(legacy_intent_choices, list(INTENT_HELP, INTENT_DISARM, INTENT_
 /mob/proc/adapt_screentip_controls(text)
 	if(!uses_legacy_intents() || legacy_keeps_right_click())
 		return text
+	// Alt/Ctrl/Shift z prawym przyciskiem nie mają odpowiednika w intencjach (prawy przycisk otwiera tu menu)
+	for(var/modifier in list("ctrl-shift-", "alt-", "ctrl-", "shift-"))
+		text = replacetext(text, "[modifier][GLOB.rmb_icon]", "<b>[modifier]PPM (tylko combat mode):</b>")
 	return replacetext(text, GLOB.rmb_icon, "<b>Rozbrój+LPM:</b>")
 
 /// Mobs without the disarm intent keep the right click as the secondary action even in the legacy controls

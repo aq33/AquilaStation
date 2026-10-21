@@ -5,18 +5,18 @@
 /datum/keybinding/carbon/can_use(client/user)
 	return iscarbon(user.mob)
 
-// AQ EDIT - standaryzacja combat mode: wybór intencji (i przełączanie combat mode) działa dla każdego żywego moba
+// AQ EDIT - standaryzacja combat mode: wybór intencji (i przełączanie combat mode) działa dla każdego żywego moba poza silikonami (borgi mają pod 1-4 moduły)
 /datum/keybinding/carbon/select_help_intent/can_use(client/user)
-	return isliving(user.mob)
+	return isliving(user.mob) && !issilicon(user.mob)
 
 /datum/keybinding/carbon/select_disarm_intent/can_use(client/user)
-	return isliving(user.mob)
+	return isliving(user.mob) && !issilicon(user.mob)
 
 /datum/keybinding/carbon/select_grab_intent/can_use(client/user)
-	return isliving(user.mob)
+	return isliving(user.mob) && !issilicon(user.mob)
 
 /datum/keybinding/carbon/select_harm_intent/can_use(client/user)
-	return isliving(user.mob)
+	return isliving(user.mob) && !issilicon(user.mob)
 // AQ EDIT END
 
 /datum/keybinding/carbon/toggle_throw_mode
