@@ -57,8 +57,13 @@ export function useRemappedBackend() {
   if (!remappedStaticData) {
     const id_cache = data.static_data?.id_cache;
     // Static data can arrive after the first render when the window is reopened
+    // (callers render nothing until isTechwebReady(), so the empty remap is never read)
     if (!id_cache) {
-      return { data, ...rest };
+      const notReady = {} as ReturnType<typeof selectRemappedStaticData>;
+      return {
+        data: { ...data, static_data: undefined, ...notReady },
+        ...rest,
+      };
     }
     for (let i = 0; i < id_cache.length; i++) {
       remappingIdCache[i + 1] = id_cache[i];
