@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 
 /datum/component/team_monitor/Initialize(frequency_key, frequency, _attached_beacon)
 	var/obj/item/clothing/item = parent
-	if(!istype(item))
+	if(!istype(item) && !ismob(parent)) // AQ EDIT - monitor może siedzieć na mobie (wasal wampira z Bee śledzi mistrza)
 		return COMPONENT_INCOMPATIBLE
 
 	team_freq_key = frequency_key
@@ -105,8 +105,9 @@ GLOBAL_LIST_EMPTY(tracker_beacons)
 
 	attached_beacon = _attached_beacon
 
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(parent_equipped))
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(parent_dequpped))
+	if(istype(item)) // AQ EDIT - mob nie zakłada się jak ubranie
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(parent_equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(parent_dequpped))
 
 	get_matching_beacons()
 	add_tracker_hud(team_frequency, src)

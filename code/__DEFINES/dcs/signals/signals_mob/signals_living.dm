@@ -45,3 +45,11 @@
 // AQ EDIT - port Bee #11899
 ///from /mob/living/UnarmedAttack(): (atom/target, proximity_flag, list/modifiers)
 #define COMSIG_LIVING_UNARMED_ATTACK "living_unarmed_attack"
+
+// AQ EDIT - sygnały z BeeStation dla Humanity wampira
+///from base of mob/living/simple_animal/attack_hand() przy głaskaniu: (mob/living/animal)
+#define COMSIG_LIVING_PET_ANIMAL "living_pet_animal"
+///from base of mob/living/carbon/help_shake_act() przy przytuleniu: (mob/living/carbon/hugged)
+#define COMSIG_LIVING_HUG_CARBON "living_hug_carbon"
+///from obrazów przy oglądaniu: (atom/art)
+#define COMSIG_LIVING_APPRAISE_ART "living_appraise_art"

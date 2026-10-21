@@ -192,5 +192,6 @@
 	else if(isbodypart(target))
 		limb = target
 		C = limb.owner
+		hit_zone = limb.body_zone // AQ EDIT - z BeeStation: wbijanie w konkretną część ciała (kołek wampira), wcześniej strefą było "forced"
 
 	return checkEmbed(I, C, hit_zone, forced=TRUE)
