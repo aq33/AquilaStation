@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_478
-	name = "PR 478: nowa botanika z Bee"
-	pr = "aq33/AquilaStation#478"
+/datum/test_chamber_kit/pr_479
+	name = "PR 479: nowa botanika z Bee"
+	pr = "aq33/AquilaStation#479"
 	description = "Wsyp podłoże z worka do tacy, posadź nasiona prawym klikiem, podlej z wiadra (woda w zlewce). Po dojrzeniu zbierz ręką, zeskanuj skanerem roślin. \
 	Włóż roślinę do analizatora i zapisz cechę na dysk, w edytorze nasion dodaj ją do nasion, w piecu (butla z plazmą) zmutuj cechę - wszystko z terminala Yamato obok. \
 	Seeder: włóż owoc, ma dać nasiona. Replica pod: wstrzyknij strzykawką krew martwego gracza do nasion, posadź - po dojrzeniu ma wyjść człowiek-strąk. \
