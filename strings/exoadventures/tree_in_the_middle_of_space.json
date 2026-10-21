@@ -307,14 +307,7 @@
 					"delay_message": "Pewnych rzeczy człowiekowi po prostu nie dane jest poznać."
 				}
 			],
-			"image": "default",
-			"on_enter_effects": [
-				{
-					"effect_type": "Set",
-					"quality": "Confusion",
-					"value": 9999
-				}
-			]
+			"image": "default"
 		},
 		{
 			"name": "What is wrong with this tree?",

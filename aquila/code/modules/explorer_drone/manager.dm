@@ -13,7 +13,7 @@
 		ui.open()
 
 /datum/adventure_browser/ui_state(mob/user)
-	return GLOB.admin_state
+	return GLOB.debug_state
 
 /// Handles finishing adventure
 /datum/adventure_browser/proc/resolve_adventure(datum/source,result)

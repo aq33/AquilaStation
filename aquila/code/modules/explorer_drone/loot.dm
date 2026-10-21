@@ -80,6 +80,11 @@ GLOBAL_LIST_INIT(adventure_loot_generator_index, generate_generator_index())
 	id = "drugs"
 	loot_list = list(/obj/item/storage/pill_bottle/happy, /obj/item/storage/pill_bottle/lsd, /obj/item/storage/pill_bottle/penacid, /obj/item/storage/pill_bottle/stimulant)
 
+/// Przygody badawcze (w tg kategoria "research" nie miała generatora, więc nic nie dawała)
+/datum/adventure_loot_generator/simple/research
+	id = "research"
+	loot_list = list(/obj/item/relic)
+
 /// Rare minerals/materials
 /datum/adventure_loot_generator/simple/materials
 	id = "materials"

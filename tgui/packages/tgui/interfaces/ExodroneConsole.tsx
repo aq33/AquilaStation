@@ -770,7 +770,7 @@ const ExplorationScreen = (props: { drone: DroneExploration & DroneData }) => {
           </Button>
         </Stack.Item>
         {site.events.map((e) => (
-          <Stack.Item align="center" key={site.ref} grow>
+          <Stack.Item align="center" key={e.ref} grow>
             <Button
               lineHeight="3"
               minWidth="75px"

@@ -138,13 +138,13 @@ const ScanSelectionSection = (props) => {
 
 type ScanInProgressData = {
   scan_time: number;
-  scan_power: number;
+  current_scan_power: number;
   scan_description: string;
 };
 
 const ScanInProgressModal = (props) => {
   const { act, data } = useBackend<ScanInProgressData>();
-  const { scan_time, scan_power, scan_description } = data;
+  const { scan_time, current_scan_power, scan_description } = data;
 
   return (
     <Modal ml={1}>
@@ -157,7 +157,9 @@ const ScanInProgressModal = (props) => {
         <LabeledList.Item label="Pozostały czas">
           {formatTime(scan_time)}
         </LabeledList.Item>
-        <LabeledList.Item label="Moc anten">{scan_power}</LabeledList.Item>
+        <LabeledList.Item label="Moc anten">
+          {current_scan_power}
+        </LabeledList.Item>
         <LabeledList.Item label="Zatrzymanie awaryjne">
           <Button.Confirm
             content="ZATRZYMAJ SKAN"

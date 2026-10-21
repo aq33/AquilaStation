@@ -21,6 +21,8 @@
 		TEST_ASSERT(adventure, "Adventure [entry.filename] failed to load")
 		adventure.start_adventure()
 		TEST_ASSERT(adventure.current_node, "Adventure [entry.filename] did not reach its starting node")
+		for(var/category in adventure.loot_categories)
+			TEST_ASSERT(GLOB.adventure_loot_generator_index[category], "Adventure [entry.filename] uses unknown loot category [category]")
 		qdel(adventure)
 
 	// Każdy typ miejsca da się utworzyć, a czarna lista cech działa

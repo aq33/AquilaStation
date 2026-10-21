@@ -311,7 +311,8 @@ GLOBAL_LIST_INIT(scan_conditions, init_scan_conditions())
 /datum/scanner_controller/proc/update_scan_power()
 	scan_power_cache = list()
 	if(current_scan) //Check if we need to interrupt current scan.
-		var/current_power = length(tracked_dishes)
+		// tg porównuje tu liczbę anten z sumą ich mocy, co przerywało szeroki skan po RPED
+		var/current_power = calculate_scan_power()
 		if(current_scan.target)
 			current_power = get_scan_power(current_scan.target)
 		if(current_scan.scan_power > current_power)
