@@ -283,48 +283,48 @@
 			to_check_turfs |= adjacent_turf
 	return null
 
-/mob/living/simple_animal/bot/atmosbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<tt><b>Sterowanie stabilizatorem atmosfery v1.1</b></tt><br><br>"
-	dat += "Status: <a href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</a><br>"
-	dat += "Panel serwisowy jest [open ? "otwarty" : "zamknięty"]<br>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "Ciśnienie wyłomu: <a href='byond://?src=[REF(src)];set_breach_pressure=1'>[breached_pressure]</a><br>"
-		dat += "Kontrola temperatury: <a href='byond://?src=[REF(src)];toggle_temp_control=1'>[temperature_control?"Włączona":"Wyłączona"]</a><br>"
-		dat += "Temperatura docelowa: <a href='byond://?src=[REF(src)];set_ideal_temperature=[ideal_temperature]'>[ideal_temperature]K</a><br>"
-		dat += "Sterowanie filtrowaniem gazów<br>"
-		for(var/gas_id in gasses)
-			var/gas_enabled = gasses[gas_id]
-			dat += "[GLOB.gas_data.names[gas_id]]: <a href='byond://?src=[REF(src)];toggle_gas=[gas_id]'>[gas_enabled?"Scrubbing":"Not Scrubbing"]</a><br>"
-		dat += "Patrolowanie stacji: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</A><BR>"
-	return dat
+/mob/living/simple_animal/bot/atmosbot/get_custom_controls(mob/user)
+	return list(
+		"breach_pressure" = breached_pressure,
+		"temperature_control" = temperature_control,
+		"ideal_temperature" = ideal_temperature,
+	)
 
-/mob/living/simple_animal/bot/atmosbot/Topic(href, href_list)
-	if(..())
-		return TRUE
+/mob/living/simple_animal/bot/atmosbot/ui_data(mob/user)
+	var/list/data = ..()
+	var/list/scrub_gases = list()
+	for(var/gas_id in gasses)
+		scrub_gases += list(list(
+			"id" = "[gas_id]",
+			"name" = GLOB.gas_data.names[gas_id],
+			"enabled" = gasses[gas_id],
+		))
+	data["scrub_gases"] = scrub_gases
+	return data
 
-	if(href_list["set_breach_pressure"])
-		var/new_breach_pressure = input(usr, "Przy jakim ciśnieniu szukać wyłomów? (0 do 100)", "Ciśnienie wyłomu") as num
-		if(!isnum(new_breach_pressure) || new_breach_pressure < 0 || new_breach_pressure > 100)
-			return
-		breached_pressure = new_breach_pressure
-	else if(href_list["toggle_temp_control"])
-		temperature_control = temperature_control ? FALSE : TRUE
-	else if(href_list["toggle_gas"])
-		var/gas_id = href_list["toggle_gas"]
-		for(var/G in gasses)
-			if("[G]" == gas_id)
-				gasses[G] = gasses[G] ? FALSE : TRUE
-	else if(href_list["set_ideal_temperature"])
-		var/new_temp = input(usr, "Ustaw temperaturę docelową (od [T0C]K do [T20C + 20]K)", "Temperatura docelowa") as num
-		if(!isnum(new_temp) || new_temp < T0C || new_temp > T20C + 20)
-			return
-		ideal_temperature = new_temp
-
-	update_controls()
+/mob/living/simple_animal/bot/atmosbot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
+		if("breach_pressure")
+			var/new_breach_pressure = text2num(params["value"])
+			if(!isnum(new_breach_pressure))
+				return FALSE
+			breached_pressure = clamp(new_breach_pressure, 0, 100)
+		if("temperature_control")
+			temperature_control = !temperature_control
+		if("ideal_temperature")
+			var/new_temp = text2num(params["value"])
+			if(!isnum(new_temp))
+				return FALSE
+			ideal_temperature = clamp(new_temp, T0C, T20C + 20)
+		if("toggle_gas")
+			var/gas_id = params["gas"]
+			for(var/G in gasses)
+				if("[G]" == gas_id)
+					gasses[G] = !gasses[G]
+		else
+			return FALSE
 	update_icon()
+	return TRUE
 
 /mob/living/simple_animal/bot/atmosbot/update_icon()
 	if(action == ATMOSBOT_VENT_AIR && emagged == 2)

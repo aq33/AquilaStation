@@ -1,3 +1,7 @@
+// AQUILA: menedżer faksów dla adminów (code/modules/paperwork/fax_manager.dm).
+// tg nie ma odpowiednika — zostaje nasze okno, przetłumaczone.
+import { sortBy } from 'es-toolkit';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,15 +14,8 @@ import {
   TextArea,
 } from 'tgui-core/components';
 
-import { sortBy } from '../../common/collections';
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
-type Data = {
-  additional_faxes: any;
-  faxes: any;
-  requests: any;
-};
 
 type FaxManagerData = {
   faxes: FaxInfo[];
@@ -47,27 +44,22 @@ type RequestsList = {
   paper_raw_text: string;
 };
 
+// Wartość tylko po stronie okna — do DM idzie wpisana nazwa.
+const CUSTOM_NAME = 'Własna nazwa';
+
 export const FaxManager = (props) => {
-  const { act } = useBackend<Data>();
-  const { data } = useBackend<FaxManagerData>();
+  const { act, data } = useBackend<FaxManagerData>();
   const faxes = data.faxes
-    ? sortBy((sortFax: FaxInfo) => sortFax.fax_name)(data.faxes)
+    ? sortBy(data.faxes, [(sortFax: FaxInfo) => sortFax.fax_name])
     : [];
 
-  const [messagingAssociates, setMessagingAssociates] = useLocalState(
-    'messaging_associates',
-    false,
-  );
-  const [selectedFaxId, setSelectedFaxId] = useLocalState('selectedFaxId', '');
-  const [selectedFaxName, setSelectedFaxName] = useLocalState(
-    'selectedFaxName',
-    '',
-  );
-  const [messageText, setMessageText] = useLocalState('setMessageText', '');
+  const [messagingAssociates, setMessagingAssociates] = useState(false);
+  const [selectedFaxId, setSelectedFaxId] = useState('');
+  const [selectedFaxName, setSelectedFaxName] = useState('');
   return (
-    <Window title="Fax Manager" width={600} height={700} theme="admin">
+    <Window title="Menedżer faksów" width={600} height={700} theme="admin">
       <Window.Content scrollable>
-        <Section title="Send">
+        <Section title="Wyślij">
           {faxes.length !== 0 ? (
             <Box mt={0.4}>
               {faxes.map((fax: FaxInfo) => (
@@ -86,10 +78,10 @@ export const FaxManager = (props) => {
               ))}
             </Box>
           ) : (
-            "The fax manager couldn't detect any other fax machines on the network."
+            'Menedżer nie wykrył w sieci żadnych faksów.'
           )}
         </Section>
-        <Section title="Messages">
+        <Section title="Wiadomości">
           <Flex direction="column">
             {!!data.requests &&
               data.requests.map((request: RequestsList) => (
@@ -101,10 +93,6 @@ export const FaxManager = (props) => {
                     time={request.time}
                     sender_name={request.sender_name}
                     sender_fax_name={request.sender_fax_name}
-                    paper_raw_text={request.paper_raw_text}
-                    onRead={(paper_raw_text) => {
-                      setMessageText(paper_raw_text);
-                    }}
                   />
                 </Flex.Item>
               ))}
@@ -135,55 +123,65 @@ export const FaxManager = (props) => {
   );
 };
 
-const FaxMessageModal = (props) => {
+type FaxMessageModalProps = {
+  selectedFaxId: string;
+  selectedFaxName: string;
+  onBack: () => void;
+  onSubmit: (faxId: string, senderName: string, message: string) => void;
+  onFollow: (faxId: string) => void;
+};
+
+const FaxMessageModal = (props: FaxMessageModalProps) => {
   const { data } = useBackend<FaxManagerData>();
-  const [messageInput, setMessageInput] = useLocalState(props.messageInput, '');
+  const [messageInput, setMessageInput] = useState('');
 
-  const [selectedSenderName, setSelectedSenderName] = useLocalState(
-    'selectedSenderName',
-    '',
+  const additional_faxes: string[] = (data.additional_faxes || []).map(
+    (fax) => fax.fax_name,
   );
-  const [сustomSenderName, setCustomSenderName] = useLocalState(
-    'сustomSenderName',
-    '',
-  );
+  additional_faxes.push(CUSTOM_NAME);
 
-  const additional_faxes: string[] = [];
-  for (let fax of data.additional_faxes) {
-    additional_faxes.push(fax.fax_name);
-  }
-  additional_faxes.push('Custom Name');
+  const [selectedSenderName, setSelectedSenderName] = useState(
+    additional_faxes[0],
+  );
+  const [customSenderName, setCustomSenderName] = useState('');
+
+  const isCustom = selectedSenderName === CUSTOM_NAME;
+  const senderName = isCustom ? customSenderName : selectedSenderName;
+  const canSend = !!messageInput && !!senderName;
 
   return (
     <Modal>
       <Flex direction="column">
         <Flex.Item fontSize="16px" maxWidth="90vw" mb={1}>
-          Send a message to {props.selectedFaxName}/{props.selectedFaxId}:
+          Wiadomość do {props.selectedFaxName}/{props.selectedFaxId}:
         </Flex.Item>
         <Flex.Item maxWidth="100%">
-          <LabeledList.Item label="Selecting the sender: ">
-            <Dropdown
-              options={additional_faxes}
-              selected={additional_faxes[0]}
-              onSelected={(value) => setSelectedSenderName(value)}
-            />
-          </LabeledList.Item>
-        </Flex.Item>
-        {selectedSenderName === 'Custom Name' && (
-          <Flex.Item maxWidth="100%">
-            <LabeledList.Item label="Custom name for the sender: ">
-              <Input onInput={(_, value) => setCustomSenderName(value)} />
+          <LabeledList>
+            <LabeledList.Item label="Nadawca">
+              <Dropdown
+                options={additional_faxes}
+                selected={selectedSenderName}
+                onSelected={(value) => setSelectedSenderName(value)}
+              />
             </LabeledList.Item>
-          </Flex.Item>
-        )}
-        <Flex.Item mr={2} mb={1}>
+            {isCustom && (
+              <LabeledList.Item label="Własna nazwa nadawcy">
+                <Input
+                  value={customSenderName}
+                  onChange={(value) => setCustomSenderName(value)}
+                />
+              </LabeledList.Item>
+            )}
+          </LabeledList>
+        </Flex.Item>
+        <Flex.Item mr={2} mb={1} mt={1}>
           <TextArea
             fluid
             height="20vh"
             width="80vw"
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setMessageInput(value.substring(0, 5000));
             }}
             value={messageInput}
@@ -191,77 +189,46 @@ const FaxMessageModal = (props) => {
         </Flex.Item>
         <Flex.Item>
           <Button
-            icon={props.icon}
-            content="Send"
+            icon="paper-plane"
             color="good"
-            tooltipPosition="right"
-            disabled={
-              !messageInput || messageInput.length === 0
-                ? true
-                : selectedSenderName === 'Custom Name'
-                  ? !сustomSenderName || сustomSenderName.length === 0
-                    ? true
-                    : false
-                  : false
-            }
+            disabled={!canSend}
             onClick={() => {
-              if (messageInput && messageInput.length !== 0) {
-                if (
-                  selectedSenderName !== 'Custom Name' &&
-                  selectedSenderName.length !== 0
-                ) {
-                  props.onSubmit(
-                    props.selectedFaxId,
-                    selectedSenderName,
-                    messageInput,
-                  );
-                } else if (сustomSenderName && сustomSenderName.length !== 0) {
-                  props.onSubmit(
-                    props.selectedFaxId,
-                    сustomSenderName,
-                    messageInput,
-                  );
-                  setCustomSenderName('');
-                  setSelectedSenderName(additional_faxes[0]);
-                  setMessageInput('');
-                } else if (selectedSenderName.length === 0) {
-                  props.onSubmit(
-                    props.selectedFaxId,
-                    additional_faxes[0],
-                    messageInput,
-                  );
-                }
+              if (!canSend) {
+                return;
               }
+              props.onSubmit(props.selectedFaxId, senderName, messageInput);
+              setCustomSenderName('');
+              setMessageInput('');
             }}
-          />
+          >
+            Wyślij
+          </Button>
           <Button
             icon="times"
-            content="Cancel"
             color="bad"
             onClick={() => {
               props.onBack();
-              setSelectedSenderName(additional_faxes[0]);
               setMessageInput('');
             }}
-          />
+          >
+            Anuluj
+          </Button>
           <Button
-            icon="times"
-            content="Follow Fax"
+            icon="eye"
             onClick={() => {
               props.onFollow(props.selectedFaxId);
             }}
-          />
+          >
+            Obserwuj faks
+          </Button>
         </Flex.Item>
-        {!!props.notice && (
-          <Flex.Item maxWidth="90vw">{props.notice}</Flex.Item>
-        )}
       </Flex>
     </Modal>
   );
 };
 
 const RequestControl = (props) => {
-  const { act } = useBackend<Data>();
+  const { act } = useBackend<FaxManagerData>();
   return (
     <Section
       title={props.receiver_fax_name}
@@ -273,12 +240,12 @@ const RequestControl = (props) => {
             }
             color="good"
           >
-            Read
+            Czytaj
           </Button>
           <Button
             onClick={() => act('flw_fax', { fax_id: props.sender_fax_id })}
           >
-            FLW Fax
+            FLW faks
           </Button>
           <Button onClick={() => act('flw', { id_message: props.id_message })}>
             FLW
@@ -293,7 +260,7 @@ const RequestControl = (props) => {
             SM
           </Button>
           <Button onClick={() => act('logs', { id_message: props.id_message })}>
-            LOGS
+            LOGI
           </Button>
           <Button
             onClick={() => act('smite', { id_message: props.id_message })}
@@ -303,8 +270,7 @@ const RequestControl = (props) => {
         </>
       }
     >
-      [{props.time}] Message received from {props.sender_fax_name}/
-      {props.sender_name}
+      [{props.time}] Wiadomość od {props.sender_fax_name}/{props.sender_name}
     </Section>
   );
 };

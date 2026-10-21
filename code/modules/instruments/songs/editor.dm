@@ -1,77 +1,195 @@
-/**
-  * Returns the HTML for the status UI for this song datum.
-  */
-/datum/song/proc/instrument_status_ui()
-	. = list()
-	. += "<div class='statusDisplay'>"
-	. += "<b><a href='byond://?src=[REF(src)];switchinstrument=1'>Obecny instrument</a>:</b> "
-	if(!using_instrument)
-		. += "<span class='danger'>Nie załadowano instrumentu!</span><br>"
-	else
-		. += "[using_instrument.name]<br>"
-	. += "Ustawienia odtwarzania:<br>"
-	if(can_noteshift)
-		. += "<a href='byond://?src=[REF(src)];setnoteshift=1'>Przesunięcie/transpozycja nut</a>: [note_shift] klawiszy / [round(note_shift / 12, 0.01)] oktaw<br>"
-	var/smt
-	var/modetext = ""
+// AQUILA: edytor utworów w TGUI (okno InstrumentEditor z tg) zamiast starego HTML
+/datum/song/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "InstrumentEditor", parent?.name || "instrument")
+		ui.open()
+
+/datum/song/ui_host(mob/user)
+	return parent
+
+/datum/song/ui_state(mob/user)
+	if(ispAI(user))
+		return GLOB.always_state
+	return ..()
+
+/datum/song/ui_data(mob/user)
+	var/list/data = list()
+	data["using_instrument"] = using_instrument?.name
+	data["can_noteshift"] = can_noteshift
+	data["note_shift"] = note_shift
+	data["octaves"] = round(note_shift / 12, 0.01)
+	data["sustain_mode"] = sustain_mode
 	switch(sustain_mode)
 		if(SUSTAIN_LINEAR)
-			smt = "Linear"
-			modetext = "<a href='byond://?src=[REF(src)];setlinearfalloff=1'>Czas liniowego podtrzymania</a>: [sustain_linear_duration / 10] s<br>"
+			data["sustain_mode_duration"] = sustain_linear_duration / 10
+			data["sustain_mode_min"] = 0.1
+			data["sustain_mode_max"] = INSTRUMENT_MAX_TOTAL_SUSTAIN / 10
+			data["sustain_mode_step"] = 0.1
 		if(SUSTAIN_EXPONENTIAL)
-			smt = "Exponential"
-			modetext = "<a href='byond://?src=[REF(src)];setexpfalloff=1'>Współczynnik wykładniczego zaniku</a>: [sustain_exponential_dropoff]% na decysekundę<br>"
-	. += "<a href='byond://?src=[REF(src)];setsustainmode=1'>Tryb podtrzymania</a>: [smt]<br>"
-	. += modetext
-	. += using_instrument?.ready()? "Stan: <span class='good'>Gotowy</span><br>" : "Stan: <span class='bad'>!Błąd definicji instrumentu!</span><br>"
-	. += "Typ instrumentu: [legacy? "dawny" : "syntetyzowany"]<br>"
-	. += "<a href='byond://?src=[REF(src)];setvolume=1'>Volume</a>: [volume]<br>"
-	. += "<a href='byond://?src=[REF(src)];setdropoffvolume=1'>Próg zaniku głośności</a>: [sustain_dropoff_volume]<br>"
-	. += "<a href='byond://?src=[REF(src)];togglesustainhold=1'>Podtrzymuj bez końca ostatnią przytrzymaną nutę</a>: [full_sustain_held_note? "włączone" : "wyłączone"].<br>"
-	. += "</div>"
+			data["sustain_mode_duration"] = sustain_exponential_dropoff
+			data["sustain_mode_min"] = INSTRUMENT_EXP_FALLOFF_MIN
+			data["sustain_mode_max"] = INSTRUMENT_EXP_FALLOFF_MAX
+			data["sustain_mode_step"] = 0.005
+	data["instrument_ready"] = !!using_instrument?.ready()
+	data["legacy"] = legacy
+	data["volume"] = volume
+	data["volume_dropoff_threshold"] = sustain_dropoff_volume
+	data["sustain_indefinitely"] = full_sustain_held_note
+	data["playing"] = playing
+	data["repeat"] = repeat
+	data["bpm"] = round(600 / tempo)
+	data["lines"] = list()
+	var/linecount = 0
+	for(var/line in lines)
+		linecount++
+		data["lines"] += list(list(
+			"line_count" = linecount,
+			"line_text" = line,
+		))
+	return data
 
-/datum/song/ui_interact(mob/user)
-	var/list/dat = list()
+/datum/song/ui_static_data(mob/user)
+	var/list/data = list()
+	data["can_switch_instrument"] = (length(allowed_instrument_ids) > 1)
+	data["possible_instruments"] = list()
+	for(var/instrument_id in allowed_instrument_ids)
+		var/datum/instrument/I = SSinstruments.get_instrument(instrument_id)
+		if(!I)
+			continue
+		data["possible_instruments"] += list(list("name" = I.name, "id" = I.id, "category" = I.category))
+	data["max_repeats"] = max_repeats
+	data["min_volume"] = min_volume
+	data["max_volume"] = max_volume
+	data["note_shift_min"] = note_shift_min
+	data["note_shift_max"] = note_shift_max
+	data["max_line_chars"] = MUSIC_MAXLINECHARS
+	data["max_lines"] = MUSIC_MAXLINES
+	return data
 
-	dat += instrument_status_ui()
+/datum/song/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = usr
+	if(!istype(user) || !user.canUseTopic(parent, TRUE, FALSE, FALSE, FALSE))
+		return
+	parent.add_fingerprint(user)
 
-	if(lines.len > 0)
-		dat += "<H3>Playback</H3>"
-		if(!playing)
-			dat += "<A href='byond://?src=[REF(src)];play=1'>Graj</A> <SPAN CLASS='linkOn'>Stop</SPAN><BR><BR>"
-			dat += "Powtarzaj utwór: "
-			dat += repeat > 0 ? "<A href='byond://?src=[REF(src)];repeat=-10'>-</A><A href='byond://?src=[REF(src)];repeat=-1'>-</A>" : "<SPAN CLASS='linkOff'>-</SPAN><SPAN CLASS='linkOff'>-</SPAN>"
-			dat += " [repeat] times "
-			dat += repeat < max_repeats ? "<A href='byond://?src=[REF(src)];repeat=1'>+</A><A href='byond://?src=[REF(src)];repeat=10'>+</A>" : "<SPAN CLASS='linkOff'>+</SPAN><SPAN CLASS='linkOff'>+</SPAN>"
-			dat += "<BR>"
-		else
-			dat += "<SPAN CLASS='linkOn'>Graj</SPAN> <A href='byond://?src=[REF(src)];stop=1'>Stop</A><BR>"
-			dat += "Pozostałe powtórzenia: <B>[repeat]</B><BR>"
-	if(!editing)
-		dat += "<BR><B><A href='byond://?src=[REF(src)];edit=2'>Pokaż edytor</A></B><BR>"
-	else
-		dat += "<H3>Editing</H3>"
-		dat += "<B><A href='byond://?src=[REF(src)];edit=1'>Ukryj edytor</A></B>"
-		dat += " <A href='byond://?src=[REF(src)];newsong=1'>Zacznij nowy utwór</A>"
-		dat += " <A href='byond://?src=[REF(src)];import=1'>Import a Song</A><BR><BR>"
-		var/bpm = round(600 / tempo)
-		dat += "Tempo: <A href='byond://?src=[REF(src)];tempo=[world.tick_lag]'>-</A> [bpm] BPM <A href='byond://?src=[REF(src)];tempo=-[world.tick_lag]'>+</A><BR><BR>"
-		var/linecount = 0
-		for(var/line in lines)
-			linecount += 1
-			dat += "Linia [linecount]: <A href='byond://?src=[REF(src)];modifyline=[linecount]'>Edytuj</A> <A href='byond://?src=[REF(src)];deleteline=[linecount]'>X</A> [line]<BR>"
-		dat += "<A href='byond://?src=[REF(src)];newline=1'>Dodaj linię</A><BR><BR>"
-		if(help)
-			dat += "<B><A href='byond://?src=[REF(src)];help=1'>Ukryj pomoc</A></B><BR>"
-			dat += {"
-					Linie to ciągi akordów oddzielonych przecinkami (,), a nuty w akordzie oddziela się łącznikami (-).<br>Wszystkie nuty w akordzie zagrają razem, a czas akordu wyznacza tempo.<br><br>Nuty zapisuje się nazwą nuty i opcjonalnie znakiem chromatycznym i/lub numerem oktawy.<br>Domyślnie każda nuta jest naturalna i w oktawie 3. Zmienione ustawienie jest zapamiętywane dla każdej nuty.<br>Przykład: <i>C,D,E,F,G,A,B</i> zagra gamę C-dur.<br>Gdy nuta dostanie znak chromatyczny, zostanie on zapamiętany: <i>C,C4,C,C3</i> to <i>C3,C4,C4,C3</i><br>Akordy można grać, po prostu oddzielając nuty łącznikiem: <i>A-C#,Cn-E,E-G#,Gn-B</i><br>Pauzę oznacza pusty akord: <i>C,E,,C,G</i><br>Aby akord trwał inaczej, zakończ go /x, a długość akordu wyniesie<br>tempo / x: <i>C,G/2,E/4</i><br>Łącznie przykład wygląda tak: <i>E-E4/4,F#/2,G#/8,B/8,E3-E4/4</i><br>Linie mogą mieć do [MUSIC_MAXLINECHARS] znaków.<br>Utwór może mieć najwyżej [MUSIC_MAXLINES] linii.<br>
-					"}
-		else
-			dat += "<B><A href='byond://?src=[REF(src)];help=2'>Pokaż pomoc</A></B><BR>"
+	switch(action)
+		//SETTINGS
+		if("play_music")
+			if(!playing)
+				INVOKE_ASYNC(src, PROC_REF(start_playing), user)
+			else
+				stop_playing()
+			return TRUE
+		if("change_instrument")
+			var/new_instrument = params["new_instrument"]
+			if(!length(allowed_instrument_ids) || !(new_instrument in allowed_instrument_ids))
+				return
+			set_instrument(new_instrument)
+			return TRUE
+		if("tempo")
+			var/tempo_diff = (params["tempo_change"] == "increase_speed") ? -world.tick_lag : world.tick_lag
+			tempo = sanitize_tempo(tempo + tempo_diff)
+			return TRUE
 
-	var/datum/browser/popup = new(user, "instrument", parent?.name || "instrument", 700, 500)
-	popup.set_content(dat.Join(""))
-	popup.open()
+		//SONG MAKING
+		if("import_song")
+			var/song_text = ""
+			do
+				song_text = tgui_input_text(user, "Wklej cały utwór:", name, song_text, MUSIC_MAXLINES * MUSIC_MAXLINECHARS, TRUE)
+				if(isnull(song_text) || !in_range(parent, user))
+					return
+				if(length_char(song_text) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+					var/should_continue = tgui_alert(user, "Utwór jest za długi! Czy chcesz kontynuować edycję?", "Uwaga", list("Tak", "Nie"))
+					if(should_continue != "Tak")
+						break
+			while(length_char(song_text) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
+			ParseSong(song_text)
+			return TRUE
+		if("start_new_song")
+			name = ""
+			lines = new()
+			tempo = sanitize_tempo(5) // default 120 BPM
+			return TRUE
+		if("add_new_line")
+			var/newline = tgui_input_text(user, "Wpisz swoją linię:", parent.name, null, MUSIC_MAXLINECHARS)
+			if(!newline || !in_range(parent, user))
+				return
+			if(length(lines) >= MUSIC_MAXLINES)
+				return
+			if(length(newline) > MUSIC_MAXLINECHARS)
+				newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
+			lines.Add(newline)
+			return TRUE
+		if("delete_line")
+			var/line_to_delete = round(text2num(params["line_deleted"]))
+			if(line_to_delete > length(lines) || line_to_delete < 1)
+				return
+			lines.Cut(line_to_delete, line_to_delete + 1)
+			return TRUE
+		if("modify_line")
+			var/line_to_edit = round(text2num(params["line_editing"]))
+			if(line_to_edit > length(lines) || line_to_edit < 1)
+				return
+			var/new_line_text = tgui_input_text(user, "Wpisz swoją linię:", parent.name, lines[line_to_edit], MUSIC_MAXLINECHARS)
+			if(isnull(new_line_text) || !in_range(parent, user))
+				return
+			if(line_to_edit > length(lines))
+				return
+			lines[line_to_edit] = new_line_text
+			return TRUE
+
+		//MODE STUFF
+		if("set_sustain_mode")
+			var/new_mode = text2num(params["new_mode"])
+			if(new_mode != SUSTAIN_LINEAR && new_mode != SUSTAIN_EXPONENTIAL)
+				return
+			sustain_mode = new_mode
+			return TRUE
+		if("set_note_shift")
+			if(!can_noteshift)
+				return
+			var/amount = text2num(params["amount"])
+			if(isnull(amount))
+				return
+			note_shift = clamp(round(amount), note_shift_min, note_shift_max)
+			return TRUE
+		if("set_volume")
+			var/new_volume = text2num(params["amount"])
+			if(isnull(new_volume))
+				return
+			set_volume(round(new_volume, 1))
+			return TRUE
+		if("set_dropoff_volume")
+			var/dropoff_threshold = text2num(params["amount"])
+			if(isnull(dropoff_threshold))
+				return
+			set_dropoff_volume(round(dropoff_threshold, 0.01))
+			return TRUE
+		if("toggle_sustain_hold_indefinitely")
+			full_sustain_held_note = !full_sustain_held_note
+			return TRUE
+		if("set_repeat_amount")
+			if(playing)
+				return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
+			var/repeat_amount = text2num(params["amount"])
+			if(isnull(repeat_amount))
+				return
+			repeat = clamp(round(repeat_amount), 0, max_repeats)
+			return TRUE
+		if("edit_sustain_mode")
+			var/sustain_amount = text2num(params["amount"])
+			if(isnull(sustain_amount))
+				return
+			switch(sustain_mode)
+				if(SUSTAIN_LINEAR)
+					set_linear_falloff_duration(round(sustain_amount * 10, world.tick_lag))
+				if(SUSTAIN_EXPONENTIAL)
+					set_exponential_drop_rate(round(sustain_amount, 0.00001))
+			return TRUE
 
 /**
   * Parses a song the user has input into lines and stores them.
@@ -98,140 +216,4 @@
 				lines.Remove(l)
 			else
 				linenum++
-		updateDialog(usr)		// make sure updates when complete
-
-/datum/song/Topic(href, href_list)
-	if(!usr.canUseTopic(parent, TRUE, FALSE, FALSE, FALSE))
-		usr << browse(null, "window=instrument")
-		usr.unset_machine()
-		return
-
-	parent.add_fingerprint(usr)
-
-	if(href_list["newsong"])
-		lines = new()
-		tempo = sanitize_tempo(5) // default 120 BPM
-		name = ""
-
-	else if(href_list["import"])
-		var/t = ""
-		do
-			t = html_encode(input(usr, "Wklej cały utwór w formacie:", text("[]", name), t)  as message)
-			if(!in_range(parent, usr))
-				return
-
-			if(length_char(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-				var/cont = input(usr, "Twoja wiadomość jest za długa! Czy chcesz kontynuować edycję?", "", "yes") in list("yes", "no")
-				if(cont == "no")
-					break
-		while(length_char(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-		ParseSong(t)
-
-	else if(href_list["help"])
-		help = text2num(href_list["help"]) - 1
-
-	else if(href_list["edit"])
-		editing = text2num(href_list["edit"]) - 1
-
-	if(href_list["repeat"]) //Changing this from a toggle to a number of repeats to avoid infinite loops.
-		if(playing)
-			return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
-		repeat += round(text2num(href_list["repeat"]))
-		if(repeat < 0)
-			repeat = 0
-		if(repeat > max_repeats)
-			repeat = max_repeats
-
-	else if(href_list["tempo"])
-		tempo = sanitize_tempo(tempo + text2num(href_list["tempo"]))
-
-	else if(href_list["play"])
-		INVOKE_ASYNC(src, PROC_REF(start_playing), usr)
-
-	else if(href_list["newline"])
-		var/newline = html_encode(input("Wpisz swoją linię: ", parent.name) as text|null)
-		if(!newline || !in_range(parent, usr))
-			return
-		if(lines.len > MUSIC_MAXLINES)
-			return
-		if(length(newline) > MUSIC_MAXLINECHARS)
-			newline = copytext(newline, 1, MUSIC_MAXLINECHARS)
-		lines.Add(newline)
-
-	else if(href_list["deleteline"])
-		var/num = round(text2num(href_list["deleteline"]))
-		if(num > lines.len || num < 1)
-			return
-		lines.Cut(num, num+1)
-
-	else if(href_list["modifyline"])
-		var/num = round(text2num(href_list["modifyline"]),1)
-		var/content = stripped_input(usr, "Wpisz swoją linię: ", parent.name, lines[num], MUSIC_MAXLINECHARS)
-		if(!content || !in_range(parent, usr))
-			return
-		if(num > lines.len || num < 1)
-			return
-		lines[num] = content
-
-	else if(href_list["stop"])
-		stop_playing()
-
-	else if(href_list["setlinearfalloff"])
-		var/amount = input(usr, "Ustaw czas liniowego podtrzymania w sekundach", "Czas liniowego podtrzymania") as null|num
-		if(!isnull(amount))
-			set_linear_falloff_duration(round(amount * 10, world.tick_lag))
-
-	else if(href_list["setexpfalloff"])
-		var/amount = input(usr, "Ustaw współczynnik wykładniczego podtrzymania", "Współczynnik wykładniczego podtrzymania") as null|num
-		if(!isnull(amount))
-			set_exponential_drop_rate(round(amount, 0.00001))
-
-	else if(href_list["setvolume"])
-		var/amount = input(usr, "Ustaw głośność", "Volume") as null|num
-		if(!isnull(amount))
-			set_volume(round(amount, 1))
-
-	else if(href_list["setdropoffvolume"])
-		var/amount = input(usr, "Ustaw próg zaniku", "Głośność progu zaniku") as null|num
-		if(!isnull(amount))
-			set_dropoff_volume(round(amount, 0.01))
-
-	else if(href_list["switchinstrument"])
-		if(!length(allowed_instrument_ids))
-			return
-		else if(length(allowed_instrument_ids) == 1)
-			set_instrument(allowed_instrument_ids[1])
-			return
-		var/list/categories = list()
-		for(var/i in allowed_instrument_ids)
-			var/datum/instrument/I = SSinstruments.get_instrument(i)
-			if(I)
-				LAZYSET(categories[I.category || "ERROR CATEGORY"], I.name, I.id)
-		var/cat = input(usr, "Wybierz kategorię", "Kategoria instrumentu") as null|anything in categories
-		if(!cat)
-			return
-		var/list/instruments = categories[cat]
-		var/choice = input(usr, "Wybierz instrument", "Wybór instrumentu") as null|anything in instruments
-		if(!choice)
-			return
-		choice = instruments[choice]		//get id
-		if(choice)
-			set_instrument(choice)
-
-	else if(href_list["setnoteshift"])
-		var/amount = input(usr, "Ustaw przesunięcie nut", "Przesunięcie nut") as null|num
-		if(!isnull(amount))
-			note_shift = clamp(amount, note_shift_min, note_shift_max)
-
-	else if(href_list["setsustainmode"])
-		var/choice = input(usr, "Wybierz tryb podtrzymania", "Tryb podtrzymania") as null|anything in list("Linear", "Exponential")
-		switch(choice)
-			if("Linear")
-				sustain_mode = SUSTAIN_LINEAR
-			if("Exponential")
-				sustain_mode = SUSTAIN_EXPONENTIAL
-
-	else if(href_list["togglesustainhold"])
-		full_sustain_held_note = !full_sustain_held_note
-
-	updateDialog()
+		SStgui.update_uis(src)		// make sure updates when complete

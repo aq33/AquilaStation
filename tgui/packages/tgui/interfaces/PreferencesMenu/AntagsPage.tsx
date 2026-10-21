@@ -322,7 +322,7 @@ const SearchBar = ({ searchText, setSearchText, allAntags }) => {
             width="500px"
             placeholder="Search roles"
             value={searchText}
-            onInput={(_, value) => setSearchText(value)}
+            onChange={(value) => setSearchText(value)}
           />
         </Stack.Item>
         <Stack.Item grow />

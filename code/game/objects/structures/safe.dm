@@ -79,79 +79,7 @@ FLOOR SAFES
 	else
 		icon_state = initial(icon_state)
 
-/obj/structure/safe/ui_interact(mob/user)
-	user.set_machine(src)
-	var/dat = "<center>"
-	dat += "<a href='byond://?src=[REF(src)];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='byond://?src=[REF(src)];decrement=1'>-</a> [dial] <a href='byond://?src=[REF(src)];increment=1'>+</a>"
-	if(open)
-		dat += "<table>"
-		for(var/i = contents.len, i>=1, i--)
-			var/obj/item/P = contents[i]
-			dat += "<tr><td><a href='byond://?src=[REF(src)];retrieve=[REF(P)]'>[P.name]</a></td></tr>"
-		dat += "</table></center>"
-	user << browse(HTML_SKELETON_TITLE(name, dat), "window=safe;size=350x300")
-
-/obj/structure/safe/Topic(href, href_list)
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/user = usr
-
-	if(!user.canUseTopic(src, BE_CLOSE))
-		return
-
-	var/canhear = FALSE
-	if(user.is_holding_item_of_type(/obj/item/clothing/neck/stethoscope))
-		canhear = TRUE
-
-	if(href_list["open"])
-		if(check_unlocked())
-			to_chat(user, "<span class='notice'>You [open ? "close" : "open"] [src].</span>")
-			open = !open
-			update_icon()
-			updateUsrDialog()
-			return
-		else
-			to_chat(user, "<span class='warning'>Nie możesz [open ? "zamknąć" : "otworzyć"] [src], zamek jest zablokowany!</span>")
-			return
-
-	if(href_list["decrement"])
-		dial = decrement(dial)
-		if(dial == tumbler_1_pos + 1 || dial == tumbler_1_pos - 71)
-			tumbler_1_pos = decrement(tumbler_1_pos)
-			if(canhear)
-				to_chat(user, "<span class='italics'>Słyszysz [pick("klak", "zgrzyt", "szczęk")] z [src].</span>")
-			if(tumbler_1_pos == tumbler_2_pos + 37 || tumbler_1_pos == tumbler_2_pos - 35)
-				tumbler_2_pos = decrement(tumbler_2_pos)
-				if(canhear)
-					to_chat(user, "<span class='italics'>Słyszysz [pick("klik", "brzęk", "dzyń")] z [src].</span>")
-			check_unlocked(user, canhear)
-		updateUsrDialog()
-		return
-
-	if(href_list["increment"])
-		dial = increment(dial)
-		if(dial == tumbler_1_pos - 1 || dial == tumbler_1_pos + 71)
-			tumbler_1_pos = increment(tumbler_1_pos)
-			if(canhear)
-				to_chat(user, "<span class='italics'>Słyszysz [pick("klak", "zgrzyt", "szczęk")] z [src].</span>")
-			if(tumbler_1_pos == tumbler_2_pos - 37 || tumbler_1_pos == tumbler_2_pos + 35)
-				tumbler_2_pos = increment(tumbler_2_pos)
-				if(canhear)
-					to_chat(user, "<span class='italics'>Słyszysz [pick("klik", "brzęk", "dzyń")] z [src].</span>")
-			check_unlocked(user, canhear)
-		updateUsrDialog()
-		return
-
-	if(href_list["retrieve"])
-		user << browse(null, "window=safe") // Close the menu
-
-		var/obj/item/P = locate(href_list["retrieve"]) in src
-		if(open)
-			if(P && in_range(src, user))
-				user.put_in_hands(P)
-				space -= P.w_class
-				updateUsrDialog()
-
+// Okno sejfu jest w TGUI: aquila/code/game/objects/structures/safe.dm
 
 /obj/structure/safe/attackby(obj/item/I, mob/user, params)
 	if(open)
@@ -162,7 +90,7 @@ FLOOR SAFES
 				to_chat(user, "<span class='warning'>[I] przykleił się do twojej ręki, nie możesz go włożyć do sejfu!</span>")
 				return
 			to_chat(user, "<span class='notice'>Wkładasz [I] do [src].</span>")
-			updateUsrDialog()
+			SStgui.update_uis(src)
 			return
 		else
 			to_chat(user, "<span class='notice'>[I] nie zmieści się w [src].</span>")
@@ -174,7 +102,7 @@ FLOOR SAFES
 
 
 /obj/structure/safe/handle_atom_del(atom/A)
-	updateUsrDialog()
+	SStgui.update_uis(src)
 
 /obj/structure/safe/blob_act(obj/structure/blob/B)
 	return

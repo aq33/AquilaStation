@@ -6,81 +6,89 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import type { BeakerReagent } from './common/BeakerDisplay';
 
 type Data = {
-  TankContents: any;
-  TankCurrentVolume: any;
-  TankMaxVolume: any;
-  active: any;
-  isTankLoaded: any;
-  maxSetting: any;
-  setting: any;
+  active: BooleanLike;
+  maxSetting: number;
+  setting: number;
+  TankContents: BeakerReagent[];
+  TankCurrentVolume: number | null;
+  TankMaxVolume: number;
+  isTankLoaded: BooleanLike;
 };
 
 export const SmokeMachine = (props) => {
   const { act, data } = useBackend<Data>();
   const {
-    TankContents,
-    isTankLoaded,
-    TankCurrentVolume,
-    TankMaxVolume,
     active,
     setting,
-    maxSetting = [],
+    maxSetting,
+    TankContents = [],
+    TankCurrentVolume,
+    TankMaxVolume,
   } = data;
+  const currentVolume = TankCurrentVolume || 0;
+
   return (
     <Window width={350} height={350}>
       <Window.Content>
         <Section
-          title="Dispersal Tank"
+          title="Zbiornik rozpylacza"
           buttons={
             <Button
               icon={active ? 'power-off' : 'times'}
               selected={active}
-              content={active ? 'On' : 'Off'}
               onClick={() => act('power')}
-            />
+            >
+              {active ? 'Wł.' : 'Wył.'}
+            </Button>
           }
         >
           <ProgressBar
-            value={TankCurrentVolume / TankMaxVolume}
+            value={currentVolume / TankMaxVolume}
             ranges={{
               bad: [-Infinity, 0.3],
             }}
           >
-            <AnimatedNumber initial={0} value={TankCurrentVolume || 0} />
-            {' / ' + TankMaxVolume}
+            <AnimatedNumber initial={0} value={currentVolume} />
+            {` / ${TankMaxVolume} u`}
           </ProgressBar>
           <Box mt={1}>
             <LabeledList>
-              <LabeledList.Item label="Range">
+              <LabeledList.Item label="Zasięg">
                 {[1, 2, 3, 4, 5].map((amount) => (
                   <Button
-                    key={amount}
-                    selected={setting === amount}
-                    icon="plus"
-                    content={amount * 3}
                     disabled={maxSetting < amount}
+                    icon="plus"
+                    key={amount}
                     onClick={() => act('setting', { amount })}
-                  />
+                    selected={setting === amount}
+                  >
+                    {amount * 3}
+                  </Button>
                 ))}
               </LabeledList.Item>
             </LabeledList>
           </Box>
         </Section>
         <Section
-          title="Contents"
+          title="Zawartość"
           buttons={
-            <Button icon="trash" content="Purge" onClick={() => act('purge')} />
+            <Button icon="trash" onClick={() => act('purge')}>
+              Opróżnij
+            </Button>
           }
         >
+          {TankContents.length === 0 && <Box color="label">Pusto</Box>}
           {TankContents.map((chemical) => (
             <Box key={chemical.name} color="label">
-              <AnimatedNumber initial={0} value={chemical.volume} /> units of{' '}
-              {chemical.name}
+              {chemical.name}:{' '}
+              <AnimatedNumber initial={0} value={chemical.volume} /> u
             </Box>
           ))}
         </Section>

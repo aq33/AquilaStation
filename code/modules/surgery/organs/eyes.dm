@@ -250,13 +250,58 @@
 		activate()
 
 /obj/item/organ/eyes/robotic/glow/proc/prompt_for_controls(mob/user)
-	var/C = input(owner, "Wybierz kolor", "Wybierz kolor", "#ffffff") as color|null
-	if(!C || QDELETED(src) || QDELETED(user) || QDELETED(owner) || owner != user)
-		return
-	var/range = input(user, "Podaj zasięg (0 - [max_light_beam_distance])", "Wybór zasięgu", 0) as null|num
+	ui_interact(user)
 
-	set_distance(CLAMP(range, 0, max_light_beam_distance))
-	assume_rgb(C)
+/obj/item/organ/eyes/robotic/glow/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/obj/item/organ/eyes/robotic/glow/ui_status(mob/user, datum/ui_state/state)
+	if(QDELETED(owner) || user != owner)
+		return UI_CLOSE
+	return ..()
+
+/obj/item/organ/eyes/robotic/glow/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "HighLuminosityEyesMenu")
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/item/organ/eyes/robotic/glow/ui_data(mob/user)
+	var/list/data = list()
+	data["lightColor"] = current_color_string
+	data["range"] = light_beam_distance
+	data["maxRange"] = max_light_beam_distance
+	return data
+
+/obj/item/organ/eyes/robotic/glow/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("set_range")
+			var/new_range = text2num(params["new_range"])
+			if(isnull(new_range))
+				return
+			set_distance(clamp(round(new_range), 0, max_light_beam_distance))
+			if(active)
+				start_visuals()
+			return TRUE
+		if("pick_color")
+			var/new_color = tgui_color_picker(usr, "Wybierz kolor światła", "Oczy o wysokiej jasności", current_color_string)
+			if(!new_color || QDELETED(src) || usr != owner)
+				return
+			assume_rgb(sanitize_hexcolor(new_color, 6, TRUE, current_color_string))
+			return TRUE
+		if("enter_color")
+			var/new_color = sanitize_hexcolor(lowertext(params["new_color"]), 6, TRUE, "")
+			if(!new_color)
+				return TRUE // odśwież okno, żeby wróciła poprzednia wartość
+			assume_rgb(new_color)
+			return TRUE
+		if("random_color")
+			assume_rgb("#[random_color()]")
+			return TRUE
 
 /obj/item/organ/eyes/robotic/glow/proc/assume_rgb(newcolor)
 	current_color_string = newcolor

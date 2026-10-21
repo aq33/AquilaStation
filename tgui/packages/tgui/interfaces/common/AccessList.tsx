@@ -61,18 +61,18 @@ export const AccessList = (props) => {
 
   return (
     <Section
-      title="Access"
+      title="Dostępy"
       buttons={
         <>
           <Button
             icon="check-double"
-            content="Grant All"
+            content="Nadaj wszystkie"
             color="good"
             onClick={() => grantAll()}
           />
           <Button
             icon="undo"
-            content="Deny All"
+            content="Odbierz wszystkie"
             color="bad"
             onClick={() => denyAll()}
           />
@@ -106,7 +106,7 @@ export const AccessList = (props) => {
               <Button
                 fluid
                 icon="check"
-                content="Grant Region"
+                content="Nadaj region"
                 color="good"
                 onClick={() => grantDep(selectedAccess.regid)}
               />
@@ -115,7 +115,7 @@ export const AccessList = (props) => {
               <Button
                 fluid
                 icon="times"
-                content="Deny Region"
+                content="Odbierz region"
                 color="bad"
                 onClick={() => denyDep(selectedAccess.regid)}
               />

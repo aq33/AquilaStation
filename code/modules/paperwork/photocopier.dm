@@ -91,13 +91,13 @@
 	catch()
 		data["forms_exist"] = FALSE
 
+	data["max_copies"] = MAX_COPIES_AT_ONCE // AQUILA EDIT - suwak kopii jak w tg
 	if(photo_copy)
 		data["is_photo"] = TRUE
 		data["color_mode"] = color_mode
-		data["isAI"] = TRUE
-		data["can_AI_print"] = toner_cartridge ? toner_cartridge.charges >= PHOTO_TONER_USE : FALSE
-	else
-		data["isAI"] = FALSE
+	// AQUILA EDIT - opcje SI tylko dla SI (wcześniej pokazywało się każdemu przy włożonym zdjęciu)
+	data["isAI"] = isAI(user)
+	data["can_AI_print"] = toner_cartridge ? toner_cartridge.charges >= PHOTO_TONER_USE : FALSE
 
 	if(toner_cartridge)
 		data["has_toner"] = TRUE

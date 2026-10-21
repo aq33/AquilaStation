@@ -125,27 +125,36 @@
 			A.controller = null
 	return ..()
 
-/obj/machinery/doorButtons/airlock_controller/Topic(href, href_list)
-	if(..())
-		return
-	if(busy)
-		return
+/obj/machinery/doorButtons/airlock_controller/ui_act(action, list/params)
+	. = ..()
+	if(. || busy)
+		return TRUE
 	if(!allowed(usr))
 		to_chat(usr, "<span class='warning'>Odmowa dostępu.</span>")
-		return
-	switch(href_list["command"])
-		if("close_exterior")
-			onlyClose(exteriorAirlock)
-		if("close_interior")
-			onlyClose(interiorAirlock)
-		if("cycle_exterior")
-			cycleClose(exteriorAirlock)
-		if("cycle_interior")
-			cycleClose(interiorAirlock)
-		if("open_exterior")
-			onlyOpen(exteriorAirlock)
-		if("open_interior")
-			onlyOpen(interiorAirlock)
+		return TRUE
+	if(isnull(params["requested_door"]))
+		return TRUE
+
+	var/obj/machinery/door/airlock/requested_door
+	var/obj/machinery/door/airlock/opposite_door
+	if(interiorAirlock && REF(interiorAirlock) == params["requested_door"])
+		requested_door = interiorAirlock
+		opposite_door = exteriorAirlock
+	else if(exteriorAirlock && REF(exteriorAirlock) == params["requested_door"])
+		requested_door = exteriorAirlock
+		opposite_door = interiorAirlock
+	else
+		return TRUE
+
+	switch(action)
+		if("open")
+			if(opposite_door && !opposite_door.density)
+				cycleClose(requested_door)
+			else
+				onlyOpen(requested_door)
+		if("close")
+			onlyClose(requested_door)
+	return TRUE
 
 /obj/machinery/doorButtons/airlock_controller/proc/onlyOpen(obj/machinery/door/airlock/A)
 	if(A)
@@ -220,7 +229,7 @@
 	busy = FALSE
 	if(update)
 		update_icon()
-	updateUsrDialog()
+	SStgui.update_uis(src)
 
 /obj/machinery/doorButtons/airlock_controller/process()
 	if(machine_stat & NOPOWER)
@@ -255,54 +264,20 @@
 	else
 		icon_state = "access_control_standby"
 
-/obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user)
-	var/datum/browser/popup = new(user, "computer", name)
-	popup.set_content(returnText())
-	popup.open()
+/obj/machinery/doorButtons/airlock_controller/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AirlockButtonController", name)
+		ui.open()
 
-/obj/machinery/doorButtons/airlock_controller/proc/returnText()
-	var/output
-	if(!exteriorAirlock && !interiorAirlock)
-		return "BŁĄD BŁĄD BŁĄD BŁĄD"
-	if(lostPower)
-		output = "Inicjalizacja..."
-	else
-		if(!exteriorAirlock || !interiorAirlock)
-			if(!exteriorAirlock)
-				if(interiorAirlock.density)
-					output = "<A href='byond://?src=[REF(src)];command=open_interior'>Otwórz wewnętrzną śluzę</A><BR>"
-				else
-					output = "<A href='byond://?src=[REF(src)];command=close_interior'>Zamknij wewnętrzną śluzę</A><BR>"
-			else
-				if(exteriorAirlock.density)
-					output = "<A href='byond://?src=[REF(src)];command=open_exterior'>Otwórz zewnętrzną śluzę</A><BR>"
-				else
-					output = "<A href='byond://?src=[REF(src)];command=close_exterior'>Zamknij zewnętrzną śluzę</A><BR>"
-		else
-			if(exteriorAirlock.density)
-				if(interiorAirlock.density)
-					output = {"<A href='byond://?src=[REF(src)];command=open_exterior'>Open Exterior Airlock</A><BR>
-					<A href='byond://?src=[REF(src)];command=open_interior'>Open Interior Airlock</A><BR>"}
-				else
-					output = {"<A href='byond://?src=[REF(src)];command=cycle_exterior'>Cycle to Exterior Airlock</A><BR>
-					<A href='byond://?src=[REF(src)];command=close_interior'>Close Interior Airlock</A><BR>"}
-			else
-				if(interiorAirlock.density)
-					output = {"<A href='byond://?src=[REF(src)];command=close_exterior'>Close Exterior Airlock</A><BR>
-					<A href='byond://?src=[REF(src)];command=cycle_interior'>Cycle to Interior Airlock</A><BR>"}
-				else
-					output = {"<A href='byond://?src=[REF(src)];command=close_exterior'>Close Exterior Airlock</A><BR>
-					<A href='byond://?src=[REF(src)];command=close_interior'>Close Interior Airlock</A><BR>"}
-
-
-	output = {"<B>Access Control Console</B><HR>
-				[output]<HR>"}
-	if(exteriorAirlock)
-		output += "<B>Drzwi zewnętrzne: </B> [exteriorAirlock.density ? "zamknięte" : "otwarte"]<BR>"
-	if(interiorAirlock)
-		output += "<B>Drzwi wewnętrzne: </B> [interiorAirlock.density ? "zamknięte" : "otwarte"]<BR>"
-
-	return output
+/obj/machinery/doorButtons/airlock_controller/ui_data(mob/user)
+	var/list/data = list()
+	data["interior_door"] = interiorAirlock ? REF(interiorAirlock) : null
+	data["exterior_door"] = exteriorAirlock ? REF(exteriorAirlock) : null
+	data["busy"] = busy || lostPower
+	data["interior_door_closed"] = interiorAirlock?.density
+	data["exterior_door_closed"] = exteriorAirlock?.density
+	return data
 
 #undef CLOSING
 #undef OPENING

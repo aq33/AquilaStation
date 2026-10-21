@@ -5,15 +5,22 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  meteor_shield: any;
-  meteor_shield_coverage: any;
-  meteor_shield_coverage_max: any;
-  satellites: any;
+  satellites: Satellite[];
+  meteor_shield: BooleanLike;
+  meteor_shield_coverage: number;
+  meteor_shield_coverage_max: number;
+};
+
+type Satellite = {
+  id: string;
+  active: BooleanLike;
+  mode: string;
 };
 
 export const SatelliteControl = (props) => {
@@ -22,10 +29,10 @@ export const SatelliteControl = (props) => {
   return (
     <Window width={400} height={305}>
       <Window.Content>
-        {data.meteor_shield && (
+        {!!data.meteor_shield && (
           <Section>
             <LabeledList>
-              <LabeledList.Item label="Coverage">
+              <LabeledList.Item label="Pokrycie">
                 <ProgressBar
                   value={
                     data.meteor_shield_coverage /
@@ -37,15 +44,16 @@ export const SatelliteControl = (props) => {
                     bad: [-Infinity, 0.3],
                   }}
                 >
-                  {(100 * data.meteor_shield_coverage) /
-                    data.meteor_shield_coverage_max +
-                    '%'}
+                  {Math.round(
+                    (100 * data.meteor_shield_coverage) /
+                      data.meteor_shield_coverage_max,
+                  ) + '%'}
                 </ProgressBar>
               </LabeledList.Item>
             </LabeledList>
           </Section>
         )}
-        <Section title="Satellite Controls">
+        <Section title="Sterowanie satelitami">
           <Box mr={-1}>
             {satellites.map((satellite) => (
               <Button.Checkbox

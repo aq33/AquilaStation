@@ -1,5 +1,9 @@
 #define IV_TAKING 0
 #define IV_INJECTING 1
+#define IV_DEFAULT_TRANSFER_RATE 5
+#define IV_MIN_TRANSFER_RATE 0
+#define IV_MAX_TRANSFER_RATE 10
+#define IV_TRANSFER_RATE_STEP 0.5
 
 /obj/machinery/iv_drip
 	name = "\improper IV drip"
@@ -19,9 +23,12 @@
 									/obj/item/reagent_containers/food,
 									/obj/item/reagent_containers/glass))
 	var/can_convert = TRUE // If it can be made into an anesthetic machine or not
+	/// AQUILA: ile jednostek na cykl maszyn przelewa kroplówka (wcześniej na sztywno 5)
+	var/transfer_rate = IV_DEFAULT_TRANSFER_RATE
 
 /obj/machinery/iv_drip/Initialize(mapload)
 	. = ..()
+	interaction_flags_machine |= INTERACT_MACHINE_OFFLINE
 	update_icon()
 
 /obj/machinery/iv_drip/Destroy()
@@ -133,8 +140,8 @@
 	if(beaker)
 		// Give blood
 		if(mode)
-			if(beaker.reagents.total_volume)
-				var/transfer_amount = 5
+			if(beaker.reagents.total_volume && transfer_rate > 0)
+				var/transfer_amount = transfer_rate
 				if(istype(beaker, /obj/item/reagent_containers/blood))
 					// speed up transfer on blood packs
 					transfer_amount *= 2
@@ -145,8 +152,10 @@
 
 		// Take blood
 		else
+			if(transfer_rate <= 0)
+				return
 			var/amount = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-			amount = min(amount, 4) * delta_time * 0.5
+			amount = min(amount, transfer_rate * 0.8) * delta_time * 0.5
 			// If the beaker is full, ping
 			if(!amount)
 				if(prob(5))
@@ -160,21 +169,82 @@
 			attached.transfer_blood_to(beaker, amount)
 			update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user, list/modifiers)
+// AQUILA: lewy klik otwiera okno TGUI (jak w tg), prawy robi dawną szybką akcję
+/obj/machinery/iv_drip/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	if(.)
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
 		return
-	if(!ishuman(user))
-		return
+	if(!ishuman(user) || !user.canUseTopic(src, BE_CLOSE))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 	if(attached)
-		visible_message("[attached] zostaje odłączony od [src].")
-		attached = null
-		update_icon()
-		return
+		detach_iv()
 	else if(beaker)
 		eject_beaker(user)
 	else
 		toggle_mode()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/// AQUILA: odłącza pacjenta od kroplówki
+/obj/machinery/iv_drip/proc/detach_iv()
+	if(!attached)
+		return
+	visible_message("[attached] zostaje odłączony od [src].")
+	attached = null
+	update_icon()
+	SStgui.update_uis(src)
+
+/obj/machinery/iv_drip/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "IVDrip", name)
+		ui.open()
+
+/obj/machinery/iv_drip/ui_static_data(mob/user)
+	var/list/data = list()
+	data["transferStep"] = IV_TRANSFER_RATE_STEP
+	data["maxTransferRate"] = IV_MAX_TRANSFER_RATE
+	data["minTransferRate"] = IV_MIN_TRANSFER_RATE
+	return data
+
+/obj/machinery/iv_drip/ui_data(mob/user)
+	var/list/data = list()
+	data["hasContainer"] = !!beaker
+	data["canRemoveContainer"] = !istype(src, /obj/machinery/iv_drip/saline)
+	data["canChangeMode"] = !istype(src, /obj/machinery/iv_drip/saline)
+	data["mode"] = mode == IV_INJECTING
+	data["transferRate"] = transfer_rate
+	data["isBloodPack"] = istype(beaker, /obj/item/reagent_containers/blood)
+	data["hasObjectAttached"] = !!attached
+	data["objectName"] = attached ? "[attached]" : null
+	if(beaker)
+		data["containerName"] = "[beaker.name]"
+		data["containerCurrentVolume"] = round(beaker.reagents.total_volume, 0.01)
+		data["containerMaxVolume"] = beaker.reagents.maximum_volume
+		data["containerReagentColor"] = mix_color_from_reagents(beaker.reagents.reagent_list)
+	return data
+
+/obj/machinery/iv_drip/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!ishuman(usr))
+		return
+	switch(action)
+		if("changeMode")
+			toggle_mode()
+			return TRUE
+		if("eject")
+			eject_beaker()
+			return TRUE
+		if("detach")
+			detach_iv()
+			return TRUE
+		if("changeRate")
+			var/new_rate = text2num(params["rate"])
+			if(isnull(new_rate))
+				return
+			transfer_rate = round(clamp(new_rate, IV_MIN_TRANSFER_RATE, IV_MAX_TRANSFER_RATE), IV_TRANSFER_RATE_STEP)
+			return TRUE
 
 /obj/machinery/iv_drip/verb/eject_beaker()
 	set category = "Object"
@@ -192,6 +262,7 @@
 		beaker.forceMove(drop_location())
 		beaker = null
 		update_icon()
+		SStgui.update_uis(src)
 
 /obj/machinery/iv_drip/verb/toggle_mode()
 	set category = "Object"
@@ -208,6 +279,7 @@
 	mode = !mode
 	to_chat(usr, "Kroplówka teraz [mode ? "wstrzykuje" : "pobiera krew"].")
 	update_icon()
+	SStgui.update_uis(src)
 
 /obj/machinery/iv_drip/examine(mob/user)
 	. = ..()
@@ -263,3 +335,7 @@
 	return
 #undef IV_TAKING
 #undef IV_INJECTING
+#undef IV_DEFAULT_TRANSFER_RATE
+#undef IV_MIN_TRANSFER_RATE
+#undef IV_MAX_TRANSFER_RATE
+#undef IV_TRANSFER_RATE_STEP

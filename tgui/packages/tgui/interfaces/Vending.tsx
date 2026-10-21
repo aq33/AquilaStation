@@ -177,8 +177,8 @@ export const UserDetails = (props) => {
         </Stack.Item>
         <Stack.Item>
           {user
-            ? `${user.name || 'Unknown'} | ${user.job}`
-            : 'No ID detected! Contact the Head of Personnel.'}
+            ? `${user.name || 'Nieznany'} | ${user.job}`
+            : 'Nie wykryto karty! Zgłoś się do Szefa Personelu.'}
         </Stack.Item>
       </Stack>
     </NoticeBox>
@@ -216,20 +216,21 @@ const ProductDisplay = (props: {
     <Section
       fill
       scrollable
-      title="Products"
+      title="Produkty"
       buttons={
         <Stack>
           {!all_products_free && user && (
-            <Stack.Item fontSize="16px" color="black">
-              {(user && user.cash) || 0}
+            <Stack.Item fontSize="16px" color="green">
+              {user?.cash || 0}
               {displayed_currency_name}
-              <Icon ml={1} mt={0.4} name={displayed_currency_icon} />
+              <Icon ml={1} name={displayed_currency_icon} color="gold" />
             </Stack.Item>
           )}
           <Stack.Item>
             <Input
-              onInput={(_, value) => setStockSearch(value)}
-              placeholder="Search..."
+              onChange={setStockSearch}
+              expensive
+              placeholder="Szukaj..."
               value={stockSearch}
             />
           </Stack.Item>
@@ -247,7 +248,7 @@ const ProductDisplay = (props: {
         })
         .map((product) => (
           <Product
-            key={product.path}
+            key={product.path || product.name}
             fluid={toggleLayout === LAYOUT.List}
             custom={custom}
             product={product}
@@ -358,7 +359,7 @@ const ProductList = (props) => {
           fontSize={0.8}
           color={'rgba(255, 255, 255, 0.5)'}
         >
-          {remaining} left
+          zostało: {remaining}
         </Stack.Item>
         <Stack.Item
           width={3.5}
@@ -384,7 +385,7 @@ const ProductColorSelect = (props) => {
       width={fluid ? '32px' : '20px'}
       icon={'palette'}
       color={'transparent'}
-      tooltip={'Change color'}
+      tooltip="Zmień kolor"
       style={disabled && { pointerEvents: 'none', opacity: 0.5 }}
       onClick={() => act('select_colors', { ref: product.ref })}
     />
@@ -396,10 +397,10 @@ const ProductPrice = (props) => {
   const { act, data } = useBackend<VendingData>();
   const { access, displayed_currency_name } = data;
   const { custom, discount, free, product, redPrice } = props;
-  const customPrice = access ? 'Free' : product.price;
+  const customPrice = access ? 'Za darmo' : product.price;
   let standardPrice = product.price;
   if (free) {
-    standardPrice = 'Free';
+    standardPrice = 'Za darmo';
   } else if (discount) {
     standardPrice = redPrice;
   }
@@ -421,7 +422,7 @@ const ProductPrice = (props) => {
 };
 
 const CATEGORY_COLORS = {
-  Contraband: 'red',
+  Kontrabanda: 'red',
   Premium: 'yellow',
 };
 

@@ -236,90 +236,71 @@
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
-/obj/machinery/magnetic_controller/ui_interact(mob/user)
+/obj/machinery/magnetic_controller/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MagnetController", name)
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/obj/machinery/magnetic_controller/ui_data(mob/user)
+	var/list/data = list()
+	data["title"] = title
+	data["autolink"] = autolink
+	data["frequency"] = frequency
+	data["code"] = code
+	data["speed"] = speed
+	data["path"] = path
+	data["moving"] = moving
+	var/list/magnet_list = list()
+	for(var/obj/machinery/magnetic_module/M in magnets)
+		magnet_list += list(list(
+			"on" = M.on,
+			"electricity_level" = M.electricity_level,
+			"magnetic_field" = M.magnetic_field,
+		))
+	data["magnets"] = magnet_list
+	return data
+
+/obj/machinery/magnetic_controller/ui_act(action, list/params)
 	. = ..()
-	var/dat = "<B>Konsola sterowania magnesami</B><BR><BR>"
-	if(!autolink)
-		dat += {"
-		Frequency: <a href='byond://?src=[REF(src)];operation=setfreq'>[frequency]</a><br>
-		Code: <a href='byond://?src=[REF(src)];operation=setfreq'>[code]</a><br>
-		<a href='byond://?src=[REF(src)];operation=probe'>Probe Generators</a><br>
-		"}
-
-	if(magnets.len >= 1)
-
-		dat += "Potwierdzone magnesy: <br>"
-		var/i = 0
-		for(var/obj/machinery/magnetic_module/M in magnets)
-			i++
-			dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;< \[[i]\] (<a href='byond://?src=[REF(src)];radio-op=togglepower'>[M.on ? "On":"Off"]</a>) | Electricity level: <a href='byond://?src=[REF(src)];radio-op=minuselec'>-</a> [M.electricity_level] <a href='byond://?src=[REF(src)];radio-op=pluselec'>+</a>; Magnetic field: <a href='byond://?src=[REF(src)];radio-op=minusmag'>-</a> [M.magnetic_field] <a href='byond://?src=[REF(src)];radio-op=plusmag'>+</a><br>"
-
-	dat += "<br>Speed: <a href='byond://?src=[REF(src)];operation=minusspeed'>-</a> [speed] <a href='byond://?src=[REF(src)];operation=plusspeed'>+</a><br>"
-	dat += "Path: {<a href='byond://?src=[REF(src)];operation=setpath'>[path]</a>}<br>"
-	dat += "Moving: <a href='byond://?src=[REF(src)];operation=togglemoving'>[moving ? "Enabled":"Disabled"]</a>"
-
-
-	user << browse(HTML_SKELETON(dat), "window=magnet;size=400x500")
-	onclose(user, "magnet")
-
-/obj/machinery/magnetic_controller/Topic(href, href_list)
-	if(..())
+	if(.)
 		return
-	usr.set_machine(src)
 
-	if(href_list["radio-op"])
-
-		// Prepare signal beforehand, because this is a radio operation
+	// Polecenia radiowe idą do wszystkich magnesów z tym samym kodem
+	var/static/list/radio_commands = list(
+		"togglepower" = "toggle-power",
+		"minuselec" = "sub-elec",
+		"pluselec" = "add-elec",
+		"minusmag" = "sub-mag",
+		"plusmag" = "add-mag",
+	)
+	if(radio_commands[action])
 		var/datum/signal/signal = new(list("code" = code))
-
-		// Apply any necessary commands
-		switch(href_list["radio-op"])
-			if("togglepower")
-				signal.data["command"] = "toggle-power"
-
-			if("minuselec")
-				signal.data["command"] = "sub-elec"
-			if("pluselec")
-				signal.data["command"] = "add-elec"
-
-			if("minusmag")
-				signal.data["command"] = "sub-mag"
-			if("plusmag")
-				signal.data["command"] = "add-mag"
-
-
-		// Broadcast the signal
-
+		signal.data["command"] = radio_commands[action]
 		radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+		return TRUE
 
-		spawn(1)
-			updateUsrDialog() // pretty sure this increases responsiveness
-
-	if(href_list["operation"])
-		switch(href_list["operation"])
-			if("plusspeed")
-				speed ++
-				if(speed > 10)
-					speed = 10
-			if("minusspeed")
-				speed --
-				if(speed <= 0)
-					speed = 1
-			if("setpath")
-				var/newpath = stripped_input(usr, "Wyznacz nową ścieżkę!", "Nowa ścieżka", path)
-				if(newpath && newpath != "")
-					moving = 0 // stop moving
-					path = newpath
-					pathpos = 1 // reset position
-					filter_path() // renders rpath
-
-			if("togglemoving")
-				moving = !moving
-				if(moving)
-					spawn() MagnetMove()
-
-
-	updateUsrDialog()
+	switch(action)
+		if("plusspeed")
+			speed = min(speed + 1, 10)
+			return TRUE
+		if("minusspeed")
+			speed = max(speed - 1, 1)
+			return TRUE
+		if("setpath")
+			var/newpath = stripped_input(usr, "Wyznacz nową ścieżkę!", "Nowa ścieżka", path)
+			if(newpath && newpath != "")
+				moving = 0 // stop moving
+				path = newpath
+				pathpos = 1 // reset position
+				filter_path() // renders rpath
+			return TRUE
+		if("togglemoving")
+			moving = !moving
+			if(moving)
+				spawn() MagnetMove()
+			return TRUE
 
 /obj/machinery/magnetic_controller/proc/MagnetMove()
 	if(looping)

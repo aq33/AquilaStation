@@ -277,7 +277,6 @@
 				if(!electronics)
 					to_chat(usr, "<span class='warning'>W zespole brakuje elektroniki!</span>")
 					return
-				user << browse(null, "window=windoor_access")
 				user.visible_message("[user] wsadza łomem drzwi okienne w ramę.",
 					"<span class='notice'>Zaczynasz wsadzać łomem drzwi okienne w ramę...</span>")
 

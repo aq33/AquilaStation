@@ -1,0 +1,70 @@
+import { Box, Icon, Section, Stack } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { GenericUplink, type Item } from './Uplink/GenericUplink';
+
+type MalfModuleData = {
+  name: string;
+  icon: string;
+  icon_state: string;
+  cost: number;
+  desc: string;
+  category: string;
+};
+
+type Data = {
+  processingTime: number;
+  hackedAPCs: number;
+  categories: string[];
+  modules: MalfModuleData[];
+};
+
+export function MalfunctionModulePicker(props) {
+  const { act, data } = useBackend<Data>();
+  const { processingTime, hackedAPCs, categories } = data;
+
+  const items: Item[] = data.modules.map((module) => ({
+    category: module.category,
+    cost: `${module.cost} PT`,
+    desc: module.desc,
+    disabled: processingTime < module.cost,
+    id: module.name,
+    name: module.name,
+    icon: module.icon,
+    icon_state: module.icon_state,
+    population_tooltip: '',
+    insufficient_population: false,
+  }));
+
+  return (
+    <Window width={620} height={525} theme="malfunction">
+      <Window.Content>
+        <Stack vertical fill>
+          <Stack.Item>
+            <Section>
+              <Icon name="terminal" mr={1} />
+              <Box inline bold>
+                Zhakowane APC:
+              </Box>
+              <Box inline ml={1}>
+                {hackedAPCs}
+              </Box>
+              <Box inline ml={3} color="label">
+                Każde zhakowane APC daje 10 PT mocy obliczeniowej.
+              </Box>
+            </Section>
+          </Stack.Item>
+          <Stack.Item grow>
+            <GenericUplink
+              categories={categories}
+              items={items}
+              currency={`${processingTime} PT`}
+              handleBuy={(item) => act('buy', { name: item.name })}
+            />
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
+    </Window>
+  );
+}

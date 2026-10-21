@@ -92,17 +92,35 @@
 			qdel(S)
 			return cost * (spell_levels+1)
 	return -1
-/datum/spellbook_entry/proc/GetInfo()
+/// Dane wpisu dla okna TGUI "Spellbook"
+/datum/spellbook_entry/proc/get_ui_data(mob/living/carbon/human/user, obj/item/spellbook/book)
+	var/list/data = list(
+		"ref" = REF(src),
+		"cost" = cost,
+		"cat" = category,
+		"refundable" = refundable,
+		"buyword" = buy_word,
+		"limit" = limit,
+		"times" = 0,
+		"active" = FALSE,
+		"can_buy" = FALSE,
+		"can_refund" = FALSE,
+	)
+	if(ishuman(user) && user.mind)
+		data["can_buy"] = CanBuy(user, book)
+		data["can_refund"] = refundable && CanRefund(user, book)
+	return data
+
+/// Stałe dane wpisu (nazwa, opis) dla okna "Spellbook"
+/datum/spellbook_entry/proc/get_static_ui_data()
 	if(!S)
 		S = new spell_type()
-	var/dat =""
-	dat += "<b>[initial(S.name)]</b>"
-	if(S.charge_type == "recharge")
-		dat += " Cooldown:[S.charge_max/10]"
-	dat += " Cost:[cost]<br>"
-	dat += "<i>[S.desc][desc]</i><br>"
-	dat += "[S.clothes_req?"Requires wizard garb.":"Can be cast without wizard garb."]<br>"
-	return dat
+	return list(
+		"name" = initial(S.name),
+		"desc" = "[S.desc][desc]",
+		"requires_wizard_garb" = S.clothes_req,
+		"cooldown" = S.charge_type == "recharge" ? S.charge_max / 10 : 0,
+	)
 
 /datum/spellbook_entry/fireball
 	name = "Fireball"
@@ -284,14 +302,13 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	return TRUE
 
-/datum/spellbook_entry/item/GetInfo()
-	var/dat =""
-	dat += "<b>[name]</b>"
-	dat += " Cost:[cost]<br>"
-	dat += "<i>[desc]</i><br>"
-	if(surplus>=0)
-		dat += "[surplus] left.<br>"
-	return dat
+/datum/spellbook_entry/item/get_static_ui_data()
+	return list(
+		"name" = name,
+		"desc" = desc,
+		"requires_wizard_garb" = FALSE,
+		"cooldown" = 0,
+	)
 
 /datum/spellbook_entry/item/staffchange
 	name = "Staff of Change"
@@ -474,17 +491,17 @@
 /datum/spellbook_entry/summon/CanBuy(mob/living/carbon/human/user,obj/item/spellbook/book)
 	return ..() && !active
 
-/datum/spellbook_entry/summon/GetInfo()
-	var/dat =""
-	dat += "<b>[name]</b>"
-	if(cost>0)
-		dat += " Cost:[cost]<br>"
-	else
-		dat += " Za darmo<br>"
-	dat += "<i>[desc]</i><br>"
-	if(active)
-		dat += "<b>Już rzucone!</b><br>"
-	return dat
+/datum/spellbook_entry/summon/get_static_ui_data()
+	return list(
+		"name" = name,
+		"desc" = desc,
+		"requires_wizard_garb" = FALSE,
+		"cooldown" = 0,
+	)
+
+/datum/spellbook_entry/summon/get_ui_data(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	.["active"] = active
 
 /datum/spellbook_entry/summon/proc/say_invocation(mob/living/carbon/human/user)
 	if(ritual_invocation)
@@ -575,11 +592,9 @@
 	say_invocation(user)
 	return TRUE
 
-/datum/spellbook_entry/summon/events/GetInfo()
+/datum/spellbook_entry/summon/events/get_ui_data(mob/living/carbon/human/user, obj/item/spellbook/book)
 	. = ..()
-	if(times>0)
-		. += "Rzucono [times] razy.<br>"
-	return .
+	.["times"] = times
 
 /datum/spellbook_entry/summon/curse_of_madness
 	name = "Curse of Madness"
@@ -636,8 +651,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/uses = 10
-	var/temp = null
-	var/tab = null
 	var/refuses_refund = FALSE
 	var/mob/living/carbon/human/owner
 	var/list/datum/spellbook_entry/entries = list()
@@ -663,7 +676,6 @@
 			categories |= E.category
 		else
 			qdel(E)
-	tab = categories[1]
 
 /obj/item/spellbook/attackby(obj/item/O, mob/user, params)
 	if(refuses_refund)
@@ -688,56 +700,6 @@
 				BB.limit++
 		qdel(O)
 
-/obj/item/spellbook/proc/GetCategoryHeader(category)
-	var/dat = ""
-	switch(category)
-		if("Offensive")
-			dat += "Zaklęcia i przedmioty do osłabiania i niszczenia.<BR><BR>"
-			dat += "Przedmioty nie są z tobą związane i można je ukraść. Zwykle nie da się ich też zwrócić po zakupie.<BR>"
-			dat += "W przypadku zaklęć liczba po nazwie to czas odnowienia.<BR>"
-			dat += "Możesz go skrócić, wydając na zaklęcie więcej punktów.<BR>"
-		if("Defensive")
-			dat += "Zaklęcia i przedmioty zwiększające szanse na przetrwanie lub osłabiające ataki wrogów.<BR><BR>"
-			dat += "Przedmioty nie są z tobą związane i można je ukraść. Zwykle nie da się ich też zwrócić po zakupie.<BR>"
-			dat += "W przypadku zaklęć liczba po nazwie to czas odnowienia.<BR>"
-			dat += "Możesz go skrócić, wydając na zaklęcie więcej punktów.<BR>"
-		if("Mobility")
-			dat += "Zaklęcia i przedmioty poprawiające twoją mobilność. Warto wziąć choć jedno.<BR><BR>"
-			dat += "Przedmioty nie są z tobą związane i można je ukraść. Zwykle nie da się ich też zwrócić po zakupie.<BR>"
-			dat += "W przypadku zaklęć liczba po nazwie to czas odnowienia.<BR>"
-			dat += "Możesz go skrócić, wydając na zaklęcie więcej punktów.<BR>"
-		if("Assistance")
-			dat += "Zaklęcia i przedmioty sprowadzające zewnętrzne siły do pomocy lub ulepszające inne przedmioty i zdolności.<BR><BR>"
-			dat += "Przedmioty nie są z tobą związane i można je ukraść. Zwykle nie da się ich też zwrócić po zakupie.<BR>"
-			dat += "W przypadku zaklęć liczba po nazwie to czas odnowienia.<BR>"
-			dat += "Możesz go skrócić, wydając na zaklęcie więcej punktów.<BR>"
-		if("Challenges")
-			dat += "Federacja Czarodziejów zwykle ściśle ogranicza moc i liczbę zaklęć zabieranych na statek, zależnie od ryzyka.<BR>"
-			dat += "Uzbrojenie statku przeciwko tobie zwiększa ryzyko, ale daje twojej księdze jeden dodatkowy ładunek.<BR>"
-		if("Rituals")
-			dat += "Te potężne zaklęcia zmieniają samą tkankę rzeczywistości. Nie zawsze na twoją korzyść.<BR>"
-	return dat
-
-/obj/item/spellbook/proc/wrap(content)
-	var/dat = ""
-	dat +="<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Spellbook</title></head>"
-	dat += {"
-	<head>
-		<style type="text/css">
-      		body { font-size: 80%; font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif; }
-      		ul#tabs { list-style-type: none; margin: 30px 0 0 0; padding: 0 0 0.3em 0; }
-      		ul#tabs li { display: inline; }
-      		ul#tabs li a { color: #42454a; background-color: #dedbde; border: 1px solid #c9c3ba; border-bottom: none; padding: 0.3em; text-decoration: none; }
-      		ul#tabs li a:hover { background-color: #f1f0ee; }
-      		ul#tabs li a.selected { color: #000; background-color: #f1f0ee; font-weight: bold; padding: 0.7em 0.3em 0.38em 0.3em; }
-      		div.tabContent { border: 1px solid #c9c3ba; padding: 0.5em; background-color: #f1f0ee; }
-      		div.tabContent.hide { display: none; }
-    	</style>
-  	</head>
-	"}
-	dat += {"[content]</body></html>"}
-	return dat
-
 /obj/item/spellbook/attack_self(mob/user)
 	if(!owner)
 		to_chat(user, "<span class='notice'>Wiążesz księgę zaklęć ze sobą.</span>")
@@ -746,78 +708,66 @@
 	if(user != owner)
 		to_chat(user, "<span class='warning'>[name] nie rozpoznaje w tobie właściciela i nie chce się otworzyć!</span>")
 		return
-	user.set_machine(src)
-	var/dat = ""
+	ui_interact(user)
 
-	dat += "<ul id=\"tabs\">"
-	var/list/cat_dat = list()
-	for(var/category in categories)
-		cat_dat[category] = "<hr>"
-		dat += "<li><a [tab==category?"class=selected":""] href='byond://?src=[REF(src)];page=[category]'>[category]</a></li>"
+/obj/item/spellbook/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Spellbook")
+		ui.open()
 
-	dat += "<li><a><b>Pozostałe punkty: [uses]</b></a></li>"
-	dat += "</ul>"
+/obj/item/spellbook/ui_static_data(mob/user)
+	var/list/data = list()
+	data["owner"] = "[owner]"
+	return data
 
-	var/datum/spellbook_entry/E
-	for(var/i=1,i<=entries.len,i++)
-		var/spell_info = ""
-		E = entries[i]
-		spell_info += E.GetInfo()
-		if(E.CanBuy(user,src))
-			spell_info+= "<a href='byond://?src=[REF(src)];buy=[i]'>[E.buy_word]</A><br>"
-		else
-			spell_info+= "<span>Can't [E.buy_word]</span><br>"
-		if(E.CanRefund(user,src))
-			spell_info+= "<a href='byond://?src=[REF(src)];refund=[i]'>Refund</A><br>"
-		spell_info += "<hr>"
-		if(cat_dat[E.category])
-			cat_dat[E.category] += spell_info
+/obj/item/spellbook/ui_data(mob/user)
+	var/list/data = list()
+	data["points"] = uses
+	var/list/entry_data = list()
+	for(var/datum/spellbook_entry/entry as anything in entries)
+		var/list/one_entry = entry.get_static_ui_data()
+		var/list/dynamic_data = entry.get_ui_data(user, src)
+		for(var/key in dynamic_data)
+			one_entry[key] = dynamic_data[key]
+		entry_data += list(one_entry)
+	data["entries"] = entry_data
+	return data
 
-	for(var/category in categories)
-		dat += "<div class=\"[tab==category?"tabContent":"tabContent hide"]\" id=\"[category]\">"
-		dat += GetCategoryHeader(category)
-		dat += cat_dat[category]
-		dat += "</div>"
-
-	user << browse(wrap(dat), "window=spellbook;size=700x500")
-	onclose(user, "spellbook")
-	return
-
-/obj/item/spellbook/Topic(href, href_list)
-	..()
+/obj/item/spellbook/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
 	var/mob/living/carbon/human/H = usr
-
+	if(!ishuman(H) || !H.mind)
+		return
 	if(H.stat || H.restrained())
 		return
-	if(!ishuman(H))
-		return TRUE
-
+	if(H != owner)
+		return
 	if(H.mind.special_role == "apprentice")
-		temp = "Gdyby cię przyłapano na podglądaniu księgi nauczyciela, pewnie wyrzucono by cię z Akademii Czarodziejów. Lepiej nie."
+		to_chat(H, "<span class='warning'>Gdyby cię przyłapano na podglądaniu księgi nauczyciela, pewnie wyrzucono by cię z Akademii Czarodziejów. Lepiej nie.</span>")
+		return
+	if(!(loc == H || (in_range(src, H) && isturf(loc))))
 		return
 
-	var/datum/spellbook_entry/E = null
-	if(loc == H || (in_range(src, H) && isturf(loc)))
-		H.set_machine(src)
-		if(href_list["buy"])
-			E = entries[text2num(href_list["buy"])]
-			if(E && E.CanBuy(H,src))
-				if(E.Buy(H,src))
-					if(E.limit)
-						E.limit--
-					uses -= E.cost
-					log_game("[initial(E.name)] purchased by [H.ckey]/[H.name] the [H.job] for [E.cost] SP, [uses] SP remaining.")
-		else if(href_list["refund"])
-			E = entries[text2num(href_list["refund"])]
+	switch(action)
+		if("purchase")
+			var/datum/spellbook_entry/E = locate(params["spellref"]) in entries
+			if(E?.CanBuy(H, src) && E.Buy(H, src))
+				if(E.limit)
+					E.limit--
+				uses -= E.cost
+				log_game("[initial(E.name)] purchased by [H.ckey]/[H.name] the [H.job] for [E.cost] SP, [uses] SP remaining.")
+			return TRUE
+		if("refund")
+			var/datum/spellbook_entry/E = locate(params["spellref"]) in entries
 			if(E?.refundable)
-				var/result = E.Refund(H,src)
+				var/result = E.Refund(H, src)
 				if(result > 0)
 					if(!isnull(E.limit))
 						E.limit += result
 					uses += result
-		else if(href_list["page"])
-			tab = sanitize(href_list["page"])
-	attack_self(H)
-	return
+			return TRUE
 
 #undef WIZARD_WILDMAGIC_SPELLPOINT_MULTIPLIER

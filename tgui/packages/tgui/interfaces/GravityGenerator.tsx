@@ -6,44 +6,41 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  breaker: any;
-  charge_count: any;
-  charging_state: any;
-  emagged: any;
-  on: any;
-  operational: any;
-  theme: any;
+  breaker: BooleanLike;
+  charge_count: number;
+  charging_state: number;
+  emagged: BooleanLike;
+  on: BooleanLike;
+  operational: BooleanLike;
+  theme: string;
 };
 
 export const GravityGenerator = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
+  // NSV13 - theme i emagged
   const { charging_state, operational, emagged, theme } = data;
-  {
-    /* NSV13 - added theme and emagged as vars*/
-  }
   return (
-    <Window width={400} height={600} theme={theme}>
-      {' '}
-      {/* NSV13 - theme change on emag*/}
+    <Window width={400} height={230} theme={theme}>
       <Window.Content>
-        {!operational && <NoticeBox>No data available</NoticeBox>}
-        {/* NSV13 - gravgen emag info*/}
+        {!operational && <NoticeBox>Brak dostępnych danych</NoticeBox>}
+        {/* NSV13 - informacja o zemagowanym generatorze */}
         {!!operational && !!emagged && (
           <NoticeBox danger>
-            {'ERR - GR&!%$$ %$&/(!%$) ?)!&$§ ERROR, #!&%# 2G'}
+            {'BŁĄD - GR&!%$$ %$&/(!%$) ?)!&$§ BŁĄD, #!&%# 2G'}
           </NoticeBox>
         )}
-        {/* NSV13 end*/}
+        {/* NSV13 end */}
         {!!operational && charging_state !== 0 && (
-          <NoticeBox danger>WARNING - Radiation detected</NoticeBox>
+          <NoticeBox danger>UWAGA - wykryto promieniowanie</NoticeBox>
         )}
         {!!operational && charging_state === 0 && (
-          <NoticeBox success>No radiation detected</NoticeBox>
+          <NoticeBox success>Nie wykryto promieniowania</NoticeBox>
         )}
         {!!operational && <GravityGeneratorContent />}
       </Window.Content>
@@ -57,16 +54,17 @@ const GravityGeneratorContent = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Power">
+        <LabeledList.Item label="Zasilanie">
           <Button
             icon={breaker ? 'power-off' : 'times'}
-            content={breaker ? 'On' : 'Off'}
             selected={breaker}
             disabled={!operational}
             onClick={() => act('gentoggle')}
-          />
+          >
+            {breaker ? 'Wł.' : 'Wył.'}
+          </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Gravity Charge">
+        <LabeledList.Item label="Ładunek grawitacji">
           <ProgressBar
             value={charge_count / 100}
             ranges={{
@@ -76,13 +74,13 @@ const GravityGeneratorContent = (props) => {
             }}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Charge Mode">
+        <LabeledList.Item label="Tryb ładowania">
           {charging_state === 0 &&
-            ((on && <Box color="good">Fully Charged</Box>) || (
-              <Box color="bad">Not Charging</Box>
+            ((on && <Box color="good">W pełni naładowany</Box>) || (
+              <Box color="bad">Nie ładuje</Box>
             ))}
-          {charging_state === 1 && <Box color="average">Charging</Box>}
-          {charging_state === 2 && <Box color="average">Discharging</Box>}
+          {charging_state === 1 && <Box color="average">Ładuje</Box>}
+          {charging_state === 2 && <Box color="average">Rozładowuje</Box>}
         </LabeledList.Item>
       </LabeledList>
     </Section>

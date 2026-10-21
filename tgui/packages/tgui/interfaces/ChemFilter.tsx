@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { Button, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
+import type { CssColor } from '../constants';
 import { Window } from '../layouts';
 
 type Data = {
@@ -11,14 +12,15 @@ type Data = {
 
 type Props = {
   title: string;
+  which: 'left' | 'right';
   list: string[];
-  buttonColor: string;
+  buttonColor: CssColor;
 };
 
 export const ChemFilterPane = (props: Props) => {
   const { act } = useBackend();
-  const { title, list, buttonColor } = props;
-  const titleKey = title.toLowerCase();
+  const { title, which, list, buttonColor } = props;
+  const titleKey = which;
 
   return (
     <Section
@@ -34,7 +36,7 @@ export const ChemFilterPane = (props: Props) => {
             })
           }
         >
-          Add Reagent
+          Dodaj odczynnik
         </Button>
       }
     >
@@ -67,10 +69,20 @@ export const ChemFilter = (props) => {
       <Window.Content scrollable>
         <Stack>
           <Stack.Item grow>
-            <ChemFilterPane title="Right" list={right} buttonColor="red" />
+            <ChemFilterPane
+              title="Prawo"
+              which="right"
+              list={right}
+              buttonColor="red"
+            />
           </Stack.Item>
           <Stack.Item grow>
-            <ChemFilterPane title="Left" list={left} buttonColor="yellow" />
+            <ChemFilterPane
+              title="Lewo"
+              which="left"
+              list={left}
+              buttonColor="yellow"
+            />
           </Stack.Item>
         </Stack>
       </Window.Content>

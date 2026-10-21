@@ -209,8 +209,8 @@
 /obj/item/mod/module/anomaly_locked/kinesis/proc/on_catcher_click(atom/source, location, control, params, user)
 	SIGNAL_HANDLER
 
-	var/list/modifiers = params2list(params)
-	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+	var/mob/clicker = user
+	if(istype(clicker) && clicker.is_secondary_click(params)) // AQ EDIT - standaryzacja combat mode: w starych intencjach disarm
 		clear_grab()
 
 /obj/item/mod/module/anomaly_locked/kinesis/proc/on_statchange(mob/grabbed_mob, new_stat)

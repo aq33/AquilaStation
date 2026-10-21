@@ -7,6 +7,13 @@
 // - disarm: lewy klik działa jak prawy klik w combat mode (odepchnięcie, pobranie strzykawką itd.),
 // - grab: lewy klik pustą ręką na mobie działa jak Ctrl+klik (chwyt),
 // - prawy przycisk otwiera menu kontekstowe jak dawniej, a w HUD jest stary wybór czterech intencji.
+//
+// Standaryzacja: każda akcja dostępna w combat mode ma odpowiednik w intencjach i odwrotnie.
+// - każdy żywy mob gracza (poza silikonami) ma w starym trybie cztery intencje, także simple animale i antagi-zwierzęta,
+// - zdolności przechwytujące kliknięcie (spelle, akcje z celowaniem) dostają już przetłumaczone kliknięcie,
+// - kliknięcia omijające ClickOn (przyciski HUD, sygnały COMSIG_CLICK) sprawdzają akcję dodatkową przez is_secondary_click(),
+// - silikony nie mają intencji disarm, więc zostaje im prawy przycisk jako akcja dodatkowa, a menu jest pod Shift.
+// Nowy kod z akcją pod prawym przyciskiem nie potrzebuje niczego więcej, jeśli idzie przez ClickOn albo is_secondary_click().
 
 /// Does this mob's player use the legacy intent controls?
 /mob/proc/uses_legacy_intents()
@@ -17,10 +24,61 @@
  *
  * Changes `modifiers` in place. Returns TRUE if they were changed, so the caller can rebuild the params string.
  */
-/mob/proc/translate_legacy_intent_click(atom/target, list/modifiers)
+/mob/proc/translate_legacy_intent_click(atom/target, list/modifiers, disarm_only = FALSE)
 	return FALSE
 
-/mob/living/translate_legacy_intent_click(atom/target, list/modifiers)
+/**
+ * Is this click the secondary action (right click in combat mode, the disarm intent in the legacy controls)?
+ *
+ * For clicks that never pass through ClickOn, like HUD buttons and COMSIG_CLICK handlers.
+ * Clicks that went through ClickOn are already translated, so checking RIGHT_CLICK there is enough.
+ */
+/mob/proc/is_secondary_click(list/modifiers)
+	if(istext(modifiers))
+		modifiers = params2list(modifiers)
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		return TRUE
+	if(!uses_legacy_intents() || a_intent != INTENT_DISARM)
+		return FALSE
+	return !(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK))
+
+/// The intents this mob can pick, the legacy controls give every living mob all four so nothing is out of reach
+/mob/proc/legacy_intent_choices()
+	return possible_a_intents
+
+/mob/living/legacy_intent_choices()
+	if(!uses_legacy_intents() || length(possible_a_intents) == 4)
+		return possible_a_intents
+	return GLOB.legacy_intent_choices
+
+/mob/living/silicon/legacy_intent_choices()
+	return possible_a_intents
+
+GLOBAL_LIST_INIT(legacy_intent_choices, list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM))
+
+/// How to reach the secondary action, for chat and examine texts ("Kliknij drzwi [secondary_click_text()]")
+/mob/proc/secondary_click_text()
+	if(uses_legacy_intents() && !legacy_keeps_right_click())
+		return "na intencji rozbrajania"
+	return "prawym przyciskiem"
+
+/// Screentips name the mouse buttons of combat mode, the legacy controls reach the right click with the disarm intent
+/mob/proc/adapt_screentip_controls(text)
+	if(!uses_legacy_intents() || legacy_keeps_right_click())
+		return text
+	// Alt/Ctrl/Shift z prawym przyciskiem nie mają odpowiednika w intencjach (prawy przycisk otwiera tu menu)
+	for(var/modifier in list("ctrl-shift-", "alt-", "ctrl-", "shift-"))
+		text = replacetext(text, "[modifier][GLOB.rmb_icon]", "<b>[modifier]PPM (tylko combat mode):</b>")
+	return replacetext(text, GLOB.rmb_icon, "<b>Rozbrój+LPM:</b>")
+
+/// Mobs without the disarm intent keep the right click as the secondary action even in the legacy controls
+/mob/proc/legacy_keeps_right_click()
+	return FALSE
+
+/mob/living/silicon/legacy_keeps_right_click()
+	return TRUE
+
+/mob/living/translate_legacy_intent_click(atom/target, list/modifiers, disarm_only = FALSE)
 	if(!uses_legacy_intents())
 		return FALSE
 	if(LAZYACCESS(modifiers, SHIFT_CLICK) || LAZYACCESS(modifiers, CTRL_CLICK) || LAZYACCESS(modifiers, ALT_CLICK) || LAZYACCESS(modifiers, MIDDLE_CLICK) || LAZYACCESS(modifiers, RIGHT_CLICK))
@@ -32,7 +90,7 @@
 			modifiers["button"] = RIGHT_CLICK
 			return TRUE
 		if(INTENT_GRAB)
-			if(!isliving(target) || target == src || get_active_held_item())
+			if(disarm_only || !isliving(target) || target == src || get_active_held_item())
 				return FALSE
 			modifiers[CTRL_CLICK] = "1"
 			return TRUE
@@ -97,13 +155,13 @@
 
 /// In the legacy mode right click always opens the context menu, like it used to.
 /client/set_right_click_menu_mode(shift_only)
-	if(mob?.uses_legacy_intents())
+	if(mob?.uses_legacy_intents() && !mob.legacy_keeps_right_click())
 		shift_only = FALSE
 	return ..(shift_only)
 
 /// Shift held down opens the context menu on right click (the skin macros get erased by set_macros()).
 /client/proc/update_shift_context_menu(shift_down)
-	if(!mob?.shift_to_open_context_menu || mob.uses_legacy_intents())
+	if(!mob?.shift_to_open_context_menu || (mob.uses_legacy_intents() && !mob.legacy_keeps_right_click()))
 		return
 	winset(src, "mapwindow.map", "right-click=[shift_down ? "false" : "true"]")
 
@@ -141,7 +199,7 @@
 		selector = new /atom/movable/screen/act_intent/robot()
 	else if(isalien(mymob))
 		selector = new /atom/movable/screen/act_intent/alien()
-	else if(length(mymob.possible_a_intents) == 4)
+	else if(length(mymob.legacy_intent_choices()) == 4)
 		selector = new /atom/movable/screen/act_intent/segmented()
 	else
 		selector = new /atom/movable/screen/act_intent()

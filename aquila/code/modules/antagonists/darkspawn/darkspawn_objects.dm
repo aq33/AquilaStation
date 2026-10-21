@@ -46,9 +46,9 @@
 	if(isobserver(user) || isdarkspawn(user))
 		. += "<span class='velvet bold'>Zastosowania:</span>"
 		. += "<span class='velvet'><b>Wyważanie śluz:</b> kliknij śluzę, żeby siłą ją otworzyć (15 Psi), a zaryglowaną albo zaspawaną rozbić (30 Psi).</span>"
-		. += "<span class='velvet'><b>Rzut mackami:</b> prawy klik wydaje 30 Psi na pocisk lecący do pięciu pól, który przewraca[twin ? " i przyciąga" : ""] pierwszą trafioną istotę.</span>"
+		. += "<span class='velvet'><b>Rzut mackami:</b> kliknięcie [user.secondary_click_text()] wydaje 30 Psi na pocisk lecący do pięciu pól, który przewraca[twin ? " i przyciąga" : ""] pierwszą trafioną istotę.</span>"
 		. += "<span class='velvet'>Macki pożerają światło wszystkiego, w co uderzą.</span>"
-		. += "<span class='velvet'>Prawym klikiem podważają też śluzy bez zasilania.</span>"
+		. += "<span class='velvet'>Kliknięciem [user.secondary_click_text()] podważają też śluzy bez zasilania.</span>"
 		if(cleave)
 			. += "<span class='velvet'>Sigile rozszczepienia: macki tną też wrogów stojących obok celu.</span>"
 

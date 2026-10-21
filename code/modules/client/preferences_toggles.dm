@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	if(!CONFIG_GET(flag/allow_admin_asaycolor))
 		to_chat(src, "Własny kolor ASAY jest obecnie wyłączony przez serwer.")
 		return
-	var/new_asaycolor = input(src, "Wybierz kolor ASAY.", "Kolor ASAY", prefs.asaycolor) as color|null
+	var/new_asaycolor = tgui_color_picker(src, "Wybierz kolor ASAY.", "Kolor ASAY", prefs.asaycolor)
 	if(new_asaycolor)
 		prefs.asaycolor = sanitize_ooccolor(new_asaycolor)
 		prefs.save_preferences()

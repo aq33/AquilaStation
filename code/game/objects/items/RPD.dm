@@ -305,7 +305,13 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 		var/list/r = list()
 		for(var/i in 1 to cat.len)
 			var/datum/pipe_info/info = cat[i]
-			r += list(list("pipe_name" = info.name, "pipe_index" = i, "selected" = (info == recipe), "all_layers" = info.all_layers))
+			// AQUILA: okno z tg pokazuje podgląd kierunków dla każdej receptury
+			var/list/previews = list()
+			for(var/list/preview_row in info.get_preview(info == recipe ? p_dir : null))
+				previews += preview_row["previews"]
+			if(info == recipe)
+				data["selected_category"] = c
+			r += list(list("pipe_name" = info.name, "pipe_index" = i, "selected" = (info == recipe), "all_layers" = info.all_layers, "previews" = previews))
 		data["categories"] += list(list("cat_name" = c, "recipes" = r))
 
 	return data

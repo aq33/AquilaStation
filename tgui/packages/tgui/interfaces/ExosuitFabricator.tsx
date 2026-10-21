@@ -1,61 +1,75 @@
-import { classes } from 'common/react';
+import {
+  Box,
+  Button,
+  Icon,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
+import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Box, Button, Icon, Section, Stack, Tooltip } from '../components';
 import { Window } from '../layouts';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialAccessBar } from './Fabrication/MaterialAccessBar';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
-import { Design, Material, MaterialMap } from './Fabrication/Types';
+import type { Design, Material, MaterialMap } from './Fabrication/Types';
 import { affordableAmount } from './Fabricator';
 
 type QueueJob = {
+  /** Unique per row, used as the React key. */
   jobId: string;
+  /** The design being printed, available in `designs`. */
   designId: string;
-  processing: boolean;
+  /** If true, this design is being fabricated and `timeLeft` is counting down. */
+  processing: BooleanLike;
+  /** The time left in this design's fabrication, in deciseconds. */
   timeLeft: number;
 };
 
-type Data = {
+type ExosuitFabricatorData = {
   /** AQUILA: our exosuit fabricator syncs research from a nearby R&D console */
-  can_sync?: boolean;
+  can_sync?: BooleanLike;
   materials: Material[];
   designs: Record<string, Design>;
   queue: QueueJob[];
-  processing: boolean;
+  processing: BooleanLike;
 };
 
-export const ExosuitFabricator = () => {
-  const { act, data } = useBackend<Data>();
+export const ExosuitFabricator = (props) => {
+  const { act, data } = useBackend<ExosuitFabricatorData>();
+  const { materials = [], designs = {} } = data;
+
   const availableMaterials: MaterialMap = {};
-  for (const material of data.materials || []) {
+
+  for (const material of materials) {
     availableMaterials[material.name] = material.amount;
   }
 
   return (
-    <Window title="Exosuit Fabricator" width={1100} height={600}>
+    <Window title="Fabrykator egzoszkieletów" width={1100} height={600}>
       <Window.Content>
         <Stack fill>
           <Stack.Item grow>
-            <Stack vertical fill>
-              <Stack.Item grow style={{ minHeight: '0' }}>
+            <Stack fill vertical>
+              <Stack.Item grow>
                 <DesignBrowser
-                  designs={Object.values(data.designs || {})}
+                  designs={Object.values(designs)}
                   availableMaterials={availableMaterials}
+                  buildRecipeElement={(design, availableMaterials) => (
+                    <Recipe available={availableMaterials} design={design} />
+                  )}
                   categoryButtons={(category) => (
                     <Button
                       color="transparent"
-                      onClick={() =>
+                      onClick={() => {
                         act('build', {
                           designs: category.children.map((design) => design.id),
-                        })
-                      }
+                        });
+                      }}
                     >
-                      Queue All
+                      Dodaj wszystko do kolejki
                     </Button>
-                  )}
-                  buildRecipeElement={(design, available) => (
-                    <Recipe design={design} available={available} />
                   )}
                 />
               </Stack.Item>
@@ -64,19 +78,21 @@ export const ExosuitFabricator = () => {
                   <Button
                     fluid
                     icon="sync"
-                    content="Synchronize with R&D"
+                    tooltip="Skopiuj badania z pobliskiej konsoli B+R"
                     onClick={() => act('resync_rd')}
-                  />
+                  >
+                    Synchronizuj z B+R
+                  </Button>
                 </Stack.Item>
               )}
               <Stack.Item>
                 <Section>
                   <MaterialAccessBar
-                    availableMaterials={data.materials || []}
-                    designs={Object.values(data.designs || {})}
-                    onEjectRequested={(material, amount) =>
-                      act('remove_mat', { ref: material.ref, amount })
-                    }
+                    availableMaterials={materials}
+                    designs={Object.values(designs)}
+                    onEjectRequested={(material, amount) => {
+                      act('remove_mat', { ref: material.ref, amount });
+                    }}
                   />
                 </Section>
               </Stack.Item>
@@ -91,22 +107,25 @@ export const ExosuitFabricator = () => {
   );
 };
 
-const Recipe = (props: { design: Design; available: MaterialMap }) => {
-  const { act } = useBackend<Data>();
-  const canBuild = !Object.entries(props.design.cost).some(
-    ([material, cost]) => cost > (props.available[material] || 0),
-  );
-  const queue = (amount = 1) =>
-    act('queue_item', { design_id: props.design.id, amount });
+type RecipeProps = {
+  design: Design;
+  available: MaterialMap;
+};
+
+const Recipe = (props: RecipeProps) => {
+  const { act } = useBackend<ExosuitFabricatorData>();
+  const { design, available } = props;
+
+  const canPrint = affordableAmount(design, available) > 0;
 
   return (
     <div className="FabricatorRecipe">
-      <Tooltip content={props.design.desc} position="right">
+      <Tooltip content={design.desc} position="right">
         <div
           className={classes([
             'FabricatorRecipe__Button',
             'FabricatorRecipe__Button--icon',
-            !canBuild && 'FabricatorRecipe__Button--disabled',
+            !canPrint && 'FabricatorRecipe__Button--disabled',
           ])}
         >
           <Icon name="question-circle" />
@@ -116,48 +135,67 @@ const Recipe = (props: { design: Design; available: MaterialMap }) => {
         position="bottom"
         content={
           <MaterialCostSequence
-            design={props.design}
-            available={props.available}
+            design={design}
+            amount={1}
+            available={available}
           />
         }
       >
         <div
           className={classes([
             'FabricatorRecipe__Title',
-            !canBuild && 'FabricatorRecipe__Title--disabled',
+            !canPrint && 'FabricatorRecipe__Title--disabled',
           ])}
-          onClick={() => queue()}
+          onClick={() =>
+            canPrint && act('build', { designs: [design.id], now: true })
+          }
         >
           <div className="FabricatorRecipe__Icon">
             <Box
               width="32px"
               height="32px"
-              className={classes(['design32x32', props.design.icon])}
+              className={classes(['design32x32', design.icon])}
             />
           </div>
-          <div className="FabricatorRecipe__Label">{props.design.name}</div>
+          <div className="FabricatorRecipe__Label">{design.name}</div>
         </div>
       </Tooltip>
-      <Tooltip content="Add to Queue" position="right">
+
+      <Tooltip content="Dodaj do kolejki" position="right">
         <div
           className={classes([
             'FabricatorRecipe__Button',
             'FabricatorRecipe__Button--icon',
-            !canBuild && 'FabricatorRecipe__Button--disabled',
+            !canPrint && 'FabricatorRecipe__Button--disabled',
           ])}
-          onClick={() => queue()}
+          onClick={() => act('queue_item', { design_id: design.id, amount: 1 })}
         >
           <Icon name="plus-circle" />
         </div>
       </Tooltip>
-      <CustomQueue design={props.design} available={props.available} />
+
+      <Tooltip content="Zbuduj teraz" position="right">
+        <div
+          className={classes([
+            'FabricatorRecipe__Button',
+            'FabricatorRecipe__Button--icon',
+            !canPrint && 'FabricatorRecipe__Button--disabled',
+          ])}
+          onClick={() => act('build', { designs: [design.id], now: true })}
+        >
+          <Icon name="play" />
+        </div>
+      </Tooltip>
+      <CustomQueue design={design} available={available} />
     </div>
   );
 };
 
-const CustomQueue = (props: { design: Design; available: MaterialMap }) => {
-  const { act } = useBackend<Data>();
-  const max = affordableAmount(props.design, props.available);
+/** AQUILA: queue any number of copies at once. */
+const CustomQueue = (props: RecipeProps) => {
+  const { act } = useBackend<ExosuitFabricatorData>();
+  const { design, available } = props;
+  const max = affordableAmount(design, available);
 
   return (
     <div
@@ -168,139 +206,193 @@ const CustomQueue = (props: { design: Design; available: MaterialMap }) => {
     >
       <Button.Input
         color="transparent"
-        content={`×${max}`}
-        onCommit={(_event, value: string) =>
-          act('queue_item', { design_id: props.design.id, amount: value })
+        buttonText={`×${max}`}
+        onCommit={(value) =>
+          act('queue_item', { design_id: design.id, amount: value })
         }
       />
     </div>
   );
 };
 
-const Queue = (props: { availableMaterials: MaterialMap }) => {
-  const { act, data } = useBackend<Data>();
+type QueueProps = {
+  availableMaterials: MaterialMap;
+};
+
+const Queue = (props: QueueProps) => {
+  const { act, data } = useBackend<ExosuitFabricatorData>();
+  const { availableMaterials } = props;
+  const { designs = {}, processing } = data;
+
+  const queue = data.queue || [];
+
   const materialCosts: MaterialMap = {};
-  for (const job of data.queue || []) {
-    const design = data.designs[job.designId];
-    for (const [material, amount] of Object.entries(design?.cost || {})) {
-      materialCosts[material] = (materialCosts[material] || 0) + amount;
+
+  for (const entry of queue) {
+    const design = designs[entry.designId];
+
+    if (!design) {
+      continue;
+    }
+
+    for (const [materialName, materialCost] of Object.entries(design.cost)) {
+      materialCosts[materialName] =
+        (materialCosts[materialName] || 0) + materialCost;
     }
   }
 
-  const queued = !!data.queue?.length;
-
   return (
-    <Section
-      fill
-      className="Fabricator__QueuePanel"
-      title="Queue"
-      buttons={
-        <>
-          <Button.Confirm
-            disabled={!queued}
-            color="bad"
-            icon="minus-circle"
-            content="Clear"
-            onClick={() => act('clear_queue')}
-          />
-          {data.processing ? (
-            <Button
-              disabled={!queued}
-              content="Stop"
-              icon="stop"
-              onClick={() => act('stop_queue')}
-            />
-          ) : (
-            <Button
-              disabled={!queued}
-              content="Build"
-              icon="play"
-              onClick={() => act('build_queue')}
-            />
-          )}
-        </>
-      }
-    >
+    <Section fill className="Fabricator__QueuePanel">
       <Stack fill vertical>
-        {queued && (
-          <Stack.Item mb={0.5}>
+        <Stack.Item>
+          <Section
+            fill
+            title="Kolejka"
+            buttons={
+              <>
+                <Button.Confirm
+                  disabled={!queue.length}
+                  color="bad"
+                  icon="minus-circle"
+                  confirmContent="Na pewno?"
+                  onClick={() => act('clear_queue')}
+                >
+                  Wyczyść kolejkę
+                </Button.Confirm>
+                {(!!processing && (
+                  <Button
+                    disabled={!queue.length}
+                    icon="stop"
+                    onClick={() => act('stop_queue')}
+                  >
+                    Zatrzymaj
+                  </Button>
+                )) || (
+                  <Button
+                    disabled={!queue.length}
+                    icon="play"
+                    onClick={() => act('build_queue')}
+                  >
+                    Buduj kolejkę
+                  </Button>
+                )}
+              </>
+            }
+          >
             <MaterialCostSequence
-              available={props.availableMaterials}
+              available={availableMaterials}
               costMap={materialCosts}
             />
-          </Stack.Item>
-        )}
-        <Stack.Item grow>
-          <div className="Fabricator__Queue">
-            <QueueList availableMaterials={props.availableMaterials} />
-          </div>
+          </Section>
+        </Stack.Item>
+        <Stack.Item grow style={{ overflowY: 'auto', overflowX: 'hidden' }}>
+          <Section fill>
+            <QueueList availableMaterials={availableMaterials} />
+          </Section>
         </Stack.Item>
       </Stack>
     </Section>
   );
 };
 
-const QueueList = (props: { availableMaterials: MaterialMap }) => {
-  const { act, data } = useBackend<Data>();
-  const accumulated: MaterialMap = {};
+const QueueList = (props: QueueProps) => {
+  const { act, data } = useBackend<ExosuitFabricatorData>();
+  const { availableMaterials } = props;
 
-  return (data.queue || []).map((job, index) => {
-    const design = data.designs[job.designId];
-    const canBuild = !Object.entries(design?.cost || {}).some(
-      ([material, amount]) =>
-        (accumulated[material] = (accumulated[material] || 0) + amount) >
-        (props.availableMaterials[material] || 0),
-    );
-    return (
-      <div key={job.jobId} className="FabricatorRecipe">
-        {!!job.processing && !!design && (
-          <div
-            className="FabricatorRecipe__Progress"
-            style={{
-              width: `${(job.timeLeft / design.constructionTime) * 100}%`,
-            }}
-          />
-        )}
-        <Tooltip
-          content={
-            <MaterialCostSequence
-              design={design}
-              available={props.availableMaterials}
-            />
+  const queue = data.queue || [];
+  const designs = data.designs || {};
+
+  if (!queue.length) {
+    return null;
+  }
+
+  const accumulatedCosts: MaterialMap = {};
+
+  return (
+    <>
+      {queue
+        .map((job, index) => ({ job, index, design: designs[job.designId] }))
+        .map((entry) => {
+          // Side effects in map, but the costs have to accumulate down the queue.
+          let canPrint = true;
+
+          for (const [material, amount] of entry.design
+            ? Object.entries(entry.design.cost)
+            : []) {
+            accumulatedCosts[material] =
+              (accumulatedCosts[material] || 0) + amount;
+
+            if (
+              accumulatedCosts[material] > (availableMaterials[material] || 0)
+            ) {
+              canPrint = false;
+            }
           }
-          position="bottom"
-        >
-          <div
-            className={classes([
-              'FabricatorRecipe__Title',
-              !canBuild && 'FabricatorRecipe__Title--disabled',
-            ])}
-          >
-            <div className="FabricatorRecipe__Icon">
-              <Box
-                width="32px"
-                height="32px"
-                className={classes(['design32x32', design?.icon])}
+
+          return { canPrint, ...entry };
+        })
+        .map((entry) => (
+          <div key={entry.job.jobId} className="FabricatorRecipe">
+            {!!entry.job.processing && (
+              <div
+                className="FabricatorRecipe__Progress"
+                style={{
+                  width:
+                    (entry.job.timeLeft /
+                      (entry.design ? entry.design.constructionTime : 0)) *
+                      100 +
+                    '%',
+                }}
               />
-            </div>
-            <div className="FabricatorRecipe__Label">{design?.name}</div>
-          </div>
-        </Tooltip>
-        {!job.processing && (
-          <Tooltip content="Remove from Queue">
-            <div
-              className="FabricatorRecipe__Button FabricatorRecipe__Button--icon"
-              onClick={() =>
-                act('del_queue_part', {
-                  index: index + (data.queue[0].processing ? 0 : 1),
-                })
+            )}
+            <Tooltip
+              position="bottom"
+              content={
+                <MaterialCostSequence
+                  design={entry.design}
+                  amount={1}
+                  available={availableMaterials}
+                />
               }
             >
-              <Icon name="minus-circle" />
-            </div>
-          </Tooltip>
-        )}
-      </div>
-    );
-  });
+              <div
+                className={classes([
+                  'FabricatorRecipe__Title',
+                  !entry.canPrint && 'FabricatorRecipe__Title--disabled',
+                ])}
+              >
+                <div className="FabricatorRecipe__Icon">
+                  <Box
+                    width="32px"
+                    height="32px"
+                    className={classes(['design32x32', entry.design?.icon])}
+                  />
+                </div>
+                <div className="FabricatorRecipe__Label">
+                  {entry.design?.name}
+                </div>
+              </div>
+            </Tooltip>
+
+            {!entry.job.processing && (
+              <div
+                className={classes([
+                  'FabricatorRecipe__Button',
+                  'FabricatorRecipe__Button--icon',
+                ])}
+                onClick={() => {
+                  act('del_queue_part', {
+                    index: entry.index + (queue[0]!.processing ? 0 : 1),
+                  });
+                }}
+              >
+                <Tooltip content="Usuń z kolejki">
+                  <Icon name="minus-circle" />
+                </Tooltip>
+              </div>
+            )}
+          </div>
+        ))}
+    </>
+  );
 };

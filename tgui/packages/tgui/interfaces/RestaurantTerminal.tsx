@@ -62,9 +62,7 @@ export const RestaurantTerminal = (props) => {
           </NoticeBox>
         )}
         {!has_access && (
-          <NoticeBox warning>
-            Potrzebna jest karta z dostępem do tego lokalu.
-          </NoticeBox>
+          <NoticeBox>Potrzebna jest karta z dostępem do tego lokalu.</NoticeBox>
         )}
         <Section
           title="Lokal"

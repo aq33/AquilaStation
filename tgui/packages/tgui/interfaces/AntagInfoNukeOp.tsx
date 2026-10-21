@@ -2,7 +2,7 @@ import { BooleanLike } from 'common/react';
 
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { BlockQuote, Box, Section, Stack } from '../components';
+import { BlockQuote, Box, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { AntagInfoHeader } from './common/AntagInfoHeader';
 
@@ -68,13 +68,10 @@ const MissionSection = (_props) => {
             <Stack.Divider />
             <Stack.Item>
               <Section>
-                <Box
-                  inline
-                  as="img"
+                <Image
                   src={resolveAsset('nuke.png')}
                   width="64px"
                   style={{
-                    msInterpolationMode: 'nearest-neighbor',
                     imageRendering: 'pixelated',
                     float: 'left',
                   }}

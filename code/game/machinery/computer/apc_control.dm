@@ -8,27 +8,13 @@
 	light_color = LIGHT_COLOR_YELLOW
 	var/mob/living/operator //Who's operating the computer right now
 	var/obj/machinery/power/apc/active_apc //The APC we're using right now
-	var/list/result_filters //For sorting the results
-	var/checking_logs = 0
 	var/list/logs
 	var/auth_id = "\[NULL\]"
-
-/obj/machinery/computer/apc_control/Initialize(mapload)
-	. = ..()
-	result_filters = list("Name" = null, "Charge Above" = null, "Charge Below" = null, "Responsive" = null)
 
 /obj/machinery/computer/apc_control/process()
 	if(operator && (!operator.Adjacent(src) || machine_stat))
 		operator = null
-		if(active_apc)
-			if(!active_apc.locked)
-				active_apc.say("Anulowano zdalny dostęp. Interfejs zablokowany.")
-				playsound(active_apc, 'sound/machines/boltsdown.ogg', 25, 0)
-				playsound(active_apc, 'sound/machines/terminal_alert.ogg', 50, 0)
-			active_apc.locked = TRUE
-			active_apc.update_icon()
-			active_apc.remote_control = null
-			active_apc = null
+		disconnect_apc()
 
 /obj/machinery/computer/apc_control/attack_ai(mob/user)
 	if(!IsAdminGhost(user))
@@ -41,152 +27,168 @@
 	return ((linked_overmap && linked_overmap == APC.get_overmap()) || APC.get_virtual_z_level() == get_virtual_z_level()) && !APC.malfhack && !APC.aidisabled && !(APC.obj_flags & EMAGGED) && !APC.machine_stat && !istype(APC.area, /area/ai_monitored) && !APC.area.outdoors
 //nsv13 end
 
-/obj/machinery/computer/apc_control/ui_interact(mob/living/user)
-	. = ..()
-	var/dat
-	if(authenticated)
-		if(!checking_logs)
-			dat += "Zalogowano jako [auth_id].<br><br>"
-			dat += "<i>Filters</i><br>"
-			dat += "<b>Name:</b> <a href='byond://?src=[REF(src)];name_filter=1'>[result_filters["Name"] ? result_filters["Name"] : "None set"]</a><br>"
-			dat += "<b>Charge:</b> <a href='byond://?src=[REF(src)];above_filter=1'>\>[result_filters["Charge Above"] ? result_filters["Charge Above"] : "NaN"]%</a> and <a href='byond://?src=[REF(src)];below_filter=1'>\<[result_filters["Charge Below"] ? result_filters["Charge Below"] : "NaN"]%</a><br>"
-			dat += "<b>Accessible:</b> <a href='byond://?src=[REF(src)];access_filter=1'>[result_filters["Responsive"] ? "Non-Responsive Only" : "All"]</a><br><br>"
-			var/linked_overmap = get_overmap() //nsv13 - console works shipwide
-			for(var/A in GLOB.apcs_list)
-				if(check_apc(A, linked_overmap)) //nsv13 - console works shipwide
-					var/obj/machinery/power/apc/APC = A
-					if(result_filters["Name"] && !findtext(APC.name, result_filters["Name"]) && !findtext(APC.area.name, result_filters["Name"]))
-						continue
-					if(result_filters["Charge Above"] && (!APC.cell || (APC.cell && (APC.cell.charge / APC.cell.maxcharge) < result_filters["Charge Above"] / 100)))
-						continue
-					if(result_filters["Charge Below"] && APC.cell && (APC.cell.charge / APC.cell.maxcharge) > result_filters["Charge Below"] / 100)
-						continue
-					if(result_filters["Responsive"] && !APC.aidisabled)
-						continue
-					dat += "<a href='byond://?src=[REF(src)];access_apc=[REF(APC)]'>[A]</a><br><b>Ładunek:</b> [APC.cell ? "[display_energy(APC.cell.charge)] / [display_energy(APC.cell.maxcharge)] ([round((APC.cell.charge / APC.cell.maxcharge) * 100)]%)" : "Brak ogniwa zasilającego."]<br><b>Obszar:</b> [APC.area]<br>[APC.aidisabled || APC.panel_open ? "<font color='#FF0000'>APC nie odpowiada na zapytanie interfejsu.</font>" : "<font color='#00FF00'>APC odpowiada na zapytanie interfejsu.</font>"]<br><br>"
-			dat += "<a href='byond://?src=[REF(src)];check_logs=1'>Sprawdź logi</a><br>"
-			dat += "<a href='byond://?src=[REF(src)];log_out=1'>Wyloguj</a><br>"
-			if(obj_flags & EMAGGED)
-				dat += "<font color='#FF0000'>OSTRZEŻENIE: funkcja logowania została częściowo wyłączona z zewnątrz.</font><br>"
-				dat += "<a href='byond://?src=[REF(src)];restore_logging=1'>Przywrócić funkcję logowania?</a><br>"
-		else
-			if(logs.len)
-				for(var/entry in logs)
-					dat += "[entry]<br>"
-			else
-				dat += "<i>Na razie nie zarejestrowano żadnej aktywności.</i><br>"
-			if(obj_flags & EMAGGED)
-				dat += "<a href='byond://?src=[REF(src)];clear_logs=1'><font color='#FF0000'>@#%! WYCZYŚĆ LOGI</a>"
-			dat += "<a href='byond://?src=[REF(src)];check_apcs=1'>Return</a>"
-		operator = user
-	else
-		dat = "<a href='byond://?src=[REF(src)];authenticate=1'>Przeciągnij ważną kartę ID, by się zalogować...</a>"
-	var/datum/browser/popup = new(user, "apc_control", name, 600, 400)
-	popup.set_content(dat)
-	popup.open()
+// AQUILA: okno TGUI ApcControl (z tg) zamiast starego HTML; filtry zastąpione sortowaniem i wyszukiwarką w oknie
+/obj/machinery/computer/apc_control/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ApcControl", name)
+		ui.open()
 
-/obj/machinery/computer/apc_control/Topic(href, href_list)
-	if(..())
+/obj/machinery/computer/apc_control/ui_data(mob/user)
+	var/list/data = list()
+	data["auth_id"] = auth_id
+	data["authenticated"] = authenticated
+	data["emagged"] = !!(obj_flags & EMAGGED)
+	data["logs"] = list()
+	data["apcs"] = list()
+	for(var/entry in logs)
+		data["logs"] += list(list("entry" = entry))
+	if(!authenticated)
+		return data
+	var/linked_overmap = get_overmap() //nsv13 - console works shipwide
+	for(var/obj/machinery/power/apc/APC as anything in GLOB.apcs_list)
+		if(!check_apc(APC, linked_overmap))
+			continue
+		data["apcs"] += list(list(
+			"name" = "[APC.area.name]",
+			"operating" = APC.operating,
+			"charge" = APC.cell ? round(APC.cell.percent()) : 0,
+			"has_cell" = !!APC.cell,
+			"load" = display_power(APC.lastused_total),
+			"charging" = APC.charging,
+			"chargeMode" = APC.chargemode,
+			"eqp" = APC.equipment,
+			"lgt" = APC.lighting,
+			"env" = APC.environ,
+			"responds" = !(APC.aidisabled || APC.panel_open),
+			"active" = (APC == active_apc),
+			"ref" = REF(APC),
+		))
+	return data
+
+/// AQUILA: zrywa zdalne połączenie z aktualnym APC
+/obj/machinery/computer/apc_control/proc/disconnect_apc(mob/user)
+	if(!active_apc)
+		return
+	if(user)
+		to_chat(user, "<span class='robot danger'>[icon2html(src, user)] Rozłączono z [active_apc].</span>")
+	if(!active_apc.locked)
+		active_apc.say("Anulowano zdalny dostęp. Interfejs zablokowany.")
+		playsound(active_apc, 'sound/machines/boltsdown.ogg', 25, 0)
+		playsound(active_apc, 'sound/machines/terminal_alert.ogg', 50, 0)
+	active_apc.locked = TRUE
+	active_apc.update_icon()
+	active_apc.remote_control = null
+	active_apc = null
+
+/obj/machinery/computer/apc_control/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	if(!usr || !usr.canUseTopic(src, !issilicon(usr)) || machine_stat || QDELETED(src))
 		return
-	if(href_list["authenticate"])
-		var/obj/item/card/id/ID = usr.get_idcard(TRUE)
-		if(ID && istype(ID))
-			if(check_access(ID))
-				authenticated = TRUE
-				auth_id = "[ID.registered_name] ([ID.assignment])"
-				log_activity("logged in")
-				playsound(src, 'sound/machines/terminal_on.ogg', 50, 0)
-	if(href_list["log_out"])
-		log_activity("logged out")
-		playsound(src, 'sound/machines/terminal_off.ogg', 50, 0)
-		authenticated = FALSE
-		auth_id = "\[NULL\]"
-	if(href_list["restore_logging"])
-		to_chat(usr, "<span class='robot notice'>[icon2html(src, usr)] Przywrócono funkcję logowania z kopii zapasowej.</span>")
-		obj_flags &= ~EMAGGED
-		LAZYADD(logs, "<b>-=- W tym miejscu przywrócono pełną funkcjonalność logowania -=-</b>")
-	if(href_list["access_apc"])
-		playsound(src, "terminal_type", 50, 0)
-		var/obj/machinery/power/apc/APC = locate(href_list["access_apc"]) in GLOB.apcs_list
-		if(!APC || APC.aidisabled || APC.panel_open || QDELETED(APC))
-			to_chat(usr, "<span class='robot danger'>[icon2html(src, usr)] APC nie odpowiada na żądanie interfejsu. Zdalny dostęp może być wyłączony.</span>")
-			return
-		if(active_apc)
-			to_chat(usr, "<span class='robot danger'>[icon2html(src, usr)] Rozłączono z [active_apc].</span>")
-			active_apc.say("Anulowano zdalny dostęp. Interfejs zablokowany.")
-			playsound(active_apc, 'sound/machines/boltsdown.ogg', 25, 0)
-			playsound(active_apc, 'sound/machines/terminal_alert.ogg', 50, 0)
-			active_apc.locked = TRUE
-			active_apc.update_icon()
-			active_apc.remote_control = null
-			active_apc = null
-		to_chat(usr, "<span class='robot notice'>[icon2html(src, usr)] Połączono z APC w [get_area_name(APC.area, TRUE)]. Wysłano żądanie interfejsu.</span>")
-		log_activity("remotely accessed APC in [get_area_name(APC.area, TRUE)]")
-		APC.remote_control = src
-		APC.ui_interact(usr)
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
-		log_game("[key_name(usr)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
-		if(APC.locked)
-			APC.say("Wykryto zdalny dostęp. Interfejs odblokowany.")
-			playsound(APC, 'sound/machines/boltsup.ogg', 25, 0)
-			playsound(APC, 'sound/machines/terminal_alert.ogg', 50, 0)
-		APC.locked = FALSE
-		APC.update_icon()
-		active_apc = APC
-	if(href_list["name_filter"])
-		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
-		var/new_filter = stripped_input(usr, "Jakiej nazwy szukasz?", name)
-		if(!src || !usr || !usr.canUseTopic(src, !issilicon(usr)) || machine_stat || QDELETED(src))
-			return
-		log_activity("changed name filter to \"[new_filter]\"")
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-		result_filters["Name"] = new_filter
-	if(href_list["above_filter"])
-		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
-		var/new_filter = input(usr, "Podaj procent od 1 do 100 do sortowania (więcej niż).", name) as null|num
-		if(!src || !usr || !usr.canUseTopic(src, !issilicon(usr)) || machine_stat || QDELETED(src))
-			return
-		log_activity("changed greater than charge filter to \"[new_filter]\"")
-		if(new_filter)
-			new_filter = CLAMP(new_filter, 0, 100)
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-		result_filters["Charge Above"] = new_filter
-	if(href_list["below_filter"])
-		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
-		var/new_filter = input(usr, "Podaj procent od 1 do 100 do sortowania (mniej niż).", name) as null|num
-		if(!src || !usr || !usr.canUseTopic(src, !issilicon(usr)) || machine_stat || QDELETED(src))
-			return
-		log_activity("changed lesser than charge filter to \"[new_filter]\"")
-		if(new_filter)
-			new_filter = CLAMP(new_filter, 0, 100)
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-		result_filters["Charge Below"] = new_filter
-	if(href_list["access_filter"])
-		if(isnull(result_filters["Responsive"]))
-			result_filters["Responsive"] = 1
-			log_activity("sorted by non-responsive APCs only")
+	var/mob/user = usr
+	if(action == "log-in")
+		var/obj/item/card/id/ID = user.get_idcard(TRUE)
+		if(istype(ID) && check_access(ID))
+			authenticated = TRUE
+			auth_id = "[ID.registered_name] ([ID.assignment])"
+			operator = user
+			log_activity("zalogował(a) się")
+			playsound(src, 'sound/machines/terminal_on.ogg', 50, 0)
 		else
-			result_filters["Responsive"] = !result_filters["Responsive"]
-			log_activity("sorted by all APCs")
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-	if(href_list["check_logs"])
-		checking_logs = TRUE
-		log_activity("checked logs")
-	if(href_list["check_apcs"])
-		checking_logs = FALSE
-		log_activity("checked APCs")
-	if(href_list["clear_logs"])
-		logs = list()
-	ui_interact(usr) //Refresh the UI after a filter changes
+			playsound(src, 'sound/machines/terminal_error.ogg', 50, 0)
+			say("Odmowa dostępu.")
+		return TRUE
+	if(!authenticated)
+		return
+	operator = user
+	switch(action)
+		if("log-out")
+			log_activity("wylogował(a) się")
+			playsound(src, 'sound/machines/terminal_off.ogg', 50, 0)
+			disconnect_apc(user)
+			authenticated = FALSE
+			auth_id = "\[NULL\]"
+			return TRUE
+		if("restore-logging")
+			if(!(obj_flags & EMAGGED))
+				return
+			to_chat(user, "<span class='robot notice'>[icon2html(src, user)] Przywrócono funkcję logowania z kopii zapasowej.</span>")
+			obj_flags &= ~EMAGGED
+			LAZYADD(logs, "-=- W tym miejscu przywrócono pełną funkcjonalność logowania -=-")
+			return TRUE
+		if("clear-logs")
+			if(!(obj_flags & EMAGGED))
+				return
+			logs = list()
+			return TRUE
+		if("check-logs")
+			log_activity("sprawdził(a) logi")
+			return TRUE
+		if("check-apcs")
+			log_activity("sprawdził(a) APC")
+			return TRUE
+		if("access-apc")
+			playsound(src, "terminal_type", 50, 0)
+			var/obj/machinery/power/apc/APC = locate(params["ref"]) in GLOB.apcs_list
+			if(!APC || QDELETED(APC) || !check_apc(APC, get_overmap()) || APC.panel_open)
+				to_chat(user, "<span class='robot danger'>[icon2html(src, user)] APC nie odpowiada na żądanie interfejsu. Zdalny dostęp może być wyłączony.</span>")
+				return
+			if(active_apc && active_apc != APC)
+				disconnect_apc(user)
+			to_chat(user, "<span class='robot notice'>[icon2html(src, user)] Połączono z APC w [get_area_name(APC.area, TRUE)]. Wysłano żądanie interfejsu.</span>")
+			log_activity("zdalnie połączył(a) się z APC w [get_area_name(APC.area, TRUE)]")
+			APC.remote_control = src
+			APC.ui_interact(user)
+			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+			message_admins("[ADMIN_LOOKUPFLW(user)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
+			log_game("[key_name(user)] remotely accessed [APC] from [src] at [AREACOORD(src)].")
+			if(APC.locked)
+				APC.say("Wykryto zdalny dostęp. Interfejs odblokowany.")
+				playsound(APC, 'sound/machines/boltsup.ogg', 25, 0)
+				playsound(APC, 'sound/machines/terminal_alert.ogg', 50, 0)
+			APC.locked = FALSE
+			APC.update_icon()
+			active_apc = APC
+			return TRUE
+		if("breaker")
+			var/obj/machinery/power/apc/APC = locate(params["ref"]) in GLOB.apcs_list
+			if(!APC || !check_apc(APC, get_overmap()) || APC.panel_open)
+				return
+			APC.toggle_breaker(user)
+			log_activity("[APC.operating ? "włączył(a)" : "wyłączył(a)"] główny wyłącznik APC w [APC.area.name]")
+			return TRUE
+		if("toggle-minor")
+			var/obj/machinery/power/apc/APC = locate(params["ref"]) in GLOB.apcs_list
+			if(!APC || !check_apc(APC, get_overmap()) || APC.panel_open)
+				return
+			var/value = APC.setsubsystem(text2num(params["value"]))
+			var/channel_name
+			switch(params["type"])
+				if("equipment")
+					APC.equipment = value
+					channel_name = "sprzęt"
+				if("lighting")
+					APC.lighting = value
+					channel_name = "oświetlenie"
+				if("environ")
+					APC.environ = value
+					channel_name = "środowisko"
+				else
+					return
+			APC.update_icon()
+			APC.update()
+			var/static/list/state_names = list("wył.", "auto (wył.)", "wł.", "auto (wł.)")
+			log_activity("ustawił(a) [channel_name] APC w [APC.area.name] na: [state_names[value + 1]]")
+			log_game("[key_name(user)] set [params["type"]] of [APC] to [value] remotely from [src] at [AREACOORD(src)].")
+			return TRUE
 
 /obj/machinery/computer/apc_control/emag_act(mob/user)
 	if(!authenticated)
 		to_chat(user, "<span class='warning'>Omijasz wymagania dostępu [src] za pomocą emaga.</span>")
 		authenticated = TRUE
-		log_activity("logged in")
+		log_activity("zalogował(a) się")
 	else if(!(obj_flags & EMAGGED))
 		user.visible_message("<span class='warning'>[user] emaguje [src], wyłączając dokładne logowanie!</span>", "<span class='warning'>Emagujesz [src], wyłączając dokładne logowanie i umożliwiając czyszczenie logów.</span>")
 		log_game("[key_name(user)] emagged [src] at [AREACOORD(src)], disabling operator tracking.")
@@ -194,8 +196,8 @@
 	playsound(src, "sparks", 50, 1)
 
 /obj/machinery/computer/apc_control/proc/log_activity(log_text)
-	var/op_string = operator && !(obj_flags & EMAGGED) ? operator : "\[NULL OPERATOR\]"
-	LAZYADD(logs, "<b>([station_time_timestamp()])</b> [op_string] [log_text]")
+	var/op_string = operator && !(obj_flags & EMAGGED) ? "[operator]" : "\[NULL OPERATOR\]"
+	LAZYADD(logs, "([station_time_timestamp()]) [op_string]: [log_text]")
 
 /mob/proc/using_power_flow_console()
 	for(var/obj/machinery/computer/apc_control/A in range(1, src))

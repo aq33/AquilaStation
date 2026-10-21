@@ -42,7 +42,7 @@
 				if(new_undies)
 					H.underwear = new_undies
 			if("Underwear Color")
-				var/new_underwear_color = input(H, "Wybierz kolor bielizny", "Underwear Color","#"+H.underwear_color) as color|null
+				var/new_underwear_color = tgui_color_picker(H, "Wybierz kolor bielizny", "Kolor bielizny","#"+H.underwear_color)
 				if(new_underwear_color)
 					H.underwear_color = sanitize_hexcolor(new_underwear_color)
 			if("Undershirt")

@@ -13,6 +13,8 @@ GLOBAL_DATUM_INIT(lore_terminal_controller, /datum/lore_controller, new)
 	var/list/entries = list() //Every entry that we've got.
 	var/in_use = FALSE //Stops sound spam
 	var/datum/looping_sound/computer_click/soundloop_clicking // AQ EDIT
+	/// AQUILA: plik otwarty w oknie TGUI przez danego gracza (REF(mob) = /datum/lore_entry)
+	var/list/viewed_entries
 
 /obj/machinery/computer/lore_terminal/command //Put sensitive information on this one
 	access_tag = "ntcommand"
@@ -38,121 +40,75 @@ GLOBAL_DATUM_INIT(lore_terminal_controller, /datum/lore_controller, new)
 			entries += instance
 
 /obj/machinery/computer/lore_terminal/attack_hand(mob/user)
-	. = ..()
 	if(!allowed(user))
 		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')
 		playsound(src, sound, 100, 1)
 		to_chat(user, "<span class='warning'>Odmowa dostępu</span>")
 		return
 	playsound(src, 'nsv13/sound/effects/computer/scroll_start.ogg', 100, 1)
-	user.set_machine(src)
-	var/dat
-	if(!entries.len)
-		get_entries()
-	for(var/X in entries) //Allows you to remove things individually
-		var/datum/lore_entry/content = X
-		dat += "<a href='byond://?src=[REF(src)];selectitem=\ref[content]'>[content.name]</a><br>"
-	var/datum/browser/popup = new(user, "cd C:/entries/local", name, 300, 500)
-	popup.set_content(dat)
-	popup.open()
+	return ..()
 
+// AQUILA: okno TGUI "LoreTerminal" (dawniej lista plików i plik z maszyną do pisania w HTML)
+/obj/machinery/computer/lore_terminal/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		if(!entries.len)
+			get_entries()
+		ui = new(user, src, "LoreTerminal", name)
+		ui.open()
 
-/obj/machinery/computer/lore_terminal/Topic(href, href_list)
-	if(!in_range(src, usr))
-		return
-	if(in_use)
-		var/sound = 'nsv13/sound/effects/computer/buzz2.ogg'
-		playsound(src, sound, 100, 1)
-		to_chat(usr, "<span class='warning'>BŁĄD: funkcja wejścia/wyjścia zajęta. Plik wciąż się wczytuje...</span>")
-		return
-	var/datum/lore_entry/content = locate(href_list["selectitem"])
-	if(!content || !content?.content)
-		return
-	var/clicks = length(content.content) //Split the content into characters. 1 character = 1 click
-	var/dat = "<!DOCTYPE html>\
-	<html>\
-	<body background='https://cdn.discordapp.com/attachments/573966558548721665/612306341612093489/static.png'>\
-	\
-	<body onload='typeWriter()'>\
-	\
-	<h4>ACCESS FILE: C:/entries/local/[content.name]</h4>\
-	<h3><i>Classification: [content.classified]</i></h3>\
-	<h6>- � Seegson systems inc, 2257</h6>\
-	<hr style='border-top: dotted 1px;' />\
-	<h2>[content.title]</h2>\
-	\
-	<p id='demo'></p>\
-	\
-	<script>\
-	var i = 0;\
-	var txt = \"[content.content]\";\
-	var speed = 10;\
-	\
-	function typeWriter() {\
-	  if (i < txt.length) {\
-	    var char = txt.charAt(i);\
-	    if (char == '`') {\
-	      document.getElementById('demo').innerHTML += '<br>';\
-	    }\
-	    else {\
-	      document.getElementById('demo').innerHTML += txt.charAt(i);\
-	    }\
-	    i++;\
-	    setTimeout(typeWriter, speed);\
-	  }\
-	}\
-	</script>\
-	\
-	\
-	<style>\
-	body {\
-	  background-color: black;\
-	  background-image: radial-gradient(\
-	    rgba(0, 20, 0, 0.75), black 120%\
-	  );\
-	  height: 100vh;\
-	  margin: 0;\
-	  overflow: hidden;\
-	  padding: 2rem;\
-	  color: #36f891;\
-	  font: 1.3rem Lucida Console, monospace;\
-	  text-shadow: 0 0 5px #355732;\
-	  &::after {\
-	    content: '';\
-	    position: absolute;\
-	    top: 0;\
-	    left: 0;\
-	    width: 100vw;\
-	    height: 100vh;\
-	    background: repeating-linear-gradient(\
-	      0deg,\
-	      rgba(black, 0.15),\
-	      rgba(black, 0.15) 1px,\
-	      transparent 1px,\
-	      transparent 2px\
-	    );\
-	    pointer-events: none;\
-	  }\
-	}\
-	::selection {\
-	  background: #0080FF;\
-	  text-shadow: none;\
-	}\
-	pre {\
-	  margin: 0;\
-	}\
-	</style>\
-	</body>\
-	</html>"
-	usr << browse(dat, "window=lore_console[content.name];size=600x600")
-	playsound(src, pick('nsv13/sound/effects/computer/buzz.ogg','nsv13/sound/effects/computer/buzz2.ogg'), 100, TRUE)
-	in_use = TRUE //Stops you from crashing the server with infinite sounds
-	icon_state = "terminal_scroll"
-	clicks = clicks/3
-	var/loops = clicks/3 //Each click sound has 4 clicks in it, so we only need to click 1/4th of the time per character yeet.
-	addtimer(CALLBACK(src, PROC_REF(stop_clicking)), loops)
-	soundloop_clicking?.start()
+/obj/machinery/computer/lore_terminal/ui_close(mob/user, datum/tgui/tgui)
+	. = ..()
+	LAZYREMOVE(viewed_entries, REF(user))
 
+/obj/machinery/computer/lore_terminal/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/entry_list = list()
+	for(var/datum/lore_entry/content as anything in entries)
+		entry_list += list(list("name" = content.name, "ref" = REF(content)))
+	data["entries"] = entry_list
+	return data
+
+/obj/machinery/computer/lore_terminal/ui_data(mob/user)
+	var/list/data = list()
+	var/datum/lore_entry/content = LAZYACCESS(viewed_entries, REF(user))
+	if(content)
+		data["entry"] = list(
+			"name" = content.name,
+			"ref" = REF(content),
+			"title" = content.title,
+			"classified" = content.classified,
+			"content" = content.content,
+		)
+	return data
+
+/obj/machinery/computer/lore_terminal/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("close_entry")
+			LAZYREMOVE(viewed_entries, REF(usr))
+			return TRUE
+		if("selectitem")
+			if(in_use)
+				var/sound = 'nsv13/sound/effects/computer/buzz2.ogg'
+				playsound(src, sound, 100, 1)
+				to_chat(usr, "<span class='warning'>BŁĄD: funkcja wejścia/wyjścia zajęta. Plik wciąż się wczytuje...</span>")
+				return
+			var/datum/lore_entry/content = locate(params["ref"]) in entries
+			if(!content?.content)
+				return
+			LAZYSET(viewed_entries, REF(usr), content)
+			var/clicks = length(content.content) //Split the content into characters. 1 character = 1 click
+			playsound(src, pick('nsv13/sound/effects/computer/buzz.ogg','nsv13/sound/effects/computer/buzz2.ogg'), 100, TRUE)
+			in_use = TRUE //Stops you from crashing the server with infinite sounds
+			icon_state = "terminal_scroll"
+			clicks = clicks/3
+			var/loops = clicks/3 //Each click sound has 4 clicks in it, so we only need to click 1/4th of the time per character yeet.
+			addtimer(CALLBACK(src, PROC_REF(stop_clicking)), loops)
+			soundloop_clicking?.start()
+			return TRUE
 
 /obj/machinery/computer/lore_terminal/proc/stop_clicking()
 	soundloop_clicking?.stop()

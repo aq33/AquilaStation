@@ -1,15 +1,22 @@
+import {
+  Box,
+  Button,
+  LabeledList,
+  NoticeBox,
+  Section,
+} from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
 type Data = {
-  capacity: any;
-  error: any;
-  focus: any;
-  overload: any;
-  relays: any;
-  speed: any;
-  target: any;
+  capacity: number;
+  error: string;
+  focus: string;
+  overload: number;
+  relays: { id: string }[];
+  speed: number;
+  target: boolean;
 };
 
 export const NtosNetDos = (props) => {
@@ -33,7 +40,7 @@ export const NtosNetDosContent = (props) => {
         <NoticeBox>{error}</NoticeBox>
         <Button
           fluid
-          content="Reset"
+          content="Resetuj"
           textAlign="center"
           onClick={() => act('PRG_reset')}
         />
@@ -59,7 +66,7 @@ export const NtosNetDosContent = (props) => {
   if (target) {
     return (
       <Section fontFamily="monospace" textAlign="center">
-        <Box>CURRENT SPEED: {speed} GQ/s</Box>
+        <Box>AKTUALNA PRĘDKOŚĆ: {speed} GQ/s</Box>
         <Box>
           {/* I don't care anymore */}
           {generate10String(lineLength)}
@@ -75,7 +82,7 @@ export const NtosNetDosContent = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Target">
+        <LabeledList.Item label="Cel">
           {relays.map((relay) => (
             <Button
               key={relay.id}
@@ -93,7 +100,7 @@ export const NtosNetDosContent = (props) => {
       <Button
         fluid
         bold
-        content="EXECUTE"
+        content="WYKONAJ"
         color="bad"
         textAlign="center"
         disabled={!focus}

@@ -311,7 +311,7 @@
   * Updates the window for our users. Override down the line.
   */
 /datum/song/proc/updateDialog(mob/user)
-	ui_interact(user)
+	SStgui.update_uis(src) // AQUILA: okno TGUI odświeża się samo, bez ponownego otwierania
 
 /datum/song/process(wait)
 	if(!playing)
@@ -380,9 +380,6 @@
 // subtype for handheld instruments, like violin
 /datum/song/handheld
 
-/datum/song/handheld/updateDialog(mob/user)
-	parent.ui_interact(user || usr)
-
 /datum/song/handheld/should_stop_playing(mob/user)
 	. = ..()
 	if(.)
@@ -392,9 +389,6 @@
 
 // subtype for stationary structures, like pianos
 /datum/song/stationary
-
-/datum/song/stationary/updateDialog(mob/user)
-	parent.ui_interact(user || usr)
 
 /datum/song/stationary/should_stop_playing(mob/user)
 	. = ..()

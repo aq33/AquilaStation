@@ -123,24 +123,92 @@ SUBSYSTEM_DEF(events)
 	holder.forceEvent()
 
 /datum/admins/proc/forceEvent()
-	var/dat 	= ""
-	var/normal 	= ""
-	var/magic 	= ""
-	var/holiday = ""
-	for(var/datum/round_event_control/E in SSevents.control)
-		dat = "<BR><A href='byond://?src=[REF(src)];[HrefToken()];forceevent=[REF(E)]'>[E]</A>"
-		if(E.holidayID)
-			holiday	+= dat
-		else if(E.wizardevent)
-			magic 	+= dat
-		else
-			normal 	+= dat
+	// AQUILA EDIT - okno TGUI (ForceEvent z tg) zamiast listy linków HTML
+	if(!check_rights(R_FUN))
+		return
+	var/datum/force_event/ui = new()
+	ui.ui_interact(usr)
 
-	dat = normal + "<BR>" + magic + "<BR>" + holiday
+#define FORCE_EVENT_CATEGORY_NORMAL "Zwykłe"
+#define FORCE_EVENT_CATEGORY_WIZARD "Magiczne"
+#define FORCE_EVENT_CATEGORY_HOLIDAY "Świąteczne"
 
-	var/datum/browser/popup = new(usr, "forceevent", "Force Random Event", 300, 750)
-	popup.set_content(dat)
-	popup.open()
+/// AQUILA - panel wymuszania eventów (port ForceEvent z tg)
+/datum/force_event
+
+/datum/force_event/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ForceEvent")
+		ui.open()
+
+/datum/force_event/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/force_event/ui_close(mob/user)
+	qdel(src)
+
+/datum/force_event/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/events = list()
+	var/list/categories_seen = list()
+	for(var/datum/round_event_control/event_control as anything in SSevents.control)
+		var/category = FORCE_EVENT_CATEGORY_NORMAL
+		if(event_control.holidayID)
+			category = FORCE_EVENT_CATEGORY_HOLIDAY
+		else if(event_control.wizardevent)
+			category = FORCE_EVENT_CATEGORY_WIZARD
+		categories_seen[category] = TRUE
+		events += list(list(
+			"name" = event_control.name,
+			"type" = event_control.type,
+			"category" = category,
+		))
+	var/list/categories = list()
+	var/static/list/category_icons = list(
+		FORCE_EVENT_CATEGORY_NORMAL = "bolt",
+		FORCE_EVENT_CATEGORY_WIZARD = "hat-wizard",
+		FORCE_EVENT_CATEGORY_HOLIDAY = "calendar",
+	)
+	for(var/category in category_icons)
+		if(categories_seen[category])
+			categories += list(list("name" = category, "icon" = category_icons[category]))
+	data["categories"] = categories
+	data["events"] = events
+	return data
+
+/datum/force_event/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_FUN))
+		return
+	switch(action)
+		if("forceevent")
+			var/event_to_run_type = text2path(params["type"])
+			if(!event_to_run_type)
+				return
+			var/datum/round_event_control/E = locate(event_to_run_type) in SSevents.control
+			if(!E)
+				return
+			INVOKE_ASYNC(src, PROC_REF(run_forced_event), usr, E, !!params["announce"])
+			return TRUE
+
+/// Odpowiednik dawnego Topic forceevent: konfiguracja admina, uruchomienie i wybór ogłoszenia z okna
+/datum/force_event/proc/run_forced_event(mob/user, datum/round_event_control/E, announce)
+	E.admin_setup(user)
+	var/datum/round_event/event = E.runEvent()
+	if(event.announceWhen > 0)
+		event.processing = FALSE
+		event.announceChance = announce ? 100 : 0
+		event.on_admin_trigger()
+		event.processing = TRUE
+	message_admins("[key_name_admin(user)] has triggered an event. ([E.name])")
+	log_admin("[key_name(user)] has triggered an event. ([E.name])")
+
+#undef FORCE_EVENT_CATEGORY_NORMAL
+#undef FORCE_EVENT_CATEGORY_WIZARD
+#undef FORCE_EVENT_CATEGORY_HOLIDAY
 
 
 /*

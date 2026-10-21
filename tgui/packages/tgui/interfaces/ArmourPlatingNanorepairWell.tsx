@@ -254,12 +254,13 @@ export const ArmourPlatingNanorepairWell = (props) => {
           />
           Power Allocation (Watts):
           <Slider
+            tickWhileDragging
             value={data.power_allocation}
             minValue={0}
             maxValue={data.maximum_power_allocation}
             step={1}
             stepPixelSize={0.0002}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('power_allocation', {
                 adjust: value,
               })

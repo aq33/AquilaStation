@@ -24,22 +24,31 @@
 /obj/structure/artilleryplaceholder/decorative
 	density = FALSE
 
-/obj/machinery/artillerycontrol/ui_interact(mob/user)
-	. = ..()
-	var/dat = "<B>Sterowanie artylerią bluespace:</B><BR>"
-	dat += "Namierzono<BR>"
-	dat += "<B>Postęp ładowania: [reload]/[reload_cooldown]:</B><BR>"
-	dat += "<A href='byond://?src=[REF(src)];fire=1'>Otwórz ogień</A><BR>"
-	dat += "Użycie broni zatwierdzone przez <br>Dowództwo Marynarki Nanotrasen<br><br>Pamiętaj, ostrzał sojuszników jest podstawą do rozwiązania twojego kontraktu i zakończenia twojego życia.<HR>"
-	user << browse(HTML_SKELETON(dat), "window=scroll")
-	onclose(user, "scroll")
+/obj/machinery/artillerycontrol/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ArtilleryControl", name)
+		ui.set_autoupdate(TRUE)
+		ui.open()
 
-/obj/machinery/artillerycontrol/Topic(href, href_list)
-	if(..())
+/obj/machinery/artillerycontrol/ui_data(mob/user)
+	var/list/data = list()
+	data["reload"] = round(reload)
+	data["reload_cooldown"] = reload_cooldown
+	return data
+
+/obj/machinery/artillerycontrol/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	var/A
-	A = input("Obszar do ostrzału", "Otwórz ogień", A) in GLOB.teleportlocs
+	if(action != "fire")
+		return
+	var/A = tgui_input_list(usr, "Obszar do ostrzału", "Otwórz ogień", GLOB.teleportlocs)
+	if(!A)
+		return
 	var/area/thearea = GLOB.teleportlocs[A]
+	if(!thearea)
+		return
 	if(usr.stat || usr.restrained())
 		return
 	if(reload < reload_cooldown)
@@ -53,3 +62,4 @@
 		var/loc = pick(L)
 		explosion(loc,explosiondev,explosionmed,explosionlight)
 		reload = 0
+	return TRUE

@@ -109,7 +109,7 @@
 		ui = new(user, src, "ChemHeater")
 		ui.open()
 
-/obj/machinery/chem_heater/ui_data()
+/obj/machinery/chem_heater/ui_data(mob/user)
 	var/data = list()
 	data["targetTemp"] = target_temperature
 	data["isActive"] = on
@@ -124,6 +124,9 @@
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 	data["beakerContents"] = beakerContents
+	// AQUILA - przycisk „Włóż” w oknie z tg
+	var/obj/item/held_item = user?.get_active_held_item()
+	data["hasBeakerInHand"] = istype(held_item, /obj/item/reagent_containers) && !(held_item.item_flags & ABSTRACT) && held_item.is_open_container()
 	return data
 
 /obj/machinery/chem_heater/ui_act(action, params)
@@ -140,6 +143,15 @@
 				. = TRUE
 		if("eject")
 			replace_beaker(usr)
+			. = TRUE
+		// AQUILA - wkładanie zlewki z ręki przyciskiem w oknie
+		if("insert")
+			var/obj/item/reagent_containers/container = usr.get_active_held_item()
+			if(!istype(container) || (container.item_flags & ABSTRACT) || !container.is_open_container())
+				return
+			if(!usr.transferItemToLoc(container, src))
+				return
+			replace_beaker(usr, container)
 			. = TRUE
 
 /// Port Bee #11899: right click ejects the beaker (Alt-click still works)

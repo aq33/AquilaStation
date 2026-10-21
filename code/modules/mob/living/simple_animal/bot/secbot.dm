@@ -103,49 +103,32 @@
 	text_dehack = "Restartujesz [name] i przywracasz identyfikację celów."
 	text_dehack_fail = "[name] nie uznaje twojego autorytetu!"
 
-/mob/living/simple_animal/bot/secbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-<TT><B>Sterowanie securitronem v1.6</B></TT><BR><BR>\nStan: []<BR>\nSterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>\nPanel serwisowy jest [open ? "otwarty" : "zamknięty"]"},
+/mob/living/simple_animal/bot/secbot/get_custom_controls(mob/user)
+	return list(
+		"check_id" = idcheck,
+		"check_weapons" = weaponscheck,
+		"check_records" = check_records,
+		"detain_only" = arrest_type,
+		"declare_arrests" = declare_arrests,
+	)
 
-"<A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
-
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += text({"<BR>
-Aresztuj niezidentyfikowane osoby: []<BR>\nAresztuj za nieautoryzowaną broń: []<BR>\nAresztuj na podstawie nakazu: []<BR>\nTryb pracy: []<BR>\nZgłaszaj aresztowania[]<BR>\nAutopatrol: []"},
-
-"<A href='byond://?src=[REF(src)];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
-"<A href='byond://?src=[REF(src)];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
-
-	return	dat
-
-/mob/living/simple_animal/bot/secbot/Topic(href, href_list)
-	if(..())
+/mob/living/simple_animal/bot/secbot/bot_custom_act(action, list/params, mob/user)
+	if(!issilicon(user) && !IsAdminGhost(user) && !(bot_core.allowed(user) || !locked))
 		return TRUE
-	if(!issilicon(usr) && !IsAdminGhost(usr) && !(bot_core.allowed(usr) || !locked))
-		return TRUE
-	switch(href_list["operation"])
-		if("idcheck")
+	switch(action)
+		if("check_id")
 			idcheck = !idcheck
-			update_controls()
-		if("weaponscheck")
+		if("check_weapons")
 			weaponscheck = !weaponscheck
-			update_controls()
-		if("ignorerec")
+		if("check_records")
 			check_records = !check_records
-			update_controls()
-		if("switchmode")
+		if("detain_only")
 			arrest_type = !arrest_type
-			update_controls()
-		if("declarearrests")
+		if("declare_arrests")
 			declare_arrests = !declare_arrests
-			update_controls()
+		else
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/bot/secbot/proc/retaliate(mob/living/carbon/human/H)
 	var/judgment_criteria = judgment_criteria()

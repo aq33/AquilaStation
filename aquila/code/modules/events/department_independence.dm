@@ -171,6 +171,11 @@ GLOBAL_LIST_INIT(aquila_independence_common_reasons, list(
 	/// Why the union board called the strike, shown in the greeting
 	var/reason
 
+/datum/antagonist/separatist/aquila_striker/ui_static_data(mob/user)
+	var/list/data = ..()
+	data["reason"] = reason
+	return data
+
 /datum/antagonist/separatist/aquila_striker/on_gain()
 	if(nation)
 		objectives |= nation.objectives

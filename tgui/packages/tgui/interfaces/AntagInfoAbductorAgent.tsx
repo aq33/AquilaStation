@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { BlockQuote, Box, Section, Stack } from '../components';
+import { BlockQuote, Box, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
@@ -16,13 +16,10 @@ const IntroSection = (_props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Box
-          inline
-          as="img"
+        <Image
           src={resolveAsset('ayylmao.png')}
           width="64px"
           style={{
-            msInterpolationMode: 'nearest-neighbor',
             imageRendering: 'pixelated',
           }}
         />
@@ -78,13 +75,10 @@ const EquipmentSection = (_props) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('abaton.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                 }}
               />
@@ -125,13 +119,10 @@ const EquipmentSection = (_props) => {
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('atool.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                 }}
               />
@@ -157,13 +148,10 @@ const EquipmentSection = (_props) => {
         <Stack.Divider />
         <Stack.Item>
           <Stack.Item>
-            <Box
-              inline
-              as="img"
+            <Image
               src={resolveAsset('apistol.png')}
               width="32px"
               style={{
-                msInterpolationMode: 'nearest-neighbor',
                 imageRendering: 'pixelated',
               }}
             />

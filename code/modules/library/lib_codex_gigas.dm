@@ -19,6 +19,8 @@
 	var/inUse = 0
 	var/currentName = ""
 	var/currentSection = PRE_TITLE
+	/// AQ EDIT - wynik ostatnich poszukiwań, pokazywany w oknie BookViewer
+	var/devil_info
 
 /obj/item/book/codex_gigas/attack_self(mob/user)
 	if(!user.can_read(src))
@@ -55,11 +57,16 @@
 		var/datum/antagonist/devil/devil = devilInfo(usedName)
 		display_devil(devil, user, usedName)
 	sleep(10)
-	onclose(user, "book")
 	inUse = FALSE
 
 /obj/item/book/codex_gigas/proc/display_devil(datum/antagonist/devil/devil, mob/reader, devilName)
-	reader << browse("Informacje o [devilName]<br><br><br>[GLOB.lawlorify[LORE][devil.ban]]<br>[GLOB.lawlorify[LORE][devil.bane]]<br>[GLOB.lawlorify[LORE][devil.obligation]]<br>[GLOB.lawlorify[LORE][devil.banish]]<br>[devil.ascendable?"Ten diabeł może wstąpić na wyższy poziom, jeśli zdobędzie dość dusz.":""]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
+	devil_info = "<h3>Informacje o [devilName]</h3><p>[GLOB.lawlorify[LORE][devil.ban]]</p><p>[GLOB.lawlorify[LORE][devil.bane]]</p><p>[GLOB.lawlorify[LORE][devil.obligation]]</p><p>[GLOB.lawlorify[LORE][devil.banish]]</p>[devil.ascendable?"<p>Ten diabeł może wstąpić na wyższy poziom, jeśli zdobędzie dość dusz.</p>":""]"
+	open_book_viewer(reader)
+
+/obj/item/book/codex_gigas/ui_static_data(mob/user)
+	var/list/data = ..()
+	data["content"] = devil_info
+	return data
 
 /obj/item/book/codex_gigas/proc/ask_name(mob/reader)
 	ui_interact(reader)

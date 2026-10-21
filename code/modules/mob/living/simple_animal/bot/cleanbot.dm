@@ -430,35 +430,28 @@
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
 
 
-/mob/living/simple_animal/bot/cleanbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-Stan: <A href='byond://?src=[REF(src)];power=1'>[on ? "Wł." : "Wył."]</A><BR>\nSterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>\nPanel serwisowy jest [open ? "otwarty" : "zamknięty"]"})
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
-		dat += "<BR>Sprzątanie krwi: <A href='byond://?src=[REF(src)];operation=blood'>[blood ? "Tak" : "Nie"]</A>"
-		dat += "<BR>Sprzątanie śmieci: <A href='byond://?src=[REF(src)];operation=trash'>[trash ? "Tak" : "Nie"]</A>"
-		dat += "<BR>Usuwanie graffiti: <A href='byond://?src=[REF(src)];operation=drawn'>[drawn ? "Tak" : "Nie"]</A>"
-		dat += "<BR>Tępienie szkodników: <A href='byond://?src=[REF(src)];operation=pests'>[pests ? "Tak" : "Nie"]</A>"
-		dat += "<BR><BR>Patrolowanie stacji: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</A>"
-	return dat
+/mob/living/simple_animal/bot/cleanbot/get_custom_controls(mob/user)
+	return list(
+		"clean_blood" = blood,
+		"clean_trash" = trash,
+		"clean_graffiti" = drawn,
+		"pest_control" = pests,
+	)
 
-/mob/living/simple_animal/bot/cleanbot/Topic(href, href_list)
-	if(..())
-		return 1
-	if(href_list["operation"])
-		switch(href_list["operation"])
-			if("blood")
-				blood = !blood
-			if("pests")
-				pests = !pests
-			if("trash")
-				trash = !trash
-			if("drawn")
-				drawn = !drawn
-		get_targets()
-		update_controls()
+/mob/living/simple_animal/bot/cleanbot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
+		if("clean_blood")
+			blood = !blood
+		if("pest_control")
+			pests = !pests
+		if("clean_trash")
+			trash = !trash
+		if("clean_graffiti")
+			drawn = !drawn
+		else
+			return FALSE
+	get_targets()
+	return TRUE
 
 /obj/machinery/bot_core/cleanbot/medbay
 	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)

@@ -1,52 +1,40 @@
 //I wish we had interfaces sigh, and i'm not sure giving team and antag common root is a better solution here
+// AQUILA EDIT - Check Antagonists / Round Status w TGUI (okno "CheckAntagonists"). Wpisy listy to dane, a nie HTML.
 
 //Name shown on antag list
 /datum/antagonist/proc/antag_listing_name()
 	if(!owner)
-		return "Unassigned"
+		return "Nieprzypisany"
 	if(owner.current)
-		return "<a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(owner.current)]'>[owner.current.real_name]</a> "
-	else
-		return "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(owner)]'>[owner.name]</a> "
+		return owner.current.real_name
+	return owner.name
 
 //Whatever interesting things happened to the antag admins should know about
 //Include additional information about antag in this part
 /datum/antagonist/proc/antag_listing_status()
 	if(!owner)
-		return "(Unassigned)"
+		return "(Nieprzypisany)"
 	if(!owner.current)
-		return "<font color=red>(Body destroyed)</font>"
-	else
-		if(owner.current.stat == DEAD)
-			return "<font color=red>(DEAD)</font>"
-		else if(!owner.current.client)
-			return "(Brak klienta)"
+		return "(Ciało zniszczone)"
+	if(owner.current.stat == DEAD)
+		return "(MARTWY)"
+	if(!owner.current.client)
+		return "(Brak klienta)"
+	return ""
 
-//Builds the common FLW PM TP commands part
-//Probably not going to be overwritten by anything but you never know
-/datum/antagonist/proc/antag_listing_commands()
-	if(!owner)
-		return
-	var/list/parts = list()
-	parts += "<a href='byond://?priv_msg=[ckey(owner.key)]'>PM</a>"
-	if(owner.current) //There's body to follow
-		parts += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(owner.current)]'>FLW</a>"
-	else
-		parts += ""
-	parts += "<a href='byond://?_src_=holder;[HrefToken()];traitor=[REF(owner)]'>Show Objective</a>"
-	return parts //Better as one cell or two/three
-
-//Builds table row for the antag
-// Jim (Status) FLW PM TP
+/// Wpis antagonisty na liście: nazwa, stan i odnośniki do akcji admina
 /datum/antagonist/proc/antag_listing_entry()
-	var/list/parts = list()
+	var/list/entry = list()
 	if(show_name_in_check_antagonists)
-		parts += "[antag_listing_name()]([name])"
+		entry["name"] = "[antag_listing_name()] ([name])"
 	else
-		parts += antag_listing_name()
-	parts += antag_listing_status()
-	parts += antag_listing_commands()
-	return "<tr><td>[parts.Join("</td><td>")]</td></tr>"
+		entry["name"] = antag_listing_name()
+	entry["status"] = antag_listing_status()
+	entry["bad"] = !owner?.current || owner.current.stat == DEAD
+	entry["mob_ref"] = owner?.current ? REF(owner.current) : null
+	entry["mind_ref"] = owner ? REF(owner) : null
+	entry["ckey"] = owner ? ckey(owner.key) : null
+	return entry
 
 
 /datum/team/proc/get_team_antags(antag_type,specific = FALSE)
@@ -55,27 +43,20 @@
 		if(A.get_team() == src && (!antag_type || !specific && istype(A,antag_type) || specific && A.type == antag_type))
 			. += A
 
-//Builds section for the team
+/// Sekcja drużyny: nazwa, członkowie i dodatkowe tabelki (np. dyski nuklearne, głowy stacji)
+/// Wiersz dodatkowej tabelki: list("text", "pp_ref", "follow_ref", "vv_ref", "ckey")
 /datum/team/proc/antag_listing_entry()
-	//NukeOps:
-	// Jim (Status) FLW PM TP
-	// Joe (Status) FLW PM TP
-	//Disk:
-	// Deep Space FLW
-	var/list/parts = list()
-	parts += "<b>[antag_listing_name()]</b><br>"
-	parts += "<table cellspacing=5>"
+	var/list/antags = list()
 	for(var/datum/antagonist/A in get_team_antags())
-		parts += A.antag_listing_entry()
-	parts += "</table>"
-	parts += antag_listing_footer()
-	return parts.Join()
+		antags += list(A.antag_listing_entry())
+	return list(
+		"title" = antag_listing_name(),
+		"antags" = antags,
+		"extra" = list(),
+	)
 
 /datum/team/proc/antag_listing_name()
 	return name
-
-/datum/team/proc/antag_listing_footer()
-	return
 
 //Moves them to the top of the list if TRUE
 /datum/antagonist/proc/is_gamemode_hero()
@@ -102,70 +83,100 @@
 			if(X.get_team() == T)
 				all_antagonists -= X
 		if(T.is_gamemode_hero())
-			priority_sections += T.antag_listing_entry()
+			priority_sections += list(T.antag_listing_entry())
 		else
-			sections += T.antag_listing_entry()
+			sections += list(T.antag_listing_entry())
 
 	sortTim(all_antagonists, GLOBAL_PROC_REF(cmp_antag_category))
 
-	var/current_category
-	var/list/current_section = list()
+	var/list/current_section
 	for(var/i in 1 to all_antagonists.len)
 		var/datum/antagonist/current_antag = all_antagonists[i]
 		var/datum/antagonist/next_antag
 		if(i < all_antagonists.len)
 			next_antag = all_antagonists[i+1]
-		if(!current_category)
-			current_category = current_antag.roundend_category
-			current_section += "<b>[capitalize(current_category)]</b><br>"
-			current_section += "<table cellspacing=5>"
-		current_section += current_antag.antag_listing_entry() // Name - (Traitor) - FLW | PM | TP
+		if(!current_section)
+			current_section = list(
+				"title" = capitalize(current_antag.roundend_category),
+				"antags" = list(),
+				"extra" = list(),
+			)
+		var/list/section_antags = current_section["antags"]
+		section_antags += list(current_antag.antag_listing_entry()) // Name - (Traitor) - FLW | PM | TP
 
 		if(!next_antag || next_antag.roundend_category != current_antag.roundend_category) //End of section
-			current_section += "</table>"
 			if(current_antag.is_gamemode_hero())
-				priority_sections += current_section.Join()
+				priority_sections += list(current_section)
 			else
-				sections += current_section.Join()
-			current_section.Cut()
-			current_category = null
-	var/list/all_sections = priority_sections + sections
-	return all_sections.Join("<br>")
+				sections += list(current_section)
+			current_section = null
+	return priority_sections + sections
 
 /datum/admins/proc/check_antagonists()
 	if(!SSticker.HasRoundStarted())
 		alert("Gra jeszcze się nie zaczęła!")
 		return
-	var/list/dat = list("<h1><B>Round Status</B></h1>")
-	if(SSticker.mode.replacementmode)
-		dat += "Former Game Mode: <B>[SSticker.mode.name]</B><BR>"
-		dat += "Replacement Game Mode: <B>[SSticker.mode.replacementmode.name]</B><BR>"
-	else
-		dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
-	dat += "Round Duration: <B>[time2text(world.timeofday - SSticker.round_start_timeofday, "hh:mm:ss", 0)]</B><BR>"
-	dat += "<B>Emergency shuttle</B><BR>"
-	if(EMERGENCY_IDLE_OR_RECALLED)
-		dat += "<a href='byond://?_src_=holder;[HrefToken()];call_shuttle=1'>Call Shuttle</a><br>"
-	else
+	if(!check_antagonists_ui)
+		check_antagonists_ui = new(src)
+	check_antagonists_ui.ui_interact(usr)
+
+/datum/admins
+	/// AQUILA - okno TGUI Check Antagonists
+	var/datum/check_antagonists_ui/check_antagonists_ui
+
+/datum/check_antagonists_ui
+	var/datum/admins/holder
+
+/datum/check_antagonists_ui/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/check_antagonists_ui/Destroy(force)
+	if(holder?.check_antagonists_ui == src)
+		holder.check_antagonists_ui = null
+	holder = null
+	return ..()
+
+/datum/check_antagonists_ui/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/check_antagonists_ui/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CheckAntagonists")
+		ui.open()
+
+/datum/check_antagonists_ui/ui_data(mob/user)
+	var/list/data = list()
+	if(!SSticker.HasRoundStarted() || !SSticker.mode)
+		data["round_started"] = FALSE
+		return data
+	data["round_started"] = TRUE
+	data["mode_name"] = SSticker.mode.name
+	data["replacement_mode_name"] = SSticker.mode.replacementmode?.name
+	data["round_duration"] = time2text(world.timeofday - SSticker.round_start_timeofday, "hh:mm:ss", 0)
+
+	// Prom ewakuacyjny
+	var/list/shuttle = list()
+	shuttle["idle_or_recalled"] = !!EMERGENCY_IDLE_OR_RECALLED
+	if(SSshuttle.emergency && !EMERGENCY_IDLE_OR_RECALLED)
 		var/timeleft = SSshuttle.emergency.timeLeft()
-		if(SSshuttle.emergency.mode == SHUTTLE_CALL)
-			dat += "ETA: <a href='byond://?_src_=holder;[HrefToken()];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]</a><BR>"
-			dat += "<a href='byond://?_src_=holder;[HrefToken()];call_shuttle=2'>Send Back</a><br>"
-		else
-			dat += "ETA: <a href='byond://?_src_=holder;[HrefToken()];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]</a><BR>"
-	dat += "<B>Continuous Round Status</B><BR>"
-	dat += "<a href='byond://?_src_=holder;[HrefToken()];toggle_continuous=1'>[CONFIG_GET(keyed_list/continuous)[SSticker.mode.config_tag] ? "Continue if antagonists die" : "End on antagonist death"]</a>"
-	if(CONFIG_GET(keyed_list/continuous)[SSticker.mode.config_tag])
-		dat += ", <a href='byond://?_src_=holder;[HrefToken()];toggle_midround_antag=1'>[CONFIG_GET(keyed_list/midround_antag)[SSticker.mode.config_tag] ? "creating replacement antagonists" : "not creating new antagonists"]</a><BR>"
-	else
-		dat += "<BR>"
-	if(CONFIG_GET(keyed_list/midround_antag)[SSticker.mode.config_tag])
-		dat += "Time limit: <a href='byond://?_src_=holder;[HrefToken()];alter_midround_time_limit=1'>[CONFIG_GET(number/midround_antag_time_check)] minutes into round</a><BR>"
-		dat += "Living crew limit: <a href='byond://?_src_=holder;[HrefToken()];alter_midround_life_limit=1'>[CONFIG_GET(number/midround_antag_life_check) * 100]% of crew alive</a><BR>"
-		dat += "If limits past: <a href='byond://?_src_=holder;[HrefToken()];toggle_noncontinuous_behavior=1'>[SSticker.mode.round_ends_with_antag_death ? "End The Round" : "Continue As Extended"]</a><BR>"
-	dat += "<a href='byond://?_src_=holder;[HrefToken()];end_round=[REF(usr)]'>Zakończ rundę teraz</a><br>"
-	dat += "<a href='byond://?_src_=holder;[HrefToken()];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
-	dat += "<a href='byond://?_src_=holder;[HrefToken()];check_teams=1'>Check Teams</a>"
+		shuttle["eta"] = "[(timeleft / 60) % 60]:[add_leading(num2text(timeleft % 60), 2, "0")]"
+		shuttle["called"] = SSshuttle.emergency.mode == SHUTTLE_CALL
+	data["shuttle"] = shuttle
+
+	// Ciągłość rundy
+	var/config_tag = SSticker.mode.config_tag
+	var/continuous = !!CONFIG_GET(keyed_list/continuous)[config_tag]
+	var/midround_antag = !!CONFIG_GET(keyed_list/midround_antag)[config_tag]
+	data["continuous"] = continuous
+	data["midround_antag"] = midround_antag
+	data["midround_time_limit"] = CONFIG_GET(number/midround_antag_time_check)
+	data["midround_life_limit"] = CONFIG_GET(number/midround_antag_life_check) * 100
+	data["round_ends_with_antag_death"] = !!SSticker.mode.round_ends_with_antag_death
+	data["delay_end"] = !!SSticker.delay_end
+
+	// Statystyki graczy
 	var/connected_players = GLOB.clients.len
 	var/lobby_players = 0
 	var/observers = 0
@@ -202,14 +213,41 @@
 				brains++
 			else
 				other_players++
-	dat += "<BR><b><font color='blue' size='3'>Players:|[connected_players - lobby_players] ingame|[connected_players] connected|[lobby_players] lobby|</font></b>"
-	dat += "<BR><b><font color='green'>Living Players:|[living_players_connected] active|[living_players - living_players_connected] disconnected|[living_players_antagonist] antagonists|</font></b>"
-	dat += "<BR><b><font color='#bf42f4'>SKIPPED \[On centcom Z-level\]: [living_skipped] living players|[drones] living drones|</font></b>"
-	dat += "<BR><b><font color='red'>Dead/Observing players:|[observers_connected] active|[observers - observers_connected] disconnected|[brains] brains|</font></b>"
-	if(other_players)
-		dat += "<BR><span class='userdanger'>[other_players] players in invalid state or the statistics code is bugged!</span>"
-	dat += "<br><br>"
+	data["stats"] = list(
+		"ingame" = connected_players - lobby_players,
+		"connected" = connected_players,
+		"lobby" = lobby_players,
+		"living_active" = living_players_connected,
+		"living_disconnected" = living_players - living_players_connected,
+		"living_antags" = living_players_antagonist,
+		"skipped_living" = living_skipped,
+		"skipped_drones" = drones,
+		"dead_active" = observers_connected,
+		"dead_disconnected" = observers - observers_connected,
+		"brains" = brains,
+		"other" = other_players,
+	)
 
-	dat += build_antag_listing()
+	data["sections"] = holder.build_antag_listing()
+	return data
 
-	usr << browse(HTML_SKELETON_TITLE("Round Status", dat.Join()), "window=roundstatus;size=500x500")
+/datum/check_antagonists_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	switch(action)
+		if("call_shuttle")
+			holder.ui_topic(list("call_shuttle" = params["send_back"] ? "2" : "1"))
+			return TRUE
+		if("end_round")
+			holder.ui_topic(list("end_round" = REF(usr)))
+			return TRUE
+		if("check_teams")
+			holder.ui_topic(list("check_teams" = "1"))
+			return
+		if("edit_shuttle_time", "toggle_continuous", "toggle_midround_antag", "alter_midround_time_limit", "alter_midround_life_limit", "toggle_noncontinuous_behavior", "delay_round_end")
+			holder.ui_topic(list("[action]" = "1"))
+			return TRUE
+	return holder.ui_common_action(action, params)

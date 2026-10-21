@@ -1,5 +1,3 @@
-import { ButtonCheckbox } from 'tgui/components/Button';
-
 import { useBackend } from '../backend';
 import {
   Box,
@@ -104,7 +102,7 @@ export const PlantMutator = (props) => {
                 {/* Inspection row */}
                 <Flex.Item width={'100%'}>
                   <Section textAlign={'center'}>
-                    <ButtonCheckbox
+                    <Button.Checkbox
                       width={'100%'}
                       className={'plant__button'}
                       checked={port_traits}
@@ -114,7 +112,7 @@ export const PlantMutator = (props) => {
                       }
                     >
                       Zachowaj cechy
-                    </ButtonCheckbox>
+                    </Button.Checkbox>
                   </Section>
                   <Section>
                     {current_feature ? <InspectionPanel /> : ' ... '}

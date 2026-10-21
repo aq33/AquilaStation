@@ -105,7 +105,31 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 	if(action != "select_job")
 		return
 	var/mob/dead/new_player/player = ui.user
-	if(!istype(player) || !SSjob.GetJob(params["job"]))
+	if(!istype(player))
 		return
-	player.Topic(null, list("SelectedJob" = params["job"]))
+	var/job_title = params["job"]
+	// Losowa profesja jak w tg: losujemy spośród dostępnych i pytamy, czy pasuje
+	if(job_title == "Random")
+		job_title = get_random_job(player)
+		if(!job_title)
+			return TRUE
+	if(!SSjob.GetJob(job_title))
+		return
+	player.Topic(null, list("SelectedJob" = job_title))
 	return TRUE
+
+/// Losuje dostępną profesję; gracz może ją przyjąć, wylosować inną albo zrezygnować
+/datum/latejoin_menu/proc/get_random_job(mob/dead/new_player/player)
+	var/list/available = list()
+	for(var/list/department as anything in get_departments())
+		for(var/job_title in department["jobs"])
+			if(player.IsJobUnavailable(job_title, TRUE) == JOB_AVAILABLE)
+				available |= job_title
+	while(length(available))
+		var/random_job = pick_n_take(available)
+		var/choice = tgui_alert(player, "[random_job]?", "Losowa profesja", list("Tak", "Losuj dalej", "Anuluj"))
+		if(!isnewplayer(player) || choice == "Anuluj" || !choice)
+			return
+		if(choice == "Tak")
+			return random_job
+	tgui_alert(player, "Nie ma już wolnych profesji do wylosowania.", "Losowa profesja")

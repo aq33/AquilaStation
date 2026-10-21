@@ -17,7 +17,7 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type ColorEntry = {
-  index: Number;
+  index: number;
   value: string;
 };
 
@@ -25,7 +25,7 @@ type SpriteData = {
   icon_states: string[];
   finished: string;
   steps: SpriteEntry[];
-  time_spent: Number;
+  time_spent: number;
 };
 
 type SpriteEntry = {
@@ -71,13 +71,13 @@ const DirectionAbbreviation: Record<Direction, string> = {
 const ConfigDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Designs">
+    <Section title="Wzory">
       <LabeledList>
-        <LabeledList.Item label="Design Type">
+        <LabeledList.Item label="Rodzaj wzoru">
           <Button icon="cogs" onClick={() => act('select_config')} />
           <Input
             value={data.greyscale_config}
-            onChange={(_, value) =>
+            onBlur={(value) =>
               act('load_config_from_string', { config_string: value })
             }
           />
@@ -91,17 +91,17 @@ const ColorDisplay = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   const colors = data.colors || [];
   return (
-    <Section title="Colors">
+    <Section title="Kolory">
       <LabeledList>
-        <LabeledList.Item label="Full Color String">
+        <LabeledList.Item label="Pełny ciąg kolorów">
           <Button
             icon="dice"
             onClick={() => act('random_all_colors')}
-            tooltip="Randomizes all color groups."
+            tooltip="Losuje wszystkie grupy kolorów."
           />
           <Input
             value={colors.map((item) => item.value).join('')}
-            onChange={(_, value) =>
+            onBlur={(value) =>
               act('recolor_from_string', { color_string: value })
             }
           />
@@ -109,24 +109,24 @@ const ColorDisplay = (props) => {
         {colors.map((item) => (
           <LabeledList.Item
             key={`colorgroup${item.index}${item.value}`}
-            label={`Color Group ${item.index}`}
+            label={`Grupa kolorów ${item.index}`}
             color={item.value}
           >
             <ColorBox color={item.value} />{' '}
             <Button
               icon="palette"
               onClick={() => act('pick_color', { color_index: item.index })}
-              tooltip="Brings up a color pick window to replace this color group."
+              tooltip="Otwiera okno wyboru koloru dla tej grupy."
             />
             <Button
               icon="dice"
               onClick={() => act('random_color', { color_index: item.index })}
-              tooltip="Randomizes the color for this color group."
+              tooltip="Losuje kolor tej grupy."
             />
             <Input
               value={item.value}
               width={7}
-              onChange={(_, value) =>
+              onBlur={(value) =>
                 act('recolor', { color_index: item.index, new_color: value })
               }
             />
@@ -173,7 +173,7 @@ const SingleDirection = (props) => {
     <Flex.Item grow={1} basis={0}>
       <Button
         content={DirectionAbbreviation[dir]}
-        tooltip={`Sets the direction of the preview sprite to ${dir}`}
+        tooltip={`Ustawia kierunek podglądu na ${dir}`}
         disabled={`${dir}` === data.sprites_dir ? true : false}
         textAlign="center"
         onClick={() => act('change_dir', { new_sprite_dir: dir })}
@@ -188,13 +188,13 @@ const SingleDirection = (props) => {
 const IconStatesDisplay = (props) => {
   const { data, act } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title="Icon States">
+    <Section title="Stany ikony">
       <Flex>
         {data.sprites.icon_states.map((item) => (
           <Flex.Item key={item}>
             <Button
               mx={0.5}
-              content={item ? item : 'Blank State'}
+              content={item ? item : 'Pusty stan'}
               disabled={item === data.icon_state}
               onClick={() => act('select_icon_state', { new_icon_state: item })}
             />
@@ -208,7 +208,7 @@ const IconStatesDisplay = (props) => {
 const PreviewDisplay = (props) => {
   const { data } = useBackend<GreyscaleMenuData>();
   return (
-    <Section title={`Preview (${data.sprites_dir})`}>
+    <Section title={`Podgląd (${data.sprites_dir})`}>
       <Table>
         <Table.Row>
           <Table.Cell width="50%">
@@ -238,21 +238,20 @@ const PreviewDisplay = (props) => {
           )}
         </Table.Row>
       </Table>
-      {!!data.generate_full_preview &&
-        `Time Spent: ${data.sprites.time_spent}ms`}
+      {!!data.generate_full_preview && `Czas: ${data.sprites.time_spent}ms`}
       <Divider />
       {!data.refreshing && (
         <Table>
           {!!data.generate_full_preview && data.sprites.steps !== null && (
             <Table.Row header>
               <Table.Cell width="50%" textAlign="center">
-                Layer Source
+                Źródło warstwy
               </Table.Cell>
               <Table.Cell width="25%" textAlign="center">
-                Step Layer
+                Warstwa kroku
               </Table.Cell>
               <Table.Cell width="25%" textAlign="center">
-                Step Result
+                Wynik kroku
               </Table.Cell>
             </Table.Row>
           )}
@@ -295,7 +294,7 @@ const LoadingAnimation = () => {
 export const GreyscaleModifyMenu = (props) => {
   const { act, data } = useBackend<GreyscaleMenuData>();
   return (
-    <Window title="Color Configuration" width={325} height={800}>
+    <Window title="Konfiguracja kolorów" width={325} height={800}>
       <Window.Content scrollable>
         <ConfigDisplay />
         <ColorDisplay />
@@ -307,34 +306,34 @@ export const GreyscaleModifyMenu = (props) => {
                 content={
                   <Icon name="file-image-o" spin={data.monitoring_files} />
                 }
-                tooltip="Continuously checks files for changes and reloads when necessary. WARNING: Very expensive"
+                tooltip="Stale sprawdza pliki i przeładowuje je po zmianach. UWAGA: bardzo kosztowne"
                 selected={data.monitoring_files}
                 onClick={() => act('toggle_mass_refresh')}
                 width={1.9}
                 mr={-0.2}
               />
               <Button
-                content="Refresh Icon File"
-                tooltip="Loads the json configuration and icon file fresh from disk. This is useful to avoid restarting the server to see changes. WARNING: Expensive"
+                content="Odśwież plik ikon"
+                tooltip="Wczytuje od nowa z dysku konfigurację json i plik ikon, żeby zobaczyć zmiany bez restartu serwera. UWAGA: kosztowne"
                 onClick={() => act('refresh_file')}
               />
               <Button
-                content="Save Icon File"
-                tooltip="Saves the icon to a temp file in tmp/. This is useful if you want to use a generated icon elsewhere or just view a more accurate representation"
+                content="Zapisz plik ikon"
+                tooltip="Zapisuje ikonę do pliku tymczasowego w tmp/. Przydaje się, gdy chcesz użyć wygenerowanej ikony gdzie indziej albo obejrzeć ją dokładniej"
                 onClick={() => act('save_dmi')}
               />
             </Flex.Item>
           )}
           <Flex.Item>
             <Button
-              content="Apply"
-              tooltip="Applies changes made to the object this menu was created from."
+              content="Zastosuj"
+              tooltip="Zapisuje zmiany w obiekcie, z którego otwarto to menu."
               color="red"
               onClick={() => act('apply')}
             />
             <Button.Checkbox
-              content="Full Preview"
-              tooltip="Generates and displays the full sprite generation process instead of just the final output."
+              content="Pełny podgląd"
+              tooltip="Pokazuje cały proces generowania sprite'a zamiast samego wyniku."
               disabled={!data.generate_full_preview && !data.unlocked}
               checked={data.generate_full_preview}
               onClick={() => act('toggle_full_preview')}

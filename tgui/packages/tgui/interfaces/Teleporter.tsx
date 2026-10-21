@@ -1,15 +1,16 @@
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  calibrated: any;
-  calibrating: any;
-  power_station: any;
-  regime_set: any;
-  target: any;
-  teleporter_hub: any;
+  calibrated: BooleanLike;
+  calibrating: BooleanLike;
+  power_station: BooleanLike;
+  regime_set: string;
+  teleporter_hub: BooleanLike;
+  target: string;
 };
 
 export const Teleporter = (props) => {
@@ -23,57 +24,41 @@ export const Teleporter = (props) => {
     target,
   } = data;
   return (
-    <Window width={470} height={140}>
+    <Window width={360} height={130}>
       <Window.Content>
         <Section>
           {(!power_station && (
             <Box color="bad" textAlign="center">
-              No power station linked.
+              Brak podłączonej stacji zasilającej.
             </Box>
           )) ||
             (!teleporter_hub && (
               <Box color="bad" textAlign="center">
-                No hub linked.
+                Brak podłączonego węzła teleportera.
               </Box>
             )) || (
               <LabeledList>
-                <LabeledList.Item
-                  label="Current Regime"
-                  buttons={
-                    <Button
-                      icon="tools"
-                      content="Change Regime"
-                      onClick={() => act('regimeset')}
-                    />
-                  }
-                >
-                  {regime_set}
+                <LabeledList.Item label="Tryb">
+                  <Button tooltip="Zmień tryb" onClick={() => act('regimeset')}>
+                    {regime_set}
+                  </Button>
+                </LabeledList.Item>
+                <LabeledList.Item label="Cel">
+                  <Button icon="edit" onClick={() => act('settarget')}>
+                    {target}
+                  </Button>
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Current Target"
+                  label="Kalibracja"
                   buttons={
-                    <Button
-                      icon="tools"
-                      content="Set Target"
-                      onClick={() => act('settarget')}
-                    />
+                    <Button icon="tools" onClick={() => act('calibrate')}>
+                      Kalibruj
+                    </Button>
                   }
                 >
-                  {target}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Calibration"
-                  buttons={
-                    <Button
-                      icon="tools"
-                      content="Calibrate Hub"
-                      onClick={() => act('calibrate')}
-                    />
-                  }
-                >
-                  {(calibrating && <Box color="average">In Progress</Box>) ||
-                    (calibrated && <Box color="good">Optimal</Box>) || (
-                      <Box color="bad">Sub-Optimal</Box>
+                  {(calibrating && <Box color="average">W toku</Box>) ||
+                    (calibrated && <Box color="good">Optymalna</Box>) || (
+                      <Box color="bad">Nieoptymalna</Box>
                     )}
                 </LabeledList.Item>
               </LabeledList>

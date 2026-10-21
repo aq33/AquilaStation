@@ -120,12 +120,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			hsrc = holder
 		if("usr")
 			hsrc = mob
-		if("prefs")
-			if (inprefs)
-				return
-			inprefs = TRUE
-			. = prefs.process_link(usr,href_list)
-			inprefs = FALSE
+		if("prefs") // AQ EDIT - stare okno preferencji HTML usunięte, wszystko jest w oknie TGUI PreferencesMenu
 			return
 		if("vars")
 			return view_var_Topic(href,href_list,hsrc)
@@ -348,6 +343,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	tgui_panel.Initialize()
 
 	tgui_say.initialize()
+
+	initialize_escape_menu() // AQ EDIT - menu pod Esc (aquila/code/modules/escape_menu)
 
 	if(alert_mob_dupe_login && !holder)
 		var/dupe_login_message = "Twój ComputerID zalogował się już w tej rundzie z innego konta - wyloguj się z tego NATYCHMIAST albo ryzykujesz bana!"

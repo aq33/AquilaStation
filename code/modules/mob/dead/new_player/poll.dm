@@ -1,306 +1,230 @@
+// AQ EDIT - ankiety graczy w oknie TGUI (PlayerPolls) zamiast okien HTML z formularzami.
+// Zapisy do bazy (vote_on_poll_*) działają jak wcześniej, zmienił się tylko sposób przekazania głosu.
+
+/mob/dead/new_player
+	/// Okno ankiet tego gracza (TGUI)
+	var/datum/player_polls_menu/polls_menu
+
 /**
   * Shows a list of currently running polls a player can vote/has voted on
   *
   */
 /mob/dead/new_player/proc/handle_player_polling()
-	var/list/output = list("<div align='center'><B>Ankiety graczy</B><hr><table>")
-	var/rs = REF(src)
-	for(var/p in GLOB.polls)
-		var/datum/poll_question/poll = p
-		if((poll.admin_only && !client.holder) || poll.future_poll)
-			continue
-		output += "<tr bgcolor='#e2e2e2'><td><a href='byond://?src=[rs];viewpoll=[REF(poll)]'><b>[poll.question]</b></a></td></tr>"
-	output += "</table>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpolllist;size=500x300")
+	if(!client)
+		return
+	if(!polls_menu)
+		polls_menu = new(src)
+	polls_menu.ui_interact(src)
 
 /**
-  * Redirects a player to the correct poll window based on poll type.
+  * Opens the poll window on the given poll.
   *
   */
 /mob/dead/new_player/proc/poll_player(datum/poll_question/poll)
 	if(!poll)
 		return
+	if(!polls_menu)
+		polls_menu = new(src)
+	if(polls_menu.select_poll(poll))
+		polls_menu.ui_interact(src)
+
+/// Okno ankiet jednego gracza w lobby: lista ankiet i głosowanie w wybranej
+/datum/player_polls_menu
+	/// Gracz w lobby, do którego należy okno
+	var/mob/dead/new_player/owner
+	/// Ankieta otwarta w oknie
+	var/datum/poll_question/selected_poll
+	/// Czy gracz już głosował w otwartej ankiecie (wczytane z bazy przy otwarciu)
+	var/has_voted = FALSE
+	/// Zapisany głos w otwartej ankiecie, w formie zależnej od typu ankiety (patrz load_vote)
+	var/vote_data
+
+/datum/player_polls_menu/New(mob/dead/new_player/new_owner)
+	owner = new_owner
+
+/datum/player_polls_menu/Destroy()
+	SStgui.close_uis(src)
+	owner = null
+	selected_poll = null
+	return ..()
+
+/datum/player_polls_menu/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/player_polls_menu/ui_status(mob/user, datum/ui_state/state)
+	return (user == owner && !QDELETED(owner)) ? UI_INTERACTIVE : UI_CLOSE
+
+/datum/player_polls_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PlayerPolls", "Ankiety graczy")
+		ui.open()
+
+/// Czy gracz może zobaczyć tę ankietę
+/datum/player_polls_menu/proc/can_see_poll(datum/poll_question/poll)
+	if(!poll || !owner?.client)
+		return FALSE
+	if(poll.future_poll)
+		return FALSE
+	if(poll.admin_only && !owner.client.holder)
+		return FALSE
+	return TRUE
+
+/// Otwiera ankietę w oknie i wczytuje z bazy głos gracza
+/datum/player_polls_menu/proc/select_poll(datum/poll_question/poll)
+	if(!can_see_poll(poll))
+		return FALSE
 	if(!SSdbcore.Connect())
-		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
-		return
-	switch(poll.poll_type)
-		if(POLLTYPE_OPTION)
-			poll_player_option(poll)
-		if(POLLTYPE_TEXT)
-			poll_player_text(poll)
-		if(POLLTYPE_RATING)
-			poll_player_rating(poll)
-		if(POLLTYPE_MULTI)
-			poll_player_multi(poll)
-		if(POLLTYPE_IRV)
-			poll_player_irv(poll)
+		to_chat(owner, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
+		return FALSE
+	if(!load_vote(poll))
+		return FALSE
+	selected_poll = poll
+	return TRUE
 
 /**
-  * Shows voting window for an option type poll, listing its options and relevant details.
+  * Loads the player's saved vote for a poll from the database.
   *
-  * If already voted on, the option a player voted for is pre-selected.
-  *
+  * vote_data per poll type:
+  * OPTION - REF of the voted option, TEXT - reply text, RATING - list(option REF = rating),
+  * MULTI - list of voted option REFs, IRV - all option REFs in the voted order (unvoted ones shuffled at the end).
   */
-/mob/dead/new_player/proc/poll_player_option(datum/poll_question/poll)
-	var/datum/DBQuery/query_option_get_voted = SSdbcore.NewQuery({"
-		SELECT optionid FROM [format_table_name("poll_vote")]
-		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
-	"}, list("pollid" = poll.poll_id, "ckey" = ckey))
-	if(!query_option_get_voted.warn_execute())
-		qdel(query_option_get_voted)
-		return
-	var/voted_option_id = 0
-	if(query_option_get_voted.NextRow())
-		voted_option_id = text2num(query_option_get_voted.item[1])
-	qdel(query_option_get_voted)
-	var/list/output = list("<div align='center'><B>Ankieta</B><hr><b>Pytanie: [poll.question]</b><br>")
-	if(poll.subtitle)
-		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Ankieta trwa od <b>[poll.start_datetime]</b> do <b>[poll.end_datetime]</b></font><br>"
-	if(poll.allow_revoting)
-		output += "<font size='2'>Można zmienić głos.</font>"
-	if(!voted_option_id || poll.allow_revoting)
-		output += {"<form action='byond://?src=[REF(src)]' method='get'>
-		<input type='hidden' name='src' value='[REF(src)]'>
-		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		"}
-	output += "<table><tr><td>"
-	for(var/o in poll.options)
-		var/datum/poll_option/option = o
-		output += "<label><input type='radio' name='voteoptionref' value='[REF(option)]'"
-		if(voted_option_id && !poll.allow_revoting)
-			output += " disabled"
-		if(voted_option_id == option.option_id)
-			output += " selected"
-		output += ">[option.text]</label><br>"
-	output += "</td></tr></table>"
-	if(!voted_option_id || poll.allow_revoting)
-		output += "<p><input type='submit' value='Vote'></form>"
-	output += "</div>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpoll;size=500x250")
-
-/**
-  * Shows voting window for a text response type poll, listing its relevant details.
-  *
-  * If already responded to, the saved response of a player is shown.
-  *
-  */
-/mob/dead/new_player/proc/poll_player_text(datum/poll_question/poll)
-	var/datum/DBQuery/query_text_get_replytext = SSdbcore.NewQuery({"
-		SELECT replytext FROM [format_table_name("poll_textreply")]
-		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
-	"}, list("pollid" = poll.poll_id, "ckey" = ckey))
-	if(!query_text_get_replytext.warn_execute())
+/datum/player_polls_menu/proc/load_vote(datum/poll_question/poll)
+	has_voted = FALSE
+	vote_data = null
+	var/ckey = owner.ckey
+	if(poll.poll_type == POLLTYPE_TEXT)
+		var/datum/DBQuery/query_text_get_replytext = SSdbcore.NewQuery({"
+			SELECT replytext FROM [format_table_name("poll_textreply")]
+			WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
+		"}, list("pollid" = poll.poll_id, "ckey" = ckey))
+		if(!query_text_get_replytext.warn_execute())
+			qdel(query_text_get_replytext)
+			return FALSE
+		vote_data = ""
+		if(query_text_get_replytext.NextRow())
+			vote_data = query_text_get_replytext.item[1]
+			has_voted = TRUE
 		qdel(query_text_get_replytext)
-		return
-	var/reply_text = ""
-	if(query_text_get_replytext.NextRow())
-		reply_text = query_text_get_replytext.item[1]
-	qdel(query_text_get_replytext)
-	var/list/output = list("<div align='center'><B>Ankieta</B><hr><b>Pytanie: [poll.question]</b><br>")
-	if(poll.subtitle)
-		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Zbieranie opinii trwa od <b>[poll.start_datetime]</b> do <b>[poll.end_datetime]</b></font><br>"
-	if(poll.allow_revoting)
-		output += "<font size='2'>Można zmienić głos.</font>"
-	if(!reply_text || poll.allow_revoting)
-		output += {"<form action='byond://?src=[REF(src)]' method='get'>
-		<input type='hidden' name='src' value='[REF(src)]'>
-		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		<font size='2'>Przekaż poniżej swoją opinię. Możesz używać dowolnych liter alfabetu angielskiego, cyfr i symboli: . , ! ? : ; -</font><br><textarea name='replytext' cols='50' rows='14'>[reply_text]</textarea>
-		<p><input type='submit' value='Submit'></form>
-		"}
-	else
-		output += "[reply_text]"
-	output += "</div>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpoll;size=500x500")
+		return TRUE
 
-/**
-  * Shows voting window for a rating type poll, listing its options and relevant details.
-  *
-  * If already voted on, the options a player voted for are pre-selected.
-  *
-  */
-/mob/dead/new_player/proc/poll_player_rating(datum/poll_question/poll)
-	var/datum/DBQuery/query_rating_get_votes = SSdbcore.NewQuery({"
+	var/datum/DBQuery/query_get_votes = SSdbcore.NewQuery({"
 		SELECT optionid, rating FROM [format_table_name("poll_vote")]
 		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
+		ORDER BY id
 	"}, list("pollid" = poll.poll_id, "ckey" = ckey))
-	if(!query_rating_get_votes.warn_execute())
-		qdel(query_rating_get_votes)
-		return
+	if(!query_get_votes.warn_execute())
+		qdel(query_get_votes)
+		return FALSE
+	var/list/voted_ids = list()
 	var/list/voted_ratings = list()
-	while(query_rating_get_votes.NextRow())
-		voted_ratings += list("[query_rating_get_votes.item[1]]" = query_rating_get_votes.item[2])
-	qdel(query_rating_get_votes)
-	var/list/output = list("<div align='center'><B>Ankieta</B><hr><b>Pytanie: [poll.question]</b><br>")
-	if(poll.subtitle)
-		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Ankieta trwa od <b>[poll.start_datetime]</b> do <b>[poll.end_datetime]</b></font><br>"
-	if(poll.allow_revoting)
-		output += "<font size='2'>Można zmienić głos.</font>"
-	if(!length(voted_ratings) || poll.allow_revoting)
-		output += {"<form action='byond://?src=[REF(src)]' method='get'>
-		<input type='hidden' name='src' value='[REF(src)]'>
-		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		"}
-	for(var/o in poll.options)
-		var/datum/poll_option/option = o
-		var/mid_val = round((option.max_val + option.min_val) / 2)
-		var/selected_rating = text2num(voted_ratings["[option.option_id]"])
-		output += "<label><br>[option.text]: <select name='[REF(option)]'"
-		if(length(voted_ratings) && !poll.allow_revoting)
-			output += " disabled"
-		output += ">"
-		for(var/rating in option.min_val to option.max_val)
-			output += "<option value='[rating]'"
-			if(selected_rating == rating)
-				output += " selected"
-			output += ">[rating]"
-			if(option.desc_min && rating == option.min_val)
-				output += " ([option.desc_min])"
-			else if(option.desc_mid && rating == mid_val)
-				output += " ([option.desc_mid])"
-			else if(option.desc_max && rating == option.max_val)
-				output += " ([option.desc_max])"
-			output += "</option>"
-		output += "</select></label>"
-	if(!length(voted_ratings) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Submit'></form>"
-	output += "</div>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpoll;size=500x500")
+	while(query_get_votes.NextRow())
+		var/option_id = text2num(query_get_votes.item[1])
+		voted_ids += option_id
+		voted_ratings["[option_id]"] = text2num(query_get_votes.item[2])
+	qdel(query_get_votes)
+	has_voted = length(voted_ids) > 0
 
-/**
-  * Shows voting window for a multiple choice type poll, listing its options and relevant details.
-  *
-  * If already voted on, the options a player voted for are pre-selected.
-  *
-  */
-/mob/dead/new_player/proc/poll_player_multi(datum/poll_question/poll)
-	var/datum/DBQuery/query_multi_get_votes = SSdbcore.NewQuery({"
-		SELECT optionid FROM [format_table_name("poll_vote")]
-		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
-	"}, list("pollid" = poll.poll_id, "ckey" = ckey))
-	if(!query_multi_get_votes.warn_execute())
-		qdel(query_multi_get_votes)
-		return
-	var/list/voted_for = list()
-	while(query_multi_get_votes.NextRow())
-		voted_for += text2num(query_multi_get_votes.item[1])
-	qdel(query_multi_get_votes)
-	var/list/output = list("<div align='center'><B>Ankieta</B><hr><b>Pytanie: [poll.question]</b><br>")
-	if(poll.subtitle)
-		output += "[poll.subtitle]<br>"
-	output += "Możesz wybrać do [poll.options_allowed] opcji. Jeśli wybierzesz więcej, zapisane zostanie pierwsze [poll.options_allowed].<br><font size='2'>Ankieta trwa od <b>[poll.start_datetime]</b> do <b>[poll.end_datetime]</b></font><br>"
-	if(poll.allow_revoting)
-		output += "<font size='2'>Można zmienić głos.</font>"
-	if(!length(voted_for) || poll.allow_revoting)
-		output += {"<form action='byond://?src=[REF(src)]' method='get'>
-		<input type='hidden' name='src' value='[REF(src)]'>
-		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		"}
-	output += "<table><tr><td>"
-	for(var/o in poll.options)
-		var/datum/poll_option/option = o
-		output += "<label><input type='checkbox' name='[REF(option)]' value='[option.option_id]'"
-		if(length(voted_for) && !poll.allow_revoting)
-			output += " disabled"
-		if(option.option_id in voted_for)
-			output += " checked"
-		output += ">[option.text]</label><br>"
-	output += "</td></tr></table>"
-	if(!length(voted_for) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Vote'></form>"
-	output += "</div>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpoll;size=500x300")
+	switch(poll.poll_type)
+		if(POLLTYPE_OPTION)
+			for(var/datum/poll_option/option as anything in poll.options)
+				if(option.option_id in voted_ids)
+					vote_data = REF(option)
+					break
+		if(POLLTYPE_RATING)
+			var/list/ratings = list()
+			for(var/datum/poll_option/option as anything in poll.options)
+				if(!isnull(voted_ratings["[option.option_id]"]))
+					ratings[REF(option)] = voted_ratings["[option.option_id]"]
+			vote_data = ratings
+		if(POLLTYPE_MULTI)
+			var/list/voted_refs = list()
+			for(var/datum/poll_option/option as anything in poll.options)
+				if(option.option_id in voted_ids)
+					voted_refs += REF(option)
+			vote_data = voted_refs
+		if(POLLTYPE_IRV)
+			//if they've already voted we use the order they voted in plus a shuffle of any options they haven't voted for, otherwise just shuffle the options
+			var/list/prepared_options = list()
+			for(var/vote_id in voted_ids)
+				for(var/datum/poll_option/option as anything in poll.options)
+					if(option.option_id == vote_id)
+						prepared_options |= option
+			prepared_options += shuffle(poll.options - prepared_options)
+			var/list/order = list()
+			for(var/datum/poll_option/option as anything in prepared_options)
+				order += REF(option)
+			vote_data = order
+	return TRUE
 
-/**
-  * Shows voting window for an IRV type poll, listing its options and relevant details.
-  *
-  * If already voted on, the options are sorted how a player voted for them, otherwise they are randomly shuffled.
-  *
-  */
-/mob/dead/new_player/proc/poll_player_irv(datum/poll_question/poll)
-	var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/irv)
-	irv_assets.send(src)
-	var/datum/DBQuery/query_irv_get_votes = SSdbcore.NewQuery({"
-		SELECT optionid FROM [format_table_name("poll_vote")]
-		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
-	"}, list("pollid" = poll.poll_id, "ckey" = ckey))
-	if(!query_irv_get_votes.warn_execute())
-		qdel(query_irv_get_votes)
-		return
-	var/list/voted_for = list()
-	while(query_irv_get_votes.NextRow())
-		voted_for += text2num(query_irv_get_votes.item[1])
-	qdel(query_irv_get_votes)
-	var/list/prepared_options = list()
-	//if they've already voted we use the order they voted in plus a shuffle of any options they haven't voted for, if any
-	if(length(voted_for))
-		for(var/vote_id in voted_for)
-			for(var/o in poll.options)
-				var/datum/poll_option/option = o
-				if(option.option_id == vote_id)
-					prepared_options += option
-		var/list/shuffle_options = poll.options - prepared_options
-		if(length(shuffle_options))
-			shuffle_options = shuffle(shuffle_options)
-			for(var/shuffled in shuffle_options)
-				prepared_options += shuffled
-	//otherwise just shuffle the options
+/datum/player_polls_menu/ui_data(mob/user)
+	var/list/data = list()
+	var/list/polls = list()
+	for(var/datum/poll_question/poll as anything in GLOB.polls)
+		if(!can_see_poll(poll))
+			continue
+		polls += list(list(
+			"ref" = REF(poll),
+			"question" = poll.question,
+			"type" = poll.poll_type,
+		))
+	data["polls"] = polls
+
+	if(selected_poll && !QDELETED(selected_poll) && can_see_poll(selected_poll))
+		var/list/options = list()
+		for(var/datum/poll_option/option as anything in selected_poll.options)
+			options += list(list(
+				"ref" = REF(option),
+				"text" = option.text,
+				"min_val" = option.min_val,
+				"max_val" = option.max_val,
+				"desc_min" = option.desc_min,
+				"desc_mid" = option.desc_mid,
+				"desc_max" = option.desc_max,
+			))
+		data["selected"] = list(
+			"ref" = REF(selected_poll),
+			"question" = selected_poll.question,
+			"subtitle" = selected_poll.subtitle,
+			"type" = selected_poll.poll_type,
+			"start" = selected_poll.start_datetime,
+			"end" = selected_poll.end_datetime,
+			"allow_revoting" = !!selected_poll.allow_revoting,
+			"options_allowed" = selected_poll.options_allowed,
+			"minimum_playtime" = selected_poll.minimumplaytime,
+			"options" = options,
+			"has_voted" = has_voted,
+			"vote" = vote_data,
+		)
 	else
-		prepared_options = shuffle(poll.options)
-	var/list/output = list({"<!DOCTYPE html><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-	<script src="[SSassets.transport.get_asset_url("jquery.min.js")]"></script>
-	<script src="[SSassets.transport.get_asset_url("jquery-ui.custom-core-widgit-mouse-sortable-min.js")]"></script>
-	<style>
-		#sortable { list-style-type: none; margin: 0; padding: 2em; }
-		#sortable li { min-height: 1em; margin: 0px 1px 1px 1px; padding: 1px; border: 1px solid black; border-radius: 5px; background-color: white; cursor:move;}
-		#sortable .sortable-placeholder-highlight { min-height: 1em; margin: 0 2px 2px 2px; padding: 2px; border: 1px dotted blue; border-radius: 5px; background-color: GhostWhite; }
-		span.grippy { content: '....'; width: 10px; height: 20px; display: inline-block; overflow: hidden; line-height: 5px; padding: 3px 1px; cursor: move; vertical-align: middle; margin-top: -.7em; margin-right: .3em; font-size: 12px; font-family: sans-serif; letter-spacing: 2px; color: #cccccc; text-shadow: 1px 0 1px black; }
-		span.grippy::after { content: '.. .. .. ..';}
-	</style>
-	<script>
-		$(function() {
-			$( "#sortable" ).sortable({
-				placeholder: "sortable-placeholder-highlight",
-				axis: "y",
-				containment: "#ballot",
-				scroll: false,
-				cursor: "ns-resize",
-				tolerance: "pointer"
-			});
-			$( "#sortable" ).disableSelection();
-			$('form').submit(function(){
-				$('#IRVdata').val($( "#sortable" ).sortable("toArray", { attribute: "optionref" }));
-			});
-		});
-	</script>
-	</head>
-	<body>
-	<div align='center'><B>Player poll</B><hr><b>Question: [poll.question]</b><br>"})
-	if(poll.subtitle)
-		output += "[poll.subtitle]<br>"
-	output += "<font size='2'>Ankieta trwa od <b>[poll.start_datetime]</b> do <b>[poll.end_datetime]</b></font><br>"
-	if(poll.allow_revoting)
-		output += "<font size='2'>Można zmienić głos.</font>"
-	output += "Ułóż opcje od <b>najbardziej preferowanej</b> do <b>najmniej preferowanej</b><br></div>"
-	if(!length(voted_for) || poll.allow_revoting)
-		output += {"<form action='byond://?src=[REF(src)]' method='POST'>
-		<input type='hidden' name='src' value='[REF(src)]'>
-		<input type='hidden' name='votepollref' value='[REF(poll)]'>
-		<input type='hidden' name='IRVdata' id='IRVdata'>
-		"}
-	output += "<div id='ballot' class='center'><b><center>Most Preferred</center></b><ol id='sortable' class='rankings' style='padding:0px'>"
-	for(var/o in prepared_options)
-		var/datum/poll_option/option = o
-		output += "<li optionref='[REF(option)]' class='ranking'><span class='grippy'></span> [option.text]</li>\n"
-	output += "</ol><b><center>Najmniej preferowane</center></b><br>"
-	if(!length(voted_for) || poll.allow_revoting)
-		output += "<p><input type='submit' value='Vote'></form>"
-	output += "</div>"
-	src << browse(HTML_SKELETON(jointext(output, "")),"window=playerpoll;size=500x500")
+		data["selected"] = null
+	return data
+
+/datum/player_polls_menu/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(usr != owner)
+		return
+	switch(action)
+		if("select")
+			var/datum/poll_question/poll = locate(params["ref"]) in GLOB.polls
+			select_poll(poll)
+			return TRUE
+		if("back")
+			selected_poll = null
+			vote_data = null
+			has_voted = FALSE
+			return TRUE
+		if("vote")
+			if(!selected_poll || params["ref"] != REF(selected_poll))
+				return TRUE
+			if(has_voted && !selected_poll.allow_revoting)
+				return TRUE
+			if(owner.vote_on_poll_handler(selected_poll, params))
+				load_vote(selected_poll)
+				owner.new_player_panel() // odświeża „NOWE!” przy ankietach w lobby
+			return TRUE
 
 /**
   * Runs some poll validation before a vote is processed.
@@ -309,12 +233,14 @@
   * Also loads the vote_id to pass onto single-option and text polls.
   * Increments the vote count when successful.
   *
+  * vote_params comes from the PlayerPolls window: "option" (OPTION), "text" (TEXT), "ratings" (RATING),
+  * "options" (MULTI), "order" (IRV) - see the vote_on_poll_* procs.
   */
-/mob/dead/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, href_list)
+/mob/dead/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, list/vote_params)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
-	if(!poll || !href_list)
+	if(!poll || !islist(vote_params))
 		return
 	if(IsAdminAdvancedProcCall())
 		log_game("[key_name(usr)] attempted to rig the vote by voting as [key]")
@@ -363,31 +289,32 @@
 	var/vote_success = FALSE
 	switch(poll.poll_type)
 		if(POLLTYPE_OPTION)
-			vote_success = vote_on_poll_option(poll, href_list, admin_rank, sql_poll_id, vote_id)
+			vote_success = vote_on_poll_option(poll, vote_params, admin_rank, sql_poll_id, vote_id)
 		if(POLLTYPE_TEXT)
-			vote_success = vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
+			vote_success = vote_on_poll_text(vote_params, admin_rank, sql_poll_id, vote_id)
 		if(POLLTYPE_RATING)
-			vote_success = vote_on_poll_rating(poll, href_list, admin_rank, sql_poll_id)
+			vote_success = vote_on_poll_rating(poll, vote_params, admin_rank, sql_poll_id)
 		if(POLLTYPE_MULTI)
-			vote_success = vote_on_poll_multi(poll, href_list, admin_rank, sql_poll_id)
+			vote_success = vote_on_poll_multi(poll, vote_params, admin_rank, sql_poll_id)
 		if(POLLTYPE_IRV)
-			vote_success = vote_on_poll_irv(poll, href_list, admin_rank, sql_poll_id)
+			vote_success = vote_on_poll_irv(poll, vote_params, admin_rank, sql_poll_id)
 	if(vote_success)
 		if(!vote_id)
 			poll.poll_votes++
 		to_chat(usr, "<span class='notice'>Głos oddany.</span>")
+	return vote_success
 
 /**
-  * Processes vote form data and saves results to the database for an option type poll.
+  * Saves the vote of an option type poll. vote_params["option"] is the REF of the chosen option.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_option(datum/poll_question/poll, href_list, admin_rank, sql_poll_id, vote_id)
+/mob/dead/new_player/proc/vote_on_poll_option(datum/poll_question/poll, list/vote_params, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	if(IsAdminAdvancedProcCall())
 		return
-	var/datum/poll_option/option = locate(href_list["voteoptionref"]) in poll.options
+	var/datum/poll_option/option = locate(vote_params["option"]) in poll.options
 	if(!option)
 		to_chat(src, "<span class='danger'>Nie wybrano żadnej opcji.</span>")
 		return
@@ -410,16 +337,19 @@
 	return TRUE
 
 /**
-  * Processes response form data and saves results to the database for a text response type poll.
+  * Saves the response of a text response type poll. vote_params["text"] is the reply.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
+/mob/dead/new_player/proc/vote_on_poll_text(list/vote_params, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	if(IsAdminAdvancedProcCall())
 		return
-	var/reply_text = href_list["replytext"]
+	var/reply_text = vote_params["text"]
+	if(!istext(reply_text))
+		reply_text = null
+	reply_text = trim(reply_text)
 	if(!reply_text || (length(reply_text) > 2048))
 		to_chat(src, "<span class='danger'>Wpisany tekst jest pusty lub za długi. Popraw go i wyślij ponownie.</span>")
 		return
@@ -442,14 +372,18 @@
 	return TRUE
 
 /**
-  * Processes vote form data and saves results to the database for a rating type poll.
+  * Saves the votes of a rating type poll. vote_params["ratings"] is a list of option REF = rating.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/dead/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/vote_params, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	if(IsAdminAdvancedProcCall())
+		return
+	var/list/ratings = vote_params["ratings"]
+	if(!islist(ratings) || !length(ratings))
+		to_chat(src, "<span class='danger'>Nie oceniono żadnej opcji.</span>")
 		return
 	var/list/votes = list()
 	var/datum/DBQuery/query_get_rating_votes = SSdbcore.NewQuery({"
@@ -462,7 +396,6 @@
 	while(query_get_rating_votes.NextRow())
 		votes += list("[query_get_rating_votes.item[2]]" = text2num(query_get_rating_votes.item[1]))
 	qdel(query_get_rating_votes)
-	href_list.Cut(1,3) //first two values aren't options
 
 	var/special_columns = list(
 		"datetime" = "NOW()",
@@ -470,8 +403,14 @@
 	)
 
 	var/sql_votes = list()
-	for(var/h in href_list)
-		var/datum/poll_option/option = locate(h) in poll.options
+	for(var/option_ref in ratings)
+		var/datum/poll_option/option = locate(option_ref) in poll.options
+		if(!option)
+			continue
+		var/rating = text2num("[ratings[option_ref]]")
+		if(!isnum(rating))
+			continue
+		rating = clamp(round(rating), option.min_val, option.max_val)
 		sql_votes += list(list(
 			"id" = votes["[option.option_id]"],
 			"pollid" = sql_poll_id,
@@ -479,25 +418,28 @@
 			"ckey" = ckey,
 			"ip" = client.address,
 			"adminrank" = admin_rank,
-			"rating" = href_list[h]
+			"rating" = rating
 		))
+	if(!length(sql_votes))
+		to_chat(src, "<span class='danger'>Nie oceniono żadnej opcji.</span>")
+		return
 	SSdbcore.MassInsert(format_table_name("poll_vote"), sql_votes, duplicate_key = TRUE, special_columns = special_columns)
 	return TRUE
 
 /**
-  * Processes vote form data and saves results to the database for a multiple choice type poll.
+  * Saves the votes of a multiple choice type poll. vote_params["options"] is a list of chosen option REFs.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/dead/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/vote_params, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	if(IsAdminAdvancedProcCall())
 		return
-	if(length(href_list) > 2)
-		href_list.Cut(1,3) //first two values aren't options
-	else
+	var/list/chosen = vote_params["options"]
+	if(!islist(chosen) || !length(chosen))
 		to_chat(src, "<span class='danger'>Nie wybrano żadnych opcji.</span>")
+		return
 
 	var/special_columns = list(
 		"datetime" = "NOW()",
@@ -505,13 +447,15 @@
 	)
 
 	var/sql_votes = list()
-	var/vote_count = 0
-	for(var/h in href_list)
-		if(vote_count == poll.options_allowed)
+	var/list/voted_options = list()
+	for(var/option_ref in chosen)
+		if(length(voted_options) == poll.options_allowed)
 			to_chat(src, "<span class='danger'>Przekroczono dozwoloną liczbę opcji, zapisano tylko pierwsze [poll.options_allowed].</span>")
 			break
-		vote_count++
-		var/datum/poll_option/option = locate(h) in poll.options
+		var/datum/poll_option/option = locate(option_ref) in poll.options
+		if(!option || (option in voted_options))
+			continue
+		voted_options += option
 		sql_votes += list(list(
 			"pollid" = sql_poll_id,
 			"optionid" = option.option_id,
@@ -519,6 +463,9 @@
 			"ip" = client.address,
 			"adminrank" = admin_rank
 		))
+	if(!length(sql_votes))
+		to_chat(src, "<span class='danger'>Nie wybrano żadnych opcji.</span>")
+		return
 	/*with revoting and poll editing possible there can be an edge case where a poll is changed to allow less multiple choice options than a user has already voted on
 	rather than trying to calculate which options should be updated and which deleted, we just delete all of a user's votes and re-insert as needed*/
 	var/datum/DBQuery/query_delete_multi_votes = SSdbcore.NewQuery({"
@@ -532,18 +479,19 @@
 	return TRUE
 
 /**
-  * Processes vote form data and saves results to the database for an IRV type poll.
+  * Saves the ranking of an IRV type poll. vote_params["order"] is a list of option REFs, most preferred first.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/dead/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/vote_params, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
 	if(IsAdminAdvancedProcCall())
 		return
-	var/list/votelist = splittext(href_list["IRVdata"], ",")
-	if(!length(votelist))
+	var/list/votelist = vote_params["order"]
+	if(!islist(votelist) || !length(votelist))
 		to_chat(src, "<span class='danger'>Nie znaleziono danych o kolejności. Spróbuj ponownie albo skontaktuj się z administratorem.</span>")
+		return
 
 	var/list/special_columns = list(
 		"datetime" = "NOW()",
@@ -551,8 +499,12 @@
 	)
 
 	var/sql_votes = list()
-	for(var/o in votelist)
-		var/datum/poll_option/option = locate(o) in poll.options
+	var/list/voted_options = list()
+	for(var/option_ref in votelist)
+		var/datum/poll_option/option = locate(option_ref) in poll.options
+		if(!option || (option in voted_options))
+			continue
+		voted_options += option
 		sql_votes += list(list(
 			"pollid" = sql_poll_id,
 			"optionid" = option.option_id,
@@ -560,6 +512,9 @@
 			"ip" = client.address,
 			"adminrank" = admin_rank
 		))
+	if(!length(sql_votes))
+		to_chat(src, "<span class='danger'>Nie znaleziono danych o kolejności. Spróbuj ponownie albo skontaktuj się z administratorem.</span>")
+		return
 	//IRV results are calculated based on id order, we delete all of a user's votes to avoid potential errors caused by revoting and option editing
 	var/datum/DBQuery/query_delete_irv_votes = SSdbcore.NewQuery({"
 		UPDATE [format_table_name("poll_vote")] SET deleted = 1 WHERE pollid = :pollid AND ckey = :ckey

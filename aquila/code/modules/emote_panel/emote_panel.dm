@@ -44,6 +44,17 @@
 			if(emote.message_param && use_params)
 				emote_param = tgui_input_text(ui.user, "Dodaj parametr do emotki...", emote.message_param)
 			ui.user.emote(emote_key, message = emote_param, intentional = TRUE)
+		// Odsłuch dźwięku emotki jak w tg - słyszy go tylko otwierający panel
+		if("preview_sound")
+			var/emote_key = params["emote_key"]
+			if(isnull(emote_key) || !GLOB.emote_list[emote_key])
+				return
+			var/datum/emote/emote = GLOB.emote_list[emote_key][1]
+			var/emote_sound = get_sfx(emote.get_sound(ui.user))
+			if(!emote_sound)
+				to_chat(ui.user, "<span class='warning'>Nie udało się odtworzyć dźwięku emotki [emote.name].</span>", type = MESSAGE_TYPE_INFO)
+				return
+			SEND_SOUND(ui.user, sound(emote_sound, volume = 75))
 
 /datum/emote_panel/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

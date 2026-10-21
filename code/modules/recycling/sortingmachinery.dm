@@ -219,29 +219,38 @@
 	playsound(src, 'sound/machines/twobeep_high.ogg', 100, 1)
 	return BRUTELOSS
 
-/obj/item/dest_tagger/proc/openwindow(mob/user)
-	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
+/obj/item/dest_tagger/ui_interact(mob/user, datum/tgui/ui)
+	add_fingerprint(user)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DestinationTagger", name)
+		ui.set_autoupdate(FALSE)
+		ui.open()
 
-	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for (var/i = 1, i <= GLOB.TAGGERLOCATIONS.len, i++)
-		dat += "<td><a href='byond://?src=[REF(src)];nextTag=[i]'>[GLOB.TAGGERLOCATIONS[i]]</a></td>"
-
-		if(i%4==0)
-			dat += "</tr><tr>"
-
-	dat += "</tr></table><br>Obecny wybór: [currTag ? GLOB.TAGGERLOCATIONS[currTag] : "Brak"]</tt>"
-
-	user << browse(HTML_SKELETON(dat), "window=destTagScreen;size=450x350")
-	onclose(user, "destTagScreen")
+/// Okno zamyka się, gdy użytkownik upuści tagger
+/obj/item/dest_tagger/ui_state(mob/user)
+	return GLOB.inventory_state
 
 /obj/item/dest_tagger/attack_self(mob/user)
 	if(!locked_destination)
-		openwindow(user)
+		ui_interact(user)
 		return
 
-/obj/item/dest_tagger/Topic(href, href_list)
-	add_fingerprint(usr)
-	if(href_list["nextTag"])
-		var/n = text2num(href_list["nextTag"])
-		currTag = n
-	openwindow(usr)
+/obj/item/dest_tagger/ui_data(mob/user)
+	var/list/data = list()
+	data["locations"] = GLOB.TAGGERLOCATIONS
+	data["currentTag"] = currTag
+	return data
+
+/obj/item/dest_tagger/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("change")
+			var/new_tag = round(text2num(params["index"]))
+			if(new_tag == currTag || new_tag < 1 || new_tag > length(GLOB.TAGGERLOCATIONS))
+				return
+			currTag = new_tag
+			add_fingerprint(usr)
+	return TRUE

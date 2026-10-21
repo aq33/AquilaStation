@@ -1,59 +1,98 @@
-import { createSearch } from 'common/string';
+import { useState } from 'react';
 import { Box, Icon, Input, Section } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
-type Data = {
-  mode: any;
-  records: any;
+type SecurityRecord = {
+  id: string;
+  name: string;
+  rank: string;
+  species: string;
+  sex: string;
+  age: string;
+  fingerprint: string;
+  wanted: string | null;
+};
+
+type MedicalRecord = {
+  id: string;
+  name: string;
+  rank: string;
+  species: string;
+  sex: string;
+  age: string;
+  b_dna: string;
+  bloodtype: string;
+  mi_dis: string;
+  ma_dis: string;
+  notes: string;
+  cnotes: string;
+};
+
+type Data =
+  | {
+      mode: 'security';
+      records: SecurityRecord[];
+    }
+  | {
+      mode: 'medical';
+      records: MedicalRecord[];
+    };
+
+/** Wpisy rozdzielane w DM znacznikiem <br> wypisuje jako punkty */
+const BulletList = (props: { text?: string }) => {
+  const { text } = props;
+  if (!text) {
+    return <Box>&#8226; brak</Box>;
+  }
+  return (
+    <>
+      {text.split('<br>').map((entry, index) => (
+        <Box key={index}>&#8226; {entry}</Box>
+      ))}
+    </>
+  );
 };
 
 export const NtosRecords = (props) => {
-  const { act, data } = useBackend<Data>();
-  const [searchTerm, setSearchTerm] = useLocalState('search', '');
-  const { mode, records } = data;
+  const { data } = useBackend<Data>();
+  const [searchTerm, setSearchTerm] = useState('');
+  const { mode, records = [] } = data;
 
-  const isMatchingSearchTerms = createSearch(
-    searchTerm,
-    (text: string) => text,
-  );
+  const isMatchingSearchTerms = createSearch(searchTerm);
+  const isHidden = (searchable: string) =>
+    !(searchTerm === '' || isMatchingSearchTerms(searchable));
 
   return (
     <NtosWindow width={600} height={800}>
       <NtosWindow.Content scrollable>
-        <Section textAlign="center">
-          NANOTRASEN PERSONNEL RECORDS (CLASSIFIED)
-        </Section>
+        <Section textAlign="center">AKTA PERSONELU NANOTRASEN (POUFNE)</Section>
         <Section>
           <Input
-            placeholder={'Filter results...'}
+            placeholder="Filtruj wyniki..."
             value={searchTerm}
             fluid
             textAlign="center"
-            onInput={(e, value) => setSearchTerm(value)}
+            onChange={setSearchTerm}
+            expensive
           />
         </Section>
         {mode === 'security' &&
-          records.map((record) => (
+          (records as SecurityRecord[]).map((record) => (
             <Section
               key={record.id}
               style={
-                !(
-                  searchTerm === '' ||
-                  isMatchingSearchTerms(
-                    record.name +
-                      ' ' +
-                      record.rank +
-                      ' ' +
-                      record.species +
-                      ' ' +
-                      record.sex +
-                      ' ' +
-                      record.age +
-                      ' ' +
-                      record.fingerprint,
-                  )
+                isHidden(
+                  [
+                    record.name,
+                    record.rank,
+                    record.species,
+                    record.sex,
+                    record.age,
+                    record.fingerprint,
+                  ].join(' '),
                 )
                   ? { display: 'none' }
                   : undefined
@@ -64,46 +103,36 @@ export const NtosRecords = (props) => {
                 {record.name}
               </Box>
               <br />
-              Rank: {record.rank}
+              Stanowisko: {record.rank}
               <br />
-              Species: {record.species}
+              Gatunek: {record.species}
               <br />
-              Sex: {record.sex}
+              Płeć: {record.sex}
               <br />
-              Age: {record.age}
+              Wiek: {record.age}
               <br />
-              Fingerprint: {record.fingerprint}
+              Odcisk palca: {record.fingerprint}
               <br />
               <br />
-              Criminal Status: {record.wanted || 'DELETED'}
+              Status karny: {record.wanted || 'USUNIĘTY'}
             </Section>
           ))}
         {mode === 'medical' &&
-          records.map((record) => (
+          (records as MedicalRecord[]).map((record) => (
             <Section
               key={record.id}
               style={
-                !(
-                  searchTerm === '' ||
-                  isMatchingSearchTerms(
-                    record.name +
-                      ' ' +
-                      record.rank +
-                      ' ' +
-                      record.species +
-                      ' ' +
-                      record.sex +
-                      ' ' +
-                      record.age +
-                      ' ' +
-                      record.fingerprint +
-                      ' ' +
-                      record.bloodtype +
-                      ' ' +
-                      record.m_stat +
-                      ' ' +
-                      record.p_stat,
-                  )
+                isHidden(
+                  [
+                    record.name,
+                    record.rank,
+                    record.species,
+                    record.sex,
+                    record.age,
+                    record.bloodtype,
+                    record.mi_dis,
+                    record.ma_dis,
+                  ].join(' '),
                 )
                   ? { display: 'none' }
                   : undefined
@@ -114,26 +143,31 @@ export const NtosRecords = (props) => {
                 {record.name}
               </Box>
               <br />
-              Rank: {record.rank}
+              Stanowisko: {record.rank}
               <br />
-              Species: {record.species}
+              Gatunek: {record.species}
               <br />
-              Sex: {record.sex}
+              Płeć: {record.sex}
               <br />
-              Age: {record.age}
+              Wiek: {record.age}
               <br />
               DNA: {record.b_dna}
               <br />
               <br />
-              Bloodtype: {record.bloodtype}
+              Grupa krwi: {record.bloodtype}
               <br />
-              Minor Disabilities: {record.mi_dis}
+              Drobne niepełnosprawności:
+              <BulletList text={record.mi_dis} />
+              Poważne niepełnosprawności:
+              <BulletList text={record.ma_dis} />
               <br />
-              Major Disabilities: {record.ma_dis}
-              <br />
-              Notes: {record.notes}
-              <br />
-              Notes Cont.d: {record.cnotes}
+              Notatki: {record.notes}
+              {!!record.cnotes && (
+                <>
+                  <br />
+                  Notatki cd.: {record.cnotes}
+                </>
+              )}
             </Section>
           ))}
       </NtosWindow.Content>

@@ -866,55 +866,49 @@
 	var/choice = null
 
 
+// AQ EDIT - jak w tg: wybór karty z menu radialnego zamiast okna HTML
 /obj/item/toy/cards/cardhand/attack_self(mob/user)
-	user.set_machine(src)
-	interact(user)
-
-/obj/item/toy/cards/cardhand/ui_interact(mob/user)
-	. = ..()
-	var/dat = "Masz:<BR>"
-	for(var/t in currenthand)
-		dat += "<A href='byond://?src=[REF(src)];pick=[t]'>A [t].</A><BR>"
-	dat += "Którą kartę chcesz teraz wyjąć?"
-	var/datum/browser/popup = new(user, "cardhand", "Karty w ręce", 400, 240)
-	popup.set_content(dat)
-	popup.open()
-
-/obj/item/toy/cards/cardhand/Topic(href, href_list)
-	if(..())
+	if(!ishuman(user))
 		return
-	if(usr.stat || !ishuman(usr))
+	var/mob/living/carbon/human/cardUser = user
+	if(cardUser.stat || !(cardUser.mobility_flags & MOBILITY_USE) || !cardUser.is_holding(src))
 		return
-	var/mob/living/carbon/human/cardUser = usr
-	if(!(cardUser.mobility_flags & MOBILITY_USE))
+	var/list/choices = list()
+	for(var/card in currenthand)
+		choices[card] = image(icon = icon, icon_state = "sc_[card]_[deckstyle]")
+	var/choice = show_radial_menu(cardUser, src, choices, custom_check = CALLBACK(src, PROC_REF(check_card_menu), cardUser), require_near = TRUE, tooltips = TRUE)
+	if(!choice || !check_card_menu(cardUser))
+		return
+	draw_card(cardUser, choice)
+
+/obj/item/toy/cards/cardhand/proc/check_card_menu(mob/living/carbon/human/cardUser)
+	if(QDELETED(src) || QDELETED(cardUser))
+		return FALSE
+	if(cardUser.stat || !(cardUser.mobility_flags & MOBILITY_USE))
+		return FALSE
+	return cardUser.is_holding(src)
+
+/obj/item/toy/cards/cardhand/proc/draw_card(mob/living/carbon/human/cardUser, choice)
+	if(!(choice in currenthand))
 		return
 	var/O = src
-	if(href_list["pick"])
-		if (cardUser.is_holding(src))
-			var/choice = href_list["pick"]
-			if(!(choice in src.currenthand))
-				log_href_exploit(usr)
-				return
-			var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
-			src.currenthand -= choice
-			C.parentdeck = src.parentdeck
-			C.cardname = choice
-			C.apply_card_vars(C,O)
-			cardUser.put_in_hands(C)
-			cardUser.visible_message("<span class='notice'>[cardUser] dobiera kartę ze swojej ręki.</span>", "<span class='notice'>Wyjmujesz z ręki: [C.cardname].</span>")
+	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
+	currenthand -= choice
+	C.parentdeck = parentdeck
+	C.cardname = choice
+	C.apply_card_vars(C,O)
+	cardUser.put_in_hands(C)
+	cardUser.visible_message("<span class='notice'>[cardUser] dobiera kartę ze swojej ręki.</span>", "<span class='notice'>Wyjmujesz z ręki: [C.cardname].</span>")
 
-			interact(cardUser)
-			update_sprite()
-			if(src.currenthand.len == 1)
-				var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(src.loc)
-				N.parentdeck = src.parentdeck
-				N.cardname = src.currenthand[1]
-				N.apply_card_vars(N,O)
-				qdel(src)
-				cardUser.put_in_hands(N)
-				to_chat(cardUser, "<span class='notice'>Bierzesz też [currenthand[1]] i trzymasz ją.</span>")
-				cardUser << browse(null, "window=cardhand")
-		return
+	update_sprite()
+	if(currenthand.len == 1)
+		var/obj/item/toy/cards/singlecard/N = new/obj/item/toy/cards/singlecard(loc)
+		N.parentdeck = parentdeck
+		N.cardname = currenthand[1]
+		N.apply_card_vars(N,O)
+		to_chat(cardUser, "<span class='notice'>Bierzesz też [currenthand[1]] i trzymasz ją.</span>")
+		qdel(src)
+		cardUser.put_in_hands(N)
 
 /obj/item/toy/cards/cardhand/attackby(obj/item/toy/cards/singlecard/C, mob/living/user, params)
 	if(istype(C))
@@ -922,7 +916,6 @@
 			src.currenthand += C.cardname
 			user.visible_message("<span class='notice'>[user] dodaje kartę do swojej ręki.</span>", "<span class='notice'>Dodajesz do ręki: [C.cardname].</span>")
 			qdel(C)
-			interact(user)
 			update_sprite()
 		else
 			to_chat(user, "<span class='warning'>Nie możesz mieszać kart z innych talii!</span>")
@@ -1020,7 +1013,6 @@
 			H.currenthand += cardname
 			user.visible_message("<span class='notice'>[user] dodaje kartę do swojej ręki.</span>", "<span class='notice'>Dodajesz do ręki: [cardname].</span>")
 			qdel(src)
-			H.interact(user)
 			H.update_sprite()
 		else
 			to_chat(user, "<span class='warning'>Nie możesz mieszać kart z innych talii!</span>")

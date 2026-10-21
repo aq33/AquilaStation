@@ -110,7 +110,7 @@ export function TextInput(props: FeatureValueProps<string, string>) {
   return (
     <Input
       value={value}
-      onChange={(e, newValue) => handleSetValue(newValue)}
+      onBlur={(newValue) => handleSetValue(newValue)}
       width="100%"
     />
   );
