@@ -998,6 +998,14 @@
 #include "code\modules\vending\sticker.dm"
 // Gizmo z tg (tgstation/tgstation#95857)
 #include "code\modules\research\gizmo\_includes.dm"
+// Genetyka: mutacje z tg, Monkestation, Paradise i Yogstation + DNA Infuser z tg
+#include "code\datums\mutations\tg\_tg.dm"
+#include "code\datums\mutations\tg_core\_tg_core.dm"
+#include "code\datums\mutations\yog\_yog.dm"
+#include "code\datums\mutations\monke\_monke.dm"
+#include "code\datums\mutations\paradise\_paradise.dm"
+#include "code\game\machinery\dna_infuser\_dna_infuser.dm"
+
 // Struktury z Paradise: ściany, okna i drzwi 3/4. Na końcu, żeby nadpisać wcześniejsze ikony (także te z aquila/).
 #include "code\modules\paradise_struktury\smoothing.dm"
 #include "code\modules\paradise_struktury\walls.dm"
