@@ -1,12 +1,7 @@
 // NSV13
 
 import { toFixed } from 'common/math';
-import {
-  Button,
-  ProgressBar,
-  Section,
-  Slider,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section, Slider } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -71,12 +66,13 @@ export const RailgunCanisterCharger = (props) => {
         <Section title="Charger Settings">
           Power Allocation (Watts):
           <Slider
+            tickWhileDragging
             value={canister_charge_rate}
             minValue={0}
             maxValue={canister_max_charge_rate}
             step={1}
             stepPixelSize={0.01}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('canister_charge_rate', {
                 adjust: value,
               })

@@ -1,73 +1,31 @@
 /**
- * Copyright (c) 2020 Aleksej Komarov
- * SPDX-License-Identifier: MIT
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
  */
 
- @use 'sass:color';
- @use 'sass:meta';
+.theme-dominion:root {
+  --color-base: #c6c6c6;
+  --base-gradient-spread: 6;
+  --color-primary: #ceb232;
+  --button-background-default: #495591;
+  --button-background-disabled: #363636;
+  --button-background-selected: #ffda02;
+  --button-background-caution: #be6209;
+  --button-background-danger: #9a9d00;
+  --input-border-color: #404b6e;
+  --number-input-border-color: #404b6e;
+  --notice-box-background: #a82d55;
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --progress-bar-fill: #ceb232;
+  --tooltip-background: #a82d55;
+  --titlebar-background: #ceb232;
 
- @use '../colors.scss' with (
-   $primary: #CEB232,
-   $fg-map-keys: (),
-   $bg-map-keys: (),
- );
- @use '../base.scss' with (
-   $color-bg: #c6c6c6,
-   $color-bg-grad-spread: 6%,
-   $border-radius: 2px,
- );
+  .Layout__content {
+    background-image: url('../assets/bg-dominionoflight.svg');
+  }
 
- .theme-dominion {
-   // Atomic classes
-   @include meta.load-css('../atomic/color.scss');
-
-   // Components
-   @include meta.load-css('../components/Button.scss', $with: (
-     'color-default': #495591,
-     'color-disabled': #363636,
-     'color-selected': #ffda02,
-     'color-caution': #be6209,
-     'color-danger': #9a9d00,
-   ));
-
-   @include meta.load-css('../components/Input.scss', $with: (
-     'border-color': #404b6e,
-   ));
-
-   @include meta.load-css('../components/NoticeBox.scss', $with: (
-     'background-color': #a82d55,
-   ));
-
-   @include meta.load-css('../components/NumberInput.scss', $with: (
-     'border-color': #404b6e,
-   ));
-
-   @include meta.load-css('../components/ProgressBar.scss', $with: (
-     'background-color': rgba(0, 0, 0, 0.5),
-   ));
-
-   @include meta.load-css('../components/Section.scss');
-   @include meta.load-css('../components/Tooltip.scss', $with: (
-     'background-color': #a82d55,
-   ));
-
-   // Layouts
-   @include meta.load-css('../layouts/Layout.scss');
-   @include meta.load-css('../layouts/Window.scss');
-   @include meta.load-css('../layouts/TitleBar.scss', $with: (
-     'background-color': #CEB232,
-   ));
-
-   .Layout__content {
-     background-image: url('../../assets/bg-dominionoflight.svg');
-     background-size: 150%;
-     background-position: center;
-     background-repeat: no-repeat;
-   }
-
-   .ProgressBar__fill {
-      background-color: #CEB232;
-   }
- }
-
- // Shut the hell up, sass
+  .Layout__content {
+    background-size: 150%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}

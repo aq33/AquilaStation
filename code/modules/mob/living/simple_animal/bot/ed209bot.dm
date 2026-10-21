@@ -98,55 +98,52 @@
 	text_dehack = "Przywracasz inhibitor bojowy [name]."
 	text_dehack_fail = "[name] ignoruje twoje próby ograniczenia go!"
 
-/mob/living/simple_animal/bot/ed209/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-<TT><B>Sterowanie Jednostką Ochrony v2.6</B></TT><BR><BR>\nStan: []<BR>\nSterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>\nPanel serwisowy jest [open ? "otwarty" : "zamknięty"]<BR>"},
+/mob/living/simple_animal/bot/ed209/get_custom_controls(mob/user)
+	if(lasercolor)
+		return list()
+	return list(
+		"check_id" = idcheck,
+		"check_weapons" = weaponscheck,
+		"check_records" = check_records,
+		"detain_only" = arrest_type,
+		"declare_arrests" = declare_arrests,
+	)
 
-"<A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
-
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
-		if(!lasercolor)
-			dat += text({"<BR>
-Aresztuj niezidentyfikowane osoby: []<BR>\nAresztuj za nieautoryzowaną broń: []<BR>\nAresztuj na podstawie nakazu: []<BR>\nTryb pracy: []<BR>\nZgłaszaj aresztowania[]<BR>\nAutopatrol[]"},
-
-"<A href='byond://?src=[REF(src)];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
-"<A href='byond://?src=[REF(src)];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
-"<A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
-
-	return dat
-
-/mob/living/simple_animal/bot/ed209/Topic(href, href_list)
-	if(lasercolor && ishuman(usr))
-		var/mob/living/carbon/human/H = usr
+/mob/living/simple_animal/bot/ed209/ui_interact(mob/user, datum/tgui/ui)
+	if(lasercolor && ishuman(user))
+		var/mob/living/carbon/human/H = user
 		if((lasercolor == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))//Opposing team cannot operate it
 			return
 		else if((lasercolor == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
 			return
-	if(..())
-		return 1
+	return ..()
 
-	switch(href_list["operation"])
-		if("idcheck")
+/mob/living/simple_animal/bot/ed209/simple_bot_act(action, list/params, mob/user)
+	if(lasercolor && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if((lasercolor == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))
+			return TRUE
+		else if((lasercolor == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
+			return TRUE
+	return ..()
+
+/mob/living/simple_animal/bot/ed209/bot_custom_act(action, list/params, mob/user)
+	if(lasercolor)
+		return FALSE
+	switch(action)
+		if("check_id")
 			idcheck = !idcheck
-			update_controls()
-		if("weaponscheck")
+		if("check_weapons")
 			weaponscheck = !weaponscheck
-			update_controls()
-		if("ignorerec")
+		if("check_records")
 			check_records = !check_records
-			update_controls()
-		if("switchmode")
+		if("detain_only")
 			arrest_type = !arrest_type
-			update_controls()
-		if("declarearrests")
+		if("declare_arrests")
 			declare_arrests = !declare_arrests
-			update_controls()
+		else
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/bot/ed209/proc/judgment_criteria()
 	var/final = FALSE

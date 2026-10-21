@@ -55,35 +55,41 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	if(!H.can_read(src))
 		return FALSE
 	// If H is the Chaplain, we can set the icon_state of the bible (but only once!)
-	if(!GLOB.bible_icon_state && H.mind.holy_role == HOLY_ROLE_HIGHPRIEST)
-		var/dat = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Wybierz styl Biblii</title></head><body><center><h2>Wybierz styl Biblii</h2></center><table>"
-		for(var/i in 1 to GLOB.biblestates.len)
-			var/icon/bibleicon = icon('icons/obj/storage.dmi', GLOB.biblestates[i])
-			var/nicename = GLOB.biblenames[i]
-			H << browse_rsc(bibleicon, nicename)
-			dat += {"<tr><td><img src="[nicename]"></td><td><a href="byond://?src=[REF(src)];seticon=[i]">[nicename]</a></td></tr>"}
-		dat += "</table></body></html>"
-		H << browse(dat, "window=editicon;can_close=0;can_minimize=0;size=250x650")
+	if(!GLOB.bible_icon_state && H.mind?.holy_role == HOLY_ROLE_HIGHPRIEST)
+		select_skin(H)
 
-/obj/item/storage/book/bible/Topic(href, href_list)
-	if(!usr.canUseTopic(src, BE_CLOSE))
+// AQ EDIT - jak w tg: wybór wyglądu księgi z menu radialnego zamiast okna HTML
+/obj/item/storage/book/bible/proc/select_skin(mob/living/carbon/human/user)
+	var/list/skins = list()
+	for(var/i in 1 to GLOB.biblestates.len)
+		skins[GLOB.biblenames[i]] = image(icon = 'icons/obj/storage.dmi', icon_state = GLOB.biblestates[i])
+	var/choice = show_radial_menu(user, src, skins, radius = 40, custom_check = CALLBACK(src, PROC_REF(check_skin_menu), user), require_near = TRUE, tooltips = TRUE)
+	if(!choice || GLOB.bible_icon_state || !check_skin_menu(user))
 		return
-	if(href_list["seticon"] && !GLOB.bible_icon_state)
-		var/iconi = text2num(href_list["seticon"])
-		var/biblename = GLOB.biblenames[iconi]
-		icon_state = GLOB.biblestates[iconi]
-		item_state = GLOB.bibleitemstates[iconi]
+	var/iconi = GLOB.biblenames.Find(choice)
+	if(!iconi)
+		return
+	var/biblename = GLOB.biblenames[iconi]
+	icon_state = GLOB.biblestates[iconi]
+	item_state = GLOB.bibleitemstates[iconi]
 
-		if(icon_state == "honk1" || icon_state == "honk2")
-			var/mob/living/carbon/C = usr
-			if(C.has_dna())
-				C.dna.add_mutation(CLOWNMUT)
-			C.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(C), ITEM_SLOT_MASK)
-		GLOB.bible_icon_state = icon_state
-		GLOB.bible_item_state = item_state
+	if(icon_state == "honk1" || icon_state == "honk2")
+		if(user.has_dna())
+			user.dna.add_mutation(CLOWNMUT)
+		user.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(user), ITEM_SLOT_MASK)
+	GLOB.bible_icon_state = icon_state
+	GLOB.bible_item_state = item_state
 
-		SSblackbox.record_feedback("text", "religion_book", 1, "[biblename]")
-		usr << browse(null, "window=editicon")
+	SSblackbox.record_feedback("text", "religion_book", 1, "[biblename]")
+
+/obj/item/storage/book/bible/proc/check_skin_menu(mob/living/carbon/human/user)
+	if(!istype(user) || QDELETED(src))
+		return FALSE
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return FALSE
+	if(GLOB.bible_icon_state)
+		return FALSE
+	return TRUE
 
 /obj/item/storage/book/bible/proc/bless(mob/living/L, mob/living/user)
 	if(GLOB.religious_sect)

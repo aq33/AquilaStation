@@ -1,4 +1,4 @@
-import { classes } from 'common/react';
+import { Fragment } from 'react';
 import {
   Box,
   Button,
@@ -8,6 +8,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
@@ -50,7 +51,7 @@ export const MapVote = (props) => {
   return (
     <Window
       theme="generic"
-      title={`Vote${
+      title={`Głosowanie${
         mode
           ? `: ${
               question
@@ -92,7 +93,7 @@ export const MapVote = (props) => {
                   });
                 }}
               >
-                Vote
+                Głosuj
               </Button>
             </Section>
           </Flex.Item>
@@ -161,7 +162,7 @@ const MapData = (props) => {
       <Section
         title={
           !!selectedChoiceName &&
-          selectedChoiceName + ' by ' + selectedChoiceData.mapper
+          `${selectedChoiceName}, autor: ${selectedChoiceData.mapper}`
         }
       >
         {!!selectedChoiceName && (
@@ -192,13 +193,13 @@ const MapData = (props) => {
                 {/* Top right - class, manufacturer, design date */}
                 <Flex.Item m={1} mb={5} grow={1}>
                   <LabeledList>
-                    <LabeledList.Item label="Ship Class">
+                    <LabeledList.Item label="Klasa okrętu">
                       {selectedChoiceData.shipClass}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Manufacturer">
+                    <LabeledList.Item label="Producent">
                       {selectedChoiceData.manufacturer}
                     </LabeledList.Item>
-                    <LabeledList.Item label="Pattern Commission Date">
+                    <LabeledList.Item label="Data wprowadzenia wzoru">
                       {selectedChoiceData.patternDate}
                     </LabeledList.Item>
                   </LabeledList>
@@ -211,7 +212,7 @@ const MapData = (props) => {
               {/* Middle - pros and cons */}
               <Table.Row>
                 <Table.Cell>
-                  <Section title="Strengths">
+                  <Section title="Mocne strony">
                     {!!selectedChoiceData.strengths && (
                       <ul>
                         {selectedChoiceData.strengths.map((strength) => (
@@ -222,7 +223,7 @@ const MapData = (props) => {
                   </Section>
                 </Table.Cell>
                 <Table.Cell>
-                  <Section title="Weaknesses">
+                  <Section title="Słabe strony">
                     {!!selectedChoiceData.weaknesses && (
                       <ul>
                         {selectedChoiceData.weaknesses.map((weakness) => (
@@ -236,28 +237,28 @@ const MapData = (props) => {
               {/* Loadout and stats */}
               <Table.Row>
                 <Table.Cell>
-                  <Section title="Equipment">
+                  <Section title="Wyposażenie">
                     {!!selectedChoiceData.equipment &&
                       selectedChoiceData.equipment.map((thing) => (
-                        <>
+                        <Fragment key={thing}>
                           {thing}
                           <br />
-                        </>
+                        </Fragment>
                       ))}
                   </Section>
                 </Table.Cell>
                 <Table.Cell>
-                  <Section title="Performance History">
-                    Missions completed: {selectedChoiceData.successRate}
+                  <Section title="Historia służby">
+                    Ukończone misje: {selectedChoiceData.successRate}
                     <br />
-                    Ships evacuated: {selectedChoiceData.evacRate}
+                    Ewakuowane okręty: {selectedChoiceData.evacRate}
                     <br />
-                    On eternal patrol: {selectedChoiceData.lossRate}
+                    Na wiecznym patrolu: {selectedChoiceData.lossRate}
                     <br />
                     <br />
-                    Engine stability: {selectedChoiceData.engineStability}
+                    Stabilność silnika: {selectedChoiceData.engineStability}
                     <br />
-                    Hull durability: {selectedChoiceData.durability}
+                    Wytrzymałość kadłuba: {selectedChoiceData.durability}
                   </Section>
                 </Table.Cell>
               </Table.Row>
@@ -280,11 +281,11 @@ const TimePanel = (props) => {
         <Flex justify="space-between">
           {!!lower_admin && (
             <Button onClick={() => act('cancel')} color="red">
-              Cancel Vote
+              Anuluj głosowanie
             </Button>
           )}
           <Box fontSize={1.5} textAlign="right">
-            Time Remaining: {time_remaining}s
+            Pozostało: {time_remaining}s
           </Box>
         </Flex>
       </Section>

@@ -925,6 +925,7 @@
 		"totalLoad" = display_power(lastused_total),
 		"coverLocked" = coverlocked,
 		"siliconUser" = user.has_unlimited_silicon_privilege || user.using_power_flow_console(),
+		"remoteAccess" = (!QDELETED(remote_control) && user == remote_control.operator), // AQUILA: okno tg pokazuje zdalny dostęp z konsoli APC
 		"malfStatus" = get_malf_status(user),
 		"emergencyLights" = !emergency_lights,
 		"nightshiftLights" = nightshift_lights,

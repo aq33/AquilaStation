@@ -267,7 +267,7 @@
 		hair_style = new_style
 		user.visible_message("<span class='notice'>[user] zmienia fryzurę [src] na [new_style].</span>", "<span class='notice'>Zmieniasz fryzurę [src] na [new_style].</span>")
 	if(adjustablecolor)
-		hair_color = input(usr,"","Wybierz kolor",hair_color) as color|null
+		hair_color = tgui_color_picker(usr,"","Wybierz kolor",hair_color)
 	update_icon()
 
 /obj/item/clothing/head/wig/random/Initialize(mapload)

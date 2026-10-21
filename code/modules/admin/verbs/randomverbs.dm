@@ -566,24 +566,155 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/input = capped_multiline_input(usr, "Wpisz raport Dowództwa. Upewnij się, że ma sens IC.", "What?")
-	if(!input)
+	// AQUILA EDIT - okno TGUI (CommandReport z tg) zamiast serii input()/alert()
+	var/datum/command_report_menu/tgui = new(usr)
+	tgui.ui_interact(usr)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+#define REPORT_DEFAULT_SOUND "domyślny"
+#define REPORT_CUSTOM_SOUND "własny plik"
+#define REPORT_CENTCOM_PRESET "Centrala"
+#define REPORT_SYNDICATE_PRESET "Syndykat"
+#define REPORT_WIZARD_PRESET "Federacja Czarodziejów"
+#define REPORT_CUSTOM_PRESET "Własna nazwa"
+
+/// AQUILA - okno raportu Dowództwa (port CommandReport z tg)
+/datum/command_report_menu
+	/// The mob using the UI.
+	var/mob/ui_user
+	/// The name of central command that will accompany our report
+	var/command_name = REPORT_CENTCOM_PRESET
+	/// Whether we are using a custom name instead of a preset.
+	var/custom_name = FALSE
+	/// The actual contents of the report we're going to send.
+	var/command_report_content
+	/// Whether the report's contents are announced.
+	var/announce_contents = TRUE
+	/// Whether a copy of the report is printed at every console.
+	var/print_report = FALSE
+	/// The sound that's going to accompany our message.
+	var/played_sound = REPORT_DEFAULT_SOUND
+	/// The subheader to include when sending the announcement. Keep blank to not include a subheader
+	var/subheader = ""
+	/// A list of preset names that can be chosen.
+	var/list/preset_names = list(REPORT_CENTCOM_PRESET, REPORT_SYNDICATE_PRESET, REPORT_WIZARD_PRESET, REPORT_CUSTOM_PRESET)
+
+/datum/command_report_menu/New(mob/user)
+	ui_user = user
+	if(command_name() != REPORT_CENTCOM_PRESET)
+		command_name = command_name()
+		preset_names.Insert(1, command_name())
+
+/datum/command_report_menu/Destroy()
+	ui_user = null
+	return ..()
+
+/datum/command_report_menu/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/command_report_menu/ui_close(mob/user)
+	qdel(src)
+
+/datum/command_report_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CommandReport")
+		ui.open()
+
+/datum/command_report_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["command_name"] = command_name
+	data["custom_name"] = custom_name
+	data["command_report_content"] = command_report_content
+	data["announce_contents"] = announce_contents
+	data["print_report"] = print_report
+	data["played_sound"] = isfile(played_sound) ? "[played_sound]" : played_sound
+	data["subheader"] = subheader
+	return data
+
+/datum/command_report_menu/ui_static_data(mob/user)
+	var/list/data = list()
+	data["command_name_presets"] = preset_names
+	var/list/sounds = list(REPORT_DEFAULT_SOUND)
+	for(var/sound_key in SSstation.announcer?.event_sounds)
+		sounds += sound_key
+	sounds += REPORT_CUSTOM_SOUND
+	data["announcer_sounds"] = sounds
+	return data
+
+/datum/command_report_menu/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
 		return
 
-	var/confirm = alert(src, "Czy chcesz ogłosić treść raportu załodze?", "Announce", "Yes", "No", "Cancel")
-	var/announce_command_report = TRUE
-	switch(confirm)
-		if("Yes")
-			priority_announce(input, null, SSstation.announcer.get_rand_report_sound(), has_important_message = TRUE)
-			announce_command_report = FALSE
-		if("Cancel")
-			return
+	switch(action)
+		if("update_command_name")
+			var/new_name = params["updated_name"]
+			if(!new_name)
+				return
+			if(new_name == REPORT_CUSTOM_PRESET)
+				custom_name = TRUE
+			else if(new_name in preset_names)
+				custom_name = FALSE
+			command_name = new_name
+		if("set_report_sound")
+			var/picked = params["picked_sound"]
+			if(picked == REPORT_CUSTOM_SOUND)
+				played_sound = REPORT_DEFAULT_SOUND // fallback by default
+				var/sound_file = input(ui_user, "Wybierz plik dźwiękowy", "Własny dźwięk") as sound|null
+				if(!sound_file)
+					return TRUE
+				played_sound = sound_file
+			else if(picked == REPORT_DEFAULT_SOUND || (picked in SSstation.announcer?.event_sounds))
+				played_sound = picked
+		if("toggle_announce")
+			announce_contents = !announce_contents
+		if("toggle_printing")
+			print_report = !print_report
+		if("set_subheader")
+			subheader = params["new_subheader"]
+		if("submit_report")
+			if(!command_name)
+				to_chat(ui_user, "<span class='danger'>Raport musi mieć nadawcę.</span>")
+				return
+			if(!params["report"])
+				to_chat(ui_user, "<span class='danger'>Raport nie może być pusty.</span>")
+				return
+			command_report_content = params["report"]
+			send_announcement()
 
-	print_command_report(input, "[announce_command_report ? "Classified " : ""][command_name()] Update", announce_command_report)
+	return TRUE
 
-	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report")
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/// Wysyła ogłoszenie i/lub drukuje raport według ustawień z okna
+/datum/command_report_menu/proc/send_announcement()
+	var/original_command_name = command_name()
+	change_command_name(command_name)
+
+	var/report_sound = played_sound
+	if(played_sound == REPORT_DEFAULT_SOUND)
+		report_sound = SSstation.announcer.get_rand_report_sound()
+
+	if(announce_contents)
+		priority_announce(command_report_content, subheader == "" ? null : subheader, report_sound, has_important_message = TRUE)
+
+	if(!announce_contents || print_report)
+		print_command_report(command_report_content, "[announce_contents ? "Komunikat" : "Tajny komunikat"]: [command_name]", !announce_contents)
+
+	change_command_name(original_command_name)
+
+	log_admin("[key_name(ui_user)] has created a command report: \"[command_report_content]\", sent from \"[command_name]\" with the sound \"[played_sound]\".")
+	message_admins("[key_name_admin(ui_user)] has created a command report, sent from \"[command_name]\"")
+	if(!announce_contents)
+		message_admins("The message was: [command_report_content]")
+
+#undef REPORT_DEFAULT_SOUND
+#undef REPORT_CUSTOM_SOUND
+#undef REPORT_CENTCOM_PRESET
+#undef REPORT_SYNDICATE_PRESET
+#undef REPORT_WIZARD_PRESET
+#undef REPORT_CUSTOM_PRESET
 
 /client/proc/cmd_change_command_name()
 	set category = "Round"
@@ -1044,14 +1175,72 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	holder.modify_goals()
 
+// AQUILA EDIT - edycja celów stacji w TGUI (okno "StationGoalsPanel") zamiast HTML
 /datum/admins/proc/modify_goals()
-	var/dat = ""
-	for(var/datum/station_goal/S in SSticker.mode.station_goals)
-		dat += "[S.name] - <a href='byond://?src=[REF(S)];[HrefToken()];announce=1'>Announce</a> | <a href='byond://?src=[REF(S)];[HrefToken()];remove=1'>Remove</a><br>"
-	dat += "<br><a href='byond://?src=[REF(src)];[HrefToken()];add_station_goal=1'>Add New Goal</a>"
-	var/datum/browser/browser = new(usr, "goals", "Modify Goals", 400, 400)
-	browser.set_content(dat)
-	browser.open()
+	if(!station_goals_ui)
+		station_goals_ui = new(src)
+	station_goals_ui.ui_interact(usr)
+
+/datum/admins
+	/// AQUILA - okno TGUI celów stacji
+	var/datum/station_goals_panel/station_goals_ui
+
+/datum/station_goals_panel
+	var/datum/admins/holder
+
+/datum/station_goals_panel/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/station_goals_panel/Destroy(force)
+	if(holder?.station_goals_ui == src)
+		holder.station_goals_ui = null
+	holder = null
+	return ..()
+
+/datum/station_goals_panel/ui_state(mob/user)
+	return get_admin_state(0)
+
+/datum/station_goals_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StationGoalsPanel")
+		ui.open()
+
+/datum/station_goals_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/goals = list()
+	if(SSticker.mode)
+		for(var/datum/station_goal/S in SSticker.mode.station_goals)
+			goals += list(list("name" = S.name, "ref" = REF(S)))
+	data["goals"] = goals
+	data["has_mode"] = !!SSticker.mode
+	return data
+
+/datum/station_goals_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	switch(action)
+		if("add")
+			holder.ui_topic(list("add_station_goal" = "1"))
+			return TRUE
+		if("announce", "remove")
+			if(!SSticker.mode)
+				return
+			var/datum/station_goal/S = locate(params["ref"]) in SSticker.mode.station_goals
+			if(!S)
+				return
+			if(action == "announce")
+				S.on_report()
+				S.send_report()
+				log_admin("[key_name(usr)] announced the \"[S.name]\" station goal.")
+			else
+				log_admin("[key_name(usr)] removed the \"[S.name]\" station goal.")
+				qdel(S)
+			return TRUE
 
 
 /client/proc/toggle_hub()
@@ -1278,12 +1467,62 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>")
 		return
 
-	var/list/msg = list()
-	msg += "Playtime:<BR><UL>"
+	// AQUILA EDIT - raport czasu gry w TGUI (okno "PlaytimeReport") zamiast HTML
+	if(!holder.playtime_report_ui)
+		holder.playtime_report_ui = new(holder)
+	holder.playtime_report_ui.ui_interact(mob)
+
+/datum/admins
+	/// AQUILA - okno TGUI raportu czasu gry
+	var/datum/playtime_report/playtime_report_ui
+
+/datum/playtime_report
+	var/datum/admins/holder
+
+/datum/playtime_report/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/playtime_report/Destroy(force)
+	if(holder?.playtime_report_ui == src)
+		holder.playtime_report_ui = null
+	holder = null
+	return ..()
+
+/datum/playtime_report/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/playtime_report/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PlaytimeReport")
+		ui.open()
+
+/datum/playtime_report/ui_data(mob/user)
+	var/list/data = list()
+	var/list/players = list()
 	for(var/client/C in GLOB.clients)
-		msg += "<LI> - [key_name_admin(C)]: <A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(C.mob)]'>" + C.get_exp_living() + "</a></LI>"
-	msg += "</UL>"
-	src << browse(HTML_SKELETON_TITLE("Playtime Report", msg.Join()), "window=Player_playtime_check")
+		players += list(list(
+			"key" = C.key,
+			"ckey" = C.ckey,
+			"name" = C.mob?.real_name,
+			"mob_ref" = C.mob ? REF(C.mob) : null,
+			"living_minutes" = C.get_exp_living(TRUE),
+			"living" = C.get_exp_living(),
+		))
+	data["players"] = players
+	return data
+
+/datum/playtime_report/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	if(action == "playtime")
+		holder.ui_topic(list("getplaytimewindow" = params["ref"]))
+		return
+	return holder.ui_common_action(action, params)
 
 /datum/admins/proc/cmd_show_exp_panel(client/client_to_check)
 	if(!check_rights(R_ADMIN))

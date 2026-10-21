@@ -10,6 +10,9 @@
 
 
 
+	/// AQUILA - temperatura dodawanych odczynników (okno z tg)
+	var/reagent_temp = 300
+
 	var/static/list/shortcuts = list(
 		"meth" = /datum/reagent/drug/methamphetamine,
 		"tricord" = /datum/reagent/medicine/tricordrazine
@@ -25,6 +28,10 @@
 		ui = new(user, src, "ChemDebugSynthesizer")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Cell charge
+
+/obj/machinery/chem_dispenser/chem_synthesizer/ui_data(mob/user)
+	. = ..()
+	.["temp"] = reagent_temp // AQUILA
 
 /obj/machinery/chem_dispenser/chem_synthesizer/ui_act(action, params)
 	if(..())
@@ -55,7 +62,7 @@
 					return
 				else if(!beaker.reagents && !QDELETED(beaker))
 					beaker.create_reagents(beaker.volume)
-				beaker.reagents.add_reagent(input_reagent, amount)
+				beaker.reagents.add_reagent(input_reagent, amount, reagtemp = reagent_temp) // AQUILA EDIT - temperatura z okna
 				. = TRUE
 		if("makecup")
 			if(beaker)
@@ -67,6 +74,12 @@
 			var/input = text2num(params["amount"])
 			if(input)
 				amount = input
+				. = TRUE
+		// AQUILA - temperatura dodawanych odczynników
+		if("temp")
+			var/input = text2num(params["amount"])
+			if(!isnull(input))
+				reagent_temp = clamp(input, 0, 1000)
 				. = TRUE
 	if(.)
 		update_icon()

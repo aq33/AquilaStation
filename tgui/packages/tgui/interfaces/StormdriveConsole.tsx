@@ -129,12 +129,13 @@ export const StormdriveConsole = (props) => {
           </Section>
           <Section title="Control Rod Insertion:">
             <Slider
+              tickWhileDragging
               value={data.control_rod_percent}
               minValue={0}
               maxValue={100}
               step={1}
               stepPixelSize={5}
-              onDrag={(e, value) =>
+              onChange={(e, value) =>
                 act('control_rod_percent', {
                   adjust: value,
                 })

@@ -35,6 +35,7 @@ module.exports = (env = {}, argv) => {
       tgui: './packages/tgui',
       'tgui-panel': './packages/tgui-panel',
       'tgui-say': './packages/tgui-say',
+      'tgui-escape-menu': './packages/tgui-escape-menu',
     },
     output: {
       path: argv.useTmpFolder
@@ -114,16 +115,10 @@ module.exports = (env = {}, argv) => {
           ],
         },
         {
-          test: /.svg$/,
-          oneOf: [
-            {
-              issuer: /\.(s)?css$/,
-              type: 'asset/inline',
-            },
-            {
-              type: 'asset/resource',
-            },
-          ],
+          // SVGs are small and the server only sends the bundles, so inline
+          // them everywhere (e.g. the SpriteEditor checkerboard imported from JS)
+          test: /\.svg$/,
+          type: 'asset/inline',
         },
       ],
     },

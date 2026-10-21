@@ -1,4 +1,4 @@
-import { createSearch } from 'common/string';
+import { useState } from 'react';
 import {
   Button,
   Collapsible,
@@ -7,8 +7,9 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -17,26 +18,26 @@ type Data = {
 
 const pick = (array) => array[Math.floor(Math.random() * array.length)];
 const possTitles = [
-  "The first rule of adminbuse is: you don't talk about the adminbuse.",
-  'Oh, this is gonna be fun.',
-  "ADMIN, HE'S DOING IT SIDEWAYS!",
-  'What flavor of admemes are we having today?',
-  'Mass Purrbation. You know you want to.',
-  'What does this button do?',
-  'NOO YOU CANT JUST ABUSE YOUR POWERS LIKE THAT',
-  'haha admin machine go bwoink',
+  'Pierwsza zasada adminbuse: nie rozmawiamy o adminbuse.',
+  'Oj, będzie zabawa.',
+  'ADMINIE, ON TO ROBI BOKIEM!',
+  'Jaki smak admemów dzisiaj serwujemy?',
+  'Masowe Purrbation. Wiesz, że chcesz.',
+  'Co robi ten przycisk?',
+  'NIEEE NIE MOŻESZ TAK NADUŻYWAĆ WŁADZY',
+  'haha maszyna admina robi bwoink',
   'RDM RDM RDM RDM',
-  'admin man grief ban he',
-  'NOOO ADMEMIN IS RUINING MY IMMERSION NOOOOOOOOOOOO',
+  'admin grief ban on',
+  'NIEEE ADMIN NISZCZY MI IMERSJĘ NIEEEEEEEEEEEE',
 ];
 const Title = pick(possTitles);
 
 export const AdminSecretsPanel = (props) => {
   const { act, data } = useBackend<Data>();
   const { Categories = [] } = data;
-  const [searchText, setSearchText] = useLocalState('searchText', '');
+  const [searchText, setSearchText] = useState('');
 
-  const Search = createSearch(searchText, (item) => {
+  const Search = createSearch(searchText, (item: string) => {
     return item;
   });
 
@@ -52,9 +53,9 @@ export const AdminSecretsPanel = (props) => {
             <Table.Cell>{Title}</Table.Cell>
             <Table.Cell textAlign="right">
               <Input
-                placeholder="Search"
+                placeholder="Szukaj"
                 value={searchText}
-                onInput={(e, value) => setSearchText(value)}
+                onChange={(value) => setSearchText(value)}
                 mx={1}
               />
             </Table.Cell>
@@ -66,7 +67,7 @@ export const AdminSecretsPanel = (props) => {
 
   const makeButton = (command) => {
     return (
-      <Flex.Item grow={1} basis="49%">
+      <Flex.Item grow={1} basis="49%" key={command[1]}>
         <Button fluid ellipsis my={0.5} onClick={() => act(command[1])}>
           {command[0]}
         </Button>
@@ -75,7 +76,7 @@ export const AdminSecretsPanel = (props) => {
   };
 
   const makeCategory = (Category) => {
-    let Commands = Category[1].filter(filterSearch).map(makeButton);
+    const Commands = Category[1].filter(filterSearch).map(makeButton);
     if (Commands.length) {
       return (
         <Collapsible
@@ -96,12 +97,12 @@ export const AdminSecretsPanel = (props) => {
   const Items = Object.entries(Categories).map(makeCategory);
 
   return (
-    <Window theme="admin" width={720} height={480}>
+    <Window title="Sekrety" theme="admin" width={720} height={480}>
       <Window.Content scrollable>
         {Header}
         <Section>
           {Items}
-          {Items && Items.length === 0 && 'No results found.'}
+          {Items && Items.length === 0 && 'Brak wyników.'}
         </Section>
       </Window.Content>
     </Window>

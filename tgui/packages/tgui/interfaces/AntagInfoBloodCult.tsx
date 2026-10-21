@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Section, Stack, Tabs } from '../components';
+import { Box, Image, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 import { AntagInfoHeader } from './common/AntagInfoHeader';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
@@ -12,13 +12,10 @@ type Info = {
 const StructureAltar = (_props) => {
   return (
     <Box>
-      <Box
-        inline
-        as="img"
+      <Image
         src={resolveAsset('cult-altar.gif')}
         width="48px"
         style={{
-          msInterpolationMode: 'nearest-neighbor',
           imageRendering: 'pixelated',
           float: 'left',
         }}
@@ -62,13 +59,10 @@ const StructureAltar = (_props) => {
 const StructureArchives = (_props) => {
   return (
     <Box>
-      <Box
-        inline
-        as="img"
+      <Image
         src={resolveAsset('cult-archives.gif')}
         width="48px"
         style={{
-          msInterpolationMode: 'nearest-neighbor',
           imageRendering: 'pixelated',
           float: 'left',
         }}
@@ -108,13 +102,10 @@ const StructureArchives = (_props) => {
 const StructureForge = (_props) => {
   return (
     <Box>
-      <Box
-        inline
-        as="img"
+      <Image
         src={resolveAsset('cult-forge.gif')}
         width="48px"
         style={{
-          msInterpolationMode: 'nearest-neighbor',
           imageRendering: 'pixelated',
           float: 'left',
         }}
@@ -153,13 +144,10 @@ const StructureForge = (_props) => {
 const StructurePylon = (_props) => {
   return (
     <Box>
-      <Box
-        inline
-        as="img"
+      <Image
         src={resolveAsset('cult-pylon.gif')}
         width="48px"
         style={{
-          msInterpolationMode: 'nearest-neighbor',
           imageRendering: 'pixelated',
           float: 'left',
         }}
@@ -257,13 +245,10 @@ const BloodMagicSection = (_props) => {
       <Stack.Item>
         {tab === 1 && (
           <Box>
-            <Box
-              inline
-              as="img"
+            <Image
               src={resolveAsset('cult-carve.png')}
               width="32px"
               style={{
-                msInterpolationMode: 'nearest-neighbor',
                 imageRendering: 'pixelated',
                 float: 'left',
               }}
@@ -790,13 +775,10 @@ const PowersSection = (_props) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('dagger.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                   float: 'left',
                 }}
@@ -815,13 +797,10 @@ const PowersSection = (_props) => {
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('cult-comms.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                   float: 'left',
                 }}

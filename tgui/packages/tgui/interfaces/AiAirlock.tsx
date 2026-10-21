@@ -21,15 +21,15 @@ type Data = {
 const dangerMap = {
   2: {
     color: 'good',
-    localStatusText: 'Offline',
+    localStatusText: 'Wyłączone',
   },
   1: {
     color: 'average',
-    localStatusText: 'Caution',
+    localStatusText: 'Uwaga',
   },
   0: {
     color: 'bad',
-    localStatusText: 'Optimal',
+    localStatusText: 'Optymalne',
   },
 };
 
@@ -41,100 +41,100 @@ export const AiAirlock = (props) => {
   return (
     <Window width={500} height={390}>
       <Window.Content>
-        <Section title="Power Status">
+        <Section title="Stan zasilania">
           <LabeledList>
             <LabeledList.Item
-              label="Main"
+              label="Główne"
               color={statusMain.color}
               buttons={
                 <Button
                   icon="lightbulb-o"
                   disabled={!data.power.main}
-                  content="Disrupt"
+                  content="Przerwij"
                   onClick={() => act('disrupt-main')}
                 />
               }
             >
-              {data.power.main ? 'Online' : 'Offline'}{' '}
+              {data.power.main ? 'Działa' : 'Wyłączone'}{' '}
               {((!data.wires.main_1 || !data.wires.main_2) &&
-                '[Wires have been cut!]') ||
+                '[Przewody przecięte!]') ||
                 (data.power.main_timeleft > 0 &&
                   `[${data.power.main_timeleft}s]`)}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Backup"
+              label="Zapasowe"
               color={statusBackup.color}
               buttons={
                 <Button
                   icon="lightbulb-o"
                   disabled={!data.power.backup}
-                  content="Disrupt"
+                  content="Przerwij"
                   onClick={() => act('disrupt-backup')}
                 />
               }
             >
-              {data.power.backup ? 'Online' : 'Offline'}{' '}
+              {data.power.backup ? 'Działa' : 'Wyłączone'}{' '}
               {((!data.wires.backup_1 || !data.wires.backup_2) &&
-                '[Wires have been cut!]') ||
+                '[Przewody przecięte!]') ||
                 (data.power.backup_timeleft > 0 &&
                   `[${data.power.backup_timeleft}s]`)}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Electrify"
+              label="Elektryzacja"
               color={statusElectrify.color}
               buttons={
                 <>
                   <Button
                     icon="wrench"
                     disabled={!(data.wires.shock && data.shock === 0)}
-                    content="Restore"
+                    content="Przywróć"
                     onClick={() => act('shock-restore')}
                   />
                   <Button
                     icon="bolt"
                     disabled={!data.wires.shock}
-                    content="Temporary"
+                    content="Tymczasowa"
                     onClick={() => act('shock-temp')}
                   />
                   <Button
                     icon="bolt"
                     disabled={!data.wires.shock}
-                    content="Permanent"
+                    content="Stała"
                     onClick={() => act('shock-perm')}
                   />
                 </>
               }
             >
-              {data.shock === 2 ? 'Safe' : 'Electrified'}{' '}
-              {(!data.wires.shock && '[Wires have been cut!]') ||
+              {data.shock === 2 ? 'Bezpieczne' : 'Pod napięciem'}{' '}
+              {(!data.wires.shock && '[Przewody przecięte!]') ||
                 (data.shock_timeleft > 0 && `[${data.shock_timeleft}s]`) ||
-                (data.shock_timeleft === -1 && '[Permanent]')}
+                (data.shock_timeleft === -1 && '[Stała]')}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Access and Door Control">
+        <Section title="Dostęp i sterowanie drzwiami">
           <LabeledList>
             <LabeledList.Item
-              label="ID Scan"
+              label="Skaner ID"
               color="bad"
               buttons={
                 <Button
                   icon={data.id_scanner ? 'power-off' : 'times'}
-                  content={data.id_scanner ? 'Enabled' : 'Disabled'}
+                  content={data.id_scanner ? 'Włączony' : 'Wyłączony'}
                   selected={data.id_scanner}
                   disabled={!data.wires.id_scanner}
                   onClick={() => act('idscan-toggle')}
                 />
               }
             >
-              {!data.wires.id_scanner && '[Wires have been cut!]'}
+              {!data.wires.id_scanner && '[Przewody przecięte!]'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Emergency Access"
+              label="Dostęp awaryjny"
               buttons={
                 <Button
                   icon={data.emergency ? 'power-off' : 'times'}
-                  content={data.emergency ? 'Enabled' : 'Disabled'}
+                  content={data.emergency ? 'Włączony' : 'Wyłączony'}
                   selected={data.emergency}
                   onClick={() => act('emergency-toggle')}
                 />
@@ -142,73 +142,73 @@ export const AiAirlock = (props) => {
             />
             <LabeledList.Divider />
             <LabeledList.Item
-              label="Door Bolts"
+              label="Rygle"
               color="bad"
               buttons={
                 <Button
                   icon={data.locked ? 'lock' : 'unlock'}
-                  content={data.locked ? 'Lowered' : 'Raised'}
+                  content={data.locked ? 'Opuszczone' : 'Podniesione'}
                   selected={data.locked}
                   disabled={!data.wires.bolts}
                   onClick={() => act('bolt-toggle')}
                 />
               }
             >
-              {!data.wires.bolts && '[Wires have been cut!]'}
+              {!data.wires.bolts && '[Przewody przecięte!]'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Door Bolt Lights"
+              label="Światła rygli"
               color="bad"
               buttons={
                 <Button
                   icon={data.lights ? 'power-off' : 'times'}
-                  content={data.lights ? 'Enabled' : 'Disabled'}
+                  content={data.lights ? 'Włączone' : 'Wyłączone'}
                   selected={data.lights}
                   disabled={!data.wires.lights}
                   onClick={() => act('light-toggle')}
                 />
               }
             >
-              {!data.wires.lights && '[Wires have been cut!]'}
+              {!data.wires.lights && '[Przewody przecięte!]'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Door Force Sensors"
+              label="Czujniki nacisku"
               color="bad"
               buttons={
                 <Button
                   icon={data.safe ? 'power-off' : 'times'}
-                  content={data.safe ? 'Enabled' : 'Disabled'}
+                  content={data.safe ? 'Włączone' : 'Wyłączone'}
                   selected={data.safe}
                   disabled={!data.wires.safe}
                   onClick={() => act('safe-toggle')}
                 />
               }
             >
-              {!data.wires.safe && '[Wires have been cut!]'}
+              {!data.wires.safe && '[Przewody przecięte!]'}
             </LabeledList.Item>
             <LabeledList.Item
-              label="Door Timing Safety"
+              label="Zabezpieczenie czasowe"
               color="bad"
               buttons={
                 <Button
                   icon={data.speed ? 'power-off' : 'times'}
-                  content={data.speed ? 'Enabled' : 'Disabled'}
+                  content={data.speed ? 'Włączone' : 'Wyłączone'}
                   selected={data.speed}
                   disabled={!data.wires.timing}
                   onClick={() => act('speed-toggle')}
                 />
               }
             >
-              {!data.wires.timing && '[Wires have been cut!]'}
+              {!data.wires.timing && '[Przewody przecięte!]'}
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item
-              label="Door Control"
+              label="Sterowanie drzwiami"
               color="bad"
               buttons={
                 <Button
                   icon={data.opened ? 'sign-out-alt' : 'sign-in-alt'}
-                  content={data.opened ? 'Open' : 'Closed'}
+                  content={data.opened ? 'Otwarte' : 'Zamknięte'}
                   selected={data.opened}
                   disabled={data.locked || data.welded}
                   onClick={() => act('open-close')}
@@ -217,9 +217,9 @@ export const AiAirlock = (props) => {
             >
               {!!(data.locked || data.welded) && (
                 <span>
-                  [Door is {data.locked ? 'bolted' : ''}
-                  {data.locked && data.welded ? ' and ' : ''}
-                  {data.welded ? 'welded' : ''}!]
+                  [Drzwi są {data.locked ? 'zaryglowane' : ''}
+                  {data.locked && data.welded ? ' i ' : ''}
+                  {data.welded ? 'zaspawane' : ''}!]
                 </span>
               )}
             </LabeledList.Item>

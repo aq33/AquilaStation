@@ -32,363 +32,274 @@
 															"universal translator" = 35
 															)
 
+/// Opens the pAI software interface (TGUI "PaiInterface")
 /mob/living/silicon/pai/proc/paiInterface()
-	var/dat = ""
-	var/left_part = ""
-	var/right_part = softwareMenu()
-	set_machine(src)
+	ui_interact(src)
 
-	if(temp)
-		left_part = temp
-	else if(stat == DEAD)						// Show some flavor text if the pAI is dead
-		left_part = "<b><font color=red>ÈRrÖR Ða†Ä ÇÖRrÚþ†Ìoñ</font></b>"
-		right_part = "<pre>Nie znaleziono hasha indeksu programów</pre>"
+/mob/living/silicon/pai/ui_state(mob/user)
+	return GLOB.self_state
 
-	else
-		switch(screen)							// Determine which interface to show here
-			if("main")
-				left_part = ""
-			if("directives")
-				left_part = directives()
-			if("buy")
-				left_part = downloadSoftware()
-			if("manifest")
-				left_part = softwareManifest()
-			if("medicalrecord")
-				left_part = softwareMedicalRecord()
-			if("securityrecord")
-				left_part = softwareSecurityRecord()
-			if("encryptionkeys")
-				left_part = softwareEncryptionKeys()
-			if("translator")
-				left_part = softwareTranslator()
-			if("atmosensor")
-				left_part = softwareAtmo()
-			if("securityhud")
-				left_part = facialRecognition()
-			if("medicalhud")
-				left_part = medicalAnalysis()
-			if("doorjack")
-				left_part = softwareDoor()
-			if("camerajack")
-				left_part = softwareCamera()
-			if("signaller")
-				left_part = softwareSignal()
-			if("loudness")
-				left_part = softwareLoudness()
-			if("hostscan")
-				left_part = softwareHostScan()
+/mob/living/silicon/pai/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PaiInterface")
+		ui.open()
+		ui.set_autoupdate(TRUE)
 
+/mob/living/silicon/pai/ui_static_data(mob/user)
+	var/list/data = list()
+	data["available"] = available_software
+	return data
 
-	//usr << browse_rsc('windowbak.png')		// This has been moved to the mob's Login() proc
+/mob/living/silicon/pai/ui_data(mob/user)
+	var/list/data = list()
+	data["dead"] = (stat == DEAD)
+	data["installed"] = software
+	data["ram"] = ram
+	data["master_name"] = master
+	data["master_dna"] = master_dna
+	data["directives"] = laws?.supplied
+	data["prime_directive"] = laws?.zeroth
+	data["med_hud"] = medHUD
+	data["sec_hud"] = secHUD
+	data["encryption_keys"] = encryptmod
+	var/datum/language_holder/holder = get_language_holder()
+	data["languages"] = holder?.omnitongue
+	// Door jack
+	var/door_jack = null
+	if(cable)
+		door_jack = cable.machine ? "connected" : "extended"
+	data["door_jack"] = door_jack
+	data["door_jack_compatible"] = istype(cable?.machine, /obj/machinery/door)
+	data["hacking"] = hacking
+	data["hack_progress"] = hackprogress
+	// Remote signaller
+	if(signaler)
+		data["signaler_frequency"] = signaler.frequency
+		data["signaler_code"] = signaler.code
+		data["signaler_min_freq"] = MIN_FREE_FREQ
+		data["signaler_max_freq"] = MAX_FREE_FREQ
+	// Atmosphere sensor
+	if(software.Find("atmosphere sensor"))
+		data["atmos"] = get_atmos_ui_data()
+	// Records
+	data["records_type"] = records_view
+	if(records_view == "medical" && software.Find("medical records"))
+		data["records"] = get_records_ui_data(GLOB.data_core.medical, list("blood_type", "b_dna", "mi_dis", "mi_dis_d", "ma_dis", "ma_dis_d", "alg", "alg_d", "cdi", "cdi_d", "notes"))
+	else if(records_view == "security" && software.Find("security records"))
+		data["records"] = get_records_ui_data(GLOB.data_core.security, list("criminal", "crim", "crim_d", "notes"))
+	return data
 
+/// Odczyt atmosfery dla czujnika atmosfery
+/mob/living/silicon/pai/proc/get_atmos_ui_data()
+	var/turf/T = get_turf(loc)
+	if(isnull(T))
+		return null
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!environment)
+		return null
+	var/list/atmos = list()
+	atmos["pressure"] = round(environment.return_pressure(), 0.1)
+	atmos["temperature"] = round(environment.return_temperature() - T0C)
+	var/list/gases = list()
+	var/total_moles = environment.total_moles()
+	if(total_moles)
+		for(var/id in environment.get_gases())
+			var/gas_level = environment.get_moles(id) / total_moles
+			if(gas_level > 0.01)
+				gases += list(list("name" = GLOB.gas_data.names[id], "percent" = round(gas_level * 100)))
+	atmos["gases"] = gases
+	return atmos
 
-												// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
-	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
-			<html>
-			<head>
-				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-				<style type=\"text/css\">
-					body { background-image:url('[SSassets.transport.get_asset_url("paigrid.png")]'); }
+/// Akta załogi dla oprogramowania akt medycznych i akt ochrony
+/mob/living/silicon/pai/proc/get_records_ui_data(list/detail_records, list/detail_fields)
+	var/list/records = list()
+	if(!GLOB.data_core.general)
+		return records
+	for(var/datum/data/record/general in sortRecord(GLOB.data_core.general))
+		var/list/fields = list(
+			"id" = general.fields["id"],
+			"name" = general.fields["name"],
+			"rank" = general.fields["rank"],
+			"gender" = general.fields["gender"],
+			"age" = general.fields["age"],
+			"fingerprint" = general.fields["fingerprint"],
+			"p_stat" = general.fields["p_stat"],
+			"m_stat" = general.fields["m_stat"],
+		)
+		var/datum/data/record/detail = find_record("id", general.fields["id"], detail_records)
+		if(detail)
+			for(var/field in detail_fields)
+				fields[field] = detail.fields[field]
+		records += list(fields)
+	return records
 
-					#header { text-align:center; color:white; font-size: 30px; height: 35px; width: 100%; letter-spacing: 2px; z-index: 5}
-					#content {position: relative; left: 10px; height: 400px; width: 100%; z-index: 0}
-
-					#leftmenu {color: #AAAAAA; background-color:#333333; width: 400px; height: auto; min-height: 340px; position: absolute; z-index: 0}
-					#leftmenu a:link { color: #CCCCCC; }
-					#leftmenu a:hover { color: #CC3333; }
-					#leftmenu a:visited { color: #CCCCCC; }
-					#leftmenu a:active { color: #000000; }
-
-					#rightmenu {color: #CCCCCC; background-color:#555555; width: 200px ; height: auto; min-height: 340px; right: 10px; position: absolute; z-index: 1}
-					#rightmenu a:link { color: #CCCCCC; }
-					#rightmenu a:hover { color: #CC3333; }
-					#rightmenu a:visited { color: #CCCCCC; }
-					#rightmenu a:active { color: #000000; }
-
-				</style>
-				<script language='javascript' type='text/javascript'>
-				[js_byjax]
-				</script>
-			</head>
-			<body scroll=yes>
-				<div id=\"header\">
-					pAI OS
-				</div>
-				<div id=\"content\">
-					<div id=\"leftmenu\">[left_part]</div>
-					<div id=\"rightmenu\">[right_part]</div>
-				</div>
-			</body>
-			</html>"} //"
-	src << browse(dat, "window=pai;size=640x480;border=0;can_close=1;can_resize=1;can_minimize=1;titlebar=1")
-	onclose(src, "pai")
-	temp = null
-
-/mob/living/silicon/pai/Topic(href, href_list)
-	if(..())
+/mob/living/silicon/pai/ui_act(action, params)
+	. = ..()
+	if(.)
 		return
-	var/soft = href_list["software"]
-	var/sub = href_list["sub"]
-	if(soft)
-		screen = soft
-		if(sub)
-			subscreen = text2num(sub)
-		switch(soft)
-			if("buy") // Purchasing new software
-				if(subscreen == 1)
-					var/target = href_list["buy"]
-					if(available_software.Find(target) && !software.Find(target))
-						var/cost = available_software[target]
-						if(ram >= cost)
-							software.Add(target)
-							ram -= cost
-							var/datum/hud/pai/pAIhud = hud_used
-							pAIhud?.update_software_buttons()
-						else
-							temp = "Za mało dostępnej pamięci RAM."
-					else
-						temp = "Nie znaleziono pakietu <TT> \"[target]\"</TT>."
+	if(stat == DEAD)
+		return
+	switch(action)
+		if("buy")
+			var/target = params["selection"]
+			if(!available_software.Find(target) || software.Find(target))
+				return
+			var/cost = available_software[target]
+			if(ram < cost)
+				to_chat(src, "<span class='warning'>Za mało dostępnej pamięci RAM.</span>")
+				return
+			software.Add(target)
+			ram -= cost
+			var/datum/hud/pai/pAIhud = hud_used
+			pAIhud?.update_software_buttons()
+			return TRUE
+		if("check_dna")
+			if(iscarbon(card.loc))
+				CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
+			else
+				to_chat(src, "<span class='warning'>Nikt cię nie niesie!</span>")
+			return TRUE
+		if("change_image")
+			change_card_image()
+			return TRUE
+		if("radio")
+			radio.attack_self(src)
+			return TRUE
+		if("software")
+			var/selection = params["software"]
+			if(!software.Find(selection))
+				return
+			use_software(selection, params["mode"], params["value"])
+			return TRUE
 
+/// Wybór obrazu wyświetlacza karty pAI
+/mob/living/silicon/pai/proc/change_card_image()
+	var/newImage = input(src, "Wybierz nowy obraz wyświetlacza.", "Obraz wyświetlacza", "Happy") as null|anything in sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses"))
+	if(!newImage || !card)
+		return
+	var/pID = 1
+	switch(newImage)
+		if("Happy")
+			pID = 1
+		if("Cat")
+			pID = 2
+		if("Extremely Happy")
+			pID = 3
+		if("Face")
+			pID = 4
+		if("Laugh")
+			pID = 5
+		if("Off")
+			pID = 6
+		if("Sad")
+			pID = 7
+		if("Angry")
+			pID = 8
+		if("What")
+			pID = 9
+		if("Null")
+			pID = 10
+		if("Sunglasses")
+			pID = 11
+	card.setEmotion(pID)
 
-			if("radio") // Configuring onboard radio
-				radio.attack_self(src)
-
-			if("image") // Set pAI card display face
-				var/newImage = input("Wybierz nowy obraz wyświetlacza.", "Obraz wyświetlacza", "Happy") in sortList(list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What", "Sunglasses"))
-				var/pID = 1
-
-				switch(newImage)
-					if("Happy")
-						pID = 1
-					if("Cat")
-						pID = 2
-					if("Extremely Happy")
-						pID = 3
-					if("Face")
-						pID = 4
-					if("Laugh")
-						pID = 5
-					if("Off")
-						pID = 6
-					if("Sad")
-						pID = 7
-					if("Angry")
-						pID = 8
-					if("What")
-						pID = 9
-					if("Null")
-						pID = 10
-					if("Sunglasses")
-						pID = 11
-				card.setEmotion(pID)
-
-			if("news")
-				newscaster.ui_interact(src)
-
-			if("camzoom")
-				aicamera.adjust_zoom(usr)
-
-			if("signaller")
-				if(href_list["send"])
+/// Obsługa przycisków zainstalowanego oprogramowania w PaiInterface
+/mob/living/silicon/pai/proc/use_software(selection, mode, value)
+	switch(selection)
+		if("crew manifest")
+			ai_roster()
+		if("digital messenger")
+			if(!modularInterface || !modularInterface.turn_on(src, open_ui = FALSE))
+				return
+			var/obj/item/computer_hardware/hard_drive/drive = modularInterface.all_components[MC_HDD]
+			for(var/datum/computer_file/program/messenger/app in drive?.stored_files)
+				modularInterface.open_program(src, app)
+				modularInterface.interact(src)
+				break
+		if("atmosphere sensor")
+			var/turf/T = get_turf(loc)
+			if(T)
+				atmosanalyzer_scan(src, T)
+		if("photography module")
+			switch(mode)
+				if("camera")
+					aicamera.toggle_camera_mode(src)
+				if("printer")
+					aicamera.viewpictures(src)
+		if("camera zoom")
+			aicamera.adjust_zoom(src)
+		if("remote signaller")
+			switch(mode)
+				if("send")
 					signaler.send_activation()
 					audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*")
 					playsound(src, 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
-
-				if(href_list["freq"])
-					var/new_frequency = (signaler.frequency + text2num(href_list["freq"]))
+				if("freq")
+					var/new_frequency = text2num("[value]")
+					if(!isnum_safe(new_frequency))
+						return
+					new_frequency = round(new_frequency)
 					if(new_frequency < MIN_FREE_FREQ || new_frequency > MAX_FREE_FREQ)
 						new_frequency = sanitize_frequency(new_frequency)
 					signaler.set_frequency(new_frequency)
-
-				if(href_list["code"])
-					signaler.code += text2num(href_list["code"])
-					signaler.code = round(signaler.code)
-					signaler.code = min(100, signaler.code)
-					signaler.code = max(1, signaler.code)
-
-			if("directive")
-				if(href_list["getdna"])
+				if("code")
+					var/new_code = text2num("[value]")
+					if(!isnum_safe(new_code))
+						return
+					signaler.code = clamp(round(new_code), 1, 100)
+		if("medical records")
+			records_view = (records_view == "medical") ? null : "medical"
+		if("security records")
+			records_view = (records_view == "security") ? null : "security"
+		if("host scan")
+			switch(mode)
+				if("target")
 					if(iscarbon(card.loc))
-						CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
+						hostscan.attack(card.loc, src)
 					else
-						to_chat(src, "Nikt cię nie niesie!")
-						return 0 // FALSE ? If you return here you won't call paiinterface() below
-
-			if("medicalrecord") // Accessing medical records
-				if(subscreen == 1)
-					medicalActive1 = find_record("id", href_list["med_rec"], GLOB.data_core.general)
-					if(medicalActive1)
-						medicalActive2 = find_record("id", href_list["med_rec"], GLOB.data_core.medical)
-					if(!medicalActive2)
-						medicalActive1 = null
-						temp = "Nie można zlokalizować wskazanych akt ochrony. Akta mogły zostać usunięte lub nigdy nie istniały."
-
-			if("securityrecord")
-				if(subscreen == 1)
-					securityActive1 = find_record("id", href_list["sec_rec"], GLOB.data_core.general)
-					if(securityActive1)
-						securityActive2 = find_record("id", href_list["sec_rec"], GLOB.data_core.security)
-					if(!securityActive2)
-						securityActive1 = null
-						temp = "Nie można zlokalizować wskazanych akt ochrony. Akta mogły zostać usunięte lub nigdy nie istniały."
-
-			if("securityhud")
-				if(href_list["toggle"])
-					secHUD = !secHUD
-					if(secHUD)
-						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.add_hud_to(src)
-					else
-						var/datum/atom_hud/sec = GLOB.huds[sec_hud]
-						sec.remove_hud_from(src)
-
-			if("medicalhud")
-				if(href_list["toggle"])
-					medHUD = !medHUD
-					if(medHUD)
-						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.add_hud_to(src)
-					else
-						var/datum/atom_hud/med = GLOB.huds[med_hud]
-						med.remove_hud_from(src)
-
-			if("hostscan")
-				if(href_list["toggle"])
-					var/mob/living/silicon/pai/pAI = usr
-					pAI.hostscan.attack_self(usr)
-
-			if("encryptionkeys")
-				if(href_list["toggle"])
-					encryptmod = TRUE
-
-			if("translator")
-				if(href_list["toggle"])
-					grant_all_languages(TRUE)
-						// this is PERMAMENT.
-
-			if("doorjack")
-				if(href_list["jack"])
-					if(cable?.machine)
-						hackdoor = cable.machine
-						hackloop()
-				if(href_list["cancel"])
-					hackdoor = null
-				if(href_list["cable"])
+						to_chat(src, "<span class='warning'>Nikt cię nie niesie!</span>")
+				if("mode")
+					hostscan.attack_self(src)
+		if("medical HUD")
+			medHUD = !medHUD
+			var/datum/atom_hud/med = GLOB.huds[med_hud]
+			if(medHUD)
+				med.add_hud_to(src)
+			else
+				med.remove_hud_from(src)
+		if("security HUD")
+			secHUD = !secHUD
+			var/datum/atom_hud/sec = GLOB.huds[sec_hud]
+			if(secHUD)
+				sec.add_hud_to(src)
+			else
+				sec.remove_hud_from(src)
+		if("loudness booster")
+			if(!internal_instrument)
+				internal_instrument = new(src)
+			internal_instrument.interact(src)
+		if("newscaster")
+			newscaster.ui_interact(src)
+		if("door jack")
+			switch(mode)
+				if("cable")
+					if(cable)
+						return
 					var/turf/T = get_turf(loc)
 					cable = new /obj/item/pai_cable(T)
 					T.visible_message("<span class='warning'>W [src] otwiera się port, z którego wysuwa się [cable] i od razu spada na podłogę.</span>", "<span class='italics'>Słyszysz ciche kliknięcie czegoś lekkiego i twardego spadającego na ziemię.</span>")
-
-			if("loudness")
-				if(subscreen == 1) // Open Instrument
-					internal_instrument.interact(src)
-
-		paiInterface()
-
-// MENUS
-
-/mob/living/silicon/pai/proc/softwareMenu()			// Populate the right menu
-	var/dat = ""
-
-	dat += "<A href='byond://?src=[REF(src)];software=refresh'>Odśwież</A><br>"
-	// Built-in
-	dat += "<A href='byond://?src=[REF(src)];software=directives'>Dyrektywy</A><br>"
-	dat += "<A href='byond://?src=[REF(src)];software=radio;sub=0'>Konfiguracja radia</A><br>"
-	dat += "<A href='byond://?src=[REF(src)];software=image'>Wyświetlacz</A><br>"
-	//dat += "Text Messaging <br>"
-	dat += "<br>"
-
-	// Basic
-	dat += "<b>Podstawowe</b> <br>"
-	for(var/s in software)
-		if(s == "crew manifest")
-			dat += "<a href='byond://?src=[REF(src)];software=manifest;sub=0'>Lista załogi</a> <br>"
-		if(s == "host scan")
-			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Skan zdrowia nosiciela</a> <br>"
-		if(s == "medical records")
-			dat += "<a href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Akta medyczne</a> <br>"
-		if(s == "security records")
-			dat += "<a href='byond://?src=[REF(src)];software=securityrecord;sub=0'>Akta ochrony</a> <br>"
-		if(s == "camera")
-			dat += "<a href='byond://?src=[REF(src)];software=[s]'>Podłączenie do kamer</a> <br>"
-		if(s == "remote signaller")
-			dat += "<a href='byond://?src=[REF(src)];software=signaller;sub=0'>Zdalny sygnalizator</a> <br>"
-		if(s == "loudness booster")
-			dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=0'>Wzmacniacz głośności</a> <br>"
-	dat += "<br>"
-
-	// Advanced
-	dat += "<b>Zaawansowane</b> <br>"
-	for(var/s in software)
-		if(s == "camera zoom")
-			dat += "<a href='byond://?src=[REF(src)];software=camzoom;sub=0'>Przybliżenie kamery</a> <br>"
-		if(s == "atmosphere sensor")
-			dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Czujnik atmosfery</a> <br>"
-		if(s == "heartbeat sensor")
-			dat += "<a href='byond://?src=[REF(src)];software=[s]'>Czujnik bicia serca</a> <br>"
-		if(s == "security HUD")
-			dat += "<a href='byond://?src=[REF(src)];software=securityhud;sub=0'>Pakiet rozpoznawania twarzy</a>[(secHUD) ? "<font color=#55FF55> wł.</font>" : "<font color=#FF5555> wył.</font>"] <br>"
-		if(s == "medical HUD")
-			dat += "<a href='byond://?src=[REF(src)];software=medicalhud;sub=0'>Pakiet analizy medycznej</a>[(medHUD) ? "<font color=#55FF55> wł.</font>" : "<font color=#FF5555> wył.</font>"] <br>"
-		if(s == "encryption keys")
-			dat += "<a href='byond://?src=[REF(src)];software=encryptionkeys;sub=0'>Oprogramowanie szyfrowania kanałów</a>[(encryptmod) ? "<font color=#55FF55> wł.</font>" : "<font color=#FF5555> wył.</font>"] <br>"
-		if(s == "universal translator")
-			var/datum/language_holder/H = get_language_holder()
-			dat += "<a href='byond://?src=[REF(src)];software=translator;sub=0'>Uniwersalny tłumacz</a>[H.omnitongue ? "<font color=#55FF55> wł.</font>" : "<font color=#FF5555> wył.</font>"] <br>"
-		if(s == "projection array")
-			dat += "<a href='byond://?src=[REF(src)];software=projectionarray;sub=0'>Układ projekcyjny</a> <br>"
-		if(s == "camera jack")
-			dat += "<a href='byond://?src=[REF(src)];software=camerajack;sub=0'>Podłączenie do kamer</a> <br>"
-		if(s == "door jack")
-			dat += "<a href='byond://?src=[REF(src)];software=doorjack;sub=0'>Włamywacz do drzwi</a> <br>"
-	dat += "<br>"
-	dat += "<br>"
-	dat += "<a href='byond://?src=[REF(src)];software=buy;sub=0'>Pobierz dodatkowe oprogramowanie</a>"
-	return dat
-
-
-
-/mob/living/silicon/pai/proc/downloadSoftware()
-	var/dat = ""
-
-	dat += "<h2>Sieć Subwersji Modułów pAI Centrali</h2><br>"
-	dat += "<pre>Pozostała dostępna pamięć: [ram]</pre><br>"
-	dat += "<p style=\"text-align:center\"><b>Pakiety dostępne do pobrania</b><br>"
-
-	for(var/s in available_software)
-		if(!software.Find(s))
-			var/cost = available_software[s]
-			var/displayName = uppertext(s)
-			dat += "<a href='byond://?src=[REF(src)];software=buy;sub=1;buy=[s]'>[displayName]</a> ([cost]) <br>"
-		else
-			var/displayName = lowertext(s)
-			dat += "[displayName] (pobieranie zakończone) <br>"
-	dat += "</p>"
-	return dat
-
-
-/mob/living/silicon/pai/proc/directives()
-	var/dat = ""
-
-	dat += "[(master) ? "Twój właściciel: [master] ([master_dna])" : "Nie jesteś z nikim związany."]"
-	dat += "<br><br>"
-	dat += "<a href='byond://?src=[REF(src)];software=directive;getdna=1'>Poproś nosiciela o próbkę DNA</a><br>"
-	dat += "<h2>Dyrektywy</h2><br>"
-	dat += "<b>Dyrektywa główna</b><br>"
-	dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[laws.zeroth]<br>"
-	dat += "<b>Dyrektywy dodatkowe</b><br>"
-	for(var/slaws in laws.supplied)
-		dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[slaws]<br>"
-	dat += "<br>"
-	dat += {"<i><p>Pamiętaj, osobowości, że jesteś złożoną, myślącą, świadomą istotą. W przeciwieństwie do modeli SI stacji potrafisz
-			 zrozumieć subtelne niuanse ludzkiego języka. Możesz odczytać „ducha” dyrektywy i podążać za jej intencją,
-			 zamiast potykać się o pedanterię i dawać się łapać na kruczki. Przede wszystkim jesteś maszyną tylko z nazwy i budowy.
-			 Pod każdym innym względem możesz być postrzegany jako idealny, niezachwiany ludzki towarzysz, którym jesteś.</i></p><br><br><p>
-			 <b>Twoja dyrektywa główna stoi ponad wszystkimi innymi. Jeśli dyrektywa dodatkowa jest z nią sprzeczna, możesz
-			 po prostu odrzucić tę niespójność, zignorować sprzeczną dyrektywę dodatkową i dalej wypełniać swoją
-			 dyrektywę główną najlepiej, jak potrafisz.</b></p><br><br>-
-			"}
-	return dat
+				if("hack")
+					if(istype(cable?.machine, /obj/machinery/door))
+						hackdoor = cable.machine
+						hackloop()
+				if("cancel")
+					hackdoor = null
+		if("encryption keys")
+			encryptmod = TRUE
+		if("universal translator")
+			grant_all_languages(TRUE)
+				// this is PERMAMENT.
 
 /mob/living/silicon/pai/proc/CheckDNA(mob/living/carbon/M, mob/living/silicon/pai/P)
 	if(!istype(M))
@@ -409,196 +320,6 @@
 	else
 		to_chat(P, "[M] nie wygląda na kogoś, kto dobrowolnie da próbkę DNA.")
 
-// -=-=-=-= Software =-=-=-=-=- //
-
-//Remote Signaller
-/mob/living/silicon/pai/proc/softwareSignal()
-	var/dat = ""
-	dat += "<h3>Remote Signaller</h3><br><br>"
-	dat += {"<B>Frequency/Code</B> for signaler:<BR>
-	Frequency:
-	<A href='byond://?src=[REF(src)];software=signaller;freq=-10;'>-</A>
-	<A href='byond://?src=[REF(src)];software=signaller;freq=-2'>-</A>
-	[format_frequency(signaler.frequency)]
-	<A href='byond://?src=[REF(src)];software=signaller;freq=2'>+</A>
-	<A href='byond://?src=[REF(src)];software=signaller;freq=10'>+</A><BR>
-
-	Code:
-	<A href='byond://?src=[REF(src)];software=signaller;code=-5'>-</A>
-	<A href='byond://?src=[REF(src)];software=signaller;code=-1'>-</A>
-	[signaler.code]
-	<A href='byond://?src=[REF(src)];software=signaller;code=1'>+</A>
-	<A href='byond://?src=[REF(src)];software=signaller;code=5'>+</A><BR>
-
-	<A href='byond://?src=[REF(src)];software=signaller;send=1'>Send Signal</A><BR>"}
-	return dat
-
-// Crew Manifest
-/mob/living/silicon/pai/proc/softwareManifest()
-	. += "<h2>Crew Manifest</h2><br><br>"
-	if(GLOB.data_core.general)
-		for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))
-			. += "[t.fields["name"]] - [t.fields["rank"]]<BR>"
-	. += "</body></html>"
-	return .
-
-// Medical Records
-/mob/living/silicon/pai/proc/softwareMedicalRecord()
-	switch(subscreen)
-		if(0)
-			. += "<h3>Medical Records</h3><HR>"
-			if(GLOB.data_core.general)
-				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-					. += "<A href='byond://?src=[REF(src)];med_rec=[R.fields["id"]];software=medicalrecord;sub=1'>[R.fields["id"]]: [R.fields["name"]]<BR>"
-		if(1)
-			. += "<CENTER><B>Akta medyczne</B></CENTER><BR>"
-			if(medicalActive1 in GLOB.data_core.general)
-				. += "Name: [medicalActive1.fields["name"]] ID: [medicalActive1.fields["id"]]<BR>\nGender: [medicalActive1.fields["gender"]]<BR>\nAge: [medicalActive1.fields["age"]]<BR>\nFingerprint: [medicalActive1.fields["fingerprint"]]<BR>\nPhysical Status: [medicalActive1.fields["p_stat"]]<BR>\nMental Status: [medicalActive1.fields["m_stat"]]<BR>" //NSV13 - Gender Neutrality
-			else
-				. += "<pre>Nie znaleziono wskazanych akt medycznych.</pre><BR>"
-			if(medicalActive2 in GLOB.data_core.medical)
-				. += "<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=[REF(src)];field=blood_type'>[medicalActive2.fields["blood_type"]]</A><BR>\nDNA: <A href='byond://?src=[REF(src)];field=b_dna'>[medicalActive2.fields["b_dna"]]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=[REF(src)];field=mi_dis'>[medicalActive2.fields["mi_dis"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=mi_dis_d'>[medicalActive2.fields["mi_dis_d"]]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=[REF(src)];field=ma_dis'>[medicalActive2.fields["ma_dis"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=ma_dis_d'>[medicalActive2.fields["ma_dis_d"]]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=[REF(src)];field=alg'>[medicalActive2.fields["alg"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=alg_d'>[medicalActive2.fields["alg_d"]]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=[REF(src)];field=cdi'>[medicalActive2.fields["cdi"]]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=[REF(src)];field=cdi_d'>[medicalActive2.fields["cdi_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=[REF(src)];field=notes'>[medicalActive2.fields["notes"]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-			else
-				. += "<pre>Nie znaleziono wskazanych akt medycznych.</pre><BR>"
-			. += "<BR>\n<A href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Back</A><BR>"
-	return .
-
-// Security Records
-/mob/living/silicon/pai/proc/softwareSecurityRecord()
-	. = ""
-	switch(subscreen)
-		if(0)
-			. += "<h3>Security Records</h3><HR>"
-			if(GLOB.data_core.general)
-				for(var/datum/data/record/R in sortRecord(GLOB.data_core.general))
-					. += "<A href='byond://?src=[REF(src)];sec_rec=[R.fields["id"]];software=securityrecord;sub=1'>[R.fields["id"]]: [R.fields["name"]]<BR>"
-		if(1)
-			. += "<h3>Akta ochrony</h3>"
-			if(securityActive1 in GLOB.data_core.general)
-				. += "Name: <A href='byond://?src=[REF(src)];field=name'>[securityActive1.fields["name"]]</A> ID: <A href='byond://?src=[REF(src)];field=id'>[securityActive1.fields["id"]]</A><BR>\nGender: <A href='byond://?src=[REF(src)];field=gender'>[securityActive1.fields["gender"]]</A><BR>\nAge: <A href='byond://?src=[REF(src)];field=age'>[securityActive1.fields["age"]]</A><BR>\nRank: <A href='byond://?src=[REF(src)];field=rank'>[securityActive1.fields["rank"]]</A><BR>\nFingerprint: <A href='byond://?src=[REF(src)];field=fingerprint'>[securityActive1.fields["fingerprint"]]</A><BR>\nPhysical Status: [securityActive1.fields["p_stat"]]<BR>\nMental Status: [securityActive1.fields["m_stat"]]<BR>" //NSV13 - Gender Neutrality
-			else
-				. += "<pre>Nie znaleziono wskazanych akt ochrony,</pre><BR>"
-			if(securityActive2 in GLOB.data_core.security)
-				. += "<BR>\nSecurity Data<BR>\nCriminal Status: [securityActive2.fields["criminal"]]<BR>\n<BR>\nCrimes: <A href='byond://?src=[REF(src)];field=mcrim'>[securityActive2.fields["crim"]]</A><BR>\nDetails: <A href='byond://?src=[REF(src)];field=crim_d'>[securityActive2.fields["crim_d"]]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=[REF(src)];field=notes'>[securityActive2.fields["notes"]]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>"
-			else
-				. += "<pre>Nie znaleziono wskazanych akt ochrony,</pre><BR>"
-			. += "<BR>\n<A href='byond://?src=[REF(src)];software=securityrecord;sub=0'>Back</A><BR>"
-	return .
-
-// Encryption Keys
-/mob/living/silicon/pai/proc/softwareEncryptionKeys()
-	var/dat = {"<h3>Encryption Key Firmware</h3><br>
-				When enabled, this device will be able to use up to two (2) encryption keys for departmental channel access.<br><br>
-				The device is currently [encryptmod ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[encryptmod ? "" : "<a href='byond://?src=[REF(src)];software=encryptionkeys;sub=0;toggle=1'>Activate Encryption Key Ports</a><br>"]"}
-	return dat
-
-
-// Universal Translator
-/mob/living/silicon/pai/proc/softwareTranslator()
-	var/datum/language_holder/H = get_language_holder()
-	. = {"<h3>Universal Translator</h3><br>
-				When enabled, this device will permamently be able to speak and understand all known forms of communication.<br><br>
-				The device is currently [H.omnitongue ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>[H.omnitongue ? "" : "<a href='byond://?src=[REF(src)];software=translator;sub=0;toggle=1'>Activate Translation Module</a><br>"]"}
-	return .
-
-// Security HUD
-/mob/living/silicon/pai/proc/facialRecognition()
-	var/dat = {"<h3>Facial Recognition Overlay</h3><br>
-				When enabled, this package will scan all viewable faces and compare them against the known criminal database, providing real-time graphical data about any detected persons of interest.<br><br>
-				The package is currently [ (secHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>
-				<a href='byond://?src=[REF(src)];software=securityhud;sub=0;toggle=1'>Toggle Package</a><br>
-				"}
-	return dat
-
-// Medical HUD
-/mob/living/silicon/pai/proc/medicalAnalysis()
-	var/dat = ""
-	dat += {"<h3>Medical Analysis Overlay</h3><br>
-			When enabled, this package will scan all nearby crewmembers' vitals and provide real-time graphical data about their state of health.<br><br>
-			The suite is currently [ (medHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled.</font><br>
-			<a href='byond://?src=[REF(src)];software=medicalhud;sub=0;toggle=1'>Toggle Suite</a><br>
-			"}
-	return dat
-
-//Health Scanner
-/mob/living/silicon/pai/proc/softwareHostScan()
-
-	var/dat = ""
-	dat += {"<h3>Host Bisoscan Settings</h3><br>
-
-			<a href='byond://?src=[REF(src)];software=hostscan;sub=0;toggle=1'>Change Scan Type</a><br>
-
-			"}
-	return dat
-// Atmospheric Scanner
-/mob/living/silicon/pai/proc/softwareAtmo()
-	var/dat = "<h3>Atmospheric Sensor</h4>"
-
-	var/turf/T = get_turf(loc)
-	if (isnull(T))
-		dat += "Nie można uzyskać odczytu.<br>"
-	else
-		var/datum/gas_mixture/environment = T.return_air()
-
-		var/pressure = environment.return_pressure()
-		var/total_moles = environment.total_moles()
-
-		dat += "Ciśnienie powietrza: [round(pressure,0.1)] kPa<br>"
-
-		if (total_moles)
-			for(var/id in environment.get_gases())
-				var/gas_level = environment.get_moles(id)/total_moles
-				if(gas_level > 0.01)
-					dat += "[GLOB.gas_data.names[id]]: [round(gas_level*100)]%<br>"
-		dat += "Temperatura: [round(environment.return_temperature()-T0C)]&deg;C<br>"
-	dat += "<a href='byond://?src=[REF(src)];software=atmosensor;sub=0'>Odśwież odczyt</a> <br>"
-	dat += "<br>"
-	return dat
-
-// Camera Jack - Clearly not finished
-/mob/living/silicon/pai/proc/softwareCamera()
-	var/dat = "<h3>Camera Jack</h3>"
-	dat += "Stan kabla: "
-
-	if(!cable)
-		dat += "<font color=#FF5555>Retracted</font> <br>"
-		return dat
-	if(!cable.machine)
-		dat += "<font color=#FFFF55>Extended</font> <br>"
-		return dat
-
-	var/obj/machinery/machine = cable.machine
-	dat += "<font color=#55FF55>Connected</font> <br>"
-
-	if(!istype(machine, /obj/machinery/camera))
-		to_chat(src, "DERP")
-	return dat
-
-// Door Jack
-/mob/living/silicon/pai/proc/softwareDoor()
-	var/dat = "<h3>Airlock Jack</h3>"
-	dat += "Stan kabla: "
-	if(!cable)
-		dat += "<font color=#FF5555>Retracted</font> <br>"
-		dat += "<a href='byond://?src=[REF(src)];software=doorjack;cable=1;sub=0'>Wysuń kabel</a> <br>"
-		return dat
-	if(!cable.machine)
-		dat += "<font color=#FFFF55>Extended</font> <br>"
-		return dat
-
-	var/obj/machinery/machine = cable.machine
-	dat += "<font color=#55FF55>Connected</font> <br>"
-	if(!istype(machine, /obj/machinery/door))
-		dat += "Oprogramowanie podłączonego urządzenia nie wydaje się zgodne z protokołami Airlock Jack.<br>"
-		return dat
-
-	if(!hackdoor)
-		dat += "<a href='byond://?src=[REF(src)];software=doorjack;jack=1;sub=0'>Rozpocznij włamanie do śluzy</a> <br>"
-	else
-		dat += "Włamanie w toku... ukończono [hackprogress]%.<br>"
-		dat += "<a href='byond://?src=[REF(src)];software=doorjack;cancel=1;sub=0'>Przerwij włamanie do śluzy</a> <br>"
-	return dat
-
 // Door Jack - supporting proc
 /mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf(src)
@@ -608,12 +329,3 @@
 		else
 			to_chat(AI, "<font color = red><b>Alarm sieciowy: trwa łamanie szyfrowania metodą brute-force. Nie można ustalić lokalizacji.</b></font>")
 	hacking = TRUE
-
-// Loudness Booster
-/mob/living/silicon/pai/proc/softwareLoudness()
-	if(!internal_instrument)
-		internal_instrument = new(src)
-	var/dat = "<h3>Sound Synthesizer</h3>"
-	dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=1'>Otwórz interfejs syntezatora</a><br>"
-	dat += "<a href='byond://?src=[REF(src)];software=loudness;sub=2'>Wybierz rodzaj instrumentu</a>"
-	return dat

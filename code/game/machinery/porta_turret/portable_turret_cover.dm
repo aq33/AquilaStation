@@ -56,7 +56,7 @@
 		if(parent_turret.allowed(user))
 			parent_turret.locked = !parent_turret.locked
 			to_chat(user, "<span class='notice'>Sterowanie jest teraz [parent_turret.locked ? "zablokowane" : "odblokowane"].</span>")
-			updateUsrDialog()
+			SStgui.update_uis(parent_turret)
 		else
 			to_chat(user, "<span class='notice'>Odmowa dostępu.</span>")
 	else if(I.tool_behaviour == TOOL_MULTITOOL && !parent_turret.locked)

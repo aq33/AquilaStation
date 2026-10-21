@@ -51,7 +51,7 @@ export const CrewManifest = (_props) => {
   } = useBackend<CrewManifestData>();
 
   return (
-    <Window title="Crew Manifest" width={450} height={500} theme={user_theme}>
+    <Window title="Manifest załogi" width={450} height={500} theme={user_theme}>
       <Window.Content scrollable>
         {Object.entries(manifest).map(([dept, crew]) => {
           const sorted_jobs =
@@ -103,7 +103,7 @@ export const CrewManifest = (_props) => {
                         pr={1}
                       >
                         {is_command && (
-                          <Tooltip content="Head of Staff" position="bottom">
+                          <Tooltip content="Szef działu" position="bottom">
                             <Icon
                               className={classes([
                                 'CrewManifest__Icon',

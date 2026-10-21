@@ -304,6 +304,11 @@
 	var/is_locked = TRUE
 	integrity_failure = 0
 	openable = FALSE
+	/// Wpis w SSpersistence.saved_trophies dla trofeum włożonego w tej rundzie (edycja opisu go aktualizuje)
+	var/list/persistence_entry
+	/// Ikona trofeum dla okna Trophycase (base64), liczona raz na przedmiot
+	var/showpiece_icon_cache
+	var/obj/item/showpiece_icon_for
 
 /obj/structure/displaycase/trophy/Initialize(mapload)
 	. = ..()
@@ -326,6 +331,7 @@
 		if(added_roundstart)
 			is_locked = !is_locked
 			to_chat(user, "<span class='notice'>[!is_locked ? "Otwierasz" : "Zamykasz"] zamek gabloty.</span>")
+			SStgui.update_uis(src)
 		else
 			to_chat(user, "<span class='warning'>Zamek się zaciął!</span>")
 		return
@@ -362,15 +368,12 @@
 
 		trophy_message = W.desc //default value
 
-		var/chosen_plaque = stripped_input(user, "Co ma być napisane na tabliczce? Domyślnie: opis przedmiotu.", "Tabliczka trofeum")
-		if(chosen_plaque)
-			if(user.Adjacent(src))
-				trophy_message = chosen_plaque
-				to_chat(user, "<span class='notice'>Ustawiasz tekst tabliczki.</span>")
-			else
-				to_chat(user, "<span class='warning'>Jesteś za daleko, by ustawić tekst tabliczki!</span>")
-
 		SSpersistence.SaveTrophy(src)
+		var/list/saved = SSpersistence.saved_trophies
+		if(length(saved))
+			persistence_entry = saved[length(saved)]
+		// tekst tabliczki ustawia się w oknie gabloty (Edytuj opis)
+		ui_interact(user)
 		return TRUE
 
 	else
@@ -386,6 +389,70 @@
 			QDEL_NULL(showpiece)
 		else
 			return ..()
+
+/obj/structure/displaycase/trophy/attack_hand(mob/living/user)
+	if(!user.combat_mode && Adjacent(user))
+		user.changeNext_move(CLICK_CD_MELEE)
+		ui_interact(user)
+		return TRUE
+	return ..()
+
+/obj/structure/displaycase/trophy/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Trophycase", name)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/structure/displaycase/trophy/ui_data(mob/user)
+	var/list/data = list()
+	data["historian_mode"] = !is_locked
+	data["holographic_showpiece"] = !!(showpiece && added_roundstart)
+	data["max_length"] = MAX_MESSAGE_LEN
+	data["has_showpiece"] = !!showpiece
+	if(showpiece)
+		data["showpiece_name"] = capitalize(format_text(showpiece.name))
+		data["showpiece_description"] = trophy_message ? format_text(trophy_message) : null
+		if(showpiece_icon_for != showpiece)
+			showpiece_icon_for = showpiece
+			showpiece_icon_cache = icon2base64(getFlatIcon(showpiece, no_anim = TRUE))
+		data["showpiece_icon"] = showpiece_icon_cache
+	return data
+
+/obj/structure/displaycase/trophy/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("insert_key")
+			if(!is_locked)
+				return
+			if(!usr.is_holding_item_of_type(/obj/item/key/displaycase))
+				to_chat(usr, "<span class='warning'>Potrzebujesz klucza do gablot!</span>")
+				return
+			if(!added_roundstart)
+				to_chat(usr, "<span class='warning'>Zamek się zaciął!</span>")
+				return
+			is_locked = FALSE
+			to_chat(usr, "<span class='notice'>Otwierasz zamek gabloty.</span>")
+			return TRUE
+		if("lock")
+			if(is_locked)
+				return
+			is_locked = TRUE
+			to_chat(usr, "<span class='notice'>Zamykasz zamek gabloty.</span>")
+			return TRUE
+		if("change_message")
+			if(!showpiece || added_roundstart || is_locked)
+				return
+			var/new_trophy_message = tgui_input_text(usr, "Co ma być napisane na tabliczce? Domyślnie: opis przedmiotu.", "Tabliczka trofeum", trophy_message, MAX_MESSAGE_LEN)
+			if(!new_trophy_message || QDELETED(src) || !usr.Adjacent(src))
+				return
+			trophy_message = new_trophy_message
+			if(persistence_entry)
+				persistence_entry["message"] = trophy_message
+			to_chat(usr, "<span class='notice'>Ustawiasz tekst tabliczki.</span>")
+			return TRUE
 
 /obj/item/key/displaycase
 	name = "display case key"

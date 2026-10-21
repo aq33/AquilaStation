@@ -229,7 +229,7 @@
 
 	else if (W.tool_behaviour == TOOL_MULTITOOL)
 		if(check_completion())
-			Interact(user)
+			ui_interact(user)
 		else
 			to_chat(user, "<span class='warning'>Endoszkielet musi zostać złożony, zanim zacznie się debugowanie!</span>")
 
@@ -373,51 +373,80 @@
 	else
 		return ..()
 
-/obj/item/robot_suit/proc/Interact(mob/user)
-			var/t1 = "Oznaczenie: <A href='byond://?src=[REF(src)];Name=1'>[(created_name ? "[created_name]" : "Default Cyborg")]</a><br>\n"
-			t1 += "Nadrzędna SI: <A href='byond://?src=[REF(src)];Master=1'>[(forced_ai ? "[forced_ai.name]" : "Automatycznie")]</a><br><br>\n"
+/obj/item/robot_suit/ui_status(mob/user, datum/ui_state/state)
+	if(isobserver(user))
+		return ..()
+	var/obj/item/held_item = user.get_active_held_item()
+	if(held_item?.tool_behaviour == TOOL_MULTITOOL)
+		return ..()
+	to_chat(user, "<span class='warning'>Potrzebujesz multitoola!</span>")
+	return UI_CLOSE
 
-			t1 += "Port synchronizacji praw: <A href='byond://?src=[REF(src)];Law=1'>[(lawsync ? "Otwarty" : "Zamknięty")]</a><br>\n"
-			t1 += "Port połączenia z SI: <A href='byond://?src=[REF(src)];AI=1'>[(aisync ? "Otwarty" : "Zamknięty")]</a><br>\n"
-			t1 += "Funkcje serwomotorów: <A href='byond://?src=[REF(src)];Loco=1'>[(locomotion ? "Odblokowane" : "Zablokowane")]</a><br>\n"
-			t1 += "Blokada panelu: <A href='byond://?src=[REF(src)];Panel=1'>[(panel_locked ? "Włączona" : "Wyłączona")]</a><br>\n"
-			var/datum/browser/popup = new(user, "robotdebug", "Debugowanie rozruchu cyborga", 310, 220)
-			popup.set_content(t1)
-			popup.open()
+/obj/item/robot_suit/ui_state(mob/user)
+	return GLOB.physical_state
 
-/obj/item/robot_suit/Topic(href, href_list)
-	if(usr.incapacitated() || !Adjacent(usr))
+/obj/item/robot_suit/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CyborgBootDebug", "Debugowanie rozruchu cyborga")
+		ui.open()
+
+/obj/item/robot_suit/ui_data(mob/user)
+	var/list/data = list()
+	data["designation"] = created_name
+	data["locomotion"] = locomotion
+	data["panel"] = panel_locked
+	data["aisync"] = aisync
+	data["master"] = forced_ai?.name
+	data["lawsync"] = lawsync
+	return data
+
+/obj/item/robot_suit/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
 
-	var/mob/living/living_user = usr
-	var/obj/item/item_in_hand = living_user.get_active_held_item()
-	if(!item_in_hand || item_in_hand.tool_behaviour != TOOL_MULTITOOL)
-		to_chat(living_user, "<span class='warning'>Potrzebujesz multitoola!</span>")
-		return
+	var/mob/living/user = usr
 
-	if(href_list["Name"])
-		var/new_name = reject_bad_name(input(usr, "Podaj nowe oznaczenie. Zostaw puste, by przywrócić domyślne.", "Debugowanie cyborga", src.created_name),1)
-		if(!in_range(src, usr) && src.loc != usr)
-			return
-		if(new_name)
+	switch(action)
+		if("rename")
+			var/new_name = reject_bad_name(params["new_name"], TRUE)
+			if(!new_name)
+				created_name = ""
+				return TRUE
 			created_name = new_name
-			log_game("[key_name(usr)] have set \"[new_name]\" as a cyborg shell name at [loc_name(usr)]")
-		else
-			created_name = ""
-
-	else if(href_list["Master"])
-		forced_ai = select_active_ai(usr)
-		if(!forced_ai)
-			to_chat(usr, "<span class='error'>Nie wykryto aktywnych SI.</span>")
-
-	else if(href_list["Law"])
-		lawsync = !lawsync
-	else if(href_list["AI"])
-		aisync = !aisync
-	else if(href_list["Loco"])
-		locomotion = !locomotion
-	else if(href_list["Panel"])
-		panel_locked = !panel_locked
-
-	add_fingerprint(usr)
-	Interact(usr)
+			log_game("[key_name(user)] have set \"[new_name]\" as a cyborg shell name at [loc_name(user)]")
+			. = TRUE
+		if("locomotion")
+			locomotion = !locomotion
+			. = TRUE
+		if("panel")
+			panel_locked = !panel_locked
+			. = TRUE
+		if("aisync")
+			aisync = !aisync
+			. = TRUE
+		if("set_ai")
+			var/list/ais = list()
+			var/list/used_names = list()
+			for(var/mob/living/silicon/ai/ai as anything in active_ais())
+				ais[avoid_assoc_duplicate_keys(ai.name, used_names)] = ai
+			if(!length(ais))
+				to_chat(user, "<span class='error'>Nie wykryto aktywnych SI.</span>")
+				return
+			var/choice = tgui_input_list(user, "Wykryte sygnały SI:", "Wybór SI", sortList(ais))
+			if(!in_range(src, user) && loc != user)
+				return
+			var/mob/living/silicon/ai/selected_ai = choice ? ais[choice] : null
+			if(!selected_ai || forced_ai == selected_ai) // brak wyboru albo ta sama SI = automatycznie
+				forced_ai = null
+				to_chat(user, "<span class='notice'>Przywracasz automatyczny wybór SI w [src].</span>")
+				return TRUE
+			forced_ai = selected_ai
+			to_chat(user, "<span class='notice'>Ustawiasz nadrzędną SI w [src] na [forced_ai.name].</span>")
+			. = TRUE
+		if("lawsync")
+			lawsync = !lawsync
+			. = TRUE
+	if(.)
+		add_fingerprint(user)

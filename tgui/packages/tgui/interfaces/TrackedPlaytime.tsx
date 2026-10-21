@@ -1,25 +1,49 @@
-import { sortBy } from 'common/collections';
+import { sortBy } from 'es-toolkit';
+import {
+  Box,
+  Button,
+  Flex,
+  ProgressBar,
+  Section,
+  Table,
+} from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Box, Flex, ProgressBar, Section, Table } from '../components';
 import { Window } from '../layouts';
-
-type Data = {
-  failReason: any;
-  ghostTime: any;
-  jobPlaytimes: any;
-  livingTime: any;
-  specialPlaytimes: any;
-};
 
 const JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED = 1;
 const JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS = 2;
 
-const sortByPlaytime = sortBy(([_, playtime]) => -playtime);
+type Playtimes = Record<string, number>;
 
-const PlaytimeSection = (props) => {
+type Data = {
+  failReason?: number;
+  jobPlaytimes: Playtimes;
+  specialPlaytimes: Playtimes;
+  exemptStatus: BooleanLike;
+  isAdmin: BooleanLike;
+  livingTime: number;
+  ghostTime: number;
+  adminTime: number;
+};
+
+const sortByPlaytime = (array: [string, number][]) =>
+  sortBy(array, [([_, playtime]) => -playtime]);
+
+const PlaytimeSection = (props: { playtimes: Playtimes }) => {
   const { playtimes } = props;
-  const sortedPlaytimes = sortByPlaytime(Object.entries(playtimes));
+
+  const sortedPlaytimes = sortByPlaytime(
+    Object.entries(playtimes || {}).map(
+      ([name, time]) => [name, Number(time) || 0] as [string, number],
+    ),
+  ).filter((entry) => entry[1]);
+
+  if (!sortedPlaytimes.length) {
+    return <Box>Brak zapisanego czasu gry w tej kategorii.</Box>;
+  }
+
   const mostPlayed = sortedPlaytimes[0][1];
   return (
     <Table>
@@ -58,32 +82,53 @@ const PlaytimeSection = (props) => {
 };
 
 export const TrackedPlaytime = (props) => {
-  const { data } = useBackend<Data>();
-  const { failReason, jobPlaytimes, specialPlaytimes, livingTime, ghostTime } =
-    data;
+  const { act, data } = useBackend<Data>();
+  const {
+    failReason,
+    jobPlaytimes,
+    specialPlaytimes,
+    exemptStatus,
+    isAdmin,
+    livingTime,
+    ghostTime,
+    adminTime,
+  } = data;
   return (
-    <Window title="Tracked Playtime" width={550} height={650}>
+    <Window title="Czas gry" width={550} height={650}>
       <Window.Content scrollable>
         {(failReason &&
           ((failReason === JOB_REPORT_MENU_FAIL_REASON_TRACKING_DISABLED && (
-            <Box>This server has disabled tracking.</Box>
+            <Box>Śledzenie czasu gry jest wyłączone na tym serwerze.</Box>
           )) ||
             (failReason === JOB_REPORT_MENU_FAIL_REASON_NO_RECORDS && (
-              <Box>You have no records.</Box>
+              <Box>Nie masz żadnych zapisów.</Box>
             )))) || (
           <Box>
-            <Section title="Total">
+            <Section title="Łącznie">
               <PlaytimeSection
                 playtimes={{
-                  Ghost: ghostTime,
-                  Living: livingTime,
+                  Duch: ghostTime,
+                  'Żywa postać': livingTime,
+                  Admin: adminTime,
                 }}
               />
             </Section>
-            <Section title="Jobs">
+            <Section
+              title="Profesje"
+              buttons={
+                !!isAdmin && (
+                  <Button.Checkbox
+                    checked={!!exemptStatus}
+                    onClick={() => act('toggle_exempt')}
+                  >
+                    Zwolnienie z wymogów czasu gry
+                  </Button.Checkbox>
+                )
+              }
+            >
               <PlaytimeSection playtimes={jobPlaytimes} />
             </Section>
-            <Section title="Special">
+            <Section title="Specjalne">
               <PlaytimeSection playtimes={specialPlaytimes} />
             </Section>
           </Box>

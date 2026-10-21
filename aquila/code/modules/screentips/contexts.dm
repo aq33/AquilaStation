@@ -76,12 +76,13 @@ SCREENTIP_ATTACK_HAND(/obj/machinery/wish_granter, "Użyj")
 		context.add_attack_hand_action("[on ? "Wyłącz" : "Włącz"]")
 
 /obj/machinery/iv_drip/add_context_self(datum/screentip_context/context, mob/user)
+	context.add_attack_hand_action("Panel kroplówki")
 	if (attached)
-		context.add_attack_hand_action("Odłącz od: [attached.name]")
+		context.add_attack_hand_secondary_action("Odłącz od: [attached.name]")
 	else if (beaker)
-		context.add_attack_hand_action("Wyjmij pojemnik")
+		context.add_attack_hand_secondary_action("Wyjmij pojemnik")
 	else
-		context.add_attack_hand_action("Zmień tryb")
+		context.add_attack_hand_secondary_action("Zmień tryb")
 
 /obj/machinery/launchpad/briefcase/add_context_self(datum/screentip_context/context, mob/user)
 	context.use_cache()

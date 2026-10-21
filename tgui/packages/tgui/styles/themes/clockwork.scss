@@ -1,71 +1,35 @@
-@use 'sass:color';
-@use 'sass:meta';
+/**
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
 
-@use '../colors.scss' with (
-  $good: hsl(50.7, 58.6%, 54.5%),
-  $primary: hsl(43.7, 65.4%, 42%),
-  $average: hsl(43.9, 69.1%, 31.8%),
-  $bad: hsl(31.1, 74.3%, 21.4%)
-);
-@use '../base.scss' with (
-  $color-bg: hsl(31.1, 74.3%, 21.4%),
-  $color-bg-start: hsl(43.7, 65.4%, 42%),
-  $color-bg-end: hsl(31.1, 74.3%, 21.4%),
-  $color-bg-grad-spread: 6%,
-  $border-radius: 2px
-);
+.theme-clockwork:root {
+  --color-base: hsl(31.1, 74.3%, 21.4%);
+  --color-base-start: hsl(43.7, 65.4%, 42%);
+  --color-base-end: hsl(31.1, 74.3%, 21.4%);
+  --base-gradient-spread: 6;
+  --color-primary: hsl(43.7, 65.4%, 42%);
+  --color-good: hsl(50.7, 58.6%, 54.5%);
+  --color-average: hsl(43.9, 69.1%, 31.8%);
+  --color-bad: hsl(31.1, 74.3%, 21.4%);
+  --button-background-default: hsl(43.7, 65.4%, 42%);
+  --button-background-disabled: hsl(45.7, 25.9%, 31.8%);
+  --button-background-selected: hsl(50.7, 58.6%, 54.5%);
+  --button-background-caution: hsl(34.3, 100%, 62.9%);
+  --button-background-danger: hsl(60, 100%, 50%);
+  --tooltip-background: hsl(26.7, 100%, 8.8%);
+  --section-separator-color: hsl(51.1, 49.7%, 68%);
+  --divider-color: hsl(51.1, 49.7%, 68%);
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --titlebar-background: hsl(31.1, 74.3%, 21.4%);
+  --titlebar-shadow-color: rgba(0, 0, 0, 0.1);
+  --titlebar-text: hsl(50.7, 58.6%, 54.5%);
 
-.theme-clockwork {
-  // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
-
-  // Components
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: (
-      'color-default': colors.$primary,
-      'color-disabled': hsl(45.7, 25.9%, 31.8%),
-      'color-selected': hsl(50.7, 58.6%, 54.5%),
-      'color-caution': hsl(34.3, 100%, 62.9%),
-      'color-danger': hsl(60, 100%, 50%)
-    )
-  );
-  @include meta.load-css('../components/Input.scss');
-  @include meta.load-css(
-    '../components/Tooltip.scss',
-    $with: ('background-color': hsl(26.7, 100%, 8.8%))
-  );
-  @include meta.load-css(
-    '../components/Section.scss',
-    $with: ('separator-color': hsl(51.1, 49.7%, 68%))
-  );
-  @include meta.load-css(
-    '../components/Divider.scss',
-    $with: ('color': hsl(51.1, 49.7%, 68%))
-  );
-  @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
-  );
-
-  //Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: (
-      'background-color': hsl(31.1, 74.3%, 21.4%),
-      'shadow-color': rgba(0, 0, 0, 0.1),
-      'text-color': hsl(50.7, 58.6%, 54.5%)
-    )
-  );
+  .Layout__content {
+    background-image: none;
+  }
 
   .Input {
     color: hsl(43.7, 65.4%, 42%);
     background-color: hsl(50.7, 58.6%, 54.5%);
-  }
-
-  .Layout__content {
-    background-image: none;
   }
 }

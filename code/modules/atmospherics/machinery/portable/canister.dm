@@ -403,6 +403,9 @@
 		data["holdingTank"] = list()
 		data["holdingTank"]["name"] = holding.name
 		data["holdingTank"]["tankPressure"] = round(holding.air_contents.return_pressure())
+	// AQUILA: progi zbiornika dla wskaźnika w oknie z tg
+	data["holdingTankLeakPressure"] = round(TANK_LEAK_PRESSURE)
+	data["holdingTankFragPressure"] = round(TANK_FRAGMENT_PRESSURE)
 	return data
 
 /obj/machinery/portable_atmospherics/canister/ui_act(action, params)

@@ -30,6 +30,9 @@ GLOBAL_PROTECT(href_token)
 
 	var/datum/filter_editor/filteriffic
 
+	/// Konsola biblioteki admina (okno LibraryAdmin)
+	var/obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker/library_manager
+
 	/// A lazylist of tagged datums, for quick reference with the View Tags verb
 	var/list/tagged_datums
 	

@@ -67,8 +67,8 @@ const TrackableSearch = (props) => {
           <Input
             autoFocus
             fluid
-            onEnter={(e, value) => trackMostRelevant(value)}
-            onInput={(e, value) => setSearchQuery(value)}
+            onEnter={(value) => trackMostRelevant(value)}
+            onChange={(value) => setSearchQuery(value)}
             placeholder="Search..."
             value={searchQuery}
           />

@@ -1,23 +1,17 @@
-@use 'sass:color';
-@use 'sass:meta';
+/**
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
 
-$elevator-gray: hsl(0, 0%, 38.8%) !default;
-$elevator-gray-fg: hsl(0, 0%, 56.5%) !default;
-$elevator-label: hsl(0, 0%, 12.5%) !default;
-$elevator-text: hsl(0, 0%, 100%) !default;
-$elevator-selected: hsl(0, 0%, 88.6%) !default;
+.theme-elevator:root {
+  --color-base: hsl(0, 0%, 38.8%);
+  --color-text: hsl(0, 0%, 56.5%);
+  --base-gradient-spread: 10;
+  --button-background-default: hsl(0, 0%, 56.5%);
 
-@use '../colors.scss' with (
-  $fg-map-keys: (),
-  $bg-map-keys: ()
-);
-@use '../base.scss' with (
-  $color-bg: $elevator-gray,
-  $color-fg: $elevator-gray-fg,
-  $color-bg-grad-spread: 10%
-);
+  .Layout__content {
+    background-image: none;
+  }
 
-.theme-elevator {
   body {
     background: linear-gradient(
       to bottom,
@@ -26,14 +20,9 @@ $elevator-selected: hsl(0, 0%, 88.6%) !default;
       hsl(202.5, 13.6%, 76.9%)
     );
   }
-  // Components
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: ('color-default': $elevator-gray-fg)
-  );
 
   .button-container {
-    background-color: $elevator-label;
+    background-color: hsl(0, 0%, 12.5%);
     width: 115px;
     height: 65px;
     text-align: center;
@@ -41,48 +30,53 @@ $elevator-selected: hsl(0, 0%, 88.6%) !default;
     border-radius: 60px;
     padding: 0;
     overflow: visible;
+
     .button-label {
       vertical-align: middle;
-      color: $elevator-text;
+      color: hsl(0, 0%, 100%);
       font-size: 45px;
       margin-left: 15px;
       margin-right: 3px;
       margin-top: 5px;
       float: left;
     }
+
     .Button {
-      $button-height: 65px;
       position: relative;
       font-size: 1.5rem;
       padding: 0;
       margin: 0;
-      height: $button-height;
-      width: $button-height;
-      border-radius: $button-height;
+      height: 65px;
+      width: 65px;
+      border-radius: 65px;
       background: linear-gradient(
         to bottom,
         hsl(200, 2.4%, 49.4%),
         hsl(0, 0%, 72.5%),
         hsl(200, 2.4%, 49.4%)
       );
-      border: 3px solid $elevator-gray;
-      &.Button--disabled {
-        background-color: $elevator-gray-fg !important;
-      }
-      &.Button--selected {
-        border-color: $elevator-selected;
-        box-shadow:
-          inset 0px 0px 5px $elevator-selected,
-          0px 0px 5px $elevator-selected;
-        &:after {
-          background-color: $elevator-selected;
-          box-shadow: 0px 0px 5px $elevator-selected;
-        }
-      }
+      border: 3px solid hsl(0, 0%, 38.8%);
       transition:
         0.1s linear border-color,
         0.1s ease background,
         0.1s linear box-shadow;
+
+      &.Button--disabled {
+        background-color: hsl(0, 0%, 56.5%) !important;
+      }
+
+      &.Button--selected {
+        border-color: hsl(0, 0%, 88.6%);
+        box-shadow:
+          inset 0px 0px 5px hsl(0, 0%, 88.6%),
+          0px 0px 5px hsl(0, 0%, 88.6%);
+
+        &:after {
+          background-color: hsl(0, 0%, 88.6%);
+          box-shadow: 0px 0px 5px hsl(0, 0%, 88.6%);
+        }
+      }
+
       &:hover {
         background: linear-gradient(
           to bottom,
@@ -91,6 +85,7 @@ $elevator-selected: hsl(0, 0%, 88.6%) !default;
           hsl(200, 2.4%, 49.4%)
         );
       }
+
       &:after {
         content: '';
         display: inline-block;
@@ -106,15 +101,5 @@ $elevator-selected: hsl(0, 0%, 88.6%) !default;
         transform: translate(-50%, -50%);
       }
     }
-  }
-  @include meta.load-css('../components/ProgressBar.scss');
-  @include meta.load-css('../components/Section.scss');
-
-  // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss');
-  .Layout__content {
-    background-image: none;
   }
 }

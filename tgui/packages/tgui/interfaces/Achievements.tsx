@@ -1,27 +1,54 @@
-import { Box, Flex, Icon, Table, Tabs } from 'tgui-core/components';
+import { useState } from 'react';
+import { Box, Flex, Icon, Table, Tabs, Tooltip } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  achievements: any;
-  categories: any;
-  highscore: any;
-  user_ckey: any;
+  categories: string[];
+  achievements: Achievement[];
+  // Nasz DM: "highscore", a wyniki jako słownik ckey -> wartość.
+  highscore: Highscore[];
+  user_key: string;
+};
+
+type Achievement = {
+  name: string;
+  desc: string;
+  category: string;
+  icon_class: string;
+  value: number;
+  score: BooleanLike;
+  achieve_info?: string;
+  achieve_tooltip?: string;
+};
+
+type Highscore = {
+  name: string;
+  scores: Record<string, number>;
+};
+
+type Score = {
+  ckey: string;
+  value: number;
+};
+
+const HIGH_SCORES = 'High Scores';
+
+// Kategorie przychodzą z DM po angielsku — tłumaczymy tylko etykiety.
+const CATEGORY_NAMES: Record<string, string> = {
+  Bosses: 'Bossowie',
+  Misc: 'Różne',
+  Scores: 'Wyniki',
 };
 
 export const Achievements = (props) => {
   const { data } = useBackend<Data>();
-  const { categories } = data;
-  const [selectedCategory, setSelectedCategory] = useLocalState(
-    'category',
-    categories[0],
-  );
-  const achievements = data.achievements.filter(
-    (x) => x.category === selectedCategory,
-  );
+  const { categories = [] } = data;
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   return (
-    <Window theme="generic" title="Achievements" width={540} height={680}>
+    <Window title="Osiągnięcia" width={540} height={680}>
       <Window.Content scrollable>
         <Tabs>
           {categories.map((category) => (
@@ -30,18 +57,18 @@ export const Achievements = (props) => {
               selected={selectedCategory === category}
               onClick={() => setSelectedCategory(category)}
             >
-              {category}
+              {CATEGORY_NAMES[category] || category}
             </Tabs.Tab>
           ))}
           <Tabs.Tab
-            selected={selectedCategory === 'High Scores'}
-            onClick={() => setSelectedCategory('High Scores')}
+            selected={selectedCategory === HIGH_SCORES}
+            onClick={() => setSelectedCategory(HIGH_SCORES)}
           >
-            High Scores
+            Najlepsze wyniki
           </Tabs.Tab>
         </Tabs>
-        {(selectedCategory === 'High Scores' && <HighScoreTable />) || (
-          <AchievementTable achievements={achievements} />
+        {(selectedCategory === HIGH_SCORES && <HighScoreTable />) || (
+          <AchievementTable category={selectedCategory} />
         )}
       </Window.Content>
     </Window>
@@ -49,50 +76,56 @@ export const Achievements = (props) => {
 };
 
 const AchievementTable = (props) => {
-  const { achievements } = props;
+  const { data } = useBackend<Data>();
+  const { achievements = [] } = data;
+  const { category } = props;
+  const filtered_achievements = achievements.filter(
+    (x) => x.category === category,
+  );
   return (
     <Table>
-      {achievements.map((achievement) => (
-        <Achievement key={achievement.name} achievement={achievement} />
+      {filtered_achievements.map((achievement) => (
+        <Table.Row key={achievement.name}>
+          <Table.Cell collapsing>
+            <Box m={1} className={achievement.icon_class} />
+          </Table.Cell>
+          <Table.Cell verticalAlign="top">
+            <h1>{achievement.name}</h1>
+            {achievement.desc}
+            {(achievement.score && (
+              <Box color={achievement.value > 0 ? 'good' : 'bad'}>
+                {achievement.value > 0
+                  ? `Zdobyte ${achievement.value} razy`
+                  : 'Zablokowane'}
+              </Box>
+            )) || (
+              <Box color={achievement.value ? 'good' : 'bad'}>
+                {achievement.value ? 'Odblokowane' : 'Zablokowane'}
+              </Box>
+            )}
+            {!!achievement.achieve_info && (
+              <Tooltip position="bottom" content={achievement.achieve_tooltip}>
+                <Box fontSize={0.9} opacity={0.8}>
+                  {achievement.achieve_info}
+                </Box>
+              </Tooltip>
+            )}
+          </Table.Cell>
+        </Table.Row>
       ))}
     </Table>
   );
 };
 
-const Achievement = (props) => {
-  const { achievement } = props;
-  const { name, desc, icon_class, value, score } = achievement;
-  return (
-    <Table.Row key={name}>
-      <Table.Cell collapsing>
-        <Box m={1} className={icon_class} />
-      </Table.Cell>
-      <Table.Cell verticalAlign="top">
-        <h1>{name}</h1>
-        {desc}
-        {(score && (
-          <Box color={value > 0 ? 'good' : 'bad'}>
-            {value > 0 ? `Earned ${value} times` : 'Locked'}
-          </Box>
-        )) || (
-          <Box color={value ? 'good' : 'bad'}>
-            {value ? 'Unlocked' : 'Locked'}
-          </Box>
-        )}
-      </Table.Cell>
-    </Table.Row>
-  );
-};
-
-const HighScoreTable = (props) => {
+const HighScoreTable = () => {
   const { data } = useBackend<Data>();
-  const { highscore: highscores, user_ckey } = data;
-  const [highScoreIndex, setHighScoreIndex] = useLocalState('highscore', 0);
-  const highscore = highscores[highScoreIndex];
-  if (!highscore) {
-    return null;
+  const { highscore: highscores, user_key } = data;
+  const [highScoreIndex, setHighScoreIndex] = useState(0);
+  if (!highscores || highscores.length === 0) {
+    return <Box p={1}>Nikt jeszcze nie ustanowił rekordu.</Box>;
   }
-  const scores = Object.keys(highscore.scores).map((key) => ({
+  const highscore = highscores[highScoreIndex];
+  const scores: Score[] = Object.keys(highscore.scores || {}).map((key) => ({
     ckey: key,
     value: highscore.scores[key],
   }));
@@ -115,8 +148,8 @@ const HighScoreTable = (props) => {
         <Table>
           <Table.Row header>
             <Table.Cell textAlign="center">#</Table.Cell>
-            <Table.Cell textAlign="center">Key</Table.Cell>
-            <Table.Cell textAlign="center">Score</Table.Cell>
+            <Table.Cell textAlign="center">Gracz</Table.Cell>
+            <Table.Cell textAlign="center">Wynik</Table.Cell>
           </Table.Row>
           {scores.map((score, i) => (
             <Table.Row key={score.ckey} className="candystripe" m={2}>
@@ -124,7 +157,7 @@ const HighScoreTable = (props) => {
                 {i + 1}
               </Table.Cell>
               <Table.Cell
-                color={score.ckey === user_ckey ? 'green' : undefined}
+                color={score.ckey === user_key ? 'green' : undefined}
                 textAlign="center"
               >
                 {i === 0 && <Icon name="crown" color="yellow" mr={2} />}

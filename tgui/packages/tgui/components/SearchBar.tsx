@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 import { Icon, Input, Stack } from '.';
 
 type RequiredProps = {
@@ -15,7 +17,7 @@ type OptionalProps = Partial<{
   /** The placeholder text. */
   placeholder: string;
   /** Override styles of the search bar. */
-  style: Partial<CSSStyleDeclaration>;
+  style: CSSProperties;
 }>;
 
 type Props = RequiredProps & OptionalProps;
@@ -24,7 +26,7 @@ type Props = RequiredProps & OptionalProps;
  * Simple component for searching.
  * This component does not accept box props - just recreate it if needed
  */
-export const SearchBar = (props: Props, content) => {
+export const SearchBar = (props: Props) => {
   const {
     autoFocus,
     noIcon = false,
@@ -41,7 +43,7 @@ export const SearchBar = (props: Props, content) => {
         <Input
           autoFocus={autoFocus}
           fluid
-          onInput={(e, value) => onSearch(value)}
+          onChange={(value) => onSearch(value)}
           placeholder={placeholder}
           value={query}
         />

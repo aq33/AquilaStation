@@ -1,28 +1,42 @@
 import {
+  Box,
   Button,
   LabeledList,
   NoticeBox,
   Section,
   Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
-import { GenericUplink } from './Uplink';
+import { GenericUplink, type Item } from './Uplink/GenericUplink';
 
-type Data = {
-  credits: any;
-  experiment: any;
-  gizmo: any;
-  pad: any;
-  points: any;
-  vest: any;
-  vest_lock: any;
-  vest_mode: any;
+type AbductorConsoleData = {
+  categories: { name: string; items: ConsoleItem[] | null }[];
+
+  compactMode: BooleanLike;
+  experiment: BooleanLike;
+  points?: number;
+  credits?: number;
+  pad: BooleanLike;
+  gizmo: BooleanLike;
+  vest: BooleanLike;
+  vest_mode?: number;
+  vest_lock?: BooleanLike;
+};
+
+type ConsoleItem = {
+  name: string;
+  cost: number;
+  desc: string;
+  icon: string;
+  icon_state: string;
 };
 
 export const AbductorConsole = (props) => {
   const [tab, setTab] = useSharedState('tab', 1);
+
   return (
     <Window theme="abductor" width={600} height={532}>
       <Window.Content scrollable>
@@ -41,7 +55,7 @@ export const AbductorConsole = (props) => {
             selected={tab === 2}
             onClick={() => setTab(2)}
           >
-            Mission Settings
+            Ustawienia misji
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <Abductsoft />}
@@ -57,55 +71,87 @@ export const AbductorConsole = (props) => {
 };
 
 const Abductsoft = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { experiment, points, credits } = data;
+  const { act, data } = useBackend<AbductorConsoleData>();
+  const { experiment, points, credits, categories = [], compactMode } = data;
 
   if (!experiment) {
-    return <NoticeBox danger>No Experiment Machine Detected</NoticeBox>;
+    return <NoticeBox danger>Nie wykryto maszyny do eksperymentów</NoticeBox>;
+  }
+
+  const categoriesList: string[] = [];
+  const items: Item[] = [];
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    categoriesList.push(category.name);
+    const categoryItems = category.items || [];
+    for (let itemIndex = 0; itemIndex < categoryItems.length; itemIndex++) {
+      const item = categoryItems[itemIndex];
+      items.push({
+        id: item.name,
+        name: item.name,
+        category: category.name,
+        cost: `${item.cost} kr.`,
+        desc: item.desc,
+        disabled: (credits || 0) < item.cost,
+        icon: item.icon,
+        icon_state: item.icon_state,
+        population_tooltip: '',
+        insufficient_population: false,
+      });
+    }
   }
 
   return (
     <>
       <Section>
         <LabeledList>
-          <LabeledList.Item label="Collected Samples">
-            {points}
-          </LabeledList.Item>
+          <LabeledList.Item label="Zebrane próbki">{points}</LabeledList.Item>
         </LabeledList>
       </Section>
-      <GenericUplink currencyAmount={credits} currencySymbol="Credits" />
+      <Box height="400px">
+        <GenericUplink
+          currency={`${credits || 0} kredytów`}
+          categories={categoriesList}
+          items={items}
+          compactMode={compactMode}
+          onCompactToggle={() => act('compact_toggle')}
+          handleBuy={(item) => act('buy', { name: item.name })}
+        />
+      </Box>
     </>
   );
 };
 
 const EmergencyTeleporter = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useBackend<AbductorConsoleData>();
   const { pad, gizmo } = data;
 
   if (!pad) {
-    return <NoticeBox danger>No Telepad Detected</NoticeBox>;
+    return <NoticeBox danger>Nie wykryto telepadu</NoticeBox>;
   }
 
   return (
     <Section
-      title="Emergency Teleport"
+      title="Teleport awaryjny"
       buttons={
         <Button
           icon="exclamation-circle"
-          content="Activate"
           color="bad"
           onClick={() => act('teleporter_send')}
-        />
+        >
+          Aktywuj
+        </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mark Retrieval">
+        <LabeledList.Item label="Ściągnięcie oznaczonego">
           <Button
             icon={gizmo ? 'user-plus' : 'user-slash'}
-            content={gizmo ? 'Retrieve' : 'No Mark'}
             disabled={!gizmo}
             onClick={() => act('teleporter_retrieve')}
-          />
+          >
+            {gizmo ? 'Ściągnij' : 'Brak oznaczenia'}
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -113,38 +159,38 @@ const EmergencyTeleporter = (props) => {
 };
 
 const VestSettings = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { act, data } = useBackend<AbductorConsoleData>();
   const { vest, vest_mode, vest_lock } = data;
 
   if (!vest) {
-    return <NoticeBox danger>No Agent Vest Detected</NoticeBox>;
+    return <NoticeBox danger>Nie wykryto kamizelki agenta</NoticeBox>;
   }
 
   return (
     <Section
-      title="Agent Vest Settings"
+      title="Ustawienia kamizelki agenta"
       buttons={
         <Button
           icon={vest_lock ? 'lock' : 'unlock'}
-          content={vest_lock ? 'Locked' : 'Unlocked'}
           onClick={() => act('toggle_vest')}
-        />
+        >
+          {vest_lock ? 'Zablokowana' : 'Odblokowana'}
+        </Button>
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Mode">
+        <LabeledList.Item label="Tryb">
           <Button
             icon={vest_mode === 1 ? 'eye-slash' : 'fist-raised'}
-            content={vest_mode === 1 ? 'Stealth' : 'Combat'}
             onClick={() => act('flip_vest')}
-          />
+          >
+            {vest_mode === 1 ? 'Skradanie' : 'Walka'}
+          </Button>
         </LabeledList.Item>
-        <LabeledList.Item label="Disguise">
-          <Button
-            icon="user-secret"
-            content="Select"
-            onClick={() => act('select_disguise')}
-          />
+        <LabeledList.Item label="Przebranie">
+          <Button icon="user-secret" onClick={() => act('select_disguise')}>
+            Wybierz
+          </Button>
         </LabeledList.Item>
       </LabeledList>
     </Section>

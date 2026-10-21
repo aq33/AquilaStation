@@ -1,39 +1,72 @@
-/mob/living/simple_animal/horror/Topic(href, href_list, hsrc)
-	if(href_list["horror_use_chem"])
-		locate(href_list["src"])
-		if(!istype(src, /mob/living/simple_animal/horror))
-			return
+/// AQUILA - TGUI chemical menu in place of the old HTML window (horror_html.dm)
+/datum/horror_chem_menu
+	var/mob/living/simple_animal/horror/owner
 
-		var/topic_chem = href_list["horror_use_chem"]
-		var/datum/horror_chem/C
+/datum/horror_chem_menu/New(mob/living/simple_animal/horror/new_owner)
+	. = ..()
+	owner = new_owner
 
-		for(var/datum in typesof(/datum/horror_chem))
-			var/datum/horror_chem/test = new datum()
-			if(test.chemname == topic_chem)
-				C = test
-				break
+/datum/horror_chem_menu/Destroy()
+	owner = null
+	return ..()
 
-		if(!istype(C, /datum/horror_chem))
-			return
+/datum/horror_chem_menu/ui_state(mob/user)
+	return GLOB.always_state
 
-		if(!C || !victim || controlling || !src || stat)
-			return
+/datum/horror_chem_menu/ui_status(mob/user, datum/ui_state/state)
+	if(QDELETED(owner) || user != owner)
+		return UI_CLOSE
+	return ..()
 
-		if(!istype(C, /datum/horror_chem))
-			return
+/datum/horror_chem_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "HorrorChemicals", "Chemikalia horroru")
+		ui.open()
 
-		if(chemicals < C.chemuse)
-			to_chat(src, "<span class='boldnotice'>Potrzebujesz [C.chemuse] zgromadzonych chemikaliów, by użyć tej substancji!</span>")
-			return
+/datum/horror_chem_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["chemicals"] = owner.chemicals
+	data["has_host"] = !!owner.victim
+	var/list/chems = list()
+	for(var/datum/horror_chem/chem as anything in subtypesof(/datum/horror_chem))
+		if(!(chem in owner.horror_chems))
+			continue
+		chems += list(list(
+			"path" = "[chem]",
+			"name" = initial(chem.chemname),
+			"cost" = initial(chem.chemuse),
+			"desc" = initial(chem.chem_desc),
+		))
+	data["chems"] = chems
+	return data
 
-		to_chat(src, "<span class='danger'>Wstrzykujesz [C.quantity] jednostek [C.chemname] ze swoich zbiorników do krwiobiegu [victim].</span>")
-		victim.reagents.add_reagent(C.R, C.quantity)
-		chemicals -= C.chemuse
-		log_game("[src]/([src.ckey]) has injected [C.chemname] into their host [victim]/([victim.ckey])")
+/datum/horror_chem_menu/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(action != "use_chem")
+		return
+	var/chem_path = text2path(params["path"])
+	if(!ispath(chem_path, /datum/horror_chem) || !(chem_path in owner.horror_chems))
+		return
+	owner.inject_horror_chem(chem_path)
+	return TRUE
 
-		src << output(chemicals, "ViewHorror\ref[src]Chems.browser:update_chemicals")
+/mob/living/simple_animal/horror/proc/inject_horror_chem(chem_path)
+	var/datum/horror_chem/C = new chem_path()
 
-	..()
+	if(!victim || controlling || stat)
+		return
+
+	if(chemicals < C.chemuse)
+		to_chat(src, "<span class='boldnotice'>Potrzebujesz [C.chemuse] zgromadzonych chemikaliów, by użyć tej substancji!</span>")
+		return
+
+	to_chat(src, "<span class='danger'>Wstrzykujesz [C.quantity] jednostek [C.chemname] ze swoich zbiorników do krwiobiegu [victim].</span>")
+	victim.reagents.add_reagent(C.R, C.quantity)
+	chemicals -= C.chemuse
+	log_game("[src]/([src.ckey]) has injected [C.chemname] into their host [victim]/([victim.ckey])")
 
 /datum/horror_chem
 	var/chemname

@@ -40,6 +40,7 @@ export const FTLComputer = (props) => {
           <Section>
             <Section title="Actions:">
               <Knob
+                tickWhileDragging
                 size={2}
                 color={!!data.powered && 'green'}
                 value={data.powered * 10}
@@ -48,7 +49,7 @@ export const FTLComputer = (props) => {
                 maxValue={10}
                 step={1}
                 stepPixelSize={1}
-                onDrag={(e, value) => act('toggle_power')}
+                onChange={(e, value) => act('toggle_power')}
               />
             </Section>
             <Section title="FTL Spoolup:">

@@ -5,17 +5,10 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { toFixed } from '../../common/math';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-
-type Data = {
-  maxVolume: any;
-  reagents: any;
-  selectedReagent: any;
-  theme: any;
-};
 
 type BorgHypoContext = {
   maxVolume: number;
@@ -32,7 +25,7 @@ type Reagent = {
 
 export const BorgHypo = (props) => {
   const { data } = useBackend<BorgHypoContext>();
-  const { maxVolume, theme, reagents, selectedReagent } = data;
+  const { maxVolume, theme, reagents = [], selectedReagent } = data;
 
   const dynamicHeight = reagents.length * 25 + 60;
 
@@ -51,39 +44,46 @@ export const BorgHypo = (props) => {
   );
 };
 
-const ReagentDisplay = (props) => {
-  const { act } = useBackend<Data>();
+type ReagentDisplayProps = {
+  reagents: Reagent[];
+  selected: string;
+  maxVolume: number;
+};
+
+const ReagentDisplay = (props: ReagentDisplayProps) => {
+  const { act } = useBackend();
   const { reagents, selected, maxVolume } = props;
   if (reagents.length === 0) {
-    return <NoticeBox>No reagents available!</NoticeBox>;
+    return <NoticeBox>Brak dostępnych odczynników!</NoticeBox>;
   }
   return reagents.map((reagent) => (
     <Flex key={reagent.name} m={0.5}>
       <Flex.Item grow>
         <ProgressBar value={reagent.volume / maxVolume}>
           <Flex>
-            <Flex.Item grow textAlign={'left'}>
+            <Flex.Item grow textAlign="left">
               {reagent.name}
             </Flex.Item>
-            <Flex.Item>{toFixed(reagent.volume) + 'u'}</Flex.Item>
+            <Flex.Item>{`${toFixed(reagent.volume)}u`}</Flex.Item>
           </Flex>
         </ProgressBar>
       </Flex.Item>
       <Flex.Item mx={1}>
         <Button
-          icon={'info-circle'}
-          textAlign={'center'}
+          icon="info-circle"
+          textAlign="center"
           tooltip={reagent.description}
         />
       </Flex.Item>
-      <Flex.Item textAlign={'right'}>
+      <Flex.Item textAlign="right">
         <Button
-          icon={'syringe'}
+          icon="syringe"
           color={reagent.name === selected ? 'green' : 'default'}
-          content={'Select'}
-          textAlign={'center'}
+          textAlign="center"
           onClick={() => act(reagent.name)}
-        />
+        >
+          Wybierz
+        </Button>
       </Flex.Item>
     </Flex>
   ));

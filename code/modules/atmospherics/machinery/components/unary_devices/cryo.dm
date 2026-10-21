@@ -420,6 +420,10 @@
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents += list(list("name" = R.name, "volume" = R.volume))
 	data["beakerContents"] = beakerContents
+	// AQUILA: objętość zlewki dla okna z tg
+	if(beaker?.reagents)
+		data["beakerCurrentVolume"] = round(beaker.reagents.total_volume, 0.01)
+		data["beakerMaxVolume"] = beaker.reagents.maximum_volume
 	return data
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)

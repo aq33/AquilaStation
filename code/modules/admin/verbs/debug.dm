@@ -492,11 +492,21 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
+	if(!check_rights(R_ADMIN))
+		return
 	if(!(ishuman(M) || isobserver(M)))
-		alert("Invalid mob")
+		alert("Nieprawidłowy mob")
 		return
 
-	var/dresscode = robust_dress_shop()
+	// AQUILA: wybór stroju w oknie TGUI (port z tg: SelectEquipment)
+	var/datum/select_equipment/ui = new(src, M)
+	ui.ui_interact(mob)
+
+/// Ubiera moba w podany strój (typ, obiekt własnego stroju albo "Naked"). Wywoływane z okna SelectEquipment i z holopadu admina.
+/client/proc/admin_apply_outfit(mob/M, dresscode)
+	if(!(ishuman(M) || isobserver(M)))
+		alert("Nieprawidłowy mob")
+		return
 
 	if(!dresscode)
 		return
@@ -508,7 +518,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		H = M
 		if(H.l_store || H.r_store || H.s_store) //saves a lot of time for admins and coders alike
-			if(alert("Drop Items in Pockets? No will delete them.", "Robust quick dress shop", "Yes", "No") != "Yes")
+			if(alert("Upuścić przedmioty z kieszeni? „Nie” je usunie.", "Wybór stroju", "Tak", "Nie") != "Tak")
 				delete_pocket = TRUE
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Select Equipment") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -580,6 +590,144 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			return
 
 	return dresscode
+
+/*
+ * AQUILA: okno wyboru stroju (port z tg: /datum/select_equipment, okno SelectEquipment).
+ * Zwykłe stroje są przekazywane jako ścieżki typów, własne stroje admina (GLOB.custom_outfits) jako REF obiektu.
+ */
+/datum/select_equipment
+	var/client/user
+	var/mob/target_mob
+
+	var/dummy_key
+
+	//static list to share all the outfit typepaths between all instances of this datum.
+	var/static/list/cached_outfits
+
+	//a typepath if the selected outfit is a normal outfit;
+	//an object if the selected outfit is a custom outfit
+	var/datum/outfit/selected_outfit = /datum/outfit
+	//serializable string for the UI to keep track of which outfit is selected
+	var/selected_identifier = "/datum/outfit"
+	/// Cached flat icon of the dummy wearing selected_outfit
+	var/icon/cached_dummy_icon
+	/// The selected_identifier cached_dummy_icon was last rendered for.
+	var/cached_for_identifier
+
+/datum/select_equipment/New(_user, mob/target)
+	user = CLIENT_FROM_VAR(_user)
+	target_mob = target
+
+/datum/select_equipment/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SelectEquipment", "Wybór stroju")
+		ui.open()
+		ui.set_autoupdate(FALSE)
+
+/datum/select_equipment/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/select_equipment/ui_status(mob/user, datum/ui_state/state)
+	if(QDELETED(target_mob))
+		return UI_CLOSE
+	return ..()
+
+/datum/select_equipment/ui_close(mob/user, datum/tgui/tgui)
+	unset_busy_human_dummy(dummy_key)
+	qdel(src)
+
+/datum/select_equipment/proc/init_dummy()
+	dummy_key = "selectequipmentUI_[target_mob]"
+	generate_dummy_lookalike(dummy_key, target_mob)
+	unset_busy_human_dummy(dummy_key)
+
+/datum/select_equipment/proc/outfit_entry(category, identifier, name, priority = FALSE, custom_entry = FALSE)
+	if(custom_entry)
+		return list("category" = category, "ref" = identifier, "name" = name, "priority" = priority)
+	return list("category" = category, "path" = identifier, "name" = name, "priority" = priority)
+
+/datum/select_equipment/proc/make_outfit_entries(category, list/outfit_list)
+	var/list/entries = list()
+	for(var/path in outfit_list)
+		var/datum/outfit/outfit = path
+		if(!initial(outfit.can_be_admin_equipped))
+			continue
+		entries += list(outfit_entry(category, path, initial(outfit.name)))
+	return entries
+
+//GLOB.custom_outfits lists outfit *objects* so we'll need to do some custom handling for it
+/datum/select_equipment/proc/make_custom_outfit_entries(list/outfit_list)
+	var/list/entries = list()
+	for(var/datum/outfit/outfit as anything in outfit_list)
+		entries += list(outfit_entry("Własne", REF(outfit), outfit.name, custom_entry = TRUE))
+	return entries
+
+/datum/select_equipment/ui_data(mob/user)
+	var/list/data = list()
+	if(!dummy_key)
+		init_dummy()
+
+	if(isnull(cached_dummy_icon) || cached_for_identifier != selected_identifier)
+		cached_dummy_icon = get_flat_human_icon(null, null, null, dummy_key, list(SOUTH), selected_outfit)
+		cached_for_identifier = selected_identifier
+
+	data["icon64"] = icon2base64(cached_dummy_icon)
+	data["name"] = "[target_mob]"
+	data["custom_outfits"] = make_custom_outfit_entries(GLOB.custom_outfits)
+	data["current_outfit"] = "[selected_identifier]"
+	return data
+
+/datum/select_equipment/ui_static_data(mob/user)
+	var/list/data = list()
+	if(!cached_outfits)
+		cached_outfits = list()
+		cached_outfits += list(outfit_entry("Ogólne", /datum/outfit, "Nago", priority = TRUE))
+		cached_outfits += make_outfit_entries("Ogólne", subtypesof(/datum/outfit) - typesof(/datum/outfit/job) - typesof(/datum/outfit/plasmaman) - typesof(/datum/outfit/debug))
+		cached_outfits += make_outfit_entries("Profesje", subtypesof(/datum/outfit/job))
+		cached_outfits += make_outfit_entries("Plazmaludzie", subtypesof(/datum/outfit/plasmaman))
+		cached_outfits += make_outfit_entries("Debug", typesof(/datum/outfit/debug))
+
+	data["outfits"] = cached_outfits
+	return data
+
+/datum/select_equipment/proc/resolve_outfit(text)
+	var/path = text2path(text)
+	if(ispath(path, /datum/outfit))
+		return path
+	//don't bail yet - could be a custom outfit
+	var/datum/outfit/custom_outfit = locate(text) in GLOB.custom_outfits
+	if(istype(custom_outfit))
+		return custom_outfit
+
+/datum/select_equipment/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	. = TRUE
+	switch(action)
+		if("preview")
+			var/datum/outfit/new_outfit = resolve_outfit(params["path"])
+			if(ispath(new_outfit)) //got a typepath - that means we're dealing with a normal outfit
+				selected_identifier = "[new_outfit]"
+			else if(istype(new_outfit)) //got an initialized object - means it's a custom outfit
+				selected_identifier = REF(new_outfit)
+			else
+				return
+			selected_outfit = new_outfit
+
+		if("applyoutfit")
+			var/datum/outfit/new_outfit = resolve_outfit(params["path"])
+			if(!new_outfit)
+				return
+			if(new_outfit == /datum/outfit)
+				new_outfit = "Naked"
+			usr.client?.admin_apply_outfit(target_mob, new_outfit)
+
+		if("customoutfit")
+			usr.client?.holder?.outfit_manager(usr)
 
 /client/proc/startSinglo()
 

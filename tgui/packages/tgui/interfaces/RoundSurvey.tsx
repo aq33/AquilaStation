@@ -65,7 +65,7 @@ export const RoundSurvey = (props) => {
             height={8}
             maxLength={max_text}
             value={bugs}
-            onInput={(_, value) => setBugs(value)}
+            onChange={(value) => setBugs(value)}
           />
         </Section>
         <Section title="Ogólne uwagi">
@@ -74,7 +74,7 @@ export const RoundSurvey = (props) => {
             height={8}
             maxLength={max_text}
             value={comments}
-            onInput={(_, value) => setComments(value)}
+            onChange={(value) => setComments(value)}
           />
         </Section>
         <Button

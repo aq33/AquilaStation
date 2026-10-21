@@ -1,6 +1,3 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Collapsible,
@@ -8,31 +5,25 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import type { Objective } from './common/Objectives';
 
 type Data = {
   color: string;
   description: string;
   effects: string;
   name: string;
-  objectives: Objectives[];
-};
-
-type Objectives = {
-  count: number;
-  name: string;
-  explanation: string;
-  complete: BooleanLike;
-  was_uncompleted: BooleanLike;
-  reward: number;
+  objectives: Objective[];
 };
 
 const BLOB_COLOR = '#556b2f';
 
-export const AntagInfoBlob = (_props) => {
+export const AntagInfoBlob = (props) => {
   return (
-    <Window width={400} height={550} theme="neutral">
+    <Window width={400} height={550}>
       <Window.Content>
         <Section fill scrollable>
           <Overview />
@@ -47,7 +38,7 @@ export const AntagInfoBlob = (_props) => {
   );
 };
 
-const Overview = (_props) => {
+const Overview = (props) => {
   const { data } = useBackend<Data>();
   const { color, description, effects, name } = data;
 
@@ -55,10 +46,10 @@ const Overview = (_props) => {
     return (
       <Stack vertical>
         <Stack.Item bold fontSize="14px" textColor={BLOB_COLOR}>
-          You haven&apos;t revealed your true form yet!
+          Nie ujawniłeś jeszcze swojej prawdziwej postaci!
         </Stack.Item>
         <Stack.Item>
-          You must be succumb to the infection. Find somewhere safe and pop!
+          Musisz poddać się infekcji. Znajdź bezpieczne miejsce i pęknij!
         </Stack.Item>
       </Stack>
     );
@@ -67,11 +58,11 @@ const Overview = (_props) => {
   return (
     <Stack vertical>
       <Stack.Item bold fontSize="24px" textColor={BLOB_COLOR}>
-        You are the Blob!
+        Jesteś Blobem!
       </Stack.Item>
-      <Stack.Item>As the overmind, you can control the blob.</Stack.Item>
+      <Stack.Item>Jako nadumysł sterujesz blobem.</Stack.Item>
       <Stack.Item>
-        Your blob reagent is:{' '}
+        Twój odczynnik bloba:{' '}
         <span
           style={{
             color,
@@ -81,7 +72,7 @@ const Overview = (_props) => {
         </span>
       </Stack.Item>
       <Stack.Item>
-        The{' '}
+        Dzięki odczynnikowi{' '}
         <span
           style={{
             color,
@@ -89,67 +80,73 @@ const Overview = (_props) => {
         >
           {name}
         </span>{' '}
-        reagent {description}
+        {description}
       </Stack.Item>
       {effects && (
         <Stack.Item>
-          The{' '}
+          Poza tym{' '}
           <span
             style={{
               color,
             }}
           >
             {name}
-          </span>{' '}
-          reagent {effects}
+          </span>
+          : {effects}
         </Stack.Item>
       )}
     </Stack>
   );
 };
 
-const Basics = (_props) => {
+const Basics = (props) => {
   return (
-    <Collapsible title="The Basics">
+    <Collapsible title="Podstawy">
       <LabeledList>
-        <LabeledList.Item label="Attacking">
-          You can expand, which will attack people, damage objects, or place a
-          Normal Blob if the tile is clear.
+        <LabeledList.Item label="Atak">
+          Rozrastając się, atakujesz ludzi, niszczysz obiekty albo stawiasz
+          zwykłego bloba, jeśli pole jest wolne.
         </LabeledList.Item>
-        <LabeledList.Item label="Placement">
-          You will be able to manually place your blob core by pressing the
-          Place Blob Core button in the bottom right corner of the screen.
+        <LabeledList.Item label="Rdzeń">
+          Rdzeń bloba postawisz ręcznie przyciskiem „Place Blob Core” w prawym
+          dolnym rogu ekranu.
+          <br />
+          <br />
+          Jeśli jesteś infekcją bloba, możesz postawić rdzeń tam, gdzie stoisz,
+          przyciskiem „Pop” w lewym górnym rogu ekranu.
         </LabeledList.Item>
         <LabeledList.Item label="HUD">
-          In addition to the buttons on your HUD, there are a few click
-          shortcuts to speed up expansion and defense.
+          Oprócz przycisków na HUD-zie masz kilka skrótów myszy, które
+          przyspieszają rozrost i obronę.
         </LabeledList.Item>
-        <LabeledList.Item label="Shortcuts">
-          Click = Expand Blob | Middle Mouse Click = Rally Spores | Ctrl Click =
-          Create Shield Blob | Alt Click = Remove Blob
+        <LabeledList.Item label="Skróty">
+          Kliknięcie = rozrost bloba <br />
+          Środkowy przycisk myszy = zbiórka zarodników <br />
+          Ctrl + kliknięcie = blob tarczowy <br />
+          Alt + kliknięcie = usunięcie bloba <br />
         </LabeledList.Item>
-        <LabeledList.Item label="Comms">
-          Attempting to talk will send a message to all other overminds,
-          allowing you to coordinate with them.
+        <LabeledList.Item label="Łączność">
+          Gdy coś powiesz, wiadomość trafi do wszystkich innych nadumysłów, więc
+          możecie się koordynować.
         </LabeledList.Item>
       </LabeledList>
     </Collapsible>
   );
 };
 
-const Minions = (_props) => {
+const Minions = (props) => {
   return (
-    <Collapsible title="Minions">
+    <Collapsible title="Sługi">
       <LabeledList>
-        <LabeledList.Item label="Blobbernauts">
-          Defenders that can be produced from factories for a cost, and are hard
-          to kill, powerful, and moderately smart. The factory used to create
-          one will become fragile and briefly unable to produce spores.
+        <LabeledList.Item label="Grzybonauci">
+          Tę jednostkę produkują fabryki za opłatą. Są wytrzymali, silni i dość
+          bystrzy. Fabryka, która ich wyprodukuje, staje się krucha i przez
+          chwilę nie może produkować zarodników.
         </LabeledList.Item>
-        <LabeledList.Item label="Spores">
-          Produced automatically from factories, these are weak, but can be
-          rallied to attack enemies. They will also attack enemies near the
-          factory and attempt to zombify corpses.
+        <LabeledList.Item label="Zarodniki">
+          Fabryki produkują je same. Są słabe, ale można je zebrać do ataku na
+          wrogów. Atakują też wrogów w pobliżu fabryki i próbują zamieniać
+          zwłoki w zombie.
         </LabeledList.Item>
       </LabeledList>
     </Collapsible>
@@ -158,46 +155,46 @@ const Minions = (_props) => {
 
 const Structures = (props) => {
   return (
-    <Collapsible title="Structures">
+    <Collapsible title="Struktury">
       <Box>
-        Normal Blobs will expand your reach and can be upgraded into special
-        blobs that perform certain functions.
+        Zwykłe bloby zwiększają twój zasięg i można je ulepszać w bloby
+        specjalne o określonych funkcjach. Pamiętaj, że rozrost w kosmos ma 80%
+        szans na porażkę!
       </Box>
       <br />
-      <Box>You can upgrade normal blobs into the following types of blob:</Box>
+      <Box>Zwykłe bloby możesz ulepszyć w następujące rodzaje:</Box>
       <Divider />
       <LabeledList>
-        <LabeledList.Item label="Shield Blobs">
-          Strong and expensive blobs which take more damage. In additon, they
-          are fireproof and can block air, use these to protect yourself from
-          station fires. Upgrading them again will result in a reflective blob,
-          capable of reflecting most projectiles at the cost of the strong
-          blob&apos;s extra health.
+        <LabeledList.Item label="Bloby tarczowe">
+          Drogie, ale wytrzymują więcej obrażeń. Są też ognioodporne i blokują
+          powietrze, więc chronią przed pożarami na stacji.
         </LabeledList.Item>
-        <LabeledList.Item label="Resource Blobs">
-          Blobs which produce more resources for you, build as many of these as
-          possible to consume the station. This type of blob must be placed near
-          node blobs or your core to work.
+        <LabeledList.Item label="Bloby odbijające">
+          Ulepszenie bloba tarczowego daje blob odbijający, który odbija
+          większość pocisków kosztem dodatkowej wytrzymałości bloba tarczowego.
         </LabeledList.Item>
-        <LabeledList.Item label="Factory Blobs">
-          Blobs that spawn blob spores which will attack nearby enemies. This
-          type of blob must be placed near node blobs or your core to work.
+        <LabeledList.Item label="Bloby zasobów">
+          Produkują dla ciebie więcej zasobów. Buduj ich jak najwięcej, aby
+          pochłonąć stację. Działają tylko w pobliżu węzłów albo rdzenia.
         </LabeledList.Item>
-        <LabeledList.Item label="Node Blobs">
-          Blobs which grow, like the core. Like the core it can activate
-          resource and factory blobs.
+        <LabeledList.Item label="Bloby fabryczne">
+          Wytwarzają zarodniki, które atakują pobliskich wrogów. Działają tylko
+          w pobliżu węzłów albo rdzenia.
+        </LabeledList.Item>
+        <LabeledList.Item label="Węzły">
+          Rosną jak rdzeń i tak jak on uruchamiają bloby zasobów i fabryczne.
         </LabeledList.Item>
       </LabeledList>
     </Collapsible>
   );
 };
 
-const ObjectiveDisplay = (_props) => {
+const ObjectiveDisplay = (props) => {
   const { data } = useBackend<Data>();
-  const { color, objectives } = data;
+  const { color, objectives = [] } = data;
 
   return (
-    <Collapsible title="Objectives">
+    <Collapsible title="Cele">
       <LabeledList>
         {objectives.map(({ explanation }, index) => (
           <LabeledList.Item

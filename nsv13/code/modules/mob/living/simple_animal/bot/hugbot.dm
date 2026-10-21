@@ -87,66 +87,51 @@
 	text_dehack = "Przełączasz z powrotem czujniki nacisku manipulatorów [name]."
 	text_dehack_fail = "[name] wygląda na uszkodzonego i nie reaguje na przeprogramowanie!"
 
-/mob/living/simple_animal/bot/hugbot/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += "<TT><B>Sterowanie jednostką przytulania v2.0</B></TT><BR><BR>"
-	dat += "Status: <A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Panel serwisowy jest [open ? "otwarty" : "zamknięty"]<BR>"
-	dat += "Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<hr>"
-	if(!locked || issilicon(user) || IsAdminGhost(user))
-		dat += "Maksymalna poczytalność: "
-		dat += "<a href='byond://?src=[REF(src)];adj_sanity=-10'>-</a> "
-		dat += "[max_sanity] "
-		dat += "<a href='byond://?src=[REF(src)];adj_sanity=10'>+</a> "
-		dat += "<br>"
-		dat += "Tryb pracy: "
-		switch(zone_selected)
-			if(BODY_ZONE_CHEST)
-				dat += "<a href='byond://?src=[REF(src)];op_mode=[BODY_ZONE_HEAD]'>Hug</a>"
-			if(BODY_ZONE_HEAD)
-				dat += "<a href='byond://?src=[REF(src)];op_mode=[BODY_ZONE_PRECISE_MOUTH]'>Pat</a>"
-			if(BODY_ZONE_PRECISE_MOUTH)
-				dat += "<a href='byond://?src=[REF(src)];op_mode=[BODY_ZONE_CHEST]'>Boop</a>"
-		dat += "<br>"
-		dat += "Głośnik jest [shut_up ? "wyłączony" : "włączony"]. <a href='byond://?src=[REF(src)];togglevoice=[1]'>Przełącz</a><br>"
-		dat += "Patrolowanie stacji: <a href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</a><br>"
-		dat += "Tryb stacjonarny: <a href='byond://?src=[REF(src)];stationary=1'>[stationary_mode ? "Tak" : "Nie"]</a><br><hr>"
+/mob/living/simple_animal/bot/hugbot/get_custom_controls(mob/user)
+	var/hug_mode = "hug"
+	switch(zone_selected)
+		if(BODY_ZONE_HEAD)
+			hug_mode = "pat"
+		if(BODY_ZONE_PRECISE_MOUTH)
+			hug_mode = "boop"
+	. = list(
+		"max_sanity" = max_sanity,
+		"hug_mode" = hug_mode,
+		"speaker" = !shut_up,
+		"stationary_mode" = stationary_mode,
+	)
 	if(open || IsAdminGhost(user))
-		dat += "Jest odsłonięty różowy przewód, który jest <a href='byond://?src=[REF(src)];tania_mode=1'>[tania_mode ? "przecięty" : "nienaruszony"]</a><br>"
+		.["pink_wire"] = tania_mode
 
-	return dat
-
-/mob/living/simple_animal/bot/hugbot/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(href_list["adj_sanity"])
-		var/adjust_num = text2num(href_list["adj_sanity"])
-		max_sanity += adjust_num
-		if(max_sanity < SANITY_CRAZY)
-			max_sanity = SANITY_CRAZY
-		if(max_sanity > SANITY_GREAT)
-			max_sanity = SANITY_GREAT
-
-	if(href_list["op_mode"])
-		mode = href_list["op_mode"]
-		zone_selected = mode
-
-	else if(href_list["togglevoice"])
-		shut_up = !shut_up
-
-	else if(href_list["tania_mode"])
-		tania_mode = !tania_mode
-
-	else if(href_list["stationary"])
-		stationary_mode = !stationary_mode
-		path = list()
-		update_icon()
-
-	update_controls()
-	return
+/mob/living/simple_animal/bot/hugbot/bot_custom_act(action, list/params, mob/user)
+	switch(action)
+		if("max_sanity")
+			var/new_sanity = text2num(params["value"])
+			if(!isnum(new_sanity))
+				return FALSE
+			max_sanity = clamp(round(new_sanity), SANITY_CRAZY, SANITY_GREAT)
+		if("hug_mode")
+			//Przytulanie -> głaskanie -> pstryczek w nos
+			switch(zone_selected)
+				if(BODY_ZONE_CHEST)
+					zone_selected = BODY_ZONE_HEAD
+				if(BODY_ZONE_HEAD)
+					zone_selected = BODY_ZONE_PRECISE_MOUTH
+				else
+					zone_selected = BODY_ZONE_CHEST
+		if("speaker")
+			shut_up = !shut_up
+		if("pink_wire")
+			if(!open && !IsAdminGhost(user))
+				return FALSE
+			tania_mode = !tania_mode
+		if("stationary_mode")
+			stationary_mode = !stationary_mode
+			path = list()
+			update_icon()
+		else
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/bot/hugbot/attackby(obj/item/W as obj, mob/user as mob, params)
 	var/current_health = health

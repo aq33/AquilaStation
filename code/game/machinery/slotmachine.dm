@@ -8,9 +8,8 @@
 #define SMALL_PRIZE 400
 #define BIG_PRIZE 1000
 #define JACKPOT 10000
-#define SPIN_TIME 65 //As always, deciseconds.
-#define REEL_DEACTIVATE_DELAY 7
-#define SEVEN "<font color='red'>7</font>"
+#define SPIN_TIME 4 SECONDS
+#define SEVEN "7"
 #define HOLOCHIP 1
 #define COIN 2
 
@@ -32,7 +31,11 @@
 	var/cointype = /obj/item/coin/iron //default cointype
 	var/list/coinvalues = list()
 	var/list/reels = list(list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0, list("", "", "") = 0)
-	var/list/symbols = list(SEVEN = 1, "<font color='orange'>&</font>" = 2, "<font color='yellow'>@</font>" = 2, "<font color='green'>$</font>" = 2, "<font color='blue'>?</font>" = 2, "<font color='grey'>#</font>" = 2, "<font color='white'>!</font>" = 2, "<font color='fuchsia'>%</font>" = 2) //if people are winning too much, multiply every number in this list by 2 and see if they are still winning too much.
+	var/list/symbols = list(SEVEN = 1, "&" = 2, "@" = 2, "$" = 2, "?" = 2, "#" = 2, "!" = 2, "%" = 2) //if people are winning too much, multiply every number in this list by 2 and see if they are still winning too much.
+	/// AQUILA: kolory symboli w oknie TGUI
+	var/static/list/symbol_colors = list(SEVEN = "red", "&" = "orange", "@" = "yellow", "$" = "green", "?" = "blue", "#" = "grey", "!" = "white", "%" = "fuchsia")
+	/// Wynik ostatniej gry dla okna: 0 nic, 1 darmowe gry, 2 wygrana, 3 wielka wygrana, 4 jackpot
+	var/winning = 0
 
 	light_color = LIGHT_COLOR_BROWN
 
@@ -134,42 +137,52 @@
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
 
-/obj/machinery/computer/slot_machine/ui_interact(mob/living/user)
+/obj/machinery/computer/slot_machine/ui_interact(mob/living/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SlotMachine", name)
+		ui.open()
+
+/obj/machinery/computer/slot_machine/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/symbol_data = list()
+	for(var/symbol in symbols)
+		symbol_data += list(list("id" = symbol, "color" = symbol_colors[symbol]))
+	data["symbols"] = symbol_data
+	data["cost"] = SPIN_PRICE
+	data["jackpot"] = JACKPOT
+	data["jackpot_id"] = SEVEN
+	return data
+
+/obj/machinery/computer/slot_machine/ui_data(mob/user)
+	var/list/data = list()
+	var/list/_reels = list()
+	for(var/reel in reels)
+		_reels += list(list("symbols" = reel))
+	data["reels"] = _reels
+	data["balance"] = balance
+	data["working"] = working
+	data["winning"] = winning
+	data["money"] = money
+	data["plays"] = plays
+	data["jackpots"] = jackpots
+	data["paymode"] = paymode
+	return data
+
+/obj/machinery/computer/slot_machine/ui_act(action, list/params)
 	. = ..()
-	var/reeltext = {"<center><font face=\"courier new\">
-	/*****^*****^*****^*****^*****\\<BR>
-	| \[[reels[1][1]]\] | \[[reels[2][1]]\] | \[[reels[3][1]]\] | \[[reels[4][1]]\] | \[[reels[5][1]]\] |<BR>
-	| \[[reels[1][2]]\] | \[[reels[2][2]]\] | \[[reels[3][2]]\] | \[[reels[4][2]]\] | \[[reels[5][2]]\] |<BR>
-	| \[[reels[1][3]]\] | \[[reels[2][3]]\] | \[[reels[3][3]]\] | \[[reels[4][3]]\] | \[[reels[5][3]]\] |<BR>
-	\\*****v*****v*****v*****v*****/<BR>
-	</center></font>"}
-
-	var/dat
-	if(working)
-		dat = reeltext
-
-	else
-		dat = {"Pięć kredytów za grę!<BR><B>Dostępna pula nagród:</B> [money] (wypłata jackpota ZAWSZE wynosi 100%!)<BR><B>Pozostały kredyt:</B> [balance]<BR>Dziś szczęścia próbowało [plays] graczy, a jackpota wygrało [jackpots]!<BR><HR><BR><A href='byond://?src=[REF(src)];spin=1'>Graj!</A><BR><BR>[reeltext]
-		<BR>"}
-		if(balance > 0)
-			dat+="<font size='1'><A href='byond://?src=[REF(src)];refund=1'>Zwrot salda</A><BR>"
-
-	var/datum/browser/popup = new(user, "slotmachine", "Automat do gry")
-	popup.set_content(dat)
-	popup.open()
-
-/obj/machinery/computer/slot_machine/Topic(href, href_list)
-	. = ..() //Sanity checks.
 	if(.)
-		return .
+		return
 
-	if(href_list["spin"])
-		spin(usr)
-
-	else if(href_list["refund"])
-		if(balance > 0)
-			give_payout(balance)
-			balance = 0
+	switch(action)
+		if("spin")
+			spin(usr)
+			return TRUE
+		if("payout")
+			if(balance > 0)
+				give_payout(balance)
+				balance = 0
+			return TRUE
 
 /obj/machinery/computer/slot_machine/emp_act(severity)
 	. = ..()
@@ -200,23 +213,24 @@
 	money += SPIN_PRICE
 	plays += 1
 	working = 1
+	winning = 0
 
-	toggle_reel_spin(1)
 	update_icon()
-	updateDialog()
 
-	spawn(0)
-		while(working)
-			randomize_reels()
-			updateDialog()
-			sleep(2)
+	// Wynik losujemy od razu; okno animuje bębny i zatrzymuje je na nowym stanie
+	toggle_reel_spin(1)
+	for(var/i in 1 to 3)
+		randomize_reels()
+	toggle_reel_spin(0)
+	SStgui.update_uis(src)
 
-	spawn(SPIN_TIME - (REEL_DEACTIVATE_DELAY * reels.len)) //WARNING: no sanity checking for user since it's not needed and would complicate things (machine should still spin even if user is gone), be wary of this if you're changing this code.
-		toggle_reel_spin(0, REEL_DEACTIVATE_DELAY)
-		working = 0
-		give_prizes(the_name, user)
-		update_icon()
-		updateDialog()
+	addtimer(CALLBACK(src, PROC_REF(finish_spinning), user, the_name), SPIN_TIME)
+
+/obj/machinery/computer/slot_machine/proc/finish_spinning(mob/user, the_name)
+	working = 0
+	give_prizes(the_name, user)
+	update_icon()
+	SStgui.update_uis(src)
 
 /obj/machinery/computer/slot_machine/proc/can_spin(mob/user)
 	if(machine_stat & NOPOWER)
@@ -251,6 +265,7 @@
 		visible_message("<b>[src]</b> mówi: 'JACKPOT! Wygrywasz [money] kredytów!'")
 		priority_announce("Gratulacje dla [user ? user.real_name : usrname] za wygranie jackpota na automacie w [get_area(src)]!", sound = SSstation.announcer.get_rand_alert_sound())
 		jackpots += 1
+		winning = 4
 		balance += money - give_payout(JACKPOT)
 		money = 0
 		if(paymode == HOLOCHIP)
@@ -263,14 +278,17 @@
 
 	else if(linelength == 5)
 		visible_message("<b>[src]</b> mówi: 'Wielka wygrana! Wygrywasz tysiąc kredytów!'")
+		winning = 3
 		give_money(BIG_PRIZE)
 
 	else if(linelength == 4)
 		visible_message("<b>[src]</b> mówi: 'Wygrana! Wygrywasz czterysta kredytów!'")
+		winning = 2
 		give_money(SMALL_PRIZE)
 
 	else if(linelength == 3)
 		to_chat(user, "<span class='notice'>Wygrywasz trzy darmowe gry!</span>")
+		winning = 1
 		balance += SPIN_PRICE * 4
 		money = max(money - SPIN_PRICE * 4, money)
 

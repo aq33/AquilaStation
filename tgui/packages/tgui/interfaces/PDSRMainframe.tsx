@@ -160,6 +160,7 @@ export const PDSRMainframe = (props) => {
           </Section>
           <Section title="Nucleium Injection">
             <Slider
+              tickWhileDragging
               value={data.r_injection_rate}
               fillValue={data.r_injection_rate}
               minValue={0}
@@ -171,7 +172,7 @@ export const PDSRMainframe = (props) => {
               }}
               step={1}
               stepPixelSize={27}
-              onDrag={(e, value) =>
+              onChange={(e, value) =>
                 act('injection_allocation', {
                   adjust: value,
                 })
