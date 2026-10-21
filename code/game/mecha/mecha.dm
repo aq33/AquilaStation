@@ -158,7 +158,7 @@
 /obj/mecha/get_cell()
 	return cell
 
-/obj/mecha/rust_heretic_act()
+/obj/mecha/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	take_damage(500,  BRUTE)
 	return TRUE
 

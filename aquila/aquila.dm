@@ -6,6 +6,7 @@
 #include "code\__DEFINES\DNA.dm"
 #include "code\__DEFINES\forensics.dm"
 #include "code\__DEFINES\gremlins.dm"
+#include "code\__DEFINES\heretic.dm"
 #include "code\__DEFINES\hud.dm"
 #include "code\__DEFINES\hygiene.dm"
 #include "code\__DEFINES\inventory.dm"
@@ -65,8 +66,11 @@
 #include "code\controllers\subsystem\timer.dm"
 #include "code\controllers\subsystem\vote.dm"
 #include "code\datum\wires\wires_jukebox.dm"
+#include "code\__HELPERS\tg_compat.dm"
 #include "code\datums\actions\spell.dm"
 #include "code\datums\actions\spell_types.dm"
+#include "code\datums\actions\spell_types_tg.dm"
+#include "code\datums\status_effects\tg_status_effects.dm"
 #include "code\datums\changelog\changelog.dm"
 #include "code\datums\chat_payload.dm"
 #include "code\datums\components\crafting\crafting.dm"
@@ -197,6 +201,7 @@
 #include "code\game\objects\items\circuitboards\circuitboard.dm"
 #include "code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "code\game\objects\items\clown_items.dm"
+#include "code\game\objects\items\crucifix.dm"
 #include "code\game\objects\items\defib_reasons.dm"
 #include "code\game\objects\items\dakimakuras.dm"
 #include "code\game\objects\items\granters.dm"
@@ -811,3 +816,6 @@
 #include "code\modules\unit_tests\weighted_rotation.dm"
 #include "code\modules\vehicles\ridden.dm"
 #endif
+
+// Heretyk z tg (osobny plik z includami)
+#include "heretic.dm"

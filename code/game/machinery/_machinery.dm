@@ -672,8 +672,9 @@ Class Procs:
 		next_clicksound = world.time + CLICKSOUND_INTERVAL
 		playsound(src, custom_clicksound, clickvol)
 
-/obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, "melee", 1)
+/obj/machinery/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
+	var/damage = 500 + rust_strength * 200
+	take_damage(damage, BRUTE, "bomb", 1)
 	return TRUE
 
 /obj/machinery/proc/update_last_used(mob/user)

@@ -130,10 +130,7 @@
 /turf/open/floor/plating/make_plating()
 	return
 
-/turf/open/floor/plating/rust_heretic_act()
-	if(prob(70))
-		new /obj/effect/temp_visual/glowing_rune(src)
-	return ..()
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/open/floor/plating/foam
 	name = "metal foam plating"

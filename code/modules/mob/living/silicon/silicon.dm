@@ -503,7 +503,7 @@
 	return ..()
 	//NSV13 end.
 
-/mob/living/silicon/rust_heretic_act()
+/mob/living/silicon/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	adjustBruteLoss(500)
 	return TRUE
 

@@ -396,6 +396,9 @@
 		else
 			. += "Jest w niej coś dziwnie męskiego.\n"
 
+	// AQUILA - człowiek nie woła ..(), więc sygnał oględzin wysyłamy sami (zepsute organy, aura heretyka)
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
@@ -407,6 +410,10 @@
 			var/new_text = replacetext(E.examine_text, "SUBJECTPRONOUN", pronoun_replacement)
 			new_text = replacetext(new_text, "[pronoun_replacement] is", "[pronoun_replacement] [p_are()]") //To make sure something become "They are" or "She is", not "They are" and "She are"
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
+		// AQUILA - opisy statusów w stylu tg
+		var/tg_text = E.get_examine_text(usr)
+		if(tg_text)
+			dat += "[tg_text]\n"
 	if(dat.len)
 		return dat.Join()
 

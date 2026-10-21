@@ -614,12 +614,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 /turf/proc/acid_melt()
 	return
 
-/turf/rust_heretic_act()
-	if(HAS_TRAIT(src, TRAIT_RUSTY))
-		return
-
-	AddElement(/datum/element/rust)
-	return TRUE
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/handle_fall(mob/faller, forced)
 	if(has_gravity(src))

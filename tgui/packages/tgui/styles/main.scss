@@ -74,6 +74,7 @@
 @include meta.load-css('./interfaces/CameraConsole.scss');
 @include meta.load-css('./interfaces/ModularFabricator.scss');
 @include meta.load-css('./interfaces/RoundEndReport.scss');
+@include meta.load-css('./interfaces/AntagInfoHeretic.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');

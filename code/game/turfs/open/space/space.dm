@@ -235,7 +235,7 @@
 			return TRUE
 	return FALSE
 
-/turf/open/space/rust_heretic_act()
+/turf/open/space/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	return FALSE
 
 /turf/open/space/ReplaceWithLattice()

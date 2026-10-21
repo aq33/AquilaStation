@@ -1,3 +1,4 @@
+// AQUILA - test z tg (rytuały heretyka), u nas Fail() zamiast TEST_FAIL()
 /*
  * This test checks that all heretic knowledges that unlocks rituals
  * properly consume all used atoms and creates all resulting atoms.
@@ -7,6 +8,7 @@
  * - Summon rituals sleep after completing as they expect a ghost candidate to fill the summon, so they're skipped.
  * - Final rituals results in a bunch of side-effects and vary a good deal so they're skipped explicitly.
  * - Sacrifice ritual (Hunt and Sacrifice) requires sacrifice targets, as well as spawning a new z-level, so it's better not to test.
+ * - Codex Morbus doesn't consume the body that is required in it's ritual.
  */
 /datum/unit_test/heretic_rituals
 
@@ -27,8 +29,9 @@
 	// Set up the blacklist for types we don't want to test here. See above for reasons.
 	var/list/blacklist_typecache = typecacheof(list(
 		/datum/heretic_knowledge/summon,
-		/datum/heretic_knowledge/final,
+		/datum/heretic_knowledge/ultimate,
 		/datum/heretic_knowledge/hunt_and_sacrifice,
+		/datum/heretic_knowledge/codex_morbus,
 	))
 	var/list/all_ritual_knowledge = list()
 
@@ -63,8 +66,19 @@
 		var/list/created_atoms = list()
 		for(var/ritual_item_path in knowledge.required_atoms)
 			var/amount_to_create = knowledge.required_atoms[ritual_item_path]
-			for(var/i in 1 to amount_to_create)
-				created_atoms += new ritual_item_path(get_turf(our_heretic))
+			if(islist(ritual_item_path))
+				ritual_item_path = pick(ritual_item_path)
+
+			if(ispath(ritual_item_path, /obj/item/stack))
+				var/obj/item/item = new ritual_item_path(get_turf(our_heretic), amount_to_create)
+				knowledge.prepare_atom_for_ritual_test(item)
+				created_atoms += item
+
+			else
+				for(var/i in 1 to amount_to_create)
+					var/obj/item/item = new ritual_item_path(get_turf(our_heretic))
+					knowledge.prepare_atom_for_ritual_test(item)
+					created_atoms += item
 
 		// Now, we can ACTUALLY run the ritual. Let's do it.
 		// Attempt to run the knowledge via the sacrifice rune.
@@ -86,7 +100,6 @@
 		var/list/atom/movable/nearby_atoms = range(1, our_heretic)
 		nearby_atoms -= our_heretic // Our dude is supposed to be there
 		nearby_atoms -= our_rune // Same with our rune
-		nearby_atoms -= our_heretic.contents // AQ EDIT - range() includes the center's contents, e.g. the butt pocket (aquila/code/modules/butt/butt_organ.dm), which is not on the rune
 
 		// Did we get all the results we want?
 		for(var/result_item_path in knowledge.result_atoms)
@@ -102,9 +115,12 @@
 
 		// Finally, we checked all of our resulting atoms and cleaned them up.
 		// The nearby_atoms list should be devoid of any atom/movables now. Let's double-check that.
-		for(var/atom/thing as anything in nearby_atoms)
-			if(!ismovable(thing))
-				continue
+		for(var/atom/movable/thing in nearby_atoms)
+			var/obj/item/thing_item = thing
+			if(istype(thing_item) && (thing_item.item_flags & ABSTRACT))
+				continue // bodyparts and stuff will get registered otherwise
+			if(istype(thing, /atom/movable/lighting_object) || istype(thing, /obj/effect/dummy/lighting_obj))
+				continue // todo: more generic solution for holder objects like this
 
 			// There are atoms around the rune still, and there shouldn't be.
 			// All component atoms were consumed, and all resulting atoms were cleaned up.
