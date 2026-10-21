@@ -199,6 +199,10 @@
 	materials = AddComponent(/datum/component/remote_materials, "munitions_forge", mapload)
 
 /obj/machinery/munitions_forge/crucible/Destroy()
+	// Własny zapas (bez silosu) wysypujemy teraz: przy niszczeniu komponentów kontener znika przed remote_materials,
+	// a ten potem sypie arkusze z odłączonego kontenera i rzuca runtime na parent = null
+	if(materials && !materials.silo && materials.mat_container)
+		materials.mat_container.retrieve_all(drop_location())
 	materials = null
 	return ..()
 
