@@ -26,6 +26,10 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
+"ad" = (
+/obj/machinery/munitions_forge/hammer,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -891,6 +895,10 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"bT" = (
+/obj/machinery/munitions_forge/crucible,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "bU" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/ship/blue{
@@ -1499,6 +1507,10 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/xo)
+"dj" = (
+/obj/machinery/munitions_forge/furnace,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/structure/cable,
@@ -1626,6 +1638,10 @@
 /obj/effect/landmark/start/security_officer,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/main)
+"dA" = (
+/obj/machinery/munitions_forge/assembler,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "dB" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/newscaster/directional/north,
@@ -1846,6 +1862,11 @@
 /obj/item/relic,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
+"dZ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "ea" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south,
@@ -1859,10 +1880,31 @@
 /obj/machinery/autoinject_printer,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/chemistry)
+"eb" = (
+/obj/machinery/munitions_forge/basin,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "ec" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/dorms)
+"ed" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ee" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ef" = (
+/obj/structure/sign/directions/plaque/munitions,
+/turf/closed/wall/r_wall/ship,
+/area/nsv/weapons/starboard)
 "eg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1881,6 +1923,27 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ei" = (
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/airlock/highsecurity/ship{
+	name = "Kuźnia Amunicji";
+	req_one_access_txt = "69"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
+"ek" = (
+/obj/structure/cable/multiz,
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "el" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
@@ -1910,6 +1973,10 @@
 "eo" = (
 /turf/closed/wall/r_wall/ship,
 /area/security/main)
+"ep" = (
+/obj/structure/extinguisher_cabinet/south,
+/turf/open/floor/plasteel/dark,
+/area/nsv/weapons/starboard)
 "er" = (
 /obj/structure/closet/secure_closet/exile,
 /turf/open/floor/plasteel/tiled/light,
@@ -52769,12 +52836,12 @@ DI
 Te
 Te
 Te
-Te
-Te
-Te
-iF
-PG
-Te
+Et
+Et
+Et
+ef
+VZ
+Et
 pF
 pF
 pF
@@ -53026,14 +53093,14 @@ DI
 Te
 Te
 Te
-he
-Te
-Te
-Te
-Te
-Te
-Te
-lX
+Et
+Lq
+Lq
+bT
+Lq
+Lq
+ad
+Et
 lX
 Te
 Te
@@ -53281,17 +53348,17 @@ DI
 DI
 DI
 Te
+he
 Te
-Te
-Te
-Te
-Te
-Te
-Te
-Te
-Te
-Te
-Te
+Et
+Lq
+Lq
+Lq
+iQ
+Lq
+Lq
+Et
+lX
 Te
 az
 Ub
@@ -53540,14 +53607,14 @@ DI
 Te
 yn
 Te
-Te
-vD
-Te
-Te
-he
-Te
-Te
-XF
+Et
+Lq
+Lq
+Lq
+Lq
+Lq
+dj
+Et
 Te
 az
 az
@@ -53798,13 +53865,13 @@ Te
 Et
 Et
 Et
-Te
-Te
-Te
-Te
-xa
-Te
-Te
+eb
+dZ
+dA
+Lq
+Lq
+Lq
+Et
 Te
 az
 Ub
@@ -54055,13 +54122,13 @@ Te
 Et
 VZ
 Et
-Te
-Te
-Te
-Te
-Te
-Te
-Te
+Lq
+Lq
+Lq
+Lq
+Lq
+Lq
+Et
 az
 az
 az
@@ -54310,15 +54377,15 @@ DI
 DI
 Te
 Et
+ep
+Et
+Lq
+Lq
+Lq
+iQ
+Lq
 Lq
 Et
-Te
-Te
-Te
-Te
-sP
-Te
-Te
 az
 zP
 zP
@@ -54567,15 +54634,15 @@ Te
 Te
 Te
 tV
-yz
+ek
+ei
+ee
+ed
+Lq
+Lq
+Lq
+Lq
 Et
-Te
-Te
-Te
-XF
-Te
-Te
-az
 az
 zP
 zP
@@ -54826,13 +54893,13 @@ Et
 Et
 Ro
 Et
-Te
-Te
-Te
-Te
-Te
-Te
-az
+Et
+Et
+Et
+Et
+Et
+Et
+Et
 zP
 zP
 zP
@@ -55085,7 +55152,7 @@ lR
 Et
 Te
 Te
-Te
+he
 Te
 Te
 az
