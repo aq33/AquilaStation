@@ -266,9 +266,9 @@
 		var/possible_deity = GLOB.deity || (evil_smite ? "Szatana" : "Boga")
 		if(ishuman(smiter))
 			if(evil_smite)
-				INVOKE_ASYNC(smiter, TYPE_PROC_REF(/atom/movable, say), "W mrocznym imieniu [possible_deity] ROZKAZUJĘ CI ZGINĄĆ!!!", forced = "compelled by the power of their deity")
+				INVOKE_ASYNC(smiter, TYPE_PROC_REF(/atom/movable, say), "W mrocznym imieniu [possible_deity] ROZKAZUJĘ CI ZGINĄĆ!!!", null, list(), TRUE, null, FALSE, "compelled by the power of their deity")
 			else
-				INVOKE_ASYNC(smiter, TYPE_PROC_REF(/atom/movable, say), "Mocą [possible_deity] KARZĘ CIĘ!!!", forced = "compelled by the power of their deity")
+				INVOKE_ASYNC(smiter, TYPE_PROC_REF(/atom/movable, say), "Mocą [possible_deity] KARZĘ CIĘ!!!", null, list(), TRUE, null, FALSE, "compelled by the power of their deity")
 		our_smite_multiplier *= divine_champion ? 5 : 1
 
 	if(evil_smite)
