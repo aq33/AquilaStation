@@ -3,7 +3,8 @@
 	pr = "aq33/AquilaStation#474"
 	description = "Przedmioty, meble i stworzenia z nowymi sprite'ami: łóżko operacyjne i stojak IV, slime'y, małpa, golem, \
 		PDA, materiały, skrzynie i szafki (zamknij, otwórz, zemaguj), kosz, zlewki z płynem, strzykawka, narzędzia, \
-		krzesło, komoda, regały, zbiorniki, MULEbot. Stoły stoją w rzędzie, żeby było widać łączenie."
+		krzesło, stołek, nosze, sleeper (stary sprite), komoda, regały, zbiorniki, MULEbot. Stoły stoją w rzędzie, żeby było widać łączenie, \
+		a na ścianie nad komorą wiszą newscaster, konsola zgłoszeń i interkom."
 	items = list(
 		/obj/structure/table/optable = 1,
 		/obj/machinery/iv_drip = 1,
@@ -26,6 +27,13 @@
 		/obj/item/screwdriver = 1,
 		/obj/item/wirecutters = 1,
 		/obj/item/weldingtool = 1,
+		/obj/item/crowbar = 1,
+		/obj/item/wrench = 1,
+		/obj/item/construction/rcd = 1,
+		/obj/machinery/sleeper = 1,
+		/obj/structure/bed/roller = 1,
+		/obj/structure/chair/stool = 1,
+		/obj/structure/reagent_dispensers/foamtank = 1,
 		/obj/structure/chair/office = 1,
 		/obj/structure/dresser = 1,
 		/obj/structure/bookcase = 1,
@@ -53,3 +61,19 @@
 	..()
 	var/obj/item/reagent_containers/glass/beaker/large/beaker = locate() in spawned
 	beaker?.reagents.add_reagent(/datum/reagent/water, 60)
+	// Ściana trzy kafle nad środkiem z newscasterem, konsolą zgłoszeń i interkomem z Paradise/SS220
+	var/list/mounts = list(
+		/obj/machinery/newscaster/directional/north,
+		/obj/machinery/requests_console,
+		/obj/item/radio/intercom/directional/north)
+	for(var/i in 1 to length(mounts))
+		var/turf/wall_spot = locate(center.x - 2 + i, center.y + 3, center.z)
+		var/turf/floor_spot = locate(center.x - 2 + i, center.y + 2, center.z)
+		if(!wall_spot || !floor_spot || !(wall_spot in turfs) || !(floor_spot in turfs))
+			continue
+		wall_spot.PlaceOnTop(/turf/closed/wall)
+		var/mount_type = mounts[i]
+		var/atom/movable/mount = new mount_type(floor_spot)
+		if(!mount.pixel_y)
+			mount.pixel_y = 30
+			mount.setDir(NORTH)
