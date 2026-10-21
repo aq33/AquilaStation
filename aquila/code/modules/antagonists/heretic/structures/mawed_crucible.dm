@@ -81,6 +81,10 @@
 	return FALSE
 
 /obj/structure/destructible/eldritch_crucible/attackby(obj/item/tool, mob/living/user, params)
+	// AQUILA - przy otwartym menu mikstur nie ruszamy masy
+	if(in_use)
+		balloon_alert(user, "w użyciu!")
+		return TRUE
 	if(istype(tool, /obj/item/codex_cicatrix) || istype(tool, /obj/item/melee/spell_hand/mansus_fist))
 		playsound(src, 'sound/items/deconstruct.ogg', 30, TRUE, ignore_walls = FALSE)
 		anchored = !anchored
@@ -192,6 +196,9 @@
 		)
 
 	if(isnull(picked_choice))
+		return
+	if(current_mass < max_mass) // AQUILA - masa mogła zniknąć w trakcie wyboru
+		balloon_alert(user, "za mało wypełniony!")
 		return
 
 	var/spawned_type = names_to_path[picked_choice]
