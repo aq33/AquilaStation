@@ -91,7 +91,7 @@
 			balloon_alert(user, "za mało wypełniony!")
 			return TRUE
 		var/obj/item/reagent_containers/glass/beaker/eldritch/to_fill = tool
-		if(to_fill.reagents.total_volume >= to_fill.reagents.maximum_volume)
+		if(to_fill.reagents.maximum_volume - to_fill.reagents.total_volume < 50) // AQUILA - tylko gdy zmieści się cała porcja
 			balloon_alert(user, "flaszka jest pełna!")
 			return TRUE
 		to_fill.reagents.add_reagent(/datum/reagent/eldritch, 50)
@@ -110,7 +110,8 @@
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
 				return ..()
-			bite_the_hand(user)
+			if(iscarbon(user))
+				bite_the_hand(user)
 			return TRUE
 		consume_fuel(user, consumed)
 		return TRUE
@@ -126,7 +127,8 @@
 		if(!IS_HERETIC_OR_MONSTER(user))
 			if(user.combat_mode)
 				return ..()
-			bite_the_hand(user)
+			if(iscarbon(user))
+				bite_the_hand(user)
 			return TRUE
 		consume_fuel(user, consumed)
 		return TRUE
@@ -143,7 +145,8 @@
 
 	if(!IS_HERETIC_OR_MONSTER(user))
 		if(iscarbon(user))
-			bite_the_hand(user)
+			if(iscarbon(user))
+				bite_the_hand(user)
 		return TRUE
 
 	if(in_use)
