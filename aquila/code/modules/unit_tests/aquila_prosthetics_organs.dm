@@ -18,6 +18,8 @@
 	TEST_ASSERT(HAS_TRAIT_FROM(tool, TRAIT_NODROP, PROSTHETIC_ITEM_TRAIT), "The item arm can be dropped")
 	TEST_ASSERT(tool.item_flags & ABSTRACT, "The item arm is not abstract")
 	TEST_ASSERT(length(patient.prosthetic_item_examine_lines(victim)), "The item arm is missing from examine")
+	var/mutable_appearance/raised = tool.build_worn_icon(HANDS_LAYER, tool.righthand_file, TRUE)
+	TEST_ASSERT(raised.pixel_y > 0, "The item arm inhand sprite is not raised to the shoulder")
 
 	// a loose arm falls off on the first swing
 	patient.a_intent = INTENT_HARM

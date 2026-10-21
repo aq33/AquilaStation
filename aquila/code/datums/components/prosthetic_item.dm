@@ -164,11 +164,14 @@
 			continue
 		. += "Zamiast ręki ([strefa_pl(part.body_zone)]) ma [prosthetic.item_limb.get_examine_string(user)][prosthetic.drop_prob ? " - <span class='warning'>trzyma się luźno</span>" : ""]."
 
-// Looks: the human arm is not drawn, the item is the arm. Items with an inhand sprite use it as usual,
-// items without one (food, small trinkets) get their own icon, turned upright and shrunk, hanging from the shoulder.
+// Looks: the human arm is not drawn, the item is the arm and always sits at the shoulder.
+// Items with an inhand sprite use it raised from the hand to the shoulder, in the same line as the arm.
+// Items without one (food, small trinkets) get their own icon, turned upright and shrunk, hanging from the shoulder.
 
 /// Longer side of the item icon when it has no inhand sprite
 #define PROSTHETIC_FALLBACK_SIZE 12
+/// Pixels an inhand sprite is raised by, from the hand up to the shoulder
+#define PROSTHETIC_INHAND_RAISE 7
 
 /obj/item/bodypart/get_limb_icon(dropped)
 	if(!dropped && GetComponent(/datum/component/item_as_prosthetic_limb))
@@ -186,7 +189,9 @@
 		return ..()
 	var/inhand_state = override_state || item_state || icon_state
 	if(default_icon_file && icon_exists(default_icon_file, inhand_state))
-		return ..()
+		var/mutable_appearance/standing = ..()
+		standing.pixel_y += PROSTHETIC_INHAND_RAISE
+		return standing
 	return mutable_appearance(prosthetic_fallback_icon(default_icon_file == righthand_file), "arm", -default_layer)
 
 /// Bounding box of the visible pixels as list(min_x, min_y, max_x, max_y), BYOND coordinates
@@ -242,3 +247,4 @@
 	return result
 
 #undef PROSTHETIC_FALLBACK_SIZE
+#undef PROSTHETIC_INHAND_RAISE
