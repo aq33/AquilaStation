@@ -7,6 +7,12 @@
 	var/text_lose_indication = ""
 	var/static/list/visual_indicators = list()
 	var/obj/effect/proc_holder/spell/power
+	/// AQUILA - zdolność z nowego systemu zaklęć (/datum/action/cooldown/spell), jak power_path w tg
+	var/datum/action/cooldown/spell/action_path
+	/// AQUILA - nadana zdolność z action_path
+	var/datum/action/cooldown/spell/action_power
+	/// AQUILA - traity nadawane na czas trwania mutacji (jak mutation_traits w tg)
+	var/list/mutation_traits
 	var/layer_used = MUTATIONS_LAYER //which mutation layer to use
 	var/list/species_allowed = list() //to restrict mutation to only certain species
 	var/list/mobtypes_allowed = list() //to restrict mutation to only certain mobs
@@ -79,6 +85,8 @@
 		owner.overlays_standing[layer_used] = mut_overlay
 		owner.apply_overlay(layer_used)
 	grant_spell() //we do checks here so nothing about hulk getting magic
+	if(length(mutation_traits))
+		owner.add_traits(mutation_traits, GENETIC_MUTATION)
 	if(!modified && can_chromosome == CHROMOSOME_USED)
 		addtimer(CALLBACK(src, PROC_REF(modify), 5)) //gonna want children calling ..() to run first
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
@@ -114,6 +122,10 @@
 		if(power)
 			owner.RemoveSpell(power)
 			qdel(src)
+		if(action_power)
+			QDEL_NULL(action_power)
+		if(length(mutation_traits))
+			owner.remove_traits(mutation_traits, GENETIC_MUTATION)
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		return 0
 	return 1
@@ -142,7 +154,12 @@
 				apply_overlay(CM.layer_used)
 
 /datum/mutation/proc/modify() //called when a genome is applied so we can properly update some stats without having to remove and reapply the mutation from someone
-	if(modified || !power || !owner)
+	if(modified || !owner)
+		return
+	if(action_power)
+		action_power.cooldown_time *= GET_MUTATION_ENERGY(src)
+		modified = TRUE
+	if(!power)
 		return
 	power.charge_max *= GET_MUTATION_ENERGY(src)
 	power.charge_counter *= GET_MUTATION_ENERGY(src)
@@ -176,6 +193,11 @@
 		qdel(src)
 
 /datum/mutation/proc/grant_spell()
+	if(ispath(action_path) && owner && !action_power)
+		action_power = new action_path(owner)
+		action_power.background_icon_state = "bg_tech_blue"
+		action_power.Grant(owner)
+		return TRUE
 	if(!ispath(power) || !owner)
 		return FALSE
 
