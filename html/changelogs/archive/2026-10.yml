@@ -484,6 +484,11 @@
   - bugfix: Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę
       przed dojechaniem sprite'a.
 '2026-10-20':
+  Joker66613:
+  - bugfix: Postać nie zacina się już co kilka kroków (ruch był co chwilę opóźniany
+      o tick przy aktualizacji zdrowia i staminy).
+  - code_imp: 'Kolejka verbów z tg: przy obciążonym serwerze kliknięcia i mowa czekają
+      do następnego ticku zamiast go przeciągać.'
   Paradise:
   - imageadd: APC, czujniki powietrza i alarmy pożarowe z Paradise, dopasowane do
       ścian 3/4

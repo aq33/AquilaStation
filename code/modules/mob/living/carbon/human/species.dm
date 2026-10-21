@@ -1649,7 +1649,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
-		var/damage = user.dna.species.punchdamage
+		var/damage = user.dna.species.punchdamage + user.unarmed_damage_bonus // AQ EDIT - premia do ciosów (wampir z Bee)
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
