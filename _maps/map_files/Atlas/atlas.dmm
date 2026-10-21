@@ -1423,19 +1423,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
 "cI" = (
-/obj/machinery/computer/atmos_control/tank/air_tank{
-	input_tag = "sdmix_in";
-	name = "Reactor Mix Control";
-	output_tag = "sdmix_out";
-	sensors = list("sdmix_sensor"="Reactor                Mix                Tank")
-	},
-/obj/effect/turf_decal/tile/ship/blue,
-/obj/effect/turf_decal/tile/ship/yellow{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/durasteel/techfloor_grid,
-/area/engine/atmos)
+)
 "cJ" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -4010,6 +3998,12 @@
 /obj/effect/turf_decal/tile/ship/yellow,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"hs" = (
+/obj/machinery/computer/exodrone_control_console{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/quartermaster/miningoffice)
 "ht" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 8
@@ -4123,6 +4117,12 @@
 /obj/machinery/xenoarchaeology_machine/calibrator/tutorial,
 /turf/open/floor/circuit/orange,
 /area/science/explab)
+"hF" = (
+/obj/machinery/computer/exoscanner_control{
+	dir = 8
+	},
+/turf/open/floor/monotile/steel,
+/area/quartermaster/miningoffice)
 "hG" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/nitrous_input{
 	dir = 1
@@ -4529,6 +4529,18 @@
 /obj/effect/spawner/lootdrop/gizmo,
 /turf/open/floor/monotile/dark,
 /area/science/explab)
+"ix" = (
+/obj/item/radio/intercom/directional/east,
+/obj/machinery/camera/autoname{
+	c_tag = "Atmos - Airlock #2";
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/miner,
+/obj/item/stack/sheet/mineral/wood/five,
+/obj/item/encryptionkey/pilot,
+/obj/item/encryptionkey/pilot,
+/turf/open/floor/monotile/steel,
+/area/quartermaster/miningoffice)
 "iy" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -4553,6 +4565,21 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"iB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
+"iC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/exoscanner,
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "iD" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxin_input{
 	dir = 1
@@ -4585,6 +4612,19 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
+"iG" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/gps/mining,
+/obj/item/gps/mining,
+/obj/item/fuel_pellet{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/turf/open/floor/monotile/steel/airless,
+/area/nsv/hanger/mining)
 "iH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -6484,12 +6524,6 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/plasteel/tech/grid,
 /area/gateway)
-"oi" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "oj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -9390,14 +9424,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"wr" = (
-/obj/item/radio/intercom/directional/east,
-/obj/machinery/camera/autoname{
-	c_tag = "Atmos - Airlock #2";
-	dir = 8
-	},
-/turf/open/floor/monotile/steel,
-/area/quartermaster/miningoffice)
 "wt" = (
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
@@ -10417,13 +10443,7 @@
 "zt" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
-/obj/machinery/camera/autoname{
-	dir = 1;
-	network = list("ss13","labor")
-	},
-/turf/open/floor/plasteel/grid/steel,
-/area/hallway/secondary/exit/departure_lounge)
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4)
 "zw" = (
 /obj/structure/rack,
 /obj/item/powder_bag{
@@ -12320,20 +12340,7 @@
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
 "Fi" = (
-/obj/machinery/camera{
-	c_tag = "Atlas Hangar Exterior";
-	network = list("ss13","hangar_atlas")
-	},
-/obj/machinery/button/door{
-	id = "atlas_hangar";
-	name = "Pod Bay Doors";
-	pixel_y = 32;
-	req_one_access_txt = "69"
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/nsv/hanger/notkmcstupidhanger)
+)
 "Fj" = (
 /obj/machinery/button/door{
 	id = "atlas_dropship_hangar";
@@ -13447,14 +13454,7 @@
 /area/space/nearstation)
 "Iu" = (
 /obj/structure/closet/crate,
-/obj/structure/lattice/catwalk,
-/obj/machinery/camera{
-	c_tag = "Asteroid Magnet";
-	dir = 8;
-	network = list("ss13","magnet")
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
+/obj/structure/lattice/catwalk)
 "Iv" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
@@ -13603,9 +13603,6 @@
 	initial_gas_mix = "TEMP=2.7"
 	},
 /area/nsv/hanger/notkmcstupidhanger)
-"Ja" = (
-/turf/open/floor/monotile/steel,
-/area/quartermaster/miningoffice)
 "Jb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -13696,15 +13693,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "Jn" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/camera{
-	c_tag = "Atlas Hangar #3";
-	dir = 4;
-	network = list("ss13","hangar_atlas")
-	},
-/obj/item/radio/intercom/directional/west,
-/turf/open/floor/monotile/dark/airless,
-/area/nsv/hanger/notkmcstupidhanger)
+/obj/effect/turf_decal/stripes/line)
 "Jo" = (
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
@@ -14744,15 +14733,6 @@
 	},
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
-"LX" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/rack,
-/obj/item/gps/mining,
-/obj/item/gps/mining,
-/turf/open/floor/monotile/steel/airless,
-/area/nsv/hanger/mining)
 "LY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -15496,14 +15476,7 @@
 "Og" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Atlas Hangar #2";
-	dir = 4;
-	network = list("ss13","hangar_atlas")
-	},
-/turf/open/floor/monotile/dark/airless,
-/area/nsv/hanger/notkmcstupidhanger)
+	})
 "Oh" = (
 /obj/structure/mecha_wreckage/phazon{
 	layer = 2.1
@@ -57665,7 +57638,7 @@ bX
 NN
 wk
 sA
-Ja
+pA
 Jq
 jy
 Nh
@@ -57918,9 +57891,9 @@ HA
 Yc
 DH
 yg
-pA
-pA
-wr
+hs
+hF
+ix
 Mq
 TV
 DH
@@ -58690,7 +58663,7 @@ ZZ
 Pm
 jG
 sH
-LX
+iG
 DH
 lg
 kx
@@ -61259,11 +61232,11 @@ Vk
 HF
 fI
 Pm
-oi
+iB
 Zs
+iC
 Zs
-Zs
-Zs
+iC
 Hd
 Pm
 Aq
