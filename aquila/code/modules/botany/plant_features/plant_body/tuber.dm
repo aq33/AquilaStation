@@ -32,6 +32,8 @@
 
 /datum/plant_feature/body/tuber/catch_harvest(datum/source, mob/user, list/temp_fruits, dummy_harvest)
 	. = ..()
+	if(!parent?.plant_item) // AQUILA - roślina już usunięta
+		return
 	if(yields <= 0 || health <= 0)
 		SEND_SIGNAL(parent, COMSIG_PLANT_UPROOTED,  null, null, parent.plant_item.loc)
 		parent.plant_item.forceMove(get_turf(parent.plant_item))

@@ -2746,6 +2746,14 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
+"cGV" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/refraction_catalogue,
+/turf/open/floor/monotile/steel,
+/area/hydroponics)
 "cHg" = (
 /obj/machinery/door/airlock/ship/public/glass{
 	name = "Cloning Lab";
@@ -8654,6 +8662,13 @@
 /obj/structure/chair/fancy/sofa/mono/corner/concave,
 /turf/open/floor/wood,
 /area/hallway/nsv/deck1/hallway)
+"iBb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "iBc" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/ale,
@@ -9290,6 +9305,21 @@
 /obj/structure/cable/green,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/crew_quarters/heads/captain/private)
+"jhC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/smartfridge/disks,
+/obj/item/book/manual/wiki/hydroponics/tutorial{
+	pixel_x = 6;
+	 pixel_y = -4
+	},
+/obj/item/substrate_bag/dirt,
+/obj/item/substrate_bag/sand,
+/obj/item/substrate_bag/clay,
+/obj/item/substrate_bag/debris,
+/obj/item/substrate_bag/fairy,
+/obj/item/construction/plumbing/botany,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "jiu" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -16993,6 +17023,17 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
+"rpY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/duct,
+/obj/machinery/holopad,
+/turf/open/floor/monotile/steel,
+/area/hydroponics)
 "rqw" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -17456,6 +17497,16 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/theatre)
+"rQH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/plant_machine/plant_mutator/tutorial,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "rQM" = (
 /turf/closed/wall/steel,
 /area/crew_quarters/kitchen/coldroom)
@@ -17840,6 +17891,10 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/body,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security)
+"sjk" = (
+/obj/machinery/plant_machine/seed_editor,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "sjF" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -47700,7 +47755,7 @@ gbQ
 jqW
 mKb
 tTr
-fHy
+sjk
 tTr
 pYU
 gbQ
@@ -47954,7 +48009,7 @@ uCx
 ujt
 srz
 gbQ
-gfn
+jhC
 mKb
 tTr
 mCO
@@ -48214,7 +48269,7 @@ gbQ
 gWj
 mKb
 tTr
-hwI
+iBb
 tTr
 xSa
 gbQ
@@ -48728,7 +48783,7 @@ gbQ
 bia
 aEw
 tTr
-tte
+rQH
 tTr
 pYU
 gbQ
@@ -49497,8 +49552,8 @@ sux
 hPq
 gbQ
 bpw
-qKz
-aCG
+rpY
+cGV
 fku
 tHW
 hik

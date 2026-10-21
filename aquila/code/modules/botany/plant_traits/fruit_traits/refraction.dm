@@ -13,6 +13,7 @@
 
 /datum/plant_trait/refraction/New(datum/plant_feature/_parent, _grid_x, _grid_y, _level)
 	. = ..()
+	SSbotany.build_random_lists() // AQUILA - rośliny z mapy powstają przed SSbotany
 	if(!length(SSbotany.refraction_reagents))
 		return
 	grid_x = _grid_x

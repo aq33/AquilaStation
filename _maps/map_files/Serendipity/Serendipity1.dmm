@@ -3721,6 +3721,10 @@
 /obj/item/cookiesynth,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+"kB" = (
+/obj/machinery/seeder,
+/turf/closed/wall/ship,
+/area/hydroponics)
 "kC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4832,6 +4836,19 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/nsv/trauma)
+"oz" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = 32;
+	pixel_y = -6
+	},
+/obj/machinery/biogenerator,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrot{
+	pixel_y = 6
+	},
+/turf/open/floor/grass,
+/area/hydroponics)
 "oA" = (
 /obj/machinery/camera/motion{
 	dir = 1
@@ -6335,6 +6352,38 @@
 "tx" = (
 /turf/closed/wall/ship,
 /area/crew_quarters/kitchen)
+"ty" = (
+/obj/machinery/firealarm/directional/north,
+/obj/machinery/smartfridge/disks{
+	pixel_x = -9
+	},
+/obj/structure/table/wood,
+/obj/item/shovel/spade{
+	pixel_x = 10;
+	pixel_y = 3
+	},
+/obj/item/hatchet{
+	pixel_x = 7
+	},
+/obj/item/cultivator{
+	pixel_x = 7;
+	pixel_y = -9
+	},
+/obj/item/reagent_containers/spray/pestspray{
+	pixel_x = 10
+	},
+/obj/item/book/manual/wiki/hydroponics/tutorial{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/substrate_bag/dirt,
+/obj/item/substrate_bag/sand,
+/obj/item/substrate_bag/clay,
+/obj/item/substrate_bag/debris,
+/obj/item/substrate_bag/fairy,
+/obj/item/construction/plumbing/botany,
+/turf/open/floor/grass,
+/area/hydroponics)
 "tz" = (
 /obj/machinery/door/airlock/ship/maintenance,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -8441,6 +8490,10 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
+"AJ" = (
+/obj/machinery/plant_machine/plant_mutator/tutorial,
+/turf/open/floor/grass,
+/area/hydroponics)
 "AK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
@@ -12435,6 +12488,16 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
+"Oe" = (
+/obj/machinery/newscaster/directional/north,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrot{
+	pixel_y = 6
+	},
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/grass,
+/area/hydroponics)
 "Of" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -12659,6 +12722,10 @@
 	},
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/item/plant_tray,
+/turf/open/floor/grass,
+/area/hydroponics)
+"OZ" = (
+/obj/machinery/refraction_catalogue,
 /turf/open/floor/grass,
 /area/hydroponics)
 "Pb" = (
@@ -13000,9 +13067,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/engine/light,
 /area/ai_monitored/nuke_storage)
-"Qn" = (
-/turf/closed/wall/r_wall/ship,
-/area/ai_monitored/security/armory/lockup)
 "Qo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -14221,6 +14285,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons/starboard)
+"Up" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_x = 32;
+	pixel_y = -6
+	},
+/obj/machinery/biogenerator,
+/turf/open/floor/grass,
+/area/hydroponics)
 "Uq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -15186,6 +15258,11 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
+"Xt" = (
+/obj/machinery/newscaster/directional/north,
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/grass,
+/area/hydroponics)
 "Xu" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 4
@@ -15626,6 +15703,13 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/science)
+"Zj" = (
+/obj/structure/sign/departments/minsky/supply/hydroponics{
+	pixel_y = 32
+	},
+/obj/machinery/plant_machine/seed_editor,
+/turf/open/floor/grass,
+/area/hydroponics)
 "Zk" = (
 /obj/effect/turf_decal/tile/ship/red{
 	dir = 1
@@ -49410,7 +49494,7 @@ gE
 bn
 yO
 SS
-uD
+OZ
 uD
 uD
 cR
@@ -49666,7 +49750,7 @@ DF
 GN
 EA
 yO
-NF
+Xt
 CY
 PC
 YP
@@ -49923,7 +50007,7 @@ Ee
 ot
 Pb
 yO
-sy
+Zj
 uD
 uD
 kC
@@ -50180,8 +50264,8 @@ gi
 ot
 qe
 yO
-Fj
-uD
+ty
+AJ
 Zm
 eL
 aC
@@ -50437,7 +50521,7 @@ gi
 pP
 RT
 yO
-yO
+kB
 UX
 oM
 XY
@@ -51209,7 +51293,7 @@ VE
 CL
 Ho
 yO
-HR
+oz
 WX
 Hj
 SA
@@ -54799,16 +54883,16 @@ az
 yu
 yu
 yu
-Qn
-Qn
+zJ
+zJ
 jv
-Qn
-Qn
-Qn
+zJ
+zJ
+zJ
 KX
-Qn
-Qn
-Qn
+zJ
+zJ
+zJ
 fx
 Nz
 fx
@@ -55054,8 +55138,8 @@ az
 az
 az
 az
-Qn
-Qn
+zJ
+zJ
 ZC
 yf
 Lt
@@ -55312,8 +55396,8 @@ zP
 zP
 az
 az
-Qn
-Qn
+zJ
+zJ
 ZC
 wr
 Rl
@@ -55322,7 +55406,7 @@ rZ
 Rl
 EI
 Lg
-Qn
+zJ
 Yo
 bZ
 JM
@@ -55570,8 +55654,8 @@ zP
 zP
 az
 az
-Qn
-Qn
+zJ
+zJ
 ZC
 xz
 aE
@@ -55579,7 +55663,7 @@ HT
 dV
 LK
 Rw
-Qn
+zJ
 fx
 Cq
 tG
@@ -55828,15 +55912,15 @@ zP
 zP
 az
 az
-Qn
-Qn
-Qn
-Qn
-Qn
-Qn
-Qn
-Qn
-Qn
+zJ
+zJ
+zJ
+zJ
+zJ
+zJ
+zJ
+zJ
+zJ
 fx
 GC
 Va
@@ -56092,8 +56176,8 @@ az
 bD
 az
 az
-Qn
-Qn
+zJ
+zJ
 fx
 fx
 vG

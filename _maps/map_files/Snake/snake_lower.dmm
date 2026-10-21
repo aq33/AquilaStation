@@ -7482,6 +7482,23 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plasteel,
 /area/engine/storage)
+"tR" = (
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/machinery/plant_machine/seed_editor,
+/turf/open/floor/plasteel/dark/side,
+/area/hydroponics)
 "tT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer4,
 /turf/closed/wall/r_wall,
@@ -10364,6 +10381,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
+"DU" = (
+/obj/effect/turf_decal/siding/wideplating/terracotta/corner,
+/obj/effect/turf_decal/tile/ship/green,
+/obj/machinery/refraction_catalogue,
+/turf/open/floor/plasteel/dark/side{
+	dir = 9
+	},
+/area/hydroponics)
 "DY" = (
 /obj/machinery/light{
 	dir = 4
@@ -10915,6 +10940,34 @@
 /obj/effect/spawner/structure/window/reinforced/shutter,
 /turf/open/floor/plating,
 /area/medical/chemistry)
+"FS" = (
+/obj/structure/table/glass,
+/obj/machinery/smartfridge/disks{
+	pixel_y = -11;
+	pixel_x = -1
+	},
+/obj/effect/turf_decal/tile/ship/full/green,
+/obj/structure/cable,
+/obj/machinery/reagentgrinder{
+	pixel_y = 13;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 8;
+	pixel_x = 9;
+	layer = 2.8
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_y = -1;
+	layer = 2.8;
+	pixel_x = 10
+	},
+/obj/item/book/manual/wiki/hydroponics/tutorial{
+	pixel_x = 6;
+	 pixel_y = 2
+	},
+/turf/open/floor/monotile,
+/area/hydroponics)
 "FU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -11124,6 +11177,22 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/dorms)
+"GC" = (
+/obj/effect/landmark/start/botanist,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/multitool,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/substrate_bag/dirt,
+/obj/item/substrate_bag/sand,
+/obj/item/substrate_bag/clay,
+/obj/item/substrate_bag/debris,
+/obj/item/substrate_bag/fairy,
+/obj/item/construction/plumbing/botany,
+/turf/open/floor/plasteel/dark,
+/area/hydroponics)
 "GF" = (
 /obj/structure/chair/stool/bar,
 /obj/machinery/newscaster/security_unit/east,
@@ -12201,6 +12270,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/warden)
+"Ku" = (
+/obj/effect/turf_decal/tile/ship/full/green,
+/obj/structure/cable,
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/monotile,
+/area/hydroponics)
 "Kv" = (
 /obj/structure/closet/radiation,
 /obj/machinery/power/apc/auto_name/south{
@@ -15376,6 +15451,18 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+"Vo" = (
+/obj/effect/turf_decal/siding/wideplating/terracotta/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/obj/machinery/plant_machine/plant_mutator/tutorial,
+/turf/open/floor/plasteel/dark/side{
+	dir = 5
+	},
+/area/hydroponics)
 "Vp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -46048,7 +46135,7 @@ aJ
 aq
 Mx
 oQ
-rc
+Vo
 yz
 yz
 wm
@@ -46563,10 +46650,10 @@ aq
 Fi
 KI
 hG
-og
+FS
 Kb
-ER
-Yh
+Ku
+tR
 RJ
 ic
 eM
@@ -46824,7 +46911,7 @@ gz
 gz
 Pg
 KY
-PU
+GC
 MK
 dP
 LR
@@ -47076,7 +47163,7 @@ aJ
 aq
 qw
 oQ
-dY
+DU
 eX
 fr
 eX

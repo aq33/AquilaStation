@@ -49,6 +49,16 @@ SUBSYSTEM_DEF(botany)
 
 /datum/controller/subsystem/botany/Initialize(timeofday)
 	build_dict()
+	build_random_lists()
+	return ..()
+
+/**
+ * AQUILA - listy losowych nasion, cech i potrzeb.
+ * U nas doniczki i flora lawalandu inicjują się przy ładowaniu mapy, przed SSbotany, więc listy budujemy przy pierwszym użyciu.
+ */
+/datum/controller/subsystem/botany/proc/build_random_lists()
+	if(length(overdraw_needs))
+		return
 	slippery_blacklist = typecacheof(slippery_blacklist)
 //Build overdraw need list
 	for(var/datum/plant_need/need as anything in subtypesof(/datum/plant_need))
@@ -68,6 +78,9 @@ SUBSYSTEM_DEF(botany)
 		if(!random_traits["[initial(trait.plant_feature_compat)]"])
 			random_traits["[initial(trait.plant_feature_compat)]"] = list()
 		random_traits["[initial(trait.plant_feature_compat)]"] += trait
+	build_refraction()
+
+/datum/controller/subsystem/botany/proc/build_refraction()
 //Build refraction reagents
 	var/list/all_reagents = subtypesof(/datum/reagent)
 	all_reagents = shuffle(all_reagents)
@@ -148,7 +161,7 @@ SUBSYSTEM_DEF(botany)
 	var/list/traits = subtypesof(/datum/plant_trait)
 	for(var/datum/plant_trait/trait as anything in traits)
 		var/datum/plant_trait/entry_trait = new trait()
-		if(trait.type == trait.abstract_type)
+		if(entry_trait.type == entry_trait.abstract_type) // AQUILA - u Bee sprawdzało ścieżkę zamiast instancji
 			qdel(entry_trait)
 			continue
 		chapters["Traits"] += entry_trait
@@ -175,21 +188,24 @@ SUBSYSTEM_DEF(botany)
 		chapters["Tips"] += list("[REF(new_entry)]" = new entry())
 
 /datum/controller/subsystem/botany/proc/get_seed(flags = SEED_RANDOM_KIRBY, consider_unused = TRUE)
+	build_random_lists()
 	if(!consider_unused)
 		return pick(random_seeds["[flags]"])
 	if(!length(unused_random_seeds["[flags]"]))
 		var/list/copy_list = random_seeds["[flags]"]
 		unused_random_seeds["[flags]"] = copy_list.Copy()
 	var/seed = pick(unused_random_seeds["[flags]"])
-	unused_random_seeds -= seed
+	unused_random_seeds["[flags]"] -= seed // AQUILA - u Bee odejmowało z całej listy, więc nasiona się powtarzały
 	return seed
 
 /datum/controller/subsystem/botany/proc/get_random_need()
+	build_random_lists()
 	return pick(overdraw_needs)
 
 /datum/controller/subsystem/botany/proc/get_random_trait(filter, consider_unused = TRUE)
 	if(!filter)
 		return
+	build_random_lists()
 	if(!consider_unused)
 		return pick(random_traits[filter])
 	if(!length(unused_random_traits[filter]))
