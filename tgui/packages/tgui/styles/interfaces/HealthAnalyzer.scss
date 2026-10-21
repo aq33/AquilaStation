@@ -63,6 +63,11 @@
     :not(.areaHitbox) {
       pointer-events: none;
     }
+
+    // pointer-events is inherited in SVG, so the hitbox would take "none" from its <g> without this
+    .areaHitbox {
+      pointer-events: all;
+    }
   }
 
   .chart {
