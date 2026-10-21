@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
 	icon = 'icons/obj/terminals.dmi'
-	icon_state = "req_comp0"
+	icon_state = "req_comp_off"
 	layer = ABOVE_WINDOW_LAYER
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/messages = list() //List of all messages
@@ -81,6 +81,8 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	update_icon()
 
 /obj/machinery/requests_console/update_icon()
+	cut_overlays()
+	var/screen
 	if(machine_stat & NOPOWER)
 		set_light(0)
 	else
@@ -93,15 +95,17 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	else if(machine_stat & NOPOWER)
 		if(icon_state != "req_comp_off")
 			icon_state = "req_comp_off"
-	else
+	else //AQUILA EDIT - Paradise sprite: the screen is an overlay on the switched-off console
+		icon_state = "req_comp_off"
 		if(emergency || (newmessagepriority == REQ_EXTREME_MESSAGE_PRIORITY))
-			icon_state = "req_comp3"
+			screen = "req_comp3"
 		else if(newmessagepriority == REQ_HIGH_MESSAGE_PRIORITY)
-			icon_state = "req_comp2"
+			screen = "req_comp2"
 		else if(newmessagepriority == REQ_NORMAL_MESSAGE_PRIORITY)
-			icon_state = "req_comp1"
+			screen = "req_comp1"
 		else
-			icon_state = "req_comp0"
+			screen = "req_comp0"
+		add_overlay(screen)
 
 /obj/machinery/requests_console/Initialize(mapload)
 	. = ..()

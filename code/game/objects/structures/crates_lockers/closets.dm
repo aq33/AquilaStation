@@ -36,6 +36,9 @@
 	var/delivery_icon = "deliverycloset" //which icon to use when packagewrapped. null to be unwrappable.
 	var/anchorable = TRUE
 	var/icon_welded = "welded"
+	var/icon_emagged = "emagged" //AQUILA EDIT - Bee#10136 lights
+	var/icon_locked = "locked"
+	var/icon_unlocked = "unlocked"
 	var/obj/effect/overlay/closet_door/door_obj
 	var/is_animating_door = FALSE
 	var/door_anim_squish = 0.30
@@ -72,9 +75,11 @@
 				add_overlay(icon_welded)
 			if(secure && !broken)
 				if(locked)
-					add_overlay("locked")
+					add_overlay(icon_locked)
 				else
-					add_overlay("unlocked")
+					add_overlay(icon_unlocked)
+			else if(secure && broken)
+				add_overlay(icon_emagged)
 
 	else
 		layer = BELOW_OBJ_LAYER

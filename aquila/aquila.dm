@@ -819,6 +819,7 @@
 #include "code\modules\test_chamber\kits\pr_458_jajo_squid.dm"
 #include "code\modules\test_chamber\kits\pr_467_blood_worm.dm"
 #include "code\modules\test_chamber\kits\pr_471_logi_rund.dm"
+#include "code\modules\test_chamber\kits\pr_474_resprite3.dm"
 #include "code\modules\test_chamber\kits\pr_478_exodrony.dm"
 #include "code\modules\test_chamber\kits\pr_472_wampir.dm"
 #include "code\modules\weighted\weighted_admin.dm"
@@ -1006,7 +1007,10 @@
 #include "code\modules\paradise_struktury\airlocks.dm"
 #include "code\modules\paradise_struktury\doors.dm"
 #include "code\modules\paradise_struktury\podlogi_bee.dm"
+#include "code\modules\paradise_urzadzenia\interkom.dm"
 #include "code\modules\paradise_urzadzenia\nascienne.dm"
+#include "code\modules\paradise_meble\tables.dm"
+#include "code\modules\paradise_struktury\webmap.dm"
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"

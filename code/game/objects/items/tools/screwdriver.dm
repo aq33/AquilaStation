@@ -45,10 +45,14 @@
 	return(BRUTELOSS)
 
 /obj/item/screwdriver/Initialize(mapload)
+	var/our_color
 	if(random_color)
-		var/our_color = pick(screwdriver_colors)
+		our_color = pick(screwdriver_colors)
 		set_greyscale(colors=list(screwdriver_colors[our_color]))
 	. = ..()
+	if(our_color) //AQUILA EDIT - Paradise sprite on the ground, greyscale only for inhands/belt
+		icon = 'icons/obj/tools.dmi'
+		icon_state = "screwdriver_[our_color]"
 	if(prob(75))
 		pixel_y = rand(0, 16)
 
