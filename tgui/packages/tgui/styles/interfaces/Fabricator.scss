@@ -1,14 +1,9 @@
-@use '../base.scss';
-@use '../colors.scss';
-
-// Button.scss is configured with "with" by the themes, so it can't be used here. These mirror its transparent-button colouring.
-$transparent-text: rgba(255, 255, 255, 0.5);
-$transparent-hover-bg: rgba(255, 255, 255, 0.05);
+@use '~tgui-core/styles/components/Button' as button;
 
 .Fabricator__Recipe {
+  padding: var(--space-s) 0;
+  border-bottom: var(--border-radius-tiny) solid var(--color-black);
   position: relative;
-  padding: 0.25em 0;
-  border-bottom: 1px solid #000;
 
   &:last-child {
     border-bottom: 0;
@@ -17,56 +12,79 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
 
 .Fabricator__PrintAmount {
   min-height: 100%;
-  transition: opacity 0.5s ease-out;
+}
 
-  &--disabled {
-    opacity: 0.5;
-    background-color: transparent;
-    text-decoration: line-through;
-  }
+.Fabricator__PrintAmount {
+  transition: opacity var(--transition-time-slow) ease-out;
+}
+
+.Fabricator__PrintAmount--disabled {
+  opacity: 0.5;
+  background-color: transparent;
+}
+
+.Fabricator__PrintAmount--disabled {
+  text-decoration: line-through;
 }
 
 .MaterialDock {
   position: relative;
-  box-sizing: border-box;
-  min-height: 4.25em;
-  padding: 0.5em;
-  border-radius: 0 0 0.25em 0.25em;
-  transition: opacity 0.5s ease-in-out;
-  user-select: none; // This is here for the reason, double clicking would highlight the number/text
+  padding: var(--space-m);
+  border-radius: 0 0 var(--border-radius-small) var(--border-radius-small);
+  transition: opacity var(--transition-time-slow) ease-in-out;
+}
 
-  &--active {
-    background-color: #111;
-    transition: background-color 0.125s ease-out;
-  }
+.MaterialDock--active {
+  background-color: hsl(0, 0%, 6.7%);
+  transition: background-color var(--transition-time-fas) ease-out;
+}
 
-  &__Label {
-    transition: opacity 0.5s ease-out;
-  }
+.MaterialDock__Label {
+  transition: opacity var(--transition-time-slow) ease-out;
+}
 
-  &--disabled &__Label {
-    opacity: 0.5;
-  }
+.MaterialDock--disabled .MaterialDock__Label {
+  opacity: 0.5;
+}
 
-  &__Dock {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    width: 100%;
-    padding: 0.5em;
-    border-radius: 0.25em 0.25em 0 0;
-    background-color: #111;
-    text-align: center;
-    box-shadow: 0 0 3px #000;
+.MaterialDock__Dock {
+  position: absolute;
+  background-color: hsl(0, 0%, 6.7%);
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  padding: var(--space-xl);
+  border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
+  text-align: center;
+  box-shadow: 0 0 3px var(--color-black);
+}
+
+.MaterialDock--active .MaterialDock__Dock {
+  animation: materialdock-open var(--transition-time-medium) ease-out;
+  @keyframes materialdock-open {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 }
 
-.FabricatorRecipe {
+.MaterialDock__Button {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
   position: relative;
+  box-shadow: 0 0 3px var(--color-black);
+}
+
+.FabricatorRecipe {
   display: flex;
   width: auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  user-select: none;
+  border-bottom: var(--border-thickness-tiny) solid hsla(0, 0%, 0%, 0.5);
+  position: relative;
 
   &:last-child {
     border-bottom: 0;
@@ -77,9 +95,9 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
     bottom: 0;
     left: 0;
     height: 4px;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.25);
-    transition: width 1s linear;
+    background-color: hsla(0, 0%, 100%, 0.25);
+    border-radius: var(--border-radius-medium);
+    transition: width var(--transition-time-slowest) linear;
   }
 
   &__Title,
@@ -89,25 +107,18 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
     align-items: center;
     justify-content: flex-start;
     margin: 0;
-    padding: 0.25em 0.5em;
+    padding: var(--space-s) var(--space-m);
     border-radius: 0;
-    background-color: rgba(base.$color-bg, 0);
-    color: $transparent-text;
-    transition:
-      opacity 0.5s ease-out,
-      background-color 50ms;
 
-    &:hover {
-      background-color: $transparent-hover-bg;
-      color: #fff;
-    }
+    @include button.button-color();
+    @include button.button-color-transparent();
 
     &:first-child {
-      border-radius: 4px 0 0 4px;
+      border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
     }
 
     &:last-child {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 var(--border-radius-medium) var(--border-radius-medium) 0;
     }
 
     &--disabled {
@@ -117,51 +128,41 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
 
   &__Title {
     flex-grow: 1;
-    min-width: 0;
   }
 
   &__Icon {
-    flex: none;
     width: 32px;
     height: 32px;
-    margin-right: 1em;
-  }
-
-  &__Label {
-    min-width: 0;
-    overflow-wrap: break-word;
+    margin-right: var(--space-xl);
   }
 
   &__Button {
-    flex: none;
     justify-self: flex-end;
 
-    &:not(.FabricatorRecipe__Button--icon) {
-      min-width: 4em;
-      justify-content: center;
-    }
-
     &--icon {
-      padding: 0 1em;
+      padding: 0 var(--space-xl);
     }
 
-    &--disabled:not(.FabricatorRecipe__Button--icon) {
+    &--disabled {
       text-decoration: line-through;
     }
   }
 }
 
 .FabricatorMaterialIcon {
-  position: relative;
   display: inline-block;
+  position: relative;
   width: 32px;
   height: 32px;
 
   &__Icon {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-out;
+    transition: opacity var(--transition-time-slow) ease-out;
 
     &--active {
       opacity: 1;
@@ -171,35 +172,83 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
 
 .FabricatorTabs {
   .FabricatorTabs {
-    margin-top: 0.5em;
-    padding-left: 0.25em;
+    margin-top: var(--space-m);
+    padding-left: var(--space-s);
   }
 
   &__Tab {
-    padding: 0.5em;
-    border-right: 2px solid transparent;
-    border-radius: 0.25em 0 0 0.25em;
-    background-color: rgba(base.$color-bg, 0);
-    color: $transparent-text;
-    transition:
-      border-color 0.125s ease-out,
-      background-color 0.0625s ease-out;
+    cursor: var(--cursor-pointer);
+    padding: var(--space-m);
+    background-color: var(--tab-background);
+    color: var(--tab-color);
+    border-right: var(--tab-indicator-size) solid transparent;
+    border-radius: var(--tab-border-radius) 0 0 var(--tab-border-radius);
+    transition-property: border-color, background-color;
+    transition-duration: var(--transition-time-fast);
+    transition-timing-function: ease-out;
 
     &:hover,
     &--active {
-      background-color: $transparent-hover-bg;
+      background-color: var(--tab-background-hover);
     }
 
     &--active {
-      border-right-color: colors.$primary;
-      color: #fff;
+      cursor: var(--cursor-default);
+      color: var(--tab-color-selected);
+      border-color: var(--color-primary);
     }
   }
 
   &__Label {
     display: flex;
-    gap: 0.25em;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+// AQUILA: additions on top of tg's fabricator styles.
+
+// Double clicking a recipe or a material would otherwise highlight its text.
+.MaterialDock,
+.FabricatorRecipe {
+  user-select: none;
+}
+
+.MaterialDock {
+  box-sizing: border-box;
+  min-height: 4.25em;
+}
+
+.FabricatorRecipe {
+  &__Title,
+  &__Label {
+    min-width: 0;
+  }
+
+  &__Label {
+    overflow-wrap: break-word;
+  }
+
+  &__Icon,
+  &__Button {
+    flex: none;
+  }
+
+  // The x5 / x10 / custom amount buttons keep one width, so the column lines up.
+  &__Button:not(.FabricatorRecipe__Button--icon) {
+    min-width: 4em;
+    justify-content: center;
+  }
+
+  &__Button--icon.FabricatorRecipe__Button--disabled {
+    text-decoration: none;
+  }
+}
+
+.FabricatorTabs {
+  &__Label {
+    gap: var(--space-s);
+    flex-wrap: nowrap;
   }
 
   &__CategoryName {
@@ -214,10 +263,13 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
   }
 }
 
-.Fabricator__Browser,
-.Fabricator__Browser .Stack__item,
-.Fabricator__Browser .Section,
-.Fabricator__Browser .Section__rest,
+// A category whose designs all sit in subcategories still carries the anchor the sidebar tab scrolls to.
+.Fabricator__CategoryAnchor + .Fabricator__CategoryAnchor,
+.Section + .Fabricator__CategoryAnchor {
+  margin-top: var(--space-m);
+}
+
+// Queue side panels of the exosuit and modular fabricators.
 .Fabricator__QueuePanel,
 .Fabricator__QueuePanel .Stack__item,
 .Fabricator__QueuePanel .Section,
@@ -226,43 +278,8 @@ $transparent-hover-bg: rgba(255, 255, 255, 0.05);
   min-width: 0;
 }
 
-.Fabricator__Categories,
 .Fabricator__Queue {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-.Fabricator__Designs {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-
-  .Section {
-    margin: 0;
-    background-color: transparent;
-
-    & > .Section__rest > .Section__content {
-      padding: 0;
-    }
-  }
-
-  .Section,
-  .Fabricator__CategoryAnchor {
-    margin-top: 0.5em;
-  }
-
-  .Section:first-child,
-  .Fabricator__CategoryAnchor:first-child {
-    margin-top: 0;
-  }
-}
-
-.Fabricator__Browser,
-.Fabricator__QueuePanel {
-  .Section__buttons {
-    top: 50%;
-    margin-top: 0;
-    transform: translateY(-50%);
-  }
 }

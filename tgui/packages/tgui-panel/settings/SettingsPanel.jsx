@@ -139,7 +139,7 @@ export const SettingsGeneral = (props) => {
                 <Input
                   width={'100%'}
                   value={fontFamily}
-                  onChange={(e, value) =>
+                  onBlur={(value) =>
                     dispatch(
                       updateSettings({
                         fontFamily: value,
@@ -195,6 +195,7 @@ export const SettingsGeneral = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Wysokość linii">
           <NumberInput
+            tickWhileDragging
             width="4.2em"
             step={0.01}
             stepPixelSize={2}
@@ -202,7 +203,7 @@ export const SettingsGeneral = (props) => {
             maxValue={5}
             value={lineHeight}
             format={(value) => toFixed(value, 2)}
-            onDrag={(value) =>
+            onChange={(value) =>
               dispatch(
                 updateSettings({
                   lineHeight: value,
@@ -412,7 +413,7 @@ const TextHighlightSetting = (props) => {
             monospace
             placeholder="#ffffff"
             value={highlightColor}
-            onInput={(e, value) =>
+            onChange={(value) =>
               dispatch(
                 updateHighlightSetting({
                   id: id,
@@ -427,7 +428,7 @@ const TextHighlightSetting = (props) => {
         height="3em"
         value={highlightText}
         placeholder="Wpisz słowa do podświetlenia, oddzielone przecinkami, np. (słowo1, słowo2, słowo3)"
-        onChange={(e, value) =>
+        onBlur={(value) =>
           dispatch(
             updateHighlightSetting({
               id: id,

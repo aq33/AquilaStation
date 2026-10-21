@@ -1,32 +1,45 @@
-import { toTitleCase } from 'common/string';
 import { Box, Button, Section, Table } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type Material = {
+  name: string;
+  amount: number;
+};
+
 type Data = {
-  materials: any;
+  materials: Material[];
 };
 
 export const OreBox = (props) => {
   const { act, data } = useBackend<Data>();
-  const { materials } = data;
+  const { materials = [] } = data;
+
   return (
     <Window width={335} height={415}>
       <Window.Content scrollable>
         <Section
-          title="Ores"
-          buttons={<Button content="Empty" onClick={() => act('removeall')} />}
+          title="Rudy"
+          buttons={
+            <Button
+              disabled={materials.length === 0}
+              onClick={() => act('removeall')}
+            >
+              Opróżnij
+            </Button>
+          }
         >
           <Table>
             <Table.Row header>
-              <Table.Cell>Ore</Table.Cell>
+              <Table.Cell>Ruda</Table.Cell>
               <Table.Cell collapsing textAlign="right">
-                Amount
+                Ilość
               </Table.Cell>
             </Table.Row>
-            {materials.map((material) => (
-              <Table.Row key={material.type}>
+            {materials.map((material, id) => (
+              <Table.Row key={id}>
                 <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
                 <Table.Cell collapsing textAlign="right">
                   <Box color="label" inline>
@@ -39,10 +52,11 @@ export const OreBox = (props) => {
         </Section>
         <Section>
           <Box>
-            All ores will be placed in here when you are wearing a mining
-            stachel on your belt or in a pocket while dragging the ore box.
+            Rudę można załadować ręcznie albo z torby górniczej. Jeśli ciągniesz
+            skrzynię, mając torbę przy pasku lub w kieszeni, wykopana ruda sama
+            do niej trafia.
             <br />
-            Gibtonite is not accepted.
+            Gibtonit nie jest przyjmowany.
           </Box>
         </Section>
       </Window.Content>

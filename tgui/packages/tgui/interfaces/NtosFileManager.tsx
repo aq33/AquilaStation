@@ -1,20 +1,33 @@
-import { Button, Section, Table } from 'tgui-core/components';
+import { Button, NoticeBox, Section, Table } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
-type Data = {
-  files: any;
-  usbconnected: any;
-  usbfiles: any;
+type FileEntry = {
+  name: string;
+  type: string;
+  size: number;
+  undeletable: BooleanLike;
+  alert_able?: BooleanLike;
+  alert_silenced?: BooleanLike;
 };
 
+type Data = {
+  error?: string;
+  usbconnected: BooleanLike;
+  files: FileEntry[];
+  usbfiles: FileEntry[];
+};
+
+// tg ma tu jeszcze drukowanie plików graficznych; u nas pliki nie mają obrazów, więc go nie ma.
 export const NtosFileManager = (props) => {
   const { act, data } = useBackend<Data>();
-  const { usbconnected, files = [], usbfiles = [] } = data;
+  const { error, usbconnected, files = [], usbfiles = [] } = data;
   return (
     <NtosWindow>
       <NtosWindow.Content scrollable>
+        {!!error && <NoticeBox danger>{error}</NoticeBox>}
         <Section>
           <FileTable
             files={files}
@@ -27,12 +40,11 @@ export const NtosFileManager = (props) => {
                 new_name: newName,
               })
             }
-            onDuplicate={(file) => act('PRG_clone', { file: file })}
             onToggleSilence={(file) => act('PRG_togglesilence', { name: file })}
           />
         </Section>
-        {usbconnected && (
-          <Section title="Data Disk">
+        {!!usbconnected && (
+          <Section title="Dysk danych">
             <FileTable
               usbmode
               files={usbfiles}
@@ -45,7 +57,6 @@ export const NtosFileManager = (props) => {
                   new_name: newName,
                 })
               }
-              onDuplicate={(file) => act('PRG_clone', { file: file })}
             />
           </Section>
         )}
@@ -54,7 +65,17 @@ export const NtosFileManager = (props) => {
   );
 };
 
-const FileTable = (props) => {
+type FileTableProps = {
+  files: FileEntry[];
+  usbconnected: BooleanLike;
+  usbmode?: BooleanLike;
+  onUpload: (file: string) => void;
+  onDelete: (file: string) => void;
+  onRename: (file: string, newName: string) => void;
+  onToggleSilence?: (file: string) => void;
+};
+
+const FileTable = (props: FileTableProps) => {
   const {
     files = [],
     usbconnected,
@@ -67,9 +88,9 @@ const FileTable = (props) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>File</Table.Cell>
-        <Table.Cell collapsing>Type</Table.Cell>
-        <Table.Cell collapsing>Size</Table.Cell>
+        <Table.Cell>Plik</Table.Cell>
+        <Table.Cell collapsing>Typ</Table.Cell>
+        <Table.Cell collapsing>Rozmiar</Table.Cell>
       </Table.Row>
       {files.map((file) => (
         <Table.Row key={file.name} className="candystripe">
@@ -77,10 +98,9 @@ const FileTable = (props) => {
             {!file.undeletable ? (
               <Button.Input
                 fluid
-                content={file.name}
-                currentValue={file.name}
-                tooltip="Rename"
-                onCommit={(e, value) => onRename(file.name, value)}
+                value={file.name}
+                tooltip="Zmień nazwę"
+                onCommit={(value) => onRename(file.name, value)}
               />
             ) : (
               file.name
@@ -89,11 +109,15 @@ const FileTable = (props) => {
           <Table.Cell>{file.type}</Table.Cell>
           <Table.Cell>{file.size}</Table.Cell>
           <Table.Cell collapsing>
-            {!!file.alert_able && (
+            {!!file.alert_able && !!onToggleSilence && (
               <Button
                 icon={file.alert_silenced ? 'bell-slash' : 'bell'}
                 color={file.alert_silenced ? 'red' : 'default'}
-                tooltip={file.alert_silenced ? 'Unmute Alerts' : 'Mute Alerts'}
+                tooltip={
+                  file.alert_silenced
+                    ? 'Włącz powiadomienia'
+                    : 'Wycisz powiadomienia'
+                }
                 onClick={() => onToggleSilence(file.name)}
               />
             )}
@@ -103,20 +127,20 @@ const FileTable = (props) => {
                   icon="trash"
                   confirmIcon="times"
                   confirmContent=""
-                  tooltip="Delete"
+                  tooltip="Usuń"
                   onClick={() => onDelete(file.name)}
                 />
                 {!!usbconnected &&
                   (usbmode ? (
                     <Button
                       icon="download"
-                      tooltip="Download"
+                      tooltip="Skopiuj na dysk komputera"
                       onClick={() => onUpload(file.name)}
                     />
                   ) : (
                     <Button
                       icon="upload"
-                      tooltip="Upload"
+                      tooltip="Skopiuj na dysk danych"
                       onClick={() => onUpload(file.name)}
                     />
                   ))}

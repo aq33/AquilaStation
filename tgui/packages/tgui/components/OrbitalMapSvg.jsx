@@ -482,7 +482,6 @@ class RenderableObjectType {
       outputYPosition > -250;
 
     if (!this.inBounds) {
-      outputRadius = 5 * zoomScale;
       outputXPosition = clamp(outputXPosition, -250, 250);
       outputYPosition = clamp(outputYPosition, -250, 250);
     }

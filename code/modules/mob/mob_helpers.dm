@@ -307,6 +307,7 @@
 	if(combat_mode_intent_change(input)) // AQ EDIT - port Bee #11899: w combat mode intencje tylko przełączają tryb walki
 		return
 
+	var/list/possible_a_intents = legacy_intent_choices() // AQ EDIT - standaryzacja combat mode: w starym trybie każdy żywy mob ma cztery intencje
 	if(!possible_a_intents || !possible_a_intents.len)
 		return
 

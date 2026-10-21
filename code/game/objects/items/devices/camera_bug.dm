@@ -50,11 +50,14 @@
 /obj/item/camera_bug/interact(mob/user)
 	ui_interact(user)
 
-/obj/item/camera_bug/ui_interact(mob/user = usr)
-	. = ..()
-	var/datum/browser/popup = new(user, "camerabug","Pluskwa kamerowa",nref=src)
-	popup.set_content(menu(get_cameras()))
-	popup.open()
+/obj/item/camera_bug/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CameraBug", name)
+		ui.open()
+
+/obj/item/camera_bug/ui_state(mob/user)
+	return GLOB.inventory_state
 
 /obj/item/camera_bug/attack_self(mob/user)
 	user.set_machine(src)
@@ -89,187 +92,160 @@
 	return sortList(bugged_cameras)
 
 
-/obj/item/camera_bug/proc/menu(list/cameras)
-	if(!cameras || !cameras.len)
-		return "Nie znaleziono podsłuchiwanych kamer."
-
-	var/html
+/obj/item/camera_bug/ui_data(mob/user)
+	var/list/data = list()
+	var/list/cameras = get_cameras()
+	if(track_mode == BUGMODE_MONITOR && !current)
+		track_mode = BUGMODE_LIST
+	if(track_mode == BUGMODE_TRACK && !tracking)
+		track_mode = BUGMODE_LIST
+	data["mode"] = track_mode
+	data["viewing"] = !!current
+	var/list/camera_list = list()
+	for(var/entry in cameras)
+		var/datum/weakref/camera_ref = cameras[entry]
+		var/obj/machinery/camera/camera = camera_ref.resolve()
+		if(!camera)
+			continue
+		camera_list += list(list(
+			"name" = entry,
+			"ref" = REF(camera_ref),
+			"bugged" = camera.bug == src,
+		))
+	data["cameras"] = camera_list
 	switch(track_mode)
-		if(BUGMODE_LIST)
-			html = "<h3>Select a camera:</h3> <a href='byond://?src=[REF(src)];view'>\[Cancel camera view\]</a><hr><table>"
-			for(var/entry in cameras)
-				var/datum/weakref/camera_ref = cameras[entry]
-				var/obj/machinery/camera/camera = camera_ref.resolve()
-				if(!camera)
-					cameras -= camera_ref
-					continue
-				var/functions = ""
-				if(camera.bug == src)
-					functions = " - <a href='byond://?src=[REF(src)];monitor=[REF(camera_ref)]'>\[Monitor\]</a> <a href='byond://?src=[REF(src)];emp=[REF(camera_ref)]'>\[Disable\]</a>"
-				else
-					functions = " - <a href='byond://?src=[REF(src)];monitor=[REF(camera_ref)]'>\[Monitor\]</a>"
-				html += "<tr><td><a href='byond://?src=[REF(src)];view=[REF(camera_ref)]'>[entry]</a></td><td>[functions]</td></tr>"
-
 		if(BUGMODE_MONITOR)
-			if(current)
-				html = "Analiza kamery '[current.c_tag]' <a href='byond://?[REF(src)];mode=0'>\[Wybierz kamerę\]</a><br>"
-				html += camera_report()
-			else
-				track_mode = BUGMODE_LIST
-				return .(cameras)
+			data["current_name"] = current.c_tag
+			data["camera_active"] = !!current.can_use()
+			data["seen"] = camera_report()
 		if(BUGMODE_TRACK)
-			if(tracking)
-				html = "Tracking '[tracked_name]'  <a href='byond://?[REF(src)];mode=0'>\[Cancel Tracking\]</a>  <a href='byond://?src=[REF(src)];view'>\[Cancel camera view\]</a><br>"
-				if(last_found)
-					var/time_diff = round((world.time - last_seen) / 150)
-					var/datum/weakref/camera_ref = bugged_cameras[last_found]
-					var/obj/machinery/camera/camera = camera_ref.resolve()
-					var/outstring
-					if(camera)
-						outstring = "<a href='byond://?[REF(src)];view=[REF(camera_ref)]'>[last_found]</a>"
-					else
-						outstring = last_found
-					if(!time_diff)
-						html += "Ostatnio widziany w pobliżu: [outstring] (teraz)<br>"
-					else
-						// 15 second intervals ~ 1/4 minute
-						var/m = round(time_diff/4)
-						var/s = (time_diff - 4*m) * 15
-						if(!s)
-							s = "00"
-						html += "Ostatnio widziany w pobliżu: [outstring] ([m]:[s] min temu)<br>"
-					if(camera && (camera.bug == src)) //Checks to see if the camera has a bug
-						html += "<a href='byond://?src=[REF(src)];emp=[REF(camera_ref)]'>\[Disable\]</a>"
-
+			data["tracked_name"] = tracked_name
+			if(last_found)
+				data["last_found"] = last_found
+				var/datum/weakref/camera_ref = bugged_cameras[last_found]
+				var/obj/machinery/camera/camera = camera_ref?.resolve()
+				if(camera)
+					data["last_found_ref"] = REF(camera_ref)
+					data["last_found_bugged"] = camera.bug == src
+				var/time_diff = round((world.time - last_seen) / 150)
+				if(!time_diff)
+					data["last_seen"] = "teraz"
 				else
-					html += "Jeszcze niewidziany."
-			else
-				track_mode = BUGMODE_LIST
-				return .(cameras)
-	return html
+					// 15 second intervals ~ 1/4 minute
+					var/m = round(time_diff/4)
+					var/s = (time_diff - 4*m) * 15
+					if(!s)
+						s = "00"
+					data["last_seen"] = "[m]:[s] min temu"
+	return data
 
 /obj/item/camera_bug/proc/get_seens()
 	if(current && current.can_use())
 		var/list/seen = current.can_see()
 		return seen
 
+/// Lista tego, co widzi monitorowana kamera: nazwa, dopisek i ref do śledzenia
 /obj/item/camera_bug/proc/camera_report()
 	// this should only be called if current exists
-	var/dat = ""
+	var/list/report = list()
 	var/list/seen = get_seens()
-	if(seen && seen.len >= 1)
-		var/list/names = list()
-		for(var/obj/anomaly/singularity/S in seen) // god help you if you see more than one
-			if(S.name in names)
-				names[S.name]++
-				dat += "[S.name] ([names[S.name]])"
-			else
-				names[S.name] = 1
-				dat += "[S.name]"
-			var/stage = round(S.current_size / 2)+1
-			dat += " (Stage [stage])"
-			dat += " <a href='byond://?[REF(src)];track=[REF(S)]'>\[Track\]</a><br>"
+	if(!length(seen))
+		return report
+	var/list/names = list()
+	for(var/obj/anomaly/singularity/S in seen) // god help you if you see more than one
+		names[S.name]++
+		var/stage = round(S.current_size / 2)+1
+		report += list(list(
+			"name" = names[S.name] > 1 ? "[S.name] ([names[S.name]])" : S.name,
+			"extra" = "Stage [stage]",
+			"ref" = REF(S),
+		))
+	for(var/obj/mecha/M in seen)
+		names[M.name]++
+		report += list(list(
+			"name" = names[M.name] > 1 ? "[M.name] ([names[M.name]])" : M.name,
+			"ref" = REF(M),
+		))
+	for(var/mob/living/M in seen)
+		names[M.name]++
+		var/extra
+		if(!(M.mobility_flags & MOBILITY_STAND))
+			extra = M.buckled ? "Siedzi" : "Leży"
+		report += list(list(
+			"name" = names[M.name] > 1 ? "[M.name] ([names[M.name]])" : M.name,
+			"extra" = extra,
+			"ref" = REF(M),
+		))
+	return report
 
-		for(var/obj/mecha/M in seen)
-			if(M.name in names)
-				names[M.name]++
-				dat += "[M.name] ([names[M.name]])"
-			else
-				names[M.name] = 1
-				dat += "[M.name]"
-			dat += " <a href='byond://?[REF(src)];track=[REF(M)]'>\[Track\]</a><br>"
-
-
-		for(var/mob/living/M in seen)
-			if(M.name in names)
-				names[M.name]++
-				dat += "[M.name] ([names[M.name]])"
-			else
-				names[M.name] = 1
-				dat += "[M.name]"
-			if(!(M.mobility_flags & MOBILITY_STAND))
-				if(M.buckled)
-					dat += " (Sitting)"
-				else
-					dat += " (Leży)"
-			dat += " <a href='byond://?[REF(src)];track=[REF(M)]'>\[Track\]</a><br>"
-		if(length(dat) == 0)
-			dat += "Nie wykryto ruchu."
-		return dat
-	else
-		return "Kamera wyłączona<br>"
-
-/obj/item/camera_bug/Topic(href,list/href_list)
-	if(usr != loc)
-		usr.unset_machine()
-		usr << browse(null, "window=camerabug")
+/obj/item/camera_bug/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
 	usr.set_machine(src)
-	if("mode" in href_list)
-		track_mode = text2num(href_list["mode"])
-	if("monitor" in href_list)
-		//You can't locate on a list with keys
-		var/list/cameras = flatten_list(bugged_cameras)
-		var/datum/weakref/camera_ref = locate(href_list["monitor"]) in cameras
-		var/obj/machinery/camera/camera = camera_ref.resolve()
-		if(camera && istype(camera))
-			if(!same_z_level(camera))
-				return
-			track_mode = BUGMODE_MONITOR
-			current = camera
-			usr.reset_perspective(null)
-			interact()
-	if("track" in href_list)
-		var/list/seen = get_seens()
-		if(seen && seen.len >= 1)
-			var/atom/A = locate(href_list["track"]) in seen
-			if(A && istype(A))
-				tracking = A
-				tracked_name = A.name
-				last_found = current.c_tag
-				last_seen = world.time
-				track_mode = BUGMODE_TRACK
-	if("emp" in href_list)
-		//You can't locate on a list with keys
-		var/list/cameras = flatten_list(bugged_cameras)
-		var/datum/weakref/camera_ref = locate(href_list["emp"]) in cameras
-		var/obj/machinery/camera/camera = camera_ref.resolve()
-		if(camera && istype(camera) && camera.bug == src)
-			if(!same_z_level(camera))
-				return
-			camera.emp_act(EMP_HEAVY)
-			camera.bug = null
-			bugged_cameras -= camera.c_tag
-		interact()
-		return
-	if("close" in href_list)
-		usr.unset_machine()
-		current = null
-		return
-	if("view" in href_list)
-		//You can't locate on a list with keys
-		var/list/cameras = flatten_list(bugged_cameras)
-		var/datum/weakref/camera_ref = locate(href_list["view"]) in cameras
-		var/obj/machinery/camera/camera = camera_ref.resolve()
-		if(camera && istype(camera))
+	switch(action)
+		if("mode")
+			track_mode = text2num(params["mode"])
+			return TRUE
+		if("monitor")
+			//You can't locate on a list with keys
+			var/list/cameras = flatten_list(bugged_cameras)
+			var/datum/weakref/camera_ref = locate(params["ref"]) in cameras
+			var/obj/machinery/camera/camera = camera_ref?.resolve()
+			if(camera && istype(camera))
+				if(!same_z_level(camera))
+					return
+				track_mode = BUGMODE_MONITOR
+				current = camera
+				usr.reset_perspective(null)
+			return TRUE
+		if("track")
+			var/list/seen = get_seens()
+			if(length(seen))
+				var/atom/A = locate(params["ref"]) in seen
+				if(A && istype(A))
+					tracking = A
+					tracked_name = A.name
+					last_found = current.c_tag
+					last_seen = world.time
+					track_mode = BUGMODE_TRACK
+			return TRUE
+		if("emp")
+			//You can't locate on a list with keys
+			var/list/cameras = flatten_list(bugged_cameras)
+			var/datum/weakref/camera_ref = locate(params["ref"]) in cameras
+			var/obj/machinery/camera/camera = camera_ref?.resolve()
+			if(camera && istype(camera) && camera.bug == src)
+				if(!same_z_level(camera))
+					return
+				camera.emp_act(EMP_HEAVY)
+				camera.bug = null
+				bugged_cameras -= camera.c_tag
+			return TRUE
+		if("view")
+			if(!params["ref"]) // Wyłącz podgląd kamery
+				usr.unset_machine()
+				return TRUE
+			//You can't locate on a list with keys
+			var/list/cameras = flatten_list(bugged_cameras)
+			var/datum/weakref/camera_ref = locate(params["ref"]) in cameras
+			var/obj/machinery/camera/camera = camera_ref?.resolve()
+			if(!camera || !istype(camera))
+				usr.unset_machine()
+				return TRUE
 			if(!same_z_level(camera))
 				return
 			if(!camera.can_use())
 				to_chat(usr, "<span class='warning'>Coś jest nie tak z tą kamerą! Nie możesz odebrać obrazu.</span>")
 				return
 			current = camera
+			var/mob/viewer = usr
 			spawn(6)
-				if(src.check_eye(usr))
-					usr.reset_perspective(camera)
-					interact()
+				if(check_eye(viewer))
+					viewer.reset_perspective(camera)
 				else
-					usr.unset_machine()
-					usr << browse(null, "window=camerabug")
-			return
-		else
-			usr.unset_machine()
-
-	interact()
+					viewer.unset_machine()
+			return TRUE
 
 /obj/item/camera_bug/process()
 	if(track_mode == BUGMODE_LIST || (world.time < (last_tracked + refresh_interval)))
@@ -279,7 +255,6 @@
 		// Note that it will be tricked if your name appears to change.
 		// This is not optimal but it is better than tracking you relentlessly despite everything.
 		if(!tracking)
-			src.updateSelfDialog()
 			return
 
 		if(tracking.name != tracked_name) // Hiding their identity, tricksy
@@ -287,10 +262,8 @@
 			if(istype(M))
 				if(!(tracked_name == "Unknown" && findtext(tracking.name,"Unknown"))) // we saw then disguised before
 					if(!(tracked_name == M.real_name && findtext(tracking.name,M.real_name))) // or they're still ID'd
-						src.updateSelfDialog()//But if it's neither of those cases
 						return // you won't find em on the cameras
 			else
-				src.updateSelfDialog()
 				return
 
 		var/list/tracking_cams = list()
@@ -306,7 +279,6 @@
 				last_found = C.c_tag
 				last_seen = world.time
 				break
-	src.updateSelfDialog()
 
 /obj/item/camera_bug/proc/same_z_level(var/obj/machinery/camera/C)
 	var/turf/T_cam = get_turf(C)

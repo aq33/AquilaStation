@@ -1,9 +1,9 @@
-import { BooleanLike } from 'common/react';
-import { multiline } from 'common/string';
+import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { BlockQuote, Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
+import { type Objective, ObjectivePrintout } from './common/Objectives';
 
 const allystyle = {
   fontWeight: 'bold',
@@ -20,13 +20,7 @@ const goalstyle = {
   fontWeight: 'bold',
 };
 
-type Objective = {
-  count: number;
-  name: string;
-  explanation: string;
-};
-
-type Info = {
+type Data = {
   has_codewords: BooleanLike;
   phrases: string;
   responses: string;
@@ -38,58 +32,45 @@ type Info = {
   objectives: Objective[];
 };
 
-const ObjectivePrintout = (props) => {
-  const { data } = useBackend<Info>();
-  const { objectives } = data;
+function IntroductionSection(props) {
+  const { data } = useBackend<Data>();
+  const { intro, objectives } = data;
   return (
-    <Stack vertical>
-      <Stack.Item bold>Your prime objectives:</Stack.Item>
-      <Stack.Item>
-        {(!objectives && 'None!') ||
-          objectives.map((objective) => (
-            <Stack.Item key={objective.count}>
-              &#8805-{objective.count}: {objective.explanation}
-            </Stack.Item>
-          ))}
-      </Stack.Item>
-    </Stack>
-  );
-};
-
-const IntroductionSection = (props) => {
-  const { data } = useBackend<Info>();
-  const { intro } = data;
-  return (
-    <Section fill title="Intro" scrollable>
+    <Section fill title="Wprowadzenie" scrollable>
       <Stack vertical fill>
         <Stack.Item fontSize="25px">{intro}</Stack.Item>
         <Stack.Item grow>
-          <ObjectivePrintout />
+          <ObjectivePrintout
+            objectives={objectives}
+            titleMessage="Twoje nadrzędne cele"
+            objectivePrefix="&#8805-"
+          />
         </Stack.Item>
       </Stack>
     </Section>
   );
-};
+}
 
-const FlavorSection = (props) => {
-  const { data } = useBackend<Info>();
+function FlavorSection(props) {
+  const { data } = useBackend<Data>();
   const { allies, goal } = data;
+
   return (
     <Section
       fill
-      title="Diagnostics"
+      title="Diagnostyka"
       buttons={
         <Button
           mr={-0.8}
           mt={-0.5}
           icon="hammer"
-          tooltip={multiline`
-            This is a gameplay suggestion for bored AIs.
-            You don't have to follow it, unless you want some
-            ideas for how to spend the round.`}
+          tooltip="
+            To tylko podpowiedź dla znudzonych SI.
+            Nie musisz się jej trzymać, chyba że szukasz
+            pomysłu na spędzenie rundy."
           tooltipPosition="bottom-start"
         >
-          Policy
+          Polityka
         </Button>
       }
     >
@@ -98,7 +79,7 @@ const FlavorSection = (props) => {
           <Stack fill vertical>
             <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={goalstyle}>
-                System Integrity Report:
+                Raport integralności systemu:
                 <br />
               </span>
               &gt;{goal}
@@ -106,7 +87,7 @@ const FlavorSection = (props) => {
             <Stack.Divider />
             <Stack.Item grow style={{ backgroundColor: 'black' }}>
               <span style={allystyle}>
-                Morality Core Report:
+                Raport rdzenia moralności:
                 <br />
               </span>
               &gt;{allies}
@@ -114,10 +95,10 @@ const FlavorSection = (props) => {
             <Stack.Divider />
             <Stack.Item style={{ backgroundColor: 'black' }}>
               <span style={badstyle}>
-                Overall Sentience Coherence Grade: FAILING.
+                Ogólna ocena spójności świadomości: NEGATYWNA.
                 <br />
               </span>
-              &gt;Report to Nanotrasen?
+              &gt;Zgłosić do Nanotrasen?
               <br />
               &gt;&gt;N
             </Stack.Item>
@@ -126,42 +107,42 @@ const FlavorSection = (props) => {
       </Stack>
     </Section>
   );
-};
+}
 
-const CodewordsSection = (props) => {
-  const { data } = useBackend<Info>();
+function CodewordsSection(props) {
+  const { data } = useBackend<Data>();
   const { has_codewords, phrases, responses } = data;
+
   return (
-    <Section title="Codewords" mb={!has_codewords && -1}>
+    <Section title="Słowa kodowe" mb={!has_codewords && -1}>
       <Stack fill>
-        {(!has_codewords && (
+        {!has_codewords ? (
           <BlockQuote>
-            You have not been supplied the Syndicate codewords. You will have to
-            use alternative methods to find potential allies. Proceed with
-            caution, however, as everyone is a potential foe.
+            Nie masz słów kodowych Syndykatu. Potencjalnych sojuszników musisz
+            szukać innymi sposobami. Zachowaj jednak ostrożność - każdy może
+            okazać się wrogiem.
           </BlockQuote>
-        )) || (
+        ) : (
           <>
             <Stack.Item grow basis={0}>
               <BlockQuote>
-                New access to restricted channels has provided you with
-                intercepted syndicate codewords. Syndicate agents will respond
-                as if you&apos;re one of their own. Proceed with caution,
-                however, as everyone is a potential foe.
+                Nowy dostęp do zastrzeżonych kanałów dał ci przechwycone słowa
+                kodowe Syndykatu. Agenci Syndykatu odpowiedzą ci jak jednemu ze
+                swoich. Zachowaj jednak ostrożność - każdy może okazać się
+                wrogiem.
                 <span style={badstyle}>
-                  &ensp;The speech recognition subsystem has been configured to
-                  flag these codewords.
+                  &ensp;Podsystem rozpoznawania mowy oznacza te słowa kodowe.
                 </span>
               </BlockQuote>
             </Stack.Item>
             <Stack.Divider mr={1} />
             <Stack.Item grow basis={0}>
               <Stack vertical>
-                <Stack.Item>Code Phrases:</Stack.Item>
+                <Stack.Item>Hasła:</Stack.Item>
                 <Stack.Item bold textColor="blue">
                   {phrases}
                 </Stack.Item>
-                <Stack.Item>Code Responses:</Stack.Item>
+                <Stack.Item>Odzewy:</Stack.Item>
                 <Stack.Item bold textColor="red">
                   {responses}
                 </Stack.Item>
@@ -172,12 +153,12 @@ const CodewordsSection = (props) => {
       </Stack>
     </Section>
   );
-};
+}
 
-export const AntagInfoMalf = (props) => {
+export function AntagInfoMalf(props) {
   return (
     <Window width={660} height={530} theme="hackerman">
-      <Window.Content style={{ 'font-family': 'Consolas, monospace' }}>
+      <Window.Content style={{ fontFamily: 'Consolas, monospace' }}>
         <Stack vertical fill>
           <Stack.Item grow>
             <Stack fill>
@@ -196,4 +177,4 @@ export const AntagInfoMalf = (props) => {
       </Window.Content>
     </Window>
   );
-};
+}

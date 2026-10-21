@@ -27,21 +27,21 @@ export const InterfaceLockNoticeBox = (props) => {
     siliconUser = data.siliconUser,
     locked = data.locked,
     onLockStatusChange = () => act('lock'),
-    accessText = 'an ID card',
+    accessText = 'kartę identyfikacyjną',
   } = props;
   // For silicon users
   if (siliconUser) {
     return (
       <NoticeBox color={siliconUser ? 'grey' : undefined}>
         <Flex align="center">
-          <Flex.Item>Interface lock status:</Flex.Item>
+          <Flex.Item>Blokada interfejsu:</Flex.Item>
           <Flex.Item grow={1} />
           <Flex.Item>
             <Button
               m={0}
               color={locked ? 'red' : 'green'}
               icon={locked ? 'lock' : 'unlock'}
-              content={locked ? 'Locked' : 'Unlocked'}
+              content={locked ? 'Zablokowany' : 'Odblokowany'}
               onClick={() => {
                 if (onLockStatusChange) {
                   onLockStatusChange(!locked);
@@ -56,7 +56,8 @@ export const InterfaceLockNoticeBox = (props) => {
   // For everyone else
   return (
     <NoticeBox>
-      Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.
+      Przeciągnij {accessText}, żeby {locked ? 'odblokować' : 'zablokować'} ten
+      interfejs.
     </NoticeBox>
   );
 };

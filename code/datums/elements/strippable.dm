@@ -352,6 +352,12 @@
 		ui.open()
 		ui.set_autoupdate(TRUE) // Item changes from outside stripping
 
+// AQUILA EDIT - obrazki pustych slotów dla okna z tg
+/datum/strip_menu/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/inventory),
+	)
+
 /datum/strip_menu/ui_data(mob/user)
 	var/list/data = list()
 
@@ -376,6 +382,7 @@
 
 		if(item_data.is_unavailable(owner))
 			LAZYSET(result, "unavailable", TRUE)
+			LAZYSET(result, "obscured", STRIPPABLE_OBSCURING_COMPLETELY) // AQUILA EDIT - tg pokazuje to jako zablokowany slot
 			items[strippable_key] = result
 			continue
 
@@ -386,11 +393,12 @@
 
 		LAZYINITLIST(result)
 
-		/* We don't use item icons in our strip menu, keeping this here in case we want it in the future
+		// AQUILA EDIT - okno StripMenu z tg pokazuje ikony przedmiotów i listę akcji dodatkowych
 		result["icon"] = icon2base64(icon(item.icon, item.icon_state, frame=1))
-		*/
 		result["name"] = item.name
-		result["alternate"] = item_data.get_alternate_action(owner, user)
+		var/alternate_action = item_data.get_alternate_action(owner, user)
+		if(!isnull(alternate_action))
+			result["alternate"] = list(alternate_action)
 
 		items[strippable_key] = result
 

@@ -1,91 +1,90 @@
+import { useState } from 'react';
 import { Button, Flex, Input, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
 type Data = {
-  lower: any;
-  upper: any;
+  upper: string | null;
+  lower: string | null;
+  maxStatusLineLength: number;
 };
 
+/**
+ * Układ jak tg (common/StatusDisplayControls), ale z naszym zestawem
+ * obrazków (GLOB.approved_status_pictures) i akcjami programu.
+ */
 export const NtosStatus = (props) => {
   const { act, data } = useBackend<Data>();
-  const { upper, lower } = data;
+  const { maxStatusLineLength } = data;
+  const [upperText, setUpperText] = useState(data.upper || '');
+  const [lowerText, setLowerText] = useState(data.lower || '');
+
+  const setPicture = (picture: string) => act('stat_pic', { picture });
 
   return (
-    <NtosWindow width={310} height={320}>
+    <NtosWindow width={400} height={350}>
       <NtosWindow.Content>
         <Section>
-          <Flex direction="column">
+          <Button
+            icon="toggle-off"
+            color="bad"
+            onClick={() => setPicture('blank')}
+          >
+            Wyłącz
+          </Button>
+          <Button icon="space-shuttle" onClick={() => setPicture('shuttle')}>
+            Czas przylotu promu
+          </Button>
+        </Section>
+        <Section title="Grafika">
+          <Button icon="flag" onClick={() => setPicture('default')}>
+            Logo
+          </Button>
+          <Button icon="bell" onClick={() => setPicture('redalert')}>
+            Czerwony alarm
+          </Button>
+          <Button
+            icon="exclamation-triangle"
+            onClick={() => setPicture('lockdown')}
+          >
+            Blokada
+          </Button>
+          <Button icon="biohazard" onClick={() => setPicture('biohazard')}>
+            Zagrożenie biologiczne
+          </Button>
+        </Section>
+        <Section title="Wiadomość">
+          <Flex direction="column" align="stretch">
+            <Flex.Item mb={1}>
+              <Input
+                fluid
+                maxLength={maxStatusLineLength}
+                placeholder="Górna linia"
+                value={upperText}
+                onChange={setUpperText}
+              />
+            </Flex.Item>
+            <Flex.Item mb={1}>
+              <Input
+                fluid
+                maxLength={maxStatusLineLength}
+                placeholder="Dolna linia"
+                value={lowerText}
+                onChange={setLowerText}
+              />
+            </Flex.Item>
             <Flex.Item>
               <Button
-                icon="times"
-                content="Clear Alert"
-                color="bad"
-                onClick={() => act('stat_pic', { picture: 'blank' })}
-              />
-            </Flex.Item>
-            <Flex.Item mt={1}>
-              <Button
-                icon="check-square-o"
-                content="Default"
-                onClick={() => act('stat_pic', { picture: 'default' })}
-              />
-
-              <Button
-                icon="bell-o"
-                content="Red Alert"
-                onClick={() => act('stat_pic', { picture: 'redalert' })}
-              />
-
-              <Button
-                icon="exclamation-triangle"
-                content="Lockdown"
-                onClick={() => act('stat_pic', { picture: 'lockdown' })}
-              />
-
-              <Button
-                icon="exclamation-circle"
-                content="Biohazard"
-                onClick={() => act('stat_pic', { picture: 'biohazard' })}
-              />
-
-              <Button
-                icon="space-shuttle"
-                content="Shuttle ETA"
-                onClick={() => act('stat_pic', { picture: 'shuttle' })}
-              />
+                icon="comment"
+                onClick={() =>
+                  act('setStatusMessage', { upperText, lowerText })
+                }
+              >
+                Wyślij
+              </Button>
             </Flex.Item>
           </Flex>
-        </Section>
-        <Section>
-          <Input
-            fluid
-            value={upper}
-            onChange={(e, value) =>
-              act('stat_update', {
-                position: 'upper',
-                text: value,
-              })
-            }
-          />
-          <br />
-          <Input
-            fluid
-            value={lower}
-            onChange={(e, value) =>
-              act('stat_update', {
-                position: 'lower',
-                text: value,
-              })
-            }
-          />
-          <br />
-          <Button
-            fluid
-            onClick={() => act('stat_send')}
-            content="Update Status Displays"
-          />
         </Section>
       </NtosWindow.Content>
     </NtosWindow>

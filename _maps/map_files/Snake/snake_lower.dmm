@@ -5348,6 +5348,25 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
+"lS" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/fax{
+	fax_name = "Medical";
+	name = "Medical Fax Machine"
+	},
+/obj/structure/table,
+/obj/item/tgui_book/manual/dsm,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+"lT" = (
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/wood,
+/area/library)
 "lV" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -51206,7 +51225,7 @@ cd
 nF
 Lt
 fs
-KB
+lS
 zg
 du
 Ky
@@ -64298,7 +64317,7 @@ PH
 Cq
 lD
 Tx
-dG
+lT
 PH
 to
 Mr

@@ -22,6 +22,7 @@
 	data["shuttle_name"] = shuttle?.name
 	data["status"] = shuttle?.getStatusText()
 	data["mode"] = shuttle?.mode
+	data["timer_str"] = shuttle?.getTimerStr()
 	data["custom_landing"] = allow_custom_landing
 	data["admin_controlled"] = admin_controlled
 	data["can_request"] = istype(src, /obj/machinery/computer/shuttle_flight/ferry/request)

@@ -26,6 +26,17 @@
 	},
 /turf/open/floor/carpet/ship/red_carpet,
 /area/security/prison)
+"ad" = (
+/obj/item/pinpointer/crew,
+/obj/item/storage/fancy/cigarettes/cigpack_uplift,
+/obj/structure/table/glass/plasma,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/machinery/keycard_auth,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -891,6 +902,29 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"bT" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/tgui_book/manual/dsm{
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/medbay/lobby)
 "bU" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/ship/blue{
@@ -47079,7 +47113,7 @@ zP
 IM
 az
 NY
-jt
+ad
 JT
 yb
 aU
@@ -48117,7 +48151,7 @@ lg
 EE
 wj
 vd
-QF
+bT
 Mz
 Mz
 sJ

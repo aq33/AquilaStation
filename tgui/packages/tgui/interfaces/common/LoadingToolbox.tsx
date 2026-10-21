@@ -24,7 +24,7 @@ export function LoadingScreen(props) {
       <Stack.Item>
         <Icon color="blue" name="toolbox" spin size={4} />
       </Stack.Item>
-      <Stack.Item>Please wait...</Stack.Item>
+      <Stack.Item>Proszę czekać...</Stack.Item>
     </Stack>
   );
 }

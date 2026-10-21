@@ -175,78 +175,30 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	enemy_name = replacetext((name_part1 + name_part2), "the ", "")
 	name = (name_action + name_part1 + name_part2)
 
-/obj/machinery/computer/arcade/battle/ui_interact(mob/user)
+/obj/machinery/computer/arcade/battle/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ArcadeBattle", name)
+		ui.open()
+
+/obj/machinery/computer/arcade/battle/ui_data(mob/user)
+	var/list/data = list()
+	data["enemy_name"] = enemy_name
+	data["temp"] = temp
+	data["player_hp"] = player_hp
+	data["player_mp"] = player_mp
+	data["enemy_hp"] = enemy_hp
+	data["gameover"] = gameover
+	data["blocked"] = blocked
+	return data
+
+/obj/machinery/computer/arcade/battle/ui_act(action, list/params)
 	. = ..()
-	var/dat = "<a href='byond://?src=[REF(src)];close=1'>Close</a>"
-	dat += "<center><h4>[enemy_name]</h4></center>"
-
-	dat += "<br><center><h3>[temp]</h3></center>"
-	dat += "<br><center>Zdrowie: [player_hp] | Magia: [player_mp] | Zdrowie wroga: [enemy_hp]</center>"
-
-	if (gameover)
-		dat += "<center><b><a href='byond://?src=[REF(src)];newgame=1'>Nowa gra</a>"
-	else
-		dat += "<center><b><a href='byond://?src=[REF(src)];attack=1'>Attack</a> | "
-		dat += "<a href='byond://?src=[REF(src)];heal=1'>Heal</a> | "
-		dat += "<a href='byond://?src=[REF(src)];charge=1'>Odnów moc</a>"
-
-	dat += "</b></center>"
-	var/datum/browser/popup = new(user, "arcade", "Space Villain 2000")
-	popup.set_content(dat)
-	popup.open()
-
-/obj/machinery/computer/arcade/battle/Topic(href, href_list)
-	if(..())
+	if(.)
 		return
+	add_fingerprint(usr)
 
-	if (!blocked && !gameover)
-		if (href_list["attack"])
-			blocked = TRUE
-			var/attackamt = rand(2,6)
-			temp = "Atakujesz, zadając [attackamt] obrażeń!"
-			playsound(loc, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
-			updateUsrDialog()
-			if(turtle > 0)
-				turtle--
-
-			sleep(10)
-			enemy_hp -= attackamt
-			arcade_action(usr)
-
-		else if (href_list["heal"])
-			blocked = TRUE
-			var/pointamt = rand(1,3)
-			var/healamt = rand(6,8)
-			temp = "Używasz [pointamt] magii, by wyleczyć [healamt] obrażeń!"
-			playsound(loc, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
-			updateUsrDialog()
-			turtle++
-
-			sleep(10)
-			player_mp -= pointamt
-			player_hp += healamt
-			blocked = TRUE
-			updateUsrDialog()
-			arcade_action(usr)
-
-		else if (href_list["charge"])
-			blocked = TRUE
-			var/chargeamt = rand(4,7)
-			temp = "Odzyskujesz [chargeamt] punktów"
-			playsound(loc, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
-			player_mp += chargeamt
-			if(turtle > 0)
-				turtle--
-
-			updateUsrDialog()
-			sleep(10)
-			arcade_action(usr)
-
-	if (href_list["close"])
-		usr.unset_machine()
-		usr << browse(null, "window=arcade")
-
-	else if (href_list["newgame"]) //Reset everything
+	if(action == "newgame") //Reset everything
 		temp = "Nowa runda"
 		player_hp = 30
 		player_mp = 10
@@ -258,10 +210,54 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		if(obj_flags & EMAGGED)
 			Reset()
 			obj_flags &= ~EMAGGED
+		return TRUE
 
-	add_fingerprint(usr)
-	updateUsrDialog()
-	return
+	if(blocked || gameover)
+		return
+	switch(action)
+		if("attack")
+			blocked = TRUE
+			var/attackamt = rand(2,6)
+			temp = "Atakujesz, zadając [attackamt] obrażeń!"
+			playsound(loc, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
+			SStgui.update_uis(src)
+			if(turtle > 0)
+				turtle--
+
+			sleep(10)
+			enemy_hp -= attackamt
+			arcade_action(usr)
+			return TRUE
+
+		if("heal")
+			blocked = TRUE
+			var/pointamt = rand(1,3)
+			var/healamt = rand(6,8)
+			temp = "Używasz [pointamt] magii, by wyleczyć [healamt] obrażeń!"
+			playsound(loc, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
+			SStgui.update_uis(src)
+			turtle++
+
+			sleep(10)
+			player_mp -= pointamt
+			player_hp += healamt
+			SStgui.update_uis(src)
+			arcade_action(usr)
+			return TRUE
+
+		if("charge")
+			blocked = TRUE
+			var/chargeamt = rand(4,7)
+			temp = "Odzyskujesz [chargeamt] punktów"
+			playsound(loc, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
+			player_mp += chargeamt
+			if(turtle > 0)
+				turtle--
+
+			SStgui.update_uis(src)
+			sleep(10)
+			arcade_action(usr)
+			return TRUE
 
 /obj/machinery/computer/arcade/battle/proc/arcade_action(mob/user)
 	if ((enemy_mp <= 0) || (enemy_hp <= 0))
@@ -293,7 +289,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		temp = "[enemy_name] kradnie ci [stealamt] mocy!"
 		playsound(loc, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff_exponent = 10)
 		player_mp -= stealamt
-		updateUsrDialog()
+		SStgui.update_uis(src)
 
 		if (player_mp <= 0)
 			gameover = TRUE
@@ -346,7 +342,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	name = "Outbomb Cuban Pete"
 
 
-	updateUsrDialog()
+	SStgui.update_uis(src)
 
 
 
@@ -507,66 +503,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 					return
 
 
-/obj/machinery/computer/arcade/orion_trail/ui_interact(mob/user)
-	. = ..()
-	if(fuel <= 0 || food <=0 || settlers.len == 0)
-		gameStatus = ORION_STATUS_GAMEOVER
-		event = null
-	var/dat = ""
-	if(gameStatus == ORION_STATUS_GAMEOVER)
-		dat = "<center><h1>Koniec gry</h1></center>"
-		dat += "Jak wielu przed tobą, twoja załoga nigdy nie dotarła na Oriona, zagubiona w kosmosie. <br><b>Na zawsze</b>."
-		if(!settlers.len)
-			dat += "<br>Cała twoja załoga zginęła, a twój statek dołącza do floty statków widm zaśmiecających galaktykę."
-		else
-			if(food <= 0)
-				dat += "<br>Skończyło ci się jedzenie i umarłeś z głodu."
-				if(obj_flags & EMAGGED)
-					user.set_nutrition(0) //yeah you pretty hongry
-					to_chat(user, "<span class='userdanger'>Twoje ciało natychmiast kurczy się jak u kogoś, kto nie jadł od miesięcy. Rozdzierające skurcze powalają cię na podłogę.</span>")
-			if(fuel <= 0)
-				dat += "<br>Skończyło ci się paliwo i powoli dryfujesz w stronę gwiazdy."
-				if(obj_flags & EMAGGED)
-					var/mob/living/M = user
-					M.adjust_fire_stacks(5)
-					M.IgniteMob() //flew into a star, so you're on fire
-					to_chat(user, "<span class='userdanger'>Czujesz, jak z automatu bije ogromna fala gorąca. Twoja skóra staje w płomieniach.</span>")
-
-		if(obj_flags & EMAGGED)
-			to_chat(user, "<span class='userdanger'>Nigdy nie dotrzesz na Oriona...</span>")
-			user.death()
-			obj_flags &= ~EMAGGED //removes the emagged status after you lose
-			gameStatus = ORION_STATUS_START
-			name = "The Orion Trail"
-			desc = "Learn how our ancestors got to Orion, and have fun in the process!"
-
-		dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];menu=1'>Niech spoczywają w pokoju</a></P>"
-	else if(event)
-		dat = eventdat
-	else if(gameStatus == ORION_STATUS_NORMAL)
-		var/title = stops[turns]
-		var/subtext = stopblurbs[turns]
-		dat = "<center><h1>[title]</h1></center>"
-		dat += "[subtext]"
-		dat += "<h3><b>Crew:</b></h3>"
-		dat += english_list(settlers)
-		dat += "<br><b>Jedzenie: </b>[food] | <b>Paliwo: </b>[fuel]"
-		dat += "<br><b>Części silnika: </b>[engine] | <b>Płyty kadłuba: </b>[hull] | <b>Elektronika: </b>[electronics]"
-		if(turns == 7)
-			dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];pastblack=1'>Omiń</a> <a href='byond://?src=[REF(src)];blackhole=1'>Leć dalej</a></P>"
-		else
-			dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];continue=1'>Continue</a></P>"
-		dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];killcrew=1'>Kill a Crewmember</a></P>"
-		dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
-	else
-		dat = "<center><h2>The Orion Trail</h2></center>"
-		dat += "<br><center><h3>Przeżyj podróż swoich przodków!</h3></center><br><br>"
-		dat += "<center><b><a href='byond://?src=[REF(src)];newgame=1'>Nowa gra</a></b></center>"
-		dat += "<P ALIGN=Right><a href='byond://?src=[REF(src)];close=1'>Close</a></P>"
-	var/datum/browser/popup = new(user, "arcade", "The Orion Trail",400,700)
-	popup.set_content(dat)
-	popup.open()
-	return
+// Okno gry jest w TGUI: aquila/code/game/machinery/computer/orion_trail_ui.dm
 
 /obj/machinery/computer/arcade/orion_trail/Topic(href, href_list)
 	if(..())

@@ -1,53 +1,58 @@
 import { Button, LabeledList, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 type Data = {
-  enabled: any;
-  lethal: any;
-  locked: any;
-  shootCyborgs: any;
-  siliconUser: any;
+  enabled: BooleanLike;
+  lethal: BooleanLike;
+  locked: BooleanLike;
+  shootCyborgs: BooleanLike;
+  siliconUser: BooleanLike;
 };
 
 export const TurretControl = (props) => {
   const { act, data } = useBackend<Data>();
-  const locked = data.locked && !data.siliconUser;
-  const { enabled, lethal, shootCyborgs } = data;
+  const { enabled, lethal, locked, siliconUser, shootCyborgs } = data;
+  const isLocked = locked && !siliconUser;
+
   return (
-    <Window width={305} height={172}>
+    <Window width={305} height={siliconUser ? 168 : 164}>
       <Window.Content>
         <InterfaceLockNoticeBox />
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Turret Status">
+            <LabeledList.Item label="Wieżyczki">
               <Button
                 icon={enabled ? 'power-off' : 'times'}
-                content={enabled ? 'Enabled' : 'Disabled'}
                 selected={enabled}
-                disabled={locked}
+                disabled={isLocked}
                 onClick={() => act('power')}
-              />
+              >
+                {enabled ? 'Włączone' : 'Wyłączone'}
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Turret Mode">
+            <LabeledList.Item label="Tryb">
               <Button
                 icon={lethal ? 'exclamation-triangle' : 'minus-circle'}
-                content={lethal ? 'Lethal' : 'Stun'}
                 color={lethal ? 'bad' : 'average'}
-                disabled={locked}
+                disabled={isLocked}
                 onClick={() => act('mode')}
-              />
+              >
+                {lethal ? 'Zabójczy' : 'Ogłuszający'}
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Target Cyborgs">
+            <LabeledList.Item label="Strzelaj do cyborgów">
               <Button
                 icon={shootCyborgs ? 'check' : 'times'}
-                content={shootCyborgs ? 'Yes' : 'No'}
                 selected={shootCyborgs}
-                disabled={locked}
+                disabled={isLocked}
                 onClick={() => act('shoot_silicons')}
-              />
+              >
+                {shootCyborgs ? 'Tak' : 'Nie'}
+              </Button>
             </LabeledList.Item>
           </LabeledList>
         </Section>

@@ -24,9 +24,9 @@ export const InterviewManager = (props) => {
   };
 
   return (
-    <Window theme="admin" width={500} height={600}>
+    <Window title="Menedżer ankiet" theme="admin" width={500} height={600}>
       <Window.Content scrollable>
-        <Section title="Active Interviews">
+        <Section title="Aktywne ankiety">
           {open_interviews.map(({ id, ckey, status, queued, disconnected }) => (
             <Button
               key={id}
@@ -36,7 +36,7 @@ export const InterviewManager = (props) => {
             />
           ))}
         </Section>
-        <Section title="Closed Interviews">
+        <Section title="Zamknięte ankiety">
           {closed_interviews.map(({ id, ckey, status, disconnected }) => (
             <Button
               key={id}

@@ -1,10 +1,11 @@
-import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { scale, toFixed } from 'common/math';
+import { sortBy } from 'es-toolkit';
+import { filter } from 'es-toolkit/compat';
+import { useState } from 'react';
 import {
   Box,
   Button,
   Icon,
+  Input,
   LabeledList,
   NoticeBox,
   ProgressBar,
@@ -12,22 +13,56 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { scale, toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
 type Data = {
-  categories: any;
-  disk_size: any;
-  disk_used: any;
-  downloadcompletion: any;
-  downloading: any;
-  downloadname: any;
-  downloadsize: any;
-  emagged: any;
-  error: any;
-  id_inserted: any;
-  programs: any;
+  disk_size: number;
+  disk_used: number;
+  downloadcompletion: number;
+  downloading: BooleanLike;
+  downloadname: string;
+  downloadsize: number;
+  error: string;
+  emagged: BooleanLike;
+  // AQUILA: podpowiedź „Włóż ID” przy programach wymagających dostępu
+  id_inserted: BooleanLike;
+  categories: string[];
+  programs: ProgramData[];
+};
+
+type ProgramData = {
+  icon: string;
+  filename: string;
+  filedesc: string;
+  fileinfo: string;
+  category: string;
+  installed: BooleanLike;
+  compatible: BooleanLike;
+  size: number;
+  access: BooleanLike;
+  verifiedsource: BooleanLike;
+};
+
+// AQUILA: zakładka ze wszystkimi programami naraz
+const ALL_CATEGORY = 'All';
+
+// Kategorie przychodzą z DM po angielsku i służą do filtrowania, więc tłumaczymy tylko etykiety.
+const CATEGORY_NAMES: Record<string, string> = {
+  [ALL_CATEGORY]: 'Wszystkie',
+  Crew: 'Załoga',
+  Engineering: 'Inżynieria',
+  Robotics: 'Robotyka',
+  Supply: 'Zaopatrzenie',
+  Security: 'Ochrona',
+  Science: 'Nauka',
+  Medical: 'Medycyna',
+  Command: 'Dowództwo',
+  Other: 'Inne',
 };
 
 export const NtosNetDownloader = (props) => {
@@ -41,55 +76,60 @@ export const NtosNetDownloader = (props) => {
     downloadsize,
     error,
     emagged,
-    categories,
-    programs,
+    categories = [],
+    programs = [],
   } = data;
-  const all_categories = ['All'].concat(categories);
+  const all_categories = [ALL_CATEGORY, ...categories];
   const downloadpercentage = toFixed(
     scale(downloadcompletion, 0, downloadsize) * 100,
   );
-  const [selectedCategory, setSelectedCategory] = useLocalState(
-    'category',
-    all_categories[0],
+  const [selectedCategory, setSelectedCategory] = useState(all_categories[0]);
+  const [searchItem, setSearchItem] = useState('');
+  const search = createSearch<ProgramData>(
+    searchItem,
+    (program) => program.filedesc,
   );
-  const items = flow([
-    // This filters the list to only contain programs with category
-    selectedCategory !== all_categories[0] &&
-      filter((program) => program.category === selectedCategory),
-    // This filters the list to only contain verified programs
-    !emagged && filter((program) => program.verifiedsource === 1),
-    // This sorts all programs in the lists by name and compatibility
-    sortBy(
-      (program) => -program.compatible,
-      (program) => program.filedesc,
-    ),
-  ])(programs);
+  let items =
+    searchItem.length > 0
+      ? // Z zapytaniem szukamy we wszystkim.
+        filter(programs, search)
+      : selectedCategory === ALL_CATEGORY
+        ? programs
+        : // Bez zapytania pokazujemy programy z wybranej kategorii.
+          filter(programs, (program) => program.category === selectedCategory);
+  // Sortowanie po zgodności i nazwie
+  items = sortBy(items, [
+    (program: ProgramData) => !program.compatible,
+    (program: ProgramData) => program.filedesc,
+  ]);
+  if (!emagged) {
+    // Bez emaga widać tylko programy ze zweryfikowanych źródeł
+    items = filter(items, (program) => program.verifiedsource === 1);
+  }
   const disk_free_space = downloading
     ? disk_size - Number(toFixed(disk_used + downloadcompletion))
     : disk_size - disk_used;
+
   return (
     <NtosWindow width={600} height={600}>
       <NtosWindow.Content scrollable>
         {!!error && (
           <NoticeBox>
             <Box mb={1}>{error}</Box>
-            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
+            <Button onClick={() => act('PRG_reseterror')}>Resetuj</Button>
           </NoticeBox>
         )}
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Hard drive"
+              label="Dysk twardy"
               buttons={
                 (!!downloading && (
                   <Button
                     icon="spinner"
-                    iconSpin={1}
+                    iconSpin
                     tooltipPosition="left"
-                    tooltip={
-                      !!downloading &&
-                      `Download: ${downloadname}.prg (${downloadpercentage}%)`
-                    }
+                    tooltip={`Pobieranie: ${downloadname}.prg (${downloadpercentage}%)`}
                   />
                 )) ||
                 (!!downloadname && (
@@ -97,7 +137,7 @@ export const NtosNetDownloader = (props) => {
                     color="good"
                     icon="download"
                     tooltipPosition="left"
-                    tooltip={`${downloadname}.prg downloaded`}
+                    tooltip={`Pobrano ${downloadname}.prg`}
                   />
                 ))
               }
@@ -108,11 +148,21 @@ export const NtosNetDownloader = (props) => {
                 maxValue={disk_size}
               >
                 <Box textAlign="left">
-                  {`${disk_free_space} GQ free of ${disk_size} GQ`}
+                  {`Wolne: ${disk_free_space} GQ z ${disk_size} GQ`}
                 </Box>
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
+        </Section>
+        <Section>
+          <Input
+            autoFocus
+            height="23px"
+            placeholder="Szukaj programu po nazwie..."
+            fluid
+            value={searchItem}
+            onChange={setSearchItem}
+          />
         </Section>
         <Stack>
           <Stack.Item minWidth="105px" shrink={0} basis={0}>
@@ -123,7 +173,7 @@ export const NtosNetDownloader = (props) => {
                   selected={category === selectedCategory}
                   onClick={() => setSelectedCategory(category)}
                 >
-                  {category}
+                  {CATEGORY_NAMES[category] || category}
                 </Tabs.Tab>
               ))}
             </Tabs>
@@ -139,7 +189,7 @@ export const NtosNetDownloader = (props) => {
   );
 };
 
-const Program = (props) => {
+const Program = (props: { program: ProgramData }) => {
   const { program } = props;
   const { act, data } = useBackend<Data>();
   const {
@@ -155,7 +205,7 @@ const Program = (props) => {
   return (
     <Section>
       <Stack align="baseline">
-        <Stack.Item grow={1} bold>
+        <Stack.Item grow bold>
           <Icon name={program.icon} mr={1} />
           {program.filedesc}
         </Stack.Item>
@@ -186,16 +236,19 @@ const Program = (props) => {
                 <Button
                   bold
                   icon="download"
-                  content="Download"
-                  disabled={downloading}
+                  disabled={!!downloading}
                   tooltipPosition="left"
-                  tooltip={!!downloading && 'Awaiting download completion...'}
+                  tooltip={
+                    downloading ? 'Czekam na zakończenie pobierania...' : ''
+                  }
                   onClick={() =>
                     act('PRG_downloadfile', {
                       filename: program.filename,
                     })
                   }
-                />
+                >
+                  Pobierz
+                </Button>
               )) || (
               <Button
                 bold
@@ -205,21 +258,19 @@ const Program = (props) => {
                     ? 'good'
                     : !program.compatible
                       ? 'bad'
-                      : null
+                      : 'grey'
                 }
-                disabled={!program.installed && program.compatible}
-                content={
-                  program.installed
-                    ? 'Installed'
-                    : !program.compatible
-                      ? 'Incompatible'
-                      : !program.access
-                        ? id_inserted
-                          ? 'No Access'
-                          : 'Insert ID'
-                        : 'No Space'
-                }
-              />
+              >
+                {program.installed
+                  ? 'Zainstalowany'
+                  : !program.compatible
+                    ? 'Niezgodny'
+                    : !program.access
+                      ? id_inserted
+                        ? 'Brak dostępu'
+                        : 'Włóż ID'
+                      : 'Brak miejsca'}
+              </Button>
             )}
         </Stack.Item>
       </Stack>
@@ -228,8 +279,8 @@ const Program = (props) => {
       </Box>
       {!program.verifiedsource && !emagged && (
         <NoticeBox mt={1} mb={0} danger fontSize="12px">
-          Unverified source. Please note that Nanotrasen does not recommend
-          download and usage of software from non-official servers.
+          Niezweryfikowane źródło. Nanotrasen odradza pobieranie i używanie
+          oprogramowania z nieoficjalnych serwerów.
         </NoticeBox>
       )}
     </Section>

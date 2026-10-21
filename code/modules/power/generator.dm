@@ -91,8 +91,6 @@
 		lastcirc = circ
 		update_icon()
 
-	src.updateDialog()
-
 /obj/machinery/power/generator/process()
 	//Setting this number higher just makes the change in power output slower, it doesnt actualy reduce power output cause **math**
 	var/power_output = round(lastgen / 10)
@@ -101,57 +99,49 @@
 	lastgen -= power_output
 	..()
 
-/obj/machinery/power/generator/proc/get_menu(include_link = TRUE)
-	var/t = ""
+/obj/machinery/power/generator/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ThermoElectricGenerator", name)
+		ui.open()
+
+/obj/machinery/power/generator/ui_data(mob/user)
+	var/list/data = list()
+	data["error_message"] = null
 	if(!powernet)
-		t += "<span class='bad'>Nie można połączyć się z siecią energetyczną!</span>"
-	else if(cold_circ && hot_circ)
-		var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
-		var/datum/gas_mixture/cold_circ_air2 = cold_circ.airs[2]
-		var/datum/gas_mixture/hot_circ_air1 = hot_circ.airs[1]
-		var/datum/gas_mixture/hot_circ_air2 = hot_circ.airs[2]
+		data["error_message"] = "Nie można połączyć się z siecią energetyczną!"
+		return data
+	if(!cold_circ && !hot_circ)
+		data["error_message"] = "Nie można znaleźć żadnych części!"
+		return data
+	if(!cold_circ)
+		data["error_message"] = "Nie można znaleźć zimnego cyrkulatora!"
+		return data
+	if(!hot_circ)
+		data["error_message"] = "Nie można znaleźć gorącego cyrkulatora!"
+		return data
 
-		t += "<div class='statusDisplay'>"
+	var/datum/gas_mixture/cold_circ_air1 = cold_circ.airs[1]
+	var/datum/gas_mixture/cold_circ_air2 = cold_circ.airs[2]
+	var/datum/gas_mixture/hot_circ_air1 = hot_circ.airs[1]
+	var/datum/gas_mixture/hot_circ_air2 = hot_circ.airs[2]
 
-		t += "Output: [display_power(lastgenlev)]"
+	data["last_power_output"] = display_power(lastgenlev)
 
-		t += "<BR>"
+	var/list/cold_data = list()
+	cold_data["temperature_inlet"] = round(cold_circ_air2.return_temperature(), 0.1)
+	cold_data["temperature_outlet"] = round(cold_circ_air1.return_temperature(), 0.1)
+	cold_data["pressure_inlet"] = round(cold_circ_air2.return_pressure(), 0.1)
+	cold_data["pressure_outlet"] = round(cold_circ_air1.return_pressure(), 0.1)
+	data["cold_data"] = list(cold_data)
 
-		t += "<B><font color='blue'>Obieg zimny</font></B><BR>"
-		t += "Temperatura wlotu: [round(cold_circ_air2.return_temperature(), 0.1)] K / wylotu: [round(cold_circ_air1.return_temperature(), 0.1)] K<BR>"
-		t += "Ciśnienie wlotu: [round(cold_circ_air2.return_pressure(), 0.1)] kPa /  wylotu: [round(cold_circ_air1.return_pressure(), 0.1)] kPa<BR>"
-
-		t += "<B><font color='red'>Obieg gorący</font></B><BR>"
-		t += "Temperatura wlotu: [round(hot_circ_air2.return_temperature(), 0.1)] K / wylotu: [round(hot_circ_air1.return_temperature(), 0.1)] K<BR>"
-		t += "Ciśnienie wlotu: [round(hot_circ_air2.return_pressure(), 0.1)] kPa / wylotu: [round(hot_circ_air1.return_pressure(), 0.1)] kPa<BR>"
-
-		t += "</div>"
-	else if(!hot_circ && cold_circ)
-		t += "<span class='bad'>Nie można znaleźć gorącego cyrkulatora!</span>"
-	else if(hot_circ && !cold_circ)
-		t += "<span class='bad'>Nie można znaleźć zimnego cyrkulatora!</span>"
-	else
-		t += "<span class='bad'>Nie można znaleźć żadnych części!</span>"
-	if(include_link)
-		t += "<BR><A href='byond://?src=[REF(src)];close=1'>Close</A>"
-
-	return t
-
-/obj/machinery/power/generator/ui_interact(mob/user)
-	. = ..()
-	var/datum/browser/popup = new(user, "teg", "Generator termoelektryczny", 460, 300)
-	popup.set_content(get_menu())
-	popup.open()
-
-/obj/machinery/power/generator/Topic(href, href_list)
-	if(..())
-		return
-	if( href_list["close"] )
-		usr << browse(null, "window=teg")
-		usr.unset_machine()
-		return FALSE
-	return TRUE
-
+	var/list/hot_data = list()
+	hot_data["temperature_inlet"] = round(hot_circ_air2.return_temperature(), 0.1)
+	hot_data["temperature_outlet"] = round(hot_circ_air1.return_temperature(), 0.1)
+	hot_data["pressure_inlet"] = round(hot_circ_air2.return_pressure(), 0.1)
+	hot_data["pressure_outlet"] = round(hot_circ_air1.return_pressure(), 0.1)
+	data["hot_data"] = list(hot_data)
+	return data
 
 /obj/machinery/power/generator/power_change()
 	..()

@@ -58,6 +58,43 @@
 				var/atom/movable/MA = item
 				MA.forceMove(C)
 
+// AQUILA EDIT START - zawartość paczki i ikona dla okna Cargo z tg
+/// Lista zawartości paczki do okna (nazwa, ikona, ilość), te same typy zliczone razem
+/datum/supply_pack/proc/get_contents_ui_data()
+	var/list/counts = list()
+	for(var/item in contains)
+		if(!ispath(item, /atom))
+			continue
+		counts[item] += isnum(contains[item]) ? contains[item] : 1
+	var/list/data = list()
+	for(var/item in counts)
+		var/atom/thing = item
+		data += list(list(
+			"name" = initial(thing.name),
+			"icon" = initial(thing.greyscale_config) ? null : initial(thing.icon),
+			"icon_state" = initial(thing.greyscale_config) ? null : initial(thing.icon_state),
+			"amount" = counts[item],
+		))
+	return data
+
+/// Dane paczki wysyłane do okna Cargo
+/datum/supply_pack/proc/get_ui_data(pack_id)
+	var/atom/first_item = length(contains) ? contains[1] : null
+	var/has_icon = ispath(first_item, /atom) && !initial(first_item.greyscale_config)
+	return list(
+		"name" = name,
+		"cost" = get_cost(),
+		"id" = pack_id,
+		"desc" = desc || name, // If there is a description, use it. Otherwise use the pack's name.
+		"small_item" = small_item,
+		"access" = access,
+		"contraband" = contraband,
+		"first_item_icon" = has_icon ? initial(first_item.icon) : null,
+		"first_item_icon_state" = has_icon ? initial(first_item.icon_state) : null,
+		"contains" = get_contents_ui_data(),
+	)
+// AQUILA EDIT END
+
 // If you add something to this list, please group it by type and sort it alphabetically instead of just jamming it in like an animal
 
 //////////////////////////////////////////////////////////////////////////////

@@ -29,81 +29,96 @@
 /obj/item/paicard/attack_self(mob/user)
 	if (!in_range(src, user))
 		return
-	user.set_machine(src)
-	var/dat = "<TT><B>Osobiste urządzenie SI</B><BR>"
-	if(pai)
-		if(!pai.master_dna || !pai.master)
-			dat += "<a href='byond://?src=[REF(src)];setdna=1'>Zapisz DNA właściciela</a><br>"
-		dat += "Zainstalowana osobowość: [pai.name]<br>"
-		dat += "Dyrektywa główna: <br>"
-		if(pai.laws.zeroth)
-			dat +="[pai.laws.zeroth]<br>"
-		else
-			dat +="None<br>"
-		for(var/slaws in pai.laws.supplied)
-			dat += "Dyrektywy dodatkowe: <br>[slaws]<br>"
-		dat += "<a href='byond://?src=[REF(src)];setlaws=1'>Konfiguruj dyrektywy</a><br>"
-		dat += "<br>"
-		dat += "<h3>Ustawienia urządzenia</h3><br>"
-		if(pai.radio)
-			dat += "<b>Łącze radiowe</b><br>"
-			dat += "Nadawanie: <A href='byond://?src=[REF(src)];toggle_transmit=1'>\[[pai.can_transmit? "Wyłącz" : "Włącz"] nadawanie radiowe\]</a><br>"
-			dat += "Odbiór: <A href='byond://?src=[REF(src)];toggle_receive=1'>\[[pai.can_receive? "Wyłącz" : "Włącz"] odbiór radiowy\]</a><br>"
-		else
-			dat += "<b>Łącze radiowe</b><br>"
-			dat += "<font color=red><i>Nie wczytano oprogramowania radia. Zainstaluj osobowość pAI, by je wczytać.</i></font><br>"
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.real_name == pai.master || H.dna.unique_enzymes == pai.master_dna)
-				dat += "<A href='byond://?src=[REF(src)];toggle_holo=1'>\[[pai.canholo? "Wyłącz" : "Włącz"] projektory holomatrycy\]</a><br>"
-				dat += "<A href='byond://?src=[REF(src)];clear_zero=1'>\[Remove Prime directive\]</a><br>"
-		dat += "<A href='byond://?src=[REF(src)];wipe=1'>\[Wipe current pAI personality\]</a><br>"
-	else
-		dat += "Nie zainstalowano osobowości.<br>"
-		dat += "Szukanie osobowości... Kliknij „pokaż dostępne osobowości”, by powiadomić potencjalnych kandydatów."
-		dat += "<A href='byond://?src=[REF(src)];request=1'>\[View available personalities\]</a><br>"
-	user << browse(dat, "window=paicard")
-	onclose(user, "paicard")
-	return
+	ui_interact(user)
 
-/obj/item/paicard/Topic(href, href_list)
+/obj/item/paicard/ui_state(mob/user)
+	return GLOB.hands_state
 
-	if(!usr || usr.stat)
+/obj/item/paicard/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PaiCard")
+		ui.open()
+
+/obj/item/paicard/ui_data(mob/user)
+	var/list/data = list()
+	if(!pai)
+		data["candidates"] = SSpai.get_ready_candidates_ui_data()
+		data["pai"] = null
+		return data
+	data["pai"] = list(
+		"name" = pai.name,
+		"master" = pai.master,
+		"dna" = pai.master_dna,
+		"prime_directive" = pai.laws.zeroth,
+		"laws" = pai.laws.supplied,
+		"can_holo" = pai.canholo,
+		"has_radio" = !!pai.radio,
+		"transmit" = pai.can_transmit,
+		"receive" = pai.can_receive,
+		"is_master" = is_pai_master(user),
+	)
+	return data
+
+/obj/item/paicard/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = usr
+	if(!user || user.stat)
 		return
 
-	if(href_list["request"])
-		SSpai.findPAI(src, usr)
+	if(action == "request")
+		SSpai.findPAI(src, user)
+		return TRUE
 
-	if(pai)
-		if(!(loc == usr))
-			return
-		if(href_list["setdna"])
+	if(!pai)
+		if(action == "download")
+			var/datum/paiCandidate/candidate = locate(params["candidate"]) in SSpai.candidates
+			if(candidate)
+				SSpai.download_candidate(src, candidate)
+			return TRUE
+		return
+
+	if(loc != user)
+		return
+
+	switch(action)
+		if("set_dna")
 			if(pai.master_dna)
 				return
-			if(!iscarbon(usr))
-				to_chat(usr, "<span class='warning'>Nie masz DNA albo twoje DNA jest niezgodne z tym urządzeniem!</span>")
-			else
-				var/mob/living/carbon/M = usr
-				pai.master = M.real_name
-				pai.master_dna = M.dna.unique_enzymes
-				to_chat(pai, "<span class='notice'>Zostajesz związany z nowym właścicielem.</span>")
-				pai.laws.set_zeroth_law("Służ swojemu właścicielowi.")
-				pai.emittersemicd = FALSE
-		if(href_list["wipe"])
-			var/confirm = input("Czy NA PEWNO chcesz usunąć obecną osobowość? Tej operacji nie można cofnąć.", "Usunięcie osobowości") in list("Yes", "No")
-			if(confirm == "Yes")
-				if(pai)
-					to_chat(pai, "<span class='warning'>Czujesz, jak wymykasz się rzeczywistości.</span>")
-					to_chat(pai, "<span class='danger'>Bajt po bajcie tracisz poczucie własnego ja.</span>")
-					to_chat(pai, "<span class='userdanger'>Opuszczają cię zdolności umysłowe.</span>")
-					to_chat(pai, "<span class='rose'>oblivion... </span>")
-					qdel(pai)
-		if(href_list["clear_zero"])
-			if((input("Czy NA PEWNO chcesz usunąć dyrektywę główną tego pAI? Tej operacji nie można cofnąć.", "Usuń dyrektywę") in list("Yes", "No")) == "Yes")
-				if(pai)
-					pai.laws.clear_zeroth_law()
-		if(href_list["toggle_transmit"] || href_list["toggle_receive"])
-			var/transmitting = href_list["toggle_transmit"] //it can't be both so if we know it's not transmitting it must be receiving.
+			if(!iscarbon(user))
+				to_chat(user, "<span class='warning'>Nie masz DNA albo twoje DNA jest niezgodne z tym urządzeniem!</span>")
+				return
+			var/mob/living/carbon/M = user
+			pai.master = M.real_name
+			pai.master_dna = M.dna.unique_enzymes
+			to_chat(pai, "<span class='notice'>Zostajesz związany z nowym właścicielem.</span>")
+			pai.laws.set_zeroth_law("Służ swojemu właścicielowi.")
+			pai.emittersemicd = FALSE
+			return TRUE
+		if("wipe_pai")
+			var/confirm = tgui_alert(user, "Czy NA PEWNO chcesz usunąć obecną osobowość? Tej operacji nie można cofnąć.", "Usunięcie osobowości", list("Tak", "Nie"))
+			if(confirm != "Tak" || !pai || loc != user)
+				return
+			to_chat(pai, "<span class='warning'>Czujesz, jak wymykasz się rzeczywistości.</span>")
+			to_chat(pai, "<span class='danger'>Bajt po bajcie tracisz poczucie własnego ja.</span>")
+			to_chat(pai, "<span class='userdanger'>Opuszczają cię zdolności umysłowe.</span>")
+			to_chat(pai, "<span class='rose'>oblivion... </span>")
+			qdel(pai)
+			return TRUE
+		if("clear_zero")
+			if(!is_pai_master(user))
+				return
+			var/confirm = tgui_alert(user, "Czy NA PEWNO chcesz usunąć dyrektywę główną tego pAI? Tej operacji nie można cofnąć.", "Usuń dyrektywę", list("Tak", "Nie"))
+			if(confirm != "Tak" || !pai)
+				return
+			pai.laws.clear_zeroth_law()
+			return TRUE
+		if("toggle_radio")
+			if(!pai.radio)
+				return
+			var/transmitting = params["option"] == "transmit" //it can't be both so if we know it's not transmitting it must be receiving.
 			var/transmit_holder = (transmitting ? WIRE_TX : WIRE_RX)
 			if(transmitting)
 				pai.can_transmit = !pai.can_transmit
@@ -111,23 +126,33 @@
 				pai.can_receive = !pai.can_receive
 			pai.radio.wires.cut(transmit_holder)//wires.cut toggles cut and uncut states
 			transmit_holder = (transmitting ? pai.can_transmit : pai.can_receive) //recycling can be fun!
-			to_chat(usr,"<span class='warning'>[transmit_holder ? "Włączasz" : "Wyłączasz"] [transmitting ? "wychodzące" : "przychodzące"] transmisje radiowe swojego pAI!</span>")
-			to_chat(pai,"<span class='warning'>Twój właściciel [transmit_holder ? "włączył" : "wyłączył"] twoje [transmitting ? "wychodzące" : "przychodzące"] transmisje radiowe!</span>")
-		if(href_list["setlaws"])
-			var/newlaws = stripped_multiline_input(usr, "Wpisz dodatkowe dyrektywy, które ma wykonywać twoja osobowość pAI. Nie nadpiszą one lojalności osobowości wobec zapisanego właściciela. Sprzeczne dyrektywy zostaną zignorowane.", "Konfiguracja dyrektyw pAI", pai.laws.supplied[1])
+			to_chat(user, "<span class='warning'>[transmit_holder ? "Włączasz" : "Wyłączasz"] [transmitting ? "wychodzące" : "przychodzące"] transmisje radiowe swojego pAI!</span>")
+			to_chat(pai, "<span class='warning'>Twój właściciel [transmit_holder ? "włączył" : "wyłączył"] twoje [transmitting ? "wychodzące" : "przychodzące"] transmisje radiowe!</span>")
+			return TRUE
+		if("set_laws")
+			var/newlaws = stripped_multiline_input(user, "Wpisz dodatkowe dyrektywy, które ma wykonywać twoja osobowość pAI. Nie nadpiszą one lojalności osobowości wobec zapisanego właściciela. Sprzeczne dyrektywy zostaną zignorowane.", "Konfiguracja dyrektyw pAI", pai.laws.supplied[1])
 			if(newlaws && pai)
-				pai.add_supplied_law(0,newlaws)
-		if(href_list["toggle_holo"])
+				pai.add_supplied_law(0, newlaws)
+			return TRUE
+		if("toggle_holo")
+			if(!is_pai_master(user))
+				return
 			if(pai.canholo)
 				to_chat(pai, "<span class='userdanger'>Twój właściciel wyłączył twoje projektory holomatrycy!</span>")
 				pai.canholo = FALSE
-				to_chat(usr, "<span class='warning'>Wyłączasz holomatrycę swojego pAI!</span>")
+				to_chat(user, "<span class='warning'>Wyłączasz holomatrycę swojego pAI!</span>")
 			else
 				to_chat(pai, "<span class='boldnotice'>Twój właściciel włączył twoje projektory holomatrycy!</span>")
 				pai.canholo = TRUE
-				to_chat(usr, "<span class='notice'>Włączasz holomatrycę swojego pAI!</span>")
+				to_chat(user, "<span class='notice'>Włączasz holomatrycę swojego pAI!</span>")
+			return TRUE
 
-	attack_self(usr)
+/// Czy użytkownik jest zapisanym właścicielem pAI (imię albo DNA)
+/obj/item/paicard/proc/is_pai_master(mob/user)
+	if(!pai || !ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	return (H.real_name == pai.master || H.dna?.unique_enzymes == pai.master_dna)
 
 // 		WIRE_SIGNAL = 1
 //		WIRE_RECEIVE = 2
@@ -141,6 +166,7 @@
 
 	playsound(loc, 'sound/effects/pai_boot.ogg', 50, 1, -1)
 	audible_message("[src] odtwarza radosny dźwięk uruchamiania!")
+	SStgui.update_uis(src)
 
 /obj/item/paicard/proc/setEmotion(emotion)
 	if(pai)
@@ -174,6 +200,7 @@
 	flick_overlay_view(I, src, 5 SECONDS)
 	playsound(src, 'sound/machines/ping.ogg', 100)
 	audible_message("<span class ='info'>Na ekranie [src] wyświetla się komunikat: \"Dostępne są dodatkowe osobowości do pobrania.\"</span>", "<span class='notice'>[src] wibruje, sygnalizując powiadomienie.</span>")
+	SStgui.update_uis(src)
 
 /obj/item/paicard/emp_act(severity)
 	. = ..()

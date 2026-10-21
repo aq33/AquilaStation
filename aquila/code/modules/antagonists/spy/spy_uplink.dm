@@ -58,7 +58,7 @@
 		return
 	examine_list += "<span class='notice'>Rozpoznajesz w tym swój <i>uplink szpiega</i>.</span>"
 	examine_list += "<span class='notice'>- <b>Użyj w ręce</b>, żeby zobaczyć listę zleceń.</span>"
-	examine_list += "<span class='notice'>- Kliknij nim <b>prawym przyciskiem</b> na cel zlecenia, żeby go ukraść.</span>"
+	examine_list += "<span class='notice'>- Kliknij nim <b>[user.secondary_click_text()]</b> na cel zlecenia, żeby go ukraść.</span>"
 
 /datum/component/spy_uplink/proc/on_attack_self(obj/item/source, mob/user)
 	SIGNAL_HANDLER

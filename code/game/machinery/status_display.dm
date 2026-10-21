@@ -450,6 +450,26 @@
 	update()
 
 
+/// Emocje SI na ekranach statusu: nazwa -> stan ikony w status_display.dmi (też okno AiStatusDisplayPicker)
+GLOBAL_LIST_INIT(ai_status_display_emotes, list(
+	"Very Happy" = "ai_veryhappy",
+	"Happy" = "ai_happy",
+	"Neutral" = "ai_neutral",
+	"Unsure" = "ai_unsure",
+	"Confused" = "ai_confused",
+	"Sad" = "ai_sad",
+	"BSOD" = "ai_bsod",
+	"Blank" = "ai_off",
+	"Problems?" = "ai_trollface",
+	"Awesome" = "ai_awesome",
+	"Facepalm" = "ai_facepalm",
+	"Thinking" = "ai_thinking",
+	"Friend Computer" = "ai_friend",
+	"Dorfy" = "ai_urist",
+	"Blue Glow" = "ai_sal",
+	"Red Glow" = "ai_hal"
+))
+
 /// Pictograph display which the AI can use to emote.
 /obj/machinery/status_display/ai
 	name = "\improper AI display"
@@ -476,39 +496,9 @@
 		return PROCESS_KILL
 
 	if(mode == SD_AI_EMOTE)
-		switch(emotion)
-			if("Very Happy")
-				set_picture("ai_veryhappy")
-			if("Happy")
-				set_picture("ai_happy")
-			if("Neutral")
-				set_picture("ai_neutral")
-			if("Unsure")
-				set_picture("ai_unsure")
-			if("Confused")
-				set_picture("ai_confused")
-			if("Sad")
-				set_picture("ai_sad")
-			if("BSOD")
-				set_picture("ai_bsod")
-			if("Blank")
-				set_picture("ai_off")
-			if("Problems?")
-				set_picture("ai_trollface")
-			if("Awesome")
-				set_picture("ai_awesome")
-			if("Dorfy")
-				set_picture("ai_urist")
-			if("Thinking")
-				set_picture("ai_thinking")
-			if("Facepalm")
-				set_picture("ai_facepalm")
-			if("Friend Computer")
-				set_picture("ai_friend")
-			if("Blue Glow")
-				set_picture("ai_sal")
-			if("Red Glow")
-				set_picture("ai_hal")
+		var/picture = GLOB.ai_status_display_emotes[emotion]
+		if(picture)
+			set_picture(picture)
 		return PROCESS_KILL
 
 	if(mode == SD_AI_BSOD)

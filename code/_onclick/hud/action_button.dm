@@ -62,7 +62,7 @@
 	if(usr.next_click > world.time)
 		return
 	usr.next_click = world.time + 1
-	linked_action.Trigger((modifiers["right"] || modifiers["alt"]) ? TRIGGER_SECONDARY_ACTION : NONE)
+	linked_action.Trigger((usr.is_secondary_click(modifiers) || modifiers["alt"]) ? TRIGGER_SECONDARY_ACTION : NONE) // AQ EDIT - standaryzacja combat mode: disarm ze starych intencji też
 	SEND_SOUND(usr, 'sound/effects/pop.ogg')
 	transform = turn(matrix() * 0.9, pick(-8, 8))
 	alpha = 200

@@ -1,14 +1,20 @@
-import { capitalize } from 'common/string';
-import {
-  BlockQuote,
-  Box,
-  Button,
-  Section,
-  Table,
-} from 'tgui-core/components';
+import { BlockQuote, Box, Button, Section, Table } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
+
+// AQUILA EDIT - polskie etykiety akcji (nazwy akcji zostają dla DM)
+const ACTION_LABELS: Record<string, string> = {
+  flw: 'Śledź',
+  claim: 'Przejmij',
+  reject: 'Odrzuć',
+  ic: 'IC',
+  mhelp: 'Mentorhelp',
+  resolve: 'Rozwiąż',
+  close: 'Zamknij',
+  reopen: 'Otwórz ponownie',
+};
 
 type Data = {
   admin_ckey: any;
@@ -28,13 +34,13 @@ export const TicketBrowser = (props) => {
     admin_ckey,
   } = data;
   return (
-    <Window theme="admin" width={720} height={480}>
+    <Window title="Zgłoszenia" theme="admin" width={720} height={480}>
       <Window.Content scrollable>
         <Section
           title={
             <Table>
               <Table.Row>
-                <Table.Cell inline>Administrator : {admin_ckey}</Table.Cell>
+                <Table.Cell inline>Administrator: {admin_ckey}</Table.Cell>
               </Table.Row>
             </Table>
           }
@@ -42,7 +48,7 @@ export const TicketBrowser = (props) => {
         <Section>
           <TicketMenu
             ticket_list={unclaimed_tickets}
-            name={'Unclaimed Tickets'}
+            name={'Nieprzejęte zgłoszenia'}
             actions={[
               ['flw', 'blue'],
               ['claim', 'good'],
@@ -53,7 +59,7 @@ export const TicketBrowser = (props) => {
           />
           <TicketMenu
             ticket_list={open_tickets}
-            name={'Claimed Tickets'}
+            name={'Przejęte zgłoszenia'}
             actions={[
               ['flw', 'blue'],
               ['claim', 'average'],
@@ -66,7 +72,7 @@ export const TicketBrowser = (props) => {
           />
           <TicketMenu
             ticket_list={resolved_tickets}
-            name={'Resolved Tickets'}
+            name={'Rozwiązane zgłoszenia'}
             actions={[
               ['flw', 'blue'],
               ['reopen', 'good'],
@@ -74,7 +80,7 @@ export const TicketBrowser = (props) => {
           />
           <TicketMenu
             ticket_list={closed_tickets}
-            name={'Closed Tickets'}
+            name={'Zamknięte zgłoszenia'}
             actions={[
               ['flw', 'blue'],
               ['reopen', 'good'],
@@ -117,15 +123,15 @@ export const TicketMenu = (props) => {
                   }
                 >
                   <u>
-                    {ticket.initiator_key_name} \
-                    {ticket.disconnected ? '[DC]' : ''}
+                    {ticket.initiator_key_name}
+                    {ticket.disconnected ? ' [DC]' : ''}
                   </u>
                 </Button>
               </Table.Cell>
               {actions.map((action) => (
                 <Table.Cell key={action[0]} collapsing>
                   <Button
-                    content={capitalize(action[0])}
+                    content={ACTION_LABELS[action[0]] || capitalize(action[0])}
                     onClick={() =>
                       act(action[0], {
                         id: ticket.id,
@@ -140,11 +146,11 @@ export const TicketMenu = (props) => {
             <Box color={ticket.claimed_key_name ? 'good' : 'bad'}>
               {ticket.claimed_key_name
                 ? ticket.state < 3
-                  ? 'Claimed by ' + ticket.claimed_key_name
+                  ? `Przejął: ${ticket.claimed_key_name}`
                   : ticket.state === 3
-                    ? 'Closed by ' + ticket.claimed_key_name
-                    : 'Resolved by ' + ticket.claimed_key_name
-                : 'UNCLAIMED'}
+                    ? `Zamknął: ${ticket.claimed_key_name}`
+                    : `Rozwiązał: ${ticket.claimed_key_name}`
+                : 'NIEPRZEJĘTE'}
             </Box>
           </Section>
         ))}

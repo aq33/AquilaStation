@@ -58,6 +58,24 @@
 	var/atom/movable/screen/background/cam_background
 	var/tabIndex = 1
 	var/renderLighting = FALSE
+	/// AQUILA - nazwy stylów kapsuł w oknie, w kolejności GLOB.podstyles (STYLE_* w cargo.dm)
+	var/static/list/pod_style_titles = list(
+		"Standardowa",
+		"Zaawansowana",
+		"Nanotrasen",
+		"Syndykat",
+		"Szwadron śmierci",
+		"Kultyści",
+		"Pocisk",
+		"Pocisk Syndykatu",
+		"Skrzynia",
+		"Kapsuła klauna",
+		"Owoc",
+		"Niewidzialna",
+		"Gondola",
+		"Przezroczysta",
+		"Kapsuła piratów"
+	)
 
 /datum/centcom_podlauncher/New(user) //user can either be a client or a mob
 	if (user) //Prevents runtimes on datums being made without clients
@@ -134,6 +152,14 @@
 	var/list/data = list()
 	data["mapRef"] = map_name
 	data["defaultSoundVolume"] = initial(temp_pod.soundVolume) //default volume for pods
+	//AQUILA - lista stylów wysyłana do UI (jak w tg), żeby okno nie trzymało własnej, nieaktualnej listy (brakowało kapsuły piratów)
+	var/list/pod_styles = list()
+	for(var/style in 1 to length(GLOB.podstyles))
+		pod_styles += list(list(
+			"id" = style,
+			"title" = (style <= length(pod_style_titles)) ? pod_style_titles[style] : "Styl [style]"
+		))
+	data["podStyles"] = pod_styles
 	return data
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
@@ -509,8 +535,10 @@
 			renderLighting = !renderLighting
 			. = TRUE
 		if("setStyle")
-			var/chosenStyle = params["style"]
-			temp_pod.setStyle(chosenStyle+1)
+			var/chosenStyle = text2num(params["style"]) //AQUILA - UI wysyła indeks GLOB.podstyles (od 1), jak id w tg
+			if(!chosenStyle || chosenStyle < 1 || chosenStyle > length(GLOB.podstyles))
+				return
+			temp_pod.setStyle(chosenStyle)
 			. = TRUE
 		if("refresh") //Refresh the Pod bay. User should press this if they spawn something new in the centcom bay. Automatically called whenever the user launches a pod
 			refreshBay()

@@ -1,32 +1,51 @@
-import { toTitleCase } from 'common/string';
 import { Box, Button, NoticeBox, Section, Table } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  answers: any;
-  question: any;
-  shaking: any;
+  answers: Answer[];
+  question: string;
+  shaking: BooleanLike;
 };
 
-export const EightBallVote = (props) => {
-  const { act, data } = useBackend<Data>();
+type Answer = {
+  amount: number;
+  answer: string;
+  selected: BooleanLike;
+};
+
+export function EightBallVote(props) {
+  const { data } = useBackend<Data>();
   const { shaking } = data;
+
   return (
-    <Window theme="generic" width={400} height={600}>
-      <Window.Content scrollable>
-        {(!shaking && (
-          <NoticeBox>No question is currently being asked.</NoticeBox>
-        )) || <EightBallVoteQuestion />}
+    <Window width={400} height={shaking ? 600 : 70}>
+      <Window.Content scrollable={!!shaking}>
+        {!shaking ? (
+          <NoticeBox danger textAlign="center">
+            Nikt teraz nie zadaje pytania.
+          </NoticeBox>
+        ) : (
+          <>
+            <NoticeBox success textAlign="center">
+              Ktoś właśnie zadaje pytanie!
+            </NoticeBox>
+            <EightBallVoteQuestion />
+          </>
+        )}
       </Window.Content>
     </Window>
   );
-};
+}
 
-const EightBallVoteQuestion = (props) => {
+function EightBallVoteQuestion(props) {
   const { act, data } = useBackend<Data>();
-  const { question, answers = [] } = data;
+  const { shaking, question, answers = [] } = data;
+
+  // AQUILA EDIT - nasza kula ma 20 odpowiedzi, więc zostaje pionowa lista
   return (
     <Section>
       <Box bold textAlign="center" fontSize="16px" m={1}>
@@ -35,27 +54,33 @@ const EightBallVoteQuestion = (props) => {
       <Table>
         {answers.map((answer) => (
           <Table.Row key={answer.answer}>
-            <Button
-              fluid
-              bold
-              content={toTitleCase(answer.answer)}
-              selected={answer.selected}
-              fontSize="16px"
-              lineHeight="24px"
-              textAlign="center"
-              mb={1}
-              onClick={() =>
-                act('vote', {
-                  answer: answer.answer,
-                })
-              }
-            />
-            <Box bold textAlign="center" fontSize="30px">
-              {answer.amount}
-            </Box>
+            <Table.Cell>
+              <Button
+                fluid
+                bold
+                disabled={!shaking}
+                selected={answer.selected}
+                fontSize="16px"
+                lineHeight="24px"
+                textAlign="center"
+                mb={1}
+                onClick={() =>
+                  act('vote', {
+                    answer: answer.answer,
+                  })
+                }
+              >
+                {toTitleCase(answer.answer)}
+              </Button>
+            </Table.Cell>
+            <Table.Cell collapsing>
+              <Box bold textAlign="center" fontSize="20px" ml={1}>
+                {answer.amount}
+              </Box>
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table>
     </Section>
   );
-};
+}

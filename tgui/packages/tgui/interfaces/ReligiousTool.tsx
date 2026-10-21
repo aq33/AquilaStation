@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import {
   BlockQuote,
   Box,
@@ -13,19 +14,35 @@ import {
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 
+type Sect = {
+  name: string;
+  desc: string;
+  quote: string;
+  icon: string;
+  alignment: string;
+  path: string;
+};
+
+type Rite = {
+  name: string;
+  desc: string;
+  favor: number;
+  path: string;
+};
+
 type Data = {
-  alignment: any;
-  deity: any;
-  desc: any;
-  favor: any;
-  favordesc: any;
-  icon: any;
-  name: any;
-  quote: any;
-  rites: any;
-  sects: any;
-  toolname: any;
-  wanted: any;
+  alignment: string;
+  deity: string;
+  desc: string;
+  favor: number;
+  favordesc: string;
+  icon: string;
+  name: string;
+  quote: string;
+  rites: Rite[];
+  sects: Sect[] | null;
+  toolname: string;
+  wanted: string;
 };
 
 const ALIGNMENT2COLOR = {
@@ -38,14 +55,15 @@ export const ReligiousTool = (props) => {
   const { act, data } = useBackend<Data>();
   const [tab, setTab] = useSharedState('tab', 1);
   const { sects, alignment, toolname } = data;
+
   return (
-    <Window theme="generic" title={toolname} width={560} height={500}>
+    <Window title={toolname} width={560} height={500}>
       <Window.Content scrollable>
         <Stack vertical fill>
           <Stack.Item>
             <Tabs textAlign="center" fluid>
               <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-                Sect{' '}
+                Wyznanie{' '}
                 <Icon
                   name="place-of-worship"
                   color={ALIGNMENT2COLOR[alignment]}
@@ -53,7 +71,8 @@ export const ReligiousTool = (props) => {
               </Tabs.Tab>
               {!sects && (
                 <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-                  Rites <Icon name="pray" color={ALIGNMENT2COLOR[alignment]} />
+                  Obrzędy{' '}
+                  <Icon name="pray" color={ALIGNMENT2COLOR[alignment]} />
                 </Tabs.Tab>
               )}
             </Tabs>
@@ -86,11 +105,11 @@ const SectTab = (props) => {
       <Stack fill vertical fontSize="15px" textAlign="center">
         <Stack.Item mt={2} fontSize="32px">
           <Icon name={icon} color={ALIGNMENT2COLOR[alignment]} />
-          {' ' + name + ' '}
+          {` ${name} `}
           <Icon name={icon} color={ALIGNMENT2COLOR[alignment]} />
         </Stack.Item>
         <Stack.Item grow mb={2} color="grey">
-          {'"' + quote + '"'}
+          {`"${quote}"`}
         </Stack.Item>
         <Stack.Item color={favor === 0 ? 'white' : 'green'}>
           {favordesc}
@@ -99,9 +118,9 @@ const SectTab = (props) => {
           <BlockQuote>{desc}</BlockQuote>
         </Stack.Item>
         <Stack.Item>
-          <Section mx={3} mt={-1} title="Wanted Sacrifices">
-            {(!wanted && deity + " doesn't want any sacrifices.") ||
-              deity + ' wishes for ' + wanted + '.'}
+          <Section mx={3} mt={-1} title="Pożądane ofiary">
+            {(!wanted && `${deity} nie chce żadnych ofiar.`) ||
+              `${deity} pragnie: ${wanted}.`}
           </Section>
         </Stack.Item>
       </Stack>
@@ -113,13 +132,15 @@ const SectSelectTab = (props) => {
   const { act, data } = useBackend<Data>();
   const { sects } = data;
   return (
-    <Section fill title="Sect Select" scrollable>
+    <Section fill title="Wybór wyznania" scrollable>
       <Stack vertical>
-        {sects.map((sect) => (
-          <>
+        {(sects || []).map((sect) => (
+          <Fragment key={sect.path}>
             <Collapsible
+              mb={-1}
+              childStyles={{ paddingTop: '0.5rem' }}
               title={
-                <Stack mt={-3.3} ml={3}>
+                <Stack mt={-3.3} ml={4}>
                   <Stack.Item>
                     <Icon
                       name={sect.icon}
@@ -127,12 +148,12 @@ const SectSelectTab = (props) => {
                     />
                   </Stack.Item>
                   <Stack.Item grow>{sect.name}</Stack.Item>
-                  <Stack.Item italic>{'"' + sect.quote + '"'}</Stack.Item>
+                  <Stack.Item italic>{`"${sect.quote}"`}</Stack.Item>
                 </Stack>
               }
               color="transparent"
             >
-              <Stack.Item key={sect}>
+              <Stack.Item>
                 {sect.desc}
                 <br />
                 <Button
@@ -146,12 +167,12 @@ const SectSelectTab = (props) => {
                     })
                   }
                 >
-                  Select {sect.name}
+                  Wybierz: {sect.name}
                 </Button>
               </Stack.Item>
             </Collapsible>
-            <Stack.Divider mt={-0.5} mb={0.5} />
-          </>
+            <Stack.Divider />
+          </Fragment>
         ))}
       </Stack>
     </Section>
@@ -175,7 +196,7 @@ const RiteTab = (props) => {
                 />
               </Stack.Item>
               <Stack.Item fontSize="18px" color={ALIGNMENT2COLOR[alignment]}>
-                {deity} does not have any invocations.
+                {deity} nie ma żadnych obrzędów.
               </Stack.Item>
             </Stack>
           </Dimmer>
@@ -183,7 +204,7 @@ const RiteTab = (props) => {
       )}
       <Stack vertical>
         {rites.map((rite) => (
-          <Stack.Item key={rite}>
+          <Stack.Item key={rite.path}>
             <Section
               title={rite.name}
               buttons={
@@ -199,13 +220,13 @@ const RiteTab = (props) => {
                     })
                   }
                 >
-                  Invoke
+                  Odpraw
                 </Button>
               }
             >
               <Box color={favor < rite.favor ? 'red' : 'grey'} mb={0.5}>
-                <Icon name="star" color={ALIGNMENT2COLOR[alignment]} /> Costs{' '}
-                {rite.favor} favor.
+                <Icon name="star" color={ALIGNMENT2COLOR[alignment]} /> Koszt:{' '}
+                {rite.favor} łaski.
               </Box>
               <BlockQuote>{rite.desc}</BlockQuote>
             </Section>

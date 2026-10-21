@@ -90,12 +90,13 @@ export const HybridWeapons = (props) => {
                 />
                 Power Allocation (Watts):
                 <Slider
+                  tickWhileDragging
                   value={data.capacitor_current_charge_rate}
                   minValue={0}
                   maxValue={data.capacitor_max_charge_rate}
                   step={1}
                   stepPixelSize={0.0031}
-                  onDrag={(e, value) =>
+                  onChange={(e, value) =>
                     act('capacitor_current_charge_rate', {
                       adjust: value,
                     })

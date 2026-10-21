@@ -211,6 +211,7 @@ export const HealthAnalyzer = (props) => {
                       onClick={() => setSelectedSection(part.zone)}
                       stroke="none"
                       fill="transparent"
+                      style={{ cursor: 'pointer' }}
                     />
                     {active.length > 0 && (
                       <>
@@ -345,8 +346,8 @@ export const HealthAnalyzer = (props) => {
                   <div key={index} className="surgery_entry">
                     <b>{surgery.name}</b> ({surgery.zone})
                     <br />
-                    Następny krok {surgery.step_number}/{surgery.step_count}
-                    : <b>{surgery.step}</b>
+                    Następny krok {surgery.step_number}/{surgery.step_count}:{' '}
+                    <b>{surgery.step}</b>
                     <br />
                     Narzędzie: {surgery.tools}
                   </div>

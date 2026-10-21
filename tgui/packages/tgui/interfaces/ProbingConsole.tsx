@@ -1,14 +1,15 @@
 import { Button, LabeledList, NoticeBox, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  feedback: any;
-  occupant: any;
-  occupant_name: any;
-  occupant_status: any;
-  open: any;
+  feedback: string;
+  occupant: BooleanLike;
+  occupant_name: string;
+  occupant_status: number;
+  open: BooleanLike;
 };
 
 export const ProbingConsole = (props) => {
@@ -19,26 +20,27 @@ export const ProbingConsole = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Machine Report">
+            <LabeledList.Item label="Raport maszyny">
               {feedback}
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Scanner"
+          title="Skaner"
           buttons={
             <Button
               icon={open ? 'sign-out-alt' : 'sign-in-alt'}
-              content={open ? 'Close' : 'Open'}
               onClick={() => act('door')}
-            />
+            >
+              {open ? 'Zamknij' : 'Otwórz'}
+            </Button>
           }
         >
           {(occupant && (
             <LabeledList>
-              <LabeledList.Item label="Name">{occupant_name}</LabeledList.Item>
+              <LabeledList.Item label="Imię">{occupant_name}</LabeledList.Item>
               <LabeledList.Item
-                label="Status"
+                label="Stan"
                 color={
                   occupant_status === 3
                     ? 'bad'
@@ -48,42 +50,45 @@ export const ProbingConsole = (props) => {
                 }
               >
                 {occupant_status === 3
-                  ? 'Deceased'
+                  ? 'Martwy'
                   : occupant_status === 2
-                    ? 'Unconscious'
-                    : 'Conscious'}
+                    ? 'Nieprzytomny'
+                    : 'Przytomny'}
               </LabeledList.Item>
-              <LabeledList.Item label="Experiments">
+              <LabeledList.Item label="Eksperymenty">
                 <Button
                   icon="thermometer"
-                  content="Probe"
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 1,
                     })
                   }
-                />
+                >
+                  Sondowanie
+                </Button>
                 <Button
                   icon="brain"
-                  content="Dissect"
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 2,
                     })
                   }
-                />
+                >
+                  Sekcja
+                </Button>
                 <Button
                   icon="search"
-                  content="Analyze"
                   onClick={() =>
                     act('experiment', {
                       experiment_type: 3,
                     })
                   }
-                />
+                >
+                  Analiza
+                </Button>
               </LabeledList.Item>
             </LabeledList>
-          )) || <NoticeBox>No Subject</NoticeBox>}
+          )) || <NoticeBox>Brak obiektu badań</NoticeBox>}
         </Section>
       </Window.Content>
     </Window>

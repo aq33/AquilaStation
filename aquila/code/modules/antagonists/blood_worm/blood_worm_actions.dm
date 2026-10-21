@@ -296,7 +296,7 @@
 
 /datum/action/cooldown/spell/blood_worm/spit/set_click_ability(mob/on_who)
 	. = ..()
-	var/right_click_message = ishuman(owner) ? ", prawym rozpuszczasz więzy" : (burst_projectile_type ? ", prawym plujesz serią" : "")
+	var/right_click_message = ishuman(owner) ? ", [owner.secondary_click_text()] rozpuszczasz więzy" : (burst_projectile_type ? ", [owner.secondary_click_text()] plujesz serią" : "")
 	to_chat(owner, "<span class='notice'>Napełniasz [ishuman(owner) ? "usta" : "paszczę"] krwią. <b>Lewym klikiem plujesz żrącą krwią[right_click_message]!</b></span>")
 
 /datum/action/cooldown/spell/blood_worm/spit/unset_click_ability(mob/on_who, refund_cooldown = TRUE)

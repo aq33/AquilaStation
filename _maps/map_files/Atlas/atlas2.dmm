@@ -1910,6 +1910,32 @@
 /obj/machinery/vending/boozeomat,
 /turf/closed/wall/steel,
 /area/crew_quarters/heads/xo)
+"dY" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/item/tgui_book/manual/dsm{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/item/stamp/cmo,
+/obj/item/clothing/mask/cigarette/cigar{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/cmo)
+"dZ" = (
+/obj/structure/table/glass,
+/obj/item/tgui_book/manual/dsm,
+/obj/structure/cable,
+/obj/machinery/firealarm/directional/south,
+/turf/open/floor/monotile/light,
+/area/medical/medbay)
 "ea" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/poster/contraband/random{
@@ -1917,6 +1943,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
+"eb" = (
+/obj/structure/table/wood,
+/obj/item/tgui_book/manual/dsm,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/machinery/light_switch/north,
+/turf/open/floor/wood,
+/area/library)
 "ec" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 8
@@ -44282,7 +44315,7 @@ oO
 KC
 Xf
 qh
-CN
+dY
 Sk
 Vn
 Ds
@@ -53292,7 +53325,7 @@ ew
 wR
 OO
 wV
-tX
+dZ
 cH
 kH
 Ex
@@ -54282,7 +54315,7 @@ sJ
 pF
 SY
 bo
-OG
+eb
 bb
 Ma
 dW

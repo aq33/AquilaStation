@@ -26,25 +26,25 @@
 	data["temp"] = temp ? aquila_split_topic_links(temp) : null
 	if(!authenticated)
 		return data
-	switch(screen)
-		if(1)
-			var/list/statuses = list()
-			for(var/datum/data/record/security_record in GLOB.data_core.security)
-				statuses["[security_record.fields["name"]]|[security_record.fields["id"]]"] = security_record.fields["criminal"]
-			var/list/records = list()
-			for(var/datum/data/record/record in sortRecord(GLOB.data_core.general, sortBy, order))
-				records += list(list(
-					"ref" = REF(record),
-					"name" = record.fields["name"],
-					"id" = record.fields["id"],
-					"rank" = record.fields["rank"],
-					"fingerprint" = record.fields["fingerprint"],
-					"criminal" = statuses["[record.fields["name"]]|[record.fields["id"]]"] || "",
-				))
-			data["records"] = records
-		if(3)
-			data["general"] = security_general_data()
-			data["security"] = security_record_data()
+	// Lista rekordów zawsze (okno z tg pokazuje ją obok otwartego rekordu)
+	var/list/statuses = list()
+	for(var/datum/data/record/security_record in GLOB.data_core.security)
+		statuses["[security_record.fields["name"]]|[security_record.fields["id"]]"] = security_record.fields["criminal"]
+	var/list/records = list()
+	for(var/datum/data/record/record in sortRecord(GLOB.data_core.general, sortBy, order))
+		records += list(list(
+			"ref" = REF(record),
+			"name" = record.fields["name"],
+			"id" = record.fields["id"],
+			"rank" = record.fields["rank"],
+			"fingerprint" = record.fields["fingerprint"],
+			"criminal" = statuses["[record.fields["name"]]|[record.fields["id"]]"] || "",
+		))
+	data["records"] = records
+	if(screen == 3)
+		data["active_ref"] = istype(active1, /datum/data/record) ? REF(active1) : null
+		data["general"] = security_general_data()
+		data["security"] = security_record_data()
 	return data
 
 /obj/machinery/computer/secure_data/proc/security_general_data()

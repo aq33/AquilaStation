@@ -1,4 +1,4 @@
-/// Plumbing constructor (RPLD) ported from tg, with a radial menu instead of the tgui one.
+/// Plumbing constructor (RPLD) ported from tg, with the tg TGUI window (RapidPlumbingDevice).
 /obj/item/construction/plumbing
 	name = "Plumbing Constructor"
 	desc = "An expertly modified RCD outfitted to construct plumbing machinery."
@@ -15,6 +15,8 @@
 	var/current_layer = DUCT_LAYER_DEFAULT
 	///Current selected color name, for ducts
 	var/current_color = DUCT_COLOR_OMNI
+	///Category of the selected blueprint, for the TGUI window
+	var/selected_category = "Distributors"
 	/// category => list(machine type => matter cost)
 	var/list/design_types = list(
 		"Synthesizers" = list(
@@ -51,7 +53,7 @@
 /obj/item/construction/plumbing/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Schemat: <b>[initial(blueprint.name)]</b>. Warstwa: [GLOB.plumbing_layer_names["[current_layer]"]], kolor rur: [current_color].</span>"
-	. += "<span class='notice'>Użyj w dłoni, żeby wybrać maszynę. <b>Alt-klik</b> zmienia warstwę i kolor rur.</span>"
+	. += "<span class='notice'>Użyj w dłoni (albo <b>Alt-klik</b>), żeby wybrać maszynę, warstwę i kolor rur.</span>"
 	. += "<span class='notice'><b>Prawy klik</b> na rurze kopiuje jej kolor i warstwę. Klik na odkręconej maszynie lub rurze ją rozbiera.</span>"
 
 /// Cost of the given design, null when we can't build it
@@ -63,35 +65,85 @@
 
 /obj/item/construction/plumbing/attack_self(mob/user)
 	..()
-	var/list/choices = list()
-	var/list/name_to_type = list()
-	for(var/category in design_types)
-		for(var/obj/machinery/design as anything in design_types[category])
-			var/label = "[initial(design.name)] ([design_types[category][design]])"
-			var/image/preview = image(icon = initial(design.icon), icon_state = initial(design.icon_state))
-			if(ispath(design, /obj/machinery/duct))
-				preview.icon_state = "nduct_n_s"
-			choices[label] = preview
-			name_to_type[label] = design
-
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
-	if(!choice || !check_menu(user))
-		return
-
-	blueprint = name_to_type[choice]
-	playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
-	to_chat(user, "<span class='notice'>Wybierasz schemat „[initial(blueprint.name)]”.</span>")
+	ui_interact(user)
 
 /obj/item/construction/plumbing/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_layer = tgui_input_list(user, "Wybierz warstwę", "Warstwa", GLOB.plumbing_layers, GLOB.plumbing_layer_names["[current_layer]"])
-	if(new_layer && user.is_holding(src))
-		current_layer = GLOB.plumbing_layers[new_layer]
-	var/new_color = tgui_input_list(user, "Wybierz kolor rur", "Kolor", get_duct_colors(), current_color)
-	if(new_color && user.is_holding(src))
-		current_color = new_color
-	to_chat(user, "<span class='notice'>Warstwa: [GLOB.plumbing_layer_names["[current_layer]"]], kolor rur: [current_color].</span>")
+	ui_interact(user)
+
+/obj/item/construction/plumbing/ui_state(mob/user)
+	return GLOB.hands_state
+
+/obj/item/construction/plumbing/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RapidPlumbingDevice", name)
+		ui.open()
+
+/obj/item/construction/plumbing/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/paint_colors = list()
+	paint_colors[DUCT_COLOR_OMNI] = "#ffffff"
+	for(var/color_name in GLOB.pipe_paint_colors)
+		paint_colors[color_name] = GLOB.pipe_paint_colors[color_name]
+	data["paint_colors"] = paint_colors
+	var/list/categories = list()
+	for(var/category in design_types)
+		var/list/recipes = list()
+		for(var/obj/machinery/design as anything in design_types[category])
+			recipes += list(list(
+				"name" = initial(design.name),
+				"icon" = "[initial(design.icon)]",
+				"icon_state" = ispath(design, /obj/machinery/duct) ? "nduct_n_s" : initial(design.icon_state),
+				"cost" = design_types[category][design],
+			))
+		categories += list(list("cat_name" = category, "recipes" = recipes))
+	data["categories"] = categories
+	data["silo_upgraded"] = !!(upgrade & RCD_UPGRADE_SILO_LINK)
+	return data
+
+/obj/item/construction/plumbing/ui_data(mob/user)
+	var/list/data = list()
+	data["matterLeft"] = matter
+	data["silo_enabled"] = silo_link
+	data["piping_layer"] = max(GLOB.plumbing_layers.Find(GLOB.plumbing_layer_names["[current_layer]"]), 1)
+	data["selected_color"] = current_color
+	data["selected_category"] = selected_category
+	data["selected_recipe"] = blueprint ? initial(blueprint.name) : null
+	return data
+
+/obj/item/construction/plumbing/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("color")
+			var/new_color = params["paint_color"]
+			if(new_color in get_duct_colors())
+				current_color = new_color
+			return TRUE
+		if("piping_layer")
+			var/layer_index = text2num(params["piping_layer"])
+			if(!layer_index || layer_index < 1 || layer_index > length(GLOB.plumbing_layers))
+				return
+			current_layer = GLOB.plumbing_layers[GLOB.plumbing_layers[layer_index]]
+			return TRUE
+		if("toggle_silo")
+			if(silo_mats)
+				silo_link = !silo_link
+				to_chat(usr, "<span class='notice'>Zmieniasz stan połączenia [src] ze zdalnym magazynem: [silo_link ? "WŁ." : "WYŁ."].</span>")
+			return TRUE
+		if("recipe")
+			var/category = params["category"]
+			var/list/category_designs = design_types[category]
+			var/index = text2num(params["id"])
+			if(!islist(category_designs) || isnull(index) || index < 0 || index >= length(category_designs))
+				return
+			blueprint = category_designs[index + 1]
+			selected_category = category
+			playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
+			return TRUE
 
 ///pretty much rcd_create, but named differently to make myself feel less bad for copypasting from a sibling-type
 /obj/item/construction/plumbing/proc/create_machine(turf/destination, mob/user)

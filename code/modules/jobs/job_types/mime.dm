@@ -61,31 +61,34 @@
 	desc = "A primer on basic pantomime."
 	icon_state ="bookmime"
 
-/obj/item/book/mimery/attack_self(mob/user,)
-	user.set_machine(src)
-	var/dat = "<B>Guide to Dank Mimery</B><BR>"
-	dat += "Uczy jednego z trzech klasycznych układów pantomimy, pozwalając wprawnemu mimowi przywoływać niewidzialne przedmioty do cielesnego istnienia.<BR>"
-	dat += "Gdy opanujesz swój układ, ta książka nie będzie miała ci już nic do powiedzenia.<BR>"
-	dat += "<HR>"
-	dat += "<A href='byond://?src=[REF(src)];invisible_wall=1'>Invisible Wall</A><BR>"
-	dat += "<A href='byond://?src=[REF(src)];invisible_chair=1'>Invisible Chair</A><BR>"
-	dat += "<A href='byond://?src=[REF(src)];invisible_box=1'>Invisible Box</A><BR>"
-	user << browse(dat, "window=book")
-
-/obj/item/book/mimery/Topic(href, href_list)
-	..()
-	if (usr.stat || usr.restrained() || src.loc != usr)
+// AQ EDIT - jak w tg: wybór układu z menu radialnego zamiast okna HTML
+/obj/item/book/mimery/attack_self(mob/user)
+	if(!ishuman(user))
 		return
-	if (!ishuman(usr))
+	var/mob/living/carbon/human/H = user
+	if(!check_mimery_menu(H))
 		return
-	var/mob/living/carbon/human/H = usr
-	if(H.is_holding(src) && H.mind)
-		H.set_machine(src)
-		if (href_list["invisible_wall"])
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall(null))
-		if (href_list["invisible_chair"])
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair(null))
-		if (href_list["invisible_box"])
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box(null))
-	to_chat(usr, "<span class='notice'>Książka znika w powietrzu.</span>")
+	var/static/list/routines = list(
+		"Niewidzialna ściana" = /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall,
+		"Niewidzialne krzesło" = /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair,
+		"Niewidzialne pudło" = /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box,
+	)
+	var/list/choices = list()
+	for(var/routine in routines)
+		var/obj/effect/proc_holder/spell/spell_type = routines[routine]
+		choices[routine] = image(icon = initial(spell_type.action_icon), icon_state = initial(spell_type.action_icon_state))
+	to_chat(H, "<span class='notice'>Książka uczy jednego z trzech klasycznych układów pantomimy, pozwalając wprawnemu mimowi przywoływać niewidzialne przedmioty do cielesnego istnienia. Gdy opanujesz swój układ, nie będzie miała ci już nic do powiedzenia.</span>")
+	var/choice = show_radial_menu(H, src, choices, custom_check = CALLBACK(src, PROC_REF(check_mimery_menu), H), require_near = TRUE, tooltips = TRUE)
+	if(!choice || !routines[choice] || !check_mimery_menu(H))
+		return
+	var/spell_type = routines[choice]
+	H.mind.AddSpell(new spell_type(null))
+	to_chat(H, "<span class='notice'>Książka znika w powietrzu.</span>")
 	qdel(src)
+
+/obj/item/book/mimery/proc/check_mimery_menu(mob/living/carbon/human/H)
+	if(QDELETED(src) || QDELETED(H) || !H.mind)
+		return FALSE
+	if(H.stat || H.restrained())
+		return FALSE
+	return H.is_holding(src)

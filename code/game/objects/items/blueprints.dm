@@ -3,6 +3,9 @@
 #define AREA_SPACE 2
 #define AREA_SPECIAL 3
 
+#define LEGEND_VIEWING_LIST "watching_list"
+#define LEGEND_OFF "off"
+
 /obj/item/areaeditor
 	name = "area modification item"
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -13,30 +16,54 @@
 
 /obj/item/areaeditor/attack_self(mob/user)
 	add_fingerprint(user)
-	. = "<BODY><HTML><head><title>[src]</title></head> \
-				<h2>[station_name()] [src.name]</h2> \
-				<small>[fluffnotice]</small><hr>"
-	switch(get_area_type())
+	ui_interact(user)
+
+/obj/item/areaeditor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Blueprints", name)
+		ui.open()
+
+/obj/item/areaeditor/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/obj/item/areaeditor/ui_data(mob/user)
+	var/list/data = list()
+	switch(get_area_type(get_area(user)))
 		if(AREA_SPACE)
-			. += "<p>Według [src.name] jesteś teraz na niczyim terenie.</p>"
+			data["area_notice"] = "Według [src.name] jesteś teraz na niczyim terenie."
 		if(AREA_SPECIAL)
-			. += "<p>Tego miejsca nie ma na [src.name].</p>"
-	. += "<p><a href='byond://?src=[REF(src)];create_area=1'>Utwórz lub zmień istniejący obszar</a></p>"
+			data["area_notice"] = "Tego miejsca nie ma na [src.name]."
+	data["legend"] = LEGEND_OFF
+	data["viewing"] = FALSE
+	data["wire_data"] = list()
+	return data
 
+/obj/item/areaeditor/ui_static_data(mob/user)
+	var/list/data = list()
+	data["legend_viewing_list"] = LEGEND_VIEWING_LIST
+	data["legend_off"] = LEGEND_OFF
+	data["fluff_notice"] = fluffnotice
+	data["station_name"] = station_name()
+	data["item_name"] = name
+	data["blueprints"] = FALSE
+	data["wire_devices"] = list()
+	return data
 
-/obj/item/areaeditor/Topic(href, href_list)
-	if(..())
-		return TRUE
+/obj/item/areaeditor/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
 	if(!usr.canUseTopic(src))
-		usr << browse(null, "window=blueprints")
 		return TRUE
-	if(href_list["create_area"])
-		if(in_use)
-			return
-		in_use = TRUE
-		create_area(usr)
-		in_use = FALSE
-	updateUsrDialog()
+	switch(action)
+		if("create_area")
+			if(in_use)
+				return
+			in_use = TRUE
+			create_area(usr)
+			in_use = FALSE
+			return TRUE
 
 //Station blueprints!!!
 /obj/item/areaeditor/blueprints
@@ -48,7 +75,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/list/image/showing = list()
 	var/client/viewing
-	var/legend = FALSE	//Viewing the wire legend
+	var/legend = LEGEND_OFF	//Viewing the wire legend: LEGEND_OFF, LEGEND_VIEWING_LIST or a wireset
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/areaeditor/blueprints/Destroy()
@@ -56,59 +83,76 @@
 	return ..()
 
 
-/obj/item/areaeditor/blueprints/attack_self(mob/user)
-	. = ..()
-	if(!legend)
+/obj/item/areaeditor/blueprints/ui_data(mob/user)
+	var/list/data = ..()
+	if(get_area_type(get_area(user)) == AREA_STATION)
 		var/area/A = get_area(user)
-		if(get_area_type() == AREA_STATION)
-			. += "<p>Według [src] jesteś teraz w <b>\"[html_encode(A.name)]\"</b>.</p>"
-			. += "<p><a href='byond://?src=[REF(src)];edit_area=1'>Zmień nazwę obszaru</a></p>"
-		. += "<p><a href='byond://?src=[REF(src)];view_legend=1'>Pokaż legendę kolorów przewodów</a></p>"
-		if(!viewing)
-			. += "<p><a href='byond://?src=[REF(src)];view_blueprints=1'>Pokaż dane konstrukcyjne</a></p>"
-		else
-			. += "<p><a href='byond://?src=[REF(src)];refresh=1'>Odśwież dane konstrukcyjne</a></p>"
-			. += "<p><a href='byond://?src=[REF(src)];hide_blueprints=1'>Ukryj dane konstrukcyjne</a></p>"
-	else
-		if(legend == TRUE)
-			. += "<a href='byond://?src=[REF(src)];exit_legend=1'><< Back</a>"
-			. += view_wire_devices(user);
-		else
-			//legend is a wireset
-			. += "<a href='byond://?src=[REF(src)];view_legend=1'><< Back</a>"
-			. += view_wire_set(user, legend)
-	var/datum/browser/popup = new(user, "blueprints", "[src]", 700, 500)
-	popup.set_content(.)
-	popup.open()
-	onclose(user, "blueprints")
+		data["area_notice"] = "Według [src] jesteś teraz w „[A.name]”."
+		data["area_name"] = A.name
+		data["can_edit_area"] = TRUE
+	data["legend"] = legend
+	data["viewing"] = !!viewing
+	if(legend != LEGEND_VIEWING_LIST && legend != LEGEND_OFF)
+		for(var/device in GLOB.wire_color_directory)
+			if("[device]" != legend) //for some reason you can't use wireset directly as a derefencer so this is the next best :/
+				continue
+			data["wires_name"] = GLOB.wire_name_directory[device]
+			for(var/individual_color in GLOB.wire_color_directory[device])
+				var/wire_name = GLOB.wire_color_directory[device][individual_color]
+				if(findtext(wire_name, WIRE_DUD_PREFIX)) //don't show duds
+					continue
+				data["wire_data"] += list(list(
+					"color" = individual_color,
+					"message" = wire_name,
+				))
+	return data
 
+/obj/item/areaeditor/blueprints/ui_static_data(mob/user)
+	var/list/data = ..()
+	data["blueprints"] = TRUE
+	for(var/wireset in GLOB.wire_color_directory)
+		data["wire_devices"] += list(list(
+			"name" = GLOB.wire_name_directory[wireset],
+			"ref" = "[wireset]",
+		))
+	return data
 
-/obj/item/areaeditor/blueprints/Topic(href, href_list)
-	if(..())
+/obj/item/areaeditor/blueprints/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	if(href_list["edit_area"])
-		if(get_area_type()!=AREA_STATION)
-			return
-		if(in_use)
-			return
-		in_use = TRUE
-		edit_area()
-		in_use = FALSE
-	if(href_list["exit_legend"])
-		legend = FALSE;
-	if(href_list["view_legend"])
-		legend = TRUE;
-	if(href_list["view_wireset"])
-		legend = href_list["view_wireset"];
-	if(href_list["view_blueprints"])
-		set_viewer(usr, "<span class='notice'>Odwracasz plany, by zobaczyć złożony diagram informacyjny.</span>")
-	if(href_list["hide_blueprints"])
-		clear_viewer(usr,"<span class='notice'>Odwracasz plany, by zobaczyć prosty diagram informacyjny.</span>")
-	if(href_list["refresh"])
-		clear_viewer(usr)
-		set_viewer(usr)
-
-	attack_self(usr) //this is not the proper way, but neither of the old update procs work! it's too ancient and I'm tired shush.
+	switch(action)
+		if("edit_area")
+			if(get_area_type() != AREA_STATION)
+				return
+			if(in_use)
+				return
+			in_use = TRUE
+			edit_area()
+			in_use = FALSE
+			return TRUE
+		if("exit_legend")
+			legend = LEGEND_OFF
+			return TRUE
+		if("view_legend")
+			legend = LEGEND_VIEWING_LIST
+			return TRUE
+		if("view_wireset")
+			var/setting_wireset = params["view_wireset"]
+			for(var/device in GLOB.wire_color_directory)
+				if("[device]" == setting_wireset) //I know... don't change it...
+					legend = setting_wireset
+					return TRUE
+		if("view_blueprints")
+			set_viewer(usr, "<span class='notice'>Odwracasz plany, by zobaczyć złożony diagram informacyjny.</span>")
+			return TRUE
+		if("hide_blueprints")
+			clear_viewer(usr,"<span class='notice'>Odwracasz plany, by zobaczyć prosty diagram informacyjny.</span>")
+			return TRUE
+		if("refresh")
+			clear_viewer(usr)
+			set_viewer(usr)
+			return TRUE
 
 /obj/item/areaeditor/blueprints/proc/get_images(turf/T, viewsize)
 	. = list()
@@ -137,7 +181,7 @@
 /obj/item/areaeditor/blueprints/dropped(mob/user)
 	..()
 	clear_viewer()
-	legend = FALSE
+	legend = LEGEND_OFF
 
 
 /obj/item/areaeditor/proc/get_area_type(area/A)
@@ -159,26 +203,6 @@
 			return AREA_SPECIAL
 	return AREA_STATION
 
-/obj/item/areaeditor/blueprints/proc/view_wire_devices(mob/user)
-	var/message = "<br>Przeglądasz legendę przewodów.<br>"
-	for(var/wireset in GLOB.wire_color_directory)
-		message += "<br><a href='byond://?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
-	message += "</p>"
-	return message
-
-/obj/item/areaeditor/blueprints/proc/view_wire_set(mob/user, wireset)
-	//for some reason you can't use wireset directly as a derefencer so this is the next best :/
-	for(var/device in GLOB.wire_color_directory)
-		if("[device]" == wireset)	//I know... don't change it...
-			var/message = "<p><b>[GLOB.wire_name_directory[device]]:</b>"
-			for(var/Col in GLOB.wire_color_directory[device])
-				var/wire_name = GLOB.wire_color_directory[device][Col]
-				if(!findtext(wire_name, WIRE_DUD_PREFIX))	//don't show duds
-					message += "<p><span style='color: [Col]'>[Col]</span>: [wire_name]</p>"
-			message += "</p>"
-			return message
-	return ""
-
 /obj/item/areaeditor/proc/edit_area()
 	var/area/A = get_area(usr)
 	var/prevname = "[A.name]"
@@ -194,7 +218,6 @@
 	to_chat(usr, "<span class='notice'>Zmieniasz nazwę „[prevname]” na „[str]”.</span>")
 	log_game("[key_name(usr)] has renamed [prevname] to [str]")
 	A.update_areasize()
-	interact()
 	return TRUE
 
 //Blueprint Subtypes

@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import {
   Box,
   Button,
@@ -7,28 +6,24 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  currentColor: any;
-  mapRef: any;
+  mapRef: string;
+  currentColor: number[];
 };
+
+const PREFIXES = ['r', 'g', 'b', 'a', 'c'] as const;
 
 export const ColorMatrixEditor = (props) => {
   const { act, data } = useBackend<Data>();
   const { mapRef, currentColor } = data;
-  const [
-    [rr, rg, rb, ra],
-    [gr, gg, gb, ga],
-    [br, bg, bb, ba],
-    [ar, ag, ab, aa],
-    [cr, cg, cb, ca],
-  ] = currentColor;
-  const prefixes = ['r', 'g', 'b', 'a', 'c'];
+
   return (
-    <Window title="Color Matrix Editor" width={600} height={220}>
+    <Window title="Edytor macierzy kolorów" width={600} height={220}>
       <Window.Content>
         <Stack fill>
           <Stack.Item align="center">
@@ -43,19 +38,22 @@ export const ColorMatrixEditor = (props) => {
                           {[0, 1, 2, 3, 4].map((row, key) => (
                             <Stack.Item key={key}>
                               <Box inline textColor="label" width="2.1rem">
-                                {`${prefixes[row]}${prefixes[col]}:`}
+                                {`${PREFIXES[row]}${PREFIXES[col]}:`}
                               </Box>
                               <NumberInput
-                                value={currentColor[row * 4 + col]}
+                                tickWhileDragging
                                 minValue={-Infinity}
-                                maxValue={Infinity}
+                                maxValue={+Infinity}
+                                value={currentColor[row * 4 + col]}
                                 step={0.01}
                                 width="50px"
                                 format={(value) => toFixed(value, 2)}
-                                onDrag={(value) => {
-                                  let retColor = currentColor;
+                                onChange={(value) => {
+                                  const retColor = currentColor;
                                   retColor[row * 4 + col] = value;
-                                  act('transition_color', { color: retColor });
+                                  act('transition_color', {
+                                    color: retColor,
+                                  });
                                 }}
                               />
                             </Stack.Item>
@@ -69,8 +67,8 @@ export const ColorMatrixEditor = (props) => {
               <Stack.Item grow />
               <Stack.Item align="left">
                 <Button.Confirm
-                  content="Confirm"
-                  confirmContent="Confirm?"
+                  content="Zatwierdź"
+                  confirmContent="Na pewno?"
                   onClick={() => act('confirm')}
                 />
               </Stack.Item>

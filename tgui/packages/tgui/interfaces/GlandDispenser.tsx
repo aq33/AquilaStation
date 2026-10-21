@@ -4,12 +4,19 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  glands: any;
+  glands: Gland[];
+};
+
+type Gland = {
+  id: string;
+  color: string;
+  amount: number;
 };
 
 export const GlandDispenser = (props) => {
   const { act, data } = useBackend<Data>();
   const { glands = [] } = data;
+
   return (
     <Window width={300} height={338} theme="abductor">
       <Window.Content>
@@ -24,14 +31,16 @@ export const GlandDispenser = (props) => {
               lineHeight="55px"
               icon="eject"
               backgroundColor={gland.color}
-              content={gland.amount || '0'}
+              tooltip="Wydaj gruczoł"
               disabled={!gland.amount}
               onClick={() =>
                 act('dispense', {
                   gland_id: gland.id,
                 })
               }
-            />
+            >
+              {gland.amount || '0'}
+            </Button>
           ))}
         </Section>
       </Window.Content>

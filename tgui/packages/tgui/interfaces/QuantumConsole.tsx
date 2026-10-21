@@ -190,7 +190,7 @@ function AccessView(props) {
               onClick={() => setTab(0)}
               icon="chevron-down"
             >
-              Peaceful
+              Spokojne
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.Low)}
@@ -199,7 +199,7 @@ function AccessView(props) {
               onClick={() => setTab(1)}
               icon="chevron-down"
             >
-              Easy
+              Łatwe
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.Medium)}
@@ -208,7 +208,7 @@ function AccessView(props) {
               onClick={() => setTab(2)}
               icon="chevron-down"
             >
-              Medium
+              Średnie
             </Tabs.Tab>
             <Tabs.Tab
               backgroundColor={getColor(Difficulty.High)}
@@ -217,7 +217,7 @@ function AccessView(props) {
               onClick={() => setTab(3)}
               icon="chevron-down"
             >
-              Hard <Icon name="skull" ml={1} />{' '}
+              Trudne <Icon name="skull" ml={1} />{' '}
             </Tabs.Tab>
           </Tabs>
           {filtered.map((domain) => (
@@ -305,15 +305,13 @@ function DomainEntry(props: DomainEntryProps) {
         </Tooltip>
       }
       color={getColor(difficulty)}
+      sideIcon={grade_symbol}
       title={
         <>
           {name}
           {!!is_modular && canView && <Icon name="cubes" ml={1} />}
           {!!has_secondary_objectives && canView && <Icon name="gem" ml={1} />}
           {!!announce_ghosts && canView && <Icon name="ghost" ml={1} />}
-          {grade_symbol !== 'minus' && (
-            <Icon color="gold" name={grade_symbol} ml={1} />
-          )}
         </>
       }
     >
@@ -371,7 +369,7 @@ const AvatarDisplay = (props) => {
           <Stack.Item>
             <Tooltip content="Odśwież dane awatarów.">
               <Button icon="sync" onClick={() => act('refresh')}>
-                Refresh
+                Odśwież
               </Button>
             </Tooltip>
           </Stack.Item>
@@ -382,7 +380,7 @@ const AvatarDisplay = (props) => {
         {avatars.map(({ health, name, pilot, brute, burn, tox, oxy }) => (
           <Table.Row key={name}>
             <Table.Cell color="label">
-              {pilot} as{' '}
+              {pilot} jako{' '}
               <span style={{ color: 'white' }}>&quot;{name}&quot;</span>
             </Table.Cell>
             <Table.Cell collapsing>

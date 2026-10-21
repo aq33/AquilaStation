@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import {
   AnimatedNumber,
   Box,
@@ -7,64 +6,87 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type Chem = {
+  name: string;
+  id: string;
+  allowed: BooleanLike;
+};
+
+type Occupant = {
+  name?: string;
+  stat?: string;
+  statstate?: string;
+  health: number;
+  maxHealth: number;
+  minHealth: number;
+  bruteLoss: number;
+  oxyLoss: number;
+  toxLoss: number;
+  fireLoss: number;
+  cloneLoss: number;
+  brainLoss: number;
+  reagents: { name: string; volume: number }[];
+};
+
 type Data = {
-  chems: any;
-  occupant: any;
-  occupied: any;
-  open: any;
+  chems: Chem[];
+  occupant: Occupant;
+  occupied: BooleanLike;
+  open: BooleanLike;
+};
+
+const damageTypes = [
+  {
+    label: 'Obrażenia',
+    type: 'bruteLoss',
+  },
+  {
+    label: 'Oparzenia',
+    type: 'fireLoss',
+  },
+  {
+    label: 'Toksyny',
+    type: 'toxLoss',
+  },
+  {
+    label: 'Niedotlenienie',
+    type: 'oxyLoss',
+  },
+] as const;
+
+// Stan pacjenta przychodzi z DM po angielsku
+const STAT_LABELS = {
+  Conscious: 'Przytomny',
+  Unconscious: 'Nieprzytomny',
+  Dead: 'Martwy',
 };
 
 export const Sleeper = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { open, occupant = {}, occupied } = data;
+  const { open, occupied } = data;
+  const occupant = data.occupant || ({} as Occupant);
 
-  const preSortChems = data.chems || [];
-  const chems = preSortChems.sort((a, b) => {
-    const descA = a.name.toLowerCase();
-    const descB = b.name.toLowerCase();
-    if (descA < descB) {
-      return -1;
-    }
-    if (descA > descB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const damageTypes = [
-    {
-      label: 'Brute',
-      type: 'bruteLoss',
-    },
-    {
-      label: 'Burn',
-      type: 'fireLoss',
-    },
-    {
-      label: 'Toxin',
-      type: 'toxLoss',
-    },
-    {
-      label: 'Oxygen',
-      type: 'oxyLoss',
-    },
-  ];
+  const chems = [...(data.chems || [])].sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Window width={310} height={520}>
       <Window.Content>
         <Section
-          title={occupant.name ? occupant.name : 'No Occupant'}
+          title={occupant.name ? occupant.name : 'Brak pacjenta'}
           minHeight="250px"
           buttons={
             !!occupant.stat && (
               <Box inline bold color={occupant.statstate}>
-                {occupant.stat}
+                {STAT_LABELS[occupant.stat] || occupant.stat}
               </Box>
             )
           }
@@ -94,27 +116,28 @@ export const Sleeper = (props) => {
                   </LabeledList.Item>
                 ))}
                 <LabeledList.Item
-                  label="Cells"
+                  label="Komórki"
                   color={occupant.cloneLoss ? 'bad' : 'good'}
                 >
-                  {occupant.cloneLoss ? 'Damaged' : 'Healthy'}
+                  {occupant.cloneLoss ? 'Uszkodzone' : 'Zdrowe'}
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Brain"
+                  label="Mózg"
                   color={occupant.brainLoss ? 'bad' : 'good'}
                 >
-                  {occupant.brainLoss ? 'Abnormal' : 'Healthy'}
+                  {occupant.brainLoss ? 'Nieprawidłowy' : 'Zdrowy'}
                 </LabeledList.Item>
-                <LabeledList.Item label="Reagents">
+                <LabeledList.Item label="Odczynniki">
                   <Box color="label">
-                    {occupant.reagents.length === 0 && '—'}
-                    {occupant.reagents.map((chemical) => (
+                    {(occupant.reagents || []).length === 0 && '—'}
+                    {(occupant.reagents || []).map((chemical) => (
                       <Box key={chemical.name}>
+                        {`${chemical.name}: `}
                         <AnimatedNumber
                           value={chemical.volume}
                           format={(value) => toFixed(value, 1)}
                         />
-                        {` units of ${chemical.name}`}
+                        {' u'}
                       </Box>
                     ))}
                   </Box>
@@ -124,29 +147,31 @@ export const Sleeper = (props) => {
           )}
         </Section>
         <Section
-          title="Medicines"
+          title="Leki"
           minHeight="205px"
           buttons={
             <Button
               icon={open ? 'door-open' : 'door-closed'}
-              content={open ? 'Open' : 'Closed'}
               onClick={() => act('door')}
-            />
+            >
+              {open ? 'Otwarta' : 'Zamknięta'}
+            </Button>
           }
         >
           {chems.map((chem) => (
             <Button
               key={chem.name}
               icon="flask"
-              content={chem.name}
-              disabled={!(occupied && chem.allowed)}
+              disabled={!occupied || !chem.allowed}
               width="140px"
               onClick={() =>
                 act('inject', {
                   chem: chem.id,
                 })
               }
-            />
+            >
+              {chem.name}
+            </Button>
           ))}
         </Section>
       </Window.Content>

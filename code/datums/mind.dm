@@ -424,7 +424,10 @@
 			output += "<br>[objective.explanation_text]"
 
 	if(window)
-		recipient << browse(HTML_SKELETON(output),"window=memory")
+		// AQ EDIT - okno TGUI MemoryPanel zamiast okna HTML
+		if(!GLOB.memory_panel)
+			GLOB.memory_panel = new /datum/memory_panel()
+		GLOB.memory_panel.ui_interact(recipient)
 	else if(antag_objectives.len || crew_objectives.len || memory)
 		to_chat(recipient, "<i>[output]</i>")
 
