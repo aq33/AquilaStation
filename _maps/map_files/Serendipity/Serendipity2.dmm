@@ -343,17 +343,6 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
-"aQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/item/radio/intercom/directional/west,
-/obj/machinery/vending/sticker,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "aR" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -362,10 +351,22 @@
 /obj/machinery/firealarm/directional/south,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"aT" = (
+/obj/machinery/exoscanner,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
 "aU" = (
 /obj/effect/landmark/trader_drop_point,
 /turf/open/floor/plasteel/tiled/light,
 /area/quartermaster/warehouse)
+"aV" = (
+/obj/machinery/computer/exodrone_control_console,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
+"aW" = (
+/obj/machinery/computer/exoscanner_control,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
 "aX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -378,6 +379,45 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/nsv/hanger/notkmcstupidhanger/pilot)
+"aY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
+"aZ" = (
+/obj/machinery/exodrone_launcher,
+/obj/item/exodrone,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
+"ba" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/fuel_pellet{
+	pixel_x = 5
+	},
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
+"bb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/button/door{
+	id = "cargo_break";
+	name = "Cargo Breakroom Shutters";
+	pixel_x = -23;
+	pixel_y = 3
+	},
+/obj/machinery/vending/sticker,
+/turf/open/floor/plasteel/white,
+/area/quartermaster/meeting_room)
 "be" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/munitions_tech,
@@ -400,11 +440,6 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
-"bl" = (
-/obj/structure/table,
-/obj/item/reagent_containers/food/drinks/coffee,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
@@ -420,19 +455,6 @@
 	},
 /turf/closed/wall/r_wall/ship,
 /area/engine/atmos)
-"bu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/obj/machinery/button/door{
-	id = "cargo_break";
-	name = "Cargo Breakroom Shutters";
-	pixel_x = -23;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "bE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4631,23 +4653,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"xZ" = (
-/obj/structure/table,
-/obj/item/food/energybar{
-	pixel_w = 4;
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/food/energybar{
-	pixel_w = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/effect/landmark/event_spawn,
-/obj/structure/cable,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "ya" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7158,10 +7163,6 @@
 	},
 /turf/open/floor/engine,
 /area/comms)
-"Mq" = (
-/obj/structure/table,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "Mr" = (
 /obj/machinery/computer/monitor{
 	dir = 8
@@ -8411,14 +8412,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
-"Ss" = (
-/obj/structure/table,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "St" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -9040,13 +9033,6 @@
 /obj/machinery/door/firedoor/border_only/directional/west,
 /turf/open/floor/plating,
 /area/engine/break_room)
-"VL" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
-"VQ" = (
-/turf/open/floor/plasteel/white,
-/area/quartermaster/meeting_room)
 "VR" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -40218,8 +40204,8 @@ Ne
 Kt
 Vk
 FQ
-aQ
-bu
+lp
+bb
 ig
 Sq
 dD
@@ -40474,7 +40460,7 @@ Cm
 bK
 PB
 ee
-VQ
+aT
 XH
 pM
 YI
@@ -40731,9 +40717,9 @@ kx
 fe
 PB
 lB
-Mq
-xZ
-VQ
+aV
+aY
+aZ
 OE
 Sq
 dD
@@ -40988,8 +40974,8 @@ Qs
 Od
 PB
 CQ
-bl
-Ss
+aW
+XH
 fj
 TU
 Sq
@@ -41245,9 +41231,9 @@ XS
 XS
 wJ
 hR
-VQ
+aT
 Al
-VL
+ba
 Ps
 Sq
 dD
