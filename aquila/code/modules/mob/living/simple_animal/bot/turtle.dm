@@ -131,25 +131,14 @@
 	if(scan_target.reagents?.total_volume >= scan_target.reagents?.maximum_volume/2)
 		return null
 
-/mob/living/simple_animal/bot/turtle/get_controls(mob/user)
-	var/dat
-	dat += hack(user)
-	dat += showpai(user)
-	dat += text({"
-Stan: <A href='byond://?src=[REF(src)];power=1'>[on ? "Wł." : "Wył."]</A><BR>
-Sterowanie zachowaniem jest [locked ? "zablokowane" : "odblokowane"]<BR>
-Panel serwisowy jest [open ? "otwarty" : "zamknięty"]"})
-	if(!locked || issilicon(user)|| IsAdminGhost(user))
-		dat += "<BR>Podlewanie tac: <A href='byond://?src=[REF(src)];operation=water'>[water ? "Tak" : "Nie"]</A>"
-		dat += "<BR><BR>Patrolowanie stacji: <A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "Tak" : "Nie"]</A>"
-	return dat
+/mob/living/simple_animal/bot/turtle/get_custom_controls(mob/user)
+	return list("water_trays" = water)
 
-/mob/living/simple_animal/bot/turtle/Topic(href, href_list)
-	if(..())
-		return TRUE
-	if(href_list["operation"] == "water")
-		water = !water
-		update_controls()
+/mob/living/simple_animal/bot/turtle/bot_custom_act(action, list/params, mob/user)
+	if(action != "water_trays")
+		return FALSE
+	water = !water
+	return TRUE
 
 // AQUILA - u Bee oba procy nazywały się insertpai, przez co nakładka nigdy nie znikała
 /mob/living/simple_animal/bot/turtle/insertpai(mob/user, obj/item/paicard/card)
