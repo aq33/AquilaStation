@@ -826,7 +826,7 @@
 #include "code\modules\test_chamber\kits\pr_471_logi_rund.dm"
 #include "code\modules\test_chamber\kits\pr_474_resprite3.dm"
 #include "code\modules\test_chamber\kits\pr_478_exodrony.dm"
-#include "code\modules\test_chamber\kits\pr_481_heretyk.dm"
+#include "code\modules\test_chamber\kits\pr_482_heretyk.dm"
 #include "code\modules\test_chamber\kits\pr_472_wampir.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"

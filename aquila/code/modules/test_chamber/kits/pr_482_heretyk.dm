@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_481
+/datum/test_chamber_kit/pr_482
 	name = "Heretyk z tg (8 ścieżek)"
-	pr = "aq33/AquilaStation#481"
+	pr = "aq33/AquilaStation#482"
 	description = "Pierwszy człowiek jest heretykiem z 30 punktami wiedzy (przejmij go albo daj heretyka sobie przez Antag Panel i dodaj punkty komendą Adjust Knowledge Points). \
 		Otwórz okno heretyka: wybierz ścieżkę, kup wiedzę z drzewa, draftów i sklepu. Mansus Grasp w drugiej ręce + długopis na podłodze = runa; sprawdź rytuały \
 		(ostrze z noża, Codex z książki, żywe serce, wiedza poboczna). Living heart: cele ofiarne, ofiara drugiego człowieka (wymiar Mansusa, powrót z klątwą). \
@@ -22,7 +22,7 @@
 		/obj/item/stack/sheet/iron/fifty = 1,
 	)
 
-/datum/test_chamber_kit/pr_481/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_482/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/mob/living/carbon/human/heretic_mob = locate() in spawned
 	if(!heretic_mob)
 		return
