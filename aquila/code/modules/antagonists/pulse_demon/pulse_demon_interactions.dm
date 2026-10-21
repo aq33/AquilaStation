@@ -32,6 +32,10 @@
 		return
 	next_click = world.time + 1
 
+	// Standaryzacja combat mode: rozbrajanie ze starych intencji to prawy przycisk, także dla sterowanego robota
+	var/list/intercept_modifiers = params2list(params)
+	if(translate_legacy_intent_click(A, intercept_modifiers, disarm_only = TRUE))
+		params = list2params(intercept_modifiers)
 	if(check_click_intercept(params, A))
 		return
 

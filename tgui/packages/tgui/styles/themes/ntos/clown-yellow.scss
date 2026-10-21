@@ -1,0 +1,19 @@
+/**
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
+ */
+
+.theme-ntos-clown-yellow:root {
+  --color-base: hsl(50.9, 86.5%, 25.57%);
+  --color-primary: hsl(212, 37.6%, 45.9%);
+  --base-gradient-spread: 2;
+  --button-background-default: hsl(325.9, 61.64%, 52.31%);
+  --button-color-transparent: rgba(227, 240, 255, 0.75);
+  --progress-bar-fill: hsl(325.9, 58.3%, 49.8%);
+  --progress-bar-background: rgba(0, 0, 0, 0.5);
+  --titlebar-background: hsl(325.9, 58.3%, 37.35%);
+
+  * {
+    font-family:
+      'Comic Sans MS', Verdana, sans-serif, 'Font Awesome 5 Free' !important;
+  }
+}

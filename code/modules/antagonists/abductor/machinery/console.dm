@@ -79,10 +79,13 @@
 			"items" = (category == selected_cat ? list() : null))
 		for(var/gear in possible_gear[category])
 			var/datum/abductor_gear/AG = possible_gear[category][gear]
+			var/atom/gear_path = ispath(AG.build_path, /atom) ? AG.build_path : null // AQ EDIT - ikony w oknie z tg
 			cat["items"] += list(list(
 				"name" = AG.name,
 				"cost" = AG.cost,
 				"desc" = AG.description,
+				"icon" = gear_path ? "[initial(gear_path.icon)]" : null,
+				"icon_state" = gear_path ? initial(gear_path.icon_state) : null,
 			))
 		data["categories"] += list(cat)
 	return data

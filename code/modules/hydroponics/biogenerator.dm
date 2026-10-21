@@ -297,6 +297,10 @@
 /obj/machinery/biogenerator/ui_data(mob/user)
 	var/list/data = list()
 	data["beaker"] = beaker ? TRUE : FALSE
+	// AQUILA: container fill for tg's window
+	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : 0
+	data["beakerMaxVolume"] = beaker ? beaker.reagents.maximum_volume : 0
+	data["reagent_color"] = beaker?.reagents.total_volume ? mix_color_from_reagents(beaker.reagents.reagent_list) : null
 	data["biomass"] = points
 	data["processing"] = processing
 	if(locate(/obj/item/food/grown) in contents)
@@ -328,6 +332,7 @@
 				"id" = D.id,
 				"name" = D.name,
 				"cost" = D.materials[getmaterialref(/datum/material/biomass)]/efficiency,
+				"is_reagent" = length(D.make_reagents) > 0, // AQUILA: poured into the container instead of dropped
 			))
 		data["categories"] += list(cat)
 

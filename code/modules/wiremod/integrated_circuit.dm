@@ -378,7 +378,7 @@
 					return TRUE
 				if(!marker.marked_atom)
 					port.set_input(null)
-					marker.say("Cleared port ('[port.name]')'s value.")
+					marker.say("Wyczyszczono wartość portu („[port.name]”).")
 					return TRUE
 				marker.say("Zaktualizowano wartość portu („[port.name]”) na oznaczony obiekt.")
 				port.set_input(marker.marked_atom)
@@ -394,7 +394,7 @@
 				if(PORT_TYPE_STRING)
 					port.set_input(copytext(user_input, 1, PORT_MAX_STRING_LENGTH))
 				if(PORT_TYPE_SIGNAL)
-					balloon_alert(usr, "Triggered [port.name].")
+					balloon_alert(usr, "Wyzwolono [port.name].")
 					port.set_input(COMPONENT_SIGNAL)
 			. = TRUE
 		if("get_component_value")
@@ -412,7 +412,7 @@
 				value = port.convert_value(port.output_value)
 			else if(isnull(value))
 				value = "null"
-			balloon_alert(usr, "[port.name] value: [value].")
+			balloon_alert(usr, "Wartość [port.name]: [value].")
 			. = TRUE
 		if("set_display_name")
 			var/new_name = params["display_name"]

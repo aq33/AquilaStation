@@ -1,5 +1,4 @@
 // AQUILA - konsola zleceń cywilnych, port z tgstation
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 import {
   Box,
@@ -12,6 +11,7 @@ import {
   Tabs,
   Tooltip,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -62,6 +62,7 @@ export const CivCargoHoldTerminal = (props) => {
             <Tabs.Tab
               icon="user"
               selected={tab === 'personal'}
+              backgroundColor={tab === 'personal' ? 'green' : undefined}
               onClick={() => setTab('personal')}
             >
               Zlecenia osobiste
@@ -69,6 +70,7 @@ export const CivCargoHoldTerminal = (props) => {
             <Tabs.Tab
               icon="space-shuttle"
               selected={tab === 'station'}
+              backgroundColor={tab === 'station' ? 'brown' : undefined}
               onClick={() => setTab('station')}
             >
               Zlecenia statku
@@ -219,7 +221,9 @@ const GlobalBountyBlock = (props) => {
           ) : (
             <Tabs.Tab>
               <Tooltip content="Co 3 ukończone zlecenia statku lista rośnie o jedno zlecenie!">
-                <Box>Ukończone zlecenia: {claimed_bounties}</Box>
+                <Box className="Marquee">
+                  Ukończone zlecenia: {claimed_bounties}
+                </Box>
               </Tooltip>
             </Tabs.Tab>
           )}
@@ -232,9 +236,17 @@ const GlobalBountyBlock = (props) => {
               icon={
                 bounty.priority ? 'star' : bounty.unique ? 'gem' : undefined
               }
-              color={
-                bounty.priority ? 'yellow' : bounty.unique ? 'teal' : undefined
+              mt={0.5}
+              backgroundColor={
+                bounty.priority
+                  ? '#cec328a8'
+                  : bounty.unique
+                    ? '#00fff270'
+                    : '#d1d1d170'
               }
+              textColor="white"
+              className="Tab_Flash"
+              bold={bounty.ref === selectedRef}
               selected={bounty.ref === selectedRef}
               onClick={() => setSelectedRef(bounty.ref)}
             >

@@ -4,9 +4,10 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  auth_required: any;
-  ftl_safety_override: any;
-  waiting: any;
+  waiting: number;
+  auth_required: number | string;
+  // NSV13: -1 poza overmapą, 0 zabezpieczenia aktywne, 1 obejście włączone
+  ftl_safety_override: number;
 };
 
 export const KeycardAuth = (props) => {
@@ -17,7 +18,7 @@ export const KeycardAuth = (props) => {
         <Section>
           <Box>
             {data.waiting === 1 && (
-              <span>Waiting for another device to confirm your request...</span>
+              <span>Oczekiwanie na potwierdzenie z drugiego urządzenia...</span>
             )}
           </Box>
           <Box>
@@ -31,38 +32,41 @@ export const KeycardAuth = (props) => {
                     lineHeight="60px"
                     fluid
                     onClick={() => act('auth_swipe')}
-                    content="Authorize"
-                  />
+                  >
+                    Autoryzuj
+                  </Button>
                 )}
                 {data.auth_required === 0 && (
                   <>
                     <Button
                       icon="exclamation-triangle"
                       fluid
-                      onClick={() => {
-                        return act('red_alert');
-                      }}
-                      content="Red Alert"
-                    />
+                      onClick={() => act('red_alert')}
+                    >
+                      Alarm czerwony
+                    </Button>
                     <Button
                       icon="wrench"
                       fluid
                       onClick={() => act('emergency_maint')}
-                      content="Emergency Maintenance Access"
-                    />
+                    >
+                      Awaryjny dostęp do tuneli technicznych
+                    </Button>
                     <Button
                       icon="meteor"
                       fluid
                       onClick={() => act('bsa_unlock')}
-                      content="Bluespace Artillery Unlock"
-                    />
+                    >
+                      Odblokowanie artylerii bluespace
+                    </Button>
                     {data.ftl_safety_override >= 0 && (
                       <Button
                         icon="exclamation-triangle"
                         fluid
                         onClick={() => act('ftl_safety_override')}
-                        content="FTL Drive Safety Override"
-                      />
+                      >
+                        Obejście zabezpieczeń napędu FTL
+                      </Button>
                     )}
                   </>
                 )}

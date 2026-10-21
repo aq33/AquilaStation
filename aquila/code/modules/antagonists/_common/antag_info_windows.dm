@@ -59,6 +59,8 @@
 	var/list/data = list()
 	data["true_name"] = changelingID
 	data["objectives"] = get_objectives()
+	data["absorbed_dna"] = absorbedcount
+	data["genetic_points"] = geneticpoints
 	return data
 
 // ===== Blood brothers =====

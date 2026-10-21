@@ -608,6 +608,11 @@
 		add_view_range(view)
 
 /mob/proc/check_click_intercept(params,A)
+	// AQ EDIT - standaryzacja combat mode: zdolności widzą disarm ze starych intencji jako prawy przycisk
+	var/list/intercept_modifiers = params2list(params)
+	if(translate_legacy_intent_click(A, intercept_modifiers, disarm_only = TRUE))
+		params = list2params(intercept_modifiers)
+	// AQ EDIT END
 	//Client level intercept
 	if(client?.click_intercept)
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))

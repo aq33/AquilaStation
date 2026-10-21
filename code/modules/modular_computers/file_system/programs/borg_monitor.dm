@@ -46,6 +46,7 @@
 			locked_down = R.lockcharge,
 			status = R.stat,
 			shell_discon = shell,
+			integ = round((R.health + 100) / 2), //AQUILA: stan techniczny z tg, zdrowie moba -100..100 skalowane do 0..100
 			charge = R.cell ? round(R.cell.percent()) : null,
 			module = R.module ? "[R.module.name] Module" : "Nie wykryto modułu",
 			upgrades = upgrade,

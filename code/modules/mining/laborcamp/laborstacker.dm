@@ -73,13 +73,13 @@ GLOBAL_LIST(labor_sheet_values)
 		data["id_points"] = prisonerID.points
 		if(prisonerID.points >= prisonerID.goal && !prisonerID.permanent)
 			can_go_home = TRUE
-			data["status_info"] = "Goal met!"
+			data["status_info"] = "Limit osiągnięty!"
 		else if(prisonerID.permanent)
-			data["status_info"] = "Your sentence is permanent."
+			data["status_info"] = "Twój wyrok jest dożywotni."
 		else
-			data["status_info"] = "You are [(prisonerID.goal - prisonerID.points)] points away."
+			data["status_info"] = "Brakuje ci [(prisonerID.goal - prisonerID.points)] pkt."
 	else
-		data["status_info"] = "No Prisoner ID detected."
+		data["status_info"] = "Nie wykryto identyfikatora więźnia."
 		data["id_points"] = 0
 
 	if(stacking_machine)

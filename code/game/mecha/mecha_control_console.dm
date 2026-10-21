@@ -36,9 +36,9 @@
 			integrity = round((M.obj_integrity / M.max_integrity) * 100),
 			charge = M.cell ? round(M.cell.percent()) : null,
 			airtank = M.internal_tank ? M.return_pressure() : null,
-			pilot = M.occupant,
+			pilot = M.occupant ? list("[M.occupant]") : list(), // AQUILA: a list of names, like tg's window expects
 			location = get_area_name(M, TRUE),
-			active_equipment = M.selected,
+			active_equipment = M.selected ? "[M.selected]" : null,
 			emp_recharging = MT.recharging,
 			tracker_ref = REF(MT)
 		)

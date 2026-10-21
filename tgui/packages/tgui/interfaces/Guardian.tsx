@@ -106,7 +106,7 @@ const GuardianGeneral = (props) => {
           <Input
             value={data.guardian_name}
             placeholder={data.name}
-            onChange={(e, value) =>
+            onBlur={(value) =>
               act('name', {
                 name: value,
               })

@@ -342,51 +342,94 @@
 			world.SetConfig("ban",ckey,list2stickyban(cached_ban))
 
 
-/datum/admins/proc/stickyban_gethtml(ckey)
+// AQUILA EDIT - panel stickybanów w TGUI (okno "StickyBanPanel") zamiast HTML
+/datum/admins/proc/stickyban_data(ckey)
 	var/ban = get_stickyban_from_ckey(ckey)
 	if (!ban)
 		return
-	var/timeout
-	if (SSdbcore.Connect())
-		timeout = "<a href='byond://?_src_=holder;[HrefToken()];stickyban=[(ban["timeout"] ? "untimeout" : "timeout")]&ckey=[ckey]'>\[[(ban["timeout"] ? "untimeout" : "timeout" )]\]</a>"
-	else
-		timeout = "<a href='byond://?_src_=holder;[HrefToken()];stickyban=revert&ckey=[ckey]'>\[revert\]</a>"
-	. = list({"
-		<a href='byond://?_src_=holder;[HrefToken()];stickyban=remove&ckey=[ckey]'>\[-\]</a>
-		[timeout]
-		<b>[ckey]</b>
-		<br />"
-		[ban["message"]] <b><a href='byond://?_src_=holder;[HrefToken()];stickyban=edit&ckey=[ckey]'>\[Edit\]</a></b><br />
-	"})
-	if (ban["admin"])
-		. += "[ban["admin"]]<br />"
-	else
-		. += "LEGACY<br />"
-	. += "Caught keys<br />\n<ol>"
+	var/list/alts = list()
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='byond://?_src_=holder;[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]<a href='byond://?_src_=holder;[HrefToken()];stickyban=exempt&ckey=[ckey]&alt=[ckey(key)]'>\[E\]</a></li>"
-
+		alts += list(list("key" = key, "ckey" = ckey(key), "exempt" = FALSE))
 	for (var/key in ban["whitelist"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='byond://?_src_=holder;[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>\[-\]</a>[key]<a href='byond://?_src_=holder;[HrefToken()];stickyban=unexempt&ckey=[ckey]&alt=[ckey(key)]'>\[UE\]</a></li>"
-
-	. += "</ol>\n"
+		alts += list(list("key" = key, "ckey" = ckey(key), "exempt" = TRUE))
+	return list(
+		"ckey" = ckey,
+		"message" = ban["message"],
+		"admin" = ban["admin"],
+		"timeout" = !!ban["timeout"],
+		"alts" = alts,
+	)
 
 /datum/admins/proc/stickyban_show()
 	if(!check_rights(R_BAN))
 		return
-	var/list/bans = sticky_banned_ckeys()
-	var/list/banhtml = list()
-	for(var/key in bans)
-		var/ckey = ckey(key)
-		banhtml += "<br /><hr />\n"
-		banhtml += stickyban_gethtml(ckey)
+	if(!stickyban_panel_ui)
+		stickyban_panel_ui = new(src)
+	stickyban_panel_ui.ui_interact(usr)
+	stickyban_panel_ui.update_static_data(usr)
 
-	var/html = "<h2>All Sticky Bans:</h2> <a href='byond://?_src_=holder;[HrefToken()];stickyban=add'>\[+\]</a><br>[banhtml.Join("")]"
-	usr << browse(HTML_SKELETON_TITLE("Sticky Bans", html),"window=stickybans;size=700x400")
+/datum/admins
+	/// AQUILA - okno TGUI stickybanów
+	var/datum/stickyban_panel/stickyban_panel_ui
+
+/datum/stickyban_panel
+	var/datum/admins/holder
+
+/datum/stickyban_panel/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/stickyban_panel/Destroy(force)
+	if(holder?.stickyban_panel_ui == src)
+		holder.stickyban_panel_ui = null
+	holder = null
+	return ..()
+
+/datum/stickyban_panel/ui_state(mob/user)
+	return get_admin_state(R_BAN)
+
+/datum/stickyban_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StickyBanPanel")
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+// Lista banów może pytać bazę danych, więc jest w danych statycznych odświeżanych po każdej akcji
+/datum/stickyban_panel/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/bans = list()
+	for(var/key in sticky_banned_ckeys())
+		var/list/ban_data = holder.stickyban_data(ckey(key))
+		if(ban_data)
+			bans += list(ban_data)
+	data["bans"] = bans
+	data["db_connected"] = SSdbcore.IsConnected()
+	return data
+
+/datum/stickyban_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_BAN))
+		return
+	switch(action)
+		if("refresh")
+			update_static_data(usr, ui)
+			return
+		if("add", "remove", "remove_alt", "edit", "exempt", "unexempt", "timeout", "untimeout", "revert")
+			var/list/data = list()
+			if(istext(params["ckey"]))
+				data["ckey"] = params["ckey"]
+			if(istext(params["alt"]))
+				data["alt"] = params["alt"]
+			holder.stickyban(action, data)
+			update_static_data(usr, ui)
+			return
 
 /proc/sticky_banned_ckeys()
 	if (SSdbcore.Connect() || length(SSstickyban.dbcache))

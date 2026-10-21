@@ -1,5 +1,4 @@
-import { sortBy } from 'common/collections';
-import { flow } from 'common/fp';
+import { sortBy } from 'es-toolkit';
 import {
   Box,
   Button,
@@ -9,45 +8,70 @@ import {
   LabeledList,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type Data = {
-  active: any;
-  songs: any;
-  track_beat: any;
-  track_length: any;
-  track_selected: any;
-  volume: any;
+// AQUILA EDIT - nasz jukebox (aquila/code/game/machinery/jukebox*.dm) ma
+// własne okno HTML z playlistami YouTube; to okno zostaje jako port z tg
+// i obecnie nie otwiera go żaden kod DM.
+
+type Song = {
+  name: string;
+  length: number;
+  beat: number;
 };
 
-export const Jukebox = (props) => {
+type Data = {
+  active: BooleanLike;
+  looping: BooleanLike;
+  volume: number;
+  track_selected: string | null;
+  songs: Song[];
+};
+
+export const Jukebox = () => {
   const { act, data } = useBackend<Data>();
-  const { active, track_selected, track_length, track_beat, volume } = data;
-  const songs = flow([sortBy((song) => song.name)])(data.songs || []);
+  const { active, looping, track_selected, volume, songs = [] } = data;
+
+  const songs_sorted: Song[] = sortBy(songs, [(song: Song) => song.name]);
+  const song_selected: Song | undefined = songs.find(
+    (song) => song.name === track_selected,
+  );
+
   return (
-    <Window width={370} height={313}>
+    <Window title="Szafa grająca" width={370} height={313}>
       <Window.Content>
         <Section
-          title="Song Player"
+          title="Odtwarzacz"
           buttons={
-            <Button
-              icon={active ? 'pause' : 'play'}
-              content={active ? 'Stop' : 'Play'}
-              selected={active}
-              onClick={() => act('toggle')}
-            />
+            <>
+              <Button
+                icon={active ? 'pause' : 'play'}
+                selected={active}
+                onClick={() => act('toggle')}
+              >
+                {active ? 'Stop' : 'Graj'}
+              </Button>
+              <Button.Checkbox
+                icon={'arrow-rotate-left'}
+                disabled={active}
+                checked={looping}
+                onClick={() => act('loop', { looping: !looping })}
+              >
+                Powtarzaj
+              </Button.Checkbox>
+            </>
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Track Selected">
+            <LabeledList.Item label="Wybrany utwór">
               <Dropdown
-                overflow-y="scroll"
                 width="240px"
-                options={songs.map((song) => song.name)}
-                disabled={active}
-                selected={track_selected || 'Select a Track'}
+                options={songs_sorted.map((song) => song.name)}
+                disabled={!!active}
+                selected={song_selected?.name || 'Wybierz utwór'}
                 onSelected={(value) =>
                   act('select_track', {
                     track: value,
@@ -55,29 +79,30 @@ export const Jukebox = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Track Length">
-              {track_selected ? track_length : 'No Track Selected'}
+            <LabeledList.Item label="Długość utworu">
+              {song_selected?.length || 'Nie wybrano utworu'}
             </LabeledList.Item>
-            <LabeledList.Item label="Track Beat">
-              {track_selected ? track_beat : 'No Track Selected'}
-              {track_beat === 1 ? ' beat' : ' beats'}
+            <LabeledList.Item label="Rytm">
+              {song_selected
+                ? `${song_selected.beat} ${song_selected.beat === 1 ? 'uderzenie' : 'uderzeń'}`
+                : 'Nie wybrano utworu'}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Machine Settings">
+        <Section title="Ustawienia urządzenia">
           <LabeledControls justify="center">
-            <LabeledControls.Item label="Volume">
+            <LabeledControls.Item label="Głośność">
               <Box position="relative">
                 <Knob
                   size={3.2}
-                  color={volume >= 50 ? 'red' : 'green'}
+                  color={volume >= 25 ? 'red' : 'green'}
                   value={volume}
                   unit="%"
                   minValue={0}
-                  maxValue={100}
+                  maxValue={50}
                   step={1}
                   stepPixelSize={1}
-                  onDrag={(e, value) =>
+                  onChange={(e, value) =>
                     act('set_volume', {
                       volume: value,
                     })
@@ -90,6 +115,7 @@ export const Jukebox = (props) => {
                   right="-22px"
                   color="transparent"
                   icon="fast-backward"
+                  tooltip="Minimalna"
                   onClick={() =>
                     act('set_volume', {
                       volume: 'min',
@@ -103,6 +129,7 @@ export const Jukebox = (props) => {
                   right="-22px"
                   color="transparent"
                   icon="fast-forward"
+                  tooltip="Maksymalna"
                   onClick={() =>
                     act('set_volume', {
                       volume: 'max',
@@ -116,6 +143,7 @@ export const Jukebox = (props) => {
                   right="-22px"
                   color="transparent"
                   icon="undo"
+                  tooltip="Domyślna"
                   onClick={() =>
                     act('set_volume', {
                       volume: 'reset',

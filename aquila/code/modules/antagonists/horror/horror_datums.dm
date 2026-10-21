@@ -152,10 +152,16 @@
 	. = ..()
 	to_chat(user, "<span class='velvet bold'>Zastosowania:</span>")
 	to_chat(user, "<span class='velvet'><b>Wszystkie ataki działają do 2 pól.</b></span>")
-	to_chat(user, "<span class='velvet'><b>Lewy przycisk bez trybu walki:</b> zwykła funkcja ręki.</span>")
-	to_chat(user, "<span class='velvet'><b>Prawy przycisk bez trybu walki:</b> smagnięcie macką, które rozbraja przeciwnika.</span>")
-	to_chat(user, "<span class='velvet'><b>Prawy przycisk w trybie walki:</b> natychmiastowy agresywny chwyt przeciwnika. Możesz też nim rzucić!</span>")
-	to_chat(user, "<span class='velvet'><b>Lewy przycisk w trybie walki:</b> smagnięcie macką, które rani przeciwnika.</span>")
+	if(user.uses_legacy_intents()) // AQ EDIT - standaryzacja combat mode: opis dla starych intencji
+		to_chat(user, "<span class='velvet'><b>Pomoc:</b> zwykła funkcja ręki.</span>")
+		to_chat(user, "<span class='velvet'><b>Rozbrajanie:</b> smagnięcie macką, które rozbraja przeciwnika.</span>")
+		to_chat(user, "<span class='velvet'><b>Chwyt:</b> natychmiastowy agresywny chwyt przeciwnika. Możesz też nim rzucić!</span>")
+		to_chat(user, "<span class='velvet'><b>Krzywdzenie:</b> smagnięcie macką, które rani przeciwnika.</span>")
+	else
+		to_chat(user, "<span class='velvet'><b>Lewy przycisk bez trybu walki:</b> zwykła funkcja ręki.</span>")
+		to_chat(user, "<span class='velvet'><b>Prawy przycisk bez trybu walki:</b> smagnięcie macką, które rozbraja przeciwnika.</span>")
+		to_chat(user, "<span class='velvet'><b>Prawy przycisk w trybie walki:</b> natychmiastowy agresywny chwyt przeciwnika. Możesz też nim rzucić!</span>")
+		to_chat(user, "<span class='velvet'><b>Lewy przycisk w trybie walki:</b> smagnięcie macką, które rani przeciwnika.</span>")
 	to_chat(user, "<span class='velvet'>Służy też do podważania niezablokowanych śluz.</span>")
 
 /obj/item/horrortentacle/attack(atom/target, mob/living/user, params)

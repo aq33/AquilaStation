@@ -66,6 +66,8 @@
 	var/obj/item/circuitboard/computer/cargo/board = circuit
 	board.obj_flags |= EMAGGED
 	packin_up()
+	if(user)
+		update_static_data(user) // AQUILA EDIT
 
 /obj/machinery/computer/cargo/express/proc/packin_up() // oh shit, I'm sorry
 	meme_pack_data = list() // sorry for what?
@@ -80,12 +82,7 @@
 			continue// by using someone else's crate
 		if(!(obj_flags & EMAGGED) && P.contraband) // will you show me?
 			continue // i'd be right happy to
-		meme_pack_data[P.group]["packs"] += list(list(
-			"name" = P.name,
-			"cost" = P.get_cost(),
-			"id" = pack,
-			"desc" = P.desc || P.name // If there is a description, use it. Otherwise use the pack's name.
-		))
+		meme_pack_data[P.group]["packs"] += list(P.get_ui_data(pack)) // AQUILA EDIT - ikony i zawartość dla okna z tg
 
 
 /obj/machinery/computer/cargo/express/ui_state(mob/user)
@@ -110,11 +107,10 @@
 	data["usingBeacon"] = usingBeacon //is the mode set to deliver to the beacon or the cargobay?
 	data["canBeacon"] = !usingBeacon || canBeacon //is the mode set to beacon delivery, and is the beacon in a valid location?
 	data["canBuyBeacon"] = cooldown <= 0 && D.account_balance >= BEACON_COST
-	data["beaconError"] = usingBeacon && !canBeacon ? "(BEACON ERROR)" : ""//changes button text to include an error alert if necessary
+	data["beaconError"] = usingBeacon && !canBeacon ? "(BŁĄD NADAJNIKA)" : ""//changes button text to include an error alert if necessary
 	data["hasBeacon"] = beacon != null//is there a linked beacon?
-	data["beaconName"] = beacon ? beacon.name : "No Beacon Found"
-	data["printMsg"] = cooldown > 0 ? "Print Beacon for [BEACON_COST] credits ([cooldown])" : "Print Beacon for [BEACON_COST] credits"//buttontext for printing beacons
-	data["supplies"] = list()
+	data["beaconName"] = beacon ? beacon.name : "Nie znaleziono nadajnika"
+	data["printMsg"] = cooldown > 0 ? "Wydrukuj nadajnik za [BEACON_COST] cr ([cooldown])" : "Wydrukuj nadajnik za [BEACON_COST] cr"//buttontext for printing beacons
 	message = "Sprzedaż jest niemal natychmiastowa – wybieraj ostrożnie."
 	if(SSshuttle.supplyBlocked)
 		message = blockade_warning
@@ -125,13 +121,19 @@
 	if(obj_flags & EMAGGED)
 		message = "(&!#@BŁĄD: PROTOKÓŁ_#TRASOWANIA AWA(*IA#. $UG%EROWANE@ DZIAŁ#NIE: !^/PULS3-%U)J PŁY*)ĘB%ZWODÓW."
 	data["message"] = message
+	if (cooldown > 0)//cooldown used for printing beacons
+		cooldown--
+	return data
+
+// AQUILA EDIT START - lista paczek (z ikonami i zawartością) wysyłana tylko raz, nie co odświeżenie
+/obj/machinery/computer/cargo/express/ui_static_data(mob/user)
+	var/list/data = list()
 	if(!meme_pack_data)
 		packin_up()
 		stack_trace("You didn't give the cargo tech good advice, and he ripped the manifest. As a result, there was no pack data for [src]")
 	data["supplies"] = meme_pack_data
-	if (cooldown > 0)//cooldown used for printing beacons
-		cooldown--
 	return data
+// AQUILA EDIT END
 
 /obj/machinery/computer/cargo/express/ui_act(action, params, datum/tgui/ui)
 	if(action == "add")

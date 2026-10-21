@@ -290,6 +290,9 @@
 /datum/preferences/proc/open_game_menu(mob/user)
 	open_menu(user, PREFERENCE_TAB_GAME_PREFERENCES)
 
+/datum/preferences/proc/open_keybindings_menu(mob/user)
+	open_menu(user, PREFERENCE_TAB_KEYBINDINGS)
+
 /client/verb/open_keybindings_menu()
 	set name = "Klawiszologia"
 	set category = "Preferences"

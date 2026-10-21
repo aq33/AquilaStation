@@ -60,7 +60,7 @@ export const StatTabs = (props) => {
           <Input
             fluid
             selfClear
-            onEnter={(e, value) =>
+            onEnter={(value) =>
               Byond.sendMessage('stat/pressed', {
                 action_id: 'ticket_message',
                 params: {
@@ -91,14 +91,11 @@ const StatVerbSearch = (props) => {
         fluid
         value={search}
         placeholder="Szukaj komendy we wszystkich zakładkach…"
-        onInput={(e, value) => setSearch(value)}
-        onEscape={(e) => {
-          e.target.value = '';
-          setSearch('');
-        }}
-        onEnter={(e, value) => {
+        onChange={(value) => setSearch(value)}
+        onEscape={() => setSearch('')}
+        onEnter={(value, e) => {
           // Enter w trakcie kompozycji IME tylko zatwierdza znak.
-          if (e.nativeEvent?.isComposing || e.isComposing) {
+          if (e?.nativeEvent?.isComposing) {
             return;
           }
           // Enter odpala komendę tylko, gdy wynik jest jednoznaczny.
@@ -110,7 +107,6 @@ const StatVerbSearch = (props) => {
             action_id: results[0].data.action,
             params: results[0].data.params || [],
           });
-          e.target.value = '';
           setSearch('');
         }}
       />

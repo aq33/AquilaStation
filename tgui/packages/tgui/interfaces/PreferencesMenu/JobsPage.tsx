@@ -310,11 +310,9 @@ const JoblessRoleDropdown = (props) => {
 const ClearJobsButton = (_) => {
   const { act } = useBackend<PreferencesMenuData>();
   return (
-    <Button
-      content="Clear All"
-      confirm
-      onClick={() => act('clear_job_preferences')}
-    />
+    <Button.Confirm onClick={() => act('clear_job_preferences')}>
+      Clear All
+    </Button.Confirm>
   );
 };
 

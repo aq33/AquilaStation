@@ -1,36 +1,59 @@
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
   Tabs,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
 
+type Cyborg = {
+  name: string;
+  ref: string;
+  status: BooleanLike;
+  locked_down: BooleanLike;
+  emagged: BooleanLike;
+  charge: number | null;
+  module: string;
+  synchronization: string | null;
+};
+
+type Drone = {
+  name: string;
+  ref: string;
+  status: BooleanLike;
+};
+
+type Upload = {
+  name: string;
+  area: string;
+  coords: string;
+  ref: string;
+};
+
 type Data = {
-  can_hack: any;
-  cyborgs: any;
-  drones: any;
-  extracting: any;
-  is_silicon: any;
-  uploads: any;
+  can_hack: BooleanLike;
+  is_silicon: BooleanLike;
+  cyborgs: Cyborg[];
+  drones: Drone[];
+  uploads: Upload[];
 };
 
 export const RoboticsControlConsole = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
   const [tab, setTab] = useSharedState('tab', 1);
   const {
     can_hack,
     is_silicon,
-    extracting,
     cyborgs = [],
     drones = [],
     uploads = [],
   } = data;
+
   return (
     <Window width={500} height={460}>
       <Window.Content scrollable>
@@ -41,7 +64,7 @@ export const RoboticsControlConsole = (props) => {
             selected={tab === 1}
             onClick={() => setTab(1)}
           >
-            Cyborgs ({cyborgs.length})
+            Cyborgi ({cyborgs.length})
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
@@ -49,208 +72,207 @@ export const RoboticsControlConsole = (props) => {
             selected={tab === 2}
             onClick={() => setTab(2)}
           >
-            Drones ({drones.length})
+            Drony ({drones.length})
           </Tabs.Tab>
+          {/* AQUILA (Bee): lista konsol wgrywania praw SI */}
           <Tabs.Tab
             icon="list"
             lineHeight="23px"
             selected={tab === 3}
             onClick={() => setTab(3)}
           >
-            Uploads ({uploads.length})
+            Konsole praw ({uploads.length})
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <Cyborgs cyborgs={cyborgs} can_hack={can_hack} />}
         {tab === 2 && <Drones drones={drones} />}
-        {tab === 3 && (
-          <>
-            <Uploads uploads={uploads} is_silicon={is_silicon} />
-            <Extracting is_silicon={is_silicon} extracting={extracting} />
-          </>
-        )}
+        {tab === 3 && <Uploads uploads={uploads} is_silicon={is_silicon} />}
       </Window.Content>
     </Window>
   );
 };
 
-const Cyborgs = (props) => {
+type CyborgsProps = {
+  cyborgs: Cyborg[];
+  can_hack: BooleanLike;
+};
+
+const Cyborgs = (props: CyborgsProps) => {
   const { cyborgs, can_hack } = props;
-  const { act, data } = useBackend<Data>();
+  const { act } = useBackend<Data>();
   if (!cyborgs.length) {
-    return (
-      <NoticeBox>No cyborg units detected within access parameters</NoticeBox>
-    );
+    return <NoticeBox>Nie wykryto cyborgów w zakresie uprawnień</NoticeBox>;
   }
-  return cyborgs.map((cyborg) => {
-    return (
-      <Section
-        key={cyborg.ref}
-        title={cyborg.name}
-        buttons={
-          <>
-            {!!can_hack && !cyborg.emagged && (
-              <Button
-                icon="terminal"
-                content="Hack"
-                color="bad"
+  return (
+    <>
+      {cyborgs.map((cyborg) => (
+        <Section
+          key={cyborg.ref}
+          title={cyborg.name}
+          buttons={
+            <>
+              {!!can_hack && !cyborg.emagged && (
+                <Button
+                  icon="terminal"
+                  color="bad"
+                  onClick={() =>
+                    act('magbot', {
+                      ref: cyborg.ref,
+                    })
+                  }
+                >
+                  Zhakuj
+                </Button>
+              )}
+              <Button.Confirm
+                icon={cyborg.locked_down ? 'unlock' : 'lock'}
+                color={cyborg.locked_down ? 'good' : 'default'}
+                confirmContent="Na pewno?"
                 onClick={() =>
-                  act('magbot', {
+                  act('stopbot', {
                     ref: cyborg.ref,
                   })
                 }
-              />
-            )}
-            <Button.Confirm
-              icon={cyborg.locked_down ? 'unlock' : 'lock'}
-              color={cyborg.locked_down ? 'good' : 'default'}
-              content={cyborg.locked_down ? 'Release' : 'Lockdown'}
-              onClick={() =>
-                act('stopbot', {
-                  ref: cyborg.ref,
-                })
-              }
-            />
-            <Button.Confirm
-              icon="bomb"
-              content="Detonate"
-              color="bad"
-              onClick={() =>
-                act('killbot', {
-                  ref: cyborg.ref,
-                })
-              }
-            />
-          </>
-        }
-      >
-        <LabeledList>
-          <LabeledList.Item label="Status">
-            <Box
-              color={
-                cyborg.status ? 'bad' : cyborg.locked_down ? 'average' : 'good'
-              }
-            >
-              {cyborg.status
-                ? 'Not Responding'
-                : cyborg.locked_down
-                  ? 'Locked Down'
-                  : 'Nominal'}
-            </Box>
-          </LabeledList.Item>
-          <LabeledList.Item label="Charge">
-            <Box
-              color={
-                cyborg.charge <= 30
-                  ? 'bad'
-                  : cyborg.charge <= 70
-                    ? 'average'
-                    : 'good'
-              }
-            >
-              {typeof cyborg.charge === 'number'
-                ? cyborg.charge + '%'
-                : 'Not Found'}
-            </Box>
-          </LabeledList.Item>
-          <LabeledList.Item label="Module">{cyborg.module}</LabeledList.Item>
-          <LabeledList.Item label="Master AI">
-            <Box color={cyborg.synchronization ? 'default' : 'average'}>
-              {cyborg.synchronization || 'None'}
-            </Box>
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-    );
-  });
+              >
+                {cyborg.locked_down ? 'Odblokuj' : 'Zablokuj'}
+              </Button.Confirm>
+              <Button.Confirm
+                icon="bomb"
+                color="bad"
+                confirmContent="Na pewno?"
+                onClick={() =>
+                  act('killbot', {
+                    ref: cyborg.ref,
+                  })
+                }
+              >
+                Zdetonuj
+              </Button.Confirm>
+            </>
+          }
+        >
+          <LabeledList>
+            <LabeledList.Item label="Stan">
+              <Box
+                color={
+                  cyborg.status
+                    ? 'bad'
+                    : cyborg.locked_down
+                      ? 'average'
+                      : 'good'
+                }
+              >
+                {cyborg.status
+                  ? 'Nie odpowiada'
+                  : cyborg.locked_down
+                    ? 'Zablokowany'
+                    : 'W normie'}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Ładunek">
+              <Box
+                color={
+                  (cyborg.charge ?? 0) <= 30
+                    ? 'bad'
+                    : (cyborg.charge ?? 0) <= 70
+                      ? 'average'
+                      : 'good'
+                }
+              >
+                {typeof cyborg.charge === 'number'
+                  ? `${cyborg.charge}%`
+                  : 'Brak ogniwa'}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Moduł">{cyborg.module}</LabeledList.Item>
+            <LabeledList.Item label="Nadrzędna SI">
+              <Box color={cyborg.synchronization ? 'default' : 'average'}>
+                {cyborg.synchronization || 'Brak'}
+              </Box>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      ))}
+    </>
+  );
 };
 
-const Drones = (props) => {
+const Drones = (props: { drones: Drone[] }) => {
   const { drones } = props;
   const { act } = useBackend<Data>();
 
   if (!drones.length) {
-    return (
-      <NoticeBox>No drone units detected within access parameters</NoticeBox>
-    );
+    return <NoticeBox>Nie wykryto dronów w zakresie uprawnień</NoticeBox>;
   }
 
-  return drones.map((drone) => {
-    return (
-      <Section
-        key={drone.ref}
-        title={drone.name}
-        buttons={
-          <Button.Confirm
-            icon="bomb"
-            content="Detonate"
-            color="bad"
-            onClick={() =>
-              act('killdrone', {
-                ref: drone.ref,
-              })
-            }
-          />
-        }
-      >
-        <LabeledList>
-          <LabeledList.Item label="Status">
-            <Box color={drone.status ? 'bad' : 'good'}>
-              {drone.status ? 'Not Responding' : 'Nominal'}
-            </Box>
-          </LabeledList.Item>
-        </LabeledList>
-      </Section>
-    );
-  });
+  return (
+    <>
+      {drones.map((drone) => (
+        <Section
+          key={drone.ref}
+          title={drone.name}
+          buttons={
+            <Button.Confirm
+              icon="bomb"
+              color="bad"
+              confirmContent="Na pewno?"
+              onClick={() =>
+                act('killdrone', {
+                  ref: drone.ref,
+                })
+              }
+            >
+              Zdetonuj
+            </Button.Confirm>
+          }
+        >
+          <LabeledList>
+            <LabeledList.Item label="Stan">
+              <Box color={drone.status ? 'bad' : 'good'}>
+                {drone.status ? 'Nie odpowiada' : 'W normie'}
+              </Box>
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      ))}
+    </>
+  );
 };
 
-const Uploads = (props) => {
-  const { uploads, is_silicon } = props;
-  if (!is_silicon) {
-    if (!uploads.length) {
-      return (
-        <NoticeBox>No uploads detected within access parameters</NoticeBox>
-      );
-    }
+type UploadsProps = {
+  uploads: Upload[];
+  is_silicon: BooleanLike;
+};
 
-    return uploads.map((upload) => {
-      return (
-        <Flex key={upload.ref}>
-          <Section
-            title={upload.name[0].toUpperCase() + upload.name.substring(1)}
-          >
-            <LabeledList>
-              <LabeledList.Item label="Location">
-                {upload.area}
-              </LabeledList.Item>
-              <LabeledList.Item label="Coordinates">
-                {upload.coords}
-              </LabeledList.Item>
-            </LabeledList>
-          </Section>
-        </Flex>
-      );
-    });
-  } else {
+// AQUILA (Bee): przycisk wyciągania klucza wgrywania usunięty, bo akcja
+// "extract" jest wyłączona w DM (NSV13)
+const Uploads = (props: UploadsProps) => {
+  const { uploads, is_silicon } = props;
+  if (is_silicon) {
     return (
       <NoticeBox>
-        For security reasons silicon forms are not permitted access
+        Ze względów bezpieczeństwa jednostki krzemowe nie mają tu dostępu
       </NoticeBox>
     );
   }
-};
-
-const Extracting = (props) => {
-  const { is_silicon, extracting } = props;
-  const { act } = useBackend<Data>();
-  if (!is_silicon) {
-    return (
-      <Button
-        icon={extracting ? 'sync' : 'list'}
-        content={extracting ? 'Extraction in progress' : 'Extract Upload Key'}
-        selected={extracting}
-        onClick={() => act('extract')}
-      />
-    );
+  if (!uploads.length) {
+    return <NoticeBox>Nie wykryto konsol praw w zakresie uprawnień</NoticeBox>;
   }
+  return (
+    <>
+      {uploads.map((upload) => (
+        <Section
+          key={upload.ref}
+          title={upload.name[0].toUpperCase() + upload.name.substring(1)}
+        >
+          <LabeledList>
+            <LabeledList.Item label="Położenie">{upload.area}</LabeledList.Item>
+            <LabeledList.Item label="Współrzędne">
+              {upload.coords}
+            </LabeledList.Item>
+          </LabeledList>
+        </Section>
+      ))}
+    </>
+  );
 };

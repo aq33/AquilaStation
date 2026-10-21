@@ -8,7 +8,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
@@ -45,7 +45,7 @@ export const SmartVend = (props) => {
         <Section
           fill
           scrollable
-          title="Storage"
+          title="Zawartość"
           buttons={
             <Stack>
               {data.isdryer ? (
@@ -54,7 +54,7 @@ export const SmartVend = (props) => {
                     icon={data.drying ? 'stop' : 'tint'}
                     onClick={() => act('Dry')}
                   >
-                    {data.drying ? 'Stop drying' : 'Dry'}
+                    {data.drying ? 'Przerwij suszenie' : 'Susz'}
                   </Button>
                 </Stack.Item>
               ) : (
@@ -62,9 +62,10 @@ export const SmartVend = (props) => {
                   <Stack.Item>
                     <Input
                       autoFocus
-                      placeholder={'Search...'}
+                      placeholder="Szukaj..."
                       value={searchText}
-                      onInput={(e, value) => setSearchText(value)}
+                      onChange={setSearchText}
+                      expensive
                     />
                   </Stack.Item>
                   <LayoutToggle state={displayMode} setState={setDisplayMode} />
@@ -75,9 +76,9 @@ export const SmartVend = (props) => {
                   icon="question"
                   tooltip={
                     <>
-                      LMB - Vend selected amount
+                      LPM – wydaj wybraną ilość
                       <br />
-                      RMB - Vend all
+                      PPM – wydaj wszystko
                     </>
                   }
                   tooltipPosition={'bottom-end'}
@@ -87,7 +88,7 @@ export const SmartVend = (props) => {
           }
         >
           {!contents.length ? (
-            <NoticeBox>Nothing found.</NoticeBox>
+            <NoticeBox>Nic nie znaleziono.</NoticeBox>
           ) : (
             contents.map((item) =>
               displayMode === LAYOUT.Grid ? (

@@ -201,41 +201,126 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	VAR_PRIVATE/next_midround_injection
 
+// AQ EDIT START - panel trybu gry w TGUI (DynamicGameModePanel) zamiast okna HTML
 /datum/game_mode/dynamic/admin_panel()
-	var/list/dat = list()
-	dat += "Dynamic Mode <a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(src)]'>\[VV\]</a> <a href='byond://?src=\ref[src];[HrefToken()]'>\[Refresh\]</a><BR>"
-	dat += "Threat Level: <b>[threat_level]</b><br/>"
-	dat += "Budgets (Roundstart/Midrounds): <b>[initial_round_start_budget]/[threat_level - initial_round_start_budget]</b><br/>"
+	ui_interact(usr)
 
-	dat += "Midround budget to spend: <b>[mid_round_budget]</b> <a href='byond://?src=\ref[src];[HrefToken()];adjustthreat=1'>\[Adjust\]</A> <a href='byond://?src=\ref[src];[HrefToken()];threatlog=1'>\[View Log\]</a><br/>"
-	dat += "<br/>"
-	dat += "Parameters: centre = [threat_curve_centre] ; width = [threat_curve_width].<br/>"
-	dat += "            reduction_threshold = [threat_curve_centre_lowpop_reduction_threshold] ; reduction_coeff = [threat_curve_centre_lowpop_reduction_coeff].<br/>"
-	dat += "Split parameters: centre = [roundstart_split_curve_centre] ; width = [roundstart_split_curve_width].<br/>"
-	dat += "<i>On average, <b>[peaceful_percentage]</b>% of the rounds are more peaceful.</i><br/>"
-	dat += "Forced extended: <a href='byond://?src=\ref[src];[HrefToken()];forced_extended=1'><b>[GLOB.dynamic_forced_extended ? "On" : "Off"]</b></a><br/>"
-	dat += "No stacking (only one round-ender): <a href='byond://?src=\ref[src];[HrefToken()];no_stacking=1'><b>[GLOB.dynamic_no_stacking ? "On" : "Off"]</b></a><br/>"
-	dat += "Stacking limit: [GLOB.dynamic_stacking_limit] <a href='byond://?src=\ref[src];[HrefToken()];stacking_limit=1'>\[Adjust\]</A>"
-	dat += "<br/>"
-	dat += "Executed rulesets: "
-	if (executed_rules.len > 0)
-		dat += "<br/>"
-		for (var/datum/dynamic_ruleset/DR in executed_rules)
-			dat += "[DR.ruletype] - <b>[DR.name]</b><br>"
-	else
-		dat += "none.<br>"
-	dat += "<br>Injection Timers: (<b>[get_heavy_midround_injection_chance(dry_run = TRUE)]%</b> heavy midround chance)<BR>"
-	dat += "Latejoin: [(latejoin_injection_cooldown-world.time)>60*10 ? "[round((latejoin_injection_cooldown-world.time)/60/10,0.1)] minutes" : "[(latejoin_injection_cooldown-world.time)] seconds"] <a href='byond://?src=\ref[src];[HrefToken()];injectlate=1'>\[Now!\]</a><BR>"
+/datum/game_mode/dynamic/ui_state(mob/user)
+	return GLOB.admin_state
 
+/datum/game_mode/dynamic/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DynamicGameModePanel", "Panel trybu gry")
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/datum/game_mode/dynamic/ui_data(mob/user)
+	var/list/data = list()
+	data["round_started"] = SSticker.HasRoundStarted()
+	data["threat_level"] = threat_level
+	data["roundstart_budget"] = initial_round_start_budget
+	data["midround_budget_total"] = threat_level - initial_round_start_budget
+	data["mid_round_budget"] = mid_round_budget
+	data["threat_curve_centre"] = threat_curve_centre
+	data["threat_curve_width"] = threat_curve_width
+	data["lowpop_reduction_threshold"] = threat_curve_centre_lowpop_reduction_threshold
+	data["lowpop_reduction_coeff"] = threat_curve_centre_lowpop_reduction_coeff
+	data["split_curve_centre"] = roundstart_split_curve_centre
+	data["split_curve_width"] = roundstart_split_curve_width
+	data["peaceful_percentage"] = peaceful_percentage
+	data["forced_extended"] = GLOB.dynamic_forced_extended
+	data["no_stacking"] = GLOB.dynamic_no_stacking
+	data["stacking_limit"] = GLOB.dynamic_stacking_limit
+	data["forced_latejoin_rule"] = forced_latejoin_rule ? "[forced_latejoin_rule]" : null
+	var/list/rules = list()
+	for(var/datum/dynamic_ruleset/DR in executed_rules)
+		rules += list(list("type" = DR.ruletype, "name" = DR.name))
+	data["executed_rules"] = rules
+	data["heavy_midround_chance"] = get_heavy_midround_injection_chance(dry_run = TRUE)
+	data["latejoin_time_left"] = max(0, latejoin_injection_cooldown - world.time)
 	var/next_injection = next_midround_injection()
-	if (next_injection == INFINITY)
-		dat += "All midrounds have been exhausted."
-	else
-		dat += "Midround: [DisplayTimeText(next_injection - world.time)] <a href='byond://?src=\ref[src];[HrefToken()];injectmid=1'>\[Now!\]</a><BR>"
+	data["midrounds_exhausted"] = (next_injection == INFINITY)
+	data["midround_time_left"] = next_injection == INFINITY ? null : max(0, next_injection - world.time)
+	var/list/log = list()
+	for(var/entry in threat_log)
+		if(istext(entry))
+			log += entry
+	data["threat_log"] = log
+	return data
 
-	var/datum/browser/browser = new(usr, "gamemode_panel", "Game Mode Panel", 500, 500)
-	browser.set_content(dat.Join())
-	browser.open()
+/datum/game_mode/dynamic/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		message_admins("[key_name(usr)] has attempted to override the game mode panel!")
+		log_admin("[usr.key] tried to use the game mode panel without authorization.")
+		return
+	switch(action)
+		if("vv")
+			usr.client?.debug_variables(src)
+			return
+		if("forced_extended")
+			GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
+			message_admins("[key_name(usr)] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
+			dynamic_log("[usr.key] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
+			return TRUE
+		if("no_stacking")
+			GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
+			message_admins("[key_name(usr)] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
+			dynamic_log("[usr.key] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
+			return TRUE
+		if("adjustthreat")
+			var/threatadd = input(usr, "Podaj, ile zagrożenia dodać (wartość ujemna, by odjąć). Może to zawyżyć poziom zagrożenia.", "Adjust Threat", 0) as null|num
+			if(!threatadd)
+				return
+			if(threatadd > 0)
+				create_threat(threatadd, threat_log, "[worldtime2text()]: increased by [key_name(usr)]")
+			else
+				spend_midround_budget(-threatadd, threat_log, "[worldtime2text()]: decreased by [key_name(usr)]")
+			message_admins("[key_name(usr)] adjusted the dynamic threat level by [threatadd] threat.")
+			dynamic_log("[usr.key] adjusted the dynamic threat level by [threatadd] threat.")
+			return TRUE
+		if("injectlate")
+			latejoin_injection_cooldown = 0
+			forced_injection = TRUE
+			message_admins("[key_name(usr)] forced a latejoin injection.", 1)
+			dynamic_log("[usr.key] forced a latejoin injection.")
+			return TRUE
+		if("injectmid")
+			forced_injection = TRUE
+			message_admins("[key_name(usr)] forced a midround injection.", 1)
+			dynamic_log("[usr.key] forced a midround injection.")
+			try_midround_roll()
+			return TRUE
+		if("stacking_limit")
+			var/new_limit = input(usr,"Zmień limit zagrożenia, od którego zestawy zasad kończące rundę zaczną się kumulować.", "Change stacking limit", GLOB.dynamic_stacking_limit) as null|num
+			if(isnull(new_limit))
+				return
+			GLOB.dynamic_stacking_limit = new_limit
+			message_admins("[key_name(usr)] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
+			dynamic_log("[usr.key] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
+			return TRUE
+		if("force_latejoin_rule")
+			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji.", "Rigging Latejoin", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin))
+			if (!added_rule)
+				return
+			forced_latejoin_rule = added_rule
+			dynamic_log("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
+			return TRUE
+		if("clear_forced_latejoin")
+			forced_latejoin_rule = null
+			dynamic_log("[key_name(usr)] cleared the forced latejoin ruleset.")
+			return TRUE
+		if("force_midround_rule")
+			var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji.", "Execute Ruleset", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/midround))
+			if (!added_rule)
+				return
+			dynamic_log("[key_name(usr)] executed the [added_rule] ruleset.")
+			picking_specific_rule(added_rule, TRUE)
+			return TRUE
+// AQ EDIT END
 
 /datum/game_mode/dynamic/Topic(href, href_list)
 	if (..()) // Sanity, maybe ?
@@ -244,65 +329,14 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 		message_admins("[key_name(usr)] has attempted to override the game mode panel!")
 		log_admin("[usr.key] tried to use the game mode panel without authorization.")
 		return
-	if (href_list["forced_extended"])
-		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
-		message_admins("[key_name(usr)] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
-		dynamic_log("[usr.key] toggled dynamic's Forced Extended setting to [GLOB.dynamic_forced_extended].")
-	else if (href_list["no_stacking"])
-		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
-		message_admins("[key_name(usr)] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
-		dynamic_log("[usr.key] toggled dynamic's No Stacking setting to [GLOB.dynamic_no_stacking].")
-	else if (href_list["adjustthreat"])
-		var/threatadd = input("Podaj, ile zagrożenia dodać (wartość ujemna, by odjąć). Może to zawyżyć poziom zagrożenia.", "Adjust Threat", 0) as null|num
-		if(!threatadd)
-			return
-		if(threatadd > 0)
-			create_threat(threatadd, threat_log, "[worldtime2text()]: increased by [key_name(usr)]")
-		else
-			spend_midround_budget(-threatadd, threat_log, "[worldtime2text()]: decreased by [key_name(usr)]")
-		message_admins("[key_name(usr)] adjusted the dynamic threat level by [threatadd] threat.")
-		dynamic_log("[usr.key] adjusted the dynamic threat level by [threatadd] threat.")
-	else if (href_list["injectlate"])
-		latejoin_injection_cooldown = 0
-		forced_injection = TRUE
-		message_admins("[key_name(usr)] forced a latejoin injection.", 1)
-		dynamic_log("[usr.key] forced a latejoin injection.")
-	else if (href_list["injectmid"])
-		forced_injection = TRUE
-		message_admins("[key_name(usr)] forced a midround injection.", 1)
-		dynamic_log("[usr.key] forced a midround injection.")
-		try_midround_roll()
-	else if (href_list["threatlog"])
-		show_threatlog(usr)
-	else if (href_list["stacking_limit"])
-		GLOB.dynamic_stacking_limit = input(usr,"Zmień limit zagrożenia, od którego zestawy zasad kończące rundę zaczną się kumulować.", "Change stacking limit", null) as num
-		message_admins("[key_name(usr)] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
-		dynamic_log("[usr.key] adjusted dynamic's Stacking Limit setting to [GLOB.dynamic_stacking_limit].")
-	else if(href_list["force_latejoin_rule"])
-		var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić na następnym spóźnionym graczu? Pomija to poziom zagrożenia i ograniczenia populacji.", "Rigging Latejoin", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/latejoin))
-		if (!added_rule)
-			return
-		forced_latejoin_rule = added_rule
-		dynamic_log("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
-	else if(href_list["clear_forced_latejoin"])
-		forced_latejoin_rule = null
-		dynamic_log("[key_name(usr)] cleared the forced latejoin ruleset.")
-	else if(href_list["force_midround_rule"])
-		var/added_rule = input(usr,"Jaki zestaw zasad chcesz wymusić teraz? Pomija to poziom zagrożenia i ograniczenia populacji.", "Execute Ruleset", null) as null|anything in sortNames(init_rulesets(/datum/dynamic_ruleset/midround))
-		if (!added_rule)
-			return
-		dynamic_log("[key_name(usr)] executed the [added_rule] ruleset.")
-		picking_specific_rule(added_rule, TRUE)
-	else if(href_list["cancelmidround"])
+	// AQ EDIT - reszta akcji panelu jest w ui_act(); tu zostały tylko odnośniki z wiadomości dla adminów
+	if(href_list["cancelmidround"])
 		admin_cancel_midround(usr, href_list["cancelmidround"])
 		return
 	else if (href_list["differentmidround"])
 		admin_different_midround(usr, href_list["differentmidround"])
 		return
 
-	admin_panel() // Refreshes the window
-
-// Checks if there are HIGH_IMPACT_RULESETs and calls the rule's round_result() proc
 /datum/game_mode/dynamic/set_round_result()
 	// If it got to this part, just pick one high impact ruleset if it exists
 	for(var/datum/dynamic_ruleset/rule in executed_rules)
@@ -372,15 +406,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/list/out = list("<B><font size='3'>Threat Log</font></B><br><B>Starting Threat:</B> [threat_level]<BR>")
-
-	for(var/entry in threat_log)
-		if(istext(entry))
-			out += "[entry]<BR>"
-
-	out += "<B>Remaining threat/threat_level:</B> [mid_round_budget]/[threat_level]"
-
-	usr << browse(HTML_SKELETON_TITLE("Threat Log", out.Join()), "window=threatlog;size=700x500")
+	// AQ EDIT - dziennik zagrożenia jest teraz częścią panelu trybu gry (DynamicGameModePanel)
+	ui_interact(admin)
 
 /// Generates the threat level using lorentz distribution and assigns peaceful_percentage.
 /datum/game_mode/dynamic/proc/generate_threat()

@@ -32,7 +32,7 @@ export const PDAInputModal = (props) => {
           </Box>
           <Button
             ml={1}
-            icon={target !== 'Select PDA' || everyone ? 'envelope' : null}
+            icon={target !== 'Select PDA' || everyone ? 'envelope' : undefined}
             content={everyone ? 'Everyone' : target}
             onClick={() => act('select')}
           />
@@ -45,7 +45,7 @@ export const PDAInputModal = (props) => {
             value={name}
             maxLength={32}
             fluid
-            onInput={(_, value) => act('set_name', { value })}
+            onChange={(value) => act('set_name', { value })}
           />
         </Box>
         <Box mt={1}>
@@ -56,7 +56,7 @@ export const PDAInputModal = (props) => {
             value={job}
             maxLength={16}
             fluid
-            onInput={(_, value) => act('set_job', { value })}
+            onChange={(value) => act('set_job', { value })}
           />
         </Box>
         <Box mt={1}>
@@ -81,7 +81,7 @@ export const PDAInputModal = (props) => {
             maxLength={1024}
             fluid
             height="60px"
-            onInput={(_, value) => act('set_message', { value })}
+            onChange={(value) => act('set_message', { value })}
           />
         </Box>
         <Flex

@@ -246,6 +246,11 @@
 		for(var/datum/reagent/N in reagents.reagent_list)
 			buffer_contents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume))) // ^
 	data["bufferContents"] = buffer_contents
+	// AQUILA - pojemność bufora i przycisk „Włóż” w oknie z tg
+	data["bufferCurrentVolume"] = reagents.total_volume
+	data["bufferMaxVolume"] = reagents.maximum_volume
+	var/obj/item/held_item = user.get_active_held_item()
+	data["hasBeakerInHand"] = istype(held_item, /obj/item/reagent_containers) && !(held_item.item_flags & ABSTRACT) && held_item.is_open_container()
 
 	//Calculated at init time as it never changes
 	data["pill_styles"] = pill_styles
@@ -286,6 +291,19 @@
 			. = TRUE
 		if("eject")
 			replace_beaker(usr)
+			. = TRUE
+		// AQUILA - wkładanie zlewki z ręki przyciskiem w oknie
+		if("insert")
+			if(panel_open)
+				to_chat(usr, "<span class='warning'>Nie możesz używać [src.name], gdy jego panel jest otwarty!</span>")
+				return
+			var/obj/item/reagent_containers/container = usr.get_active_held_item()
+			if(!istype(container) || (container.item_flags & ABSTRACT) || !container.is_open_container())
+				return
+			if(!usr.transferItemToLoc(container, src))
+				return
+			replace_beaker(usr, container)
+			update_icon()
 			. = TRUE
 		if("ejectPillBottle")
 			if(!bottle)

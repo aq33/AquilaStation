@@ -1,12 +1,7 @@
 // NSV13
 
 import { toFixed } from 'common/math';
-import {
-  Button,
-  ProgressBar,
-  Section,
-  Slider,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section, Slider } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -72,13 +67,14 @@ export const ShieldGenerator = (props) => {
         >
           Shield Strength:
           <Slider
+            tickWhileDragging
             value={maxHealthPriority}
             fillValue={maxHealthPriority}
             minValue={0}
             maxValue={100}
             step={1}
             stepPixelSize={1}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('maxHealth', {
                 input: value,
               })
@@ -86,12 +82,13 @@ export const ShieldGenerator = (props) => {
           />
           Shield Regeneration:
           <Slider
+            tickWhileDragging
             value={regenPriority}
             minValue={0}
             maxValue={100}
             step={1}
             stepPixelSize={1}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('regen', {
                 input: value,
               })
@@ -99,12 +96,13 @@ export const ShieldGenerator = (props) => {
           />
           Power allocation (MW):
           <Slider
+            tickWhileDragging
             value={powerAlloc}
             minValue={0}
             maxValue={maxPower}
             step={0.25}
             stepPixelSize={5}
-            onDrag={(e, value) =>
+            onChange={(e, value) =>
               act('power', {
                 input: value,
               })

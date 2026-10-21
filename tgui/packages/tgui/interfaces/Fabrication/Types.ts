@@ -1,4 +1,4 @@
-import { BooleanLike } from 'common/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 /** Units of material in one sheet, came from MINERAL_MATERIAL_AMOUNT. */
 export const SHEET_MATERIAL_AMOUNT = 2000;

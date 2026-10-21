@@ -1,20 +1,20 @@
-import { classes } from 'common/react';
-import dateformat from 'dateformat';
 import yaml from 'js-yaml';
 import { Component, Fragment } from 'react';
-import { Dropdown } from 'tgui-core/components';
-
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Collapsible,
+  Dropdown,
   Icon,
   Section,
   Stack,
   Table,
-} from '../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { resolveAsset } from '../assets';
+import { useBackend } from '../backend';
+import { sendAct as act } from '../events/act';
 import { Window } from '../layouts';
 
 const icons = {
@@ -45,8 +45,9 @@ const icons = {
   wip: { icon: 'hammer', color: 'orange' },
 };
 
-type ChangelogEntry = Record<string, Record<string, ChangeEntry[]>>;
-type ChangeEntry = Record<string, string>;
+type Change = Record<string, string>;
+type AuthorChanges = Record<string, Change[]>;
+type ChangelogYaml = Record<string, AuthorChanges>;
 
 type Testmerge = {
   title: string;
@@ -61,7 +62,31 @@ type ChangelogData = {
   testmerges?: Testmerge[];
 };
 
-const ChangeRow = (props: { kind: string; content: string }, _context) => {
+type ChangelogState = {
+  loaded_text: ChangelogYaml | string;
+  selectedDate: string;
+  selectedIndex: number;
+};
+
+const LOADING_TEXT = 'Wczytywanie listy zmian...';
+
+// AQUILA EDIT - polskie nazwy miesięcy zamiast dateformat
+const formatMonth = (date: string) =>
+  new Date(date).toLocaleDateString('pl-PL', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+
+const formatDay = (date: string) =>
+  new Date(date).toLocaleDateString('pl-PL', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+
+const ChangeRow = (props: { kind: string; content: string }) => {
   return (
     <Table.Row>
       <Table.Cell
@@ -81,7 +106,7 @@ const ChangeRow = (props: { kind: string; content: string }, _context) => {
   );
 };
 
-const Header = (props: { dropdown: any }, _context) => {
+const Header = (props: { dropdown: any }) => {
   return (
     <Section>
       {/* AQUILA: our project instead of BeeStation's links */}
@@ -107,64 +132,65 @@ const Header = (props: { dropdown: any }, _context) => {
   );
 };
 
-const Footer = (props: { dropdown: any }, _context) => {
+const Footer = (props: { dropdown: any }) => {
   return (
     <Section>
       {props.dropdown}
       <h3>GoonStation 13 Development Team</h3>
       <p>
-        <b>Coders: </b>
+        <b>Programiści: </b>
         Stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob,
         Justicefries, 0staf, sniperchance, AngriestIBM, BrianOBlivion
       </p>
       <p>
-        <b>Spriters: </b>
+        <b>Graficy: </b>
         Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No
       </p>
       <p>
-        Beestation is thankful to the GoonStation 13 Development Team for its
-        work on the game up to the
-        {' r4407 release. The changelog for changes up to r4407 can be seen '}
-        <a href="https://wiki.ss13.co/Changelog#April_2010">here</a>.
+        BeeStation dziękuje GoonStation 13 Development Team za pracę nad grą
+        {' do wydania r4407. Listę zmian do r4407 znajdziesz '}
+        <a href="https://wiki.ss13.co/Pre-2016_Changelog#April_2010">tutaj</a>.
       </p>
       <p>
-        {'Except where otherwise noted, Goon Station 13 is licensed under a '}
+        {'O ile nie zaznaczono inaczej, Goon Station 13 jest na licencji '}
         <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
           Creative Commons Attribution-Noncommercial-Share Alike 3.0 License
         </a>
-        {'. Rights are currently extended to '}
+        {'. Prawa przysługują obecnie wyłącznie '}
         <a href="http://forums.somethingawful.com/">SomethingAwful Goons</a>
-        {' only.'}
+        {'.'}
       </p>
-      <h3>Beestation License</h3>
+      <h3>Licencja BeeStation</h3>
       <p>
-        {'All code after '}
+        {'Cały kod po '}
         <a
           href={
             'https://github.com/tgstation/tgstation/commit/' +
             '333c566b88108de218d882840e61928a9b759d8f'
           }
         >
-          commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38
-          PM PST
+          commicie 333c566b88108de218d882840e61928a9b759d8f z 31.12.2014, 16:38
+          PST
         </a>
-        {' is licensed under '}
+        {' jest na licencji '}
         <a href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3</a>
-        {'. All code before that commit is licensed under '}
+        {'. Kod sprzed tego commita jest na licencji '}
         <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
-        {', including tools unless their readme specifies otherwise. See '}
+        {
+          ', łącznie z narzędziami, chyba że ich readme mówi inaczej. Szczegóły w '
+        }
         <a href="https://github.com/tgstation/tgstation/blob/master/LICENSE">
           LICENSE
         </a>
-        {' and '}
+        {' i '}
         <a href="https://github.com/tgstation/tgstation/blob/master/GPLv3.txt">
           GPLv3.txt
         </a>
-        {' for more details.'}
+        {'.'}
       </p>
       <p>
-        The TGS DMAPI API is licensed as a subproject under the MIT license.
-        {' See the footer of '}
+        API TGS DMAPI jest osobnym podprojektem na licencji MIT.
+        {' Zobacz stopkę '}
         <a
           href={
             'https://github.com/tgstation/tgstation/blob/master' +
@@ -173,7 +199,7 @@ const Footer = (props: { dropdown: any }, _context) => {
         >
           code/__DEFINES/tgs.dm
         </a>
-        {' and '}
+        {' i '}
         <a
           href={
             'https://github.com/tgstation/tgstation/blob/master' +
@@ -182,14 +208,14 @@ const Footer = (props: { dropdown: any }, _context) => {
         >
           code/modules/tgs/LICENSE
         </a>
-        {' for the MIT license.'}
+        {', gdzie znajduje się licencja MIT.'}
       </p>
       <p>
-        {'All assets including icons and sound are under a '}
+        {'Wszystkie zasoby, w tym ikony i dźwięki, są na licencji '}
         <a href="https://creativecommons.org/licenses/by-sa/3.0/">
           Creative Commons 3.0 BY-SA license
         </a>
-        {' unless otherwise indicated.'}
+        {', o ile nie zaznaczono inaczej.'}
       </p>
     </Section>
   );
@@ -206,23 +232,23 @@ const Testmerges = (_props) => {
     <>
       <Section px={1}>
         <h4>
-          These are features being actively tested and developed on the server.
-          Please report any issues or feedback to the original PR, or on the
-          feedback thread on the Discord if there is one.
+          To funkcje, które są teraz testowane i rozwijane na serwerze. Błędy i
+          uwagi zgłaszaj w oryginalnym PR albo w wątku na Discordzie, jeśli taki
+          istnieje.
         </h4>
       </Section>
       <Stack vertical>
         {testmerges.map((testmerge) => {
           const title = (
             <a href={testmerge.link}>
-              #{testmerge.number}: &quot;{testmerge.title}&quot; by{' '}
+              #{testmerge.number}: &quot;{testmerge.title}&quot;, autor:{' '}
               {testmerge.author}
             </a>
           );
           return (
             <Stack.Item key={testmerge.number}>
               <Section title={title}>
-                <Collapsible color="transparent" title="Changelog" open>
+                <Collapsible color="transparent" title="Lista zmian" open>
                   <Box ml={3}>
                     <Table>
                       {Object.entries(testmerge.changes).map(
@@ -247,26 +273,21 @@ const Testmerges = (_props) => {
   );
 };
 
-export class Changelog extends Component {
-  state: {
-    selectedDate: string;
-    selectedIndex: number;
-    data: string | object;
-  };
+export class ChangelogContent extends Component<any, ChangelogState> {
   dateChoices: string[];
 
   constructor(props) {
     super(props);
+    this.dateChoices = [];
     this.state = {
-      data: 'Loading changelog data...',
+      loaded_text: LOADING_TEXT,
       selectedDate: '',
       selectedIndex: 0,
     };
-    this.dateChoices = [];
   }
 
-  setData(data: string | object) {
-    this.setState({ data });
+  setData(loaded_text: ChangelogYaml | string) {
+    this.setState({ loaded_text });
   }
 
   setSelectedDate(selectedDate: string) {
@@ -278,54 +299,72 @@ export class Changelog extends Component {
   }
 
   getData = (date: string, attemptNumber = 1) => {
-    const { act } = useBackend();
-    const self = this;
     const maxAttempts = 6;
 
     if (attemptNumber > maxAttempts) {
       return this.setData(
-        'Failed to load data after ' + maxAttempts + ' attempts',
+        `Nie udało się wczytać danych po ${maxAttempts} próbach`,
       );
     }
 
     act('get_month', { date });
 
-    fetch(resolveAsset(date + '.yml')).then(async (changelogData) => {
-      const result = await changelogData.text();
-      const errorRegex = /^Cannot find/;
+    fetch(resolveAsset(`${date}.yml`)).then(async (changelogData) => {
+      const result = changelogData.ok ? await changelogData.text() : '';
+      // Serwer zasobów może zwrócić tekst błędu zamiast kodu 404
+      if (!changelogData.ok || /^Cannot find/.test(result)) {
+        if (attemptNumber >= maxAttempts) {
+          this.setData(
+            `Nie udało się wczytać danych po ${maxAttempts} próbach`,
+          );
+          return;
+        }
 
-      if (errorRegex.test(result)) {
         const timeout = 50 + attemptNumber * 50;
-
-        self.setData('Loading changelog data' + '.'.repeat(attemptNumber + 3));
+        this.setData(`Wczytywanie listy zmian${'.'.repeat(attemptNumber + 3)}`);
         setTimeout(() => {
-          self.getData(date, attemptNumber + 1);
+          this.getData(date, attemptNumber + 1);
         }, timeout);
-      } else {
-        self.setData(yaml.load(result, { schema: yaml.CORE_SCHEMA }));
+        return;
       }
+
+      this.setData(
+        yaml.load(result, { schema: yaml.CORE_SCHEMA }) as ChangelogYaml,
+      );
     });
   };
 
   componentDidMount() {
-    const {
-      data: { dates = [] },
-    } = useBackend<ChangelogData>();
+    const { data } = useBackend<ChangelogData>();
+    const { dates = [] } = data;
 
-    if (dates) {
-      dates.forEach((date) =>
-        this.dateChoices.push(dateformat(date, 'mmmm yyyy', true)),
-      );
+    if (dates.length) {
+      dates.forEach((date) => {
+        this.dateChoices.push(formatMonth(date));
+      });
       this.setSelectedDate(this.dateChoices[0]);
       this.getData(dates[0]);
     }
   }
 
+  selectIndex(index: number) {
+    const { data } = useBackend<ChangelogData>();
+    const { dates = [] } = data;
+
+    this.setData(LOADING_TEXT);
+    this.setSelectedIndex(index);
+    this.setSelectedDate(this.dateChoices[index]);
+    window.scrollTo(
+      0,
+      document.body.scrollHeight || document.documentElement.scrollHeight,
+    );
+    return this.getData(dates[index]);
+  }
+
   render() {
-    const { data, selectedDate, selectedIndex } = this.state;
-    const {
-      data: { dates, testmerges },
-    } = useBackend<ChangelogData>();
+    const { data } = useBackend<ChangelogData>();
+    const { testmerges } = data;
+    const { loaded_text, selectedIndex, selectedDate } = this.state;
     const { dateChoices } = this;
 
     const dateDropdown = dateChoices.length > 0 && (
@@ -334,39 +373,15 @@ export class Changelog extends Component {
           <Button
             className="Changelog__Button"
             disabled={selectedIndex === 0}
-            icon={'chevron-left'}
-            onClick={() => {
-              const index = selectedIndex - 1;
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(dateChoices[index]);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight,
-              );
-              return this.getData(dates[index]);
-            }}
+            icon="chevron-left"
+            onClick={() => this.selectIndex(selectedIndex - 1)}
           />
         </Stack.Item>
         <Stack.Item>
           <Dropdown
             autoScroll={false}
             options={dateChoices}
-            onSelected={(value) => {
-              const index = dateChoices.indexOf(value);
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(value);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight,
-              );
-              return this.getData(dates[index]);
-            }}
+            onSelected={(value) => this.selectIndex(dateChoices.indexOf(value))}
             selected={selectedDate}
             width="150px"
           />
@@ -375,36 +390,24 @@ export class Changelog extends Component {
           <Button
             className="Changelog__Button"
             disabled={selectedIndex === dateChoices.length - 1}
-            icon={'chevron-right'}
-            onClick={() => {
-              const index = selectedIndex + 1;
-
-              this.setData('Loading changelog data...');
-              this.setSelectedIndex(index);
-              this.setSelectedDate(dateChoices[index]);
-              window.scrollTo(
-                0,
-                document.body.scrollHeight ||
-                  document.documentElement.scrollHeight,
-              );
-              return this.getData(dates[index]);
-            }}
+            icon="chevron-right"
+            onClick={() => this.selectIndex(selectedIndex + 1)}
           />
         </Stack.Item>
       </Stack>
     );
 
     const changes =
-      typeof data === 'object' &&
-      Object.keys(data).length > 0 &&
-      Object.entries(data as ChangelogEntry)
+      typeof loaded_text === 'object' &&
+      Object.keys(loaded_text).length > 0 &&
+      Object.entries(loaded_text)
         .reverse()
         .map(([date, authors]) => (
-          <Section key={date} title={dateformat(date, 'd mmmm yyyy', true)}>
+          <Section key={date} title={formatDay(date)}>
             <Box ml={3}>
               {Object.entries(authors).map(([name, changes]) => (
                 <Fragment key={name}>
-                  <h4>{name} changed:</h4>
+                  <h4>{name} – zmiany:</h4>
                   <Box ml={3}>
                     <Table>
                       {changes.map((change) => {
@@ -426,26 +429,37 @@ export class Changelog extends Component {
         ));
 
     return (
-      <Window
-        title="Changelog"
-        theme="generic"
-        width={testmerges?.length ? 1000 : 675}
-        height={650}
-      >
-        <Window.Content scrollable>
-          <Header dropdown={dateDropdown} />
-          <Stack>
-            <Stack.Item grow>{changes}</Stack.Item>
-            {!!testmerges?.length && (
-              <Stack.Item width="50%">
-                <Testmerges />
-              </Stack.Item>
-            )}
-          </Stack>
-          {typeof data === 'string' && <p>{data}</p>}
-          <Footer dropdown={dateDropdown} />
-        </Window.Content>
-      </Window>
+      <>
+        <Header dropdown={dateDropdown} />
+        {/* AQUILA EDIT - testmerge'e z Bee obok listy zmian */}
+        <Stack>
+          <Stack.Item grow>{changes}</Stack.Item>
+          {!!testmerges?.length && (
+            <Stack.Item width="50%">
+              <Testmerges />
+            </Stack.Item>
+          )}
+        </Stack>
+        {typeof loaded_text === 'string' && <p>{loaded_text}</p>}
+        <Footer dropdown={dateDropdown} />
+      </>
     );
   }
 }
+
+export const Changelog = () => {
+  const { data } = useBackend<ChangelogData>();
+  const { testmerges } = data;
+
+  return (
+    <Window
+      title="Lista zmian"
+      width={testmerges?.length ? 1000 : 675}
+      height={650}
+    >
+      <Window.Content scrollable>
+        <ChangelogContent />
+      </Window.Content>
+    </Window>
+  );
+};

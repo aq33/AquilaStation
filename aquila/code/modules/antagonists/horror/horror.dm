@@ -54,6 +54,8 @@
 	var/chem_regen_rate = 2
 	var/used_freeze
 	var/used_target
+	/// AQUILA - TGUI chemical menu
+	var/datum/horror_chem_menu/chem_menu
 	var/horror_chems = list(/datum/horror_chem/epinephrine,/datum/horror_chem/mannitol,/datum/horror_chem/bicaridine,/datum/horror_chem/kelotane,/datum/horror_chem/charcoal)
 
 	var/leaving = FALSE
@@ -86,6 +88,7 @@
 
 
 /mob/living/simple_animal/horror/Destroy()
+	QDEL_NULL(chem_menu)
 	host_brain = null
 	victim = null
 	return ..()
@@ -435,21 +438,9 @@
 		to_chat(src, "<span class='warning'>Nie jesteś w ciele nosiciela.</span>")
 		return
 
-	var/content = "<p>Chemikalia: <span id='chemicals'>[chemicals]</span></p>"
-	content += "<table>"
-
-	for(var/path in subtypesof(/datum/horror_chem))
-		var/datum/horror_chem/chem = path
-		if(path in horror_chems)
-			content += "<tr><td><a class='chem-select' href='byond://?_src_=\ref[src];src=\ref[src];horror_use_chem=[initial(chem.chemname)]'>[initial(chem.chemname)] ([initial(chem.chemuse)])</a><p>[initial(chem.chem_desc)]</p></td></tr>"
-
-	content += "</table>"
-
-	var/html = get_html_template(content)
-
-	var/datum/asset/jquery = get_asset_datum(/datum/asset/simple/jquery) // AQUILA - the window's update_chemicals() needs jquery on the client
-	jquery.send(usr)
-	usr << browse(html, "window=ViewHorror\ref[src]Chems;size=600x800")
+	if(!chem_menu)
+		chem_menu = new(src)
+	chem_menu.ui_interact(src)
 
 /mob/living/simple_animal/horror/proc/scan_host()
 	if(!can_use_ability())

@@ -1,126 +1,96 @@
 /**
- * Copyright (c) 2025 PowerfulBacon
- * SPDX-License-Identifier: MIT
- *
- * The base theme for all Space Station 13 computer interfaces.
- * Created modularly.
+ * Aquila theme, ported from the old SCSS theme to tgui-core 6 CSS variables.
  */
 
-@use 'sass:color';
-@use 'sass:meta';
+.theme-computer:root {
+  --color-base: #11121c;
+  --color-text: #dbd8ef;
+  --color-primary: #c0a666;
+  --font-family: consolas, verdana, monospace;
+  --font-size: 12.5px;
+  --color-red: #ac0c0c;
+  --color-orange: #9c450b;
+  --color-yellow: #dece78;
+  --color-olive: #788a05;
+  --color-green: #56ba13;
+  --color-teal: #03807a;
+  --color-blue: #0b4d80;
+  --color-violet: #340e86;
+  --color-purple: #5b0d76;
+  --color-pink: #9a125f;
+  --color-brown: #6b3511;
+  --color-grey: #535353;
+  --color-light-grey: #848484;
+  --color-good: #4a9c13;
+  --color-average: #b16b11;
+  --color-bad: #ac0c0c;
+  --button-background-default: hsl(234.5, 24.4%, 17.92%);
+  --section-title-color: #11121c;
+  --titlebar-background: #181a21;
 
-@use '../base.scss' with (
-  $color-fg: #dbd8ef,
-  $color-bg: #11121c,
-  $font-size: 12.5px
-);
+  .Layout__content {
+    background-image: none;
+  }
 
-@use '../colors.scss' with (
-  $red: #ac0c0c,
-  $orange: #9c450b,
-  $yellow: #dece78,
-  $olive: #788a05,
-  $green: #56ba13,
-  $teal: #03807a,
-  $blue: #0b4d80,
-  $violet: #340e86,
-  $purple: #5b0d76,
-  $pink: #9a125f,
-  $brown: #6b3511,
-  $grey: #535353,
-  $light-grey: #848484,
-  $primary: #c0a666,
-  $good: #4a9c13,
-  $average: #b16b11,
-  $bad: #ac0c0c,
-  $bg-lightness: -40%
-);
-
-.theme-computer {
-  // Base theme
   font-family: consolas, verdana, monospace;
   font-size: 12.5px;
-  // Base overrides
-  @include meta.load-css('../atomic/color.scss');
-  // Uses color-fg/color-bg
-  @include meta.load-css('../components/ColorSelectBox.scss');
-  @include meta.load-css('../components/Input.scss');
-  @include meta.load-css('../components/Modal.scss');
-  @include meta.load-css(
-    '../components/Section.scss',
-    $with: ('title-text-color': base.$color-bg)
-  );
-  @include meta.load-css('../components/Slider.scss');
-  @include meta.load-css('../components/Tabs.scss');
-  @include meta.load-css('../interfaces/RequestManager.scss');
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/PopupWindow.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  // Uses colors.scss
-  @include meta.load-css('../components/ProgressBar.scss');
-  @include meta.load-css('../components/NoticeBox.scss');
-  @include meta.load-css('../interfaces/AlertModal.scss');
-  @include meta.load-css('../interfaces/ChemDispenser.scss');
-  @include meta.load-css('../interfaces/ListInput.scss');
-  @include meta.load-css('../interfaces/Fabricator.scss');
-  @include meta.load-css('../interfaces/Techweb.scss');
-  // Button overrides
-  @include meta.load-css(
-    '../components/Button.scss',
-    $with: ('color-default': colors.fg(base.$color-bg))
-  );
-  // Section overrides
+
   .Section {
-    border-bottom: 1px solid colors.$primary;
+    border-bottom: 1px solid #c0a666;
     display: flex;
     flex-direction: column;
   }
+
   .Section__title {
     padding: 0.2em;
     padding-left: 0.5em;
     margin-bottom: 0.4em;
-    background-color: colors.$primary;
-    box-shadow: 0px 0px 6px 0px colors.$primary;
+    background-color: #c0a666;
+    box-shadow: 0px 0px 6px 0px #c0a666;
     border-bottom: unset;
   }
+
+  .Section__titleText {
+    color: #11121c;
+  }
+
   .Section__rest {
     flex-grow: 1;
-    border: 1px solid colors.$primary;
+    border: 1px solid #c0a666;
     border-bottom: none;
   }
+
   .Section__content {
-    box-shadow: 0px 0px 4px -2px colors.$primary;
+    box-shadow: 0px 0px 4px -2px #c0a666;
     height: 100%;
   }
+
   .Section__buttons {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    // Override transparent colour when inside the header, as we have a light background.
+
     .Button--color--transparent {
-      color: base.$color-bg;
+      color: #11121c;
     }
   }
-  // Progress bar
+
   .ProgressBar {
     min-height: 1.5em;
   }
+
   @supports (margin-left: auto) {
     .ProgressBar__content {
       margin-left: auto;
       width: fit-content;
-      background-color: color.adjust(base.$color-bg, $alpha: -0.3);
-      box-shadow: 0px 0px 4px 4px color.adjust(base.$color-bg, $alpha: -0.3);
+      background-color: rgba(17, 18, 28, 0.7);
+      box-shadow: 0px 0px 4px 4px rgba(17, 18, 28, 0.7);
       height: 1.25em;
     }
   }
-  // Title-bar overrides
-  @include meta.load-css(
-    '../layouts/TitleBar.scss',
-    $with: ('background-color': #181a21)
-  );
+
+  // CRT subpixel mask
   @supports (mix-blend-mode: multiply) {
-    // Window overrides
     .Window::before {
       content: '';
       position: fixed;

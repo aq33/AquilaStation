@@ -1,6 +1,6 @@
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { BlockQuote, Box, Section, Stack } from '../components';
+import { BlockQuote, Box, Image, Section, Stack } from '../components';
 import { Window } from '../layouts';
 import { Objective, ObjectivesSection } from './common/ObjectiveSection';
 
@@ -16,13 +16,10 @@ const IntroSection = (_props) => {
   return (
     <Stack>
       <Stack.Item>
-        <Box
-          inline
-          as="img"
+        <Image
           src={resolveAsset('ayylmao.png')}
           width="64px"
           style={{
-            msInterpolationMode: 'nearest-neighbor',
             imageRendering: 'pixelated',
           }}
         />
@@ -74,7 +71,7 @@ const BasicLoreSection = (_props) => {
 
 const SurgerySubsection = (_props) => {
   return (
-    <Section name="Experimentation">
+    <Section title="Experimentation">
       Whenever you have successfully abducted a target to your mothership, you
       experiment on them with an{' '}
       <Box inline textColor="purple">
@@ -146,13 +143,10 @@ const EquipmentSection = (_props) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('scitool.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                 }}
               />
@@ -179,13 +173,10 @@ const EquipmentSection = (_props) => {
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
-              <Box
-                inline
-                as="img"
+              <Image
                 src={resolveAsset('atool.png')}
                 width="32px"
                 style={{
-                  msInterpolationMode: 'nearest-neighbor',
                   imageRendering: 'pixelated',
                 }}
               />

@@ -4,97 +4,101 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  animals: any;
-  animals_max: any;
-  choiceA: any;
-  choiceB: any;
-  completed: any;
-  dna: any;
-  dna_max: any;
-  plants: any;
-  plants_max: any;
-  used: any;
+  animals_max: number;
+  animals: number;
+  choiceA: string;
+  choiceB: string;
+  completed: BooleanLike;
+  dna_max: number;
+  dna: number;
+  plants_max: number;
+  plants: number;
+  used: BooleanLike;
 };
 
-export const DnaVault = (props) => {
+export function DnaVault(props) {
   const { act, data } = useBackend<Data>();
   const {
-    completed,
-    used,
+    animals_max,
+    animals,
     choiceA,
     choiceB,
-    dna,
+    completed,
     dna_max,
-    plants,
+    dna,
     plants_max,
-    animals,
-    animals_max,
+    plants,
+    used,
   } = data;
+
   return (
     <Window width={350} height={400}>
       <Window.Content>
-        <Section title="DNA Vault Database">
+        <Section title="Baza danych skarbca DNA">
           <LabeledList>
-            <LabeledList.Item label="Human DNA">
+            <LabeledList.Item label="DNA ludzi">
               <ProgressBar value={dna / dna_max}>
-                {dna + ' / ' + dna_max + ' Samples'}
+                {`${dna} / ${dna_max} próbek`}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Plant DNA">
+            <LabeledList.Item label="DNA roślin">
               <ProgressBar value={plants / plants_max}>
-                {plants + ' / ' + plants_max + ' Samples'}
+                {`${plants} / ${plants_max} próbek`}
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Animal DNA">
-              <ProgressBar value={animals / animals}>
-                {animals + ' / ' + animals_max + ' Samples'}
+            <LabeledList.Item label="DNA zwierząt">
+              <ProgressBar value={animals / animals_max}>
+                {`${animals} / ${animals_max} próbek`}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         {!!(completed && !used) && (
-          <Section title="Personal Gene Therapy">
+          <Section title="Osobista terapia genowa">
             <Box bold textAlign="center" mb={1}>
-              Applicable Gene Therapy Treatments
+              Dostępne zabiegi terapii genowej
             </Box>
-            <Grid>
-              <Grid.Column>
+            <Stack>
+              <Stack.Item grow>
                 <Button
                   fluid
                   bold
-                  content={choiceA}
                   textAlign="center"
                   onClick={() =>
                     act('gene', {
                       choice: choiceA,
                     })
                   }
-                />
-              </Grid.Column>
-              <Grid.Column>
+                >
+                  {choiceA}
+                </Button>
+              </Stack.Item>
+              <Stack.Item grow>
                 <Button
                   fluid
                   bold
-                  content={choiceB}
                   textAlign="center"
                   onClick={() =>
                     act('gene', {
                       choice: choiceB,
                     })
                   }
-                />
-              </Grid.Column>
-            </Grid>
+                >
+                  {choiceB}
+                </Button>
+              </Stack.Item>
+            </Stack>
           </Section>
         )}
       </Window.Content>
     </Window>
   );
-};
+}

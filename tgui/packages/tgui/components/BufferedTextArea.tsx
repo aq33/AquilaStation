@@ -1,6 +1,5 @@
 import { Component } from 'react';
-
-import { TextArea } from './TextArea';
+import { TextArea } from 'tgui-core/components';
 
 const DEFAULT_UPDATE_INTERVAL = 2000;
 
@@ -53,7 +52,7 @@ export class BufferedTextArea extends Component<
     const { updateValue, value, updateInterval, ...rest } = this.props;
     return (
       <TextArea
-        onInput={(_, value) =>
+        onChange={(value) =>
           this.setState({ bufferedText: value, textChanged: true })
         }
         onBlur={this.handlePush}

@@ -32,7 +32,7 @@
 	context = new()
 	context.user = user
 	drip.add_context_self(context, user)
-	TEST_ASSERT(findtext(context.left_attack_hand_context, "Zmień tryb"), "The IV drip has no empty hand action: [context.left_attack_hand_context]")
+	TEST_ASSERT(findtext(context.right_attack_hand_context, "Zmień tryb"), "The IV drip has no empty hand action: [context.right_attack_hand_context]")
 
 	// Every human HUD gets a screentip holder
 	user.hud_used = new user.hud_type(user)

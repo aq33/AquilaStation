@@ -1,3 +1,7 @@
+#define ATMOS_PIPEDISPENSER 0
+#define DISPOSAL_PIPEDISPENSER 1
+#define TRANSIT_PIPEDISPENSER 2
+
 /obj/machinery/pipedispenser
 	name = "pipe dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -7,58 +11,126 @@
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_OFFLINE
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
+	/// AQUILA: kolor wydawanych rur (jak w RPD)
+	var/paint_color = "grey"
+	/// AQUILA: rodzaj dozownika (okno TGUI PipeDispenser z tg)
+	var/category = ATMOS_PIPEDISPENSER
 
 /obj/machinery/pipedispenser/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/pipedispenser/ui_interact(mob/user)
+/obj/machinery/pipedispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PipeDispenser", name)
+		ui.open()
+
+/obj/machinery/pipedispenser/ui_status(mob/user, datum/ui_state/state)
+	if(!anchored)
+		return UI_CLOSE
+	return ..()
+
+/obj/machinery/pipedispenser/proc/get_recipes()
+	switch(category)
+		if(ATMOS_PIPEDISPENSER)
+			return GLOB.atmos_pipe_recipes
+		if(DISPOSAL_PIPEDISPENSER)
+			return GLOB.disposal_pipe_recipes
+		if(TRANSIT_PIPEDISPENSER)
+			return GLOB.transit_tube_recipes
+
+/obj/machinery/pipedispenser/ui_static_data(mob/user)
+	var/list/data = list()
+	data["paint_colors"] = GLOB.pipe_paint_colors
+	data["category"] = category
+	data["categories"] = list()
+	var/list/recipes = get_recipes()
+	for(var/c in recipes)
+		var/list/cat = recipes[c]
+		var/list/r = list()
+		for(var/i in 1 to length(cat))
+			var/datum/pipe_info/info = cat[i]
+			r += list(list("pipe_name" = info.name, "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTH))
+			// Stationary pipe dispensers don't allow you to pre-select pipe directions, so add a bent version
+			if(info.dirtype == PIPE_BENDABLE)
+				r += list(list("pipe_name" = "[info.name] (zagięta)", "pipe_index" = i, "all_layers" = info.all_layers, "dir" = NORTHEAST))
+		data["categories"] += list(list("cat_name" = c, "recipes" = r))
+	return data
+
+/obj/machinery/pipedispenser/ui_data(mob/user)
+	var/list/data = list()
+	data["piping_layer"] = piping_layer
+	data["selected_color"] = paint_color
+	return data
+
+/obj/machinery/pipedispenser/ui_act(action, list/params)
 	. = ..()
-	var/dat = "PIPING LAYER: <A href='byond://?src=[REF(src)];layer_down=1'>--</A><b>[piping_layer]</b><A href='byond://?src=[REF(src)];layer_up=1'>++</A><BR>"
-
-	var/recipes = GLOB.atmos_pipe_recipes
-
-	for(var/category in recipes)
-		var/list/cat_recipes = recipes[category]
-		dat += "<b>[category]:</b><ul>"
-
-		for(var/i in cat_recipes)
-			var/datum/pipe_info/I = i
-			dat += I.Render(src)
-
-		dat += "</ul>"
-
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	onclose(user, "pipedispenser")
-	return
-
-/obj/machinery/pipedispenser/Topic(href, href_list)
-	if(..())
-		return 1
+	if(.)
+		return
 	var/mob/living/L = usr
-	if(!anchored || (istype(L) && !(L.mobility_flags & MOBILITY_UI)) || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=pipedispenser")
-		return 1
-	usr.set_machine(src)
+	if(!anchored || (istype(L) && !(L.mobility_flags & MOBILITY_UI)) || usr.stat || usr.restrained())
+		return
 	add_fingerprint(usr)
-	if(href_list["makepipe"])
-		if(wait < world.time)
-			var/p_type = text2path(href_list["makepipe"])
-			if (!verify_recipe(GLOB.atmos_pipe_recipes, p_type))
+	switch(action)
+		if("color")
+			if(!(params["paint_color"] in GLOB.pipe_paint_colors))
 				return
-			var/p_dir = text2num(href_list["dir"])
-			var/obj/item/pipe/P = new (loc, p_type, p_dir)
+			paint_color = params["paint_color"]
+			return TRUE
+		if("piping_layer")
+			piping_layer = clamp(round(text2num(params["piping_layer"])), PIPING_LAYER_MIN, PIPING_LAYER_MAX)
+			return TRUE
+		if("pipe_type")
+			if(wait >= world.time)
+				return
+			var/list/recipes = get_recipes()
+			var/list/cat = recipes?[params["category"]]
+			var/index = text2num(params["pipe_type"])
+			if(!islist(cat) || !index || index < 1 || index > length(cat))
+				return
+			var/datum/pipe_info/info = cat[index]
+			var/p_dir = text2num(params["pipe_dir"]) || NORTH
+			if(!(p_dir in GLOB.alldirs))
+				p_dir = NORTH
+			make_pipe(info, p_dir, usr)
+			return TRUE
+
+/// AQUILA: tworzy rurę/urządzenie z przepisu (logika z dawnego Topic())
+/obj/machinery/pipedispenser/proc/make_pipe(datum/pipe_info/info, p_dir, mob/user)
+	switch(category)
+		if(ATMOS_PIPEDISPENSER)
+			if(istype(info, /datum/pipe_info/meter))
+				new /obj/item/pipe_meter(loc)
+				wait = world.time + 15
+				return
+			var/obj/machinery/atmospherics/path = info.id
+			if(!ispath(path, /obj/machinery/atmospherics))
+				return
+			var/pipe_item_type = initial(path.construction_type) || /obj/item/pipe
+			var/obj/item/pipe/P = new pipe_item_type(loc, path, p_dir)
 			P.set_piping_layer(piping_layer)
-			P.add_fingerprint(usr)
+			if(findtext("[path]", "/obj/machinery/atmospherics/pipe") && !findtext("[path]", "layer_manifold"))
+				P.add_atom_colour(GLOB.pipe_paint_colors[paint_color], FIXED_COLOUR_PRIORITY)
+			P.add_fingerprint(user)
 			wait = world.time + 10
-	if(href_list["makemeter"])
-		if(wait < world.time )
-			new /obj/item/pipe_meter(loc)
+		if(DISPOSAL_PIPEDISPENSER)
+			var/obj/structure/disposalconstruct/C = new (loc, info.id)
+			if(!C.can_place())
+				to_chat(user, "<span class='warning'>Za mało miejsca, by to tu zbudować!</span>")
+				qdel(C)
+				return
+			C.setDir(p_dir)
+			C.add_fingerprint(user)
+			C.update_icon()
 			wait = world.time + 15
-	if(href_list["layer_up"])
-		piping_layer = CLAMP(++piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	if(href_list["layer_down"])
-		piping_layer = CLAMP(--piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	return
+		if(TRANSIT_PIPEDISPENSER)
+			var/tube_type = info.id
+			if(!ispath(tube_type, /obj/structure))
+				return
+			var/obj/structure/C = new tube_type(loc)
+			C.setDir(p_dir)
+			C.add_fingerprint(user)
+			wait = world.time + 15
 
 /obj/machinery/pipedispenser/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -69,19 +141,8 @@
 	else
 		return ..()
 
-/obj/machinery/pipedispenser/proc/verify_recipe(recipes, path)
-	for(var/category in recipes)
-		var/list/cat_recipes = recipes[category]
-		for(var/i in cat_recipes)
-			var/datum/pipe_info/info = i
-			if (path == info.id)
-				return TRUE
-	return FALSE
-
 /obj/machinery/pipedispenser/wrench_act(mob/living/user, obj/item/I)
-	if(default_unfasten_wrench(user, I, 40))
-		user << browse(null, "window=pipedispenser")
-
+	default_unfasten_wrench(user, I, 40)
 	return TRUE
 
 
@@ -91,6 +152,7 @@
 	icon_state = "pipe_d"
 	desc = "Dispenses pipes that will ultimately be used to move trash around."
 	density = TRUE
+	category = DISPOSAL_PIPEDISPENSER
 
 
 //Allow you to drag-drop disposal pipes and transit tubes into it
@@ -109,48 +171,6 @@
 
 	qdel(pipe)
 
-/obj/machinery/pipedispenser/disposal/interact(mob/user)
-
-	var/dat = ""
-	var/recipes = GLOB.disposal_pipe_recipes
-
-	for(var/category in recipes)
-		var/list/cat_recipes = recipes[category]
-		dat += "<b>[category]:</b><ul>"
-
-		for(var/i in cat_recipes)
-			var/datum/pipe_info/I = i
-			dat += I.Render(src)
-
-		dat += "</ul>"
-
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	return
-
-
-/obj/machinery/pipedispenser/disposal/Topic(href, href_list)
-	if(..())
-		return 1
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(href_list["dmake"])
-		if(wait < world.time)
-			var/p_type = text2path(href_list["dmake"])
-			if (!verify_recipe(GLOB.disposal_pipe_recipes, p_type))
-				return
-			var/obj/structure/disposalconstruct/C = new (loc, p_type)
-
-			if(!C.can_place())
-				to_chat(usr, "<span class='warning'>Za mało miejsca, by to tu zbudować!</span>")
-				qdel(C)
-				return
-			if(href_list["dir"])
-				C.setDir(text2num(href_list["dir"]))
-			C.add_fingerprint(usr)
-			C.update_icon()
-			wait = world.time + 15
-	return
-
 //transit tube dispenser
 //inherit disposal for the dragging proc
 /obj/machinery/pipedispenser/disposal/transit_tube
@@ -159,55 +179,8 @@
 	icon_state = "pipe_d"
 	density = TRUE
 	desc = "Dispenses pipes that will move beings around."
+	category = TRANSIT_PIPEDISPENSER
 
-/obj/machinery/pipedispenser/disposal/transit_tube/interact(mob/user)
-
-	var/dat = {"<B>Transit Tubes:</B><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_STRAIGHT]'>Straight Tube</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_STRAIGHT_CROSSING]'>Straight Tube with Crossing</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_CURVED]'>Curved Tube</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_DIAGONAL]'>Diagonal Tube</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_DIAGONAL_CROSSING]'>Diagonal Tube with Crossing</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_JUNCTION]'>Junction</A><BR>
-<b>Station Equipment:</b><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_STATION]'>Through Tube Station</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_TERMINUS]'>Terminus Tube Station</A><BR>
-<A href='byond://?src=[REF(src)];tube=[TRANSIT_TUBE_POD]'>Transit Tube Pod</A><BR>
-"}
-
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	return
-
-
-/obj/machinery/pipedispenser/disposal/transit_tube/Topic(href, href_list)
-	if(..())
-		return 1
-	usr.set_machine(src)
-	add_fingerprint(usr)
-	if(wait < world.time)
-		if(href_list["tube"])
-			var/tube_type = text2num(href_list["tube"])
-			var/obj/structure/C
-			switch(tube_type)
-				if(TRANSIT_TUBE_STRAIGHT)
-					C = new /obj/structure/c_transit_tube(loc)
-				if(TRANSIT_TUBE_STRAIGHT_CROSSING)
-					C = new /obj/structure/c_transit_tube/crossing(loc)
-				if(TRANSIT_TUBE_CURVED)
-					C = new /obj/structure/c_transit_tube/curved(loc)
-				if(TRANSIT_TUBE_DIAGONAL)
-					C = new /obj/structure/c_transit_tube/diagonal(loc)
-				if(TRANSIT_TUBE_DIAGONAL_CROSSING)
-					C = new /obj/structure/c_transit_tube/diagonal/crossing(loc)
-				if(TRANSIT_TUBE_JUNCTION)
-					C = new /obj/structure/c_transit_tube/junction(loc)
-				if(TRANSIT_TUBE_STATION)
-					C = new /obj/structure/c_transit_tube/station(loc)
-				if(TRANSIT_TUBE_TERMINUS)
-					C = new /obj/structure/c_transit_tube/station/reverse(loc)
-				if(TRANSIT_TUBE_POD)
-					C = new /obj/structure/c_transit_tube_pod(loc)
-			if(C)
-				C.add_fingerprint(usr)
-			wait = world.time + 15
-	return
+#undef ATMOS_PIPEDISPENSER
+#undef DISPOSAL_PIPEDISPENSER
+#undef TRANSIT_PIPEDISPENSER

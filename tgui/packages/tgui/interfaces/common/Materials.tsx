@@ -1,9 +1,9 @@
 import { BooleanLike } from 'common/react';
 import { classes } from 'common/react';
+import { type ComponentProps } from 'react';
 import { Box, Button, Flex, NumberInput } from 'tgui-core/components';
 
 import { useSharedState } from '../../backend';
-import { BoxProps } from '../../components/Box';
 import { formatMoney, formatSiUnit } from '../../format';
 
 export const MATERIAL_KEYS = {
@@ -29,6 +29,7 @@ export type Material = {
   removable: BooleanLike;
 };
 
+type BoxProps = ComponentProps<typeof Box>;
 interface MaterialIconProps extends BoxProps {
   material: keyof typeof MATERIAL_KEYS;
 }
@@ -59,13 +60,14 @@ const EjectMaterial = (props: {
   return (
     <>
       <NumberInput
+        tickWhileDragging
         step={1}
         width="30px"
         animated
         value={removeMaterials}
         minValue={1}
         maxValue={sheets || 1}
-        onDrag={(val) => {
+        onChange={(val) => {
           const newVal = Math.floor(val);
           if (Number.isInteger(newVal)) {
             setRemoveMaterials(newVal);

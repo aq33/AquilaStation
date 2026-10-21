@@ -11,21 +11,33 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
+type PowerChannel = {
+  title: string;
+  powerLoad: string;
+  status: number;
+  topicParams: {
+    auto: Record<string, number>;
+    on: Record<string, number>;
+    off: Record<string, number>;
+  };
+};
+
 type Data = {
-  chargeMode: any;
-  chargingStatus: any;
-  coverLocked: any;
-  emergencyLights: any;
-  externalPower: any;
-  failTime: any;
-  isOperating: any;
-  locked: any;
-  malfStatus: any;
-  nightshiftLights: any;
-  powerCellStatus: any;
-  powerChannels: any;
-  siliconUser: any;
-  totalLoad: any;
+  chargeMode: boolean;
+  chargingStatus: number;
+  coverLocked: boolean;
+  emergencyLights: boolean;
+  externalPower: number;
+  failTime: number;
+  isOperating: boolean;
+  locked: boolean;
+  malfStatus: number;
+  nightshiftLights: boolean;
+  powerCellStatus: number | null;
+  powerChannels: PowerChannel[];
+  remoteAccess: boolean;
+  siliconUser: boolean;
+  totalLoad: string;
 };
 
 export const Apc = (props) => {
@@ -41,40 +53,40 @@ export const Apc = (props) => {
 const powerStatusMap = {
   2: {
     color: 'good',
-    externalPowerText: 'External Power',
-    chargingText: 'Fully Charged',
+    externalPowerText: 'Zasilanie zewnętrzne',
+    chargingText: 'W pełni naładowany',
   },
   1: {
     color: 'average',
-    externalPowerText: 'Low External Power',
-    chargingText: 'Charging',
+    externalPowerText: 'Słabe zasilanie zewnętrzne',
+    chargingText: 'Ładuje',
   },
   0: {
     color: 'bad',
-    externalPowerText: 'No External Power',
-    chargingText: 'Not Charging',
+    externalPowerText: 'Brak zasilania zewnętrznego',
+    chargingText: 'Nie ładuje',
   },
 };
 
 const malfMap = {
   1: {
     icon: 'terminal',
-    content: 'Override Programming',
+    content: 'Nadpisz oprogramowanie',
     action: 'hack',
   },
   2: {
     icon: 'caret-square-down',
-    content: 'Shunt Core Process',
+    content: 'Przenieś proces rdzenia',
     action: 'occupy',
   },
   3: {
     icon: 'caret-square-left',
-    content: 'Return to Main Core',
+    content: 'Wróć do głównego rdzenia',
     action: 'deoccupy',
   },
   4: {
     icon: 'caret-square-down',
-    content: 'Shunt Core Process',
+    content: 'Przenieś proces rdzenia',
     action: 'occupy',
   },
 };
@@ -87,66 +99,75 @@ const ApcContent = (props) => {
   const chargingStatus =
     powerStatusMap[data.chargingStatus] || powerStatusMap[0];
   const channelArray = data.powerChannels || [];
-  const malfStatus = malfMap[data.malfStatus] || malfMap[0];
-  const adjustedCellChange = data.powerCellStatus / 100;
+  const malfStatus = malfMap[data.malfStatus] || malfMap[1];
+  const adjustedCellChange = (data.powerCellStatus || 0) / 100;
   if (data.failTime > 0) {
     return (
-      <NoticeBox>
+      <NoticeBox info textAlign="center" mb={0}>
         <b>
-          <h3>SYSTEM FAILURE</h3>
+          <h3>AWARIA SYSTEMU</h3>
         </b>
-        <i>I/O regulators malfunction detected! Waiting for system reboot...</i>
+        Regulatory wejścia/wyjścia uległy awarii! <br />
+        Oczekiwanie na restart systemu.
         <br />
-        Automatic reboot in {data.failTime} seconds...
+        Programowy restart za {data.failTime} s...
+        <br />
+        <br />
         <Button
           icon="sync"
-          content="Reboot Now"
+          tooltip="Wymuś reset interfejsu."
+          tooltipPosition="bottom"
           onClick={() => act('reboot')}
-        />
+        >
+          Restartuj teraz
+        </Button>
       </NoticeBox>
     );
   }
-
   return (
     <>
-      <InterfaceLockNoticeBox />
-      <Section title="Power Status">
+      <InterfaceLockNoticeBox
+        siliconUser={data.remoteAccess || data.siliconUser}
+      />
+      <Section title="Stan zasilania">
         <LabeledList>
           <LabeledList.Item
-            label="Main Breaker"
+            label="Wyłącznik główny"
             color={externalPowerStatus.color}
             buttons={
               <Button
                 icon={data.isOperating ? 'power-off' : 'times'}
-                content={data.isOperating ? 'On' : 'Off'}
                 selected={data.isOperating && !locked}
                 disabled={locked}
                 onClick={() => act('breaker')}
-              />
+              >
+                {data.isOperating ? 'Wł.' : 'Wył.'}
+              </Button>
             }
           >
             [ {externalPowerStatus.externalPowerText} ]
           </LabeledList.Item>
-          <LabeledList.Item label="Power Cell">
+          <LabeledList.Item label="Ogniwo">
             <ProgressBar color="good" value={adjustedCellChange} />
           </LabeledList.Item>
           <LabeledList.Item
-            label="Charge Mode"
+            label="Tryb ładowania"
             color={chargingStatus.color}
             buttons={
               <Button
                 icon={data.chargeMode ? 'sync' : 'times'}
-                content={data.chargeMode ? 'Auto' : 'Off'}
                 disabled={locked}
                 onClick={() => act('charge')}
-              />
+              >
+                {data.chargeMode ? 'Auto' : 'Wył.'}
+              </Button>
             }
           >
             [ {chargingStatus.chargingText} ]
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Power Channels">
+      <Section title="Kanały zasilania">
         <LabeledList>
           {channelArray.map((channel) => {
             const { topicParams } = channel;
@@ -161,32 +182,35 @@ const ApcContent = (props) => {
                       mx={2}
                       color={channel.status >= 2 ? 'good' : 'bad'}
                     >
-                      {channel.status >= 2 ? 'On' : 'Off'}
+                      {channel.status >= 2 ? 'Wł.' : 'Wył.'}
                     </Box>
                     <Button
                       icon="sync"
-                      content="Auto"
                       selected={
                         !locked &&
                         (channel.status === 1 || channel.status === 3)
                       }
                       disabled={locked}
                       onClick={() => act('channel', topicParams.auto)}
-                    />
+                    >
+                      Auto
+                    </Button>
                     <Button
                       icon="power-off"
-                      content="On"
                       selected={!locked && channel.status === 2}
                       disabled={locked}
                       onClick={() => act('channel', topicParams.on)}
-                    />
+                    >
+                      Wł.
+                    </Button>
                     <Button
                       icon="times"
-                      content="Off"
                       selected={!locked && channel.status === 0}
                       disabled={locked}
                       onClick={() => act('channel', topicParams.off)}
-                    />
+                    >
+                      Wył.
+                    </Button>
                   </>
                 }
               >
@@ -194,66 +218,73 @@ const ApcContent = (props) => {
               </LabeledList.Item>
             );
           })}
-          <LabeledList.Item label="Total Load">
+          <LabeledList.Item label="Całkowite obciążenie">
             <b>{data.totalLoad}</b>
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
-        title="Misc"
+        title="Inne"
         buttons={
           !!data.siliconUser && (
             <>
               {!!data.malfStatus && (
                 <Button
                   icon={malfStatus.icon}
-                  content={malfStatus.content}
                   color="bad"
                   onClick={() => act(malfStatus.action)}
-                />
+                >
+                  {malfStatus.content}
+                </Button>
               )}
-              <Button
-                icon="lightbulb-o"
-                content="Overload"
-                onClick={() => act('overload')}
-              />
+              <Button icon="lightbulb-o" onClick={() => act('overload')}>
+                Przeciąż
+              </Button>
             </>
           )
         }
       >
-        <LabeledList.Item
-          label="Cover Lock"
-          buttons={
-            <Button
-              icon={data.coverLocked ? 'lock' : 'unlock'}
-              content={data.coverLocked ? 'Engaged' : 'Disengaged'}
-              disabled={locked}
-              onClick={() => act('cover')}
-            />
-          }
-        />
-        <LabeledList.Item
-          label="Emergency Lighting"
-          buttons={
-            <Button
-              icon="lightbulb-o"
-              content={data.emergencyLights ? 'Enabled' : 'Disabled'}
-              disabled={locked}
-              onClick={() => act('emergency_lighting')}
-            />
-          }
-        />
-        <LabeledList.Item
-          label="Night Shift Lighting"
-          buttons={
-            <Button
-              icon="lightbulb-o"
-              content={data.nightshiftLights ? 'Enabled' : 'Disabled'}
-              disabled={locked}
-              onClick={() => act('toggle_nightshift')}
-            />
-          }
-        />
+        <LabeledList>
+          <LabeledList.Item
+            label="Blokada pokrywy"
+            buttons={
+              <Button
+                tooltip="Pokrywę APC można podważyć łomem."
+                icon={data.coverLocked ? 'lock' : 'unlock'}
+                disabled={locked}
+                onClick={() => act('cover')}
+              >
+                {data.coverLocked ? 'Załączona' : 'Zwolniona'}
+              </Button>
+            }
+          />
+          <LabeledList.Item
+            label="Oświetlenie awaryjne"
+            buttons={
+              <Button
+                tooltip="Gdy brak zasilania, światła korzystają z wewnętrznego ogniwa."
+                icon="lightbulb-o"
+                disabled={locked}
+                onClick={() => act('emergency_lighting')}
+              >
+                {data.emergencyLights ? 'Włączone' : 'Wyłączone'}
+              </Button>
+            }
+          />
+          <LabeledList.Item
+            label="Oświetlenie nocne"
+            buttons={
+              <Button
+                tooltip="Przyciemnia światła, by zmniejszyć pobór energii."
+                icon="lightbulb-o"
+                disabled={locked}
+                onClick={() => act('toggle_nightshift')}
+              >
+                {data.nightshiftLights ? 'Włączone' : 'Wyłączone'}
+              </Button>
+            }
+          />
+        </LabeledList>
       </Section>
     </>
   );

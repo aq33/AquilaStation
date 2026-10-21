@@ -196,10 +196,15 @@
 							break
 					if(is_inaccessible)
 						continue
+			// AQ EDIT - ikony i limit sztuk dla okna uplinka z tg
+			var/atom/item_path = ispath(I.item, /atom) ? I.item : null
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.cost,
 				"desc" = I.desc,
+				"icon" = item_path ? "[initial(item_path.icon)]" : null,
+				"icon_state" = item_path ? initial(item_path.icon_state) : null,
+				"limited_stock" = I.limited_stock,
 			))
 		data["categories"] += list(cat)
 	return data
@@ -215,7 +220,8 @@
 				buyable_items += uplink_items[category]
 			if(item_name in buyable_items)
 				var/datum/uplink_item/I = buyable_items[item_name]
-				MakePurchase(usr, I)
+				if(MakePurchase(usr, I) && I.limited_stock >= 0) // AQ EDIT - odśwież listę, gdy skończą się sztuki
+					update_static_data(usr)
 				return TRUE
 		if("lock")
 			active = FALSE

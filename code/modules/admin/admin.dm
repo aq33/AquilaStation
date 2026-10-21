@@ -28,257 +28,347 @@
 		to_chat(usr, "Wygląda na to, że wybierasz moba, który już nie istnieje.")
 		return
 
-	var/body = "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><body>Panel opcji dla <b>[M]</b>"
-	if(M.client)
-		body += " grany przez <b>[M.client]</b>"
-		body += " <A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
-		if(CONFIG_GET(flag/use_exp_tracking))
-			body += " <A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living() + "</a>"
-
-	if(isnewplayer(M))
-		body += " <B>Hasn't Entered Game</B>"
-	else
-		body += " <A href='byond://?_src_=holder;[HrefToken()];revive=[REF(M)]'>Heal</A>"
-
-	if(M.client)
-		body += "<br><br><b>Pierwsze wejście:</b> [M.client.player_join_date]<br><b>Konto BYOND zarejestrowane:</b> [M.client.account_join_date]"
-
-		if(M.client?.tgui_panel)
-			body += M.client.tgui_panel.show_notices() //The datum holds a reference to the client already, no need to pass it.
-		else //This should never happen in practice.
-			body += "<br><b>Telemetry Status:</b> <span class='bad'>USER CHAT NOT LOADED, CALL A CODER MAYBE?</span>"
-
-		body += "<br><br><b>CentCom Galactic Ban DB: </b> "
-		if(CONFIG_GET(string/centcom_ban_db))
-			body += "<a href='byond://?_src_=holder;[HrefToken()];centcomlookup=[M.client.ckey]'>Search</a>"
-		else
-			body += "<i>Disabled</i>"
-		body += "<br><br><b>Pokaż powiązane konta według:</b> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP</a>"
-		var/rep = 0
-		rep += SSpersistence.antag_rep[M.ckey]
-		body += "<br><br><b>Antag Rep:</b> [rep] "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagrep=add;mob=[REF(M)]'>+</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagrep=subtract;mob=[REF(M)]'>-</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagrep=set;mob=[REF(M)]'>=</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagrep=zero;mob=[REF(M)]'>0</a>"
-		var/antag_tokens = M.client.get_antag_token_count()
-		body += "<br><b>Antag Tokens</b>: [antag_tokens] "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagtokens=add;mob=[REF(M)]'>+</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagtokens=subtract;mob=[REF(M)]'>-</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagtokens=set;mob=[REF(M)]'>=</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modantagtokens=zero;mob=[REF(M)]'>0</a>"
-		var/metabalance = M.client.get_metabalance()
-		body += "<br><b>[CONFIG_GET(string/metacurrency_name)]s</b>: [metabalance] "
-//AQ EDIT
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modmetacoins=add;mob=[REF(M)]'>+</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modmetacoins=subtract;mob=[REF(M)]'>-</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modmetacoins=set;mob=[REF(M)]'>=</a> "
-		body += "<a href='byond://?_src_=holder;[HrefToken()];modmetacoins=zero;mob=[REF(M)]'>0</a>"
-//AQ EDIT END
-		var/full_version = "Unknown"
-		if(M.client.byond_version)
-			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
-		body += "<br><br><b>Byond Version:</b> [full_version]<br>"
-
-
-	body += "<br>"
-	body += "<a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(M)]'>VV</a> "
-	if(M.mind)
-		body += "<a href='byond://?_src_=holder;[HrefToken()];traitor=[REF(M)]'>TP</a> "
-	else
-		body += "<a href='byond://?_src_=holder;[HrefToken()];initmind=[REF(M)]'>Init Mind</a> "
-	if (iscyborg(M))
-		body += "<a href='byond://?_src_=holder;[HrefToken()];borgpanel=[REF(M)]'>BP</a> "
-	body += "<a href='byond://?priv_msg=[M.ckey]'>PM</a> "
-	body += "<a href='byond://?_src_=holder;[HrefToken()];subtlemessage=[REF(M)]'>SM</a> "
-	if (ishuman(M) && M.mind)
-		body += "<a href='byond://?_src_=holder;[HrefToken()];HeadsetMessage=[REF(M)]'>HM</a> "
-	body += "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a> "
-	//Default to client logs if available
-	var/source = LOGSRC_MOB
-	if(M.client)
-		source = LOGSRC_CLIENT
-	body += "<a href='byond://?_src_=holder;[HrefToken()];individuallog=[REF(M)];log_src=[source]'>LOGS</a><br>"
-
-	body += "<br><b>Mob Type:</b> [M.type]<br><br>"
-
-	body += "<A href='byond://?_src_=holder;[HrefToken()];boot2=[REF(M)]'>Kick</A> "
-	if(M.client)
-		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</A> "
-	else
-		body += "<A href='byond://?_src_=holder;[HrefToken()];newbankey=[M.key]'>Ban</A> "
-
-	body += "<A href='byond://?_src_=holder;[HrefToken()];showmessageckey=[M.ckey]'>Notes</A>"
-	if(M.client)
-		body += " <A href='byond://?_src_=holder;[HrefToken()];sendtoprison=[REF(M)]'>Prison</A> "
-		body += " <A href='byond://?_src_=holder;[HrefToken()];sendbacktolobby=[REF(M)]'>Wyślij do lobby</A>"
-		var/muted = M.client.prefs.muted
-		body += "<br><br><b>Mute: </b> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_IC]' [(muted & MUTE_IC)?"style='font-weight: bold'":""]>IC</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_OOC]' [(muted & MUTE_OOC)?"style='font-weight: bold'":""]>OOC</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_LOOC]' [(muted & MUTE_LOOC)?"style='font-weight: bold'":""]>LOOC</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_PRAY]' [(muted & MUTE_PRAY)?"style='font-weight: bold'":""]>PRAY</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_ADMINHELP]' [(muted & MUTE_ADMINHELP)?"style='font-weight: bold'":""]>ADMINHELP</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_MHELP]' [(muted & MUTE_MHELP)?"style='font-weight: bold'":""]>MHELP</a> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_DEADCHAT]' [(muted & MUTE_DEADCHAT)?"style='font-weight: bold'":""]>DEADCHAT</a> "
-
-//nsv13 - add LOOC to above
-
-	body += "<br><br>"
-	body += "<A href='byond://?_src_=holder;[HrefToken()];jumpto=[REF(M)]'>Skocz do</A> "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];getmob=[REF(M)]'>Get</A> "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];sendmob=[REF(M)]'>Wyślij do</A>"
-
-	body += "<br><br>"
-	body += "<A href='byond://?_src_=holder;[HrefToken()];traitor=[REF(M)]'>Traitor Panel</A> "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];narrateto=[REF(M)]'>Narracja do</A> "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[REF(M)]'>Subtle Message</A> "
-	body += "<A href='byond://?_src_=holder;[HrefToken()];languagemenu=[REF(M)]'>Language Menu</A>"
-
-	if (M.client)
-		if(!isnewplayer(M))
-			body += "<br><br>"
-			body += "<b>Transformation:</b>"
-			body += "<br>"
-
-			//Human
-			if(ishuman(M))
-				body += "<B>Human</B> "
-			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];humanone=[REF(M)]'>Humanize</A> "
-
-			//Monkey
-			if(ismonkey(M))
-				body += "<B>Monkeyized</B> "
-			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];monkeyone=[REF(M)]'>Monkeyize</A> "
-
-			//Corgi
-			if(iscorgi(M))
-				body += "<B>Corgized</B> "
-			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];corgione=[REF(M)]'>Corgize</A> "
-
-			//AI / Cyborg
-			if(isAI(M))
-				body += "<B>Jest SI</B> "
-			else if(ishuman(M))
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeai=[REF(M)]'>Make AI</A> "
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makepai=[REF(M)]'>Make PAI</A> "
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makerobot=[REF(M)]'>Make Robot</A> "
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makealien=[REF(M)]'>Make Alien</A> "
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeslime=[REF(M)]'>Make Slime</A> "
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeblob=[REF(M)]'>Make Blob</A> "
-
-			if(istype(M, /mob/living/simple_animal/cluwne))
-				body += "<B>Is a Cluwne</B> "
-			else if(ishuman(M))
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makecluwne=[REF(M)]'>Make Cluwne</A> "
-
-			//Simple Animals
-			if(isanimal(M))
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=[REF(M)]'>Re-Animalize</A> "
-			else
-				body += "<A href='byond://?_src_=holder;[HrefToken()];makeanimal=[REF(M)]'>Animalize</A> "
-
-			body += "<br><br>"
-			body += "<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. The buttons in 'Transformations' are preferred, when possible.</font><br>"
-
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=observer;mob=[REF(M)]'>Observer</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=human;mob=[REF(M)]'>Human</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=monkey;mob=[REF(M)]'>Monkey</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=robot;mob=[REF(M)]'>Cyborg</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=cat;mob=[REF(M)]'>Cat</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=runtime;mob=[REF(M)]'>Runtime</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=corgi;mob=[REF(M)]'>Corgi</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=ian;mob=[REF(M)]'>Ian</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=crab;mob=[REF(M)]'>Crab</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=coffee;mob=[REF(M)]'>Coffee</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=shade;mob=[REF(M)]'>Shade</A> "
-
-			body += "<br><b>Slime:</b> <A href='byond://?_src_=holder;[HrefToken()];simplemake=slime;mob=[REF(M)]'>Baby</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=adultslime;mob=[REF(M)]'>Adult</A> "
-
-			body += "<br><b>Alien:</b> <A href='byond://?_src_=holder;[HrefToken()];simplemake=drone;mob=[REF(M)]'>Drone</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=hunter;mob=[REF(M)]'>Hunter</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=sentinel;mob=[REF(M)]'>Sentinel</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=praetorian;mob=[REF(M)]'>Praetorian</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=queen;mob=[REF(M)]'>Queen</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=larva;mob=[REF(M)]'>Larva</A> "
-
-			body += "<br><b>Construct:</b> <A href='byond://?_src_=holder;[HrefToken()];simplemake=constructarmored;mob=[REF(M)]'>Juggernaut</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructbuilder;mob=[REF(M)]'>Artificer</A> "
-			body += "<A href='byond://?_src_=holder;[HrefToken()];simplemake=constructwraith;mob=[REF(M)]'>Wraith</A> "
-
-			body += "<br>"
-
-	if (M.client)
-		body += "<br><br>"
-		body += "<b>Other actions:</b>"
-		body += "<br>"
-		body += "<A href='byond://?_src_=holder;[HrefToken()];forcespeech=[REF(M)]'>Forcesay</A> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];tdome1=[REF(M)]'>Thunderdome 1</A> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];tdome2=[REF(M)]'>Thunderdome 2</A> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];tdomeadmin=[REF(M)]'>Thunderdome Admin</A> "
-		body += "<A href='byond://?_src_=holder;[HrefToken()];tdomeobserve=[REF(M)]'>Thunderdome Observer</A> "
-
-	body += "<br></body>"
-
-	var/datum/browser/popup = new(usr, "adminplayeropts-[REF(M)]", "<div align='center'>Opcje dla [M.key]</div>", 700, 600)
-	popup.set_content(body)
-	popup.open(0)
-
-	//usr << browse(body, "window=adminplayeropts-[REF(M)];size=550x515")
+	// AQUILA EDIT - panel gracza w TGUI (okno "AdminPlayerPanel") zamiast HTML
+	// Wołane jako verb src jest klientem, nie /datum/admins, więc listę okien bierzemy z holdera
+	var/datum/admins/holder = usr.client.holder
+	var/panel_key = REF(M)
+	var/datum/admin_player_panel/panel = LAZYACCESS(holder.player_option_panels, panel_key)
+	if(!panel)
+		panel = new(holder, M)
+		LAZYSET(holder.player_option_panels, panel_key, panel)
+	panel.refresh_db_values()
+	panel.ui_interact(usr)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Player Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins
+	/// AQUILA - otwarte okna panelu gracza: REF(mob) -> /datum/admin_player_panel
+	var/list/player_option_panels
+
+/// AQUILA - panel opcji admina dla jednego moba (dawne okno "adminplayeropts")
+/datum/admin_player_panel
+	var/datum/admins/holder
+	var/datum/weakref/target_ref
+	var/panel_key
+	/// Wartości z bazy danych, odświeżane przy otwarciu panelu (nie przy każdej aktualizacji okna)
+	var/antag_tokens = 0
+	var/metabalance = 0
+
+/datum/admin_player_panel/New(datum/admins/holder, mob/target)
+	. = ..()
+	src.holder = holder
+	target_ref = WEAKREF(target)
+	panel_key = REF(target)
+
+/datum/admin_player_panel/Destroy(force)
+	if(holder)
+		LAZYREMOVE(holder.player_option_panels, panel_key)
+	holder = null
+	target_ref = null
+	return ..()
+
+/datum/admin_player_panel/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/admin_player_panel/ui_close(mob/user)
+	qdel(src)
+
+/datum/admin_player_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AdminPlayerPanel")
+		ui.open()
+
+/datum/admin_player_panel/proc/refresh_db_values()
+	var/mob/M = target_ref?.resolve()
+	if(!M?.client)
+		return
+	antag_tokens = M.client.get_antag_token_count()
+	metabalance = M.client.get_metabalance()
+
+/datum/admin_player_panel/ui_static_data(mob/user)
+	var/list/data = list()
+	data["mute_types"] = list(
+		list("name" = "IC", "flag" = MUTE_IC),
+		list("name" = "OOC", "flag" = MUTE_OOC),
+		list("name" = "LOOC", "flag" = MUTE_LOOC),
+		list("name" = "PRAY", "flag" = MUTE_PRAY),
+		list("name" = "ADMINHELP", "flag" = MUTE_ADMINHELP),
+		list("name" = "MHELP", "flag" = MUTE_MHELP),
+		list("name" = "DEADCHAT", "flag" = MUTE_DEADCHAT),
+	)
+	return data
+
+/datum/admin_player_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/mob/M = target_ref?.resolve()
+	data["exists"] = !QDELETED(M)
+	if(QDELETED(M))
+		return data
+	data["ref"] = REF(M)
+	data["name"] = "[M]"
+	data["key"] = M.key
+	data["ckey"] = M.ckey
+	data["mob_type"] = "[M.type]"
+	data["new_player"] = isnewplayer(M)
+	data["has_mind"] = !!M.mind
+	data["cyborg"] = iscyborg(M)
+	data["human_with_mind"] = ishuman(M) && !!M.mind
+	data["is_human"] = ishuman(M)
+	data["is_monkey"] = ismonkey(M)
+	data["is_corgi"] = iscorgi(M)
+	data["is_ai"] = isAI(M)
+	data["is_cluwne"] = istype(M, /mob/living/simple_animal/cluwne)
+	data["is_animal"] = isanimal(M)
+
+	var/client/C = M.client
+	data["has_client"] = !!C
+	data["log_src"] = C ? LOGSRC_CLIENT : LOGSRC_MOB
+	if(!C)
+		return data
+	data["client_name"] = "[C]"
+	data["rank"] = C.holder ? (C.holder.rank?.name || "?") : "Gracz"
+	data["is_admin"] = !!(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
+	data["playtime"] = CONFIG_GET(flag/use_exp_tracking) ? C.get_exp_living() : null
+	data["join_date"] = C.player_join_date
+	data["account_join_date"] = C.account_join_date
+	data["telemetry"] = get_telemetry_data(C)
+	data["centcom_db"] = !!CONFIG_GET(string/centcom_ban_db)
+	data["antag_rep"] = SSpersistence.antag_rep[M.ckey] || 0
+	data["antag_tokens"] = antag_tokens
+	data["metacurrency_name"] = CONFIG_GET(string/metacurrency_name)
+	data["metabalance"] = metabalance
+	data["byond_version"] = C.byond_version ? "[C.byond_version].[C.byond_build ? C.byond_build : "xxx"]" : "Nieznana"
+	data["muted"] = C.prefs?.muted || 0
+	return data
+
+/// Stan telemetrii klienta jako zwykły tekst (dawniej HTML z show_notices())
+/datum/admin_player_panel/proc/get_telemetry_data(client/C)
+	var/list/telemetry = list()
+	var/datum/tgui_panel/panel = C.tgui_panel
+	if(!panel)
+		telemetry["status"] = "Czat gracza się nie załadował, zgłoś to koderom."
+		telemetry["bad"] = TRUE
+		return telemetry
+	telemetry["bad"] = FALSE
+	switch(panel.telemetry_status)
+		if(TGUI_TELEMETRY_STAT_NOT_REQUESTED)
+			telemetry["status"] = "Nie wysłano zapytania o telemetrię. Zgłoś to koderom."
+			telemetry["bad"] = TRUE
+		if(TGUI_TELEMETRY_STAT_AWAITING)
+			telemetry["status"] = "Oczekiwanie na telemetrię."
+		if(TGUI_TELEMETRY_STAT_ANALYZED, TGUI_TELEMETRY_STAT_OVERSEND)
+			telemetry["status"] = "Przeanalizowano."
+		if(TGUI_TELEMETRY_STAT_MISSING)
+			telemetry["status"] = "Brak danych telemetrii!"
+			telemetry["bad"] = TRUE
+		else
+			telemetry["status"] = "Nieprawidłowy stan telemetrii ([panel.telemetry_status]). Zgłoś to koderom."
+			telemetry["bad"] = TRUE
+	var/static/regex/html_tags = regex(@"<[^>]*>", "g")
+	var/list/notices = list()
+	for(var/notice in panel.telemetry_notices)
+		var/notice_text = panel.telemetry_notices[notice]
+		notices += list(list(
+			"text" = replacetext(notice_text, html_tags, ""),
+			"bad" = !!findtext(notice_text, "'bad'"),
+		))
+	telemetry["notices"] = notices
+	return telemetry
+
+/// Dawne linki panelu, które przyjmują tylko REF(moba)
+GLOBAL_LIST_INIT(admin_player_panel_mob_commands, list(
+	"revive", "getplaytimewindow", "initmind", "traitor", "borgpanel", "subtlemessage", "HeadsetMessage",
+	"adminplayerobservefollow", "boot2", "sendtoprison", "sendbacktolobby", "jumpto", "getmob", "sendmob",
+	"narrateto", "languagemenu", "humanone", "monkeyone", "corgione", "makeai", "makepai", "makerobot",
+	"makealien", "makeslime", "makeblob", "makecluwne", "makeanimal", "forcespeech", "tdome1", "tdome2",
+	"tdomeadmin", "tdomeobserve",
+))
+
+/// Dozwolone typy dla "simplemake"
+GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
+	"observer", "human", "monkey", "robot", "cat", "runtime", "corgi", "ian", "crab", "coffee", "shade",
+	"slime", "adultslime", "drone", "hunter", "sentinel", "praetorian", "queen", "larva",
+	"constructarmored", "constructbuilder", "constructwraith",
+))
+
+/datum/admin_player_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		return
+	var/mob/M = target_ref?.resolve()
+	if(QDELETED(M))
+		return
+	var/mob_ref = REF(M)
+	var/client/C = M.client
+
+	if(action in GLOB.admin_player_panel_mob_commands)
+		holder.ui_topic(list("[action]" = mob_ref))
+		return TRUE
+
+	switch(action)
+		if("vv")
+			usr.client.debug_variables(M)
+			return
+		if("pm")
+			usr.client.cmd_admin_pm(M.ckey, null)
+			return
+		if("logs")
+			holder.ui_topic(list("individuallog" = mob_ref, "log_src" = C ? LOGSRC_CLIENT : LOGSRC_MOB))
+			return
+		if("notes")
+			holder.ui_topic(list("showmessageckey" = M.ckey))
+			return
+		if("editrights")
+			if(!C)
+				return
+			holder.ui_topic(list("editrights" = (GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey]) ? "rank" : "add", "key" = M.key))
+			return TRUE
+		if("centcomlookup")
+			if(!C)
+				return
+			holder.ui_topic(list("centcomlookup" = C.ckey))
+			return
+		if("relatedacc")
+			if(!C || !(params["type"] in list("cid", "ip")))
+				return
+			holder.ui_topic(list("showrelatedacc" = params["type"], "client" = REF(C)))
+			return
+		if("modvalue")
+			if(!C)
+				return
+			var/operation = params["operation"]
+			if(!(operation in list("add", "subtract", "set", "zero")))
+				return
+			var/command
+			switch(params["value"])
+				if("antagrep")
+					command = "modantagrep"
+				if("antagtokens")
+					command = "modantagtokens"
+				if("metacoins")
+					command = "modmetacoins"
+			if(!command)
+				return
+			holder.ui_topic(list("[command]" = operation, "mob" = mob_ref))
+			return TRUE
+		if("ban")
+			if(C)
+				holder.ui_topic(list("newbankey" = M.key, "newbanip" = C.address, "newbancid" = C.computer_id))
+			else
+				holder.ui_topic(list("newbankey" = M.key))
+			return
+		if("mute")
+			if(!C)
+				return
+			holder.ui_topic(list("mute" = M.ckey, "mute_type" = "[text2num("[params["flag"]]")]"))
+			return TRUE
+		if("simplemake")
+			if(!(params["type"] in GLOB.admin_player_panel_simplemake))
+				return
+			holder.ui_topic(list("simplemake" = params["type"], "mob" = mob_ref))
+			return TRUE
 
 
 // AQ EDIT - port BeeStation #7779: access_news_network() is the TGUI admin newscaster in aquila/code/modules/admin/verbs/admin_newscaster.dm
 
+// AQUILA EDIT - Game Panel w TGUI (okno "AdminGamePanel"); łączy dawne okna Game Panel, wyboru trybu (c_mode),
+// wymuszenia trybu w secret (f_secret) i opcji trybu dynamic. Przyciski wywołują dotychczasowe gałęzie Topic().
 /datum/admins/proc/Game()
 	if(!check_rights(0))
 		return
+	if(!game_panel_ui)
+		game_panel_ui = new(src)
+	game_panel_ui.ui_interact(usr)
 
-	var/dat
-	dat += "<a href='byond://?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</a><br>"
-	if(GLOB.master_mode == "secret")
-		dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_secret=1'>(Force Secret Mode)</A><br>"
-	if(SSticker.is_mode("dynamic"))
-		if(SSticker.current_state <= GAME_STATE_PREGAME)
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_roundstart=1'>(Force Roundstart Rulesets)</A><br>"
-			if (GLOB.dynamic_forced_roundstart_ruleset.len > 0)
-				for(var/datum/dynamic_ruleset/roundstart/rule in GLOB.dynamic_forced_roundstart_ruleset)
-					dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_remove=\ref[rule]'>-> [rule.name] <-</A><br>"}
-				dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_clear=1'>(Clear Rulesets)</A><br>"
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_options=1'>(Dynamic mode options)</A><br>"
-		else if (SSticker.IsRoundInProgress())
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_latejoin=1'>(Force Next Latejoin Ruleset)</A><br>"
-			if (SSticker && SSticker.mode && istype(SSticker.mode,/datum/game_mode/dynamic))
-				var/datum/game_mode/dynamic/mode = SSticker.mode
-				if (mode.forced_latejoin_rule)
-					dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_latejoin_clear=1'>-> [mode.forced_latejoin_rule.name] <-</A><br>"}
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_midround=1'>(Execute Midround Ruleset!)</A><br>"
-		dat += "<hr/>"
-	if(SSticker.IsRoundInProgress())
-		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Game Mode Panel)</a><BR>"
+/datum/admins
+	/// AQUILA - okno TGUI Game Panelu
+	var/datum/admin_game_panel/game_panel_ui
 
-	dat += {"
-		<BR>
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_turf=1'>Create Turf</A><br>
-		<A href='byond://?src=[REF(src)];[HrefToken()];create_mob=1'>Create Mob</A><br>
-		"}
+/datum/admin_game_panel
+	var/datum/admins/holder
 
-	if(marked_datum && istype(marked_datum, /atom))
-		dat += "<A href='byond://?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
+/datum/admin_game_panel/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
 
-	var/datum/browser/browser = new(usr, "admin2", "Game Panel", 240, 280)
-	browser.set_content(dat)
-	browser.open()
-	return
+/datum/admin_game_panel/Destroy(force)
+	if(holder?.game_panel_ui == src)
+		holder.game_panel_ui = null
+	holder = null
+	return ..()
+
+/datum/admin_game_panel/ui_state(mob/user)
+	return get_admin_state(0)
+
+/datum/admin_game_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AdminGamePanel")
+		ui.open()
+
+/datum/admin_game_panel/ui_data(mob/user)
+	var/list/data = list()
+	data["master_mode"] = GLOB.master_mode
+	data["secret_force_mode"] = GLOB.secret_force_mode
+	data["round_started"] = SSticker.HasRoundStarted()
+	data["round_in_progress"] = SSticker.IsRoundInProgress()
+	data["pregame"] = SSticker.current_state <= GAME_STATE_PREGAME
+	data["hotswap_disabled"] = !!SSticker.gamemode_hotswap_disabled
+
+	var/list/modes = list()
+	for(var/mode in config.modes)
+		modes += list(list("id" = mode, "name" = config.mode_names[mode]))
+	data["modes"] = modes
+
+	var/is_dynamic = SSticker.is_mode("dynamic")
+	data["is_dynamic"] = is_dynamic
+	if(is_dynamic)
+		var/list/forced_roundstart = list()
+		for(var/datum/dynamic_ruleset/roundstart/rule in GLOB.dynamic_forced_roundstart_ruleset)
+			forced_roundstart += list(list("name" = rule.name, "ref" = REF(rule)))
+		data["forced_roundstart"] = forced_roundstart
+		var/datum/game_mode/dynamic/mode = SSticker.mode
+		data["forced_latejoin"] = istype(mode) ? mode.forced_latejoin_rule?.name : null
+		data["forced_extended"] = GLOB.dynamic_forced_extended
+		data["no_stacking"] = GLOB.dynamic_no_stacking
+		data["stacking_limit"] = GLOB.dynamic_stacking_limit
+		data["forced_threat"] = GLOB.dynamic_forced_threat_level
+
+	data["marked_atom"] = isatom(holder.marked_datum)
+	return data
+
+/datum/admin_game_panel/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/static/list/simple_commands = list(
+		"f_dynamic_roundstart", "f_dynamic_roundstart_clear", "f_dynamic_latejoin", "f_dynamic_latejoin_clear",
+		"f_dynamic_midround", "f_dynamic_force_extended", "f_dynamic_no_stacking", "f_dynamic_stacking_limit",
+		"f_dynamic_forced_threat", "gamemode_panel", "create_object", "quick_create_object", "create_turf",
+		"create_mob", "dupe_marked_datum",
+	)
+	if(action in simple_commands)
+		holder.ui_topic(list("[action]" = "1"))
+		return TRUE
+	switch(action)
+		if("set_mode")
+			var/mode = params["mode"]
+			if(!(mode in config.modes) && !(mode in list("secret", "random", "weighted")))
+				return
+			holder.ui_topic(list("c_mode2" = mode))
+			return TRUE
+		if("force_secret")
+			var/mode = params["mode"]
+			if(!(mode in config.modes) && mode != "secret")
+				return
+			holder.ui_topic(list("f_secret2" = mode))
+			return TRUE
+		if("remove_roundstart")
+			holder.ui_topic(list("f_dynamic_roundstart_remove" = params["ref"]))
+			return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
@@ -342,26 +432,9 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "End Round") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/dynamic_mode_options(mob/user)
-	var/dat = {"<h3>Common options</h3>
-		<i>All these options can be changed midround.</i> <br/>
-		<br/>
-		<b>Force extended:</b> - Option is <a href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_force_extended=1'> <b>[GLOB.dynamic_forced_extended ? "ON" : "OFF"]</a></b>.
-		<br/>This will force the round to be extended. No rulesets will be drafted. <br/>
-		<br/>
-		<b>No stacking:</b> - Option is <a href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_no_stacking=1'> <b>[GLOB.dynamic_no_stacking ? "ON" : "OFF"]</b></a>.
-		<br/>Unless the threat goes above [GLOB.dynamic_stacking_limit], only one "round-ender" ruleset will be drafted. <br/>
-		<br/>
-		<b>Forced threat level:</b> Current value : <a href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_forced_threat=1'><b>[GLOB.dynamic_forced_threat_level]</b></a>.
-		<br/>The value threat is set to if it is higher than -1.<br/>
-		<br/>
-		<br/>
-		<b>Stacking threeshold:</b> Current value : <a href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_stacking_limit=1'><b>[GLOB.dynamic_stacking_limit]</b></a>.
-		<br/>The threshold at which "round-ender" rulesets will stack. A value higher than 100 ensure this never happens. <br/>
-		"}
+	// AQUILA EDIT - opcje trybu dynamic są teraz sekcją Game Panelu (TGUI)
+	Game()
 
-	var/datum/browser/browser = new(user, "dyn_mode_options", "Dynamic Mode Options", 900, 650)
-	browser.set_content(dat)
-	browser.open()
 /datum/admins/proc/announce()
 	set category = "Admin"
 	set name = "Announce"
@@ -556,7 +629,14 @@
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/chosen = pick_closest_path(object)
+	// AQUILA EDIT - bez jednoznacznego dopasowania otwiera wyszukiwarkę TGUI (SpawnSearch z tg) zamiast długiej listy input()
+	var/search = trim("[object]")
+	var/list/matches = length(search) ? filter_fancy_list(get_fancy_list_of_atom_types(), search) : list()
+	if(length(matches) != 1)
+		// Wołane jako verb src jest klientem, nie /datum/admins
+		usr.client.holder.open_spawn_menu(usr, search)
+		return
+	var/chosen = matches[matches[1]]
 	if(!chosen)
 		return
 	var/turf/T = get_turf(usr)
@@ -684,6 +764,217 @@
 	if(!ai_number)
 		to_chat(usr, "<b>Nie znaleziono SI</b>" )
 
+/// AQUILA - panel praw SI dla adminów (port Lawpanel z tg), zastępuje wypisywanie praw na czat w "Check AI Laws"
+/datum/law_panel
+
+/datum/law_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Lawpanel")
+		ui.open()
+
+/datum/law_panel/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/law_panel/ui_close(mob/user)
+	qdel(src)
+
+/datum/law_panel/proc/log_panel_change(mob/user, message)
+	log_law("[key_name(user)] [message]")
+	log_admin("[key_name(user)] [message]")
+	message_admins("[key_name_admin(user)] [message]")
+
+/datum/law_panel/proc/law_list_for_type(datum/ai_laws/lawset, lawtype)
+	switch(lawtype)
+		if(LAW_DEVIL)
+			return lawset.devillaws
+		if(LAW_HACKED)
+			return lawset.hacked
+		if(LAW_ION)
+			return lawset.ion
+		if(LAW_INHERENT)
+			return lawset.inherent
+		if(LAW_SUPPLIED)
+			return lawset.supplied
+
+/datum/law_panel/proc/add_law_helper(mob/user, mob/living/silicon/borgo)
+	var/list/lawtypes = list(LAW_ZEROTH, LAW_HACKED, LAW_ION, LAW_INHERENT, LAW_SUPPLIED) // in order of priority
+	var/lawtype = tgui_input_list(user, "Wybierz rodzaj prawa", "Rodzaj prawa", lawtypes)
+	if(isnull(lawtype))
+		return FALSE
+	var/lawtext = tgui_input_text(user, "Wpisz treść prawa", "Treść prawa")
+	if(!lawtext)
+		return FALSE
+	if(QDELETED(src) || QDELETED(borgo))
+		return FALSE
+	borgo.laws_sanity_check()
+	switch(lawtype)
+		if(LAW_ZEROTH)
+			if(borgo.laws.zeroth)
+				if(tgui_alert(user, "Ta jednostka ma już prawo zerowe, nowe je zastąpi. Na pewno?", "Zastąpienie prawa zerowego", list("Tak", "Nie")) != "Tak")
+					return FALSE
+				if(QDELETED(src) || QDELETED(borgo))
+					return FALSE
+			borgo.laws.set_zeroth_law(lawtext)
+		if(LAW_HACKED)
+			borgo.laws.add_hacked_law(lawtext)
+		if(LAW_ION)
+			borgo.laws.add_ion_law(lawtext)
+		if(LAW_INHERENT)
+			borgo.laws.add_inherent_law(lawtext)
+		if(LAW_SUPPLIED)
+			borgo.laws.supplied += lawtext // Just goes to the end of the list
+	log_panel_change(user, "has UPLOADED a [lawtype] law to [key_name(borgo)] stating: [lawtext]")
+	return TRUE
+
+/datum/law_panel/proc/move_law_helper(mob/user, mob/living/silicon/borgo, direction, law)
+	var/list/relevant_laws = borgo.laws.inherent
+	var/lawindex = relevant_laws.Find(law)
+	if(!lawindex)
+		to_chat(user, "<span class='danger'>Coś poszło nie tak, nie udało się przesunąć prawa.</span>")
+		return FALSE
+	switch(direction)
+		if("up")
+			if(lawindex == 1)
+				return FALSE
+			relevant_laws.Swap(lawindex - 1, lawindex)
+		if("down")
+			if(lawindex == length(relevant_laws))
+				return FALSE
+			relevant_laws.Swap(lawindex + 1, lawindex)
+		else
+			return FALSE
+	log_panel_change(user, "has MOVED a [LAW_INHERENT] law for [key_name(borgo)] [direction]. LAW: [law]")
+	return TRUE
+
+/datum/law_panel/proc/edit_law_text_helper(mob/user, mob/living/silicon/borgo, lawtype, oldlaw)
+	var/newlaw = tgui_input_text(user, "Zmień treść prawa.", "Edycja prawa", oldlaw)
+	if(!newlaw || QDELETED(src) || QDELETED(borgo))
+		return FALSE
+	if(lawtype == LAW_ZEROTH)
+		borgo.laws.set_zeroth_law(newlaw)
+	else
+		var/list/relevant_laws = law_list_for_type(borgo.laws, lawtype)
+		var/lawindex = relevant_laws ? relevant_laws.Find(oldlaw) : 0
+		if(!lawindex)
+			to_chat(user, "<span class='danger'>Coś poszło nie tak, nie udało się zmienić prawa.</span>")
+			return FALSE
+		relevant_laws[lawindex] = newlaw
+	log_panel_change(user, "has EDITED [key_name(borgo)] [lawtype] law. OLD LAW: [oldlaw] NEW LAW: [newlaw]")
+	return TRUE
+
+/datum/law_panel/proc/remove_law_helper(mob/user, mob/living/silicon/borgo, lawtype, law)
+	if(lawtype == LAW_ZEROTH)
+		borgo.laws.clear_zeroth_law(TRUE)
+	else
+		var/list/relevant_laws = law_list_for_type(borgo.laws, lawtype)
+		if(!relevant_laws || !(law in relevant_laws))
+			return FALSE
+		relevant_laws -= law
+	log_panel_change(user, "has REMOVED a [lawtype] law from [key_name(borgo)]. LAW: [law]")
+	return TRUE
+
+/// Po zmianie praw SI synchronizuje podłączone cyborgi
+/datum/law_panel/proc/sync_laws(mob/living/silicon/borgo)
+	if(!isAI(borgo))
+		return
+	var/mob/living/silicon/ai/ai = borgo
+	for(var/mob/living/silicon/robot/R as anything in ai.connected_robots)
+		if(R.lawupdate)
+			R.lawsync()
+
+/datum/law_panel/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!check_rights(R_ADMIN))
+		qdel(src)
+		return FALSE
+
+	var/mob/living/silicon/borgo
+	if(params["ref"])
+		borgo = locate(params["ref"]) in GLOB.silicon_mobs
+	if(QDELETED(borgo))
+		to_chat(usr, "<span class='danger'>Ta jednostka już nie istnieje.</span>")
+		return TRUE
+
+	switch(action)
+		if("force_state_laws")
+			INVOKE_ASYNC(borgo, TYPE_PROC_REF(/mob/living/silicon, statelaws), TRUE)
+			return FALSE
+		if("announce_law_changes")
+			borgo.show_laws()
+			return FALSE
+		if("laws_updated_alert")
+			borgo.post_lawchange(TRUE)
+			return FALSE
+		if("give_law_datum")
+			borgo.make_laws()
+			return TRUE
+		if("add_law")
+			. = add_law_helper(usr, borgo)
+		if("remove_law")
+			. = remove_law_helper(usr, borgo, params["lawtype"], params["law"])
+		if("move_law")
+			. = move_law_helper(usr, borgo, params["direction"], params["law"])
+		if("edit_law_text")
+			. = edit_law_text_helper(usr, borgo, params["lawtype"], params["law"])
+
+	if(. && !QDELETED(borgo))
+		sync_laws(borgo)
+
+/datum/law_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/all_silicons = list()
+	for(var/mob/living/silicon/borgo as anything in GLOB.silicon_mobs)
+		var/list/borg_information = list()
+		if(iscyborg(borgo))
+			var/mob/living/silicon/robot/cyborg = borgo
+			if(cyborg.shell)
+				continue
+			borg_information["master_ai"] = cyborg.connected_ai?.real_name
+			borg_information["borg_synced"] = cyborg.lawupdate
+			borg_information["borg_type"] = "Cyborg"
+		else if(isAI(borgo))
+			borg_information["borg_type"] = "SI"
+		else if(ispAI(borgo))
+			borg_information["borg_type"] = "pAI"
+		else
+			borg_information["borg_type"] = "Nieznany"
+
+		borg_information["borg_name"] = borgo.real_name
+		borg_information["ref"] = REF(borgo)
+
+		var/datum/ai_laws/lawset = borgo.laws
+		if(isnull(lawset))
+			borg_information["laws"] = null
+		else
+			var/list/borg_laws = list()
+			for(var/law in lawset.devillaws)
+				borg_laws += list(list("lawtype" = LAW_DEVIL, "law" = law, "num" = 666))
+			if(lawset.zeroth)
+				borg_laws += list(list("lawtype" = LAW_ZEROTH, "law" = lawset.zeroth, "num" = 0))
+			for(var/law in lawset.hacked)
+				if(length(law))
+					borg_laws += list(list("lawtype" = LAW_HACKED, "law" = law, "num" = -1))
+			for(var/law in lawset.ion)
+				if(length(law))
+					borg_laws += list(list("lawtype" = LAW_ION, "law" = law, "num" = -1))
+			var/lawnum = 1
+			for(var/law in lawset.inherent)
+				borg_laws += list(list("lawtype" = LAW_INHERENT, "law" = law, "num" = lawnum))
+				lawnum += 1
+			for(var/law in lawset.supplied)
+				if(length(law)) // Supplied is full of a bunch of empties
+					borg_laws += list(list("lawtype" = LAW_SUPPLIED, "law" = law, "num" = lawnum))
+					lawnum += 1
+			borg_information["laws"] = borg_laws
+
+		all_silicons += list(borg_information)
+
+	data["all_silicons"] = all_silicons
+	return data
+
 /datum/admins/proc/output_all_devil_info()
 	var/devil_number = 0
 	for(var/datum/mind/D in SSticker.mode.devils)
@@ -703,40 +994,70 @@
 /datum/admins/proc/manage_free_slots()
 	if(!check_rights())
 		return
-	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 520)
-	var/list/dat = list()
-	var/count = 0
 
 	if(!SSjob.initialized)
 		alert(usr, "Nie możesz zarządzać stanowiskami przed inicjalizacją podsystemu stanowisk!")
 		return
 
-	dat += "<table>"
+	// AQUILA EDIT - zarządzanie wolnymi stanowiskami w TGUI (okno "AdminJobSlots")
+	if(!job_slots_ui)
+		job_slots_ui = new(src)
+	job_slots_ui.ui_interact(usr)
 
-	for(var/j in SSjob.occupations)
-		var/datum/job/job = j
-		count++
-		var/J_title = html_encode(job.title)
-		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
-		var/J_totPos = html_encode(job.total_positions)
-		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < 0 ? " (unlimited)" : J_totPos]"
+/datum/admins
+	/// AQUILA - okno TGUI do zarządzania wolnymi stanowiskami
+	var/datum/admin_job_slots/job_slots_ui
 
-		dat += "</td>"
-		dat += "<td>"
-		if(job.total_positions >= 0)
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];customjobslot=[job.title]'>Custom</A> | "
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];addjobslot=[job.title]'>Add 1</A> | "
-			if(job.total_positions > job.current_positions)
-				dat += "<A href='byond://?src=[REF(src)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
-			else
-				dat += "Remove | "
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
-		else
-			dat += "<A href='byond://?src=[REF(src)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
+/datum/admin_job_slots
+	var/datum/admins/holder
 
-	browser.height = min(100 + count * 20, 650)
-	browser.set_content(dat.Join())
-	browser.open()
+/datum/admin_job_slots/New(datum/admins/holder)
+	. = ..()
+	src.holder = holder
+
+/datum/admin_job_slots/Destroy(force)
+	if(holder?.job_slots_ui == src)
+		holder.job_slots_ui = null
+	holder = null
+	return ..()
+
+/datum/admin_job_slots/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/admin_job_slots/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AdminJobSlots")
+		ui.open()
+
+/datum/admin_job_slots/ui_data(mob/user)
+	var/list/data = list()
+	var/list/jobs = list()
+	for(var/datum/job/job as anything in SSjob.occupations)
+		jobs += list(list(
+			"title" = job.title,
+			"current" = job.current_positions,
+			"total" = job.total_positions,
+		))
+	data["jobs"] = jobs
+	return data
+
+/datum/admin_job_slots/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	var/static/list/commands = list(
+		"add" = "addjobslot",
+		"custom" = "customjobslot",
+		"remove" = "removejobslot",
+		"unlimit" = "unlimitjobslot",
+		"limit" = "limitjobslot",
+	)
+	var/command = commands[action]
+	if(!command || !istext(params["title"]))
+		return
+	holder.ui_topic(list("[command]" = params["title"]))
+	return TRUE
 
 /datum/admins/proc/create_or_modify_area()
 	set category = "Debug"

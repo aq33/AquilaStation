@@ -218,10 +218,31 @@
 
 /obj/item/book/proc/on_read(mob/user)
 	if(dat)
-		user << browse(HTML_SKELETON_TITLE(title, "<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]"), "window=book[window_size != null ? ";size=[window_size]" : ""]")
-		onclose(user, "book")
+		open_book_viewer(user)
 	else
 		to_chat(user, "<span class='notice'>Ta książka jest zupełnie pusta!</span>")
+
+// AQ EDIT - okno TGUI BookViewer (na wzór MarkdownViewer z tg) zamiast okna HTML.
+// Otwierane bezpośrednio, a nie przez ui_interact(), bo podtypy książek (np. katalog ryb) mają własne okna w ui_interact().
+/obj/item/book/proc/open_book_viewer(mob/user)
+	var/datum/tgui/ui = SStgui.try_update_ui(user, src, null)
+	if(ui)
+		update_static_data(user, ui)
+		return
+	ui = new(user, src, "BookViewer", title || name)
+	ui.open()
+
+/obj/item/book/ui_static_data(mob/user)
+	var/list/data = list()
+	data["title"] = title || name
+	data["author"] = author
+	data["content"] = dat
+	if(window_size)
+		var/list/size = splittext(window_size, "x")
+		if(length(size) == 2)
+			data["width"] = text2num(size[1])
+			data["height"] = text2num(size[2])
+	return data
 
 
 /obj/item/book/attackby(obj/item/I, mob/user, params)

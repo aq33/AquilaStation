@@ -34,6 +34,7 @@
 	data["can_readapt"] = can_readapt
 	data["genetic_points_remaining"] = genetic_points_remaining
 	data["absorbed_dna_count"] = absorbed_dna_count
+	data["true_absorbs"] = true_absorbs // AQ EDIT - wymagania wchłonięć w oknie z tg
 
 	var/list/abilities = list()
 
@@ -53,6 +54,15 @@
 		var/req_absorbs = initial(ability.req_absorbs)
 		AL["dna_cost"] = dna_cost
 		AL["can_purchase"] = ((req_absorbs <= true_absorbs) && (req_dna <= absorbed_dna_count) && (dna_cost <= genetic_points_remaining))
+		// AQ EDIT - ikony, wymagania i kategoria dla okna z tg
+		AL["req_dna"] = req_dna
+		AL["req_absorbs"] = req_absorbs
+		AL["chemical_cost"] = initial(ability.chemical_cost)
+		AL["icon"] = "[initial(ability.icon_icon)]"
+		AL["icon_state"] = initial(ability.button_icon_state)
+		AL["bg_icon"] = "[initial(ability.button_icon)]"
+		AL["bg_icon_state"] = initial(ability.background_icon_state)
+		AL["category"] = ispath(path, /datum/action/changeling/sting) ? "stings" : "abilities"
 
 		abilities += list(AL)
 

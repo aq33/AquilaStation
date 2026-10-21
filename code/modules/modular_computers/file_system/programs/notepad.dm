@@ -38,5 +38,7 @@
 		return data
 	data["note"] = tablet.note
 	data["has_paper"] = !QDELETED(tablet.stored_paper)
+	// AQUILA: właściciel do okna „O Notatniku”
+	data["owner"] = tablet.saved_identification
 
 	return data

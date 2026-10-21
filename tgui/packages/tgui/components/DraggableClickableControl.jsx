@@ -1,6 +1,6 @@
-import { DraggableControl } from '.';
+import { LegacyDraggableControl } from './LegacyDraggableControl';
 
-export class DraggableClickableControl extends DraggableControl {
+export class DraggableClickableControl extends LegacyDraggableControl {
   constructor(props) {
     super(props);
 

@@ -1,3 +1,4 @@
+import { atom, useAtom } from 'jotai';
 import { useState } from 'react';
 import {
   Box,
@@ -16,7 +17,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 import { capitalize, createSearch } from 'tgui-core/string';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type OrderDatum = {
@@ -54,6 +55,8 @@ type Data = {
 
 const buttonWidth = 2;
 
+const condensedAtom = atom(false);
+
 const creditIcons = {
   credit: 'coins',
 } as const;
@@ -82,7 +85,7 @@ function ShoppingTab(props) {
   const { credit_type, order_categories, order_datums, item_amts } = data;
 
   const [shopCategory, setShopCategory] = useState(order_categories[0]);
-  const [condensed] = useLocalState('produce_condensed', false);
+  const [condensed] = useAtom(condensedAtom);
   const [searchItem, setSearchItem] = useState('');
 
   const search = createSearch<OrderDatum>(
@@ -121,7 +124,7 @@ function ShoppingTab(props) {
                 width="150px"
                 placeholder="Szukaj przedmiotu..."
                 value={searchItem}
-                onChange={(_, value) => setSearchItem(value)}
+                onChange={setSearchItem}
               />
             </Stack.Item>
           </Tabs>
@@ -374,7 +377,7 @@ function CheckoutTab(props) {
                 disabled={total_item_count <= 0}
                 tooltip={
                   total_item_count <= 0
-                    ? 'Order at least 1 item'
+                    ? 'Zamów co najmniej 1 przedmiot'
                     : express_tooltip
                 }
                 tooltipPosition="top-start"
@@ -423,7 +426,7 @@ export function ProduceConsole(props) {
   } = data;
 
   const [tabIndex, setTabIndex] = useState(Tab.Shopping);
-  const [condensed, setCondensed] = useLocalState('produce_condensed', false);
+  const [condensed, setCondensed] = useAtom(condensedAtom);
 
   const free_uses_remaining = Math.max(
     0,
@@ -477,6 +480,11 @@ export function ProduceConsole(props) {
                     <Stack.Item>
                       {points} <CreditIcon credit_type={credit_type} />
                     </Stack.Item>
+                    {free_uses !== null && (
+                      <Stack.Item color="grey">
+                        ~ Darmowe produkty: {free_uses_remaining} / {free_uses}
+                      </Stack.Item>
+                    )}
                   </Stack>
                 </Stack.Item>
               </Stack>

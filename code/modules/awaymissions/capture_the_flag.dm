@@ -150,6 +150,100 @@
 	message_admins("[key_name_admin(user)] has [ctf_enabled? "enabled" : "disabled"] CTF!")
 	notify_ghosts("CTF has been [ctf_enabled? "enabled" : "disabled"]!",'sound/effects/ghost2.ogg')
 
+/// Okno CTF dla duchów (CTFPanel z tg): drużyny, skok, dołączanie, głosowanie
+GLOBAL_DATUM_INIT(ctf_panel, /datum/ctf_panel, new)
+
+/datum/ctf_panel
+
+/datum/ctf_panel/ui_state(mob/user)
+	return GLOB.observer_state
+
+/datum/ctf_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "CTFPanel")
+		ui.open()
+
+/datum/ctf_panel/ui_data(mob/user)
+	var/list/data = list()
+	var/list/teams = list()
+
+	for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
+		if(!CTF.ctf_enabled)
+			continue
+		teams += list(list(
+			"name" = CTF.team,
+			"color" = CTF.team,
+			"score" = CTF.points,
+			"team_size" = length(CTF.team_members),
+			"refs" = REF(CTF),
+		))
+
+	if(!length(teams))
+		var/list/voters = get_voters()
+		data["voters"] = length(voters)
+		data["voters_required"] = CTF_REQUIRED_PLAYERS
+		data["voted"] = (user.ckey in voters)
+	else
+		data["teams"] = teams
+	data["is_admin"] = !!user.client?.holder
+	return data
+
+/datum/ctf_panel/ui_act(action, params, datum/tgui/ui)
+	. = ..()
+	if(.)
+		return
+	var/mob/user = usr
+
+	switch(action)
+		if("jump")
+			var/obj/machinery/capture_the_flag/CTF = locate(params["refs"]) in GLOB.machines
+			if(istype(CTF))
+				user.forceMove(get_turf(CTF))
+				return TRUE
+		if("join")
+			var/obj/machinery/capture_the_flag/CTF = locate(params["refs"]) in GLOB.machines
+			if(istype(CTF) && CTF.ctf_enabled)
+				user.forceMove(get_turf(CTF))
+				CTF.try_join(user)
+				return TRUE
+		if("vote")
+			if(ctf_enabled())
+				to_chat(user, "<span class='warning'>CTF już trwa!</span>")
+				return TRUE
+			var/obj/machinery/capture_the_flag/CTF = locate() in GLOB.machines
+			CTF?.vote_for_ctf(user)
+			return TRUE
+		if("unvote")
+			if(ctf_enabled())
+				to_chat(user, "<span class='warning'>CTF już trwa!</span>")
+				return TRUE
+			var/list/voters = get_voters()
+			voters -= user.ckey
+			return TRUE
+		if("toggle_ctf")
+			if(!user.client?.holder)
+				return
+			toggle_all_ctf(user)
+			return TRUE
+
+/// Lista chętnych (static people_who_want_to_play kontrolerów)
+/datum/ctf_panel/proc/get_voters()
+	var/obj/machinery/capture_the_flag/CTF = locate() in GLOB.machines
+	return CTF ? CTF.people_who_want_to_play : list()
+
+/datum/ctf_panel/proc/ctf_enabled()
+	for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
+		if(CTF.ctf_enabled)
+			return TRUE
+	return FALSE
+
+/mob/dead/observer/verb/open_ctf_panel()
+	set category = "Ghost"
+	set name = "Capture the Flag"
+	set desc = "Pokazuje drużyny CTF i pozwala zagłosować za rozpoczęciem gry."
+	GLOB.ctf_panel.ui_interact(src)
+
 /obj/machinery/capture_the_flag
 	name = "CTF Controller"
 	desc = "Used for running friendly games of capture the flag."
@@ -227,27 +321,27 @@
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/machinery/capture_the_flag/attack_ghost(mob/user)
 	if(ctf_enabled == FALSE)
-		if(user.client?.holder)
-			var/response = alert("Włączyć CTF?", "CTF", "Yes", "No")
-			if(response == "Yes")
-				toggle_all_ctf(user)
-			return
-
-
-		if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
-			to_chat(user, "<span class='warning'>CTF zostało tymczasowo wyłączone przez adminów.</span>")
-			return
-		people_who_want_to_play |= user.ckey
-		var/num = people_who_want_to_play.len
-		var/remaining = CTF_REQUIRED_PLAYERS - num
-		if(remaining <= 0)
-			people_who_want_to_play.Cut()
-			toggle_all_ctf()
-		else
-			to_chat(user, "<span class='notice'>Zgłoszono chęć gry w CTF. Gotowych: [num]/[CTF_REQUIRED_PLAYERS].</span>")
-
+		// głosowanie i włączanie CTF przez admina jest w oknie CTFPanel
+		GLOB.ctf_panel.ui_interact(user)
 		return
+	try_join(user)
 
+/// Dodaje ducha do chętnych na CTF; po zebraniu kompletu włącza grę
+/obj/machinery/capture_the_flag/proc/vote_for_ctf(mob/user)
+	if(!(GLOB.ghost_role_flags & GHOSTROLE_MINIGAME))
+		to_chat(user, "<span class='warning'>CTF zostało tymczasowo wyłączone przez adminów.</span>")
+		return
+	people_who_want_to_play |= user.ckey
+	var/num = people_who_want_to_play.len
+	var/remaining = CTF_REQUIRED_PLAYERS - num
+	if(remaining <= 0)
+		people_who_want_to_play.Cut()
+		toggle_all_ctf()
+	else
+		to_chat(user, "<span class='notice'>Zgłoszono chęć gry w CTF. Gotowych: [num]/[CTF_REQUIRED_PLAYERS].</span>")
+
+/// Dołącza ducha do drużyny tego kontrolera (albo odradza go, jeśli już w niej jest)
+/obj/machinery/capture_the_flag/proc/try_join(mob/user)
 	if(!SSticker.HasRoundStarted())
 		return
 	if(user.ckey in team_members)
