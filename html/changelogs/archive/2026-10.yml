@@ -518,3 +518,5 @@
   - tweak: Skrzynie i szafki na zamek mają światła jak w Bee, kosz na śmieci pokazuje
       zapełnienie.
   - tweak: Na webmapie ściany, okna, stoły i dywany łączą się jak w grze.
+  - bugfix: Borgi i AI w trybie intencji mogą używać akcji prawego przycisku (menu
+      pod Shift+PPM).
