@@ -141,7 +141,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 		var/obj/machinery/exodrone_launcher = find_landing_pad()
 		if(exodrone_launcher)
 			forceMove(get_turf(exodrone_launcher))
-			drone_log("Przylot na [station_name()]. Lądowanie na: [exodrone_launcher].")
+			drone_log("Przylot na [station_name()]. Lądowanie na: [exodrone_launcher.name].")
 		else
 			var/turf/drop_zone = drop_somewhere_on_station()
 			drone_log("Przylot na [station_name()]. Awaryjne lądowanie w: [drop_zone.loc.name].")
@@ -380,12 +380,12 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 /obj/machinery/exodrone_launcher/examine(user)
 	. = ..()
 	if(fuel_canister)
-		. += "<span class='notice'>[fuel_canister] można wyjąć <b>łomem</b>.</span>"
+		. += "<span class='notice'>[fuel_canister.name]: można wyjąć <b>łomem</b>.</span>"
 
 /obj/machinery/exodrone_launcher/attackby(obj/item/weapon, mob/user, params)
 	if(istype(weapon, /obj/item/fuel_pellet))
 		if(fuel_canister)
-			to_chat(user, "<span class='warning'>W [src] jest już załadowane paliwo!</span>")
+			to_chat(user, "<span class='warning'>W wyrzutni jest już załadowane paliwo!</span>")
 			return TRUE
 		if(!user.transferItemToLoc(weapon, src))
 			return TRUE
@@ -403,7 +403,7 @@ GLOBAL_LIST_EMPTY(exodrone_launchers)
 	if(!fuel_canister)
 		return FALSE
 
-	to_chat(user, "<span class='notice'>Wyjmujesz [fuel_canister] z [src].</span>")
+	to_chat(user, "<span class='notice'>Wyjmujesz [fuel_canister.name] z wyrzutni.</span>")
 	fuel_canister.forceMove(drop_location())
 	fuel_canister = null
 	update_icon()

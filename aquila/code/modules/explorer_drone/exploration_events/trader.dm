@@ -49,7 +49,7 @@
 /datum/exploration_event/simple/trader/proc/trade(obj/item/exodrone/drone)
 	var/obj/trade_good = locate(required_path) in drone.contents
 	var/obj/loot = new traded_path()
-	drone.drone_log("Wymieniono [trade_good] na [loot].")
+	drone.drone_log("Wymieniono [trade_good.name] na [loot.name].")
 	qdel(trade_good)
 	drone.try_transfer(loot)
 

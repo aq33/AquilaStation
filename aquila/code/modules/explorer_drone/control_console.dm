@@ -173,7 +173,7 @@
 			if(controlled_drone)
 				var/obj/thing_to_jettison = locate(params["target_ref"]) in controlled_drone.contents
 				if(thing_to_jettison)
-					controlled_drone.drone_log("Wyrzucono: [thing_to_jettison].")
+					controlled_drone.drone_log("Wyrzucono: [thing_to_jettison.name].")
 					if(controlled_drone.drone_status == EXODRONE_IDLE)
 						thing_to_jettison.forceMove(controlled_drone.drop_location())
 					else
