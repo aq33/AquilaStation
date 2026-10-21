@@ -199,13 +199,15 @@
 	return FALSE
 
 /datum/preferences/ui_close(mob/user)
-	if(active_character)
-		active_character.save(parent)
-	save_preferences()
+	if(parent?.ckey) // AQ EDIT - przy wylogowaniu klient potrafi już nie istnieć
+		if(active_character)
+			active_character.save(parent)
+		save_preferences()
 	if(character_preview_view)
 		clear_character_preview_map()
 		QDEL_NULL(character_preview_view)
 	preview_gear = null
+	return ..()
 
 /datum/preferences/proc/create_character_preview(mob/user)
 	if(character_preview_view)

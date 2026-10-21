@@ -7,7 +7,7 @@
 /datum/unit_test/aquila_antag_huds/Run()
 	TEST_ASSERT(ANTAG_HUD_VAMPIRE <= length(GLOB.huds), "ANTAG_HUD_VAMPIRE ([ANTAG_HUD_VAMPIRE]) is past the end of GLOB.huds ([length(GLOB.huds)])")
 	var/datum/atom_hud/antag/vamphud = GLOB.huds[ANTAG_HUD_VAMPIRE]
-	TEST_ASSERT(istype(vamphud, /datum/atom_hud/antag/hidden), "GLOB.huds\[ANTAG_HUD_VAMPIRE\] is [vamphud?.type || "null"], not the vampire antag HUD")
+	TEST_ASSERT(vamphud?.type == /datum/atom_hud/antag, "GLOB.huds\[ANTAG_HUD_VAMPIRE\] is [vamphud?.type || "null"], not the shared vampire antag HUD")
 	TEST_ASSERT(vamphud != GLOB.huds[DATA_HUD_SQUAD], "The vampire HUD is the NSV13 squad HUD")
 	var/datum/atom_hud/antag/synd_hud = GLOB.huds[ANTAG_HUD_OPS]
 	TEST_ASSERT(istype(synd_hud, /datum/atom_hud/antag), "GLOB.huds\[ANTAG_HUD_OPS\] is [synd_hud?.type || "null"]")
@@ -18,10 +18,11 @@
 	var/datum/mind/vampire_mind = new("aquila_antag_huds_vampire")
 	vampire_mind.current = vampire
 	vampire.mind = vampire_mind
-	SSticker.mode.update_vampire_icons_added(vampire_mind)
-	var/joined = (vampire in vamphud.hudatoms) && vampire_mind.antag_hud == vamphud
-	SSticker.mode.update_vampire_icons_removed(vampire_mind)
-	var/left = !(vampire in vamphud.hudatoms) && !vampire_mind.antag_hud
+	vampire_team_hud_add(vampire, "vampire")
+	var/image/holder = vampire.hud_list[ANTAG_HUD]
+	var/joined = (vampire in vamphud.hudatoms) && vampire_mind.antag_hud == vamphud && holder.icon == 'aquila/icons/vampires/vampire_hud.dmi' && holder.icon_state == "vampire"
+	vampire_team_hud_remove(vampire)
+	var/left = !(vampire in vamphud.hudatoms) && !vampire_mind.antag_hud && holder.icon == 'icons/mob/hud.dmi'
 	TEST_ASSERT(joined, "A vampire did not join the vampire HUD")
 	TEST_ASSERT(left, "A vampire stayed in the vampire HUD after losing it")
 

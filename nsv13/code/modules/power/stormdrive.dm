@@ -1010,7 +1010,7 @@ Control Rods
 		return
 	if(can_alert || override) //We have an override to ignore continuous alerts like control rod reports in favour of screaming that the reactor is about to go nuclear.
 		can_alert = FALSE
-		if(!radio) // Why does this keep happening?
+		if(QDELETED(radio)) // Why does this keep happening?
 			radio = new(src)
 			radio.keyslot = new radio_key
 			radio.listening = 0

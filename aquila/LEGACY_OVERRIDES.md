@@ -146,7 +146,7 @@ These change lines *inside* upstream procs. Moving them would mean copying whole
 - **Radio say keybind (Y)** (`subsystem/input.dm`, `client/verbs/input_box.dm`). Data inside core lists.
 - **Admin metacoins panel / topic** (`admin.dm`, `topic.dm`). The `modmetacoins` branch sits *after* core `Topic()`'s owner and `CheckAdminHref()` checks. The existing Aquila `Topic()` override runs *before* those checks, so moving the branch there would weaken security. Left in core.
 - **Communications console ERT** (`communications.dm`, `requests/request.dm`). Inside `ui_data`/`ui_act`.
-- **Holy weapons list** (`holy_weapons.dm`), **compile_monkey_icon multi-state** (`storage.dm`, `_head.dm`, `_masks.dm`, `_under.dm`), **vampire biting** (`human_defense.dm`), **monkey antag check** (`mob_helpers.dm`), **devil/sintouched lust** (`contracts.dm`, `devil/objectives.dm`, `sintouched.dm`, `spell_types/devil.dm`), **sentient disease channels** (`advance.dm`), **nuke challenge TC** (`nuclear_challenge.dm`, `shuttle/syndicate.dm`), **cargo battery export** (`exports.dm`), **looping machine sounds** (`_computer.dm`, `modular_fabricator.dm`, `_production.dm`, `generator.dm`, `lore_terminal.dm`, FTL `drive.dm`).
+- **Holy weapons list** (`holy_weapons.dm`), **compile_monkey_icon multi-state** (`storage.dm`, `_head.dm`, `_masks.dm`, `_under.dm`), **monkey antag check** (`mob_helpers.dm`), **devil/sintouched lust** (`contracts.dm`, `devil/objectives.dm`, `sintouched.dm`, `spell_types/devil.dm`), **sentient disease channels** (`advance.dm`), **nuke challenge TC** (`nuclear_challenge.dm`, `shuttle/syndicate.dm`), **cargo battery export** (`exports.dm`), **looping machine sounds** (`_computer.dm`, `modular_fabricator.dm`, `_production.dm`, `generator.dm`, `lore_terminal.dm`, FTL `drive.dm`).
 - **Recent fixes and ports kept inline** (do not move): `stasis.dm` null guard, `implant_storage.dm` deleted-implantee path, `roomspawner.dm` late-load fix, `heal.dm` teratoma loot chance, `macrophage.dm` skin init.
 - **Monkey-like trait rename** (`TRAIT_MONKEYLIKE` → `TRAIT_DISCOORDINATED`: `traits.dm`, `_globalvars/traits.dm`, `severe.dm`, `human_helpers.dm`, `status_composers.dm`, `bloody_eye.dm`). A rename across core uses.
 - **Nanites rework** (`components/nanites.dm`, `nanite_programs.dm`, `nanite_programs/utility.dm` incl. the Aquila-only `cloud_change` program, `__DEFINES/nanites.dm`, `all_nodes.dm` commented nodes).
@@ -204,6 +204,25 @@ Bleeding is a status effect (`/datum/status_effect/bleeding` in `mob/living/bloo
 - **Colour:** human blood sprites in `icons/effects/blood.dmi`, `footprints.dmi` and `icons/mob/dam_mob.dmi` were replaced with Bee's greyscale versions; our own states (`trails_*`, `ltrails_*`, Aquila `hitsplatter*`) were greyscaled the same way. Blood decals, drag trails, splatters, item stains, clothing overlays, bloody hands and brute overlays are tinted with `get_blood_dna_color()`/`get_blood_color()`. Non-blood footprints (oil, xeno, feces) clear the colour.
 - **Species:** IPCs bleed `Coolant` (light grey) instead of oil, ethereals bleed glowing `E` blood instead of liquid electricity, lizards stay `L` (teal). `species.blood_color` was removed. Blood packs: `E` and `Coolant` added, the old liquid electricity `LE` pack is now an `E` pack.
 - **Left out from Bee:** datum values in DNA lists, `blush_color`, the inventory slot guards, the `trail_holder` rename (ours was already a child of blood).
+
+### Vampire port (BeeStation vampires, BeeStation/BeeStation-Hornet#12092 and follow-ups, B/F)
+
+The old Hippie/Yogs vampire (`aquila/code/game/gamemodes/vampire/*`, species `vampire`) is gone. The BeeStation antagonist lives in `aquila/code/modules/antagonists/vampire/` with its own compatibility layer (`_compat.dm`, `aquila/code/__HELPERS/tg_compat.dm` copied from the heretic port). Core edits:
+
+- `code/__DEFINES/traits.dm`: `TRAIT_MASQUERADE`, `TRAIT_WHISPER_ONLY` (used by core files below).
+- `code/__DEFINES/dcs/signals/signals_mob/signals_living.dm`: `COMSIG_LIVING_PET_ANIMAL`, `COMSIG_LIVING_HUG_CARBON`, `COMSIG_LIVING_APPRAISE_ART` (Humanity gain), sent from `animal_defense.dm`, `carbon_defense.dm` (also the Sol "overheating" hug message) and `artstuff.dm` (paintings; we have no art element).
+- `code/datums/hud.dm`: `ANTAG_HUD_VAMPIRE` is a shared (not hidden) antag HUD, vampires and vassals see each other; icons come from `aquila/icons/vampires/vampire_hud.dmi`.
+- `code/modules/mob/living/carbon/human/species.dm`: `+ user.unarmed_damage_bonus` in the punch (Bee keeps unarmed damage on arms).
+- `code/modules/mob/living/carbon/human/examine.dm`: `status_effect_examines()` also prints `get_examine_text()`.
+- `code/modules/mob/living/say.dm`: `TRAIT_WHISPER_ONLY` forces a whisper (Awe).
+- `code/game/objects/items/devices/scanners.dm`: Masquerade shows 100% blood.
+- `code/game/objects/items/implants/implant_mindshield.dm`: mindshield frees vassals.
+- `code/modules/mob/living/blood.dm`: `handle_blood()` skips vampires (their blood is vitae).
+- `code/modules/mining/lavaland/necropolis_chests.dm`: memento mori refuses vampires.
+- `code/modules/reagents/chemistry/reagents/food_reagents.dm`: garlic checks the vampire antag datum; `other_reagents.dm`: the old holy water burn is removed (Bee has none).
+- `code/datums/components/team_monitor.dm`: the monitor can sit on a mob (vassals track their master).
+- `code/datums/elements/embed.dm`: `tryForceEmbed()` takes the hit zone from a bodypart target (BeeStation fix; stakes).
+- Removed: species `vampire` (`species_types/vampire.dm`, `human.dm` subtype, `isvampire`), the vampire bite in `human_defense.dm`.
 
 ### Small tgstation medical ports
 

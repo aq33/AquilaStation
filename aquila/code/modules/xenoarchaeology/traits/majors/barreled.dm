@@ -1,0 +1,56 @@
+/*
+	Barreled
+	The artifact shoots the target with a random projectile
+*/
+/datum/xenoartifact_trait/major/projectile
+	material_desc = "lufowy"
+	label_name = "Barreled"
+	label_desc = "Barreled: artefakt wydaje się zawierać elementy miotające. Ich aktywacja wystrzeli 'bezpieczny' pocisk."
+	flags = XENOA_BLUESPACE_TRAIT | XENOA_BANANIUM_TRAIT
+	cooldown = XENOA_TRAIT_COOLDOWN_DANGEROUS
+	extra_target_range = 2
+	weight = 21
+	///List of projectiles we *could* shoot
+	var/list/possible_projectiles = list(/obj/item/projectile/beam/disabler, /obj/item/projectile/beam/lasertag, /obj/item/projectile/energy/electrode)
+	///The projectile type we *will* shoot
+	var/obj/item/projectile/choosen_projectile
+
+/datum/xenoartifact_trait/major/projectile/New(atom/_parent)
+	. = ..()
+	choosen_projectile = pick(possible_projectiles)
+
+/datum/xenoartifact_trait/major/projectile/trigger(datum/source, _priority, atom/override)
+	. = ..()
+	if(!.)
+		return
+	for(var/atom/target in focus)
+		var/turf/T = get_turf(target)
+		if(get_turf(component_parent.parent) == T)
+			T = get_edge_target_turf(component_parent.parent, pick(NORTH, EAST, SOUTH, WEST))
+		var/obj/item/projectile/P = new choosen_projectile()
+		P.preparePixelProjectile(T, component_parent.parent)
+		P.fire()
+		playsound(get_turf(component_parent.parent), 'sound/mecha/mech_shield_deflect.ogg', 50, TRUE)
+	dump_targets()
+	clear_focus()
+
+/datum/xenoartifact_trait/major/projectile/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wystrzeliwać 'bezpieczny' pocisk"))
+
+/*
+	Barreled Δ
+	Barreled but scary
+*/
+/datum/xenoartifact_trait/major/projectile/unsafe
+	material_desc = "lufowy"
+	label_name = "Barreled Δ"
+	label_desc = "Barreled Δ: artefakt wydaje się zawierać elementy miotające. Ich aktywacja wystrzeli niebezpieczny pocisk."
+	flags = XENOA_PLASMA_TRAIT | XENOA_URANIUM_TRAIT | XENOA_BANANIUM_TRAIT | XENOA_PEARL_TRAIT
+	cooldown = XENOA_TRAIT_COOLDOWN_GAMER
+	possible_projectiles = list(/obj/item/projectile/beam/laser, /obj/item/projectile/bullet/c38, /obj/item/projectile/energy/tesla)
+	conductivity = 3
+
+/datum/xenoartifact_trait/major/projectile/unsafe/get_dictionary_hint()
+	. = ..()
+	return list(XENOA_TRAIT_HINT_MATERIAL, XENOA_TRAIT_HINT_RANDOMISED, XENOA_TRAIT_HINT_TWIN, XENOA_TRAIT_HINT_TWIN_VARIANT("wystrzeliwać niebezpieczny pocisk"))

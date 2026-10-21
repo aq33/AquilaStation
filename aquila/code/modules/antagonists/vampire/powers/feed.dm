@@ -1,0 +1,630 @@
+#define FEED_SILENT_NOTICE_RANGE 1
+#define FEED_LOUD_NOTICE_RANGE 7
+#define FEED_DEFAULT_TIME 10 SECONDS
+#define FEED_FRENZY_TIME 2 SECONDS
+#define FEED_BLOOD_FROM_MICE 25
+
+/datum/action/vampire/targeted/feed
+	name = "Żerowanie"
+	desc = "Pij krew z żywej istoty."
+	button_icon_state = "power_feed"
+	power_explanation = "Aktywuj Żerowanie i wybierz cel, żeby zacząć wysysać jego krew.\n\
+		Najpierw wprowadzasz ofiarę w trans, żeby przyjęła twoje zaloty.\n\
+		Im wyższy masz poziom, tym krócej trzeba czekać, zanim zaczniesz pić.\n\
+		Przy zwykłym żerowaniu ofiara zapomni, że ktokolwiek pił jej krew.\n\
+		W desperackiej potrzebie krwi możesz żerować na myszach.\n\
+		<b>Żerowanie na kimś, kogo trzymasz agresywnym chwytem w trybie walki, usypia ofiarę i przyspiesza picie</b>. \
+		To bardzo rzuca się w oczy, a promień, w którym ktoś może cię zauważyć, jest dużo większy!\n\
+		<b>WAŻNE:</b> Jeśli śmiertelnik zobaczy cię przy żerowaniu, dostajesz wykroczenie przeciw Maskaradzie.\n\
+		<b>WAŻNE:</b> Możesz żerować na innych wampirach, jeśli złamały Maskaradę. Jeśli je wyssiesz, przejmiesz ich moc!"
+	power_flags = BP_AM_TOGGLE | BP_AM_STATIC_COOLDOWN
+	check_flags = BP_CANT_USE_IN_TORPOR | BP_CANT_USE_WHILE_STAKED | BP_CANT_USE_WHILE_INCAPACITATED | BP_CANT_USE_WHILE_UNCONSCIOUS
+	special_flags = VAMPIRE_DEFAULT_POWER
+	cooldown_time = 1 SECONDS
+	target_range = 1
+	prefire_message = "Wybierz cel."
+	power_activates_immediately = FALSE
+	/// Amount of blood taken, reset after each Feed. Used for logging.
+	var/blood_taken = 0
+	/// The amount of Blood a target has since our last feed, this loops and lets us not spam alerts of low blood.
+	var/warning_target_bloodvol = BLOOD_VOLUME_MAXIMUM
+	/// Reference to the target we've fed off of
+	var/datum/weakref/target_ref
+	/// Are we feeding with passive grab or not?
+	var/silent_feed = TRUE
+
+	/// Have we fed till fatal?
+	var/feed_fatal = FALSE
+	/// During feeding, have we breached the masquerade?
+	var/masquerade_breached = FALSE
+	/// Are we at a stage of the process where we can be noticed?
+	var/currently_feeding = FALSE
+
+/datum/action/vampire/targeted/feed/can_use()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// Already feeding
+	if(target_ref)
+		return FALSE
+	// Mouth covered
+	var/mob/living/carbon/user = owner
+	if(user?.is_mouth_covered() && !isplasmaman(user))
+		owner.balloon_alert(owner, "masz zakryte usta!")
+		return FALSE
+
+/datum/action/vampire/targeted/feed/continue_active()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	var/mob/living/target = target_ref.resolve()
+	if(!target)
+		return FALSE
+	if(!owner.Adjacent(target))
+		return FALSE
+
+	// Check if we are seen while feeding, from the vampire's POV
+	if(currently_feeding)
+		for(var/mob/living/watcher in oviewers(silent_feed ? FEED_SILENT_NOTICE_RANGE : FEED_LOUD_NOTICE_RANGE, owner) - target)
+			if(!vampiredatum_power.is_masq_watcher(watcher))
+				continue
+
+			if(!INCAPACITATED_IGNORING(watcher, INCAPABLE_RESTRAINTS))
+				watcher.face_atom(owner)
+			watcher.do_alert_animation(watcher)
+			to_chat(watcher, span_warning("[owner.first_name()] wgryza się w szyję osoby [target.first_name()]!"), type = MESSAGE_TYPE_WARNING)
+			playsound(watcher, 'sound/machines/chime.ogg', 50, FALSE, -5)
+
+			owner.balloon_alert(owner, "ktoś cię zauważył!")
+			if(!masquerade_breached)
+				masquerade_breached = TRUE
+				vampiredatum_power.give_masquerade_infraction()
+
+		//from the victim's POV
+		for(var/mob/living/watcher in oviewers(silent_feed ? FEED_SILENT_NOTICE_RANGE : FEED_LOUD_NOTICE_RANGE, target))
+			if(!vampiredatum_power.is_masq_watcher(watcher))
+				continue
+
+			if(!INCAPACITATED_IGNORING(watcher, INCAPABLE_RESTRAINTS))
+				watcher.face_atom(owner)
+
+			watcher.do_alert_animation(watcher)
+			to_chat(watcher, span_warning("[owner.first_name()] wgryza się w szyję osoby [target.first_name()]!"), type = MESSAGE_TYPE_WARNING)
+			playsound(watcher, 'sound/machines/chime.ogg', 50, FALSE, -5)
+
+			owner.balloon_alert(owner, "ktoś cię zauważył!")
+			if(!masquerade_breached)
+				masquerade_breached = TRUE
+				vampiredatum_power.give_masquerade_infraction()
+
+	return TRUE
+
+/datum/action/vampire/targeted/feed/check_valid_target(atom/target_atom)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	// Must be living
+	if(!isliving(target_atom))
+		return FALSE
+	var/mob/living/target = target_atom
+	// Mice check
+	if(istype(target, /mob/living/simple_animal/mouse))
+		if(vampiredatum_power.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY)
+			owner.balloon_alert(owner, "zbyt obrzydliwe!")
+			return FALSE
+		else
+			return TRUE
+	// Has to be human or a monkey
+	if(!ishuman(target) && !ismonkey(target))
+		owner.balloon_alert(owner, "nie możesz na tym żerować!")
+		return FALSE
+	// Mindless and snobby?
+	if(!target.mind && vampiredatum_power.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY && !vampiredatum_power.frenzied)
+		owner.balloon_alert(owner, "fuj, nie!")
+		return FALSE
+	// Cannot be a curator
+	if(is_curator_job(target?.mind?.assigned_role))
+		owner.balloon_alert(owner, "[target] ma zbyt wielką moc!")
+		return FALSE
+	// Only allow diablerie for masquerade breakers
+	if(IS_VAMPIRE(target))
+		var/datum/antagonist/vampire/target_vampire = IS_VAMPIRE(target)
+		if(!target_vampire.broke_masquerade)
+			return FALSE
+	// Human checks
+	if(ishuman(target))
+		// Cannot drink from inorganics
+		var/mob/living/carbon/human/human_target = target
+		if(!human_target.dna?.species || !(human_target.mob_biotypes & MOB_ORGANIC))
+			owner.balloon_alert(owner, "brak krwi!")
+			return FALSE
+		// Cannot be wearing super thick gear
+		if(!human_target.can_inject(owner, BODY_ZONE_HEAD, INJECT_CHECK_PENETRATE_THICK))
+			owner.balloon_alert(owner, "za gruby strój!")
+			return FALSE
+
+	if(isliving(owner))
+		var/mob/living/living_owner = owner
+		if(living_owner.get_body_position() != STANDING_UP)
+			living_owner.balloon_alert(living_owner, "musisz stać!")
+			return FALSE
+
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		if(carbon_owner.handcuffed)
+			carbon_owner.balloon_alert(carbon_owner, "nie możesz żerować, będąc skrępowanym!")
+			return FALSE
+
+	silent_feed = TRUE
+
+/datum/action/vampire/targeted/feed/FireTargetedPower(atom/target_atom)
+	. = ..()
+	var/mob/living/feed_target = target_atom
+	var/mob/living/living_owner = owner
+	target_ref = WEAKREF(feed_target)
+
+	// Mice
+	if(istype(feed_target, /mob/living/simple_animal/mouse))
+		to_chat(owner, span_warning("Wzdrygasz się na smak niższej formy życia."))
+		vampiredatum_power.adjust_vitae(FEED_BLOOD_FROM_MICE)
+		power_activated_sucessfully()
+		feed_target.death()
+		return
+
+	//////////////////////////
+	//We start here properly//
+	//////////////////////////
+
+	currently_feeding = FALSE
+	masquerade_breached = FALSE
+
+	if(!living_owner.combat_mode)
+
+		// Don't allow normal feed on vamps. It's too easy and feels unfair.
+		if(IS_VAMPIRE(feed_target))
+			owner.balloon_alert(owner, "Zbyt potężny. Ogłusz go i żeruj siłą w trybie walki!")
+			deactivate_power()
+			return
+
+		if(!IS_VASSAL(feed_target)) // Vassals don't need all this shit.
+			owner.balloon_alert(owner, "hipnotyzujesz: [feed_target]...")
+
+			// Initial ""mesmerize""
+			if(!vampire_do_after(owner, 2 SECONDS, feed_target, NONE, TRUE, hidden = TRUE))
+				owner.balloon_alert(owner, "przerwano!")
+				deactivate_power()
+				return
+
+		// Succesful. Start feeding process by getting feed time.
+		var/feed_time = (vampiredatum_power.frenzied ? FEED_FRENZY_TIME : clamp(round(FEED_DEFAULT_TIME / (1.25 * (level_current || 1))), 1, FEED_DEFAULT_TIME)) / 2
+
+		if(!IS_VASSAL(feed_target))
+			feed_time /= 4
+
+		feed_target.Stun(feed_time, TRUE)
+		feed_target.become_blind(TRAIT_FEED) // AQUILA - u nas zwykła ślepota zamiast nakładki "feed"
+		ADD_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
+
+		to_chat(feed_target, span_awe("Nagle zapadasz w głęboki trans..."), type = MESSAGE_TYPE_WARNING)
+		owner.balloon_alert(owner, "obezwładniono! zaczynasz pić...")
+
+		// Do the pre-feed.
+		if(!vampire_do_after(owner, feed_time, feed_target, NONE, TRUE, hidden = TRUE))
+			owner.balloon_alert(owner, "przerwano!")
+			deactivate_power()
+			return
+
+		// It begins...
+		currently_feeding = TRUE
+
+		// Just to make sure
+		living_owner.stop_pulling()
+		feed_target.stop_pulling()
+
+		// omega switch
+		switch(get_dir(owner.loc, feed_target.loc))
+			if(NORTH)
+				owner.dir = WEST
+				feed_target.dir = EAST
+				animate(owner, 0.2 SECONDS, pixel_x = 8, pixel_y = 16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = -8, pixel_y = -16)
+			if(NORTHEAST)
+				owner.dir = EAST
+				feed_target.dir = WEST
+				animate(owner, 0.2 SECONDS, pixel_x = 8, pixel_y = 16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = -8, pixel_y = -16)
+			if(EAST)
+				owner.dir = EAST
+				feed_target.dir = WEST
+				animate(owner, 0.2 SECONDS, pixel_x = 8)
+				animate(feed_target, 0.2 SECONDS, pixel_x = -8)
+			if(SOUTH)
+				owner.dir = EAST
+				feed_target.dir = WEST
+				animate(owner, 0.2 SECONDS, pixel_x = -8, pixel_y = -16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = 8, pixel_y = 16)
+			if(SOUTHEAST)
+				owner.dir = EAST
+				feed_target.dir = WEST
+				animate(owner, 0.2 SECONDS, pixel_x = 8, pixel_y = -16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = -8, pixel_y = 16)
+			if(SOUTHWEST)
+				owner.dir = WEST
+				feed_target.dir = EAST
+				animate(owner, 0.2 SECONDS, pixel_x = -8, pixel_y = -16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = 8, pixel_y = 16)
+			if(WEST)
+				owner.dir = WEST
+				feed_target.dir = EAST
+				animate(owner, 0.2 SECONDS, pixel_x = -8)
+				animate(feed_target, 0.2 SECONDS, pixel_x = 8)
+			if(NORTHWEST)
+				owner.dir = WEST
+				feed_target.dir = EAST
+				animate(owner, 0.2 SECONDS, pixel_x = -8, pixel_y = 16)
+				animate(feed_target, 0.2 SECONDS, pixel_x = 8, pixel_y = -16)
+			if(0)	// We are on the same tile. Just move them a bit so they don't overlap
+				owner.dir = WEST
+				feed_target.dir = EAST
+				animate(owner, 0.2 SECONDS, pixel_x = 8,)
+				animate(feed_target, 0.2 SECONDS, pixel_x = -8)
+
+		owner.visible_message(
+			span_notice("[owner.first_name()] mocno chwyta osobę [feed_target.first_name()] i wgryza się w jej szyję!"),
+			span_notice("Wsuwasz kły w szyję osoby [feed_target.first_name()]."),
+			vision_distance = FEED_SILENT_NOTICE_RANGE, ignored_mobs = feed_target
+		)
+
+	else if(owner.pulling == feed_target && owner.grab_state == GRAB_AGGRESSIVE) // COMBAT FEED BELOW HERE!!!!!!!!!!
+
+		feed_target.Stun((5 + level_current) SECONDS)
+		feed_target.adjust_jitter((5 + level_current) SECONDS)
+
+		owner.visible_message(
+			span_warning("[owner.first_name()] zaciska usta na szyi osoby [feed_target.first_name()]!"),
+			span_warning("Zatapiasz kły w szyi osoby [feed_target.first_name()]."), ignored_mobs = feed_target
+		)
+
+		to_chat(feed_target, span_bolddanger("[owner.first_name()] chwyta cię z niewiarygodną siłą i wbija kły w twoją szyję!"), type = MESSAGE_TYPE_WARNING)
+
+		to_chat(owner, span_announce("* Wskazówka wampira: żerowanie siłą nie wymazuje ofierze pamięci!"))
+
+		currently_feeding = TRUE
+		silent_feed = FALSE
+
+	// Garlic in 'em
+	var/mob/living/smacked = feed_target
+	if(smacked.reagents?.has_reagent(/datum/reagent/consumable/garlic, 2))
+
+		// We check which turf is one step away from our target, in the direction of the angle of the bullet. Christ. We do this twice, for range.
+		var/target_turf = get_step_away(smacked.loc, owner, 2)
+
+		to_chat(owner, span_bighypnophrase("fuj... czosnek..."))
+
+		living_owner.Stun(5 SECONDS)
+		living_owner.adjust_dizzy(10 SECONDS)
+		living_owner.adjust_jitter(1.5 SECONDS)
+		living_owner.adjust_eye_blur(5 SECONDS)
+
+		smacked.Unconscious(1 SECONDS)
+		smacked.throw_at(target_turf, 2, 1, spin = TRUE)
+		playsound(smacked, 'sound/weapons/cqchit2.ogg', 80)
+		deactivate_power()
+		return
+
+	if(currently_feeding) // Check if we actually started successfully.
+		owner.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_MUTE, TRAIT_HANDS_BLOCKED), TRAIT_FEED)
+		feed_target.add_traits(list(TRAIT_IMMOBILIZED, TRAIT_MUTE, TRAIT_HANDS_BLOCKED), TRAIT_FEED)
+
+		// Normally removed traits are done. Now we give the victim a lil something to remember us by.
+		feed_target.apply_status_effect(/datum/status_effect/feed_marked)
+	else
+		owner.balloon_alert(owner, "żerowanie siłą wymaga agresywnego chwytu!")
+		deactivate_power()
+		return FALSE
+
+/datum/action/vampire/targeted/feed/use_power()
+	var/mob/living/user = owner
+
+	var/mob/living/feed_target = target_ref?.resolve()
+	if(!feed_target)
+		power_activated_sucessfully()
+		return
+
+	if(!continue_active())
+		if(!silent_feed)
+			user.visible_message(
+				span_warning("[user] zostaje oderwany od gardła osoby [feed_target.first_name()]. Krew tryska na wszystkie strony!"),
+				span_warning("Twoje zęby zostają wyrwane z gardła osoby [feed_target.first_name()]. Krew tryska na wszystkie strony!"))
+
+			// Time to start bleeding
+			if(iscarbon(feed_target))
+				var/mob/living/carbon/carbon_target = feed_target
+				carbon_target.bleed(15)
+			playsound(get_turf(feed_target), 'sound/effects/splat.ogg', 40, TRUE)
+			if(ishuman(feed_target))
+				var/mob/living/carbon/human/target_user = feed_target
+				target_user.add_bleeding(BLEED_CRITICAL)
+			feed_target.add_splatter_floor(get_turf(feed_target))
+
+			// Cover both parties in blood
+			user.add_mob_blood(feed_target) // Put target's blood on us. The donor goes in the ( )
+			feed_target.add_mob_blood(feed_target)
+
+			// Ow
+			feed_target.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+			INVOKE_ASYNC(feed_target, TYPE_PROC_REF(/mob, emote), "scream")
+
+		power_activated_sucessfully()
+		return
+
+	// Adjust blood
+	var/feed_strength_mult = 0.3
+	if(vampiredatum_power.frenzied)
+		feed_strength_mult = 2
+	else if(!silent_feed)
+		feed_strength_mult = 1
+
+	handle_feeding(feed_target, feed_strength_mult)
+
+	// Mood events
+	if(vampiredatum_power.my_clan?.blood_drink_type == VAMPIRE_DRINK_SNOBBY && !feed_target.mind) // Snobby
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_bad)
+	else if(feed_target.stat == DEAD) // Dead
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood_dead)
+	else // Normal
+		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "drankblood", /datum/mood_event/drankblood)
+
+	// Alert the vampire to the target's blood level
+	if(feed_target.blood_volume <= BLOOD_VOLUME_BAD && warning_target_bloodvol > BLOOD_VOLUME_BAD)
+		owner.balloon_alert(owner, "twojej ofierze zostało śmiertelnie mało krwi!")
+		feed_fatal = TRUE
+	else if(feed_target.blood_volume <= BLOOD_VOLUME_OKAY && warning_target_bloodvol > BLOOD_VOLUME_OKAY)
+		owner.balloon_alert(owner, "twojej ofierze zostało niebezpiecznie mało krwi.")
+	else if(feed_target.blood_volume <= BLOOD_VOLUME_SAFE && warning_target_bloodvol > BLOOD_VOLUME_SAFE)
+		owner.balloon_alert(owner, "poziom krwi ofiary jest już niebezpieczny.")
+	warning_target_bloodvol = feed_target.blood_volume
+
+	// Check if full on blood
+	if(vampiredatum_power.current_vitae >= vampiredatum_power.max_vitae)
+		if(IS_VAMPIRE(feed_target))
+			owner.balloon_alert(owner, "jesteś syty krwi, ale możesz pić dalej, żeby przejąć jego moc!")
+		else
+			owner.balloon_alert(owner, "jesteś syty krwi!")
+
+	// Check if target has an acceptable amount of blood left
+	if(feed_target.blood_volume <= 10)
+		owner.balloon_alert(owner, "nie zostało już krwi!")
+		if(feed_target.client)
+			vampiredatum_power.thirster_objective = TRUE
+		power_activated_sucessfully()
+		return
+
+	if(IS_VAMPIRE(feed_target))
+		var/datum/antagonist/vampire/target_vampire = IS_VAMPIRE(feed_target)
+		if(target_vampire.current_vitae <= 50)
+			diablerie(feed_target)
+			power_activated_sucessfully()
+			return
+
+	// Play heartbeat sound effect to vampire and target
+	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+	feed_target.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+
+/// We assume the target is a vampire.
+/datum/action/vampire/targeted/feed/proc/diablerie(mob/living/poor_sap)
+	var/datum/antagonist/vampire/victim = IS_VAMPIRE(poor_sap)
+
+	var/levels_absorbed = (victim.vampire_level + victim.vampire_level_unspent) / DIABLERIE_DIVISOR
+
+	vampiredatum_power.rank_up(levels_absorbed, TRUE)
+
+	vampiredatum_power.adjust_humanity(-victim.humanity / 3)
+
+	victim.final_death()
+
+/datum/action/vampire/targeted/feed/deactivate_power()
+	. = ..()
+	REMOVE_TRAITS_IN(owner, TRAIT_FEED)
+
+	// Did we already take humanity for killing them?
+	var/humanity_deducted = FALSE
+	var/mob/living/feed_target = target_ref?.resolve()
+
+	if(feed_target)
+		// Call cure_blind after a (truly tiny) delay to make sure they don't see NOTHING
+		addtimer(CALLBACK(feed_target, TYPE_PROC_REF(/mob/living, cure_blind), TRAIT_FEED), 1 SECONDS)
+		// Głuchota z pre-feedu schodzi też wtedy, gdy karmienie przerwano przed jego rozpoczęciem
+		REMOVE_TRAIT(feed_target, TRAIT_DEAF, TRAIT_FEED)
+
+	if(feed_target && currently_feeding)
+		REMOVE_TRAITS_IN(feed_target, TRAIT_FEED)
+
+		animate(owner, 0.2 SECONDS, pixel_x = 0, pixel_y = 0)
+		animate(feed_target, 0.2 SECONDS, pixel_x = 0, pixel_y = 0)
+
+		log_combat(owner, feed_target, "fed on blood", addition = "(and took [blood_taken] blood)")
+
+		to_chat(owner, span_notice("Powoli puszczasz: [feed_target]."))
+
+		if(feed_target.stat != DEAD && silent_feed)
+			to_chat(owner, span_notice("<i>Ofiara wygląda na oszołomioną i nie będzie tego pamiętać.</i>"))
+			to_chat(feed_target, span_awe(span_reallybig("Budzisz się z transu. Wszystko jest takie... zamglone...")), type = MESSAGE_TYPE_INFO)
+			if(feed_target.blood_volume >= BLOOD_VOLUME_OKAY)
+				to_chat(feed_target, span_announce("Kręci ci się w głowie, ale pewnie samo przejdzie!"))
+
+		if(feed_target.stat == DEAD)
+			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
+			humanity_deducted = TRUE
+
+		if(feed_fatal && !humanity_deducted)
+			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "drankkilled", /datum/mood_event/drankkilled)
+			to_chat(owner, span_userdanger("Nie ma mowy, żeby ofiara to przeżyła..."))
+			vampiredatum_power.adjust_humanity(-1)
+
+		if(iscarbon(feed_target))
+			var/mob/living/carbon/carbon_target = feed_target
+			// More/less humanity adds/deducts bleedy.
+			switch(vampiredatum_power.humanity)
+				if(0 to 2)
+					carbon_target.bleed(BLEED_CRITICAL)
+				if(3 to 4)
+					carbon_target.bleed(BLEED_DEEP_WOUND)
+				if(5 to 6)
+					carbon_target.bleed(BLEED_CUT)
+				if(7 to 8)
+					carbon_target.bleed(BLEED_SURFACE)
+				if(9 to 10)
+					carbon_target.bleed(BLEED_SCRATCH)
+
+	feed_fatal = FALSE
+	humanity_deducted = FALSE
+
+	target_ref = null
+
+	warning_target_bloodvol = BLOOD_VOLUME_MAXIMUM
+	blood_taken = 0
+
+/**
+ * This is where the vitae/blood transfer happens. We use a pipeline system:
+ * 1. Calculate the fundamental amount of BLOOD we want to remove from the target this tick(feed_amount), influenced by the vampires level.
+ * 2. Apply various multipliers based on the situation (Fatal feeds get sped up, nonsilents get slowed down.)
+ * 3. Cap the maximum amount of blood we can take in one tick/ensure that we don't take more blood than the target has (blood_to_take).
+ * 4. Remove the blood from the target.
+ * 5. Shift the vampire's body temperature toward the target's based on how much blood.
+ * 6. This is the juicy part: The value of the blood we take is not 1:1 for the vampire:
+ * 		- If the target is dead, it's worth less because it's not fresh. (We gain only a third of the blood's value as vitae)
+ * 		- If the target is not human, it's worth much less because ew. (We gain only a tenth of the blood's value as vitae)
+ * 		- If the vampire is frenzied, it's worth less because they're a messy eater. (We gain only half of the blood's value as vitae)
+ * 7. Give the vampire their blood, and if the victim is a vampire, take it from them as well.
+ * 8. Done!
+**/
+/datum/action/vampire/targeted/feed/proc/handle_feeding(mob/living/carbon/target, mult = 1)
+	var/mob/living/living_owner = owner
+	var/feed_amount = 50
+
+	// If we are already at fatal, we speed up more.
+	if(feed_fatal)
+		feed_amount *= 1.5
+
+	// But, if we are in combat we want to get them some time to react.
+	if(!silent_feed)
+		feed_amount *= 0.3
+
+	var/blood_to_take = min(feed_amount * mult, target.blood_volume)
+
+	// Remove target's blood
+	target.blood_volume -= blood_to_take
+
+	// Shift body temperature (toward target's temp, by volume taken)
+	// ((vamp_blood_volume * vamp_temp) + (target_blood_volume * target_temp)) / (vamp_blood_volume + blood_to_take)
+	var/total_volume = vampiredatum_power.current_vitae + blood_to_take
+	if(total_volume > 0)
+		owner.bodytemperature = ((vampiredatum_power.current_vitae * owner.bodytemperature) + (blood_to_take * target.bodytemperature)) / total_volume
+
+	// Penalty for frenzy(messy eater)
+	if(vampiredatum_power.frenzied)
+		blood_to_take /= 2
+
+	//////////
+	////////// Blood was drunk. Convert it into vitae of appropriate value
+	//////////
+
+	var/vitae_absorbed = blood_to_take * 10 // Base conversion rate is 10 vitae per blood.
+
+	// Penalties
+
+	// Penalty for dead blood(at least it's still humanoidish, right?)
+	if(target.stat == DEAD)
+		vitae_absorbed /= 10
+	// Penalty for non-human blood
+	if(!ishuman(target))
+		vitae_absorbed /= 12
+
+	// Bonuses
+
+	// The VIP has the juiciest blood on the station
+	if(target.mind?.assigned_role in GLOB.command_positions) // AQUILA - u nas bez cechy TRAIT_VIP, liczy się dowództwo
+		vitae_absorbed *= 2
+	// Command/captains are also juicy because of their leadership and authority
+	if(HAS_TRAIT(target, TRAIT_DISK_VERIFIER))
+		vitae_absorbed *= 1.5
+	// Security personnel are also pretty juicy, because they are well paid and trained
+	if(target.mind?.assigned_role in GLOB.security_positions) // AQUILA - u nas bez cechy TRAIT_SECURITY
+		vitae_absorbed *= 1.25
+
+	/// Tracking of the vitae goal
+	if(target.client)
+		vampiredatum_power.vitae_goal_progress += vitae_absorbed
+
+	vampiredatum_power.adjust_vitae(vitae_absorbed)
+
+	// Diablerie takes vitae directly
+	if(IS_VAMPIRE(target))
+		var/datum/antagonist/vampire/vampire_target = IS_VAMPIRE(target)
+		vampire_target.adjust_vitae(- (blood_to_take * 4))
+
+	// Transfer the target's reagents into the vampire's blood
+	if(target.reagents?.total_volume)
+		target.reagents.trans_to(owner, 1) // Run transfer of 1 unit of reagent from them to me.
+
+	// Play heartbeat sound for flavor
+	owner.playsound_local(null, 'sound/effects/singlebeat.ogg', 40, TRUE)
+
+	vampiredatum_power.total_blood_drank += blood_to_take
+	blood_taken += blood_to_take
+
+	// If we are on combat feed, we only want it to take a bit and then stop. Except if they are not conscious
+	if(!silent_feed && blood_taken >= 60 && target.stat <= SOFT_CRIT)
+
+		playsound(target, 'sound/weapons/cqchit2.ogg', 80)
+
+		owner.visible_message(
+			span_warning("[target.first_name()] szarpie się i odpycha osobę [owner.first_name()]!"),
+			span_warning("[target.first_name()] wyrywa się z twojego uścisku!"), ignored_mobs = target
+		)
+
+		var/shove_dir = get_dir(target.loc, owner.loc)
+		var/turf/target_shove_turf = get_step(owner.loc, shove_dir)
+		owner.Move(target_shove_turf, shove_dir)
+
+		target.SetStun(0 SECONDS)
+		living_owner.Stun(1 SECONDS)
+
+		owner.balloon_alert(owner, "ofiara się wyrwała!")
+		deactivate_power()
+
+#undef FEED_SILENT_NOTICE_RANGE
+#undef FEED_LOUD_NOTICE_RANGE
+#undef FEED_DEFAULT_TIME
+#undef FEED_FRENZY_TIME
+#undef FEED_BLOOD_FROM_MICE
+
+/datum/status_effect/feed_marked
+	id = "feed marked"
+	tick_interval = STATUS_EFFECT_NO_TICK
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+
+/datum/status_effect/feed_marked/on_apply()
+	if(!iscarbon(owner))
+		return FALSE
+	RegisterSignal(owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	return TRUE
+
+/datum/status_effect/feed_marked/on_remove()
+	UnregisterSignal(owner, COMSIG_ATOM_EXAMINE)
+
+/datum/status_effect/feed_marked/on_creation(mob/living/new_owner, ...)
+	duration = rand(5 MINUTES, 10 MINUTES)
+	return ..()
+
+/datum/status_effect/feed_marked/refresh(effect, ...)
+	duration = max(duration, world.time + rand(5 MINUTES, 10 MINUTES))
+
+/datum/status_effect/feed_marked/proc/on_examine(atom/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += span_warning("Na szyi widać dwa dziwne nakłucia.")

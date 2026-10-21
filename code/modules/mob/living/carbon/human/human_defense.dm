@@ -202,8 +202,6 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.combat_mode && handle_vamp_biting(H)) // AQ edit -- vampire biting
-			return // yogs end
 		H.dna.species.spec_attack_hand(H, src, null, modifiers)
 
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M, list/modifiers)

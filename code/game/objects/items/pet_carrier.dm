@@ -87,7 +87,7 @@
 	if(!open)
 		to_chat(user, "<span class='warning'>Musisz otworzyć drzwiczki [src]!</span>")
 		return
-	if(target.mob_size > max_occupant_weight)
+	if(target.mob_size > max_occupant_weight || !target.can_be_held)
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(iscatperson(H))

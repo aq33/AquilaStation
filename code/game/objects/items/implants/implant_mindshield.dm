@@ -47,6 +47,8 @@
 		var/datum/antagonist/rev/rev = target.mind.has_antag_datum(/datum/antagonist/rev)
 		if(rev)
 			rev.remove_revolutionary(FALSE, user)
+		if(target.mind.has_antag_datum(/datum/antagonist/vassal)) // AQ EDIT - mindshield uwalnia wasala wampira (Bee)
+			target.mind.remove_antag_datum(/datum/antagonist/vassal)
 		if(!silent)
 			if(target.mind in SSticker.mode.cult)
 				to_chat(target, "<span class='warning'>Czujesz, że coś zakłóca twoje warunkowanie umysłowe, ale się opierasz!</span>")

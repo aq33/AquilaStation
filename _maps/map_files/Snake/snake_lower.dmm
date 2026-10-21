@@ -5340,6 +5340,14 @@
 	dir = 1
 	},
 /area/hallway/primary/central)
+"lR" = (
+/obj/machinery/newscaster/security_unit/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/vending/sticker,
+/turf/open/floor/wood,
+/area/bridge/meeting_room)
 "lV" = (
 /obj/structure/table,
 /obj/item/assembly/igniter{
@@ -60443,7 +60451,7 @@ jg
 Hn
 da
 kp
-JL
+lR
 kT
 Wz
 fU

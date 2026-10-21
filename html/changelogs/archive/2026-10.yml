@@ -463,3 +463,43 @@
       tekstury.
   - balance: Osobliwość nie odkręca przykręconych okien przed osiągnięciem 5. stopnia.
   - code_imp: Usunięto ostrzeżenia dreamcheckera w kodzie restartu serwera.
+'2026-10-19':
+  Joker66613:
+  - bugfix: Zlewki, skrzynki z narzędziami i inne przedmioty z materiałów znów można
+      zniszczyć.
+  - bugfix: Modlitwy znów docierają do adminów.
+  - bugfix: Kroplówka przełącza tryb po kliknięciu, recykler nie wyrzuca z powrotem
+      zmielonych rzeczy, experimentor pokazuje dane wzmocnienia badań.
+  - bugfix: Samouczek nie przenosi już umysłu do rundy.
+  - bugfix: 'Mniej przycięć serwera: menu radialne, holomapa, kamery i statki AI na
+      overmapie, sieci energetyczne i powietrze przy zmianie podłogi nie blokują już
+      GC.'
+  - balance: Event Wormholes tworzy 100 portali zamiast 400.
+  - bugfix: Liczne runtime'y (ksenomorfy, PDA na promie, działa gaussa, czat, preferencje,
+      SQL, okna Techweb i wyboru profesji).
+  - config: Usunięte nieistniejące wpisy z game_options.txt.
+  - rscadd: 'Płynny ruch: postacie i obiekty przesuwają się między kratkami z prędkością
+      dopasowaną do szybkości ruchu.'
+  - tweak: Domyślne FPS klienta podniesione do 60.
+  - bugfix: Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę
+      przed dojechaniem sprite'a.
+'2026-10-20':
+  Joker66613:
+  - bugfix: Postać nie zacina się już co kilka kroków (ruch był co chwilę opóźniany
+      o tick przy aktualizacji zdrowia i staminy).
+  - code_imp: 'Kolejka verbów z tg: przy obciążonym serwerze kliknięcia i mowa czekają
+      do następnego ticku zamiast go przeciągać.'
+  Paradise:
+  - imageadd: APC, czujniki powietrza i alarmy pożarowe z Paradise, dopasowane do
+      ścian 3/4
+  - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
+      urządzenia z Paradise
+'2026-10-21':
+  Joker66613:
+  - rscadd: 'Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity,
+      Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.'
+  - rscadd: Kołki (drewniane, utwardzane, srebrne), nowe trumny, stół do tortur, kandelabr,
+      tron krwi i flaszka czosnku.
+  - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
+  - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
+  - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.

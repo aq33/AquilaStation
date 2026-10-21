@@ -42,6 +42,8 @@
 		num_horrors = max(1, min(round(num_players() / (tsc * 4)) + 2, round(num_players() / (tsc * 2))))
 	else
 		num_horrors = max(1, min(num_players(), horror_amount))
+	if(!isnull(weighted_antag_cap)) // weighted rotation antagonist limit, one place stays for a traitor
+		num_horrors = max(1, min(num_horrors, weighted_antag_cap - 1))
 
 	if(!possible_horrors.len)
 		return FALSE
@@ -56,6 +58,9 @@
 		horror.special_role = ROLE_HORROR
 		horrors += horror
 		log_game("[key_name(horror)] has been selected as an eldritch horror")
+	// The weighted rotation limit counts horrors and traitors together
+	if(!isnull(weighted_antag_cap))
+		weighted_antag_cap = max(0, weighted_antag_cap - length(horrors))
 	return ..()
 
 /datum/game_mode/traitor/horror/post_setup()

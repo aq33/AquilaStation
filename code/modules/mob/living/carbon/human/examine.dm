@@ -245,7 +245,7 @@
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			msg += "Wygląda na skrajnie zdegustowanego.\n"
 
-	if(blood_volume < BLOOD_VOLUME_SAFE)
+	if(get_shown_blood_volume() < BLOOD_VOLUME_SAFE) // AQ EDIT - krwawe robaki
 		msg += "Ma bladą skórę.\n"
 
 	if(reagents.has_reagent(/datum/reagent/teslium, needs_metabolizing = TRUE))
@@ -407,6 +407,9 @@
 			var/new_text = replacetext(E.examine_text, "SUBJECTPRONOUN", pronoun_replacement)
 			new_text = replacetext(new_text, "[pronoun_replacement] is", "[pronoun_replacement] [p_are()]") //To make sure something become "They are" or "She is", not "They are" and "She are"
 			dat += "[new_text]\n" //dat.Join("\n") doesn't work here, for some reason
+		var/effect_text = E.get_examine_text() // AQ EDIT - tekst statusu w stylu Bee (wampir)
+		if(effect_text)
+			dat += "[effect_text]\n"
 	if(dat.len)
 		return dat.Join()
 

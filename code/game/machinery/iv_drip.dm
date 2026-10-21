@@ -254,7 +254,7 @@
 	if(!isliving(usr))
 		to_chat(usr, "<span class='warning'>Nie możesz tego zrobić!</span>")
 		return
-	if (!usr.canUseTopic())
+	if (!usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(usr.incapacitated())
 		return
@@ -272,7 +272,7 @@
 	if(!isliving(usr))
 		to_chat(usr, "<span class='warning'>Nie możesz tego zrobić!</span>")
 		return
-	if (!usr.canUseTopic())
+	if (!usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(usr.incapacitated())
 		return

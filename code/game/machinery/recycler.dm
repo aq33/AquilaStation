@@ -108,6 +108,8 @@
 
 	for(var/i in to_eat)
 		var/atom/movable/AM = i
+		if(QDELETED(AM)) // AQ EDIT - zawartość usunięta razem z pojemnikiem wracała na kafel
+			continue
 		var/obj/item/bodypart/head/as_head = AM
 		var/obj/item/mmi/as_mmi = AM
 		var/brain_holder = istype(AM, /obj/item/organ/brain) || (istype(as_head) && as_head.brain) || (istype(as_mmi) && as_mmi.brain) || istype(AM, /mob/living/brain)

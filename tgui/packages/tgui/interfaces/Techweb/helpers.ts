@@ -47,12 +47,19 @@ function selectRemappedStaticData(data: TechWebData) {
 
 let remappedStaticData: ReturnType<typeof selectRemappedStaticData>;
 
+/** True once the static data has arrived and has been remapped */
+export const isTechwebReady = () => !!remappedStaticData;
+
 export function useRemappedBackend() {
   const { data, ...rest } = useBackend<TechWebData>();
 
   // Only remap the static data once, cache for future use
   if (!remappedStaticData) {
-    const id_cache = data.static_data.id_cache;
+    const id_cache = data.static_data?.id_cache;
+    // Static data can arrive after the first render when the window is reopened
+    if (!id_cache) {
+      return { data, ...rest };
+    }
     for (let i = 0; i < id_cache.length; i++) {
       remappingIdCache[i + 1] = id_cache[i];
     }

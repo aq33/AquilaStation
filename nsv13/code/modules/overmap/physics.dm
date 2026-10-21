@@ -646,7 +646,7 @@ This proc is to be used when someone gets stuck in an overmap ship, gauss, WHATE
 		playsound(M.loc, "swing_hit", 1000, 1, -1)
 		M.Knockdown(bump_velocity * 2)
 		M.visible_message("<span class='warning'>Siła uderzenia przewraca [M]!</span>","<span class='userdanger'>Siła uderzenia cię przewraca!</span>")
-		log_combat(pilot, M, "impacted", src, "with velocity of [bump_velocity]")
+		log_combat(pilot || src, M, "impacted", src, "with velocity of [bump_velocity]")
 	return ..()
 
 /**

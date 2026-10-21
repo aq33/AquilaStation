@@ -216,6 +216,7 @@
 
 		if("animal")
 			var/path = pick(/mob/living/simple_animal/hostile/carp,
+							/mob/living/simple_animal/hostile/blood_worm/hatchling/polymorph, // AQ EDIT - krwawe robaki (tgstation#96017)
 							/mob/living/simple_animal/hostile/bear,
 							/mob/living/simple_animal/hostile/mushroom,
 							/mob/living/simple_animal/hostile/statue,
@@ -682,6 +683,8 @@
 
 /obj/item/projectile/magic/fireball/New(loc, spell_level)
 	. = ..()
+	if(!isnum(spell_level)) // ammo_casing/newshot() podaje tu łuskę
+		spell_level = 0
 	exp_fire += spell_level
 	exp_flash += spell_level
 	exp_light += spell_level

@@ -18,7 +18,7 @@
 
 /obj/machinery/computer/shuttle_flight/ui_data(mob/user)
 	var/list/data = list()
-	var/obj/docking_port/mobile/shuttle = SSshuttle.getShuttle(shuttleId)
+	var/obj/docking_port/mobile/shuttle = shuttleId ? SSshuttle.getShuttle(shuttleId) : null
 	data["shuttle_name"] = shuttle?.name
 	data["status"] = shuttle?.getStatusText()
 	data["mode"] = shuttle?.mode
