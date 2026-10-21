@@ -115,9 +115,7 @@
 	var/obj/item/plant_tray/tray2 = allocate(/obj/item/plant_tray, get_step(get_step(origin, EAST), EAST))
 	var/datum/component/plant/plant2 = grow(tray2, /obj/item/plant_seeds/preset/tomato)
 	TEST_ASSERT_NOTNULL(plant2, "Nie udało się posadzić drugiego pomidora")
-	var/obj/item/tank/internals/plasma/full/tank = allocate(/obj/item/tank/internals/plasma/full, origin)
-	mutator.attackby(tank, user)
-	TEST_ASSERT(mutator.catalyst == tank, "Butla z plazmą nie weszła do pieca")
+	TEST_ASSERT(mutator.catalyst?.air_contents?.get_moles(GAS_PLASMA) >= 1, "Piec nie ma butli z plazmą od startu")
 	plant2.plant_item.forceMove(mutator)
 	mutator.plant = plant2.plant_item
 	mutator.plant_component = plant2

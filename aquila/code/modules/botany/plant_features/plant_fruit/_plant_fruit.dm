@@ -86,14 +86,14 @@
 	. = ..()
 	var/list/dialogue = .
 	var/grouping = dialogue[3]
-	grouping += "Objętość owocu: [total_volume]u\n"
+	grouping += "Objętość owocu: [total_volume] j.\n"
 	grouping += "Czas wzrostu: [growth_time/10] s\n"
 	grouping += "Rozmiar owocu: [fruit_size]\n"
 	dialogue[3] = grouping
 
 /datum/plant_feature/fruit/get_ui_data()
 	. = ..()
-	. += list(PLANT_DATA("Objętość owocu", "[total_volume]u"), PLANT_DATA("Czas wzrostu", "[growth_time/10] S"), PLANT_DATA("Rozmiar owocu", "[fruit_size]"), PLANT_DATA(null, null))
+	. += list(PLANT_DATA("Objętość owocu", "[total_volume] j."), PLANT_DATA("Czas wzrostu", "[growth_time/10] s"), PLANT_DATA("Rozmiar owocu", "[fruit_size]"), PLANT_DATA(null, null))
 
 /datum/plant_feature/fruit/process(delta_time)
 	var/obj/item/plant_tray/tray = parent.plant_item.loc

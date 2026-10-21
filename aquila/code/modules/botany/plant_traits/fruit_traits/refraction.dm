@@ -31,7 +31,7 @@
 	var/datum/plant_feature/fruit/fruit_parent = _parent
 	if(!fruit_parent)
 		return
-	desc = "[istype(parent) ? "([(REFRACTION_REAGENT_BASE * parent.trait_power) * fruit_parent.total_volume]u) " : ""][REFRACTION_REAGENT_BASE * parent.trait_power * 100]% odczynników to ten odczynnik."
+	desc = "[istype(parent) ? "([(REFRACTION_REAGENT_BASE * parent.trait_power) * fruit_parent.total_volume] j.) " : ""][REFRACTION_REAGENT_BASE * parent.trait_power * 100]% odczynników to ten odczynnik."
 
 /datum/plant_trait/refraction/get_name(peek = FALSE)
 	return peek ? "[name] ([initial(refraction_reagent.name)])" : name
