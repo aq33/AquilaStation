@@ -31,7 +31,7 @@ type Events = {
 
 type Fields = {
   historyCounter: number;
-  innerRef: RefObject<HTMLInputElement>;
+  innerRef: RefObject<HTMLInputElement | null>;
   lightMode: boolean;
   showRadioPrefix: boolean;
   dpi: number;

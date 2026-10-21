@@ -1099,7 +1099,7 @@
 	silicon_pilot = FALSE
 	if(mob_container.forceMove(newloc))//ejecting mob container
 		log_message("[mob_container] moved out.", LOG_MECHA)
-		L << browse(null, "window=exosuit")
+		SStgui.close_user_uis(L, src)
 
 		if(istype(mob_container, /obj/item/mmi))
 			var/obj/item/mmi/mmi = mob_container

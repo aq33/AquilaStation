@@ -237,7 +237,7 @@
 				paint_mode = PAINT_NORMAL
 		if("select_colour")
 			if(can_change_colour)
-				var/chosen_colour = input(usr,"","Wybierz kolor",paint_color) as color|null
+				var/chosen_colour = tgui_color_picker(usr,"","Wybierz kolor",paint_color)
 
 				if (!isnull(chosen_colour))
 					paint_color = chosen_colour

@@ -3,62 +3,96 @@
  * @copyright 2021 bobbahbrown (https://github.com/bobbahbrown)
  * @license MIT
  */
+import { useState } from 'react';
+import {
+  Button,
+  Floating,
+  Input,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
+import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
 
-import { decodeHtmlEntities } from 'common/string';
-import { Button, Input, Section, Table } from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
-import { Popper } from '../components/Popper';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  requests: any;
+  requests: Request[];
+};
+
+type Request = {
+  id: string;
+  req_type: string;
+  owner: string;
+  owner_ckey: string;
+  owner_name: string;
+  message: string;
+  timestamp: number;
+  timestamp_str: string;
+};
+
+const displayTypeMap = {
+  request_prayer: 'MODLITWA',
+  request_centcom: 'CENTCOM',
+  request_syndicate: 'SYNDYKAT',
+  request_nuke: 'KOD BOMBY',
+  // AQUILA EDIT - nasze rodzaje zgłoszeń
+  request_response_team: 'ERT',
+  request_crew_wake: 'BUDZENIE ZAŁOGI',
 };
 
 export const RequestManager = (props) => {
-  const { act, data } = useBackend<Data>();
-  const { requests } = data;
-  const [filteredTypes, _] = useLocalState(
-    'filteredTypes',
+  const { data } = useBackend<Data>();
+  const { requests = [] } = data;
+  const [filteredTypes, setFilteredTypes] = useState(
     Object.fromEntries(
       Object.entries(displayTypeMap).map(([type, _]) => [type, true]),
     ),
   );
-  const [searchText, setSearchText] = useLocalState<any>(
-    'searchText',
-    undefined,
-  );
+  const [searchText, setSearchText] = useState('');
+
+  const updateFilter = (type) => {
+    const newFilter = { ...filteredTypes };
+    newFilter[type] = !newFilter[type];
+    setFilteredTypes(newFilter);
+  };
 
   // Handle filtering
   let displayedRequests = requests.filter(
     (request) => filteredTypes[request.req_type],
   );
-  if (searchText) {
-    const filterText = searchText.toLowerCase();
-    displayedRequests = displayedRequests.filter(
-      (request) =>
-        decodeHtmlEntities(request.message)
-          .toLowerCase()
-          .includes(filterText) ||
-        request.owner_name.toLowerCase().includes(filterText),
-    );
+  const search = createSearch(
+    searchText,
+    (requests: Request) =>
+      requests.owner_name + decodeHtmlEntities(requests.message),
+  );
+  if (searchText.length > 0) {
+    displayedRequests = displayedRequests.filter((request) => search(request));
   }
 
   return (
-    <Window title="Request Manager" width={575} height={600}>
+    <Window title="Menedżer zgłoszeń" width={575} height={600} theme="admin">
       <Window.Content scrollable>
         <Section
-          title="Requests"
+          title="Zgłoszenia"
           buttons={
-            <>
-              <Input
-                value={searchText}
-                onInput={(_, value) => setSearchText(value)}
-                placeholder={'Search...'}
-                mr={1}
-              />
-              <FilterPanel />
-            </>
+            <Stack>
+              <Stack.Item>
+                <Input
+                  value={searchText}
+                  onChange={setSearchText}
+                  placeholder="Szukaj..."
+                  mr={1}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <FilterPanel
+                  typesList={filteredTypes}
+                  updateFilter={updateFilter}
+                />
+              </Stack.Item>
+            </Stack>
           }
         >
           {displayedRequests.map((request) => (
@@ -85,15 +119,6 @@ export const RequestManager = (props) => {
       </Window.Content>
     </Window>
   );
-};
-
-const displayTypeMap = {
-  request_prayer: 'PRAYER',
-  request_centcom: 'CENTCOM',
-  request_syndicate: 'SYNDICATE',
-  request_nuke: 'NUKE CODE',
-  request_response_team: 'ERT',
-  request_crew_wake: 'CREW WAKE',
 };
 
 const RequestType = (props) => {
@@ -131,25 +156,17 @@ const RequestControls = (props) => {
   );
 };
 
-const FilterPanel = (_) => {
-  const [filterVisible, setFilterVisible] = useLocalState(
-    'filterVisible',
-    false,
-  );
-  const [filteredTypes, setFilteredTypes] = useLocalState(
-    'filteredTypes',
-    Object.fromEntries(
-      Object.entries(displayTypeMap).map(([type, _]) => [type, true]),
-    ),
-  );
+const FilterPanel = (props) => {
+  const [filterVisible, setFilterVisible] = useState(false);
+  const { typesList, updateFilter } = props;
 
   return (
-    <Popper
-      isOpen={filterVisible}
-      placement="bottom-start"
-      onClickOutside={() => setFilterVisible(false)}
-      content={
-        <div className="RequestManager__filterPanel">
+    <div>
+      <Floating
+        placement="bottom-end"
+        onOpenChange={setFilterVisible}
+        contentClasses="RequestManager__filterPanel"
+        content={
           <Table width="0">
             {Object.keys(displayTypeMap).map((type) => {
               return (
@@ -159,12 +176,9 @@ const FilterPanel = (_) => {
                   </Table.Cell>
                   <Table.Cell collapsing>
                     <Button.Checkbox
-                      checked={filteredTypes[type]}
+                      checked={typesList[type]}
                       onClick={() => {
-                        setFilteredTypes({
-                          ...filteredTypes,
-                          [type]: !filteredTypes[type],
-                        });
+                        updateFilter(type);
                       }}
                       my={0.25}
                     />
@@ -173,12 +187,12 @@ const FilterPanel = (_) => {
               );
             })}
           </Table>
-        </div>
-      }
-    >
-      <Button icon="cog" onClick={() => setFilterVisible(!filterVisible)}>
-        Type Filter
-      </Button>
-    </Popper>
+        }
+      >
+        <Button icon="cog" selected={filterVisible}>
+          Filtr rodzajów
+        </Button>
+      </Floating>
+    </div>
   );
 };

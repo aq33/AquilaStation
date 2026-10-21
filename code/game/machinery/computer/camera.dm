@@ -109,6 +109,7 @@
 	if(active_camera)
 		data["activeCamera"] = list(
 			name = active_camera.c_tag,
+			ref = REF(active_camera),
 			status = active_camera.status,
 		)
 	return data
@@ -122,6 +123,7 @@
 		var/obj/machinery/camera/C = cameras[i]
 		data["cameras"] += list(list(
 			name = C.c_tag,
+			ref = REF(C),
 		))
 	return data
 
@@ -131,9 +133,15 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/C = cameras[c_tag]
+		var/obj/machinery/camera/C
+		// AQUILA: okno z tg wybiera kamerę po REF, stare wywołania po c_tag
+		if(params["camera"])
+			var/obj/machinery/camera/located = locate(params["camera"])
+			if(istype(located) && cameras["[located.c_tag]"] == located)
+				C = located
+		else
+			C = cameras[params["name"]]
 		active_camera = C
 		ui_update()
 		playsound(src, get_sfx("terminal_type"), 25, FALSE)

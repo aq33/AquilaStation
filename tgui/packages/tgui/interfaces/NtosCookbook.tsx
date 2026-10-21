@@ -85,7 +85,7 @@ export const NtosCookbook = (props) => {
             fluid
             placeholder="Szukaj dania albo składnika we wszystkich zakładkach…"
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
         </Section>
         {needle ? (

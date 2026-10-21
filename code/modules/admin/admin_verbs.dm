@@ -82,7 +82,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/stabilize_atmos,
 	/client/proc/openTicketManager,
 	/client/proc/battle_royale,
-	/client/proc/delete_book,
+	/client/proc/library_control,
 	/client/proc/cmd_admin_send_pda_msg,
 	/datum/admins/proc/display_tags,
 	/client/proc/changeranks, //NSV13 - verb to change rank structure
@@ -708,7 +708,11 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Check AI Laws"
 	set category = "Admin"
 	if(holder)
-		src.holder.output_ai_laws()
+		// AQUILA EDIT - panel praw TGUI (Lawpanel z tg) zamiast listy na czacie
+		if(!isobserver(mob) && SSticker.HasRoundStarted())
+			message_admins("[key_name_admin(src)] checked AI laws via the Law Panel.")
+		var/datum/law_panel/panel = new()
+		panel.ui_interact(mob)
 
 /client/proc/deadmin()
 	set name = "Deadmin"
@@ -826,40 +830,18 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		can.valve_open = FALSE
 		can.update_icon()
 
-/client/proc/delete_book()
+/client/proc/library_control()
 	set category = "Admin"
-	set name = "Delete Book"
+	set name = "Library Management"
+	set desc = "List and manage the Library."
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/bookid = input(usr, "Którą książkę (ID) chcesz usunąć:", "Literally Fahrenheit 451") as null|num
-	if(!bookid)
-		return
-
-	var/datum/DBQuery/query_library_print = SSdbcore.NewQuery(
-		"SELECT * FROM [format_table_name("library")] WHERE id=:id AND isnull(deleted)",
-		list("id" = bookid)
-	)
-	if(!query_library_print.Execute() || !query_library_print.NextRow())
-		to_chat(usr, "<span class='warning'>Nie znaleziono książki [bookid].</span>")
-		qdel(query_library_print)
-		return
-	var/author = query_library_print.item[2]
-	var/title = query_library_print.item[3]
-	var/confirmation = alert(src,"Czy na pewno chcesz usunąć książkę autora [author] o tytule [title]?","Guy Montag Incarnate","Yes","No")
-	if(confirmation == "Yes")
-		var/datum/DBQuery/query_burn_book = SSdbcore.NewQuery(
-			"UPDATE [format_table_name("library")] SET deleted = 1 WHERE id=:id",
-			list("id" = bookid)
-		)
-		if(!query_library_print.Execute())
-			to_chat(usr, "<span class='warning'>Nie udało się usunąć książki.</span>")
-		else
-			message_admins("[usr] deleted book number [bookid] with title [title]")
-			log_admin("[usr] deleted book number [bookid] with title [title]")
-		qdel(query_burn_book)
-		qdel(query_library_print)
+	if(!holder.library_manager)
+		holder.library_manager = new
+	holder.library_manager.ui_interact(mob)
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Library Management") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 
 #ifdef SENDMAPS_PROFILE
 /client/proc/display_sendmaps()

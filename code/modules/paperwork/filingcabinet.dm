@@ -59,26 +59,48 @@
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
 		icon_state = initial(icon_state)
-		updateUsrDialog()
+		SStgui.update_uis(src)
 	else if(!user.combat_mode)
 		to_chat(user, "<span class='warning'>Nie możesz włożyć [P] do [src]!</span>")
 	else
 		return ..()
 
 
-/obj/structure/filingcabinet/ui_interact(mob/user)
-	. = ..()
-	if(contents.len <= 0)
-		to_chat(user, "<span class='notice'>[src] jest pusty.</span>")
-		return
+// AQUILA: okno TGUI FilingCabinet (z tg) zamiast starej tabelki HTML
+/obj/structure/filingcabinet/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FilingCabinet")
+		ui.open()
 
-	var/dat = "<center><table>"
-	var/i
-	for(i=contents.len, i>=1, i--)
-		var/obj/item/P = contents[i]
-		dat += "<tr><td><a href='byond://?src=[REF(src)];retrieve=[REF(P)]'>[P.name]</a></td></tr>"
-	dat += "</table></center>"
-	user << browse(HTML_SKELETON_TITLE(name, dat), "window=filingcabinet;size=350x300")
+/obj/structure/filingcabinet/ui_data(mob/user)
+	var/list/data = list()
+	data["cabinet_name"] = "[name]"
+	data["contents"] = list()
+	data["contents_ref"] = list()
+	// najnowsze na górze, jak w starym oknie
+	for(var/i in length(contents) to 1 step -1)
+		var/obj/item/content = contents[i]
+		if(!istype(content))
+			continue
+		data["contents"] += "[content.name]"
+		data["contents_ref"] += "[REF(content)]"
+	return data
+
+/obj/structure/filingcabinet/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(usr)))
+		return
+	switch(action)
+		if("remove_object")
+			var/obj/item/content = locate(params["ref"]) in src
+			if(istype(content) && in_range(src, usr))
+				usr.put_in_hands(content)
+				icon_state = "[initial(icon_state)]-open"
+				addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), 5)
+				return TRUE
 
 /obj/structure/filingcabinet/attack_tk(mob/user)
 	if(anchored)
@@ -96,20 +118,6 @@
 			to_chat(user, "<span class='notice'>Wyciągasz na chybił trafił [I] z [src].</span>")
 			return
 	to_chat(user, "<span class='notice'>Nic nie znajdujesz w [src].</span>")
-
-/obj/structure/filingcabinet/Topic(href, href_list)
-	if(!usr.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(usr)))
-		return
-	if(href_list["retrieve"])
-		usr << browse(null, "window=filingcabinet") // Close the menu
-
-		var/obj/item/P = locate(href_list["retrieve"]) in src //contents[retrieveindex]
-		if(istype(P) && in_range(src, usr))
-			usr.put_in_hands(P)
-			updateUsrDialog()
-			icon_state = "[initial(icon_state)]-open"
-			addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), 5)
-
 
 /*
  * Security Record Cabinets

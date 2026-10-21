@@ -16,33 +16,22 @@
 
 
 
-/obj/item/teleportation_scroll/attack_self(mob/user)
-	user.set_machine(src)
-	var/dat = "<B>Zwój teleportacji:</B><BR>"
-	dat += "Liczba użyć: [src.uses]<BR>"
-	dat += "<HR>"
-	dat += "<B>Cztery użycia, wykorzystaj je mądrze:</B><BR>"
-	dat += "<A href='byond://?src=[REF(src)];spell_teleport=1'>Teleport</A><BR>"
-	dat += "Z wyrazami szacunku,<br>Federacja Czarodziejów<br><br>PS Nie zapomnij zabrać ekwipunku, będzie ci potrzebny do rzucania większości zaklęć.<HR>"
-	user << browse(dat, "window=scroll")
-	onclose(user, "scroll")
-	return
+// AQ EDIT - jak w tg: zwój teleportuje od razu po użyciu, bez okna HTML
+/obj/item/teleportation_scroll/examine(mob/user)
+	. = ..()
+	if(uses)
+		. += "<span class='notice'>Pozostało użyć: [uses].</span>"
+		. += "<span class='notice'>Na dole dopisano: „Z wyrazami szacunku, Federacja Czarodziejów. PS Nie zapomnij zabrać ekwipunku, będzie ci potrzebny do rzucania większości zaklęć.”</span>"
+	else
+		. += "<span class='warning'>Zwój jest już zużyty.</span>"
 
-/obj/item/teleportation_scroll/Topic(href, href_list)
-	..()
-	if (usr.stat || usr.restrained() || src.loc != usr)
+/obj/item/teleportation_scroll/attack_self(mob/user)
+	if(!ishuman(user) || user.incapacitated() || !user.is_holding(src))
 		return
-	if (!ishuman(usr))
-		return 1
-	var/mob/living/carbon/human/H = usr
-	if(H.is_holding(src))
-		H.set_machine(src)
-		if (href_list["spell_teleport"])
-			if(uses)
-				teleportscroll(H)
-	if(H)
-		attack_self(H)
-	return
+	if(!uses)
+		to_chat(user, "<span class='warning'>[src] jest już zużyty.</span>")
+		return
+	teleportscroll(user)
 
 /obj/item/teleportation_scroll/proc/teleportscroll(mob/user)
 

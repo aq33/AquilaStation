@@ -3,9 +3,9 @@
 // Core styles
 @include meta.load-css('~tgui/styles/reset.scss');
 // Atomic styles
-@include meta.load-css('~tgui/styles/atomic/text.scss');
+@include meta.load-css('~tgui-core/styles/atomic/text.scss');
 // External styles
-@include meta.load-css('~tgui/styles/components/TextArea.scss');
+@include meta.load-css('./legacy-textarea.scss');
 // Local styles
 @include meta.load-css('./button.scss');
 @include meta.load-css('./modal.scss');

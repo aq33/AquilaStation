@@ -26,19 +26,19 @@ export const TurbineComputer = (props) => {
     <Window width={310} height={150}>
       <Window.Content>
         <Section
-          title="Status"
+          title="Stan"
           buttons={
             <>
               <Button
                 icon={data.online ? 'power-off' : 'times'}
-                content={data.online ? 'Online' : 'Offline'}
+                content={data.online ? 'Włączona' : 'Wyłączona'}
                 selected={data.online}
                 disabled={!operational}
                 onClick={() => act('toggle_power')}
               />
               <Button
                 icon="sync"
-                content="Reconnect"
+                content="Połącz ponownie"
                 onClick={() => act('reconnect')}
               />
             </>
@@ -47,37 +47,37 @@ export const TurbineComputer = (props) => {
           {(!operational && (
             <LabeledList>
               <LabeledList.Item
-                label="Compressor Status"
+                label="Sprężarka"
                 color={
                   !data.compressor || data.compressor_broke ? 'bad' : 'good'
                 }
               >
                 {data.compressor_broke
                   ? data.compressor
-                    ? 'Offline'
-                    : 'Missing'
-                  : 'Online'}
+                    ? 'Wyłączona'
+                    : 'Brak'
+                  : 'Działa'}
               </LabeledList.Item>
               <LabeledList.Item
-                label="Turbine Status"
+                label="Turbina"
                 color={!data.turbine || data.turbine_broke ? 'bad' : 'good'}
               >
                 {data.turbine_broke
                   ? data.turbine
-                    ? 'Offline'
-                    : 'Missing'
-                  : 'Online'}
+                    ? 'Wyłączona'
+                    : 'Brak'
+                  : 'Działa'}
               </LabeledList.Item>
             </LabeledList>
           )) || (
             <LabeledList>
-              <LabeledList.Item label="Turbine Speed">
+              <LabeledList.Item label="Prędkość turbiny">
                 {data.rpm} RPM
               </LabeledList.Item>
-              <LabeledList.Item label="Internal Temp">
+              <LabeledList.Item label="Temp. wewnętrzna">
                 {data.temp} K
               </LabeledList.Item>
-              <LabeledList.Item label="Generated Power">
+              <LabeledList.Item label="Wytwarzana moc">
                 {data.power}
               </LabeledList.Item>
             </LabeledList>

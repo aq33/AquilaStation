@@ -164,11 +164,7 @@
 	if (!can_rotate || admin)
 		to_chat(user, "<span class='warning'>Obrót jest zablokowany!</span>")
 		return FALSE
-	var/new_angle = input(user, "Podaj nowy kąt głównej powierzchni odbijającej.", "Kąt reflektora", rotation_angle) as null|num
-	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
-		return
-	if(!isnull(new_angle))
-		setAngle(SIMPLIFY_DEGREES(new_angle))
+	ui_interact(user)
 	return TRUE
 
 /obj/structure/reflector/AltClick(mob/user)
@@ -176,6 +172,47 @@
 		return
 	else if(finished)
 		rotate(user)
+
+/obj/structure/reflector/attack_robot(mob/user)
+	if(finished && Adjacent(user))
+		rotate(user)
+
+// Okno TGUI do ustawiania kąta (z tg)
+/obj/structure/reflector/ui_interact(mob/user, datum/tgui/ui)
+	if(!finished || !can_rotate || admin)
+		ui?.close()
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Reflector")
+		ui.open()
+
+/obj/structure/reflector/ui_state(mob/user)
+	return GLOB.physical_state //Prevents borgs from adjusting this at range
+
+/obj/structure/reflector/ui_data(mob/user)
+	var/list/data = list()
+	data["rotation_angle"] = rotation_angle
+	data["reflector_name"] = name
+	return data
+
+/obj/structure/reflector/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	if(!can_rotate || admin)
+		return FALSE
+	switch(action)
+		if("rotate")
+			var/new_angle = text2num(params["rotation_angle"])
+			if(!isnull(new_angle))
+				setAngle(SIMPLIFY_DEGREES(new_angle))
+			return TRUE
+		if("calculate")
+			var/change = text2num(params["rotation_angle"])
+			if(!isnull(change))
+				setAngle(SIMPLIFY_DEGREES(rotation_angle + change))
+			return TRUE
 
 
 //TYPES OF REFLECTORS, SINGLE, DOUBLE, BOX

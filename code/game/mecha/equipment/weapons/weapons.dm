@@ -245,7 +245,7 @@
 			projectiles++
 			projectiles_to_add--
 			chassis.use_power(projectile_energy_cost)
-	send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+	SStgui.update_uis(chassis)
 	log_message("Rearmed [src.name].", LOG_MECHA)
 	return 1
 
@@ -264,7 +264,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action(atom/target)
 	if(..())
 		projectiles -= get_shot_amount()
-		send_byjax(chassis.occupant,"exosuit.browser","[REF(src)]",src.get_equip_info())
+		SStgui.update_uis(chassis)
 		return 1
 
 

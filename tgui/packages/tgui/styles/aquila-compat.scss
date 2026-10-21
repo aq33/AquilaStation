@@ -1,0 +1,68 @@
+/**
+ * Zgodność starych okien Aquili/Bee z tgui-core 6.
+ *
+ * tgui-core 6 rozstawia elementy Stacka przez `gap: 0.5em`. Stare okna
+ * (i tgui-core 1.x) robiły to marginesami na `.Stack__item`, a odstęp zerowały
+ * propsem `mt={0}` / `ml={0}` na elemencie — przy `gap` to nie działa i układ
+ * się rozjeżdża (np. role w preferencjach). Dla Stacków bez jawnego `g={...}`
+ * (który tgui-core zapisuje w stylu inline jako `gap`) przywracamy stare
+ * zachowanie; okna z tg ustawiające `g` zostają przy `gap`.
+ */
+.Stack:not([style*='gap']) {
+  gap: 0;
+
+  &.Stack--horizontal > .Stack__item {
+    margin-left: 0.5em;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &.Stack--vertical > .Stack__item {
+    margin-top: 0.5em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+// Klasy pomocnicze ze starego Section.scss, używane m.in. w preferencjach
+.section-background {
+  background-color: var(--color-section);
+}
+
+.section-background-dark {
+  background-color: hsla(0, 0%, 0%, 0.2) !important;
+}
+
+// Zaznaczony przezroczysty przycisk (np. Button.Checkbox w preferencjach)
+// miał u nas pełne tło „selected”; w tgui-core 6 zmienia się tylko kolor tekstu.
+.Button--color--transparent.Button--selected {
+  background-color: hsl(
+    from var(--button-background-selected) h s calc(l - var(--adjust-color))
+  );
+  color: var(--color-text-fixed-white);
+
+  &:not(.Button--disabled):hover {
+    background-color: hsl(
+      from var(--button-background-selected) h s
+        calc(calc(l - var(--adjust-color)) + var(--adjust-hover))
+    );
+    color: var(--color-text-fixed-white);
+  }
+}
+
+// tgui-core 6 zeruje margines przycisku w elemencie Stacka (`.Stack__item > .Button`),
+// bo tg daje każdy przycisk do osobnego elementu. Nasze okna wstawiają kilka przycisków
+// obok siebie w jednym elemencie (np. Normal/Short/Tall w preferencjach) — przywracamy odstęp.
+.Stack:not([style*='gap']) > .Stack__item > .Button {
+  margin-right: 0.1667em;
+  margin-bottom: 0.1667em;
+
+  &:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}

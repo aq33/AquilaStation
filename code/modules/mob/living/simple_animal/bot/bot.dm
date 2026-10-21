@@ -31,7 +31,6 @@
 
 	var/obj/machinery/bot_core/bot_core = null
 	var/bot_core_type = /obj/machinery/bot_core
-	var/list/users = list() //for dialog updates
 	var/window_id = "bot_control"
 	var/window_name = "Protobot 1.0" //Popup title
 	var/window_width = 0 //0 for default size
@@ -286,7 +285,7 @@
 		to_chat(user, "<span class='warning'>Interfejs [src] nie reaguje!</span>")
 
 /mob/living/simple_animal/bot/interact(mob/user)
-	show_controls(user)
+	ui_interact(user)
 
 /mob/living/simple_animal/bot/proc/togglelock(mob/living/user)
 	if(bot_core.allowed(user) && !open && !emagged)
@@ -866,73 +865,111 @@ Pass a positive integer as an argument to override a bot's default speed.
 			D.open()
 			frustration = 0
 
-/mob/living/simple_animal/bot/proc/show_controls(mob/M)
-	users |= M
-	var/dat = ""
-	dat = get_controls(M)
-	var/datum/browser/popup = new(M,window_id,window_name,350,600)
-	popup.set_content(dat)
-	popup.open(use_onclose = 0)
-	onclose(M,window_id,ref=src)
-	return
+/mob/living/simple_animal/bot/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SimpleBot", window_name)
+		ui.open()
 
-/mob/living/simple_animal/bot/proc/update_controls()
-	for(var/mob/M in users)
-		show_controls(M)
+/mob/living/simple_animal/bot/ui_data(mob/user)
+	var/list/data = list()
+	data["can_hack"] = issilicon(user) || IsAdminGhost(user)
+	data["emagged"] = emagged == 2
+	data["hacked"] = hacked
+	data["has_access"] = bot_core.allowed(user)
+	data["locked"] = locked
+	data["settings"] = list(
+		"power" = on,
+		"airplane_mode" = remote_disabled,
+		"patrol_station" = auto_patrol,
+		"maintenance_open" = open,
+		"allow_possession" = allow_pai,
+		"pai_inserted" = !!paicard,
+		"pai_active" = !!(paicard && client),
+	)
+	data["custom_controls"] = get_custom_controls(user)
+	return data
 
-/mob/living/simple_animal/bot/proc/get_controls(mob/M)
-	return "PROTOBOT - NIE DO UŻYTKU"
+/mob/living/simple_animal/bot/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	return simple_bot_act(action, params, usr)
 
-/mob/living/simple_animal/bot/Topic(href, href_list)
-	//No ..() to prevent strip panel showing up - Todo: make that saner
-	if(href_list["close"])// HUE HUE
-		if(usr in users)
-			users.Remove(usr)
+/// Obsługa wspólnego okna SimpleBot. Boty z własnym oknem (MULE) zwracają FALSE.
+/mob/living/simple_animal/bot/proc/simple_bot_act(action, list/params, mob/user)
+	if(topic_denied(user))
+		to_chat(user, "<span class='warning'>Interfejs [src] nie reaguje!</span>")
 		return TRUE
+	add_fingerprint(user)
+	var/silicon_access = issilicon(user) || IsAdminGhost(user)
 
-	if(topic_denied(usr))
-		to_chat(usr, "<span class='warning'>Interfejs [src] nie reaguje!</span>")
-		return TRUE
-	add_fingerprint(usr)
-
-	if((href_list["power"]) && (bot_core.allowed(usr) || !locked))
-		if(on)
-			turn_off()
-		else
-			turn_on()
-
-	switch(href_list["operation"])
-		if("patrol")
-			if(!issilicon(usr) && !IsAdminGhost(usr) && !(bot_core.allowed(usr) || !locked))
+	switch(action)
+		if("power")
+			if(!(bot_core.allowed(user) || !locked))
 				return TRUE
-			auto_patrol = !auto_patrol
-			bot_reset()
-		if("remote")
-			remote_disabled = !remote_disabled
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			return TRUE
+		if("lock")
+			togglelock(user)
+			return TRUE
 		if("hack")
-			if(!issilicon(usr) && !IsAdminGhost(usr))
+			if(!silicon_access)
 				return TRUE
 			if(emagged != 2)
 				emagged = 2
 				hacked = TRUE
 				locked = TRUE
-				to_chat(usr, "<span class='warning'>[text_hack]</span>")
-				message_admins("Safety lock of [ADMIN_LOOKUPFLW(src)] was disabled by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
-				log_game("Safety lock of [src] was disabled by [key_name(usr)] in [AREACOORD(src)]")
+				to_chat(user, "<span class='warning'>[text_hack]</span>")
+				message_admins("Safety lock of [ADMIN_LOOKUPFLW(src)] was disabled by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+				log_game("Safety lock of [src] was disabled by [key_name(user)] in [AREACOORD(src)]")
 				bot_reset()
 			else if(!hacked)
-				to_chat(usr, "<span class='boldannounce'>[text_dehack_fail]</span>")
+				to_chat(user, "<span class='boldannounce'>[text_dehack_fail]</span>")
 			else
 				emagged = FALSE
 				hacked = FALSE
-				to_chat(usr, "<span class='notice'>[text_dehack]</span>")
-				log_game("Safety lock of [src] was re-enabled by [key_name(usr)] in [AREACOORD(src)]")
+				to_chat(user, "<span class='notice'>[text_dehack]</span>")
+				log_game("Safety lock of [src] was re-enabled by [key_name(user)] in [AREACOORD(src)]")
 				bot_reset()
-		if("ejectpai")
-			if(paicard && (!locked || issilicon(usr) || IsAdminGhost(usr)))
-				to_chat(usr, "<span class='notice'>Wysuwasz [paicard] z [bot_name]</span>")
-				ejectpai(usr)
-	update_controls()
+			return TRUE
+		if("eject_pai")
+			if(paicard && (!locked || silicon_access))
+				to_chat(user, "<span class='notice'>Wysuwasz [paicard] z [bot_name]</span>")
+				ejectpai(user)
+			return TRUE
+
+	//Reszta ustawień wymaga odblokowanego sterowania
+	if(locked && !silicon_access)
+		return TRUE
+
+	switch(action)
+		if("patrol")
+			auto_patrol = !auto_patrol
+			bot_reset()
+			return TRUE
+		if("airplane")
+			remote_disabled = !remote_disabled
+			return TRUE
+
+	return bot_custom_act(action, params, user)
+
+/// Ustawienia konkretnego bota do okna SimpleBot: lista nazwa = wartość
+/mob/living/simple_animal/bot/proc/get_custom_controls(mob/user)
+	return list()
+
+/// Akcje z ustawień konkretnego bota (sterowanie już odblokowane)
+/mob/living/simple_animal/bot/proc/bot_custom_act(action, list/params, mob/user)
+	return FALSE
+
+/mob/living/simple_animal/bot/proc/update_controls()
+	SStgui.update_uis(src)
+
+/mob/living/simple_animal/bot/proc/get_controls(mob/M)
+	return "PROTOBOT - NIE DO UŻYTKU"
 
 /mob/living/simple_animal/bot/update_icon_state()
 	. = ..()
@@ -961,33 +998,6 @@ Pass a positive integer as an argument to override a bot's default speed.
 		else if(!issilicon(user) && !IsAdminGhost(user)) //Bot is hacked, so only silicons and admins are allowed access.
 			return TRUE
 	return FALSE
-
-/mob/living/simple_animal/bot/proc/hack(mob/user)
-	var/hack
-	if(issilicon(user) || IsAdminGhost(user)) //Allows silicons or admins to toggle the emag status of a bot.
-		hack += "[emagged == 2 ? "Software compromised! Unit may exhibit dangerous or erratic behavior." : "Unit operating normally. Release safety lock?"]<BR>"
-		hack += "System zapobiegania krzywdzie: <A href='byond://?src=[REF(src)];operation=hack'>[emagged ? "<span class='bad'>NIEBEZPIECZEŃSTWO</span>" : "Aktywny"]</A><BR>"
-	else if(!locked) //Humans with access can use this option to hide a bot from the AI's remote control panel and PDA control.
-		hack += "Radio zdalnego sterowania: <A href='byond://?src=[REF(src)];operation=remote'>[remote_disabled ? "Rozłączone" : "Połączone"]</A><BR>"
-	return hack
-
-/mob/living/simple_animal/bot/proc/showpai(mob/user)
-	var/eject = ""
-	if((!locked || issilicon(usr) || IsAdminGhost(usr)))
-		if(paicard || allow_pai)
-			eject += "Stan karty osobowości: "
-			if(paicard)
-				if(client)
-					eject += "<A href='byond://?src=[REF(src)];operation=ejectpai'>Active</A>"
-				else
-					eject += "<A href='byond://?src=[REF(src)];operation=ejectpai'>Inactive</A>"
-			else if(!allow_pai || key)
-				eject += "Unavailable"
-			else
-				eject += "Nie włożono"
-			eject += "<BR>"
-		eject += "<BR>"
-	return eject
 
 /mob/living/simple_animal/bot/proc/insertpai(mob/user, obj/item/paicard/card)
 	if(paicard)

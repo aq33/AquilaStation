@@ -33,17 +33,6 @@
 		return 0
 	return ..()
 
-/obj/mecha/working/lockermech/Topic(href, href_list)
-	..()
-	if(href_list["drop_from_cargo"])
-		var/obj/O = locate(href_list["drop_from_cargo"]) in cargo
-		if(O)
-			occupant_message("<span class='notice'>Wyładowujesz [O].</span>")
-			O.forceMove(drop_location())
-			cargo -= O
-			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]", LOG_MECHA)
-	return
-
 /obj/mecha/working/lockermech/contents_explosion(severity, target)
 	for(var/X in cargo)
 		var/obj/O = X
@@ -51,17 +40,6 @@
 			cargo -= O
 			O.forceMove(drop_location())
 	. = ..()
-
-/obj/mecha/working/lockermech/get_stats_part()
-	var/output = ..()
-	output += "<b>Zawartość przedziału ładunkowego:</b><div style=\"margin-left: 15px;\">"
-	if(cargo.len)
-		for(var/obj/O in cargo)
-			output += "<a href='byond://?src=[REF(src)];drop_from_cargo=[REF(O)]'>Unload</a> : [O]<br>"
-	else
-		output += "Nothing"
-	output += "</div>"
-	return output
 
 /obj/mecha/working/lockermech/relay_container_resist(mob/living/user, obj/O)
 	to_chat(user, "<span class='notice'>Opierasz się o tył [O] i zaczynasz pchać, by wypadł z [src].</span>")

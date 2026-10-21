@@ -156,6 +156,8 @@ export const TguiTarget = new Juke.Target({
     'tgui/public/tgui-panel.bundle.js',
     'tgui/public/tgui-say.bundle.css',
     'tgui/public/tgui-say.bundle.js',
+    'tgui/public/tgui-escape-menu.bundle.css',
+    'tgui/public/tgui-escape-menu.bundle.js',
   ],
   executes: () => yarn('tgui:build'),
 });

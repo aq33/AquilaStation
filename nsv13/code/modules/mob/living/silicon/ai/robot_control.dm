@@ -43,7 +43,7 @@
 			var/list/robot_data = list(
 				name = B.name,
 				model = B.model,
-				mode = B.get_mode(),
+				mode = B.get_mode_ui(), //AQUILA: czysty tekst zamiast HTML
 				hacked = B.hacked,
 				location = get_area_name(B, TRUE),
 				ref = REF(B)

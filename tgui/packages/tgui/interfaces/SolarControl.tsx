@@ -1,112 +1,160 @@
-import { toFixed } from 'common/math';
 import {
   Box,
   Button,
+  Chart,
+  Icon,
   LabeledList,
   NumberInput,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Grid } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
-  angle: any;
-  connected_panels: any;
-  connected_tracker: any;
-  generated: any;
-  tracking_rate: any;
-  tracking_state: any;
+  supply: number;
+  capacity: number;
+  angle: number;
+  tracking_rate: number;
+  tracking_state: number;
+  connected_panels: number;
+  connected_tracker: BooleanLike;
+  history: History;
+};
+
+type History = {
+  supply: number[];
+  capacity: number[];
 };
 
 export const SolarControl = (props) => {
   const { act, data } = useBackend<Data>();
   const {
-    generated,
+    supply,
+    capacity,
     angle,
-    tracking_state,
     tracking_rate,
+    tracking_state,
     connected_panels,
     connected_tracker,
+    history,
   } = data;
+  const supplyHistory = history?.supply || [];
+  const capacityHistory = history?.capacity || [];
+  const supplyData = supplyHistory.map((value, i) => [i, value]);
+  const capacityData = capacityHistory.map((value, i) => [i, value]);
+  const maxValue = Math.max(1, ...capacityHistory, ...supplyHistory);
+
   return (
-    <Window width={380} height={230}>
+    <Window width={330} height={330}>
       <Window.Content>
-        <Section
-          title="Status"
-          buttons={
-            <Button
-              icon="sync"
-              content="Scan for new hardware"
-              onClick={() => act('refresh')}
+        <Section title="Stan">
+          <Box
+            mb={1}
+            position="relative"
+            overflow="visible"
+            height="64px"
+            backgroundColor={'black'}
+          >
+            <Chart.Line
+              p={1}
+              fillPositionedParent
+              data={capacityData}
+              rangeX={[0, capacityData.length - 1]}
+              rangeY={[0, maxValue]}
+              strokeColor="rgba(150, 117, 39, 1)"
+              fillColor="rgba(150, 117, 39, 0.5)"
             />
-          }
-        >
-          <Grid>
-            <Grid.Column>
+            <Chart.Line
+              p={1}
+              fillPositionedParent
+              data={supplyData}
+              rangeX={[0, supplyData.length - 1]}
+              rangeY={[0, maxValue]}
+              strokeColor="rgba(235, 210, 52, 1)"
+              fillColor="rgba(235, 210, 52, 0.5)"
+            />
+          </Box>
+          <Stack>
+            <Stack.Item>
               <LabeledList>
-                <LabeledList.Item
-                  label="Solar tracker"
-                  color={connected_tracker ? 'good' : 'bad'}
-                >
-                  {connected_tracker ? 'OK' : 'N/A'}
+                <LabeledList.Item label="Moc wyjściowa">
+                  <ProgressBar
+                    value={capacity > 0 ? supply / capacity : 0}
+                    minValue={0}
+                    maxValue={1}
+                    ranges={{
+                      good: [0.66, Infinity],
+                      average: [0.33, 0.66],
+                      bad: [-Infinity, 0.33],
+                    }}
+                  >
+                    {capacity > 0
+                      ? `${formatPower(supply)} z ${formatPower(
+                          capacity,
+                        )} (${Math.round((100 * supply) / capacity)}%)`
+                      : formatPower(0)}
+                  </ProgressBar>
                 </LabeledList.Item>
                 <LabeledList.Item
-                  label="Solar panels"
+                  label="Panele słoneczne"
                   color={connected_panels > 0 ? 'good' : 'bad'}
                 >
                   {connected_panels}
                 </LabeledList.Item>
-              </LabeledList>
-            </Grid.Column>
-            <Grid.Column size={1.5}>
-              <LabeledList>
-                <LabeledList.Item label="Power output">
-                  <ProgressBar
-                    ranges={{
-                      good: [60000, Infinity],
-                      average: [30000, 60000],
-                      bad: [-Infinity, 30000],
-                    }}
-                    minValue={0}
-                    maxValue={90000}
-                    value={generated}
-                  >
-                    {generated + ' W'}
-                  </ProgressBar>
+                <LabeledList.Item
+                  label="Tracker słoneczny"
+                  color={connected_tracker ? 'good' : 'bad'}
+                >
+                  {connected_tracker ? 'OK' : 'Brak'}
                 </LabeledList.Item>
               </LabeledList>
-            </Grid.Column>
-          </Grid>
+            </Stack.Item>
+          </Stack>
         </Section>
-        <Section title="Controls">
+        <Section
+          title="Sterowanie"
+          buttons={
+            <Button icon="sync" onClick={() => act('refresh')}>
+              Szukaj nowego sprzętu
+            </Button>
+          }
+        >
           <LabeledList>
-            <LabeledList.Item label="Tracking">
+            <LabeledList.Item label="Śledzenie">
               <Button
                 icon="times"
-                content="Off"
                 selected={tracking_state === 0}
                 onClick={() => act('tracking', { mode: 0 })}
-              />
+              >
+                Wył.
+              </Button>
               <Button
                 icon="clock-o"
-                content="Timed"
                 selected={tracking_state === 1}
                 onClick={() => act('tracking', { mode: 1 })}
-              />
+              >
+                Czasowe
+              </Button>
               <Button
                 icon="sync"
-                content="Auto"
                 selected={tracking_state === 2}
                 disabled={!connected_tracker}
                 onClick={() => act('tracking', { mode: 2 })}
-              />
+              >
+                Auto
+              </Button>
             </LabeledList.Item>
-            <LabeledList.Item label="Angle">
+            <LabeledList.Item label="Azymut">
+              <Icon mr={1} name="arrow-up" rotation={angle} />
               {(tracking_state === 0 || tracking_state === 1) && (
                 <NumberInput
+                  tickWhileDragging
                   width="52px"
                   unit="°"
                   step={1}
@@ -114,12 +162,13 @@ export const SolarControl = (props) => {
                   minValue={-360}
                   maxValue={+720}
                   value={angle}
-                  format={(angle) => String(Math.round(360 + angle) % 360)}
-                  onDrag={(value) => act('angle', { value })}
+                  format={(value) => String(Math.round(360 + value) % 360)}
+                  onChange={(value) => act('angle', { value })}
                 />
               )}
               {tracking_state === 1 && (
                 <NumberInput
+                  tickWhileDragging
                   width="80px"
                   unit="°/h"
                   step={5}
@@ -131,12 +180,12 @@ export const SolarControl = (props) => {
                     const sign = Math.sign(rate) > 0 ? '+' : '-';
                     return sign + toFixed(Math.abs(rate));
                   }}
-                  onDrag={(value) => act('rate', { value })}
+                  onChange={(value) => act('rate', { value })}
                 />
               )}
               {tracking_state === 2 && (
                 <Box inline color="label" mt="3px">
-                  {angle + ' °'} (auto)
+                  {`${angle} °`} (auto)
                 </Box>
               )}
             </LabeledList.Item>

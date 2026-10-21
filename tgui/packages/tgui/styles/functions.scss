@@ -141,3 +141,9 @@
 
   @return false;
 }
+
+// Multiplies our viewport units by the DPI scaling amount
+// to ensure that they display correctly when using differently-scaled windows
+@function vp($viewportUnit) {
+  @return calc(var(--scaling-amount) * $viewportUnit);
+}

@@ -94,6 +94,7 @@
 	)
 	to_chat(user, "<span class='warning'>Zwierasz obwody blokady wzorów, odblokowując kontrabandę i specjalne wzory.</span>")
 	obj_flags |= EMAGGED
+	update_static_data(user)
 /obj/machinery/pdapainter/update_icon()
 	cut_overlays()
 
@@ -215,44 +216,94 @@
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
 	obj_break()
 
-/obj/machinery/pdapainter/attack_hand(mob/user)
-	if(!..())
-		add_fingerprint(user)
-		if(storedpda || storedid)
-			if(storedpda)
-				var/newpdaskin
-				newpdaskin = input(user, "Wybierz wygląd PDA!", "Malowanie PDA") as null|anything in pda_icons
-				if(!newpdaskin)
-					return
-				if(!in_range(src, user))
-					return
-				if(!storedpda)//is the pda still there?
-					return
-				storedpda.icon_state = pda_icons[newpdaskin]
-				ejectpda()
-			if(storedid)
-				var/newidskin
-				newidskin = input(user, "Wybierz wygląd karty ID!", "Malowanie karty ID") as null|anything in valid_jobs
-				if(!newidskin)
-					return
-				if(newidskin[1] == "-")
-					return
-				if(!in_range(src, user))
-					return
-				if(!storedid)//is the ID still there?
-					return
-				storedid.icon_state = get_cardstyle_by_jobname(newidskin)
-				storedid.hud_state = get_hud_by_jobname(newidskin)
+/obj/machinery/pdapainter/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PaintingMachine", name)
+		ui.open()
 
-				// QoL to correct the system behavior
-				if(storedid.registered_account)
-					if(!storedid.registered_account.department_locked)
-						storedid.registered_account.account_department = get_department_by_hud(storedid.hud_state) // your true department by your hud icon color
-				GLOB.data_core.manifest_modify(storedid.registered_name, storedid.assignment, storedid.hud_state) // update crew manifest
-				// There are the same code lines in `card.dm`
+/obj/machinery/pdapainter/ui_data(mob/user)
+	var/list/data = list()
+	data["hasPDA"] = !!storedpda
+	data["pdaName"] = storedpda?.name
+	data["hasID"] = !!storedid
+	data["idName"] = storedid?.name
+	return data
+
+/obj/machinery/pdapainter/ui_static_data(mob/user)
+	var/list/data = list()
+	var/list/pda_names = list()
+	for(var/skin in pda_icons)
+		pda_names += skin
+	data["pdaTypes"] = pda_names
+	var/list/card_names = list()
+	for(var/job in valid_jobs)
+		if(job[1] == "-") // nagłówki działów nie są wzorami
+			continue
+		card_names += job
+	data["cardTrims"] = card_names
+	return data
+
+/obj/machinery/pdapainter/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("eject_pda")
+			if(machine_stat & BROKEN)
+				return TRUE
+			var/obj/item/held_item = usr.get_active_held_item()
+			if(!storedpda && istype(held_item, /obj/item/modular_computer/tablet/pda))
+				if(usr.transferItemToLoc(held_item, src))
+					storedpda = held_item
+					held_item.add_fingerprint(usr)
+					update_icon()
+				return TRUE
+			if(storedpda)
+				var/obj/item/pda = storedpda
+				ejectpda()
+				usr.put_in_hands(pda)
+			return TRUE
+		if("eject_card")
+			if(machine_stat & BROKEN)
+				return TRUE
+			var/obj/item/held_item = usr.get_active_held_item()
+			if(!storedid && istype(held_item, /obj/item/card/id))
+				if(usr.transferItemToLoc(held_item, src))
+					storedid = held_item
+					held_item.add_fingerprint(usr)
+					update_icon()
+				return TRUE
+			if(storedid)
+				var/obj/item/card = storedid
 				ejectid()
-		else
-			to_chat(user, "<span class='notice'>[src] jest pusty.</span>")
+				usr.put_in_hands(card)
+			return TRUE
+		if("trim_pda")
+			if((machine_stat & BROKEN) || !storedpda)
+				return TRUE
+			var/selection = params["selection"]
+			if(!(selection in pda_icons))
+				return TRUE
+			storedpda.icon_state = pda_icons[selection]
+			storedpda.update_icon()
+			return TRUE
+		if("trim_card")
+			if((machine_stat & BROKEN) || !storedid)
+				return TRUE
+			var/selection = params["selection"]
+			if(!(selection in valid_jobs) || selection[1] == "-")
+				return TRUE
+			storedid.icon_state = get_cardstyle_by_jobname(selection)
+			storedid.hud_state = get_hud_by_jobname(selection)
+
+			// QoL to correct the system behavior
+			if(storedid.registered_account)
+				if(!storedid.registered_account.department_locked)
+					storedid.registered_account.account_department = get_department_by_hud(storedid.hud_state) // your true department by your hud icon color
+			GLOB.data_core.manifest_modify(storedid.registered_name, storedid.assignment, storedid.hud_state) // update crew manifest
+			// There are the same code lines in `card.dm`
+			return TRUE
 
 /obj/machinery/pdapainter/AltClick(mob/user)
 	if(usr.stat || usr.restrained())

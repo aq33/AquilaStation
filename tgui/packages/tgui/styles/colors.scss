@@ -103,3 +103,44 @@ $departments: (
   // AQUILA: NSV departments
   'Munitions': $orange,
 );
+
+// --- tgstation (tgui-core 6) names, used by interface styles ported from tg.
+// They refer to the CSS variables of the active theme.
+$color-map: ();
+$_tg-gen-map: (
+  'black': var(--color-black),
+  'white': var(--color-white),
+  'red': var(--color-red),
+  'orange': var(--color-orange),
+  'yellow': var(--color-yellow),
+  'olive': var(--color-olive),
+  'green': var(--color-green),
+  'teal': var(--color-teal),
+  'blue': var(--color-blue),
+  'violet': var(--color-violet),
+  'purple': var(--color-purple),
+  'pink': var(--color-pink),
+  'brown': var(--color-brown),
+  'grey': var(--color-grey),
+  'gray': var(--color-grey),
+  'light-grey': var(--color-light-grey),
+  'light-gray': var(--color-light-grey),
+  'good': var(--color-good),
+  'average': var(--color-average),
+  'bad': var(--color-bad),
+  'label': var(--color-label),
+);
+$low-contrast-color-map: ('yellow', 'white');
+$color-map-keys: map.keys($_tg-gen-map) !default;
+@each $color-name in $color-map-keys {
+  $color-map: map.merge(
+    $color-map,
+    (
+      $color-name: map.get($_tg-gen-map, $color-name),
+    )
+  );
+}
+
+@function hover($color) {
+  @return hsl(from $color h s calc(l + var(--adjust-hover)));
+}

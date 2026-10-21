@@ -66,52 +66,72 @@
 	return ..()
 
 /obj/item/storage/secure/attack_self(mob/user)
-	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
-	user.set_machine(src)
-	var/dat = text("<TT><B>[]</B><BR>\n\nStan zamka: []",src, (locked ? "LOCKED" : "UNLOCKED"))
-	var/message = "Code"
-	if ((l_set == 0) && (!l_setshort))
-		dat += text("<p>\n<b>NIE USTAWIONO 5-CYFROWEGO KODU.<br>WPROWADŹ NOWY KOD.</b>")
-	if (l_setshort)
-		dat += text("<p>\n<font color=red><b>ALARM: BŁĄD SYSTEMU PAMIĘCI - 6040 201</b></font>")
-	message = text("[]", code)
-	if (!locked)
-		message = "*****"
-	dat += text("<HR>\n>[]<BR>\n<A href='byond://?src=[REF(src)];type=1'>1</A>-<A href='byond://?src=[REF(src)];type=2'>2</A>-<A href='byond://?src=[REF(src)];type=3'>3</A><BR>\n<A href='byond://?src=[REF(src)];type=4'>4</A>-<A href='byond://?src=[REF(src)];type=5'>5</A>-<A href='byond://?src=[REF(src)];type=6'>6</A><BR>\n<A href='byond://?src=[REF(src)];type=7'>7</A>-<A href='byond://?src=[REF(src)];type=8'>8</A>-<A href='byond://?src=[REF(src)];type=9'>9</A><BR>\n<A href='byond://?src=[REF(src)];type=R'>R</A>-<A href='byond://?src=[REF(src)];type=0'>0</A>-<A href='byond://?src=[REF(src)];type=E'>E</A><BR>\n</TT>", message)
-	user << browse(HTML_SKELETON(dat), "window=caselock;size=300x280")
+	ui_interact(user)
 
-/obj/item/storage/secure/Topic(href, href_list)
-	..()
-	if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
+// AQUILA: zamek szyfrowy w TGUI (okno LockedSafe z tg) zamiast starego HTML
+/obj/item/storage/secure/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LockedSafe", name)
+		ui.open()
+
+/obj/item/storage/secure/ui_data(mob/user)
+	var/list/data = list()
+	var/locked = SEND_SIGNAL(src, COMSIG_IS_STORAGE_LOCKED)
+	data["locked"] = !!locked
+	data["lock_code"] = !!l_set
+	data["memory_error"] = !!l_setshort
+	if(code == "ERROR")
+		data["input_code"] = "BŁĄD"
+	else if(!locked && l_set)
+		data["input_code"] = "*****"
+	else
+		data["input_code"] = code || ""
+	return data
+
+/obj/item/storage/secure/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	if (href_list["type"])
-		if (href_list["type"] == "E")
-			if ((l_set == 0) && (length(code) == 5) && (!l_setshort) && (code != "ERROR"))
+	if(action != "keypad")
+		return
+	if(usr.stat || usr.restrained() || get_dist(src, usr) > 1)
+		return
+	var/digit = params["digit"]
+	playsound(src, "terminal_type", 50, FALSE)
+	switch(digit)
+		if("E")
+			if(!l_set && length(code) == 5 && !l_setshort && code != "ERROR")
 				l_code = code
-				l_set = 1
-			else if ((code == l_code) && (l_set == 1))
+				l_set = TRUE
+				code = null
+			else if(l_set && code == l_code)
 				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, FALSE)
 				cut_overlays()
 				add_overlay(icon_opened)
 				code = null
 			else
 				code = "ERROR"
-		else
-			if ((href_list["type"] == "R") && (!l_setshort))
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
-				cut_overlays()
+		if("C")
+			if(l_setshort)
+				return
+			if(!l_set) // bez kodu tylko kasujemy wpis
 				code = null
-				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_FROM, usr)
-			else
-				code += text("[]", sanitize_text(href_list["type"]))
-				if (length(code) > 5)
-					code = "ERROR"
-		add_fingerprint(usr)
-		for(var/mob/M as() in viewers(1, get_turf(src)))
-			if ((M.client && M.machine == src))
-				attack_self(M)
+				return TRUE
+			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_SET_LOCKSTATE, TRUE)
+			cut_overlays()
+			code = null
+			SEND_SIGNAL(src, COMSIG_TRY_STORAGE_HIDE_FROM, usr)
+		if("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+			if(code == "ERROR")
+				code = null
+			code += digit
+			if(length(code) > 5)
+				code = "ERROR"
+		else
 			return
-	return
+	add_fingerprint(usr)
+	return TRUE
 
 
 // -----------------------------

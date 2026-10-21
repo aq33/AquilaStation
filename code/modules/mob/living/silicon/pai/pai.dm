@@ -42,18 +42,10 @@
 
 // Various software-specific vars
 
-	var/temp				// General error reporting text contained here will typically be shown once and cleared
-	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
+	var/records_view		// Which records the PaiInterface shows ("medical", "security" or null)
 
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
-
-	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
-	var/datum/data/record/medicalActive2
-
-	var/datum/data/record/securityActive1		// Could probably just combine all these into one
-	var/datum/data/record/securityActive2
 
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
 	var/hackprogress = 0				// Possible values: 0 - 100, >= 100 means the hack is complete and will be reset upon next check
@@ -145,13 +137,11 @@
 	if(cable && cable.machine && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
 		hackprogress = CLAMP(hackprogress + 4, 0, 100)
 	else
-		temp = "Door Jack: utracono połączenie ze śluzą. Hakowanie przerwane."
+		to_chat(src, "<span class='warning'>Door Jack: utracono połączenie ze śluzą. Hakowanie przerwane.</span>")
 		hackprogress = 0
 		hacking = FALSE
 		hackdoor = null
 		return
-	if(screen == "doorjack" && subscreen == 0) // Update our view, if appropriate
-		paiInterface()
 	if(hackprogress >= 100)
 		hackprogress = 0
 		var/obj/machinery/door/D = cable.machine

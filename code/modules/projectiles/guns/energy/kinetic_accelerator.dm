@@ -623,4 +623,4 @@
 	desc = "Causes kinetic accelerator bolts to have an adjustable-colored tracer trail and explosion. Use in-hand to change color."
 
 /obj/item/borg/upgrade/modkit/tracer/adjustable/attack_self(mob/user)
-	bolt_color = input(user,"","Wybierz kolor",bolt_color) as color|null
+	bolt_color = tgui_color_picker(user,"","Wybierz kolor",bolt_color)

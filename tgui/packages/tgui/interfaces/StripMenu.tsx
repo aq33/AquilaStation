@@ -1,145 +1,295 @@
-import { BooleanLike, classes } from 'common/react';
+import { range } from 'es-toolkit';
+import type { CSSProperties } from 'react';
+import { Box, Button, Icon, Image, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
+import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Button, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
+const ROWS = 5;
+const COLUMNS = 6;
+
+const BUTTON_DIMENSIONS = '64px';
+
+type GridSpotKey = string;
+
+const getGridSpotKey = (spot: [number, number]): GridSpotKey => {
+  return `${spot[0]}/${spot[1]}`;
+};
+
+const CornerText = (props: {
+  align: 'left' | 'right';
+  children: string;
+}): React.JSX.Element => {
+  const { align, children } = props;
+
+  return (
+    <Box
+      style={{
+        position: 'relative',
+        left: align === 'left' ? '2px' : '-2px',
+        textAlign: align,
+        textShadow: '1px 1px 1px #555',
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
 type AlternateAction = {
-  icon?: string;
+  icon: string;
   text: string;
 };
 
 const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
+  knot: {
+    icon: 'shoe-prints',
+    text: 'Zawiąż na supeł',
+  },
+
+  untie: {
+    icon: 'shoe-prints',
+    text: 'Rozwiąż',
+  },
+
+  unknot: {
+    icon: 'shoe-prints',
+    text: 'Rozplącz supeł',
+  },
+
+  remove_item_cuffs: {
+    icon: 'handcuffs',
+    text: 'Zdejmij kajdanki',
+  },
+
   enable_internals: {
-    text: 'Enable internals',
+    icon: 'tg-air-tank',
+    text: 'Włącz butlę',
   },
 
   disable_internals: {
-    text: 'Disable internals',
+    icon: 'tg-air-tank-slash',
+    text: 'Wyłącz butlę',
   },
 
+  adjust_jumpsuit: {
+    icon: 'tshirt',
+    text: 'Popraw uniform',
+  },
+
+  adjust_sensor: {
+    icon: 'microchip',
+    text: 'Ustaw czujniki',
+  },
+
+  // AQUILA: nasz DM używa tej nazwy
   adjust_sensors: {
-    text: 'Adjust suit sensors',
+    icon: 'microchip',
+    text: 'Ustaw czujniki',
+  },
+
+  strip_accessory: {
+    icon: 'ribbon',
+    text: 'Zdejmij dodatek',
+  },
+
+  deploy: {
+    icon: 'plus',
+    text: 'Rozłóż MOD',
+  },
+
+  undeploy: {
+    icon: 'minus',
+    text: 'Złóż MOD',
+  },
+
+  activate_mod: {
+    icon: 'power-off',
+    text: 'Włącz MOD',
+  },
+  deactivate_mod: {
+    icon: 'power-off',
+    text: 'Wyłącz MOD',
+  },
+
+  access_storage: {
+    icon: 'box-open',
+    text: 'Otwórz',
+  },
+};
+
+type StripSlot = {
+  displayName: string;
+  gridSpot: GridSpotKey;
+  image?: string;
+  additionalComponent?: React.JSX.Element;
+};
+
+const SLOTS: Record<string, StripSlot> = {
+  eyes: {
+    displayName: 'okulary',
+    gridSpot: getGridSpotKey([0, 0]),
+    image: 'inventory-glasses.png',
+  },
+
+  head: {
+    displayName: 'nakrycie głowy',
+    gridSpot: getGridSpotKey([0, 1]),
+    image: 'inventory-head.png',
+  },
+
+  neck: {
+    displayName: 'szyja',
+    gridSpot: getGridSpotKey([1, 0]),
+    image: 'inventory-neck.png',
+  },
+
+  mask: {
+    displayName: 'maska',
+    gridSpot: getGridSpotKey([1, 1]),
+    image: 'inventory-mask.png',
+  },
+
+  pet_collar: {
+    displayName: 'obroża',
+    gridSpot: getGridSpotKey([1, 0]),
+    image: 'inventory-collar.png',
+  },
+
+  // AQUILA: obroża korgiego ma u nas inny klucz
+  corgi_collar: {
+    displayName: 'obroża',
+    gridSpot: getGridSpotKey([1, 0]),
+    image: 'inventory-collar.png',
+  },
+
+  ears: {
+    displayName: 'uszy',
+    gridSpot: getGridSpotKey([0, 2]),
+    image: 'inventory-ears.png',
+  },
+
+  parrot_headset: {
+    displayName: 'słuchawka',
+    gridSpot: getGridSpotKey([0, 2]),
+    image: 'inventory-ears.png',
+  },
+
+  handcuffs: {
+    displayName: 'kajdanki',
+    gridSpot: getGridSpotKey([3, 5]),
+  },
+
+  legcuffs: {
+    displayName: 'kajdany na nogi',
+    gridSpot: getGridSpotKey([4, 2]),
+  },
+
+  jumpsuit: {
+    displayName: 'uniform',
+    gridSpot: getGridSpotKey([2, 1]),
+    image: 'inventory-uniform.png',
+  },
+
+  suit: {
+    displayName: 'strój wierzchni',
+    gridSpot: getGridSpotKey([2, 2]),
+    image: 'inventory-suit.png',
+  },
+
+  gloves: {
+    displayName: 'rękawice',
+    gridSpot: getGridSpotKey([3, 4]),
+    image: 'inventory-gloves.png',
+  },
+
+  right_hand: {
+    displayName: 'prawa ręka',
+    gridSpot: getGridSpotKey([2, 4]),
+    image: 'inventory-hand_r.png',
+    additionalComponent: <CornerText align="left">R</CornerText>,
+  },
+
+  left_hand: {
+    displayName: 'lewa ręka',
+    gridSpot: getGridSpotKey([2, 5]),
+    image: 'inventory-hand_l.png',
+    additionalComponent: <CornerText align="right">L</CornerText>,
+  },
+
+  upper_right_hand: {
+    displayName: 'górna prawa ręka',
+    gridSpot: getGridSpotKey([1, 4]),
+    image: 'inventory-hand_r.png',
+    additionalComponent: <CornerText align="left">(U) R</CornerText>,
+  },
+
+  upper_left_hand: {
+    displayName: 'górna lewa ręka',
+    gridSpot: getGridSpotKey([1, 5]),
+    image: 'inventory-hand_l.png',
+    additionalComponent: <CornerText align="right">L (U)</CornerText>,
+  },
+
+  shoes: {
+    displayName: 'buty',
+    gridSpot: getGridSpotKey([4, 1]),
+    image: 'inventory-shoes.png',
+  },
+
+  suit_storage: {
+    displayName: 'schowek stroju',
+    gridSpot: getGridSpotKey([2, 0]),
+    image: 'inventory-suit_storage.png',
+  },
+
+  id: {
+    displayName: 'identyfikator',
+    gridSpot: getGridSpotKey([4, 0]),
+    image: 'inventory-id.png',
+  },
+
+  belt: {
+    displayName: 'pas',
+    gridSpot: getGridSpotKey([3, 1]),
+    image: 'inventory-belt.png',
+  },
+
+  back: {
+    displayName: 'plecak',
+    gridSpot: getGridSpotKey([1, 2]),
+    image: 'inventory-back.png',
+  },
+
+  left_pocket: {
+    displayName: 'lewa kieszeń',
+    gridSpot: getGridSpotKey([3, 0]),
+    image: 'inventory-pocket.png',
+  },
+
+  right_pocket: {
+    displayName: 'prawa kieszeń',
+    gridSpot: getGridSpotKey([3, 2]),
+    image: 'inventory-pocket.png',
   },
 };
 
 enum ObscuringLevel {
   Completely = 1,
   Hidden = 2,
+  Inaccessible = 3,
 }
 
 type Interactable = {
   interacting: BooleanLike;
 };
 
-type Unavailable = {
-  unavailable: BooleanLike;
+type AlternateActions = {
+  alternate?: string[];
+  alternate_icons?: Record<string, string> | null;
 };
-
-const SLOTS: Record<string, string> = {
-  left_hand: 'Left hand',
-  right_hand: 'Right hand',
-  back: 'Backpack',
-  head: 'Headwear',
-  mask: 'Mask',
-  neck: 'Neckwear',
-  corgi_collar: 'Collar',
-  parrot_headset: 'Headset',
-  eyes: 'Eyewear',
-  ears: 'Earwear',
-  suit: 'Suit',
-  suit_storage: 'Suit storage',
-  shoes: 'Shoes',
-  gloves: 'Gloves',
-  jumpsuit: 'Uniform',
-  belt: 'Belt',
-  left_pocket: 'Left pocket',
-  right_pocket: 'Right pocket',
-  id: 'ID',
-  handcuffs: 'Handcuffs',
-  legcuffs: 'Legcuffs',
-};
-
-type Layout = Array<
-  Array<{
-    id: string;
-    indented?: BooleanLike;
-  }>
->;
-
-const DEFAULT_LAYOUT: Layout = [
-  [
-    {
-      id: 'left_hand',
-    },
-    {
-      id: 'right_hand',
-    },
-  ],
-  [
-    {
-      id: 'back',
-    },
-  ],
-  [
-    {
-      id: 'head',
-    },
-    {
-      id: 'mask',
-    },
-    {
-      id: 'neck',
-    },
-    {
-      id: 'corgi_collar',
-    },
-    {
-      id: 'parrot_headset',
-    },
-    {
-      id: 'eyes',
-    },
-    {
-      id: 'ears',
-    },
-  ],
-  [
-    {
-      id: 'suit',
-    },
-    {
-      id: 'suit_storage',
-    },
-    {
-      id: 'shoes',
-    },
-    {
-      id: 'gloves',
-    },
-    {
-      id: 'jumpsuit',
-    },
-    {
-      id: 'belt',
-    },
-    {
-      id: 'left_pocket',
-    },
-    {
-      id: 'right_pocket',
-    },
-    {
-      id: 'id',
-    },
-    {
-      id: 'handcuffs',
-    },
-    {
-      id: 'legcuffs',
-    },
-  ],
-];
 
 /**
  * Some possible options:
@@ -154,155 +304,224 @@ const DEFAULT_LAYOUT: Layout = [
 type StripMenuItem =
   | null
   | Interactable
-  | Unavailable
   | ((
-      | {
-          icon?: string;
+      | ({
+          icon: string;
           name: string;
-          alternate?: string;
-        }
-      | {
-          obscured: ObscuringLevel | 0;
-        }
+          obscured: ObscuringLevel;
+        } & AlternateActions)
+      | ({
+          obscured: ObscuringLevel;
+        } & AlternateActions)
     ) &
-      Partial<Interactable> &
-      Partial<Unavailable>);
+      Partial<Interactable>);
 
 type StripMenuData = {
   items: Record<keyof typeof SLOTS, StripMenuItem>;
-  layout?: Layout;
   name: string;
-};
-
-// Internal data structure used for props
-interface StripMenuRowProps {
-  slotName: string;
-  itemName?: string;
-  slotID: string;
-
-  alternates?: AlternateAction[];
-
-  interacting: BooleanLike;
-  indented: BooleanLike;
-  obscured: ObscuringLevel | 0;
-  empty: BooleanLike;
-  unavailable: BooleanLike;
-}
-
-const StripMenuRow = (props: StripMenuRowProps) => {
-  const { act, data } = useBackend<StripMenuData>();
-
-  const name = props.obscured
-    ? 'Obscured'
-    : props.empty
-      ? 'Empty'
-      : props.itemName;
-
-  return (
-    <Table.Row
-      className={classes([
-        props.indented && 'indented',
-        props.obscured === ObscuringLevel.Completely && 'obscured-complete',
-        props.obscured === ObscuringLevel.Hidden && 'obscured-hidden',
-        props.unavailable && 'unavailable',
-        props.empty && 'empty',
-      ])}
-    >
-      <Table.Cell pl={1.5}>{props.slotName}:</Table.Cell>
-      <Table.Cell pr={1.5} position="relative">
-        <Flex direction="column">
-          {!props.unavailable && (
-            <Flex.Item>
-              <Button
-                compact
-                content={name}
-                disabled={props.obscured === ObscuringLevel.Completely}
-                color={props.empty ? 'transparent' : undefined}
-                ellipsis
-                maxWidth="100%"
-                icon={props.interacting && 'spinner'}
-                iconSpin
-                onClick={() => act('use', { key: props.slotID })}
-              />
-            </Flex.Item>
-          )}
-          {props.alternates?.map((alternate) => (
-            <Flex.Item key={alternate.text}>
-              <Button
-                compact
-                content={alternate.text}
-                onClick={() => act('alt', { key: props.slotID })}
-              />
-            </Flex.Item>
-          ))}
-        </Flex>
-      </Table.Cell>
-    </Table.Row>
-  );
 };
 
 export const StripMenu = (props) => {
   const { act, data } = useBackend<StripMenuData>();
 
-  const items = data.items;
-  const layout = data.layout || DEFAULT_LAYOUT;
-
-  const contents = layout.map((section) => {
-    const rows = section
-      .filter((slot) => items[slot.id] !== undefined)
-      .map((slot) => {
-        const item = items[slot.id];
-
-        const alternate =
-          item && 'alternate' in item && ALTERNATE_ACTIONS[item.alternate!];
-
-        return (
-          <StripMenuRow
-            slotName={SLOTS[slot.id]}
-            itemName={(item && 'name' in item && item.name) || undefined}
-            obscured={item && 'obscured' in item ? item.obscured : 0}
-            indented={slot.indented}
-            slotID={slot.id}
-            unavailable={item && 'unavailable' in item && item.unavailable}
-            alternates={alternate ? [alternate] : undefined}
-            empty={!item || !('name' in item || 'obscured' in item)}
-            interacting={item && 'interacting' in item && item.interacting}
-            key={slot.id}
-          />
-        );
-      });
-
-    // If any valid slots were found in this section, add a spacer
-    if (rows.length) {
-      rows.push(
-        <Table.Row className="spacer">
-          <Table.Cell />
-          <Table.Cell />
-        </Table.Row>,
-      );
+  const gridSpots = new Map<GridSpotKey, string>();
+  for (const key of Object.keys(data.items)) {
+    // AQUILA: sloty bez miejsca w siatce (inne moby) pomijamy zamiast wywracać okno
+    if (!SLOTS[key]) {
+      continue;
     }
-
-    return rows;
-  });
+    gridSpots.set(SLOTS[key].gridSpot, key);
+  }
 
   return (
-    <Window
-      title={`Stripping ${data.name}`}
-      // Enough width to fit "atmospheric technician's jumpsuit"
-      width={400}
-      // Enough height to fit human with internals,
-      // jumpsuit, handcuffs and legcuffs
-      height={580}
-    >
-      <Window.Content
-        scrollable
-        fitted
-        // Remove the nanotrasen logo from the window
-        style={{ backgroundImage: 'none' }}
-      >
-        <Table mt={1} className="strip-menu-table" fontSize="1.1em">
-          {contents}
-        </Table>
+    // (64 + 6) * 6 + 6 = 426
+    // (64 + 6) * 5 + 6 + 31 (from title) =
+    <Window title={`Przeszukujesz: ${data.name}`} width={426} height={387}>
+      <Window.Content>
+        <Stack fill vertical>
+          {range(0, ROWS).map((row) => (
+            <Stack.Item key={row}>
+              <Stack fill>
+                {range(0, COLUMNS).map((column) => {
+                  const key = getGridSpotKey([row, column]);
+                  const keyAtSpot = gridSpots.get(key);
+
+                  if (!keyAtSpot) {
+                    return (
+                      <Stack.Item
+                        key={key}
+                        style={{
+                          width: BUTTON_DIMENSIONS,
+                          height: BUTTON_DIMENSIONS,
+                        }}
+                      />
+                    );
+                  }
+
+                  const item = data.items[keyAtSpot];
+                  const slot = SLOTS[keyAtSpot];
+
+                  let content: React.JSX.Element | undefined;
+                  let alternateActions: React.JSX.Element[] | undefined;
+                  let tooltip: string | undefined;
+
+                  if (item === null) {
+                    tooltip = slot.displayName;
+                  } else if ('name' in item) {
+                    content = (
+                      <Image
+                        src={`data:image/jpeg;base64,${item.icon}`}
+                        width="64px"
+                        height="64px"
+                        style={{
+                          verticalAlign: 'middle',
+                        }}
+                      />
+                    );
+
+                    tooltip = item.name;
+                  } else if (
+                    'obscured' in item &&
+                    (item.obscured === ObscuringLevel.Hidden ||
+                      item.obscured === ObscuringLevel.Completely)
+                  ) {
+                    content = (
+                      <Icon
+                        name={
+                          item.obscured === ObscuringLevel.Completely
+                            ? 'ban'
+                            : 'eye-slash'
+                        }
+                        size={3}
+                        ml={0}
+                        mt={2.5}
+                        style={{
+                          textAlign: 'center',
+                          verticalAlign: 'middle',
+                          height: '100%',
+                          width: '100%',
+                        }}
+                      />
+                    );
+
+                    tooltip = `zasłonięte: ${slot.displayName}`;
+                  }
+
+                  if (item && 'alternate' in item && item.alternate?.length) {
+                    alternateActions = item.alternate.map(
+                      (alternateKey, idx) => {
+                        const alternateAction = ALTERNATE_ACTIONS[
+                          alternateKey
+                        ] || { icon: 'ellipsis', text: alternateKey };
+                        const alternateIcon =
+                          item.alternate_icons?.[alternateKey];
+
+                        const alternateActionStyle: CSSProperties = {
+                          background: 'rgba(0, 0, 0, 0.6)',
+                          position: 'absolute',
+                          overflow: 'hidden',
+                          margin: '0',
+                          width: '20px',
+                          height: '20px',
+                          zIndex: '2',
+                          left: idx === 0 ? '0' : undefined,
+                          right: idx === 1 ? '0' : undefined,
+                          top: idx === 2 ? '0' : undefined,
+                          bottom: '0',
+                          padding: '0',
+                          textAlign: 'center',
+                        };
+                        return (
+                          <Button
+                            key={alternateAction.text}
+                            onClick={() => {
+                              act('alt', {
+                                key: keyAtSpot,
+                                alternate_action: alternateKey,
+                              });
+                            }}
+                            tooltip={alternateAction.text}
+                            style={alternateActionStyle}
+                            disabled={
+                              item.obscured === ObscuringLevel.Inaccessible
+                            }
+                            opacity={
+                              item.obscured === ObscuringLevel.Inaccessible
+                                ? 0.7
+                                : 1
+                            }
+                          >
+                            {alternateIcon ? (
+                              <Image
+                                src={`data:image/jpeg;base64,${alternateIcon}`}
+                                width="20px"
+                                height="20px"
+                              />
+                            ) : (
+                              <Icon name={alternateAction.icon} />
+                            )}
+                          </Button>
+                        );
+                      },
+                    );
+                  }
+
+                  return (
+                    <Stack.Item
+                      key={key}
+                      style={{
+                        width: BUTTON_DIMENSIONS,
+                        height: BUTTON_DIMENSIONS,
+                      }}
+                    >
+                      <Box
+                        style={{
+                          position: 'relative',
+                          width: '100%',
+                          height: '100%',
+                        }}
+                      >
+                        <Button
+                          onClick={() => {
+                            act('use', {
+                              key: keyAtSpot,
+                            });
+                          }}
+                          fluid
+                          tooltip={tooltip}
+                          style={{
+                            background: item?.interacting
+                              ? 'hsl(39, 73%, 30%)'
+                              : undefined,
+                            position: 'relative',
+                            width: '100%',
+                            height: '100%',
+                            padding: '0',
+                          }}
+                        >
+                          {slot.image && !(item && 'name' in item) && (
+                            <Image
+                              className="centered-image"
+                              src={resolveAsset(slot.image)}
+                              opacity={0.7}
+                              width="64px"
+                              height="64px"
+                            />
+                          )}
+
+                          <Box style={{ position: 'relative' }}>{content}</Box>
+
+                          {slot.additionalComponent}
+                        </Button>
+                        {alternateActions}
+                      </Box>
+                    </Stack.Item>
+                  );
+                })}
+              </Stack>
+            </Stack.Item>
+          ))}
+        </Stack>
       </Window.Content>
     </Window>
   );

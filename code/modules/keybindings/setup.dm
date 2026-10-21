@@ -66,7 +66,9 @@
 			if(use_tgui_say)
 				winset(src, "[setname]-radio", "parent=[setname];name=Y;command=[radio]")
 				winset(src, "[setname]-looc", "parent=[setname];name=L;command=[looc]") // NSV13 - Moves LOOC keybind to L from U
-				winset(src, "[setname]-close-tgui-say", "parent=[setname];name=Escape;command=[tgui_say_create_close_command()]")
+		// AQ EDIT START - Esc: menu pod Esc (aquila/code/modules/escape_menu); przy tgui-say zamyka też okno mówienia
+		winset(src, "[setname]-escape-menu", "parent=[setname];name=Escape;command=[escape_menu_create_toggle_command(!using_chat_relay && use_tgui_say)]")
+		// AQ EDIT END
 
 	if(prefs.toggles2 & PREFTOGGLE_2_HOTKEYS)
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=default")

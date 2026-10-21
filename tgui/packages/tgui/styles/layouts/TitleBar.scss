@@ -6,99 +6,80 @@
 @use 'sass:color';
 @use '../base';
 @use '../colors';
-
-$text-color: hsla(0, 0%, 100%, 0.75) !default;
-$background-color: hsl(0, 0%, 21.2%) !default;
-$shadow-color: hsla(0, 0%, 0%, 0.66) !default;
-$shadow-color-core: hsl(0, 0%, 0%, 0.4) !default;
-$shadow-core-height: 1px !default;
-$shadow-height: 2px !default;
-$title-bar-height: 32px !default;
+@use '../functions.scss' as *;
 
 .TitleBar {
   user-select: none;
   position: fixed;
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: vp(100vw);
   height: base.rem(32px);
-  background-color: $background-color;
-  box-sizing: content-box;
-  border-bottom: $shadow-core-height solid $shadow-color-core;
-  box-shadow: 0 $shadow-height $shadow-height $shadow-color;
-  box-shadow: 0 base.rem($shadow-height) base.rem($shadow-height) $shadow-color;
+  background-color: var(--titlebar-background);
+  border-bottom: var(--border-thickness-tiny) solid var(--titlebar-shadow-core);
+  box-shadow: 0px 0px base.em(6px) base.em(-1px) var(--titlebar-shadow-color);
   z-index: 101; // More than Dimmer
 
   &__dragZone {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: $title-bar-height;
-    height: base.rem($title-bar-height);
+    inset: 0;
   }
 
   &__statusIcon {
     text-align: center;
     font-size: base.rem(20px);
-    transition: color 0.5s;
-    line-height: $title-bar-height !important;
-    line-height: base.rem($title-bar-height) !important;
+    transition: color var(--transition-time-slow);
   }
 
   &__title {
-    line-height: $title-bar-height - 1;
-    line-height: base.rem($title-bar-height - 1);
     pointer-events: none;
     display: inline-block;
     flex: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: $text-color;
+    color: var(--titlebar-text);
     font-size: base.rem(14px);
   }
 
   &__buttons {
+    pointer-events: all;
     overflow: hidden;
     white-space: nowrap;
-    pointer-events: all;
     display: inline-block;
     margin: 0 base.rem(9px);
     z-index: 102;
   }
 
   &__KitchenSink {
-    width: base.rem(21px);
-    min-width: base.rem(21px);
-    max-width: base.rem(21px);
-    background-color: color.adjust(colors.$good, $lightness: -10%, $space: hsl);
-    color: hsl(120, 100%, 100%);
+    background-color: hsl(
+      from var(--color-green) h s calc(l - var(--adjust-hover))
+    );
+    color: var(--color-text-fixed-white);
     text-align: center;
     border-radius: 0;
 
     &:hover {
-      background-color: colors.$good;
+      background-color: var(--color-green) !important;
     }
   }
 
   &__close {
-    top: -$shadow-core-height;
-    cursor: pointer;
+    cursor: var(--cursor-pointer);
+    opacity: 0.5;
     pointer-events: all;
     align-content: center;
     text-align: center;
     font-size: base.rem(16px);
-    color: color.change($text-color, $alpha: 0.5);
+    height: 100%;
+    color: var(--color-text);
+    transition-property: background-color, opacity;
+    transition-duration: var(--transition-time-medium);
     z-index: 102;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
 
     &:hover {
-      background-color: hsl(0, 100%, 40%);
-      color: rgba(255, 255, 255, 1);
+      opacity: 1;
+      background-color: var(--button-background-danger);
       transition-duration: 0s;
     }
   }
@@ -108,9 +89,5 @@ $title-bar-height: 32px !default;
     width: base.rem(45px);
     min-width: base.rem(45px);
     max-width: base.rem(45px);
-    height: $title-bar-height + $shadow-core-height;
-    height: base.rem($title-bar-height + $shadow-core-height);
-    line-height: $title-bar-height - 1 + $shadow-core-height;
-    line-height: base.rem($title-bar-height - 1 + $shadow-core-height);
   }
 }

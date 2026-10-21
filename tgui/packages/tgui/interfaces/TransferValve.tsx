@@ -1,27 +1,28 @@
-import { Button, LabeledList, NoticeBox, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  attached_device: any;
-  tank_one: any;
-  tank_two: any;
-  valve: any;
+  tank_one: string | null;
+  tank_two: string | null;
+  attached_device: string | null;
+  valve: BooleanLike;
 };
 
 export const TransferValve = (props) => {
   const { act, data } = useBackend<Data>();
   const { tank_one, tank_two, attached_device, valve } = data;
   return (
-    <Window width={310} height={320}>
+    <Window width={310} height={300}>
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Valve Status">
+            <LabeledList.Item label="Zawór">
               <Button
                 icon={valve ? 'unlock' : 'lock'}
-                content={valve ? 'Open' : 'Closed'}
+                content={valve ? 'Otwarty' : 'Zamknięty'}
                 disabled={!tank_one || !tank_two}
                 onClick={() => act('toggle')}
               />
@@ -29,62 +30,58 @@ export const TransferValve = (props) => {
           </LabeledList>
         </Section>
         <Section
-          title="Valve Attachment"
+          title="Urządzenie na zaworze"
           buttons={
             <Button
-              textAlign="center"
-              width="30px"
-              icon={'cog'}
+              content="Konfiguruj"
+              icon="cog"
               disabled={!attached_device}
               onClick={() => act('device')}
             />
           }
         >
           <LabeledList>
-            {attached_device ? (
-              <LabeledList.Item label="Attachment">
+            <LabeledList.Item label="Podpięte">
+              {attached_device ? (
                 <Button
-                  icon={'wrench'}
+                  icon="eject"
                   content={attached_device}
-                  disabled={!attached_device}
                   onClick={() => act('remove_device')}
                 />
-              </LabeledList.Item>
-            ) : (
-              <NoticeBox textAlign="center">Insert Assembly</NoticeBox>
-            )}
+              ) : (
+                <Box color="average">Brak urządzenia</Box>
+              )}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Attachment One">
+        <Section title="Zbiornik pierwszy">
           <LabeledList>
-            {tank_one ? (
-              <LabeledList.Item label="Attachment">
+            <LabeledList.Item label="Podpięty">
+              {tank_one ? (
                 <Button
-                  icon={'wrench'}
+                  icon="eject"
                   content={tank_one}
-                  disabled={!tank_one}
                   onClick={() => act('tankone')}
                 />
-              </LabeledList.Item>
-            ) : (
-              <NoticeBox textAlign="center">Insert Tank</NoticeBox>
-            )}
+              ) : (
+                <Box color="average">Brak zbiornika</Box>
+              )}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="Attachment Two">
+        <Section title="Zbiornik drugi">
           <LabeledList>
-            {tank_two ? (
-              <LabeledList.Item label="Attachment">
+            <LabeledList.Item label="Podpięty">
+              {tank_two ? (
                 <Button
-                  icon={'wrench'}
+                  icon="eject"
                   content={tank_two}
-                  disabled={!tank_two}
                   onClick={() => act('tanktwo')}
                 />
-              </LabeledList.Item>
-            ) : (
-              <NoticeBox textAlign="center">Insert Tank</NoticeBox>
-            )}
+              ) : (
+                <Box color="average">Brak zbiornika</Box>
+              )}
+            </LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>

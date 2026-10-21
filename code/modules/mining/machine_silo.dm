@@ -11,7 +11,6 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 
 	var/list/holds = list()
 	var/list/datum/component/remote_materials/connected = list()
-	var/log_page = 1
 
 /obj/machinery/ore_silo/Initialize(mapload)
 	. = ..()
@@ -72,7 +71,6 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 
 /obj/machinery/ore_silo/attackby(obj/item/W, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
-		updateUsrDialog()
 		return
 
 	if(default_deconstruction_crowbar(W))
@@ -86,103 +84,74 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 
 	return ..()
 
-/obj/machinery/ore_silo/ui_interact(mob/user)
-	user.set_machine(src)
-	var/datum/browser/popup = new(user, "ore_silo", null, 600, 550)
-	popup.set_content(generate_ui())
-	popup.open()
+/obj/machinery/ore_silo/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OreSilo")
+		ui.open()
 
-/obj/machinery/ore_silo/proc/generate_ui()
+/obj/machinery/ore_silo/ui_data(mob/user)
+	var/list/data = list()
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	var/list/ui = list("<head><title>Silos rudy</title></head><body><div class='statusDisplay'><h2>Zmagazynowany materiał:</h2>")
-	var/any = FALSE
-	for(var/M in materials.materials)
-		var/datum/material/mat = M
-		var/amount = materials.materials[M]
-		var/sheets = round(amount) / MINERAL_MATERIAL_AMOUNT
-		var/ref = REF(M)
-		if (sheets)
-			if (sheets >= 1)
-				ui += "<a href='byond://?src=[REF(src)];ejectsheet=[ref];eject_amt=1'>Eject</a>"
-			else
-				ui += "<span class='linkOff'>Eject</span>"
-			if (sheets >= 20)
-				ui += "<a href='byond://?src=[REF(src)];ejectsheet=[ref];eject_amt=20'>20x</a>"
-			else
-				ui += "<span class='linkOff'>20x</span>"
-			ui += "<b>[mat.name]</b>: [sheets] sheets<br>"
-			any = TRUE
-	if(!any)
-		ui += "Nic!"
+	data["materials"] = materials.ui_data(user)
 
-	ui += "</div><div class='statusDisplay'><h2>Podłączone maszyny:</h2>"
-	for(var/C in connected)
-		var/datum/component/remote_materials/mats = C
+	//Ikony maszyn liczymy raz na typ wyglądu
+	var/static/list/machine_icons = list()
+	var/list/machines = list()
+	for(var/datum/component/remote_materials/mats as anything in connected)
 		var/atom/parent = mats.parent
-		var/hold_key = "[get_area(parent)]/[mats.category]"
-		ui += "<a href='byond://?src=[REF(src)];remove=[REF(mats)]'>Remove</a>"
-		ui += "<a href='byond://?src=[REF(src)];hold[!holds[hold_key]]=[rustg_url_encode(hold_key)]'>[holds[hold_key] ? "Zezwól" : "Wstrzymaj"]</a>"
-		ui += " <b>[parent.name]</b> in [get_area_name(parent, TRUE)]<br>"
-	if(!connected.len)
-		ui += "Nic!"
+		var/icon_key = "[parent.icon]-[parent.icon_state]"
+		if(!machine_icons[icon_key])
+			machine_icons[icon_key] = icon2base64(icon(parent.icon, parent.icon_state, SOUTH, 1))
+		machines += list(list(
+			"name" = parent.name,
+			"icon" = machine_icons[icon_key],
+			"on_hold" = !!holds["[get_area(parent)]/[mats.category]"],
+			"location" = get_area_name(parent, TRUE),
+		))
+	data["machines"] = machines
 
-	ui += "</div><div class='statusDisplay'><h2>Dzienniki dostępu:</h2>"
-	var/list/logs = GLOB.silo_access_logs[REF(src)]
-	var/len = LAZYLEN(logs)
-	var/num_pages = 1 + round((len - 1) / 30)
-	var/page = CLAMP(log_page, 1, num_pages)
-	if(num_pages > 1)
-		for(var/i in 1 to num_pages)
-			if(i == page)
-				ui += "<span class='linkOff'>[i]</span>"
-			else
-				ui += "<a href='byond://?src=[REF(src)];page=[i]'>[i]</a>"
+	var/list/logs = list()
+	for(var/datum/ore_silo_log/entry as anything in GLOB.silo_access_logs[REF(src)])
+		logs += list(entry.log_ui_data())
+	data["logs"] = logs
+	return data
 
-	ui += "<ol>"
-	any = FALSE
-	for(var/i in (page - 1) * 30 + 1 to min(page * 30, len))
-		var/datum/ore_silo_log/entry = logs[i]
-		ui += "<li value=[len + 1 - i]>[entry.formatted]</li>"
-		any = TRUE
-	if (!any)
-		ui += "<li>Nic!</li>"
-
-	ui += "</ol></div>"
-	return ui.Join()
-
-/obj/machinery/ore_silo/Topic(href, href_list)
-	if(..())
+/obj/machinery/ore_silo/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	add_fingerprint(usr)
-	usr.set_machine(src)
-
-	if(href_list["remove"])
-		var/datum/component/remote_materials/mats = locate(href_list["remove"]) in connected
-		if (mats)
+	switch(action)
+		if("remove")
+			var/index = text2num(params["id"])
+			if(!index || index < 1 || index > length(connected))
+				return
+			var/datum/component/remote_materials/mats = connected[index]
 			mats.disconnect_from(src)
 			connected -= mats
-			updateUsrDialog()
 			return TRUE
-	else if(href_list["hold1"])
-		holds[href_list["hold1"]] = TRUE
-		updateUsrDialog()
-		return TRUE
-	else if(href_list["hold0"])
-		holds -= href_list["hold0"]
-		updateUsrDialog()
-		return TRUE
-	else if(href_list["ejectsheet"])
-		var/datum/material/eject_sheet = locate(href_list["ejectsheet"])
-		var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-		var/count = materials.retrieve_sheets(text2num(href_list["eject_amt"]), eject_sheet, drop_location())
-		var/list/matlist = list()
-		matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT
-		silo_log(src, "ejected", -count, "sheets", matlist)
-		return TRUE
-	else if(href_list["page"])
-		log_page = text2num(href_list["page"]) || 1
-		updateUsrDialog()
-		return TRUE
+		if("hold")
+			var/index = text2num(params["id"])
+			if(!index || index < 1 || index > length(connected))
+				return
+			var/datum/component/remote_materials/mats = connected[index]
+			var/hold_key = "[get_area(mats.parent)]/[mats.category]"
+			if(holds[hold_key])
+				holds -= hold_key
+			else
+				holds[hold_key] = TRUE
+			return TRUE
+		if("eject")
+			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+			var/datum/material/eject_sheet = locate(params["ref"]) in materials.materials
+			var/amount = text2num(params["amount"])
+			if(!eject_sheet || !amount || amount < 1)
+				return
+			var/count = materials.retrieve_sheets(round(amount), eject_sheet, drop_location())
+			var/list/matlist = list()
+			matlist[eject_sheet] = MINERAL_MATERIAL_AMOUNT
+			silo_log(src, "ejected", -count, "sheets", matlist)
+			return TRUE
 
 /obj/machinery/ore_silo/multitool_act(mob/living/user, obj/item/multitool/I)
 	if (istype(I))
@@ -201,7 +170,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	else if(!logs[1].merge(entry))
 		logs.Insert(1, entry)
 
-	updateUsrDialog()
+	SStgui.update_uis(src)
 	flick("silo_active", src)
 
 /obj/machinery/ore_silo/examine(mob/user)
@@ -271,6 +240,22 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 		sep = ", "
 		msg += "[amount < 0 ? "-" : "+"][val] [M.name]"
 	formatted = msg.Join()
+
+/// Dane wpisu dla okna TGUI silosu
+/datum/ore_silo_log/proc/log_ui_data()
+	var/list/raw = list()
+	for(var/key in materials)
+		var/datum/material/M = key
+		raw += "[amount < 0 ? "-" : "+"][round(materials[key]) / MINERAL_MATERIAL_AMOUNT] [M.name]"
+	return list(
+		"raw_materials" = jointext(raw, ", "),
+		"machine_name" = machine_name,
+		"area_name" = area_name,
+		"action" = action,
+		"amount" = amount,
+		"time" = timestamp,
+		"noun" = noun,
+	)
 
 /obj/machinery/ore_silo/Bumped(atom/movable/AM) //NSV13 Throwing Upgrade
 	. = ..()

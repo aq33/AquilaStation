@@ -1,6 +1,4 @@
-import { map, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { toFixed } from 'common/math';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -11,203 +9,310 @@ import {
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
   Table,
   Tooltip,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { useBackend, useLocalState } from '../backend';
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
+import { LoadingScreen } from './common/LoadingScreen';
 
 type Data = {
-  areas: any;
-  history: any;
+  areas: Area[];
+  history: PowerHistory;
 };
 
-const PEAK_DRAW = 500000;
+type Area = {
+  charge: number;
+  charging: number;
+  env: number;
+  eqp: number;
+  lgt: number;
+  load: string;
+  name: string;
+};
 
-const powerRank = (str) => {
+type PowerHistory = {
+  demand: number[];
+  supply: number[];
+};
+
+export function powerRank(str: string): number {
   const unit = String(str.split(' ')[1]).toLowerCase();
   return ['w', 'kw', 'mw', 'gw'].indexOf(unit);
-};
+}
 
-export const PowerMonitor = () => {
+// Oh no not another sorting algorithm
+function powerSort(a: Area, b: Area): number {
+  const sortedByRank = powerRank(a.load) - powerRank(b.load);
+  const sortedByLoad = parseFloat(a.load) - parseFloat(b.load);
+
+  if (sortedByRank !== 0) {
+    return sortedByRank;
+  }
+  return sortedByLoad;
+}
+
+function nameSort(a: Area, b: Area): number {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}
+
+export function PowerMonitor() {
   return (
     <Window width={550} height={700}>
-      <Window.Content scrollable>
+      <Window.Content>
         <PowerMonitorContent />
       </Window.Content>
     </Window>
   );
-};
+}
 
-export const PowerMonitorContent = (props) => {
+const PEAK_DRAW = 500000;
+
+export function PowerMonitorContent(props) {
   const { data } = useBackend<Data>();
   const { history } = data;
 
-  const [sortByField, setSortByField] = useLocalState<any>('sortByField', null);
+  if (!history) {
+    return 'Wczytywanie...';
+  }
+
   const supply = history.supply[history.supply.length - 1] || 0;
   const demand = history.demand[history.demand.length - 1] || 0;
+
   const supplyData = history.supply.map((value, i) => [i, value]);
   const demandData = history.demand.map((value, i) => [i, value]);
+
   const maxValue = Math.max(PEAK_DRAW, ...history.supply, ...history.demand);
-  // Process area data
-  const areas = flow([
-    map((area, i) => ({
+
+  if (supplyData.length === 0 || demandData.length === 0) {
+    return <LoadingScreen />;
+  }
+
+  return (
+    <Stack fill vertical>
+      <Stack.Item>
+        <Flex mx={-0.5}>
+          <Flex.Item mx={0.5} width="200px">
+            <Section>
+              <LabeledList>
+                <LabeledList.Item label="Podaż">
+                  <ProgressBar
+                    value={supply}
+                    minValue={0}
+                    maxValue={maxValue}
+                    color="teal"
+                  >
+                    {`${toFixed(supply / 1000)} kW`}
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item label="Pobór">
+                  <ProgressBar
+                    value={demand}
+                    minValue={0}
+                    maxValue={maxValue}
+                    color="pink"
+                  >
+                    {`${toFixed(demand / 1000)} kW`}
+                  </ProgressBar>
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Flex.Item>
+          <Flex.Item mx={0.5} grow>
+            <Section position="relative" fill>
+              <Chart.Line
+                fillPositionedParent
+                data={supplyData}
+                rangeX={[0, supplyData.length - 1]}
+                rangeY={[0, maxValue]}
+                strokeColor="rgba(0, 181, 173, 1)"
+                fillColor="rgba(0, 181, 173, 0.25)"
+              />
+              <Chart.Line
+                fillPositionedParent
+                data={demandData}
+                rangeX={[0, demandData.length - 1]}
+                rangeY={[0, maxValue]}
+                strokeColor="rgba(224, 57, 151, 1)"
+                fillColor="rgba(224, 57, 151, 0.25)"
+              />
+            </Section>
+          </Flex.Item>
+        </Flex>
+      </Stack.Item>
+      <Stack.Item grow>
+        <StationAreas />
+      </Stack.Item>
+    </Stack>
+  );
+}
+
+function StationAreas(props) {
+  const { data } = useBackend<Data>();
+
+  const [sortByField, setSortByField] = useState('');
+
+  const areas = data.areas
+    .map((area, i) => ({
       ...area,
       // Generate a unique id
       id: area.name + i,
-    })),
-    sortByField === 'name' && sortBy((area) => area.name),
-    sortByField === 'charge' && sortBy((area) => -area.charge),
-    sortByField === 'draw' &&
-      sortBy(
-        (area) => -powerRank(area.load),
-        (area) => -parseFloat(area.load),
-      ),
-  ])(data.areas);
+    }))
+    .sort((a, b) => {
+      if (sortByField === 'name') {
+        return nameSort(a, b);
+      }
+      if (sortByField === 'charge') {
+        return a.charge - b.charge;
+      }
+      if (sortByField === 'draw') {
+        return powerSort(b, a);
+      }
+      return 0;
+    });
+
   return (
-    <>
-      <Flex spacing={1}>
-        <Flex.Item width="200px">
-          <Section>
-            <LabeledList>
-              <LabeledList.Item label="Supply">
-                <ProgressBar
-                  value={supply}
-                  minValue={0}
-                  maxValue={maxValue}
-                  color="teal"
-                >
-                  {toFixed(supply / 1000) + ' kW'}
-                </ProgressBar>
-              </LabeledList.Item>
-              <LabeledList.Item label="Draw">
-                <ProgressBar
-                  value={demand}
-                  minValue={0}
-                  maxValue={maxValue}
-                  color="pink"
-                >
-                  {toFixed(demand / 1000) + ' kW'}
-                </ProgressBar>
-              </LabeledList.Item>
-            </LabeledList>
-          </Section>
-        </Flex.Item>
-        <Flex.Item grow={1}>
-          <Section position="relative" height="100%">
-            <Chart.Line
-              fillPositionedParent
-              data={supplyData}
-              rangeX={[0, supplyData.length - 1]}
-              rangeY={[0, maxValue]}
-              strokeColor="rgba(0, 181, 173, 1)"
-              fillColor="rgba(0, 181, 173, 0.25)"
-            />
-            <Chart.Line
-              fillPositionedParent
-              data={demandData}
-              rangeX={[0, demandData.length - 1]}
-              rangeY={[0, maxValue]}
-              strokeColor="rgba(224, 57, 151, 1)"
-              fillColor="rgba(224, 57, 151, 0.25)"
-            />
-          </Section>
-        </Flex.Item>
-      </Flex>
-      <Section>
-        <Box mb={1}>
+    <Stack fill vertical>
+      <Section height={3}>
+        <Box>
           <Box inline mr={2} color="label">
-            Sort by:
+            Sortuj:
           </Box>
           <Button.Checkbox
             checked={sortByField === 'name'}
-            content="Name"
-            onClick={() => setSortByField(sortByField !== 'name' && 'name')}
-          />
+            onClick={() => setSortByField(sortByField !== 'name' ? 'name' : '')}
+          >
+            Nazwa
+          </Button.Checkbox>
           <Button.Checkbox
             checked={sortByField === 'charge'}
-            content="Charge"
-            onClick={() => setSortByField(sortByField !== 'charge' && 'charge')}
-          />
+            onClick={() =>
+              setSortByField(sortByField !== 'charge' ? 'charge' : '')
+            }
+          >
+            Ładunek
+          </Button.Checkbox>
           <Button.Checkbox
             checked={sortByField === 'draw'}
-            content="Draw"
-            onClick={() => setSortByField(sortByField !== 'draw' && 'draw')}
-          />
+            onClick={() => setSortByField(sortByField !== 'draw' ? 'draw' : '')}
+          >
+            Pobór
+          </Button.Checkbox>
         </Box>
-        <Table>
-          <Table.Row header>
-            <Table.Cell>Area</Table.Cell>
-            <Table.Cell collapsing>Charge</Table.Cell>
-            <Table.Cell textAlign="right">Draw</Table.Cell>
-            <Table.Cell collapsing>Eqp</Table.Cell>
-            <Table.Cell collapsing>Lgt</Table.Cell>
-            <Table.Cell collapsing>Env</Table.Cell>
-          </Table.Row>
-          {areas.map((area, i) => (
-            <tr key={area.id} className="Table__row candystripe">
-              <td>{area.name}</td>
-              <td className="Table__cell text-right text-nowrap">
-                <AreaCharge charging={area.charging} charge={area.charge} />
-              </td>
-              <td className="Table__cell text-right text-nowrap">
-                {area.load}
-              </td>
-              <td className="Table__cell text-center text-nowrap">
-                <AreaStatusColorBox status={area.eqp} />
-              </td>
-              <td className="Table__cell text-center text-nowrap">
-                <AreaStatusColorBox status={area.lgt} />
-              </td>
-              <td className="Table__cell text-center text-nowrap">
-                <AreaStatusColorBox status={area.env} />
-              </td>
-            </tr>
-          ))}
-        </Table>
       </Section>
-    </>
+
+      <Stack.Item grow mt={-1}>
+        <Section fill scrollable>
+          <Table>
+            <Table.Row header>
+              <Table.Cell>Obszar</Table.Cell>
+              <Table.Cell collapsing>Ładunek</Table.Cell>
+              <Table.Cell textAlign="right" width={7}>
+                Pobór
+              </Table.Cell>
+              <Tooltip content="Zasilanie sprzętu">
+                <Table.Cell collapsing>Sprz</Table.Cell>
+              </Tooltip>
+              <Tooltip content="Zasilanie oświetlenia">
+                <Table.Cell collapsing>Św</Table.Cell>
+              </Tooltip>
+              <Tooltip content="Zasilanie środowiska">
+                <Table.Cell collapsing>Śr</Table.Cell>
+              </Tooltip>
+            </Table.Row>
+            {areas.map((area) => (
+              <tr key={area.id} className="Table__row candystripe">
+                <td>{area.name}</td>
+                <td className="Table__cell text-right text-nowrap">
+                  <AreaCharge charging={area.charging} charge={area.charge} />
+                </td>
+                <td className="Table__cell text-right text-nowrap">
+                  {area.load}
+                </td>
+                <td className="Table__cell text-center text-nowrap">
+                  <AreaStatusColorBox status={area.eqp} />
+                </td>
+                <td className="Table__cell text-center text-nowrap">
+                  <AreaStatusColorBox status={area.lgt} />
+                </td>
+                <td className="Table__cell text-center text-nowrap">
+                  <AreaStatusColorBox status={area.env} />
+                </td>
+              </tr>
+            ))}
+          </Table>
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
+}
+
+type AreaChargeProps = {
+  charge: number;
+  charging: number;
 };
 
-const AreaCharge = (props) => {
+const NOT_CHARGING = 0;
+const CHARGING = 1;
+const CHARGED = 2;
+
+export function AreaCharge(props: AreaChargeProps) {
   const { charging, charge } = props;
+
+  let name: string;
+  if (charging === NOT_CHARGING) {
+    name = charge > 50 ? 'battery-half' : 'battery-quarter';
+  } else if (charging === CHARGING) {
+    name = 'bolt';
+  } else {
+    name = 'battery-full';
+  }
+
   return (
     <>
       <Icon
         width="18px"
         textAlign="center"
-        name={String(
-          (charging === 0 &&
-            (charge > 50 ? 'battery-half' : 'battery-quarter')) ||
-            (charging === 1 && 'bolt') ||
-            (charging === 2 && 'battery-full'),
-        )}
+        name={name}
         color={
-          (charging === 0 && (charge > 50 ? 'yellow' : 'red')) ||
-          (charging === 1 && 'yellow') ||
-          (charging === 2 && 'green')
+          (charging === NOT_CHARGING && (charge > 50 ? 'yellow' : 'red')) ||
+          (charging === CHARGING && 'yellow') ||
+          (charging === CHARGED && 'green')
         }
       />
       <Box inline width="36px" textAlign="right">
-        {toFixed(charge) + '%'}
+        {`${toFixed(charge)}%`}
       </Box>
     </>
   );
+}
+
+type AreaStatusColorBoxProps = {
+  status: number;
 };
 
-const AreaStatusColorBox = (props) => {
+function AreaStatusColorBox(props: AreaStatusColorBoxProps) {
   const { status } = props;
+
   const power = Boolean(status & 2);
   const mode = Boolean(status & 1);
-  const tooltipText = (power ? 'On' : 'Off') + ` [${mode ? 'auto' : 'manual'}]`;
+  const tooltipText = `${power ? 'Wł.' : 'Wył.'} [${mode ? 'auto' : 'ręcznie'}]`;
+
   return (
     <Tooltip content={tooltipText}>
       <ColorBox
         color={power ? 'good' : 'bad'}
-        content={mode ? undefined : 'M'}
+        content={mode ? undefined : 'R'}
       />
     </Tooltip>
   );
-};
+}

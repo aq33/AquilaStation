@@ -34,26 +34,55 @@
 		machine = null
 	return ..()
 
-/obj/machinery/mineral/stacking_unit_console/ui_interact(mob/user)
+// AQUILA: okno TGUI StackingConsole (z tg) zamiast starego HTML
+/obj/machinery/mineral/stacking_unit_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StackingConsole", name)
+		ui.open()
+
+/obj/machinery/mineral/stacking_unit_console/ui_data(mob/user)
+	var/list/data = list()
+	data["machine"] = !!machine
+	data["stacking_amount"] = null
+	data["contents"] = list()
+	if(machine)
+		data["stacking_amount"] = machine.stack_amt
+		data["input_direction"] = dir2text(machine.input_dir)
+		data["output_direction"] = dir2text(machine.output_dir)
+		for(var/stack_type in machine.stack_list)
+			var/obj/item/stack/sheet/stored_sheet = machine.stack_list[stack_type]
+			if(stored_sheet.amount <= 0)
+				continue
+			data["contents"] += list(list(
+				"type" = "[stack_type]",
+				"name" = capitalize(stored_sheet.name),
+				"amount" = stored_sheet.amount,
+			))
+	return data
+
+/obj/machinery/mineral/stacking_unit_console/ui_act(action, list/params)
 	. = ..()
-
-	if(!machine)
-		to_chat(user, "<span class='notice'>[src] nie jest połączony z żadną maszyną!</span>")
+	if(.)
 		return
-
-	var/obj/item/stack/sheet/s
-	var/dat
-
-	dat += text("<b>Konsola jednostki układającej</b><br><br>")
-
-	for(var/O in machine.stack_list)
-		s = machine.stack_list[O]
-		if(s.amount > 0)
-			dat += text("[capitalize(s.name)]: [s.amount] <A href='byond://?src=[REF(src)];release=[s.type]'>Release</A><br>")
-
-	dat += text("<br>Stacking: [machine.stack_amt]<br><br>")
-
-	user << browse(HTML_SKELETON(dat), "window=console_stacking_machine")
+	if(!machine)
+		return
+	add_fingerprint(usr)
+	switch(action)
+		if("release")
+			var/release_type = text2path(params["type"])
+			if(!release_type || !(release_type in machine.stack_list))
+				return //someone tried to spawn materials by spoofing hrefs
+			var/obj/item/stack/sheet/inp = machine.stack_list[release_type]
+			if(inp.amount <= 0)
+				return
+			var/obj/item/stack/sheet/out = new inp.type(null, inp.amount)
+			inp.amount = 0
+			machine.unload_mineral(out)
+			return TRUE
+		if("rotate")
+			machine.rotate(text2num(params["input"]))
+			return TRUE
 
 /obj/machinery/mineral/stacking_unit_console/multitool_act(mob/living/user, obj/item/I)
 	if(!multitool_check_buffer(user, I))
@@ -62,23 +91,6 @@
 	M.buffer = src
 	to_chat(user, "<span class='notice'>Zapisujesz informacje o połączeniu w buforze [I].</span>")
 	return TRUE
-
-/obj/machinery/mineral/stacking_unit_console/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-	if(href_list["release"])
-		if(!(text2path(href_list["release"]) in machine.stack_list))
-			return //someone tried to spawn materials by spoofing hrefs
-		var/obj/item/stack/sheet/inp = machine.stack_list[text2path(href_list["release"])]
-		var/obj/item/stack/sheet/out = new inp.type(null, inp.amount)
-		inp.amount = 0
-		machine.unload_mineral(out)
-
-	src.updateUsrDialog()
-	return
-
 
 /**********************Mineral stacking unit**************************/
 
@@ -137,6 +149,15 @@
 			console.machine = src
 			to_chat(user, "<span class='notice'>Łączysz [src] z konsolą z bufora [M].</span>")
 			return TRUE
+
+/// AQUILA: obrót wejścia/wyjścia z konsoli (jak w tg)
+/obj/machinery/mineral/stacking_machine/proc/rotate(input)
+	if(input)
+		input_dir = turn(input_dir, 90)
+	else
+		output_dir = turn(output_dir, 90)
+	if(input_dir == output_dir)
+		rotate(input)
 
 /obj/machinery/mineral/stacking_machine/proc/process_sheet(obj/item/stack/sheet/inp)
 	if(QDELETED(inp))

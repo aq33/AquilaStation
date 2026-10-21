@@ -4,41 +4,50 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  max_pressure: any;
-  node1_concentration: any;
-  node2_concentration: any;
-  on: any;
-  set_pressure: any;
+  on: BooleanLike;
+  set_pressure: number;
+  max_pressure: number;
+  node1_concentration: number;
+  node2_concentration: number;
 };
 
 export const AtmosMixer = (props) => {
   const { act, data } = useBackend<Data>();
+  const {
+    on,
+    set_pressure,
+    max_pressure,
+    node1_concentration,
+    node2_concentration,
+  } = data;
+
   return (
     <Window width={370} height={165}>
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Power">
+            <LabeledList.Item label="Zasilanie">
               <Button
-                icon={data.on ? 'power-off' : 'times'}
-                content={data.on ? 'On' : 'Off'}
-                selected={data.on}
+                icon={on ? 'power-off' : 'times'}
+                content={on ? 'Wł.' : 'Wył.'}
+                selected={on}
                 onClick={() => act('power')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Output Pressure">
+            <LabeledList.Item label="Ciśnienie wyjściowe">
               <NumberInput
                 animated
-                value={parseFloat(data.set_pressure)}
+                value={set_pressure}
                 unit="kPa"
                 width="75px"
                 minValue={0}
-                maxValue={data.max_pressure}
+                maxValue={max_pressure}
                 step={10}
                 onChange={(value) =>
                   act('pressure', {
@@ -50,7 +59,7 @@ export const AtmosMixer = (props) => {
                 ml={1}
                 icon="plus"
                 content="Max"
-                disabled={data.set_pressure === data.max_pressure}
+                disabled={set_pressure === max_pressure}
                 onClick={() =>
                   act('pressure', {
                     pressure: 'max',
@@ -58,34 +67,36 @@ export const AtmosMixer = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Node 1">
+            <LabeledList.Item label="Wejście główne" labelColor="green">
               <NumberInput
-                step={1}
                 animated
-                value={data.node1_concentration}
+                tickWhileDragging
+                value={node1_concentration}
+                step={1}
                 unit="%"
                 width="60px"
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value) =>
+                onChange={(value) =>
                   act('node1', {
                     concentration: value,
                   })
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Node 2">
+            <LabeledList.Item label="Wejście boczne" labelColor="blue">
               <NumberInput
-                step={1}
                 animated
-                value={data.node2_concentration}
+                tickWhileDragging
+                value={node2_concentration}
+                step={1}
                 unit="%"
                 width="60px"
                 minValue={0}
                 maxValue={100}
                 stepPixelSize={2}
-                onDrag={(value) =>
+                onChange={(value) =>
                   act('node2', {
                     concentration: value,
                   })

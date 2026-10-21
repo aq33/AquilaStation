@@ -75,83 +75,84 @@
 		return
 	else
 		. = ..()
-	updateDialog()
+	SStgui.update_uis(src)
 
-/obj/machinery/food_cart/ui_interact(mob/user)
-	. = ..()
-	var/dat
-	dat += "<br><b>ZMAGAZYNOWANE SKŁADNIKI I NAPOJE</b><br><div class='statusDisplay'>"
-	dat += "Pozostałe szklanki: [glasses]<br>"
-	dat += "Portion: <a href='byond://?src=[REF(src)];portion=1'>[portion]</a><br>"
-	for(var/i in 1 to LAZYLEN(reagents.reagent_list))
-		var/datum/reagent/R = reagents.reagent_list[i]
-		dat += "[R.name]: [R.volume] "
-		dat += "<a href='byond://?src=[REF(src)];disposeI=[i]'>Purge</a>"
-		if (glasses > 0)
-			dat += "<a href='byond://?src=[REF(src)];pour=[i]'>Nalej do szklanki</a>"
-		dat += "<a href='byond://?src=[REF(src)];mix=[i]'>Dodaj do miksera</a><br>"
-	dat += "</div><br><b>ZAWARTOŚĆ MIKSERA</b><br><div class='statusDisplay'>"
-	for(var/i in 1 to LAZYLEN(mixer.reagents.reagent_list))
-		var/datum/reagent/R = mixer.reagents.reagent_list[i]
-		dat += "[R.name]: [R.volume] "
-		dat += "<a href='byond://?src=[REF(src)];transfer=[i]'>Przelej z powrotem</a>"
-		if (glasses > 0)
-			dat += "<a href='byond://?src=[REF(src)];m_pour=[i]'>Nalej do szklanki</a>"
-		dat += "<br>"
-	dat += "</div><br><b>ZMAGAZYNOWANE JEDZENIE</b><br><div class='statusDisplay'>"
+/obj/machinery/food_cart/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "FoodCart", name)
+		ui.open()
+
+/obj/machinery/food_cart/ui_data(mob/user)
+	var/list/data = list()
+	data["glasses"] = glasses
+	data["portion"] = portion
+	data["food_stored"] = food_stored
+	var/list/drinks = list()
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
+		drinks += list(list("name" = R.name, "volume" = R.volume, "id" = "[R.type]"))
+	data["drinks"] = drinks
+	var/list/mixed = list()
+	for(var/datum/reagent/R as anything in mixer.reagents.reagent_list)
+		mixed += list(list("name" = R.name, "volume" = R.volume, "id" = "[R.type]"))
+	data["mixer"] = mixed
+	var/list/food = list()
 	for(var/V in stored_food)
 		if(stored_food[V] > 0)
-			dat += "<b>[V]: [stored_food[V]]</b> <a href='byond://?src=[REF(src)];dispense=[V]'>Dispense</a><br>"
-	dat += "</div><br><a href='byond://?src=[REF(src)];refresh=1'>Odśwież</a> <a href='byond://?src=[REF(src)];close=1'>Zamknij</a>"
+			food += list(list("name" = V, "amount" = stored_food[V]))
+	data["food"] = food
+	return data
 
-	var/datum/browser/popup = new(user, "foodcart","Wózek z jedzeniem", 500, 350, src)
-	popup.set_content(dat)
-	popup.open()
-
-/obj/machinery/food_cart/Topic(href, href_list)
-	if(..())
+/obj/machinery/food_cart/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-
-	if(href_list["disposeI"])
-		reagents.del_reagent(reagents.reagent_list[text2num(href_list["disposeI"])]?.type)
-
-	if(href_list["dispense"])
-		if(stored_food[href_list["dispense"]]-- <= 0)
-			stored_food[href_list["dispense"]] = 0
-		else
-			for(var/obj/O in contents)
-				if(sanitize(O.name) == href_list["dispense"])
-					O.forceMove(drop_location())
-					break
-
-	if(href_list["portion"])
-		portion = CLAMP(input("Ile napoju chcesz nalewać do jednej szklanki?") as num, 0, 50)
-
-	if(href_list["pour"] || href_list["m_pour"])
-		if(glasses-- <= 0)
-			to_chat(usr, "<span class='warning'>Nie ma już szklanek!</span>")
-			glasses = 0
-		else
-			var/obj/item/reagent_containers/food/drinks/drinkingglass/DG = new(loc)
-			if(href_list["pour"])
-				reagents.trans_id_to(DG, reagents.reagent_list[text2num(href_list["pour"])]?.type, portion)
-			if(href_list["m_pour"])
-				mixer.reagents.trans_id_to(DG, mixer.reagents.reagent_list[text2num(href_list["m_pour"])]?.type, portion)
-
-	if(href_list["mix"])
-		if(!reagents.trans_id_to(mixer, reagents.reagent_list[text2num(href_list["mix"])]?.type, portion))
-			to_chat(usr, "<span class='warning'>[mixer] jest pełny!</span>")
-
-	if(href_list["transfer"])
-		if(!mixer.reagents.trans_id_to(src, mixer.reagents.reagent_list[text2num(href_list["transfer"])]?.type, portion))
-			to_chat(usr, "<span class='warning'>[src] jest pełny!</span>")
-
-	updateDialog()
-
-	if(href_list["close"])
-		usr.unset_machine()
-		usr << browse(null,"window=foodcart")
-	return
+	var/reagent_type = text2path(params["id"])
+	switch(action)
+		if("purge")
+			if(reagent_type)
+				reagents.del_reagent(reagent_type)
+			return TRUE
+		if("dispense")
+			var/food_name = params["name"]
+			if(!stored_food[food_name])
+				return
+			if(stored_food[food_name]-- <= 0)
+				stored_food[food_name] = 0
+			else
+				for(var/obj/O in contents)
+					if(sanitize(O.name) == food_name)
+						O.forceMove(drop_location())
+						break
+			return TRUE
+		if("portion")
+			portion = clamp(round(text2num(params["amount"])), 0, 50)
+			return TRUE
+		if("pour", "m_pour")
+			if(!reagent_type)
+				return
+			if(glasses-- <= 0)
+				to_chat(usr, "<span class='warning'>Nie ma już szklanek!</span>")
+				glasses = 0
+			else
+				var/obj/item/reagent_containers/food/drinks/drinkingglass/DG = new(loc)
+				if(action == "pour")
+					reagents.trans_id_to(DG, reagent_type, portion)
+				else
+					mixer.reagents.trans_id_to(DG, reagent_type, portion)
+			return TRUE
+		if("mix")
+			if(!reagent_type)
+				return
+			if(!reagents.trans_id_to(mixer, reagent_type, portion))
+				to_chat(usr, "<span class='warning'>[mixer] jest pełny!</span>")
+			return TRUE
+		if("transfer")
+			if(!reagent_type)
+				return
+			if(!mixer.reagents.trans_id_to(src, reagent_type, portion))
+				to_chat(usr, "<span class='warning'>[src] jest pełny!</span>")
+			return TRUE
 
 /obj/machinery/food_cart/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

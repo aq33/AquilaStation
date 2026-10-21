@@ -39,35 +39,26 @@
 		if(M.id == id)
 			M.close()
 
-/obj/machinery/computer/pod/ui_interact(mob/user)
-	. = ..()
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Odmowa dostępu.</span>")
-		return
+// AQUILA: okno TGUI MassDriverControl (z tg) zamiast starego HTML
+/obj/machinery/computer/pod/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MassDriverControl", title)
+		ui.open()
 
-	var/dat = ""
-	if(connected)
-		var/d2
-		if(timing)	//door controls do not need timers.
-			d2 = "<A href='byond://?src=[REF(src)];time=0'>Zatrzymaj odliczanie startu</A>"
-		else
-			d2 = "<A href='byond://?src=[REF(src)];time=1'>Rozpocznij odliczanie startu</A>"
-		dat += "<HR>\nTimer System: [d2]\nTime Left: [DisplayTimeText((time SECONDS))] <A href='byond://?src=[REF(src)];tp=-30'>-</A> <A href='byond://?src=[REF(src)];tp=-1'>-</A> <A href='byond://?src=[REF(src)];tp=1'>+</A> <A href='byond://?src=[REF(src)];tp=30'>+</A>"
-		var/temp = ""
-		var/list/L = list( 0.25, 0.5, 1, 2, 4, 8, 16 )
-		for(var/t in L)
-			if(t == connected.power)
-				temp += "[t] "
-			else
-				temp += "<A href = 'byond://?src=[REF(src)];power=[t]'>[t]</A> "
-		dat += "<HR>\nPower Level: [temp]<BR>\n<A href = 'byond://?src=[REF(src)];alarm=1'>Firing Sequence</A><BR>\n<A href = 'byond://?src=[REF(src)];drive=1'>Test Fire Driver</A><BR>\n<A href = 'byond://?src=[REF(src)];door=1'>Toggle Outer Door</A><BR>"
-	else
-		dat += "<BR>\n<A href = 'byond://?src=[REF(src)];door=1'>Przełącz drzwi zewnętrzne</A><BR>"
-	dat += "<BR><BR><A href='byond://?src=[REF(user)];mach_close=computer'>Close</A>"
-	add_fingerprint(usr)
-	var/datum/browser/popup = new(user, "computer", title, 400, 500)
-	popup.set_content(dat)
-	popup.open()
+/obj/machinery/computer/pod/ui_data(mob/user)
+	var/list/data = list()
+	data["connected"] = !!connected
+	data["seconds"] = round(time % 60)
+	data["minutes"] = round((time - data["seconds"]) / 60)
+	data["timing"] = !!timing
+	data["power"] = connected ? connected.power : 0.25
+	data["poddoor"] = FALSE
+	for(var/obj/machinery/door/poddoor/door in range(range, src))
+		if(door.id == id)
+			data["poddoor"] = TRUE
+			break
+	return data
 
 /obj/machinery/computer/pod/process()
 	if(!..())
@@ -76,43 +67,55 @@
 		if(time > 0)
 			time = round(time) - 1
 		else
-			alarm()
+			INVOKE_ASYNC(src, PROC_REF(alarm))
 			time = 0
 			timing = 0
-		updateDialog()
 
-
-/obj/machinery/computer/pod/Topic(href, href_list)
-	if(..())
+/obj/machinery/computer/pod/ui_act(action, list/params)
+	. = ..()
+	if(.)
 		return
-	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)) || issilicon(usr))
-		usr.set_machine(src)
-		if(href_list["power"])
-			var/t = text2num(href_list["power"])
-			t = min(max(0.25, t), 16)
-			if(connected)
-				connected.power = t
-		if(href_list["alarm"])
-			alarm()
-		if(href_list["time"])
-			timing = text2num(href_list["time"])
-		if(href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			time += tp
-			time = min(max(round(time), 0), 120)
-		if(href_list["door"])
+	if(!allowed(usr))
+		to_chat(usr, "<span class='warning'>Odmowa dostępu.</span>")
+		return
+	add_fingerprint(usr)
+	switch(action)
+		if("set_power")
+			if(!connected)
+				return
+			var/value = text2num(params["power"])
+			if(!value)
+				return
+			connected.power = clamp(value, 0.25, 16)
+			return TRUE
+		if("launch")
+			INVOKE_ASYNC(src, PROC_REF(alarm))
+			return TRUE
+		if("time")
+			timing = !timing
+			return TRUE
+		if("input")
+			var/adjust = text2num(params["adjust"])
+			if(!adjust)
+				return
+			time = clamp(round(time + adjust), 0, 120)
+			return TRUE
+		if("door")
 			for(var/obj/machinery/door/poddoor/M in range(range, src))
 				if(M.id == id)
 					if(M.density)
-						M.open()
+						INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/door, open))
 					else
-						M.close()
-		if(href_list["drive"])
+						INVOKE_ASYNC(M, TYPE_PROC_REF(/obj/machinery/door, close))
+			return TRUE
+		if("driver_test")
+			if(!connected)
+				return
 			for(var/obj/machinery/mass_driver/M in range(range, src))
 				if(M.id == id)
 					M.power = connected.power
 					M.drive()
-		updateUsrDialog()
+			return TRUE
 
 /obj/machinery/computer/pod/old
 	name = "\improper DoorMex control console"

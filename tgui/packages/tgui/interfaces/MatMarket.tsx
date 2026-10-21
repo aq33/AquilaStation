@@ -1,5 +1,4 @@
 // AQUILA - galaktyczny rynek materiałów, port z tgstation
-import { BooleanLike } from 'common/react';
 import {
   Box,
   Button,
@@ -10,9 +9,11 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
+import type { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { formatMoney } from '../format';
 import { Window } from '../layouts';
 
 type Material = {
@@ -127,7 +128,7 @@ export const MatMarket = (props) => {
                 fontSize="120%"
                 textColor={material.color}
               >
-                {material.name}
+                {toTitleCase(material.name)}
               </Stack.Item>
               <Stack.Item width="16%">
                 <Tooltip
@@ -140,14 +141,22 @@ export const MatMarket = (props) => {
                   </Box>
                 </Tooltip>
               </Stack.Item>
-              <Stack.Item width="24%">
-                <Box textColor={material.quantity ? undefined : 'grey'}>
-                  Na rynku: <b>{material.quantity}</b> ark.
-                </Box>
-                <Box textColor={material.requested ? 'lightblue' : undefined}>
-                  Zamówione: <b>{material.requested}</b> ark.
-                </Box>
-              </Stack.Item>
+              {material.price < material.min_threshold ? (
+                <Stack.Item width="24%" textColor="grey">
+                  Cena krytycznie niska!
+                  <br />
+                  <b>Handel wstrzymany.</b>
+                </Stack.Item>
+              ) : (
+                <Stack.Item width="24%">
+                  <Box textColor={material.quantity ? undefined : 'grey'}>
+                    Na rynku: <b>{material.quantity}</b> ark.
+                  </Box>
+                  <Box textColor={material.requested ? 'lightblue' : undefined}>
+                    Zamówione: <b>{material.requested}</b> ark.
+                  </Box>
+                </Stack.Item>
+              )}
               <Stack.Item
                 width="14%"
                 color={
@@ -168,6 +177,7 @@ export const MatMarket = (props) => {
                       !hasId ||
                       !!catastrophe ||
                       !material.price ||
+                      material.price < material.min_threshold ||
                       creditBalance - orderBalance <
                         material.price * amount * multiplier ||
                       material.requested + amount > material.quantity

@@ -1,0 +1,127 @@
+// Z tg (styles/interfaces/Safe.scss). AQUILA EDIT: zamiast obrazka
+// safe_dial.png tarcza jest rysowana w CSS (Safe__dial), mniejsze okno.
+.Safe__engraving {
+  position: absolute;
+  width: 95%;
+  height: 96%;
+  left: 2.5%;
+  top: 2%;
+  border: var(--border-thickness-larger) outset hsl(217, 27%, 34%);
+  padding: var(--space-m);
+  text-align: center;
+}
+
+.Safe__engraving-arrow {
+  color: var(--color-primary);
+}
+
+.Safe__engraving-hinge {
+  content: ' ';
+  background-color: hsl(217, 27%, 15%);
+  width: 25px;
+  height: 40px;
+  position: absolute;
+  right: -15px;
+  margin-top: -20px;
+}
+
+.Safe__dialer {
+  margin-bottom: 1.25rem;
+  .Button {
+    width: 70px;
+  }
+}
+
+.Safe__dialer-right {
+  .Button {
+    i {
+      z-index: -100;
+    }
+  }
+}
+
+.Safe__dialer-number {
+  color: hsl(0, 0%, 73.3%);
+  display: inline;
+  background-color: hsl(217, 27%, 15%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 var(--space-m);
+}
+
+.Safe__dial {
+  position: relative;
+  display: inline-block;
+  width: 220px;
+  height: 220px;
+  margin-top: var(--space-m);
+  border-radius: 50%;
+  border: 8px solid hsl(217, 27%, 15%);
+  background:
+    radial-gradient(
+      circle,
+      hsl(217, 15%, 30%) 0%,
+      hsl(217, 15%, 30%) 35%,
+      transparent 36%
+    ),
+    repeating-conic-gradient(
+      hsl(0, 0%, 80%) 0deg 1deg,
+      hsl(217, 20%, 20%) 1deg 5deg
+    );
+  box-shadow: 0 0 12px hsla(0, 0%, 0%, 0.6);
+  transition: transform 0.2s ease;
+}
+
+.Safe__dial-marker {
+  position: absolute;
+  left: calc(50% - 3px);
+  top: 4px;
+  width: 6px;
+  height: 36px;
+  border-radius: 3px;
+  background-color: var(--color-primary);
+}
+
+.Safe__contents {
+  border: 10px solid hsl(217, 27%, 15%);
+  background-color: hsl(217, 27%, 10%);
+  height: calc(85% + 7.5px);
+  text-align: left;
+  padding: var(--space-m);
+}
+
+.Safe__help {
+  position: absolute;
+  top: 70%;
+  left: 10px;
+  width: 60%;
+
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-style: italic;
+  color: black;
+  box-shadow: 5px 5px hsl(0, 0%, 6.7%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(50, 20%, 58.8%) 0%,
+    hsl(50, 6%, 45.5%) 100%
+  );
+  transform: rotate(-1deg);
+
+  &:before {
+    content: ' ';
+    display: block;
+    width: 24px;
+    height: 40px;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      hsl(0, 0%, 100%) 100%
+    );
+    box-shadow: 1px 1px hsl(0, 0%, 6.7%);
+    opacity: 0.2;
+    position: absolute;
+    top: -30px;
+    left: calc(50% - 12px);
+    transform: rotate(-5deg);
+  }
+}

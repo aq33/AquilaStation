@@ -81,7 +81,7 @@ export const NtosSurgeryLookup = (props) => {
             autoFocus
             placeholder="Szukaj operacji albo narzędzia…"
             value={query}
-            onInput={(e, value) => setQuery(value)}
+            onChange={(value) => setQuery(value)}
           />
           <Box mt={1}>
             <Button

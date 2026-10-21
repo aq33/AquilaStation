@@ -5,19 +5,20 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  health: any;
-  isBraindead: any;
-  isDead: any;
-  laws: any;
-  name: any;
-  radio: any;
-  wiping: any;
-  wireless: any;
+  name: string;
+  isDead: BooleanLike;
+  isBraindead: BooleanLike;
+  health: number;
+  wireless: BooleanLike;
+  radio: BooleanLike;
+  wiping: BooleanLike;
+  laws: string[];
 };
 
 export const Intellicard = (props) => {
@@ -37,24 +38,25 @@ export const Intellicard = (props) => {
     <Window width={500} height={500}>
       <Window.Content scrollable>
         <Section
-          title={name || 'Empty Card'}
+          title={name || 'Pusta karta'}
           buttons={
             !!name && (
               <Button
                 icon="trash"
-                content={wiping ? 'Stop Wiping' : 'Wipe'}
                 disabled={isDead}
                 onClick={() => act('wipe')}
-              />
+              >
+                {wiping ? 'Przerwij kasowanie' : 'Skasuj'}
+              </Button>
             )
           }
         >
           {!!name && (
             <LabeledList>
-              <LabeledList.Item label="Status" color={offline ? 'bad' : 'good'}>
-                {offline ? 'Offline' : 'Operation'}
+              <LabeledList.Item label="Stan" color={offline ? 'bad' : 'good'}>
+                {offline ? 'Wyłączona' : 'Działa'}
               </LabeledList.Item>
-              <LabeledList.Item label="Software Integrity">
+              <LabeledList.Item label="Integralność oprogramowania">
                 <ProgressBar
                   value={health}
                   minValue={0}
@@ -66,21 +68,23 @@ export const Intellicard = (props) => {
                   }}
                 />
               </LabeledList.Item>
-              <LabeledList.Item label="Settings">
+              <LabeledList.Item label="Ustawienia">
                 <Button
                   icon="signal"
-                  content="Wireless Activity"
                   selected={wireless}
                   onClick={() => act('wireless')}
-                />
+                >
+                  Łączność bezprzewodowa
+                </Button>
                 <Button
                   icon="microphone"
-                  content="Subspace Radio"
                   selected={radio}
                   onClick={() => act('radio')}
-                />
+                >
+                  Radio podprzestrzenne
+                </Button>
               </LabeledList.Item>
-              <LabeledList.Item label="Laws">
+              <LabeledList.Item label="Prawa">
                 {laws.map((law) => (
                   <BlockQuote key={law}>{law}</BlockQuote>
                 ))}

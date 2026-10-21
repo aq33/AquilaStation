@@ -41,6 +41,7 @@
 
 	frequency = FREQ_ATMOS_CONTROL
 	power_channel = AREA_USAGE_ENVIRON
+	tgui_id = "SimpleVentController"
 
 	// Setup parameters only
 	var/airpump_tag
@@ -60,14 +61,3 @@
 		icon_state = "airlock_control_standby"
 	else
 		icon_state = "airlock_control_off"
-
-
-/obj/machinery/embedded_controller/radio/simple_vent_controller/return_text()
-	var/state_options = null
-	state_options = {"<A href='byond://?src=[REF(src)];command=vent_inactive'>Deactivate Vent</A><BR>
-<A href='byond://?src=[REF(src)];command=vent_pump'>Activate Vent / Pump</A><BR>
-<A href='byond://?src=[REF(src)];command=vent_clear'>Activate Vent / Clear</A><BR>"}
-	var/output = {"<B>Vent Control Console</B><HR>
-[state_options]<HR>"}
-
-	return output

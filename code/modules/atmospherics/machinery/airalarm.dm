@@ -397,7 +397,7 @@
 			if(usr.has_unlimited_silicon_privilege && !wires.is_cut(WIRE_IDSCAN))
 				locked = !locked
 				. = TRUE
-		if("power", "toggle_filter", "widenet", "scrubbing")
+		if("power", "toggle_filter", "widenet", "scrubbing", "direction") // AQUILA: kierunek wentylacji z okna tg
 			send_signal(device_id, list("[action]" = params["val"]), usr)
 			. = TRUE
 		if("excheck")
@@ -434,6 +434,24 @@
 					tlv.vars[name] = round(value, 0.01)
 				investigate_log(" treshold value for [env]:[name] was set to [value] by [key_name(usr)]",INVESTIGATE_ATMOS)
 				. = TRUE
+		// AQUILA: ustawianie progu wprost z okna tg (bez okienka input)
+		if("set_threshold")
+			var/env = params["env"]
+			if(text2path(env))
+				env = text2path(env)
+			var/name = params["var"]
+			if(!(name in list("min2", "min1", "max1", "max2")))
+				return
+			var/datum/tlv/tlv = TLV[env]
+			var/value = text2num(params["value"])
+			if(isnull(tlv) || isnull(value))
+				return
+			if(value < 0)
+				tlv.vars[name] = -1
+			else
+				tlv.vars[name] = round(value, 0.01)
+			investigate_log(" treshold value for [env]:[name] was set to [value] by [key_name(usr)]",INVESTIGATE_ATMOS)
+			. = TRUE
 		if("mode")
 			mode = text2num(params["mode"])
 			investigate_log("was turned to [get_mode_name(mode)] mode by [key_name(usr)]",INVESTIGATE_ATMOS)

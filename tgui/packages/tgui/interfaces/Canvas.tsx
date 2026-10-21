@@ -4,6 +4,8 @@ import { Box, Button } from 'tgui-core/components';
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+// AQUILA: zostaje nasza wersja — okno z tg korzysta z SpriteEditor i
+// zupełnie innego DM płótna (editorData, warstwy, paleta).
 type Data = {
   finalized: any;
   grid: any;
@@ -75,7 +77,7 @@ class PaintCanvas extends Component<any, any> {
         {...rest}
         onClick={(e) => this.clickwrapper(e)}
       >
-        Canvas failed to render.
+        Nie udało się wyświetlić płótna.
       </canvas>
     );
   }
@@ -106,9 +108,11 @@ export const Canvas = (props) => {
           <Box>
             {!data.finalized && (
               <Button.Confirm
+                confirmContent="Na pewno?"
                 onClick={() => act('finalize')}
-                content="Finalize"
-              />
+              >
+                Zakończ obraz
+              </Button.Confirm>
             )}
             {data.name}
           </Box>

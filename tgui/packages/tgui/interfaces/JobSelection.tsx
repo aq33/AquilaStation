@@ -68,7 +68,11 @@ const JobButton = (props: { job: JobInfo; status: JobStatus }) => {
             style={{ verticalAlign: 'middle' }}
           />
         </Stack.Item>
-        <Stack.Item grow bold={job.command}>
+        <Stack.Item
+          grow
+          bold={job.command}
+          color={status.unavailable ? undefined : 'white'}
+        >
           {job.title}
           {!!status.prioritized && <Icon name="star" ml={0.5} />}
         </Stack.Item>
@@ -106,14 +110,18 @@ const DepartmentSection = (props: { department: Department }) => {
     >
       <Section
         title={
-          <TitlePlate bold color={department.color}>
-            {department.name}
-          </TitlePlate>
-        }
-        buttons={
-          <TitlePlate mt={0.5} color="label">
-            otwarte: {open}
-          </TitlePlate>
+          <Stack align="center">
+            <Stack.Item grow>
+              <TitlePlate color={department.color}>
+                {department.name}
+              </TitlePlate>
+            </Stack.Item>
+            <Stack.Item>
+              <TitlePlate color="label" fontSize="11px">
+                otwarte: {open}
+              </TitlePlate>
+            </Stack.Item>
+          </Stack>
         }
       >
         {jobs.length ? (
@@ -135,15 +143,29 @@ const DepartmentSection = (props: { department: Department }) => {
 };
 
 export const JobSelection = () => {
-  const { data } = useBackend<Data>();
+  const { act, data } = useBackend<Data>();
   const { departments = [], round_duration, evacuation, jobs = {} } = data;
   const anyPrioritized = Object.values(jobs).some((job) => job.prioritized);
   return (
     <Window title="Wybierz profesję" width={900} height={680}>
       <Window.Content scrollable>
         <NoticeBox info>
-          <Icon name="clock" mr={1} />
-          Czas rundy: {round_duration}
+          <Stack align="center">
+            <Stack.Item grow>
+              <Icon name="clock" mr={1} />
+              Czas rundy: {round_duration}
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="dice"
+                onClick={() => act('select_job', { job: 'Random' })}
+                tooltip="Wylosuj jedną z dostępnych profesji. Jeśli nie pasuje, możesz losować dalej albo zrezygnować."
+                tooltipPosition="bottom-end"
+              >
+                Losowa profesja
+              </Button>
+            </Stack.Item>
+          </Stack>
         </NoticeBox>
         {!!evacuation && <NoticeBox danger>{evacuation}</NoticeBox>}
         {anyPrioritized && (

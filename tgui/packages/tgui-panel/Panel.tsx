@@ -57,6 +57,7 @@ export const Panel = (props) => {
         <StatTabs direction="column" />
       </Stack>
       <DraggableControl
+        tickWhileDragging
         value={number}
         height="1%"
         minValue={0}
@@ -64,7 +65,7 @@ export const Panel = (props) => {
         dragMatrix={[0, -1]}
         step={1}
         stepPixelSize={9}
-        onDrag={(e, value) => resizeFunction(value)}
+        onChange={(e, value) => resizeFunction(value)}
         updateRate={5}
       >
         {(control) => (
@@ -106,7 +107,9 @@ export const Panel = (props) => {
                   icon={settings.visible ? 'times' : 'cog'}
                   selected={settings.visible}
                   tooltip={
-                    settings.visible ? 'Zamknij ustawienia' : 'Otwórz ustawienia'
+                    settings.visible
+                      ? 'Zamknij ustawienia'
+                      : 'Otwórz ustawienia'
                   }
                   tooltipPosition="bottom-start"
                   onClick={() => settings.toggle()}
@@ -135,8 +138,7 @@ export const Panel = (props) => {
             <Notifications>
               {game.connectionLostAt && (
                 <Notifications.Item rightSlot={<ReconnectButtons />}>
-                  Jesteś AFK, masz lagi albo połączenie zostało
-                  zerwane.
+                  Jesteś AFK, masz lagi albo połączenie zostało zerwane.
                 </Notifications.Item>
               )}
               {game.roundRestartedAt && (

@@ -1,4 +1,3 @@
-import { classes } from 'common/react';
 import {
   Box,
   Button,
@@ -6,15 +5,21 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
+type PillStyle = {
+  id: string;
+  pill_icon_name: string;
+};
+
 type Data = {
-  chosen_pill_style: any;
-  pill_name: any;
-  pill_size: any;
-  pill_styles: any;
+  chosen_pill_style: string;
+  pill_name: string;
+  pill_size: number;
+  pill_styles: PillStyle[];
 };
 
 export const ChemPress = (props) => {
@@ -25,7 +30,7 @@ export const ChemPress = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Pill Volume">
+            <LabeledList.Item label="Objętość pigułki">
               <NumberInput
                 value={pill_size}
                 unit="u"
@@ -41,14 +46,14 @@ export const ChemPress = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Pill Name">
+            <LabeledList.Item label="Nazwa pigułki">
               <Button
                 icon="pencil-alt"
                 content={pill_name}
                 onClick={() => act('change_pill_name')}
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Pill Style">
+            <LabeledList.Item label="Wygląd pigułki">
               {pill_styles.map((each_style) => (
                 <Button
                   key={each_style.id}

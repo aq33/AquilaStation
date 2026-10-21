@@ -1,4 +1,5 @@
-import { BlockQuote, LabeledList, Section, Stack } from '../components';
+import { BlockQuote, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { Window } from '../layouts';
 
 const tipstyle = {
@@ -9,61 +10,61 @@ const noticestyle = {
   color: 'lightblue',
 };
 
-export const AntagInfoNightmare = (_props) => {
+export const AntagInfoNightmare = (props) => {
   return (
-    <Window width={620} height={340} theme="neutral">
+    <Window width={620} height={380}>
       <Window.Content backgroundColor="#0d0d0d">
         <Stack fill>
           <Stack.Item width="46.2%">
             <Section fill>
               <Stack vertical fill>
-                <Stack.Item fontSize="25px">You are a Nightmare.</Stack.Item>
+                <Stack.Item fontSize="25px">Jesteś Koszmarem.</Stack.Item>
                 <Stack.Item>
                   <BlockQuote>
-                    You are a creature from beyond the stars that has incredibly
-                    strong powers in the darkness, becoming nigh unbeatable.
-                    Unfortunately, you wither and burn away in the light. You
-                    must use your
-                    <span style={noticestyle}>&ensp;light eater</span> to dim
-                    the station, making hunting easier.
+                    Jesteś istotą spoza gwiazd, która w ciemności dysponuje
+                    ogromną mocą i staje się niemal niepokonana. Niestety w
+                    świetle więdniesz i spalasz się. Użyj swojego
+                    <span style={noticestyle}>&ensp;pożeracza światła</span>,
+                    aby przyciemnić stację i ułatwić sobie polowanie.
                   </BlockQuote>
                 </Stack.Item>
                 <Stack.Divider />
                 <Stack.Item textColor="label">
-                  <span style={tipstyle}>Tip #1:&ensp;</span>
-                  Move often. The station will be hunting you after you are
-                  discovered, so don&apos;t stay in one area for long.
+                  <span style={tipstyle}>Rada #1:&ensp;</span>
+                  Często zmieniaj miejsce. Gdy cię odkryją, cała stacja zacznie
+                  na ciebie polować, więc nie zostawaj długo w jednym rejonie.
                   <br />
-                  <span style={tipstyle}>Tip #2:&ensp;</span>
-                  Pick unfair fights. You are incredibly strong in one versus
-                  one situations, use it. The more you fight, the harder it will
-                  be to keep it dark.
+                  <span style={tipstyle}>Rada #2:&ensp;</span>
+                  Wybieraj nierówne walki. Jeden na jednego jesteś niezwykle
+                  silny, korzystaj z tego. Im więcej walczysz, tym trudniej
+                  utrzymać ciemność.
                   <br />
-                  <span style={tipstyle}>Tip #3:&ensp;</span>
-                  Fully destroy APCs when possible. Instead of hunting lights
-                  that can be fixed, hunt the APCs which are harder to repair.
+                  <span style={tipstyle}>Rada #3:&ensp;</span>
+                  Gdy możesz, niszcz APC do końca. Zamiast polować na lampy,
+                  które łatwo naprawić, poluj na APC, których naprawa jest
+                  trudniejsza.
                 </Stack.Item>
               </Stack>
             </Section>
           </Stack.Item>
           <Stack.Item width="53%">
-            <Section fill title="Powers">
+            <Section fill title="Moce">
               <LabeledList>
-                <LabeledList.Item label="Shadow Dance">
-                  Whilst in the shadows, you are immune to all ranged attacks,
-                  whilst also rapidly regenerating health.
+                <LabeledList.Item label="Taniec cieni">
+                  W cieniu jesteś odporny na wszystkie ataki dystansowe i szybko
+                  regenerujesz zdrowie.
                 </LabeledList.Item>
-                <LabeledList.Item label="Shadow Walk">
-                  You are allowed unlimited, unrestricted movement in the dark.
-                  Light will pull you out of this.
+                <LabeledList.Item label="Krok cienia">
+                  W ciemności możesz poruszać się bez żadnych ograniczeń.
+                  Światło cię z tego wyrwie.
                 </LabeledList.Item>
-                <LabeledList.Item label="Heart of Darkness">
-                  Your heart invites the shadows. If you die in the darkness,
-                  you will eventually revive if left alone.
+                <LabeledList.Item label="Serce ciemności">
+                  Twoje serce przyzywa cienie. Jeśli zginiesz w ciemności i
+                  zostaniesz w spokoju, z czasem odrodzisz się.
                 </LabeledList.Item>
-                <LabeledList.Item label="Light Eater">
-                  Your twisted appendage. It will consume the light of what it
-                  touches, be it victim or object.
+                <LabeledList.Item label="Pożeracz światła">
+                  Twoja wykręcona kończyna. Pochłania światło wszystkiego, czego
+                  dotknie, czy to ofiary, czy przedmiotu.
                 </LabeledList.Item>
               </LabeledList>
             </Section>

@@ -6,15 +6,24 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
 
+type Slot = {
+  title: string;
+  current: number;
+  total: number;
+  status_open: BooleanLike;
+  status_close: BooleanLike;
+};
+
 type Data = {
-  authed: any;
-  cooldown: any;
-  prioritized: any;
-  slots: any;
+  authed: BooleanLike;
+  cooldown: number;
+  prioritized: string[];
+  slots: Slot[];
 };
 
 export const NtosJobManager = (props) => {
@@ -35,7 +44,7 @@ export const NtosJobManagerContent = (props) => {
   if (!authed) {
     return (
       <NoticeBox>
-        Current ID does not have access permissions to change job slots.
+        To ID nie ma uprawnień do zmiany liczby miejsc pracy.
       </NoticeBox>
     );
   }
@@ -45,14 +54,14 @@ export const NtosJobManagerContent = (props) => {
       {cooldown > 0 && (
         <Dimmer>
           <Box bold textAlign="center" fontSize="20px">
-            On Cooldown: {cooldown}s
+            Odczekaj: {cooldown} s
           </Box>
         </Dimmer>
       )}
       <Table>
         <Table.Row header>
-          <Table.Cell>Prioritized</Table.Cell>
-          <Table.Cell>Slots</Table.Cell>
+          <Table.Cell>Priorytet</Table.Cell>
+          <Table.Cell>Miejsca</Table.Cell>
         </Table.Row>
         {slots.map((slot) => (
           <Table.Row key={slot.title} className="candystripe">
@@ -74,7 +83,7 @@ export const NtosJobManagerContent = (props) => {
             </Table.Cell>
             <Table.Cell collapsing>
               <Button
-                content="Open"
+                content="Otwórz"
                 disabled={!slot.status_open}
                 onClick={() =>
                   act('PRG_open_job', {
@@ -83,7 +92,7 @@ export const NtosJobManagerContent = (props) => {
                 }
               />
               <Button
-                content="Close"
+                content="Zamknij"
                 disabled={!slot.status_close}
                 onClick={() =>
                   act('PRG_close_job', {

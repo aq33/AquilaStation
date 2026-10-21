@@ -41,25 +41,26 @@
 	data["temp"] = temp ? aquila_split_topic_links(temp) : null
 	if(!authenticated || !can_view_medical_records(user))
 		return data
+	// Lista akt także przy otwartym rekordzie (okno z tg pokazuje ją obok)
+	if(screen in list(1, 2, 4))
+		var/list/medical_by_id = list()
+		for(var/datum/data/record/medical_record in GLOB.data_core.medical)
+			medical_by_id["[medical_record.fields["name"]]|[medical_record.fields["id"]]"] = medical_record
+		var/list/records = list()
+		for(var/datum/data/record/record in GLOB.data_core.general)
+			var/datum/data/record/medical_record = medical_by_id["[record.fields["name"]]|[record.fields["id"]]"]
+			records += list(list(
+				"name" = record.fields["name"],
+				"id" = record.fields["id"],
+				"rank" = record.fields["rank"],
+				"fingerprint" = record.fields["fingerprint"],
+				"dna" = medical_record?.fields["b_dna"] || "",
+				"blood_type" = medical_record?.fields["blood_type"] || "",
+				"physical" = record.fields["p_stat"],
+				"mental" = record.fields["m_stat"],
+			))
+		data["records"] = records
 	switch(screen)
-		if(1, 2)
-			var/list/medical_by_id = list()
-			for(var/datum/data/record/medical_record in GLOB.data_core.medical)
-				medical_by_id["[medical_record.fields["name"]]|[medical_record.fields["id"]]"] = medical_record
-			var/list/records = list()
-			for(var/datum/data/record/record in GLOB.data_core.general)
-				var/datum/data/record/medical_record = medical_by_id["[record.fields["name"]]|[record.fields["id"]]"]
-				records += list(list(
-					"name" = record.fields["name"],
-					"id" = record.fields["id"],
-					"rank" = record.fields["rank"],
-					"fingerprint" = record.fields["fingerprint"],
-					"dna" = medical_record?.fields["b_dna"] || "",
-					"blood_type" = medical_record?.fields["blood_type"] || "",
-					"physical" = record.fields["p_stat"],
-					"mental" = record.fields["m_stat"],
-				))
-			data["records"] = records
 		if(4)
 			data["general"] = medical_general_data()
 			data["medical"] = medical_record_data()

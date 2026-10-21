@@ -110,3 +110,35 @@
 		else
 			airlock_type = /obj/machinery/door/airlock/ship
 			airlock_glass = FALSE
+
+/// AQUILA: lista śluz dla okna TGUI RCD: nazwa = list(typ, szklana)
+/obj/item/construction/rcd/proc/get_rcd_airlock_types()
+	if(advanced_airlock_setting != 1)
+		return list(
+			"śluza okrętowa" = list(/obj/machinery/door/airlock/ship, FALSE),
+			"śluza okrętowa (szklana)" = list(/obj/machinery/door/airlock/ship/glass, TRUE),
+		)
+	return list(
+		"śluza standardowa" = list(/obj/machinery/door/airlock/ship/station, FALSE),
+		"śluza publiczna" = list(/obj/machinery/door/airlock/ship/public, FALSE),
+		"śluza inżynierii" = list(/obj/machinery/door/airlock/ship/engineering, FALSE),
+		"śluza ochrony" = list(/obj/machinery/door/airlock/ship/security, FALSE),
+		"śluza dowodzenia" = list(/obj/machinery/door/airlock/ship/command, FALSE),
+		"śluza medyczna" = list(/obj/machinery/door/airlock/ship/medical, FALSE),
+		"śluza górnicza" = list(/obj/machinery/door/airlock/ship/station/mining, FALSE),
+		"śluza techniczna" = list(/obj/machinery/door/airlock/ship/maintenance, FALSE),
+		"śluza zewnętrzna" = list(/obj/machinery/door/airlock/ship/external, FALSE),
+		"właz hermetyczny" = list(/obj/machinery/door/airlock/ship/hatch, FALSE),
+		"śluza okrętowa" = list(/obj/machinery/door/airlock/ship, FALSE),
+		"śluza standardowa (szklana)" = list(/obj/machinery/door/airlock/ship/station/glass, TRUE),
+		"śluza publiczna (szklana)" = list(/obj/machinery/door/airlock/ship/public/glass, TRUE),
+		"śluza inżynierii (szklana)" = list(/obj/machinery/door/airlock/ship/engineering/glass, TRUE),
+		"śluza ochrony (szklana)" = list(/obj/machinery/door/airlock/ship/security/glass, TRUE),
+		"śluza dowodzenia (szklana)" = list(/obj/machinery/door/airlock/ship/command/glass, TRUE),
+		"śluza medyczna (szklana)" = list(/obj/machinery/door/airlock/ship/medical/glass, TRUE),
+		"śluza górnicza (szklana)" = list(/obj/machinery/door/airlock/ship/station/mining/glass, TRUE),
+		"śluza techniczna (szklana)" = list(/obj/machinery/door/airlock/ship/maintenance/glass, TRUE),
+		"śluza zewnętrzna (szklana)" = list(/obj/machinery/door/airlock/ship/external/glass, TRUE),
+		"właz hermetyczny (szklany)" = list(/obj/machinery/door/airlock/ship/hatch/glass, TRUE),
+		"śluza okrętowa (szklana)" = list(/obj/machinery/door/airlock/ship/glass, TRUE),
+	)

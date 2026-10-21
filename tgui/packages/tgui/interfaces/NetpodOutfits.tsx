@@ -44,7 +44,7 @@ export const NetpodOutfits = (props) => {
 
   const selected =
     selectedType?.outfits?.find((outfit) => outfit.path === netsuit)?.name ??
-    'None';
+    'Brak';
 
   return (
     <Window title="Netpod" height={300} width={400}>
@@ -57,7 +57,7 @@ export const NetpodOutfits = (props) => {
               buttons={
                 <Input
                   autoFocus
-                  onChange={(_, value) => setSearch(value)}
+                  onChange={setSearch}
                   placeholder="Szukaj"
                   value={search}
                 />

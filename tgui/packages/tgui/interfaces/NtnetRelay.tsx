@@ -5,34 +5,41 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
-  dos_capacity: any;
-  dos_crashed: any;
-  dos_overload: any;
-  enabled: any;
+  enabled: BooleanLike;
+  dos_capacity: number;
+  dos_overload: number;
+  dos_crashed: BooleanLike;
 };
+
+const OUTAGE_WARNING = `System ma chwilową awarię z powodu przepełnienia
+buforów ruchu. Dopóki zbuforowany ruch nie zostanie przetworzony, wszystkie
+kolejne żądania będą odrzucane. Częste występowanie tego błędu może
+oznaczać niewystarczającą przepustowość sprzętu Twojej sieci. Skontaktuj
+się z działem planowania sieci, aby uzyskać instrukcje rozwiązania problemu.`;
 
 export const NtnetRelay = (props) => {
   const { act, data } = useBackend<Data>();
-
   const { enabled, dos_capacity, dos_overload, dos_crashed } = data;
 
   return (
-    <Window width={400} height={300}>
+    <Window title="Przekaźnik kwantowy NtNet" width={400} height={300}>
       <Window.Content>
         <Section
-          title="Network Buffer"
+          title="Bufor sieci"
           buttons={
             <Button
               icon="power-off"
               selected={enabled}
-              content={enabled ? 'ENABLED' : 'DISABLED'}
               onClick={() => act('toggle')}
-            />
+            >
+              {enabled ? 'WŁĄCZONY' : 'WYŁĄCZONY'}
+            </Button>
           }
         >
           {!dos_crashed ? (
@@ -47,29 +54,23 @@ export const NtnetRelay = (props) => {
             </ProgressBar>
           ) : (
             <Box fontFamily="monospace">
-              <Box fontSize="20px">NETWORK BUFFER OVERFLOW</Box>
-              <Box fontSize="16px">OVERLOAD RECOVERY MODE</Box>
-              <Box>
-                This system is suffering temporary outage due to overflow of
-                traffic buffers. Until buffered traffic is processed, all
-                further requests will be dropped. Frequent occurences of this
-                error may indicate insufficient hardware capacity of your
-                network. Please contact your network planning department for
-                instructions on how to resolve this issue.
-              </Box>
+              <Box fontSize="20px">PRZEPEŁNIENIE BUFORA SIECI</Box>
+              <Box fontSize="16px">TRYB ODZYSKIWANIA PO PRZECIĄŻENIU</Box>
+              <Box>{OUTAGE_WARNING}</Box>
               <Box fontSize="20px" color="bad">
-                ADMINISTRATOR OVERRIDE
+                OBEJŚCIE ADMINISTRATORA
               </Box>
               <Box fontSize="16px" color="bad">
-                CAUTION - DATA LOSS MAY OCCUR
+                UWAGA - MOŻLIWA UTRATA DANYCH
               </Box>
               <Button
                 icon="signal"
-                content="PURGE BUFFER"
                 mt={1}
                 color="bad"
                 onClick={() => act('restart')}
-              />
+              >
+                WYCZYŚĆ BUFOR
+              </Button>
             </Box>
           )}
         </Section>

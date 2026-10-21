@@ -1,46 +1,53 @@
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+import type { BooleanLike } from 'tgui-core/react';
+
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
-type Data = Record<string, any>;
+type Data = {
+  allowed: BooleanLike;
+  items: { ref: string; name: string }[];
+};
 
 export const NoticeBoard = (props) => {
   const { act, data } = useBackend<Data>();
-  const { allowed, items = {} } = data;
+  const { allowed, items = [] } = data;
 
   return (
-    <Window width={425} height={176}>
+    <Window width={425} height={220}>
       <Window.Content backgroundColor="#704D25">
         {!items.length ? (
           <Section>
             <Box color="white" align="center">
-              The notice board is empty!
+              Tablica ogłoszeń jest pusta!
             </Box>
           </Section>
         ) : (
-          items.map((item, index) => (
-            <Flex
+          items.map((item) => (
+            <Stack
               key={item.ref}
               color="black"
               backgroundColor="white"
               style={{ padding: '2px 2px 0 2px' }}
               mb={0.5}
             >
-              <Flex.Item align="center" grow={1}>
+              <Stack.Item align="center" grow>
                 <Box align="center">{item.name}</Box>
-              </Flex.Item>
-              <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
                 <Button
-                  icon="search"
+                  icon="eye"
+                  tooltip="Obejrzyj"
                   onClick={() => act('examine', { ref: item.ref })}
                 />
                 <Button
                   icon="eject"
+                  tooltip="Zdejmij"
                   disabled={!allowed}
                   onClick={() => act('remove', { ref: item.ref })}
                 />
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           ))
         )}
       </Window.Content>
