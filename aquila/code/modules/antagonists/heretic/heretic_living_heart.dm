@@ -69,7 +69,7 @@
  */
 /datum/action/cooldown/track_target
 	name = "Living Heartbeat"
-	desc = "LPM: wybierz cel ofiarny do namierzenia. PPM: namierz ponownie ostatni wybrany cel."
+	desc = "LPM: wybierz cel ofiarny do namierzenia. PPM (w intencjach: na rozbrajaniu): namierz ponownie ostatni wybrany cel."
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_ecult"
 	icon_icon = 'aquila/icons/obj/antags/eldritch.dmi'

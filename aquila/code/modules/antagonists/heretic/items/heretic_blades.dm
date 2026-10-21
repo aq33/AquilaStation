@@ -260,7 +260,7 @@
 	var/examine_text = {"Pozwala kreślić krwawe runy kultu Nar'Sie.
 	Połączenie pozaświatowej mocy i potęgi Nar'Sie pozwala rysować runy znacznie szybciej,
 	a samo ostrze jest groźniejsze niż zwykle.\n
-	<b>Kultyści mogą je też rozbić w dłoni (prawym przyciskiem), by teleportować się w miarę bezpieczne miejsce.</b>"}
+	<b>Kultyści mogą je też rozbić w dłoni (prawym przyciskiem albo na intencji rozbrajania), by teleportować się w miarę bezpieczne miejsce.</b>"}
 
 	AddComponent(/datum/component/cult_ritual_item, span_cult(examine_text), turfs_that_boost_us = /turf) // Always fast to draw!
 

@@ -11,7 +11,7 @@
 // Unique bottle that lets you instantly draw blood from a victim
 /obj/item/reagent_containers/glass/phylactery
 	name = "phylactery of damnation"
-	desc = "Służy do kradzieży krwi przyszłym ofiarom. Prawym przyciskiem pobierasz krew, nawet z daleka."
+	desc = "Służy do kradzieży krwi przyszłym ofiarom. Prawym przyciskiem (w intencjach: na rozbrajaniu) pobierasz krew, nawet z daleka."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	icon_state = "phylactery"
 	possible_transfer_amounts = list(5)

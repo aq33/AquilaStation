@@ -3,7 +3,7 @@
 	desc = "Zaklęcie dotyku, które pozwala pozyskiwać albo przywracać ciało celu. \
 		Lewym przyciskiem wyjmujesz organy ofiary bez operacji i patroszenia. \
 		Możesz też chwycić leżący organ i wsadzić go ofierze. \
-		Prawym przyciskiem leczysz swoje przywołańce i sługi oraz uszkodzone organy."
+		Prawym przyciskiem (w intencjach: na rozbrajaniu) leczysz swoje przywołańce i sługi oraz uszkodzone organy."
 	background_icon_state = "bg_ecult"
 	overlay_icon_state = "bg_ecult"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'

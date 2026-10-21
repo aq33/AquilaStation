@@ -239,7 +239,7 @@ const GuideSection = () => {
           - Szukaj na stacji&nbsp;
           <span style={hereticPurple}>wpływów</span>
           &nbsp;rozdzierających rzeczywistość, niewidocznych dla zwykłego oka, i
-          klikaj je <b>prawym przyciskiem</b>, by zbierać z nich&nbsp;
+          klikaj je <b>pustą ręką</b>, by zbierać z nich&nbsp;
           <span style={hereticBlue}>punkty wiedzy</span>. Po krótkim czasie
           wyssany wpływ staje się widoczny dla wszystkich. Sny o Mansusie mogą
           pomóc w ich odnalezieniu.

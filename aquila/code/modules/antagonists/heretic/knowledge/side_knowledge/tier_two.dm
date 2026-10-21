@@ -10,7 +10,7 @@
 /datum/heretic_knowledge/codex_morbus
 	name = "Codex Morbus"
 	desc = "Spisz Codex Morbus.<br>Rysuje runy i wysysa esencje nieco szybciej niż Codex Cicatrix.<br>\
-		Kliknij prawym przyciskiem na runę, by przeklinać członków załogi - do zadziałania klątwy potrzebujesz krwi celu w drugiej ręce \
+		Kliknij prawym przyciskiem (w intencjach: na rozbrajaniu) na runę, by przeklinać członków załogi - do zadziałania klątwy potrzebujesz krwi celu w drugiej ręce \
 		(najlepiej w połączeniu z Phylactery of Damnation)."
 	transmute_text = "Transmutuj Codex Cicatrix i ciało w Codex Morbus."
 	gain_text = "Grzbiet tego oprawnego w skórę tomu skrzypi z niesamowicie bolesnym westchnieniem. \

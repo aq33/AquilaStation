@@ -96,7 +96,7 @@
 /obj/item/codex_cicatrix/morbus/examine(mob/user)
 	. = ..()
 	if(IS_HERETIC(user))
-		. += span_info("Klikając prawym przyciskiem w runę z krwią ofiary w drugiej ręce, rzucisz klątwę.")
+		. += span_info("Klikając [user.secondary_click_text()] w runę z krwią ofiary w drugiej ręce, rzucisz klątwę.")
 		return
 	. += span_danger("Oczy przestają mrugać. Wpatrują się w ciebie. Ich spojrzenie pali...")
 	if(!ishuman(user))

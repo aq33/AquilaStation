@@ -513,7 +513,7 @@
 	if(!should_show_aura())
 		return
 	overlays += eldritch_overlay
-	overlays += emissive_appearance(eldritch_overlay.icon, eldritch_overlay.icon_state)
+	// AQUILA - bez nakładki emissive: u nas na mobie rysowała się jako biały prostokąt
 
 /// Adds an overlay to the heretic
 /datum/antagonist/heretic/proc/update_heretic_aura()
