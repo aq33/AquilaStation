@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(huds, list(
 	/*ANTAG_HUD_HERETIC = */new/datum/atom_hud/antag/hidden(),
 	/*ANTAG_HUD_BLOODLING = */new/datum/atom_hud/antag(), //NSV13 bloodling
 	/*DATA_HUD_SQUAD = */new/datum/atom_hud/data/human/squad_hud(), //NSV13 squad
-	/*ANTAG_HUD_VAMPIRE = */new/datum/atom_hud/antag/hidden(), // AQ EDIT vampire
+	/*ANTAG_HUD_VAMPIRE = */new/datum/atom_hud/antag(), // AQ EDIT vampire - wampiry i wasale widzą się nawzajem
 	/*ANTAG_HUD_PARADOX_CLONE = */new/datum/atom_hud/antag/hidden(), // AQ EDIT paradox clone
 	))
 
