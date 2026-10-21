@@ -113,7 +113,7 @@
 			return
 	//Path find to target if they're too far away
 	if(target && path.len == 0 && (get_dist(src,target) > 1))
-		path = get_path_to(src, target, max_distance=30, mintargetdist=1, access=access_card.GetAccess())
+		path = get_path_to(src, target, max_distance=30, mintargetdist=1, id=access_card)
 		mode = BOT_MOVING
 		if(!path.len)
 			add_to_ignore(target)
