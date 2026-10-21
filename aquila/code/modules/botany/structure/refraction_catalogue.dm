@@ -1,6 +1,6 @@
 /obj/machinery/refraction_catalogue
-	name = "refraction matrix"
-	desc = "An experimental device used to calculate plant reagent refraction coefficients."
+	name = "matryca refrakcyjna"
+	desc = "Eksperymentalne urządzenie do wyliczania współczynników refrakcji odczynników roślinnych."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "refractor"
 	density = TRUE
@@ -40,9 +40,9 @@
 	if(!isliving(user))
 		return
 	if(disk)
-		context.add_right_click_action("Remove Plant Disk")
+		context.add_right_click_action("Wyjmij dysk danych roślin")
 	else
-		context.add_left_click_action("Insert Plant Disk")
+		context.add_left_click_action("Włóż dysk danych roślin")
 
 /obj/machinery/refraction_catalogue/RefreshParts()
 	. = ..()
@@ -71,7 +71,7 @@
 	else if(istype(C, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/container = C
 		if(!length(container.reagents.reagent_list))
-			to_chat(user, span_warning("[container] is empty!"))
+			to_chat(user, span_warning("Pojemnik ([container]) jest pusty!"))
 			return ..()
 		var/length_check = 0
 		for(var/datum/reagent/reagent as anything in container.reagents.reagent_list)
@@ -84,10 +84,10 @@
 			sampled_reagents += "[reagent.type]"
 			length_check += 1
 		if(!length_check)
-			say("ERROR: Unable to sequence sample. Refraction index not present.")
+			say("BŁĄD: Nie można zsekwencjonować próbki. Brak współczynnika refrakcji.")
 			playsound(src, 'sound/machines/terminal_error.ogg', 60)
 			return
-		to_chat(user, span_notice("You sample reagents from [container]."))
+		to_chat(user, span_notice("Pobierasz próbkę odczynników z pojemnika ([container])."))
 		playsound(src, 'sound/machines/terminal_processing.ogg', 15, TRUE)
 		ui_update()
 		return
@@ -131,7 +131,7 @@
 		if("upload_coords")
 			if(!disk)
 				playsound(src, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: No disk inserted!")
+				say("BŁĄD: Brak dysku!")
 				return
 			if(disk.saved)
 				QDEL_NULL(disk.saved)
@@ -144,13 +144,13 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/refraction_catalogue
-	name = "refraction matrix (Machine Board)"
+	name = "matryca refrakcyjna (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/refraction_catalogue
 	req_components = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/stock_parts/manipulator = 1, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/refraction_catalogue
-	name = "Refraction Matrix Board"
+	name = "Płytka matrycy refrakcyjnej"
 	id = "refraction_catalogue_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/refraction_catalogue

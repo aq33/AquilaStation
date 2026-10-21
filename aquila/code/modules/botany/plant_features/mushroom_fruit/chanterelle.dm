@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/chanterelle
 	species_name = "flavo poculum"
-	name = "chanterelle"
+	name = "kurka"
 	icon_state = "chanterelle"
 	seed_icon_state = "mycelium-chanter"
 	fruit_product = /obj/item/food/grown/mushroom/chanterelle
@@ -17,7 +17,7 @@
 */
 /datum/plant_feature/fruit/mushroom/chanterelle/jupiter
 	species_name = "purpura poculum"
-	name = "jupiter cup"
+	name = "czasza Jowisza"
 	icon_state = "chanterelle"
 	colour_overlay = "chanterelle_colour"
 	colour_override = "#ac2525"

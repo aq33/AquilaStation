@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/grape
 	species_name = "uva erubesco"
-	name = "grape"
+	name = "winogrono"
 	icon_state = "grapes"
 	colour_override = "#c21273"
 	seed_icon_state = "seed-grapes"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/grape/green
 	species_name = "uva viridis"
-	name = "green grape"
+	name = "zielone winogrono"
 	colour_override = "#a1cc6f"
 	seed_icon_state = "seed-greengrapes"
 	fruit_product = /obj/item/food/grown/grapes/green

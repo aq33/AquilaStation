@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/eggplant
 	species_name = "aubergine purpura"
-	name = "eggplant"
+	name = "bakłażan"
 	icon_state = "eggplant"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-eggplant"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/eggplant/egg
 	species_name = "aubergine ovum"
-	name = "egg-plant"
+	name = "bakłażan jajeczny"
 	icon_state = "eggplant-2"
 	seed_icon_state = "seed-eggy"
 	fruit_product = /obj/item/food/grown/shell/eggy

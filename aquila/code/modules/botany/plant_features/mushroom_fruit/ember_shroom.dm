@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/embershroom
 	species_name = "calidum sporis"
-	name = "embershroom"
+	name = "żarogrzyb"
 	icon_state = "ball"
 	colour_overlay = "ball_colour"
 	colour_override = "#505050"
@@ -21,7 +21,7 @@
 */
 /datum/plant_feature/fruit/mushroom/embershroom/inocybe
 	species_name = "inocybe sporis"
-	name = "inocybe"
+	name = "strzępiak"
 	icon_state = "button"
 	colour_overlay = "button_colour"
 	seed_icon_state = "mycelium-inocybe"
@@ -34,7 +34,7 @@
 */
 /datum/plant_feature/fruit/mushroom/embershroom/porcini
 	species_name = "porcini sporis"
-	name = "porcini"
+	name = "borowik"
 	icon_state = "chanterelle"
 	colour_overlay = "chanterelle_colour"
 	seed_icon_state = "mycelium-porcini"
@@ -47,7 +47,7 @@
 */
 /datum/plant_feature/fruit/mushroom/embershroom/polypore
 	species_name = "polypore sporis"
-	name = "polypore"
+	name = "huba"
 	icon_state = "fly"
 	colour_overlay = "fly_colour"
 	seed_icon_state = "mycelium-polypore"

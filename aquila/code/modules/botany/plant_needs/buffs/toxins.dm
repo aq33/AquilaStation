@@ -13,7 +13,7 @@
 	do_buff_appearance = FALSE
 
 /datum/plant_need/reagent/buff/toxin/New(datum/plant_feature/_parent)
-	need_description = "This plant is susceptible to toxic reagents, which will damage the plant for [GENERIC_TOXIN_DAMAGE] health."
+	need_description = "Ta roślina jest wrażliwa na toksyczne odczynniki, które odbierają jej [GENERIC_TOXIN_DAMAGE] pkt zdrowia."
 	return ..()
 
 /datum/plant_need/reagent/buff/toxin/apply_buff(__delta_time)

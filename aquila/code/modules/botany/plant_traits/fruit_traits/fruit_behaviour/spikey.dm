@@ -2,8 +2,8 @@
 	spikey, makes fruit embed when thrown at mobs
 */
 /datum/plant_trait/fruit/spikey
-	name = "Spikey"
-	desc = "The fruit becomes spikey, causing it to embed into targets."
+	name = "Kolczastość"
+	desc = "Owoc pokrywa się kolcami, przez co wbija się w cele."
 
 /datum/plant_trait/fruit/spikey/setup_fruit_parent()
 	. = ..()

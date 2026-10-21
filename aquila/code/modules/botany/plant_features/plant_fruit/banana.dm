@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/banana
 	species_name = "lycopersicum solanum"
-	name = "banana"
+	name = "banan"
 	icon_state = "banana"
 	bunch_icon = "banana_bunch"
 	icon_uneven = TRUE
@@ -35,7 +35,7 @@
 */
 /datum/plant_feature/fruit/banana/bluespace
 	species_name = "lycopersicum fatum"
-	name = "bluespace banana"
+	name = "bluespace'owy banan"
 	icon_state = "mimana"
 	bunch_icon = "mimana_bunch"
 	colour_override = "#4abaff"
@@ -51,7 +51,7 @@
 	Bombnana
 */
 /datum/plant_feature/fruit/banana/bomb
-	name = "bombnana"
+	name = "bombanan"
 	species_name = "lycopersicum solanum sp."
 	seed_icon_state = "seed-bombnana"
 	fruit_product = /obj/item/food/grown/banana/bombanana

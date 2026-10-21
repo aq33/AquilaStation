@@ -1,6 +1,6 @@
 /datum/plant_feature/roots
 	species_name = "primum radices"
-	name = "roots"
+	name = "korzenie"
 	feature_catagories = PLANT_FEATURE_ROOTS
 	trait_type_shortcut = /datum/plant_feature/roots
 	genetic_budget = 1
@@ -19,13 +19,13 @@
 	access_whitelist = typecacheof(access_whitelist)
 	//Generate compatible substrate dialogue - Semi messy code, whatever
 	if(compatible_substrate & PLANT_SUBSTRATE_DIRT)
-		substrate_dialogue += "Dirt "
+		substrate_dialogue += "ziemia "
 	if(compatible_substrate & PLANT_SUBSTRATE_SAND)
-		substrate_dialogue += "Sand "
+		substrate_dialogue += "piasek "
 	if(compatible_substrate & PLANT_SUBSTRATE_CLAY)
-		substrate_dialogue += "Clay "
+		substrate_dialogue += "glina "
 	if(compatible_substrate & PLANT_SUBSTRATE_DEBRIS)
-		substrate_dialogue += "Debris "
+		substrate_dialogue += "gruz "
 
 /datum/plant_feature/roots/setup_parent(_parent, reset_features)
 //Reset
@@ -41,12 +41,12 @@
 	. = ..()
 	var/list/dialogue = .
 	var/grouping = dialogue[3]
-	grouping += "Compatible Substrate: [substrate_dialogue]\n"
+	grouping += "Pasujące podłoże: [substrate_dialogue]\n"
 	dialogue[3] = grouping
 
 /datum/plant_feature/roots/get_ui_data()
 	. = ..()
-	. += list(PLANT_DATA("Compatible Substrate", "[substrate_dialogue]"), PLANT_DATA(null, null))
+	. += list(PLANT_DATA("Pasujące podłoże", "[substrate_dialogue]"), PLANT_DATA(null, null))
 
 /datum/plant_feature/roots/setup_parent(_parent, reset_features)
 	if(parent)
@@ -64,7 +64,7 @@
 /datum/plant_feature/roots/proc/catch_seed_examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
 
-	examine_text += "<span class='notice'>These seeds can be planted in: <b>[substrate_dialogue]</b></span>"
+	examine_text += "<span class='notice'>Te nasiona można zasadzić w podłożu: <b>[substrate_dialogue]</b></span>"
 
 /datum/plant_feature/roots/proc/catch_substrate(datum/source, datum/plant_subtrate/polling_substrate)
 	SIGNAL_HANDLER

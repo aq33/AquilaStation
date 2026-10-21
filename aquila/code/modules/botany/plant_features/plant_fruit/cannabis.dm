@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/cannabis
 	species_name = "alta folium"
-	name = "cannabis" //All cannabis leafs have the same name, only observant people will tell their strains apart
+	name = "konopie" //All cannabis leafs have the same name, only observant people will tell their strains apart
 	icon_state = "cannabis"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-cannabis"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/cannabis/death
 	species_name = "mors folium"
-	name = "cannabis sp."
+	name = "konopie sp."
 	icon_state = "cannabis-2"
 	colour_override = "#918181"
 	seed_icon_state = "seed-blackcannabis"
@@ -32,7 +32,7 @@
 */
 /datum/plant_feature/fruit/cannabis/life
 	species_name = "vita folium"
-	name = "cannabis sp."
+	name = "konopie sp."
 	icon_state = "cannabis-2"
 	colour_override = "#deecd3"
 	seed_icon_state = "seed-whitecannabis"
@@ -47,7 +47,7 @@
 /datum/plant_feature/fruit/cannabis/rainbow
 	species_name = "iris folium"
 	icon_state = "cannabis-2"
-	name = "cannabis sp."
+	name = "konopie sp."
 	colour_override = "#ff0000"
 	seed_icon_state = "seed-megacannabis"
 	fruit_product = /obj/item/food/grown/cannabis/rainbow
@@ -69,7 +69,7 @@
 /datum/plant_feature/fruit/cannabis/omega
 	species_name = "omega folium"
 	icon_state = "cannabis-2"
-	name = "cannabis sp."
+	name = "konopie sp."
 	colour_override = "#15ff00"
 	seed_icon_state = "seed-ocannabis"
 	genetic_budget = 4

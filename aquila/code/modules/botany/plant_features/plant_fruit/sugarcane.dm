@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/sugarcane
 	species_name = "dulcis ferula"
-	name = "sugarcane"
+	name = "trzcina cukrowa"
 	icon_state = "sugar"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-sugarcane"
@@ -21,7 +21,7 @@
 */
 /datum/plant_feature/fruit/bamboo
 	species_name = "quis fermentum"
-	name = "bamboo"
+	name = "bambus"
 	icon_state = "bamboo"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-bamboo"

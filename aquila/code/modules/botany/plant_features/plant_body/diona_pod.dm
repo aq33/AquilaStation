@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/diona_pod
 	species_name = "terra arbore"
-	name = "diona vine"
+	name = "pnącze diony"
 	icon_state = "diona_vine"
 	draw_below_water = FALSE
 	yields = PLANT_BODY_YIELD_MICRO

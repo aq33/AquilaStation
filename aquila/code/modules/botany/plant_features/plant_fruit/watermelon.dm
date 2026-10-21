@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/watermelon
 	species_name = "pepo magna"
-	name = "watermelon"
+	name = "arbuz"
 	icon_state = "watermelon"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-watermelon"
@@ -21,7 +21,7 @@
 */
 /datum/plant_feature/fruit/watermelon/holy
 	species_name = "pepo sanctus"
-	name = "holy watermelon"
+	name = "święty arbuz"
 	icon_state = "watermelon-2"
 	colour_override = "#ffff0a"
 	seed_icon_state = "seed-holymelon"
@@ -38,7 +38,7 @@
 */
 /datum/plant_feature/fruit/watermelon/ballolon
 	species_name = "pepo volare"
-	name = "ballolon"
+	name = "balonarbuz"
 	icon_state = "watermelon-2"
 	colour_override = "#ad002b"
 	seed_icon_state = "seed-ballolon"

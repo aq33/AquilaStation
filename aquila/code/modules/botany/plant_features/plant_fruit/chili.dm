@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/chili/ghost
 	species_name = "purus exspiravit"
-	name = "ghost chili"
+	name = "upiorne chili"
 	icon_state = "chili"
 	colour_override = "#e9cdcf"
 	seed_icon_state = "seed-chilighost"
@@ -34,7 +34,7 @@
 */
 /datum/plant_feature/fruit/chili/blue
 	species_name = "purus frigus"
-	name = "ice pepper"
+	name = "lodowa papryka"
 	icon_state = "chili"
 	colour_override = "#4c00ff"
 	seed_icon_state = "seed-icepepper"

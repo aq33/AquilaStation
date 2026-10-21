@@ -4,8 +4,8 @@
 */
 
 /datum/plant_trait/fruit/fireproof
-	name = "Fireproof"
-	desc = "The fruit is fireproof and will withstand otherwise destructive temperatures. Additionally balances the fruit's genetic composistion."
+	name = "Ognioodporność"
+	desc = "Owoc jest ognioodporny i wytrzymuje temperatury, które normalnie by go zniszczyły. Dodatkowo stabilizuje jego skład genetyczny."
 	genetic_cost = -1
 
 /datum/plant_trait/fruit/fireproof/setup_fruit_parent()

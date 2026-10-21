@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/starthistle
 	species_name = "stella carduus"
-	name = "starthistle"
+	name = "oset gwiaździsty"
 	icon_state = "star"
 	seed_icon_state = "seed-starthistle"
 	fruit_product = /obj/item/plant_seeds/preset/starthistle
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/starthistle/galaxy
 	species_name = "galaxia carduus"
-	name = "galaxythistle"
+	name = "galaktyczny oset"
 	icon_state = "galaxy"
 	seed_icon_state = "seed-galaxythistle"
 	fruit_product = /obj/item/food/grown/galaxythistle

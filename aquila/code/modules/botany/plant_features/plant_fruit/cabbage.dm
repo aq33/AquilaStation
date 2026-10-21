@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/cabbage
 	species_name = "brassica infantem"
-	name = "cabbage"
+	name = "kapusta"
 	icon_state = "cabbage"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-cabbage"
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/cabbage/diona
 	species_name = "brassica homo"
-	name = "replica pod"
+	name = "strąk replikujący"
 	icon_state = "invincible"
 	seed_icon_state = "seed-dionapod"
 	fruit_product = /obj/item/plant_seeds/preset/diona_pod

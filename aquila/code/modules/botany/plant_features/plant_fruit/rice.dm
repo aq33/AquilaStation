@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/rice
 	species_name = "alba parva"
-	name = "rice"
+	name = "ryż"
 	icon_state = "corn-2"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-rice"

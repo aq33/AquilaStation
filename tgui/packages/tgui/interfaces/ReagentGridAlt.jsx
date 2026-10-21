@@ -123,7 +123,7 @@ class ReagentGrid extends Component {
       <Flex height="100%" width="100%" direction="row">
         <Flex height="100.1%" width="70%" direction="column">
           <Section>
-            {`${this.hovered_reagent ? all_reagent_data[this.hovered_reagent]['GRID_REAGENT_NAME'] : 'No Data'}`}{' '}
+            {`${this.hovered_reagent ? all_reagent_data[this.hovered_reagent]['GRID_REAGENT_NAME'] : 'Brak danych'}`}{' '}
             {`(${list_accuracy})`}
             {`(${(this.svgPosition.x + this.dynamicXOffset) / 10}`}
             {' : '}
@@ -132,7 +132,7 @@ class ReagentGrid extends Component {
           <Section>
             <Input
               width={'88%'}
-              placeholder={'Search...'}
+              placeholder={'Szukaj...'}
               onInput={(e, value) => setSearchText(value)}
             />
             <Button
@@ -1269,14 +1269,14 @@ class ReagentGrid extends Component {
             <Section width="100%">
               {selected_reagent
                 ? all_reagent_data[selected_reagent]['GRID_REAGENT_NAME']
-                : 'No Data'}
+                : 'Brak danych'}
               <Divider />
-              {`Accuracy: ${selected_reagent ? (1 / (all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'] * all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'])) * 100 + '%' : 'No Data'}`}
+              {`Dokładność: ${selected_reagent ? (1 / (all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'] * all_reagent_data[selected_reagent]['GRID_REAGENT_SIZE'])) * 100 + '%' : 'Brak danych'}`}
               <Button
                 className="plant__button--beacon"
                 icon="info"
                 ml="15%"
-                tooltip="Accuracy represents the likelihood of each grid coordinate being a stable refraction."
+                tooltip="Dokładność oznacza prawdopodobieństwo, że dany punkt siatki jest stabilną refrakcją."
               />
               <Divider />
               <Button
@@ -1287,13 +1287,13 @@ class ReagentGrid extends Component {
                   act('upload_coords');
                 }}
               >
-                Compile Refraction Index
+                Skompiluj indeks refrakcji
               </Button>
             </Section>
           </Flex.Item>
           <Flex.Item height="100%">
             <Section height="100%" width="100%">
-              Sampled Refractions
+              Próbkowane refrakcje
               <Divider />
               <Box className={'scrollbox'} height={'500px'} overflowY="scroll">
                 {Object.entries(sampled_reagents).map(([data_list_key]) => (
@@ -1378,8 +1378,8 @@ export const ReagentGridAlt = (props) => {
           </Flex.Item>
           <Flex.Item>
             <Section textAlign={'start'} width="100%">
-              <Box>Yamato OS [Version 19.89.3.5]</Box>
-              <Box>© 2554 Yamato. All Rights Reserved.</Box>
+              <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+              <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
               <br />
               <Box>
                 {'C:\\Users\\admin>'}

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/pineapple
 	species_name = "bracchium spinosum"
-	name = "pineapple stalk"
+	name = "łodyga ananasa"
 	icon_state = "pineapple_stalk"
 	growth_prefix = "bush"
 	growth_stages = 3

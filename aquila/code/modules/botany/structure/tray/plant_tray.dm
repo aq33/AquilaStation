@@ -1,6 +1,6 @@
 /obj/item/plant_tray
-	name = "plant tray"
-	desc = "A fifth generation space compatible botanical growing tray. "
+	name = "taca hydroponiczna"
+	desc = "Kosmiczna taca do uprawy roślin piątej generacji. "
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "tray"
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE|KEEP_TOGETHER
@@ -9,7 +9,7 @@
 	pass_flags_self = PASSSTRUCTURE
 	pass_flags = NONE
 	interaction_flags_item = INTERACT_ATOM_ATTACK_HAND
-	obj_flags = CAN_BE_HIT
+	// AQUILA - bez CAN_BE_HIT: wsypywanie podłoża, sadzenie czy podlewanie nie ma animacji uderzenia, bić tacę można w combat mode (attackby)
 	///What is this tray labeled as
 	var/label
 	///Reagents volume
@@ -97,22 +97,22 @@
 	if(!use_indicators)
 		return
 // Tray - scanner interopt
-	. += span_notice("You can use a plant scanner to diagnose status lights.")
+	. += span_notice("Skanerem roślin możesz sprawdzić, co oznaczają kontrolki.")
 // Lights
 	if(length(harvestable_components) || length(needy_features) || length(problem_features))
 		. += "<hr />"
 	// Harvest
 	if(length(harvestable_components))
-		. += span_notice("The (green) harvest indicator is lit up, plants are ready to be harvested!")
+		. += span_notice("Świeci się (zielona) kontrolka zbioru, rośliny są gotowe do zbioru!")
 	// Needs
 	if(length(needy_features))
-		. += span_notice("The (yellow) need indicator is lit up, plants have unmet needs!")
+		. += span_notice("Świeci się (żółta) kontrolka potrzeb, rośliny mają niezaspokojone potrzeby!")
 	// Weeds
 	if(length(needy_features) && tray_component?.weed_level >= 50)
-		. += span_notice("The (yellow) need indicator is lit up, the tray needs to be weeded!")
+		. += span_notice("Świeci się (żółta) kontrolka potrzeb, tacę trzeba odchwaścić!")
 	// Problems
 	if(length(problem_features))
-		. += span_notice("The (red) problem indicator is lit up, there's something wrong with the plants!")
+		. += span_notice("Świeci się (czerwona) kontrolka problemu, coś jest nie tak z roślinami!")
 
 /obj/item/plant_tray/process(delta_time)
 	//Need to update this semi-constantly so it works with plumbing
@@ -136,17 +136,17 @@
 /obj/item/plant_tray/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(length(harvest))
-		to_chat(user, span_danger("Harvest plants by clicking on them!"))
-	to_chat(user, span_danger("You need a plant scanner to check weed level, and alert descriptions."))
+		to_chat(user, span_danger("Zbieraj plony, klikając na rośliny!"))
+	to_chat(user, span_danger("Do sprawdzenia poziomu chwastów i opisów alarmów potrzebny jest skaner roślin."))
 
 /obj/item/plant_tray/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
-	context.add_right_click_tool_action("Plant Seeds", TOOL_SEED)
-	context.add_right_click_item_action("Remove All Plants", /obj/item/shovel)
-	context.add_left_click_item_action("Check Alerts", /obj/item/plant_scanner)
-	context.add_left_click_item_action("Fill Tray", /obj/item/substrate_bag)
-	context.add_alt_click_action("Rotate Plumbing")
+	context.add_right_click_tool_action("Zasadź nasiona", TOOL_SEED)
+	context.add_right_click_item_action("Usuń wszystkie rośliny", /obj/item/shovel)
+	context.add_left_click_item_action("Sprawdź alarmy", /obj/item/plant_scanner)
+	context.add_left_click_item_action("Napełnij tacę", /obj/item/substrate_bag)
+	context.add_alt_click_action("Obróć hydraulikę")
 
 //Wrench behaviour for plumbing stuff
 /obj/item/plant_tray/wrench_act(mob/living/user, obj/item/tool)
@@ -163,6 +163,8 @@
 
 /obj/item/plant_tray/attackby(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
+	if(!. && user.combat_mode)
+		return attacking_item.attack_obj(src, user)
 	if(istype(attacking_item, /obj/item/pen))
 		label_tray(user)
 		return
@@ -295,7 +297,7 @@
 /obj/item/plant_tray/proc/label_tray(mob/user)
 	if(QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input = tgui_input_text(user, "New label", "New label", "label", MAX_NAME_LEN)
+	var/input = tgui_input_text(user, "Nowa etykieta", "Nowa etykieta", "etykieta", MAX_NAME_LEN)
 	if(QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	//Blank input removes label
@@ -304,6 +306,6 @@
 		return
 	//check for slurs
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(user, span_warning("Your message contains forbidden words."))
+		to_chat(user, span_warning("Twoja wiadomość zawiera zakazane słowa."))
 		return
 	name = "[initial(name)] ([input])"

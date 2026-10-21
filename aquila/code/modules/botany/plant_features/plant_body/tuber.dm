@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/tuber
 	species_name = "infra lutum"
-	name = "tuber"
+	name = "bulwa"
 	icon_state = ""
 	overlay_positions = list(list(16,6))
 	yields = PLANT_BODY_YIELD_MICRO

@@ -1,7 +1,7 @@
 /datum/plant_trait/nectar
-	name = "Nectar"
-	desc = "Makes this plant benehfit from bee polination, and spreads those buffs to all plants in the same tray.\n	Polinated plants will regain half their missing health, and all their buffs \
-	will be active for a short duration."
+	name = "Nektar"
+	desc = "Roślina korzysta na zapylaniu przez pszczoły i przekazuje te wzmocnienia wszystkim roślinom na tej samej tacy.\n	Zapylone rośliny odzyskują połowę brakującego zdrowia, a wszystkie ich wzmocnienia \
+	działają przez krótki czas."
 	//plant_feature_compat = /datum/plant_feature/fruit/flower
 	random_trait = FALSE
 	///Quick reference to our parent's component parent

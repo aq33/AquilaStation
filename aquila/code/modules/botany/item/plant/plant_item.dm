@@ -1,6 +1,6 @@
 /obj/item/plant
-	name = "plant"
-	desc = "A little bit of nature, mostly stationary."
+	name = "roślina"
+	desc = "Odrobina natury, przeważnie nieruchoma."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = ""
 	flags_1 = IS_ONTOP_1
@@ -25,7 +25,7 @@
 	. = ..()
 	if(!isliving(user))
 		return
-	context.add_left_click_item_action("Move", /obj/item/shovel)
+	context.add_left_click_item_action("Przenieś", /obj/item/shovel)
 
 /obj/item/plant/apply_outline(colour)
 	return

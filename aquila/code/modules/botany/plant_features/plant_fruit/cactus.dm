@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/cactus
 	species_name = "spinis fructificatio"
-	name = "ash cactus"
+	name = "kaktus popielny"
 	icon_state = "cactus_lava"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-cactus_lava"
@@ -19,7 +19,7 @@
 	plant_needs = list()
 
 /datum/plant_feature/fruit/cactus/kirby
-	name = "cactus"
+	name = "kaktus"
 	species_name = "spinis fructificatio sp."
 	icon_state = "cactus_1"
 	seed_icon_state = "seed-cactus"

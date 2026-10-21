@@ -2,9 +2,9 @@
 	Transfers chems from the loc, tray, to mobs passing within 1 tile, deals a small small amount of damage
 */
 /datum/plant_trait/body/thorns
-	name = "Thorns"
-	desc = "Injects nearby passing targets with a % of reagents from the plant's location. Wearing thick gloves will block this."
-	scales = "Reagent transfer percentage scales with trait power."
+	name = "Ciernie"
+	desc = "Wstrzykuje przechodzącym obok część odczynników z miejsca, w którym rośnie roślina. Grube rękawice przed tym chronią."
+	scales = "Procent przenoszonych odczynników rośnie z mocą cech."
 	///Quick reference to the plant item
 	var/obj/item/plant_item
 	///List of turfs we thorn
@@ -81,7 +81,7 @@
 	var/fraction = max(holder.maximum_volume*injecting_amount, 1)
 	holder.expose(victim, INJECT, fraction)
 	holder.trans_to(victim, fraction)
-	to_chat(victim, span_danger("You are pricked by [plant_item]!"))
+	to_chat(victim, span_danger("Kłuje cię [plant_item]!"))
 //Logging
 	var/turf/T = get_turf(victim)
 	victim.investigate_log("has been pricked by [plant_item] at [AREACOORD(T)] injecting themselves with [parent.trait_power*PRICK_BASE_REAGENT_TRANSFER] % of [holder.log_list()]. \

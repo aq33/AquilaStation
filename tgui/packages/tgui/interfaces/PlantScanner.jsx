@@ -11,24 +11,24 @@ export const PlantScanner = (props) => {
     <Window width={750} height={870} theme="plant_menu">
       <Window.Content>
         <Section textAlign={'center'}>
-          {last_target || 'No Buffer Target'}
+          {last_target || 'Brak celu w buforze'}
         </Section>
         <Section>
           {render_rule === 'RENDER_RULE_PLANTSEED' ? <SeedRule /> : null}
           {render_rule === 'RENDER_RULE_FRUIT' ? <FruitRule /> : null}
           {render_rule === 'RENDER_RULE_TRAY' ? <TrayRule /> : null}
-          {render_rule ? null : 'buffer cleared 0x0000'}
+          {render_rule ? null : 'bufor wyczyszczony 0x0000'}
         </Section>
         {/* World building fluff top banner */}
         <Box height={'8px'} />
         <Section textAlign={'start'} mb={'-5px'}>
-          <Box>Yamato OS [Version 19.89.3.5]</Box>
-          <Box>© 2554 Yamato. All Rights Reserved.</Box>
+          <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+          <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
           <br />
           <Box>
             {'C:\\Users\\admin> pit buffer attach -m target -f'}
             <br />
-            {`> Atached buffer at ${last_time}`}
+            {`> Podpięto bufor o ${last_time}`}
             <br />
             <br />
             {'C:\\Users\\admin>'}
@@ -119,7 +119,7 @@ const FruitRule = (props) => {
         style={{ whiteSpace: 'pre-line' }}
         my={'2px'}
       >
-        Contains:
+        Zawiera:
         <br />
         <br />
         {Object.entries(buffer['reagents']).map(

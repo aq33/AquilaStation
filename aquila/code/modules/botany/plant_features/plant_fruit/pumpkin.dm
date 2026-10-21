@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/pumpkin
 	species_name = "cucurbita magna"
-	name = "pumpkin"
+	name = "dynia"
 	icon_state = "pumpkin"
 	seed_icon_state = "seed-pumpkin"
 	icon_uneven = TRUE
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/pumpkin/blumpkin
 	species_name = "cucurbita venenum"
-	name = "blumpkin"
+	name = "niebieska dynia"
 	icon_state = "pumpkin-2"
 	colour_override = "#8cf3ff"
 	seed_icon_state = "seed-blumpkin"

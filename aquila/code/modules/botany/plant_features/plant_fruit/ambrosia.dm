@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/ambrosia
 	species_name = "folium viride"
-	name = "ambrosia vulgaris"
+	name = "ambrozja pospolita"
 	icon_state = "ambrosia"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-ambrosiavulgaris"
@@ -21,7 +21,7 @@
 */
 /datum/plant_feature/fruit/ambrosia/deus
 	species_name = "folium caeruleum"
-	name = "ambrosia deus"
+	name = "ambrozja boska"
 	icon_state = "ambrosia_2"
 	colour_override = "#075f6b"
 	seed_icon_state = "seed-ambrosiadeus"
@@ -36,7 +36,7 @@
 */
 /datum/plant_feature/fruit/ambrosia/gaia
 	species_name = "folium aurum"
-	name = "ambrosia gaia"
+	name = "ambrozja Gai"
 	icon_state = "ambrosia_2"
 	seed_icon_state = "seed-ambrosia_gaia"
 	fruit_product = /obj/item/food/grown/ambrosia/gaia

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/soybean
 	species_name = "faba anima"
-	name = "soybean"
+	name = "soja"
 	icon_state = "pod"
 	icon_uneven = TRUE
 	colour_override = "#95d94d"
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/soybean/koi
 	species_name = "faba piscis"
-	name = "koibean"
+	name = "fasola koi"
 	icon_state = "pod"
 	colour_override = "#d4d94d"
 	seed_icon_state = "seed-koibean"

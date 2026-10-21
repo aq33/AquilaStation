@@ -23,7 +23,7 @@ export const PlantEditor = (props) => {
             {/* World building fluff top banner */}
             <Flex.Item>
               <Section textAlign={'center'}>
-                Plant Analyzer [Version 7.20.4.5]
+                Analizator Roślin [Wersja 7.20.4.5]
               </Section>
             </Flex.Item>
             <Flex direction={'row'}>
@@ -32,7 +32,7 @@ export const PlantEditor = (props) => {
                 <Flex direction={'column'}>
                   <Flex.Item>
                     <Section textAlign={'center'}>
-                      <h1>{inserted_plant || 'No Plant Inserted'}</h1>
+                      <h1>{inserted_plant || 'Nie włożono rośliny'}</h1>
                     </Section>
                   </Flex.Item>
                   <Flex.Item>
@@ -66,7 +66,7 @@ export const PlantEditor = (props) => {
                                 width={'100%'}
                                 className="plant__dialogue"
                               >
-                                {'No Disk Inserted'}
+                                {'Nie włożono dysku'}
                               </Button>
                             </Flex.Item>
                           )}
@@ -92,8 +92,8 @@ export const PlantEditor = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Version 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. All Rights Reserved.</Box>
+                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
                 <br />
                 <Box>
                   {'C:\\Users\\admin>'}
@@ -114,12 +114,12 @@ const DiskEmptyTab = (props) => {
   return (
     <Flex direction={'row'}>
       <Button className="plant__dialogue" width={'100%'}>
-        Empty Disk
+        Pusty dysk
       </Button>
       <Button
         className="plant__button"
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
     </Flex>
@@ -140,14 +140,14 @@ const DiskTraitTab = (props) => {
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'trash'}
-        tooltip="Remove Trait"
+        tooltip="Usuń cechę"
         onClick={() => act('remove_trait', { key: data_set['trait_ref'] })}
       />
       <Button
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
     </Flex>
@@ -163,14 +163,14 @@ const DiskFeatureTab = (props) => {
       <Button
         className="plant__button"
         icon={'trash'}
-        tooltip="Remove Feature"
+        tooltip="Usuń część"
         onClick={() => act('remove_feature', { key: feature['key'] })}
       />
       <Button
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
       <Button
@@ -221,7 +221,9 @@ const InspectionPanel = (props) => {
               />
             ))
           ) : (
-            <Button className="plant__dialogue--beacon">No Traits Found</Button>
+            <Button className="plant__dialogue--beacon">
+              Nie znaleziono cech
+            </Button>
           )}
         </Flex.Item>
       </Box>
@@ -297,7 +299,7 @@ const PlantFeaturePanel = (props) => {
         }
         verticalAlignContent={'middle'}
         icon={saving_feature ? 'save' : 'search'}
-        tooltip="Save Feature"
+        tooltip="Zapisz część"
         disabled={!feature['can_copy']}
         onClick={() =>
           act('save_feature', {

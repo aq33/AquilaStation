@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/bush_vine
 	species_name = "arbor parva"
-	name = "bush"
+	name = "krzew"
 	icon_state = "bush_vine"
 	growth_prefix = "bush"
 	growth_stages = 3
@@ -38,28 +38,28 @@
 	update_water_render()
 
 /datum/plant_feature/body/bush_vine/chili
-	name = "chili bush"
+	name = "krzew chili"
 	icon_state = "bush_vine_2"
 
 /datum/plant_feature/body/bush_vine/coffee
-	name = "coffee bush"
+	name = "krzew kawowca"
 	icon_state = "bush_vine_2"
 
 /datum/plant_feature/body/bush_vine/eggplant
-	name = "eggplant vine"
+	name = "pnącze bakłażana"
 
 /datum/plant_feature/body/bush_vine/soybean
-	name = "soybean stalk"
+	name = "łodyga soi"
 
 /datum/plant_feature/body/bush_vine/tomato
-	name = "tomato vine"
+	name = "pnącze pomidora"
 
 /*
 	Berry Bush
 */
 /datum/plant_feature/body/bush_vine/berry
 	species_name = "parvum parva fructum"
-	name = "berry bush"
+	name = "krzew jagodowy"
 	icon_state = "bush_berry"
 	overlay_positions = list(list(17, 15), list(14, 17), list(21, 16), list(12, 10), list(17, 9), list(22, 9), list(15, 11), list(19, 19), list(12, 17))
 
@@ -68,7 +68,7 @@
 */
 /datum/plant_feature/body/bush_vine/flower
 	species_name = "flosculus arboris"
-	name = "flower bush"
+	name = "krzew kwiatowy"
 	icon_state = "bush_flower"
 	draw_below_water = FALSE
 	overlay_positions = list(list(10, 6), list(13, 7), list(17, 9), list(21, 8), list(24, 6), list(13, 5), list(21, 4))
@@ -76,7 +76,7 @@
 	whitelist_features = list(/datum/plant_feature/fruit/flower, /datum/plant_feature/roots)
 
 /datum/plant_feature/body/bush_vine/flower/cotton
-	name = "cotton bush"
+	name = "krzew bawełny"
 	slot_size = PLANT_BODY_SLOT_SIZE_LARGE
 	whitelist_features = list()
 
@@ -85,7 +85,7 @@
 */
 /datum/plant_feature/body/bush_vine/grape
 	species_name = "uva arbor"
-	name = "grape vine"
+	name = "winorośl"
 	icon_state = "grape_vine_2"
 	growth_stages = 4
 	growth_prefix = "tree"
@@ -94,7 +94,7 @@
 
 /datum/plant_feature/body/bush_vine/grape/cousin
 	icon_state = "grape_vine"
-	name = "grape vine sp."
+	name = "winorośl sp."
 	species_name = "uva arbor sp."
 
 /*
@@ -102,7 +102,7 @@
 */
 /datum/plant_feature/body/bush_vine/ambrosia
 	species_name = "folium rubi"
-	name = "ambrosia bush"
+	name = "krzew ambrozji"
 	icon_state = "sprouting_bush"
 	draw_below_water = FALSE
 	overlay_positions = list(list(15, 10), list(17, 11))
@@ -130,7 +130,7 @@
 */
 /datum/plant_feature/body/bush_vine/nettle
 	species_name = "aculeatum rubi"
-	name = "nettle bush"
+	name = "krzew pokrzywy"
 	icon_state = "big_fingers"
 	growth_prefix = "fern"
 	growth_stages = 3
@@ -141,14 +141,14 @@
 	slot_size = PLANT_BODY_SLOT_SIZE_MEDIUM
 
 /datum/plant_feature/body/bush_vine/nettle/death //This is just a legacy thing dont bother with unique stats
-	name = "nettle bush sp."
+	name = "krzew pokrzywy sp."
 	species_name = "aculeatum rubi sp."
 	icon_state = "big_fingers_3"
 	mutations = list(/datum/plant_feature/body/bush_vine/nettle)
 	trait_power = 3
 
 /datum/plant_feature/body/bush_vine/nettle/thistle
-	name = "thistle bush"
+	name = "krzew ostu"
 	species_name = "aculeatum rubi sp."
 	icon_state = "big_fingers_2"
 	mutations = list()
@@ -158,7 +158,7 @@
 */
 /datum/plant_feature/body/bush_vine/kudzu
 	species_name = "aculeatum hedera"
-	name = "kudzu vine"
+	name = "pnącze kudzu"
 	icon_state = "kudzu"
 	growth_prefix = "fern"
 	growth_stages = 3
@@ -172,20 +172,20 @@
 */
 /datum/plant_feature/body/bush_vine/cannabis
 	species_name = "ridiculam rubi"
-	name = "cannabis bush"
+	name = "krzew konopi"
 	icon_state = "bush_spiky_2"
 	overlay_positions = list(list(17, 16), list(17, 10), list(13, 14), list(21, 14), list(19, 21))
 	seeds = 5
 	trait_power = 1.5
 
 /datum/plant_feature/body/bush_vine/cannabis/tobacco
-	name = "tobacco bush"
+	name = "krzew tytoniu"
 
 /*
 	Tea bush
 */
 /datum/plant_feature/body/bush_vine/tea
 	species_name = "asperae rubi"
-	name = "tea bush"
+	name = "krzew herbaciany"
 	icon_state = "bush_2"
 	overlay_positions = list(list(17, 23), list(11, 20), list(23, 15), list(11, 13))

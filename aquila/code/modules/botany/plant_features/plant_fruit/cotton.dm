@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/cotton
 	species_name = "bombacio mollis"
-	name = "cotton"
+	name = "bawełna"
 	icon_state = "cotton"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-cotton"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/cotton/durathread
 	species_name = "bombacio lenta"
-	name = "durathread"
+	name = "duranitka"
 	icon_state = "cotton"
 	colour_override = "#595976"
 	seed_icon_state = "seed-durathread"

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/nettle
 	species_name = "folium aculeatum"
-	name = "nettle"
+	name = "pokrzywa"
 	icon_state = "nettle"
 	seed_icon_state = "seed-nettle"
 	fruit_product = /obj/item/food/grown/nettle
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/nettle/death
 	species_name = "folium mortem"
-	name = "death nettle"
+	name = "pokrzywa śmierci"
 	icon_state = "nettle_death"
 	seed_icon_state = "seed-deathnettle"
 	fruit_product = /obj/item/food/grown/nettle/death

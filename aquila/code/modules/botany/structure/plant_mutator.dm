@@ -1,7 +1,7 @@
 /obj/machinery/plant_machine/plant_mutator
-	name = "irradiator kiln"
-	desc = "A large kiln designed to safely expose plants to radiation particles from excited plasma gas.\n\
-	Hardware upgrades reduce the operation cost of gas."
+	name = "piec radiacyjny"
+	desc = "Duży piec do bezpiecznego naświetlania roślin cząstkami promieniowania ze wzbudzonej plazmy.\n\
+	Ulepszenia sprzętu zmniejszają zużycie gazu."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "mutator_open"
 	density = TRUE
@@ -51,7 +51,7 @@
 
 /obj/machinery/plant_machine/plant_mutator/examine(mob/user)
 	. = ..()
-	. += span_notice("The gas cost reduction coefficient is [reduction_coef*100]%, a reduction of [(1-reduction_coef)*100]%.")
+	. += span_notice("Współczynnik zużycia gazu wynosi [reduction_coef*100]%, czyli o [(1-reduction_coef)*100]% mniej.")
 
 /obj/machinery/plant_machine/plant_mutator/RefreshParts()
 	. = ..()
@@ -68,15 +68,15 @@
 
 /obj/machinery/plant_machine/plant_mutator/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	to_chat(user, span_danger("A plant can be inserted into [src] using a spade."))
+	to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
 
 /obj/machinery/plant_machine/plant_mutator/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
 	if(catalyst)
-		context.add_right_click_action("Remove Tank")
+		context.add_right_click_action("Wyjmij butlę")
 	else
-		context.add_left_click_action("Insert Tank")
+		context.add_left_click_action("Włóż butlę")
 
 //Insert
 /obj/machinery/plant_machine/plant_mutator/attackby(obj/item/C, mob/user)
@@ -87,13 +87,13 @@
 		update_icon()
 		return
 	else if(plant && C.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, span_warning("There's a plant in [src]!"))
+		to_chat(user, span_warning("W środku ([src]) jest roślina!"))
 		return
 	if(default_deconstruction_crowbar(C))
 		return
 //Seeds
 	if(istype(C, /obj/item/plant_seeds))
-		to_chat(user, span_danger("A plant can be inserted into [src] using a spade."))
+		to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
 		return
 //Catalyst
 	if(!catalyst && istype(C, /obj/item/tank))
@@ -125,7 +125,7 @@
 		break
 	if(!comp)
 		return ..()
-	if(!do_after(user, 2.5 SECONDS, src))
+	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	if(!(locate(plant_item) in C.contents))
 		return
@@ -211,12 +211,12 @@
 			confirm_radiation = FALSE
 			if(!(catalyst?.air_contents?.get_moles(GAS_PLASMA) >= 1))
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Tank lacks adequate moles!")
+				say("BŁĄD: Za mało moli w butli!")
 				return TRUE
 			var/datum/plant_feature/feature = locate(current_feature_ref)
 			if(!length(feature.mutations))
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Feature lacks genetic avenues!")
+				say("BŁĄD: Brak możliwych ścieżek genetycznych dla tej części!")
 				return TRUE
 			//Check compatibility
 			var/datum/plant_feature/new_feature = pick(feature.mutations)
@@ -224,7 +224,7 @@
 			var/tax = (feature.mutations[new_feature] || 1)*reduction_coef
 			if(!(catalyst?.air_contents?.get_moles(GAS_PLASMA) >= tax))
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Tank lacks adequate moles, operation requires [tax] moles!")
+				say("BŁĄD: Za mało moli w butli, operacja wymaga [tax] moli!")
 				return TRUE
 			catalyst?.air_contents.adjust_moles(GAS_PLASMA, -tax)
 			//Flight checks
@@ -233,13 +233,13 @@
 				//Is this feature blacklisted from another feature
 				if(is_type_in_typecache(new_feature, current_feature.blacklist_features) || is_type_in_typecache(current_feature, new_feature.blacklist_features))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition not compatible with selected feature!")
+					say("BŁĄD: Skład nasion niezgodny z wybraną częścią!")
 					qdel(new_feature)
 					return TRUE
 				//If a feature has a whitelist, are we in it?
 				if(length(current_feature.whitelist_features) && !is_type_in_typecache(new_feature, current_feature.whitelist_features) || length(new_feature.whitelist_features) && !is_type_in_typecache(current_feature, new_feature.whitelist_features))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition not compatible with selected feature!")
+					say("BŁĄD: Skład nasion niezgodny z wybraną częścią!")
 					qdel(new_feature)
 					return TRUE
 			//Transfer old feature's traits to new feature
@@ -290,13 +290,13 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/plant_mutator
-	name = "irradiator kiln (Machine Board)"
+	name = "piec radiacyjny (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/plant_machine/plant_mutator
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/manipulator = 2, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/plant_mutator
-	name = "Irradiator Kiln Board"
+	name = "Płytka pieca radiacyjnego"
 	id = "plant_mutator_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/plant_mutator
@@ -315,7 +315,7 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/plant_mutator
-	name = "plant mutator (Machine Board)"
+	name = "piec radiacyjny (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/plant_machine/plant_mutator
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/manipulator = 2, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)

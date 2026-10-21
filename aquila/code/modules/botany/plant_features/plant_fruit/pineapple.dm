@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/pineapple
 	species_name = "abiete malum"
-	name = "pineapple"
+	name = "ananas"
 	icon_state = "pineapple"
 	seed_icon_state = "seed-pineapple"
 	fruit_product = /obj/item/food/grown/pineapple

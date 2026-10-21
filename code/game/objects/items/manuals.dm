@@ -458,10 +458,10 @@
 
 
 /obj/item/book/manual/wiki/hydroponics
-	name = "Botany Field Guide"
+	name = "Botaniczny przewodnik terenowy"
 	icon_state ="botany"
 	author = "Yamato"
-	title = "Botany Field Guide"
+	title = "Botaniczny przewodnik terenowy"
 	//TODO: Temporary link - Racc
 	page_link = "User:Racc-Off/botany"
 

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/apple
 	species_name = "malum parvum"
-	name = "apple"
+	name = "jabłko"
 	icon_state = "apple"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-apple"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/apple/gold
 	species_name = "malum aurum"
-	name = "gold apple"
+	name = "złote jabłko"
 	icon_state = "apple_gold"
 	seed_icon_state = "seed-goldapple"
 	fruit_product = /obj/item/food/grown/apple/gold

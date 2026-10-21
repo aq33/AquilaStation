@@ -5,8 +5,8 @@
 */
 
 /obj/item/substrate_bag
-	name = "substrate bag"
-	desc = "A sack of loose substrate. its smell fills the room."
+	name = "worek z podłożem"
+	desc = "Worek sypkiego podłoża. Jego zapach wypełnia całe pomieszczenie."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "substrate_bag"
 	///What substrate does this bag contain
@@ -18,11 +18,11 @@
 	if(!tray_component)
 		return
 	if(length(tray_component.plants))
-		to_chat(user, span_warning("You can't change [target]'s substrate while there's plants inside!"))
+		to_chat(user, span_warning("Nie możesz zmienić podłoża ([target]), dopóki rosną w nim rośliny!"))
 		return
-	if(!do_after(user, 2.3 SECONDS, target))
+	if(!do_after(user, 2.3 SECONDS, target = target))
 		return
-	to_chat(user, "<span class='notice'>You fill [target] from [src]</span>")
+	to_chat(user, "<span class='notice'>Wsypujesz podłoże do: [target].</span>")
 	playsound(src, 'sound/effects/shovel_dig.ogg', 60)
 	tray_component.set_substrate(substrate)
 
@@ -31,26 +31,26 @@
 */
 
 /obj/item/substrate_bag/dirt
-	name = "dirt substrate bag"
+	name = "worek z podłożem (ziemia)"
 	icon_state = "substrate_dirt"
 	substrate = /datum/plant_subtrate/dirt
 
 /obj/item/substrate_bag/clay
-	name = "clay substrate bag"
+	name = "worek z podłożem (glina)"
 	icon_state = "substrate_clay"
 	substrate = /datum/plant_subtrate/clay
 
 /obj/item/substrate_bag/sand
-	name = "sand substrate bag"
+	name = "worek z podłożem (piasek)"
 	icon_state = "substrate_sand"
 	substrate = /datum/plant_subtrate/sand
 
 /obj/item/substrate_bag/debris
-	name = "debris substrate bag"
+	name = "worek z podłożem (gruz)"
 	icon_state = "substrate_debris"
 	substrate = /datum/plant_subtrate/debris
 
 /obj/item/substrate_bag/fairy
-	name = "mysterious substrate bag"
+	name = "worek z tajemniczym podłożem"
 	icon_state = "substrate_fairy"
 	substrate = /datum/plant_subtrate/fairy

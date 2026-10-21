@@ -4,6 +4,6 @@
 */
 
 /datum/plant_subtrate/fairy
-	name = "fairy substrate"
+	name = "baśniowe podłoże"
 	icon_state = "fairy"
 	substrate_flags = PLANT_SUBSTRATE_DIRT | PLANT_SUBSTRATE_SAND |  PLANT_SUBSTRATE_CLAY | PLANT_SUBSTRATE_DEBRIS

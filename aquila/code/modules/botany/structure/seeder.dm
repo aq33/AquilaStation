@@ -3,10 +3,10 @@
 		Semi important that this isn't a plant machine subtype
 */
 /obj/machinery/seeder
-	name = "industrial seeder"
-	desc = "A large set of jaws set in a compact frame.\n\
-	Hardware upgrades improve the seed output.\n\
-	\n<span class='notice'>Turns fruits or plants into seeds.</span>"
+	name = "siewnik przemysłowy"
+	desc = "Wielki zestaw szczęk w zwartej obudowie.\n\
+	Ulepszenia sprzętu zwiększają liczbę uzyskanych nasion.\n\
+	\n<span class='notice'>Zamienia owoce i rośliny w nasiona.</span>"
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "seeder"
 	density = TRUE
@@ -70,7 +70,7 @@
 		plant_item.forceMove(get_turf(src))
 		seedify(plant_item, new_seed_amount)
 		playsound(src, 'sound/machines/juicer.ogg', 30)
-		to_chat(user, span_notice("[new_seed_amount] seeds created!"))
+		to_chat(user, span_notice("Utworzono nasiona: [new_seed_amount]!"))
 		shake()
 //Store seeds
 	if(istype(C, /obj/item/plant_seeds))
@@ -92,7 +92,7 @@
 	C.forceMove(get_turf(src))
 	seedify(C, seed_amount)
 	playsound(src, 'sound/machines/juicer.ogg', 30)
-	to_chat(user, "<span class='notice'>[seed_amount] seeds created!</span>")
+	to_chat(user, "<span class='notice'>Utworzono nasiona: [seed_amount]!</span>")
 	shake()
 
 /obj/machinery/seeder/proc/store_seed(obj/item/plant_seeds/seeds)
@@ -181,7 +181,7 @@
 	return "0x[copytext(md5(ref_string), 1, 8)]"
 
 /obj/item/circuitboard/machine/seeder
-	name = "industrial seeder (Machine Board)"
+	name = "siewnik przemysłowy (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/seeder
 	req_components = list(
@@ -190,8 +190,8 @@
 	needs_anchored = FALSE
 
 /datum/design/board/seeder
-	name = "Industrial Seeder"
-	desc = "This machine turns fruits & plants into seeds."
+	name = "Siewnik przemysłowy"
+	desc = "Ta maszyna zamienia owoce i rośliny w nasiona."
 	id = "seeder"
 	build_path = /obj/item/circuitboard/machine/seeder
 	category = list ("initial", "Misc. Machinery")

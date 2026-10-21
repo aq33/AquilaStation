@@ -3,7 +3,7 @@
 	Attracts pests to the tray
 */
 /datum/plant_need/reagent/buff/pests
-	need_description = "Wards off pests usually attracted to this plant's sweet aroma."
+	need_description = "Odstrasza szkodniki, które zwabia słodki zapach tej rośliny."
 	reagent_needs = list(/datum/reagent/toxin/pestkiller = 0.25, /datum/reagent/toxin = 1, /datum/reagent/consumable/ethanol = 3, /datum/reagent/fluorine = 1, /datum/reagent/chlorine = 1, /datum/reagent/diethylamine = 1,
 	/datum/reagent/phosphorus = 1, /datum/reagent/diethylamine = 0.5)
 	auto_threshold = TRUE
@@ -37,7 +37,7 @@
 	QDEL_NULL(pest_holder)
 
 /datum/plant_need/reagent/buff/pests/process(delta_time)
-	need_description = "[archive_description]\n	 Pest Level: [pest_level]%"
+	need_description = "[archive_description]\n	 Poziom szkodników: [pest_level]%"
 	if(SEND_SIGNAL(parent.parent.plant_item.loc, COMSIG_PLANTER_PAUSE_PLANT) || SEND_SIGNAL(parent.parent.plant_item.loc, COMSIG_PLANTER_REPEL_PESTS))
 		return
 	if(pest_level < 10) //Pests don't do damage until you see them

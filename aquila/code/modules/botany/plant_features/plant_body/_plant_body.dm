@@ -3,7 +3,7 @@
 
 /datum/plant_feature/body
 	species_name = "testus testium"
-	name = "plant body"
+	name = "łodyga"
 	icon = 'icons/obj/hydroponics/features/body.dmi'
 	icon_state = "tree"
 	plant_needs = list(/datum/plant_need/reagent/water, /datum/plant_need/reagent/buff/heal/tier_1, /datum/plant_need/reagent/buff/heal/tier_2, /datum/plant_need/reagent/buff/heal/tier_3,
@@ -83,18 +83,18 @@
 	. = ..()
 	var/list/dialogue = .
 	var/grouping = dialogue[3]
-	grouping += "Harvest Size: [max_harvest]\n"
-	grouping += "Remaining Yields: [yields]\n"
-	grouping += "Growth Time: [growth_time/10] seconds\n"
-	grouping += "Fruit Size: [upper_fruit_size]\n"
-	grouping += "Plant Size: [slot_size]\n"
-	grouping += "Plant Health: [health]\n"
+	grouping += "Wielkość zbioru: [max_harvest]\n"
+	grouping += "Pozostałe plony: [yields]\n"
+	grouping += "Czas wzrostu: [growth_time/10] s\n"
+	grouping += "Wielkość owoców: [upper_fruit_size]\n"
+	grouping += "Wielkość rośliny: [slot_size]\n"
+	grouping += "Zdrowie rośliny: [health]\n"
 	dialogue[3] = grouping
 
 /datum/plant_feature/body/get_ui_data()
 	. = ..()
-	. += list(PLANT_DATA("Harvest Size", max_harvest), PLANT_DATA("Yields", yields), PLANT_DATA("Growth Time", "[growth_time/10] seconds"), PLANT_DATA("Fruit Size", "[upper_fruit_size]"), PLANT_DATA("Plant Size", "[slot_size]"),
-	PLANT_DATA("Plant Health", health), PLANT_DATA(null, null))
+	. += list(PLANT_DATA("Wielkość zbioru", max_harvest), PLANT_DATA("Plony", yields), PLANT_DATA("Czas wzrostu", "[growth_time/10] s"), PLANT_DATA("Wielkość owoców", "[upper_fruit_size]"), PLANT_DATA("Wielkość rośliny", "[slot_size]"),
+	PLANT_DATA("Zdrowie rośliny", health), PLANT_DATA(null, null))
 
 /datum/plant_feature/body/process(delta_time)
 	var/obj/item/plant_tray/tray = parent.plant_item.loc

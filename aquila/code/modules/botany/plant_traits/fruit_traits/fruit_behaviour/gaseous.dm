@@ -2,9 +2,9 @@
 	FYI, this 'secretly' densifies the chemicals involved
 */
 /datum/plant_trait/fruit/gaseous
-	name = "Gaseous Decomposition"
-	desc = "The fruit releases its reagents as smoke when triggered."
-	scales = "Smoke cloud area scales with trait power"
+	name = "Rozkład gazowy"
+	desc = "Aktywowany owoc uwalnia swoje odczynniki w postaci dymu."
+	scales = "Obszar chmury dymu rośnie z mocą cech."
 	///How much smoke do we make, size
 	var/smoke_amount = 1.4
 

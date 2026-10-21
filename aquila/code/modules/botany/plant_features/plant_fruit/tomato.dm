@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/tomato
 	species_name = "lycopersicum solanum"
-	name = "tomato"
+	name = "pomidor"
 	icon_state = "tomato"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-tomato"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/tomato/blue
 	species_name = "lycopersicum caeruleum"
-	name = "blue tomato"
+	name = "niebieski pomidor"
 	icon_state = "tomato-2"
 	colour_override = "#00a2ff"
 	seed_icon_state = "seed-bluetomato"
@@ -33,7 +33,7 @@
 */
 /datum/plant_feature/fruit/tomato/bluespace
 	species_name = "lycopersicum caeruleum cerritulus"
-	name = "bluespace tomato"
+	name = "bluespace'owy pomidor"
 	icon_state = "tomato-2"
 	colour_override = "#03dfe6"
 	seed_icon_state = "seed-bluespacetomato"
@@ -58,7 +58,7 @@
 */
 /datum/plant_feature/fruit/tomato/blood
 	species_name = "lycopersicum sanguis"
-	name = "blood tomato"
+	name = "krwisty pomidor"
 	icon_state = "tomato-2"
 	colour_override = "#8d1111"
 	seed_icon_state = "seed-bloodtomato"
@@ -72,7 +72,7 @@
 */
 /datum/plant_feature/fruit/tomato/killer
 	species_name = "lycopersicum rabidus"
-	name = "killer tomato"
+	name = "pomidor zabójca"
 	icon_state = "killer_tomato"
 	seed_icon_state = "seed-killertomato"
 	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin,
@@ -86,7 +86,7 @@
 */
 /datum/plant_feature/fruit/tomato/friendly
 	species_name = "lycopersicum amica"
-	name = "friendly tomato"
+	name = "przyjazny pomidor"
 	icon_state = "friendly_tomato"
 	seed_icon_state = "seed-friendlytomato"
 	plant_traits = list(/datum/plant_trait/reagent/fruit/nutriment, /datum/plant_trait/reagent/fruit/vitamin,
@@ -96,6 +96,6 @@
 	trait_power = 2
 
 /obj/item/food/grown/tomato/friendly
-	name = "friendly tomato"
-	desc = "The real treasure are the friends we made along the way!"
+	name = "przyjazny pomidor"
+	desc = "Prawdziwym skarbem są przyjaciele, których poznaliśmy po drodze!"
 	icon_state = "friendly_tomato"

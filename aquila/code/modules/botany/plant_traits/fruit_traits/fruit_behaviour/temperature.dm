@@ -1,12 +1,12 @@
 /datum/plant_trait/fruit/temperature
-	name = "Heated Contents"
-	desc = "The fruit rapidly heats its contents when triggered."
+	name = "Podgrzewana zawartość"
+	desc = "Aktywowany owoc gwałtownie podgrzewa swoją zawartość."
 	/// How hot or cold are we trying to make our reagents?
 	var/target_temperature = 666
 	/// How many ticks to reach target
 	var/target_coefficient = 0.089
 	/// Verb + friends for visible message
-	var/temperature_verb = "heating up"
+	var/temperature_verb = "nagrzewać"
 
 /datum/plant_trait/fruit/temperature/setup_fruit_parent()
 	. = ..()
@@ -17,7 +17,7 @@
 	. = ..()
 	if(QDELING(src) || QDELING(fruit_parent))
 		return
-	fruit_parent?.visible_message("<span class='warning'>[fruit_parent] starts [temperature_verb]!</span>")
+	fruit_parent?.visible_message("<span class='warning'>[fruit_parent] zaczyna się [temperature_verb]!</span>")
 	START_PROCESSING(SSobj, src)
 
 /datum/plant_trait/fruit/temperature/process(delta_time)
@@ -33,7 +33,7 @@
 	Cooling variant
 */
 /datum/plant_trait/fruit/temperature/cold
-	name = "Cooled Contents"
-	desc = "The fruit rapidly cools its contents when triggered."
+	name = "Chłodzona zawartość"
+	desc = "Aktywowany owoc gwałtownie schładza swoją zawartość."
 	target_temperature = -666
-	temperature_verb = "cooling down"
+	temperature_verb = "schładzać"

@@ -5,9 +5,9 @@
 */
 
 /datum/plant_trait/fruit/shock
-	name = "Electrical Activity"
-	desc = "The fruit exhibits electrical activity. Triggering the fruit will shock the target."
-	scales = "Shock damage and cell charge scales with trait power."
+	name = "Aktywność elektryczna"
+	desc = "Owoc wykazuje aktywność elektryczną. Aktywowany razi cel prądem."
+	scales = "Obrażenia od prądu i ładowanie ogniw rosną z mocą cech."
 	genetic_cost = 3
 
 /datum/plant_trait/fruit/shock/setup_fruit_parent()

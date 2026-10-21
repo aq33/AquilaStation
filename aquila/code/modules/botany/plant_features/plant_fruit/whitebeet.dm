@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/whitebeet
 	species_name = "beta album"
-	name = "whitebeet"
+	name = "biały burak"
 	icon_state = "parsnip"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-whitebeet"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/whitebeet/red
 	species_name = "beta erubesco"
-	name = "redbeet"
+	name = "czerwony burak"
 	icon_state = "parsnip"
 	colour_override = "#be1c6a"
 	seed_icon_state = "seed-redbeet"

@@ -1,7 +1,7 @@
 /datum/plant_trait/refraction
-	name = "Experimental Refraction Gene"
-	desc = "This trait will attempt to sequence plant DNA to produce a reagent, based on the refraction coordinates associated with it. Failing a sequence will destroy the plant's DNA on maturation."
-	scales = "Reagent production percentage scales with trait power."
+	name = "Eksperymentalny gen refrakcji"
+	desc = "Ta cecha próbuje zsekwencjonować DNA rośliny tak, by wytwarzała odczynnik odpowiadający przypisanym jej współrzędnym refrakcji. Nieudana sekwencja zniszczy DNA rośliny, gdy ta dojrzeje."
+	scales = "Procent wytwarzanego odczynnika rośnie z mocą cech."
 	plant_feature_compat = /datum/plant_feature/fruit
 	random_trait = FALSE //We already appear in every random plant
 	///Our refraction reagent
@@ -31,7 +31,7 @@
 	var/datum/plant_feature/fruit/fruit_parent = _parent
 	if(!fruit_parent)
 		return
-	desc = "[istype(parent) ? "([(REFRACTION_REAGENT_BASE * parent.trait_power) * fruit_parent.total_volume]u) " : ""][REFRACTION_REAGENT_BASE * parent.trait_power * 100]% of reagents is this reagent."
+	desc = "[istype(parent) ? "([(REFRACTION_REAGENT_BASE * parent.trait_power) * fruit_parent.total_volume]u) " : ""][REFRACTION_REAGENT_BASE * parent.trait_power * 100]% odczynników to ten odczynnik."
 
 /datum/plant_trait/refraction/get_name(peek = FALSE)
 	return peek ? "[name] ([initial(refraction_reagent.name)])" : name
@@ -64,7 +64,7 @@
 		body_feature?.catch_harvest()
 		// Hint / feedback
 		var/atom/vis_parent = body_feature?.parent?.parent
-		vis_parent?.loc?.visible_message(span_danger("[vis_parent] melts away and dies! The refraction was too unstable!"))
+		vis_parent?.loc?.visible_message(span_danger("[vis_parent] rozpływa się i obumiera! Refrakcja była zbyt niestabilna!"))
 		return
 //Add reagent
 	var/datum/plant_feature/fruit/fruit_feature = parent

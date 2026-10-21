@@ -7,10 +7,10 @@
 */
 
 /datum/plant_trait/roots/parasitic/juicer
-	name = "Fermenting"
-	desc = "This gene causes roots to parasitically feed off a plant's fruit, depositing their juiced reagents into their environment. \
-	Juiced reagents correlate to the fruit type."
-	scales = "Reagent volume is multiplied by trait power."
+	name = "Fermentacja"
+	desc = "Ten gen sprawia, że korzenie pasożytniczo żywią się owocami rośliny i oddają ich wyciśnięte odczynniki do otoczenia. \
+	Rodzaj soku zależy od rodzaju owocu."
+	scales = "Objętość odczynników jest mnożona przez moc cech."
 	blacklist = list(/datum/plant_trait/roots/parasitic)
 
 /datum/plant_trait/roots/parasitic/juicer/deposit(obj/item/fruit)

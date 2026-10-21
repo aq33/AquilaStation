@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/turtle
-	name = "\improper turtle"
-	desc = "A hydroponics helper."
+	name = "żółwik"
+	desc = "Pomocnik hydroponiki."
 	icon = 'aquila/icons/mob/turtlebot.dmi'
 	icon_state = "turtle"
 	density = FALSE
@@ -181,7 +181,7 @@ Panel serwisowy jest [open ? "otwarty" : "zamknięty"]"})
 	req_one_access = list(ACCESS_HYDROPONICS, ACCESS_ROBOTICS)
 
 /datum/crafting_recipe/turtle
-	name = "Turtle"
+	name = "Żółwik"
 	result = /mob/living/simple_animal/bot/turtle
 	time = 10 SECONDS
 	reqs = list(

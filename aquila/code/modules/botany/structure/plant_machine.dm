@@ -28,7 +28,7 @@
 	if(controller && in_range(controller, usr))
 		ui_interact(user)
 	else
-		to_chat(user, span_danger("[src] can be controlled with a hydroponics machine terminal."))
+		to_chat(user, span_danger("Tą maszyną ([src]) można sterować z terminalu maszyn hydroponicznych."))
 
 /obj/machinery/plant_machine/proc/encrypt_ref(ref_string)
 	return "0x[copytext(md5(ref_string), 1, 8)]"

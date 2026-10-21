@@ -1,6 +1,6 @@
 /mob/living/simple_animal/friendly_fruit
 	name = "hortus"
-	desc = "A mischeveous forest 'spirit'."
+	desc = "Psotny leśny „duszek”."
 	icon_state = "fruit_friend"
 	icon_living = "fruit_friend"
 	icon_dead = "fruit_friend_dead"
@@ -48,16 +48,16 @@
 
 /mob/living/simple_animal/friendly_fruit/attack_ghost(mob/dead/observer/user)
 	if(client || key || ckey)
-		to_chat(user, span_warning("\The [src] already has a player."))
+		to_chat(user, span_warning("[src] ma już gracza."))
 		return
 	if(stat == DEAD)
-		to_chat(user, span_warning("\The [src] is not possessable!"))
+		to_chat(user, span_warning("Nie można opętać: [src]!"))
 		return
-	var/control_ask = tgui_alert(usr, "Do you wish to take control of \the [src]", "Become [src]?", list("Yes", "No"))
-	if(control_ask != "Yes" || QDELETED(src) || QDELETED(user))
+	var/control_ask = tgui_alert(usr, "Czy chcesz przejąć kontrolę nad: [src]?", "Przejąć [src]?", list("Tak", "Nie"))
+	if(control_ask != "Tak" || QDELETED(src) || QDELETED(user))
 		return
 	key = user.key
-	to_chat(src, span_boldwarning("Remember that you have forgotten all of your past lives and are a new person!"))
+	to_chat(src, span_boldwarning("Pamiętaj, że zapomniałeś o wszystkich swoich poprzednich życiach i jesteś nową osobą!"))
 
 /mob/living/simple_animal/friendly_fruit/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
 	. = ..()

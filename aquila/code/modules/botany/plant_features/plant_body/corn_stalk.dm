@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/corn_stalk
 	species_name = "aureum culmus"
-	name = "corn stalk"
+	name = "łodyga kukurydzy"
 	icon_state = "corn_stalk"
 	growth_prefix = "stalk"
 	growth_stages = 3
@@ -35,7 +35,7 @@
 */
 /datum/plant_feature/body/corn_stalk/rice
 	species_name = "stipula alba"
-	name = "rice stalk"
+	name = "źdźbło ryżu"
 	icon_state = "rice_stalk"
 	overlay_positions = list(list(17, 16))
 
@@ -44,7 +44,7 @@
 */
 /datum/plant_feature/body/corn_stalk/wheat
 	species_name = "bracchium aurum"
-	name = "wheat stalk"
+	name = "źdźbło pszenicy"
 	icon_state = "wheat_stalk"
 	growth_stages = 2
 	overlay_positions = list(list(17, 16))
@@ -54,7 +54,7 @@
 */
 /datum/plant_feature/body/corn_stalk/sunflower
 	species_name = "sol culmo"
-	name = "sunflower stalk"
+	name = "łodyga słonecznika"
 	icon_state = "sunflower_stalk"
 	overlay_positions = list(list(17, 16))
 
@@ -63,7 +63,7 @@
 */
 /datum/plant_feature/body/corn_stalk/flower
 	species_name = "stipula flos"
-	name = "flower stem"
+	name = "łodyżka kwiatu"
 	icon_state = "flower_stalk"
 	growth_stages = 1
 	overlay_positions = list(list(17, 8))
@@ -82,7 +82,7 @@
 */
 /datum/plant_feature/body/corn_stalk/ground
 	species_name = "terra arbore"
-	name = "ground stalk"
+	name = "płożąca łodyga"
 	icon_state = "vine_ground"
 	growth_prefix = "bush"
 	growth_stages = 2 //This is inherited as 2, this is a safety

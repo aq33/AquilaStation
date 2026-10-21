@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/garlic
 	species_name = "allium clamare"
-	name = "garlic"
+	name = "czosnek"
 	icon_state = "garlic"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-garlic"

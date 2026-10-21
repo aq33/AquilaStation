@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/orange
 	species_name = "citrum solis"
-	name = "orange"
+	name = "pomarańcza"
 	icon_state = "orange"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-orange"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/orange/threedee
 	species_name = "citrum veritas"
-	name = "extradimensional orange"
+	name = "pozawymiarowa pomarańcza"
 	icon_state = "orange_3D"
 	seed_icon_state = "seed-orange_3D"
 	genetic_budget = 4

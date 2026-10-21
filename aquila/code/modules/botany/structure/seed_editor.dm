@@ -1,6 +1,6 @@
 /obj/machinery/plant_machine/seed_editor
-	name = "seed sequencer"
-	desc = "An advanced device designed to manipulate seed genetic makeup."
+	name = "sekwencer nasion"
+	desc = "Zaawansowane urządzenie do modyfikowania budowy genetycznej nasion."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "editor_open"
 	density = TRUE
@@ -23,16 +23,16 @@
 
 /obj/machinery/plant_machine/seed_editor/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] can be used to edit seed genetics.")
-	. += span_warning("[src] is not capable of saving genes.")
+	. += span_notice("[src] służy do edycji genetyki nasion.")
+	. += span_warning("[src] nie potrafi zapisywać genów.")
 
 /obj/machinery/plant_machine/seed_editor/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
 	if(disk || seeds)
-		context.add_right_click_action("Remove Seed / Plant Disk")
+		context.add_right_click_action("Wyjmij nasiona / dysk danych roślin")
 	else
-		context.add_left_click_action("Insert Seed / Plant Disk")
+		context.add_left_click_action("Włóż nasiona / dysk danych roślin")
 
 /obj/machinery/plant_machine/seed_editor/attackby(obj/item/C, mob/user)
 // Machine stuff
@@ -40,7 +40,7 @@
 		update_icon()
 		return
 	else if(seeds && C.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, span_warning("There's seeds in [src]!"))
+		to_chat(user, span_warning("W środku ([src]) są nasiona!"))
 		return
 	if(default_deconstruction_crowbar(C))
 		disk?.forceMove(get_turf(src))
@@ -167,17 +167,17 @@
 				//Don't allow trait duplication
 				if(!local_trait.allow_multiple && local_trait.get_id() == trait.get_id())
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition cannot support multiple of selected trait!")
+					say("BŁĄD: Skład nasion nie obsługuje wielu kopii wybranej cechy!")
 					return
 				//Is this trait blacklisted from another feature
 				if(is_type_in_typecache(local_trait, trait.blacklist) || is_type_in_typecache(trait, local_trait.blacklist))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Incompatible traits!")
+					say("BŁĄD: Niezgodne cechy!")
 					return
 				//If a trait has a whitelist, are we in it?
 				if(length(trait.whitelist) && !is_type_in_typecache(local_trait, trait.whitelist) || length(local_trait.whitelist) && !is_type_in_typecache(trait, local_trait.whitelist))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Trait missing supporting composition!")
+					say("BŁĄD: Brak składu wymaganego przez cechę!")
 					return
 			//Add the trait
 			var/datum/plant_trait/new_trait = trait.copy(current_feature)
@@ -185,7 +185,7 @@
 				current_feature.plant_traits += new_trait
 			else
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Seed composition not compatible with selected trait!")
+				say("BŁĄD: Skład nasion niezgodny z wybraną cechą!")
 				return
 			//Reset the species ID
 			seeds.update_species_id()
@@ -200,17 +200,17 @@
 				//Does this plant already have this kind of feature>
 				if(current_feature.feature_catagories & feature.feature_catagories) //If you want to have multiple features of the same type on one plant, this is one of the things stopping you
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition cannot fit selected feature!")
+					say("BŁĄD: Wybrana część nie zmieści się w składzie nasion!")
 					return
 				//Is this feature blacklisted from another feature
 				if(is_type_in_typecache(feature, current_feature.blacklist_features) || is_type_in_typecache(current_feature, feature.blacklist_features))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition not compatible with selected feature![feature?.family == current_feature.family ? "" : " Incompatible families!"]")
+					say("BŁĄD: Skład nasion niezgodny z wybraną częścią![feature?.family == current_feature.family ? "" : " Niezgodne rodziny!"]")
 					return
 				//If a feature has a whitelist, are we in it?
 				if(length(current_feature.whitelist_features) && !is_type_in_typecache(feature, current_feature.whitelist_features) || length(feature.whitelist_features) && !is_type_in_typecache(current_feature, feature.whitelist_features))
 					playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-					say("ERROR: Seed composition not compatible with selected feature![feature?.family == current_feature.family ? "" : " Incompatible families!"]")
+					say("BŁĄD: Skład nasion niezgodny z wybraną częścią![feature?.family == current_feature.family ? "" : " Niezgodne rodziny!"]")
 					return
 		//Special compatibility checking
 			//If it's a fruit- check if it fits on the body - This will be the other thing you'll have to potentially rewrite if you allow duplicate features
@@ -219,11 +219,11 @@
 			//These are arranged to be a little more readable, dont sweat efficiency
 			if(istype(fruit_feature) && !body_feature)
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Seed composition does not contain a supporting body for this feature!")
+				say("BŁĄD: Skład nasion nie zawiera łodygi zdolnej utrzymać tę część!")
 				return
 			if((istype(fruit_feature) && body_feature) && fruit_feature.fruit_size > body_feature.upper_fruit_size)
 				playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Seed composition's body feature doesn't support this feature!")
+				say("BŁĄD: Łodyga w składzie nasion nie obsługuje tej części!")
 				return
 		//Good to go, slap that bad boy on
 			var/datum/plant_feature/new_feature = feature.copy()
@@ -258,13 +258,13 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/seed_editor
-	name = "seed editor (Machine Board)"
+	name = "sekwencer nasion (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/plant_machine/seed_editor
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/manipulator = 2, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/seed_editor
-	name = "Seed Editor Board"
+	name = "Płytka sekwencera nasion"
 	id = "seed_editor_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/seed_editor

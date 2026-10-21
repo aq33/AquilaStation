@@ -8,9 +8,9 @@
 
 */
 /datum/plant_trait/fruit/cell
-	name = "Capacitive Cells"
-	desc = "The fruit exhibits capacitive properties. A rudimentary battery can be made by combining this fruit with cable segments."
-	scales = "Max cell charge and ambient self charging scales with trait power."
+	name = "Komórki pojemnościowe"
+	desc = "Owoc ma właściwości pojemnościowe. Łącząc go z odcinkami kabla, można zrobić prymitywną baterię."
+	scales = "Maksymalny ładunek ogniwa i samoczynne ładowanie rosną z mocą cech."
 	genetic_cost = 2
 	///How far we teleport, at a minimum
 	var/teleport_radius = 10
@@ -36,9 +36,9 @@
 	if(!istype(cable))
 		return
 	if(!cable.use(CABLE_AMOUNT))
-		to_chat(user, span_warning("You need five lengths of cable to make a [fruit_parent] battery!"))
+		to_chat(user, span_warning("Potrzebujesz pięciu odcinków kabla, żeby zrobić baterię z: [fruit_parent]!"))
 		return
-	to_chat(user, span_notice("You add some cable to [fruit_parent] and slide it inside the battery encasing."))
+	to_chat(user, span_notice("Podłączasz kabel do: [fruit_parent] i wsuwasz całość do obudowy baterii."))
 	var/obj/item/stock_parts/cell/potato/pocell = new /obj/item/stock_parts/cell/potato(user.loc)
 //Visuals
 	pocell.appearance = fruit_parent.appearance
@@ -46,7 +46,7 @@
 //Charge logic
 	pocell.maxcharge = pocell.maxcharge * trait_power
 	pocell.charge = pocell.maxcharge
-	pocell.desc = "A rechargeable plant-based power cell. This one can store up to [display_power(pocell.maxcharge)], and you should not swallow it."
+	pocell.desc = "Roślinne ogniwo zasilające wielokrotnego ładowania. To mieści do [display_power(pocell.maxcharge)] i lepiej go nie połykać."
 //Special interactions
 	if(fruit_parent.reagents.has_reagent(/datum/reagent/toxin/plasma, 2))
 		pocell.rigged = TRUE

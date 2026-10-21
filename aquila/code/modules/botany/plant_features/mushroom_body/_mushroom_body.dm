@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/mushroom
 	species_name = "fungus corporis"
-	name = "mycelium"
+	name = "grzybnia"
 	family = "Fungus"
 	icon_state = ""
 	layer_offset = 0

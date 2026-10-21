@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/berry
 	species_name = "bacca clara"
-	name = "berry"
+	name = "jagoda"
 	icon_state = "berry"
 	seed_icon_state = "seed-berry"
 	fruit_product = /obj/item/food/grown/berries
@@ -23,7 +23,7 @@
 */
 /datum/plant_feature/fruit/berry/glow
 	species_name = "bacca rutilans"
-	name = "glow berry"
+	name = "świecąca jagoda"
 	seed_icon_state = "seed-glowberry"
 	fruit_product = /obj/item/food/grown/berries/glow
 	trait_power = 1.3
@@ -36,7 +36,7 @@
 */
 /datum/plant_feature/fruit/berry/poison
 	species_name = "bacca venenum"
-	name = "poison berry"
+	name = "trująca jagoda"
 	seed_icon_state = "seed-poisonberry"
 	fruit_product = /obj/item/food/grown/berries/poison
 	trait_power = 1.5
@@ -49,7 +49,7 @@
 */
 /datum/plant_feature/fruit/berry/death
 	species_name = "bacca mortem"
-	name = "death berry"
+	name = "jagoda śmierci"
 	seed_icon_state = "seed-deathberry"
 	fruit_product = /obj/item/food/grown/berries/death
 	trait_power = 1.5

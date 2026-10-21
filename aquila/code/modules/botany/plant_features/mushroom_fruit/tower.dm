@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/tower
 	species_name = "turrim fungus"
-	name = "tower-cap"
+	name = "grzyb wieżowy"
 	icon_state = "tower"
 	colour_overlay = "tower_colour"
 	colour_override = "#739b5b"
@@ -33,7 +33,7 @@
 */
 /datum/plant_feature/fruit/mushroom/tower/steel
 	species_name = "ferro fungus"
-	name = "steel-cap"
+	name = "grzyb stalowy"
 	colour_override = "#e4db62"
 	seed_icon_state = "mycelium-steelcap"
 	fruit_product = /obj/item/grown/log/steel

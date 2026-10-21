@@ -1,6 +1,6 @@
 /datum/plant_trait/roots/carnivore
-	name = "Pesticide Secretions"
-	desc = "This gene causes roots to develop pesticide secretions. Plants with this trait will destroy nearby pests."
+	name = "Wydzieliny pestycydowe"
+	desc = "Ten gen sprawia, że korzenie wydzielają pestycydy. Rośliny z tą cechą niszczą szkodniki w pobliżu."
 	genetic_cost = 2
 
 /datum/plant_trait/roots/carnivore/setup_component_parent(datum/source)

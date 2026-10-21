@@ -5,9 +5,9 @@
 	Stings mobs, imparts a % of fruit chems
 */
 /datum/plant_trait/fruit/prickles
-	name = "Prickles"
-	desc = "The fruit develops hypodermic prickles that inject targets with a % reagents contained in the fruit."
-	scales = "Reagent transfer percentage scales with trait power."
+	name = "Kolce podskórne"
+	desc = "Owoc wytwarza podskórne kolce, które wstrzykują celom część zawartych w nim odczynników."
+	scales = "Procent przenoszonych odczynników rośnie z mocą cech."
 	blacklist = list(/datum/plant_trait/fruit/liquid_contents)
 
 /datum/plant_trait/fruit/prickles/setup_fruit_parent()
@@ -47,7 +47,7 @@
 	var/fraction = max(fruit_parent.reagents.maximum_volume*injecting_amount, 1)
 	fruit_parent.reagents.expose(victim, INJECT, fraction)
 	fruit_parent.reagents.trans_to(victim, injecting_amount)
-	to_chat(victim, span_danger("You are pricked by [fruit_parent]!"))
+	to_chat(victim, span_danger("Kłuje cię [fruit_parent]!"))
 	return TRUE
 
 #undef BASE_REAGENT_TRANSFER

@@ -2,6 +2,14 @@ import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Divider, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 
+const CHAPTER_NAMES = {
+  Features: 'Części',
+  Traits: 'Cechy',
+  Plants: 'Rośliny',
+  Logs: 'Dziennik',
+  Tips: 'Porady',
+};
+
 export const PlantDictionary = (props) => {
   const { act, data } = useBackend();
   const {
@@ -19,7 +27,7 @@ export const PlantDictionary = (props) => {
           <Flex direction={'column'} height={'100%'}>
             <Flex.Item>
               <Section textAlign={'center'}>
-                Botanical Index [Version 1.12.8.0]
+                Indeks Botaniczny [Wersja 1.12.8.0]
               </Section>
             </Flex.Item>
             <Flex.Item>
@@ -45,7 +53,7 @@ export const PlantDictionary = (props) => {
                       <Section>
                         <Input
                           width={'100%'}
-                          placeholder={'Search...'}
+                          placeholder={'Szukaj...'}
                           onInput={(e, value) => setSearchText(value)}
                         />
                       </Section>
@@ -303,8 +311,8 @@ export const PlantDictionary = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Version 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. All Rights Reserved.</Box>
+                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
                 <br />
                 <Box>
                   {'C:\\Users\\admin>'}
@@ -362,13 +370,13 @@ const InspectionPanelTrait = (props) => {
                         ? chapters['Features']['/datum/plant_feature/roots'][
                             id
                           ]['stats']['name']
-                        : 'No Records'
+                        : 'Brak wpisów'
                 }
               `}
               </Button>
             ))
           ) : (
-            <Button className="plant__dialogue">No Records</Button>
+            <Button className="plant__dialogue">Brak wpisów</Button>
           )}
         </Flex>
       </Flex.Item>
@@ -412,7 +420,7 @@ const InspectionPanelFeature = (props) => {
             />
           ))
         ) : (
-          <Button className="plant__dialogue">No Traits Found</Button>
+          <Button className="plant__dialogue">Nie znaleziono cech</Button>
         )}
       </Flex.Item>
       <Divider />
@@ -444,7 +452,7 @@ const InspectionPanelFeature = (props) => {
                   }
                 >
                   {chapters['Plants'][plant_key]
-                    ? `${chapters['Plants'][plant_key]['name']} (found in)`
+                    ? `${chapters['Plants'][plant_key]['name']} (występuje w)`
                     : `${
                         (chapters['Features']['/datum/plant_feature/fruit'][
                           plant_key
@@ -467,11 +475,11 @@ const InspectionPanelFeature = (props) => {
                               plant_key
                             ]['stats']['name']
                           : 0)
-                      } (mutates from)`}
+                      } (mutuje z)`}
                 </Button>
               ))
             ) : (
-              <Button className="plant__dialogue">No Records</Button>
+              <Button className="plant__dialogue">Brak wpisów</Button>
             )}
           </Flex>
         </Flex>
@@ -515,7 +523,7 @@ const InspectionPanelPlantFeature = (props) => {
             />
           ))
         ) : (
-          <Button className="plant__dialogue">No Traits Found</Button>
+          <Button className="plant__dialogue">Nie znaleziono cech</Button>
         )}
       </Flex.Item>
     </Flex>
@@ -533,7 +541,7 @@ const ChapterEntry = (props) => {
       selected={title === selected_chapter}
       onClick={() => act('select_chapter', { key: title })}
     >
-      {title}
+      {CHAPTER_NAMES[title] || title}
     </Button>
   );
 };

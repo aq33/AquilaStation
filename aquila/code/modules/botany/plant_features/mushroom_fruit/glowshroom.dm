@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/glowshroom
 	species_name = "meridiem fungus"
-	name = "glowshroom"
+	name = "świecący grzyb"
 	icon_state = "button"
 	colour_overlay = "glow_colour"
 	colour_override = "#a6ff00"
@@ -27,7 +27,7 @@
 */
 /datum/plant_feature/fruit/mushroom/glowshroom/glowcap
 	species_name = "fulgur fungus"
-	name = "glowcap"
+	name = "świecący kapelusz"
 	colour_override = "#f00"
 	seed_icon_state = "mycelium-glowcap"
 	fruit_product = /obj/item/food/grown/mushroom/glowshroom/glowcap
@@ -40,7 +40,7 @@
 */
 /datum/plant_feature/fruit/mushroom/glowshroom/shadow
 	species_name = "umbra fungus"
-	name = "shadowshroom"
+	name = "cienisty grzyb"
 	colour_override = "#2f2636"
 	seed_icon_state = "mycelium-shadowshroom"
 	fruit_product = /obj/item/food/grown/mushroom/glowshroom/shadowshroom

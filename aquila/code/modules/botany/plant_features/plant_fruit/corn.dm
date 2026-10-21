@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/corn
 	species_name = "frumentum flavum"
-	name = "corn"
+	name = "kukurydza"
 	icon_state = "corn"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-corn"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/corn/snap
 	species_name = "frumentum disrumpam"
-	name = "snap corn"
+	name = "trzaskająca kukurydza"
 	icon_state = "snapcorn"
 	seed_icon_state = "seed-snapcorn"
 	fruit_product = /obj/item/grown/snapcorn

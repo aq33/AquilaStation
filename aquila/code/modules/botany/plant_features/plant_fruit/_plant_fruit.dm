@@ -2,7 +2,7 @@
 
 /datum/plant_feature/fruit
 	species_name = "testus testium"
-	name = "fruit"
+	name = "owoc"
 	icon = 'icons/obj/hydroponics/features/fruit.dmi'
 	icon_state = "apple"
 	feature_catagories = PLANT_FEATURE_FRUIT
@@ -86,14 +86,14 @@
 	. = ..()
 	var/list/dialogue = .
 	var/grouping = dialogue[3]
-	grouping += "Fruit Volume: [total_volume]u\n"
-	grouping += "Growth Time: [growth_time/10] seconds\n"
-	grouping += "Fruit Size: [fruit_size]\n"
+	grouping += "Objętość owocu: [total_volume]u\n"
+	grouping += "Czas wzrostu: [growth_time/10] s\n"
+	grouping += "Rozmiar owocu: [fruit_size]\n"
 	dialogue[3] = grouping
 
 /datum/plant_feature/fruit/get_ui_data()
 	. = ..()
-	. += list(PLANT_DATA("Fruit Volume", "[total_volume]u"), PLANT_DATA("Growth Time", "[growth_time/10] SECONDS"), PLANT_DATA("Fruit Size", "[fruit_size]"), PLANT_DATA(null, null))
+	. += list(PLANT_DATA("Objętość owocu", "[total_volume]u"), PLANT_DATA("Czas wzrostu", "[growth_time/10] S"), PLANT_DATA("Rozmiar owocu", "[fruit_size]"), PLANT_DATA(null, null))
 
 /datum/plant_feature/fruit/process(delta_time)
 	var/obj/item/plant_tray/tray = parent.plant_item.loc
@@ -217,7 +217,7 @@
 
 	var/obj/item/plant_tray/tray = parent?.plant_item?.loc
 	if(!length(fruits) && user)
-		to_chat(user, span_warning("You need a spade to move [parent?.plant_item]!"))
+		to_chat(user, span_warning("Do przeniesienia potrzebujesz łopatki: [parent?.plant_item]!"))
 	if(!length(fruits) || SEND_SIGNAL(tray, COMSIG_PLANTER_PAUSE_PLANT))
 		return
 	var/list/temp_fruits = list()

@@ -89,7 +89,7 @@
 	if(length(item.contents))
 		spading = FALSE
 		return
-	if(do_after(user, 2.5 SECONDS, plant_item.loc) && !length(item.contents)) //Check contents twice cuz time frame changes
+	if(do_after(user, 2.5 SECONDS, target = plant_item.loc) && !length(item.contents)) //Check contents twice cuz time frame changes
 		//Remove the plant from it's old home
 		var/atom/movable/AM = plant_item.loc
 		if(istype(AM) || isturf(AM))
@@ -115,20 +115,20 @@
 	//Is this even a planter?
 	var/datum/component/planter/tray_component = target.GetComponent(/datum/component/planter)
 	if(!tray_component)
-		to_chat(user, "<span class='warning'>You can't plant [plant_item] here!</span>")
+		to_chat(user, "<span class='warning'>Nie możesz tu zasadzić: [plant_item]!</span>")
 		return
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_ROOT_SUBSTRATE, tray_component.substrate))
-		to_chat(user, "<span class='warning'>You can't plant [plant_item] in this substrate!</span>")
+		to_chat(user, "<span class='warning'>W tym podłożu nie da się zasadzić: [plant_item]!</span>")
 		return
 	if(!SEND_SIGNAL(src, COMSIG_PLANT_POLL_TRAY_SIZE, target))
-		to_chat(user, "<span class='warning'>There's no room to plant [plant_item] here!</span>")
+		to_chat(user, "<span class='warning'>Brakuje tu miejsca, by zasadzić: [plant_item]!</span>")
 		return
 	INVOKE_ASYNC(src, PROC_REF(catch_spade_attack_async), source, target, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/plant/proc/catch_spade_attack_async(obj/spade, obj/target, mob/user)
 	playsound(plant_item, 'sound/effects/shovel_dig.ogg', 60)
-	if(!do_after(user, 2.5 SECONDS, target))
+	if(!do_after(user, 2.5 SECONDS, target = target))
 		return
 	UnregisterSignal(spade, COMSIG_ITEM_PRE_ATTACK)
 	if(!(locate(plant_item) in spade))

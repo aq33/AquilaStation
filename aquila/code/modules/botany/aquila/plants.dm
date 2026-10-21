@@ -5,7 +5,7 @@
 */
 /datum/plant_feature/fruit/flower/butt
 	species_name = "podex replicatus"
-	name = "replica butt flower"
+	name = "kwiat-tyłek"
 	icon = 'aquila/icons/obj/buttflower.dmi'
 	icon_state = "buttflower"
 	seed_icon = 'aquila/icons/obj/buttflower.dmi'
@@ -19,8 +19,8 @@
 	mutations = list()
 
 /obj/item/plant_seeds/preset/butt
-	name = "replica butt seeds"
-	name_override = "replica butt flower"
+	name = "nasiona kwiatu-tyłka"
+	name_override = "kwiat-tyłek"
 	icon = 'aquila/icons/obj/buttflower.dmi'
 	icon_state = "seed-butt"
 	plant_features = list(/datum/plant_feature/roots/dirt, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower/butt)
@@ -30,7 +30,7 @@
 */
 /datum/plant_feature/fruit/starthistle/corpse
 	species_name = "amorphophallus putidus"
-	name = "corpse flower"
+	name = "kwiat trupi"
 	icon_state = "star"
 	colour_override = "#6b1f3a"
 	seed_icon = 'icons/obj/hydroponics/seeds.dmi'
@@ -64,7 +64,7 @@
 	return flower?.miasma_amount(seconds)
 
 /obj/item/plant_seeds/preset/corpse_flower
-	name = "corpse flower seeds"
+	name = "nasiona kwiatu trupiego"
 	name_override = "kwiat trupi"
 	icon = 'icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-corpse-flower"
@@ -74,7 +74,7 @@
 	Pomidor-zabójca jako gotowe nasiona (u Bee tylko mutacja), m.in. dla handlarza z eksploracji dronami
 */
 /obj/item/plant_seeds/preset/killer_tomato
-	name = "killer tomato seeds"
-	name_override = "killer tomato plant"
+	name = "nasiona pomidora-zabójcy"
+	name_override = "pomidor-zabójca"
 	icon_state = "seed-killertomato"
 	plant_features = list(/datum/plant_feature/roots/dirt, /datum/plant_feature/body/bush_vine/tomato, /datum/plant_feature/fruit/tomato/killer)

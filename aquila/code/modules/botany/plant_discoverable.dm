@@ -10,7 +10,7 @@
 	//Has it been scanned
 	var/atom/atom_parent = parent
 	if(scanned)
-		to_chat(user, "<span class='warning'>[atom_parent] has already been analysed.</span>")
+		to_chat(user, "<span class='warning'>To ([atom_parent]) zostało już przeanalizowane.</span>")
 		return
 	//Does it have a plant component
 	var/datum/component/plant/plant_component = atom_parent.GetComponent(/datum/component/plant)
@@ -27,5 +27,5 @@
 	linked_techweb.scanned_atoms[discover_id] = TRUE
 	SSbotany.discovered_species |= discover_id
 	playsound(user, 'sound/machines/terminal_success.ogg', 60)
-	to_chat(user, span_notice("New datapoint scanned, [point_reward] discovery points gained."))
+	to_chat(user, span_notice("Zeskanowano nowy punkt danych, zdobyto punkty odkryć: [point_reward]."))
 	pulse_effect(get_turf(atom_parent), 4)

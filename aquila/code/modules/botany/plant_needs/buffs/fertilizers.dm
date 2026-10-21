@@ -2,7 +2,7 @@
 	Robust Harvest, increases harvest
 */
 /datum/plant_need/reagent/buff/robust
-	need_description = "Improves plant's next harvest by half its max harvest, apply before a harvest starts growing."
+	need_description = "Zwiększa następny zbiór o połowę maksymalnego zbioru. Podaj, zanim zaczną rosnąć owoce."
 	reagent_needs = list(/datum/reagent/plantnutriment/robustharvestnutriment = 5, /datum/reagent/saltpetre = 2, /datum/reagent/plantnutriment/slimenutriment = 1, /datum/reagent/ammonia = 5)
 	auto_threshold = TRUE
 	///Latch for keeping the buff on - Turns the buff off AFTER the plant has a harvest
@@ -42,7 +42,7 @@
 	var/restore = 0.2
 
 /datum/plant_need/reagent/buff/heal/New(datum/plant_feature/_parent)
-	need_description = "Heals a plant for [restore*100]% of its missing health."
+	need_description = "Leczy roślinę o [restore*100]% brakującego zdrowia."
 	return ..()
 
 /datum/plant_need/reagent/buff/heal/apply_buff(__delta_time)

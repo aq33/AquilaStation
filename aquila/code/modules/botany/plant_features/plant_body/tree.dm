@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/body/tree
 	species_name = "humilis arbor"
-	name = "tree"
+	name = "drzewo"
 	icon_state = "tree"
 	growth_prefix = "tree"
 	growth_stages = 4
@@ -25,17 +25,17 @@
 	parent.plant_item.add_emitter(/obj/emitter/plant_dust, "dust", 10, lifespan = 20)
 
 /datum/plant_feature/body/tree/apple
-	name = "apple tree"
+	name = "jabłoń"
 
 /datum/plant_feature/body/tree/orange
-	name = "orange tree"
+	name = "drzewko pomarańczowe"
 	icon_state = "tree_2"
 
 /*
 	Birch
 */
 /datum/plant_feature/body/tree/birch
-	name = "birch tree"
+	name = "brzoza"
 	icon_state = "birch"
 	growth_prefix = "birch"
 	overlay_positions = list(list(7, 30), list(13, 25), list(23, 23), list(28, 19), list(13, 15))
@@ -47,7 +47,7 @@
 	Cherry
 */
 /datum/plant_feature/body/tree/cherry
-	name = "cherry tree"
+	name = "wiśnia"
 	icon_state = "cherry"
 	growth_prefix = "cherry"
 	overlay_positions = list(list(7, 30), list(13, 25), list(23, 23), list(28, 19), list(13, 15))
@@ -60,7 +60,7 @@
 */
 /datum/plant_feature/body/tree/mini
 	species_name = "infantem arbor"
-	name = "fruit tree"
+	name = "drzewo owocowe"
 	icon_state = "bush"
 	growth_stages = 3
 	growth_time = PLANT_BODY_GROWTH_MEDIUM
@@ -68,23 +68,23 @@
 	mutations = list(/datum/plant_feature/body/tree/sparse)
 
 /datum/plant_feature/body/tree/mini/cherry
-	name = "cherry tree"
+	name = "wiśnia"
 
 /datum/plant_feature/body/tree/mini/cocoa
-	name = "cocoa tree"
+	name = "kakaowiec"
 
 /datum/plant_feature/body/tree/mini/lemon
-	name = "lemon tree"
+	name = "drzewko cytrynowe"
 
 /datum/plant_feature/body/tree/mini/lime
-	name = "lime tree"
+	name = "drzewko limonkowe"
 
 /*
 	Sparse
 */
 /datum/plant_feature/body/tree/sparse
 	species_name = "arbor sparsa"
-	name = "sparse tree"
+	name = "rzadkie drzewo"
 	icon_state = "menace"
 	growth_prefix = "birch"
 	growth_stages = 3
@@ -97,7 +97,7 @@
 */
 /datum/plant_feature/body/tree/gum
 	species_name = "ignis arbor"
-	name = "gum tree"
+	name = "eukaliptus"
 	icon_state = "gum"
 	wither_state = "menace"
 	growth_prefix = "birch"
@@ -111,7 +111,7 @@
 */
 /datum/plant_feature/body/tree/palm
 	species_name = "litus arbore"
-	name = "palm tree"
+	name = "palma"
 	icon = 'icons/obj/hydroponics/features/body_tall.dmi'
 	icon_state = "palm"
 	overlay_positions = list(list(14, 28), list(19, 26))
@@ -119,7 +119,7 @@
 	trait_power = 2
 
 /datum/plant_feature/body/tree/palm/banana
-	name = "banana palm"
+	name = "bananowiec"
 
 /datum/plant_feature/body/tree/palm/coconut
-	name = "coconut palm"
+	name = "palma kokosowa"

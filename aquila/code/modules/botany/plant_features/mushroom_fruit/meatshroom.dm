@@ -1,6 +1,6 @@
 /datum/plant_feature/fruit/mushroom/mess
 	species_name = "revoltus sporis"
-	name = "charr shroom"
+	name = "zwęglony grzyb"
 	icon_state = "plump"
 	colour_overlay = "plump_colour"
 	colour_override = "#3b302a"
@@ -14,7 +14,7 @@
 
 /datum/plant_feature/fruit/mushroom/mess/meat
 	species_name = "escam sporis"
-	name = "meat shroom"
+	name = "mięsny grzyb"
 	icon_state = "plump"
 	colour_override = "#c74444"
 	seed_icon_state = "mycelium-glowcap"

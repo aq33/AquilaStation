@@ -1,9 +1,9 @@
 #define CANNIBAL_MULTI 1.5
 
 /datum/plant_trait/roots/parasitic
-	name = "Parasitic"
-	desc = "This gene causes roots to parasitically feed off a plant's fruit, depositing their reagents into their environment."
-	scales = "Reagent volume is multiplied by trait power."
+	name = "Pasożytnictwo"
+	desc = "Ten gen sprawia, że korzenie pasożytniczo żywią się owocami rośliny i oddają ich odczynniki do otoczenia."
+	scales = "Objętość odczynników jest mnożona przez moc cech."
 	blacklist = list(/datum/plant_trait/roots/parasitic/juicer)
 	/// Timer stuff for deposit action
 	var/feed_timer

@@ -7,8 +7,8 @@
 */
 
 /datum/plant_trait/fruit/seperated_contents
-	name = "Seperated Contents"
-	desc = "The fruit's chemical reagent's are seperated until triggered. When triggered, reagents will mix after a short period."
+	name = "Rozdzielona zawartość"
+	desc = "Odczynniki w owocu pozostają rozdzielone aż do aktywacji. Po aktywacji mieszają się po krótkiej chwili."
 
 /datum/plant_trait/fruit/seperated_contents/setup_component_parent(datum/source)
 	. = ..()
@@ -32,7 +32,7 @@
 	if(!istype(fruit))
 		return
 	//Sleep for a bit to give people time to react
-	fruit?.visible_message("<span class='warning'>[fruit] starts to mix its contents!</span>")
+	fruit?.visible_message("<span class='warning'>[fruit] zaczyna mieszać swoją zawartość!</span>")
 	playsound(fruit, 'sound/effects/bubbles.ogg', 45)
 	sleep(SEPERATED_CONTENTS_MINIMUM_TIMER+(rand(0, 2.5) SECONDS))
 	//Recreate fruit reagents without the NO_REACT flag

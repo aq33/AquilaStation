@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/cherry
 	species_name = "cerasus parvum"
-	name = "cherry"
+	name = "wiśnia"
 	icon_state = "cherry"
 	colour_override = "#ff0048"
 	seed_icon_state = "seed-cherry"
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/cherry/blue
 	species_name = "cerasus caeruleum"
-	name = "blue cherry"
+	name = "niebieska wiśnia"
 	icon_state = "cherry"
 	colour_override = "#6200ff"
 	seed_icon_state = "seed-bluecherry"
@@ -33,7 +33,7 @@
 */
 /datum/plant_feature/fruit/cherry/bulb
 	species_name = "cerasus bulbus"
-	name = "bulb cherry"
+	name = "wiśnia żarówkowa"
 	icon_state = "cherry"
 	colour_override = "#ff5e00"
 	seed_icon_state = "seed-cherrybulb"
@@ -48,7 +48,7 @@
 */
 /datum/plant_feature/fruit/cherry/bomb
 	species_name = "cerasus crepitus"
-	name = "cherry bomb"
+	name = "wiśniowa bomba"
 	icon_state = "cherry"
 	colour_override = "#412c20"
 	seed_icon_state = "seed-cherry_bomb"

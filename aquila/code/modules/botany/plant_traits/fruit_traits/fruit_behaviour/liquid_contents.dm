@@ -3,9 +3,9 @@
 */
 
 /datum/plant_trait/fruit/liquid_contents
-	name = "Liquid Contents"
-	desc = "The fruit squishes when thrown, used, or triggered. Triggers when squished."
-	examine_line = span_info("It has a lot of liquid contents inside.")
+	name = "Płynna zawartość"
+	desc = "Owoc rozpryskuje się po rzuceniu, użyciu lub aktywacji. Rozgnieciony aktywuje się."
+	examine_line = span_info("W środku ma mnóstwo płynu.")
 	blacklist = list(/datum/plant_trait/fruit/liquid_contents/sensitive)
 	/// Do we delete ourselves after impact
 	var/impact_del = TRUE
@@ -27,7 +27,7 @@
 	if(QDELING(src))
 		return
 	SEND_SIGNAL(fruit_parent, COMSIG_FRUIT_ACTIVATE_TARGET, src, hit_atom)
-	fruit_parent.visible_message(span_warning("[fruit_parent] has been squashed."), span_italics("You hear a smack."))
+	fruit_parent.visible_message(span_warning("[fruit_parent] rozpryskuje się."), span_italics("Słyszysz plaśnięcie."))
 	if(!dump_reagents) // This will override the impact del, so keep that in mind
 		return
 	//Cough on the actual target, if there is one
@@ -44,7 +44,7 @@
 /datum/plant_trait/fruit/liquid_contents/catch_activate(datum/source)
 	. = ..()
 	// Lil' bit of dupe code but it's not a dealbreaker
-	fruit_parent.visible_message(span_warning("[fruit_parent] has been squashed."), span_italics("You hear a smack."))
+	fruit_parent.visible_message(span_warning("[fruit_parent] rozpryskuje się."), span_italics("Słyszysz plaśnięcie."))
 	if(!dump_reagents)
 		return
 	var/turf/T = get_turf(fruit_parent)
@@ -58,8 +58,8 @@
 */
 
 /datum/plant_trait/fruit/liquid_contents/sensitive
-	name = "Sensitive contents"
-	desc = "The fruit triggers when thrown or used."
+	name = "Wrażliwa zawartość"
+	desc = "Owoc aktywuje się po rzuceniu lub użyciu."
 	impact_del = FALSE
 	dump_reagents = FALSE
 	blacklist = list(/datum/plant_trait/fruit/liquid_contents)

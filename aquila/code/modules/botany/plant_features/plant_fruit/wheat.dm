@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/wheat
 	species_name = "triticum aurum"
-	name = "wheat"
+	name = "pszenica"
 	icon_state = "wheat"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-wheat"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/wheat/oat
 	species_name = "triticum patet"
-	name = "oat"
+	name = "owies"
 	icon_state = "wheat_2"
 	colour_override = "#48923e"
 	seed_icon_state = "seed-oat"
@@ -30,7 +30,7 @@
 */
 /datum/plant_feature/fruit/wheat/meat
 	species_name = "triticum escam"
-	name = "meat"
+	name = "mięsopszenica"
 	icon_state = "wheat_2"
 	colour_override = "#ff0000"
 	seed_icon_state = "seed-meatwheat"

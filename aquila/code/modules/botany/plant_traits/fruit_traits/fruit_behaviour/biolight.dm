@@ -3,10 +3,10 @@
 */
 
 /datum/plant_trait/fruit/biolight
-	name = "Bioluminescence"
-	desc = "Makes the fruit glow."
-	scales = "Glow range and power scales with trait power."
-	examine_line = span_info("It emits a soft glow.")
+	name = "Bioluminescencja"
+	desc = "Owoc świeci."
+	scales = "Zasięg i siła świecenia rosną z mocą cech."
+	examine_line = span_info("Delikatnie świeci.")
 ///Glow characteristics
 	var/glow_color = "#ffffff"
 	//Minimums
@@ -22,56 +22,56 @@
 
 //Yellow
 /datum/plant_trait/fruit/biolight/yellow
-	name = "Yellow Bioluminescence"
-	desc = "Makes the fruit glow yellow."
+	name = "Żółta bioluminescencja"
+	desc = "Owoc świeci na żółto."
 	glow_color = "#FFFF66"
 
 //Orange
 /datum/plant_trait/fruit/biolight/orange
-	name = "Orange Bioluminescence"
-	desc = "Makes the fruit glow orange."
+	name = "Pomarańczowa bioluminescencja"
+	desc = "Owoc świeci na pomarańczowo."
 	glow_color = "#D05800"
 
 
 //Green
 /datum/plant_trait/fruit/biolight/green
-	name = "Green Bioluminescence"
-	desc = "Makes the fruit glow green."
+	name = "Zielona bioluminescencja"
+	desc = "Owoc świeci na zielono."
 	glow_color = "#99FF99"
 
 //Red
 /datum/plant_trait/fruit/biolight/red
-	name = "Red Bioluminescence"
-	desc = "Makes the fruit glow red."
+	name = "Czerwona bioluminescencja"
+	desc = "Owoc świeci na czerwono."
 	glow_color = "#FF3333"
 
 //Blue
 /datum/plant_trait/fruit/biolight/blue
 	//the best one - Pirill
-	name = "Blue Bioluminescence"
+	name = "Niebieska bioluminescencja"
 	glow_color = "#6699FF"
 
 //Purple
 /datum/plant_trait/fruit/biolight/purple
 	//did you know that Notepad++ doesnt think bioluminescence is a word - Pirill
-	name = "Purple Bioluminescence"
+	name = "Fioletowa bioluminescencja"
 	glow_color = "#D966FF"
 
 //Pink
 /datum/plant_trait/fruit/biolight/pink
 	//gay tide station pride - Pirill
-	name = "Pink Bioluminescence"
+	name = "Różowa bioluminescencja"
 	glow_color = "#FFB3DA"
 
 //White
 /datum/plant_trait/fruit/biolight/white
 	//gay tide station pride - Pirill
-	name = "White Bioluminescence"
+	name = "Biała bioluminescencja"
 	glow_color = "#FFF"
 
 //Shadow
 /datum/plant_trait/fruit/biolight/dark
-	name = "Shadow Emission"
-	desc = "Makes the fruit emmit shadows."
+	name = "Emisja cienia"
+	desc = "Owoc emituje cień."
 	glow_color = "#AAD84B"
 	glow_power = 0.04

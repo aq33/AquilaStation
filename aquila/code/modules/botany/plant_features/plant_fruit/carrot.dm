@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/carrot
 	species_name = "carota solis"
-	name = "carrot"
+	name = "marchew"
 	icon_state = "carrot"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-carrot"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/carrot/parsnip
 	species_name = "carota pastinaca"
-	name = "parsnip"
+	name = "pasternak"
 	icon_state = "parsnip"
 	seed_icon_state = "seed-parsnip"
 	fruit_product = /obj/item/food/grown/parsnip

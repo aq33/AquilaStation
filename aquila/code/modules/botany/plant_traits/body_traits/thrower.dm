@@ -5,9 +5,9 @@
 	Just overwrite a bunch of shit from thorns since they share enough logic
 */
 /datum/plant_trait/body/thorns/thrower
-	name = "Oxalis"
-	desc = "The plant will throw grown fruits at nearby trespassers."
-	scales = "Maximum trigger range scales with trait power."
+	name = "Szczawik"
+	desc = "Roślina rzuca dojrzałymi owocami w intruzów w pobliżu."
+	scales = "Maksymalny zasięg reakcji rośnie z mocą cech."
 	turf_range = 2
 	///Quick reference to our neighbour fruit feature
 	var/datum/plant_feature/fruit/fruit_feature
@@ -38,7 +38,7 @@
 	var/matrix/o_transform = plant_item.transform
 	animate(plant_item, time = 1.5, loop = 0, transform = matrix().Scale(1.07, 0.9))
 	animate(time = 2, transform = o_transform)
-	plant_item.visible_message(span_warning("[plant_item] throws a fruit at [victim]!"))
+	plant_item.visible_message(span_warning("[plant_item] rzuca owocem w: [victim]!"))
 //Throw that mf
 	var/obj/lobbed = pick(fruit_feature.fruits)
 	lobbed.forceMove(get_turf(plant_item))

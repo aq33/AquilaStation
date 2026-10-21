@@ -11,14 +11,14 @@
 	. = ..()
 	success_threshold = auto_threshold ? 1 / length(reagent_needs) : success_threshold
 	var/old_desc = need_description
-	need_description = "<span>This plant([strip_html(parent.name)]) [buff ? "optionally needs" : "needs"]"
+	need_description = "<span>Ta roślina ([strip_html(parent.name)]) [buff ? "opcjonalnie potrzebuje:" : "potrzebuje:"]"
 	var/reagent_index = 1
 	for(var/datum/reagent/reagent as anything in reagent_needs)
-		need_description = "[need_description] [reagent_needs[reagent]]u of [initial(reagent.name)][reagent_index < length(reagent_needs) ? ", " : ""]"
+		need_description = "[need_description] [initial(reagent.name)] ([reagent_needs[reagent]]u)[reagent_index < length(reagent_needs) ? ", " : ""]"
 		if(auto_threshold) //Add 'or' to the last option to show you only need 1 of the ingredients
-			need_description = "[need_description][reagent_index+1 == length(reagent_needs) ? "<b>or</b>" : ""]"
+			need_description = "[need_description][reagent_index+1 == length(reagent_needs) ? "<b>lub</b>" : ""]"
 		reagent_index++
-	need_description = "<b>'[old_desc]'[buff ? " (optional)":""]</b>\n<span>- [need_description][auto_threshold ? " (includes substitutes)" : ""]</span></span>"
+	need_description = "<b>'[old_desc]'[buff ? " (opcjonalnie)":""]</b>\n<span>- [need_description][auto_threshold ? " (z zamiennikami)" : ""]</span></span>"
 
 /datum/plant_need/reagent/check_need(_delta_time)
 	. = ..()

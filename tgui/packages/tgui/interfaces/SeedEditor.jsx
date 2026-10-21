@@ -30,7 +30,7 @@ export const SeedEditor = (props) => {
             {/* World building fluff top banner */}
             <Flex.Item>
               <Section textAlign={'center'}>
-                Seed Sequencer [Version 4.1.1.9]
+                Sekwencer Nasion [Wersja 4.1.1.9]
               </Section>
             </Flex.Item>
             {/* Top banner, contains plant name & genetic stability */}
@@ -38,11 +38,11 @@ export const SeedEditor = (props) => {
               <Flex direction={'row'}>
                 <Section textAlign={'center'} width={'100%'}>
                   <Flex direction={'row'} justify="center">
-                    <h1>{inserted_plant || 'No Seeds Inserted'}</h1>
+                    <h1>{inserted_plant || 'Nie włożono nasion'}</h1>
                     <Button
                       className="plant__button"
                       icon={'eject'}
-                      tooltip={'Eject Seeds'}
+                      tooltip={'Wysuń nasiona'}
                       onClick={() => act('remove_seeds')}
                       mx={'5px'}
                       my={'8px'}
@@ -51,7 +51,7 @@ export const SeedEditor = (props) => {
                   </Flex>
                 </Section>
                 <Section textAlign={'center'} width={'100%'}>
-                  Genetic Stability
+                  Stabilność genetyczna
                   <ProgressBar
                     color={'#ffff77'}
                     textColor={
@@ -103,7 +103,7 @@ export const SeedEditor = (props) => {
                         ) : (
                           <Flex.Item>
                             <Button width={'100%'} className="plant__dialogue">
-                              {'No Disk Inserted'}
+                              {'Nie włożono dysku'}
                             </Button>
                           </Flex.Item>
                         )}
@@ -128,8 +128,8 @@ export const SeedEditor = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Section textAlign={'start'} mb={'-3px'}>
-                <Box>Yamato OS [Version 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. All Rights Reserved.</Box>
+                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
                 <br />
                 <Box>
                   {'C:\\Users\\admin>'}
@@ -153,11 +153,11 @@ const DiskEmptyTab = (props) => {
       <Button
         className="plant__button"
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
       <Button className="plant__dialogue" width={'100%'}>
-        Empty Disk
+        Pusty dysk
       </Button>
     </Flex>
   );
@@ -172,7 +172,7 @@ const DiskTraitTab = (props) => {
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
       <PlantTraitInstance
@@ -201,14 +201,14 @@ const DiskFeatureTab = (props) => {
       <Button
         className="plant__button"
         icon={'trash'}
-        tooltip="Remove Feature"
+        tooltip="Usuń część"
         onClick={() => act('remove_feature', { key: feature['key'] })}
       />
       <Button
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'eject'}
-        tooltip={'Eject Disk'}
+        tooltip={'Wysuń dysk'}
         onClick={() => act('remove_disk')}
       />
       <Button
@@ -222,7 +222,7 @@ const DiskFeatureTab = (props) => {
       <Button
         className="plant__button"
         icon={'plus'}
-        tooltip="Add Feature"
+        tooltip="Dodaj część"
         onClick={() => act('add_feature', { key: feature['key'] })}
       />
     </Flex>
@@ -245,7 +245,7 @@ const PlantTraitInstance = (props) => {
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'trash'}
-        tooltip="Remove Trait"
+        tooltip="Usuń cechę"
         disabled={!remove_disabled}
         onClick={() => act('remove_trait', { key: trait_key })}
       />
@@ -289,7 +289,7 @@ const InspectionPanel = (props) => {
               />
             ))
           ) : (
-            <Button className="plant__dialogue">No Traits Found</Button>
+            <Button className="plant__dialogue">Nie znaleziono cech</Button>
           )}
         </Flex.Item>
       </Box>
@@ -325,7 +325,7 @@ const PlantFeaturePanel = (props) => {
         className="plant__button"
         verticalAlignContent={'middle'}
         icon={'trash'}
-        tooltip="Remove Feature"
+        tooltip="Usuń część"
         disabled={!feature['can_remove']}
         onClick={() => act('remove_feature', { key: feature['key'] })}
       />

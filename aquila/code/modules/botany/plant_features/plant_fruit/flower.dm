@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/flower
 	species_name = "oblivisci flos"
-	name = "forget me not"
+	name = "niezapominajka"
 	icon_state = "flower_1"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-forget_me_not"
@@ -31,7 +31,7 @@
 */
 /datum/plant_feature/fruit/flower/poppy
 	species_name = "flos ruber"
-	name = "poppy"
+	name = "mak"
 	icon_state = "flower_3"
 	colour_overlay = "flower_3_colour"
 	colour_override = "#ee1e1e"
@@ -46,7 +46,7 @@
 */
 /datum/plant_feature/fruit/flower/geranium
 	species_name = "hyacinthum papaver"
-	name = "geranium"
+	name = "pelargonia"
 	icon_state = "flower_2"
 	colour_overlay = "flower_2_colour"
 	colour_override = "#33a4d8"
@@ -60,7 +60,7 @@
 */
 /datum/plant_feature/fruit/flower/harebell
 	species_name = "viriditas flos"
-	name = "harebell"
+	name = "dzwonek"
 	icon_state = "harebell"
 	seed_icon_state = "seed-harebell"
 	fruit_product = /obj/item/food/grown/harebell
@@ -72,7 +72,7 @@
 */
 /datum/plant_feature/fruit/flower/lily
 	species_name = "sol lilium"
-	name = "lily"
+	name = "lilia"
 	icon_state = "flower_2"
 	colour_overlay = "flower_2_colour"
 	colour_override = "#ee601e"
@@ -86,7 +86,7 @@
 */
 /datum/plant_feature/fruit/flower/trumpet
 	species_name = "tubae flos"
-	name = "spaceman's trumpet"
+	name = "trąbka kosmonauty"
 	icon_state = "trumpet"
 	seed_icon_state = "seed-trumpet"
 	fruit_product = /obj/item/food/grown/trumpet
@@ -98,7 +98,7 @@
 */
 /datum/plant_feature/fruit/flower/sun
 	species_name = "sol flos"
-	name = "sun flower"
+	name = "słonecznik"
 	icon_state = "sun"
 	seed_icon_state = "seed-sunflower"
 	fruit_product = /obj/item/grown/sunflower
@@ -110,7 +110,7 @@
 */
 /datum/plant_feature/fruit/flower/nova
 	species_name = "flos nova"
-	name = "nova flower"
+	name = "kwiat supernowej"
 	icon_state = "sun_colour"
 	colour_override = "#ff4800"
 	seed_icon_state = "seed-novaflower"
@@ -123,7 +123,7 @@
 */
 /datum/plant_feature/fruit/flower/moon
 	species_name = "flos lunae"
-	name = "moon flower"
+	name = "kwiat księżycowy"
 	icon_state = "sun_colour"
 	colour_override = "#9c90e0"
 	seed_icon_state = "seed-moonflower"
@@ -136,7 +136,7 @@
 */
 /datum/plant_feature/fruit/flower/rainbow
 	species_name = "iris flos"
-	name = "rainbow flower"
+	name = "tęczowy kwiat"
 	icon_state = "flower_1"
 	colour_overlay = "flower_1_colour"
 	seed_icon_state = "seed-rainbowbunch"
@@ -148,7 +148,7 @@
 */
 /datum/plant_feature/fruit/flower/spiral
 	species_name = "sol flos sp I"
-	name = "spiral flower"
+	name = "spiralny kwiat"
 	icon_state = "spiral"
 	seed_icon_state = "seed-kirby"
 	fruit_product = null
@@ -158,7 +158,7 @@
 */
 /datum/plant_feature/fruit/flower/orb
 	species_name = "sol flos sp II"
-	name = "glow flower"
+	name = "świecący kwiat"
 	icon_state = "orb"
 	colour_override = "#FFF993"
 	seed_icon_state = "seed-kirby"

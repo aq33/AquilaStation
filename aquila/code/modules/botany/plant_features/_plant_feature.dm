@@ -96,7 +96,7 @@
 
 /datum/plant_feature/proc/get_mutation_cost_string()
 	if(!length(mutations))
-		return "no mutations"
+		return "brak mutacji"
 	var/string
 	for(var/datum/plant_feature/path as anything in mutations)
 		string = "[string][string ? "/" : ""][path::name] [mutations[path]||1]"
@@ -114,9 +114,9 @@
 	dialogue += grouping
 	//generic shared info - This can be a little duplicate when compared with get_ui_data() but it'll be good to keep this seperate for future additions
 	grouping = ""
-	grouping += "Genetic Stability: [genetic_budget]\n"
-	grouping += "Genetic Availability: [remaining_genetic_budget]\n"
-	grouping += "Trait Modifier: [trait_power]\n"
+	grouping += "Stabilność genetyczna: [genetic_budget]\n"
+	grouping += "Dostępny budżet genetyczny: [remaining_genetic_budget]\n"
+	grouping += "Moc cech: [trait_power]\n"
 	dialogue += grouping
 	return dialogue
 
@@ -136,8 +136,8 @@
 
 ///This is for display+, a pre-formatted list of nice looking text
 /datum/plant_feature/proc/get_ui_data()
-	return list(PLANT_DATA("Name", capitalize(name)), PLANT_DATA("Species Name", capitalize(species_name)), PLANT_DATA("Family", family), PLANT_DATA("Trait Power", trait_power), \
-	PLANT_DATA("Genetic Stability", genetic_budget), PLANT_DATA("Genetic Availability", remaining_genetic_budget), PLANT_DATA(null, null))
+	return list(PLANT_DATA("Nazwa", capitalize(name)), PLANT_DATA("Nazwa gatunkowa", capitalize(species_name)), PLANT_DATA("Rodzina", family), PLANT_DATA("Moc cech", trait_power), \
+	PLANT_DATA("Stabilność genetyczna", genetic_budget), PLANT_DATA("Dostępny budżet genetyczny", remaining_genetic_budget), PLANT_DATA(null, null))
 
 //our traits
 /datum/plant_feature/proc/get_ui_traits()

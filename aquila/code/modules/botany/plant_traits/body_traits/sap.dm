@@ -2,9 +2,9 @@
 	Makes this plant benehfit from polination, like nectar, but doesn't share the reward like nectar, offset by cost
 */
 /datum/plant_trait/body/sap
-	name = "Sap"
-	desc = "Makes this plant benehfit from bee polination, this buff is not shared.\n	Polinated plants will regain over half their missing health, and all their buffs\
-	will be active for a short duration."
+	name = "Sok"
+	desc = "Roślina korzysta na zapylaniu przez pszczoły, ale wzmocnienia nie dzieli z innymi.\n	Zapylone rośliny odzyskują ponad połowę brakującego zdrowia, a wszystkie ich wzmocnienia\
+	działają przez krótki czas."
 	genetic_cost = 3
 	///Quick reference to our parent's component parent
 	var/datum/component/plant/plant_comp

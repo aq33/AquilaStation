@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/coffee
 	species_name = "capulus faba"
-	name = "coffee"
+	name = "kawa"
 	icon_state = "berry"
 	colour_override = "#42200b"
 	seed_icon_state = "seed-coffeea"
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/coffee/robusta
 	species_name = "capulus robusta"
-	name = "coffee robusta"
+	name = "kawa robusta"
 	colour_override = "#9a1717"
 	seed_icon_state = "seed-coffeer"
 	fruit_product = /obj/item/food/grown/coffee/robusta

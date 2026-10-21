@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mail
 	species_name = "littera fructum"
-	name = "mail"
+	name = "list"
 	family = "???"
 	icon_state = "mail"
 	seed_icon_state = "seed-mail"

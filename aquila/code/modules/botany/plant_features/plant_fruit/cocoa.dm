@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/cocoa
 	species_name = "cocos delectamentum"
-	name = "cocoa"
+	name = "kakao"
 	icon_state = "pod"
 	icon_uneven = TRUE
 	colour_override = "#d0703d"
@@ -20,7 +20,7 @@
 */
 /datum/plant_feature/fruit/cocoa/vanilla
 	species_name = "cocos alius"
-	name = "vanilla"
+	name = "wanilia"
 	icon_state = "pod"
 	colour_override = "#362218"
 	seed_icon_state = "seed-vanillapod"

@@ -1,6 +1,6 @@
 /obj/item/disk/plant_disk
-	name = "plant disk"
-	desc = "A proprietary compact disk developed by Yamato."
+	name = "dysk danych roślin"
+	desc = "Firmowy dysk kompaktowy opracowany przez Yamato."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "disk"
 	/// Our saved plant data
@@ -15,11 +15,11 @@
 
 /obj/item/disk/plant_disk/examine(mob/user)
 	. = ..()
-	. += span_notice("You can use a pen to label [src].")
+	. += span_notice("Długopisem możesz opisać ten przedmiot ([src]).")
 
 /obj/item/disk/plant_disk/proc/set_saved(_saved)
 	saved = _saved
-	name = "plant disk"
+	name = "dysk danych roślin"
 	if(istype(saved, /datum/plant_trait))
 		var/datum/plant_trait/trait = saved
 		name = "[initial(name)] - [trait.get_name()]"
@@ -31,7 +31,7 @@
 /obj/item/disk/plant_disk/proc/label_disk(mob/user)
 	if(QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input = tgui_input_text(user, "New label", "New label", "label", MAX_NAME_LEN)
+	var/input = tgui_input_text(user, "Nowa etykieta", "Nowa etykieta", "etykieta", MAX_NAME_LEN)
 	if(QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	// Blank input removes label
@@ -40,6 +40,6 @@
 		return
 	// Check for slurs
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(user, span_warning("Your message contains forbidden words."))
+		to_chat(user, span_warning("Twoja wiadomość zawiera zakazane słowa."))
 		return
 	name = "[input]"

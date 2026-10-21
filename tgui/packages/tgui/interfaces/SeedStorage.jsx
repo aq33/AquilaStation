@@ -18,7 +18,7 @@ export const SeedStorage = (props) => {
               <Section>
                 <Input
                   width={'100%'}
-                  placeholder={'Search...'}
+                  placeholder={'Szukaj...'}
                   onInput={(e, value) => setSearchText(value)}
                 />
               </Section>
@@ -82,8 +82,8 @@ export const SeedStorage = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato-lite OS [Version 7.3.1.1]</Box>
-                <Box>© 2554 Yamato. All Rights Reserved.</Box>
+                <Box>Yamato-lite OS [Wersja 7.3.1.1]</Box>
+                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
                 <br />
                 <Box>
                   {'C:\\Users\\admin>'}
@@ -133,7 +133,7 @@ const InspectionPanel = (props) => {
             />
           ))
         ) : (
-          <Button className="plant__dialogue">No Traits Found</Button>
+          <Button className="plant__dialogue">Nie znaleziono cech</Button>
         )}
       </Flex.Item>
     </Flex>

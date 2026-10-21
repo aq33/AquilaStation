@@ -3,11 +3,11 @@
 */
 
 /datum/plant_trait/fruit/killer
-	name = "Bio-Malignant"
-	desc = "The fruit exhibits semi-sentient tendincies. Triggering the fruit will transform it into a blood \
-	thirsty monster! \
-	Inherits this fruit's traits."
-	scales = "Health and damage scale with trait power."
+	name = "Biozłośliwość"
+	desc = "Owoc przejawia skłonności do półświadomości. Aktywowany zamienia się w żądnego \
+	krwi potwora! \
+	Dziedziczy cechy tego owocu."
+	scales = "Zdrowie i obrażenia rosną z mocą cech."
 	///Are we already awakening
 	var/awakening = FALSE
 	///What kinda of mob do we awaken to be?
@@ -24,7 +24,7 @@
 		return
 	if(awakening || isspaceturf(fruit_parent.loc))
 		return
-	fruit_parent.visible_message(span_notice("[fruit_parent] beings to awaken!"))
+	fruit_parent.visible_message(span_notice("[fruit_parent] zaczyna się budzić!"))
 	awakening = TRUE
 	log_game("[fruit_parent] was awakened at [AREACOORD(fruit_parent)].")
 	addtimer(CALLBACK(src, PROC_REF(make_killer_tomato)), 30)
@@ -36,7 +36,7 @@
 	awaken_mob.maxHealth += (trait_power-1) * awaken_mob.maxHealth
 	awaken_mob.health = awaken_mob.maxHealth
 	awaken_mob.melee_damage += (trait_power-1) * 10
-	awaken_mob.visible_message(span_notice("[awaken_mob] suddenly awakens!"))
+	awaken_mob.visible_message(span_notice("[awaken_mob] nagle się budzi!"))
 	//Messily clone our parent's traits into the new mob
 	var/list/genes = list()
 	SEND_SIGNAL(fruit_parent, COMSIG_PLANT_GET_GENES, genes)
@@ -52,9 +52,9 @@
 */
 
 /datum/plant_trait/fruit/killer/friendly
-	name = "Bio-Benign"
-	desc = "The fruit exhibits semi-sentient tendincies. Triggering the fruit will transform it into a benign 'monster'. \
-	Inherits this fruit's traits."
+	name = "Biołagodność"
+	desc = "Owoc przejawia skłonności do półświadomości. Aktywowany zamienia się w niegroźnego „potwora”. \
+	Dziedziczy cechy tego owocu."
 	awaken_mob = /mob/living/simple_animal/friendly_fruit
 
 /*

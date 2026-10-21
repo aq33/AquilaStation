@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/plump
 	species_name = "denso fungus"
-	name = "plump helmet"
+	name = "pulchny hełm"
 	icon_state = "plump"
 	colour_overlay = "plump_colour"
 	colour_override = "#9964b1"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/mushroom/plump/walking
 	species_name = "ingredior fungus"
-	name = "walking mushroom"
+	name = "chodzący grzyb"
 	seed_icon_state = "mycelium-walkingmushroom"
 	fruit_product = /obj/item/food/grown/mushroom/plumphelmet
 	plant_traits = list(/datum/plant_trait/fruit/killer/friendly/walking, /datum/plant_trait/fruit/liquid_contents/sensitive)

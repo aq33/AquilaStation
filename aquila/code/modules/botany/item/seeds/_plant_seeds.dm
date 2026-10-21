@@ -2,7 +2,7 @@
 #define PLANT_Y_CLAMP 4
 
 /obj/item/plant_seeds
-	name = "seeds"
+	name = "nasiona"
 	icon = 'icons/obj/hydroponics/features/seeds.dmi'
 	icon_state = "base" //Although fruit sets the icon state, roundstart seeds / preset will need it set for caching to work - Non-vendor seeds probably dont need this
 	w_class = WEIGHT_CLASS_TINY
@@ -38,7 +38,7 @@
 
 /obj/item/plant_seeds/examine(mob/user)
 	. = ..()
-	. += span_notice("This seed pack contains [seeds] seeds.")
+	. += span_notice("Liczba nasion w paczce: [seeds].")
 
 /obj/item/plant_seeds/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -49,23 +49,23 @@
 		return
 //Desc / name select
 	var/selection
-	selection = tgui_input_list(user, "Edit name, or description?", "Name or Description", list("name", "desc"))
+	selection = tgui_input_list(user, "Edytować nazwę czy opis?", "Nazwa czy opis", list("nazwa", "opis"))
 	if(!selection || QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 //Text input
-	var/input = tgui_input_text(user, "New text", "New text", selection == "name" ? name_override : desc_override, selection == "name" ? MAX_NAME_LEN : MAX_MESSAGE_LEN)
+	var/input = tgui_input_text(user, "Nowy tekst", "Nowy tekst", selection == "nazwa" ? name_override : desc_override, selection == "nazwa" ? MAX_NAME_LEN : MAX_MESSAGE_LEN)
 	if(QDELETED(src) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	//empty input so we return
 	if(!input)
-		to_chat(user, span_warning("You need to enter something!"))
+		to_chat(user, span_warning("Musisz coś wpisać!"))
 		return
 	//check for slurs
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(user, span_warning("Your message contains forbidden words."))
+		to_chat(user, span_warning("Twoja wiadomość zawiera zakazane słowa."))
 		return
 	//Apply new override
-	if(selection == "name")
+	if(selection == "nazwa")
 		name_override = input
 		update_plant_name()
 	else
@@ -78,7 +78,7 @@
 		to_chat(user, info)
 
 /obj/item/plant_seeds/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is swallowing [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
+	user.visible_message(span_suicide("[user] połyka [src]! Wygląda na to, że próbuje popełnić samobójstwo!"))
 	user.gib()
 	var/datum/plant_feature/fruit/fruit = locate(/datum/plant_feature/fruit) in plant_features
 	if(!fruit)
@@ -103,16 +103,16 @@
 	//Is this even a planter?
 	var/datum/component/planter/tray_component = target.GetComponent(/datum/component/planter)
 	if(!tray_component)
-		return logic ? FALSE : "<span class='warning'>You can't plant [src] here!</span>"
+		return logic ? FALSE : "<span class='warning'>Nie możesz tu zasadzić: [src]!</span>"
 	//Check if our roots fuck with the substrate we're planting it in
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_ROOT_SUBSTRATE, tray_component.substrate))
-		return logic ? FALSE : "<span class='warning'>You can't plant [src] in this substrate!</span>"
+		return logic ? FALSE : "<span class='warning'>Nie możesz zasadzić w tym podłożu: [src]!</span>"
 	if(!SEND_SIGNAL(src, COMSIG_SEEDS_POLL_TRAY_SIZE, target))
-		return logic ? FALSE : "<span class='warning'>There's no room to plant [src] here!</span>"
+		return logic ? FALSE : "<span class='warning'>Brak miejsca, by tu zasadzić: [src]!</span>"
 	//Plant it
 	if(user)
-		to_chat(user, "<span class='notice'>You begin to plant [src] into [target].</span>")
-	if(!logic && !do_after(user, 2.3 SECONDS, target))
+		to_chat(user, "<span class='notice'>Zaczynasz sadzić [src] w: [target].</span>")
+	if(!logic && !do_after(user, 2.3 SECONDS, target = target))
 		return
 	var/obj/item/plant/plant = new(null, plant_features, species_id, (name_override || get_species_name(plant_features)))
 	var/datum/component/plant/plant_component = plant.GetComponent(/datum/component/plant)
@@ -132,7 +132,7 @@
 	if(seeds <= 0)
 		qdel(src)
 	else if(user)
-		balloon_alert(user, "[seeds] seeds remain")
+		balloon_alert(user, "pozostało nasion: [seeds]")
 	//Mouse offset
 	if(!plant_component?.use_mouse_offset)
 		return
@@ -144,7 +144,7 @@
 
 /obj/item/plant_seeds/proc/update_plant_name()
 	var/mushroom = locate(/datum/plant_feature/body/mushroom) in plant_features
-	name = "[name_override || get_species_name(plant_features)] [mushroom ? "spores" : "seeds"]"
+	name = "[mushroom ? "zarodniki" : "nasiona"]: [name_override || get_species_name(plant_features)]"
 
 /obj/item/plant_seeds/proc/update_species_id()
 	species_id = build_plant_species_id(plant_features)
@@ -177,7 +177,7 @@
 	Debug
 */
 /obj/item/plant_seeds/debug
-	name = "debug seeds"
+	name = "nasiona debugowe"
 	seeds = INFINITY
 
 /obj/item/plant_seeds/debug/Initialize(mapload, list/_plant_features)
@@ -197,7 +197,7 @@
 /obj/item/plant_seeds/debug/interact(mob/user)
 	. = ..()
 	var/list/features = typesof(/datum/plant_feature)
-	var/choice = tgui_input_list(user, "Add Feature", "Plant Features", features)
+	var/choice = tgui_input_list(user, "Dodaj część", "Części rośliny", features)
 	if(choice)
 		var/datum/plant_feature/feature = new choice()
 		feature.associate_seeds(src)

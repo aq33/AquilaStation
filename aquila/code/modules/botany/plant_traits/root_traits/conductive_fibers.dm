@@ -1,8 +1,8 @@
 /datum/plant_trait/roots/conductive
-	name = "Conductive Fibers"
-	desc = "This gene causes roots to charge wires below this plant. This works through floor panels."
+	name = "Włókna przewodzące"
+	desc = "Ten gen sprawia, że korzenie zasilają kable pod rośliną. Działa także przez płyty podłogowe."
 	genetic_cost = 1
-	scales = "Power production scales with trait power."
+	scales = "Wytwarzana moc rośnie z mocą cech."
 	///Cable charge per sercond
 	var/cable_charge = 2500
 

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/mushroom/liberty
 	species_name = "libertatem fungus"
-	name = "liberty-cap"
+	name = "łysiczka lancetowata"
 	icon_state = "cap"
 	colour_overlay = "cap_colour"
 	colour_override = "#a0852f"

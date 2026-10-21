@@ -4,205 +4,205 @@
 
 //Harebell
 /obj/item/plant_seeds/preset/harebell
-	name = "harebell seeds"
-	name_override = "harebell"
+	name = "nasiona: dzwonek"
+	name_override = "dzwonek"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower/harebell)
 
 //Oats
 /obj/item/plant_seeds/preset/oats
-	name = "oat seeds"
-	name_override = "oat stalk"
+	name = "nasiona: owies"
+	name_override = "owies"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/wheat, /datum/plant_feature/fruit/wheat/oat)
 
 //Meat
 /obj/item/plant_seeds/preset/meat
-	name = "meat wheat seeds"
-	name_override = "meat wheat stalk"
+	name = "nasiona: mięsopszenica"
+	name_override = "mięsopszenica"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/wheat, /datum/plant_feature/fruit/wheat/meat)
 
 //Bluespace Banana
 /obj/item/plant_seeds/preset/bs_banana
-	name = "bluespace banana seeds"
-	name_override = "bluespace banana tree"
+	name = "nasiona: bluespace'owy bananowiec"
+	name_override = "bluespace'owy bananowiec"
 	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/tree/palm/banana, /datum/plant_feature/fruit/banana/bluespace)
 
 //Glow Berry
 /obj/item/plant_seeds/preset/glow_berry
-	name = "glow berry seeds"
-	name_override = "glow berry bush"
+	name = "nasiona: krzew świecących jagód"
+	name_override = "krzew świecących jagód"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/berry, /datum/plant_feature/fruit/berry/glow)
 
 //Moonflower
 /obj/item/plant_seeds/preset/moonflower
-	name = "moonflower seeds"
-	name_override = "moonflower"
+	name = "nasiona: kwiat księżycowy"
+	name_override = "kwiat księżycowy"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/sunflower, /datum/plant_feature/fruit/flower/moon)
 
 //Novaflower
 /obj/item/plant_seeds/preset/novaflower
-	name = "novaflower seeds"
-	name_override = "novaflower"
+	name = "nasiona: kwiat supernowej"
+	name_override = "kwiat supernowej"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/sunflower, /datum/plant_feature/fruit/flower/nova)
 
 //Fire-Lemon
 /obj/item/plant_seeds/preset/firelemon
-	name = "combustible seeds"
-	name_override = "combustible lemon tree"
+	name = "nasiona: drzewko wybuchowych cytryn"
+	name_override = "drzewko wybuchowych cytryn"
 	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/tree/mini/lemon, /datum/plant_feature/fruit/lemon/combustible)
 
 //Shadowshroom
 /obj/item/plant_seeds/preset/shadowshroom
-	name = "shadowshroom spores"
-	name_override = "shadowshroom"
+	name = "zarodniki: cienisty grzyb"
+	name_override = "cienisty grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/shadow)
 
 //Glowcap
 /obj/item/plant_seeds/preset/glowcap
-	name = "glowcap spores"
-	name_override = "glowcap"
+	name = "zarodniki: świecący kapelusz"
+	name_override = "świecący kapelusz"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/glowshroom/glowcap)
 
 //Bamboo
 /obj/item/plant_seeds/preset/bamboo
-	name = "bamboo seeds"
-	name_override = "bamboo"
+	name = "nasiona: bambus"
+	name_override = "bambus"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber, /datum/plant_feature/fruit/bamboo)
 
 //Egg
 /obj/item/plant_seeds/preset/eggy_plant
-	name = "eggplant seeds"
-	name_override = "eggplant vine"
+	name = "nasiona: bakłażan jajeczny"
+	name_override = "bakłażan jajeczny"
 	plant_features = list(/datum/plant_feature/roots/clay, /datum/plant_feature/body/bush_vine/eggplant, /datum/plant_feature/fruit/eggplant/egg)
 
 //Rainbow
 /obj/item/plant_seeds/preset/rainbow
-	name = "rainbow flower seeds"
-	name_override = "rainbow flower bush"
+	name = "nasiona: tęczowy kwiat"
+	name_override = "tęczowy kwiat"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower/rainbow)
 
 //Walking
 /obj/item/plant_seeds/preset/walking
-	name = "walking mushroom spores"
-	name_override = "walking mushroom"
+	name = "zarodniki: chodzący grzyb"
+	name_override = "chodzący grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/plump/walking)
 
 //Amanita
 /obj/item/plant_seeds/preset/angel
-	name = "destroying angel spores"
-	name_override = "destroying angel mushroom"
+	name = "zarodniki: muchomor jadowity"
+	name_override = "muchomor jadowity"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/destroying_angel)
 
 //Steel
 /obj/item/plant_seeds/preset/steel
-	name = "steel-cap spores"
-	name_override = "steel-cap mushroom"
+	name = "zarodniki: grzyb stalowy"
+	name_override = "grzyb stalowy"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/tower/steel)
 
 //Gatfruit
 /obj/item/plant_seeds/preset/gat
-	name = "gatfruit seeds"
-	name_override = "gatfruit"
+	name = "nasiona: giwerowoc"
+	name_override = "giwerowoc"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/ground, /datum/plant_feature/fruit/gat)
 
 //Cherry-Bomb
 /obj/item/plant_seeds/preset/cherry_bomb
-	name = "cherry bomb seeds"
-	name_override = "cherry bomb tree"
+	name = "nasiona: drzewko wiśniowych bomb"
+	name_override = "drzewko wiśniowych bomb"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tree/mini/cherry, /datum/plant_feature/fruit/cherry/bomb)
 
 //lily
 /obj/item/plant_seeds/preset/lily
-	name = "lily seeds"
-	name_override = "lily"
+	name = "nasiona: lilia"
+	name_override = "lilia"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/lily)
 
 //Geranium
 /obj/item/plant_seeds/preset/geranium
-	name = "geranium seeds"
-	name_override = "geranium"
+	name = "nasiona: pelargonia"
+	name_override = "pelargonia"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/geranium)
 
 //Geranium
 /obj/item/plant_seeds/preset/forget
-	name = "forget seeds"
-	name_override = "forget"
+	name = "nasiona: niezapominajka"
+	name_override = "niezapominajka"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/flower, /datum/plant_feature/fruit/flower)
 
 //Embershroom
 /obj/item/plant_seeds/preset/embershroom
-	name = "embershroom spores"
-	name_override = "embershroom mushroom"
+	name = "zarodniki: żarogrzyb"
+	name_override = "żarogrzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom)
 
 //Cactus
 /obj/item/plant_seeds/preset/cactus
-	name = "cactus seeds"
-	name_override = "cactus"
+	name = "nasiona: kaktus popielny"
+	name_override = "kaktus popielny"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/tuber/lavaland, /datum/plant_feature/fruit/cactus)
 
 //Inocybe
 /obj/item/plant_seeds/preset/inocybe
-	name = "inocybe spores"
-	name_override = "inocybe mushroom"
+	name = "zarodniki: strzępiak"
+	name_override = "strzępiak"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/inocybe)
 
 //Porcini
 /obj/item/plant_seeds/preset/porcini
-	name = "porcini spores"
-	name_override = "porcini mushroom"
+	name = "zarodniki: borowik"
+	name_override = "borowik"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/porcini)
 
 //Polypore
 /obj/item/plant_seeds/preset/polypore
-	name = "polypore spores"
-	name_override = "polypore mushroom"
+	name = "zarodniki: huba"
+	name_override = "huba"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/embershroom/polypore)
 
 //Galaxythistle
 /obj/item/plant_seeds/preset/galaxythistle
-	name = "galaxythistle seeds"
-	name_override = "galaxythistle bush"
+	name = "nasiona: galaktyczny oset"
+	name_override = "galaktyczny oset"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle/thistle, /datum/plant_feature/fruit/starthistle/galaxy)
 
 //Jupitercup
 /obj/item/plant_seeds/preset/jupitercup
-	name = "jupitercup spores"
-	name_override = "jupitercup mushroom"
+	name = "zarodniki: czasza Jowisza"
+	name_override = "czasza Jowisza"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/chanterelle/jupiter)
 
 //Trumpet
 /obj/item/plant_seeds/preset/trumpet
-	name = "trumpet seeds"
-	name_override = "trumpet"
+	name = "nasiona: trąbka kosmonauty"
+	name_override = "trąbka kosmonauty"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/corn_stalk/flower, /datum/plant_feature/fruit/flower/trumpet)
 
 //Mail
 /obj/item/plant_seeds/preset/mail
-	name = "envelope seeds"
-	name_override = "envelope tree"
+	name = "nasiona: drzewo kopertowe"
+	name_override = "drzewo kopertowe"
 	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/tree/gum, /datum/plant_feature/fruit/mail)
 
 //Death Nettle
 /obj/item/plant_seeds/preset/death_nettle
-	name = "death nettle seeds"
-	name_override = "death nettle bush"
+	name = "nasiona: pokrzywa śmierci"
+	name_override = "pokrzywa śmierci"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/nettle/death, /datum/plant_feature/fruit/nettle/death)
 
 //Rainbow Cannabis
 /obj/item/plant_seeds/preset/rainbow_cannabis
-	name = "rainbow cannabis seeds"
-	name_override = "rainbow cannabis bush"
+	name = "nasiona: tęczowe konopie"
+	name_override = "tęczowe konopie"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/cannabis, /datum/plant_feature/fruit/cannabis/rainbow)
 
 //Omega Cannabis
 /obj/item/plant_seeds/preset/omega_cannabis
-	name = "omega cannabis seeds"
-	name_override = "omega cannabis bush"
+	name = "nasiona: konopie omega"
+	name_override = "konopie omega"
 	plant_features = list(/datum/plant_feature/roots, /datum/plant_feature/body/bush_vine/cannabis, /datum/plant_feature/fruit/cannabis/omega)
 
 //Charr
 /obj/item/plant_seeds/preset/charr
-	name = "charr spores"
-	name_override = "charr shroom"
+	name = "zarodniki: zwęglony grzyb"
+	name_override = "zwęglony grzyb"
 	plant_features = list(/datum/plant_feature/roots/hyphae, /datum/plant_feature/body/mushroom, /datum/plant_feature/fruit/mushroom/mess)
 	random_flags = SEED_RANDOM_MAINT

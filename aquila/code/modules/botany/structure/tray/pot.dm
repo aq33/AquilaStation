@@ -1,6 +1,6 @@
 /obj/item/plant_tray/pot
-	name = "plant pot"
-	desc = "Plant house."
+	name = "doniczka"
+	desc = "Domek dla roślinki."
 	icon = 'icons/obj/hydroponics/features/pots.dmi'
 	icon_state = "pot"
 	use_indicators = FALSE

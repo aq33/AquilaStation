@@ -4,7 +4,7 @@
 */
 /datum/plant_feature/fruit/grass
 	species_name = "gramen viridis"
-	name = "grass"
+	name = "trawa"
 	icon_state = "grass_matt"
 	seed_icon_state = "seed-grass"
 	fruit_product = /obj/item/food/grown/grass
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/grass/carpet
 	species_name = "gramen otium"
-	name = "carpet"
+	name = "dywan"
 	icon_state = "carpet_matt"
 	seed_icon_state = "seed-carpet"
 	fruit_product = /obj/item/food/grown/grass/carpet
@@ -30,7 +30,7 @@
 */
 /datum/plant_feature/fruit/grass/shamrock
 	species_name = "gramen trifolium"
-	name = "shamrock"
+	name = "koniczyna"
 	icon_state = "shamrock_matt"
 	seed_icon_state = "seed-shamrock"
 	fruit_product = /obj/item/food/grown/grass/shamrock
@@ -41,7 +41,7 @@
 */
 /datum/plant_feature/fruit/grass/fairy
 	species_name = "gramen mediocris"
-	name = "fairy grass"
+	name = "trawa wróżek"
 	icon_state = "fairy_matt"
 	seed_icon_state = "seed-fairygrass"
 	plant_traits = list(/datum/plant_trait/fruit/biolight/pink)

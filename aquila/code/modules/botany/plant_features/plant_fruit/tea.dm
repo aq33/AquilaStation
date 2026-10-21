@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/tea
 	species_name = "aspera folium"
-	name = "tea leaf"
+	name = "liść herbaty"
 	icon_state = "tea"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-teaaspera"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/tea/other
 	species_name = "astra folium"
-	name = "astra tea leaf"
+	name = "liść herbaty astra"
 	icon_state = "tea_2"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-teaastra"

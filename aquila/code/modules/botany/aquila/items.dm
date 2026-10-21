@@ -2,7 +2,7 @@
 
 // Balonowiec - mutacja arbuza (u Bee w hydroponics/grown/melon.dm)
 /obj/item/food/grown/ballolon
-	name = "ballolon"
+	name = "balonowiec"
 	desc = "Organiczny balon, lżejszy od powietrza."
 	icon = 'aquila/icons/obj/hydroponics/botany_extra.dmi'
 	icon_state = "ballolon"
@@ -16,21 +16,21 @@
 
 // Konstruktor hydrauliki dla botaników (u Bee w RCD.dm). Celowo gorszy od zwykłego, żeby działy współpracowały.
 /obj/item/construction/plumbing/botany
-	name = "hydroponic plumbing constructor"
-	desc = "An expertly modified RCD outfitted to construct hydroponic machinery."
+	name = "konstruktor hydrauliki hydroponicznej"
+	desc = "Fachowo przerobione RCD, przystosowane do budowy maszyn hydroponicznych."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "tray_maker"
 	design_types = list(
 		"Hydroponika" = list(
 			/obj/item/plant_tray = 15,
 		),
-		"Distributors" = list(
+		"Dystrybutory" = list(
 			/obj/machinery/duct = 1,
 			/obj/machinery/plumbing/input = 5,
 			/obj/machinery/plumbing/output = 5,
 			/obj/machinery/plumbing/filter = 5,
 		),
-		"Storage" = list(
+		"Magazynowanie" = list(
 			/obj/machinery/plumbing/tank = 20,
 		),
 	)

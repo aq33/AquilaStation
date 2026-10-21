@@ -6,8 +6,8 @@
 	The plant scanner shows some plant information and tray information
 */
 /obj/item/plant_scanner
-	name = "plant scanner"
-	desc = "A portble device used to scan and analyse plants. Also works on plant trays.\n<span class='notice'>Use in-hand to enable / disable advanced scan.</span>"
+	name = "skaner roślin"
+	desc = "Przenośne urządzenie do skanowania i analizy roślin. Działa też na tacach hydroponicznych.\n<span class='notice'>Użyj w dłoni, aby włączyć / wyłączyć zaawansowany skan.</span>"
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "plant_scanner"
 	item_state = "analyzer"
@@ -85,7 +85,7 @@
 		//Reagents
 		buffer["reagents"] = list()
 		for(var/datum/reagent/reagent as anything in target.reagents?.reagent_list)
-			buffer["reagents"] += list("[reagent?.volume]u of [reagent?.name]")
+			buffer["reagents"] += list("[reagent?.volume]j. [reagent?.name]")
 		. = FALSE
 //Tray - don't bother opening up the UI for this, we just dump it in chat
 	var/obj/item/plant_tray/tray = target
@@ -97,8 +97,8 @@
 		var/datum/component/plant/plant
 		for(var/ref as anything in tray.harvestable_components)
 			plant = locate(ref)
-			scan_dialogue += "<span class='plant_sub'>[plant.plant_item]([get_species_name(plant.plant_features)])\n\nReady For Harvest</span>"
-			buffer += "[plant.plant_item]([get_species_name(plant.plant_features)]) Ready For Harvest]"
+			scan_dialogue += "<span class='plant_sub'>[plant.plant_item]([get_species_name(plant.plant_features)])\n\nGotowa do zbioru</span>"
+			buffer += "[plant.plant_item]([get_species_name(plant.plant_features)]) gotowa do zbioru"
 		//Report problems
 		for(var/ref as anything in tray.problem_features)
 			feature = locate(ref)
@@ -117,11 +117,11 @@
 			buffer += feature.get_need_dialogue(FALSE)
 		//Report Weeds
 		var/datum/component/planter/tray_component = tray.GetComponent(/datum/component/planter)
-		scan_dialogue +="<span class='plant_sub'>Weed Composition: [tray_component.weed_level]%</span>"
-		buffer += "Weed Composition: [tray_component.weed_level]%"
+		scan_dialogue +="<span class='plant_sub'>Zachwaszczenie: [tray_component.weed_level]%</span>"
+		buffer += "Zachwaszczenie: [tray_component.weed_level]%"
 		//Report tray slots
-		scan_dialogue += "<span class='plant_sub'>Open Plant Slots [tray_component.plant_slots]/[initial(tray_component.plant_slots)]</span>"
-		buffer += "Open Plant Slots [tray_component.plant_slots]/[initial(tray_component.plant_slots)]"
+		scan_dialogue += "<span class='plant_sub'>Wolne miejsca na rośliny: [tray_component.plant_slots]/[initial(tray_component.plant_slots)]</span>"
+		buffer += "Wolne miejsca na rośliny: [tray_component.plant_slots]/[initial(tray_component.plant_slots)]"
 		to_chat(user, "<span class='plant_scan'><b>[capitalize(target.name)]</b></span><span class='plant_scan'>[scan_dialogue]</span>")
 		playsound(src, 'sound/effects/fastbeep.ogg', 20)
 		ui_update()

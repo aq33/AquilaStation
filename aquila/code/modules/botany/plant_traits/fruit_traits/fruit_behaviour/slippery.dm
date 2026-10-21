@@ -2,9 +2,9 @@
 	Slippery, guess what this does asshole
 */
 /datum/plant_trait/fruit/slippery
-	name = "Slippery"
-	desc = "The fruit becomes slippery. Slipping a mob will trigger the fruit."
-	examine_line = span_info("It has a very slippery skin.")
+	name = "Śliskość"
+	desc = "Owoc staje się śliski. Gdy ktoś się na nim poślizgnie, owoc się aktywuje."
+	examine_line = span_info("Ma bardzo śliską skórkę.")
 	///Ref to our slip component
 	var/datum/component/slippery/slip_component
 

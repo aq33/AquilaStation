@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/lemon
 	species_name = "citrus uvam"
-	name = "lemon"
+	name = "cytryna"
 	icon_state = "citrus"
 	icon_uneven = TRUE
 	colour_override = "#ffe600"
@@ -19,7 +19,7 @@
 */
 /datum/plant_feature/fruit/lemon/lime
 	species_name = "citrus viridis"
-	name = "lime"
+	name = "limonka"
 	icon_state = "citrus"
 	colour_override = "#2bff00"
 	seed_icon_state = "seed-lime"
@@ -31,7 +31,7 @@
 */
 /datum/plant_feature/fruit/lemon/combustible
 	species_name = "citrus crepitus"
-	name = "combustible lemon"
+	name = "wybuchowa cytryna"
 	icon_state = "citrus"
 	colour_override = "#ff3c00"
 	seed_icon_state = "seed-firelemon"

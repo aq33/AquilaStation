@@ -1,8 +1,8 @@
 #define PC_LINK_RANGE 3
 
 /obj/machinery/computer/plant_machine_controller
-	name = "hydroponics machine terminal"
-	desc = "A proprietary terminal made by Yamato to control Yamato machines. It's clearly an older design."
+	name = "terminal maszyn hydroponicznych"
+	desc = "Firmowy terminal Yamato do sterowania maszynami Yamato. To wyraźnie starszy model."
 	icon = 'icons/obj/hydroponics/features/generic.dmi'
 	icon_state = "pc"
 	base_icon_state = "pc"
@@ -27,7 +27,7 @@
 
 /obj/machinery/computer/plant_machine_controller/Initialize(mapload)
 	. = ..()
-	desc += span_notice("\nAlt-click to resync nearby machines.")
+	desc += span_notice("\nAlt-klik, aby ponownie połączyć pobliskie maszyny.")
 	screen = new(src, "pc_on")
 	//Attach some stickers randomly for fun
 	var/list/stickers = list(/obj/item/sticker/series_2/flower, /obj/item/sticker/series_2/banana, /obj/item/sticker/series_2/tomato)
@@ -45,7 +45,7 @@
 /obj/machinery/plant_machine/plant_mutator/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
-	context.add_alt_click_action("Re-Link Nearby Machines")
+	context.add_alt_click_action("Połącz ponownie pobliskie maszyny")
 
 /obj/machinery/computer/plant_machine_controller/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -58,7 +58,7 @@
 
 /obj/machinery/computer/plant_machine_controller/AltClick(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Resyncing machines..."))
+	to_chat(user, span_notice("Ponowne łączenie maszyn..."))
 	playsound(src, 'sound/effects/fastbeep.ogg', 60)
 	locate_machines()
 
@@ -209,13 +209,13 @@
 
 //Circuitboard
 /obj/item/circuitboard/computer/plant_machine_controller
-	name = "hydroponics machine terminal (Computer Board)"
+	name = "terminal maszyn hydroponicznych (płytka komputera)"
 	icon_state = "service"
 	build_path = /obj/machinery/computer/plant_machine_controller
 
 /datum/design/board/plant_machine_controller
-	name = "Computer Design (Hydroponics Machine Terminal)"
-	desc = "The circuit board for a hydroponics machine terminal, used to control Yamato machines in hydroponics."
+	name = "Projekt komputera (terminal maszyn hydroponicznych)"
+	desc = "Płytka terminalu maszyn hydroponicznych, służącego do sterowania maszynami Yamato w hydroponice."
 	id = "plant_machine_controller_console"
 	build_path = /obj/item/circuitboard/computer/plant_machine_controller
 	category = list ("Hydroponics Machinery")

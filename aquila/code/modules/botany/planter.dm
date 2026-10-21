@@ -51,7 +51,7 @@
 	if(!weed.plant(parent, logic = TRUE))
 		qdel(weed)
 		return
-	obj_parent.visible_message(span_warning("The [parent] is overtaken by some [weed.name_override]!"))
+	obj_parent.visible_message(span_warning("[parent] zarasta chwast: [weed.name_override]!"))
 	qdel(weed)
 
 /datum/component/planter/proc/catch_attack(datum/source, obj/item/I, mob/living/attacker, proximity_flag, click_parameters)
@@ -62,21 +62,21 @@
 	var/list/modifiers = params2list(click_parameters)
 //Hasty remove plants
 	if(LAZYACCESS(modifiers, RIGHT_CLICK) && istype(I, /obj/item/shovel) && length(plants))
-		to_chat(attacker, span_warning("You begin to hastily remove [parent]'s plants! (This will destroy them)"))
+		to_chat(attacker, span_warning("Zaczynasz w pośpiechu usuwać rośliny z: [parent]! (To je zniszczy)"))
 		INVOKE_ASYNC(src, PROC_REF(async_hasty_remove), attacker, I)
 		return
 //Removing weeeds
 	if(istype(I, /obj/item/cultivator))
 		if(weed_level <= 1)
-			attacker.visible_message("[attacker] digs around in [parent].", span_warning("[parent] is devoid of weeds!"))
+			attacker.visible_message("[attacker] grzebie w: [parent].", span_warning("Tu nie ma żadnych chwastów ([parent])!"))
 			return
-		attacker.visible_message("[attacker] uproots the weeds.", span_notice("You remove the weeds from [parent]."))
+		attacker.visible_message("[attacker] wyrywa chwasty.", span_notice("Usuwasz chwasty z: [parent]."))
 		weed_level = 0
 		playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
 		return
 //Plumbing - because the punger is coded stupid
 	if(istype(I, /obj/item/plunger))
-		to_chat(attacker, span_notice("You start furiously plunging [parent]."))
+		to_chat(attacker, span_notice("Zaczynasz zawzięcie przepychać: [parent]."))
 		INVOKE_ASYNC(src, PROC_REF(async_plunger_action), attacker, I)
 		return
 //Remove substrate
@@ -84,7 +84,7 @@
 		INVOKE_ASYNC(src, PROC_REF(async_spade_action), attacker)
 		return
 	else if(istype(I, /obj/item/shovel) && length(plants))
-		to_chat(attacker, span_warning("You can't clear [parent]'s substrate while it still contains plants!"))
+		to_chat(attacker, span_warning("Nie możesz usunąć podłoża, dopóki są w nim rośliny ([parent])!"))
 		//special code selecting specific plants to uproot, helps when visiblity is sucky
 		INVOKE_ASYNC(src, PROC_REF(async_spade_options), attacker, I)
 		return
@@ -92,11 +92,11 @@
 	var/obj/obj_parent = parent
 	var/obj/item/reagent_containers/reagent_source = I
 	if(istype(reagent_source, /obj/item/reagent_containers) && reagent_source.reagents.total_volume <= 0)
-		to_chat(attacker, span_warning("[reagent_source] is empty!"))
+		to_chat(attacker, span_warning("[reagent_source] jest puste!"))
 		return
 	//Composting - Composted reagents are doubled
 	if(IS_EDIBLE(reagent_source) || istype(reagent_source, /obj/item/reagent_containers/pill))
-		obj_parent.visible_message(span_notice("[attacker] composts [reagent_source], spreading it through [obj_parent]"))
+		obj_parent.visible_message(span_notice("[attacker] kompostuje [reagent_source], rozprowadzając to po: [obj_parent]."))
 		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
 			reagent_source.reagents?.remove_any(reagent_source.reagents.total_volume*2)
 		reagent_source.reagents?.trans_to(obj_parent, reagent_source.reagents.total_volume, 2, transfered_by = attacker)
@@ -105,14 +105,14 @@
 	//Syringe
 	else if(istype(reagent_source, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/syr = reagent_source
-		obj_parent.visible_message(span_notice("[attacker] injects [obj_parent] with [syr]"))
+		obj_parent.visible_message(span_notice("[attacker] wstrzykuje zawartość [syr] do: [obj_parent]."))
 		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
 			reagent_source.reagents?.remove_any(syr.amount_per_transfer_from_this)
 		reagent_source.reagents?.trans_to(obj_parent, syr.amount_per_transfer_from_this, transfered_by = attacker)
 	//Sprays
 	else if(istype(reagent_source, /obj/item/reagent_containers/spray))
 		var/obj/item/reagent_containers/spray/spray = reagent_source
-		obj_parent.visible_message(span_notice("[attacker] sprays [obj_parent] with [reagent_source]"))
+		obj_parent.visible_message(span_notice("[attacker] spryskuje [obj_parent], używając: [reagent_source]."))
 		playsound(obj_parent)
 		if(reagent_source.reagents.total_volume >= reagent_source.reagents.maximum_volume)
 			reagent_source.reagents?.remove_any(spray.amount_per_transfer_from_this)
@@ -120,19 +120,19 @@
 
 /datum/component/planter/proc/async_spade_action(mob/user)
 	playsound(parent, 'sound/effects/shovel_dig.ogg', 60)
-	if(!do_after(user, 2.3 SECONDS, parent))
+	if(!do_after(user, 2.3 SECONDS, target = parent))
 		return
 	set_substrate(null)
 
 /datum/component/planter/proc/async_plunger_action(mob/user, obj/item/I)
 	var/obj/reagent_source = parent
 	if(do_after(user, 30, target = reagent_source))
-		to_chat(user, span_notice("You finish plunging the [reagent_source]."))
+		to_chat(user, span_notice("Kończysz przepychać: [reagent_source]."))
 		reagent_source.reagents.expose(get_turf(src), TOUCH) //splash on the floor
 		reagent_source.reagents.clear_reagents()
 
 /datum/component/planter/proc/async_hasty_remove(mob/user, obj/item/I)
-	if(!do_after(user, 5 SECONDS, parent))
+	if(!do_after(user, 5 SECONDS, target = parent))
 		return
 	if(!length(plants))
 		return
@@ -163,18 +163,18 @@
 
 	// Substrate
 	if(substrate)
-		examine_text += span_notice("[parent] is filled with [substrate.name].\n[substrate.tooltip]")
+		examine_text += span_notice("Podłoże ([parent]): [substrate.name].\n[substrate.tooltip]")
 	else
-		examine_text += span_warning("[parent] does not contain any substrate!")
+		examine_text += span_warning("Brak podłoża ([parent])!")
 	// Weeds
 	if(weed_level <= 10)
-		examine_text += span_warning("A few weeds dot [parent].")
+		examine_text += span_warning("Tu i ówdzie wyrasta kilka chwastów ([parent]).")
 	else if(weed_level <= 30)
-		examine_text += span_warning("A collection of weeds sprout from [parent].")
+		examine_text += span_warning("Wyrasta tu sporo chwastów ([parent]).")
 	else if(weed_level <= 50)
-		examine_text += span_warning("A horde of weeds cover [parent]!")
+		examine_text += span_warning("Hordy chwastów pokrywają: [parent]!")
 	else if(weed_level > 50)
-		examine_text += span_warning("[parent] is overrun with weeds!")
+		examine_text += span_warning("[parent] całkiem zarasta chwastami!")
 
 /datum/component/planter/proc/catch_entered(datum/source, atom/movable/entering)
 	SIGNAL_HANDLER

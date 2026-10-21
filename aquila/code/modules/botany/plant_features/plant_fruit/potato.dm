@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/potato
 	species_name = "annuum patet"
-	name = "potato"
+	name = "ziemniak"
 	icon_state = "potato"
 	seed_icon_state = "seed-potato"
 	fruit_product = /obj/item/food/grown/potato
@@ -17,7 +17,7 @@
 */
 /datum/plant_feature/fruit/potato/sweet
 	species_name = "annuum dulce"
-	name = "sweet potato"
+	name = "batat"
 	icon_state = "potato-2"
 	colour_override = "#c96576"
 	seed_icon_state = "seed-sweetpotato"

@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/kudzu
 	species_name = "pueraria virallis"
-	name = "kudzu pod"
+	name = "strąk kudzu"
 	icon_state = "pod"
 	icon_uneven = TRUE
 	colour_override = "#7d9e48"

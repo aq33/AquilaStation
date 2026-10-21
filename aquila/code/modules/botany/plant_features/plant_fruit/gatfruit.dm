@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/gat
 	species_name = "sagitta fructus"
-	name = "gatfruit"
+	name = "giwerowoc"
 	icon_state = "gat"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-gatfruit"

@@ -45,7 +45,7 @@ export const PlantMutator = (props) => {
             {/* World building fluff top banner */}
             <Flex.Item>
               <Section textAlign={'center'}>
-                Irradiator Kiln [Version 1.0.0.3]
+                Piec Radiacyjny [Wersja 1.0.0.3]
               </Section>
             </Flex.Item>
             {/* Plant stuff column */}
@@ -57,7 +57,7 @@ export const PlantMutator = (props) => {
                     {/* Plant title */}
                     <Flex.Item width={'100%'}>
                       <Section textAlign="center">
-                        <h1>{inserted_plant || 'No Plant Inserted'}</h1>
+                        <h1>{inserted_plant || 'Nie włożono rośliny'}</h1>
                       </Section>
                     </Flex.Item>
                     {/* Feature panel  */}
@@ -77,13 +77,13 @@ export const PlantMutator = (props) => {
                     <Flex.Item width={'100%'}>
                       {/* Title */}
                       <Section>
-                        <h1>{catalyst || 'No Tank Inserted'}</h1>
+                        <h1>{catalyst || 'Nie włożono butli'}</h1>
                         <Divider />
                         {catalyst_desc || '...'}
                       </Section>
                       {/* Body */}
                       <Section>
-                        <Box textAlign={'center'}>Moles</Box>
+                        <Box textAlign={'center'}>Mole</Box>
                         <ProgressBar
                           color={'#ffff77'}
                           textColor={
@@ -108,12 +108,12 @@ export const PlantMutator = (props) => {
                       width={'100%'}
                       className={'plant__button'}
                       checked={port_traits}
-                      tooltip="Port traits from the original feature to the mutated result, when possible"
+                      tooltip="Przenieś cechy z pierwotnej części na zmutowany wynik, jeśli to możliwe"
                       onClick={() =>
                         act('toggle_port', { port_state: !port_traits })
                       }
                     >
-                      Preserve Traits
+                      Zachowaj cechy
                     </ButtonCheckbox>
                   </Section>
                   <Section>
@@ -131,8 +131,8 @@ export const PlantMutator = (props) => {
             </Flex.Item>
             <Flex.Item>
               <Section textAlign={'start'} mb={'-5px'}>
-                <Box>Yamato OS [Version 19.89.3.5]</Box>
-                <Box>© 2554 Yamato. All Rights Reserved.</Box>
+                <Box>Yamato OS [Wersja 19.89.3.5]</Box>
+                <Box>© 2554 Yamato. Wszelkie prawa zastrzeżone.</Box>
                 <br />
                 <Box>
                   {'C:\\Users\\admin>'}
@@ -207,7 +207,9 @@ const InspectionPanel = (props) => {
               />
             ))
           ) : (
-            <Button className="plant__dialogue--beacon">No Traits Found</Button>
+            <Button className="plant__dialogue--beacon">
+              Nie znaleziono cech
+            </Button>
           )}
         </Flex.Item>
       </Box>
@@ -241,7 +243,7 @@ const PlantFeaturePanel = (props) => {
         }
         verticalAlignContent={'middle'}
         icon={confirm_radiation ? 'check' : 'radiation'}
-        tooltip={`Mutate Feature - ${feature['mutation_cost']}`}
+        tooltip={`Mutuj część - ${feature['mutation_cost']}`}
         onClick={() => act('mutate', { key: feature['key'] })}
       />
     </Flex>

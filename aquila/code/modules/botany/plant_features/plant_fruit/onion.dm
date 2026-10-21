@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/onion
 	species_name = "cepa tabulatum"
-	name = "onion"
+	name = "cebula"
 	icon_state = "garlic"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-onion"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/onion/red
 	species_name = "cepa clamare"
-	name = "red onion"
+	name = "czerwona cebula"
 	icon_state = "garlic"
 	colour_override = "#ffa1eb"
 	seed_icon_state = "seed-onionred"

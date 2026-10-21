@@ -3,9 +3,9 @@
 */
 
 /datum/plant_trait/fruit/dense_contents
-	name = "Densified Contents"
-	desc = "The fruit's reagent capacity is increased."
-	scales = "Reagent capacity scales with trait power."
+	name = "Zagęszczona zawartość"
+	desc = "Owoc mieści więcej odczynników."
+	scales = "Pojemność na odczynniki rośnie z mocą cech."
 
 /datum/plant_trait/fruit/dense_contents/Destroy(force, ...)
 	var/datum/plant_feature/fruit/fruit_parent = parent

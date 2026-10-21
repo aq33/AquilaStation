@@ -1,8 +1,8 @@
 /datum/plant_trait/roots/no_weeds
-	name = "Allelopathy"
-	desc = "This gene causes roots to releasing root-inhibiting chemicals that prevent weeds from growing."
+	name = "Allelopatia"
+	desc = "Ten gen sprawia, że korzenie wydzielają związki hamujące wzrost, które nie pozwalają rosnąć chwastom."
 	genetic_cost = 1
-	scales = "Weed removal rate scales with trait power."
+	scales = "Tempo usuwania chwastów rośnie z mocą cech."
 	/// Amount of weeds we remove per cycle
 	var/weed_remove = 0.3
 

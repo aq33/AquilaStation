@@ -1,7 +1,7 @@
 /datum/plant_trait/mutating
-	name = "Mutating Emissions"
-	desc = "This gene causes this plant to release gamma radiation that mutates neighbour plant's features of this trait's parent type.\
-	Time between mutations is increased depending on the cost of a mutation."
+	name = "Promieniowanie mutagenne"
+	desc = "Ten gen sprawia, że roślina emituje promieniowanie gamma, które mutuje u sąsiednich roślin części tego samego rodzaju, co część z tą cechą. \
+	Odstęp między mutacjami wydłuża się zależnie od kosztu mutacji."
 	genetic_cost = 0
 
 	// How long this trait takes between mutations

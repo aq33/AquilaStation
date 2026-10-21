@@ -3,7 +3,7 @@
 */
 /datum/plant_feature/fruit/tobacco
 	species_name = "folium fumigant"
-	name = "tobacco"
+	name = "tytoń"
 	icon_state = "tabacco"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-tobacco"
@@ -18,7 +18,7 @@
 */
 /datum/plant_feature/fruit/tobacco/space
 	species_name = "spatium folium"
-	name = "space tobacco"
+	name = "kosmiczny tytoń"
 	icon_state = "tabacco_2"
 	icon_uneven = TRUE
 	seed_icon_state = "seed-stobacco"

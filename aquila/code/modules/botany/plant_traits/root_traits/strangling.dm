@@ -3,8 +3,8 @@
 */
 
 /datum/plant_trait/roots/strangling
-	name = "Strangling"
-	desc = "Impedes the growth of other plants, and their fruit."
+	name = "Duszenie"
+	desc = "Hamuje wzrost innych roślin i ich owoców."
 	genetic_cost = -1
 	///Quick reference to the plant item
 	var/obj/item/plant_item

@@ -1,6 +1,6 @@
 /obj/machinery/plant_machine/plant_analyser
-	name = "plant analyzer"
-	desc = "An advanced device designed to analyse plant genetic makeup."
+	name = "analizator roślin"
+	desc = "Zaawansowane urządzenie do analizy budowy genetycznej roślin."
 	icon = 'icons/obj/hydroponics/features/generic_tall.dmi'
 	icon_state = "analyzer_open"
 	density = TRUE
@@ -41,8 +41,8 @@
 
 /obj/machinery/plant_machine/plant_analyser/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] can be used to read and save plant genetics.")
-	. += span_warning("[src] is not capable of editing genes.")
+	. += span_notice("[src] służy do odczytu i zapisu genetyki roślin.")
+	. += span_warning("[src] nie potrafi edytować genów.")
 
 /obj/machinery/plant_machine/plant_analyser/proc/catch_pause(datum/source)
 	SIGNAL_HANDLER
@@ -51,15 +51,15 @@
 
 /obj/machinery/plant_machine/plant_analyser/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
-	to_chat(user, span_danger("A plant can be inserted into [src] using a spade."))
+	to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
 
 /obj/machinery/plant_machine/plant_analyser/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
 	if(disk)
-		context.add_right_click_action("Remove Plant Disk")
+		context.add_right_click_action("Wyjmij dysk danych roślin")
 	else
-		context.add_left_click_action("Insert Plant Disk")
+		context.add_left_click_action("Włóż dysk danych roślin")
 
 /obj/machinery/plant_machine/plant_analyser/attackby(obj/item/C, mob/user)
 // Machine stuff
@@ -67,13 +67,13 @@
 		update_icon()
 		return
 	else if(inserted_plant && C.tool_behaviour == TOOL_SCREWDRIVER)
-		to_chat(user, span_warning("There's a plant in [src]!"))
+		to_chat(user, span_warning("W środku ([src]) jest roślina!"))
 		return
 	if(default_deconstruction_crowbar(C))
 		return
 //Seeds
 	if(istype(C, /obj/item/plant_seeds))
-		to_chat(user, span_danger("A plant can be inserted into [src] using a spade."))
+		to_chat(user, span_danger("Roślinę można włożyć do maszyny ([src]) za pomocą łopatki."))
 		return
 //Disk
 	if(istype(C, /obj/item/disk/plant_disk) && !disk)
@@ -98,7 +98,7 @@
 		return
 	//Insert plant from spade
 	if(inserted_plant)
-		to_chat(user, span_warning("There's already a plant inside [src]!"))
+		to_chat(user, span_warning("W środku ([src]) jest już roślina!"))
 		return
 	var/datum/component/plant/plant
 	var/obj/item/plant_item
@@ -114,10 +114,10 @@
 	var/datum/plant_feature/body/body_feature = locate(/datum/plant_feature/body) in plant.plant_features
 	if(body_feature?.current_stage < body_feature?.growth_stages)
 		playsound(controller, 'sound/machines/terminal_error.ogg', 60)
-		say("ERROR: Plant specimen is not fully mature!")
+		say("BŁĄD: Okaz rośliny nie jest w pełni dojrzały!")
 		return
-	to_chat(user, span_notice("You begin inserting [plant_item] into [src]."))
-	if(!do_after(user, 2.5 SECONDS, src))
+	to_chat(user, span_notice("Zaczynasz wkładać [plant_item] do maszyny ([src])."))
+	if(!do_after(user, 2.5 SECONDS, target = src))
 		return
 	if(!(locate(plant_item) in C.contents))
 		return
@@ -156,7 +156,7 @@
 	//current feature
 	data["current_feature"] = current_feature_ref
 	data["current_feature_data"] = current_feature?.get_ui_data()
-	data["current_feature_data"] += list(PLANT_DATA("Trait Modifier", current_feature?.trait_power), PLANT_DATA(null, null)) //Some special information unqiue to this interface & scanners
+	data["current_feature_data"] += list(PLANT_DATA("Modyfikator cech", current_feature?.trait_power), PLANT_DATA(null, null)) //Some special information unqiue to this interface & scanners
 	data["current_feature_traits"] = current_feature?.get_ui_traits()
 	//Current inserted plant's name
 	data["inserted_plant"] = capitalize(inserted_plant?.name)
@@ -191,7 +191,7 @@
 		if("save_trait")
 			if(!disk)
 				playsound(src, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: No disk inserted!")
+				say("BŁĄD: Brak dysku!")
 				return
 			if(disk.saved)
 				qdel(disk.saved)
@@ -206,7 +206,7 @@
 			//Disk flight checks
 			if(!disk)
 				playsound(src, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: No disk inserted!")
+				say("BŁĄD: Brak dysku!")
 				return
 			if(disk.saved)
 				qdel(disk.saved)
@@ -214,7 +214,7 @@
 			var/datum/plant_feature/feature = locate(params["key"])
 			if(!feature.can_copy)
 				playsound(src, 'sound/machines/terminal_error.ogg', 60)
-				say("ERROR: Feature composition too complex to copy!")
+				say("BŁĄD: Struktura części zbyt złożona do skopiowania!")
 				saving_feature = FALSE
 				screen.flash()
 				ui_update()
@@ -293,13 +293,13 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/plant_analyser
-	name = "plant analyser (Machine Board)"
+	name = "analizator roślin (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/plant_machine/plant_analyser
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/plant_analyser
-	name = "Plant Analyser Board"
+	name = "Płytka analizatora roślin"
 	id = "plant_analyser_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/plant_analyser
