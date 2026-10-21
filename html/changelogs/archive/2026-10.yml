@@ -392,6 +392,15 @@
   - bugfix: Przycisk „Uciekł” przywraca karcie zwolnionego więźnia wyrok
   - imageadd: Ikony taśmy, znaczników, holobariery i strefy zamkniętej
   - soundadd: Alarm strefy zamkniętej
+  - code_imp: Komora testowa ma pewne powietrze po załadowaniu i dokładniej czyści
+      się przy resecie.
+  - rscadd: Emotki *shiver, *sway, *tremble, *twitch i *jump mają animacje, które
+      nie przesuwają postaci na stałe.
+  - rscadd: Postać szarpie się przy ogłuszeniu pałką kontraktorską i chwieje, gdy
+      ktoś nią potrząsa.
+  - rscadd: Nad postacią wykonującą dłuższą czynność widać zębatkę. Akcje skryte,
+      np. kradzież z kieszeni, jej nie pokazują.
+  - imageadd: Ikona zębatki z BeeStation.
   MrMelbert, joker:
   - rscadd: 'Nowy antagonista: szpieg. Kradnie cele zleceń uplinkiem ukrytym w PDA,
       długopisie albo słuchawkach i dostaje za nie sprzęt z uplinka.'
@@ -402,3 +411,110 @@
   - imageadd: Ikony uplinku czarnego rynku, LTSRBT i promienia skanu z tgstation.
   - config: Wpisy PROBABILITY, CONTINUOUS, MIN_POP, MAX_POP i WEIGHTED_POOL dla trybu
       SPY.
+'2026-10-16':
+  Joker66613:
+  - rscadd: 'Rany: zwichnięcia, złamania, głębokie rozcięcia, przerwane tętnice i
+      oparzenia z zakażeniem; leczy się je gazą, nićmi, siatką albo operacją.'
+  - rscadd: 'Nici i siatka regeneracyjna zamiast pakietu na stłuczenia i maści; nowe
+      operacje: nastawienie kości i usunięcie martwej tkanki.'
+  - rscadd: Analizator zdrowia otwiera okno z sylwetką, obrażeniami każdej kończyny
+      i wykresami; zaawansowany pokazuje następny krok operacji.
+  - rscadd: Konsola akt medycznych ma nowe okno po polsku.
+  - rscadd: Monitory funkcji życiowych nad każdym łóżkiem stazy.
+  - rscadd: Centrala czasem przysyła kapsułą zwłoki do ożywienia, z instrukcją w worku.
+  - rscadd: Przytomny pacjent czuje ból podczas operacji i może krzyczeć.
+  - imageadd: Apteczki, nici i siatka ze sprite'ami z tgstation.
+'2026-10-17':
+  Joker66613:
+  - rscadd: 'Dispensery chemiczne i barowe mają wyszukiwarkę przepisów: po produkcie
+      albo składniku, z wydawaniem składników jednym kliknięciem.'
+  - rscadd: Program PDA „Receptury” (chemik, barman, kucharz, do pobrania z NTNet).
+  - rscadd: Program PDA „Operacje” z listą wszystkich operacji, ich krokami i narzędziami
+      (dyski medyczne, do pobrania z NTNet).
+  - rscadd: Programy PDA „Książka kucharska” (kucharz), „Ekstrakty” (nauka) i „Prawo
+      kosmiczne” z kalkulatorem wyroku (ochrona).
+  - rscadd: PANDEMIC ma listę wszystkich symptomów z odczynnikami, które je losują.
+  Paradise, BeeStation:
+  - imageadd: ściany, okna, kraty, dźwigary i drzwi z Paradise w perspektywie 3/4
+  - imageadd: śluzy statku mają wygląd śluz działów z Paradise i obracają się do ściany
+  - imageadd: podłogi i naklejki płytek z BeeStation
+  - imageadd: dywany, trawa i szklane podłogi z Bee łączą się z sąsiadami
+  - imageadd: białe ściany na Serendipity
+  - bugfix: przez szyby okien nie widać podłogi, ściany nad roletami nie mają dziur
+  - bugfix: shuttle'e nie zlewają się ze ścianami stacji, a ich drzwi stoją w dobrą
+      stronę
+  - bugfix: przywrócone catwalki wokół kadłuba Serendipity
+  - code_imp: nowy tryb wygładzania bitmaską dla sprite'ów z Paradise
+  - rscdel: polskie wersje sprite'ów śluz i drzwi przeciwpożarowych
+'2026-10-18':
+  sh4dow321:
+  - server: 'Nowy skrypt server_watchdog.bat: serwer po restarcie rundy uruchamia
+      się sam od nowa zamiast zawieszać się na kilka minut, a po normalnym wyłączeniu
+      zostaje wyłączony.'
+  - bugfix: Naprawiono zawieszanie się serwera po restarcie rundy (przy uruchomieniu
+      przez watchdog).
+  - bugfix: Kable położone przez graczy znowu łączą się ze sobą i przewodzą prąd.
+  - bugfix: Obiekty budowane w trakcie rundy znowu kończą inicjalizację (LateInitialize).
+  - bugfix: Naprawiono crash okna ChemMastera i drukarki autoinjektorów po zmianie
+      ilości.
+  - bugfix: Tarcza w MODsuicie czarodzieja nie pokazuje już losowego sprite'a podczas
+      chodzenia.
+  - bugfix: Spalona i zniszczona durastal oraz sztuczny bazalt nie pokazują już brakującej
+      tekstury.
+  - balance: Osobliwość nie odkręca przykręconych okien przed osiągnięciem 5. stopnia.
+  - code_imp: Usunięto ostrzeżenia dreamcheckera w kodzie restartu serwera.
+'2026-10-19':
+  Joker66613:
+  - bugfix: Zlewki, skrzynki z narzędziami i inne przedmioty z materiałów znów można
+      zniszczyć.
+  - bugfix: Modlitwy znów docierają do adminów.
+  - bugfix: Kroplówka przełącza tryb po kliknięciu, recykler nie wyrzuca z powrotem
+      zmielonych rzeczy, experimentor pokazuje dane wzmocnienia badań.
+  - bugfix: Samouczek nie przenosi już umysłu do rundy.
+  - bugfix: 'Mniej przycięć serwera: menu radialne, holomapa, kamery i statki AI na
+      overmapie, sieci energetyczne i powietrze przy zmianie podłogi nie blokują już
+      GC.'
+  - balance: Event Wormholes tworzy 100 portali zamiast 400.
+  - bugfix: Liczne runtime'y (ksenomorfy, PDA na promie, działa gaussa, czat, preferencje,
+      SQL, okna Techweb i wyboru profesji).
+  - config: Usunięte nieistniejące wpisy z game_options.txt.
+  - rscadd: 'Płynny ruch: postacie i obiekty przesuwają się między kratkami z prędkością
+      dopasowaną do szybkości ruchu.'
+  - tweak: Domyślne FPS klienta podniesione do 60.
+  - bugfix: Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę
+      przed dojechaniem sprite'a.
+'2026-10-20':
+  Joker66613:
+  - bugfix: Postać nie zacina się już co kilka kroków (ruch był co chwilę opóźniany
+      o tick przy aktualizacji zdrowia i staminy).
+  - code_imp: 'Kolejka verbów z tg: przy obciążonym serwerze kliknięcia i mowa czekają
+      do następnego ticku zamiast go przeciągać.'
+  Paradise:
+  - imageadd: APC, czujniki powietrza i alarmy pożarowe z Paradise, dopasowane do
+      ścian 3/4
+  - imageadd: automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne
+      urządzenia z Paradise
+'2026-10-21':
+  AnturK:
+  - rscadd: 'Drony eksploracyjne: anteny skanujące, konsole, wyrzutnia i drony, które
+      eksplorują odległe miejsca, przechodzą przygody i przywożą łup.'
+  - rscadd: Węzeł techwebu „Drony eksploracyjne”, płytki maszyn oraz paczki cargo
+      z dronem i paliwem.
+  - rscadd: Stanowiska dronów na Serendipity, Snake i Atlasie.
+  - admin: Adventure Manager w zakładce Debug do przeglądania i testowania przygód.
+  - imageadd: Ikony dronów, wyrzutni, anten, pelletów i obrazki przygód z /tg/.
+  Joker66613:
+  - rscadd: 'Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity,
+      Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.'
+  - rscadd: Kołki (drewniane, utwardzane, srebrne), nowe trumny, stół do tortur, kandelabr,
+      tron krwi i flaszka czosnku.
+  - rscadd: Kurator dostaje Archiwum Kindred, które demaskuje wampirów.
+  - rscdel: Usunięto stary antag wampira z Hippie i gatunek wampira.
+  - bugfix: Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.
+  - imageadd: 'Nowe sprite''y: łóżko operacyjne, stojak IV, slime''y i golemy z tg;
+      PDA, małpy, strzykawki, MULEboty, materiały, szafki i skrzynie z Bee; zlewki,
+      narzędzia, krzesła, stoły, newscaster i konsola zgłoszeń z Paradise; zbiorniki,
+      interkom, regały i nosze z SS220.'
+  - tweak: Skrzynie i szafki na zamek mają światła jak w Bee, kosz na śmieci pokazuje
+      zapełnienie.
+  - tweak: Na webmapie ściany, okna, stoły i dywany łączą się jak w grze.

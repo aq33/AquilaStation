@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		GLOB.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
-	fps = prefs.clientfps
+	fps = prefs.get_client_fps() // AQ EDIT - -1 = zalecane FPS
 
 	prefs.handle_donator_items()
 
@@ -562,6 +562,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //////////////
 
 /client/Del()
+	// AQ EDIT - jak w tg: przy zwykłym rozłączeniu (del) nikt nie wołał Destroy(), więc sygnały
+	// zarejestrowane na kliencie (runechat) zostawały z kluczem null -> UnregisterSignal(null)
+	if(!gc_destroyed)
+		gc_destroyed = world.time
+		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
+		Destroy()
 	log_access("Logout: [key_name(src)]")
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.interviews.client_logout(src)
@@ -683,7 +689,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/datum/DBQuery/query_add_player = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("player")] (`ckey`, `byond_key`, `firstseen`, `firstseen_round_id`, `lastseen`, `lastseen_round_id`, `ip`, `computerid`, `lastadminrank`, `accountjoindate`)
 			VALUES (:ckey, :key, Now(), :round_id, Now(), :round_id, INET_ATON(:ip), :computerid, :adminrank, :account_join_date)
-		"}, list("ckey" = ckey, "key" = key, "round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "adminrank" = admin_rank, "account_join_date" = account_join_date || null))
+		"}, list("ckey" = ckey, "key" = key, "round_id" = GLOB.round_id, "ip" = address || "127.0.0.1", "computerid" = computer_id, "adminrank" = admin_rank, "account_join_date" = account_join_date || null))
 		if(!query_add_player.Execute())
 			qdel(query_client_in_db)
 			qdel(query_add_player)
@@ -725,7 +731,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(!new_player)
 		var/datum/DBQuery/query_log_player = SSdbcore.NewQuery(
 			"UPDATE [format_table_name("player")] SET lastseen = Now(), lastseen_round_id = :round_id, ip = INET_ATON(:ip), computerid = :computerid, lastadminrank = :admin_rank, accountjoindate = :account_join_date WHERE ckey = :ckey",
-			list("round_id" = GLOB.round_id, "ip" = address, "computerid" = computer_id, "admin_rank" = admin_rank, "account_join_date" = account_join_date || null, "ckey" = ckey)
+			list("round_id" = GLOB.round_id, "ip" = address || "127.0.0.1", "computerid" = computer_id, "admin_rank" = admin_rank, "account_join_date" = account_join_date || null, "ckey" = ckey)
 		)
 		if(!query_log_player.Execute())
 			qdel(query_log_player)
@@ -739,7 +745,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/datum/DBQuery/query_log_connection = SSdbcore.NewQuery({"
 		INSERT INTO `[format_table_name("connection_log")]` (`id`,`datetime`,`server_name`,`server_ip`,`server_port`,`round_id`,`ckey`,`ip`,`computerid`)
 		VALUES(null,Now(),:server_name,INET_ATON(:internet_address),:port,:round_id,:ckey,INET_ATON(:ip),:computerid)
-	"}, list("server_name" = ssqlname, "internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "ip" = address, "computerid" = computer_id))
+	"}, list("server_name" = ssqlname, "internet_address" = world.internet_address || "0", "port" = world.port, "round_id" = GLOB.round_id, "ckey" = ckey, "ip" = address || "127.0.0.1", "computerid" = computer_id))
 	query_log_connection.Execute()
 	qdel(query_log_connection)
 	if(new_player)
@@ -762,6 +768,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			CRASH("Age check regex failed for [ckey]")
 
 /client/proc/validate_key_in_db()
+	if(IS_GUEST_KEY(key)) // AQ EDIT - goście nie mają profilu na byond.com, regex zawsze padał
+		return
 	var/sql_key
 	var/datum/DBQuery/query_check_byond_key = SSdbcore.NewQuery(
 		"SELECT byond_key FROM [format_table_name("player")] WHERE ckey = :ckey",
@@ -966,6 +974,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		if (clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, "<span class='danger'>Twoje poprzednie kliknięcie zostało zignorowane, bo klikasz za dużo w ciągu sekundy</span>")
 			return
+
+	// AQ EDIT - port tgstation/tgstation#65589: przy przeciążonym ticku kliknięcie w mapę idzie do SSinput na następny tick
+	if(!QDELETED(object) && TRY_QUEUE_VERB(VERB_CALLBACK(object, TYPE_PROC_REF(/atom, _Click), location, control, params), VERB_HIGH_PRIORITY_QUEUE_THRESHOLD, SSinput, control))
+		return
 
 	if (prefs.toggles2 & PREFTOGGLE_2_HOTKEYS)
 		// If hotkey mode is enabled, then clicking the map will automatically

@@ -233,7 +233,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 ///Returns a turf based on text inputs, original turf and viewing client
 /proc/parse_caught_click_modifiers(list/modifiers, turf/origin, client/viewing_client)
-	if(!modifiers)
+	if(!modifiers || !origin)
 		return null
 
 	var/screen_loc = splittext(LAZYACCESS(modifiers, SCREEN_LOC), ",")

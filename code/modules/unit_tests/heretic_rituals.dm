@@ -121,6 +121,10 @@
 				continue // bodyparts and stuff will get registered otherwise
 			if(istype(thing, /atom/movable/lighting_object) || istype(thing, /obj/effect/dummy/lighting_obj))
 				continue // todo: more generic solution for holder objects like this
+			// AQ EDIT - dym i inne efekty z poprzednich testów (np. 1% "steamed ham" w food_edibility_check) to nie pozostałość rytuału
+			if(istype(thing, /obj/effect/particle_effect))
+				qdel(thing)
+				continue
 
 			// There are atoms around the rune still, and there shouldn't be.
 			// All component atoms were consumed, and all resulting atoms were cleaned up.

@@ -262,6 +262,8 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
+	if(mind?.has_antag_datum(/datum/antagonist/vampire)) // AQ EDIT - krwią wampira z Bee zarządza jego datum (vitae)
+		return
 
 	if((NOBLOOD in dna.species.species_traits) || HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		cauterise_wounds()
@@ -272,7 +274,7 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 		// AQ EDIT START
 		var/heart_blood_multiplier = get_heart_blood_regeneration_multiplier() // hearts regenerate blood (tgstation#96129)
 		if(heart_blood_multiplier && !is_bleeding() && blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER) && !HAS_TRAIT(src, TRAIT_POWERHUNGRY))
-			if(hydration > HYDRATION_LEVEL_DEHYDRATED && !HAS_TRAIT(src, TRAIT_NOTHIRST))
+			if(hydration > HYDRATION_LEVEL_DEHYDRATED || HAS_TRAIT(src, TRAIT_NOTHIRST)) // bez pragnienia krew odnawia się normalnie
 				var/nutrition_ratio = 0
 				switch(nutrition)
 					if(0 to NUTRITION_LEVEL_STARVING)

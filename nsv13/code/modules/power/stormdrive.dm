@@ -1010,7 +1010,7 @@ Control Rods
 		return
 	if(can_alert || override) //We have an override to ignore continuous alerts like control rod reports in favour of screaming that the reactor is about to go nuclear.
 		can_alert = FALSE
-		if(!radio) // Why does this keep happening?
+		if(QDELETED(radio)) // Why does this keep happening?
 			radio = new(src)
 			radio.keyslot = new radio_key
 			radio.listening = 0
@@ -1249,7 +1249,7 @@ Control Rods
 	empulse(src, 25, 50)
 	radiation_pulse(src, 10000, 1)
 	src.atmos_spawn_air("o2=750;plasma=200;nucleium=100;TEMP=5000")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_STROMDRIVE_EXPLOSION) // AQ edit
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_STROMDRIVE_EXPLOSION, src) // AQ edit
 
 	for(var/mob/living/M in GLOB.alive_mob_list)
 		if(shares_overmap(src, M))

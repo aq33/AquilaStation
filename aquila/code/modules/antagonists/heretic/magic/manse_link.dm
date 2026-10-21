@@ -55,7 +55,7 @@
 	to_chat(owner, span_notice("Zaczynasz łączyć umysł [linkee] ze swoim..."))
 	to_chat(linkee, span_warning("Czujesz, jak twój umysł jest ciągnięty... łączony... splatany z samą tkanką rzeczywistości..."))
 
-	if(!do_after(owner, link_time, target = linkee))
+	if(!do_after(owner, link_time, target = linkee, hidden = TRUE))
 		to_chat(owner, span_warning("Nie udaje ci się połączyć z umysłem [linkee]."))
 		to_chat(linkee, span_warning("Obca obecność opuszcza twój umysł."))
 		return FALSE

@@ -290,6 +290,10 @@
 	else if(M.zone_selected == BODY_ZONE_CHEST)
 		M.visible_message("<span class='notice'>[M] przytula [src], żeby poprawić humor!</span>", \
 					"<span class='notice'>Przytulasz [src], żeby poprawić humor!</span>")
+		if(M != src) // AQ EDIT START - Humanity wampira z Bee, bez przytulania siebie
+			SEND_SIGNAL(M, COMSIG_LIVING_HUG_CARBON, src)
+			if(M.mind?.has_antag_datum(/datum/antagonist/vampire) && M.has_status_effect(/datum/status_effect/vampire_sol)) // wampir w czasie Sol jest rozpalony
+				to_chat(src, "<span class='warning'>Wydaje się, że [M] jest rozgrzany do czerwoności.</span>") // AQ EDIT END
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
 		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
 			var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
@@ -320,6 +324,8 @@
 	set_resting(FALSE)
 
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+	if(M != src && incapacitated()) // AQ EDIT - animacja potrząsania (port tg)
+		shake_up_animation()
 
 /// Check ourselves to see if we've got any shrapnel, return true if we do. This is a much simpler version of what humans do, we only indicate we're checking ourselves if there's actually shrapnel
 /mob/living/carbon/proc/check_self_for_injuries()

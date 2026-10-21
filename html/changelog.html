@@ -56,6 +56,105 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">21 October 2026</h2>
+			<h3 class="author">AnturK updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Drony eksploracyjne: anteny skanujące, konsole, wyrzutnia i drony, które eksplorują odległe miejsca, przechodzą przygody i przywożą łup.</li>
+				<li class="rscadd">Węzeł techwebu „Drony eksploracyjne”, płytki maszyn oraz paczki cargo z dronem i paliwem.</li>
+				<li class="rscadd">Stanowiska dronów na Serendipity, Snake i Atlasie.</li>
+				<li class="admin">Adventure Manager w zakładce Debug do przeglądania i testowania przygód.</li>
+				<li class="imageadd">Ikony dronów, wyrzutni, anten, pelletów i obrazki przygód z /tg/.</li>
+			</ul>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Wampir z BeeStation zastępuje starego wampira: klany i dyscypliny, Humanity, Maskarada, cykl słońca (Sol), torpor w trumnie, wasale, Książę i Scourge.</li>
+				<li class="rscadd">Kołki (drewniane, utwardzane, srebrne), nowe trumny, stół do tortur, kandelabr, tron krwi i flaszka czosnku.</li>
+				<li class="rscadd">Kurator dostaje Archiwum Kindred, które demaskuje wampirów.</li>
+				<li class="rscdel">Usunięto stary antag wampira z Hippie i gatunek wampira.</li>
+				<li class="bugfix">Wymuszone wbijanie przedmiotów w konkretną część ciała znowu działa.</li>
+				<li class="imageadd">Nowe sprite'y: łóżko operacyjne, stojak IV, slime'y i golemy z tg; PDA, małpy, strzykawki, MULEboty, materiały, szafki i skrzynie z Bee; zlewki, narzędzia, krzesła, stoły, newscaster i konsola zgłoszeń z Paradise; zbiorniki, interkom, regały i nosze z SS220.</li>
+				<li class="tweak">Skrzynie i szafki na zamek mają światła jak w Bee, kosz na śmieci pokazuje zapełnienie.</li>
+				<li class="tweak">Na webmapie ściany, okna, stoły i dywany łączą się jak w grze.</li>
+			</ul>
+
+			<h2 class="date">20 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Postać nie zacina się już co kilka kroków (ruch był co chwilę opóźniany o tick przy aktualizacji zdrowia i staminy).</li>
+				<li class="code_imp">Kolejka verbów z tg: przy obciążonym serwerze kliknięcia i mowa czekają do następnego ticku zamiast go przeciągać.</li>
+			</ul>
+			<h3 class="author">Paradise updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">APC, czujniki powietrza i alarmy pożarowe z Paradise, dopasowane do ścian 3/4</li>
+				<li class="imageadd">automaty, generatory, SMES, maszyny badawcze, wenty, scrubbery i inne urządzenia z Paradise</li>
+			</ul>
+
+			<h2 class="date">19 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Zlewki, skrzynki z narzędziami i inne przedmioty z materiałów znów można zniszczyć.</li>
+				<li class="bugfix">Modlitwy znów docierają do adminów.</li>
+				<li class="bugfix">Kroplówka przełącza tryb po kliknięciu, recykler nie wyrzuca z powrotem zmielonych rzeczy, experimentor pokazuje dane wzmocnienia badań.</li>
+				<li class="bugfix">Samouczek nie przenosi już umysłu do rundy.</li>
+				<li class="bugfix">Mniej przycięć serwera: menu radialne, holomapa, kamery i statki AI na overmapie, sieci energetyczne i powietrze przy zmianie podłogi nie blokują już GC.</li>
+				<li class="balance">Event Wormholes tworzy 100 portali zamiast 400.</li>
+				<li class="bugfix">Liczne runtime'y (ksenomorfy, PDA na promie, działa gaussa, czat, preferencje, SQL, okna Techweb i wyboru profesji).</li>
+				<li class="config">Usunięte nieistniejące wpisy z game_options.txt.</li>
+				<li class="rscadd">Płynny ruch: postacie i obiekty przesuwają się między kratkami z prędkością dopasowaną do szybkości ruchu.</li>
+				<li class="tweak">Domyślne FPS klienta podniesione do 60.</li>
+				<li class="bugfix">Koniec szarpania przy ruchu po skosie i „przeskakiwania” na następną kratkę przed dojechaniem sprite'a.</li>
+			</ul>
+
+			<h2 class="date">18 October 2026</h2>
+			<h3 class="author">sh4dow321 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="server">Nowy skrypt server_watchdog.bat: serwer po restarcie rundy uruchamia się sam od nowa zamiast zawieszać się na kilka minut, a po normalnym wyłączeniu zostaje wyłączony.</li>
+				<li class="bugfix">Naprawiono zawieszanie się serwera po restarcie rundy (przy uruchomieniu przez watchdog).</li>
+				<li class="bugfix">Kable położone przez graczy znowu łączą się ze sobą i przewodzą prąd.</li>
+				<li class="bugfix">Obiekty budowane w trakcie rundy znowu kończą inicjalizację (LateInitialize).</li>
+				<li class="bugfix">Naprawiono crash okna ChemMastera i drukarki autoinjektorów po zmianie ilości.</li>
+				<li class="bugfix">Tarcza w MODsuicie czarodzieja nie pokazuje już losowego sprite'a podczas chodzenia.</li>
+				<li class="bugfix">Spalona i zniszczona durastal oraz sztuczny bazalt nie pokazują już brakującej tekstury.</li>
+				<li class="balance">Osobliwość nie odkręca przykręconych okien przed osiągnięciem 5. stopnia.</li>
+				<li class="code_imp">Usunięto ostrzeżenia dreamcheckera w kodzie restartu serwera.</li>
+			</ul>
+
+			<h2 class="date">17 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Dispensery chemiczne i barowe mają wyszukiwarkę przepisów: po produkcie albo składniku, z wydawaniem składników jednym kliknięciem.</li>
+				<li class="rscadd">Program PDA „Receptury” (chemik, barman, kucharz, do pobrania z NTNet).</li>
+				<li class="rscadd">Program PDA „Operacje” z listą wszystkich operacji, ich krokami i narzędziami (dyski medyczne, do pobrania z NTNet).</li>
+				<li class="rscadd">Programy PDA „Książka kucharska” (kucharz), „Ekstrakty” (nauka) i „Prawo kosmiczne” z kalkulatorem wyroku (ochrona).</li>
+				<li class="rscadd">PANDEMIC ma listę wszystkich symptomów z odczynnikami, które je losują.</li>
+			</ul>
+			<h3 class="author">Paradise, BeeStation updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">ściany, okna, kraty, dźwigary i drzwi z Paradise w perspektywie 3/4</li>
+				<li class="imageadd">śluzy statku mają wygląd śluz działów z Paradise i obracają się do ściany</li>
+				<li class="imageadd">podłogi i naklejki płytek z BeeStation</li>
+				<li class="imageadd">dywany, trawa i szklane podłogi z Bee łączą się z sąsiadami</li>
+				<li class="imageadd">białe ściany na Serendipity</li>
+				<li class="bugfix">przez szyby okien nie widać podłogi, ściany nad roletami nie mają dziur</li>
+				<li class="bugfix">shuttle'e nie zlewają się ze ścianami stacji, a ich drzwi stoją w dobrą stronę</li>
+				<li class="bugfix">przywrócone catwalki wokół kadłuba Serendipity</li>
+				<li class="code_imp">nowy tryb wygładzania bitmaską dla sprite'ów z Paradise</li>
+				<li class="rscdel">polskie wersje sprite'ów śluz i drzwi przeciwpożarowych</li>
+			</ul>
+
+			<h2 class="date">16 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Rany: zwichnięcia, złamania, głębokie rozcięcia, przerwane tętnice i oparzenia z zakażeniem; leczy się je gazą, nićmi, siatką albo operacją.</li>
+				<li class="rscadd">Nici i siatka regeneracyjna zamiast pakietu na stłuczenia i maści; nowe operacje: nastawienie kości i usunięcie martwej tkanki.</li>
+				<li class="rscadd">Analizator zdrowia otwiera okno z sylwetką, obrażeniami każdej kończyny i wykresami; zaawansowany pokazuje następny krok operacji.</li>
+				<li class="rscadd">Konsola akt medycznych ma nowe okno po polsku.</li>
+				<li class="rscadd">Monitory funkcji życiowych nad każdym łóżkiem stazy.</li>
+				<li class="rscadd">Centrala czasem przysyła kapsułą zwłoki do ożywienia, z instrukcją w worku.</li>
+				<li class="rscadd">Przytomny pacjent czuje ból podczas operacji i może krzyczeć.</li>
+				<li class="imageadd">Apteczki, nici i siatka ze sprite'ami z tgstation.</li>
+			</ul>
+
 			<h2 class="date">15 October 2026</h2>
 			<h3 class="author">Joker66613 updated:</h3>
 			<ul class="changes bgimages16">
@@ -82,6 +181,11 @@
 				<li class="bugfix">Przycisk „Uciekł” przywraca karcie zwolnionego więźnia wyrok</li>
 				<li class="imageadd">Ikony taśmy, znaczników, holobariery i strefy zamkniętej</li>
 				<li class="soundadd">Alarm strefy zamkniętej</li>
+				<li class="code_imp">Komora testowa ma pewne powietrze po załadowaniu i dokładniej czyści się przy resecie.</li>
+				<li class="rscadd">Emotki *shiver, *sway, *tremble, *twitch i *jump mają animacje, które nie przesuwają postaci na stałe.</li>
+				<li class="rscadd">Postać szarpie się przy ogłuszeniu pałką kontraktorską i chwieje, gdy ktoś nią potrząsa.</li>
+				<li class="rscadd">Nad postacią wykonującą dłuższą czynność widać zębatkę. Akcje skryte, np. kradzież z kieszeni, jej nie pokazują.</li>
+				<li class="imageadd">Ikona zębatki z BeeStation.</li>
 			</ul>
 			<h3 class="author">MrMelbert, joker updated:</h3>
 			<ul class="changes bgimages16">
@@ -397,17 +501,6 @@
 				<li class="tweak">Tycoon's main magcats are now launch_only</li>
 				<li class="bugfix">Tycoon's Bronze magcats can now be controlled from ATC tower</li>
 				<li class="bugfix">Moved one badly placed disposal bin in Tycoon's dorms</li>
-			</ul>
-
-			<h2 class="date">16 August 2026</h2>
-			<h3 class="author">Neonvolt updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="config">modify maximum version warning message to show BYOND version + build</li>
-			</ul>
-			<h3 class="author">Pockets-byte updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">added a fighter shield</li>
-				<li class="rscdel">Removed free shields from the solgov fighter, buffed it's health.</li>
 			</ul>
 		</div>
 

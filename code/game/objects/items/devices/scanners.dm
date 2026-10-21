@@ -385,6 +385,12 @@ GENE SCANNER
 		if(!(D.visibility_flags & HIDDEN_SCANNER))
 			message += "<span class='alert'><b>Uwaga: wykryto: [D.form]</b>\nNazwa: [D.name].\nTyp: [D.spread_text].\nStadium: [D.stage]/[D.max_stages].\nMożliwe leczenie: [D.cure_text]</span>"
 
+	if(iscarbon(M)) // AQ EDIT - wounds
+		var/mob/living/carbon/wounded = M
+		message += wounded.get_wound_scan_lines()
+		if(advanced) // AQ EDIT - next surgery step
+			message += wounded.get_surgery_scan_lines()
+
 	// Blood Level
 	if(M.has_dna())
 		var/mob/living/carbon/C = M
@@ -396,7 +402,8 @@ GENE SCANNER
 					message += "<span class='alert'><b>Pacjent krwawi z szybkością [round(H.get_bleed_rate(), 0.1)]/s!</b></span>"
 				else if (H.is_bandaged())
 					message += "<span class='alert'><b>Pacjent krwawi (rany opatrzone)!</b></span>"
-			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
+			var/shown_blood = round(C.get_shown_blood_volume(), 0.1) // AQ EDIT - krwawe robaki: nosiciel wygląda na zdrowego
+			var/blood_percent =  round((shown_blood / BLOOD_VOLUME_NORMAL)*100)
 			var/blood_type = C.dna.blood_type
 			if(blood_id != /datum/reagent/blood)//special blood substance
 				var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
@@ -405,12 +412,14 @@ GENE SCANNER
 				else
 					blood_type = blood_id
 			var/blood_info = "[blood_type] (zgodne: [jointext(get_safe_blood(blood_type), ", ")])"
-			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
-				message += "<span class='alert'>Poziom krwi: NISKI [blood_percent] %, [C.blood_volume] cl,</span> <span class='info'>grupa: [blood_info]</span>"
-			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)
-				message += "<span class='alert'>Poziom krwi: <b>KRYTYCZNY [blood_percent] %</b>, [C.blood_volume] cl,</span> <span class='info'>grupa: [blood_info]</span>"
+			if(HAS_TRAIT(C, TRAIT_MASQUERADE)) // AQ EDIT - Maskarada wampira z Bee fałszuje poziom krwi
+				message += "<span class='info'>Poziom krwi: 100 %, 560 cl, grupa: [blood_info]</span>"
+			else if(shown_blood <= BLOOD_VOLUME_SAFE && shown_blood > BLOOD_VOLUME_OKAY)
+				message += "<span class='alert'>Poziom krwi: NISKI [blood_percent] %, [shown_blood] cl,</span> <span class='info'>grupa: [blood_info]</span>"
+			else if(shown_blood <= BLOOD_VOLUME_OKAY)
+				message += "<span class='alert'>Poziom krwi: <b>KRYTYCZNY [blood_percent] %</b>, [shown_blood] cl,</span> <span class='info'>grupa: [blood_info]</span>"
 			else
-				message += "<span class='info'>Poziom krwi: [blood_percent] %, [C.blood_volume] cl, grupa: [blood_info]</span>"
+				message += "<span class='info'>Poziom krwi: [blood_percent] %, [shown_blood] cl, grupa: [blood_info]</span>"
 
 		var/list/cyberimp_detect = list()
 		for(var/obj/item/organ/cyberimp/CI in C.internal_organs)

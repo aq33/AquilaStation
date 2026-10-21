@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/list/ignoring = list()
 
-	var/clientfps = 40
+	var/clientfps = 60
 	var/updated_fps = 0
 
 	var/parallax
@@ -680,7 +680,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Prefiksy radiowe:</b> <a href='byond://?_src_=prefs;preference=tgui_say_radio_prefix'>[(toggles2 & PREFTOGGLE_2_SAY_SHOW_PREFIX) ? "Widoczne" : "Ukryte"]</a><br>"
 
 			dat += "<h2>Ustawienia grafiki</h2>"
-			dat += "<b>FPS:</b> <a href='byond://?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
+			dat += "<b>FPS:</b> <a href='byond://?_src_=prefs;preference=clientfps;task=input'>[clientfps < 0 ? "zalecane ([RECOMMENDED_CLIENT_FPS])" : clientfps]</a><br>"
 
 			dat += "<b>Paralaksa (ozdobny kosmos):</b> <a href='byond://?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"byond://?_src_=prefs;preference=parallaxup\";return false;'>"
 			switch (parallax)
@@ -2024,10 +2024,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						preferred_map = maplist[pickedmap]
 
 				if ("clientfps")
-					var/desiredfps = input(user, "Wybierz FPS. (0 = zgodnie z tickiem serwera (obecnie: [world.fps]))", "Preferencje postaci", clientfps)  as null|num
+					var/desiredfps = input(user, "Wybierz FPS. (-1 = zalecane ([RECOMMENDED_CLIENT_FPS]), 0 = zgodnie z tickiem serwera (obecnie: [world.fps]))", "Preferencje postaci", clientfps)  as null|num
 					if (!isnull(desiredfps))
-						clientfps = desiredfps
-						parent.fps = desiredfps
+						clientfps = clamp(round(desiredfps), -1, 240) // AQ EDIT - -1 = zalecane
+						parent.fps = get_client_fps()
 				if("ui")
 					var/pickedui = input(user, "Wybierz styl interfejsu.", "Preferencje postaci", UI_style)  as null|anything in GLOB.available_ui_styles
 					if(pickedui)

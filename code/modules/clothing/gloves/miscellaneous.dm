@@ -135,6 +135,11 @@
 	actions_types = list(/datum/action/item_action/artifact_pincher_mode)
 	var/safety = FALSE
 
+/obj/item/clothing/gloves/artifact_pinchers/ComponentInitialize()
+	. = ..()
+	var/datum/component/anti_artifact/A = AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100, ITEM_SLOT_GLOVES)
+	A?.override = !safety
+
 /datum/action/item_action/artifact_pincher_mode
 	name = "Toggle Safety"
 
@@ -142,4 +147,6 @@
 	var/obj/item/clothing/gloves/artifact_pinchers/pinchy = target
 	if(istype(pinchy))
 		pinchy.safety = !pinchy.safety
+		var/datum/component/anti_artifact/A = pinchy.GetComponent(/datum/component/anti_artifact)
+		A?.override = !pinchy.safety
 		button.icon_state = (pinchy.safety ? "template_active" : "template")

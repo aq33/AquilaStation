@@ -29,20 +29,35 @@ Currently only used by Fighters, which assign themselves to a lance when in the 
 
 
 /datum/lance/proc/remove_member(obj/structure/overmap/to_remove)
+	SIGNAL_HANDLER
 	members.Remove(to_remove)
+	UnregisterSignal(to_remove, COMSIG_PARENT_QDELETING)
+	if(to_remove.current_lance == src)
+		to_remove.current_lance = null
+	member_count--
+	// AQ EDIT - czyścimy referencje przed ewentualnym qdel, inaczej statek <-> lance trzymały się nawzajem
+	if(lance_target == to_remove)
+		lance_target = null
+	if(last_finder == to_remove)
+		last_finder = null
+		lance_target = null
 	if(!members.len)
+		lance_leader = null
 		qdel(src)
 		return
 	if(lance_leader == to_remove)
 		lance_leader = pick(members)
 
-	if(lance_target && last_finder == to_remove)
-		last_finder = null
-		lance_target = null
-	to_remove.current_lance = null
-	member_count--
-
 /datum/lance/Destroy()
 	if(homefleet)
 		homefleet.lances.Remove(src)
+		homefleet = null
+	for(var/obj/structure/overmap/OM as anything in members)
+		UnregisterSignal(OM, COMSIG_PARENT_QDELETING)
+		if(OM.current_lance == src)
+			OM.current_lance = null
+	members.Cut()
+	lance_leader = null
+	lance_target = null
+	last_finder = null
 	. = ..()

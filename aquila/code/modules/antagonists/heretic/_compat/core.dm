@@ -4,15 +4,8 @@
 // ---------------------------------------------------------------------------
 // Typy abstrakcyjne
 // U nas /datum nie ma zmiennej abstract_type (mają ją tylko niektóre typy), więc
-// valid_subtypesof() rozpoznaje abstrakcyjne typy heretyka po ich własnej zmiennej.
+// valid_subtypesof() (aquila/code/modules/antagonists/vampire/_compat.dm) pomija je przez is_heretic_abstract_type().
 
-/// tg: podtypy bez typów abstrakcyjnych
-/proc/valid_subtypesof(sometype)
-	. = list()
-	for(var/subtype in subtypesof(sometype))
-		if(is_heretic_abstract_type(subtype))
-			continue
-		. += subtype
 
 /// Czy typ to abstrakcyjny typ heretyka (abstract_type == sam typ)
 /proc/is_heretic_abstract_type(path)

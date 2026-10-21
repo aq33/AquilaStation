@@ -326,6 +326,7 @@ const PackagingControlsItem = (props) => {
 
 const PackagingControls = ({ volume, packagingName }) => {
   const { act, data } = useBackend<Data>();
+  // AQ EDIT - NumberInput z tgui-core woła onChange(value), a nie (e, value); undefined w shared state wywalał okno
   const [pillAmount, setPillAmount] = useSharedState('pillAmount', 1);
   const [patchAmount, setPatchAmount] = useSharedState('patchAmount', 1);
   const [bottleAmount, setBottleAmount] = useSharedState('bottleAmount', 1);
@@ -373,7 +374,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={pillAmount}
           amountUnit="pills"
           sideNote="max 50u"
-          onChangeAmount={(e, value) => setPillAmount(value)}
+          onChangeAmount={(value) => setPillAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'pill',
@@ -413,7 +414,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={patchAmount}
           amountUnit="patches"
           sideNote="max 40u"
-          onChangeAmount={(e, value) => setPatchAmount(value)}
+          onChangeAmount={(value) => setPatchAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'patch',
@@ -430,7 +431,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={bottleAmount}
           amountUnit="bottles"
           sideNote="max 30u"
-          onChangeAmount={(e, value) => setBottleAmount(value)}
+          onChangeAmount={(value) => setBottleAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'bottle',
@@ -447,7 +448,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={bagAmount}
           amountUnit="bags"
           sideNote="max 200u"
-          onChangeAmount={(e, value) => setBagAmount(value)}
+          onChangeAmount={(value) => setBagAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'bag',
@@ -496,7 +497,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={bottleAmount}
           amountUnit="bottles"
           sideNote="max 50u"
-          onChangeAmount={(e, value) => setBottleAmount(value)}
+          onChangeAmount={(value) => setBottleAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'condimentBottle',
@@ -513,7 +514,7 @@ const PackagingControls = ({ volume, packagingName }) => {
           amount={packAmount}
           amountUnit="packs"
           sideNote="max 10u"
-          onChangeAmount={(e, value) => setPackAmount(value)}
+          onChangeAmount={(value) => setPackAmount(value)}
           onCreate={() =>
             act('create', {
               type: 'condimentPack',

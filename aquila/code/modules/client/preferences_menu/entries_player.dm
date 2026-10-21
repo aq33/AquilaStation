@@ -396,19 +396,13 @@
 	minimum = -1
 	maximum = 240
 
-/// -1 z okna to "zalecane", u nas 60 (domyślne Aquili)
-/datum/preference/numeric/clientfps/deserialize(input, datum/preferences/prefs)
-	. = ..()
-	if(. == -1)
-		return 60
-
 /datum/preference/numeric/clientfps/on_changed(datum/preferences/prefs, client/C, old_value, new_value)
 	if(C)
-		C.fps = new_value
+		C.fps = prefs.get_client_fps()
 
 /datum/preference/numeric/clientfps/compile_constant_data()
 	var/list/data = ..()
-	data["recommended_fps"] = 60
+	data["recommended_fps"] = RECOMMENDED_CLIENT_FPS
 	return data
 
 /datum/preference/toggle/player/glasses_color

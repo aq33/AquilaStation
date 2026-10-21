@@ -1,30 +1,25 @@
 /obj/structure/closet/crate/bin
 	desc = "A trash bin, place your trash here for the janitor to collect."
 	name = "trash bin"
-	icon_state = "largebins"
+	icon_state = "trashbin" //AQUILA EDIT - Bee#10136 trash bin
 	open_sound = 'sound/effects/bin_open.ogg'
 	close_sound = 'sound/effects/bin_close.ogg'
 	anchored = TRUE
 	horizontal = FALSE
 	delivery_icon = null
-	door_anim_time = 0
 
 /obj/structure/closet/crate/bin/Initialize(mapload)
 	. = ..()
-	if(icon_state == "[initial(icon_state)]open")
-		opened = TRUE
 	update_icon()
 
 /obj/structure/closet/crate/bin/update_icon()
-	icon_state = "[initial(icon_state)][opened ? "open" : ""]"
-
-	cut_overlays()
+	..()
 	if(contents.len == 0)
-		add_overlay("largebing")
+		add_overlay("trashbin_empty")
 	else if(contents.len >= storage_capacity)
-		add_overlay("largebinr")
+		add_overlay("trashbin_full")
 	else
-		add_overlay("largebino")
+		add_overlay("trashbin_some")
 
 /obj/structure/closet/crate/bin/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage/bag/trash))
@@ -40,5 +35,4 @@
 
 /obj/structure/closet/crate/bin/proc/do_animate()
 	playsound(loc, open_sound, 15, 1, -3)
-	flick("animate_largebins", src)
 	addtimer(CALLBACK(src, PROC_REF(close)), 13)

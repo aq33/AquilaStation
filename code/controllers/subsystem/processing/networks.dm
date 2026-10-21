@@ -198,7 +198,7 @@ SUBSYSTEM_DEF(networks)
 			continue
 		if(n.is_operational)
 			return TRUE
-	if(station_has_relay && is_station_level(zlevel))
+	if(station_has_relay && zlevel <= world.maxz && is_station_level(zlevel)) // virtual z shuttli (>1100) nie jest zarządzany
 		return TRUE
 	return FALSE
 

@@ -29,7 +29,8 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	// AQ EDIT - InitializeAtoms() itself switches to MAPLOAD and restores the previous state; starting from MAPLOAD made that the restored state, map loads during the late loaders copied it and it stuck for the whole round (cables laid by players never linked up)
+	initialized = INITIALIZATION_INNEW_REGULAR
 	InitializeAtoms()
 	return ..()
 

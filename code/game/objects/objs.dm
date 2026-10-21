@@ -65,6 +65,9 @@
 	return ..()
 
 /obj/Initialize(mapload)
+	// AQ EDIT - przed ..(), bo materiały (atom/Initialize) skalują obj_integrity; z null wychodziło 0
+	if(obj_integrity == null)
+		obj_integrity = max_integrity
 	. = ..()
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
@@ -73,8 +76,6 @@
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
-	if(obj_integrity == null)
-		obj_integrity = max_integrity
 	if (set_obj_flags)
 		var/flagslist = splittext(set_obj_flags,";")
 		var/list/string_to_objflag = GLOB.bitfields["obj_flags"]

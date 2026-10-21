@@ -8,7 +8,6 @@
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "stamina" = 0, "bleed" = 0)
 	var/tamperproof = 0
 	icon_door = "crate"
-	icon_door_override = TRUE
 
 /obj/structure/closet/crate/secure/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
 	if(damage_flag == "melee" && damage_amount < 25)
@@ -18,11 +17,11 @@
 /obj/structure/closet/crate/secure/update_icon()
 	..()
 	if(broken)
-		add_overlay("securecrateemag")
+		add_overlay(icon_emagged)
 	else if(locked)
-		add_overlay("securecrater")
+		add_overlay(icon_locked)
 	else
-		add_overlay("securecrateg")
+		add_overlay(icon_unlocked)
 
 /obj/structure/closet/crate/secure/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	if(prob(tamperproof) && damage_amount >= DAMAGE_PRECISION)
@@ -72,6 +71,7 @@
 	desc = "An insulated crate with a lock on it, used to secure perishables."
 	name = "secure kitchen crate"
 	icon_state = "kitchen_secure_crate"
+	icon_door_override = TRUE
 
 /obj/structure/closet/crate/secure/freezer/pizza
 	name = "secure pizza crate"
@@ -87,13 +87,13 @@
 	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
 	name = "secure engineering crate"
 	icon_state = "engi_secure_crate"
-	icon_door = "engi_crate"
+	icon_door = "engi_secure_crate"
 
 /obj/structure/closet/crate/secure/science
 	name = "secure science crate"
 	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
 	icon_state = "sci_secure_crate"
-	icon_door = "sci_crate"
+	icon_door = "sci_secure_crate"
 
 /obj/structure/closet/crate/secure/owned
 	name = "private crate"

@@ -120,7 +120,7 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	custom_materials = list(/datum/material/glass=500)
-	fill_icon_thresholds = list(0, 10, 25, 50, 75, 80, 90)
+	fill_icon_thresholds = list(1, 20, 40, 60, 80, 100) //AQUILA EDIT - Paradise fill states
 
 /obj/item/reagent_containers/glass/beaker/Initialize(mapload)
 	. = ..()
@@ -152,16 +152,13 @@
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120)
-
-/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
-	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
-	..()
-	icon_state = "beakerwhite"
+	fill_icon_thresholds = list(1, 10, 20, 40, 60, 80, 100) //AQUILA EDIT - own fill states, large beaker ones are Paradise now
 
 /obj/item/reagent_containers/glass/beaker/meta
 	name = "metamaterial beaker"
 	desc = "A large beaker. Can hold up to 180 units."
 	icon_state = "beakergold"
+	fill_icon_thresholds = list(1, 10, 25, 50, 60, 80, 100) //AQUILA EDIT
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
 	volume = 180
 	amount_per_transfer_from_this = 10
@@ -271,7 +268,8 @@
 
 /obj/item/reagent_containers/glass/bucket/dropped(mob/user)
 	..()
-	reagents.flags = initial(reagent_flags)
+	if(reagents)
+		reagents.flags = initial(reagent_flags)
 
 /obj/item/reagent_containers/glass/bucket/equip_to_best_slot(var/mob/M)
 	if(reagents.total_volume) //If there is water in a bucket, don't quick equip it to the head

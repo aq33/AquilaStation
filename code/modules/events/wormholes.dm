@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 
 	var/list/wormholes = list()
 	var/shift_frequency = 3
-	var/number_of_wormholes = 400
+	var/number_of_wormholes = 100 // AQ EDIT - 400 przesuwanych co 3 ticki dawało TiDi ~55% na Padalcu
 
 /datum/round_event/wormholes/setup()
 	announceWhen = rand(0, 20)
