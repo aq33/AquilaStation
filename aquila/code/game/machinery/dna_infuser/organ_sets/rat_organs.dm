@@ -64,7 +64,8 @@
 /obj/item/organ/stomach/rat/Remove(mob/living/carbon/M, special = 0)
 	if(ishuman(M) && owner == M)
 		var/mob/living/carbon/human/human_owner = M
-		human_owner.physiology.hunger_mod /= hunger_modifier
+		if(human_owner.physiology) // przy qdel postaci physiology znika przed organami
+			human_owner.physiology.hunger_mod /= hunger_modifier
 	return ..()
 
 /// mniejszy, przechodzi po stołach, ale dostaje 1,5x obrażeń
@@ -100,7 +101,8 @@
 		passtable_off(M, REF(src))
 		if(ishuman(M))
 			var/mob/living/carbon/human/human_owner = M
-			human_owner.physiology.damage_resistance += 50
+			if(human_owner.physiology) // przy qdel postaci physiology znika przed organami
+				human_owner.physiology.damage_resistance += 50
 	return ..()
 
 /// piszczy i rzuca serowymi tekstami

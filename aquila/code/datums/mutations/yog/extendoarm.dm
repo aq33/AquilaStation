@@ -83,6 +83,11 @@
 	var/returning = FALSE
 	var/datum/beam/beam
 
+// Ręka jest odczepiana i wkładana do pocisku przed fire(), a kolizje sprawdzają impacted już wtedy
+/obj/item/projectile/extendo_arm/Initialize(mapload)
+	. = ..()
+	LAZYINITLIST(impacted)
+
 // Nic nie dostaje pociskiem: ręka robi swoje i leci dalej albo wraca
 /obj/item/projectile/extendo_arm/prehit_pierce(atom/target)
 	if(returning)

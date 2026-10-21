@@ -34,7 +34,8 @@
 	if(QDELETED(owner) || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/human_owner = owner
-	human_owner.physiology.armor = human_owner.physiology.armor.modifyRating(bomb = -bomb_armor, bio = -bio_armor)
+	if(human_owner.physiology) // przy qdel postaci physiology znika przed organami
+		human_owner.physiology.armor = human_owner.physiology.armor.modifyRating(bomb = -bomb_armor, bio = -bio_armor)
 
 /// Serce karalucha: mniej obrażeń od ciosów w plecy, ale dłuższe przewrócenia
 /obj/item/organ/heart/roach
@@ -89,7 +90,8 @@
 		return
 	blocking = FALSE
 	if(!QDELETED(source))
-		source.physiology.brute_mod /= 0.5
+		if(source.physiology) // przy qdel postaci physiology znika przed organami
+			source.physiology.brute_mod /= 0.5
 
 /// czy karaluch przyjmuje cios na pancerz pleców
 /obj/item/organ/heart/roach/proc/is_blocking(mob/living/carbon/human/blocker, atom/movable/attacker)
@@ -129,7 +131,8 @@
 /obj/item/organ/stomach/roach/Remove(mob/living/carbon/M, special = 0)
 	if(ishuman(M) && owner == M)
 		var/mob/living/carbon/human/human_owner = M
-		human_owner.physiology.hunger_mod /= hunger_modifier
+		if(human_owner.physiology) // przy qdel postaci physiology znika przed organami
+			human_owner.physiology.hunger_mod /= hunger_modifier
 	return ..()
 
 /// Wątroba karalucha: toleruje więcej toksyn, ale jak już się przebiją, bolą podwójnie
@@ -154,7 +157,8 @@
 /obj/item/organ/liver/roach/Remove(mob/living/carbon/M, special = 0)
 	if(ishuman(M) && owner == M)
 		var/mob/living/carbon/human/human_owner = M
-		human_owner.physiology.tox_mod /= 2
+		if(human_owner.physiology) // przy qdel postaci physiology znika przed organami
+			human_owner.physiology.tox_mod /= 2
 	return ..()
 
 /// Wyrostek karalucha: żadnego zapalenia wyrostka!
