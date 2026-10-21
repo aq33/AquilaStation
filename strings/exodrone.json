@@ -1,0 +1,73 @@
+{
+	"probe_names": [
+		"Cassini",
+		"Galileo",
+		"Juno",
+		"Luna",
+		"Mariner",
+		"Pioneer",
+		"Rosetta",
+		"Sojourner",
+		"Stardust",
+		"Vega",
+		"Venera",
+		"Voyager"
+	],
+	"trading_station_names": [
+		"Używane mechy Wielkiego Billa Hellsa",
+		"Sklepik na Końcu Wszechświata",
+		"Szalone Okazje Szalonego Redda",
+		"Kosmiczny Bazar u Jima",
+		"Okazje jak z Rakiety",
+		"Targ Galaktyczny",
+		"Statki i Handel u Turnera"
+	],
+	"planet_types": [
+		{
+			"name": "jałowa planeta",
+			"description": "Jałowa planeta o bardzo rzadkiej atmosferze. Nic, tylko skały.",
+			"habitable": false,
+			"civilized": false,
+			"tech": false
+		},
+		{
+			"name": "świat dżungli",
+			"description": "Planeta porośnięta gęstą dżunglą. Wykrywasz liczne odczyty fauny i flory.",
+			"habitable": true,
+			"civilized": false,
+			"tech": false
+		},
+		{
+			"name": "księżyc robotów",
+			"description": "Malutka skała pokryta fabrykami i automatami, które przez większość czasu zdają się ignorować twoją obecność.",
+			"habitable": true,
+			"civilized": true,
+			"tech": true
+		}
+	],
+	"alien_fauna": [
+		"bazyliszek",
+		"nieznana bestia",
+		"bardzo wściekła krowa",
+		"ksenomorf łowca"
+	],
+	"fluff_generic": [
+		"To miejsce jest bardziej puste niż konto asystenta.",
+		"Znajdujesz ogromną stertę nudy.",
+		"Nie znajdujesz nic ciekawego."
+	],
+	"fluff_space": [
+		"W pobliżu wykrywasz odczyty aktywacji napędu gwiezdnego. Zanim docierasz na miejsce, nie ma tam już nic poza kosmicznym pyłem.",
+		"Mijasz niewielkie pole kosmicznych śmieci. Nic, tylko bezużyteczny złom."
+	],
+	"fluff_trading": [
+		"Natrafiasz na drona konserwacyjnego zajętego pracą. Kompletnie cię ignoruje.",
+		"Mijasz pijanego miejscowego. Całe szczęście, że przekaz z drona nie przenosi zapachów.",
+		"Mijasz patrol ochrony. Rzucają ci podejrzliwe spojrzenia."
+	],
+	"fluff_ruins": [
+		"Natrafiasz na rozbity posąg. Nie da się stwierdzić, jaki miał pierwotnie kształt.",
+		"Musisz zawrócić z zawalonego przejścia.",
+		"Przechodzisz korytarzem pełnym popękanych płytek."
+	]
+}
