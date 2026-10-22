@@ -77,7 +77,7 @@
 		yt_tracks += list(list("id" = song.url, "url" = song.url, "title" = song.name || song.url, "duration" = song.duration))
 	updateUsrDialog()
 	if(was_active && yt_tracks.len)
-		INVOKE_ASYNC(src, .proc/yt_next)
+		INVOKE_ASYNC(src, PROC_REF(yt_next))
 
 /// Ramka kasety w oknie jukeboxa
 /obj/machinery/jukebox/proc/tape_ui()

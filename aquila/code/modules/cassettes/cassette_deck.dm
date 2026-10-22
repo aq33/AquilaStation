@@ -109,7 +109,7 @@
 		if("add")
 			if(!can_edit(user))
 				return
-			INVOKE_ASYNC(src, .proc/add_track, user, trim("[params["url"]]"))
+			INVOKE_ASYNC(src, PROC_REF(add_track), user, trim("[params["url"]]"))
 			return TRUE
 		if("remove")
 			if(!can_edit(user))
@@ -150,8 +150,8 @@
 	if(length(side.songs) >= MAX_SONGS_PER_CASSETTE_SIDE)
 		balloon_alert(user, "strona jest pełna!")
 		return FALSE
-	if(!findtext(url, GLOB.is_http_protocol))
-		balloon_alert(user, "to nie jest link http(s)!")
+	if(!aquila_ytdl_url_allowed(url))
+		balloon_alert(user, "nieprawidłowy link!")
 		return FALSE
 	if(findtext(url, "spotify.com") || findtext(url, "music.apple.com") || findtext(url, "deezer.com") || findtext(url, "tidal.com"))
 		to_chat(user, "<span class='warning'>Ten serwis nie jest obsługiwany. Użyj linku z YouTube, SoundCloud albo Bandcamp.</span>")
@@ -174,11 +174,16 @@
 		return FALSE
 	var/list/data = result["data"]
 	var/page_url = data["webpage_url"] || url
-	var/datum/cassette_song/song = new(data["track"] || data["title"] || page_url, page_url, result["duration"], data["artist"] || data["uploader"], data["album"])
+	if(!aquila_ytdl_url_allowed(page_url))
+		page_url = url
+	var/title = copytext_char("[data["track"] || data["title"] || page_url]", 1, 101)
+	var/artist = (data["artist"] || data["uploader"]) ? copytext_char("[data["artist"] || data["uploader"]]", 1, 101) : null
+	var/album = data["album"] ? copytext_char("[data["album"]]", 1, 101) : null
+	var/datum/cassette_song/song = new(title, page_url, result["duration"], artist, album)
 	side.songs += song
 	tape.cassette_data.status = CASSETTE_STATUS_UNAPPROVED
 	tape.cassette_data.id = null // zmieniona kaseta to już inne nagranie niż zatwierdzone
 	playsound(src, pick(GLOB.cassette_put_in_sounds), 40, FALSE)
-	to_chat(user, "<span class='notice'>Nagrano utwór „[song.name]” na [tape].</span>")
+	to_chat(user, "<span class='notice'>Nagrano utwór „[html_encode(song.name)]” na [tape].</span>")
 	SStgui.update_uis(src)
 	return TRUE

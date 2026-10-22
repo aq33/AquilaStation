@@ -55,7 +55,7 @@
 	. += "<span class='info'>W środku jest kaseta „<b>[inserted_tape.name]</b>” (strona [inserted_tape.flipped ? "B" : "A"]).</span>"
 	var/datum/cassette_song/song = current_song()
 	if(song)
-		. += "<span class='info'>Utwór „<b>[song.name]</b>” [playing ? "gra" : "jest wybrany"].</span>"
+		. += "<span class='info'>Utwór „<b>[html_encode(song.name)]</b>” [playing ? "gra" : "jest wybrany"].</span>"
 	. += "<span class='notice'><b>Alt-klik</b>, żeby wyjąć kasetę.</span>"
 
 /obj/item/walkman/attackby(obj/item/I, mob/living/user, params)
@@ -98,15 +98,15 @@
 		stop_listening()
 		balloon_alert(user, "pauza")
 	else
-		INVOKE_ASYNC(src, .proc/play_track, user, max(track_index, 1))
+		INVOKE_ASYNC(src, PROC_REF(play_track), user, max(track_index, 1))
 
 /obj/item/walkman/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/walkman/next_song))
 		if(can_use(user))
-			INVOKE_ASYNC(src, .proc/play_track, user, track_index + 1)
+			INVOKE_ASYNC(src, PROC_REF(play_track), user, track_index + 1)
 	else if(istype(action, /datum/action/item_action/walkman/restart_song))
 		if(can_use(user))
-			INVOKE_ASYNC(src, .proc/play_track, user, max(track_index, 1))
+			INVOKE_ASYNC(src, PROC_REF(play_track), user, max(track_index, 1))
 	else
 		attack_self(user)
 
@@ -144,6 +144,8 @@
 		return
 	if(!result)
 		balloon_alert(user, "nie da się odtworzyć utworu [index]!")
+		if(playing && world.time >= track_end) // automatyczne przejście po końcu utworu - nie ponawiamy w kółko
+			stop_listening()
 		return
 	track_index = index
 	stream_url = result["stream"]
@@ -154,7 +156,7 @@
 	playing = TRUE
 	playsound(src, pick(GLOB.cassette_play_sounds), 30, FALSE)
 	start_listening(user)
-	to_chat(user, "<span class='notice'>Gra utwór [index]: <b>[extra_data["title"]]</b>.</span>")
+	to_chat(user, "<span class='notice'>Gra utwór [index]: <b>[html_encode(extra_data["title"])]</b>.</span>")
 
 /obj/item/walkman/proc/start_listening(mob/living/listener)
 	if(current_listener && current_listener != listener)
@@ -193,7 +195,7 @@
 		stop_listening()
 		return PROCESS_KILL
 	if(world.time >= track_end && !busy)
-		INVOKE_ASYNC(src, .proc/play_track, current_listener, track_index + 1)
+		INVOKE_ASYNC(src, PROC_REF(play_track), current_listener, track_index + 1)
 
 /datum/action/item_action/walkman
 	icon_icon = 'aquila/icons/obj/cassettes/walkman.dmi'

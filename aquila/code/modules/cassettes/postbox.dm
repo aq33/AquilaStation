@@ -49,14 +49,15 @@ GLOBAL_LIST_EMPTY(cassette_reviews)
 		return FALSE
 	if(QDELETED(tape) || tape.loc != user || !user.Adjacent(src))
 		return FALSE
-	if(SSdbcore.IsConnected()) // bez bazy (gra lokalna) nie pobieramy opłaty
-		if(C.get_metabalance() < CASSETTE_SUBMIT_COST)
-			to_chat(user, "<span class='warning'>Masz za mało [currency], żeby zgłosić kasetę.</span>")
-			return FALSE
-		C.inc_metabalance(-CASSETTE_SUBMIT_COST, TRUE, "Zgłoszenie kasety do Kosmicznej Rady Muzycznej.")
+	var/charge = SSdbcore.IsConnected() // bez bazy (gra lokalna) nie pobieramy opłaty
+	if(charge && C.get_metabalance() < CASSETTE_SUBMIT_COST)
+		to_chat(user, "<span class='warning'>Masz za mało [currency], żeby zgłosić kasetę.</span>")
+		return FALSE
 	if(!user.temporarilyRemoveItemFromInventory(tape))
 		return FALSE
-	submit_cassette_for_review(user, tape)
+	if(charge)
+		C.inc_metabalance(-CASSETTE_SUBMIT_COST, TRUE, "Zgłoszenie kasety do Kosmicznej Rady Muzycznej.")
+	submit_cassette_for_review(user, tape, charge)
 	return TRUE
 
 /datum/cassette_review
@@ -101,7 +102,7 @@ GLOBAL_LIST_EMPTY(cassette_reviews)
 		QDEL_NULL(tape)
 
 /datum/cassette_review/ui_state(mob/user)
-	return GLOB.admin_state
+	return get_admin_state(R_FUN)
 
 /datum/cassette_review/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -181,13 +182,13 @@ GLOBAL_LIST_EMPTY(cassette_reviews)
 	if(C)
 		to_chat(C, message)
 
-/proc/submit_cassette_for_review(mob/user, obj/item/cassette_tape/tape)
+/proc/submit_cassette_for_review(mob/user, obj/item/cassette_tape/tape, paid = FALSE)
 	tape.cassette_data.author.name = user.real_name
 	tape.cassette_data.author.ckey = user.ckey
 	tape.cassette_data.status = CASSETTE_STATUS_REVIEWING
 	tape.cassette_data.submitted_time = rustg_unix_timestamp()
 	tape.moveToNullspace()
-	var/datum/cassette_review/review = new(user, tape, SSdbcore.IsConnected())
+	var/datum/cassette_review/review = new(user, tape, paid)
 	log_game("[key_name(user)] submitted cassette \"[tape.cassette_data.name]\" for review")
 	var/link = "<a href='byond://?src=[REF(review)];[HrefToken()];open_review=1'>Otwórz recenzję</a>"
 	for(var/client/admin as anything in GLOB.admins)

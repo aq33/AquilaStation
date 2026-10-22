@@ -236,7 +236,7 @@
 
 /obj/machinery/jukebox/proc/yt_load_playlist(url, mob/user, autoplay = FALSE)
 	var/ytdl = aquila_ytdl_command()
-	if(!ytdl)
+	if(!ytdl || !aquila_ytdl_url_allowed(url))
 		return
 	yt_set_busy(TRUE)
 	updateUsrDialog()
@@ -322,11 +322,32 @@
 		return null
 	return result
 
+/// Czy link można dać yt-dlp: tylko http(s) i host z sieci publicznej - bez localhost, adresów prywatnych i link-local,
+/// żeby gracz nie kazał serwerowi pytać usług w jego sieci wewnętrznej
+/proc/aquila_ytdl_url_allowed(url)
+	var/static/regex/host_regex = regex(@"^https?://(?:[^/@?#]*@)?(\[[^\]]*\]|[^/:?#]+)", "i")
+	if(!host_regex.Find(url))
+		return FALSE
+	var/host = lowertext(host_regex.group[1])
+	if(host == "localhost" || findtext(host, ".localhost", -10) || findtext(host, ".local", -6) || findtext(host, ".internal", -9))
+		return FALSE
+	if(findtext(host, "\[") == 1) // IPv6 - serwisy muzyczne mają nazwy domen
+		return FALSE
+	var/static/regex/ipv4_regex = regex(@"^(\d+)\.(\d+)\.(\d+)\.(\d+)$")
+	if(ipv4_regex.Find(host))
+		var/a = text2num(ipv4_regex.group[1])
+		var/b = text2num(ipv4_regex.group[2])
+		if(a == 0 || a == 10 || a == 127 || (a == 169 && b == 254) || (a == 172 && b >= 16 && b <= 31) || (a == 192 && b == 168) || (a == 100 && b >= 64 && b <= 127) || a >= 224)
+			return FALSE
+	else if(!findtext(host, ".")) // nazwa bez domeny (np. host w sieci lokalnej) albo liczba zamiast adresu
+		return FALSE
+	return TRUE
+
 /// Pyta yt-dlp o link do strumienia jednego utworu (jukebox, walkman, deck kaset).
 /// Zwraca list("stream", "data", "duration") albo null, gdy utworu nie da się zagrać. Śpi do końca zapytania.
 /proc/aquila_ytdl_resolve(track_url, known_duration)
 	var/ytdl = aquila_ytdl_command()
-	if(!ytdl || !findtext(track_url, GLOB.is_http_protocol))
+	if(!ytdl || !aquila_ytdl_url_allowed(track_url))
 		return null
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --geo-bypass --format \"[JUKEBOX_YT_FORMAT]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(track_url)]\"")
 	if(output[SHELLEO_ERRORLEVEL])

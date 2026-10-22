@@ -12,6 +12,16 @@
 	TEST_ASSERT_EQUAL(friday.status, CASSETTE_STATUS_APPROVED, "Built-in cassettes should be approved")
 	TEST_ASSERT(length(friday.front.songs), "Built-in cassette has no songs on side A")
 
+	// yt-dlp dostaje tylko linki do hostów publicznych
+	TEST_ASSERT(aquila_ytdl_url_allowed("https://www.youtube.com/watch?v=QFdB408xgEE"), "YouTube link should be allowed")
+	TEST_ASSERT(aquila_ytdl_url_allowed("https://soundcloud.com/artist/song"), "SoundCloud link should be allowed")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("http://localhost:1337/"), "localhost should be blocked")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("http://127.0.0.1/admin"), "Loopback should be blocked")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("http://192.168.1.10/"), "Private network should be blocked")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("http://user@169.254.169.254/latest"), "Link-local should be blocked")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("http://fileserver/share"), "Bare hostname should be blocked")
+	TEST_ASSERT(!aquila_ytdl_url_allowed("file:///etc/passwd"), "Non-http scheme should be blocked")
+
 	// Kopia jest niezależna od oryginału
 	var/datum/cassette/copy = friday.copy()
 	TEST_ASSERT_EQUAL(copy.name, friday.name, "Copied cassette lost its name")

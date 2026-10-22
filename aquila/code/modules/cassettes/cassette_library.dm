@@ -94,7 +94,7 @@
 	record_purchase(cassette, user)
 	busy = TRUE
 	playsound(src, 'sound/machines/terminal_processing.ogg', 50, TRUE)
-	addtimer(CALLBACK(src, .proc/finish_printing, cassette.id, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_printing), cassette.id, user), 2 SECONDS)
 	return TRUE
 
 /obj/machinery/cassette_library/proc/record_purchase(datum/cassette/cassette, mob/user)

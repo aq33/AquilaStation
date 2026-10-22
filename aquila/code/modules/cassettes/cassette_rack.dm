@@ -16,7 +16,7 @@
 	storage.max_combined_w_class = WEIGHT_CLASS_SMALL * 28
 	storage.display_numerical_stacking = TRUE
 	storage.can_hold = typecacheof(list(/obj/item/cassette_tape))
-	RegisterSignal(src, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED), .proc/contents_changed)
+	RegisterSignal(src, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED), PROC_REF(contents_changed))
 
 /obj/structure/cassette_rack/proc/contents_changed()
 	SIGNAL_HANDLER
