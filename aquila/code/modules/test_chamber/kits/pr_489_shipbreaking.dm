@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_shipbreaking
+/datum/test_chamber_kit/pr_489
 	name = "Shipbreaking (wraki w magnesie)"
-	pr = "aq33/AquilaStation#PR_SHIPBREAKING"
+	pr = "aq33/AquilaStation#489"
 	description = "Na overmapie obok statku pojawił się wrak: na konsoli magnesu (górnictwo, przy klatce na asteroidy) ma być w sekcji „Wraki w zasięgu”. \
 		Przyciągnij go, po 10 s ma się pojawić w klatce, porozbijany wybuchami. Rozbieraj go młotem (w obu rękach) i spawarką Rayne, która działa tylko w strefie. \
 		Ściany mają dawać poszycie, dźwigary szkielet, maszyny elektronikę, plazmę i matryce, silniki rdzenie. Pasek „Zostało X% wraku” ma spadać. \
@@ -20,7 +20,7 @@
 		/obj/item/clothing/mask/gas/explorer = 1,
 	)
 
-/datum/test_chamber_kit/pr_shipbreaking/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_489/setup(list/spawned, list/turfs, turf/center, mob/user)
 	for(var/obj/structure/closet/secure_closet/shipbreaker/closet in spawned)
 		closet.locked = FALSE
 		closet.update_icon()
