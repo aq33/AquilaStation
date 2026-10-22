@@ -64,17 +64,17 @@ const SLOTS = [1, 2, 3, 4];
 const CPU_LOCK_TECH = [
   '',
   '',
-  'Ulepszone gniazda CPU',
+  'Lepsze gniazda CPU',
   'Zaawansowane gniazda CPU',
-  'Gniazda CPU bluespace',
+  "Bluespace'owe gniazda CPU",
 ];
 
 const RAM_LOCK_TECH = [
   '',
   '',
-  'Ulepszona magistrala pamięci',
+  'Lepsza magistrala pamięci',
   'Zaawansowana magistrala pamięci',
-  'Magistrala pamięci bluespace',
+  "Bluespace'owa magistrala pamięci",
 ];
 
 const capitalize = (text: string) =>

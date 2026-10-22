@@ -71,7 +71,10 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	total_ram = 0
 	total_cpu = 0
 	for(var/obj/machinery/ai/server_cabinet/C as anything in GLOB.ai_server_cabinets)
-		if((!C.valid_holder() && !C.roundstart) || C.linked_os != src)
+		if(C.linked_os != src)
+			continue
+		// Szafa w okresie karencji (was_valid_holder, valid_ticks > 0) nadal się liczy
+		if(!C.roundstart && !C.valid_holder() && !(C.was_valid_holder && C.valid_ticks > 0))
 			continue
 		total_ram += C.total_ram
 		total_cpu += C.total_cpu
@@ -79,6 +82,18 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	update_allocations()
 
 /datum/ai_os/proc/update_allocations()
+	var/cpu_overflow = total_cpu_assigned() - total_cpu
+	if(cpu_overflow > 0)
+		for(var/mob/living/silicon/ai/AI as anything in cpu_assigned.Copy())
+			var/taken = min(cpu_assigned[AI], cpu_overflow)
+			if(!taken)
+				continue
+			cpu_assigned[AI] -= taken
+			cpu_overflow -= taken
+			to_chat(AI, span_warning("Odebrano ci część zasobów obliczeniowych. Jeśli to pomyłka, skontaktuj się z inżynierią."))
+			if(cpu_overflow <= 0)
+				break
+
 	//Do we have the same amount or more RAM than before? Do nothing
 	if(total_ram >= previous_ram)
 		return
@@ -125,7 +140,7 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	if(total_cpu_assigned() - cpu_assigned[AI] + amount > total_cpu)
 		if(!adjust_overflow)
 			return
-		amount = total_cpu - total_cpu_assigned() + cpu_assigned[AI]
+		amount = max(0, total_cpu - total_cpu_assigned() + cpu_assigned[AI])
 	cpu_assigned[AI] = amount
 	if(update)
 		update_allocations()
@@ -137,7 +152,7 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	if(total_ram_assigned() - ram_assigned[AI] + amount > total_ram)
 		if(!adjust_overflow)
 			return
-		amount = total_ram - total_ram_assigned() + ram_assigned[AI]
+		amount = max(0, total_ram - total_ram_assigned() + ram_assigned[AI])
 	ram_assigned[AI] = amount
 	if(update)
 		update_allocations()

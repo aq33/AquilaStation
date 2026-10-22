@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	switch(action)
 		if("run_project")
 			var/datum/ai_project/project = get_project_by_name(params["project_name"])
-			if(!project || !run_project(project))
+			if(!project || !has_completed_project(project.type) || !run_project(project))
 				to_chat(owner, span_warning("Nie można uruchomić programu „[params["project_name"]]”."))
 			else
 				to_chat(owner, span_notice("Uruchamianie instancji programu [params["project_name"]]..."))
@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(ai_project_categories, list(
 	for(var/project_being_researched in cpu_usage)
 		if(!cpu_usage[project_being_researched])
 			continue
-		var/used_cpu = round(cpu_usage[project_being_researched] * current_cpu * seconds_per_tick, 1)
+		var/used_cpu = round(cpu_usage[project_being_researched] * current_cpu * seconds_per_tick, 0.1)
 		var/datum/ai_project/project = get_project_by_name(project_being_researched)
 		if(!project)
 			cpu_usage[project_being_researched] = 0

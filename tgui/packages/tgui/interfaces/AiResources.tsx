@@ -34,7 +34,7 @@ type AiData = {
 };
 
 const percent = (value: number, total: number) =>
-  total ? toFixed((value / total) * 100) : '0';
+  total <= 0 ? '0' : toFixed(Math.max(0, Math.min((value / total) * 100, 100)));
 
 export const AiResources = (props) => {
   const { act, data } = useBackend<Data>();

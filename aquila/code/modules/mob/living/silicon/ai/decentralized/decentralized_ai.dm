@@ -44,6 +44,12 @@
 	. = ..()
 	if(stat == DEAD)
 		return
+	// Rdzeń za długo niesprawny (przegrzany, bez prądu): SI szuka innego
+	if(isaicore(loc))
+		var/obj/machinery/ai/data_core/core = loc
+		if(!core.valid_data_core(src))
+			relocate()
+			return
 	dashboard?.tick(SSmobs.wait / (1 SECONDS))
 	if(party_time && isaicore(loc))
 		var/obj/machinery/ai/data_core/core = loc
