@@ -1610,6 +1610,7 @@
 /obj/effect/turf_decal/tile/ship/purple{
 	dir = 1
 	},
+/obj/machinery/dna_infuser,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/genetics)
 "du" = (
@@ -2804,6 +2805,7 @@
 /obj/item/restraints/handcuffs/cable/zipties,
 /obj/item/restraints/handcuffs/cable/zipties,
 /obj/structure/table/glass/plasma,
+/obj/item/book/manual/infuser,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/genetics)
 "hv" = (

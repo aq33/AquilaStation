@@ -118,6 +118,7 @@
 #include "code\datums\mutations\_combined.dm"
 #include "code\datums\mutations\actions.dm"
 #include "code\datums\mutations\body.dm"
+#include "code\datums\mutations\mutation_actions.dm"
 #include "code\datums\votes\_vote_datum.dm"
 #include "code\datums\votes\custom_vote.dm"
 #include "code\datums\votes\votes.dm"
@@ -841,6 +842,7 @@
 #include "code\modules\test_chamber\kits\pr_478_exodrony.dm"
 #include "code\modules\test_chamber\kits\pr_472_wampir.dm"
 #include "code\modules\test_chamber\kits\pr_480_okna_tgui.dm"
+#include "code\modules\test_chamber\kits\pr_484_genetyka.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1019,6 +1021,14 @@
 #include "code\modules\vending\sticker.dm"
 // Gizmo z tg (tgstation/tgstation#95857)
 #include "code\modules\research\gizmo\_includes.dm"
+// Genetyka: mutacje z tg, Monkestation, Paradise i Yogstation + DNA Infuser z tg
+#include "code\datums\mutations\tg\_tg.dm"
+#include "code\datums\mutations\tg_core\_tg_core.dm"
+#include "code\datums\mutations\yog\_yog.dm"
+#include "code\datums\mutations\monke\_monke.dm"
+#include "code\datums\mutations\paradise\_paradise.dm"
+#include "code\game\machinery\dna_infuser\_dna_infuser.dm"
+
 // Struktury z Paradise: ściany, okna i drzwi 3/4. Na końcu, żeby nadpisać wcześniejsze ikony (także te z aquila/).
 #include "code\modules\paradise_struktury\smoothing.dm"
 #include "code\modules\paradise_struktury\walls.dm"

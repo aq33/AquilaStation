@@ -13995,19 +13995,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/table,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/storage/box/bodybags,
+/obj/machinery/dna_infuser,
 /obj/machinery/light_switch/west,
-/obj/item/storage/box/monkeycubes{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/storage/pill_bottle/mannitol,
-/obj/item/storage/pill_bottle/mutadone,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
 "Qw" = (
@@ -15393,6 +15382,19 @@
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 8
 	},
+/obj/structure/table,
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/storage/box/monkeycubes{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/storage/box/bodybags,
+/obj/item/storage/pill_bottle/mannitol,
+/obj/item/storage/pill_bottle/mutadone,
+/obj/item/book/manual/infuser,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "Vp" = (

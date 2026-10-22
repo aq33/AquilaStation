@@ -988,7 +988,7 @@ GLOBAL_DATUM(memory_panel, /datum/memory_panel)
 
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()
-	return FALSE
+	return HAS_TRAIT(src, "advancedtooluser") // AQUILA EDIT - mutacja Clever z tg (TRAIT_ADVANCEDTOOLUSER)
 
 /mob/proc/swap_hand()
 	var/obj/item/held_item = get_active_held_item()
@@ -1261,7 +1261,7 @@ GLOBAL_DATUM(memory_panel, /datum/memory_panel)
 
 ///This mob is abile to read books
 /mob/proc/is_literate()
-	return FALSE
+	return HAS_TRAIT(src, "literate") && !HAS_TRAIT(src, "illiterate") // AQUILA EDIT - mutacje Clever i Illiterate z tg (TRAIT_LITERATE, TRAIT_ILLITERATE)
 
 ///Can this mob read (is literate and not blind)
 /mob/proc/can_read(obj/O)
