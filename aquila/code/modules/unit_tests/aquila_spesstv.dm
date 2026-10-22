@@ -31,6 +31,12 @@
 	TEST_ASSERT(!(test_net in program.network), "Stop transmisji nie zdjął sieci ze Spess.tv")
 	TEST_ASSERT(CAMERANET_NETWORK_THUNDERDOME in tv.network, "Telewizor zgubił stałą sieć Thunderdome")
 
+	// Dwie kamery o tej samej nazwie programu dostają różne c_tag (okna kamer trzymają je pod c_tag)
+	var/obj/machinery/camera/first_cam = allocate(/obj/machinery/camera)
+	first_cam.c_tag = "NA ŻYWO: test"
+	TEST_ASSERT(unique_broadcast_tag("NA ŻYWO: test", first_cam) == "NA ŻYWO: test", "Kamera dostała przyrostek przez własną nazwę")
+	TEST_ASSERT(unique_broadcast_tag("NA ŻYWO: test") == "NA ŻYWO: test (2)", "Druga kamera o tej samej nazwie nie dostała przyrostka")
+
 	qdel(program)
 
 #undef TEST_ASSERT

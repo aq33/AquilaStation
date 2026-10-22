@@ -67,7 +67,7 @@
 		return
 	broadcast_name = new_name
 	if(internal_camera)
-		internal_camera.c_tag = "NA ŻYWO: [broadcast_name]"
+		internal_camera.c_tag = unique_broadcast_tag("NA ŻYWO: [broadcast_name]", internal_camera)
 	balloon_alert(user, "nazwa zmieniona")
 
 /obj/machinery/big_broadcast_camera/wrench_act(mob/living/user, obj/item/tool)
@@ -86,7 +86,7 @@
 	internal_camera.resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	internal_camera.internal_light = FALSE
 	internal_camera.network = camera_networks.Copy()
-	internal_camera.c_tag = "NA ŻYWO: [broadcast_name]"
+	internal_camera.c_tag = unique_broadcast_tag("NA ŻYWO: [broadcast_name]", internal_camera)
 	internal_camera.upgradeEmpProof()
 	user?.log_message("started a Spess.tv stream named \"[broadcast_name]\" at [loc_name(user)]", LOG_GAME)
 	start_broadcasting_network(camera_networks, "[html_encode(broadcast_name)] - teraz NA ŻYWO!", src)

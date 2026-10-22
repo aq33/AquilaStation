@@ -60,3 +60,17 @@ GLOBAL_LIST_EMPTY(broadcast_network_sources)
 	for(var/key in spesstv_viewers)
 		if(spesstv_viewers[key] == camera_ref)
 			.++
+
+/**
+ * Nazwa kamery transmisji niepowtarzalna w sieci kamer.
+ * Okna kamer (telewizor, Spess.tv) trzymają kamery pod c_tag, więc dwie kamery o tej samej nazwie programu zasłaniałyby się nawzajem.
+ */
+/proc/unique_broadcast_tag(base_tag, obj/machinery/camera/for_camera)
+	var/list/taken = list()
+	for(var/obj/machinery/camera/cam as anything in GLOB.cameranet.cameras)
+		if(cam != for_camera)
+			taken[cam.c_tag] = TRUE
+	. = base_tag
+	var/suffix = 2
+	while(taken[.])
+		. = "[base_tag] ([suffix++])"
