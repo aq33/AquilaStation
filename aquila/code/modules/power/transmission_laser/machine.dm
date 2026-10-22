@@ -39,7 +39,7 @@
 	/// Zgromadzony ładunek
 	var/charge = 0
 	/// Czy w ostatnim ticku coś weszło
-	var/inputting = TRUE
+	var/inputting = FALSE
 	/// Nadwyżka sieci dostępna w ostatnim ticku
 	var/input_available = 0
 	/// Czy laser przyjmuje moc
@@ -99,7 +99,9 @@
 /obj/machinery/power/transmission_laser/disconnect_terminal()
 	terminal = null
 	firing = FALSE
+	output_level = 0
 	set_machine_stat(machine_stat | BROKEN)
+	destroy_lasers()
 	update_appearance()
 
 /// Środek kwadratu 3x3 (loc to lewy dolny róg)
@@ -227,7 +229,7 @@
 	if(!terminal)
 		return
 	input_available = terminal.surplus()
-	if((machine_stat & BROKEN) || !turned_on)
+	if(machine_stat & BROKEN)
 		return
 
 	if(total_power >= announcement_treshold)
@@ -237,7 +239,8 @@
 	var/last_chrg = inputting
 	var/last_fire = firing
 
-	input_pulling = min(input_available, input_number * power_format_multi)
+	// Wyłączone wejście zatrzymuje tylko pobór, strzał leci dalej z zapasu (w Monke zamrażało wiązkę)
+	input_pulling = turned_on ? min(input_available, input_number * power_format_multi) : 0
 	if(input_pulling > 0)
 		terminal.add_load(input_pulling)
 		charge += input_pulling

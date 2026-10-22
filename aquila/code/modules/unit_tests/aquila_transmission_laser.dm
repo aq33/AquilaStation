@@ -48,5 +48,19 @@
 	TEST_ASSERT_EQUAL(victim.getFireLoss(), 30, "2 MW beam did not burn for 30")
 	TEST_ASSERT(!QDELETED(victim), "2 MW beam gibbed the victim")
 
+	// Wejście w kratkę wiązki naprawdę odpala obrażenia (sygnał z connect_loc)
+	var/turf/beam_turf = get_step(run_loc_floor_top_right, WEST)
+	var/obj/effect/transmission_beam/beam = allocate(/obj/effect/transmission_beam, beam_turf, laser)
+	TEST_ASSERT(beam in laser.laser_effects, "Beam did not register with the PTL")
+	var/mob/living/carbon/human/walker = allocate(/mob/living/carbon/human, run_loc_floor_top_right)
+	walker.forceMove(beam_turf)
+	TEST_ASSERT_EQUAL(walker.getFireLoss(), 30, "Entering the beam did not burn")
+
+	// Zniknięcie terminala gasi wiązkę
+	laser.firing = TRUE
+	qdel(terminal)
+	TEST_ASSERT(!length(laser.laser_effects), "Beam stayed after the terminal was destroyed")
+	TEST_ASSERT_EQUAL(laser.output_level, 0, "Output stayed after the terminal was destroyed")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

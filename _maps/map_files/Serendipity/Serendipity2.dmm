@@ -464,6 +464,18 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"bi" = (
+/obj/structure/cable{
+	forced_power_node = 1;
+	has_power_node = 1
+	},
+/obj/machinery/light/small,
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
@@ -44300,7 +44312,7 @@ bg
 uL
 uL
 uL
-aQ
+bi
 Eo
 qK
 LW

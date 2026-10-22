@@ -18,7 +18,7 @@
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_entered),
 	)
-	AddElement(/datum/element/connect_loc, src, loc_connections)
+	AddElement(/datum/element/connect_loc, loc_connections)
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/effect/transmission_beam/Destroy(force)
