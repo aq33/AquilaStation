@@ -60,6 +60,9 @@
 
 /obj/machinery/jukebox/Destroy()
 	yt_stop()
+	if(inserted_tape)
+		inserted_tape.forceMove(drop_location())
+		inserted_tape = null
 	for(var/obj/machinery/jukebox_speaker/speaker as anything in speakers)
 		speaker.unlink()
 	QDEL_NULL(emitter)
@@ -88,6 +91,9 @@
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, 1)
 
 /obj/machinery/jukebox/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/cassette_tape)) // jukebox_cassette.dm
+		insert_tape(I, user)
+		return TRUE
 	if(default_unfasten_wrench(user, I))
 		return
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))

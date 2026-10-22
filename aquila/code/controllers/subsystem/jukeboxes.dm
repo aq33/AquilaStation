@@ -15,11 +15,15 @@ SUBSYSTEM_DEF(jukeboxes)
 	var/list/listening = list()
 	/// Wszystkie głośniki nagłośnienia
 	var/list/obj/machinery/ceiling_speaker/ceiling_speakers = list()
+	/// Kto słucha walkmana: mob -> /obj/item/walkman. Walkman zagłusza mu jukeboxy.
+	var/list/walkman_listeners = list()
 
 /// Stan słuchania jednego klienta
 /datum/jukebox_listening
 	/// Jukebox, którego utwór gra temu klientowi
 	var/obj/machinery/jukebox/jukebox
+	/// Albo walkman, którego słucha
+	var/obj/item/walkman/walkman
 	/// Który utwór (czas startu) - zmiana oznacza nowy utwór do wysłania
 	var/track_started = 0
 	var/gain = 0
@@ -105,10 +109,21 @@ SUBSYSTEM_DEF(jukeboxes)
 	for(var/client/C as anything in listening)
 		if(QDELETED(C))
 			listening -= C
+	for(var/mob/M as anything in walkman_listeners)
+		if(QDELETED(M))
+			walkman_listeners -= M
 
 /// Wybiera klientowi źródło i wysyła mu muzykę albo zmiany głośności
 /datum/controller/subsystem/jukeboxes/proc/update_client(client/C)
+	if(!C?.mob)
+		return
 	var/mob/M = C.mob
+	var/obj/item/walkman/walkman = walkman_listeners[M]
+	if(walkman)
+		if(!QDELETED(walkman) && walkman.can_play_for(M))
+			update_walkman_client(C, walkman)
+			return
+		walkman_listeners -= M
 	var/obj/machinery/jukebox/best_jukebox
 	var/datum/music_emitter/best_emitter
 	var/best_gain = 0
@@ -149,6 +164,7 @@ SUBSYSTEM_DEF(jukeboxes)
 				state = new
 				listening[C] = state
 			state.jukebox = best_jukebox
+			state.walkman = null
 			state.track_started = best_jukebox.yt_track_started
 			state.gain = best_gain
 			state.fx = "[echo]|[muffle]"
@@ -164,6 +180,37 @@ SUBSYSTEM_DEF(jukeboxes)
 	else if(world.time - state.out_since > JUKEBOX_OUT_GRACE)
 		listening -= C
 		C.tgui_panel?.stop_music()
+
+/// Gra klientowi jego walkmana: stała głośność, bez echa i przytłumienia; głuchy nie słyszy nic
+/datum/controller/subsystem/jukeboxes/proc/update_walkman_client(client/C, obj/item/walkman/walkman)
+	var/gain = HAS_TRAIT(C.mob, TRAIT_DEAF) ? 0 : WALKMAN_GAIN
+	var/datum/jukebox_listening/state = listening[C]
+	if(state && state.walkman == walkman && state.track_started == walkman.track_started)
+		if(abs(gain - state.gain) >= JUKEBOX_GAIN_STEP)
+			state.gain = gain
+			C.tgui_panel?.set_music_gain(gain, 0, 0)
+		return
+	var/list/extra = walkman.play_data()
+	extra["volume"] = gain
+	C.tgui_panel?.play_music(walkman.stream_url, extra)
+	if(!state)
+		state = new
+		listening[C] = state
+	state.jukebox = null
+	state.walkman = walkman
+	state.track_started = walkman.track_started
+	state.gain = gain
+	state.fx = "0|0"
+	state.out_since = 0
+
+/// Zatrzymuje muzykę słuchaczowi walkmana (pauza, wyjęta kaseta, odłożony walkman)
+/datum/controller/subsystem/jukeboxes/proc/release_walkman(obj/item/walkman/walkman)
+	for(var/client/C as anything in listening)
+		var/datum/jukebox_listening/state = listening[C]
+		if(state.walkman != walkman)
+			continue
+		listening -= C
+		C?.tgui_panel?.stop_music()
 
 /// Zatrzymuje muzykę wszystkim, którym gra ten jukebox (wyłączony, zniszczony)
 /datum/controller/subsystem/jukeboxes/proc/release_jukebox(obj/machinery/jukebox/J)

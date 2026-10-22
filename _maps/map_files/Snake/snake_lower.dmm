@@ -444,6 +444,10 @@
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"aZ" = (
+/obj/machinery/cassette_library,
+/turf/open/floor/wood,
+/area/library)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -1647,6 +1651,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dI" = (
+/obj/structure/table/wood,
+/obj/machinery/cassette_deck,
+/turf/open/floor/wood,
+/area/library)
 "dJ" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -1732,6 +1741,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dU" = (
+/obj/machinery/cassette_postbox,
+/turf/open/floor/wood,
+/area/library)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2253,6 +2266,10 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/fore)
+"fh" = (
+/obj/structure/cassette_rack/prefilled,
+/turf/open/floor/wood,
+/area/library)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -64658,7 +64675,7 @@ aJ
 aJ
 aJ
 uG
-tt
+aZ
 tt
 tt
 uO
@@ -64915,7 +64932,7 @@ aJ
 aJ
 aJ
 uG
-tt
+dI
 tt
 lW
 tf
@@ -65172,7 +65189,7 @@ aJ
 aJ
 aJ
 uG
-tt
+dU
 gZ
 tu
 yR
@@ -66200,7 +66217,7 @@ aJ
 aJ
 aJ
 uG
-tt
+fh
 tt
 FI
 DL

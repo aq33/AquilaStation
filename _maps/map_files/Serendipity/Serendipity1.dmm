@@ -12,6 +12,22 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ac" = (
+/obj/structure/table/wood/fancy/green,
+/obj/machinery/cassette_deck,
+/turf/open/floor/grass,
+/area/crew_quarters/dorms/nsv/nature_deck)
+"ad" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/cassette_postbox,
+/turf/open/floor/grass,
+/area/crew_quarters/dorms/nsv/nature_deck)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -74,6 +90,17 @@
 /obj/machinery/griddle,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"ak" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cassette_rack/prefilled,
+/turf/open/floor/grass,
+/area/crew_quarters/dorms/nsv/nature_deck)
 "al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -3238,6 +3265,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 1
 	},
+/obj/machinery/cassette_library,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
 "kL" = (
@@ -45164,8 +45192,8 @@ WG
 ym
 sg
 mk
-td
-Fe
+ac
+ad
 mm
 zw
 NS
@@ -45679,7 +45707,7 @@ Nv
 Xh
 fa
 vY
-Fe
+ak
 mm
 Oi
 zT

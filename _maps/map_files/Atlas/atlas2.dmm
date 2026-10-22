@@ -1315,6 +1315,14 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/central)
+"cS" = (
+/obj/machinery/cassette_library,
+/turf/open/floor/wood,
+/area/library)
+"cT" = (
+/obj/machinery/cassette_postbox,
+/turf/open/floor/wood,
+/area/library)
 "cU" = (
 /obj/machinery/light{
 	dir = 1
@@ -1878,6 +1886,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/structure/table/wood,
+/obj/machinery/cassette_deck,
 /turf/open/floor/wood,
 /area/library)
 "dX" = (
@@ -9951,6 +9961,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
 	},
+/obj/structure/cassette_rack/prefilled,
 /turf/open/floor/wood,
 /area/library)
 "Fm" = (
@@ -54317,9 +54328,9 @@ SY
 bo
 eb
 bb
-Ma
+cS
 dW
-Ma
+cT
 qz
 Tk
 kQ

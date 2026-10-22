@@ -118,10 +118,12 @@
 	if(!yt_available())
 		dat += "<span class='jb-muted'>Niedostępne - brak yt-dlp na serwerze (INVOKE_YOUTUBEDL w konfigu ani yt-dlp.exe w katalogu gry).</span></div>"
 		return dat.Join()
-	dat += "<div class='jb-label'>Playlista YouTube / SoundCloud[yt_tracks.len ? " &middot; [yt_tracks.len] utworów" : ""]</div>"
-	dat += "<div class='jb-row'>[yt_link("yt_load", "Wczytaj playlistę")]</div>"
+	dat += tape_ui() // jukebox_cassette.dm
+	if(!inserted_tape)
+		dat += "<div class='jb-label'>Playlista YouTube / SoundCloud[yt_tracks.len ? " &middot; [yt_tracks.len] utworów" : ""]</div>"
+		dat += "<div class='jb-row'>[yt_link("yt_load", "Wczytaj playlistę")]</div>"
 	if(!yt_tracks.len)
-		dat += "<div class='jb-row jb-muted'>Brak wczytanej playlisty - &quot;Graj&quot; wczyta domyślną.</div></div>"
+		dat += "<div class='jb-row jb-muted'>[inserted_tape ? "Ta strona kasety jest pusta." : "Brak wczytanej playlisty - &quot;Graj&quot; wczyta domyślną."]</div></div>"
 		return dat.Join()
 	var/query = user?.ckey ? yt_search_queries[user.ckey] : null
 	dat += "<div class='jb-row'>Szukaj: <input id='jb-q' type='text' value='[html_encode(query)]' onkeyup='jbFilter(true)' oninput='jbFilter(true)'> "
@@ -180,8 +182,12 @@
 			yt_search_queries[user.ckey] = copytext_char(href_list["q"], 1, 101)
 		return
 	switch(action)
+		if("yt_tape_flip")
+			flip_tape(user)
+		if("yt_tape_eject")
+			eject_tape(user)
 		if("yt_load")
-			if(yt_busy)
+			if(yt_busy || inserted_tape)
 				return
 			var/url = input(user, "Podaj link do playlisty lub utworu z YouTube albo SoundCloud", "Playlista", yt_playlist_url) as text|null
 			if(!url || QDELETED(src))
@@ -217,7 +223,7 @@
 			return
 		yt_stop()
 	else if(!yt_busy && yt_available())
-		if(!yt_tracks.len && yt_playlist_url)
+		if(!yt_tracks.len && yt_playlist_url && !inserted_tape)
 			INVOKE_ASYNC(src, .proc/yt_load_playlist, yt_playlist_url, user, TRUE)
 		else
 			INVOKE_ASYNC(src, .proc/yt_next)
@@ -236,7 +242,7 @@
 	updateUsrDialog()
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --flat-playlist --dump-single-json --playlist-end [JUKEBOX_YT_PLAYLIST_SCAN] -- \"[shell_url_scrub(url)]\"")
 	yt_set_busy(FALSE)
-	if(QDELETED(src))
+	if(QDELETED(src) || inserted_tape) // w międzyczasie włożono kasetę - ona ma pierwszeństwo
 		return
 	if(output[SHELLEO_ERRORLEVEL])
 		say("Błąd pobierania playlisty.")
@@ -311,8 +317,19 @@
 		return null
 	var/list/T = yt_tracks[index]
 	var/track_url = T["url"] || "https://www.youtube.com/watch?v=[T["id"]]"
+	var/list/result = aquila_ytdl_resolve(track_url, T["duration"])
+	if(QDELETED(src))
+		return null
+	return result
+
+/// Pyta yt-dlp o link do strumienia jednego utworu (jukebox, walkman, deck kaset).
+/// Zwraca list("stream", "data", "duration") albo null, gdy utworu nie da się zagrać. Śpi do końca zapytania.
+/proc/aquila_ytdl_resolve(track_url, known_duration)
+	var/ytdl = aquila_ytdl_command()
+	if(!ytdl || !findtext(track_url, GLOB.is_http_protocol))
+		return null
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --geo-bypass --format \"[JUKEBOX_YT_FORMAT]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(track_url)]\"")
-	if(QDELETED(src) || output[SHELLEO_ERRORLEVEL])
+	if(output[SHELLEO_ERRORLEVEL])
 		return null
 	var/list/data
 	try
@@ -322,7 +339,7 @@
 	var/stream = data["url"]
 	if(!stream || !findtext(stream, GLOB.is_http_protocol))
 		return null
-	var/duration = text2num("[data["duration"]]") || T["duration"]
+	var/duration = text2num("[data["duration"]]") || known_duration
 	if(!duration || duration * 10 > JUKEBOX_YT_MAX_TRACK_LENGTH)
 		return null
 	return list("stream" = stream, "data" = data, "duration" = duration)
