@@ -1,6 +1,6 @@
 /datum/test_chamber_kit/pr_monke_spesstv
 	name = "Spess.tv i kamery reporterskie"
-	pr = "aq33/AquilaStation#TBD"
+	pr = "aq33/AquilaStation#488"
 	description = "Weź kamerę reporterską do ręki i użyj jej: telewizor ma się zapalić i powiedzieć „... - teraz NA ŻYWO!”, a PDA ma pisnąć z powiadomieniem Spess.tv. \
 		Kliknij telewizor (albo otwórz Spess.tv w PDA) i wybierz kamerę „NA ŻYWO: ...”: obraz ma iść za tobą, a examine kamery ma pokazać liczbę widzów. \
 		Powiedz coś: głośniki telewizora i PDA z otwartym Spess.tv mają to powtórzyć na kanale Rozrywka. Ctrl+klik na telewizorze wycisza głośniki, Alt+klik na kamerze wyłącza mikrofon, \

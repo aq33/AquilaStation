@@ -1,6 +1,6 @@
 /datum/test_chamber_kit/pr_monke_cybernetyka
 	name = "Cybernetyka z Monkestation"
-	pr = "aq33/AquilaStation#TBD"
+	pr = "aq33/AquilaStation#488"
 	description = "Autochirurgi z parami wszczepiają oba implanty naraz (nogi, Strong-Arm, ostrza). Pusty autochirurg przyjmuje luźne implanty: \
 		włóż implant, użyj w ręce. Śrubokręt na implancie zmienia stronę (ręka/noga). \
 		Nogi: ślizg (wchodzenie na stół ~3x szybciej), BU-TAM (popchnięcie tylko męczy), wiązadła (freerunning), \

@@ -1,6 +1,6 @@
 /datum/test_chamber_kit/pr_monke_wizualia
 	name = "Efekty wizualne z Monkestation"
-	pr = "aq33/AquilaStation#TBD"
+	pr = "aq33/AquilaStation#488"
 	description = "Strzelaj z pistoletu i C-20r: z lufy ma lecieć dymek. Strzelaj w drewniany stół, okno, dźwigar i ścianę komory: \
 		drzazgi, szkło, iskry i dymek w miejscu trafienia. Z lasera: sam dymek, bez odłamków. \
 		Rzuć minibombę i granat odłamkowy daleko od siebie: wybuch ma mieć falę dymu, kłęby, gruz i iskry. \

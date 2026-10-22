@@ -1,8 +1,8 @@
-// aq33/AquilaStation#TBD - drobiazgi z Monkestation: loafer, sterty śmieci, dzwonki, bartending, Lifeline
+// aq33/AquilaStation#488 - drobiazgi z Monkestation: loafer, sterty śmieci, dzwonki, bartending, Lifeline
 
 /datum/test_chamber_kit/pr_monke_drobiazgi
 	name = "PR Monke: loafer, sterty, dzwonki"
-	pr = "aq33/AquilaStation#TBD"
+	pr = "aq33/AquilaStation#488"
 	description = "Sterta śmieci: LPM grzebie (śmieci lecą w ciebie, raz na stertę łup z maint), przedmiot w ręku chowa go w środku, PPM chowa ciebie. \
 	Dzwonek medyczny: dzwonienie wzywa medbay przez radio (raz na minutę), po wyniesieniu z obszaru włącza GPS. Zwykły dzwonek da się odkręcić kluczem. \
 	Loafer: zbuduj z RPD (Disposal, Loafer) w rurze między koszem a wylotem i wrzuć coś do kosza. Emag zdejmuje limit gęstości. Bochenek z prętem po rzucie wypuszcza nieruchomy pręt."
@@ -22,7 +22,7 @@
 
 /datum/test_chamber_kit/pr_monke_bartending
 	name = "PR Monke: plastyczne szklanki i Lifeline"
-	pr = "aq33/AquilaStation#TBD"
+	pr = "aq33/AquilaStation#488"
 	description = "Szklanki: alt-klik zmienia kształt, dekoracje kładzie się klikając nimi szklankę (jedna na stronę), mycie je zdejmuje. \
 	Plastry: nożem kroisz limonkę, cytrynę, pomarańczę i wiśnie. Przecinak na kablu, srebrze i złocie daje drut i obwódki. \
 	Sól lub popiół podgrzane do 600 K w zlewce dają krawędzie. Tablet: Lifeline (lista załogi z czujnikami)."
