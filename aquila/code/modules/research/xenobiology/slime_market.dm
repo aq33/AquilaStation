@@ -161,19 +161,17 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 
 /// Gdy któreś zamówienie czeka na taki ekstrakt, pyta, czy go sprzedać, czy oddać do zamówienia. TRUE = obsłużone.
 /obj/machinery/slime_market_pad/proc/try_fill_request(obj/item/slime_extract/extract, mob/user)
-	var/obj/machinery/computer/slime_market/console = GLOB.default_slime_market
-	var/obj/machinery/slime_extract_requestor/request_pad = console?.request_pad
-	if(QDELETED(request_pad))
-		return FALSE
 	var/list/choices = list()
 	var/list/choice_to_request = list()
-	for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
-		if(request.extract_path != extract.type || request.ready_for_pickup)
-			continue
-		// Numer z przodu, bo dwie osoby o tym samym imieniu mogą zamówić to samo
-		var/label = "[length(choices) + 1]. [request.request_name]"
-		choices[label] = image(icon = extract.icon, icon_state = extract.icon_state)
-		choice_to_request[label] = request
+	// Wszystkie pady zamówień, bo nie każdy musi być połączony z domyślną konsolą stacji
+	for(var/obj/machinery/slime_extract_requestor/request_pad in GLOB.machines)
+		for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
+			if(request.extract_path != extract.type || request.ready_for_pickup)
+				continue
+			// Numer z przodu, bo dwie osoby o tym samym imieniu mogą zamówić to samo
+			var/label = "[length(choices) + 1]. [request.request_name]"
+			choices[label] = image(icon = extract.icon, icon_state = extract.icon_state)
+			choice_to_request[label] = request
 	if(!length(choices))
 		return FALSE
 	choices["Sprzedaj"] = image(icon = 'icons/obj/economy.dmi', icon_state = "spacecash100")

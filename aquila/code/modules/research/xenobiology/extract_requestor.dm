@@ -141,6 +141,7 @@
 	var/datum/extract_request_data/request = new
 	request.host_card = card
 	request.linked_console = console
+	request.source_pad = src
 	request.extract_path = name_to_path[choice]
 	request.extracts_needed = amount
 	request.payout = payout
@@ -153,6 +154,8 @@
 /datum/extract_request_data
 	var/request_name
 	var/obj/machinery/computer/slime_market/linked_console
+	/// Pad, na którym złożono zamówienie
+	var/obj/machinery/slime_extract_requestor/source_pad
 	/// Karta, z której złożono zamówienie. Tylko z nią można je odebrać.
 	var/obj/item/card/id/host_card
 	var/extract_path
@@ -170,16 +173,23 @@
 		UnregisterSignal(host_card, COMSIG_PARENT_QDELETING)
 	host_card = null
 	linked_console = null
+	source_pad = null
 	return ..()
 
-/// Karta zniknęła: ekstrakty wracają do xenobiologów, połowa nagrody na konto nauki
+/// Karta zniknęła: ekstrakty wracają do xenobiologów, połowa nagrody na konto zamawiającego, reszta na konto nauki
 /datum/extract_request_data/proc/end_request_qdeleted()
 	SIGNAL_HANDLER
+	source_pad?.current_requests -= src
 	if(linked_console)
 		linked_console.say("Zamówienie anulowane: [request_name].")
 		linked_console.return_extracts(extract_path, extracts_given)
-		linked_console.request_pad?.current_requests -= src
-	pay_science(payout * 0.5)
+	else if(source_pad)
+		for(var/i in 1 to extracts_given)
+			new extract_path(source_pad.drop_location())
+	var/refund = round(payout * 0.5)
+	if(refund)
+		host_card.registered_account?.adjust_money(refund)
+	pay_science(payout - refund)
 	qdel(src)
 
 /// Bez konsoli dostarczone ekstrakty wypadają w return_location
