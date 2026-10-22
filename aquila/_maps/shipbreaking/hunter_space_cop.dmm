@@ -1,0 +1,218 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"ab" = (
+/obj/machinery/computer/shipbreak_wreck{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"ac" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/poddoor/shutters{
+	id = "Interpolship"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"af" = (
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"ag" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"ah" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"aj" = (
+/obj/structure/closet/crate/eva,
+/obj/effect/turf_decal/box,
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"ak" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"al" = (
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/obj/effect/turf_decal/caution{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"bY" = (
+/obj/structure/chair/fancy/shuttle,
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"gi" = (
+/obj/structure/table,
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"hB" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"hJ" = (
+/obj/structure/window/shuttle,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"ku" = (
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"lp" = (
+/obj/machinery/fugitive_capture,
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"qx" = (
+/obj/machinery/button/door{
+	id = "Interpolship";
+	pixel_y = 26;
+	req_access_txt = "181"
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"An" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"Fl" = (
+/obj/machinery/door/airlock/titanium{
+	req_access_txt = "181"
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"Pq" = (
+/turf/template_noop,
+/area/template_noop)
+"Rz" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+
+(1,1,1) = {"
+Pq
+ku
+ac
+ac
+ac
+ku
+Pq
+"}
+(2,1,1) = {"
+Pq
+ku
+qx
+al
+af
+ku
+Pq
+"}
+(3,1,1) = {"
+Pq
+ku
+bY
+aa
+ak
+ku
+Pq
+"}
+(4,1,1) = {"
+hB
+ku
+bY
+aa
+ak
+ku
+hB
+"}
+(5,1,1) = {"
+ku
+ku
+bY
+aa
+ak
+ku
+ku
+"}
+(6,1,1) = {"
+Pq
+hJ
+ag
+aa
+aa
+hJ
+Pq
+"}
+(7,1,1) = {"
+Pq
+hJ
+ah
+aa
+aj
+hJ
+Pq
+"}
+(8,1,1) = {"
+Pq
+ku
+lp
+aa
+aj
+ku
+Pq
+"}
+(9,1,1) = {"
+hB
+ku
+ku
+Fl
+ku
+ku
+hB
+"}
+(10,1,1) = {"
+ku
+ku
+aa
+Rz
+aa
+ku
+ku
+"}
+(11,1,1) = {"
+Pq
+An
+aa
+gi
+ab
+An
+Pq
+"}
+(12,1,1) = {"
+Pq
+ku
+An
+An
+An
+ku
+Pq
+"}

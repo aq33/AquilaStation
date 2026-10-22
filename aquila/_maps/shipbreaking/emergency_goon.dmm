@@ -1,0 +1,485 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"c" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"d" = (
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"f" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"j" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Emergency Shuttle Brig";
+	req_access_txt = "2"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/space/shipbreak)
+"k" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Emergency Shuttle Infirmary"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/mineral/titanium/white,
+/area/space/shipbreak)
+"l" = (
+/obj/machinery/vending/wallmed,
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"m" = (
+/obj/effect/spawner/structure/window/shuttle,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"n" = (
+/turf/open/floor/mineral/titanium/white,
+/area/space/shipbreak)
+"o" = (
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"p" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"q" = (
+/obj/machinery/stasis,
+/turf/open/floor/mineral/titanium/white,
+/area/space/shipbreak)
+"r" = (
+/turf/open/floor/mineral/titanium,
+/area/space/shipbreak)
+"s" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"t" = (
+/turf/closed/wall/mineral/titanium/interior,
+/area/space/shipbreak)
+"u" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"v" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/mineral/titanium/white,
+/area/space/shipbreak)
+"y" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/emergency,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"A" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"B" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/radio,
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"C" = (
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/firedoor/window,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"D" = (
+/obj/structure/chair/fancy/comfy{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"E" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"F" = (
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"G" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"H" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/space/shipbreak)
+"I" = (
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"J" = (
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/space/shipbreak)
+"L" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/obj/structure/window/reinforced,
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"M" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Emergency Shuttle Cockpit";
+	req_access_txt = "19"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/mineral/titanium/yellow,
+/area/space/shipbreak)
+"Q" = (
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium,
+/area/space/shipbreak)
+"R" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium/white,
+/area/space/shipbreak)
+"S" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/space/shipbreak)
+"T" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red/brig,
+/area/space/shipbreak)
+"V" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/space/shipbreak)
+"W" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"X" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"Y" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+
+(1,1,1) = {"
+a
+d
+b
+b
+b
+d
+b
+b
+b
+d
+a
+"}
+(2,1,1) = {"
+W
+d
+p
+p
+p
+d
+p
+p
+p
+d
+X
+"}
+(3,1,1) = {"
+c
+d
+q
+v
+q
+d
+H
+H
+H
+d
+Y
+"}
+(4,1,1) = {"
+d
+l
+n
+n
+R
+d
+T
+J
+H
+l
+d
+"}
+(5,1,1) = {"
+d
+d
+d
+k
+f
+l
+f
+j
+d
+d
+d
+"}
+(6,1,1) = {"
+a
+d
+s
+r
+s
+s
+s
+r
+s
+d
+a
+"}
+(7,1,1) = {"
+a
+C
+s
+r
+s
+s
+s
+r
+s
+C
+a
+"}
+(8,1,1) = {"
+d
+d
+s
+Q
+d
+m
+d
+V
+s
+d
+d
+"}
+(9,1,1) = {"
+E
+r
+r
+r
+r
+r
+r
+r
+r
+r
+E
+"}
+(10,1,1) = {"
+E
+r
+r
+r
+r
+r
+r
+r
+r
+r
+E
+"}
+(11,1,1) = {"
+d
+d
+s
+s
+o
+r
+o
+s
+s
+d
+d
+"}
+(12,1,1) = {"
+a
+C
+s
+s
+s
+r
+s
+s
+s
+C
+a
+"}
+(13,1,1) = {"
+a
+C
+s
+s
+s
+r
+s
+s
+s
+C
+a
+"}
+(14,1,1) = {"
+a
+d
+t
+s
+S
+r
+S
+s
+t
+d
+a
+"}
+(15,1,1) = {"
+a
+d
+d
+m
+d
+M
+f
+m
+d
+d
+a
+"}
+(16,1,1) = {"
+a
+a
+C
+y
+A
+F
+A
+L
+C
+a
+a
+"}
+(17,1,1) = {"
+a
+a
+d
+d
+u
+A
+D
+d
+d
+a
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+C
+B
+G
+I
+C
+a
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+a
+d
+C
+C
+C
+d
+a
+a
+a
+"}

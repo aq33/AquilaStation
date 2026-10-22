@@ -26,15 +26,24 @@
 	var/list/data = list()
 	data["cooldown"] = cooldown
 	data["has_asteroid"] = !!current_asteroid
+	data["has_wreck"] = !!current_wreck
+	data["wreck_name"] = current_wreck?.name
+	data["wreck_health"] = get_wreck_health()
 	var/list/asteroids = list()
-	if(linked && !current_asteroid)
+	var/list/wrecks = list()
+	if(linked && !current_asteroid && !current_wreck)
+		for(var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck in orange(5, linked))
+			wrecks += list(list("name" = wreck.name, "ref" = REF(wreck)))
 		for(var/obj/structure/overmap/asteroid/asteroid in orange(5, linked))
+			if(istype(asteroid, /obj/structure/overmap/asteroid/shipbreak_wreck))
+				continue
 			var/list/ores = list()
 			for(var/turf/closed/mineral/mineral_type as anything in asteroid.core_composition)
 				var/obj/item/stack/ore/ore_type = initial(mineral_type.mineralType)
 				ores += ore_type ? initial(ore_type.name) : initial(mineral_type.name)
 			asteroids += list(list("name" = asteroid.name, "ref" = REF(asteroid), "ores" = ores))
 	data["asteroids"] = asteroids
+	data["wrecks"] = wrecks
 	return data
 
 /obj/machinery/computer/ship/mineral_magnet/ui_act(action, list/params)
@@ -45,14 +54,21 @@
 		return
 	switch(action)
 		if("pull")
-			if(current_asteroid)
+			if(current_asteroid || current_wreck)
 				return
 			var/obj/structure/overmap/asteroid/target = locate(params["ref"]) in orange(5, linked)
-			if(target)
+			if(target && !istype(target, /obj/structure/overmap/asteroid/shipbreak_wreck))
 				pull_in_asteroid(usr, target)
 			return TRUE
+		if("pull_wreck")
+			if(current_asteroid || current_wreck)
+				return
+			var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = locate(params["ref"]) in orange(5, linked)
+			if(wreck)
+				pull_in_wreck(usr, wreck)
+			return TRUE
 		if("push")
-			if(current_asteroid)
+			if(current_asteroid || current_wreck)
 				start_push()
 			return TRUE
 

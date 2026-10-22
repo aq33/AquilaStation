@@ -6587,7 +6587,7 @@
 	},
 /obj/item/book/manual/wiki/hydroponics/tutorial{
 	pixel_x = -4;
-	 pixel_y = 4
+	pixel_y = 4
 	},
 /turf/open/floor/durasteel,
 /area/hydroponics)
@@ -9575,6 +9575,10 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"wp" = (
+/obj/machinery/shipbreaker,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck2/primary)
 "wt" = (
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
@@ -12137,6 +12141,13 @@
 /mob/living/simple_animal/bot/secbot/beepsky,
 /turf/open/floor/monotile/dark,
 /area/security/brig)
+"Em" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/plasteel/techmaint,
+/area/hallway/nsv/deck2/primary)
 "En" = (
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
@@ -45944,7 +45955,7 @@ Lz
 Lz
 IH
 Yu
-xV
+Em
 nh
 Cf
 cD
@@ -46460,7 +46471,7 @@ EC
 Jk
 LP
 jw
-Jk
+wp
 Zi
 YQ
 YQ
