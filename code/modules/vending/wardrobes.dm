@@ -480,7 +480,8 @@
 					/obj/item/storage/backpack/satchel/chem = 2,
 					/obj/item/storage/bag/chemistry = 2,
 					/obj/item/clothing/head/beret/med = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2) //AQUILA EDIT
+					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
+					/obj/item/ph_booklet = 3) // AQ EDIT - fermichem z tg
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
 	payment_department = ACCOUNT_MED
 /obj/item/vending_refill/wardrobe/chem_wardrobe

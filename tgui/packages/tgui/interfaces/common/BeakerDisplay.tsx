@@ -12,6 +12,22 @@ import { useBackend } from '../../backend';
 export type BeakerReagent = {
   name: string;
   volume: number;
+  /** AQUILA - fermichem: czystość 0-1 */
+  purity?: number;
+};
+
+/** AQUILA - fermichem: czystość jako procent, zielona = czysta, czerwona = nieczysta */
+export const PurityLabel = (props: { purity?: number }) => {
+  const { purity } = props;
+  if (purity === undefined || purity === null) {
+    return null;
+  }
+  const color = purity >= 0.8 ? 'good' : purity >= 0.5 ? 'average' : 'bad';
+  return (
+    <Box inline color={color} ml={1}>
+      ({Math.round(purity * 100)}%)
+    </Box>
+  );
 };
 
 export type Beaker = {

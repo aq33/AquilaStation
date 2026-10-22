@@ -1,0 +1,7 @@
+Sounds added with the fermichem port.
+
+From tgstation/tgstation (b3949ec362), sound/effects/chemistry, license CC-BY-SA 3.0:
+  bufferadd.ogg, catalyst.ogg, bluespace.ogg, shockwave_explosion.ogg
+
+Icons in aquila/icons/obj/chemistry/ph_tools.dmi (pH booklet, pH paper, chemical analyzer)
+are from tgstation icons/obj/medical/chemical.dmi (b3949ec362), license CC-BY-SA 3.0.

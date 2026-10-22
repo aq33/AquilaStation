@@ -10,7 +10,11 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../../backend';
-import type { Beaker, BeakerReagent } from '../common/BeakerDisplay';
+import {
+  type Beaker,
+  type BeakerReagent,
+  PurityLabel,
+} from '../common/BeakerDisplay';
 
 export type { Beaker, BeakerReagent };
 
@@ -20,6 +24,7 @@ export const legacyBeaker = (
   currentVolume: number | null | undefined,
   maxVolume: number | null | undefined,
   contents: BeakerReagent[] | null | undefined,
+  ph?: number | null,
 ): Beaker | null => {
   if (!loaded) {
     return null;
@@ -27,7 +32,7 @@ export const legacyBeaker = (
   return {
     currentVolume: currentVolume || 0,
     maxVolume: maxVolume || 0,
-    pH: 7,
+    pH: ph ?? 7,
     contents: contents || [],
   };
 };
@@ -37,6 +42,8 @@ type BeakerProps = {
   replace_contents?: BeakerReagent[] | false;
   title_label?: string | false;
   showpH?: BooleanLike;
+  /** AQUILA - fermichem: czystość obok każdego odczynnika */
+  showPurity?: BooleanLike;
 };
 
 type BeakerSectionProps = BeakerProps & {
@@ -44,18 +51,22 @@ type BeakerSectionProps = BeakerProps & {
   hasBeakerInHand?: BooleanLike;
 };
 
-const ReagentLine = (props: { chemical: BeakerReagent }) => {
-  const { chemical } = props;
+const ReagentLine = (props: {
+  chemical: BeakerReagent;
+  showPurity?: BooleanLike;
+}) => {
+  const { chemical, showPurity } = props;
   return (
     <Box color="label">
       {chemical.name}: <AnimatedNumber initial={0} value={chemical.volume} /> u
+      {!!showPurity && <PurityLabel purity={chemical.purity} />}
     </Box>
   );
 };
 
 export const BeakerDisplay = (props: BeakerProps) => {
   const { act } = useBackend();
-  const { beaker, replace_contents, title_label, showpH } = props;
+  const { beaker, replace_contents, title_label, showpH, showPurity } = props;
   const beakerContents = replace_contents || beaker?.contents || [];
 
   return (
@@ -85,7 +96,11 @@ export const BeakerDisplay = (props: BeakerProps) => {
             (beakerContents.length === 0 && 'Pusto')}
         </Box>
         {beakerContents.map((chemical) => (
-          <ReagentLine key={chemical.name} chemical={chemical} />
+          <ReagentLine
+            key={chemical.name}
+            chemical={chemical}
+            showPurity={showPurity}
+          />
         ))}
         {beakerContents.length > 0 && !!showpH && !!beaker && (
           <Box>
@@ -104,6 +119,7 @@ export const BeakerSectionDisplay = (props: BeakerSectionProps) => {
     replace_contents,
     title_label,
     showpH,
+    showPurity,
     showInsertButton = false,
     hasBeakerInHand,
   } = props;
@@ -116,7 +132,7 @@ export const BeakerSectionDisplay = (props: BeakerSectionProps) => {
       buttons={
         beaker ? (
           <>
-            <Box inline color="label" mr={2}>
+            <Box inline bold mr={2}>
               {beaker.currentVolume} / {beaker.maxVolume} u
             </Box>
             <Button icon="eject" onClick={() => act('eject')}>
@@ -145,7 +161,11 @@ export const BeakerSectionDisplay = (props: BeakerSectionProps) => {
           (beakerContents.length === 0 && 'Pusto')}
       </Box>
       {beakerContents.map((chemical) => (
-        <ReagentLine key={chemical.name} chemical={chemical} />
+        <ReagentLine
+          key={chemical.name}
+          chemical={chemical}
+          showPurity={showPurity}
+        />
       ))}
       {beakerContents.length > 0 && !!showpH && !!beaker && (
         <Box>

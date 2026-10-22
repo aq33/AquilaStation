@@ -207,6 +207,8 @@
 #include "aquila\code\__DEFINES\span.dm"
 // AQ EDIT - kolejka verbów z tg, makra potrzebne w core (Click, say, SSinput)
 #include "aquila\code\__DEFINES\verb_manager.dm"
+// AQ EDIT - fermichem z tg (pH, czystosc, reakcje w czasie), stale potrzebne w core
+#include "aquila\code\__DEFINES\fermichem.dm"
 // AQ EDIT - protezy z przedmiotów i odsłonięte organy (tg#91573, tg#98023), sygnał używany w dismemberment.dm
 #include "aquila\code\__DEFINES\prosthetics.dm"
 #include "code\__HELPERS\_lists.dm"

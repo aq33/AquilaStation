@@ -15,11 +15,13 @@ import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend, useSharedState } from '../backend';
 import { Window } from '../layouts';
+import { PurityLabel } from './common/BeakerDisplay';
 
 type Chemical = {
   name: string;
   id: string;
   volume: number;
+  purity?: number;
 };
 
 type PillStyle = {
@@ -52,6 +54,7 @@ type Data = {
   analyzeVars: AnalyzeVars;
   autoCondiStyle: string;
   beakerContents: Chemical[];
+  beakerPh: number | null;
   beakerCurrentVolume: number | null;
   beakerMaxVolume: number | null;
   bufferContents: Chemical[];
@@ -131,7 +134,7 @@ const ChemMasterContent = (props) => {
         buttons={
           isBeakerLoaded ? (
             <Box>
-              <Box inline color="label" mr={2}>
+              <Box inline bold mr={2}>
                 <AnimatedNumber value={beakerCurrentVolume || 0} initial={0} />
                 {` / ${beakerMaxVolume} u`}
               </Box>
@@ -164,6 +167,9 @@ const ChemMasterContent = (props) => {
           </Box>
         ) : (
           <Table>
+            <Table.Row>
+              <Table.Cell color="label">pH: {data.beakerPh}</Table.Cell>
+            </Table.Row>
             {beakerContents.map((chemical) => (
               <ReagentEntry
                 key={chemical.id}
@@ -313,6 +319,7 @@ const ReagentEntry = (props: ReagentProps) => {
         {`${chemical.name} `}
         <AnimatedNumber value={chemical.volume} initial={0} />
         {'u'}
+        <PurityLabel purity={chemical.purity} />
       </Table.Cell>
       <Table.Cell collapsing>
         <Button onClick={() => transfer(1)}>1</Button>

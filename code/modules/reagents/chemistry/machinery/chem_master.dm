@@ -238,13 +238,14 @@
 	var/beaker_contents[0]
 	if(beaker)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			beaker_contents.Add(list(list("name" = R.name, "id" = ckey(R.name), "volume" = R.volume))) // list in a list because Byond merges the first list...
+			beaker_contents.Add(list(list("name" = R.name, "id" = ckey(R.name), "volume" = R.volume, "purity" = round(R.purity, 0.01)))) // list in a list because Byond merges the first list... // AQ EDIT - purity
 	data["beakerContents"] = beaker_contents
+	data["beakerPh"] = beaker ? round(beaker.reagents.ph, 0.01) : null // AQ EDIT - fermichem
 
 	var/buffer_contents[0]
 	if(reagents.total_volume)
 		for(var/datum/reagent/N in reagents.reagent_list)
-			buffer_contents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume))) // ^
+			buffer_contents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume, "purity" = round(N.purity, 0.01)))) // ^ // AQ EDIT - purity
 	data["bufferContents"] = buffer_contents
 	// AQUILA - pojemność bufora i przycisk „Włóż” w oknie z tg
 	data["bufferCurrentVolume"] = reagents.total_volume

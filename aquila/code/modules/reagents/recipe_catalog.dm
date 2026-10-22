@@ -47,6 +47,14 @@ GLOBAL_LIST(recipe_catalog)
 		"temp" = reaction.required_temp,
 		"cold" = !!reaction.is_cold_recipe,
 		"container" = container,
+		// fermichem
+		"instant" = !!((reaction.reaction_flags & REACTION_INSTANT) || !length(reaction.results)),
+		"optimalTemp" = reaction.optimal_temp,
+		"overheatTemp" = reaction.overheat_temp == NO_OVERHEAT ? null : reaction.overheat_temp,
+		"phMin" = reaction.optimal_ph_min,
+		"phMax" = reaction.optimal_ph_max,
+		"thermic" = reaction.thermic_constant > 0 ? 1 : (reaction.thermic_constant < 0 ? -1 : 0),
+		"purityMin" = reaction.purity_min,
 	)
 
 /// Zamienia listę typ odczynnika => ilość na listę dla TGUI
