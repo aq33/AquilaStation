@@ -3,23 +3,40 @@
 /// Kto ogląda które transmisje: REF(oglądającego) -> c_tag kamery
 GLOBAL_LIST(spesstv_viewers)
 
+/// Sieć kamer -> lista nadawców (REF), żeby wyłączenie jednej kamery nie gasiło sieci, w której nadaje druga
+GLOBAL_LIST_EMPTY(broadcast_network_sources)
+
 /**
  * Dodaje sieć kamer do wszystkich telewizorów rozrywkowych i Spess.tv.
  *
  * * camera_net - sieć (albo lista sieci) do dodania
  * * announcement - opcjonalny komunikat, który powiedzą telewizory
+ * * source - nadawca (kamera, serwer kwantowy); sieć gaśnie dopiero po zatrzymaniu ostatniego nadawcy
  */
-/proc/start_broadcasting_network(camera_net, announcement)
+/proc/start_broadcasting_network(camera_net, announcement, datum/source)
+	var/source_key = source ? REF(source) : "global"
+	for(var/net in islist(camera_net) ? camera_net : list(camera_net))
+		var/list/sources = LAZYACCESS(GLOB.broadcast_network_sources, net)
+		if(!(source_key in sources))
+			LAZYADDASSOCLIST(GLOB.broadcast_network_sources, net, source_key)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NETWORK_BROADCAST_UPDATED, camera_net, TRUE, announcement)
 
 /**
- * Zdejmuje sieć kamer ze wszystkich telewizorów rozrywkowych i Spess.tv.
+ * Zdejmuje nadawcę z sieci kamer. Telewizory i Spess.tv tracą sieć, gdy nie nadaje w niej już nikt.
  *
  * * camera_net - sieć (albo lista sieci) do zdjęcia
  * * announcement - opcjonalny komunikat na koniec programu
+ * * source - nadawca podany przy starcie
  */
-/proc/stop_broadcasting_network(camera_net, announcement)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NETWORK_BROADCAST_UPDATED, camera_net, FALSE, announcement)
+/proc/stop_broadcasting_network(camera_net, announcement, datum/source)
+	var/source_key = source ? REF(source) : "global"
+	var/list/ended = list()
+	for(var/net in islist(camera_net) ? camera_net : list(camera_net))
+		LAZYREMOVEASSOC(GLOB.broadcast_network_sources, net, source_key)
+		if(!LAZYACCESS(GLOB.broadcast_network_sources, net))
+			ended += net
+	if(length(ended))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NETWORK_BROADCAST_UPDATED, islist(camera_net) ? ended : ended[1], FALSE, announcement)
 
 /**
  * Ustawia stan sieci na wszystkich telewizorach, gdy nie wiadomo, w jakim jest teraz.

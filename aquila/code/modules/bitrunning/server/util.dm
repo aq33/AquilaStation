@@ -178,9 +178,9 @@
 		COOLDOWN_START(src, broadcast_toggle_cd, 5 SECONDS)
 		// And we only flip TVs when there's a domain, because otherwise there's no cams to watch
 		if(broadcasting)
-			start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [broadcast_domain_name]!")
+			start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [broadcast_domain_name]!", src)
 		else
-			stop_broadcasting_network(BITRUNNER_CAMERA_NET)
+			stop_broadcasting_network(BITRUNNER_CAMERA_NET, null, src)
 	return TRUE
 
 

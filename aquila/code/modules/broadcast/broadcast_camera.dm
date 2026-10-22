@@ -39,7 +39,7 @@
 
 /obj/item/broadcast_camera/Destroy()
 	if(active)
-		stop_broadcasting_network(camera_networks)
+		stop_broadcasting_network(camera_networks, null, src)
 	QDEL_NULL(internal_radio)
 	QDEL_NULL(internal_camera)
 	return ..()
@@ -110,7 +110,7 @@
 	internal_camera.network = camera_networks.Copy()
 	internal_camera.c_tag = "NA ŻYWO: [broadcast_name]"
 	wielder.log_message("started a Spess.tv stream named \"[broadcast_name]\" at [loc_name(wielder)]", LOG_GAME)
-	start_broadcasting_network(camera_networks, "[html_encode(broadcast_name)] - teraz NA ŻYWO!")
+	start_broadcasting_network(camera_networks, "[html_encode(broadcast_name)] - teraz NA ŻYWO!", src)
 
 	internal_radio = new(src)
 	set_microphone_state()
@@ -128,7 +128,7 @@
 		holder.update_inv_hands()
 	QDEL_NULL(internal_camera)
 	QDEL_NULL(internal_radio)
-	stop_broadcasting_network(camera_networks)
+	stop_broadcasting_network(camera_networks, null, src)
 
 	set_light_on(FALSE)
 	playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 20, FALSE)

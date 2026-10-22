@@ -19,7 +19,13 @@
 	TEST_ASSERT(test_net in tv.live_networks, "Telewizor nie oznaczył sieci jako nadającej na żywo")
 	TEST_ASSERT(test_net in program.network, "Start transmisji nie dopisał sieci do Spess.tv")
 
+	// Dwóch nadawców w jednej sieci: zatrzymanie jednego nie gasi sieci
+	var/datum/second_source = new
+	start_broadcasting_network(test_net, null, second_source)
 	stop_broadcasting_network(test_net)
+	TEST_ASSERT(test_net in tv.network, "Zatrzymanie jednego nadawcy zgasiło sieć, w której nadaje drugi")
+	stop_broadcasting_network(test_net, null, second_source)
+	qdel(second_source)
 	TEST_ASSERT(!(test_net in tv.network), "Stop transmisji nie zdjął sieci z telewizora")
 	TEST_ASSERT(!length(tv.live_networks), "Telewizor nadal pokazuje transmisję na żywo")
 	TEST_ASSERT(!(test_net in program.network), "Stop transmisji nie zdjął sieci ze Spess.tv")

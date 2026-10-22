@@ -88,7 +88,7 @@
 	update_appearance()
 
 	if(broadcasting)
-		start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [broadcast_domain_name]!")
+		start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [broadcast_domain_name]!", src)
 
 	if(generated_domain.announce_to_ghosts)
 		notify_ghosts("Bitrunnerzy załadowali domenę, w której mogą brać udział duchy. Sprawdź menu spawnerów.", source = src, header = "Glitch w Matrixie")
@@ -233,7 +233,7 @@
 	domain_randomized = FALSE
 	retries_spent = 0
 
-	stop_broadcasting_network(BITRUNNER_CAMERA_NET)
+	stop_broadcasting_network(BITRUNNER_CAMERA_NET, null, src)
 
 
 /// Tries to clean up everything in the domain
