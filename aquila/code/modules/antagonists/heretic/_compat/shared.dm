@@ -400,7 +400,7 @@
 	blood_remaining = max_blood
 
 /datum/component/blood_walk/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(spread_blood))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(spread_blood), override = TRUE)
 
 /datum/component/blood_walk/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
