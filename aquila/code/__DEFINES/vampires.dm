@@ -203,11 +203,8 @@
 
 #define span_awe(str) ("<span class='awe'>" + (str) + "</span>")
 
-// Sygnały pod nowymi nazwami
-#define COMSIG_ATOM_EXAMINE COMSIG_PARENT_EXAMINE
-#define COMSIG_QDELETING COMSIG_PARENT_QDELETING
+// Sygnały pod nowymi nazwami (COMSIG_ATOM_EXAMINE, COMSIG_QDELETING i COMSIG_ATOM_ATTACKBY są w aquila/code/__DEFINES/botany.dm, ładowanym wcześniej)
 #define COMSIG_LIVING_DEATH COMSIG_MOB_DEATH
-#define COMSIG_ATOM_ATTACKBY COMSIG_PARENT_ATTACKBY
 // COMSIG_LIVING_PET_ANIMAL, COMSIG_LIVING_HUG_CARBON i COMSIG_LIVING_APPRAISE_ART są w code/__DEFINES/dcs/signals/signals_mob/signals_living.dm
 
 // Cechy z Bee, które u nas nic nie robią (zostają, żeby lista cech wampira była jak w Bee)

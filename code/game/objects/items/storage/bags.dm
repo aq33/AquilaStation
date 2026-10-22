@@ -214,13 +214,21 @@
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
+/obj/item/storage/bag/plants/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	//Storage fucks up our interactions with plants otherwise
+	if(A.GetComponent(/datum/component/plant))
+		return FALSE
+
+////////
+
 /obj/item/storage/bag/plants/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 100
 	STR.max_items = 100
-	STR.can_hold = typecacheof(list(/obj/item/food/grown, /obj/item/seeds, /obj/item/grown, /obj/item/reagent_containers/honeycomb, /obj/item/disk/plantgene, /obj/item/food/seaweed_sheet))
+	STR.can_hold = typecacheof(list(/obj/item/food/grown, /obj/item/plant_seeds, /obj/item/grown, /obj/item/reagent_containers/honeycomb, /obj/item/disk/plant_disk, /obj/item/food/seaweed_sheet))
 
 ////////
 
@@ -249,7 +257,7 @@
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 10
 	STR.max_items = 3
-	STR.can_hold = typecacheof(list(/obj/item/food/grown, /obj/item/seeds, /obj/item/grown))
+	STR.can_hold = typecacheof(list(/obj/item/food/grown, /obj/item/plant_seeds, /obj/item/grown))
 
 // -----------------------------
 //        Sheet Snatcher

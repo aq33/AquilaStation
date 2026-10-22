@@ -49,9 +49,7 @@
 /turf/open/floor/carpet/ship/blue,
 /area/shuttle/arrival)
 "l" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/structure/sign/solgov_seal,
 /turf/open/floor/carpet/ship/blue,
 /area/shuttle/arrival)

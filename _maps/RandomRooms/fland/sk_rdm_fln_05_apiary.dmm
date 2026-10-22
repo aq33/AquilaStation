@@ -8,11 +8,11 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "c" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/item/radio/intercom{
 	pixel_x = 29
 	},
-/obj/item/seeds/cannabis,
+/obj/item/plant_seeds/preset/cannabis,
 /turf/open/floor/grass,
 /area/template_noop)
 "f" = (
@@ -35,7 +35,7 @@
 "j" = (
 /obj/structure/table/glass,
 /obj/item/shovel/spade,
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
 /obj/item/cultivator{
 	pixel_x = 6
 	},
@@ -126,18 +126,18 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "y" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/liberty,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/liberty,
 /turf/open/floor/grass,
 /area/template_noop)
 "z" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/ambrosia,
 /turf/open/floor/grass,
 /area/template_noop)
 "A" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/cabbage,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/cabbage,
 /turf/open/floor/grass,
 /area/template_noop)
 "D" = (
@@ -169,7 +169,7 @@
 "I" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/turf_decal/tile/neutral/tile_side{
 	dir = 6
 	},
@@ -185,13 +185,13 @@
 /turf/template_noop,
 /area/template_noop)
 "L" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/bamboo,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/bamboo,
 /turf/open/floor/grass,
 /area/template_noop)
 "O" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/carrot,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/carrot,
 /turf/open/floor/grass,
 /area/template_noop)
 "P" = (

@@ -891,7 +891,7 @@
 	},
 /area/virtual_domain/protected_space/fullbright)
 "cI" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/indestructible/hotelwood,
 /area/virtual_domain/safehouse)
 "cJ" = (
@@ -959,8 +959,7 @@
 /turf/open/floor/plating,
 /area/virtual_domain/safehouse)
 "cW" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_x = -8
 	},
 /obj/structure/filingcabinet{

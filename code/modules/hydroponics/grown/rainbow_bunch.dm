@@ -1,24 +1,5 @@
-/obj/item/seeds/rainbow_bunch
-	name = "pack of rainbow bunch seeds"
-	desc = "A pack of seeds that'll grow into a beautiful bush of various colored flowers."
-	icon_state = "seed-rainbowbunch"
-	species = "rainbowbunch"
-	plantname = "Rainbow Bunch"
-	icon_harvest = "rainbowbunch-harvest"
-	product = /obj/item/food/grown/rainbow_flower
-	lifespan = 25
-	endurance = 10
-	maturation = 6
-	production = 3
-	yield = 5
-	potency = 20
-	growthstages = 4
-	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
-	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
-
 /obj/item/food/grown/rainbow_flower
-	seed = /obj/item/seeds/rainbow_bunch
+	seed = /obj/item/plant_seeds/preset/rainbow
 	name = "rainbow flower"
 	desc = "A beautiful flower capable of being used for most dyeing processes."
 	icon_state = "rainbow_flower"

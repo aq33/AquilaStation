@@ -530,7 +530,7 @@
 /area/ruin/unpowered)
 "hn" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
@@ -2758,12 +2758,12 @@
 "Iv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/seeds/harebell,
-/obj/item/seeds/carrot,
-/obj/item/seeds/potato,
-/obj/item/seeds/ambrosia,
-/obj/item/seeds/poppy,
-/obj/item/seeds/grape,
+/obj/item/plant_seeds/preset/harebell,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/potato,
+/obj/item/plant_seeds/preset/ambrosia,
+/obj/item/plant_seeds/preset/poppy,
+/obj/item/plant_seeds/preset/grape,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
@@ -3564,7 +3564,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)
 "QZ" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /turf/open/floor/grass,
 /area/ruin/unpowered)
 "Rc" = (

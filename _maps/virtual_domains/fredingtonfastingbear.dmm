@@ -22,7 +22,7 @@
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain/fullbright)
 "af" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/indestructible/hotelwood,
 /area/virtual_domain/safehouse)
 "ag" = (

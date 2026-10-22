@@ -12,7 +12,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "bP" = (
-/obj/machinery/plantgenes/seedvault{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/structure/table/wood,
@@ -265,7 +265,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Fh" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -412,7 +412,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Tk" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
@@ -435,7 +435,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "VW" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Wq" = (
@@ -445,7 +445,7 @@
 /turf/template_noop,
 /area/ruin/space/has_grav/powered)
 "WQ" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered)
 "Xy" = (

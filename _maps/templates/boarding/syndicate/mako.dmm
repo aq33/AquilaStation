@@ -429,9 +429,7 @@
 /turf/open/floor/engine,
 /area/ruin/powered/nsv13/boarding_interior)
 "uk" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-17"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "un" = (

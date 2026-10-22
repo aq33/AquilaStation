@@ -205,7 +205,7 @@
 	has_tool_description = "Możesz ostrożnie wyciąć próbkę z kolonii laserem!"
 	delay_message = "Pobieranie próbek..."
 	action_text = "Pobierz próbkę"
-	loot_type = /obj/item/seeds/random
+	loot_type = /obj/item/plant_seeds/random
 
 /datum/exploration_event/simple/resource/tcg_nerd
 	name = "dziwny nieznajomy"

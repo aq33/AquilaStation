@@ -25,7 +25,7 @@
 /turf/open/floor/holofloor/monotile/steel,
 /area/template_noop)
 "n" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/holofloor/monotile/steel,
 /area/template_noop)
 "o" = (
@@ -49,8 +49,8 @@
 /turf/open/floor/holofloor/monotile/dark,
 /area/template_noop)
 "E" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/cotton,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/cotton,
 /turf/open/floor/holofloor/monotile/steel,
 /area/template_noop)
 "F" = (
@@ -74,8 +74,8 @@
 /turf/open/floor/holofloor/monotile/steel,
 /area/template_noop)
 "M" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/cotton,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/cotton,
 /obj/item/shovel/spade{
 	pixel_x = -5;
 	pixel_y = -4

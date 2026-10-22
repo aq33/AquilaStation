@@ -200,6 +200,7 @@
 	if(pests)
 		target_types += /mob/living/simple_animal/cockroach
 		target_types += /mob/living/simple_animal/mouse
+		target_types += /mob/living/simple_animal/friendly_fruit
 
 	if(drawn)
 		target_types += /obj/effect/decal/cleanable/crayon

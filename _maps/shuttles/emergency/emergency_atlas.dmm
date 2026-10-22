@@ -350,9 +350,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
@@ -370,9 +368,7 @@
 /area/shuttle/escape)
 "mL" = (
 /obj/effect/turf_decal/delivery,
-/obj/item/kirbyplants{
-	icon_state = "plant-05"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "mX" = (
@@ -976,9 +972,7 @@
 /turf/open/floor/monotile/dark,
 /area/shuttle/escape)
 "Mf" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "Mp" = (
@@ -1027,9 +1021,7 @@
 /area/shuttle/escape)
 "Ql" = (
 /obj/effect/turf_decal/stripes/corner,
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/box/corners{
 	dir = 1
 	},
@@ -1229,9 +1221,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/box/corners,
 /turf/open/floor/monotile/dark,
 /area/shuttle/escape)
@@ -1291,9 +1281,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/box/corners{
 	dir = 4
 	},

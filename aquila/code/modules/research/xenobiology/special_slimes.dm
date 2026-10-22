@@ -133,13 +133,10 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	for(var/mob/living/carbon/C in viewers(T))
 		C.flash_act()
 	var/static/list/blocked_seeds = list(
-		/obj/item/seeds/banana/bombanana,
-		/obj/item/seeds/lavaland,
-		/obj/item/seeds/sample,
-		/obj/item/seeds/sample/alienweed,
-		/obj/item/seeds/cherry/bomb,
+		/obj/item/plant_seeds/preset/bombanana,
+		/obj/item/plant_seeds/preset/cherry_bomb,
 	)
-	var/chosen = pick(subtypesof(/obj/item/seeds) - blocked_seeds)
+	var/chosen = pick(valid_subtypesof(/obj/item/plant_seeds/preset) - blocked_seeds)
 	new chosen(T)
 	..()
 
@@ -274,7 +271,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	qdel(src)
 	return FALSE
 
-// Nawóz z dark green: szybszy cykl kosztem plonu
+// Nawóz z dark green: w nowej botanice działa jako buff (plant_needs/buffs/fertilizers.dm)
 
 /datum/reagent/plantnutriment/slimenutriment
 	name = "Living Fertiliser"
@@ -282,16 +279,6 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	color = "#6ed8db"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	tox_prob = 17
-
-/obj/machinery/hydroponics/applyChemicals(datum/reagents/S, mob/user)
-	. = ..()
-	if(S.has_reagent(/datum/reagent/plantnutriment/slimenutriment, 1))
-		yieldmod = 0.8
-		mutmod = 1
-		cycledelay = 150
-		adjustNutri(round(S.get_reagent_amount(/datum/reagent/plantnutriment/slimenutriment)))
-	else if(S.has_reagent(/datum/reagent/plantnutriment/eznutriment, 1) || S.has_reagent(/datum/reagent/plantnutriment/left4zednutriment, 1) || S.has_reagent(/datum/reagent/plantnutriment/robustharvestnutriment, 1))
-		cycledelay = initial(cycledelay)
 
 #undef SLIME_SPECIAL_ICON
 #undef SLIME_CRIMSON_BURN_THRESHOLD

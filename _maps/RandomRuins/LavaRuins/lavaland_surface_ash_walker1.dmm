@@ -78,7 +78,7 @@
 	dir = 8
 	},
 /obj/item/stack/marker_beacon/ten,
-/obj/item/seeds/tobacco/lavaland,
+/obj/item/plant_seeds/preset/tobacco,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "aq" = (
@@ -561,8 +561,8 @@
 /obj/item/stack/sheet/mineral/wood,
 /obj/item/stack/sheet/mineral/wood,
 /obj/item/stack/sheet/mineral/wood,
-/obj/item/seeds/tower,
-/obj/item/seeds/bamboo,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/bamboo,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "bx" = (
@@ -1042,7 +1042,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "cK" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
@@ -1136,8 +1136,8 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/ash_walkers)
 "cY" = (
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_seeds/preset/glowshroom,
+/obj/item/plant_seeds/preset/glowshroom,
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
@@ -1319,7 +1319,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dy" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
@@ -1334,7 +1334,7 @@
 /turf/closed/mineral/volcanic/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dA" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/structure/stone_tile/surrounding_tile/cracked{
 	dir = 1
 	},
@@ -1404,8 +1404,8 @@
 /obj/structure/stone_tile/cracked{
 	dir = 1
 	},
-/obj/item/seeds/cotton,
-/obj/item/seeds/cotton,
+/obj/item/plant_seeds/preset/cotton,
+/obj/item/plant_seeds/preset/cotton,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 

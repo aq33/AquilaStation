@@ -60,7 +60,8 @@
 	. = ..()
 	if(istype(I, /obj/item/food/grown/banana))
 		var/obj/item/food/grown/banana/banana = I
-		obj_integrity += min(banana.seed.potency, max_integrity-obj_integrity)
+		var/potency = get_fruit_trait_power(banana) * 25
+		obj_integrity += min(potency*50, max_integrity-obj_integrity)
 		to_chat(user, "<span class='danger'>Naprawiasz [src] za pomocą [banana]!</span>")
 		qdel(banana)
 

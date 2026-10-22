@@ -630,7 +630,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/hallway/pvp)
 "aQM" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plasteel/tech/grid,
 /area/hydroponics/pvp)
 "aQO" = (
@@ -831,7 +831,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/hallway/pvp)
 "aZE" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel/tech/grid,
 /area/hallway/pvp)
 "aZM" = (
@@ -2918,7 +2918,7 @@
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "ddW" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/airalarm/syndicate{
 	dir = 8;
 	pixel_x = 24
@@ -4076,8 +4076,8 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/engine/engine_room/pvp)
 "ejU" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/watermelon,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/watermelon,
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "ekz" = (
@@ -5581,7 +5581,7 @@
 /turf/open/floor/plasteel,
 /area/science/pvp)
 "fMz" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/bridge/pvp)
 "fMX" = (
@@ -5619,7 +5619,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/science/pvp)
 "fRx" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/mineral/plastitanium/red,
 /area/hydroponics/pvp)
 "fRD" = (
@@ -6155,9 +6155,9 @@
 /turf/open/floor/plasteel,
 /area/security/brig/pvp)
 "gsO" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/tomato,
-/obj/item/seeds/lemon{
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/tomato,
+/obj/item/plant_seeds/preset/lemon{
 	pixel_x = -5;
 	pixel_y = 5
 	},
@@ -6775,7 +6775,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/bridge/pvp)
 "gVQ" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = -32
 	},
@@ -11737,7 +11737,7 @@
 /turf/open/floor/engine/o2,
 /area/engine/engineering/pvp)
 "lKG" = (
-/obj/machinery/plantgenes,
+/obj/machinery/plant_machine/plant_analyser,
 /turf/open/floor/plasteel/tech/grid,
 /area/hydroponics/pvp)
 "lKL" = (
@@ -17479,7 +17479,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/brig/pvp)
 "rBV" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plasteel/tech/grid,
 /area/hydroponics/pvp)
 "rCv" = (
@@ -17792,7 +17792,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig/pvp)
 "rVo" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel/tech/grid,
 /area/science/pvp)
 "rVr" = (
@@ -17915,8 +17915,8 @@
 /turf/open/floor/engine/n2,
 /area/engine/engineering/pvp)
 "sdr" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/wheat/rice,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/rice,
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "sdv" = (
@@ -18646,7 +18646,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/hallway/pvp)
 "sLZ" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -20202,7 +20202,7 @@
 /turf/open/floor/engine/o2,
 /area/engine/engineering/pvp)
 "uqk" = (
-/obj/item/seeds/wheat,
+/obj/item/plant_seeds/preset/wheat,
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "uql" = (
@@ -20900,7 +20900,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/bridge/meeting_room/pvp)
 "vap" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel/freezer,
 /area/hallway/pvp)
 "vaq" = (
@@ -23165,7 +23165,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/cafeteria/pvp)
 "xuu" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light_switch/north,
 /obj/structure/disposalpipe/segment{
 	dir = 4

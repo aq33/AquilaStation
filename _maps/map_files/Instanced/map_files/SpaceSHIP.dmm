@@ -2213,7 +2213,7 @@
 /turf/open/floor/plating,
 /area/maintenance/pvp)
 "fO" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/mineral/plastitanium/red,
 /area/hydroponics/pvp)
 "fP" = (
@@ -3023,7 +3023,7 @@
 /area/engine/engineering/pvp)
 "im" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -4675,7 +4675,7 @@
 /area/medical/medbay/pvp)
 "mK" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/camera/syndicate{
 	c_tag = "Hydroponics";
 	dir = 1
@@ -5451,7 +5451,7 @@
 /turf/open/floor/monotile/dark,
 /area/security/brig/pvp)
 "oM" = (
-/obj/machinery/plantgenes,
+/obj/machinery/plant_machine/plant_analyser,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5706,7 +5706,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/pvp)
 "pp" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/mineral/plastitanium/red,
 /area/hydroponics/pvp)
 "pq" = (
@@ -15188,7 +15188,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
 /area/hydroponics/pvp)
@@ -16828,7 +16828,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/hallway/pvp)
 "Ti" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
 	},

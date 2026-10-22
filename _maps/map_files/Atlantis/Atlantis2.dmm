@@ -2746,6 +2746,14 @@
 	},
 /turf/open/floor/plating,
 /area/bridge)
+"cGV" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/refraction_catalogue,
+/turf/open/floor/monotile/steel,
+/area/hydroponics)
 "cHg" = (
 /obj/machinery/door/airlock/ship/public/glass{
 	name = "Cloning Lab";
@@ -6903,7 +6911,7 @@
 /turf/closed/wall/steel,
 /area/medical/surgery)
 "gIL" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
 "gIM" = (
@@ -8654,6 +8662,13 @@
 /obj/structure/chair/fancy/sofa/mono/corner/concave,
 /turf/open/floor/wood,
 /area/hallway/nsv/deck1/hallway)
+"iBb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "iBc" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/ale,
@@ -9290,6 +9305,21 @@
 /obj/structure/cable/green,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/crew_quarters/heads/captain/private)
+"jhC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/smartfridge/disks,
+/obj/item/book/manual/wiki/hydroponics/tutorial{
+	pixel_x = 6;
+	 pixel_y = -4
+	},
+/obj/item/substrate_bag/dirt,
+/obj/item/substrate_bag/sand,
+/obj/item/substrate_bag/clay,
+/obj/item/substrate_bag/debris,
+/obj/item/substrate_bag/fairy,
+/obj/item/construction/plumbing/botany,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "jiu" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -9424,7 +9454,7 @@
 /area/crew_quarters/cafeteria)
 "jqW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/plantgenes{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/item/book/manual/hydroponics_pod_people,
@@ -10336,7 +10366,7 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "kkF" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
@@ -10791,36 +10821,36 @@
 	pixel_y = 28
 	},
 /obj/structure/closet/crate,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/tower,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat,
-/obj/item/seeds/tomato,
-/obj/item/seeds/tomato,
-/obj/item/seeds/tea,
-/obj/item/seeds/tea,
-/obj/item/seeds/potato,
-/obj/item/seeds/potato,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/onion,
-/obj/item/seeds/onion,
-/obj/item/seeds/lime,
-/obj/item/seeds/lime,
-/obj/item/seeds/nettle,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape,
-/obj/item/seeds/grass,
-/obj/item/seeds/grass,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/cotton,
-/obj/item/seeds/cotton,
-/obj/item/seeds/carrot,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/apple,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/watermelon,
+/obj/item/plant_seeds/preset/watermelon,
+/obj/item/plant_seeds/preset/wheat,
+/obj/item/plant_seeds/preset/wheat,
+/obj/item/plant_seeds/preset/tomato,
+/obj/item/plant_seeds/preset/tomato,
+/obj/item/plant_seeds/preset/tea,
+/obj/item/plant_seeds/preset/tea,
+/obj/item/plant_seeds/preset/potato,
+/obj/item/plant_seeds/preset/potato,
+/obj/item/plant_seeds/preset/pumpkin,
+/obj/item/plant_seeds/preset/pumpkin,
+/obj/item/plant_seeds/preset/onion,
+/obj/item/plant_seeds/preset/onion,
+/obj/item/plant_seeds/preset/lime,
+/obj/item/plant_seeds/preset/lime,
+/obj/item/plant_seeds/preset/nettle,
+/obj/item/plant_seeds/preset/grape,
+/obj/item/plant_seeds/preset/grape,
+/obj/item/plant_seeds/preset/grass,
+/obj/item/plant_seeds/preset/grass,
+/obj/item/plant_seeds/preset/glowshroom,
+/obj/item/plant_seeds/preset/cotton,
+/obj/item/plant_seeds/preset/cotton,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/cabbage,
+/obj/item/plant_seeds/preset/apple,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
 "kEP" = (
@@ -16988,6 +17018,17 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/tech/grid,
 /area/quartermaster/warehouse)
+"rpY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/duct,
+/obj/machinery/holopad,
+/turf/open/floor/monotile/steel,
+/area/hydroponics)
 "rqw" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -17451,6 +17492,16 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/theatre)
+"rQH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/plant_machine/plant_mutator/tutorial,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "rQM" = (
 /turf/closed/wall/steel,
 /area/crew_quarters/kitchen/coldroom)
@@ -17835,6 +17886,10 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/body,
 /turf/open/floor/carpet/police,
 /area/security)
+"sjk" = (
+/obj/machinery/plant_machine/seed_editor,
+/turf/open/floor/monotile/dark,
+/area/hydroponics)
 "sjF" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -19518,7 +19573,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/miningdock)
 "tTr" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/monotile/dark,
 /area/hydroponics)
 "tUf" = (
@@ -20216,7 +20271,7 @@
 	pixel_x = 8;
 	pixel_y = 1
 	},
-/obj/item/seeds/coffee/robusta,
+/obj/item/plant_seeds/preset/coffee,
 /turf/open/floor/engine,
 /area/bridge/cic)
 "uAI" = (
@@ -21161,7 +21216,7 @@
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "vzE" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/monotile/dark,
 /area/hydroponics/garden/abandoned)
@@ -22296,7 +22351,7 @@
 /turf/open/floor/monotile/steel,
 /area/security)
 "wzQ" = (
-/obj/item/seeds/bamboo,
+/obj/item/plant_seeds/preset/bamboo,
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
@@ -22347,7 +22402,7 @@
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "wDv" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/monotile/dark,
 /area/hydroponics)
 "wDH" = (
@@ -47701,7 +47756,7 @@ gbQ
 jqW
 mKb
 tTr
-fHy
+sjk
 tTr
 pYU
 gbQ
@@ -47955,7 +48010,7 @@ uCx
 ujt
 srz
 gbQ
-gfn
+jhC
 mKb
 tTr
 mCO
@@ -48215,7 +48270,7 @@ gbQ
 gWj
 mKb
 tTr
-hwI
+iBb
 tTr
 xSa
 gbQ
@@ -48729,7 +48784,7 @@ gbQ
 bia
 aEw
 tTr
-tte
+rQH
 tTr
 pYU
 gbQ
@@ -49498,8 +49553,8 @@ sux
 hPq
 gbQ
 bpw
-qKz
-aCG
+rpY
+cGV
 fku
 tHW
 hik

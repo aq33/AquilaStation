@@ -3,7 +3,7 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "b" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/grass,
 /area/template_noop)
 "e" = (
@@ -21,8 +21,8 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "h" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/liberty,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/liberty,
 /turf/open/floor/grass,
 /area/template_noop)
 "j" = (
@@ -31,7 +31,7 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
 /obj/item/shovel/spade,
 /obj/item/cultivator{
 	pixel_x = 6
@@ -41,8 +41,8 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "k" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/cannabis,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/cannabis,
 /turf/open/floor/grass,
 /area/template_noop)
 "l" = (
@@ -69,8 +69,8 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "r" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/cabbage,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/cabbage,
 /turf/open/floor/grass,
 /area/template_noop)
 "t" = (
@@ -90,8 +90,8 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "D" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/bamboo,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/bamboo,
 /turf/open/floor/grass,
 /area/template_noop)
 "G" = (
@@ -136,8 +136,8 @@
 /turf/open/floor/plating,
 /area/template_noop)
 "O" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/replicapod,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/diona_pod,
 /turf/open/floor/grass,
 /area/template_noop)
 "P" = (
@@ -145,8 +145,8 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "Q" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/ambrosia,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/ambrosia,
 /turf/open/floor/grass,
 /area/template_noop)
 "R" = (
@@ -180,13 +180,13 @@
 /turf/open/floor/grass,
 /area/template_noop)
 "Y" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/carrot,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/carrot,
 /turf/open/floor/grass,
 /area/template_noop)
 "Z" = (
-/obj/machinery/hydroponics/soil,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/glowshroom,
 /turf/open/floor/grass,
 /area/template_noop)
 

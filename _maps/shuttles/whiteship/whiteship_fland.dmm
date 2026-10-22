@@ -489,7 +489,7 @@
 /area/shuttle/abandoned)
 "Cd" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/wood,
 /area/shuttle/abandoned)
 "Cy" = (
@@ -688,7 +688,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/abandoned)
 "Rl" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/monotile/steel,
 /area/shuttle/abandoned)

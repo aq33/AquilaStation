@@ -159,9 +159,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "dO" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-18"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "dP" = (
@@ -375,9 +373,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "id" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-17"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -781,9 +777,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-18"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "qQ" = (
@@ -810,9 +804,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-18"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "rh" = (
@@ -976,9 +968,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "tO" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "tQ" = (
@@ -1027,9 +1017,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "uG" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-33"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "vd" = (
@@ -1067,9 +1055,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "vF" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-28"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "vP" = (
@@ -1093,9 +1079,7 @@
 	},
 /area/ruin/powered/nsv13/boarding_interior)
 "wj" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-14"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -1422,9 +1406,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Dg" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-26"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Dt" = (
@@ -1451,9 +1433,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "DJ" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-32"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "DK" = (
@@ -2001,9 +1981,7 @@
 /turf/open/floor/mineral/plastitanium/red/airless,
 /area/ruin/powered/nsv13/boarding_interior)
 "Ss" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-28"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "St" = (
@@ -2047,9 +2025,7 @@
 /turf/template_noop,
 /area/ruin/powered/nsv13/boarding_interior)
 "Tm" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-33"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Tq" = (
@@ -2069,7 +2045,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "TD" = (
-/obj/item/kirbyplants,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "TG" = (
@@ -2167,15 +2143,11 @@
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "Wf" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Wo" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-12"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "Ww" = (
@@ -2189,9 +2161,7 @@
 /turf/open/floor/carpet/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "WG" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "WL" = (
@@ -2213,9 +2183,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "WU" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-14"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "WX" = (
@@ -2286,9 +2254,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "YQ" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-07"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "YU" = (
