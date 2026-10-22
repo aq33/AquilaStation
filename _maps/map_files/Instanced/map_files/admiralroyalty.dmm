@@ -12,7 +12,7 @@
 /turf/open/floor/durasteel/padded,
 /area/awaymission/badmiral/lounge)
 "af" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/ship/red_carpet,
 /area/awaymission/badmiral/lounge)
 "ag" = (
@@ -115,7 +115,7 @@
 /turf/open/floor/carpet,
 /area/awaymission/badmiral/lounge)
 "aE" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet,
 /area/awaymission/badmiral/dorms)
 "aI" = (
@@ -1662,7 +1662,7 @@
 /turf/open/floor/carpet/ship,
 /area/awaymission/badmiral/central)
 "nE" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/wood,
 /area/awaymission/badmiral/central)
 "nK" = (
@@ -1704,7 +1704,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -3712,7 +3712,7 @@
 /turf/open/floor/durasteel/padded,
 /area/awaymission/badmiral/munitions)
 "GH" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/ship/blue,
 /area/awaymission/badmiral/bridge)
 "GJ" = (

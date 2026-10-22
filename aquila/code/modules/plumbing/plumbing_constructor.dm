@@ -21,7 +21,7 @@
 	var/list/design_types = list(
 		"Synthesizers" = list(
 			/obj/machinery/plumbing/synthesizer = 15,
-			/obj/machinery/plumbing/reaction_chamber = 15,
+			/obj/machinery/plumbing/reaction_chamber/chem = 15,
 			/obj/machinery/plumbing/grinder_chemical = 30,
 			/obj/machinery/plumbing/fermenter = 30,
 			/obj/machinery/plumbing/disposer = 10,
@@ -166,6 +166,8 @@
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 	if(ispath(blueprint, /obj/machinery/duct))
 		new blueprint(destination, current_color, current_layer)
+	else if(ispath(blueprint, /obj/item)) // AQUILA - tace hydroponiczne z konstruktora botanicznego
+		new blueprint(destination)
 	else
 		new blueprint(destination, current_layer)
 	return TRUE

@@ -218,3 +218,44 @@
 	materials = list(/datum/material/biomass= 30)
 	build_path = /obj/item/food/seaweed_sheet
 	category = list("initial","Food")
+
+//Substrates
+/datum/design/substrate_dirt
+	name = "Dirt Substrate"
+	id = "dirt_substrate"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/substrate_bag/dirt
+	category = list("initial","Organic Materials")
+
+/datum/design/substrate_clay
+	name = "Clay Substrate"
+	id = "clay_substrate"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/substrate_bag/clay
+	category = list("initial","Organic Materials")
+
+/datum/design/substrate_sand
+	name = "Sand Substrate"
+	id = "sand_substrate"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/substrate_bag/sand
+	category = list("initial","Organic Materials")
+
+/datum/design/substrate_debris
+	name = "Debris Substrate"
+	id = "debris_substrate"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 300)
+	build_path = /obj/item/substrate_bag/debris
+	category = list("initial","Organic Materials")
+
+/datum/design/substrate_fairy
+	name = "Mysterious Substrate"
+	id = "mysterious_substrate"
+	build_type = BIOGENERATOR
+	materials = list(/datum/material/biomass = 10000)
+	build_path = /obj/item/substrate_bag/fairy
+	category = list("initial","Organic Materials")

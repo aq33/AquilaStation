@@ -75,6 +75,7 @@ const CONTROL_LABELS: Record<string, string> = {
   max_sanity: 'Maks. poczytalność',
   hug_mode: 'Tryb pracy',
   pink_wire: 'Różowy przewód',
+  water_trays: 'Podlewanie',
 };
 
 const CONTROL_TOOLTIPS: Record<string, string> = {
@@ -96,6 +97,7 @@ const CONTROL_TOOLTIPS: Record<string, string> = {
   speaker: 'Włącza lub wyłącza głośnik.',
   critical_alerts: 'Zgłasza pacjentów w stanie krytycznym.',
   temperature_control: 'Utrzymuje temperaturę docelową.',
+  water_trays: 'Podlewa tace hydroponiczne.',
 };
 
 const LINE_DIRECTIONS: Record<string, string> = {

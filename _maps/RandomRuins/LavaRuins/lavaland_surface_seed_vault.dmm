@@ -61,7 +61,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "ap" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "aq" = (
@@ -139,7 +139,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "aC" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "aD" = (
@@ -208,7 +208,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
 "aP" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -234,7 +234,7 @@
 /turf/closed/wall/r_wall,
 /area/ruin/powered/seedvault)
 "aX" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/powered/seedvault)
@@ -422,7 +422,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Hw" = (
-/obj/machinery/plantgenes/seedvault{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 6
 	},
 /obj/structure/table/wood,

@@ -18,7 +18,8 @@
 	if(!has_reagents)
 		return
 
-	var/datum/reagents/splash_holder = new/datum/reagents(total_reagents*threatscale)
+	// AQ EDIT - fermichem: granat reaguje od razu, holder i tak zaraz znika
+	var/datum/reagents/splash_holder = new/datum/reagents(total_reagents*threatscale, REAGENT_HOLDER_INSTANT_REACT)
 	splash_holder.my_atom = epicenter // For some reason this is setting my_atom to null, and causing runtime errors.
 	var/total_temp = 0
 

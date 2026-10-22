@@ -118,7 +118,7 @@
 /obj/effect/spawner/lootdrop/bluespace_tap/organic
 	name = "organic objects"
 	loot = list(
-		/obj/item/seeds/random = 10,
+		/obj/item/plant_seeds/random = 10,
 		/obj/item/storage/pill_bottle/charcoal = 25,
 		/obj/item/storage/pill_bottle/mannitol = 25,
 		/obj/item/storage/pill_bottle/mutadone = 25,

@@ -973,6 +973,15 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 // AQ EDIT - the plumbing constructor lives in aquila/code/modules/plumbing/plumbing_constructor.dm
 
+#define GENERIC_PLUMBING_RCD_COST 15
+#define GENERIC_PLUMBING_RCD_DELAY 20
+
+#undef GENERIC_PLUMBING_RCD_COST
+#undef GENERIC_PLUMBING_RCD_DELAY
+
+/*
+	Upgrades
+*/
 /obj/item/rcd_upgrade
 	name = "RCD advanced design disk"
 	desc = "It seems to be empty."

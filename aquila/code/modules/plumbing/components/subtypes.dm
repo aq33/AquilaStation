@@ -149,8 +149,8 @@
 
 	var/obj/machinery/plumbing/reaction_chamber/reaction_chamber = parent
 
-	//cannot give when we outselves are requesting the reagents
-	if(amount <= 0 || !reagents.total_volume || !reaction_chamber.emptying)
+	//cannot give when we outselves are requesting or reacting the reagents
+	if(amount <= 0 || !reagents.total_volume || !reaction_chamber.emptying || reagents.is_reacting)
 		return
 
 	//check to see if we can give catalysts only if they are in excess
@@ -248,27 +248,40 @@
 	var/obj/machinery/plumbing/acclimator/myacclimator = parent
 	myacclimator.check_emptied()
 
-/// Hydroponics trays only take water from the pipes, straight into their water level.
-/datum/component/plumbing/fixture/hydroponics
+/// Separate input with its own small holder, used by the chemistry reaction chamber for its pH buffers (fermichem z tg)
+/datum/component/plumbing/buffered
+	///The reagent to request into this buffer
+	var/datum/reagent/request
+	///The buffer meant to store reagents
+	var/datum/reagents/buffer
 
-/datum/component/plumbing/fixture/hydroponics/Initialize(ducting_layer)
-	if(!istype(parent, /obj/machinery/hydroponics))
-		return COMPONENT_INCOMPATIBLE
+/datum/component/plumbing/buffered/Initialize(ducting_layer)
+	. = ..()
+	if(. == COMPONENT_INCOMPATIBLE)
+		return
+	buffer = new /datum/reagents(50, NO_REACT)
+	buffer.my_atom = parent
+
+/datum/component/plumbing/buffered/Destroy()
+	QDEL_NULL(buffer)
 	return ..()
 
-/datum/component/plumbing/fixture/hydroponics/on_examine(atom/movable/source, mob/user, list/examine_list)
-	if(length(ducts))
-		examine_list += "<span class='notice'>Jest podłączona do rury i sama uzupełnia wodę.</span>"
-	else
-		examine_list += "<span class='notice'>Można ją podłączyć do rury z wodą na sąsiednim polu.</span>"
+/datum/component/plumbing/buffered/recipient_reagents_holder()
+	return buffer
 
-/datum/component/plumbing/fixture/hydroponics/send_request(dir)
-	var/obj/machinery/hydroponics/tray = parent
-	var/wanted = min(tray.maxwater - tray.waterlevel, MACHINE_REAGENT_TRANSFER)
-	if(wanted < 1)
-		return
-	process_request(wanted, /datum/reagent/water, dir)
-	var/received = reagents.get_reagent_amount(/datum/reagent/water)
-	if(received)
-		tray.adjustWater(round(received))
-	reagents.clear_reagents()
+/datum/component/plumbing/buffered/send_request(dir)
+	process_request(reagent = request, dir = dir)
+
+///Acidic buffer input of the chemistry reaction chamber
+/datum/component/plumbing/buffered/acidic_input
+	demand_connects = WEST
+	demand_color = COLOR_YELLOW
+	ducting_layer = SECOND_DUCT_LAYER
+	request = /datum/reagent/reaction_agent/acidic_buffer
+
+///Basic buffer input of the chemistry reaction chamber
+/datum/component/plumbing/buffered/alkaline_input
+	demand_connects = EAST
+	demand_color = COLOR_LIME
+	ducting_layer = FOURTH_DUCT_LAYER
+	request = /datum/reagent/reaction_agent/basic_buffer

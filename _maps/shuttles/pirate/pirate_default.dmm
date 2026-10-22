@@ -786,10 +786,8 @@
 /turf/open/floor/plating,
 /area/shuttle/pirate)
 "ez" = (
-/obj/machinery/hydroponics/soil{
-	self_sustaining = 1
-	},
-/obj/item/seeds/wheat,
+/obj/item/plant_tray/soil,
+/obj/item/plant_seeds/preset/wheat,
 /turf/open/floor/grass,
 /area/shuttle/pirate)
 "eA" = (

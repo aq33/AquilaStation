@@ -531,3 +531,16 @@
   - bugfix: Krzesło do implantów znowu otwiera okno.
   - bugfix: Czytelne nagłówki działów w wyborze profesji i bez „0” po nazwie stanowiska.
   - bugfix: Panel czatu nie zostaje pusty.
+'2026-10-22':
+  'Grafika: Ewa':
+  - imageadd: 'Ochrona w barwach Polskiej Policji: granatowe szafki, SecDrobe, śluzy,
+      tablety, znaki i podłogi'
+  - rscdel: Z SecDrobe, szafek i loadoutu ochrony zniknęły czerwone i niepolicyjne
+      stroje
+  - tweak: Żandarm nazywa się teraz Policjant
+  - tweak: Kanał radia Policja, policyjne nazwy obszarów, vendorów i ubrań ochrony,
+      granatowe kolory ochrony na czacie
+  - bugfix: Czapki z arkusza Kosmobagiet nie znikają już po założeniu
+  Joker66613:
+  - bugfix: Broń odpalana bez kliknięcia myszą (demon impulsu, NPC) strzela w cel
+      zamiast na północ.

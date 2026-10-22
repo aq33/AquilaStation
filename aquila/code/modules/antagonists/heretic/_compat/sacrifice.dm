@@ -166,15 +166,7 @@
 /datum/element/relay_attackers/proc/relay_attacker(atom/victim, atom/attacker, attack_flags, direction)
 	SEND_SIGNAL(victim, COMSIG_ATOM_WAS_ATTACKED, attacker, attack_flags, direction)
 
-// ---------------------------------------------------------------------------
-// Sygnał organu po wszczepieniu (tg: COMSIG_ORGAN_IMPLANTED). COMSIG_ORGAN_REMOVED wysyła _compat/core.dm.
-// ---------------------------------------------------------------------------
-
-/obj/item/organ/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
-	var/already_inside = (owner == M)
-	. = ..()
-	if(!already_inside && M && owner == M)
-		SEND_SIGNAL(src, COMSIG_ORGAN_IMPLANTED, M)
+// Sygnały COMSIG_ORGAN_IMPLANTED/REMOVED wysyła aquila/code/game/machinery/dna_infuser/_compat.dm
 
 /// tg: COMSIG_ORGAN_SURGICALLY_REMOVED wysyłany po wycięciu organu operacją
 /datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
@@ -183,68 +175,7 @@
 	if(extracting && !QDELETED(extracting) && extracting.owner != target)
 		SEND_SIGNAL(extracting, COMSIG_ORGAN_SURGICALLY_REMOVED, user, target, target_zone, tool)
 
-// ---------------------------------------------------------------------------
-// noticable_organ (tg) - opis organu widoczny przy oglądaniu właściciela
-// ---------------------------------------------------------------------------
-
-/**
- * noticable organ element; which makes organs have a special description added to the person with the organ, if certain body zones aren't covered.
- *
- * Used for infused mutant organs
- */
-/datum/element/noticable_organ
-	element_flags = ELEMENT_BESPOKE
-	id_arg_index = 2
-
-	///Shows on examining someone with an infused organ.
-	var/infused_desc
-	/// Which body zone has to be exposed. If none is set, this is always noticable.
-	var/body_zone
-
-/datum/element/noticable_organ/Attach(obj/item/organ/target, infused_desc, body_zone)
-	. = ..()
-
-	if(!istype(target))
-		return ELEMENT_INCOMPATIBLE
-
-	src.infused_desc = infused_desc
-	src.body_zone = body_zone
-
-	RegisterSignal(target, COMSIG_ORGAN_IMPLANTED, PROC_REF(enable_description))
-	RegisterSignal(target, COMSIG_ORGAN_REMOVED, PROC_REF(on_removed))
-	if(target.owner)
-		enable_description(target, target.owner)
-
-/datum/element/noticable_organ/Detach(obj/item/organ/target)
-	UnregisterSignal(target, list(COMSIG_ORGAN_IMPLANTED, COMSIG_ORGAN_REMOVED))
-	if(target.owner)
-		UnregisterSignal(target.owner, COMSIG_PARENT_EXAMINE)
-	return ..()
-
-/// Proc that returns true or false if the organ should show its examine check.
-/datum/element/noticable_organ/proc/should_show_text(mob/living/carbon/examined)
-	if(!body_zone)
-		return TRUE
-	return get_location_accessible(examined, body_zone)
-
-/datum/element/noticable_organ/proc/enable_description(obj/item/organ/target, mob/living/carbon/receiver)
-	SIGNAL_HANDLER
-
-	RegisterSignal(receiver, COMSIG_PARENT_EXAMINE, PROC_REF(on_receiver_examine), override = TRUE)
-
-/datum/element/noticable_organ/proc/on_removed(obj/item/organ/target, mob/living/carbon/loser)
-	SIGNAL_HANDLER
-
-	UnregisterSignal(loser, COMSIG_PARENT_EXAMINE)
-
-/datum/element/noticable_organ/proc/on_receiver_examine(mob/living/carbon/examined, mob/user, list/examine_list)
-	SIGNAL_HANDLER
-
-	if(!should_show_text(examined))
-		return
-
-	// AQUILA - opisy są po polsku i bez zaimków, więc nie podmieniamy %PRONOUN_
-	examine_list += infused_desc
+// noticable_organ (tg) jest w aquila/code/game/machinery/dna_infuser/_compat.dm
 
 // ---------------------------------------------------------------------------
 // corrupted_organ (tg) - wspólne zachowanie organów od ofiary heretyka

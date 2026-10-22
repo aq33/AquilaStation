@@ -2375,7 +2375,7 @@
 /turf/open/floor/plating/foam,
 /area/maintenance/nsv/deck1/starboard)
 "kr" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
 /turf/open/floor/plating/rusty_techgrid,
@@ -3239,7 +3239,7 @@
 	lighting_colour_tube = "#c1e1ff"
 	})
 "oK" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel,
 /area/crew_quarters/dorms)
 "oQ" = (
@@ -3447,8 +3447,6 @@
 /obj/item/circuitboard/machine/chem_dispenser/drinks,
 /obj/item/circuitboard/machine/chem_dispenser/drinks/beer,
 /obj/item/circuitboard/machine/microwave,
-/obj/item/circuitboard/machine/hydroponics,
-/obj/item/circuitboard/machine/hydroponics,
 /obj/item/circuitboard/machine/vendor,
 /obj/item/circuitboard/machine/processor,
 /turf/open/floor/durasteel,
@@ -4433,8 +4431,7 @@
 /area/maintenance/nsv/deck1/port)
 "uC" = (
 /obj/structure/table/reinforced,
-/obj/item/kirbyplants{
-	icon_state = "plant-26";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 13
 	},
 /turf/open/floor/durasteel,
@@ -6631,7 +6628,7 @@
 /turf/open/floor/plating/rusty_techgrid,
 /area/storage/tech)
 "Fu" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	color = "#c1e1ff"
 	},
@@ -7854,8 +7851,7 @@
 /area/tcommsat/computer)
 "Lc" = (
 /obj/structure/table/reinforced,
-/obj/item/kirbyplants{
-	icon_state = "plant-32";
+/obj/item/plant_tray/pot/random{
 	pixel_y = 11
 	},
 /turf/open/floor/plasteel/ridged/steel,

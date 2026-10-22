@@ -590,7 +590,7 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/nostromo/bridge)
 "cs" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/airalarm/directional/north{
 	req_access = null;
 	req_one_access_txt = "48"
@@ -2917,7 +2917,7 @@
 /turf/open/floor/plasteel/techmaint,
 /area/nostromo)
 "jb" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/structure/cable,
 /turf/open/floor/plasteel/grid/steel,
 /area/nostromo/bridge)

@@ -177,6 +177,7 @@
 	var/job_tmp
 	SAFE_READ_QUERY(29, job_tmp)
 	job_preferences = character_json_decode(job_tmp, list())
+	migrate_renamed_job_titles(job_preferences) // AQUILA EDIT - Żandarm to teraz Policjant
 
 	//Quirks
 	var/quirks_tmp

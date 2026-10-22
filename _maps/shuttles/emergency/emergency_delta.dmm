@@ -181,8 +181,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "an" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -210,8 +209,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ap" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -717,9 +715,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "bz" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/button/flasher{
 	id = "shuttleflash";
 	pixel_x = -26;
@@ -731,9 +727,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bA" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
@@ -922,8 +916,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "cb" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -1242,8 +1235,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "cA" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21";
+/obj/item/plant_tray/pot/random{
 	pixel_x = -3;
 	pixel_y = 3
 	},

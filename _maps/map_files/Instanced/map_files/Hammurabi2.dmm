@@ -4608,9 +4608,7 @@
 /area/engine/engineering/pvp)
 "Dd" = (
 /obj/machinery/firealarm/directional/north,
-/obj/item/kirbyplants/photosynthetic{
-	icon_state = "plant-20"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/red,
 /area/crew_quarters/heads/captain/pvp/admiral)
 "Dr" = (

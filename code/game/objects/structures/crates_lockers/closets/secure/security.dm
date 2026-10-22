@@ -125,10 +125,10 @@
 /obj/structure/closet/secure_closet/hos/PopulateContents()
 	..()
 	new /obj/item/storage/box/suitbox/hos(src)
-	new /obj/item/clothing/suit/armor/vest/leather(src)
+	//new /obj/item/clothing/suit/armor/vest/leather(src) //AQUILA EDIT - tylko mundury policji
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
-	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
+	//new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src) //AQUILA EDIT - tylko mundury policji
 	new /obj/item/radio/headset/heads/hos/alt(src)
 	new /obj/item/radio/headset/heads/hos(src)
 
@@ -168,8 +168,8 @@
 	//new /obj/item/clothing/under/rank/security/head_of_security/skirt(src) //NSV13 no skirts
 	new /obj/item/clothing/under/rank/security/head_of_security/alt(src)
 	//new /obj/item/clothing/under/rank/security/head_of_security/alt/skirt(src) //NSV13 no skirts
-	new /obj/item/clothing/under/rank/security/head_of_security/white(src)
-	new /obj/item/clothing/under/rank/security/head_of_security/parade/female(src)
+	//new /obj/item/clothing/under/rank/security/head_of_security/white(src) //AQUILA EDIT - tylko mundury policji
+	//new /obj/item/clothing/under/rank/security/head_of_security/parade/female(src) //AQUILA EDIT - tylko mundury policji
 	new /obj/item/clothing/under/rank/security/head_of_security/parade(src)
 	new /obj/item/clothing/head/HoS(src)
 
@@ -185,7 +185,7 @@
 	new /obj/item/clothing/head/warden(src)
 	new /obj/item/clothing/head/warden/drill(src)
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
-	new /obj/item/clothing/head/beret/corpwarden(src)
+	//new /obj/item/clothing/head/beret/corpwarden(src) //AQUILA EDIT - tylko mundury policji
 	new /obj/item/clothing/head/soft/sec/warden(src) //AQUILA EDIT
 	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
@@ -275,12 +275,12 @@
 	new /obj/item/clothing/accessory/holster/detective(src)
 	new /obj/item/pinpointer/crew(src)
 	new /obj/item/binoculars(src)
-	new /obj/item/clothing/neck/tie/red(src)
+	//new /obj/item/clothing/neck/tie/red(src) //AQUILA EDIT - tylko mundury policji
 	new	/obj/item/clothing/neck/tie/black(src)
 	new /obj/item/clothing/neck/tie/detective(src)
-	new /obj/item/clothing/under/ship/kiryujumpsuit(src) //NSV13 - Alternative detective suit
-	new /obj/item/clothing/suit/ship/kiryujacket(src)
-	new /obj/item/clothing/shoes/ship/kiryushoes(src)
+	//new /obj/item/clothing/under/ship/kiryujumpsuit(src) //NSV13 - Alternative detective suit //AQUILA EDIT - tylko mundury policji
+	//new /obj/item/clothing/suit/ship/kiryujacket(src)
+	//new /obj/item/clothing/shoes/ship/kiryushoes(src)
 	new /obj/item/storage/box/rxglasses/spyglasskit(src)
 
 /obj/structure/closet/secure_closet/deputy

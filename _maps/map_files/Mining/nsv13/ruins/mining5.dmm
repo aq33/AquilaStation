@@ -496,9 +496,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-23"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/riveted,
 /area/ruin/unpowered)
 "bR" = (
@@ -992,7 +990,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/padded,
 /area/ruin/unpowered)
 "dp" = (
@@ -1233,7 +1231,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/padded,
 /area/ruin/unpowered)
 "ef" = (
@@ -1695,7 +1693,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/padded,
 /area/ruin/unpowered)
 "Qo" = (

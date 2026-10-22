@@ -464,9 +464,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "applebush"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "aV" = (
@@ -488,9 +486,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "aX" = (
@@ -751,9 +747,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bB" = (
@@ -1071,9 +1065,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "cg" = (
@@ -1087,9 +1079,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
-/obj/item/kirbyplants{
-	icon_state = "applebush"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
@@ -1183,9 +1173,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-05"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "cr" = (
@@ -1259,9 +1247,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "cx" = (

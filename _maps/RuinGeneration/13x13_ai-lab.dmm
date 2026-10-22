@@ -49,7 +49,7 @@
 /turf/open/floor/circuit/red,
 /area/ruin/unpowered)
 "hB" = (
-/obj/item/kirbyplants/photosynthetic{
+/obj/item/plant_tray/pot/random{
 	pixel_y = 10
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -82,7 +82,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered)
 "nN" = (
-/obj/item/kirbyplants/photosynthetic{
+/obj/item/plant_tray/pot/random{
 	pixel_y = 10
 	},
 /turf/open/floor/carpet/black,
@@ -177,7 +177,7 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/unpowered)
 "za" = (
-/obj/item/kirbyplants/photosynthetic{
+/obj/item/plant_tray/pot/random{
 	pixel_y = 10
 	},
 /obj/effect/turf_decal/stripes/red/line{

@@ -40,7 +40,7 @@ Naukowiec=CIV
 Robotyk=CIV
 
 Detektyw=SLT
-Żandarm=SLT
+Policjant=SLT
 Lekarz Więzienny=MID
 Aspirant=MID
 

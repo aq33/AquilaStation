@@ -296,7 +296,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "fL" = (
@@ -458,7 +458,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "hQ" = (
-/obj/machinery/plantgenes,
+/obj/machinery/plant_machine/plant_analyser,
 /obj/structure/table/glass,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
@@ -481,7 +481,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "iw" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "iA" = (
@@ -674,7 +674,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "mr" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -794,7 +794,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "op" = (
 /obj/machinery/airalarm/directional/east,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "oq" = (
@@ -882,7 +882,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "pw" = (
@@ -2348,7 +2348,7 @@
 /turf/open/floor/plating,
 /area/ruin/powered/nsv13/boarding_interior)
 "Nl" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "NP" = (
@@ -2664,7 +2664,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "TH" = (
 /obj/machinery/firealarm/directional/east,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "TQ" = (
@@ -2730,7 +2730,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "UI" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "UL" = (
@@ -3001,7 +3001,7 @@
 /area/ruin/powered/nsv13/boarding_interior)
 "ZR" = (
 /obj/machinery/firealarm/directional/west,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "ZU" = (

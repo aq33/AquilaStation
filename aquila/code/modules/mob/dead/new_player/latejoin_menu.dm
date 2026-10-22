@@ -28,7 +28,7 @@ GLOBAL_DATUM_INIT(latejoin_menu, /datum/latejoin_menu, new)
 		return departments
 	departments = list(
 		list("name" = "Dowództwo", "color" = "#9db5ff", "jobs" = GLOB.command_positions),
-		list("name" = "Ochrona", "color" = "#ff7a7a", "jobs" = GLOB.security_positions),
+		list("name" = "Ochrona", "color" = "#7c8be6", "jobs" = GLOB.security_positions),
 		list("name" = "Amunicja", "color" = "#ffa94d", "jobs" = GLOB.munitions_positions),
 		list("name" = "Inżynieria", "color" = "#f5c04a", "jobs" = GLOB.engineering_positions),
 		list("name" = "Medyczny", "color" = "#5fd1c4", "jobs" = GLOB.medical_positions),

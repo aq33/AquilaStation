@@ -1,29 +1,9 @@
 // Replica butt flower and fartium, ported from HippieStation13
 // (code/modules/hydroponics/grown/buttflower.dm, code/modules/reagents/chemistry/reagents/drug_reagents.dm).
-
-/obj/item/seeds/buttseed
-	name = "pack of replica butt seeds"
-	desc = "Replica butts...has science gone too far?"
-	icon = 'aquila/icons/obj/buttflower.dmi'
-	icon_state = "seed-butt"
-	species = "butt"
-	plantname = "Replica Butt Flower"
-	product = /obj/item/food/grown/buttflower
-	lifespan = 25
-	endurance = 10
-	maturation = 8
-	production = 6
-	yield = 1
-	potency = 20
-	growthstages = 3
-	growing_icon = 'aquila/icons/obj/buttflower.dmi'
-	icon_grow = "butt-grow"
-	icon_dead = "butt-dead"
-	icon_harvest = "butt-harvest"
-	reagents_add = list(/datum/reagent/drug/fartium = 1)
+// Nasiona i cecha owocu w nowej botanice: aquila/code/modules/botany/aquila/plants.dm
 
 /obj/item/food/grown/buttflower
-	seed = /obj/item/seeds/buttseed
+	seed = /obj/item/plant_seeds/preset/butt
 	name = "buttflower"
 	desc = "Gives off a pungent aroma once it blooms."
 	icon = 'aquila/icons/obj/buttflower.dmi'
@@ -31,7 +11,7 @@
 	trash_type = /obj/item/organ/butt
 
 /obj/machinery/vending/hydroseeds/Initialize(mapload)
-	products[/obj/item/seeds/buttseed] = 2
+	products[/obj/item/plant_seeds/preset/butt] = 2
 	return ..()
 
 /datum/reagent/drug/fartium

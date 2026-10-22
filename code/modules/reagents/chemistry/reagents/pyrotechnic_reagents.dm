@@ -171,6 +171,7 @@
 	taste_description = "pieczenie"
 	self_consuming = TRUE
 	process_flags = ORGANIC | SYNTHETIC
+	weed_kill = 0.5
 
 /datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)

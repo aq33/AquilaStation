@@ -160,9 +160,7 @@
 			SEND_SIGNAL(replaced, COMSIG_ORGAN_BEING_REPLACED, src)
 	return ..()
 
-/obj/item/organ/Remove(mob/living/carbon/M, special = FALSE)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_ORGAN_REMOVED, M)
+// COMSIG_ORGAN_REMOVED wysyła aquila/code/game/machinery/dna_infuser/_compat.dm
 
 // ---------------------------------------------------------------------------
 // Sygnały akcji i zaklęć z tg

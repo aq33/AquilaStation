@@ -531,9 +531,7 @@
 /area/hammurabi/maintenance/secondary)
 "sv" = (
 /obj/machinery/computer/ship/viewscreen,
-/obj/item/kirbyplants{
-	icon_state = "plant-28"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east{
 	req_access = list(150)
@@ -1255,9 +1253,7 @@
 /area/space)
 "Tg" = (
 /obj/structure/extinguisher_cabinet/west,
-/obj/item/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/hammurabi/atc_tower)
 "Tk" = (

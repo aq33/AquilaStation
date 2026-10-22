@@ -116,6 +116,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `return` after handing out a non-nullrod holy weapon | `code/game/objects/items/holy_weapons.dm` | Exorcist shotgun has no `reskinned` var (aq33/AquilaStation#461) |
 | RD suit storage unit holds the HEV suit instead of the research MODsuit | `code/game/machinery/suit_storage_unit.dm` | HEV from the 2024 changelog (aq33/AquilaStation#461) |
 | Deck technician job card uses the `munitech` state | `code/game/objects/items/cards_ids.dm` | `decktechnician` state doesn't exist in `nsv13/icons/obj/card.dmi` |
+| Mouse modifiers passed to `preparePixelProjectile()` only when not empty | `code/modules/projectiles/ammunition/_firing.dm`, `throw_proj()` | `params2list(null)` is an empty list, which is true, so a living shooter without mouse data (NPCs without a client, the pulse demon firing a hijacked gun) aimed at angle 0 and shot north. Test: `aquila_gun_fire_without_params` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

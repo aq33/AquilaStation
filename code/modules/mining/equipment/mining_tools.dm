@@ -118,6 +118,29 @@
 /obj/item/shovel/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/butchering, 150, 40) //it's sharp, so it works, but barely.
+	RegisterSignal(src, COMSIG_PLANTER_PAUSE_PLANT, PROC_REF(catch_pause))
+
+/obj/item/shovel/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	name = "[initial(name)] ([arrived])"
+	icon_state = "[initial(icon_state)]_dirt"
+	arrived.pixel_y += 11
+	arrived.pixel_x += 5
+
+/obj/item/shovel/Exited(atom/movable/leaving, direction)
+	. = ..()
+	var/datum/component/plant/plant_comp = leaving.GetComponent(/datum/component/plant)
+	if(!plant_comp)
+		return
+	name = "[initial(name)]"
+	icon_state = "[initial(icon_state)]"
+	leaving.pixel_y -= 11
+	leaving.pixel_x -= 5
+
+/obj/item/shovel/proc/catch_pause(datum/source)
+	SIGNAL_HANDLER
+
+	return TRUE
 
 /obj/item/shovel/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] zaczyna kopać własny grób! Wygląda na to, że próbuje popełnić samobójstwo!</span>")

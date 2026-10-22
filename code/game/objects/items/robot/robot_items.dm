@@ -1030,7 +1030,7 @@
 	name = "versatile service grasper"
 	desc = "Specially designed for carrying glasses, food and seeds."
 	storable = list(/obj/item/reagent_containers/food,
-	/obj/item/seeds,
+	/obj/item/plant_seeds,
 	/obj/item/storage/fancy/donut_box,
 	/obj/item/storage/fancy/egg_box,
 	/obj/item/clothing/mask/cigarette,

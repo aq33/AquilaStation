@@ -77,7 +77,7 @@
 	description = "Co sprawia, że działamy."	//the MC, silly!
 	prereq_ids = list("base")
 	// NSV13 - added design for refillable chem dispenser
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "refillable_chem_dispenser", "pandemic", "sleeper", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner", "medipen_epi", "medipen_dex", "medipen_atropine")
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "refillable_chem_dispenser", "pandemic", "sleeper", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner", "medipen_epi", "medipen_dex", "medipen_atropine", "ph_meter") // AQ EDIT - ph_meter: fermichem z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -776,7 +776,7 @@
 	display_name = "Inżynieria botaniczna"
 	description = "Narzędzia botaniczne"
 	prereq_ids = list("adv_engi", "biotech")
-	design_ids = list("diskplantgene", "portaseeder", "plantgenes", "flora_gun", "hydro_tray", "biogenerator", "seed_extractor")
+	design_ids = list("diskplantgene", "portaseeder", "flora_gun", "biogenerator", "traymaker", "plant_machine_controller_console") // AQ EDIT: botanika z Bee
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

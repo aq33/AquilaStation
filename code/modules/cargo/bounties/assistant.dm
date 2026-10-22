@@ -143,7 +143,7 @@
 	description = "Centrala zamierza zamówić nową stację klasy BirdBoat. Macie dostarczyć rośliny doniczkowe."
 	reward = 2000
 	required_count = 8
-	wanted_types = list(/obj/item/kirbyplants)
+	wanted_types = list(/obj/item/kirbyplants, /obj/item/plant_tray/pot) // AQ EDIT: botanika z Bee - doniczki z roślinami
 
 /datum/bounty/item/assistant/earmuffs
 	name = "Earmuffs"

@@ -29,6 +29,8 @@
 	item_state = "zapper"
 
 /obj/item/melee/touch_attack/shock/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity) // AQUILA EDIT - tylko w zasięgu ręki; na odległość działa Extended Shock Touch
+		return
 	user.Beam(target, icon_state="lightning[rand(1,12)]", time=5, maxdistance = 32)
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target

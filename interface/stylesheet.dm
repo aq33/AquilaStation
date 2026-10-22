@@ -45,7 +45,7 @@ em						{font-style: normal;	font-weight: bold;}
 .sciradio				{color: #993399;}
 .explradio				{color: #7ed4c2;}
 .comradio				{color: #948f02;}
-.secradio				{color: #a30000;}
+.secradio				{color: #2c3aa8;}
 .medradio				{color: #337296;}
 .engradio				{color: #fbb213;}
 .suppradio				{color: #a8732b;}
@@ -117,6 +117,26 @@ h1.alert, h2.alert		{color: #000000;}
 
 .deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
 
+.plant_scan {
+  display: block;
+  color: white;
+  text-align: center;
+  background-color: black;
+  border: 2px solid rgb(67, 224, 35);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 20px;
+}
+.plant_sub {
+  display: grid;
+  color: white;
+  text-align: center;
+  background-color: black;
+  border: 2px solid rgb(224, 35, 224);
+  border-radius: 10px;
+  padding: 1px;
+  margin: 1px 2px;
+}
 .brass					{color: #BE8700;}
 .heavy_brass			{color: #BE8700; font-weight: bold; font-style: italic;}
 .large_brass			{color: #BE8700; font-size: 3;}
@@ -162,6 +182,7 @@ h1.alert, h2.alert		{color: #000000;}
 
 .sans					{font-family: "Comic Sans MS", cursive, sans-serif;}
 .papyrus				{font-family: "Papyrus", cursive, sans-serif;}
+.wingdings				{font-family: Wingdings, Webdings;} /* AQUILA EDIT - gen Alien Voice */
 .robot					{font-family: "Courier New", cursive, sans-serif;}
 
 .command_headset		{font-weight: bold; font-size: 3;}

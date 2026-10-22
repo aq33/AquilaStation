@@ -3,7 +3,7 @@
 
 /mob/living/carbon/Initialize(mapload)
 	. = ..()
-	create_reagents(1000)
+	create_reagents(1000, REAGENT_HOLDER_ALIVE) // AQ EDIT - fermichem: nieczyste chemy zmieniają się w swój inverse po wejściu do ciała
 	update_body_parts() //to update the carbon's new bodyparts appearance
 	GLOB.carbon_list += src
 	RegisterSignal(src, COMSIG_MOB_LOGOUT, PROC_REF(med_hud_set_status))

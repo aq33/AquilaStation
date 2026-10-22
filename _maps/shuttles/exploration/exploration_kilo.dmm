@@ -311,9 +311,7 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/exploration)
 "AY" = (
-/obj/item/kirbyplants{
-	icon_state = "applebush"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -408,9 +406,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-03"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/exploration)
 "Lt" = (
@@ -464,9 +460,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
@@ -499,9 +493,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/exploration)
 "QP" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	dir = 4
 	},

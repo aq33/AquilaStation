@@ -92,7 +92,7 @@
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "aw" = (
-/obj/machinery/hydroponics,
+/obj/item/plant_tray,
 /turf/open/floor/plasteel/checker,
 /area/ruin/space/has_grav/powered)
 "ax" = (

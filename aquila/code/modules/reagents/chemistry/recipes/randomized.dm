@@ -29,8 +29,16 @@
 		log_game("Nie udało się wczytać zapisanych losowych receptur: [decode_error]")
 
 /datum/chemical_reaction/randomized
+	// fermichem z tg: łagodniejsze domyślne warunki, bo te receptury i tak są trudne
+	optimal_ph_min = 1
+	optimal_ph_max = 13
+	temp_exponent_factor = 0
+	ph_exponent_factor = 1
+	H_ion_release = 0
 	/// Co ile dni receptura się zmienia
 	var/persistence_period = 7
+	/// Jak daleko pH może odbiegać od optimum, zanim reakcja staje się nieczysta
+	var/suboptimal_range_ph = 3
 	/// Kiedy receptura została wylosowana (world.realtime)
 	var/created
 	var/min_temp = 1
@@ -76,6 +84,18 @@
 	required_container = container
 	is_cold_recipe = recipe_data["is_cold_recipe"]
 	required_temp = recipe_data["required_temp"]
+	// fermichem: starsze zapisy nie mają tych pól, wtedy losujemy same warunki reakcji
+	if(!isnum(recipe_data["optimal_temp"]) || !isnum(recipe_data["optimal_ph_min"]))
+		randomize_conditions(keep_temperature = TRUE)
+		return TRUE
+	optimal_temp = recipe_data["optimal_temp"]
+	overheat_temp = recipe_data["overheat_temp"]
+	thermic_constant = recipe_data["thermic_constant"]
+	optimal_ph_min = recipe_data["optimal_ph_min"]
+	optimal_ph_max = recipe_data["optimal_ph_max"]
+	determin_ph_range = recipe_data["determin_ph_range"]
+	H_ion_release = recipe_data["H_ion_release"]
+	purity_min = recipe_data["purity_min"]
 	return TRUE
 
 /datum/chemical_reaction/randomized/proc/randomize_recipe()
@@ -99,14 +119,34 @@
 	for(var/i in 1 to in_catalyst_count)
 		required_catalysts[pick_n_take(remaining_possible_catalysts)] = rand(min_input_reagent_amount, max_input_reagent_amount)
 
-	is_cold_recipe = pick(TRUE, FALSE)
-	if(is_cold_recipe)
-		required_temp = rand(min_temp + 50, max_temp)
-	else
-		required_temp = rand(min_temp, max_temp - 50)
-
 	if(length(possible_containers))
 		required_container = pick(possible_containers)
+
+	randomize_conditions()
+
+/// Losuje warunki reakcji jak w tg: temperatury (optimum, przegrzanie), okno pH, zmianę pH i minimalną czystość
+/datum/chemical_reaction/randomized/proc/randomize_conditions(keep_temperature = FALSE)
+	if(!keep_temperature)
+		is_cold_recipe = pick(TRUE, FALSE)
+		if(is_cold_recipe)
+			required_temp = rand(min_temp + 50, max_temp)
+		else
+			required_temp = rand(min_temp, max_temp - 50)
+	if(is_cold_recipe)
+		optimal_temp = rand(min_temp + 25, max(required_temp - 10, min_temp + 25))
+		overheat_temp = rand(min_temp, max(optimal_temp - 10, min_temp))
+		if(overheat_temp >= 200) //Otherwise it can disappear when you're mixing
+			overheat_temp = 200
+	else
+		optimal_temp = rand(required_temp + 10, max(max_temp - 25, required_temp + 10))
+		overheat_temp = rand(optimal_temp, max_temp + 50)
+		if(overheat_temp <= 400)
+			overheat_temp = 400
+	optimal_ph_min = CHEMICAL_MIN_PH + rand(0, suboptimal_range_ph)
+	optimal_ph_max = max((CHEMICAL_MAX_PH - rand(0, suboptimal_range_ph)), (optimal_ph_min + 1)) //Always ensure we've a window of 1
+	determin_ph_range = suboptimal_range_ph
+	H_ion_release = rand(0, 25) / 100 // 0 - 0.25
+	purity_min = rand(0, 4) / 10
 
 /// Odczynniki, z których losujemy dany rodzaj składnika
 /datum/chemical_reaction/randomized/proc/GetPossibleReagents(kind)
@@ -130,6 +170,14 @@
 		"required_catalysts" = required_catalysts,
 		"is_cold_recipe" = is_cold_recipe,
 		"required_temp" = required_temp,
+		"optimal_temp" = optimal_temp,
+		"overheat_temp" = overheat_temp,
+		"thermic_constant" = thermic_constant,
+		"optimal_ph_min" = optimal_ph_min,
+		"optimal_ph_max" = optimal_ph_max,
+		"determin_ph_range" = determin_ph_range,
+		"H_ion_release" = H_ion_release,
+		"purity_min" = purity_min,
 		"required_container" = required_container ? "[required_container]" : null,
 	)
 
@@ -260,9 +308,15 @@
 		dat += "<li>w pojemniku: [initial(container.name)]</li>"
 	if(recipe.required_temp)
 		if(recipe.is_cold_recipe)
-			dat += "<li>schładzając poniżej [recipe.required_temp] K</li>"
+			dat += "<li>schładzając poniżej [recipe.required_temp] K, ale nie poniżej [recipe.overheat_temp] K</li>"
 		else
-			dat += "<li>podgrzewając powyżej [recipe.required_temp] K</li>"
+			dat += "<li>podgrzewając powyżej [recipe.required_temp] K, ale nie powyżej [recipe.overheat_temp] K</li>"
+		if(recipe.thermic_constant > 0)
+			dat += "<li>uważając, bo reakcja wydziela ciepło</li>"
+		else if(recipe.thermic_constant < 0)
+			dat += "<li>uważając, bo reakcja pochłania ciepło</li>"
+	dat += "<li>trzymając pH między [recipe.optimal_ph_min] a [recipe.optimal_ph_max]</li>"
+	dat += "<li>i czystość powyżej [recipe.purity_min]</li>"
 	dat += "</ul>"
 	add_raw_text(dat.Join(""))
 	update_appearance()

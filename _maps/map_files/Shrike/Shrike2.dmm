@@ -1100,7 +1100,7 @@
 /turf/open/floor/plating/rusty_techgrid,
 /area/crew_quarters/bar/mess_hall)
 "dt" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/camera/autoname,
 /obj/machinery/newscaster/directional/north,
 /obj/effect/turf_decal/tile/ship/half/neutral{
@@ -2399,7 +2399,7 @@
 	lighting_colour_tube = "#c1e1ff"
 	})
 "ie" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "if" = (
@@ -2539,7 +2539,7 @@
 	lighting_colour_tube = "#FF3232"
 	})
 "iH" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "iI" = (
@@ -9748,7 +9748,7 @@
 	name = "Security";
 	req_one_access_txt = "1"
 	},
-/obj/effect/turf_decal/trimline/red/line,
+/obj/effect/turf_decal/trimline/police/line,
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
 /turf/open/floor/monofloor,
@@ -9901,7 +9901,7 @@
 /turf/open/floor/plating/foam,
 /area/maintenance/department/crew_quarters/bar)
 "Hz" = (
-/obj/effect/turf_decal/trimline/red/line,
+/obj/effect/turf_decal/trimline/police/line,
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
 /obj/machinery/door/airlock/ship/security/glass{

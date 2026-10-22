@@ -1351,9 +1351,7 @@
 /turf/open/floor/engine/vacuum,
 /area/nsv/hanger)
 "gn" = (
-/obj/item/kirbyplants/random{
-	anchored = 1
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
 "go" = (

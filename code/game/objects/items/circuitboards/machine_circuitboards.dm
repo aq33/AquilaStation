@@ -549,7 +549,7 @@
 		/obj/machinery/vending/cigarette = "ShadyCigs Deluxe",
 		/obj/machinery/vending/games = "\improper Good Clean Fun",
 		/obj/machinery/vending/autodrobe = "AutoDrobe",
-		/obj/machinery/vending/wardrobe/sec_wardrobe = "SecDrobe",
+		/obj/machinery/vending/wardrobe/sec_wardrobe = "Mundurownia Policyjna", //AQUILA EDIT
 		/obj/machinery/vending/wardrobe/det_wardrobe = "DetDrobe",
 		/obj/machinery/vending/wardrobe/medi_wardrobe = "MediDrobe",
 		/obj/machinery/vending/wardrobe/engi_wardrobe = "EngiDrobe",
@@ -581,7 +581,7 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
-		/obj/machinery/vending/security = "SecTech",
+		/obj/machinery/vending/security = "Zbrojownia Policyjna", //AQUILA EDIT
 		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections",
 		/obj/machinery/vending/custom = "Custom Vendor")
 
@@ -1116,16 +1116,6 @@
 		/obj/item/stock_parts/manipulator = 1)
 	needs_anchored = FALSE
 
-/obj/item/circuitboard/machine/hydroponics
-	name = "hydroponics tray (Machine Board)"
-	icon_state = "service"
-	build_path = /obj/machinery/hydroponics/constructable
-	req_components = list(
-		/obj/item/stock_parts/matter_bin = 2,
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stack/sheet/glass = 1)
-	needs_anchored = FALSE
-
 /obj/item/circuitboard/machine/microwave
 	name = "microwave (Machine Board)"
 	icon_state = "service"
@@ -1144,16 +1134,6 @@
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stock_parts/capacitor = 1
 	)
-
-/obj/item/circuitboard/machine/plantgenes
-	name = "plant DNA manipulator (Machine Board)"
-	icon_state = "service"
-	build_path = /obj/machinery/plantgenes
-	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stock_parts/micro_laser = 1,
-		/obj/item/stack/sheet/glass = 1,
-		/obj/item/stock_parts/scanning_module = 1)
 
 /obj/item/circuitboard/machine/processor
 	name = "food processor (Machine Board)"
@@ -1186,15 +1166,6 @@
 	name = "recycler (Machine Board)"
 	icon_state = "service"
 	build_path = /obj/machinery/recycler
-	req_components = list(
-		/obj/item/stock_parts/matter_bin = 1,
-		/obj/item/stock_parts/manipulator = 1)
-	needs_anchored = FALSE
-
-/obj/item/circuitboard/machine/seed_extractor
-	name = "seed extractor (Machine Board)"
-	icon_state = "service"
-	build_path = /obj/machinery/seed_extractor
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1)
@@ -1321,15 +1292,6 @@
 	build_path = /obj/machinery/chem_dispenser/abductor
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
-
-/obj/item/circuitboard/machine/plantgenes/vault
-	name = "Plant DNA manipulator (Abductor Machine Board)"
-	icon_state = "abductor_mod"
-	// It wasn't made by actual abductors race, so no abductor tech here.
-	def_components = list(
-		/obj/item/stock_parts/manipulator = /obj/item/stock_parts/manipulator/femto,
-		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/quadultra,
-		/obj/item/stock_parts/scanning_module = /obj/item/stock_parts/scanning_module/triphasic)
 
 /obj/item/circuitboard/machine/clockwork
 	name = "clockwork board (Report This)"

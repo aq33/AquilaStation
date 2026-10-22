@@ -9,6 +9,7 @@
 /datum/reagent/consumable/ethanol
 	name = "Ethanol"
 	description = "Powszechnie znany alkohol o wielu zastosowaniach."
+	weed_kill = 0.1
 	color = "#404030" // rgb: 64, 64, 48
 	nutriment_factor = 0
 	taste_description = "alkohol"
