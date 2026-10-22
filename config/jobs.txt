@@ -48,7 +48,7 @@ Robotyk=1,1
 
 Naczelnik=1,1
 Detektyw=1,1
-Żandarm=10,8
+Policjant=10,8
 Lekarz Więzienny=0,0
 Aspirant=1,1
 

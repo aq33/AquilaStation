@@ -143,7 +143,7 @@
 /area/crew_quarters/cafeteria)
 "aiw" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "ajb" = (
 /turf/closed/wall/steel,
@@ -3329,7 +3329,7 @@
 /area/hallway/nsv/deck1/hallway)
 "deC" = (
 /obj/effect/decal/cleanable/xenoblood/xsplatter,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "deY" = (
 /obj/structure/chair/fancy/sofa/mono,
@@ -6988,7 +6988,7 @@
 "gNu" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "gNO" = (
 /obj/structure/railing{
@@ -8937,7 +8937,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "iWv" = (
 /obj/structure/chair{
@@ -9961,7 +9961,7 @@
 /area/bridge)
 "jSc" = (
 /obj/effect/decal/cleanable/shreds,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "jSY" = (
 /obj/machinery/camera/xray{
@@ -10945,7 +10945,7 @@
 /area/medical/medbay/central)
 "kLs" = (
 /obj/effect/decal/cleanable/plasma,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "kLR" = (
 /obj/structure/disposalpipe/segment,
@@ -11970,7 +11970,7 @@
 "lNI" = (
 /obj/item/flamethrower/full/tank,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "lOr" = (
 /obj/structure/table/reinforced,
@@ -13308,7 +13308,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/port)
 "nvy" = (
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "nvJ" = (
 /obj/machinery/ai_slipper,
@@ -17833,7 +17833,7 @@
 /area/quartermaster/storage)
 "sjj" = (
 /obj/effect/decal/cleanable/xenoblood/xgibs/body,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "sjF" = (
 /obj/machinery/holopad,
@@ -17941,7 +17941,7 @@
 /area/maintenance/nsv/deck1/starboard)
 "soE" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "soF" = (
 /obj/effect/landmark/start/cook,
@@ -20254,7 +20254,7 @@
 /area/space)
 "uCm" = (
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "uCx" = (
 /turf/template_noop,
@@ -22711,7 +22711,7 @@
 /area/hallway/nsv/deck1/hallway)
 "wVx" = (
 /obj/structure/table,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security)
 "wWi" = (
 /obj/structure/cable,

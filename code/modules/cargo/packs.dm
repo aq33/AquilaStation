@@ -521,11 +521,11 @@
 	crate_name = "security supply crate"
 
 /datum/supply_pack/security/vending/security
-	name = "SecTech Supply Crate"
+	name = "Zbrojownia Policyjna Supply Crate" //AQUILA EDIT - SecTech
 	desc = "Officer Paul bought all the handcuffs? Then refill the security vendor with ths crate."
 	cost = 1200
 	contains = list(/obj/item/vending_refill/security)
-	crate_name = "SecTech supply crate"
+	crate_name = "Zbrojownia Policyjna supply crate" //AQUILA EDIT - SecTech
 
 /datum/supply_pack/security/firingpins
 	name = "Standard Firing Pins Crate"
@@ -3045,7 +3045,7 @@
 
 /datum/supply_pack/costumes_toys/wardrobes/security
 	name = "Security Wardrobe Supply Crate"
-	desc = "This crate contains refills for the SecDrobe, DetDrobe and LawDrobe."
+	desc = "This crate contains refills for the Mundurownia Policyjna, DetDrobe and LawDrobe."
 	cost = 1000
 	access_budget = ACCESS_SECURITY
 	contains = list(/obj/item/vending_refill/wardrobe/sec_wardrobe,

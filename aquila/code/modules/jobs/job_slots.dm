@@ -37,7 +37,7 @@
 	total_positions = 2
 	spawn_positions = 2
 
-// Stała liczba żandarmów zamiast skalowania z liczbą graczy (SECURITY_SCALING_COEFF)
+// Stała liczba policjantów zamiast skalowania z liczbą graczy (SECURITY_SCALING_COEFF)
 /datum/controller/subsystem/job/setup_officer_positions()
 	return
 

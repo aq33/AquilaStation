@@ -102,7 +102,7 @@
 		},
 		{
 			"name": "Samosądy",
-			"tooltip": "Wykonywanie obowiązków żandarmerii bez zgody lub uzasadnionej przyczyny.",
+			"tooltip": "Wykonywanie obowiązków policji bez zgody lub uzasadnionej przyczyny.",
 			"colour": "orange",
 			"icon": "user-secret",
 			"sentence": 6000
