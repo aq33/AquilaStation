@@ -135,6 +135,9 @@
 	var/payout = tgui_input_number(user, "Ile kredytów nagrody dla xenobiologów? Za każdy kredyt rynek doliczy [SLIME_REQUEST_POINTS_PER_CREDIT] xenobio points.", name, 0, card.registered_account.account_balance, 0)
 	if(isnull(payout) || QDELETED(src) || QDELETED(card) || !user.canUseTopic(src, BE_CLOSE) || find_request(card))
 		return
+	if(QDELETED(console) || console.request_pad != src) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
+		to_chat(user, "<span class='warning'>[src] stracił połączenie z konsolą rynku szlamów!</span>")
+		return
 	if(payout && !card.registered_account.adjust_money(-payout))
 		to_chat(user, "<span class='warning'>Na koncie nie ma tylu kredytów!</span>")
 		return
