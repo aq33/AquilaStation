@@ -261,6 +261,10 @@
 			setup_lasers()
 		sell_power(output_level)
 		charge -= output_level
+		if(charge < PTL_MINIMUM_POWER) // zapas wyczerpany w tym ticku, nie zostawiamy wiązki do następnego
+			firing = FALSE
+			destroy_lasers()
+			output_level = 0
 
 	if(last_disp != return_charge() || last_chrg != inputting || last_fire != firing)
 		update_appearance()
