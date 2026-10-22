@@ -531,3 +531,7 @@
   - bugfix: Krzesło do implantów znowu otwiera okno.
   - bugfix: Czytelne nagłówki działów w wyborze profesji i bez „0” po nazwie stanowiska.
   - bugfix: Panel czatu nie zostaje pusty.
+'2026-10-22':
+  Joker66613:
+  - bugfix: Broń odpalana bez kliknięcia myszą (demon impulsu, NPC) strzela w cel
+      zamiast na północ.
