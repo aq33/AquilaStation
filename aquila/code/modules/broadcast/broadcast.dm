@@ -1,6 +1,6 @@
 // AQUILA: port sieci transmisji TV z Monkestation (tg telescreen.dm, spesstv.dm)
 
-/// Kto ogląda które transmisje: REF(oglądającego) -> c_tag kamery
+/// Kto ogląda które transmisje: REF(oglądającego) -> REF(kamery); nie c_tag, bo dwie kamery mogą mieć tę samą nazwę
 GLOBAL_LIST(spesstv_viewers)
 
 /// Sieć kamer -> lista nadawców (REF), żeby wyłączenie jednej kamery nie gasiło sieci, w której nadaje druga
@@ -50,12 +50,13 @@ GLOBAL_LIST_EMPTY(broadcast_network_sources)
 	if(QDELETED(active_camera) || !active_camera.can_use())
 		LAZYREMOVE(GLOB.spesstv_viewers, key)
 	else
-		LAZYSET(GLOB.spesstv_viewers, key, active_camera.c_tag)
+		LAZYSET(GLOB.spesstv_viewers, key, REF(active_camera))
 
 /// Ilu widzów ogląda tę kamerę przez telewizory i Spess.tv
 /obj/machinery/camera/proc/count_spesstv_viewers()
 	. = 0
 	var/list/spesstv_viewers = GLOB.spesstv_viewers
+	var/camera_ref = REF(src)
 	for(var/key in spesstv_viewers)
-		if(spesstv_viewers[key] == c_tag)
+		if(spesstv_viewers[key] == camera_ref)
 			.++
