@@ -4544,10 +4544,40 @@
 /obj/item/pen,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"kT" = (
+/obj/machinery/door/airlock/ship/engineering/glass{
+	name = "Laser przesyłu mocy"
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"kV" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
+"kW" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
+"kX" = (
+/obj/machinery/power/transmission_laser{
+	dir = 1
+	},
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
+"kY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "la" = (
 /obj/machinery/light{
 	dir = 4
@@ -32325,14 +32355,14 @@ zQ
 zQ
 zQ
 zQ
-zQ
-zQ
-zQ
-zQ
-zQ
 BN
 BN
-EG
+BN
+BN
+BN
+BN
+BN
+Fy
 Jj
 tU
 gx
@@ -32582,14 +32612,14 @@ zQ
 zQ
 zQ
 zQ
-zQ
-zQ
-zQ
-zQ
-zQ
-BN
-BN
+kY
 EG
+EG
+kX
+Fy
+Fy
+kT
+Fy
 aC
 nS
 kH
@@ -32839,11 +32869,11 @@ zQ
 zQ
 zQ
 zQ
-zQ
-zQ
-zQ
-zQ
-zQ
+kY
+EG
+EG
+EG
+kV
 BN
 BN
 cj
@@ -33096,11 +33126,11 @@ zQ
 zQ
 zQ
 zQ
-zQ
-zQ
-zQ
-zQ
-zQ
+kY
+EG
+EG
+EG
+kW
 BN
 BN
 Dk
@@ -33353,11 +33383,11 @@ zQ
 zQ
 zQ
 zQ
-zQ
-zQ
-zQ
-zQ
-zQ
+BN
+BN
+BN
+BN
+BN
 BN
 BN
 EG

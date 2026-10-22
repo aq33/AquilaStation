@@ -343,6 +343,15 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"aQ" = (
+/obj/structure/cable,
+/obj/machinery/light/small,
+/obj/effect/landmark/xeno_spawn,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "aR" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -418,6 +427,17 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
+"bc" = (
+/obj/effect/spawner/lootdrop/maintenance/three,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"bd" = (
+/obj/machinery/power/transmission_laser{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "be" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/munitions_tech,
@@ -433,6 +453,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"bg" = (
+/obj/effect/spawner/structure/window/reinforced/ship,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "bh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -43500,7 +43524,7 @@ Ks
 Ks
 Ks
 Ks
-Ks
+dD
 dD
 Sg
 Ll
@@ -43757,9 +43781,9 @@ Ks
 Ks
 Ks
 Ks
-Ks
 dD
-Sg
+Ll
+Ll
 Ll
 BK
 Ya
@@ -44014,11 +44038,11 @@ Ks
 Ks
 Ks
 Ks
-Ks
 dD
-Sg
-Ll
-uV
+bg
+uL
+uL
+bd
 HK
 Eo
 LJ
@@ -44271,12 +44295,12 @@ Ks
 Ks
 Ks
 Ks
-Ks
 dD
-Sg
-Ll
-Mb
-DU
+bg
+uL
+uL
+uL
+aQ
 Eo
 qK
 LW
@@ -44528,11 +44552,11 @@ Ks
 Ks
 Ks
 Ks
-Ks
 dD
-Sg
-Ll
-ZW
+bg
+uL
+uL
+uL
 VR
 Eo
 Eo
@@ -44785,9 +44809,9 @@ Ks
 Ks
 Ks
 Ks
-Ks
 dD
-Sg
+Ll
+Ll
 Ll
 Ll
 cl
@@ -45042,12 +45066,12 @@ Ks
 Ks
 Ks
 Ks
-Ks
+dD
 dD
 Sg
 Sg
 Ll
-Qh
+bc
 VR
 Eo
 Eo
