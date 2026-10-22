@@ -52,5 +52,15 @@
 	strong_left.Remove(patient)
 	TEST_ASSERT(!strong_right.has_working_pair(patient), "One Strong-Arm still counts as a pair")
 
+	// S.M.A.R.T. follows the gun held in the implanted hand and counts its shots
+	var/obj/item/organ/cyberimp/arm/ammo_counter/l/counter_implant = allocate(/obj/item/organ/cyberimp/arm/ammo_counter/l)
+	counter_implant.Insert(patient)
+	var/obj/item/gun/ballistic/automatic/pistol/pistol = allocate(/obj/item/gun/ballistic/automatic/pistol)
+	patient.put_in_l_hand(pistol)
+	TEST_ASSERT_EQUAL(counter_implant.our_gun, pistol, "The ammo counter did not pick up the gun in the implanted hand")
+	TEST_ASSERT_EQUAL(counter_implant.shots_left(), pistol.get_ammo(TRUE), "The ammo counter shows the wrong number of shots")
+	patient.dropItemToGround(pistol)
+	TEST_ASSERT(isnull(counter_implant.our_gun), "The ammo counter still tracks a dropped gun")
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL

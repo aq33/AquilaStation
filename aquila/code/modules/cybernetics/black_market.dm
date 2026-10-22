@@ -31,6 +31,13 @@
 	price_max = MARKET_CRATE_VALUE * 8
 	availability_prob = 10
 
+/datum/market_item/shoddy_implant/ammo_counter
+	name = "System logistyki amunicji S.M.A.R.T."
+	desc = "Implant w dłoni, który pokazuje, ile strzałów zostało w trzymanej broni."
+	item = /obj/item/organ/cyberimp/arm/ammo_counter
+	price_min = MARKET_CRATE_VALUE * 2
+	price_max = MARKET_CRATE_VALUE * 3
+
 /datum/market_item/shoddy_implant/heater
 	name = "Podskórny implant grzewczy"
 	desc = "Implant w dłoni, który ogrzewa cię, gdy marzniesz."

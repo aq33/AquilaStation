@@ -9,7 +9,7 @@
 		ostrza C.H.R.O.M.A.T.A. tną oboma naraz i w trybie podważania otwierają zasilone drzwi, S.A.Y.A. ma postawę obronną (użyj w ręce), \
 		A.R.A.S.A.K.A. doskakuje do celu 3 kratki dalej; Strong-Arm w combat mode odrzuca cel pięścią, para podważa drzwi pustą ręką. \
 		Klatka: knockout (przycisk akcji), R.A.G.E. (maska i zbiornik przyrastają), C.C.M.S. (dwie bronie w combat mode). \
-		Oczy: HUD naukowy. Organy w nogach wkłada też operacja „organ manipulation” na nodze. \
+		S.M.A.R.T.: licznik strzałów nad ręką z implantem, gdy trzymasz w niej broń (pistolet, laser). Oczy: HUD naukowy. Organy w nogach wkłada też operacja „organ manipulation” na nodze. \
 		Czarny rynek: kategoria „Implanty z drugiej ręki”. R&D: węzły „Zatwierdzone zestawy implantów zawodowych” i „Zatwierdzone implanty ochrony”."
 	items = list(
 		/obj/item/autosurgeon = 1,
@@ -34,6 +34,9 @@
 		/obj/item/organ/cyberimp/arm/mining_drill = 1,
 		/obj/item/organ/cyberimp/arm/mining_drill/diamond = 1,
 		/obj/item/organ/cyberimp/arm/razorwire = 1,
+		/obj/item/organ/cyberimp/arm/ammo_counter = 1,
+		/obj/item/gun/ballistic/automatic/pistol = 1,
+		/obj/item/gun/energy/laser = 1,
 		/obj/item/organ/cyberimp/arm/cooler = 1,
 		/obj/item/organ/cyberimp/arm/cooler/heater = 1,
 		/obj/item/organ/cyberimp/chest/spinal/knockout = 1,

@@ -526,6 +526,7 @@
 #include "code\modules\cargo\markets\market_items.dm"
 #include "code\modules\cargo\markets\market_telepad.dm"
 #include "code\modules\cargo\markets\market_uplink.dm"
+#include "code\modules\cybernetics\ammo_counter.dm"
 #include "code\modules\cybernetics\arm_misc.dm"
 #include "code\modules\cybernetics\arm_sets.dm"
 #include "code\modules\cybernetics\black_market.dm"
