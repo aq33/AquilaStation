@@ -215,7 +215,7 @@ export const DnaConsoleSequencer = (props) => {
           <Section
             title="Sekwencje"
             height="214px"
-            overflowY={mutations.length > 8 ? 'scroll' : undefined}
+            scrollable={mutations.length > 8}
           >
             {mutations.map((mutation) => (
               <GenomeImage
