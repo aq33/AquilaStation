@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_000
-	name = "PR 000: broń microfusion (MCR-01)"
-	pr = "aq33/AquilaStation#000"
+/datum/test_chamber_kit/pr_486
+	name = "PR 486: broń microfusion (MCR-01)"
+	pr = "aq33/AquilaStation#486"
 	description = "Dwa MCR-01 (jeden zaawansowany), puste ogniwa, emitery i wszystkie dodatki. Użyj broni w ręce: otwiera się panel sterowania (ciepło i ładunek odświeżają się same). \
 	Strzelaj seriami, aż emiter się nagrzeje i włączy dławienie termiczne; włącz chłodzenie w panelu. Ręką zdejmujesz ogniwo, łomem emiter, Alt+klik albo panel zdejmuje dodatki. \
 	Puste ogniwo włożysz tylko rozładowane (naładowane rozładuj w ręce). Śrubokrętem zdejmiesz dodatki z ogniwa. Multitoolem odblokuj emiter i podkręć próg w panelu. \
@@ -45,7 +45,7 @@
 		/mob/living/carbon/human = 2,
 	)
 
-/datum/test_chamber_kit/pr_000/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_486/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	for(var/obj/machinery/recharger/recharger in spawned)
 		recharger.setAnchored(TRUE)
