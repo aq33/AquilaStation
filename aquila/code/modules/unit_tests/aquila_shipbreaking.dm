@@ -80,6 +80,8 @@
 			magnet = candidate
 			break
 	if(!magnet)
+		if(length(GLOB.asteroid_spawn_markers))
+			return "The map has a magnet cage, but no magnet console linked to it and to the ship"
 		return // mapa bez klatki
 	var/area/old_area = get_area(magnet.target_location)
 	var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = new(get_turf(magnet.linked))
