@@ -139,9 +139,9 @@
 	if(turned_on)
 		. += "red_light"
 		. += emissive_appearance(icon, "red_light")
-		if(firing)
-			. += "firing"
-			. += emissive_appearance(icon, "firing")
+	if(firing) // strzał z zapasu działa też przy wyłączonym poborze
+		. += "firing"
+		. += emissive_appearance(icon, "firing")
 	var/charge_level = return_charge()
 	if(charge_level == 6)
 		. += "charge_full"
