@@ -22,6 +22,8 @@
 	var/track_end = 0
 	/// Trwa zapytanie do yt-dlp
 	var/busy = FALSE
+	/// Miejsce w utworze zapamiętane przy pauzie (decysekundy), od niego gra wznowienie
+	var/paused_offset = 0
 	/// Wygląd obudowy (1-5)
 	var/design = 1
 	/// Kto słucha (trzyma walkmana przy sobie)
@@ -88,6 +90,7 @@
 	user.put_in_hands(inserted_tape)
 	inserted_tape = null
 	track_index = 0
+	paused_offset = 0
 	balloon_alert(user, "wyjęto kasetę")
 	update_icon()
 
@@ -95,10 +98,11 @@
 	if(!can_use(user))
 		return
 	if(playing)
+		paused_offset = world.time - track_started
 		stop_listening()
 		balloon_alert(user, "pauza")
 	else
-		INVOKE_ASYNC(src, PROC_REF(play_track), user, max(track_index, 1))
+		INVOKE_ASYNC(src, PROC_REF(play_track), user, max(track_index, 1), paused_offset)
 
 /obj/item/walkman/ui_action_click(mob/user, datum/action/action)
 	if(istype(action, /datum/action/item_action/walkman/next_song))
@@ -129,8 +133,8 @@
 		return null
 	return songs[track_index]
 
-/// Pobiera link do utworu (z zawinięciem do pierwszego po ostatnim) i puszcza go słuchaczowi
-/obj/item/walkman/proc/play_track(mob/living/user, index)
+/// Pobiera link do utworu (z zawinięciem do pierwszego po ostatnim) i puszcza go słuchaczowi od offset (decysekundy)
+/obj/item/walkman/proc/play_track(mob/living/user, index, offset = 0)
 	var/list/songs = inserted_tape?.get_current_side()?.songs
 	if(busy || !length(songs))
 		return
@@ -147,12 +151,15 @@
 		if(playing && world.time >= track_end) // automatyczne przejście po końcu utworu - nie ponawiamy w kółko
 			stop_listening()
 		return
+	if(index != track_index || offset >= result["duration"] * 10)
+		offset = 0
 	track_index = index
+	paused_offset = 0
 	stream_url = result["stream"]
 	var/list/data = result["data"]
 	extra_data = list("title" = song.name || data["title"], "link" = song.url)
-	track_started = world.time
-	track_end = world.time + result["duration"] * 10 + 1 SECONDS
+	track_started = world.time - offset
+	track_end = track_started + result["duration"] * 10 + 1 SECONDS
 	playing = TRUE
 	playsound(src, pick(GLOB.cassette_play_sounds), 30, FALSE)
 	start_listening(user)

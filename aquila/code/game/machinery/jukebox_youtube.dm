@@ -333,10 +333,17 @@
 		return FALSE
 	if(findtext(host, "\[") == 1) // IPv6 - serwisy muzyczne mają nazwy domen
 		return FALSE
-	var/static/regex/ipv4_regex = regex(@"^(\d+)\.(\d+)\.(\d+)\.(\d+)$")
-	if(ipv4_regex.Find(host))
+	// Adres liczbowy tylko w pełnej postaci a.b.c.d bez zer wiodących - skróty (127.1), ósemkowe (0177.0.0.1)
+	// i szesnastkowe (0x7f.1) system i tak zamieniłby na adres, więc odrzucamy je od razu
+	var/static/regex/numeric_host_regex = regex(@"^(0x[0-9a-f]*|[0-9]+)(\.(0x[0-9a-f]*|[0-9]*))*\.?$", "i")
+	var/static/regex/ipv4_regex = regex(@"^(0|[1-9]\d{0,2})\.(0|[1-9]\d{0,2})\.(0|[1-9]\d{0,2})\.(0|[1-9]\d{0,2})$")
+	if(numeric_host_regex.Find(host))
+		if(!ipv4_regex.Find(host))
+			return FALSE
 		var/a = text2num(ipv4_regex.group[1])
 		var/b = text2num(ipv4_regex.group[2])
+		if(a > 255 || b > 255 || text2num(ipv4_regex.group[3]) > 255 || text2num(ipv4_regex.group[4]) > 255)
+			return FALSE
 		if(a == 0 || a == 10 || a == 127 || (a == 169 && b == 254) || (a == 172 && b >= 16 && b <= 31) || (a == 192 && b == 168) || (a == 100 && b >= 64 && b <= 127) || a >= 224)
 			return FALSE
 	else if(!findtext(host, ".")) // nazwa bez domeny (np. host w sieci lokalnej) albo liczba zamiast adresu
