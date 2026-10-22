@@ -1044,6 +1044,7 @@
 #include "code\modules\unit_tests\aquila_exodrone.dm"
 #include "code\modules\unit_tests\aquila_traitor_objectives.dm"
 #include "code\modules\unit_tests\aquila_ghost_polls.dm"
+#include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_heart_blood.dm"
 #include "code\modules\unit_tests\aquila_plumbing.dm"
 #include "code\modules\unit_tests\aquila_hygiene.dm"
