@@ -40,6 +40,9 @@
 	if(!owner || (organ_flags & ORGAN_FAILING))
 		return null
 	for(var/obj/item/gun/gun in owner.get_held_items_for_side(zone == BODY_ZONE_L_ARM ? "left" : "right", TRUE))
+		// Broń w trakcie usuwania wciąż bywa w held_items, gdy przychodzi COMSIG_PARENT_QDELETING
+		if(QDELETED(gun))
+			continue
 		if(istype(gun, /obj/item/gun/ballistic) || istype(gun, /obj/item/gun/energy))
 			return gun
 	return null
