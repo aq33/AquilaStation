@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_000
-	name = "PR ???: serwery AI"
-	pr = "aq33/AquilaStation#???"
+/datum/test_chamber_kit/pr_492
+	name = "PR 492: serwery AI"
+	pr = "aq33/AquilaStation#492"
 	description = "Wejdź jako SI (Wejdź w ciało SI / admin: Make AI) albo wgraj MMI z mózgiem do konsoli sterowania SI (zaloguj się kartą RD/CE). \
 	SI ma wskoczyć do głównego rdzenia danych. Panel przetwarzania (przycisk w HUD): przydziel CPU do projektu, uruchom ukończony projekt. \
 	Konsola dystrybucji: przydziel CPU/RAM. Składarka racków: włóż procesor, dodaj RAM (materiały w skrzynce), zbuduj rack i włóż go do szafy. \
@@ -20,7 +20,7 @@
 		/obj/item/mmi = 1,
 	)
 
-/datum/test_chamber_kit/pr_000/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_492/setup(list/spawned, list/turfs, turf/center, mob/user)
 	// Podtypy osobno, bo test komory liczy przez istype tylko to, co jest w items
 	spawned += new /obj/machinery/ai/data_core(turfs[min(length(spawned) + 1, length(turfs))])
 	new /obj/machinery/ai/server_cabinet(turfs[min(length(spawned) + 2, length(turfs))])
