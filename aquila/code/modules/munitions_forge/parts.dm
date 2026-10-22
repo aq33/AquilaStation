@@ -1,5 +1,5 @@
-// AQUILA - kuźnia amunicji: części wylewane w basenie, kształtowane młotem i składane w monterze.
-// Na wzór /obj/item/smithed_item/component z Paradise (ciepło, chłodzenie, cykle młota, parzenie).
+// AQUILA - kuźnia amunicji: części wylewane w piecu łukowym, kute na kowadle i składane na stole montażowym.
+// Na wzór /obj/item/smithed_item/component z Paradise (ciepło, chłodzenie, parzenie), kucie jak na kowadle z Monkestation.
 // Korpus niesie materiał, wypełnienie i zapalnik niosą tylko jakość.
 
 /obj/item/munition_part
@@ -10,10 +10,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	/// Ile materiału (jednostki silosu) zużywa odlew. Dla korpusu: wybranego materiału, dla reszty: base_cost.
 	var/list/base_cost = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT)
+	/// Klasa: z formy po odlaniu, po kuciu ta, którą wykuto
 	var/datum/munition_quality/quality
 	var/forge_heat = 0
-	/// Ile jeszcze cykli młota potrzeba
+	/// Pracochłonność kucia (1 zapalnik, 4 głowica). 0 = część wykuta.
 	var/hammer_time = 3
+	/// Jak równo wykuto (0-1), null przed kuciem
+	var/forging_accuracy
 	var/cool_time = 10 SECONDS
 
 /obj/item/munition_part/Initialize(mapload)
@@ -21,12 +24,40 @@
 	if(!quality)
 		quality = get_munition_quality(/datum/munition_quality)
 
-/// Wołane przez basen zaraz po odlaniu.
+/// Wołane przez piec łukowy zaraz po odlaniu.
 /obj/item/munition_part/proc/cast_finished(datum/munition_quality/new_quality)
 	quality = new_quality
-	hammer_time = CEILING(initial(hammer_time) * quality.work_mult, 1)
 	name = "[initial(name)] (klasa [quality.roman])"
 	heat_up(5)
+
+/// Ile nut ma minigra na kowadle
+/obj/item/munition_part/proc/forging_notes()
+	return clamp(round(4 * hammer_time * quality.work_mult), 4, 60)
+
+/// Wołane przez kowadło po minigrze
+/obj/item/munition_part/proc/forging_finished(datum/munition_quality/final_quality, accuracy)
+	quality = final_quality
+	forging_accuracy = accuracy
+	hammer_time = 0
+	update_part_name()
+	apply_quality_look(src, quality)
+	remove_filter("forging_damage")
+	var/damage_state = forging_damage_state()
+	if(damage_state)
+		add_filter("forging_damage", 1, alpha_mask_filter(icon = icon('aquila/icons/obj/munitions_forge/forge_structures.dmi', damage_state), flags = MASK_INVERSE))
+
+/obj/item/munition_part/proc/update_part_name()
+	name = "[initial(name)] (klasa [quality.roman])"
+
+/// Maska rys z Monkestation: im gorzej wykute, tym bardziej poszarpane
+/obj/item/munition_part/proc/forging_damage_state()
+	if(isnull(forging_accuracy) || forging_accuracy >= 0.9)
+		return null
+	if(forging_accuracy >= 0.75)
+		return "damage-1"
+	if(forging_accuracy >= 0.6)
+		return "damage-2"
+	return "damage-3"
 
 /obj/item/munition_part/update_icon_state()
 	icon_state = forge_heat ? "[initial(icon_state)]_hot" : initial(icon_state)
@@ -46,9 +77,6 @@
 	else
 		update_icon()
 
-/obj/item/munition_part/proc/hammer()
-	hammer_time = max(hammer_time - 1, 0)
-
 /obj/item/munition_part/proc/is_finished()
 	return !hammer_time
 
@@ -57,9 +85,11 @@
 	if(quality)
 		. += "<span class='notice'>Jakość: klasa [quality.roman] ([quality.name]).</span>"
 	if(hammer_time)
-		. += "Trzeba go jeszcze [hammer_time] razy przepuścić pod młotem pneumatycznym."
+		. += "Trzeba go jeszcze wykuć na kowadle, póki jest gorący."
 	else
 		. += "Jest gotowy do montażu."
+		if(forging_damage_state())
+			. += "<span class='warning'>Kuto go nierówno, widać rysy i wgniecenia.</span>"
 	if(forge_heat)
 		. += "<span class='warning'>Jest rozgrzany do czerwoności!</span>"
 
@@ -98,6 +128,36 @@
 
 // ---------------------------------------------------------------- korpusy
 
+/// Nakłada właściwości kuźni na wyrób. Pudełko i magazynek nie niosą komponentu, tylko każdy nabój w środku.
+/proc/apply_forged_munition(atom/movable/product, datum/munition_material/material, datum/munition_quality/quality, datum/munition_filler/filler, galvanized = FALSE)
+	if(!istype(product, /obj/item/ammo_box))
+		product.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized)
+		return
+	var/obj/item/ammo_box/box = product
+	for(var/obj/item/ammo_casing/casing in box.stored_ammo)
+		casing.AddComponent(/datum/component/forged_munition, material, quality, filler, galvanized)
+	box.name = "[box.name] ([material.name][filler ? ", [filler.short_name]" : ""][galvanized ? "" : ", klasa [quality.roman]"])"
+	apply_quality_look(box, quality)
+
+/// Wyrób -> typ korpusu, z którego powstaje (galwanizer i eksport)
+GLOBAL_LIST_INIT(munition_products, init_munition_products())
+
+/proc/init_munition_products()
+	. = list()
+	for(var/path in subtypesof(/obj/item/munition_part/body))
+		var/obj/item/munition_part/body/B = path
+		if(initial(B.product_path))
+			.[initial(B.product_path)] = path
+
+/// Wykuty wyrób: komponent na nim albo na pierwszym naboju w pudełku
+/proc/get_forged_munition(atom/A)
+	. = A.GetComponent(/datum/component/forged_munition)
+	if(. || !istype(A, /obj/item/ammo_box))
+		return
+	var/obj/item/ammo_box/box = A
+	for(var/obj/item/ammo_casing/casing in box.stored_ammo)
+		return casing.GetComponent(/datum/component/forged_munition)
+
 /obj/item/munition_part/body
 	name = "korpus"
 	/// Ile jednostek wybranego materiału idzie na odlew (przed mnożnikami)
@@ -105,7 +165,7 @@
 	var/datum/munition_material/material
 	/// Jaki zapalnik pasuje
 	var/fuze_type = /obj/item/munition_part/fuze/impact
-	/// Co powstaje w monterze
+	/// Co powstaje na stole montażowym
 	var/product_path
 
 /obj/item/munition_part/body/proc/set_material(datum/munition_material/new_material)
@@ -113,15 +173,19 @@
 	if(material.color_tint)
 		add_atom_colour(material.color_tint, FIXED_COLOUR_PRIORITY)
 
+/obj/item/munition_part/body/update_part_name()
+	if(!material)
+		return ..()
+	name = "[initial(name)] ([material.name], klasa [quality.roman])"
+
 /obj/item/munition_part/body/cast_finished(datum/munition_quality/new_quality)
 	..()
-	if(material)
-		name = "[initial(name)] ([material.name], klasa [quality.roman])"
+	update_part_name()
 
 /// Tworzy wyrób. Zwraca listę rzeczy, które powstały.
 /obj/item/munition_part/body/proc/create_product(atom/location, datum/munition_quality/final_quality, datum/munition_filler/filler)
 	var/atom/movable/product = new product_path(location)
-	product.AddComponent(/datum/component/forged_munition, material, final_quality, filler)
+	apply_forged_munition(product, material, final_quality, filler)
 	return list(product)
 
 // Łuski — wyrobem jest całe pudełko lub magazynek, a komponent dostaje każdy nabój.
@@ -133,9 +197,7 @@
 
 /obj/item/munition_part/body/casings/create_product(atom/location, datum/munition_quality/final_quality, datum/munition_filler/filler)
 	var/obj/item/ammo_box/box = new product_path(location)
-	for(var/obj/item/ammo_casing/casing in box.stored_ammo)
-		casing.AddComponent(/datum/component/forged_munition, material, final_quality, filler)
-	box.name = "[box.name] ([material.name][filler ? ", [filler.short_name]" : ""], klasa [final_quality.roman])"
+	apply_forged_munition(box, material, final_quality, filler)
 	return list(box)
 
 /obj/item/munition_part/body/casings/c9mm

@@ -445,7 +445,7 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "aZ" = (
-/obj/machinery/munitions_forge/crucible,
+/obj/machinery/munitions_forge/arc_forge,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "ba" = (
@@ -1656,7 +1656,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/machinery/munitions_forge/basin,
+/obj/machinery/munitions_forge/electroplater,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "dJ" = (
@@ -1744,11 +1744,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
-"dU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/munitions_forge/hammer,
-/turf/open/floor/engine,
-/area/nsv/weapons/fore)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2272,7 +2267,7 @@
 /area/hallway/primary/fore)
 "fh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/munitions_forge/furnace,
+/obj/machinery/munitions_forge/anvil,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "fi" = (
@@ -3044,13 +3039,14 @@
 "gU" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/munition_casts,
+/obj/item/munitions_analyzer,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "gV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/machinery/munitions_forge/assembler,
+/obj/machinery/munitions_forge/assembly_bench,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "gW" = (
@@ -68046,7 +68042,7 @@ fh
 aV
 vn
 yS
-dU
+fh
 Ln
 gU
 SP

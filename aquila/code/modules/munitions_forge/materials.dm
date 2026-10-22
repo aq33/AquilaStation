@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 
 /proc/init_munition_materials()
 	. = list()
-	for(var/path in subtypesof(/datum/munition_material))
+	for(var/path in subtypesof(/datum/munition_material) - typesof(/datum/munition_material/alloy))
 		var/datum/munition_material/M = new path
 		.[M.material_type] = M
 
@@ -45,16 +45,30 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	var/sheets_mult = 1
 	/// Kolor wyrobu, null = bez barwienia
 	var/color_tint
-	/// Krótki opis efektu specjalnego do examine
+	/// Krótki opis do examine (to, czego nie mówią liczby i cechy)
 	var/special_desc
+	/// Ścieżki cech, z których powstaje lista traits
+	var/list/trait_types
+	/// Cechy: typ -> /datum/munition_trait
+	var/list/traits
 
-/// Efekt przy trafieniu w moba lub obiekt (broń ręczna).
-/datum/munition_material/proc/on_hit(obj/item/projectile/P, atom/target)
-	return
+/datum/munition_material/New()
+	. = ..()
+	traits = list()
+	for(var/path in trait_types)
+		traits[path] = new path
 
-/// Efekt przy trafieniu w statek na overmapie.
-/datum/munition_material/proc/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target)
-	return
+/// Składniki w silosie: typ materiału -> udział (czysty materiał to on sam w całości)
+/datum/munition_material/proc/get_components()
+	. = list()
+	.[material_type] = 1
+
+/// Ile jednostek każdego składnika potrzeba na odlew (amount to ilość przed mnożnikiem materiału)
+/datum/munition_material/proc/get_cost(amount)
+	. = list()
+	var/list/components = get_components()
+	for(var/mat in components)
+		.[mat] = round(amount * sheets_mult * components[mat])
 
 /datum/munition_material/iron
 	name = "żelazo"
@@ -74,6 +88,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	damage_mult = 1.05
 	armour_pen_add = 5
 	color_tint = "#d9864a"
+	trait_types = list(/datum/munition_trait/conductive)
 
 /datum/munition_material/titanium
 	name = "tytan"
@@ -102,15 +117,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	speed_mult = 0.95
 	sheets_mult = 1.5
 	color_tint = "#e6e6f0"
-	special_desc = "Dodatkowo rani kultystów i wampiry, wzmacnia ładunek EMP."
-
-/datum/munition_material/silver/on_hit(obj/item/projectile/P, atom/target)
-	if(!isliving(target))
-		return
-	var/mob/living/L = target
-	if(IS_CULTIST(L) || IS_VAMPIRE(L))
-		L.apply_damage(P.damage * 0.5, BRUTE, P.def_zone)
-		to_chat(L, "<span class='userdanger'>Srebro pali cię od środka!</span>")
+	trait_types = list(/datum/munition_trait/holy, /datum/munition_trait/conductive)
 
 /datum/munition_material/gold
 	name = "złoto"
@@ -138,12 +145,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	integrity_mult = 1.1
 	sheets_mult = 2
 	color_tint = "#6fdc5a"
-	special_desc = "Napromieniowuje trafionych."
-
-/datum/munition_material/uranium/on_hit(obj/item/projectile/P, atom/target)
-	if(isliving(target))
-		var/mob/living/L = target
-		L.apply_effect(30, EFFECT_IRRADIATE)
+	trait_types = list(/datum/munition_trait/radioactive)
 
 /datum/munition_material/plasma
 	name = "plazma"
@@ -157,18 +159,7 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	integrity_mult = 0.9
 	sheets_mult = 1.5
 	color_tint = "#c15bd6"
-	special_desc = "Podpala cel."
-
-/datum/munition_material/plasma/on_hit(obj/item/projectile/P, atom/target)
-	if(isliving(target))
-		var/mob/living/L = target
-		L.adjust_fire_stacks(1)
-		L.IgniteMob()
-
-/datum/munition_material/plasma/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target)
-	if(target.ai_controlled || istype(target, /obj/structure/overmap/small_craft))
-		target.hullburn += 5
-		target.hullburn_power = max(target.hullburn_power, 4)
+	trait_types = list(/datum/munition_trait/incendiary)
 
 /datum/munition_material/diamond
 	name = "diament"
@@ -209,13 +200,82 @@ GLOBAL_LIST_INIT(munition_materials, init_munition_materials())
 	armour_pen_add = -20
 	sheets_mult = 2
 	color_tint = "#ffe94a"
-	special_desc = "HONK."
+	trait_types = list(/datum/munition_trait/honk)
 
-/datum/munition_material/bananium/on_hit(obj/item/projectile/P, atom/target)
-	playsound(get_turf(target), 'sound/items/bikehorn.ogg', 50, TRUE)
-	if(isliving(target) && prob(25))
-		var/mob/living/L = target
-		L.Knockdown(1 SECONDS)
+// ---------------------------------------------------------------- stopy
 
-/datum/munition_material/bananium/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target)
-	playsound(target, 'sound/items/bikehorn.ogg', 100, TRUE)
+/// Stopy powstają w piecu łukowym z dwóch materiałów po połowie. Jeden datum na parę, trzymany w GLOB.
+GLOBAL_LIST_EMPTY(munition_alloys)
+
+/// Udział cech składnika w stopie
+#define MUNITION_ALLOY_TRAIT_POWER 0.6
+
+/proc/get_munition_alloy(datum/munition_material/first, datum/munition_material/second)
+	if(!first || !second || first == second || istype(first, /datum/munition_material/alloy) || istype(second, /datum/munition_material/alloy))
+		return null
+	// kolejność jak w tabeli, żeby uran+tytan i tytan+uran to był ten sam stop
+	var/list/order = list()
+	for(var/key in GLOB.munition_materials)
+		order += GLOB.munition_materials[key]
+	if(order.Find(first) > order.Find(second))
+		var/datum/munition_material/swap = first
+		first = second
+		second = swap
+	var/key = "[first.material_type]+[second.material_type]"
+	if(!GLOB.munition_alloys[key])
+		GLOB.munition_alloys[key] = new /datum/munition_material/alloy(first, second)
+	return GLOB.munition_alloys[key]
+
+/datum/munition_material/alloy
+	name = "stop"
+	var/datum/munition_material/first
+	var/datum/munition_material/second
+
+/datum/munition_material/alloy/New(datum/munition_material/first, datum/munition_material/second)
+	. = ..()
+	src.first = first
+	src.second = second
+	name = "[first.name]-[second.name]"
+	material_type = first.material_type
+	density = (first.density + second.density) / 2
+	hardness = (first.hardness + second.hardness) / 2
+	conductivity = (first.conductivity + second.conductivity) / 2
+	damage_mult = round((first.damage_mult + second.damage_mult) / 2, 0.01)
+	armour_pen_add = round((first.armour_pen_add + second.armour_pen_add) / 2)
+	speed_mult = round((first.speed_mult + second.speed_mult) / 2, 0.01)
+	integrity_mult = round((first.integrity_mult + second.integrity_mult) / 2, 0.01)
+	sheets_mult = (first.sheets_mult + second.sheets_mult) / 2
+	if(first.color_tint || second.color_tint)
+		color_tint = BlendRGB(first.color_tint || "#9a9a9a", second.color_tint || "#9a9a9a", 0.5)
+	var/list/descs = list()
+	for(var/datum/munition_material/M as anything in list(first, second))
+		if(M.special_desc)
+			descs += M.special_desc
+	if(length(descs))
+		special_desc = "Po połowie: [jointext(descs, " ")]"
+	traits = list()
+	merge_munition_traits(traits, first.traits, MUNITION_ALLOY_TRAIT_POWER)
+	merge_munition_traits(traits, second.traits, MUNITION_ALLOY_TRAIT_POWER)
+
+/datum/munition_material/alloy/get_components()
+	. = list()
+	.[first.material_type] = 0.5
+	.[second.material_type] = 0.5
+
+/// Każdy składnik liczy się ze swoim mnożnikiem kosztu
+/datum/munition_material/alloy/get_cost(amount)
+	. = list()
+	for(var/datum/munition_material/M as anything in list(first, second))
+		.[M.material_type] = round(amount * M.sheets_mult * 0.5)
+
+#undef MUNITION_ALLOY_TRAIT_POWER
+
+/// Linie do analizatora: liczby i cechy materiału
+/datum/munition_material/proc/stat_lines()
+	. = list("obrażenia ×[damage_mult]", "przebicie [armour_pen_add >= 0 ? "+" : ""][armour_pen_add]", "prędkość ×[speed_mult]", "wytrzymałość ×[integrity_mult]", "koszt ×[sheets_mult]")
+	. = list(jointext(., ", "))
+	if(special_desc)
+		. += special_desc
+	for(var/key in traits)
+		var/datum/munition_trait/T = traits[key]
+		. += "[capitalize(T.name)]: [T.describe()]"

@@ -1,46 +1,37 @@
 // AQUILA - kuźnia amunicji: płytki maszyn, projekty i wpisy w techwebie.
 
-/obj/item/circuitboard/machine/munitions_crucible
-	name = "Munitions Crucible (Machine Board)"
+/obj/item/circuitboard/machine/munitions_arc_forge
+	name = "Arc Forge (Machine Board)"
 	icon_state = "engineering"
-	build_path = /obj/machinery/munitions_forge/crucible
+	build_path = /obj/machinery/munitions_forge/arc_forge
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 2,
 		/obj/item/stock_parts/micro_laser = 2,
+		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/assembly/igniter = 1)
 
-/obj/item/circuitboard/machine/munitions_basin
-	name = "Casting Basin (Machine Board)"
+/obj/item/circuitboard/machine/munitions_anvil
+	name = "Munitions Anvil (Machine Board)"
 	icon_state = "engineering"
-	build_path = /obj/machinery/munitions_forge/basin
+	build_path = /obj/machinery/munitions_forge/anvil
+	req_components = list(
+		/obj/item/stack/sheet/plasteel = 5)
+
+/obj/item/circuitboard/machine/munitions_assembly_bench
+	name = "Munitions Assembly Bench (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/munitions_forge/assembly_bench
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/iron = 5)
+
+/obj/item/circuitboard/machine/munitions_electroplater
+	name = "Munitions Electroplater (Machine Board)"
+	icon_state = "engineering"
+	build_path = /obj/machinery/munitions_forge/electroplater
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stack/sheet/glass = 1)
-
-/obj/item/circuitboard/machine/munitions_furnace
-	name = "Induction Furnace (Machine Board)"
-	icon_state = "engineering"
-	build_path = /obj/machinery/munitions_forge/furnace
-	req_components = list(
-		/obj/item/stock_parts/micro_laser = 2,
-		/obj/item/assembly/igniter = 1)
-
-/obj/item/circuitboard/machine/munitions_hammer
-	name = "Power Hammer (Machine Board)"
-	icon_state = "engineering"
-	build_path = /obj/machinery/munitions_forge/hammer
-	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
-		/obj/item/stack/sheet/plasteel = 2)
-
-/obj/item/circuitboard/machine/munitions_assembler
-	name = "Munitions Assembler (Machine Board)"
-	icon_state = "engineering"
-	build_path = /obj/machinery/munitions_forge/assembler
-	req_components = list(
-		/obj/item/stock_parts/manipulator = 2,
-		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/sheet/glass = 1)
 
 // Jak płytki fabryki rakiet: do zrobienia w protolathe działu uzbrojenia i w drukarce obwodów.
@@ -50,35 +41,39 @@
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
-/datum/design/board/munitions_forge/crucible
-	name = "Machine Design (Munitions Crucible)"
-	desc = "Tygiel kuźni amunicji, pobiera materiał z silosu."
-	id = "munitions_crucible"
-	build_path = /obj/item/circuitboard/machine/munitions_crucible
+/datum/design/board/munitions_forge/arc_forge
+	name = "Machine Design (Arc Forge)"
+	desc = "Piec łukowy kuźni amunicji, odlewa części z materiału z silosu."
+	id = "munitions_arc_forge"
+	build_path = /obj/item/circuitboard/machine/munitions_arc_forge
 
-/datum/design/board/munitions_forge/basin
-	name = "Machine Design (Casting Basin)"
-	desc = "Basen odlewniczy kuźni amunicji."
-	id = "munitions_basin"
-	build_path = /obj/item/circuitboard/machine/munitions_basin
+/datum/design/board/munitions_forge/anvil
+	name = "Machine Design (Munitions Anvil)"
+	desc = "Kowadło do kucia odlewów amunicji."
+	id = "munitions_anvil"
+	build_path = /obj/item/circuitboard/machine/munitions_anvil
 
-/datum/design/board/munitions_forge/furnace
-	name = "Machine Design (Induction Furnace)"
-	desc = "Piec dogrzewający odlewy kuźni amunicji."
-	id = "munitions_furnace"
-	build_path = /obj/item/circuitboard/machine/munitions_furnace
+/datum/design/board/munitions_forge/assembly_bench
+	name = "Machine Design (Munitions Assembly Bench)"
+	desc = "Stół do składania amunicji z części."
+	id = "munitions_assembly_bench"
+	build_path = /obj/item/circuitboard/machine/munitions_assembly_bench
 
-/datum/design/board/munitions_forge/hammer
-	name = "Machine Design (Power Hammer)"
-	desc = "Młot pneumatyczny kuźni amunicji."
-	id = "munitions_hammer"
-	build_path = /obj/item/circuitboard/machine/munitions_hammer
+/datum/design/board/munitions_forge/electroplater
+	name = "Machine Design (Munitions Electroplater)"
+	desc = "Galwanizer, który pokrywa zwykłą amunicję materiałem z silosu."
+	id = "munitions_electroplater"
+	build_path = /obj/item/circuitboard/machine/munitions_electroplater
 
-/datum/design/board/munitions_forge/assembler
-	name = "Machine Design (Munitions Assembler)"
-	desc = "Monter składający amunicję z części."
-	id = "munitions_assembler"
-	build_path = /obj/item/circuitboard/machine/munitions_assembler
+/datum/design/munitions_analyzer
+	name = "Analizator amunicji"
+	desc = "Skaner do kuźni amunicji."
+	id = "munitions_analyzer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 500, /datum/material/glass = 200)
+	build_path = /obj/item/munitions_analyzer
+	category = list("Advanced Munitions")
+	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
 /datum/design/munition_cast
 	name = "Forma łusek"
@@ -119,7 +114,7 @@
 // Maszyny i podstawowe formy razem z artylerią, forma głowic z głowicami torped.
 /datum/techweb_node/advanced_ballistics/New()
 	. = ..()
-	design_ids += list("munitions_crucible", "munitions_basin", "munitions_furnace", "munitions_hammer", "munitions_assembler", "munition_cast_casings", "munition_cast_shell", "munition_cast_filler", "munition_cast_fuze")
+	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer", "munition_cast_casings", "munition_cast_shell", "munition_cast_filler", "munition_cast_fuze")
 
 /datum/techweb_node/basic_torpedo_components/New()
 	. = ..()

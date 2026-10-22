@@ -10,19 +10,33 @@ GLOBAL_LIST_INIT(munition_qualities, init_munition_qualities())
 /proc/get_munition_quality(quality_type)
 	return GLOB.munition_qualities[quality_type]
 
-/// Jakość wybiera się na formie. Bonus mnoży obrażenia i wytrzymałość pocisku, przebicie i prędkość daje tylko materiał.
+/// Klasy od najniższej
+/proc/munition_quality_levels()
+	return typesof(/datum/munition_quality)
+
+/// Klasa o tyle stopni niżej, nie niżej niż I
+/proc/lower_munition_quality(datum/munition_quality/quality, steps)
+	var/list/levels = munition_quality_levels()
+	var/index = clamp(levels.Find(quality.type) - steps, 1, length(levels))
+	return get_munition_quality(levels[index])
+
+/// Docelową klasę wybiera się na formie, a ostateczną daje kucie na kowadle.
+/// Bonus mnoży obrażenia i wytrzymałość pocisku, przebicie i prędkość daje tylko materiał.
 /datum/munition_quality
 	var/name = "standardowa"
 	/// Numer klasy do nazw wyrobów
 	var/roman = "I"
+	/// 0 dla klasy I, 4 dla klasy V
+	var/level = 0
 	var/bonus = 1
 	var/material_mult = 1
-	/// Mnożnik cykli młota
+	/// Mnożnik długości kucia na kowadle
 	var/work_mult = 1
 
 /datum/munition_quality/improved
 	name = "ulepszona"
 	roman = "II"
+	level = 1
 	bonus = 1.05
 	material_mult = 1.5
 	work_mult = 2
@@ -30,6 +44,7 @@ GLOBAL_LIST_INIT(munition_qualities, init_munition_qualities())
 /datum/munition_quality/enhanced
 	name = "wzmocniona"
 	roman = "III"
+	level = 2
 	bonus = 1.1
 	material_mult = 2
 	work_mult = 3
@@ -37,6 +52,7 @@ GLOBAL_LIST_INIT(munition_qualities, init_munition_qualities())
 /datum/munition_quality/superior
 	name = "wyborowa"
 	roman = "IV"
+	level = 3
 	bonus = 1.15
 	material_mult = 3
 	work_mult = 4.5
@@ -44,6 +60,7 @@ GLOBAL_LIST_INIT(munition_qualities, init_munition_qualities())
 /datum/munition_quality/masterwork
 	name = "mistrzowska"
 	roman = "V"
+	level = 4
 	bonus = 1.2
 	material_mult = 4
 	work_mult = 6
@@ -65,12 +82,15 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 	var/desc
 	var/damage_mult = 1
 	var/armour_pen_add = 0
+	var/list/trait_types
+	/// Cechy: typ -> /datum/munition_trait
+	var/list/traits
 
-/datum/munition_filler/proc/on_hit(obj/item/projectile/P, atom/target, datum/munition_material/material)
-	return
-
-/datum/munition_filler/proc/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/munition_material/material)
-	return
+/datum/munition_filler/New()
+	. = ..()
+	traits = list()
+	for(var/path in trait_types)
+		traits[path] = new path
 
 /datum/munition_filler/he
 	name = "ładunek odłamkowo-burzący"
@@ -91,39 +111,11 @@ GLOBAL_LIST_INIT(munition_fillers, init_munition_fillers())
 	short_name = "Z"
 	desc = "Podpala cel i kadłub trafionego statku."
 	damage_mult = 0.95
-
-/datum/munition_filler/incendiary/on_hit(obj/item/projectile/P, atom/target, datum/munition_material/material)
-	if(isliving(target))
-		var/mob/living/L = target
-		L.adjust_fire_stacks(2)
-		L.IgniteMob()
-
-/datum/munition_filler/incendiary/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/munition_material/material)
-	if(target.ai_controlled || istype(target, /obj/structure/overmap/small_craft))
-		target.hullburn += 10
-		target.hullburn_power = max(target.hullburn_power, 6)
+	trait_types = list(/datum/munition_trait/incendiary/filler)
 
 /datum/munition_filler/emp
 	name = "ładunek EMP"
 	short_name = "EMP"
 	desc = "Zakłóca elektronikę celu. Ze srebra i miedzi działa mocniej."
 	damage_mult = 0.8
-
-/datum/munition_filler/emp/proc/strength(datum/munition_material/material)
-	if(istype(material, /datum/munition_material/silver) || istype(material, /datum/munition_material/copper))
-		return 1.5
-	return 1
-
-/datum/munition_filler/emp/on_hit(obj/item/projectile/P, atom/target, datum/munition_material/material)
-	target.emp_act(strength(material) > 1 ? EMP_HEAVY : EMP_LIGHT)
-
-/datum/munition_filler/emp/on_overmap_hit(obj/item/projectile/P, obj/structure/overmap/target, datum/munition_material/material)
-	var/power = round(10 * strength(material))
-	if(target.ai_controlled)
-		if(target.disruption <= (power * 2))
-			target.disruption = min(target.disruption + power, power * 2)
-		return
-	if(istype(target, /obj/structure/overmap/small_craft))
-		target.disruption += round(25 * strength(material))
-		return
-	target.add_sensor_profile_penalty(150, 10 SECONDS)
+	trait_types = list(/datum/munition_trait/emp)
