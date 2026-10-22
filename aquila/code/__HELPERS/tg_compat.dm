@@ -228,3 +228,59 @@
 /mob/living/carbon/human/examine(mob/user)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
+
+// --- Rany: API z tg na lekkich ranach Aquili (aquila/code/modules/wounds) ---
+
+/// Najcięższy rodzaj rany danego typu (WOUND_SLASH/BLUNT/BURN), który nie przekracza podanej ciężkości
+/proc/aq_wound_path_for(wound_type, severity)
+	var/chosen
+	for(var/datum/wound/path as anything in aq_wound_types(wound_type))
+		if(initial(path.severity) <= severity)
+			chosen = path
+	return chosen || aq_wound_types(wound_type)?[1]
+
+/// tg: daje kończynie ranę danego typu i ciężkości (albo cięższą, jeśli już jest lżejsza). Zwraca ranę albo null.
+/obj/item/bodypart/proc/aq_force_wound(wound_type, severity)
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner) || !IS_ORGANIC_LIMB(src) || (carbon_owner.status_flags & GODMODE))
+		return
+	if(HAS_TRAIT(carbon_owner, TRAIT_NEVER_WOUNDED))
+		return
+	if(wound_type == WOUND_SLASH && HAS_TRAIT(carbon_owner, TRAIT_NO_BLOOD))
+		return
+	var/datum/wound/path = aq_wound_path_for(wound_type, severity)
+	if(!path)
+		return
+	var/zones = initial(path.allowed_zones)
+	if(zones && !(body_zone in zones))
+		return
+	var/datum/wound/existing = get_wound(wound_type)
+	if(existing)
+		if(existing.severity >= initial(path.severity))
+			return existing
+		qdel(existing)
+	var/datum/wound/new_wound = new path()
+	new_wound.apply_wound(src)
+	return new_wound
+
+/// tg: rana danego typu i ciężkości na kończynie (albo losowej)
+/mob/living/carbon/proc/cause_wound_of_type_and_severity(wound_type, obj/item/bodypart/limb, severity)
+	limb ||= pick(bodyparts)
+	return limb?.aq_force_wound(wound_type, severity)
+
+/// tg: wszystkie rany moba
+/mob/living/carbon/proc/get_all_wounds()
+	. = list()
+	for(var/obj/item/bodypart/limb as anything in bodyparts)
+		if(LAZYLEN(limb.wounds))
+			. += limb.wounds
+
+/// tg: zdejmuje ranę (u nas po prostu ją usuwa)
+/datum/wound/proc/remove_wound()
+	qdel(src)
+
+/// tg: TRAIT_NEVER_WOUNDED blokuje rany (wniebowstąpienie Ostrza, szaty)
+/mob/living/carbon/check_wounding(obj/item/bodypart/limb, damage, wound_type)
+	if(HAS_TRAIT(src, TRAIT_NEVER_WOUNDED))
+		return
+	return ..()

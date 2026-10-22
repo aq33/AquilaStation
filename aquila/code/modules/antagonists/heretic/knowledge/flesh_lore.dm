@@ -267,16 +267,17 @@
 		Wreszcie zacząłem rozumieć. A potem z nieba spadł deszcz krwi."
 	research_tree_icon_path = 'aquila/icons/ui_icons/antags/heretic/knowledge.dmi'
 	research_tree_icon_state = "blade_upgrade_flesh"
-	// AQUILA - ran z tg (/datum/wound) u nas nie ma; ciężka rana cięta to u nas silne krwawienie
-	/// How heavy is the bleeding we apply on hit
-	var/bleed_level = BLEED_DEEP_WOUND
+	/// Severity of the slash wound we apply on hit (AQUILA - lekkie rany Aquili)
+	var/wound_severity = WOUND_SEVERITY_SEVERE
 
 /datum/heretic_knowledge/blade_upgrade/flesh/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
 	if(!iscarbon(target) || source == target)
 		return
 
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.add_bleeding(bleed_level)
+	var/obj/item/bodypart/bodypart = pick(carbon_target.get_bodyparts())
+	if(!bodypart?.aq_force_wound(WOUND_SLASH, wound_severity))
+		carbon_target.add_bleeding(BLEED_DEEP_WOUND) // AQUILA - gdy rana się nie przyjmie (np. proteza), zostaje krwawienie
 
 /datum/heretic_knowledge/summon/stalker
 	name = "Lonely Ritual"

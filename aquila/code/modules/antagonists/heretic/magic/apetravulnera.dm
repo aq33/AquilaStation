@@ -15,8 +15,8 @@
 	spell_requirements = NONE
 
 	cast_range = 4
-	/// AQUILA - tg nakłada krytyczną ranę cięcia (/datum/wound/slash/flesh/critical/cleave); u nas nie ma ran, więc krwawienie tej siły na kończynę
-	var/bleed_per_limb = BLEED_CRITICAL
+	/// Severity of the slash wound applied to every bruised limb (AQUILA - lekkie rany Aquili)
+	var/wound_severity = WOUND_SEVERITY_CRITICAL
 
 /datum/action/cooldown/spell/pointed/apetra_vulnera/is_valid_target(atom/cast_on)
 	return ..() && ishuman(cast_on)
@@ -42,12 +42,11 @@
 		if(bodypart.brute_dam < 15)
 			continue
 		a_limb_got_damaged = TRUE
-		cast_on.add_bleeding(bleed_per_limb)
+		bodypart.aq_force_wound(WOUND_SLASH, wound_severity)
 
 	if(!a_limb_got_damaged)
 		var/obj/item/bodypart/random_limb = pick(cast_on.bodyparts)
-		cast_on.apply_damage(10, BRUTE, random_limb)
-		cast_on.add_bleeding(bleed_per_limb)
+		random_limb.aq_force_wound(WOUND_SLASH, wound_severity)
 
 	cast_on.visible_message(
 		span_danger("Zadrapania i siniaki [cast_on] rozrywa nieświęta siła!"),

@@ -226,10 +226,12 @@
 		hearer.emote("scream")
 		hearer.add_mood_event("gates_of_mansus", /datum/mood_event/gates_of_mansus)
 		hearer.cultslurring += 8 // AQUILA - zamiast speech/slurring/heretic na 15 s
-		// AQUILA - zamiast rany magicalearpain z tg: krwawienie i uszkodzenie uszu
+		// AQUILA - tg: rana kłuta magicalearpain; u nas ciężka rana cięta głowy i uszkodzenie uszu
 		if(iscarbon(hearer))
 			var/mob/living/carbon/carbon_hearer = hearer
-			carbon_hearer.add_bleeding(BLEED_SURFACE)
+			var/obj/item/bodypart/head/regret = carbon_hearer.get_bodypart(BODY_ZONE_HEAD)
+			if(!regret?.aq_force_wound(WOUND_SLASH, WOUND_SEVERITY_SEVERE))
+				carbon_hearer.add_bleeding(BLEED_SURFACE)
 			carbon_hearer.adjustEarDamage(15, 10)
 			to_chat(hearer, span_userdanger("Z uszu cieknie ci krew!"))
 	return "Serce [owner] wydaje z siebie [span_hypnophrase(beat_noise)]"

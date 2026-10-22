@@ -64,8 +64,8 @@
 /datum/status_effect/eldritch/flesh/on_effect()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
-		// AQUILA - tg: ciężka rana cięta w losowej kończynie; u nas głębokie krwawienie
-		human_owner.add_bleeding(BLEED_DEEP_WOUND)
+		// AQUILA - ciężka rana cięta w losowej kończynie (lekkie rany Aquili)
+		human_owner.cause_wound_of_type_and_severity(WOUND_SLASH, pick(human_owner.get_bodyparts()), WOUND_SEVERITY_SEVERE)
 
 	return ..()
 

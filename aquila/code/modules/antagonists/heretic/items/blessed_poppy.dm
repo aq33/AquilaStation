@@ -62,7 +62,7 @@
 	var/obj/item/bodypart/limb = loc
 	var/mob/living/carbon/owner = limb.owner
 	var/bleeding = owner?.is_bleeding()
-	if(!limb.brute_dam && !limb.burn_dam && !bleeding)
+	if(!limb.brute_dam && !limb.burn_dam && !bleeding && !length(limb.wounds))
 		if(owner)
 			to_chat(owner, span_mansus("[src] usycha."))
 		wither()
@@ -71,6 +71,15 @@
 	limb.heal_damage(0.5 * seconds_per_tick, 0.5 * seconds_per_tick, null, null, FALSE)
 	if(bleeding)
 		owner.cauterise_wounds(0.1 * seconds_per_tick)
+	// AQUILA - mak opatruje rany kończyny; te, które same się goją, goją się szybciej, resztę zamyka po chwili
+	for(var/datum/wound/wound as anything in limb.wounds?.Copy())
+		wound.treated = TRUE
+		wound.heal_progress += 2 * seconds_per_tick SECONDS
+		if(!wound.heal_time && wound.heal_progress >= 60 SECONDS)
+			wound.remove_wound()
+		else if(wound.heal_time && wound.heal_progress >= wound.heal_time)
+			wound.remove_wound()
+	owner?.update_wound_slowdown()
 	owner?.updatehealth()
 
 	if(owner && DT_PROB(33, seconds_per_tick))
@@ -96,7 +105,7 @@
 		carbon_target.balloon_alert(user, "brak kończyny!")
 		return FALSE
 
-	if(!target_limb.brute_dam && !target_limb.burn_dam && !carbon_target.is_bleeding())
+	if(!target_limb.brute_dam && !target_limb.burn_dam && !carbon_target.is_bleeding() && !length(target_limb.wounds))
 		carbon_target.balloon_alert(user, "nie ma czego leczyć!")
 		return FALSE
 

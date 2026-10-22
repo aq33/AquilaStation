@@ -217,13 +217,15 @@
 	var/chance = 35
 
 /datum/heretic_knowledge/blade_upgrade/flesh/lock/do_melee_effects(mob/living/source, mob/living/target, obj/item/melee/sickly_blade/blade)
-	// AQUILA - u nas nie ma ran (/datum/wound); krytyczna rana tnąca to krytyczne krwawienie
+	// AQUILA - krytyczna rana cięta (lekkie rany Aquili)
 	if(!iscarbon(target) || source == target)
 		return
 	if(!prob(chance))
 		return
 	var/mob/living/carbon/carbon_target = target
-	carbon_target.add_bleeding(BLEED_CRITICAL)
+	var/obj/item/bodypart/bodypart = pick(carbon_target.get_bodyparts())
+	if(!bodypart?.aq_force_wound(WOUND_SLASH, WOUND_SEVERITY_CRITICAL))
+		carbon_target.add_bleeding(BLEED_CRITICAL)
 	carbon_target.visible_message(span_danger("Ostrze rozdziera ciało [carbon_target], otwierając krwawiącą ranę!"), span_userdanger("Ostrze rozdziera ci ciało, otwierając krwawiącą ranę!"))
 
 /datum/heretic_knowledge/spell/caretaker_refuge

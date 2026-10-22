@@ -265,10 +265,10 @@
 	if(!length(valid_turfs))
 		if(iscarbon(target))
 			var/mob/living/carbon/carbon_target = target
-			// AQUILA - tg: ciężka rana cięta; u nas obrażenia i krwawienie
+			// AQUILA - ciężka rana cięta na lekkich ranach Aquili
 			var/obj/item/bodypart/limb = pick(carbon_target.get_bodyparts())
 			carbon_target.apply_damage(10, BRUTE, limb)
-			carbon_target.add_bleeding(BLEED_CUT)
+			limb.aq_force_wound(WOUND_SLASH, WOUND_SEVERITY_SEVERE)
 		return
 	throw_blade(pick(valid_turfs), target)
 
@@ -450,12 +450,12 @@
 		iteration++
 		addtimer(CALLBACK(src, PROC_REF(tear_limb), victim, limb), 1 SECONDS * iteration)
 
-/// AQUILA - tg: krytyczna rana cięta w każdej kończynie; u nas obrażenia i silne krwawienie
+/// AQUILA - krytyczna rana cięta w każdej kończynie (lekkie rany Aquili) i obrażenia
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/flesh/proc/tear_limb(mob/living/carbon/victim, obj/item/bodypart/limb)
 	if(QDELETED(victim) || QDELETED(limb) || limb.owner != victim || !is_equipped(victim))
 		return
 	victim.apply_damage(15, BRUTE, limb)
-	victim.add_bleeding(BLEED_CUT)
+	limb.aq_force_wound(WOUND_SLASH, WOUND_SEVERITY_CRITICAL)
 	playsound(victim, 'sound/weapons/bladeslice.ogg', 50, TRUE)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/flesh

@@ -27,7 +27,7 @@
 	research_tree_icon_state = "book_morbus"
 	drafting_tier = 2
 
-// AQUILA - u nas nie ma ran (/datum/wound): zamiast krytycznych ran ciętych i złamań ciało dostaje ciężkie obrażenia i krwotok
+// AQUILA - krytyczne rany cięte i złamania otwarte na lekkich ranach Aquili (plus trochę obrażeń)
 /datum/heretic_knowledge/codex_morbus/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
 	. = ..()
 	var/mob/living/carbon/human/to_fuck_up = locate() in selected_atoms
@@ -35,7 +35,8 @@
 		return TRUE
 	for(var/obj/item/bodypart/limb as anything in to_fuck_up.get_bodyparts())
 		limb.receive_damage(brute = 15)
-	to_fuck_up.add_bleeding(BLEED_CRITICAL)
+		limb.aq_force_wound(WOUND_SLASH, WOUND_SEVERITY_CRITICAL)
+		limb.aq_force_wound(WOUND_BLUNT, WOUND_SEVERITY_CRITICAL)
 	to_fuck_up.updatehealth()
 	return TRUE
 

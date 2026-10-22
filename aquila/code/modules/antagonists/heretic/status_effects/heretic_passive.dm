@@ -412,8 +412,10 @@
 	owner.adjust_blood_volume(2.5)
 	if(!iscarbon(owner))
 		return
-	// AQUILA - u nas nie ma ran (/datum/wound), więc tamujemy krwawienie
+	// AQUILA - zdejmuje rany (lekkie rany Aquili) i tamuje krwawienie
 	var/mob/living/carbon/carbon_eater = owner
+	for(var/datum/wound/to_cure as anything in carbon_eater.get_all_wounds())
+		to_cure.remove_wound()
 	carbon_eater.cauterise_wounds(1)
 	if(healed_amount > 0)
 		owner.updatehealth()
@@ -691,7 +693,9 @@
 	var/mob/living/carbon/carbon_owner = source
 	if(passive_level < HERETIC_LEVEL_UPGRADE)
 		return
-	// AQUILA - u nas nie ma ran (/datum/wound), więc tamujemy krwawienie
+	// AQUILA - zdejmuje rany (lekkie rany Aquili) i tamuje krwawienie
+	for(var/datum/wound/to_cure as anything in carbon_owner.get_all_wounds())
+		to_cure.remove_wound()
 	carbon_owner.cauterise_wounds(1)
 	for(var/obj/item/organ/internal as anything in carbon_owner.internal_organs)
 		internal.applyOrganDamage(round(-2 * seconds_per_tick))

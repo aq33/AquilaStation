@@ -52,11 +52,24 @@
 	if(!iscarbon(cast_on) || !iscarbon(owner))
 		return TRUE
 
-	// AQUILA - ran z tg u nas nie ma; z szansą 50% przenosimy krwawienie rzucającego na cel
+	// AQUILA - każda rana rzucającego z szansą 50% przechodzi na tę samą kończynę celu (jak w tg); krwawienie razem z nią
 	var/mob/living/carbon/carbon_target = cast_on
 	var/mob/living/carbon/carbon_user = owner
+	var/moved_wounds = FALSE
+	for(var/obj/item/bodypart/bodypart as anything in carbon_user.get_bodyparts())
+		for(var/datum/wound/iter_wound as anything in bodypart.wounds?.Copy())
+			if(prob(50))
+				continue
+			var/obj/item/bodypart/target_bodypart = carbon_target.get_bodypart(bodypart.body_zone)
+			if(!target_bodypart)
+				continue
+			var/wound_type = iter_wound.wound_type
+			var/wound_severity = iter_wound.severity
+			iter_wound.remove_wound()
+			target_bodypart.aq_force_wound(wound_type, wound_severity)
+			moved_wounds = TRUE
 	var/our_bleeding = carbon_user.get_bleed_rate()
-	if(our_bleeding > 0 && prob(50))
+	if(our_bleeding > 0 && (moved_wounds || prob(50)))
 		carbon_user.cauterise_wounds(our_bleeding)
 		carbon_target.add_bleeding(our_bleeding)
 

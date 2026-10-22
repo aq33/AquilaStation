@@ -96,7 +96,9 @@
 	if(!iscarbon(owner))
 		return
 	var/mob/living/carbon/drinker = owner
-	// AQUILA - u nas zamiast ran jest krwawienie
+	// AQUILA - zdejmuje rany (lekkie rany Aquili) i tamuje krwawienie
+	for(var/datum/wound/found_wound as anything in drinker.get_all_wounds())
+		found_wound.remove_wound()
 	drinker.cauterise_wounds()
 	if(length(drinker.get_missing_limbs()))
 		drinker.regenerate_limbs()
@@ -110,7 +112,22 @@
 
 	carbie.adjustBruteLoss(-0.5 * seconds_between_ticks, updating_health = FALSE)
 	carbie.adjustFireLoss(-0.5 * seconds_between_ticks, updating_health = FALSE)
-	// AQUILA - tg leczy rany zależnie od ich ciężkości; u nas im mocniej krwawisz, tym mocniej leczy
+	// Każda rana leczy tym mocniej, im jest cięższa (jak w tg); oparzenia leczą oparzenia
+	for(var/datum/wound/wound as anything in carbie.get_all_wounds())
+		var/heal_amt = 0
+		switch(wound.severity)
+			if(WOUND_SEVERITY_MODERATE)
+				heal_amt = 1
+			if(WOUND_SEVERITY_SEVERE)
+				heal_amt = 3
+			if(WOUND_SEVERITY_CRITICAL)
+				heal_amt = 6
+		if(wound.wound_type == WOUND_BURN)
+			carbie.adjustFireLoss(-heal_amt * seconds_between_ticks, updating_health = FALSE)
+		else
+			carbie.adjustBruteLoss(-heal_amt * seconds_between_ticks, updating_health = FALSE)
+			carbie.adjust_blood_volume(heal_amt * seconds_between_ticks, maximum = BLOOD_VOLUME_NORMAL)
+	// AQUILA - do tego krwawienie bez rany też leczy
 	var/bleed_rate = carbie.get_bleed_rate()
 	if(bleed_rate)
 		var/heal_amt = 1

@@ -18,9 +18,8 @@
 
 	/// The radius of the cleave effect
 	var/cleave_radius = 1
-	// AQUILA - ran z tg (/datum/wound) u nas nie ma; krytyczna rana cięta to u nas krytyczne krwawienie
-	/// How heavy is the bleeding we apply
-	var/bleed_level = BLEED_CRITICAL
+	/// Severity of the slash wound we apply (AQUILA - lekkie rany Aquili)
+	var/wound_severity = WOUND_SEVERITY_CRITICAL
 
 /datum/action/cooldown/spell/pointed/cleave/is_valid_target(atom/cast_on)
 	return ..() && ishuman(cast_on)
@@ -45,7 +44,8 @@
 			span_danger("Twoje żyły pękają od środka, a z krwi wybucha nieświęty płomień!")
 		)
 
-		victim.add_bleeding(bleed_level)
+		var/obj/item/bodypart/bodypart = pick(victim.get_bodyparts())
+		bodypart?.aq_force_wound(WOUND_SLASH, wound_severity)
 		victim.apply_damage(20, BURN)
 
 		new /obj/effect/temp_visual/cleave(get_turf(victim))
@@ -55,7 +55,7 @@
 /datum/action/cooldown/spell/pointed/cleave/long
 	name = "Lesser Cleave"
 	cooldown_time = 60 SECONDS
-	bleed_level = BLEED_DEEP_WOUND
+	wound_severity = WOUND_SEVERITY_SEVERE
 
 /obj/effect/temp_visual/cleave
 	icon = 'aquila/icons/effects/eldritch.dmi'
