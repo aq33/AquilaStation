@@ -75,6 +75,7 @@
 	item = /obj/item/organ/cyberimp/leg/trait/table_glider
 	price_min = MARKET_CRATE_VALUE * 2
 	price_max = MARKET_CRATE_VALUE * 4
+	stock_min = 2
 	stock_max = 2
 
 /datum/market_item/shoddy_implant/shove_resist
@@ -83,6 +84,7 @@
 	item = /obj/item/organ/cyberimp/leg/trait/shove_resist
 	price_min = MARKET_CRATE_VALUE * 3
 	price_max = MARKET_CRATE_VALUE * 5
+	stock_min = 2
 	stock_max = 2
 	availability_prob = 40
 
@@ -92,6 +94,7 @@
 	item = /obj/item/organ/cyberimp/leg/trait/sprinter
 	price_min = MARKET_CRATE_VALUE * 3
 	price_max = MARKET_CRATE_VALUE * 5
+	stock_min = 2
 	stock_max = 2
 	availability_prob = 30
 
@@ -101,6 +104,7 @@
 	item = /obj/item/organ/cyberimp/leg/accelerator
 	price_min = MARKET_CRATE_VALUE * 5
 	price_max = MARKET_CRATE_VALUE * 7
+	stock_min = 2
 	stock_max = 2
 	availability_prob = 20
 

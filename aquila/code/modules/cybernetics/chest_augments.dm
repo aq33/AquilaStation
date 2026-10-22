@@ -197,7 +197,7 @@
 /obj/item/organ/cyberimp/chest/spinal/dualwield/proc/complement_attack(obj/item/item, mob/living/target)
 	if(QDELETED(owner) || QDELETED(target) || QDELETED(item))
 		return
-	if(owner.get_inactive_held_item() != item)
+	if(owner.get_inactive_held_item() != item || !owner.combat_mode || (organ_flags & ORGAN_FAILING))
 		return
 	if(handle_side_effects(item, target))
 		return

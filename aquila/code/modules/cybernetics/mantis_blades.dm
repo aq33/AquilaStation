@@ -124,9 +124,13 @@
 	if(!other)
 		return
 	var/mob/living/lunger = user
+	var/turf/start_turf = get_turf(lunger)
 	for(var/i in 1 to get_dist(lunger, target))
 		if(!step_towards(lunger, target) && get_dist(lunger, target) >= 1)
 			break
+	// Doskok zablokowany (ściana, drzwi): bez kosztu
+	if(get_turf(lunger) == start_turf)
+		return
 	COOLDOWN_START(src, lunge_cooldown, 10 SECONDS)
 	COOLDOWN_START(other, lunge_cooldown, 10 SECONDS)
 	lunger.adjustStaminaLoss(25)

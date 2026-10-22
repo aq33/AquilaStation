@@ -40,8 +40,10 @@
 	spawn_impact_debris(src, P, DEBRIS_WOOD, -10, 5)
 
 /obj/structure/window/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
+	// Okno może się rozbić w ..(), więc turf bierzemy wcześniej
+	var/turf/hit_turf = get_turf(src)
 	. = ..()
-	spawn_impact_debris(src, P, DEBRIS_GLASS, -10, 5)
+	spawn_impact_debris(hit_turf, P, DEBRIS_GLASS, -10, 5)
 
 /obj/structure/shuttle/engine/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
 	. = ..()

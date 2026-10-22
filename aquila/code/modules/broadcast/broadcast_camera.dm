@@ -110,7 +110,7 @@
 	internal_camera.network = camera_networks.Copy()
 	internal_camera.c_tag = "NA ŻYWO: [broadcast_name]"
 	wielder.log_message("started a Spess.tv stream named \"[broadcast_name]\" at [loc_name(wielder)]", LOG_GAME)
-	start_broadcasting_network(camera_networks, "[broadcast_name] - teraz NA ŻYWO!")
+	start_broadcasting_network(camera_networks, "[html_encode(broadcast_name)] - teraz NA ŻYWO!")
 
 	internal_radio = new(src)
 	set_microphone_state()

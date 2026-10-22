@@ -100,7 +100,9 @@ const NtosLifelineContent = () => {
       }
       switch (sortBy) {
         case 'name':
-          return sortAsc ? +(a.name > b.name) : +(b.name > a.name);
+          return sortAsc
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
         case 'ijob':
           return sortAsc ? a.ijob - b.ijob : b.ijob - a.ijob;
         case 'dist':

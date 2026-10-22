@@ -89,7 +89,7 @@
 	internal_camera.c_tag = "NA ŻYWO: [broadcast_name]"
 	internal_camera.upgradeEmpProof()
 	user?.log_message("started a Spess.tv stream named \"[broadcast_name]\" at [loc_name(user)]", LOG_GAME)
-	start_broadcasting_network(camera_networks, "[broadcast_name] - teraz NA ŻYWO!")
+	start_broadcasting_network(camera_networks, "[html_encode(broadcast_name)] - teraz NA ŻYWO!")
 
 	internal_radio = new(src)
 	set_microphone_state()

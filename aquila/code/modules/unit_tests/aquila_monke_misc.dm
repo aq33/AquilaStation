@@ -37,7 +37,7 @@
 	TEST_ASSERT(made, "Loafer did not make a loaf")
 	loafer.finish_loaf(holder, made)
 	TEST_ASSERT_EQUAL(made.loc, holder, "Loaf was not put into the holder")
-	TEST_ASSERT_EQUAL(loafer.finished_holder, holder, "Loafer would loaf its own loaf again")
+	TEST_ASSERT(holder in loafer.finished_holders, "Loafer would loaf its own loaf again")
 	// Holder usuwamy przed rurą, bo Destroy() rury z holderem w środku wyrzuca go i zrywa płytkę podłogi
 	qdel(holder)
 

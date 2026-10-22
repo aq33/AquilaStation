@@ -39,7 +39,7 @@ GLOBAL_VAR_INIT(impact_particles_active, 0)
 	count = 20
 	spawning = 20
 	lifespan = 0.7 SECONDS
-	fade = 8 SECONDS
+	fade = 0.4 SECONDS
 	grow = 0.1
 	scale = 0.2
 	spin = generator("num", -20, 20)

@@ -348,9 +348,9 @@ GLOBAL_VAR_INIT(explosion_particles_active, 0)
 /// Po 0,5 s przestajemy dosypywać cząsteczek (te w powietrzu dogasają same)
 /obj/effect/temp_visual/explosion/proc/set_count_short()
 	for(var/obj/effect/abstract/particle_holder/holder as anything in list(smoke_wave, explosion_smoke, sparks, large_kickup, falling_debris))
-		holder?.particles?.count = 0
+		holder?.particles?.spawning = 0
 
 /obj/effect/temp_visual/explosion/proc/set_count_long()
-	dirt_kickup?.particles?.count = 0
+	dirt_kickup?.particles?.spawning = 0
 
 #undef EXPLOSION_PARTICLES_MAX_LIGHT

@@ -173,7 +173,11 @@ GLOBAL_LIST_INIT(trash_pile_loot, list(
 
 /obj/structure/trash_pile/attack_hand_secondary(mob/user, list/modifiers)
 	. = ..()
-	if(!iscarbon(user) || busy_users[user] || (user in contents))
+	if(!iscarbon(user))
+		return
+	// Bez tego po nurkowaniu wywołałby się zwykły attack_hand (wyjście ze sterty albo grzebanie)
+	. = SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	if(busy_users[user] || (user in contents))
 		return
 	var/mob/living/carbon/carbon_user = user
 	if(!(carbon_user.mobility_flags & MOBILITY_MOVE))

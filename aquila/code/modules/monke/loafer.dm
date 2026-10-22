@@ -19,8 +19,8 @@
 	initialize_dirs = DISP_DIR_FLIP
 	/// Czy właśnie prasuje
 	var/is_loafing = FALSE
-	/// Holder, który już przeszedł prasowanie i ma tylko przepłynąć dalej
-	var/obj/structure/disposalholder/finished_holder
+	/// Holdery, które już przeszły prasowanie i mają tylko przepłynąć dalej
+	var/list/finished_holders
 	var/static/list/loaf_blacklist
 
 /obj/structure/disposalpipe/loafer/Initialize(mapload, obj/structure/disposalconstruct/make_from)
@@ -29,7 +29,8 @@
 		loaf_blacklist = typecacheof(list(/obj/item/organ/brain, /obj/item/bodypart/head)) - typecacheof(list(/obj/item/bodypart/head/monkey))
 
 /obj/structure/disposalpipe/loafer/Destroy()
-	finished_holder = null
+	for(var/holder in finished_holders)
+		forget_holder(holder)
 	return ..()
 
 /obj/structure/disposalpipe/loafer/examine(mob/user)
@@ -40,21 +41,25 @@
 /obj/structure/disposalpipe/loafer/transfer(obj/structure/disposalholder/holder)
 	if(is_loafing)
 		return src
-	if(holder == finished_holder)
-		finished_holder = null
-		return ..()
-	if(!length(holder.contents))
+	if(holder in finished_holders)
+		forget_holder(holder)
 		return ..()
 
-	var/obj/item/food/prison_loaf/loaf = new(src)
+	// Najpierw wybieramy, co da się sprasować; rzeczy z czarnej listy płyną dalej bez zmian
+	var/list/to_loaf = list()
 	for(var/atom/movable/debris as anything in holder.contents)
 		var/mob/living/living_debris = isliving(debris) ? debris : null
 		var/obj/obj_debris = isobj(debris) ? debris : null
-		if((obj_debris && (obj_debris.resistance_flags & INDESTRUCTIBLE)) ||is_type_in_typecache(debris, loaf_blacklist) || (living_debris && (living_debris.status_flags & GODMODE)))
-			if(length(holder.contents) > 1)
-				continue
-			qdel(loaf)
-			return ..()
+		if((obj_debris && (obj_debris.resistance_flags & INDESTRUCTIBLE)) || is_type_in_typecache(debris, loaf_blacklist) || (living_debris && (living_debris.status_flags & GODMODE)))
+			continue
+		to_loaf += debris
+	if(!length(to_loaf))
+		return ..()
+
+	var/obj/item/food/prison_loaf/loaf = new(src)
+	for(var/atom/movable/debris as anything in to_loaf)
+		if(QDELETED(debris))
+			continue
 		debris.reagents?.trans_to(loaf, 1000)
 		if(istype(debris, /obj/item/food/prison_loaf))
 			var/obj/item/food/prison_loaf/loaf_to_grind = debris
@@ -100,7 +105,14 @@
 		loaf.forceMove(drop_location())
 		return
 	loaf.forceMove(holder)
-	finished_holder = holder
+	LAZYADD(finished_holders, holder)
+	RegisterSignal(holder, COMSIG_PARENT_QDELETING, PROC_REF(forget_holder))
+
+/// Holder przepłynął dalej albo zniknął
+/obj/structure/disposalpipe/loafer/proc/forget_holder(obj/structure/disposalholder/holder)
+	SIGNAL_HANDLER
+	UnregisterSignal(holder, COMSIG_PARENT_QDELETING)
+	LAZYREMOVE(finished_holders, holder)
 
 /obj/structure/disposalpipe/loafer/update_icon_state()
 	icon_state = "loafer[is_loafing ? "-on" : ""]"
