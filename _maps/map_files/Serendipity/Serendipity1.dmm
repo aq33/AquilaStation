@@ -12,6 +12,63 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ac" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 7;
+	pixel_y = 25
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 7;
+	pixel_y = 19
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	listening = 0;
+	name = "Custom Channel";
+	pixel_x = 7;
+	pixel_y = 13
+	},
+/obj/machinery/newscaster/directional/south{
+	pixel_x = -7;
+	pixel_y = 24
+	},
+/obj/machinery/requests_console{
+	department = "AI";
+	departmentType = 5;
+	pixel_y = -40
+	},
+/obj/machinery/flasher{
+	id = "AI";
+	pixel_x = -10;
+	pixel_y = -23
+	},
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = 36
+	},
+/obj/machinery/turretid{
+	control_area = /area/ai_monitored/turret_protected/aisat_interior;
+	icon_state = "control_stun";
+	name = "AI Chamber turret control";
+	pixel_y = -22
+	},
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit/red,
+/area/ai_monitored/turret_protected/aisat_interior)
+"ad" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/computer/ai_control_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/ai_monitored/turret_protected/ai_upload)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -48524,7 +48581,7 @@ MV
 af
 TV
 jK
-AA
+ad
 uo
 cA
 MV
@@ -50323,7 +50380,7 @@ ho
 Qi
 Rq
 do
-wV
+ac
 do
 Ep
 Rq

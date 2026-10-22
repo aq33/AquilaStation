@@ -792,7 +792,10 @@
 			to_chat(user, "<span class='boldnotice'>Transfer udany</span>: [AI.name] ([rand(1000,9999)].exe) usunięto z [name] i zapisano w pamięci lokalnej.")
 
 		if(AI_MECH_HACK) //Called by AIs on the mech
-			AI.linked_core = new /obj/structure/AIcore/deactivated(AI.loc)
+			if(isaicore(AI.loc)) // AQ EDIT - zdecentralizowane AI: z data core wraca się przez relocate(), bez pustego rdzenia
+				AI.last_used_data_core = AI.loc
+			else
+				AI.linked_core = new /obj/structure/AIcore/deactivated(AI.loc)
 			if(AI.can_dominate_mechs)
 				if(occupant) //Oh, I am sorry, were you using that?
 					to_chat(AI, "<span class='warning'>Wykryto pilota! Rozpoczęto przymusowe katapultowanie!</span>")
@@ -1081,6 +1084,8 @@
 			silicon_pilot = FALSE
 			return
 		else
+			if(!AI.linked_core && ai_return_to_data_core(AI)) // AQ EDIT - zdecentralizowane AI
+				return
 			if(!AI.linked_core)
 				to_chat(AI, "<span class='userdanger'>Nieaktywny rdzeń zniszczony. Nie można wrócić.</span>")
 				AI.linked_core = null
