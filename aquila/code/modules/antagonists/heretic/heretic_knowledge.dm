@@ -250,9 +250,10 @@
 	created_action_ref ||= new action_to_add(src)
 	created_action_ref.Grant(user)
 
-	RegisterSignal(created_action_ref, COMSIG_ACTION_STATUS_UPDATE, PROC_REF(action_update))
-	RegisterSignal(created_action_ref, COMSIG_PARENT_QDELETING, PROC_REF(action_delete))
-	RegisterSignal(created_action_ref, COMSIG_SPELL_CAN_CAST_CHECK, PROC_REF(spell_check))
+	// AQUILA - override, bo przy zmianie ciała (np. Armsy) on_gain przychodzi drugi raz dla tej samej akcji
+	RegisterSignal(created_action_ref, COMSIG_ACTION_STATUS_UPDATE, PROC_REF(action_update), TRUE)
+	RegisterSignal(created_action_ref, COMSIG_PARENT_QDELETING, PROC_REF(action_delete), TRUE)
+	RegisterSignal(created_action_ref, COMSIG_SPELL_CAN_CAST_CHECK, PROC_REF(spell_check), TRUE)
 
 	RegisterSignals(user, list(COMSIG_MOB_BEFORE_SPELL_CAST, COMSIG_MOB_SPELL_ACTIVATED), PROC_REF(check_charges))
 	if(istype(created_action_ref, /datum/action/cooldown/spell/pointed/projectile))

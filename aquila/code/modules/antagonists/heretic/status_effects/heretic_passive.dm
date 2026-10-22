@@ -424,7 +424,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/fat_human = owner
-	RegisterSignals(fat_human, list(SIGNAL_ADDTRAIT(TRAIT_FAT), SIGNAL_REMOVETRAIT(TRAIT_FAT)), PROC_REF(on_fat))
+	RegisterSignals(fat_human, list(SIGNAL_ADDTRAIT(TRAIT_FAT), SIGNAL_REMOVETRAIT(TRAIT_FAT)), PROC_REF(on_fat), TRUE) // AQUILA - poziom końcowy może przyjść drugi raz (rytuał wiedzy i wniebowstąpienie)
 	on_fat()
 
 /// Gives/Removes damage resistance when we become/lose fatness

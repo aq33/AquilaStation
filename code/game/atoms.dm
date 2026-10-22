@@ -262,9 +262,10 @@
 	// AQ EDIT END
 
 	if(alternate_appearances)
-		for(var/current_alternate_appearance in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
-			selected_alternate_appearance.remove_from_hud(src)
+		// AQUILA - kopia, bo remove_from_hud zdejmuje wpis (a ostatni zeruje całą listę) w trakcie pętli
+		for(var/current_alternate_appearance in alternate_appearances.Copy())
+			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = LAZYACCESS(alternate_appearances, current_alternate_appearance)
+			selected_alternate_appearance?.remove_from_hud(src)
 
 	if(reagents)
 		QDEL_NULL(reagents)
