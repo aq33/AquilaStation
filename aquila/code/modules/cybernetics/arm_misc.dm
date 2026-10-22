@@ -124,7 +124,12 @@
 	if(!COOLDOWN_FINISHED(src, slam_cooldown))
 		return NONE
 
-	var/mob/living/living_target = target
+	// check_shields() może spać (blockbreak), a to handler sygnału
+	INVOKE_ASYNC(src, PROC_REF(slam), source, target)
+	return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/// Cios wzmocnioną pięścią
+/obj/item/organ/cyberimp/arm/strongarm/proc/slam(mob/living/carbon/human/source, mob/living/living_target)
 	source.changeNext_move(CLICK_CD_MELEE)
 	var/list/hit_verbs = pick(list("uderza", "uderzasz"), list("grzmoci", "grzmocisz"), list("wali", "walisz"), list("tłucze", "tłuczesz"), list("rąbie", "rąbiesz"))
 
@@ -168,7 +173,6 @@
 	to_chat(source, span_danger("[capitalize(hit_verbs[2])] [living_target] wzmocnioną pięścią!"))
 	log_combat(source, living_target, "slammed", "muscle implant")
 	COOLDOWN_START(src, slam_cooldown, slam_cooldown_duration)
-	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 // Podskórne chłodzenie i grzanie. Monke używa homeostazy z tg, u nas to zwykłe przesunięcie temperatury ciała.
 
