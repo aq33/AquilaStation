@@ -142,7 +142,7 @@
 /obj/item/plant_tray/add_context_self(datum/screentip_context/context, mob/user)
 	if(!isliving(user))
 		return
-	context.add_right_click_tool_action("Zasadź nasiona", TOOL_SEED)
+	context.add_left_click_tool_action("Zasadź nasiona", TOOL_SEED)
 	context.add_right_click_item_action("Usuń wszystkie rośliny", /obj/item/shovel)
 	context.add_left_click_item_action("Sprawdź alarmy", /obj/item/plant_scanner)
 	context.add_left_click_item_action("Napełnij tacę", /obj/item/substrate_bag)

@@ -77,6 +77,15 @@
 	if(istext(info))
 		to_chat(user, info)
 
+// AQUILA - zwykły klik poza walką też sadzi (combat mode wyłączony albo intencja help w starym trybie), u Bee tylko prawy przycisk
+/obj/item/plant_seeds/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(user.combat_mode || !target.GetComponent(/datum/component/planter))
+		return
+	var/info = plant(target, user, proximity_flag, click_parameters)
+	if(istext(info))
+		to_chat(user, info)
+
 /obj/item/plant_seeds/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] połyka [src]! Wygląda na to, że próbuje popełnić samobójstwo!"))
 	user.gib()
