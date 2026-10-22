@@ -69,6 +69,15 @@
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    // Tekst obok przycisków leży na złotym tle nagłówka: jasny tekst
+    // i szary color="label" (np. „45 / 100 u”) byłyby tu prawie niewidoczne.
+    color: #11121c;
+    --color-label: #11121c;
+
+    // Pasek postępu ma własne ciemne tło — zostaje przy jasnym tekście
+    .ProgressBar {
+      color: var(--color-text);
+    }
 
     .Button--color--transparent {
       color: #11121c;

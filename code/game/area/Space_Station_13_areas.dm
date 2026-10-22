@@ -144,11 +144,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "maint_atmos"
 
 /area/maintenance/department/security
-	name = "Tunel Konserwacyjny Ochrony"
+	name = "Tunel Konserwacyjny Komisariatu"
 	icon_state = "maint_sec"
 
 /area/maintenance/department/security/brig
-	name = "Tunel Konserwacyjny Brygu"
+	name = "Tunel Konserwacyjny Aresztu"
 	icon_state = "maint_brig"
 
 /area/maintenance/department/medical
@@ -488,7 +488,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "hop_office"
 
 /area/crew_quarters/heads/hos
-	name = "Biuro Szefa Ochrony"
+	name = "Gabinet Komendanta"
 	icon_state = "hos_office"
 
 /area/crew_quarters/heads/hor
@@ -1018,7 +1018,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Security
 
 /area/security
-	name = "Ochrona"
+	name = "Komisariat"
 	icon_state = "security"
 	ambience_index = AMBIENCE_DANGER
 	sound_environment = SOUND_AREA_STANDARD_STATION
@@ -1026,11 +1026,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	lighting_colour_bulb = "#ffdfca"
 
 /area/security/main
-	name = "Biuro Ochrony"
+	name = "Dyżurka Policji"
 	icon_state = "security"
 
 /area/security/brig
-	name = "Bryg"
+	name = "Areszt"
 	icon_state = "brig"
 	mood_bonus = -3
 	mood_job_allowed = list(JOB_NAME_HEADOFSECURITY,JOB_NAME_WARDEN,JOB_NAME_SECURITYOFFICER,JOB_NAME_BRIGPHYSICIAN,JOB_NAME_DETECTIVE)
@@ -1056,12 +1056,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "sec_prison"
 
 /area/security/processing/cremation
-	name = "Krematorium Ochrony"
+	name = "Krematorium Komisariatu"
 	icon_state = "sec_prison"
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
 /area/security/warden
-	name = "Kontrola Brygu"
+	name = "Biuro Naczelnika"
 	icon_state = "Warden"
 	sound_environment = SOUND_AREA_SMALL_SOFTFLOOR
 
@@ -1109,23 +1109,23 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "checkpoint_esc"
 
 /area/security/checkpoint/supply
-	name = "Posterunek Ochrony - Zaopatrzeń"
+	name = "Posterunek Policji - Zaopatrzeń"
 	icon_state = "checkpoint_supp"
 
 /area/security/checkpoint/engineering
-	name = "Posterunek Ochrony - Inżynieria"
+	name = "Posterunek Policji - Inżynieria"
 	icon_state = "checkpoint_engi"
 
 /area/security/checkpoint/medical
-	name = "Posterunek Ochrony - Placówka Medyczna"
+	name = "Posterunek Policji - Placówka Medyczna"
 	icon_state = "checkpoint_med"
 
 /area/security/checkpoint/science
-	name = "Posterunek Ochrony - Naukowy"
+	name = "Posterunek Policji - Naukowy"
 	icon_state = "checkpoint_sci"
 
 /area/security/checkpoint/science/research
-	name = "Posterunek Ochrony - Departament Naukowy"
+	name = "Posterunek Policji - Departament Naukowy"
 	icon_state = "checkpoint_res"
 
 /area/security/checkpoint/customs

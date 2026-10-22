@@ -20,6 +20,7 @@
 	if(!player_ckey || isnull(roles) || (islist(roles) && !length(roles)))
 		return
 	player_ckey = ckey(player_ckey)
+	roles = add_renamed_job_titles(roles) // AQUILA EDIT - ban na Żandarma obowiązuje Policjanta
 	var/client/C = GLOB.directory[player_ckey]
 	if(C)
 		if(!C.ban_cache)
@@ -82,6 +83,8 @@
 		server_check = "(server_name = '[ssqlname]' OR global_ban = '1')"
 	else
 		server_check = "server_name = '[ssqlname]'"
+	var/list/role_aliases = add_renamed_job_titles(role) // AQUILA EDIT - ban na Żandarma to ban na Policjanta
+	var/old_role = length(role_aliases) > 1 ? role_aliases[length(role_aliases)] : role
 	var/datum/DBQuery/query_check_ban = SSdbcore.NewQuery({"
 		SELECT
 			id,
@@ -98,13 +101,13 @@
 			computerid,
 			IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey), a_ckey)
 		FROM [format_table_name("ban")]
-		WHERE role = :role
+		WHERE (role = :role OR role = :old_role)
 			AND (ckey = :ckey OR ip = INET_ATON(:ip) OR computerid = :computerid)
 			AND unbanned_datetime IS NULL
 			AND [server_check]
 			AND (expiration_time IS NULL OR expiration_time > NOW())
 		ORDER BY bantime DESC
-	"}, list("role" = role, "ckey" = player_ckey, "ip" = player_ip, "computerid" = player_cid))
+	"}, list("role" = role, "old_role" = old_role, "ckey" = player_ckey, "ip" = player_ip, "computerid" = player_cid))
 	if(!query_check_ban.warn_execute())
 		qdel(query_check_ban)
 		return

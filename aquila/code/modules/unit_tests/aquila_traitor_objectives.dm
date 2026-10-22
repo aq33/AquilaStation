@@ -41,6 +41,7 @@
 		/datum/objective/plant_device/bomb,
 		/datum/objective/plant_device/bug,
 		/datum/objective/plant_device/tide,
+		/datum/objective/plant_device/mapping,
 		/datum/objective/sabotage/power_sink,
 		/datum/objective/sabotage/integrity,
 		/datum/objective/air_sabotage,

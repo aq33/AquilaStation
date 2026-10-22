@@ -95,7 +95,7 @@ export const RADIO_PREFIXES = {
   },
   ':s ': {
     id: 'security',
-    label: 'Ochr',
+    label: 'Pol',
   },
   ':t ': {
     id: 'syndicate',

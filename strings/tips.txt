@@ -14,7 +14,7 @@ Przycisk oporu pozwala wyrwać się z kajdanek, odpiąć się od krzesła lub ł
 Możesz odsunąć przedmiot z drogi, przeciągając go, a potem klikając pustą ręką sąsiednie pole.
 Niektóre przedmioty, jak kombinezony i rękawice, przefarbujesz w pralce, wrzucając do niej też kredkę.
 Tunele techniczne są pełne sprzętu losowanego co rundę. Rozejrzyj się, może coś się przyda.
-Niektóre role domyślnie nie mogą być antagonistami, ale wybór antagonistów następuje wcześniej. Możesz na przykład ustawić Żandarma na wysoki priorytet, nie zmniejszając szans na antagonistę – gra po prostu wybierze ci inną rolę.
+Niektóre role domyślnie nie mogą być antagonistami, ale wybór antagonistów następuje wcześniej. Możesz na przykład ustawić Policjanta na wysoki priorytet, nie zmniejszając szans na antagonistę – gra po prostu wybierze ci inną rolę.
 Na stacji jest wiele miejsc do ukrycia kontrabandy. Na początek: pudła z pościelą, spłuczki, worki na zwłoki. Eksperymentuj, by znaleźć więcej!
 Maszyną w skarbcu możesz wpłacać gotówkę albo okraść fundusze działu zaopatrzenia.
 Przy problemach technicznych wyczyść pamięć podręczną (launcher BYOND > zębatka > preferencje > ustawienia gry), zaktualizuj BYOND i zaloguj się ponownie.
@@ -115,16 +115,16 @@ Jako Technik Atmosferyki zmienisz warstwę rury, klikając nią przykręconą ru
 Jako Komendant masz koordynować ochronę, by poradziła sobie z każdym zagrożeniem dla stacji. Czasem oznacza to użycie zbrojowni przeciw blobowi, a czasem bezwzględność podczas rewolucji lub kultu.
 Jako Komendant możesz wnioskować o egzekucje lub przymusową cyborgizację, ale do ich wykonania potrzebujesz zgody Kapitana.
 Jako Komendant nie daj, by władza uderzyła ci do głowy. Masz szeroki dostęp, świetny sprzęt i małą armię u boku, ale bycie okropną osobą bez dobrego powodu jest podstawą do bana.
-Jako Naczelnik masz w spokojnych chwilach pilnować aresztu i więźniów, a gdy wybucha kryzys – wydawać żandarmom sprzęt i broń.
+Jako Naczelnik masz w spokojnych chwilach pilnować aresztu i więźniów, a gdy wybucha kryzys – wydawać policjantom sprzęt i broń.
 Jako Naczelnik zawsze pilnie obserwuj zbrojownię, bo to ulubiony cel operatorów nuklearnych i zuchwałych zdrajców.
 Jako Naczelnik możesz, za zgodą Komendanta, zamknąć więźnia na zawsze w celi dożywotniej lub gułagu, jeśli jego zbrodnie są wystarczająco ciężkie. Pamiętaj, by co jakiś czas go sprawdzać!
 Jako Naczelnik możesz wszczepiać przestępcom, którzy mogą znów coś przeskrobać, implanty śledzące ich położenie i pozwalające zdalnie wstrzyknąć im obezwładniające substancje.
 Jako Naczelnik możesz założyć kajdanki na pomarańczowe buty więzienne, robiąc z nich skute buty, co zmusza więźniów do chodzenia i może udaremnić ucieczkę.
-Jako Żandarm komunikuj się i koordynuj z innymi przez kanał ochrony (:s), by uniknąć zamieszania.
-Jako Żandarm pamiętaj, że twój sechud lub okulary HUD pokazują nie tylko stanowisko i status kryminalny załogi, ale też to, czy mają implant mindshield – rozpoznasz to po migającej niebieskiej obwódce wokół ikony stanowiska. Wykorzystaj to podczas rewolucji, by pewnie ustalić, kto jest po twojej stronie!
-Jako Żandarm pamiętaj, że implant mindshield tylko zapobiega nawróceniu na kult: w przeciwieństwie do rewolucjonistów nie odwróci nawrócenia kogoś, kto już jest kultystą.
-Jako Żandarm możesz, oglądając kogoś w sechudzie lub okularach HUD, ustawić mu status aresztowania, przez co Beepsky i inne boty ochrony zaczną go ścigać.
-Jako Żandarm trzymaj broń w torbie, gdy jej nie używasz! Łatwo cię popchnąć i okraść!
+Jako Policjant komunikuj się i koordynuj z innymi przez kanał policji (:s), by uniknąć zamieszania.
+Jako Policjant pamiętaj, że twój sechud lub okulary HUD pokazują nie tylko stanowisko i status kryminalny załogi, ale też to, czy mają implant mindshield – rozpoznasz to po migającej niebieskiej obwódce wokół ikony stanowiska. Wykorzystaj to podczas rewolucji, by pewnie ustalić, kto jest po twojej stronie!
+Jako Policjant pamiętaj, że implant mindshield tylko zapobiega nawróceniu na kult: w przeciwieństwie do rewolucjonistów nie odwróci nawrócenia kogoś, kto już jest kultystą.
+Jako Policjant możesz, oglądając kogoś w sechudzie lub okularach HUD, ustawić mu status aresztowania, przez co Beepsky i inne boty ochrony zaczną go ścigać.
+Jako Policjant trzymaj broń w torbie, gdy jej nie używasz! Łatwo cię popchnąć i okraść!
 Jako Detektyw pamiętaj, że ludzie zostawiają odciski palców wszędzie i na wszystkim. Poza białymi lateksowymi rękawiczkami rękawice je ukrywają. Nie wszystko jednak stracone, bo rękawice zostawiają włókna charakterystyczne dla swojego rodzaju, np. czarne lub nitrylowe, wskazujące na ogólny dział.
 Jako Detektyw możesz używać skanera kryminalistycznego z daleka.
 Jako Detektyw możesz załadować do rewolweru amunicję .357 z zhakowanego autolatu. Strzelanie nią ma spore szanse rozsadzić ci rewolwer.
@@ -205,7 +205,7 @@ Jako Blob, usuwając silne bloby, węzły zasobów, fabryki i węzły, odzyskasz
 Jako Blob, mówiąc, wysyłasz wiadomość do wszystkich innych nadumysłów i Blobbernautów, co pozwala kierować atakami i koordynować działania.
 Jako Blobbernaut możesz rozmawiać z nadumysłami i innymi Blobbernautami przez :b.
 Jako Blobbernaut masz na HUD swoje zdrowie i zdrowie rdzenia nadumysłu, który cię stworzył.
-Jako Rewolucjonista nie możesz nawrócić szefa działu ani nikogo z implantem mindshield, jak żandarmi czy osoby, którym go wszczepili. Implanty można jednak usunąć chirurgicznie i nie przechodzą przy klonowaniu. Przejmij ambulatorium, by kontrolować nawrócenia!
+Jako Rewolucjonista nie możesz nawrócić szefa działu ani nikogo z implantem mindshield, jak policjanci czy osoby, którym go wszczepili. Implanty można jednak usunąć chirurgicznie i nie przechodzą przy klonowaniu. Przejmij ambulatorium, by kontrolować nawrócenia!
 Jako Rewolucjonista przekonasz się, że zaopatrzenie może być twoim najlepszym przyjacielem albo najgorszym koszmarem. W najlepszym razie zamówisz nieograniczoną ilość broni i pancerzy, w najgorszym – ochrona przejmie kontrolę i zamówi nieograniczoną liczbę implantów mindshield, by obrócić twoich towarzyszy przeciw tobie.
 Jako Rewolucjonista czerpiesz siłę głównie z tego, kogo nawrócisz; wybieraj mądrze, by wygrać rundę.
 Jako Zmiennokształtny pamiętaj, że żądło pobierające DNA liczy się do celu wchłaniania genomów, ale nie pozwala na nowo wybrać mocy.
@@ -238,8 +238,8 @@ Jako Morf możesz mówić w przebraniu, ale twoje słowa mogą być bełkotliwe 
 Jako Dron możesz pingować inne drony, by zaalarmować je o miejscach na stacji wymagających naprawy.
 Jako Duch możesz zobaczyć wnętrze leżącego pojemnika, klikając go.
 Jako Duch możesz dwukrotnie kliknąć niemal wszystko, by za tym podążać. Albo po prostu skakać po mapie!
-Jako Żandarm pamiętaj, że korelacja to nie przyczynowość. Ktoś mógł po prostu być w złym miejscu o złym czasie!
-Jako Żandarm pamiętaj, że możesz zamontować latarkę seclite na paralizatorze lub hełmie!
+Jako Policjant pamiętaj, że korelacja to nie przyczynowość. Ktoś mógł po prostu być w złym miejscu o złym czasie!
+Jako Policjant pamiętaj, że możesz zamontować latarkę seclite na paralizatorze lub hełmie!
 Możesz wymieniać płytki podłogowe, trzymając łom w jednej ręce, a stos płytek w drugiej.
 Przy hakowaniu drzwi przecięcie i naprawienie „przewodu lampki testowej” przywróci drzwiom zasilanie.
 Tworząc większość przedmiotów, możesz łączyć części ręcznie albo użyć menu tworzenia.

@@ -28,7 +28,7 @@
 
 /obj/machinery/portable_atmospherics/pump/Destroy()
 	var/turf/T = get_turf(src)
-	T.assume_air(air_contents)
+	T?.assume_air(air_contents) // AQUILA: w skrzyni na nullspace przy sprzątaniu testów nie ma turfa
 	QDEL_NULL(pump)
 	return ..()
 

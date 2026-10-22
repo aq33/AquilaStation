@@ -7,11 +7,11 @@
 	payment_department = NO_FREEBIES
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
-	name = "\improper SecDrobe"
+	name = "\improper Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
 	desc = "A vending machine for security and security-related clothing!"
 	icon_state = "secdrobe"
 	product_ads = "Bij opryszkow ze stylem!;Jest czerwone, więc nie zauważysz krwi!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym ochroniarzem, jak zawsze chciałeś!"
-	vend_reply = "Dziękujemy za użycie SecDrobe!"
+	vend_reply = "Dziękujemy za użycie Mundurowni Policyjnej!" //AQUILA EDIT
 	light_color = LIGHT_COLOR_RED
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/security = 3,
 					/obj/item/storage/backpack/security = 3,
@@ -20,26 +20,26 @@
 					/obj/item/clothing/under/rank/security/officer = 3,
 					/obj/item/clothing/under/plasmaman/security = 3,
 					/obj/item/clothing/suit/armor/vest/corporate = 3,
-					/obj/item/clothing/under/rank/security/officer/corporate = 3,
+					//obj/item/clothing/under/rank/security/officer/corporate = 3, //AQUILA EDIT - tylko mundury policji
 					/obj/item/clothing/head/helmet/space/plasmaman/security = 3,
-					/obj/item/clothing/head/beret/corpsec = 3,
+					//obj/item/clothing/head/beret/corpsec = 3, //AQUILA EDIT - tylko mundury policji
 					/obj/item/clothing/shoes/jackboots = 3,
 					/obj/item/clothing/head/beret/sec = 3,
 					/obj/item/clothing/head/soft/sec = 3,
 					/obj/item/clothing/head/soft/sec/alt = 3, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sec/bandana = 3, //AQUILA EDIT
 					/obj/item/clothing/head/beret/sec/garrison = 3, //AQUILA EDIT
-					/obj/item/clothing/mask/bandana/red = 3,
-					/obj/item/clothing/head/aquila/headband/red/sec = 3,
+					//obj/item/clothing/mask/bandana/red = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/head/aquila/headband/red/sec = 3, //AQUILA EDIT - tylko mundury policji
 					/obj/item/clothing/mask/gas/sechailer = 6,
 					//obj/item/clothing/under/rank/security/officer/skirt = 3, //NSV13 no skirts
 					/obj/item/clothing/under/rank/security/officer/white = 3,
-					/obj/item/clothing/under/pants/khaki = 3,
-					/obj/item/clothing/under/rank/security/officer/blueshirt = 3,
-					/obj/item/clothing/under/rank/security/officer/mallcop = 3,
-					/obj/item/clothing/neck/tie/red = 6,
+					//obj/item/clothing/under/pants/khaki = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/under/rank/security/officer/blueshirt = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/under/rank/security/officer/mallcop = 3, //AQUILA EDIT - tylko mundury policji
+					//obj/item/clothing/neck/tie/red = 6, //AQUILA EDIT - tylko mundury policji
 					/obj/item/clothing/neck/tie/black = 6,)
-	contraband = list(/obj/item/clothing/suit/hooded/wintercoat/security/old = 3)
+	//contraband = list(/obj/item/clothing/suit/hooded/wintercoat/security/old = 3) //AQUILA EDIT - tylko mundury policji
 	premium = list(/obj/item/clothing/under/rank/security/officer/formal = 3,
 					/obj/item/clothing/suit/security/officer = 3,
 					/obj/item/clothing/head/beret/sec/navyofficer = 3,
@@ -48,7 +48,7 @@
 	payment_department = ACCOUNT_SEC
 
 /obj/item/vending_refill/wardrobe/sec_wardrobe
-	machine_name = "SecDrobe"
+	machine_name = "Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"
@@ -480,7 +480,8 @@
 					/obj/item/storage/backpack/satchel/chem = 2,
 					/obj/item/storage/bag/chemistry = 2,
 					/obj/item/clothing/head/beret/med = 2,
-					/obj/item/clothing/head/aquila/headband/cyan = 2) //AQUILA EDIT
+					/obj/item/clothing/head/aquila/headband/cyan = 2, //AQUILA EDIT
+					/obj/item/ph_booklet = 3) // AQ EDIT - fermichem z tg
 	refill_canister = /obj/item/vending_refill/wardrobe/chem_wardrobe
 	payment_department = ACCOUNT_MED
 /obj/item/vending_refill/wardrobe/chem_wardrobe

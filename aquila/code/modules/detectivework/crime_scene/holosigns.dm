@@ -1,7 +1,7 @@
 // AQUILA - holobariery miejsca zbrodni.
 // 1. Rażąca holobariera detektywa (wzór: Paradise holosign_projector.dm i holosigns.dm, AGPL; ikony z Paradise).
 // 2. Strefa miejsca zbrodni w projektorze ochrony (wzór: BeeStation crimesign.dm i holosign_creator.dm, AGPL;
-//    ikony i dźwięk z Bee). Akcja projektora rysuje czerwoną ramkę wokół gracza i ogłasza strefę na kanale ochrony.
+//    ikony i dźwięk z Bee). Akcja projektora rysuje czerwoną ramkę wokół gracza i ogłasza strefę na kanale policji.
 
 // ---- Holobariera detektywa ----
 
@@ -24,7 +24,7 @@
 
 /datum/action/item_action/toggle_crimesigns
 	name = "Ogłoś strefę miejsca zbrodni"
-	desc = "Wyświetla wokół ciebie holograficzną ramkę strefy zamkniętej i ogłasza ją na kanale ochrony."
+	desc = "Wyświetla wokół ciebie holograficzną ramkę strefy zamkniętej i ogłasza ją na kanale policji."
 
 /obj/item/holosign_creator/security
 	actions_types = list(/datum/action/item_action/toggle_crimesigns)
@@ -36,7 +36,7 @@
 	var/crimesign_range = 4
 	/// Odnowienie funkcji
 	var/crimesign_cooldown_length = 5 MINUTES
-	/// Radio do ogłaszania strefy na kanale ochrony
+	/// Radio do ogłaszania strefy na kanale policji
 	var/obj/item/radio/crimesign_radio
 	COOLDOWN_DECLARE(crimesign_cooldown)
 

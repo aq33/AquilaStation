@@ -40,7 +40,7 @@ Naukowiec=CRW
 Robotyk=CRW
 
 Detektyw=CPL
-Żandarm=LCPL
+Policjant=LCPL
 Lekarz Więzienny=CRW
 Aspirant=PFC
 

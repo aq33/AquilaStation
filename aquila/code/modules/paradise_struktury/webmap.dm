@@ -183,6 +183,11 @@
 /turf/open/floor/carpet/grimy
 	smoothing_groups = list(/turf/open/floor/carpet/grimy)
 
+// Dywan policyjny nie dziedziczy canSmoothWith z tg jak reszta kolorów, więc dostaje własne
+/turf/open/floor/carpet/police
+	canSmoothWith = list(/turf/open/floor/carpet/police)
+	smoothing_groups = list(/turf/open/floor/carpet/police)
+
 // Dywany statku nie mają własnego canSmoothWith, więc na mapie zostają pełnym kaflem
 /turf/open/floor/carpet/ship
 	smoothing_flags = 0

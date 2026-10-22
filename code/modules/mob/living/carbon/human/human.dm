@@ -737,7 +737,7 @@
 		. += dna.species.check_species_weakness(weapon, attacker)
 
 /mob/living/carbon/human/is_literate()
-	return TRUE
+	return !HAS_TRAIT(src, "illiterate") // AQUILA EDIT - mutacja Illiterate z tg (TRAIT_ILLITERATE)
 
 /mob/living/carbon/human/can_hold_items()
 	return TRUE

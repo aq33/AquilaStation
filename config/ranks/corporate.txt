@@ -40,7 +40,7 @@ Naukowiec=WS
 Robotyk=WS
 
 Detektyw=WS
-Żandarm=WS
+Policjant=WS
 Lekarz Więzienny=WS
 Aspirant=WS
 

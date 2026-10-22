@@ -122,7 +122,7 @@
 	return held_item.GetID()
 
 /mob/living/carbon/human/IsAdvancedToolUser()
-	if(HAS_TRAIT(src, TRAIT_DISCOORDINATED)) // AQ EDIT (TRAIT_MONKEYLIKE -> TRAIT DISCOORDINATED)
+	if(HAS_TRAIT(src, TRAIT_DISCOORDINATED) && !HAS_TRAIT(src, "advancedtooluser")) // AQ EDIT (TRAIT_MONKEYLIKE -> TRAIT DISCOORDINATED) // AQUILA EDIT - mutacja Clever z tg (TRAIT_ADVANCEDTOOLUSER)
 		return FALSE
 	return TRUE//Humans can use guns and such
 

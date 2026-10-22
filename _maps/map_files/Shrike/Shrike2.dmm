@@ -9748,7 +9748,7 @@
 	name = "Security";
 	req_one_access_txt = "1"
 	},
-/obj/effect/turf_decal/trimline/red/line,
+/obj/effect/turf_decal/trimline/police/line,
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
 /turf/open/floor/monofloor,
@@ -9901,7 +9901,7 @@
 /turf/open/floor/plating/foam,
 /area/maintenance/department/crew_quarters/bar)
 "Hz" = (
-/obj/effect/turf_decal/trimline/red/line,
+/obj/effect/turf_decal/trimline/police/line,
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
 /obj/machinery/door/airlock/ship/security/glass{

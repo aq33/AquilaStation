@@ -45,6 +45,7 @@ type Data = {
   maxEnergy: number;
   isBeakerLoaded: BooleanLike;
   beakerContents: BeakerReagent[];
+  beakerPh: number | null;
   beakerCurrentVolume: number | null;
   beakerMaxVolume: number | null;
   beakerTransferAmounts: number[] | null;
@@ -82,6 +83,7 @@ export const ChemDispenser = (props) => {
     data.beakerCurrentVolume,
     data.beakerMaxVolume,
     data.beakerContents,
+    data.beakerPh,
   );
   const beakerTransferAmounts = data.beakerTransferAmounts || [];
   const recordedContents =
@@ -274,6 +276,7 @@ export const ChemDispenser = (props) => {
                       beaker={beaker}
                       title_label={recording && 'Wirtualna zlewka'}
                       replace_contents={recordedContents}
+                      showpH={!recording}
                     />
                   ) : (
                     <Box
