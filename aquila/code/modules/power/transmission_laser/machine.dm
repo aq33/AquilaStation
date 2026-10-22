@@ -71,8 +71,14 @@
 	/// Timer cyklicznego raportu co 30 minut
 	var/announcement_timer
 
+/obj/machinery/power/transmission_laser/setDir(newdir)
+	. = ..()
+	// Sprite z Goona ma tylko poziome lufy (SOUTH jak EAST, NORTH jak WEST), więc dla N/S obracamy go o 90 stopni
+	transform = (dir & (NORTH|SOUTH)) ? matrix().Turn(90) : matrix()
+
 /obj/machinery/power/transmission_laser/Initialize(mapload)
 	. = ..()
+	setDir(dir)
 	var/turf/back_turf = get_step(get_back_turf(), turn(dir, 180))
 	terminal = locate(/obj/machinery/power/terminal) in back_turf
 	if(!terminal)
