@@ -17,6 +17,7 @@
 		/obj/item/melee/baton,
 		/obj/item/ammo_box/magazine/recharge,
 		/obj/item/toy/batong,
+		/obj/item/gun/microfusion, // AQ EDIT - broń microfusion ładuje ogniwo w środku
 		/obj/item/modular_computer))
 
 /obj/machinery/recharger/RefreshParts()

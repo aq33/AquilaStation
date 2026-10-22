@@ -39,6 +39,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `/obj/item/gun/microfusion` in `allowed_devices` | `code/game/machinery/recharger.dm` | Broń microfusion (MCR-01) ładuje się w ładowarce jak broń energetyczna; ogniwo poza bronią ma `chargerate = 0` |
 | `icon_exists()` check before the shield overlay | `code/datums/components/shielded.dm` (`on_update_overlays()`) | `icons/effects/effects.dmi` has no `broken` state; a depleted shield drew a missing state, which showed a random sprite with the walk animation on 516 |
 | `initialized = INITIALIZATION_INNEW_REGULAR` before the round start `InitializeAtoms()` instead of `INITIALIZATION_INNEW_MAPLOAD` | `code/controllers/subsystem/atoms.dm` (`Initialize()`) | `InitializeAtoms()` switches to MAPLOAD itself and restores the previous state; starting from MAPLOAD made that the restored state, map loads during the late loaders (ship interiors) copied it and it stuck for the round, so `LateInitialize()` of runtime atoms (cables laid by players) never ran. Test: `atoms_init_state` |
 | Lower `LATTICE_LAYER` … `CATWALK_LAYER`, new `GRILLE_LAYER` | `code/__DEFINES/layers.dm` | Floor-level objects (lattices, disposals, hidden pipes, cables, catwalks, grilles) go below `CLOSED_TURF_LAYER` like in Paradise, so the 8 px overhang of 3/4 walls covers them |
