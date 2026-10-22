@@ -9,11 +9,11 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VALID_DNA_INFUSION, INNATE_TRAIT)
 
-/obj/item/food/grown/Initialize(mapload, obj/item/seeds/new_seed)
+/obj/item/food/grown/Initialize(mapload, skip_genes)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VALID_DNA_INFUSION, INNATE_TRAIT)
 
-/obj/item/grown/Initialize(mapload, obj/item/seeds/new_seed)
+/obj/item/grown/Initialize(mapload, obj/item/plant_seeds/_new_seed)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_VALID_DNA_INFUSION, INNATE_TRAIT)
 

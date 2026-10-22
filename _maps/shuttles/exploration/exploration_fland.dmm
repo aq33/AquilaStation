@@ -257,7 +257,7 @@
 	},
 /area/shuttle/exploration)
 "pl" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/decal/remains/human,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/exploration)
@@ -782,7 +782,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/exploration)
 "Sw" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light{
 	dir = 1
 	},

@@ -458,7 +458,7 @@ GLOBAL_LIST(spy_bounty_item_typecache)
 		/obj/machinery/computer/operating,
 		/obj/machinery/atmospherics/components/unary/cryo_cell,
 		/obj/machinery/fax, // Completely random, wild card
-		/obj/machinery/hydroponics/constructable,
+		/obj/item/plant_tray,
 		/obj/machinery/microwave,
 		/obj/machinery/oven,
 		/obj/machinery/recharge_station,

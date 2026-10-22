@@ -2046,7 +2046,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "fb" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "fc" = (
@@ -4026,7 +4026,7 @@
 /turf/open/floor/plating,
 /area/quartermaster/bitrunning/den)
 "jJ" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/power/apc/auto_name/west,
 /obj/structure/cable,
 /turf/open/floor/carpet/ship/beige_carpet,
@@ -4318,7 +4318,7 @@
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "kw" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/monotile/dark,
 /area/quartermaster/bitrunning/den)
 "kx" = (
@@ -6130,7 +6130,7 @@
 /turf/open/floor/plating/airless,
 /area/nsv/hanger/notkmcstupidhanger)
 "vF" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/requests_console{
 	department = "Detective's Office";
 	departmentType = 5;

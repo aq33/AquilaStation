@@ -64,7 +64,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "t" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -124,7 +124,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "D" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/template_noop)
 "G" = (

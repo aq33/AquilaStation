@@ -98,7 +98,7 @@
 /area/survivalpod)
 "q" = (
 /obj/structure/tubes,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/pod,
 /area/survivalpod)
 "r" = (

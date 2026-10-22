@@ -968,6 +968,7 @@
 	cached_reagents += R
 	R.holder = src
 	R.volume = amount
+	R.RegisterSignal(src, COMSIG_PLANTER_TICK_REAGENTS, TYPE_PROC_REF(/datum/reagent, tray_tick)) // AQUILA - botanika z Bee; u nas on_new() nie zawsze się wywołuje
 	// AQ EDIT START - fermichem z tg
 	R.purity = added_purity
 	R.creation_purity = added_purity

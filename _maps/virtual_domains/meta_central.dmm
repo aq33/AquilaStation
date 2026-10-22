@@ -2363,9 +2363,7 @@
 /area/virtual_domain)
 "fk" = (
 /obj/machinery/airalarm/directional/north,
-/obj/item/kirbyplants{
-	icon_state = "applebush"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile{
 	icon_state = "tile_side";
 	color = "#D4D4D4";
@@ -3501,7 +3499,7 @@
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "hQ" = (
-/obj/item/kirbyplants/dead,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/virtual_domain)
 "hR" = (
@@ -3934,7 +3932,7 @@
 	},
 /area/virtual_domain)
 "iU" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/virtual_domain)
 "iV" = (
@@ -4668,9 +4666,7 @@
 	dir = 4;
 	pixel_x = 29
 	},
-/obj/item/kirbyplants{
-	icon_state = "plant-16"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/item/radio/intercom/directional/north,
 /obj/effect/turf_decal/tile{
 	icon_state = "tile_side";
@@ -6462,7 +6458,7 @@
 	},
 /area/virtual_domain)
 "oC" = (
-/obj/item/kirbyplants,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile{
 	icon_state = "tile_full";
 	color = "#52B4E9"
@@ -6948,7 +6944,7 @@
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "pO" = (
-/obj/item/seeds/cocoapod,
+/obj/item/plant_seeds/preset/cocoa,
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "pP" = (
@@ -7053,7 +7049,7 @@
 /turf/open/floor/wood,
 /area/virtual_domain)
 "qd" = (
-/obj/item/seeds/eggplant,
+/obj/item/plant_seeds/preset/eggplant,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
@@ -7068,7 +7064,7 @@
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "qg" = (
-/obj/item/seeds/cabbage,
+/obj/item/plant_seeds/preset/cabbage,
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "qh" = (
@@ -7263,13 +7259,11 @@
 /turf/open/floor/plasteel,
 /area/virtual_domain)
 "qB" = (
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "qC" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/structure/sign/departments/botany{
 	dir = 4;
 	pixel_x = 32
@@ -7280,7 +7274,7 @@
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "qD" = (
-/obj/item/seeds/coffee,
+/obj/item/plant_seeds/preset/coffee,
 /turf/open/floor/plating/dirt/jungle,
 /area/virtual_domain)
 "qE" = (

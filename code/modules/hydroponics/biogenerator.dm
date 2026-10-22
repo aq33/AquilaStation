@@ -19,6 +19,10 @@
 	var/list/show_categories = list("Food", "Botany Chemicals", "Organic Materials")
 	/// Currently selected category in the UI
 	var/selected_cat
+	/// Cooldown for creating materials
+	COOLDOWN_DECLARE(production_cooldown)
+	///List of mulchable items inserted into us
+	var/list/mulchables = list()
 
 /obj/machinery/biogenerator/Initialize(mapload)
 	. = ..()
@@ -28,6 +32,12 @@
 /obj/machinery/biogenerator/Destroy()
 	QDEL_NULL(beaker)
 	return ..()
+
+/obj/machinery/biogenerator/add_context_self(datum/screentip_context/context, mob/user)
+	. = ..()
+	if(!isliving(user))
+		return
+	context.add_left_click_item_action("Insert Plant", /obj/item/shovel)
 
 /obj/machinery/biogenerator/contents_explosion(severity, target)
 	..()
@@ -194,7 +204,24 @@
 		to_chat(user, "<span class='warning'>Biogenerator jest w trakcie pracy.</span>")
 		return
 	var/S = 0
-	for(var/obj/item/food/grown/I in contents)
+	//Plants - Split these into 2 FORs for reading
+	for(var/obj/item/I in mulchables)
+		var/datum/component/plant/plant
+		plant = I.GetComponent(/datum/component/plant)
+		if(!plant)
+			continue
+		mulchables -= I
+	//If you add multiple of a feature type on a plant, rewrite this code to support that
+		//Body
+		var/datum/plant_feature/body/body_feature = locate(/datum/plant_feature/body) in plant.plant_features
+		S += max(body_feature?.slot_size, 1) * 5
+		//Fruit
+		var/datum/plant_feature/fruit/fruit_feature = locate(/datum/plant_feature/fruit) in plant.plant_features
+		for(var/obj/item/food/grown/fruit in fruit_feature?.fruits)
+			mulchables += fruit
+		qdel(I)
+	//Food items
+	for(var/obj/item/food/grown/I in mulchables)
 		S += 5
 		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
 			points += 1 * productivity
@@ -202,6 +229,7 @@
 		else
 			points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 10 * productivity
 			ui_update()
+		mulchables -= I
 		qdel(I)
 	if(S)
 		processing = TRUE
@@ -303,7 +331,7 @@
 	data["reagent_color"] = beaker?.reagents.total_volume ? mix_color_from_reagents(beaker.reagents.reagent_list) : null
 	data["biomass"] = points
 	data["processing"] = processing
-	if(locate(/obj/item/food/grown) in contents)
+	if(length(mulchables))
 		data["can_process"] = TRUE
 	else
 		data["can_process"] = FALSE

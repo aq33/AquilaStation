@@ -128,7 +128,7 @@
 /turf/open/floor/plasteel,
 /area/mine/laborcamp/security)
 "eh" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
@@ -180,8 +180,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/carrot,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/carrot,
 /turf/open/floor/plasteel/techmaint,
 /area/mine/laborcamp)
 "fw" = (
@@ -241,8 +241,8 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/potato,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/potato,
 /turf/open/floor/plasteel/techmaint,
 /area/mine/laborcamp)
 "gA" = (
@@ -799,7 +799,7 @@
 /obj/effect/turf_decal/tile/red/tile_side{
 	dir = 9
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
@@ -877,7 +877,7 @@
 /obj/effect/turf_decal/tile/red/tile_side{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/camera{
 	c_tag = "Labor Camp Monitoring";
 	network = list("labor")
@@ -907,8 +907,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/soya,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/soybean,
 /turf/open/floor/plasteel/techmaint,
 /area/mine/laborcamp)
 "zU" = (
@@ -1322,7 +1322,7 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/plasteel/techmaint,
 /area/mine/laborcamp)
 "KP" = (
@@ -1333,8 +1333,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/redbeet,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/whitebeet,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1378,8 +1378,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/onion,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/onion,
 /obj/machinery/light,
 /turf/open/floor/plasteel/techmaint,
 /area/mine/laborcamp)
@@ -1513,7 +1513,7 @@
 /turf/open/floor/plasteel/dark,
 /area/mine/laborcamp)
 "NW" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)
 "NY" = (
@@ -1837,8 +1837,8 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/bot,
-/obj/machinery/hydroponics/constructable,
-/obj/item/plant_analyzer,
+/obj/item/plant_tray,
+/obj/item/plant_scanner,
 /obj/machinery/camera{
 	c_tag = "Labor Camp Hydroponics";
 	dir = 6;

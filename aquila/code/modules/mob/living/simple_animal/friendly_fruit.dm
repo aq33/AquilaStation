@@ -1,0 +1,70 @@
+/mob/living/simple_animal/friendly_fruit
+	name = "hortus"
+	desc = "Psotny leśny „duszek”."
+	icon_state = "fruit_friend"
+	icon_living = "fruit_friend"
+	icon_dead = "fruit_friend_dead"
+	gender = NEUTER
+	speak_chance = 0
+	turns_per_move = 5
+	maxHealth = 15
+	health = 15
+	see_in_dark = 3
+	response_help = "szturcha"
+	response_disarm = "odsuwa"
+	response_harm = "dźga"
+	melee_damage = 1
+	attacktext = "dźga"
+	pass_flags = PASSTABLE | PASSMOB
+	density = FALSE
+	faction = list(FACTION_PLANTS)
+	speed = -1
+
+	mobchatspan = "headofsecurity"
+	discovery_points = 1000
+
+	atmos_requirements = list("min_oxy" = 5, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 150
+	maxbodytemp = 500
+	gold_core_spawnable = FRIENDLY_SPAWN
+
+/mob/living/simple_animal/friendly_fruit/Initialize(mapload)
+	. = ..()
+	color = pick(list("#FF4848", "#5DFF5D", "#FFFF00", "#66FFFF"))
+
+/mob/living/simple_animal/friendly_fruit/proc/splat()
+	apply_damage(maxHealth, BRUTE)
+
+/mob/living/simple_animal/friendly_fruit/Moved(atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
+	. = ..()
+	var/static/rotation_dir = 1
+	var/matrix/o_transform = transform
+	var/matrix/n_transform = matrix(transform)
+	n_transform.Turn(45*(rotation_dir ? 1 : -1))
+	n_transform.Translate(3*(rotation_dir ? 1 : -1), 5)
+	animate(src, transform = n_transform, time = 0.068 SECONDS, easing = LINEAR_EASING)
+	animate(transform = o_transform, time = 0.6 SECONDS, easing = ELASTIC_EASING)
+	rotation_dir = !rotation_dir
+
+/mob/living/simple_animal/friendly_fruit/attack_ghost(mob/dead/observer/user)
+	if(client || key || ckey)
+		to_chat(user, span_warning("[src] ma już gracza."))
+		return
+	if(stat == DEAD)
+		to_chat(user, span_warning("Nie można opętać: [src]!"))
+		return
+	var/control_ask = tgui_alert(usr, "Czy chcesz przejąć kontrolę nad: [src]?", "Przejąć [src]?", list("Tak", "Nie"))
+	if(control_ask != "Tak" || QDELETED(src) || QDELETED(user))
+		return
+	key = user.key
+	to_chat(src, span_boldwarning("Pamiętaj, że zapomniałeś o wszystkich swoich poprzednich życiach i jesteś nową osobą!"))
+
+/mob/living/simple_animal/friendly_fruit/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
+	. = ..()
+	var/datum/component/planter/plant_tray = attack_target.GetComponent(/datum/component/planter)
+	if(!plant_tray || plant_tray.recent_bee_visit || !length(plant_tray.plants))
+		return
+	plant_tray.recent_bee_visit = TRUE
+	addtimer(VARSET_CALLBACK(plant_tray, recent_bee_visit, FALSE), 10 SECONDS)
+	for(var/datum/component/plant/plant_comp as anything in plant_tray.plants)
+		SEND_SIGNAL(plant_comp, COMSIG_PLANT_BEE_BUFF)

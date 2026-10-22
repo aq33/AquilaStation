@@ -206,7 +206,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "hn" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/flasher{
 	id = "cockpit_flasher";
 	pixel_y = 24
@@ -306,7 +306,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape)
 "lw" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "lM" = (
@@ -1144,7 +1144,7 @@
 /turf/template_noop,
 /area/template_noop)
 "QL" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "Rk" = (

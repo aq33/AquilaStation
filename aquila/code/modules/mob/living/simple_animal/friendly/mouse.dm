@@ -148,7 +148,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	qdel(src)
 
 /obj/item/grown/bananapeel/bluespace/mouse_eat(mob/living/simple_animal/mouse/M)
-	var/teleport_radius = max(round(seed.potency / 10), 1)
+	var/teleport_radius = max(round(get_fruit_trait_power(src) * 2.5), 1)
 	var/turf/T = get_turf(M)
 	do_teleport(M, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
 	..()

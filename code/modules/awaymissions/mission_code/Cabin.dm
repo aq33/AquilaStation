@@ -98,9 +98,9 @@
 	if(!istype(L))
 		return
 	else
-		var/potency = L.seed.potency
+		var/power = get_fruit_trait_power(L)
 		..()
-		new L.plank_type(src.loc, 1 + round(potency / 25))
+		new L.plank_type(src.loc, 1 + round(power))
 
 /mob/living/simple_animal/chicken/rabbit/normal
 	icon_state = "b_rabbit"

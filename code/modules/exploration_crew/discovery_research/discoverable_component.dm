@@ -4,8 +4,10 @@
 	var/scanned = FALSE
 	var/unique = FALSE
 	var/point_reward = 0
+	/// AQUILA - botanika z Bee: callback zwracający identyfikator odkrycia zamiast typu (gatunki roślin)
+	var/datum/callback/get_discover_id
 
-/datum/component/discoverable/Initialize(_point_reward, _unique = FALSE)
+/datum/component/discoverable/Initialize(_point_reward, _unique = FALSE, _get_discover_id)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -14,6 +16,7 @@
 
 	point_reward = _point_reward
 	unique = _unique
+	get_discover_id = _get_discover_id
 
 /datum/component/discoverable/proc/tryScan(datum/source, location, control, params, mob/user)
 	SIGNAL_HANDLER
@@ -38,7 +41,8 @@
 		to_chat(user, "<span class='warning'>[A] został już przeanalizowany.</span>")
 		return
 	//Already scanned another of this type.
-	if(linked_techweb.scanned_atoms[A.type] && !unique)
+	var/discover_id = get_discover_id?.Invoke() || A.type
+	if(linked_techweb.scanned_atoms[discover_id] && !unique)
 		to_chat(user, "<span class='warning'>Dane o [A] są już w systemie.</span>")
 		return
 	if(A.flags_1 & HOLOGRAM_1)
@@ -46,7 +50,7 @@
 		return
 	scanned = TRUE
 	linked_techweb.add_point_type(TECHWEB_POINT_TYPE_DISCOVERY, point_reward)
-	linked_techweb.scanned_atoms[A.type] = TRUE
+	linked_techweb.scanned_atoms[discover_id] = TRUE
 	playsound(user, 'sound/machines/terminal_success.ogg', 60)
 	to_chat(user, "<span class='notice'>New datapoint scanned, [point_reward] discovery points gained.</span>")
 	pulse_effect(get_turf(A), 4)

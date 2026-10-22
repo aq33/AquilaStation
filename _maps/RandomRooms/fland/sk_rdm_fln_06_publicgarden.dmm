@@ -4,8 +4,8 @@
 /area/template_noop)
 "c" = (
 /obj/structure/table,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
+/obj/item/plant_scanner,
+/obj/item/plant_scanner,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bottle/nutrient/rh{
 	pixel_x = 2;
@@ -29,7 +29,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "j" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -83,7 +83,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "z" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -136,7 +136,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "I" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /obj/effect/turf_decal/tile/neutral/tile_side,
 /turf/open/floor/grass,
 /area/template_noop)
@@ -150,7 +150,7 @@
 /turf/template_noop,
 /area/template_noop)
 "L" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/machinery/newscaster{
 	pixel_x = 28;
 	pixel_y = 1
@@ -175,7 +175,7 @@
 /turf/open/floor/plasteel,
 /area/template_noop)
 "R" = (
-/obj/machinery/hydroponics/soil,
+/obj/item/plant_tray/soil,
 /turf/open/floor/grass,
 /area/template_noop)
 "S" = (
@@ -216,15 +216,15 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/seeds/tower,
-/obj/item/seeds/watermelon,
-/obj/item/seeds/wheat,
-/obj/item/seeds/sugarcane,
-/obj/item/seeds/orange,
-/obj/item/seeds/grape,
-/obj/item/seeds/cocoapod,
-/obj/item/seeds/banana,
-/obj/item/seeds/apple,
+/obj/item/plant_seeds/preset/tower,
+/obj/item/plant_seeds/preset/watermelon,
+/obj/item/plant_seeds/preset/wheat,
+/obj/item/plant_seeds/preset/sugarcane,
+/obj/item/plant_seeds/preset/orange,
+/obj/item/plant_seeds/preset/grape,
+/obj/item/plant_seeds/preset/cocoa,
+/obj/item/plant_seeds/preset/banana,
+/obj/item/plant_seeds/preset/apple,
 /obj/effect/turf_decal/tile/green/tile_full,
 /obj/effect/turf_decal/tile/neutral/tile_side,
 /turf/open/floor/plasteel,

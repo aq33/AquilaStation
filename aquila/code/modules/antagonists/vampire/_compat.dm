@@ -140,13 +140,17 @@
 
 // Ogólne procedury z nowego Bee, których nie mamy
 
-/// Bee: podtypy bez typów abstrakcyjnych (u nas tylko akcje wampira mają abstract_type)
+/// Bee: podtypy bez typów abstrakcyjnych (u nas abstract_type mają tylko akcje wampira i typy botaniki)
 /proc/valid_subtypesof(datum/sometype)
 	. = list()
 	for(var/path in subtypesof(sometype))
 		if(ispath(path, /datum/action/vampire))
 			var/datum/action/vampire/power_path = path
 			if(initial(power_path.abstract_type) == path)
+				continue
+		else if(ispath(path, /datum/plant_trait) || ispath(path, /datum/plant_feature) || ispath(path, /datum/dictionary_entry) || ispath(path, /obj/item/plant_seeds))
+			var/datum/plant_trait/plant_path = path // initial() czyta zmienną po nazwie, więc działa dla każdego z tych typów
+			if(initial(plant_path.abstract_type) == path)
 				continue
 		. += path
 

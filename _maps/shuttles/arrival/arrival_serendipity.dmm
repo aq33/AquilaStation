@@ -8,7 +8,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/arrival)
 "d" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/arrival)
 "e" = (

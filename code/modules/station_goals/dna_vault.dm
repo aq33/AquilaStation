@@ -26,10 +26,8 @@
 
 /datum/station_goal/dna_vault/proc/non_standard_plants_count()
 	. = 0
-	for(var/T in subtypesof(/obj/item/seeds)) //put a cache if it's used anywhere else
-		var/obj/item/seeds/S = T
-		if(initial(S.rarity) > 0)
-			.++
+	for(var/T in subtypesof(/obj/item/plant_seeds/preset)) //put a cache if it's used anywhere else
+		.++
 
 /datum/station_goal/dna_vault/get_report()
 	return list(
@@ -83,17 +81,12 @@
 	if(!proximity || !target)
 		return
 	//tray plants
-	if(istype(target, /obj/machinery/hydroponics))
-		var/obj/machinery/hydroponics/H = target
-		if(!H.myseed)
+	var/datum/component/plant/plant_comp = target.GetComponent(/datum/component/plant)
+	if(plant_comp)
+		if(plants[plant_comp.species_id])
+			to_chat(user, "<span class='warning'>Dane rośliny są już w pamięci lokalnej.</span>")
 			return
-		if(!H.harvest)// So it's bit harder.
-			to_chat(user, "<span class='warning'>Aby przeprowadzić pełny skan danych, roślina musi być gotowa do zbioru.</span>") //Because space dna is actually magic
-			return
-		if(plants[H.myseed.type])
-			to_chat(user, "<span class='notice'>Dane rośliny są już w pamięci lokalnej.</span>")
-			return
-		plants[H.myseed.type] = 1
+		plants[plant_comp.species_id] = 1
 		to_chat(user, "<span class='notice'>Dane rośliny dodane do pamięci lokalnej.</span>")
 
 	//animals

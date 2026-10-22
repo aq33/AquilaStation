@@ -841,7 +841,7 @@
 	},
 /area/awaymission/BMPship)
 "yE" = (
-/obj/machinery/hydroponics,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -863,7 +863,7 @@
 	},
 /area/awaymission/BMPship/Aft)
 "yJ" = (
-/obj/machinery/hydroponics,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -897,7 +897,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/BMPship/Midship)
 "zw" = (
-/obj/machinery/hydroponics,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -1436,7 +1436,7 @@
 /turf/open/floor/plating,
 /area/awaymission/BMPship/Aft)
 "Lk" = (
-/obj/machinery/hydroponics,
+/obj/item/plant_tray,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -1623,8 +1623,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/awaymission/BMPship/Aft)
 "Pg" = (
-/obj/machinery/seed_extractor,
-/obj/item/seeds/plump/walkingmushroom,
+/obj/machinery/seeder,
+/obj/item/plant_seeds/preset/walking,
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
 	dir = 8

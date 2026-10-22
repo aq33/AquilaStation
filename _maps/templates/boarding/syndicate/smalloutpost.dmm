@@ -235,15 +235,11 @@
 /turf/open/floor/engine/airless,
 /area/ruin/powered/nsv13/boarding_interior)
 "hl" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-22"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/wood,
 /area/ruin/powered/nsv13/boarding_interior)
 "hn" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-32"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "hp" = (
@@ -446,9 +442,7 @@
 /turf/open/space/basic,
 /area/ruin/powered/nsv13/boarding_interior)
 "qJ" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-26"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "qV" = (
@@ -577,9 +571,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/powered/nsv13/boarding_interior)
 "vg" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-24"
-	},
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/powered/nsv13/boarding_interior)
 "vD" = (

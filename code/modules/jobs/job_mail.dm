@@ -58,9 +58,10 @@
 		/obj/item/grenade/chem_grenade/antiweed = 10,
 		/obj/item/gun/energy/floragun = 5,
 		// These are strong, rare seeds, so use sparingly.
-		/obj/item/seeds/random = 2,
+		/obj/item/plant_seeds/random = 2,
 
 		//NSV13
+		/obj/item/plant_seeds/preset/mail = 5,
 		/obj/item/toy/figure/botanist = 5,
 	)
 

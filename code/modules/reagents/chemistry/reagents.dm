@@ -56,6 +56,11 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/fermi_flags = NONE
 	// AQ EDIT END
 
+	/// Is this reagent consumed by plant trays? - Most reagents have this set to 0, as plants have a need datum or two that will actively consume it
+	var/tray_consumed = 0
+	/// What percentage of tray weeds to we remove
+	var/weed_kill = 0
+
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
 	holder = null
@@ -152,6 +157,15 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	to_chat(M, "<span class='userdanger'>Masz wrażenie, że wziąłeś za dużo [name]!</span>")
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 	return
+
+/datum/reagent/proc/tray_tick(datum/source, datum/component/planter/tray, _delta_time)
+	SIGNAL_HANDLER
+
+	if(!tray || volume < tray_consumed)
+		return
+	tray.weed_level = tray.weed_level*(1-weed_kill)
+	holder?.remove_reagent(type, tray_consumed)
+	return TRUE
 
 /datum/reagent/proc/addiction_act_stage1(mob/living/M)
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/withdrawal_light, name)

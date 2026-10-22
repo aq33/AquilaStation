@@ -1,10 +1,6 @@
 // Machines from other modules that can be fed by plumbing, like on tg
 
-/obj/machinery/hydroponics/Initialize(mapload)
-	. = ..()
-	if(!reagents)
-		create_reagents(MACHINE_REAGENT_TRANSFER * 2, NO_REACT)
-	AddComponent(/datum/component/plumbing/fixture/hydroponics)
+// Tace hydroponiczne z nowej botaniki (Bee) mają własny komponent plumbing/tank
 
 /obj/machinery/limbgrower/Initialize(mapload)
 	. = ..()

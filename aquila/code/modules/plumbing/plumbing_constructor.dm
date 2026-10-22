@@ -166,6 +166,8 @@
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
 	if(ispath(blueprint, /obj/machinery/duct))
 		new blueprint(destination, current_color, current_layer)
+	else if(ispath(blueprint, /obj/item)) // AQUILA - tace hydroponiczne z konstruktora botanicznego
+		new blueprint(destination)
 	else
 		new blueprint(destination, current_layer)
 	return TRUE

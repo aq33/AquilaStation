@@ -161,7 +161,7 @@
 /datum/market_item/misc/strange_seed
 	name = "Dziwne nasiona"
 	desc = "Egzotyczne nasiona nieznanego pochodzenia."
-	item = /obj/item/seeds/random
+	item = /obj/item/plant_seeds/random
 	price_min = MARKET_CRATE_VALUE * 1.6
 	price_max = MARKET_CRATE_VALUE * 1.8
 	stock_min = 2

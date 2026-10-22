@@ -272,12 +272,12 @@
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmos)
 "aE" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/ambrosia,
-/obj/item/plant_analyzer,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/ambrosia,
+/obj/item/plant_scanner,
 /obj/item/cultivator,
-/obj/item/seeds/carrot,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/glowshroom,
 /obj/structure/window/reinforced,
 /obj/item/paper/guides/jobs/hydroponics,
 /obj/item/reagent_containers/glass/bucket,
@@ -943,7 +943,7 @@
 /area/nsv/weapons)
 "bO" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light_switch/west,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/hydroponics)
@@ -1739,7 +1739,7 @@
 /area/nsv/weapons)
 "dl" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1809,7 +1809,7 @@
 /area/hallway/nsv/deck2/primary)
 "dq" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2711,7 +2711,7 @@
 /turf/open/floor/wood,
 /area/chapel/office)
 "eU" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -3436,7 +3436,7 @@
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
 "gr" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/ship/brown{
 	dir = 1
 	},
@@ -3723,7 +3723,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/directional/south,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/monotile/steel,
 /area/security/brig)
 "gU" = (
@@ -4019,7 +4019,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
 "hx" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
@@ -4132,7 +4132,7 @@
 /turf/open/floor/plating,
 /area/nsv/weapons)
 "hJ" = (
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/wood,
 /area/chapel/main)
 "hK" = (
@@ -4874,7 +4874,7 @@
 /area/crew_quarters/kitchen)
 "ji" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
@@ -5163,7 +5163,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "jI" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/button/door{
 	id = "botany";
 	pixel_x = -24;
@@ -5291,7 +5291,7 @@
 "ka" = (
 /obj/machinery/status_display/ai/south,
 /obj/effect/turf_decal/stripes/line,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/ship/neutral{
 	dir = 1
@@ -5719,6 +5719,25 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
+"lh" = (
+/obj/effect/turf_decal/tile/green/tile_side{
+	dir = 8
+	},
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/duct,
+/obj/machinery/biogenerator,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "li" = (
 /obj/machinery/armour_plating_nanorepair_pump/forward_starboard{
 	apnw_id = "atlas_comedy"
@@ -5737,7 +5756,7 @@
 /area/space/nearstation)
 "ll" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5789,6 +5808,10 @@
 "lw" = (
 /turf/closed/wall/steel,
 /area/crew_quarters/bar)
+"lx" = (
+/obj/machinery/plant_machine/seed_editor,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "ly" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/ship_weapon/pdc_mount/north,
@@ -5921,7 +5944,7 @@
 /area/engine/atmospherics_engine)
 "lY" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/window/reinforced/spawner/north,
 /obj/machinery/duct,
 /turf/open/floor/durasteel/techfloor_grid,
@@ -6287,7 +6310,7 @@
 /area/nsv/weapons)
 "nk" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/hydroponics)
@@ -6543,6 +6566,31 @@
 /obj/effect/turf_decal/tile/ship/green,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"nR" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green/tile_side{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 8;
+	pixel_y = 4;
+	layer = 2.8
+	},
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/item/book/manual/wiki/hydroponics/tutorial{
+	pixel_x = -4;
+	 pixel_y = 4
+	},
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "nS" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -7898,9 +7946,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "rC" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-02"
-	},
+/obj/item/plant_tray/pot/random,
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/carpet/red,
 /area/nsv/weapons)
@@ -8614,7 +8660,7 @@
 /turf/open/floor/plasteel/ridged/steel,
 /area/gateway)
 "tz" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /obj/structure/cable,
 /turf/open/floor/plasteel/techmaint,
 /area/security/prison)
@@ -9165,7 +9211,7 @@
 /area/engine/shield_generator)
 "vg" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/light_switch/west,
 /obj/machinery/duct,
 /turf/open/floor/durasteel/techfloor_grid,
@@ -9617,6 +9663,10 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/hallway/secondary/exit/departure_lounge)
+"wG" = (
+/obj/machinery/plant_machine/plant_mutator/tutorial,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "wH" = (
 /obj/machinery/suit_storage_unit/standard_unit{
 	helmet_type = /obj/item/clothing/head/helmet/space/fragile;
@@ -12736,12 +12786,12 @@
 /turf/open/floor/monotile/steel,
 /area/science/explab)
 "Ge" = (
-/obj/machinery/hydroponics/constructable,
-/obj/item/seeds/ambrosia,
-/obj/item/plant_analyzer,
+/obj/item/plant_tray,
+/obj/item/plant_seeds/preset/ambrosia,
+/obj/item/plant_scanner,
 /obj/item/cultivator,
-/obj/item/seeds/carrot,
-/obj/item/seeds/glowshroom,
+/obj/item/plant_seeds/preset/carrot,
+/obj/item/plant_seeds/preset/glowshroom,
 /obj/structure/window/reinforced,
 /obj/item/paper/guides/jobs/hydroponics,
 /obj/item/reagent_containers/glass/bucket,
@@ -12897,6 +12947,23 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/security/brig)
+"GE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/closet/crate/hydroponics,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/food/grown/wheat,
+/obj/item/multitool,
+/obj/item/substrate_bag/dirt,
+/obj/item/substrate_bag/sand,
+/obj/item/substrate_bag/clay,
+/obj/item/substrate_bag/debris,
+/obj/item/substrate_bag/fairy,
+/obj/item/construction/plumbing/botany,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/hydroponics)
 "GF" = (
 /obj/machinery/ammo_sorter{
 	dir = 8;
@@ -13346,9 +13413,8 @@
 /area/hallway/nsv/deck2/primary)
 "HO" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/kirbyplants{
-	desc = "Nothing like a potted plant to bring nature onto the ship. This one appears to have died.";
-	icon_state = "plant-25"
+/obj/item/plant_tray/pot/random{
+	desc = "Nothing like a potted plant to bring nature onto the ship. This one appears to have died."
 	},
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
@@ -13402,13 +13468,17 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "HW" = (
-/obj/machinery/seed_extractor,
+/obj/machinery/seeder,
 /turf/open/floor/durasteel,
 /area/hydroponics)
 "HX" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"HY" = (
+/obj/machinery/computer/plant_machine_controller,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "HZ" = (
 /obj/effect/spawner/room/atlasengine,
 /turf/template_noop,
@@ -14314,7 +14384,7 @@
 /area/security/prison)
 "Kx" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /turf/open/floor/durasteel/techfloor_grid,
 /area/hydroponics)
 "Ky" = (
@@ -14441,6 +14511,21 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/science/robotics/lab)
+"KV" = (
+/obj/effect/turf_decal/tile/green/tile_side{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/duct,
+/obj/machinery/seeder,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "KW" = (
 /obj/machinery/flasher{
 	id = "cell1";
@@ -16811,7 +16896,7 @@
 	pixel_x = 5;
 	layer = 2.8
 	},
-/obj/machinery/plantgenes{
+/obj/machinery/plant_machine/plant_analyser{
 	pixel_y = 3
 	},
 /turf/open/floor/durasteel,
@@ -17075,7 +17160,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "Si" = (
-/obj/item/kirbyplants/photosynthetic,
+/obj/item/plant_tray/pot/random,
 /obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
@@ -17637,7 +17722,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light_switch/east,
 /obj/machinery/firealarm/directional/south,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/secondary/exit/departure_lounge)
 "TS" = (
@@ -17816,7 +17901,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/kirbyplants/random{
+/obj/item/plant_tray/pot/random{
 	layer = 2.9
 	},
 /turf/open/floor/carpet/royalblack,
@@ -18601,7 +18686,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
 "Wx" = (
@@ -19097,6 +19182,14 @@
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/durasteel,
 /area/crew_quarters/kitchen)
+"Yk" = (
+/obj/effect/landmark/start/botanist,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 8
+	},
+/obj/machinery/refraction_catalogue,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "Yl" = (
 /obj/effect/turf_decal/tile/ship/half/brown{
 	dir = 4
@@ -19401,7 +19494,7 @@
 /area/maintenance/nsv/deck2/port/fore)
 "Ze" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/item/kirbyplants/random,
+/obj/item/plant_tray/pot/random,
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/secondary/exit/departure_lounge)
 "Zg" = (
@@ -19580,7 +19673,7 @@
 /area/science/explab)
 "ZE" = (
 /obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/hydroponics/constructable,
+/obj/item/plant_tray,
 /obj/machinery/button/door{
 	id = "botany";
 	pixel_x = -24;
@@ -19593,7 +19686,6 @@
 "ZF" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/item/watertank,
-/obj/item/circuitboard/machine/hydroponics,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/book/manual/hydroponics_pod_people,
 /turf/open/floor/durasteel/techfloor_grid,
@@ -53040,7 +53132,7 @@ qg
 gu
 Fg
 Ra
-Sq
+lh
 Mt
 Mt
 Mt
@@ -53297,7 +53389,7 @@ BC
 Ma
 BC
 mY
-gp
+KV
 lY
 dl
 vg
@@ -53812,10 +53904,10 @@ Bz
 Rs
 Nn
 lD
-HW
-Se
-xU
-EB
+HY
+lx
+wG
+Yk
 hB
 IR
 un
@@ -54065,8 +54157,8 @@ kA
 hr
 BC
 ZF
-Xu
-OK
+GE
+nR
 Ga
 LE
 Bo

@@ -98,7 +98,7 @@
 	maxHealth = 120
 	health = 120
 	speed = -10
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/seeds/banana)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/plant_seeds/preset/banana)
 	banana_time = 20
 
 /mob/living/simple_animal/hostile/retaliate/clown/honkling
@@ -110,7 +110,7 @@
 	speed = -10
 	melee_damage = 1
 	attacktext = "pociesza"
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/seeds/banana/bluespace)
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/plant_seeds/preset/bs_banana)
 	banana_type = /obj/item/grown/bananapeel
 	attack_reagent = /datum/reagent/consumable/laughter
 

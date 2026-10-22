@@ -34,7 +34,7 @@
 /datum/uplink_item/spy_unique/kudzu
 	name = "Kudzu"
 	desc = "Paczka nasion kudzu. Posadź i zapomnij, świetnie odwraca uwagę."
-	item = /obj/item/seeds/kudzu
+	item = /obj/item/plant_seeds/preset/kudzu
 
 /datum/uplink_item/spy_unique/big_knife
 	name = "Nóż bojowy"

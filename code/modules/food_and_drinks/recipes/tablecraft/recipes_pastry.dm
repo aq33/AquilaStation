@@ -480,7 +480,7 @@
 	time = 15
 	name = "Poppy pretzel"
 	reqs = list(
-		/obj/item/seeds/poppy = 1,
+		/obj/item/plant_seeds/preset/poppy = 1,
 		/obj/item/food/pastrybase = 1
 	)
 	result = /obj/item/food/poppypretzel
