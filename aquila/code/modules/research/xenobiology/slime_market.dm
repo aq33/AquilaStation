@@ -170,8 +170,10 @@ GLOBAL_DATUM_INIT(slime_market, /datum/slime_market, new)
 	for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
 		if(request.extract_path != extract.type || request.ready_for_pickup)
 			continue
-		choices[request.request_name] = image(icon = extract.icon, icon_state = extract.icon_state)
-		choice_to_request[request.request_name] = request
+		// Numer z przodu, bo dwie osoby o tym samym imieniu mogą zamówić to samo
+		var/label = "[length(choices) + 1]. [request.request_name]"
+		choices[label] = image(icon = extract.icon, icon_state = extract.icon_state)
+		choice_to_request[label] = request
 	if(!length(choices))
 		return FALSE
 	choices["Sprzedaj"] = image(icon = 'icons/obj/economy.dmi', icon_state = "spacecash100")
@@ -274,6 +276,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 			var/obj/item/request_item = request.extract_path
 			data["requests"] += list(list(
 				"name" = request.request_name,
+				"ref" = REF(request),
 				"icon" = initial(request_item.icon),
 				"icon_state" = initial(request_item.icon_state),
 				"amount" = request.extracts_needed,

@@ -25,6 +25,7 @@ type Price = {
 
 type Request = {
   name: string;
+  ref: string;
   icon: string;
   icon_state: string;
   amount: number;
@@ -160,7 +161,7 @@ const Requests = () => {
       </NoticeBox>
       <Table>
         {data.requests.map((request) => (
-          <Table.Row key={request.name} className="candystripe">
+          <Table.Row key={request.ref} className="candystripe">
             <Table.Cell collapsing>
               <DmIcon
                 icon={request.icon}

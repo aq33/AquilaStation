@@ -44,7 +44,7 @@
 
 /obj/machinery/slime_extract_requestor/Destroy()
 	for(var/datum/extract_request_data/request as anything in current_requests)
-		request.cancel_request_early(console)
+		request.cancel_request_early(console, drop_location())
 	current_requests.Cut()
 	if(console?.request_pad == src)
 		console.request_pad = null
@@ -103,7 +103,7 @@
 			return
 		if(tgui_alert(user, "Masz już otwarte zamówienie. Anulować je? Dostaniesz zwrot połowy nagrody.", name, list("Tak", "Nie")) == "Tak" && !QDELETED(request))
 			current_requests -= request
-			request.cancel_request_early(console)
+			request.cancel_request_early(console, drop_location())
 		return
 	create_request(user, card)
 
@@ -182,12 +182,18 @@
 	pay_science(payout * 0.5)
 	qdel(src)
 
-/datum/extract_request_data/proc/cancel_request_early(obj/machinery/computer/slime_market/console)
-	console?.say("Zamówienie anulowane: [request_name].")
-	console?.return_extracts(extract_path, extracts_given)
-	if(payout)
-		host_card.registered_account?.adjust_money(round(payout * 0.5))
-	pay_science(payout * 0.5)
+/// Bez konsoli dostarczone ekstrakty wypadają w return_location
+/datum/extract_request_data/proc/cancel_request_early(obj/machinery/computer/slime_market/console, atom/return_location)
+	if(console)
+		console.say("Zamówienie anulowane: [request_name].")
+		console.return_extracts(extract_path, extracts_given)
+	else if(return_location)
+		for(var/i in 1 to extracts_given)
+			new extract_path(return_location)
+	var/refund = round(payout * 0.5)
+	if(refund)
+		host_card.registered_account?.adjust_money(refund)
+	pay_science(payout - refund)
 	qdel(src)
 
 /datum/extract_request_data/proc/finish_request(obj/machinery/computer/slime_market/console)
