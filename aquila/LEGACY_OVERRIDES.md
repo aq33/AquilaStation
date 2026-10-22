@@ -32,6 +32,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/datum/species/ipc/post_death()` | Left (minimal) | A one-line no-op (keep the BSOD screen after death); the override *is* the delta. |
 | `/obj/machinery/gravity_generator/part/get_status()` | Left (minimal) | A one-line null-safe `main_part?.get_status()`; the override *is* the delta. |
 | `/datum/hud/human/update_locked_slots()` | Left (C) | BeeStation#13707 port (`aquila/code/_onclick/hud/locked_slots.dm`): dims every slot `can_equip()` would refuse (no jumpsuit, no suit, missing limbs or head, `no_glasses`), not just the species `no_equip` list. Upstream only checked `no_equip`, so the override replaces the whole loop. |
+| `/obj/machinery/computer/security/telescreen/entertainment/notify()` | Partial (C) | Spess.tv port (`aquila/code/modules/broadcast/telescreen.dm`): skips the upstream proc when the screen is already on or another broadcast is live, because upstream `notify()` blanks the screen in both cases. The broadcast procs (`start/stop/set_network_broadcast_status`) moved there from `bitrunning/server/util.dm`. |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
 
@@ -117,6 +118,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | RD suit storage unit holds the HEV suit instead of the research MODsuit | `code/game/machinery/suit_storage_unit.dm` | HEV from the 2024 changelog (aq33/AquilaStation#461) |
 | Deck technician job card uses the `munitech` state | `code/game/objects/items/cards_ids.dm` | `decktechnician` state doesn't exist in `nsv13/icons/obj/card.dmi` |
 | Mouse modifiers passed to `preparePixelProjectile()` only when not empty | `code/modules/projectiles/ammunition/_firing.dm`, `throw_proj()` | `params2list(null)` is an empty list, which is true, so a living shooter without mouse data (NPCs without a client, the pulse demon firing a hijacked gun) aimed at angle 0 and shot north. Test: `aquila_gun_fire_without_params` |
+| `if(explode_z) explosion_particles_visual(...)` after the explosion effect system | `code/controllers/subsystem/explosion.dm` (`explode()`) | Monkestation explosion particles (`aquila/code/modules/visual_changes/explosions.dm`): origin only, off with `GLOB.explosion_particles_enabled`, capped by `GLOB.explosion_particles_max`. Gun smoke and impact debris need no core hook (`shoot_live_shot()`/`bullet_act()` overrides with `..()`) |
+| `Loafer` entry in `GLOB.disposal_pipe_recipes` | `code/game/objects/items/RPD.dm` | Monkestation loafer (`aquila/code/modules/monke/loafer.dm`) is built with the RPD like other disposal pipes |
+| `TRAIT_FAST_CLIMBER`, `TRAIT_SHOVE_RESIST` defines; `TRAIT_FAST_CLIMBER` check in `climb_structure()`; `resist_shove()` call in `/datum/species/proc/disarm()` | `code/__DEFINES/traits.dm`, `code/game/objects/structures.dm`, `code/modules/mob/living/carbon/human/species.dm` | Monkestation leg implants (`aquila/code/modules/cybernetics/leg_augments.dm`): table-glider climbs 3x faster, BU-TAM turns a shove into a little stamina damage. Leg slots and the leg organ manipulation are in `aquila/` (`surgery/organ_manipulation/soft/New()` adds the legs) |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

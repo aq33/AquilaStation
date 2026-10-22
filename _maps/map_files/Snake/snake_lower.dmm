@@ -444,6 +444,10 @@
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"aZ" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -1647,6 +1651,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dI" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "research_shutters";
+	name = "research shutters"
+	},
+/obj/machinery/door/window/southright{
+	name = "Science Desk";
+	req_one_access_txt = "7;29"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/item/discovery_scanner,
+/obj/structure/desk_bell/departmental/science,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "dJ" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -1732,6 +1752,16 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Security Desk";
+	req_access_txt = "1"
+	},
+/obj/structure/desk_bell/departmental/security,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2253,6 +2283,14 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/fore)
+"fh" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/desk_bell/departmental/medical,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -3019,6 +3057,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"gU" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"gV" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/library)
 "gW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -48222,7 +48276,7 @@ hN
 lw
 jY
 lt
-fe
+dI
 fc
 Cn
 Ar
@@ -51564,7 +51618,7 @@ fP
 AP
 MT
 Ky
-ES
+fh
 wA
 Ky
 bP
@@ -52837,10 +52891,10 @@ aJ
 aJ
 AZ
 bh
-fk
+aZ
 qW
 Rz
-YA
+gU
 od
 cC
 sO
@@ -53870,7 +53924,7 @@ HE
 pY
 pY
 pY
-gH
+dU
 Ca
 pY
 mi
@@ -66201,7 +66255,7 @@ aJ
 aJ
 uG
 tt
-tt
+gV
 FI
 DL
 PH

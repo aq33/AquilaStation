@@ -178,7 +178,7 @@
 		COOLDOWN_START(src, broadcast_toggle_cd, 5 SECONDS)
 		// And we only flip TVs when there's a domain, because otherwise there's no cams to watch
 		if(broadcasting)
-			start_broadcasting_network(BITRUNNER_CAMERA_NET)
+			start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [generated_domain.name]!")
 		else
 			stop_broadcasting_network(BITRUNNER_CAMERA_NET)
 	return TRUE
@@ -193,19 +193,6 @@
 		if(!is_blocked_turf(tile))
 			return tile
 
-/// AQUILA: tg start_broadcasting_network - dodaje sieć kamer bitrunnerów do telewizorów rozrywkowych
-/proc/start_broadcasting_network(network)
-	for(var/obj/machinery/computer/security/telescreen/entertainment/tv in GLOB.machines)
-		tv.network |= network
-		tv.notify(TRUE)
-
-/// AQUILA: tg stop_broadcasting_network
-/proc/stop_broadcasting_network(network)
-	for(var/obj/machinery/computer/security/telescreen/entertainment/tv in GLOB.machines)
-		if(!(network in tv.network))
-			continue
-		tv.network -= network
-		if(length(tv.network) <= 1)
-			tv.notify(FALSE)
+// start_broadcasting_network() i stop_broadcasting_network() są w aquila/code/modules/broadcast/broadcast.dm
 
 #undef MAX_DISTANCE

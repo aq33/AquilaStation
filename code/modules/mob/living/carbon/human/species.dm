@@ -1707,6 +1707,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return FALSE
 	if(user.loc == target.loc)
 		return FALSE
+	if(HAS_TRAIT(target, TRAIT_SHOVE_RESIST)) // AQ EDIT - implant BU-TAM (port Monkestation): popchnięcie męczy zamiast przewracać
+		return target.resist_shove(user)
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)

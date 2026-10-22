@@ -4544,19 +4544,72 @@
 /obj/item/pen,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"kT" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"kV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/light/small,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/maintenance/fore)
+"kW" = (
+/obj/structure/cable/yellow,
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
+"kX" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/science)
+"kY" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
+"kZ" = (
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
 "la" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"lb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/aft)
 "lc" = (
 /turf/closed/wall/r_wall,
 /area/quartermaster/storage)
+"ld" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4570,6 +4623,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/aft)
+"lf" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/central)
+"lg" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/machinery/door/window/eastright{
+	dir = 1;
+	name = "Cargo Desk";
+	req_access_txt = "31"
+	},
+/obj/structure/desk_bell/departmental/supply,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
+"lh" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "li" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -32076,14 +32157,14 @@ zQ
 BN
 BN
 os
-Fy
+kW
 Fy
 Fy
 EG
 EG
 aV
 BN
-gM
+kT
 Vo
 KE
 vW
@@ -33617,13 +33698,13 @@ zQ
 zQ
 BN
 BN
-EG
+kZ
 EG
 nk
 Wi
 EG
 EG
-Sn
+kY
 BN
 bi
 Vo
@@ -33636,7 +33717,7 @@ lW
 qP
 vW
 xV
-TW
+kX
 JY
 zQ
 zQ
@@ -34143,7 +34224,7 @@ bB
 Vo
 tf
 BN
-gM
+kT
 gM
 bB
 gM
@@ -36195,7 +36276,7 @@ Rm
 Rm
 Rm
 BN
-gM
+kT
 gM
 KE
 BN
@@ -36203,7 +36284,7 @@ bB
 gM
 bB
 gM
-gM
+kT
 BN
 jl
 TW
@@ -39024,7 +39105,7 @@ Qx
 Qx
 dY
 af
-DZ
+lb
 aM
 kA
 ZQ
@@ -39274,7 +39355,7 @@ YO
 rt
 vh
 Qb
-qz
+ld
 qz
 bN
 oS
@@ -42356,7 +42437,7 @@ zQ
 aT
 qz
 Qx
-qz
+ld
 qz
 qz
 qz
@@ -44678,7 +44759,7 @@ tM
 gp
 sk
 lE
-sk
+lf
 Ga
 yb
 Bu
@@ -46213,7 +46294,7 @@ gz
 ks
 sk
 sk
-sk
+lf
 gm
 Be
 Xh
@@ -49053,7 +49134,7 @@ jM
 jR
 jY
 jH
-kg
+lh
 kl
 ko
 kw
@@ -58553,7 +58634,7 @@ DU
 DU
 DU
 Da
-EM
+lg
 Oz
 NF
 jb
@@ -60612,7 +60693,7 @@ yU
 lc
 Sr
 YM
-wS
+kV
 Fq
 MG
 ar

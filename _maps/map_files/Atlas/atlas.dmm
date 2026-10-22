@@ -134,6 +134,13 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"ap" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/engine/airless,
+/area/maintenance/nsv/deck2/starboard)
 "aq" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 4
@@ -1908,6 +1915,10 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/chapel/main)
+"dz" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/port)
 "dA" = (
 /obj/structure/sign/ship/securearea{
 	dir = 8
@@ -5196,6 +5207,10 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"jN" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/starboard)
 "jO" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
@@ -5208,6 +5223,15 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
+"jP" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/nsv/deck2/starboard)
 "jQ" = (
 /turf/open/floor/carpet/police,
 /area/security/brig)
@@ -5232,6 +5256,13 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
+"jT" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/durasteel/techfloor,
+/area/maintenance/nsv/deck2/port)
 "jU" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 1
@@ -5358,6 +5389,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"ki" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/port/fore)
 "kj" = (
 /obj/machinery/light{
 	dir = 4
@@ -5380,6 +5415,13 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"km" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/science)
 "kn" = (
 /obj/docking_port/stationary{
 	dwidth = 2;
@@ -5412,6 +5454,34 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
+"kp" = (
+/obj/machinery/door/firedoor/border_only/directional/south{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/directional/north{
+	dir = 8
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/window/westright{
+	name = "Engineering Desk";
+	req_one_access_txt = "24;10"
+	},
+/obj/machinery/door/window/northright{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "atlas_engineering"
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/stamp,
+/obj/item/stamp/denied{
+	pixel_y = 10
+	},
+/obj/structure/desk_bell/departmental/engineering,
+/turf/open/floor/plating,
+/area/engine/engine_room)
 "kq" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -5448,6 +5518,29 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/monotile/steel,
 /area/maintenance/nsv/deck2/starboard)
+"kt" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/southright{
+	name = "Cargo Desk";
+	req_one_access_txt = "31; 48"
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/pen,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/desk_bell/departmental/supply,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/storage)
 "ku" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5556,6 +5649,14 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"kG" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "kH" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/port)
@@ -45949,7 +46050,7 @@ nh
 Cf
 cD
 mL
-Ie
+jN
 Ie
 qL
 Ie
@@ -46215,7 +46316,7 @@ TD
 TD
 kW
 gS
-uo
+ap
 HX
 HX
 HX
@@ -48248,7 +48349,7 @@ YQ
 IH
 IH
 mF
-eG
+kp
 IH
 IH
 IH
@@ -48266,7 +48367,7 @@ rJ
 vA
 rt
 LJ
-Ie
+jN
 gl
 Ie
 sB
@@ -49261,7 +49362,7 @@ cl
 oD
 oD
 kH
-bh
+dz
 GO
 cm
 GO
@@ -50581,7 +50682,7 @@ HI
 Ie
 zy
 cq
-Tj
+jP
 Ie
 Ha
 mL
@@ -52608,7 +52709,7 @@ rF
 pO
 hL
 mO
-rx
+jT
 wd
 tC
 un
@@ -53661,7 +53762,7 @@ wN
 JW
 Sn
 fP
-fU
+kG
 fY
 gr
 gK
@@ -56490,7 +56591,7 @@ cx
 py
 dF
 dD
-tv
+kt
 dB
 AT
 ih
@@ -57733,7 +57834,7 @@ Nh
 iV
 iV
 iV
-sh
+ki
 sh
 iV
 VI
@@ -58510,7 +58611,7 @@ SS
 sh
 VC
 Oq
-sh
+ki
 gC
 iV
 iV
@@ -60835,7 +60936,7 @@ EE
 EE
 iV
 qp
-sh
+ki
 iV
 eY
 LC
@@ -60850,7 +60951,7 @@ Iz
 eY
 eY
 FF
-Qp
+km
 uI
 LG
 bv

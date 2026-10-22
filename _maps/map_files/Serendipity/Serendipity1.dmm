@@ -12,6 +12,23 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ac" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/dorms)
+"ad" = (
+/obj/structure/table/glass/plasma,
+/obj/machinery/door/window/southleft,
+/obj/machinery/door/window/northleft{
+	req_one_access_txt = "19"
+	},
+/obj/machinery/door/poddoor/shutters/ship/preopen{
+	id = "xo";
+	name = "XO's Shutters"
+	},
+/obj/structure/desk_bell/departmental/command/hop,
+/turf/open/floor/engine/light,
+/area/crew_quarters/heads/xo)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -74,6 +91,30 @@
 /obj/machinery/griddle,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"ak" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = -30
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/structure/desk_bell/departmental/medical{
+	pixel_x = -8
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/medbay/lobby)
 "al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -125,6 +166,14 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"aq" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -166,6 +215,24 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"av" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/extinguisher_cabinet/west,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/sugar{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/sugar{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "aw" = (
 /obj/machinery/door/airlock/ship/external/glass{
 	name = "Labor Shuttle Dock";
@@ -40535,7 +40602,7 @@ DD
 Jf
 Lo
 dG
-UT
+ad
 dM
 Zk
 dL
@@ -41321,7 +41388,7 @@ xp
 xp
 xp
 UD
-qb
+ac
 qb
 aG
 vA
@@ -41829,7 +41896,7 @@ WD
 tu
 Bs
 cc
-cm
+aq
 cs
 cH
 cO
@@ -42351,7 +42418,7 @@ cf
 vA
 qb
 qb
-qb
+ac
 vA
 sW
 sW
@@ -43357,7 +43424,7 @@ FI
 fp
 Ie
 tx
-uf
+av
 nF
 TK
 Xl
@@ -43635,7 +43702,7 @@ zD
 kL
 zh
 si
-qb
+ac
 dY
 vA
 jB
@@ -46950,7 +47017,7 @@ lA
 Mz
 Mz
 sJ
-ph
+ak
 vd
 ZJ
 ZJ
