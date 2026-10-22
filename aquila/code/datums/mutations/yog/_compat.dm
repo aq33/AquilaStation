@@ -5,7 +5,9 @@
 // --- Odporność na rany (tg TRAIT_HARDLY_WOUNDED) ---
 
 /// Rzadziej łapie rany (tg)
+#ifndef TRAIT_HARDLY_WOUNDED
 #define TRAIT_HARDLY_WOUNDED "hardly_wounded"
+#endif
 /// Gęste kości z mutacji Bone Densification: trochę mniejsze obrażenia liczone do ran
 #define TRAIT_YOG_DENSE_BONES "yog_dense_bones"
 

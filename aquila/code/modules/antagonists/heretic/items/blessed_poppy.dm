@@ -5,7 +5,7 @@
 	/// Counts how many time we picked someone out of crit condition
 	var/save_count = 0
 
-/obj/item/food/grown/poppy/blessed/Initialize(mapload, obj/item/seeds/new_seed)
+/obj/item/food/grown/poppy/blessed/Initialize(mapload, skip_genes)
 	. = ..()
 	color = COLOR_PINK
 	animate(src, color = COLOR_YELLOW, loop = -1, time = 10 SECONDS)
