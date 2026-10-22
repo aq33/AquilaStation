@@ -95,7 +95,6 @@
 /turf/open/floor/plasteel,
 /area/space/shipbreak)
 "al" = (
-/obj/machinery/loot_locator,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -271,7 +270,6 @@
 /turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "aC" = (
-/obj/machinery/shuttle_scrambler,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -522,7 +520,6 @@
 "by" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/piratepad,
 /turf/open/floor/pod/dark,
 /area/space/shipbreak)
 "bA" = (
@@ -576,7 +573,7 @@
 /area/space/shipbreak)
 "bI" = (
 /obj/machinery/light/small,
-/obj/machinery/computer/piratepad_control{
+/obj/machinery/computer/shipbreak_wreck{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,

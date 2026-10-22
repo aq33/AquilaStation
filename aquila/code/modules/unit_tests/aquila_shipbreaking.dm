@@ -18,7 +18,10 @@
 
 /// Zwraca opis pierwszego błędu albo null
 /datum/unit_test/shipbreaking/proc/check_wrecks()
-	var/static/list/forbidden = typecacheof(list(/obj/docking_port, /mob/living, /obj/machinery/porta_turret, /obj/machinery/computer/ship, /obj/machinery/computer/shuttle_flight, /obj/machinery/power/apc, /obj/machinery/nuclearbomb, /obj/item/gun, /obj/effect/landmark))
+	// Rzeczy, które działają globalnie albo strzelają do ludzi, nawet bez prądu w strefie
+	var/static/list/forbidden = typecacheof(list(/obj/docking_port, /mob/living, /obj/machinery/porta_turret, /obj/machinery/computer/ship, /obj/machinery/computer/shuttle_flight, /obj/machinery/computer/emergency_shuttle, /obj/machinery/computer/piratepad_control, /obj/machinery/computer/launchpad, /obj/machinery/shuttle_scrambler, /obj/machinery/piratepad, /obj/machinery/launchpad, /obj/machinery/telecomms, /obj/machinery/power/apc, /obj/machinery/nuclearbomb, /obj/item/gun, /obj/effect/landmark))
+	// Kadłub ma się dać rozebrać, a w klatce nie może być pól tranzytowych
+	var/static/list/forbidden_turfs = typecacheof(list(/turf/closed/indestructible, /turf/open/indestructible, /turf/open/space/transit))
 	var/list/templates = get_shipbreaker_templates()
 	if(!length(templates))
 		return "No shipbreaker templates"
@@ -35,6 +38,8 @@
 			return "[template.mappath] failed to load"
 		var/hull = 0
 		for(var/turf/T as anything in template.get_affected_turfs(bottom_left))
+			if(is_type_in_typecache(T, forbidden_turfs))
+				return "[template.mappath] has [T.type] at [T.x],[T.y], which can't be broken down"
 			if(isgroundlessturf(T))
 				continue
 			hull++

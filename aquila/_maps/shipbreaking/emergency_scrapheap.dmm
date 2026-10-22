@@ -23,7 +23,7 @@
 /turf/open/floor/carpet,
 /area/space/shipbreak)
 "ag" = (
-/obj/machinery/computer/emergency_shuttle,
+/obj/machinery/computer/shipbreak_wreck,
 /turf/open/floor/carpet,
 /area/space/shipbreak)
 "ah" = (

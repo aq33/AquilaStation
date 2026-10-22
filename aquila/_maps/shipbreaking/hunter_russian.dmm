@@ -94,10 +94,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/space/shipbreak)
-"w" = (
-/obj/machinery/fugitive_capture,
-/turf/open/floor/mineral/plastitanium,
-/area/space/shipbreak)
 "x" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
@@ -432,7 +428,7 @@ a
 b
 b
 s
-w
+q
 A
 A
 q

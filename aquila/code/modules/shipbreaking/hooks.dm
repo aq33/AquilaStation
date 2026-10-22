@@ -102,3 +102,15 @@
 	name = "spalona płytka konsoli"
 	desc = "Płytka z konsoli wraku. Nic już z niej nie będzie poza złomem."
 	build_path = /obj/machinery/computer/shipbreak_wreck
+
+/// Kadłub promu NSV we wraku: wygląda jak /turf/closed/indestructible/dropship, ale da się go rozebrać
+/turf/closed/wall/shipbreak_dropship
+	name = "kadłub promu"
+	desc = "Płyta kadłuba wraku promu. Spawarką da się ją odciąć od szkieletu."
+	icon = 'nsv13/icons/turf/dropship.dmi'
+	icon_state = "brown_fr"
+	color = null
+	smooth = NONE
+	legacy_smooth = FALSE // każde pole ma własny kawałek dużego sprite'a promu, bez łączenia ścian
+	canSmoothWith = null
+	sheet_type = /obj/item/stack/sheet/plasteel

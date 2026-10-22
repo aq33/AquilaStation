@@ -88,7 +88,7 @@
 /turf/template_noop,
 /area/template_noop)
 "m" = (
-/obj/machinery/computer/objective,
+/obj/machinery/computer/shipbreak_wreck,
 /turf/open/floor/mineral/plastitanium,
 /area/space/shipbreak)
 "n" = (
@@ -241,10 +241,6 @@
 	},
 /turf/open/floor/plating,
 /area/space/shipbreak)
-"M" = (
-/obj/machinery/computer/shipbreak_wreck,
-/turf/open/floor/mineral/plastitanium,
-/area/space/shipbreak)
 "P" = (
 /obj/structure/chair/fancy/shuttle{
 	dir = 1
@@ -299,7 +295,6 @@
 /area/space/shipbreak)
 "Y" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/telecomms/relay/preset/exploration,
 /turf/open/floor/mineral/titanium,
 /area/space/shipbreak)
 "Z" = (
@@ -343,7 +338,7 @@ I
 "}
 (3,1,1) = {"
 R
-M
+m
 P
 z
 z

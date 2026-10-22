@@ -3,37 +3,35 @@
 /obj/machinery/atmospherics/pipe/manifold/general/hidden{
 	dir = 4
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "bn" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "96"
 	},
 /area/space/shipbreak)
 "cy" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_rt"
 	},
 /area/space/shipbreak)
 "cM" = (
-/turf/closed/indestructible/dropship/entry{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "60"
 	},
 /area/space/shipbreak)
 "dt" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "79"
 	},
 /area/space/shipbreak)
 "eJ" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "89"
 	},
 /area/space/shipbreak)
 "fa" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_fr"
 	},
 /area/space/shipbreak)
@@ -42,17 +40,15 @@
 /obj/machinery/stasis,
 /obj/effect/turf_decal/ship/delivery/yellow,
 /obj/item/storage/firstaid,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "fZ" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_fl"
 	},
 /area/space/shipbreak)
 "iv" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "12"
 	},
 /area/space/shipbreak)
@@ -62,76 +58,70 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "jN" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "66"
 	},
 /area/space/shipbreak)
 "jP" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_cockpit_fr"
 	},
 /area/space/shipbreak)
 "mI" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_lllb"
 	},
 /area/space/shipbreak)
 "mM" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "19"
 	},
 /area/space/shipbreak)
 "oV" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_lb"
 	},
 /area/space/shipbreak)
 "pC" = (
-/turf/open/space/transit/north,
-/area/space/shipbreak)
+/turf/template_noop,
+/area/template_noop)
 "qn" = (
 /obj/structure/chair/fancy/dropship{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "qw" = (
 /obj/structure/lattice/catwalk/over/ship/dark,
 /obj/machinery/computer/shipbreak_wreck,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "rz" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_front"
 	},
 /area/space/shipbreak)
 "rL" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_rrb"
 	},
 /area/space/shipbreak)
 "sC" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_wing_rt"
 	},
 /area/space/shipbreak)
 "ud" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_rb"
 	},
 /area/space/shipbreak)
 "yU" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_wing_lt"
 	},
 /area/space/shipbreak)
@@ -143,12 +133,10 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "zC" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "13"
 	},
 /area/space/shipbreak)
@@ -156,7 +144,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "70"
 	},
 /area/space/shipbreak)
@@ -166,12 +154,10 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/window/reinforced,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "Cb" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "11"
 	},
 /area/space/shipbreak)
@@ -182,33 +168,29 @@
 /obj/effect/turf_decal/ship/delivery/yellow,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/item/wrench,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "Dt" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "97"
 	},
 /area/space/shipbreak)
 "Es" = (
 /obj/machinery/computer/shipbreak_wreck,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "EC" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_rrrb"
 	},
 /area/space/shipbreak)
 "EG" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "98"
 	},
 /area/space/shipbreak)
 "Ja" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_wing_lb"
 	},
 /area/space/shipbreak)
@@ -223,9 +205,7 @@
 /obj/structure/chair/fancy/dropship{
 	dir = 8
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "KG" = (
 /obj/effect/turf_decal/stripes/line{
@@ -234,25 +214,21 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "ND" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "QC" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_lt"
 	},
 /area/space/shipbreak)
 "SR" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_rearwing_llb"
 	},
 /area/space/shipbreak)
@@ -268,32 +244,25 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/item/radio/intercom/directional/west,
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "Vv" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "18"
 	},
 /area/space/shipbreak)
 "VG" = (
-/turf/closed/indestructible/dropship/entry{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "57"
 	},
 /area/space/shipbreak)
 "VW" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_cockpit_fl"
 	},
 /area/space/shipbreak)
-"VY" = (
-/turf/closed/indestructible/cordon{
-	alpha = 0
-	},
-/area/space/shipbreak)
 "WQ" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "70"
 	},
 /area/space/shipbreak)
@@ -301,17 +270,15 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 9
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 "Zh" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "86"
 	},
 /area/space/shipbreak)
 "Zt" = (
-/turf/closed/indestructible/dropship{
+/turf/closed/wall/shipbreak_dropship{
 	icon_state = "blue_wing_rb"
 	},
 /area/space/shipbreak)
@@ -325,28 +292,25 @@
 /obj/machinery/computer/shipbreak_wreck{
 	dir = 8
 	},
-/turf/open/indestructible/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/floor/plasteel/dark,
 /area/space/shipbreak)
 
 (1,1,1) = {"
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
 "}
 (2,1,1) = {"
-VY
 pC
 pC
 pC
@@ -358,10 +322,11 @@ pC
 pC
 pC
 pC
-VY
+pC
+pC
 "}
 (3,1,1) = {"
-VY
+pC
 pC
 pC
 pC
@@ -373,10 +338,10 @@ jN
 Ja
 mI
 pC
-VY
+pC
 "}
 (4,1,1) = {"
-VY
+pC
 pC
 pC
 pC
@@ -388,10 +353,10 @@ WQ
 Zt
 SR
 pC
-VY
+pC
 "}
 (5,1,1) = {"
-VY
+pC
 pC
 fZ
 VW
@@ -403,10 +368,10 @@ Vv
 QC
 oV
 pC
-VY
+pC
 "}
 (6,1,1) = {"
-VY
+pC
 pC
 rz
 bn
@@ -418,10 +383,10 @@ CS
 dt
 Cb
 pC
-VY
+pC
 "}
 (7,1,1) = {"
-VY
+pC
 pC
 rz
 Dt
@@ -433,10 +398,10 @@ WV
 dt
 iv
 pC
-VY
+pC
 "}
 (8,1,1) = {"
-VY
+pC
 pC
 rz
 EG
@@ -448,10 +413,10 @@ fD
 dt
 zC
 pC
-VY
+pC
 "}
 (9,1,1) = {"
-VY
+pC
 pC
 fa
 jP
@@ -463,10 +428,10 @@ mM
 cy
 ud
 pC
-VY
+pC
 "}
 (10,1,1) = {"
-VY
+pC
 pC
 pC
 pC
@@ -478,10 +443,10 @@ jN
 Ja
 rL
 pC
-VY
+pC
 "}
 (11,1,1) = {"
-VY
+pC
 pC
 pC
 pC
@@ -493,10 +458,9 @@ WQ
 Zt
 EC
 pC
-VY
+pC
 "}
 (12,1,1) = {"
-VY
 pC
 pC
 pC
@@ -508,20 +472,21 @@ pC
 pC
 pC
 pC
-VY
+pC
+pC
 "}
 (13,1,1) = {"
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
+pC
 "}

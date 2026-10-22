@@ -140,7 +140,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/space/shipbreak)
 "G" = (
-/obj/machinery/computer/emergency_shuttle{
+/obj/machinery/computer/shipbreak_wreck{
 	dir = 8
 	},
 /obj/structure/window/reinforced{

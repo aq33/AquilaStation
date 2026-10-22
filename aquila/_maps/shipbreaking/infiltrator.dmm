@@ -845,9 +845,6 @@
 /turf/open/floor/circuit/red,
 /area/space/shipbreak)
 "ct" = (
-/obj/machinery/telecomms/allinone{
-	intercept = 1
-	},
 /turf/open/floor/circuit/red,
 /area/space/shipbreak)
 "cv" = (

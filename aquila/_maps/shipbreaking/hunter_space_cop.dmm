@@ -73,10 +73,6 @@
 "ku" = (
 /turf/closed/wall/mineral/titanium,
 /area/space/shipbreak)
-"lp" = (
-/obj/machinery/fugitive_capture,
-/turf/open/floor/mineral/titanium/blue,
-/area/space/shipbreak)
 "qx" = (
 /obj/machinery/button/door{
 	id = "Interpolship";
@@ -174,7 +170,7 @@ Pq
 (8,1,1) = {"
 Pq
 ku
-lp
+aa
 aa
 aj
 ku
