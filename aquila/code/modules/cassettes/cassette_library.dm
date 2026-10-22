@@ -89,7 +89,8 @@
 	if(!account.adjust_money(-cassette_cost))
 		balloon_alert(user, "za mało kredytów!")
 		return TRUE
-	SSeconomy.get_dep_account(ACCOUNT_SRV)?.adjust_money(cassette_cost)
+	var/datum/bank_account/service_budget = SSeconomy.get_dep_account(ACCOUNT_SRV)
+	service_budget?.adjust_money(cassette_cost)
 	record_purchase(cassette, user)
 	busy = TRUE
 	playsound(src, 'sound/machines/terminal_processing.ogg', 50, TRUE)
