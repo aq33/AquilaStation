@@ -39,7 +39,8 @@
 	. = 0
 	for(var/turf/T as anything in chamber.reservation.reserved_turfs)
 		for(var/atom/movable/AM in T)
-			if(istype(AM, path))
+			// Dokładny typ: zestaw może dawać rodzica i podtyp naraz (np. dzwonek i dzwonek działu)
+			if(AM.type == path)
 				.++
 
 /datum/unit_test/test_chamber/proc/check_room(datum/test_chamber/chamber)

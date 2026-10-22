@@ -39,8 +39,8 @@
 		/obj/item/kitchen/knife = 1,
 		/obj/item/wirecutters = 1,
 		/obj/item/stack/cable_coil = 1,
-		/obj/item/stack/sheet/mineral/gold = 2,
-		/obj/item/stack/sheet/mineral/silver = 2,
+		/obj/item/stack/sheet/mineral/gold = 1,
+		/obj/item/stack/sheet/mineral/silver = 1,
 		/obj/item/reagent_containers/food/drinks/shaker = 1,
 		/obj/item/modular_computer/tablet/preset/advanced = 1,
 	)

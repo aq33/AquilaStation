@@ -38,6 +38,8 @@
 	loafer.finish_loaf(holder, made)
 	TEST_ASSERT_EQUAL(made.loc, holder, "Loaf was not put into the holder")
 	TEST_ASSERT_EQUAL(loafer.finished_holder, holder, "Loafer would loaf its own loaf again")
+	// Holder usuwamy przed rurą, bo Destroy() rury z holderem w środku wyrzuca go i zrywa płytkę podłogi
+	qdel(holder)
 
 	// Sterta śmieci: chowanie przedmiotu i losowy wygląd
 	var/obj/structure/trash_pile/pile = allocate(/obj/structure/trash_pile, run_loc_floor_bottom_left)
