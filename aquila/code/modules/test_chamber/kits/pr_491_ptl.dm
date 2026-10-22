@@ -1,11 +1,11 @@
-/datum/test_chamber_kit/pr_ptl
-	name = "PR PTL: laser przesyłu mocy"
-	pr = "aq33/AquilaStation#PTL"
+/datum/test_chamber_kit/pr_491
+	name = "PR 491: laser przesyłu mocy"
+	pr = "aq33/AquilaStation#491"
 	description = "Laser strzela na południe, RTG daje 30 MW nadwyżki. W panelu włącz wejście (np. 30 MW), poczekaj na 1 MW ładunku, ustaw wyjście (np. 5 MW) i włącz strzał. \
 	Sprawdź: wiązka staje na ścianie komory, kredyty spływają na konta ENG/CAR/SEC (50/25/25), po 1 MW sprzedaży leci ogłoszenie CentComu. \
 	Wepchnij człowieka w wiązkę: do 25 MW pali, 26-50 MW gibuje, powyżej wybuch. Bez dostępu inżynierii panel ma odmawiać, emag zdejmuje blokadę."
 
-/datum/test_chamber_kit/pr_ptl/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_491/setup(list/spawned, list/turfs, turf/center, mob/user)
 	// Laser patrzy na południe: środek 3x3 na center, terminal dwie kratki wyżej, RTG nad nim
 	var/turf/corner = locate(center.x - 1, center.y - 1, center.z)
 	var/turf/terminal_turf = locate(center.x, center.y + 2, center.z)
