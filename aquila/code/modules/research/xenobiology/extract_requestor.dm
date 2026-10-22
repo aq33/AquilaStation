@@ -89,9 +89,6 @@
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if(!console)
-		to_chat(user, "<span class='warning'>[src] nie jest połączony z konsolą rynku szlamów!</span>")
-		return
 	var/obj/item/card/id/card = user.get_idcard(TRUE)
 	if(!card)
 		to_chat(user, "<span class='warning'>Nie wykryto karty ID!</span>")
@@ -104,6 +101,10 @@
 		if(tgui_alert(user, "Masz już otwarte zamówienie. Anulować je? Dostaniesz zwrot połowy nagrody.", name, list("Tak", "Nie")) == "Tak" && !QDELETED(request))
 			current_requests -= request
 			request.cancel_request_early(console, drop_location())
+		return
+	// Odbiór i anulowanie działają bez konsoli, nowe zamówienie już nie
+	if(!console)
+		to_chat(user, "<span class='warning'>[src] nie jest połączony z konsolą rynku szlamów!</span>")
 		return
 	create_request(user, card)
 
