@@ -58,7 +58,7 @@
 			direct_target = target
 	if(!direct_target)
 		var/modifiers = params2list(params)
-		BB.preparePixelProjectile(target, user, modifiers, spread)
+		BB.preparePixelProjectile(target, user, length(modifiers) ? modifiers : null, spread) // AQUILA EDIT - params2list(null) is an empty but true list, so shots without mouse data (NPCs, pulse demon) flew north
 	BB.fire(null, direct_target)
 	BB = null
 	return TRUE

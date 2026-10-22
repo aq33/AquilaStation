@@ -24,7 +24,7 @@
 /obj/machinery/turnstile{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "ad" = (
 /obj/item/pinpointer/crew,
@@ -101,7 +101,7 @@
 /area/crew_quarters/kitchen)
 "ak" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "al" = (
 /obj/structure/cable,
@@ -203,7 +203,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "aw" = (
 /obj/machinery/door/airlock/ship/external/glass{
@@ -258,7 +258,7 @@
 /obj/machinery/gulag_item_reclaimer{
 	pixel_x = -32
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "aC" = (
 /obj/structure/fence/door/opened,
@@ -286,7 +286,7 @@
 /obj/item/gun/ballistic/automatic/marine_rifle,
 /obj/item/gun/ballistic/automatic/marine_rifle,
 /obj/machinery/status_display/ai/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "aF" = (
 /obj/structure/hull_plate,
@@ -333,7 +333,7 @@
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/structure/window/plasma/reinforced/spawner,
 /obj/machinery/door/window/northleft,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "aM" = (
 /obj/structure/hull_plate,
@@ -497,7 +497,7 @@
 /obj/item/paper_bin,
 /obj/item/storage/crayons,
 /obj/machinery/status_display/ai/north,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "bh" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
@@ -674,7 +674,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "by" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -686,7 +686,7 @@
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/genpop,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "bz" = (
 /obj/structure/sign/poster/official/moth1{
@@ -711,7 +711,7 @@
 /obj/machinery/seed_extractor,
 /obj/item/cultivator,
 /obj/item/seeds/ambrosia,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "bC" = (
 /mob/living/simple_animal/pet/cat{
@@ -1173,7 +1173,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/junction/yjunction,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "cx" = (
 /obj/effect/landmark/start/bitrunner,
@@ -1213,7 +1213,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "cC" = (
 /obj/structure/cable,
@@ -1224,7 +1224,7 @@
 	dir = 9;
 	icon_state = "pipe11-1"
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "cD" = (
 /obj/structure/cable,
@@ -1243,7 +1243,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "cF" = (
 /obj/structure/cable,
@@ -1342,7 +1342,7 @@
 /obj/structure/table,
 /obj/structure/bedsheetbin,
 /obj/machinery/airalarm/directional/north,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "cR" = (
 /obj/structure/fence{
@@ -1476,7 +1476,7 @@
 "dc" = (
 /obj/machinery/rnd/production/techfab/department/security,
 /obj/machinery/firealarm/directional/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "dd" = (
 /obj/item/paper_bin,
@@ -1614,6 +1614,7 @@
 /obj/effect/turf_decal/tile/ship/purple{
 	dir = 1
 	},
+/obj/machinery/dna_infuser,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/genetics)
 "du" = (
@@ -1662,7 +1663,7 @@
 /obj/item/radio/intercom/directional/east,
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/security_officer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "dA" = (
 /obj/machinery/munitions_forge/crucible,
@@ -1704,7 +1705,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "dF" = (
 /obj/structure/table/glass/plasma,
@@ -1737,7 +1738,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "dJ" = (
 /obj/structure/cable,
@@ -1863,7 +1864,7 @@
 	name = "assault weapons"
 	},
 /obj/item/gun/ballistic/automatic/sniper_rifle,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "dW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -1984,7 +1985,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "en" = (
 /obj/effect/turf_decal/tile/ship/half/purple{
@@ -2187,13 +2188,13 @@
 	req_one_access_txt = "2;34"
 	},
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "fd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "fe" = (
 /obj/machinery/computer/rdconsole/core{
@@ -2557,7 +2558,7 @@
 	},
 /obj/effect/landmark/zebra_interlock_point,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "gx" = (
 /obj/machinery/disposal/bin,
@@ -2597,7 +2598,7 @@
 	pixel_y = 8
 	},
 /obj/item/paper/guides/jobs/security/labor_camp,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "gD" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -2695,7 +2696,7 @@
 "gT" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/evidence,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "gV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -2791,7 +2792,7 @@
 /obj/machinery/genpop_interface{
 	pixel_y = 26
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "hj" = (
 /obj/structure/cable,
@@ -2871,6 +2872,7 @@
 /obj/item/restraints/handcuffs/cable/zipties,
 /obj/item/restraints/handcuffs/cable/zipties,
 /obj/structure/table/glass/plasma,
+/obj/item/book/manual/infuser,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/genetics)
 "hv" = (
@@ -2902,7 +2904,7 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 30
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "hy" = (
 /obj/machinery/aug_manipulator,
@@ -2937,7 +2939,7 @@
 /mob/living/simple_animal/hostile/carp/cayenne,
 /obj/structure/bed/dogbed/cayenne,
 /obj/machinery/airalarm/directional/north,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "hH" = (
 /obj/machinery/door/airlock/ship/external/glass{
@@ -3074,7 +3076,7 @@
 	pixel_y = 26
 	},
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "ia" = (
 /obj/structure/cable,
@@ -3323,7 +3325,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/light/floor,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "iE" = (
 /obj/effect/turf_decal/tile/ship/blue{
@@ -3442,7 +3444,7 @@
 	pixel_y = -6
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "jd" = (
 /obj/structure/cable,
@@ -3461,7 +3463,7 @@
 /obj/machinery/door/firedoor/border_only/directional/south,
 /obj/machinery/door/firedoor/border_only/directional/north,
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "jh" = (
 /obj/structure/cable,
@@ -3490,7 +3492,7 @@
 	},
 /obj/item/paper_bin,
 /obj/item/reagent_containers/food/drinks/mug,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "jm" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -3505,7 +3507,7 @@
 /area/crew_quarters/cryopods)
 "jr" = (
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "jt" = (
 /obj/item/pinpointer/crew,
@@ -3520,7 +3522,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "jv" = (
 /obj/structure/cable,
@@ -3537,7 +3539,7 @@
 	req_one_access_txt = "3"
 	},
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "jw" = (
 /obj/structure/cable,
@@ -3657,7 +3659,7 @@
 	},
 /obj/machinery/holopad,
 /obj/effect/landmark/start/security_officer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "jM" = (
 /obj/machinery/power/apc/auto_name/north,
@@ -3694,7 +3696,7 @@
 /area/maintenance/department/medical)
 "jZ" = (
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "kb" = (
 /obj/item/wrench/medical,
@@ -3728,7 +3730,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "ke" = (
 /obj/structure/cable,
@@ -3814,7 +3816,7 @@
 /obj/machinery/computer/security{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "ky" = (
 /obj/structure/closet/crate,
@@ -3862,7 +3864,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "kK" = (
 /obj/structure/cable,
@@ -3976,12 +3978,12 @@
 /obj/machinery/door/firedoor/border_only/directional/south,
 /obj/machinery/door/firedoor/border_only/directional/north,
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "le" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "lg" = (
 /obj/structure/cable,
@@ -4104,7 +4106,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "lC" = (
 /obj/machinery/chem_heater,
@@ -4251,7 +4253,7 @@
 /obj/machinery/door/firedoor/border_only/directional/north,
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "lZ" = (
 /obj/structure/disposalpipe/segment,
@@ -4276,7 +4278,7 @@
 /obj/effect/landmark/zebra_interlock_point,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "me" = (
 /obj/structure/curtain/obscuring/grey,
@@ -4397,7 +4399,7 @@
 	anchored = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "my" = (
 /turf/open/floor/plasteel/tiled/light,
@@ -4471,7 +4473,7 @@
 "mK" = (
 /obj/effect/landmark/event_spawn,
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "mM" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
@@ -4484,7 +4486,7 @@
 /obj/structure/closet/secure_closet/brig{
 	id = "pw_1"
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "mN" = (
 /obj/machinery/door/airlock/ship/maintenance{
@@ -4540,7 +4542,7 @@
 /obj/machinery/computer/arcade,
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "nc" = (
 /obj/machinery/door/airlock/ship/maintenance,
@@ -4583,7 +4585,7 @@
 	id = "sec_lobby";
 	next_id = "nature_north"
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "ni" = (
 /obj/structure/cable,
@@ -4780,7 +4782,7 @@
 	pixel_x = 32;
 	pixel_y = -6
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "nT" = (
 /obj/structure/disposalpipe/segment{
@@ -4873,7 +4875,7 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4997,7 +4999,7 @@
 	},
 /obj/effect/landmark/event_spawn,
 /obj/machinery/holopad/secure,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "oP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -5044,7 +5046,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/door/firedoor/border_only/directional/north,
 /obj/machinery/door/firedoor/border_only/directional/south,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "pb" = (
 /obj/structure/cable,
@@ -5056,7 +5058,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/security_officer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "pc" = (
 /obj/machinery/light/small{
@@ -5208,7 +5210,7 @@
 	pixel_x = 32;
 	pixel_y = -6
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "pq" = (
 /obj/structure/disposalpipe/segment{
@@ -5439,7 +5441,7 @@
 /area/science/server)
 "qj" = (
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "ql" = (
 /obj/structure/cable,
@@ -5477,7 +5479,7 @@
 	name = "Armory RC";
 	pixel_y = -31
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "qu" = (
 /obj/structure/cable,
@@ -5520,7 +5522,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "qA" = (
 /obj/machinery/holopad,
@@ -5597,7 +5599,7 @@
 /obj/item/seeds/ambrosia,
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/item/plant_analyzer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "qP" = (
 /obj/structure/fireaxecabinet{
@@ -5668,7 +5670,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "rc" = (
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "rd" = (
 /obj/structure/cable,
@@ -5768,7 +5770,7 @@
 "rp" = (
 /obj/structure/extinguisher_cabinet/south,
 /mob/living/simple_animal/bot/secbot,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "rr" = (
 /obj/effect/turf_decal/tile/ship/purple{
@@ -5937,7 +5939,7 @@
 "rZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /mob/living/simple_animal/bot/secbot/armsky,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "sa" = (
 /obj/machinery/power/apc/auto_name/south,
@@ -5979,7 +5981,7 @@
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/genpop,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "sg" = (
 /obj/structure/table/wood/fancy/green,
@@ -6015,7 +6017,7 @@
 	name = "Security Fax Machine"
 	},
 /obj/structure/table/glass/plasma,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "sm" = (
 /obj/machinery/telecomms/relay/preset/station{
@@ -6068,7 +6070,7 @@
 	pixel_x = 29
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "sv" = (
 /obj/structure/cable,
@@ -6181,7 +6183,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/security_officer,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "sN" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -6388,7 +6390,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/genpop,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "tt" = (
 /obj/machinery/turretid{
@@ -6519,7 +6521,7 @@
 /obj/machinery/computer/security/labor{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "tV" = (
 /obj/machinery/atmospherics/pipe/multiz/layer2,
@@ -6551,7 +6553,7 @@
 	dir = 8
 	},
 /obj/structure/extinguisher_cabinet/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "uc" = (
 /obj/machinery/computer/cargo/request,
@@ -6660,7 +6662,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "ut" = (
 /obj/structure/flora/ausbushes/genericbush,
@@ -6826,7 +6828,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet,
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "vh" = (
 /obj/structure/cable,
@@ -6946,7 +6948,7 @@
 /obj/machinery/door/firedoor/border_only/directional/north,
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "vy" = (
 /obj/structure/cable,
@@ -7117,7 +7119,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "vY" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7245,7 +7247,7 @@
 	pixel_x = 31;
 	pixel_y = 2
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "wq" = (
 /obj/effect/landmark/start/ai/secondary,
@@ -7272,7 +7274,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 10
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "ws" = (
 /obj/machinery/power/apc/auto_name/north,
@@ -7321,7 +7323,7 @@
 	name = "Head of Security RC";
 	pixel_x = -32
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "wA" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell{
@@ -7625,7 +7627,7 @@
 /obj/item/gun/ballistic/shotgun/automatic/combat,
 /obj/item/gun/ballistic/shotgun/automatic/combat,
 /obj/item/gun/ballistic/shotgun/automatic/combat,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "xB" = (
 /obj/structure/cable,
@@ -7798,7 +7800,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "xZ" = (
 /obj/structure/cable,
@@ -7861,7 +7863,7 @@
 /area/crew_quarters/heads/xo)
 "yf" = (
 /obj/machinery/airalarm/directional/west,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "yh" = (
 /obj/structure/cable,
@@ -7871,7 +7873,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7926,7 +7928,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "yu" = (
 /turf/closed/wall/r_wall/ship,
@@ -7984,7 +7986,7 @@
 /obj/item/storage/box/exileimp,
 /obj/structure/table/glass/plasma,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "yF" = (
 /turf/closed/wall/ship,
@@ -8016,7 +8018,7 @@
 	pixel_x = -22
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "yM" = (
 /obj/structure/cable,
@@ -8071,7 +8073,7 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "yY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -8264,7 +8266,7 @@
 	name = "Security RC";
 	pixel_y = 26
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "zN" = (
 /obj/structure/rack,
@@ -8286,7 +8288,7 @@
 /obj/item/ammo_box/magazine/m556,
 /obj/machinery/power/apc/auto_name/west,
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "zO" = (
 /obj/structure/closet/l3closet/virology{
@@ -8371,7 +8373,7 @@
 	name = "Isolation";
 	pixel_y = 26
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Aj" = (
 /obj/structure/closet/secure_closet/medical2{
@@ -8404,7 +8406,7 @@
 /area/medical/nsv/trauma)
 "Ap" = (
 /obj/machinery/biogenerator,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "Aq" = (
 /obj/machinery/computer/cloning,
@@ -8419,7 +8421,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "As" = (
 /obj/structure/cable,
@@ -8432,7 +8434,7 @@
 	pixel_y = -6
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "At" = (
 /obj/machinery/vending/snack/blue,
@@ -8804,7 +8806,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/clown,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "BA" = (
 /obj/effect/turf_decal/tile/ship/red{
@@ -8838,7 +8840,7 @@
 	},
 /obj/item/radio/intercom/directional/east,
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "BF" = (
 /obj/structure/cable,
@@ -8926,7 +8928,7 @@
 	},
 /obj/machinery/light/floor,
 /obj/machinery/holopad,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "BV" = (
 /turf/closed/wall/r_wall/ship,
@@ -9092,7 +9094,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Ct" = (
 /obj/structure/closet/emcloset{
@@ -9184,7 +9186,7 @@
 	},
 /obj/effect/landmark/event_spawn,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "CG" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -9537,7 +9539,7 @@
 	name = "Detective RC";
 	pixel_x = -31
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "Ea" = (
 /obj/machinery/recharge_station,
@@ -9656,7 +9658,7 @@
 "Ey" = (
 /obj/effect/landmark/start/head_of_security,
 /obj/machinery/door/window/brigdoor/security/cell/southleft,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "EA" = (
 /obj/structure/closet/emcloset{
@@ -9710,7 +9712,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "EJ" = (
 /obj/structure/cable,
@@ -9739,7 +9741,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "EO" = (
 /obj/item/radio/intercom/directional/south,
@@ -9776,7 +9778,7 @@
 /obj/machinery/computer/ship/viewscreen{
 	pixel_y = -30
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "EU" = (
 /obj/machinery/chem_master,
@@ -10136,7 +10138,7 @@
 /area/crew_quarters/dorms/nsv/nature_deck)
 "FY" = (
 /obj/machinery/status_display/evac/south,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "FZ" = (
 /obj/structure/cable,
@@ -10233,7 +10235,7 @@
 /obj/item/bedsheet,
 /obj/machinery/firealarm/directional/west,
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "Gw" = (
 /obj/structure/displaycase/labcage,
@@ -10268,7 +10270,7 @@
 "GB" = (
 /obj/machinery/light/floor,
 /obj/structure/cable,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "GC" = (
 /obj/machinery/computer/cargo/request,
@@ -10454,7 +10456,7 @@
 "Hl" = (
 /obj/structure/cable,
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Hn" = (
 /obj/machinery/firealarm/directional/north,
@@ -10546,7 +10548,7 @@
 	anchored = 1
 	},
 /obj/item/sensor_device,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "HC" = (
 /obj/structure/cable,
@@ -10591,7 +10593,7 @@
 	pixel_x = 22
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "HJ" = (
 /obj/machinery/light/floor,
@@ -10603,7 +10605,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "HL" = (
 /obj/machinery/computer/ship/viewscreen{
@@ -10614,7 +10616,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "HM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -10657,7 +10659,7 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "HU" = (
 /obj/structure/cable,
@@ -10791,7 +10793,7 @@
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "Ii" = (
 /obj/structure/chair{
@@ -10825,7 +10827,7 @@
 "Ip" = (
 /obj/machinery/light/floor,
 /obj/effect/landmark/start/security_officer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "Iq" = (
 /obj/structure/cable,
@@ -11025,7 +11027,7 @@
 /obj/structure/closet/secure_closet/brig{
 	id = "pw_1"
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "IY" = (
 /obj/machinery/airalarm/directional/south,
@@ -11037,7 +11039,7 @@
 	pixel_x = 9
 	},
 /obj/machinery/recharger,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "IZ" = (
 /obj/item/hand_tele,
@@ -11117,7 +11119,7 @@
 "Jo" = (
 /obj/machinery/newscaster/directional/south,
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Jq" = (
 /obj/structure/cable,
@@ -11128,7 +11130,7 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Jr" = (
 /turf/closed/wall/r_wall/ship,
@@ -11172,7 +11174,7 @@
 	},
 /obj/structure/bed/dogbed/walter,
 /mob/living/simple_animal/pet/dog/bullterrier/walter,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "JC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -11353,7 +11355,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/firealarm/directional/west,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "Ki" = (
 /obj/structure/cable,
@@ -11417,7 +11419,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/head_of_security,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "Kr" = (
 /obj/structure/cable,
@@ -11430,7 +11432,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Kt" = (
 /obj/machinery/vending/wardrobe/medi_wardrobe,
@@ -11469,7 +11471,7 @@
 	dir = 8
 	},
 /obj/structure/window/plasma/reinforced/spawner/east,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "Kx" = (
 /obj/machinery/modular_computer/console/preset/civilian{
@@ -11562,7 +11564,7 @@
 /obj/structure/closet/secure_closet/security/sec{
 	anchored = 1
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "KP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -11601,7 +11603,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "KV" = (
 /obj/effect/spawner/room/fivexthree,
@@ -11632,7 +11634,7 @@
 	req_one_access_txt = "3"
 	},
 /obj/effect/landmark/zebra_interlock_point,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "KY" = (
 /obj/machinery/gateway{
@@ -11702,7 +11704,7 @@
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
 /obj/item/clothing/head/helmet/riot,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "Lh" = (
 /obj/structure/cable,
@@ -11711,7 +11713,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/main)
 "Li" = (
 /obj/structure/extinguisher_cabinet/west,
@@ -11777,7 +11779,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "Lu" = (
 /obj/machinery/porta_turret/ai{
@@ -11790,7 +11792,7 @@
 	dir = 4
 	},
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "Lz" = (
 /obj/structure/cable,
@@ -11838,7 +11840,7 @@
 "LD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "LF" = (
 /obj/structure/cable,
@@ -11848,7 +11850,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "LG" = (
 /obj/structure/cable,
@@ -11897,7 +11899,7 @@
 	pixel_x = 11;
 	pixel_y = -3
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "LM" = (
 /obj/structure/janitorialcart{
@@ -12050,7 +12052,7 @@
 /obj/item/stamp/hos,
 /obj/item/pen/fountain,
 /obj/structure/cable,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "Mu" = (
 /obj/machinery/door/airlock/ship/station/research/glass{
@@ -12121,7 +12123,7 @@
 /area/medical/medbay/lobby)
 "MA" = (
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "MB" = (
 /obj/item/storage/toolbox/mechanical{
@@ -12620,7 +12622,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Ow" = (
 /obj/machinery/door/airlock/ship/station/glass,
@@ -12904,12 +12906,12 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "PE" = (
 /obj/machinery/cryopod,
 /obj/machinery/newscaster/directional/north,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "PF" = (
 /obj/structure/cable,
@@ -13108,7 +13110,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Qs" = (
 /obj/structure/cable,
@@ -13274,7 +13276,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "QT" = (
 /obj/structure/cable,
@@ -13394,7 +13396,7 @@
 "Rl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "Rm" = (
 /obj/effect/landmark/start/roboticist,
@@ -13464,7 +13466,7 @@
 	},
 /obj/item/reagent_containers/syringe/lethal/execution,
 /obj/item/storage/box/exileimp,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "Ry" = (
 /obj/structure/rack,
@@ -13674,7 +13676,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/light/floor,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "Sr" = (
 /obj/structure/cable,
@@ -13808,7 +13810,7 @@
 /obj/structure/sign/poster/official/obey{
 	pixel_x = -28
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "SP" = (
 /obj/structure/reagent_dispensers/watertank/high{
@@ -14035,7 +14037,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Tt" = (
 /obj/structure/cable,
@@ -14060,7 +14062,7 @@
 	pixel_y = -8
 	},
 /obj/item/radio/intercom/directional/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Tv" = (
 /obj/structure/table/glass/plasma,
@@ -14455,7 +14457,7 @@
 	pixel_y = 4
 	},
 /obj/item/radio/intercom/directional/east,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "UG" = (
 /obj/effect/landmark/start/cook,
@@ -14528,7 +14530,7 @@
 	c_tag = "Vault South";
 	dir = 4
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "US" = (
 /obj/structure/table/glass/plasma,
@@ -14569,7 +14571,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "UX" = (
 /obj/machinery/power/apc/auto_name/north,
@@ -14788,7 +14790,7 @@
 /obj/structure/chair/fancy/comfy{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "VT" = (
 /obj/machinery/door/window/eastright{
@@ -14891,7 +14893,7 @@
 	dir = 6
 	},
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Wj" = (
 /obj/structure/cable,
@@ -15101,14 +15103,14 @@
 	name = "Security Equipment";
 	req_one_access_txt = "1;4"
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/security)
 "WN" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "WO" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -15194,7 +15196,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Xf" = (
 /obj/machinery/door/airlock/ship/maintenance{
@@ -15250,7 +15252,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/genpop,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Xn" = (
 /obj/effect/landmark/start/paramedic,
@@ -15328,7 +15330,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/warden)
 "XD" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
@@ -15671,7 +15673,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "Za" = (
 /turf/closed/wall/ship,
@@ -15772,7 +15774,7 @@
 	},
 /obj/machinery/light/floor,
 /obj/effect/landmark/start/security_officer,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Zx" = (
 /obj/structure/cable,
@@ -15813,14 +15815,14 @@
 /area/maintenance/department/medical)
 "ZC" = (
 /obj/machinery/suit_storage_unit/security,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/ai_monitored/security/armory/lockup)
 "ZE" = (
 /obj/machinery/computer/security/hos{
 	dir = 4
 	},
 /obj/machinery/newscaster/directional/west,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/crew_quarters/heads/hos)
 "ZH" = (
 /obj/structure/cable,
@@ -15933,7 +15935,7 @@
 	dir = 1
 	},
 /obj/machinery/duct,
-/turf/open/floor/carpet/ship/red_carpet,
+/turf/open/floor/carpet/police,
 /area/security/prison)
 "ZW" = (
 /obj/structure/cable,

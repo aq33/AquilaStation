@@ -7,8 +7,14 @@
 		return FALSE
 	if(mutation1 == mutation2) //this could otherwise be bad
 		return FALSE
+	// AQUILA EDIT - dokładne dopasowanie typów; findtext łapał podtypy (cryokinesis pasowało do cryokinesis/pyrokinesis)
+	var/text1 = "[mutation1]"
+	var/text2 = "[mutation2]"
 	for(var/A in GLOB.mutation_recipes)
-		if(findtext(A, "[mutation1]") && findtext(A, "[mutation2]"))
+		var/list/parts = list()
+		for(var/part in splittext(A, ";"))
+			parts += trim(part)
+		if((text1 in parts) && (text2 in parts))
 			return GLOB.mutation_recipes[A]
 
 /* RECIPES */

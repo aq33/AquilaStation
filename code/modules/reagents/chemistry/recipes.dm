@@ -11,11 +11,51 @@
 
 	var/mob_react = TRUE //Determines if a chemical reaction can occur inside a mob
 
-	var/required_temp = 0
 	var/is_cold_recipe = 0 // Set to 1 if you want the recipe to only react when it's BELOW the required temp.
 	var/mix_message = "Roztwór zaczyna bulgotać." //The message shown to nearby people upon mixing, if applicable
 	var/mix_sound = 'sound/effects/bubbles.ogg' //The sound played upon mixing, if applicable
 
+	// AQ EDIT START - fermichem z tg, opis: aquila/code/modules/reagents/chemistry/fermi_readme.md
+	/// Required temperature for the reaction to begin, for fermimechanics it defines the lower area of bell curve for determining heat based rate reactions, aka the minimum
+	var/required_temp = 100
+	/// Upper end for above (i.e. the end of the curve section defined by temp_exponent_factor)
+	var/optimal_temp = 500
+	/// Temperature at which reaction explodes - If any reaction is this hot, it explodes!
+	var/overheat_temp = 900
+	/// Lowest value of pH determining pH a 1 value for pH based rate reactions (Plateu phase)
+	var/optimal_ph_min = 5
+	/// Higest value for above
+	var/optimal_ph_max = 9
+	/// How far out pH wil react, giving impurity place (Exponential phase)
+	var/determin_ph_range = 4
+	/// How sharp the temperature exponential curve is (to the power of value)
+	var/temp_exponent_factor = 2
+	/// How sharp the pH exponential curve is (to the power of value)
+	var/ph_exponent_factor = 2
+	/// How much the temperature changes per unit of chem used. without REACTION_HEAT_ARBITARY flag the rate of change depends on the holder heat capacity else results are more accurate
+	var/thermic_constant = 0
+	/// pH change per 1u reaction
+	var/H_ion_release = 0.01
+	/// Optimal/max rate possible if all conditions are perfect
+	var/rate_up_lim = 30
+	/// If purity is below 0.15, it calls overly_impure() too. Set to 0 to disable this.
+	var/purity_min = 0.15
+	/// bitflags for clear conversions; see aquila/code/__DEFINES/fermichem.dm
+	var/reaction_flags = NONE
+	/// A bitflag var for tagging reactions for the recipe lookup
+	var/reaction_tags = NONE
+	// AQ EDIT END
+
+/**
+ * Shit that happens on reaction
+ * Only procs at the START of a reaction (and once for instant ones)
+ * use reaction_step() for each step of a reaction
+ * or reaction_finish() when the reaction stops
+ *
+ * Arguments:
+ * * holder - the datum that holds this reagent, be it a beaker or anything else
+ * * created_volume - how many times the recipe fits in the holder. look at 'var/list/results'.
+ */
 /datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	return
 	//I recommend you set the result amount to the total volume of all components.

@@ -90,10 +90,12 @@
 	path = /obj/item/clothing/suit/hooded/wintercoat/old
 	cost = 3000
 
+/* AQUILA EDIT - ochrona nosi tylko mundury policji
 /datum/gear/suit/oldwintercoat/security
 	display_name = "nostalgic security winter coat"
 	path = /obj/item/clothing/suit/hooded/wintercoat/security/old
 	allowed_roles = list(JOB_NAME_SECURITYOFFICER, JOB_NAME_BRIGPHYSICIAN, JOB_NAME_HEADOFSECURITY, JOB_NAME_WARDEN, JOB_NAME_DETECTIVE)
+*/
 
 /datum/gear/suit/oldwintercoat/medical
 	display_name = "nostalgic medical winter coat"

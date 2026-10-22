@@ -77,7 +77,7 @@
 	description = "Co sprawia, że działamy."	//the MC, silly!
 	prereq_ids = list("base")
 	// NSV13 - added design for refillable chem dispenser
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "refillable_chem_dispenser", "pandemic", "sleeper", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner", "medipen_epi", "medipen_dex", "medipen_atropine")
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "refillable_chem_dispenser", "pandemic", "sleeper", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medspray","genescanner", "medipen_epi", "medipen_dex", "medipen_atropine", "ph_meter") // AQ EDIT - ph_meter: fermichem z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

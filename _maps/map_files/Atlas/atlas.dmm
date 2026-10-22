@@ -101,7 +101,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/warden,
 /obj/structure/chair/stool,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "al" = (
 /obj/machinery/airalarm/directional/north,
@@ -135,15 +135,12 @@
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
 "ap" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "aq" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 4
@@ -1919,23 +1916,14 @@
 /turf/open/floor/carpet/royalblack,
 /area/chapel/main)
 "dz" = (
+/obj/structure/lattice/catwalk/over/ship,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=2";
-	location = "Security";
-	name = "navigation beacon (Security Delivery)"
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "dA" = (
 /obj/structure/sign/ship/securearea{
 	dir = 8
@@ -2034,7 +2022,7 @@
 /turf/open/floor/monotile/steel,
 /area/security/brig)
 "dJ" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/genpop,
@@ -2745,7 +2733,7 @@
 /turf/open/floor/wood,
 /area/chapel/main)
 "eV" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -3702,7 +3690,7 @@
 /turf/open/floor/monotile/dark,
 /area/science/explab)
 "gP" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -3744,7 +3732,7 @@
 /area/space/nearstation)
 "gT" = (
 /obj/machinery/light_switch/west,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -3921,7 +3909,7 @@
 /turf/open/floor/engine,
 /area/nsv/weapons)
 "hl" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -4048,7 +4036,7 @@
 /area/maintenance/nsv/deck2/port)
 "hx" = (
 /obj/item/kirbyplants/random,
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/north,
@@ -4648,12 +4636,12 @@
 /turf/open/floor/monotile/dark,
 /area/security/brig)
 "iI" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police,
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "iJ" = (
 /obj/machinery/ship_weapon/torpedo_launcher/cargo/south{
 	launcher_id = "nt_cargo_torpedo_launcher"
@@ -4664,14 +4652,15 @@
 /turf/open/floor/engine,
 /area/quartermaster/storage)
 "iK" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "iL" = (
 /obj/structure/cable,
 /obj/machinery/gulag_item_reclaimer{
@@ -4708,12 +4697,12 @@
 /turf/open/floor/wood,
 /area/chapel/office)
 "iO" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 1
 	},
 /turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/area/hallway/nsv/deck2/primary)
 "iP" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -4747,9 +4736,17 @@
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/port)
 "iU" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "iV" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/port/fore)
@@ -4791,9 +4788,16 @@
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
 "iZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
+/obj/structure/chair,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/machinery/status_display/evac/north,
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "ja" = (
 /obj/structure/fighter_launcher/launch_only{
 	dir = 4;
@@ -4805,20 +4809,28 @@
 	},
 /area/nsv/hanger/notkmcstupidhanger)
 "jb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/munitions_forge/hammer,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
-"jc" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/ship/orange,
+/obj/effect/turf_decal/tile/ship/orange{
+	dir = 4
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
+"jc" = (
+/obj/effect/turf_decal/tile/ship/half/police{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/area/hallway/secondary/exit/departure_lounge)
 "jd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4850,15 +4862,23 @@
 /turf/open/floor/monotile/steel,
 /area/maintenance/nsv/deck2/starboard)
 "jg" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=2";
+	location = "Security";
+	name = "navigation beacon (Security Delivery)"
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "jh" = (
 /obj/machinery/door/firedoor/border_only/directional/west,
 /obj/machinery/door/firedoor/border_only/directional/east,
@@ -4869,10 +4889,17 @@
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
 "ji" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/machinery/munitions_forge/crucible,
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/kirbyplants/random,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/police,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "jj" = (
 /obj/structure/table/reinforced,
 /obj/machinery/power/battery{
@@ -4948,18 +4975,25 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "jp" = (
-/obj/structure/lattice/catwalk/over/ship,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/munitions_forge/basin,
-/turf/open/floor/monotile/steel,
-/area/nsv/weapons)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/machinery/camera/autoname,
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "jq" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "jr" = (
 /obj/machinery/door/airlock/ship/maintenance,
 /obj/structure/cable,
@@ -5030,9 +5064,14 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "jz" = (
-/obj/machinery/munitions_forge/assembler,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 8
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "jA" = (
 /obj/machinery/button/door{
 	id = "gaussgang_atlas";
@@ -5133,9 +5172,11 @@
 /turf/open/floor/monotile/steel/airless,
 /area/nsv/hanger/mining)
 "jH" = (
-/obj/machinery/munitions_forge/furnace,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 4
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "jI" = (
 /obj/structure/lattice/catwalk/over/ship,
 /obj/machinery/hydroponics/constructable,
@@ -5161,12 +5202,25 @@
 	},
 /turf/open/floor/plasteel/techmaint,
 /area/science/robotics/lab)
+"jL" = (
+/obj/effect/turf_decal/tile/ship/police{
+	dir = 1
+	},
+/turf/open/floor/durasteel/alt,
+/area/hallway/secondary/exit/departure_lounge)
 "jM" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"jN" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "jO" = (
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
 /obj/machinery/button/door{
@@ -5177,8 +5231,12 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
+"jP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "jQ" = (
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "jR" = (
 /obj/structure/sign/nanotrasen{
@@ -5201,6 +5259,10 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
+"jT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "jU" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 1
@@ -5268,7 +5330,7 @@
 /turf/open/floor/plasteel/grid/steel,
 /area/hallway/secondary/exit/departure_lounge)
 "kb" = (
-/obj/effect/turf_decal/tile/ship/half/red,
+/obj/effect/turf_decal/tile/ship/half/police,
 /obj/machinery/computer/ship/viewscreen,
 /mob/living/simple_animal/bot/secbot/armsky,
 /turf/open/floor/monotile/dark,
@@ -5327,6 +5389,11 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"ki" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/munitions_forge/hammer,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "kj" = (
 /obj/machinery/light{
 	dir = 4
@@ -5349,6 +5416,16 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"km" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "kn" = (
 /obj/docking_port/stationary{
 	dwidth = 2;
@@ -5381,6 +5458,16 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
+"kp" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "kq" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -5417,6 +5504,11 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/monotile/steel,
 /area/maintenance/nsv/deck2/starboard)
+"kt" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/machinery/munitions_forge/crucible,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "ku" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5525,6 +5617,14 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"kG" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/munitions_forge/basin,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "kH" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/port)
@@ -5593,6 +5693,15 @@
 /obj/machinery/computer/ship/munitions_computer/west,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
+"kR" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
+"kS" = (
+/obj/machinery/munitions_forge/assembler,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "kT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -5615,6 +5724,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
+"kX" = (
+/obj/machinery/munitions_forge/furnace,
+/turf/open/floor/monotile/dark,
+/area/nsv/weapons)
 "kY" = (
 /obj/machinery/airalarm/directional/east,
 /obj/effect/turf_decal/tile/ship/green,
@@ -5798,19 +5911,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/monotile/steel,
 /area/science)
-"lC" = (
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/monotile/steel,
-/area/hallway/secondary/exit/departure_lounge)
 "lD" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -5858,7 +5958,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "lO" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -5909,7 +6009,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/hydroponics)
 "lZ" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/light,
@@ -7055,7 +7155,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "pp" = (
 /obj/structure/chair/office,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "pq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7438,7 +7538,7 @@
 /turf/open/floor/engine,
 /area/quartermaster/storage)
 "qn" = (
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -7494,7 +7594,7 @@
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
 "qv" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/effect/landmark/start/security_officer,
@@ -7661,7 +7761,7 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/machinery/airalarm/directional/west,
@@ -7933,7 +8033,7 @@
 /turf/open/floor/circuit,
 /area/engine/shield_generator)
 "rK" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
@@ -9051,20 +9151,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/red,
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police,
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet/west,
 /turf/open/floor/plasteel/grid/steel,
 /area/security/checkpoint/escape)
-"uP" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/turf_decal/tile/ship/half/red{
-	dir = 1
-	},
-/turf/open/floor/monotile/steel,
-/area/hallway/nsv/deck2/primary)
 "uS" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
@@ -9562,7 +9655,7 @@
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "wB" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -9811,7 +9904,7 @@
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
 "xm" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/camera/autoname{
@@ -9906,7 +9999,7 @@
 /area/hallway/nsv/deck2/primary)
 "xB" = (
 /obj/machinery/suit_storage_unit/security,
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
@@ -9958,7 +10051,7 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "xH" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/effect/landmark/start/brig_physician,
@@ -10256,7 +10349,7 @@
 /obj/structure/rack,
 /obj/item/storage/lockbox/loyalty,
 /obj/item/reagent_containers/glass/bottle/morphine,
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -10746,10 +10839,10 @@
 /area/science/robotics/lab)
 "Ae" = (
 /obj/structure/chair,
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/computer/ship/viewscreen,
 /obj/machinery/power/apc/auto_name/east,
 /obj/structure/cable,
@@ -10890,15 +10983,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
-"AE" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 8
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "AG" = (
 /obj/structure/kitchenspike/crucifix,
 /turf/open/floor/wood,
@@ -11577,15 +11661,6 @@
 /obj/machinery/status_display/ai/north,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
-"Cz" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "CA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/monotile/dark,
@@ -11688,7 +11763,7 @@
 /turf/open/floor/engine,
 /area/quartermaster/storage)
 "CU" = (
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen{
@@ -11939,7 +12014,7 @@
 /turf/open/space/basic,
 /area/space/nearstation)
 "DM" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -11952,7 +12027,7 @@
 /turf/open/floor/plating,
 /area/engine/break_room)
 "DS" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/machinery/duct,
@@ -12009,7 +12084,7 @@
 /area/chapel/main)
 "Ea" = (
 /obj/machinery/holopad,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Eb" = (
 /obj/machinery/door/airlock/ship/external/glass{
@@ -12195,7 +12270,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmos)
 "EA" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -12348,18 +12423,6 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"EV" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/kirbyplants/random,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/red,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "EX" = (
 /obj/machinery/door/poddoor/incinerator_atmos_aux{
 	id = "atmos_incinerator_mainvent"
@@ -12424,7 +12487,7 @@
 /obj/item/grenade/barrier,
 /obj/item/grenade/barrier,
 /obj/item/storage/box/flashbangs,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/item/storage/box/boardingpins,
@@ -12708,7 +12771,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/chapel/main)
 "FT" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/effect/landmark/start/lawyer,
@@ -12911,7 +12974,7 @@
 /obj/structure/closet/secure_closet/brig{
 	id = "cell1"
 	},
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -13076,16 +13139,6 @@
 /obj/item/food/grown/harebell,
 /turf/open/floor/durasteel/techfloor,
 /area/chapel/main)
-"GZ" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/orange,
-/obj/effect/turf_decal/tile/ship/orange{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "Ha" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -13277,7 +13330,7 @@
 	},
 /obj/item/gun/ballistic/shotgun/riot,
 /obj/effect/spawner/lootdrop/armory_contraband,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/effect/spawner/lootdrop/armory_contraband,
@@ -13482,7 +13535,7 @@
 /turf/open/floor/plating,
 /area/nsv/weapons)
 "Ih" = (
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
@@ -13535,7 +13588,7 @@
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
 "In" = (
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -14333,7 +14386,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Kw" = (
 /obj/structure/cable,
@@ -14356,17 +14409,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
-"KA" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/machinery/status_display/evac/north,
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "KC" = (
 /obj/machinery/vending/tool,
 /obj/effect/turf_decal/tile/ship/yellow{
@@ -14489,7 +14531,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /turf/open/floor/monotile/steel,
@@ -14828,10 +14870,10 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
 "LQ" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -14893,7 +14935,7 @@
 	id = "cell2";
 	pixel_x = 24
 	},
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -15126,12 +15168,6 @@
 /obj/machinery/ship_weapon/pdc_mount/north,
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
-"MH" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "MI" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -15441,7 +15477,7 @@
 /area/hallway/nsv/deck2/primary)
 "ND" = (
 /obj/structure/chair,
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
@@ -15803,7 +15839,7 @@
 /area/science/explab)
 "OF" = (
 /obj/structure/rack,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/machinery/camera/motion{
@@ -15881,7 +15917,7 @@
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons/gauss/battery/deck2/starboard)
 "OQ" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /obj/machinery/firealarm/directional/south,
@@ -15907,7 +15943,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /turf/open/floor/monotile/steel,
@@ -16224,7 +16260,7 @@
 /area/gateway)
 "PO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /turf/open/floor/monotile/steel,
@@ -16454,7 +16490,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Qx" = (
 /obj/effect/turf_decal/tile/green/tile_side{
@@ -16743,7 +16779,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/starboard)
 "Rg" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 1
 	},
 /turf/open/floor/monotile/steel,
@@ -16914,13 +16950,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
-"RA" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/red,
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "RF" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -17129,7 +17158,7 @@
 /area/hallway/nsv/deck2/primary)
 "Si" = (
 /obj/item/kirbyplants/photosynthetic,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17525,7 +17554,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "Ts" = (
 /obj/machinery/computer/rdconsole/production{
@@ -17721,7 +17750,7 @@
 /turf/open/floor/plating,
 /area/nsv/weapons)
 "TY" = (
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 8
 	},
 /obj/structure/guncase{
@@ -17818,7 +17847,7 @@
 "Ug" = (
 /obj/structure/bed,
 /obj/machinery/airalarm/directional/north,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 8
 	},
 /obj/item/radio/intercom/directional/west,
@@ -18054,10 +18083,10 @@
 	},
 /area/nsv/hanger/notkmcstupidhanger)
 "UL" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /obj/machinery/duct,
@@ -18204,7 +18233,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "Vj" = (
-/obj/effect/turf_decal/tile/ship/red,
+/obj/effect/turf_decal/tile/ship/police,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
@@ -18434,7 +18463,7 @@
 "VP" = (
 /obj/structure/bed,
 /obj/machinery/airalarm/directional/north,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/item/radio/intercom/directional/east,
@@ -18574,32 +18603,21 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"Wk" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/camera/autoname,
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "Wl" = (
 /turf/closed/wall/steel,
 /area/quartermaster/storage)
 "Wm" = (
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/ship/red{
+/obj/effect/turf_decal/tile/ship/police{
 	dir = 1
 	},
 /turf/open/floor/monotile/steel,
 /area/security/brig)
 "Wn" = (
 /obj/machinery/suit_storage_unit/security,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /turf/open/floor/monotile/dark,
@@ -18893,7 +18911,7 @@
 "Xo" = (
 /obj/structure/closet/secure_closet/lethalshots,
 /obj/item/storage/box/firingpins,
-/obj/effect/turf_decal/tile/ship/half/red{
+/obj/effect/turf_decal/tile/ship/half/police{
 	dir = 4
 	},
 /obj/machinery/light_switch/west,
@@ -19101,18 +19119,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/nsv/weapons)
-"XW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "XY" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -19465,12 +19471,6 @@
 "Zb" = (
 /turf/closed/wall/r_wall,
 /area/chapel/office)
-"Zc" = (
-/obj/effect/turf_decal/tile/ship/red{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/secondary/exit/departure_lounge)
 "Zd" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/layer2{
 	dir = 4
@@ -19699,7 +19699,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/police,
 /area/security/brig)
 "ZK" = (
 /obj/structure/table,
@@ -52114,11 +52114,11 @@ ob
 xR
 Qh
 oU
-EV
-RA
-RA
-RA
-Zc
+ji
+iI
+iI
+iI
+jH
 AJ
 zt
 Ni
@@ -52375,7 +52375,7 @@ tw
 tw
 tw
 tw
-KA
+iZ
 kv
 DY
 Qe
@@ -52632,7 +52632,7 @@ tw
 qY
 uM
 ye
-ap
+iK
 kv
 LA
 Ni
@@ -52889,7 +52889,7 @@ tw
 CU
 Ih
 aF
-ap
+iK
 kv
 AS
 JT
@@ -53146,7 +53146,7 @@ tw
 hx
 In
 ye
-ap
+iK
 fm
 Ze
 JT
@@ -53403,7 +53403,7 @@ tw
 ND
 Vj
 ye
-ap
+iK
 kv
 AS
 JT
@@ -53628,7 +53628,7 @@ WN
 WN
 WN
 WN
-Wk
+jp
 SX
 Yv
 BC
@@ -53660,7 +53660,7 @@ tw
 Ae
 qn
 ye
-ap
+iK
 kv
 Hm
 Ni
@@ -53885,7 +53885,7 @@ YS
 Ou
 Si
 YS
-uP
+iO
 VJ
 Ss
 BC
@@ -53917,7 +53917,7 @@ tw
 tw
 yl
 tw
-KA
+iZ
 kv
 ol
 Qe
@@ -54142,7 +54142,7 @@ Ye
 oP
 jm
 ts
-dz
+jg
 kA
 hr
 BC
@@ -54171,10 +54171,10 @@ EU
 bg
 pm
 gH
-AE
-lC
-Cz
-MH
+jz
+jc
+jq
+jL
 AJ
 Zl
 Ni
@@ -54399,7 +54399,7 @@ WN
 JA
 gI
 WN
-XW
+iU
 bW
 Jk
 BC
@@ -54656,7 +54656,7 @@ SW
 iy
 ui
 Ep
-GZ
+jb
 QP
 ht
 eY
@@ -55946,11 +55946,11 @@ Dk
 Te
 Dt
 Cl
-iO
+jN
 Te
 Te
 Te
-ji
+kt
 GK
 Te
 YU
@@ -56203,13 +56203,13 @@ kF
 kP
 kP
 bc
-iK
+dz
 kP
 kP
-iI
+ap
 kP
 rl
-jp
+kG
 Pr
 kP
 kP
@@ -56466,11 +56466,11 @@ mP
 Te
 mP
 DT
-jq
+kR
 fa
-iU
-jb
-jc
+jP
+ki
+km
 Te
 Eu
 Dy
@@ -56723,11 +56723,11 @@ mP
 Te
 SE
 EK
-jz
+kS
 gc
-iZ
-iZ
-jg
+jT
+jT
+kp
 qB
 gk
 Dy
@@ -56983,7 +56983,7 @@ hI
 HR
 pg
 mP
-jH
+kX
 Bd
 eY
 eY
