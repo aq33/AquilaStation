@@ -292,7 +292,8 @@
 
 /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing/proc/new_torpedo()
 	wh = locate(/obj/item/ship_weapon/parts/missile/warhead) in src
-	new wh.build_path(get_turf(src))
+	var/atom/built = new wh.build_path(get_turf(src)) // AQUILA EDIT - kuźnia amunicji
+	transfer_forged_munition(wh, built) // AQUILA EDIT - kuźnia amunicji
 	for(var/I in contents)
 		qdel(I) //Change this if we ever need to add more component factoring in to performance. This avoids infinite torpedo parts because the torpedo gets Qdel'd
 	qdel(src)

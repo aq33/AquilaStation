@@ -10,12 +10,7 @@
 	. += "<span class='notice'>Przy krawędzi jest <b>małe pęknięcie</b>.</span>"
 
 
-/turf/open/floor/plasteel/rust_heretic_act()
-	if(prob(70))
-		new /obj/effect/temp_visual/glowing_rune(src)
-	var/atom/changed_turf = ChangeTurf(/turf/open/floor/plating)
-	changed_turf.AddElement(/datum/element/rust)
-	return TRUE
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/open/floor/plasteel/update_icon_state()
 	if(broken || burnt)

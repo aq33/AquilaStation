@@ -68,7 +68,8 @@
 /obj/machinery/ship_weapon/broadside/animate_projectile(atom/target)
 	var/obj/item/ship_weapon/ammunition/broadside_shell/T = chambered
 	if(T)
-		linked.fire_projectile(T.projectile_type, target, firing_flags = linked_overmap_ship_weapon.weapon_firing_flags)
+		var/obj/item/projectile/P = linked.fire_projectile(T.projectile_type, target, firing_flags = linked_overmap_ship_weapon.weapon_firing_flags) // AQUILA EDIT - kuźnia amunicji
+		transfer_forged_munition(T, P) // AQUILA EDIT - kuźnia amunicji
 
 /obj/machinery/ship_weapon/broadside/examine()
 	. = ..()

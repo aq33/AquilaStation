@@ -544,3 +544,31 @@
   Joker66613:
   - bugfix: Broń odpalana bez kliknięcia myszą (demon impulsu, NPC) strzela w cel
       zamiast na północ.
+'2026-10-23':
+  'Dwasint, port: aq33':
+  - rscadd: 'Rynek ekstraktów szlamu zastępuje maszynę do plortów: ceny zmieniają
+      się przy sprzedaży, a za xenobio points kupuje się sprzęt w konsoli rynku.'
+  - rscadd: 'Pad zamówień ekstraktów: załoga zamawia ekstrakty za kredyty, xenobiolodzy
+      dostają nagrodę i punkty.'
+  - rscadd: Kompresor szlamów robi crossbreeda z jednego dorosłego szlama bazowego
+      i dwóch dorosłych szlamów typu.
+  - rscadd: Strzykawka losowej mutacji koloru szlama w sklepie rynku.
+  - imageadd: Ikony padu rynku, konsoli, padu zamówień, kompresora i strzykawki z
+      Monkestation.
+  - rscdel: Usunięto maszynę do plortów.
+  Joker66613:
+  - rscadd: 'Kuźnia amunicji dla działu uzbrojenia: piec łukowy, kowadło z rytmiczną
+      minigrą (kuje się młotem kowalskim), stół montażowy, galwanizer i analizator
+      amunicji.'
+  - rscadd: Wykuwana amunicja do broni palnej, pociski działowe i głowice torped i
+      rakiet z właściwościami zależnymi od materiału lub stopu dwóch materiałów, jakości
+      i wypełnienia.
+  - rscadd: Pudła na kowadle obniżają klasę wyrobu; klasa IV i V błyszczy, nierówno
+      wykute części mają rysy.
+  - rscadd: Kutą amunicję można sprzedać na cargo, a zwykłą amunicję z cargo pokryć
+      materiałem w galwanizerze.
+  - rscadd: Kuźnia amunicji w munitions na Atlasie i Snake oraz w nowym pomieszczeniu
+      nad munitions na Serendipity.
+  - bugfix: W obiekty zajmujące kilka kafli da się klikać z każdej strony.
+  - imageadd: Sprite'y maszyn kuźni z Monkestation (CC BY-SA 3.0) i galwanizera z
+      goonstation (CC BY-NC-SA 3.0), odlewy ze smithingu ParadiseSS13 (CC BY-SA 3.0).

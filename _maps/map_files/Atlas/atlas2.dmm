@@ -1315,6 +1315,23 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/central)
+"cS" = (
+/obj/machinery/power/apc/auto_name/south,
+/obj/structure/cable,
+/obj/machinery/slime_market_pad,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/techmaint,
+/area/science/xenobiology)
+"cT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/computer/slime_market,
+/turf/open/floor/monotile/steel,
+/area/science/xenobiology)
 "cU" = (
 /obj/machinery/light{
 	dir = 1
@@ -2120,6 +2137,10 @@
 /obj/structure/extinguisher_cabinet/north,
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
+"ev" = (
+/obj/machinery/slime_compressor,
+/turf/open/floor/monotile/steel,
+/area/science/xenobiology)
 "ew" = (
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -2149,15 +2170,6 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
 /area/medical/virology)
-"ez" = (
-/obj/machinery/power/apc/auto_name/south,
-/obj/structure/cable,
-/obj/machinery/plortrefinery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel/techmaint,
-/area/science/xenobiology)
 "eA" = (
 /obj/structure/curtain/obscuring/grey,
 /obj/structure/table/wood/fancy/red,
@@ -16125,13 +16137,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
-"YT" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/monotile/steel,
-/area/science/xenobiology)
 "YW" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -56406,8 +56411,8 @@ ks
 JZ
 mU
 XE
-YT
-AL
+cT
+ev
 Rf
 Hr
 rR
@@ -57694,7 +57699,7 @@ FT
 ou
 fc
 pj
-ez
+cS
 JZ
 qd
 xt
