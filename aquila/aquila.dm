@@ -887,6 +887,7 @@
 #include "code\modules\test_chamber\kits\pr_492_serwery_ai.dm"
 #include "code\modules\test_chamber\kits\pr_487_xeno_rynek.dm"
 #include "code\modules\test_chamber\kits\pr_496_bingle.dm"
+#include "code\modules\test_chamber\kits\pr_497_glod.dm"
 #include "code\modules\test_chamber\kits\pr_481_policja.dm"
 #include "code\modules\test_chamber\kits\pr_monke_cybernetyka.dm"
 #include "code\modules\test_chamber\kits\pr_476_protezy_mapowanie.dm"
