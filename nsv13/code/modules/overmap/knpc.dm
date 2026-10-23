@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 
 /datum/component/knpc/Destroy(force, silent)
 	GLOB.knpcs -= src
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /datum/component/knpc/proc/pathfind_to(atom/target, turf/avoid)
@@ -304,7 +305,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 ///Handles actioning on the goal every tick.
 /datum/component/knpc/process()
 	var/mob/living/carbon/human/ai_boarder/H = parent
-	if(H.stat == DEAD)
+	if(QDELETED(H) || H.stat == DEAD)
 		return PROCESS_KILL
 	if(world.time >= next_action)
 		next_action = world.time + H.action_delay
