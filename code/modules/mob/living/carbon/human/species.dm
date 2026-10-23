@@ -1304,12 +1304,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	// AQ EDIT START
 	var/shitting_enabled = CONFIG_GET(flag/shitting_enabled) // AQ EDIT
-	if(!HAS_TRAIT(H, TRAIT_NOTHIRST))
-		if(H.nutrition < NUTRITION_LEVEL_STARVING && H.hydration < HYDRATION_LEVEL_DEHYDRATED)
-			if(prob(35))
-				if(prob(14)) // 5% chance (.35 * .14 ~= .05)
-					to_chat(H, "<font size=2><span class='danger'>Umierasz z niedożywienia! Napij się lub zjedz coś.</span></font>")
-				H.take_overall_damage(rand(1, 3))
+	// głód i pragnienie nie zadają obrażeń, spowalniają tylko regenerację krwi (handle_blood)
 	// AQ EDIT END
 
 	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
