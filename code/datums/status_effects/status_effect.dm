@@ -50,7 +50,9 @@
 		qdel(src)
 		return
 	if(tick_interval < world.time)
-		tick()
+		tick(initial(tick_interval) / 10) // AQUILA - tg: sekundy między tyknięciami
+		if(QDELETED(src))
+			return
 		tick_interval = world.time + initial(tick_interval)
 	if(duration != -1 && duration < world.time)
 		qdel(src)
@@ -74,6 +76,24 @@
 /// Merge this status effect by applying new arguments
 /datum/status_effect/proc/merge(...)
 	return
+
+/// AQUILA - tg: dodatkowy opis przy oglądaniu moba (obok examine_text)
+/datum/status_effect/proc/get_examine_text(mob/examiner)
+	return null
+
+/// AQUILA - tg: wołane przy remove_status_effect z dodatkowymi argumentami; FALSE = nie usuwaj (np. zostały inne źródła)
+/datum/status_effect/proc/before_remove(...)
+	return TRUE
+
+/// AQUILA - tg: skraca status o podaną liczbę sekund; TRUE, jeśli status się skończył
+/datum/status_effect/proc/remove_duration(seconds)
+	if(duration == -1)
+		return FALSE
+	duration -= seconds * 10
+	if(duration <= world.time)
+		qdel(src)
+		return TRUE
+	return FALSE
 
 //clickdelay/nextmove modifiers!
 /datum/status_effect/proc/nextmove_modifier()
@@ -106,7 +126,7 @@
 	var/list/arguments = args.Copy()
 	arguments[1] = src
 	for(var/datum/status_effect/S in status_effects)
-		if(S.id == initial(S1.id) && S.status_type)
+		if(STATUS_EFFECT_MATCHES(S, S1) && S.status_type)
 			if(S.status_type == STATUS_EFFECT_REPLACE)
 				S.be_replaced()
 			else if(S.status_type == STATUS_EFFECT_REFRESH)
@@ -120,12 +140,13 @@
 	S1 = new effect(arguments)
 	. = S1
 
-/mob/living/proc/remove_status_effect(effect) //removes all of a given status effect from this mob, returning TRUE if at least one was removed
+/mob/living/proc/remove_status_effect(effect, ...) //removes all of a given status effect from this mob, returning TRUE if at least one was removed
 	. = FALSE
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/list/arguments = args.Copy(2)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(STATUS_EFFECT_MATCHES(S, S1) && S.before_remove(arglist(arguments))) // AQUILA - tg: before_remove (grupowe efekty)
 				qdel(S)
 				. = TRUE
 
@@ -134,7 +155,7 @@
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(STATUS_EFFECT_MATCHES(S, S1))
 				return S
 
 /mob/living/proc/has_status_effect_list(effect) //returns a list of effects with matching IDs that the mod owns; use for effects there can be multiple of
@@ -142,5 +163,5 @@
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(STATUS_EFFECT_MATCHES(S, S1))
 				. += S

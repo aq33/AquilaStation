@@ -164,6 +164,9 @@
 	if(!owner)
 		return FALSE
 
+	if(SEND_SIGNAL(src, COMSIG_SPELL_CAN_CAST_CHECK, feedback) & SPELL_CANCEL_CAST)
+		return FALSE
+
 	var/turf/caster_turf = get_turf(owner)
 	if((spell_requirements & SPELL_REQUIRES_STATION) && !is_station_level(caster_turf?.z))
 		if(feedback)
@@ -235,11 +238,16 @@
 /// Ostatnia szansa na przerwanie. Zwraca flagi SPELL_*.
 /datum/action/cooldown/spell/proc/before_cast(atom/cast_on)
 	SHOULD_CALL_PARENT(TRUE)
-	return SEND_SIGNAL(src, COMSIG_SPELL_BEFORE_CAST, cast_on)
+	. = SEND_SIGNAL(src, COMSIG_SPELL_BEFORE_CAST, cast_on)
+	if(owner)
+		. |= SEND_SIGNAL(owner, COMSIG_MOB_BEFORE_SPELL_CAST, src, cast_on)
 
 /// Główny efekt zaklęcia
 /datum/action/cooldown/spell/proc/cast(atom/cast_on)
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_SPELL_CAST, cast_on)
+	if(owner)
+		SEND_SIGNAL(owner, COMSIG_MOB_CAST_SPELL, src, cast_on)
 	if(owner?.ckey)
 		owner.log_message("cast the spell [name][cast_on != owner ? " on / at [cast_on]" : ""].", LOG_ATTACK)
 
@@ -248,6 +256,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(owner && sparks_amt)
 		do_sparks(sparks_amt, FALSE, get_turf(owner))
+	if(owner)
+		SEND_SIGNAL(owner, COMSIG_MOB_AFTER_SPELL_CAST, src, cast_on)
 	SEND_SIGNAL(src, COMSIG_SPELL_AFTER_CAST, cast_on)
 
 /// Płaci koszt w zasobach antagonisty
@@ -290,6 +300,7 @@
 
 /// Cofa odnowienie (np. gdy zaklęcie nie wyszło)
 /datum/action/cooldown/spell/proc/reset_spell_cooldown()
+	SEND_SIGNAL(src, COMSIG_SPELL_CAST_RESET)
 	next_use_time = world.time
 	update_cooldown_text()
 	UpdateButtonIcon()

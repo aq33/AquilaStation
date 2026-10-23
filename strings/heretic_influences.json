@@ -62,5 +62,31 @@
 		"ŻYCIE JEST ULOTNE, ALE CO JESZCZE TRWA?",
 		"ZAKRYTE I ZAPOMNIANE.",
 		"SZEPT."
+	],
+	"examine": [
+		"Czy nasza rzeczywistość jest aż tak krucha?",
+		"Co widziałem po drugiej stronie?",
+		"Czy tak powinno być?",
+		"To jest złe.",
+		"Czuję dłoń na gardle.",
+		"Płaczę, ale łzy nie płyną.",
+		"Nie jesteśmy sami.",
+		"Czy jestem sam?",
+		"Czy to koniec? Czy początek?",
+		"Co jest tam? Co jest po drugiej stronie?",
+		"Cóż to za moc?",
+		"Czy tym właśnie jesteśmy? Czy tym możemy się stać?",
+		"Czy tego właśnie chcieliśmy?",
+		"Nie zasługujemy na to... prawda?",
+		"Czy jesteśmy na to gotowi?",
+		"Myśleliśmy, że jesteśmy drapieżnikami, a jesteśmy ofiarą."
+	],
+	"hypnosis": [
+		"KTOŚ MNIE OBSERWUJE. ZEWSZĄD. TRZEBA ICH OŚLEPIĆ.",
+		"WIDZĘ WSZYSTKO. ZA DUŻO. MOJE OCZY SĄ ZBYT OTWARTE, ZBYT SŁABE.",
+		"WIDZĘ PRZYSZŁOŚĆ. NADCHODZI GROZA. TRZEBA JĄ POWSTRZYMAĆ.",
+		"JESTEŚMY TAK NIEISTOTNI. MUSZĘ BYĆ CZYMŚ WIĘCEJ.",
+		"RAMIONA, BROŃ, NARZĘDZIA, POTRZEBUJĘ ICH WSZYSTKICH. MUSZĘ BYĆ GOTOWY.",
+		"ONI NADCHODZĄ. NADCHODZĄ PO MNIE. MUSZĘ BYĆ GOTOWY."
 	]
 }

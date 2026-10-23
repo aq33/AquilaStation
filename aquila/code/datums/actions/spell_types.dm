@@ -304,17 +304,26 @@
 			to_chat(cast_on, "<span class='warning'>Masz zajęte ręce!</span>")
 		return FALSE
 	attached_hand = new_hand
-	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_hand_hit))
-	RegisterSignal(attached_hand, COMSIG_ITEM_DROPPED, PROC_REF(on_hand_dropped))
-	RegisterSignal(attached_hand, COMSIG_PARENT_QDELETING, PROC_REF(on_hand_deleted))
+	register_hand_signals()
 	to_chat(cast_on, draw_message)
 	return TRUE
+
+/datum/action/cooldown/spell/touch/proc/register_hand_signals()
+	SHOULD_CALL_PARENT(TRUE)
+	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK, PROC_REF(on_hand_hit))
+	RegisterSignal(attached_hand, COMSIG_ITEM_AFTERATTACK_SECONDARY, PROC_REF(on_hand_hit_secondary))
+	RegisterSignal(attached_hand, COMSIG_ITEM_DROPPED, PROC_REF(on_hand_dropped))
+	RegisterSignal(attached_hand, COMSIG_PARENT_QDELETING, PROC_REF(on_hand_deleted))
+
+/datum/action/cooldown/spell/touch/proc/unregister_hand_signals()
+	SHOULD_CALL_PARENT(TRUE)
+	UnregisterSignal(attached_hand, list(COMSIG_ITEM_AFTERATTACK, COMSIG_ITEM_AFTERATTACK_SECONDARY, COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETING))
 
 /// reset_cooldown_after = TRUE cofa odnowienie (dłoń odwołana), FALSE zaczyna odnowienie i płaci koszt (dłoń użyta)
 /datum/action/cooldown/spell/touch/proc/remove_hand(mob/living/hand_owner, reset_cooldown_after = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	if(!QDELETED(attached_hand))
-		UnregisterSignal(attached_hand, list(COMSIG_ITEM_AFTERATTACK, COMSIG_ITEM_DROPPED, COMSIG_PARENT_QDELETING))
+		unregister_hand_signals()
 		hand_owner?.temporarilyRemoveItemFromInventory(attached_hand, TRUE)
 		QDEL_NULL(attached_hand)
 	attached_hand = null
@@ -332,6 +341,9 @@
 	return ..() | SPELL_NO_FEEDBACK | SPELL_NO_IMMEDIATE_COOLDOWN
 
 /datum/action/cooldown/spell/touch/cast(mob/living/carbon/cast_on)
+	if(SEND_SIGNAL(cast_on, COMSIG_TOUCH_HANDLESS_CAST, src) & COMPONENT_CAST_HANDLESS)
+		StartCooldown()
+		return ..()
 	if(!QDELETED(attached_hand) && (attached_hand in cast_on.held_items))
 		remove_hand(cast_on, reset_cooldown_after = TRUE)
 		return ..()
@@ -347,6 +359,34 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_hand_hit), source, victim, caster)
 
+/// Prawy przycisk dłonią (tg: cast_on_secondary_hand_hit)
+/datum/action/cooldown/spell/touch/proc/on_hand_hit_secondary(datum/source, atom/victim, mob/caster, proximity_flag, click_parameters)
+	SIGNAL_HANDLER
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!proximity_flag)
+		return
+	if(!can_hit_with_hand(victim, caster))
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_secondary_hand_hit), source, victim, caster)
+	return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
+
+/datum/action/cooldown/spell/touch/proc/do_secondary_hand_hit(obj/item/melee/spell_hand/hand, atom/victim, mob/living/carbon/caster)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	switch(cast_on_secondary_hand_hit(hand, victim, caster))
+		if(SECONDARY_ATTACK_CONTINUE_CHAIN)
+			log_combat(caster, victim, "cast the touch spell [name] on", hand, "(secondary / alt cast)")
+			spell_feedback()
+			caster.do_attack_animation(victim)
+			caster.changeNext_move(CLICK_CD_MELEE)
+			victim.add_fingerprint(caster)
+			remove_hand(caster)
+		if(SECONDARY_ATTACK_CALL_NORMAL)
+			do_hand_hit(hand, victim, caster)
+
+/// Efekt prawego przycisku. SECONDARY_ATTACK_CALL_NORMAL = jak lewy, CONTINUE_CHAIN = zużyj dłoń, CANCEL_ATTACK_CHAIN = nic
+/datum/action/cooldown/spell/touch/proc/cast_on_secondary_hand_hit(obj/item/melee/spell_hand/hand, atom/victim, mob/living/carbon/caster)
+	return SECONDARY_ATTACK_CALL_NORMAL
+
 /datum/action/cooldown/spell/touch/proc/can_hit_with_hand(atom/victim, mob/caster)
 	if(!can_cast_on_self && victim == caster)
 		return FALSE
@@ -358,6 +398,7 @@
 
 /datum/action/cooldown/spell/touch/proc/do_hand_hit(obj/item/melee/spell_hand/hand, atom/victim, mob/living/carbon/caster)
 	SHOULD_NOT_OVERRIDE(TRUE)
+	SEND_SIGNAL(src, COMSIG_SPELL_TOUCH_HAND_HIT, victim, caster, hand)
 	var/mob/mob_victim = victim
 	if(istype(mob_victim) && mob_victim.can_block_magic(antimagic_flags))
 		on_antimagic_triggered(hand, victim, caster)
@@ -365,8 +406,12 @@
 		return
 	if(QDELETED(src))
 		return
+	SEND_SIGNAL(caster, COMSIG_SPELL_TOUCH_SPELL_ACTUALLY_CAST, src, victim)
 	log_combat(caster, victim, "cast the touch spell [name] on", hand)
 	spell_feedback()
+	caster.do_attack_animation(victim)
+	caster.changeNext_move(CLICK_CD_MELEE)
+	victim.add_fingerprint(caster)
 	remove_hand(caster)
 
 /// Efekt dotknięcia. TRUE zużywa dłoń, FALSE zostawia ją w ręce.
@@ -407,6 +452,15 @@
 	. = ..()
 	if(spell)
 		spell_which_made_us = WEAKREF(spell)
+
+/// tg: zdejmuje dłoń i zaczyna odnowienie (np. gdy efekt zużył dłoń poza zwykłym trafieniem)
+/obj/item/melee/spell_hand/proc/remove_hand_with_no_refund(mob/holder)
+	var/datum/action/cooldown/spell/touch/hand_spell = spell_which_made_us?.resolve()
+	if(!QDELETED(hand_spell))
+		hand_spell.remove_hand(holder, reset_cooldown_after = FALSE)
+		return
+	holder.temporarilyRemoveItemFromInventory(src, force = TRUE)
+	qdel(src)
 
 /obj/item/melee/spell_hand/attack(mob/target, mob/living/carbon/user)
 	if(!iscarbon(user))
