@@ -139,6 +139,12 @@
 	else
 		icon = initial(icon)
 
+// Podgląd w oknie RPD (spritesheet rur bierze tylko pliki z code/)
+/datum/asset/spritesheet/pipes/register()
+	for(var/direction in GLOB.alldirs)
+		Insert("[dir2text(direction)]-conloafer", 'aquila/icons/obj/monke/loaf.dmi', "conloafer", direction)
+	return ..()
+
 // =====================================================
 // Bochenek
 // =====================================================
