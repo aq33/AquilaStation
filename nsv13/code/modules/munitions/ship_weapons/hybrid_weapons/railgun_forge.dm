@@ -180,175 +180,52 @@
 							r_materials.mat_container.use_amount_mat(single_material_amount, /datum/material/copper)
 							T2.tank_volume += 10
 
+// AQUILA EDIT - kuźnia amunicji: właściwości materiałów pochodzą ze wspólnej tabeli /datum/munition_material (aquila/code/modules/munitions_forge/materials.dm)
+/obj/machinery/railgun_forge/proc/get_tank_materials()
+	if(!T1 || !T2)
+		return null
+	var/datum/munition_material/M1 = get_munition_material_by_railgun_name(T1.material_selection)
+	var/datum/munition_material/M2 = get_munition_material_by_railgun_name(T2.material_selection)
+	if(!M1 || !M2)
+		return null
+	return list(M1, M2)
+
 /obj/machinery/railgun_forge/proc/getConductivity(var/T) //Extrapolated from electric conductivity at 20C
-	var/final_conductivty = 0
-	var/conductivity_1 = 0
-	var/conductivity_2 = 0
-	if(T1 && T2)
-		switch(T1.material_selection)
-			if("Iron")
-				conductivity_1 = 1.0
-			if("Silver")
-				conductivity_1 = 6.3
-			if("Gold")
-				conductivity_1 = 4.1
-			if("Diamond")
-				conductivity_1 = 0.001
-			if("Uranium")
-				conductivity_1 = 0.36
-			if("Plasma")
-				conductivity_1 = 2
-			if("Bluespace")
-				conductivity_1 = 8
-			if("Bananium")
-				conductivity_1 = 1
-			if("Titanium")
-				conductivity_1 = 0.24
-			if("Copper")
-				conductivity_1 = 5.9
-
-		switch(T2.material_selection)
-			if("Iron")
-				conductivity_2 = 1.0
-			if("Silver")
-				conductivity_2 = 6.3
-			if("Gold")
-				conductivity_2 = 4.1
-			if("Diamond")
-				conductivity_2 = 0.001
-			if("Uranium")
-				conductivity_2 = 0.36
-			if("Plasma")
-				conductivity_2 = 2
-			if("Bluespace")
-				conductivity_2 = 8
-			if("Bananium")
-				conductivity_2 = 1
-			if("Titanium")
-				conductivity_2 = 0.24
-			if("Copper")
-				conductivity_2 = 5.9
-
+	var/list/mats = get_tank_materials()
+	if(!mats)
+		return 0
+	var/datum/munition_material/M1 = mats[1]
+	var/datum/munition_material/M2 = mats[2]
 	if(T == "slug")
-		final_conductivty = ((0.75 * conductivity_1) + (0.25 * conductivity_2))
-	else if(T == "canister")
-		final_conductivty = ((0.6 * conductivity_1) + (0.4 * conductivity_2))
-
-	return final_conductivty
+		return (0.75 * M1.conductivity) + (0.25 * M2.conductivity)
+	if(T == "canister")
+		return (0.6 * M1.conductivity) + (0.4 * M2.conductivity)
+	return 0
 
 /obj/machinery/railgun_forge/proc/getDensity(var/T) //extrapolated from g/cm3
-	var/final_density = 0
-	var/density_1 = 0
-	var/density_2 = 0
-
-	if(T1 && T2)
-		switch(T1.material_selection)
-			if("Iron")
-				density_1 = 14
-			if("Silver")
-				density_1 = 22
-			if("Gold")
-				density_1 = 40
-			if("Diamond")
-				density_1 = 7
-			if("Uranium")
-				density_1 = 38
-			if("Plasma")
-				density_1 = 10
-			if("Bluespace")
-				density_1 = 4
-			if("Bananium")
-				density_1 = 25
-			if("Titanium")
-				density_1 = 9
-			if("Copper")
-				density_1 = 18
-
-		switch(T2.material_selection)
-			if("Iron")
-				density_2 = 14
-			if("Silver")
-				density_2 = 22
-			if("Gold")
-				density_2 = 40
-			if("Diamond")
-				density_2 = 7
-			if("Uranium")
-				density_2 = 38
-			if("Plasma")
-				density_2 = 10
-			if("Bluespace")
-				density_2 = 4
-			if("Bananium")
-				density_2 = 25
-			if("Titanium")
-				density_2 = 9
-			if("Copper")
-				density_2 = 18
-
+	var/list/mats = get_tank_materials()
+	if(!mats)
+		return 0
+	var/datum/munition_material/M1 = mats[1]
+	var/datum/munition_material/M2 = mats[2]
 	if(T == "slug")
-		final_density = ((0.25 * density_1) + (0.75 * density_2))
-	else if(T == "canister")
-		final_density = ((0.5 * density_1) + (0.5 * density_2))
-
-	return final_density
+		return (0.25 * M1.density) + (0.75 * M2.density)
+	if(T == "canister")
+		return (0.5 * M1.density) + (0.5 * M2.density)
+	return 0
 
 /obj/machinery/railgun_forge/proc/getHardness(var/T) //Mohs
-	var/final_hardness = 0
-	var/hardness_1 = 0
-	var/hardness_2 = 0
-
-	if(T1 && T2)
-		switch(T1.material_selection)
-			if("Iron")
-				hardness_1 = 4
-			if("Silver")
-				hardness_1 = 2.5
-			if("Gold")
-				hardness_1 = 2.5
-			if("Diamond")
-				hardness_1 = 10
-			if("Uranium")
-				hardness_1 = 6
-			if("Plasma")
-				hardness_1 = 3
-			if("Bluespace")
-				hardness_1 = NUM_E
-			if("Bananium")
-				hardness_1 = 1
-			if("Titanium")
-				hardness_1 = 6
-			if("Copper")
-				hardness_1 = 5
-
-		switch(T2.material_selection)
-			if("Iron")
-				hardness_2 = 4
-			if("Silver")
-				hardness_2 = 2.5
-			if("Gold")
-				hardness_2 = 2.5
-			if("Diamond")
-				hardness_2 = 10
-			if("Uranium")
-				hardness_2 = 6
-			if("Plasma")
-				hardness_2 = 3
-			if("Bluespace")
-				hardness_2 = NUM_E
-			if("Bananium")
-				hardness_2 = 1
-			if("Titanium")
-				hardness_2 = 6
-			if("Copper")
-				hardness_2 = 5
-
+	var/list/mats = get_tank_materials()
+	if(!mats)
+		return 0
+	var/datum/munition_material/M1 = mats[1]
+	var/datum/munition_material/M2 = mats[2]
 	if(T == "slug")
-		final_hardness = ((0.25 * hardness_1) + (0.75 * hardness_2))
-	else if(T == "canister")
-		final_hardness = ((0.8 * hardness_1) + (0.2 * hardness_2))
-
-	return final_hardness
+		return (0.25 * M1.hardness) + (0.75 * M2.hardness)
+	if(T == "canister")
+		return (0.8 * M1.hardness) + (0.2 * M2.hardness)
+	return 0
+// AQUILA EDIT END
 
 /obj/machinery/railgun_forge/proc/forge_slug()
 	if(T1 && T2)
