@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		"freq" = signal.frequency,
 		"source" = signal.data["name"],
 		"uuid" = signal.data["name"],
-		"sector" = signal.levels,
+		"sector" = signal.levels.Copy(), // AQ EDIT - a copy, sector[1] = 0 must not edit the signal's own list
 		"job" = signal.data["job"],
 		"pass" = !(signal.data["reject"]),
 		"filters" = signal.data["spans"],
@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	//signal.data["uuid"] = script_signal.get_clean_property("$uuid", signal.data["uuid"])
 	// AQ EDIT START - sector must stay a list of real levels, 0 would mean every level
 	var/new_levels = script_signal.get_clean_property("sector", signal.levels)
-	if(islist(new_levels) && new_levels != signal.levels)
+	if(islist(new_levels))
 		var/list/clean_levels = list()
 		for(var/level in new_levels)
 			if(isnum(level) && level > 0)

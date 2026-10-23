@@ -75,7 +75,8 @@ export function AceEditor(props: Props) {
     if (fromCtrlShiftB && onCtrlShiftB) handled = onCtrlShiftB(current);
 
     setIsSynced(lastRemoteValueRef.current === current);
-    return changed || handled;
+    // A shortcut confirms only what its callback did
+    return fromCtrlS || fromCtrlShiftB ? handled : changed;
   };
 
   const showSavedPopup = (text = 'Zapisano') => {

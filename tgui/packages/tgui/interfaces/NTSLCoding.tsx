@@ -1,6 +1,6 @@
 // AQUILA - konsola kontroli ruchu telekomunikacji (NTSL), port z Monkestation (Monkestation/Monkestation2.0#2199)
 // Backend: aquila/code/modules/ntsl/traffic_control.dm
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -12,7 +12,6 @@ import {
 } from 'tgui-core/components';
 import { UI_UPDATE } from 'tgui-core/constants';
 import type { BooleanLike } from 'tgui-core/react';
-import { sleep } from 'tgui-core/timer';
 
 import { useBackend } from '../backend';
 import { AceEditor } from '../components/Ace/Editor';
@@ -53,9 +52,18 @@ export const NTSLCoding = (props) => {
 
   // Reset local edits when the saved code or the logged in user changes
   const [code, setCode] = useState(stored_code);
+  const lastStoredRef = useRef(stored_code);
   useEffect(() => {
     setCode(stored_code);
-  }, [stored_code, user_name]);
+    lastStoredRef.current = stored_code;
+  }, [user_name]);
+  // A newer saved code replaces the local copy only when nothing was edited since
+  useEffect(() => {
+    if (code === lastStoredRef.current) {
+      setCode(stored_code);
+    }
+    lastStoredRef.current = stored_code;
+  }, [stored_code]);
   const codeState: CodeState = [code, setCode];
   const [tabIndex, setTabIndex] = useState(1);
 
@@ -185,8 +193,7 @@ const ScriptEditor = (props: { codeState: CodeState }) => {
           return true;
         }}
         onCtrlShiftB={(value) => {
-          act('save_code', { saved_code: value });
-          sleep(150).then(() => act('compile_code'));
+          act('compile_code', { code: value });
           return true;
         }}
         readOnly={!user_name || config.status <= UI_UPDATE}

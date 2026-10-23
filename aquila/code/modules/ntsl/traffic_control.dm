@@ -70,6 +70,12 @@
 		ui = new(user, src, "NTSLCoding", name)
 		ui.open()
 
+/// Without the access the window closes, so nobody can use a console someone else logged into. Emagged consoles are open to everyone.
+/obj/machinery/computer/telecomms/traffic/ui_status(mob/user, datum/ui_state/state)
+	if(!(obj_flags & EMAGGED) && !issilicon(user) && !IsAdminGhost(user) && !allowed(user))
+		return UI_CLOSE
+	return ..()
+
 /obj/machinery/computer/telecomms/traffic/ui_data(mob/user)
 	var/list/data = list()
 	var/list/server_data = list()
@@ -137,6 +143,8 @@
 			if(!user_name)
 				message_admins("[key_name_admin(user)] attempted compiling NTSL without being logged in.")
 				return
+			if(istext(params["code"])) // save and compile in one action, so the compile can't run before the save arrives
+				storedcode = params["code"]
 			for(var/obj/machinery/telecomms/server/server as anything in servers)
 				server.rawcode = storedcode
 			compiler_output = compile_all(user)
