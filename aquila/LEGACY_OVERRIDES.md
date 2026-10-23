@@ -120,7 +120,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Mouse modifiers passed to `preparePixelProjectile()` only when not empty | `code/modules/projectiles/ammunition/_firing.dm`, `throw_proj()` | `params2list(null)` is an empty list, which is true, so a living shooter without mouse data (NPCs without a client, the pulse demon firing a hijacked gun) aimed at angle 0 and shot north. Test: `aquila_gun_fire_without_params` |
 | `[ssd_examine_text()]` in the blank stare line | `code/modules/mob/living/carbon/human/examine.dm` | SSD indicator (Monkestation2.0 port): how many minutes the player has been gone; logic in `aquila/code/modules/mob/living/ssd_indicator.dm` |
 | `explode_on_destruction` var, checked in `Destroy()` | `code/modules/vehicles/sealed.dm` | VIM (tg + Monkestation2.0) does not explode when destroyed; `aquila/code/modules/vehicles/cars/vim.dm` |
-| `/obj/item/citationinator` in Deputy `backpack_contents` and SecTech `products` | `code/modules/jobs/job_types/deputy.dm`, `code/modules/vending/security.dm` | Citationinator (Monkestation2.0 port), `aquila/code/modules/security/citationinator.dm` |
+| `/obj/item/citationinator` in Deputy and Security Officer `backpack_contents` and SecTech `products` | `code/modules/jobs/job_types/deputy.dm`, `code/modules/jobs/job_types/security_officer.dm`, `code/modules/vending/security.dm` | Citationinator (Monkestation2.0 port), `aquila/code/modules/security/citationinator.dm` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

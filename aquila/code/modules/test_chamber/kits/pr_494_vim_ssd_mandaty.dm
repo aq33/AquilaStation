@@ -4,7 +4,7 @@
 	description = "VIM: przejmij corgi albo kota (Nawiedź/ghost) i przeciągnij się na gotowego Vima. Sprawdź jazdę, Dzyń!/Bzzz., reflektory i wyjście. \
 	Złóż drugiego z części: połóż hełm EVA na ziemi, dodaj obie nogi, latarkę, śrubokręt, moduł głosowy, śrubokręt, butlę. Uszkodź go i napraw spawarką (bez combat mode). Po zniszczeniu nie ma wybuchu, butla wypada. \
 	SSD: człowiek z zestawu ma ustawiony znacznik; prawdziwy test to rozłączenie się postacią (znacznik ma zniknąć po powrocie, wyjściu duchem i śmierci, a examine pokazuje minuty). \
-	Citationinator: użyj go w ręce z kartą ochrony, wybierz kogoś z manifestu, mandat ma trafić do akt (HUD ochrony, konsola nakazów) i wypluć różowy kwit. Bez dostępu odmawia, emag zdejmuje blokadę."
+	Citationinator (Deputy i policjant mają go w plecaku): użyj go w ręce z kartą ochrony, wybierz kogoś z manifestu, mandat ma trafić do akt (HUD ochrony, konsola nakazów) i wypluć różowy kwit. Bez dostępu odmawia, emag zdejmuje blokadę."
 	items = list(
 		/obj/vehicle/sealed/car/vim/with_tank = 1,
 		/mob/living/simple_animal/pet/dog/corgi = 1,
