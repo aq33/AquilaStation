@@ -454,6 +454,8 @@
 		var/atom/movable/virtualspeaker/v = speaker
 		speaker = v.source
 		spans |= "virtual-speaker"
+		if(!speaker) // AQ EDIT - NTSL broadcast() has no real speaker
+			return
 
 	//If the message has the radio message flag
 	else if (message_mods[MODE_RADIO_MESSAGE])

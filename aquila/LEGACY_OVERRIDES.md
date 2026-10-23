@@ -117,6 +117,10 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | RD suit storage unit holds the HEV suit instead of the research MODsuit | `code/game/machinery/suit_storage_unit.dm` | HEV from the 2024 changelog (aq33/AquilaStation#461) |
 | Deck technician job card uses the `munitech` state | `code/game/objects/items/cards_ids.dm` | `decktechnician` state doesn't exist in `nsv13/icons/obj/card.dmi` |
 | Mouse modifiers passed to `preparePixelProjectile()` only when not empty | `code/modules/projectiles/ammunition/_firing.dm`, `throw_proj()` | `params2list(null)` is an empty list, which is true, so a living shooter without mouse data (NPCs without a client, the pulse demon firing a hijacked gun) aimed at angle 0 and shot north. Test: `aquila_gun_fire_without_params` |
+| NTSL: `signal.data["server"]` and `Compiler.Run(signal)` before relaying | `code/game/machinery/telecomms/machines/server.dm` (`receive_information()`) | Traffic control scripts edit or block radio messages; logic in `aquila/code/modules/ntsl/` |
+| NTSL: `lvls` argument of `/datum/signal/subspace/vocal/New()` | `code/game/machinery/telecomms/broadcasting.dm` | `broadcast()` from a script sends on the server's z-level, its radio has no turf |
+| NTSL: return when a virtual speaker has no source | `code/datums/chatmessage.dm` (`create_chat_message()`) | `broadcast()` from a script has no real speaker |
+| `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

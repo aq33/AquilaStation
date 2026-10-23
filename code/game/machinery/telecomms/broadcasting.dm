@@ -103,7 +103,8 @@
 	datum/language/language,  // the langauge of the message
 	message,  // the text content of the message
 	spans,  // the list of spans applied to the message
-	list/message_mods // the list of modification applied to the message. Whispering ect
+	list/message_mods, // the list of modification applied to the message. Whispering ect
+	lvls = null, // AQ EDIT - NTSL broadcast() sends on the server's z-level
 )
 	src.source = source
 	src.frequency = frequency
@@ -119,6 +120,11 @@
 		"spans" = spans,
 		"mods" = message_mods
 	)
+	// AQ EDIT START - NTSL broadcast() comes from a radio without a turf
+	if(lvls)
+		levels = lvls
+		return
+	// AQ EDIT END
 	var/turf/T = get_turf(source)
 	levels = list(T.get_virtual_z_level())
 

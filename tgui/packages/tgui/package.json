@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/marked": "4.3.2",
     "@types/react": "^19.1.0",
+    "ace-builds": "1.43.5",
     "color-blend": "4.0.0",
     "common": "workspace:*",
     "csstype": "^3.1.3",

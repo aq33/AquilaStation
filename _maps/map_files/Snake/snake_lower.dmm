@@ -444,6 +444,13 @@
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"aZ" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -43333,7 +43340,7 @@ dt
 Kp
 bX
 kb
-AB
+aZ
 JG
 ha
 dP
