@@ -72,6 +72,7 @@
 	else
 		selection_type = "redacted information"
 	SSblackbox.record_feedback("nested tally", "bitrunning_domain_loaded", 1, list(selection_type, map_key))
+	broadcast_domain_name = generated_domain.can_view_name(scanner_tier, points) ? generated_domain.name : "???"
 
 	is_ready = TRUE
 
@@ -87,7 +88,7 @@
 	update_appearance()
 
 	if(broadcasting)
-		start_broadcasting_network(BITRUNNER_CAMERA_NET)
+		start_broadcasting_network(BITRUNNER_CAMERA_NET, "Bitrunnerzy na żywo z domeny [broadcast_domain_name]!", src)
 
 	if(generated_domain.announce_to_ghosts)
 		notify_ghosts("Bitrunnerzy załadowali domenę, w której mogą brać udział duchy. Sprawdź menu spawnerów.", source = src, header = "Glitch w Matrixie")
@@ -232,7 +233,7 @@
 	domain_randomized = FALSE
 	retries_spent = 0
 
-	stop_broadcasting_network(BITRUNNER_CAMERA_NET)
+	stop_broadcasting_network(BITRUNNER_CAMERA_NET, null, src)
 
 
 /// Tries to clean up everything in the domain
@@ -256,6 +257,7 @@
 		UnregisterSignal(generated_domain, COMSIG_LAZY_TEMPLATE_LOADED)
 		// Destroy() zwalnia rezerwację razem z całą zawartością
 		QDEL_NULL(generated_domain)
+		broadcast_domain_name = null
 
 	avatar_connection_refs.Cut()
 	exit_turfs = list()

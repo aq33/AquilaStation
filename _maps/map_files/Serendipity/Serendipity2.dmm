@@ -1462,6 +1462,10 @@
 /obj/machinery/power/apc/auto_name/east,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"gA" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "gB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -1657,6 +1661,29 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"hx" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/ship/preopen{
+	dir = 4;
+	id = "qm_office";
+	name = "QM Office"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/window/westright{
+	req_one_access_txt = "31;48"
+	},
+/obj/machinery/door/window/eastleft,
+/obj/structure/desk_bell/departmental/supply,
+/turf/open/floor/monotile/steel,
+/area/quartermaster/lobby)
 "hz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -4824,6 +4851,10 @@
 	},
 /turf/open/floor/monotile/light,
 /area/quartermaster)
+"yV" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/starboard/central)
 "yX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -7444,6 +7475,13 @@
 "NB" = (
 /turf/open/floor/monotile/steel,
 /area/engine/engineering)
+"NC" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/cargo)
 "ND" = (
 /turf/closed/wall/ship,
 /area/nsv/hanger/notkmcstupidhanger/pilot)
@@ -38727,7 +38765,7 @@ aU
 tX
 JN
 db
-uq
+NC
 gu
 dD
 Ks
@@ -39483,7 +39521,7 @@ rh
 mc
 FS
 FS
-zT
+hx
 FS
 Ck
 ZU
@@ -41798,7 +41836,7 @@ mp
 iv
 aS
 yc
-Ln
+yV
 Ln
 DZ
 xI
@@ -42577,7 +42615,7 @@ rJ
 yc
 az
 Ln
-Ln
+yV
 ax
 sn
 BQ
@@ -45627,7 +45665,7 @@ Ks
 dD
 dD
 Ll
-uL
+gA
 NH
 Eo
 dL

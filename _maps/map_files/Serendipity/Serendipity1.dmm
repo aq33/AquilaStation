@@ -3161,6 +3161,30 @@
 /obj/machinery/door/window/brigdoor/security/cell/southleft,
 /turf/open/floor/carpet/police,
 /area/security/prison)
+"jZ" = (
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = -30
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/ship/blue{
+	dir = 1
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/structure/desk_bell/departmental/medical{
+	pixel_x = -8
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/medical/medbay/lobby)
 "kb" = (
 /obj/item/wrench/medical,
 /obj/structure/table/glass/plasma,
@@ -4020,6 +4044,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/circuit/telecomms/server,
 /area/science/server)
+"nm" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/dorms)
 "nn" = (
 /obj/structure/window/plasma/reinforced/spawner/east,
 /obj/structure/window/plasma/reinforced/spawner,
@@ -7192,6 +7220,24 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/tiled/light,
 /area/hallway/secondary/exit)
+"yl" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/extinguisher_cabinet/west,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/sugar{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/condiment/sugar{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/kitchen)
 "ym" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/grass,
@@ -10433,6 +10479,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"Kh" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "Ki" = (
 /obj/structure/cable,
 /obj/effect/landmark/blobstart,
@@ -13427,6 +13481,19 @@
 /obj/machinery/light/floor,
 /turf/open/floor/engine,
 /area/science/robotics)
+"UP" = (
+/obj/structure/table/glass/plasma,
+/obj/machinery/door/window/southleft,
+/obj/machinery/door/window/northleft{
+	req_one_access_txt = "19"
+	},
+/obj/machinery/door/poddoor/shutters/ship/preopen{
+	id = "xo";
+	name = "XO's Shutters"
+	},
+/obj/structure/desk_bell/departmental/command/hop,
+/turf/open/floor/engine/light,
+/area/crew_quarters/heads/xo)
 "US" = (
 /obj/structure/table/glass/plasma,
 /obj/structure/cable,
@@ -40634,7 +40701,7 @@ DD
 Jf
 Lo
 dG
-UT
+UP
 dM
 Zk
 dL
@@ -41420,7 +41487,7 @@ xp
 xp
 xp
 UD
-qb
+nm
 qb
 aG
 vA
@@ -41928,7 +41995,7 @@ WD
 tu
 Bs
 cc
-cm
+Kh
 cs
 cH
 cO
@@ -42450,7 +42517,7 @@ cf
 vA
 qb
 qb
-qb
+nm
 vA
 sW
 sW
@@ -43456,7 +43523,7 @@ FI
 fp
 Ie
 tx
-uf
+yl
 nF
 TK
 Xl
@@ -43734,7 +43801,7 @@ zD
 kL
 zh
 si
-qb
+nm
 dY
 vA
 jB
@@ -47049,7 +47116,7 @@ lA
 Mz
 Mz
 sJ
-ph
+jZ
 vd
 ZJ
 ZJ
