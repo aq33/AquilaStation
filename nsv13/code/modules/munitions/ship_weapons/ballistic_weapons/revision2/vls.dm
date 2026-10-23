@@ -60,6 +60,7 @@
 	var/obj/item/ship_weapon/ammunition/torpedo/T = chambered
 	if(T)
 		var/obj/item/projectile/P = linked.fire_projectile(T.projectile_type, target, firing_flags = linked_overmap_ship_weapon.weapon_firing_flags)
+		transfer_forged_munition(T, P) // AQUILA EDIT - kuźnia amunicji
 		if(T.contents.len)
 			for(var/atom/movable/AM in T.contents)
 				to_chat(AM, "<span class='warning'>Robi ci się trochę niedobrze, gdy zostajesz wystrzelony w kosmos...</span>")
