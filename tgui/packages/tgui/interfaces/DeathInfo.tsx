@@ -36,7 +36,7 @@ export const DeathInfo = (props) => {
   const { norespawn } = data;
 
   return (
-    <Window title="Nie żyjesz" width={500} height={680}>
+    <Window title="Nie żyjesz" width={500} height={820}>
       <Window.Content scrollable>
         <NoticeBox danger>
           <Box fontSize="1.4em" bold>
@@ -59,8 +59,21 @@ export const DeathInfo = (props) => {
             <Way icon="dna" name="Klonowanie">
               jeśli medbay ma cię w bazie skanów.
             </Way>
+            <Way icon="stethoscope" name="Operacja Revival">
+              chirurg z wyuczoną operacją (z badań) może cię ożywić nawet długo
+              po śmierci, jeśli masz mózg, a ciało nie jest wyschnięte.
+            </Way>
+            <Way icon="seedling" name="Strąk replikujący">
+              botanik wstrzykuje twoją krew do nasion. Gdy owoc dojrzeje,
+              wracasz jako człowiek-strąk.
+            </Way>
             <Way icon="brain" name="MMI">
               twój mózg można włożyć do cyborga, mecha albo rdzenia AI.
+            </Way>
+            <Way icon="skull" name="Antagoniści">
+              heretyk, darkspawn, wampir, krwawy robak czy bloodling mogą
+              podnieść twoje ciało, ale wtedy wracasz jako ich sługa albo
+              żywiciel.
             </Way>
           </Stack>
           <Box mt={1} color="label">
@@ -82,6 +95,10 @@ export const DeathInfo = (props) => {
             </Way>
             <Way icon="paw" name="Possess a mouse">
               zostań myszą na statku.
+            </Way>
+            <Way icon="box-open" name="Odzyskana załoga">
+              Centrala czasem przysyła do cargo ciało w worku. Gdy medbay je
+              ożywi, duchy dostaną okienko z propozycją przejęcia go.
             </Way>
             <Way icon="bell" name="Wydarzenia">
               w trakcie rundy mogą pojawiać się okienka z propozycją roli
