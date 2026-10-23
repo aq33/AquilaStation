@@ -41,6 +41,13 @@
 	var/turf/open/pit_floor = get_turf(crayon)
 	TEST_ASSERT(pit_floor.air?.return_pressure() > 50, "Bingle pit has no air")
 
+	// Bot w wymiarze nie ma statku: szukanie nawigatorów patrolu nie może wysypać runtime'u
+	var/mob/living/simple_animal/bot/secbot/lost_bot = allocate(/mob/living/simple_animal/bot/secbot, pit_floor)
+	TEST_ASSERT(!lost_bot.get_overmap(), "Bingle pit dimension belongs to a ship")
+	lost_bot.get_next_patrol_target()
+	lost_bot.find_nearest_beacon()
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Bot patrol lookup off the ship caused runtimes")
+
 	// Bingle i istoty przed progiem nie wpadają
 	bingle.forceMove(left)
 	TEST_ASSERT_EQUAL(hole.item_value_consumed, 8, "Bingle fell into its own pit")
