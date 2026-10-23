@@ -75,6 +75,16 @@
 	category = list("Advanced Munitions")
 	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
 
+/datum/design/forging_hammer
+	name = "Młot kowalski"
+	desc = "Młot do kucia odlewów amunicji na kowadle."
+	id = "forging_hammer"
+	build_type = PROTOLATHE
+	materials = list(/datum/material/iron = 4000)
+	build_path = /obj/item/forging_hammer
+	category = list("Advanced Munitions")
+	departmental_flags = DEPARTMENTAL_FLAG_MUNITIONS
+
 /datum/design/munition_cast
 	name = "Forma łusek"
 	desc = "Forma odlewnicza na łuski."
@@ -114,7 +124,7 @@
 // Maszyny i podstawowe formy razem z artylerią, forma głowic z głowicami torped.
 /datum/techweb_node/advanced_ballistics/New()
 	. = ..()
-	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer", "munition_cast_casings", "munition_cast_shell", "munition_cast_filler", "munition_cast_fuze")
+	design_ids += list("munitions_arc_forge", "munitions_anvil", "munitions_assembly_bench", "munitions_electroplater", "munitions_analyzer", "forging_hammer", "munition_cast_casings", "munition_cast_shell", "munition_cast_filler", "munition_cast_fuze")
 
 /datum/techweb_node/basic_torpedo_components/New()
 	. = ..()

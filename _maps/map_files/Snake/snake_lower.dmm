@@ -3040,6 +3040,8 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/box/munition_casts,
 /obj/item/munitions_analyzer,
+/obj/item/forging_hammer,
+/obj/item/forging_hammer,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "gV" = (

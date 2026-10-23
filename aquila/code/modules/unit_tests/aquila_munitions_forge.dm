@@ -98,6 +98,10 @@
 	var/obj/machinery/munitions_forge/anvil/anvil = allocate(/obj/machinery/munitions_forge/anvil, locate(forge.x + 4, forge.y, forge.z))
 	primer.forceMove(anvil)
 	anvil.working_part = primer
+	TEST_ASSERT(!anvil.start_operation(smith) && !anvil.game, "Kowadło dało kuć bez młota")
+	var/obj/item/forging_hammer/hammer = allocate(/obj/item/forging_hammer)
+	smith.put_in_hands(hammer)
+	TEST_ASSERT(anvil.held_hammer(smith), "Kowadło nie widzi młota w ręce")
 	var/datum/munitions_anvil_game/game = new(anvil, smith, primer)
 	anvil.game = game
 	TEST_ASSERT(length(game.notes) >= 4, "Za mało nut")

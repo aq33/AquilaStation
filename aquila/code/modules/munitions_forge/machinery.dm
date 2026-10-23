@@ -481,14 +481,29 @@
 	return !part.is_finished()
 
 /obj/machinery/munitions_forge/anvil/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/forging_hammer))
+		interact(user)
+		return TRUE
 	if(istype(I, /obj/item/munition_part) && !accepts_part(I))
 		to_chat(user, "<span class='notice'>[I] jest już wykuty.</span>")
 		return TRUE
 	return ..()
 
-/obj/machinery/munitions_forge/anvil/update_icon_state()
-	icon_state = working_part ? "anvil_ingot" : "anvil_empty"
-	return ..()
+/// Stan anvil_ingot z Monke to sam sztabek, więc kładziemy go na kowadło jako nakładkę
+/obj/machinery/munitions_forge/anvil/update_overlays()
+	. = ..()
+	if(working_part)
+		. += "anvil_ingot"
+
+/obj/machinery/munitions_forge/anvil/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Do kucia potrzebny jest młot kowalski w ręce. Uderz nim w kowadło albo kliknij kowadło, trzymając go w drugiej ręce.</span>"
+
+/// Młot w którejkolwiek ręce
+/obj/machinery/munitions_forge/anvil/proc/held_hammer(mob/living/user)
+	if(!istype(user))
+		return null
+	return locate(/obj/item/forging_hammer) in user.held_items
 
 /obj/machinery/munitions_forge/anvil/start_operation(mob/user)
 	if(game)
@@ -504,6 +519,9 @@
 		return FALSE
 	if(!working_part.forge_heat)
 		to_chat(user, "<span class='warning'>[working_part] jest za zimny, żeby go kuć. Dogrzej go w piecu łukowym.</span>")
+		return FALSE
+	if(!held_hammer(user))
+		to_chat(user, "<span class='warning'>Gołymi rękami nic nie wykujesz. Weź młot kowalski.</span>")
 		return FALSE
 	if(!user?.client)
 		return FALSE

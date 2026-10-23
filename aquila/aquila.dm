@@ -611,6 +611,7 @@
 #include "code\modules\munitions_forge\analyzer.dm"
 #include "code\modules\munitions_forge\electroplater.dm"
 #include "code\modules\munitions_forge\export.dm"
+#include "code\modules\munitions_forge\hammer.dm"
 #include "code\modules\mob\dead\new_player\lobby_manifest.dm"
 #include "code\modules\mob\dead\new_player\lobby_menu.dm"
 #include "code\modules\mob\dead\new_player\sprite_accessories.dm"
