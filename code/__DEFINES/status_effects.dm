@@ -11,6 +11,12 @@
 #define STATUS_EFFECT_REFRESH 3
 /// call a merge proc to combine 2 status effects
 #define STATUS_EFFECT_MERGE 4
+// AQUILA - zgodność ze statusami z tg
+/// Id abstrakcyjnych statusów (z tg); takie statusy porównuje się po typie
+#define STATUS_EFFECT_ID_ABSTRACT "abstract"
+/// Czy status (instancja) pasuje do szukanego typu: po id, a dla domyślnego/abstrakcyjnego id po typie
+#define STATUS_EFFECT_MATCHES(instance, wanted) ((initial(wanted.id) == "effect" || initial(wanted.id) == STATUS_EFFECT_ID_ABSTRACT) ? (instance.type == wanted) : (instance.id == initial(wanted.id)))
+
 
 //-------//
 // BUFFS //
@@ -109,9 +115,7 @@
 
 #define STATUS_EFFECT_SLIMEGRUB /datum/status_effect/slimegrub //infected slime
 
-#define STATUS_EFFECT_AMOK /datum/status_effect/amok //Makes the target automatically strike out at adjecent non-heretics.
 
-#define STATUS_EFFECT_CLOUDSTRUCK /datum/status_effect/cloudstruck //blinds and applies an overlay.
 
 //Deals with covering the target in ants.
 #define STATUS_EFFECT_ANTS /datum/status_effect/ants

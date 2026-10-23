@@ -80,6 +80,8 @@
 	delay =  max(new_delay, world.tick_lag)
 
 /datum/move_loop/process()
+	if(!controller) // AQUILA - pętla usunięta w trakcie przetwarzania (np. qdel moba w ruchu)
+		return
 	var/old_delay = delay //The signal can sometimes change delay
 
 	if(SEND_SIGNAL(src, COMSIG_MOVELOOP_PREPROCESS_CHECK) & MOVELOOP_SKIP_STEP) //Chance for the object to react

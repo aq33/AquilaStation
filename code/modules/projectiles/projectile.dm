@@ -345,7 +345,7 @@
 	if(!trajectory)
 		qdel(src)
 		return FALSE
-	if(impacted[A])		// NEVER doublehit
+	if(LAZYACCESS(impacted, A))		// NEVER doublehit
 		return FALSE
 	var/datum/point/pcache = trajectory.copy_to()
 	var/turf/T = get_turf(A)
@@ -494,7 +494,7 @@
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
 /obj/item/projectile/proc/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
-	if(QDELETED(target) || impacted[target])
+	if(QDELETED(target) || LAZYACCESS(impacted, target)) // AQUILA - impacted jest leniwe, przed fire() bywa null
 		return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
@@ -576,7 +576,7 @@
  * Used to not even attempt to Bump() or fail to Cross() anything we already hit.
  */
 /obj/item/projectile/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
-	return impacted[blocker]? TRUE : ..()
+	return LAZYACCESS(impacted, blocker) ? TRUE : ..() // AQUILA - przed fire() impacted bywa null
 
 /**
  * Projectile moved:
