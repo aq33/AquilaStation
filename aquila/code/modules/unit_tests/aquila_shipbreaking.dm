@@ -154,6 +154,7 @@
 	var/mob/living/carbon/human/breaker = allocate(/mob/living/carbon/human, stand)
 	breaker.status_flags |= GODMODE // wrak po wybuchach bywa bez powietrza
 	ADD_TRAIT(breaker, TRAIT_STUNIMMUNE, "shipbreaking_test") // losowe zdarzenia rundy potrafią ogłuszyć w trakcie testu
+	breaker.anchored = TRUE // strefa złomowania jest bez grawitacji, a dryf przerywał cięcie
 	var/obj/item/weldingtool/experimental/rayne/welder = allocate(/obj/item/weldingtool/experimental/rayne, stand)
 	breaker.put_in_active_hand(welder)
 	welder.switched_on(breaker)
@@ -166,6 +167,7 @@
 		if(!to_cut)
 			return "No [step] left on [target.x],[target.y] after the previous cut"
 		var/type_before = to_cut.type
+		breaker.forceMove(stand)
 		breaker.SetAllImmobility(0)
 		breaker.SetUnconscious(0)
 		breaker.ExtinguishMob()
