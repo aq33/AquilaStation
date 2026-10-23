@@ -118,6 +118,6 @@
 			if(!broken)
 				return  "<span class='warning'>Rozpada się!</span>"
 
-/obj/structure/rust_heretic_act()
+/obj/structure/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	take_damage(500, BRUTE, "melee", 1)
 	return TRUE

@@ -445,9 +445,12 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "aZ" = (
-/obj/structure/trash_pile,
-/turf/open/floor/plating,
-/area/maintenance/department/crew_quarters/bar)
+/obj/machinery/light,
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/hallway/primary/aft)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -1651,22 +1654,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
-"dI" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/table/reinforced,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "research_shutters";
-	name = "research shutters"
-	},
-/obj/machinery/door/window/southright{
-	name = "Science Desk";
-	req_one_access_txt = "7;29"
-	},
-/obj/machinery/door/firedoor/window,
-/obj/item/discovery_scanner,
-/obj/structure/desk_bell/departmental/science,
-/turf/open/floor/plasteel,
-/area/science/lab)
 "dJ" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -1752,16 +1739,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
-"dU" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor{
-	dir = 4;
-	name = "Security Desk";
-	req_access_txt = "1"
-	},
-/obj/structure/desk_bell/departmental/security,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2283,14 +2260,6 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/fore)
-"fh" = (
-/obj/structure/table,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/desk_bell/departmental/medical,
-/turf/open/floor/plasteel/white,
-/area/medical/sleeper)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -3057,22 +3026,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"gU" = (
-/obj/structure/chair/wood{
-	dir = 8
-	},
-/obj/effect/landmark/start/assistant,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
-"gV" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/library)
 "gW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -8814,6 +8767,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
+"xS" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "research_shutters";
+	name = "research shutters"
+	},
+/obj/machinery/door/window/southright{
+	name = "Science Desk";
+	req_one_access_txt = "7;29"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/item/discovery_scanner,
+/obj/structure/desk_bell/departmental/science,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "xV" = (
 /obj/item/radio/intercom/directional/west,
 /obj/machinery/computer/ams{
@@ -8944,6 +8913,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"yv" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/library)
 "yw" = (
 /obj/machinery/telecomms/processor/preset_one,
 /obj/machinery/camera/autoname,
@@ -9927,6 +9902,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"BN" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "BP" = (
 /obj/structure/chair/fancy/shuttle{
 	name = "Bridge seat"
@@ -11075,7 +11060,7 @@
 	},
 /obj/item/book/manual/wiki/hydroponics/tutorial{
 	pixel_x = 6;
-	 pixel_y = 2
+	pixel_y = 2
 	},
 /turf/open/floor/monotile,
 /area/hydroponics)
@@ -11333,6 +11318,14 @@
 /obj/item/control_rod,
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
+"GM" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/desk_bell/departmental/medical,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "GO" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
@@ -11651,6 +11644,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"HO" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "HP" = (
 /obj/machinery/power/apc/auto_name/north,
 /obj/structure/cable/yellow,
@@ -14834,6 +14831,16 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/techmaint,
 /area/engine/engineering)
+"SS" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Security Desk";
+	req_access_txt = "1"
+	},
+/obj/structure/desk_bell/departmental/security,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "ST" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -47504,7 +47511,7 @@ WW
 XD
 lg
 rJ
-nG
+aZ
 de
 ex
 yn
@@ -48276,7 +48283,7 @@ hN
 lw
 jY
 lt
-dI
+xS
 fc
 Cn
 Ar
@@ -51618,7 +51625,7 @@ fP
 AP
 MT
 Ky
-fh
+GM
 wA
 Ky
 bP
@@ -52891,10 +52898,10 @@ aJ
 aJ
 AZ
 bh
-aZ
+HO
 qW
 Rz
-gU
+BN
 od
 cC
 sO
@@ -53924,7 +53931,7 @@ HE
 pY
 pY
 pY
-dU
+SS
 Ca
 pY
 mi
@@ -66255,7 +66262,7 @@ aJ
 aJ
 uG
 tt
-gV
+yv
 FI
 DL
 PH

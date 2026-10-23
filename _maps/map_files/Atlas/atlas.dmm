@@ -135,12 +135,20 @@
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
 "ap" = (
-/obj/machinery/camera/autoname{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 6
 	},
-/obj/structure/trash_pile,
-/turf/open/floor/engine/airless,
-/area/maintenance/nsv/deck2/starboard)
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 4
+	},
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "aq" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 4
@@ -1915,10 +1923,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet/royalblack,
 /area/chapel/main)
-"dz" = (
-/obj/structure/trash_pile,
-/turf/open/floor/plating,
-/area/maintenance/nsv/deck2/port)
 "dA" = (
 /obj/structure/sign/ship/securearea{
 	dir = 8
@@ -2050,20 +2054,6 @@
 /obj/item/folder,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
-"dN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "dO" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -5207,10 +5197,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
-"jN" = (
-/obj/structure/trash_pile,
-/turf/open/floor/plating,
-/area/maintenance/nsv/deck2/starboard)
 "jO" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
@@ -5223,15 +5209,6 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/security/armory)
-"jP" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/trash_pile,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
-/area/maintenance/nsv/deck2/starboard)
 "jQ" = (
 /turf/open/floor/carpet/police,
 /area/security/brig)
@@ -5256,13 +5233,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/explab)
-"jT" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/trash_pile,
-/turf/open/floor/durasteel/techfloor,
-/area/maintenance/nsv/deck2/port)
 "jU" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 1
@@ -5389,10 +5359,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
-"ki" = (
-/obj/structure/trash_pile,
-/turf/open/floor/plating,
-/area/maintenance/nsv/deck2/port/fore)
 "kj" = (
 /obj/machinery/light{
 	dir = 4
@@ -5415,13 +5381,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
-"km" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/trash_pile,
-/turf/open/floor/plating,
-/area/maintenance/department/science)
 "kn" = (
 /obj/docking_port/stationary{
 	dwidth = 2;
@@ -5454,34 +5413,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck2/primary)
-"kp" = (
-/obj/machinery/door/firedoor/border_only/directional/south{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only/directional/north{
-	dir = 8
-	},
-/obj/effect/landmark/zebra_interlock_point,
-/obj/machinery/door/window/westright{
-	name = "Engineering Desk";
-	req_one_access_txt = "24;10"
-	},
-/obj/machinery/door/window/northright{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "atlas_engineering"
-	},
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/obj/item/stamp,
-/obj/item/stamp/denied{
-	pixel_y = 10
-	},
-/obj/structure/desk_bell/departmental/engineering,
-/turf/open/floor/plating,
-/area/engine/engine_room)
 "kq" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
@@ -5518,29 +5449,6 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/monotile/steel,
 /area/maintenance/nsv/deck2/starboard)
-"kt" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/southright{
-	name = "Cargo Desk";
-	req_one_access_txt = "31; 48"
-	},
-/obj/item/folder/white{
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/item/pen,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/effect/landmark/zebra_interlock_point,
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/desk_bell/departmental/supply,
-/turf/open/floor/monotile/dark,
-/area/quartermaster/storage)
 "ku" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5649,14 +5557,6 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
-"kG" = (
-/obj/machinery/netpod,
-/obj/effect/turf_decal/box,
-/obj/machinery/computer/security/telescreen/entertainment{
-	pixel_y = 32
-	},
-/turf/open/floor/circuit/green,
-/area/quartermaster/bitrunning/den)
 "kH" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/nsv/deck2/port)
@@ -6688,7 +6588,7 @@
 	},
 /obj/item/book/manual/wiki/hydroponics/tutorial{
 	pixel_x = -4;
-	 pixel_y = 4
+	pixel_y = 4
 	},
 /turf/open/floor/durasteel,
 /area/hydroponics)
@@ -7949,6 +7849,14 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/nsv/weapons)
+"rm" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "rn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -8094,6 +8002,29 @@
 /obj/structure/extinguisher_cabinet/east,
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
+"rI" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/southright{
+	name = "Cargo Desk";
+	req_one_access_txt = "31; 48"
+	},
+/obj/item/folder/white{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/item/pen,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/desk_bell/departmental/supply,
+/turf/open/floor/monotile/dark,
+/area/quartermaster/storage)
 "rJ" = (
 /turf/open/floor/circuit,
 /area/engine/shield_generator)
@@ -8630,6 +8561,43 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science)
+"tk" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/maintenance/nsv/deck2/starboard)
+"tl" = (
+/obj/machinery/door/firedoor/border_only/directional/south{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/directional/north{
+	dir = 8
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/window/westright{
+	name = "Engineering Desk";
+	req_one_access_txt = "24;10"
+	},
+/obj/machinery/door/window/northright{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "atlas_engineering"
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/stamp,
+/obj/item/stamp/denied{
+	pixel_y = 10
+	},
+/obj/structure/desk_bell/departmental/engineering,
+/turf/open/floor/plating,
+/area/engine/engine_room)
 "tm" = (
 /obj/effect/turf_decal/tile/ship/half/green{
 	dir = 4
@@ -8765,6 +8733,13 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/techmaint,
 /area/security/prison)
+"tA" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/science)
 "tB" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -9639,6 +9614,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"wc" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/port/fore)
 "wd" = (
 /turf/closed/wall/steel,
 /area/maintenance/nsv/deck2/port)
@@ -10458,6 +10437,10 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/break_room)
+"yJ" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/port)
 "yK" = (
 /obj/effect/turf_decal/ship/techfloor{
 	dir = 1
@@ -14498,6 +14481,10 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"KA" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck2/starboard)
 "KC" = (
 /obj/machinery/vending/tool,
 /obj/effect/turf_decal/tile/ship/yellow{
@@ -16250,6 +16237,13 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/science/explab)
+"Pu" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/durasteel/techfloor,
+/area/maintenance/nsv/deck2/port)
 "Pw" = (
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -17350,6 +17344,13 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/secondary/exit/departure_lounge)
+"Sv" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/engine/airless,
+/area/maintenance/nsv/deck2/starboard)
 "Sw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -46050,7 +46051,7 @@ nh
 Cf
 cD
 mL
-jN
+KA
 Ie
 qL
 Ie
@@ -46316,7 +46317,7 @@ TD
 TD
 kW
 gS
-ap
+Sv
 HX
 HX
 HX
@@ -48349,7 +48350,7 @@ YQ
 IH
 IH
 mF
-kp
+tl
 IH
 IH
 IH
@@ -48367,7 +48368,7 @@ rJ
 vA
 rt
 LJ
-jN
+KA
 gl
 Ie
 sB
@@ -49362,7 +49363,7 @@ cl
 oD
 oD
 kH
-dz
+yJ
 GO
 cm
 GO
@@ -50682,7 +50683,7 @@ HI
 Ie
 zy
 cq
-jP
+tk
 Ie
 Ha
 mL
@@ -52709,7 +52710,7 @@ rF
 pO
 hL
 mO
-jT
+Pu
 wd
 tC
 un
@@ -53762,7 +53763,7 @@ wN
 JW
 Sn
 fP
-kG
+rm
 fY
 gr
 gK
@@ -56591,7 +56592,7 @@ cx
 py
 dF
 dD
-kt
+rI
 dB
 AT
 ih
@@ -56845,7 +56846,7 @@ Dy
 EG
 nK
 Bs
-dN
+ap
 dG
 Hh
 Qa
@@ -57834,7 +57835,7 @@ Nh
 iV
 iV
 iV
-ki
+wc
 sh
 iV
 VI
@@ -58611,7 +58612,7 @@ SS
 sh
 VC
 Oq
-ki
+wc
 gC
 iV
 iV
@@ -60936,7 +60937,7 @@ EE
 EE
 iV
 qp
-ki
+wc
 iV
 eY
 LC
@@ -60951,7 +60952,7 @@ Iz
 eY
 eY
 FF
-km
+tA
 uI
 LG
 bv

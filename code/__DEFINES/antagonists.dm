@@ -73,10 +73,14 @@
 #define IS_CULTIST(mob) (mob?.mind?.has_antag_datum(/datum/antagonist/cult))
 
 ///It is faster as a macro than a proc
-#define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic))
+#define IS_HERETIC(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic) || HAS_TRAIT(mob, TRAIT_ACT_AS_HERETIC))
 #define IS_HERETIC_MONSTER(mob) (mob.mind?.has_antag_datum(/datum/antagonist/heretic_monster))
-/// Checks if the given mob is either a heretic or a heretic monster.
-#define IS_HERETIC_OR_MONSTER(mob) (IS_HERETIC(mob) || IS_HERETIC_MONSTER(mob))
+/// Checks if the given mob is either a heretic, heretic monster or a lunatic.
+#define IS_HERETIC_OR_MONSTER(mob) (IS_HERETIC(mob) || HAS_TRAIT(mob, TRAIT_HERETIC_SUMMON) || IS_HERETIC_MONSTER(mob) || mob.mind?.has_antag_datum(/datum/antagonist/lunatic))
+/// Lets the mob count as a heretic for spells and rituals
+#define TRAIT_ACT_AS_HERETIC "act_as_heretic"
+/// Trait given to heretic summons, making them immune to heretic spells
+#define TRAIT_HERETIC_SUMMON "heretic_summon"
 
 #define FACTION_SYNDICATE "Syndicate"
 #define FACTION_BLOB "Blob"
@@ -86,14 +90,6 @@
 #define PATH_SIDE "Side"
 /// Define for the heretic faction applied to heretics and heretic mobs.
 #define FACTION_HERETIC "heretics"
-
-// Heretic path defines.
-#define HERETIC_PATH_START "Heretic Start Path"
-#define HERETIC_PATH_SIDE "Heretic Side Path"
-#define HERETIC_PATH_ASH "Heretic Ash Path"
-#define HERETIC_PATH_RUST "Heretic Rust Path"
-#define HERETIC_PATH_FLESH "Heretic Flesh Path"
-#define HERETIC_PATH_VOID "Heretic Void Path"
 
 /// Defines are used in /proc/has_living_heart() to report if the heretic has no heart period, no living heart, or has a living heart.
 #define HERETIC_NO_HEART_ORGAN -1

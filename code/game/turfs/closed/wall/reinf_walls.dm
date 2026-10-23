@@ -228,15 +228,7 @@
 	if(the_rcd.canRturf)
 		return ..()
 
-/turf/closed/wall/r_wall/rust_heretic_act()
-	if(prob(50))
-		return
-	if(HAS_TRAIT(src, TRAIT_RUSTY))
-		ScrapeAway()
-		return TRUE
-	if(prob(70))
-		new /obj/effect/temp_visual/glowing_rune(src)
-	return ..()
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/closed/wall/r_wall/syndicate
 	name = "hull"

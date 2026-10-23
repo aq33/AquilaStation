@@ -70,7 +70,7 @@
 			return TRUE
 	return FALSE
 
-/turf/open/lava/rust_heretic_act()
+/turf/open/lava/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	return FALSE
 
 /turf/open/lava/singularity_act()
