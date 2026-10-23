@@ -305,6 +305,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GENELESS			"geneless" // AQ EDIT - Your DNA can't be mutated
 #define TRAIT_SELF_AWARE		"self_aware"
 #define TRAIT_FREERUNNING		"freerunning"
+#define TRAIT_FAST_CLIMBER		"fast_climber" // AQ EDIT - szybkie wchodzenie na stoły (implant table-glider, port Monkestation)
+#define TRAIT_SHOVE_RESIST		"shove_resist" // AQ EDIT - popchnięcie nie przewraca (implant BU-TAM, port Monkestation)
 #define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
 #define TRAIT_PROSOPAGNOSIA		"prosopagnosia"

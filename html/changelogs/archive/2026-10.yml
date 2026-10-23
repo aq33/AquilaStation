@@ -545,6 +545,13 @@
   - bugfix: Broń odpalana bez kliknięcia myszą (demon impulsu, NPC) strzela w cel
       zamiast na północ.
 '2026-10-23':
+  Altoids1, Gboster-0:
+  - rscadd: 'Konsola kontroli ruchu telekomunikacji: CE może programować serwery radiowe
+      w języku NTSL (zmiana nadawcy, cenzura, boty, przekierowania kanałów).'
+  - rscadd: Konsola stoi w pokojach kontroli telekomów na Atlasie, Snake i Serendipity;
+      płytkę można wydrukować po zbadaniu technologii telekomunikacyjnej.
+  - rscadd: Nowy dostęp „Telecomms Admin” na kartach ID.
+  - admin: Admin może jednym przyciskiem w oknie konsoli wyczyścić kod NTSL na serwerach.
   'Dwasint, port: aq33':
   - rscadd: 'Rynek ekstraktów szlamu zastępuje maszynę do plortów: ceny zmieniają
       się przy sprzedaży, a za xenobio points kupuje się sprzęt w konsoli rynku.'
@@ -595,6 +602,25 @@
   - bugfix: Konsola magnesu na asteroidy przy klatce (Atlas, Snake) znowu reaguje
       na przyciski.
   - imageadd: Ikony złomu, młota burzącego i spawarki Rayne z Monkestation.
+  - rscadd: 'Cybernetyka z Monkestation: zestawy zawodowe w rękę, licznik amunicji
+      S.M.A.R.T., ostrza modliszki, implanty nóg i kręgosłupa, Strong-Arm, nowe węzły
+      R&D i implanty z drugiej ręki na czarnym rynku.'
+  - rscadd: 'Transmisje na żywo: kamera reporterska i duża kamera, telewizory i program
+      Spess.tv w PDA. Można oglądać bitrunnerów w domenach.'
+  - rscadd: Loafer, czyli prasa w rurze utylizacyjnej, która robi bochenki więzienne.
+      Im więcej w nie wpakujesz, tym gęstsze.
+  - rscadd: 'Sterty śmieci w maint: grzeb w nich po łup albo schowaj w nich siebie
+      lub przedmiot.'
+  - rscadd: Dzwonek na ladę i dzwonki działów, które wzywają dział przez radio.
+  - rscadd: 'Plastyczne szklanki z dekoracjami do drinków: plastry owoców, parasolki,
+      słomki, krawędzie z soli i złota.'
+  - tweak: Lifeline w PDA pokazuje listę załogi z odległością i kierunkiem. Manifest
+      w PDA odświeża się na bieżąco.
+  - rscadd: Wybuchy mają dym i odłamki z cząsteczek, trafienia w ściany sypią odłamkami,
+      a broń palna dymi z lufy.
+  - imageadd: Ikony z Monkestation dla implantów, kamer, stert, dzwonków, loafera,
+      szklanek i efektów.
+  - soundadd: Dźwięk loafera z Monkestation.
   Veth-s, absolucy (Monkestation), GoobStation:
   - rscadd: 'Nowy antagonista z ankiety duchów: bingle. Bingle Lord stawia Dół, który
       połyka przedmioty i ludzi do osobnego wymiaru, rośnie, zjada ściany i rodzi

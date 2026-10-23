@@ -297,6 +297,8 @@ SUBSYSTEM_DEF(explosions)
 		E.set_up(epicenter)
 		E.start()
 
+	if(explode_z) explosion_particles_visual(epicenter, max_range, devastation_range, heavy_impact_range, light_impact_range) // AQ EDIT - efekt wybuchu z cząsteczkami tylko w epicentrum (port Monkestation, aquila/code/modules/visual_changes/explosions.dm)
+
 	//flash mobs
 	if(flash_range)
 		for(var/mob/living/L in viewers(flash_range, epicenter))
