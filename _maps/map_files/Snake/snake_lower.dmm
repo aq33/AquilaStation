@@ -723,6 +723,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"bC" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/crew_quarters/bar)
 "bD" = (
 /obj/machinery/computer/ship/tactical{
 	dir = 4
@@ -11421,6 +11425,12 @@
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"
 	})
+"KK" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/library)
 "KL" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/condiment/peppermill{
@@ -12403,6 +12413,16 @@
 /obj/machinery/duct,
 /turf/open/floor/plating,
 /area/crew_quarters/kitchen)
+"Oj" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor{
+	dir = 4;
+	name = "Security Desk";
+	req_access_txt = "1"
+	},
+/obj/structure/desk_bell/departmental/security,
+/turf/open/floor/plasteel,
+/area/security/brig)
 "Ok" = (
 /obj/machinery/light{
 	dir = 1
@@ -13596,6 +13616,16 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/techmaint,
 /area/engine/engineering)
+"ST" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/landmark/start/assistant,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "SU" = (
 /obj/structure/chair/office,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -14572,6 +14602,14 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"Wt" = (
+/obj/structure/table,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/desk_bell/departmental/medical,
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
 "Wv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -14675,6 +14713,22 @@
 "WM" = (
 /turf/closed/wall/r_wall,
 /area/security/warden)
+"WN" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "research_shutters";
+	name = "research shutters"
+	},
+/obj/machinery/door/window/southright{
+	name = "Science Desk";
+	req_one_access_txt = "7;29"
+	},
+/obj/machinery/door/firedoor/window,
+/obj/item/discovery_scanner,
+/obj/structure/desk_bell/departmental/science,
+/turf/open/floor/plasteel,
+/area/science/lab)
 "WO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -46831,7 +46885,7 @@ hN
 lw
 jY
 lt
-fe
+WN
 fc
 Cn
 Ar
@@ -50173,7 +50227,7 @@ fP
 AP
 MT
 Ky
-ES
+Wt
 wA
 Ky
 bP
@@ -51446,10 +51500,10 @@ aJ
 aJ
 AZ
 bh
-fk
+bC
 qW
 Rz
-YA
+ST
 od
 cC
 sO
@@ -52479,7 +52533,7 @@ HE
 pY
 pY
 pY
-gH
+Oj
 Ca
 pY
 mi
@@ -64810,7 +64864,7 @@ aJ
 aJ
 uG
 tt
-tt
+KK
 FI
 DL
 PH

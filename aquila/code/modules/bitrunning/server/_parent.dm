@@ -16,6 +16,8 @@
 	var/capacitor_coefficient = 1
 	/// The loaded map template, map_template/virtual_domain
 	var/datum/lazy_template/virtual_domain/generated_domain
+	/// Nazwa domeny w komunikatach transmisji: prawdziwa tylko wtedy, gdy skaner ją pokazywał przy ładowaniu
+	var/broadcast_domain_name
 	/// If the current domain was a random selection
 	var/domain_randomized = FALSE
 	/// Whether the domain is finished, so the bitrunners can leave despite glitches
