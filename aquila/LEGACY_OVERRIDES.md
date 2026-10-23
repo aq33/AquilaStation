@@ -31,6 +31,7 @@ These are same-type redefinitions in `aquila/` that do not call `..()`, so they 
 | `/obj/structure/falsewall/update_icon()` | Partial (C) | `aquila/code/modules/paradise_struktury/false_walls.dm`. For false walls with Paradise sprites (`bitmask_smooth`) the NSV13 version is skipped: it adds goon corner overlays that the Paradise icons don't have. Types without bitmask still call `..()`. |
 | `/datum/species/ipc/post_death()` | Left (minimal) | A one-line no-op (keep the BSOD screen after death); the override *is* the delta. |
 | `/obj/machinery/gravity_generator/part/get_status()` | Left (minimal) | A one-line null-safe `main_part?.get_status()`; the override *is* the delta. |
+| `/turf/closed/wall/break_wall()`, `devastate_wall()`, `/turf/closed/wall/r_wall/devastate_wall()`, `/obj/structure/girder/deconstruct()`, `/obj/structure/girder/screwdriver_act()` | Partial (C) | Shipbreaking (`aquila/code/modules/shipbreaking/hooks.dm`). Only inside `/area/space/shipbreak` the drops are swapped for scrap and `..()` is skipped; everywhere else they call `..()`. The girder screwdriver branch copies the core `GIRDER_DISPLACED` disassembly, because core spawns the iron inline. |
 | `/datum/hud/human/update_locked_slots()` | Left (C) | BeeStation#13707 port (`aquila/code/_onclick/hud/locked_slots.dm`): dims every slot `can_equip()` would refuse (no jumpsuit, no suit, missing limbs or head, `no_glasses`), not just the species `no_equip` list. Upstream only checked `no_equip`, so the override replaces the whole loop. |
 
 The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are already pre/post hooks.
@@ -230,6 +231,18 @@ The old Hippie/Yogs vampire (`aquila/code/game/gamemodes/vampire/*`, species `va
 - `code/datums/components/team_monitor.dm`: the monitor can sit on a mob (vassals track their master).
 - `code/datums/elements/embed.dm`: `tryForceEmbed()` takes the hit zone from a bodypart target (BeeStation fix; stakes).
 - Removed: species `vampire` (`species_types/vampire.dm`, `human.dm` subtype, `isvampire`), the vampire bite in `human_defense.dm`.
+
+### Munitions forge (ParadiseSS13 smithing, B)
+
+The forge lives in `aquila/code/modules/munitions_forge/`. Forged ammunition carries `/datum/component/forged_munition`, which is copied onto every projectile through one-line hooks marked `AQUILA EDIT - kuźnia amunicji`:
+
+- `code/modules/projectiles/ammunition/_firing.dm`: `ready_proj()` copies the component from the casing to `BB`.
+- `nsv13/code/modules/overmap/weapons/damage.dm`: `forged_munition_overmap_hit()` before `spec_overmap_hit()`.
+- `animate_projectile()` in `deck_guns.dm`, `broadsides.dm`, `gauss_gun.dm`, `torpedo_launcher.dm` and `revision2/vls.dm`: copy from `chambered` to the fired projectile (broadsides and gauss now keep the returned projectile in a var).
+- Fighters: `primary/fire()` and `secondary/ordnance_launcher/fire()` in `_fighters.dm` return the ammo object instead of its `projectile_type`; `async_nonphysical_fire()` in `delta_overmap_ship_weapons/firing.dm` fires its `projectile_type`, copies the component and deletes it.
+- `new_torpedo()` / `new_missile()` in `torpedo_construction.dm` / `missile_construction.dm`: copy from the warhead to the built munition.
+- `railgun_forge.dm`: `getConductivity/getDensity/getHardness` read the shared `/datum/munition_material` table instead of three `switch` blocks (same values).
+- `code/_onclick/adjacent.dm`: `/turf/Adjacent()` treats a multi-tile movable (`length(locs) > 1`) as adjacent through any turf it covers. Without it the 3x3 crucible and 2x2 hammer/furnace are reachable only from their bottom-left tile.
 
 ### Small tgstation medical ports
 

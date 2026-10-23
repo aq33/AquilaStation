@@ -35,6 +35,7 @@
 	else
 		BB.def_zone = user.zone_selected
 	BB.suppressed = quiet
+	transfer_forged_munition(src, BB) // AQUILA EDIT - kuźnia amunicji
 
 	if(reagents && BB.reagents)
 		reagents.trans_to(BB, reagents.total_volume, transfered_by = user) //For chemical darts/bullets

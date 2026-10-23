@@ -1,0 +1,120 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aA" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/mineral/plastitanium/red,
+/area/space/shipbreak)
+"fh" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/space/shipbreak)
+"qx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/shipbreak_wreck{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/space/shipbreak)
+"vD" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/space/shipbreak)
+"vK" = (
+/obj/machinery/computer/security{
+	dir = 1;
+	network = list("caravansyndicate1")
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/mineral/plastitanium/red,
+/area/space/shipbreak)
+"xg" = (
+/obj/machinery/door/airlock/hatch{
+	id_tag = "caravansyndicate1_bolt";
+	name = "External Airlock";
+	normalspeed = 0;
+	req_access_txt = "150"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/space/shipbreak)
+"Jv" = (
+/turf/template_noop,
+/area/template_noop)
+"Wr" = (
+/obj/machinery/button/door{
+	id = "caravansyndicate1_bolt";
+	name = "External Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = -25;
+	req_access_txt = "150";
+	specialfunctions = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/frame/computer{
+	anchored = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/space/shipbreak)
+"YP" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 8
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/space/shipbreak)
+
+(1,1,1) = {"
+Jv
+Jv
+YP
+fh
+xg
+fh
+YP
+Jv
+Jv
+"}
+(2,1,1) = {"
+Jv
+YP
+fh
+Wr
+aA
+vK
+fh
+YP
+Jv
+"}
+(3,1,1) = {"
+vD
+fh
+fh
+fh
+qx
+fh
+fh
+fh
+vD
+"}
+(4,1,1) = {"
+fh
+vD
+Jv
+vD
+fh
+vD
+Jv
+vD
+fh
+"}
+(5,1,1) = {"
+vD
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+Jv
+vD
+"}

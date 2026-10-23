@@ -1,0 +1,210 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"c" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 1
+	},
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"d" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Shuttle Airlock"
+	},
+/turf/open/floor/plasteel/dark,
+/area/space/shipbreak)
+"e" = (
+/turf/open/floor/plasteel/dark,
+/area/space/shipbreak)
+"f" = (
+/turf/open/floor/plasteel,
+/area/space/shipbreak)
+"g" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 8
+	},
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"h" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"i" = (
+/obj/structure/chair/fancy/shuttle,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"j" = (
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/machinery/recharger,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"k" = (
+/obj/structure/shuttle/engine/propulsion/burst{
+	dir = 4
+	},
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+"l" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"m" = (
+/obj/machinery/computer/shipbreak_wreck,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"n" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"p" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/glass,
+/obj/item/tank/internals/oxygen,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/hardsuit/engine/elite,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"q" = (
+/obj/structure/chair/fancy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"r" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/glass,
+/obj/item/clothing/shoes/magboots,
+/turf/open/floor/plating/abductor,
+/area/space/shipbreak)
+"s" = (
+/obj/structure/shuttle/engine/propulsion/burst,
+/turf/closed/wall/mineral/titanium,
+/area/space/shipbreak)
+
+(1,1,1) = {"
+a
+a
+b
+g
+d
+g
+b
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+e
+f
+e
+b
+b
+a
+"}
+(3,1,1) = {"
+b
+b
+e
+e
+f
+e
+e
+b
+b
+"}
+(4,1,1) = {"
+c
+e
+e
+h
+l
+p
+e
+e
+s
+"}
+(5,1,1) = {"
+d
+f
+f
+i
+m
+q
+f
+f
+d
+"}
+(6,1,1) = {"
+c
+e
+e
+j
+n
+r
+e
+e
+s
+"}
+(7,1,1) = {"
+b
+b
+e
+e
+f
+e
+e
+b
+b
+"}
+(8,1,1) = {"
+a
+b
+b
+e
+f
+e
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+a
+b
+k
+d
+k
+b
+a
+a
+"}
