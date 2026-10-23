@@ -34,6 +34,8 @@
 	var/storedcode = NTSL_DEFAULT_CODE
 	/// The name and job on the ID used to log in
 	var/user_name = ""
+	/// ckey of whoever logged in, only they can work on the console
+	var/session_ckey
 	/// Logs for users logging in/out or compiling code
 	var/list/access_log = list()
 	/// Output from compiling to the servers
@@ -76,6 +78,12 @@
 		return UI_CLOSE
 	return ..()
 
+/// Logged in as this user, or the console is emagged and open to everyone
+/obj/machinery/computer/telecomms/traffic/proc/is_session_owner(mob/user)
+	if(obj_flags & EMAGGED)
+		return TRUE
+	return user_name && user?.ckey == session_ckey
+
 /obj/machinery/computer/telecomms/traffic/ui_data(mob/user)
 	var/list/data = list()
 	var/list/server_data = list()
@@ -89,7 +97,7 @@
 	data["server_data"] = server_data
 	data["stored_code"] = storedcode
 	data["network"] = network
-	data["user_name"] = user_name
+	data["user_name"] = is_session_owner(user) ? user_name : "" // anyone else gets the login screen
 	data["access_log"] = access_log.Copy()
 	data["compiler_output"] = compiler_output.Copy()
 	data["emagged"] = !!(obj_flags & EMAGGED)
@@ -125,7 +133,7 @@
 			refresh_servers()
 			return TRUE
 		if("toggle_code_execution")
-			if(!user_name)
+			if(!is_session_owner(user))
 				return
 			var/obj/machinery/telecomms/server/selected_server = locate(params["selected_server"]) in servers
 			if(!selected_server)
@@ -134,23 +142,28 @@
 			create_log("[selected_server.autoruncode ? "włączył" : "wyłączył"] wykonywanie kodu na [selected_server.id].")
 			return TRUE
 		if("save_code")
-			if(!user_name || !istext(params["saved_code"]))
+			if(!is_session_owner(user) || !istext(params["saved_code"]))
 				return
 			storedcode = params["saved_code"]
 			compiler_output = list("Zapisano kod.")
 			return TRUE
 		if("compile_code")
-			if(!user_name)
+			if(!is_session_owner(user))
 				message_admins("[key_name_admin(user)] attempted compiling NTSL without being logged in.")
 				return
 			if(istext(params["code"])) // save and compile in one action, so the compile can't run before the save arrives
 				storedcode = params["code"]
+			// A server still cooling down would keep the old program while the rest got the new one
+			for(var/obj/machinery/telecomms/server/server as anything in servers)
+				if(!QDELETED(server) && !COOLDOWN_FINISHED(server, compile_cooldown))
+					compiler_output = list("Serwery się ładują, poczekaj chwilę.")
+					return TRUE
 			for(var/obj/machinery/telecomms/server/server as anything in servers)
 				server.rawcode = storedcode
 			compiler_output = compile_all(user)
 			return TRUE
 		if("set_network")
-			if(!user_name)
+			if(!is_session_owner(user))
 				return
 			var/new_network = reject_bad_text(params["new_network"], 15)
 			if(!new_network)
@@ -159,27 +172,32 @@
 			refresh_servers()
 			return TRUE
 		if("log_in")
+			var/new_name
 			if(issilicon(user) || IsAdminGhost(user))
-				user_name = "System Administrator"
+				new_name = "System Administrator"
 			else if(allowed(user))
 				var/obj/item/card/id/user_id = user.get_idcard(TRUE)
 				if(user_id)
-					user_name = "[user_id.registered_name] ([user_id.assignment])"
+					new_name = "[user_id.registered_name] ([user_id.assignment])"
 				else
-					user_name = "[user.name] (NIEZNANY)"
-			if(!user_name)
+					new_name = "[user.name] (NIEZNANY)"
+			if(!new_name)
 				to_chat(user, "<span class='warning'>Brak dostępu.</span>")
 				return TRUE
+			// Logging in takes the console over from whoever was logged in before
+			user_name = new_name
+			session_ckey = user.ckey
 			create_log("zalogował się.")
 			return TRUE
 		if("log_out")
-			if(obj_flags & EMAGGED)
+			if((obj_flags & EMAGGED) || !is_session_owner(user))
 				return TRUE
 			create_log("wylogował się.")
 			user_name = null
+			session_ckey = null
 			return TRUE
 		if("clear_logs")
-			if(!user_name)
+			if(!is_session_owner(user))
 				message_admins("[key_name_admin(user)] attempted clearing NTSL logs without being logged in.")
 				return
 			access_log.Cut()
