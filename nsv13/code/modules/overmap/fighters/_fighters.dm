@@ -1714,9 +1714,8 @@ Utility modules can be either one of these types, just ensure you set its slot t
 		F.relay('sound/weapons/gun_dry_fire.ogg')
 		return FALSE
 	var/obj/item/ammo_casing/chambered = ammo[ammo.len]
-	. = chambered.projectile_type
+	. = chambered // AQUILA EDIT - kuźnia amunicji: łuska idzie do async_nonphysical_fire, który przenosi jej właściwości na pocisk i ją kasuje
 	ammo -= chambered
-	qdel(chambered)
 
 /obj/item/fighter_component/primary/on_install(obj/structure/overmap/target)
 	. = ..()
@@ -1914,8 +1913,7 @@ Utility modules can be either one of these types, just ensure you set its slot t
 		F.relay('sound/weapons/gun_dry_fire.ogg')
 		return FALSE
 	var/obj/item/ship_weapon/ammunition/americagobrr = pick_n_take(ammo)
-	. = americagobrr.projectile_type //Pass torp back towards datum.
-	qdel(americagobrr)
+	. = americagobrr //Pass torp back towards datum. // AQUILA EDIT - kuźnia amunicji: cała torpeda, kasuje ją async_nonphysical_fire
 
 //Utility modules.
 
