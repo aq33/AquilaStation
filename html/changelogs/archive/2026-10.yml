@@ -556,6 +556,18 @@
   - imageadd: Ikony padu rynku, konsoli, padu zamówień, kompresora i strzykawki z
       Monkestation.
   - rscdel: Usunięto maszynę do plortów.
+  JohnFulpWillard, Yogstation:
+  - rscadd: SI mieszka w rdzeniach danych. Gdy rdzeń zostanie zniszczony, przenosi
+      się do innego. Bez rdzeni umiera i zostaje intellicard.
+  - rscadd: Szafy serwerowe, racki z procesorami i pamięcią, składarka racków i stanowisko
+      podkręcania procesorów.
+  - rscadd: Panel przetwarzania SI z projektami za CPU i osobnymi punktami badań SI.
+  - rscadd: Konsole sterowania SI, dystrybucji zasobów i przeglądu serwerów oraz ekran
+      rdzenia SI.
+  - rscadd: Kod kontrolny SI do wydrukowania na konsoli komunikacyjnej.
+  - balance: Rdzenie i serwery SI grzeją się i potrzebują chłodnej serwerowni. Inżynierowie
+      dbają o sprzęt SI.
+  - imageadd: Ikony rdzenia danych, szafy serwerowej i racka z Monkestation.
   Joker66613:
   - rscadd: 'Kuźnia amunicji dla działu uzbrojenia: piec łukowy, kowadło z rytmiczną
       minigrą (kuje się młotem kowalskim), stół montażowy, galwanizer i analizator
