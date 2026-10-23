@@ -3,7 +3,7 @@
 /datum/test_chamber_kit/pr_364
 	name = "PR 364: pradawny horror"
 	pr = "aq33/AquilaStation#364"
-	description = "Horror do przejęcia przez ducha (dostaje antagonistę po wejściu). Jako horror: Szukaj duszy wskazuje cel, wejdź do głowy człowieka (kliknij go), zamroź ofiarę, \
+	description = "Horror do przejęcia przez ducha (dostaje antagonistę po wejściu). Jako horror: Szukaj duszy wskazuje cel, wejdź do głowy człowieka (Alt+klik na nim), zamroź ofiarę, \
 	Pożryj duszę na nosicielu - za dusze kupujesz mutacje w oknie Mutacja (nie da się kupować bez punktów ani w nieskończoność). Przejmij kontrolę, oddaj ją, wydziel chemikalia, opuść nosiciela. Horror przeciska się przez śluzę. \
 	Zaawansowany analizator zdrowia na nosicielu ma wykryć horrora, a operacja manipulacji organami w głowie pozwala go wyjąć. \
 	Transporter \"horror w pudełku\" (uplink Bibliotekarza): użyj w ręce - ankieta duchów, horror budzi się jako sługa użytkownika."

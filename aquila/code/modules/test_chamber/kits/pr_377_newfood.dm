@@ -4,12 +4,13 @@
 	name = "PR 377: Newfood - płyta i piec"
 	pr = "aq33/AquilaStation#377"
 	description = "Płyta: połóż na niej surowy kotlet, bekon i stek (kawałek mięsa), włącz - po chwili mają się usmażyć, zostawione za długo przypalają się. \
-	Piec: otwórz, połóż ciasto/masę na ciasto na tacce, zamknij - ma upiec chleb/ciasto. Wyjmij tackę i włóż ją z powrotem, potem odstaw na stół (#400 - wcześniej nie działało). \
+	Piec postawiony w trakcie rundy jest pusty: otwórz go, włóż tackę z zestawu, połóż na niej ciasto/masę na ciasto, zamknij - ma upiec chleb/ciasto. Wyjmij tackę i włóż ją z powrotem, potem odstaw na stół (#400 - wcześniej nie działało). \
 	Wałkiem rozwałkuj ciasto, nożem pokrój ciasto, ser i mięso (kotlety). Na suszarce wysusz ludzkie mięso (jerky). \
 	Nazwij jedzenie długopisem. Zjedz widelcem/łyżką. Jedzenie zostawione na podłodze po kilku minutach ma zgnić."
 	items = list(
 		/obj/machinery/griddle = 1,
 		/obj/machinery/oven = 1,
+		/obj/item/plate/oven_tray = 1,
 		/obj/machinery/smartfridge/drying_rack = 1,
 		/obj/structure/table = 2,
 		/obj/item/food/meat/rawcutlet/plain = 2,
