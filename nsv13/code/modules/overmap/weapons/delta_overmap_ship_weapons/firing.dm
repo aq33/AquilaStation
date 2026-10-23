@@ -92,7 +92,21 @@
 			snowflake_projectile_list.Cut(1,2)
 		else
 			actually_fired_projectile = fired_projectile
-		linked_overmap.fire_projectile(actually_fired_projectile, target, user_override = firer, firing_flags = weapon_firing_flags, ai_aim = ai_aim, miss_chance = miss_chance, max_miss_distance = max_miss_distance, spread_override = spread_override)
+		// AQUILA EDIT - kuźnia amunicji: myśliwce oddają obiekt amunicji, żeby pocisk przejął jego właściwości
+		var/obj/item/fired_ammo
+		if(istype(actually_fired_projectile, /obj/item/ammo_casing))
+			var/obj/item/ammo_casing/casing = actually_fired_projectile
+			fired_ammo = casing
+			actually_fired_projectile = casing.projectile_type
+		else if(istype(actually_fired_projectile, /obj/item/ship_weapon/ammunition))
+			var/obj/item/ship_weapon/ammunition/munition = actually_fired_projectile
+			fired_ammo = munition
+			actually_fired_projectile = munition.projectile_type
+		var/obj/item/projectile/fired = linked_overmap.fire_projectile(actually_fired_projectile, target, user_override = firer, firing_flags = weapon_firing_flags, ai_aim = ai_aim, miss_chance = miss_chance, max_miss_distance = max_miss_distance, spread_override = spread_override)
+		if(fired_ammo)
+			transfer_forged_munition(fired_ammo, fired)
+			qdel(fired_ammo)
+		// AQUILA EDIT END
 		if(!nonphysical_fire_single_sound && length(overmap_firing_sounds))
 			play_weapon_sound(nonphysical_firing_sounds_local)
 		sleep(burst_fire_delay)
