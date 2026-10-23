@@ -472,6 +472,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/comms)
+"bk" = (
+/obj/machinery/ai/data_core,
+/turf/open/floor/engine,
+/area/comms)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
@@ -47149,7 +47153,7 @@ qN
 rG
 MZ
 GH
-aQ
+bk
 yE
 bg
 gV

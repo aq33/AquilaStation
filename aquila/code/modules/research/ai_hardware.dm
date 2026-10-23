@@ -222,7 +222,7 @@
 
 /datum/techweb_node/ai/New() // appended so upstream changes to this node's designs still apply
 	. = ..()
-	design_ids += list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ai_overclocking", "ai_upload_download", "ai_resource_distribution", "rack_creator", "ram1", "basic_ai_cpu")
+	design_ids += list("server_cabinet", "ai_data_core", "ai_core_display", "ai_server_overview", "ai_overclocking", "ai_upload_download", "ai_resource_distribution", "rack_creator", "ram1", "basic_ai_cpu", "server_chiller")
 
 /datum/techweb_node/ai_cpu_advanced
 	id = "ai_cpu_advanced"

@@ -295,6 +295,10 @@
 "aA" = (
 /turf/closed/wall/r_wall/ship,
 /area/crew_quarters/heads/hor)
+"aB" = (
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "aC" = (
 /obj/structure/fence/door/opened,
 /obj/structure/cable,
@@ -311,6 +315,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/medbay/lobby)
+"aE" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "aF" = (
 /obj/structure/hull_plate,
 /obj/effect/turf_decal/szachownica/corner_white64{
@@ -50649,7 +50657,7 @@ wg
 wg
 wg
 Rq
-Rq
+aB
 pF
 pF
 Te
@@ -50906,7 +50914,7 @@ cp
 Rq
 cp
 gp
-Rq
+aE
 pF
 Te
 az

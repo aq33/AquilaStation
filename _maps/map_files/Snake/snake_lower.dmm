@@ -3048,6 +3048,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"gU" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 1
+	},
+/obj/machinery/ai/data_core,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "gW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -48257,7 +48264,7 @@ Cn
 Ar
 kC
 oj
-dI
+gU
 PE
 dU
 oj

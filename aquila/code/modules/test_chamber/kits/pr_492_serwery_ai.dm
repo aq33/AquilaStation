@@ -5,7 +5,7 @@
 	SI ma wskoczyć do głównego rdzenia danych. Panel przetwarzania (przycisk w HUD): przydziel CPU do projektu, uruchom ukończony projekt. \
 	Konsola dystrybucji: przydziel CPU/RAM. Składarka racków: włóż procesor, dodaj RAM (materiały w skrzynce), zbuduj rack i włóż go do szafy. \
 	Stanowisko podkręcania: podkręć procesor. Zniszcz rdzeń główny: SI przechodzi do zapasowego. Konsola sterowania: pobierz SI na intellicard i wgraj z powrotem. \
-	Ekran rdzenia SI pokazuje twarz SI. Rdzenie i szafy grzeją się: bez chłodzenia przestają działać po przekroczeniu 15°C."
+	Ekran rdzenia SI pokazuje twarz SI. Rdzenie i szafy grzeją się: bez chłodzenia przestają działać po przekroczeniu 15°C. Chłodziarka serwerowni (klik ustawia temperaturę) ma schłodzić powietrze do 5°C."
 	items = list(
 		/obj/machinery/ai/data_core/primary = 1,
 		/obj/machinery/ai/server_cabinet/prefilled = 1,
@@ -15,6 +15,7 @@
 		/obj/machinery/computer/ai_server_console = 1,
 		/obj/machinery/computer/ai_overclocking = 1,
 		/obj/machinery/ai_core_display = 1,
+		/obj/machinery/server_chiller = 1,
 		/obj/item/ai_cpu = 2,
 		/obj/item/aicard = 1,
 		/obj/item/mmi = 1,

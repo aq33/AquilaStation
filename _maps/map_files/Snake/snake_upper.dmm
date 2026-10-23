@@ -4640,15 +4640,75 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
+"kZ" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = 27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = 27;
+	pixel_y = 7
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = 27;
+	pixel_y = -5
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "AI Core Door Control";
+	pixel_x = 22;
+	pixel_y = -32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 10;
+	pixel_y = -25
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "AI Upload Door Control";
+	pixel_x = 22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/effect/landmark/start/ai/secondary,
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
 "la" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"lb" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "lc" = (
 /turf/closed/wall/r_wall,
 /area/quartermaster/storage)
+"ld" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4662,6 +4722,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/aft)
+"lf" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
+"lg" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "li" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -56043,7 +56111,7 @@ zQ
 kp
 kp
 BC
-JK
+lg
 HD
 MR
 pb
@@ -56299,9 +56367,9 @@ zQ
 zQ
 kp
 kp
-sw
+lf
 kp
-cf
+kZ
 kp
 CB
 Gf

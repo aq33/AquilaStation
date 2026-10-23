@@ -664,6 +664,7 @@
 #include "code\modules\mob\living\silicon\ai\decentralized\decentralized_ai.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\decentralized_os.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\server_cabinet.dm"
+#include "code\modules\mob\living\silicon\ai\decentralized\server_chiller.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_controlpanel.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_dashboard.dm"
 #include "code\modules\mob\living\silicon\ai\decentralized\management\ai_server_overview.dm"
