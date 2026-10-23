@@ -1,6 +1,7 @@
 #include "code\__DEFINES\antagonists.dm"
 #include "code\__DEFINES\atom_hud.dm"
 #include "code\__DEFINES\bitrunning.dm"
+#include "code\__DEFINES\bingle.dm"
 #include "code\__DEFINES\blood_worm.dm"
 #include "code\__DEFINES\bounty_market.dm"
 #include "code\__DEFINES\crafting.dm"
@@ -436,6 +437,9 @@
 #include "code\modules\antagonists\voidwalker\voidwalker_mob.dm"
 #include "code\modules\antagonists\voidwalker\voidwalker_traumas.dm"
 #include "code\modules\antagonists\voidwalker\voidwalker_window.dm"
+#include "code\modules\antagonists\bingle\bingle_antag.dm"
+#include "code\modules\antagonists\bingle\bingle_mob.dm"
+#include "code\modules\antagonists\bingle\bingle_pit.dm"
 #include "code\modules\antagonists\blood_worm\blood_worm_actions.dm"
 #include "code\modules\antagonists\blood_worm\blood_worm_antag.dm"
 #include "code\modules\antagonists\blood_worm\blood_worm_blood.dm"
@@ -569,6 +573,7 @@
 #include "code\modules\events\ship_partition.dm"
 #include "code\modules\events\teratoma.dm"
 #include "code\modules\events\spider_infestation.dm"
+#include "code\modules\events\bingle.dm"
 #include "code\modules\events\blood_worm.dm"
 #include "code\modules\events\voidwalker.dm"
 #include "code\modules\events\wallrot.dm"
@@ -810,6 +815,7 @@
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
 #include "code\modules\test_chamber\kits\pr_487_xeno_rynek.dm"
+#include "code\modules\test_chamber\kits\pr_496_bingle.dm"
 #include "code\modules\test_chamber\kits\pr_481_policja.dm"
 #include "code\modules\test_chamber\kits\pr_476_protezy_mapowanie.dm"
 #include "code\modules\test_chamber\kits\pr_468_xenoarch_gizmo.dm"
@@ -1195,6 +1201,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
+#include "code\modules\unit_tests\bingle.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\aquila_autopsy.dm"
 #include "code\modules\unit_tests\aquila_botany.dm"

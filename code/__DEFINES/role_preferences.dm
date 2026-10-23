@@ -67,6 +67,7 @@
 #define ROLE_SHADOW_DEMON		"Shadow Demon" //AQ - port z ParadiseSS13
 #define ROLE_DARKSPAWN			"Darkspawn" //AQ - port z Yogstation
 #define ROLE_BLOOD_WORM			"Blood Worm" //AQ - port z tgstation
+#define ROLE_BINGLE				"Bingle" //AQ - port z Monkestation
 
 /// Roles that are antagonists, roundstart or not, and have passes to do.. antagonistry
 GLOBAL_LIST_INIT(antagonist_bannable_roles, list(
@@ -118,6 +119,7 @@ GLOBAL_LIST_INIT(antagonist_bannable_roles, list(
 	ROLE_SHADOW_DEMON, //AQ
 	ROLE_DARKSPAWN, //AQ
 	ROLE_BLOOD_WORM, //AQ
+	ROLE_BINGLE, //AQ
 ))
 //nsv13 - pvp + bloodling modes added here
 
