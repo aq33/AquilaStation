@@ -593,6 +593,12 @@
       goonstation (CC BY-NC-SA 3.0), odlewy ze smithingu ParadiseSS13 (CC BY-SA 3.0).
   - balance: Głód i pragnienie nie zabierają już zdrowia, tylko spowalniają regenerację
       krwi.
+  - rscadd: VIM, mini-mech dla małych zwierzaków i corgi (z butlą szczelny na kosmos),
+      do zbudowania z hełmu EVA, nóg robota, latarki i modułu głosowego.
+  - rscadd: Wskaźnik SSD nad postacią rozłączonego gracza, w examine widać, od ilu
+      minut go nie ma.
+  - rscadd: Citationinator, drukarka mandatów dla ochrony (Deputy i policjant mają
+      go na start, jest w SecTechu).
   Monkestation:
   - rscadd: 'Shipbreaking: zestrzelone okręty zostawiają wraki, które magnes na asteroidy
       przyciąga do klatki. Rozbierz je na złom młotem burzącym i spawarką Rayne.'
