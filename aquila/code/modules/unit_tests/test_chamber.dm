@@ -22,8 +22,13 @@
 		chamber.spawn_kit(kit, null)
 		for(var/path in kit.items)
 			var/spawned = count_in_chamber(chamber, path) - before[path]
-			var/expected = kit.items[path] || 1
-			TEST_ASSERT(spawned == expected, "Kit [name] spawned [spawned] of [expected] [path]")
+			// Podtypy z tej samej listy też pasują do istype, więc liczą się do oczekiwanej liczby
+			var/expected = 0
+			for(var/other in kit.items)
+				if(ispath(other, path))
+					expected += kit.items[other] || 1
+			if(spawned != expected)
+				Fail("Kit [name] spawned [spawned] of [expected] [path]")
 
 	var/turf/open/floor/F = chamber.kit_center
 	F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
@@ -36,11 +41,15 @@
 	TEST_ASSERT(!fail, "After reset: [fail]")
 
 /datum/unit_test/test_chamber/proc/count_in_chamber(datum/test_chamber/chamber, path)
-	. = 0
+	// Zbiór, bo obiekt wielokratkowy (np. myśliwiec) jest w zawartości każdego turfu, który zajmuje
+	var/list/found = list()
 	for(var/turf/T as anything in chamber.reservation.reserved_turfs)
 		for(var/atom/movable/AM in T)
-			if(istype(AM, path))
-				.++
+			found[AM] = TRUE
+	. = 0
+	for(var/atom/movable/AM as anything in found)
+		if(istype(AM, path))
+			.++
 
 /datum/unit_test/test_chamber/proc/check_room(datum/test_chamber/chamber)
 	var/consoles = 0
