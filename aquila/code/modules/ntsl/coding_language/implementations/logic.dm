@@ -263,7 +263,8 @@
 /datum/n_function/default/ceil/execute(this_obj, list/params)
 	var/num = length(params) >= 1 ? params[1] : null
 	if(isnum(num))
-		return round(num)+1
+		var/floored = round(num)
+		return floored == num ? num : floored + 1
 
 ///Rounds a number to its nearest integer
 /datum/n_function/default/round

@@ -1,4 +1,6 @@
 // AQUILA - edytor Ace z Monkestation (Monkestation/Monkestation2.0#2199), używany przez konsolę NTSL
+// ace-builds first: the src-noconflict modules need the global ace it sets up
+import 'ace-builds';
 import 'ace-builds/src-noconflict/theme-tomorrow_night';
 import 'ace-builds/src-noconflict/mode-text';
 import 'ace-builds/src-noconflict/ext-options';
@@ -44,6 +46,11 @@ export function AceEditor(props: Props) {
   const editorRef = useRef<ace.Ace.Editor | null>(null);
   const suppressChangeRef = useRef(false);
   const debounceTimerRef = useRef<number | null>(null);
+  // The editor is set up once, so its handlers read the latest props from refs
+  const callbacksRef = useRef({ onChange, onCtrlS, onCtrlShiftB });
+  callbacksRef.current = { onChange, onCtrlS, onCtrlShiftB };
+  const debounceTimeRef = useRef(debounceTime);
+  debounceTimeRef.current = debounceTime;
 
   const lastSentValueRef = useRef('');
   const lastRemoteValueRef = useRef<string | undefined>(undefined);
@@ -56,16 +63,19 @@ export function AceEditor(props: Props) {
     if (!editor) return false;
 
     const current = editor.getValue();
-    if (current === lastSentValueRef.current) return false;
+    const changed = current !== lastSentValueRef.current;
+    const { onChange, onCtrlS, onCtrlShiftB } = callbacksRef.current;
+    if (changed) {
+      lastSentValueRef.current = current;
+      onChange?.(current);
+    }
+    // Shortcuts run even when the debounce already sent this text
+    let handled = false;
+    if (fromCtrlS && onCtrlS) handled = onCtrlS(current);
+    if (fromCtrlShiftB && onCtrlShiftB) handled = onCtrlShiftB(current);
 
-    lastSentValueRef.current = current;
-    onChange?.(current);
-    if (fromCtrlS && onCtrlS) onCtrlS(current);
-    if (fromCtrlShiftB && onCtrlShiftB) onCtrlShiftB(current);
-
-    const synced = lastRemoteValueRef.current === current;
-    setIsSynced(synced);
-    return true;
+    setIsSynced(lastRemoteValueRef.current === current);
+    return changed || handled;
   };
 
   const showSavedPopup = (text = 'Zapisano') => {
@@ -142,7 +152,7 @@ export function AceEditor(props: Props) {
       debounceTimerRef.current = window.setTimeout(() => {
         debounceTimerRef.current = null;
         sendCurrentValue();
-      }, debounceTime);
+      }, debounceTimeRef.current);
     });
 
     editor.commands.addCommand({
@@ -209,7 +219,11 @@ export function AceEditor(props: Props) {
     if (value !== lastRemoteValueRef.current) {
       const current = editor.getValue();
 
-      if (!hasReceivedInitialValueRef.current || current !== value) {
+      // Don't overwrite text typed since the last send with the server's echo
+      if (
+        !hasReceivedInitialValueRef.current ||
+        (current === lastSentValueRef.current && current !== value)
+      ) {
         suppressChangeRef.current = true;
         editor.setValue(value);
         lastSentValueRef.current = value;

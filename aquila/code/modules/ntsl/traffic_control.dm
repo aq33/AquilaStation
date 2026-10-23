@@ -188,9 +188,14 @@
 		servers += new_server
 
 /obj/machinery/computer/telecomms/traffic/proc/compile_all(mob/user)
+	for(var/obj/machinery/telecomms/server/server as anything in servers)
+		if(QDELETED(server))
+			servers -= server
 	if(!length(servers))
 		return list("Nie wykryto serwerów.")
 	for(var/obj/machinery/telecomms/server/server as anything in servers)
+		if(QDELETED(server))
+			continue
 		var/list/compile_errors = server.compile(user)
 		if(!compile_errors)
 			return list("Wystąpił błąd krytyczny. Skontaktuj się z administratorem sieci.")

@@ -193,6 +193,14 @@
 ///Checks a condition and runs either the if block or else block.
 /datum/n_Interpreter/proc/RunIf(datum/node/statement/IfStatement/stmt, datum/scope/scope)
 	if(!stmt.skip)
+		// AQ EDIT START - clear the chain first, a return/break inside the body skipped the reset and the flags stuck to the AST
+		var/datum/node/statement/IfStatement/chain = stmt.else_if
+		var/chain_safe = 800
+		while(chain && chain_safe)
+			chain_safe -= 1
+			chain.skip = FALSE
+			chain = chain.else_if
+		// AQ EDIT END
 		scope = scope.push(stmt.block)
 		if(Eval(stmt.cond, scope))
 			. = RunBlock(stmt.block, scope)
@@ -220,7 +228,7 @@
 
 /datum/n_Interpreter/proc/RunFor(datum/node/statement/ForLoop/stmt, datum/scope/scope)
 	var/i = 1
-	scope = scope.push(stmt.block)
+	scope = scope.push(stmt.block, allowed_status = CONTINUING | BREAKING) // AQ EDIT - break/continue were silently ignored in for loops
 	Eval(stmt.init, scope)
 	while(Eval(stmt.test, scope))
 		if(Iterate(stmt.block, scope, i++))
@@ -232,12 +240,14 @@
 ///Runs a single iteration of a loop. Returns a value indicating whether or not to continue looping.
 /datum/n_Interpreter/proc/Iterate(datum/node/BlockDefinition/block, datum/scope/scope, count)
 	RunBlock(block, scope)
+	// AQ EDIT START - RunBlock() sets the flags on the scope, the interpreter's own status was never set
+	if(scope.status & (BREAKING | RETURNING))
+		return FALSE
+	scope.status &= ~CONTINUING
+	// AQ EDIT END
 	if(MAX_ITERATIONS > 0 && count >= MAX_ITERATIONS)
 		RaiseError(new /datum/runtimeError/IterationLimitReached(), scope, block)
 		return FALSE
-	if(status & (BREAKING | RETURNING))
-		return FALSE
-	status &= ~CONTINUING
 	return TRUE
 
 #undef MAX_STATEMENTS

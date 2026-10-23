@@ -30,6 +30,40 @@
 	compiler.Run(blocked)
 	TEST_ASSERT(blocked.data["reject"], "sig.pass = false did not block the message")
 
+	// break/continue in loops, an elseif after a returning if, ceil() on whole numbers
+	errors = compiler.Compile({"def process_signal(sig){
+	if(sig.job == "Pierwszy"){
+		return sig;
+	} elseif(sig.job == "Drugi"){
+		sig.pass = false;
+		return sig;
+	}
+	n = 0;
+	while(1){
+		n += 1;
+		if(n >= 3){
+			break;
+		}
+	}
+	odd = 0;
+	for(i = 0; i < 6; i += 1){
+		if(i % 2 == 0){
+			continue;
+		}
+		odd += 1;
+	}
+	sig.content = tostring(n) + " " + tostring(odd) + " " + tostring(ceil(2)) + " " + tostring(ceil(2.5));
+	return sig;
+}"})
+	TEST_ASSERT(!length(errors), "The control flow script did not compile")
+	compiler.Run(make_signal("x", "Pierwszy"))
+	var/datum/signal/subspace/vocal/second = make_signal("x", "Drugi")
+	compiler.Run(second)
+	TEST_ASSERT(second.data["reject"], "An elseif stayed skipped after the if branch returned on the previous message")
+	var/datum/signal/subspace/vocal/flow = make_signal("x", "Kucharz")
+	compiler.Run(flow)
+	TEST_ASSERT_EQUAL(flow.data["message"], "3 3 2 3", "break/continue/ceil gave wrong results [script_errors(server)]")
+
 	// A runaway loop stops at the iteration cap and broadcast() at its own cap
 	errors = compiler.Compile({"def process_signal(sig){
 	while(1){

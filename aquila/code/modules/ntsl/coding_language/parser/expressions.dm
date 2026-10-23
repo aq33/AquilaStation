@@ -276,6 +276,9 @@
 		exp.parameters += ParseParamExpression()
 		if(length(errors))
 			return exp
+		if(!curToken) // AQ EDIT - end of file inside the call
+			errors += new /datum/scriptError/EndOfFile()
+			return exp
 		if(curToken.value == "," && istype(curToken, /datum/token/symbol))
 			NextToken()	//skip comma
 		if(istype(curToken, /datum/token/end)) //Prevents infinite loop...
@@ -297,6 +300,12 @@
 		if(istype(curToken, /datum/token/symbol) && curToken.value == ")")
 			return exp
 		var/datum/node/expression/E = ParseParamExpression(check_assignments = FALSE)
+		// AQ EDIT START - empty element or end of file inside list()
+		if(!E || !curToken)
+			if(!length(errors))
+				errors += new /datum/scriptError/EndOfFile()
+			return exp
+		// AQ EDIT END
 		if(E.type == /datum/node/expression/expression_operator/binary/Assign)
 			var/datum/node/expression/expression_operator/binary/Assign/A = E
 			exp.init_list[A.exp] = A.exp2

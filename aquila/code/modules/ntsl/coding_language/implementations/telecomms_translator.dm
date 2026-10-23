@@ -250,7 +250,11 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		msg = "*beep*"
 	signal.data["message"] = msg
 
-	signal.frequency = script_signal.get_clean_property("freq", signal.frequency)
+	// AQ EDIT START - numbers and lists skip sanitizing, keep the frequency valid
+	var/new_freq = script_signal.get_clean_property("freq", signal.frequency)
+	if(isnum(new_freq))
+		signal.frequency = sanitize_frequency(new_freq, TRUE)
+	// AQ EDIT END
 
 	var/setname = script_signal.get_clean_property("source", signal.data["name"])
 
@@ -259,7 +263,16 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		signal.virt.name = setname
 	signal.data["name"] = setname
 	//signal.data["uuid"] = script_signal.get_clean_property("$uuid", signal.data["uuid"])
-	signal.levels = script_signal.get_clean_property("sector", signal.levels)
+	// AQ EDIT START - sector must stay a list of real levels, 0 would mean every level
+	var/new_levels = script_signal.get_clean_property("sector", signal.levels)
+	if(islist(new_levels) && new_levels != signal.levels)
+		var/list/clean_levels = list()
+		for(var/level in new_levels)
+			if(isnum(level) && level > 0)
+				clean_levels |= level
+		if(length(clean_levels))
+			signal.levels = clean_levels
+	// AQ EDIT END
 	signal.data["job"] = script_signal.get_clean_property("job", signal.data["job"])
 	signal.data["reject"] = !(script_signal.get_clean_property("pass")) // set reject to the opposite of $pass
 	signal.virt.verb_say = script_signal.get_clean_property("say", signal.virt.verb_say)
@@ -268,7 +281,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	signal.virt.verb_exclaim = script_signal.get_clean_property("exclaim", signal.virt.verb_exclaim)
 	var/newlang = LangBit2Datum(script_signal.get_clean_property("language"))
 	if(newlang != oldlang)// makes sure that we only clean out unallowed languages when a translation is taking place otherwise we run an unnecessary proc to filter newlang on foreign untranslated languages.
-		if(!(LAZYFIND(GLOB.allowed_translations, oldlang))) // cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
+		if(!(LAZYFIND(GLOB.allowed_translations, oldlang)) || !(LAZYFIND(GLOB.allowed_translations, newlang))) // AQ EDIT - both languages must be on the list. cleans out any unallowed translations by making sure the new language is on the allowed translation list. Tcomms powergaming is dead! - Hopek
 			newlang = oldlang
 	signal.language = newlang || oldlang
 	var/datum/language/lang_instance = GLOB.language_datum_instances[signal.language] // AQ EDIT - our signals store the language name

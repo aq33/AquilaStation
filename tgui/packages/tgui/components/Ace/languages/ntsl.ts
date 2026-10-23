@@ -11,7 +11,7 @@ export class NTSLHighlightRules extends TextHighlightRules {
       start: [
         // Comments
         { regex: /\/\/.*$/, token: 'comment.line.ntsl' },
-        { regex: /\/\*[\s\S]*?\*\//, token: 'comment.block.ntsl' },
+        { regex: /\/\*/, token: 'comment.block.ntsl', next: 'comment' },
 
         // Strings
         { regex: /"(?:[^"\\]|\\.)*"/, token: 'string.ntsl' },
@@ -64,6 +64,11 @@ export class NTSLHighlightRules extends TextHighlightRules {
 
         // Numbers
         { regex: /\b\d+(?:\.\d+)?\b/, token: 'constant.numeric.ntsl' },
+      ],
+      // Block comments can span lines
+      comment: [
+        { regex: /\*\//, token: 'comment.block.ntsl', next: 'start' },
+        { defaultToken: 'comment.block.ntsl' },
       ],
     };
 

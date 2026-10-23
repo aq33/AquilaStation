@@ -1,6 +1,6 @@
 // AQUILA - konsola kontroli ruchu telekomunikacji (NTSL), port z Monkestation (Monkestation/Monkestation2.0#2199)
 // Backend: aquila/code/modules/ntsl/traffic_control.dm
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -40,7 +40,7 @@ type CodeState = [string, (code: string) => void];
 
 export const NTSLCoding = (props) => {
   const { act, data } = useBackend<Data>();
-  const { emagged, user_name, admin_view } = data;
+  const { emagged, user_name, admin_view, stored_code } = data;
   // Make sure we don't start larger than 50%/80% of screen width/height.
   const winWidth = Math.min(
     user_name ? 900 : 260,
@@ -51,7 +51,12 @@ export const NTSLCoding = (props) => {
     window.screen.availHeight * 0.8,
   );
 
-  const codeState = useState('');
+  // Reset local edits when the saved code or the logged in user changes
+  const [code, setCode] = useState(stored_code);
+  useEffect(() => {
+    setCode(stored_code);
+  }, [stored_code, user_name]);
+  const codeState: CodeState = [code, setCode];
   const [tabIndex, setTabIndex] = useState(1);
 
   return (
@@ -383,7 +388,7 @@ const Guide = (props) => {
           {index + 1}: {language}
         </Box>
       ))}
-      Tłumaczyć można tylko z common, robot, draconic i uncommon.
+      Tłumaczyć można tylko między common, robot, draconic i uncommon.
       <Divider />
       <Box bold>Funkcje telekomów</Box>
       signal(treść, freq, źródło, praca, style): nowy sygnał
