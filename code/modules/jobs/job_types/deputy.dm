@@ -41,6 +41,7 @@
 	satchel = /obj/item/storage/backpack/satchel/sec
 	duffelbag = /obj/item/storage/backpack/duffelbag/sec
 	box = /obj/item/storage/box/survival
+	backpack_contents = list(/obj/item/citationinator = 1) // AQ EDIT - citationinator
 
 /obj/item/card/id/pass/deputy
 	name = "deputy promotion card"
