@@ -19,7 +19,7 @@ GLOBAL_DATUM(bingle_team, /datum/team/bingles)
 	return ..()
 
 /datum/antagonist/bingle/create_team(datum/team/bingles/new_team)
-	if(!GLOB.bingle_team)
+	if(QDELETED(GLOB.bingle_team)) // admin mógł usunąć drużynę
 		GLOB.bingle_team = new
 	team = GLOB.bingle_team
 

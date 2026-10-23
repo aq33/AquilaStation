@@ -72,6 +72,7 @@ GLOBAL_LIST_EMPTY(bingle_holes)
 	GLOB.bingle_pit_reservation = reservation
 	if(!template.load(locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])))
 		log_world("Bingle pit: unable to load the template")
+		QDEL_NULL(GLOB.bingle_pit_reservation)
 		return
 	// Jak w komorze testowej: loader potrafi zostawić 0 kPa, bo dookoła jest kosmos rezerwacji
 	for(var/turf/open/indestructible/bingle/floor in reservation.reserved_turfs)
@@ -283,12 +284,9 @@ GLOBAL_LIST_EMPTY(bingle_holes)
 	if(QDELETED(src))
 		return
 	var/turf/bingle_pit_turf = get_random_bingle_pit_turf()
+	// Bez wymiaru połknięta rzecz zostaje tam, gdzie była, zamiast znikać
 	if(bingle_pit_turf)
 		swallowed.forceMove(bingle_pit_turf)
-	else if(swallowed_mob && (swallowed_mob.client || swallowed_mob.mind))
-		swallowed_mob.moveToNullspace()
-	else
-		qdel(swallowed)
 
 /obj/structure/bingle_hole/proc/animate_falling_into_pit(atom/movable/item)
 	var/turf/item_turf = get_turf(item)
