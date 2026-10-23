@@ -23,7 +23,7 @@
 /datum/test_chamber_kit/pr_499/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/obj/machinery/ai/data_core/primary/core = locate() in spawned
 	var/list/cabinets = list()
-	var/list/dishes = list()
+	var/list/obj/machinery/ai/networking/dishes = list()
 	for(var/obj/machinery/ai/server_cabinet/cabinet in spawned)
 		cabinets += cabinet
 	for(var/obj/machinery/ai/networking/dish in spawned)
