@@ -13,62 +13,26 @@
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
 "ac" = (
-/obj/effect/landmark/start/ai,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Common Channel";
-	pixel_x = 7;
-	pixel_y = 25
+/obj/effect/turf_decal/tile/ship/half/purple,
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 1
 	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	frequency = 1447;
-	name = "Private Channel";
-	pixel_x = 7;
-	pixel_y = 19
-	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	listening = 0;
-	name = "Custom Channel";
-	pixel_x = 7;
-	pixel_y = 13
-	},
-/obj/machinery/newscaster/directional/south{
-	pixel_x = -7;
-	pixel_y = 24
-	},
-/obj/machinery/requests_console{
-	department = "AI";
-	departmentType = 5;
-	pixel_y = -40
-	},
-/obj/machinery/flasher{
-	id = "AI";
-	pixel_x = -10;
-	pixel_y = -23
-	},
-/obj/machinery/computer/ship/viewscreen{
-	pixel_y = 36
-	},
-/obj/machinery/turretid{
-	control_area = /area/ai_monitored/turret_protected/aisat_interior;
-	icon_state = "control_stun";
-	name = "AI Chamber turret control";
-	pixel_y = -22
-	},
-/obj/machinery/ai_core_display,
-/turf/open/floor/circuit/red,
-/area/ai_monitored/turret_protected/aisat_interior)
+/obj/structure/cable,
+/obj/machinery/slime_market_pad,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/xenobiology)
 "ad" = (
+/obj/machinery/airalarm/directional/east,
 /obj/effect/turf_decal/tile/ship/half/purple{
 	dir = 1
 	},
-/obj/machinery/computer/ai_control_console{
-	dir = 1
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 8
 	},
+/obj/structure/cable,
+/obj/machinery/computer/slime_market,
 /turf/open/floor/plasteel/tiled/light,
-/area/ai_monitored/turret_protected/ai_upload)
+/area/science/xenobiology)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -131,6 +95,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"ak" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 4
+	},
+/obj/machinery/slime_compressor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/xenobiology)
 "al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -182,6 +153,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"aq" = (
+/obj/machinery/firealarm/directional/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/half/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -223,6 +206,54 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"av" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Common Channel";
+	pixel_x = 7;
+	pixel_y = 25
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 7;
+	pixel_y = 19
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	listening = 0;
+	name = "Custom Channel";
+	pixel_x = 7;
+	pixel_y = 13
+	},
+/obj/machinery/newscaster/directional/south{
+	pixel_x = -7;
+	pixel_y = 24
+	},
+/obj/machinery/requests_console{
+	department = "AI";
+	departmentType = 5;
+	pixel_y = -40
+	},
+/obj/machinery/flasher{
+	id = "AI";
+	pixel_x = -10;
+	pixel_y = -23
+	},
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = 36
+	},
+/obj/machinery/turretid{
+	control_area = /area/ai_monitored/turret_protected/aisat_interior;
+	icon_state = "control_stun";
+	name = "AI Chamber turret control";
+	pixel_y = -22
+	},
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit/red,
+/area/ai_monitored/turret_protected/aisat_interior)
 "aw" = (
 /obj/machinery/door/airlock/ship/external/glass{
 	name = "Labor Shuttle Dock";
@@ -248,6 +279,15 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ay" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/computer/ai_control_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/ai_monitored/turret_protected/ai_upload)
 "az" = (
 /obj/structure/lattice/catwalk,
 /turf/open/openspace/airless,
@@ -898,15 +938,6 @@
 "cc" = (
 /turf/closed/wall/r_wall/ship,
 /area/quartermaster/bitrunning/den)
-"cd" = (
-/obj/effect/turf_decal/tile/ship/half/purple,
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/plortrefinery,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/xenobiology)
 "ce" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -5023,17 +5054,6 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/science/robotics)
-"rh" = (
-/obj/machinery/firealarm/directional/north,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/half/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "ri" = (
 /obj/machinery/door/airlock/ship/medical/glass{
 	name = "Chemistry";
@@ -9391,17 +9411,6 @@
 /obj/structure/displaycase/labcage,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"Gy" = (
-/obj/machinery/airalarm/directional/east,
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/xenobiology)
 "GC" = (
 /obj/machinery/computer/cargo/request,
 /obj/effect/turf_decal/tile/yellow{
@@ -43182,7 +43191,7 @@ qb
 EO
 vA
 oI
-Ol
+ak
 vn
 Ol
 iq
@@ -44467,9 +44476,9 @@ mb
 AN
 MP
 gn
-cd
+ac
 ZM
-Gy
+ad
 hO
 tq
 RB
@@ -46002,7 +46011,7 @@ mm
 Gs
 nc
 KZ
-rh
+aq
 Aw
 vw
 qr
@@ -48581,7 +48590,7 @@ MV
 af
 TV
 jK
-ad
+ay
 uo
 cA
 MV
@@ -50380,7 +50389,7 @@ ho
 Qi
 Rq
 do
-ac
+av
 do
 Ep
 Rq

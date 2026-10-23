@@ -445,12 +445,12 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "aZ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+/obj/machinery/light,
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
-/obj/machinery/ai/data_core/primary,
-/turf/open/floor/plasteel/dark,
-/area/science/server)
+/area/hallway/primary/aft)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -1655,11 +1655,10 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "dI" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold,
-/obj/machinery/camera/autoname{
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 1
 	},
-/obj/machinery/ai/server_cabinet/prefilled,
+/obj/machinery/ai/data_core/primary,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
 "dJ" = (
@@ -1748,12 +1747,13 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "dU" = (
-/obj/structure/cable,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 4
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold,
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
+/obj/machinery/ai/server_cabinet/prefilled,
 /turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
+/area/science/server)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2275,6 +2275,13 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/fore)
+"fh" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -43355,7 +43362,7 @@ dt
 Kp
 bX
 kb
-dU
+fh
 JG
 ha
 dP
@@ -47472,7 +47479,7 @@ WW
 XD
 lg
 rJ
-nG
+aZ
 de
 ex
 yn
@@ -48250,9 +48257,9 @@ Cn
 Ar
 kC
 oj
-aZ
-PE
 dI
+PE
+dU
 oj
 aJ
 aJ

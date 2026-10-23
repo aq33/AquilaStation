@@ -195,7 +195,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 			return TRUE
 	return FALSE
 
-/turf/open/openspace/rust_heretic_act()
+/turf/open/openspace/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	return FALSE
 
 //Returns FALSE if gravity is force disabled. True if grav is possible

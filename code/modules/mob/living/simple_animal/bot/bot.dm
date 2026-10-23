@@ -1135,7 +1135,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		I.icon_state = null
 	path.Cut(1, 2)
 
-/mob/living/simple_animal/bot/rust_heretic_act()
+/mob/living/simple_animal/bot/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
 	adjustBruteLoss(400)
 	return TRUE
 

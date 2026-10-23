@@ -38,6 +38,7 @@
 		num_ecult = min(max(1, min(round(num_players() / (esc * 2)) + 2, round(num_players() / esc))),4)
 	else
 		num_ecult = max(1, min(num_players(), ecult_possible))
+	num_ecult = weighted_cap(num_ecult) // AQUILA EDIT - weighted rotation antagonist limit
 
 	for(var/i in 1 to num_ecult)
 		if(!antag_candidates.len)

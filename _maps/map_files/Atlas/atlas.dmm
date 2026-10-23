@@ -134,6 +134,21 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck2/primary)
+"ap" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 4
+	},
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck2/primary)
 "aq" = (
 /obj/effect/turf_decal/tile/ship/yellow{
 	dir = 4
@@ -2039,20 +2054,6 @@
 /obj/item/folder,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port)
-"dN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 4
-	},
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck2/primary)
 "dO" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -56744,7 +56745,7 @@ Dy
 EG
 nK
 Bs
-dN
+ap
 dG
 Hh
 Qa

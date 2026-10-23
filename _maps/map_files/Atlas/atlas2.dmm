@@ -1316,17 +1316,22 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/central)
 "cS" = (
+/obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
-/obj/machinery/ai/data_core/primary,
-/turf/open/floor/circuit/telecomms/server,
-/area/tcommsat/server)
-"cT" = (
-/obj/machinery/ai/server_cabinet/prefilled,
-/turf/open/floor/monotile/dark/airless{
-	initial_gas_mix = "n2=100;TEMP=80";
-	name = "telecomms server floor"
+/obj/machinery/slime_market_pad,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
-/area/tcommsat/server)
+/turf/open/floor/plasteel/techmaint,
+/area/science/xenobiology)
+"cT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/firealarm/directional/west,
+/obj/machinery/computer/slime_market,
+/turf/open/floor/monotile/steel,
+/area/science/xenobiology)
 "cU" = (
 /obj/machinery/light{
 	dir = 1
@@ -2133,12 +2138,9 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
 "ev" = (
-/obj/machinery/rack_creator,
-/turf/open/floor/monotile/dark/airless{
-	initial_gas_mix = "n2=100;TEMP=80";
-	name = "telecomms server floor"
-	},
-/area/tcommsat/server)
+/obj/machinery/slime_compressor,
+/turf/open/floor/monotile/steel,
+/area/science/xenobiology)
 "ew" = (
 /obj/effect/landmark/zebra_interlock_point,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -2169,22 +2171,17 @@
 /turf/open/floor/monotile/dark,
 /area/medical/virology)
 "ey" = (
-/obj/machinery/firealarm/directional/south,
-/obj/machinery/light/small,
-/obj/machinery/computer/ai_resource_distribution{
-	dir = 1
-	},
-/turf/open/floor/durasteel/lino,
+/obj/structure/cable,
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/circuit/telecomms/server,
 /area/tcommsat/server)
 "ez" = (
-/obj/machinery/power/apc/auto_name/south,
-/obj/structure/cable,
-/obj/machinery/plortrefinery,
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
 	},
-/turf/open/floor/plasteel/techmaint,
-/area/science/xenobiology)
+/area/tcommsat/server)
 "eA" = (
 /obj/structure/curtain/obscuring/grey,
 /obj/structure/table/wood/fancy/red,
@@ -2194,21 +2191,11 @@
 /turf/open/floor/wood,
 /area/crew_quarters/theatre/backstage)
 "eB" = (
-/obj/structure/cable,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Telecomms Admin";
-	departmentType = 5;
-	name = "Telecomms RC";
-	pixel_y = -30
+/obj/machinery/rack_creator,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
 	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/machinery/computer/ai_server_console{
-	dir = 1
-	},
-/turf/open/floor/durasteel/lino,
 /area/tcommsat/server)
 "eC" = (
 /obj/structure/cable,
@@ -2227,12 +2214,13 @@
 /turf/open/floor/monotile/steel,
 /area/science/xenobiology)
 "eF" = (
-/obj/machinery/airalarm/directional/north,
-/obj/machinery/computer/ai_control_console{
-	dir = 8
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/light/small,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
 	},
 /turf/open/floor/durasteel/lino,
-/area/ai_monitored/turret_protected/aisat)
+/area/tcommsat/server)
 "eG" = (
 /obj/effect/spawner/room/fivexthree,
 /turf/template_noop,
@@ -2280,12 +2268,22 @@
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
 "eM" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/computer/ai_overclocking{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = -30
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/computer/ai_server_console{
+	dir = 1
 	},
 /turf/open/floor/durasteel/lino,
-/area/ai_monitored/turret_protected/aisat)
+/area/tcommsat/server)
 "eN" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -2313,6 +2311,32 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
 "eR" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/computer/ai_control_console{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
+"eS" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/floor/wood,
+/area/library)
+"eT" = (
+/obj/effect/turf_decal/tile/ship/green,
+/obj/effect/turf_decal/tile/ship/green{
+	dir = 8
+	},
+/obj/machinery/duct,
+/turf/open/floor/durasteel/alt,
+/area/hallway/nsv/deck1/hallway)
+"eU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/ai_overclocking{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
+"eV" = (
 /obj/effect/landmark/start/ai,
 /obj/item/radio/intercom{
 	freerange = 1;
@@ -2362,18 +2386,6 @@
 /obj/machinery/ai_core_display,
 /turf/open/floor/monotile/dark,
 /area/ai_monitored/turret_protected/ai)
-"eS" = (
-/obj/structure/bookcase/random/fiction,
-/turf/open/floor/wood,
-/area/library)
-"eT" = (
-/obj/effect/turf_decal/tile/ship/green,
-/obj/effect/turf_decal/tile/ship/green{
-	dir = 8
-	},
-/obj/machinery/duct,
-/turf/open/floor/durasteel/alt,
-/area/hallway/nsv/deck1/hallway)
 "eZ" = (
 /obj/machinery/computer/robotics{
 	dir = 1
@@ -16233,13 +16245,6 @@
 	},
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
-"YT" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/firealarm/directional/west,
-/turf/open/floor/monotile/steel,
-/area/science/xenobiology)
 "YW" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -39278,7 +39283,7 @@ xK
 xK
 xK
 pT
-eR
+eV
 nH
 nH
 nf
@@ -40304,7 +40309,7 @@ yb
 ZO
 cs
 UH
-ey
+eF
 tp
 tp
 Ii
@@ -40558,10 +40563,10 @@ IL
 yb
 gZ
 KX
-cS
+ey
 Fb
 Gz
-eB
+eM
 tp
 yc
 DX
@@ -41068,18 +41073,18 @@ xK
 xK
 aw
 yb
-cT
+ez
 yb
-ev
+eB
 KX
 Df
 Nl
 sE
 qg
 tp
-eF
+eR
 bK
-eM
+eU
 tp
 Th
 CT
@@ -56514,8 +56519,8 @@ ks
 JZ
 mU
 XE
-YT
-AL
+cT
+ev
 Rf
 Hr
 rR
@@ -57802,7 +57807,7 @@ FT
 ou
 fc
 pj
-ez
+cS
 JZ
 qd
 xt

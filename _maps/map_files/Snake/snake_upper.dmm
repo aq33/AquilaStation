@@ -867,22 +867,57 @@
 /turf/open/floor/plating,
 /area/science/test_area)
 "cf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = 27;
+	pixel_y = -17
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = 27;
+	pixel_y = 7
 	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 8
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = 27;
+	pixel_y = -5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "AI Core Door Control";
+	pixel_x = 22;
+	pixel_y = -32;
+	req_one_access_txt = "59"
 	},
-/obj/machinery/plortrefinery,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 10;
+	pixel_y = -25
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "AI Upload Door Control";
+	pixel_x = 22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/effect/landmark/start/ai/secondary,
+/obj/machinery/ai_core_display,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
 "cg" = (
 /obj/machinery/light{
 	dir = 8
@@ -4545,68 +4580,61 @@
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
 "kT" = (
-/obj/effect/landmark/start/ai,
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Custom Channel 3";
-	pixel_x = 27;
-	pixel_y = -17
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
 	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Custom Channel 1";
-	pixel_x = 27;
-	pixel_y = 7
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
 	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	name = "Custom Channel 2";
-	pixel_x = 27;
-	pixel_y = -5
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 8
 	},
-/obj/machinery/button/door{
-	dir = 8;
-	id = "inneraicore";
-	name = "AI Core Door Control";
-	pixel_x = 22;
-	pixel_y = -32;
-	req_one_access_txt = "59"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/item/radio/intercom{
-	freerange = 1;
-	frequency = 1447;
-	name = "Private Channel";
-	pixel_x = 10;
-	pixel_y = -25
-	},
-/obj/machinery/turretid{
-	icon_state = "control_stun";
-	name = "core turret control panel";
-	pixel_y = 32
-	},
-/obj/machinery/button/door{
-	dir = 8;
-	id = "outeraicore";
-	name = "AI Upload Door Control";
-	pixel_x = 22;
-	pixel_y = 32;
-	req_one_access_txt = "59"
-	},
-/obj/effect/landmark/start/ai/secondary,
-/obj/machinery/ai_core_display,
-/turf/open/floor/monotile/dark,
-/area/ai_monitored/turret_protected/ai)
+/obj/machinery/slime_market_pad,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "kV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/computer/slime_market,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"kW" = (
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/slime_compressor,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"kX" = (
 /obj/machinery/computer/ai_control_console{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
-"kW" = (
+"kY" = (
 /obj/machinery/computer/ai_server_console{
 	dir = 1
 	},
@@ -8063,15 +8091,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"Ig" = (
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "Ih" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -10590,23 +10609,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"WS" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "WV" = (
 /obj/structure/cable,
 /obj/machinery/camera/motion{
@@ -41661,7 +41663,7 @@ aM
 Ai
 Ai
 Wu
-Ig
+kW
 LV
 ZW
 gV
@@ -42181,7 +42183,7 @@ IE
 UV
 Wu
 hF
-cf
+kT
 aM
 zQ
 zQ
@@ -42438,7 +42440,7 @@ IE
 tP
 aM
 lS
-WS
+kV
 aM
 zQ
 zQ
@@ -56299,7 +56301,7 @@ kp
 kp
 sw
 kp
-kT
+cf
 kp
 CB
 Gf
@@ -56570,7 +56572,7 @@ se
 XN
 Iq
 tO
-kV
+kX
 Lu
 XN
 qM
@@ -57084,7 +57086,7 @@ se
 XN
 mh
 XD
-kW
+kY
 Im
 XN
 qM

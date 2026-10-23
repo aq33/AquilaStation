@@ -144,6 +144,8 @@
 /proc/valid_subtypesof(datum/sometype)
 	. = list()
 	for(var/path in subtypesof(sometype))
+		if(is_heretic_abstract_type(path)) // AQUILA - abstrakcyjne typy wiedzy heretyka
+			continue
 		if(ispath(path, /datum/action/vampire))
 			var/datum/action/vampire/power_path = path
 			if(initial(power_path.abstract_type) == path)
@@ -262,9 +264,7 @@
 			return FALSE
 	return TRUE
 
-/// Bee: tekst przy oglądaniu moba ze statusem; u nas dokleja go examine człowieka (aquila edit w examine.dm)
-/datum/status_effect/proc/get_examine_text()
-	return null
+// Bee: get_examine_text() statusu jest w rdzeniu (code/datums/status_effects/status_effect.dm), dokleja go examine człowieka
 
 // Modyfikatory prędkości: w Bee to datumy, u nas stare add_movespeed_modifier(id, ...).
 // Typ z Bee służy tylko jako opis wartości, a jego ścieżka jest identyfikatorem.

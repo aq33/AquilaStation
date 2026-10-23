@@ -32,8 +32,7 @@
 /turf/closed/indestructible/singularity_act()
 	return
 
-/turf/closed/indestructible/rust_heretic_act()
-	return
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/closed/indestructible/oldshuttle
 	name = "strange shuttle wall"
