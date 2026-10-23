@@ -36,7 +36,7 @@
 	var/list/bottom = list(cabinets[2], null, null, null, dishes[2])
 	for(var/i in 1 to 5)
 		var/turf/top_turf = locate(center.x - 3 + i, center.y + 1, center.z)
-		var/turf/bottom_turf = locate(center.x - 3 + i, center.y - 2, center.z)
+		var/turf/bottom_turf = locate(center.x - 3 + i, center.y - 1, center.z)
 		for(var/turf/T in list(top_turf, bottom_turf))
 			if(!locate(/obj/structure/ethernet_cable) in T)
 				new /obj/structure/ethernet_cable(T)

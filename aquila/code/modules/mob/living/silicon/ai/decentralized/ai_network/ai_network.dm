@@ -137,35 +137,56 @@ GLOBAL_VAR_INIT(ai_network_rebuild_queued, FALSE)
 				queue += linked
 		groups += list(group)
 
-	// Każda grupa dostaje system zasobów: ten, z którego korzystało najwięcej jej maszyn (rdzenie z SI ważą więcej)
-	var/list/datum/ai_os/claimed = list()
-	var/list/new_group_os = list()
+	// Każda grupa dostaje system zasobów: ten, z którego korzystało najwięcej jej maszyn (rdzenie z SI ważą więcej).
+	// Najpierw głosy wszystkich grup, potem przydział od najsilniejszej pary, żeby wynik nie zależał od kolejności grup.
+	var/list/group_votes = list()
 	for(var/list/datum/ai_network/group as anything in groups)
 		var/list/votes = list()
 		for(var/datum/ai_network/net as anything in group)
 			for(var/obj/machinery/ai/machine as anything in net.nodes)
 				var/datum/ai_os/previous = old_os_of[machine]
-				if(!previous || claimed[previous])
+				if(!previous)
 					continue
 				var/weight = 1
 				if(istype(machine, /obj/machinery/ai/data_core) && (locate(/mob/living/silicon/ai) in machine))
 					weight = 100
 				votes[previous] += weight
-		var/datum/ai_os/chosen
+		group_votes += list(votes)
+
+	var/list/datum/ai_os/claimed = list()
+	var/list/group_os = new /list(length(groups))
+	while(TRUE)
 		var/best = 0
-		for(var/datum/ai_os/candidate as anything in votes)
-			if(votes[candidate] > best)
-				best = votes[candidate]
-				chosen = candidate
+		var/best_group
+		var/datum/ai_os/best_os
+		for(var/i in 1 to length(groups))
+			if(group_os[i])
+				continue
+			var/list/votes = group_votes[i]
+			for(var/datum/ai_os/candidate as anything in votes)
+				if(!claimed[candidate] && votes[candidate] > best)
+					best = votes[candidate]
+					best_group = i
+					best_os = candidate
+		if(!best_os)
+			break
+		group_os[best_group] = best_os
+		claimed[best_os] = TRUE
+
+	var/list/new_group_os = list()
+	for(var/i in 1 to length(groups))
+		var/list/datum/ai_network/group = groups[i]
+		var/datum/ai_os/chosen = group_os[i]
 		if(!chosen)
 			chosen = new /datum/ai_os
 			new_group_os[chosen] = TRUE
-		claimed[chosen] = TRUE
+			claimed[chosen] = TRUE
 		chosen.networks = group.Copy()
 		for(var/datum/ai_network/net as anything in group)
 			net.resources = chosen
 
-	// SI idzie za rdzeniem, w którym siedzi. Przydziały przenosimy, update_hardware() obetnie nadmiar.
+	// SI idzie za rdzeniem, w którym siedzi. Przydziały ustawiamy po przeliczeniu sprzętu, z obcięciem nadmiaru.
+	var/list/pending_transfers = list()
 	for(var/mob/living/silicon/ai/AI as anything in old_os_of_ai)
 		if(QDELETED(AI))
 			continue
@@ -178,8 +199,12 @@ GLOBAL_VAR_INIT(ai_network_rebuild_queued, FALSE)
 		old_os.remove_ai(AI)
 		if(new_os)
 			new_os.add_ai(AI)
-			new_os.cpu_assigned[AI] = cpu
-			new_os.ram_assigned[AI] = ram
+			pending_transfers[AI] = list(new_os, cpu, ram)
+
+	// SI, która wcześniej nie miała systemu (rdzeń bez kabla), wraca na listę systemu swojego rdzenia
+	for(var/mob/living/silicon/ai/AI as anything in GLOB.ai_list)
+		if(!QDELETED(AI))
+			AI.get_ai_os()?.add_ai(AI)
 
 	for(var/datum/ai_os/old_os as anything in old_systems)
 		if(!claimed[old_os])
@@ -187,6 +212,12 @@ GLOBAL_VAR_INIT(ai_network_rebuild_queued, FALSE)
 
 	for(var/datum/ai_os/active_os as anything in claimed)
 		active_os.update_hardware()
+
+	for(var/mob/living/silicon/ai/AI as anything in pending_transfers)
+		var/list/transfer = pending_transfers[AI]
+		var/datum/ai_os/new_os = transfer[1]
+		new_os.set_cpu(AI, transfer[2], adjust_overflow = TRUE, update = FALSE)
+		new_os.set_ram(AI, transfer[3], adjust_overflow = TRUE)
 
 	// Rozłączenie: część sieci z rdzeniem odpadła od systemu SI, więc SI może się tam przenieść (jak w Yogu)
 	for(var/datum/ai_os/split_os as anything in new_group_os)
