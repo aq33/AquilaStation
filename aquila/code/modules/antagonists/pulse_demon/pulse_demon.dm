@@ -187,7 +187,8 @@
 	// np. spawn przez admina poza kablem: bez tego demon zginąłby w pierwszym ticku
 	if(!current_power && !current_cable)
 		can_exit_cable = TRUE
-	else
+	// Na samym kablu demon zostaje na turfie - forceMove(null) wyrzucał go do nullspace
+	else if(current_power)
 		forceMove(current_power)
 		RegisterSignal(current_power, COMSIG_ATOM_EMP_ACT, PROC_REF(handle_emp), TRUE)
 	update_glow()

@@ -9580,6 +9580,10 @@
 "Dx" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"Dz" = (
+/obj/machinery/shipbreaker,
+/turf/open/floor/plasteel/dark/corner,
+/area/engine/engineering)
 "DC" = (
 /obj/structure/bot_elevator,
 /turf/open/floor/plasteel/dark/side{
@@ -11075,6 +11079,13 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/plasteel,
 /area/engine/storage)
+"Jy" = (
+/obj/item/radio/intercom/directional/south,
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 4
+	},
+/area/engine/engineering)
 "JA" = (
 /obj/structure/cable,
 /mob/living/simple_animal/bot/floorbot,
@@ -33942,9 +33953,9 @@ Bw
 Bw
 Bw
 Dx
-VY
+Dz
 EE
-OQ
+Jy
 IM
 IM
 IM

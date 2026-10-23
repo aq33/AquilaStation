@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(knpcs)
 
 /datum/component/knpc/Destroy(force, silent)
 	GLOB.knpcs -= src
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /datum/component/knpc/proc/pathfind_to(atom/target, turf/avoid)
@@ -304,12 +305,15 @@ GLOBAL_LIST_EMPTY(knpcs)
 ///Handles actioning on the goal every tick.
 /datum/component/knpc/process()
 	var/mob/living/carbon/human/ai_boarder/H = parent
-	if(H.stat == DEAD)
+	if(QDELETED(H) || H.stat == DEAD)
 		return PROCESS_KILL
 	if(world.time >= next_action)
 		next_action = world.time + H.action_delay
 		pick_goal()
 		current_goal?.action(src)
+		// Szukanie ścieżki usypia, a w tym czasie mob mógł zostać usunięty
+		if(QDELETED(src) || QDELETED(H))
+			return PROCESS_KILL
 	pathfind_timeout = max(0, pathfind_timeout - SSfastprocess.wait)
 	if(!H.can_resist())
 		if(H.incapacitated()) //In crit or something....
@@ -600,6 +604,8 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	var/dist = get_dist(H, target)
 	//We're holding a gun. See if we can shoot it....
 	HA.pathfind_to(target) //Walk up close and YEET SLAM
+	if(QDELETED(HA) || QDELETED(H)) //Pathfinding sleeps, we may have been deleted meanwhile
+		return
 	var/obj/item/gun/G = null
 	if(istype(A, /obj/item/gun))
 		G = A
