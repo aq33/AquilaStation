@@ -451,6 +451,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tcommsat/computer)
+"ba" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_x = -32
+	},
+/obj/machinery/light_switch/south,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -11158,19 +11174,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"JG" = (
-/obj/machinery/light/small,
-/obj/structure/cable,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Telecomms Admin";
-	departmentType = 5;
-	name = "Telecomms RC";
-	pixel_x = -32
-	},
-/obj/machinery/light_switch/south,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "JH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -41994,7 +41997,7 @@ Kp
 bX
 kb
 aZ
-JG
+ba
 ha
 dP
 BZ

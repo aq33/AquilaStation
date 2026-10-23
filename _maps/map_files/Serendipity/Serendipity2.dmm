@@ -476,6 +476,19 @@
 /obj/machinery/ai/data_core,
 /turf/open/floor/engine,
 /area/comms)
+"bl" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/monotile/steel,
+/area/comms)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
@@ -45679,7 +45692,7 @@ LZ
 PI
 pk
 ai
-Rg
+bl
 II
 Rc
 Pi

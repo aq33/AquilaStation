@@ -2509,6 +2509,13 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"fh" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "fj" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -40972,7 +40979,7 @@ KX
 NX
 Nl
 XX
-Gz
+fh
 nh
 DX
 BS

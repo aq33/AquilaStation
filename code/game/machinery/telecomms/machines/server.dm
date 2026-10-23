@@ -52,6 +52,12 @@
 	log.name = "data packet ([rustg_hash_string(RUSTG_HASH_MD5, identifier)])"
 	log_entries.Add(log)
 
+	// AQ EDIT START - NTSL, see aquila/code/modules/ntsl/server.dm
+	signal.data["server"] = src
+	if(Compiler && autoruncode)
+		Compiler.Run(signal)
+	// AQ EDIT END
+
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
