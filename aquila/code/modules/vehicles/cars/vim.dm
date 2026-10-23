@@ -29,7 +29,7 @@
 	max_integrity = 50
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "stamina" = 0, "bleed" = 0)
 	enter_delay = 20
-	movedelay = 0.6
+	movedelay = 1.5 // tg ma 0.6, u nas za szybko (bieg człowieka to RUN_DELAY 2)
 	engine_sound_length = 0.3 SECONDS
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 4
