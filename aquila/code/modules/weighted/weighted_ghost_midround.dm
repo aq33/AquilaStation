@@ -1,6 +1,6 @@
 // AQUILA - Weighted rotation: every 30-60 minutes ghosts are offered a midround antagonist,
 // as long as at least 75% of the crew is still alive. Every eligible antagonist has the same chance.
-// The heavy ones (slaughter demon, space dragon, blob, wizard, nuclear assault) are only offered in rounds from the high pool.
+// The heavy ones (slaughter demon, space dragon, blob, bingles, wizard, nuclear assault) are only offered in rounds from the high pool.
 // Blood worms are offered in rounds from the medium and high pools.
 // Regular random events keep running next to this.
 
@@ -65,6 +65,7 @@
 /// Ghost antagonist events offered only in rounds from the high pool
 /datum/weighted_ghost_midround/proc/heavy_events()
 	var/static/list/events = list(
+		/datum/round_event_control/bingle,
 		/datum/round_event_control/blob,
 		/datum/round_event_control/slaughter,
 		/datum/round_event_control/space_dragon,
