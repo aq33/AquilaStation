@@ -2509,6 +2509,66 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
+"fh" = (
+/obj/machinery/server_chiller,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
+"fi" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 32
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "Outer Core Door Control";
+	pixel_x = -22;
+	pixel_y = 23;
+	req_one_access_txt = "59"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "Inner Core Door Control";
+	pixel_x = -22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = -27;
+	pixel_y = -5
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = -27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = -27;
+	pixel_y = 7
+	},
+/obj/machinery/ai/data_core/primary,
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
 "fj" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -2526,6 +2586,12 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel/alt,
 /area/science/xenobiology)
+"fl" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/durasteel/techfloor,
+/area/ai_monitored/turret_protected/ai)
 "fm" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/item/storage/secure/safe/HoS{
@@ -2563,6 +2629,21 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+"fp" = (
+/obj/machinery/ai_slipper,
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/durasteel/techfloor,
+/area/ai_monitored/turret_protected/ai)
+"fq" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
 "fr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/bar{
@@ -2573,6 +2654,15 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/crew_quarters/fitness/recreation)
+"fs" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "ft" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/ship/brown{
@@ -2649,9 +2739,57 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/monotile/dark,
 /area/medical/surgery)
+"fA" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
+"fB" = (
+/obj/machinery/door/airlock/ship/hatch{
+	name = "Network Administration";
+	req_one_access_txt = "61;65"
+	},
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/tcommsat/server)
+"fC" = (
+/obj/structure/ethernet_cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
 "fD" = (
 /turf/closed/wall/steel,
 /area/medical/medbay/lobby)
+"fE" = (
+/obj/machinery/door/poddoor/ship/preopen{
+	dir = 8;
+	id = "inneraicore"
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/highsecurity/ship{
+	name = "Intelligence Core";
+	req_one_access_txt = "16"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
 "fF" = (
 /obj/structure/cable,
 /obj/structure/chair/office{
@@ -2659,6 +2797,17 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/bridge/cic)
+"fG" = (
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/light/small,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "fH" = (
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet/red,
@@ -2681,6 +2830,13 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/toilet)
+"fK" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
 "fL" = (
 /obj/machinery/turretid{
 	control_area = /area/ai_monitored/turret_protected/aisat;
@@ -2697,12 +2853,47 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/aisat)
+"fM" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/carpet/green,
+/area/ai_monitored/turret_protected/aisat)
+"fN" = (
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = -30
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/computer/ai_server_console{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "fO" = (
 /obj/structure/railing{
 	dir = 5
 	},
 /turf/open/openspace,
 /area/maintenance/nsv/deck1/starboard)
+"fP" = (
+/obj/structure/cable,
+/obj/machinery/ai/data_core,
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
 "fQ" = (
 /obj/machinery/door/airlock/ship/maintenance/defaultaccess,
 /obj/machinery/door/firedoor/border_only{
@@ -2740,6 +2931,32 @@
 /obj/item/plant_tray/pot/random,
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
+"fU" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
+"fV" = (
+/obj/structure/cable,
+/obj/machinery/ai_slipper,
+/mob/living/simple_animal/bot/secbot/pingsky,
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/carpet/green,
+/area/ai_monitored/turret_protected/aisat)
+"fW" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/carpet/green,
+/area/ai_monitored/turret_protected/aisat)
 "fX" = (
 /obj/structure/cable,
 /turf/open/floor/plating{
@@ -2762,12 +2979,45 @@
 	},
 /turf/open/floor/monotile/dark,
 /area/science/xenobiology)
+"ga" = (
+/obj/machinery/door/airlock/ship/hatch{
+	name = "Network Administration";
+	req_one_access_txt = "61;65;19"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/border_only,
+/obj/effect/landmark/zebra_interlock_point,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/aisat)
+"gb" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "gc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/durasteel/techfloor,
 /area/ai_monitored/turret_protected/aisat)
+"gd" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "ge" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -2817,6 +3067,16 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/crew_quarters/fitness/recreation)
+"gj" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "gk" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -2826,11 +3086,30 @@
 /obj/machinery/light/small,
 /turf/open/floor/durasteel/lino,
 /area/tcommsat/server)
+"gm" = (
+/obj/machinery/rack_creator,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "gn" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/openspace/airless,
 /area/space/nearstation)
+"go" = (
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "gp" = (
 /obj/structure/cable,
 /obj/machinery/duct,
@@ -2844,6 +3123,16 @@
 /obj/machinery/computer/ship/viewscreen,
 /turf/open/floor/monotile/steel,
 /area/science/xenobiology)
+"gs" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "gu" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/vault/ship{
@@ -39346,8 +39635,8 @@ xK
 xK
 xK
 pT
-eX
-fb
+fi
+fh
 nH
 nf
 pT
@@ -39604,7 +39893,7 @@ xK
 xK
 pT
 pT
-Mz
+fl
 Mz
 nH
 JJ
@@ -39861,7 +40150,7 @@ iN
 ut
 pT
 LP
-oC
+fp
 Mz
 eY
 lL
@@ -40112,13 +40401,13 @@ xz
 yb
 ef
 yb
-yJ
-sQ
-ju
-wb
+fC
+fB
+fA
+fs
 pT
 ac
-HS
+fq
 nH
 dt
 pT
@@ -40369,13 +40658,13 @@ St
 yb
 dJ
 yb
-ZO
+fK
 cs
 UH
-eF
+fG
 tp
 tp
-Ii
+fE
 lu
 lu
 jw
@@ -40625,14 +40914,14 @@ yb
 IL
 yb
 gZ
-KX
-eW
+fU
+fP
 Fb
 Gz
-eM
+fN
 tp
 yc
-DX
+fM
 fx
 tp
 Qy
@@ -40882,14 +41171,14 @@ yb
 FD
 yb
 oY
-KX
+gd
 NX
 Nl
 XX
-Gz
-nh
-DX
-BS
+gb
+ga
+fW
+fV
 DX
 gu
 wU
@@ -41136,10 +41425,10 @@ xK
 xK
 aw
 yb
-ez
-yb
-eB
-KX
+gs
+go
+gm
+gj
 Df
 Nl
 sE

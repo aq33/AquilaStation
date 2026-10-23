@@ -1,8 +1,7 @@
-///Assoc list of ["z_level"] = ai_os
-GLOBAL_LIST_EMPTY(ai_os)
 ///All server cabinets in the world
 GLOBAL_LIST_EMPTY(ai_server_cabinets)
 
+/// System zasobów SI. Jeden na grupę sieci ethernet połączonych nadajnikami (przydziela rebuild_ai_networks()).
 /datum/ai_os
 	var/name = "Zdecentralizowany System Zarządzania Zasobami (DRMS)"
 
@@ -18,24 +17,40 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 
 	var/list/mob/living/silicon/ai/ai_list = list()
 
-/datum/ai_os/New(obj/machinery/ai/creator)
-	update_list(creator)
+	///Sieci ethernet korzystające z tego systemu
+	var/list/datum/ai_network/networks = list()
 
-//Taken from gravity generator
-/datum/ai_os/proc/update_list(obj/machinery/ai/creator)
-	var/turf/creator_turf = get_turf(creator)
-	if(!creator_turf)
-		return
-	var/list/z_list = list()
-	// take multi-z into account.
-	if(is_station_level(creator_turf.z))
-		for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION))
-			z_list += z
-	else
-		z_list += creator_turf.z
+/datum/ai_os/Destroy()
+	for(var/mob/living/silicon/ai/AI as anything in ai_list.Copy())
+		remove_ai(AI)
+	for(var/datum/ai_network/net as anything in networks)
+		if(net.resources == src)
+			net.resources = null
+	networks.Cut()
+	return ..()
 
-	for(var/z in z_list)
-		GLOB.ai_os["[z]"] = src
+///Wszystkie maszyny SI danego typu we wszystkich sieciach systemu
+/datum/ai_os/proc/get_machines(machine_type = /obj/machinery/ai)
+	. = list()
+	for(var/datum/ai_network/net as anything in networks)
+		for(var/obj/machinery/ai/machine as anything in net.nodes)
+			if(istype(machine, machine_type))
+				. += machine
+
+///Rdzenie danych w sieciach systemu
+/datum/ai_os/proc/get_data_cores()
+	return get_machines(/obj/machinery/ai/data_core)
+
+///Rdzeń danych, do którego można teraz przenieść SI (główny ma pierwszeństwo)
+/datum/ai_os/proc/find_data_core(mob/living/silicon/ai/user)
+	RETURN_TYPE(/obj/machinery/ai/data_core)
+	var/list/cores = get_data_cores()
+	for(var/obj/machinery/ai/data_core/primary/core in cores)
+		if(!QDELETED(core) && core.can_transfer_ai(user, TRUE))
+			return core
+	for(var/obj/machinery/ai/data_core/core as anything in cores)
+		if(!QDELETED(core) && core.can_transfer_ai(user, TRUE))
+			return core
 
 /datum/ai_os/proc/add_ai(mob/living/silicon/ai/AI)
 	if(AI in ai_list)
@@ -70,9 +85,7 @@ GLOBAL_LIST_EMPTY(ai_server_cabinets)
 	previous_ram = total_ram
 	total_ram = 0
 	total_cpu = 0
-	for(var/obj/machinery/ai/server_cabinet/C as anything in GLOB.ai_server_cabinets)
-		if(C.linked_os != src)
-			continue
+	for(var/obj/machinery/ai/server_cabinet/C as anything in get_machines(/obj/machinery/ai/server_cabinet))
 		// Szafa w okresie karencji (was_valid_holder, valid_ticks > 0) nadal się liczy
 		if(!C.roundstart && !C.valid_holder() && !(C.was_valid_holder && C.valid_ticks > 0))
 			continue

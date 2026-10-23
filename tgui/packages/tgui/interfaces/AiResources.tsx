@@ -23,6 +23,7 @@ type Data = {
   username: string;
   has_access: BooleanLike;
   human_only: BooleanLike;
+  has_network: BooleanLike;
   ais: AiData[];
 };
 
@@ -48,6 +49,7 @@ export const AiResources = (props) => {
     username,
     has_access,
     human_only,
+    has_network,
     ais = [],
   } = data;
 
@@ -63,6 +65,14 @@ export const AiResources = (props) => {
       <Window.Content>
         {(!!authenticated && (
           <Stack vertical fill>
+            {!has_network && (
+              <Stack.Item>
+                <NoticeBox danger>
+                  Brak połączenia z siecią SI. Konsola musi stać na kablu
+                  sieciowym.
+                </NoticeBox>
+              </Stack.Item>
+            )}
             <Stack.Item>
               <Section
                 title="Wolne CPU w chmurze"

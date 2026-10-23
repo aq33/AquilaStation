@@ -49,8 +49,8 @@
 	if(!authenticated)
 		return data
 
-	var/turf/computer_turf = get_turf(src)
-	var/datum/ai_os/os_using = GLOB.ai_os["[computer_turf.z]"]
+	var/datum/ai_os/os_using = get_ai_os_at(src)
+	data["has_network"] = !!os_using
 	data["total_cpu"] = os_using?.total_cpu || 0
 	data["total_ram"] = os_using?.total_ram || 0
 
@@ -61,14 +61,13 @@
 
 	data["ais"] = list()
 
-	for(var/obj/machinery/ai/data_core/data_core as anything in GLOB.data_cores["[computer_turf.z]"])
-		for(var/mob/living/silicon/ai/A in data_core.contents)
-			data["ais"] += list(list(
-				"name" = A.name,
-				"ref" = REF(A),
-				"assigned_cpu" = os_using?.cpu_assigned[A] || 0,
-				"assigned_ram" = os_using?.ram_assigned[A] || 0,
-			))
+	for(var/mob/living/silicon/ai/A as anything in os_using?.ai_list)
+		data["ais"] += list(list(
+			"name" = A.name,
+			"ref" = REF(A),
+			"assigned_cpu" = os_using.cpu_assigned[A] || 0,
+			"assigned_ram" = os_using.ram_assigned[A] || 0,
+		))
 
 	return data
 
@@ -88,8 +87,7 @@
 		return
 
 	var/is_human = ishuman(user)
-	var/turf/computer_turf = get_turf(src)
-	var/datum/ai_os/os_using = GLOB.ai_os["[computer_turf.z]"]
+	var/datum/ai_os/os_using = get_ai_os_at(src)
 	if(!os_using && action != "log_out")
 		return
 

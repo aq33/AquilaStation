@@ -35,17 +35,16 @@ GLOBAL_LIST_EMPTY(data_cores)
 	RefreshParts()
 
 /obj/machinery/ai/data_core/Destroy()
-	var/turf/our_turf = get_turf(src)
-	var/our_z = our_turf?.z
 	update_list(TRUE)
 
 	for(var/mob/living/silicon/ai/AI in contents)
 		if(!AI.is_dying)
 			AI.relocate()
 
-	//Other AIs on this level will get alerted
-	for(var/obj/machinery/ai/data_core/other_data_cores as anything in GLOB.data_cores["[our_z]"])
-		for(var/mob/living/silicon/ai/AI in other_data_cores.contents)
+	//Other AIs in this network will get alerted
+	var/datum/ai_os/our_os = get_os()
+	if(our_os)
+		for(var/mob/living/silicon/ai/AI as anything in our_os.ai_list)
 			if(!AI.mind && AI.deployed_shell?.mind)
 				to_chat(AI.deployed_shell, span_userdanger("Uwaga! Rdzeń danych w [get_area_name(src, TRUE)] przestał działać! Sprawdź, czy to nie sabotaż."))
 			else
@@ -73,17 +72,10 @@ GLOBAL_LIST_EMPTY(data_cores)
 			LAZYOR(GLOB.data_cores["[z]"], src)
 
 /obj/machinery/ai/data_core/onTransitZ(old_z, new_z)
-	var/datum/ai_os/old_os = GLOB.ai_os["[old_z]"]
 	for(var/z in GLOB.data_cores)
 		LAZYREMOVE(GLOB.data_cores[z], src)
 	. = ..()
 	update_list()
-	//z-level is the same system, ignore us.
-	if(old_os == linked_os)
-		return
-	for(var/mob/living/silicon/ai/ai_contents in contents)
-		old_os?.remove_ai(ai_contents)
-		linked_os?.add_ai(ai_contents)
 
 /obj/machinery/ai/data_core/JoinPlayerHere(mob/M, buckle)
 	return
@@ -119,7 +111,7 @@ GLOBAL_LIST_EMPTY(data_cores)
 		. += span_notice("Brakuje w nim <b>baterii zapasowej</b>.")
 	else
 		. += span_notice("Bateria zapasowa: [round(integrated_battery.percent())]%.")
-	. += span_notice("Temperatura rdzenia: <b>[round(core_temp, 0.1)] K</b> (limit [linked_os ? linked_os.get_temp_limit() : AI_TEMP_LIMIT] K).")
+	. += span_notice("Temperatura rdzenia: <b>[round(core_temp, 0.1)] K</b> (limit [get_os()?.get_temp_limit() || AI_TEMP_LIMIT] K).")
 
 	var/list/ai_names = list()
 	for(var/mob/living/silicon/ai/AI in contents)
@@ -208,9 +200,15 @@ GLOBAL_LIST_EMPTY(data_cores)
 
 /obj/machinery/ai/data_core/proc/valid_data_core(mob/living/silicon/ai/user, ignore_z_levels = FALSE)
 	if(!ignore_z_levels && user)
-		var/turf/user_turf = get_turf(user)
-		if(!user_turf || !(src in GLOB.data_cores["[user_turf.z]"]))
-			return FALSE
+		// SI w sieci przenosi się tylko w obrębie swojej sieci, SI spoza sieci (na kafelku) w obrębie poziomu
+		var/datum/ai_os/user_os = user.get_ai_os()
+		if(user_os)
+			if(get_os() != user_os)
+				return FALSE
+		else
+			var/turf/user_turf = get_turf(user)
+			if(!user_turf || !(src in GLOB.data_cores["[user_turf.z]"]))
+				return FALSE
 
 	return valid_ticks > 0
 
@@ -233,10 +231,10 @@ GLOBAL_LIST_EMPTY(data_cores)
 	if(!COOLDOWN_FINISHED(src, warning_cooldown))
 		return
 	COOLDOWN_START(src, warning_cooldown, AI_DATA_CORE_WARNING_COOLDOWN)
-	//Other AIs on this level will get alerted
-	var/turf/our_turf = get_turf(src)
-	for(var/obj/machinery/ai/data_core/other_data_cores as anything in GLOB.data_cores["[our_turf?.z]"])
-		for(var/mob/living/silicon/ai/AI in other_data_cores.contents)
+	//Other AIs in this network will get alerted
+	var/datum/ai_os/our_os = get_os()
+	if(our_os)
+		for(var/mob/living/silicon/ai/AI as anything in our_os.ai_list)
 			if(!AI.mind && AI.deployed_shell?.mind)
 				to_chat(AI.deployed_shell, span_userdanger("Rdzeń danych w [get_area_name(src, TRUE)] zaraz przestanie działać! Potrzebna natychmiastowa interwencja."))
 			else
@@ -283,9 +281,10 @@ GLOBAL_LIST_EMPTY(data_cores)
 		AI.eyeobj.setLoc(get_turf(src))
 	AI.last_used_data_core = src
 	update_icon()
-	if(old_os && old_os != linked_os)
+	var/datum/ai_os/new_os = get_os()
+	if(old_os && old_os != new_os)
 		old_os.remove_ai(AI)
-	linked_os?.add_ai(AI)
+	new_os?.add_ai(AI)
 	return .
 
 /obj/machinery/ai/data_core/update_icon_state()

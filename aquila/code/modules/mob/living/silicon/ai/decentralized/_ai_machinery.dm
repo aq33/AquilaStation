@@ -2,6 +2,7 @@
 
 #define AI_MACHINE_TOO_HOT "Za wysoka temperatura otoczenia"
 #define AI_MACHINE_NO_MOLES "Brak atmosfery w otoczeniu"
+#define AI_MACHINE_NO_NETWORK "Brak połączenia z siecią (kabel sieciowy pod maszyną)"
 
 /obj/machinery/ai
 	name = "You shouldn't see this!"
@@ -9,28 +10,38 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	density = TRUE
-	///Our linked ai_os
-	var/datum/ai_os/linked_os
+	///Sieć ethernet, do której maszyna jest podłączona kablem na swoim kafelku (ustawia rebuild_ai_networks())
+	var/datum/ai_network/network
 	///Temperature of the machine itself, this will share with air in the enviroment
 	var/core_temp = T0C - 80
 
 /obj/machinery/ai/Initialize(mapload)
 	. = ..()
 	SSair.start_processing_machine(src)
-	link_to_os()
+	GLOB.ai_machines += src
+	queue_ai_network_rebuild()
 
 /obj/machinery/ai/Destroy()
 	SSair.stop_processing_machine(src)
-	linked_os = null
+	GLOB.ai_machines -= src
+	network?.nodes -= src
+	network = null
+	queue_ai_network_rebuild()
 	return ..()
 
-/obj/machinery/ai/proc/link_to_os()
-	var/turf/our_turf = get_turf(src)
-	if(!our_turf)
-		return
-	linked_os = GLOB.ai_os["[our_turf.z]"]
-	if(!linked_os)
-		linked_os = new /datum/ai_os(src)
+///System zasobów sieci, do której jesteśmy podłączeni
+/obj/machinery/ai/proc/get_os()
+	RETURN_TYPE(/datum/ai_os)
+	flush_ai_network_rebuild()
+	return network?.resources
+
+/obj/machinery/ai/setAnchored(anchorvalue)
+	. = ..()
+	queue_ai_network_rebuild()
+
+/obj/machinery/ai/Moved(atom/OldLoc, Dir)
+	. = ..()
+	queue_ai_network_rebuild()
 
 //Cooling happens here
 /obj/machinery/ai/process_atmos()
@@ -53,10 +64,6 @@
 		T.air_update_turf()
 	return TRUE
 
-/obj/machinery/ai/onTransitZ(old_z, new_z)
-	. = ..()
-	link_to_os()
-
 /obj/machinery/ai/proc/valid_holder()
 	if(machine_stat & (BROKEN|EMPED) || !has_power())
 		return FALSE
@@ -70,8 +77,8 @@
 	var/total_moles = env.total_moles()
 	if(isspaceturf(T) || total_moles < 10)
 		return FALSE
-	var/datum/ai_os/os_using = GLOB.ai_os["[T.z]"]
-	if(!os_using || linked_os != os_using)
+	var/datum/ai_os/os_using = get_os()
+	if(!os_using)
 		return FALSE
 	if(core_temp > os_using.get_temp_limit())
 		return FALSE
@@ -92,9 +99,12 @@
 	if(isspaceturf(T) || total_moles < 10)
 		return AI_MACHINE_NO_MOLES
 
-	var/datum/ai_os/os_using = GLOB.ai_os["[T.z]"]
-	if(os_using && core_temp > os_using.get_temp_limit())
+	var/datum/ai_os/os_using = get_os()
+	if(!os_using)
+		return AI_MACHINE_NO_NETWORK
+	if(core_temp > os_using.get_temp_limit())
 		return AI_MACHINE_TOO_HOT
 
 #undef AI_MACHINE_TOO_HOT
 #undef AI_MACHINE_NO_MOLES
+#undef AI_MACHINE_NO_NETWORK

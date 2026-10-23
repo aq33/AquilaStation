@@ -12,6 +12,23 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ac" = (
+/obj/structure/cable/pink,
+/obj/structure/ethernet_cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/ai/networking{
+	label = "Rdzeń SI";
+	roundstart_connection = "Serwerownia SI"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
+"ad" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -74,6 +91,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"ak" = (
+/obj/machinery/ai/data_core/primary,
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/aisat_interior)
 "al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -50168,7 +50192,7 @@ OU
 bw
 ZT
 Rh
-Rh
+ac
 pF
 pF
 Te
@@ -50425,7 +50449,7 @@ do
 av
 do
 Ep
-Rq
+ad
 wq
 pF
 Te
@@ -50682,7 +50706,7 @@ wg
 wg
 wg
 Rq
-aB
+ak
 pF
 pF
 Te

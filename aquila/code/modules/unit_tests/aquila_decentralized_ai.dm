@@ -22,14 +22,18 @@
 	// Działająca konsola komunikacyjna, żeby usunięcie SI nie wezwało promu (autoEvac)
 	allocate(/obj/machinery/computer/communications, get_step(right, EAST))
 
+	// Rdzenie i szafa w jednej sieci kabli ethernet
+	for(var/turf/cable_turf in list(left, right, up))
+		allocate(/obj/structure/ethernet_cable, cable_turf)
+
 	var/obj/machinery/ai/data_core/primary/core = allocate(/obj/machinery/ai/data_core/primary, left)
 	core.integrated_battery = new /obj/item/stock_parts/cell/high(core)
 	var/obj/machinery/ai/data_core/backup = allocate(/obj/machinery/ai/data_core, right)
 	backup.integrated_battery = new /obj/item/stock_parts/cell/high(backup)
 	TEST_ASSERT(core in GLOB.data_cores["[left.z]"], "Data core did not register itself")
-	var/datum/ai_os/os = GLOB.ai_os["[left.z]"]
-	TEST_ASSERT(os, "No resource system for the test z-level")
-	TEST_ASSERT_EQUAL(core.linked_os, os, "Data core not linked to the resource system")
+	var/datum/ai_os/os = core.get_os()
+	TEST_ASSERT(os, "Data core on an ethernet cable has no resource system")
+	TEST_ASSERT_EQUAL(backup.get_os(), os, "Data cores on one cable network use different resource systems")
 
 	var/cpu_before = os.total_cpu
 	var/ram_before = os.total_ram

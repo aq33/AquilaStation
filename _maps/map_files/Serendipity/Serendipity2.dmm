@@ -476,12 +476,95 @@
 /obj/machinery/ai/data_core,
 /turf/open/floor/engine,
 /area/comms)
+"bl" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen{
+	anchored = 1
+	},
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
+"bm" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
 	},
 /turf/open/floor/carpet/ship/beige_carpet,
 /area/hallway/nsv/deck1/hallway)
+"bo" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/light/floor,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
+"bp" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only/directional/east,
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 8
+	},
+/obj/machinery/door/airlock/ship/engineering/glass{
+	name = "Engineering";
+	req_access_txt = "24;10";
+	req_one_access_txt = "19;20;56"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
+"bq" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"br" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bs" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4{
 	dir = 4
@@ -491,6 +574,91 @@
 	},
 /turf/closed/wall/r_wall/ship,
 /area/engine/atmos)
+"bu" = (
+/obj/structure/cable,
+/obj/machinery/light/floor,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bv" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bw" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/telecomms/bus/preset_two,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/red/telecomms,
+/area/comms)
+"bx" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/telecomms/processor/preset_two,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/red/telecomms,
+/area/comms)
+"by" = (
+/obj/machinery/ai/data_core,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bz" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/telecomms/processor/preset_four,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/red/telecomms,
+/area/comms)
+"bA" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/telecomms/bus/preset_four,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit/red/telecomms,
+/area/comms)
+"bB" = (
+/obj/machinery/light/floor,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bC" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bD" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/airalarm/server{
+	dir = 8;
+	pixel_x = 22
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/ai/networking{
+	label = "Serwerownia SI"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -45385,8 +45553,8 @@ PI
 Qx
 Vd
 gc
-bj
-Yd
+bm
+bl
 bQ
 jK
 ZE
@@ -45643,7 +45811,7 @@ pk
 ai
 Rg
 II
-Rc
+bo
 Pi
 Fs
 Tb
@@ -45900,7 +46068,7 @@ On
 On
 On
 On
-DE
+bp
 On
 lw
 WL
@@ -46157,7 +46325,7 @@ Wf
 Nm
 Jn
 TE
-LY
+bq
 Jr
 lw
 WL
@@ -46411,10 +46579,10 @@ bh
 Pr
 MZ
 Pc
-bi
-UP
-AF
-kw
+bv
+bu
+bs
+br
 cM
 lw
 Zs
@@ -46668,7 +46836,7 @@ Ey
 mJ
 MZ
 Cl
-Qa
+bw
 Jn
 OO
 gV
@@ -46925,7 +47093,7 @@ zy
 xT
 MZ
 YC
-Ee
+bx
 Jn
 Dw
 gV
@@ -47182,7 +47350,7 @@ qN
 rG
 MZ
 GH
-bk
+by
 yE
 bg
 gV
@@ -47439,7 +47607,7 @@ zk
 tN
 MZ
 xg
-lC
+bz
 Jn
 RL
 gV
@@ -47696,7 +47864,7 @@ JM
 yJ
 HE
 io
-cr
+bA
 Jn
 Rb
 gV
@@ -47953,8 +48121,8 @@ kA
 VA
 HE
 hD
-bc
-PA
+bC
+bB
 bd
 gV
 Fv
@@ -48211,7 +48379,7 @@ lv
 HE
 uG
 OJ
-Mp
+bD
 hW
 pU
 WD

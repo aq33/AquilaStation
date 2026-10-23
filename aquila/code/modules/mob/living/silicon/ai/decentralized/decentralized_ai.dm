@@ -63,16 +63,16 @@
 	else if(technically_unpowered)
 		ai_reactivate_power()
 
-///Returns the resource system for the z-level we live on (or the one of the core we left for a mech/shell)
+///Returns the resource system of the network our data core is in (or the core we left for a mech)
 /mob/living/silicon/ai/proc/get_ai_os()
-	var/turf/our_turf
-	if(controlled_mech && last_used_data_core)
-		our_turf = get_turf(last_used_data_core)
-	else
-		our_turf = get_turf(src)
-	if(!our_turf)
-		return null
-	return GLOB.ai_os["[our_turf.z]"]
+	RETURN_TYPE(/datum/ai_os)
+	var/obj/machinery/ai/data_core/core = loc
+	if(!istype(core))
+		if(!controlled_mech)
+			return null
+		core = last_used_data_core
+	// Bez QDELETED: rdzeń w Destroy() przenosi SI, zanim odłączy się od sieci
+	return core?.get_os()
 
 ///Returns TRUE if there is any data core in the system this AI lives in
 /mob/living/silicon/ai/proc/available_ai_cores()
@@ -82,6 +82,10 @@
 ///Returns a single AI core that is habitable to src
 /mob/living/silicon/ai/proc/find_valid_ai_core()
 	RETURN_TYPE(/obj/machinery/ai/data_core)
+	// SI w sieci szuka rdzenia tylko w swojej sieci
+	var/datum/ai_os/our_os = get_ai_os()
+	if(our_os)
+		return our_os.find_data_core(src)
 	var/turf/ai_turf = get_turf(src)
 	if(isnull(ai_turf))
 		return null

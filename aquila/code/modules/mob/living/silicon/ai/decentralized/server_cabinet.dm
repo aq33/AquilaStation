@@ -37,23 +37,14 @@
 	. = ..()
 	GLOB.ai_server_cabinets += src
 	roundstart = mapload
-	linked_os?.update_hardware()
 	RefreshParts()
 	update_icon()
 
 /obj/machinery/ai/server_cabinet/Destroy()
 	GLOB.ai_server_cabinets -= src
 	QDEL_LIST(installed_racks)
-	//Recalculate all the CPUs and RAM :)
-	var/datum/ai_os/old_os = linked_os
-	. = ..()
-	old_os?.update_hardware()
-
-/obj/machinery/ai/server_cabinet/onTransitZ(old_z, new_z)
-	var/datum/ai_os/old_os = GLOB.ai_os["[old_z]"]
-	. = ..()
-	old_os?.update_hardware()
-	linked_os?.update_hardware()
+	//Recalculate all the CPUs and RAM :) (rebuild_ai_networks() przelicza też sprzęt)
+	return ..()
 
 /obj/machinery/ai/server_cabinet/RefreshParts()
 	var/new_heat_mod = 1
@@ -79,7 +70,7 @@
 	. += span_notice("Zamontowane racki: [length(installed_racks)] z [max_racks].")
 	. += span_notice("Mnożnik poboru mocy: <b>[power_modifier * 100]%</b>")
 	. += span_notice("Mnożnik wydzielania ciepła: <b>[heat_modifier * 100]%</b>")
-	. += span_notice("Temperatura: <b>[round(core_temp, 0.1)] K</b> (limit [linked_os ? linked_os.get_temp_limit() : AI_TEMP_LIMIT] K).")
+	. += span_notice("Temperatura: <b>[round(core_temp, 0.1)] K</b> (limit [get_os()?.get_temp_limit() || AI_TEMP_LIMIT] K).")
 
 	for(var/obj/item/server_rack/R as anything in installed_racks)
 		. += span_notice("Rack: [R.get_cpu()] THz CPU, [R.get_ram()] TB RAM, pobór [R.get_power_usage()] W.")
@@ -96,7 +87,7 @@
 		was_valid_holder = TRUE
 
 		if(!hardware_synced)
-			linked_os?.update_hardware()
+			get_os()?.update_hardware()
 			hardware_synced = TRUE
 	else
 		valid_ticks--
@@ -106,7 +97,7 @@
 			was_valid_holder = FALSE
 			update_icon()
 			hardware_synced = FALSE
-			linked_os?.update_hardware()
+			get_os()?.update_hardware()
 
 /obj/machinery/ai/server_cabinet/process_atmos()
 	. = ..()
@@ -185,7 +176,7 @@
 	total_cpu += new_rack.get_cpu()
 	total_ram += new_rack.get_ram()
 	cached_power_usage += new_rack.get_power_usage()
-	linked_os?.update_hardware()
+	get_os()?.update_hardware()
 	use_power = ACTIVE_POWER_USE
 	update_icon()
 	return TRUE
@@ -201,7 +192,7 @@
 	total_ram = 0
 	cached_power_usage = 0
 	roundstart = FALSE
-	linked_os?.update_hardware()
+	get_os()?.update_hardware()
 	if(user)
 		balloon_alert(user, "racki wyjęte")
 	use_power = IDLE_POWER_USE
