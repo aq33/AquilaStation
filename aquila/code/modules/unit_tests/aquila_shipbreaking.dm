@@ -88,7 +88,9 @@
 		if(length(GLOB.asteroid_spawn_markers))
 			return "The map has a magnet cage, but no magnet console linked to it and to the ship"
 		return // mapa bez klatki
-	var/area/old_area = get_area(magnet.target_location)
+	var/list/areas_before = list()
+	for(var/turf/T as anything in magnet.get_cage_turfs())
+		areas_before[T] = T.loc
 	var/obj/structure/overmap/asteroid/shipbreak_wreck/wreck = new(get_turf(magnet.linked))
 	magnet.cooldown = FALSE
 	if(!magnet.pull_in_wreck(null, wreck))
@@ -112,8 +114,8 @@
 			return "Cage turf [T.x],[T.y] stayed in the shipbreaking area after the push"
 		if(!isspaceturf(T))
 			return "Cage turf [T.x],[T.y] is [T.type] after the push"
-	if(get_area(magnet.target_location) != old_area)
-		return "Cage area changed from [old_area] to [get_area(magnet.target_location)]"
+		if(T.loc != areas_before[T])
+			return "Cage turf [T.x],[T.y] went back to [T.loc] instead of [areas_before[T]]"
 
 /// Spawarka Rayne tnie ścianę wraku aż do próżni (ściana, dźwigar, poszycie) i rozbiera silnik na rdzeń
 /datum/unit_test/shipbreaking/proc/check_rayne_cutting(obj/machinery/computer/ship/mineral_magnet/magnet)

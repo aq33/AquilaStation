@@ -8,13 +8,13 @@
 	var/datum/map_template/shipbreaker/current_wreck
 	/// Pola wraku, które przy załadowaniu nie były kosmosem (do liczenia, ile zostało)
 	var/list/wreck_turfs
-	/// Obszar klatki sprzed załadowania wraku, przywracany przy wypchnięciu
-	var/area/cage_area
+	/// Obszary pól klatki sprzed załadowania wraku (pole => obszar), przywracane przy wypchnięciu
+	var/list/cage_areas
 
 /obj/machinery/computer/ship/mineral_magnet/Destroy()
 	current_wreck = null
 	wreck_turfs = null
-	cage_area = null
+	cage_areas = null
 	return ..()
 
 /// Wszystkie pola klatki magnesu
@@ -53,12 +53,16 @@
 /obj/machinery/computer/ship/mineral_magnet/proc/load_wreck()
 	if(!current_wreck || !target_location)
 		return FALSE
-	cage_area = get_area(target_location)
+	// Klatka może mieć pola z różnych obszarów (kosmos i okolica statku), każde wraca do swojego
+	cage_areas = list()
+	for(var/turf/T as anything in get_cage_turfs())
+		cage_areas[T] = T.loc
 	var/turf/origin = locate(target_location.x + round((MAGNET_CAGE_SIZE - current_wreck.width) / 2), target_location.y + round((MAGNET_CAGE_SIZE - current_wreck.height) / 2), target_location.z)
 	var/list/bounds = current_wreck.load(origin)
 	if(!bounds)
 		message_admins("Magnes [ADMIN_VERBOSEJMP(src)] nie załadował wraku [current_wreck.mappath]")
 		current_wreck = null
+		cage_areas = null
 		return FALSE
 	wreck_turfs = list()
 	for(var/turf/T as anything in current_wreck.get_affected_turfs(origin))
@@ -92,12 +96,13 @@
 			if(!ismob(A) && !istype(A, /obj/effect/landmark/asteroid_spawn))
 				qdel(A)
 		T.ChangeTurf(turf_type)
-		if(cage_area && T.loc == shipbreak_area)
+		var/area/old_area = cage_areas?[T]
+		if(old_area && T.loc == shipbreak_area)
 			shipbreak_area.contents -= T
-			cage_area.contents += T
-			T.change_area(shipbreak_area, cage_area)
+			old_area.contents += T
+			T.change_area(shipbreak_area, old_area)
 	current_wreck = null
 	wreck_turfs = null
-	cage_area = null
+	cage_areas = null
 
 #undef MAGNET_CAGE_SIZE

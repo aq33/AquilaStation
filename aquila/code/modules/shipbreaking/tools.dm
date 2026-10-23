@@ -83,7 +83,9 @@
 	user.visible_message("<span class='notice'>[user] tnie [target] spawarką laserową.</span>",
 		"<span class='notice'>Zaczynasz ciąć [target]...</span>",
 		"<span class='italics'>Słyszysz syk lasera.</span>")
-	if(!use_tool(target, user, get_cut_time(target), 1, 50) || QDELETED(target) || !is_shipbreak_area(target))
+	// do_after nie przerywa cięcia, gdy turf zostanie w tym czasie podmieniony (np. drugie cięcie tej samej podłogi)
+	var/target_type = target.type
+	if(!use_tool(target, user, get_cut_time(target), 1, 50) || QDELETED(target) || target.type != target_type || !is_shipbreak_area(target))
 		return
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/wall = target
