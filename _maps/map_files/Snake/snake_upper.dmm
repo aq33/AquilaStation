@@ -866,6 +866,58 @@
 	},
 /turf/open/floor/plating,
 /area/science/test_area)
+"cf" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = 27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = 27;
+	pixel_y = 7
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = 27;
+	pixel_y = -5
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "AI Core Door Control";
+	pixel_x = 22;
+	pixel_y = -32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 10;
+	pixel_y = -25
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "AI Upload Door Control";
+	pixel_x = 22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/effect/landmark/start/ai/secondary,
+/obj/machinery/ai_core_display,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
 "cg" = (
 /obj/machinery/light{
 	dir = 8
@@ -4576,15 +4628,87 @@
 /obj/machinery/slime_compressor,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"kX" = (
+/obj/machinery/computer/ai_control_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
+"kY" = (
+/obj/machinery/computer/ai_server_console{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
+"kZ" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = 27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = 27;
+	pixel_y = 7
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = 27;
+	pixel_y = -5
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "AI Core Door Control";
+	pixel_x = 22;
+	pixel_y = -32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 10;
+	pixel_y = -25
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "AI Upload Door Control";
+	pixel_x = 22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/effect/landmark/start/ai/secondary,
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
 "la" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
+"lb" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "lc" = (
 /turf/closed/wall/r_wall,
 /area/quartermaster/storage)
+"ld" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -4598,6 +4722,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/aft)
+"lf" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
+"lg" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
 "li" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -6340,6 +6472,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
+"wM" = (
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
 "wP" = (
 /obj/effect/turf_decal/tile/ship/police{
 	dir = 4
@@ -6873,6 +7009,14 @@
 /obj/effect/landmark/start/research_director,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
+"AI" = (
+/obj/machinery/netpod,
+/obj/effect/turf_decal/box,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
+	},
+/turf/open/floor/circuit/green,
+/area/quartermaster/bitrunning/den)
 "AN" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -7632,6 +7776,19 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"FK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/machinery/light/small,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/maintenance/fore)
 "FO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -7775,6 +7932,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"GK" = (
+/obj/machinery/firealarm/directional/south,
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
 "GP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -8918,6 +9080,10 @@
 /obj/structure/hull_plate,
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"Ng" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
 "Nh" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -8990,6 +9156,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/engine)
+"Ny" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/trash_pile,
+/turf/open/floor/plasteel/dark,
+/area/maintenance/aft)
 "NA" = (
 /obj/machinery/porta_turret/ai,
 /obj/machinery/light_switch/north,
@@ -9171,6 +9351,10 @@
 	dir = 1
 	},
 /area/ai_monitored/storage/eva)
+"Oj" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/department/science)
 "Ok" = (
 /obj/structure/chair/fancy{
 	color = "#00ffff";
@@ -9541,6 +9725,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/central)
+"QH" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "QL" = (
 /obj/effect/turf_decal/tile/ship/purple{
 	dir = 1
@@ -10043,6 +10231,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/nsv/hanger/notkmcstupidhanger)
+"TN" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/central)
 "TO" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/machinery/keycard_auth{
@@ -10178,6 +10370,11 @@
 /obj/effect/turf_decal/tile/ship/purple,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"Vg" = (
+/obj/structure/cable/yellow,
+/obj/structure/trash_pile,
+/turf/open/floor/monotile/dark,
+/area/maintenance/department/engine)
 "Vl" = (
 /obj/machinery/light_switch/south,
 /turf/open/floor/monotile/dark,
@@ -11042,6 +11239,22 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
+"ZB" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/machinery/door/window/eastright{
+	dir = 1;
+	name = "Cargo Desk";
+	req_access_txt = "31"
+	},
+/obj/structure/desk_bell/departmental/supply,
+/turf/open/floor/plasteel,
+/area/quartermaster/storage)
 "ZF" = (
 /obj/item/transfer_valve{
 	pixel_x = -5
@@ -32078,14 +32291,14 @@ zQ
 BN
 BN
 os
-Fy
+Vg
 Fy
 Fy
 EG
 EG
 aV
 BN
-gM
+Ng
 Vo
 KE
 vW
@@ -33619,13 +33832,13 @@ zQ
 zQ
 BN
 BN
-EG
+wM
 EG
 nk
 Wi
 EG
 EG
-Sn
+GK
 BN
 bi
 Vo
@@ -33638,7 +33851,7 @@ lW
 qP
 vW
 xV
-TW
+Oj
 JY
 zQ
 zQ
@@ -34145,7 +34358,7 @@ bB
 Vo
 tf
 BN
-gM
+Ng
 gM
 bB
 gM
@@ -36197,7 +36410,7 @@ Rm
 Rm
 Rm
 BN
-gM
+Ng
 gM
 KE
 BN
@@ -36205,7 +36418,7 @@ bB
 gM
 bB
 gM
-gM
+Ng
 BN
 jl
 TW
@@ -39026,7 +39239,7 @@ Qx
 Qx
 dY
 af
-DZ
+Ny
 aM
 kA
 ZQ
@@ -39276,7 +39489,7 @@ YO
 rt
 vh
 Qb
-qz
+QH
 qz
 bN
 oS
@@ -42358,7 +42571,7 @@ zQ
 aT
 qz
 Qx
-qz
+QH
 qz
 qz
 qz
@@ -44680,7 +44893,7 @@ tM
 gp
 sk
 lE
-sk
+TN
 Ga
 yb
 Bu
@@ -46215,7 +46428,7 @@ gz
 ks
 sk
 sk
-sk
+TN
 gm
 Be
 Xh
@@ -49055,7 +49268,7 @@ jM
 jR
 jY
 jH
-kg
+AI
 kl
 ko
 kw
@@ -55979,7 +56192,7 @@ zQ
 kp
 kp
 BC
-JK
+lg
 HD
 MR
 pb
@@ -56235,9 +56448,9 @@ zQ
 zQ
 kp
 kp
-sw
+lf
 kp
-Vn
+kZ
 kp
 CB
 Gf
@@ -56508,7 +56721,7 @@ se
 XN
 Iq
 tO
-YT
+kX
 Lu
 XN
 qM
@@ -57022,7 +57235,7 @@ se
 XN
 mh
 XD
-YT
+kY
 Im
 XN
 qM
@@ -58555,7 +58768,7 @@ DU
 DU
 DU
 Da
-EM
+ZB
 Oz
 NF
 jb
@@ -60614,7 +60827,7 @@ yU
 lc
 Sr
 YM
-wS
+FK
 Fq
 MG
 ar

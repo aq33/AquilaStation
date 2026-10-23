@@ -132,6 +132,12 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+// AQ EDIT START - zdecentralizowane AI (Monkestation/Monkestation2.0#11862): AI siedzi w data core zamiast na kafelku
+#define isaicore(A) (istype(A, /obj/machinery/ai/data_core))
+
+#define isvalidAIloc(A) (isturf(A) || isaicore(A))
+// AQ EDIT END
+
 #define ispAI(A) (istype(A, /mob/living/silicon/pai))
 
 //Simple animals

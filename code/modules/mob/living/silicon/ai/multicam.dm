@@ -222,7 +222,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 		start_multicam()
 
 /mob/living/silicon/ai/proc/start_multicam()
-	if(multicam_on || aiRestorePowerRoutine || !isturf(loc))
+	if(multicam_on || aiRestorePowerRoutine || !isvalidAIloc(loc)) // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 		return
 	if(!GLOB.ai_camera_room_landmark)
 		to_chat(src, "<span class='warning'>Ta funkcja jest obecnie niedostępna.</span>")

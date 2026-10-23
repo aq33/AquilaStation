@@ -87,6 +87,7 @@ const pointNames = {
   'Discovery Research': 'Badania odkrywcze',
   'Nanite Research': 'Badania nanitów',
   'Wormhole Research': 'Badania tuneli',
+  'AI Research': 'Badania SI',
 };
 
 const pointAbbreviations = {
@@ -94,6 +95,7 @@ const pointAbbreviations = {
   'Discovery Research': 'Odkrycia',
   'Nanite Research': 'Nanity',
   'Wormhole Research': 'Tunele',
+  'AI Research': 'SI',
 };
 
 export function pointName(type: string): string {

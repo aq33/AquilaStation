@@ -42,6 +42,7 @@ export type CommsConsoleData = {
   canLogOut: BooleanLike;
   canMakeAnnouncement: BooleanLike;
   canMessageAssociates: BooleanLike;
+  canPrintAIControlCode: BooleanLike;
   canRecallShuttles: BooleanLike;
   canRequestNuke: BooleanLike;
   // AQUILA: ERT i wybudzanie załogi z kriostazy

@@ -2170,6 +2170,18 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
 /area/medical/virology)
+"ey" = (
+/obj/structure/cable,
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
+"ez" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "eA" = (
 /obj/structure/curtain/obscuring/grey,
 /obj/structure/table/wood/fancy/red,
@@ -2178,6 +2190,13 @@
 /obj/machinery/door/firedoor/border_only/directional/north,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre/backstage)
+"eB" = (
+/obj/machinery/rack_creator,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "eC" = (
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
@@ -2194,6 +2213,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/science/xenobiology)
+"eF" = (
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/light/small,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "eG" = (
 /obj/effect/spawner/room/fivexthree,
 /turf/template_noop,
@@ -2240,6 +2267,23 @@
 /obj/item/extinguisher/advanced/hull_repair_juice,
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"eM" = (
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = -30
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/computer/ai_server_console{
+	dir = 1
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "eN" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -2266,6 +2310,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
+"eR" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/computer/ai_control_console{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
 "eS" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/wood,
@@ -2278,6 +2329,122 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
+"eU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/ai_overclocking{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
+"eV" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 32
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "Outer Core Door Control";
+	pixel_x = -22;
+	pixel_y = 23;
+	req_one_access_txt = "59"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "Inner Core Door Control";
+	pixel_x = -22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = -27;
+	pixel_y = -5
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = -27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = -27;
+	pixel_y = 7
+	},
+/obj/machinery/ai_core_display,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
+"eW" = (
+/obj/structure/cable,
+/obj/machinery/ai/data_core,
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
+"eX" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 32
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "Outer Core Door Control";
+	pixel_x = -22;
+	pixel_y = 23;
+	req_one_access_txt = "59"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "Inner Core Door Control";
+	pixel_x = -22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = -27;
+	pixel_y = -5
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = -27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = -27;
+	pixel_y = 7
+	},
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
+"eY" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
 "eZ" = (
 /obj/machinery/computer/robotics{
 	dir = 1
@@ -2296,6 +2463,10 @@
 	dir = 8
 	},
 /area/bridge/cic)
+"fb" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
 "fc" = (
 /obj/effect/turf_decal/tile/purple/tile_side{
 	dir = 8
@@ -3713,6 +3884,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
+"jL" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck1/port)
 "jM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -4389,6 +4564,34 @@
 	},
 /turf/open/floor/bronze,
 /area/ai_monitored/turret_protected/ai)
+"lM" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/ship/preopen{
+	dir = 4;
+	id = "atlas_xo"
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/effect/landmark/zebra_interlock_point,
+/obj/machinery/door/window/westright,
+/obj/machinery/door/window/eastleft{
+	req_one_access_txt = "57"
+	},
+/obj/structure/desk_bell/departmental/command/hop,
+/turf/open/floor/monotile/steel,
+/area/crew_quarters/heads/xo)
 "lN" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/trunk{
@@ -7794,6 +7997,10 @@
 /obj/item/banner/cargo,
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck1/port)
+"xJ" = (
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck1/starboard)
 "xK" = (
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
@@ -9331,6 +9538,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/monotile/steel,
 /area/crew_quarters/heads/hos)
+"CP" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/trash_pile,
+/turf/open/floor/durasteel/techfloor_grid,
+/area/maintenance/nsv/deck1/port)
 "CQ" = (
 /obj/effect/turf_decal/ship/letter{
 	icon_state = "Q"
@@ -9768,6 +9980,11 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/crew_quarters/fitness/recreation)
+"Eu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck1/starboard)
 "Ev" = (
 /obj/machinery/chem_dispenser,
 /obj/machinery/airalarm/directional/south,
@@ -13902,6 +14119,24 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/medical/medbay/lobby)
+"QV" = (
+/obj/structure/table/glass{
+	layer = 2.9;
+	pixel_y = 4;
+	pixel_x = 2
+	},
+/obj/machinery/computer/med_data/laptop{
+	pixel_y = 7;
+	pixel_x = 4;
+	dir = 4
+	},
+/obj/structure/window/spawner/west,
+/obj/structure/desk_bell/departmental/medical{
+	pixel_x = -8;
+	pixel_y = -7
+	},
+/turf/open/floor/durasteel/alt,
+/area/medical/medbay/lobby)
 "QX" = (
 /obj/structure/railing{
 	dir = 6
@@ -14263,6 +14498,11 @@
 "Sl" = (
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
+"So" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck1/port)
 "Sp" = (
 /obj/structure/closet/l3closet,
 /turf/open/floor/plating,
@@ -16315,6 +16555,18 @@
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/carpet/blue,
 /area/bridge/cic)
+"ZD" = (
+/obj/structure/bookcase{
+	name = "Forbidden Knowledge"
+	},
+/obj/machinery/computer/ship/viewscreen{
+	pixel_y = 32
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/black,
+/area/library)
 "ZH" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 1
@@ -16376,6 +16628,11 @@
 /obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/circuit/telecomms/server,
 /area/tcommsat/server)
+"ZP" = (
+/obj/effect/decal/cleanable/vomit/old,
+/obj/structure/trash_pile,
+/turf/open/floor/plating,
+/area/maintenance/nsv/deck1/starboard)
 "ZR" = (
 /obj/structure/railing{
 	dir = 8
@@ -39175,8 +39432,8 @@ xK
 xK
 xK
 pT
-lc
-nH
+eX
+fb
 nH
 nf
 pT
@@ -39692,7 +39949,7 @@ pT
 LP
 oC
 Mz
-nH
+eY
 lL
 pT
 zC
@@ -40201,7 +40458,7 @@ yb
 ZO
 cs
 UH
-gl
+eF
 tp
 tp
 Ii
@@ -40455,10 +40712,10 @@ IL
 yb
 gZ
 KX
-by
+eW
 Fb
 Gz
-kO
+eM
 tp
 yc
 DX
@@ -40965,18 +41222,18 @@ xK
 xK
 aw
 yb
+ez
 yb
-yb
-yb
+eB
 KX
 Df
 Nl
 sE
 qg
 tp
-xC
+eR
 bK
-JV
+eU
 tp
 Th
 CT
@@ -43299,7 +43556,7 @@ MS
 MS
 lf
 MS
-rV
+xJ
 LI
 FV
 MS
@@ -44563,7 +44820,7 @@ cI
 jI
 ee
 kz
-LL
+jL
 MR
 yx
 jk
@@ -45103,7 +45360,7 @@ Vp
 Cx
 MS
 lr
-rV
+xJ
 JH
 MS
 mK
@@ -48665,7 +48922,7 @@ qO
 qb
 HI
 Ir
-tb
+So
 al
 HI
 Np
@@ -49729,7 +49986,7 @@ fO
 MS
 KG
 Ej
-Ej
+Eu
 cN
 Zi
 EL
@@ -50249,7 +50506,7 @@ kR
 bP
 YW
 Ej
-LC
+ZP
 mt
 aa
 NU
@@ -50718,7 +50975,7 @@ Fd
 qa
 Is
 ss
-LL
+jL
 LL
 LL
 hV
@@ -52024,7 +52281,7 @@ Gm
 SH
 px
 qk
-Oz
+lM
 SH
 dX
 at
@@ -52772,7 +53029,7 @@ jv
 HI
 ok
 HW
-oy
+CP
 HG
 rc
 qR
@@ -53067,7 +53324,7 @@ fD
 kE
 zH
 IX
-QQ
+QV
 ib
 Wa
 IN
@@ -54316,7 +54573,7 @@ HI
 HI
 GX
 Tk
-sJ
+ZD
 pF
 SY
 bo

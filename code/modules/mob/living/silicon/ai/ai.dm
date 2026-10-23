@@ -310,7 +310,7 @@
 	var/list/tab_data = ..()
 	if(!stat)
 		tab_data["Integralność systemu"] = GENERATE_STAT_TEXT("[(health+100)/2]%")
-		if(isturf(loc)) //only show if we're "in" a core
+		if(isvalidAIloc(loc)) //only show if we're "in" a core // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 			tab_data["Zasilanie awaryjne"] = GENERATE_STAT_TEXT("[battery/2]%")
 		tab_data["Podłączone cyborgi"] = GENERATE_STAT_TEXT("[connected_robots.len]")
 		var/index = 0
@@ -634,7 +634,7 @@
 		if(!GLOB.cameranet.checkCameraVis(M))
 			to_chat(src, "<span class='warning'>Egzoszkielet nie jest już w zasięgu aktywnych kamer.</span>")
 			return
-		if(!isturf(loc))
+		if(!isvalidAIloc(loc)) // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 			to_chat(src, "<span class='warning'>Nie jesteś w swoim rdzeniu!</span>")
 			return
 		if(M)
@@ -1129,7 +1129,7 @@
 	return can_see(M) //stop AIs from leaving windows open and using then after they lose vision
 
 /mob/living/silicon/ai/proc/can_see(atom/A)
-	if(isturf(loc)) //AI in core, check if on cameras
+	if(isvalidAIloc(loc)) //AI in core, check if on cameras // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 		//get_turf_pixel() is because APCs in maint aren't actually in view of the inner camera
 		//apc_override is needed here because AIs use their own APC when depowered
 		return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || apc_override == A
@@ -1188,7 +1188,7 @@
 			client.eye = A
 		else
 			end_multicam()
-			if(isturf(loc))
+			if(isvalidAIloc(loc)) // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 				if(eyeobj)
 					client.eye = eyeobj
 					client.perspective = EYE_PERSPECTIVE
