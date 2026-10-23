@@ -172,6 +172,8 @@
 			refresh_servers()
 			return TRUE
 		if("log_in")
+			if(obj_flags & EMAGGED) // stays logged in as System Administrator
+				return TRUE
 			var/new_name
 			if(issilicon(user) || IsAdminGhost(user))
 				new_name = "System Administrator"
