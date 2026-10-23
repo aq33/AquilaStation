@@ -19,7 +19,7 @@
 			// messenging the client
 			malfhacked(malfhack)
 
-		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
+		if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc)) // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 			view_core()
 
 		if(machine)

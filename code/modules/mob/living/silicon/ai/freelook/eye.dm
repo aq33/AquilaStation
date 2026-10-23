@@ -75,7 +75,7 @@
 
 /mob/camera/ai_eye/proc/setLoc(destination, force_update = FALSE, dir, ai_mecha_override) //NSV13 - AI Custom Holographic Form || also AI mecha fixes - basically we need the fourth arg to ONLY allow the mecha AI movement and lock normal actions.
 	if(ai)
-		if(!isturf(ai.loc) && (!ismecha(ai.loc) || !ai_mecha_override)) //NSV13 - hacky ancient bugfixes (eye needs moving even if core is mech'd to update cam chunks).
+		if(!isvalidAIloc(ai.loc) && (!ismecha(ai.loc) || !ai_mecha_override)) //NSV13 - hacky ancient bugfixes (eye needs moving even if core is mech'd to update cam chunks). // AQ EDIT - isvalidAIloc (zdecentralizowane AI)
 			return
 		destination = get_turf(destination)
 		if(!force_update && (destination == get_turf(src)) )
@@ -187,7 +187,7 @@
 		ai_stop_tracking()
 	unset_machine()
 
-	if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
+	if(isvalidAIloc(loc) && (QDELETED(eyeobj) || !eyeobj.loc)) // AQ EDIT - zdecentralizowane AI: data core to też ważne miejsce dla AI
 		to_chat(src, "BŁĄD: nie znaleziono Eyeobj. Tworzenie nowego oka...")
 		create_eye()
 

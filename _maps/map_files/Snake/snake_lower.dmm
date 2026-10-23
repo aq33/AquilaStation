@@ -97,6 +97,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"al" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 1
+	},
+/obj/machinery/ai/data_core,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "am" = (
 /obj/machinery/door/airlock/ship/security/glass{
 	name = "Labor Shuttle Dock";
@@ -339,6 +346,14 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering/reactor_core)
+"aN" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "aO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -429,6 +444,29 @@
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"aZ" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"ba" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_x = -32
+	},
+/obj/machinery/light_switch/south,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -1560,13 +1598,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
-"dI" = (
-/obj/machinery/computer/telecomms/traffic{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "dJ" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -8873,6 +8904,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"AB" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "AG" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light_switch/north,
@@ -11135,19 +11170,6 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
-"JG" = (
-/obj/machinery/light/small,
-/obj/structure/cable,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Telecomms Admin";
-	departmentType = 5;
-	name = "Telecomms RC";
-	pixel_x = -32
-	},
-/obj/machinery/light_switch/south,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "JH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -41920,8 +41942,8 @@ dt
 Kp
 bX
 kb
-dI
-JG
+aZ
+ba
 ha
 dP
 BZ
@@ -46815,9 +46837,9 @@ Cn
 Ar
 kC
 oj
-DT
+al
 PE
-Ct
+aN
 oj
 aJ
 aJ
