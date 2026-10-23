@@ -32,6 +32,15 @@
 	if(T0 == src) //same turf
 		return TRUE
 
+	// AQUILA EDIT - obiekty wielokaflowe (bound_width/bound_height > 32): wystarczy sąsiedztwo z dowolnym zajmowanym kaflem
+	if(ismovable(neighbor) && isturf(neighbor.loc))
+		var/atom/movable/big = neighbor
+		if(length(big.locs) > 1)
+			for(var/turf/covered in big.locs)
+				if(covered != T0 && Adjacent(covered, target, mover, ignore_objects))
+					return TRUE
+	// AQUILA EDIT END
+
 	if(get_dist(src, T0) > 1 || z != T0.z) //too far
 		return FALSE
 

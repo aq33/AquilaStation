@@ -45,6 +45,7 @@ Bullet reactions
 				return BULLET_ACT_FORCE_PIERCE // :)
 			else
 				return FALSE //Shields absorbed the hit, so don't relay the projectile
+	forged_munition_overmap_hit(P, src) // AQUILA EDIT - kuźnia amunicji
 	P.spec_overmap_hit(src)
 	if(P.projectile_relaying_allowed)
 		var/relayed_type = P.relay_projectile_type ? P.relay_projectile_type : P.type
