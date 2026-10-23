@@ -112,7 +112,7 @@
 		to_chat(user, "<span class='warning'>[src] ma już butlę!</span>")
 		return
 	var/obj/item/tank/internals/tank_to_attach = I
-	if(tank_to_attach.return_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
+	if(!vim_tank_has_air(tank_to_attach))
 		to_chat(user, "<span class='warning'>W [tank_to_attach] jest za mało powietrza!</span>")
 		return
 	user.balloon_alert_to_viewers("podpina butlę...")
@@ -375,7 +375,7 @@
 		if(ASSEMBLY_SIXTH_STEP)
 			if(istype(part, /obj/item/tank/internals))
 				var/obj/item/tank/internals/new_tank = part
-				if(new_tank.return_air()?.return_pressure() <= HAZARD_LOW_PRESSURE)
+				if(!vim_tank_has_air(new_tank))
 					balloon_alert(user, "w butli jest za mało powietrza!")
 					return
 				if(!user.temporarilyRemoveItemFromInventory(part))
@@ -389,3 +389,8 @@
 
 #undef VIM_HEAL_AMOUNT
 #undef VIM_SOUND_COOLDOWN
+
+/// Does the tank hold enough air to keep a VIM pilot alive
+/proc/vim_tank_has_air(obj/item/tank/internals/tank)
+	var/datum/gas_mixture/air = tank?.return_air()
+	return air && air.return_pressure() > HAZARD_LOW_PRESSURE
