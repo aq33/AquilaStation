@@ -131,6 +131,10 @@ GLOBAL_LIST_EMPTY(knpcs)
 	var/obj/item/card/id/access_card = H.wear_id
 	if(target)
 		dest = get_turf(target)
+		// AQ EDIT - cel albo boarder w nullspace (np. przy resecie komory testowej) dawał runtime „Invalid A* start or destination”
+		if(!dest || !get_turf(H))
+			dest = null
+			return KNPC_PATHFIND_SKIP
 		path = get_path_to(H, dest, 120, 0, access_card, !(H.wear_suit?.clothing_flags & STOPSPRESSUREDAMAGE && H.head?.clothing_flags & STOPSPRESSUREDAMAGE), avoid)
 	//There's no valid path, try run against the wall.
 	if(!length(path) && !H.incapacitated())
