@@ -8,6 +8,8 @@ GLOBAL_DATUM(bingle_pit_reservation, /datum/turf_reservation)
 GLOBAL_LIST_EMPTY(bingle_pit_turfs)
 /// Wszystkie Doły w rundzie
 GLOBAL_LIST_EMPTY(bingle_holes)
+/// Czy wymiar Dołu właśnie się ładuje (ładowanie mapy usypia)
+GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 
 /area/centcom/bingle_pit
 	name = "Dół bingli"
@@ -64,6 +66,11 @@ GLOBAL_LIST_EMPTY(bingle_holes)
 /proc/create_bingle_pit_dimension()
 	if(GLOB.bingle_pit_reservation)
 		return
+	GLOB.bingle_pit_loading = TRUE
+	load_bingle_pit_dimension()
+	GLOB.bingle_pit_loading = FALSE
+
+/proc/load_bingle_pit_dimension()
 	var/datum/map_template/bingle_pit/template = new
 	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width, template.height)
 	if(!reservation)
@@ -282,6 +289,13 @@ GLOBAL_LIST_EMPTY(bingle_holes)
 	if(swallowed_mob)
 		swallowed_mob.notransform = FALSE
 	if(QDELETED(src))
+		return
+	// Inna rzecz właśnie ładuje wymiar, spadamy chwilę dłużej
+	if(GLOB.bingle_pit_loading)
+		if(swallowed_mob)
+			swallowed_mob.notransform = TRUE
+		falling[swallowed] = TRUE
+		addtimer(CALLBACK(src, PROC_REF(finish_swallow), swallowed), 1 SECONDS)
 		return
 	var/turf/bingle_pit_turf = get_random_bingle_pit_turf()
 	// Bez wymiaru połknięta rzecz zostaje tam, gdzie była, zamiast znikać
