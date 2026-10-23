@@ -61,7 +61,8 @@ export const DeathInfo = (props) => {
             </Way>
             <Way icon="stethoscope" name="Operacja Revival">
               chirurg z wyuczoną operacją (z badań) może cię ożywić nawet długo
-              po śmierci, jeśli masz mózg, a ciało nie jest wyschnięte.
+              po śmierci, jeśli masz mózg, ciało nie jest wyschnięte, nie
+              popełniłeś samobójstwa i nie sprzedałeś duszy diabłu.
             </Way>
             <Way icon="seedling" name="Strąk replikujący">
               botanik wstrzykuje twoją krew do nasion. Gdy owoc dojrzeje,
@@ -71,9 +72,9 @@ export const DeathInfo = (props) => {
               twój mózg można włożyć do cyborga, mecha albo rdzenia AI.
             </Way>
             <Way icon="skull" name="Antagoniści">
-              heretyk, darkspawn, wampir, krwawy robak czy bloodling mogą
-              podnieść twoje ciało, ale wtedy wracasz jako ich sługa albo
-              żywiciel.
+              heretyk może podnieść twoje ciało jako ghula, wtedy wracasz jako
+              jego sługa. Jeśli już byłeś thrallem darkspawna albo bloodlinga,
+              twój pan może cię wskrzesić.
             </Way>
           </Stack>
           <Box mt={1} color="label">
