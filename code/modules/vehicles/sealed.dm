@@ -2,6 +2,8 @@
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1
 	var/enter_delay = 20
 	var/mouse_pointer
+	/// AQ EDIT - czy pojazd wybucha przy zniszczeniu (VIM nie wybucha)
+	var/explode_on_destruction = TRUE
 
 /obj/vehicle/sealed/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -100,7 +102,8 @@
 
 /obj/vehicle/sealed/Destroy()
 	DumpMobs()
-	explosion(loc, 0, 1, 2, 3, 0)
+	if(explode_on_destruction) // AQ EDIT
+		explosion(loc, 0, 1, 2, 3, 0)
 	return ..()
 
 /obj/vehicle/sealed/proc/DumpMobs(randomstep = TRUE)
