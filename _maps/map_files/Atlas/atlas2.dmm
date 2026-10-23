@@ -2658,11 +2658,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
-"gl" = (
-/obj/machinery/firealarm/directional/south,
-/obj/machinery/light/small,
-/turf/open/floor/durasteel/lino,
-/area/tcommsat/server)
 "gn" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,

@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	var/msg = script_signal.get_clean_property("content", signal.data["message"])
 	if(isnum(msg))
 		msg = "[msg]"
-	else if(!msg)
+	else if(!msg || !istext(msg)) // AQ EDIT - a list or struct as content would break the radio code
 		msg = "*beep*"
 	signal.data["message"] = msg
 
@@ -487,7 +487,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	//First lets do some checks for bad input
 	if(isnum(message)) // Allows for setting $content to a number value
 		message = "[message]"
-	if((!message) && message != 0)
+	if(((!message) && message != 0) || !istext(message)) // AQ EDIT - text only
 		message = "*beep*"
 	if(!source)
 		source = "[html_encode(uppertext(S.id))]"

@@ -8873,10 +8873,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
-"AB" = (
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
 "AG" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light_switch/north,

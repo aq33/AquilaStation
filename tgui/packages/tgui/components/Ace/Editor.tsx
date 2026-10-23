@@ -9,7 +9,13 @@ import 'ace-builds/src-noconflict/ext-searchbox';
 import 'ace-builds/src-noconflict/ext-statusbar';
 
 import ace from 'ace-builds';
-import { type ComponentProps, useEffect, useRef, useState } from 'react';
+import {
+  type ComponentProps,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import type { Box } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { computeBoxClassName, computeBoxProps } from 'tgui-core/ui';
@@ -48,9 +54,11 @@ export function AceEditor(props: Props) {
   const debounceTimerRef = useRef<number | null>(null);
   // The editor is set up once, so its handlers read the latest props from refs
   const callbacksRef = useRef({ onChange, onCtrlS, onCtrlShiftB });
-  callbacksRef.current = { onChange, onCtrlS, onCtrlShiftB };
   const debounceTimeRef = useRef(debounceTime);
-  debounceTimeRef.current = debounceTime;
+  useLayoutEffect(() => {
+    callbacksRef.current = { onChange, onCtrlS, onCtrlShiftB };
+    debounceTimeRef.current = debounceTime;
+  });
 
   const lastSentValueRef = useRef('');
   const lastRemoteValueRef = useRef<string | undefined>(undefined);
