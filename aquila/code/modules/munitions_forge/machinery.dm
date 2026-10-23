@@ -317,10 +317,13 @@
 		if(amount)
 			. += "<span class='notice'> - [M.name]: [round(amount / MINERAL_MATERIAL_AMOUNT, 0.1)] arkuszy</span>"
 
+/// Monke daje piecowi światło ognia; u nas świeci tylko w trakcie pracy, a maska z ikony idzie na warstwę emissive
 /obj/machinery/munitions_forge/arc_forge/update_overlays()
 	. = ..()
-	if(operating && !(machine_stat & (NOPOWER|BROKEN)))
-		. += "arc_forge_emissive"
+	var/working = operating && !(machine_stat & (NOPOWER|BROKEN))
+	if(working)
+		. += emissive_appearance(icon, "arc_forge_emissive", alpha = src.alpha)
+	set_light(working ? 4 : 0, working ? 1.5 : 0, LIGHT_COLOR_FIRE)
 
 /obj/machinery/munitions_forge/arc_forge/power_change()
 	. = ..()
