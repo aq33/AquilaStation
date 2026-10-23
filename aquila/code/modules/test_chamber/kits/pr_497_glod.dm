@@ -3,7 +3,8 @@
 /datum/test_chamber_kit/pr_497
 	name = "PR 497: głód bez obrażeń"
 	pr = "aq33/AquilaStation#497"
-	description = "Człowiek jest wygłodzony, odwodniony i ma mało krwi. Przez minutę nie może tracić HP (wcześniej tracił 1-3 co kilka sekund). \
+	description = "Człowiek jest wygłodzony, odwodniony i ma mało krwi. Przez minutę nie mogą mu rosnąć obrażenia brute ani burn (wcześniej głód zadawał 1-3 co kilka sekund). \
+		Obrażenia oxy od małej ilości krwi są normalne. \
 		Analizatorem sprawdź krew: przy odwodnieniu nie przybywa. Napój go wodą ze zlewki - krew wraca powoli, po kanapkach szybciej."
 	items = list(
 		/mob/living/carbon/human = 1,
