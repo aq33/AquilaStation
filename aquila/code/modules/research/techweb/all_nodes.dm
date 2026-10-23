@@ -226,9 +226,9 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 5000
 
-/datum/techweb_node/bluespace_basic/New() // maszyna do plortów obok konsoli xenobio
+/datum/techweb_node/bluespace_basic/New() // rynek szlamów, pad zamówień i kompresor obok konsoli xenobio
 	. = ..()
-	design_ids += "plort"
+	design_ids += list("slime_market_pad", "slime_market", "slime_extract_requestor", "slime_compressor")
 
 /datum/techweb_node/mech_missile_rack
 	id = "mech_missile_rack"

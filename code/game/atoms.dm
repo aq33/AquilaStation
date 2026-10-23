@@ -262,9 +262,10 @@
 	// AQ EDIT END
 
 	if(alternate_appearances)
-		for(var/current_alternate_appearance in alternate_appearances)
-			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = alternate_appearances[current_alternate_appearance]
-			selected_alternate_appearance.remove_from_hud(src)
+		// AQUILA - kopia, bo remove_from_hud zdejmuje wpis (a ostatni zeruje całą listę) w trakcie pętli
+		for(var/current_alternate_appearance in alternate_appearances.Copy())
+			var/datum/atom_hud/alternate_appearance/selected_alternate_appearance = LAZYACCESS(alternate_appearances, current_alternate_appearance)
+			selected_alternate_appearance?.remove_from_hud(src)
 
 	if(reagents)
 		QDEL_NULL(reagents)
@@ -1648,9 +1649,11 @@
   * Causes effects when the atom gets hit by a rust effect from heretics
   *
   * Override this if you want custom behaviour in whatever gets hit by the rust
+  * /turf/rust_turf should be used instead for overriding rust on turfs
+  * rust_strength (optional) - if you want to vary the effect based on the users' strength
   */
-/atom/proc/rust_heretic_act()
-	return
+/atom/proc/rust_heretic_act(rust_strength) // AQUILA - siła rdzy z tg
+	return FALSE
 
 /**
   * Used to set something as 'open' if it's being used as a supplypod

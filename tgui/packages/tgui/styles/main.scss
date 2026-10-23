@@ -64,6 +64,7 @@
 @include meta.load-css('./interfaces/Techweb.scss');
 @include meta.load-css('./interfaces/Uplink.scss');
 @include meta.load-css('./interfaces/WallCloset.scss');
+@include meta.load-css('./interfaces/AntagInfoHeretic.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');

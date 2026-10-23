@@ -444,6 +444,13 @@
 /obj/item/storage/lockbox/medal,
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"aZ" = (
+/obj/machinery/light,
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/hallway/primary/aft)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -47450,7 +47457,7 @@ WW
 XD
 lg
 rJ
-nG
+aZ
 de
 ex
 yn
