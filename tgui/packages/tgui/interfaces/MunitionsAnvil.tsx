@@ -150,7 +150,7 @@ export const MunitionsAnvil = (props) => {
   const usedKeys = Array.from(new Set(notes.map((note) => note.key)));
 
   return (
-    <Window width={500} height={290} title="Kowadło">
+    <Window width={500} height={320} title="Kowadło">
       <Window.Content>
         <Section title={`${part} (cel: klasa ${target_class})`}>
           <Box
@@ -158,7 +158,12 @@ export const MunitionsAnvil = (props) => {
             width={`${LANE_WIDTH}px`}
             height="64px"
             backgroundColor="#1d1d22"
-            style={{ overflow: 'hidden', borderRadius: '4px' }}
+            style={{
+              overflow: 'hidden',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+            onMouseDown={() => press('space')}
           >
             <Box
               position="absolute"
@@ -194,9 +199,9 @@ export const MunitionsAnvil = (props) => {
                   backgroundColor={
                     state === false ? '#555' : KEY_COLORS[note.key]
                   }
-                  style={{ borderRadius: '6px', fontSize: '11px' }}
+                  style={{ borderRadius: '6px', fontSize: '10px' }}
                 >
-                  {note.key === 'space' ? '␣' : note.key.toUpperCase()}
+                  {note.key === 'space' ? 'SPC' : note.key.toUpperCase()}
                 </Box>
               );
             })}
@@ -236,8 +241,10 @@ export const MunitionsAnvil = (props) => {
             %.
           </Box>
           <Box mt={0.5} color="label">
-            Od 90% celnych uderzeń wychodzi klasa z formy, każde 15% mniej to
-            klasa niżej. Zamknięcie okna przerywa kucie.
+            Klawisze działają, gdy to okno jest aktywne: kliknij tor nut
+            (kliknięcie to też uderzenie Spacją). Od 90% celnych uderzeń
+            wychodzi klasa z formy, każde 15% mniej to klasa niżej. Zamknięcie
+            okna albo odłożenie młota przerywa kucie.
           </Box>
         </Section>
       </Window.Content>
