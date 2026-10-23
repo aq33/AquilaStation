@@ -310,10 +310,10 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 		"pass" = TRUE,
 		"filters" = list(),
 		"language" = COMMON,
-		"say" = "says",
-		"ask" = "asks",
-		"yell" = "yells",
-		"exclaim" = "exclaims",
+		"say" = "mówi", // AQ EDIT - our Polish default speech verbs (atoms_movable.dm)
+		"ask" = "pyta",
+		"yell" = "krzyczy",
+		"exclaim" = "woła",
 	)
 
 // makes a new signal object

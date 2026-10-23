@@ -57,6 +57,8 @@
 /obj/machinery/telecomms/server/proc/compile(mob/user = usr)
 	if(QDELETED(Compiler))
 		return
+	if(!length(trim(rawcode)))
+		return "Brak kodu do kompilacji."
 	// Polish letters are fine, control characters and HTML brackets are not
 	if(!reject_bad_ntsl_text(rawcode, ascii_only = FALSE, require_pretty = FALSE, allow_newline = TRUE, allow_code = TRUE))
 		rawcode = null

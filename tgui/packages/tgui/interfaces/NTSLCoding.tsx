@@ -356,7 +356,7 @@ const Guide = (props) => {
       Każdy serwer z włączonym kodem wywołuje dla każdej wiadomości funkcję{' '}
       <b>process_signal(sig)</b>. Zwróć sig, żeby wiadomość poszła dalej.
       Zwrócenie czegoś innego albo pusta treść blokuje wiadomość.
-      <Box as="pre" mt={1} fontSize="0.9em">
+      <Box as="pre" mt={1} fontSize="0.9em" style={{ whiteSpace: 'pre-wrap' }}>
         {EXAMPLE}
       </Box>
       <Divider />

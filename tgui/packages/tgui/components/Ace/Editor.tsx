@@ -134,7 +134,7 @@ export function AceEditor(props: Props) {
 
     if (value !== undefined) {
       suppressChangeRef.current = true;
-      editor.setValue(value);
+      editor.setValue(value, -1); // -1 puts the cursor at the start instead of selecting everything
       lastSentValueRef.current = value;
       lastRemoteValueRef.current = value;
       hasReceivedInitialValueRef.current = true;
@@ -226,7 +226,7 @@ export function AceEditor(props: Props) {
         (current === lastSentValueRef.current && current !== value)
       ) {
         suppressChangeRef.current = true;
-        editor.setValue(value);
+        editor.setValue(value, -1); // -1 puts the cursor at the start instead of selecting everything
         lastSentValueRef.current = value;
         suppressChangeRef.current = false;
         hasReceivedInitialValueRef.current = true;
