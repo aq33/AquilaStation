@@ -117,6 +117,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | RD suit storage unit holds the HEV suit instead of the research MODsuit | `code/game/machinery/suit_storage_unit.dm` | HEV from the 2024 changelog (aq33/AquilaStation#461) |
 | Deck technician job card uses the `munitech` state | `code/game/objects/items/cards_ids.dm` | `decktechnician` state doesn't exist in `nsv13/icons/obj/card.dmi` |
 | Mouse modifiers passed to `preparePixelProjectile()` only when not empty | `code/modules/projectiles/ammunition/_firing.dm`, `throw_proj()` | `params2list(null)` is an empty list, which is true, so a living shooter without mouse data (NPCs without a client, the pulse demon firing a hijacked gun) aimed at angle 0 and shot north. Test: `aquila_gun_fire_without_params` |
+| `[ssd_examine_text()]` in the blank stare line | `code/modules/mob/living/carbon/human/examine.dm` | SSD indicator (Monkestation2.0 port): how many minutes the player has been gone; logic in `aquila/code/modules/mob/living/ssd_indicator.dm` |
+| `explode_on_destruction` var, checked in `Destroy()` | `code/modules/vehicles/sealed.dm` | VIM (tg + Monkestation2.0) does not explode when destroyed; `aquila/code/modules/vehicles/cars/vim.dm` |
+| `/obj/item/citationinator` in Deputy `backpack_contents` and SecTech `products` | `code/modules/jobs/job_types/deputy.dm`, `code/modules/vending/security.dm` | Citationinator (Monkestation2.0 port), `aquila/code/modules/security/citationinator.dm` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

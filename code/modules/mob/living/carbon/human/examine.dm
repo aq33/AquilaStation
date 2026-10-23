@@ -312,7 +312,7 @@
 			else if(!key)
 				msg += "<span class='deadsay'>Jest w całkowitej katatonii. Stres życia w głębokim kosmosie musiał go przerosnąć. Powrót do zdrowia jest mało prawdopodobny.</span>\n"
 			else if(!client)
-				msg += "Ma pusty, nieobecny wzrok i zupełnie na nic nie reaguje. Może wkrótce się ocknie. [ssd_examine_text()]\n" // AQUILA EDIT - licznik SSD
+				msg += "Ma pusty, nieobecny wzrok i zupełnie na nic nie reaguje. Może wkrótce się ocknie. [ssd_examine_text()]\n" // AQ EDIT - licznik SSD
 
 	//handcuffed?
 	if(handcuffed)

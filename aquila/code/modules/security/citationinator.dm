@@ -14,7 +14,7 @@
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
-	req_access = list(ACCESS_SECURITY)
+	req_one_access = list(ACCESS_SECURITY, ACCESS_BRIG) // ACCESS_BRIG: Deputy nie ma ACCESS_SECURITY
 	custom_price = 50
 	/// Skips access checks, if true
 	var/access_check_skipped = FALSE
@@ -59,18 +59,23 @@
 	var/datum/data/record/victim
 	switch(tgui_alert(user, "Komu wystawić mandat?", "Mandat", list("Z manifestu załogi", "Spoza manifestu"), timeout = 1 MINUTES))
 		if("Spoza manifestu")
-			victim_name = trim(tgui_input_text(user, "Imię i nazwisko", "Mandat", max_length = MAX_NAME_LEN, encode = FALSE, timeout = 1 MINUTES))
+			victim_name = trim(tgui_input_text(user, "Imię i nazwisko", "Mandat", max_length = MAX_NAME_LEN, timeout = 1 MINUTES))
 		if("Z manifestu załogi")
+			// etykieta z nazwy i stanowiska, a przy powtórce także z id rekordu, żeby dwie osoby o tym samym imieniu się nie nadpisały
 			var/list/choices = list()
 			for(var/datum/data/record/person in GLOB.data_core.general)
 				var/person_name = person.fields["name"]
 				if(!person_name)
 					continue
-				choices[person_name] = person
-			victim_name = tgui_input_list(user, "Wybierz członka załogi", "Masz na to licencję?", sort_list(choices), timeout = 1 MINUTES)
-			victim = choices[victim_name]
+				var/label = "[person_name] ([person.fields["rank"]])"
+				if(choices[label])
+					label = "[label] #[person.fields["id"]]"
+				choices[label] = person
+			var/choice = tgui_input_list(user, "Wybierz członka załogi", "Masz na to licencję?", sort_list(choices), timeout = 1 MINUTES)
+			victim = choices[choice]
 			if(!victim)
 				return
+			victim_name = victim.fields["name"]
 	if(!victim_name || !can_still_use(user))
 		return
 	var/max_fine = CONFIG_GET(number/maxfine)
@@ -78,10 +83,10 @@
 	if(!fine || !can_still_use(user))
 		return
 	fine = clamp(round(fine), 1, max_fine)
-	var/citation_name = trim(tgui_input_text(user, "Za jakie przewinienie?", "Podejrzane obchodzenie się z rybą", max_length = MAX_NAME_LEN, encode = FALSE, timeout = 1 MINUTES))
+	var/citation_name = trim(tgui_input_text(user, "Za jakie przewinienie?", "Podejrzane obchodzenie się z rybą", max_length = MAX_NAME_LEN, timeout = 1 MINUTES))
 	if(!citation_name || !can_still_use(user))
 		return
-	var/reason = trim(tgui_input_text(user, "Szczegóły mandatu (opcjonalnie)", "Podejrzane obchodzenie się z rybą", multiline = TRUE, encode = FALSE, timeout = 1 MINUTES))
+	var/reason = trim(tgui_input_text(user, "Szczegóły mandatu (opcjonalnie)", "Podejrzane obchodzenie się z rybą", multiline = TRUE, timeout = 1 MINUTES))
 	if(!can_still_use(user))
 		return
 	var/issuer_name = istype(using_id) ? "[using_id.assignment] [using_id.registered_name]" : "Nieznany"
@@ -119,10 +124,10 @@
 	var/final_paper_text = "# <u>MANDAT OCHRONY</u>\n"
 	final_paper_text += "Ochrona stacji wystawiła ci mandat za następujące wykroczenie:<br>"
 	final_paper_text += {"<table style="text-align:left;" border="1" cellspacing="0" width="100%">"}
-	final_paper_text += "<tr><th>Wykroczenie: </th><td>[sanitize(citation_name)]</td></tr>"
-	final_paper_text += "<tr><th>Ukarany: </th><td>[sanitize(victim_name)]</td></tr>"
-	final_paper_text += "<tr><th>Szczegóły: </th><td>[length(details) ? sanitize(details) : "Brak."]</td></tr>"
-	final_paper_text += "<tr><th>Wystawił: </th><td>[sanitize(issuer_name)]</td></tr>"
+	final_paper_text += "<tr><th>Wykroczenie: </th><td>[citation_name]</td></tr>"
+	final_paper_text += "<tr><th>Ukarany: </th><td>[victim_name]</td></tr>"
+	final_paper_text += "<tr><th>Szczegóły: </th><td>[length(details) ? details : "Brak."]</td></tr>"
+	final_paper_text += "<tr><th>Wystawił: </th><td>[issuer_name]</td></tr>"
 	final_paper_text += "<tr><th>Czas: </th><td>[time]</td></tr>"
 	final_paper_text += "<tr><th>Kwota: </th><td>[fine] kr</td></tr>"
 	final_paper_text += "</table><br>"
