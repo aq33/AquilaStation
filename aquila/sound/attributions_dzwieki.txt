@@ -70,3 +70,6 @@ From BeeStation/BeeStation-Hornet, license CC-BY-SA 3.0 unless noted:
 
 Sound added on the "cowiek-maupa" branch:
   creatures/cowiek_maupa_ryk.ogg    roar cut from "Cowiek Maupa - odc. 1" (YouTube 5TnaxtfpmM4, ~1:19)
+
+Sound added on the "monke-vim-ssd-mandaty" branch:
+  machines/printer.ogg              Monkestation2.0 / tgstation (sound/machines/printer.ogg), CC-BY-SA 3.0

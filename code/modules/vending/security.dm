@@ -15,7 +15,8 @@
 					/obj/item/flashlight/seclite = 4,
 					/obj/item/holosign_creator/security = 3,
 					/obj/item/restraints/legcuffs/bola/energy = 7,
-					/obj/item/melee/classic_baton/police = 5)
+					/obj/item/melee/classic_baton/police = 5,
+					/obj/item/citationinator = 10) // AQUILA EDIT - citationinator
 	contraband = list(/obj/item/clothing/glasses/sunglasses/advanced = 2)
 	premium = list(/obj/item/storage/belt/security/webbing = 5,
 					/obj/item/storage/backpack/duffelbag/sec/deputy = 4,
