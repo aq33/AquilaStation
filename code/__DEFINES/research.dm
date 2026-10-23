@@ -70,6 +70,8 @@
 
 #define TECHWEB_POINT_TYPE_WORMHOLE "Wormhole Research"
 
+#define TECHWEB_POINT_TYPE_AI "AI Research" // AQ EDIT - zdecentralizowane AI
+
 #define TECHWEB_POINT_TYPE_DEFAULT TECHWEB_POINT_TYPE_GENERIC
 
 //defined here so people don't forget to change this! -Nsv13 Changed this to add wormhole research
@@ -77,7 +79,8 @@
 	TECHWEB_POINT_TYPE_GENERIC = "General Research",\
 	TECHWEB_POINT_TYPE_DISCOVERY = "Discovery Research",\
 	TECHWEB_POINT_TYPE_WORMHOLE = "Wormhole Research",\
-	TECHWEB_POINT_TYPE_NANITES = "Nanite Research"\
+	TECHWEB_POINT_TYPE_NANITES = "Nanite Research",\
+	TECHWEB_POINT_TYPE_AI = "AI Research"\
 	)
 
 #define TECHWEB_BOMB_POINTCAP		50000 //! Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100

@@ -343,6 +343,10 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"aQ" = (
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/engine,
+/area/comms)
 "aR" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -418,6 +422,14 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
+"bc" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/engine,
+/area/comms)
+"bd" = (
+/obj/machinery/rack_creator,
+/turf/open/floor/engine,
+/area/comms)
 "be" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/munitions_tech,
@@ -433,6 +445,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"bg" = (
+/obj/machinery/computer/ai_overclocking{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 1
@@ -440,6 +458,24 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"bi" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bj" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/monotile/steel,
+/area/comms)
+"bk" = (
+/obj/machinery/ai/data_core,
+/turf/open/floor/engine,
+/area/comms)
 "bn" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_y = 33
@@ -45349,7 +45385,7 @@ PI
 Qx
 Vd
 gc
-KB
+bj
 Yd
 bQ
 jK
@@ -46375,7 +46411,7 @@ bh
 Pr
 MZ
 Pc
-OH
+bi
 UP
 AF
 kw
@@ -47146,9 +47182,9 @@ qN
 rG
 MZ
 GH
-gV
+bk
 yE
-gV
+bg
 gV
 EW
 lw
@@ -47917,9 +47953,9 @@ kA
 VA
 HE
 hD
-gV
+bc
 PA
-gV
+bd
 gV
 Fv
 lw

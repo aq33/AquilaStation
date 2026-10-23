@@ -14,6 +14,7 @@ export function PageMain(props) {
     callShuttleReasonMinLength,
     canMakeAnnouncement,
     canMessageAssociates,
+    canPrintAIControlCode,
     canRecallShuttles,
     canRequestNuke,
     canRequestERT,
@@ -186,6 +187,20 @@ export function PageMain(props) {
               >
                 Wybudź załogę z kriostazy
               </Button>
+            </Flex.Item>
+          )}
+
+          {!!canPrintAIControlCode && (
+            <Flex.Item mt={0.3}>
+              <Button.Confirm
+                fluid
+                icon="key"
+                disabled={!importantActionReady}
+                confirmContent="Unieważnić stary kod?"
+                onClick={() => act('printAIControlCode')}
+              >
+                Wydrukuj nowy kod kontrolny SI
+              </Button.Confirm>
             </Flex.Item>
           )}
 

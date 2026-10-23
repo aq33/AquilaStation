@@ -2170,6 +2170,18 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/dark,
 /area/medical/virology)
+"ey" = (
+/obj/structure/cable,
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
+"ez" = (
+/obj/machinery/ai/server_cabinet/prefilled,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "eA" = (
 /obj/structure/curtain/obscuring/grey,
 /obj/structure/table/wood/fancy/red,
@@ -2178,6 +2190,13 @@
 /obj/machinery/door/firedoor/border_only/directional/north,
 /turf/open/floor/wood,
 /area/crew_quarters/theatre/backstage)
+"eB" = (
+/obj/machinery/rack_creator,
+/turf/open/floor/monotile/dark/airless{
+	initial_gas_mix = "n2=100;TEMP=80";
+	name = "telecomms server floor"
+	},
+/area/tcommsat/server)
 "eC" = (
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
@@ -2194,6 +2213,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/monotile/steel,
 /area/science/xenobiology)
+"eF" = (
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/light/small,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 1
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "eG" = (
 /obj/effect/spawner/room/fivexthree,
 /turf/template_noop,
@@ -2240,6 +2267,23 @@
 /obj/item/extinguisher/advanced/hull_repair_juice,
 /turf/open/floor/engine/airless,
 /area/space/nearstation)
+"eM" = (
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_y = -30
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/computer/ai_server_console{
+	dir = 1
+	},
+/turf/open/floor/durasteel/lino,
+/area/tcommsat/server)
 "eN" = (
 /obj/effect/turf_decal/tile/ship/green{
 	dir = 4
@@ -2266,6 +2310,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/maintenance/department/science/xenobiology)
+"eR" = (
+/obj/machinery/airalarm/directional/north,
+/obj/machinery/computer/ai_control_console{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
 "eS" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/wood,
@@ -2278,6 +2329,122 @@
 /obj/machinery/duct,
 /turf/open/floor/durasteel/alt,
 /area/hallway/nsv/deck1/hallway)
+"eU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/ai_overclocking{
+	dir = 8
+	},
+/turf/open/floor/durasteel/lino,
+/area/ai_monitored/turret_protected/aisat)
+"eV" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 32
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "Outer Core Door Control";
+	pixel_x = -22;
+	pixel_y = 23;
+	req_one_access_txt = "59"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "Inner Core Door Control";
+	pixel_x = -22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = -27;
+	pixel_y = -5
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = -27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = -27;
+	pixel_y = 7
+	},
+/obj/machinery/ai_core_display,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
+"eW" = (
+/obj/structure/cable,
+/obj/machinery/ai/data_core,
+/turf/open/floor/circuit/telecomms/server,
+/area/tcommsat/server)
+"eX" = (
+/obj/effect/landmark/start/ai,
+/obj/item/radio/intercom{
+	freerange = 1;
+	frequency = 1447;
+	name = "Private Channel";
+	pixel_x = 32
+	},
+/obj/machinery/turretid{
+	icon_state = "control_stun";
+	name = "core turret control panel";
+	pixel_y = 32
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "outeraicore";
+	name = "Outer Core Door Control";
+	pixel_x = -22;
+	pixel_y = 23;
+	req_one_access_txt = "59"
+	},
+/obj/machinery/button/door{
+	dir = 8;
+	id = "inneraicore";
+	name = "Inner Core Door Control";
+	pixel_x = -22;
+	pixel_y = 32;
+	req_one_access_txt = "59"
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 2";
+	pixel_x = -27;
+	pixel_y = -5
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 3";
+	pixel_x = -27;
+	pixel_y = -17
+	},
+/obj/item/radio/intercom{
+	freerange = 1;
+	name = "Custom Channel 1";
+	pixel_x = -27;
+	pixel_y = 7
+	},
+/obj/machinery/ai/data_core/primary,
+/turf/open/floor/monotile/dark,
+/area/ai_monitored/turret_protected/ai)
+"eY" = (
+/obj/machinery/ai_core_display,
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
 "eZ" = (
 /obj/machinery/computer/robotics{
 	dir = 1
@@ -2296,6 +2463,10 @@
 	dir = 8
 	},
 /area/bridge/cic)
+"fb" = (
+/obj/machinery/server_chiller,
+/turf/open/floor/circuit/off,
+/area/ai_monitored/turret_protected/ai)
 "fc" = (
 /obj/effect/turf_decal/tile/purple/tile_side{
 	dir = 8
@@ -39175,8 +39346,8 @@ xK
 xK
 xK
 pT
-lc
-nH
+eX
+fb
 nH
 nf
 pT
@@ -39692,7 +39863,7 @@ pT
 LP
 oC
 Mz
-nH
+eY
 lL
 pT
 zC
@@ -40201,7 +40372,7 @@ yb
 ZO
 cs
 UH
-gl
+eF
 tp
 tp
 Ii
@@ -40455,10 +40626,10 @@ IL
 yb
 gZ
 KX
-by
+eW
 Fb
 Gz
-kO
+eM
 tp
 yc
 DX
@@ -40965,18 +41136,18 @@ xK
 xK
 aw
 yb
+ez
 yb
-yb
-yb
+eB
 KX
 Df
 Nl
 sE
 qg
 tp
-xC
+eR
 bK
-JV
+eU
 tp
 Th
 CT
