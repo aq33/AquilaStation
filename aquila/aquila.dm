@@ -1243,6 +1243,7 @@
 #include "code\modules\unit_tests\aquila_crafting.dm"
 #include "code\modules\unit_tests\aquila_cybernetics.dm"
 #include "code\modules\unit_tests\aquila_monke_misc.dm"
+#include "code\modules\unit_tests\aquila_monke_ingame.dm"
 #include "code\modules\unit_tests\aquila_spesstv.dm"
 #include "code\modules\unit_tests\aquila_spiders.dm"
 #include "code\modules\unit_tests\aquila_spy.dm"
