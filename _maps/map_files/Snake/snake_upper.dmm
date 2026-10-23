@@ -866,23 +866,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/test_area)
-"cf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/plortrefinery,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "cg" = (
 /obj/machinery/light{
 	dir = 8
@@ -4544,10 +4527,55 @@
 /obj/item/pen,
 /turf/open/floor/carpet/blue,
 /area/crew_quarters/heads/cmo)
+"kT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/slime_market_pad,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "kU" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
+"kV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/computer/slime_market,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"kW" = (
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/slime_compressor,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "la" = (
 /obj/machinery/light{
 	dir = 4
@@ -7999,15 +8027,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
-"Ig" = (
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "Ih" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -10526,23 +10545,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
-"WS" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
 "WV" = (
 /obj/structure/cable,
 /obj/machinery/camera/motion{
@@ -41597,7 +41599,7 @@ aM
 Ai
 Ai
 Wu
-Ig
+kW
 LV
 ZW
 gV
@@ -42117,7 +42119,7 @@ IE
 UV
 Wu
 hF
-cf
+kT
 aM
 zQ
 zQ
@@ -42374,7 +42376,7 @@ IE
 tP
 aM
 lS
-WS
+kV
 aM
 zQ
 zQ

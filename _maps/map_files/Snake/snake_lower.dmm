@@ -445,12 +445,12 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "aZ" = (
-/obj/machinery/computer/telecomms/traffic{
-	dir = 4
+/obj/machinery/light,
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/tcommsat/computer)
+/area/hallway/primary/aft)
 "ba" = (
 /obj/effect/turf_decal/tile/ship/blue,
 /obj/machinery/door/firedoor/border_only/directional/west,
@@ -1654,6 +1654,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dI" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "dJ" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -43340,7 +43347,7 @@ dt
 Kp
 bX
 kb
-aZ
+dI
 JG
 ha
 dP
@@ -47457,7 +47464,7 @@ WW
 XD
 lg
 rJ
-nG
+aZ
 de
 ex
 yn

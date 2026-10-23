@@ -7,88 +7,136 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "cS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bonfire/prelit,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "cW" = (
 /obj/structure/no_effect_signpost/void,
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
-"dZ" = (
-/obj/effect/decal/fakelattice{
-	density = 0
-	},
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
-"gJ" = (
-/obj/effect/decal/remains/human,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
-	planetary_atmos = 0;
-	slowdown = 0
-	},
-/area/heretic_sacrifice/ash)
-"hZ" = (
-/obj/effect/decal/cleanable/blood/old,
-/turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
-"jg" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/structure/cable/yellow,
-/turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
-"jB" = (
-/obj/machinery/light/very_dim/directional/south,
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
-"lz" = (
-/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
+"dX" = (
+/obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"dZ" = (
+/obj/effect/decal/fakelattice{
+	density = 0
+	},
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
+"fh" = (
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/centcom/heretic_sacrifice/rust)
+"fL" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"fO" = (
+/turf/open/indestructible,
+/area/space)
+"gJ" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/plating/dirt/jungle/dark{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"hE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/toolbox/mechanical/old,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"hZ" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/necropolis/air,
+/area/centcom/heretic_sacrifice/flesh)
+"jg" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/cable/yellow,
+/turf/open/floor/plating/rust,
+/area/centcom/heretic_sacrifice/rust)
+"jt" = (
+/turf/closed/indestructible{
+	desc = "A huge chunk of reinforced metal used to separate rooms. Effectively impervious to conventional methods of destruction.";
+	icon = 'icons/turf/walls/reinforced_wall.dmi';
+	icon_state = "r_wall";
+	name = "reinforced wall";
+	smooth = 1
+	},
+/area/centcom/heretic_sacrifice/lock)
+"jB" = (
+/obj/machinery/light/very_dim/directional/south,
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
+"lz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "mb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
 "mG" = (
 /obj/effect/turf_decal/weather,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "mR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/fakelattice{
 	density = 0
 	},
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
+"mW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/spear,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "mZ" = (
 /obj/effect/decal/fakelattice{
 	density = 0
 	},
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "nG" = (
 /obj/structure/bonfire/prelit,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/wasteland{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "nL" = (
 /obj/structure/stone_tile/cracked{
 	dir = 4
@@ -101,187 +149,321 @@
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "nP" = (
 /obj/structure/stone_tile/block{
 	dir = 8
 	},
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "oh" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "ps" = (
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "pt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/fakelattice{
 	density = 0
 	},
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
 "pN" = (
+/obj/effect/turf_decal/weather{
+	dir = 9;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "qn" = (
 /obj/effect/decal/remains/human,
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
-"qM" = (
-/obj/structure/stone_tile/block/cracked,
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
+"qo" = (
+/obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/toolbox/mechanical/old,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"qu" = (
+/obj/effect/turf_decal/weather{
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"qM" = (
+/obj/structure/stone_tile/block/cracked,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/weather{
+	dir = 5;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "rP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
+"sb" = (
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"tF" = (
+/obj/effect/turf_decal/weather{
+	dir = 9;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "ui" = (
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "uu" = (
 /obj/effect/turf_decal/trimline/brown/corner{
 	dir = 1
 	},
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
+"uM" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/under/color/grey/glorf,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "uT" = (
 /obj/structure/cable/yellow,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "vs" = (
 /obj/structure/stone_tile/block/cracked{
 	dir = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
-"wt" = (
-/obj/structure/stone_tile/block{
-	dir = 1
+/area/centcom/heretic_sacrifice/ash)
+"vv" = (
+/obj/effect/turf_decal/weather{
+	dir = 4;
+	icon_state = "dirt_side";
+	name = "dirt siding"
 	},
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
-	planetary_atmos = 0;
-	slowdown = 0
-	},
-/area/heretic_sacrifice/ash)
-"wE" = (
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/heretic_sacrifice/ash)
-"wS" = (
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
-	planetary_atmos = 0;
-	slowdown = 0
-	},
-/area/heretic_sacrifice/ash)
-"xk" = (
-/obj/structure/cable/yellow,
-/turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
-"yC" = (
-/obj/effect/turf_decal/trimline/brown/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
-"zb" = (
-/obj/structure/stone_tile/slab,
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"wo" = (
+/turf/closed/indestructible/fakeglass,
+/area/centcom/heretic_sacrifice/lock)
+"wt" = (
+/obj/structure/stone_tile/block{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"wE" = (
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"wP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare{
+	icon_state = "flare-on"
+	},
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"wS" = (
+/turf/open/floor/plating/dirt/jungle/dark{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"wY" = (
+/turf/open/floor/fakespace{
+	desc = "A peek into the other side.";
+	name = "void glass floor"
+	},
+/area/centcom/heretic_sacrifice/void)
+"xc" = (
+/turf/open/indestructible{
+	icon_state = "white"
+	},
+/area/space)
+"yC" = (
+/obj/effect/turf_decal/trimline/brown/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/centcom/heretic_sacrifice/rust)
+"zb" = (
+/obj/structure/stone_tile/slab,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "zU" = (
 /obj/effect/decal/fakelattice{
 	density = 0
 	},
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
+"Aw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/mask/gas,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "AH" = (
 /obj/effect/turf_decal/trimline/brown/corner,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "AN" = (
 /obj/machinery/light/floor,
 /obj/effect/decal/fakelattice{
 	density = 0
 	},
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
 "AO" = (
 /turf/open/floor/fakespace,
-/area/heretic_sacrifice/void)
+/area/centcom/heretic_sacrifice/void)
+"AW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/mask/gas/tiki_mask/yalp_elor,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"AY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "Bv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/brown/line,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
+"Bw" = (
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "By" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Cf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Ck" = (
 /obj/effect/turf_decal/trimline/brown/corner{
 	dir = 8
 	},
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "CB" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "CG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "CV" = (
 /obj/effect/decal/cleanable/plasma,
 /obj/effect/landmark/heretic/ash,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/heretic_sacrifice/ash)
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "DL" = (
 /obj/structure/stone_tile/block/burnt{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"En" = (
+/turf/closed/indestructible/fakedoor{
+	icon = 'icons/obj/doors/airlocks/hatch/maintenance.dmi';
+	icon_state = "closed"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "ER" = (
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
 "Fd" = (
 /turf/closed/indestructible/riveted,
 /area/space)
@@ -294,35 +476,52 @@
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "GX" = (
 /obj/effect/landmark/heretic/flesh,
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "HE" = (
 /obj/effect/turf_decal/weather,
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "HJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/gibspawner/human,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "HQ" = (
 /turf/closed/indestructible/necropolis,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "Ie" = (
+/obj/effect/turf_decal/weather{
+	dir = 1;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"Ii" = (
+/obj/effect/turf_decal/weather{
+	dir = 5;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "Je" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/rockvault/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/open/floor/plating/ironsand,
+/area/centcom/heretic_sacrifice/rust)
 "Jy" = (
 /obj/structure/stone_tile/cracked{
 	dir = 1
@@ -332,39 +531,37 @@
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "JJ" = (
 /obj/effect/decal/remains/human,
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "Ko" = (
 /obj/machinery/light/very_dim/directional/east,
 /turf/open/floor/fakespace,
-/area/heretic_sacrifice/void)
+/area/centcom/heretic_sacrifice/void)
 "Ku" = (
 /obj/structure/stone_tile/block{
 	dir = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "Kz" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "KO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/gibspawner/generic/animal,
 /obj/structure/bonfire/prelit,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "KP" = (
 /obj/structure/stone_tile/surrounding_tile,
 /turf/open/floor/plating/ashplanet/wateryrock{
@@ -372,32 +569,47 @@
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "La" = (
-/turf/closed/wall/mineral/plastitanium,
-/area/heretic_sacrifice/void)
+/turf/closed/indestructible/syndicate,
+/area/centcom/heretic_sacrifice/void)
 "LA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/brown/corner{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Mf" = (
 /obj/effect/decal/cleanable/ash/large,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/heretic_sacrifice/ash)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "Mw" = (
 /obj/machinery/light/very_dim/directional/west,
 /turf/open/floor/fakespace,
-/area/heretic_sacrifice/void)
+/area/centcom/heretic_sacrifice/void)
+"MZ" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/flare{
+	icon_state = "flare-on"
+	},
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "Nh" = (
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 1
 	},
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "NA" = (
 /obj/structure/stone_tile/burnt,
 /turf/open/floor/plating/ashplanet/wateryrock{
@@ -405,135 +617,200 @@
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
-"OD" = (
-/obj/effect/landmark/heretic,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/heretic_sacrifice/ash)
-"Pl" = (
+/area/centcom/heretic_sacrifice/ash)
+"NQ" = (
+/obj/effect/turf_decal/weather{
+	dir = 1;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
 /turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
-"Qi" = (
-/obj/structure/stone_tile,
-/turf/open/floor/plating/ashplanet/rocky{
+/area/centcom/heretic_sacrifice/ash)
+"OD" = (
+/obj/effect/landmark/heretic,
+/turf/open/floor/plating/dirt/jungle/wasteland{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"OG" = (
+/obj/effect/turf_decal/weather{
+	dir = 10;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
+"OW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/under/color/grey/glorf,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
+"Pl" = (
+/obj/effect/turf_decal/weather{
+	dir = 6;
+	icon_state = "dirt_side";
+	name = "dirt siding"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
+"Qi" = (
+/obj/structure/stone_tile,
+/turf/open/floor/plating/dirt/jungle/dark{
+	planetary_atmos = 0;
+	slowdown = 0
+	},
+/area/centcom/heretic_sacrifice/ash)
 "QL" = (
 /obj/effect/decal/cleanable/ash/large{
 	pixel_x = -2;
 	pixel_y = -8
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "Rb" = (
 /obj/effect/landmark/heretic/void,
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
 "Rh" = (
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "RW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "Se" = (
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "St" = (
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "Sy" = (
 /obj/structure/stone_tile/block,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "Tf" = (
 /obj/effect/decal/cleanable/food/salt,
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "TC" = (
 /obj/effect/decal/cleanable/ash,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "TS" = (
 /obj/effect/turf_decal/trimline/brown/line{
 	dir = 8
 	},
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Ue" = (
 /obj/machinery/light/very_dim/directional/north,
 /turf/open/floor/fakespace,
-/area/heretic_sacrifice/void)
+/area/centcom/heretic_sacrifice/void)
 "UO" = (
 /obj/effect/landmark/heretic/rust,
 /turf/open/floor/plating,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Vd" = (
 /obj/structure/bonfire/prelit,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "VK" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/decal/cleanable/ash{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky{
-	initial_gas_mix = "o2=22;n2=82;TEMP=293.15";
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark{
 	planetary_atmos = 0;
 	slowdown = 0
 	},
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 "Wb" = (
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
 "WD" = (
-/turf/closed/indestructible/sandstone,
-/area/heretic_sacrifice/rust)
+/turf/closed/indestructible{
+	desc = "A wall with tough iron plating.";
+	icon = 'icons/turf/walls/iron_wall.dmi';
+	icon_state = "iron";
+	name = "impervious iron wall";
+	opacity = 1;
+	smooth = 1
+	},
+/area/centcom/heretic_sacrifice/rust)
 "Xk" = (
 /obj/effect/decal/cleanable/blood/old,
-/turf/open/floor/plating/beach/sand,
-/area/heretic_sacrifice/void)
+/turf/open/floor/plating/asteroid,
+/area/centcom/heretic_sacrifice/void)
 "Xr" = (
 /turf/open/floor/plating/rust,
-/area/heretic_sacrifice/rust)
+/area/centcom/heretic_sacrifice/rust)
 "Xt" = (
 /obj/effect/gibspawner/generic/animal,
 /turf/open/floor/stone,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
 "Yp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/indestructible/necropolis/air,
-/area/heretic_sacrifice/flesh)
+/area/centcom/heretic_sacrifice/flesh)
+"Zw" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/heretic/lock,
+/turf/open/indestructible{
+	desc = "The attachment points are all bent to uselessness, looks nigh-impervious to damage.";
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/heretic_sacrifice/lock)
 "ZA" = (
 /turf/closed/indestructible/riveted/boss,
-/area/heretic_sacrifice/ash)
+/area/centcom/heretic_sacrifice/ash)
 
 (1,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -593,11 +870,36 @@ Fd
 Fd
 Fd
 Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
 ab
 "}
 (3,1,1) = {"
 ab
 Fd
+jt
+jt
+wo
+wo
+jt
+En
+En
+jt
+wo
+wo
+jt
+jt
+Fd
 ZA
 ZA
 ZA
@@ -623,23 +925,35 @@ La
 La
 La
 La
-Fd
 ab
 "}
 (4,1,1) = {"
 ab
 Fd
+jt
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+fL
+AY
+jt
+Fd
 ZA
 Pl
 wS
-Pl
-Pl
-Pl
-Pl
-Pl
+Ii
+Bw
+Bw
+Bw
+Bw
 Pl
 wS
-Pl
+Ii
 ZA
 Fd
 La
@@ -651,23 +965,35 @@ Mw
 AO
 AO
 AO
-Wb
+wY
 Wb
 La
-Fd
 ab
 "}
 (5,1,1) = {"
 ab
 Fd
+wo
+AY
+fL
+uM
+AY
+AY
+qo
+fL
+AY
+mW
+MZ
+wo
+Fd
 ZA
 wS
 nG
 VK
-Ie
-Pl
-Pl
-Pl
+sb
+Bw
+Bw
+Bw
 Qi
 nG
 Kz
@@ -675,7 +1001,7 @@ ZA
 Fd
 La
 AO
-Wb
+wY
 AO
 AO
 AO
@@ -683,31 +1009,43 @@ AO
 AO
 AO
 AO
-Wb
+wY
 La
-Fd
 ab
 "}
 (6,1,1) = {"
 ab
 Fd
+wo
+AY
+Aw
+fL
+AY
+wP
+fL
+fL
+AY
+qo
+AY
+wo
+Fd
 ZA
-Pl
+OG
 cd
 pN
-Pl
-Pl
-Pl
-Pl
-Pl
+Bw
+Bw
+vv
+Bw
+OG
 TC
-Pl
+tF
 ZA
 Fd
 La
-Wb
+wY
 cW
-Wb
+wY
 AO
 AO
 AO
@@ -716,52 +1054,76 @@ AO
 AO
 AO
 La
-Fd
 ab
 "}
 (7,1,1) = {"
 ab
 Fd
+jt
+AY
+fL
+fL
+AY
+AY
+fL
+AY
+AY
+fL
+Aw
+jt
+Fd
 ZA
-Pl
-Pl
-Pl
+Bw
+Bw
+Bw
 Pl
 nP
 nP
-Pl
-Pl
-Pl
-Pl
+Ii
+Bw
+Bw
+Bw
 ZA
 Fd
 La
 AO
-Wb
+wY
 AO
 AO
-Wb
-Wb
+wY
+wY
 AO
 AO
 AO
-Wb
+wY
 La
-Fd
 ab
 "}
 (8,1,1) = {"
 ab
 Fd
+En
+AY
+MZ
+fL
+AY
+Zw
+OW
+AY
+AY
+AY
+fL
+En
+Fd
 ZA
-Pl
-Pl
-Pl
+Bw
+Bw
+qu
 vs
 wE
 Mf
 Sy
-Pl
+NQ
 lz
 lz
 ZA
@@ -770,62 +1132,86 @@ La
 AO
 AO
 AO
-Wb
+wY
 Wb
 Rb
-Wb
+wY
 AO
-Wb
+wY
 jB
 La
-Fd
 ab
 "}
 (9,1,1) = {"
 ab
 Fd
+En
+fL
+AY
+AY
+AY
+fL
+fL
+AY
+AY
+fL
+AY
+En
+Fd
 ZA
-Pl
-Pl
-Pl
+Bw
+Bw
+Bw
 wt
 CV
 OD
 Sy
-Pl
+NQ
 lz
-Pl
+Bw
 ZA
 Fd
 La
 Ue
 AO
 AO
-Wb
+wY
 Xk
 Wb
-Wb
+wY
 AO
-Wb
+wY
 Wb
 La
-Fd
 ab
 "}
 (10,1,1) = {"
 ab
 Fd
+jt
+AY
+AY
+fL
+AY
+fL
+AY
+fL
+AY
+AW
+fL
+jt
+Fd
 ZA
-Pl
-Pl
-Pl
-Pl
+Bw
+Bw
+Bw
+OG
 DL
 Ku
 Ie
-Pl
-pN
-Pl
+Bw
+dX
+Bw
 ZA
 Fd
 La
@@ -833,34 +1219,46 @@ AO
 AO
 AO
 AO
-Wb
-Wb
+wY
+wY
 AO
 AO
-Wb
+wY
 Wb
 La
-Fd
 ab
 "}
 (11,1,1) = {"
 ab
 Fd
+wo
+fL
+AY
+hE
+MZ
+AY
+AY
+hE
+fL
+wP
+AY
+wo
+Fd
 ZA
 Pl
 gJ
 qM
-Pl
-Pl
+Bw
+Bw
 nL
 lz
 Pl
 Kz
-Pl
+Ii
 ZA
 Fd
 La
-Wb
+wY
 AO
 AO
 AO
@@ -869,13 +1267,25 @@ AO
 AO
 AO
 AO
-Wb
+wY
 La
-Fd
 ab
 "}
 (12,1,1) = {"
 ab
+Fd
+wo
+AY
+fL
+AY
+AY
+AY
+fL
+AY
+OW
+fL
+fL
+wo
 Fd
 ZA
 wS
@@ -892,53 +1302,77 @@ ZA
 Fd
 La
 Wb
-Wb
+wY
 AO
 AO
 AO
 AO
 AO
-Wb
+wY
 AO
 AO
 La
-Fd
 ab
 "}
 (13,1,1) = {"
 ab
 Fd
+jt
+AY
+AY
+fL
+fL
+AY
+AY
+AY
+AY
+AY
+AY
+jt
+Fd
 ZA
-Pl
+OG
 wS
-Pl
-Pl
+tF
+Bw
 Jy
 KP
-Pl
-Pl
+Bw
+OG
 wS
-Pl
+tF
 ZA
 Fd
 La
 Wb
 Xk
-Wb
+wY
 AO
 AO
 Ko
-Wb
+wY
 qn
-Wb
+wY
 AO
 La
-Fd
 ab
 "}
 (14,1,1) = {"
 ab
 Fd
+jt
+jt
+wo
+wo
+jt
+En
+En
+jt
+wo
+wo
+jt
+jt
+Fd
 ZA
 ZA
 ZA
@@ -964,11 +1398,22 @@ La
 La
 La
 La
-Fd
 ab
 "}
 (15,1,1) = {"
 ab
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
 Fd
 Fd
 Fd
@@ -1001,6 +1446,19 @@ ab
 (16,1,1) = {"
 ab
 Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+Fd
 WD
 WD
 WD
@@ -1026,11 +1484,23 @@ HQ
 HQ
 HQ
 HQ
-Fd
 ab
 "}
 (17,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+xc
+xc
+xc
+xc
+xc
+fO
 Fd
 WD
 dZ
@@ -1038,7 +1508,7 @@ dZ
 dZ
 ER
 Je
-xk
+fh
 Xr
 Xr
 Xr
@@ -1057,11 +1527,23 @@ St
 ui
 St
 HQ
-Fd
 ab
 "}
 (18,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+xc
+fO
+fO
+fO
 Fd
 WD
 dZ
@@ -1069,7 +1551,7 @@ AN
 mb
 HE
 oh
-xk
+fh
 Xr
 ps
 AN
@@ -1088,18 +1570,30 @@ Xt
 Vd
 ui
 HQ
-Fd
 ab
 "}
 (19,1,1) = {"
 ab
 Fd
+fO
+fO
+fO
+fO
+fO
+fO
+xc
+xc
+xc
+xc
+xc
+fO
+Fd
 WD
 ER
 mG
 jg
-xk
-xk
+fh
+fh
 uT
 By
 dZ
@@ -1119,11 +1613,23 @@ hZ
 ui
 St
 HQ
-Fd
 ab
 "}
 (20,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 Se
@@ -1150,11 +1656,23 @@ RW
 RW
 St
 HQ
-Fd
 ab
 "}
 (21,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+xc
+fO
+xc
+xc
+xc
+fO
 Fd
 WD
 Xr
@@ -1181,11 +1699,23 @@ St
 RW
 St
 HQ
-Fd
 ab
 "}
 (22,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 Se
@@ -1212,11 +1742,23 @@ JJ
 ui
 St
 HQ
-Fd
 ab
 "}
 (23,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 Xr
@@ -1243,11 +1785,23 @@ ui
 ui
 St
 HQ
-Fd
 ab
 "}
 (24,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 ps
@@ -1274,11 +1828,23 @@ rP
 ui
 St
 HQ
-Fd
 ab
 "}
 (25,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 Je
@@ -1305,11 +1871,23 @@ RW
 cS
 ui
 HQ
-Fd
 ab
 "}
 (26,1,1) = {"
 ab
+Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
 Fd
 WD
 ER
@@ -1336,12 +1914,24 @@ Yp
 Xt
 St
 HQ
-Fd
 ab
 "}
 (27,1,1) = {"
 ab
 Fd
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+fO
+Fd
 WD
 WD
 WD
@@ -1367,11 +1957,22 @@ HQ
 HQ
 HQ
 HQ
-Fd
 ab
 "}
 (28,1,1) = {"
 ab
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
 Fd
 Fd
 Fd
@@ -1428,6 +2029,18 @@ ab
 ab
 ab
 ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+Fd
 ab
 ab
 ab

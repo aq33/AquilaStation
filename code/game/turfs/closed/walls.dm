@@ -334,12 +334,6 @@
 
 	add_overlay(dent_decals)
 
-/turf/closed/wall/rust_heretic_act()
-	if(HAS_TRAIT(src, TRAIT_RUSTY))
-		ScrapeAway()
-		return TRUE
-	if(prob(70))
-		new /obj/effect/temp_visual/glowing_rune(src)
-	return ..()
+// AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 #undef MAX_DENT_DECALS

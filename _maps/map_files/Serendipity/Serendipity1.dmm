@@ -12,6 +12,27 @@
 	},
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"ac" = (
+/obj/effect/turf_decal/tile/ship/half/purple,
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/slime_market_pad,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/xenobiology)
+"ad" = (
+/obj/machinery/airalarm/directional/east,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/computer/slime_market,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/xenobiology)
 "ae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/tile/ship/red{
@@ -74,6 +95,13 @@
 /obj/machinery/griddle,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"ak" = (
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 4
+	},
+/obj/machinery/slime_compressor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science/xenobiology)
 "al" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -125,6 +153,18 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"aq" = (
+/obj/machinery/firealarm/directional/north,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/half/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/slime_extract_requestor,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -841,15 +881,6 @@
 "cc" = (
 /turf/closed/wall/r_wall/ship,
 /area/quartermaster/bitrunning/den)
-"cd" = (
-/obj/effect/turf_decal/tile/ship/half/purple,
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/plortrefinery,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/xenobiology)
 "ce" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 9
@@ -4966,17 +4997,6 @@
 /obj/structure/cable,
 /turf/open/floor/engine,
 /area/science/robotics)
-"rh" = (
-/obj/machinery/firealarm/directional/north,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/ship/half/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "ri" = (
 /obj/machinery/door/airlock/ship/medical/glass{
 	name = "Chemistry";
@@ -9334,17 +9354,6 @@
 /obj/structure/displaycase/labcage,
 /turf/open/floor/carpet/purple,
 /area/crew_quarters/heads/hor)
-"Gy" = (
-/obj/machinery/airalarm/directional/east,
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/tiled/light,
-/area/science/xenobiology)
 "GC" = (
 /obj/machinery/computer/cargo/request,
 /obj/effect/turf_decal/tile/yellow{
@@ -43125,7 +43134,7 @@ qb
 EO
 vA
 oI
-Ol
+ak
 vn
 Ol
 iq
@@ -44410,9 +44419,9 @@ mb
 AN
 MP
 gn
-cd
+ac
 ZM
-Gy
+ad
 hO
 tq
 RB
@@ -45945,7 +45954,7 @@ mm
 Gs
 nc
 KZ
-rh
+aq
 Aw
 vw
 qr
