@@ -595,3 +595,9 @@
   - bugfix: Konsola magnesu na asteroidy przy klatce (Atlas, Snake) znowu reaguje
       na przyciski.
   - imageadd: Ikony złomu, młota burzącego i spawarki Rayne z Monkestation.
+  Veth-s, absolucy (Monkestation), GoobStation:
+  - rscadd: 'Nowy antagonista z ankiety duchów: bingle. Bingle Lord stawia Dół, który
+      połyka przedmioty i ludzi do osobnego wymiaru, rośnie, zjada ściany i rodzi
+      kolejne bingle.'
+  - rscadd: Event „Spawn Bingle” (od 15 graczy), w trybie weighted w puli ciężkiej.
+  - imageadd: Sprite'y bingli, Dołu i wymiaru z Monkestation.
