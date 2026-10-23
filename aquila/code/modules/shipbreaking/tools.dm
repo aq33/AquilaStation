@@ -77,16 +77,17 @@
 		return 10 SECONDS
 	return 0
 
+/// Zwraca TRUE, gdy cięcie się udało
 /obj/item/weldingtool/experimental/rayne/proc/cut_down(mob/user, atom/target)
 	if(!tool_start_check(user, 1))
-		return
+		return FALSE
 	user.visible_message("<span class='notice'>[user] tnie [target] spawarką laserową.</span>",
 		"<span class='notice'>Zaczynasz ciąć [target]...</span>",
 		"<span class='italics'>Słyszysz syk lasera.</span>")
 	// do_after nie przerywa cięcia, gdy turf zostanie w tym czasie podmieniony (np. drugie cięcie tej samej podłogi)
 	var/target_type = target.type
 	if(!use_tool(target, user, get_cut_time(target), 1, 50) || QDELETED(target) || target.type != target_type || !is_shipbreak_area(target))
-		return
+		return FALSE
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/wall = target
 		wall.dismantle_wall()
@@ -98,6 +99,7 @@
 	else
 		var/obj/O = target
 		O.deconstruct(TRUE)
+	return TRUE
 
 /obj/structure/closet/secure_closet/shipbreaker
 	name = "szafka złomiarza"

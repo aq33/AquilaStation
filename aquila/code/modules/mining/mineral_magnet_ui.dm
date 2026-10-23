@@ -1,6 +1,11 @@
 // Okno magnesu na asteroidy w TGUI (zamiast HTML i input() z nsv13/code/modules/mining/asteroid.dm).
 // Asteroidy w zasięgu są w oknie razem ze składem rdzenia, wypchnięcie potwierdza się w oknie.
 
+// Konsole przy klatce (Atlas, Snake) stoją na pomoście w kosmosie, gdzie nie ma prądu.
+// Maszyna bez prądu daje w TGUI tylko podgląd, więc magnes ma własne zasilanie.
+/obj/machinery/computer/ship/mineral_magnet
+	use_power = NO_POWER_USE
+
 /obj/machinery/computer/ship/mineral_magnet/attack_hand(mob/user)
 	if(!allowed(user))
 		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')

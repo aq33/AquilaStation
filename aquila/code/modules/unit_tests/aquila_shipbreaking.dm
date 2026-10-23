@@ -11,7 +11,15 @@
 	UNTIL(!SSair.thread_running())
 	sleep(1 SECONDS)
 	SScallbacks.can_fire = FALSE
+	// Test trwa ponad minutę, a losowe zdarzenia rundy (meteory, immovable rod) potrafiły zabić złomiarza w trakcie cięcia
+	// Tak samo pożary podłogi (zapalona spawarka nad plamą oleju we wraku) potrafiły przerwać cięcie
+	var/events_could_fire = SSevents.can_fire
+	var/fires_could_fire = SSturf_fire.can_fire
+	SSevents.can_fire = FALSE
+	SSturf_fire.can_fire = FALSE
 	var/error = check_wrecks() || check_magnet()
+	SSevents.can_fire = events_could_fire
+	SSturf_fire.can_fire = fires_could_fire
 	SScallbacks.can_fire = TRUE
 	SSair.can_fire = TRUE
 	TEST_ASSERT(!error, error)
@@ -36,6 +44,10 @@
 		var/turf/bottom_left = locate(reservation.bottom_left_coords[1], reservation.bottom_left_coords[2], reservation.bottom_left_coords[3])
 		if(!template.load(bottom_left))
 			return "[template.mappath] failed to load"
+		// Najpierw cięcie, żeby ściana do testu złomu poniżej była jeszcze cała
+		var/cut_error = check_rayne_cutting(template.get_affected_turfs(bottom_left), template.mappath)
+		if(cut_error)
+			return cut_error
 		var/hull = 0
 		for(var/turf/T as anything in template.get_affected_turfs(bottom_left))
 			if(is_type_in_typecache(T, forbidden_turfs))
@@ -103,7 +115,7 @@
 	for(var/turf/T as anything in magnet.get_cage_turfs())
 		if(!is_shipbreak_area(T))
 			return "Cage turf [T.x],[T.y] is not in the shipbreaking area while a wreck is loaded"
-	var/error = check_rayne_cutting(magnet)
+	var/error = check_rayne_cutting(magnet.wreck_turfs, magnet.current_wreck.mappath, TRUE)
 	magnet.push_away_asteroid()
 	if(error)
 		return error
@@ -117,22 +129,31 @@
 		if(T.loc != areas_before[T])
 			return "Cage turf [T.x],[T.y] went back to [T.loc] instead of [areas_before[T]]"
 
-/// Spawarka Rayne tnie ścianę wraku aż do próżni (ściana, dźwigar, poszycie) i rozbiera silnik na rdzeń
-/datum/unit_test/shipbreaking/proc/check_rayne_cutting(obj/machinery/computer/ship/mineral_magnet/magnet)
-	// Ściana wraku z wolną podłogą obok, na której stanie złomiarz
+/// Spawarka Rayne tnie ścianę wraku aż do próżni (ściana, dźwigar, poszycie), a z test_engine rozbiera też silnik na rdzeń
+/datum/unit_test/shipbreaking/proc/check_rayne_cutting(list/turfs, wreck_name, test_engine = FALSE)
+	// Ściana wraku z podłogą obok, na której stanie złomiarz: najlepiej pustą (np. łóżko stazy unieruchamia),
+	// potem przechodnią, a w ciasnych myśliwcach choćby zastawioną
 	var/turf/closed/wall/wall
 	var/turf/open/stand
-	for(var/turf/closed/wall/candidate in magnet.wreck_turfs)
-		for(var/turf/open/floor/neighbour in get_adjacent_open_turfs(candidate))
-			if(!neighbour.density && !(locate(/obj/structure) in neighbour) && !(locate(/obj/machinery) in neighbour))
+	for(var/strictness in list(2, 1, 0))
+		for(var/turf/closed/wall/candidate in turfs)
+			for(var/turf/open/floor/neighbour in get_adjacent_open_turfs(candidate))
+				if(strictness >= 1 && is_blocked_turf(neighbour, TRUE))
+					continue
+				if(strictness == 2 && ((locate(/obj/machinery) in neighbour) || (locate(/obj/structure) in neighbour)))
+					continue
 				wall = candidate
 				stand = neighbour
+				break
+			if(wall)
 				break
 		if(wall)
 			break
 	if(!wall)
-		return "No wreck wall with free floor next to it in [magnet.current_wreck.mappath]"
+		return "No wreck wall with free floor next to it in [wreck_name]"
 	var/mob/living/carbon/human/breaker = allocate(/mob/living/carbon/human, stand)
+	breaker.status_flags |= GODMODE // wrak po wybuchach bywa bez powietrza
+	ADD_TRAIT(breaker, TRAIT_STUNIMMUNE, "shipbreaking_test") // losowe zdarzenia rundy potrafią ogłuszyć w trakcie testu
 	var/obj/item/weldingtool/experimental/rayne/welder = allocate(/obj/item/weldingtool/experimental/rayne, stand)
 	breaker.put_in_active_hand(welder)
 	welder.switched_on(breaker)
@@ -144,11 +165,23 @@
 		var/atom/to_cut = step == "girder" ? (locate(/obj/structure/girder) in target) : target
 		if(!to_cut)
 			return "No [step] left on [target.x],[target.y] after the previous cut"
-		welder.cut_down(breaker, to_cut)
+		var/type_before = to_cut.type
+		breaker.SetAllImmobility(0)
+		breaker.SetUnconscious(0)
+		breaker.ExtinguishMob()
+		for(var/turf/near as anything in RANGE_TURFS(1, stand))
+			for(var/obj/effect/abstract/turf_fire/fire in near)
+				qdel(fire)
+		if(!welder.cut_down(breaker, to_cut))
+			return "Rayne welder failed to cut the [step] ([type_before]) at [target.x],[target.y] in [wreck_name]; breaker at [breaker.x],[breaker.y] stat [breaker.stat], incapacitated [breaker.incapacitated()] stasis [breaker.IsInStasis()] stun [breaker.IsStun()] paralyze [breaker.IsParalyzed()] unconscious [breaker.IsUnconscious()] restrained [breaker.restrained()] on tile: [english_list(stand.contents)], welder on [welder.isOn()] fuel [welder.get_fuel()]"
 	if(!isspaceturf(target))
-		return "Rayne welder left [target.type] instead of space after cutting a wall down"
+		return "Rayne welder left [target.type] instead of space after cutting a wall down in [wreck_name]"
 	if(!(locate(/obj/item/stack/scrap/framing) in target) || !(locate(/obj/item/stack/scrap/plating) in target))
-		return "Cutting a wall down did not drop plating and framing scrap"
+		return "Cutting a wall down in [wreck_name] did not drop plating and framing scrap"
+	if(!test_engine)
+		qdel(breaker) // inaczej sprawdzenie wraku znalazłoby na nim żywego moba
+		qdel(welder)
+		return
 
 	var/obj/structure/shuttle/engine/heater/engine = new(stand)
 	welder.cut_down(breaker, engine)
