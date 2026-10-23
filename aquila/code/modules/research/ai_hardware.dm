@@ -183,7 +183,7 @@
 	var/list/ram_materials
 
 /datum/design/ram/ram1
-	name = "Standard Memory"
+	name = "Pamięć standardowa"
 	desc = "Pamięć z wycofanych eksperymentów NT-CONLAB. Drukuje ją składarka racków."
 	id = "ram1"
 	research_icon = 'icons/obj/module.dmi'
@@ -192,7 +192,7 @@
 	capacity = 1
 
 /datum/design/ram/ram2
-	name = "High-capacity Memory"
+	name = "Pamięć dużej pojemności"
 	desc = "Pamięć o dużej pojemności przy normalnej wydajności."
 	id = "ram2"
 	research_icon = 'icons/obj/module.dmi'
@@ -201,7 +201,7 @@
 	capacity = 2
 
 /datum/design/ram/ram3
-	name = "Hyper-capacity Memory"
+	name = "Pamięć ultrawysokiej pojemności"
 	desc = "Manipulacja materią niemal na poziomie atomów zwiększa pojemność bez spadku wydajności."
 	id = "ram3"
 	research_icon = 'icons/obj/module.dmi'
@@ -210,7 +210,7 @@
 	capacity = 3
 
 /datum/design/ram/ram4
-	name = "Bluespace Memory"
+	name = "Pamięć bluespace"
 	desc = "Technologia bluespace zwiększa pojemność RAM bez spadku szybkości."
 	id = "ram4"
 	research_icon = 'icons/obj/module.dmi'

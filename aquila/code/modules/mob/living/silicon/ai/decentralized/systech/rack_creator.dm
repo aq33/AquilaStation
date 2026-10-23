@@ -260,10 +260,11 @@
 			inserted_cpus = list()
 
 			var/total_ram = 0
-			var/list/new_custom_materials = list(/datum/material/iron = 1000)
+			var/list/new_custom_materials = list()
+			new_custom_materials[getmaterialref(/datum/material/iron)] = 1000
 			for(var/list/RAM as anything in ram_expansions)
 				for(var/mat in RAM["cost"])
-					new_custom_materials[mat] += RAM["cost"][mat] * efficiency_coeff
+					new_custom_materials[getmaterialref(mat)] += RAM["cost"][mat] * efficiency_coeff
 				total_ram += RAM["capacity"]
 
 			new_rack.set_custom_materials(new_custom_materials)
