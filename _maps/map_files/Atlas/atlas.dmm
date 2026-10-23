@@ -7627,6 +7627,10 @@
 	},
 /turf/open/floor/monotile/steel,
 /area/hallway/secondary/exit/departure_lounge)
+"sf" = (
+/obj/machinery/shipbreaker,
+/turf/open/floor/monotile/steel,
+/area/hallway/nsv/deck2/primary)
 "sg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/structure/cable,
@@ -11810,6 +11814,13 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/crew_quarters/bar/mess_hall)
+"FK" = (
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/obj/structure/closet/secure_closet/shipbreaker,
+/turf/open/floor/plasteel/techmaint,
+/area/hallway/nsv/deck2/primary)
 "FM" = (
 /obj/structure/railing{
 	dir = 8
@@ -44552,7 +44563,7 @@ Lz
 Lz
 IH
 Yu
-xV
+FK
 nh
 Cf
 cD
@@ -45068,7 +45079,7 @@ EC
 Jk
 LP
 jw
-Jk
+sf
 Zi
 YQ
 YQ

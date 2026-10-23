@@ -556,3 +556,30 @@
   - imageadd: Ikony padu rynku, konsoli, padu zamówień, kompresora i strzykawki z
       Monkestation.
   - rscdel: Usunięto maszynę do plortów.
+  Joker66613:
+  - rscadd: 'Kuźnia amunicji dla działu uzbrojenia: piec łukowy, kowadło z rytmiczną
+      minigrą (kuje się młotem kowalskim), stół montażowy, galwanizer i analizator
+      amunicji.'
+  - rscadd: Wykuwana amunicja do broni palnej, pociski działowe i głowice torped i
+      rakiet z właściwościami zależnymi od materiału lub stopu dwóch materiałów, jakości
+      i wypełnienia.
+  - rscadd: Pudła na kowadle obniżają klasę wyrobu; klasa IV i V błyszczy, nierówno
+      wykute części mają rysy.
+  - rscadd: Kutą amunicję można sprzedać na cargo, a zwykłą amunicję z cargo pokryć
+      materiałem w galwanizerze.
+  - rscadd: Kuźnia amunicji w munitions na Atlasie i Snake oraz w nowym pomieszczeniu
+      nad munitions na Serendipity.
+  - bugfix: W obiekty zajmujące kilka kafli da się klikać z każdej strony.
+  - imageadd: Sprite'y maszyn kuźni z Monkestation (CC BY-SA 3.0) i galwanizera z
+      goonstation (CC BY-NC-SA 3.0), odlewy ze smithingu ParadiseSS13 (CC BY-SA 3.0).
+  Monkestation:
+  - rscadd: 'Shipbreaking: zestrzelone okręty zostawiają wraki, które magnes na asteroidy
+      przyciąga do klatki. Rozbierz je na złom młotem burzącym i spawarką Rayne.'
+  - rscadd: Recykler złomu zamienia złom z wraków na kredyty zaopatrzenia (połowa
+      dla gracza) i materiały. Recykler i szafka złomiarza stoją przy klatce na Atlasie,
+      Snake i Serendipity.
+  - rscadd: Serendipity dostała klatkę magnesu na asteroidy za cargo i konsolę magnesu
+      w biurze górników.
+  - bugfix: Konsola magnesu na asteroidy przy klatce (Atlas, Snake) znowu reaguje
+      na przyciski.
+  - imageadd: Ikony złomu, młota burzącego i spawarki Rayne z Monkestation.
