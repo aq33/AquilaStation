@@ -7,7 +7,7 @@
 	if(hijacking)
 		user.visible_message(span_danger("[user] próbuje odłączyć płytkę drukowaną od [src]"), span_notice("Coś jest podłączone do portów [src]! Próbujesz to odłączyć..."))
 		if (do_after(user,100,target = src))
-			hijacking.forceMove(loc)
+			hijacking.forceMove(get_turf(src))
 			hijacking = null
 			hijack_start = 0
 			update_icons()
