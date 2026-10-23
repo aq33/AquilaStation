@@ -195,10 +195,9 @@ GLOBAL_LIST_EMPTY(bingle_holes)
 	swallow(arrived)
 
 /obj/structure/bingle_hole/process(delta_time)
-	// Ankieta na bingla co 50 punktów, raz na próg
-	var/target_bingle_count = round(item_value_consumed / BINGLE_PIT_SPAWN_STEP)
-	if(target_bingle_count > round(last_bingle_spawn_value / BINGLE_PIT_SPAWN_STEP))
-		last_bingle_spawn_value = target_bingle_count * BINGLE_PIT_SPAWN_STEP
+	// Ankieta na bingla co 50 punktów, osobno za każdy przekroczony próg
+	while(item_value_consumed >= last_bingle_spawn_value + BINGLE_PIT_SPAWN_STEP)
+		last_bingle_spawn_value += BINGLE_PIT_SPAWN_STEP
 		INVOKE_ASYNC(src, PROC_REF(spawn_bingle_from_ghost))
 
 	var/desired_pit_size = min(1 + round(item_value_consumed / BINGLE_PIT_GROW_STEP), BINGLE_PIT_MAX_SIZE)

@@ -29,6 +29,10 @@
 	var/list/candidates = get_candidates(ROLE_BINGLE, /datum/role_preference/midround_ghost/bingle, POLL_IGNORE_BINGLE)
 	if(!length(candidates))
 		return NOT_ENOUGH_PLAYERS
+	// Ankieta trwa, a w tym czasie runda mogła się skończyć albo ktoś wezwał prom
+	if(SSticker.current_state != GAME_STATE_PLAYING || !EMERGENCY_IDLE_OR_RECALLED)
+		message_admins("Bingle Lord was not spawned, the shuttle was called or the round ended during the poll.")
+		return NOT_ENOUGH_PLAYERS
 	var/turf/spawn_loc = find_bingle_lord_spawn()
 	if(isnull(spawn_loc))
 		return MAP_ERROR
