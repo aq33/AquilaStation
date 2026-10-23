@@ -98,7 +98,13 @@
 	var/health = magnet.get_wreck_health()
 	if(!health)
 		return "Freshly loaded wreck reports [health]% health"
+	for(var/turf/T as anything in magnet.get_cage_turfs())
+		if(!is_shipbreak_area(T))
+			return "Cage turf [T.x],[T.y] is not in the shipbreaking area while a wreck is loaded"
+	var/error = check_rayne_cutting(magnet)
 	magnet.push_away_asteroid()
+	if(error)
+		return error
 	if(magnet.current_wreck)
 		return "Wreck still set after pushing it away"
 	for(var/turf/T as anything in magnet.get_cage_turfs())
@@ -108,5 +114,45 @@
 			return "Cage turf [T.x],[T.y] is [T.type] after the push"
 	if(get_area(magnet.target_location) != old_area)
 		return "Cage area changed from [old_area] to [get_area(magnet.target_location)]"
+
+/// Spawarka Rayne tnie ścianę wraku aż do próżni (ściana, dźwigar, poszycie) i rozbiera silnik na rdzeń
+/datum/unit_test/shipbreaking/proc/check_rayne_cutting(obj/machinery/computer/ship/mineral_magnet/magnet)
+	// Ściana wraku z wolną podłogą obok, na której stanie złomiarz
+	var/turf/closed/wall/wall
+	var/turf/open/stand
+	for(var/turf/closed/wall/candidate in magnet.wreck_turfs)
+		for(var/turf/open/floor/neighbour in get_adjacent_open_turfs(candidate))
+			if(!neighbour.density && !(locate(/obj/structure) in neighbour) && !(locate(/obj/machinery) in neighbour))
+				wall = candidate
+				stand = neighbour
+				break
+		if(wall)
+			break
+	if(!wall)
+		return "No wreck wall with free floor next to it in [magnet.current_wreck.mappath]"
+	var/mob/living/carbon/human/breaker = allocate(/mob/living/carbon/human, stand)
+	var/obj/item/weldingtool/experimental/rayne/welder = allocate(/obj/item/weldingtool/experimental/rayne, stand)
+	breaker.put_in_active_hand(welder)
+	welder.switched_on(breaker)
+	if(!welder.isOn())
+		return "Rayne welder did not turn on in the shipbreaking area"
+	var/turf/target = wall
+	var/list/steps = list("wall", "girder", "plating")
+	for(var/step in steps)
+		var/atom/to_cut = step == "girder" ? (locate(/obj/structure/girder) in target) : target
+		if(!to_cut)
+			return "No [step] left on [target.x],[target.y] after the previous cut"
+		welder.cut_down(breaker, to_cut)
+	if(!isspaceturf(target))
+		return "Rayne welder left [target.type] instead of space after cutting a wall down"
+	if(!(locate(/obj/item/stack/scrap/framing) in target) || !(locate(/obj/item/stack/scrap/plating) in target))
+		return "Cutting a wall down did not drop plating and framing scrap"
+
+	var/obj/structure/shuttle/engine/heater/engine = new(stand)
+	welder.cut_down(breaker, engine)
+	if(!QDELETED(engine))
+		return "Rayne welder did not cut a shuttle engine apart"
+	if(!(locate(/obj/item/stack/scrap/core) in stand))
+		return "Cutting an engine did not drop a ship core"
 
 #undef TEST_ASSERT

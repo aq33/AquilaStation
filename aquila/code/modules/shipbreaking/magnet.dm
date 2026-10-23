@@ -64,6 +64,15 @@
 	for(var/turf/T as anything in current_wreck.get_affected_turfs(origin))
 		if(!isgroundlessturf(T))
 			wreck_turfs += T
+	// Cała klatka to strefa złomowania, żeby spawarka Rayne działała też z zewnątrz wraku
+	var/area/shipbreak_area = GLOB.areas_by_type[/area/space/shipbreak]
+	for(var/turf/T as anything in get_cage_turfs())
+		var/area/old_area = T.loc
+		if(old_area == shipbreak_area)
+			continue
+		old_area.contents -= T
+		shipbreak_area.contents += T
+		T.change_area(old_area, shipbreak_area)
 	damage_wreck()
 	return TRUE
 

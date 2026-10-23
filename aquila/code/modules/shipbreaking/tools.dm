@@ -1,7 +1,7 @@
 /// Młot burzący: w strefie złomowania rozbija struktury i maszyny z wraku (Monke: /obj/item/melee/sledgehammer)
 /obj/item/melee/sledgehammer
 	name = "młot burzący"
-	desc = "Ciężkie narzędzie do rozbijania okien, maszyn i innych konstrukcji wraku. W strefie złomowania łamie je znacznie mocniej."
+	desc = "Ciężkie narzędzie do rozbijania maszyn, mebli, okien i innych przedmiotów we wraku. W strefie złomowania łamie je znacznie mocniej. Ściany i podłogi tnie się spawarką."
 	icon = 'aquila/icons/obj/shipbreaking.dmi'
 	icon_state = "sledgehammer"
 	item_state = "sledgehammer"
@@ -42,7 +42,7 @@
 /// Spawarka laserowa Rayne: bardzo szybka, ale blokada bezpieczeństwa wyłącza ją poza strefą złomowania
 /obj/item/weldingtool/experimental/rayne
 	name = "spawarka laserowa Rayne"
-	desc = "Laserowa przecinarka i spawarka Rayne Corp. Wbudowana blokada bezpieczeństwa pozwala jej działać tylko w wyznaczonej strefie złomowania."
+	desc = "Laserowa przecinarka i spawarka Rayne Corp. W strefie złomowania tnie wszystko: ściany, dźwigary, podłogi, poszycie, maszyny i silniki. Wbudowana blokada bezpieczeństwa wyłącza ją poza tą strefą."
 	icon = 'aquila/icons/obj/shipbreaking.dmi'
 	icon_state = "raynewelder"
 	item_state = "exwelder"
@@ -53,6 +53,49 @@
 		balloon_alert(user, "Blokada: działa tylko w strefie złomowania!")
 		return FALSE
 	return ..()
+
+// W strefie złomowania tnie wszystko do gołej próżni: ścianę na dźwigar, dźwigar na szkielet,
+// podłogę na poszycie i poszycie na złom, a maszyny i konstrukcje (też silniki) rozbiera na części
+/obj/item/weldingtool/experimental/rayne/tool_attack_chain(mob/user, atom/target, is_right_clicking)
+	if(!is_shipbreak_area(target) || !get_cut_time(target))
+		return ..()
+	INVOKE_ASYNC(src, PROC_REF(cut_down), user, target)
+	return TRUE
+
+/// Czas cięcia przed toolspeed, 0 = tej rzeczy spawarka nie tnie (wtedy działa zwykła spawarka)
+/obj/item/weldingtool/experimental/rayne/proc/get_cut_time(atom/target)
+	if(isclosedturf(target))
+		return istype(target, /turf/closed/wall) ? 10 SECONDS : 0
+	if(isopenturf(target))
+		return isgroundlessturf(target) ? 0 : 5 SECONDS
+	if(istype(target, /obj/structure/girder))
+		return 5 SECONDS
+	if(isstructure(target) || ismachinery(target))
+		var/obj/O = target
+		if(O.resistance_flags & INDESTRUCTIBLE)
+			return 0
+		return 10 SECONDS
+	return 0
+
+/obj/item/weldingtool/experimental/rayne/proc/cut_down(mob/user, atom/target)
+	if(!tool_start_check(user, 1))
+		return
+	user.visible_message("<span class='notice'>[user] tnie [target] spawarką laserową.</span>",
+		"<span class='notice'>Zaczynasz ciąć [target]...</span>",
+		"<span class='italics'>Słyszysz syk lasera.</span>")
+	if(!use_tool(target, user, get_cut_time(target), 1, 50) || QDELETED(target) || !is_shipbreak_area(target))
+		return
+	if(istype(target, /turf/closed/wall))
+		var/turf/closed/wall/wall = target
+		wall.dismantle_wall()
+	else if(isopenturf(target))
+		var/turf/open/floor_turf = target
+		if(isplatingturf(floor_turf))
+			new /obj/item/stack/scrap/plating(floor_turf)
+		floor_turf.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
+	else
+		var/obj/O = target
+		O.deconstruct(TRUE)
 
 /obj/structure/closet/secure_closet/shipbreaker
 	name = "szafka złomiarza"
