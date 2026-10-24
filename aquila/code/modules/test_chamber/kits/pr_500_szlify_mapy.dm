@@ -25,11 +25,22 @@
 		windows += W
 	if(!length(windows))
 		return
-	var/turf/start = get_turf(windows[1])
+	// Pierwsze cztery sąsiadujące wolne pola areny w poziomie (pole z oknami zestawu też się liczy)
+	var/list/row
+	for(var/turf/start as anything in turfs)
+		var/list/candidate = list()
+		for(var/i in 0 to length(windows) - 1)
+			var/turf/T = locate(start.x + i, start.y, start.z)
+			if(!(T in turfs) || !pr_500_free_turf(T, windows))
+				break
+			candidate += T
+		if(length(candidate) == length(windows))
+			row = candidate
+			break
+	if(!row)
+		return
 	for(var/i in 1 to length(windows))
-		var/turf/T = locate(start.x + i - 1, start.y, start.z)
-		if(i > 1 && (!T || T.density || (locate(/obj/structure) in T)))
-			T = start
+		var/turf/T = row[i]
 		var/obj/structure/window/W = windows[i]
 		W.forceMove(T)
 		if(!(locate(/obj/structure/grille) in T))
@@ -37,3 +48,14 @@
 	for(var/obj/structure/window/W as anything in windows)
 		queue_smooth(W)
 		queue_smooth_neighbors(W)
+
+/// Pole bez gęstych rzeczy i bez struktur poza oknami zestawu
+/datum/test_chamber_kit/pr_500/proc/pr_500_free_turf(turf/T, list/windows)
+	if(T.density)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM in windows)
+			continue
+		if(AM.density || istype(AM, /obj/structure))
+			return FALSE
+	return TRUE
