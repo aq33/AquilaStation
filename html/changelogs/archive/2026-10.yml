@@ -635,3 +635,11 @@
       kolejne bingle.'
   - rscadd: Event „Spawn Bingle” (od 15 graczy), w trybie weighted w puli ciężkiej.
   - imageadd: Sprite'y bingli, Dołu i wymiaru z Monkestation.
+'2026-10-24':
+  Bibby0110, Yogstation:
+  - rscadd: Kable sieciowe łączą rdzenie danych i szafy serwerowe SI w sieci z osobnymi
+      zasobami CPU/RAM.
+  - rscadd: Nadajnik sieci SI łączy odległe sieci, także między pokładami.
+  - tweak: SI przenosi się tylko do rdzeni w swojej sieci. Przecięcie kabla może odciąć
+      SI od zasobów i zapasowego rdzenia.
+  - imageadd: Ikony kabla sieciowego, zwoju i nadajnika.
