@@ -94,4 +94,12 @@
 	GLOB.digital_exiles -= exile_mind
 	qdel(exile)
 
+/// AQUILA - CargoDrobe ma ubrania bitrunnera (lista produktów jest w aquila/code/modules/vending/wardrobes.dm, nie w core)
+/datum/unit_test/aquila_bitrunning_wardrobe
+
+/datum/unit_test/aquila_bitrunning_wardrobe/Run()
+	var/obj/machinery/vending/wardrobe/cargo_wardrobe/vendor = allocate(/obj/machinery/vending/wardrobe/cargo_wardrobe)
+	for(var/path in list(/obj/item/clothing/under/rank/cargo/bitrunner, /obj/item/clothing/under/plasmaman/bitrunner, /obj/item/clothing/head/helmet/space/plasmaman/bitrunner))
+		TEST_ASSERT(vendor.products[path], "CargoDrobe nie sprzedaje [path]")
+
 #undef TEST_ASSERT

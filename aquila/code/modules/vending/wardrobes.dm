@@ -10,6 +10,9 @@
 	light_color = LIGHT_COLOR_YELLOW
 	products = list(/obj/item/clothing/suit/hooded/wintercoat/cargo = 3,
 					/obj/item/clothing/under/rank/cargo/tech = 3,
+					/obj/item/clothing/under/rank/cargo/bitrunner = 3, // bitrunning
+					/obj/item/clothing/under/plasmaman/bitrunner = 2,
+					/obj/item/clothing/head/helmet/space/plasmaman/bitrunner = 2,
 					/obj/item/clothing/under/plasmaman/cargo = 3,
 					/obj/item/clothing/head/helmet/space/plasmaman/cargo = 3,
 					/obj/item/clothing/shoes/sneakers/black = 3,
