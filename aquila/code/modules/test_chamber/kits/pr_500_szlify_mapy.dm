@@ -38,6 +38,8 @@
 			row = candidate
 			break
 	if(!row)
+		if(user)
+			to_chat(user, span_warning("Na arenie nie ma czterech wolnych pól obok siebie, okna zostały na jednym polu. Zresetuj komorę i zrzuć zestaw jeszcze raz."))
 		return
 	for(var/i in 1 to length(windows))
 		var/turf/T = row[i]
