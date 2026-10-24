@@ -1374,6 +1374,7 @@
 #include "code\modules\unit_tests\aquila_cybernetics.dm"
 #include "code\modules\unit_tests\aquila_monke_misc.dm"
 #include "code\modules\unit_tests\aquila_monke_ingame.dm"
+#include "code\modules\unit_tests\aquila_citationinator.dm"
 #include "code\modules\unit_tests\aquila_spesstv.dm"
 #include "code\modules\unit_tests\aquila_munitions_forge.dm"
 #include "code\modules\unit_tests\aquila_spiders.dm"
