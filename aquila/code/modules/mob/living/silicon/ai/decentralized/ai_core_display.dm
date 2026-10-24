@@ -28,9 +28,7 @@
 	if(length(GLOB.ai_list) != 1)
 		return
 	var/mob/living/silicon/ai/living_ai = GLOB.ai_list[1]
-	var/turf/our_turf = get_turf(src)
-	var/datum/ai_os/os_using = GLOB.ai_os["[our_turf?.z]"]
-	if(isnull(os_using) || !(living_ai in os_using.ai_list))
+	if(!ai_nearby(living_ai))
 		return
 	assign_ai(living_ai)
 
@@ -67,9 +65,7 @@
 	if(user == connected_ai)
 		user.pick_icon()
 		return
-	var/turf/our_turf = get_turf(src)
-	var/datum/ai_os/z_level_os = GLOB.ai_os["[our_turf.z]"]
-	if(!z_level_os || !(user in z_level_os.ai_list))
+	if(!ai_nearby(user))
 		to_chat(user, span_warning("Ten ekran jest w innej sieci!"))
 		return
 	var/request_prompt = tgui_alert(user, "Ten ekran należy do innej SI. Możesz poprosić, żeby go oddała, albo przejąć go siłą, jeśli masz więcej CPU.",
@@ -102,9 +98,9 @@
 	if(!connected_ai)
 		assign_ai(usurper)
 		return
-	var/turf/our_turf = get_turf(src)
-	var/datum/ai_os/z_level_os = GLOB.ai_os["[our_turf.z]"]
-	if(z_level_os && z_level_os.cpu_assigned[usurper] > z_level_os.cpu_assigned[connected_ai])
+	var/datum/ai_os/usurper_os = usurper.get_ai_os()
+	var/datum/ai_os/connected_os = connected_ai.get_ai_os()
+	if(usurper_os && usurper_os.cpu_assigned[usurper] > (connected_os?.cpu_assigned[connected_ai] || 0))
 		to_chat(connected_ai, span_warning("[usurper] przejmuje ekran rdzenia w [get_area_name(src, TRUE)]!"))
 		assign_ai(usurper)
 	else
@@ -153,11 +149,17 @@
 	if(connected_ai || QDELETED(new_ai))
 		return
 	//Not on our level, we don't care.
-	var/turf/our_turf = get_turf(src)
-	var/datum/ai_os/os_using = GLOB.ai_os["[our_turf?.z]"]
-	if(isnull(os_using) || !(new_ai in os_using.ai_list))
+	if(!ai_nearby(new_ai))
 		return
 	assign_ai(new_ai)
+
+///Czy SI siedzi w rdzeniu danych na naszym poziomie (ekran nie jest częścią sieci ethernet)
+/obj/machinery/ai_core_display/proc/ai_nearby(mob/living/silicon/ai/target_ai)
+	var/turf/our_turf = get_turf(src)
+	if(!our_turf || !target_ai)
+		return FALSE
+	var/obj/machinery/ai/data_core/core = isaicore(target_ai.loc) ? target_ai.loc : target_ai.last_used_data_core
+	return core && (core in GLOB.data_cores["[our_turf.z]"])
 
 ///Called when our assigned AI is being deleted.
 /obj/machinery/ai_core_display/proc/on_ai_deleting(datum/source)

@@ -8,6 +8,7 @@ type Data = {
   servers: ServerData[];
   cores: CoreData[];
   temp_limit: number;
+  has_network: BooleanLike;
 };
 
 type ServerData = {
@@ -47,11 +48,16 @@ const Status = (props: { working: BooleanLike }) => (
 
 export const AiServerConsole = (props) => {
   const { data } = useBackend<Data>();
-  const { servers = [], cores = [], temp_limit } = data;
+  const { servers = [], cores = [], temp_limit, has_network } = data;
 
   return (
     <Window width={650} height={500} title="Przegląd serwerów SI">
       <Window.Content scrollable>
+        {!has_network && (
+          <NoticeBox danger>
+            Brak połączenia z siecią SI. Konsola musi stać na kablu sieciowym.
+          </NoticeBox>
+        )}
         <NoticeBox info>
           Limit temperatury: {temp_limit} K (
           {Math.round((temp_limit - KELVIN_OFFSET) * 10) / 10} °C)

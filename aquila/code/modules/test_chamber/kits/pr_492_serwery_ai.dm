@@ -34,6 +34,10 @@
 	new /obj/item/stack/sheet/mineral/gold{amount = 20}(mats)
 	new /obj/item/paper/ai_control_code(mats)
 	new /obj/item/card/id/captains_spare(mats)
+	// Maszyny SI łączą się kablem ethernet (aq33/AquilaStation#499), więc kładziemy go pod całą areną
+	for(var/turf/T as anything in turfs)
+		if(!locate(/obj/structure/ethernet_cable) in T)
+			new /obj/structure/ethernet_cable(T)
 	// Rdzenie z baterią, żeby działały też bez zasilania w komorze
 	for(var/obj/machinery/ai/data_core/core in spawned)
 		if(!core.integrated_battery)

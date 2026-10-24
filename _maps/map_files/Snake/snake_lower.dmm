@@ -583,6 +583,26 @@
 	dir = 1
 	},
 /area/hallway/primary/central)
+"bm" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/ai/networking{
+	label = "Serwerownia SI"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/server)
+"bn" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/machinery/airalarm/directional/north,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/tcommsat/server)
 "bo" = (
 /obj/machinery/atmospherics/pipe/manifold4w/yellow/visible/layer2,
 /obj/machinery/atmospherics/pipe/simple/purple/visible/layer4{
@@ -689,6 +709,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"by" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/tcommsat/server)
 "bz" = (
 /obj/machinery/door/airlock/ship/public{
 	name = "Kitchen airlock";
@@ -811,6 +838,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"bN" = (
+/obj/machinery/computer/telecomms/traffic{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Telecomms Admin";
+	departmentType = 5;
+	name = "Telecomms RC";
+	pixel_x = -32
+	},
+/obj/machinery/light_switch/south,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "bO" = (
 /obj/structure/table,
 /obj/item/storage/box/beakers,
@@ -1253,6 +1299,25 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"cL" = (
+/obj/structure/cable,
+/obj/machinery/computer/ai_resource_distribution{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"cM" = (
+/obj/structure/cable/yellow,
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/obj/structure/ethernet_cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "cN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -1337,6 +1402,14 @@
 	},
 /turf/open/floor/plasteel/ameridiner,
 /area/engine/engineering/reactor_core)
+"cX" = (
+/obj/machinery/blackbox_recorder,
+/obj/machinery/firealarm/directional/north,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/circuit,
+/area/tcommsat/server)
 "cY" = (
 /obj/structure/cable/yellow,
 /obj/machinery/door/airlock/ship/command{
@@ -1595,10 +1668,38 @@
 	dir = 1
 	},
 /area/hallway/primary/aft)
+"dG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/navbeacon{
+	codes_txt = "patrol;next_patrol=fore";
+	location = "aft"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "dH" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/stairs{
 	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
+"dI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
@@ -1687,6 +1788,22 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"dU" = (
+/obj/machinery/door/airlock/ship/engineering{
+	name = "Telecommunications Control";
+	req_one_access_txt = "10, 19";
+	security_level = 6
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/tcommsat/computer)
 "dV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1709,6 +1826,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/science/robotics)
+"dY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "dZ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/suit_storage_unit/standard_unit{
@@ -1793,6 +1919,17 @@
 /obj/machinery/door/firedoor/border_only/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+"ej" = (
+/obj/structure/cable,
+/obj/structure/cable/yellow,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "ek" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 2
@@ -2013,6 +2150,17 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/aft)
+"eN" = (
+/obj/structure/cable/yellow,
+/obj/machinery/door/airlock/ship/command{
+	name = "Telecommunications";
+	security_level = 6
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
 "eO" = (
 /obj/effect/turf_decal/tile/ship/blue{
 	dir = 1
@@ -2066,6 +2214,13 @@
 "eU" = (
 /turf/open/floor/plasteel,
 /area/engine/storage)
+"eV" = (
+/obj/structure/cable/yellow,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/server)
 "eW" = (
 /turf/closed/wall/r_wall,
 /area/hallway/secondary/exit)
@@ -2168,6 +2323,30 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"fg" = (
+/obj/machinery/power/apc/auto_name/north,
+/obj/structure/cable/yellow,
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/server)
+"fh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -2316,6 +2495,22 @@
 /obj/machinery/rnd/server,
 /turf/open/floor/plasteel/dark,
 /area/science/server)
+"fy" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "fz" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -2442,6 +2637,40 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"fR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
+"fS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "fT" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxin_input{
 	dir = 1
@@ -2535,6 +2764,23 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+"gh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_node{
+	next_id = list("bar","bridge","munitions");
+	id = "chapel";
+	name = "Chapel patrol node"
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "gi" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 2
@@ -2888,6 +3134,39 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
+"gU" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
+"gV" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holopad,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "gW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -2906,6 +3185,24 @@
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel,
 /area/janitor)
+"gY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only/directional/west,
+/obj/machinery/door/firedoor/border_only/directional/east,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "gZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /turf/open/floor/wood,
@@ -2921,6 +3218,22 @@
 "hc" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/science/robotics)
+"hd" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "he" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible/layer2{
 	dir = 1
@@ -2941,6 +3254,23 @@
 /obj/machinery/newscaster/security_unit/west,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+"hg" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "hh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -2970,6 +3300,19 @@
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
+"hk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden/layer4,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "hl" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/item/control_rod,
@@ -3096,11 +3439,31 @@
 /obj/machinery/gravity_generator/main/station,
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+"hy" = (
+/obj/machinery/atmospherics/components/binary/pump/on{
+	target_pressure = 4500
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/server)
 "hz" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hop{
 	name = "Executive officer's Office"
 	})
+"hA" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/server)
 "hB" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/structure/window/reinforced,
@@ -3157,6 +3520,19 @@
 /obj/item/food/mint,
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
+"hI" = (
+/obj/machinery/door/airlock/ship/glass{
+	name = "Research Server Access";
+	req_one_access_txt = "47"
+	},
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/server)
 "hJ" = (
 /obj/machinery/door/airlock/ship/public/glass,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -3339,6 +3715,22 @@
 /obj/machinery/firealarm/directional/north,
 /turf/open/floor/plasteel/dark/side,
 /area/hallway/primary/central)
+"ik" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "il" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel,
@@ -3464,6 +3856,21 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
+"iz" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 8
+	},
+/obj/effect/landmark/start/scientist,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "iA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3484,6 +3891,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering/reactor_core)
+"iD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "iE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
@@ -3532,6 +3951,16 @@
 /obj/effect/landmark/carpspawn,
 /turf/open/space/basic,
 /area/space)
+"iK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "iL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3600,6 +4029,34 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"iT" = (
+/obj/machinery/door/airlock/ship/glass{
+	name = "Research Division";
+	req_one_access_txt = "47"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/machinery/door/firedoor/border_only/directional/south,
+/obj/machinery/door/firedoor/border_only/directional/north,
+/obj/structure/disposalpipe/segment,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/science/lab)
+"iU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/hallway/primary/aft)
 "iV" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -3662,6 +4119,22 @@
 /obj/structure/mirror,
 /turf/closed/wall/r_wall,
 /area/medical/genetics/cloning)
+"je" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/hallway/primary/aft)
 "jf" = (
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 4;
@@ -3703,6 +4176,17 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
+"jk" = (
+/obj/machinery/door/airlock/ship/command/glass{
+	name = "R&D Server";
+	req_one_access_txt = "30"
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "jl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3739,6 +4223,17 @@
 /obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/fore)
+"jo" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/structure/ethernet_cable{
+	icon_state = "0-1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "jp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4375,6 +4870,16 @@
 	dir = 1
 	},
 /area/hallway/primary/fore)
+"kG" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "kH" = (
 /obj/machinery/door/airlock/ship/public{
 	name = "Service Access airlock";
@@ -4565,6 +5070,16 @@
 	dir = 1
 	},
 /area/hallway/primary/aft)
+"lc" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 1
+	},
+/obj/machinery/ai/data_core,
+/obj/structure/ethernet_cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
 "ld" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -41219,7 +41734,7 @@ aJ
 mg
 aJ
 xF
-gv
+bm
 Kp
 Kp
 Kp
@@ -41476,7 +41991,7 @@ cj
 aJ
 aJ
 xF
-lB
+bn
 Av
 sM
 aX
@@ -41733,7 +42248,7 @@ cj
 aJ
 aJ
 xF
-wu
+by
 ZJ
 jE
 nj
@@ -41990,14 +42505,14 @@ cj
 aJ
 aJ
 xF
-ou
+cX
 Km
 dt
 Kp
 bX
-kb
-aZ
-ba
+cM
+cL
+bN
 ha
 dP
 BZ
@@ -42247,17 +42762,17 @@ cj
 aJ
 aJ
 xF
-HP
-xZ
-xZ
-xZ
-cY
-Mm
+fg
+eV
+eV
+eV
+eN
+ej
 mI
-MQ
-jC
-dT
-xz
+dY
+dU
+dI
+dG
 es
 cU
 cU
@@ -42514,7 +43029,7 @@ Rx
 Qp
 ha
 dP
-CU
+fh
 nG
 cU
 AG
@@ -42771,7 +43286,7 @@ ha
 ha
 ha
 dV
-Et
+fy
 Wr
 vU
 Aj
@@ -43028,7 +43543,7 @@ Rq
 XQ
 ln
 dP
-NR
+fR
 Ey
 cU
 zu
@@ -43285,7 +43800,7 @@ Uk
 ek
 ei
 ec
-LR
+fS
 HC
 cU
 cU
@@ -43542,7 +44057,7 @@ vX
 IW
 ez
 em
-WI
+gh
 Nq
 cU
 cU
@@ -43799,7 +44314,7 @@ AS
 iX
 wX
 en
-co
+gU
 WE
 QQ
 dQ
@@ -44056,7 +44571,7 @@ YF
 Dm
 ln
 er
-aT
+gV
 Nq
 Ov
 Vj
@@ -44313,7 +44828,7 @@ XD
 XD
 XD
 ev
-ho
+gY
 Gp
 ja
 ja
@@ -44570,7 +45085,7 @@ CA
 WW
 XD
 ew
-rJ
+hd
 Nq
 ja
 ay
@@ -44827,7 +45342,7 @@ yz
 yz
 PA
 eH
-eG
+hg
 eC
 eB
 eA
@@ -45084,7 +45599,7 @@ Bk
 eL
 eK
 eJ
-rJ
+hd
 nG
 ja
 ig
@@ -45341,7 +45856,7 @@ tR
 RJ
 ic
 eM
-wa
+hk
 Ey
 vj
 hc
@@ -45598,7 +46113,7 @@ KY
 GC
 MK
 dP
-LR
+fS
 lb
 ja
 gB
@@ -45855,7 +46370,7 @@ eX
 eX
 aL
 dP
-rJ
+hd
 kX
 ja
 ja
@@ -46112,7 +46627,7 @@ uL
 WW
 XD
 lg
-rJ
+hd
 tp
 de
 ex
@@ -46369,16 +46884,16 @@ XD
 XD
 eR
 li
-co
-Vp
-Yz
-jq
-jR
-zl
-VT
-Ei
-fv
-gx
+je
+iU
+iT
+iK
+iD
+iz
+ik
+hI
+hA
+hy
 jX
 oj
 aJ
@@ -46635,7 +47150,7 @@ kr
 Gw
 oj
 dL
-pi
+jk
 dL
 oj
 aJ
@@ -46891,9 +47406,9 @@ Cn
 Ar
 kC
 oj
-al
-PE
-aN
+lc
+kG
+jo
 oj
 aJ
 aJ

@@ -17,13 +17,11 @@
 /obj/machinery/computer/ai_server_console/ui_data(mob/user)
 	var/list/data = list()
 
-	var/turf/computer_turf = get_turf(src)
-	var/datum/ai_os/os_used = GLOB.ai_os["[computer_turf.z]"]
+	var/datum/ai_os/os_used = get_ai_os_at(src)
+	data["has_network"] = !!os_used
 
 	data["servers"] = list()
-	for(var/obj/machinery/ai/server_cabinet/holder as anything in GLOB.ai_server_cabinets)
-		if(!os_used || holder.linked_os != os_used)
-			continue
+	for(var/obj/machinery/ai/server_cabinet/holder as anything in os_used?.get_machines(/obj/machinery/ai/server_cabinet))
 		data["servers"] += list(list(
 			"area" = get_area_name(holder, TRUE),
 			"working" = holder.valid_holder(),
@@ -34,7 +32,7 @@
 		))
 
 	data["cores"] = list()
-	for(var/obj/machinery/ai/data_core/core as anything in GLOB.data_cores["[computer_turf.z]"])
+	for(var/obj/machinery/ai/data_core/core as anything in os_used?.get_data_cores())
 		var/list/hosted = list()
 		for(var/mob/living/silicon/ai/AI in core.contents)
 			hosted += AI.name

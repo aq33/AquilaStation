@@ -1,5 +1,8 @@
 // Zdecentralizowane AI (port Monkestation/Monkestation2.0#11862, oryginał z Yogstation)
 
+///Kable ethernet leżą tuż nad kablami zasilającymi
+#define ETHERNET_LAYER (WIRE_LAYER + 0.01)
+
 #define AI_HEATSINK_CAPACITY 5000
 #define AI_HEATSINK_COEFF 1
 ///All AI machinery heat production is multiplied by this value
