@@ -893,6 +893,7 @@
 #include "code\modules\test_chamber\kits\pr_497_glod.dm"
 #include "code\modules\test_chamber\kits\pr_499_kable_ethernet.dm"
 #include "code\modules\test_chamber\kits\pr_481_policja.dm"
+#include "code\modules\test_chamber\kits\pr_500_szlify_mapy.dm"
 #include "code\modules\test_chamber\kits\pr_monke_cybernetyka.dm"
 #include "code\modules\test_chamber\kits\pr_476_protezy_mapowanie.dm"
 #include "code\modules\test_chamber\kits\pr_468_xenoarch_gizmo.dm"
