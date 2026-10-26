@@ -669,3 +669,10 @@
   - bugfix: Okienka z pytaniem nie crashują przy pustej wiadomości.
   - bugfix: Nukeopi znów mogą wypowiedzieć wojnę.
   - tweak: Panel SI jest czytelniejszy.
+  - bugfix: Zmiana imienia i nazwiska postaci w preferencjach nie crashuje okna.
+  - bugfix: Wyszukiwarki w słowniku roślin, magazynie nasion i siatce odczynników
+      znów filtrują.
+  - bugfix: Podgląd postaci nie zostaje czarnym prostokątem w oknie preferencji po
+      błędzie interfejsu.
+  - bugfix: 'Konsola komunikacyjna: okna wezwania promu i wiadomości do CentComu mieszczą
+      się na ekranie, da się wezwać prom.'
