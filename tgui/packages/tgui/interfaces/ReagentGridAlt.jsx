@@ -133,7 +133,7 @@ class ReagentGrid extends Component {
             <Input
               width={'88%'}
               placeholder={'Szukaj...'}
-              onInput={(e, value) => setSearchText(value)}
+              onChange={(value) => setSearchText(value)}
             />
             <Button
               className="plant__button--beacon"
