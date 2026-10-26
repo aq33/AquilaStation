@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Box, Button, Flex, Modal, Section } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
@@ -7,7 +8,13 @@ import { ALERT_LEVELS, alertLevelName } from './constants';
 import { MessageModal } from './MessageModal';
 import type { CommsConsoleData } from './types';
 
-export function PageMain(props) {
+type Props = {
+  // AQUILA: okna dialogowe idą na cały ekran konsoli, nie do wąskiej lewej kolumny
+  modalRoot: HTMLElement | null;
+};
+
+export function PageMain(props: Props) {
+  const { modalRoot } = props;
   const { act, data } = useBackend<CommsConsoleData>();
   const {
     alertLevel,
@@ -43,6 +50,143 @@ export function PageMain(props) {
 
   const [newAlertLevel, setNewAlertLevel] = useState('');
   const showAlertLevelConfirm = newAlertLevel && newAlertLevel !== alertLevel;
+
+  const modals = (
+    <>
+      {!!canMessageAssociates && messagingAssociates && (
+        <MessageModal
+          label={`Wiadomość do przesłania ${
+            emagged ? 'pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]' : 'do CentComu'
+          } przez splątanie kwantowe`}
+          notice="Pamiętaj, że ten proces jest bardzo kosztowny, a nadużycia skończą się... zwolnieniem. Przesłanie nie gwarantuje odpowiedzi. Szefowie działów mogą z tego korzystać tylko w sytuacji awaryjnej."
+          icon="bullhorn"
+          buttonText="Wyślij"
+          onBack={() => setMessagingAssociates(false)}
+          onSubmit={(message) => {
+            setMessagingAssociates(false);
+            act('messageAssociates', {
+              message,
+            });
+          }}
+        />
+      )}
+
+      {!!canRequestNuke && requestingNukeCodes && (
+        <MessageModal
+          label="Powód prośby o kody autodestrukcji jądrowej"
+          notice="Nadużycia systemu próśb o kody jądrowe nie będą tolerowane w żadnych okolicznościach. Przesłanie nie gwarantuje odpowiedzi."
+          icon="bomb"
+          buttonText="Poproś o kody"
+          onBack={() => setRequestingNukeCodes(false)}
+          onSubmit={(reason) => {
+            setRequestingNukeCodes(false);
+            act('requestNukeCodes', {
+              reason,
+            });
+          }}
+        />
+      )}
+
+      {!!canRequestERT && requestingResponseTeam && (
+        <MessageModal
+          label="Powód wezwania zespołu reagowania kryzysowego"
+          notice="Nadużycia systemu wzywania zespołu reagowania nie będą tolerowane w żadnych okolicznościach. Przesłanie nie gwarantuje odpowiedzi."
+          icon="bomb"
+          buttonText="Wezwij ERT"
+          onBack={() => setRequestingResponseTeam(false)}
+          onSubmit={(reason) => {
+            setRequestingResponseTeam(false);
+            act('requestERT', {
+              reason,
+            });
+          }}
+        />
+      )}
+
+      {!!canRequestERT && requestingCrewWake && (
+        <MessageModal
+          label="Powód wybudzenia dodatkowej załogi z kriostazy"
+          notice="Wybudzeni zostaną ochotnicy jako Majtkowie, przy komorach snu. Prośba nie gwarantuje odpowiedzi."
+          icon="snowflake"
+          buttonText="Wybudź załogę"
+          onBack={() => setRequestingCrewWake(false)}
+          onSubmit={(reason) => {
+            setRequestingCrewWake(false);
+            act('requestCrewWake', {
+              reason,
+            });
+          }}
+        />
+      )}
+
+      {!!callingShuttle && (
+        <MessageModal
+          label="Rodzaj zagrożenia"
+          icon="space-shuttle"
+          buttonText="Wezwij prom"
+          minLength={callShuttleReasonMinLength}
+          onBack={() => setCallingShuttle(false)}
+          onSubmit={(reason) => {
+            setCallingShuttle(false);
+            act('callShuttle', {
+              reason,
+            });
+          }}
+        />
+      )}
+
+      {!!canSendToSectors && messagingSector && (
+        <MessageModal
+          label="Wiadomość do sojuszniczej stacji"
+          notice="Pamiętaj, że ten proces jest bardzo kosztowny, a nadużycia skończą się... zwolnieniem."
+          icon="bullhorn"
+          buttonText="Wyślij"
+          onBack={() => setMessagingSector(false)}
+          onSubmit={(message) => {
+            act('sendToOtherSector', {
+              message,
+            });
+            setMessagingSector(false);
+          }}
+        />
+      )}
+
+      {!!canSetAlertLevel && showAlertLevelConfirm && (
+        <Modal>
+          <Flex direction="column" textAlign="center" width="300px">
+            <Flex.Item fontSize="16px" mb={2}>
+              Przeciągnij ID, by potwierdzić zmianę
+            </Flex.Item>
+
+            <Flex.Item mr={2} mb={1}>
+              <Button
+                icon="id-card-o"
+                color="good"
+                fontSize="16px"
+                onClick={() => {
+                  act('changeSecurityLevel', {
+                    newSecurityLevel: newAlertLevel,
+                  });
+                  setNewAlertLevel('');
+                }}
+              >
+                Przeciągnij ID
+              </Button>
+
+              <Button
+                icon="times"
+                color="bad"
+                fontSize="16px"
+                onClick={() => setNewAlertLevel('')}
+              >
+                Anuluj
+              </Button>
+            </Flex.Item>
+          </Flex>
+        </Modal>
+      )}
+    </>
+  );
 
   return (
     <Box>
@@ -238,138 +382,7 @@ export function PageMain(props) {
         </Section>
       )}
 
-      {!!canMessageAssociates && messagingAssociates && (
-        <MessageModal
-          label={`Wiadomość do przesłania ${
-            emagged ? 'pod [NIEPRAWIDŁOWE WSPÓŁRZĘDNE ROUTINGU]' : 'do CentComu'
-          } przez splątanie kwantowe`}
-          notice="Pamiętaj, że ten proces jest bardzo kosztowny, a nadużycia skończą się... zwolnieniem. Przesłanie nie gwarantuje odpowiedzi. Szefowie działów mogą z tego korzystać tylko w sytuacji awaryjnej."
-          icon="bullhorn"
-          buttonText="Wyślij"
-          onBack={() => setMessagingAssociates(false)}
-          onSubmit={(message) => {
-            setMessagingAssociates(false);
-            act('messageAssociates', {
-              message,
-            });
-          }}
-        />
-      )}
-
-      {!!canRequestNuke && requestingNukeCodes && (
-        <MessageModal
-          label="Powód prośby o kody autodestrukcji jądrowej"
-          notice="Nadużycia systemu próśb o kody jądrowe nie będą tolerowane w żadnych okolicznościach. Przesłanie nie gwarantuje odpowiedzi."
-          icon="bomb"
-          buttonText="Poproś o kody"
-          onBack={() => setRequestingNukeCodes(false)}
-          onSubmit={(reason) => {
-            setRequestingNukeCodes(false);
-            act('requestNukeCodes', {
-              reason,
-            });
-          }}
-        />
-      )}
-
-      {!!canRequestERT && requestingResponseTeam && (
-        <MessageModal
-          label="Powód wezwania zespołu reagowania kryzysowego"
-          notice="Nadużycia systemu wzywania zespołu reagowania nie będą tolerowane w żadnych okolicznościach. Przesłanie nie gwarantuje odpowiedzi."
-          icon="bomb"
-          buttonText="Wezwij ERT"
-          onBack={() => setRequestingResponseTeam(false)}
-          onSubmit={(reason) => {
-            setRequestingResponseTeam(false);
-            act('requestERT', {
-              reason,
-            });
-          }}
-        />
-      )}
-
-      {!!canRequestERT && requestingCrewWake && (
-        <MessageModal
-          label="Powód wybudzenia dodatkowej załogi z kriostazy"
-          notice="Wybudzeni zostaną ochotnicy jako Majtkowie, przy komorach snu. Prośba nie gwarantuje odpowiedzi."
-          icon="snowflake"
-          buttonText="Wybudź załogę"
-          onBack={() => setRequestingCrewWake(false)}
-          onSubmit={(reason) => {
-            setRequestingCrewWake(false);
-            act('requestCrewWake', {
-              reason,
-            });
-          }}
-        />
-      )}
-
-      {!!callingShuttle && (
-        <MessageModal
-          label="Rodzaj zagrożenia"
-          icon="space-shuttle"
-          buttonText="Wezwij prom"
-          minLength={callShuttleReasonMinLength}
-          onBack={() => setCallingShuttle(false)}
-          onSubmit={(reason) => {
-            setCallingShuttle(false);
-            act('callShuttle', {
-              reason,
-            });
-          }}
-        />
-      )}
-
-      {!!canSendToSectors && messagingSector && (
-        <MessageModal
-          label="Wiadomość do sojuszniczej stacji"
-          notice="Pamiętaj, że ten proces jest bardzo kosztowny, a nadużycia skończą się... zwolnieniem."
-          icon="bullhorn"
-          buttonText="Wyślij"
-          onBack={() => setMessagingSector(false)}
-          onSubmit={(message) => {
-            act('sendToOtherSector', {
-              message,
-            });
-            setMessagingSector(false);
-          }}
-        />
-      )}
-
-      {!!canSetAlertLevel && showAlertLevelConfirm && (
-        <Modal>
-          <Flex direction="column" textAlign="center" width="300px">
-            <Flex.Item fontSize="16px" mb={2}>
-              Przeciągnij ID, by potwierdzić zmianę
-            </Flex.Item>
-
-            <Flex.Item mr={2} mb={1}>
-              <Button
-                icon="id-card-o"
-                color="good"
-                fontSize="16px"
-                onClick={() => {
-                  act('changeSecurityLevel', {
-                    newSecurityLevel: newAlertLevel,
-                  });
-                  setNewAlertLevel('');
-                }}
-              >
-                Przeciągnij ID
-              </Button>
-
-              <Button
-                icon="times"
-                color="bad"
-                fontSize="16px"
-                onClick={() => setNewAlertLevel('')}
-              >
-                Anuluj
-              </Button>
-            </Flex.Item>
-          </Flex>
-        </Modal>
-      )}
+      {modalRoot ? createPortal(modals, modalRoot) : modals}
     </Box>
   );
 }

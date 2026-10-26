@@ -1,5 +1,6 @@
 // Konsola komunikacyjna: struktura z tg, układ dwukolumnowy i funkcje z NSV13/Aquili
 // (cele misji, alarmy statku, ERT, wybudzanie załogi).
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -31,6 +32,9 @@ export function CommunicationsConsole(props) {
     hasConnection,
     page,
   } = data;
+
+  // AQUILA: kontener na okna dialogowe z lewej kolumny, żeby przykrywały całe okno
+  const [modalRoot, setModalRoot] = useState<HTMLDivElement | null>(null);
 
   let currentPage;
   switch (page) {
@@ -79,7 +83,7 @@ export function CommunicationsConsole(props) {
                     </Button>
                   </Section>
                 )}
-                <PageMain />
+                <PageMain modalRoot={modalRoot} />
               </Section>
             </Stack.Item>
             <Stack.Item width="60%">
@@ -152,6 +156,7 @@ export function CommunicationsConsole(props) {
           </Flex>
         )}
 
+        <div ref={setModalRoot} />
         {!hasConnection && <NoConnectionModal />}
       </Window.Content>
     </Window>
