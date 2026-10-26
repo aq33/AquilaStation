@@ -643,3 +643,16 @@
   - tweak: SI przenosi się tylko do rdzeni w swojej sieci. Przecięcie kabla może odciąć
       SI od zasobów i zapasowego rdzenia.
   - imageadd: Ikony kabla sieciowego, zwoju i nadajnika.
+'2026-10-26':
+  Joker66613:
+  - tweak: 'Atlas i Trawnik: przestawione exodrony, kuźnia, rynek szlamów, ksenoarcheologia,
+      botanika i rdzeń SI, nowe pady zamówień ekstraktów, dzwonki działowe, rowery
+      w więzieniach i kamera Spess.tv.'
+  - rscadd: Zegary cyfrowe i zaawansowane monitory funkcji życiowych na Atlasie i
+      Trawniku.
+  - bugfix: Zegary i monitory na mapach wiszą na ścianach zamiast leżeć jako ramki.
+  - bugfix: Citationinator jest w SecTechu i w plecaku policjanta.
+  - bugfix: CargoDrobe sprzedaje ubrania bitrunnera.
+  - bugfix: 'Terminal maszyn hydroponicznych da się kliknąć bez Alt-kliku: od startu
+      rundy zna maszyny obok.'
+  - imageadd: Pełne okna są półprzezroczyste jak w Paradise.
