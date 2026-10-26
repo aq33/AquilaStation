@@ -48,6 +48,12 @@
 	splat.add_blood_DNA(lizard.get_blood_dna_list())
 	TEST_ASSERT_EQUAL(lowertext(splat.color), "#009696", "Lizard blood did not turn the decal teal")
 
+	// Drying darkens the blood colour instead of turning the greyscale sprite grey/black
+	splat.make_old()
+	TEST_ASSERT_EQUAL(lowertext(splat.color), "#005e5e", "Dried lizard blood is not darkened teal")
+	splat.make_fresh()
+	TEST_ASSERT_EQUAL(lowertext(splat.color), "#009696", "Fresh blood on a dried decal did not get the species colour back")
+
 	// Blood reagents too
 	var/list/blood_data = lizard.get_blood_data(/datum/reagent/blood)
 	var/datum/reagent/blood/blood_reagent = new

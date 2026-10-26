@@ -2142,9 +2142,8 @@
 /area/maintenance/department/science/xenobiology)
 "eR" = (
 /obj/machinery/airalarm/directional/north,
-/obj/machinery/computer/ai_control_console{
-	dir = 8
-	},
+/obj/machinery/recharge_station,
+/obj/effect/landmark/start/cyborg,
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/turret_protected/aisat)
 "eS" = (
@@ -2153,9 +2152,8 @@
 /area/library)
 "eU" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/computer/ai_overclocking{
-	dir = 8
-	},
+/obj/effect/landmark/start/cyborg,
+/obj/machinery/recharge_station,
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/turret_protected/aisat)
 "eY" = (
@@ -2417,8 +2415,9 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck1/starboard)
 "fx" = (
-/obj/effect/landmark/start/cyborg,
-/obj/machinery/recharge_station,
+/obj/machinery/computer/ai_overclocking{
+	dir = 4
+	},
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/turret_protected/aisat)
 "fy" = (
@@ -7543,8 +7542,9 @@
 	},
 /area/tcommsat/server)
 "yc" = (
-/obj/machinery/recharge_station,
-/obj/effect/landmark/start/cyborg,
+/obj/machinery/computer/ai_control_console{
+	dir = 4
+	},
 /turf/open/floor/durasteel/lino,
 /area/ai_monitored/turret_protected/aisat)
 "yd" = (
