@@ -54,7 +54,7 @@ export const PlantDictionary = (props) => {
                         <Input
                           width={'100%'}
                           placeholder={'Szukaj...'}
-                          onInput={(e, value) => setSearchText(value)}
+                          onChange={(value) => setSearchText(value)}
                         />
                       </Section>
                     </Flex.Item>
