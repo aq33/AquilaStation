@@ -5,3 +5,5 @@
 			new /obj/item/circuitboard/machine/bluespace_miner(src)
 	// Obcy przedmiot do odkrycia technologii obcych (boost węzła alientech), na każdej mapie
 	new /obj/item/hemostat/alien(src)
+	// Omnilathe: techfab bez blokady działów, drukuje wszystko, co zbadano
+	new /obj/item/circuitboard/machine/techfab(src)
