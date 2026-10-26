@@ -60,12 +60,13 @@
 
 // Terminal i maszyny obok siebie
 	var/turf/machines = get_step(get_step(origin, NORTH), NORTH)
-	var/obj/machinery/computer/plant_machine_controller/computer = allocate(/obj/machinery/computer/plant_machine_controller, get_step(origin, NORTHEAST))
 	var/obj/machinery/plant_machine/plant_analyser/analyser = allocate(/obj/machinery/plant_machine/plant_analyser, machines)
 	var/obj/machinery/plant_machine/seed_editor/editor = allocate(/obj/machinery/plant_machine/seed_editor, get_step(machines, EAST))
 	var/obj/machinery/plant_machine/plant_mutator/mutator = allocate(/obj/machinery/plant_machine/plant_mutator, get_step(get_step(machines, EAST), EAST))
-	computer.locate_machines()
-	TEST_ASSERT(analyser.controller == computer && editor.controller == computer && mutator.controller == computer, "Terminal nie połączył się z maszynami obok")
+	// Terminal stawiany po maszynach łączy się sam (LateInitialize), tak jak na mapie
+	var/obj/machinery/computer/plant_machine_controller/computer = allocate(/obj/machinery/computer/plant_machine_controller, get_step(origin, NORTHEAST))
+	TEST_ASSERT(analyser.controller == computer && editor.controller == computer && mutator.controller == computer, "Terminal nie połączył się sam z maszynami obok")
+	TEST_ASSERT(length(computer.machine_options) == 4, "Menu terminala ma [length(computer.machine_options)] pozycji zamiast 4 (3 maszyny i encyklopedia)")
 	TEST_ASSERT(length(computer.ui_data(user)), "Terminal (encyklopedia) nie zwrócił danych")
 
 // Analizator: zapis cechy na dysk

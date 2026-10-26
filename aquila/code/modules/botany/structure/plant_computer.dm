@@ -36,6 +36,9 @@
 		new_sticker.stick_to(src)
 		new_sticker.pixel_y = rand(-8, 8)
 		new_sticker.pixel_x = rand(-8, 8)
+	// AQUILA - nasz /obj/machinery/computer nie prosi o LateInitialize, a bez niego terminal nie łączy maszyn i ma puste menu
+	if(. != INITIALIZE_HINT_QDEL)
+		return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/plant_machine_controller/LateInitialize()
 	. = ..()
