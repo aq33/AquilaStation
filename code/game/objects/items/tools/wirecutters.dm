@@ -36,7 +36,11 @@
 /obj/item/wirecutters/Initialize(mapload)
 	. = ..()
 	if(random_color) //random colors! AQUILA EDIT - Paradise sprites instead of tinting
-		icon_state = pick("pcutters_cutters", "pcutters_cutters_red", "pcutters_cutters_yellow")
+		icon = 'icons/obj/tools.dmi' // AQ EDIT - pcutters_* live only in core tools.dmi, aquila/ overrides icon
+		var/our_color = pick("", "_red", "_yellow")
+		icon_state = "pcutters_cutters[our_color]"
+		item_state = "cutters[our_color || "_red"]" // AQ EDIT - inhand/belt states exist only for red and yellow
+		belt_icon_state = item_state
 
 /obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if(istype(C) && C.handcuffed && istype(C.handcuffed, /obj/item/restraints/handcuffs/cable))

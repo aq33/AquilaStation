@@ -21,7 +21,7 @@
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, "Skonsultuj się ze swoją drużyną zanim zadeklarujecie wojnę na [station_name()]. [check_pop()? "" : "Ze względu na wielkość załogi nie dostaniecie dotatkowego ekwipunku. "]", "Declare war?", "Yes", "No")
+	var/are_you_sure = tgui_alert(user, "Skonsultuj się ze swoją drużyną zanim zadeklarujecie wojnę na [station_name()]. [check_pop()? "" : "Ze względu na wielkość załogi nie dostaniecie dotatkowego ekwipunku. "]", "Declare war?", list("Yes", "No")) // AQ EDIT - tgui_alert bierze listę przycisków
 	declaring_war = FALSE
 
 	if(!check_allowed(user))

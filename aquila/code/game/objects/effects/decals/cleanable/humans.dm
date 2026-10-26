@@ -94,7 +94,9 @@
 	bloodiness = 0
 	check_slippery() // po ustawieniu is_old, żeby zaschnięta krew przestała być śliska
 	var/old_alpha = alpha
-	color = BLOOD_DRY_COLOR
+	// Sprite krwi są od portu Speciesblood w skali szarości, więc samo BLOOD_DRY_COLOR dawało szarą/czarną krew.
+	// Przyciemniamy obecny kolor krwi (gatunku) o tyle samo, co dawniej BLOOD_DRY_COLOR (160/255).
+	color = color ? MultiplyHexColor(color, 160 / 255) : BLOOD_DRY_COLOR
 	alpha = old_alpha
 
 /obj/effect/decal/cleanable/blood/proc/update_dry_timer()
@@ -120,7 +122,10 @@
 
 	is_old = FALSE
 	check_slippery()
-	color = initial(color)
+	if(blood_state == BLOOD_STATE_HUMAN && HAS_BLOOD_DNA(src))
+		color = get_blood_dna_color(return_blood_DNA()) // kolor krwi gatunku, nie zawsze czerwony
+	else
+		color = initial(color)
 	update_dry_timer()
 
 /obj/effect/decal/cleanable/blood/add_bloodiness(var/amount)

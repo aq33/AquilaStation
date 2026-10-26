@@ -232,12 +232,7 @@ const AvailableProjects = (props) => {
         .map((project) => (
           <Section
             key={project.name}
-            title={
-              <Box inline color={project.available ? 'good' : 'bad'}>
-                {project.name} |{' '}
-                {project.available ? 'Dostępny' : 'Niedostępny'}
-              </Box>
-            }
+            title={project.name}
             buttons={
               <>
                 <Box inline bold mr={0.5}>
@@ -271,6 +266,12 @@ const AvailableProjects = (props) => {
             }
           >
             <LabeledList>
+              <LabeledList.Item
+                label="Stan"
+                color={project.available ? 'good' : 'bad'}
+              >
+                {project.available ? 'Dostępny' : 'Niedostępny'}
+              </LabeledList.Item>
               <LabeledList.Item label="Koszt badań">
                 {project.research_cost} THz
               </LabeledList.Item>
@@ -354,19 +355,7 @@ const CompletedProjects = (props) => {
         .map((project) => (
           <Section
             key={project.name}
-            title={
-              <Box
-                inline
-                color={!project.can_be_run || project.running ? 'good' : 'bad'}
-              >
-                {project.name} |{' '}
-                {project.can_be_run
-                  ? project.running
-                    ? 'Działa'
-                    : 'Wyłączony'
-                  : 'Pasywny'}
-              </Box>
-            }
+            title={project.name}
             buttons={
               !!project.can_be_run && (
                 <Button
@@ -383,10 +372,24 @@ const CompletedProjects = (props) => {
               )
             }
           >
-            {!!project.can_be_run && (
-              <Box bold>Wymagany RAM: {project.ram_required} TB</Box>
-            )}
-            <Box mb={1}>{project.description}</Box>
+            <LabeledList>
+              <LabeledList.Item
+                label="Stan"
+                color={!project.can_be_run || project.running ? 'good' : 'bad'}
+              >
+                {project.can_be_run
+                  ? project.running
+                    ? 'Działa'
+                    : 'Wyłączony'
+                  : 'Pasywny'}
+              </LabeledList.Item>
+              {!!project.can_be_run && (
+                <LabeledList.Item label="Wymagany RAM">
+                  {project.ram_required} TB
+                </LabeledList.Item>
+              )}
+            </LabeledList>
+            <Box my={1}>{project.description}</Box>
           </Section>
         ))}
     </Section>
@@ -406,12 +409,7 @@ const AbilityCharging = (props) => {
       {chargeable_abilities.map((ability) => (
         <Section
           key={ability.project_name}
-          title={
-            <Box inline>
-              {ability.name} | Pozostałe użycia: {ability.uses}/
-              {ability.max_uses}
-            </Box>
-          }
+          title={ability.name}
           buttons={
             <>
               <Box inline bold mr={0.5}>
@@ -433,7 +431,13 @@ const AbilityCharging = (props) => {
             </>
           }
         >
+          <LabeledList>
+            <LabeledList.Item label="Pozostałe użycia">
+              {ability.uses}/{ability.max_uses}
+            </LabeledList.Item>
+          </LabeledList>
           <ProgressBar
+            mt={1}
             value={ability.cost ? ability.progress / ability.cost : 0}
           >
             {ability.cost ? round2((ability.progress / ability.cost) * 100) : 0}

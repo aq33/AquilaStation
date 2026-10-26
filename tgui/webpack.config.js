@@ -76,6 +76,14 @@ module.exports = (env = {}, argv) => {
           ],
         },
         {
+          // AQUILA: tgui-core is "type": "module", so webpack treats its
+          // `import fuzzy from '@nozbe/microfuzz'` (CommonJS) with Node rules and
+          // passes the whole exports object instead of `.default`, which breaks
+          // useFuzzySearch ("a is not a function", e.g. OperatingComputer).
+          test: /[\\/]node_modules[\\/]tgui-core[\\/].*\.js$/,
+          type: 'javascript/auto',
+        },
+        {
           test: /\.(s)?css$/,
           use: [
             {

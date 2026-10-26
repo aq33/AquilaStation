@@ -2904,10 +2904,6 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "botany"
 	},
-/obj/machinery/smartfridge{
-	name = "public botany fridge";
-	layer = 3.1
-	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hydroponics)
@@ -10274,6 +10270,13 @@
 /obj/machinery/holopad,
 /turf/open/floor/monotile/steel,
 /area/engine/engine_room)
+"Ba" = (
+/obj/machinery/smartfridge{
+	name = "public botany fridge"
+	},
+/obj/effect/turf_decal/tile/green/tile_side,
+/turf/open/floor/durasteel,
+/area/hydroponics)
 "Bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/machinery/button/door{
@@ -52710,7 +52713,7 @@ LE
 Bo
 Bo
 Bo
-Bo
+Ba
 fS
 dS
 pw

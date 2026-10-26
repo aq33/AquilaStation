@@ -24,14 +24,10 @@ enum DIRECTION {
 
 export function AlertModal(props) {
   const { act, data } = useBackend<Data>();
-  const {
-    autofocus,
-    buttons = [],
-    large_buttons,
-    message = '',
-    timeout,
-    title,
-  } = data;
+  const { autofocus, large_buttons, timeout, title } = data;
+  // AQUILA: DM potrafi wysłać null (np. tgui_alert z pustą wiadomością)
+  const buttons = data.buttons || [];
+  const message = data.message || '';
 
   // Stolen wholesale from fontcode
   function textWidth(text: string, font: string, fontsize: number) {
@@ -131,7 +127,8 @@ type ButtonDisplayProps = {
  */
 function HorizontalButtons(props: ButtonDisplayProps) {
   const { act, data } = useBackend<Data>();
-  const { buttons = [], large_buttons, swapped_buttons } = data;
+  const { large_buttons, swapped_buttons } = data;
+  const buttons = data.buttons || [];
   const { selected } = props;
 
   return (
@@ -162,7 +159,8 @@ function HorizontalButtons(props: ButtonDisplayProps) {
  */
 function VerticalButtons(props: ButtonDisplayProps) {
   const { act, data } = useBackend<Data>();
-  const { buttons = [], large_buttons, swapped_buttons } = data;
+  const { large_buttons, swapped_buttons } = data;
+  const buttons = data.buttons || [];
   const { selected } = props;
 
   return (

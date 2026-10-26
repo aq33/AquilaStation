@@ -58,6 +58,19 @@
 /obj/machinery/firealarm
 	icon = 'aquila/icons/paradise/obj/wallbumps/firealarm.dmi'
 
+// Blok NSV13 w firealarm.dm ustawia dir = strona ściany; przywracamy dir od ściany, inaczej alarm z przesunięciem po skosie ląduje na środku pokoju
+/obj/machinery/firealarm/directional/north
+	dir = SOUTH
+
+/obj/machinery/firealarm/directional/south
+	dir = NORTH
+
+/obj/machinery/firealarm/directional/west
+	dir = EAST
+
+/obj/machinery/firealarm/directional/east
+	dir = WEST
+
 /obj/machinery/firealarm/Initialize(mapload, dir, building)
 	. = ..()
 	var/wall_dir = paradise_wall_dir_from_pixels(src) || turn(src.dir, 180)
@@ -86,6 +99,11 @@
 		setDir(wall_dir)
 
 // Gaśnica: zamknięta szafka pokazuje za szybą, czy gaśnica jest w środku
+// Core wkłada gaśnicę w Initialize(), ale nie odświeża ikony, więc bez tego szafka z mapy zostaje na "extinguisher_closed"
+/obj/structure/extinguisher_cabinet/Initialize(mapload, ndir, building)
+	. = ..()
+	update_icon()
+
 /obj/structure/extinguisher_cabinet/update_icon()
 	. = ..()
 	if(opened || !stored_extinguisher)
