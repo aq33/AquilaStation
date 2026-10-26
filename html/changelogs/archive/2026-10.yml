@@ -656,3 +656,16 @@
   - bugfix: 'Terminal maszyn hydroponicznych da się kliknąć bez Alt-kliku: od startu
       rundy zna maszyny obok.'
   - imageadd: Pełne okna są półprzezroczyste jak w Paradise.
+  sh4dow321:
+  - bugfix: Alarmy pożarowe w biurach szefów działów wiszą na ścianie, a nie na środku
+      pokoju.
+  - bugfix: Lodówka botaników na Aquilas stoi w hydroponice, a nie w oknie.
+  - bugfix: Konsole SI na satelicie nie zatykają wejść do rdzenia.
+  - bugfix: Przecinaki znów mają sprite na ziemi, w ręce i na pasie.
+  - bugfix: Szafka gaśnicy od startu rundy pokazuje gaśnicę w środku.
+  - bugfix: Zaschnięta krew ciemnieje w kolorze gatunku zamiast robić się szara lub
+      czarna.
+  - bugfix: Konsola operacyjna i wyszukiwarki w oknach TGUI nie crashują.
+  - bugfix: Okienka z pytaniem nie crashują przy pustej wiadomości.
+  - bugfix: Nukeopi znów mogą wypowiedzieć wojnę.
+  - tweak: Panel SI jest czytelniejszy.
