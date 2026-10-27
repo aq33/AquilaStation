@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_kult_krwi
+/datum/test_chamber_kit/pr_509
 	name = "Kult krwi Cult 4 (Monkestation/vgstation)"
-	pr = "aq33/AquilaStation (kult krwi)"
+	pr = "aq33/AquilaStation#509"
 	description = "Pierwszy człowiek jest kultystą z 600 punktami devotion (Wspólnota krwi i Krwawy sztylet), drugi i trzeci to ofiary. Przejmij kultystę. \
 		Panel kultu: przycisk w lewym górnym rogu (członkowie, rola, rytuały, Zaćmienie, pomoc). Tom: pisanie słów run krwią, talizmany. \
 		Runy: Konwersja na drugim człowieku (odmowa albo więzienie), Komunikacja, Akcesoria, Wzniesienie Budowli (ołtarz, iglica, kuźnia), Ujawnienie/Ukrycie, Ścieżki. \
@@ -25,7 +25,7 @@
 		/obj/item/reagent_containers/food/condiment/saltshaker = 1,
 	)
 
-/datum/test_chamber_kit/pr_kult_krwi/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_509/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/mob/living/carbon/human/cultist_mob = locate() in spawned
 	if(!cultist_mob)
 		return
