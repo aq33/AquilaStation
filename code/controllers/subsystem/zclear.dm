@@ -72,6 +72,8 @@ SUBSYSTEM_DEF(zclear)
 		//Dead mobs get sent to new ruins
 		if(L.ckey || L.mind || L.client)
 			var/turf/T = get_turf(L)
+			if(!T) // AQ EDIT - mob z mindem w nullspace (np. w unit testach) dawał runtime null.z
+				continue
 			mob_levels["[T.z]"] = TRUE
 			if(L.stat != DEAD)
 				active_levels["[T.z]"] = TRUE
