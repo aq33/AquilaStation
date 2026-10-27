@@ -20,7 +20,7 @@
 
 /datum/component/cult_ritual_item/Initialize(
 	examine_message,
-	action = /datum/action/item_action/cult_dagger,
+	action = null,
 	turfs_that_boost_us = /turf/open/floor/engine/cult,
 	)
 
@@ -44,7 +44,6 @@
 	return ..()
 
 /datum/component/cult_ritual_item/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(try_scribe_rune))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(try_purge_holywater))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_OBJ, PROC_REF(try_hit_object))
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_EFFECT, PROC_REF(try_clear_rune))
@@ -54,7 +53,6 @@
 
 /datum/component/cult_ritual_item/UnregisterFromParent()
 	UnregisterSignal(parent, list(
-		COMSIG_ITEM_ATTACK_SELF,
 		COMSIG_ITEM_ATTACK,
 		COMSIG_ITEM_ATTACK_OBJ,
 		COMSIG_ITEM_ATTACK_EFFECT,
@@ -74,27 +72,6 @@
 		return
 
 	examine_text += examine_message
-
-/*
- * Signal proc for [COMSIG_ITEM_ATTACK_SELF].
- * Allows the user to begin scribing runes.
- */
-/datum/component/cult_ritual_item/proc/try_scribe_rune(datum/source, mob/user)
-	SIGNAL_HANDLER
-
-	if(!isliving(user))
-		return
-
-	if(!can_scribe_rune(source, user))
-		return
-
-	if(drawing_a_rune)
-		to_chat(user, "<span class='warning'>Już kreślisz runę.</span>")
-		return
-
-	INVOKE_ASYNC(src, PROC_REF(start_scribe_rune), source, user)
-
-	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /*
  * Signal proc for [COMSIG_ITEM_ATTACK].
@@ -225,144 +202,6 @@
 	qdel(rune)
 
 /*
- * Wraps the entire act of [proc/do_scribe_rune] to ensure it properly enables or disables [var/drawing_a_rune].
- *
- * tool - the parent, source of the signal - the item inscribing the rune, casted to item.
- * cultist - the mob scribing the rune
- */
-/datum/component/cult_ritual_item/proc/start_scribe_rune(obj/item/tool, mob/living/cultist)
-	drawing_a_rune = TRUE
-	do_scribe_rune(tool, cultist)
-	drawing_a_rune = FALSE
-
-/*
- * Actually give the user input to begin scribing a rune.
- * Creates the new instance of the rune if successful.
- *
- * tool - the parent, source of the signal - the item inscribing the rune, casted to item.
- * cultist - the mob scribing the rune
- */
-/datum/component/cult_ritual_item/proc/do_scribe_rune(obj/item/tool, mob/living/cultist)
-	var/turf/our_turf = get_turf(cultist)
-	var/obj/effect/rune/rune_to_scribe
-	var/entered_rune_name
-	var/chosen_keyword
-
-	var/datum/antagonist/cult/user_antag = cultist.mind.has_antag_datum(/datum/antagonist/cult, TRUE)
-	var/datum/team/cult/user_team = user_antag?.get_team()
-	if(!user_antag || !user_team)
-		stack_trace("[type] - [cultist] attempted to scribe a rune, but did not have an associated [user_antag ? "cult team":"cult antag datum"]!")
-		return FALSE
-
-	if(!LAZYLEN(GLOB.rune_types))
-		to_chat(cultist, "<span class='cult'>Wygląda na to, że nie ma run do nakreślenia. Zgłoś to swojemu bogu!</span>")
-		stack_trace("[type] - [cultist] attempted to scribe a rune, but the global rune list is empty!")
-		return FALSE
-
-	entered_rune_name = input(cultist, "Wybierz rytuał do nakreślenia.", "Znaki Mocy") as null|anything in GLOB.rune_types
-	if(!entered_rune_name || !can_scribe_rune(tool, cultist))
-		return FALSE
-
-	rune_to_scribe = GLOB.rune_types[entered_rune_name]
-	if(!ispath(rune_to_scribe))
-		stack_trace("[type] - [cultist] attempted to scribe a rune, but did not find a path from the global rune list!")
-		return FALSE
-
-	if(initial(rune_to_scribe.req_keyword))
-		chosen_keyword = stripped_input(cultist, "Wpisz słowo kluczowe nowej runy.", "Słowa Mocy")
-		if(!chosen_keyword)
-			drawing_a_rune = FALSE
-			start_scribe_rune(tool, cultist)
-			return FALSE
-
-	our_turf = get_turf(cultist) //we may have moved. adjust as needed...
-
-	if(!can_scribe_rune(tool, cultist))
-		return FALSE
-
-	if(ispath(rune_to_scribe, /obj/effect/rune/summon) && (!is_station_level(our_turf.z) || istype(get_area(cultist), /area/space)))
-		to_chat(cultist, "<span class='cultitalic'>Zasłona nie jest tu dość słaba, by przywołać kultystę - musisz być na statku!</span>")
-		return
-
-	if(ispath(rune_to_scribe, /obj/effect/rune/apocalypse))
-		if((world.time - SSticker.round_start_time) <= 6000)
-			var/wait = 6000 - (world.time - SSticker.round_start_time)
-			to_chat(cultist, "<span class='cultitalic'>Zasłona nie jest jeszcze dość słaba na tę runę - będzie dostępna za [DisplayTimeText(wait)].</span>")
-			return
-		if(!check_if_in_ritual_site(cultist, user_team, TRUE))
-			return
-
-	if(ispath(rune_to_scribe, /obj/effect/rune/narsie))
-		if(!scribe_narsie_rune(cultist, user_team))
-			return
-
-	cultist.visible_message(
-		"<span class='warning'>[cultist] [cultist.blood_volume ? "rozcina sobie rękę i zaczyna pisać własną krwią":"zaczyna szkicować dziwny wzór"]!</span>",
-		"<span class='cult'>[cultist.blood_volume ? "Rozcinasz sobie rękę i z":"Z"]aczynasz kreślić znak Geometry.</span>"
-		)
-
-	if(cultist.blood_volume)
-		cultist.apply_damage(initial(rune_to_scribe.scribe_damage), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)) // *cuts arm* *bone explodes* ever have one of those days?
-		if (iscarbon(cultist))
-			var/mob/living/carbon/carbon_cultist = cultist
-			carbon_cultist.add_bleeding(BLEED_TINY)
-
-	var/scribe_mod = initial(rune_to_scribe.scribe_delay)
-	if(!initial(rune_to_scribe.no_scribe_boost) && (our_turf.type in turfs_that_boost_us))
-		scribe_mod *= 0.5
-
-	SEND_SOUND(cultist, sound('sound/weapons/slice.ogg', 0, 1, 10))
-	if(!do_after(cultist, scribe_mod, target = get_turf(cultist)))
-		cleanup_shields()
-		return FALSE
-	if(!can_scribe_rune(tool, cultist))
-		cleanup_shields()
-		return FALSE
-
-	cultist.visible_message(
-		"<span class='warning'>[cultist] kreśli dziwny krąg[cultist.blood_volume ? " własną krwią":""].</span>",
-		"<span class='cult'>Kończysz kreślić tajemne znaki Geometry.</span>"
-		)
-
-	cleanup_shields()
-	var/obj/effect/rune/made_rune = new rune_to_scribe(our_turf, chosen_keyword)
-	made_rune.add_mob_blood(cultist)
-
-	to_chat(cultist, "<span class='cult'>Runa [lowertext(made_rune.cultist_name)] [made_rune.cultist_desc]</span>")
-	SSblackbox.record_feedback("tally", "cult_runes_scribed", 1, made_rune.cultist_name)
-
-	return TRUE
-
-/*
- * The process of scribing the nar'sie rune.
- *
- * cultist - the mob placing the rune
- * cult_team - the team of the mob placing the rune
- */
-/datum/component/cult_ritual_item/proc/scribe_narsie_rune(mob/living/cultist, datum/team/cult/cult_team)
-	var/datum/objective/eldergod/summon_objective = locate() in cult_team.objectives
-	var/datum/objective/sacrifice/sac_objective = locate() in cult_team.objectives
-	if(!check_if_in_ritual_site(cultist, cult_team))
-		return FALSE
-	if(sac_objective && !sac_objective.check_completion())
-		to_chat(cultist, "<span class='warning'>Ofiara nie jest kompletna. Portalowi zabrakłoby mocy, by się otworzyć!</span>")
-		return FALSE
-	if(summon_objective.check_completion())
-		to_chat(cultist, "<span class='cultlarge'>\"Już tu jestem. Nie ma potrzeby mnie teraz przywoływać.\"</span>")
-		return FALSE
-	var/confirm_final = alert(cultist, "To OSTATNI krok do przywołania Nar'Sie; to długi, bolesny rytuał, a załoga dowie się o twojej obecności.", "Jesteś gotowy na ostateczną bitwę?", "Moje życie dla Nar'Sie!", "No")
-	if(confirm_final == "No" || !confirm_final)
-		to_chat(cultist, "<span class='cult'>Postanawiasz lepiej się przygotować, zanim nakreślisz runę.</span>")
-		return
-	if(!check_if_in_ritual_site(cultist, cult_team))
-		return FALSE
-	priority_announce("[cultist.real_name] przywołuje do [get_area(cultist)] z nieznanego wymiaru wytwory pradawnego boga. Przerwijcie rytuał za wszelką cenę!","Wydział Spraw Wyższych Wymiarów Centrali", ANNOUNCER_SPANOMALIES)
-	for(var/shielded_turf in spiral_range_turfs(1, cultist, 1))
-		LAZYADD(shields, new /obj/structure/emergency_shield/sanguine(shielded_turf))
-
-	return TRUE
-
-/*
  * Helper to check if a rune can be scraped by a cultist.
  * Used in between inputs of [do_scrape_rune] for sanity checking.
  *
@@ -429,30 +268,6 @@
 	var/area/our_area = get_area(target)
 	if((!is_station_level(target.z) && !is_mining_level(target.z)) || (our_area && !(our_area.area_flags & BLOBS_ALLOWED)))
 		to_chat(cultist, "<span class='warning'>Zasłona nie jest tu dość słaba.</span>")
-		return FALSE
-
-	return TRUE
-
-/*
- * Helper to check a cultist is located in one of the ritual / summoning sites.
- *
- * cultist - the mob making the rune
- * cult_team - the team of the mob making the rune
- * fail_if_last_site - whether the check fails if it's the last site in the summoning list.
- */
-/datum/component/cult_ritual_item/proc/check_if_in_ritual_site(mob/living/cultist, datum/team/cult/cult_team, fail_if_last_site = FALSE)
-	var/datum/objective/eldergod/summon_objective = locate() in cult_team.objectives
-	var/area/our_area = get_area(cultist)
-	if(!summon_objective)
-		to_chat(cultist, "<span class='warning'>Na tym statku nie ma miejsc rytuału, gdzie można nakreślić tę runę!</span>")
-		return FALSE
-
-	if(!(our_area in summon_objective.summon_spots))
-		to_chat(cultist, "<span class='warning'>Zasłona nie jest tu dość słaba - runę można nakreślić tylko w miejscach: [english_list(summon_objective.summon_spots)]!</span>")
-		return FALSE
-
-	if(fail_if_last_site && summon_objective.summon_spots.len <= 1)
-		to_chat(cultist, "<span class='warning'>Tutaj nie można nakreślić tej runy - miejsce rytuału musi zostać zachowane na ostateczne przywołanie!</span>")
 		return FALSE
 
 	return TRUE

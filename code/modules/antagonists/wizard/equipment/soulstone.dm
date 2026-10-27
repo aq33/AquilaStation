@@ -185,13 +185,7 @@
 
 		if("VICTIM")
 			var/mob/living/carbon/human/T = target
-			var/datum/antagonist/cult/C = user.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-			if(C && C.cult_team.is_sacrifice_target(T.mind))
-				if(iscultist(user))
-					to_chat(user, "<span class='cult'><b>\"Ta dusza jest moja.</b></span> <span class='cultlarge'>ZŁÓŻ JĄ W OFIERZE!\"</span>")
-				else
-					to_chat(user, "<span class='danger'>Kamień dusz zdaje się odrzucać tę duszę.</span>")
-				return FALSE
+			// AQ EDIT - kult „Cult 4” (Monke #3867): bez blokady celu ofiary
 			if(contents.len)
 				to_chat(user, "<span class='userdanger'>Nie udało się schwytać!</span>: Kamień dusz jest pełny! Uwolnij którąś duszę, żeby zrobić miejsce.")
 			else
@@ -222,7 +216,7 @@
 				if(purified)
 					icon_state = "purified_soulstone2"
 					if(iscultist(T))
-						SSticker.mode.remove_cultist(T.mind, FALSE, FALSE)
+						T.mind.remove_antag_datum(/datum/antagonist/cult) // AQ EDIT - kult „Cult 4”
 				else
 					icon_state = "soulstone2"
 				name = "soulstone: Shade of [T.real_name]"
@@ -237,6 +231,17 @@
 				var/construct_class = alert(user, "Wybierz rodzaj konstruktu, który chcesz stworzyć.",,"Juggernaut","Wraith","Artificer")
 				if(!T || !T.loc)
 					return
+				// AQ EDIT START - kult „Cult 4”: klejnot dusz (perfect) daje doskonałe konstrukty kultystom
+				if(perfect && iscultist(user))
+					switch(construct_class)
+						if("Juggernaut")
+							makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored/perfect, A, user, 0, T.loc)
+						if("Wraith")
+							makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith/perfect, A, user, 0, T.loc)
+						if("Artificer")
+							makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/perfect, A, user, 0, T.loc)
+					construct_class = null
+				// AQ EDIT END
 				switch(construct_class)
 					if("Juggernaut")
 						if(iscultist(user) || iswizard(user))
@@ -262,10 +267,7 @@
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/angelic, A, user, 0, T.loc)
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder/noncult, A, user, 0, T.loc)
-				for(var/datum/mind/B in SSticker.mode.cult)
-					if(B == A.mind)
-						SSticker.mode.cult -= A.mind
-						SSticker.mode.update_cult_icons_removed(A.mind)
+				// AQ EDIT - kult „Cult 4”: bez listy SSticker.mode.cult, antag przechodzi z umysłem
 				qdel(T)
 				qdel(src)
 			else
@@ -282,17 +284,16 @@
 		var/datum/action/innate/seek_master/SM = new()
 		SM.Grant(newstruct)
 	newstruct.key = target.key
-	var/atom/movable/screen/alert/bloodsense/BS
-	if(newstruct.mind && ((stoner && iscultist(stoner)) || cultoverride) && SSticker && SSticker.mode)
-		SSticker.mode.add_cultist(newstruct.mind, 0)
+	// AQ EDIT START - kult „Cult 4” (Monke #3867): limit konstruktów kultu, bez alertu bloodsense
+	if(newstruct.mind && !iscultist(newstruct) && ((stoner && iscultist(stoner)) || cultoverride) && SSticker.HasRoundStarted())
+		var/datum/team/cult/cult_team = locate_team(/datum/team/cult)
+		if(cult_team?.CanConvert(newstruct.construct_type))
+			newstruct.mind.add_antag_datum(/datum/antagonist/cult)
+	// AQ EDIT END
 	if(iscultist(stoner) || cultoverride)
 		to_chat(newstruct, "<b>Wciąż musisz służyć kultowi[stoner ? " i [stoner]":""]: wykonuj rozkazy i pomagaj osiągnąć cele za wszelką cenę.</b>")
 	else if(stoner)
 		to_chat(newstruct, "<b>Wciąż musisz służyć swojemu stwórcy, [stoner]: wykonuj jego rozkazy i pomagaj mu osiągnąć cele za wszelką cenę.</b>")
-	newstruct.clear_alert("bloodsense")
-	BS = newstruct.throw_alert("bloodsense", /atom/movable/screen/alert/bloodsense)
-	if(BS)
-		BS.Cviewer = newstruct
 	newstruct.cancel_camera()
 
 
@@ -314,7 +315,7 @@
 	if(U)
 		S.faction |= "[REF(U)]" //Add the master as a faction, allowing inter-mob cooperation
 	if(U && iscultist(U))
-		SSticker.mode.add_cultist(S.mind, 0)
+		S.mind?.add_antag_datum(/datum/antagonist/cult) // AQ EDIT - kult „Cult 4”
 	S.cancel_camera()
 	name = "soulstone: Shade of [T.real_name]"
 	if(purified)

@@ -27,8 +27,7 @@
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 35, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20, "stamina" = 50, "bleed" = 20)
 	/// AQUILA - tg: clothing_traits; cechy nadawane każdemu, kto nosi szatę
 	var/list/robe_traits = list(TRAIT_HERETIC_AURA_HIDDEN)
-	/// Whether the hood is flipped up
-	var/hood_up = FALSE
+	// hood_up dziedziczone z /obj/item/clothing/suit/hooded/cultrobes (kult krwi „Cult 4”)
 	/// AQUILA - czy efekty szaty (on_robes_gained) są teraz aktywne
 	var/robes_active = FALSE
 
@@ -1141,8 +1140,7 @@
 	// AQUILA - tg: alternative_mode + create_storage(/datum/storage/pockets/void_cloak)
 	qdel_hood = TRUE
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/void_cloak
-	/// Whether the hood is flipped up
-	var/hood_up = FALSE
+	// hood_up dziedziczone z /obj/item/clothing/suit/hooded/cultrobes (kult krwi „Cult 4”)
 
 /obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
 	. = ..()
