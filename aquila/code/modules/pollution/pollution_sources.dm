@@ -166,3 +166,7 @@
 /obj/effect/decal/cleanable/insectguts/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	AddElement(/datum/element/pollution_emitter, /datum/pollutant/decaying_waste, 10)
+
+/obj/effect/decal/cleanable/feces/Initialize(mapload, list/datum/disease/diseases)
+	. = ..()
+	AddElement(/datum/element/pollution_emitter, /datum/pollutant/decaying_waste, 10)
