@@ -1,8 +1,8 @@
 // Sprint z BeeStation/BeeStation-Hornet#14750 + wywrotka na ścianie i potknięcie na schodach
 
-/datum/test_chamber_kit/pr_sprint
-	name = "PR: sprint i kondycja"
-	pr = "aq33/AquilaStation#PR_SPRINT"
+/datum/test_chamber_kit/pr_512
+	name = "PR 512: sprint i kondycja"
+	pr = "aq33/AquilaStation#512"
 	description = "W trybie biegu trzymaj Shift: postać przyspiesza (SPRINT_DELAY 1.5 zamiast RUN_DELAY 2), przy starcie leci chmurka kurzu, \
 	a pionowy pasek obok błyskawicy staminy spada. Poniżej 40% zadyszka: brak sprintu, spowolnienie i nie da się mówić (emotki z * działają), mija przy 70%. \
 	Leżenie podwaja regenerację. Rozpędź się z zachodu na co najmniej 4 kratki w kolumnę przeszkód po wschodniej stronie: \
@@ -16,7 +16,7 @@
 		/mob/living/carbon/human = 1,
 	)
 
-/datum/test_chamber_kit/pr_sprint/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_512/setup(list/spawned, list/turfs, turf/center, mob/user)
 	. = ..()
 	var/column_x = center.x + 4
 	var/list/obstacles = list(
