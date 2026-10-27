@@ -116,6 +116,10 @@
 		bci.actions -= charge_action
 		QDEL_NULL(charge_action)
 
+	// Układ wyjęty z wszczepionego BCI: nosiciel nie może dalej wołać odłączonego komponentu
+	if (bci.owner)
+		on_organ_removed(bci, bci.owner)
+
 	UnregisterSignal(shell, list(
 		COMSIG_ORGAN_IMPLANTED,
 		COMSIG_ORGAN_REMOVED,

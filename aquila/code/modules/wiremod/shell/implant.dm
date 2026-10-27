@@ -104,6 +104,9 @@
 		implant?.actions -= charge_action
 		QDEL_NULL(charge_action)
 
+	// Układ wyjęty z wszczepionego implantu: nosiciel nie może dalej wołać odłączonego komponentu
+	if (implant?.imp_in)
+		on_removed(implant, implant.imp_in)
 	implant = null
 
 	UnregisterSignal(shell, list(
