@@ -12,6 +12,7 @@
  *    zostawiają to, co jest na mapie pod spodem, więc wystarczy narysować samą broń i jej otoczenie.
  * 4. Każdy wariant to osobny /datum/map_template/random_room/... z tym samym room_group co spawner.
  *    weight = szansa wylosowania względem innych wariantów tego slotu.
+ *    mappath w apostrofach ('...'), nie w cudzysłowie - wtedy plik trafia do .rsc. Serwer (i CI) nie ma folderu aquila/_maps obok .dmb.
  * Kolejny slot na tym samym statku: nowy spawner z nowym room_group (np. "atlas_weapon_2") i jego warianty.
  */
 
@@ -53,7 +54,7 @@
 /datum/map_template/random_room/aq_weapon_atlas_1a
 	name = "Atlas Weapon Slot 1 - AA Turret"
 	room_id = "aq_weapon_atlas_1a"
-	mappath = "aquila/_maps/random_weapons/atlas_1_aa.dmm"
+	mappath = 'aquila/_maps/random_weapons/atlas_1_aa.dmm'
 	room_group = "atlas_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -62,7 +63,7 @@
 /datum/map_template/random_room/aq_weapon_atlas_1b
 	name = "Atlas Weapon Slot 1 - Empty"
 	room_id = "aq_weapon_atlas_1b"
-	mappath = "aquila/_maps/random_weapons/atlas_1_empty.dmm"
+	mappath = 'aquila/_maps/random_weapons/atlas_1_empty.dmm'
 	room_group = "atlas_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -71,7 +72,7 @@
 /datum/map_template/random_room/aq_weapon_snake_1a
 	name = "Snake Weapon Slot 1 - AA Turret"
 	room_id = "aq_weapon_snake_1a"
-	mappath = "aquila/_maps/random_weapons/snake_1_aa.dmm"
+	mappath = 'aquila/_maps/random_weapons/snake_1_aa.dmm'
 	room_group = "snake_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -80,7 +81,7 @@
 /datum/map_template/random_room/aq_weapon_snake_1b
 	name = "Snake Weapon Slot 1 - Empty"
 	room_id = "aq_weapon_snake_1b"
-	mappath = "aquila/_maps/random_weapons/snake_1_empty.dmm"
+	mappath = 'aquila/_maps/random_weapons/snake_1_empty.dmm'
 	room_group = "snake_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -89,7 +90,7 @@
 /datum/map_template/random_room/aq_weapon_trawnik_1a
 	name = "Trawnik Weapon Slot 1 - AA Turret"
 	room_id = "aq_weapon_trawnik_1a"
-	mappath = "aquila/_maps/random_weapons/trawnik_1_aa.dmm"
+	mappath = 'aquila/_maps/random_weapons/trawnik_1_aa.dmm'
 	room_group = "trawnik_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -98,7 +99,7 @@
 /datum/map_template/random_room/aq_weapon_trawnik_1b
 	name = "Trawnik Weapon Slot 1 - Empty"
 	room_id = "aq_weapon_trawnik_1b"
-	mappath = "aquila/_maps/random_weapons/trawnik_1_empty.dmm"
+	mappath = 'aquila/_maps/random_weapons/trawnik_1_empty.dmm'
 	room_group = "trawnik_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
