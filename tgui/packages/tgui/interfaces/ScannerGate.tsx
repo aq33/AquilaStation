@@ -104,6 +104,10 @@ const SCANNER_GATE_ROUTES = {
     title: 'Tryb skanera: higiena',
     component: () => ScannerGateHygiene,
   },
+  Contraband: {
+    title: 'Tryb skanera: kontrabanda',
+    component: () => ScannerGateContraband,
+  },
   Nanites: {
     title: 'Tryb skanera: nanity',
     component: () => ScannerGateNanites,
@@ -137,6 +141,7 @@ const ScannerGateControl = (props) => {
 const SCAN_MODES = [
   { mode: 'Wanted', name: 'Poszukiwani' },
   { mode: 'Guns', name: 'Broń' },
+  { mode: 'Contraband', name: 'Kontrabanda' },
   { mode: 'Mindshield', name: 'Implant lojalności' },
   { mode: 'Disease', name: 'Choroby' },
   { mode: 'Species', name: 'Rasa' },
@@ -186,6 +191,22 @@ const ScannerGateGuns = (props) => {
       <Box mb={2}>
         Alarm, jeśli skanowana osoba{' '}
         {reverse ? 'nie ma przy sobie broni' : 'ma przy sobie broń'}.
+      </Box>
+      <ScannerGateMode />
+    </>
+  );
+};
+
+// AQUILA: tryb kontrabandy (N-spect z tg)
+const ScannerGateContraband = (props) => {
+  const { data } = useBackend<Data>();
+  const { reverse } = data;
+  return (
+    <>
+      <Box mb={2}>
+        Alarm, jeśli skanowana osoba{' '}
+        {reverse ? 'nie ma przy sobie kontrabandy' : 'ma przy sobie kontrabandę'}
+        .
       </Box>
       <ScannerGateMode />
     </>

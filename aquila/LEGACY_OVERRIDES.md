@@ -136,6 +136,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | NTSL: `lvls` argument of `/datum/signal/subspace/vocal/New()` | `code/game/machinery/telecomms/broadcasting.dm` | `broadcast()` from a script sends on the server's z-level, its radio has no turf |
 | NTSL: return when a virtual speaker has no source | `code/datums/chatmessage.dm` (`create_chat_message()`) | `broadcast()` from a script has no real speaker |
 | `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
+| `vended_item.mark_contraband()` for hidden (contraband) records | `code/modules/vending/_vending.dm` (`vend()`) | N-spect scanner (tgstation `inspector.dm`): items bought from the hacked contraband list are contraband; `aquila/code/datums/contraband.dm` |
+| `I.mark_contraband(TRUE)` after `ILLEGAL` | `code/modules/uplink/uplink_items.dm` (`spawn_item()`) | N-spect: the contents of uplink kits are contraband too (the item itself already has `ILLEGAL`, which `is_contraband()` reads) |
+| `SCANGATE_CONTRABAND` mode | `code/game/machinery/scan_gate.dm`, `tgui/.../ScannerGate.tsx` | Scanner gate alarms on contraband (`contains_contraband()`), smuggler's satchel and storage implant hide it |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
