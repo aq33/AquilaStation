@@ -22,11 +22,6 @@
 	if(stat != DEAD && !HAS_TRAIT(src, TRAIT_VIRUSIMMUNE))
 		breath_airborne_diseases()
 
-/mob/living/simple_animal/mouse/Life(seconds, times_fired)
-	. = ..()
-	if(stat != DEAD)
-		handle_virus_updates()
-
 // --- kontakt: dotyk i wpadanie na siebie --------------------------------------
 /mob/living/carbon/human/attack_hand(mob/user, modifiers)
 	. = ..()
@@ -54,3 +49,16 @@
 	var/mob/living/carbon/human/character = mind?.current
 	if(ishuman(character))
 		DiseaseCarrierCheck(character)
+
+// --- układ odpornościowy na mobie ---------------------------------------------
+// Monke tworzy go w rdzeniu (code/modules/mob/living/carbon/carbon.dm: immune_system = new(src),
+// myszy w basic/vermin/mouse.dm). U nas wystarczy nadpisać Initialize.
+/mob/living/carbon/Initialize(mapload)
+	. = ..()
+	immune_system = new(src)
+
+/mob/living/carbon/Destroy()
+	QDEL_NULL(immune_system)
+	return ..()
+
+// Myszy mają swój układ odpornościowy w aquila/code/modules/virology/living/mouse.dm (tak jak w Monke).

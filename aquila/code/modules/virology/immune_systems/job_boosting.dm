@@ -8,7 +8,7 @@
 		spawned.immune_system = new(spawned, boost_immune_system)
 	if(isnull(boost_immune_system))
 		return
-	spawned.immune_system.change_boost(boost_immune_system)
+	spawned.immune_system?.change_boost(boost_immune_system)
 
 /datum/job/chief_medical_officer
 	boost_immune_system = 1.7

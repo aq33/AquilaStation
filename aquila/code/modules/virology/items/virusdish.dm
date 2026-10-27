@@ -23,15 +23,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 	reagents.my_atom = src
 	GLOB.virusdishes += src
 
-	var/list/reagent_change_signals = list(
-			ADD_REAGENT,
-			ADD_REAGENT,
-			ADD_REAGENT,
-			ADD_REAGENT,
-			ADD_REAGENT,
-			ADD_REAGENT,
-	)
-	RegisterSignals(src.reagents, reagent_change_signals, PROC_REF(handle_reagent_change))
+	// AQ: nasz rdzeń nie wysyła sygnałów odczynników — zmiany lecą przez /atom/proc/on_reagent_change
 
 /obj/item/weapon/virusdish/Destroy()
 	GLOB.virusdishes -= src
@@ -248,8 +240,8 @@ GLOBAL_LIST_INIT(virusdishes, list())
 			growth = max(growth - growthrate, 0)
 		contained_virus.incubate(src,mutatechance,effect_focus)
 
-/obj/item/weapon/virusdish/proc/handle_reagent_change(datum/reagents/reagents)
-	SIGNAL_HANDLER
+/obj/item/weapon/virusdish/on_reagent_change(changetype)
+	. = ..()
 
 	if(contained_virus)
 		var/datum/reagent/blood/blood = locate() in reagents.reagent_list

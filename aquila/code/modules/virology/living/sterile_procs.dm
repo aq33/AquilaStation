@@ -15,7 +15,7 @@
 	for(var/obj/item/cloth as anything in get_equipped_items())
 		if(QDELETED(cloth))
 			continue
-		if((cloth.body_parts_covered & check_flags) && prob(cloth.armor?["bio"]))
+		if((cloth.body_parts_covered & check_flags) && prob(cloth.armor?.getRating("bio")))
 			return TRUE
 	return FALSE
 
@@ -50,7 +50,7 @@
 	for(var/obj/item/cloth as anything in get_equipped_items())
 		if(QDELETED(cloth))
 			continue
-		if(prob(cloth.armor?["bio"]))
+		if(prob(cloth.armor?.getRating("bio")))
 			bleeding_flags &= ~cloth.body_parts_covered
 
 	return !!bleeding_flags
@@ -59,8 +59,8 @@
 	return FALSE
 
 /mob/living/carbon/human/check_airborne_sterility()
-	if (wear_mask && (wear_mask.flags_cover & MASKCOVERSMOUTH) && prob(wear_mask.armor?["bio"]))
+	if (wear_mask && (wear_mask.flags_cover & MASKCOVERSMOUTH) && prob(wear_mask.armor?.getRating("bio")))
 		return TRUE
-	if (head && (head.flags_cover & HEADCOVERSMOUTH) && prob(head.armor?["bio"]))
+	if (head && (head.flags_cover & HEADCOVERSMOUTH) && prob(head.armor?.getRating("bio")))
 		return TRUE
 	return FALSE

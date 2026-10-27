@@ -1055,6 +1055,7 @@
 #include "code\modules\test_chamber\kits\pr_420_traitor_cele.dm"
 #include "code\modules\test_chamber\kits\test_subjects.dm"
 // Komora testowa - zestawy PR-ów niżej (usuwać razem z plikiem zestawu po przetestowaniu)
+#include "code\modules\test_chamber\kits\pr_508_wirusologia.dm"
 #include "code\modules\test_chamber\kits\pr_495_ntsl.dm"
 #include "code\modules\test_chamber\kits\pr_492_serwery_ai.dm"
 #include "code\modules\test_chamber\kits\pr_487_xeno_rynek.dm"
