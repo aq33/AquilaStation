@@ -11,12 +11,12 @@
 	for (var/mob/living/L in GLOB.mob_list)
 		if(!length(L.diseases))
 			continue
-		for(var/datum/disease/acute/D as anything in L.diseases)
+		for(var/datum/disease/acute/D in L.diseases)
 			if (ID == "[D.uniqueID]-[D.subID]")
 				return
 
 	for (var/obj/item/I in GLOB.infected_items)
-		for(var/datum/disease/acute/D as anything in I.viruses)
+		for(var/datum/disease/acute/D in I.viruses)
 			if (ID == "[D.uniqueID]-[D.subID]")
 				return
 

@@ -12,7 +12,7 @@
 		var/list/airborne_viruses = filter_disease_by_spread(diseases, required = DISEASE_SPREAD_AIRBORNE)
 		if (airborne_viruses && airborne_viruses.len > 0)
 			var/strength = 0
-			for (var/datum/disease/acute/V as anything in airborne_viruses)
+			for (var/datum/disease/acute/V in airborne_viruses)
 				strength += V.infectionchance
 			strength = round(strength/airborne_viruses.len)
 			while (strength > 0)//stronger viruses create more clouds at once
@@ -30,7 +30,7 @@
 	if(!disease.spread_flags && !(disease.disease_flags & DISEASE_DORMANT))
 		return FALSE
 
-	for(var/datum/disease/acute/old_disease as anything in diseases)
+	for(var/datum/disease/acute/old_disease in diseases)
 		if(disease.uniqueID == old_disease.uniqueID && disease.subID == old_disease.subID) // child ids are for pathogenic mutations and aren't accounted for as thats fucked.
 			return FALSE
 

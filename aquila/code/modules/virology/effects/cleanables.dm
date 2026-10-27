@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(infected_cleanables)
 	..()
 	// AQ: nasz rdzeń dostaje listę chorób, ale jej nie trzyma (robi to tylko komponent infective),
 	// a patogeny muszą w plamie zostać, żeby dalej zarażały przez kontakt i powietrze.
-	for(var/datum/disease/acute/infection as anything in diseases)
+	for(var/datum/disease/acute/infection in diseases)
 		if(istype(infection))
 			LAZYOR(src.diseases, infection)
 	return INITIALIZE_HINT_LATELOAD
@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(infected_cleanables)
 		block = perp.check_contact_sterility(BODY_ZONE_LEGS)
 		bleeding = perp.check_bodypart_bleeding(BODY_ZONE_LEGS)
 
-	for(var/datum/disease/acute/contained_virus as anything in diseases)
+	for(var/datum/disease/acute/contained_virus in diseases)
 		if (!block && (contained_virus.spread_flags & DISEASE_SPREAD_CONTACT_SKIN))
 			perp.infect_disease(contained_virus, notes="(Contact, from [(perp.lying & LYING_DOWN)?"lying":"standing"] over [src]])")
 		else if (bleeding && (contained_virus.spread_flags & DISEASE_SPREAD_BLOOD))

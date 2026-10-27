@@ -45,6 +45,24 @@
 	var/bleeding = check_bodypart_bleeding(BODY_ZONE_EVERYTHING) && other.check_bodypart_bleeding(BODY_ZONE_EVERYTHING)
 	share_contact_diseases(other, block, bleeding)
 
+// Rdzeń przy dotyku, wpadaniu i ciągnięciu woła ContactContractDisease() na wszystkich chorobach.
+// Patogeny disease2 mają kontakt wyżej (share_contact_diseases), więc tamtą drogę pomijamy,
+// inaczej zarażały podwójnie i z pominięciem układu odpornościowego.
+/mob/living/ContactContractDisease(datum/disease/D)
+	if(istype(D, /datum/disease/acute))
+		return FALSE
+	return ..()
+
+/mob/living/carbon/ContactContractDisease(datum/disease/D, target_zone)
+	if(istype(D, /datum/disease/acute))
+		return FALSE
+	return ..()
+
+// Pozostałe stare wejścia (ForceContractDisease: ugryzienia, admin, eventy) kończą w try_infect().
+// Stare infect() wrzucało patogen bez sprawdzeń - kierujemy go do naszego infect_disease().
+/datum/disease/acute/try_infect(mob/living/infectee, make_copy = TRUE)
+	return infectee.infect_disease(src, forced = TRUE, notes = "(ForceContractDisease)")
+
 // --- latejoin: część dołączających ma łagodny patogen -------------------------
 /mob/dead/new_player/AttemptLateSpawn(rank)
 	. = ..()

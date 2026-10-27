@@ -409,7 +409,7 @@
 			var/list/blood_viruses = blood.data["viruses"]
 			if (islist(blood_viruses) && length(blood_viruses) > 0)
 				var/list/pathogen_list = list()
-				for (var/datum/disease/acute/D as anything  in blood_viruses)
+				for (var/datum/disease/acute/D in blood_viruses)
 					if(!istype(D))
 						continue
 					var/pathogen_name = "Unknown [D.form]"

@@ -193,7 +193,7 @@ GLOBAL_LIST_INIT(virusDB, list())
 		ticks = 0
 
 	//Pathogen killing each others
-	for (var/datum/disease/acute/enemy_pathogen as anything in mob.diseases)
+	for (var/datum/disease/acute/enemy_pathogen in mob.diseases)
 		if(enemy_pathogen == src)
 			continue
 

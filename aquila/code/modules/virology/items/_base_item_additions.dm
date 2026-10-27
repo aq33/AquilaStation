@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(infected_items, list())
 //Called by attack_hand(), transfers diseases between the mob and the item
 /obj/item/proc/disease_contact(mob/living/carbon/M, bodypart = null)
 	//first let's try to infect them with our viruses
-	for(var/datum/disease/acute/V as anything in viruses)
+	for(var/datum/disease/acute/V in viruses)
 		infection_attempt(M, V, bodypart)
 
 	if (!bodypart)//no bodypart specified? that should mean we're being held.
@@ -91,5 +91,5 @@ GLOBAL_LIST_INIT(infected_items, list())
 		return
 	var/list/blood_diseases = filter_disease_by_spread(infectee.diseases, required = DISEASE_SPREAD_BLOOD)
 	if(length(blood_diseases))
-		for(var/datum/disease/acute/V as anything in blood_diseases)
+		for(var/datum/disease/acute/V in blood_diseases)
 			infect_disease(V, TRUE, "(Blood, coming from [infectee])")

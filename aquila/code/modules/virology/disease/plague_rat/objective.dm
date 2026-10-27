@@ -23,7 +23,7 @@
 		for (var/mob/living/L in GLOB.mob_living_list)
 			if (L.stat == DEAD) // z mob_living_list wypada dopiero w Destroy(), wiec trupy trzeba odfiltrowac
 				continue
-			for (var/datum/disease/acute/carried as anything in L.diseases)
+			for (var/datum/disease/acute/carried in L.diseases)
 				if (istype(carried) && "[carried.uniqueID]-[carried.subID]" == disease_id)
 					return TRUE//if we infected at least one individual, and there is still an infected individual alive, that's good enough.
 

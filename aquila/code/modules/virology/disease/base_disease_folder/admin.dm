@@ -24,7 +24,7 @@
 
 	if (chosen_form == "infect with an already existing pathogen")
 		var/list/existing_pathogen = list()
-		for(var/datum/disease/acute/dis as anything in GLOB.inspectable_diseases)
+		for(var/datum/disease/acute/dis in GLOB.inspectable_diseases)
 			existing_pathogen += dis
 		var/chosen_pathogen = input(C, "Choose a pathogen", "Choose a pathogen") as null | anything in existing_pathogen
 		if (!chosen_pathogen)
@@ -204,7 +204,7 @@
 		var/infctd_items = 0
 		var/dishes = 0
 		for (var/mob/living/L in GLOB.mob_list)
-			for(var/datum/disease/acute/D as anything in L.diseases)
+			for(var/datum/disease/acute/D in L.diseases)
 				if (ID == "[D.uniqueID]-[D.subID]")
 					infctd_mobs++
 					if (L.stat == DEAD)
@@ -215,7 +215,7 @@
 					logs["[ID]"]["[L]"] = D.log
 
 		for (var/obj/item/I in GLOB.infected_items)
-			for(var/datum/disease/acute/D as anything in I.viruses)
+			for(var/datum/disease/acute/D in I.viruses)
 				if (ID == "[D.uniqueID]-[D.subID]")
 					infctd_items++
 					if(!length(logs["[ID]"]))

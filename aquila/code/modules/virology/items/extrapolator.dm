@@ -87,7 +87,7 @@
 			diseases += list(disease_entry(dish.contained_virus))
 	else if(isliving(last_attacked_target))
 		var/mob/living/target = last_attacked_target
-		for(var/datum/disease/acute/disease as anything in target.diseases)
+		for(var/datum/disease/acute/disease in target.diseases)
 			if(istype(disease))
 				diseases += list(disease_entry(disease))
 

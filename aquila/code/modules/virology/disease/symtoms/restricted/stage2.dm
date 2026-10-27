@@ -37,7 +37,7 @@
 				if(M.check_airborne_sterility())
 					return
 				var/strength = 0
-				for (var/datum/disease/acute/V  as anything in M.diseases)
+				for (var/datum/disease/acute/V in M.diseases)
 					strength += V.infectionchance
 				strength = round(strength/M.diseases.len)
 
@@ -58,7 +58,7 @@
 				if(M.check_airborne_sterility())
 					return
 				var/strength = 0
-				for (var/datum/disease/acute/V  as anything in M.diseases)
+				for (var/datum/disease/acute/V in M.diseases)
 					strength += V.infectionchance
 				strength = round(strength/M.diseases.len)
 

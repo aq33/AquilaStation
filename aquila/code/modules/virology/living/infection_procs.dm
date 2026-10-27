@@ -40,7 +40,7 @@
 /mob/living/proc/assume_contact_diseases(list/disease_list, atom/source, blocked=0, bleeding=0)
 	if(!length(disease_list))
 		return
-	for(var/datum/disease/acute/V as anything in disease_list)
+	for(var/datum/disease/acute/V in disease_list)
 		if (!V)
 			message_admins("[key_name(src)] is trying to assume contact diseases from touching \a [source], but the disease_list contains an ID ([V.uniqueID]-[V.subID]) that isn't associated to an actual disease datum! Ping Dwasint about it please.")
 			return
@@ -61,7 +61,7 @@
 		for(var/obj/effect/decal/cleanable/C in loc)
 			if (!length(C.diseases))
 				continue
-			for(var/datum/disease/acute/V as anything in C.diseases)
+			for(var/datum/disease/acute/V in C.diseases)
 				if(V.spread_flags & DISEASE_SPREAD_AIRBORNE)
 					infect_disease(V, notes="(Airborne, from [C])")
 

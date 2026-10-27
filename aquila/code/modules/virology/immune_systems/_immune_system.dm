@@ -121,7 +121,7 @@
 	if(overloaded)
 		return
 
-	for(var/datum/disease/acute/disease as anything in host.diseases)
+	for(var/datum/disease/acute/disease in host.diseases)
 		for(var/A in disease.antigen)
 			var/tally = 0.5
 			if (isturf(host.loc) && (host.lying))
@@ -147,7 +147,7 @@
 					antibodies[A] = min(antibodies[A] + 1, 100)
 
 /datum/immune_system/proc/NaturalImmune() //called with a 8% chance every time a virus activates
-	for (var/datum/disease/acute/disease as anything in host.diseases)
+	for (var/datum/disease/acute/disease in host.diseases)
 		for (var/A in disease.antigen)
 			var/tally = 1.5
 			if (isturf(host.loc) && (host.lying))
@@ -202,7 +202,7 @@
 	if (overloaded)
 		return
 
-	for (var/datum/disease/acute/disease as anything in host.diseases)
+	for (var/datum/disease/acute/disease in host.diseases)
 		for (var/A in disease.antigen)
 			antibodies[A] = 100
 
