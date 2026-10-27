@@ -9009,7 +9009,7 @@
 /turf/open/floor/monotile/steel,
 /area/hallway/nsv/deck1/hallway)
 "Dt" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/destructible/cult/item_dispenser/archives,
 /obj/item/book/codex_gigas,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/machinery/newscaster{

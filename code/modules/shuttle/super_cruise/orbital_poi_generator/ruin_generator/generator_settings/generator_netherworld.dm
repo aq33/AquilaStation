@@ -18,8 +18,8 @@
 		/mob/living/simple_animal/hostile/netherworld/blankbody = 2,
 		/mob/living/simple_animal/hostile/netherworld/migo = 2,
 		/obj/structure/spawner/nether = 0.3,
-		/obj/structure/destructible/cult/pylon = 2,
-		/obj/structure/destructible/cult/forge = 1,
+		/obj/structure/cult/pylon = 2, // AQ EDIT - kult krwi „Cult 4”: nowe struktury kultu
+		/obj/structure/cult/forge = 1, // AQ EDIT - kult krwi „Cult 4”
 		/obj/effect/rune/blood_boil = 1,
 		/obj/effect/rune/empower = 1,
 		null = 140,

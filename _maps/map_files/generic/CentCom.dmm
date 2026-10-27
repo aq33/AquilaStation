@@ -5392,7 +5392,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "pO" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/destructible/cult/item_dispenser/archives,
 /obj/item/book/codex_gigas,
 /obj/machinery/airalarm{
 	dir = 8;
@@ -9752,7 +9752,7 @@
 /turf/open/floor/pod/dark,
 /area/syndicate_mothership/infiltrator_base)
 "zo" = (
-/obj/structure/destructible/cult/tome,
+/obj/structure/destructible/cult/item_dispenser/archives,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "zp" = (
@@ -9966,7 +9966,7 @@
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "zO" = (
-/obj/structure/destructible/cult/talisman{
+/obj/structure/cult/altar{
 	desc = "An altar dedicated to the Wizards' Federation"
 	},
 /obj/item/kitchen/knife/ritual,
@@ -12814,7 +12814,7 @@
 /turf/open/floor/plasteel/white,
 /area/tdome/tdomeobserve)
 "FT" = (
-/obj/structure/destructible/cult/forge{
+/obj/structure/cult/forge{
 	desc = "An engine used in powering the wizard's ship";
 	name = "magma engine"
 	},

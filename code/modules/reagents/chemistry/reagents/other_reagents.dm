@@ -291,11 +291,6 @@
 		data = list("misc" = 1)
 	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
-	if(iscultist(M))
-		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
-			to_chat(M, "<span class='cultlarge'>Twoje krwawe obrzędy słabną, gdy woda święcona przeczyszcza twoje ciało!</span>")
-			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
-				qdel(BS)
 	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
@@ -316,8 +311,7 @@
 				"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")].</span>")
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
-			if(iscultist(M))
-				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
+			// AQ EDIT - kult krwi „Cult 4”: woda święcona nie nawraca już kultystów (jak w drafcie Monke), robi to rytuał kapelana
 			if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M.mind)
 			M.jitteriness = 0
