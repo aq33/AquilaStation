@@ -256,6 +256,31 @@ The old Hippie/Yogs vampire (`aquila/code/game/gamemodes/vampire/*`, species `va
 - `code/datums/elements/embed.dm`: `tryForceEmbed()` takes the hit zone from a bodypart target (BeeStation fix; stakes).
 - Removed: species `vampire` (`species_types/vampire.dm`, `human.dm` subtype, `isvampire`), the vampire bite in `human_defense.dm`.
 
+### Blood cult "Cult 4" port (Monkestation/Monkestation2.0#3867 draft + vgstation, B/F)
+
+The BeeStation blood cult is replaced. The new cult (rune words, rune spells, rituals, devotion, tattoos, Eclipse, Tear Reality, Blood Stone, mind_ui cult panel, refusable conversion, constructs and shades) lives in `aquila/code/modules/antagonists/bloodcult/`, included from the generated `aquila/bloodcult.dm`. Compatibility helpers are in `bloodcult/_compat/` (`core.dm`: mind_ui on `/datum/mind` and `/mob`, Login/Logout, MouseDown/MouseUp, cult fullscreens; `integration.dm`: deconversion ritual, chaplain cross, Eclipse ghosts, parallax rifts, cult backpack; the rest per area). Removed: `code/modules/antagonists/cult/blood_magic.dm`, `cult.dm`, `cult_comms.dm`, `cult_structures.dm` (old `/obj/structure/destructible/cult` base now in `bloodcult/structures/destructable/`). `rune_spawn_action.dm` stays (constructs). Core edits:
+
+- `code/modules/antagonists/cult/runes.dm`: removed convert/narsie/apocalypse runes, empower invoke, manifest ghost actions (as in the draft).
+- `code/modules/antagonists/cult/cult_items.dm`: removed tome, cultblade (dagger, ghost), bastard sword, dash, bola, spear, robes/hardened (redefined in `bloodcult/items` and `bloodcult/clothing`); shield hood is `/obj/item/clothing/head/hooded/cult_hoodie/cult_shield`.
+- `code/modules/antagonists/cult/narsie.dm`: `set_blood_target(src, duration = INFINITY)` instead of the eldergod objective.
+- `code/datums/components/cult_ritual_item.dm`: rune scribing cut out (runes are written through the tome/rune words).
+- `code/game/gamemodes/cult/cult.dm`: no `is_sacrifice_target`/`is_convertable_to_cult` (moved to `bloodcult/helpers`), credits read `narsie_summoned`.
+- `code/game/objects/items/stacks/sheets/sheet_types.dm`: runed metal recipes without pylon/forge/altar (now rune spells), archives use the item dispenser, plus cult bindings.
+- `code/_onclick/hud/alert.dm`: bloodsense alert without sacrifice/eldergod branches.
+- `code/_onclick/hud/parallax.dm`: `create_parallax` calls `bloodcult_eclipse_parallax(C)` (Eclipse rifts and red sky).
+- `code/_onclick/hud/radial.dm`: `radial_icon` on `/datum/radial_menu` and `show_radial_menu()`.
+- `code/modules/tooltip/tooltip.html`: `.radial-cult` CSS theme for cult panel tooltips.
+- `code/modules/mob/living/living_defense.dm`: `/mob/living/narsie_act` always makes a random hostile construct (proteon included).
+- `code/modules/reagents/chemistry/reagents/other_reagents.dm`: holy water no longer purges blood magic nor deconverts after 30u (deconversion is the bible ritual).
+- `code/modules/mob/living/simple_animal/constructs.dm`: rune actions and the eldergod objective cut from constructs; draft construct changes live in `bloodcult/constructs/`.
+- `code/modules/antagonists/wizard/equipment/soulstone.dm`: no sacrifice-target lock, perfect gem constructs, cultists made through `add_antag_datum` and `CanConvert()`.
+- `code/modules/unit_tests/create_and_destroy.dm`: `bloodcult_create_and_destroy_ignores()` (as the draft's unit_test.dm).
+- `code/modules/shuttle/.../generator_netherworld.dm`: new pylon/forge types.
+- `nsv13/code/modules/antagonists/bloodling.dm`: `SUMMON_POSSIBILITIES` define (was in the removed cult.dm).
+- `aquila/code/modules/antagonists/heretic/items/heretic_armor.dm`: `hood_up` comes from the new cult robes.
+- Overrides with `..()` in `bloodcult/_compat/`: `/client/Move_object` (soulblade control), `/mob/living/Login|Logout`, `/client/MouseDown|MouseUp`, `/datum/mind/Destroy`, observer `narsie_act`, `/mob/living/carbon/human/death` (cultist becomes a shade, `bloodcult/rune_spells/reincarnation.dm`).
+- Maps: old talisman/forge/pylon/tome structures swapped for `/obj/structure/cult/*` and archives; convert/narsie runes removed.
+
 ### Munitions forge (ParadiseSS13 smithing, B)
 
 The forge lives in `aquila/code/modules/munitions_forge/`. Forged ammunition carries `/datum/component/forged_munition`, which is copied onto every projectile through one-line hooks marked `AQUILA EDIT - kuźnia amunicji`:

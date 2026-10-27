@@ -3,6 +3,7 @@
 #include "code\__DEFINES\bitrunning.dm"
 #include "code\__DEFINES\bingle.dm"
 #include "code\__DEFINES\blood_worm.dm"
+#include "code\__DEFINES\bloodcult.dm"
 #include "code\__DEFINES\bounty_market.dm"
 #include "code\__DEFINES\broadcast.dm"
 #include "code\__DEFINES\crafting.dm"
@@ -986,6 +987,7 @@
 #include "code\modules\test_chamber\kits\pr_483_kuznia_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_489_shipbreaking.dm"
 #include "code\modules\test_chamber\kits\pr_507_sec_med.dm"
+#include "code\modules\test_chamber\kits\pr_509_kult_krwi.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1367,6 +1369,7 @@
 #include "code\modules\ntsl\traffic_control.dm"
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
+#include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\bingle.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\byondui_cleanup.dm"
@@ -1474,3 +1477,4 @@
 
 // Heretyk z tg (osobny plik z includami)
 #include "heretic.dm"
+#include "bloodcult.dm"

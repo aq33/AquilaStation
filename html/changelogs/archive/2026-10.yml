@@ -677,6 +677,23 @@
   - bugfix: 'Konsola komunikacyjna: okna wezwania promu i wiadomości do CentComu mieszczą
       się na ekranie, da się wezwać prom.'
 '2026-10-27':
+  dwasint, Deity Link (vgstation):
+  - rscadd: 'Nowy kult krwi „Cult 4”: runy pisane słowami krwi, około 22 zaklęcia
+      run, talizmany i tom.'
+  - rscadd: Rytuały kultu (osobiste i drużynowe), devotion, tatuaże z mocami oraz
+      role akolity, herolda i mentora.
+  - rscadd: 'Zaćmienie: pękają światła, runa Tear Reality, taniec i Krwawy Kamień
+      do obrony; kultyści dostają aureolę.'
+  - rscadd: Panel kultu z członkami, rytuałami, postępem Zaćmienia i pomocą.
+  - rscadd: Ofiara może odmówić konwersji i zostać więźniem kultu; kapelan dekonwertuje
+      rytuałem Biblią, sól niszczy runy.
+  - rscadd: Kult może wygrać także ucieczką promem; raport końca rundy pokazuje devotion
+      kultystów.
+  - rscadd: Konstrukty proteon i hex, doskonałe konstrukty z klejnotu dusz, projekcja
+      astralna, cień w ostrzu dusz.
+  - rscdel: Usunięto magię krwi i stare runy kultu z Bee.
+  - imageadd: Ikony kultu z vgstation i Monkestation.
+  - soundadd: Dźwięki kultu z vgstation i Monkestation.
   sh4dow321:
   - bugfix: Rękawice MODsuitów znów są widoczne, spod zamkniętego kombinezonu nie
       widać już gołych dłoni.
