@@ -1,5 +1,5 @@
 // NSV13 - status misji i cele (SSovermap_mode)
-import { Box, Icon, Section, Table } from 'tgui-core/components';
+import { Box, Button, Icon, Section, Table } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { notorietyName } from './constants';
@@ -29,17 +29,49 @@ const STATUS_MAP = {
 };
 
 export function PageObjectives(props) {
-  const { data } = useBackend<CommsConsoleData>();
+  const { act, data } = useBackend<CommsConsoleData>();
   const {
     announced_objectives,
     mission_briefing,
     notoriety,
     objectives = {},
+    mission_choices = [],
+    mission_choice_seconds = 0,
+    can_choose_mission,
   } = data;
 
   return (
     <Section fill scrollable title="Status misji">
-      {!announced_objectives ? (
+      {mission_choices.length > 0 ? (
+        <>
+          <Box mb={1}>
+            Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z
+            nich. Za {mission_choice_seconds} s zostanie przyjęta pierwsza.
+          </Box>
+          {!can_choose_mission && (
+            <Box mb={1} color="average">
+              Misję może wybrać tylko kapitan (dostęp kapitana).
+            </Box>
+          )}
+          {mission_choices.map((choice, index) => (
+            <Section
+              key={choice.id}
+              title={index === 0 ? `${choice.name} (domyślna)` : choice.name}
+              buttons={
+                <Button
+                  icon="check"
+                  disabled={!can_choose_mission}
+                  onClick={() => act('chooseMission', { id: choice.id })}
+                >
+                  Wybierz
+                </Button>
+              }
+            >
+              {choice.brief}
+            </Section>
+          ))}
+        </>
+      ) : !announced_objectives ? (
         <Box>Oczekuj na przydział zadań misji.</Box>
       ) : (
         <>
