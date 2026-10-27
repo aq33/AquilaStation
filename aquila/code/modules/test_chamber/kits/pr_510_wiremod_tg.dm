@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_wiremod_tg
+/datum/test_chamber_kit/pr_510
 	name = "Circuity z tg (nowy wiremod)"
-	pr = "aq33/AquilaStation#0"
+	pr = "aq33/AquilaStation#510"
 	description = "Włóż komponenty do układu (klik komponentem w układ) i otwórz okno układu: przeciąganie komponentów, łączenie portów (jedno wejście przyjmuje kilka wyjść), zmienne układu w menu Zmienne, lista komponentów z wyszukiwarką. \
 		Hello world: zegar -> mowa w pilocie albo bocie, mowa ma powiedzieć tekst. Multitool do układów: klik na obiekt zaznacza go, przycisk przy porcie obiektu wczytuje zaznaczenie. \
 		Uderz układem w drukarkę komponentów: w oknie układu ma się dać drukować komponenty z menu, a odłączony komponent ląduje z powrotem w drukarce. Drukarka ma pokazywać kategorie Rdzeń, Obudowy, Matematyka itd. \
