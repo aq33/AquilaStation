@@ -121,7 +121,8 @@
 	var/turf/my_turf = get_turf(my_atom)
 	var/reacted_vol = equilibrium.reacted_vol
 	. = ..()
-	my_turf?.pollute_turf(reaction.pollutant_type, reaction.pollutant_amount * reacted_vol)
+	if(reacted_vol > 0)
+		my_turf?.pollute_turf(reaction.pollutant_type, reaction.pollutant_amount * reacted_vol)
 
 // Drinks and candles
 

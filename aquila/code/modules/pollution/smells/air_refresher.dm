@@ -24,8 +24,8 @@
 	if(uses_remaining <= 0)
 		to_chat(user, span_warning("[src] jest pusty!"))
 		return
-	var/turf/aimed_turf = get_turf(target)
-	if(!aimed_turf)
+	var/turf/open/aimed_turf = get_turf(target)
+	if(!istype(aimed_turf) || isspaceturf(aimed_turf))
 		return
 	uses_remaining--
 	aimed_turf.pollute_turf(/datum/pollutant/fragrance/air_refresher, 200)
