@@ -1,8 +1,8 @@
 // Skaner N-spect, Undercover I.D., tagi triage, opaska uciskowa
 
-/datum/test_chamber_kit/pr_sec_med_sec
-	name = "PR sec/med: N-spect i Undercover I.D."
-	pr = "aq33/AquilaStation#PR_NUMBER"
+/datum/test_chamber_kit/pr_507_sec
+	name = "PR 507: N-spect i Undercover I.D."
+	pr = "aq33/AquilaStation#507"
 	description = "N-spect: kliknij pudełko z kontrabandą (wykryto), czyste pudełko (czysto) i torbę przemytnika z kontrabandą w środku (czysto). \
 	Łom otwiera klapkę, Ctrl+klik wyjmuje ogniwo. Wadliwy N-spect odwraca wynik. Bramka: tryb Kontrabanda, przejdź z pudełkiem z kontrabandą. \
 	Undercover I.D.: sfałszuj kartę (działa bez bycia antagiem), przyłóż do niej kartę kapitana (dostępy nie mają się skopiować), multitool blokuje i odblokowuje przebranie."
@@ -17,7 +17,7 @@
 		/obj/item/crowbar = 1,
 	)
 
-/datum/test_chamber_kit/pr_sec_med_sec/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_507_sec/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/obj/item/storage/box/contraband_box = new(center)
 	contraband_box.name = "pudełko z kontrabandą"
 	var/obj/item/pen/pen = new(contraband_box)
@@ -29,9 +29,9 @@
 		var/obj/item/pen/hidden_pen = new(smuggler)
 		hidden_pen.mark_contraband()
 
-/datum/test_chamber_kit/pr_sec_med_med
-	name = "PR sec/med: triage i opaska uciskowa"
-	pr = "aq33/AquilaStation#PR_NUMBER"
+/datum/test_chamber_kit/pr_507_med
+	name = "PR 507: triage i opaska uciskowa"
+	pr = "aq33/AquilaStation#507"
 	description = "Pacjent ma przerwaną tętnicę na lewej nodze. Opaska: wybierz lewą nogę i kliknij pacjenta (3 s, na sobie 6 s), krwawienie ma spaść, \
 	skaner i examine pokazują opaskę, examine ma link Zdejmij. Po 3 min kończyna dostaje obrażenia i spowolnienie rośnie, po 8 min zdjęcie daje toksyny. \
 	Bez zszycia rany zdjęta opaska puszcza krwawienie z powrotem. Triage: przyklej tag z bloczka (pudełko), tagger w ręce wybiera kategorię albo zdejmowanie."
@@ -44,7 +44,7 @@
 		/obj/item/pen = 1,
 	)
 
-/datum/test_chamber_kit/pr_sec_med_med/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_507_med/setup(list/spawned, list/turfs, turf/center, mob/user)
 	var/mob/living/carbon/human/patient = new(center)
 	patient.real_name = "Pacjent z tętnicą"
 	patient.name = patient.real_name

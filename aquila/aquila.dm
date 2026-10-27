@@ -983,7 +983,7 @@
 #include "code\modules\test_chamber\kits\pr_426_pajaki_tg.dm"
 #include "code\modules\test_chamber\kits\pr_483_kuznia_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_489_shipbreaking.dm"
-#include "code\modules\test_chamber\kits\pr_sec_med_drobiazgi.dm"
+#include "code\modules\test_chamber\kits\pr_507_sec_med.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
