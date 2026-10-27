@@ -136,6 +136,8 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | NTSL: `lvls` argument of `/datum/signal/subspace/vocal/New()` | `code/game/machinery/telecomms/broadcasting.dm` | `broadcast()` from a script sends on the server's z-level, its radio has no turf |
 | NTSL: return when a virtual speaker has no source | `code/datums/chatmessage.dm` (`create_chat_message()`) | `broadcast()` from a script has no real speaker |
 | `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
+| `/datum/progressbar` driven inside the activation step loop (AQ EDIT block + 3 lines) | `code/modules/mod/mod_activation.dm` (`activation_delay()`) | MODsuit sealing shows a progress bar per part; `do_after` would make the steps interruptible by moving or stuns |
+| `if(H.aquila_mod_forces_plantigrade()) suit_compatible = FALSE` | `code/modules/mob/living/carbon/human/species.dm` (`handle_mutant_bodyparts()`, digitigrade handling) | A sealed MOD chestplate or boots has no digitigrade sprites, so the wearer gets plantigrade legs; logic and the leg refresh on (un)sealing in `aquila/code/modules/mod/mod_clothes.dm`. Test: `aquila_modsuit_species` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
