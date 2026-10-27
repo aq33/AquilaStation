@@ -9,7 +9,7 @@
 		Kabel USB: emiter, termomaszyna i pompa temperatury (strzał i włączanie z układu). Wirenet: dwa układy w botach przykręconych na tej samej sieci kabli - nadajnik i odbiornik. \
 		Komponenty tylko nasze: Bitwise, Bitflag, Round, Advanced Trigonometry."
 	items = list(
-		/obj/item/integrated_circuit/loaded = 4,
+		/obj/item/integrated_circuit/loaded = 6,
 		/obj/item/multitool/circuit = 1,
 		/obj/item/usb_cable = 2,
 		/obj/item/compact_remote = 1,
