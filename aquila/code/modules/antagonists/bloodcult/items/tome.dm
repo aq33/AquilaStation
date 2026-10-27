@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(arcane_tomes, list())
 
 /obj/item/tome/proc/tome_text()
 	var/page_data=null
-	var/dat={"<title>tajemna księga</title><body style="color:#FFFFFF" bgcolor="#110000">
+	var/dat={"<html><head><meta charset='UTF-8'><title>tajemna księga</title></head><body style="color:#FFFFFF" bgcolor="#110000">
 
 			<style>
 				label {display: inline-block; width: 50px;text-align: right;float: left;margin: 0 0 0 10px;}

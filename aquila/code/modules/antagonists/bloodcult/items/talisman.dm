@@ -42,7 +42,7 @@
 /obj/item/talisman/examine(mob/user)
 	. = ..()
 	if (blood_text)
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
 		onclose(user, "[name]")
 		return
 
@@ -64,7 +64,7 @@
 
 /obj/item/talisman/attack_self(mob/living/user)
 	if (blood_text)
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
 		onclose(user, "[name]")
 		onclose(user, "[name]")
 		return
@@ -86,7 +86,7 @@
 		return
 
 	if (blood_text)
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
+		user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>[name]</TITLE></HEAD><BODY text = #612014>[blood_text]</BODY></HTML>", "window=cult_talisman")
 		onclose(user, "[name]")
 		return
 

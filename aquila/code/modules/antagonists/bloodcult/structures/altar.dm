@@ -413,7 +413,7 @@
 									extra = " - <span style='color:#FF0000'>MARTWY</span>"
 							dat += "<li><span style='color:#FFFF00'><b>[C.real_name]</b></span></li> - więzień: [gaoler.name][extra]"
 				dat += {"</ul></body>"}
-				user << browse("<TITLE>Lista kultu</TITLE>[dat]", "window=cultroster;size=600x400")
+				user << browse("<HTML><HEAD><meta charset='UTF-8'><TITLE>Lista kultu</TITLE></HEAD>[dat]", "window=cultroster;size=600x400")
 				onclose(user, "cultroster")
 			if ("Rozmowa z Nar-Sie")
 				if(narsie_message_cooldown)
