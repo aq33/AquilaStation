@@ -157,5 +157,5 @@
 	id = "bci_implanter"
 	desc = "Maszyna, która po włożeniu interfejsu mózg-komputer wszczepia go osobie w środku. W przeciwnym razie usuwa jej wszystkie interfejsy mózg-komputer."
 	build_path = /obj/item/circuitboard/machine/bci_implanter
-	build_type = COMPONENT_PRINTER
+	build_type = IMPRINTER | COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
