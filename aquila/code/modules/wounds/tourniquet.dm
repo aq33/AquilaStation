@@ -1,6 +1,7 @@
-// AQUILA - opaska uciskowa (tourniquet). Własny projekt na naszym systemie krwawienia i ran.
+// AQUILA - opaska uciskowa (tourniquet) na wzór tgstation#95041, na naszym systemie krwawienia i ran.
 // Krwawienie Bee jest jedną liczbą na całego moba, więc śledzimy w przybliżeniu, ile krwawienia przyszło z której kończyny
-// (trafienia, rany cięte, oderwanie kończyny). Opaska odcina ten udział, ale noszona za długo niszczy kończynę.
+// (trafienia, rany cięte, oderwanie kończyny). Jak w tg opaska odcina 90% tego udziału, spowalnia nogę albo rękę,
+// a na szyi dusi. Nasze: noszona za długo powoduje niedokrwienie i martwicę kończyny.
 
 /// Po tym czasie zaczyna się niedokrwienie: obrażenia kończyny i spowolnienie rosną z każdą minutą
 #define TOURNIQUET_ISCHEMIA_TIME (3 MINUTES)
@@ -8,8 +9,12 @@
 #define TOURNIQUET_NECROSIS_TIME (8 MINUTES)
 /// Opaska zdjęta szybciej niż po tym czasie puszcza całe zatrzymane krwawienie
 #define TOURNIQUET_CLOT_TIME (1 MINUTES)
-/// Spowolnienie od samej opaski na nodze
-#define TOURNIQUET_BASE_SLOWDOWN 0.25
+/// Spowolnienie od samej opaski na nodze (tg: +0.5)
+#define TOURNIQUET_BASE_SLOWDOWN 0.5
+/// Ile krwawienia z kończyny zatrzymuje opaska (tg: 90%)
+#define TOURNIQUET_BLEED_BLOCK 0.9
+/// O tyle wolniejsze są akcje z opaską na ręce (tg: +0.5 do interaction_modifier)
+#define TOURNIQUET_ARM_ACTION_MOD 0.5
 #define TOURNIQUET_MAX_SLOWDOWN 1.5
 
 /// Strefa ciała (ręka/noga) -> przybliżone krwawienie z tej kończyny
@@ -27,6 +32,8 @@
 			return "lewa noga"
 		if(BODY_ZONE_R_LEG)
 			return "prawa noga"
+		if(BODY_ZONE_HEAD)
+			return "szyja"
 	return zone
 
 // --- Krwawienie z kończyn ---
@@ -84,8 +91,11 @@
 		return
 	var/obj/item/tourniquet/tourniquet = LAZYACCESS(aq_tourniquets, zone)
 	if(tourniquet)
-		tourniquet.held_bleed += aq_clamp_bleeding(amount)
-		return
+		var/blocked = aq_clamp_bleeding(amount * TOURNIQUET_BLEED_BLOCK)
+		tourniquet.held_bleed += blocked
+		amount -= blocked
+		if(amount <= 0)
+			return
 	LAZYINITLIST(aq_limb_bleed)
 	aq_limb_bleed[zone] += amount
 
@@ -107,7 +117,7 @@
 	for(var/zone in hit_zones)
 		aq_add_limb_bleed(zone, delta * hit_zones[zone] / total)
 
-GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
+GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD))
 
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
 	var/list/snapshot = aq_limb_damage_snapshot()
@@ -128,11 +138,8 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 	if(. && old_owner)
 		old_owner.aq_add_limb_bleed(body_zone, old_owner.aq_bleed_rate() - bleed_before)
 
-// Rana cięta pod opaską się nie otwiera, a jej ponowne krwawienie liczy się do kończyny.
+// Ponowne otwarcie rany ciętej liczy się do kończyny, więc opaska zatrzymuje 90% tego krwawienia.
 /datum/wound/slash/wound_effects(delta_time)
-	if(LAZYACCESS(victim.aq_tourniquets, limb.body_zone))
-		reopen_progress = 0
-		return
 	var/bleed_before = victim.aq_bleed_rate()
 	. = ..()
 	victim.aq_add_limb_bleed(limb.body_zone, victim.aq_bleed_rate() - bleed_before)
@@ -168,7 +175,7 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 
 /obj/item/tourniquet
 	name = "opaska uciskowa"
-	desc = "Taktyczna opaska z pokrętłem. Założona na rękę albo nogę zatrzymuje krwawienie z tej kończyny, ale noszona dłużej niż kilka minut niszczy kończynę. Zdejmij ją, gdy rana zostanie opatrzona."
+	desc = "Opaska z pokrętłem do tamowania silnych krwotoków. Założona na rękę albo nogę zatrzymuje prawie całe krwawienie z tej kończyny, ale ją spowalnia, a noszona dłużej niż kilka minut niszczy kończynę. Zakładanie jej na szyję to bardzo zły pomysł."
 	icon = 'aquila/icons/obj/sec_med/sec_med.dmi'
 	icon_state = "tourniquet"
 	w_class = WEIGHT_CLASS_SMALL
@@ -186,6 +193,8 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 	var/held_bleed = 0
 	/// Kiedy ostatnio ostrzegano noszącego
 	var/next_warning = 0
+	/// Czy opaska spowalnia akcje noszącego (na ręce)
+	var/slows_actions = FALSE
 
 /obj/item/tourniquet/Destroy()
 	if(wearer)
@@ -197,7 +206,7 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 		return ..()
 	var/target_zone = check_zone(user.zone_selected)
 	if(!(target_zone in GLOB.aq_tourniquet_zones))
-		to_chat(user, "<span class='warning'>Opaskę zakłada się na rękę albo nogę.</span>")
+		to_chat(user, "<span class='warning'>Opaskę zakłada się na rękę, nogę albo... szyję.</span>")
 		return
 	try_apply(M, user, target_zone)
 
@@ -209,15 +218,32 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 	if(limb && !IS_ORGANIC_LIMB(limb))
 		to_chat(user, "<span class='warning'>Opaska nic nie da na protezie.</span>")
 		return FALSE
+	if(target_zone == BODY_ZONE_HEAD && !limb)
+		return FALSE
 	var/self = user == patient
-	user.visible_message("<span class='notice'>[user] zaciska opaskę uciskową na kończynie [patient] ([aq_tourniquet_zone_name(target_zone)]).</span>", \
-		"<span class='notice'>Zaciskasz opaskę uciskową[self ? "" : " na [patient]"] ([aq_tourniquet_zone_name(target_zone)])...</span>")
-	if(!do_mob(user, patient, self ? 6 SECONDS : 3 SECONDS))
+	// Czasy z tg: 5 s, bez krwawiącej rany i na szyi dwa razy dłużej, na cudzej kończynie dwa razy krócej
+	var/apply_time = 5 SECONDS
+	if(limb && !LAZYACCESS(patient.aq_limb_bleed, target_zone) && !limb.get_wound(WOUND_SLASH))
+		apply_time *= 2
+	if(target_zone == BODY_ZONE_HEAD)
+		apply_time *= 2
+		user.visible_message("<span class='warning'>[user] zaciska opaskę uciskową na szyi [patient]!</span>", \
+			"<span class='userdanger'>Zaciskasz opaskę uciskową na szyi[self ? "" : " [patient]"]... to chyba nie jest dobry pomysł?</span>")
+	else
+		if(!self)
+			apply_time *= 0.5
+		user.visible_message("<span class='notice'>[user] zaciska opaskę uciskową na kończynie [patient] ([aq_tourniquet_zone_name(target_zone)]).</span>", \
+			"<span class='notice'>Zaciskasz opaskę uciskową[self ? "" : " na [patient]"] ([aq_tourniquet_zone_name(target_zone)])...</span>")
+	if(!do_mob(user, patient, apply_time))
 		return FALSE
 	if(LAZYACCESS(patient.aq_tourniquets, target_zone) || !user.temporarilyRemoveItemFromInventory(src))
 		return FALSE
 	attach(patient, target_zone)
 	playsound(patient, 'sound/items/zip.ogg', 40, TRUE)
+	// Ciasne zaciśnięcie boli (tg)
+	if(limb)
+		patient.apply_damage(5, BRUTE, limb)
+		patient.adjustStaminaLoss(20)
 	user.visible_message("<span class='notice'>[user] zakłada opaskę uciskową [patient] ([aq_tourniquet_zone_name(target_zone)]).</span>", \
 		"<span class='notice'>Opaska siedzi mocno[self ? "" : " na [patient]"]. Nie trzymaj jej dłużej niż kilka minut.</span>")
 	return TRUE
@@ -235,7 +261,13 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 		share = guess_limb_bleed()
 	if(patient.aq_limb_bleed)
 		patient.aq_limb_bleed -= zone
-	held_bleed = patient.aq_clamp_bleeding(share)
+	held_bleed = patient.aq_clamp_bleeding(share * TOURNIQUET_BLEED_BLOCK)
+	if(share - held_bleed > 0)
+		LAZYINITLIST(patient.aq_limb_bleed)
+		patient.aq_limb_bleed[zone] = share - held_bleed
+	if(zone == BODY_ZONE_L_ARM || zone == BODY_ZONE_R_ARM)
+		slows_actions = TRUE
+		patient.next_move_modifier += TOURNIQUET_ARM_ACTION_MOD
 	RegisterSignal(patient, COMSIG_PARENT_EXAMINE, PROC_REF(on_wearer_examine))
 	RegisterSignal(patient, COMSIG_PARENT_QDELETING, PROC_REF(on_wearer_deleted))
 	var/atom/movable/screen/alert/aq_tourniquet/alert = patient.throw_alert("aq_tourniquet_[zone]", /atom/movable/screen/alert/aq_tourniquet)
@@ -263,6 +295,9 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 	var/worn = worn_time()
 	wearer = null
 	zone = null
+	if(slows_actions)
+		slows_actions = FALSE
+		patient.next_move_modifier -= TOURNIQUET_ARM_ACTION_MOD
 	if(!QDELETED(patient))
 		patient.update_tourniquet_slowdown()
 		var/obj/item/bodypart/limb = patient.get_bodypart(old_zone)
@@ -273,7 +308,7 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 			patient.aq_limb_bleed[old_zone] += held_bleed
 			if(!silent)
 				to_chat(patient, "<span class='danger'>Krew znów płynie z rany ([aq_tourniquet_zone_name(old_zone)])!</span>")
-		if(worn >= TOURNIQUET_NECROSIS_TIME && limb && patient.stat != DEAD)
+		if(worn >= TOURNIQUET_NECROSIS_TIME && limb && old_zone != BODY_ZONE_HEAD && patient.stat != DEAD)
 			patient.adjustToxLoss(min(30, 3 * (worn - TOURNIQUET_ISCHEMIA_TIME) / (1 MINUTES)))
 			if(!silent)
 				to_chat(patient, "<span class='userdanger'>Martwa krew z niedokrwionej kończyny ([aq_tourniquet_zone_name(old_zone)]) uderza do reszty ciała!</span>")
@@ -289,6 +324,8 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 	return min(TOURNIQUET_MAX_SLOWDOWN, TOURNIQUET_BASE_SLOWDOWN + 0.25 * (worn - TOURNIQUET_ISCHEMIA_TIME) / (1 MINUTES))
 
 /obj/item/tourniquet/proc/get_state_text()
+	if(zone == BODY_ZONE_HEAD)
+		return ", <b>dusi!</b>"
 	var/worn = worn_time()
 	if(worn >= TOURNIQUET_NECROSIS_TIME)
 		return ", <b>martwica kończyny!</b>"
@@ -301,8 +338,13 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 		if(wearer)
 			detach(silent = TRUE)
 		return PROCESS_KILL
+	if(wearer.stat == DEAD || IS_IN_STASIS(wearer))
+		return
+	if(zone == BODY_ZONE_HEAD)
+		choke(delta_time)
+		return
 	var/worn = worn_time()
-	if(worn < TOURNIQUET_ISCHEMIA_TIME || wearer.stat == DEAD || IS_IN_STASIS(wearer))
+	if(worn < TOURNIQUET_ISCHEMIA_TIME)
 		return
 	var/obj/item/bodypart/limb = wearer.get_bodypart(zone)
 	if(!limb) // kikut nie ma czego niedokrwić
@@ -321,6 +363,20 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 		var/obj/item/held = wearer.get_item_for_held_index(limb.held_index)
 		if(held && wearer.dropItemToGround(held))
 			to_chat(wearer, "<span class='warning'>Zdrętwiałe palce wypuszczają [held]!</span>")
+
+/// Opaska na szyi (tg): brak oddechu i krwi do mózgu
+/obj/item/tourniquet/proc/choke(delta_time)
+	if(HAS_TRAIT(wearer, TRAIT_NOBREATH))
+		return
+	wearer.losebreath += 1 * delta_time
+	wearer.adjustOxyLoss(1 * delta_time)
+	if(DT_PROB(6, delta_time))
+		wearer.adjustStaminaLoss(10)
+	if(DT_PROB(5, delta_time))
+		wearer.blur_eyes(2)
+	if(DT_PROB(4, delta_time))
+		wearer.Dizzy(4)
+		wearer.confused = max(wearer.confused, 2)
 
 /obj/item/tourniquet/proc/on_wearer_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -411,3 +467,5 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 #undef TOURNIQUET_CLOT_TIME
 #undef TOURNIQUET_BASE_SLOWDOWN
 #undef TOURNIQUET_MAX_SLOWDOWN
+#undef TOURNIQUET_BLEED_BLOCK
+#undef TOURNIQUET_ARM_ACTION_MOD

@@ -32,7 +32,7 @@
 /datum/test_chamber_kit/pr_507_med
 	name = "PR 507: triage i opaska uciskowa"
 	pr = "aq33/AquilaStation#507"
-	description = "Pacjent ma przerwaną tętnicę na lewej nodze. Opaska: wybierz lewą nogę i kliknij pacjenta (3 s, na sobie 6 s), krwawienie ma spaść, \
+	description = "Pacjent ma przerwaną tętnicę na lewej nodze. Opaska: wybierz lewą nogę i kliknij pacjenta (2,5 s, na sobie 5 s), krwawienie ma spaść o 90%, noga spowolniona, na ręce wolniejsze akcje, na szyi dusi, \
 	skaner i examine pokazują opaskę, examine ma link Zdejmij. Po 3 min kończyna dostaje obrażenia i spowolnienie rośnie, po 8 min zdjęcie daje toksyny. \
 	Bez zszycia rany zdjęta opaska puszcza krwawienie z powrotem. Triage: przyklej tag z bloczka (pudełko), tagger w ręce wybiera kategorię albo zdejmowanie."
 	items = list(
