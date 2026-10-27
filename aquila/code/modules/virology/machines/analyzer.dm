@@ -111,8 +111,7 @@
 	processing = TRUE
 	update_appearance()
 
-	var/mutable_appearance/light_overlay = mutable_appearance(icon, "analyser_light", plane = ABOVE_LIGHTING_PLANE)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, add_overlay), light_overlay), 0.1 SECONDS)
+	// AQ: nakladke analyser_light rysuje update_overlays() na czas processing - osobne add_overlay zostawalo na zawsze
 	use_power(1000)
 	set_light(2,2)
 	playsound(src, 'sound/machines/chime.ogg', vol = 50)

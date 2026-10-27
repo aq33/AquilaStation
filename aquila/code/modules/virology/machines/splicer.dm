@@ -193,15 +193,17 @@
 	if(dish.growth < 50)
 		return
 	var/list/effects = dish.contained_virus.symptoms
+	var/datum/symptom/acute/found
 	for(var/x = 1 to length(effects))
 		var/datum/symptom/acute/e = effects[x]
 		if(e.stage == target_slot)
-			memorybank = e
+			found = e
 			break
-	// AQ: bez objawu na wybranym stopniu szalka ginela za darmo
-	if(!memorybank)
+	// AQ: bez objawu na wybranym stopniu szalka ginela za darmo (a bufor moze trzymac stary objaw)
+	if(!found)
 		say("BŁĄD: na stopniu [target_slot] nie ma objawu do skopiowania.")
 		return
+	memorybank = found
 	scanning = DISEASE_SPLICER_SCANNING_TICKS
 	analysed = dish.analysed
 	QDEL_NULL(dish)

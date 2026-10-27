@@ -65,7 +65,7 @@
 	if(diseased_mob.loc)
 		environment = diseased_mob.loc.return_air()
 	if(environment && environment.get_moles(/datum/gas/plasma))
-		. += power * min(MAX_HEAL_COEFFICIENT_INTERNALS, environment.get_moles(/datum/gas/plasma) * HEALING_PER_MOL)
+		base += power * min(MAX_HEAL_COEFFICIENT_ENVIRONMENT, environment.get_moles(/datum/gas/plasma) * HEALING_PER_MOL)
 	// Check for reagents in bloodstream
 	if(diseased_mob.reagents?.has_reagent(/datum/reagent/toxin/plasma, needs_metabolizing = TRUE))
 		base += power * MAX_HEAL_COEFFICIENT_BLOODSTREAM //Determines how much the symptom heals if injected or ingested

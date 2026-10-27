@@ -61,10 +61,10 @@
 		question = "Chcesz zagrać jako [affected_mob.real_name]?",
 		check_jobban = bantype,
 		poll_time = 5 SECONDS,
-		alert_pic = affected_mob,
+		alert_pic = new_mob,
 		role_name_text = "ofiara transformacji",
 		amount_to_pick = 1,
-	), affected_mob)
+	), new_mob)
 	if(isnull(chosen_one))
 		to_chat(new_mob, span_userdanger("Your mob has been claimed by death! Appeal your job ban if you want to avoid this in the future!"))
 		new_mob.investigate_log("has been killed because there was no one to replace them as a job-banned player.", INVESTIGATE_DEATHS)
@@ -72,10 +72,11 @@
 		if (!QDELETED(new_mob))
 			new_mob.ghostize(can_reenter_corpse = FALSE)
 		return
-	to_chat(affected_mob, span_userdanger("Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!"))
-	message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(affected_mob)]) to replace a jobbanned player.")
-	affected_mob.ghostize(FALSE)
-	affected_mob.key = chosen_one.key
+	// AQ: stary mob jest qdelowany zaraz po przemianie, wiec duch przejmuje nowego
+	to_chat(new_mob, span_userdanger("Your mob has been taken over by a ghost! Appeal your job ban if you want to avoid this in the future!"))
+	message_admins("[key_name_admin(chosen_one)] has taken control of ([key_name_admin(new_mob)]) to replace a jobbanned player.")
+	new_mob.ghostize(FALSE)
+	new_mob.key = chosen_one.key
 
 
 /datum/symptom/acute/transformation/robot
