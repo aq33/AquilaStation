@@ -4734,7 +4734,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
-/obj/structure/destructible/cult/tome/library,
+/obj/structure/destructible/cult/item_dispenser/archives/library,
 /obj/machinery/firealarm/directional/west,
 /obj/structure/disposaloutlet{
 	dir = 1

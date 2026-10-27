@@ -6,31 +6,7 @@
 /proc/iscultist(mob/living/M)
 	return M?.mind?.has_antag_datum(/datum/antagonist/cult)
 
-/datum/team/cult/proc/is_sacrifice_target(datum/mind/mind)
-	for(var/datum/objective/sacrifice/sac_objective in objectives)
-		if(mind == sac_objective.target)
-			return TRUE
-	return FALSE
-
-/proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
-	if(!istype(M))
-		return FALSE
-	if(M.mind)
-		if(ishuman(M) && (M.mind.assigned_role in list(JOB_NAME_CAPTAIN, JOB_NAME_CHAPLAIN)))
-			return FALSE
-		if(specific_cult && specific_cult.is_sacrifice_target(M.mind))
-			return FALSE
-		if(is_servant_of_ratvar(M))
-			return FALSE
-		if(M.mind.enslaved_to && !iscultist(M.mind.enslaved_to))
-			return FALSE
-		if(M.mind.unconvertable)
-			return FALSE
-	else
-		return FALSE
-	if(HAS_TRAIT(M, TRAIT_MINDSHIELD) || issilicon(M) || isbot(M) || isdrone(M) || !M.client)
-		return FALSE //can't convert machines, shielded, braindead, or ratvar's dogs
-	return TRUE
+// AQ EDIT - is_sacrifice_target i is_convertable_to_cult usunięte, nowy kult krwi ma własne w aquila/code/modules/antagonists/bloodcult/helpers/cult.dm
 
 /datum/game_mode/cult
 	name = "cult"
@@ -181,8 +157,7 @@
 	for(var/datum/mind/cultist in cult)
 		round_credits += "<center><h2>[cultist.name] jako fanatyk kultu</h2>"
 
-	var/datum/objective/eldergod/summon_objective = locate() in main_cult.objectives
-	if(summon_objective && summon_objective.summoned)
+	if(main_cult?.narsie_summoned) // AQ EDIT - nowy kult krwi nie ma celu eldergod
 		round_credits += "<center><h2>Nar'Sie jako nadprzyrodzona abominacja</h2>"
 
 	if(len_before_addition == round_credits.len)
