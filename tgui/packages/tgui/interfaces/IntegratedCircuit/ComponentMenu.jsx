@@ -41,8 +41,8 @@ export class ComponentMenu extends Component {
     const circuitData = await fetchServerData;
 
     this.setState({
-      componentData: circuitData.sort(
-        (a, b) => a.name.toLowerCase() < b.name.toLowerCase(),
+      componentData: circuitData.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
       ),
     });
   }

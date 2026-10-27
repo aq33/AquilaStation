@@ -183,6 +183,7 @@
 		return COMSIG_CANCEL_USB_CABLE_ATTACK
 
 	usb_cable_ref = WEAKREF(connecting_cable)
+	RegisterSignal(connecting_cable, COMSIG_QDELETING, PROC_REF(on_usb_cable_deleting))
 	attached_circuit = connecting_cable.attached_circuit
 
 	connecting_cable.forceMove(attached_circuit)
@@ -233,8 +234,14 @@
 
 /datum/component/usb_port/proc/on_circuit_deleting()
 	SIGNAL_HANDLER
+	var/obj/item/usb_cable/usb_cable = usb_cable_ref?.resolve()
 	detach()
-	qdel(usb_cable_ref)
+	qdel(usb_cable)
+
+/// Kabel zniszczony w trakcie podłączenia: sprzątamy komponenty i wiązkę bez przenoszenia kabla.
+/datum/component/usb_port/proc/on_usb_cable_deleting(datum/source)
+	SIGNAL_HANDLER
+	detach(cable_deleting = TRUE)
 
 /datum/component/usb_port/proc/on_circuit_component_removed(datum/source)
 	SIGNAL_HANDLER
@@ -244,10 +251,13 @@
 	SIGNAL_HANDLER
 	detach()
 
-/datum/component/usb_port/proc/detach()
+/datum/component/usb_port/proc/detach(cable_deleting = FALSE)
 	var/obj/item/usb_cable/usb_cable = usb_cable_ref?.resolve()
-	if (isnull(usb_cable))
+	if (isnull(attached_circuit))
 		return
+	usb_cable_ref = null
+	if (usb_cable)
+		UnregisterSignal(usb_cable, COMSIG_QDELETING)
 
 	for(var/obj/item/circuit_component/component as anything in circuit_components)
 		UnregisterSignal(component, COMSIG_CIRCUIT_COMPONENT_REMOVED)
@@ -257,9 +267,10 @@
 	unregister_circuit_signals()
 	unregister_physical_signals()
 
-	var/atom/atom_parent = parent
-	usb_cable.forceMove(atom_parent.drop_location())
-	usb_cable.balloon_alert_to_viewers("*snap*")
+	if (usb_cable && !cable_deleting)
+		var/atom/atom_parent = parent
+		usb_cable.forceMove(atom_parent.drop_location())
+		usb_cable.balloon_alert_to_viewers("*snap*")
 
 	physical_object = null
 	attached_circuit = null

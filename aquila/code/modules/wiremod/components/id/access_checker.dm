@@ -53,6 +53,11 @@
 		LAZYCLEARLIST(req_one_access)
 		req_access = required_accesses_list.Copy()
 
+/obj/item/circuit_component/compare/access/pre_input_received(datum/port/input/port)
+	. = ..()
+	if(port == required_accesses || port == check_any)
+		regenerate_access()
+
 /obj/item/circuit_component/compare/access/do_comparisons()
 	return check_access_list(subject_accesses.value)
 

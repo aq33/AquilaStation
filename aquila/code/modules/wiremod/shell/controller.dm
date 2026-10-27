@@ -25,7 +25,7 @@
 
 /obj/item/circuit_component/controller
 	display_name = "Controller"
-	desc = "Odbiera sygnały z obudowy kontrolera. Użyj obudowy w ręce, aby wyzwolić sygnał wyjściowy."
+	desc = "Odbiera sygnały z obudowy kontrolera. Użyj obudowy w ręce, aby wyzwolić sygnał wyjściowy. Alt+klik daje sygnał alternatywny, prawy klik sygnał dodatkowy."
 	/// The three separate buttons that are called in attack_hand on the shell.
 	var/datum/port/output/signal
 	var/datum/port/output/alt
@@ -72,6 +72,9 @@
  */
 /obj/item/circuit_component/controller/proc/send_alternate_signal(atom/source, mob/user)
 	SIGNAL_HANDLER
+
+	if(!user.canUseTopic(source, BE_CLOSE))
+		return
 
 	handle_trigger(source, user, "alternate", alt)
 	return CLICK_ACTION_SUCCESS

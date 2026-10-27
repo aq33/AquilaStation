@@ -57,6 +57,8 @@
 /proc/HandleUserlessProcCall(user, datum/target, procname, list/arguments)
 	if(IsAdminAdvancedProcCall())
 		return
+	if(target && procname == "Del")
+		return
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
 		return
 	if(GLOB.AdminProcCaller && GLOB.AdminProcCaller != user)

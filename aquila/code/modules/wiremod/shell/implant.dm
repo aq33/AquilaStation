@@ -98,13 +98,13 @@
 	RegisterSignal(shell, COMSIG_IMPLANT_REMOVED, PROC_REF(on_removed))
 
 /obj/item/circuit_component/implant_core/unregister_shell(atom/movable/shell)
-	implant = null
-
 	if (charge_action)
-		if (implant.imp_in)
+		if (implant?.imp_in)
 			charge_action.Remove(implant.imp_in)
-		implant.actions -= charge_action
+		implant?.actions -= charge_action
 		QDEL_NULL(charge_action)
+
+	implant = null
 
 	UnregisterSignal(shell, list(
 		COMSIG_IMPLANT_IMPLANTED,
@@ -149,21 +149,19 @@
 
 	to_chat(implant.imp_in, "<i>Słyszysz w głowie dziwny, robotyczny głos...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
 
-/obj/item/circuit_component/implant_core/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
+// Nasza stacja ładowania wysyła ilość ładunku, nie callback jak w tg
+/obj/item/circuit_component/implant_core/proc/on_borg_charge(datum/source, amount, repairs)
 	SIGNAL_HANDLER
 
 	if (isnull(parent.cell))
 		return
 
-	charge_cell.Invoke(parent.cell, seconds_per_tick)
+	parent.cell.give(amount)
 
-/obj/item/circuit_component/implant_core/proc/on_electrocute(datum/source, shock_damage, shock_source, siemens_coefficient, flags)
+/obj/item/circuit_component/implant_core/proc/on_electrocute(datum/source, shock_damage)
 	SIGNAL_HANDLER
 
 	if (isnull(parent.cell))
-		return
-
-	if (flags & SHOCK_ILLUSION)
 		return
 
 	parent.cell.give(shock_damage * 2)

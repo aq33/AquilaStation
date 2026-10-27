@@ -21,6 +21,7 @@
 /obj/structure/dispenser_bot/deconstruct(disassembled = TRUE)
 	for(var/obj/item/stored_item as anything in stored_items)
 		remove_item(stored_item)
+	return ..()
 
 /obj/structure/dispenser_bot/Destroy()
 	QDEL_LIST(stored_items)
@@ -144,7 +145,7 @@
 	SIGNAL_HANDLER
 	item.set_output(added_item)
 	item_list.set_output(source.stored_items)
-	on_item_added.set_output(COMPONENT_SIGNAL)
+	on_item_removed.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/dispenser_bot/proc/remove_vendor_component(obj/item/circuit_component/vendor_component/vendor_component)
 	SIGNAL_HANDLER

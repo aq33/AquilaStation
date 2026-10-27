@@ -80,6 +80,9 @@
 					break
 				result /= value
 			if(COMP_ARITHMETIC_MODULO)
+				if(value == 0)
+					result = null
+					break
 				result %= value
 			if(COMP_ARITHMETIC_MAX)
 				result = max(result, value)

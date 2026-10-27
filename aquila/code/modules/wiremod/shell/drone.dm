@@ -71,11 +71,12 @@
 	UnregisterSignal(shell, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)
 	return ..()
 
-/obj/item/circuit_component/bot_circuit/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
+// Nasza stacja ładowania wysyła ilość ładunku, nie callback jak w tg
+/obj/item/circuit_component/bot_circuit/proc/on_borg_charge(datum/source, amount, repairs)
 	SIGNAL_HANDLER
 	if (isnull(parent.cell))
 		return
-	charge_cell.Invoke(parent.cell, seconds_per_tick)
+	parent.cell.give(amount)
 
 /obj/item/circuit_component/bot_circuit/populate_ports()
 	north = add_input_port("Move North", PORT_TYPE_SIGNAL)

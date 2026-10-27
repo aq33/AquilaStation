@@ -18,6 +18,8 @@
 /obj/structure/money_bot/deconstruct(disassembled = TRUE)
 	if(stored_money)
 		new /obj/item/holochip(drop_location(), stored_money)
+		stored_money = 0
+	return ..()
 
 /obj/structure/money_bot/proc/add_money(to_add)
 	if(!isnum(to_add) || isnan(to_add))
