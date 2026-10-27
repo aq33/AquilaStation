@@ -28,7 +28,7 @@
 		return
 	if(iscarbon(user))
 		var/mob/living/carbon/carbon_user = user
-		if(carbon_user.internal) //Breathing from internals means we cant smell
+		if(carbon_user.internal || carbon_user.has_smoke_protection()) //Breathing from internals or through a gas mask means we cant smell
 			return
 		carbon_user.next_smell = world.time + SMELL_COOLDOWN
 	current_turf.pollution.smell_act(user)

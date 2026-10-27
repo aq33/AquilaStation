@@ -253,6 +253,9 @@
 
 ///Atmos adjacency has been updated on this turf, see if it affects any of our pollutants
 /turf/proc/update_adjacent_pollutants()
+	var/turf/open/open_src = src
+	if(istype(open_src) && !QDELETED(open_src.pollution))
+		SET_ACTIVE_POLLUTION(open_src.pollution)
 	for(var/turf/open/open_turf as anything in atmos_adjacent_turfs)
 		if(!isopenturf(open_turf) || QDELETED(open_turf.pollution))
 			continue

@@ -70,12 +70,11 @@
 		pollutant_type = /datum/pollutant/food/fried_meat
 
 /datum/component/grillable/OnGrill(datum/source, atom/used_grill, delta_time = 1)
-	SIGNAL_HANDLER
 	. = ..()
 	if(!pollutant_type || QDELETED(parent))
 		return
 	var/turf/parent_turf = get_turf(parent)
-	parent_turf?.pollute_turf(pollutant_type, 10)
+	parent_turf?.pollute_turf(pollutant_type, 10, POLLUTION_PASSIVE_EMITTER_CAP)
 
 // Chemistry
 

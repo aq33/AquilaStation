@@ -76,3 +76,19 @@
 		return
 	open_turf.pollution.scrub_amount(scrub_amount)
 	use_power(active_power_usage)
+
+/obj/structure/closet/jcloset/PopulateContents()
+	..()
+	new /obj/item/air_refresher(src)
+	new /obj/item/air_refresher(src)
+
+/datum/supply_pack/service/pollution_scrubber
+	name = "Oczyszczacz powietrza"
+	desc = "Przenośny oczyszczacz, który filtruje dym i zapachy z pomieszczenia. Przykręć go kluczem i włącz. Dorzucamy dwa odświeżacze powietrza."
+	cost = 1200
+	access_budget = ACCESS_JANITOR
+	contains = list(/obj/machinery/pollution_scrubber,
+					/obj/item/air_refresher,
+					/obj/item/air_refresher)
+	crate_name = "skrzynia z oczyszczaczem powietrza"
+	crate_type = /obj/structure/closet/crate/large

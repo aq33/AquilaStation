@@ -127,3 +127,8 @@
 	new /obj/item/perfume/strawberry(src)
 	new /obj/item/perfume/cherry(src)
 	new /obj/item/perfume/amber(src)
+
+/obj/item/storage/box/perfume/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10

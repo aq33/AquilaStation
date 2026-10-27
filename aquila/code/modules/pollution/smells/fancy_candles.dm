@@ -60,24 +60,3 @@
 	new /obj/item/candle/amber(src)
 	new /obj/item/candle/jasmine(src)
 	new /obj/item/candle/mint(src)
-
-/obj/item/storage/box/perfume/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_items = 10
-
-/obj/structure/closet/jcloset/PopulateContents()
-	..()
-	new /obj/item/air_refresher(src)
-	new /obj/item/air_refresher(src)
-
-/datum/supply_pack/service/pollution_scrubber
-	name = "Oczyszczacz powietrza"
-	desc = "Przenośny oczyszczacz, który filtruje dym i zapachy z pomieszczenia. Przykręć go kluczem i włącz. Dorzucamy dwa odświeżacze powietrza."
-	cost = 1200
-	access_budget = ACCESS_JANITOR
-	contains = list(/obj/machinery/pollution_scrubber,
-					/obj/item/air_refresher,
-					/obj/item/air_refresher)
-	crate_name = "skrzynia z oczyszczaczem powietrza"
-	crate_type = /obj/structure/closet/crate/large
