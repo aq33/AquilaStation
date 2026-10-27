@@ -5,8 +5,8 @@
 	pr = "aq33/AquilaStation#512"
 	description = "W trybie biegu trzymaj Shift: postać przyspiesza (SPRINT_DELAY 1.5 zamiast RUN_DELAY 2), przy starcie leci chmurka kurzu, \
 	a pionowy pasek obok błyskawicy staminy spada. Poniżej 40% zadyszka: brak sprintu, spowolnienie i nie da się mówić (emotki z * działają), mija przy 70%. \
-	Leżenie podwaja regenerację. Rozpędź się z zachodu na co najmniej 4 kratki w kolumnę przeszkód po wschodniej stronie: \
-	ściana, okno, zamknięte drzwi (zaryglowane) i stół mogą przewrócić (2 s, brute w głowę), człowiek i luźna skrzynia nie. \
+	Leżenie podwaja regenerację. Wbiegnij sprintem z zachodu w kolumnę przeszkód po wschodniej stronie: \
+	ściana, okno, zamknięte drzwi (zaryglowane) i stół zawsze przewracają (2 s, brute w głowę rośnie z rozpędem), człowiek i luźna skrzynia nie. \
 	Schody wymagają wielu poziomów: sprawdź sprint w dół i w górę schodów na mapie (np. Atlas, Snake, Serendipity) albo na debugowym multiz."
 	items = list(
 		/obj/structure/window/fulltile = 1,

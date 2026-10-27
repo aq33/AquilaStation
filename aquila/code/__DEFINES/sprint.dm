@@ -4,8 +4,8 @@
 /// KONDYCJA (pula /datum/stamina_container, niezależna od staminaloss)
 ////
 
-///Maksymalna kondycja
-#define SPRINT_STAMINA_MAX 125
+///Maksymalna kondycja (92: od pełnej do zadyszki ok. 24 kratki sprintu na wprost)
+#define SPRINT_STAMINA_MAX 92
 ///Ile kondycji wraca na sekundę
 #define SPRINT_STAMINA_REGEN 10
 ///Mnożnik regeneracji, gdy się leży
@@ -43,13 +43,13 @@
 ////
 
 ///Od tylu kratek rozpędu wpadnięcie w ścianę może przewrócić
-#define SPRINT_WALLSLAM_MIN_MOVES 4
+#define SPRINT_WALLSLAM_MIN_MOVES 1
 ///Szansa (%) przy minimalnym rozpędzie
-#define SPRINT_WALLSLAM_BASE_CHANCE 20
+#define SPRINT_WALLSLAM_BASE_CHANCE 100
 ///Dodatkowa szansa (%) za każdą kratkę ponad minimum
-#define SPRINT_WALLSLAM_CHANCE_PER_TILE 8
+#define SPRINT_WALLSLAM_CHANCE_PER_TILE 0
 ///Maksymalna szansa (%)
-#define SPRINT_WALLSLAM_MAX_CHANCE 75
+#define SPRINT_WALLSLAM_MAX_CHANCE 100
 ///Obrażenia brute w głowę przy minimalnym rozpędzie
 #define SPRINT_WALLSLAM_BASE_DAMAGE 3
 ///Dodatkowe obrażenia za każdą kratkę ponad minimum
