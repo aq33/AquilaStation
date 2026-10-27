@@ -1030,6 +1030,7 @@
 #include "code\modules\wounds\blunt.dm"
 #include "code\modules\wounds\burn.dm"
 #include "code\modules\wounds\slash.dm"
+#include "code\modules\wounds\tourniquet.dm"
 #include "code\modules\wounds\treatment.dm"
 #include "code\modules\tgui\byondui.dm"
 #include "code\modules\tgui\layout.dm"
