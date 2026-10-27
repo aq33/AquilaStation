@@ -1090,6 +1090,8 @@
 #include "code\game\objects\items\sticker\series_1.dm"
 #include "code\game\objects\items\sticker\sticker.dm"
 #include "code\game\objects\items\sticker\sticky_note.dm"
+// Tagi triage (potrzebują definicji naklejek z bloku wyżej)
+#include "code\modules\medical\triage.dm"
 #include "code\modules\xenoarchaeology\component\materials.dm"
 #include "code\modules\xenoarchaeology\component\xenoartifact.dm"
 #include "code\modules\xenoarchaeology\misc\exports.dm"
