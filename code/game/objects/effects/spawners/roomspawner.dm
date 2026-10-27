@@ -29,7 +29,7 @@
 	shuffle_inplace(SSmapping.random_room_templates)
 	for(var/ID in SSmapping.random_room_templates)
 		candidate = SSmapping.random_room_templates[ID]
-		if(candidate.spawned || room_height != candidate.template_height || room_width != candidate.template_width)
+		if(candidate.spawned || room_height != candidate.template_height || room_width != candidate.template_width || !accepts_template(candidate)) // AQ EDIT - room_group (losowe uzbrojenie)
 			candidate = null
 			continue
 		possibletemplates[candidate] = candidate.weight
