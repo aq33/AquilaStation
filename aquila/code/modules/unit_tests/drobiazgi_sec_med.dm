@@ -12,6 +12,12 @@
 	TEST_ASSERT(pen.is_contraband(), "An uplink item (ILLEGAL) is not contraband")
 	TEST_ASSERT(box.contains_contraband(), "A box with an uplink item inside is clear")
 
+	var/obj/item/reagent_containers/pill/space_drugs = allocate(/obj/item/reagent_containers/pill)
+	space_drugs.reagents.add_reagent(/datum/reagent/drug/space_drugs, 5)
+	TEST_ASSERT(space_drugs.is_contraband(), "A pill with space drugs is not contraband")
+	var/obj/item/clothing/mask/cigarette/cigarette = allocate(/obj/item/clothing/mask/cigarette)
+	TEST_ASSERT(!cigarette.is_contraband(), "A plain cigarette (nicotine) is contraband")
+
 	var/obj/item/storage/backpack/satchel/flat/smuggler = allocate(/obj/item/storage/backpack/satchel/flat/empty)
 	box.forceMove(smuggler)
 	TEST_ASSERT(!smuggler.contains_contraband(), "A smuggler's satchel does not hide its contents")
@@ -42,6 +48,24 @@
 	TEST_ASSERT(!HAS_TRAIT(crate, TRAIT_CONTRABAND), "The crate itself is contraband")
 	for(var/atom/movable/thing in crate.GetAllContents())
 		qdel(thing)
+
+/// AQUILA - nowe rzeczy medyczne naprawdę są w automatach (Initialize dopisuje je do products przed zbudowaniem listy)
+/datum/unit_test/aquila_sec_med_vending
+
+/datum/unit_test/aquila_sec_med_vending/Run()
+	var/list/expected = list(
+		/obj/machinery/vending/medical = list(/obj/item/storage/box/triage, /obj/item/triage_tagger, /obj/item/tourniquet),
+		/obj/machinery/vending/medical/syndicate_access = list(/obj/item/storage/box/triage, /obj/item/triage_tagger, /obj/item/tourniquet),
+		/obj/machinery/vending/wallmed = list(/obj/item/tourniquet),
+	)
+	for(var/vendor_type in expected)
+		var/obj/machinery/vending/vendor = allocate(vendor_type)
+		var/list/sold = list()
+		for(var/datum/data/vending_product/record as anything in vendor.product_records)
+			if(record.amount > 0)
+				sold += record.product_path
+		for(var/path in expected[vendor_type])
+			TEST_ASSERT(path in sold, "[vendor_type] does not sell [path]")
 
 /// AQUILA - Undercover I.D.: nie kopiuje dostępów, multitool blokuje przebranie, leży w szafce detektywa
 /datum/unit_test/aquila_undercover_id

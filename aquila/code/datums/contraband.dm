@@ -3,11 +3,21 @@
 /**
  * Czy przedmiot liczy się jako kontrabanda dla skanera N-spect lub bramki.
  * U nas przedmioty z uplinka mają flagę ILLEGAL, więc nie trzeba przeszukiwać listy uplinka jak w tg.
+ * Narkotyki (tg oznacza gotowe przedmioty z narkotykami) rozpoznajemy po reagentach w przedmiocie.
  */
 /obj/item/proc/is_contraband()
 	if(HAS_TRAIT(src, TRAIT_CONTRABAND))
 		return TRUE
-	return !!(item_flags & ILLEGAL)
+	if(item_flags & ILLEGAL)
+		return TRUE
+	return contains_drugs()
+
+/// Czy w przedmiocie są narkotyki. Nikotyna (papierosy) i ketamina (środek medyczny) się nie liczą.
+/obj/item/proc/contains_drugs()
+	for(var/datum/reagent/drug/drug in reagents?.reagent_list)
+		if(!istype(drug, /datum/reagent/drug/nicotine) && !istype(drug, /datum/reagent/drug/ketamine))
+			return TRUE
+	return FALSE
 
 /// Zwraca src i całą zawartość rekurencyjnie, ale nie wchodzi głębiej w atomy z danym traitem.
 /atom/proc/get_all_contents_skipping_traits(skipped_trait)

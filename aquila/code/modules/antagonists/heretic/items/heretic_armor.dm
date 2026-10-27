@@ -1144,8 +1144,7 @@
 
 /obj/item/clothing/suit/hooded/cultrobes/void/Initialize(mapload)
 	. = ..()
-	make_visible()
-	ADD_TRAIT(src, TRAIT_CONTRABAND_BLOCKER, INNATE_TRAIT)
+	make_visible() // AQUILA: bez TRAIT_CONTRABAND_BLOCKER, heretyk nie ma wpływu na N-spect
 
 /obj/item/clothing/suit/hooded/cultrobes/void/ToggleHood()
 	if(!suittoggled && !can_create_hood())
