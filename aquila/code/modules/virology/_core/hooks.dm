@@ -7,7 +7,9 @@
 // Nasz /mob/living/carbon/handle_diseases() tylko przewija stopnie chorób advance.
 // Patogeny disease2 mają własną pętlę (activate), a chmury i plamy zarażają w handle_virus_updates().
 /mob/living/carbon/handle_diseases()
-	handle_virus_updates()
+	// AQ: nasz handle_diseases() nie bierze argumentow, a objawy licza szanse z dlugosci ticka
+	// (SSmobs chodzi co 2 sekundy), wiec przekazujemy ja na sztywno.
+	handle_virus_updates(2, 0)
 	if(QDELETED(src))
 		return
 	// powietrze: zwykłe choroby rozsiewa nasz spread(), patogeny robią to chmurami

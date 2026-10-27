@@ -60,11 +60,13 @@ GLOBAL_LIST_INIT(virus_viewers, list())
 
 	QDEL_IN(src, lifetime)
 
-/obj/effect/pathogen_cloud/proc/add_virus(list/viruses)
+// AQ: w Monke parametr nazywa sie `viruses` i zaslania pole chmury, wiec kopie laduja
+// w liscie argumentu (i rosnie ona w trakcie petli) zamiast w chmurze. Zmieniona nazwa parametru.
+/obj/effect/pathogen_cloud/proc/add_virus(list/new_viruses)
 	. = FALSE
-	if(!islist(viruses))
-		viruses = list(viruses)
-	for(var/datum/disease/acute/virus as anything in viruses)
+	if(!islist(new_viruses))
+		new_viruses = list(new_viruses)
+	for(var/datum/disease/acute/virus as anything in new_viruses)
 		var/id = "[virus.uniqueID]-[virus.subID]"
 		if(id in id_list)
 			continue

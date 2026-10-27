@@ -35,8 +35,6 @@
 		var/bleeding = user.check_bodypart_bleeding(HANDS)
 		share_contact_diseases(target ,block,bleeding)
 
-/mob/living/simple_animal/mouse/attackby(obj/item/attacking_item, mob/living/user, params)
-	. = ..()
-	attacking_item.disease_contact(src, BODY_ZONE_CHEST)
+// AQ: kontakt przedmiotu z mysza siedzi w jednej definicji attackby w living/mouse.dm
 
 // AQ: nie portujemy /datum/movespeed_modifier/plague_rat — nasze simple_animal maja pole `speed`

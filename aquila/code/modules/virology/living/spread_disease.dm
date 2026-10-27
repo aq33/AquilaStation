@@ -23,7 +23,8 @@
 	if(!istype(disease))
 		return FALSE
 
-	if(!(disease.infectable_biotypes & mob_biotypes))
+	// AQ: lista biotypow, nie bitflaga - sprawdzamy przeciecie
+	if(!length(disease.infectable_biotypes & mob_biotypes))
 		return
 
 	if(!disease.spread_flags && !(disease.disease_flags & DISEASE_DORMANT))

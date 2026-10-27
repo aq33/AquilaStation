@@ -44,6 +44,7 @@
 
 /mob/living/simple_animal/mouse/attackby(obj/item/attacking_item, mob/living/user, params)
 	. = ..()
+	attacking_item.disease_contact(src, BODY_ZONE_CHEST)
 	if(!istype(attacking_item, /obj/item/reagent_containers/syringe))
 		return
 	if(!do_after(user, 1.5 SECONDS, src))

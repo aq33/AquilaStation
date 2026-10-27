@@ -7,6 +7,7 @@ import {
   Section,
   Stack,
 } from 'tgui/components';
+
 import { useBackend, useLocalState } from '../../backend';
 import { getMedicalRecord } from './helpers';
 import type { MedicalRecordData } from './types';

@@ -19,7 +19,7 @@
 	var/replaceorgans = FALSE
 	var/replacebody = FALSE
 	var/robustbits = FALSE
-	var/biotypes = MOB_ROBOTIC
+	var/list/biotypes = list(MOB_ROBOTIC)
 	threshold_desc = list(
 		"Stage Speed 4" = "The virus will replace the host's organic organs with mundane, biometallic versions.",
 		"Resistance 4" = "The virus will eventually convert the host's entire body to biometallic materials, and maintain its cellular integrity.",
@@ -197,7 +197,7 @@
 	return FALSE
 
 /datum/symptom/acute/robotic_adaptation/deactivate(mob/living/carbon/mob, datum/disease/acute/disease, safe = FALSE)
-	disease.infectable_biotypes &= ~(biotypes)
+	disease.infectable_biotypes -= biotypes
 	if(disease.stage >= 3 && (replaceorgans || replacebody)) //sorry. no disease quartets allowed
 		to_chat(mob, "<span class='userdanger'>You feel lighter and springier as your innards lose their clockwork facade.</span>")
 		mob.dna.species.regenerate_organs(mob, replace_current = TRUE)

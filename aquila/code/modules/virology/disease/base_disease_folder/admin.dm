@@ -261,6 +261,9 @@
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
+	// AQ: bez tej kontroli kazdy href do panelu chorob dzialalby bez uprawnien
+	if(!check_rights(R_ADMIN))
+		return
 	if(href_list["diseasepanel_examine"])
 		viewingID = href_list["diseasepanel_examine"]
 		diseases_panel()

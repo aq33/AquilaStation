@@ -11,12 +11,12 @@
 	disease.infectable_biotypes |= biotypes
 
 /datum/symptom/acute/adaptation/OnRemove(datum/disease/acute/disease)
-	disease.infectable_biotypes &= ~(biotypes)
+	disease.infectable_biotypes -= biotypes
 
 /datum/symptom/acute/adaptation/undead
 	name = "Necrotic Metabolism"
 	desc = "The virus is able to thrive and act even within dead hosts."
-	biotypes = MOB_UNDEAD
+	biotypes = list(MOB_UNDEAD)
 	severity = 1
 
 /datum/symptom/acute/adaptation/undead/OnAdd(datum/disease/acute/disease)

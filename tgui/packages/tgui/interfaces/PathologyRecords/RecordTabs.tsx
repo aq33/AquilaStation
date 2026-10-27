@@ -2,6 +2,7 @@ import { sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { useBackend, useLocalState } from 'tgui/backend';
 import { Box, Icon, NoticeBox, Section, Stack, Tabs } from 'tgui/components';
+
 import type { MedicalRecord, MedicalRecordData } from './types';
 
 /** Displays all found records. */

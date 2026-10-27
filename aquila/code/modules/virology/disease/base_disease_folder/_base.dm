@@ -154,7 +154,8 @@ GLOBAL_LIST_INIT(virusDB, list())
 	if(disease_flags & DISEASE_DORMANT)
 		return
 
-	if(!(mob.mob_biotypes in infectable_biotypes))
+	// AQ: nasze mob_biotypes to lista, a nie bitflaga z tg - szukamy wspolnego biotypu
+	if(!length(infectable_biotypes & mob.mob_biotypes))
 		return
 
 	if(mob.immune_system)
