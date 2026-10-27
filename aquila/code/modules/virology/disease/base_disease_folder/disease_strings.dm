@@ -25,7 +25,8 @@
 		. += nickname
 
 /datum/disease/proc/get_subdivisions_string()
-	var/subdivision = (strength - ((robustness * strength) / 100)) / max_stages
+	// AQ: to samo zabezpieczenie co w GetImmuneData - choroba bez stopni dzielilaby przez zero
+	var/subdivision = (strength - ((robustness * strength) / 100)) / max(max_stages, 1)
 	var/dat = "("
 	for (var/i = 1 to max_stages)
 		dat += "[round(strength - i * subdivision)]"
