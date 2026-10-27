@@ -3,6 +3,9 @@
 
 /// Ile miejsc pokazuje panel ponad maksymalny limit, zanim przestanie liczyć nadmiarowych
 #define REV_PANEL_OVERFLOW_SLOTS 5
+/// Kolor tekstu panelu (kremowy jak na plakatach) i złote liczby
+#define REV_PANEL_CREAM "#F3E4C4"
+#define REV_PANEL_NUMBER(value) "<span style='color:#EEBC3A;'>[value]</span>"
 
 /datum/team/revolution
 	/// Ilu żywych rewolucjonistów (z przywódcami) może być naraz. Rośnie z liczbą żywej załogi, nigdy nie spada.
@@ -153,10 +156,10 @@
 
 /obj/abstract/mind_ui_element/revolution_panel_background
 	name = "Panel rewolucji"
-	icon = 'aquila/icons/bloodcult/bloodcult/362x229.dmi'
+	icon = 'aquila/icons/hud/revolution_panel_bg.dmi'
 	icon_state = "background"
-	offset_x = -165
-	offset_y = -93
+	offset_x = -160
+	offset_y = -88
 	alpha = 240
 	layer = MIND_UI_BACK
 
@@ -165,10 +168,10 @@
 
 /obj/abstract/mind_ui_element/hoverable/revolution_panel_close
 	name = "Zamknij"
-	icon = 'aquila/icons/bloodcult/bloodcult/16x16.dmi'
+	icon = 'aquila/icons/hud/revolution_buttons.dmi'
 	icon_state = "close"
-	offset_x = 181
-	offset_y = 120
+	offset_x = 138
+	offset_y = 63
 	layer = MIND_UI_BUTTON
 
 /obj/abstract/mind_ui_element/hoverable/revolution_panel_close/Click()
@@ -176,11 +179,11 @@
 
 /obj/abstract/mind_ui_element/hoverable/movable/revolution_panel_move
 	name = "Przesuń interfejs (kliknij i przeciągnij)"
-	icon = 'aquila/icons/bloodcult/bloodcult/16x16.dmi'
+	icon = 'aquila/icons/hud/revolution_buttons.dmi'
 	icon_state = "move"
 	layer = MIND_UI_BUTTON
-	offset_x = -165
-	offset_y = 120
+	offset_x = 118
+	offset_y = 63
 	mouse_opacity = 1
 	move_whole_ui = TRUE
 	const_offset_y = -16
@@ -188,22 +191,22 @@
 
 /obj/abstract/mind_ui_element/hoverable/revolution_cap
 	name = "Limit rewolucjonistów"
-	icon = 'aquila/icons/bloodcult/bloodcult/16x32.dmi'
-	icon_state = "cultist_cap"
+	icon = 'aquila/icons/hud/revolution_panel.dmi'
+	icon_state = "cap"
 	layer = MIND_UI_BUTTON
-	offset_y = -32
+	offset_y = -66
 	tooltip_title = "Limit rewolucjonistów"
 	element_flags = MINDUI_FLAG_TOOLTIP
 
 /// Rozkłada miejsca, znacznik limitu i opis; odświeża się co tick SSobj, gdy panel jest widoczny
 /obj/abstract/mind_ui_element/revolution_slot_manager
 	name = "Miejsca rewolucjonistów"
-	icon = 'aquila/icons/bloodcult/bloodcult/16x16.dmi'
-	icon_state = "blank"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "nothing"
 	mouse_opacity = 0
 	layer = MIND_UI_FRONT
-	offset_x = -140
-	offset_y = 28
+	offset_x = -160
+	offset_y = -88
 	element_flags = MINDUI_FLAG_PROCESSING
 
 /obj/abstract/mind_ui_element/revolution_slot_manager/process()
@@ -228,18 +231,18 @@
 			heads_left++
 
 	overlays.len = 0
-	String2Maptext("REWOLUCJA", font_size = "12pt", _color = "#FF4444", _pixel_y = 60)
-	String2Maptext("Towarzysze: [length(living)] / [team.rev_cap]", _pixel_y = 34)
-	String2Maptext("Przywódcy: [length(heads & living)]", _pixel_y = 22)
-	String2Maptext("Szefowie do obalenia: [heads_left]", _pixel_y = 10)
+	String2Maptext("<b>REWOLUCJA</b>", font_size = "12pt", _color = REV_PANEL_CREAM, _pixel_x = 40, _pixel_y = 146)
+	String2Maptext("Towarzysze: [REV_PANEL_NUMBER("[length(living)] / [team.rev_cap]")]", _color = REV_PANEL_CREAM, _pixel_x = 12, _pixel_y = 120)
+	String2Maptext("Przywódcy: [REV_PANEL_NUMBER(length(heads & living))]", _color = REV_PANEL_CREAM, _pixel_x = 12, _pixel_y = 107)
+	String2Maptext("Szefowie do obalenia: [REV_PANEL_NUMBER(heads_left)]", _color = REV_PANEL_CREAM, _pixel_x = 12, _pixel_y = 94)
 	if(length(living) >= team.rev_cap)
-		String2Maptext("Limit osiągnięty. Nowe miejsca zwolnią się, gdy załoga urośnie.", _color = "#FF8888", _pixel_y = -2)
+		String2Maptext("Limit osiągnięty. Miejsca zwolnią się, gdy załoga urośnie.", _color = "#FF8C70", _pixel_x = 12, _pixel_y = 76)
 	else
-		String2Maptext("Można przekonać jeszcze: [team.rev_cap - length(living)]", _color = "#88FF88", _pixel_y = -2)
+		String2Maptext("Można przekonać jeszcze: [team.rev_cap - length(living)]", _color = "#8CDC78", _pixel_x = 12, _pixel_y = 76)
 
 	var/obj/abstract/mind_ui_element/hoverable/revolution_cap/cap_marker = locate() in panel.elements
 	cap_marker.tooltip_content = "Rewolucja może liczyć [team.rev_cap] żywych towarzyszy (z przywódcami). Limit rośnie z liczbą żywej załogi, najwyżej do [team.max_rev_cap]."
-	var/x_pos = -150
+	var/x_pos = -146
 	var/i = 1
 	for(var/obj/abstract/mind_ui_element/hoverable/revolution_slot/slot as anything in panel.rev_slots)
 		slot.overlays.len = 0
@@ -252,14 +255,12 @@
 			slot.base_icon_state = (member in heads) ? "slot_head" : "slot_rev"
 			slot.overflow = i > team.rev_cap
 			if(slot.overflow)
-				slot.overlays += image('aquila/icons/bloodcult/bloodcult/16x32.dmi', "overflow")
+				slot.overlays += image('aquila/icons/hud/revolution_panel.dmi', "overflow")
 			if(member == user.mind)
-				slot.overlays += image('aquila/icons/bloodcult/bloodcult/16x32.dmi', "you")
+				slot.overlays += image('aquila/icons/hud/revolution_panel.dmi', "you")
 		else if(i <= team.max_rev_cap)
-			slot.base_icon_state = "slot_empty"
 			slot.locked = i > team.rev_cap
-			if(slot.locked)
-				slot.overlays += image('aquila/icons/bloodcult/bloodcult/16x32.dmi', "locked")
+			slot.base_icon_state = slot.locked ? "slot_locked" : "slot_empty"
 		else
 			slot.invisibility = 101
 			i++
@@ -280,7 +281,7 @@
 	icon = 'aquila/icons/hud/revolution_panel.dmi'
 	icon_state = "slot_empty"
 	layer = MIND_UI_BUTTON
-	offset_y = -32
+	offset_y = -66
 	element_flags = MINDUI_FLAG_TOOLTIP
 	var/datum/mind/associated_mind
 	var/locked = FALSE
@@ -303,3 +304,5 @@
 	return ..()
 
 #undef REV_PANEL_OVERFLOW_SLOTS
+#undef REV_PANEL_CREAM
+#undef REV_PANEL_NUMBER
