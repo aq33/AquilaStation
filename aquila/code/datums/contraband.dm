@@ -57,3 +57,18 @@
 /obj/item/implant/storage/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_CONTRABAND_BLOCKER, INNATE_TRAIT)
+
+// Skrzynie z uplinka (surplus, zestawy): przedmioty trafiają do skrzyni po spawn_item(), więc oznaczamy je po napełnieniu.
+/datum/uplink_item/bundles_TC/surplus/purchase(mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/structure/closet/crate/crate = .
+	if(istype(crate))
+		for(var/atom/movable/goods as anything in crate.contents)
+			goods.mark_contraband(TRUE)
+
+/datum/uplink_item/bundles_TC/crate/purchase(mob/user, datum/component/uplink/U)
+	. = ..()
+	var/obj/structure/closet/crate/crate = .
+	if(istype(crate))
+		for(var/atom/movable/goods as anything in crate.contents)
+			goods.mark_contraband(TRUE)

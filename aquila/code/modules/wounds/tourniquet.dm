@@ -48,6 +48,15 @@
 		bleed.update_icon()
 	return amount
 
+// Opatrzenie albo przypalenie zmienia globalne krwawienie, więc stare udziały kończyn przestają być prawdziwe.
+/mob/living/carbon/cauterise_wounds(amount = INFINITY)
+	. = ..()
+	aq_limb_bleed = null
+
+/mob/living/carbon/suppress_bloodloss(amount)
+	. = ..()
+	aq_limb_bleed = null
+
 /// Przywraca krwawienie zatrzymane wcześniej opaską (bez dźwięku i bez wzoru łączenia z add_bleeding)
 /mob/living/carbon/proc/aq_restore_bleeding(amount)
 	if(amount <= 0 || HAS_TRAIT(src, TRAIT_NO_BLOOD))
@@ -245,6 +254,8 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 		var/still_open = !limb || limb.get_wound(WOUND_SLASH)
 		if(held_bleed > 0 && (worn < TOURNIQUET_CLOT_TIME || still_open))
 			patient.aq_restore_bleeding(held_bleed)
+			LAZYINITLIST(patient.aq_limb_bleed)
+			patient.aq_limb_bleed[old_zone] += held_bleed
 			if(!silent)
 				to_chat(patient, "<span class='danger'>Krew znów płynie z rany ([aq_tourniquet_zone_name(old_zone)])!</span>")
 		if(worn >= TOURNIQUET_NECROSIS_TIME && limb && patient.stat != DEAD)

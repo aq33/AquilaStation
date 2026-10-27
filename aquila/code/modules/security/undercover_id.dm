@@ -56,3 +56,10 @@
 /obj/structure/closet/secure_closet/detective/PopulateContents()
 	..()
 	new /obj/item/card/id/syndicate/undercover(src)
+
+// Przepustka nie dopisuje dostępów do Undercover I.D.: karta ma stały zestaw.
+/obj/item/card/id/pass/afterattack(atom/target, mob/user, proximity)
+	if(proximity && istype(target, /obj/item/card/id/syndicate/undercover))
+		to_chat(user, "<span class='warning'>[target] nie przyjmuje dodatkowych dostępów.</span>")
+		return
+	return ..()

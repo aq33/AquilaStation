@@ -35,6 +35,12 @@
 	tag_patient(A, user, params)
 	return FALSE
 
+// W trybie walki odziedziczone przyklejanie z afterattack też jest wyłączone, inaczej tag lądowałby obok starego.
+/obj/item/sticker/sticky_note/triage/afterattack(atom/target, mob/user, proximity_flag, list/modifiers)
+	if(isliving(target) && user.combat_mode)
+		return
+	return ..()
+
 /// Przykleja tag na pacjenta. Poprzedni tag triage spada na podłogę.
 /obj/item/sticker/sticky_note/triage/proc/tag_patient(mob/living/patient, mob/user, params)
 	for(var/obj/item/sticker/sticky_note/triage/old_tag in patient.contents.Copy())

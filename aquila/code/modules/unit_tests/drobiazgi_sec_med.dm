@@ -28,17 +28,20 @@
 	TEST_ASSERT(faulty.contraband_scan(smuggler) && !faulty.contraband_scan(marked), "The faulty N-spect is not reversed")
 
 	var/datum/supply_pack/contraband_pack
-	for(var/pack_type in subtypesof(/datum/supply_pack))
-		var/datum/supply_pack/pack = pack_type
-		if(initial(pack.contraband) && length(initial(pack.contains)))
-			contraband_pack = new pack_type()
+	for(var/datum/supply_pack/pack_type as anything in subtypesof(/datum/supply_pack))
+		if(!initial(pack_type.contraband))
+			continue
+		var/datum/supply_pack/pack = new pack_type()
+		if(length(pack.contains) && !pack.admin_spawned)
+			contraband_pack = pack
 			break
-	if(contraband_pack)
-		var/obj/structure/closet/crate/crate = contraband_pack.generate(run_loc_floor_bottom_left)
-		TEST_ASSERT(crate.contains_contraband(), "[contraband_pack.type] gave no contraband")
-		TEST_ASSERT(!HAS_TRAIT(crate, TRAIT_CONTRABAND), "The crate itself is contraband")
-		for(var/atom/movable/thing in crate.GetAllContents())
-			qdel(thing)
+		qdel(pack)
+	TEST_ASSERT(contraband_pack, "No contraband supply pack with contents was found")
+	var/obj/structure/closet/crate/crate = contraband_pack.generate(run_loc_floor_bottom_left)
+	TEST_ASSERT(crate.contains_contraband(), "[contraband_pack.type] gave no contraband")
+	TEST_ASSERT(!HAS_TRAIT(crate, TRAIT_CONTRABAND), "The crate itself is contraband")
+	for(var/atom/movable/thing in crate.GetAllContents())
+		qdel(thing)
 
 /// AQUILA - Undercover I.D.: nie kopiuje dostępów, multitool blokuje przebranie, leży w szafce detektywa
 /datum/unit_test/aquila_undercover_id
@@ -51,6 +54,10 @@
 	undercover.afterattack(spare, detective, TRUE)
 	TEST_ASSERT(length(undercover.access) == access_before, "The undercover ID copied access")
 	TEST_ASSERT(!(ACCESS_SYNDICATE in undercover.access), "The undercover ID has Syndicate access")
+	var/obj/item/card/id/pass/pass = allocate(/obj/item/card/id/pass)
+	pass.access = list(ACCESS_CAPTAIN)
+	pass.afterattack(undercover, detective, TRUE)
+	TEST_ASSERT(!(ACCESS_CAPTAIN in undercover.access), "A pass added access to the undercover ID")
 
 	detective.mind_initialize()
 	TEST_ASSERT(undercover.can_forge(detective), "Anyone should be able to forge the undercover ID")
