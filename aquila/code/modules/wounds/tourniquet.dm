@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 
 /obj/item/tourniquet/proc/on_wearer_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "<span class='warning'>Ma założoną opaskę uciskową ([aq_tourniquet_zone_name(zone)]) od [DisplayTimeText(worn_time())][get_state_text()]. <a href='?src=[REF(src)];remove=1'>Zdejmij</a></span>"
+	examine_list += "<span class='warning'>Ma założoną opaskę uciskową ([aq_tourniquet_zone_name(zone)]) od [DisplayTimeText(worn_time())][get_state_text()]. <a href='byond://?src=[REF(src)];remove=1'>Zdejmij</a></span>"
 
 /obj/item/tourniquet/proc/on_wearer_deleted(datum/source)
 	SIGNAL_HANDLER
