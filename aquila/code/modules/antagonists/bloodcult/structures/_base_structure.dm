@@ -87,7 +87,11 @@
 
 // Obrażenia z bazowego kodu (pociski, rzuty, broń bez trybu walki) idą przez takeDamage(), żeby działały jego nadpisania
 /obj/structure/cult/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
-	if(QDELETED(src))
+	if(QDELETED(src) || (resistance_flags & INDESTRUCTIBLE))
+		return 0
+	// typ obrażeń, pancerz i penetracja jak w bazowym /obj/take_damage
+	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
+	if(damage_amount < DAMAGE_PRECISION)
 		return 0
 	takeDamage(damage_amount)
 	return damage_amount
