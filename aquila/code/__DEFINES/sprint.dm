@@ -5,7 +5,7 @@
 ////
 
 ///Maksymalna kondycja
-#define SPRINT_STAMINA_MAX 250
+#define SPRINT_STAMINA_MAX 125
 ///Ile kondycji wraca na sekundę
 #define SPRINT_STAMINA_REGEN 10
 ///Mnożnik regeneracji, gdy się leży
