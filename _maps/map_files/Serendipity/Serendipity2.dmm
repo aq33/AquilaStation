@@ -343,6 +343,13 @@
 /obj/structure/cable,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
+"aQ" = (
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "aR" = (
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
@@ -363,6 +370,12 @@
 /obj/machinery/exoscanner,
 /turf/open/floor/monotile/light,
 /area/quartermaster)
+"aW" = (
+/obj/structure/ethernet_cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "aX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/firedoor/border_only/directional/north,
@@ -383,6 +396,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
+"aZ" = (
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "ba" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /turf/open/floor/plasteel/white,
@@ -401,6 +420,13 @@
 /obj/machinery/vending/sticker,
 /turf/open/floor/plasteel/white,
 /area/quartermaster/meeting_room)
+"bc" = (
+/obj/item/radio/intercom/directional/south,
+/obj/machinery/computer/ai_server_console{
+	dir = 2
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bd" = (
 /obj/machinery/rack_creator,
 /turf/open/floor/engine,
@@ -438,6 +464,26 @@
 /obj/machinery/slime_extract_requestor,
 /turf/open/floor/monotile/light,
 /area/quartermaster)
+"bj" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/firealarm/directional/south,
+/obj/machinery/ai/data_core,
+/obj/structure/ethernet_cable{
+	icon_state = "0-1"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bk" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/newscaster/directional/east,
+/obj/machinery/ai/server_cabinet/prefilled,
+/obj/structure/ethernet_cable{
+	icon_state = "0-1"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bl" = (
 /obj/machinery/computer/telecomms/traffic{
 	dir = 8
@@ -521,15 +567,16 @@
 /turf/open/floor/engine,
 /area/comms)
 "bs" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
-	dir = 4
+/obj/structure/table,
+/obj/item/paper/monitorkey,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/machinery/firealarm{
+	pixel_y = 24
 	},
-/obj/structure/cable,
-/obj/structure/ethernet_cable{
-	icon_state = "1-8"
-	},
-/turf/open/floor/engine,
-/area/comms)
+/obj/item/stamp/chief_engineer,
+/turf/open/floor/carpet/ship/orange_carpet,
+/area/crew_quarters/heads/chief)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible/layer4{
 	dir = 4
@@ -557,16 +604,6 @@
 	},
 /turf/open/floor/engine,
 /area/comms)
-"bw" = (
-/obj/structure/cable,
-/obj/machinery/computer/ai_server_console{
-	dir = 2
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bx" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/machinery/telecomms/bus/preset_two,
@@ -582,13 +619,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/circuit/red/telecomms,
-/area/comms)
-"bz" = (
-/obj/machinery/ai/data_core,
-/obj/structure/ethernet_cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/engine,
 /area/comms)
 "bA" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
@@ -613,13 +643,6 @@
 	},
 /turf/open/floor/engine,
 /area/comms)
-"bD" = (
-/obj/machinery/ai/server_cabinet/prefilled,
-/obj/structure/ethernet_cable{
-	icon_state = "2-8"
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -641,20 +664,6 @@
 /obj/effect/landmark/start/quartermaster,
 /turf/open/floor/wood,
 /area/quartermaster/qm)
-"bH" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/airalarm/server{
-	dir = 8;
-	pixel_x = 22
-	},
-/obj/structure/ethernet_cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/ai/networking{
-	label = "Serwerownia SI"
-	},
-/turf/open/floor/engine,
-/area/comms)
 "bI" = (
 /obj/item/ship_weapon/ammunition/torpedo{
 	pixel_y = 8
@@ -673,12 +682,44 @@
 /obj/item/ship_weapon/ammunition/torpedo,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
+"bJ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/ethernet_cable{
+	icon_state = "1-4-8"
+	},
+/turf/open/floor/engine,
+/area/comms)
 "bK" = (
 /obj/structure/munitions_trolley,
 /obj/item/clothing/ears/earmuffs,
 /obj/machinery/light/floor,
 /turf/open/floor/monotile/light,
 /area/quartermaster)
+"bL" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/airalarm/server{
+	dir = 8;
+	pixel_x = 22
+	},
+/obj/structure/ethernet_cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/ai/networking{
+	label = "Serwerownia SI"
+	},
+/turf/open/floor/engine,
+/area/comms)
+"bM" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/structure/ethernet_cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/circuit/red/telecomms,
+/area/comms)
 "bN" = (
 /turf/closed/wall/r_wall/ship,
 /area/engine/storage)
@@ -1011,16 +1052,6 @@
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/monotile/steel,
 /area/engine/armour_pump)
-"dv" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/obj/item/pen/fountain,
-/obj/machinery/firealarm{
-	pixel_y = 24
-	},
-/obj/item/stamp/chief_engineer,
-/turf/open/floor/carpet/ship/orange_carpet,
-/area/crew_quarters/heads/chief)
 "dD" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -1899,11 +1930,6 @@
 	},
 /turf/open/floor/plasteel/dark/airless,
 /area/nsv/hanger/mining)
-"hW" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/telecomms/server/presets/engineering,
-/turf/open/floor/circuit/red/telecomms,
-/area/comms)
 "hY" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/item/radio/intercom/directional/west,
@@ -3286,13 +3312,6 @@
 	dir = 8
 	},
 /area/engine/engine_room)
-"pJ" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 4
-	},
-/obj/machinery/firealarm/directional/south,
-/turf/open/floor/engine,
-/area/comms)
 "pL" = (
 /obj/structure/extinguisher_cabinet/south,
 /obj/structure/cable,
@@ -3348,11 +3367,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
-"pU" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
-/obj/machinery/newscaster/directional/east,
-/turf/open/floor/engine,
-/area/comms)
 "pW" = (
 /obj/machinery/keycard_auth{
 	pixel_x = -26;
@@ -6701,10 +6715,6 @@
 /obj/machinery/recharge_station,
 /turf/open/floor/plasteel/dark,
 /area/nsv/weapons)
-"Jr" = (
-/obj/item/radio/intercom/directional/south,
-/turf/open/floor/engine,
-/area/comms)
 "Js" = (
 /obj/structure/closet/secure_closet/quartermaster{
 	anchored = 1
@@ -36106,7 +36116,7 @@ bN
 bN
 bN
 Aq
-dv
+bs
 DJ
 RJ
 Ms
@@ -46143,7 +46153,7 @@ Nm
 Jn
 TE
 br
-Jr
+bc
 lw
 WL
 lW
@@ -46396,10 +46406,10 @@ bh
 Pr
 MZ
 Pc
-bw
+aQ
 bv
 bu
-bs
+bJ
 cM
 lw
 Zs
@@ -46656,7 +46666,7 @@ Cl
 bx
 Jn
 OO
-gV
+aW
 Bp
 lw
 yR
@@ -46913,8 +46923,8 @@ YC
 by
 Jn
 Dw
-gV
-pJ
+aZ
+bj
 lw
 st
 jK
@@ -47167,7 +47177,7 @@ qN
 rG
 MZ
 GH
-bz
+aW
 yE
 bg
 gV
@@ -47938,7 +47948,7 @@ kA
 VA
 HE
 hD
-bD
+aZ
 bC
 bd
 gV
@@ -48196,9 +48206,9 @@ lv
 HE
 uG
 OJ
-bH
-hW
-pU
+bL
+bM
+bk
 WD
 lw
 ru

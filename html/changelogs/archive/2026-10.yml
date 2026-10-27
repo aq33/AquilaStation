@@ -676,3 +676,25 @@
       błędzie interfejsu.
   - bugfix: 'Konsola komunikacyjna: okna wezwania promu i wiadomości do CentComu mieszczą
       się na ekranie, da się wezwać prom.'
+'2026-10-27':
+  sh4dow321:
+  - bugfix: Rękawice MODsuitów znów są widoczne, spod zamkniętego kombinezonu nie
+      widać już gołych dłoni.
+  - rscadd: Pieczętowanie MODsuita pokazuje pasek postępu przy każdej części.
+  - bugfix: Jaszczurki w zamkniętym MODsuicie mają zwykłe nogi zamiast wystających
+      spod kombinezonu nóg digitigrade.
+  - bugfix: Zamknięty hełm MODsuita chowa czułki ćm.
+  - bugfix: Ikonka głośnika przy wiadomościach radiowych nad głową ma znowu właściwy,
+      mały rozmiar.
+  - bugfix: Prysznice są obrócone w stronę pomieszczenia.
+  - imageadd: Wciśnięty przycisk drzwi ma animację w stylu Paradise zamiast starego
+      sprite'a.
+  - code_imp: Naprawiony losowy runtime podsystemu czyszczenia z-poziomów, który wywracał
+      testy.
+  - bugfix: Gaśnica gasi ogień pod maszynami.
+  - bugfix: Hełm kombinezonu HEV dyrektora badań znów chroni przed próżnią.
+  - bugfix: Przyciski w PDA nie zasłaniają już tytułu sekcji.
+  - bugfix: Lista sekwencji w konsoli DNA nie nachodzi na sekwenser genomu.
+  - tweak: 'Trawnik: przestawione konsole w CIC i maszyny w serwerowni SI.'
+  - rscadd: Kartka z kluczem do konsoli monitorowania wiadomości leży na biurku CE
+      na Aquilasie i Trawniku.
