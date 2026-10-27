@@ -218,10 +218,13 @@
 	if(!prob(chance))
 		return
 	// Tick później, żeby spadanie przez otwartą przestrzeń zdążyło się skończyć
-	addtimer(CALLBACK(src, PROC_REF(stairs_trip), stairs), 1)
+	addtimer(CALLBACK(src, PROC_REF(stairs_trip), stairs, new_turf), 1)
 
-/datum/component/carbon_sprint/proc/stairs_trip(obj/structure/stairs/stairs)
+/datum/component/carbon_sprint/proc/stairs_trip(obj/structure/stairs/stairs, turf/arrived_at)
 	if(QDELETED(carbon_parent) || QDELETED(stairs) || carbon_parent.stat == DEAD)
+		return
+	// Przez tick mob mógł się już przemieścić (teleport, popchnięcie): wtedy nie ma potknięcia
+	if(get_turf(carbon_parent) != arrived_at)
 		return
 	var/turf/top = get_turf(stairs)
 	if(get_turf(carbon_parent) != top)

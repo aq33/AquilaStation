@@ -36,7 +36,7 @@
 		return
 	var/fraction = sprint_stamina.get_fraction()
 	var/exhausted = HAS_TRAIT_FROM(src, TRAIT_EXHAUSTED, SPRINT_STAMINA_TRAIT)
-	if(!exhausted && fraction < SPRINT_STAMINA_EXHAUSTION_THRESHOLD)
+	if(!exhausted && stat != DEAD && fraction < SPRINT_STAMINA_EXHAUSTION_THRESHOLD)
 		ADD_TRAIT(src, TRAIT_EXHAUSTED, SPRINT_STAMINA_TRAIT)
 		add_movespeed_modifier(MOVESPEED_ID_SPRINT_EXHAUSTION, TRUE, 0, override = TRUE, multiplicative_slowdown = SPRINT_STAMINA_EXHAUSTION_SLOWDOWN)
 		if(stat != DEAD)
@@ -54,7 +54,7 @@
 
 /mob/living/carbon/revive(full_heal = FALSE, admin_revive = FALSE)
 	. = ..()
-	update_sprint_stamina_hud()
+	sprint_stamina?.resume()
 
 /mob/living/carbon/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language, ignore_spam = FALSE, forced)
 	// Zadyszka: zwykła mowa nie przechodzi, emotki (*) tak

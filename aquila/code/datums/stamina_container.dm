@@ -35,7 +35,10 @@
 /datum/stamina_container/process(delta_time)
 	if(QDELETED(parent))
 		return PROCESS_KILL
-	if(world.time >= regen_blocked_until && parent.stat != DEAD)
+	// Zwłoki nie regenerują i nie wiszą w SSprocessing; revive() wznawia
+	if(parent.stat == DEAD)
+		return PROCESS_KILL
+	if(world.time >= regen_blocked_until)
 		var/rate = regen_rate
 		if(!(parent.mobility_flags & MOBILITY_STAND))
 			rate *= SPRINT_STAMINA_RESTING_REGEN_MULTIPLIER
@@ -58,6 +61,12 @@
 		START_PROCESSING(SSprocessing, src)
 	update()
 	return current - old_current
+
+///Wznawia regenerację niepełnej puli (np. po wskrzeszeniu)
+/datum/stamina_container/proc/resume()
+	if(current < maximum)
+		START_PROCESSING(SSprocessing, src)
+	update()
 
 ///Pełna kondycja od razu (np. po aheal)
 /datum/stamina_container/proc/refill()
