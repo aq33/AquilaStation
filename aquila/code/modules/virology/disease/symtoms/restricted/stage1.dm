@@ -56,7 +56,15 @@
 /datum/symptom/acute/transformation/proc/replace_banned_player(mob/living/new_mob, mob/living/affected_mob) // This can run well after the mob has been transferred, so need a handle on the new mob to kill it if needed.
 	set waitfor = FALSE
 
-	var/mob/dead/observer/chosen_one = SSpolling.poll_ghosts_for_target("Do you want to play as [affected_mob.real_name]?", check_jobban = bantype, role = bantype, poll_time = 5 SECONDS, checked_target = affected_mob, alert_pic = affected_mob, role_name_text = "transformation victim")
+	// AQ: nasz SSpolling bierze /datum/poll_config, a nie luźne argumenty nazwane
+	var/mob/dead/observer/chosen_one = SSpolling.poll_ghosts_for_target(new /datum/poll_config(
+		question = "Chcesz zagrać jako [affected_mob.real_name]?",
+		check_jobban = bantype,
+		poll_time = 5 SECONDS,
+		alert_pic = affected_mob,
+		role_name_text = "ofiara transformacji",
+		amount_to_pick = 1,
+	), affected_mob)
 	if(isnull(chosen_one))
 		to_chat(new_mob, span_userdanger("Your mob has been claimed by death! Appeal your job ban if you want to avoid this in the future!"))
 		new_mob.investigate_log("has been killed because there was no one to replace them as a job-banned player.", INVESTIGATE_DEATHS)

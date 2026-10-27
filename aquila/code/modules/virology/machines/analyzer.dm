@@ -111,7 +111,7 @@
 	processing = TRUE
 	update_appearance()
 
-	var/mutable_appearance/light_overlay = mutable_appearance(icon, "analyser_light", offset_spokesman = src, plane = ABOVE_LIGHTING_PLANE)
+	var/mutable_appearance/light_overlay = mutable_appearance(icon, "analyser_light", plane = ABOVE_LIGHTING_PLANE)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, add_overlay), light_overlay), 0.1 SECONDS)
 	use_power(1000)
 	set_light(2,2)

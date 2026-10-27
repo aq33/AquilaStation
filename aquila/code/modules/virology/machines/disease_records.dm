@@ -56,7 +56,7 @@
 			if(!field || !(field in target?.fields))
 				return FALSE
 
-			var/value = reject_bad_name(params["value"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN, strict = TRUE, cap_after_symbols = FALSE) || "Unknown"
+			var/value = reject_bad_name(params["value"], allow_numbers = TRUE, max_length = MAX_BROADCAST_LEN) || "Unknown"
 			target.fields[field] = value
 
 			return TRUE

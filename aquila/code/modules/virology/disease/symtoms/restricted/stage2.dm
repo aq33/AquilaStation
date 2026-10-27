@@ -182,7 +182,7 @@
 		to_chat(M, span_notice("Your skin tingles as the starlight seems to heal you."))
 
 	M.adjustToxLoss(-4 * heal_amt, updating_health = FALSE) //most effective on toxins
-	M.heal_overall_damage(heal_amt, heal_amt, required_bodytype = BODYTYPE_ORGANIC)
+	M.heal_overall_damage(heal_amt, heal_amt)
 	return TRUE
 
 /datum/symptom/acute/starlight/proc/passive_message_condition(mob/living/M)

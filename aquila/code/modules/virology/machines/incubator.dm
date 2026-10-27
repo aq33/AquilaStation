@@ -371,7 +371,7 @@
 
 	//updating the light indicators
 	if(dish.contained_virus && is_operational)
-		var/mutable_appearance/grown_gauge = mutable_appearance(icon, "incubator_growth7", offset_spokesman = src, plane = ABOVE_LIGHTING_PLANE)
+		var/mutable_appearance/grown_gauge = mutable_appearance(icon, "incubator_growth7", plane = ABOVE_LIGHTING_PLANE)
 		grown_gauge.pixel_z = -5 * slot
 		if(dish.growth < 100)
 			grown_gauge.icon_state = "incubator_growth[clamp(round(dish.growth * 70 / 1000), 1, 6)]"

@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 			return TRUE
 
 		var/transfered_amount = 0
-		transfered_amount = tool.reagents.trans_to(src, 10, transferred_by = user)
+		transfered_amount = tool.reagents.trans_to(src, 10)
 		if(transfered_amount > 0)
 			to_chat(user, span_notice("You transfer [transfered_amount] units of the solution to \the [src]."))
 		return TRUE
@@ -146,7 +146,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 		return TRUE
 
 	if(is_reagent_container(interacting_with))
-		var/amount_transfered = reagents.trans_to(interacting_with, 10, transferred_by = user)
+		var/amount_transfered = reagents.trans_to(interacting_with, 10)
 		if(amount_transfered > 0)
 			to_chat(user, span_notice("You transfer [amount_transfered] units of the solution to \the [interacting_with]."))
 			return TRUE
@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(virusdishes, list())
 
 	if(istype(interacting_with, /obj/structure/reagent_dispensers))
 		var/obj/structure/reagent_dispensers/dispenser = interacting_with
-		var/amount_transfered = dispenser.reagents.trans_to(src, 10, transferred_by = user)
+		var/amount_transfered = dispenser.reagents.trans_to(src, 10)
 		if(amount_transfered > 0)
 			to_chat(user, span_notice("You transfer [amount_transfered] units of the solution to \the [src]."))
 			return TRUE
@@ -248,7 +248,8 @@ GLOBAL_LIST_INIT(virusdishes, list())
 		if(blood)
 			var/list/L = list()
 			L |= contained_virus
-			LAZYOR(blood.data["diseases"], filter_disease_by_spread(L, required = DISEASE_SPREAD_BLOOD))
+			// AQ: izolator i ekspozycja na krew czytają data["viruses"], a copy_data() zachowuje tylko ten klucz
+			LAZYOR(blood.data["viruses"], filter_disease_by_spread(L, required = DISEASE_SPREAD_BLOOD))
 
 /obj/item/weapon/virusdish/proc/shatter(mob/user)
 	var/obj/effect/decal/cleanable/virusdish/dish = new(get_turf(src))

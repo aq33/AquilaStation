@@ -48,7 +48,13 @@
 		pathogen.origin = "Komora testowa"
 		grown.contained_virus = pathogen
 		grown.growth = 100
+		// to samo, co robi analizator: wpis do bazy, opis szalki i flaga analizy
+		pathogen.addToDB()
+		pathogen.Refresh_Acute()
+		pathogen.disease_flags |= DISEASE_ANALYZED
+		grown.info = pathogen.get_info()
 		grown.analysed = TRUE
+		grown.update_desc()
 		grown.name = "szalka ([pathogen.name(TRUE)])"
 		grown.update_icon()
 	if(length(dishes) >= 2)
