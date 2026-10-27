@@ -211,12 +211,10 @@ export const DnaConsoleSequencer = (props) => {
   return (
     <>
       <Stack mb={1}>
-        <Stack.Item width={(mutations.length <= 8 && '154px') || '174px'}>
-          <Section
-            title="Sekwencje"
-            height="214px"
-            scrollable={mutations.length > 8}
-          >
+        {/* AQUILA: większy padding Section w tgui-core 6 nie mieścił dwóch obrazków w rzędzie,
+            więc lista wychodziła na sekwenser; szersza kolumna i przewijanie zawsze */}
+        <Stack.Item width={(mutations.length <= 8 && '164px') || '184px'}>
+          <Section title="Sekwencje" height="214px" scrollable>
             {mutations.map((mutation) => (
               <GenomeImage
                 key={mutation.Alias}

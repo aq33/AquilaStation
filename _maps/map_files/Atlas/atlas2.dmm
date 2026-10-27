@@ -59,6 +59,27 @@
 	},
 /turf/open/floor/durasteel/alt,
 /area/crew_quarters/fitness/recreation)
+"ah" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/monitorkey,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/item/stamp/chief_engineer,
+/obj/structure/cable,
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Chief Engineer's Desk";
+	departmentType = 4;
+	name = "Chief Engineer RC";
+	pixel_y = 32
+	},
+/obj/item/clothing/mask/cigarette/cigar{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/machinery/airalarm/directional/north,
+/turf/open/floor/carpet/blue,
+/area/crew_quarters/heads/chief)
 "ai" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -7392,26 +7413,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/tech/grid,
 /area/medical/medbay)
-"xq" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen/fountain,
-/obj/item/stamp/chief_engineer,
-/obj/structure/cable,
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Engineer's Desk";
-	departmentType = 4;
-	name = "Chief Engineer RC";
-	pixel_y = 32
-	},
-/obj/item/clothing/mask/cigarette/cigar{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/machinery/airalarm/directional/north,
-/turf/open/floor/carpet/blue,
-/area/crew_quarters/heads/chief)
 "xt" = (
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/light{
@@ -43512,7 +43513,7 @@ yx
 jk
 yx
 oV
-xq
+ah
 Gi
 rv
 cy

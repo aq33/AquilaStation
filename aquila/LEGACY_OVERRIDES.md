@@ -136,6 +136,9 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | NTSL: `lvls` argument of `/datum/signal/subspace/vocal/New()` | `code/game/machinery/telecomms/broadcasting.dm` | `broadcast()` from a script sends on the server's z-level, its radio has no turf |
 | NTSL: return when a virtual speaker has no source | `code/datums/chatmessage.dm` (`create_chat_message()`) | `broadcast()` from a script has no real speaker |
 | `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
+| `img.icon { width: auto; height: auto }` in the `map` style (no marker, DMF has no comments) | `interface/skin.dmf` | Runechat radio/emote icons (`\icon[image]`) were drawn at 32x32 instead of 9x9; same rule as tgstation's skin |
+| `shower` directions swapped (S<->N, E<->W) | `icons/obj/watercloset.dmi` | The Paradise sprite from #469 uses dir = wall side; ours (and the `water` overlay and maps) use dir = facing |
+| `doorctrl1` replaced with the Paradise state | `icons/obj/stationobjs.dmi` | #469 swapped every button state but the pressed one; from ParadiseSS13/Paradise `icons/obj/stationobjs.dmi`, CC BY-SA 3.0 |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
