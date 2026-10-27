@@ -288,6 +288,7 @@
 #include "code\modules\antagonists\_common\antag_info_windows.dm"
 #include "code\modules\antagonists\ert\ert.dm"
 #include "code\modules\antagonists\revolution\revolution_conversion.dm"
+#include "code\modules\antagonists\revolution\revolution_panel.dm"
 #include "code\modules\antagonists\spider\spider.dm"
 #include "code\modules\antagonists\spy\spy.dm"
 #include "code\modules\antagonists\spy\spy_bounty.dm"
