@@ -70,6 +70,15 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	mission_choice_deadline = world.time + choice_time
 	mission_choice_timer = addtimer(CALLBACK(src, PROC_REF(finish_mission_choice)), choice_time, TIMER_STOPPABLE)
 
+/// Tryb wymuszony przez admina albo głosowanie na hardmode kończy wybór misji
+/datum/controller/subsystem/overmap_mode/force_mode(new_mode)
+	mission_choices = null
+	if(mission_choice_pending)
+		mission_choice_pending = FALSE
+		deltimer(mission_choice_timer)
+		mission_choice_timer = null
+	return ..()
+
 /datum/controller/subsystem/overmap_mode/instance_objectives()
 	if(mission_choice_pending)
 		return
