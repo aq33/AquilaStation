@@ -115,7 +115,7 @@
 /datum/rune_spell/bloodmagnetism/cast_talisman()//we spawn an invisible rune under our feet that works like the regular one
 	var/obj/effect/new_rune/R = new(get_turf(activator))
 	R.icon_state = "temp"
-	R.active_spell = new type(activator, R)
+	new type(activator, R) // przypisuje R.active_spell w New()
 	qdel(src)
 
 /datum/rune_spell/bloodmagnetism/midcast(mob/add_cultist)

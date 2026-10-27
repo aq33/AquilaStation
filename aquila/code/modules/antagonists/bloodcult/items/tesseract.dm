@@ -56,9 +56,9 @@
 		if(isplasmaman(user))
 			plasma_tank = user.get_item_by_slot(ITEM_SLOT_SUITSTORE)
 
-		for(var/obj/item/I in user)
-			user.dropItemToGround(I)
+		for(var/obj/item/I in user.get_equipped_items(TRUE))
 			if (is_type_in_list(I, discarded_types))
+				user.dropItemToGround(I, TRUE)
 				qdel(I)
 
 		for(var/slot in stored_gear)

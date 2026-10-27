@@ -66,6 +66,10 @@
 	activator = user
 
 	if(use == "ritual")
+		// runa musi wskazywać zaklęcie już w trakcie pre_cast()/cast() (sleep w cast, usunięcie runy w cast)
+		if(istype(holder, /obj/effect/new_rune))
+			var/obj/effect/new_rune/rune_holder = holder
+			rune_holder.active_spell = src
 		pre_cast()
 	else if(use == "touch" && target)
 		cast_touch(target) //Skips pre_cast() for talismans)

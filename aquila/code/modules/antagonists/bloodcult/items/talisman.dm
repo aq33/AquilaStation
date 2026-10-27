@@ -161,9 +161,7 @@
 
 		var/talisman_interaction = initial(spell.talisman_absorb)
 		var/datum/rune_spell/active_spell = R.active_spell
-		if(!istype(R))
-			return
-		name = "talizman: [active_spell.name]"
+		name = "talizman: [initial(spell.name)]"
 		if (active_spell)//some runes may change their interaction type dynamically (ie: Path Exit runes)
 			talisman_interaction = active_spell.talisman_absorb
 			if (istype(active_spell, /datum/rune_spell/portalentrance))

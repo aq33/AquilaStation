@@ -30,7 +30,7 @@
 		if (1)
 			var/turf/T = loc
 			if (T)
-				T.narsie_act(ignore_mobs = TRUE)
+				T.narsie_act(FALSE, TRUE) // force, ignore_mobs (pozycyjnie: nie wszystkie nadpisania mają te argumenty)
 		if (2)
 			var/turf/T = loc
 			if (T)
@@ -41,12 +41,12 @@
 					if (WEST)
 						pillar = new /obj/structure/cult/pillar(loc)
 			for (var/turf/U in near_turfs)
-				U.narsie_act(ignore_mobs = TRUE)
+				U.narsie_act(FALSE, TRUE) // force, ignore_mobs (pozycyjnie: nie wszystkie nadpisania mają te argumenty)
 		if (3)
 			if (pillar)
 				pillar.update_icon()
 			for (var/turf/T in far_turfs)
-				T.narsie_act(ignore_mobs = TRUE)
+				T.narsie_act(FALSE, TRUE) // force, ignore_mobs (pozycyjnie: nie wszystkie nadpisania mają te argumenty)
 
 /obj/effect/cult_ritual/tear_spawners/pillar_spawner/proc/cancel()
 	if (!pillar)

@@ -85,9 +85,12 @@
 	playsound(src, sound_damaged, 75, 1)
 	takeDamage(20)
 
-/obj/structure/cult/bullet_act(obj/item/projectile/Proj)
-	takeDamage(Proj.damage)
-	return ..()
+// Obrażenia z bazowego kodu (pociski, rzuty, broń bez trybu walki) idą przez takeDamage(), żeby działały jego nadpisania
+/obj/structure/cult/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir, armour_penetration = 0)
+	if(QDELETED(src))
+		return 0
+	takeDamage(damage_amount)
+	return damage_amount
 
 /obj/structure/cult/attackby(obj/item/weapon, mob/user, params)
 	if(istype(weapon))
@@ -97,12 +100,13 @@
 			user.do_attack_animation(src, weapon)
 			if(sound_damaged)
 				playsound(src, sound_damaged, 75, 1)
+			visible_message(span_warning("[user] uderza w [src] za pomocą [weapon].") )
 			if(isholyweapon(weapon))
 				takeDamage(weapon.force*2)
 			else
 				takeDamage(weapon.force)
-			visible_message(span_warning("[user] uderza w [src] za pomocą [weapon].") )
-			..()
+		return TRUE
+	return ..()
 
 
 /obj/structure/cult/attack_paw(mob/user)

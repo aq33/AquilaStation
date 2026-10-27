@@ -418,13 +418,9 @@ GLOBAL_LIST_EMPTY(rune_appearances_cache)
 
 	reveal()//concealed rune get automatically revealed upon use (either through using Seer or an attuned talisman). Placed after midcast: exception for Path talismans.
 
-	active_spell = get_rune_spell(user, src, "ritual", word1, word2, word3)
-
-	if (!active_spell)
+	// active_spell ustawia /datum/rune_spell/New przed pre_cast(), a Destroy() zaklęcia go czyści
+	if (!get_rune_spell(user, src, "ritual", word1, word2, word3))
 		return fizzle(user)
-	else
-		if (active_spell.destroying_self)
-			active_spell = null
 
 /obj/effect/new_rune/proc/fizzle(mob/living/user)
 	var/silent = user.checkTattoo(TATTOO_SILENT)

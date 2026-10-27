@@ -90,7 +90,7 @@
 /datum/rune_spell/raisestructure/cast_talisman() //Raise structure talismans create an invisible summoning rune beneath the caster's feet.
 	var/obj/effect/new_rune/R = new(get_turf(activator))
 	R.icon_state = "temp"
-	R.active_spell = new type(activator, R)
+	new type(activator, R) // przypisuje R.active_spell w New()
 	qdel(src)
 
 /datum/rune_spell/raisestructure/midcast(mob/add_cultist)

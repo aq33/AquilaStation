@@ -213,7 +213,9 @@
 		return FALSE
 	else if (user == shade)
 		return TRUE
-	return TRUE
+	else if (user == shade.master)
+		return TRUE
+	return FALSE
 
 /obj/item/melee/soulblade/dropped(mob/user)
 	..()
