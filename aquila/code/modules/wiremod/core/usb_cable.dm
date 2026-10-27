@@ -38,14 +38,15 @@
 	if (!isnull(attached_circuit))
 		. += span_notice("Jest podłączony do [attached_circuit.shell || attached_circuit].")
 
-/obj/item/usb_cable/pre_attack(atom/target, mob/living/user, list/modifiers, list/attack_modifiers)
+// U nas pre_attack zwraca TRUE, gdy atak ma iść dalej (odwrotnie niż w tg)
+/obj/item/usb_cable/pre_attack(atom/target, mob/living/user, params)
 	. = ..()
-	if (.)
+	if (!.)
 		return
 
 	if (prob(1))
 		balloon_alert(user, "nie tą stroną, do cholery")
-		return TRUE
+		return FALSE
 
 	var/signal_result = SEND_SIGNAL(target, COMSIG_ATOM_USB_CABLE_TRY_ATTACH, src, user)
 
@@ -56,7 +57,7 @@
 
 		playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
-		return TRUE
+		return FALSE
 
 	if (signal_result & COMSIG_USB_CABLE_ATTACHED)
 		// Short messages are better to read
@@ -69,12 +70,12 @@
 		balloon_alert(user, "podłączono do [connection_description]")
 		playsound(src, 'sound/items/screwdriver2.ogg', 20, TRUE)
 
-		return TRUE
+		return FALSE
 
 	if (signal_result & COMSIG_CANCEL_USB_CABLE_ATTACK)
-		return TRUE
+		return FALSE
 
-	return FALSE
+	return TRUE
 
 /obj/item/usb_cable/suicide_act(mob/living/user)
 	user.visible_message(span_suicide("[user] owija [src] wokół szyi! Wygląda na to, że próbuje popełnić samobójstwo!"))

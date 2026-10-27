@@ -90,13 +90,13 @@
 		charge_action = new(src)
 		if (bci.owner)
 			charge_action.Grant(bci.owner)
-		bci.actions += charge_action
+		LAZYADD(bci.actions, charge_action)
 	else
 		if (!charge_action)
 			return
 		if (bci.owner)
 			charge_action.Remove(bci.owner)
-		bci.actions -= charge_action
+		LAZYREMOVE(bci.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 /obj/item/circuit_component/bci_core/register_shell(atom/movable/shell)
@@ -113,7 +113,7 @@
 	if (charge_action)
 		if (bci.owner)
 			charge_action.Remove(bci.owner)
-		bci.actions -= charge_action
+		LAZYREMOVE(bci.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 	// Układ wyjęty z wszczepionego BCI: nosiciel nie może dalej wołać odłączonego komponentu

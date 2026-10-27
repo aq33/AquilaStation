@@ -80,13 +80,13 @@
 		charge_action = new(src)
 		if (implant.imp_in)
 			charge_action.Grant(implant.imp_in)
-		implant.actions += charge_action
+		LAZYADD(implant.actions, charge_action)
 	else
 		if (!charge_action)
 			return
 		if (implant.imp_in)
 			charge_action.Remove(implant.imp_in)
-		implant.actions -= charge_action
+		LAZYREMOVE(implant.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 /obj/item/circuit_component/implant_core/register_shell(atom/movable/shell)
@@ -99,9 +99,10 @@
 
 /obj/item/circuit_component/implant_core/unregister_shell(atom/movable/shell)
 	if (charge_action)
-		if (implant?.imp_in)
-			charge_action.Remove(implant.imp_in)
-		implant?.actions -= charge_action
+		if (implant)
+			if (implant.imp_in)
+				charge_action.Remove(implant.imp_in)
+			LAZYREMOVE(implant.actions, charge_action)
 		QDEL_NULL(charge_action)
 
 	// Układ wyjęty z wszczepionego implantu: nosiciel nie może dalej wołać odłączonego komponentu
