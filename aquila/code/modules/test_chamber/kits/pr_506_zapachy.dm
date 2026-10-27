@@ -1,6 +1,6 @@
-/datum/test_chamber_kit/pr_zapachy
+/datum/test_chamber_kit/pr_506
 	name = "Dym i zapachy (pollution z Monke)"
-	pr = "aq33/AquilaStation#PR"
+	pr = "aq33/AquilaStation#506"
 	description = "Na środku areny wisi gęsty dym (szara mgiełka) i zapach kawy. Użyj *sniff, potem postój chwilę bez maski: \
 		samo wąchanie co minutę, kaszel w dymie, nastrój za zapachy. Zapal papierosa i świecę zapachową, spryskaj kogoś perfumami \
 		(najpierw zdejmij nakrętkę, Alt-klik) i psiknij odświeżaczem. Oczyszczacz przykręć kluczem i włącz ręką, \
@@ -19,5 +19,5 @@
 		/mob/living/carbon/human = 1,
 	)
 
-/datum/test_chamber_kit/pr_zapachy/setup(list/spawned, list/turfs, turf/center, mob/user)
+/datum/test_chamber_kit/pr_506/setup(list/spawned, list/turfs, turf/center, mob/user)
 	center.pollute_turf_list(list(/datum/pollutant/smoke = 400, /datum/pollutant/food/coffee = 100))
