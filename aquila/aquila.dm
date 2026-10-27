@@ -3,6 +3,7 @@
 #include "code\__DEFINES\bitrunning.dm"
 #include "code\__DEFINES\bingle.dm"
 #include "code\__DEFINES\blood_worm.dm"
+#include "code\__DEFINES\bloodcult.dm"
 #include "code\__DEFINES\bounty_market.dm"
 #include "code\__DEFINES\broadcast.dm"
 #include "code\__DEFINES\crafting.dm"
@@ -204,6 +205,7 @@
 #include "code\game\objects\effects\decals\cleanable\feces.dm"
 #include "code\game\objects\effects\decals\cleanable\humans.dm"
 #include "code\game\objects\effects\decals\turfdecal\tilecoloring_bee.dm"
+#include "code\game\objects\effects\effect_system\effects_water.dm"
 #include "code\game\objects\effects\spawners\lootdrop.dm"
 #include "code\game\objects\effects\spawners\xenospawner.dm"
 #include "code\game\objects\effects\spiderwebs.dm"
@@ -627,6 +629,7 @@
 #include "code\modules\mining\equipment\mineral_scanner.dm"
 #include "code\modules\mining\machine_bluespaceminer.dm"
 #include "code\modules\mining\mineral_magnet_ui.dm"
+#include "code\modules\mod\mod_clothes.dm"
 #include "code\modules\mod\modules\modules_antag.dm"
 #include "code\modules\mob\dead\crew_manifest.dm"
 #include "code\modules\mob\dead\new_player\latejoin_menu.dm"
@@ -983,6 +986,7 @@
 #include "code\modules\test_chamber\kits\pr_483_kuznia_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_489_shipbreaking.dm"
 #include "code\modules\test_chamber\kits\pr_510_wiremod_tg.dm"
+#include "code\modules\test_chamber\kits\pr_509_kult_krwi.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1537,6 +1541,7 @@
 
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
+#include "code\modules\unit_tests\aquila_bloodcult.dm"
 #include "code\modules\unit_tests\bingle.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\byondui_cleanup.dm"
@@ -1582,6 +1587,7 @@
 #include "code\modules\unit_tests\aquila_locked_slots.dm"
 #include "code\modules\unit_tests\aquila_lost_crew.dm"
 #include "code\modules\unit_tests\aquila_mining_asteroids.dm"
+#include "code\modules\unit_tests\aquila_modsuit_species.dm"
 #include "code\modules\unit_tests\aquila_stamina_hud.dm"
 #include "code\modules\unit_tests\aquila_mouse_report.dm"
 #include "code\modules\unit_tests\aquila_one_click_antag.dm"
@@ -1615,6 +1621,8 @@
 #include "code\modules\unit_tests\dakimakura.dm"
 #include "code\modules\unit_tests\darkspawn.dm"
 #include "code\modules\unit_tests\ear_surgery.dm"
+#include "code\modules\unit_tests\extinguisher_fire.dm"
+#include "code\modules\unit_tests\hev_spaceproof.dm"
 #include "code\modules\unit_tests\miasma.dm"
 #include "code\modules\unit_tests\mod_energy_shield_icons.dm"
 #include "code\modules\unit_tests\ntsl.dm"
@@ -1641,3 +1649,4 @@
 
 // Heretyk z tg (osobny plik z includami)
 #include "heretic.dm"
+#include "bloodcult.dm"

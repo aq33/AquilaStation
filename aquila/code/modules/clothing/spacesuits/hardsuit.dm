@@ -9,7 +9,7 @@
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 15, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "stamina" = 30, "bleed" = 70)
-	clothing_flags =  SHOWEROKAY | SCAN_REAGENTS //te borowiki z bee zrobily burdel w hardsuit.dm, w przyszlosci bedzie trzeba zrobic refactor i sanitisation
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SHOWEROKAY | SNUG_FIT | SCAN_REAGENTS // bez STOPSPRESSUREDAMAGE hełm nie chronił przed próżnią
 	var/obj/machinery/doppler_array/integrated/bomb_radar
 	actions_types = list(/datum/action/item_action/toggle_research_scanner, /datum/action/item_action/toggle_helmet_light)
 

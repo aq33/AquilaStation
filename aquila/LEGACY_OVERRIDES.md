@@ -141,6 +141,12 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | NTSL: `lvls` argument of `/datum/signal/subspace/vocal/New()` | `code/game/machinery/telecomms/broadcasting.dm` | `broadcast()` from a script sends on the server's z-level, its radio has no turf |
 | NTSL: return when a virtual speaker has no source | `code/datums/chatmessage.dm` (`create_chat_message()`) | `broadcast()` from a script has no real speaker |
 | `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
+| `img.icon { width: auto; height: auto }` in the `map` style (no marker, DMF has no comments) | `interface/skin.dmf` | Runechat radio/emote icons (`\icon[image]`) were drawn at 32x32 instead of 9x9; same rule as tgstation's skin |
+| `shower` directions swapped (S<->N, E<->W) | `icons/obj/watercloset.dmi` | The Paradise sprite from #469 uses dir = wall side; ours (and the `water` overlay and maps) use dir = facing |
+| Skip mobs without a turf in `check_for_empty_levels()` | `code/controllers/subsystem/zclear.dm` | A mob with a mind in nullspace (e.g. during unit tests) caused a `null.z` runtime that failed random tests |
+| `doorctrl1` replaced with the Paradise state | `icons/obj/stationobjs.dmi` | #469 swapped every button state but the pressed one; from ParadiseSS13/Paradise `icons/obj/stationobjs.dmi`, CC BY-SA 3.0 |
+| `/datum/progressbar` driven inside the activation step loop (AQ EDIT block + 3 lines) | `code/modules/mod/mod_activation.dm` (`activation_delay()`) | MODsuit sealing shows a progress bar per part; `do_after` would make the steps interruptible by moving or stuns |
+| `if(H.aquila_mod_forces_plantigrade()) suit_compatible = FALSE` | `code/modules/mob/living/carbon/human/species.dm` (`handle_mutant_bodyparts()`, digitigrade handling) | A sealed MOD chestplate or boots has no digitigrade sprites, so the wearer gets plantigrade legs; logic and the leg refresh on (un)sealing in `aquila/code/modules/mod/mod_clothes.dm`. Test: `aquila_modsuit_species` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
@@ -250,6 +256,31 @@ The old Hippie/Yogs vampire (`aquila/code/game/gamemodes/vampire/*`, species `va
 - `code/datums/components/team_monitor.dm`: the monitor can sit on a mob (vassals track their master).
 - `code/datums/elements/embed.dm`: `tryForceEmbed()` takes the hit zone from a bodypart target (BeeStation fix; stakes).
 - Removed: species `vampire` (`species_types/vampire.dm`, `human.dm` subtype, `isvampire`), the vampire bite in `human_defense.dm`.
+
+### Blood cult "Cult 4" port (Monkestation/Monkestation2.0#3867 draft + vgstation, B/F)
+
+The BeeStation blood cult is replaced. The new cult (rune words, rune spells, rituals, devotion, tattoos, Eclipse, Tear Reality, Blood Stone, mind_ui cult panel, refusable conversion, constructs and shades) lives in `aquila/code/modules/antagonists/bloodcult/`, included from the generated `aquila/bloodcult.dm`. Compatibility helpers are in `bloodcult/_compat/` (`core.dm`: mind_ui on `/datum/mind` and `/mob`, Login/Logout, MouseDown/MouseUp, cult fullscreens; `integration.dm`: deconversion ritual, chaplain cross, Eclipse ghosts, parallax rifts, cult backpack; the rest per area). Removed: `code/modules/antagonists/cult/blood_magic.dm`, `cult.dm`, `cult_comms.dm`, `cult_structures.dm` (old `/obj/structure/destructible/cult` base now in `bloodcult/structures/destructable/`). `rune_spawn_action.dm` stays (constructs). Core edits:
+
+- `code/modules/antagonists/cult/runes.dm`: removed convert/narsie/apocalypse runes, empower invoke, manifest ghost actions (as in the draft).
+- `code/modules/antagonists/cult/cult_items.dm`: removed tome, cultblade (dagger, ghost), bastard sword, dash, bola, spear, robes/hardened (redefined in `bloodcult/items` and `bloodcult/clothing`); shield hood is `/obj/item/clothing/head/hooded/cult_hoodie/cult_shield`.
+- `code/modules/antagonists/cult/narsie.dm`: `set_blood_target(src, duration = INFINITY)` instead of the eldergod objective.
+- `code/datums/components/cult_ritual_item.dm`: rune scribing cut out (runes are written through the tome/rune words).
+- `code/game/gamemodes/cult/cult.dm`: no `is_sacrifice_target`/`is_convertable_to_cult` (moved to `bloodcult/helpers`), credits read `narsie_summoned`.
+- `code/game/objects/items/stacks/sheets/sheet_types.dm`: runed metal recipes without pylon/forge/altar (now rune spells), archives use the item dispenser, plus cult bindings.
+- `code/_onclick/hud/alert.dm`: bloodsense alert without sacrifice/eldergod branches.
+- `code/_onclick/hud/parallax.dm`: `create_parallax` calls `bloodcult_eclipse_parallax(C)` (Eclipse rifts and red sky).
+- `code/_onclick/hud/radial.dm`: `radial_icon` on `/datum/radial_menu` and `show_radial_menu()`.
+- `code/modules/tooltip/tooltip.html`: `.radial-cult` CSS theme for cult panel tooltips.
+- `code/modules/mob/living/living_defense.dm`: `/mob/living/narsie_act` always makes a random hostile construct (proteon included).
+- `code/modules/reagents/chemistry/reagents/other_reagents.dm`: holy water no longer purges blood magic nor deconverts after 30u (deconversion is the bible ritual).
+- `code/modules/mob/living/simple_animal/constructs.dm`: rune actions and the eldergod objective cut from constructs; draft construct changes live in `bloodcult/constructs/`.
+- `code/modules/antagonists/wizard/equipment/soulstone.dm`: no sacrifice-target lock, perfect gem constructs, cultists made through `add_antag_datum` and `CanConvert()`.
+- `code/modules/unit_tests/create_and_destroy.dm`: `bloodcult_create_and_destroy_ignores()` (as the draft's unit_test.dm).
+- `code/modules/shuttle/.../generator_netherworld.dm`: new pylon/forge types.
+- `nsv13/code/modules/antagonists/bloodling.dm`: `SUMMON_POSSIBILITIES` define (was in the removed cult.dm).
+- `aquila/code/modules/antagonists/heretic/items/heretic_armor.dm`: `hood_up` comes from the new cult robes.
+- Overrides with `..()` in `bloodcult/_compat/`: `/client/Move_object` (soulblade control), `/mob/living/Login|Logout`, `/client/MouseDown|MouseUp`, `/datum/mind/Destroy`, observer `narsie_act`, `/mob/living/carbon/human/death` (cultist becomes a shade, `bloodcult/rune_spells/reincarnation.dm`).
+- Maps: old talisman/forge/pylon/tome structures swapped for `/obj/structure/cult/*` and archives; convert/narsie runes removed.
 
 ### Munitions forge (ParadiseSS13 smithing, B)
 

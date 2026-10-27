@@ -676,3 +676,42 @@
       błędzie interfejsu.
   - bugfix: 'Konsola komunikacyjna: okna wezwania promu i wiadomości do CentComu mieszczą
       się na ekranie, da się wezwać prom.'
+'2026-10-27':
+  dwasint, Deity Link (vgstation):
+  - rscadd: 'Nowy kult krwi „Cult 4”: runy pisane słowami krwi, około 22 zaklęcia
+      run, talizmany i tom.'
+  - rscadd: Rytuały kultu (osobiste i drużynowe), devotion, tatuaże z mocami oraz
+      role akolity, herolda i mentora.
+  - rscadd: 'Zaćmienie: pękają światła, runa Tear Reality, taniec i Krwawy Kamień
+      do obrony; kultyści dostają aureolę.'
+  - rscadd: Panel kultu z członkami, rytuałami, postępem Zaćmienia i pomocą.
+  - rscadd: Ofiara może odmówić konwersji i zostać więźniem kultu; kapelan dekonwertuje
+      rytuałem Biblią, sól niszczy runy.
+  - rscadd: Kult może wygrać także ucieczką promem; raport końca rundy pokazuje devotion
+      kultystów.
+  - rscadd: Konstrukty proteon i hex, doskonałe konstrukty z klejnotu dusz, projekcja
+      astralna, cień w ostrzu dusz.
+  - rscdel: Usunięto magię krwi i stare runy kultu z Bee.
+  - imageadd: Ikony kultu z vgstation i Monkestation.
+  - soundadd: Dźwięki kultu z vgstation i Monkestation.
+  sh4dow321:
+  - bugfix: Rękawice MODsuitów znów są widoczne, spod zamkniętego kombinezonu nie
+      widać już gołych dłoni.
+  - rscadd: Pieczętowanie MODsuita pokazuje pasek postępu przy każdej części.
+  - bugfix: Jaszczurki w zamkniętym MODsuicie mają zwykłe nogi zamiast wystających
+      spod kombinezonu nóg digitigrade.
+  - bugfix: Zamknięty hełm MODsuita chowa czułki ćm.
+  - bugfix: Ikonka głośnika przy wiadomościach radiowych nad głową ma znowu właściwy,
+      mały rozmiar.
+  - bugfix: Prysznice są obrócone w stronę pomieszczenia.
+  - imageadd: Wciśnięty przycisk drzwi ma animację w stylu Paradise zamiast starego
+      sprite'a.
+  - code_imp: Naprawiony losowy runtime podsystemu czyszczenia z-poziomów, który wywracał
+      testy.
+  - bugfix: Gaśnica gasi ogień pod maszynami.
+  - bugfix: Hełm kombinezonu HEV dyrektora badań znów chroni przed próżnią.
+  - bugfix: Przyciski w PDA nie zasłaniają już tytułu sekcji.
+  - bugfix: Lista sekwencji w konsoli DNA nie nachodzi na sekwenser genomu.
+  - tweak: 'Trawnik: przestawione konsole w CIC i maszyny w serwerowni SI.'
+  - rscadd: Kartka z kluczem do konsoli monitorowania wiadomości leży na biurku CE
+      na Aquilasie i Trawniku.

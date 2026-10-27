@@ -1,5 +1,7 @@
 //IT CAME....from outer space!
 
+#define SUMMON_POSSIBILITIES 3 // AQ EDIT - wcześniej z code/modules/antagonists/cult/cult.dm (usunięty przy porcie kultu krwi)
+
 #define MOVESPEED_ID_BLOODLING_BIOMASS "bloodling_biomass_penalty"
 #define BLOODLING_ASCENSION_MODIFIER "bloodling_ascension_penalty"
 
