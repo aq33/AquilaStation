@@ -140,6 +140,8 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `shower` directions swapped (S<->N, E<->W) | `icons/obj/watercloset.dmi` | The Paradise sprite from #469 uses dir = wall side; ours (and the `water` overlay and maps) use dir = facing |
 | Skip mobs without a turf in `check_for_empty_levels()` | `code/controllers/subsystem/zclear.dm` | A mob with a mind in nullspace (e.g. during unit tests) caused a `null.z` runtime that failed random tests |
 | `doorctrl1` replaced with the Paradise state | `icons/obj/stationobjs.dmi` | #469 swapped every button state but the pressed one; from ParadiseSS13/Paradise `icons/obj/stationobjs.dmi`, CC BY-SA 3.0 |
+| `/datum/progressbar` driven inside the activation step loop (AQ EDIT block + 3 lines) | `code/modules/mod/mod_activation.dm` (`activation_delay()`) | MODsuit sealing shows a progress bar per part; `do_after` would make the steps interruptible by moving or stuns |
+| `if(H.aquila_mod_forces_plantigrade()) suit_compatible = FALSE` | `code/modules/mob/living/carbon/human/species.dm` (`handle_mutant_bodyparts()`, digitigrade handling) | A sealed MOD chestplate or boots has no digitigrade sprites, so the wearer gets plantigrade legs; logic and the leg refresh on (un)sealing in `aquila/code/modules/mod/mod_clothes.dm`. Test: `aquila_modsuit_species` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

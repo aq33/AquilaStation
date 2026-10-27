@@ -676,3 +676,11 @@
       błędzie interfejsu.
   - bugfix: 'Konsola komunikacyjna: okna wezwania promu i wiadomości do CentComu mieszczą
       się na ekranie, da się wezwać prom.'
+'2026-10-27':
+  sh4dow321:
+  - bugfix: Rękawice MODsuitów znów są widoczne, spod zamkniętego kombinezonu nie
+      widać już gołych dłoni.
+  - rscadd: Pieczętowanie MODsuita pokazuje pasek postępu przy każdej części.
+  - bugfix: Jaszczurki w zamkniętym MODsuicie mają zwykłe nogi zamiast wystających
+      spod kombinezonu nóg digitigrade.
+  - bugfix: Zamknięty hełm MODsuita chowa czułki ćm.
