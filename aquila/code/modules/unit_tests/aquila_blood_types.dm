@@ -43,6 +43,9 @@
 	TEST_ASSERT(ethereal_blood?.glowy, "Ethereal blood does not glow")
 
 	// Blood decals take the colour of the newest blood on them
+	// Earlier tests leave blood on the shared tile; a new splat would merge into it and get deleted
+	for(var/obj/effect/decal/cleanable/blood/leftover in run_loc_floor_bottom_left)
+		qdel(leftover)
 	var/obj/effect/decal/cleanable/blood/splat = allocate(/obj/effect/decal/cleanable/blood)
 	TEST_ASSERT_EQUAL(lowertext(splat.color), lowertext(COLOR_BLOOD), "Default blood is not red")
 	splat.add_blood_DNA(lizard.get_blood_dna_list())
