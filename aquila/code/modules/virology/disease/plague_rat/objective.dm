@@ -19,8 +19,10 @@
 		return TRUE
 
 	if (total_infections > 1)
+		// AQ: L.diseases trzyma datumy, a disease_id to tekst "uniqueID-subID" - trzeba porownac po polach
 		for (var/mob/living/L in GLOB.mob_living_list)
-			if (disease_id in L.diseases)
-				return TRUE//if we infected at least one individual, and there is still an infected individual alive, that's good enough.
+			for (var/datum/disease/acute/carried as anything in L.diseases)
+				if (istype(carried) && "[carried.uniqueID]-[carried.subID]" == disease_id)
+					return TRUE//if we infected at least one individual, and there is still an infected individual alive, that's good enough.
 
 	return FALSE

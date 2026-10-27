@@ -198,6 +198,10 @@
 		if(e.stage == target_slot)
 			memorybank = e
 			break
+	// AQ: bez objawu na wybranym stopniu szalka ginela za darmo
+	if(!memorybank)
+		say("BŁĄD: na stopniu [target_slot] nie ma objawu do skopiowania.")
+		return
 	scanning = DISEASE_SPLICER_SCANNING_TICKS
 	analysed = dish.analysed
 	QDEL_NULL(dish)

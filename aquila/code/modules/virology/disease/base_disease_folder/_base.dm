@@ -88,7 +88,8 @@ GLOBAL_LIST_INIT(virusDB, list())
 	if (mob.immune_system)
 		var/immune_system = mob.immune_system.GetImmunity()
 		var/list/antibodies = immune_system[2]
-		var/subdivision = (strength - ((robustness * strength) / 100)) / max_stages
+		// AQ: nasze /datum/disease ma max_stages = 0 (w tg jest 4), wiec bez tego dzielenie wywala runtime
+		var/subdivision = (strength - ((robustness * strength) / 100)) / max(max_stages, 1)
 		//for each antigen, we measure the corresponding antibody concentration in the carrier's immune system
 		//the less robust the pathogen, the more likely that further stages' effects won't activate at a given concentration
 		for (var/A in antigen)
@@ -204,7 +205,7 @@ GLOBAL_LIST_INIT(virusDB, list())
 	if(starved)
 		return
 
-	var/list/immune_data = GetImmuneData(mob)
+	var/list/immune_data = GetImmuneData(mob) || list(stage, 0)
 
 	if(!istype(mob, /mob/living/simple_animal/mouse/plague) && (!carrier)) //plague mice don't trigger effects to not kill em
 		for(var/datum/symptom/acute/e in symptoms)
@@ -212,8 +213,8 @@ GLOBAL_LIST_INIT(virusDB, list())
 				e.run_effect(mob, src)
 
 	//fever is a reaction of the body's immune system to the infection. The higher the antibody concentration (and the disease still not cured), the higher the fever
-	if (mob.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT - 15)//but we won't go all the way to burning up just because of a fever, probably
-		var/fever = round((robustness / 100) * (immune_data[2] / 10) * (stage / max_stages))
+	if (length(immune_data) >= 2 && mob.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT - 15)//but we won't go all the way to burning up just because of a fever, probably
+		var/fever = round((robustness / 100) * (immune_data[2] / 10) * (stage / max(max_stages, 1)))
 		switch (mob.mob_size)
 			if (MOB_SIZE_TINY)
 				mob.bodytemperature += fever*0.2
@@ -249,6 +250,8 @@ GLOBAL_LIST_INIT(virusDB, list())
 
 //horrible, awful, stolen code from disease/advance. But it WORKS
 /datum/disease/acute
+	// AQ: w tg /datum/disease ma max_stages = 4, u nas 0 - patogeny ustawiaja to u siebie
+	max_stages = 4
 	var/list/properties = list()
 	/// Licznik tempa (w Monke stoi na /datum/disease, u nas advance ma juz wlasne `speed`).
 	var/speed = 1
