@@ -28,7 +28,7 @@
 
 
 /obj/structure/dispenser_bot/proc/add_item(mob/user, obj/item/to_add)
-	balloon_alert(user, "inserted item")
+	balloon_alert(user, "włożono przedmiot")
 	stored_items += to_add
 	to_add.forceMove(src)
 	RegisterSignal(to_add, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stored_item_moved))
@@ -65,11 +65,11 @@
 		return ..()
 
 	if (tool.w_class > max_weight && !istype(tool, /obj/item/storage/bag))
-		balloon_alert(user, "item too big!")
+		balloon_alert(user, "przedmiot za duży!")
 		return TRUE
 
 	if(length(stored_items) >= capacity)
-		balloon_alert(user, "at maximum capacity!")
+		balloon_alert(user, "pełna pojemność!")
 		return TRUE
 
 	if(!istype(tool, /obj/item/storage/bag))
@@ -89,12 +89,12 @@
 		return
 	setAnchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, "[anchored? "secured" : "unsecured"]")
+	balloon_alert(user, "[anchored? "przykręcono" : "odkręcono"]")
 	return TRUE
 
 /obj/item/circuit_component/dispenser_bot
 	display_name = "Dispenser"
-	desc = "A dispenser bot that can dispense items "
+	desc = "Bot-dystrybutor, który potrafi wydawać przedmioty."
 
 	/// The list of items
 	var/datum/port/output/item_list
@@ -160,7 +160,7 @@
 	switch(action)
 		if("add_vend_component")
 			if(length(vendor_components) >= max_vendor_components)
-				balloon_alert(user, "you have hit vendor component limit!")
+				balloon_alert(user, "osiągnięto limit komponentów wydawania!")
 				return
 			var/obj/item/circuit_component/vendor_component/vendor_component = new(parent)
 			parent.add_component(vendor_component, user)
@@ -172,7 +172,7 @@
 
 /obj/item/circuit_component/vendor_component
 	display_name = "Vend"
-	desc = "A component used to vend out specific objects from the dispenser bot."
+	desc = "Komponent do wydawania określonych przedmiotów z bota-dystrybutora."
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL
 

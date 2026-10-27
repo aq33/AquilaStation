@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/listin
 	display_name = "Element Find"
-	desc = "Checks if an element is in a list and returns the index it is as if it is. Index is set to 0 on failure."
+	desc = "Sprawdza, czy element jest na liście, i jeśli tak, zwraca jego indeks. Przy niepowodzeniu indeks wynosi 0."
 	category = "List"
 
 	/// The list type we're checking

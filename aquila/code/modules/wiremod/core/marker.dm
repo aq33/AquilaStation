@@ -1,7 +1,7 @@
 /obj/item/multitool/circuit
 	name = "circuit multitool"
-	desc = "A circuit multitool. Used to mark entities which can then be uploaded to components by pressing the upload button on a port. \
-	Acts as a normal multitool otherwise. Use in hand to clear marked entity so that you can mark another entity."
+	desc = "Multitool do układów. Służy do oznaczania obiektów, które potem można wgrać do komponentów przyciskiem wgrywania przy porcie. \
+	Poza tym działa jak zwykły multitool. Użyj w ręce, aby wyczyścić oznaczony obiekt i móc oznaczyć kolejny."
 	icon_state = "multitool_circuit"
 	item_state = "multitool_circuit"
 	custom_materials = list(/datum/material/iron = (MINERAL_MATERIAL_AMOUNT / 2), /datum/material/glass = (MINERAL_MATERIAL_AMOUNT / 2))
@@ -15,7 +15,7 @@
 
 /obj/item/multitool/circuit/examine(mob/user)
 	. = ..()
-	. += span_notice("It has [marked_atom? "a" : "no"] marked entity registered.")
+	. += span_notice("[marked_atom? "Ma" : "Nie ma"] zapisanego oznaczonego obiektu.")
 
 /obj/item/multitool/circuit/attack_self(mob/user, modifiers)
 	. = ..()
@@ -24,7 +24,7 @@
 	if(!marked_atom)
 		return
 
-	say("Cleared marked targets.")
+	say("Wyczyszczono oznaczone cele.")
 	clear_marked_atom()
 	return TRUE
 
@@ -42,7 +42,7 @@
 	mark_target(target)
 
 /obj/item/multitool/circuit/proc/mark_target(atom/target)
-	say("Marked [target].")
+	say("Oznaczono: [target].")
 	marked_atom = target
 	RegisterSignal(marked_atom, COMSIG_QDELETING, PROC_REF(cleanup_marked_atom))
 	update_icon()
@@ -84,7 +84,7 @@
 	if(chosen == target || (chosen in get_markable_items(target)))
 		mark_target(chosen)
 	else
-		balloon_alert(user, "cannot mark entity")
+		balloon_alert(user, "nie można oznaczyć obiektu")
 
 /// Przedmioty na celu, które widać i można oznaczyć.
 /obj/item/multitool/circuit/proc/get_markable_items(mob/living/target)

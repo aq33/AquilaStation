@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/counter_overlay
 	display_name = "Counter Overlay"
-	desc = "A component that shows a three-digit counter. Requires a BCI shell."
+	desc = "Komponent, który wyświetla trzycyfrowy licznik. Wymaga obudowy BCI."
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)

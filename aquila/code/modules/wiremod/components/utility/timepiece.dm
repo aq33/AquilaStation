@@ -11,7 +11,7 @@
  */
 /obj/item/circuit_component/timepiece
 	display_name = "Timepiece"
-	desc = "A component that outputs the current station time. The text output port is used for time formats while the numerical output port is used for units of time."
+	desc = "Komponent, który zwraca obecny czas stacji. Tekstowy port wyjściowy służy do formatów czasu, a liczbowy do jednostek czasu."
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

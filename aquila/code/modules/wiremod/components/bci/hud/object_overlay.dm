@@ -9,7 +9,7 @@
 
 /obj/item/circuit_component/object_overlay
 	display_name = "Object Overlay"
-	desc = "Requires a BCI shell. A component that shows an overlay on top of an object."
+	desc = "Wymaga obudowy BCI. Komponent, który wyświetla nakładkę na obiekcie."
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)

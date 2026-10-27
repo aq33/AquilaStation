@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/decimal_conversion
 	display_name = "Decimal Conversion"
-	desc = "Merges an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations, into a decimal number."
+	desc = "Scala tablicę cyfr binarnych, czyli bitów, zapisanych jako 1 lub 0, często używanych w operacjach logicznych i binarnych, w liczbę dziesiętną."
 	category = "Math"
 
 	/// One number

@@ -1,6 +1,6 @@
 /obj/item/circuit_component/id_getter
 	display_name = "Get ID"
-	desc = "A component that returns the first available ID card on an organism."
+	desc = "Komponent, który zwraca pierwszą dostępną kartę ID organizmu."
 	category = "ID"
 
 	/// The input port
@@ -18,7 +18,7 @@
 
 /obj/item/circuit_component/id_getter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles.", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range].", "orange", "info")
 
 /obj/item/circuit_component/id_getter/populate_ports()
 	target = add_input_port("Target", PORT_TYPE_ATOM)

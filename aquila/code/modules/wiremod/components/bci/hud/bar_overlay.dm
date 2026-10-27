@@ -10,7 +10,7 @@
 
 /obj/item/circuit_component/object_overlay/bar
 	display_name = "Bar Overlay"
-	desc = "Requires a BCI shell. A component that shows a bar overlay atop an object, ranging from 0 to 100."
+	desc = "Wymaga obudowy BCI. Komponent, który wyświetla nad obiektem pasek w zakresie od 0 do 100."
 	category = "BCI"
 
 	var/datum/port/input/option/bar_overlay_options

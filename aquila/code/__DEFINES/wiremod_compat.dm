@@ -64,7 +64,7 @@
 #define COMSIG_DISPENSERBOT_REMOVE_ITEM "moneybot_remove_item"
 #define COMSIG_AIRLOCK_SHELL_ALLOWED "airlock_shell_try_allowed"
 	#define ACCESS_ALLOWED (1<<0)
-	#define ACCESS_DISALLOWED (1<<1)
+	// ACCESS_DISALLOWED jest już w heretic.dm
 #define COMSIG_SCANGATE_SHELL_PASS "scangate_shell_pass"
 #define COMSIG_GUN_CHAMBER_PROCESSED "gun_chamber_processed"
 #define COMSIG_EMITTER_MACHINE_SET_ON "emitter_machine_set_on"

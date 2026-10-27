@@ -4,12 +4,12 @@
 	custom_materials = list(/datum/material/iron = (MINERAL_MATERIAL_AMOUNT / 2))
 
 	// tg: implant_info
-	var/implant_info = "Functions as a shell for integrated circuits. Activation conditions and effects are defined by the installed circuit."
+	var/implant_info = "Działa jako obudowa dla układów scalonych. Warunki aktywacji i efekty zależą od zainstalowanego układu."
 
-	var/implant_lore = "The Subdermal Circuit Housing is a common implant design manufactured primarily by DIY electronics enthusiasts. \
-	Similar in concept to Brain-Computer Interfaces, these devices accept an integrated circuit, and support components that allow the \
-	user to trigger other installed components. What it gains in the ability to be implanted in non-humanoid hosts, it loses in physical \
-	capacity and support for various neural interfacing capabilities."
+	var/implant_lore = "Podskórna obudowa układu to popularny implant, wytwarzany głównie przez domorosłych elektroników. \
+	Podobnie jak interfejsy mózg-komputer, przyjmuje układ scalony i obsługuje komponenty, które pozwalają \
+	użytkownikowi wyzwalać inne zainstalowane komponenty. To, co zyskuje dzięki możliwości wszczepienia nosicielom innym niż humanoidy, traci \
+	na pojemności i obsłudze różnych funkcji połączenia z układem nerwowym."
 
 /obj/item/implant/circuit/Initialize(mapload)
 	. = ..()
@@ -37,7 +37,7 @@
 	var/mob/living/user = arguments[2]
 	var/force = arguments[4]
 	if(!force)
-		source.balloon_alert(user, "duplicate implant present!")
+		source.balloon_alert(user, "taki implant już jest!")
 		return COMPONENT_STOP_IMPLANTING
 
 /obj/item/implant/circuit/ui_host(mob/user)
@@ -47,7 +47,7 @@
 
 /obj/item/circuit_component/implant_core
 	display_name = "Implant Core"
-	desc = "Controls the core operations of the implant."
+	desc = "Steruje podstawowymi funkcjami implantu."
 
 	/// A reference to the action button to look at charge/get info
 	var/datum/action/innate/implant_charge_action/charge_action
@@ -147,7 +147,7 @@
 	if (implant.imp_in.stat == DEAD)
 		return
 
-	to_chat(implant.imp_in, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
+	to_chat(implant.imp_in, "<i>Słyszysz w głowie dziwny, robotyczny głos...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
 
 /obj/item/circuit_component/implant_core/proc/on_borg_charge(datum/source, datum/callback/charge_cell, seconds_per_tick)
 	SIGNAL_HANDLER
@@ -167,13 +167,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("You absorb some of the shock into your [parent.name]!"))
+	to_chat(source, span_notice("Część wstrząsu pochłania twój [parent.name]!"))
 
 /obj/item/circuit_component/implant_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice("[source.p_They()] [source.p_have()] <a href='byond://?src=[REF(src)];open_implant=1'>\a [parent] implanted in [source.p_them()]</a>.")
+		examine_text += span_notice("Ma wszczepiony <a href='byond://?src=[REF(src)];open_implant=1'>[parent]</a>.")
 
 /obj/item/circuit_component/implant_core/Topic(href, list/href_list)
 	..()
@@ -217,10 +217,10 @@
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning("[circuit_component.parent] has no power cell."))
+		to_chat(owner, span_boldwarning("[circuit_component.parent] nie ma ogniwa."))
 	else
-		to_chat(owner, span_info("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
-		to_chat(owner, span_info("You can recharge it by using a cyborg recharging station."))
+		to_chat(owner, span_info("[cell.name] w [circuit_component.parent] ma jeszcze <b>[cell.percent()]%</b> ładunku."))
+		to_chat(owner, span_info("Możesz je naładować w stacji ładowania cyborgów."))
 
 /datum/action/innate/implant_charge_action/process(delta_time)
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
@@ -228,7 +228,7 @@
 
 /obj/item/implantcase/circuit
 	name = "implant case - 'Circuit'"
-	desc = "A glass case containing a circuit implant shell."
+	desc = "Szklany pojemnik z obudową implantu układu."
 	imp_type = /obj/item/implant/circuit
 
 /obj/item/implant/circuit/get_data()

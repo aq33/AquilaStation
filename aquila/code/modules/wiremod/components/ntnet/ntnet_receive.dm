@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/ntnet_receive
 	display_name = "NTNet Receiver"
-	desc = "Receives data packages through NTNet. If Encryption Key is set then only signals with the same Encryption Key will be received."
+	desc = "Odbiera pakiety danych przez NTNet. Jeśli ustawiono klucz szyfrowania, odbierane będą tylko sygnały z tym samym kluczem."
 	category = "NTNet"
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL //trigger_output

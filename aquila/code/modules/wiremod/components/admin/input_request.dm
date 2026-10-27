@@ -9,7 +9,7 @@
  */
 /obj/item/circuit_component/input_request
 	display_name = "Input Request"
-	desc = "Converts a string into a typepath. Useful for adding components."
+	desc = "Komponent, który prosi gracza o podanie wartości."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
@@ -59,12 +59,12 @@
 	var/new_option = input_options.value
 	switch(new_option)
 		if(COMP_INPUT_STRING)
-			var/player_input = tgui_input_text(player, "Input a value", "Input value", max_length = MAX_MESSAGE_LEN)
+			var/player_input = tgui_input_text(player, "Podaj wartość", "Wprowadź wartość", max_length = MAX_MESSAGE_LEN)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
 		if(COMP_INPUT_NUMBER)
-			var/player_input = tgui_input_number(player, "Input a value", "Input value")
+			var/player_input = tgui_input_number(player, "Podaj wartość", "Wprowadź wartość")
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)
@@ -72,7 +72,7 @@
 			var/list/data = parameter.value
 			if(!islist(data))
 				return
-			var/player_input = tgui_input_list(player, "Input a value", "Input value", data)
+			var/player_input = tgui_input_list(player, "Podaj wartość", "Wprowadź wartość", data)
 			if(isnull(player_input))
 				return
 			input_response.set_output(player_input)

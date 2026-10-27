@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/filter_list
 	display_name = "Filter"
-	desc = "A component that loops through each element in a list and filters them."
+	desc = "Komponent, który przechodzi przez każdy element listy i je filtruje."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_INSTANT
 
@@ -76,7 +76,7 @@
 		index += 1
 		var/list/result = SScircuit_component.execute_instant_run()
 		if(!result)
-			balloon_alert_to_viewers("[src] starts to overheat!")
+			balloon_alert_to_viewers("[src] zaczyna się przegrzewać!")
 			on_failed.set_output(COMPONENT_SIGNAL)
 			return
 		if(result["accept_entry"])

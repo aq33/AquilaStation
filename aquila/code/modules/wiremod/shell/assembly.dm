@@ -5,7 +5,7 @@
  */
 /obj/item/assembly/wiremod
 	name = "circuit assembly"
-	desc = "A small electronic device that can house an integrated circuit."
+	desc = "Małe urządzenie elektroniczne, w którym można umieścić układ scalony."
 	icon_state = "wiremod"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -29,7 +29,7 @@
 
 /obj/item/assembly/wiremod/examine(mob/user)
 	. = ..()
-	. += span_notice("You can also [secured && "un"]secure [src] by right-clicking it with a screwdriver, even if an integrated circuit is attached.")
+	. += span_notice("Możesz też [secured ? "odbezpieczyć" : "zabezpieczyć"] [src], klikając prawym przyciskiem śrubokrętem, nawet z podłączonym układem scalonym.")
 
 // This is to bypass removing the circuit with a screwdriver left-click
 /obj/item/assembly/wiremod/screwdriver_act_secondary(mob/living/user, obj/item/tool)
@@ -37,7 +37,7 @@
 
 /obj/item/circuit_component/assembly_input
 	display_name = "Assembly Input"
-	desc = "Triggers when pulsed by an attached wire or assembly."
+	desc = "Wyzwala się, gdy dostanie impuls z podłączonego przewodu lub urządzenia."
 
 	var/datum/port/output/signal
 
@@ -56,7 +56,7 @@
 
 /obj/item/circuit_component/assembly_output
 	display_name = "Assembly Output"
-	desc = "Pulses an attached wire or assembly when triggered."
+	desc = "Po wyzwoleniu wysyła impuls do podłączonego przewodu lub urządzenia."
 
 	var/obj/item/assembly/attached_assembly
 

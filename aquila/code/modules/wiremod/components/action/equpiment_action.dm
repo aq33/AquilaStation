@@ -1,6 +1,7 @@
 /obj/item/circuit_component/equipment_action
 	display_name = "Equipment Action"
-	desc = "Represents an action the user can take when using supported shells."
+	desc = "Reprezentuje akcję, którą użytkownik może wykonać, korzystając z obsługiwanych obudów."
+	category = "BCI"
 	required_shells = list(/obj/item/organ/cyberimp/bci)
 
 	/// The icon of the button

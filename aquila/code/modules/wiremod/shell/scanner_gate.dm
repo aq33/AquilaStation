@@ -1,7 +1,7 @@
 /obj/structure/scanner_gate_shell
 	name = "circuit scanner gate"
-	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
-	icon = 'icons/obj/machines/scangate.dmi'
+	desc = "Bramka, która wykonuje średnio dokładne skany każdego organizmu przechodzącego pod nią."
+	icon = 'aquila/icons/obj/wiremod/scangate.dmi'
 	icon_state = "scangate_black"
 	var/locked = FALSE
 
@@ -22,7 +22,7 @@
 		return
 	setAnchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "secured" : "unsecured")
+	balloon_alert(user, anchored ? "przykręcono" : "odkręcono")
 	return TRUE
 
 /obj/structure/scanner_gate_shell/proc/on_entered(datum/source, atom/movable/AM)
@@ -38,7 +38,7 @@
 
 /obj/item/circuit_component/scanner_gate
 	display_name = "Scanner Gate"
-	desc = "A gate able to perform mid-depth scans on any object that pass through it."
+	desc = "Bramka, która wykonuje średnio dokładne skany każdego obiektu przechodzącego przez nią."
 
 	var/datum/port/output/scanned
 

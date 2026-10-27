@@ -6,7 +6,7 @@
  */
 /obj/item/circuit_component/list_pick/assoc
 	display_name = "Associative List Pick"
-	desc = "A component that lets a user pick 1 element from an associative list. Returns the selected element."
+	desc = "Komponent, który pozwala użytkownikowi wybrać 1 element z listy asocjacyjnej. Zwraca wybrany element."
 	category = "List"
 
 /obj/item/circuit_component/list_pick/assoc/populate_options()

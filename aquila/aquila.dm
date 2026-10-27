@@ -982,6 +982,7 @@
 #include "code\modules\test_chamber\kits\pr_426_pajaki_tg.dm"
 #include "code\modules\test_chamber\kits\pr_483_kuznia_amunicji.dm"
 #include "code\modules\test_chamber\kits\pr_489_shipbreaking.dm"
+#include "code\modules\test_chamber\kits\pr_wiremod_tg.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1428,6 +1429,7 @@
 #include "code\modules\wiremod\components\list\list_pick.dm"
 #include "code\modules\wiremod\components\list\list_remove.dm"
 #include "code\modules\wiremod\components\list\split.dm"
+#include "code\modules\wiremod\components\math\aquila_math.dm"
 #include "code\modules\wiremod\components\math\arctan2.dm"
 #include "code\modules\wiremod\components\math\arithmetic.dm"
 #include "code\modules\wiremod\components\math\binary_conversion.dm"
@@ -1530,6 +1532,7 @@
 #include "code\modules\research\designs\wiremod\shell_designs.dm"
 #include "code\modules\research\designs\wiremod\string_designs.dm"
 #include "code\modules\research\designs\wiremod\utility_designs.dm"
+#include "code\modules\research\techweb\wiremod_nodes.dm"
 // Wiremod z tg - koniec
 
 #ifdef UNIT_TESTS
@@ -1600,6 +1603,7 @@
 #include "code\modules\unit_tests\aquila_vitals_reader.dm"
 #include "code\modules\unit_tests\aquila_wounds.dm"
 #include "code\modules\unit_tests\aquila_votes.dm"
+#include "code\modules\unit_tests\aquila_wiremod.dm"
 #include "code\modules\unit_tests\aquila_xenobio_tubes.dm"
 #include "code\modules\unit_tests\atoms_init_state.dm"
 #include "code\modules\unit_tests\bee_floor_sprites.dm"

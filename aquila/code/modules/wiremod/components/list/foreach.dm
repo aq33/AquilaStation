@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/foreach
 	display_name = "For Each"
-	desc = "A component that loops through each element in a list."
+	desc = "Komponent, który przechodzi przez każdy element listy."
 	category = "List"
 
 	/// The list type

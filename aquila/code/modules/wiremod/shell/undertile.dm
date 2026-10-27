@@ -1,6 +1,6 @@
 /obj/item/undertile_circuit
 	name = "circuit panel"
-	desc = "A panel for an integrated circuit. It needs to be fit under a floor tile to operate."
+	desc = "Panel na układ scalony. Aby działał, trzeba go zamontować pod płytką podłogi."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	item_state = "flashtool"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/gps
 	display_name = "Internal GPS"
-	desc = "A component that returns the xyz co-ordinates of itself."
+	desc = "Komponent, który zwraca własne współrzędne xyz."
 	category = "Entity"
 
 	/// The result from the output

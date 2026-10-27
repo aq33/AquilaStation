@@ -1,7 +1,7 @@
 /datum/design/integrated_circuit
 	name = "Integrated Circuit"
 	id = "integrated_circuit"
-	desc = "The foundation of all circuits. All Circuitry go onto this."
+	desc = "Podstawa wszystkich układów. Na niej montuje się całą elektronikę."
 	build_path = /obj/item/integrated_circuit
 	build_type = COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_CORE)
@@ -11,7 +11,7 @@
 /datum/design/circuit_multitool
 	name = "Circuit Multitool"
 	id = "circuit_multitool"
-	desc = "A circuit multitool to mark entities and load them into."
+	desc = "Multitool do układów, służący do oznaczania obiektów i wczytywania ich do układu."
 	build_path = /obj/item/multitool/circuit
 	build_type = COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_CORE)
@@ -21,7 +21,7 @@
 /datum/design/usb_cable
 	name = "USB Cable"
 	id = "usb_cable"
-	desc = "A cable that allows certain shells to connect to nearby computers and machines."
+	desc = "Kabel, który pozwala niektórym obudowom łączyć się z pobliskimi komputerami i maszynami."
 	build_path = /obj/item/usb_cable
 	build_type = COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_CORE)
@@ -30,7 +30,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/component
-	desc = "A component that goes into an integrated circuit."
+	desc = "Komponent montowany w układzie scalonym."
 	build_type = IMPRINTER | COMPONENT_PRINTER
 	materials = list(/datum/material/glass = (MINERAL_MATERIAL_AMOUNT / 2))
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE

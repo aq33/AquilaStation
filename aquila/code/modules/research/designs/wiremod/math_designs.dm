@@ -55,3 +55,24 @@
 	name = "Length Component"
 	id = "comp_length"
 	build_path = /obj/item/circuit_component/length
+
+// Komponenty ze starego wiremoda, których tg nie ma (aquila_math.dm)
+/datum/design/component/math/bitwise
+	name = "Bitwise Component"
+	id = "comp_bitwise"
+	build_path = /obj/item/circuit_component/bitwise
+
+/datum/design/component/math/bitflag
+	name = "Bitflag Component"
+	id = "comp_bitflag"
+	build_path = /obj/item/circuit_component/compare/bitflag
+
+/datum/design/component/math/round
+	name = "Round Component"
+	id = "comp_round"
+	build_path = /obj/item/circuit_component/round
+
+/datum/design/component/math/advanced_trigonometry
+	name = "Advanced Trigonometry Component"
+	id = "comp_adv_trig"
+	build_path = /obj/item/circuit_component/advanced_trigonometry

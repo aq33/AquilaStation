@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/bci
 	name = "brain-computer interface"
-	desc = "An implant that can be placed in a user's head to control circuits using their brain."
+	desc = "Implant umieszczany w głowie, który pozwala sterować układami za pomocą mózgu."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "bci"
 	zone = BODY_ZONE_HEAD
@@ -57,7 +57,7 @@
 
 /obj/item/circuit_component/bci_core
 	display_name = "BCI Core"
-	desc = "Controls the core operations of the BCI."
+	desc = "Steruje podstawowymi funkcjami BCI."
 
 	/// A reference to the action button to look at charge/get info
 	var/datum/action/innate/bci_charge_action/charge_action
@@ -135,7 +135,7 @@
 	if (bci.owner.stat == DEAD)
 		return
 
-	to_chat(bci.owner, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
+	to_chat(bci.owner, "<i>Słyszysz w głowie dziwny, robotyczny głos...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
 
 /obj/item/circuit_component/bci_core/proc/on_organ_implanted(datum/source, mob/living/carbon/owner)
 	SIGNAL_HANDLER
@@ -174,13 +174,13 @@
 		return
 
 	parent.cell.give(shock_damage * 2)
-	to_chat(source, span_notice("You absorb some of the shock into your [parent.name]!"))
+	to_chat(source, span_notice("Część wstrząsu pochłania twój [parent.name]!"))
 
 /obj/item/circuit_component/bci_core/proc/on_examine(datum/source, mob/mob, list/examine_text)
 	SIGNAL_HANDLER
 
 	if (isobserver(mob))
-		examine_text += span_notice("[source.p_They()] [source.p_have()] <a href='byond://?src=[REF(src)];open_bci=1'>\a [parent] implanted in [source.p_them()]</a>.")
+		examine_text += span_notice("Ma wszczepiony <a href='byond://?src=[REF(src)];open_bci=1'>[parent]</a>.")
 
 /obj/item/circuit_component/bci_core/Topic(href, list/href_list)
 	..()
@@ -224,10 +224,10 @@
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
 
 	if (isnull(cell))
-		to_chat(owner, span_boldwarning("[circuit_component.parent] has no power cell."))
+		to_chat(owner, span_boldwarning("[circuit_component.parent] nie ma ogniwa."))
 	else
-		to_chat(owner, span_info("[circuit_component.parent]'s [cell.name] has <b>[cell.percent()]%</b> charge left."))
-		to_chat(owner, span_info("You can recharge it by using a cyborg recharging station."))
+		to_chat(owner, span_info("[cell.name] w [circuit_component.parent] ma jeszcze <b>[cell.percent()]%</b> ładunku."))
+		to_chat(owner, span_info("Możesz je naładować w stacji ładowania cyborgów."))
 
 /datum/action/innate/bci_charge_action/process(delta_time)
 	var/obj/item/stock_parts/cell/cell = circuit_component.parent.cell
@@ -235,7 +235,7 @@
 
 /obj/machinery/bci_implanter
 	name = "brain-computer interface manipulation chamber"
-	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
+	desc = "Maszyna, która wszczepia osobie w środku włożony interfejs mózg-komputer. Bez niego usuwa każdy interfejs, który ta osoba już ma."
 	circuit = /obj/item/circuitboard/machine/bci_implanter
 	icon = 'aquila/icons/obj/wiremod/bci_implanter.dmi'
 	icon_state = "bci_implanter"
@@ -266,9 +266,9 @@
 /obj/machinery/bci_implanter/examine(mob/user)
 	. = ..()
 	if (isnull(bci_to_implant))
-		. += span_notice("There is no BCI inserted.")
+		. += span_notice("Nie ma włożonego BCI.")
 	else
-		. += span_notice("Right-click to remove current BCI.")
+		. += span_notice("Kliknij prawym, aby wyjąć obecny BCI.")
 
 /obj/machinery/bci_implanter/proc/set_busy(status, working_icon)
 	busy = status
@@ -311,14 +311,14 @@
 		return
 
 	if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "zablokowane!")
 		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 	if (isnull(bci_to_implant))
-		balloon_alert(user, "no bci inserted!")
+		balloon_alert(user, "brak włożonego bci!")
 	else
 		user.put_in_hands(bci_to_implant)
-		balloon_alert(user, "ejected bci")
+		balloon_alert(user, "wysunięto bci")
 
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
@@ -328,16 +328,16 @@
 
 	var/obj/item/organ/cyberimp/bci/new_bci = tool
 	if (!(locate(/obj/item/integrated_circuit) in new_bci))
-		balloon_alert(user, "bci has no circuit!")
+		balloon_alert(user, "bci nie ma układu!")
 		return TRUE
 
 	var/obj/item/organ/cyberimp/bci/previous_bci_to_implant = bci_to_implant
 	user.transferItemToLoc(new_bci, src)
 	bci_to_implant = new_bci
 	if (isnull(previous_bci_to_implant))
-		balloon_alert(user, "inserted bci")
+		balloon_alert(user, "włożono bci")
 	else
-		balloon_alert(user, "swapped bci")
+		balloon_alert(user, "zamieniono bci")
 		user.put_in_hands(previous_bci_to_implant)
 	return TRUE
 
@@ -384,14 +384,14 @@
 		bci_organ.Remove(carbon_occupant)
 
 		if (isnull(bci_to_implant))
-			say("Occupant's previous brain-computer interface has been transferred to internal storage unit.")
+			say("Poprzedni interfejs mózg-komputer pacjenta przeniesiono do wewnętrznego magazynu.")
 			carbon_occupant.transferItemToLoc(bci_organ, src)
 			bci_to_implant = bci_organ
 		else
-			say("Occupant's previous brain-computer interface has been ejected.")
+			say("Poprzedni interfejs mózg-komputer pacjenta został wysunięty.")
 			bci_organ.forceMove(drop_location())
 	else if (!isnull(bci_to_implant))
-		say("Occupant has been injected with [bci_to_implant].")
+		say("Pacjentowi wszczepiono [bci_to_implant].")
 		bci_to_implant.Insert(carbon_occupant)
 
 /obj/machinery/bci_implanter/open_machine(drop = TRUE)
@@ -413,7 +413,7 @@
 	if (istype(occupant))
 		var/obj/item/organ/cyberimp/bci/bci_organ = carbon_occupant.getorgan(/obj/item/organ/cyberimp/bci)
 		if (isnull(bci_organ) && isnull(bci_to_implant))
-			say("No brain-computer interface inserted, and occupant does not have one. Insert a BCI to implant one.")
+			say("Nie włożono interfejsu mózg-komputer, a pacjent go nie ma. Włóż BCI, aby go wszczepić.")
 			playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 			return FALSE
 
@@ -424,9 +424,9 @@
 	var/message
 
 	if (locked)
-		message = "it won't budge!"
+		message = "ani drgnie!"
 	else if (IS_UNCONSCIOUS_OR_CRIT(user))
-		message = "you don't have the energy!"
+		message = "nie masz na to siły!"
 
 	if (!isnull(message))
 		if (COOLDOWN_FINISHED(src, message_cooldown))
@@ -442,7 +442,7 @@
 		close_machine()
 		return
 	else if (locked)
-		balloon_alert(user, "it's locked!")
+		balloon_alert(user, "zablokowane!")
 		return
 
 	open_machine()

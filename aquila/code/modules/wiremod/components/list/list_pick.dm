@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/list_pick
 	display_name = "List Pick"
-	desc = "A component that lets a user pick 1 element from a list. Returns the selected element."
+	desc = "Komponent, który pozwala użytkownikowi wybrać 1 element z listy. Zwraca wybrany element."
 	category = "List"
 
 	/// The data type of the input_list
@@ -52,7 +52,7 @@
 		failure.set_output(COMPONENT_SIGNAL)
 		return
 	if(!message)
-		message = "circuit input"
+		message = "wejście układu"
 	if(!(user.canUseTopic(parent.shell, BE_CLOSE, FALSE, NO_TK)))
 		failure.set_output(COMPONENT_SIGNAL)
 		return

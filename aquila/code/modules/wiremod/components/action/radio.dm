@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/radio
 	display_name = "Radio"
-	desc = "A component that can listen and send frequencies. If set to private, the component will only receive signals from other components attached to circuitboards with the same owner id."
+	desc = "Komponent, który nasłuchuje i nadaje na częstotliwościach. W trybie prywatnym odbiera sygnały tylko od komponentów w układach o tym samym ID właściciela."
 	category = "Action"
 
 	/// The publicity options. Controls whether it's public or private.
@@ -37,7 +37,7 @@
 /obj/item/circuit_component/radio/Initialize(mapload)
 	. = ..()
 	if(signal_cooldown_time > 0)
-		desc = "[desc] It has a [signal_cooldown_time * 0.1] second cooldown between sending signals."
+		desc = "[desc] Między wysłaniem kolejnych sygnałów ma [signal_cooldown_time * 0.1] s odnowienia."
 
 /obj/item/circuit_component/radio/register_shell(atom/movable/shell)
 	parent_shell = shell
@@ -99,7 +99,7 @@
 		investigate_log(loggable_string, INVESTIGATE_TELESCI)
 		TIMER_COOLDOWN_START(parent, COOLDOWN_SIGNALLER_SEND, signal_cooldown_time)
 
-		var/datum/signal/signal = new(list("code" = signal_code, "key" = parent?.owner_id), logging_data = loggable_string)
+		var/datum/signal/signal = new(list("code" = signal_code, "key" = parent?.owner_id))
 		radio_connection.post_signal(src, signal)
 
 /obj/item/circuit_component/radio/receive_signal(datum/signal/signal)

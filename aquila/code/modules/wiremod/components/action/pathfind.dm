@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/pathfind
 	display_name = "Pathfinder"
-	desc = "When triggered, the next step to the target's location as an entity. This can be used with the direction component and the drone shell to make it move on its own. The Id Card input port is for considering ID access when pathing, it does not give the shell actual access."
+	desc = "Po aktywacji zwraca jako obiekt następny krok w stronę celu. W połączeniu z komponentem kierunku i obudową drona pozwala jej poruszać się samodzielnie. Port karty ID służy do uwzględniania dostępu przy wyznaczaniu trasy, nie daje obudowie faktycznego dostępu."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -31,8 +31,8 @@
 /obj/item/circuit_component/pathfind/get_ui_notices()
 	. = ..()
 	// Not necessary to show the same path cooldown, since it doesn't change much for the player
-	. += create_ui_notice("Pathfinding Cooldown: [DisplayTimeText(different_path_cooldown)]", "orange", "stopwatch")
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Odnowienie wyznaczania trasy: [DisplayTimeText(different_path_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 
 /obj/item/circuit_component/pathfind/populate_ports()
 	input_X = add_input_port("Target X", PORT_TYPE_NUMBER, trigger = null)
@@ -56,13 +56,12 @@
 	if(isnull(target_Y))
 		return
 
-	var/list/access = list()
+	var/obj/item/card/id/id
 	if(isidcard(id_card.value))
-		var/obj/item/card/id/id = id_card.value
-		access = id.GetAccess()
+		id = id_card.value
 	else if (id_card.value)
 		failed.set_output(COMPONENT_SIGNAL)
-		reason_failed.set_output("Object marked is not an ID! Using no ID instead.")
+		reason_failed.set_output("Oznaczony obiekt nie jest kartą ID! Trasa bez karty.")
 
 	// Get both the current turf and the destination's turf
 	var/turf/current_turf = get_location()
@@ -94,17 +93,17 @@
 
 		if(destination != old_dest && TIMER_COOLDOWN_RUNNING(parent, COOLDOWN_CIRCUIT_PATHFIND_DIF))
 			failed.set_output(COMPONENT_SIGNAL)
-			reason_failed.set_output("Cooldown still active!")
+			reason_failed.set_output("Odnowienie wciąż trwa!")
 			return
 
 		TIMER_COOLDOWN_END(parent, COOLDOWN_CIRCUIT_PATHFIND_SAME)
 
 		old_dest = destination
-		path = get_path_to(src, destination, max_range, access=access)
+		path = get_path_to(src, destination, max_range, id = id)
 		if(length(path) == 0 || !path)// Check if we can even path there
 			next_turf = null
 			failed.set_output(COMPONENT_SIGNAL)
-			reason_failed.set_output("Can't go there!")
+			reason_failed.set_output("Nie da się tam dojść!")
 			return
 		else
 			TIMER_COOLDOWN_START(parent, COOLDOWN_CIRCUIT_PATHFIND_DIF, different_path_cooldown)

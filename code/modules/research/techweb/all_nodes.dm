@@ -64,10 +64,16 @@
 	starting_node = TRUE
 	display_name = "Podstawowe układy scalone"
 	description = "Badania nad pełnym wykorzystaniem mocy układów scalonych"
-	design_ids = list("integrated_circuit", "circuit_multitool", "comp_arithmetic", "comp_clock", "comp_combiner", "comp_comparison", "comp_delay",
-		"comp_direction", "comp_get_column", "comp_gps", "comp_health", "comp_hear", "comp_light", "comp_logic", "comp_index_table", "comp_mmi", "comp_multiplexer", "comp_not", "comp_ram",
-		"comp_random", "comp_round", "comp_select_query", "comp_species", "comp_textcase", "comp_trig", "comp_speech", "comp_concat", "comp_concat_list", "comp_speech", "comp_self", "comp_soundemitter", "comp_radio", "comp_tostring",
-		"comp_typecast", "compact_remote_shell", "component_printer", "comp_string_contains", "usb_cable")
+	design_ids = list(
+		"circuit_multitool", "comp_access_checker", "comp_arithmetic", "comp_clock", "comp_compare_health_state", "comp_comparison", "comp_concat",
+		"comp_concat_list", "comp_delay", "comp_direction", "comp_get_column", "comp_gps", "comp_health", "comp_hear", "comp_id_access_reader",
+		"comp_id_getter", "comp_id_info_reader", "comp_index_table", "comp_laserpointer", "comp_length", "comp_light", "comp_logic", "comp_matscanner",
+		"comp_mmi", "comp_module", "comp_multiplexer", "comp_nfc_receive", "comp_nfc_send", "comp_not", "comp_ntnet_receive", "comp_ntnet_send",
+		"comp_ntnet_send_literal", "comp_pinpointer", "comp_pressuresensor", "comp_radio", "comp_random", "comp_reagentscanner", "comp_replace",
+		"comp_round", "comp_router", "comp_select_query", "comp_self", "comp_setter_trigger", "comp_soundemitter", "comp_species", "comp_speech",
+		"comp_string_contains", "comp_tempsensor", "comp_textcase", "comp_timepiece", "comp_toggle", "comp_tonumber", "comp_tostring", "comp_trig",
+		"comp_typecast", "comp_typecheck", "comp_view_sensor", "comp_wirenet_receive", "comp_wirenet_send", "comp_wirenet_send_literal",
+		"compact_remote_shell", "component_printer", "integrated_circuit", "usb_cable") // AQ EDIT - wiremod z tg
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -362,7 +368,8 @@
 	display_name = "Układy matematyczne"
 	description = "Opracowanie bardziej złożonych komponentów matematycznych na wszelkie potrzeby manipulowania liczbami"
 	prereq_ids = list("basic_circuitry", "datatheory")
-	design_ids = list("comp_adv_trig","comp_hyper_trig", "comp_bitwise", "comp_bitflag")
+	design_ids = list(
+		"comp_adv_trig", "comp_arctan2", "comp_binary_conversion", "comp_bitflag", "comp_bitwise", "comp_decimal_conversion") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/list_circuits
@@ -371,7 +378,10 @@
 	display_name = "Układy list"
 	description = "Konfiguruje nowe komponenty układów scalonych zdolne do reprezentowania jednowymiarowych struktur danych, takich jak tablice, stosy i kolejki."
 	prereq_ids = list("basic_circuitry", "datatheory")
-	design_ids = list("comp_index", "comp_write", "comp_append", "comp_pop", "comp_length", "comp_list_constructor", "comp_list_length_constructor")
+	design_ids = list(
+		"comp_append", "comp_assoc_list_remove", "comp_assoc_list_set", "comp_assoc_literal", "comp_clear", "comp_filter", "comp_find", "comp_foreach",
+		"comp_format", "comp_format_assoc", "comp_index", "comp_index_assoc", "comp_list_constructor", "comp_pick", "comp_pick_assoc", "comp_remove",
+		"comp_split") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 
 /datum/techweb_node/adv_shells
@@ -380,7 +390,9 @@
 	display_name = "Zaawansowane badania obudów"
 	description = "Daje dostęp do bardziej skomplikowanych projektów obudów."
 	prereq_ids = list("basic_circuitry", "engineering")
-	design_ids = list("controller_shell", "scanner_shell", "bot_shell", "door_shell", "money_bot_shell", "assembly_shell")
+	design_ids = list(
+		"assembly_shell", "bot_shell", "comp_equipment_action", "controller_shell", "dispenser_shell", "door_shell", "gun_shell", "implant_shell",
+		"keyboard_shell", "money_bot_shell", "scanner_gate_shell", "scanner_shell", "undertile_shell", "wallmount_shell") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/movable_shells_tech
@@ -389,7 +401,8 @@
 	display_name = "Badania ruchomych obudów"
 	description = "Daje dostęp do ruchomych obudów."
 	prereq_ids = list("adv_shells", "robotics")
-	design_ids = list("comp_pull", "drone_shell")
+	design_ids = list(
+		"comp_pathfind", "comp_pull", "drone_shell") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 /datum/techweb_node/server_shell_tech
@@ -398,7 +411,8 @@
 	display_name = "Badania technologii serwerowej"
 	description = "Daje dostęp do obudowy serwerowej o bardzo dużej pojemności na komponenty."
 	prereq_ids = list("adv_shells", "computer_hardware_basic")
-	design_ids = list("server_shell")
+	design_ids = list(
+		"server_shell") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 
 /////////////////////////robotics tech/////////////////////////

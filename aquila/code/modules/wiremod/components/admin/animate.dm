@@ -3,7 +3,7 @@
 
 /obj/item/circuit_component/begin_animation
 	display_name = "Begin Animation"
-	desc = "Begins an animation on the target. Create animation steps by chaining \"Animation Step\" components off of the \"Perform Animation\" port."
+	desc = "Rozpoczyna animację celu. Kroki animacji tworzy się, podpinając łańcuch komponentów \"Animation Step\" do portu \"Perform Animation\"."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_INSTANT|CIRCUIT_FLAG_ADMIN
 
@@ -96,7 +96,7 @@
 
 /obj/item/circuit_component/animation_step
 	display_name = "Animation Step"
-	desc = "Perform a single animation step. The input of this component should be connected, directly or indirectly, to the \"Perform Animation\" port of a \"Begin Animation\" component."
+	desc = "Wykonuje pojedynczy krok animacji. Wejście tego komponentu powinno być połączone, bezpośrednio lub pośrednio, z portem \"Perform Animation\" komponentu \"Begin Animation\"."
 	category = "Admin"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

@@ -23,7 +23,7 @@
 
 /obj/item/circuit_component/bot
 	display_name = "Bot"
-	desc = "Triggers when someone interacts with the bot."
+	desc = "Wyzwala się, gdy ktoś wejdzie w interakcję z botem."
 
 	/// Called when attack_hand is called on the shell.
 	var/datum/port/output/signal
@@ -42,7 +42,7 @@
 
 /obj/item/circuit_component/bot/proc/on_attack_hand(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "pushed button")
+	source.balloon_alert(user, "wciśnięto przycisk")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

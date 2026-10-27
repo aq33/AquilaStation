@@ -3,7 +3,7 @@
  */
 /obj/item/circuit_component/emitter
 	display_name = "Emitter"
-	desc = "Allows you to manually fire and get the ready status of an emitter. Must be unlocked to use fired signal."
+	desc = "Pozwala ręcznie strzelać z emitera i sprawdzać jego gotowość. Emiter musi być odblokowany, by użyć sygnału strzału."
 
 	///Manually trigger the emitter
 	var/datum/port/input/fire

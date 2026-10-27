@@ -1,6 +1,6 @@
 /obj/item/circuit_component/id_access_reader
 	display_name = "Read ID Access"
-	desc = "A component that reads the access on an ID."
+	desc = "Komponent, który odczytuje dostępy z karty ID."
 	category = "ID"
 
 	/// The input port
@@ -15,7 +15,7 @@
 
 /obj/item/circuit_component/id_access_reader/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles.", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range].", "orange", "info")
 
 /obj/item/circuit_component/id_access_reader/populate_ports()
 	target = add_input_port("Target", PORT_TYPE_ATOM)

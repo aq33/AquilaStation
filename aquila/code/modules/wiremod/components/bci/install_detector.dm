@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/install_detector
 	display_name = "Install Detector"
-	desc = "A component that detects when the circuit is installed or removed from its user."
+	desc = "Komponent, który wykrywa zainstalowanie układu w użytkowniku lub wyjęcie go."
 	category = "Entity"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci, /obj/item/implant)

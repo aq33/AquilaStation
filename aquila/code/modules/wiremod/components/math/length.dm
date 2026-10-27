@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/length
 	display_name = "Length"
-	desc = "A component that returns the length of its input."
+	desc = "Komponent, który zwraca długość wejścia."
 	category = "Math"
 
 	/// The input port

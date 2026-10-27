@@ -1,22 +1,26 @@
 import { Box, Button, Flex } from 'tgui-core/components';
 
-import { DATATYPE_NAMES, getConnectedRefs } from './constants';
-import { FUNDAMENTAL_DATA_TYPES } from './FundamentalTypes';
+import { translateDatatype } from './constants';
+import {
+  DATATYPE_DISPLAY_HANDLERS,
+  FUNDAMENTAL_DATA_TYPES,
+} from './FundamentalTypes';
 
 export const DisplayName = (props) => {
   const { port, isOutput, componentId, portIndex, act, ...rest } = props;
 
-  // W naszym DM typ null oznacza port przyjmujący dowolne dane.
-  const portType = port.type || 'any';
-  const InputComponent = FUNDAMENTAL_DATA_TYPES[portType];
+  const InputComponent = FUNDAMENTAL_DATA_TYPES[port.type || 'unknown'];
+  const TypeDisplayHandler = DATATYPE_DISPLAY_HANDLERS[port.type || 'unknown'];
 
   const hasInput =
     !isOutput &&
-    !getConnectedRefs(port).length &&
-    !!componentId &&
+    !port.connected_to?.length &&
+    (componentId || port.type === 'option') &&
     InputComponent;
 
-  const displayType = DATATYPE_NAMES[portType] || portType;
+  const displayType = TypeDisplayHandler
+    ? TypeDisplayHandler(port)
+    : translateDatatype(port.type);
 
   return (
     <Box {...rest}>
@@ -35,6 +39,7 @@ export const DisplayName = (props) => {
               color={port.color}
               name={port.name}
               value={port.current_data}
+              extraData={port.datatype_data}
             />
           ) : isOutput ? (
             <Button
@@ -60,7 +65,7 @@ export const DisplayName = (props) => {
             opacity={0.5}
             textAlign={isOutput ? 'right' : 'left'}
           >
-            {displayType}
+            {displayType || 'nieznany'}
           </Box>
         </Flex.Item>
       </Flex>

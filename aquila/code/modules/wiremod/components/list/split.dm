@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/split
 	display_name = "Split"
-	desc = "Splits a string by the separator, turning it into a list"
+	desc = "Dzieli tekst według separatora, zamieniając go w listę."
 	category = "List"
 
 	/// The input port

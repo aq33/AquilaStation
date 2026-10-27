@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import { Box, Button, Dropdown, Stack } from 'tgui-core/components';
+import { Box, Button, Stack } from 'tgui-core/components';
 import { classes, shallowDiffers } from 'tgui-core/react';
 
 import { ABSOLUTE_Y_OFFSET, noop } from './constants';
 import { Port } from './Port';
 
-export class ObjectComponent extends Component<any, any> {
+export class ObjectComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,11 +18,6 @@ export class ObjectComponent extends Component<any, any> {
     this.handleStartDrag = this.handleStartDrag.bind(this);
     this.handleStopDrag = this.handleStopDrag.bind(this);
     this.handleDrag = this.handleDrag.bind(this);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('mousemove', this.handleDrag);
-    window.removeEventListener('mouseup', this.handleStopDrag);
   }
 
   handleStartDrag(e) {
@@ -39,13 +34,13 @@ export class ObjectComponent extends Component<any, any> {
   }
 
   handleStopDrag(e) {
-    const { dragPos, isDragging } = this.state;
-    const { index, act = noop } = this.props;
-    if (dragPos && isDragging) {
+    const { dragPos } = this.state;
+    const { index, act = () => _ } = this.props;
+    if (dragPos) {
       act('set_component_coordinates', {
         component_id: index,
-        rel_x: dragPos.x,
-        rel_y: dragPos.y,
+        rel_x: this.roundToGrid(dragPos.x),
+        rel_y: this.roundToGrid(dragPos.y),
       });
     }
 
@@ -86,6 +81,12 @@ export class ObjectComponent extends Component<any, any> {
     );
   }
 
+  // Round the units to the grid (bypass if grid mode is off)
+  roundToGrid(input_value) {
+    if (!this.props.gridMode) return input_value;
+    return Math.round(input_value / 10) * 10;
+  }
+
   render() {
     const {
       input_ports,
@@ -94,12 +95,10 @@ export class ObjectComponent extends Component<any, any> {
       x,
       y,
       index,
-      // Nasz DM nie wysyła kategorii, więc wszystkie komponenty mają
-      // kolor "Unassigned" (niebieski, jak dawniej).
       category = 'Unassigned',
-      options,
-      option,
       removable,
+      ui_alerts,
+      ui_buttons,
       locations,
       onPortUpdated = noop,
       onPortLoaded = noop,
@@ -107,14 +106,15 @@ export class ObjectComponent extends Component<any, any> {
       onPortRightClick = noop,
       onPortMouseUp = noop,
       act = noop,
+      gridMode = true,
       ...rest
     } = this.props;
     const { startPos, dragPos } = this.state;
 
     let [x_pos, y_pos] = [x, y];
     if (dragPos && startPos && startPos.x === x_pos && startPos.y === y_pos) {
-      x_pos = dragPos.x;
-      y_pos = dragPos.y;
+      x_pos = this.roundToGrid(dragPos.x);
+      y_pos = this.roundToGrid(dragPos.y);
     }
 
     // Assigned onto the ports
@@ -134,6 +134,7 @@ export class ObjectComponent extends Component<any, any> {
         top={`${y_pos}px`}
         onMouseDown={this.handleStartDrag}
         onMouseUp={this.handleStopDrag}
+        onComponentWillUnmount={this.handleDrag}
         {...rest}
       >
         <Box
@@ -145,32 +146,41 @@ export class ObjectComponent extends Component<any, any> {
           ])}
         >
           <Stack>
-            <Stack.Item grow={1}>{name}</Stack.Item>
-            {/* AQUILA: wybór opcji komponentu z naszego DM (w tg to port typu option) */}
-            {!!options && (
-              <Stack.Item onMouseDown={(e) => e.stopPropagation()}>
-                <Dropdown
-                  className="IntegratedCircuit__BlueBorder"
-                  color="transparent"
-                  noChevron
-                  over
-                  options={options}
-                  displayText={option}
-                  selected={option}
-                  onSelected={(selected) =>
-                    act('set_component_option', {
-                      component_id: index,
-                      option: selected,
-                    })
-                  }
-                />
-              </Stack.Item>
-            )}
+            <Stack.Item grow={1} unselectable="on">
+              {name}
+            </Stack.Item>
+            {!!ui_buttons &&
+              Object.keys(ui_buttons).map((icon) => (
+                <Stack.Item key={icon}>
+                  <Button
+                    icon={icon}
+                    compact
+                    className={`ObjectComponent__Category__${category}`}
+                    onClick={() =>
+                      act('perform_action', {
+                        component_id: index,
+                        action_name: ui_buttons[icon],
+                      })
+                    }
+                  />
+                </Stack.Item>
+              ))}
+            {!!ui_alerts &&
+              Object.keys(ui_alerts).map((icon) => (
+                <Stack.Item key={icon}>
+                  <Button
+                    className={`ObjectComponent__Category__${category}`}
+                    icon={icon}
+                    compact
+                    tooltip={ui_alerts[icon]}
+                  />
+                </Stack.Item>
+              ))}
             <Stack.Item>
               <Button
                 icon="info"
                 compact
-                tooltip="Informacje"
+                tooltip="Informacje o komponencie"
                 className={`ObjectComponent__Category__${category}`}
                 onClick={(e) =>
                   act('set_examined_component', {
@@ -196,7 +206,12 @@ export class ObjectComponent extends Component<any, any> {
             )}
           </Stack>
         </Box>
-        <Box className="ObjectComponent__Content" py={1} px={1}>
+        <Box
+          className="ObjectComponent__Content"
+          unselectable="on"
+          py={1}
+          px={1}
+        >
           <Stack>
             <Stack.Item>
               <Stack vertical fill>

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/clock
 	display_name = "Clock"
-	desc = "A component that repeatedly fires."
+	desc = "Komponent, który wyzwala się cyklicznie."
 	category = "Utility"
 
 	/// Whether the clock is on or not
@@ -16,7 +16,7 @@
 
 /obj/item/circuit_component/clock/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Clock Interval: [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+	. += create_ui_notice("Interwał zegara: [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/clock/populate_ports()
 	on = add_input_port("On", PORT_TYPE_BOOLEAN)

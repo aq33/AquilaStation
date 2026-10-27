@@ -5,17 +5,17 @@
  */
 /obj/item/shell
 	name = "assembly"
-	desc = "A shell assembly that can be completed by screwdrivering it."
+	desc = "Niedokończona obudowa. Dokręć ją śrubokrętem, aby ją złożyć."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	var/shell_to_spawn
 	var/screw_delay = 3 SECONDS
 
 /obj/item/shell/screwdriver_act(mob/living/user, obj/item/tool)
-	user.visible_message(span_notice("[user] begins finishing [src]."), span_notice("You begin finishing [src]."))
+	user.visible_message(span_notice("[user] zaczyna składać [src]."), span_notice("Zaczynasz składać [src]."))
 	tool.play_tool_sound(src)
 	if(!do_after(user, screw_delay, src))
 		return
-	user.visible_message(span_notice("[user] finishes [src]."), span_notice("You finish [src]."))
+	user.visible_message(span_notice("[user] kończy składać [src]."), span_notice("Kończysz składać [src]."))
 
 	var/turf/drop_loc = drop_location()
 
@@ -75,7 +75,7 @@
 
 /obj/item/shell/scanner_gate
 	name = "scanner gate assembly"
-	icon = 'icons/obj/machines/scangate.dmi'
+	icon = 'aquila/icons/obj/wiremod/scangate.dmi'
 	icon_state = "scangate_black_open"
 	shell_to_spawn = /obj/structure/scanner_gate_shell
 	custom_materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT * 6, /datum/material/glass = MINERAL_MATERIAL_AMOUNT * 2)

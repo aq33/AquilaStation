@@ -24,7 +24,7 @@
 
 /obj/item/circuit_component/wiremod_scanner
 	display_name = "Scanner"
-	desc = "Used to receive scanned entities from the scanner."
+	desc = "Odbiera obiekty zeskanowane przez skaner."
 
 	/// Called when afterattack is called on the shell.
 	var/datum/port/output/signal
@@ -55,7 +55,7 @@
 	SIGNAL_HANDLER
 	if(!proximity_flag)
 		return
-	source.balloon_alert(user, "scanned object")
+	source.balloon_alert(user, "zeskanowano obiekt")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	attacker.set_output(user)
 	attacking.set_output(target)

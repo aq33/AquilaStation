@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/speech
 	display_name = "Speech"
-	desc = "A component that sends a message. Requires a shell."
+	desc = "Komponent, który wysyła wiadomość. Wymaga obudowy."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/speech/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Speech Cooldown: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Odnowienie mowy: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/speech/populate_ports()
 	message = add_input_port("Message", PORT_TYPE_STRING, trigger = null)
@@ -34,5 +34,9 @@
 
 	if(message.value)
 		var/atom/movable/shell = parent.shell
-		shell.say(message.value, forced = "circuit speech | [parent.get_creator()]", message_range = quietmode.value > 0 ? 1 : DEFAULT_MESSAGE_RANGE)
+		if(quietmode.value > 0 && ismob(shell))
+			var/mob/speaking_mob = shell
+			speaking_mob.whisper(message.value)
+		else
+			shell.say(message.value, forced = "circuit speech | [parent.get_creator()]")
 		TIMER_COOLDOWN_START(shell, COOLDOWN_CIRCUIT_SPEECH, speech_cooldown)

@@ -8,7 +8,7 @@
  */
 /obj/item/circuit_component/delay
 	display_name = "Delay"
-	desc = "A component that delays a signal by a specified duration. Timer gets reset when triggered again."
+	desc = "Komponent, który opóźnia sygnał o podany czas. Ponowne wyzwolenie resetuje licznik."
 	category = "Utility"
 
 	/// Amount to delay by

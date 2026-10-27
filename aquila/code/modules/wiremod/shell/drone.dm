@@ -23,11 +23,11 @@
 	. = ..()
 	if(health < maxHealth)
 		if(health > maxHealth/3)
-			. += "[src]'s parts look loose."
+			. += "Części [src] wyglądają na poluzowane."
 		else
-			. += "[src]'s parts look very loose!"
+			. += "Części [src] wyglądają na mocno poluzowane!"
 	else
-		. += "[src] is in pristine condition."
+		. += "[src] jest w idealnym stanie."
 
 /mob/living/circuit_drone/updatehealth()
 	. = ..()
@@ -37,7 +37,7 @@
 /mob/living/circuit_drone/welder_act(mob/living/user, obj/item/tool)
 	. = ..()
 	if(health == maxHealth)
-		balloon_alert(user, "already at maximum integrity!")
+		balloon_alert(user, "już w pełni sprawny!")
 		return TRUE
 	if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
 		heal_overall_damage(50, 50)
@@ -45,7 +45,7 @@
 
 /obj/item/circuit_component/bot_circuit
 	display_name = "Drone"
-	desc = "Used to send movement output signals to the drone shell."
+	desc = "Wysyła sygnały ruchu do obudowy drona."
 
 	/// The inputs to allow for the drone to move
 	var/datum/port/input/north

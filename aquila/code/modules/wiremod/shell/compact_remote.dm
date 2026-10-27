@@ -24,7 +24,7 @@
 
 /obj/item/circuit_component/compact_remote
 	display_name = "Compact Remote"
-	desc = "Used to receive inputs from the compact remote shell. Use the shell in hand to trigger the output signal."
+	desc = "Odbiera sygnały z obudowy kompaktowego pilota. Użyj obudowy w ręce, aby wyzwolić sygnał wyjściowy."
 
 	/// Called when attack_self is called on the shell.
 	var/datum/port/output/signal
@@ -46,7 +46,7 @@
  */
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "clicked primary button")
+	source.balloon_alert(user, "kliknięto główny przycisk")
 	playsound(source, SFX_TERMINAL_TYPE, 25, FALSE)
 	entity.set_output(user)
 	signal.set_output(COMPONENT_SIGNAL)

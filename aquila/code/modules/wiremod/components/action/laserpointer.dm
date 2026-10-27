@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/laserpointer
 	display_name = "Laser Pointer"
-	desc = "A component that shines a high powered light at a target."
+	desc = "Komponent, który świeci silnym światłem w cel."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/laserpointer/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 
 /obj/item/circuit_component/laserpointer/populate_options()
 	var/static/component_options = list(
@@ -57,7 +57,7 @@
 		var/mob/living/silicon/silicon = target
 		log_combat(shell, silicon, "shone in the sensors", src)
 		silicon.flash_act(affect_silicon = TRUE) /// no stunning, just a blind
-		to_chat(silicon, span_danger("Your sensors were overloaded by a weakened laser shone by [shell]!"))
+		to_chat(silicon, span_danger("Osłabiony laser przeciążył twoje czujniki! Źródło: [shell]."))
 
 	var/mutable_appearance/laser_location = mutable_appearance('icons/obj/projectiles.dmi', "[pointer_icon_state]_laser")
 

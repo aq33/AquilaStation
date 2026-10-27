@@ -46,7 +46,7 @@
 
 	var/obj/item/integrated_circuit/circuit = locate(params["circuit"])
 	if (!istype(circuit))
-		to_chat(usr, span_warning("That circuit no longer exists."))
+		to_chat(usr, span_warning("Ten układ już nie istnieje."))
 		return FALSE
 
 	switch (action)
@@ -60,7 +60,7 @@
 			new_circuit.load_circuit_data(circuit.convert_to_json(), errors)
 
 			if (length(errors))
-				to_chat(usr, span_warning("Somehow, duplicating the circuit failed:"))
+				to_chat(usr, span_warning("Nie udało się zduplikować układu:"))
 				for (var/error in errors)
 					to_chat(usr, span_warning(error))
 		if ("follow_circuit")

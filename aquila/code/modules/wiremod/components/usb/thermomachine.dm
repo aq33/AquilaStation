@@ -3,7 +3,7 @@
  */
 /obj/item/circuit_component/thermomachine
 	display_name = "Temperature Control Unit"
-	desc = "The interface for communicating with a temperature control unit."
+	desc = "Interfejs do komunikacji z jednostką kontroli temperatury."
 
 	///Set the target temperature
 	var/datum/port/input/temperature

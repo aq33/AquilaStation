@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/matscanner
 	display_name = "Material Scanner"
-	desc = "Outputs the material composition of the inputted entity."
+	desc = "Zwraca skład materiałowy podanego obiektu."
 	category = "Entity"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/matscanner/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 
 /obj/item/circuit_component/matscanner/populate_ports()
 	input_port = add_input_port("Entity", PORT_TYPE_ATOM)

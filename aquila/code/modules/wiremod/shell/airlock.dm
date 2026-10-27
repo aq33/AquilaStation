@@ -37,7 +37,7 @@
 
 /obj/item/circuit_component/airlock
 	display_name = "Airlock"
-	desc = "The general interface with an airlock. Includes general statuses of the airlock"
+	desc = "Ogólny interfejs śluzy. Zawiera podstawowe stany śluzy."
 
 	/// The shell, if it is an airlock.
 	var/obj/machinery/door/airlock/attached_airlock
@@ -133,7 +133,7 @@
 
 /obj/item/circuit_component/airlock_access_event
 	display_name = "Airlock Access Event"
-	desc = "An event that can be handled through circuit components to determine if the door should open or not for an entity that might be trying to access it."
+	desc = "Zdarzenie, które komponenty układu mogą obsłużyć, by zdecydować, czy drzwi mają się otworzyć przed obiektem próbującym przez nie przejść."
 	circuit_flags = CIRCUIT_FLAG_INSTANT
 
 	/// The shell, if it is an airlock.
@@ -188,7 +188,7 @@
 	var/list/result = SScircuit_component.execute_instant_run()
 
 	if(!result)
-		attached_airlock.visible_message(span_warning("[attached_airlock]'s circuitry overheats!"))
+		attached_airlock.visible_message(span_warning("Obwody [attached_airlock] się przegrzewają!"))
 		return
 
 	if(result["should_open"])

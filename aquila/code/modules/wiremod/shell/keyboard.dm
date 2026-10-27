@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/keyboard_shell
 	display_name = "Keyboard Shell"
-	desc = "A handheld shell that allows the user to input a string. Use the shell in hand to open the input panel."
+	desc = "Ręczna obudowa, która pozwala wpisać tekst. Użyj obudowy w ręce, aby otworzyć panel wprowadzania."
 
 	/// Called when the input window is closed
 	var/datum/port/output/signal
@@ -47,10 +47,10 @@
 
 /obj/item/circuit_component/keyboard_shell/proc/use_keyboard(mob/user)
 	if(HAS_TRAIT(user, TRAIT_ILLITERATE))
-		to_chat(user, span_warning("You start mashing keys at random!"))
+		to_chat(user, span_warning("Zaczynasz losowo walić w klawisze!"))
 		return
 
-	var/message = tgui_input_text(user, "Input your text", "Keyboard", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(user, "Wpisz tekst", "Klawiatura", max_length = MAX_MESSAGE_LEN)
 	entity.set_output(user)
 	output.set_output(message)
 	signal.set_output(COMPONENT_SIGNAL)

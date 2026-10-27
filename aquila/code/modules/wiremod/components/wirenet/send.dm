@@ -1,6 +1,6 @@
 /obj/item/circuit_component/wirenet_send
 	display_name = "Wirenet Transmitter"
-	desc = "Sends a data package through the connected cable network. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
+	desc = "Wysyła pakiet danych przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "Utility"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL

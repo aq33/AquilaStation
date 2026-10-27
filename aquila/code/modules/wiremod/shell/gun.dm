@@ -5,7 +5,7 @@
  */
 /obj/item/gun/energy/wiremod_gun
 	name = "circuit gun"
-	desc = "A gun that fires projectiles able to control circuitry. It can recharge using power from an attached circuit."
+	desc = "Broń strzelająca pociskami, które sterują obwodami. Może się ładować energią z podłączonego układu."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_gun"
 	ammo_type = list(/obj/item/ammo_casing/energy/wiremod_gun)
@@ -42,7 +42,7 @@
 
 /obj/item/circuit_component/wiremod_gun
 	display_name = "Gun"
-	desc = "Used to receive entities hit by projectiles from a gun."
+	desc = "Odbiera obiekty trafione pociskami z broni."
 	/// Called when a projectile hits
 	var/datum/port/output/signal
 	/// The shooter
@@ -74,7 +74,7 @@
 			return
 		var/transferred = src.cell.give(min(0.1 * STANDARD_CELL_CHARGE, circuit.cell.charge))
 		if (transferred)
-			circuit.cell.use(transferred, force=TRUE)
+			circuit.cell.use(transferred)
 
 /**
  * Called when the shell item shoots something
@@ -98,4 +98,4 @@
 	var/obj/item/gun/energy/fired_gun = source
 	var/transferred = fired_gun.cell.give(min(0.1 * STANDARD_CELL_CHARGE, parent.cell.charge))
 	if(transferred)
-		parent.cell.use(transferred, force = TRUE)
+		parent.cell.use(transferred)

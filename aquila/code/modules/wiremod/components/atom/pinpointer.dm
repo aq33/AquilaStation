@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/pinpointer
 	display_name = "Proximity Pinpointer"
-	desc = "A component that returns the xyz co-ordinates of its entity input, as long as its in view."
+	desc = "Komponent, który zwraca współrzędne xyz podanego obiektu, o ile jest w zasięgu wzroku."
 	category = "Entity"
 
 	var/datum/port/input/target

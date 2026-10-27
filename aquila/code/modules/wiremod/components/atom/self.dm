@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/self
 	display_name = "Self"
-	desc = "A component that returns the current shell."
+	desc = "Komponent, który zwraca bieżącą obudowę."
 	category = "Entity"
 
 	/// The shell this component is attached to.

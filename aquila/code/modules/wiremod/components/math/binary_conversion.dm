@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/binary_conversion
 	display_name = "Binary Conversion"
-	desc = "Splits a decimal number into an array of binary digits, or bits, represented as 1 or 0 and often used in boolean or binary operations like AND, OR and XOR."
+	desc = "Rozkłada liczbę dziesiętną na tablicę cyfr binarnych, czyli bitów, zapisanych jako 1 lub 0, często używanych w operacjach logicznych i binarnych, takich jak AND, OR i XOR."
 	category = "Math"
 
 	/// One number

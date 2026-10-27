@@ -1,6 +1,6 @@
 /obj/item/circuit_component/wirenet_receive
 	display_name = "Wirenet Receiver"
-	desc = "Receives data packets through the connected cable network. If Encryption Key is set then only signals with the same Encryption Key will be received."
+	desc = "Odbiera pakiety danych przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, odbierane będą tylko sygnały z tym samym kluczem."
 	category = "Utility"
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL //trigger_output

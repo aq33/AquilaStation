@@ -3,7 +3,7 @@ import { Button, Stack } from 'tgui-core/components';
 export const BasicInput = (props) => {
   const { children, name, setValue, defaultValue, value } = props;
   return (
-    (value !== null && value !== undefined && (
+    (value !== null && (
       <Stack onMouseDown={(e) => e.stopPropagation()}>
         <Stack.Item>
           <Button
@@ -18,12 +18,11 @@ export const BasicInput = (props) => {
       </Stack>
     )) || (
       <Button
+        content={name}
         color="transparent"
         compact
         onClick={() => setValue(defaultValue)}
-      >
-        {name}
-      </Button>
+      />
     )
   );
 };

@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/thought_listener
 	display_name = "Thought Listener"
-	desc = "A component that allows the user to input a string using their mind. Requires a BCI shell."
+	desc = "Komponent, który pozwala użytkownikowi wpisać tekst umysłem. Wymaga obudowy BCI."
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
@@ -56,7 +56,7 @@
 	ready = FALSE
 
 /obj/item/circuit_component/thought_listener/proc/thought_listen(mob/living/owner)
-	var/message = tgui_input_text(owner, input_desc.value ? input_desc.value : "", input_name.value ? input_name.value : "Thought Listener", "", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, input_desc.value ? input_desc.value : "", input_name.value ? input_name.value : "Nasłuch myśli", "", max_length = MAX_MESSAGE_LEN)
 	if(QDELETED(owner) || IS_UNCONSCIOUS_OR_CRIT(owner))
 		return
 	output.set_output(message)

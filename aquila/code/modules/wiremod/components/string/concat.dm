@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/concat
 	display_name = "Concatenate"
-	desc = "A component that combines strings."
+	desc = "Komponent, który łączy teksty."
 	category = "String"
 
 	var/list/datum/port/input/concat_ports = list()

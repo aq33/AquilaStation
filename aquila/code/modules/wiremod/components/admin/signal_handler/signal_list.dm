@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(integrated_circuit_global_signal_ids, generate_global_circuit_s
 	var/extra_info = ""
 	if(params["global"])
 		GLOB.integrated_circuit_global_signal_ids[signal_id] = sanitized_data
-		extra_info = " as a global signal"
+		extra_info = " jako sygnał globalny"
 	else
 		GLOB.integrated_circuit_signal_ids[signal_id] = sanitized_data
-	balloon_alert(usr, "successfully added [signal_id][extra_info]")
+	balloon_alert(usr, "dodano [signal_id][extra_info]")

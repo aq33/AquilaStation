@@ -3,7 +3,7 @@
  */
 /obj/item/circuit_component/atmos_temperature_pump
 	display_name = "Atmospheric Temperature Pump"
-	desc = "The interface for communicating with a temperature pump."
+	desc = "Interfejs do komunikacji z pompą temperatury."
 
 	///Set the percent of the heat delta to transfer
 	var/datum/port/input/heat_transfer_rate

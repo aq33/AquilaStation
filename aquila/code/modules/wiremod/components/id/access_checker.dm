@@ -1,6 +1,6 @@
 /obj/item/circuit_component/compare/access
 	display_name = "Access Checker"
-	desc = "Performs a basic comparison between two lists of strings, with additional functions that help in using it to check access on IDs."
+	desc = "Wykonuje proste porównanie dwóch list tekstów, z dodatkowymi funkcjami ułatwiającymi sprawdzanie dostępów na kartach ID."
 	category = "ID"
 
 	/// A list of the accesses to check
@@ -18,8 +18,8 @@
 
 /obj/item/circuit_component/compare/access/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("When \"Check Any\" is true, returns true if \"Access To Check\" contains ANY value in \"Required Access\".", "orange", "info")
-	. += create_ui_notice("When \"Check Any\" is false, returns true only if \"Access To Check\" contains ALL values in \"Required Access\".", "orange", "info")
+	. += create_ui_notice("Gdy \"Check Any\" jest prawdą, zwraca prawdę, jeśli \"Access To Check\" zawiera DOWOLNĄ wartość z \"Required Access\".", "orange", "info")
+	. += create_ui_notice("Gdy \"Check Any\" jest fałszem, zwraca prawdę tylko wtedy, gdy \"Access To Check\" zawiera WSZYSTKIE wartości z \"Required Access\".", "orange", "info")
 
 /obj/item/circuit_component/compare/access/populate_custom_ports()
 	subject_accesses = add_input_port("Access To Check", PORT_TYPE_LIST(PORT_TYPE_NUMBER))
@@ -58,7 +58,7 @@
 
 /obj/item/circuit_component/compare/access/ui_perform_action(mob/user, action)
 	if(LAZYLEN(required_accesses.connected_ports))
-		balloon_alert(user, "disconnect port before manually configuring!")
+		balloon_alert(user, "odłącz port przed ręczną konfiguracją!")
 		return
 	interact(user)
 

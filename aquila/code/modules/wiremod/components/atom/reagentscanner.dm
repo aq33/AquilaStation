@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/reagentscanner
 	display_name = "Reagents Scanner"
-	desc = "Outputs the reagents found inside the inputted entity."
+	desc = "Zwraca odczynniki znajdujące się w podanym obiekcie."
 	category = "Entity"
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/reagentscanner/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 	. += create_table_notices(list(
 		"reagent",
 		"volume",

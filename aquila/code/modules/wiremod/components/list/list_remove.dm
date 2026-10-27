@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/list/listremove
 	display_name = "List Remove"
-	desc = "Removes an element from a list variable."
+	desc = "Usuwa element ze zmiennej będącej listą."
 	category = "List"
 
 	/// Element to remove to the list

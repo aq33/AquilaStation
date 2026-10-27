@@ -37,13 +37,13 @@
 		return
 	setAnchored(!anchored)
 	tool.play_tool_sound(src)
-	balloon_alert(user, anchored ? "secured" : "unsecured")
+	balloon_alert(user, anchored ? "przykręcono" : "odkręcono")
 	return TRUE
 
 
 /obj/item/circuit_component/money_dispenser
 	display_name = "Money Dispenser"
-	desc = "Used to dispense money from the money bot. Money is taken from the internal storage of money."
+	desc = "Wydaje pieniądze z bota-kasy. Pieniądze pochodzą z jego wewnętrznego zapasu."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// CD before next dispense
@@ -69,8 +69,8 @@
 
 /obj/item/circuit_component/money_dispenser/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Dispense Cooldown: [DisplayTimeText(dispense_cd_length)]", "orange", FA_ICON_STOPWATCH)
-	. += create_ui_notice("Dispense Limit: [max_chips] Holochips (per tile)", "orange", FA_ICON_MONEY_BILL_TRANSFER)
+	. += create_ui_notice("Odstęp między wydaniami: [DisplayTimeText(dispense_cd_length)]", "orange", FA_ICON_STOPWATCH)
+	. += create_ui_notice("Limit wydawania: [max_chips] holochipów (na pole)", "orange", FA_ICON_MONEY_BILL_TRANSFER)
 
 /obj/item/circuit_component/money_dispenser/register_shell(atom/movable/shell)
 	. = ..()
@@ -114,7 +114,7 @@
 /obj/item/circuit_component/money_bot
 	display_name = "Money Bot"
 	var/obj/structure/money_bot/attached_bot
-	desc = "Used to receive input signals when money is inserted into the money bot shell and also keep track of the total money in the shell."
+	desc = "Wysyła sygnał, gdy do obudowy bota-kasy włożono pieniądze, i śledzi łączną kwotę w obudowie."
 
 	/// Total money in the shell
 	var/datum/port/output/total_money
@@ -160,11 +160,11 @@
 
 	var/amount_to_insert = item.get_item_credit_value()
 	if(!amount_to_insert)
-		balloon_alert(attacker, "this has no value!")
+		balloon_alert(attacker, "to nie ma wartości!")
 		return
 
 	attached_bot.add_money(amount_to_insert)
-	balloon_alert(attacker, "inserted [amount_to_insert] credits.")
+	balloon_alert(attacker, "włożono [amount_to_insert] kredytów.")
 	money_input.set_output(amount_to_insert)
 	entity.set_output(attacker)
 	money_trigger.set_output(COMPONENT_SIGNAL)

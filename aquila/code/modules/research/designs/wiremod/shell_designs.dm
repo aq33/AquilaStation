@@ -5,56 +5,56 @@
 /datum/design/wiremod_shell/compact_remote
 	name = "Compact Remote Shell"
 	id = "compact_remote_shell"
-	desc = "A handheld shell with one big button."
+	desc = "Ręczna obudowa z jednym dużym przyciskiem."
 	build_path = /obj/item/compact_remote
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron =MINERAL_MATERIAL_AMOUNT * 2.5)
 
 /datum/design/wiremod_shell/controller
 	name = "Controller Shell"
 	id = "controller_shell"
-	desc = "A handheld shell with several buttons."
+	desc = "Ręczna obudowa z kilkoma przyciskami."
 	build_path = /obj/item/controller
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*3.5)
 
 /datum/design/wiremod_shell/scanner
 	name = "Scanner Shell"
 	id = "scanner_shell"
-	desc = "A handheld scanner shell that can scan entities."
+	desc = "Ręczna obudowa skanera, która skanuje obiekty."
 	build_path = /obj/item/wiremod_scanner
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*3.5)
 
 /datum/design/wiremod_shell/keyboard
 	name = "Keyboard Shell"
 	id = "keyboard_shell"
-	desc = "A handheld shell that allows the user to input a string"
+	desc = "Ręczna obudowa, która pozwala użytkownikowi wpisać tekst."
 	build_path = /obj/item/keyboard_shell
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*5)
 
 /datum/design/wiremod_shell/gun
 	name = "Gun Shell"
 	id = "gun_shell"
-	desc = "A handheld shell that can fire projectiles to output entities."
+	desc = "Ręczna obudowa, która strzela pociskami i zwraca trafione obiekty."
 	build_path = /obj/item/gun/energy/wiremod_gun
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*5, /datum/material/plasma =(MINERAL_MATERIAL_AMOUNT / 10))
 
 /datum/design/wiremod_shell/bot
 	name = "Bot Shell"
 	id = "bot_shell"
-	desc = "An immobile shell that can store more components. Has a USB port to be able to connect to computers and machines."
+	desc = "Nieruchoma obudowa, która mieści więcej komponentów. Ma port USB do łączenia z komputerami i maszynami."
 	build_path = /obj/item/shell/bot
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*5)
 
 /datum/design/wiremod_shell/money_bot
 	name = "Money Bot Shell"
 	id = "money_bot_shell"
-	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
+	desc = "Nieruchoma obudowa podobna do zwykłej obudowy bota, ale przyjmuje i wydaje pieniądze."
 	build_path = /obj/item/shell/money_bot
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron = MINERAL_MATERIAL_AMOUNT*5, /datum/material/gold =(MINERAL_MATERIAL_AMOUNT / 10)*0.5)
 
 /datum/design/wiremod_shell/drone
 	name = "Drone Shell"
 	id = "drone_shell"
-	desc = "A shell with the ability to move itself around."
+	desc = "Obudowa, która potrafi sama się poruszać."
 	build_path = /obj/item/shell/drone
 	materials = list(
 		/datum/material/glass =MINERAL_MATERIAL_AMOUNT,
@@ -65,7 +65,7 @@
 /datum/design/wiremod_shell/server
 	name = "Server Shell"
 	id = "server_shell"
-	desc = "A very large shell that cannot be moved around. Stores the most components."
+	desc = "Bardzo duża obudowa, której nie da się przesunąć. Mieści najwięcej komponentów."
 	materials = list(
 		/datum/material/glass =MINERAL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/iron = MINERAL_MATERIAL_AMOUNT*7.5,
@@ -76,7 +76,7 @@
 /datum/design/wiremod_shell/airlock
 	name = "Airlock Shell"
 	id = "door_shell"
-	desc = "A door shell that cannot be moved around when assembled."
+	desc = "Obudowa drzwi, której po złożeniu nie da się przesunąć."
 	materials = list(
 		/datum/material/glass =MINERAL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/iron = MINERAL_MATERIAL_AMOUNT*7.5,
@@ -86,7 +86,7 @@
 /datum/design/wiremod_shell/dispenser
 	name = "Dispenser Shell"
 	id = "dispenser_shell"
-	desc = "A dispenser shell that can dispense items."
+	desc = "Obudowa dozownika, która wydaje przedmioty."
 	materials = list(
 		/datum/material/glass =MINERAL_MATERIAL_AMOUNT * 2.5,
 		/datum/material/iron = MINERAL_MATERIAL_AMOUNT*7.5,
@@ -96,7 +96,7 @@
 /datum/design/wiremod_shell/bci
 	name = "Brain-Computer Interface Shell"
 	id = "bci_shell"
-	desc = "An implant that can be placed in a user's head to control circuits using their brain."
+	desc = "Implant umieszczany w głowie, pozwalający sterować układami za pomocą mózgu."
 	materials = list(
 		/datum/material/glass =MINERAL_MATERIAL_AMOUNT,
 		/datum/material/iron = MINERAL_MATERIAL_AMOUNT*4,
@@ -106,7 +106,7 @@
 /datum/design/wiremod_shell/scanner_gate
 	name = "Scanner Gate Shell"
 	id = "scanner_gate_shell"
-	desc = "A scanner gate shell that performs mid-depth scans on people when they pass through it."
+	desc = "Obudowa bramki skanującej, która wykonuje średnio dokładne skany przechodzących osób."
 	materials = list(
 		/datum/material/glass = MINERAL_MATERIAL_AMOUNT*2,
 		/datum/material/iron = MINERAL_MATERIAL_AMOUNT*6,
@@ -116,14 +116,14 @@
 /datum/design/wiremod_shell/assembly
 	name = "Assembly Shell"
 	id = "assembly_shell"
-	desc = "An assembly shell that can be attached to wires and other assemblies."
+	desc = "Obudowa zespołu, którą można podłączyć do przewodów i innych zespołów."
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron =MINERAL_MATERIAL_AMOUNT * 2.5)
 	build_path = /obj/item/assembly/wiremod
 
 /datum/design/wiremod_shell/undertile
 	name = "Under-tile Shell"
 	id = "undertile_shell"
-	desc = "A small shell that can fit under the floor."
+	desc = "Mała obudowa, która mieści się pod podłogą."
 	materials = list(
 		/datum/material/glass=(MINERAL_MATERIAL_AMOUNT / 2),
 		/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2.5,
@@ -134,7 +134,7 @@
 /datum/design/wiremod_shell/wallmount
 	name = "Wall-mounted Shell"
 	id = "wallmount_shell"
-	desc = "A large shell that can be mounted on a wall."
+	desc = "Duża obudowa do zamontowania na ścianie."
 	materials = list(
 		/datum/material/glass=MINERAL_MATERIAL_AMOUNT,
 		/datum/material/iron=MINERAL_MATERIAL_AMOUNT*5,
@@ -144,7 +144,7 @@
 /datum/design/wiremod_shell/implant
 	name = "Implant Shell Case"
 	id = "implant_shell"
-	desc = "A tiny shell that can be implanted in a living being."
+	desc = "Malutka obudowa, którą można wszczepić żywej istocie."
 	materials = list(
 		/datum/material/iron = (MINERAL_MATERIAL_AMOUNT / 10) * 5,
 		/datum/material/glass = (MINERAL_MATERIAL_AMOUNT / 10) * 5,
@@ -155,7 +155,7 @@
 /datum/design/board/bci_implanter
 	name = "Brain-Computer Interface Manipulation Chamber"
 	id = "bci_implanter"
-	desc = "A machine that, when given a brain-computer interface, will implant it into an occupant. Otherwise, will remove any brain-computer interfaces they already have."
+	desc = "Maszyna, która po włożeniu interfejsu mózg-komputer wszczepia go osobie w środku. W przeciwnym razie usuwa jej wszystkie interfejsy mózg-komputer."
 	build_path = /obj/item/circuitboard/machine/bci_implanter
 	build_type = COMPONENT_PRINTER
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)

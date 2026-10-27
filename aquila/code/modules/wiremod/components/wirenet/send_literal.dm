@@ -1,6 +1,6 @@
 /obj/item/circuit_component/list_literal/wirenet_send
 	display_name = "Wirenet Transmitter List Literal"
-	desc = "Creates a list literal data package and sends it through the connected cable network. If Encryption Key is set then transmitted data will be only picked up by receivers with the same Encryption Key."
+	desc = "Tworzy pakiet danych z listy wejść i wysyła go przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "Utility"
 
 	ui_buttons = list(

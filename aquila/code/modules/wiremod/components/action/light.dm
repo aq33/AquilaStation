@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/light
 	display_name = "Light"
-	desc = "A component that emits a light of a specific brightness and colour. Requires a shell."
+	desc = "Komponent, który emituje światło o określonej jasności i kolorze. Wymaga obudowy."
 	category = "Action"
 
 	/// The colours of the light
@@ -25,7 +25,7 @@
 
 /obj/item/circuit_component/light/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Brightness: [max_power]", "orange", "lightbulb")
+	. += create_ui_notice("Maksymalna jasność: [max_power]", "orange", "lightbulb")
 
 /obj/item/circuit_component/light/populate_ports()
 	red = add_input_port("Red", PORT_TYPE_NUMBER)

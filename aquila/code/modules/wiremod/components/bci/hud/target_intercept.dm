@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/target_intercept
 	display_name = "Target Intercept"
-	desc = "Requires a BCI shell. When activated, this component will allow user to target an object using their brain and will output the reference to said object."
+	desc = "Wymaga obudowy BCI. Po aktywacji pozwala użytkownikowi wskazać obiekt umysłem i zwraca odwołanie do tego obiektu."
 	category = "BCI"
 
 	required_shells = list(/obj/item/organ/cyberimp/bci)
@@ -45,7 +45,7 @@
 	if(TIMER_COOLDOWN_RUNNING(parent.shell, COOLDOWN_CIRCUIT_TARGET_INTERCEPT))
 		return
 
-	to_chat(owner, "<B>Left-click to trigger target interceptor!</B>")
+	to_chat(owner, "<B>Kliknij lewym przyciskiem, by uruchomić przechwytywacz celu!</B>")
 	owner.client.click_intercept = src
 
 /obj/item/circuit_component/target_intercept/proc/on_organ_removed(datum/source, mob/living/carbon/owner)
@@ -63,4 +63,4 @@
 
 /obj/item/circuit_component/target_intercept/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Target Interception Cooldown: [DisplayTimeText(intercept_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Odnowienie przechwytywania celu: [DisplayTimeText(intercept_cooldown)]", "orange", "stopwatch")

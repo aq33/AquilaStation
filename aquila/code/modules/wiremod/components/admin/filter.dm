@@ -143,7 +143,7 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 
 /obj/item/circuit_component/filter_helper
 	display_name = "Filter Parameter Helper"
-	desc = "Constructs a list of filter parameters from the inputs."
+	desc = "Tworzy z wejść listę parametrów filtra."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 
 /obj/item/circuit_component/filter_adder
 	display_name = "Add Filter"
-	desc = "Adds a filter to the target atom."
+	desc = "Dodaje filtr do obiektu docelowego."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 
 /obj/item/circuit_component/filter_remover
 	display_name = "Filter Remover"
-	desc = "Removes the specified filter from the target."
+	desc = "Usuwa wskazany filtr z celu."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(wiremod_flag_info, list(
 /obj/item/circuit_component/bitflag_helper
 	display_name = "Animation & Filter Bitflag Helper"
 	category = "Admin"
-	desc = "Allows you to construct bitflags for BYOND animation and filter parameters without having to manually search for the corresponding values."
+	desc = "Pozwala tworzyć flagi bitowe dla parametrów animacji i filtrów BYOND bez ręcznego szukania odpowiednich wartości."
 
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN
 

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/hear
 	display_name = "Voice Activator"
-	desc = "A component that listens for messages. Requires a shell."
+	desc = "Komponent, który nasłuchuje wiadomości. Wymaga obudowy."
 	category = "Entity"
 
 	/// The on/off port
@@ -43,7 +43,7 @@
 	SIGNAL_HANDLER
 	return Hear(arglist(arguments))
 
-/obj/item/circuit_component/hear/Hear(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods, message_range)
+/obj/item/circuit_component/hear/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods = list()) // nasza kolejność argumentów Hear()
 	if(!on.value)
 		return FALSE
 	if(speaker == parent?.shell)

@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/soundemitter
 	display_name = "Sound Emitter"
-	desc = "A component that emits a sound when it receives an input. The frequency is a multiplier which determines the speed at which the sound is played"
+	desc = "Komponent, który odtwarza dźwięk po otrzymaniu sygnału. Częstotliwość to mnożnik określający szybkość odtwarzania dźwięku."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -40,9 +40,9 @@
 
 /obj/item/circuit_component/soundemitter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Sound Cooldown: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Odnowienie dźwięku: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
 	if(CONFIG_GET(flag/disallow_circuit_sounds))
-		. += create_ui_notice("Non-functional", "red", "exclamation")
+		. += create_ui_notice("Niesprawny", "red", "exclamation")
 		update_ui_alerts(new_flag=CIRCUIT_FLAG_DISABLED)
 	else
 		update_ui_alerts(remove_flag=CIRCUIT_FLAG_DISABLED)

@@ -3,7 +3,7 @@
 // i oddawać do niej odłączone komponenty. Bez duplikatora modułów i bez okna ComponentPrinter z tg.
 /obj/machinery/modular_fabricator/component_printer
 	name = "component printer"
-	desc = "Produces components for the creation of integrated circuits. Hit it with a circuit to link them."
+	desc = "Wytwarza komponenty do budowy układów scalonych. Uderz w nią układem, aby je połączyć."
 	icon = 'aquila/icons/obj/wiremod/wiremod_fab.dmi'
 	icon_state = "fab-idle"
 	circuit = /obj/item/circuitboard/machine/component_printer
@@ -39,7 +39,7 @@
 	if(circuit)
 		circuit.linked_component_printer = WEAKREF(src)
 		circuit.update_static_data_for_all_viewers()
-		balloon_alert(user, "successfully linked to the integrated circuit")
+		balloon_alert(user, "połączono z układem scalonym")
 		return TRUE
 	if(istype(tool, /obj/item/circuit_component) && user.a_intent != INTENT_HARM)
 		recycle_component(user, tool)
@@ -53,10 +53,10 @@
 		return FALSE
 	var/amount_inserted = materials.insert_item(component)
 	if(amount_inserted)
-		to_chat(user, span_notice("[component] worth [amount_inserted / MINERAL_MATERIAL_AMOUNT] sheets of material was consumed by [src]"))
+		to_chat(user, span_notice("[src] przetwarza [component] o wartości [amount_inserted / MINERAL_MATERIAL_AMOUNT] arkuszy materiału"))
 		qdel(component)
 		return TRUE
-	to_chat(user, span_warning("[component] was rejected by [src]"))
+	to_chat(user, span_warning("[src] odrzuca [component]"))
 	return FALSE
 
 /// Komponenty, które da się wydrukować z okna połączonego układu: ścieżka komponentu -> id projektu.

@@ -7,7 +7,7 @@
 
 /obj/item/circuit_component/reagent_injector
 	display_name = "Reagent Injector"
-	desc = "A component that can inject reagents from the circuit's reagent storage."
+	desc = "Komponent, który wstrzykuje odczynniki z magazynu odczynników układu."
 	category = "Entity"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
 
@@ -45,7 +45,7 @@
 	if(mob_to_inject.reagents.total_volume + shell_item.reagents.total_volume > mob_to_inject.reagents.maximum_volume)
 		return
 	var/contained = shell_item.reagents.log_list()
-	var/units = shell_item.reagents.trans_to(mob_to_inject.reagents, shell_item.reagents.total_volume, methods = INJECT)
+	var/units = shell_item.reagents.trans_to(mob_to_inject.reagents, shell_item.reagents.total_volume, method = INJECT)
 	if(units)
 		injected.set_output(COMPONENT_SIGNAL)
 		log_combat(mob_to_inject, mob_to_inject, "injected", shell_item, "which had [contained]")

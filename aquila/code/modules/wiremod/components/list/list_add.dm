@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/variable/list/listadd
 	display_name = "List Add"
-	desc = "Adds an element to a list variable."
+	desc = "Dodaje element do zmiennej będącej listą."
 	category = "List"
 
 	/// Element to add to the list
@@ -21,7 +21,7 @@
 
 /obj/item/circuit_component/variable/list/listadd/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Max List Size: [max_list_size]", "orange", "sitemap")
+	. += create_ui_notice("Maks. rozmiar listy: [max_list_size]", "orange", "sitemap")
 
 /obj/item/circuit_component/variable/list/listadd/populate_ports()
 	to_add = add_input_port("To Add", PORT_TYPE_ANY)

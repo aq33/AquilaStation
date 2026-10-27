@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/compare/comparison
 	display_name = "Comparison"
-	desc = "A component that compares two objects."
+	desc = "Komponent, który porównuje dwa obiekty."
 	category = "Math"
 
 	var/datum/port/input/option/comparison_option
