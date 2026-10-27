@@ -1022,6 +1022,7 @@
 #include "code\modules\surgery\stomach_pump.dm"
 #include "code\modules\security\space_law_catalog.dm"
 #include "code\modules\security\citationinator.dm"
+#include "code\modules\security\undercover_id.dm"
 #include "code\modules\surgery\surgery_catalog.dm"
 #include "code\modules\surgery\surgery_pain.dm"
 #include "code\modules\surgery\surgery_progress.dm"
