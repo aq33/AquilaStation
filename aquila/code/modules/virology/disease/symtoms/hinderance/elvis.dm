@@ -1,0 +1,62 @@
+/datum/symptom/acute/elvis
+	name = "Elvisism"
+	desc = "Makes the infected the king of rock and roll."
+	stage = 3
+	badness = EFFECT_DANGER_HINDRANCE
+	severity = 2
+
+/datum/symptom/acute/elvis/first_activate(mob/living/carbon/mob)
+	if(ismouse(mob))
+		var/mob/living/simple_animal/mouse/mouse = mob
+		mouse.icon_state = "mouse_elvis"
+		mouse.base_icon_state = "mouse_elvis"
+		mouse.icon_living = "mouse_elvis"
+		mouse.icon_dead = "mouse_brown_dead"
+		return
+	mob.dna.add_mutation(/datum/mutation/elvis, MUTATION_SOURCE_GENE_SYMPTOM)
+
+/datum/symptom/acute/elvis/activate(mob/living/carbon/mob)
+	if(!ishuman(mob))
+		return
+
+	var/mob/living/carbon/human/victim = mob
+
+	/*
+	var/obj/item/clothing/glasses/H_glasses = H.get_item_by_slot(slot_glasses)
+	if(!istype(H_glasses, /obj/item/clothing/glasses/sunglasses/virus))
+		var/obj/item/clothing/glasses/sunglasses/virus/virussunglasses = new
+		mob.u_equip(H_glasses,1)
+		mob.equip_to_slot(virussunglasses, slot_glasses)
+	*/
+
+	mob.confused += (1 SECONDS)
+
+	if(prob(50))
+		mob.say(pick("Uh HUH!", "Thank you, Thank you very much...", "I ain't nothin' but a hound dog!", "Swing low, sweet chariot!"))
+	else
+		mob.emote("me",1,pick("curls his lip!", "gyrates his hips!", "thrusts his hips!"))
+
+	if(istype(victim))
+		addtimer(CALLBACK(src, PROC_REF(set_hairstyle), victim), 5 SECONDS, TIMER_UNIQUE)
+
+/datum/symptom/acute/elvis/proc/set_hairstyle(mob/living/carbon/human/victim)
+	if(QDELETED(src))
+		return
+	if(victim.hair_style != "Pompadour (Big)")
+		victim.hair_style = "Pompadour (Big)"
+		victim.hair_color = "#242424"
+	if(victim.facial_hair_style != "Sideburns (Elvis)")
+		victim.facial_hair_style = "Sideburns (Elvis)"
+		victim.facial_hair_color = "#242424"
+
+/datum/symptom/acute/elvis/deactivate(mob/living/carbon/mob, datum/disease/acute/disease, safe = FALSE)
+	if(ismouse(mob))
+		return
+	/*
+	if(ishuman(mob))
+		var/mob/living/carbon/human/dude = mob
+		if(istype(dude.glasses, /obj/item/clothing/glasses/sunglasses/virus))
+			dude.glasses.canremove = 1
+			dude.u_equip(dude.glasses,1)
+	*/
+	mob.dna.remove_mutation(/datum/mutation/elvis, MUTATION_SOURCE_GENE_SYMPTOM)

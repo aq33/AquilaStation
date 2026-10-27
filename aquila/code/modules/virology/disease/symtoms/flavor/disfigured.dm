@@ -1,0 +1,14 @@
+/datum/symptom/acute/disfiguration
+	name = "Disfiguration"
+	desc = "The virus liquefies facial muscles, disfiguring the host."
+	max_count = 1
+	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
+	stage = 2
+
+/datum/symptom/acute/disfiguration/activate(mob/living/carbon/mob)
+	ADD_TRAIT(mob, TRAIT_DISFIGURED, type)
+	mob.visible_message(span_warning("[mob]'s face appears to cave in!"), span_notice("You feel your face crumple and cave in!"))
+
+/datum/symptom/acute/disfiguration/deactivate(mob/living/carbon/mob, datum/disease/acute/disease, safe = FALSE)
+	REMOVE_TRAIT(mob, TRAIT_DISFIGURED, type)
