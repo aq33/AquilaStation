@@ -138,6 +138,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `ACCESS_TCOMMS_ADMIN` (36) in the access lists, region 5, description and the CE job | `code/__DEFINES/access.dm`, `code/modules/jobs/access.dm`, `code/modules/jobs/job_types/chief_engineer.dm` | NTSL traffic control console |
 | `img.icon { width: auto; height: auto }` in the `map` style (no marker, DMF has no comments) | `interface/skin.dmf` | Runechat radio/emote icons (`\icon[image]`) were drawn at 32x32 instead of 9x9; same rule as tgstation's skin |
 | `shower` directions swapped (S<->N, E<->W) | `icons/obj/watercloset.dmi` | The Paradise sprite from #469 uses dir = wall side; ours (and the `water` overlay and maps) use dir = facing |
+| Skip mobs without a turf in `check_for_empty_levels()` | `code/controllers/subsystem/zclear.dm` | A mob with a mind in nullspace (e.g. during unit tests) caused a `null.z` runtime that failed random tests |
 | `doorctrl1` replaced with the Paradise state | `icons/obj/stationobjs.dmi` | #469 swapped every button state but the pressed one; from ParadiseSS13/Paradise `icons/obj/stationobjs.dmi`, CC BY-SA 3.0 |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
