@@ -19,6 +19,8 @@
 	var/pending_step = FALSE
 	///Kiedy był ostatni krok sprintu
 	var/last_sprint_step = 0
+	///Kierunek ostatniego kroku sprintu (0 = świeży start)
+	var/last_sprint_dir = 0
 	var/last_dust = 0
 	///Nasza własna chmurka kurzu
 	var/obj/effect/sprint_dust/dust
@@ -62,52 +64,50 @@
 		if(sprinting)
 			stop_sprint()
 		return
+	// Prędkość musi być założona przed movement_delay() w /client/Move, resztę zatwierdza on_moved()
+	if(!sprinting)
+		sprinting = TRUE
+		carbon_parent.update_move_intent_slowdown()
+	pending_step = TRUE
 
-	var/turf/T = new_loc
-	if(!isturf(T))
-		return
-	var/direct = get_dir(carbon_parent, T)
+///Rozpęd, kurz i koszt zatwierdzamy dopiero po udanym kroku, z faktycznym kierunkiem (confusion potrafi go zmienić)
+/datum/component/carbon_sprint/proc/on_moved(datum/source, atom/old_loc, dir, forced)
+	SIGNAL_HANDLER
+	var/turf/old_turf = get_turf(old_loc)
+	var/turf/new_turf = get_turf(carbon_parent)
+	if(pending_step && sprinting && !forced && old_turf && new_turf && old_turf.z == new_turf.z && get_dist(old_turf, new_turf) == 1)
+		pending_step = FALSE
+		commit_step(get_dir(old_turf, new_turf), old_turf)
+	check_stairs(old_turf, new_turf)
+
+/datum/component/carbon_sprint/proc/commit_step(direct, turf/old_turf)
 	step_size = (direct & (direct - 1)) ? SPRINT_DIAGONAL_MODIFIER : 1
-	// Bieg w ścianę nie nabija rozpędu, ale rozpędu też nie zeruje (liczy się przy wywrotce)
-	if(is_blocked_turf(T, TRUE))
-		return
-
-	// Ruszamy od nowa: na starcie albo po dłuższym postoju z wciśniętym klawiszem
-	if(!sprinting || world.time > last_sprint_step + SPRINT_SUSTAINED_RUN_GRACE)
-		if(!sprinting)
-			sprinting = TRUE
-			carbon_parent.update_move_intent_slowdown()
-		dust.appear("sprint_cloud", direct, get_turf(carbon_parent), 0.6 SECONDS)
+	// Ruszamy od nowa: pierwszy krok albo po dłuższym postoju z wciśniętym klawiszem
+	if(!last_sprint_dir || world.time > last_sprint_step + SPRINT_SUSTAINED_RUN_GRACE)
+		dust.appear("sprint_cloud", direct, old_turf, 0.6 SECONDS)
 		last_dust = world.time
 		sustained_moves = step_size
-	else if(direct & carbon_parent.last_move)
+	else if(direct & last_sprint_dir)
 		if((sustained_moves < SPRINT_SUSTAINED_THRESHOLD) && ((sustained_moves + step_size) >= SPRINT_SUSTAINED_THRESHOLD) && world.time > last_dust + SPRINT_SUSTAINED_RUN_GRACE)
-			dust.appear("sprint_cloud_small", direct, get_turf(carbon_parent), 0.4 SECONDS)
+			dust.appear("sprint_cloud_small", direct, old_turf, 0.4 SECONDS)
 			last_dust = world.time
 		sustained_moves += step_size
 	else
 		if(sustained_moves >= SPRINT_SUSTAINED_THRESHOLD)
-			dust.appear("sprint_cloud_small", direct, get_turf(carbon_parent), 0.4 SECONDS)
+			dust.appear("sprint_cloud_small", direct, old_turf, 0.4 SECONDS)
 			last_dust = world.time
-		if(direct & turn(carbon_parent.last_move, 180))
-			dust.appear("sprint_cloud_tiny", direct, get_turf(carbon_parent), 0.3 SECONDS)
+		if(direct & turn(last_sprint_dir, 180))
+			dust.appear("sprint_cloud_tiny", direct, old_turf, 0.3 SECONDS)
 			last_dust = world.time
 		sustained_moves = 0
+	last_sprint_dir = direct
+	last_sprint_step = world.time
 
-	pending_step = TRUE
-
-///Koszt kondycji pobieramy dopiero po udanym kroku
-/datum/component/carbon_sprint/proc/on_moved(datum/source, atom/old_loc, dir, forced)
-	SIGNAL_HANDLER
-	if(pending_step && sprinting)
-		pending_step = FALSE
-		last_sprint_step = world.time
-		var/cost = SPRINT_COST * step_size
-		if(carbon_parent.has_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING) || carbon_parent.has_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING))
-			cost *= SPRINT_HAUL_MODIFIER
-		carbon_parent.sprint_stamina?.adjust(-cost)
-		carbon_parent.sprint_stamina?.block_regen(SPRINT_REGEN_DELAY)
-	check_stairs(get_turf(old_loc), get_turf(carbon_parent))
+	var/cost = SPRINT_COST * step_size
+	if(carbon_parent.has_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING) || carbon_parent.has_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING))
+		cost *= SPRINT_HAUL_MODIFIER
+	carbon_parent.sprint_stamina?.adjust(-cost)
+	carbon_parent.sprint_stamina?.block_regen(SPRINT_REGEN_DELAY)
 
 /datum/component/carbon_sprint/proc/on_sprint_key_down(datum/source)
 	SIGNAL_HANDLER
@@ -123,6 +123,7 @@
 	sprinting = FALSE
 	pending_step = FALSE
 	sustained_moves = 0
+	last_sprint_dir = 0
 	carbon_parent.update_move_intent_slowdown()
 
 /datum/component/carbon_sprint/proc/can_sprint()
@@ -159,10 +160,13 @@
 	if(moves < SPRINT_WALLSLAM_MIN_MOVES || !bumped.density)
 		return
 	// Ocena tick później: drzwi, które się przed nami otwierają, nie przewracają
-	addtimer(CALLBACK(src, PROC_REF(resolve_bump), bumped, moves), 1)
+	addtimer(CALLBACK(src, PROC_REF(resolve_bump), bumped, moves, get_turf(carbon_parent)), 1)
 
-/datum/component/carbon_sprint/proc/resolve_bump(atom/bumped, moves)
+/datum/component/carbon_sprint/proc/resolve_bump(atom/bumped, moves, turf/bump_turf)
 	if(QDELETED(carbon_parent) || QDELETED(bumped) || !is_hard_obstacle(bumped))
+		return
+	// Przez tick mob mógł się już przemieścić: wywrotka tylko na miejscu zderzenia
+	if(get_turf(carbon_parent) != bump_turf || get_dist(carbon_parent, bumped) > 1)
 		return
 	if(!(carbon_parent.mobility_flags & MOBILITY_STAND) || carbon_parent.stat != CONSCIOUS)
 		return
@@ -227,10 +231,11 @@
 	if(get_turf(carbon_parent) != arrived_at)
 		return
 	var/turf/top = get_turf(stairs)
-	if(get_turf(carbon_parent) != top)
-		carbon_parent.forceMove(top)
+	// Najpierw koniec sprintu, żeby forceMove nie odpalił check_stairs drugi raz
 	if(sprinting)
 		stop_sprint()
+	if(get_turf(carbon_parent) != top)
+		carbon_parent.forceMove(top)
 	carbon_parent.visible_message("<span class='danger'>[carbon_parent] potyka się na schodach i zjeżdża na dół!</span>", \
 		"<span class='userdanger'>Potykasz się na schodach i zjeżdżasz na dół!</span>")
 	playsound(top, "bodyfall", 50, TRUE, -1)
