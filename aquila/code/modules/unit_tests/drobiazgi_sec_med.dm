@@ -133,6 +133,11 @@
 	leg_tourniquet.detach()
 	TEST_ASSERT(!LAZYACCESS(patient.movespeed_modification, "aq_tourniquet"), "The slowdown stayed after removal")
 
+	var/obj/item/tourniquet/healed_tourniquet = allocate(/obj/item/tourniquet)
+	healed_tourniquet.attach(patient, BODY_ZONE_R_LEG)
+	patient.fully_heal()
+	TEST_ASSERT(!length(patient.aq_tourniquets) && healed_tourniquet.loc != patient, "Full heal left a tourniquet on")
+
 	var/mob/living/carbon/human/crewmember = allocate(/mob/living/carbon/human)
 	crewmember.equipOutfit(/datum/outfit/job/assistant)
 	TEST_ASSERT(locate(/obj/item/tourniquet) in crewmember.GetAllContents(), "A crew member did not get a tourniquet")

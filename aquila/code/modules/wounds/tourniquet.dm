@@ -147,6 +147,11 @@ GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BOD
 
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	aq_limb_bleed = null
+	for(var/zone in aq_tourniquets?.Copy())
+		var/obj/item/tourniquet/tourniquet = aq_tourniquets[zone]
+		tourniquet.held_bleed = 0
+		tourniquet.detach(silent = TRUE)
+		tourniquet.forceMove(drop_location())
 	return ..()
 
 // --- Przedmiot ---
