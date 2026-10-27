@@ -48,14 +48,24 @@
 		bleed.update_icon()
 	return amount
 
-// Opatrzenie albo przypalenie zmienia globalne krwawienie, więc stare udziały kończyn przestają być prawdziwe.
+// Opatrzenie albo przypalenie zmniejsza globalne krwawienie, więc udziały kończyn maleją w tej samej proporcji.
 /mob/living/carbon/cauterise_wounds(amount = INFINITY)
+	var/bleed_before = aq_bleed_rate()
 	. = ..()
-	aq_limb_bleed = null
+	aq_scale_limb_bleed(bleed_before)
 
 /mob/living/carbon/suppress_bloodloss(amount)
+	var/bleed_before = aq_bleed_rate()
 	. = ..()
-	aq_limb_bleed = null
+	aq_scale_limb_bleed(bleed_before)
+
+/mob/living/carbon/proc/aq_scale_limb_bleed(bleed_before)
+	var/bleed_after = aq_bleed_rate()
+	if(bleed_after <= 0 || bleed_before <= 0)
+		aq_limb_bleed = null
+		return
+	for(var/zone in aq_limb_bleed)
+		aq_limb_bleed[zone] *= min(1, bleed_after / bleed_before)
 
 /// Przywraca krwawienie zatrzymane wcześniej opaską (bez dźwięku i bez wzoru łączenia z add_bleeding)
 /mob/living/carbon/proc/aq_restore_bleeding(amount)

@@ -133,6 +133,13 @@
 	leg_tourniquet.detach()
 	TEST_ASSERT(!LAZYACCESS(patient.movespeed_modification, "aq_tourniquet"), "The slowdown stayed after removal")
 
+	patient.fully_heal()
+	patient.add_bleeding(BLEED_CRITICAL)
+	patient.aq_limb_bleed = list(BODY_ZONE_L_ARM = BLEED_CRITICAL)
+	patient.suppress_bloodloss(BLEED_CRITICAL / 2)
+	TEST_ASSERT(LAZYACCESS(patient.aq_limb_bleed, BODY_ZONE_L_ARM) > 0, "Partial bandaging wiped the limb bleeding share")
+	TEST_ASSERT(LAZYACCESS(patient.aq_limb_bleed, BODY_ZONE_L_ARM) <= patient.aq_bleed_rate() + 0.01, "The limb share was not scaled down")
+
 	var/obj/item/tourniquet/healed_tourniquet = allocate(/obj/item/tourniquet)
 	healed_tourniquet.attach(patient, BODY_ZONE_R_LEG)
 	patient.fully_heal()
