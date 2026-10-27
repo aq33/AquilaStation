@@ -53,7 +53,7 @@
 			return
 		var/list/virus = virus_copylist(Blood.data["viruses"])
 		var/choice = text2num(href_list["isolate"])
-		for (var/datum/disease/acute/V as anything in virus)
+		for (var/datum/disease/acute/V in virus)
 			if (V.uniqueID == choice)
 				isolated_disease = V
 				isolating = 40
@@ -93,11 +93,13 @@
 			for(var/datum/reagent/G in R.reagent_list)
 				if(length(G.data) && ("viruses" in G.data))
 					var/list/virus = G.data["viruses"]
-					passes = TRUE
-					for (var/datum/disease/acute/V as anything in virus)
-						dat |= "<li>[G.name]: <A href='byond://?src=[REF(src)];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a></li>"
+					// AQ: we krwi siedza tez nasze stare /datum/disease bez uniqueID - pomijamy je; |= na tekscie wywalalo runtime
+					for (var/datum/disease/acute/V in virus)
+						passes = TRUE
+						dat += "<li>[G.name]: <A href='byond://?src=[REF(src)];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a></li>"
 			if(!passes)
 				dat += "<li><em>No pathogen</em></li>"
+			dat += "</ul>"
 	user << browse(HTML_SKELETON_TITLE("Pathogenic Isolator", dat), "window=isolator;size=575x400")
 	onclose(user, "isolator")
 	return

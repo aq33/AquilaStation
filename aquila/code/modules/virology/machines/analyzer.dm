@@ -56,6 +56,10 @@
 
 	// There's no dish so lets insert one
 	if(!isvirusdish(tool))
+		// AQ: analizator bierze tylko szalki - strzykawka z krwia idzie najpierw do izolatora
+		if(istype(tool, /obj/item/reagent_containers/syringe))
+			to_chat(user, span_warning("\The [src] only accepts growth dishes. Load the blood sample into a pathogenic isolator first to get a dish."))
+			return TRUE
 		return NONE
 
 	var/obj/item/weapon/virusdish/inserting_dish = tool
