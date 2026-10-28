@@ -836,6 +836,7 @@
 #include "code\modules\projectiles\ammunition\caseless\foam.dm"
 #include "code\modules\projectiles\boxes_magazines\_box_magazine.dm"
 #include "code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
+#include "code\modules\projectiles\disorient.dm"
 #include "code\modules\projectiles\boxes_magazines\internal\shotgun.dm"
 #include "code\modules\projectiles\guns\ballistic\automatic.dm"
 #include "code\modules\projectiles\guns\ballistic\rifle\blaster.dm"

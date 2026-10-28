@@ -246,13 +246,12 @@
 	// NSV13 - added stun and knockdown, removed stamina, added silicon effects
 	stun_time_carbon = (3 SECONDS)
 	knockdown_time_carbon = (6 SECONDS)
-	charged_stamina_damage = 0
+	charged_stamina_damage = 70 // AQ EDIT - port Bee#14750: Disorient zamiast stref (paraliż knockdown_time_carbon przy wyczerpaniu)
 	affect_silicon = TRUE
 
 /obj/item/melee/classic_baton/police/attack(mob/living/target, mob/living/user)
 	if(!on)
 		return ..()
-	var/def_check = target.getarmor(type = "melee")
 
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
@@ -313,23 +312,11 @@
 				target.do_stun_animation() // AQ EDIT - animacja ogłuszenia (port Bee)
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 			additional_effects_carbon(target, user)
-			if((user.zone_selected == BODY_ZONE_HEAD) || (user.zone_selected == BODY_ZONE_CHEST))
-				target.Paralyze(stun_time_carbon) //NSV13 - readded stuns
-				target.apply_damage(charged_stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
-				log_combat(user, target, "stunned", src)
-				target.visible_message(desc["visiblestun"], desc["localstun"])
-			if((user.zone_selected == BODY_ZONE_R_LEG) || (user.zone_selected == BODY_ZONE_L_LEG))
-				target.Knockdown(30)
-				log_combat(user, target, "tripped", src)
-				target.visible_message(desc["visibletrip"], desc["localtrip"])
-			if(user.zone_selected == BODY_ZONE_L_ARM)
-				target.apply_damage(50, STAMINA, BODY_ZONE_L_ARM, def_check)
-				log_combat(user, target, "disarmed", src)
-				target.visible_message(desc["visibledisarm"], desc["localdisarm"])
-			if(user.zone_selected == BODY_ZONE_R_ARM)
-				target.apply_damage(50, STAMINA, BODY_ZONE_R_ARM, def_check)
-				log_combat(user, target, "disarmed", src)
-				target.visible_message(desc["visibledisarm"], desc["localdisarm"])
+			// AQ EDIT START - port Bee#14750: jedna dezorientacja zamiast stref (stamina jest pulą, nie kończynami)
+			target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = knockdown_time_carbon, stack_status = FALSE, protection = target.run_armor_check(user.zone_selected, "stamina", silent = TRUE))
+			log_combat(user, target, "stunned", src)
+			target.visible_message(desc["visiblestun"], desc["localstun"])
+			// AQ EDIT END
 
 			add_fingerprint(user)
 
@@ -347,7 +334,8 @@
 	name = "deputy baton"
 	force = 12
 	cooldown = 10
-	charged_stamina_damage = 20
+	charged_stamina_damage = 55 // AQ EDIT - port Bee#14750
+	knockdown_time_carbon = (5 SECONDS) // AQ EDIT - port Bee#14750
 
 //Telescopic Baton
 /obj/item/melee/classic_baton/police/telescopic
@@ -363,6 +351,8 @@
 	item_flags = NONE
 	force = 0
 	on = FALSE
+	charged_stamina_damage = 50 // AQ EDIT - port Bee#14750
+	knockdown_time_carbon = (3 SECONDS) // AQ EDIT - port Bee#14750
 	on_sound = 'sound/weapons/batonextend.ogg'
 
 	on_icon_state = "telebaton_1"
@@ -438,7 +428,7 @@
 	var/stamina_damage_target = 85
 	var/target_confusion = 4 SECONDS
 
-	charged_stamina_damage = 85
+	charged_stamina_damage = 130 // AQ EDIT - port Bee#14750
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
@@ -550,15 +540,14 @@
 				target.do_stun_animation() // AQ EDIT - animacja ogłuszenia (port Bee)
 
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
+			// AQ EDIT START - port Bee#14750: dezorientacja, cel kontraktu dostaje pełne 130 i upuszcza wszystko
 			if(is_target)
-				target.Knockdown(knockdown_time_carbon)
+				target.Disorient(6 SECONDS, charged_stamina_damage, paralyze = 10 SECONDS, stack_status = FALSE)
 				target.drop_all_held_items()
-				target.adjustStaminaLoss(charged_stamina_damage)
-				if(target.confused < 6 SECONDS)
-					target.confused = min(target.confused + target_confusion, 6 SECONDS)
 			else
-				target.Knockdown(knockdown_time_carbon)
-				target.adjustStaminaLoss(stamina_damage_non_target)
+				target.Disorient(6 SECONDS, stamina_damage_non_target, paralyze = 5 SECONDS, stack_status = FALSE)
+			target.Knockdown(knockdown_time_carbon)
+			// AQ EDIT END
 			additional_effects_carbon(target, user)
 
 			log_combat(user, target, "stunned", src)

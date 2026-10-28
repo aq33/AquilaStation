@@ -2,11 +2,10 @@
 	name = "electrode"
 	icon_state = "spark"
 	color = "#FFFF00"
-	damage = 40
+	damage = 0 // AQ EDIT - port Bee#14750: zamiast 40 staminy i przewrócenia dezorientacja (aquila/code/modules/projectiles/disorient.dm)
 	damage_type = STAMINA
 	flag = "stamina"
 	nodamage = FALSE
-	knockdown = 30
 	stutter = 5
 	jitter = 20
 	hitsound = 'sound/weapons/taserhit.ogg'
