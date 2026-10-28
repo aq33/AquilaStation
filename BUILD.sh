@@ -9,6 +9,8 @@ cd "$(dirname "$0")"
 NodeMajor="$(node --version 2>/dev/null | sed 's/^v\([0-9]*\).*/\1/')"
 if [ -z "$NodeMajor" ] || [ "$NodeMajor" -lt "$NODE_VERSION" ]; then
 	export TG_BOOTSTRAP_NODE_LINUX=1
+	# tools/bootstrap/node downloads it here; TGUI scripts call node by name
+	export PATH="$PWD/tools/bootstrap/.cache/node-v$NODE_VERSION_LTS-linux-x64/bin:$PATH"
 fi
 
 exec tools/build/build build "$@"
