@@ -524,6 +524,15 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"be" = (
+/obj/item/radio/intercom/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "bf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -533,6 +542,17 @@
 /obj/machinery/light/floor,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
+"bg" = (
+/obj/structure/extinguisher_cabinet/south,
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple{
+	dir = 8
+	},
+/obj/machinery/module_duplicator,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "bh" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/clothing/suit/whitedress,
@@ -703,6 +723,17 @@
 /obj/structure/cable/pink,
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/aisat_interior)
+"bx" = (
+/obj/structure/sign/poster/official/moth4{
+	pixel_y = -31
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/bci_implanter,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "bz" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_x = -30
@@ -46128,7 +46159,7 @@ CZ
 Aw
 vw
 qr
-Dv
+bx
 KZ
 qE
 sQ
@@ -46642,7 +46673,7 @@ Je
 rx
 TE
 bj
-rA
+be
 KZ
 ws
 fr
@@ -47156,7 +47187,7 @@ Bh
 PI
 nM
 CQ
-Vq
+bg
 KZ
 cg
 sQ

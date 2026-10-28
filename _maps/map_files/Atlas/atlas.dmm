@@ -58,6 +58,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"af" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/monotile/dark,
+/area/science)
 "ag" = (
 /obj/structure/table,
 /obj/item/vending_refill/boozeomat,
@@ -79,6 +89,13 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmospherics_engine)
+"ai" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/module_duplicator,
+/turf/open/floor/monotile/steel,
+/area/science)
 "aj" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -94,6 +111,16 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/starboard)
+"am" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 4
+	},
+/obj/machinery/bci_implanter,
+/turf/open/floor/monotile/dark,
+/area/science)
 "an" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -56066,7 +56093,7 @@ CH
 Mi
 dW
 kg
-Gy
+ai
 td
 VM
 DH
@@ -57092,7 +57119,7 @@ en
 Pt
 Lc
 sn
-eh
+af
 te
 nm
 HA
@@ -57351,7 +57378,7 @@ kV
 sn
 eh
 lU
-tx
+am
 Cb
 ZZ
 Pm

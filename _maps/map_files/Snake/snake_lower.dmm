@@ -5161,6 +5161,20 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+"ll" = (
+/obj/machinery/light_switch/east,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
+"lm" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/module_duplicator,
+/turf/open/floor/plasteel,
+/area/science/robotics)
 "ln" = (
 /turf/closed/wall/steel,
 /area/chapel/main)
@@ -5210,6 +5224,10 @@
 	dir = 1
 	},
 /area/hallway/primary/aft)
+"lu" = (
+/obj/machinery/bci_implanter,
+/turf/open/floor/plasteel,
+/area/science/robotics)
 "lw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -45349,7 +45367,7 @@ eA
 tA
 Dd
 se
-dX
+lm
 Ju
 QX
 Zr
@@ -45608,7 +45626,7 @@ ja
 bT
 Hv
 hV
-AO
+lu
 Ai
 ja
 oe
@@ -47660,7 +47678,7 @@ Tt
 bu
 UR
 dM
-xN
+ll
 aj
 oj
 mf
