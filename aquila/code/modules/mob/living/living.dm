@@ -34,28 +34,37 @@
 	if(.)
 		set_hygiene(HYGIENE_LEVEL_DISGUSTING)
 
-/// Trwa wypróżnianie z alertu, żeby nie kliknąć dwa razy
-/mob/living/var/defecating = FALSE
+/// Trwa wypróżnianie z alertu, żeby nie kliknąć dwa razy (nazwa celowo różna od defecation, żeby nie pomylić w VV)
+/mob/living/var/toilet_busy = FALSE
 
 /// Wypróżnienie na żądanie (kliknięcie w alert): w ubraniu zostaje smród, nago tylko kupa na podłodze
 /mob/living/proc/defecate_here()
-	if(!CONFIG_GET(flag/shitting_enabled) || defecation <= DEFECATION_VERY || incapacitated() || defecating)
+	if(toilet_busy)
+		return FALSE
+	if(!CONFIG_GET(flag/shitting_enabled))
+		to_chat(src, "<span class='warning'>Wypróżnianie się zostało wyłączone w konfiguracji serwera.</span>")
+		return FALSE
+	if(defecation <= DEFECATION_VERY)
+		to_chat(src, "<span class='notice'>Nie potrzebujesz skorzystać z ubikacji.</span>")
+		return FALSE
+	if(incapacitated())
+		to_chat(src, "<span class='warning'>Nie jesteś teraz w stanie.</span>")
 		return FALSE
 	var/obj/structure/toilet/toilet = locate() in get_turf(src)
 	if(toilet)
-		defecating = TRUE
+		toilet_busy = TRUE
 		if(do_after(src, 3 SECONDS, target = toilet))
 			toilet.shit(src)
-		defecating = FALSE
+		toilet_busy = FALSE
 		return TRUE
 	var/clothed = is_wearing_pants()
 	if(clothed)
 		to_chat(src, "<span class='warning'>Załatwiasz się w ubraniu... będzie śmierdzieć.</span>")
 	else
 		to_chat(src, "<span class='notice'>Kucasz w miejscu...</span>")
-	defecating = TRUE
+	toilet_busy = TRUE
 	var/success = do_after(src, 3 SECONDS, target = src)
-	defecating = FALSE
+	toilet_busy = FALSE
 	if(!success)
 		return FALSE
 	finish_defecate_here(clothed)
