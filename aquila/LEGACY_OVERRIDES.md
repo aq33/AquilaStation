@@ -155,6 +155,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `apply_fullscreen_pref()` | `code/modules/client/client_procs.dm` (`/client/New()`, after `initialize_escape_menu()`) | The fullscreen preference is applied on login, not only after F11 |
 | `PREFTOGGLE_2_FULLSCREEN` in `TOGGLES_2_DEFAULT`, `tesla_volume = 50` | `code/__DEFINES/preferences.dm`, `code/modules/client/preferences.dm` | New players start in fullscreen with tesla sounds at 50% |
 | `holomap.fit_to_view(user.client)` | `nsv13/code/modules/holomap/station_holomap.dm` (`open_map()`), `code/datums/components/holomap.dm` | Bigger HUD minimap scaled to the viewer's view; `aquila/code/modules/ui_porzadki/holomap_scale.dm` |
+| `languages_possible_base.Copy()` instead of `languages_possible_base +=`; `/datum/language/vampiric` and `/datum/language/darkspawn` in `languages_possible_base` | `code/modules/surgery/organs/tongue.dm` | `+=` in the robot/ethereal/golem/slime tongue `Initialize()` added their language to the shared static list, so every tongue could speak it. Aquila antag languages need to be speakable like narsie/ratvar. Egg and squid tongues add their own language in `aquila/` (`eggpeople.dm`, `squidpeople.dm`). Test: `aquila_jezyki_ras` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
