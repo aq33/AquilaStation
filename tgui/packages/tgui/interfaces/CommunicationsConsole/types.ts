@@ -71,9 +71,18 @@ export type CommsConsoleData = {
   mission_briefing: string;
   notoriety: string;
   objectives: Record<string, Objective>;
+  // AQUILA - wybór misji przez kapitana
+  mission_choices?: MissionChoice[];
+  can_choose_mission?: BooleanLike;
 
   // static_data
   callShuttleReasonMinLength: number;
   maxMessageLength: number;
   maxStatusLineLength: number;
+};
+
+export type MissionChoice = {
+  id: string;
+  name: string;
+  brief: string;
 };
