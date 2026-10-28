@@ -1,12 +1,10 @@
 // Wybór misji przez kapitana: tryb overmapy losuje trzy misje zamiast jednej, a kapitan wybiera jedną
-// w konsoli łączności (zakładka „Status misji”) przed odprawą. Bez wyboru zostaje pierwsza wylosowana.
-// Na starcie rundy setup_overmap_mode() działa jak zwykle (statek, przypomnienia), wstrzymane jest tylko
-// tworzenie celów; po wyborze cele nowej misji powstają bez ponownego skoku statku.
+// w konsoli łączności (zakładka „Status misji”). Wybór wisi do pierwszego skoku FTL; jeśli kapitan nie zdąży,
+// przy skoku zostaje pierwsza wylosowana. Na starcie rundy setup_overmap_mode() działa jak zwykle (statek),
+// wstrzymane jest tworzenie celów, przypomnienia i odprawa; po wyborze cele powstają bez ponownego skoku statku.
 
 /// Ile misji dostaje kapitan do wyboru
 #define MISSION_CHOICE_COUNT 3
-/// Wybór kończy się tyle przed odprawą misji
-#define MISSION_CHOICE_MARGIN (30 SECONDS)
 // Kopie definicji z overmap_mode.dm, które są tam #undef na końcu pliku
 #define REMINDER_OBJECTIVES 0
 #define REMINDER_COMBAT_RESET 1
@@ -18,9 +16,8 @@
 	var/list/mission_choices
 	/// TRUE, póki kapitan może jeszcze wybrać misję
 	var/mission_choice_pending = FALSE
-	/// world.time, o którym wybór zamyka się sam
-	var/mission_choice_deadline = 0
-	var/mission_choice_timer
+	/// Odprawa przyszła w trakcie wyboru i czeka na jego koniec
+	var/mission_briefing_waiting = FALSE
 
 /// Polskie nazwy misji w konsoli (config_tag => nazwa)
 GLOBAL_LIST_INIT(mission_choice_names, list(
@@ -61,23 +58,33 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		mission_choices = choices
 
 /datum/controller/subsystem/overmap_mode/setup_overmap_mode()
-	// Krótka odprawa (np. tryb debugowania kuriera) nie zostawia czasu na wybór
-	if(mode_initialised || forced_mode || length(mission_choices) < 2 || announce_delay < 1 MINUTES)
+	// Krótka odprawa (np. tryb debugowania kuriera) oznacza test, wtedy bez wyboru
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	if(mode_initialised || forced_mode || length(mission_choices) < 2 || announce_delay < 1 MINUTES || !main_ship)
 		return ..()
 	mission_choice_pending = TRUE
 	. = ..()
-	var/choice_time = announce_delay - MISSION_CHOICE_MARGIN
-	mission_choice_deadline = world.time + choice_time
-	mission_choice_timer = addtimer(CALLBACK(src, PROC_REF(finish_mission_choice)), choice_time, TIMER_STOPPABLE)
+	RegisterSignal(main_ship, COMSIG_SHIP_DEPARTED, PROC_REF(on_first_jump))
+
+/// Statek wszedł w pierwszy skok FTL: bez wyboru kapitana zostaje pierwsza misja
+/datum/controller/subsystem/overmap_mode/proc/on_first_jump(obj/structure/overmap/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_SHIP_DEPARTED)
+	INVOKE_ASYNC(src, PROC_REF(finish_mission_choice))
 
 /// Tryb wymuszony przez admina albo głosowanie na hardmode kończy wybór misji
 /datum/controller/subsystem/overmap_mode/force_mode(new_mode)
 	mission_choices = null
 	if(mission_choice_pending)
 		mission_choice_pending = FALSE
-		deltimer(mission_choice_timer)
-		mission_choice_timer = null
+		mission_briefing_waiting = FALSE
+		stop_waiting_for_jump()
 	return ..()
+
+/datum/controller/subsystem/overmap_mode/proc/stop_waiting_for_jump()
+	var/obj/structure/overmap/main_ship = SSstar_system.find_main_overmap()
+	if(main_ship)
+		UnregisterSignal(main_ship, COMSIG_SHIP_DEPARTED)
 
 /datum/controller/subsystem/overmap_mode/instance_objectives()
 	if(mission_choice_pending)
@@ -91,7 +98,11 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 
 /datum/controller/subsystem/overmap_mode/announce_objectives()
 	if(mission_choice_pending)
-		finish_mission_choice()
+		// Odprawa poczeka na wybór; załoga dostaje tylko przypomnienie o wyborze
+		if(!mission_briefing_waiting)
+			mission_briefing_waiting = TRUE
+			minor_announce("Dowództwo floty przydzieliło [length(mission_choices)] misje do wyboru. Kapitan wybiera jedną w konsoli łączności (Status misji). Bez wyboru pierwsza misja zostanie przyjęta przy pierwszym skoku FTL.", "Dowództwo floty")
+		return
 	return ..()
 
 /datum/overmap_gamemode/check_completion()
@@ -104,8 +115,7 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	if(!mission_choice_pending)
 		return
 	mission_choice_pending = FALSE
-	deltimer(mission_choice_timer)
-	mission_choice_timer = null
+	stop_waiting_for_jump()
 	if(chosen_type && chosen_type != mode.type && (chosen_type in mission_choices))
 		var/datum/overmap_gamemode/old_mode = mode
 		mode = new chosen_type()
@@ -117,7 +127,14 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 		log_game("[chooser ? key_name(chooser) : "Someone"] picked the overmap mission [chosen.name].")
 	if(chooser)
 		minor_announce("Kapitan [chooser.real_name] przyjął misję: [mission_choice_name(mode.type)]. Szczegóły w odprawie.", "Dowództwo floty")
+	else
+		minor_announce("Pierwszy skok bez decyzji kapitana: przyjęto misję [mission_choice_name(mode.type)]. Szczegóły w odprawie.", "Dowództwo floty")
+	next_objective_reminder = world.time + mode.objective_reminder_interval
 	instance_objectives()
+	// Odprawa, która czekała na wybór (przed jej czasem przyjdzie sama z timera start_reminder())
+	if(mission_briefing_waiting)
+		mission_briefing_waiting = FALSE
+		announce_objectives()
 
 /// Cele nowej misji, tak samo jak w setup_overmap_mode()
 /datum/controller/subsystem/overmap_mode/proc/build_mode_objectives()
@@ -176,7 +193,6 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 			"brief" = initial(mode_type.brief),
 		))
 	.["mission_choices"] = choices
-	.["mission_choice_seconds"] = max(0, round((SSovermap_mode.mission_choice_deadline - world.time) / 10))
 	.["can_choose_mission"] = authenticated_as_non_silicon_captain(user)
 
 /obj/machinery/computer/communications/ui_act(action, list/params)
@@ -193,7 +209,6 @@ GLOBAL_LIST_INIT(mission_choice_names, list(
 	return TRUE
 
 #undef MISSION_CHOICE_COUNT
-#undef MISSION_CHOICE_MARGIN
 #undef REMINDER_OBJECTIVES
 #undef REMINDER_COMBAT_RESET
 #undef REMINDER_COMBAT_DELAY

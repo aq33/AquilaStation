@@ -36,7 +36,6 @@ export function PageObjectives(props) {
     notoriety,
     objectives = {},
     mission_choices = [],
-    mission_choice_seconds = 0,
     can_choose_mission,
   } = data;
 
@@ -46,7 +45,8 @@ export function PageObjectives(props) {
         <>
           <Box mb={1}>
             Dowództwo floty przydzieliło trzy misje. Kapitan wybiera jedną z
-            nich. Za {mission_choice_seconds} s zostanie przyjęta pierwsza.
+            nich przed pierwszym skokiem FTL. Bez wyboru przy skoku zostanie
+            przyjęta pierwsza.
           </Box>
           {!can_choose_mission && (
             <Box mb={1} color="average">
