@@ -1,5 +1,12 @@
 import { CHANNELS, RADIO_PREFIXES } from '../constants';
-import { windowClose, windowLoad, windowOpen, windowSet } from '../helpers';
+import {
+  cancelFocusTimers,
+  scheduleFocus,
+  windowClose,
+  windowLoad,
+  windowOpen,
+  windowSet,
+} from '../helpers';
 import { Modal } from '../types';
 
 /** Attach listeners, sets window size just in case */
@@ -22,6 +29,7 @@ export const handleComponentMount = function (this: Modal) {
     this.events.onForce();
   });
   Byond.subscribeTo('open', (data) => {
+    cancelFocusTimers();
     const channel = CHANNELS.indexOf(data.channel) || 0;
     this.setState({
       buttonContent:
@@ -30,7 +38,7 @@ export const handleComponentMount = function (this: Modal) {
     });
     // AQUILA: okno pokazuje się asynchronicznie - ponawiamy fokus, aż złapie
     for (const delay of [1, 50, 150, 300]) {
-      setTimeout(() => {
+      scheduleFocus(() => {
         this.fields.innerRef.current?.focus();
       }, delay);
     }

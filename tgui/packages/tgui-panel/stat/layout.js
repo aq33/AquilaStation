@@ -117,9 +117,11 @@ export const getDisplayTabs = (statTabs, verbData) => {
     }
   }
   // Zakładka, do której tylko przenieśliśmy komendy (np. brak OOC u gościa).
+  // Grupa połączonych zakładek ma zawsze jedną zakładkę na pasku.
   for (const tab of Object.keys(displayVerbs)) {
     const target = mergedTarget(tab);
-    if (!tabs.includes(target) && !tabs.includes(tab)) {
+    const group = MERGED_TABS[target]?.map(([source]) => source) || [tab];
+    if (!group.some((member) => tabs.includes(member))) {
       tabs.push(tab);
     }
   }
@@ -132,7 +134,7 @@ export const getDisplayTabs = (statTabs, verbData) => {
  */
 export const getTabSections = (selectedTab, verbData) => {
   const displayVerbs = getDisplayVerbs(verbData);
-  const merged = MERGED_TABS[selectedTab];
+  const merged = MERGED_TABS[mergedTarget(selectedTab)];
   if (!merged) {
     return [{ title: null, verbs: displayVerbs[selectedTab] || {} }];
   }

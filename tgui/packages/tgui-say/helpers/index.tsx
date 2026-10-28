@@ -16,11 +16,30 @@ export const windowOpen = (channel: string, dpi: number) => {
   Byond.sendMessage('open', { channel });
 };
 
+/** AQUILA: ponawiane próby fokusu po otwarciu, anulowane przy zamknięciu */
+const focusTimers = new Set<ReturnType<typeof setTimeout>>();
+
+export const scheduleFocus = (callback: () => void, delay: number) => {
+  const timer = setTimeout(() => {
+    focusTimers.delete(timer);
+    callback();
+  }, delay);
+  focusTimers.add(timer);
+};
+
+export const cancelFocusTimers = () => {
+  for (const timer of focusTimers) {
+    clearTimeout(timer);
+  }
+  focusTimers.clear();
+};
+
 /**
  * Resets the state of the window and hides it from user view.
  * Sending "close" logs it server side.
  */
 export const windowClose = (dpi: number) => {
+  cancelFocusTimers();
   setClosed(dpi);
   Byond.sendMessage('close');
 };

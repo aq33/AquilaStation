@@ -30,11 +30,27 @@
 				tiles_wide = clamp(tiles_wide, tiles_high, MAX_DYNAMIC_VIEW_WIDTH)
 				if(tiles_wide != default_size[1])
 					view_size.setDefault("[tiles_wide]x[tiles_high]")
-	if(prefs.toggles2 & PREFTOGGLE_2_AUTO_FIT_VIEWPORT)
+	if((prefs.toggles2 & PREFTOGGLE_2_AUTO_FIT_VIEWPORT) && chat_keeps_room_after_fit())
 		fit_viewport()
+
+/// Najwęższy panel czatu/statystyk (px), jaki może zostać po dopasowaniu mapy
+#define MIN_INFO_PANEL_WIDTH 250
+
+/// Czy po dopasowaniu panelu mapy do proporcji widoku czatowi zostanie dość miejsca
+/// (w wąskim, wysokim oknie fit_viewport() zabrałby mu prawie całą szerokość)
+/client/proc/chat_keeps_room_after_fit()
+	var/list/sizes = params2list(winget(src, "mainwindow.split;mapwindow", "size"))
+	var/list/map_size = splittext(sizes["mapwindow.size"], "x")
+	var/list/split_size = splittext(sizes["mainwindow.split.size"], "x")
+	if(length(map_size) != 2 || length(split_size) != 2)
+		return FALSE
+	var/list/view_tiles = getviewsize(view)
+	var/desired_width = text2num(map_size[2]) * view_tiles[1] / view_tiles[2]
+	return text2num(split_size[1]) - desired_width >= MIN_INFO_PANEL_WIDTH
 
 #undef AUTO_FIT_VIEWPORT_DELAY
 #undef MAX_DYNAMIC_VIEW_WIDTH
+#undef MIN_INFO_PANEL_WIDTH
 
 /// Pełny ekran z ustawień włącza się od razu po wejściu, a nie dopiero po F11
 /client/proc/apply_fullscreen_pref()

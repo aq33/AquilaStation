@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(holomaps)
 
 			if(tile_area.holomap_color)
 				area_canvas.DrawBox(tile_area.holomap_color, offset_x, offset_y)
-				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? "Maintenance" : tile_area.name
+				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? GLOB.holomap_color_to_name[HOLOMAP_AREACOLOR_MAINTENANCE] : tile_area.name
 
 			if(IS_ROCK(tile))
 				canvas.DrawBox(HOLOMAP_ROCK, offset_x, offset_y)

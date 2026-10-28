@@ -18,6 +18,8 @@ GLOBAL_LIST_INIT(controls_help_categories, list(
 	var/list/keys_by_name = list()
 	var/list/bindings = client?.prefs?.key_bindings
 	for(var/key in bindings)
+		if(key == "Unbound") // tak zapisywane są skróty bez klawisza
+			continue
 		for(var/kb_name in bindings[key])
 			LAZYADD(keys_by_name[kb_name], key)
 
