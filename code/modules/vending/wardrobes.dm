@@ -369,7 +369,8 @@
 					/obj/item/storage/bag/trash = 2,
 					/obj/item/clothing/shoes/galoshes = 2,
 					/obj/item/watertank/janitor = 1,
-					/obj/item/storage/belt/janitor = 2)
+					/obj/item/storage/belt/janitor = 2,
+					/obj/item/air_refresher = 3) // AQ EDIT - odświeżacz powietrza, aquila/code/modules/pollution/
 	contraband = list(
 					/obj/item/holosign_creator/janibarrier = 1,
 					/obj/item/caution = 3, //The really old crusty ones
@@ -445,7 +446,8 @@
 					/obj/item/clothing/head/taqiyahred = 3,
 					/obj/item/clothing/head/beanie/rasta = 1,
 					/obj/item/candle/incense = 5,
-					/obj/item/candle/incense/pink = 5)
+					/obj/item/candle/incense/pink = 5,
+					/obj/item/storage/fancy/candle_box/scented = 2) // AQ EDIT - świece zapachowe, aquila/code/modules/pollution/
 	contraband = list(/obj/item/toy/plush/plushvar = 1,
 					/obj/item/toy/plush/narplush = 1,
 					/obj/item/clothing/head/medievaljewhat = 3,

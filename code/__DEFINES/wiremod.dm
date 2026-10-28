@@ -1,38 +1,61 @@
-/// Helper define that can only be used in /obj/item/circuit_component/input_received()
-#define COMPONENT_TRIGGERED_BY(trigger, port) (trigger.input_value && trigger == port)
+#define COMPONENT_TRIGGERED_BY(trigger, port) (trigger.value && trigger == port)
 
-/// Define to automatically handle calling the output port. Will not call the output port if the input_received proc returns TRUE.
-#define TRIGGER_CIRCUIT_COMPONENT(component, port) if(!component.input_received(port) && (component.circuit_flags & CIRCUIT_FLAG_OUTPUT_SIGNAL)) component.trigger_output.set_output(COMPONENT_SIGNAL)
+/// Define to be placed at any proc that is triggered by a port.
+#define CIRCUIT_TRIGGER SHOULD_NOT_SLEEP(TRUE)
+
+// Port defines
+
+#define PORT_MAX_NAME_LENGTH 50
 
 // Port types. Determines what the port can connect to
 
 /// Can accept any datatype. Only works for inputs, output types will runtime.
-#define PORT_TYPE_ANY null
+#define PORT_TYPE_ANY "any"
 
 // Fundamental datatypes
 /// String datatype
 #define PORT_TYPE_STRING "string"
-#define PORT_MAX_STRING_LENGTH 500
+#define PORT_MAX_STRING_LENGTH 5000
+#define PORT_MAX_STRING_DISPLAY 100
 /// Number datatype
 #define PORT_TYPE_NUMBER "number"
 /// Signal datatype
 #define PORT_TYPE_SIGNAL "signal"
-/// List datatype
-#define PORT_TYPE_LIST "list"
+/// Signal datatype, with a slight variation in name to suggest it causes instant execution. Can only be an output port.
+#define PORT_TYPE_INSTANT_SIGNAL "instant signal"
+/// Signal datatype, with a slight variation in name to suggest that it can be used to respond to instant execution.
+#define PORT_TYPE_RESPONSE_SIGNAL "response signal"
 /// Table datatype. Derivative of list, contains other lists with matching columns.
 #define PORT_TYPE_TABLE "table"
+/// Options datatype. Derivative of string.
+#define PORT_TYPE_OPTION "option"
+/// Boolean datatype. Derivative of number.
+#define PORT_TYPE_BOOLEAN "boolean"
+
+// Composite datatypes
+#define PORT_COMPOSITE_TYPE_LIST "list"
+/// List datatype
+#define PORT_TYPE_LIST(datatype) SSwiremod_composite.composite_datatype(PORT_COMPOSITE_TYPE_LIST, datatype)
+
+#define PORT_COMPOSITE_TYPE_ASSOC_LIST "assoc list"
+/// Associative List datatype. Derivative of list.
+#define PORT_TYPE_ASSOC_LIST(key_datatype, datatype) SSwiremod_composite.composite_datatype(PORT_COMPOSITE_TYPE_ASSOC_LIST, key_datatype, datatype)
 
 // Other datatypes
 /// Atom datatype
 #define PORT_TYPE_ATOM "entity"
-/// Any datatype (USED ONLY FOR DISPLAY, DO NOT USE)
-#define COMP_TYPE_ANY "any"
+/// Datum datatype
+#define PORT_TYPE_DATUM "datum"
+/// User datatype
+#define PORT_TYPE_USER "user"
 
 
 /// The maximum range between a port and an atom
 #define PORT_ATOM_MAX_RANGE 7
 
 #define COMPONENT_DEFAULT_NAME "component"
+
+#define COMPONENT_DEFAULT_CATEGORY "Unassigned"
 
 /// The minimum position of the x and y co-ordinates of the component in the UI
 #define COMPONENT_MIN_RANDOM_POS 200
@@ -45,11 +68,8 @@
 
 // Components
 
-/// The value that is sent whenever a component is simply sending a signal. This can be anything.
-#define COMPONENT_SIGNAL 1
-
-/// The largest sized list a component can make
-#define COMPONENT_MAXIMUM_LIST_SIZE 256
+/// The value that is sent whenever a component is simply sending a signal. This can be anything, and is currently the seconds since roundstart.
+#define COMPONENT_SIGNAL (world.time / (1 SECONDS))
 
 // Comparison defines
 #define COMP_COMPARISON_EQUAL "="
@@ -59,106 +79,13 @@
 #define COMP_COMPARISON_GREATER_THAN_OR_EQUAL ">="
 #define COMP_COMPARISON_LESS_THAN_OR_EQUAL "<="
 
-// Delay defines
-/// The minimum delay value that the delay component can have.
-#define COMP_DELAY_MIN_VALUE 0.1
-
-// Logic defines
-#define COMP_LOGIC_AND "AND"
-#define COMP_LOGIC_OR "OR"
-#define COMP_LOGIC_XOR "XOR"
-
-// Arithmetic defines
-#define COMP_ARITHMETIC_ADD "Add"
-#define COMP_ARITHMETIC_SUBTRACT "Subtract"
-#define COMP_ARITHMETIC_MULTIPLY "Multiply"
-#define COMP_ARITHMETIC_DIVIDE "Divide"
-#define COMP_ARITHMETIC_MODULO "Modulus"
-#define COMP_ARITHMETIC_MIN "Minimum"
-#define COMP_ARITHMETIC_MAX "Maximum"
-
-//Bitwise defines
-#define COMP_BITWISE_AND "And"
-#define COMP_BITWISE_OR "Or"
-#define COMP_BITWISE_XOR "Xor"
-#define COMP_BITWISE_LEFTSHIFT "Left Shift"
-#define COMP_BITWISE_RIGHTSHIFT "Right Shift"
-
-//Round defines
-#define COMP_ROUND_ROUND "Round"
-#define COMP_ROUND_FLOOR "Floor"
-#define COMP_ROUND_CEIL "Ceil"
-
-//Trig defines
-#define COMP_TRIG_COSINE "COS"
-#define COMP_TRIG_SINE "SIN"
-#define COMP_TRIG_TANGENT "TAN"
-#define COMP_TRIG_ASINE "ASIN"
-#define COMP_TRIG_ACOSINE "ACOS"
-#define COMP_TRIG_ATANGENT "ATAN"
-
-//Advanced Trig defines
-#define COMP_TRIG_SECANT "SEC"
-#define COMP_TRIG_COSECANT "CSC"
-#define COMP_TRIG_COTANGENT "COT"
-
-//Hyperbolic Trig Defines
-#define COMP_TRIG_HYPERBOLIC_COSINE "COSH"
-#define COMP_TRIG_HYPERBOLIC_SINE "SINH"
-#define COMP_TRIG_AHYPERBOLIC_COSINE "ACOSH"
-#define COMP_TRIG_AHYPERBOLIC_SINE "ASING"
-
-//Indexer defines
-#define COMP_INDEXER_NONE "None"
-#define COMP_INDEXER_INCREMENT "Increment"
-#define COMP_INDEXER_LOOP "Loop"
-#define COMP_INDEXER_BOTH "Both"
-
-#define COMP_INDEXER_FLAG_INCREMENT (1<<0)
-#define COMP_INDEXER_FLAG_LOOP (1<<1)
-
-//Pop defines
-#define COMP_POP_POP "Pop"
-#define COMP_POP_DEQUEUE "Dequeue"
-
-// Text defines
-#define COMP_TEXT_LOWER "To Lower"
-#define COMP_TEXT_UPPER "To Upper"
-
-// Typecast component
-#define COMP_TYPECAST_MOB "organism"
-#define COMP_TYPECAST_HUMAN "humanoid"
-
 // Clock component
-#define COMP_CLOCK_DELAY 0.9 SECONDS
-
-// Radio component
-#define COMP_RADIO_PUBLIC "public"
-#define COMP_RADIO_PRIVATE "private"
-
-// Sound component
-#define COMP_SOUND_BUZZ "Buzz"
-#define COMP_SOUND_BUZZ_TWO "Buzz Twice"
-#define COMP_SOUND_CHIME "Chime"
-#define COMP_SOUND_HONK "Honk"
-#define COMP_SOUND_PING "Ping"
-#define COMP_SOUND_SAD "Sad Trombone"
-#define COMP_SOUND_WARN "Warn"
-#define COMP_SOUND_SLOWCLAP "Slow Clap"
-
-// Security Arrest Console
-#define COMP_STATE_ARREST "*Arrest*"
-#define COMP_STATE_PRISONER "Incarcerated"
-#define COMP_STATE_PAROL "Paroled"
-#define COMP_STATE_DISCHARGED "Discharged"
-#define COMP_STATE_NONE "None"
-
-#define COMP_SECURITY_ARREST_AMOUNT_TO_FLAG 10
+#define COMP_CLOCK_DELAY (0.9 SECONDS)
 
 // Shells
 
 /// Whether a circuit is stuck on a shell and cannot be removed (by a user)
-#define SHELL_FLAG_CIRCUIT_FIXED (1<<0)
+#define SHELL_FLAG_CIRCUIT_UNREMOVABLE (1<<0)
 
 /// Whether the shell needs to be anchored for the circuit to be on.
 #define SHELL_FLAG_REQUIRE_ANCHOR (1<<1)
@@ -169,10 +96,14 @@
 /// Whether the shell allows actions to be peformed on a shell if the action fails. This will additionally block the messages from being displayed.
 #define SHELL_FLAG_ALLOW_FAILURE_ACTION (1<<3)
 
+/// Whether a circuit is not able to be modified
+#define SHELL_FLAG_CIRCUIT_UNMODIFIABLE (1<<5)
+
 // Shell capacities. These can be converted to configs very easily later
-#define SHELL_CAPACITY_SMALL 10
-#define SHELL_CAPACITY_MEDIUM 25
-#define SHELL_CAPACITY_LARGE 50
+#define SHELL_CAPACITY_TINY 12
+#define SHELL_CAPACITY_SMALL 25
+#define SHELL_CAPACITY_MEDIUM 50
+#define SHELL_CAPACITY_LARGE 100
 #define SHELL_CAPACITY_VERY_LARGE 500
 
 /// The maximum range a USB cable can be apart from a source
@@ -183,29 +114,35 @@
 #define CIRCUIT_FLAG_INPUT_SIGNAL (1<<0)
 /// Creates an output trigger that sends a pulse whenever the component is successfully triggered
 #define CIRCUIT_FLAG_OUTPUT_SIGNAL (1<<1)
+/// Marks a circuit component as admin only. Admins will only be able to link/unlink with these circuit components.
+#define CIRCUIT_FLAG_ADMIN (1<<2)
+/// This circuit component does not show in the menu.
+#define CIRCUIT_FLAG_HIDDEN (1<<3)
+/// This circuit component has been marked as a component that has instant execution and will show up in the UI as so. This will only cause a visual change.
+#define CIRCUIT_FLAG_INSTANT (1<<4)
+/// This circuit component can't be loaded in module component. Saves us some headaches.
+#define CIRCUIT_FLAG_REFUSE_MODULE (1<<5)
+/// This circuit component cannot be inserted into the same circuit multiple times. Only use this for major headaches.
+#define CIRCUIT_NO_DUPLICATES (1<<6)
+/// This circuit component is currently disabled via configs
+#define CIRCUIT_FLAG_DISABLED (1<<7)
 
-#define WIREMOD_CIRCUITRY "Circuitry"
-#define WIREMOD_CORE "Core"
-#define WIREMOD_SHELLS "Shells"
-#define WIREMOD_INPUT_COMPONENTS "Input Components"
-#define WIREMOD_OUTPUT_COMPONENTS "Output Components"
-#define WIREMOD_MATH_COMPONENTS "Math Components"
-#define WIREMOD_TIME_COMPONENTS "Time Components"
-#define WIREMOD_LOGIC_COMPONENTS "Logic Components"
-#define WIREMOD_LIST_COMPONENTS "List Components"
-#define WIREMOD_MEMORY_COMPONENTS "Memory Components"
-#define WIREMOD_CONVERSION_COMPONENTS "Conversion Components"
-#define WIREMOD_STRING_COMPONENTS "String Components"
-#define WIREMOD_REFERENCE_COMPONENTS "Reference Components"
+// Datatype flags
+/// The datatype supports manual inputs
+#define DATATYPE_FLAG_ALLOW_MANUAL_INPUT (1<<0)
+/// The datatype won't update the value when it is connected to the port
+#define DATATYPE_FLAG_AVOID_VALUE_UPDATE (1<<1)
+/// Allows the datatype to take entity values from the circuit multitool.
+#define DATATYPE_FLAG_ALLOW_ATOM_INPUT (1<<2)
+/// The datatype has been generated and is an existing composite datatype
+#define DATATYPE_FLAG_COMPOSITE (1<<3)
 
-#define WIREMODE_CATEGORIES list(\
-	WIREMOD_CIRCUITRY,\
-	WIREMOD_CORE,\
-	WIREMOD_SHELLS,\
-	WIREMOD_INPUT_COMPONENTS,\
-	WIREMOD_OUTPUT_COMPONENTS,\
-	WIREMOD_MATH_COMPONENTS,\
-	WIREMOD_TIME_COMPONENTS,\
-	WIREMOD_LOGIC_COMPONENTS,\
-	WIREMOD_LIST_COMPONENTS\
-	)
+// AQ EDIT START - komponenty USB konsoli rekordów ochrony (code/game/machinery/computer/security.dm), u tg wycięte razem ze starą konsolą
+#define COMP_STATE_ARREST "*Arrest*"
+#define COMP_STATE_PRISONER "Incarcerated"
+#define COMP_STATE_PAROL "Paroled"
+#define COMP_STATE_DISCHARGED "Discharged"
+#define COMP_STATE_NONE "None"
+
+#define COMP_SECURITY_ARREST_AMOUNT_TO_FLAG 10
+// AQ EDIT END
