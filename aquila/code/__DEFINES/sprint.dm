@@ -1,23 +1,58 @@
-// Sprint i kondycja: port BeeStation/BeeStation-Hornet#14750 (tylko sprint) + wywrotka na ścianie i upadek ze schodów (nowe)
+// Stamina i sprint: port BeeStation/BeeStation-Hornet#14750 + wywrotka na ścianie i upadek ze schodów (nowe)
 
 ////
-/// KONDYCJA (pula /datum/stamina_container, niezależna od staminaloss)
+/// STAMINA (jedna pula /datum/stamina_container na każdym /mob/living, jak w Bee#14750)
 ////
 
-///Maksymalna kondycja (92: od pełnej do zadyszki ok. 24 kratki sprintu na wprost)
-#define SPRINT_STAMINA_MAX 92
-///Ile kondycji wraca na sekundę
-#define SPRINT_STAMINA_REGEN 10
-///Mnożnik regeneracji, gdy się leży
-#define SPRINT_STAMINA_RESTING_REGEN_MULTIPLIER 2
-///Poniżej tej części kondycji wchodzi wyczerpanie
-#define SPRINT_STAMINA_EXHAUSTION_THRESHOLD (0.4)
-///Powyżej tej części kondycji wyczerpanie mija
-#define SPRINT_STAMINA_EXHAUSTION_RECOVERY_THRESHOLD (0.7)
-///Poniżej tej części pasek pulsuje na czerwono jako ostrzeżenie
-#define SPRINT_STAMINA_EXHAUSTION_WARNING (0.5)
-///Spowolnienie przy wyczerpaniu (w Bee 3)
-#define SPRINT_STAMINA_EXHAUSTION_SLOWDOWN 1.5
+///Maksymalna stamina
+#define STAMINA_MAX 250
+///Ile staminy wraca na sekundę
+#define STAMINA_REGEN 10
+///Mnożnik regeneracji, gdy się leży (bez obezwładnienia)
+#define STAMINA_RESTING_REGEN_MULTIPLIER 2
+///Poniżej tej części puli wchodzi wyczerpanie
+#define STAMINA_EXHAUSTION_THRESHOLD_MODIFIER (0.4)
+///Powyżej tej części puli wyczerpanie mija
+#define STAMINA_EXHAUSTION_RECOVERY_THRESHOLD_MODIFIER (0.7)
+///Poniżej tej części wskaźnik pulsuje na czerwono jako ostrzeżenie
+#define STAMINA_EXHAUSTION_WARNING_MODIFIER (0.5)
+///Spowolnienie przy wyczerpaniu
+#define STAMINA_EXHAUSTION_MOVESPEED_SLOWDOWN 3
+///Poniżej tej części puli każda utrata staminy może dać stamcrit
+#define STAMINA_STUN_THRESHOLD_MODIFIER (0.2)
+///Czas stamcritu
+#define STAMINA_STUN_TIME (3 SECONDS)
+///Bazowa szansa (%) na stamcrit
+#define STAMINA_SCALING_STUN_BASE 20
+///Dodatkowa szansa (%) zależna od brakującej staminy
+#define STAMINA_SCALING_STUN_SCALER 60
+///Softcrit zmniejsza pulę o tyle
+#define STAMINA_SOFTCRIT_MAX_MODIFIER -100
+///Softcrit zmniejsza regenerację o tyle na sekundę
+#define STAMINA_SOFTCRIT_REGEN_MODIFIER -5
+
+////
+/// WALKA
+////
+
+///Domyślny koszt zamachu przedmiotem
+#define STAMINA_SWING_COST_ITEM 25
+///Domyślne obrażenia staminy przedmiotu
+#define STAMINA_DAMAGE_ITEM 15
+///Obrażenia staminy ciosu bez broni
+#define STAMINA_DAMAGE_UNARMED 24
+///Koszt ciosu bez broni
+#define STAMINA_SWING_COST_UNARMED 12
+///Domyślna szansa (%) na krytyk przedmiotu
+#define STAMINA_CRITICAL_RATE_ITEM 25
+///Mnożnik obrażeń staminy przy krytyku
+#define STAMINA_CRITICAL_MODIFIER 2
+///Zamach kosztuje tylko, dopóki po nim zostaje ponad tyle staminy (niżej jest darmowy, więc same zamachy nie wyczerpią)
+#define STAMINA_MAXIMUM_TO_SWING 100
+///Koszt odepchnięcia
+#define STAMINA_DISARM_COST 30
+///Obrażenia staminy odepchnięcia
+#define STAMINA_DISARM_DMG 18
 
 ////
 /// SPRINT
@@ -27,8 +62,8 @@
 #define SPRINT_SUSTAINED_RUN_GRACE (0.5 SECONDS)
 ///Po tylu kratkach w jednym kierunku sprint liczy się jako rozpęd (mała chmurka kurzu)
 #define SPRINT_SUSTAINED_THRESHOLD 8
-///Koszt kondycji za kratkę sprintu
-#define SPRINT_COST 2.3
+///Koszt staminy za kratkę sprintu (6.25: z pełnej puli ok. 24 kratki do zadyszki)
+#define SPRINT_COST 6.25
 ///Mnożnik kosztu po skosie
 #define SPRINT_DIAGONAL_MODIFIER 1.4
 ///Mnożnik kosztu przy ciągnięciu albo noszeniu czegoś, co spowalnia
@@ -76,15 +111,15 @@
 ///Najdłuższy zjazd po schodach (w kratkach)
 #define SPRINT_STAIRS_MAX_SLIDE 10
 
-///Wyczerpanie po sprincie: brak sprintu, spowolnienie, zadyszka (nie da się mówić)
+///Wyczerpanie: brak sprintu, spowolnienie, tylko szept
 #define TRAIT_EXHAUSTED "exhausted"
-///Źródło cech i modyfikatorów kondycji
-#define SPRINT_STAMINA_TRAIT "sprint_stamina"
+///Źródło cech i modyfikatorów staminy
+#define STAMINA_TRAIT "stamina_pool"
+
+#define STATUS_EFFECT_STAMCRIT /datum/status_effect/incapacitating/stamcrit
 
 #define MOVESPEED_ID_SPRINT_EXHAUSTION "sprint_exhaustion"
 
 #define COMSIG_KB_CARBON_SPRINT_DOWN "keybinding_carbon_sprint_down"
 #define COMSIG_KB_CARBON_SPRINT_UP "keybinding_carbon_sprint_up"
 
-///Pozycja paska kondycji: wąski pasek tuż na lewo od błyskawicy staminy (ui_stamina)
-#define ui_sprint_stamina "EAST-2:26,CENTER-5:8"

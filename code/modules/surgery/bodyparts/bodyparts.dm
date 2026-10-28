@@ -184,6 +184,11 @@
 	brute = max(0, brute - brute_reduction)
 	burn = max(0, burn - burn_reduction)
 	//No stamina scaling.. for now..
+	// AQ EDIT START - port Bee#14750: stamina idzie do puli właściciela, nie na kończynę
+	if(stamina)
+		owner?.stamina?.adjust(-stamina)
+		stamina = 0
+	// AQ EDIT END
 
 	if(!brute && !burn && !stamina)
 		return FALSE
@@ -231,7 +236,8 @@
 
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
 	burn_dam	= round(max(burn_dam - burn, 0), DAMAGE_PRECISION)
-	stamina_dam = round(max(stamina_dam - stamina, 0), DAMAGE_PRECISION)
+	if(stamina > 0) // AQ EDIT - port Bee#14750: leczenie staminy idzie do puli właściciela
+		owner?.stamina?.adjust(stamina)
 	if(owner && updating_health)
 		owner.updatehealth()
 	if(owner.dna && owner.dna.species && (REVIVESBYHEALING in owner.dna.species.species_traits))

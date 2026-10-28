@@ -95,10 +95,7 @@
 		return 0
 	return ..()
 
-/mob/living/carbon/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(SEND_SIGNAL(src, COMSIG_LIVING_ADJUST_STAMINA_DAMAGE, STAMINA, amount, forced) & COMPONENT_IGNORE_CHANGE)
-		return 0
-	return ..()
+// COMSIG_LIVING_ADJUST_STAMINA_DAMAGE wysyła teraz sama pula staminy (/datum/stamina_container/adjust)
 
 // ---------------------------------------------------------------------------
 // Cechy z tg bez odpowiednika w rdzeniu

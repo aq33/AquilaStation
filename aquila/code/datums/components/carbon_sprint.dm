@@ -106,8 +106,8 @@
 	var/cost = SPRINT_COST * step_size
 	if(carbon_parent.has_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING) || carbon_parent.has_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING))
 		cost *= SPRINT_HAUL_MODIFIER
-	carbon_parent.sprint_stamina?.adjust(-cost)
-	carbon_parent.sprint_stamina?.block_regen(SPRINT_REGEN_DELAY)
+	carbon_parent.stamina?.adjust(-cost)
+	carbon_parent.stamina?.block_regen(SPRINT_REGEN_DELAY)
 
 /datum/component/carbon_sprint/proc/on_sprint_key_down(datum/source)
 	SIGNAL_HANDLER
@@ -139,7 +139,7 @@
 		return FALSE
 	if(HAS_TRAIT(carbon_parent, TRAIT_EXHAUSTED))
 		return FALSE
-	if(!carbon_parent.sprint_stamina || carbon_parent.sprint_stamina.current <= 0)
+	if(!carbon_parent.stamina || carbon_parent.stamina.current <= 0)
 		return FALSE
 	return TRUE
 
