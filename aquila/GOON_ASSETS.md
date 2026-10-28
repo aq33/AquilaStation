@@ -7,5 +7,4 @@ Licencja: **CC BY-NC-SA 3.0** (jak `goon/LICENSE.md`), NIE ogólna licencja asse
 |---|---|---|
 | `aquila/icons/effects/sprint_dust.dmi` | `goon/icons/obj/effects.dmi` | mybluecorners (Goonstation #854, #878, #899) |
 | `aquila/icons/effects/interact.dmi` | `goon/icons/mob/interact.dmi` | Goonstation |
-| `aquila/sound/footstep/goon/floor1-5.ogg` | `goon/sounds/footstep/floor1-5.ogg` | Goonstation |
 | `aquila/sound/voice/gasp/*_gasp_1-5.ogg` | `goon/sounds/voice/gasp/` | Goonstation |
