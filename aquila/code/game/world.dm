@@ -19,5 +19,5 @@
 /world/proc/request_watchdog_restart()
 	if(!world.GetConfig("env", "AQUILA_WATCHDOG"))
 		return
-	// aquila/tools/server_watchdog.ps1 waits for this exact path.
+	// aquila/tools/server_watchdog.ps1 (Windows) and server_watchdog.sh (Linux) wait for this exact path.
 	rustg_file_write("[time_stamp("YYYY-MM-DD hh:mm:ss")]", "data/watchdog_restart")

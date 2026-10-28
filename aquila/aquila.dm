@@ -1386,6 +1386,7 @@
 #include "code\modules\unit_tests\combat_mode_legacy.dm"
 #include "code\modules\unit_tests\jukebox_pa_system.dm"
 #include "code\modules\unit_tests\aquila_crying.dm"
+#include "code\modules\unit_tests\aquila_linux_ytdl.dm"
 #include "code\modules\unit_tests\aquila_ai_network.dm"
 #include "code\modules\unit_tests\aquila_decentralized_ai.dm"
 #include "code\modules\unit_tests\aquila_defib_reasons.dm"
