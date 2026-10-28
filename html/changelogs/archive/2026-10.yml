@@ -728,6 +728,17 @@
       spowalnia, na szyi dusi; noszona dłużej niż 3 minuty niszczy kończynę. Każdy
       dostaje jedną na start, są też w apteczkach i NanoMedach.'
   - imageadd: Sprite opaski uciskowej, skanera N-spect i taggera (z tg).
+  - rscadd: 'Koło emotek: przycisk w lewym górnym rogu otwiera radial z emotkami oznaczonymi
+      gwiazdką w Panelu emotek (do 12).'
+  - rscadd: 10 nowych zleceń dla działu amunicji; zlecenia amunicji pojawiają się
+      też w konsoli zleceń cargo.
+  - rscadd: 'Rewolucja ma panel jak kult krwi: miejsca towarzyszy, limit i ile osób
+      można jeszcze przekonać.'
+  - balance: Rewolucja ma dynamiczny limit konwersji jak kult (1/3 żywej załogi, od
+      5 do 12).
+  - rscadd: Kapitan wybiera w konsoli łączności jedną z trzech wylosowanych misji
+      przed odprawą.
+  - imageadd: Ikony koła emotek i panelu rewolucji.
   Monkestation:
   - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
       kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu

@@ -19,11 +19,13 @@ type Emote = {
 
 type EmotePanelData = {
   emotes: Emote[];
+  quick: string[];
+  quick_max: number;
 };
 
 export const EmotePanelContent = (props) => {
   const { act, data } = useBackend<EmotePanelData>();
-  const { emotes } = data;
+  const { emotes, quick = [], quick_max } = data;
 
   const [filterVisible, toggleVisualFilter] = useState(false);
 
@@ -162,6 +164,11 @@ export const EmotePanelContent = (props) => {
           </Flex>
         }
       >
+        <Box mb={1} color="label">
+          <Icon name="star" color="yellow" mr={0.5} />
+          Koło emotek: {quick.length}/{quick_max}. Gwiazdka dodaje emotkę do
+          koła szybkiego wyboru (przycisk w lewym górnym rogu).
+        </Box>
         <Flex>
           <Flex.Item>
             {filteredEmotes.map((emote) => (
@@ -170,6 +177,12 @@ export const EmotePanelContent = (props) => {
                 key={emote.name}
                 showIcons={showIcons}
                 showNames={showNames}
+                inWheel={quick.includes(emote.key)}
+                onToggleWheel={() =>
+                  act('toggle_quick', {
+                    emote_key: emote.key,
+                  })
+                }
                 onPlay={() =>
                   act('play_emote', {
                     emote_key: emote.key,
@@ -194,18 +207,28 @@ type EmoteButtonProps = {
   emote: Emote;
   showIcons: boolean;
   showNames: boolean;
+  inWheel: boolean;
+  onToggleWheel: () => void;
   onPlay: () => void;
   onPreview: () => void;
 };
 
 const EmoteButton = (props: EmoteButtonProps) => {
-  const { emote, showIcons, showNames, onPlay, onPreview } = props;
+  const {
+    emote,
+    showIcons,
+    showNames,
+    inWheel,
+    onToggleWheel,
+    onPlay,
+    onPreview,
+  } = props;
 
   return (
     <Stack
       inlineFlex
       align="center"
-      width={showIcons ? 16 : 8}
+      width={showIcons ? 18 : 10}
       mb={0.5}
       mr={0.5}
       style={{ gap: '0.25em' }}
@@ -243,6 +266,15 @@ const EmoteButton = (props: EmoteButtonProps) => {
             ''
           )}
         </Button>
+      </Stack.Item>
+      <Stack.Item width={1.75}>
+        <Button
+          fluid
+          icon="star"
+          color={inWheel ? 'yellow' : 'transparent'}
+          tooltip={inWheel ? 'Usuń z koła emotek' : 'Dodaj do koła emotek'}
+          onClick={onToggleWheel}
+        />
       </Stack.Item>
       {emote.sound ? (
         <Stack.Item width={1.75}>

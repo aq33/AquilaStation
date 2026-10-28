@@ -204,6 +204,7 @@
 #define PREFERENCE_TAG_MOD_SELECT		"29"
 #define PREFERENCE_TAG_COMPLETED_TUTORIALS	"30" // AQ EDIT - samouczek: ukończone lekcje (JSON)
 #define PREFERENCE_TAG_CLIENTFPS_MIGRATED	"31" // AQ EDIT - jednorazowa migracja starego domyślnego FPS 40
+#define PREFERENCE_TAG_QUICK_EMOTES	"32" // AQ EDIT - koło emotek: wybrane emotki (JSON)
 
 // True value of max save slots (3 is default, 8 is byond member, +1 to either if you have the extra slot loadout entry). Potential max is 9
 #define TRUE_MAX_SAVE_SLOTS 9
