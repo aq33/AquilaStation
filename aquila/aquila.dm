@@ -1403,6 +1403,7 @@
 #include "code\modules\unit_tests\aquila_bitrunning.dm"
 #include "code\modules\unit_tests\aquila_bleeding.dm"
 #include "code\modules\unit_tests\aquila_blood_types.dm"
+#include "code\modules\unit_tests\aquila_jezyki_ras.dm"
 #include "code\modules\unit_tests\aquila_budget_card.dm"
 #include "code\modules\unit_tests\aquila_chrono_legionnaire.dm"
 #include "code\modules\unit_tests\aquila_crafting.dm"
