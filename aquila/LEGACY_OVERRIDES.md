@@ -164,6 +164,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Arm lock disables the arm with `disable_limb_temporarily()` | `nsv13/code/modules/jobs/security/martial_art.dm` | MAA used 100 stamina on an arm to disable it, which a pool can't do |
 | Goon floor footsteps | `code/__DEFINES/footsteps.dm` (`FOOTSTEP_FLOOR`) | Bee#14750, sounds in `aquila/sound/footstep/goon/` (CC BY-NC-SA 3.0, `aquila/GOON_ASSETS.md`) |
 | `code/__DEFINES/stamina.dm` (new) | `nsv13.dme` | Stamina defines used by the core hooks above |
+| `languages_possible_base.Copy()` instead of `languages_possible_base +=`; `/datum/language/vampiric` and `/datum/language/darkspawn` in `languages_possible_base` | `code/modules/surgery/organs/tongue.dm` | `+=` in the robot/ethereal/golem/slime tongue `Initialize()` added their language to the shared static list, so every tongue could speak it. Aquila antag languages need to be speakable like narsie/ratvar. Egg and squid tongues add their own language in `aquila/` (`eggpeople.dm`, `squidpeople.dm`). Test: `aquila_jezyki_ras` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 
