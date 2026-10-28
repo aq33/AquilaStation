@@ -75,6 +75,12 @@ GLOBAL_LIST_INIT(squid_names_female, world.file2list("strings/names/squid_female
 	var/static/list/villager_prefixes = list("Hrmm", "Hmm", "Hurr", "Hm", "Hrm")
 	var/static/list/villager_suffixes = list("hrmm", "hmm", "hurr", "hm")
 
+// Bez tego kałamarnica zna R'lyehian, ale nie może go wybrać ani nim mówić.
+/obj/item/organ/tongue/squid/Initialize(mapload)
+	. = ..()
+	languages_possible = languages_possible_base.Copy()
+	languages_possible[/datum/language/rlyehian] = TRUE
+
 /obj/item/organ/tongue/squid/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(!message || message[1] == "*")
