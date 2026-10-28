@@ -2,7 +2,8 @@
 // tg ma stały widok i tylko przesuwa splitter (attempt_auto_fit_viewport przy on-size). U nas widok
 // rośnie w poziomie (szerokie okno) albo w pionie (wąskie, wysokie okno), a potem splitter zawsze
 // dociąga panel mapy do dokładnych proporcji widoku. Skin (interface/skin.dmf, mainwindow on-size)
-// woła .auto_fit_viewport przy każdej zmianie rozmiaru okna, mob/Login() - po wejściu w moba.
+// woła .auto_fit_viewport przy każdej zmianie rozmiaru okna i panelu mapy (przeciągnięcie granicy czatu),
+// mob/Login() - po wejściu w moba.
 
 /// Przy przeciąganiu krawędzi okna on-size leci wiele razy - dopasowujemy dopiero po chwili spokoju
 #define AUTO_FIT_VIEWPORT_DELAY (0.3 SECONDS)
@@ -63,6 +64,9 @@
 		return FALSE
 	var/list/view_tiles = getviewsize(view)
 	var/desired_width = text2num(map_size[2]) * view_tiles[1] / view_tiles[2]
+	// już dopasowane - bez tego każde przesunięcie splittera (on-size mapy) wołałoby kolejne poprawki
+	if(abs(text2num(map_size[1]) - desired_width) <= 3)
+		return FALSE
 	return text2num(split_size[1]) - desired_width >= MIN_INFO_PANEL_WIDTH
 
 #undef AUTO_FIT_VIEWPORT_DELAY
