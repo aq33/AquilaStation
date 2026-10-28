@@ -175,7 +175,7 @@
 	var/knockdown_time_carbon = 0 //NSV13 - added knockdown times
 	var/stun_time_carbon = 0 //NSV13 - readded stun time variable
 	var/stun_time_silicon_multiplier = 0.6 //NSV13 - Multiplier for stunning silicons; if enabled, is 60% of human stun time.
-	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/charged_stamina_damage = 55 // Do we deal stamina damage.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = "sound/effects/woodhit.ogg" // Default path to sound for when we stun.
@@ -246,7 +246,7 @@
 	// NSV13 - added stun and knockdown, removed stamina, added silicon effects
 	stun_time_carbon = (3 SECONDS)
 	knockdown_time_carbon = (6 SECONDS)
-	stamina_damage = 0
+	charged_stamina_damage = 0
 	affect_silicon = TRUE
 
 /obj/item/melee/classic_baton/police/attack(mob/living/target, mob/living/user)
@@ -257,7 +257,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>Uderzasz się w głowę.</span>")
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 		//NSV13 - added stamina and knockdown
 		user.Paralyze(stun_time_carbon * force)
 		user.Knockdown(knockdown_time_carbon * force)
@@ -315,7 +315,7 @@
 			additional_effects_carbon(target, user)
 			if((user.zone_selected == BODY_ZONE_HEAD) || (user.zone_selected == BODY_ZONE_CHEST))
 				target.Paralyze(stun_time_carbon) //NSV13 - readded stuns
-				target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(charged_stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
 				log_combat(user, target, "stunned", src)
 				target.visible_message(desc["visiblestun"], desc["localstun"])
 			if((user.zone_selected == BODY_ZONE_R_LEG) || (user.zone_selected == BODY_ZONE_L_LEG))
@@ -347,7 +347,7 @@
 	name = "deputy baton"
 	force = 12
 	cooldown = 10
-	stamina_damage = 20
+	charged_stamina_damage = 20
 
 //Telescopic Baton
 /obj/item/melee/classic_baton/police/telescopic
@@ -438,7 +438,7 @@
 	var/stamina_damage_target = 85
 	var/target_confusion = 4 SECONDS
 
-	stamina_damage = 85
+	charged_stamina_damage = 85
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
@@ -497,7 +497,7 @@
 		to_chat(user, "<span class ='danger'>Uderzasz się w głowę.</span>")
 
 		user.Paralyze(knockdown_time_carbon * force)
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
@@ -553,7 +553,7 @@
 			if(is_target)
 				target.Knockdown(knockdown_time_carbon)
 				target.drop_all_held_items()
-				target.adjustStaminaLoss(stamina_damage)
+				target.adjustStaminaLoss(charged_stamina_damage)
 				if(target.confused < 6 SECONDS)
 					target.confused = min(target.confused + target_confusion, 6 SECONDS)
 			else

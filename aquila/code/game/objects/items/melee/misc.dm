@@ -10,7 +10,7 @@
 	force = 8
 	throwforce = 7
 	cooldown = 0
-	stamina_damage = 25 // 4 hits to stamcrit
+	charged_stamina_damage = 25 // 4 hits to stamcrit
 	slot_flags = ITEM_SLOT_BELT
 	stun_animation = TRUE
 	/// Per-mob sleep cooldowns.
@@ -28,7 +28,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>Przydzwoniłeś sobie w łeb.</span>")
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
@@ -62,7 +62,7 @@
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 			additional_effects_carbon(target, user)
 			if((user.zone_selected == BODY_ZONE_CHEST) || user.zone_selected == (BODY_ZONE_PRECISE_GROIN))
-				target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(charged_stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
 				log_combat(user, target, "stunned", src)
 				target.visible_message(desc["visiblestun"], desc["localstun"])
 
