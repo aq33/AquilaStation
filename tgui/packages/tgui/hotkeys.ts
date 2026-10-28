@@ -96,6 +96,14 @@ const handlePassthrough = (key: KeyEvent) => {
   ) {
     return;
   }
+  // AQUILA: makro Esc ma kilka komend i embedded winget, których Byond.command
+  // nie wykona - wołamy verb bezpośrednio (zamyka okna, potem menu pod Esc)
+  if (key.code === 27) {
+    if (key.isDown()) {
+      Byond.command('.escape_pressed "false"');
+    }
+    return;
+  }
   const byondKeyCode = keyCodeToByond(key.code);
   if (!byondKeyCode) {
     return;

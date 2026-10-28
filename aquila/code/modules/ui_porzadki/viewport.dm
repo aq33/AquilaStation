@@ -1,24 +1,49 @@
 // AQ - porządki w UI: widok gry dopasowuje się do okna.
 // Skin (interface/skin.dmf, mainwindow on-size) woła .auto_fit_viewport przy każdej zmianie
-// rozmiaru okna - bez tego po poszerzeniu okna mapa dostawała czarne pasy zamiast rosnąć.
+// rozmiaru okna. Szersze okno daje więcej kafelków w poziomie (wysokość zostaje), a potem
+// panel mapy dopasowuje się do proporcji widoku - bez czarnych pasów po bokach.
 
 /// Przy przeciąganiu krawędzi okna on-size leci wiele razy - dopasowujemy dopiero po chwili spokoju
 #define AUTO_FIT_VIEWPORT_DELAY (0.3 SECONDS)
+/// Najszerszy widok w kafelkach przy bardzo szerokim oknie
+#define MAX_DYNAMIC_VIEW_WIDTH 31
 
 /client/verb/auto_fit_viewport()
 	set name = ".auto_fit_viewport"
 	set hidden = TRUE
-	if(!prefs || !(prefs.toggles2 & PREFTOGGLE_2_AUTO_FIT_VIEWPORT))
+	addtimer(CALLBACK(src, PROC_REF(fit_view_to_window)), AUTO_FIT_VIEWPORT_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
+
+/// Szerokość widoku z proporcji panelu mapy, potem dopasowanie panelu (gdy włączone w ustawieniach)
+/client/proc/fit_view_to_window()
+	if(!prefs)
 		return
-	addtimer(CALLBACK(src, TYPE_VERB_REF(/client, fit_viewport)), AUTO_FIT_VIEWPORT_DELAY, TIMER_UNIQUE | TIMER_OVERRIDE)
+	if((prefs.toggles2 & PREFTOGGLE_2_WIDESCREEN) && !prefs.pixel_size && view_size && !view_size.isZooming() && !isnewplayer(mob))
+		var/list/map_size = splittext(winget(src, "mapwindow.map", "size"), "x")
+		if(length(map_size) == 2)
+			var/map_width = text2num(map_size[1])
+			var/map_height = text2num(map_size[2])
+			if(map_width && map_height)
+				var/list/default_size = getviewsize(view_size.default)
+				var/tiles_high = default_size[2]
+				// najbliższa nieparzysta szerokość, żeby postać stała na środku
+				var/tiles_wide = round((tiles_high * map_width / map_height - 1) / 2) * 2 + 1
+				tiles_wide = clamp(tiles_wide, tiles_high, MAX_DYNAMIC_VIEW_WIDTH)
+				if(tiles_wide != default_size[1])
+					view_size.setDefault("[tiles_wide]x[tiles_high]")
+	if(prefs.toggles2 & PREFTOGGLE_2_AUTO_FIT_VIEWPORT)
+		fit_viewport()
 
 #undef AUTO_FIT_VIEWPORT_DELAY
+#undef MAX_DYNAMIC_VIEW_WIDTH
 
 /// Pełny ekran z ustawień włącza się od razu po wejściu, a nie dopiero po F11
 /client/proc/apply_fullscreen_pref()
 	set waitfor = FALSE
 	// Jak menu pod Esc: chwila na załadowanie skinu, inaczej okno nie wchodzi w pełny ekran
 	sleep(2 SECONDS)
-	if(!src || !prefs || !(prefs.toggles2 & PREFTOGGLE_2_FULLSCREEN))
+	if(!src || !prefs)
 		return
-	toggle_fullscreen(TRUE)
+	if(prefs.toggles2 & PREFTOGGLE_2_FULLSCREEN)
+		toggle_fullscreen(TRUE)
+	else
+		fit_view_to_window()
