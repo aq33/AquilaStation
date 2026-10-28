@@ -739,6 +739,10 @@
   - rscadd: Kapitan wybiera w konsoli łączności jedną z trzech wylosowanych misji
       przed odprawą.
   - imageadd: Ikony koła emotek i panelu rewolucji.
+  - bugfix: Jajoludzie mogą wybrać i mówić Ovarian, a kałamarnice R'lyehian.
+  - bugfix: Wampiry, wasale i thralle darkspawna mogą mówić swoim językiem, a nie
+      tylko go rozumieć.
+  - config: Usunięto zdublowaną flagę ATMOS_EQUALIZE_ENABLED z config.txt.
   Monkestation:
   - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
       kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu
