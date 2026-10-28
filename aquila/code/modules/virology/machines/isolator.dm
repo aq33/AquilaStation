@@ -100,6 +100,9 @@
 			if(!passes)
 				dat += "<li><em>No pathogen</em></li>"
 			dat += "</ul>"
+	// AQ: onclose() bez klienta (NPC) daje runtime "bad client"
+	if(!user.client)
+		return
 	user << browse(HTML_SKELETON_TITLE("Pathogenic Isolator", dat), "window=isolator;size=575x400")
 	onclose(user, "isolator")
 	return

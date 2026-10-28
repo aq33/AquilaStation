@@ -89,5 +89,89 @@
 	TEST_ASSERT(dish.growth > 0, "Szalka nie rosła na pożywce")
 	TEST_ASSERT_EQUAL(dish.contained_virus, pathogen, "Szalka zgubiła patogen")
 
+/// Stare choroby (wyrostek, katar) i patogen disease2 w jednej liście diseases:
+/// skaner przeciwciał, izolator, dotyk i Life bez runtime'ów, a stare ścieżki zarażania szanują odporność.
+/datum/unit_test/pathology_mixed_diseases
+
+/datum/unit_test/pathology_mixed_diseases/Run()
+	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
+	var/mob/living/carbon/human/immune = allocate(/mob/living/carbon/human)
+
+	patient.ForceContractDisease(new /datum/disease/appendicitis, FALSE, TRUE)
+	patient.ForceContractDisease(new /datum/disease/cold, FALSE, TRUE)
+	TEST_ASSERT_EQUAL(length(patient.diseases), 2, "Nie udało się zarazić wyrostkiem i katarem")
+
+	var/datum/disease/acute/virus/pathogen = new
+	pathogen.makerandom(list(60, 60), list(50, 50), list(ANTIGEN_COMMON = 1), list(EFFECT_DANGER_FLAVOR = 1), null)
+	pathogen.spread_flags = DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_BLOOD
+	for(var/antigen in pathogen.antigen)
+		patient.immune_system.antibodies[antigen] = 0
+	patient.infect_disease(pathogen, forced = TRUE, notes = "(test jednostkowy)")
+	var/datum/disease/acute/carried = locate(/datum/disease/acute) in patient.diseases
+	TEST_ASSERT(carried, "Patogen disease2 nie zaraził nosiciela starych chorób")
+	var/carried_id = "[carried.uniqueID]-[carried.subID]"
+	carried.addToDB()
+
+	var/runtimes_before = GLOB.total_runtimes
+
+	// filtry rozsiewu biorą tylko patogeny disease2 (stary katar jest airborne)
+	for(var/datum/disease/D as anything in filter_disease_by_spread(patient.diseases, required = DISEASE_SPREAD_AIRBORNE))
+		TEST_ASSERT(istype(D, /datum/disease/acute), "Filtr rozsiewu przepuścił starą chorobę [D.type]")
+
+	// skaner przeciwciał przechodzi po wszystkich chorobach pacjenta
+	var/obj/item/device/antibody_scanner/scanner = allocate(/obj/item/device/antibody_scanner)
+	scanner.attack(patient, doctor)
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Runtime w skanerze przeciwciał")
+
+	// izolator: strzykawka z krwią, menu, wyizolowanie na szalkę
+	var/obj/item/reagent_containers/syringe/syringe = allocate(/obj/item/reagent_containers/syringe)
+	syringe.reagents.add_reagent(/datum/reagent/blood, 10, patient.get_blood_data(/datum/reagent/blood))
+	var/datum/reagent/blood/sample = locate() in syringe.reagents.reagent_list
+	TEST_ASSERT(sample, "Strzykawka nie ma krwi")
+	var/list/isolated = virus_copylist(sample.data["viruses"])
+	TEST_ASSERT_EQUAL(length(isolated), 1, "Z krwi powinien dać się wyizolować tylko patogen disease2")
+	doctor.put_in_hands(syringe)
+	var/obj/machinery/disease2/isolator/isolator = allocate(/obj/machinery/disease2/isolator)
+	isolator.attackby(syringe, doctor)
+	TEST_ASSERT_EQUAL(isolator.beaker, syringe, "Izolator nie przyjął strzykawki")
+	isolator.attack_hand(doctor)
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Runtime w menu izolatora")
+	isolator.isolated_disease = isolated[1]
+	isolator.isolating = 1
+	isolator.process()
+	var/obj/item/weapon/virusdish/dish = locate() in isolator.loc
+	TEST_ASSERT(dish?.contained_virus, "Izolator nie wydał szalki z patogenem")
+	allocated += dish
+
+	// analizator ze strzykawką tylko podpowiada izolator
+	var/obj/item/reagent_containers/syringe/second = allocate(/obj/item/reagent_containers/syringe)
+	doctor.put_in_hands(second)
+	var/obj/machinery/disease2/diseaseanalyser/analyser = allocate(/obj/machinery/disease2/diseaseanalyser)
+	analyser.attackby(second, doctor)
+	TEST_ASSERT(!analyser.dish && second.loc == doctor, "Analizator wziął strzykawkę")
+
+	// dotyk w obie strony i stara ścieżka kontaktu z rdzenia
+	patient.attack_hand(doctor)
+	doctor.attack_hand(patient)
+	var/acute_on_doctor = 0
+	for(var/datum/disease/acute/D in doctor.diseases)
+		acute_on_doctor++
+	TEST_ASSERT(acute_on_doctor <= 1, "Lekarz dostał ten sam patogen więcej niż raz")
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Runtime przy dotyku")
+
+	// ForceContractDisease (ugryzienia, admin) przechodzi przez układ odpornościowy
+	for(var/antigen in carried.antigen)
+		immune.immune_system.antibodies[antigen] = carried.strength + 10
+	immune.ForceContractDisease(carried, TRUE)
+	TEST_ASSERT(!(locate(/datum/disease/acute) in immune.diseases), "ForceContractDisease ominął przeciwciała")
+
+	// kilka ticków życia z trzema chorobami naraz
+	for(var/i in 1 to 5)
+		patient.Life(2, i)
+	TEST_ASSERT_EQUAL(GLOB.total_runtimes, runtimes_before, "Runtime w Life przy mieszanych chorobach")
+
+	GLOB.virusDB -= carried_id
+
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
