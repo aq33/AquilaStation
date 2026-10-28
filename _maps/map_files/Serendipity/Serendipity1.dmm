@@ -542,17 +542,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/grass,
 /area/crew_quarters/dorms/nsv/nature_deck)
-"bg" = (
-/obj/structure/extinguisher_cabinet/south,
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple{
-	dir = 8
-	},
-/obj/machinery/module_duplicator,
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "bh" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/clothing/suit/whitedress,
@@ -5289,14 +5278,6 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/office)
-"rA" = (
-/obj/item/radio/intercom/directional/south,
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/ship/full/purple,
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "rC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south,
@@ -8703,16 +8684,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
-"Dv" = (
-/obj/structure/sign/poster/official/moth4{
-	pixel_y = -31
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "Dw" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/tile/yellow,
@@ -10280,6 +10251,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/ship/full/purple,
+/obj/machinery/module_duplicator,
 /turf/open/floor/plasteel/tiled/light,
 /area/science)
 "Jf" = (
@@ -47187,7 +47159,7 @@ Bh
 PI
 nM
 CQ
-bg
+Vq
 KZ
 cg
 sQ
