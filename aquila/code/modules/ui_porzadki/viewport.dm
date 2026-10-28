@@ -23,12 +23,14 @@
 			var/map_width = text2num(map_size[1])
 			var/map_height = text2num(map_size[2])
 			if(map_width && map_height)
-				var/list/default_size = getviewsize(view_size.default)
-				var/tiles_high = default_size[2]
+				// bieżący widok, nie view_size.default - mob/Login() ustawia view przez change_view(),
+				// więc default potrafi zostać na 15x15 z lobby
+				var/list/current_size = getviewsize(view)
+				var/tiles_high = current_size[2]
 				// najbliższa nieparzysta szerokość, żeby postać stała na środku
 				var/tiles_wide = round((tiles_high * map_width / map_height - 1) / 2) * 2 + 1
 				tiles_wide = clamp(tiles_wide, tiles_high, MAX_DYNAMIC_VIEW_WIDTH)
-				if(tiles_wide != default_size[1])
+				if(tiles_wide != current_size[1] || view_size.default != "[tiles_wide]x[tiles_high]")
 					view_size.setDefault("[tiles_wide]x[tiles_high]")
 	if((prefs.toggles2 & PREFTOGGLE_2_AUTO_FIT_VIEWPORT) && chat_keeps_room_after_fit())
 		fit_viewport()
@@ -63,3 +65,9 @@
 		toggle_fullscreen(TRUE)
 	else
 		fit_view_to_window()
+
+/// Po wejściu w moba (spawn, duch, przejęcie ciała) mob/Login() ustawia domyślny widok - przeliczamy go do okna
+/mob/Login()
+	. = ..()
+	if(client)
+		addtimer(CALLBACK(client, TYPE_PROC_REF(/client, fit_view_to_window)), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)

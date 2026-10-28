@@ -448,7 +448,7 @@
 		L.resist()
 
 /atom/movable/screen/rest
-	name = "odpocznij"
+	name = "leż/wstań"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_rest"
 	layer = HUD_LAYER
