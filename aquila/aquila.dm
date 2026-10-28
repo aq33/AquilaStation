@@ -124,6 +124,7 @@
 #include "code\datums\shuttles.dm"
 #include "code\datums\stock_market_events.dm"
 #include "code\datums\stamina_container.dm"
+#include "code\datums\interaction_particle.dm"
 #include "code\datums\status_effects\disorient.dm"
 #include "code\datums\keybinding\emote.dm"
 #include "code\datums\keybinding\keybindings.dm"

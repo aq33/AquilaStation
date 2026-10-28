@@ -33,12 +33,12 @@ GLOBAL_LIST_INIT(footstep, list(
 		'sound/effects/footstep/wood3.ogg',
 		'sound/effects/footstep/wood4.ogg',
 		'sound/effects/footstep/wood5.ogg'), 100, 0),
-	FOOTSTEP_FLOOR = list(list(
-		'sound/effects/footstep/floor1.ogg',
-		'sound/effects/footstep/floor2.ogg',
-		'sound/effects/footstep/floor3.ogg',
-		'sound/effects/footstep/floor4.ogg',
-		'sound/effects/footstep/floor5.ogg'), 75, -1),
+	FOOTSTEP_FLOOR = list(list( // AQ EDIT - port Bee#14750: kroki po podłodze z Goonstation (CC BY-NC-SA 3.0)
+		'aquila/sound/footstep/goon/floor1.ogg',
+		'aquila/sound/footstep/goon/floor2.ogg',
+		'aquila/sound/footstep/goon/floor3.ogg',
+		'aquila/sound/footstep/goon/floor4.ogg',
+		'aquila/sound/footstep/goon/floor5.ogg'), 75, -1),
 	FOOTSTEP_PLATING = list(list(
 		'sound/effects/footstep/plating1.ogg',
 		'sound/effects/footstep/plating2.ogg',

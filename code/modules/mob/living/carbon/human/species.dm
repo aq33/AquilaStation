@@ -1839,6 +1839,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	SEND_SIGNAL(H, COMSIG_MOB_HAND_ATTACKED, H, M, attacker_style)
 
+	// AQ EDIT START - port Bee#14750: animacja ręki przy interakcji
+	if(M != H)
+		M.animate_interact(H, LAZYACCESS(modifiers, RIGHT_CLICK) ? INTERACT_DISARM : (M.combat_mode ? INTERACT_HARM : INTERACT_HELP))
+	// AQ EDIT END
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		disarm(M, H, attacker_style)
 		return // dont attack after
