@@ -757,6 +757,7 @@
       i aquila/tools/debian_setup.sh.'
   - server: Na Linuksie szafa grająca i „Play Internet Sound” używają linuksowego
       yt-dlp zamiast yt-dlp.exe.
+  - server: Na Debianie BUILD.sh buduje też TGUI.
   tgstation:
   - rscadd: 'Circuity z tg: zmienne układu, listy z pętlą foreach i filtrem, podukłady
       (moduł), zapis i wczytanie układu, kilkadziesiąt nowych komponentów (ID i dostęp,
