@@ -715,3 +715,13 @@
   - tweak: 'Trawnik: przestawione konsole w CIC i maszyny w serwerowni SI.'
   - rscadd: Kartka z kluczem do konsoli monitorowania wiadomości leży na biurku CE
       na Aquilasie i Trawniku.
+'2026-10-28':
+  Monkestation:
+  - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
+      kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu
+      oddychając.
+  - rscadd: Dym, pył i spaliny działają na oddychających bez maski. Ładne zapachy
+      poprawiają nastrój, a smród go psuje.
+  - rscadd: Perfumy (ClothesMate), świece zapachowe (ChapDrobe), odświeżacz powietrza
+      dla woźnego i oczyszczacz powietrza w cargo.
+  - rscadd: Scrubbery wciągają dym i zapachy.
