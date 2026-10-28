@@ -2,7 +2,7 @@
 	display_name = "Equipment Action"
 	desc = "Reprezentuje akcję, którą użytkownik może wykonać, korzystając z obsługiwanych obudów."
 	category = "BCI"
-	required_shells = list(/obj/item/organ/cyberimp/bci)
+	required_shells = list(/obj/item/organ/cyberimp/bci, /obj/item/mod/module/circuit)
 
 	/// The icon of the button
 	var/datum/port/input/option/icon_options

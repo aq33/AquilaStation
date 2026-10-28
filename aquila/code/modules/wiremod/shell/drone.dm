@@ -17,6 +17,7 @@
 	. = ..()
 	AddComponent(/datum/component/shell, list(
 		new /obj/item/circuit_component/bot_circuit(),
+		new /obj/item/circuit_component/remotecam/drone(),
 	), SHELL_CAPACITY_LARGE)
 
 /mob/living/circuit_drone/examine(mob/user)

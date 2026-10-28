@@ -73,7 +73,7 @@
 		"comp_round", "comp_router", "comp_select_query", "comp_self", "comp_setter_trigger", "comp_soundemitter", "comp_species", "comp_speech",
 		"comp_string_contains", "comp_tempsensor", "comp_textcase", "comp_timepiece", "comp_toggle", "comp_tonumber", "comp_tostring", "comp_trig",
 		"comp_typecast", "comp_typecheck", "comp_view_sensor", "comp_wirenet_receive", "comp_wirenet_send", "comp_wirenet_send_literal",
-		"compact_remote_shell", "component_printer", "integrated_circuit", "usb_cable") // AQ EDIT - wiremod z tg
+		"compact_remote_shell", "component_printer", "integrated_circuit", "usb_cable", "comp_wire_bundle") // AQ EDIT - wiremod z tg
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -392,7 +392,7 @@
 	prereq_ids = list("basic_circuitry", "engineering")
 	design_ids = list(
 		"assembly_shell", "bot_shell", "comp_equipment_action", "controller_shell", "dispenser_shell", "door_shell", "gun_shell", "implant_shell",
-		"keyboard_shell", "money_bot_shell", "scanner_gate_shell", "scanner_shell", "undertile_shell", "wallmount_shell") // AQ EDIT - wiremod z tg
+		"keyboard_shell", "money_bot_shell", "scanner_gate_shell", "scanner_shell", "undertile_shell", "wallmount_shell", "mod_module_shell", "module_duplicator") // AQ EDIT - wiremod z tg
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
 /datum/techweb_node/movable_shells_tech

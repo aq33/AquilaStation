@@ -81,3 +81,71 @@
 
 #define isAdminGhostAI(M) IsAdminGhost(M)
 #define REGEX_REPLACE_HANDLER SHOULD_NOT_OVERRIDE(TRUE)
+// Konsole i pady z portem USB (aquila/code/modules/wiremod/usb/consoles_pads.dm)
+#define COMSIG_ADVANCED_CAMERA_EYE_CREATED "advanced_camera_eye_created"
+#define COMSIG_REMOTE_CAMERA_ASSIGN_USER "remote_camera_assign_user"
+#define COMSIG_TELEPORTER_NEW_TARGET "teleporter_new_target"
+
+// Sygnały dla portów USB atmosu i urządzeń ściennych (aquila/code/modules/wiremod/usb/atmos_wall.dm)
+#ifndef COMSIG_AIRALARM_UPDATE_MODE
+#define COMSIG_AIRALARM_UPDATE_MODE "airalarm_set_mode"
+#endif
+/// Alarm powietrza wysłał alert (alert_level: 0 czysto, 1 drobny, 2 poważny)
+#ifndef COMSIG_AIRALARM_ALERT_POSTED
+#define COMSIG_AIRALARM_ALERT_POSTED "airalarm_alert_posted"
+#endif
+#ifndef COMSIG_FIREALARM_ON_TRIGGER
+#define COMSIG_FIREALARM_ON_TRIGGER "firealarm_trigger"
+#endif
+#ifndef COMSIG_FIREALARM_ON_RESET
+#define COMSIG_FIREALARM_ON_RESET "firealarm_reset"
+#endif
+#ifndef COMSIG_LIGHT_SWITCH_SET
+#define COMSIG_LIGHT_SWITCH_SET "light_switch_set"
+#endif
+#ifndef COMSIG_VITALS_SET_PATIENT
+#define COMSIG_VITALS_SET_PATIENT "vitals_set_patient"
+#endif
+
+// Komputery modułowe jako obudowy układów (aquila/code/modules/wiremod/modular_computers/)
+/// Program da się obsługiwać z układu nawet wtedy, gdy nie jest uruchomiony (u tg flaga w program_flags)
+#define PROGRAM_CIRCUITS_RUN_WHEN_CLOSED (1<<5)
+/// Komputer został włączony: (mob/user)
+#define COMSIG_MODULAR_COMPUTER_TURNED_ON "comsig_modular_computer_turned_on"
+/// Komputer został wyłączony: (loud)
+#define COMSIG_MODULAR_COMPUTER_SHUT_DOWN "comsig_modular_computer_shut_down"
+/// Wysyłany do programu po udanym starcie: (mob/user)
+#define COMSIG_COMPUTER_PROGRAM_START "computer_program_start"
+/// Wysyłany do programu po zamknięciu: (forced)
+#define COMSIG_COMPUTER_PROGRAM_KILL "computer_program_kill"
+/// Radar pyta, czy cel da się śledzić: (atom/signal, turf/signal_turf, turf/computer_turf)
+#define COMSIG_MODULAR_COMPUTER_RADAR_TRACKABLE "comsig_modular_computer_radar_trackable"
+	#define COMPONENT_RADAR_TRACK_ANYWAY (1<<0)
+	#define COMPONENT_RADAR_DONT_TRACK (1<<1)
+/// Radar szuka śledzonego atomu: (list/atom_container)
+#define COMSIG_MODULAR_COMPUTER_RADAR_FIND_ATOM "comsig_modular_computer_radar_find_atom"
+/// Użytkownik wybrał cel w radarze: (selected_ref)
+#define COMSIG_MODULAR_COMPUTER_RADAR_SELECTED "comsig_modular_computer_radar_selected"
+/// Komunikator odebrał wiadomość: (datum/signal/subspace/messaging/tablet_msg/signal, job, name)
+#define COMSIG_MODULAR_PDA_MESSAGE_RECEIVED "comsig_modular_pda_message_received"
+/// Notatnik zmienił treść notatki: (new_note) - u tg robi to COMSIG_UI_ACT, którego u nas nie ma
+#define COMSIG_COMPUTER_NOTEPAD_UPDATED "computer_notepad_updated"
+
+// Komponent MMI z modułem B.O.R.I.S. (aquila/code/modules/wiremod/components/action/mmi.dm)
+/// SI kliknęła atom (z /mob/living/silicon/ai/ClickOn przed attack_ai): (mob/living/silicon/ai/user)
+#ifndef COMSIG_ATOM_ATTACK_AI
+#define COMSIG_ATOM_ATTACK_AI "atom_attack_ai"
+#endif
+
+// Syntezator, aparat i wiązka przewodów (aquila/code/modules/wiremod/usb/misc_objects.dm, components/action/camera.dm, components/utility/wire_bundle.dm)
+/// Pytanie do instrumentu, czy przerwać granie: (atom/music_player). Zwróć IGNORE_INSTRUMENT_CHECKS, by grać dalej.
+#define COMSIG_INSTRUMENT_SHOULD_STOP_PLAYING "instrument_should_stop_playing"
+	#define IGNORE_INSTRUMENT_CHECKS (1<<0)
+/// Aparat zrobił zdjęcie: (atom/target, mob/user)
+#define COMSIG_CAMERA_IMAGE_CAPTURED "camera_image_captured"
+/// Maks. odległość celu zdjęcia robionego przez układ scalony
+#define CAMERA_CIRCUIT_MAX_RANGE 7
+/// Przewód dostał impuls: (wire, user). U nas wysyła go tylko /datum/wires/wire_bundle_component.
+#define COMSIG_PULSE_WIRE "pulse_wire"
+#define MAX_WIRE_COUNT 17
+#define TRAIT_COMPONENT_WIRE_BUNDLE "component_wire_bundle"

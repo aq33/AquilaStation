@@ -36,6 +36,11 @@
 	id = "comp_typecheck"
 	build_path = /obj/item/circuit_component/compare/typecheck
 
+/datum/design/component/utility/wire_bundle
+	name = "Wire Bundle"
+	id = "comp_wire_bundle"
+	build_path = /obj/item/circuit_component/wire_bundle
+
 /datum/design/component/utility/setter_trigger
 	name = "Set Variable Trigger"
 	id = "comp_setter_trigger"

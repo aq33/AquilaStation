@@ -120,6 +120,13 @@
 	materials = list(/datum/material/glass =MINERAL_MATERIAL_AMOUNT, /datum/material/iron =MINERAL_MATERIAL_AMOUNT * 2.5)
 	build_path = /obj/item/assembly/wiremod
 
+/datum/design/wiremod_shell/mod_module
+	name = "MOD Module Shell"
+	id = "mod_module_shell"
+	desc = "Moduł-obudowa, który pozwala włożyć układ scalony do MODsuitu i połączyć go z kombinezonem."
+	materials = list(/datum/material/glass = MINERAL_MATERIAL_AMOUNT)
+	build_path = /obj/item/mod/module/circuit
+
 /datum/design/wiremod_shell/undertile
 	name = "Under-tile Shell"
 	id = "undertile_shell"

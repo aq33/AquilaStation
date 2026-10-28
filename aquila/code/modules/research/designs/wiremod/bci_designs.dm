@@ -1,6 +1,11 @@
 /datum/design/component/bci
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_BCI_COMPONENTS)
 
+/datum/design/component/bci/bci_camera
+	name = "BCI Camera"
+	id = "comp_bci_camera"
+	build_path = /obj/item/circuit_component/remotecam/bci
+
 /datum/design/component/bci/object_overlay
 	name = "Object Overlay Component"
 	id = "comp_object_overlay"
