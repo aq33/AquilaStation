@@ -1,19 +1,19 @@
 // Sprint z BeeStation/BeeStation-Hornet#14750 + wywrotka na ścianie i potknięcie na schodach
 
 /datum/test_chamber_kit/pr_512
-	name = "PR 512: sprint i kondycja"
+	name = "PR 512: stamina i sprint"
 	pr = "aq33/AquilaStation#512"
-	description = "W trybie biegu trzymaj Shift: postać przyspiesza (SPRINT_DELAY 1.5 zamiast RUN_DELAY 2), przy starcie leci chmurka kurzu, \
-	a pionowy pasek obok błyskawicy staminy spada. Poniżej 40% zadyszka: brak sprintu, spowolnienie i nie da się mówić (emotki z * działają), mija przy 70%. \
-	Leżenie podwaja regenerację. Wbiegnij sprintem z zachodu w kolumnę przeszkód po wschodniej stronie: \
-	ściana, okno, zamknięte drzwi (zaryglowane) i stół zawsze przewracają (2 s, brute w głowę rośnie z rozpędem), człowiek i luźna skrzynia nie. \
-	Schody wymagają wielu poziomów: sprawdź sprint w dół i w górę schodów na mapie (np. Atlas, Snake, Serendipity) albo na debugowym multiz."
+	description = "Jedna pula staminy (250) jak w Bee#14750, błyskawica na HUD-zie (kliknij = wartość). W trybie biegu trzymaj Shift: sprint (SPRINT_DELAY 1.5), 	6.25 staminy za kratkę, chmurka kurzu przy starcie. Poniżej 40% wyczerpanie: bez sprintu, spowolnienie, tylko szept; mija przy 70%. Poniżej 20% każda utrata może dać stamcrit (3 s). 	Zamach przedmiotem kosztuje staminę, dopóki zostaje ponad 100; skrzynka z narzędziami zabiera 47 staminy na trafienie. 	Pałka, policyjna pałka i disabler: dezorientacja (spowolnienie, drgawki), powalają dopiero wyczerpany cel. 	Wbiegnij sprintem z zachodu w kolumnę przeszkód po wschodniej stronie: ściana, okno, zaryglowane drzwi i stół przewracają, człowiek i luźna skrzynia nie. 	Schody sprawdź na mapie z wieloma poziomami (Atlas, Snake, Serendipity albo debugowa multiz)."
 	items = list(
 		/obj/structure/window/fulltile = 1,
 		/obj/structure/table = 1,
 		/obj/machinery/door/airlock = 1,
 		/obj/structure/closet/crate = 1,
 		/mob/living/carbon/human = 1,
+		/obj/item/storage/toolbox/mechanical = 1,
+		/obj/item/melee/classic_baton/police = 1,
+		/obj/item/melee/baton/loaded = 1,
+		/obj/item/gun/energy/disabler = 1,
 	)
 
 /datum/test_chamber_kit/pr_512/setup(list/spawned, list/turfs, turf/center, mob/user)

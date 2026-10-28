@@ -1496,6 +1496,7 @@
 #include "code\modules\unit_tests\shadow_demon.dm"
 #include "code\modules\unit_tests\smartwires.dm"
 #include "code\modules\unit_tests\sprint.dm"
+#include "code\modules\unit_tests\stamina_pool.dm"
 #include "code\modules\unit_tests\start_system_protection.dm"
 #include "code\modules\unit_tests\storage_implant.dm"
 #include "code\modules\unit_tests\teratoma_event.dm"
