@@ -752,6 +752,11 @@
   - rscadd: Perfumy (ClothesMate), świece zapachowe (ChapDrobe), odświeżacz powietrza
       dla woźnego i oczyszczacz powietrza w cargo.
   - rscadd: Scrubbery wciągają dym i zapachy.
+  sh4dow321:
+  - server: 'Serwer można zbudować i uruchomić na Debianie: BUILD.sh, server_watchdog.sh
+      i aquila/tools/debian_setup.sh.'
+  - server: Na Linuksie szafa grająca i „Play Internet Sound” używają linuksowego
+      yt-dlp zamiast yt-dlp.exe.
   tgstation:
   - rscadd: 'Circuity z tg: zmienne układu, listy z pętlą foreach i filtrem, podukłady
       (moduł), zapis i wczytanie układu, kilkadziesiąt nowych komponentów (ID i dostęp,
