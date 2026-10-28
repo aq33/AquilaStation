@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(surgery_tool_names, list(
 	TOOL_SCALPEL = "skalpel",
 	TOOL_HEMOSTAT = "hemostat",
 	TOOL_RETRACTOR = "retraktor",
+	TOOL_BONESET = "nastawiacz kości",
 	TOOL_CAUTERY = "kauter",
 	TOOL_DRILL = "wiertarka chirurgiczna",
 	TOOL_SAW = "piła chirurgiczna",

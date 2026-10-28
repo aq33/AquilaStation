@@ -133,18 +133,15 @@ GLOBAL_LIST_EMPTY(used_gun_serials)
 
 /obj/item/projectile/bullet/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	. = ..()
-	if(!ballistic_id || nodamage || damage_type != BRUTE || damage < 5)
+	if(nodamage || damage_type != BRUTE || damage < 5)
 		return
 	if(ishuman(target))
-		if(. == BULLET_ACT_BLOCK || blocked >= 100 || !prob(BULLET_FRAGMENT_LODGE_CHANCE))
-			return
-		var/mob/living/carbon/human/H = target
-		var/obj/item/bodypart/BP = H.get_bodypart(H.check_limb_hit(def_zone))
-		if(!BP)
-			BP = H.get_bodypart(BODY_ZONE_CHEST)
-		if(BP)
-			new /obj/item/bullet_fragment(BP, ballistic_id, ballistic_caliber)
-	else if(isclosedturf(target) || (isobj(target) && target.density))
+		if(. != BULLET_ACT_BLOCK && blocked < 100)
+			try_lodge(target, blocked) // aquila/code/modules/wounds/bullet_lodging.dm
+		return
+	if(!ballistic_id)
+		return
+	if(isclosedturf(target) || (isobj(target) && target.density))
 		if(prob(BULLET_FRAGMENT_WALL_CHANCE))
 			drop_bullet_fragment(target)
 

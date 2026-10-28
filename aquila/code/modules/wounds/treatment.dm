@@ -34,6 +34,7 @@
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/aq_set_bone,
+				/datum/surgery_step/aq_gel_bone,
 				/datum/surgery_step/close)
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG, BODY_ZONE_CHEST, BODY_ZONE_HEAD)
@@ -46,7 +47,7 @@
 
 /datum/surgery_step/aq_set_bone
 	name = "nastaw kość"
-	implements = list(TOOL_RETRACTOR = 100, TOOL_HEMOSTAT = 80, TOOL_CROWBAR = 50, TOOL_WRENCH = 35)
+	implements = list(TOOL_BONESET = 100, TOOL_RETRACTOR = 60, TOOL_HEMOSTAT = 45, TOOL_CROWBAR = 30, TOOL_WRENCH = 20)
 	time = 40
 	preop_sound = 'sound/surgery/retractor1.ogg'
 	success_sound = 'sound/surgery/retractor2.ogg'
@@ -57,12 +58,33 @@
 		"[user] zaczyna nastawiać kość ([strefa_pl(target_zone)]) [target].")
 
 /datum/surgery_step/aq_set_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(user, target, "<span class='notice'>Nastawiasz kość ([strefa_pl(target_zone)]) [target].</span>",
+		"[user] nastawia kość ([strefa_pl(target_zone)]) [target].",
+		"[user] kończy operację ([strefa_pl(target_zone)]) [target].")
+	return TRUE
+
+/// tgstation repair_bone_compound: the set bone is glued with bone gel, surgical tape or, worse, ordinary tape
+/datum/surgery_step/aq_gel_bone
+	name = "sklej kość"
+	implements = list(/obj/item/stack/medical/bone_gel = 100, /obj/item/stack/sticky_tape/surgical = 100, /obj/item/stack/sticky_tape/super = 50, /obj/item/stack/sticky_tape = 30)
+	time = 40
+	pain_message = "Kość (%ZONE%) piecze, jakby ktoś polał ją kwasem!"
+
+/datum/surgery_step/aq_gel_bone/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	display_results(user, target, "<span class='notice'>Zaczynasz sklejać kość ([strefa_pl(target_zone)]) [target] za pomocą [tool]...</span>",
+		"[user] zaczyna sklejać kość ([strefa_pl(target_zone)]) [target] za pomocą [tool].",
+		"[user] zaczyna sklejać kość ([strefa_pl(target_zone)]) [target].")
+
+/datum/surgery_step/aq_gel_bone/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
+	if(isstack(tool))
+		var/obj/item/stack/used_stack = tool
+		used_stack.use(1)
 	var/obj/item/bodypart/limb = target.get_bodypart(check_zone(target_zone))
 	var/datum/wound/fracture = limb?.get_wound(WOUND_BLUNT)
 	if(fracture)
 		qdel(fracture)
-	display_results(user, target, "<span class='notice'>Nastawiasz kość ([strefa_pl(target_zone)]) [target].</span>",
-		"[user] nastawia kość ([strefa_pl(target_zone)]) [target].",
+	display_results(user, target, "<span class='notice'>Sklejasz kość ([strefa_pl(target_zone)]) [target].</span>",
+		"[user] skleja kość ([strefa_pl(target_zone)]) [target].",
 		"[user] kończy operację ([strefa_pl(target_zone)]) [target].")
 	return TRUE
 

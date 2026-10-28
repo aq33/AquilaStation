@@ -2,7 +2,9 @@
 // A wound sits on one limb. It is rolled from the damage the limb really took from a weapon or a projectile,
 // does something unpleasant while it lasts and is fixed with the right item or surgery.
 // Kinds: blunt (dislocation, fracture, compound fracture), slash (deep cut, torn artery, on top of Bee bleeding),
-// burn (second and third degree burns with infection). No scars, no per-weapon wound bonus, no wound armor.
+// pierce (puncture, open puncture, ruptured cavity; bullets), burn (second and third degree burns with infection),
+// cranial fissure (head of someone in hard crit). Rolled like in tg: damage capped at 25 plus the weapon's wound_bonus.
+// Healed wounds leave scars (scars.dm). No wound armor.
 
 /obj/item/bodypart/var/list/datum/wound/wounds
 
@@ -18,6 +20,8 @@
 			return list(/datum/wound/blunt/dislocation, /datum/wound/blunt/fracture, /datum/wound/blunt/compound)
 		if(WOUND_SLASH)
 			return list(/datum/wound/slash/deep, /datum/wound/slash/artery)
+		if(WOUND_PIERCE)
+			return list(/datum/wound/pierce/puncture, /datum/wound/pierce/open, /datum/wound/pierce/cavity)
 		if(WOUND_BURN)
 			return list(/datum/wound/burn/second_degree, /datum/wound/burn/third_degree)
 
@@ -31,8 +35,16 @@
 	var/treat_text = ""
 	var/wound_type
 	var/severity = WOUND_SEVERITY_MODERATE
-	/// Roll needed for this wound, multiplied by WOUND_THRESHOLD_MULTIPLIER
+	/// Roll needed for this wound (tg threshold_minimum)
 	var/threshold = 35
+	/// Added to every wound roll on the limb while this wound is on it (tg)
+	var/threshold_penalty = 5
+	/// Added to rolls of the same kind, which is how a wound gets worse (tg)
+	var/series_threshold_penalty = 0
+	/// Made by a bullet or another projectile
+	var/wound_source_is_projectile = FALSE
+	/// Replaced by a milder or a worse wound, or removed by a full heal: leaves no scar
+	var/replaced = FALSE
 	/// Limbs it can appear on, null for all
 	var/list/allowed_zones
 	var/obj/item/bodypart/limb
@@ -95,6 +107,7 @@
 /// Replaces this wound with a milder or a worse one of the same kind
 /datum/wound/proc/replace_with(new_type)
 	var/obj/item/bodypart/old_limb = limb
+	replaced = TRUE
 	qdel(src)
 	if(new_type)
 		var/datum/wound/replacement = new new_type()
@@ -133,11 +146,11 @@
 	return snapshot
 
 /// Rolls wounds on every limb that took damage since the snapshot
-/mob/living/carbon/proc/aq_wound_from_snapshot(list/snapshot, damage_type, sharp)
+/mob/living/carbon/proc/aq_wound_from_snapshot(list/snapshot, damage_type, brute_wound_type, wound_bonus = 0, bare_wound_bonus = 0, atom/wound_source)
 	var/wound_type
 	switch(damage_type)
 		if(BRUTE)
-			wound_type = sharp ? WOUND_SLASH : WOUND_BLUNT
+			wound_type = brute_wound_type
 		if(BURN)
 			wound_type = WOUND_BURN
 	if(!wound_type)
@@ -148,26 +161,36 @@
 			continue
 		var/damage_taken = damage_type == BURN ? limb.burn_dam - before[2] : limb.brute_dam - before[1]
 		if(damage_taken > 0)
-			check_wounding(limb, damage_taken, wound_type)
+			check_wounding(limb, damage_taken, wound_type, wound_bonus, bare_wound_bonus, wound_source)
 
-/mob/living/carbon/proc/check_wounding(obj/item/bodypart/limb, damage, wound_type)
-	if(damage < WOUND_MINIMUM_DAMAGE || QDELETED(limb) || limb.owner != src || !IS_ORGANIC_LIMB(limb))
+/mob/living/carbon/proc/check_wounding(obj/item/bodypart/limb, damage, wound_type, wound_bonus = 0, bare_wound_bonus = 0, atom/wound_source)
+	if(wound_bonus == CANT_WOUND || damage < WOUND_MINIMUM_DAMAGE || QDELETED(limb) || limb.owner != src || !IS_ORGANIC_LIMB(limb))
 		return
 	if(status_flags & GODMODE)
 		return
-	if(wound_type == WOUND_SLASH && HAS_TRAIT(src, TRAIT_NO_BLOOD))
+	for(var/datum/wound/pierce/hole in limb.wounds)
+		hole.on_limb_hit(damage)
+	if((wound_type == WOUND_SLASH || wound_type == WOUND_PIERCE) && HAS_TRAIT(src, TRAIT_NO_BLOOD))
 		return
-	var/roll = rand(max(damage / 1.5, 25), max(25, round(damage ** 1.4)))
-	roll += WOUND_DAMAGED_LIMB_BONUS * limb.get_damage() / limb.max_damage
+	var/roll = rand(1, max(1, round(min(damage, WOUND_MAX_CONSIDERED_DAMAGE) ** WOUND_DAMAGE_EXPONENT)))
+	roll += wound_bonus
+	if(bare_wound_bonus && !is_limb_covered(limb))
+		roll += bare_wound_bonus
+	for(var/datum/wound/other as anything in limb.wounds)
+		roll += other.threshold_penalty
 	var/datum/wound/existing = limb.get_wound(wound_type)
 	if(existing)
-		roll += existing.severity * 10
+		roll += existing.series_threshold_penalty
+	if(limb.body_zone == BODY_ZONE_HEAD && stat >= UNCONSCIOUS && roll >= WOUND_CRANIAL_THRESHOLD && !limb.get_wound(WOUND_CRANIAL))
+		var/datum/wound/cranial_fissure/fissure = new
+		fissure.apply_wound(limb)
+		return fissure
 	var/chosen
 	for(var/datum/wound/path as anything in aq_wound_types(wound_type))
 		var/list/zones = initial(path.allowed_zones)
 		if(zones && !(limb.body_zone in zones))
 			continue
-		if(roll >= initial(path.threshold) * WOUND_THRESHOLD_MULTIPLIER)
+		if(roll >= initial(path.threshold))
 			chosen = path
 	if(!chosen)
 		return
@@ -175,10 +198,19 @@
 	if(existing)
 		if(initial(chosen_wound.severity) <= existing.severity)
 			return
+		existing.replaced = TRUE
 		qdel(existing)
 	var/datum/wound/new_wound = new chosen()
+	new_wound.wound_source_is_projectile = isprojectile(wound_source)
 	new_wound.apply_wound(limb)
 	return new_wound
+
+/// Is the limb under any worn clothing (for bare_wound_bonus)
+/mob/living/carbon/proc/is_limb_covered(obj/item/bodypart/limb)
+	for(var/obj/item/worn as anything in get_equipped_items())
+		if(worn.body_parts_covered & limb.body_part)
+			return TRUE
+	return FALSE
 
 // --- Hooks ---
 
@@ -186,17 +218,18 @@
 	var/list/snapshot = aq_limb_damage_snapshot()
 	. = ..()
 	if(I)
-		aq_wound_from_snapshot(snapshot, I.damtype, I.is_sharp())
+		aq_wound_from_snapshot(snapshot, I.damtype, I.get_wound_kind(), I.wound_bonus, I.bare_wound_bonus, I)
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone, piercing_hit = FALSE)
 	var/list/snapshot = aq_limb_damage_snapshot()
 	. = ..()
 	if(P && !P.nodamage)
-		aq_wound_from_snapshot(snapshot, P.damage_type, TRUE)
+		aq_wound_from_snapshot(snapshot, P.damage_type, P.wound_kind, P.wound_bonus, P.bare_wound_bonus, P)
 
 /mob/living/carbon/fully_heal(admin_revive = FALSE)
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		for(var/datum/wound/wound as anything in limb.wounds?.Copy())
+			wound.replaced = TRUE
 			qdel(wound)
 	return ..()
 
