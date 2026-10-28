@@ -743,6 +743,12 @@
   - bugfix: Wampiry, wasale i thralle darkspawna mogą mówić swoim językiem, a nie
       tylko go rozumieć.
   - config: Usunięto zdublowaną flagę ATMOS_EQUALIZE_ENABLED z config.txt.
+  - rscadd: Kliknięcie w alert potrzeby fizjologicznej pozwala załatwić się na miejscu.
+      W ubraniu zostaje smród, nago tylko bałagan na podłodze.
+  - rscadd: Za każdy wykonany cel antagonisty dostajesz 500 aquilosów, za cel załogi
+      1000.
+  - balance: Przeżycie rundy z ucieczką daje 2000 aquilosów, wygrana misja 3000.
+  - bugfix: Polska szachownica na płytach kadłuba jest widoczna na webmapie.
   Monkestation:
   - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
       kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu
