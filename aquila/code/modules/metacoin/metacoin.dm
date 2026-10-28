@@ -29,7 +29,7 @@
 		inc_metabalance(2 * PAYCHECK_WELFARE, reason="Premia socjalna za przeliczenie salda konta bankowego.")
 
 /// Aquilosy za każdy wykonany cel antagonisty, niezależnie od greentextu
-#define METACOIN_ANTAG_OBJECTIVE_REWARD 1000
+#define METACOIN_ANTAG_OBJECTIVE_REWARD 500
 
 /client/process_endround_metacoin()
 	. = ..()
