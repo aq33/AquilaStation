@@ -102,6 +102,7 @@
 		T.__update_auxtools_turf_adjacency_info()
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
+	update_adjacent_pollutants() // AQ EDIT - dym i zapachy: nowe sąsiedztwo może odblokować pollution, see aquila/code/modules/pollution/pollution.dm
 	__update_auxtools_turf_adjacency_info()
 
 /turf/proc/clear_adjacencies()
