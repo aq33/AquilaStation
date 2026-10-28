@@ -27,3 +27,23 @@
 	inc_metabalance(FLOOR(banking_details.account_balance * coeff, 1), reason="Saldo konta bankowego przeliczono na [CONFIG_GET(string/metacurrency_name)].")
 	if(banking_details.welfare)
 		inc_metabalance(2 * PAYCHECK_WELFARE, reason="Premia socjalna za przeliczenie salda konta bankowego.")
+
+/// Aquilosy za greentext antagonisty, w każdej rundzie (osiągnięcie Greentext płaci tylko za pierwszym razem)
+#define METACOIN_GREENTEXT_REWARD 50
+
+/client/process_greentext()
+	. = ..()
+	// Antag bez celów też dostaje greentext w raporcie, ale nagroda jest tylko za wykonane cele
+	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
+		if(antag.owner?.key != key || antag.type == /datum/antagonist/custom || !length(antag.objectives))
+			continue
+		var/all_done = TRUE
+		for(var/datum/objective/objective as anything in antag.objectives)
+			if(!objective.check_completion())
+				all_done = FALSE
+				break
+		if(all_done)
+			inc_metabalance(METACOIN_GREENTEXT_REWARD, reason="Wykonałeś wszystkie cele antagonisty!")
+			return
+
+#undef METACOIN_GREENTEXT_REWARD

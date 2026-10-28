@@ -34,6 +34,59 @@
 	if(.)
 		set_hygiene(HYGIENE_LEVEL_DISGUSTING)
 
+/// Trwa wypróżnianie z alertu, żeby nie kliknąć dwa razy
+/mob/living/var/defecating = FALSE
+
+/// Wypróżnienie na żądanie (kliknięcie w alert): w ubraniu zostaje smród, nago tylko kupa na podłodze
+/mob/living/proc/defecate_here()
+	if(!CONFIG_GET(flag/shitting_enabled) || defecation <= DEFECATION_VERY || incapacitated() || defecating)
+		return FALSE
+	var/obj/structure/toilet/toilet = locate() in get_turf(src)
+	if(toilet)
+		defecating = TRUE
+		if(do_after(src, 3 SECONDS, target = toilet))
+			toilet.shit(src)
+		defecating = FALSE
+		return TRUE
+	var/clothed = is_wearing_pants()
+	if(clothed)
+		to_chat(src, "<span class='warning'>Załatwiasz się w ubraniu... będzie śmierdzieć.</span>")
+	else
+		to_chat(src, "<span class='notice'>Kucasz w miejscu...</span>")
+	defecating = TRUE
+	var/success = do_after(src, 3 SECONDS, target = src)
+	defecating = FALSE
+	if(!success)
+		return FALSE
+	finish_defecate_here(clothed)
+	return TRUE
+
+/// Skutek wypróżnienia poza ubikacją: w ubraniu jak popuszczenie (smród), nago kupa na podłodze bez utraty higieny
+/mob/living/proc/finish_defecate_here(clothed)
+	set_defecation(DEFECATION_NONE)
+	if(clothed)
+		actually_shit_myself()
+		return
+	visible_message(
+		"<span class='warning'>[src] załatwia się na podłogę!</span>",
+		"<span class='notice'><i>Ale ulga...</i></span>")
+	for(var/mob/living/L in viewers(7, get_turf(src)))
+		if(L != src)
+			L.adjust_disgust(DISGUST_LEVEL_GROSS)
+	playsound(get_turf(src), 'aquila/sound/creatures/fart.ogg', 100, TRUE)
+	new /obj/effect/decal/cleanable/feces(get_turf(src))
+	var/datum/reagent/consumable/castor_oil/oil = reagents?.get_reagent(/datum/reagent/consumable/castor_oil)
+	oil?.purge(src)
+
+/// Czy coś zakrywa krocze (wtedy wypróżnienie idzie w spodnie)
+/mob/living/proc/is_wearing_pants()
+	return FALSE
+
+/mob/living/carbon/human/is_wearing_pants()
+	var/obj/item/clothing/uniform = w_uniform
+	var/obj/item/clothing/suit = wear_suit
+	return (uniform && (uniform.body_parts_covered & GROIN)) || (suit && (suit.body_parts_covered & GROIN))
+
 ///Adjust the thirst of a mob
 /mob/living/proc/adjust_hydration(var/change)
 	hydration = max(0, hydration + change)

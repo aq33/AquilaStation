@@ -27,3 +27,14 @@
 	desc = "Krecik puka w taborecik!" // tu coś dopisać może
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet10"
+
+// Kliknięcie w potrzebę: wypróżnienie na miejscu (na sedesie jak z ubikacji)
+/atom/movable/screen/alert/need_to_shit/Click()
+	var/mob/living/L = usr
+	if(istype(L) && L == owner)
+		L.defecate_here()
+
+/atom/movable/screen/alert/about_to_shit_myself/Click()
+	var/mob/living/L = usr
+	if(istype(L) && L == owner)
+		L.defecate_here()

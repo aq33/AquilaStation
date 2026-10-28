@@ -1003,6 +1003,7 @@
 #include "code\modules\test_chamber\kits\pr_489_shipbreaking.dm"
 #include "code\modules\test_chamber\kits\pr_507_sec_med.dm"
 #include "code\modules\test_chamber\kits\pr_509_kult_krwi.dm"
+#include "code\modules\test_chamber\kits\pr_515_wyproznianie_na_miejscu.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
@@ -1385,6 +1386,7 @@
 #ifdef UNIT_TESTS
 #include "code\modules\unit_tests\antag_huds.dm"
 #include "code\modules\unit_tests\aquila_bloodcult.dm"
+#include "code\modules\unit_tests\aquila_defecate_here.dm"
 #include "code\modules\unit_tests\bingle.dm"
 #include "code\modules\unit_tests\blood_worm.dm"
 #include "code\modules\unit_tests\byondui_cleanup.dm"
