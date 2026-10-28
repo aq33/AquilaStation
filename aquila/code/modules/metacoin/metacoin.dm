@@ -28,22 +28,19 @@
 	if(banking_details.welfare)
 		inc_metabalance(2 * PAYCHECK_WELFARE, reason="Premia socjalna za przeliczenie salda konta bankowego.")
 
-/// Aquilosy za greentext antagonisty, w każdej rundzie (osiągnięcie Greentext płaci tylko za pierwszym razem)
-#define METACOIN_GREENTEXT_REWARD 50
+/// Aquilosy za każdy wykonany cel antagonisty, niezależnie od greentextu
+#define METACOIN_ANTAG_OBJECTIVE_REWARD 1000
 
-/client/process_greentext()
+/client/process_endround_metacoin()
 	. = ..()
-	// Antag bez celów też dostaje greentext w raporcie, ale nagroda jest tylko za wykonane cele
+	var/completed = 0
 	for(var/datum/antagonist/antag as anything in GLOB.antagonists)
-		if(antag.owner?.key != key || antag.type == /datum/antagonist/custom || !length(antag.objectives))
+		if(antag.owner?.key != key || antag.type == /datum/antagonist/custom)
 			continue
-		var/all_done = TRUE
 		for(var/datum/objective/objective as anything in antag.objectives)
-			if(!objective.check_completion())
-				all_done = FALSE
-				break
-		if(all_done)
-			inc_metabalance(METACOIN_GREENTEXT_REWARD, reason="Wykonałeś wszystkie cele antagonisty!")
-			return
+			if(objective.check_completion())
+				completed++
+	if(completed)
+		inc_metabalance(completed * METACOIN_ANTAG_OBJECTIVE_REWARD, reason="Wykonane cele antagonisty: [completed].")
 
-#undef METACOIN_GREENTEXT_REWARD
+#undef METACOIN_ANTAG_OBJECTIVE_REWARD

@@ -1,4 +1,4 @@
-// aq33/AquilaStation#515 - wypróżnienie na miejscu po kliknięciu w alert, aquilosy za greentext
+// aq33/AquilaStation#515 - wypróżnienie na miejscu po kliknięciu w alert, nagrody w aquilosach
 
 /datum/test_chamber_kit/pr_515
 	name = "PR 515: wypróżnienie na miejscu"
