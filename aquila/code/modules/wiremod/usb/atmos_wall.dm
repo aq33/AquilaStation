@@ -1161,7 +1161,6 @@
 		SEND_SIGNAL(src, COMSIG_VITALS_SET_PATIENT, old_patient, patient)
 
 /obj/machinery/vitals_reader/unset_patient(datum/source)
-	SIGNAL_HANDLER
 	var/mob/living/old_patient = patient
 	. = ..()
 	if(old_patient && isnull(patient) && !circuit_changing_patient)
