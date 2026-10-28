@@ -716,6 +716,18 @@
   - rscadd: Kartka z kluczem do konsoli monitorowania wiadomości leży na biurku CE
       na Aquilasie i Trawniku.
 '2026-10-28':
+  Joker66613:
+  - rscadd: Skaner kontrabandy N-spect w protolathe ochrony. Wykrywa przedmioty z
+      uplinka, z ukrytej listy automatów, z paczek kontrabandy i narkotyki; torba
+      przemytnika ukrywa zawartość. Bramka skanująca ma tryb Kontrabanda.
+  - rscadd: 'Undercover I.D. w szafce detektywa: karta do przebrania bez kopiowania
+      dostępów, multitool blokuje przebranie.'
+  - rscadd: Tagi triage (zielony, żółty, czerwony, czarny) i tagger w NanoMed Plus.
+      Tag przykleja się na pacjenta i widać go w examine.
+  - rscadd: 'Opaska uciskowa (z tg): zatrzymuje 90% krwawienia z ręki lub nogi i ją
+      spowalnia, na szyi dusi; noszona dłużej niż 3 minuty niszczy kończynę. Każdy
+      dostaje jedną na start, są też w apteczkach i NanoMedach.'
+  - imageadd: Sprite opaski uciskowej, skanera N-spect i taggera (z tg).
   Monkestation:
   - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
       kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu
