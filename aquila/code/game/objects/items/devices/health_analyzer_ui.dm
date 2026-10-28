@@ -3,13 +3,31 @@
 // blood and total damage. Auri's pain, consciousness and injury trees don't exist here, so the data comes from
 // plain damage, our wounds, bleeding, organs, traumas and diseases.
 // Health mode on carbons opens the window; chemical mode, simple mobs and clumsy users keep the old chat scan.
+// The button in the top right corner of the window (or alt-click) switches the analyzer to the old text mode and back.
 
 /obj/item/healthanalyzer
 	/// The mob shown in the window
 	var/datum/weakref/ui_target
+	/// Old chat scan instead of the window
+	var/text_mode = FALSE
+
+/obj/item/healthanalyzer/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Alt+klik przełącza między oknem a trybem tekstowym (teraz: [text_mode ? "tekst" : "okno"]).</span>"
+
+/obj/item/healthanalyzer/AltClick(mob/user)
+	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return ..()
+	toggle_text_mode(user)
+
+/obj/item/healthanalyzer/proc/toggle_text_mode(mob/user)
+	text_mode = !text_mode
+	to_chat(user, "<span class='notice'>Przełączasz [src] na [text_mode ? "tryb tekstowy" : "okno"].</span>")
+	if(text_mode)
+		SStgui.close_uis(src)
 
 /obj/item/healthanalyzer/attack(mob/living/M, mob/living/carbon/human/user)
-	if(scanmode != 0 || !iscarbon(M) || HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB))
+	if(text_mode || scanmode != 0 || !iscarbon(M) || HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB))
 		return ..()
 	flick("[icon_state]-scan", src)
 	playsound(src, 'sound/effects/fastbeep.ogg', 10)
@@ -42,6 +60,11 @@
 	var/mob/living/carbon/target = ui_target?.resolve()
 	if(action == "print_chat" && istype(target))
 		healthscan(usr, target, advanced = advanced)
+		return TRUE
+	if(action == "text_mode")
+		toggle_text_mode(usr)
+		if(istype(target))
+			healthscan(usr, target, advanced = advanced)
 		return TRUE
 
 /proc/aq_injury(name, heal_text, damage = null, severity = 2)

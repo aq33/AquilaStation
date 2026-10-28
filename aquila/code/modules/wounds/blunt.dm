@@ -6,6 +6,10 @@
 	var/drop_chance = 0
 	var/treated_drop_chance = 0
 
+/datum/wound/blunt/on_apply()
+	if(severity >= WOUND_SEVERITY_SEVERE)
+		victim.play_bone_break()
+
 /datum/wound/blunt/wound_effects(delta_time)
 	var/drop = treated ? treated_drop_chance : drop_chance
 	if(drop && (limb.body_zone == BODY_ZONE_L_ARM || limb.body_zone == BODY_ZONE_R_ARM) && DT_PROB(drop, delta_time))
@@ -96,6 +100,7 @@
 	treated_limp_slowdown = 0.6
 
 /datum/wound/blunt/compound/on_apply()
+	. = ..()
 	victim.add_bleeding(BLEED_SURFACE)
 
 /mob/living/carbon/help_shake_act(mob/living/carbon/M)

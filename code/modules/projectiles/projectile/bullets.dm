@@ -15,6 +15,6 @@
 		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(target.loc, target)
 		playsound(target.loc, 'aquila/sound/effects/bullet_hit.ogg', 100, 1)
 		B.add_blood_DNA(return_blood_DNA())
-		var/dist = rand(1,7)
+		var/dist = rand(1, clamp(round(damage / 5), 1, 7)) // AQ EDIT - siła bryzgu zależna od obrażeń (Shiptest#3239)
 		var/turf/targ = get_ranged_target_turf(target, get_dir(starting, target), dist)
 		INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/decal/cleanable/blood/hitsplatter, GoTo), targ, dist) // AQ EDIT: GoTo śpi, nie blokuje trafienia

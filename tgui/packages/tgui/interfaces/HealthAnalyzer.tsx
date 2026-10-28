@@ -327,11 +327,18 @@ export const HealthAnalyzer = (props) => {
             <Section
               title={data.target}
               buttons={
-                <Button
-                  icon="comment-medical"
-                  tooltip="Wypisz pełny skan na czat"
-                  onClick={() => act('print_chat')}
-                />
+                <>
+                  <Button
+                    icon="comment-medical"
+                    tooltip="Wypisz pełny skan na czat"
+                    onClick={() => act('print_chat')}
+                  />
+                  <Button
+                    icon="align-left"
+                    tooltip="Przełącz na stary tryb tekstowy (Alt+klik na analizatorze przywraca okno)"
+                    onClick={() => act('text_mode')}
+                  />
+                </>
               }
             >
               {!!data.species && <div>Gatunek: {data.species}</div>}

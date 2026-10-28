@@ -38,7 +38,9 @@
 			skip = TRUE
 			qdel(src)
 			return
+		var/turf/old_loc = prev_loc
 		prev_loc = loc
+		leave_squirt(get_dir(old_loc, loc))
 		for(var/atom/A in get_turf(src))
 			if(istype(A,/obj/item))
 				var/obj/item/I = A
@@ -59,6 +61,10 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
+	if(istype(A, /obj/structure/window) && land_on_window(A))
+		skip = TRUE
+		qdel(src)
+		return
 	if(istype(A, /turf/closed/wall))
 		if(istype(prev_loc))
 			loc = A
@@ -67,6 +73,7 @@
 			if(istype(H))
 				var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
 				if(istype(B))
+					B.add_mob_blood(H) // kolor krwi gatunku
 					B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
 					B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 		else
