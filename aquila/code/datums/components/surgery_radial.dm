@@ -1,5 +1,6 @@
 // AQUILA - pick the surgery from a radial menu around the patient (the UX part of tgstation#93697) instead of the TGUI list.
 // The step-based surgeries stay as they are: drapes on the patient, pick the surgery, then the usual steps.
+// The menu also prepares the zone for the new surgery skeleton (tgstation#93697, aquila/code/modules/surgery_tg/).
 
 /datum/component/surgery_initiator
 	/// TRUE while the radial menu is open, so changing the zone doesn't open a second one
@@ -28,9 +29,18 @@
 		ui_close(user)
 		return
 
+	// Przygotowanie strefy do operacji narzędziami (nowy szkielet, aquila/code/modules/surgery_tg/surgery_bridge.dm)
+	var/prep_choice = target.is_zone_prepped_for_surgery(user.zone_selected) ? SURGERY_PREP_CHOICE_REMOVE : SURGERY_PREP_CHOICE_ADD
+	choices[prep_choice] = image(icon = 'icons/obj/surgery.dmi', icon_state = "surgical_drapes")
+
 	radial_open = TRUE
 	var/picked = show_radial_menu(user, target, choices, custom_check = CALLBACK(src, PROC_REF(can_start_surgery), user, target), require_near = TRUE, tooltips = TRUE)
 	radial_open = FALSE
+
+	if(picked == prep_choice && !QDELETED(target))
+		ui_close(user)
+		target.toggle_surgery_prep(user, user.zone_selected, get_surgery_aid_name())
+		return
 
 	var/datum/surgery/picked_surgery = surgery_by_name[picked]
 	if(isnull(picked_surgery) || QDELETED(target))
