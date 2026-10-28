@@ -28,9 +28,12 @@ export const handleComponentMount = function (this: Modal) {
         RADIO_PREFIXES[this.fields.radioPrefix]?.label || CHANNELS[channel],
       channel,
     });
-    setTimeout(() => {
-      this.fields.innerRef.current?.focus();
-    }, 1);
+    // AQUILA: okno pokazuje się asynchronicznie - ponawiamy fokus, aż złapie
+    for (const delay of [1, 50, 150, 300]) {
+      setTimeout(() => {
+        this.fields.innerRef.current?.focus();
+      }, delay);
+    }
     windowOpen(CHANNELS[channel], this.fields.dpi);
     const input = this.fields.innerRef.current;
     input?.focus();

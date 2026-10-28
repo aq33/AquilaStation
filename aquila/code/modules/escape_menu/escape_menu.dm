@@ -28,16 +28,42 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 	qdel(clown)
 	GLOB.escape_menu_suicide_icon_base64 = icon2base64(clown_icon)
 
-/// Komenda makra Esc: przełącza menu, zamyka okno mówienia (tgui-say) i zwalnia trzymane klawisze.
-/// Stan okna mówienia trafia do menu przez embedded winget, żeby Esc przy otwartym tgui-say
-/// tylko je zamykał, a nie otwierał przy okazji menu.
+/// Komenda makra Esc: zamyka okno mówienia (tgui-say), a resztę robi /client/verb/escape_pressed -
+/// najpierw zamyka koła wyboru i okna, dopiero potem przełącza menu. Stan okna mówienia trafia
+/// do verba przez embedded winget, żeby Esc przy otwartym tgui-say tylko je zamykał.
 /client/proc/escape_menu_create_toggle_command(close_tgui_say = TRUE)
-	var/toggle_message = "%7b%22type%22%3a%22toggle%22%2c%22payload%22%3a%7b%22say%22%3a%22\[\[tgui_say.is-visible\]\]%22%7d%7d"
-	var/command = ".output [SKIN_ESCAPE_MENU]:update [toggle_message]"
+	var/command = ".escape_pressed \\\"\[\[tgui_say.is-visible\]\]\\\""
 	if(close_tgui_say)
 		command += "\\n.output tgui_say.browser:update [TGUI_CREATE_MESSAGE_EMPTY("close")]"
-	command += "\\n.escape_menu_reset_keys"
 	return "\"[command]\""
+
+/// Esc: zamyka otwarte koła wyboru i okna TGUI; jeśli nic nie było otwarte, przełącza menu pod Esc.
+/client/verb/escape_pressed(say_visible as text|null)
+	set name = ".escape_pressed"
+	set hidden = TRUE
+	set instant = TRUE
+	escape_menu_reset_keys()
+	if(say_visible == "true")
+		return
+	if(!escape_menu?.is_open && close_popups())
+		return
+	escape_menu?.window?.send_message("toggle", list("say" = "false"))
+
+/// Zamyka koła wyboru (radial) i okna TGUI gracza. Zwraca TRUE, jeśli coś zamknęło.
+/client/proc/close_popups()
+	. = FALSE
+	for(var/id in GLOB.radial_menus)
+		var/datum/radial_menu/menu = GLOB.radial_menus[id]
+		if(menu?.current_user != src)
+			continue
+		. = TRUE
+		if(istype(menu, /datum/radial_menu/persistent))
+			var/datum/radial_menu/persistent/persistent_menu = menu
+			persistent_menu.select_proc_callback?.Invoke(null)
+		else
+			menu.finished = TRUE
+	if(SStgui.close_user_uis(mob))
+		. = TRUE
 
 /// Po otwarciu menu fokus znika z mapy i puszczenie klawisza może nie dotrzeć - zwalniamy wszystkie.
 /client/verb/escape_menu_reset_keys()
@@ -62,6 +88,8 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 	var/datum/tgui_window/window
 	/// Czy gracz został już ostrzeżony, że jego BYOND nie obsługuje przezroczystych przeglądarek
 	var/version_warned = FALSE
+	/// Czy menu jest teraz pokazane (wg wiadomości "opened"/"closed" od skryptu menu)
+	var/is_open = FALSE
 
 /datum/escape_menu/New(client/client)
 	src.client = client
@@ -133,6 +161,7 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 	data["mapWebmap"] = (map_link && map_link != "None") ? "https://webmap.affectedarc07.co.uk/maps/aquila/[map_link]" : null
 	data["canSeeNotes"] = !!CONFIG_GET(flag/see_own_notes)
 	data["resources"] = resources
+	data["controls"] = list()
 	data["suicideIcon"] = GLOB.escape_menu_suicide_icon_base64 || null
 	window.send_message("init", data)
 
@@ -191,11 +220,15 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 			if(!version_warned && client.byond_build < 1680)
 				to_chat(client, "<span class='warning'>Twoja wersja BYOND jest za stara, żeby poprawnie wyświetlić menu pod Esc. Zaktualizuj do 516.1680 lub nowszej.</span>")
 				version_warned = TRUE
-			send_update(build_dynamic_data())
+			is_open = TRUE
+			var/list/opened_data = build_dynamic_data()
+			opened_data["controls"] = build_controls()
+			send_update(opened_data)
 			START_PROCESSING(SSescape_menu, src)
 			if(isnull(GLOB.escape_menu_suicide_icon_base64))
 				INVOKE_ASYNC(src, PROC_REF(send_suicide_icon))
 		if("closed")
+			is_open = FALSE
 			STOP_PROCESSING(SSescape_menu, src)
 		if("character")
 			client.prefs?.open_character_menu(client.mob)

@@ -68,6 +68,7 @@ export function HomePage({
             Ustawienia
           </MenuButton>
           <MenuButton onClick={() => onNavigate('players')}>Gracze</MenuButton>
+          <MenuButton onClick={() => onNavigate('help')}>Pomoc</MenuButton>
           <MenuButton
             onClick={() => onNavigate('admin')}
             tooltip={

@@ -67,6 +67,7 @@ window "mainwindow"
 		icon = 'icons\\ss13_64.png'
 		macro = "default"
 		menu = "menu"
+		on-size = ".auto_fit_viewport"
 	elem "split"
 		type = CHILD
 		pos = 3,0

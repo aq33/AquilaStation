@@ -55,9 +55,12 @@ const setOpen = (dpi: number) => {
     'is-visible': true,
     size: `${Math.round(WINDOW_SIZES.width * dpi)}x${Math.round(WINDOW_SIZES.small * dpi)}`,
   });
+  // AQUILA: fokus na kontrolkę przeglądarki, inaczej BYOND zostawia go na mapie
+  // i pierwsze znaki po T trafiają w próżnię
   Byond.winset(`${Byond.windowId}.browser`, {
     'is-visible': true,
     size: `${Math.round(WINDOW_SIZES.width * dpi)}x${Math.round(WINDOW_SIZES.small * dpi)}`,
+    focus: true,
   });
 };
 

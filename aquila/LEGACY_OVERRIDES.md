@@ -149,6 +149,10 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | `doorctrl1` replaced with the Paradise state | `icons/obj/stationobjs.dmi` | #469 swapped every button state but the pressed one; from ParadiseSS13/Paradise `icons/obj/stationobjs.dmi`, CC BY-SA 3.0 |
 | `/datum/progressbar` driven inside the activation step loop (AQ EDIT block + 3 lines) | `code/modules/mod/mod_activation.dm` (`activation_delay()`) | MODsuit sealing shows a progress bar per part; `do_after` would make the steps interruptible by moving or stuns |
 | `if(H.aquila_mod_forces_plantigrade()) suit_compatible = FALSE` | `code/modules/mob/living/carbon/human/species.dm` (`handle_mutant_bodyparts()`, digitigrade handling) | A sealed MOD chestplate or boots has no digitigrade sprites, so the wearer gets plantigrade legs; logic and the leg refresh on (un)sealing in `aquila/code/modules/mod/mod_clothes.dm`. Test: `aquila_modsuit_species` |
+| `on-size = ".auto_fit_viewport"` | `interface/skin.dmf` (`mainwindow`) | The map is refitted after every window resize instead of getting black bars; verb in `aquila/code/modules/ui_porzadki/viewport.dm` |
+| `apply_fullscreen_pref()` | `code/modules/client/client_procs.dm` (`/client/New()`, after `initialize_escape_menu()`) | The fullscreen preference is applied on login, not only after F11 |
+| `PREFTOGGLE_2_FULLSCREEN` in `TOGGLES_2_DEFAULT`, `tesla_volume = 50` | `code/__DEFINES/preferences.dm`, `code/modules/client/preferences.dm` | New players start in fullscreen with tesla sounds at 50% |
+| `holomap.fit_to_view(user.client)` | `nsv13/code/modules/holomap/station_holomap.dm` (`open_map()`), `code/datums/components/holomap.dm` | Bigger HUD minimap scaled to the viewer's view; `aquila/code/modules/ui_porzadki/holomap_scale.dm` |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

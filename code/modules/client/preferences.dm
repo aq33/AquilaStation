@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ooccolor = "#c43b23"
 	var/asaycolor = "#ff4500"			//This won't change the color for current admins, only incoming ones.
 	var/tip_delay = 500 //tip delay in milliseconds
-	var/tesla_volume = 100 //Volume (0-100) of tesla/lightning sounds
+	var/tesla_volume = 50 //Volume (0-100) of tesla/lightning sounds // AQ EDIT - domyślnie 50%
 	/// Which click (MIDDLE_CLICK or ALT_CLICK) uses the active MODsuit module
 	var/mod_select = MIDDLE_CLICK
 

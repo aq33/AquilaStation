@@ -4,21 +4,25 @@ import { sortBy } from 'es-toolkit';
 import { ReactNode } from 'react';
 
 import { useBackend, useLocalState } from '../../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  Icon,
-  Input,
-  Section,
-  Tooltip,
-} from '../../components';
+import { Box, Flex, Icon, Input, Section, Tooltip } from '../../components';
 import { PreferencesMenuData } from './data';
 import features from './preferences/features';
 import { FeatureValueInput } from './preferences/features/base';
 import { TabbedMenu } from './TabbedMenu';
 
 const CATEGORY_SCALES = {};
+
+// AQUILA: polskie nazwy kategorii (klucze zostają po angielsku, przychodzą z cech)
+const CATEGORY_LABELS = {
+  ADMIN: 'ADMIN',
+  CHAT: 'CZAT',
+  GRAPHICS: 'GRAFIKA',
+  SOUND: 'DŹWIĘK',
+  GHOST: 'DUCH',
+  UI: 'INTERFEJS',
+  'BYOND MEMBER': 'BYOND MEMBER',
+  GAMEPLAY: 'ROZGRYWKA',
+};
 
 const CATEGORIES_ORDER = [
   'ADMIN',
@@ -70,10 +74,6 @@ const sortByName = (array: [string, PreferenceChild[]][]) =>
 export const GamePreferencesPage = (props) => {
   const { act, data } = useBackend<PreferencesMenuData>();
   let [searchText, setSearchText] = useLocalState('game_prefs_searchText', '');
-  const [advancedSettings, setAdvancedSettings] = useLocalState(
-    'game_prefs_advanced_settings',
-    false,
-  );
 
   const gamePreferences: Record<string, Record<string, PreferenceChild[]>> = {};
 
@@ -81,8 +81,8 @@ export const GamePreferencesPage = (props) => {
     data.character_preferences.game_preferences,
   )) {
     const feature = features[featureId];
-
-    if (!advancedSettings && !feature?.important) {
+    // Wszystkie opcje są widoczne od razu; pomijamy tylko te bez opisu w tgui
+    if (!feature) {
       continue;
     }
 
@@ -186,7 +186,7 @@ export const GamePreferencesPage = (props) => {
   ).map(([category, subcategory]) => {
     let subcategories = sortByName(Object.entries(subcategory));
     return [
-      category,
+      CATEGORY_LABELS[category] || category,
       <Flex style={{ flexFlow: 'row wrap' }} key={category}>
         {subcategories.length > 1
           ? subcategories.map(([subcategory, preferences], index) => (
@@ -241,11 +241,15 @@ export const GamePreferencesPage = (props) => {
     searchText?.length > 0
       ? [
           [
-            'Search Result',
+            'Wyniki wyszukiwania',
             sortByNameTyped(Object.entries(gamePreferences))
               .flatMap(([category, categoryObj]) =>
                 Object.entries(categoryObj).map<[string, PreferenceChild[]]>(
-                  ([k, v]) => [category + (k ? ' > ' + k : ''), v],
+                  ([k, v]) => [
+                    (CATEGORY_LABELS[category] || category) +
+                      (k ? ' > ' + k : ''),
+                    v,
+                  ],
                 ),
               )
               .filter(([_, preferences]) => preferences.some(search))
@@ -291,7 +295,7 @@ export const GamePreferencesPage = (props) => {
   const result: [string, ReactNode][] = searchResult || gamePreferenceEntries;
 
   return (
-    <TabbedMenu categoryEntries={result} categoryScales={CATEGORY_SCALES}>
+    <TabbedMenu paged categoryEntries={result} categoryScales={CATEGORY_SCALES}>
       <Flex
         fontSize={1.2}
         pl="15px"
@@ -307,20 +311,10 @@ export const GamePreferencesPage = (props) => {
           <Input
             autoFocus
             fluid
-            placeholder="Search options"
+            placeholder="Szukaj opcji"
             value={searchText}
             onChange={(value) => setSearchText(value)}
           />
-        </Flex.Item>
-        <Flex.Item>
-          <Button.Checkbox
-            checked={advancedSettings}
-            onClick={() => {
-              setAdvancedSettings(!advancedSettings);
-            }}
-          >
-            Show Advanced Settings
-          </Button.Checkbox>
         </Flex.Item>
       </Flex>
     </TabbedMenu>

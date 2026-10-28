@@ -13,6 +13,7 @@ import { perf } from 'common/perf';
 import { combineReducers } from 'common/redux';
 import { setGlobalStore } from 'tgui/backend';
 import { setupGlobalEvents } from 'tgui/events';
+import { setupHotKeys } from 'tgui/hotkeys';
 import { captureExternalLinks } from 'tgui/links';
 import { render } from 'tgui/renderer';
 import { configureStore } from 'tgui/store';
@@ -66,6 +67,10 @@ function setupApp() {
     ignoreWindowFocus: true,
   });
   setupPanelFocusHacks();
+  // AQUILA: klawisze wciśnięte, gdy fokus jest w panelu (np. T po kliknięciu
+  // w czat), idą do BYOND jak w oknach TGUI. Makra (T, M, Esc...) serwer
+  // ustawia chwilę po wejściu, więc czytamy je z opóźnieniem.
+  setTimeout(() => setupHotKeys(), 5000);
   captureExternalLinks();
 
   // Re-render UI on store updates
