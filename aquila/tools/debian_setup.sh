@@ -26,5 +26,11 @@ $SUDO apt-get install -y --no-install-recommends \
 
 bash tools/ci/install_rust_g.sh
 
+# The repo's yt-dlp.exe runs only on Windows; the jukebox uses ./yt-dlp next to the game on Linux.
+# Debian's yt-dlp package is too old for YouTube, so take the latest release. Running this again updates it.
+curl -fL "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux" -o yt-dlp
+chmod +x yt-dlp
+echo "yt-dlp $(./yt-dlp --version)"
+
 echo
 echo "Done. Build with ./BUILD.sh, start the server with ./server_watchdog.sh"
