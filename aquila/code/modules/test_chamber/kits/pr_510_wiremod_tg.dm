@@ -7,7 +7,7 @@
 		Obudowy: pilot, kontroler, skaner, klawiatura, pistolet, bot, bankomat, drzwi, zespół, panel ścienny, panel pod płytkę (połóż płytkę nad nim - ma zniknąć i działać), implant (wszczep implanterem), skaner bramkowy, dystrybutor. \
 		BCI: włóż układ do BCI, włóż BCI do komory BCI, wejdź do komory i zamknij ją - BCI ma się wszczepić, akcja ładunku pokazuje procent, nakładki HUD widzi tylko nosiciel. \
 		Kabel USB: emiter, termomaszyna i pompa temperatury (strzał i włączanie z układu). Wirenet: dwa układy w botach przykręconych na tej samej sieci kabli - nadajnik i odbiornik. \
-		Komponenty tylko nasze: Bitwise, Bitflag, Round, Advanced Trigonometry."
+		Komponenty tylko nasze: Bitwise, Bitflag, Round, Advanced Trigonometry. \n		Reszta z tg: aparat i PDA jako obudowy (włóż układ), moduł MOD, wire bundle, kamera zdalna, duplikator modułów, USB w alarmie powietrza."
 	items = list(
 		/obj/item/integrated_circuit/loaded = 6,
 		/obj/item/multitool/circuit = 1,
@@ -47,6 +47,12 @@
 		/obj/item/circuit_component/advanced_trigonometry = 1,
 		/obj/item/circuit_component/object_overlay = 1,
 		/obj/item/circuit_component/equipment_action = 1,
+		/obj/item/camera = 1,
+		/obj/item/modular_computer/tablet/pda = 1,
+		/obj/item/mod/module/circuit = 1,
+		/obj/item/circuit_component/wire_bundle = 1,
+		/obj/machinery/module_duplicator = 1,
+		/obj/machinery/airalarm = 1,
 		/obj/item/stack/tile/plasteel = 1,
 		/obj/item/stack/cable_coil = 1,
 		/obj/item/screwdriver = 1,
