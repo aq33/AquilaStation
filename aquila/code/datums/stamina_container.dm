@@ -98,7 +98,10 @@
 /datum/stamina_container/proc/update()
 	loss = maximum - current
 	loss_as_percent = maximum ? loss / maximum * 100 : 0
-	parent?.on_stamina_update()
+	if(parent)
+		// Stara zmienna zostaje lustrem puli dla kodu, który czyta ją bezpośrednio
+		parent.staminaloss = loss
+		parent.on_stamina_update()
 
 ///Stamina jako ułamek 0-1
 /datum/stamina_container/proc/get_fraction()

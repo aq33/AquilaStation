@@ -149,11 +149,15 @@
 	var/bonus_damage = 0
 	if((armlockstate == TRUE)) // disable chosen arm temporarily when armlocked
 		if(A.zone_selected == BODY_ZONE_L_ARM)
-			D.apply_damage(100, STAMINA, BODY_ZONE_L_ARM, def_check)
+			// AQ EDIT - port Bee#14750: stamina to pula, więc ręka jest unieruchamiana wprost
+			D.apply_damage(40, STAMINA, BODY_ZONE_L_ARM, def_check)
+			D.disable_limb_temporarily(BODY_ZONE_L_ARM, 10 SECONDS, "maa_armlock")
 			D.visible_message("<span class ='danger'>[A] łamie [D] rękę!</span>", "<span class ='danger'>[A] łamie ci rękę, wywołując przeszywający ból!</span>")
 			armlockstate = FALSE
 		if(A.zone_selected == BODY_ZONE_R_ARM)
-			D.apply_damage(100, STAMINA, BODY_ZONE_R_ARM, def_check)
+			// AQ EDIT - port Bee#14750: stamina to pula, więc ręka jest unieruchamiana wprost
+			D.apply_damage(40, STAMINA, BODY_ZONE_R_ARM, def_check)
+			D.disable_limb_temporarily(BODY_ZONE_R_ARM, 10 SECONDS, "maa_armlock")
 			D.visible_message("<span class ='danger'>[A] łamie [D] rękę!</span>", "<span class ='danger'>[A] łamie ci rękę, wywołując przeszywający ból!</span>")
 			armlockstate = FALSE
 		return FALSE

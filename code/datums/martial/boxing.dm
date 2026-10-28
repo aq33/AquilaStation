@@ -36,8 +36,8 @@
 
 	D.apply_damage(damage, STAMINA, affecting, armor_block)
 	log_combat(A, D, "punched (boxing) ")
-	if(D.getStaminaLoss() > 50 && istype(D.mind?.martial_art, /datum/martial_art/boxing))
-		var/knockout_prob = D.getStaminaLoss() + rand(-15,15)
+	if(D.getStaminaLoss() > 100 && istype(D.mind?.martial_art, /datum/martial_art/boxing)) // AQ EDIT - port Bee#14750
+		var/knockout_prob = D.stamina.loss_as_percent + rand(-15,15)
 		if((D.stat != DEAD) && prob(knockout_prob))
 			D.visible_message("<span class='danger'>[A] nokautuje [D] potężnym zamachem!</span>", \
 								"<span class='userdanger'>[A] nokautuje cię potężnym zamachem!</span>")

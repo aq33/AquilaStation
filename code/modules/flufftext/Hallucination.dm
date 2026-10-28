@@ -1276,7 +1276,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images |= electrocution_skeleton_anim
 	addtimer(CALLBACK(src, PROC_REF(reset_shock_animation)), 40)
 	target.playsound_local(get_turf(src), "sparks", 100, 1)
-	target.staminaloss += 50
+	target.adjustStaminaLoss(50) // AQ EDIT - port Bee#14750: stamina to pula, sama zmienna nic nie robi
 	target.Stun(40)
 	target.jitteriness += 1000
 	target.do_jitter_animation(target.jitteriness)

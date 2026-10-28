@@ -184,3 +184,23 @@
 	owner.remove_filter("stamcrit")
 	owner.update_stamina_hud()
 	return ..()
+
+// ---------------------------------------------------------------------------
+// Kończyny nie wyłączają się już od staminy. Mechaniki, które tego używały (dźwignia MAA z NSV13),
+// unieruchamiają kończynę na chwilę wprost.
+
+///Unieruchamia kończynę w danej strefie na podany czas
+/mob/living/carbon/proc/disable_limb_temporarily(zone, duration, source = "temporary_disable")
+	var/obj/item/bodypart/limb = get_bodypart(check_zone(zone))
+	if(!limb)
+		return FALSE
+	ADD_TRAIT(limb, TRAIT_PARALYSIS, source)
+	limb.update_disabled()
+	addtimer(CALLBACK(src, PROC_REF(enable_limb), limb, source), duration, TIMER_UNIQUE | TIMER_OVERRIDE)
+	return TRUE
+
+/mob/living/carbon/proc/enable_limb(obj/item/bodypart/limb, source)
+	if(QDELETED(limb))
+		return
+	REMOVE_TRAIT(limb, TRAIT_PARALYSIS, source)
+	limb.update_disabled()
