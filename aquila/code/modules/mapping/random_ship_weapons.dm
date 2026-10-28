@@ -49,12 +49,13 @@
 	room_width = 5
 	room_height = 5
 
-// Warianty. Przykładowe: działko AA na środku albo puste stanowisko.
+// Warianty. Przykładowe: wyrzutnia torped (1x3) albo puste stanowisko.
+// Broń w wariancie musi mieć weapon_datum_type, inaczej nie podepnie się do statku (np. /obj/machinery/ship_weapon/anti_air go nie ma).
 
 /datum/map_template/random_room/aq_weapon_atlas_1a
-	name = "Atlas Weapon Slot 1 - AA Turret"
+	name = "Atlas Weapon Slot 1 - Torpedo Launcher"
 	room_id = "aq_weapon_atlas_1a"
-	mappath = 'aquila/_maps/random_weapons/atlas_1_aa.dmm'
+	mappath = 'aquila/_maps/random_weapons/atlas_1_torpedo.dmm'
 	room_group = "atlas_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -70,9 +71,9 @@
 	template_height = 5
 
 /datum/map_template/random_room/aq_weapon_snake_1a
-	name = "Snake Weapon Slot 1 - AA Turret"
+	name = "Snake Weapon Slot 1 - Torpedo Launcher"
 	room_id = "aq_weapon_snake_1a"
-	mappath = 'aquila/_maps/random_weapons/snake_1_aa.dmm'
+	mappath = 'aquila/_maps/random_weapons/snake_1_torpedo.dmm'
 	room_group = "snake_weapon_1"
 	centerspawner = FALSE
 	template_width = 5
@@ -88,9 +89,9 @@
 	template_height = 5
 
 /datum/map_template/random_room/aq_weapon_trawnik_1a
-	name = "Trawnik Weapon Slot 1 - AA Turret"
+	name = "Trawnik Weapon Slot 1 - Torpedo Launcher"
 	room_id = "aq_weapon_trawnik_1a"
-	mappath = 'aquila/_maps/random_weapons/trawnik_1_aa.dmm'
+	mappath = 'aquila/_maps/random_weapons/trawnik_1_torpedo.dmm'
 	room_group = "trawnik_weapon_1"
 	centerspawner = FALSE
 	template_width = 5

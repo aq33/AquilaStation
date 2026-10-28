@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/obj/machinery/ship_weapon/anti_air,
+/obj/machinery/ship_weapon/torpedo_launcher/north,
 /turf/template_noop,
 /area/template_noop)
 
