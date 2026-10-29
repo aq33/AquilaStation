@@ -53,21 +53,17 @@
 	qdel(hotspot)
 	QDEL_NULL(location.pollution)
 
-/// AQUILA - Burning gas heats a hotspot tile's contents only every few ticks
-/datum/unit_test/fire_exposes_contents
+/// AQUILA - Burning gas still heats windows every tick, and skips movables without their own temperature_expose()
+/datum/unit_test/temperature_expose_typecache
 
-/datum/unit_test/fire_exposes_contents/Run()
+/datum/unit_test/temperature_expose_typecache/Run()
 	var/turf/open/location = run_loc_floor_bottom_left
-	TEST_ASSERT(fire_exposes_contents(location), "A tile without a hotspot is not heated every time")
-
-	var/obj/effect/hotspot/hotspot = allocate(/obj/effect/hotspot, location)
-	var/heats = 0
-	for(var/i in 1 to HOTSPOT_SMOKE_INTERVAL * HOTSPOT_CONTENTS_INTERVAL)
-		if(fire_exposes_contents(location))
-			heats++
-		hotspot.exposure_count++
-	TEST_ASSERT(heats == HOTSPOT_SMOKE_INTERVAL, "A burning tile's contents were heated [heats] times in [HOTSPOT_SMOKE_INTERVAL * HOTSPOT_CONTENTS_INTERVAL] ticks instead of [HOTSPOT_SMOKE_INTERVAL]")
-	qdel(hotspot)
+	TEST_ASSERT(!GLOB.temperature_expose_typecache[/obj/item/pen], "A pen is in the temperature_expose() cache")
+	var/obj/structure/window/window = allocate(/obj/structure/window, location)
+	var/start_integrity = window.obj_integrity
+	fire_expose(location, location.air, 2000)
+	TEST_ASSERT(window.obj_integrity < start_integrity, "Burning gas did not damage a window on its tile")
+	qdel(location.active_hotspot)
 	QDEL_NULL(location.pollution)
 
 #undef TEST_ASSERT

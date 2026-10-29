@@ -28,8 +28,32 @@
 	var/turf/open/location = holder_atom.loc
 	return istype(location) && !isnull(location.active_hotspot)
 
-/// AQUILA - Burning gas heats the contents of a tile with a hotspot only every HOTSPOT_CONTENTS_INTERVAL ticks, like the hotspot's own fire_act().
-/// Tiles without a hotspot are heated every time. Core hook: fire_expose() in code/modules/atmospherics/gasmixtures/reactions.dm
-/proc/fire_exposes_contents(turf/open/location)
-	var/obj/effect/hotspot/hotspot = location.active_hotspot
-	return isnull(hotspot) || !(hotspot.exposure_count % HOTSPOT_CONTENTS_INTERVAL)
+/// AQUILA - Burning gas calls temperature_expose() only on movables that override it, every other movable inherits the empty /atom one.
+/// The loop ran a proc call for every item on every burning tile each tick. Add new temperature_expose() overrides on movables here.
+/// Core hook: fire_expose() in code/modules/atmospherics/gasmixtures/reactions.dm
+GLOBAL_LIST_INIT(temperature_expose_typecache, typecacheof(list(
+	/mob/living/simple_animal/bot/firebot,
+	/obj/effect/particle_effect/foam,
+	/obj/item/clothing/accessory/medal/plasma,
+	/obj/item/clothing/mask/facehugger,
+	/obj/item/latexballon,
+	/obj/item/reagent_containers,
+	/obj/item/stack/sheet/wetleather,
+	/obj/machinery/door/airlock/plasma,
+	/obj/machinery/door/window,
+	/obj/machinery/firealarm,
+	/obj/machinery/light,
+	/obj/machinery/portable_atmospherics/canister,
+	/obj/mecha,
+	/obj/structure/alien/egg,
+	/obj/structure/alien/flesh,
+	/obj/structure/alien/weeds,
+	/obj/structure/falsewall/plasma,
+	/obj/structure/glowshroom,
+	/obj/structure/grille,
+	/obj/structure/mineral_door/transparent/plasma,
+	/obj/structure/spacevine,
+	/obj/structure/spider,
+	/obj/structure/statue/plasma,
+	/obj/structure/window,
+)))
