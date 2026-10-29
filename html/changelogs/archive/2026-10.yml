@@ -778,3 +778,9 @@
       i zmiennymi z tg.
   - admin: View All Circuits i Load Circuit dla adminów, komponenty admina (proccall,
       SDQL, setvar, spawn).
+'2026-10-29':
+  sh4dow321:
+  - code_imp: 'Pożary gazowe obciążają serwer dużo mniej: ogień pali przedmioty na
+      kafelku i dymi rzadziej.'
+  - bugfix: Naprawiono błędy przy gaszeniu lub niszczeniu ognia w trakcie palenia
+      przedmiotów.
