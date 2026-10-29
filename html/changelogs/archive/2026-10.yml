@@ -779,6 +779,30 @@
   - admin: View All Circuits i Load Circuit dla adminów, komponenty admina (proccall,
       SDQL, setvar, spawn).
 '2026-10-29':
+  Joker66613:
+  - tweak: Zakładki Oddział i Frakcja połączone w jedną, Admin i Mentor też (z podziałem
+      na sekcje).
+  - tweak: Z panelu znikają zakładki Przedmiot i Ustawienia oraz zdublowane komendy
+      IC; Módl się jest w zakładce Admin z opisem.
+  - rscadd: Guzik Śpij obok Rzuć i guzik czujników stroju nad plecakiem.
+  - tweak: Guziki HUD-u mają polskie nazwy.
+  - tweak: Esc najpierw zamyka koła wyboru i okna, dopiero potem otwiera menu.
+  - rscadd: W menu pod Esc jest sekcja Pomoc ze sterowaniem i Twoimi klawiszami.
+  - bugfix: Widok gry dopasowuje się do okna po zmianie jego rozmiaru zamiast czarnych
+      pasów.
+  - tweak: Gra domyślnie startuje w pełnym ekranie, a ustawienie pełnego ekranu działa
+      od wejścia.
+  - bugfix: T od razu otwiera pisanie, także po kliknięciu w czat.
+  - tweak: Większa minimapa z polską legendą.
+  - tweak: 'Ustawienia gry: kategorie jako osobne strony, wszystkie opcje widoczne
+      od razu.'
+  - tweak: Głośność tesli domyślnie 50%.
+  - imageadd: Ikony guzików Śpij i czujników stroju.
+  - bugfix: Komputer FTL na Atlasie jest zwrócony panelem do pokoju.
+  - bugfix: Przyciski wydawania w dispenserze chemicznym układają się w równą siatkę.
+  - bugfix: Głośniki nagłośnienia przylegają do ścian zamiast wisieć nad podłogą.
+  - tweak: 'Wyszukiwarka receptur w dispenserach i PDA ma nowy wygląd: kafelki i kolorowe
+      składniki (wygląd z BeeStation).'
   boneyards, joker:
   - rscadd: Stamina to teraz jedna pula (250) na błyskawicy w HUD. Męczą ją sprint,
       zamachy, ciosy i odepchnięcia, a regeneruje się szybciej na leżąco.
