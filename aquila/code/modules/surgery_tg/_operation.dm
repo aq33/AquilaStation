@@ -1329,10 +1329,12 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	return ..()
 
 /datum/surgery_operation/organ/has_surgery_state(obj/item/organ/organ, state)
-	return LIMB_HAS_SURGERY_STATE(organ.get_bodypart_owner(), state)
+	var/obj/item/bodypart/limb = organ.get_bodypart_owner()
+	return LIMB_HAS_SURGERY_STATE(limb, state)
 
 /datum/surgery_operation/organ/has_any_surgery_state(obj/item/organ/organ, state)
-	return LIMB_HAS_ANY_SURGERY_STATE(organ.get_bodypart_owner(), state)
+	var/obj/item/bodypart/limb = organ.get_bodypart_owner()
+	return LIMB_HAS_ANY_SURGERY_STATE(limb, state)
 
 /// AQUILA - tg: organ.bodypart_owner. U nas organ zna tylko właściciela i strefę.
 /obj/item/organ/proc/get_bodypart_owner()

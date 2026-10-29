@@ -78,8 +78,10 @@
 
 /// Zarodek obcego (alien_embryo.dm): otwarta klatka to operacja w toku, larwa wychodzi bez zabijania (tg: skóra + kość)
 /mob/living/proc/is_chest_open_for_surgery()
-	return LIMB_HAS_SURGERY_STATE(get_bodypart(BODY_ZONE_CHEST), SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
+	var/obj/item/bodypart/chest = get_bodypart(BODY_ZONE_CHEST)
+	return LIMB_HAS_SURGERY_STATE(chest, SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
 
 /// Moduł MOD wystrzeliwujący organy (modules_medical.dm): organ wchodzi do otwartej kończyny (tg: skóra, organy, kość)
 /mob/living/proc/can_receive_shot_organ(obj/item/organ/organ)
-	return LIMB_HAS_SURGERY_STATE(get_bodypart(check_zone(organ.zone)), SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED)
+	var/obj/item/bodypart/limb = get_bodypart(check_zone(organ.zone))
+	return LIMB_HAS_SURGERY_STATE(limb, SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED)

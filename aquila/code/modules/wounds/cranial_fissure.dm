@@ -66,13 +66,15 @@
 	. = ..()
 	if(!.)
 		return
-	var/datum/wound/cranial_fissure/fissure = get_bodypart(BODY_ZONE_HEAD)?.get_wound(WOUND_CRANIAL)
+	var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+	var/datum/wound/cranial_fissure/fissure = head?.get_wound(WOUND_CRANIAL)
 	fissure?.spill_brain()
 
 /mob/living/carbon/help_shake_act(mob/living/carbon/M)
 	var/zone = M.zone_selected
 	if((zone == BODY_ZONE_HEAD || zone == BODY_ZONE_PRECISE_EYES) && !(mobility_flags & MOBILITY_STAND) && !M.get_active_held_item() && !M.combat_mode)
-		var/datum/wound/cranial_fissure/fissure = get_bodypart(BODY_ZONE_HEAD)?.get_wound(WOUND_CRANIAL)
+		var/obj/item/bodypart/head = get_bodypart(BODY_ZONE_HEAD)
+		var/datum/wound/cranial_fissure/fissure = head?.get_wound(WOUND_CRANIAL)
 		if(fissure)
 			if(!(src in M.do_afters))
 				INVOKE_ASYNC(fissure, TYPE_PROC_REF(/datum/wound/cranial_fissure, pull_eyes), M)
