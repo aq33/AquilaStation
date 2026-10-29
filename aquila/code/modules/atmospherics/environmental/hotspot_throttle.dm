@@ -18,3 +18,12 @@
 	// fire_act() on the tile can delete us (ChangeTurf, explosions), Initialize() and process() then clean up
 	if(QDELETED(src))
 		return FALSE
+
+/// AQUILA - Puddles and ash on a burning tile react without a sound or a message.
+/// Every burned item leaves ash that bakes into ash rims in the fire, and each reaction looked up everyone in view (dview), which was most of a fire's cost.
+/// The reaction and its products stay. Core hook: instant_react() in code/modules/reagents/chemistry/holder.dm
+/proc/fire_mutes_reaction(atom/holder_atom)
+	if(!istype(holder_atom, /obj/effect/decal/cleanable))
+		return FALSE
+	var/turf/open/location = holder_atom.loc
+	return istype(location) && !isnull(location.active_hotspot)

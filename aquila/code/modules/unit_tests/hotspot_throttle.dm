@@ -22,4 +22,26 @@
 
 	QDEL_NULL(location.pollution)
 
+/// AQUILA - Ash in a fire still bakes into ash rims, but quietly
+/datum/unit_test/fire_mutes_reaction
+
+/datum/unit_test/fire_mutes_reaction/Run()
+	var/turf/open/location = run_loc_floor_bottom_left
+	var/obj/effect/decal/cleanable/ash/ash = allocate(/obj/effect/decal/cleanable/ash, location)
+	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker, location)
+	TEST_ASSERT(!fire_mutes_reaction(ash), "Ash outside a fire reacts quietly")
+
+	var/obj/effect/hotspot/hotspot = allocate(/obj/effect/hotspot, location)
+	TEST_ASSERT(fire_mutes_reaction(ash), "Ash in a fire still reacts with a sound and a message")
+	TEST_ASSERT(!fire_mutes_reaction(beaker), "A beaker in a fire reacts quietly")
+
+	ash.reagents.expose_temperature(1000, 1)
+	var/rims = 0
+	for(var/obj/item/garnish/ash/rim in location)
+		rims++
+		qdel(rim)
+	TEST_ASSERT(rims > 0, "Ash heated in a fire did not bake into ash rims")
+	qdel(hotspot)
+	QDEL_NULL(location.pollution)
+
 #undef TEST_ASSERT
