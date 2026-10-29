@@ -103,6 +103,8 @@
 /mob/living/proc/get_available_operations(atom/movable/operating_on, potential_tool = IMPLEMENT_HAND, operating_zone = zone_selected)
 	// typy operacji, które w ogóle wchodzą w grę
 	var/list/possible_operations = GLOB.operations.unlocked.Copy()
+	// AQUILA - operacje odblokowane dyskami i badaniami starego szkieletu (surgery_bridge.dm)
+	possible_operations |= get_legacy_unlocked_operations(operating_on)
 	// sygnały mogą dopisać zablokowane operacje
 	SEND_SIGNAL(src, COMSIG_LIVING_OPERATING_ON, operating_on, possible_operations)
 	SEND_SIGNAL(operating_on, COMSIG_ATOM_BEING_OPERATED_ON, src, possible_operations)
@@ -1168,6 +1170,9 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	var/required_bodytype = NONE
 	/// tg: można operować kikut. U nas nie ma kikutów, zostaje dla zgodności.
 	var/allow_stumps = FALSE
+	/// AQUILA - operacja na brakującej kończynie (tg: na kikucie). U nas nie ma kikutów, więc celem jest klatka piersiowa,
+	/// a wybrana strefa musi być pusta. Przygotowanie pustej strefy przygotowuje klatkę (toggle_surgery_prep).
+	var/targets_missing_limb = FALSE
 
 /datum/surgery_operation/limb/all_blocked_strings()
 	. = ..()
@@ -1179,6 +1184,10 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 /datum/surgery_operation/limb/get_operation_target(atom/movable/operating_on, body_zone)
 	if(isliving(operating_on))
 		var/mob/living/patient = operating_on
+		if(targets_missing_limb)
+			if(patient.get_bodypart(check_zone(body_zone)))
+				return null
+			return patient.get_bodypart(BODY_ZONE_CHEST)
 		return patient.get_bodypart(check_zone(body_zone))
 	if(!isbodypart(operating_on))
 		return null
@@ -1189,6 +1198,10 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	// pachwina przekierowuje na klatkę piersiową
 	if(limb.body_zone != check_zone(operated_zone))
+		// AQUILA - brakująca kończyna: operujemy przez klatkę piersiową, a strefy nie może zajmować żadna kończyna
+		if(!targets_missing_limb || limb.body_zone != BODY_ZONE_CHEST || limb.owner?.get_bodypart(check_zone(operated_zone)))
+			return FALSE
+	else if(targets_missing_limb)
 		return FALSE
 
 	if(required_bodytype && !(limb.bodytype & required_bodytype))

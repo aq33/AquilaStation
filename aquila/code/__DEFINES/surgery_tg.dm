@@ -213,3 +213,6 @@ DEFINE_BITFIELD(operation_flags, list(
 #define COMSIG_ATOM_SURGERY_SUCCESS "atom_surgery_success"
 /// Na chirurgu: operacja nieudana (datum/surgery_operation/operation, atom/movable/operating_on, tool)
 #define COMSIG_ATOM_SURGERY_FAILED "atom_surgery_failed"
+
+/// Organ był już naprawiany chirurgicznie (operacje naprawy organów, które można zrobić raz)
+#define TRAIT_ORGAN_OPERATED_ON "organ_operated_on"

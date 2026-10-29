@@ -39,6 +39,8 @@
 	if(isnull(owner))
 		return
 	SEND_SIGNAL(owner, COMSIG_LIVING_UPDATING_SURGERY_STATE, old_state, surgery_state, changed_states)
+	// odsłonięte organy wypadają przy bieganiu (aquila/code/modules/surgery/exposed_organs.dm)
+	owner.update_exposed_organs()
 
 /// Stan do pokazania (bez stanów wynikających z budowy kończyny)
 /obj/item/bodypart/proc/get_reported_surgery_state()

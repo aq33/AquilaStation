@@ -209,6 +209,11 @@
 	. = ..()
 	if(LIMB_HAS_SURGERY_STATE(limb, SURGERY_BONE_SAWED))
 		limb.heal_damage(40)
+	// AQUILA - jak stara kauteryzacja (nacięcie, odciągnięcie, zamknięcie): zamyka rany cięte i kłute kończyny
+	if(LIMB_HAS_SURGERY_STATE(limb, SURGERY_SKIN_OPEN))
+		for(var/datum/wound/wound as anything in limb.wounds?.Copy())
+			if(wound.wound_type == WOUND_SLASH || wound.wound_type == WOUND_PIERCE)
+				qdel(wound)
 	limb.remove_surgical_state(ALL_SURGERY_STATES_UNSET_ON_CLOSE)
 	// AQUILA - jak stary krok zamknięcia: koniec krwawienia
 	limb.owner?.cauterise_wounds()

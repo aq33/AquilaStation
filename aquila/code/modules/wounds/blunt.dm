@@ -65,6 +65,9 @@
 	for(var/datum/surgery/surgery as anything in victim.surgeries)
 		if(surgery.location == limb.body_zone)
 			return TRUE
+	// nowy szkielet chirurgii: kończyna otwarta, kość składa operacja
+	if(LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
+		return TRUE
 	return FALSE
 
 /// tgstation bones.dm gel(): painful, and applied to yourself it can knock you out before you finish

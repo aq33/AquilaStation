@@ -50,6 +50,11 @@
 	for(var/datum/surgery/surgery as anything in surgeries)
 		if(surgery.exposes_organs())
 			zones |= check_zone(surgery.location)
+	// nowy szkielet chirurgii (surgery_tg): odciągnięta skóra i przepiłowana, nawiercona kość albo nacięte organy
+	for(var/zone in list(BODY_ZONE_CHEST, BODY_ZONE_HEAD))
+		var/obj/item/bodypart/limb = get_bodypart(zone)
+		if(LIMB_HAS_SURGERY_STATE(limb, SURGERY_SKIN_OPEN) && LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_BONE_STATES|SURGERY_ORGANS_CUT))
+			zones |= zone
 	var/was_exposed = length(exposed_organ_zones)
 	exposed_organ_zones = length(zones) ? zones : null
 	if(!was_exposed && length(zones))
