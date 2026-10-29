@@ -432,8 +432,8 @@
 
 /// Dłoń zaklęcia dotyku. Osobny typ, bo nasze /obj/item/melee/touch_attack jest zrośnięte ze starymi zaklęciami.
 /obj/item/melee/spell_hand
-	name = "\improper outstretched hand"
-	desc = "High Five?"
+	name = "\improper wyciągnięta dłoń"
+	desc = "Piątka?"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "syndballoon"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'

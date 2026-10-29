@@ -1,5 +1,5 @@
 /datum/reagent/drug
-	name = "Drug"
+	name = "Narkotyk"
 	chem_flags = CHEMICAL_NOT_DEFINED
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "gorycz"
@@ -10,7 +10,7 @@
 		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[type]_high")
 
 /datum/reagent/drug/space_drugs
-	name = "Space drugs"
+	name = "Kosmiczne narkotyki"
 	description = "Nielegalny związek chemiczny używany jako narkotyk."
 	color = "#60A584" // rgb: 96, 165, 132
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_CHEMIST_DRUG | CHEMICAL_GOAL_CHEMIST_BLOODSTREAM | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -36,7 +36,7 @@
 	..()
 
 /datum/reagent/drug/nicotine
-	name = "Nicotine"
+	name = "Nikotyna"
 	description = "Lekko skraca ogłuszenia. Przedawkowany zadaje obrażenia od toksyn i niedotlenienia."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
@@ -186,7 +186,7 @@
 	. = 1
 
 /datum/reagent/drug/methamphetamine
-	name = "Methamphetamine"
+	name = "Metamfetamina"
 	description = "Skraca ogłuszenia o około 300%, przyspiesza użytkownika i pozwala szybko odzyskiwać wytrzymałość, zadając przy tym lekkie obrażenia mózgu. Przy przedawkowaniu ofiara porusza się losowo, losowo się śmieje, upuszcza przedmioty i otrzymuje obrażenia od toksyn i mózgu. Przy uzależnieniu ofiara stale się trzęsie i ślini, potem dostaje zawrotów głowy, traci kontrolę ruchową, a w końcu otrzymuje ciężkie obrażenia od toksyn."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
@@ -278,7 +278,7 @@
 	. = 1
 
 /datum/reagent/drug/bath_salts
-	name = "Bath Salts"
+	name = "Sole do kąpieli"
 	description = "Czyni cię odpornym na ogłuszenia i przyspiesza regenerację wytrzymałości, ale stajesz się niemal niekontrolowanym, brodatym, bredzącym szaleńcem."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
@@ -412,7 +412,7 @@
 	. = 1
 
 /datum/reagent/drug/happiness
-	name = "Happiness"
+	name = "Szczęście"
 	description = "Wypełnia cię ekstatycznym odrętwieniem i powoduje lekkie uszkodzenia mózgu. Silnie uzależnia. Przedawkowany powoduje nagłe wahania nastroju."
 	reagent_state = LIQUID
 	color = "#FFF378"
@@ -490,7 +490,7 @@
 
 //I had to do too much research on this to make this a thing. Hopefully the FBI won't kick my door down.
 /datum/reagent/drug/ketamine
-	name = "Ketamine"
+	name = "Ketamina"
 	description = "Silny środek uspokajający, który wywołuje też euforię i pomaga przy bólu. Popularny na imprezach i wśród małych żabolubów jeżdżących Hondami Civic."
 	reagent_state = LIQUID
 	color = "#c9c9c9"

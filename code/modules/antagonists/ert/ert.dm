@@ -1,6 +1,6 @@
 //Both ERT and DS are handled by the same datums since they mostly differ in equipment in objective.
 /datum/team/ert
-	name = "Emergency Response Team"
+	name = "Zespół Reagowania Kryzysowego"
 	var/datum/objective/mission //main mission
 	var/ert_frequency
 
@@ -63,7 +63,7 @@
 	outfit = /datum/outfit/ert/security/alert
 
 /datum/antagonist/ert/engineer
-	role = "Engineer"
+	role = "Inżynier"
 	outfit = /datum/outfit/ert/engineer
 
 /datum/antagonist/ert/engineer/red
@@ -77,7 +77,7 @@
 	outfit = /datum/outfit/ert/medic/alert
 
 /datum/antagonist/ert/commander
-	role = "Commander"
+	role = "Dowódca"
 	outfit = /datum/outfit/ert/commander
 
 /datum/antagonist/ert/commander/red
@@ -86,7 +86,7 @@
 /datum/antagonist/ert/deathsquad
 	name = "Żołnierz szwadronu śmierci"
 	outfit = /datum/outfit/death_commando
-	role = "Trooper"
+	role = "Żołnierz"
 	plasmaman_outfit = /datum/outfit/plasmaman/death_commando
 
 /datum/antagonist/ert/medic/inquisitor
@@ -136,13 +136,13 @@
 /datum/antagonist/ert/deathsquad/leader
 	name = "Oficer szwadronu śmierci"
 	outfit = /datum/outfit/death_commando/officer
-	role = "Officer"
+	role = "Oficer"
 
 /datum/antagonist/ert/intern
 	name = "Stażysta Centrali"
 	outfit = /datum/outfit/centcom_intern
 	random_names = FALSE
-	role = "Intern"
+	role = "Stażysta"
 	plasmaman_outfit = /datum/outfit/plasmaman/intern
 
 /datum/antagonist/ert/intern/leader
@@ -159,7 +159,7 @@
 /datum/antagonist/ert/clown
 	name = "Komediowy oficer reagowania"
 	outfit = /datum/outfit/centcom_clown
-	role = "Prankster"
+	role = "Psotnik"
 	plasmaman_outfit = /datum/outfit/plasmaman/honk
 
 /datum/antagonist/ert/clown/honk

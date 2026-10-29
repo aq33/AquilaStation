@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/bar
-	name = "booze storage"
+	name = "magazyn alkoholu"
 	req_access = list(ACCESS_BAR)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE

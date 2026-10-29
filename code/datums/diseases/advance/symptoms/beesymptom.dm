@@ -1,5 +1,5 @@
 /datum/symptom/beesease
-	name = "Bee Infestation"
+	name = "Plaga pszczół"
 	desc = "Sprawia, że nosiciel kaszle toksycznymi pszczołami i czasem syntetyzuje toksynę."
 	stealth = -2
 	resistance = 2
@@ -63,7 +63,7 @@
 					M.adjustToxLoss(5)
 					M.updatehealth()
 			if(prob(10))
-				M.visible_message("<span class='danger'>[M] buzzes.</span>", \
+				M.visible_message("<span class='danger'>[M] brzęczy.</span>", \
 								  "<span class='userdanger'>Twój żołądek gwałtownie brzęczy!</span>")
 			if(prob(15))
 				to_chat(M, "<span class='danger'>Czujesz, jak coś porusza się w twoim gardle.</span>")

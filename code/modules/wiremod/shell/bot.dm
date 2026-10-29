@@ -4,7 +4,7 @@
  * Immobile (but not dense) shells that can interact with world.
  */
 /obj/structure/bot
-	name = "bot"
+	name = "robot układowy"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_medium_box"
 
@@ -21,7 +21,7 @@
 	)
 
 /obj/item/circuit_component/bot
-	display_name = "Bot"
+	display_name = "Robot"
 	display_desc = "Wyzwala się, gdy ktoś wchodzi w interakcję z botem."
 
 	/// Called when attack_hand is called on the shell.
@@ -43,6 +43,6 @@
 
 /obj/item/circuit_component/bot/proc/on_attack_hand(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "pushed button")
+	source.balloon_alert(user, "naciśnięto przycisk")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	signal.set_output(COMPONENT_SIGNAL)

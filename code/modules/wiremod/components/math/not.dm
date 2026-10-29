@@ -4,7 +4,7 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/not
-	display_name = "Not"
+	display_name = "Negacja"
 	display_desc = "Komponent, który odwraca swoje wejście."
 
 	/// The input port

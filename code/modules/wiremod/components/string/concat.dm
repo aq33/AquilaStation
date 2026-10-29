@@ -4,7 +4,7 @@
  * General string concatenation component. Puts strings together.
  */
 /obj/item/circuit_component/concat
-	display_name = "Concatenate"
+	display_name = "Sklejanie tekstu"
 	display_desc = "Komponent, który łączy ciągi znaków."
 
 	/// The amount of input ports to have

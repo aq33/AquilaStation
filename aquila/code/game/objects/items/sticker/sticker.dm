@@ -1,5 +1,5 @@
 /obj/item/sticker
-	name = "sticker" //Don't bother changing the name or desc for subtypes
+	name = "naklejka" //Don't bother changing the name or desc for subtypes
 	desc = "Samoprzylepna grafika."
 	icon = 'aquila/icons/obj/sticker.dmi'
 	icon_state = "happy"

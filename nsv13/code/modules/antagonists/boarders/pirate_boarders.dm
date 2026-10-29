@@ -3,7 +3,7 @@
 	var/datum/team/pirate/boarder/boarding_crew
 
 /datum/team/pirate/boarder
-	name = "Space Pirate Boarding Crew"
+	name = "Załoga abordażowa kosmicznych piratów"
 
 /datum/antagonist/pirate/boarder/greet()
 	to_chat(owner, "<span class='boldannounce'>Jesteś kosmicznym piratem!</span>")

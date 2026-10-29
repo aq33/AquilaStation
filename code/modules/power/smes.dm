@@ -15,8 +15,8 @@
 #define SMES_INPUT_ATTEMPT	9
 
 /obj/machinery/power/smes
-	name = "power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	name = "jednostka magazynowania energii"
+	desc = "Nadprzewodzący magnetyczny magazyn energii o dużej pojemności (SMES)."
 	icon_state = "smes"
 	density = TRUE
 	use_power = NO_POWER_USE
@@ -155,7 +155,7 @@
 	//crowbarring it !
 	var/turf/T = get_turf(src)
 	if(default_deconstruction_crowbar(I))
-		message_admins("[src] has been deconstructed by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
+		message_admins("[ADMIN_LOOKUPFLW(user)] rozkłada [src] w [ADMIN_VERBOSEJMP(T)]")
 		log_game("[src] has been deconstructed by [key_name(user)] at [AREACOORD(src)]")
 		investigate_log("SMES deconstructed by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 		return
@@ -186,7 +186,7 @@
 /obj/machinery/power/smes/Destroy()
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
-		message_admins("SMES deleted at [ADMIN_VERBOSEJMP(T)]")
+		message_admins("Usunięto SMES w [ADMIN_VERBOSEJMP(T)]")
 		log_game("SMES deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_ENGINES)
 	if(terminal)
@@ -434,8 +434,8 @@
 	charge = 1.5e6 // Engineering starts with some charge for singulo
 
 /obj/machinery/power/smes/magical
-	name = "magical power storage unit"
-	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
+	name = "magiczna jednostka magazynowania energii"
+	desc = "Nadprzewodzący magnetyczny magazyn energii o dużej pojemności (SMES). Magicznie wytwarza energię."
 
 /obj/machinery/power/smes/magical/process()
 	capacity = INFINITY

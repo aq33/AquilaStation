@@ -1,5 +1,5 @@
 /datum/reagent/medicine/radioactive_disinfectant
-	name = "Radioactive Disinfectant"
+	name = "Radioaktywny środek dezynfekujący"
 	description = "Usuwa napromieniowanie u syntetyków."
 	color = "#806F42"
 	taste_description = "metal"

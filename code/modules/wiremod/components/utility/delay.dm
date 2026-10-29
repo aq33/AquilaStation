@@ -4,7 +4,7 @@
  * Delays a signal by a specified duration.
  */
 /obj/item/circuit_component/delay
-	display_name = "Delay"
+	display_name = "Opóźnienie"
 	display_desc = "Komponent, który opóźnia sygnał o podany czas."
 
 	/// Amount to delay by

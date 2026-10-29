@@ -3,7 +3,7 @@
 // dir determines the direction of travel to go upwards
 
 /obj/structure/stairs_dummy
-	name = "stairs"
+	name = "schody"
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	anchored = TRUE

@@ -18,11 +18,11 @@
 	return //you can't break a hologram!
 
 /turf/open/floor/holofloor/plating
-	name = "holodeck projector floor"
+	name = "podłoga z projektorem holodeku"
 	icon_state = "engine"
 
 /turf/open/floor/holofloor/chapel
-	name = "chapel floor"
+	name = "podłoga kaplicy"
 	icon_state = "chapel"
 
 /turf/open/floor/holofloor/chapel/bottom_left
@@ -42,23 +42,23 @@
 		setDir(direction)
 
 /turf/open/floor/holofloor/white
-	name = "white floor"
+	name = "biała podłoga"
 	icon_state = "white"
 
 /turf/open/floor/holofloor/plating/burnmix
-	name = "burn-mix floor"
+	name = "podłoga z mieszanką palną"
 	initial_gas_mix = BURNMIX_ATMOS
 
 /turf/open/floor/holofloor/grass
 	gender = PLURAL
-	name = "lush grass"
+	name = "bujna trawa"
 	icon_state = "grass"
 	bullet_bounce_sound = null
 	tiled_dirt = FALSE
 
 /turf/open/floor/holofloor/beach
 	gender = PLURAL
-	name = "sand"
+	name = "piasek"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "sand"
 	bullet_bounce_sound = null
@@ -66,21 +66,21 @@
 
 /turf/open/floor/holofloor/beach/coast_t
 	gender = NEUTER
-	name = "coastline"
+	name = "linia brzegowa"
 	icon_state = "sandwater_t"
 
 /turf/open/floor/holofloor/beach/coast_b
 	gender = NEUTER
-	name = "coastline"
+	name = "linia brzegowa"
 	icon_state = "sandwater_b"
 
 /turf/open/floor/holofloor/beach/water
-	name = "water"
+	name = "woda"
 	icon_state = "water"
 	bullet_sizzle = TRUE
 
 /turf/open/floor/holofloor/asteroid
-	name = "asteroid"
+	name = "asteroida"
 	icon_state = "asteroid0"
 	tiled_dirt = FALSE
 
@@ -90,7 +90,7 @@
 
 /turf/open/floor/holofloor/basalt
 	gender = PLURAL
-	name = "basalt"
+	name = "bazalt"
 	icon_state = "basalt0"
 	tiled_dirt = FALSE
 
@@ -101,7 +101,7 @@
 		set_basalt_light(src)
 
 /turf/open/floor/holofloor/space
-	name = "\proper space"
+	name = "\proper kosmos"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
 
@@ -110,7 +110,7 @@
 	. = ..()
 
 /turf/open/floor/holofloor/hyperspace
-	name = "\proper hyperspace"
+	name = "\proper nadprzestrzeń"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "speedspace_ns_1"
 	bullet_bounce_sound = null
@@ -125,8 +125,8 @@
 	icon_state = "speedspace_ns_[(x + 5*y + (y%2+1)*7)%15+1]"
 
 /turf/open/floor/holofloor/carpet
-	name = "carpet"
-	desc = "Electrically inviting."
+	name = "dywan"
+	desc = "Elektryzująco zachęcający."
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
@@ -150,8 +150,8 @@
 
 /turf/open/floor/holofloor/snow
 	gender = PLURAL
-	name = "snow"
-	desc = "Looks cold."
+	name = "śnieg"
+	desc = "Wygląda na zimny."
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow"
 	slowdown = 2
@@ -164,7 +164,7 @@
 
 /turf/open/floor/holofloor/asteroid
 	gender = PLURAL
-	name = "asteroid sand"
+	name = "piasek asteroidy"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
 	tiled_dirt = FALSE
@@ -176,21 +176,21 @@
 	icon_state = "bananium"
 
 /turf/open/floor/holofloor/white
-	name = "white floor"
-	desc = "A tile in a pure white color."
+	name = "biała podłoga"
+	desc = "Płytka w czysto białym kolorze."
 	icon_state = "pure_white"
 
 /turf/open/floor/holofloor/monotile/dark
-	name = "dark holotile"
-	desc = "A really big dark steel holotile."
+	name = "ciemna holopłytka"
+	desc = "Naprawdę duża holopłytka z ciemnej stali."
 	icon_state = "monotile_dark"
 
 /turf/open/floor/holofloor/monotile/steel
-	name = "steel holotile"
-	desc = "A really big steel holotile."
+	name = "stalowa holopłytka"
+	desc = "Naprawdę duża stalowa holopłytka."
 	icon_state = "steel_monotile"
 
 /turf/open/floor/holofloor/monotile/light
-	name = "light holotile"
-	desc = "A really big light steel holotile."
+	name = "jasna holopłytka"
+	desc = "Naprawdę duża holopłytka z jasnej stali."
 	icon_state = "monotile_light"

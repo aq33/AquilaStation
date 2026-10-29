@@ -3,7 +3,7 @@
 // Każdy egzemplarz z innym camera_networks to osobny kanał; kurator dostaje jedną na start.
 
 /obj/item/broadcast_camera
-	name = "broadcast camera"
+	name = "kamera reporterska"
 	desc = "Duża kamera, która nadaje obraz i dźwięk na żywo do telewizorów rozrywkowych na statku."
 	icon = 'aquila/icons/obj/broadcast.dmi'
 	icon_state = "broadcast_cam0"

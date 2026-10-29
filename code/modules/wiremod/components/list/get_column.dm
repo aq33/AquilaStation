@@ -4,7 +4,7 @@
  * Gets the column of a table and returns it as a regular list.
  */
 /obj/item/circuit_component/get_column
-	display_name = "Get Column"
+	display_name = "Pobieranie kolumny"
 	display_desc = "Pobiera kolumnę tabeli i zwraca ją jako zwykłą listę."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

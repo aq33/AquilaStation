@@ -4,7 +4,7 @@
  * Gets the row of a table using the index inputted. Will return no value if the index is invalid or a proper table is not returned.
  */
 /obj/item/circuit_component/index_table
-	display_name = "Index Table"
+	display_name = "Indeks tabeli"
 	display_desc = "Pobiera wiersz tabeli o podanym indeksie. Nie zwróci wartości, jeśli indeks jest nieprawidłowy lub nie zostanie zwrócona właściwa tabela."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

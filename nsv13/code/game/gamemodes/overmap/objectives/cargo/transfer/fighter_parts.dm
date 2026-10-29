@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/fighter_parts
-	name = "Deliver fighter parts"
-	desc = "Deliver fighter parts"
-	crate_name = "Experimental Fighter Parts crate"
+	name = "Dostarcz części myśliwców"
+	desc = "Dostarcz części myśliwców"
+	crate_name = "Skrzynia z eksperymentalnymi częściami myśliwców"
 
 /datum/overmap_objective/cargo/transfer/fighter_parts/New()
 	var/list/possible_components = list( // Because some of the subtypes are underdeveloped and shouldn't be present on the ship

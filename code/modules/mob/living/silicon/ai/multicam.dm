@@ -116,7 +116,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 //Dummy camera eyes
 
 /mob/camera/ai_eye/pic_in_pic
-	name = "Secondary AI Eye"
+	name = "Pomocnicze oko SI"
 	invisibility = INVISIBILITY_OBSERVER
 	mouse_opacity = MOUSE_OPACITY_ICON
 	icon_state = "ai_pip_camera"

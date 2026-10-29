@@ -4,7 +4,7 @@
  * A movable mob that can be fed inputs on which direction to travel.
  */
 /mob/living/circuit_drone
-	name = "drone"
+	name = "dron układowy"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_medium_med"
 	//light_system = MOVABLE_LIGHT_DIRECTIONAL
@@ -25,7 +25,7 @@
 	new /obj/effect/gibspawner/robot(drop_location(), src, get_static_viruses())
 
 /obj/item/circuit_component/bot_circuit
-	display_name = "Drone"
+	display_name = "Dron"
 	display_desc = "Służy do wysyłania sygnałów ruchu do obudowy drona."
 
 	/// The inputs to allow for the drone to move

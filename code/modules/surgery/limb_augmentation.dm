@@ -5,7 +5,7 @@
 //SURGERY STEPS
 
 /datum/surgery_step/replace_limb
-	name = "replace limb"
+	name = "wymień kończynę"
 	implements = list(/obj/item/bodypart = 100, /obj/item/organ_storage = 100)
 	time = 32
 	var/obj/item/bodypart/L = null // L because "limb"
@@ -37,7 +37,7 @@
 //ACTUAL SURGERIES
 
 /datum/surgery/augmentation
-	name = "Augmentation"
+	name = "Augmentacja"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/retract_skin, /datum/surgery_step/replace_limb)
 	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list(BODY_ZONE_R_ARM,BODY_ZONE_L_ARM,BODY_ZONE_R_LEG,BODY_ZONE_L_LEG,BODY_ZONE_CHEST,BODY_ZONE_HEAD)

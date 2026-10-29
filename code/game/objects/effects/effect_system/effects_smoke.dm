@@ -3,7 +3,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke
-	name = "smoke"
+	name = "dym"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke"
 	pixel_x = -32
@@ -142,7 +142,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/freezing
-	name = "nanofrost smoke"
+	name = "dym nanoszronu"
 	color = "#B2FFFF"
 	opaque = 0
 
@@ -287,11 +287,11 @@
 			if(M)
 				more = "[ADMIN_LOOKUPFLW(M)] "
 			if(!istype(carry.my_atom, /obj/machinery/plumbing))
-				message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [more ? more : carry.my_atom.fingerprintslast].")
+				message_admins("Dym: ([ADMIN_VERBOSEJMP(location)])[contained]. Klucz: [more ? more : carry.my_atom.fingerprintslast].")
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
 		else
 			if(!istype(carry.my_atom, /obj/machinery/plumbing))
-				message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
+				message_admins("Dym: ([ADMIN_VERBOSEJMP(location)])[contained]. Brak powiązanego klucza.")
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 
 

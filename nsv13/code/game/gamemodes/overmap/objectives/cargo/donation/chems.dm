@@ -1,8 +1,8 @@
 /datum/overmap_objective/cargo/donation/chems
-	name = "Donate medical chemicals"
-	desc = "Donate 1 or more chemical bottles"
+	name = "Przekaż leki"
+	desc = "Przekaż co najmniej jedną butelkę chemikaliów"
 	pick_same_destination = TRUE
-	crate_name = "Chemicals crate"
+	crate_name = "Skrzynia z chemikaliami"
 	var/list/chemicals = list()
 
 /datum/overmap_objective/cargo/donation/chems/New( var/datum/reagent/medicine )

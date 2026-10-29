@@ -4,7 +4,7 @@
  * Abstract component to build conditional components
  */
 /obj/item/circuit_component/compare
-	display_name = "Compare"
+	display_name = "Porównywanie (baza)"
 
 	/// The amount of input ports to have
 	var/input_port_amount = 4

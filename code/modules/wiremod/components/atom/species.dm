@@ -4,7 +4,7 @@
  * Return the species of a mob
  */
 /obj/item/circuit_component/species
-	display_name = "Get Species"
+	display_name = "Gatunek"
 	display_desc = "Komponent, który zwraca gatunek swojego wejścia."
 
 	/// The input port

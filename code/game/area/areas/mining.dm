@@ -8,7 +8,7 @@
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | FLORA_ALLOWED
 
 /area/mine/explored
-	name = "Mine"
+	name = "Kopalnia"
 	icon_state = "explored"
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -25,7 +25,7 @@
 	area_flags = VALID_TERRITORY | UNIQUE_AREA
 
 /area/mine/unexplored
-	name = "Mine"
+	name = "Kopalnia"
 	icon_state = "unexplored"
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -41,45 +41,45 @@
 	area_flags = VALID_TERRITORY | UNIQUE_AREA | FLORA_ALLOWED | CAVES_ALLOWED
 
 /area/mine/lobby
-	name = "Mining Station"
+	name = "Stacja Górnicza"
 
 /area/mine/storage
-	name = "Mining Station Storage"
+	name = "Magazyn Stacji Górniczej"
 
 /area/mine/production
-	name = "Mining Station Starboard Wing"
+	name = "Skrzydło Sterburty Stacji Górniczej"
 	icon_state = "mining_production"
 
 /area/mine/abandoned
-	name = "Abandoned Mining Station"
+	name = "Opuszczona Stacja Górnicza"
 
 /area/mine/living_quarters
-	name = "Mining Station Port Wing"
+	name = "Skrzydło Burty Stacji Górniczej"
 	icon_state = "mining_living"
 
 /area/mine/eva
-	name = "Mining Station EVA"
+	name = "Magazyn EVA Stacji Górniczej"
 	icon_state = "mining_eva"
 
 /area/mine/maintenance
-	name = "Mining Station Communications"
+	name = "Łączność Stacji Górniczej"
 	lighting_colour_tube = "#edfdff"
 	lighting_colour_bulb = "#dafffd"
 
 /area/mine/cafeteria
-	name = "Mining Station Cafeteria"
+	name = "Kafeteria Stacji Górniczej"
 
 /area/mine/hydroponics
-	name = "Mining Station Hydroponics"
+	name = "Hydroponika Stacji Górniczej"
 
 /area/mine/sleeper
-	name = "Mining Station Emergency Sleeper"
+	name = "Awaryjny Uśpiacz Stacji Górniczej"
 
 /area/mine/laborcamp
-	name = "Labor Camp"
+	name = "Obóz Pracy"
 
 /area/mine/laborcamp/security
-	name = "Labor Camp Security"
+	name = "Ochrona Obozu Pracy"
 	icon_state = "security"
 	ambience_index = AMBIENCE_DANGER
 
@@ -87,27 +87,27 @@
 //You are free to rename these and change their icons. My job is done here.
 
 /area/mine/science
-	name = "Research Outpost"
+	name = "Placówka Badawcza"
 	icon_state = "medresearch"
 	requires_power = TRUE	//Remove this when there will be pre-built APCs in the area.
 
 /area/mine/science/shuttledock
-	name = "Outpost"
+	name = "Placówka"
 
 /area/mine/science/xenoarch
-	name = "Outpost Xenoarcheology Lab"
+	name = "Laboratorium Ksenoarcheologii Placówki"
 
 /area/mine/science/elevator	//for going to lavaland depths if there will be those
-	name = "Outpost Elevator"
+	name = "Winda Placówki"
 
 /area/mine/science/experimentor
-	name = "Outpost Experimentor Lab"
+	name = "Laboratorium Eksperymentatora Placówki"
 
 /area/mine/science/heavyexperiment
-	name = "Outpost Reinforced Chamber"
+	name = "Wzmocniona Komora Placówki"
 
 /area/mine/science/robotics
-	name = "Outpost Robotics"
+	name = "Robotyka Placówki"
 
 
 
@@ -137,7 +137,7 @@
 	max_ambience_cooldown = 220 SECONDS
 
 /area/lavaland/underground
-	name = "Lavaland Caves"
+	name = "Jaskinie Lavalandu"
 	icon_state = "unexplored"
 	always_unpowered = TRUE
 	requires_power = TRUE
@@ -150,7 +150,7 @@
 	max_ambience_cooldown = 220 SECONDS
 
 /area/lavaland/surface/outdoors
-	name = "Lavaland Wastes"
+	name = "Pustkowia Lavalandu"
 	outdoors = TRUE
 
 /area/lavaland/surface/outdoors/unexplored //monsters and ruins spawn here
@@ -163,5 +163,5 @@
 	map_generator = /datum/map_generator/cave_generator/lavaland
 
 /area/lavaland/surface/outdoors/explored
-	name = "Lavaland Labor Camp"
+	name = "Obóz Pracy na Lavalandzie"
 	area_flags = VALID_TERRITORY | UNIQUE_AREA

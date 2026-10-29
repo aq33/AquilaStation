@@ -1,5 +1,5 @@
 /datum/orbital_objective/vip_recovery
-	name = "VIP Recovery"
+	name = "Ewakuacja VIP-a"
 	var/generated = FALSE
 	var/mob/mob_to_recover
 	var/suit_type = /obj/item/clothing/suit/space/hardsuit/ancient

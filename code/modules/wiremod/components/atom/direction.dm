@@ -4,7 +4,7 @@
  * Return the direction of a mob relative to the component
  */
 /obj/item/circuit_component/direction
-	display_name = "Get Direction"
+	display_name = "Kierunek"
 	display_desc = "Komponent, który zwraca kierunek między sobą a obiektem."
 
 	/// The input port
@@ -26,7 +26,7 @@
 
 /obj/item/circuit_component/direction/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 
 /obj/item/circuit_component/direction/Initialize(mapload)
 	. = ..()

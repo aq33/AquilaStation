@@ -3,7 +3,7 @@
 // Divulge: zrzucenie ludzkiej skóry
 
 /datum/action/cooldown/spell/divulge
-	name = "Divulge"
+	name = "Ujawnienie"
 	desc = "Zrzucasz ludzkie przebranie. To bardzo widowiskowe, więc rób to w ustronnym miejscu. Nie da się tego cofnąć."
 	icon_icon = 'aquila/icons/mob/darkspawn/actions_darkspawn.dmi'
 	button_icon_state = "divulge"
@@ -224,14 +224,14 @@
 // Pożarcie woli: główna zdolność do zdobywania jasności i woli
 
 /obj/item/melee/spell_hand/darkspawn
-	name = "Psionic hand"
+	name = "psioniczna dłoń"
 	desc = "Skupiona psioniczna moc, gotowa bawić się śmiertelnymi umysłami."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "dark_bead"
 	item_state = "hivemind"
 
 /obj/item/melee/spell_hand/devour_will
-	name = "dark bead"
+	name = "mroczny paciorek"
 	desc = "Skupiona psioniczna moc, gotowa bawić się śmiertelnymi umysłami."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "dark_bead"
@@ -409,7 +409,7 @@
 // Budowanie z cieni: wspólna baza zdolności, które coś stawiają
 
 /datum/action/cooldown/spell/pointed/darkspawn_build
-	name = "Darkspawn building thing"
+	name = "Budowanie z cieni"
 	desc = "Tego nie powinno być widać."
 	icon_icon = 'aquila/icons/mob/darkspawn/actions_darkspawn.dmi'
 	button_icon_state = "sacrament(old)"

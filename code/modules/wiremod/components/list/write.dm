@@ -4,7 +4,7 @@
 * Writes the given value to the specified index of a given table
 **/
 /obj/item/circuit_component/indexer/write
-	display_name = "Write Component"
+	display_name = "Zapis"
 	display_desc = "Komponent, który zapisuje podaną wartość pod podanym indeksem w podanej liście. Następnie zwraca tę nową listę."
 
 	/// The input ports

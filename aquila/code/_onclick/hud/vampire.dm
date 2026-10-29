@@ -47,7 +47,7 @@
 			bloodlevel = "syty"
 
 	msg += span_cult("Twoje obecne maksimum to: [owner_vamp.max_vitae].")
-	msg += span_cult("Na tej zmianie wypiłeś już [owner_vamp.total_blood_drank] jednostek krwi.")
+	msg += span_cult("Na tej zmianie wypiłeś już [owner_vamp.total_blood_drank] j. krwi.")
 
 	msg += span_cultlarge("\n<b>W tej chwili czujesz się: <i>[bloodlevel].</i></b>")
 

@@ -32,7 +32,7 @@
 	if(!istype(C))
 		to_chat(admin, "W byłego agenta ochrony możesz zmienić tylko istoty węglowe.")
 		return
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into an ex-security agent.")
+	message_admins("[key_name_admin(admin)] zmienia [key_name_admin(new_owner)] w byłego agenta ochrony.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 
 /datum/antagonist/special/undercover/forge_objectives()
@@ -81,7 +81,7 @@
 ////////////////////////////////
 
 /datum/objective/saveshuttle
-	name = "protect shuttle"
+	name = "ochrona promu"
 
 /datum/objective/saveshuttle/check_completion()
 	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
@@ -109,7 +109,7 @@
 	return target_amount
 
 /datum/objective/protect_sm
-	name = "protect supermatter"
+	name = "ochrona supermaterii"
 	var/target_integrity = 20
 	var/datum/weakref/target_sm
 

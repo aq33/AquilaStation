@@ -24,7 +24,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 	departments = DEPARTMENT_BITFLAG_CARGO
-	rpg_title = "Adventurer"
+	rpg_title = "Poszukiwacz Przygód"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/shaft_miner

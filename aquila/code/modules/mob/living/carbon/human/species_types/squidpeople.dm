@@ -1,6 +1,6 @@
 // Kałamarnicoludzie, przywróceni ze starej Aquili (aq33/tgstation). Mówią jak osadnicy z Minecrafta: hrmm.
 /datum/species/squid
-	name = "\improper Squidperson"
+	name = "\improper Kałamarnicoczłowiek"
 	id = "squid"
 	default_color = "b8dfda"
 	species_traits = list(MUTCOLORS, EYECOLOR)
@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(squid_names_female, world.file2list("strings/names/squid_female
 
 /// Język kałamarnic: hrmm, hmm, hurr
 /obj/item/organ/tongue/squid
-	name = "squid tongue"
+	name = "język kałamarnicy"
 	desc = "Gruba macka pełniąca rolę języka. Najlepiej wychodzi jej mruczenie."
 	say_mod = "mruczy"
 	toxic_food = TOXIC | FRIED
@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(squid_names_female, world.file2list("strings/names/squid_female
 
 /// Własny język kałamarnic. Brzmi dokładnie jak handel z osadnikiem.
 /datum/language/rlyehian
-	name = "R'Lyehian"
+	name = "R'lyehiański"
 	desc = "Mało znany, gardłowy język kałamarnicoludzi. Dla obcych brzmi jak niekończące się „hrmm”."
 	speech_verb = "mruczy"
 	ask_verb = "hmmczy pytająco"

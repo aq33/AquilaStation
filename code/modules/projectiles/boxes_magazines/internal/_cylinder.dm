@@ -1,5 +1,5 @@
 /obj/item/ammo_box/magazine/internal/cylinder
-	name = "revolver cylinder"
+	name = "bębenek rewolweru"
 	ammo_type = /obj/item/ammo_casing/a357
 	caliber = "357"
 	max_ammo = 7
@@ -49,7 +49,7 @@
 	return FALSE
 
 /obj/item/ammo_box/magazine/internal/cylinder/mime
-	name = "fingergun cylinder"
+	name = "bębenek palcowego pistoletu"
 	ammo_type = /obj/item/ammo_casing/caseless/mime
 	caliber = "mime"
 	max_ammo = 6

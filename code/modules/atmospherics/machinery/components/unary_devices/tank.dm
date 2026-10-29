@@ -3,8 +3,8 @@
 	icon = 'icons/obj/atmospherics/pipes/pressure_tank.dmi'
 	icon_state = "generic"
 
-	name = "pressure tank"
-	desc = "A large vessel containing pressurized gas."
+	name = "zbiornik ciśnieniowy"
+	desc = "Duży zbiornik ze sprężonym gazem."
 
 	max_integrity = 800
 	density = TRUE
@@ -27,7 +27,7 @@
 
 /obj/machinery/atmospherics/components/unary/tank/air
 	icon_state = "grey"
-	name = "pressure tank (Air)"
+	name = "zbiornik ciśnieniowy (powietrze)"
 
 /obj/machinery/atmospherics/components/unary/tank/air/Initialize(mapload)
 	. = ..()

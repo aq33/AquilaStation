@@ -4,7 +4,7 @@
  * Fires every tick of the circuit timer SS
  */
 /obj/item/circuit_component/clock
-	display_name = "Clock"
+	display_name = "Zegar"
 	display_desc = "Komponent, który wielokrotnie się aktywuje."
 
 	/// Whether the clock is on or not
@@ -15,7 +15,7 @@
 
 /obj/item/circuit_component/clock/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Clock Interval: [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
+	. += create_ui_notice("Interwał zegara: [DisplayTimeText(COMP_CLOCK_DELAY)]", "orange", "clock")
 
 /obj/item/circuit_component/clock/Initialize(mapload)
 	. = ..()

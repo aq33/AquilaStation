@@ -103,7 +103,7 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 		CHECK_TICK
 
 /obj/structure/bingle_hole
-	name = "bingle pit"
+	name = "dół bingli"
 	desc = "Wszystkożerny dół niekończących się okropieństw... i bingli."
 	icon = 'aquila/icons/mob/bingle/binglepit.dmi'
 	icon_state = "binglepit"
@@ -415,11 +415,11 @@ GLOBAL_VAR_INIT(bingle_pit_loading, FALSE)
 		bingle.AddComponent(/datum/component/temporary_body, ghost_mind, ghost_mind.current, TRUE)
 	if(bingle.mind && !IS_BINGLE(bingle))
 		bingle.mind.add_antag_datum(/datum/antagonist/bingle)
-	message_admins("[ADMIN_LOOKUPFLW(bingle)] has been made into a bingle (pit spawn).")
+	message_admins("[ADMIN_LOOKUPFLW(bingle)] zostaje binglem z Dołu.")
 	log_game("[key_name(bingle)] was spawned as a bingle by the pit.")
 
 /obj/structure/bingle_pit_overlay
-	name = "bingle pit"
+	name = "dół bingli"
 	desc = "Wszystkożerny dół niekończących się okropieństw... i bingli."
 	icon = 'aquila/icons/mob/bingle/binglepit.dmi'
 	layer = TURF_LAYER + 0.5

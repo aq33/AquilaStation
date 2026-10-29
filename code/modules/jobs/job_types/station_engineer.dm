@@ -23,7 +23,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	departments = DEPARTMENT_BITFLAG_ENGINEERING
-	rpg_title = "Crystallomancer"
+	rpg_title = "Krystalomanta"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/engineering

@@ -1,5 +1,5 @@
 /datum/design/borg_transform_borgi
-	name = "Cyborg Upgrade (Borgi Module)"
+	name = "Ulepszenie cyborga (moduł Borgi)"
 	id = "borg_transform_borgi"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/transform/borgi

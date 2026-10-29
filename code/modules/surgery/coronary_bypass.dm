@@ -1,5 +1,5 @@
 /datum/surgery/coronary_bypass
-	name = "Coronary Bypass"
+	name = "Bajpas wieńcowy"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/retract_skin, /datum/surgery_step/saw, /datum/surgery_step/clamp_bleeders,
 				 /datum/surgery_step/incise_heart, /datum/surgery_step/coronary_bypass, /datum/surgery_step/close)
 	possible_locs = list(BODY_ZONE_CHEST)
@@ -14,7 +14,7 @@
 
 //an incision but with greater bleed, and a 90% base success chance
 /datum/surgery_step/incise_heart
-	name = "incise heart"
+	name = "natnij serce"
 	implements = list(TOOL_SCALPEL = 90, /obj/item/melee/transforming/energy/sword = 45, /obj/item/kitchen/knife = 45,
 		/obj/item/shard = 25)
 	time = 16
@@ -50,7 +50,7 @@
 
 //grafts a coronary bypass onto the individual's heart, success chance is 90% base again
 /datum/surgery_step/coronary_bypass
-	name = "graft coronary bypass"
+	name = "wszyj bajpas wieńcowy"
 	implements = list(TOOL_HEMOSTAT = 90, TOOL_WIRECUTTER = 35, /obj/item/stack/package_wrap = 15, /obj/item/stack/cable_coil = 5)
 	time = 90
 

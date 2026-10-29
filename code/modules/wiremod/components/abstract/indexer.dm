@@ -4,7 +4,7 @@
 * An abstract component to provide some common functionality for component at access a specified index of a list
 ***/
 /obj/item/circuit_component/indexer
-	display_name = "Indexer Component"
+	display_name = "Indeksator"
 	display_desc = "Baza komponentu do odczytu wskazanych indeksów listy; sama w sobie nie działa."
 
 	/// The input port

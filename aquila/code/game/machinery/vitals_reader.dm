@@ -385,7 +385,7 @@
 	set_machine_stat(machine_stat & ~EMPED)
 
 /datum/design/vitals_monitor
-	name = "Vitals Monitor"
+	name = "Monitor funkcji życiowych"
 	desc = "Montowany na ścianie monitor funkcji życiowych pobliskiego pacjenta. Łączy się z łóżkami stazy, stołami operacyjnymi \
 		i innymi maszynami, w których leży pacjent, np. kriokomorami i sleeperami."
 	id = "vitals_monitor"
@@ -396,7 +396,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/vitals_monitor/advanced
-	name = "Advanced Vitals Monitor"
+	name = "Zaawansowany monitor funkcji życiowych"
 	desc = "Monitor funkcji życiowych, który dokładniej bada pacjenta."
 	id = "vitals_monitor_advanced"
 	materials = list(/datum/material/iron = 8000, /datum/material/glass = 4000, /datum/material/gold = 1000, /datum/material/silver = 500)

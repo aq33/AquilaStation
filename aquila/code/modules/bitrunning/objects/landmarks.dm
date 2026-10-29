@@ -1,5 +1,5 @@
 /obj/effect/landmark/bitrunning
-	name = "Generic bitrunning effect"
+	name = "ogólny efekt bitrunningu"
 	icon = 'aquila/icons/effects/bitrunning.dmi'
 	icon_state = "crate"
 
@@ -10,37 +10,37 @@
 
 /// In case you want to gate the crate behind a special condition.
 /obj/effect/landmark/bitrunning/loot_signal
-	name = "Mysterious aura"
+	name = "tajemnicza aura"
 
 /// Where the exit hololadder spawns
 /obj/effect/landmark/bitrunning/hololadder_spawn
-	name = "Bitrunning hololadder spawn"
+	name = "bitrunning: miejsce holodrabiny"
 	icon_state = "hololadder"
 
 /// A permanent exit for the domain
 /obj/effect/landmark/bitrunning/permanent_exit
-	name = "Bitrunning permanent exit"
+	name = "bitrunning: stałe wyjście"
 	icon_state = "perm_exit"
 
 /// Where the crates need to be taken
 /obj/effect/landmark/bitrunning/cache_goal_turf
-	name = "Bitrunning goal turf"
+	name = "bitrunning: pole celu"
 	icon_state = "goal"
 
 /// Where you want the crate to spawn
 /obj/effect/landmark/bitrunning/cache_spawn
-	name = "Bitrunning crate spawn"
+	name = "bitrunning: miejsce skrzyni"
 	icon_state = "crate"
 
 /// Where you want secondary objectives to spawn
 /obj/effect/landmark/bitrunning/curiosity_spawn
-	name = "Bitrunning curiosity spawn"
+	name = "bitrunning: miejsce ciekawostki"
 	icon_state = "crate"
 
 ///Swaps the locations of an encrypted crate in the area with another randomly selected crate.
 ///Randomizes names, so you have to inspect crates manually.
 /obj/effect/landmark/bitrunning/crate_replacer
-	name = "Bitrunning Goal Crate Randomizer"
+	name = "bitrunning: losowanie skrzyni celu"
 	icon_state = "crate"
 
 /obj/effect/landmark/bitrunning/crate_replacer/Initialize(mapload)
@@ -83,7 +83,7 @@
 
 /// A location for mobs to spawn.
 /obj/effect/landmark/bitrunning/mob_segment
-	name = "Bitrunning modular mob segment"
+	name = "bitrunning: modułowy segment mobów"
 	icon_state = "mob_segment"
 
 

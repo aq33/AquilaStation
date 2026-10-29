@@ -4,7 +4,7 @@
  * Combines multiple inputs into 1 output port.
  */
 /obj/item/circuit_component/multiplexer
-	display_name = "Multiplexer"
+	display_name = "Multiplekser"
 	display_desc = "Komponent, który pozwala wybrać, który port wejściowy daje wyjście. Pierwszy port jest selektorem i przyjmuje liczbę od 1 do maksymalnej liczby portów."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

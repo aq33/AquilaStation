@@ -1,64 +1,64 @@
 //Research Base Areas//--
 
 /area/awaymission/research
-	name = "Research Outpost"
+	name = "Placówka Naukowa"
 	icon_state = "away"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/research/interior
-	name = "Research Inside"
+	name = "Placówka Naukowa – Wnętrze"
 	requires_power = TRUE
 	icon_state = "away2"
 
 /area/awaymission/research/interior/cryo
-	name = "Research Cryostasis Room"
+	name = "Placówka Naukowa – Pokój Kriostazy"
 	icon_state = "medbay"
 
 /area/awaymission/research/interior/clonestorage
-	name = "Research Clone Storage"
+	name = "Placówka Naukowa – Magazyn Klonów"
 	icon_state = "cloning"
 
 /area/awaymission/research/interior/genetics
-	name = "Research Genetics Research"
+	name = "Placówka Naukowa – Laboratorium Genetyczne"
 	icon_state = "genetics"
 
 /area/awaymission/research/interior/engineering
-	name = "Research Engineering"
+	name = "Placówka Naukowa – Inżynieria"
 	icon_state = "engine"
 
 /area/awaymission/research/interior/security
-	name = "Research Security"
+	name = "Placówka Naukowa – Ochrona"
 	icon_state = "security"
 
 /area/awaymission/research/interior/secure
-	name = "Research Secure Vault"
+	name = "Placówka Naukowa – Skarbiec"
 
 /area/awaymission/research/interior/maint
-	name = "Research Maintenance"
+	name = "Placówka Naukowa – Tunel Konserwacyjny"
 	icon_state = "maintcentral"
 
 /area/awaymission/research/interior/dorm
-	name = "Research Dorms"
+	name = "Placówka Naukowa – Kwatery Załogi"
 	icon_state = "Sleep"
 
 /area/awaymission/research/interior/escapepods
-	name = "Research Escape Wing"
+	name = "Placówka Naukowa – Skrzydło Ewakuacyjne"
 	icon_state = "exit"
 
 /area/awaymission/research/interior/gateway
-	name = "Research Gateway"
+	name = "Placówka Naukowa – Brama"
 	icon_state = "start"
 
 /area/awaymission/research/interior/bathroom
-	name = "Research Bathrooms"
+	name = "Placówka Naukowa – Łazienki"
 	icon_state = "restrooms"
 
 /area/awaymission/research/interior/medbay
-	name = "Research Medbay"
+	name = "Placówka Naukowa – Placówka Medyczna"
 	icon_state = "medbay"
 
 /area/awaymission/research/exterior
-	name = "Research Exterior"
+	name = "Placówka Naukowa – Zewnętrze"
 	icon_state = "unknown"
 
 

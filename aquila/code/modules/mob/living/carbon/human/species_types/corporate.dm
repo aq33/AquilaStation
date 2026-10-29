@@ -1,5 +1,5 @@
 /datum/species/corporate
-	name = "Corporate Agent"
+	name = "Agent korporacyjny"
 	id = "agent"
 	hair_alpha = 0
 	//say_mod = "declares"

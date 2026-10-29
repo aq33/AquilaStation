@@ -4,7 +4,7 @@
 // MISC
 
 /datum/crafting_recipe/food/candiedapple
-	name = "Candied apple"
+	name = "jabłko w karmelu"
 	reqs = list(
 		/datum/reagent/consumable/caramel = 5,
 		/obj/item/food/grown/apple = 1
@@ -13,7 +13,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/spiderlollipop
-	name = "Spider Lollipop"
+	name = "pajęczy lizak"
 	reqs = list(/obj/item/stack/rods = 1,
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/water = 5,
@@ -23,7 +23,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chococoin
-	name = "Choco coin"
+	name = "czekoladowa moneta"
 	reqs = list(
 		/obj/item/coin = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -32,7 +32,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/fudgedice
-	name = "Fudge dice"
+	name = "kostka do gry z krówki"
 	reqs = list(
 		/obj/item/dice = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -41,7 +41,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chocoorange
-	name = "Choco orange"
+	name = "czekoladowa pomarańcza"
 	reqs = list(
 		/obj/item/food/grown/citrus/orange = 1,
 		/obj/item/food/chocolatebar = 1,
@@ -50,7 +50,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/loaded_baked_potato
-	name = "Loaded baked potato"
+	name = "faszerowany pieczony ziemniak"
 	reqs = list(
 		/obj/item/food/grown/potato = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -61,7 +61,7 @@
 	category = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/cheesyfries
-	name = "Cheesy fries"
+	name = "frytki z serem"
 	reqs = list(
 		/obj/item/food/fries = 1,
 		/obj/item/food/cheese/wedge = 1
@@ -70,7 +70,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/beans
-	name = "Beans"
+	name = "puszka fasoli"
 	time = 40
 	reqs = list(/datum/reagent/consumable/ketchup = 5,
 		/obj/item/food/grown/soybeans = 2
@@ -79,7 +79,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/eggplantparm
-	name ="Eggplant parmigiana"
+	name ="bakłażan po parmeńsku"
 	reqs = list(
 		/obj/item/food/cheese/wedge = 2,
 		/obj/item/food/grown/eggplant = 1
@@ -88,7 +88,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/melonkeg
-	name ="Melon keg"
+	name ="arbuzowa beczka"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/vodka = 25,
 		/obj/item/food/grown/holymelon = 1,
@@ -99,7 +99,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/honeybar
-	name = "Honey nut bar"
+	name = "baton miodowo-orzechowy"
 	reqs = list(
 		/obj/item/food/grown/oat = 1,
 		/datum/reagent/consumable/honey = 5
@@ -108,7 +108,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/powercrepe
-	name = "Powercrepe"
+	name = "supernaleśnik"
 	time = 40
 	reqs = list(
 		/obj/item/food/flatdough = 1,
@@ -121,7 +121,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/branrequests
-	name = "Bran Requests Cereal"
+	name = "płatki Otrębowe Życzenia"
 	reqs = list(
 		/obj/item/food/grown/wheat = 1,
 		/obj/item/food/no_raisin = 1,
@@ -130,7 +130,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/ricepudding
-	name = "Rice pudding"
+	name = "ryż na mleku"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/datum/reagent/consumable/milk = 5,
@@ -141,7 +141,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/butterbear //ITS ALIVEEEEEE!
-	name = "Living bear/butter hybrid"
+	name = "Terrygold"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/organ/heart = 1,
@@ -154,7 +154,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/crab_rangoon
-	name = "Crab Rangoon"
+	name = "krab rangoon"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/datum/reagent/consumable/cream = 5,
@@ -165,7 +165,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/ant_candy
-	name = "Ant Candy"
+	name = "cukierek z mrówkami"
 	reqs = list(/obj/item/stack/rods = 1,
 		/datum/reagent/consumable/sugar = 5,
 		/datum/reagent/water = 5,
@@ -175,7 +175,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/pingles
-	name = "Pingles"
+	name = "pingles"
 	reqs = list(
 		/obj/item/c_tube = 1,
 		/obj/item/food/grown/potato/wedges = 1,
@@ -186,7 +186,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/royalcheese
-	name = "Royal Cheese"
+	name = "królewski ser"
 	reqs = list(
 		/obj/item/food/cheese/wheel/cheddar = 1,
 		/obj/item/clothing/head/crown = 1,
@@ -197,7 +197,7 @@
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/onigiri
-	name = "Onigiri"
+	name = "onigiri"
 	reqs = list(
 		/obj/item/food/boiledrice = 1,
 		/obj/item/food/seaweed_sheet = 1,

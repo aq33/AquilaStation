@@ -61,7 +61,7 @@
 
 
 /obj/effect/landmark/river_waypoint
-	name = "river waypoint"
+	name = "punkt trasy rzeki"
 	var/connected = 0
 	invisibility = INVISIBILITY_ABSTRACT
 

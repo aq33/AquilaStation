@@ -4,7 +4,7 @@
  * Generates a random number between specific values
  */
 /obj/item/circuit_component/random
-	display_name = "Random"
+	display_name = "Losowanie"
 	display_desc = "Komponent, który zwraca losowe wartości."
 
 	/// The minimum value that the random number can be

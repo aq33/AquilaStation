@@ -136,7 +136,7 @@
 
 // Wiele zdolności darkspawna wypowiada zdania po angielsku przepuszczone przez rot22; odczyta się je rot4.
 /datum/language/darkspawn
-	name = "Darkspeak"
+	name = "Ciemnomowa"
 	desc = "Język darkspawnów. Mimo ostrych sylab spływa z języka jak jedwab."
 	speech_verb = "klika"
 	ask_verb = "ćwierka"

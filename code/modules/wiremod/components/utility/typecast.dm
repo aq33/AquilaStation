@@ -4,7 +4,7 @@
  * Checks the type of a value
  */
 /obj/item/circuit_component/compare/typecast
-	display_name = "Typecast"
+	display_name = "Rzutowanie typu"
 	display_desc = "Komponent, który sprawdza i rzutuje typ swojego wejścia."
 
 	input_port_amount = 1

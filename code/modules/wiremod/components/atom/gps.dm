@@ -4,7 +4,7 @@
  * Return the location of this
  */
 /obj/item/circuit_component/gps
-	display_name = "Internal GPS"
+	display_name = "Wewnętrzny GPS"
 	display_desc = "Komponent, który zwraca swoje współrzędne xyz."
 
 	/// The result from the output

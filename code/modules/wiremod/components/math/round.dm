@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/round
-	display_name = "Round"
+	display_name = "Zaokrąglanie"
 	display_desc = "Komponent, który potrafi obciąć niechlujne części dziesiętne liczby."
 
 	/// The input port

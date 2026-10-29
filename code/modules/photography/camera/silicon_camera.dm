@@ -1,11 +1,11 @@
 
 /obj/item/camera/siliconcam
-	name = "silicon photo camera"
+	name = "aparat fotograficzny syntetyka"
 	var/in_camera_mode = FALSE
 	var/list/datum/picture/stored = list()
 
 /obj/item/camera/siliconcam/ai_camera
-	name = "AI photo camera"
+	name = "aparat fotograficzny SI"
 	flash_enabled = FALSE
 
 /obj/item/camera/siliconcam/proc/toggle_camera_mode(mob/user)
@@ -48,24 +48,24 @@
 
 /obj/item/camera/siliconcam/ai_camera/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	var/number = stored.len
-	picture.picture_name = "Obraz [number] (wykonał: [loc.name])"
+	picture.picture_name = "Obraz [number] (autor: [loc.name])"
 	stored[picture] = TRUE
 	to_chat(usr, "<span class='unconscious'>Obraz zarejestrowany.</span>")
 
 /obj/item/camera/siliconcam/robot_camera
-	name = "Cyborg photo camera"
+	name = "aparat fotograficzny cyborga"
 	var/printcost = 2
 
 /obj/item/camera/siliconcam/robot_camera/after_picture(mob/user, datum/picture/picture, proximity_flag)
 	var/mob/living/silicon/robot/C = loc
 	if(istype(C) && istype(C.connected_ai))
 		var/number = C.connected_ai.aicamera.stored.len
-		picture.picture_name = "Obraz [number] (wykonał: [loc.name])"
+		picture.picture_name = "Obraz [number] (autor: [loc.name])"
 		C.connected_ai.aicamera.stored[picture] = TRUE
 		to_chat(usr, "<span class='unconscious'>Obraz zarejestrowany i zapisany w zdalnej bazie danych.</span>")
 	else
 		var/number = stored.len
-		picture.picture_name = "Obraz [number] (wykonał: [loc.name])"
+		picture.picture_name = "Obraz [number] (autor: [loc.name])"
 		stored[picture] = TRUE
 		to_chat(usr, "<span class='unconscious'>Obraz zarejestrowany i zapisany w pamięci lokalnej. Wysyłanie nastąpi automatycznie, jeśli jednostka jest zsynchronizowana z prawami.</span>")
 

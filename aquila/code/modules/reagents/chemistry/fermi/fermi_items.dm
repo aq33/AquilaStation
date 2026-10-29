@@ -1,22 +1,22 @@
 // Butelki buforów, projekt analizatora i wyposażenie chemika pod fermichem (jak w tg)
 
 /obj/item/reagent_containers/glass/bottle/acidic_buffer
-	name = "acidic buffer bottle"
+	name = "butelka: mocny bufor kwaśny"
 	desc = "Butelka mocnego buforu kwaśnego. Dolana do roztworu obniża jego pH i sama się zużywa."
 	list_reagents = list(/datum/reagent/reaction_agent/acidic_buffer = 30)
 
 /obj/item/reagent_containers/glass/bottle/basic_buffer
-	name = "basic buffer bottle"
+	name = "butelka: mocny bufor zasadowy"
 	desc = "Butelka mocnego buforu zasadowego. Dolana do roztworu podnosi jego pH i sama się zużywa."
 	list_reagents = list(/datum/reagent/reaction_agent/basic_buffer = 30)
 
 /obj/item/reagent_containers/glass/bottle/inversing_buffer
-	name = "inversing buffer bottle"
+	name = "butelka: chiralny bufor odwracający"
 	desc = "Butelka chiralnego buforu odwracającego. Zamienia bardzo nieczyste odczynniki w ich odwrócone odpowiedniki."
 	list_reagents = list(/datum/reagent/reaction_agent/inversing_buffer = 30)
 
 /datum/design/ph_meter
-	name = "Chemical Analyzer"
+	name = "Analizator chemiczny"
 	desc = "Analizator chemiczny, który pokazuje pH, temperaturę i czystość każdego odczynnika w pojemniku."
 	id = "ph_meter"
 	build_type = PROTOLATHE

@@ -1,5 +1,5 @@
 /obj/vehicle/ridden
-	name = "ridden vehicle"
+	name = "pojazd do jazdy"
 	can_buckle = TRUE
 	max_buckled_mobs = 1
 	buckle_lying = FALSE

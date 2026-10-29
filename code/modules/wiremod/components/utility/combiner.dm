@@ -4,7 +4,7 @@
  * Combines multiple inputs into 1 output port.
  */
 /obj/item/circuit_component/combiner
-	display_name = "Combiner"
+	display_name = "Scalanie sygnałów"
 	display_desc = "Komponent, który łączy wiele wejść w 1 wyjście."
 
 	/// The amount of input ports to have

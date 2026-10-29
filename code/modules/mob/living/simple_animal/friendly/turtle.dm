@@ -1,6 +1,6 @@
 /mob/living/simple_animal/turtle
 	name = "Frank"
-	desc = "An adorable, slow moving, Texas pal."
+	desc = "Uroczy, powolny kumpel z Teksasu."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "yeeslow"
 	icon_living = "yeeslow"

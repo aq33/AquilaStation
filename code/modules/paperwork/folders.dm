@@ -1,6 +1,6 @@
 /obj/item/folder
-	name = "folder"
-	desc = "A folder."
+	name = "teczka"
+	desc = "Teczka."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -40,7 +40,7 @@
 		return
 
 	if(user.canUseTopic(src, BE_CLOSE))
-		name = "folder[(inputvalue ? " - '[inputvalue]'" : null)]"
+		name = "teczka[(inputvalue ? " - '[inputvalue]'" : null)]"
 
 /obj/item/folder/proc/remove_item(obj/item/I, mob/user)
 	if(istype(I))

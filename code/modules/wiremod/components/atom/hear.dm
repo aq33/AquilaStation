@@ -4,7 +4,7 @@
  * Listens for messages. Requires a shell.
  */
 /obj/item/circuit_component/hear
-	display_name = "Voice Activator"
+	display_name = "Aktywacja głosem"
 	display_desc = "Komponent, który nasłuchuje wiadomości. Wymaga obudowy."
 
 	/// The message heard

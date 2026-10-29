@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(hivehosts)
 	var/len_before_addition
 
 	for(var/datum/antagonist/hivemind/H as() in GLOB.hivehosts)
-		round_credits += "<center><h1>Hive [H.hiveID]:</h1>"
+		round_credits += "<center><h1>Rój [H.hiveID]:</h1>"
 		len_before_addition = round_credits.len
 		round_credits += "<center><h2>[H.name] jako nosiciel roju</h2>"
 		for(var/datum/antagonist/hivevessel/V as() in H.avessels)

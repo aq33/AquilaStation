@@ -4,7 +4,7 @@
  * Selects a list from a list of lists by a specific column. Used only by USBs for communications to and from computers with lists of varying sizes.
  */
 /obj/item/circuit_component/select
-	display_name = "Select Query"
+	display_name = "Zapytanie select"
 	display_desc = "Komponent używany z kablami USB, który może wykonywać zapytania select na liście na podstawie wybranej nazwy kolumny. Wartości są następnie porównywane z wejściem porównania."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 

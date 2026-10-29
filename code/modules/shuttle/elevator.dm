@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/elevator
-	name = "elevator"
+	name = "winda"
 	id = "elevator"
 	dwidth = 3
 	width = 7

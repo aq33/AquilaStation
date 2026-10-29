@@ -26,7 +26,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	departments = DEPARTMENT_BITFLAG_COMMAND
-	rpg_title = "Star Duke"
+	rpg_title = "Gwiezdny Książę"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/command

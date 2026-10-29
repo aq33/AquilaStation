@@ -4,7 +4,7 @@
  * Converts any value into a string
  */
 /obj/item/circuit_component/tostring
-	display_name = "To String"
+	display_name = "Konwersja na tekst"
 	display_desc = "Komponent, który zamienia wejście na tekst."
 
 	/// The input port

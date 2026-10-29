@@ -2,7 +2,7 @@
 // Head surgery that repairs the ears organ, written like eye_surgery.dm
 
 /datum/surgery/ear_surgery
-	name = "ear surgery"
+	name = "Operacja uszu"
 	steps = list(
 		/datum/surgery_step/incise,
 		/datum/surgery_step/retract_skin,
@@ -24,7 +24,7 @@
 
 //fix ears
 /datum/surgery_step/fix_ears
-	name = "fix ears"
+	name = "napraw uszy"
 	implements = list(TOOL_HEMOSTAT = 100, TOOL_SCREWDRIVER = 45, /obj/item/pen = 25)
 	time = 64
 

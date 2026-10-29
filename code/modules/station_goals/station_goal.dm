@@ -4,7 +4,7 @@
 // Multiple goals with less impact but more department focused
 
 /datum/station_goal
-	var/name = "Generic Goal"
+	var/name = "Zwykły cel"
 	var/weight = 1 //In case of multiple goals later.
 	var/required_crew = 10
 	var/list/gamemode_blacklist = list()
@@ -31,9 +31,9 @@
 
 /datum/station_goal/proc/get_result()
 	if(check_completion())
-		return "<li>[name] :  <span class='greentext'>Completed!</span></li>"
+		return "<li>[name] :  <span class='greentext'>Ukończono!</span></li>"
 	else
-		return "<li>[name] : <span class='redtext'>Failed!</span></li>"
+		return "<li>[name] : <span class='redtext'>Porażka!</span></li>"
 
 /datum/station_goal/Destroy()
 	SSticker.mode.station_goals -= src
@@ -57,7 +57,7 @@
 // Dish requires a lot of power
 // Needs five? AI's for decoding purposes
 /datum/station_goal/seti
-	name = "SETI Project"
+	name = "Projekt SETI"
 
 //Crew Sweep
 //Blood samples and special scans of amount of people on roundstart manifest.

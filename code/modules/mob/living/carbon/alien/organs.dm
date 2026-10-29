@@ -26,7 +26,7 @@
 
 
 /obj/item/organ/alien/plasmavessel
-	name = "plasma vessel"
+	name = "zbiornik plazmy"
 	icon_state = "plasma"
 	w_class = WEIGHT_CLASS_NORMAL
 	zone = BODY_ZONE_CHEST
@@ -40,7 +40,7 @@
 	var/plasma_rate = 10
 
 /obj/item/organ/alien/plasmavessel/large
-	name = "large plasma vessel"
+	name = "duży zbiornik plazmy"
 	icon_state = "plasma_large"
 	w_class = WEIGHT_CLASS_BULKY
 	storedPlasma = 200
@@ -51,7 +51,7 @@
 	plasma_rate = 20
 
 /obj/item/organ/alien/plasmavessel/small
-	name = "small plasma vessel"
+	name = "mały zbiornik plazmy"
 	icon_state = "plasma_small"
 	w_class = WEIGHT_CLASS_SMALL
 	storedPlasma = 100
@@ -59,7 +59,7 @@
 	plasma_rate = 5
 
 /obj/item/organ/alien/plasmavessel/small/tiny
-	name = "tiny plasma vessel"
+	name = "malutki zbiornik plazmy"
 	icon_state = "plasma_tiny"
 	w_class = WEIGHT_CLASS_TINY
 	max_plasma = 100
@@ -99,7 +99,7 @@
 #define QUEEN_DEATH_DEBUFF_DURATION 2400
 
 /obj/item/organ/alien/hivenode
-	name = "hive node"
+	name = "węzeł roju"
 	icon_state = "hivenode"
 	zone = BODY_ZONE_HEAD
 	slot = "hivenode"
@@ -153,7 +153,7 @@
 #undef QUEEN_DEATH_DEBUFF_DURATION
 
 /obj/item/organ/alien/resinspinner
-	name = "resin spinner"
+	name = "przędzarka żywicy"
 	icon_state = "stomach-x"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "resinspinner"
@@ -161,7 +161,7 @@
 
 
 /obj/item/organ/alien/acid
-	name = "acid gland"
+	name = "gruczoł kwasowy"
 	icon_state = "acid"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "acidgland"
@@ -169,7 +169,7 @@
 
 
 /obj/item/organ/alien/neurotoxin
-	name = "neurotoxin gland"
+	name = "gruczoł neurotoksyny"
 	icon_state = "neurotox"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = "neurotoxingland"
@@ -177,7 +177,7 @@
 
 
 /obj/item/organ/alien/eggsac
-	name = "egg sac"
+	name = "worek jajowy"
 	icon_state = "eggsac"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = "eggsac"

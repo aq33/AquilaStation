@@ -16,7 +16,7 @@
 	return ..()
 
 /atom/movable/screen/stamina
-	name = "stamina"
+	name = "wytrzymałość"
 	icon = 'aquila/icons/hud/screen_stamina.dmi'
 	icon_state = "stamina_full"
 	screen_loc = ui_stamina

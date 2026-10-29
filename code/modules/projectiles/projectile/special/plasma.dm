@@ -1,5 +1,5 @@
 /obj/item/projectile/plasma
-	name = "plasma blast"
+	name = "podmuch plazmy"
 	icon_state = "plasmacutter"
 	damage_type = BRUTE
 	damage = 10
@@ -34,7 +34,7 @@
 
 /obj/item/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
-	name = "plasma beam"
+	name = "wiązka plazmy"
 	damage = 24
 	range = 7
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE

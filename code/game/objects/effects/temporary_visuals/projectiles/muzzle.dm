@@ -1,5 +1,5 @@
 /obj/effect/projectile/muzzle
-	name = "muzzle flash"
+	name = "błysk z lufy"
 	icon = 'icons/obj/projectiles_muzzle.dmi'
 
 /obj/effect/projectile/muzzle/laser

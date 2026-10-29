@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 	var/icon/final = icon()
 	var/mob/living/carbon/human/dummy/D = new(locate(1,1,1)) //spawn on 1,1,1 so we don't have runtimes when items are deleted
 	var/new_name = null //Name for the hologram. Can be defaulted to your char name otherwise.
-	if(alert("Chcesz użyć swojej postaci ([C.prefs.active_character.real_name]) czy wybrać nowe imię i losowy wygląd?",src,"Yes","No") == "Yes")
+	if(alert("Chcesz użyć swojej postaci ([C.prefs.active_character.real_name]) czy wybrać nowe imię i losowy wygląd?",src,"Tak","Nie") == "Tak")
 		C.prefs.active_character.copy_to(D)
 		new_name = C.prefs.active_character.real_name
 	else
@@ -49,8 +49,8 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 	Hologram.ckey = C.ckey
 
 /mob/living/simple_animal/admin_holopad
-	name = "Hologram"
-	desc = "A wacky little character!"
+	name = "hologram"
+	desc = "Zwariowana mała postać!"
 	icon_state = "hologram"
 	incorporeal_move = TRUE
 	status_flags = GODMODE
@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 
 /mob/living/simple_animal/admin_holopad/ClickOn(target)
 	. = ..()
-	if(alert("Zakończyć komunikację?",src,"Yes","No") == "Yes")
+	if(alert("Zakończyć komunikację?",src,"Tak","Nie") == "Tak")
 		qdel(src)
 
 /mob/living/simple_animal/admin_holopad/Destroy()
@@ -86,6 +86,6 @@ GLOBAL_LIST_EMPTY(hologram_impersonators)
 /obj/machinery/holopad/attack_ghost(mob/user)
 	if(!check_rights_for(user.client, R_ADMIN))
 		return
-	if(alert("Pojawić się jako hologram?",src,"Yes","No") == "No")
+	if(alert("Pojawić się jako hologram?",src,"Tak","Nie") == "Nie")
 		return
 	create_admin_hologram(user.client)

@@ -1,5 +1,5 @@
 /obj/structure/frame
-	name = "frame"
+	name = "rama"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
 	density = TRUE
@@ -23,7 +23,7 @@
 
 
 /obj/structure/frame/machine
-	name = "machine frame"
+	name = "rama maszyny"
 	var/list/components = null
 	var/list/req_components = null
 	var/list/req_component_names = null // user-friendly names of components
@@ -32,7 +32,7 @@
 	. = ..()
 	if(state == 3 && req_components && req_component_names)
 		var/hasContent = 0
-		var/requires = "Wymaga"
+		var/requires = "Wymaga:"
 
 		for(var/i = 1 to req_components.len)
 			var/tname = req_components[i]
@@ -40,7 +40,7 @@
 			if(amt == 0)
 				continue
 			var/use_and = i == req_components.len
-			requires += "[(hasContent ? (use_and ? ", and" : ",") : "")] [amt] [amt == 1 ? req_component_names[tname] : "[req_component_names[tname]]\s"]"
+			requires += "[(hasContent ? (use_and ? " i" : ",") : "")] [req_component_names[tname]] ×[amt]"
 			hasContent = 1
 
 		if(hasContent)

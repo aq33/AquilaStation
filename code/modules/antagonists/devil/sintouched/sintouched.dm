@@ -49,15 +49,15 @@
 
 /datum/antagonist/sintouched/greet()
 	owner.announce_objectives()
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Sintouched",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Naznaczony grzechem",
 		"Zostałeś zepsuty diabelską myślą; wykonaj swoje cele bez względu na wszystko.")
 
 /datum/antagonist/sintouched/roundend_report()
 	return printplayer(owner)
 
 /datum/antagonist/sintouched/admin_add(datum/mind/new_owner,mob/admin)
-	var/choices = sins + "Random"
-	var/chosen_sin = input(admin,"What kind ?","Sin kind") as null|anything in sortList(choices)
+	var/choices = sins + "Losowy"
+	var/chosen_sin = input(admin,"Jaki grzech?","Rodzaj grzechu") as null|anything in sortList(choices)
 	if(!chosen_sin)
 		return
 	if(chosen_sin in sins)

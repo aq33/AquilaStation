@@ -1,7 +1,7 @@
 // Basic ladder. By default links to the z-level above/below.
 /obj/structure/ladder
-	name = "ladder"
-	desc = "A sturdy metal ladder."
+	name = "drabina"
+	desc = "Solidna metalowa drabina."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder11"
 	anchored = TRUE
@@ -173,7 +173,7 @@
 
 			to_chat(user, "<span class='notice'>Zaczynasz przecinać [src]...</span>")
 			if(I.use_tool(src, user, 50, volume=100))
-				user.visible_message("<span class='notice'>[user] cuts [src].</span>", \
+				user.visible_message("<span class='notice'>[user] przecina [src].</span>", \
 									 "<span class='notice'>Przecinasz [src].</span>")
 				I.play_tool_sound(src, 100)
 				var/obj/R = new /obj/item/stack/rods(drop_location(), 10)
@@ -202,8 +202,8 @@
 
 // Indestructible away mission ladders which link based on a mapped ID and height value rather than X/Y/Z.
 /obj/structure/ladder/unbreakable
-	name = "sturdy ladder"
-	desc = "An extremely sturdy metal ladder."
+	name = "wytrzymała drabina"
+	desc = "Wyjątkowo solidna metalowa drabina."
 	resistance_flags = INDESTRUCTIBLE
 	var/id
 	var/height = 0  // higher numbers are considered physically higher

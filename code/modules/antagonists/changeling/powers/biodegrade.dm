@@ -1,6 +1,6 @@
 /datum/action/changeling/biodegrade
-	name = "Biodegrade"
-	desc = "Dissolves restraints or other objects preventing free movement. Costs 15 chemicals."
+	name = "Biodegradacja"
+	desc = "Rozpuszczamy więzy i inne przeszkody krępujące nasz ruch. Kosztuje 15 chemikaliów."
 	helptext = "Natychmiast usuwa kajdany z nóg i parzy każdego, kto nas trzyma. Po chwili niszczy kajdanki i szafki."
 	button_icon_state = "biodegrade"
 	chemical_cost = 15

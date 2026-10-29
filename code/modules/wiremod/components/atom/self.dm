@@ -4,7 +4,7 @@
  * Return the current shell.
  */
 /obj/item/circuit_component/self
-	display_name = "Self"
+	display_name = "Własna obudowa"
 	display_desc = "Komponent, który zwraca bieżącą obudowę."
 
 	/// The shell this component is attached to.

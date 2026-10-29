@@ -1,6 +1,6 @@
 /obj/machinery/vending/security
 	name = "\improper Zbrojownia Policyjna" //AQUILA EDIT - SecTech
-	desc = "A security equipment vendor."
+	desc = "Automat ze sprzętem policyjnym."
 	product_ads = "Rozstrzaskaj czaszki kapitalistów!;Natłucz trochę głów!;Nie zapomnij - krzywda jest dobra!;Twoje bronie są dokładnie tutaj.;Kajdanki!;Ani drgnij, śmieciu!;Nie tazuj mnie, stary!;Tazuj ich, stary.;A może tak pączka?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"

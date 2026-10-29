@@ -1,7 +1,7 @@
 /obj/item/multitool/circuit
-	name = "circuit multitool"
-	desc = "A circuit multitool. Used to mark entities which can then be uploaded to components by pressing the upload button on a port. \
-	Acts as a normal multitool otherwise. Use in hand to clear marked entity so that you can mark another entity."
+	name = "multitool do układów"
+	desc = "Multitool do układów. Służy do oznaczania obiektów, które potem można wgrać do komponentów przyciskiem wgrywania przy porcie. \
+	Poza tym działa jak zwykły multitool. Użyj go w ręce, by wyczyścić oznaczony obiekt i móc oznaczyć kolejny."
 	icon_state = "multitool_circuit"
 	item_state = "multitool_circuit"
 	/// The marked atom of this multitool
@@ -22,7 +22,7 @@
 	if(!marked_atom)
 		return
 
-	say("Cleared marked targets.")
+	say("Wyczyszczono oznaczone cele.")
 	clear_marked_atom()
 	return TRUE
 
@@ -30,7 +30,7 @@
 	if(marked_atom || !user.Adjacent(target))
 		return ..()
 
-	say("Marked [target].")
+	say("Oznaczono: [target].")
 	marked_atom = target
 	RegisterSignal(marked_atom, COMSIG_PARENT_QDELETING, PROC_REF(cleanup_marked_atom))
 	return TRUE

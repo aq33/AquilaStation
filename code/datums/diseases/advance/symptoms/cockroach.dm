@@ -1,6 +1,6 @@
 /datum/symptom/cockroach
 
-	name = "SBG Syndrome"
+	name = "Zespół SBG"
 	desc = "Wywołuje synchroniczność bluespace z pobliskimi kanałami powietrza, przez co karaluchy zasiedlające filtry stacji wypełzają z twarzy nosiciela"
 	stealth = 1
 	resistance = 2

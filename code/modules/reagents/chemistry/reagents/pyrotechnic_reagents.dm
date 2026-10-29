@@ -1,6 +1,6 @@
 
 /datum/reagent/thermite
-	name = "Thermite"
+	name = "Termit"
 	description = "Termit wywołuje reakcję aluminotermiczną zwaną reakcją termitową. Można nim przetapiać ściany."
 	reagent_state = SOLID
 	color = "#550000"
@@ -18,14 +18,14 @@
 	return TRUE
 
 /datum/reagent/nitroglycerin
-	name = "Nitroglycerin"
+	name = "Nitrogliceryna"
 	description = "Nitrogliceryna to ciężka, bezbarwna, oleista ciecz wybuchowa otrzymywana przez nitrowanie glicerolu."
 	color = "#808080" // rgb: 128, 128, 128
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "olej"
 
 /datum/reagent/stabilizing_agent
-	name = "Stabilizing Agent"
+	name = "Środek stabilizujący"
 	description = "Utrzymuje niestabilne substancje w stabilnym stanie. Nie działa na wszystko."
 	reagent_state = LIQUID
 	color = "#FFFF00"
@@ -33,7 +33,7 @@
 	taste_description = "metal"
 
 /datum/reagent/clf3
-	name = "Chlorine Trifluoride"
+	name = "Trifluorek chloru"
 	description = "Przy powstaniu tworzy tymczasową kulę ognia 3x3, więc uważaj przy mieszaniu. ClF3 naniesiony na powierzchnię pali rzeczy, które normalnie by się nie paliły, czasem przepalając podłogi stacji i wystawiając ją na próżnię kosmosu."
 	reagent_state = LIQUID
 	color = "#FFC8C8"
@@ -86,7 +86,7 @@
 	taste_description = "powietrze i gorycz"
 
 /datum/reagent/liquid_dark_matter
-	name = "Liquid Dark Matter"
+	name = "Płynna ciemna materia"
 	description = "Wsysa wszystko do punktu detonacji."
 	reagent_state = LIQUID
 	color = "#210021"
@@ -94,7 +94,7 @@
 	taste_description = "sprężona gorycz"
 
 /datum/reagent/blackpowder
-	name = "Black Powder"
+	name = "Proch strzelniczy"
 	description = "Wybucha. Gwałtownie."
 	reagent_state = LIQUID
 	color = "#000000"
@@ -115,7 +115,7 @@
 	holder.clear_reagents()
 
 /datum/reagent/flash_powder
-	name = "Flash Powder"
+	name = "Proszek błyskowy"
 	description = "Wytwarza bardzo jasny błysk."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
@@ -123,7 +123,7 @@
 	taste_description = "sól"
 
 /datum/reagent/smoke_powder
-	name = "Smoke Powder"
+	name = "Proszek dymny"
 	description = "Tworzy dużą chmurę dymu, która może przenosić odczynniki."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
@@ -131,7 +131,7 @@
 	taste_description = "dym"
 
 /datum/reagent/sonic_powder
-	name = "Sonic Powder"
+	name = "Proszek dźwiękowy"
 	description = "Wytwarza ogłuszający hałas."
 	reagent_state = LIQUID
 	color = "#C8C8C8"
@@ -139,7 +139,7 @@
 	taste_description = "głośne dźwięki"
 
 /datum/reagent/phlogiston
-	name = "Phlogiston"
+	name = "Flogiston"
 	description = "Podpala cię."
 	reagent_state = LIQUID
 	color = "#FA00AF"
@@ -183,7 +183,7 @@
 			M.adjust_fire_stacks(min(reac_volume/4, 20))
 
 /datum/reagent/cryostylane
-	name = "Cryostylane"
+	name = "Kriostylan"
 	description = "Powstaje w temperaturze 20 K. Dopóki ma dość tlenu do reakcji, kriostylan powoli schładza wszystkie inne odczynniki w pojemniku do 0 K."
 	color = "#0000DC"
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -237,12 +237,12 @@
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
 		shock_timer = 0
-		M.electrocute_act(rand(5,20), "Teslium in their body", 1, 1) //Override because it's caused from INSIDE of you
+		M.electrocute_act(rand(5,20), "Teslium w organizmie", 1, 1) //Override because it's caused from INSIDE of you
 		playsound(M, "sparks", 50, 1)
 	..()
 
 /datum/reagent/teslium/energized_jelly
-	name = "Energized Jelly"
+	name = "Naładowana galaretka"
 	description = "Naładowana elektrycznie galaretka. Wzmacnia układ nerwowy galaretowców, ale inne formy życia tylko poraża."
 	reagent_state = LIQUID
 	color = "#CAFF43"
@@ -261,7 +261,7 @@
 	..()
 
 /datum/reagent/teslium/energized_jelly/energized_ooze
-	name = "Energized Ooze"
+	name = "Naładowana maź"
 	description = "Naładowana elektrycznie maź. Wzmacnia układ nerwowy szlamoludzi, ale inne formy życia tylko poraża."
 	reagent_state = LIQUID
 	color = "#CAFF43"
@@ -279,12 +279,12 @@
 /datum/reagent/teslium/energized_jelly/energized_ooze/overdose_process(mob/living/carbon/M)
 	if(isoozeling(M) || isjellyperson(M))
 		if(prob(25))
-			M.electrocute_act(rand(5,20), "Energized Jelly overdose in their body", 1, 1) //Override because it's caused from INSIDE of you
+			M.electrocute_act(rand(5,20), "Przedawkowana naładowana galaretka", 1, 1) //Override because it's caused from INSIDE of you
 			playsound(M, "sparks", 50, 1)
 	..()
 
 /datum/reagent/firefighting_foam
-	name = "Firefighting Foam"
+	name = "Piana gaśnicza"
 	description = "Historyczny środek gaśniczy. Pierwotnie uważano, że po prostu wypiera tlen, by udusić ogień, ale w rzeczywistości zakłóca samą reakcję spalania. Znacznie lepszy od tanich gaśnic wodnych na statkach NT."
 	reagent_state = LIQUID
 	color = "#A6FAFF55"

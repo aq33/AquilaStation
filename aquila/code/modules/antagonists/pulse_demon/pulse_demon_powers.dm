@@ -283,7 +283,7 @@
 		to_chat(user, "<span class='warning'>Tej maszyny nie da się przeciążyć.</span>")
 		return FALSE
 	M.audible_message("<span class='italics'>Słyszysz głośne elektryczne brzęczenie dochodzące z [M]!</span>")
-	message_admins("[ADMIN_LOOKUPFLW(user)] overloaded [M] at [ADMIN_VERBOSEJMP(M)] as a pulse demon.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] jako demon impulsu przeciąża [M]: [ADMIN_VERBOSEJMP(M)].")
 	log_game("[key_name(user)] overloaded [M] at [AREACOORD(M)] as a pulse demon.")
 	addtimer(CALLBACK(src, PROC_REF(detonate), M), 5 SECONDS)
 	return TRUE

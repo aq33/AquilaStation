@@ -6,7 +6,7 @@
 
 
 /obj/item/circuit_component/list_length_constructor
-	display_name = "List Length Constructor"
+	display_name = "Konstruktor listy o długości"
 	display_desc = "Odmiana konstruktora list, która tworzy pustą listę o podanej długości"
 
 	power_usage_per_input = 10 //B I G cost

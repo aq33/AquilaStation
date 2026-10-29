@@ -13,7 +13,7 @@
 /datum/orbit_menu/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui) // AQ EDIT - port BeeStation #9034
 	if (!ui)
-		ui = new(user, src, "Orbit", "Orbit")
+		ui = new(user, src, "Orbit", "Orbita")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 

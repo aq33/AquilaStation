@@ -2,7 +2,7 @@
  * Clipboard
  */
 /obj/item/clipboard
-	name = "clipboard"
+	name = "podkładka"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "clipboard"
 	item_state = "clipboard"

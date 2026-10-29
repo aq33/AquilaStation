@@ -1,44 +1,44 @@
 //Spacebattle Areas
 
 /area/awaymission/spacebattle
-	name = "Space Battle"
+	name = "Bitwa Kosmiczna"
 	icon_state = "awaycontent1"
 	requires_power = FALSE
 
 /area/awaymission/spacebattle/cruiser
-	name = "\improper Nanotrasen Cruiser"
+	name = "\improper Krążownik Nanotrasen"
 	icon_state = "awaycontent2"
 
 /area/awaymission/spacebattle/syndicate1
-	name = "Syndicate Assault Ship 1"
+	name = "Okręt Szturmowy Syndykatu 1"
 	icon_state = "awaycontent3"
 
 /area/awaymission/spacebattle/syndicate2
-	name = "Syndicate Assault Ship 2"
+	name = "Okręt Szturmowy Syndykatu 2"
 	icon_state = "awaycontent4"
 
 /area/awaymission/spacebattle/syndicate3
-	name = "Syndicate Assault Ship 3"
+	name = "Okręt Szturmowy Syndykatu 3"
 	icon_state = "awaycontent5"
 
 /area/awaymission/spacebattle/syndicate4
-	name = "Syndicate War Sphere 1"
+	name = "Sfera Bojowa Syndykatu 1"
 	icon_state = "awaycontent6"
 
 /area/awaymission/spacebattle/syndicate5
-	name = "Syndicate War Sphere 2"
+	name = "Sfera Bojowa Syndykatu 2"
 	icon_state = "awaycontent7"
 
 /area/awaymission/spacebattle/syndicate6
-	name = "Syndicate War Sphere 3"
+	name = "Sfera Bojowa Syndykatu 3"
 	icon_state = "awaycontent8"
 
 /area/awaymission/spacebattle/syndicate7
-	name = "Syndicate Fighter"
+	name = "Myśliwiec Syndykatu (Bitwa Kosmiczna)"
 	icon_state = "awaycontent9"
 
 /area/awaymission/spacebattle/secret
-	name = "Hidden Chamber"
+	name = "Ukryta Komnata"
 	icon_state = "awaycontent10"
 
 /mob/living/simple_animal/hostile/syndicate/ranged/spacebattle

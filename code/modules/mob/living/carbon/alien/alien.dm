@@ -1,5 +1,5 @@
 /mob/living/carbon/alien
-	name = "alien"
+	name = "obcy"
 	icon = 'icons/mob/alien.dmi'
 	gender = FEMALE //All xenos are girls!!
 	dna = null
@@ -16,7 +16,7 @@
 	unique_name = 1
 	mobchatspan = "alienmobsay"
 
-	var/static/regex/alien_name_regex = new("alien (larva|sentinel|drone|hunter|praetorian|queen)( \\(\\d+\\))?")
+	var/static/regex/alien_name_regex = new("((larwa|strażnik|dron|łowca|pretorianin) obcych|królowa ksenomorfów)( \\(\\d+\\))?")
 	var/heat_protection = 0.5
 	var/leaping = FALSE
 	var/has_fine_manipulation = FALSE

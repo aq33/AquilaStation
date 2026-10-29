@@ -20,7 +20,7 @@
 	paycheck_department = ACCOUNT_ENG
 	display_order = JOB_DISPLAY_ORDER_ATMOSPHERIC_TECHNICIAN
 	departments = DEPARTMENT_BITFLAG_ENGINEERING
-	rpg_title = "Aeromancer"
+	rpg_title = "Aeromanta"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/atmospherics

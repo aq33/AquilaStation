@@ -260,7 +260,7 @@
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/assimilation.ogg', 100, FALSE, pressure_affected = FALSE)
 
 	owner.announce_objectives()
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Hivemind",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Rój",
 		"Twoje moce psioniczne rosną, gdy przyłączasz załogę do roju. Użyj zaklęcia Przyłącz Naczynie na nieruchomym \
 		celu, a po dziesięciu sekundach stanie się częścią roju. To całkowicie ciche i bezpieczne, a porażka resetuje odnowienie. W miarę \
 		przyłączania załogi zyskujesz kolejne moce. Większość jest cicha i nie pomoże w walce, ale daje ci wielką władzę nad \
@@ -270,7 +270,7 @@
 
 /datum/antagonist/hivemind/roundend_report()
 	var/list/result = list()
-	result += "<span class='header'>Hive [hiveID]:</span>"
+	result += "<span class='header'>Rój [hiveID]:</span>"
 	var/greentext = TRUE
 	if(objectives)
 		result += printobjectives(objectives)

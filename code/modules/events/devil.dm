@@ -7,7 +7,7 @@
 
 /datum/round_event/ghost_role/devil
 	var/success_spawn = 0
-	role_name = "devil"
+	role_name = "diabeł"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/devil/kill()
@@ -36,7 +36,7 @@
 	add_devil(devil, ascendable = FALSE)
 
 	spawned_mobs += devil
-	message_admins("[ADMIN_LOOKUPFLW(devil)] has been made into a devil by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(devil)] zostaje diabłem w wyniku eventu.")
 	log_game("[key_name(devil)] was spawned as a devil by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(JOB_NAME_ASSISTANT)
 	devil.job = jobdatum.title

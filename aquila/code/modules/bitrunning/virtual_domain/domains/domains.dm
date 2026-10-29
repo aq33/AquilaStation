@@ -268,7 +268,7 @@
 	add_points(1)
 
 /datum/lazy_template/virtual_domain/meta_central
-	name = "Meta Central"
+	name = "Centrum Metastacji"
 	cost = BITRUNNER_COST_LOW
 	desc = "Co jakiś czas pracownicy żądają od Nanotrasen praw. To się nie opłaca."
 	difficulty = BITRUNNER_DIFFICULTY_LOW

@@ -21,7 +21,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
 	departments = DEPARTMENT_BITFLAG_MEDICAL
-	rpg_title = "Cleric"
+	rpg_title = "Kapłan"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/medical

@@ -4,7 +4,7 @@
  * A handheld device which scans things.
  */
 /obj/item/scanner
-	name = "scanner"
+	name = "skaner układowy"
 	icon = 'icons/obj/assemblies/electronic_setups.dmi'
 	icon_state = "setup_small_hook"
 	item_state = "electronic"
@@ -19,7 +19,7 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/scanner
-	display_name = "Scanner"
+	display_name = "Skaner"
 	display_desc = "Służy do odbierania wejść z obudowy skanera. Użyj obudowy na czymś, by to zeskanować."
 
 	/// Atom that was scanned.
@@ -48,7 +48,7 @@
  */
 /obj/item/circuit_component/scanner/proc/send_trigger(atom/source, atom/target, mob/user)
 	SIGNAL_HANDLER
-	target.balloon_alert(user, "Scanned [target].")
+	target.balloon_alert(user, "Zeskanowano: [target].")
 	playsound(user, get_sfx("terminal_type"), 25, FALSE)
 	. = COMPONENT_NO_ATTACK
 	scanned.set_output(target)

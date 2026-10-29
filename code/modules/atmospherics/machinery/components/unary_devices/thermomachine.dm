@@ -2,8 +2,8 @@
 	icon = 'icons/obj/atmospherics/components/thermomachine.dmi'
 	icon_state = "freezer"
 
-	name = "Thermomachine"
-	desc = "Heats or cools gas in connected pipes."
+	name = "termomaszyna"
+	desc = "Ogrzewa lub chłodzi gaz w podłączonych rurach."
 
 	density = TRUE
 	max_integrity = 300
@@ -238,7 +238,7 @@
 		target_temperature = min_temperature
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom
-	name = "cold room freezer"
+	name = "zamrażarka chłodni"
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom/Initialize(mapload)
 	. = ..()

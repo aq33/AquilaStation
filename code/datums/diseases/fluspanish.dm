@@ -1,11 +1,11 @@
 /datum/disease/fluspanish
-	name = "Spanish inquisition Flu"
+	name = "Grypa hiszpańskiej inkwizycji"
 	max_stages = 3
-	spread_text = "Airborne"
+	spread_text = "Drogą powietrzną"
 	cure_text = "Spacyklina i przeciwciała przeciw zwykłej grypie"
 	cures = list(/datum/reagent/medicine/spaceacillin)
 	cure_chance = 10
-	agent = "1nqu1s1t10n flu virion"
+	agent = "Wirion grypy 1nkw1zycj1"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "Nieleczony chory spłonie na śmierć za herezję."

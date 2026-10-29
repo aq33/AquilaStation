@@ -1,6 +1,6 @@
 /obj/machinery/paystand
-	name = "unregistered pay stand"
-	desc = "See title."
+	name = "niezarejestrowane stoisko płatnicze"
+	desc = "Patrz nazwa."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "card_scanner"
 	density = TRUE
@@ -24,7 +24,7 @@
 				if(!msg)
 					return
 				name = msg
-				desc = "Owned by [assistant_mains_need_to_die.registered_account.account_holder], pays directly into [user.p_their()] account."
+				desc = "Właściciel: [assistant_mains_need_to_die.registered_account.account_holder]. Wpłaty trafiają prosto na jego konto."
 				my_card = assistant_mains_need_to_die
 				to_chat(user, "Łączysz stoisko ze swoim kontem.")
 				return

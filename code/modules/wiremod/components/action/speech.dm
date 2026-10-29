@@ -4,7 +4,7 @@
  * Sends a message. Requires a shell.
  */
 /obj/item/circuit_component/speech
-	display_name = "Speech"
+	display_name = "Mowa"
 	display_desc = "Komponent, który wysyła wiadomość. Wymaga obudowy."
 
 	/// The message to send
@@ -19,7 +19,7 @@
 
 /obj/item/circuit_component/speech/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Speech Cooldown: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Odstęp między wypowiedziami: [DisplayTimeText(speech_cooldown)]", "orange", "stopwatch")
 
 /obj/item/circuit_component/speech/Initialize(mapload)
 	. = ..()

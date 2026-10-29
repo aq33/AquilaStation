@@ -26,7 +26,7 @@
 
 /datum/antagonist/thrall/on_gain()
 	owner.special_role = "thrall"
-	message_admins("[key_name_admin(owner.current)] was thralled by a darkspawn!")
+	message_admins("[key_name_admin(owner.current)] zostaje thrallem darkspawna!")
 	log_game("[key_name(owner.current)] was thralled by a darkspawn!")
 	team = get_darkspawn_team()
 	team.add_thrall(owner)
@@ -36,7 +36,7 @@
 	return ..()
 
 /datum/antagonist/thrall/on_removal()
-	message_admins("[key_name_admin(owner.current)] was dethralled!")
+	message_admins("[key_name_admin(owner.current)] przestaje być thrallem!")
 	log_game("[key_name(owner.current)] was dethralled!")
 	team?.remove_thrall(owner)
 	if(owner.special_role == "thrall")
@@ -141,7 +141,7 @@
 // Guz cienia
 
 /obj/item/organ/shadowtumor
-	name = "black tumor"
+	name = "czarny guz"
 	desc = "Malutka czarna masa z ciągnącymi się czerwonymi wiciami. Wydaje się kurczyć w świetle."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "blacktumor"

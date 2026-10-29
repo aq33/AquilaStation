@@ -1,5 +1,5 @@
 /obj/machinery/door/airlock/alarmlock
-	name = "glass alarm airlock"
+	name = "przeszklona śluza alarmowa"
 	icon = 'icons/obj/doors/airlocks/station2/glass.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/station2/overlays.dmi'
 	opacity = 0

@@ -1,5 +1,5 @@
 /obj/item/reagent_containers
-	name = "Container"
+	name = "pojemnik"
 	desc = "..."
 	icon = 'icons/obj/chemical.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -84,12 +84,12 @@
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
-		covered = "headgear"
+		covered = "nakrycie głowy"
 	else if(C.is_mouth_covered(mask_only = 1))
-		covered = "mask"
+		covered = "maskę"
 	if(covered)
-		var/who = (isnull(user) || eater == user) ? "twój" : "[eater.p_their()]"
-		balloon_alert(user, "Najpierw zdejmij: [who] [covered]!")
+		var/who = (isnull(user) || eater == user) ? "" : " ([eater])"
+		balloon_alert(user, "Najpierw zdejmij [covered][who]!")
 		return FALSE
 	if(!eater.has_mouth())
 		if(eater == user)
@@ -148,7 +148,7 @@
 		if(isturf(target) && length(reagents.reagent_list) && thrown_by)
 			log_combat(thrown_by, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
 			log_game("[key_name(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
-			message_admins("[ADMIN_LOOKUPFLW(thrown_by)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
+			message_admins("[ADMIN_LOOKUPFLW(thrown_by)] rzutem rozlewa [english_list(reagents.reagent_list)] na [target] w [ADMIN_VERBOSEJMP(target)].")
 		visible_message("<span class='notice'>[src] rozlewa swoją zawartość na [target].</span>")
 		reagents.reaction(target, TOUCH)
 		if(QDELETED(src))

@@ -24,7 +24,7 @@
 /obj/machinery/embedded_controller
 	var/datum/computer/file/embedded_program/program
 
-	name = "embedded controller"
+	name = "wbudowany sterownik"
 	density = FALSE
 
 	var/on = TRUE

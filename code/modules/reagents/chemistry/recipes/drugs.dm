@@ -1,5 +1,5 @@
 /datum/chemical_reaction/space_drugs
-	name = "Space Drugs"
+	name = "Kosmiczne narkotyki"
 	id = /datum/reagent/drug/space_drugs
 	results = list(/datum/reagent/drug/space_drugs = 3)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1)
@@ -42,14 +42,14 @@
 	required_reagents = list(/datum/reagent/medicine/epinephrine = 1, /datum/reagent/medicine/atropine = 1, /datum/reagent/medicine/morphine = 1)
 
 /datum/chemical_reaction/happiness
-	name = "Happiness"
+	name = "Szczęście"
 	id = /datum/reagent/drug/happiness
 	results = list(/datum/reagent/drug/happiness = 4)
 	required_reagents = list(/datum/reagent/nitrous_oxide = 2, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/ketamine
-	name = "Ketamine"
+	name = "Ketamina"
 	id = /datum/reagent/drug/ketamine
 	results = list(/datum/reagent/drug/ketamine = 3)
 	required_reagents = list(/datum/reagent/medicine/morphine = 3, /datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/toxin/fentanyl = 3, /datum/reagent/medicine/epinephrine =3)

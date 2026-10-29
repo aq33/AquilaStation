@@ -11,7 +11,7 @@
 
 /datum/round_event/ghost_role/slaughter
 	minimum_required = 1
-	role_name = "slaughter demon"
+	role_name = "demon rzezi"
 
 /datum/round_event/ghost_role/slaughter/spawn_role()
 	var/list/candidates = get_candidates(ROLE_SLAUGHTER_DEMON, null)
@@ -29,7 +29,7 @@
 			spawn_locs += L.loc
 
 	if(!spawn_locs)
-		message_admins("No valid spawn locations found, aborting...")
+		message_admins("Brak prawidłowych miejsc pojawienia się, przerywam...")
 		return MAP_ERROR
 
 	var/obj/effect/dummy/phased_mob/slaughter/holder = new /obj/effect/dummy/phased_mob/slaughter((pick(spawn_locs)))
@@ -42,7 +42,7 @@
 	to_chat(S, S.playstyle_string)
 	to_chat(S, "<B>Obecnie nie przebywasz na tym samym planie egzystencji co statek. Użyj Krwawego Pełzu przy kałuży krwi, by się zmaterializować.</B>")
 	SEND_SOUND(S, 'sound/magic/demon_dies.ogg')
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a slaughter demon by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(S)] zostaje demonem rzezi w wyniku eventu.")
 	log_game("[key_name(S)] was spawned as a slaughter demon by an event.")
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN

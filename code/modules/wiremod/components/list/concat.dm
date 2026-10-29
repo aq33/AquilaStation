@@ -4,7 +4,7 @@
  * Concatenates a list with a separator
  */
 /obj/item/circuit_component/concat_list
-	display_name = "Concatenate List"
+	display_name = "Sklejanie listy"
 	display_desc = "Komponent, który łączy listę w jeden ciąg znaków z separatorem."
 
 	/// The input port

@@ -10,7 +10,7 @@
 
 /datum/round_event/ghost_role/fugitives
 	minimum_required = 1
-	role_name = "fugitive"
+	role_name = "zbieg"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/fugitives/spawn_role()
@@ -19,7 +19,7 @@
 		if(istype(X.loc, /area/maintenance))
 			possible_spawns += X
 	if(!possible_spawns.len)
-		message_admins("No valid spawn locations found, aborting...")
+		message_admins("Brak prawidłowych miejsc pojawienia się, przerywam...")
 		return MAP_ERROR
 	var/turf/landing_turf = pick(possible_spawns)
 	var/list/possible_backstories = list()
@@ -58,7 +58,7 @@
 	playsound(src, 'sound/weapons/emitter.ogg', 50, 1)
 	new /obj/item/storage/toolbox/mechanical(landing_turf) //so they can actually escape maint
 	addtimer(CALLBACK(src, PROC_REF(spawn_hunters)), 10 MINUTES)
-	role_name = "fugitive hunter"
+	role_name = "łowca zbiegów"
 	return SUCCESSFUL_SPAWN
 
 /datum/round_event/ghost_role/fugitives/proc/gear_fugitive(var/mob/dead/selected, var/turf/landing_turf, backstory) //spawns normal fugitive
@@ -81,7 +81,7 @@
 			S.equipOutfit(/datum/outfit/waldo)
 		if("synth")
 			S.equipOutfit(/datum/outfit/synthetic)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Fugitive by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(S)] zostaje zbiegiem w wyniku eventu.")
 	log_game("[key_name(S)] was spawned as a Fugitive by an event.")
 	spawned_mobs += S
 	return S

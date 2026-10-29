@@ -4,7 +4,7 @@
  * General logic unit with AND OR capabilities
  */
 /obj/item/circuit_component/compare/logic
-	display_name = "Logic"
+	display_name = "Logika"
 	display_desc = "Komponent z funkcjami „i” oraz „lub”."
 
 /obj/item/circuit_component/compare/logic/populate_options()

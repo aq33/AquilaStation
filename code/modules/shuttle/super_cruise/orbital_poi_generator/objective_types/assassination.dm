@@ -1,5 +1,5 @@
 /datum/orbital_objective/assassination
-	name = "Assassination"
+	name = "Zabójstwo"
 	var/generated = FALSE
 	var/mob/mob_to_kill
 	var/suit_type = /obj/item/clothing/suit/space/hardsuit/ancient

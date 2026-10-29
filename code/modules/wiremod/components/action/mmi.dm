@@ -4,7 +4,7 @@
  * Allows an MMI to be inserted into a shell, allowing it to be linked up. Requires a shell.
  */
 /obj/item/circuit_component/mmi
-	display_name = "Man-Machine Interface"
+	display_name = "Interfejs człowiek-maszyna"
 	display_desc = "Komponent, który pozwala MMI wejść do obudowy, by wysyłać sygnały wyjściowe."
 
 	/// The message to send to the MMI in the shell.

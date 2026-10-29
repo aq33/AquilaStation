@@ -3,8 +3,8 @@
 #define TESLA_MAX_BALLS 10
 
 /obj/anomaly/energy_ball
-	name = "energy ball"
-	desc = "An energy ball."
+	name = "kula energii"
+	desc = "Kula energii."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	anchored = TRUE
@@ -33,7 +33,7 @@
 	energy = starting_energy
 	START_PROCESSING(SSobj, src)
 	var/turf/spawned_turf = get_turf(src)
-	message_admins("A tesla has been created at [ADMIN_VERBOSEJMP(spawned_turf)].")
+	message_admins("Powstała kula Tesli w [ADMIN_VERBOSEJMP(spawned_turf)].")
 	investigate_log("(tesla) was created at [AREACOORD(spawned_turf)].", INVESTIGATE_ENGINES)
 
 /obj/anomaly/energy_ball/ex_act(severity, target)
@@ -170,8 +170,8 @@
 
 //Less intensive energy ball for the orbiting ones.
 /obj/effect/energy_ball
-	name = "energy ball"
-	desc = "An energy ball."
+	name = "kula energii"
+	desc = "Kula energii."
 	icon = 'icons/obj/tesla_engine/energy_ball.dmi'
 	icon_state = "energy_ball"
 	pixel_x = -32

@@ -4,7 +4,7 @@
 * Appends a value onto a list, increasing its size by 1
 ***/
 /obj/item/circuit_component/append
-	display_name = "Append Component"
+	display_name = "Dołączanie"
 	display_desc = "Komponent, który dopisuje wartość do listy."
 
 	//Input ports

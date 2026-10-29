@@ -15,7 +15,7 @@
 /datum/outfit/santa/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
-	H.fully_replace_character_name(H.real_name, "Santa Claus")
+	H.fully_replace_character_name(H.real_name, "Święty Mikołaj")
 	if(H.mind)
 		H.mind.assigned_role = "Santa"
 		H.mind.special_role = "Santa"

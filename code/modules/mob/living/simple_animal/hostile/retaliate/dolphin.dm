@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/dolphin
-	name = "space dolphin"
-	desc = "A dolphin in space."
+	name = "kosmiczny delfin"
+	desc = "Delfin w kosmosie."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "dolphin"
 	icon_living = "dolphin"

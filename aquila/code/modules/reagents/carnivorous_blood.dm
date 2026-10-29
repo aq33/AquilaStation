@@ -2,7 +2,7 @@
 // Zmieszana z krwią ofiary uczy się jej DNA (do trzech osób), a we krwi żre ją trzy razy szybciej.
 
 /datum/reagent/toxin/carnivorousblood
-	name = "Carnivorous Blood"
+	name = "Mięsożerna krew"
 	description = "Opracowany przez Interdyne środek biologiczny, który pożera każdą krew podobną do tej, na której go wytrenowano."
 	color = "#C80000"
 	toxpwr = 0
@@ -104,7 +104,7 @@
 	new /obj/item/food/meat/slab/human(src)
 
 /datum/uplink_item/stealthy_weapons/carnivorous_blood
-	name = "Carnivorous Blood"
+	name = "Mięsożerna krew"
 	desc = "Butelka mięsożernej krwi, broni biologicznej Interdyne. Zmieszana z krwią ofiary i wprowadzona do jej krwiobiegu \
 		szybko pożera jej zapas krwi. Karm ją mięsem bogatym w białko, żeby się namnażała."
 	item = /obj/item/storage/box/syndie_kit/carnivorous_blood

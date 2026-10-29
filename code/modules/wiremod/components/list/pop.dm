@@ -5,7 +5,7 @@
 ***/
 
 /obj/item/circuit_component/pop
-	display_name = "Pop Component"
+	display_name = "Zdejmowanie"
 	display_desc = "Usuwa ostatni lub pierwszy element listy i go zwraca."
 
 	//The list port

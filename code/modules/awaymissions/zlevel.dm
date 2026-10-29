@@ -19,8 +19,8 @@ GLOBAL_LIST_INIT(potentialRandomZlevels, generateMapList("awaymissionconfig.txt"
 			G.randomspawns.Add(GLOB.awaydestinations)
 
 /obj/effect/landmark/awaystart
-	name = "away mission spawn"
-	desc = "Randomly picked away mission spawn points."
+	name = "punkt startowy misji wyjazdowej"
+	desc = "Losowo wybierane punkty startowe misji wyjazdowych."
 
 /obj/effect/landmark/awaystart/New()
 	GLOB.awaydestinations += src

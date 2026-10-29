@@ -4,7 +4,7 @@
  * Return the health of a mob
  */
 /obj/item/circuit_component/health
-	display_name = "Get Health"
+	display_name = "Zdrowie"
 	display_desc = "Komponent, który zwraca zdrowie organizmu."
 
 	/// The input port
@@ -27,7 +27,7 @@
 
 /obj/item/circuit_component/health/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Maximum Range: [max_range] tiles", "orange", "info")
+	. += create_ui_notice("Maksymalny zasięg (pola): [max_range]", "orange", "info")
 
 /obj/item/circuit_component/health/Initialize(mapload)
 	. = ..()

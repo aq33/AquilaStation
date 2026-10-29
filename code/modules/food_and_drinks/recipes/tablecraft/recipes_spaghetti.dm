@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////SPAGHETTI////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/tomatopasta
-	name = "Tomato pasta"
+	name = "spaghetti z pomidorami"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/grown/tomato = 2
@@ -13,7 +13,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/copypasta
-	name = "Copypasta"
+	name = "kopiopasta"
 	reqs = list(
 		/obj/item/food/spaghetti/pastatomato = 2
 	)
@@ -21,7 +21,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spaghettimeatball
-	name = "Spaghetti meatball"
+	name = "spaghetti z klopsikami"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meatball = 2
@@ -30,7 +30,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spesslaw
-	name = "Spesslaw"
+	name = "kosmoprawnik"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meatball = 4
@@ -39,7 +39,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/beefnoodle
-	name = "Beef noodle"
+	name = "makaron z wołowiną"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
@@ -50,7 +50,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/chowmein
-	name = "Chowmein"
+	name = "chow mein"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/meat/cutlet = 1,
@@ -61,7 +61,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/butternoodles
-	name = "Butter Noodles"
+	name = "makaron z masłem"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/butter = 1
@@ -70,7 +70,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/kasespatzle
-	name = "Käsespätzle"
+	name = "käsespätzle"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/datum/reagent/consumable/eggyolk = 10,
@@ -80,7 +80,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/spaghettinapolitan
-	name = "Spaghetti Napolitan"
+	name = "spaghetti napolitan"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/datum/reagent/consumable/ketchup = 10,
@@ -91,7 +91,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/lasagna
-	name = "Lasagna"
+	name = "lasagne"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 2,
 		/obj/item/food/grown/tomato = 1,
@@ -102,7 +102,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/glassnoodles
-	name = "Glass Noodles"
+	name = "makaron szklany"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/grown/carrot = 1,
@@ -113,7 +113,7 @@
 	subcategory = CAT_SPAGHETTI
 
 /datum/crafting_recipe/food/carbonara
-	name = "Spaghetti Carbonara"
+	name = "spaghetti carbonara"
 	reqs = list(
 		/obj/item/food/spaghetti/boiledspaghetti = 1,
 		/obj/item/food/cheese/wedge = 1,

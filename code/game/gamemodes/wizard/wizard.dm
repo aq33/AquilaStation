@@ -64,7 +64,7 @@
 
 /datum/game_mode/wizard/special_report()
 	if(finished)
-		return "<div class='panel redborder'><span class='redtext big'>Czarodziej[(wizards.len>1)?"s":""] został zabity przez załogę! Federacja Kosmicznych Czarodziejów dostała lekcję i na pewno nie postawią tutaj nogi przez dłuższy czas!</span></div>"
+		return "<div class='panel redborder'><span class='redtext big'>[(wizards.len>1) ? "Czarodzieje zostali zabici" : "Czarodziej został zabity"] przez załogę! Federacja Kosmicznych Czarodziejów dostała lekcję i na pewno nie postawią tutaj nogi przez dłuższy czas!</span></div>"
 
 //returns whether the mob is a wizard (or apprentice)
 /proc/iswizard(mob/living/M)

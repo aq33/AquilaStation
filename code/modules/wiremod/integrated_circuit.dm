@@ -6,7 +6,7 @@
  * Has a limited amount of power.
  */
 /obj/item/integrated_circuit
-	name = "integrated circuit"
+	name = "układ scalony"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "integrated_circuit"
 	item_state = "electronic"

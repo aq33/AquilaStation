@@ -1,6 +1,6 @@
 /datum/overmap_objective/cargo/donation/blood
-	name = "Donate blood types"
-	desc = "Donate 1 or more blood types"
+	name = "Przekaż krew"
+	desc = "Przekaż co najmniej jedną grupę krwi"
 	var/list/possible_blood_types = list(
 		"O-",
 		"O+",
@@ -13,7 +13,7 @@
 		// "LE",
 		// "OZ",
 	)
-	crate_name = "Blood Packs crate"
+	crate_name = "Skrzynia z workami krwi"
 
 /datum/overmap_objective/cargo/donation/blood/New()
 	var/datum/freight_type/single/reagent/blood/C = new( pick( possible_blood_types ) )

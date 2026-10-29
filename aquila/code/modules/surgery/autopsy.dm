@@ -169,7 +169,7 @@
 	return TRUE
 
 /datum/design/autopsy_scanner
-	name = "Autopsy Scanner"
+	name = "Skaner autopsyjny"
 	desc = "Skaner do autopsji zwłok."
 	id = "autopsy_scanner"
 	build_type = PROTOLATHE

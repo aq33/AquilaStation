@@ -1,5 +1,5 @@
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = "rękawice"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'

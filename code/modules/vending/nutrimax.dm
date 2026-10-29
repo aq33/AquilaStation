@@ -1,6 +1,6 @@
 /obj/machinery/vending/hydronutrients
 	name = "\improper NutriMax"
-	desc = "A plant nutrients vendor."
+	desc = "Automat z nawozami dla roślin."
 	product_slogans = "Nie jesteś zadowolony, że nie musisz nawozić w sposób naturalny?;Teraz tylko 50% smrodu!;Rośliny to też ludzie!"
 	product_ads = "Lubimy rośliny!;Nie chcesz trochę?;Najzieleńsze kciuki jakie się da.;Lubimy duże rośliny.;Miękka gleba..."
 	icon_state = "nutri"

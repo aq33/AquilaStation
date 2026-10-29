@@ -1,12 +1,12 @@
 /obj/effect/turf_decal/weather
-	name = "sandy floor"
+	name = "piaszczysta podłoga"
 	icon_state = "sandyfloor"
 
 /obj/effect/turf_decal/weather/snow
-	name = "snowy floor"
+	name = "zaśnieżona podłoga"
 	icon_state = "snowyfloor"
 
 /obj/effect/turf_decal/weather/snow/corner
-	name = "snow corner piece"
+	name = "narożnik śniegu"
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snow_corner"

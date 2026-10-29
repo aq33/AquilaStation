@@ -2,61 +2,61 @@
 
 
 /datum/chemical_reaction/sterilizine
-	name = "Sterilizine"
+	name = "Sterylizyna"
 	id = /datum/reagent/space_cleaner/sterilizine
 	results = list(/datum/reagent/space_cleaner/sterilizine = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/cooking_oil
-	name = "Cooking Oil"
+	name = "Olej roślinny"
 	id = /datum/reagent/consumable/nutriment/fat/oil
 	results = list(/datum/reagent/consumable/nutriment/fat/oil = 4)
 	required_reagents = list(/datum/reagent/hydrogen = 1, /datum/reagent/oil = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/lube
-	name = "Space Lube"
+	name = "Kosmiczny lubrykant"
 	id = /datum/reagent/lube
 	results = list(/datum/reagent/lube = 4)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/spraytan
-	name = "Spray Tan"
+	name = "Samoopalacz w sprayu"
 	id = /datum/reagent/spraytan
 	results = list(/datum/reagent/spraytan = 2)
 	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/oil = 1)
 
 /datum/chemical_reaction/spraytan2
-	name = "Spray Tan"
+	name = "Samoopalacz w sprayu"
 	id = /datum/reagent/spraytan
 	results = list(/datum/reagent/spraytan = 2)
 	required_reagents = list(/datum/reagent/consumable/orangejuice = 1, /datum/reagent/consumable/nutriment/fat/oil = 1)
 
 /datum/chemical_reaction/impedrezene
-	name = "Impedrezene"
+	name = "Impedrezen"
 	id = /datum/reagent/impedrezene
 	results = list(/datum/reagent/impedrezene = 2)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/cryptobiolin
-	name = "Cryptobiolin"
+	name = "Kryptobiolina"
 	id = /datum/reagent/cryptobiolin
 	results = list(/datum/reagent/cryptobiolin = 3)
 	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/glycerol
-	name = "Glycerol"
+	name = "Glicerol"
 	id = /datum/reagent/glycerol
 	results = list(/datum/reagent/glycerol = 1)
 	required_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 3, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/sodiumchloride
-	name = "Sodium Chloride"
+	name = "Sól kuchenna"
 	id = /datum/reagent/consumable/sodiumchloride
 	results = list(/datum/reagent/consumable/sodiumchloride = 3)
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/plasmasolidification
-	name = "Solid Plasma"
+	name = "Zestalanie plazmy"
 	id = "solidplasma"
 	required_reagents = list(/datum/reagent/iron = 5, /datum/reagent/consumable/frostoil = 5, /datum/reagent/toxin/plasma = 20)
 	mob_react = FALSE
@@ -67,7 +67,7 @@
 		new /obj/item/stack/sheet/mineral/plasma(location)
 
 /datum/chemical_reaction/goldsolidification
-	name = "Solid Gold"
+	name = "Zestalanie złota"
 	id = "solidgold"
 	required_reagents = list(/datum/reagent/consumable/frostoil = 5, /datum/reagent/gold = 20, /datum/reagent/iron = 1)
 	mob_react = FALSE
@@ -78,7 +78,7 @@
 		new /obj/item/stack/sheet/mineral/gold(location)
 
 /datum/chemical_reaction/adamantinesolidification
-	name = "Adamantine Sheet"
+	name = "Arkusz adamantytu"
 	id = "solidadam"
 	required_reagents = list(/datum/reagent/gold = 5, /datum/reagent/consumable/frostoil = 5, /datum/reagent/liquidadamantine = 10)
 	mob_react = FALSE
@@ -89,13 +89,13 @@
 		new /obj/item/stack/sheet/mineral/adamantine(location)
 
 /datum/chemical_reaction/capsaicincondensation
-	name = "Capsaicincondensation"
+	name = "Skondensowana kapsaicyna"
 	id = "capsaicincondensation"
 	results = list(/datum/reagent/consumable/condensedcapsaicin = 5)
 	required_reagents = list(/datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/ethanol = 5)
 
 /datum/chemical_reaction/soapification
-	name = "Soapification"
+	name = "Zmydlanie"
 	id = "soapification"
 	required_reagents = list(/datum/reagent/liquidgibs = 10, /datum/reagent/lye  = 10) // requires two scooped gib tiles
 	required_temp = 374
@@ -107,7 +107,7 @@
 		new /obj/item/soap/homemade(location)
 
 /datum/chemical_reaction/candlefication
-	name = "Candlefication"
+	name = "Odlewanie świecy"
 	id = "candlefication"
 	required_reagents = list(/datum/reagent/liquidgibs = 5, /datum/reagent/oxygen  = 5) //
 	required_temp = 374
@@ -119,7 +119,7 @@
 		new /obj/item/candle(location)
 
 /datum/chemical_reaction/meatification
-	name = "Meatification"
+	name = "Przemiana w mięso"
 	id = "meatification"
 	required_reagents = list(/datum/reagent/liquidgibs = 10, /datum/reagent/consumable/nutriment = 10)
 	mob_react = FALSE
@@ -132,14 +132,14 @@
 	return
 
 /datum/chemical_reaction/carbondioxide
-	name = "Direct Carbon Oxidation"
+	name = "Bezpośrednie utlenianie węgla"
 	id = "burningcarbon"
 	results = list(/datum/reagent/carbondioxide = 3)
 	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 2)
 	required_temp = 777 // pure carbon isn't especially reactive.
 
 /datum/chemical_reaction/nitrous_oxide
-	name = "Nitrous Oxide"
+	name = "Podtlenek azotu"
 	id = /datum/reagent/nitrous_oxide
 	results = list(/datum/reagent/nitrous_oxide = 5)
 	required_reagents = list(/datum/reagent/ammonia = 2, /datum/reagent/nitrogen = 1, /datum/reagent/oxygen = 2)
@@ -147,7 +147,7 @@
 
 //Technically a mutation toxin
 /datum/chemical_reaction/mulligan
-	name = "Mulligan"
+	name = "Toksyna Mulligana"
 	id = /datum/reagent/mulligan
 	results = list(/datum/reagent/mulligan = 1)
 	required_reagents = list(/datum/reagent/mutationtoxin/jelly = 1, /datum/reagent/toxin/mutagen = 1)
@@ -155,79 +155,79 @@
 ////////////////////////////////// VIROLOGY //////////////////////////////////////////
 
 /datum/chemical_reaction/virus_food
-	name = "Virus Food"
+	name = "Pożywka dla wirusów"
 	id = /datum/reagent/consumable/virus_food
 	results = list(/datum/reagent/consumable/virus_food = 15)
 	required_reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/milk = 5)
 
 /datum/chemical_reaction/virus_food_mutagen
-	name = "mutagenic agar"
+	name = "Agar mutagenny"
 	id = /datum/reagent/toxin/mutagen/mutagenvirusfood
 	results = list(/datum/reagent/toxin/mutagen/mutagenvirusfood = 1)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/consumable/virus_food = 1)
 
 /datum/chemical_reaction/virus_food_synaptizine
-	name = "virus rations"
+	name = "Racje dla wirusów"
 	id = /datum/reagent/medicine/synaptizine/synaptizinevirusfood
 	results = list(/datum/reagent/medicine/synaptizine/synaptizinevirusfood = 1)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/consumable/virus_food = 1)
 
 /datum/chemical_reaction/virus_food_plasma
-	name = "virus plasma"
+	name = "Plazma wirusowa"
 	id = /datum/reagent/toxin/plasma/plasmavirusfood
 	results = list(/datum/reagent/toxin/plasma/plasmavirusfood = 1)
 	required_reagents = list(/datum/reagent/toxin/plasma = 1, /datum/reagent/consumable/virus_food = 1)
 
 /datum/chemical_reaction/virus_food_plasma_synaptizine
-	name = "weakened virus plasma"
+	name = "Osłabiona plazma wirusowa"
 	id = /datum/reagent/toxin/plasma/plasmavirusfood/weak
 	results = list(/datum/reagent/toxin/plasma/plasmavirusfood/weak = 2)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/plasma/plasmavirusfood = 1)
 
 /datum/chemical_reaction/virus_food_mutagen_sugar
-	name = "sucrose agar"
+	name = "Agar sacharozowy"
 	id = /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
 	results = list(/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar = 2)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/toxin/mutagen/mutagenvirusfood = 1)
 
 /datum/chemical_reaction/virus_food_mutagen_salineglucose
-	name = "sucrose agar"
+	name = "Agar sacharozowy"
 	id = "salineglucosevirusfood"
 	results = list(/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar = 2)
 	required_reagents = list(/datum/reagent/medicine/salglu_solution = 1, /datum/reagent/toxin/mutagen/mutagenvirusfood = 1)
 
 /datum/chemical_reaction/virus_food_uranium
-	name = "Decaying uranium gel"
+	name = "Rozpadający się żel uranowy"
 	id = /datum/reagent/uranium/uraniumvirusfood
 	results = list(/datum/reagent/uranium/uraniumvirusfood = 1)
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/consumable/virus_food = 1)
 
 /datum/chemical_reaction/virus_food_uranium_plasma
-	name = "Unstable uranium gel"
+	name = "Niestabilny żel uranowy"
 	id = "uraniumvirusfood_plasma"
 	results = list(/datum/reagent/uranium/uraniumvirusfood/unstable = 1)
 	required_reagents = list(/datum/reagent/uranium = 2, /datum/reagent/toxin/plasma/plasmavirusfood = 1)
 
 /datum/chemical_reaction/virus_food_uranium_plasma_gold
-	name = "Stable uranium gel"
+	name = "Stabilny żel uranowy"
 	id = "uraniumvirusfood_gold"
 	results = list(/datum/reagent/uranium/uraniumvirusfood/stable = 1)
 	required_reagents = list(/datum/reagent/uranium = 5, /datum/reagent/gold = 5, /datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/virus_food_uranium_plasma_silver
-	name = "Stable uranium gel"
+	name = "Stabilny żel uranowy"
 	id = "uraniumvirusfood_silver"
 	results = list(/datum/reagent/uranium/uraniumvirusfood/stable = 1)
 	required_reagents = list(/datum/reagent/uranium = 5, /datum/reagent/silver = 5, /datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/virus_food_laughter
-	name = "Anomolous virus food"
+	name = "Anomalna pożywka dla wirusów"
 	id = "virusfood_laughter"
 	results = list(/datum/reagent/consumable/laughter/laughtervirusfood = 1)
 	required_reagents = list(/datum/reagent/consumable/laughter = 5, /datum/reagent/consumable/virus_food = 1)
 
 /datum/chemical_reaction/virus_food_admin
-	name = "Highly unstable virus Food"
+	name = "Wysoce niestabilna pożywka dla wirusów"
 	id = "virusfood_admin"
 	results = list(/datum/reagent/consumable/virus_food/advvirusfood = 1)
 	required_reagents = list(/datum/reagent/consumable/virus_food/viralbase = 1, /datum/reagent/uranium = 20)
@@ -235,7 +235,7 @@
 
 //Adds a virus symptom from the level_min to level_max range
 /datum/chemical_reaction/mix_virus
-	name = "Mix Virus"
+	name = "Mieszanie wirusa"
 	id = "mixvirus"
 	results = list(/datum/reagent/blood = 1) //NSV13 Need Synthflesh Factories
 	required_reagents = list(/datum/reagent/consumable/virus_food = 1)
@@ -253,91 +253,91 @@
 			D.logchanges(holder, "EVOLVE")
 
 /datum/chemical_reaction/mix_virus/mix_virus_2
-	name = "Mix Virus 2"
+	name = "Mieszanie wirusa 2"
 	id = "mixvirus2"
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1)
 	level_min = 2
 	level_max = 4
 
 /datum/chemical_reaction/mix_virus/mix_virus_3
-	name = "Mix Virus 3"
+	name = "Mieszanie wirusa 3"
 	id = "mixvirus3"
 	required_reagents = list(/datum/reagent/toxin/plasma = 1)
 	level_min = 4
 	level_max = 6
 
 /datum/chemical_reaction/mix_virus/mix_virus_4
-	name = "Mix Virus 4"
+	name = "Mieszanie wirusa 4"
 	id = "mixvirus4"
 	required_reagents = list(/datum/reagent/uranium = 1)
 	level_min = 5
 	level_max = 6
 
 /datum/chemical_reaction/mix_virus/mix_virus_5
-	name = "Mix Virus 5"
+	name = "Mieszanie wirusa 5"
 	id = "mixvirus5"
 	required_reagents = list(/datum/reagent/toxin/mutagen/mutagenvirusfood = 1)
 	level_min = 3
 	level_max = 3
 
 /datum/chemical_reaction/mix_virus/mix_virus_6
-	name = "Mix Virus 6"
+	name = "Mieszanie wirusa 6"
 	id = "mixvirus6"
 	required_reagents = list(/datum/reagent/toxin/mutagen/mutagenvirusfood/sugar = 1)
 	level_min = 4
 	level_max = 4
 
 /datum/chemical_reaction/mix_virus/mix_virus_7
-	name = "Mix Virus 7"
+	name = "Mieszanie wirusa 7"
 	id = "mixvirus7"
 	required_reagents = list(/datum/reagent/toxin/plasma/plasmavirusfood/weak = 1)
 	level_min = 5
 	level_max = 5
 
 /datum/chemical_reaction/mix_virus/mix_virus_8
-	name = "Mix Virus 8"
+	name = "Mieszanie wirusa 8"
 	id = "mixvirus8"
 	required_reagents = list(/datum/reagent/toxin/plasma/plasmavirusfood = 1)
 	level_min = 6
 	level_max = 6
 
 /datum/chemical_reaction/mix_virus/mix_virus_9
-	name = "Mix Virus 9"
+	name = "Mieszanie wirusa 9"
 	id = "mixvirus9"
 	required_reagents = list(/datum/reagent/medicine/synaptizine/synaptizinevirusfood = 1)
 	level_min = 1
 	level_max = 1
 
 /datum/chemical_reaction/mix_virus/mix_virus_10
-	name = "Mix Virus 10"
+	name = "Mieszanie wirusa 10"
 	id = "mixvirus10"
 	required_reagents = list(/datum/reagent/uranium/uraniumvirusfood = 1)
 	level_min = 6
 	level_max = 7
 
 /datum/chemical_reaction/mix_virus/mix_virus_11
-	name = "Mix Virus 11"
+	name = "Mieszanie wirusa 11"
 	id = "mixvirus11"
 	required_reagents = list(/datum/reagent/uranium/uraniumvirusfood/unstable = 1)
 	level_min = 7
 	level_max = 7
 
 /datum/chemical_reaction/mix_virus/mix_virus_12
-	name = "Mix Virus 12"
+	name = "Mieszanie wirusa 12"
 	id = "mixvirus12"
 	required_reagents = list(/datum/reagent/uranium/uraniumvirusfood/stable = 1)
 	level_min = 8
 	level_max = 8
 
 /datum/chemical_reaction/mix_virus/mix_virus_13
-	name = "Mix Virus 13"
+	name = "Mieszanie wirusa 13"
 	id = "mixvirus13"
 	required_reagents = list(/datum/reagent/consumable/laughter/laughtervirusfood = 1)
 	level_min = 0
 	level_max = 0
 
 /datum/chemical_reaction/mix_virus/mix_virus_14
-	name = "Mix Virus 14"
+	name = "Mieszanie wirusa 14"
 	id = "mixvirus14"
 	required_reagents = list(/datum/reagent/consumable/virus_food/advvirusfood = 1)
 	level_min = 9
@@ -345,7 +345,7 @@
 
 //removes a random disease symptom
 /datum/chemical_reaction/mix_virus/rem_virus
-	name = "Devolve Virus"
+	name = "Dewolucja wirusa"
 	id = "remvirus"
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
@@ -361,7 +361,7 @@
 
 //prevents a random symptom from showing while keeping the stats
 /datum/chemical_reaction/mix_virus/neuter_virus
-	name = "Neuter Virus"
+	name = "Wykastrowanie wirusa"
 	id = "neutervirus"
 	required_reagents = list(/datum/reagent/toxin/formaldehyde = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
@@ -377,7 +377,7 @@
 
 //prevents the altering of disease symptoms
 /datum/chemical_reaction/mix_virus/preserve_virus
-	name = "Preserve Virus"
+	name = "Konserwacja wirusa"
 	id = "preservevirus"
 	required_reagents = list(/datum/reagent/cryostylane = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
@@ -393,7 +393,7 @@
 
 //prevents the disease from spreading via symptoms
 /datum/chemical_reaction/mix_virus/falter_virus
-	name = "Falter Virus"
+	name = "Osłabienie wirusa"
 	id = "faltervirus"
 	required_reagents = list(/datum/reagent/medicine/spaceacillin = 1)
 	required_catalysts = list(/datum/reagent/blood = 1)
@@ -406,7 +406,7 @@
 		if(D)
 			D.faltered = TRUE
 			D.spread_flags = DISEASE_SPREAD_FALTERED
-			D.spread_text = "Intentional Injection"
+			D.spread_text = "Celowy zastrzyk"
 			D.logchanges(holder, "FALTER")
 
 
@@ -414,13 +414,13 @@
 
 
 /datum/chemical_reaction/surfactant
-	name = "Foam surfactant"
+	name = "Fluorosurfaktant"
 	id = "foam surfactant"
 	results = list(/datum/reagent/fluorosurfactant = 5)
 	required_reagents = list(/datum/reagent/fluorine = 2, /datum/reagent/carbon = 2, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/foam
-	name = "Foam"
+	name = "Piana"
 	id = "foam"
 	required_reagents = list(/datum/reagent/fluorosurfactant = 1, /datum/reagent/water = 1)
 	mob_react = FALSE
@@ -437,7 +437,7 @@
 
 
 /datum/chemical_reaction/metalfoam
-	name = "Metal Foam"
+	name = "Piana metalowa"
 	id = "metalfoam"
 	required_reagents = list(/datum/reagent/aluminium = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/fluacid = 1)
 	mob_react = FALSE
@@ -454,7 +454,7 @@
 	holder.clear_reagents()
 
 /datum/chemical_reaction/smart_foam
-	name = "Smart Metal Foam"
+	name = "Inteligentna piana metalowa"
 	id = "smart_metal_foam"
 	required_reagents = list(/datum/reagent/aluminium = 3, /datum/reagent/smart_foaming_agent = 1, /datum/reagent/toxin/acid/fluacid = 1)
 	mob_react = TRUE
@@ -468,7 +468,7 @@
 	holder.clear_reagents()
 
 /datum/chemical_reaction/ironfoam
-	name = "Iron Foam"
+	name = "Piana żelazna"
 	id = "ironlfoam"
 	required_reagents = list(/datum/reagent/iron = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/fluacid = 1)
 	mob_react = FALSE
@@ -483,13 +483,13 @@
 	holder.clear_reagents()
 
 /datum/chemical_reaction/foaming_agent
-	name = "Foaming Agent"
+	name = "Środek pianotwórczy"
 	id = /datum/reagent/foaming_agent
 	results = list(/datum/reagent/foaming_agent = 1)
 	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/smart_foaming_agent
-	name = "Smart foaming Agent"
+	name = "Inteligentny środek pianotwórczy"
 	id = /datum/reagent/smart_foaming_agent
 	results = list(/datum/reagent/smart_foaming_agent = 3)
 	required_reagents = list(/datum/reagent/foaming_agent = 3, /datum/reagent/acetone = 1, /datum/reagent/iron = 1)
@@ -499,19 +499,19 @@
 /////////////////////////////// Cleaning and hydroponics /////////////////////////////////////////////////
 
 /datum/chemical_reaction/ammonia
-	name = "Ammonia"
+	name = "Amoniak"
 	id = /datum/reagent/ammonia
 	results = list(/datum/reagent/ammonia = 3)
 	required_reagents = list(/datum/reagent/hydrogen = 3, /datum/reagent/nitrogen = 1)
 
 /datum/chemical_reaction/diethylamine
-	name = "Diethylamine"
+	name = "Dietyloamina"
 	id = /datum/reagent/diethylamine
 	results = list(/datum/reagent/diethylamine = 2)
 	required_reagents = list (/datum/reagent/ammonia = 1, /datum/reagent/consumable/ethanol = 1)
 
 /datum/chemical_reaction/space_cleaner
-	name = "Space cleaner"
+	name = "Kosmiczny środek czyszczący"
 	id = /datum/reagent/space_cleaner
 	results = list(/datum/reagent/space_cleaner = 2)
 	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/water = 1)
@@ -523,19 +523,19 @@
 	required_reagents = list(/datum/reagent/toxin = 1, /datum/reagent/water = 4)
 
 /datum/chemical_reaction/weedkiller
-	name = "Weed Killer"
+	name = "Środek chwastobójczy"
 	id = /datum/reagent/toxin/plantbgone/weedkiller
 	results = list(/datum/reagent/toxin/plantbgone/weedkiller = 5)
 	required_reagents = list(/datum/reagent/toxin = 1, /datum/reagent/ammonia = 4)
 
 /datum/chemical_reaction/pestkiller
-	name = "Pest Killer"
+	name = "Środek na szkodniki"
 	id = /datum/reagent/toxin/pestkiller
 	results = list(/datum/reagent/toxin/pestkiller = 5)
 	required_reagents = list(/datum/reagent/toxin = 1, /datum/reagent/consumable/ethanol = 4)
 
 /datum/chemical_reaction/drying_agent
-	name = "Drying agent"
+	name = "Środek osuszający"
 	id = /datum/reagent/drying_agent
 	results = list(/datum/reagent/drying_agent = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 2, /datum/reagent/consumable/ethanol = 1, /datum/reagent/sodium = 1)
@@ -555,7 +555,7 @@
 	required_reagents = list(/datum/reagent/drug/space_drugs = 1, /datum/reagent/blood = 1)
 
 /datum/chemical_reaction/oil
-	name = "Oil"
+	name = "Olej"
 	id = /datum/reagent/oil
 	results = list(/datum/reagent/oil = 3)
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/carbon = 1, /datum/reagent/hydrogen = 1)
@@ -567,7 +567,7 @@
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/chlorine = 1, /datum/reagent/oil = 1)
 
 /datum/chemical_reaction/ash
-	name = "Ash"
+	name = "Popiół"
 	id = /datum/reagent/ash
 	results = list(/datum/reagent/ash = 1)
 	required_reagents = list(/datum/reagent/oil = 1)
@@ -580,7 +580,7 @@
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/uranium/radium = 1, /datum/reagent/drug/space_drugs = 1, /datum/reagent/medicine/cryoxadone = 1, /datum/reagent/consumable/triple_citrus = 1)
 
 /datum/chemical_reaction/life
-	name = "Life"
+	name = "Życie"
 	id = "life"
 	required_reagents = list(/datum/reagent/medicine/strange_reagent = 1, /datum/reagent/medicine/synthflesh = 1, /datum/reagent/blood = 1)
 	required_temp = 374
@@ -589,7 +589,7 @@
 	chemical_mob_spawn(holder, rand(1, round(created_volume, 1)), "Life (hostile)") //defaults to HOSTILE_SPAWN
 
 /datum/chemical_reaction/life_friendly
-	name = "Life (Friendly)"
+	name = "Życie (przyjazne)"
 	id = "life_friendly"
 	required_reagents = list(/datum/reagent/medicine/strange_reagent = 1, /datum/reagent/medicine/synthflesh = 1, /datum/reagent/consumable/sugar = 1)
 	required_temp = 374
@@ -598,7 +598,7 @@
 	chemical_mob_spawn(holder, rand(1, round(created_volume, 1)), "Life (friendly)", FRIENDLY_SPAWN)
 
 /datum/chemical_reaction/corgium
-	name = "corgium"
+	name = "Corgium"
 	id = "corgium"
 	required_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/colorful_reagent = 1, /datum/reagent/medicine/strange_reagent = 1, /datum/reagent/blood = 1)
 
@@ -649,7 +649,7 @@
 	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/water = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/royal_bee_jelly
-	name = "royal bee jelly"
+	name = "Mleczko pszczele"
 	id = /datum/reagent/royal_bee_jelly
 	results = list(/datum/reagent/royal_bee_jelly = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 10, /datum/reagent/consumable/honey = 40)
@@ -661,7 +661,7 @@
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/banana = 1)
 
 /datum/chemical_reaction/plastic_polymers
-	name = "plastic polymers"
+	name = "Polimery plastiku"
 	id = /datum/reagent/plastic_polymers
 	required_reagents = list(/datum/reagent/oil = 5, /datum/reagent/toxin/acid = 2, /datum/reagent/ash = 3)
 	required_temp = 374 //lazily consistent with soap & other crafted objects generically created with heat.
@@ -785,13 +785,13 @@
 	required_reagents  = list(/datum/reagent/aslimetoxin = 5, /datum/reagent/toxin/plasma = 60, /datum/reagent/uranium = 20)
 
 /datum/chemical_reaction/ants // Breeding ants together, high sugar cost makes this take a while to farm.
-	name = "Ant breeding" //NSV13 - our reactions carry a name and id
+	name = "Hodowla mrówek" //NSV13 - our reactions carry a name and id
 	id = "ants"
 	results = list(/datum/reagent/ants = 3)
 	required_reagents = list(/datum/reagent/ants = 2, /datum/reagent/consumable/sugar = 8)
 
 /datum/chemical_reaction/ant_slurry // We're basically glueing ants together with synthflesh & maint sludge to make a bigger ant.
-	name = "Ant slurry"
+	name = "Mrówcza breja"
 	id = "ant_slurry"
 	required_reagents = list(/datum/reagent/ants = 50, /datum/reagent/medicine/synthflesh = 20, /datum/reagent/ammonia = 5)
 	required_temp = 480

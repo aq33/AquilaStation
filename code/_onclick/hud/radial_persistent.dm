@@ -3,7 +3,7 @@
 */
 
 /atom/movable/screen/radial/persistent/center
-	name = "Close Menu"
+	name = "Zamknij menu"
 	icon_state = "radial_center"
 
 /atom/movable/screen/radial/persistent/center/Click(location, control, params)

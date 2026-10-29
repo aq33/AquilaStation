@@ -5,7 +5,7 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/arbitrary_input_amount/arithmetic
-	display_name = "Arithmetic"
+	display_name = "Arytmetyka"
 	display_desc = "Ogólny komponent arytmetyczny z możliwościami arytmetycznymi."
 
 	//The type of port

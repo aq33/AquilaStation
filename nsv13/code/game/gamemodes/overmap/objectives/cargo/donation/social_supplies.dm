@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/donation/social_supplies
-	name = "Donate social supplies"
-	desc = "Donate 1 or more social supplies"
-	crate_name = "Social Supplies crate"
+	name = "Przekaż zaopatrzenie na imprezę"
+	desc = "Przekaż co najmniej jedną partię zaopatrzenia na imprezę"
+	crate_name = "Skrzynia z zaopatrzeniem na imprezę"
 
 /datum/overmap_objective/cargo/donation/social_supplies/New()
 	// Pick a cake

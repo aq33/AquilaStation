@@ -4,7 +4,7 @@
  * Return the index of a list
  */
 /obj/item/circuit_component/indexer/index
-	display_name = "Index List"
+	display_name = "Indeks listy"
 	display_desc = "Komponent, który zwraca wartość listy pod podanym indeksem."
 
 	/// The result from the output

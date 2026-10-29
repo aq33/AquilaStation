@@ -1,6 +1,6 @@
 /obj/machinery/vending/magivend
 	name = "\improper MagiVend"
-	desc = "A magic vending machine."
+	desc = "Magiczny automat."
 	icon_state = "MagiVend"
 	product_slogans = "Ciskaj zaklęciami prawidłowo z MagiVend!;Bądź swoim własnym Houdinim! Użyj MagiVend!"
 	vend_reply = "Czarującego wieczoru!"

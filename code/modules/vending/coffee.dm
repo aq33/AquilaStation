@@ -1,6 +1,6 @@
 /obj/machinery/vending/coffee
 	name = "\improper Solar's Best Hot Drinks"
-	desc = "A vending machine which dispenses hot drinks."
+	desc = "Automat z gorącymi napojami."
 	product_ads = "Napij się!;Do dna!;To dla ciebie dobre!;Chciałby pan kubek gorącej kawy?;Zabiłbym dla kawy!;Najlepsze ziarna w galaktyce.;Tylko najlepszy napar dla ciebie.;Mmmm. Nie ma to jak kawa.;Lubię kawę, a ty?;Kawa pomaga ci pracować!;Spróbuj trochę herbaty.;Mamy nadzieję, że lubisz najlepsze!;Spróbuj naszej nowej czekolady!;Konspiracja adminów"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
