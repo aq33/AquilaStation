@@ -1,0 +1,27 @@
+diff --git a/src/turfs/processing.rs b/src/turfs/processing.rs
+index 3665bcf..c8f4a50 100644
+--- a/src/turfs/processing.rs
++++ b/src/turfs/processing.rs
+@@ -407,6 +407,10 @@ fn post_process() {
+ 
+ 				if should_react {
+ 					drop(sender.try_send(Box::new(move || {
++						// AQUILA PATCH: see the visuals callback below
++						if !with_turf_gases_read(|arena| arena.map.contains_key(&id)) {
++							return Ok(());
++						}
+ 						let turf = ByondValue::new_ref(ValueType::Turf, id);
+ 						//turf is no longer valid for reactions
+ 						let Ok(air) = turf.read_var_id(byond_string!("air")) else {
+@@ -419,6 +423,11 @@ fn post_process() {
+ 
+ 				if should_update_vis {
+ 					drop(sender.try_send(Box::new(move || {
++						// AQUILA PATCH: the turf may have become a wall since this was queued (update_air_ref(-1)
++						// removed it from the map). A wall has no `air` var, and the failed read crashed BYOND 516.
++						if !with_turf_gases_read(|arena| arena.map.contains_key(&id)) {
++							return Ok(());
++						}
+ 						let turf = ByondValue::new_ref(ValueType::Turf, id);
+ 						update_visuals(turf).wrap_err("Updating Visuals")?;
+ 						Ok(())
