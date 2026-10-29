@@ -1004,7 +1004,7 @@
 /area/engine/atmospherics_engine)
 "ch" = (
 /obj/machinery/computer/ship/ftl_computer{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
