@@ -2920,13 +2920,6 @@
 	},
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmospherics_engine)
-"fS" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "botany"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hydroponics)
 "fT" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
@@ -10286,8 +10279,7 @@
 /obj/machinery/smartfridge{
 	name = "public botany fridge"
 	},
-/obj/effect/turf_decal/tile/green/tile_side,
-/turf/open/floor/durasteel,
+/turf/closed/wall/steel,
 /area/hydroponics)
 "Bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -52725,8 +52717,8 @@ LE
 Bo
 Bo
 Bo
+Bo
 Ba
-fS
 dS
 pw
 rZ
