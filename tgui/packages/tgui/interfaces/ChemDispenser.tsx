@@ -320,6 +320,7 @@ export const ChemDispenser = (props) => {
                       recipes={recipeCatalog}
                       dispensable={chemicals.map((chemical) => chemical.id)}
                       onDispense={(id) => act('dispense', { reagent: id })}
+                      beakerContents={data.beakerContents || []}
                     />
                   )}
                 </Section>

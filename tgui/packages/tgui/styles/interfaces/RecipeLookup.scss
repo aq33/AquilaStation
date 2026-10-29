@@ -1,0 +1,130 @@
+// AQUILA - wygląd wyszukiwarki receptur na wzór dispensera z Bee#12349 (bez jego mechanik)
+@use '../colors.scss';
+@use 'sass:color';
+
+.RecipeLookup__empty {
+  text-align: center;
+  color: colors.$label;
+  margin: 8px 0;
+}
+
+.RecipeLookup__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.RecipeLookup__box {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: column;
+  align-items: center;
+  margin: 2px;
+  padding: 4px;
+  min-width: 0%;
+  max-width: 100%;
+  background-color: color.adjust(colors.$primary, $alpha: -0.9);
+  border: 1px solid colors.$primary;
+  border-radius: 4px;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+
+  @media screen and (max-width: 500px) {
+    width: 99%;
+  }
+  @media screen and (min-width: 500px) and (max-width: 700px) {
+    width: 45%;
+  }
+  @media screen and (min-width: 700px) and (max-width: 900px) {
+    width: 30%;
+  }
+  @media screen and (min-width: 900px) {
+    width: 24%;
+  }
+
+  &:hover {
+    background-color: color.adjust(colors.$primary, $alpha: -0.7);
+    box-shadow: inset 0px 0px 3px colors.$primary;
+  }
+
+  &.craftable {
+    background-color: color.adjust(colors.$good, $alpha: -0.9);
+    border-color: colors.$good;
+
+    &:hover {
+      background-color: color.adjust(colors.$good, $alpha: -0.7);
+      box-shadow: inset 0px 0px 3px colors.$good;
+    }
+  }
+}
+
+.RecipeLookup__title {
+  margin-bottom: 1px;
+  text-align: center;
+  font-weight: bold;
+  user-select: none;
+
+  .create {
+    color: rgb(248, 233, 214);
+  }
+}
+
+.RecipeLookup__output {
+  margin-bottom: 3px;
+  text-align: center;
+  color: colors.$label;
+  font-size: 0.9em;
+}
+
+.RecipeLookup__required {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.RecipeLookup__ingredient {
+  margin: 0px 2px 2px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: rgb(178, 178, 178);
+  color: rgb(0, 0, 0);
+  user-select: none;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(1.15);
+    }
+  }
+
+  &.insertable:not(.satisfied) {
+    background-color: rgb(242, 200, 149);
+  }
+
+  &.catalyst {
+    background-color: rgb(212, 151, 214);
+  }
+
+  &.satisfied {
+    background-color: rgb(99, 233, 112);
+  }
+}
+
+.RecipeLookup__dispense {
+  margin-left: 5px;
+  padding: 0 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: rgb(30, 90, 160);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}

@@ -8609,7 +8609,9 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
 "vr" = (
-/obj/machinery/computer/nanite_cloud_controller,
+/obj/machinery/computer/nanite_cloud_controller{
+	dir = 4
+	},
 /turf/open/floor/circuit/green/anim,
 /area/science/nanite)
 "vs" = (

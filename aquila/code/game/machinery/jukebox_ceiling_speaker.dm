@@ -47,11 +47,12 @@
 	return !(machine_stat & (BROKEN|NOPOWER))
 
 /// Wiesza głośnik na ścianie w kierunku wall_dir od kratki, na której stoi.
-/// Tuba jest narysowana na środku ikony, więc przesunięcie jest mniejsze niż przy alarmach/APC - wisi przy krawędzi ściany, nie w niej.
+/// Tuba jest narysowana na środku ikony, więc przesunięcie jest mniejsze niż przy alarmach/APC.
+/// Dobrane pod ściany Paradise 32x40 (resprite) - mocowanie siedzi na ścianie, tuba wystaje nad korytarz.
 /obj/machinery/ceiling_speaker/proc/mount_on(wall_dir)
 	dir = turn(wall_dir, 180) // tuba w stronę korytarza
-	pixel_x = (wall_dir & EAST) ? 12 : ((wall_dir & WEST) ? -12 : 0)
-	pixel_y = (wall_dir & NORTH) ? 14 : 0
+	pixel_x = (wall_dir & EAST) ? 18 : ((wall_dir & WEST) ? -18 : 0)
+	pixel_y = (wall_dir & NORTH) ? 24 : 0
 
 /obj/machinery/ceiling_speaker/power_change()
 	. = ..()
