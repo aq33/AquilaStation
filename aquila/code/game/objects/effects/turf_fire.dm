@@ -159,6 +159,8 @@
 			continue
 		burning_atom.temperature_expose(open_turf.air, fire_temp, TURF_FIRE_VOLUME)
 		burning_atom.fire_act(fire_temp, TURF_FIRE_VOLUME)
+		if(QDELETED(src)) // fire_act can put us out or change the turf
+			return
 	if(QDELETED(src))
 		return
 	for(var/turf/open/T in open_turf.GetAtmosAdjacentTurfs())
