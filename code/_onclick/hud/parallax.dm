@@ -31,6 +31,7 @@
 			C.parallax_layers_cached += new SSparallax.random_layer
 		C.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, C.view)
 		*/
+		bloodcult_eclipse_parallax(C) // AQ EDIT - kult krwi: szczeliny na niebie w czasie Zaćmienia
 
 	C.parallax_layers = C.parallax_layers_cached.Copy()
 

@@ -172,6 +172,11 @@
 //It automatically updates damage overlays if necessary
 //It automatically updates health status
 /mob/living/carbon/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
+	// AQ EDIT START - port Bee#14750: stamina to pula na mobie, nie na kończynach
+	if(stamina)
+		src.stamina?.adjust(stamina)
+		stamina = 0
+	// AQ EDIT END
 	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute,burn,stamina,required_status)
 	if(!parts.len)
 		return
@@ -192,6 +197,11 @@
 
 //Heal MANY bodyparts, in random order
 /mob/living/carbon/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_status, updating_health = TRUE)
+	// AQ EDIT START - port Bee#14750: stamina to pula na mobie, nie na kończynach
+	if(stamina)
+		src.stamina?.adjust(stamina)
+		stamina = 0
+	// AQ EDIT END
 	var/list/obj/item/bodypart/parts = get_damaged_bodyparts(brute, burn, stamina, required_status)
 
 	var/update = NONE
@@ -219,6 +229,11 @@
 /mob/living/carbon/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
 	if(status_flags & GODMODE)
 		return	//godmode
+	// AQ EDIT START - port Bee#14750: stamina to pula na mobie, nie na kończynach
+	if(stamina)
+		src.stamina?.adjust(-stamina)
+		stamina = 0
+	// AQ EDIT END
 
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts(required_status)
 	var/update = 0

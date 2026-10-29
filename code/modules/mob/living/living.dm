@@ -876,7 +876,7 @@
 			altered_grab_state++
 
 		var/resist_chance = BASE_GRAB_RESIST_CHANCE // see defines/combat.dm
-		resist_chance = max(resist_chance/altered_grab_state-sqrt((getStaminaLoss()+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
+		resist_chance = max(resist_chance/altered_grab_state-sqrt((getStaminaLoss()*0.4+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
 		if(prob(resist_chance))
 			visible_message("<span class='danger'>[src] wyrywa się z uchwytu [pulledby]!</span>")
 			log_combat(pulledby, src, "broke grab")

@@ -9,7 +9,7 @@
 	} \
 } while (FALSE)
 
-/// AQUILA - BeeStation#11521: the stamina indicator follows stamina damage
+/// AQUILA - BeeStation#11521 + #14750: the stamina indicator follows the stamina pool
 /datum/unit_test/aquila_stamina_hud
 
 /datum/unit_test/aquila_stamina_hud/Run()
@@ -20,7 +20,7 @@
 	TEST_ASSERT_EQUAL(hud.stamina.icon_state, "stamina_full", "Wrong stamina state at full stamina")
 
 	// Thresholds, checked through the shown value
-	var/list/expected = list("10" = "stamina_1", "30" = "stamina_2", "50" = "stamina_3", "70" = "stamina_4", "85" = "stamina_5")
+	var/list/expected = list("10" = "stamina_1", "60" = "stamina_2", "110" = "stamina_3", "160" = "stamina_4", "210" = "stamina_5")
 	for(var/loss in expected)
 		dummy.update_stamina_hud(text2num(loss))
 		TEST_ASSERT_EQUAL(hud.stamina.icon_state, expected[loss], "Wrong stamina state at [loss] stamina damage")
@@ -28,7 +28,6 @@
 	// Real stamina damage updates the indicator, healing it resets it
 	dummy.adjustStaminaLoss(50)
 	TEST_ASSERT(hud.stamina.icon_state != "stamina_full", "Taking stamina damage did not update the stamina indicator")
-	// setStaminaLoss() heals the scaled difference raw and can leave a remainder on limbs with stam_damage_coeff, so heal with a margin
 	dummy.adjustStaminaLoss(-1000)
 	TEST_ASSERT_EQUAL(hud.stamina.icon_state, "stamina_full", "The stamina state did not go back after healing")
 

@@ -23,6 +23,7 @@ type Data = {
   passedCycleId: string;
   passedName: string;
   regions: Region[];
+  shell: BooleanLike;
   unres_direction: number;
 };
 
@@ -51,6 +52,7 @@ export function AirLockMainSection(props) {
     passedName,
     passedCycleId,
     regions = [],
+    shell,
     unres_direction,
   } = data;
 
@@ -59,6 +61,19 @@ export function AirLockMainSection(props) {
       <Stack.Item>
         <Section fill>
           <LabeledList>
+            {shell !== undefined && (
+              <LabeledList.Item label="Obudowa układu">
+                <Button.Checkbox
+                  checked={shell}
+                  onClick={() => {
+                    act('set_shell', { on: !shell });
+                  }}
+                  tooltip="Czy w zbudowanej śluzie będzie można umieścić układ scalony."
+                >
+                  Obudowa
+                </Button.Checkbox>
+              </LabeledList.Item>
+            )}
             <LabeledList.Item label="Wymagany dostęp">
               <Button
                 icon={oneAccess ? 'unlock' : 'lock'}

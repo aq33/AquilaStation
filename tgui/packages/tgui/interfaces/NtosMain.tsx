@@ -91,61 +91,70 @@ export const NtosMain = (props) => {
             </Stack>
           </Section>
         )}
-        <Section
-          title="Szczegóły"
-          buttons={
-            <>
+        <Section title="Szczegóły">
+          {/* AQUILA: przyciski w treści, a nie w nagłówku: w tgui-core 6 nagłówek ich nie zawija i zasłaniały tytuł */}
+          {(!!has_light || !!cardholder) && (
+            <Stack wrap mb={1}>
               {!!has_light && (
                 <>
-                  <Button
-                    tooltip="Kolor latarki"
-                    onClick={() => act('PC_light_color')}
-                  >
-                    <ColorBox color={comp_light_color} />
-                  </Button>
-                  <Button
-                    icon="lightbulb"
-                    color={light_on ? 'good' : 'bad'}
-                    selected={light_on}
-                    tooltip={light_on ? 'Wyłącz latarkę' : 'Włącz latarkę'}
-                    onClick={() => act('PC_toggle_light')}
-                  />
+                  <Stack.Item>
+                    <Button
+                      tooltip="Kolor latarki"
+                      onClick={() => act('PC_light_color')}
+                    >
+                      <ColorBox color={comp_light_color} />
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="lightbulb"
+                      color={light_on ? 'good' : 'bad'}
+                      selected={light_on}
+                      tooltip={light_on ? 'Wyłącz latarkę' : 'Włącz latarkę'}
+                      onClick={() => act('PC_toggle_light')}
+                    />
+                  </Stack.Item>
                 </>
               )}
               {!!cardholder && (
-                <Button
-                  icon="eject"
-                  disabled={!proposed_login.IDName}
-                  onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
-                >
-                  Wysuń ID
-                </Button>
+                <Stack.Item>
+                  <Button
+                    icon="eject"
+                    disabled={!proposed_login.IDName}
+                    onClick={() => act('PC_Eject_Disk', { name: 'ID' })}
+                  >
+                    Wysuń ID
+                  </Button>
+                </Stack.Item>
               )}
               {!!cardholder && !!show_imprint && (
                 <>
-                  <Button
-                    icon="dna"
-                    disabled={
-                      !proposed_login.IDName ||
-                      (proposed_login.IDName === login.IDName &&
-                        proposed_login.IDJob === login.IDJob)
-                    }
-                    onClick={() => act('PC_Imprint_ID', { name: 'ID' })}
-                  >
-                    Nadrukuj ID
-                  </Button>
-                  <Button.Checkbox
-                    checked={auto_imprint}
-                    tooltip="Automatycznie nadrukowuj włożone ID"
-                    onClick={() => act('PC_Toggle_Auto_Imprint')}
-                  >
-                    Auto
-                  </Button.Checkbox>
+                  <Stack.Item>
+                    <Button
+                      icon="dna"
+                      disabled={
+                        !proposed_login.IDName ||
+                        (proposed_login.IDName === login.IDName &&
+                          proposed_login.IDJob === login.IDJob)
+                      }
+                      onClick={() => act('PC_Imprint_ID', { name: 'ID' })}
+                    >
+                      Nadrukuj ID
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button.Checkbox
+                      checked={auto_imprint}
+                      tooltip="Automatycznie nadrukowuj włożone ID"
+                      onClick={() => act('PC_Toggle_Auto_Imprint')}
+                    >
+                      Auto
+                    </Button.Checkbox>
+                  </Stack.Item>
                 </>
               )}
-            </>
-          }
-        >
+            </Stack>
+          )}
           {cardholder ? (
             <Table>
               <Table.Row>

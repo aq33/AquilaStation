@@ -326,7 +326,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "ba" = (
-/obj/structure/destructible/cult/forge{
+/obj/structure/cult/forge{
 	desc = "An engine used in powering the shuttle.";
 	name = "magma engine"
 	},
@@ -375,7 +375,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bd" = (
-/obj/structure/destructible/cult/forge{
+/obj/structure/cult/forge{
 	desc = "An engine used in powering the shuttle.";
 	name = "magma engine"
 	},

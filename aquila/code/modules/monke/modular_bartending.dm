@@ -348,8 +348,12 @@ GLOBAL_LIST_EMPTY(glass_variants)
 	mix_message = "Popiół zapieka się w twardą krawędź."
 
 /datum/chemical_reaction/ashsolidification/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
-	for(var/i in 1 to created_volume)
+	var/turf/location = get_turf(holder.my_atom)
+	// W pożarze każdy spalony przedmiot zostawia popiół, tysiące krawędzi na kafelkach zatykały ruch i ciśnienie
+	var/rims = 0
+	for(var/obj/item/garnish/ash/rim in location)
+		rims++
+	for(var/i in 1 to min(created_volume, MAX_ASH_RIMS_PER_TURF - rims))
 		new /obj/item/garnish/ash(location)
 
 /datum/crafting_recipe/umbrellared

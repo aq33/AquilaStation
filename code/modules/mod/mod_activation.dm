@@ -247,10 +247,17 @@
 /obj/item/mod/control/proc/activation_delay()
 	var/mob/living/carbon/human/original_wearer = wearer
 	var/end_time = world.time + activation_step_time
+	// AQ EDIT START - pasek postępu nad noszącym, bez przerywania kroku ruchem (do_after by go przerywał)
+	var/start_time = world.time
+	var/datum/progressbar/progbar = new(original_wearer, activation_step_time, original_wearer)
+	// AQ EDIT END
 	while(world.time < end_time)
 		stoplag(1)
 		if(QDELETED(src) || QDELETED(original_wearer) || wearer != original_wearer)
+			qdel(progbar) // AQ EDIT - pasek postępu
 			return FALSE
+		progbar.update(world.time - start_time) // AQ EDIT - pasek postępu
+	qdel(progbar) // AQ EDIT - pasek postępu
 	return TRUE
 
 ///Seals or unseals the given part.

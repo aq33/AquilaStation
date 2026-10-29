@@ -144,6 +144,17 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"aq" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel/tiled/light,
+/area/bridge/cic)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -274,6 +285,20 @@
 "aA" = (
 /turf/closed/wall/r_wall/ship,
 /area/crew_quarters/heads/hor)
+"aB" = (
+/obj/machinery/computer/ship/dradis/mining{
+	dir = 2
+	},
+/obj/item/storage/secure/safe/caps_spare{
+	pixel_x = 6;
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel/tiled/light,
+/area/bridge/cic)
 "aC" = (
 /obj/structure/fence/door/opened,
 /obj/structure/cable,
@@ -326,6 +351,39 @@
 	},
 /turf/open/floor/engine/airless/light,
 /area/space/nearstation)
+"aL" = (
+/obj/machinery/button/door{
+	id = "bridgewindows";
+	pixel_x = -22;
+	pixel_y = -3;
+	req_one_access_txt = "19"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/machinery/fax{
+	name = "CIC Fax Machine";
+	fax_name = "CIC"
+	},
+/obj/structure/table/glass/plasma,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2
+	},
+/turf/open/floor/plasteel/tiled/light,
+/area/bridge/cic)
 "aM" = (
 /obj/structure/hull_plate,
 /obj/effect/turf_decal/szachownica/corner_red64{
@@ -466,6 +524,15 @@
 /obj/effect/landmark/zebra_interlock_point,
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
+"be" = (
+/obj/item/radio/intercom/directional/south,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/ship/full/purple,
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "bf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -645,6 +712,17 @@
 /obj/structure/cable/pink,
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/aisat_interior)
+"bx" = (
+/obj/structure/sign/poster/official/moth4{
+	pixel_y = -31
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/ship/purple,
+/obj/machinery/bci_implanter,
+/turf/open/floor/plasteel/tiled/light,
+/area/science)
 "bz" = (
 /obj/structure/sign/poster/official/moth1{
 	pixel_x = -30
@@ -890,20 +968,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/kitchen)
-"bZ" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/machinery/computer/ship/dradis/mining{
-	dir = 2
-	},
-/turf/open/floor/plasteel/tiled/light,
-/area/bridge/cic)
 "ca" = (
 /obj/structure/table/glass/plasma,
 /obj/machinery/keycard_auth{
@@ -5214,14 +5278,6 @@
 	},
 /turf/open/floor/wood,
 /area/chapel/office)
-"rA" = (
-/obj/item/radio/intercom/directional/south,
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/effect/turf_decal/tile/ship/full/purple,
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "rC" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/south,
@@ -8297,29 +8353,6 @@
 	},
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/virology)
-"Cq" = (
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 2;
-	pixel_y = 4
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2
-	},
-/obj/structure/table/glass/plasma,
-/obj/item/storage/secure/safe/caps_spare{
-	pixel_x = 6;
-	pixel_y = 26
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel/tiled/light,
-/area/bridge/cic)
 "Ct" = (
 /obj/structure/closet/emcloset{
 	anchored = 1
@@ -8651,16 +8684,6 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/nuke_storage)
-"Dv" = (
-/obj/structure/sign/poster/official/moth4{
-	pixel_y = -31
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/ship/purple,
-/turf/open/floor/plasteel/tiled/light,
-/area/science)
 "Dw" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/tile/yellow,
@@ -10228,6 +10251,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/ship/full/purple,
+/obj/machinery/module_duplicator,
 /turf/open/floor/plasteel/tiled/light,
 /area/science)
 "Jf" = (
@@ -13720,28 +13744,6 @@
 /obj/machinery/duct,
 /turf/open/floor/plasteel/tiled/light,
 /area/medical/genetics/cloning)
-"VO" = (
-/obj/machinery/button/door{
-	id = "bridgewindows";
-	pixel_x = -22;
-	pixel_y = -3;
-	req_one_access_txt = "19"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/machinery/fax{
-	name = "CIC Fax Machine";
-	fax_name = "CIC"
-	},
-/obj/structure/table/glass/plasma,
-/turf/open/floor/plasteel/tiled/light,
-/area/bridge/cic)
 "VP" = (
 /obj/structure/cable,
 /turf/closed/wall/ship,
@@ -46129,7 +46131,7 @@ CZ
 Aw
 vw
 qr
-Dv
+bx
 KZ
 qE
 sQ
@@ -46643,7 +46645,7 @@ Je
 rx
 TE
 bj
-rA
+be
 KZ
 ws
 fr
@@ -54079,7 +54081,7 @@ HO
 zJ
 QX
 GZ
-VO
+aL
 QN
 uG
 sB
@@ -54335,7 +54337,7 @@ FU
 Fn
 zJ
 Yo
-bZ
+aq
 JM
 Hh
 Hh
@@ -54592,7 +54594,7 @@ GS
 Sh
 zJ
 fx
-Cq
+aB
 tG
 tG
 Nm

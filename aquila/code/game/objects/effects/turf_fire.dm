@@ -139,6 +139,9 @@
 		if(!process_waste())
 			qdel(src)
 			return
+		// Dym i spaliny, see aquila/code/modules/pollution/
+		if(!open_turf.planetary_atmos)
+			open_turf.pollute_turf_list(list(/datum/pollutant/smoke = 10, /datum/pollutant/carbon_air_pollution = 2), POLLUTION_PASSIVE_EMITTER_CAP)
 	if(!magical)
 		fire_power += open_turf.flammability
 		var/temperature = open_turf.air.return_temperature()
@@ -156,6 +159,8 @@
 			continue
 		burning_atom.temperature_expose(open_turf.air, fire_temp, TURF_FIRE_VOLUME)
 		burning_atom.fire_act(fire_temp, TURF_FIRE_VOLUME)
+		if(QDELETED(src)) // fire_act can put us out or change the turf
+			return
 	if(QDELETED(src))
 		return
 	for(var/turf/open/T in open_turf.GetAtmosAdjacentTurfs())

@@ -827,6 +827,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			uniform_compatible = TRUE
 		if((!H.wear_suit) || (H.wear_suit.supports_variations & DIGITIGRADE_VARIATION) || !(H.wear_suit.body_parts_covered & LEGS) || (H.wear_suit.supports_variations & DIGITIGRADE_VARIATION_NO_NEW_ICON)) //Checks suit compatability
 			suit_compatible = TRUE
+		if(H.aquila_mod_forces_plantigrade()) // AQ EDIT - zamknięty MODsuit nie ma sprite'ów digitigrade, więc nogi zwykłe
+			suit_compatible = FALSE
 
 		if((uniform_compatible && suit_compatible) || (suit_compatible && H.wear_suit?.flags_inv & HIDEJUMPSUIT)) //If the uniform is hidden, it doesnt matter if its compatible
 			for(var/obj/item/bodypart/BP as() in H.bodyparts)
@@ -1670,14 +1672,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 
+		user.stamina_swing(STAMINA_SWING_COST_UNARMED) // AQ EDIT - port Bee#14750: cios kosztuje staminę
 		if(atk_verb == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
 			target.apply_damage(damage*1.5, attack_type, affecting, armor_block)
+			target.stamina?.adjust(-STAMINA_DAMAGE_UNARMED * 1.5) // AQ EDIT - port Bee#14750: kopnięcia mocno męczą
 			if((damage * 1.5) >= 9)
 				target.force_say()
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage + 1.5x in stamina damage
 			target.apply_damage(damage, attack_type, affecting, armor_block)
-			target.apply_damage(damage*1.5, STAMINA, affecting, armor_block)
+			target.stamina?.adjust(-STAMINA_DAMAGE_UNARMED) // AQ EDIT - port Bee#14750: stała stamina z ciosu zamiast 1.5x obrażeń
 			if(damage >= 9)
 				target.force_say()
 			log_combat(user, target, "punched")
@@ -1706,6 +1710,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return target.resist_shove(user)
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		user.stamina_swing(STAMINA_DISARM_COST) // AQ EDIT - port Bee#14750: popchnięcie kosztuje staminę
 		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 		if(target.w_uniform)
@@ -1834,6 +1839,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	SEND_SIGNAL(M, COMSIG_MOB_ATTACK_HAND, M, H, attacker_style)
 	SEND_SIGNAL(H, COMSIG_MOB_HAND_ATTACKED, H, M, attacker_style)
 
+	// AQ EDIT START - port Bee#14750: animacja ręki przy interakcji
+	if(M != H)
+		M.animate_interact(H, LAZYACCESS(modifiers, RIGHT_CLICK) ? INTERACT_DISARM : (M.combat_mode ? INTERACT_HARM : INTERACT_HELP))
+	// AQ EDIT END
 	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		disarm(M, H, attacker_style)
 		return // dont attack after
@@ -1865,6 +1874,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H)
+	H.apply_item_stamina_damage(I) // AQ EDIT - port Bee#14750: trafienie przedmiotem zabiera staminę
 
 	if (I.bleed_force)
 		var/armour_block = user.run_armor_check(affecting, BLEED, armour_penetration = I.armour_penetration, silent = (I.force > 0))
