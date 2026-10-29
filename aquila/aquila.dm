@@ -1612,6 +1612,7 @@
 #include "code\modules\unit_tests\combat_mode_attacks.dm"
 #include "code\modules\unit_tests\combat_mode_legacy.dm"
 #include "code\modules\unit_tests\jukebox_pa_system.dm"
+#include "code\modules\unit_tests\aquila_jukebox_requests.dm"
 #include "code\modules\unit_tests\aquila_crying.dm"
 #include "code\modules\unit_tests\aquila_linux_ytdl.dm"
 #include "code\modules\unit_tests\aquila_ai_network.dm"
