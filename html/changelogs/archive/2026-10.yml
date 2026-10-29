@@ -833,12 +833,4 @@
   - bugfix: Polskie znaki w statusie serwera na hubie BYOND wyświetlają się poprawnie.
   - bugfix: Przyciski stanu w konsoli akt medycznych znów mają ikony, a przyciski
       nad danymi medycznymi nie nachodzą na ramkę.
-  - bugfix: Sny znów działają u postaci bez snów heretyka.
-  - bugfix: Zniszczona frytkownica znika z mapy.
-  - bugfix: Infiltratorzy nie dostają zdublowanych celów kradzieży ani podwójnego
-      sprzętu do celu.
-  - bugfix: Strzał z broni bez magazynka ma dźwięk.
-  - bugfix: Choroby z flaków przechodzą na rozbryzgi krwi.
-  - bugfix: Okno automatu nie wywala się przy otwieraniu.
-  - bugfix: Składanie mecha, ambience i zębatka przy czynnościach nie sypią błędami.
-  - server: Polskie opisy osiągnięć zapisują się w bazie (wymaga migracji z SQL/database_changelog.txt).
+  - tweak: 'Atlas: publiczna lodówka botaniki jest wbudowana w ścianę zamiast okna.'
