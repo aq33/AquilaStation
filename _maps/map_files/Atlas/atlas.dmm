@@ -1004,7 +1004,7 @@
 /area/engine/atmospherics_engine)
 "ch" = (
 /obj/machinery/computer/ship/ftl_computer{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
@@ -8609,9 +8609,7 @@
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
 "vr" = (
-/obj/machinery/computer/nanite_cloud_controller{
-	dir = 4
-	},
+/obj/machinery/computer/nanite_cloud_controller,
 /turf/open/floor/circuit/green/anim,
 /area/science/nanite)
 "vs" = (
