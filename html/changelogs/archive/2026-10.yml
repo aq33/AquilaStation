@@ -811,3 +811,4 @@
   - code_imp: Pożary znacznie mniej obciążają serwer.
   - server: Kolumny w perf CSV zgadzają się teraz z nagłówkiem (zmienił się układ
       kolumn).
+  - bugfix: Polskie znaki w statusie serwera na hubie BYOND wyświetlają się poprawnie.
