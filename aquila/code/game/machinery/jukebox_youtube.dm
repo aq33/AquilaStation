@@ -30,6 +30,8 @@
 	/// Trwa zapytanie do yt-dlp
 	var/yt_busy = FALSE
 	var/yt_busy_since = 0
+	/// Numer bieżącego zapytania. Stop i odblokowanie po zawieszeniu go zmieniają, więc spóźniona odpowiedź yt-dlp jest pomijana.
+	var/yt_request = 0
 	/// Trwa pobieranie linku do następnego utworu w tle
 	var/yt_prefetching = FALSE
 	/// Gotowy następny utwór: list("index", "stream", "data", "duration")
@@ -94,7 +96,7 @@
 	dat += "<div class='jb-label'>Teraz gra</div>"
 	if(yt_busy)
 		dat += "<div class='jb-title jb-muted'>Łączenie z siecią...</div>"
-	else if(yt_active && yt_index)
+	else if(yt_active && yt_index && yt_index <= yt_tracks.len)
 		var/list/current = yt_tracks[yt_index]
 		dat += "<div class='jb-title'>[html_encode(current["title"])]</div>"
 		var/elapsed = (world.time - yt_track_started) / 10 * yt_speed
@@ -160,16 +162,24 @@
 	</script>"}
 	return dat.Join()
 
-/// Ustawia flagę zajętości (z czasem startu dla strażnika zawieszenia)
+/// Ustawia flagę zajętości (z czasem startu dla strażnika zawieszenia). Zwraca numer zapytania.
 /obj/machinery/jukebox/proc/yt_set_busy(busy)
 	yt_busy = busy
 	yt_busy_since = busy ? world.time : 0
+	if(busy)
+		yt_request++
+	return yt_request
+
+/// Czy zapytanie o tym numerze jest nadal aktualne (jukebox istnieje, nikt go nie zatrzymał ani nie odblokował)
+/obj/machinery/jukebox/proc/yt_request_valid(request)
+	return !QDELETED(src) && yt_busy && request == yt_request
 
 /// Odblokowuje jukebox, gdy zapytanie do yt-dlp wisi za długo
 /obj/machinery/jukebox/proc/yt_check_stuck()
 	if(yt_busy && world.time - yt_busy_since > JUKEBOX_YT_BUSY_TIMEOUT)
 		log_game("Jukebox YT request timed out at [AREACOORD(src)]")
 		yt_set_busy(FALSE)
+		yt_request++
 	if(yt_prefetching && world.time - yt_busy_since > JUKEBOX_YT_BUSY_TIMEOUT)
 		yt_prefetching = FALSE
 
@@ -230,14 +240,14 @@
 
 /obj/machinery/jukebox/proc/yt_load_playlist(url, mob/user, autoplay = FALSE)
 	var/ytdl = aquila_ytdl_command()
-	if(!ytdl)
+	if(!ytdl || yt_busy) // drugi gracz mógł wczytać playlistę, kiedy ten wpisywał link
 		return
-	yt_set_busy(TRUE)
+	var/request = yt_set_busy(TRUE)
 	updateUsrDialog()
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --flat-playlist --dump-single-json --playlist-end [JUKEBOX_YT_PLAYLIST_SCAN] -- \"[shell_url_scrub(url)]\"")
-	yt_set_busy(FALSE)
-	if(QDELETED(src))
+	if(!yt_request_valid(request))
 		return
+	yt_set_busy(FALSE)
 	if(output[SHELLEO_ERRORLEVEL])
 		say("Błąd pobierania playlisty.")
 		log_game("Jukebox YT playlist load failed ([url]): [output[SHELLEO_STDERR]]")
@@ -312,7 +322,10 @@
 	var/list/T = yt_tracks[index]
 	var/track_url = T["url"] || "https://www.youtube.com/watch?v=[T["id"]]"
 	var/list/output = world.shelleo("[ytdl] [JUKEBOX_YT_ARGS] --geo-bypass --format \"[JUKEBOX_YT_FORMAT]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(track_url)]\"")
-	if(QDELETED(src) || output[SHELLEO_ERRORLEVEL])
+	if(QDELETED(src))
+		return null
+	if(output[SHELLEO_ERRORLEVEL])
+		log_game("Jukebox YT track failed ([track_url]): [copytext(output[SHELLEO_STDERR], 1, 500)]")
 		return null
 	var/list/data
 	try
@@ -333,12 +346,15 @@
 		return
 	yt_prefetching = TRUE
 	yt_busy_since = world.time
-	var/index = yt_pick_next_index(yt_index)
+	var/list/tracks = yt_tracks
+	var/after = yt_index
+	var/index = yt_pick_next_index(after)
 	var/list/result = yt_resolve(index)
 	if(QDELETED(src))
 		return
 	yt_prefetching = FALSE
-	if(result && yt_active)
+	// w międzyczasie ktoś mógł wczytać inną playlistę albo wybrać inny utwór
+	if(result && yt_active && !yt_busy && yt_tracks == tracks && yt_index == after)
 		result["index"] = index
 		yt_prefetched = result
 
@@ -358,13 +374,13 @@
 		return
 	if(!aquila_ytdl_command())
 		return
-	yt_set_busy(TRUE)
+	var/request = yt_set_busy(TRUE)
 	updateUsrDialog()
 	// próbujemy kilku utworów, bo pojedyncze filmy mogą być niedostępne
 	for(var/attempt in 1 to min(3, yt_tracks.len))
 		yt_index = (attempt == 1 && index) ? index : yt_pick_next_index(yt_index)
 		var/list/result = yt_resolve(yt_index)
-		if(QDELETED(src))
+		if(!yt_request_valid(request)) // Stop albo odblokowanie po zawieszeniu w trakcie zapytania
 			return
 		if(!result)
 			continue
@@ -417,6 +433,10 @@
 /obj/machinery/jukebox/proc/yt_stop()
 	var/was_active = yt_active
 	yt_active = FALSE
+	// zapytanie w toku nie może już włączyć muzyki
+	if(yt_busy)
+		yt_set_busy(FALSE)
+		yt_request++
 	yt_stream_url = null
 	yt_stream_expires = null
 	yt_prefetched = null
