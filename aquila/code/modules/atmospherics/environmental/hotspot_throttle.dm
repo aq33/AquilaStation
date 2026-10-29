@@ -27,3 +27,9 @@
 		return FALSE
 	var/turf/open/location = holder_atom.loc
 	return istype(location) && !isnull(location.active_hotspot)
+
+/// AQUILA - Burning gas heats the contents of a tile with a hotspot only every HOTSPOT_CONTENTS_INTERVAL ticks, like the hotspot's own fire_act().
+/// Tiles without a hotspot are heated every time. Core hook: fire_expose() in code/modules/atmospherics/gasmixtures/reactions.dm
+/proc/fire_exposes_contents(turf/open/location)
+	var/obj/effect/hotspot/hotspot = location.active_hotspot
+	return isnull(hotspot) || !(hotspot.exposure_count % HOTSPOT_CONTENTS_INTERVAL)

@@ -53,4 +53,21 @@
 	qdel(hotspot)
 	QDEL_NULL(location.pollution)
 
+/// AQUILA - Burning gas heats a hotspot tile's contents only every few ticks
+/datum/unit_test/fire_exposes_contents
+
+/datum/unit_test/fire_exposes_contents/Run()
+	var/turf/open/location = run_loc_floor_bottom_left
+	TEST_ASSERT(fire_exposes_contents(location), "A tile without a hotspot is not heated every time")
+
+	var/obj/effect/hotspot/hotspot = allocate(/obj/effect/hotspot, location)
+	var/heats = 0
+	for(var/i in 1 to HOTSPOT_SMOKE_INTERVAL * HOTSPOT_CONTENTS_INTERVAL)
+		if(fire_exposes_contents(location))
+			heats++
+		hotspot.exposure_count++
+	TEST_ASSERT(heats == HOTSPOT_SMOKE_INTERVAL, "A burning tile's contents were heated [heats] times in [HOTSPOT_SMOKE_INTERVAL * HOTSPOT_CONTENTS_INTERVAL] ticks instead of [HOTSPOT_SMOKE_INTERVAL]")
+	qdel(hotspot)
+	QDEL_NULL(location.pollution)
+
 #undef TEST_ASSERT
