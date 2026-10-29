@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/reagent_injector
-	display_name = "Reagent Injector"
+	display_name = "Wstrzykiwacz odczynników"
 	desc = "Komponent, który wstrzykuje odczynniki z magazynu odczynników układu."
 	category = "Entity"
 	circuit_flags = CIRCUIT_NO_DUPLICATES

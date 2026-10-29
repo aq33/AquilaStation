@@ -127,7 +127,7 @@
 			sleep(1)
 
 	if (!destroying_self)
-		message_admins("[key_name(activator)] is preparing the Tear Reality ritual at [T.loc] ([T.x], [T.y], [T.z]) [ADMIN_JMP(T)].")
+		message_admins("[key_name(activator)] przygotowuje rytuał Rozdarcia Rzeczywistości w [T.loc] ([T.x], [T.y], [T.z]) [ADMIN_JMP(T)].")
 		for (var/datum/mind/mind in cult.members)
 			var/mob/living/M = mind.current
 			if (!M)

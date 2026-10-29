@@ -964,7 +964,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				if (ab)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
 					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] używa exploita aimbota na środkowy przycisk myszy</span>")
-					add_system_note("aimbot", "Is using the middle click aimbot exploit")
+					add_system_note("aimbot", "Używa exploita aimbota na środkowy przycisk myszy.")
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] przekroczył minutowy limit kliknięć ([mcl] w ciągu jednej minuty gry)")
 			to_chat(src, "<span class='danger'>[msg]</span>")

@@ -29,7 +29,7 @@
 // AQ EDIT START - komponenty USB na API wiremoda z tg
 /obj/item/circuit_component/arrest_console_data
 	display_name = "Security Records Data"
-	desc = "Outputs the security records data, where it can then be filtered with a Select Query component"
+	desc = "Wypisuje dane z akt ochrony. Wynik można potem przefiltrować komponentem Select Query."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -103,7 +103,7 @@
 
 /obj/item/circuit_component/arrest_console_arrest
 	display_name = "Security Records Set Status"
-	desc = "Receives a table to use to set people's arrest status. Table should be from the security records data component. If New Status port isn't set, the status will be decided by the options."
+	desc = "Przyjmuje tabelę, według której ustawia status aresztowania osób. Tabela powinna pochodzić z komponentu danych akt ochrony. Jeśli port New Status nie jest ustawiony, status wynika z wybranej opcji."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// Status used when the New Status port is empty.

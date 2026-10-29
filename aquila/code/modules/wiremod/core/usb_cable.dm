@@ -1,6 +1,6 @@
 /// A cable that can connect integrated circuits to anything with a USB port, such as computers and machines.
 /obj/item/usb_cable
-	name = "usb cable"
+	name = "kabel USB"
 	desc = "Kabel, który łączy układy scalone ze wszystkim, co ma port USB, na przykład z komputerami i maszynami."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "usb_cable"

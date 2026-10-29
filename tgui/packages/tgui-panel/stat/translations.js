@@ -338,6 +338,7 @@ const VERB_NAMES = {
   'Toggle Combo HUD': 'Przełącz zbiorczy HUD',
   'Unbanning Panel': 'Panel odbanowań',
   Unprison: 'Uwolnij z więzienia',
+  'View All Circuits': 'Pokaż wszystkie układy',
   'View Tags': 'Pokaż tagi',
   // Adminbus
   Aghost: 'Aduch',
@@ -461,6 +462,8 @@ const VERB_NAMES = {
   'Give Spell': 'Daj zaklęcie',
   'Heal Everybody': 'Ulecz wszystkich',
   'Load Away Mission': 'Wczytaj misję wyjazdową',
+  'Load Circuit': 'Wczytaj układ',
+  cinematic: 'Przerywnik filmowy',
   'Make Alien': 'Zrób obcego',
   'Make Blob': 'Zrób grzyba',
   'Make Everyone Random': 'Wszyscy losowi',

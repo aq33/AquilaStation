@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(converted_minds, list())
 
 	var/datum/team/cult/cult = locate_team(/datum/team/cult)
 	if (!cult)
-		message_admins("Blood Cult: A conversion ritual occured...but we cannot find the cult faction...")//failsafe in case of admin varedit fuckery
+		message_admins("Kult krwi: odbył się rytuał konwersji... ale nie da się znaleźć frakcji kultu...")//failsafe in case of admin varedit fuckery
 		qdel(src)
 		return
 
@@ -315,7 +315,7 @@ GLOBAL_LIST_INIT(converted_minds, list())
 			conversion.icon_state = ""
 
 			flick("rune_convert_success", conversion)
-			message_admins("BLOODCULT: [key_name(convertee)] has been converted by [key_name(converter)].")
+			message_admins("BLOODCULT: [key_name(converter)] nawraca [key_name(convertee)].")
 			log_admin("BLOODCULT: [key_name(convertee)] has been converted by [key_name(converter)].")
 			abort(RITUALABORT_CONVERT)
 			return
@@ -350,24 +350,24 @@ GLOBAL_LIST_INIT(converted_minds, list())
 			if (success == CONVERSION_NOCHOICE)
 				if (convertee.mind)//no need to generate logs when capturing mindless monkeys
 					to_chat(victim, span_danger("Nie udzieliłeś odpowiedzi na czas, więc automatycznie zostałeś więźniem.") )
-					message_admins("BLOODCULT: [key_name(convertee)] has timed-out during conversion by [key_name(converter)].")
+					message_admins("BLOODCULT: [key_name(convertee)] nie odpowiada na czas podczas konwersji przez [key_name(converter)].")
 					log_admin("BLOODCULT: [key_name(convertee)] has timed-out during conversion by [key_name(converter)].")
 
 				abort(RITUALABORT_NOCHOICE)
 			else if (success == CONVERSION_REFUSE)
-				message_admins("BLOODCULT: [key_name(convertee)] has refused conversion by [key_name(converter)].")
+				message_admins("BLOODCULT: [key_name(convertee)] odrzuca konwersję przez [key_name(converter)].")
 				log_admin("BLOODCULT: [key_name(convertee)] has refused conversion by [key_name(converter)].")
 
 				abort(RITUALABORT_REFUSED)
 			else
-				message_admins("BLOODCULT: [key_name(convertee)] was made prisoner by [key_name(converter)] because the cult is overcrowded.")
+				message_admins("BLOODCULT: [key_name(converter)] bierze [key_name(convertee)] do niewoli, bo kult jest przepełniony.")
 				log_admin("BLOODCULT: [key_name(convertee)] was made prisoner by [key_name(converter)] because the cult is overcrowded.")
 
 				abort(RITUALABORT_REFUSED)
 
 		if (CONVERSION_BANNED)
 
-			message_admins("BLOODCULT: [key_name(convertee)] died because they were converted by [key_name(converter)] while cult-banned.")
+			message_admins("BLOODCULT: [key_name(convertee)] ginie, bo [key_name(converter)] nawraca tę osobę mimo bana na kult.")
 			log_admin("BLOODCULT: [key_name(convertee)] died because they were converted by [key_name(converter)] while cult-banned.")
 			conversion.icon_state = ""
 			flick("rune_convert_failure", conversion)

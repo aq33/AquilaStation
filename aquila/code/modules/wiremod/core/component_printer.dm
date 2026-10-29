@@ -2,7 +2,7 @@
 // Z tg doszło łączenie z układem: uderzenie układem w drukarkę pozwala drukować komponenty z okna układu
 // i oddawać do niej odłączone komponenty. Bez duplikatora modułów i bez okna ComponentPrinter z tg.
 /obj/machinery/modular_fabricator/component_printer
-	name = "component printer"
+	name = "drukarka komponentów"
 	desc = "Wytwarza komponenty do budowy układów scalonych. Uderz w nią układem, aby je połączyć."
 	icon = 'aquila/icons/obj/wiremod/wiremod_fab.dmi'
 	icon_state = "fab-idle"
@@ -86,7 +86,7 @@
 	return new design.build_path(drop_location())
 
 /obj/item/circuitboard/machine/component_printer
-	name = "\improper Component Printer (Machine Board)"
+	name = "drukarka komponentów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/modular_fabricator/component_printer
 	req_components = list(

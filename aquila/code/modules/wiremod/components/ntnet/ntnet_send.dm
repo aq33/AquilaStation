@@ -5,7 +5,7 @@
  */
 
 /obj/item/circuit_component/ntnet_send
-	display_name = "NTNet Transmitter"
+	display_name = "Nadajnik NTNet"
 	desc = "Wysyła pakiet danych przez NTNet. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "NTNet"
 

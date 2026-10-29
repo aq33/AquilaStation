@@ -314,7 +314,7 @@
 // ---------------------------------------------------------------------------
 // Krzyż bojowy kapelana - wracający bumerang (draft: code/modules/jobs/job_types/chaplain/chaplain_nullrod.dm)
 /obj/item/projectile/boomerang
-	name = "boomerang"
+	name = "bumerang"
 	icon = 'aquila/icons/bloodcult/boomerang.dmi'
 	icon_state = "boomerang-spin"
 	damage = 20
@@ -383,7 +383,7 @@
 	boomerang = null
 
 /obj/effect/tracker/boomerang
-	name = "boomerang"
+	name = "bumerang"
 	icon = 'aquila/icons/bloodcult/boomerang.dmi'
 	icon_state = "boomerang-spin"
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -448,7 +448,7 @@
 	return FALSE
 
 /obj/item/nullrod/cross_boomerang
-	name = "battle cross"
+	name = "krzyż bojowy"
 	desc = "Święty srebrny krzyż, który rozprasza zło i razi nieczyste stworzenia."
 	throwforce = 20
 	icon = 'aquila/icons/bloodcult/boomerang.dmi'

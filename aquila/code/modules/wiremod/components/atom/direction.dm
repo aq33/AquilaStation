@@ -4,7 +4,7 @@
  * Return the direction of a mob relative to the component
  */
 /obj/item/circuit_component/direction
-	display_name = "Get Direction"
+	display_name = "Pobierz kierunek"
 	desc = "Komponent, który zwraca kierunek między sobą a obiektem."
 	category = "Entity"
 

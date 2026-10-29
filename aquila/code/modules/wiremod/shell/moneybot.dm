@@ -4,7 +4,7 @@
  * Immobile (but not dense) shell that can receive and dispense money.
  */
 /obj/structure/money_bot
-	name = "money bot"
+	name = "bot-kasa"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_large"
 
@@ -44,7 +44,7 @@
 
 
 /obj/item/circuit_component/money_dispenser
-	display_name = "Money Dispenser"
+	display_name = "Wypłata pieniędzy"
 	desc = "Wydaje pieniądze z bota-kasy. Pieniądze pochodzą z jego wewnętrznego zapasu."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -114,7 +114,7 @@
 	new /obj/item/holochip(droploc, to_dispense)
 
 /obj/item/circuit_component/money_bot
-	display_name = "Money Bot"
+	display_name = "Bot-kasa"
 	var/obj/structure/money_bot/attached_bot
 	desc = "Wysyła sygnał, gdy do obudowy bota-kasy włożono pieniądze, i śledzi łączną kwotę w obudowie."
 

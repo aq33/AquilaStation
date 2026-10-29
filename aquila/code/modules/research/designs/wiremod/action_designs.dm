@@ -2,46 +2,46 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_ACTION_COMPONENTS)
 
 /datum/design/component/action/speech
-	name = "Speech Component"
+	name = "Komponent: mowa"
 	id = "comp_speech"
 	build_path = /obj/item/circuit_component/speech
 
 /datum/design/component/action/laserpointer
-	name = "Laser Pointer Component"
+	name = "Komponent: wskaźnik laserowy"
 	id = "comp_laserpointer"
 	build_path = /obj/item/circuit_component/laserpointer
 
 /datum/design/component/action/pull
-	name = "Pull Component"
+	name = "Komponent: zacznij ciągnąć"
 	id = "comp_pull"
 	build_path = /obj/item/circuit_component/pull
 
 /datum/design/component/action/soundemitter
-	name = "Sound Emitter Component"
+	name = "Komponent: emiter dźwięku"
 	id = "comp_soundemitter"
 	build_path = /obj/item/circuit_component/soundemitter
 
 /datum/design/component/action/equipment_action
-	name = "Equipment Action Component"
+	name = "Komponent: akcja wyposażenia"
 	id = "comp_equipment_action"
 	build_path = /obj/item/circuit_component/equipment_action
 
 /datum/design/component/action/radio
-	name = "Radio Component"
+	name = "Komponent: radio"
 	id = "comp_radio"
 	build_path = /obj/item/circuit_component/radio
 
 /datum/design/component/action/mmi
-	name = "MMI Component"
+	name = "Komponent: MMI"
 	id = "comp_mmi"
 	build_path = /obj/item/circuit_component/mmi
 
 /datum/design/component/action/pathfind
-	name = "Pathfinder"
+	name = "Komponent: wyznaczanie trasy"
 	id = "comp_pathfind"
 	build_path = /obj/item/circuit_component/pathfind
 
 /datum/design/component/action/light
-	name = "Light Component"
+	name = "Komponent: lampa"
 	id = "comp_light"
 	build_path = /obj/item/circuit_component/light

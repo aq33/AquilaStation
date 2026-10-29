@@ -7,7 +7,7 @@
 
 
 /obj/item/circuit_component/nfc_receive
-	display_name = "NFC Receiver"
+	display_name = "Odbiornik NFC"
 	desc = "Odbiera pakiety danych przez NFC. Jeśli ustawiono klucz szyfrowania, odbierane będą tylko sygnały z tym samym kluczem."
 	category = "Utility"
 

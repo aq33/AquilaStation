@@ -4,7 +4,7 @@
  * Clears an element to a list.
  */
 /obj/item/circuit_component/variable/list/listclear
-	display_name = "List Clear"
+	display_name = "Czyszczenie listy"
 	desc = "Czyści zmienną będącą listą."
 	category = "List"
 

@@ -7,7 +7,7 @@
  * Either makes the text upper case or lower case.
  */
 /obj/item/circuit_component/textcase
-	display_name = "Text Case"
+	display_name = "Wielkość liter"
 	desc = "Komponent, który zamienia wejście na wielkie lub małe litery."
 	category = "String"
 

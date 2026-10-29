@@ -1,5 +1,5 @@
 /obj/item/circuit_component/wirenet_receive
-	display_name = "Wirenet Receiver"
+	display_name = "Odbiornik Wirenet"
 	desc = "Odbiera pakiety danych przez podłączoną sieć kablową. Jeśli ustawiono klucz szyfrowania, odbierane będą tylko sygnały z tym samym kluczem."
 	category = "Utility"
 

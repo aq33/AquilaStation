@@ -714,7 +714,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		affecting.visible_message("<span class='warning'>[affecting] zamiera jak posąg, jarząc się nieziemską czerwienią.</span>", \
 						 "<span class='cult'>Widzisz, co leży poza. Wszystko zostaje odsłonięte. W tej postaci twój głos grzmi donośniej i możesz oznaczać cele dla całego kultu</span>")
 		var/mob/dead/observer/G = affecting.ghostize(1)
-		G.name = "Dark Spirit of [G.name]"
+		G.name = "mroczny duch ([G.name])"
 		G.color = "red"
 		while(!QDELETED(affecting))
 			if(!(affecting in T))

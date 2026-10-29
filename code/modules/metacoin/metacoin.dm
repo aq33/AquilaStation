@@ -10,7 +10,7 @@
 				else
 					inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Przetrwanie zmiany i ucieczka!")
 			else if(GLOB.crew_transfer_risa) //Nsv13 - added win condition for being competent.
-				inc_metabalance(METACOIN_PATROL_REWARD, reason="Successfully completed patrol.") // AQ EDIT - własna nagroda za patrol
+				inc_metabalance(METACOIN_PATROL_REWARD, reason="Udany patrol.") // AQ EDIT - własna nagroda za patrol
 			else
 				inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Przetrwanie zmiany.")
 		else

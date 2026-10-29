@@ -55,7 +55,7 @@
 		picture_size_y = min(clamp(round(desired_y), picture_size_y_min, picture_size_y_max), CAMERA_PICTURE_SIZE_HARD_LIMIT)
 
 /obj/item/circuit_component/camera
-	display_name = "Camera"
+	display_name = "Aparat"
 	desc = "Aparat polaroid, który robi zdjęcie po wyzwoleniu. Współrzędne zdjęcia są liczone względem położenia aparatu."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL

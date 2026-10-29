@@ -1,5 +1,5 @@
 /obj/item/organ/cyberimp/bci
-	name = "brain-computer interface"
+	name = "interfejs mózg-komputer"
 	desc = "Implant umieszczany w głowie, który pozwala sterować układami za pomocą mózgu."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "bci"
@@ -56,7 +56,7 @@
 	QDEL_LIST_ASSOC_VAL(action_comp.granted_to)
 
 /obj/item/circuit_component/bci_core
-	display_name = "BCI Core"
+	display_name = "Rdzeń BCI"
 	desc = "Steruje podstawowymi funkcjami BCI."
 
 	/// A reference to the action button to look at charge/get info
@@ -196,7 +196,7 @@
 		parent.attack_ghost(usr)
 
 /datum/action/innate/bci_charge_action
-	name = "Check BCI Charge"
+	name = "Sprawdź ładunek BCI"
 	check_flags = NONE
 	icon_icon = 'icons/obj/power.dmi'
 	button_icon_state = "cell"
@@ -238,7 +238,7 @@
 	button.maptext = cell ? MAPTEXT("[cell.percent()]%") : ""
 
 /obj/machinery/bci_implanter
-	name = "brain-computer interface manipulation chamber"
+	name = "komora manipulacji interfejsem mózg-komputer"
 	desc = "Maszyna, która wszczepia osobie w środku włożony interfejs mózg-komputer. Bez niego usuwa każdy interfejs, który ta osoba już ma."
 	circuit = /obj/item/circuitboard/machine/bci_implanter
 	icon = 'aquila/icons/obj/wiremod/bci_implanter.dmi'
@@ -466,7 +466,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/bci_implanter
-	name = "Brain-Computer Interface Manipulation Chamber"
+	name = "komora manipulacji interfejsem mózg-komputer (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/bci_implanter
 	req_components = list(

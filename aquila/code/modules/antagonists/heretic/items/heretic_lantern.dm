@@ -1,5 +1,5 @@
 /obj/item/flashlight/lantern/heretic
-	name = "burning lantern"
+	name = "płonąca latarnia"
 	desc = "Dziwna latarnia, od której bolą oczy, nawet gdy jest przygaszona."
 	light_power = 3
 	light_color = "#e8ff66"

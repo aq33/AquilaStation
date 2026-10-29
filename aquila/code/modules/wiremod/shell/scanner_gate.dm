@@ -1,5 +1,5 @@
 /obj/structure/scanner_gate_shell
-	name = "circuit scanner gate"
+	name = "bramka skanująca z układem"
 	desc = "Bramka, która wykonuje średnio dokładne skany każdego organizmu przechodzącego pod nią."
 	icon = 'aquila/icons/obj/wiremod/scangate.dmi'
 	icon_state = "scangate_black"
@@ -37,7 +37,7 @@
 		addtimer(CALLBACK(src, PROC_REF(set_scanline), "passive"), duration, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /obj/item/circuit_component/scanner_gate
-	display_name = "Scanner Gate"
+	display_name = "Bramka skanująca"
 	desc = "Bramka, która wykonuje średnio dokładne skany każdego obiektu przechodzącego przez nią."
 
 	var/datum/port/output/scanned

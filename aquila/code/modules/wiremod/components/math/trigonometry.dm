@@ -13,7 +13,7 @@
  * This one only works with numbers.
  */
 /obj/item/circuit_component/trigonometry
-	display_name = "Trigonometry"
+	display_name = "Trygonometria"
 	desc = "Ogólny komponent trygonometryczny z funkcjami podstawowymi i odwrotnymi."
 	category = "Math"
 

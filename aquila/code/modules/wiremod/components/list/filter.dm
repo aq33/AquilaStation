@@ -4,7 +4,7 @@
  * Filters
  */
 /obj/item/circuit_component/filter_list
-	display_name = "Filter"
+	display_name = "Filtrowanie listy"
 	desc = "Komponent, który przechodzi przez każdy element listy i je filtruje."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_INSTANT

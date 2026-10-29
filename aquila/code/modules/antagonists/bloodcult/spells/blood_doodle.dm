@@ -69,7 +69,7 @@
 	if(continue_drawing != "Tak" || QDELETED(blood))
 		return
 
-	message_admins("[key_name_admin(owner)] created a blood doodle containing the phrase: [message] [ADMIN_JMP(parent_turf)]")
+	message_admins("[key_name_admin(owner)] tworzy krwawy napis o treści: [message] [ADMIN_JMP(parent_turf)]")
 	log_game("[key_name(owner)] created a blood doodle containing the phrase: [message] at [AREACOORD(parent_turf)]")
 	var/obj/effect/decal/cleanable/blood/writing/spawned_writing = new /obj/effect/decal/cleanable/blood/writing(parent_turf)
 	spawned_writing.color = blood_color

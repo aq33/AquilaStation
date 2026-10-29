@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 	var/list/general_data = json_decode(json_data)
 
 	if(!general_data)
-		LOG_ERROR(errors, "Invalid json format!")
+		LOG_ERROR(errors, "Nieprawidłowy format JSON!")
 		return
 
 	var/list/variable_data = general_data["variables"]
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 		var/list/component_data = circuit_data[identifier]
 		var/type = text2path(component_data["type"])
 		if(!ispath(type, /obj/item/circuit_component))
-			LOG_ERROR(errors, "Invalid path for circuit component, expected [/obj/item/circuit_component], got [type]")
+			LOG_ERROR(errors, "Nieprawidłowa ścieżka komponentu układu: oczekiwano [/obj/item/circuit_component], otrzymano [type]")
 			continue
 		var/obj/item/circuit_component/component = load_component(type)
 		identifiers_to_circuit[identifier] = component
@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 					break
 
 			if(!port)
-				LOG_ERROR(errors, "Port '[port_name]' not found on [component.type] when trying to set it to a value of [port_data["stored_data"]]!")
+				LOG_ERROR(errors, "Nie znaleziono portu '[port_name]' w [component.type] przy próbie ustawienia wartości [port_data["stored_data"]]!")
 				continue
 
 			port.set_input(port_data["stored_data"])
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 		var/list/object_data = external_objects[identifier]
 		var/type = text2path(object_data["type"])
 		if(!ispath(type))
-			LOG_ERROR(errors, "Invalid path for external object, expected a path, got [type]")
+			LOG_ERROR(errors, "Nieprawidłowa ścieżka obiektu zewnętrznego: oczekiwano ścieżki, otrzymano [type]")
 			continue
 		var/atom/movable/object = new type(drop_location())
 		var/list/connected_components = list()
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 					break
 
 			if(!port)
-				LOG_ERROR(errors, "Port [port_name] not found for [component.type].")
+				LOG_ERROR(errors, "Nie znaleziono portu [port_name] w [component.type].")
 				continue
 
 			if(connection_data["stored_data"])
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 			for(var/list/output_data in (connection_data["connected_ports"] || list(connection_data)))
 				var/obj/item/circuit_component/connected_component = identifiers_to_circuit[output_data["component_id"]]
 				if(!connected_component)
-					LOG_ERROR(errors, "No connected component found for [component.type] for port [connection_data["port_name"]]. (connected component identifier: [connection_data["component_id"]])")
+					LOG_ERROR(errors, "Nie znaleziono połączonego komponentu dla [component.type] na porcie [connection_data["port_name"]]. (identyfikator połączonego komponentu: [connection_data["component_id"]])")
 					continue
 
 				var/datum/port/output/output_port
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 						break
 
 				if(!output_port)
-					LOG_ERROR(errors, "No output port found for [component.type] for port [output_port_name] on component [connected_component.type]")
+					LOG_ERROR(errors, "Nie znaleziono portu wyjściowego dla [component.type] (port [output_port_name] w komponencie [connected_component.type])")
 					continue
 
 				port.connect(output_port)
@@ -223,7 +223,7 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 // AQ EDIT START - brak makra ADMIN_VERB, zwykly verb dodany w aquila/code/modules/wiremod/admin_verbs.dm
 /client/proc/load_circuit()
 	set name = "Load Circuit"
-	set desc = "Loads a circuit from a file or direct input."
+	set desc = "Wczytuje układ z pliku albo z wklejonego tekstu."
 	set category = "Fun"
 	if(!check_rights(R_VAREDIT))
 		return
@@ -231,13 +231,13 @@ GLOBAL_LIST_INIT(circuit_dupe_whitelisted_types, list(
 // AQ EDIT END
 	var/list/errors = list()
 
-	var/option = alert(user, "Load by file or direct input?", "Load by file or string", "File", "Direct Input")
+	var/option = alert(user, "Wczytać z pliku czy z wklejonego tekstu?", "Wczytaj z pliku lub tekstu", "Plik", "Tekst")
 	var/txt
 	switch(option)
-		if("File")
-			txt = file2text(input(user, "Input File") as null|file)
-		if("Direct Input")
-			txt = input(user, "Input JSON", "Input JSON") as text|null
+		if("Plik")
+			txt = file2text(input(user, "Wybierz plik") as null|file)
+		if("Tekst")
+			txt = input(user, "Wklej JSON", "Wklej JSON") as text|null
 
 	if(!txt)
 		return

@@ -128,8 +128,8 @@
 		wearer.visible_message("<span class='danger'>Runiczna tarcza wokół [wearer] nagle znika!</span>")
 
 /obj/item/clothing/head/hooded/cult_hoodie/cult_shield
-	name = "empowered cultist helmet"
-	desc = "Empowered helmet which creates a powerful shield around the user."
+	name = "wzmocniony hełm kultysty"
+	desc = "Wzmocniony hełm, który tworzy wokół noszącego potężną tarczę."
 	icon_state = "cult_hoodalt"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 40,"energy" = 30, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 60, "stamina" = 40, "bleed" = 20)
 	body_parts_covered = HEAD

@@ -4,7 +4,7 @@
  * Replace any instance of a word/letter in a string with another
  */
 /obj/item/circuit_component/compare/contains/replace
-	display_name = "String Replace"
+	display_name = "Zamiana tekstu"
 	desc = "Zastępuje każde wystąpienie słowa lub litery w tekście innym."
 
 	var/datum/port/input/replacement

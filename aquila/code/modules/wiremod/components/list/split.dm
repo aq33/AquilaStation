@@ -4,7 +4,7 @@
  * Splits a string
  */
 /obj/item/circuit_component/split
-	display_name = "Split"
+	display_name = "Podział tekstu"
 	desc = "Dzieli tekst według separatora, zamieniając go w listę."
 	category = "List"
 

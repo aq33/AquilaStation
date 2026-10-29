@@ -4,7 +4,7 @@
  * Checks if a string contains a word/letter
  */
 /obj/item/circuit_component/compare/contains
-	display_name = "String Contains"
+	display_name = "Zawieranie tekstu"
 	desc = "Sprawdza, czy tekst zawiera słowo lub literę."
 	category = "String"
 

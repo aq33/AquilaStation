@@ -43,7 +43,7 @@
 #undef CAPACITY_PER_WIRE
 
 /obj/item/circuit_component/wire_bundle
-	display_name = "Wire Bundle"
+	display_name = "Wiązka przewodów"
 	desc = "Wiązka odsłoniętych przewodów, do których można podpiąć zespoły. Porty pojawią się dopiero po włożeniu układu do obudowy."
 	category = "Utility"
 	circuit_flags = CIRCUIT_FLAG_REFUSE_MODULE

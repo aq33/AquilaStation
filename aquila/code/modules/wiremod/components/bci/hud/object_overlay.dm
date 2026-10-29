@@ -8,7 +8,7 @@
 #define OBJECT_OVERLAY_LIMIT 10
 
 /obj/item/circuit_component/object_overlay
-	display_name = "Object Overlay"
+	display_name = "Nakładka obiektu"
 	desc = "Wymaga obudowy BCI. Komponent, który wyświetla nakładkę na obiekcie."
 	category = "BCI"
 

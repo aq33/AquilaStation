@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/thought_listener
-	display_name = "Thought Listener"
+	display_name = "Nasłuch myśli"
 	desc = "Komponent, który pozwala użytkownikowi wpisać tekst umysłem. Wymaga obudowy BCI."
 	category = "BCI"
 

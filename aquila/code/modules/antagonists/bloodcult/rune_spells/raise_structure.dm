@@ -161,7 +161,7 @@
 		update_progbar()
 
 		sleep(10)
-	message_admins("A rune ritual has iterated for over 1000 blood payment procs. Something's wrong there.")
+	message_admins("Rytuał runy wykonał ponad 1000 iteracji płacenia krwią. Coś tu nie gra.")
 
 /datum/rune_spell/raisestructure/proc/success()
 	for(var/mob/living/L in contributors)

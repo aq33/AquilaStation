@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/nfc_send
-	display_name = "NFC Transmitter"
+	display_name = "Nadajnik NFC"
 	desc = "Wysyła pakiet danych przez NFC. Jeśli ustawiono klucz szyfrowania, przesłane dane odbiorą tylko odbiorniki z tym samym kluczem."
 	category = "Utility"
 

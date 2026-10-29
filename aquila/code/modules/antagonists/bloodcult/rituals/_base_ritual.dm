@@ -62,8 +62,8 @@ GLOBAL_LIST_INIT(bloodcult_personal_rituals, list(
 			cult_datum.gain_devotion(reward_faction, DEVOTION_TIER_4)//yes this means a larger cult gets more total devotion.
 
 	if (personal)
-		message_admins("BLOODCULT: [key_name(owner?.owner)] has completed the [name] ritual.")
+		message_admins("BLOODCULT: [key_name(owner?.owner)] kończy rytuał: [name].")
 		log_admin("BLOODCULT: [key_name(owner?.owner)] has completed the [name] ritual.")
 	else
-		message_admins("BLOODCULT: The [name] ritual has been completed.")
+		message_admins("BLOODCULT: ukończono rytuał: [name].")
 		log_admin("BLOODCULT: The [name] ritual has been completed.")

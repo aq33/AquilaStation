@@ -3,7 +3,7 @@
  * A variant of arctan. When given a deltaX and deltaY, returns the angle. I will blow you out of the sky
  */
 /obj/item/circuit_component/arctan2
-	display_name = "Arctangent 2 Component"
+	display_name = "Arcus tangens 2"
 	desc = "Dwuparametrowy komponent arctan2 do obliczania dowolnego kąta."
 	category = "Math"
 

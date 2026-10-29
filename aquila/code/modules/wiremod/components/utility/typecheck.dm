@@ -7,7 +7,7 @@
  * Checks the type of a value
  */
 /obj/item/circuit_component/compare/typecheck
-	display_name = "Typecheck"
+	display_name = "Sprawdzanie typu"
 	desc = "Komponent, który sprawdza typ wejścia."
 	category = "Utility"
 

@@ -1,7 +1,7 @@
 // AQUILA - Dym i zapachy, port z Monkestation 2.0
 ///Smoke coming from cigarettes and fires
 /datum/pollutant/smoke //and mirrors
-	name = "Smoke"
+	name = "Dym"
 	pollutant_flags = POLLUTANT_APPEARANCE | POLLUTANT_SMELL | POLLUTANT_BREATHE_ACT
 	smell_intensity = 1
 	descriptor = SCENT_DESC_SMELL
@@ -18,18 +18,18 @@
 
 ///From smoking weed
 /datum/pollutant/smoke/cannabis
-	name = "Cannabis"
+	name = "Marihuana"
 	smell_intensity = 2 //Stronger than the normal smoke
 	scent = "marihuany"
 
 /datum/pollutant/smoke/vape
-	name = "Vape Cloud"
+	name = "Chmura z e-papierosa"
 	thickness = 2
 	scent = "miękkiej, przyjemnej pary"
 
 ///Dust from mining drills
 /datum/pollutant/dust
-	name = "Dust"
+	name = "Pył"
 	pollutant_flags = POLLUTANT_APPEARANCE | POLLUTANT_BREATHE_ACT
 	thickness = 2
 	color = "#ffed9c"
@@ -43,7 +43,7 @@
 
 ///Sulphur coming from igniting matches
 /datum/pollutant/sulphur
-	name = "Sulphur"
+	name = "Siarka"
 	pollutant_flags = POLLUTANT_SMELL
 	smell_intensity = 5 //Very pronounced smell (and good too, sniff sniff)
 	descriptor = SCENT_DESC_SMELL
@@ -51,7 +51,7 @@
 
 ///Organic waste and garbage makes this
 /datum/pollutant/decaying_waste
-	name = "Decaying Waste"
+	name = "Rozkładające się odpadki"
 	pollutant_flags = POLLUTANT_SMELL
 	smell_intensity = 3
 	descriptor = SCENT_DESC_ODOR
@@ -60,7 +60,7 @@
 
 ///Splashing blood makes a tiny bit of this
 /datum/pollutant/metallic_scent
-	name = "Metallic Scent"
+	name = "Metaliczny zapach"
 	pollutant_flags = POLLUTANT_SMELL
 	smell_intensity = 1
 	descriptor = SCENT_DESC_SMELL
@@ -68,7 +68,7 @@
 
 ///A special "Quick Dispersal" smoke for special cigars
 /datum/pollutant/bright_cosmos
-	name = "Cosmic Smoke"
+	name = "Kosmiczny dym"
 	pollutant_flags = POLLUTANT_SMELL
 	smell_intensity = 1
 	descriptor = SCENT_DESC_SMELL
@@ -76,7 +76,7 @@
 
 ///Green goo piles and medicine chemical reactions make this
 /datum/pollutant/chemical_vapors
-	name = "Chemical Vapors"
+	name = "Opary chemiczne"
 	pollutant_flags = POLLUTANT_SMELL
 	smell_intensity = 1
 	descriptor = SCENT_DESC_SMELL
@@ -84,7 +84,7 @@
 
 ///Dangerous fires release this from the waste they're burning
 /datum/pollutant/carbon_air_pollution
-	name = "Carbon Air Pollution"
+	name = "Zanieczyszczenie węglowe"
 	pollutant_flags = POLLUTANT_BREATHE_ACT
 
 // AQUILA - Monke dealt 5-10 oxy and 1 tox per breath, which outpaced any recovery. Now it is a nuisance you can still stand in for a while.
@@ -109,35 +109,35 @@
 	smell_mood_event = /datum/mood_event/pollution_food
 
 /datum/pollutant/food/fried_meat
-	name = "Fried Meat"
+	name = "Smażone mięso"
 	scent = "smażonego mięsa"
 
 /datum/pollutant/food/fried_bacon
-	name = "Fried Bacon"
+	name = "Smażony bekon"
 	scent = "smażonego bekonu"
 
 /datum/pollutant/food/fried_fish
-	name = "Fried Fish"
+	name = "Smażona ryba"
 	scent = "smażonej ryby"
 
 /datum/pollutant/food/pancakes
-	name = "Pancakes"
+	name = "Naleśniki"
 	scent = "naleśników"
 
 /datum/pollutant/food/coffee
-	name = "Coffee"
+	name = "Kawa"
 	scent = "kawy"
 
 /datum/pollutant/food/tea
-	name = "Tea"
+	name = "Herbata"
 	scent = "herbaty"
 
 /datum/pollutant/food/chocolate
-	name = "Chocolate"
+	name = "Czekolada"
 	scent = "czekolady"
 
 /datum/pollutant/food/spicy_noodles
-	name = "Spicy Noodles"
+	name = "Pikantny makaron"
 	scent = "pikantnego makaronu"
 
 //Fragrances that we spray on thing to make them smell nice
@@ -148,49 +148,49 @@
 	smell_mood_event = /datum/mood_event/pollution_fragrance
 
 /datum/pollutant/fragrance/air_refresher
-	name = "Air Refresher"
+	name = "Odświeżacz powietrza"
 	scent = "intensywnych kwiatów"
 	smell_intensity = 3
 
 //Simple fragrances
 /datum/pollutant/fragrance/cologne
-	name = "Cologne Water"
+	name = "Woda kolońska"
 	scent = "wody kolońskiej"
 
 /datum/pollutant/fragrance/wood
-	name = "Wood Perfume"
+	name = "Perfumy drzewne"
 	scent = "starego drewna"
 
 /datum/pollutant/fragrance/rose
-	name = "Rose Perfume"
+	name = "Perfumy różane"
 	scent = "róż"
 
 /datum/pollutant/fragrance/jasmine
-	name = "Jasmine Perfume"
+	name = "Perfumy jaśminowe"
 	scent = "jaśminu"
 
 /datum/pollutant/fragrance/mint
-	name = "Mint Perfume"
+	name = "Perfumy miętowe"
 	scent = "mięty"
 
 /datum/pollutant/fragrance/vanilla
-	name = "Vanilla Perfume"
+	name = "Perfumy waniliowe"
 	scent = "wanilii"
 
 /datum/pollutant/fragrance/pear
-	name = "Pear Perfume"
+	name = "Perfumy gruszkowe"
 	scent = "gruszki"
 
 /datum/pollutant/fragrance/strawberry
-	name = "Strawberry Perfume"
+	name = "Perfumy truskawkowe"
 	scent = "truskawek"
 
 /datum/pollutant/fragrance/cherry
-	name = "Cherry Perfume"
+	name = "Perfumy wiśniowe"
 	scent = "wiśni"
 
 /datum/pollutant/fragrance/amber
-	name = "Amber Perfume"
+	name = "Perfumy bursztynowe"
 	scent = "bursztynu, słodkiego i pudrowego"
 
 /datum/mood_event/pollution_stench

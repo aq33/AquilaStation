@@ -99,7 +99,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 
 /obj/item/circuit_component/digital_valve
 	display_name = "Digital Valve"
-	desc = "The interface for communicating with a digital valve."
+	desc = "Interfejs do komunikacji z zaworem cyfrowym."
 
 	var/obj/machinery/atmospherics/components/binary/valve/digital/attached_valve
 

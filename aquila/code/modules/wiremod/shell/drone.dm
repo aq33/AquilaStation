@@ -4,7 +4,7 @@
  * A movable mob that can be fed inputs on which direction to travel.
  */
 /mob/living/circuit_drone
-	name = "drone"
+	name = "dron"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_medium_med"
 	maxHealth = 300
@@ -45,7 +45,7 @@
 	return TRUE
 
 /obj/item/circuit_component/bot_circuit
-	display_name = "Drone"
+	display_name = "Dron"
 	desc = "Wysyła sygnały ruchu do obudowy drona."
 
 	/// The inputs to allow for the drone to move

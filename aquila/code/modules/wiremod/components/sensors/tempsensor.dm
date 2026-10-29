@@ -4,7 +4,7 @@
  * Returns the temperature of the tile
  */
 /obj/item/circuit_component/tempsensor
-	display_name = "Temperature Sensor"
+	display_name = "Czujnik temperatury"
 	desc = "Zwraca obecną temperaturę na polu."
 	category = "Sensor"
 

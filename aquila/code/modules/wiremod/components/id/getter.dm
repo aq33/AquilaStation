@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_getter
-	display_name = "Get ID"
+	display_name = "Pobierz ID"
 	desc = "Komponent, który zwraca pierwszą dostępną kartę ID organizmu."
 	category = "ID"
 

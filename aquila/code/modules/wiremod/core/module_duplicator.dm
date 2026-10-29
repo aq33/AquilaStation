@@ -4,7 +4,7 @@
 
 /// Module duplicator, allows you to save and recreate module components.
 /obj/machinery/module_duplicator
-	name = "module duplicator"
+	name = "duplikator modułów"
 	desc = "Pozwala powielać moduły i układy scalone, żeby nie składać ich od nowa. Przyłóż do maszyny moduł albo układ, by zapisać go jako wzór."
 	icon = 'aquila/icons/obj/wiremod/wiremod_fab.dmi'
 	icon_state = "module-fab-idle"
@@ -233,7 +233,7 @@
 	return default_deconstruction_screwdriver(user, "module-fab-o", "module-fab-idle", tool)
 
 /obj/item/circuitboard/machine/module_duplicator
-	name = "\improper Module Duplicator (Machine Board)"
+	name = "duplikator modułów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/module_duplicator
 	req_components = list(
@@ -242,7 +242,7 @@
 	)
 
 /datum/design/board/module_duplicator
-	name = "Machine Design (Module Duplicator)"
+	name = "Projekt maszyny (duplikator modułów)"
 	desc = "Płytka obwodu duplikatora modułów, który kopiuje układy scalone."
 	id = "module_duplicator"
 	build_path = /obj/item/circuitboard/machine/module_duplicator
