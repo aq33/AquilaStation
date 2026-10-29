@@ -366,6 +366,33 @@ body,
     font-family: 'Grand9K Pixel', monospace;
   }
 
+  &__help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    gap: 0.2rem 2rem;
+  }
+
+  &__help-entry {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: 'Grand9K Pixel', monospace;
+  }
+
+  &__help-name {
+    font-size: 1.6rem;
+    color: #ddd;
+  }
+
+  &__help-keys {
+    font-size: 1.6rem;
+    color: #8fb8d8;
+    text-align: right;
+    white-space: nowrap;
+  }
+
   &__player-hint {
     font-size: 1.4rem;
     color: #999;

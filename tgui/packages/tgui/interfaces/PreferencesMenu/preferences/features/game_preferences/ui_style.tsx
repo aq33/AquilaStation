@@ -88,8 +88,7 @@ export const intent_style: FeatureToggle = {
 
 export const legacy_intents: FeatureToggle = {
   name: 'Stary tryb intencji',
-  category: 'UI',
-  subcategory: 'HUD',
+  category: 'GAMEPLAY',
   description:
     'Zamiast combat mode: cztery intencje (help, disarm, grab, harm), a prawy przycisk myszy otwiera menu kontekstowe jak dawniej. Disarm działa jak prawy klik, grab pustą ręką jak Ctrl+klik.',
   component: CheckboxInput,
