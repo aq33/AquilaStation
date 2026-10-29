@@ -73,3 +73,13 @@
 	var/datum/status_effect/surgery_prepped/prep = C.has_status_effect(/datum/status_effect/surgery_prepped) || null // u nas FALSE, gdy brak statusu
 	if(prep && (body_zone in prep.zones))
 		ADD_TRAIT(src, TRAIT_READY_TO_OPERATE, TRAIT_STATUS_EFFECT(SURGERY_PREPPED_ID))
+
+// --- Hooki w core pytające o otwartą kończynę (AQ EDIT, LEGACY_OVERRIDES.md) ---
+
+/// Zarodek obcego (alien_embryo.dm): otwarta klatka to operacja w toku, larwa wychodzi bez zabijania (tg: skóra + kość)
+/mob/living/proc/is_chest_open_for_surgery()
+	return LIMB_HAS_SURGERY_STATE(get_bodypart(BODY_ZONE_CHEST), SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
+
+/// Moduł MOD wystrzeliwujący organy (modules_medical.dm): organ wchodzi do otwartej kończyny (tg: skóra, organy, kość)
+/mob/living/proc/can_receive_shot_organ(obj/item/organ/organ)
+	return LIMB_HAS_SURGERY_STATE(get_bodypart(check_zone(organ.zone)), SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED)

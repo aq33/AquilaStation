@@ -32,12 +32,9 @@
 	right.Remove(patient)
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_FAST_CLIMBER), "The trait stayed after both implants were removed")
 
-	// Legs can be operated on with the soft organ manipulation
-	var/found_leg_surgery = FALSE
-	for(var/datum/surgery/organ_manipulation/soft/surgery in GLOB.surgeries_list)
-		if(BODY_ZONE_L_LEG in surgery.possible_locs)
-			found_leg_surgery = TRUE
-	TEST_ASSERT(found_leg_surgery, "Organ manipulation cannot reach the legs")
+	// Leg implants go in with the organ manipulation on the leg (the new skeleton reaches organs by zone)
+	var/datum/surgery_operation/limb/organ_manipulation/internal/manip = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/organ_manipulation/internal]
+	TEST_ASSERT(manip.is_insert_available(patient.get_bodypart(BODY_ZONE_L_LEG), left, BODY_ZONE_L_LEG), "Organ manipulation cannot reach the legs")
 
 	// Arm sets build their tools, Strong-Arm takes the muscle slot and does not block the toolset
 	var/obj/item/organ/cyberimp/arm/cook/cook = allocate(/obj/item/organ/cyberimp/arm/cook)

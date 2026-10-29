@@ -13,9 +13,8 @@
 #define TRAIT_ANALGESIA "analgesia"
 /// id statusu /datum/status_effect/surgery_prepped (źródło TRAIT_READY_TO_OPERATE: TRAIT_STATUS_EFFECT(SURGERY_PREPPED_ID))
 #define SURGERY_PREPPED_ID "surgery_prepped"
-/// Opcje w menu radialnym serwet/prześcieradła (surgery_initiator)
-#define SURGERY_PREP_CHOICE_ADD "Przygotuj do operacji narzędziami"
-#define SURGERY_PREP_CHOICE_REMOVE "Zdejmij przygotowanie do operacji"
+/// Przedmiot jest pomocą chirurgiczną (serwety, prześcieradło, element surgery_aid): przygotowuje strefę, nie operuje
+#define TRAIT_SURGERY_AID "surgery_aid"
 
 // --- Stan chirurgiczny kończyny (bodypart.surgery_state) ---
 

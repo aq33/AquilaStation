@@ -1,7 +1,7 @@
 // AQUILA - bone gel, surgical tape and the bonesetter from tgstation
 // (code/game/objects/items/stacks/medical.dm, stacks/tape.dm, modules/surgery/surgery_tools.dm).
 // Gel and then tape on a fracture or a compound fracture make the bone knit by itself (aquila/code/modules/wounds/blunt.dm),
-// in surgery they glue the set bone (/datum/surgery_step/aq_gel_bone). The bonesetter is the best tool for setting it.
+// in surgery they glue the set bone (aquila/code/modules/surgery_tg/operation_bone_repair.dm). The bonesetter is the best tool for setting it.
 // Sprites: surgical tape from tgstation (CC-BY-SA 3.0), bone gel and bonesetter from our icons/obj/surgery.dmi,
 // bonesetter inhands from tgstation (CC-BY-SA 3.0).
 

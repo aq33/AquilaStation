@@ -62,13 +62,8 @@
 
 /// An open surgery on this limb wants the real bone setting, not the emergency gel
 /datum/wound/blunt/proc/limb_in_surgery()
-	for(var/datum/surgery/surgery as anything in victim.surgeries)
-		if(surgery.location == limb.body_zone)
-			return TRUE
-	// nowy szkielet chirurgii: kończyna otwarta, kość składa operacja
-	if(LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES))
-		return TRUE
-	return FALSE
+	// kończyna otwarta, kość składa operacja (stan kończyny z surgery_tg)
+	return LIMB_HAS_ANY_SURGERY_STATE(limb, ALL_SURGERY_SKIN_STATES)
 
 /// tgstation bones.dm gel(): painful, and applied to yourself it can knock you out before you finish
 /datum/wound/blunt/proc/apply_gel(obj/item/stack/medical/bone_gel/gel, mob/user)

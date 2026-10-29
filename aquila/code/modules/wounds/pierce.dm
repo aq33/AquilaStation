@@ -65,11 +65,7 @@
 /obj/item/proc/try_cauterize_pierce(mob/living/carbon/patient, mob/living/user)
 	if(patient in user.do_afters)
 		return FALSE
-	var/zone = check_zone(user.zone_selected)
-	for(var/datum/surgery/surgery as anything in patient.surgeries)
-		if(surgery.location == zone)
-			return FALSE
-	var/obj/item/bodypart/limb = patient.get_bodypart(zone)
+	var/obj/item/bodypart/limb = patient.get_bodypart(check_zone(user.zone_selected))
 	var/datum/wound/pierce/hole = limb?.get_wound(WOUND_PIERCE)
 	if(!hole || !hole.can_treat_with(src))
 		return FALSE
@@ -123,21 +119,6 @@
 	if(!wound_source_is_projectile)
 		return
 	treat_text = "Przypal ją (kauter, zapalniczka, spawarka)."
-
-/// The cauterization surgery closes every hole on the limb, like it closes cuts (slash.dm)
-/datum/surgery/cauterize/can_start(mob/user, mob/living/carbon/target, target_zone)
-	. = ..()
-	if(!.)
-		var/obj/item/bodypart/limb = target.get_bodypart(check_zone(target_zone))
-		return !!limb?.get_wound(WOUND_PIERCE)
-
-/datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	. = ..()
-	if(!istype(surgery, /datum/surgery/cauterize))
-		return
-	var/obj/item/bodypart/limb = target.get_bodypart(check_zone(target_zone))
-	for(var/datum/wound/pierce/hole in limb?.wounds?.Copy())
-		qdel(hole)
 
 // --- Eye puncture ---
 

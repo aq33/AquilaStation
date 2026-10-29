@@ -60,7 +60,19 @@ GLOBAL_LIST_INIT(abductor_operations, list(
 	return !!(locate(/obj/item/implant/abductor) in human_self.implants)
 
 // --- Dyski ---
-// Bazowy /obj/item/disk/surgery jest jeszcze w code/modules/surgery/surgery.dm (stary szkielet, do przeniesienia w etapie 4b).
+// Bazowy dysk i dysk debugowy przeniesione z code/modules/surgery/surgery.dm razem ze starym szkieletem.
+
+/obj/item/disk/surgery
+	name = "Surgery Procedure Disk"
+	desc = "A disk that contains advanced surgery procedures, must be loaded into an Operating Console."
+	icon_state = "datadisk1"
+	materials = list(/datum/material/iron=300, /datum/material/glass=100)
+	/// Typy operacji (/datum/surgery_operation/...) odblokowywane przez dysk
+	var/list/surgeries
+
+/obj/item/disk/surgery/debug
+	name = "Debug Surgery Disk"
+	desc = "A disk that contains all existing surgery procedures."
 
 /obj/item/disk/surgery/debug/Initialize(mapload)
 	. = ..()

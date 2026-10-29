@@ -1,8 +1,36 @@
 // AQUILA - przygotowanie do operacji z tg (code/datums/elements/surgery_aid.dm, tgstation#93697).
-// W tg TRAIT_READY_TO_OPERATE dają tylko "pomoce chirurgiczne" (serwety, prześcieradło, peleryna) nałożone na strefę ciała.
+// W tg TRAIT_READY_TO_OPERATE dają tylko "pomoce chirurgiczne" (serwety, prześcieradło) nałożone na strefę ciała.
 // Stół operacyjny, łóżko stazy czy zwykłe łóżko nie dają gotowości, tylko zmieniają szybkość (get_location_modifier),
-// a leżenie sprawdza każda operacja osobno. U nas serwety i prześcieradło mają już komponent surgery_initiator (stary
-// szkielet), więc przygotowanie jest opcją w jego menu radialnym (surgery_bridge.dm), a nie osobnym elementem.
+// a leżenie sprawdza każda operacja osobno. U nas element łapie COMSIG_ITEM_ATTACK (tg: COMSIG_ITEM_INTERACTING_WITH_ATOM),
+// bez podpowiedzi kontekstowych (nie mamy screentipów kontekstowych).
+
+/// Przedmiot nakładany na pacjenta przygotowuje strefę ciała do operacji (albo zdejmuje przygotowanie)
+/datum/element/surgery_aid
+	element_flags = ELEMENT_BESPOKE
+	id_arg_index = 2
+	/// Nazwa pomocy do opisu i komunikatów ("serwety", "prześcieradło")
+	var/aid_name
+
+/datum/element/surgery_aid/Attach(datum/target, aid_name = "serwety")
+	. = ..()
+	if(!isitem(target))
+		return ELEMENT_INCOMPATIBLE
+	src.aid_name = aid_name
+	ADD_TRAIT(target, TRAIT_SURGERY_AID, ELEMENT_TRAIT(type))
+	RegisterSignal(target, COMSIG_ITEM_ATTACK, PROC_REF(on_item_attack))
+
+/datum/element/surgery_aid/Detach(datum/target)
+	. = ..()
+	REMOVE_TRAIT(target, TRAIT_SURGERY_AID, ELEMENT_TRAIT(type))
+	UnregisterSignal(target, COMSIG_ITEM_ATTACK)
+
+/datum/element/surgery_aid/proc/on_item_attack(obj/item/source, mob/living/target, mob/living/user)
+	SIGNAL_HANDLER
+
+	if(!isliving(target) || !isliving(user))
+		return NONE
+	target.toggle_surgery_prep(user, user.zone_selected, aid_name)
+	return COMPONENT_ITEM_NO_ATTACK
 
 /// Które strefy ciała są przygotowane do operacji. Daje TRAIT_READY_TO_OPERATE mobowi i kończynom tych stref.
 /datum/status_effect/surgery_prepped

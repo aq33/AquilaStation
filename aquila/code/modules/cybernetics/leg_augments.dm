@@ -220,12 +220,3 @@
 	else if(hit_atom.density)
 		source.Knockdown(2 SECONDS)
 		source.visible_message(span_danger("[source] wbija się w [hit_atom]!"), span_userdanger("Wbijasz się w [hit_atom]!"))
-
-// Organy w nogach wkłada się tą samą operacją co w rękach
-/datum/surgery/organ_manipulation/soft/New(atom/surgery_target, surgery_location, surgery_bodypart)
-	. = ..()
-	possible_locs |= list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-
-/datum/surgery/organ_manipulation/mechanic/soft/New(atom/surgery_target, surgery_location, surgery_bodypart)
-	. = ..()
-	possible_locs |= list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)

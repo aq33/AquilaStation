@@ -1,7 +1,7 @@
 // The upstream assert macros are #undef'd at the end of code/modules/unit_tests/_unit_tests.dm, so this modular test carries its own copies
 #define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
 
-/// AQUILA - new surgery skeleton (tgstation#93697): limb surgery state, prepping, availability and the bridge to old surgeries
+/// AQUILA - new surgery skeleton (tgstation#93697): limb surgery state, prepping, availability and surgical aids
 /datum/unit_test/aquila_surgery_tg
 
 /datum/unit_test/aquila_surgery_tg/Run()
@@ -48,14 +48,21 @@
 	close.try_perform(chest, surgeon, cautery, list(OPERATION_TARGET_ZONE = BODY_ZONE_CHEST))
 	TEST_ASSERT(!chest.surgery_state, "Cauterizing left surgery states: [chest.surgery_state]")
 
-	// An old step surgery in the same zone keeps the click
-	var/datum/surgery/legacy = new /datum/surgery(patient, BODY_ZONE_CHEST, chest)
-	TEST_ASSERT(!surgeon.try_tg_surgery(patient, cautery), "The new skeleton took the click from an old surgery in progress")
-	qdel(legacy)
-
 	// Removing the prep clears the trait
 	patient.toggle_surgery_prep(surgeon, BODY_ZONE_CHEST)
 	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_READY_TO_OPERATE) && !HAS_TRAIT(chest, TRAIT_READY_TO_OPERATE), "Removing the prep left the patient ready to operate")
+
+	// Drapes and bedsheets are surgical aids (tg surgery_aid): applying them toggles the prep of the selected zone
+	var/obj/item/surgical_drapes/drapes = allocate(/obj/item/surgical_drapes)
+	var/obj/item/bedsheet/bedsheet = allocate(/obj/item/bedsheet)
+	TEST_ASSERT(HAS_TRAIT(drapes, TRAIT_SURGERY_AID) && HAS_TRAIT(bedsheet, TRAIT_SURGERY_AID), "Drapes or a bedsheet are not a surgical aid")
+	surgeon.zone_selected = BODY_ZONE_R_ARM
+	drapes.attack(patient, surgeon)
+	TEST_ASSERT(HAS_TRAIT(arm, TRAIT_READY_TO_OPERATE) && !HAS_TRAIT(chest, TRAIT_READY_TO_OPERATE), "Drapes did not prep the selected arm")
+	// on a prepped patient the drapes are not a tool for the operations (e.g. cavity implant takes any item)
+	TEST_ASSERT(!surgeon.try_tg_surgery(patient, drapes), "Drapes were used as a surgery tool")
+	bedsheet.attack(patient, surgeon)
+	TEST_ASSERT(!HAS_TRAIT(patient, TRAIT_READY_TO_OPERATE) && !HAS_TRAIT(arm, TRAIT_READY_TO_OPERATE), "A bedsheet did not remove the prep")
 
 /// Is this operation among the ones from get_available_operations()
 /datum/unit_test/aquila_surgery_tg/proc/has_operation(list/operations, datum/surgery_operation/operation)

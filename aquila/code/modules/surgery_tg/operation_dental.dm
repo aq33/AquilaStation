@@ -126,3 +126,18 @@
 		span_notice("[surgeon] ostrożnie wyjmuje [yoinked] z zębów [patient]."),
 		span_notice("[surgeon] ostrożnie wyjmuje coś z zębów [patient]."),
 	)
+
+/// Rozgryzienie pigułki w zębie (przeniesione z code/modules/surgery/dental_implant.dm razem ze starym szkieletem)
+/datum/action/item_action/hands_free/activate_pill
+	name = "Activate Pill"
+
+/datum/action/item_action/hands_free/activate_pill/Trigger()
+	if(!..())
+		return FALSE
+	to_chat(owner, "<span class='caution'>Zaciskasz zęby i rozgniatasz wszczepione [target.name]!</span>")
+	log_combat(owner, null, "swallowed an implanted pill", target)
+	if(target.reagents.total_volume)
+		target.reagents.reaction(owner, INGEST)
+		target.reagents.trans_to(owner, target.reagents.total_volume, transfered_by = owner)
+	qdel(target)
+	return TRUE

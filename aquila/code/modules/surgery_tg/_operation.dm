@@ -2,7 +2,52 @@
 // Zamiast /datum/surgery z listą kroków są pojedyncze operacje (/datum/surgery_operation). Kończyna pamięta stan
 // we flagach surgery_state, a narzędzie w ręce pokazuje w menu radialnym operacje pasujące do narzędzia i do stanu.
 // Przepisane na nasze API (attackby/do_after, check_zone, get_location_accessible, mobility_flags, nastroje Bee).
-// Stary szkielet (/datum/surgery) działa obok, mostek jest w surgery_bridge.dm.
+// Punkty wejścia: try_tg_surgery() z melee_attack_chain (AQ EDIT w code/_onclick/item_attack.dm) i attack_hand niżej.
+
+/**
+ * Chirurgia z łańcucha kliknięcia. Hook w /obj/item/proc/melee_attack_chain (przed tool_act, jak item_interaction w tg)
+ * i w /mob/living/carbon/attack_hand.
+ *
+ * Mob przygotowany (TRAIT_READY_TO_OPERATE) -> perform_surgery(): menu z operacjami pasującymi do narzędzia i stanu kończyny.
+ * Jest operacja -> wykonuje ją i kończy kliknięcie. Nie ma, a to narzędzie chirurgiczne na przygotowanej strefie ->
+ * podpowiedź i blokada ataku (jak w tg). Inaczej -> zwykły łańcuch (atak, leczenie stackami, rany...).
+ *
+ * * patient - kliknięty atom
+ * * tool - przedmiot albo IMPLEMENT_HAND
+ * * right_click - prawy klik (operacja celowo się nie uda)
+ *
+ * Zwraca TRUE, jeśli kliknięcie zostało obsłużone i reszta łańcucha ma się nie wykonać
+ */
+/mob/living/proc/try_tg_surgery(atom/patient, tool = IMPLEMENT_HAND, right_click = FALSE)
+	if(combat_mode || !isliving(patient))
+		return FALSE
+	var/mob/living/living_patient = patient
+	// serwety i prześcieradło przygotowują strefę (element surgery_aid), nie są narzędziem operacji
+	if(isitem(tool))
+		var/obj/item/item_tool = tool
+		if(HAS_TRAIT(item_tool, TRAIT_SURGERY_AID))
+			return FALSE
+
+	if(HAS_TRAIT(living_patient, TRAIT_READY_TO_OPERATE))
+		var/surgery_result = perform_surgery(living_patient, tool, right_click)
+		if(surgery_result & (ITEM_INTERACT_SUCCESS|ITEM_INTERACT_BLOCKING))
+			return TRUE
+
+	// tg: zamknięcie rany na sobie działa też bez przygotowania
+	if(living_patient == src && isitem(tool))
+		var/manual_cauterization = try_manual_cauterize(tool)
+		if(manual_cauterization & (ITEM_INTERACT_SUCCESS|ITEM_INTERACT_BLOCKING))
+			return TRUE
+
+	return FALSE
+
+// Pusta ręka (operacje z IMPLEMENT_HAND, np. otwarcie klapy protezy). Przed zwykłym łańcuchem w carbon_defense.dm.
+/mob/living/carbon/attack_hand(mob/living/carbon/human/user, modifiers)
+	if(isliving(user))
+		var/mob/living/living_user = user
+		if(living_user.try_tg_surgery(src, IMPLEMENT_HAND, LAZYACCESS(modifiers, RIGHT_CLICK)))
+			return TRUE
+	return ..()
 
 /**
  * Próbuje wykonać operację narzędziem

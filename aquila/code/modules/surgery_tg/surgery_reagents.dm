@@ -1,5 +1,5 @@
 // AQUILA - odczynniki przyspieszające operacje w nowym szkielecie (tg: add_surgery_speed_mod w reaction_mob).
-// Stare wersje zmieniają speed_modifier trwających /datum/surgery i zostają, dopóki stary szkielet nie zniknie.
+// Stare modyfikatory /datum/surgery w core usunięte razem ze starym szkieletem (AQ EDIT w reaction_mob).
 // Wartości i czas działania jak w tg: mnożnik czasu na pacjencie, min(objętość * 1 min, 5 min).
 
 /datum/reagent/space_cleaner/sterilizine/reaction_mob(mob/living/carbon/C, method = TOUCH, reac_volume)

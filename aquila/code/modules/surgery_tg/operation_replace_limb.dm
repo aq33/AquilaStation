@@ -21,7 +21,7 @@
 	return "robotyczna kończyna"
 
 /datum/surgery_operation/limb/replace_limb/get_default_radial_image()
-	return get_item_radial_image(/obj/item/bodypart/chest/robot)
+	return image(icon = 'icons/mob/augmentation/augments.dmi', icon_state = "borg_chest") // icon robotycznych części jest w static_icon, icon = null
 
 /// AQUILA - proteza z pojemnika na organy albo sam przedmiot
 /datum/surgery_operation/limb/replace_limb/proc/get_augment(obj/item/tool)

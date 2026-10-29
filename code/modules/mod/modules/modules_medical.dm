@@ -194,20 +194,7 @@
 		organ = null
 		return
 	var/mob/living/carbon/human/organ_receiver = target
-	var/succeed = FALSE
-	if(organ_receiver.surgeries.len)
-		for(var/datum/surgery/procedure as anything in organ_receiver.surgeries)
-			if(procedure.location != organ.zone)
-				continue
-			if(!istype(procedure, /datum/surgery/organ_manipulation))
-				continue
-			var/datum/surgery_step/surgery_step = procedure.get_surgery_step()
-			if(!istype(surgery_step, /datum/surgery_step/manipulate_organs))
-				continue
-			succeed = TRUE
-			break
-	if(!succeed && organ_receiver.can_receive_shot_organ(organ)) // AQ EDIT - nowa chirurgia (aquila/code/modules/surgery_tg/)
-		succeed = TRUE
+	var/succeed = organ_receiver.can_receive_shot_organ(organ) // AQ EDIT - nowa chirurgia zamiast pętli starych operacji (aquila/code/modules/surgery_tg/)
 	if(succeed)
 		var/obj/item/organ/organ_evacced = organ_receiver.getorganslot(organ.slot)
 		if(organ_evacced && !(organ_evacced.organ_flags & ORGAN_UNREMOVABLE))
