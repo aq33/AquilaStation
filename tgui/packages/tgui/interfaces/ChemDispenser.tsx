@@ -248,13 +248,21 @@ export const ChemDispenser = (props) => {
                     </Button>
                   ))}
                 >
-                  <Stack wrap>
+                  {/* AQUILA - równa siatka zamiast Stack wrap (zawinięte wiersze dostawały wcięcie) */}
+                  <Box
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                      gap: '2px',
+                    }}
+                  >
                     {chemicals.map((chemical) => (
-                      <Stack.Item width="24.5%" key={chemical.id} mr={-0.5}>
-                        <ReagentDispenseButton chemical={chemical} />
-                      </Stack.Item>
+                      <ReagentDispenseButton
+                        key={chemical.id}
+                        chemical={chemical}
+                      />
                     ))}
-                  </Stack>
+                  </Box>
                 </Section>
               </Stack.Item>
               <Stack.Item>
@@ -320,6 +328,7 @@ export const ChemDispenser = (props) => {
                       recipes={recipeCatalog}
                       dispensable={chemicals.map((chemical) => chemical.id)}
                       onDispense={(id) => act('dispense', { reagent: id })}
+                      beakerContents={data.beakerContents || []}
                     />
                   )}
                 </Section>

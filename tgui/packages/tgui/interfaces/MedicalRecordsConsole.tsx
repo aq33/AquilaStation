@@ -124,7 +124,7 @@ const PHYSICAL_STATUSES: StatusOption[] = [
     value: 'Active',
     param: 'active',
     name: 'Aktywny',
-    icon: 'person-running',
+    icon: 'running',
     color: 'green',
     desc: 'Aktywny. Przytomny i zdrowy.',
   },
@@ -159,7 +159,7 @@ const MENTAL_STATUSES: StatusOption[] = [
     value: 'Stable',
     param: 'stable',
     name: 'Stabilny',
-    icon: 'face-smile',
+    icon: 'smile',
     color: 'green',
     desc: 'Stabilny. Zdrowy psychicznie, bez zaburzeń.',
   },
@@ -175,7 +175,7 @@ const MENTAL_STATUSES: StatusOption[] = [
     value: '*Unstable*',
     param: 'unstable',
     name: 'Niestabilny',
-    icon: 'scale-unbalanced-flip',
+    icon: 'balance-scale-right',
     color: 'orange',
     desc: 'Niestabilny. Co najmniej jedna choroba psychiczna.',
   },
@@ -183,7 +183,7 @@ const MENTAL_STATUSES: StatusOption[] = [
     value: '*Insane*',
     param: 'insane',
     name: 'Niepoczytalny',
-    icon: 'head-side-virus',
+    icon: 'brain',
     color: 'red',
     desc: 'Niepoczytalny. Poważne, nienormalne zachowania.',
   },
@@ -763,18 +763,15 @@ const MedicalData = (props: { medical: MedicalRecord }) => {
         </Tabs.Tab>
       </Tabs>
       {tab === MEDTAB.Data && (
-        <Section
-          buttons={
-            <>
-              <TopicButton params={{ choice: 'View Past Medical' }} icon="book">
-                Historia choroby
-              </TopicButton>
-              <TopicButton params={{ del_r: 1 }} icon="trash" color="bad">
-                Usuń akta medyczne
-              </TopicButton>
-            </>
-          }
-        >
+        <Section>
+          <Box textAlign="right" mb={1}>
+            <TopicButton params={{ choice: 'View Past Medical' }} icon="book">
+              Historia choroby
+            </TopicButton>
+            <TopicButton params={{ del_r: 1 }} icon="trash" color="bad">
+              Usuń akta medyczne
+            </TopicButton>
+          </Box>
           <LabeledList>
             <LabeledList.Item
               label="Grupa krwi"
@@ -822,13 +819,12 @@ const MedicalData = (props: { medical: MedicalRecord }) => {
         </Section>
       )}
       {tab === MEDTAB.Comments && (
-        <Section
-          buttons={
+        <Section>
+          <Box textAlign="right" mb={1}>
             <TopicButton params={{ add_c: 1 }} icon="plus">
               Dodaj wpis
             </TopicButton>
-          }
-        >
+          </Box>
           {medical.comments.length === 0 && <NoticeBox>Brak wpisów.</NoticeBox>}
           {medical.comments.map((comment) =>
             comment.deleted ? (

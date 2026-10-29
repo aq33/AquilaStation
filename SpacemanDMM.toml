@@ -12,3 +12,8 @@ var_in_proc_parameter = "off"
 
 [debugger]
 engine = "auxtools"
+
+# AQUILA - webmapa: FancyLayers daje dekalom warstwę -1, więc płyty kadłuba (1.701) zakrywały szachownicę.
+# Płyty kładziemy między podłogą (-2) a dekalami (-1), jak w grze.
+[map_renderer.fancy_layers]
+"/obj/structure/hull_plate" = -1.5

@@ -183,7 +183,8 @@
 /mob/living/carbon/dream()
 	set waitfor = FALSE
 	var/datum/status_effect/grouped/heretic_dreams/heretic_dreams = has_status_effect(/datum/status_effect/grouped/heretic_dreams)
-	if(heretic_dreams?.try_heretic_dream(src))
+	// has_status_effect() zwraca FALSE, nie null, więc ?. tu nie wystarcza
+	if(heretic_dreams && heretic_dreams.try_heretic_dream(src))
 		return
 	return ..()
 

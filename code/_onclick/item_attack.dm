@@ -201,6 +201,7 @@
 	M.last_attacked_time = world.time
 
 	user.do_attack_animation(M)
+	user.stamina_swing(stamina_cost) // AQ EDIT - port Bee#14750: zamach kosztuje staminę
 	M.attacked_by(src, user)
 
 	log_combat(user, M, "attacked", src.name, "(COMBAT MODE: [uppertext(user.combat_mode)]) (DAMTYPE: [uppertext(damtype)])")

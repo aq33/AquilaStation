@@ -47,6 +47,7 @@
 /datum/powernet/proc/remove_cable(obj/structure/cable/C)
 	cables -= C
 	C.powernet = null
+	SEND_SIGNAL(C, COMSIG_CABLE_REMOVED_FROM_POWERNET) // AQ EDIT - wirenet circuitów z tg
 	if(is_empty())//the powernet is now empty...
 		qdel(src)///... delete it
 	else
@@ -63,6 +64,11 @@
 			C.powernet.remove_cable(C) //..remove it
 	C.powernet = src
 	cables +=C
+	// AQ EDIT START - wirenet circuitów z tg
+	SEND_SIGNAL(C, COMSIG_CABLE_ADDED_TO_POWERNET, src)
+	if(isturf(C.loc))
+		SEND_SIGNAL(C.loc, COMSIG_TURF_CABLE_ADDED_TO_POWERNET, C)
+	// AQ EDIT END
 
 //remove a power machine from the current powernet
 //if the powernet is then empty, delete it

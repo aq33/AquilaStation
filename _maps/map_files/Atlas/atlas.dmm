@@ -58,6 +58,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/nsv/deck2/port/fore)
+"af" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 1
+	},
+/obj/machinery/modular_fabricator/component_printer,
+/turf/open/floor/monotile/dark,
+/area/science)
 "ag" = (
 /obj/structure/table,
 /obj/item/vending_refill/boozeomat,
@@ -94,6 +104,16 @@
 /obj/machinery/airalarm/directional/north,
 /turf/open/floor/durasteel/techfloor,
 /area/maintenance/nsv/deck2/starboard)
+"am" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/ship/half/purple{
+	dir = 4
+	},
+/obj/machinery/bci_implanter,
+/turf/open/floor/monotile/dark,
+/area/science)
 "an" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
@@ -984,7 +1004,7 @@
 /area/engine/atmospherics_engine)
 "ch" = (
 /obj/machinery/computer/ship/ftl_computer{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/break_room)
@@ -2900,13 +2920,6 @@
 	},
 /turf/open/floor/durasteel/riveted,
 /area/engine/atmospherics_engine)
-"fS" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "botany"
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/hydroponics)
 "fT" = (
 /obj/structure/sign/directions/supply{
 	dir = 4;
@@ -7867,6 +7880,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
+/obj/machinery/module_duplicator,
 /turf/open/floor/monotile/dark,
 /area/science)
 "tk" = (
@@ -8000,15 +8014,6 @@
 "tw" = (
 /turf/closed/wall/steel,
 /area/security/checkpoint/escape)
-"tx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/obj/effect/turf_decal/tile/ship/half/purple{
-	dir = 4
-	},
-/turf/open/floor/monotile/dark,
-/area/science)
 "tz" = (
 /obj/machinery/seeder,
 /obj/structure/cable,
@@ -10274,8 +10279,7 @@
 /obj/machinery/smartfridge{
 	name = "public botany fridge"
 	},
-/obj/effect/turf_decal/tile/green/tile_side,
-/turf/open/floor/durasteel,
+/turf/closed/wall/steel,
 /area/hydroponics)
 "Bb" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -52713,8 +52717,8 @@ LE
 Bo
 Bo
 Bo
+Bo
 Ba
-fS
 dS
 pw
 rZ
@@ -57092,7 +57096,7 @@ en
 Pt
 Lc
 sn
-eh
+af
 te
 nm
 HA
@@ -57351,7 +57355,7 @@ kV
 sn
 eh
 lU
-tx
+am
 Cb
 ZZ
 Pm

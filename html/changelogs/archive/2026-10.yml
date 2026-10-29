@@ -739,6 +739,16 @@
   - rscadd: Kapitan wybiera w konsoli łączności jedną z trzech wylosowanych misji
       przed odprawą.
   - imageadd: Ikony koła emotek i panelu rewolucji.
+  - bugfix: Jajoludzie mogą wybrać i mówić Ovarian, a kałamarnice R'lyehian.
+  - bugfix: Wampiry, wasale i thralle darkspawna mogą mówić swoim językiem, a nie
+      tylko go rozumieć.
+  - config: Usunięto zdublowaną flagę ATMOS_EQUALIZE_ENABLED z config.txt.
+  - rscadd: Kliknięcie w alert potrzeby fizjologicznej pozwala załatwić się na miejscu.
+      W ubraniu zostaje smród, nago tylko bałagan na podłodze.
+  - rscadd: Za każdy wykonany cel antagonisty dostajesz 500 aquilosów, za cel załogi
+      1000.
+  - balance: Przeżycie rundy z ucieczką daje 2000 aquilosów, wygrana misja 3000.
+  - bugfix: Polska szachownica na płytach kadłuba jest widoczna na webmapie.
   Monkestation:
   - rscadd: Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy
       kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu
@@ -748,3 +758,79 @@
   - rscadd: Perfumy (ClothesMate), świece zapachowe (ChapDrobe), odświeżacz powietrza
       dla woźnego i oczyszczacz powietrza w cargo.
   - rscadd: Scrubbery wciągają dym i zapachy.
+  sh4dow321:
+  - server: 'Serwer można zbudować i uruchomić na Debianie: BUILD.sh, server_watchdog.sh
+      i aquila/tools/debian_setup.sh.'
+  - server: Na Linuksie szafa grająca i „Play Internet Sound” używają linuksowego
+      yt-dlp zamiast yt-dlp.exe.
+  - server: Na Debianie BUILD.sh buduje też TGUI.
+  tgstation:
+  - rscadd: 'Circuity z tg: zmienne układu, listy z pętlą foreach i filtrem, podukłady
+      (moduł), zapis i wczytanie układu, kilkadziesiąt nowych komponentów (ID i dostęp,
+      czujniki, NTNet, wirenet, NFC, router, BCI).'
+  - rscadd: 'Nowe obudowy: BCI z komorą wszczepiającą, implant, klawiatura, pistolet,
+      panel ścienny, panel pod płytkę, dystrybutor, skaner bramkowy.'
+  - rscadd: Port USB w emiterze, termomaszynie i pompie temperatury.
+  - rscadd: Układ połączony z drukarką komponentów (uderz nim w drukarkę) drukuje
+      komponenty z okna układu.
+  - tweak: Nowe okno układu z tg, po polsku.
+  - rscdel: Combiner, RAM, Pop, Write, List Length Constructor zastąpione komponentami
+      i zmiennymi z tg.
+  - admin: View All Circuits i Load Circuit dla adminów, komponenty admina (proccall,
+      SDQL, setvar, spawn).
+'2026-10-29':
+  Joker66613:
+  - tweak: Zakładki Oddział i Frakcja połączone w jedną, Admin i Mentor też (z podziałem
+      na sekcje).
+  - tweak: Z panelu znikają zakładki Przedmiot i Ustawienia oraz zdublowane komendy
+      IC; Módl się jest w zakładce Admin z opisem.
+  - rscadd: Guzik Śpij obok Rzuć i guzik czujników stroju nad plecakiem.
+  - tweak: Guziki HUD-u mają polskie nazwy.
+  - tweak: Esc najpierw zamyka koła wyboru i okna, dopiero potem otwiera menu.
+  - rscadd: W menu pod Esc jest sekcja Pomoc ze sterowaniem i Twoimi klawiszami.
+  - bugfix: Widok gry dopasowuje się do okna po zmianie jego rozmiaru zamiast czarnych
+      pasów.
+  - tweak: Gra domyślnie startuje w pełnym ekranie, a ustawienie pełnego ekranu działa
+      od wejścia.
+  - bugfix: T od razu otwiera pisanie, także po kliknięciu w czat.
+  - tweak: Większa minimapa z polską legendą.
+  - tweak: 'Ustawienia gry: kategorie jako osobne strony, wszystkie opcje widoczne
+      od razu.'
+  - tweak: Głośność tesli domyślnie 50%.
+  - imageadd: Ikony guzików Śpij i czujników stroju.
+  boneyards, joker:
+  - rscadd: Stamina to teraz jedna pula (250) na błyskawicy w HUD. Męczą ją sprint,
+      zamachy, ciosy i odepchnięcia, a regeneruje się szybciej na leżąco.
+  - rscadd: 'Poniżej 40% staminy jesteś wyczerpany: bez sprintu, wolniej i tylko szeptem.
+      Poniżej 20% każde trafienie może cię powalić na 3 s.'
+  - rscadd: Sprint pod Shift w trybie biegu.
+  - balance: Pałki, disabler, flesz i ramię borga dezorientują i zabierają staminę,
+      a powalają dopiero wyczerpany cel.
+  - balance: Każdy przedmiot zabiera trochę staminy przy trafieniu, a zamach kosztuje
+      staminę.
+  - balance: Stamina nie wyłącza już kończyn. Dźwignia MAA unieruchamia rękę na 10
+      s.
+  - rscadd: Wbiegnięcie sprintem w ścianę, okno, zamknięte drzwi albo stół przewraca
+      i obija głowę.
+  - rscadd: Sprint po schodach może skończyć się potknięciem i zjazdem na dół.
+  - imageadd: Chmurki kurzu przy sprincie i animacja ręki przy interakcji.
+  - soundadd: Sapanie umierającego z Goonstation.
+  - config: Nowa opcja SPRINT_DELAY (domyślnie 1.5).
+  sh4dow321:
+  - code_imp: 'Pożary gazowe obciążają serwer dużo mniej: ogień pali przedmioty na
+      kafelku i dymi rzadziej.'
+  - bugfix: Naprawiono błędy przy gaszeniu lub niszczeniu ognia w trakcie palenia
+      przedmiotów.
+  - bugfix: Szafa grająca nie gubi się, gdy kilka osób klika w nią naraz, a Stop zatrzymuje
+      muzykę także w trakcie łączenia.
+  - server: Błędy yt-dlp przy pojedynczych utworach szafy grającej trafiają do game.log.
+  - tweak: Popiół i plamy na płonącym kafelku reagują bez dźwięku i komunikatu na
+      czacie.
+  - tweak: Zapiekanie popiołu zostawia najwyżej 5 popielnych krawędzi na jednym kafelku.
+  - code_imp: Pożary znacznie mniej obciążają serwer.
+  - server: Kolumny w perf CSV zgadzają się teraz z nagłówkiem (zmienił się układ
+      kolumn).
+  - bugfix: Polskie znaki w statusie serwera na hubie BYOND wyświetlają się poprawnie.
+  - bugfix: Przyciski stanu w konsoli akt medycznych znów mają ikony, a przyciski
+      nad danymi medycznymi nie nachodzą na ramkę.
+  - tweak: 'Atlas: publiczna lodówka botaniki jest wbudowana w ścianę zamiast okna.'

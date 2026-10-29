@@ -164,7 +164,7 @@ export const sound_ship_ambience: FeatureToggle = {
 };
 
 export const tesla_volume: FeatureNumeric = {
-  name: 'Tesla volume',
+  name: 'Głośność tesli',
   category: 'SOUND',
   subcategory: 'IC',
   component: FeatureSliderInput,

@@ -421,7 +421,7 @@
 	outer_plating_amount=1
 
 /datum/component/construction/mecha/gygax/action(datum/source, atom/used_atom, mob/user)
-	return INVOKE_ASYNC(src, PROC_REF(check_step), used_atom,user)
+	INVOKE_ASYNC(src, PROC_REF(check_step), used_atom,user) // AQ EDIT - INVOKE_ASYNC returns a /datum/task, which broke the signal return flags
 
 /datum/component/construction/mecha/gygax/custom_action(obj/item/I, mob/living/user, diff)
 	if(!..())

@@ -10,7 +10,7 @@
 	force = 8
 	throwforce = 7
 	cooldown = 0
-	stamina_damage = 25 // 4 hits to stamcrit
+	charged_stamina_damage = 60 // 3 uderzenia w tułów do wyczerpania (pula 250, Bee#14750)
 	slot_flags = ITEM_SLOT_BELT
 	stun_animation = TRUE
 	/// Per-mob sleep cooldowns.
@@ -28,7 +28,7 @@
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
 		to_chat(user, "<span class ='danger'>Przydzwoniłeś sobie w łeb.</span>")
-		user.adjustStaminaLoss(stamina_damage)
+		user.adjustStaminaLoss(charged_stamina_damage)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
@@ -62,45 +62,49 @@
 			playsound(get_turf(src), on_stun_sound, 75, 1, -1)
 			additional_effects_carbon(target, user)
 			if((user.zone_selected == BODY_ZONE_CHEST) || user.zone_selected == (BODY_ZONE_PRECISE_GROIN))
-				target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(charged_stamina_damage, STAMINA, BODY_ZONE_CHEST, def_check)
 				log_combat(user, target, "stunned", src)
 				target.visible_message(desc["visiblestun"], desc["localstun"])
 
 			else if((user.zone_selected == BODY_ZONE_HEAD) || user.zone_selected == (BODY_ZONE_PRECISE_EYES) || user.zone_selected == (BODY_ZONE_PRECISE_MOUTH))
-				target.apply_damage(18, STAMINA, BODY_ZONE_HEAD, def_check)
+				target.apply_damage(45, STAMINA, BODY_ZONE_HEAD, def_check)
 				log_combat(user, target, "stunned", src)
 				target.visible_message(desc["visiblehead"], desc["localhead"])
-				if(target.staminaloss > 89 && CHECK_BITFIELD(target.mobility_flags, MOBILITY_STAND))
+				if(HAS_TRAIT(target, TRAIT_EXHAUSTED) && CHECK_BITFIELD(target.mobility_flags, MOBILITY_STAND))
 					target.Sleeping(8 SECONDS)
 					target.visible_message(desc["visibleknockout"], desc["localknockout"])
 			if(user.zone_selected == BODY_ZONE_L_LEG)
-				target.apply_damage(15, STAMINA, BODY_ZONE_L_LEG, def_check)
-				target.apply_damage(8, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(55, STAMINA, BODY_ZONE_L_LEG, def_check)
 				log_combat(user, target, "tripped", src)
 				target.visible_message(desc["visibleleg"], desc["localleg"])
 				if(prob(20) && CHECK_BITFIELD(target.mobility_flags, MOBILITY_STAND))
 					target.Knockdown(7 SECONDS)
 					target.visible_message(desc["visibletrip"], desc["localtrip"])
 			if(user.zone_selected == BODY_ZONE_R_LEG)
-				target.apply_damage(15, STAMINA, BODY_ZONE_R_LEG, def_check)
-				target.apply_damage(8, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(55, STAMINA, BODY_ZONE_R_LEG, def_check)
 				log_combat(user, target, "tripped", src)
 				target.visible_message(desc["visibleleg"], desc["localleg"])
 				if(prob(20) && CHECK_BITFIELD(target.mobility_flags, MOBILITY_STAND))
 					target.Knockdown(7 SECONDS)
 					target.visible_message(desc["visibletrip"], desc["localtrip"])
 			if(user.zone_selected == BODY_ZONE_L_ARM)
-				target.apply_damage(15, STAMINA, BODY_ZONE_L_ARM, def_check)
-				target.apply_damage(7, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(50, STAMINA, BODY_ZONE_L_ARM, def_check)
 				log_combat(user, target, "disarmed", src)
-				if(target.staminaloss > 50)
+				// Ręka nie wyłącza się już od staminy: wyczerpany cel upuszcza to, co trzyma w tej ręce
+				if(HAS_TRAIT(target, TRAIT_EXHAUSTED))
+					var/obj/item/held = target.get_held_items_for_side("l")
+					if(held)
+						target.dropItemToGround(held)
 					target.visible_message(desc["visibledisarm"], desc["localdisarm"])
 				else (target.visible_message(desc["visiblearm"], desc["localarm"]))
 			if(user.zone_selected == BODY_ZONE_R_ARM)
-				target.apply_damage(15, STAMINA, BODY_ZONE_R_ARM, def_check)
-				target.apply_damage(7, STAMINA, BODY_ZONE_CHEST, def_check)
+				target.apply_damage(50, STAMINA, BODY_ZONE_R_ARM, def_check)
 				log_combat(user, target, "disarmed", src)
-				if(target.staminaloss > 50)
+				// Ręka nie wyłącza się już od staminy: wyczerpany cel upuszcza to, co trzyma w tej ręce
+				if(HAS_TRAIT(target, TRAIT_EXHAUSTED))
+					var/obj/item/held = target.get_held_items_for_side("r")
+					if(held)
+						target.dropItemToGround(held)
 					target.visible_message(desc["visibledisarm"], desc["localdisarm"])
 				else (target.visible_message(desc["visiblearm"], desc["localarm"]))
 

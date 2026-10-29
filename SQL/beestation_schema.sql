@@ -572,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `SS13_achievement_metadata` (
 	`achievement_name` VARCHAR(64) NULL DEFAULT NULL,
 	`achievement_description` VARCHAR(512) NULL DEFAULT NULL,
 	PRIMARY KEY (`achievement_key`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 

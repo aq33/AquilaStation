@@ -169,7 +169,7 @@ GENE SCANNER
 	if(M.getStaminaLoss())
 		message += "\t<span class='alert'>Pacjent wydaje się wyczerpany.</span>"
 		if(advanced)
-			message += "\t<span class='info'>Poziom zmęczenia: [M.getStaminaLoss()]%.</span>"
+			message += "\t<span class='info'>Poziom zmęczenia: [round(M.stamina?.loss_as_percent)]%.</span>"
 	if(M.getCloneLoss())
 		message += "\t<span class='alert'>Pacjent ma [M.getCloneLoss() > 30 ? "poważne" : "drobne"] uszkodzenia komórkowe.</span>"
 		if(advanced)

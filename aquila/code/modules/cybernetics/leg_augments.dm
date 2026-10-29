@@ -188,7 +188,7 @@
 		return NONE
 	if(!COOLDOWN_FINISHED(src, tackle_cooldown) || get_turf(target) == get_turf(source))
 		return NONE
-	if((organ_flags & ORGAN_FAILING) || source.getStaminaLoss() >= 80)
+	if((organ_flags & ORGAN_FAILING) || HAS_TRAIT(source, TRAIT_EXHAUSTED))
 		source.balloon_alert(source, "nogi odmawiają!")
 		return COMSIG_MOB_CANCEL_CLICKON
 
