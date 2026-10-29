@@ -67,6 +67,8 @@
 	update_icon()
 
 /obj/item/gun/ballistic/fire_sounds()
+	if(!magazine?.max_ammo) // AQ EDIT - a shot fired after the magazine was removed divided by null and played no sound
+		return ..()
 	var/frequency_to_use = sin((90/magazine?.max_ammo) * get_ammo())
 	var/click_frequency_to_use = 1 - frequency_to_use * 0.75
 	var/play_click = round(sqrt(magazine?.max_ammo * 2)) > get_ammo()

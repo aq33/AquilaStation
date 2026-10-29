@@ -9,6 +9,12 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (6, 0);
 In any query remember to add a prefix to the table names if you use one.
 
 -----------------------------------------------------
+Version 6.6, 29 October 2026 by Aquila
+The achievement metadata table had no charset (server default latin1), so Polish achievement names and descriptions failed to save at every round start (ERROR 1366).
+
+ALTER TABLE `SS13_achievement_metadata` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-----------------------------------------------------
 Version 6.5, 14 October 2026 by Aquila
 Added the economy earnings table: end-of-round ID card balance of evacuated crew, for the round-end report and the all-time earnings leaderboard
 (the game also creates it itself if missing)

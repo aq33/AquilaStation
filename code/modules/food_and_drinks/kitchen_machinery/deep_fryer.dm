@@ -88,6 +88,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	// This handles nulling out frying via exited
 	if(frying)
 		frying.forceMove(drop_location())
+	return ..() // AQ EDIT - without the parent call a destroyed fryer was never deleted
 
 /obj/machinery/deepfryer/RefreshParts()
 	var/oil_efficiency = 0
