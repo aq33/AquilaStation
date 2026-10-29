@@ -39,8 +39,17 @@
 	var/rims = 0
 	for(var/obj/item/garnish/ash/rim in location)
 		rims++
-		qdel(rim)
 	TEST_ASSERT(rims > 0, "Ash heated in a fire did not bake into ash rims")
+
+	// More ash on the same tile stops at the cap
+	for(var/i in 1 to 3)
+		var/obj/effect/decal/cleanable/ash/more_ash = allocate(/obj/effect/decal/cleanable/ash, location)
+		more_ash.reagents.expose_temperature(1000, 1)
+	rims = 0
+	for(var/obj/item/garnish/ash/rim in location)
+		rims++
+		qdel(rim)
+	TEST_ASSERT(rims == MAX_ASH_RIMS_PER_TURF, "A tile has [rims] ash rims instead of the cap of [MAX_ASH_RIMS_PER_TURF]")
 	qdel(hotspot)
 	QDEL_NULL(location.pollution)
 

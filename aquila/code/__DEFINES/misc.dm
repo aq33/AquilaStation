@@ -11,3 +11,6 @@
 #define HOTSPOT_CONTENTS_INTERVAL 3
 /// A hotspot smokes once per this many SSair ticks
 #define HOTSPOT_SMOKE_INTERVAL 10
+
+/// Najwięcej popielnych krawędzi, jakie zapiekanie popiołu zostawi na jednym kafelku
+#define MAX_ASH_RIMS_PER_TURF 5
