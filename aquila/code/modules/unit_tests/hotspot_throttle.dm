@@ -22,4 +22,48 @@
 
 	QDEL_NULL(location.pollution)
 
+/// AQUILA - Ash in a fire still bakes into ash rims, but quietly
+/datum/unit_test/fire_mutes_reaction
+
+/datum/unit_test/fire_mutes_reaction/Run()
+	var/turf/open/location = run_loc_floor_bottom_left
+	var/obj/effect/decal/cleanable/ash/ash = allocate(/obj/effect/decal/cleanable/ash, location)
+	var/obj/item/reagent_containers/glass/beaker/beaker = allocate(/obj/item/reagent_containers/glass/beaker, location)
+	TEST_ASSERT(!fire_mutes_reaction(ash), "Ash outside a fire reacts quietly")
+
+	var/obj/effect/hotspot/hotspot = allocate(/obj/effect/hotspot, location)
+	TEST_ASSERT(fire_mutes_reaction(ash), "Ash in a fire still reacts with a sound and a message")
+	TEST_ASSERT(!fire_mutes_reaction(beaker), "A beaker in a fire reacts quietly")
+
+	ash.reagents.expose_temperature(1000, 1)
+	var/rims = 0
+	for(var/obj/item/garnish/ash/rim in location)
+		rims++
+	TEST_ASSERT(rims > 0, "Ash heated in a fire did not bake into ash rims")
+
+	// More ash on the same tile stops at the cap
+	for(var/i in 1 to 3)
+		var/obj/effect/decal/cleanable/ash/more_ash = allocate(/obj/effect/decal/cleanable/ash, location)
+		more_ash.reagents.expose_temperature(1000, 1)
+	rims = 0
+	for(var/obj/item/garnish/ash/rim in location)
+		rims++
+		qdel(rim)
+	TEST_ASSERT(rims == MAX_ASH_RIMS_PER_TURF, "A tile has [rims] ash rims instead of the cap of [MAX_ASH_RIMS_PER_TURF]")
+	qdel(hotspot)
+	QDEL_NULL(location.pollution)
+
+/// AQUILA - Burning gas still heats windows every tick, and skips movables without their own temperature_expose()
+/datum/unit_test/temperature_expose_typecache
+
+/datum/unit_test/temperature_expose_typecache/Run()
+	var/turf/open/location = run_loc_floor_bottom_left
+	TEST_ASSERT(!GLOB.temperature_expose_typecache[/obj/item/pen], "A pen is in the temperature_expose() cache")
+	var/obj/structure/window/window = allocate(/obj/structure/window, location)
+	var/start_integrity = window.obj_integrity
+	fire_expose(location, location.air, 2000)
+	TEST_ASSERT(window.obj_integrity < start_integrity, "Burning gas did not damage a window on its tile")
+	qdel(location.active_hotspot)
+	QDEL_NULL(location.pollution)
+
 #undef TEST_ASSERT

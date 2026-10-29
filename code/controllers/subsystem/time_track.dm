@@ -72,12 +72,10 @@ SUBSYSTEM_DEF(time_track)
 			"air_superconductivity_cost",
 			"air_pipenets_cost",
 			"air_rebuilds_cost",
-			"air_turf_count",
-			"air_eg_count",
+			// AQ EDIT - turf, eg i superconductive count nie mają danych (liczy je auxmos), wiersz miał przez to przesunięte kolumny
 			"air_hotspot_count",
 			"air_network_count",
-			"air_delta_count",
-			"air_superconductive_count"
+			"air_delta_count"
 #ifdef SENDMAPS_PROFILE
 		) + sendmaps_shorthands
 #else
@@ -109,15 +107,17 @@ SUBSYSTEM_DEF(time_track)
 #ifdef SENDMAPS_PROFILE
 	var/sendmaps_json = world.Profile(PROFILE_REFRESH, type = "sendmaps", format="json")
 	var/list/send_maps_data = json_decode(sendmaps_json)
-	var/send_maps_sort = send_maps_data.Copy() //Doing it like this guarentees us a properly sorted list
-
+	// AQ EDIT START - stała kolejność kolumn z nagłówka, BYOND nie zwraca wszystkich pozycji w każdym odczycie
+	var/list/send_maps_by_name = list()
 	for(var/list/packet in send_maps_data)
-		send_maps_sort[packet["name"]] = packet
+		send_maps_by_name[packet["name"]] = packet
 
 	var/list/send_maps_values = list()
-	for(var/list/packet in send_maps_sort)
-		send_maps_values += packet["value"]
-		send_maps_values += packet["calls"]
+	for(var/proper_name in sendmaps_names_map)
+		var/list/packet = send_maps_by_name[proper_name]
+		send_maps_values += packet ? packet["value"] : 0
+		send_maps_values += packet ? packet["calls"] : 0
+	// AQ EDIT END
 #endif
 
 	SSblackbox.record_feedback("associative", "time_dilation_current", 1, list("[SQLtime()]" = list("current" = "[time_dilation_current]", "avg_fast" = "[time_dilation_avg_fast]", "avg" = "[time_dilation_avg]", "avg_slow" = "[time_dilation_avg_slow]")))
