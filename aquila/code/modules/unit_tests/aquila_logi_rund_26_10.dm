@@ -16,7 +16,7 @@
 /datum/objective/aquila_test_team_probe/find_target(list/dupe_search_range, list/blacklist)
 	team_at_find_target = team
 
-/// AQUILA - runtime'y z logów rund 6556 i 6558 (26.10.2026). Każdy z tych przypadków wcześniej kończył się runtime'em, a runtime oblewa test.
+/// AQUILA - runtime'y z logów rund 6556 i 6558 (26.10.2026) oraz 6539 i 6540 (29.10.2026). Każdy z tych przypadków wcześniej kończył się runtime'em, a runtime oblewa test.
 /datum/unit_test/aquila_logi_rund_26_10
 
 /datum/unit_test/aquila_logi_rund_26_10/Run()
@@ -53,6 +53,11 @@
 	gibs.AddComponent(/datum/component/infective, list(new /datum/disease/cold))
 	gibs.streak(list(NORTH))
 	TEST_ASSERT(locate(/datum/disease/cold) in gibs.streak_diseases, "Gib streak lost the diseases of the gibs")
+
+	// Zębatka do_after: zdjęcie nakładki, gdy lista zarządzanych nakładek już nie istnieje (null -= list)
+	user.managed_vis_overlays = null
+	SSvis_overlays.remove_vis_overlay(user, list(new /obj/effect/overlay/vis))
+	TEST_ASSERT(isnull(user.managed_vis_overlays), "Removing a vis overlay must not create the managed list")
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
