@@ -805,3 +805,9 @@
   - bugfix: Szafa grająca nie gubi się, gdy kilka osób klika w nią naraz, a Stop zatrzymuje
       muzykę także w trakcie łączenia.
   - server: Błędy yt-dlp przy pojedynczych utworach szafy grającej trafiają do game.log.
+  - tweak: Popiół i plamy na płonącym kafelku reagują bez dźwięku i komunikatu na
+      czacie.
+  - tweak: Zapiekanie popiołu zostawia najwyżej 5 popielnych krawędzi na jednym kafelku.
+  - code_imp: Pożary znacznie mniej obciążają serwer.
+  - server: Kolumny w perf CSV zgadzają się teraz z nagłówkiem (zmienił się układ
+      kolumn).
