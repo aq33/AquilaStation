@@ -234,6 +234,8 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 			client.prefs?.open_character_menu(client.mob)
 		if("settings")
 			client.prefs?.open_game_menu(client.mob)
+		if("leaderboard")
+			INVOKE_ASYNC(client, TYPE_VERB_REF(/client, economy_leaderboard))
 		if("create_ticket")
 			if(!(/client/verb/adminhelp in client.verbs))
 				return TRUE

@@ -266,13 +266,13 @@ CHECK_RANDOMIZER
 FORUMURL https://forums-nsv.beestation13.com/
 
 ## Wiki address
-WIKIURL https://nsv.beestation13.com/wiki
+WIKIURL https://aqnsv13.miraheze.org/wiki
 
 ## Rules address
 RULESURL https://nsv.beestation13.com/wiki/Rules
 
 ## Github address
-GITHUBURL https://github.com/BeeStation/NSV13
+GITHUBURL https://github.com/aq33/AquilaStation
 
 ## Label to tag ingame-registered issues with.
 ISSUE_LABEL Ingame Issue Report
