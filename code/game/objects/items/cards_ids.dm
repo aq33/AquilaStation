@@ -410,6 +410,7 @@ update_label("John Doe", "Clowny")
 		/obj/item/card/id/syndicate/nuke_leader,
 		/obj/item/card/id/syndicate/debug,
 		/obj/item/card/id/syndicate/broken,
+		/obj/item/card/id/syndicate/undercover, // AQ EDIT - Undercover I.D. detektywa
 		/obj/item/card/id/away/old/apc,
 		/obj/item/card/id/away/deep_storage,
 		/obj/item/card/id/changeling,

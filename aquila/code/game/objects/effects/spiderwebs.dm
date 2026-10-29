@@ -171,7 +171,7 @@
 /obj/structure/spider/stickyweb/proc/stuck_react(mob/living/victim)
 	if(QDELETED(victim))
 		return
-	if(victim.getStaminaLoss() > 90)
+	if(HAS_TRAIT(victim, TRAIT_EXHAUSTED))
 		if(victim.mobility_flags & MOBILITY_STAND)
 			to_chat(victim, span_warning("Potykasz się w [src] z wyczerpania!"))
 		victim.SetKnockdown(3 SECONDS)

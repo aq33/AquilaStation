@@ -291,11 +291,6 @@
 		data = list("misc" = 1)
 	data["misc"]++
 	M.jitteriness = min(M.jitteriness+4,10)
-	if(iscultist(M))
-		for(var/datum/action/innate/cult/blood_magic/BM in M.actions)
-			to_chat(M, "<span class='cultlarge'>Twoje krwawe obrzędy słabną, gdy woda święcona przeczyszcza twoje ciało!</span>")
-			for(var/datum/action/innate/cult/blood_spell/BS in BM.spells)
-				qdel(BS)
 	if(data["misc"] >= 25)		// 10 units, 45 seconds @ metabolism 0.4 units & tick rate 1.8 sec
 		if(!M.stuttering)
 			M.stuttering = 1
@@ -316,8 +311,7 @@
 				"Cała ta moc, a i tak zawodzisz?", "Jeśli nie umiesz wypalić tej trucizny, ja wypalę twoje marne życie!")].</span>")
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
-			if(iscultist(M))
-				SSticker.mode.remove_cultist(M.mind, FALSE, TRUE)
+			// AQ EDIT - kult krwi „Cult 4”: woda święcona nie nawraca już kultystów (jak w drafcie Monke), robi to rytuał kapelana
 			if(is_servant_of_ratvar(M))
 				remove_servant_of_ratvar(M.mind)
 			M.jitteriness = 0
@@ -2088,7 +2082,7 @@
 
 /datum/reagent/peaceborg/tire/on_mob_life(mob/living/carbon/M)
 	var/healthcomp = (100 - M.health)	//DOES NOT ACCOUNT FOR ADMINBUS THINGS THAT MAKE YOU HAVE MORE THAN 200/210 HEALTH, OR SOMETHING OTHER THAN A HUMAN PROCESSING THIS.
-	if(M.getStaminaLoss() < (45 - healthcomp))	//At 50 health you would have 200 - 150 health meaning 50 compensation. 60 - 50 = 10, so would only do 10-19 stamina.)
+	if(M.getStaminaLoss() < (45 - healthcomp) * 1.5) // AQ EDIT - port Bee#14750: próg na puli 250	//At 50 health you would have 200 - 150 health meaning 50 compensation. 60 - 50 = 10, so would only do 10-19 stamina.)
 		M.adjustStaminaLoss(10)
 	if(prob(30))
 		to_chat(M, "Powinieneś usiąść i odpocząć...")

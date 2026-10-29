@@ -178,9 +178,7 @@
 		return FALSE
 
 	for(var/result in result_atoms)
-		var/atom/result_item = new result(loc)
-		if(isitem(result_item))
-			ADD_TRAIT(result_item, TRAIT_CONTRABAND, INNATE_TRAIT)
+		new result(loc) // AQUILA: bez TRAIT_CONTRABAND, przedmioty heretyka nie są kontrabandą dla N-spect
 	return TRUE
 
 /**

@@ -56,7 +56,119 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">29 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Zakładki Oddział i Frakcja połączone w jedną, Admin i Mentor też (z podziałem na sekcje).</li>
+				<li class="tweak">Z panelu znikają zakładki Przedmiot i Ustawienia oraz zdublowane komendy IC; Módl się jest w zakładce Admin z opisem.</li>
+				<li class="rscadd">Guzik Śpij obok Rzuć i guzik czujników stroju nad plecakiem.</li>
+				<li class="tweak">Guziki HUD-u mają polskie nazwy.</li>
+				<li class="tweak">Esc najpierw zamyka koła wyboru i okna, dopiero potem otwiera menu.</li>
+				<li class="rscadd">W menu pod Esc jest sekcja Pomoc ze sterowaniem i Twoimi klawiszami.</li>
+				<li class="bugfix">Widok gry dopasowuje się do okna po zmianie jego rozmiaru zamiast czarnych pasów.</li>
+				<li class="tweak">Gra domyślnie startuje w pełnym ekranie, a ustawienie pełnego ekranu działa od wejścia.</li>
+				<li class="bugfix">T od razu otwiera pisanie, także po kliknięciu w czat.</li>
+				<li class="tweak">Większa minimapa z polską legendą.</li>
+				<li class="tweak">Ustawienia gry: kategorie jako osobne strony, wszystkie opcje widoczne od razu.</li>
+				<li class="tweak">Głośność tesli domyślnie 50%.</li>
+				<li class="imageadd">Ikony guzików Śpij i czujników stroju.</li>
+			</ul>
+			<h3 class="author">boneyards, joker updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Stamina to teraz jedna pula (250) na błyskawicy w HUD. Męczą ją sprint, zamachy, ciosy i odepchnięcia, a regeneruje się szybciej na leżąco.</li>
+				<li class="rscadd">Poniżej 40% staminy jesteś wyczerpany: bez sprintu, wolniej i tylko szeptem. Poniżej 20% każde trafienie może cię powalić na 3 s.</li>
+				<li class="rscadd">Sprint pod Shift w trybie biegu.</li>
+				<li class="balance">Pałki, disabler, flesz i ramię borga dezorientują i zabierają staminę, a powalają dopiero wyczerpany cel.</li>
+				<li class="balance">Każdy przedmiot zabiera trochę staminy przy trafieniu, a zamach kosztuje staminę.</li>
+				<li class="balance">Stamina nie wyłącza już kończyn. Dźwignia MAA unieruchamia rękę na 10 s.</li>
+				<li class="rscadd">Wbiegnięcie sprintem w ścianę, okno, zamknięte drzwi albo stół przewraca i obija głowę.</li>
+				<li class="rscadd">Sprint po schodach może skończyć się potknięciem i zjazdem na dół.</li>
+				<li class="imageadd">Chmurki kurzu przy sprincie i animacja ręki przy interakcji.</li>
+				<li class="soundadd">Sapanie umierającego z Goonstation.</li>
+				<li class="config">Nowa opcja SPRINT_DELAY (domyślnie 1.5).</li>
+			</ul>
+			<h3 class="author">sh4dow321 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Pożary gazowe obciążają serwer dużo mniej: ogień pali przedmioty na kafelku i dymi rzadziej.</li>
+				<li class="bugfix">Naprawiono błędy przy gaszeniu lub niszczeniu ognia w trakcie palenia przedmiotów.</li>
+				<li class="bugfix">Szafa grająca nie gubi się, gdy kilka osób klika w nią naraz, a Stop zatrzymuje muzykę także w trakcie łączenia.</li>
+				<li class="server">Błędy yt-dlp przy pojedynczych utworach szafy grającej trafiają do game.log.</li>
+				<li class="tweak">Popiół i plamy na płonącym kafelku reagują bez dźwięku i komunikatu na czacie.</li>
+				<li class="tweak">Zapiekanie popiołu zostawia najwyżej 5 popielnych krawędzi na jednym kafelku.</li>
+				<li class="code_imp">Pożary znacznie mniej obciążają serwer.</li>
+				<li class="server">Kolumny w perf CSV zgadzają się teraz z nagłówkiem (zmienił się układ kolumn).</li>
+				<li class="bugfix">Polskie znaki w statusie serwera na hubie BYOND wyświetlają się poprawnie.</li>
+				<li class="bugfix">Przyciski stanu w konsoli akt medycznych znów mają ikony, a przyciski nad danymi medycznymi nie nachodzą na ramkę.</li>
+				<li class="bugfix">Sny znów działają u postaci bez snów heretyka.</li>
+				<li class="bugfix">Zniszczona frytkownica znika z mapy.</li>
+				<li class="bugfix">Infiltratorzy nie dostają zdublowanych celów kradzieży ani podwójnego sprzętu do celu.</li>
+				<li class="bugfix">Strzał z broni bez magazynka ma dźwięk.</li>
+				<li class="bugfix">Choroby z flaków przechodzą na rozbryzgi krwi.</li>
+				<li class="bugfix">Okno automatu nie wywala się przy otwieraniu.</li>
+				<li class="bugfix">Składanie mecha, ambience i zębatka przy czynnościach nie sypią błędami.</li>
+				<li class="server">Polskie opisy osiągnięć zapisują się w bazie (wymaga migracji z SQL/database_changelog.txt).</li>
+			</ul>
+
+			<h2 class="date">28 October 2026</h2>
+			<h3 class="author">Joker66613 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Skaner kontrabandy N-spect w protolathe ochrony. Wykrywa przedmioty z uplinka, z ukrytej listy automatów, z paczek kontrabandy i narkotyki; torba przemytnika ukrywa zawartość. Bramka skanująca ma tryb Kontrabanda.</li>
+				<li class="rscadd">Undercover I.D. w szafce detektywa: karta do przebrania bez kopiowania dostępów, multitool blokuje przebranie.</li>
+				<li class="rscadd">Tagi triage (zielony, żółty, czerwony, czarny) i tagger w NanoMed Plus. Tag przykleja się na pacjenta i widać go w examine.</li>
+				<li class="rscadd">Opaska uciskowa (z tg): zatrzymuje 90% krwawienia z ręki lub nogi i ją spowalnia, na szyi dusi; noszona dłużej niż 3 minuty niszczy kończynę. Każdy dostaje jedną na start, są też w apteczkach i NanoMedach.</li>
+				<li class="imageadd">Sprite opaski uciskowej, skanera N-spect i taggera (z tg).</li>
+				<li class="rscadd">Koło emotek: przycisk w lewym górnym rogu otwiera radial z emotkami oznaczonymi gwiazdką w Panelu emotek (do 12).</li>
+				<li class="rscadd">10 nowych zleceń dla działu amunicji; zlecenia amunicji pojawiają się też w konsoli zleceń cargo.</li>
+				<li class="rscadd">Rewolucja ma panel jak kult krwi: miejsca towarzyszy, limit i ile osób można jeszcze przekonać.</li>
+				<li class="balance">Rewolucja ma dynamiczny limit konwersji jak kult (1/3 żywej załogi, od 5 do 12).</li>
+				<li class="rscadd">Kapitan wybiera w konsoli łączności jedną z trzech wylosowanych misji przed odprawą.</li>
+				<li class="imageadd">Ikony koła emotek i panelu rewolucji.</li>
+				<li class="bugfix">Jajoludzie mogą wybrać i mówić Ovarian, a kałamarnice R'lyehian.</li>
+				<li class="bugfix">Wampiry, wasale i thralle darkspawna mogą mówić swoim językiem, a nie tylko go rozumieć.</li>
+				<li class="config">Usunięto zdublowaną flagę ATMOS_EQUALIZE_ENABLED z config.txt.</li>
+				<li class="rscadd">Kliknięcie w alert potrzeby fizjologicznej pozwala załatwić się na miejscu. W ubraniu zostaje smród, nago tylko bałagan na podłodze.</li>
+				<li class="rscadd">Za każdy wykonany cel antagonisty dostajesz 500 aquilosów, za cel załogi 1000.</li>
+				<li class="balance">Przeżycie rundy z ucieczką daje 2000 aquilosów, wygrana misja 3000.</li>
+				<li class="bugfix">Polska szachownica na płytach kadłuba jest widoczna na webmapie.</li>
+			</ul>
+			<h3 class="author">Monkestation updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Dym i zapachy. Gęsty dym z papierosów i ognia widać jako mgiełkę, a zapachy kawy, grilla, perfum, świec i brudu można poczuć emotką *sniff albo po prostu oddychając.</li>
+				<li class="rscadd">Dym, pył i spaliny działają na oddychających bez maski. Ładne zapachy poprawiają nastrój, a smród go psuje.</li>
+				<li class="rscadd">Perfumy (ClothesMate), świece zapachowe (ChapDrobe), odświeżacz powietrza dla woźnego i oczyszczacz powietrza w cargo.</li>
+				<li class="rscadd">Scrubbery wciągają dym i zapachy.</li>
+			</ul>
+			<h3 class="author">sh4dow321 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="server">Serwer można zbudować i uruchomić na Debianie: BUILD.sh, server_watchdog.sh i aquila/tools/debian_setup.sh.</li>
+				<li class="server">Na Linuksie szafa grająca i „Play Internet Sound” używają linuksowego yt-dlp zamiast yt-dlp.exe.</li>
+				<li class="server">Na Debianie BUILD.sh buduje też TGUI.</li>
+			</ul>
+			<h3 class="author">tgstation updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Circuity z tg: zmienne układu, listy z pętlą foreach i filtrem, podukłady (moduł), zapis i wczytanie układu, kilkadziesiąt nowych komponentów (ID i dostęp, czujniki, NTNet, wirenet, NFC, router, BCI).</li>
+				<li class="rscadd">Nowe obudowy: BCI z komorą wszczepiającą, implant, klawiatura, pistolet, panel ścienny, panel pod płytkę, dystrybutor, skaner bramkowy.</li>
+				<li class="rscadd">Port USB w emiterze, termomaszynie i pompie temperatury.</li>
+				<li class="rscadd">Układ połączony z drukarką komponentów (uderz nim w drukarkę) drukuje komponenty z okna układu.</li>
+				<li class="tweak">Nowe okno układu z tg, po polsku.</li>
+				<li class="rscdel">Combiner, RAM, Pop, Write, List Length Constructor zastąpione komponentami i zmiennymi z tg.</li>
+				<li class="admin">View All Circuits i Load Circuit dla adminów, komponenty admina (proccall, SDQL, setvar, spawn).</li>
+			</ul>
+
 			<h2 class="date">27 October 2026</h2>
+			<h3 class="author">dwasint, Deity Link (vgstation) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Nowy kult krwi „Cult 4”: runy pisane słowami krwi, około 22 zaklęcia run, talizmany i tom.</li>
+				<li class="rscadd">Rytuały kultu (osobiste i drużynowe), devotion, tatuaże z mocami oraz role akolity, herolda i mentora.</li>
+				<li class="rscadd">Zaćmienie: pękają światła, runa Tear Reality, taniec i Krwawy Kamień do obrony; kultyści dostają aureolę.</li>
+				<li class="rscadd">Panel kultu z członkami, rytuałami, postępem Zaćmienia i pomocą.</li>
+				<li class="rscadd">Ofiara może odmówić konwersji i zostać więźniem kultu; kapelan dekonwertuje rytuałem Biblią, sól niszczy runy.</li>
+				<li class="rscadd">Kult może wygrać także ucieczką promem; raport końca rundy pokazuje devotion kultystów.</li>
+				<li class="rscadd">Konstrukty proteon i hex, doskonałe konstrukty z klejnotu dusz, projekcja astralna, cień w ostrzu dusz.</li>
+				<li class="rscdel">Usunięto magię krwi i stare runy kultu z Bee.</li>
+				<li class="imageadd">Ikony kultu z vgstation i Monkestation.</li>
+				<li class="soundadd">Dźwięki kultu z vgstation i Monkestation.</li>
+			</ul>
 			<h3 class="author">sh4dow321 updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="bugfix">Rękawice MODsuitów znów są widoczne, spod zamkniętego kombinezonu nie widać już gołych dłoni.</li>

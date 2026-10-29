@@ -51,6 +51,79 @@
 	required_count = 4
 	wanted_types = list(/obj/item/ship_weapon/ammunition/broadside_shell)
 
+// Złożone pociski i części dział - bez rzeczy, które cargo sprzedaje taniej niż zlecenie płaci
+
+/datum/bounty/item/munitions/torpedoes
+	name = "Złożone torpedy"
+	description = "Niszczyciel eskorty wypływa na patrol z pustymi wyrzutniami. Wyślijcie gotowe, złożone torpedy."
+	reward = 4000
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/ammunition/torpedo)
+	exclude_types = list(/obj/item/ship_weapon/ammunition/torpedo/torpedo_casing)
+
+/datum/bounty/item/munitions/missiles
+	name = "Złożone pociski rakietowe"
+	description = "Korweta obrony punktowej potrzebuje zapasu rakiet. Same korpusy się nie liczą."
+	reward = 3500
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/ammunition/missile)
+	exclude_types = list(/obj/item/ship_weapon/ammunition/missile/missile_casing)
+
+/datum/bounty/item/munitions/decoy_torpedoes
+	name = "Torpedy-wabiki"
+	description = "Konwój z Tau Ceti ciągle łapie namiar wroga. Potrzebne są torpedy-wabiki ECM."
+	reward = 3000
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/ammunition/torpedo/decoy)
+
+/datum/bounty/item/munitions/hull_shredder
+	name = "Torpeda Hull Shredder"
+	description = "Grupa abordażowa chce otworzyć kadłub pirackiej bazy. Wyślijcie jedną torpedę Hull Shredder."
+	reward = 3500
+	wanted_types = list(/obj/item/ship_weapon/ammunition/torpedo/hull_shredder)
+
+/datum/bounty/item/munitions/ap_shells
+	name = "Pociski przeciwpancerne"
+	description = "Monitor przybrzeżny ostrzeliwuje opancerzony bunkier. Potrzebne są przeciwpancerne pociski artylerii pokładowej."
+	reward = 3000
+	required_count = 3
+	wanted_types = list(/obj/item/ship_weapon/ammunition/naval_artillery/ap)
+
+/datum/bounty/item/munitions/uranium_railgun
+	name = "Uranowe pociski do railguna"
+	description = "Testy balistyczne Centrali wymagają pocisków z rdzeniem uranowym. Zwykłe nie przejdą odbioru."
+	reward = 3000
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/ammunition/railgun_ammo/uranium)
+
+/datum/bounty/item/munitions/uranium_broadside
+	name = "Uranowe pociski burtowe"
+	description = "Pancernik liniowy chce sprawdzić, ile wytrzyma pancerz celu. Przyślijcie uranowe pociski burtowe."
+	reward = 3500
+	required_count = 3
+	wanted_types = list(/obj/item/ship_weapon/ammunition/broadside_shell/uranium)
+
+/datum/bounty/item/munitions/railgun_rails
+	name = "Szyny railguna"
+	description = "Stocznia wymienia zużyte szyny w działach magnetycznych. Wyślijcie zapasowe."
+	reward = 2500
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/parts/railgun_rail)
+
+/datum/bounty/item/munitions/firing_electronics
+	name = "Elektronika spustowa"
+	description = "Po burzy jonowej połowa dział floty nie chce strzelać. Potrzebna jest elektronika spustowa."
+	reward = 2000
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/parts/firing_electronics)
+
+/datum/bounty/item/munitions/loading_trays
+	name = "Tace załadowcze"
+	description = "Ładowniczy na krążowniku narzekają, że tace się wyginają. Wyślijcie nowe."
+	reward = 1500
+	required_count = 2
+	wanted_types = list(/obj/item/ship_weapon/parts/loading_tray)
+
 // Piloci i technicy pokładowi - części myśliwców
 
 /datum/bounty/item/pilot/countermeasures

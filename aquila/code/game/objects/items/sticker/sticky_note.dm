@@ -77,6 +77,8 @@
 	resistance_flags = FLAMMABLE
 	///How many sticky notes do we contain
 	var/current_notes = 30
+	///Type of the note we hand out
+	var/note_type = /obj/item/sticker/sticky_note
 
 /obj/item/sticky_note_pile/Initialize(mapload)
 	. = ..()
@@ -109,7 +111,7 @@
 		return
 	//Give the note
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/obj/item/sticker/sticky_note/N = new()
+	var/obj/item/sticker/sticky_note/N = new note_type()
 	N.add_fingerprint(user)
 	N.forceMove(user.loc)
 	user.put_in_hands(N)

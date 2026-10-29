@@ -97,6 +97,7 @@
 
 	user.hud_used.holomap.used_station_map = src
 	user.hud_used.holomap.mouse_opacity = MOUSE_OPACITY_ICON
+	user.hud_used.holomap.fit_to_view(user.client) // AQ EDIT - powiększona minimapa, aquila/code/modules/ui_porzadki/holomap_scale.dm
 	user.client.screen |= user.hud_used.holomap
 	user.client.images |= holomap_datum.base_map
 

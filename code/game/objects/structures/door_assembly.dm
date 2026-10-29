@@ -267,6 +267,7 @@
 				door.electronics = electronics
 				door.heat_proof = heat_proof_finished
 				door.security_level = 0
+				electronics.apply_circuit_shell(door) // AQ EDIT - śluza jako obudowa circuitu (tg)
 				if(electronics.one_access)
 					door.req_one_access = electronics.accesses
 				else

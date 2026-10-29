@@ -9,8 +9,14 @@
 	name = "ramię naładowane elektrycznie"
 	icon_state = "elecarm"
 	var/charge_cost = 30
+	COOLDOWN_DECLARE(stun_cooldown) // AQ EDIT - port Bee#14750
 
 /obj/item/borg/stun/attack(mob/living/M, mob/living/user)
+	// AQ EDIT START - port Bee#14750: przerwa między ogłuszeniami
+	if(!COOLDOWN_FINISHED(src, stun_cooldown))
+		to_chat(user, "<span class='warning'>[src] jeszcze się nie naładował!</span>")
+		return
+	// AQ EDIT END
 	var/armor_block = M.run_armor_check(attack_flag = "stamina")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -21,7 +27,11 @@
 		var/mob/living/silicon/robot/R = user
 		if(!R.cell.use(charge_cost))
 			return
-	M.apply_damage(80, STAMINA, blocked = armor_block)
+	// AQ EDIT START - port Bee#14750: dezorientacja zamiast 80 staminy
+	COOLDOWN_START(src, stun_cooldown, 2.5 SECONDS)
+	if(M.takes_stamina_damage())
+		M.Disorient(6 SECONDS, 130, paralyze = 6 SECONDS, stack_status = FALSE, protection = armor_block)
+	// AQ EDIT END
 	user.do_attack_animation(M)
 	M.apply_effect(EFFECT_STUTTER, 5)
 

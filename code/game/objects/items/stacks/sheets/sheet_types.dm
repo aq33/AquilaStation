@@ -623,14 +623,14 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
  * Runed Metal
  */
 
+// AQ EDIT START - kult krwi „Cult 4”: pylon, kuźnię i ołtarz stawia runa Raise Structure; z metalu zostają archiwa i więzy
 GLOBAL_LIST_INIT(runed_metal_recipes, list ( \
-	new/datum/stack_recipe("runiczne drzwi",							/obj/machinery/door/airlock/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("runiczny dźwigar",							/obj/structure/girder/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("pylon",									/obj/structure/destructible/cult/pylon, 4, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("kuźnia",									/obj/structure/destructible/cult/forge, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("archiwum",								/obj/structure/destructible/cult/tome, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("ołtarz",									/obj/structure/destructible/cult/talisman, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("runed door",							/obj/machinery/door/airlock/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("runed girder",							/obj/structure/girder/cult, 1, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("archives",								/obj/structure/destructible/cult/item_dispenser/archives, 3, time = 40, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("ghastly bindings",						/obj/item/restraints/handcuffs/cult, 1, time = 30), \
 	))
+// AQ EDIT END
 
 /obj/item/stack/sheet/runed_metal
 	name = "runiczny metal"

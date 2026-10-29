@@ -796,6 +796,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 			playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 			var/obj/item/vended_item = new R.product_path(get_turf(src))
 			SEND_SIGNAL(src, COMSIG_VENDING_DISPENSED, vended_item) // AQ EDIT - bitrunning
+			if(R in hidden_records) // AQ EDIT - N-spect: towar z listy contraband jest kontrabandą
+				vended_item.mark_contraband()
 			R.amount--
 			if(usr.CanReach(src) && usr.put_in_hands(vended_item))
 				to_chat(usr, "<span class='notice'>Wyjmujesz [R.name] z otworu.</span>")

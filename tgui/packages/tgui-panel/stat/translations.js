@@ -8,7 +8,7 @@
 
 const TAB_NAMES = {
   Status: 'Status',
-  Faction: 'Frakcja',
+  Faction: 'Oddział i frakcja',
   '(!) Admin PM': '(!) Wiadomość od admina',
   MC: 'MC',
   Tickets: 'Zgłoszenia',
@@ -20,7 +20,7 @@ const TAB_NAMES = {
   Object: 'Przedmiot',
   Ghost: 'Duch',
   Preferences: 'Ustawienia',
-  Admin: 'Admin',
+  Admin: 'Admin i mentor',
   'Admin.Game': 'Admin.Gra',
   Adminbus: 'Adminbus',
   Debug: 'Debug',
@@ -35,7 +35,7 @@ const TAB_NAMES = {
   'AI Commands': 'Komendy SI',
   Ship: 'Statek',
   Guardian: 'Strażnik',
-  Blob: 'Grzyb',
+  Blob: 'Blob',
   Parrot: 'Papuga',
   Slime: 'Szlam',
   Swarmer: 'Rojowiec',
@@ -61,7 +61,7 @@ const TAB_NAMES = {
   'Revenant Abilities (Locked)': 'Zdolności upiora (zablok.)',
   Spells: 'Zaklęcia',
   Spider: 'Pająk',
-  Squad: 'Drużyna',
+  Squad: 'Oddział',
   CQC: 'CQC',
 };
 

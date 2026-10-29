@@ -353,6 +353,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	tgui_say.initialize()
 
 	initialize_escape_menu() // AQ EDIT - menu pod Esc (aquila/code/modules/escape_menu)
+	apply_fullscreen_pref() // AQ EDIT - pełny ekran od wejścia (aquila/code/modules/ui_porzadki/viewport.dm)
 
 	if(alert_mob_dupe_login && !holder)
 		var/dupe_login_message = "Twój ComputerID zalogował się już w tej rundzie z innego konta - wyloguj się z tego NATYCHMIAST albo ryzykujesz bana!"

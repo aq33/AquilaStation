@@ -170,7 +170,7 @@
 		playsound(D, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 		D.apply_damage(rand(10,15), STAMINA, affecting, armor_block)
 		log_combat(A, D, "stomped nonlethally")
-	if(prob(D.getStaminaLoss()))
+	if(prob(D.stamina?.loss_as_percent)) // AQ EDIT - port Bee#14750
 		D.visible_message("<span class='warning'>[D] krztusi się i cofa z bólu!</span>", "<span class='userdanger'>Cofasz się z bólu, gdy ktoś trafia cię w nerw!</span>")
 		D.drop_all_held_items()
 	return 1

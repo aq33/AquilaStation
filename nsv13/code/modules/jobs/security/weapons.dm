@@ -298,7 +298,7 @@
 /obj/item/projectile/energy/electrode/hitscan
 	range = 2 //Real life tazers have an effective range of 4.5 meters.
 	//damage = 75 //4 second stun by itself
-	damage = 105 // AQ EDIT - should be around 5.5s
+	damage = 0 // AQ EDIT - port Bee#14750: dezorientacja ok. 5.5 s paraliżu przy wyczerpaniu (aquila/code/modules/projectiles/disorient.dm)
 	damage_type = STAMINA
 	hitscan = TRUE
 

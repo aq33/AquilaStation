@@ -82,7 +82,7 @@
 	return 1
 
 /atom/movable/screen/craft
-	name = "menu wytwarzania"
+	name = "menu tworzenia"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
@@ -337,7 +337,7 @@
 	screen_loc = ui_borg_intents
 
 /atom/movable/screen/internals
-	name = "przełącz oddychanie z butli"
+	name = "przełącz butlę"
 	icon_state = "internal0"
 	screen_loc = ui_internal
 
@@ -436,7 +436,7 @@
 	return ..()
 
 /atom/movable/screen/resist
-	name = "opieraj się"
+	name = "stawiaj opór"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_resist"
 	layer = HUD_LAYER
@@ -448,7 +448,7 @@
 		L.resist()
 
 /atom/movable/screen/rest
-	name = "połóż się"
+	name = "leż/wstań"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_rest"
 	layer = HUD_LAYER
@@ -495,7 +495,7 @@
 	return TRUE
 
 /atom/movable/screen/throw_catch
-	name = "rzut/łapanie"
+	name = "rzuć/łap"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_throw_off"
 
@@ -505,7 +505,7 @@
 		C.toggle_throw_mode()
 
 /atom/movable/screen/zone_sel
-	name = "strefa ataku"
+	name = "strefa ciała"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = BODY_ZONE_CHEST
@@ -729,7 +729,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healthdoll
-	name = "lalka zdrowia"
+	name = "stan ciała"
 	screen_loc = ui_healthdoll
 
 /atom/movable/screen/healthdoll/Click()

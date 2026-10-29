@@ -71,7 +71,7 @@ export const GamePreferenceWindow = (props: {
                   page={GamePreferencesSelectedPage.Keybindings}
                   setPage={setCurrentPage}
                 >
-                  Skróty klawiszowe
+                  Klawisze
                 </PageButton>
               </Stack.Item>
             </Stack>

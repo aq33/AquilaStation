@@ -110,6 +110,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/current_page = 1
 
 	var/hudfix_method = TRUE //TRUE to change anchor to user, FALSE to shift by py_shift
+	var/radial_icon // AQ EDIT - kult krwi: ikona z tłami segmentów (radial_slice) zamiast domyślnej
 	var/py_shift = 0
 	var/entry_animation = TRUE
 
@@ -156,6 +157,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice
 			new_element.tooltips = use_tooltips
 			new_element.set_parent(src)
+			if(radial_icon) // AQ EDIT - kult krwi: własna ikona tła radiala
+				new_element.icon = radial_icon
 			elements += new_element
 
 	var/page = 1
@@ -345,7 +348,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, radial_icon) // AQ EDIT - radial_icon
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
@@ -361,6 +364,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(istype(custom_check))
 		menu.custom_check_callback = custom_check
 	menu.anchor = anchor
+	menu.radial_icon = radial_icon // AQ EDIT - kult krwi
 	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
 	menu.set_choices(choices, tooltips)
 	menu.show_to(user)

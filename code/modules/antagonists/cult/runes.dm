@@ -137,7 +137,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/list/invokers = list() //people eligible to invoke the rune
 	if(user)
 		invokers += user
-	if(req_cultists > 1 || istype(src, /obj/effect/rune/convert))
+	if(req_cultists > 1)
 		var/obj/item/toy/plush/narplush/plushsie = locate() in range(1, src)
 		if(plushsie?.is_invoker)
 			invokers += plushsie
@@ -200,141 +200,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	..()
 	qdel(src)
 
-//Rite of Offering: Converts or sacrifices a target.
-/obj/effect/rune/convert
-	cultist_name = "Ofiary"
-	cultist_desc = "oddaje niekultystę stojącego na niej Nar'Sie, nawracając go albo składając w ofierze."
-	req_cultists_text = "2 do nawrócenia, 3 do ofiar z żywych i celów ofiarnych."
-	invocation = "Mah'weyh pleggh at e'ntrath!"
-	icon_state = "3"
-	color = RUNE_COLOR_OFFER
-	req_cultists = 1
-	rune_in_use = FALSE
-
-/obj/effect/rune/convert/do_invoke_glow()
-	return
-
-/obj/effect/rune/convert/invoke(var/list/invokers)
-	if(rune_in_use)
-		return
-	var/list/myriad_targets = list()
-	var/turf/T = get_turf(src)
-	for(var/mob/living/M in T)
-		if(!iscultist(M))
-			myriad_targets |= M
-	if(!myriad_targets.len)
-		fail_invoke()
-		log_game("Offer rune failed - no eligible targets")
-		return
-	rune_in_use = TRUE
-	visible_message("<span class='warning'>[src] pulsuje krwistą czerwienią!</span>")
-	var/oldcolor = color
-	color = RUNE_COLOR_DARKRED
-	var/mob/living/L = pick(myriad_targets)
-
-	var/mob/living/F = invokers[1]
-	var/datum/antagonist/cult/C = F.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	var/datum/team/cult/Cult_team = C.cult_team
-	var/is_convertable = is_convertable_to_cult(L,C.cult_team)
-	if(L.stat != DEAD && (is_convertable))
-		invocation = "Mah'weyh pleggh at e'ntrath!"
-		..()
-		if(is_convertable)
-			do_convert(L, invokers)
-	else
-		invocation = "Barhah hra zar'garis!"
-		..()
-		do_sacrifice(L, invokers)
-	animate(src, color = oldcolor, time = 5)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 5)
-	Cult_team.check_size() // Triggers the eye glow or aura effects if the cult has grown large enough relative to the crew
-	rune_in_use = FALSE
-
-/obj/effect/rune/convert/proc/do_convert(mob/living/convertee, list/invokers)
-	if(invokers.len < 2)
-		for(var/M in invokers)
-			to_chat(M, "<span class='danger'>Potrzebujesz co najmniej dwóch przywołujących, by nawrócić [convertee]!</span>")
-		log_game("Offer rune failed - tried conversion with one invoker")
-		return 0
-	if(convertee.anti_magic_check(TRUE, TRUE, major = FALSE) || istype(convertee.get_item_by_slot(ITEM_SLOT_HEAD), /obj/item/clothing/head/foilhat)) //Not major because it can be spammed
-		for(var/M in invokers)
-			to_chat(M, "<span class='warning'>Coś osłania umysł [convertee]!</span>")
-		log_game("Offer rune failed - convertee had anti-magic")
-		return 0
-	var/brutedamage = convertee.getBruteLoss()
-	var/burndamage = convertee.getFireLoss()
-	if(brutedamage || burndamage)
-		convertee.adjustBruteLoss(-(brutedamage * 0.75))
-		convertee.adjustFireLoss(-(burndamage * 0.75))
-	convertee.visible_message("<span class='warning'>[convertee] wije się z bólu, \
-	[brutedamage || burndamage ? "choć jego rany goją się i zamykają" : "a znaki pod nim jarzą się krwistą czerwienią"]!</span>", \
- 	"<span class='cultlarge'><i>AAAAAAAAAAAAAA-</i></span>")
-	SSticker.mode.add_cultist(convertee.mind, 1)
-	new /obj/item/melee/cultblade/dagger(get_turf(src))
-	convertee.mind.special_role = ROLE_CULTIST
-	to_chat(convertee, "<span class='cult italic'><b>Twoja krew pulsuje. Głowa ci pęka. Świat robi się czerwony. Nagle uświadamiasz sobie straszną, straszną prawdę. Zasłona rzeczywistości została zdarta \
-	i zakorzenia się w tobie coś złego.</b></span>")
-	to_chat(convertee, "<span class='cult italic'><b>Wspieraj swoich nowych towarzyszy w ich mrocznych sprawach. Twój cel jest ich celem, a ich - twoim. Ponad wszystko służysz Geometrze. Sprowadź ją z powrotem.\
-	</b></span>")
-	if(ishuman(convertee))
-		var/mob/living/carbon/human/H = convertee
-		H.uncuff()
-		H.stuttering = 0
-		H.cultslurring = 0
-	return 1
-
-/obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
-	var/mob/living/first_invoker = invokers[1]
-	if(!first_invoker)
-		return FALSE
-	var/datum/antagonist/cult/C = first_invoker.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	if(!C)
-		return
-
-
-	var/big_sac = FALSE
-	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != DEAD) || C.cult_team.is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
-		for(var/M in invokers)
-			to_chat(M, "<span class='cult italic'>[sacrificial] jest zbyt mocno związany ze światem! Potrzebujesz trzech akolitów!</span>")
-		log_game("Offer rune failed - not enough acolytes and target is living or sac target")
-		return FALSE
-	if(sacrificial.mind)
-		LAZYADD(GLOB.sacrificed, WEAKREF(sacrificial.mind))
-		for(var/datum/objective/sacrifice/sac_objective in C.cult_team.objectives)
-			if(sac_objective.target == sacrificial.mind)
-				sac_objective.sacced = TRUE
-				sac_objective.update_explanation_text()
-				big_sac = TRUE
-	else
-		LAZYADD(GLOB.sacrificed, WEAKREF(sacrificial))
-
-	new /obj/effect/temp_visual/cult/sac(get_turf(src))
-	for(var/M in invokers)
-		if(big_sac)
-			to_chat(M, "<span class='cultlarge'>\"Tak! Tego właśnie pragnę! Dobrze się spisaliście.\"</span>")
-		else
-			if(ishuman(sacrificial) || iscyborg(sacrificial))
-				to_chat(M, "<span class='cultlarge'>\"Przyjmuję tę ofiarę.\"</span>")
-			else
-				to_chat(M, "<span class='cultlarge'>\"Przyjmuję tę marną ofiarę.\"</span>")
-
-	var/obj/item/soulstone/stone = new /obj/item/soulstone(get_turf(src))
-	if(sacrificial.mind && !sacrificial.suiciding)
-		stone.invisibility = INVISIBILITY_MAXIMUM //so it's not picked up during transfer_soul()
-		stone.transfer_soul("FORCE", sacrificial, usr)
-		stone.invisibility = 0
-
-	if(sacrificial)
-		if(iscyborg(sacrificial))
-			playsound(sacrificial, 'sound/magic/disable_tech.ogg', 100, 1)
-			sacrificial.dust() //To prevent the MMI from remaining
-		else
-			playsound(sacrificial, 'sound/magic/disintegrate.ogg', 100, 1)
-			sacrificial.gib()
-	return TRUE
-
-
-
 /obj/effect/rune/empower
 	cultist_name = "Wzmocnienia"
 	cultist_desc = "pozwala kultystom przygotowywać więcej magii krwi dużo mniejszym kosztem."
@@ -342,12 +207,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	icon_state = "3"
 	color = RUNE_COLOR_TALISMAN
 	construct_invoke = FALSE
-
-/obj/effect/rune/empower/invoke(var/list/invokers)
-	. = ..()
-	var/mob/living/user = invokers[1] //the first invoker is always the user
-	for(var/datum/action/innate/cult/blood_magic/BM in user.actions)
-		BM.Activate()
 
 /obj/effect/rune/teleport
 	cultist_name = "Teleportacji"
@@ -473,81 +332,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	desc = initial(desc)
 	light_range = 0
 	update_light()
-
-//Ritual of Dimensional Rending: Calls forth the avatar of Nar'Sie upon the station.
-/obj/effect/rune/narsie
-	cultist_name = "Nar'Sie"
-	cultist_desc = "rozdziera bariery między wymiarami, przywołując Geometrę. Wymaga 9 przywołujących."
-	invocation = "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
-	req_cultists = 9
-	icon = 'icons/effects/96x96.dmi'
-	color = RUNE_COLOR_DARKRED
-	icon_state = "rune_large"
-	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
-	pixel_y = -32
-	scribe_delay = 500 //how long the rune takes to create
-	scribe_damage = 40.1 //how much damage you take doing it
-	no_scribe_boost = TRUE
-	var/used = FALSE
-
-/obj/effect/rune/narsie/Initialize(mapload, set_keyword)
-	. = ..()
-	GLOB.poi_list |= src
-
-/obj/effect/rune/narsie/Destroy()
-	GLOB.poi_list -= src
-	. = ..()
-
-/obj/effect/rune/narsie/conceal() //can't hide this, and you wouldn't want to
-	return
-
-/obj/effect/rune/narsie/invoke(var/list/invokers)
-	if(used)
-		return
-	if(!is_station_level(z))
-		return
-	var/mob/living/user = invokers[1]
-	var/datum/antagonist/cult/user_antag = user.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
-	var/area/place = get_area(src)
-	if(!(place in summon_objective.summon_spots))
-		to_chat(user, "<span class='cultlarge'>Geometrę można przywołać tylko tam, gdzie zasłona jest słaba - w miejscach: [english_list(summon_objective.summon_spots)]!</span>")
-		return
-	if(locate(/obj/eldritch/narsie) in GLOB.poi_list)
-		for(var/M in invokers)
-			to_chat(M, "<span class='warning'>Nar'Sie jest już na tym planie!</span>")
-		log_game("Nar'Sie rune failed - already summoned")
-		return
-	//BEGIN THE SUMMONING
-	used = TRUE
-	..()
-	sound_to_playing_players('sound/effects/dimensional_rend.ogg')
-	var/turf/T = get_turf(src)
-	sleep(40)
-	if(src)
-		color = RUNE_COLOR_RED
-	if(GLOB.celestial_gateway)
-		SEND_SOUND(world, 'sound/magic/clockwork/narsie_attack.ogg')
-		to_chat(world, "<span class='ratvar'>Zasłonę między wymiarami trzyma zamkniętą potężne pole elektryczne.</span>")
-		GLOB.narsie_breaching = TRUE
-		GLOB.narsie_arrival = T
-		var/obj/structure/destructible/clockwork/massive/celestial_gateway/gateway = GLOB.celestial_gateway
-		gateway.open_gateway()
-	else
-		new /obj/eldritch/narsie(T) //Causes Nar'Sie to spawn even if the rune has been removed
-
-/obj/effect/rune/narsie/attackby(obj/I, mob/user, params)	//Since the narsie rune takes a long time to make, add logging to removal.
-	if((istype(I, /obj/item/melee/cultblade/dagger) && iscultist(user)))
-		user.visible_message("<span class='warning'>[user.name] zaczyna ścierać [src]...</span>", "<span class='notice'>Zaczynasz ścierać [src]...</span>")
-		if(do_after(user, 50, target = src))	//Prevents accidental erasures.
-			log_game("Summon Narsie rune erased by [key_name(user)] with [I.name]")
-			message_admins("[ADMIN_LOOKUPFLW(user)] ściera runę Nar'Sie za pomocą [I.name]")
-			..()
-	else
-		if(istype(I, /obj/item/nullrod))	//Begone foul magiks. You cannot hinder me.
-			log_game("Summon Narsie rune erased by [key_name(user)] using a null rod")
-			message_admins("[ADMIN_LOOKUPFLW(user)] ściera runę Nar'Sie za pomocą pałki zerowej")
-			..()
 
 //Rite of Resurrection: Requires a dead or inactive cultist. When reviving the dead, you can only perform one revival for every sacrifice your cult has carried out.
 /obj/effect/rune/raise_dead
@@ -930,12 +714,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 		affecting.visible_message("<span class='warning'>[affecting] zamiera jak posąg, jarząc się nieziemską czerwienią.</span>", \
 						 "<span class='cult'>Widzisz, co leży poza. Wszystko zostaje odsłonięte. W tej postaci twój głos grzmi donośniej i możesz oznaczać cele dla całego kultu</span>")
 		var/mob/dead/observer/G = affecting.ghostize(1)
-		var/datum/action/innate/cult/comm/spirit/CM = new
-		var/datum/action/innate/cult/ghostmark/GM = new
-		G.name = "[G.name] (mroczny duch)"
+		G.name = "Dark Spirit of [G.name]"
 		G.color = "red"
-		CM.Grant(G)
-		GM.Grant(G)
 		while(!QDELETED(affecting))
 			if(!(affecting in T))
 				user.visible_message("<span class='warning'>Upiorna macka owija się wokół [affecting] i ściąga go z powrotem na runę!</span>")
@@ -950,8 +730,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 				to_chat(G, "<span class='cultitalic'>Twoje ciało nie jest już w stanie podtrzymać połączenia!</span>")
 				break
 			sleep(5)
-		CM.Remove(G)
-		GM.Remove(G)
 		affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
 		affecting.grab_ghost()
 		affecting = null
@@ -965,145 +743,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	for(var/obj/item/organ/brain/B in .) //they're not that smart, really
 		. -= B
-
-
-/obj/effect/rune/apocalypse
-	cultist_name = "Apokalipsy"
-	cultist_desc = "zwiastuje czasy ostateczne. Rośnie w siłę wraz z desperacją kultu - ale z ryzykiem... skutków ubocznych."
-	invocation = "Ta'gh fara'qha fel d'amar det!"
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "apoc"
-	pixel_x = -32
-	pixel_y = -32
-	color = RUNE_COLOR_DARKRED
-	req_cultists = 3
-	scribe_delay = 100
-
-/obj/effect/rune/apocalypse/invoke(var/list/invokers)
-	if(rune_in_use)
-		return
-	. = ..()
-	var/area/place = get_area(src)
-	var/mob/living/user = invokers[1]
-	var/datum/antagonist/cult/user_antag = user.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
-	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
-	if(summon_objective.summon_spots.len <= 1)
-		to_chat(user, "<span class='cultlarge'>Zostało tylko jedno miejsce rytuału - musi zostać zachowane na ostateczne przywołanie!</span>")
-		return
-	if(!(place in summon_objective.summon_spots))
-		to_chat(user, "<span class='cultlarge'>Runa Apokalipsy usunie jedno z miejsc, gdzie można przywołać Nar'Sie. Można ją nakreślić tylko w miejscach: [english_list(summon_objective.summon_spots)]!</span>")
-		return
-	summon_objective.summon_spots -= place
-	rune_in_use = TRUE
-	var/turf/T = get_turf(src)
-	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(T)
-	var/intensity = 0
-	for(var/mob/living/M in GLOB.player_list)
-		if(iscultist(M))
-			intensity++
-	intensity = max(60, 360 - (360*(intensity/GLOB.player_list.len + 0.3)**2)) //significantly lower intensity for "winning" cults
-	var/duration = intensity*10
-	playsound(T, 'sound/magic/enter_blood.ogg', 100, 1)
-	visible_message("<span class='warning'>Z runy wybucha kolosalna fala energii, która ją przy tym dezintegruje!</span>")
-	for(var/mob/living/L in viewers(3, src))
-		L.Paralyze(30)
-	empulse(T, 0.42*(intensity), 1, holy=TRUE)
-	var/list/images = list()
-	var/zmatch = T.get_virtual_z_level()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	for(var/mob/living/M in GLOB.alive_mob_list)
-		if(M.get_virtual_z_level() != zmatch)
-			continue
-		if(ishuman(M))
-			if(!iscultist(M))
-				AH.remove_hud_from(M)
-				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(hudFix), M), duration)
-			var/image/A = image('icons/mob/mob.dmi',M,"cultist", ABOVE_MOB_LAYER)
-			A.override = 1
-			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "human_apoc", A, NONE)
-			addtimer(CALLBACK(M,TYPE_PROC_REF(/atom, remove_alt_appearance),"human_apoc",TRUE), duration)
-			images += A
-			SEND_SOUND(M, pick(sound('sound/ambience/antag/bloodcult.ogg'),sound('sound/spookoween/ghost_whisper.ogg'),sound('sound/spookoween/ghosty_wind.ogg')))
-		else
-			var/construct = pick("floater","artificer","behemoth")
-			var/image/B = image('icons/mob/mob.dmi',M,construct, ABOVE_MOB_LAYER)
-			B.override = 1
-			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "mob_apoc", B, NONE)
-			addtimer(CALLBACK(M,TYPE_PROC_REF(/atom, remove_alt_appearance),"mob_apoc",TRUE), duration)
-			images += B
-		if(!iscultist(M))
-			if(M.client)
-				var/image/C = image('icons/effects/cult_effects.dmi',M,"bloodsparkles", ABOVE_MOB_LAYER)
-				add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", C, NONE)
-				addtimer(CALLBACK(M,TYPE_PROC_REF(/atom, remove_alt_appearance),"cult_apoc",TRUE), duration)
-				images += C
-		else
-			to_chat(M, "<span class='cultlarge'>W [place.name] aktywowano runę Apokalipsy - to miejsce nie nadaje się już do przywołania!</span>")
-			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
-	image_handler(images, duration)
-	if(intensity>=285) // Based on the prior formula, this means the cult makes up <15% of current players
-		var/outcome = rand(1,100)
-		switch(outcome)
-			if(1 to 10)
-				var/datum/round_event_control/disease_outbreak/D = new()
-				var/datum/round_event_control/mice_migration/M = new()
-				D.runEvent()
-				M.runEvent()
-			if(11 to 19)
-				var/datum/round_event_control/radiation_storm/RS = new()
-				RS.runEvent()
-			if(20) // AQ EDIT
-				var/datum/round_event_control/shit_storm/SS = new()
-				SS.runEvent()
-			if(21 to 30)
-				var/datum/round_event_control/brand_intelligence/BI = new()
-				BI.runEvent()
-			if(31 to 40)
-				var/datum/round_event_control/immovable_rod/R = new()
-				R.runEvent()
-				R.runEvent()
-				R.runEvent()
-			if(41 to 50)
-				var/datum/round_event_control/meteor_wave/MW = new()
-				MW.runEvent()
-			if(51 to 60)
-				var/datum/round_event_control/spider_infestation/SI = new()
-				SI.runEvent()
-			if(61 to 70)
-				var/datum/round_event_control/anomaly/anomaly_flux/AF
-				var/datum/round_event_control/anomaly/anomaly_grav/AG
-				var/datum/round_event_control/anomaly/anomaly_pyro/AP
-				var/datum/round_event_control/anomaly/anomaly_vortex/AV
-				AF.runEvent()
-				AG.runEvent()
-				AP.runEvent()
-				AV.runEvent()
-			if(71 to 80)
-				var/datum/round_event_control/spacevine/SV = new()
-				var/datum/round_event_control/grey_tide/GT = new()
-				SV.runEvent()
-				GT.runEvent()
-			if(81 to 100)
-				var/datum/round_event_control/portal_storm_narsie/N = new()
-				N.runEvent()
-	qdel(src)
-
-/obj/effect/rune/apocalypse/proc/image_handler(var/list/images, duration)
-	var/end = world.time + duration
-	set waitfor = 0
-	while(end>world.time)
-		for(var/image/I in images)
-			I.override = FALSE
-			animate(I, alpha = 0, time = 25, flags = ANIMATION_PARALLEL)
-		sleep(35)
-		for(var/image/I in images)
-			animate(I, alpha = 255, time = 25, flags = ANIMATION_PARALLEL)
-		sleep(25)
-		for(var/image/I in images)
-			if(I.icon_state != "bloodsparkles")
-				I.override = TRUE
-		sleep(190)
-
 
 
 /proc/hudFix(mob/living/carbon/human/target)

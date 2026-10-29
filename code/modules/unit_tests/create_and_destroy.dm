@@ -83,6 +83,7 @@
 	ignore += typesof(/obj/item/clothing/head/mob_holder)
 	//Expects a hud, generally created for player occupied mobs. There won't be any and this causes issues for us.
 	ignore += typesof(/atom/movable/plane_master_controller)
+	ignore += bloodcult_create_and_destroy_ignores() // AQ EDIT - kult krwi „Cult 4” (lista w _compat/integration.dm)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/baseturf_count = length(spawn_at.baseturfs)

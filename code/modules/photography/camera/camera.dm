@@ -170,7 +170,7 @@
 	var/list/seen
 	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(world.view)
 	var/viewr = max(viewlist[1], viewlist[2]) + max(size_x, size_y)
-	var/viewc = user.client? user.client.eye : target
+	var/viewc = user?.client ? user.client.eye : target // AQ EDIT - zdjęcie z circuitu nie ma użytkownika
 	seen = get_hear(viewr, get_turf(viewc))
 	var/list/turfs = list()
 	var/list/mobs = list()

@@ -956,8 +956,8 @@ Proc to spool up a new Z-level for a player ship and assign it a treadmill.
 	if(!length(linked_areas))
 		for(var/mob/living/M in mobs_in_ship)
 			//Black out viper jockies who turn too often and too hard.
-			M.adjustStaminaLoss(30)
-			switch(M.staminaloss)
+			M.adjustStaminaLoss(75) // AQ EDIT - port Bee#14750: pula 250, te same progi w procentach
+			switch(M.stamina?.loss_as_percent)
 				if(0 to 30)
 					continue
 				if(50 to 70)

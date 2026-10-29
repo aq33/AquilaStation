@@ -64,6 +64,12 @@
 	disliked_food = GROSS | DAIRY | BREAKFAST
 	toxic_food = TOXIC
 
+// Bez tego jajoczłowiek zna Ovarian, ale nie może go wybrać ani nim mówić. Kopia, żeby nie dopisać go wszystkim językom.
+/obj/item/organ/tongue/egg/Initialize(mapload)
+	. = ..()
+	languages_possible = languages_possible_base.Copy()
+	languages_possible[/datum/language/ovarian] = TRUE
+
 /obj/item/stack/sheet/animalhide/egg
 	name = "kawałki skorupki"
 	desc = "Roztrzaskane szczątki jajoczłowieka."

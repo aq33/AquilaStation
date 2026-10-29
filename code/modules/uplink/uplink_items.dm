@@ -156,6 +156,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
 		I.item_flags |= ILLEGAL
+		I.mark_contraband(TRUE) // AQ EDIT - N-spect: zawartość zestawów z uplinka też jest kontrabandą
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.put_in_hands(A))

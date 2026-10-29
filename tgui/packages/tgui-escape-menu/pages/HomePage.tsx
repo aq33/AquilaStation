@@ -69,6 +69,15 @@ export function HomePage({
           </MenuButton>
           <MenuButton onClick={() => onNavigate('players')}>Gracze</MenuButton>
           <MenuButton
+            onClick={() => {
+              onAction('leaderboard');
+              onClose();
+            }}
+          >
+            Ranking zarobków
+          </MenuButton>
+          <MenuButton onClick={() => onNavigate('help')}>Pomoc</MenuButton>
+          <MenuButton
             onClick={() => onNavigate('admin')}
             tooltip={
               serverState.hasTicket

@@ -7,6 +7,7 @@
 #define SCANGATE_SPECIES		"Species"
 #define SCANGATE_NUTRITION		"Nutrition"
 #define SCANGATE_HYGIENE		"Hygiene" // AQ EDIT - restored from tgstation#42364
+#define SCANGATE_CONTRABAND		"Contraband" // AQ EDIT - N-spect z tg
 
 #define SCANGATE_HUMAN			"human"
 #define SCANGATE_LIZARD			"lizard"
@@ -181,6 +182,11 @@
 				if(H.hygiene <= detect_hygiene && detect_hygiene == HYGIENE_LEVEL_DIRTY)
 					beep = TRUE
 		// AQ EDIT END
+		// AQ EDIT START - kontrabanda (tg)
+		if(SCANGATE_CONTRABAND)
+			if(M.contains_contraband())
+				beep = TRUE
+		// AQ EDIT END
 
 	if(reverse)
 		beep = !beep
@@ -284,6 +290,7 @@
 #undef SCANGATE_SPECIES
 #undef SCANGATE_NUTRITION
 #undef SCANGATE_HYGIENE // AQ EDIT
+#undef SCANGATE_CONTRABAND // AQ EDIT
 
 #undef SCANGATE_HUMAN
 #undef SCANGATE_LIZARD

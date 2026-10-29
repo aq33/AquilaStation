@@ -23,6 +23,9 @@
 		return
 	next_click = world.time + 1
 
+	if(circuit_click_intercept(A, params)) // AQ EDIT - wiremod: SI sterujaca ukladem (MMI z B.O.R.I.S.), aquila/code/modules/wiremod/components/action/mmi.dm
+		return
+
 	if(!can_interact_with(A))
 		return
 
@@ -90,6 +93,8 @@
 		set_waypoint(A)
 		return
 
+	if(circuit_attack_ai(A)) // AQ EDIT - wiremod: B.O.R.I.S. w ukladzie, aquila/code/modules/wiremod/components/action/mmi.dm
+		return
 	A.attack_ai(src)
 
 /*

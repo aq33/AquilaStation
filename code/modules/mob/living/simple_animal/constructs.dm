@@ -40,7 +40,7 @@
 	var/can_repair_constructs = FALSE
 	var/can_repair_self = FALSE
 	var/runetype
-	var/datum/action/innate/cult/create_rune/our_rune
+	var/datum/action/our_rune // AQ EDIT - kult „Cult 4”: nie ma już /datum/action/innate/cult/create_rune
 	var/holy = FALSE
 	chat_color = "#FF6262"
 	mobchatspan = "cultmobsay"
@@ -143,7 +143,7 @@
 	force_threshold = 10
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/forcewall/cult,
 							/obj/effect/proc_holder/spell/targeted/projectile/dumbfire/juggernaut)
-	runetype = /datum/action/innate/cult/create_rune/wall
+	// AQ EDIT - kult „Cult 4”: runetype = /datum/action/innate/cult/create_rune/wall (stare runy tg usunięte)
 	playstyle_string = "<b>Jesteś Juggernautem. Choć powolny, twoja powłoka wytrzymuje ciężkie ciosy, potrafisz tworzyć ściany tarcz, rozrywać wrogów i ściany, a nawet odbijać broń energetyczną.</b>"
 
 /mob/living/simple_animal/hostile/construct/armored/hostile //actually hostile, will move around, hit things
@@ -203,7 +203,7 @@
 	attacktext = "tnie"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
-	runetype = /datum/action/innate/cult/create_rune/tele
+	// AQ EDIT - kult „Cult 4”: runetype = /datum/action/innate/cult/create_rune/tele (stare runy tg usunięte)
 	playstyle_string = "<b>Jesteś Upiorem. Choć stosunkowo kruchy, jesteś szybki i zabójczy, potrafisz przenikać przez ściany, a twoje ataki skracają czas odnowienia przenikania.</b>"
 
 	var/attack_refund = 10 //1 second per attack
@@ -418,10 +418,7 @@
 	var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult)
 	if(!C)
 		return
-	var/datum/objective/eldergod/summon_objective = locate() in C.cult_team.objectives
-
-	if(summon_objective.check_completion())
-		the_construct.master = C.cult_team.blood_target
+	// AQ EDIT - kult „Cult 4” (Monke #3867): nie ma celu Eldergod, mistrzem zostaje stwórca konstruktu
 
 	if(!the_construct.master)
 		to_chat(the_construct, "<span class='cult italic'>Nie masz pana, którego mógłbyś szukać!</span>")

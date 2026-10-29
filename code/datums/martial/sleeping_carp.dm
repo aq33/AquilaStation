@@ -221,8 +221,8 @@
 			H.visible_message("<span class='warning'>[H] pada!</span>", \
 								   "<span class='userdanger'>Nogi odmawiają ci posłuszeństwa!</span>")
 			H.Paralyze(80)
-		if(H.staminaloss && !H.IsSleeping())
-			var/total_health = (H.health - H.staminaloss)
+		if(H.getStaminaLoss() && !H.IsSleeping())
+			var/total_health = (H.health - H.getStaminaLoss() * 0.4) // AQ EDIT - port Bee#14750: pula 250 zamiast ok. 100
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message("<span class='warning'>[user] zadaje potężny cios w głowę [H], nokautując go!</span>", \
 									   "<span class='userdanger'>[user] pozbawia cię przytomności!</span>")

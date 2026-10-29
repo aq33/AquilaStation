@@ -250,7 +250,7 @@
 				to_chat(M, "<span class='userdanger'>[user] oślepia cię fleszem!</span>")
 			else
 				to_chat(M, "<span class='userdanger'>[src] cię oślepia!</span>")
-			M.Paralyze(70)
+			M.Disorient(7 SECONDS, 90, paralyze = 4 SECONDS, stack_status = FALSE) // AQ EDIT - port Bee#14750: zamiast Paralyze(70) dezorientacja, paraliż przy wyczerpaniu
 
 		else if(user)
 			visible_message("<span class='disarm'>[user] nie zdołał oślepić [M] fleszem!</span>")

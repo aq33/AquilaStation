@@ -122,9 +122,12 @@
 /proc/fire_expose(turf/open/location, datum/gas_mixture/air, temperature)
 	if(istype(location) && temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 		location.hotspot_expose(temperature, CELL_VOLUME)
+		// AQ EDIT START - tylko typy z własnym temperature_expose(), patrz aquila/code/modules/atmospherics/environmental/hotspot_throttle.dm
 		for(var/I in location)
 			var/atom/movable/item = I
-			item.temperature_expose(air, temperature, CELL_VOLUME)
+			if(GLOB.temperature_expose_typecache[item.type])
+				item.temperature_expose(air, temperature, CELL_VOLUME)
+		// AQ EDIT END
 		location.temperature_expose(air, temperature, CELL_VOLUME)
 
 /proc/radiation_burn(turf/open/location, energy_released)

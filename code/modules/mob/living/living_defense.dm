@@ -51,6 +51,10 @@
 	if(!P.nodamage)
 		last_attacked_time = world.time
 		apply_damage(P.damage, P.damage_type, def_zone, armor)
+		// AQ EDIT START - port Bee#14750: pociski obezwładniające dezorientują
+		if(P.disorient_length && takes_stamina_damage())
+			Disorient(P.disorient_length, P.disorient_damage, paralyze = P.disorient_status_length, stack_status = P.disorient_stack_status, protection = armor)
+		// AQ EDIT END
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
 	return P.on_hit(src, armor, piercing_hit)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
@@ -393,16 +397,17 @@
 			sound_to_playing_players('sound/machines/alarm.ogg')
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 1), 120)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)), 270)
-	if(client)
-		makeNewConstruct(/mob/living/simple_animal/hostile/construct/harvester, src, cultoverride = TRUE)
-	else
-		switch(rand(1, 6))
-			if(1)
-				new /mob/living/simple_animal/hostile/construct/armored/hostile(get_turf(src))
-			if(2)
-				new /mob/living/simple_animal/hostile/construct/wraith/hostile(get_turf(src))
-			if(3 to 6)
-				new /mob/living/simple_animal/hostile/construct/builder/hostile(get_turf(src))
+	// AQ EDIT START - kult krwi „Cult 4”: zawsze wrogi konstrukt (duchy dołączają przez /mob/dead/observer/narsie_act)
+	switch(rand(1, 4))
+		if(1)
+			new /mob/living/simple_animal/hostile/construct/armored/hostile(get_turf(src))
+		if(2)
+			new /mob/living/simple_animal/hostile/construct/wraith/hostile(get_turf(src))
+		if(3)
+			new /mob/living/simple_animal/hostile/construct/builder/hostile(get_turf(src))
+		if(4)
+			new /mob/living/simple_animal/hostile/construct/proteon/hostile(get_turf(src))
+	// AQ EDIT END
 	spawn_dust()
 	gib()
 	return TRUE

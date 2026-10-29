@@ -104,16 +104,11 @@
 	var/datum/objective/O = type
 	if (ispath(type))
 		O = new type
-	O.find_target()
+	// Zespół przed find_target(): cel kradzieży sprawdza właścicieli (unikalność, zawody),
+	// a give_special_equipment() rozkłada sprzęt w bazie infiltratorów (aquila/code/game/gamemodes/objective.dm)
 	O.team = src
+	O.find_target()
 	objectives |= O
-	if(istype(O, /datum/objective/steal))
-		var/datum/objective/steal/S = O
-		if(S.targetinfo)
-			for(var/item in S.targetinfo.special_equipment)
-				for(var/turf/T in GLOB.infiltrator_objective_items)
-					if(!(item in T.contents))
-						new item(T)
 	return O
 
 /datum/team/infiltrator/proc/update_objectives()

@@ -584,7 +584,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(blockhand.is_disabled())
 		to_chat(owner, "<span_class='danger'>Jesteś zbyt wyczerpany, by zablokować atak!</span>")
 		return 0
-	else if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE) && owner.getStaminaLoss() >= 30)
+	else if(owner.stamina?.loss_as_percent >= 45) // AQ EDIT - port Bee#14750: próg bloku z puli staminy
 		to_chat(owner, "<span_class='danger'>Jesteś zbyt wyczerpany, by zablokować atak!</span>")
 		return 0
 	if(!owner.combat_mode) //you can choose not to block an attack
@@ -668,7 +668,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				L.attackby(src, owner)
 				owner.visible_message("<span class='danger'>[L] rani się o [src] należący do [owner]!</span>")
 	owner.apply_damage(attackforce, STAMINA, blockhand, block_power)
-	if((owner.getStaminaLoss() >= 35 && HAS_TRAIT(src, TRAIT_NODROP)) || (HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE) && owner.getStaminaLoss() >= 30))//if you don't drop the item, you can't block for a few seconds
+	if(owner.stamina?.loss_as_percent >= 45)//if you don't drop the item, you can't block for a few seconds // AQ EDIT - port Bee#14750: próg z puli (ręka już się nie wyłącza od staminy)
 		owner.blockbreak()
 	if(attackforce)
 		owner.changeNext_move(CLICK_CD_MELEE)

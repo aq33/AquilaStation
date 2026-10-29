@@ -33,7 +33,9 @@
 		/datum/language/slime,
 		/datum/language/sylvan,
 		/datum/language/terrum,
-		/datum/language/uncommon))
+		/datum/language/uncommon,
+		/datum/language/vampiric, // AQ EDIT - języki antagów Aquili, jak narsie i ratvar
+		/datum/language/darkspawn)) // AQ EDIT
 
 /obj/item/organ/tongue/Initialize(mapload)
 	. = ..()
@@ -263,7 +265,8 @@
 
 /obj/item/organ/tongue/robot/Initialize(mapload)
 	. = ..()
-	languages_possible = languages_possible_base += typecacheof(/datum/language/machine) + typecacheof(/datum/language/voltaic)
+	languages_possible = languages_possible_base.Copy() // AQ EDIT - kopia; += na liście bazowej dopisywało język wszystkim organom
+	languages_possible += typecacheof(/datum/language/machine) + typecacheof(/datum/language/voltaic)
 
 /obj/item/organ/tongue/robot/emp_act(severity)
 	owner.emote("scream")
@@ -299,7 +302,8 @@
 
 /obj/item/organ/tongue/ethereal/Initialize(mapload)
 	. = ..()
-	languages_possible = languages_possible_base += typecacheof(/datum/language/voltaic)
+	languages_possible = languages_possible_base.Copy() // AQ EDIT - kopia; += na liście bazowej dopisywało język wszystkim organom
+	languages_possible += typecacheof(/datum/language/voltaic)
 
 /obj/item/organ/tongue/golem
 	name = "mineralny język"
@@ -310,7 +314,8 @@
 
 /obj/item/organ/tongue/golem/Initialize(mapload)
 	. = ..()
-	languages_possible = languages_possible_base += typecacheof(/datum/language/terrum)
+	languages_possible = languages_possible_base.Copy() // AQ EDIT - kopia; += na liście bazowej dopisywało język wszystkim organom
+	languages_possible += typecacheof(/datum/language/terrum)
 
 /obj/item/organ/tongue/golem/bananium
 	name = "bananiumowy język"
@@ -342,7 +347,8 @@
 
 /obj/item/organ/tongue/slime/Initialize(mapload)
 	. = ..()
-	languages_possible = languages_possible_base += typecacheof(/datum/language/slime)
+	languages_possible = languages_possible_base.Copy() // AQ EDIT - kopia; += na liście bazowej dopisywało język wszystkim organom
+	languages_possible += typecacheof(/datum/language/slime)
 
 /obj/item/organ/tongue/moth
 	name = "język ćmy"

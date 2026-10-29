@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(holomaps)
 
 			if(tile_area.holomap_color)
 				area_canvas.DrawBox(tile_area.holomap_color, offset_x, offset_y)
-				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? "Tunele techniczne" : tile_area.name
+				position_to_name["[offset_x]:[offset_y]"] = tile_area.holomap_color == HOLOMAP_AREACOLOR_MAINTENANCE ? GLOB.holomap_color_to_name[HOLOMAP_AREACOLOR_MAINTENANCE] : tile_area.name
 
 			if(IS_ROCK(tile))
 				canvas.DrawBox(HOLOMAP_ROCK, offset_x, offset_y)
@@ -159,14 +159,14 @@ SUBSYSTEM_DEF(holomaps)
 			var/pod_controller = HAS_ESCAPE_POD_CONTROLLER(tile)
 			if(pod_controller)
 				var/image/image_to_use
-				if(!pod_locations["Kapsuła ratunkowa"])
-					pod_locations["Kapsuła ratunkowa"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "pod_marker"), "markers" = list())
+				if(!pod_locations["Kapsuły ratunkowe"])
+					pod_locations["Kapsuły ratunkowe"] = list("icon" = image('nsv13/icons/holomap/8x8.dmi', "pod_marker"), "markers" = list())
 
 				image_to_use = image('nsv13/icons/holomap/8x8.dmi', "pod_marker")
 				image_to_use.pixel_x = offset_x
 				image_to_use.pixel_y = offset_y
 
-				pod_locations["Kapsuła ratunkowa"]["markers"] += image_to_use
+				pod_locations["Kapsuły ratunkowe"]["markers"] += image_to_use
 
 
 		// Check sleeping after each row to avoid *completely* destroying the server

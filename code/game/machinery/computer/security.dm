@@ -26,9 +26,10 @@
 		/obj/item/circuit_component/arrest_console_arrest,
 	))
 
+// AQ EDIT START - komponenty USB na API wiremoda z tg
 /obj/item/circuit_component/arrest_console_data
-	display_name = "Dane akt ochrony"
-	display_desc = "Wysyła dane akt ochrony, które można potem filtrować komponentem Select Query."
+	display_name = "Security Records Data"
+	desc = "Outputs the security records data, where it can then be filtered with a Select Query component"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -39,8 +40,7 @@
 
 	var/obj/machinery/computer/secure_data/attached_console
 
-/obj/item/circuit_component/arrest_console_data/Initialize(mapload)
-	. = ..()
+/obj/item/circuit_component/arrest_console_data/populate_ports()
 	records = add_output_port("Security Records", PORT_TYPE_TABLE)
 	on_fail = add_output_port("Failed", PORT_TYPE_SIGNAL)
 
@@ -74,10 +74,6 @@
 
 
 /obj/item/circuit_component/arrest_console_data/input_received(datum/port/input/port)
-	. = ..()
-	if(.)
-		return
-
 	if(!attached_console || !attached_console.authenticated)
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
@@ -106,9 +102,12 @@
 	records.set_output(new_table)
 
 /obj/item/circuit_component/arrest_console_arrest
-	display_name = "Ustawianie statusu w aktach ochrony"
-	display_desc = "Przyjmuje tabelę, według której ustawia ludziom status aresztowania. Tabela powinna pochodzić z komponentu danych akt ochrony. Jeśli port New Status nie jest ustawiony, status zależy od opcji."
+	display_name = "Security Records Set Status"
+	desc = "Receives a table to use to set people's arrest status. Table should be from the security records data component. If New Status port isn't set, the status will be decided by the options."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
+
+	/// Status used when the New Status port is empty.
+	var/datum/port/input/option/status_option
 
 	/// The targets to set the status of.
 	var/datum/port/input/targets
@@ -141,10 +140,9 @@
 		COMP_STATE_DISCHARGED,
 		COMP_STATE_NONE,
 	)
-	options = component_options
+	status_option = add_option_port("Arrest Options", component_options)
 
-/obj/item/circuit_component/arrest_console_arrest/Initialize(mapload)
-	. = ..()
+/obj/item/circuit_component/arrest_console_arrest/populate_ports()
 	targets = add_input_port("Targets", PORT_TYPE_TABLE)
 	new_status = add_input_port("New Status", PORT_TYPE_STRING)
 	new_status_set = add_output_port("Set Status", PORT_TYPE_STRING)
@@ -158,20 +156,16 @@
 	return ..()
 
 /obj/item/circuit_component/arrest_console_arrest/input_received(datum/port/input/port)
-	. = ..()
-	if(.)
-		return
-
 	if(!attached_console || !attached_console.authenticated)
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
-	var/status_to_set = new_status.input_value
-	if(!status_to_set || !(status_to_set in options))
-		status_to_set = current_option
+	var/status_to_set = new_status.value
+	if(!status_to_set || !(status_to_set in status_option.possible_options))
+		status_to_set = status_option.value
 
 	new_status_set.set_output(status_to_set)
-	var/list/target_table = targets.input_value
+	var/list/target_table = targets.value
 	if(!target_table)
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
@@ -193,6 +187,7 @@
 			message_admins("Wpisy ochrony ([successful_set]) zostały ustawione na [status_to_set] przez [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
 		for(var/mob/living/carbon/human/human as anything in GLOB.carbon_list)
 			human.sec_hud_set_security_status()
+// AQ EDIT END
 
 /obj/machinery/computer/secure_data/syndie
 	icon_keyboard = "syndie_key"

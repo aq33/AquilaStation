@@ -388,8 +388,6 @@ albo strzelać z broni, żeby poruszać się zgodnie z trzecią zasadą dynamiki
 	var/datum/antagonist/cult/antag = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 	if(!antag)
 		return
-	var/datum/objective/sacrifice/sac_objective = locate() in antag.cult_team.objectives
-
 	if(antag.cult_team.blood_target)
 		if(!get_turf(antag.cult_team.blood_target))
 			antag.cult_team.blood_target = null
@@ -399,27 +397,15 @@ albo strzelać z broni, żeby poruszać się zgodnie z trzecią zasadą dynamiki
 		blood_target = Cviewer.master
 		desc = "Zmysł krwi prowadzi cię do: [Cviewer.master]"
 	if(!blood_target)
-		if(sac_objective && !sac_objective.check_completion())
-			if(icon_state == "runed_sense0")
-				return
-			animate(src, transform = null, time = 1, loop = 0)
-			angle = 0
-			cut_overlays()
-			icon_state = "runed_sense0"
-			desc = "Nar'Sie żąda złożenia w ofierze celu ([sac_objective.target]), zanim zacznie się rytuał przywołania."
-			add_overlay(sac_objective.sac_image)
-		else
-			var/datum/objective/eldergod/summon_objective = locate() in antag.cult_team.objectives
-			if(!summon_objective)
-				return
-			desc = "Ofiara złożona, przywołaj Nar'Sie! Przywołanie może się odbyć tylko w tych miejscach: [english_list(summon_objective.summon_spots)]!"
-			if(icon_state == "runed_sense1")
-				return
-			animate(src, transform = null, time = 1, loop = 0)
-			angle = 0
-			cut_overlays()
-			icon_state = "runed_sense1"
-			add_overlay(narnar)
+		// AQ EDIT - kult krwi „Cult 4” nie ma celów sacrifice/eldergod, bez celu krwi zostaje sam Nar'Sie
+		desc = initial(desc)
+		if(icon_state == "runed_sense1")
+			return
+		animate(src, transform = null, time = 1, loop = 0)
+		angle = 0
+		cut_overlays()
+		icon_state = "runed_sense1"
+		add_overlay(narnar)
 		return
 	var/turf/P = get_turf(blood_target)
 	var/turf/Q = get_turf(owner)

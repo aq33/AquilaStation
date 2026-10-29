@@ -34,7 +34,7 @@
 /datum/component/construction/proc/action(datum/source, obj/item/I, mob/living/user)
 	SIGNAL_HANDLER
 
-	return INVOKE_ASYNC(src, PROC_REF(check_step), I, user)
+	INVOKE_ASYNC(src, PROC_REF(check_step), I, user) // AQ EDIT - INVOKE_ASYNC returns a /datum/task, which broke the signal return flags
 
 /datum/component/construction/proc/update_index(diff)
 	index += diff

@@ -102,7 +102,7 @@
 		var/mob/living/H = buckled_mobs[1]
 		H.adjustStaminaLoss(instability*6)
 		playsound(src, 'sound/effects/bang.ogg', 40, TRUE)
-		if(!iscarbon(H) || H.getStaminaLoss() >= 100 || grinding || world.time < next_crash)
+		if(!iscarbon(H) || HAS_TRAIT(H, TRAIT_EXHAUSTED) || grinding || world.time < next_crash) // AQ EDIT - port Bee#14750
 			var/atom/throw_target = get_edge_target_turf(H, pick(GLOB.cardinals))
 			unbuckle_mob(H)
 			H.throw_at(throw_target, 3, 2)
@@ -124,7 +124,7 @@
 	if(has_buckled_mobs() && locate(/obj/structure/table) in loc.contents)
 		var/mob/living/L = buckled_mobs[1]
 		L.adjustStaminaLoss(instability*0.5)
-		if (L.getStaminaLoss() >= 100)
+		if (HAS_TRAIT(L, TRAIT_EXHAUSTED)) // AQ EDIT - port Bee#14750
 			playsound(src, 'sound/effects/bang.ogg', 20, TRUE)
 			unbuckle_mob(L)
 			var/atom/throw_target = get_edge_target_turf(src, pick(GLOB.cardinals))
