@@ -1040,6 +1040,7 @@
 #include "code\modules\test_chamber\kits\pr_515_ui_porzadki.dm"
 #include "code\modules\test_chamber\kits\pr_516_jezyki_ras.dm"
 #include "code\modules\test_chamber\kits\pr_517_wyproznianie_na_miejscu.dm"
+#include "code\modules\test_chamber\kits\pr_530_medycyna3.dm"
 #include "code\modules\weighted\weighted_admin.dm"
 #include "code\modules\weighted\spawn_fallbacks.dm"
 #include "code\modules\weighted\weighted_ghost_midround.dm"
