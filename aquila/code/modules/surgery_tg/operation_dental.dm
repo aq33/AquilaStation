@@ -4,6 +4,8 @@
 // operację można zrobić na sobie, po wciśnięciu pigułki rany się zasklepiają (cauterise_wounds), bez limitu zębów
 // (u nas głowa nie liczy zębów). Z tg doszło wyjmowanie implantu (hemostat albo ręka, latarka w ręku pomaga).
 // Jak w tg potrzebna jest odciągnięta skóra i nawiercona kość (stara wersja wymagała tylko wiercenia).
+// Kroki przed implantem (nacięcie, odciągnięcie, zaciśnięcie, nawiercenie) w strefie ust też da się zrobić na sobie
+// (self_operable_zones w operation_generic.dm), bo stara wersja była cała do zrobienia samemu.
 
 /datum/surgery_operation/limb/add_dental_implant
 	name = "implant zęba"

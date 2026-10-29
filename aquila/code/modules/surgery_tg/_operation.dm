@@ -103,8 +103,8 @@
 /mob/living/proc/get_available_operations(atom/movable/operating_on, potential_tool = IMPLEMENT_HAND, operating_zone = zone_selected)
 	// typy operacji, które w ogóle wchodzą w grę
 	var/list/possible_operations = GLOB.operations.unlocked.Copy()
-	// AQUILA - operacje odblokowane dyskami i badaniami starego szkieletu (surgery_bridge.dm)
-	possible_operations |= get_legacy_unlocked_operations(operating_on)
+	// AQUILA - operacje odblokowane dyskami, badaniami i abduktorami (surgery_unlocks.dm)
+	possible_operations |= get_unlocked_operations(operating_on)
 	// sygnały mogą dopisać zablokowane operacje
 	SEND_SIGNAL(src, COMSIG_LIVING_OPERATING_ON, operating_on, possible_operations)
 	SEND_SIGNAL(operating_on, COMSIG_ATOM_BEING_OPERATED_ON, src, possible_operations)
@@ -396,6 +396,8 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	/// Flagi OPERATION_*
 	var/operation_flags = NONE
+	/// AQUILA - strefy, w których operację można zrobić na sobie bez OPERATION_SELF_OPERABLE (implant zęba w ustach)
+	var/list/self_operable_zones
 
 	/// Cel musi mieć WSZYSTKIE te stany
 	var/all_surgery_states_required = NONE
@@ -448,7 +450,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	if(!(operation_flags & OPERATION_STANDING_ALLOWED) && !IS_LYING_OR_CANNOT_LIE(patient))
 		return FALSE
 
-	if(!(operation_flags & OPERATION_SELF_OPERABLE) && patient == surgeon && !HAS_TRAIT(surgeon, TRAIT_SELF_SURGERY))
+	if(!(operation_flags & OPERATION_SELF_OPERABLE) && patient == surgeon && !HAS_TRAIT(surgeon, TRAIT_SELF_SURGERY) && !(operated_zone in self_operable_zones))
 		return FALSE
 
 	return snowflake_check_availability(operating_on, surgeon, tool, operated_zone)
@@ -609,6 +611,11 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	. = list()
 	if(operation_flags & OPERATION_SELF_OPERABLE)
 		. += "chirurg może to zrobić na sobie"
+	else if(length(self_operable_zones))
+		var/list/zone_names = list()
+		for(var/zone in self_operable_zones)
+			zone_names += strefa_pl(zone)
+		. += "chirurg może to zrobić na sobie: [english_list(zone_names)]"
 
 /// "Żadne z poniższych:"
 /datum/surgery_operation/proc/all_blocked_strings()
@@ -781,7 +788,10 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 
 	var/result = NONE
 
+	// AQUILA - trwająca operacja dla analizatora, monitorów i komputera operacyjnego (surgery_progress.dm)
+	var/ongoing_zone = check_zone(operation_args[OPERATION_TARGET_ZONE])
 	if(patient)
+		LAZYSET(patient.ongoing_operations, ongoing_zone, src)
 		update_surgery_mood(patient, SURGERY_STATE_STARTED)
 		SEND_SIGNAL(patient, COMSIG_ATOM_SURGERY_STARTED, src, operating_on, tool)
 
@@ -821,6 +831,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	while((operation_flags & OPERATION_LOOPING) && can_loop(patient, operating_on, surgeon, tool, operation_args))
 
 	if(patient)
+		LAZYREMOVE(patient.ongoing_operations, ongoing_zone)
 		SEND_SIGNAL(patient, COMSIG_ATOM_SURGERY_FINISHED, src, operating_on, tool)
 
 	return result

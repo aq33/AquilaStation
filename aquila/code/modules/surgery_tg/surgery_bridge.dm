@@ -69,60 +69,6 @@
 		return "prześcieradło"
 	return "serwety"
 
-// --- Odblokowanie zablokowanych operacji (OPERATION_LOCKED) ---
-// W tg odblokowują je dyski i badania przez sygnały. U nas to samo źródło co dla starych zaawansowanych operacji:
-// advanced_surgeries komputera operacyjnego (stół albo łóżko stazy), procesora chirurgicznego borga i implantu
-// linkedsurgery (dyski i zbadane /datum/design/surgery). Nowa operacja wskazuje swoje stare odpowiedniki w legacy_unlocked_by.
-// TRAIT_SURGEON (abduktorzy) odblokowuje wszystko, jak w starym can_start().
-
-/datum/surgery_operation
-	/// AQUILA - stare operacje (/datum/surgery), których odblokowanie odblokowuje też tę (dla OPERATION_LOCKED)
-	var/list/legacy_unlocked_by
-
-/**
- * Zablokowane operacje, które chirurg może teraz zrobić na tym pacjencie (dyski, badania, TRAIT_SURGEON)
- */
-/mob/living/proc/get_legacy_unlocked_operations(atom/movable/operating_on)
-	var/list/unlocked = list()
-	if(HAS_TRAIT(src, TRAIT_SURGEON) || (mind && HAS_TRAIT(mind, TRAIT_SURGEON)))
-		unlocked += GLOB.operations.locked
-		return unlocked
-	var/list/legacy_surgeries = get_legacy_advanced_surgeries(operating_on)
-	if(!length(legacy_surgeries))
-		return unlocked
-	for(var/operation_type in GLOB.operations.locked)
-		var/datum/surgery_operation/operation = GLOB.operations.operations_by_typepath[operation_type]
-		if(length(operation?.legacy_unlocked_by & legacy_surgeries))
-			unlocked += operation_type
-	return unlocked
-
-/// Stare zaawansowane operacje dostępne dla chirurga przy tym pacjencie (te same źródła co /datum/surgery/proc/can_start)
-/mob/living/proc/get_legacy_advanced_surgeries(atom/movable/operating_on)
-	var/list/surgeries = list()
-	// stara operacja abduktorów nie była z dysku, tylko zależała od chirurga (operation_organ_extraction.dm)
-	if(can_abductor_organ_extraction())
-		surgeries += /datum/surgery/organ_extraction
-	if(iscyborg(src))
-		var/mob/living/silicon/robot/robot = src
-		var/obj/item/surgical_processor/processor = locate() in robot.module?.modules
-		if(processor)
-			surgeries |= processor.advanced_surgeries
-	if(iscarbon(src))
-		var/mob/living/carbon/carbon_self = src
-		var/obj/item/organ/cyberimp/brain/linkedsurgery/implant = carbon_self.getorganslot(ORGAN_SLOT_BRAIN_SURGICAL_IMPLANT)
-		if(istype(implant))
-			surgeries |= implant.advanced_surgeries
-	var/turf/patient_turf = get_turf(operating_on)
-	if(isnull(patient_turf))
-		return surgeries
-	var/obj/structure/table/optable/table = locate() in patient_turf
-	if(table?.computer && !(table.computer.machine_stat & (NOPOWER|BROKEN)))
-		surgeries |= table.computer.advanced_surgeries
-	var/obj/machinery/stasis/stasis_bed = locate() in patient_turf
-	if(stasis_bed?.op_computer && !(stasis_bed.op_computer.machine_stat & (NOPOWER|BROKEN)))
-		surgeries |= stasis_bed.op_computer.advanced_surgeries
-	return surgeries
-
 // --- Hooki w core, które pytały o stare operacje (AQ EDIT, LEGACY_OVERRIDES.md) ---
 
 /// Zarodek obcego (alien_embryo.dm): klatka otwarta nową chirurgią to operacja w toku, larwa wychodzi bez zabijania (tg: skóra + kość)

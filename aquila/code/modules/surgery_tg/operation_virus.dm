@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_virus.dm
 // Wiązanie wirusowe (stara wersja: code/modules/surgery/advanced/viral_bonding.dm). Zaawansowana operacja:
-// OPERATION_LOCKED, odblokowuje ją to samo co starą (legacy_unlocked_by). Zostaje nasze zachowanie: można ją zrobić
+// OPERATION_LOCKED, odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm). Zostaje nasze zachowanie: można ją zrobić
 // na sobie, nosicielem staje się pacjent każdej choroby (także nieuleczalnej). Jak w tg operacja pokazuje się dopiero,
 // gdy pacjent ma wszystkie trzy odczynniki (stara wersja w takim przypadku po prostu się nie udawała).
 
@@ -19,7 +19,6 @@
 	preop_sound = 'sound/surgery/cautery1.ogg'
 	success_sound = 'sound/surgery/cautery2.ogg'
 	operation_flags = OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_SELF_OPERABLE
-	legacy_unlocked_by = list(/datum/surgery/advanced/viral_bonding)
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 	/// Potrzebne wszystkie

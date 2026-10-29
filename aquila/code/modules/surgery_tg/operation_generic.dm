@@ -8,6 +8,7 @@
 		Stan: \"skóra nacięta\"."
 	required_bodytype = BODYTYPE_ORGANIC
 	replaced_by = /datum/surgery_operation/limb/incise_skin/abductor
+	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH) // AQUILA - implant zęba na sobie
 	implements = list(
 		TOOL_SCALPEL = 1,
 		/obj/item/melee/transforming/energy/sword = 1.33,
@@ -106,6 +107,7 @@
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
 	required_bodytype = BODYTYPE_ORGANIC
 	replaced_by = /datum/surgery_operation/limb/retract_skin/abductor
+	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH) // AQUILA - implant zęba na sobie
 	implements = list(
 		TOOL_RETRACTOR = 1,
 		TOOL_SCREWDRIVER = 2.25,
@@ -230,6 +232,7 @@
 	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	replaced_by = /datum/surgery_operation/limb/clamp_bleeders/abductor
+	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH) // AQUILA - implant zęba na sobie
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_WIRECUTTER = 1.67,
@@ -426,6 +429,7 @@
 		Stan: \"kość nawiercona\"."
 	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
+	self_operable_zones = list(BODY_ZONE_PRECISE_MOUTH) // AQUILA - implant zęba na sobie
 	implements = list(
 		TOOL_DRILL = 1,
 		/obj/item/powertool/hand_drill = 1.25,

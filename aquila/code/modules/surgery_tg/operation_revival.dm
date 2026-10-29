@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_revival.dm
 // Ożywienie porażeniem mózgu (stara wersja: code/modules/surgery/advanced/revival.dm). U nas to zaawansowana
-// operacja z dysku albo badań, więc jest OPERATION_LOCKED i odblokowuje ją to samo co starą (legacy_unlocked_by).
+// operacja z dysku albo badań, więc jest OPERATION_LOCKED i odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm).
 // Zostają nasze efekty: po ożywieniu +50 uszkodzeń mózgu i wiadomość o niepamięci (NSV13), przy porażce +15,
 // nie da się ożywić samobójcy, potępionego ani wysuszonego. Pominięte z tg: TRAIT_DEFIB_BLACKLISTED, nastrój TRAIT_MORBID.
 
@@ -15,7 +15,6 @@
 		/obj/item/gun/energy = 1.67,
 	)
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_LOCKED
-	legacy_unlocked_by = list(/datum/surgery/advanced/revival)
 	time = 5 SECONDS
 	preop_sound = list(
 		/obj/item/shockpaddles = 'sound/machines/defib_charge.ogg',

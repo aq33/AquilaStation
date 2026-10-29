@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_dissection.dm
 // Eksperymentalna sekcja (stara wersja: code/modules/surgery/advanced/bioware/experimental_dissection.dm).
-// Zaawansowana operacja: OPERATION_LOCKED, odblokowuje ją to samo co starą (legacy_unlocked_by).
+// Zaawansowana operacja: OPERATION_LOCKED, odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm).
 // Zostaje nasze zachowanie: punkty odkryć trafiają od razu do bazy badań (bez notatek badawczych z tg) według naszej
 // tabeli, nieudana sekcja daje 20% punktów, zawsze 80 obrażeń w klatkę i TRAIT_DISSECTED, borgi nie mogą jej robić,
 // tylko martwe węglowe moby.
@@ -17,7 +17,6 @@
 	)
 	time = 12.5 SECONDS
 	operation_flags = OPERATION_LOCKED | OPERATION_MORBID | OPERATION_NOTABLE
-	legacy_unlocked_by = list(/datum/surgery/advanced/experimental_dissection)
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
 

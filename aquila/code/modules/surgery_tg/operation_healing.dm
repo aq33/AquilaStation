@@ -1,7 +1,7 @@
 // AQUILA - tg code/modules/surgery/operations/operation_healing.dm
 // Opatrywanie ran (stara wersja: code/modules/surgery/healing.dm). Liczby jak u nas: 5 punktów plus 1/15, 1/10 albo 1/5
 // brakującego zdrowia (tg: 0.07, 0.1, 0.2), u martwego pięć razy mniej, przez ubranie 55%. Mieszane: 3 + 1/15, 1/10,
-// a eksperymentalne 1 + 1/2,5. Wersje zaawansowane odblokowują te same dyski i badania co stare (legacy_unlocked_by).
+// a eksperymentalne 1 + 1/2,5. Wersje zaawansowane odblokowują projekty /datum/design/surgery (surgery_unlocks.dm).
 // Pominięte z tg: monitor funkcji życiowych i modsuit przy pokazywaniu liczb (zostaje analizator w ręce), nastrój TRAIT_MORBID.
 
 /// Leczenie urazów
@@ -233,7 +233,6 @@
 	operation_flags = OPERATION_LOOPING | OPERATION_IGNORE_CLOTHES | OPERATION_LOCKED
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/upgraded/master
 	healing_multiplier = 0.1
-	legacy_unlocked_by = list(/datum/surgery/healing/brute/upgraded, /datum/surgery/healing/burn/upgraded)
 
 /datum/surgery_operation/basic/tend_wounds/upgraded/rnd_suffix()
 	return " (zaaw.)"
@@ -242,7 +241,6 @@
 	rnd_name = "Opatrywanie ran (eksperymentalne)"
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	healing_multiplier = 0.2
-	legacy_unlocked_by = list(/datum/surgery/healing/brute/upgraded/femto, /datum/surgery/healing/burn/upgraded/femto)
 
 /datum/surgery_operation/basic/tend_wounds/upgraded/master/rnd_suffix()
 	return " (eksp.)"
@@ -254,13 +252,11 @@
 	can_heal = COMBO_SURGERY
 	healing_amount = 3
 	time = 1 SECONDS
-	legacy_unlocked_by = list(/datum/surgery/healing/combo)
 
 /datum/surgery_operation/basic/tend_wounds/combo/upgraded
 	rnd_name = "Opatrywanie ran mieszanych (zaawansowane)"
 	replaced_by = /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master
 	healing_multiplier = 0.1
-	legacy_unlocked_by = list(/datum/surgery/healing/combo/upgraded)
 
 /datum/surgery_operation/basic/tend_wounds/combo/upgraded/rnd_suffix()
 	return " (zaaw.)"
@@ -270,7 +266,6 @@
 	replaced_by = null
 	healing_amount = 1
 	healing_multiplier = 0.4
-	legacy_unlocked_by = list(/datum/surgery/healing/combo/upgraded/femto)
 
 /datum/surgery_operation/basic/tend_wounds/combo/upgraded/master/rnd_suffix()
 	return " (eksp.)"

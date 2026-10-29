@@ -19,9 +19,9 @@
 	on_gain()
 
 /datum/bioware/Destroy()
-	owner = null
-	if(active)
+	if(active && !QDELETED(owner)) // AQ EDIT - on_lose() potrzebuje żywego właściciela (runtime null.physiology przy qdel)
 		on_lose()
+	owner = null // AQ EDIT - zerowane po on_lose()
 	return ..()
 
 /datum/bioware/proc/on_gain()

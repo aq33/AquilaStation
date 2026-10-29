@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_brainwash.dm
 // Pranie mózgu (stara wersja: code/modules/surgery/advanced/brainwashing.dm). Zaawansowana operacja z dysku:
-// OPERATION_LOCKED, odblokowuje ją to samo co starą (legacy_unlocked_by). Zostaje nasze zachowanie: tylko ludzie
+// OPERATION_LOCKED, odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm). Zostaje nasze zachowanie: tylko ludzie
 // z organicznym mózgiem, implant lojalności kasuje pranie, porażka to 40 uszkodzeń mózgu, cel wpisuje się przed
 // operacją. Pominięte z tg: wersja mechaniczna, wersja "uśpiony agent" (u nas nie ma jej źródła), TRAIT_UNCONVERTABLE.
 // Jak w starej wersji wystarczy przepiłowana czaszka i zaciśnięte naczynia, bez nacinania organów.
@@ -24,7 +24,6 @@
 	success_sound = 'sound/surgery/hemostat1.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_LOCKED
-	legacy_unlocked_by = list(/datum/surgery/advanced/brainwashing)
 	target_type = /obj/item/organ/brain
 	required_organ_flag = ORGAN_ORGANIC
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED

@@ -1,7 +1,7 @@
 // AQUILA - tg code/modules/surgery/operations/operation_bioware.dm
 // Bioware: trwałe modyfikacje ciała (stare wersje: code/modules/surgery/advanced/bioware/*.dm).
 // Zostaje nasz system /datum/bioware (lista human.bioware, jedna modyfikacja na mod_type) zamiast statusów z tg.
-// Zaawansowane operacje z dysku albo badań: OPERATION_LOCKED, odblokowuje je to samo co stare (legacy_unlocked_by).
+// Zaawansowane operacje z dysku albo badań: OPERATION_LOCKED, odblokowują je dyski i projekty /datum/design/surgery (surgery_unlocks.dm).
 // Zostają nasze wymagania: klatka bez piłowania kości (nacięta skóra, zaciśnięte naczynia, nacięte organy), głowa
 // z przepiłowaną czaszką; przeplatanie żył można zrobić na sobie; nieudane fałdowanie i odciskanie kory: 60 uszkodzeń
 // mózgu i ciężka trauma. Pominięte z tg: wersje dla protez (stare operacje były tylko dla organicznych kończyn).
@@ -60,7 +60,6 @@
 	desc = "Przeplata naczynia krwionośne pacjenta w wytrzymałą siatkę, mocno ograniczając utratę krwi z ran."
 	// AQUILA - jak stara operacja: można ją zrobić na sobie
 	operation_flags = OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_MORBID | OPERATION_LOCKED | OPERATION_SELF_OPERABLE
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/vein_threading)
 	bioware_type = /datum/bioware/threaded_veins
 
 /datum/surgery_operation/limb/bioware/vein_threading/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -88,7 +87,6 @@
 	name = "umięśnienie żył"
 	rnd_name = "Miowaskuloplastyka (umięśnione żyły)"
 	desc = "Dodaje do naczyń krwionośnych pacjenta umięśnioną błonę, dzięki której pompują krew nawet bez serca."
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/muscled_veins)
 	bioware_type = /datum/bioware/muscled_veins
 
 /datum/surgery_operation/limb/bioware/muscled_veins/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -119,7 +117,6 @@
 	rnd_name = "Symneurodeza (splecione nerwy)"
 	desc = "Splata nerwy pacjenta, przez co ogłuszenia działają na niego słabiej."
 	time = 15.5 SECONDS
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/nerve_splicing)
 	bioware_type = /datum/bioware/spliced_nerves
 
 /datum/surgery_operation/limb/bioware/nerve_splicing/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -148,7 +145,6 @@
 	rnd_name = "Ksantoneuroplastyka (uziemione nerwy)"
 	desc = "Przekierowuje nerwy pacjenta tak, że działają jak uziemienie i chronią przed porażeniem prądem."
 	time = 15.5 SECONDS
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/nerve_grounding)
 	bioware_type = /datum/bioware/grounded_nerves
 
 /datum/surgery_operation/limb/bioware/nerve_grounding/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -178,7 +174,6 @@
 	name = "przekształcenie więzadeł"
 	rnd_name = "Artroplastyka (haki więzadłowe)"
 	desc = "Przekształca więzadła pacjenta tak, że odcięte kończyny da się przyczepić ręcznie, ale łatwiej je też oderwać."
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/ligament_hook)
 	bioware_type = /datum/bioware/hooked_ligaments
 
 /datum/surgery_operation/limb/bioware/ligament_hook/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -206,7 +201,6 @@
 	name = "wzmocnienie więzadeł"
 	rnd_name = "Artrorafia (wzmocnione więzadła)"
 	desc = "Wzmacnia więzadła pacjenta, przez co kończyny trudno oderwać, ale łatwiej je unieruchomić obrażeniami."
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/ligament_reinforcement)
 	bioware_type = /datum/bioware/reinforced_ligaments
 
 /datum/surgery_operation/limb/bioware/ligament_reinforcement/on_preop(obj/item/bodypart/limb, mob/living/surgeon, tool, list/operation_args)
@@ -236,7 +230,6 @@
 	name = "fałdowanie kory"
 	rnd_name = "Encefalofraktoplastyka (fałdowanie kory)"
 	desc = "Składa korę mózgową pacjenta we wzór fraktalny, robiąc miejsce na niestandardowe wzorce neuronowe."
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/cortex_folding)
 	bioware_type = /datum/bioware/cortex_fold
 	required_zone = BODY_ZONE_HEAD
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED
@@ -272,7 +265,6 @@
 	name = "odciskanie kory"
 	rnd_name = "Encefalopremoplastyka (odciśnięcie kory)"
 	desc = "Rzeźbi korę mózgową pacjenta w samoodciskający się wzór, dzięki któremu mózg omija skutki lekkich urazów."
-	legacy_unlocked_by = list(/datum/surgery/advanced/bioware/cortex_imprint)
 	bioware_type = /datum/bioware/cortex_imprint
 	required_zone = BODY_ZONE_HEAD
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED

@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_lobotomy.dm
 // Lobotomia (stara wersja: code/modules/surgery/advanced/lobotomy.dm). Zaawansowana operacja: OPERATION_LOCKED,
-// odblokowuje ją to samo co starą (legacy_unlocked_by). Zostają nasze efekty: leczy traumy do odporności LOBOTOMY,
+// odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm). Zostają nasze efekty: leczy traumy do odporności LOBOTOMY,
 // zdejmuje pranie mózgu, w 3 przypadkach na 4 zostawia losową trwałą traumę; porażka: 80 uszkodzeń mózgu i trauma.
 // Jak stara wersja działa na każdym mózgu (organicznym i pozytronowym), więc bez osobnej wersji mechanicznej z tg.
 
@@ -10,7 +10,6 @@
 	desc = "Usuwa większość urazów mózgu pacjenta, ale może wywołać nowy, trwały uraz."
 	rnd_desc = "Inwazyjna operacja, która usuwa prawie wszystkie urazy mózgu, ale w zamian może spowodować inny, trwały uraz."
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
-	legacy_unlocked_by = list(/datum/surgery/advanced/lobotomy)
 	implements = list(
 		TOOL_SCALPEL = 1.15,
 		/obj/item/melee/transforming/energy/sword = 1.85,

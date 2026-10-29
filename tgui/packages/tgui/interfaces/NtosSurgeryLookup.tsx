@@ -1,4 +1,4 @@
-// AQUILA - program PDA „Operacje”: spis operacji z krokami i narzędziami
+// AQUILA - program PDA „Operacje”: spis operacji z narzędziami i wymaganiami (nowy szkielet chirurgii z tg)
 import { useState } from 'react';
 import {
   Box,
@@ -9,66 +9,32 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { capitalizeFirst } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { NtosWindow } from '../layouts';
-
-type SurgeryTool = {
-  name: string;
-  speed: number;
-};
-
-type SurgeryStep = {
-  name: string;
-  tools: SurgeryTool[];
-  time: number;
-  repeatable: boolean;
-  chems: string[];
-  allChems: boolean;
-};
-
-type Surgery = {
-  id: string;
-  name: string;
-  desc: string | null;
-  locations: string[];
-  targets: string[];
-  bodypart: string;
-  missingLimb: boolean;
-  requiresTech: boolean;
-  replacedBy: string | null;
-  condition: string | null;
-  lying: boolean;
-  selfOperable: boolean;
-  ignoreClothes: boolean;
-  steps: SurgeryStep[];
-};
+import { extractRequirementMap } from './OperatingComputer/helpers';
+import type { CatalogOperation } from './OperatingComputer/types';
 
 type Data = {
-  surgeries: Surgery[];
+  surgeries: CatalogOperation[];
 };
 
 export const NtosSurgeryLookup = (props) => {
   const { data } = useBackend<Data>();
   const surgeries = data.surgeries || [];
   const [query, setQuery] = useState('');
-  const [location, setLocation] = useState<string | null>(null);
-
-  const locations = Array.from(
-    new Set(surgeries.flatMap((surgery) => surgery.locations)),
-  ).sort((a, b) => a.localeCompare(b));
+  const [hideMechanic, setHideMechanic] = useState(false);
 
   const needle = query.trim().toLowerCase();
   const filtered = surgeries
-    .filter((surgery) => !location || surgery.locations.includes(location))
+    .filter((surgery) => !hideMechanic || !surgery.mechanic)
     .filter(
       (surgery) =>
         !needle ||
         surgery.name.toLowerCase().includes(needle) ||
         (surgery.desc || '').toLowerCase().includes(needle) ||
-        surgery.steps.some((step) =>
-          step.tools.some((tool) => tool.name.toLowerCase().includes(needle)),
-        ),
+        surgery.tools.some((tool) => tool.name.toLowerCase().includes(needle)),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -84,30 +50,22 @@ export const NtosSurgeryLookup = (props) => {
             onChange={(value) => setQuery(value)}
           />
           <Box mt={1}>
-            <Button
-              compact
-              selected={location === null}
-              onClick={() => setLocation(null)}
+            <Button.Checkbox
+              checked={hideMechanic}
+              onClick={() => setHideMechanic(!hideMechanic)}
             >
-              Wszędzie
-            </Button>
-            {locations.map((name) => (
-              <Button
-                compact
-                key={name}
-                selected={location === name}
-                onClick={() => setLocation(location === name ? null : name)}
-              >
-                {name}
-              </Button>
-            ))}
+              Ukryj operacje robotycznych części ciała
+            </Button.Checkbox>
           </Box>
         </Section>
         <Section title={`Operacje (${filtered.length})`}>
           <Box color="label" mb={1}>
-            Procent przy narzędziu to jego sprawność. Gorsze narzędzie wydłuża
-            krok, a gdy krok trwa ponad dwa razy dłużej niż zwykle, pojawia się
-            szansa porażki.
+            Operacje nie mają już kroków: każda jest jedną czynnością, a co da
+            się zrobić, zależy od narzędzia w ręce i stanu kończyny (nacięta
+            skóra, zaciśnięte naczynia, przepiłowana kość…). Zacznij od
+            położenia serwet albo prześcieradła na pacjencie. Procent przy
+            narzędziu to jego sprawność; gdy operacja trwa ponad dwa i pół raza
+            dłużej niż zwykle, pojawia się szansa porażki.
           </Box>
           {filtered.length === 0 && (
             <NoticeBox>Nie ma takiej operacji.</NoticeBox>
@@ -121,72 +79,27 @@ export const NtosSurgeryLookup = (props) => {
   );
 };
 
-const SurgeryEntry = (props: { surgery: Surgery }) => {
+const SurgeryEntry = (props: { surgery: CatalogOperation }) => {
   const { surgery } = props;
+  const tools = [...surgery.tools].sort((a, b) => b.speed - a.speed);
   const notes: string[] = [];
-  if (surgery.condition) {
-    notes.push(surgery.condition);
+  if (surgery.locked) {
+    notes.push('wymaga dysku z operacją albo zbadania technologii');
   }
-  if (surgery.requiresTech) {
-    notes.push('wymaga zbadania technologii albo dysku z operacją');
-  }
-  if (surgery.replacedBy) {
-    notes.push(`znika, gdy znasz: ${surgery.replacedBy}`);
-  }
-  if (surgery.bodypart !== 'dowolna') {
-    notes.push(`kończyna ${surgery.bodypart}`);
-  }
-  if (surgery.missingLimb) {
-    notes.push('na miejscu brakującej kończyny');
-  }
-  if (!surgery.lying) {
-    notes.push('pacjent nie musi leżeć');
-  }
-  if (surgery.selfOperable) {
-    notes.push('można zrobić samemu sobie');
-  }
-  if (surgery.ignoreClothes) {
-    notes.push('nie trzeba zdejmować ubrania');
+  if (surgery.looping) {
+    notes.push('powtarza się sama, dopóki da się ją robić');
   }
   return (
     <Collapsible title={surgery.name}>
       <Box ml={1} mb={1}>
         {!!surgery.desc && <Box mb={1}>{surgery.desc}</Box>}
-        <Box color="label">
-          Miejsce: {surgery.locations.join(', ') || '—'} · Pacjenci:{' '}
-          {surgery.targets.join(', ')}
-        </Box>
+        <Box color="label">Czas: {surgery.time} s</Box>
         {notes.length > 0 && (
           <Box color="average" mt={0.5}>
             {notes.join(' · ')}
           </Box>
         )}
         <Box mt={1}>
-          {surgery.steps.map((step, index) => (
-            <SurgeryStepRow key={index} step={step} index={index + 1} />
-          ))}
-        </Box>
-      </Box>
-    </Collapsible>
-  );
-};
-
-const SurgeryStepRow = (props: { step: SurgeryStep; index: number }) => {
-  const { step, index } = props;
-  const tools = [...step.tools].sort((a, b) => b.speed - a.speed);
-  return (
-    <Stack mb={0.5}>
-      <Stack.Item width="1.5em" color="label" textAlign="right">
-        {index}.
-      </Stack.Item>
-      <Stack.Item grow>
-        <Box bold>
-          {step.name}
-          <Box inline color="label" ml={1} style={{ fontWeight: 'normal' }}>
-            {step.time} s{step.repeatable && ' · powtarzalny'}
-          </Box>
-        </Box>
-        <Box>
           {tools.map((tool, toolIndex) => (
             <Box
               inline
@@ -201,13 +114,24 @@ const SurgeryStepRow = (props: { step: SurgeryStep; index: number }) => {
             </Box>
           ))}
         </Box>
-        {step.chems.length > 0 && (
-          <Box color="teal">
-            We krwi pacjenta {step.allChems ? 'wszystkie' : 'jedno z'}:{' '}
-            {step.chems.join(', ')}
-          </Box>
+        {Object.entries(extractRequirementMap(surgery)).map(
+          ([title, requirements]) =>
+            requirements.length > 0 && (
+              <Box key={title} mt={1}>
+                <Box italic color="label">
+                  {title}
+                </Box>
+                <Stack vertical>
+                  {requirements.map((requirement) => (
+                    <Stack.Item key={requirement}>
+                      - {capitalizeFirst(requirement)}
+                    </Stack.Item>
+                  ))}
+                </Stack>
+              </Box>
+            ),
         )}
-      </Stack.Item>
-    </Stack>
+      </Box>
+    </Collapsible>
   );
 };

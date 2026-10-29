@@ -145,10 +145,10 @@
 	if(!QDELETED(fragment))
 		qdel(fragment)
 
-	// Locked operations come from the same source as the old advanced surgeries
-	TEST_ASSERT(!(/datum/surgery_operation/basic/revival in surgeon.get_legacy_unlocked_operations(patient)), "Revival unlocked without a disk")
+	// Locked operations need a disk, research or TRAIT_SURGEON
+	TEST_ASSERT(!(/datum/surgery_operation/basic/revival in surgeon.get_unlocked_operations(patient)), "Revival unlocked without a disk")
 	ADD_TRAIT(surgeon, TRAIT_SURGEON, TRAIT_SOURCE_UNIT_TESTS)
-	TEST_ASSERT(/datum/surgery_operation/basic/revival in surgeon.get_legacy_unlocked_operations(patient), "TRAIT_SURGEON did not unlock revival")
+	TEST_ASSERT(/datum/surgery_operation/basic/revival in surgeon.get_unlocked_operations(patient), "TRAIT_SURGEON did not unlock revival")
 	REMOVE_TRAIT(surgeon, TRAIT_SURGEON, TRAIT_SOURCE_UNIT_TESTS)
 
 /// Is this operation among the ones from get_available_operations()
@@ -245,11 +245,11 @@
 	rename.try_perform(chest, surgeon, card, list(OPERATION_TARGET_ZONE = BODY_ZONE_CHEST))
 	TEST_ASSERT(patient.real_name == "Jan Testowy", "Identity recalibration did not rename the patient: [patient.real_name]")
 
-	// Abductors unlock their organ surgery like the old organ_extraction
+	// Abductors unlock their organ surgery (GLOB.abductor_operations)
 	var/abductor_manip = /datum/surgery_operation/limb/organ_manipulation/internal/abductor
-	TEST_ASSERT(!(abductor_manip in surgeon.get_legacy_unlocked_operations(patient)), "Abductor organ surgery unlocked for a human")
+	TEST_ASSERT(!(abductor_manip in surgeon.get_unlocked_operations(patient)), "Abductor organ surgery unlocked for a human")
 	surgeon.set_species(/datum/species/abductor)
-	TEST_ASSERT(abductor_manip in surgeon.get_legacy_unlocked_operations(patient), "Abductor species did not unlock the abductor organ surgery")
+	TEST_ASSERT(abductor_manip in surgeon.get_unlocked_operations(patient), "Abductor species did not unlock the abductor organ surgery")
 
 /// Is this operation among the ones from get_available_operations()
 /datum/unit_test/aquila_surgery_tg_advanced/proc/has_operation(list/operations, datum/surgery_operation/operation)

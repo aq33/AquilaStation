@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_pacify.dm
 // Pacyfikacja (stara wersja: code/modules/surgery/advanced/pacification.dm). Zaawansowana operacja: OPERATION_LOCKED,
-// odblokowuje ją to samo co starą (legacy_unlocked_by). Zostaje nasze zachowanie: trwały pacyfizm (odporność LOBOTOMY),
+// odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm). Zostaje nasze zachowanie: trwały pacyfizm (odporność LOBOTOMY),
 // porażka daje ciężką traumę. Jak stara wersja działa na każdym mózgu, więc bez osobnej wersji mechanicznej z tg.
 
 /datum/surgery_operation/organ/pacify
@@ -9,7 +9,6 @@
 	desc = "Usuwa z mózgu pacjenta skłonności do agresji."
 	rnd_desc = "Operacja, która na stałe tłumi ośrodek agresji w mózgu, przez co pacjent nie chce nikogo bezpośrednio krzywdzić."
 	operation_flags = OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
-	legacy_unlocked_by = list(/datum/surgery/advanced/pacify)
 	implements = list(
 		TOOL_HEMOSTAT = 1,
 		TOOL_SCREWDRIVER = 2.85,

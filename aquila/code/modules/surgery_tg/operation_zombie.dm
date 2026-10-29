@@ -1,6 +1,6 @@
 // AQUILA - tg code/modules/surgery/operations/operation_zombie.dm
 // Nekrotyczne ożywienie (stara wersja: code/modules/surgery/advanced/necrotic_revival.dm). Zaawansowana operacja:
-// OPERATION_LOCKED, odblokowuje ją to samo co starą (legacy_unlocked_by). Zostaje nasze zachowanie: organiczna głowa,
+// OPERATION_LOCKED, odblokowują ją dyski i projekty /datum/design/surgery (surgery_unlocks.dm). Zostaje nasze zachowanie: organiczna głowa,
 // mózg nie jest wymagany, odczynniki się nie zużywają. Jak w tg operacja pokazuje się dopiero, gdy pacjent albo
 // strzykawka ma w sobie proszek zombie albo rezadon (stara wersja w takim przypadku po prostu się nie udawała).
 
@@ -15,7 +15,6 @@
 	)
 	time = 5 SECONDS
 	operation_flags = OPERATION_MORBID | OPERATION_LOCKED | OPERATION_NOTABLE
-	legacy_unlocked_by = list(/datum/surgery/advanced/necrotic_revival)
 	required_bodytype = BODYTYPE_ORGANIC
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED
