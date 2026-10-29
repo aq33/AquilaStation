@@ -178,11 +178,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		data["SM_moles"] = air.total_moles()
 		for(var/gasid in air.get_gases())
 			gasdata.Add(list(list(
+			"id" = gasid, // AQ EDIT - id gazu dla TGUI (nazwa i kolor)
 			"name"= GLOB.gas_data.names[gasid],
 			"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
 	else
 		for(var/gasid in air.get_gases())
 			gasdata.Add(list(list(
+				"id" = gasid, // AQ EDIT - id gazu dla TGUI (nazwa i kolor)
 				"name"= GLOB.gas_data.names[gasid],
 				"amount" = 0)))
 	data["gases"] = gasdata
