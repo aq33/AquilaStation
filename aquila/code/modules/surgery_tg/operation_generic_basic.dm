@@ -36,7 +36,7 @@
 
 /datum/surgery_operation/basic/incise_skin/tool_check(obj/item/tool)
 	// ostrze albo pasujące narzędzie
-	if(tool.sharpness || implements[tool.tool_behaviour])
+	if(tool.sharpness || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 		return TRUE
 	// na życzenie graczy, choć nie są ostre
 	if(istype(tool, /obj/item/pen) || istype(tool, /obj/item/screwdriver))
@@ -95,7 +95,7 @@
 
 /datum/surgery_operation/basic/saw_bone/tool_check(obj/item/tool)
 	// ostrze o sporej sile albo pasujące narzędzie
-	return ((tool.sharpness && tool.force >= 10) || implements[tool.tool_behaviour])
+	return ((tool.sharpness && tool.force >= 10) || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/basic/saw_bone/on_preop(mob/living/patient, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(

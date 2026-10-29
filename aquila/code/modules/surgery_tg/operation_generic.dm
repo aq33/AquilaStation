@@ -6,7 +6,7 @@
 	name = "nacięcie skóry"
 	desc = "Nacina skórę pacjenta, żeby dostać się do środka. \
 		Stan: \"skóra nacięta\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	replaced_by = /datum/surgery_operation/limb/incise_skin/abductor
 	implements = list(
 		TOOL_SCALPEL = 1,
@@ -34,7 +34,7 @@
 
 /datum/surgery_operation/limb/incise_skin/tool_check(obj/item/tool)
 	// ostrze albo pasujące narzędzie
-	if(tool.sharpness || implements[tool.tool_behaviour])
+	if(tool.sharpness || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 		return TRUE
 	// na życzenie graczy, choć nie są ostre
 	if(istype(tool, /obj/item/pen) || istype(tool, /obj/item/screwdriver))
@@ -104,7 +104,7 @@
 	desc = "Odciąga skórę pacjenta, żeby dostać się do organów. \
 		Stan: \"skóra odciągnięta\"."
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	replaced_by = /datum/surgery_operation/limb/retract_skin/abductor
 	implements = list(
 		TOOL_RETRACTOR = 1,
@@ -147,7 +147,7 @@
 	name = "zamknięcie nacięcia"
 	desc = "Zamyka nacięcie skóry pacjenta. \
 		Czyści większość stanów chirurgicznych."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	replaced_by = /datum/surgery_operation/limb/close_skin/abductor
 	implements = list(
@@ -227,7 +227,7 @@
 	name = "zaciśnięcie naczyń"
 	desc = "Zaciska krwawiące naczynia pacjenta, żeby nie tracił krwi. \
 		Stan: \"naczynia zaciśnięte\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_PRIORITY_NEXT_STEP | OPERATION_NO_PATIENT_REQUIRED
 	replaced_by = /datum/surgery_operation/limb/clamp_bleeders/abductor
 	implements = list(
@@ -273,7 +273,7 @@
 	name = "zdjęcie zacisków"
 	desc = "Zdejmuje zaciski z naczyń, krew znowu płynie. \
 		Czyści stan \"naczynia zaciśnięte\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
 	replaced_by = /datum/surgery_operation/limb/unclamp_bleeders/abductor
 	implements = list(
@@ -320,7 +320,7 @@
 	name = "przepiłowanie kości"
 	desc = "Przepiłowuje kość pacjenta, żeby dostać się do organów. \
 		Stan: \"kość przepiłowana\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	implements = list(
 		TOOL_SAW = 1,
 		/obj/item/melee/arm_blade = 1.33,
@@ -348,7 +348,7 @@
 
 /datum/surgery_operation/limb/saw_bones/tool_check(obj/item/tool)
 	// ostrze o sporej sile albo pasujące narzędzie
-	return ((tool.sharpness && tool.force >= 10) || implements[tool.tool_behaviour])
+	return ((tool.sharpness && tool.force >= 10) || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/limb/saw_bones/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -378,7 +378,7 @@
 	name = "zespolenie kości"
 	desc = "Skleja przecięte albo złamane kości pacjenta. \
 		Czyści stany \"kość przepiłowana\" i \"kość nawiercona\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		/obj/item/stack/medical/bone_gel = 1,
@@ -424,7 +424,7 @@
 	name = "nawiercenie kości"
 	desc = "Nawierca kość pacjenta. \
 		Stan: \"kość nawiercona\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
 	implements = list(
 		TOOL_DRILL = 1,
@@ -449,7 +449,7 @@
 
 /datum/surgery_operation/limb/drill_bones/tool_check(obj/item/tool)
 	// tg: szpiczasty przedmiot o sporej sile. U nas ostrość nie rozróżnia ostrza i szpica.
-	return ((tool.sharpness && tool.force >= 10) || implements[tool.tool_behaviour])
+	return ((tool.sharpness && tool.force >= 10) || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/limb/drill_bones/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -477,7 +477,7 @@
 	name = "nacięcie organów"
 	desc = "Nacina tkankę organów pacjenta, żeby można je było przesunąć albo naprawić. \
 		Stan: \"organy nacięte\"."
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_NO_PATIENT_REQUIRED
 	replaced_by = /datum/surgery_operation/limb/incise_organs/abductor
 	implements = list(
@@ -503,7 +503,7 @@
 
 /datum/surgery_operation/limb/incise_organs/tool_check(obj/item/tool)
 	// ostrze albo pasujące narzędzie, ale nie piła - rozszarpie organy
-	return (tool.sharpness || implements[tool.tool_behaviour]) && tool.tool_behaviour != TOOL_SAW
+	return (tool.sharpness || (tool.tool_behaviour && implements[tool.tool_behaviour])) && tool.tool_behaviour != TOOL_SAW
 
 /datum/surgery_operation/limb/incise_organs/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(

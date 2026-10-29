@@ -9,7 +9,7 @@
 	implements = list(TOOL_BLOODFILTER = 1)
 	time = 2.5 SECONDS
 	operation_flags = OPERATION_LOOPING
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	success_sound = 'sound/machines/ping.ogg'
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_blocked = SURGERY_VESSELS_UNCLAMPED

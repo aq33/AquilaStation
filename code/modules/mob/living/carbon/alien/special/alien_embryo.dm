@@ -76,6 +76,9 @@
 			if(S.location == BODY_ZONE_CHEST && istype(S.get_surgery_step(), /datum/surgery_step/manipulate_organs))
 				AttemptGrow(FALSE)
 				return
+		if(owner.is_chest_open_for_surgery()) // AQ EDIT - nowa chirurgia (aquila/code/modules/surgery_tg/)
+			AttemptGrow(FALSE)
+			return
 		AttemptGrow()
 
 

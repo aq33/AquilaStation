@@ -311,7 +311,7 @@
 
 /datum/surgery_operation/organ/repair/gastrectomy/tool_check(obj/item/tool)
 	// ostrze albo pasujące narzędzie
-	return (tool.sharpness == IS_SHARP || tool.sharpness == IS_SHARP_ACCURATE || implements[tool.tool_behaviour])
+	return (tool.sharpness == IS_SHARP || tool.sharpness == IS_SHARP_ACCURATE || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/organ/repair/gastrectomy/on_preop(obj/item/organ/organ, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(

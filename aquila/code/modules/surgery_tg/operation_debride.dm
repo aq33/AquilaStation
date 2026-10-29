@@ -21,7 +21,7 @@
 	)
 	success_sound = 'sound/surgery/scalpel2.ogg'
 	failure_sound = 'sound/surgery/organ1.ogg'
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 
 /datum/surgery_operation/limb/debride/get_default_radial_image()
 	return image(icon = 'icons/obj/surgery.dmi', icon_state = "scalpel")

@@ -13,7 +13,7 @@
 	name = "operacja na organach"
 	abstract_type = /datum/surgery_operation/limb/organ_manipulation
 	operation_flags = OPERATION_MORBID | OPERATION_NOTABLE | OPERATION_NO_PATIENT_REQUIRED
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	time = 6.4 SECONDS
 	/// Opcje menu radialnego dla każdego typu organu
 	VAR_PRIVATE/list/cached_organ_manipulation_options
@@ -252,6 +252,8 @@
 	log_combat(surgeon, patient, "surgically removed [organ.name] from")
 	organ.Remove(patient)
 	organ.forceMove(patient.drop_location())
+	// tg: organy od ofiary heretyka reagują na wycięcie (aquila/code/modules/antagonists/heretic/_compat/sacrifice.dm)
+	SEND_SIGNAL(organ, COMSIG_ORGAN_SURGICALLY_REMOVED, surgeon, patient, limb.body_zone, tool)
 
 /datum/surgery_operation/limb/organ_manipulation/proc/on_success_remove_horror(obj/item/bodypart/limb, mob/living/surgeon)
 	var/mob/living/simple_animal/horror/horror = get_horror(limb)
@@ -278,7 +280,7 @@
 		tool.cut_overlays()
 	else if(organ.loc == surgeon)
 		surgeon.temporarilyRemoveItemFromInventory(organ, TRUE)
-	organ.Insert(limb.owner)
+	organ.Insert(limb.owner, get_insert_special(organ))
 	display_results(
 		surgeon,
 		limb.owner,
@@ -287,6 +289,10 @@
 		span_notice("[surgeon] wkłada coś do ciała [limb.owner] ([strefa_pl(organ.zone)])!"),
 	)
 	display_pain(limb.owner, "Ból pulsuje ([strefa_pl(limb.body_zone)]), gdy nowy organ ([organ.name]) zaczyna pracować!")
+
+/// Argument special dla Insert(). Gruczoły abduktorów wkładane ich operacją dostają 2 (nie startują od razu).
+/datum/surgery_operation/limb/organ_manipulation/proc/get_insert_special(obj/item/organ/organ)
+	return 0
 
 /// Organy wewnętrzne
 /datum/surgery_operation/limb/organ_manipulation/internal

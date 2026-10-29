@@ -206,6 +206,8 @@
 				continue
 			succeed = TRUE
 			break
+	if(!succeed && organ_receiver.can_receive_shot_organ(organ)) // AQ EDIT - nowa chirurgia (aquila/code/modules/surgery_tg/)
+		succeed = TRUE
 	if(succeed)
 		var/obj/item/organ/organ_evacced = organ_receiver.getorganslot(organ.slot)
 		if(organ_evacced && !(organ_evacced.organ_flags & ORGAN_UNREMOVABLE))

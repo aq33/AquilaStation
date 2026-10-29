@@ -14,7 +14,7 @@
 	implements = list(/obj/item/autopsy_scanner = 1)
 	time = 10 SECONDS
 	success_sound = 'sound/machines/ping.ogg'
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	operation_flags = OPERATION_MORBID | OPERATION_IGNORE_CLOTHES
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 

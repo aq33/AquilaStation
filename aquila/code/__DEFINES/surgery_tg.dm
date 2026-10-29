@@ -216,3 +216,8 @@ DEFINE_BITFIELD(operation_flags, list(
 
 /// Organ był już naprawiany chirurgicznie (operacje naprawy organów, które można zrobić raz)
 #define TRAIT_ORGAN_OPERATED_ON "organ_operated_on"
+
+/// Na organie wyciętym operacją: (mob/living/surgeon, mob/living/carbon/old_owner, target_zone, obj/item/tool). Też w heretic/_compat/sacrifice.dm.
+#ifndef COMSIG_ORGAN_SURGICALLY_REMOVED
+#define COMSIG_ORGAN_SURGICALLY_REMOVED "organ_surgically_removed"
+#endif

@@ -1105,7 +1105,7 @@ GLOBAL_DATUM_INIT(operations, /datum/operation_holder, new)
 	/// Strefa, na której operujemy, także na mobie bez kończyn. null = dowolna.
 	var/target_zone = BODY_ZONE_CHEST
 	/// Na mobach z kończynami: jaki rodzaj kończyny (pole bitowe bodytype)
-	var/required_bodytype = ~BODYTYPE_ROBOTIC
+	var/required_bodytype = BODYTYPE_ORGANIC
 
 /datum/surgery_operation/basic/all_required_strings()
 	. = list()

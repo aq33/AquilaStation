@@ -29,7 +29,7 @@
 
 /datum/surgery_operation/limb/mechanical_incision/tool_check(obj/item/tool)
 	// cokolwiek ostrego albo pasujące narzędzie
-	return (tool.sharpness || implements[tool.tool_behaviour])
+	return (tool.sharpness || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/limb/mechanical_incision/on_preop(obj/item/bodypart/limb, mob/living/surgeon, obj/item/tool, list/operation_args)
 	display_results(
@@ -108,7 +108,7 @@
 
 /datum/surgery_operation/limb/mechanical_close/tool_check(obj/item/tool)
 	// cokolwiek ostrego albo pasujące narzędzie
-	return (tool.sharpness || implements[tool.tool_behaviour])
+	return (tool.sharpness || (tool.tool_behaviour && implements[tool.tool_behaviour]))
 
 /datum/surgery_operation/limb/mechanical_close/state_check(obj/item/bodypart/limb)
 	return LIMB_HAS_SKIN(limb)

@@ -99,6 +99,9 @@
 /// Stare zaawansowane operacje dostępne dla chirurga przy tym pacjencie (te same źródła co /datum/surgery/proc/can_start)
 /mob/living/proc/get_legacy_advanced_surgeries(atom/movable/operating_on)
 	var/list/surgeries = list()
+	// stara operacja abduktorów nie była z dysku, tylko zależała od chirurga (operation_organ_extraction.dm)
+	if(can_abductor_organ_extraction())
+		surgeries += /datum/surgery/organ_extraction
 	if(iscyborg(src))
 		var/mob/living/silicon/robot/robot = src
 		var/obj/item/surgical_processor/processor = locate() in robot.module?.modules
@@ -119,3 +122,13 @@
 	if(stasis_bed?.op_computer && !(stasis_bed.op_computer.machine_stat & (NOPOWER|BROKEN)))
 		surgeries |= stasis_bed.op_computer.advanced_surgeries
 	return surgeries
+
+// --- Hooki w core, które pytały o stare operacje (AQ EDIT, LEGACY_OVERRIDES.md) ---
+
+/// Zarodek obcego (alien_embryo.dm): klatka otwarta nową chirurgią to operacja w toku, larwa wychodzi bez zabijania (tg: skóra + kość)
+/mob/living/proc/is_chest_open_for_surgery()
+	return LIMB_HAS_SURGERY_STATE(get_bodypart(BODY_ZONE_CHEST), SURGERY_SKIN_OPEN|SURGERY_BONE_SAWED)
+
+/// Moduł MOD wystrzeliwujący organy (modules_medical.dm): organ wchodzi do kończyny otwartej nową chirurgią (tg: skóra, organy, kość)
+/mob/living/proc/can_receive_shot_organ(obj/item/organ/organ)
+	return LIMB_HAS_SURGERY_STATE(get_bodypart(check_zone(organ.zone)), SURGERY_SKIN_OPEN|SURGERY_ORGANS_CUT|SURGERY_BONE_SAWED)

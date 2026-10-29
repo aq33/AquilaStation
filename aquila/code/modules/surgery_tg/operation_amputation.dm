@@ -8,7 +8,7 @@
 	rnd_name = "Dezartykulacja (amputacja)"
 	desc = "Odcina kończynę od ciała pacjenta."
 	operation_flags = OPERATION_MORBID | OPERATION_AFFECTS_MOOD | OPERATION_NOTABLE | OPERATION_SELF_OPERABLE
-	required_bodytype = ~BODYTYPE_ROBOTIC
+	required_bodytype = BODYTYPE_ORGANIC
 	implements = list(
 		TOOL_SAW = 1,
 		TOOL_SCALPEL = 1,
