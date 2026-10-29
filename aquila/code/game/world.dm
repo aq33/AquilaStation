@@ -21,3 +21,16 @@
 		return
 	// aquila/tools/server_watchdog.ps1 (Windows) and server_watchdog.sh (Linux) wait for this exact path.
 	rustg_file_write("[time_stamp("YYYY-MM-DD hh:mm:ss")]", "data/watchdog_restart")
+
+/// The BYOND hub shows the status as Latin-1, so Polish letters came out garbled there.
+/world/update_status()
+	..()
+	status = aq_ascii_entities(status)
+
+/// Everything outside ASCII becomes an HTML entity (ą -> &#261;), which the hub renders correctly.
+/proc/aq_ascii_entities(text)
+	var/static/regex/non_ascii = regex(@"[^\x01-\x7F]", "g")
+	return non_ascii.Replace(text, GLOBAL_PROC_REF(aq_html_entity))
+
+/proc/aq_html_entity(match)
+	return "&#[text2ascii(match)];"

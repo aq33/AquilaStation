@@ -1639,6 +1639,7 @@
 #include "code\modules\unit_tests\aquila_plumbing.dm"
 #include "code\modules\unit_tests\aquila_pollution.dm"
 #include "code\modules\unit_tests\hotspot_throttle.dm"
+#include "code\modules\unit_tests\hub_status.dm"
 #include "code\modules\unit_tests\aquila_hygiene.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"
 #include "code\modules\unit_tests\aquila_infiltrator_uplink.dm"
