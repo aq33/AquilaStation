@@ -765,7 +765,7 @@
 	else if (is_bandaged())
 		msg += "\n<span class='danger'>Twoje krwawienie jest opatrzone.</span>"
 	if(getStaminaLoss())
-		if(getStaminaLoss() > 30)
+		if(HAS_TRAIT(src, TRAIT_EXHAUSTED)) // AQ EDIT - port Bee#14750
 			msg += "\n<span class='info'>Jesteś kompletnie wyczerpany.</span>"
 		else
 			msg += "\n<span class='info'>Czujesz zmęczenie.</span>"

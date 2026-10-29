@@ -11,6 +11,8 @@ config/starmap/starmap.json
 # NSV13 - leave the linux, actually
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 #/*.so
+# AQ EDIT - Linux yt-dlp downloaded by aquila/tools/debian_setup.sh
+/yt-dlp
 
 #Ignore compiled files and other files generated during compilation.
 beestation_unit_test_focus_file.dm

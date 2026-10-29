@@ -44,12 +44,7 @@
 
 // Fire
 
-/obj/effect/hotspot/perform_exposure()
-	. = ..()
-	if(!.)
-		return
-	var/turf/open/location = loc
-	location.pollute_turf_list(list(/datum/pollutant/smoke = 15, /datum/pollutant/carbon_air_pollution = 5), POLLUTION_ACTIVE_EMITTER_CAP)
+// Hotspots smoke in /obj/effect/hotspot/proc/throttled_exposure(), aquila/code/modules/atmospherics/environmental/hotspot_throttle.dm
 
 // Grilling
 

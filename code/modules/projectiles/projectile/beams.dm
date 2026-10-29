@@ -75,7 +75,7 @@
 /obj/item/projectile/beam/disabler
 	name = "disabler beam"
 	icon_state = "omnilaser"
-	damage = 28
+	damage = 0 // AQ EDIT - port Bee#14750: zamiast 28 staminy dezorientacja (aquila/code/modules/projectiles/disorient.dm)
 	damage_type = STAMINA
 	flag = "energy"
 	hitsound = 'sound/weapons/tap.ogg'

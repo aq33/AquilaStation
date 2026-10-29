@@ -40,6 +40,8 @@ BADGES
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
 RUN_DELAY 2
 WALK_DELAY 3.5
+## Speed while sprinting (hold Shift in run mode). Replaces RUN_DELAY for the duration of the sprint.
+SPRINT_DELAY 1.5
 
 ## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
 ## Entries completely override all subtypes. Later entries have precedence over earlier entries.
