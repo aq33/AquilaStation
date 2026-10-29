@@ -779,6 +779,24 @@
   - admin: View All Circuits i Load Circuit dla adminów, komponenty admina (proccall,
       SDQL, setvar, spawn).
 '2026-10-29':
+  boneyards, joker:
+  - rscadd: Stamina to teraz jedna pula (250) na błyskawicy w HUD. Męczą ją sprint,
+      zamachy, ciosy i odepchnięcia, a regeneruje się szybciej na leżąco.
+  - rscadd: 'Poniżej 40% staminy jesteś wyczerpany: bez sprintu, wolniej i tylko szeptem.
+      Poniżej 20% każde trafienie może cię powalić na 3 s.'
+  - rscadd: Sprint pod Shift w trybie biegu.
+  - balance: Pałki, disabler, flesz i ramię borga dezorientują i zabierają staminę,
+      a powalają dopiero wyczerpany cel.
+  - balance: Każdy przedmiot zabiera trochę staminy przy trafieniu, a zamach kosztuje
+      staminę.
+  - balance: Stamina nie wyłącza już kończyn. Dźwignia MAA unieruchamia rękę na 10
+      s.
+  - rscadd: Wbiegnięcie sprintem w ścianę, okno, zamknięte drzwi albo stół przewraca
+      i obija głowę.
+  - rscadd: Sprint po schodach może skończyć się potknięciem i zjazdem na dół.
+  - imageadd: Chmurki kurzu przy sprincie i animacja ręki przy interakcji.
+  - soundadd: Sapanie umierającego z Goonstation.
+  - config: Nowa opcja SPRINT_DELAY (domyślnie 1.5).
   sh4dow321:
   - code_imp: 'Pożary gazowe obciążają serwer dużo mniej: ogień pali przedmioty na
       kafelku i dymi rzadziej.'
