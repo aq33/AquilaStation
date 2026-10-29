@@ -15,6 +15,7 @@ import { getGasColor, getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
 type Gas = {
+  id: string;
   name: string;
   amount: number;
 };
@@ -239,10 +240,10 @@ export const SupermatterMonitorContent = (props) => {
             {gases.map((gas) => (
               <SupermatterEntry
                 key={gas.name}
-                title={getGasLabel(gas.name)}
+                title={getGasLabel(gas.id, gas.name)}
                 content={
                   <ProgressBar
-                    color={getGasColor(gas.name)}
+                    color={getGasColor(gas.id)}
                     value={gas.amount}
                     minValue={0}
                     maxValue={100}
