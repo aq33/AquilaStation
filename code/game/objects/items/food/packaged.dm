@@ -2,8 +2,8 @@
 
 // Cans
 /obj/item/food/canned
-	name = "canned Air"
-	desc = "If you ever wondered where air came from..."
+	name = "powietrze w puszce"
+	desc = "Jeśli kiedykolwiek zastanawiałeś się, skąd się bierze powietrze..."
 	food_reagents = list(
 		/datum/reagent/oxygen = 6,
 		/datum/reagent/nitrogen = 24,
@@ -24,7 +24,7 @@
 	if(maint)
 		maint_overlay = "can_maint"
 		add_overlay(maint_overlay)
-		name = "maintenance [name]"
+		name = "[name] z tuneli technicznych"
 
 /obj/item/food/canned/proc/open_can(mob/user)
 	to_chat(user, "Odciągasz zawleczkę [src].")
@@ -46,8 +46,8 @@
 ///can types
 
 /obj/item/food/canned/beans
-	name = "can of beans"
-	desc = "Musical fruit in a slightly less musical container."
+	name = "puszka fasoli"
+	desc = "Muzykalne warzywo w nieco mniej muzykalnym pojemniku."
 	icon_state = "beans"
 	trash_type = /obj/item/trash/canned/beans
 	food_reagents = list(
@@ -59,8 +59,8 @@
 	foodtypes = VEGETABLES
 
 /obj/item/food/canned/peaches
-	name = "can of peaches"
-	desc = "Just a nice can of ripe peaches swimming in their own juices."
+	name = "puszka brzoskwiń"
+	desc = "Po prostu ładna puszka dojrzałych brzoskwiń pływających we własnym soku."
 	icon_state = "peaches"
 	trash_type = /obj/item/trash/canned/peaches
 	food_reagents = list(
@@ -72,8 +72,8 @@
 	foodtypes = FRUIT | SUGAR
 
 /obj/item/food/canned/beefbroth
-	name = "can of beef stew"
-	desc = "Beef on a pinch, an aquired taste really."
+	name = "puszka gulaszu wołowego"
+	desc = "Wołowina na szybko. Smak, do którego trzeba dorosnąć."
 	icon_state = "beef"
 	trash_type = /obj/item/trash/canned/beefbroth
 	food_reagents = list(/datum/reagent/consumable/beefbroth = 50)
@@ -85,7 +85,7 @@
 /obj/item/food/canned/maint
 
 	maint = TRUE
-	desc = "This is just a memory of canned beans..."
+	desc = "To tylko wspomnienie fasoli w puszce..."
 	food_reagents = list(
 		/datum/reagent/oxygen = 6,
 		/datum/reagent/nitrogen = 22,
@@ -95,18 +95,18 @@
 
 /obj/item/food/canned/beans/maint
 	maint = TRUE
-	desc = "At this point, it's music will outlive the station."
+	desc = "Na tym etapie jej muzyka przetrwa stację."
 	trash_type = /obj/item/trash/canned/beans/maint
 	tastes = list("fasola" = 1 , "sos pomidorowy" = 1, "cyna" = 7)
 
 /obj/item/food/canned/peaches/maint
 	maint = TRUE
-	desc = "I have a mouth and I must eat."
+	desc = "Mam usta i muszę jeść."
 	trash_type = /obj/item/trash/canned/peaches/maint
 	tastes = list("brzoskwinie" = 1, "cyna" = 7)
 
 /obj/item/food/canned/beefbroth/maint
-	desc = "Really old beef on a pinch, a gamble really."
+	desc = "Naprawdę stara wołowina na szybko. Prawdziwa loteria."
 	icon_state = "beef"
 	trash_type = /obj/item/trash/canned/beefbroth/maint
 	tastes = list("obrzydzenie" = 3, "żelatyna wołowa" = 1, "cyna" = 4)

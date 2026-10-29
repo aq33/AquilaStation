@@ -19,10 +19,10 @@ import {
 } from '../dropdowns';
 
 export const ghost_accs: FeatureChoiced = {
-  name: 'Ghost accessories',
+  name: 'Dodatki ducha',
   category: 'GHOST',
   subcategory: 'Appearance',
-  description: 'Determines what adjustments your ghost will have.',
+  description: 'Określa, jakie dodatki ma twój duch.',
   component: FeatureButtonedDropdownInput,
   important: true,
 };
@@ -47,7 +47,7 @@ const GhostFormInput = (
 
   const displayNames = serverData.display_names;
   if (!displayNames) {
-    return <Box color="red">No display names for ghost_form!</Box>;
+    return <Box color="red">Brak nazw wyświetlanych dla ghost_form!</Box>;
   }
 
   const displayTexts = {};
@@ -106,27 +106,27 @@ const GhostFormInput = (
 };
 
 export const ghost_form: FeatureChoiced = {
-  name: 'Ghost Appearance',
+  name: 'Wygląd ducha',
   category: 'BYOND MEMBER',
-  description: 'The appearance of your ghost. Requires BYOND membership.',
+  description: 'Wygląd twojego ducha. Wymaga członkostwa BYOND.',
   component: GhostFormInput,
   important: true,
 };
 
 export const ghost_hud: FeatureToggle = {
-  name: 'Ghost HUD',
+  name: 'HUD ducha',
   category: 'UI',
   subcategory: 'HUD',
-  description: 'Enable HUD buttons for ghosts.',
+  description: 'Włącza przyciski HUD dla duchów.',
   component: CheckboxInput,
 };
 
 export const ghost_orbit: FeatureChoiced = {
-  name: 'Ghost Orbit Shape',
+  name: 'Kształt orbity ducha',
   category: 'BYOND MEMBER',
   description: multiline`
-    The shape in which your ghost will orbit.
-    Requires BYOND membership.
+    Kształt, po którym krąży twój duch.
+    Wymaga członkostwa BYOND.
   `,
   component: (
     props: FeatureValueProps<string, string, FeatureChoicedServerData>,
@@ -145,21 +145,21 @@ export const ghost_orbit: FeatureChoiced = {
 };
 
 export const ghost_others: FeatureChoiced = {
-  name: 'Ghosts of others',
+  name: 'Duchy innych',
   category: 'GHOST',
   subcategory: 'Appearance',
   description: multiline`
-    Do you want the ghosts of others to show up as their own setting, as
-    their default sprites, or always as the default white ghost?
+    Czy duchy innych mają wyglądać według ich własnych ustawień, jak ich
+    domyślne sprite'y, czy zawsze jak domyślny biały duch?
   `,
   component: FeatureButtonedDropdownInput,
   important: true,
 };
 
 export const inquisitive_ghost: FeatureToggle = {
-  name: 'Ghost inquisitiveness',
+  name: 'Ciekawski duch',
   category: 'GHOST',
   subcategory: 'Behavior',
-  description: 'Clicking on something as a ghost will examine it.',
+  description: 'Kliknięcie czegoś jako duch ogląda to.',
   component: CheckboxInput,
 };

@@ -8,7 +8,7 @@
 
 /obj/machinery/vending/wardrobe/sec_wardrobe
 	name = "\improper Mundurownia Policyjna" //AQUILA EDIT - SecDrobe
-	desc = "A vending machine for security and security-related clothing!"
+	desc = "Automat z ubraniami policyjnymi i wszystkim, co z policją związane!"
 	icon_state = "secdrobe"
 	product_ads = "Bij opryszkow ze stylem!;Jest czerwone, więc nie zauważysz krwi!;Masz prawo do bycia modnym!;Teraz możesz być tak modnym ochroniarzem, jak zawsze chciałeś!"
 	vend_reply = "Dziękujemy za użycie Mundurowni Policyjnej!" //AQUILA EDIT
@@ -52,7 +52,7 @@
 
 /obj/machinery/vending/wardrobe/medi_wardrobe
 	name = "\improper MediDrobe"
-	desc = "A vending machine rumoured to be capable of dispensing clothing for medical personnel."
+	desc = "Automat, który podobno potrafi wydawać ubrania dla personelu medycznego."
 	icon_state = "medidrobe"
 	product_ads = "Zrób z tych plam krwi szyk mody!!!!"
 	vend_reply = "Dziękujemy za użycie MediDrobe!"
@@ -89,7 +89,7 @@
 
 /obj/machinery/vending/wardrobe/engi_wardrobe
 	name = "EngiDrobe"
-	desc = "A vending machine renowned for vending industrial grade clothing."
+	desc = "Automat słynący z ubrań klasy przemysłowej."
 	icon_state = "engidrobe"
 	product_ads = "Gwarantuje twoim stopom ochronę przed wypadkami w pracy!;Przerażony radiacją? W takim razie wskakuj w żółte!"
 	vend_reply = "Dziękujemy za użycie EngiDrobe!"
@@ -117,7 +117,7 @@
 
 /obj/machinery/vending/wardrobe/atmos_wardrobe
 	name = "AtmosDrobe"
-	desc = "This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job."
+	desc = "Ten mało znany automat wydaje ubrania dla Techników Atmosferyki, czyli równie mało znanego zawodu."
 	icon_state = "atmosdrobe"
 	product_ads = "Zdobądź swoje niepalnie ubranie tutaj!!!"
 	vend_reply = "Dziękujemy za użycie AtmosDrobe!"
@@ -141,7 +141,7 @@
 
 /obj/machinery/vending/wardrobe/cargo_wardrobe
 	name = "CargoDrobe"
-	desc = "A highly advanced vending machine for buying cargo related clothing for free."
+	desc = "Wysoce zaawansowany automat, w którym za darmo kupisz ubrania dla zaopatrzenia."
 	icon_state = "cargodrobe"
 	product_ads = "Ulepszony styl asystenta! Wybierz swój dziś!;Te szorty są wygodne i łatwe w noszeniu, załatw sobie takie!"
 	vend_reply = "Dziękujemy za użycie CargoDrobe!"
@@ -173,7 +173,7 @@
 
 /obj/machinery/vending/wardrobe/robo_wardrobe
 	name = "RoboDrobe"
-	desc = "A vending machine designed to dispense clothing known only to roboticists."
+	desc = "Automat wydający ubrania znane tylko robotykom."
 	icon_state = "robodrobe"
 	product_ads = "Ustaw mnie na TRUE, używaj definicji!;0110001101101100011011110111010001101000011001010111001101101000011001010111001001100101"
 	vend_reply = "Dziękujemy za użycie RoboDrobe!"
@@ -234,7 +234,7 @@
 
 /obj/machinery/vending/wardrobe/hydro_wardrobe
 	name = "Hydrobe"
-	desc = "A machine with a catchy name. It dispenses botany related clothing and gear."
+	desc = "Maszyna o chwytliwej nazwie. Wydaje ubrania i sprzęt botaniczny."
 	icon_state = "hydrobe"
 	product_ads = "Kochasz glebę? W takim razie kup nasze ubrania!;Dobierz tutaj swoje ubrania, by pasowały do twoich plonów!"
 	vend_reply = "Dziękujemy za użycie Hydrobe!"
@@ -259,7 +259,7 @@
 
 /obj/machinery/vending/wardrobe/curator_wardrobe
 	name = "CuraDrobe"
-	desc = "A lowstock vendor only capable of vending clothing for curators and librarians."
+	desc = "Automat z niewielkim zapasem, który wydaje tylko ubrania dla bibliotekarzy i archiwistów."
 	icon_state = "curadrobe"
 	product_ads = "Okulary dla twoich oczu i literatura dla twej duszy, Curadrobe ma to wszystko!; Zaimponuj i oczaruj twoich bibliotekowych gości naszą rozszerzoną linią długopisów!"
 	vend_reply = "Dziękujemy za użycie CuraDrobe!"
@@ -284,7 +284,7 @@
 
 /obj/machinery/vending/wardrobe/bar_wardrobe
 	name = "BarDrobe"
-	desc = "A stylish vendor to dispense the most stylish bar clothing!"
+	desc = "Stylowy automat z najbardziej stylowymi ubraniami barowymi!"
 	icon_state = "bardrobe"
 	product_ads = "Gwarantowana ochrona przed rozlanymi napojami!"
 	vend_reply = "Dziękujemy za użycie BarDrobe!"
@@ -319,7 +319,7 @@
 
 /obj/machinery/vending/wardrobe/chef_wardrobe
 	name = "ChefDrobe"
-	desc = "This vending machine might not dispense meat, but it certainly dispenses chef related clothing."
+	desc = "Ten automat może i nie wydaje mięsa, ale na pewno wydaje ubrania kucharskie."
 	icon_state = "chefdrobe"
 	product_ads = "Nasze ubrania gwarantują ochronę przed wszelkimi plamami z jedzenia!"
 	vend_reply = "Dziękujemy za użycie ChefDrobe!"
@@ -347,7 +347,7 @@
 
 /obj/machinery/vending/wardrobe/jani_wardrobe
 	name = "JaniDrobe"
-	desc = "A self cleaning vending machine capable of dispensing clothing for janitors."
+	desc = "Samoczyszczący się automat z ubraniami dla woźnych."
 	icon_state = "janidrobe"
 	product_ads = "Przyjdź i weź swoje ubrania woźnego, teraz uwielbianie przez jaszczurzych woźnych wszędzie!"
 	vend_reply = "Dziękujemy za użycie JaniDrobe!"
@@ -381,7 +381,7 @@
 
 /obj/machinery/vending/wardrobe/law_wardrobe
 	name = "LawDrobe"
-	desc = "Objection! This wardrobe dispenses the rule of law... and lawyer clothing."
+	desc = "Sprzeciw! Ta szafa wydaje praworządność... i ubrania prawnicze."
 	icon_state = "lawdrobe"
 	product_ads = "SPRZECIW! Weź prawo w swoje ręce!"
 	vend_reply = "Dziękujemy za użycie LawDrobe!"
@@ -422,7 +422,7 @@
 
 /obj/machinery/vending/wardrobe/chap_wardrobe
 	name = "ChapDrobe"
-	desc = "This most blessed and holy machine vends clothing only suitable for chaplains to gaze upon."
+	desc = "Ta najbardziej błogosławiona i święta maszyna wydaje ubrania, na które godzi się patrzeć tylko kapłanom."
 	icon_state = "chapdrobe"
 	product_ads = "Zaczepiają cie ci cholerni kultyści i zjawy? W takim razie ubierz się jak święty!;Sukna dla człowieka sukien!"
 	vend_reply = "Dziękujemy za użycie ChapDrobe!"
@@ -463,7 +463,7 @@
 
 /obj/machinery/vending/wardrobe/chem_wardrobe
 	name = "ChemDrobe"
-	desc = "A vending machine for dispensing chemistry related clothing."
+	desc = "Automat z ubraniami chemicznymi."
 	icon_state = "chemdrobe"
 	product_ads = "Nasze ubrania są o 0,5% bardziej odporne na kwas! Zdobądź je już teraz!"
 	vend_reply = "Dziękujemy za użycie ChemDrobe!"
@@ -486,7 +486,7 @@
 
 /obj/machinery/vending/wardrobe/gene_wardrobe
 	name = "GeneDrobe"
-	desc = "A machine for dispensing clothing related to genetics."
+	desc = "Maszyna wydająca ubrania związane z genetyką."
 	icon_state = "genedrobe"
 	product_ads = "Idealne dla takiego szalonego naukowca jak ty!"
 	vend_reply = "Dziękujemy za użycie GeneDrobe!"
@@ -506,7 +506,7 @@
 
 /obj/machinery/vending/wardrobe/viro_wardrobe
 	name = "ViroDrobe"
-	desc = "An unsterilized machine for dispending virology related clothing."
+	desc = "Niesterylizowana maszyna wydająca ubrania wirusologiczne."
 	icon_state = "virodrobe"
 	product_ads = " Wirusy cie powalają? Przerzuć się w takim razie na wysterilizowane ubrania!"
 	vend_reply = "Dziękujemy za użycie ViroDrobe"
@@ -530,7 +530,7 @@
 
 /obj/machinery/vending/wardrobe/det_wardrobe
 	name = "\improper DetDrobe"
-	desc = "A machine for all your detective needs, as long as you need clothes."
+	desc = "Maszyna na wszystkie twoje detektywistyczne potrzeby, o ile potrzebujesz ubrań."
 	icon_state = "detdrobe"
 	product_ads = "Stosuj swoje genialne metody dedukcji w dobrym stylu!"
 	vend_reply = "Dziękujemy za użycie DetDrobe!"

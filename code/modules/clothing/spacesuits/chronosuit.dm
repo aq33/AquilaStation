@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/space/chronos
-	name = "Chronosuit Helmet"
-	desc = "A white helmet with an opaque blue visor."
+	name = "hełm chronoskafandra"
+	desc = "Biały hełm z nieprzezroczystym niebieskim wizjerem."
 	icon_state = "chronohelmet"
 	item_state = "chronohelmet"
 	slowdown = 1
@@ -19,8 +19,8 @@
 
 
 /obj/item/clothing/suit/space/chronos
-	name = "Chronosuit"
-	desc = "An advanced spacesuit equipped with time-bluespace teleportation and anti-compression technology."
+	name = "chronoskafander"
+	desc = "Zaawansowany skafander kosmiczny z technologią teleportacji czasowo-bluespace'owej i antykompresji."
 	icon_state = "chronosuit"
 	item_state = "chronosuit"
 	actions_types = list(/datum/action/item_action/toggle)
@@ -189,22 +189,22 @@
 		var/mob/living/carbon/human/user = src.loc
 		if(user && ishuman(user) && user.wear_suit == src)
 			to_chat(user, "\nChronosuitMK4 login: root")
-			to_chat(user, "Password:\n")
+			to_chat(user, "Hasło:\n")
 			to_chat(user, "root@ChronosuitMK4# chronowalk4 --start\n")
 			if(user.head && istype(user.head, /obj/item/clothing/head/helmet/space/chronos))
-				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Mounting /dev/helm")
+				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Montowanie /dev/helm")
 				helmet = user.head
 				ADD_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
 				helmet.suit = src
 				ADD_TRAIT(src, TRAIT_NODROP, CHRONOSUIT_TRAIT)
-				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting brainwave scanner")
-				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Starting ui display driver")
-				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Initializing chronowalk4-view")
+				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Uruchamianie skanera fal mózgowych")
+				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Uruchamianie sterownika wyświetlacza UI")
+				to_chat(user, "\[ <span style='color: #00ff00;'>ok</span> \] Inicjalizacja chronowalk4-view")
 				new_camera(user)
 				START_PROCESSING(SSobj, src)
 				activated = 1
 			else
-				to_chat(user, "\[ <span style='color: #ff0000;'>fail</span> \] Mounting /dev/helm")
+				to_chat(user, "\[ <span style='color: #ff0000;'>fail</span> \] Montowanie /dev/helm")
 				to_chat(user, "<span style='color: #ff0000;'><b>FATAL: </b>Nie można znaleźć /dev/helm. <b>Przerywanie...</b></span>")
 			teleport_now.Grant(user)
 		cooldown = world.time + cooldowntime
@@ -229,11 +229,11 @@
 				if(!silent)
 					to_chat(user, "\nroot@ChronosuitMK4# chronowalk4 --stop\n")
 					if(camera)
-						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Sending TERM signal to chronowalk4-view")
+						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Wysyłanie sygnału TERM do chronowalk4-view")
 					if(helmet)
-						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Stopping ui display driver")
-						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Stopping brainwave scanner")
-						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Unmounting /dev/helmet")
+						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Zatrzymywanie sterownika wyświetlacza UI")
+						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Zatrzymywanie skanera fal mózgowych")
+						to_chat(user, "\[ <span style='color: #ff5500;'>ok</span> \] Odmontowywanie /dev/helmet")
 					to_chat(user, "logout")
 		if(helmet)
 			REMOVE_TRAIT(helmet, TRAIT_NODROP, CHRONOSUIT_TRAIT)
@@ -246,7 +246,7 @@
 			QDEL_NULL(camera)
 
 /obj/effect/chronos_cam
-	name = "Chronosuit View"
+	name = "widok chronoskafandra"
 	density = FALSE
 	anchored = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
@@ -315,7 +315,7 @@
 	return ..()
 
 /atom/movable/screen/chronos_target
-	name = "target display"
+	name = "wyświetlacz celu"
 	screen_loc = "CENTER,CENTER"
 	color = list(1,0,0,0, 0,1,0,0.8, 0,0,1,0.933, 0,0,0,0, 0,0,0,0)
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -328,7 +328,7 @@
 	return ..()
 
 /datum/action/innate/chrono_teleport
-	name = "Teleport Now"
+	name = "Teleportuj teraz"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "chrono_phase"
 	check_flags = AB_CHECK_CONSCIOUS //|AB_CHECK_INSIDE

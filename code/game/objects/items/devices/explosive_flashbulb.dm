@@ -1,6 +1,6 @@
 /obj/item/flashbulb/bomb
-	name = "suspicious flashbulb"
-	desc = "A powerful flashbulb that looks slightly off, with strange wires running out the back."
+	name = "podejrzana żarówka błyskowa"
+	desc = "Mocna żarówka błyskowa, która wygląda trochę dziwnie – z tyłu wychodzą z niej podejrzane przewody."
 	charges_left = 15
 
 /obj/item/flashbulb/bomb/use_flashbulb()

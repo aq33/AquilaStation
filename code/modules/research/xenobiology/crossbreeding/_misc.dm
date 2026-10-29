@@ -8,8 +8,8 @@ Slimecrossing Items
 
 //Rewind camera - I'm already Burning Sepia
 /obj/item/camera/rewind
-	name = "sepia-tinted camera"
-	desc = "They say a picture is like a moment stopped in time."
+	name = "aparat w sepii"
+	desc = "Mówią, że zdjęcie to chwila zatrzymana w czasie."
 	pictures_left = 1
 	pictures_max = 1
 	can_customise = FALSE
@@ -150,8 +150,8 @@ Slimecrossing Items
 
 //Timefreeze camera - Old Burning Sepia result. Kept in case admins want to spawn it
 /obj/item/camera/timefreeze
-	name = "sepia-tinted camera"
-	desc = "They say a picture is like a moment stopped in time."
+	name = "aparat w sepii"
+	desc = "Mówią, że zdjęcie to chwila zatrzymana w czasie."
 	pictures_left = 1
 	pictures_max = 1
 	var/used = FALSE
@@ -162,22 +162,22 @@ Slimecrossing Items
 	if(!used) //refilling the film does not refill the timestop
 		new /obj/effect/timestop(get_turf(target), 2, 50, list(user))
 		used = TRUE
-		desc = "This camera has seen better days."
+		desc = "Ten aparat widział lepsze dni."
 	. = ..()
 
 
 //Hypercharged slime cell - Charged Yellow
 /obj/item/stock_parts/cell/high/slime/hypercharged
-	name = "hypercharged slime core"
-	desc = "A charged yellow slime extract, infused with even more plasma. It almost hurts to touch."
+	name = "hipernaładowany rdzeń szlamu"
+	desc = "Naładowany żółty ekstrakt szlamu nasycony jeszcze większą ilością plazmy. Aż boli przy dotyku."
 	rating = 7 //Roughly 1.5 times the original.
 	maxcharge = 10000 //5 times the normal one.
 	chargerate = 300 //3 times the normal one.
 
 //Barrier cube - Chilling Grey
 /obj/item/barriercube
-	name = "barrier cube"
-	desc = "A compressed cube of slime. When squeezed, it grows to massive size!"
+	name = "kostka bariery"
+	desc = "Sprasowana kostka szlamu. Ściśnięta rośnie do ogromnych rozmiarów!"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "barriercube"
 	w_class = WEIGHT_CLASS_TINY
@@ -193,8 +193,8 @@ Slimecrossing Items
 
 //Slime barricade - Chilling Grey
 /obj/structure/barricade/slime
-	name = "gelatinous barrier"
-	desc = "A huge chunk of grey slime. Bullets might get stuck in it."
+	name = "galaretowata bariera"
+	desc = "Ogromny kawał szarego szlamu. Pociski mogą w nim ugrzęznąć."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "slimebarrier"
 	proj_pass_rate = 40
@@ -202,8 +202,8 @@ Slimecrossing Items
 
 //Melting Gel Wall - Chilling Metal
 /obj/effect/forcefield/slimewall
-	name = "solidified gel"
-	desc = "A mass of solidified slime gel - completely impenetrable, but it's melting away!"
+	name = "zestalony żel"
+	desc = "Masa zestalonego żelu ze szlamu – zupełnie nieprzenikniona, ale się topi!"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "slimebarrier_thick"
 	CanAtmosPass = ATMOS_PASS_NO
@@ -212,14 +212,14 @@ Slimecrossing Items
 
 //Rainbow barrier - Chilling Rainbow
 /obj/effect/forcefield/slimewall/rainbow
-	name = "rainbow barrier"
-	desc = "Despite others' urgings, you probably shouldn't taste this."
+	name = "tęczowa bariera"
+	desc = "Mimo namów innych chyba lepiej tego nie próbować."
 	icon_state = "rainbowbarrier"
 
 //Ice stasis block - Chilling Dark Blue
 /obj/structure/ice_stasis
-	name = "ice block"
-	desc = "A massive block of ice. You can see something vaguely humanoid inside."
+	name = "blok lodu"
+	desc = "Ogromny blok lodu. W środku widać coś niejasno humanoidalnego."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "frozen"
 	density = TRUE
@@ -238,8 +238,8 @@ Slimecrossing Items
 
 //Gold capture device - Chilling Gold
 /obj/item/capturedevice
-	name = "gold capture device"
-	desc = "Bluespace technology packed into a roughly egg-shaped device, used to store nonhuman creatures. Can't catch them all, though - it only fits one."
+	name = "złote urządzenie chwytające"
+	desc = "Technologia bluespace zamknięta w urządzeniu w kształcie jajka, służącym do przechowywania stworzeń innych niż ludzie. Nie złapiesz ich jednak wszystkich – mieści tylko jedno."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "capturedevice"
@@ -263,7 +263,7 @@ Slimecrossing Items
 
 /obj/item/capturedevice/proc/offer_entry(mob/living/M, mob/user)
 	to_chat(user, "<span class='notice'>Oferujesz urządzenie [M].</span>")
-	if(alert(M, "Czy chcesz wejść do urządzenia do chwytania należącego do [user]?", "Złote urządzenie do chwytania", "Yes", "No") != "Yes")
+	if(alert(M, "Czy chcesz wejść do urządzenia do chwytania należącego do [user]?", "Złote urządzenie do chwytania", "Tak", "Nie") != "Tak")
 		to_chat(user, "<span class='warning'>[M] odmawia wejścia do urządzenia.</span>")
 		return
 	if(!user.canUseTopic(src, BE_CLOSE) || !user.canUseTopic(M, BE_CLOSE))
@@ -290,8 +290,8 @@ Slimecrossing Items
 		M.forceMove(get_turf(loc))
 
 /obj/item/cerulean_slime_crystal
-	name = "Cerulean slime poly-crystal"
-	desc = "Translucent and irregular, it can duplicate matter on a whim"
+	name = "polikryształ lazurowego szlamu"
+	desc = "Półprzezroczysty i nieregularny, potrafi dowolnie powielać materię"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "cerulean_item_crystal"
 	var/amt = 0

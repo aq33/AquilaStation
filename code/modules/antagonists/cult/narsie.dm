@@ -6,8 +6,8 @@
 #define NARSIE_SINGULARITY_SIZE 12
 
 /obj/eldritch/narsie
-	name = "Nar'Sie's"
-	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees."
+	name = "Nar'Sie"
+	desc = "Twój umysł zaczyna bulgotać i wyciekać, gdy próbuje pojąć to, co widzi."
 	icon = 'icons/obj/narsie.dmi'
 	icon_state = "narsie"
 	light_power = 0.7
@@ -106,7 +106,7 @@
 		if(get_dist(src, clashing) < 5)
 			if(next_attack_tick < world.time)
 				next_attack_tick = world.time + rand(50, 100)
-				to_chat(world, "<span class='danger'>[pick("You hear the scratching of cogs.","You hear the clanging of pipes.","You feel your bones start to rust...")]</span>")
+				to_chat(world, "<span class='danger'>[pick("Słyszysz zgrzyt zębatek.","Słyszysz szczęk rur.","Czujesz, jak twoje kości zaczynają rdzewieć...")]</span>")
 				SEND_SOUND(world, 'sound/magic/clockwork/narsie_attack.ogg')
 				SpinAnimation(4, 0)
 				for(var/mob/living/M in GLOB.player_list)

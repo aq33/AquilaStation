@@ -2,7 +2,7 @@
 	reward = 5000
 	var/datum/bounty/item/botany/multiplier = 0 //adds bonus reward money; increased for higher tier or rare mutations
 	var/datum/bounty/item/botany/bonus_desc //for adding extra flavor text to bounty descriptions
-	var/datum/bounty/item/botany/foodtype = "meal" //same here
+	var/datum/bounty/item/botany/foodtype = "posiłek" //same here
 	var/datum/bounty/item/botany/format_exception = FALSE //Set to true if the bounty uses a custom format from the one below
 
 /datum/bounty/item/botany/New()
@@ -14,54 +14,54 @@
 		required_count = rand(5, 10)
 
 /datum/bounty/item/botany/ambrosia_vulgaris
-	name = "Ambrosia Vulgaris Leaves"
+	name = "Liście ambrozji pospolitej"
 	wanted_types = list(/obj/item/food/grown/ambrosia/vulgaris)
-	foodtype = "stew"
+	foodtype = "gulasz"
 
 /datum/bounty/item/botany/ambrosia_gaia
-	name = "Ambrosia Gaia Leaves"
+	name = "Liście ambrozji Gai"
 	wanted_types = list(/obj/item/food/grown/ambrosia/gaia)
 	multiplier = 4
-	foodtype = "stew"
+	foodtype = "gulasz"
 
 /datum/bounty/item/botany/apple_golden
-	name = "Golden Apples"
+	name = "Złote jabłka"
 	wanted_types = list(/obj/item/food/grown/apple/gold)
 	multiplier = 4
-	foodtype = "dessert"
+	foodtype = "deser"
 
 /datum/bounty/item/botany/banana
-	name = "Bananas"
+	name = "Banany"
 	wanted_types = list(/obj/item/food/grown/banana)
 	exclude_types = list(/obj/item/food/grown/banana/bluespace)
-	foodtype = "banana split"
+	foodtype = "deser bananowy"
 
 /datum/bounty/item/botany/banana_bluespace
-	name = "Bluespace Bananas"
+	name = "Bluespace'owe banany"
 	wanted_types = list(/obj/item/food/grown/banana/bluespace)
 	multiplier = 2
-	foodtype = "banana split"
+	foodtype = "deser bananowy"
 
 /datum/bounty/item/botany/beans_koi
-	name = "Koi Beans"
+	name = "Fasola koi"
 	wanted_types = list(/obj/item/food/grown/koibeans)
 	multiplier = 2
 
 /datum/bounty/item/botany/berries_death
-	name = "Death Berries"
+	name = "Jagody śmierci"
 	wanted_types = list(/obj/item/food/grown/berries/death)
 	multiplier = 2
 	bonus_desc = "Upiera się, że „wie, co robi”."
 	foodtype = "sorbet"
 
 /datum/bounty/item/botany/berries_glow
-	name = "Glow-Berries"
+	name = "Świecące jagody"
 	wanted_types = list(/obj/item/food/grown/berries/glow)
 	multiplier = 2
 	foodtype = "sorbet"
 
 /datum/bounty/item/botany/cannabis
-	name = "Cannabis Leaves"
+	name = "Liście konopi"
 	wanted_types = list(/obj/item/food/grown/cannabis)
 	exclude_types = list(/obj/item/food/grown/cannabis/white, /obj/item/food/grown/cannabis/death, /obj/item/food/grown/cannabis/ultimate)
 	multiplier = 4 //hush money
@@ -69,142 +69,142 @@
 	foodtype = "porcja „muffinek”"
 	
 /datum/bounty/item/botany/cannabis_white
-	name = "Lifeweed Leaves"
+	name = "Białe liście konopi"
 	wanted_types = list(/obj/item/food/grown/cannabis/white)
 	multiplier = 6
 	bonus_desc = "Nie wspominajcie o tej przesyłce ochronie."
-	foodtype = "\"meal\""
+	foodtype = "„posiłek”"
 
 /datum/bounty/item/botany/cannabis_death
-	name = "Deathweed Leaves"
+	name = "Liście konopi śmierci"
 	wanted_types = list(/obj/item/food/grown/cannabis/death)
 	multiplier = 6
 	bonus_desc = "Nie wspominajcie o tej przesyłce ochronie."
-	foodtype = "\"meal\""
+	foodtype = "„posiłek”"
 
 /datum/bounty/item/botany/cannabis_ultimate
-	name = "Omega Weed Leaves"
+	name = "Liście konopi omega"
 	wanted_types = list(/obj/item/food/grown/cannabis/ultimate)
 	multiplier = 6
 	bonus_desc = "Pod żadnym pozorem nie wspominajcie o tej przesyłce ochronie."
 	foodtype = "porcja „brownies”"
 
 /datum/bounty/item/botany/wheat
-	name = "Wheat Grains"
+	name = "Ziarna pszenicy"
 	wanted_types = list(/obj/item/food/grown/wheat)
 
 /datum/bounty/item/botany/rice
-	name = "Rice Grains"
+	name = "Ziarna ryżu"
 	wanted_types = list(/obj/item/food/grown/rice)
 
 /datum/bounty/item/botany/chili
-	name = "Chili Peppers"
+	name = "Papryczki chili"
 	wanted_types = list(/obj/item/food/grown/chili)
 
 /datum/bounty/item/botany/chili
-	name = "Ice Chili Peppers"
+	name = "Lodowe papryki"
 	wanted_types = list(/obj/item/food/grown/icepepper)
 	multiplier = 2
 
 /datum/bounty/item/botany/chili
-	name = "Ghost Chili Peppers"
+	name = "Upiorne papryczki chili"
 	wanted_types = list(/obj/item/food/grown/ghost_chili)
 	multiplier = 2
 
 /datum/bounty/item/botany/citrus_lime
-	name = "Limes"
+	name = "Limonki"
 	wanted_types = list(/obj/item/food/grown/citrus/lime)
 	foodtype = "sorbet"
 
 /datum/bounty/item/botany/citrus_lemon
-	name = "Lemons"
+	name = "Cytryny"
 	wanted_types = list(/obj/item/food/grown/citrus/lemon)
 	foodtype = "sorbet"
 
 /datum/bounty/item/botany/citrus_oranges
-	name = "Oranges"
+	name = "Pomarańcze"
 	wanted_types = list(/obj/item/food/grown/citrus/orange)
 	bonus_desc = "Nie wysyłajcie cytryn ani limonek." //I vanted orahnge!
 	foodtype = "sorbet"
 
 /datum/bounty/item/botany/eggplant
-	name = "Eggplants"
+	name = "Bakłażany"
 	wanted_types = list(/obj/item/food/grown/eggplant)
 	bonus_desc = "Nie mylić z bakłażanami."
 
 /datum/bounty/item/botany/eggplant_eggy
-	name = "Egg-plants"
+	name = "Bakłażany jajeczne"
 	wanted_types = list(/obj/item/food/grown/shell/eggy)
 	bonus_desc = "Nie mylić z jajkami."
 	multiplier = 2
 
 /datum/bounty/item/botany/kudzu
-	name = "Kudzu Pods"
+	name = "Strąki kudzu"
 	wanted_types = list(/obj/item/food/grown/kudzupod)
 	bonus_desc = "Przechowywać w suchym, ciemnym miejscu."
 	multiplier = 4
 
 /datum/bounty/item/botany/watermelon
-	name = "Watermelons"
+	name = "Arbuzy"
 	wanted_types = list(/obj/item/food/grown/watermelon)
-	foodtype = "dessert"
+	foodtype = "deser"
 
 /datum/bounty/item/botany/watermelon_holy
-	name = "Holy Melons"
+	name = "Święte arbuzy"
 	wanted_types = list(/obj/item/food/grown/holymelon)
 	multiplier = 2
-	foodtype = "dessert"
+	foodtype = "deser"
 
 /datum/bounty/item/botany/glowshroom
-	name = "Glowshrooms"
+	name = "Świecące grzyby"
 	wanted_types = list(/obj/item/food/grown/mushroom/glowshroom)
 	exclude_types = list(/obj/item/food/grown/mushroom/glowshroom/glowcap, /obj/item/food/grown/mushroom/glowshroom/shadowshroom)
-	foodtype = "omelet"
+	foodtype = "omlet"
 
 /datum/bounty/item/botany/glowshroom_cap
-	name = "Glowcaps"
+	name = "Świecące kapelusze"
 	wanted_types = list(/obj/item/food/grown/mushroom/glowshroom/glowcap)
 	multiplier = 2
-	foodtype = "omelet"
+	foodtype = "omlet"
 
 /datum/bounty/item/botany/glowshroom_shadow
-	name = "Shadowshrooms"
+	name = "Cieniste grzyby"
 	wanted_types = list(/obj/item/food/grown/mushroom/glowshroom/shadowshroom)
 	multiplier = 2
-	foodtype = "omelet"
+	foodtype = "omlet"
 
 /datum/bounty/item/botany/nettles_death
-	name = "Death Nettles"
+	name = "Pokrzywy śmierci"
 	wanted_types = list(/obj/item/food/grown/nettle/death)
 	multiplier = 2
 	bonus_desc = "Przy obchodzeniu się z nimi noście ochronę."
-	foodtype = "cheese"
+	foodtype = "ser"
 
 /datum/bounty/item/botany/pineapples
-	name = "Pineapples"
+	name = "Ananasy"
 	wanted_types = list(/obj/item/food/grown/pineapple)
 	bonus_desc = "Nie do spożycia przez ludzi."
-	foodtype = "ashtray"
+	foodtype = "popielniczka"
 
 /datum/bounty/item/botany/tomato
-	name = "Tomatoes"
+	name = "Pomidory"
 	wanted_types = list(/obj/item/food/grown/tomato)
 	exclude_types = list(/obj/item/food/grown/tomato/blue)
 
 /datum/bounty/item/botany/tomato_bluespace
-	name = "Bluespace Tomatoes"
+	name = "Bluespace'owe pomidory"
 	wanted_types = list(/obj/item/food/grown/tomato/blue/bluespace)
 	multiplier = 4
 
 /datum/bounty/item/botany/oatz
-	name = "Oats"
+	name = "Owies"
 	wanted_types = list(/obj/item/food/grown/oat)
 	multiplier = 2
 	foodtype = "porcja owsianki"
 	bonus_desc = "Przysiady i owies. Skończył nam się owies."
 
 /datum/bounty/item/botany/forgetmenot
-	name = "Forget-Me-Nots"
+	name = "Niezapominajki"
 	description = "Komandor Zot ma oko na kwatermistrzynię Mayę. Wyślijcie niezapominajki – jej ulubione kwiaty – a chętnie was wynagrodzi."
 	reward = 7000
 	required_count = 3
@@ -212,7 +212,7 @@
 	format_exception = TRUE
 
 /datum/bounty/item/botany/geranium
-	name = "Geraniums"
+	name = "Pelargonie"
 	description = "Komandor Zot ma chrapkę na komandor Zenę. Wyślijcie pelargonie – jej ulubione kwiaty – a chętnie was wynagrodzi."
 	reward = 6000
 	required_count = 3
@@ -220,7 +220,7 @@
 	format_exception = TRUE
 
 /datum/bounty/item/botany/rainbowflowercrown
-	name = "Rainbow Flower Crowns"
+	name = "Tęczowe wianki"
 	description = "Centrala martwi się wskaźnikiem samobójstw wśród stażystów. Przesyłka tęczowych wianków powinna poprawić morale."
 	reward = 10000
 	required_count = 3

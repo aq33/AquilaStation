@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	return ..()
 
 /obj/item/slime_extract/darkgreen
-	name = "dark green slime extract"
+	name = "ciemnozielony ekstrakt szlamu"
 	icon = SLIME_SPECIAL_ICON
 	icon_state = "dark green slime extract"
 	color_slime = "dark green"
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	plort_value = 100
 
 /obj/item/slime_extract/cobalt
-	name = "cobalt slime extract"
+	name = "kobaltowy ekstrakt szlamu"
 	icon = SLIME_SPECIAL_ICON
 	icon_state = "cobalt slime extract"
 	color_slime = "cobalt"
@@ -97,7 +97,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	plort_value = 100
 
 /obj/item/slime_extract/darkgrey
-	name = "dark grey slime extract"
+	name = "ciemnoszary ekstrakt szlamu"
 	icon = SLIME_SPECIAL_ICON
 	icon_state = "dark grey slime extract"
 	color_slime = "dark grey"
@@ -105,7 +105,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 	plort_value = 100
 
 /obj/item/slime_extract/crimson
-	name = "crimson slime extract"
+	name = "karmazynowy ekstrakt szlamu"
 	icon = SLIME_SPECIAL_ICON
 	icon_state = "crimson slime extract"
 	color_slime = "crimson"
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 
 /datum/export/slime/special
 	cost = 220
-	unit_name = "special slime core"
+	unit_name = "specjalny rdzeń szlamu"
 	export_types = list(/obj/item/slime_extract/darkgreen, /obj/item/slime_extract/cobalt, /obj/item/slime_extract/darkgrey, /obj/item/slime_extract/crimson)
 
 // Reakcje
@@ -241,8 +241,8 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 // Mikstura z dark grey: ewolucja fauny z lavalandu
 
 /obj/item/slimepotion/lavasteroid
-	name = "lavaland steroid"
-	desc = "A chemical concoction that changes the makeup of certain fauna native to lavaland, bringing rare mutations to the surface."
+	name = "steryd z Lavalandu"
+	desc = "Chemiczna mikstura, która zmienia budowę niektórych zwierząt z Lavalandu i wydobywa na wierzch rzadkie mutacje."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potred"
 
@@ -274,7 +274,7 @@ GLOBAL_LIST_INIT(special_slime_colours, list("dark green", "cobalt", "dark grey"
 // Nawóz z dark green: w nowej botanice działa jako buff (plant_needs/buffs/fertilizers.dm)
 
 /datum/reagent/plantnutriment/slimenutriment
-	name = "Living Fertiliser"
+	name = "Żywy nawóz"
 	description = "Lepki płyn, który przylega do żywej tkanki i przyspiesza wzrost kosztem plonu."
 	color = "#6ed8db"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY

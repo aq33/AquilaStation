@@ -10,54 +10,54 @@
 	ambientsounds = list('sound/ambience/ambigen3.ogg')
 
 /area/awaymission/centcomAway/maint
-	name = "XCC-P5831 Maintenance"
+	name = "XCC-P5831 – Tunel Konserwacyjny"
 	icon_state = "away1"
 	ambientsounds = list('sound/ambience/ambisin1.ogg')
 
 /area/awaymission/centcomAway/thunderdome
-	name = "XCC-P5831 Thunderdome"
+	name = "XCC-P5831 – Thunderdome"
 	icon_state = "away2"
 	ambientsounds  = list('sound/ambience/ambisin2.ogg')
 
 /area/awaymission/centcomAway/cafe
-	name = "XCC-P5831 Kitchen Arena"
+	name = "XCC-P5831 – Arena Kulinarna"
 	icon_state = "away3"
 	ambientsounds = list('sound/ambience/ambisin3.ogg')
 
 /area/awaymission/centcomAway/courtroom
-	name = "XCC-P5831 Courtroom"
+	name = "XCC-P5831 – Sala Sądowa"
 	icon_state = "away4"
 	ambientsounds = list('sound/ambience/ambisin4.ogg')
 
 /area/awaymission/centcomAway/hangar
-	name = "XCC-P5831 Hangars"
+	name = "XCC-P5831 – Hangary"
 	icon_state = "away4"
 	ambientsounds = list('sound/ambience/ambigen5.ogg')
 
 //centcomAway items
 
 /obj/item/paper/pamphlet/centcom/visitor_info
-	name = "Visitor Info Pamphlet"
-	default_raw_text = "<b> XCC-P5831 Visitor Information </b><br>\
-	Greetings, visitor, to  XCC-P5831! As you may know, this outpost was once \
-	used as Nanotrasen's CENTRAL COMMAND STATION, organizing and coordinating company \
-	projects across the vastness of space. <br>\
-	Since the completion of the much more efficient CC-A5831 on March 8, 2553, XCC-P5831 no longer \
-	acts as NT's base of operations but still plays a very important role its corporate affairs; \
-	serving as a supply and repair depot, as well as being host to its most important legal proceedings\
-	and the thrilling pay-per-view broadcasts of <i>PLASTEEL CHEF</i> and <i>THUNDERDOME LIVE</i>.<br> \
-	We hope you enjoy your stay!"
+	name = "broszura informacyjna dla gości"
+	default_raw_text = "<b> XCC-P5831 – informacje dla gości </b><br>\
+	Witamy, drogi gościu, w XCC-P5831! Jak zapewne wiesz, ta placówka była niegdyś \
+	STACJĄ CENTRALNEGO DOWODZENIA Nanotrasen, która organizowała i koordynowała projekty firmy \
+	w bezkresie kosmosu. <br>\
+	Od ukończenia znacznie wydajniejszej CC-A5831 8 marca 2553 r. XCC-P5831 nie jest już \
+	bazą operacyjną NT, ale wciąż odgrywa bardzo ważną rolę w sprawach korporacji: \
+	służy jako skład zaopatrzenia i warsztat naprawczy, a także gości najważniejsze postępowania sądowe \
+	i emocjonujące transmisje pay-per-view <i>PLASTALOWEGO KUCHARZA</i> i <i>THUNDERDOME NA ŻYWO</i>.<br> \
+	Życzymy miłego pobytu!"
 
 /obj/item/paper/fluff/awaymissions/centcom/gateway_memo
-	name = "Memo to XCC-P5831 QM"
-	default_raw_text = "<b>From: XCC-P5831 Management Office</b><br>\
-	<b>To: Rolf Ingram, XCC-P5831 Quartermaster</b><br>\
-	Hey, Rolf, once you pack that gateway into the ferry hangar, <i>make absolutely sure</i> \
-	to deactivate it! As you may know, SS13 has recently got its network up and running, \
-	which means that until we get this gate shipped off to the next colonization staging \
-	area, they'll be able to hop straight in here if its hooked up on our end.<br>\
-	Obviously, that's something I'd very much rather avoid. Our forensics and medical \
-	teams never did figure out what happened that last time... and I can't wrap my head \
-	around it myself. Why would a shuttle full of evacuees all snap and beat each other \
-	to death the moment they reached safety?<br>\
+	name = "notatka dla kwatermistrza XCC-P5831"
+	default_raw_text = "<b>Od: Biuro Zarządu XCC-P5831</b><br>\
+	<b>Do: Rolf Ingram, kwatermistrz XCC-P5831</b><br>\
+	Hej, Rolf, jak już spakujesz tę bramę do hangaru promu, <i>koniecznie</i> \
+	ją wyłącz! Jak wiesz, SS13 niedawno uruchomiło swoją sieć, \
+	co oznacza, że dopóki nie wyślemy tej bramy do następnego punktu przerzutowego \
+	kolonizacji, będą mogli wskoczyć prosto do nas, jeśli brama będzie u nas podłączona.<br>\
+	Wolałbym tego zdecydowanie uniknąć. Nasi technicy kryminalistyczni i medycy \
+	nigdy nie ustalili, co się stało ostatnim razem... i sam nie potrafię tego \
+	pojąć. Dlaczego prom pełen ewakuowanych miałby nagle oszaleć, a wszyscy pobić się nawzajem \
+	na śmierć w chwili, gdy dotarli w bezpieczne miejsce?<br>\
 	- D. Cereza"

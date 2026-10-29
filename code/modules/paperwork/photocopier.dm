@@ -15,8 +15,8 @@
 #define MAX_COPIES_AT_ONCE	10
 
 /obj/machinery/photocopier
-	name = "photocopier"
-	desc = "Used to copy important documents and anatomy studies."
+	name = "kserokopiarka"
+	desc = "Służy do kopiowania ważnych dokumentów i studiów anatomicznych."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "photocopier"
 	density = TRUE
@@ -184,7 +184,7 @@
 		// Remove the toner cartridge from the copier.
 		if("remove_toner")
 			if(busy)
-				to_chat(usr, "span class='warning'>[src] jest obecnie zajęta kopiowaniem. Poczekaj, aż skończy.</span>")
+				to_chat(usr, "<span class='warning'>[src] jest obecnie zajęta kopiowaniem. Poczekaj, aż skończy.</span>")
 				return
 			if(issilicon(usr) || (ishuman(usr) && !usr.put_in_hands(toner_cartridge)))
 				toner_cartridge.forceMove(drop_location())
@@ -360,7 +360,7 @@
 		temp_img = icon('icons/ass/assdrone.png')
 
 	var/obj/item/photo/copied_ass = new /obj/item/photo(loc)
-	var/datum/picture/toEmbed = new(name = "[ass]'s Ass", desc = "You see [ass]'s ass on the photo.", image = temp_img)
+	var/datum/picture/toEmbed = new(name = "Tyłek: [ass]", desc = "Na zdjęciu widzisz tyłek [ass].", image = temp_img)
 	give_pixel_offset(copied_ass)
 	toEmbed.psize_x = 128
 	toEmbed.psize_y = 128
@@ -536,7 +536,7 @@
  * Toner cartridge
  */
 /obj/item/toner
-	name = "toner cartridge"
+	name = "kartridż z tonerem"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"
 	grind_results = list(/datum/reagent/iodine = 40, /datum/reagent/iron = 10)
@@ -548,15 +548,15 @@
 	. += "<span class='notice'>Wskaźnik poziomu tuszu z boku pokazuje [round(charges / max_charges * 100)]%</span>"
 
 /obj/item/toner/large
-	name = "large toner cartridge"
-	desc = "A hefty cartridge of NanoTrasen ValueBrand toner. Fits photocopiers and autopainters alike."
+	name = "duży kartridż z tonerem"
+	desc = "Pokaźny kartridż z tonerem NanoTrasen ValueBrand. Pasuje zarówno do kserokopiarek, jak i do autolakierników."
 	grind_results = list(/datum/reagent/iodine = 90, /datum/reagent/iron = 10)
 	charges = 25
 	max_charges = 25
 
 /obj/item/toner/extreme
-	name = "extremely large toner cartridge"
-	desc = "Why would ANYONE need THIS MUCH TONER?"
+	name = "ogromny kartridż z tonerem"
+	desc = "Po co KOMUKOLWIEK AŻ TYLE TONERU?"
 	charges = 200
 	max_charges = 200
 

@@ -43,9 +43,9 @@
 	if (!SSdbcore.Connect())
 		if(existing_book && (fail_loud || prob(5)))
 			existing_book.author = "???"
-			existing_book.title = "Strange book"
-			existing_book.name = "Strange book"
-			existing_book.dat = "There once was a book from Nantucket<br>But the database failed us, so f*$! it.<br>I tried to be good to you<br>Now this is an I.O.U<br>If you're feeling entitled, well, stuff it!<br><br><font color='gray'>~</font>"
+			existing_book.title = "Dziwna książka"
+			existing_book.name = "Dziwna książka"
+			existing_book.dat = "Była raz książka z Nantucket,<br>lecz baza danych padła, więc kuźwa, nie ma jej.<br>Chciałem być dla ciebie miły,<br>a dostajesz tylko kwit dłużny.<br>Jak ci się nie podoba, to trudno!<br><br><font color='gray'>~</font>"
 		return
 	if(prob(25))
 		category = null
@@ -62,26 +62,26 @@
 			B.author	=	query_get_random_books.item[1]
 			B.title		=	query_get_random_books.item[2]
 			B.dat		=	query_get_random_books.item[3]
-			B.name		=	"Book: [B.title]"
+			B.name		=	"Książka: [B.title]"
 			if(!existing_book)
 				B.icon_state=	"book[rand(1,8)]"
 	qdel(query_get_random_books)
 
 /obj/structure/bookcase/random/fiction
-	name = "bookcase (Fiction)"
+	name = "regał na książki (beletrystyka)"
 	random_category = "Fiction"
 /obj/structure/bookcase/random/nonfiction
-	name = "bookcase (Non-Fiction)"
+	name = "regał na książki (literatura faktu)"
 	random_category = "Non-fiction"
 /obj/structure/bookcase/random/religion
-	name = "bookcase (Religion)"
+	name = "regał na książki (religia)"
 	random_category = "Religion"
 /obj/structure/bookcase/random/adult
-	name = "bookcase (Adult)"
+	name = "regał na książki (dla dorosłych)"
 	random_category = "Adult"
 
 /obj/structure/bookcase/random/reference
-	name = "bookcase (Reference)"
+	name = "regał na książki (źródła)"
 	random_category = "Reference"
 	var/ref_book_prob = 20
 

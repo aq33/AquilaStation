@@ -236,11 +236,11 @@
 	if(len)
 		for(var/obj/item/I in held_items)
 			if(!length(holding))
-				holding += "[p_they(TRUE)] [p_are()] holding \a [I]"
+				holding += "Trzyma: [I]"
 			else if(held_items.Find(I) == len)
-				holding += ", and \a [I]."
+				holding += " i [I]"
 			else
-				holding += ", \a [I]"
+				holding += ", [I]"
 	return "Na zdjęciu widać też [src][health < (maxHealth * 0.75) ? ", trochę rannego":""].[length(holding) ? " [holding.Join("")].":""]"
 
 //Called when we bump onto an obj
@@ -339,7 +339,7 @@
 				to_chat(src, "<span class='notice'>Łapiesz [L] za ogon!</span>")  //Message sent to grabber
 				SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "tailpull", /datum/mood_event/tailpull) //NSV13 - pulling by the tail isn't nice for anyone
 			else
-				M.visible_message("<span class='warning'>[src] grabs [M] [(zone_selected == BODY_ZONE_L_ARM || zone_selected == BODY_ZONE_R_ARM)? "by their hands":"passively"]!</span>", \
+				M.visible_message("<span class='warning'>[src] łapie [M] [(zone_selected == BODY_ZONE_L_ARM || zone_selected == BODY_ZONE_R_ARM)? "za ręce":"lekko"]!</span>", \
 								"<span class='warning'>[src] łapie cię [(zone_selected == BODY_ZONE_L_ARM || zone_selected == BODY_ZONE_R_ARM)? "za ręce":"lekko"]!</span>", null, null, src) //Message sent to area, Message sent to grabbee
 				to_chat(src, "<span class='notice'>Łapiesz [M] [(zone_selected == BODY_ZONE_L_ARM|| zone_selected == BODY_ZONE_R_ARM)? "za ręce":"lekko"]!</span>") //Message sent to grabber
 		if(!iscarbon(src))
@@ -511,7 +511,7 @@
 		to_chat(src, "<span class='notice'>Już śpisz.</span>")
 		return
 	else
-		if(alert(src, "Na pewno chcesz się trochę przespać?", "Sleep", "Yes", "No") == "Yes")
+		if(alert(src, "Na pewno chcesz się trochę przespać?", "Sen", "Tak", "Nie") == "Tak")
 			SetSleeping(400) //Short nap
 	update_mobility()
 
@@ -1472,7 +1472,7 @@
 	. = ..()
 	var/refid = REF(src)
 	. += {"
-		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
+		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "brak ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "brak prawdziwego imienia"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
 			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
 			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>

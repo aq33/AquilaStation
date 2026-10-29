@@ -80,7 +80,7 @@
 			var/obj/item/bodypart/affecting = C.get_holding_bodypart_of_item(src)
 			C.apply_damage(rand(5, 10), BRUTE, affecting)
 	else
-		user.visible_message("<span class='danger'>[user]'s [I] slips!</span>")
+		user.visible_message("<span class='danger'>[user] traci panowanie nad [I]!</span>")
 		fire_casing(user, user)
 
 /obj/item/ammo_casing/caseless/screwdriver_act(mob/living/user, /obj/item/I)

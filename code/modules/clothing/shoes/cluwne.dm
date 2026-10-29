@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/cluwne
-	desc = "The prankster's standard-issue clowning shoes. Damn, they're huge!"
-	name = "clown shoes"
+	desc = "Standardowe buty klauna każdego dowcipnisia. Rany, ale wielkie!"
+	name = "buty klauna"
 	icon_state = "cluwne"
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

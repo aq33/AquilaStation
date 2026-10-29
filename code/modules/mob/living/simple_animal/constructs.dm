@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/construct
-	name = "Construct"
-	real_name = "Construct"
+	name = "Konstrukt"
+	real_name = "Konstrukt"
 	desc = ""
 	gender = NEUTER
 	mob_biotypes = list(MOB_INORGANIC)
@@ -124,7 +124,7 @@
 /mob/living/simple_animal/hostile/construct/armored
 	name = "Juggernaut"
 	real_name = "Juggernaut"
-	desc = "A massive, armored construct built to spearhead attacks and soak up enemy fire."
+	desc = "Masywny, opancerzony konstrukt, stworzony, by prowadzić natarcie i przyjmować na siebie ogień wroga."
 	icon_state = "behemoth"
 	icon_living = "behemoth"
 	maxHealth = 150
@@ -191,9 +191,9 @@
 
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/hostile/construct/wraith
-	name = "Wraith"
-	real_name = "Wraith"
-	desc = "A wicked, clawed shell constructed to assassinate enemies and sow chaos behind enemy lines."
+	name = "Widmo"
+	real_name = "Widmo"
+	desc = "Złowroga, szponiasta powłoka stworzona do zabijania wrogów i siania chaosu za liniami wroga."
 	icon_state = "floating"
 	icon_living = "floating"
 	maxHealth = 65
@@ -245,9 +245,9 @@
 
 /////////////////////////////Artificer/////////////////////////
 /mob/living/simple_animal/hostile/construct/builder
-	name = "Artificer"
-	real_name = "Artificer"
-	desc = "A bulbous construct dedicated to building and maintaining the Cult of Nar'Sie's armies."
+	name = "Rzemieślnik"
+	real_name = "Rzemieślnik"
+	desc = "Bulwiasty konstrukt, którego zadaniem jest budowa i utrzymanie armii Kultu Nar'Sie."
 	icon_state = "artificer"
 	icon_living = "artificer"
 	maxHealth = 50
@@ -268,9 +268,9 @@
 							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile/lesser)
 	playstyle_string = "<b>Jesteś Rzemieślnikiem. Jesteś niezwykle słaby i kruchy, ale potrafisz budować umocnienia, \
 
-						use magic missile, repair allied constructs, shades, and yourself (by clicking on them), \
-						<i>and, most important of all,</i> create new constructs by producing soulstones to capture souls, \
-						and shells to place those soulstones into.</b>"
+						rzucać magiczny pocisk, naprawiać sojusznicze konstrukty, cienie i samego siebie (klikając na nie), \
+						<i>a co najważniejsze,</i> tworzyć nowe konstrukty, wytwarzając kamienie dusz do chwytania dusz \
+						oraz powłoki, w których można je umieścić.</b>"
 	can_repair_constructs = TRUE
 	can_repair_self = TRUE
 
@@ -318,7 +318,7 @@
 
 /////////////////////////////Angelic Artificer/////////////////////////
 /mob/living/simple_animal/hostile/construct/builder/angelic
-	desc = "A bulbous construct dedicated to building and maintaining holy armies."
+	desc = "Bulwiasty konstrukt, którego zadaniem jest budowa i utrzymanie świętych armii."
 	icon_state = "artificer_angelic"
 	icon_living = "artificer_angelic"
 	holy = TRUE
@@ -337,9 +337,9 @@
 
 /////////////////////////////Harvester/////////////////////////
 /mob/living/simple_animal/hostile/construct/harvester
-	name = "Harvester"
-	real_name = "Harvester"
-	desc = "A long, thin construct built to herald Nar'Sie's rise. It'll be all over soon."
+	name = "Żniwiarz"
+	real_name = "Żniwiarz"
+	desc = "Długi, cienki konstrukt stworzony, by zwiastować powstanie Nar'Sie. Wkrótce będzie po wszystkim."
 	icon_state = "chosen"
 	icon_living = "chosen"
 	maxHealth = 40
@@ -401,8 +401,8 @@
 ///////////////////////Master-Tracker///////////////////////
 
 /datum/action/innate/seek_master
-	name = "Seek your Master"
-	desc = "You and your master share a soul-link that informs you of their location"
+	name = "Szukaj swojego pana"
+	desc = "Ty i twój pan dzielicie więź dusz, która zdradza ci jego położenie."
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
 	button_icon_state = "cult_mark"
@@ -439,8 +439,8 @@
 
 
 /datum/action/innate/seek_prey
-	name = "Seek the Harvest"
-	desc = "None can hide from Nar'Sie, activate to track a survivor attempting to flee the red harvest!"
+	name = "Szukaj żniwa"
+	desc = "Nikt nie ukryje się przed Nar'Sie. Aktywuj, by namierzyć ocalałego, który próbuje uciec przed krwawym żniwem!"
 	icon_icon = 'icons/mob/actions/actions_cult.dmi'
 	background_icon_state = "bg_demon"
 	buttontooltipstyle = "cult"
@@ -451,7 +451,7 @@
 		return
 	var/mob/living/simple_animal/hostile/construct/harvester/the_construct = owner
 	if(the_construct.seeking)
-		desc = "None can hide from Nar'Sie, activate to track a survivor attempting to flee the red harvest!"
+		desc = "Nikt nie ukryje się przed Nar'Sie. Aktywuj, by namierzyć ocalałego, który próbuje uciec przed krwawym żniwem!"
 		button_icon_state = "cult_mark"
 		the_construct.seeking = FALSE
 		to_chat(the_construct, "<span class='cult italic'>Śledzisz teraz Nar'Sie, wracaj zebrać żniwo!</span>")
@@ -464,6 +464,6 @@
 		else
 			to_chat(the_construct, "<span class='cult italic'>Nar'Sie zakończyła swoje żniwa!</span>")
 			return
-		desc = "Activate to track Nar'Sie!"
+		desc = "Aktywuj, by namierzyć Nar'Sie!"
 		button_icon_state = "sintouch"
 		the_construct.seeking = TRUE

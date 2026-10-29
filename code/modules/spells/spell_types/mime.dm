@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall
-	name = "Invisible Wall"
-	desc = "The mime's performance transmutates a wall into physical reality."
+	name = "Niewidzialna ściana"
+	desc = "Występ mima przemienia ścianę w fizyczną rzeczywistość."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	summon_type = list(/obj/effect/forcefield/mime)
@@ -29,8 +29,8 @@
 	..()
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair
-	name = "Invisible Chair"
-	desc = "The mime's performance transmutates a chair into physical reality."
+	name = "Niewidzialne krzesło"
+	desc = "Występ mima przemienia krzesło w fizyczną rzeczywistość."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	summon_type = list(/obj/structure/chair/mime)
@@ -67,8 +67,8 @@
 			A.buckle_mob(user)
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_box
-	name = "Invisible Box"
-	desc = "The mime's performance transmutates a box into physical reality."
+	name = "Niewidzialne pudełko"
+	desc = "Występ mima przemienia pudełko w fizyczną rzeczywistość."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	summon_type = list(/obj/item/storage/box/mime)
@@ -106,8 +106,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/mime/speak
-	name = "Speech"
-	desc = "Make or break a vow of silence."
+	name = "Mowa"
+	desc = "Składasz albo łamiesz ślub milczenia."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	clothes_req = FALSE
@@ -146,8 +146,8 @@
 // These spells can only be gotten from the "Guide for Advanced Mimery series" for Mime Traitors.
 
 /obj/effect/proc_holder/spell/targeted/forcewall/mime
-	name = "Invisible Blockade"
-	desc = "Form an invisible three tile wide blockade."
+	name = "Niewidzialna blokada"
+	desc = "Tworzysz niewidzialną blokadę szeroką na trzy pola."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	wall_type = /obj/effect/forcefield/mime/advanced
@@ -175,8 +175,8 @@
 	..()
 
 /obj/effect/proc_holder/spell/targeted/mime/finger_guns
-	name = "Finger Guns"
-	desc = "Shoot a mimed bullet from your fingers that stuns and does some damage."
+	name = "Palce-pistolety"
+	desc = "Wystrzeliwujesz z palców wymimowany pocisk, który ogłusza i zadaje trochę obrażeń."
 	school = "mime"
 	panel = JOB_NAME_MIME
 	charge_max = 300
@@ -211,9 +211,9 @@
 
 /obj/item/book/granter/spell/mimery_blockade
 	spell = /obj/effect/proc_holder/spell/targeted/forcewall/mime
-	spellname = "Invisible Blockade"
-	name = "Guide to Advanced Mimery Vol 1"
-	desc = "The pages don't make any sound when turned."
+	spellname = "niewidzialna blokada"
+	name = "Przewodnik po zaawansowanej sztuce mima, tom 1"
+	desc = "Kartki nie wydają żadnego dźwięku przy przewracaniu."
 	icon_state ="bookmime"
 	remarks = list("...")
 
@@ -226,9 +226,9 @@
 
 /obj/item/book/granter/spell/mimery_guns
 	spell = /obj/effect/proc_holder/spell/targeted/mime/finger_guns
-	spellname = "Finger Guns"
-	name = "Guide to Advanced Mimery Vol 2"
-	desc = "There aren't any words written..."
+	spellname = "palce-pistolety"
+	name = "Przewodnik po zaawansowanej sztuce mima, tom 2"
+	desc = "Nie ma tu napisanych żadnych słów..."
 	icon_state ="bookmime"
 	remarks = list("...")
 

@@ -3,456 +3,456 @@
 ////////////////////////////////////////
 
 /datum/design/board/shuttle/engine/plasma
-	name = "Machine Design (Plasma Thruster Board)"
-	desc = "The circuit board for a plasma thruster."
+	name = "Projekt maszyny (plazmowy silnik manewrowy)"
+	desc = "Płytka drukowana: plazmowy silnik manewrowy."
 	id = "engine_plasma"
 	build_path = /obj/item/circuitboard/machine/shuttle/engine/plasma
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/shuttle/engine/void
-	name = "Machine Design (Void Thruster Board)"
-	desc = "The circuit board for a void thruster."
+	name = "Projekt maszyny (silnik pustki)"
+	desc = "Płytka drukowana: silnik pustki."
 	id = "engine_void"
 	build_path = /obj/item/circuitboard/machine/shuttle/engine/void
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/shuttle/engine/heater
-	name = "Machine Design (Engine Heater Board)"
-	desc = "The circuit board for an engine heater."
+	name = "Projekt maszyny (podgrzewacz silnika)"
+	desc = "Płytka drukowana: podgrzewacz silnika."
 	id = "engine_heater"
 	build_path = /obj/item/circuitboard/machine/shuttle/heater
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/plasma_refiner
-	name = "Machine Design (Plasma Refiner Board)"
-	desc = "The circuit board for a plasma refiner."
+	name = "Projekt maszyny (rafineria plazmy)"
+	desc = "Płytka drukowana: rafineria plazmy."
 	id = "plasma_refiner"
 	build_path = /obj/item/circuitboard/machine/plasma_refiner
 	category = list ("Shuttle Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/smes
-	name = "Machine Design (SMES Board)"
-	desc = "The circuit board for a SMES."
+	name = "Projekt maszyny (SMES)"
+	desc = "Płytka drukowana: SMES."
 	id = "smes"
 	build_path = /obj/item/circuitboard/machine/smes
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/circulator
-	name = "Machine Design (Circulator Board)"
-	desc = "The circuit board for a circulator."
+	name = "Projekt maszyny (cyrkulator/wymiennik ciepła)"
+	desc = "Płytka drukowana: cyrkulator."
 	id = "circulator"
 	build_path = /obj/item/circuitboard/machine/circulator
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/teg
-	name = "Machine Design (TEG Board)"
-	desc = "The circuit board for a TEG."
+	name = "Projekt maszyny (generator termoelektryczny)"
+	desc = "Płytka drukowana: generator termoelektryczny (TEG)."
 	id = "teg"
 	build_path = /obj/item/circuitboard/machine/generator
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/announcement_system
-	name = "Machine Design (Automated Announcement System Board)"
-	desc = "The circuit board for an automated announcement system."
+	name = "Projekt maszyny (automatyczny system ogłoszeń)"
+	desc = "Płytka drukowana: automatyczny system ogłoszeń."
 	id = "automated_announcement"
 	build_path = /obj/item/circuitboard/machine/announcement_system
 	category = list("Subspace Telecomms")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/turbine_computer
-	name = "Computer Design (Power Turbine Console Board)"
-	desc = "The circuit board for a power turbine console."
+	name = "Projekt komputera (komputer sterowania turbiną gazową)"
+	desc = "Płytka drukowana: konsola turbiny energetycznej."
 	id = "power_turbine_console"
 	build_path = /obj/item/circuitboard/computer/turbine_computer
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/emitter
-	name = "Machine Design (Emitter Board)"
-	desc = "The circuit board for an emitter."
+	name = "Projekt maszyny (emiter)"
+	desc = "Płytka drukowana: emiter."
 	id = "emitter"
 	build_path = /obj/item/circuitboard/machine/emitter
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/power_compressor
-	name = "Machine Design (Power Compressor Board)"
-	desc = "The circuit board for a power compressor."
+	name = "Projekt maszyny (sprężarka)"
+	desc = "Płytka drukowana: sprężarka."
 	id = "power_compressor"
 	build_path = /obj/item/circuitboard/machine/power_compressor
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/power_turbine
-	name = "Machine Design (Power Turbine Board)"
-	desc = "The circuit board for a power turbine."
+	name = "Projekt maszyny (turbina energetyczna)"
+	desc = "Płytka drukowana: turbina energetyczna."
 	id = "power_turbine"
 	build_path = /obj/item/circuitboard/machine/power_turbine
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/thermomachine
-	name = "Machine Design (Thermomachine Board)"
-	desc = "The circuit board for a thermomachine."
+	name = "Projekt maszyny (termomaszyna)"
+	desc = "Płytka drukowana: termomaszyna."
 	id = "thermomachine"
 	build_path = /obj/item/circuitboard/machine/thermomachine
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/space_heater
-	name = "Machine Design (Space Heater Board)"
-	desc = "The circuit board for a space heater."
+	name = "Projekt maszyny (grzejnik przenośny)"
+	desc = "Płytka drukowana: grzejnik przenośny."
 	id = "space_heater"
 	build_path = /obj/item/circuitboard/machine/space_heater
 	category = list ("Engineering Machinery")
 	departmental_flags = ALL
 
 /datum/design/board/igniter
-	name = "Machine Design (Igniter)"
-	desc = "The circuit board for an igniter."
+	name = "Projekt maszyny (zapalnik)"
+	desc = "Płytka drukowana: zapalnik."
 	id = "machine_igniter"
 	build_path = /obj/item/circuitboard/machine/igniter
 	category = list ("Engineering Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/teleport_station
-	name = "Machine Design (Teleportation Station Board)"
-	desc = "The circuit board for a teleportation station."
+	name = "Projekt maszyny (stacja teleportera)"
+	desc = "Płytka drukowana: stacja teleportera."
 	id = "tele_station"
 	build_path = /obj/item/circuitboard/machine/teleporter_station
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/teleport_hub
-	name = "Machine Design (Teleportation Hub Board)"
-	desc = "The circuit board for a teleportation hub."
+	name = "Projekt maszyny (węzeł teleportera)"
+	desc = "Płytka drukowana: węzeł teleportera."
 	id = "tele_hub"
 	build_path = /obj/item/circuitboard/machine/teleporter_hub
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/quantumpad
-	name = "Machine Design (Quantum Pad Board)"
-	desc = "The circuit board for a quantum telepad."
+	name = "Projekt maszyny (pad kwantowy)"
+	desc = "Płytka drukowana: pad kwantowy."
 	id = "quantumpad"
 	build_path = /obj/item/circuitboard/machine/quantumpad
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/launchpad
-	name = "Machine Design (Bluespace Launchpad Board)"
-	desc = "The circuit board for a bluespace Launchpad."
+	name = "Projekt maszyny (wyrzutnia bluespace)"
+	desc = "Płytka drukowana: wyrzutnia bluespace."
 	id = "launchpad"
 	build_path = /obj/item/circuitboard/machine/launchpad
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/launchpad_console
-	name = "Machine Design (Bluespace Launchpad Console Board)"
-	desc = "The circuit board for a bluespace launchpad Console."
+	name = "Projekt maszyny (konsola sterowania wyrzutnią)"
+	desc = "Płytka drukowana: konsola wyrzutni bluespace."
 	id = "launchpad_console"
 	build_path = /obj/item/circuitboard/computer/launchpad_console
 	category = list ("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/teleconsole
-	name = "Computer Design (Teleporter Console)"
-	desc = "Allows for the construction of circuit boards used to build a teleporter control console."
+	name = "Projekt komputera (konsola sterowania teleporterem)"
+	desc = "Pozwala zbudować płytkę drukowaną: konsola sterowania teleporterem."
 	id = "teleconsole"
 	build_path = /obj/item/circuitboard/computer/teleporter
 	category = list("Teleportation Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/cryotube
-	name = "Machine Design (Cryotube Board)"
-	desc = "The circuit board for a cryotube."
+	name = "Projekt maszyny (kriokomora)"
+	desc = "Płytka drukowana: kriokomora."
 	id = "cryotube"
 	build_path = /obj/item/circuitboard/machine/cryo_tube
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery")
 
 /datum/design/board/chem_dispenser
-	name = "Machine Design (Portable Chem Dispenser Board)"
-	desc = "The circuit board for a portable chem dispenser."
+	name = "Projekt maszyny (dozownik chemikaliów)"
+	desc = "Płytka drukowana: przenośny dozownik chemikaliów."
 	id = "chem_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery")
 
 /datum/design/board/chem_master
-	name = "Machine Design (Chem Master Board)"
-	desc = "The circuit board for a Chem Master 3000."
+	name = "Projekt maszyny (ChemMaster 3000)"
+	desc = "Płytka drukowana: ChemMaster 3000."
 	id = "chem_master"
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/chem_master
 	category = list ("Medical Machinery")
 
 /datum/design/board/chem_heater
-	name = "Machine Design (Chemical Heater Board)"
-	desc = "The circuit board for a chemical heater."
+	name = "Projekt maszyny (podgrzewacz chemiczny)"
+	desc = "Płytka drukowana: podgrzewacz chemiczny."
 	id = "chem_heater"
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/chem_heater
 	category = list ("Medical Machinery")
 
 /datum/design/board/smoke_machine
-	name = "Machine Design (Smoke Machine)"
-	desc = "The circuit board for a smoke machine."
+	name = "Projekt maszyny (wytwornica dymu)"
+	desc = "Płytka drukowana: wytwornica dymu."
 	id = "smoke_machine"
 	build_path = /obj/item/circuitboard/machine/smoke_machine
 	category = list ("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/sleeper
-	name = "Machine Design (Sleeper Board)"
-	desc = "The circuit board for a sleeper."
+	name = "Projekt maszyny (sleeper)"
+	desc = "Płytka drukowana: sleeper."
 	id = "sleeper"
 	build_path = /obj/item/circuitboard/machine/sleeper
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery")
 
 /datum/design/board/reagentgrinder
-	name = "Machine Design (All-In-One Grinder)"
-	desc = "The circuit board for an All-In-One Grinder."
+	name = "Projekt maszyny (młynek wielofunkcyjny)"
+	desc = "Płytka drukowana: młynek wielofunkcyjny."
 	id = "reagentgrinder"
 	build_path = /obj/item/circuitboard/machine/reagentgrinder
 	category = list ("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/clonecontrol
-	name = "Computer Design (Cloning Machine Console)"
-	desc = "Allows for the construction of circuit boards used to build a new Cloning Machine console."
+	name = "Projekt komputera (konsola klonowania)"
+	desc = "Pozwala zbudować płytkę drukowaną: konsola klonowania."
 	id = "clonecontrol"
 	build_path = /obj/item/circuitboard/computer/cloning
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	category = list("Medical Machinery")
 
 /datum/design/board/clonepod
-	name = "Machine Design (Clone Pod)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Pod."
+	name = "Projekt maszyny (kapsuła klonująca)"
+	desc = "Pozwala zbudować płytkę drukowaną: kapsuła klonująca."
 	id = "clonepod"
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/clonepod
 	category = list("Medical Machinery")
 
 /datum/design/board/clonescanner
-	name = "Machine Design (Cloning Scanner)"
-	desc = "Allows for the construction of circuit boards used to build a Cloning Scanner."
+	name = "Projekt maszyny (skaner DNA)"
+	desc = "Pozwala zbudować płytkę drukowaną: skaner DNA."
 	id = "clonescanner"
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 	build_path = /obj/item/circuitboard/machine/clonescanner
 	category = list("Medical Machinery")
 
 /datum/design/board/biogenerator
-	name = "Machine Design (Biogenerator Board)"
-	desc = "The circuit board for a biogenerator."
+	name = "Projekt maszyny (biogenerator)"
+	desc = "Płytka drukowana: biogenerator."
 	id = "biogenerator"
 	build_path = /obj/item/circuitboard/machine/biogenerator
 	category = list ("Hydroponics Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/destructive_analyzer
-	name = "Machine Design (Destructive Analyzer Board)"
-	desc = "The circuit board for a destructive analyzer."
+	name = "Projekt maszyny (analizator destrukcyjny)"
+	desc = "Płytka drukowana: analizator destrukcyjny."
 	id = "destructive_analyzer"
 	build_path = /obj/item/circuitboard/machine/destructive_analyzer
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/experimentor
-	name = "Machine Design (E.X.P.E.R.I-MENTOR Board)"
-	desc = "The circuit board for an E.X.P.E.R.I-MENTOR."
+	name = "Projekt maszyny (E.X.P.E.R.I-MENTOR)"
+	desc = "Płytka drukowana: E.X.P.E.R.I-MENTOR."
 	id = "experimentor"
 	build_path = /obj/item/circuitboard/machine/experimentor
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/protolathe
-	name = "Machine Design (Protolathe Board)"
-	desc = "The circuit board for a protolathe."
+	name = "Projekt maszyny (protolat)"
+	desc = "Płytka drukowana: protolat."
 	id = "protolathe"
 	build_path = /obj/item/circuitboard/machine/protolathe
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/circuit_imprinter
-	name = "Machine Design (Circuit Imprinter Board)"
-	desc = "The circuit board for a circuit imprinter."
+	name = "Projekt maszyny (drukarka obwodów)"
+	desc = "Płytka drukowana: drukarka obwodów."
 	id = "circuit_imprinter"
 	build_path = /obj/item/circuitboard/machine/circuit_imprinter
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/rdservercontrol
-	name = "Computer Design (R&D Server Control Console Board)"
-	desc = "The circuit board for an R&D Server Control Console."
+	name = "Projekt komputera (kontroler serwerów B+R)"
+	desc = "Płytka drukowana: konsola sterowania serwerami B+R."
 	id = "rdservercontrol"
 	build_path = /obj/item/circuitboard/computer/rdservercontrol
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/rdserver
-	name = "Machine Design (R&D Server Board)"
-	desc = "The circuit board for an R&D Server."
+	name = "Projekt maszyny (serwer B+R)"
+	desc = "Płytka drukowana: serwer B+R."
 	id = "rdserver"
 	build_path = /obj/item/circuitboard/machine/rdserver
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/mechfab
-	name = "Machine Design (Exosuit Fabricator Board)"
-	desc = "The circuit board for an Exosuit Fabricator."
+	name = "Projekt maszyny (fabrykator egzoszkieletów)"
+	desc = "Płytka drukowana: fabrykator egzoszkieletów."
 	id = "mechfab"
 	build_path = /obj/item/circuitboard/machine/mechfab
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/cyborgrecharger
-	name = "Machine Design (Cyborg Recharger Board)"
-	desc = "The circuit board for a Cyborg Recharger."
+	name = "Projekt maszyny (stacja ładowania cyborgów)"
+	desc = "Płytka drukowana: stacja ładowania cyborgów."
 	id = "cyborgrecharger"
 	build_path = /obj/item/circuitboard/machine/cyborgrecharger
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/mech_recharger
-	name = "Machine Design (Mechbay Recharger Board)"
-	desc = "The circuit board for a Mechbay Recharger."
+	name = "Projekt maszyny (port zasilania warsztatu mechów)"
+	desc = "Płytka drukowana: stacja ładowania mechów."
 	id = "mech_recharger"
 	build_path = /obj/item/circuitboard/machine/mech_recharger
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/nanite_chamber
-	name = "Machine Design (Nanite Chamber Board)"
-	desc = "The circuit board for a Nanite Chamber."
+	name = "Projekt maszyny (komora nanitów)"
+	desc = "Płytka drukowana: komora nanitów."
 	id = "nanite_chamber"
 	build_path = /obj/item/circuitboard/machine/nanite_chamber
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/public_nanite_chamber
-	name = "Machine Design (Public Nanite Chamber Board)"
-	desc = "The circuit board for a Public Nanite Chamber."
+	name = "Projekt maszyny (publiczna komora nanitów)"
+	desc = "Płytka drukowana: publiczna komora nanitów."
 	id = "public_nanite_chamber"
 	build_path = /obj/item/circuitboard/machine/public_nanite_chamber
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/nanite_programmer
-	name = "Machine Design (Nanite Programmer Board)"
-	desc = "The circuit board for a Nanite Programmer."
+	name = "Projekt maszyny (programator nanitów)"
+	desc = "Płytka drukowana: programator nanitów."
 	id = "nanite_programmer"
 	build_path = /obj/item/circuitboard/machine/nanite_programmer
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/nanite_program_hub
-	name = "Machine Design (Nanite Program Hub Board)"
-	desc = "The circuit board for a Nanite Program Hub."
+	name = "Projekt maszyny (centrum programów nanitów)"
+	desc = "Płytka drukowana: centrum programów nanitów."
 	id = "nanite_program_hub"
 	build_path = /obj/item/circuitboard/machine/nanite_program_hub
 	category = list("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/microwave
-	name = "Machine Design (Microwave Board)"
-	desc = "The circuit board for a microwave."
+	name = "Projekt maszyny (mikrofalówka)"
+	desc = "Płytka drukowana: mikrofalówka."
 	id = "microwave"
 	build_path = /obj/item/circuitboard/machine/microwave
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/gibber
-	name = "Machine Design (Gibber Board)"
-	desc = "The circuit board for a gibber."
+	name = "Projekt maszyny (maszynka do mięsa)"
+	desc = "Płytka drukowana: maszynka do mięsa."
 	id = "gibber"
 	build_path = /obj/item/circuitboard/machine/gibber
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/smartfridge
-	name = "Machine Design (Smartfridge Board)"
-	desc = "The circuit board for a smartfridge."
+	name = "Projekt maszyny (inteligentna lodówka)"
+	desc = "Płytka drukowana: inteligentna lodówka."
 	id = "smartfridge"
 	build_path = /obj/item/circuitboard/machine/smartfridge
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/monkey_recycler
-	name = "Machine Design (Monkey Recycler Board)"
-	desc = "The circuit board for a monkey recycler."
+	name = "Projekt maszyny (recykler małp)"
+	desc = "Płytka drukowana: recykler małp."
 	id = "monkey_recycler"
 	build_path = /obj/item/circuitboard/machine/monkey_recycler
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/processor
-	name = "Machine Design (Food/Slime Processor Board)"
-	desc = "The circuit board for a processing unit. Screwdriver the circuit to switch between food (default) or slime processing."
+	name = "Projekt maszyny (malakser/przetwórnia szlamów)"
+	desc = "Płytka drukowana: urządzenie przetwórcze. Przekręć obwód śrubokrętem, by przełączać między przetwarzaniem jedzenia (domyślnie) a szlamów."
 	id = "processor"
 	build_path = /obj/item/circuitboard/machine/processor
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/soda_dispenser
-	name = "Machine Design (Portable Soda Dispenser Board)"
-	desc = "The circuit board for a portable soda dispenser."
+	name = "Projekt maszyny (dozownik napojów)"
+	desc = "Płytka drukowana: przenośny dozownik napojów."
 	id = "soda_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser/drinks
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	category = list ("Misc. Machinery")
 
 /datum/design/board/beer_dispenser
-	name = "Machine Design (Portable Booze Dispenser Board)"
-	desc = "The circuit board for a portable booze dispenser."
+	name = "Projekt maszyny (dozownik alkoholi)"
+	desc = "Płytka drukowana: przenośny dozownik alkoholi."
 	id = "beer_dispenser"
 	build_path = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	category = list ("Misc. Machinery")
 
 /datum/design/board/recycler
-	name = "Machine Design (Recycler Board)"
-	desc = "The circuit board for a recycler."
+	name = "Projekt maszyny (recykler)"
+	desc = "Płytka drukowana: recykler."
 	id = "recycler"
 	build_path = /obj/item/circuitboard/machine/recycler
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/scanner_gate
-	name = "Machine Design (Scanner Gate)"
-	desc = "The circuit board for a scanner gate."
+	name = "Projekt maszyny (bramka skanująca)"
+	desc = "Płytka drukowana: bramka skanująca."
 	id = "scanner_gate"
 	build_path = /obj/item/circuitboard/machine/scanner_gate
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/holopad
-	name = "Machine Design (AI Holopad Board)"
-	desc = "The circuit board for a holopad."
+	name = "Projekt maszyny (holopad SI)"
+	desc = "Płytka drukowana: holopad SI."
 	id = "holopad"
 	build_path = /obj/item/circuitboard/machine/holopad
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/autolathe
-	name = "Machine Design (Autolathe Board)"
-	desc = "The circuit board for an autolathe."
+	name = "Projekt maszyny (autolat)"
+	desc = "Płytka drukowana: autolat."
 	id = "autolathe"
 	build_path = /obj/item/circuitboard/machine/autolathe
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL		//Lets be honest here half the maps have public ones.
 
 /datum/design/board/recharger
-	name = "Machine Design (Weapon Recharger Board)"
-	desc = "The circuit board for a Weapon Recharger."
+	name = "Projekt maszyny (ładowarka broni)"
+	desc = "Płytka drukowana: ładowarka broni."
 	id = "recharger"
 	materials = list(/datum/material/glass = 1000, /datum/material/gold = 2000, /datum/material/copper = 300)
 	build_path = /obj/item/circuitboard/machine/recharger
@@ -460,168 +460,168 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/vendor
-	name = "Machine Design (Vendor Board)"
-	desc = "The circuit board for a Vendor."
+	name = "Projekt maszyny (automat)"
+	desc = "Płytka drukowana: własny automat."
 	id = "vendor"
 	build_path = /obj/item/circuitboard/machine/vendor
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/ore_redemption
-	name = "Machine Design (Ore Redemption Board)"
-	desc = "The circuit board for an Ore Redemption machine."
+	name = "Projekt maszyny (maszyna wymiany rudy)"
+	desc = "Płytka drukowana: maszyna wymiany rudy."
 	id = "ore_redemption"
 	build_path = /obj/item/circuitboard/machine/ore_redemption
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/mining_equipment_vendor
-	name = "Machine Design (Mining Rewards Vendor Board)"
-	desc = "The circuit board for a Mining Rewards Vendor."
+	name = "Projekt maszyny (automat ze sprzętem górniczym)"
+	desc = "Płytka drukowana: automat ze sprzętem górniczym."
 	id = "mining_equipment_vendor"
 	build_path = /obj/item/circuitboard/machine/mining_equipment_vendor
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/exploration_equipment_vendor
-	name = "Machine Design (Exploration Rewards Vendor Board)"
-	desc = "The circuit board for an Exploration Rewards Vendor."
+	name = "Projekt maszyny (automat ze sprzętem odkrywców)"
+	desc = "Płytka drukowana: automat ze sprzętem odkrywców."
 	id = "exploration_equipment_vendor"
 	build_path = /obj/item/circuitboard/machine/exploration_equipment_vendor
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/tesla_coil
-	name = "Machine Design (Tesla Coil Board)"
-	desc = "The circuit board for a tesla coil."
+	name = "Projekt maszyny (cewka Tesli)"
+	desc = "Płytka drukowana: cewka Tesli."
 	id = "tesla_coil"
 	build_path = /obj/item/circuitboard/machine/tesla_coil
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/rad_collector
-	name = "Machine Design (Radiation Collector Board)"
-	desc = "The circuit board for a radiation collector array."
+	name = "Projekt maszyny (kolektor promieniowania)"
+	desc = "Płytka drukowana: kolektor promieniowania."
 	id = "rad_collector"
 	build_path = /obj/item/circuitboard/machine/rad_collector
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/grounding_rod
-	name = "Machine Design (Grounding Rod Board)"
-	desc = "The circuit board for a grounding rod."
+	name = "Projekt maszyny (pręt uziemiający)"
+	desc = "Płytka drukowana: pręt uziemiający."
 	id = "grounding_rod"
 	build_path = /obj/item/circuitboard/machine/grounding_rod
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/ntnet_relay
-	name = "Machine Design (NTNet Relay Board)"
-	desc = "The circuit board for a wireless network relay."
+	name = "Projekt maszyny (przekaźnik NTNet)"
+	desc = "Płytka drukowana: bezprzewodowy przekaźnik sieciowy."
 	id = "ntnet_relay"
 	build_path = /obj/item/circuitboard/machine/ntnet_relay
 	category = list("Subspace Telecomms")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/limbgrower
-	name = "Machine Design (Limb Grower Board)"
-	desc = "The circuit board for a limb grower."
+	name = "Projekt maszyny (hodowla kończyn)"
+	desc = "Płytka drukowana: hodowla kończyn."
 	id = "limbgrower"
 	build_path = /obj/item/circuitboard/machine/limbgrower
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/harvester
-	name = "Machine Design (Organ Harvester Board)"
-	desc = "The circuit board for an organ harvester."
+	name = "Projekt maszyny (żniwiarka organów)"
+	desc = "Płytka drukowana: żniwiarka organów."
 	id = "harvester"
 	build_path = /obj/item/circuitboard/machine/harvester
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/deepfryer
-	name = "Machine Design (Deep Fryer)"
-	desc = "The circuit board for a Deep Fryer."
+	name = "Projekt maszyny (frytkownica)"
+	desc = "Płytka drukowana: frytkownica."
 	id = "deepfryer"
 	build_path = /obj/item/circuitboard/machine/deep_fryer
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/griddle
-	name = "Machine Design (Griddle)"
-	desc = "The circuit board for a Griddle."
+	name = "Projekt maszyny (płyta grillowa)"
+	desc = "Płytka drukowana: płyta grillowa."
 	id = "griddle"
 	build_path = /obj/item/circuitboard/machine/griddle
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/oven
-	name = "Machine Design (Oven)"
-	desc = "The circuit board for a Oven."
+	name = "Projekt maszyny (piekarnik)"
+	desc = "Płytka drukowana: piekarnik."
 	id = "oven"
 	build_path = /obj/item/circuitboard/machine/oven
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/donksofttoyvendor
-	name = "Machine Design (Donksoft Toy Vendor Board)"
-	desc = "The circuit board for a Donksoft Toy Vendor."
+	name = "Projekt maszyny (automat z zabawkami Donksoft)"
+	desc = "Płytka drukowana: automat z zabawkami Donksoft."
 	id = "donksofttoyvendor"
 	build_path = /obj/item/circuitboard/machine/vending/donksofttoyvendor
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//Toys!!
 
 /datum/design/board/cell_charger
-	name = "Machine Design (Cell Charger Board)"
-	desc = "The circuit board for a cell charger."
+	name = "Projekt maszyny (ładowarka ogniw)"
+	desc = "Płytka drukowana: ładowarka ogniw."
 	id = "cell_charger"
 	build_path = /obj/item/circuitboard/machine/cell_charger
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/dish_drive
-	name = "Machine Design (Dish Drive)"
-	desc = "The circuit board for a dish drive."
+	name = "Projekt maszyny (zbieracz naczyń)"
+	desc = "Płytka drukowana: dish drive."
 	id = "dish_drive"
 	build_path = /obj/item/circuitboard/machine/dish_drive
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/stacking_unit_console
-	name = "Machine Design (Stacking Machine Console)"
-	desc = "The circuit board for a Stacking Machine Console."
+	name = "Projekt maszyny (konsola maszyny stertującej)"
+	desc = "Płytka drukowana: konsola maszyny stertującej."
 	id = "stack_console"
 	build_path = /obj/item/circuitboard/machine/stacking_unit_console
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/processing_unit
-	name = "Machine Design (Furnace Board)"
-	desc = "The circuit board for a furnace."
+	name = "Projekt maszyny (piec)"
+	desc = "Płytka drukowana: piec."
 	id = "furnace"
 	build_path = /obj/item/circuitboard/machine/processing_unit
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/processing_unit_console
-	name = "Machine Design (Furnace Console Board)"
-	desc = "The circuit board for a furnace console."
+	name = "Projekt maszyny (konsola pieca)"
+	desc = "Płytka drukowana: konsola pieca."
 	id = "furnace_console"
 	build_path = /obj/item/circuitboard/machine/processing_unit_console
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/stacking_machine
-	name = "Machine Design (Stacking Machine)"
-	desc = "The circuit board for a Stacking Machine."
+	name = "Projekt maszyny (maszyna stertująca)"
+	desc = "Płytka drukowana: maszyna stertująca."
 	id = "stack_machine"
 	build_path = /obj/item/circuitboard/machine/stacking_machine
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/mass_driver
-	name = "Machine Design (Mass Driver)"
-	desc = "The circuit board for a mass driver."
+	name = "Projekt maszyny (wyrzutnia masowa)"
+	desc = "Płytka drukowana: wyrzutnia masowa."
 	id = "mass_driver"
 	build_path = /obj/item/circuitboard/machine/mass_driver
 	category = list ("Misc. Machinery")
@@ -629,96 +629,96 @@
 
 
 /datum/design/board/ore_silo
-	name = "Machine Design (Ore Silo)"
-	desc = "The circuit board for an ore silo."
+	name = "Projekt maszyny (silos rudy)"
+	desc = "Płytka drukowana: silos rudy."
 	id = "ore_silo"
 	build_path = /obj/item/circuitboard/machine/ore_silo
 	category = list ("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/paystand
-	name = "Machine Design (Pay Stand)"
-	desc = "The circuit board for a paystand."
+	name = "Projekt maszyny (stojak płatniczy)"
+	desc = "Płytka drukowana: stojak płatniczy."
 	id = "paystand"
 	build_path = /obj/item/circuitboard/machine/paystand
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/board/fat_sucker
-	name = "Machine Design (Lipid Extractor)"
-	desc = "The circuit board for a lipid extractor."
+	name = "Projekt maszyny (ekstraktor lipidów)"
+	desc = "Płytka drukowana: ekstraktor lipidów."
 	id = "fat_sucker"
 	build_path = /obj/item/circuitboard/machine/fat_sucker
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/board/stasis
-	name = "Machine Design (Lifeform Stasis Unit)"
-	desc = "The circuit board for a stasis unit."
+	name = "Projekt maszyny (łóżko stazy)"
+	desc = "Płytka drukowana: łóżko stazy."
 	id = "stasis"
 	build_path = /obj/item/circuitboard/machine/stasis
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/board/component_printer
-	name = "Machine Design (Component Printer)"
-	desc = "The circuit board for a component printer"
+	name = "Projekt maszyny (drukarka komponentów)"
+	desc = "Płytka drukowana: drukarka komponentów."
 	id = "component_printer"
 	build_path = /obj/item/circuitboard/machine/component_printer
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/xenoa_listing_console
-	name = "Computer Design (Research and Development Listing Console)"
-	desc = "The circuit board for a research listing console."
+	name = "Projekt komputera (konsola ofert B+R)"
+	desc = "Płytka drukowana: konsola ofert B+R."
 	id = "xenoa_list_console"
 	build_path = /obj/item/circuitboard/computer/xenoarchaeology_console
 	category = list ("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/xenoa_scale
-	name = "Machine Design (Industrial Scale)"
-	desc = "The circuit board for an industrial scale."
+	name = "Projekt maszyny (waga przemysłowa)"
+	desc = "Płytka drukowana: waga przemysłowa."
 	id = "xenoa_scale"
 	build_path = /obj/item/circuitboard/machine/xenoarchaeology_machine/scale
 	category = list ("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/xenoa_conductor
-	name = "Machine Design (Conducting Plate)"
-	desc = "The circuit board for a conducting plate."
+	name = "Projekt maszyny (płyta przewodząca)"
+	desc = "Płytka drukowana: płyta przewodząca."
 	id = "xenoa_conductor"
 	build_path = /obj/item/circuitboard/machine/xenoarchaeology_machine/conductor
 	category = list ("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/xenoa_calibrator
-	name = "Machine Design (Anomalous Material Calibrator)"
-	desc = "The circuit board for an anomalous material calibrator."
+	name = "Projekt maszyny (kalibrator materiałów anomalnych)"
+	desc = "Płytka drukowana: kalibrator materiałów anomalnych."
 	id = "xenoa_calibrator"
 	build_path = /obj/item/circuitboard/machine/xenoarchaeology_machine/calibrator
 	category = list ("Research Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/fax
-	name = "Machine Design (Fax Machine)"
-	desc = "The circuit board for a fax machine."
+	name = "Projekt maszyny (faks)"
+	desc = "Płytka drukowana: faks."
 	id = "fax"
 	build_path = /obj/item/circuitboard/machine/fax
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SERVICE
 	category = list("Misc. Machinery")
 
 /datum/design/board/turnstile
-	name = "Machine Design (Turnstile)"
-	desc = "The circuit board for a turnstile machine."
+	name = "Projekt maszyny (bramka)"
+	desc = "Płytka drukowana: bramka obrotowa."
 	id = "turnstile"
 	build_path = /obj/item/circuitboard/machine/turnstile
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 	category = list("Misc. Machinery")
 
 /datum/design/board/genpop_interface
-	name = "Machine Design (Prisoner Management Interface)"
-	desc = "The circuit board for a prisonner management interface."
+	name = "Projekt maszyny (interfejs zarządzania więźniami)"
+	desc = "Płytka drukowana: interfejs zarządzania więźniami."
 	id = "genpop_interface"
 	build_path = /obj/item/electronics/genpop_interface
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY

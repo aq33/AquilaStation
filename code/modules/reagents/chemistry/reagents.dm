@@ -15,12 +15,12 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 //Hydroponics stuff
 
 /datum/reagent
-	var/name = "Reagent"
+	var/name = "Odczynnik"
 	var/description = ""
 	var/specific_heat = SPECIFIC_HEAT_DEFAULT		//J/(K*mol)
 	var/taste_description = "metaforyczna sól"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
-	var/glass_name = "glass of ...what?" // use for specialty drinks.
+	var/glass_name = "szklanka... czego?" // use for specialty drinks.
 	var/glass_desc = "Nie potrafisz stwierdzić, co to jest."
 	var/glass_icon_state = null // Otherwise just sets the icon to a normal glass with the mixture of the reagents in the glass.
 	var/shot_glass_icon_state = null

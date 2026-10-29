@@ -1,6 +1,6 @@
 /datum/weather/snow_storm
-	name = "snow storm"
-	desc = "Harsh snowstorms roam the topside of this arctic planet, burying any area unfortunate enough to be in its path."
+	name = "burza śnieżna"
+	desc = "Srogie zamiecie przetaczają się po powierzchni tej arktycznej planety i zasypują każde miejsce, które stanie im na drodze."
 	probability = 90
 
 	telegraph_message = "<span class='warning'>Unoszące się płatki śniegu zaczynają przyprószać okolicę..</span>"

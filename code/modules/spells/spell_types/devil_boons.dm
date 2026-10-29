@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/summon_wealth
-	name = "Summon wealth"
-	desc = "The reward for selling your soul."
+	name = "Przywołanie bogactwa"
+	desc = "Nagroda za sprzedaż duszy."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1
@@ -27,8 +27,8 @@
 			C.put_in_hands(item)
 
 /obj/effect/proc_holder/spell/targeted/view_range
-	name = "Distant vision"
-	desc = "The reward for selling your soul."
+	name = "Daleki wzrok"
+	desc = "Nagroda za sprzedaż duszy."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1
@@ -43,11 +43,11 @@
 	for(var/mob/C in targets)
 		if(!C.client)
 			continue
-		C.client.view_size.setTo((input("Wybierz zasięg widzenia:", "Range", 4) in ranges) - 7)
+		C.client.view_size.setTo((input("Wybierz zasięg widzenia:", "Zasięg", 4) in ranges) - 7)
 
 /obj/effect/proc_holder/spell/targeted/summon_friend
-	name = "Summon Friend"
-	desc = "The reward for selling your soul."
+	name = "Przywołanie przyjaciela"
+	desc = "Nagroda za sprzedaż duszy."
 	invocation_type = "none"
 	include_user = TRUE
 	range = -1

@@ -1,6 +1,6 @@
 /datum/action/changeling/teratoma
-	name = "Birth Teratoma"
-	desc = "Our form divides, creating an egg that will soon hatch into a living tumor, fixated on causing mayhem"
+	name = "Zrodź teratomę"
+	desc = "Nasza postać się dzieli i tworzy jajo, z którego wkrótce wykluje się żywy guz, ogarnięty żądzą siania chaosu."
 	helptext = "Guz nie będzie lojalny wobec nas ani naszej sprawy. Kosztuje dwa wchłonięcia."
 	button_icon_state = "spread_infestation"
 	chemical_cost = 60

@@ -1,8 +1,8 @@
 // AQUILA - port z Yogstation (yogstation/code/datums/mutations/alcohol.dm)
 
 /datum/mutation/alcohol_tolerance
-	name = "Alcohol Tolerance"
-	desc = "A hyperactive liver improves the patient's ability to metabolize alcohol."
+	name = "Tolerancja alkoholu"
+	desc = "Nadaktywna wątroba sprawia, że pacjent lepiej rozkłada alkohol."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja wątroba czuje się wspaniale.</span>"
 	text_lose_indication = "<span class='danger'>Twoja wątroba jest smutna.</span>"
@@ -10,8 +10,8 @@
 	mutation_traits = list(TRAIT_ALCOHOL_TOLERANCE)
 
 /datum/mutation/alcohol_generate
-	name = "Auto-brewery Syndrome"
-	desc = "The patient's body now naturally produces alcohol into their bloodstream."
+	name = "Zespół autobrowaru"
+	desc = "Organizm pacjenta sam wytwarza alkohol we krwi."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Boli cię wątroba.</span>"
 	text_lose_indication = "<span class='notice'>Twoja wątroba czuje się lepiej.</span>"

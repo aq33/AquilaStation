@@ -4,8 +4,8 @@
 
 //Botanist
 /obj/item/clothing/suit/apron
-	name = "apron"
-	desc = "A basic blue apron."
+	name = "fartuch"
+	desc = "Zwykły niebieski fartuch."
 	icon_state = "apron"
 	item_state = "apron"
 	blood_overlay_type = "armor"
@@ -15,8 +15,8 @@
 
 //Captain
 /obj/item/clothing/suit/captunic
-	name = "captain's parade tunic"
-	desc = "Worn by a Captain to show their class."
+	name = "paradna tunika kapitana"
+	desc = "Kapitan nosi ją, żeby pokazać klasę."
 	icon_state = "captunic"
 	item_state = "bio_suit"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -25,20 +25,20 @@
 
 //Chef
 /obj/item/clothing/suit/toggle/chef
-	name = "chef's apron"
-	desc = "An apron-jacket used by a high class chef."
+	name = "fartuch szefa kuchni"
+	desc = "Fartuch z rękawami, jaki nosi szef kuchni wysokiej klasy."
 	icon_state = "chef"
 	item_state = "chef"
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = CHEST|GROIN|ARMS
 	allowed = list(/obj/item/kitchen)
-	togglename = "sleeves"
+	togglename = "rękawy"
 
 //Cook
 /obj/item/clothing/suit/apron/chef
-	name = "cook's apron"
-	desc = "A basic, dull, white chef's apron."
+	name = "fartuch kucharza"
+	desc = "Zwykły, nudny, biały fartuch kucharski."
 	icon_state = "apronchef"
 	item_state = "apronchef"
 	blood_overlay_type = "armor"
@@ -47,8 +47,8 @@
 
 //Detective
 /obj/item/clothing/suit/det_suit
-	name = "trenchcoat"
-	desc = "An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business."
+	name = "trencz"
+	desc = "Wielofunkcyjny trencz z XVIII wieku. Kto go nosi, ten nie żartuje."
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
@@ -62,20 +62,20 @@
 	allowed = GLOB.detective_vest_allowed
 
 /obj/item/clothing/suit/det_suit/grey
-	name = "noir trenchcoat"
-	desc = "A hard-boiled private investigator's grey trenchcoat."
+	name = "trencz noir"
+	desc = "Szary trencz twardego prywatnego detektywa."
 	icon_state = "greydet"
 	item_state = "greydet"
 
 /obj/item/clothing/suit/det_suit/noir
-	name = "noir suit coat"
-	desc = "A dapper private investigator's grey suit coat."
+	name = "marynarka noir"
+	desc = "Szara marynarka eleganckiego prywatnego detektywa."
 	icon_state = "detsuit"
 	item_state = "detsuit"
 
 //Brig Phys
 /obj/item/clothing/suit/hazardvest/brig_physician
-	name = "brig physician's vest"
+	name = "kamizelka Lekarza Więziennego"
 	desc = "Lekka kamizelka noszona przez lekarza aresztu."
 	icon_state = "brig_phys_vest"
 	item_state = "sec_helm"//looks kinda similar, I guess
@@ -84,8 +84,8 @@
 
 //Engineering
 /obj/item/clothing/suit/hazardvest
-	name = "hazard vest"
-	desc = "A high-visibility vest used in work zones."
+	name = "kamizelka odblaskowa"
+	desc = "Kamizelka o wysokiej widoczności, noszona w strefach robót."
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
@@ -95,22 +95,22 @@
 
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
-	name = "blue suit jacket"
+	name = "niebieska marynarka"
 	desc = "Elegancka marynarka."
 	icon_state = "suitjacket_blue"
 	item_state = "suitjacket_blue"
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
-	togglename = "buttons"
+	togglename = "guziki"
 
 /obj/item/clothing/suit/toggle/lawyer/purple
-	name = "purple suit jacket"
+	name = "fioletowa marynarka"
 	desc = "Fircykowata marynarka."
 	icon_state = "suitjacket_purp"
 	item_state = "suitjacket_purp"
 
 /obj/item/clothing/suit/toggle/lawyer/black
-	name = "black suit jacket"
+	name = "czarna marynarka"
 	desc = "Profesjonalna marynarka."
 	icon_state = "suitjacket_black"
 	item_state = "ro_suit"
@@ -118,45 +118,45 @@
 
 //Mime
 /obj/item/clothing/suit/suspenders
-	name = "suspenders"
-	desc = "They suspend the illusion of the mime's play."
+	name = "szelki"
+	desc = "Podtrzymują iluzję gry mima."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 
 //Security
 /obj/item/clothing/suit/security/officer
-	name = "security officer's jacket"
-	desc = "This jacket is for those special occasions when a security officer isn't required to wear their armor."
+	name = "kurtka policyjna"
+	desc = "Kurtka na te szczególne okazje, kiedy policjant nie musi nosić pancerza."
 	icon_state = "officerbluejacket"
 	item_state = "officerbluejacket"
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/security/warden
-	name = "warden's jacket"
-	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
+	name = "kurtka Naczelnika"
+	desc = "Idealna dla Naczelnika, który chce zrobić stylowe wrażenie na odwiedzających areszt."
 	icon_state = "wardenbluejacket"
 	item_state = "wardenbluejacket"
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/security/hos
-	name = "head of security's jacket"
-	desc = "This piece of clothing was specifically designed for asserting superior authority."
+	name = "kurtka Komendanta"
+	desc = "Ten element garderoby zaprojektowano specjalnie po to, by podkreślać wyższy autorytet."
 	icon_state = "hosbluejacket"
 	item_state = "hosbluejacket"
 	body_parts_covered = CHEST|ARMS
 
 //Surgeon
 /obj/item/clothing/suit/apron/surgical
-	name = "surgical apron"
-	desc = "A sterile blue surgical apron."
+	name = "fartuch chirurgiczny"
+	desc = "Sterylny niebieski fartuch chirurgiczny."
 	icon_state = "surgical"
 	allowed = list(/obj/item/scalpel, /obj/item/surgical_drapes, /obj/item/cautery, /obj/item/hemostat, /obj/item/retractor)
 
 //Curator
 /obj/item/clothing/suit/curator
-	name = "treasure hunter's coat"
-	desc = "Both fashionable and lightly armoured, this jacket is favoured by treasure hunters the galaxy over."
+	name = "płaszcz łowcy skarbów"
+	desc = "Modna i lekko opancerzona kurtka, ulubiona przez łowców skarbów w całej galaktyce."
 	icon_state = "curator"
 	item_state = "curator"
 	blood_overlay_type = "coat"
@@ -169,16 +169,16 @@
 //Roboticist
 
 /obj/item/clothing/suit/hooded/techpriest
-	name = "techpriest robes"
-	desc = "For those who REALLY love their toasters."
+	name = "szaty technokapłana"
+	desc = "Dla tych, którzy NAPRAWDĘ kochają swoje tostery."
 	icon_state = "techpriest"
 	item_state = "techpriest"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/techpriest
 
 /obj/item/clothing/head/hooded/techpriest
-	name = "techpriest's hood"
-	desc = "A hood for those who REALLY love their toasters."
+	name = "kaptur technokapłana"
+	desc = "Kaptur dla tych, którzy NAPRAWDĘ kochają swoje tostery."
 	icon_state = "techpriesthood"
 	item_state = "techpriesthood"
 	body_parts_covered = HEAD

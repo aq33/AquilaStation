@@ -27,7 +27,7 @@
 // MOTION
 /obj/machinery/camera/motion
 	start_active = TRUE
-	name = "motion-sensitive security camera"
+	name = "kamera ochrony z czujnikiem ruchu"
 
 /obj/machinery/camera/motion/Initialize(mapload)
 	. = ..()
@@ -129,12 +129,12 @@
 	var/obj/structure/camera_assembly/assembly = assembly_ref?.resolve()
 
 	if(name == initial(name))
-		name = "motion-sensitive security camera"
+		name = "kamera ochrony z czujnikiem ruchu"
 	if(!assembly.proxy_module)
 		assembly.proxy_module = new(assembly)
 	upgrades |= CAMERA_UPGRADE_MOTION
 
 /obj/machinery/camera/proc/removeMotion()
-	if(name == "motion-sensitive security camera")
-		name = "security camera"
+	if(name == "kamera ochrony z czujnikiem ruchu")
+		name = "kamera ochrony"
 	upgrades &= ~CAMERA_UPGRADE_MOTION

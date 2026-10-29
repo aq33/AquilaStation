@@ -1,6 +1,6 @@
 /datum/action/changeling/mimicvoice
-	name = "Mimic Voice"
-	desc = "We shape our vocal glands to sound like a desired voice. Maintaining this power slows chemical production."
+	name = "Naśladuj głos"
+	desc = "Kształtujemy gruczoły głosowe tak, by brzmieć jak wybrany głos. Utrzymywanie tej zdolności spowalnia produkcję chemikaliów."
 	button_icon_state = "mimic_voice"
 	helptext = "Zmienia twój głos na głos osoby o podanym imieniu."
 	chemical_cost = 0

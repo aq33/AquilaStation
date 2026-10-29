@@ -21,8 +21,8 @@ Difficulty: Medium
 */
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner
-	name = "blood-drunk miner"
-	desc = "A miner destined to wander forever, engaged in an endless hunt."
+	name = "górnik upojony krwią"
+	desc = "Górnik skazany na wieczną tułaczkę i niekończące się polowanie."
 	health = 900
 	maxHealth = 900
 	icon_state = "miner"
@@ -45,7 +45,7 @@ Difficulty: Medium
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
-	gps_name = "Drunk Signal"
+	gps_name = "Pijany sygnał"
 	achievement_type = /datum/award/achievement/boss/blood_miner_kill
 	crusher_achievement_type = /datum/award/achievement/boss/blood_miner_crusher
 	score_achievement_type = /datum/award/score/blood_miner_score
@@ -67,21 +67,21 @@ Difficulty: Medium
 	miner_saw = new(src)
 
 /datum/action/innate/megafauna_attack/dash
-	name = "Dash To Target"
+	name = "Doskocz do celu"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz doskakujesz do celu.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/kinetic_accelerator
-	name = "Fire Kinetic Accelerator"
+	name = "Strzel z kinetycznego akceleratora"
 	icon_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "kineticgun"
 	chosen_message = "<span class='colossus'>Teraz strzelasz z akceleratora kinetycznego.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/transform_weapon
-	name = "Transform Weapon"
+	name = "Przekształć broń"
 	icon_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "cleaving_saw"
 	chosen_message = "<span class='colossus'>Teraz przekształcasz swoją broń.</span>"

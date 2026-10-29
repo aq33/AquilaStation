@@ -1,6 +1,6 @@
 /datum/action/changeling/resonant_shriek
-	name = "Resonant Shriek"
-	desc = "Our lungs and vocal cords shift, allowing us to briefly emit a noise that deafens and confuses the weak-minded. Costs 30 chemicals."
+	name = "Rezonujący wrzask"
+	desc = "Nasze płuca i struny głosowe zmieniają się, dzięki czemu na chwilę wydajemy dźwięk, który ogłusza i dezorientuje słabe umysły. Kosztuje 30 chemikaliów."
 	helptext = "Emituje dźwięk o wysokiej częstotliwości, który dezorientuje i ogłusza ludzi, rozbija pobliskie lampy i przeciąża czujniki cyborgów."
 	button_icon_state = "resonant_shriek"
 	chemical_cost = 30
@@ -30,8 +30,8 @@
 	return TRUE
 
 /datum/action/changeling/dissonant_shriek
-	name = "Dissonant Shriek"
-	desc = "We shift our vocal cords to release a high-frequency sound that overloads nearby electronics. Costs 25 chemicals."
+	name = "Dysonansowy wrzask"
+	desc = "Zmieniamy struny głosowe, by wydać dźwięk o wysokiej częstotliwości, który przeciąża pobliską elektronikę. Kosztuje 25 chemikaliów."
 	button_icon_state = "dissonant_shriek"
 	chemical_cost = 25
 	dna_cost = 2

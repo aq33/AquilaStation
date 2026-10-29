@@ -1398,6 +1398,7 @@
 #include "code\modules\unit_tests\aquila_gun_fire_without_params.dm"
 #include "code\modules\unit_tests\aquila_heart_blood.dm"
 #include "code\modules\unit_tests\aquila_plumbing.dm"
+#include "code\modules\unit_tests\aquila_reagent_name_keys.dm"
 #include "code\modules\unit_tests\aquila_hygiene.dm"
 #include "code\modules\unit_tests\aquila_iv_drip_beam.dm"
 #include "code\modules\unit_tests\aquila_infiltrator_uplink.dm"

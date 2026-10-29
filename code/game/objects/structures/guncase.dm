@@ -1,7 +1,7 @@
 //GUNCASES//
 /obj/structure/guncase
-	name = "gun locker"
-	desc = "A locker that holds guns."
+	name = "szafka na broń"
+	desc = "Szafka do przechowywania broni."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "shotguncase"
 	anchored = FALSE
@@ -105,14 +105,14 @@
 				SSexplosions.low_mov_atom += thing
 
 /obj/structure/guncase/shotgun
-	name = "shotgun locker"
-	desc = "A locker that holds shotguns."
+	name = "szafka na strzelby"
+	desc = "Szafka do przechowywania strzelb."
 	case_type = "shotgun"
 	gun_category = /obj/item/gun/ballistic/shotgun
 
 /obj/structure/guncase/ecase
-	name = "energy gun locker"
-	desc = "A locker that holds energy guns."
+	name = "szafka na broń energetyczną"
+	desc = "Szafka do przechowywania broni energetycznej."
 	icon_state = "ecase"
 	case_type = "egun"
 	gun_category = /obj/item/gun/energy/e_gun

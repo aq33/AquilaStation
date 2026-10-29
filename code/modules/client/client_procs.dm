@@ -6,9 +6,9 @@
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 1MB //Could probably do with being lower.
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
-	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
-	"1428" = "bug causing right-click menus to show too many verbs that's been fixed in version 1429",
+	"1407" = "błąd, przez który nadpisania wyświetlania klienta nie działają, więc gracze widzą rzeczy i moby, których nie powinni widzieć",
+	"1408" = "błąd, przez który nadpisania wyświetlania klienta nie działają, więc gracze widzą rzeczy i moby, których nie powinni widzieć",
+	"1428" = "błąd, przez który menu prawego przycisku pokazuje za dużo verbów (naprawiony w wersji 1429)",
 
 	))
 
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				topiclimiter[ADMINSWARNED_AT] = minute
 				msg += " Administracja została powiadomiona."
 				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
-				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
+				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] przekroczył minutowy limit wywołań Topic ([mtl] w ciągu jednej minuty gry)")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
 
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					autorank = R
 					break
 			if(!autorank)
-				to_chat(world, "Autoadmin rank not found")
+				to_chat(world, "Nie znaleziono rangi autoadmina")
 			else
 				new /datum/admins(autorank, ckey)
 	if(CONFIG_GET(flag/enable_localhost_rank) && !connecting_admin)
@@ -279,27 +279,35 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 			var/client/C = GLOB.directory[joined_player_ckey]
 			var/in_round = ""
+			var/in_round_pl = "" // AQ EDIT: osobne teksty dla message_admins, log zostaje po angielsku
 			if (joined_players[joined_player_ckey])
 				in_round = " who has played in the current round"
+				in_round_pl = ", który grał w bieżącej rundzie"
 			var/message_type = "Notice"
+			var/message_type_pl = "Uwaga"
 
 			var/matches
+			var/matches_pl
 			if(joined_player_preferences.last_ip == address)
 				matches += "IP ([address])"
+				matches_pl += "IP ([address])"
 			if(joined_player_preferences.last_id == computer_id)
 				if(matches)
 					matches = "BOTH [matches] and "
+					matches_pl = "zarówno [matches_pl], jak i "
 					alert_admin_multikey = TRUE
 					message_type = "MULTIKEY"
+					message_type_pl = "MULTIKEY"
 				matches += "Computer ID ([computer_id])"
+				matches_pl += "Computer ID ([computer_id])"
 				alert_mob_dupe_login = TRUE
 
 			if(matches)
 				if(C)
-					message_admins("<span class='danger'><B>[message_type]: </B></span><span class='notice'>Connecting player [key_name_admin(src)] has the same [matches] as [key_name_admin(C)]<b>[in_round]</b>.</span>")
+					message_admins("<span class='danger'><B>[message_type_pl]: </B></span><span class='notice'>Łączący się gracz [key_name_admin(src)] ma to samo [matches_pl] co [key_name_admin(C)]<b>[in_round_pl]</b>.</span>")
 					log_admin_private("[message_type]: Connecting player [key_name(src)] has the same [matches] as [key_name(C)][in_round].")
 				else
-					message_admins("<span class='danger'><B>[message_type]: </B></span><span class='notice'>Connecting player [key_name_admin(src)] has the same [matches] as [joined_player_ckey](no longer logged in)<b>[in_round]</b>.</span> ")
+					message_admins("<span class='danger'><B>[message_type_pl]: </B></span><span class='notice'>Łączący się gracz [key_name_admin(src)] ma to samo [matches_pl] co [joined_player_ckey] (już niezalogowany)<b>[in_round_pl]</b>.</span> ")
 					log_admin_private("[message_type]: Connecting player [key_name(src)] has the same [matches] as [joined_player_ckey](no longer logged in)[in_round].")
 	if(GLOB.player_details[ckey])
 		player_details = GLOB.player_details[ckey]
@@ -314,7 +322,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)
-			message_admins("<span class='adminnotice'>[key_name(src)] has been detected as spoofing their byond version. Connection rejected.</span>")
+			message_admins("<span class='adminnotice'>[key_name(src)] podrabia wersję BYOND. Połączenie odrzucone.</span>")
 			add_system_note("Spoofed-Byond-Version", "Wykryto podrabianą wersję BYOND.")
 			log_access("Failed Login: [key] - Spoofed byond version")
 			qdel(src)
@@ -350,7 +358,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/dupe_login_message = "Twój ComputerID zalogował się już w tej rundzie z innego konta - wyloguj się z tego NATYCHMIAST albo ryzykujesz bana!"
 		if (alert_admin_multikey)
 			dupe_login_message += "\nAdmini zostali powiadomieni."
-			message_admins("<span class='danger'><B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.</span>")
+			message_admins("<span class='danger'><B>MULTIKEYING: </B></span><span class='notice'>[key_name_admin(src)] ma ten sam CID i IP co inny gracz, więc najwyraźniej gra na kilku kontach. Dostał ostrzeżenie, że ma opuścić serwer, bo inaczej ryzykuje bana.</span>")
 			log_admin_private("MULTIKEYING: [key_name(src)] has a matching CID+IP with another player and is clearly multikeying. They have been warned to leave the server or risk getting banned.")
 		spawn(0.5 SECONDS) //needs to run during world init, do not convert to add timer
 			alert(mob, dupe_login_message) //players get banned if they don't see this message, do not convert to tgui_alert (or even tg_alert) please.
@@ -423,15 +431,15 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum_safe(cached_player_age) && cached_player_age == -1) //first connection
 		if (nnpa >= 0)
-			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
+			message_admins("Nowy gracz: [key_name_admin(src)] łączy się tu po raz pierwszy.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
 				send2tgs_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum_safe(cached_player_age) && cached_player_age < nnpa)
-		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age==1?"":"s")]")
+		message_admins("Nowy gracz: [key_name_admin(src)] właśnie się połączył. Staż na serwerze (dni): [cached_player_age]")
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
 	if(account_age >= 0 && account_age < nnpa)
-		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
+		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) to nowe konto BYOND. Wiek konta (dni): [account_age], utworzone [account_join_date].")
 		if (CONFIG_GET(flag/irc_first_connection_alert))
 			send2tgs_adminless_only("new_byond_user", "[key_name(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age==1?"":"s")] old, created on [account_join_date].")
 	get_message_output("watchlist entry", ckey)
@@ -510,7 +518,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/generate_uuid()
 	if(IsAdminAdvancedProcCall())
 		log_admin("Attempted admin generate_uuid() proc call blocked.")
-		message_admins("Attempted admin generate_uuid() proc call blocked.")
+		message_admins("Zablokowano próbę wywołania procki generate_uuid() przez admina.")
 		return FALSE
 
 	var/fiftyfifty = prob(50) ? FEMALE : MALE
@@ -532,7 +540,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/fetch_uuid()
 	if(IsAdminAdvancedProcCall())
 		log_admin("Attempted admin fetch_uuid() proc call blocked.")
-		message_admins("Attempted admin fetch_uuid() proc call blocked.")
+		message_admins("Zablokowano próbę wywołania procki fetch_uuid() przez admina.")
 		return FALSE
 
 	if(!SSdbcore.Connect())
@@ -580,9 +588,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				"Czuję się samotny :(",\
 				"Jestem taki samotny :(",\
 				"Czemu nikt mnie nie kocha? :(",\
-				"I want a man :(",\
+				"Chcę mieć kogoś :(",\
 				"Gdzie się wszyscy podziali?",\
-				"I need a hug :(",\
+				"Potrzebuję przytulasa :(",\
 				"Niech ktoś mnie przytuli :(",\
 				"Potrzebuję kogoś przy sobie :(",\
 				"Co się stało? Gdzie się wszyscy podziali?",\
@@ -665,7 +673,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				var/reject_message = "Failed Login: [key] - [client_is_in_db ? "":"New "]Account attempting to connect during panic bunker, but\
 					[living_recs == -1 ? " was rejected due to no prior connections to game servers (no database entry)":" they do not have the required living time [minutes]/[living_recs]"]."
 				log_access(reject_message)
-				message_admins("<span class='adminnotice'>[reject_message]</span>")
+				// AQ EDIT: polska wersja dla adminów, log zostaje po angielsku
+				var/reject_message_pl = "Odrzucone logowanie: [key] – [client_is_in_db ? "konto":"nowe konto"] próbuje się połączyć podczas panic bunkra, ale[living_recs == -1 ? " nie ma wcześniejszych połączeń z serwerami gry (brak wpisu w bazie danych)":" nie ma wymaganego czasu gry żywą postacią: [minutes]/[living_recs]"]."
+				message_admins("<span class='adminnotice'>[reject_message_pl]</span>")
 				var/message = CONFIG_GET(string/panic_bunker_message)
 				message = replacetext(message, "%minutes%", living_recs)
 				to_chat_immediate(src, message)
@@ -825,7 +835,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (oldcid)
 		if (!topic || !topic["token"] || !tokens[ckey] || topic["token"] != tokens[ckey])
 			if (!cidcheck_spoofckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name(src)] appears to have attempted to spoof a cid randomizer check.</span>")
+				message_admins("<span class='adminnotice'>[key_name(src)] najwyraźniej próbował oszukać sprawdzanie randomizera CID.</span>")
 				cidcheck_spoofckeys[ckey] = TRUE
 			cidcheck[ckey] = computer_id
 			tokens[ckey] = cid_check_reconnect()
@@ -845,7 +855,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat_immediate(src, "<span class='danger'>Nieprawidłowy ComputerID (podrobiony). Usuń program podrabiający ComputerID z instalacji BYOND i spróbuj ponownie.</span>")
 
 			if (!cidcheck_failedckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name(src)] has been detected as using a cid randomizer. Connection rejected.</span>")
+				message_admins("<span class='adminnotice'>[key_name(src)] używa randomizera CID. Połączenie odrzucone.</span>")
 				send2tgs_adminless_only("CidRandomizer", "[key_name(src)] has been detected as using a cid randomizer. Connection rejected.")
 				cidcheck_failedckeys[ckey] = TRUE
 				note_randomizer_user()
@@ -856,11 +866,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			return TRUE
 		else
 			if (cidcheck_failedckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name_admin(src)] has been allowed to connect after showing they removed their cid randomizer</span>")
+				message_admins("<span class='adminnotice'>[key_name_admin(src)] może się połączyć, bo usunął randomizer CID</span>")
 				send2tgs_adminless_only("CidRandomizer", "[key_name(src)] has been allowed to connect after showing they removed their cid randomizer.")
 				cidcheck_failedckeys -= ckey
 			if (cidcheck_spoofckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name_admin(src)] has been allowed to connect after appearing to have attempted to spoof a cid randomizer check because it <i>appears</i> they aren't spoofing one this time</span>")
+				message_admins("<span class='adminnotice'>[key_name_admin(src)] może się połączyć mimo wcześniejszej próby oszukania sprawdzania randomizera CID, bo tym razem <i>wygląda na to</i>, że nic nie podrabia</span>")
 				cidcheck_spoofckeys -= ckey
 			cidcheck -= ckey
 	else if (computer_id != lastcid)
@@ -921,7 +931,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (CONFIG_GET(string/ipintel_email))
 		var/datum/ipintel/res = get_ip_intel(address)
 		if (res.intel >= CONFIG_GET(number/ipintel_rating_bad))
-			message_admins("<span class='adminnotice'>Proxy Detection: [key_name_admin(src)] IP intel rated [res.intel*100]% likely to be a Proxy/VPN.</span>")
+			message_admins("<span class='adminnotice'>Wykrywanie proxy: według IP intel [key_name_admin(src)] z prawdopodobieństwem [res.intel*100]% używa proxy/VPN.</span>")
 		ip_intel = res.intel
 
 /client/Click(atom/object, atom/location, control, params)
@@ -952,10 +962,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				msg += " Administracja została powiadomiona."
 				if (ab)
 					log_game("[key_name(src)] is using the middle click aimbot exploit")
-					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] is using the middle click aimbot exploit</span>")
+					message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] używa exploita aimbota na środkowy przycisk myszy</span>")
 					add_system_note("aimbot", "Is using the middle click aimbot exploit")
 				log_game("[key_name(src)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
-				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] Has hit the per-minute click limit of [mcl] clicks in a given game minute")
+				message_admins("[ADMIN_LOOKUPFLW(src)] [ADMIN_KICK(usr)] przekroczył minutowy limit kliknięć ([mcl] w ciągu jednej minuty gry)")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
 
@@ -1099,17 +1109,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/show_account_identifier()
 	set name = "Show Account Identifier"
 	set category = "OOC"
-	set desc ="Get your ID for account verification."
+	set desc ="Pokaż identyfikator do weryfikacji konta."
 
 	remove_verb(/client/proc/show_account_identifier)
 	addtimer(CALLBACK(src, PROC_REF(restore_account_identifier)), 20) //Don't DoS DB queries, asshole
 
-	var/confirm = alert("NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Yes", "Cancel")
-	if(confirm != "Yes")
+	var/confirm = alert("NIE udostępniaj nikomu identyfikatora weryfikacyjnego z następnego okienka. Rozumiesz?", "Ważne ostrzeżenie", "Tak", "Anuluj")
+	if(confirm != "Tak")
 		return
 	var/uuid = fetch_uuid()
 	if(!uuid)
-		alert("Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "Okay")
+		alert("Nie udało się pobrać identyfikatora weryfikacyjnego. Spróbuj później. Jeśli problem się powtarza, powiedz adminowi.", "Weryfikacja konta", "OK")
 		log_sql("Failed to fetch UUID for [key_name(src)]")
 	else
 		var/dat
@@ -1151,7 +1161,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 				continue
 
 			to_chat_immediate(src, "<span class='userdanger'>Połączenie zostało zamknięte, bo masz obecnie bana.</span>")
-			message_admins("[key_name(src)] was removed from the game due to a ban from BeeStation.")
+			message_admins("[key_name(src)] został usunięty z gry z powodu bana z BeeStation.")
 			qdel(src)
 			return
 

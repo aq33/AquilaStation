@@ -11,8 +11,8 @@ GENE SCANNER
 
 */
 /obj/item/t_scanner
-	name = "\improper T-ray scanner"
-	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	name = "\improper skaner T-ray"
+	desc = "Emiter i skaner promieni terahercowych do wykrywania obiektów pod podłogą, takich jak kable i rury."
 	custom_price = 10
 	icon = 'icons/obj/device.dmi'
 	icon_state = "t-ray0"
@@ -72,13 +72,13 @@ GENE SCANNER
 		flick_overlay(t_ray_images, list(viewer.client), flick_time)
 
 /obj/item/healthanalyzer
-	name = "health analyzer"
+	name = "analizator zdrowia"
 	icon = 'aquila/icons/obj/device.dmi' //AQUILA EDIT original was icons/obj/device.dmi
 	icon_state = "health"
 	item_state = "healthanalyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	desc = "Ręczny skaner ciała, który odczytuje funkcje życiowe badanego."
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -116,7 +116,7 @@ GENE SCANNER
 		to_chat(user, "<span class='info'>Temperatura ciała: ???</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] analyzes [M]'s vitals.</span>", \
+	user.visible_message("<span class='notice'>[user] analizuje funkcje życiowe [M].</span>", \
 						"<span class='notice'>Analizujesz funkcje życiowe [M].</span>")
 
 	if(scanmode == 0)
@@ -184,11 +184,11 @@ GENE SCANNER
 				var/trauma_desc = ""
 				switch(B.resilience)
 					if(TRAUMA_RESILIENCE_SURGERY)
-						trauma_desc += "severe "
+						trauma_desc += "ciężki uraz: "
 					if(TRAUMA_RESILIENCE_LOBOTOMY)
-						trauma_desc += "deep-rooted "
+						trauma_desc += "głęboko zakorzeniony uraz: "
 					if(TRAUMA_RESILIENCE_MAGIC, TRAUMA_RESILIENCE_ABSOLUTE)
-						trauma_desc += "permanent "
+						trauma_desc += "trwały uraz: "
 				trauma_desc += B.scan_desc
 				trauma_text += trauma_desc
 			message += "\t<span class='alert'>Wykryto urazy mózgowe: [english_list(trauma_text)].</span>"
@@ -369,7 +369,7 @@ GENE SCANNER
 		else if(S.mutantstomach != initial(S.mutantstomach))
 			mutant = TRUE
 
-		message += "<span class='info'>Species: <span class='[H.species_examine_font()]'>[S.name][mutant ? "-derived mutant" : ""]</span></span>" //NSV13 - species name is colored depending on special conditions.
+		message += "<span class='info'>Gatunek: <span class='[H.species_examine_font()]'>[S.name][mutant ? " (mutant)" : ""]</span></span>" //NSV13 - species name is colored depending on special conditions.
 	message += "<span class='info'>Temperatura ciała: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>"
 
 	// Time of death
@@ -456,14 +456,14 @@ GENE SCANNER
 		to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")))
 
 /obj/item/healthanalyzer/advanced
-	name = "advanced health analyzer"
+	name = "zaawansowany analizator zdrowia"
 	icon_state = "health_adv"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
+	desc = "Ręczny skaner ciała, który z dużą dokładnością odczytuje funkcje życiowe badanego."
 	advanced = TRUE
 
 /obj/item/analyzer
-	desc = "A hand-held environmental scanner which reports current gas levels. Alt-Click to use the built in barometer function."
-	name = "analyzer"
+	desc = "Ręczny skaner otoczenia, który podaje bieżące stężenia gazów. Alt-kliknij, by użyć wbudowanego barometru."
+	name = "analizator gazów"
 	custom_price = 10
 	icon = 'icons/obj/device.dmi'
 	icon_state = "analyzer"
@@ -593,7 +593,7 @@ GENE SCANNER
 	var/list/airs = islist(mixture) ? mixture : list(mixture)
 	for(var/g in airs)
 		if(airs.len > 1) //not a unary gas mixture
-			message += "<span class='boldnotice'>Node [airs.Find(g)]</span>"
+			message += "<span class='boldnotice'>Węzeł [airs.Find(g)]</span>"
 		var/datum/gas_mixture/air_contents = g
 
 		var/total_moles = air_contents.total_moles()
@@ -604,7 +604,7 @@ GENE SCANNER
 
 		if(total_moles > 0)
 			message += "<span class='notice'>Mole: [round(total_moles, 0.01)] mol</span>"
-			message += "<span class='notice'>Volume: [volume] L</span>"
+			message += "<span class='notice'>Objętość: [volume] L</span>"
 			message += "<span class='notice'>Ciśnienie: [round(pressure,0.01)] kPa</span>"
 
 			for(var/id in air_contents.get_gases())
@@ -632,7 +632,7 @@ GENE SCANNER
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles()
 
-	message += "<span class='info'><B>Results:</B></span>"
+	message += "<span class='info'><B>Wyniki:</B></span>"
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		message += "<span class='info'>Ciśnienie: [round(pressure, 0.01)] kPa</span>"
 	else
@@ -672,8 +672,8 @@ GENE SCANNER
 	to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")))
 
 /obj/item/analyzer/ranged
-	desc = "A hand-held scanner which uses advanced spectroscopy and infrared readings to analyze gases as a distance. Alt-Click to use the built in barometer function."
-	name = "long-range analyzer"
+	desc = "Ręczny skaner, który dzięki zaawansowanej spektroskopii i odczytom w podczerwieni analizuje gazy z odległości. Alt-kliknij, by użyć wbudowanego barometru."
+	name = "analizator gazów dalekiego zasięgu"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "ranged_analyzer"
 
@@ -688,8 +688,8 @@ GENE SCANNER
 //slime scanner
 
 /obj/item/slime_scanner
-	name = "slime scanner"
-	desc = "A device that analyzes a slime's internal composition and measures its stats."
+	name = "skaner szlamów"
+	desc = "Urządzenie, które analizuje wewnętrzny skład szlamu i mierzy jego parametry."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_spectrometer"
 	item_state = "analyzer"
@@ -715,14 +715,14 @@ GENE SCANNER
 	var/list/message = list()
 
 	message += "<b>Wyniki skanowania szlamu:</b>"
-	message += "<span class='notice'>[T.colour] [T.is_adult ? "adult" : "baby"] slime</span>"
-	message += "Nutrition: [T.nutrition]/[T.get_max_nutrition()]"
+	message += "<span class='notice'>Szlam: [T.colour], [T.is_adult ? "dorosły" : "młody"]</span>"
+	message += "Odżywienie: [T.nutrition]/[T.get_max_nutrition()]"
 	if(T.nutrition < T.get_starve_nutrition())
 		message += "<span class='warning'>Uwaga: szlam głoduje!</span>"
 	else if(T.nutrition < T.get_hunger_nutrition())
 		message += "<span class='warning'>Uwaga: szlam jest głodny</span>"
 	message += "Siła ładunku elektrycznego: [T.powerlevel]"
-	message += "Health: [round(T.health/T.maxHealth,0.01)*100]%"
+	message += "Zdrowie: [round(T.health/T.maxHealth,0.01)*100]%"
 	if(T.slime_mutation[4] == T.colour)
 		message += "Ten szlam nie ewoluuje dalej."
 	else
@@ -748,61 +748,61 @@ GENE SCANNER
 	if(T.transformeffects != SLIME_EFFECT_DEFAULT)
 		var/slimeeffect = "\nWykryto efekt ekstraktu transformującego: "
 		if(T.transformeffects & SLIME_EFFECT_GREY)
-			slimeeffect += "grey"
+			slimeeffect += "szary "
 		if(T.transformeffects & SLIME_EFFECT_ORANGE)
-			slimeeffect += "orange"
+			slimeeffect += "pomarańczowy "
 		if(T.transformeffects & SLIME_EFFECT_PURPLE)
-			slimeeffect += "purple"
+			slimeeffect += "fioletowy "
 		if(T.transformeffects & SLIME_EFFECT_BLUE)
-			slimeeffect += "blue"
+			slimeeffect += "niebieski "
 		if(T.transformeffects & SLIME_EFFECT_METAL)
-			slimeeffect += "metal"
+			slimeeffect += "metaliczny "
 		if(T.transformeffects & SLIME_EFFECT_YELLOW)
-			slimeeffect += "yellow"
+			slimeeffect += "żółty "
 		if(T.transformeffects & SLIME_EFFECT_DARK_PURPLE)
-			slimeeffect += "dark purple"
+			slimeeffect += "ciemnofioletowy "
 		if(T.transformeffects & SLIME_EFFECT_DARK_BLUE)
-			slimeeffect += "dark blue"
+			slimeeffect += "ciemnoniebieski "
 		if(T.transformeffects & SLIME_EFFECT_SILVER)
-			slimeeffect += "silver"
+			slimeeffect += "srebrny "
 		if(T.transformeffects & SLIME_EFFECT_BLUESPACE)
-			slimeeffect += "bluespace"
+			slimeeffect += "bluespace "
 		if(T.transformeffects & SLIME_EFFECT_SEPIA)
-			slimeeffect += "sepia"
+			slimeeffect += "sepiowy "
 		if(T.transformeffects & SLIME_EFFECT_CERULEAN)
-			slimeeffect += "cerulean"
+			slimeeffect += "lazurowy "
 		if(T.transformeffects & SLIME_EFFECT_PYRITE)
-			slimeeffect += "pyrite"
+			slimeeffect += "pirytowy "
 		if(T.transformeffects & SLIME_EFFECT_RED)
-			slimeeffect += "red"
+			slimeeffect += "czerwony "
 		if(T.transformeffects & SLIME_EFFECT_GREEN)
-			slimeeffect += "green"
+			slimeeffect += "zielony "
 		if(T.transformeffects & SLIME_EFFECT_PINK)
-			slimeeffect += "pink"
+			slimeeffect += "różowy "
 		if(T.transformeffects & SLIME_EFFECT_GOLD)
-			slimeeffect += "gold"
+			slimeeffect += "złoty "
 		if(T.transformeffects & SLIME_EFFECT_OIL)
-			slimeeffect += "oil"
+			slimeeffect += "oleisty "
 		if(T.transformeffects & SLIME_EFFECT_BLACK)
-			slimeeffect += "black"
+			slimeeffect += "czarny "
 		if(T.transformeffects & SLIME_EFFECT_LIGHT_PINK)
-			slimeeffect += "light pink"
+			slimeeffect += "jasnoróżowy "
 		if(T.transformeffects & SLIME_EFFECT_ADAMANTINE)
-			slimeeffect += "adamantine"
+			slimeeffect += "adamantytowy "
 		if(T.transformeffects & SLIME_EFFECT_RAINBOW)
-			slimeeffect += "rainbow"
+			slimeeffect += "tęczowy "
 		message += "<span class='notice'>[slimeeffect].</span>"
 	to_chat(user, EXAMINE_BLOCK(jointext(message, "\n")))
 
 
 /obj/item/nanite_scanner
-	name = "nanite scanner"
+	name = "skaner nanitów"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "nanite_scanner"
 	item_state = "nanite_remote"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "A hand-held body scanner able to detect nanites and their programming."
+	desc = "Ręczny skaner ciała, który wykrywa nanity i ich zaprogramowanie."
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -813,7 +813,7 @@ GENE SCANNER
 	materials = list(/datum/material/iron=200)
 
 /obj/item/nanite_scanner/attack(mob/living/M, mob/living/carbon/human/user)
-	user.visible_message("<span class='notice'>[user] analyzes [M]'s nanites.</span>", \
+	user.visible_message("<span class='notice'>[user] analizuje nanity [M].</span>", \
 						"<span class='notice'>Analizujesz nanity [M].</span>")
 
 	add_fingerprint(user)
@@ -823,13 +823,13 @@ GENE SCANNER
 		to_chat(user, "<span class='info'>Nie wykryto nanitów w pacjencie.</span>")
 
 /obj/item/sequence_scanner
-	name = "genetic sequence scanner"
+	name = "skaner sekwencji genetycznej"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gene"
 	item_state = "healthanalyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	desc = "A hand-held scanner for analyzing someones gene sequence on the fly. Hold near a DNA console to update the internal database."
+	desc = "Ręczny skaner do błyskawicznej analizy czyjejś sekwencji genów. Przytrzymaj przy konsoli DNA, by zaktualizować wewnętrzną bazę danych."
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
@@ -885,9 +885,9 @@ GENE SCANNER
 		full_list_mutations[each] = FALSE
 	for(var/datum/mutation/each_mutation in C.dna.mutations)
 		if(each_mutation.type in buffer)
-			full_list_mutations[each_mutation.type] = "Activated"
+			full_list_mutations[each_mutation.type] = "aktywowana"
 		else
-			full_list_mutations[each_mutation.type] = "Injected"
+			full_list_mutations[each_mutation.type] = "wstrzyknięta"
 	for(var/A in full_list_mutations) // pass full_list_mutations[A] as active_detail to show which mutations are active
 		message += "<span class='notice'>- [get_display_name(A)]</span>"
 	message += "<span class='info'>Stabilność genetyczna: [C.dna.stability]%.</span>"
@@ -928,17 +928,17 @@ GENE SCANNER
 /obj/item/sequence_scanner/proc/get_display_name(mutation, active_detail = FALSE)
 	var/datum/mutation/HM = GET_INITIALIZED_MUTATION(mutation)
 	if(!HM)
-		return "ERROR"
+		return "BŁĄD"
 	if(discovered[mutation])
 		return !active_detail ? "[HM.name] ([HM.alias])" : "<span class='green'>[HM.name] ([HM.alias]) - [active_detail]</span>"
 	else
 		return !active_detail ? HM.alias : "<span class='green'>[HM.alias] - [active_detail]</span>"
 
 /obj/item/extrapolator
-	name = "virus extrapolator"
+	name = "ekstrapolator wirusów"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "extrapolator_scan"
-	desc = "A bulky scanning device, used to extract genetic material of potential pathogens"
+	desc = "Nieporęczne urządzenie skanujące do pobierania materiału genetycznego potencjalnych patogenów"
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
@@ -1021,12 +1021,12 @@ GENE SCANNER
 				for(var/datum/symptom/S in A.symptoms)
 					to_chat(user, "<span class='info'><font color='BAB9B9'>[S.name]</font></span>")
 			else
-				to_chat(user, "<span class='info'><font color='green'><b>[A.name]</b>, stage [A.stage]/5</font></span>")
+				to_chat(user, "<span class='info'><font color='green'><b>[A.name]</b>, stadium [A.stage]/5</font></span>")
 				to_chat(user, "<span class='info'><b>[A] ma następujące objawy:</b></span>")
 				for(var/datum/symptom/S in A.symptoms)
 					to_chat(user, "<span class='info'>[S.name]</span>")
 		else
-			to_chat(user, "<span class='info'><font color='green'><b>[D.name]</b>, stage [D.stage]/[D.max_stages].</font></span>")
+			to_chat(user, "<span class='info'><font color='green'><b>[D.name]</b>, stadium [D.stage]/[D.max_stages].</font></span>")
 
 /obj/item/extrapolator/proc/extrapolate(atom/AM, var/list/diseases = list(), mob/user, isolate = FALSE, timer = 200)
 	var/list/advancediseases = list()
@@ -1078,8 +1078,8 @@ GENE SCANNER
 	if(!(user.get_item_for_held_index(user.active_hand_index) == src))
 		to_chat(user, "<span class='warning'>Ekstrapolator musi być w twojej aktywnej ręce, by działać!</span>")
 		return FALSE
-	B.name = "[A.name] culture bottle"
-	B.desc = "A small bottle. Contains [A.agent] culture in synthblood medium."
+	B.name = "butelka z kulturą: [A.name]"
+	B.desc = "Mała butelka. Zawiera kulturę ([A.agent]) w podłożu z syntetycznej krwi."
 	B.reagents.add_reagent(/datum/reagent/blood, 20, data)
 	user.put_in_hands(B)
 	playsound(src, 'sound/machines/ping.ogg', 30, TRUE)

@@ -20,38 +20,37 @@ const StructureAltar = (_props) => {
           float: 'left',
         }}
       />
-      The{' '}
       <Box inline textColor="red">
-        altar
+        Ołtarz
       </Box>{' '}
-      is a bloodstained altar dedicated to{' '}
+      to zakrwawiony ołtarz poświęcony{' '}
       <Box inline textColor="#aa1c1c">
         <b>Nar&apos;Sie</b>
       </Box>
-      , capable of producing 4 different items:
+      . Może wytworzyć 4 różne przedmioty:
       <br />
       <Box inline textColor="red">
-        <b>Eldritch Whetstone</b>
+        <b>Pradawna osełka</b>
       </Box>
-      : A bloody whetstone, used for sharpening your blades.
+      : zakrwawiona osełka do ostrzenia twoich ostrzy.
       <br />
       <Box inline textColor="red">
-        <b>Construct Shell</b>
+        <b>Powłoka konstruktu</b>
       </Box>
-      : An empty shell, which can turn into a construct whenever a soul stone is
-      placed within.
+      : pusta powłoka, która zmienia się w konstrukt, gdy umieścisz w niej
+      kamień duszy.
       <br />
       <Box inline textColor="red">
-        <b>Flask of Unholy Water</b>
+        <b>Flaszka nieświętej wody</b>
       </Box>
-      : A dark flask containing unholy water, which will heal believers, and
-      burn the veins of heretics.
+      : ciemna flaszka z nieświętą wodą, która leczy wiernych, a heretykom pali
+      żyły.
       <br />
       <Box inline textColor="red">
-        <b>Runic Golem Shell</b>
+        <b>Powłoka runicznego golema</b>
       </Box>
-      : A consecrated shell capable of binding a soul stone into a runic golem
-      construct.
+      : poświęcona powłoka, która wiąże kamień duszy w konstrukt runicznego
+      golema.
     </Box>
   );
 };
@@ -67,34 +66,33 @@ const StructureArchives = (_props) => {
           float: 'left',
         }}
       />
-      The{' '}
       <Box inline textColor="red">
-        archives
+        Archiwum
       </Box>{' '}
-      are a desk covered in the ancient manuscripts of the great{' '}
+      to biurko zawalone pradawnymi rękopisami wielkiej{' '}
       <Box inline textColor="#aa1c1c">
         <b>Nar&apos;Sie</b>
       </Box>
-      , capable of producing 3 different items:
+      . Może wytworzyć 3 różne przedmioty:
       <br />
       <Box inline textColor="red">
-        <b>Zealot&apos;s Blindfold</b>
+        <b>Opaska fanatyka</b>
       </Box>
-      : A blindfold which will, when worn by a believer, paradoxically allow
-      them to see in the dark.
+      : opaska na oczy, która, paradoksalnie, pozwala noszącemu ją wiernemu
+      widzieć w ciemności.
       <br />
       <Box inline textColor="red">
-        <b>Shuttle Curse</b>
+        <b>Klątwa promu</b>
       </Box>
-      : A mysterious orb, that will delay the emergency shuttle whenever it is
-      smashed. <i>This can only be used once.</i>
+      : tajemnicza kula, której rozbicie opóźnia prom ewakuacyjny.
+      <i>Działa tylko raz.</i>
       <br />
       <Box inline textColor="red">
-        <b>Veil Walker Set</b>
+        <b>Zestaw wędrowca zasłony</b>
       </Box>
-      : A set of two items - the <b>veil shifter</b>, which will allow you to
-      teleport quite a distance ahead up to 4 times, and the <b>void torch</b>,
-      which can instantly transport items to fellow believers.
+      : zestaw dwóch przedmiotów – <b>przesuwacza zasłony</b>, który do 4 razy
+      teleportuje cię spory kawałek do przodu, i <b>pochodni pustki</b>, która
+      natychmiast przenosi przedmioty do innych wiernych.
     </Box>
   );
 };
@@ -110,33 +108,33 @@ const StructureForge = (_props) => {
           float: 'left',
         }}
       />
-      The{' '}
       <Box inline textColor="red">
-        forge
+        Kuźnia demonów
       </Box>{' '}
-      is used to craft the unholy weapons for the armies of the great{' '}
+      służy do wykuwania nieświętej broni dla armii wielkiej{' '}
       <Box inline textColor="#aa1c1c">
         <b>Nar&apos;Sie</b>
       </Box>
-      , capable of producing 3 different items:
+      . Może wytworzyć 3 różne przedmioty:
       <br />
       <Box inline textColor="red">
-        <b>Shielded Robe</b>
+        <b>Szata z tarczą</b>
       </Box>
-      : Empowered robes, which will fully block a limited number of incoming
-      attacks for the user.
+      : wzmocnione szaty, które w całości blokują ograniczoną liczbę ataków na
+      noszącego.
       <br />
       <Box inline textColor="red">
-        <b>Flagellant&apos;s Robe</b>
+        <b>Szata biczownika</b>
       </Box>
-      : Robes blessed with bloody speed, which increase your vulnerability to
-      damage in exchange for allowing to you move at inhuman speeds.
+      : szaty pobłogosławione krwawą szybkością, które zwiększają twoją
+      podatność na obrażenia, ale pozwalają ci poruszać się z nieludzką
+      prędkością.
       <br />
       <Box inline textColor="red">
-        <b>Mirror Shield</b>
+        <b>Lustrzana tarcza</b>
       </Box>
-      : An unholy shield capable of summoning illusions to defend you, and it
-      can be thrown to knock people down.
+      : nieświęta tarcza, która przywołuje iluzje do twojej obrony. Można nią
+      też rzucić, żeby kogoś przewrócić.
     </Box>
   );
 };
@@ -152,19 +150,18 @@ const StructurePylon = (_props) => {
           float: 'left',
         }}
       />
-      The{' '}
       <Box inline textColor="red">
-        pylon
+        Pylon
       </Box>{' '}
-      is a floating crystal blessed by{' '}
+      to unoszący się kryształ pobłogosławiony przez{' '}
       <Box inline textColor="#aa1c1c">
         <b>Nar&apos;Sie</b>
       </Box>
-      , which will slowly convert nearly floors into runed floor tiles, and
-      heals nearby cultists.
+      . Powoli zamienia pobliską podłogę w runiczne płytki i leczy pobliskich
+      kultystów.
       <br />
-      Runed flooring is resistant to, albeit not immune to, atmospheric changes,
-      and allows runes to be drawn faster on top of it.
+      Runiczna podłoga jest odporna (choć nie całkowicie) na zmiany atmosfery, a
+      runy rysuje się na niej szybciej.
     </Box>
   );
 };
@@ -172,16 +169,16 @@ const StructurePylon = (_props) => {
 const StructureSection = (_props) => {
   const [tab, setTab] = useLocalState('structureTab', 1);
   return (
-    <Section title="Structures">
+    <Section title="Budowle">
       <Tabs>
         <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-          Altar
+          Ołtarz
         </Tabs.Tab>
         <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-          Archives
+          Archiwum
         </Tabs.Tab>
         <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-          Forge
+          Kuźnia
         </Tabs.Tab>
         <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
           Pylon
@@ -193,8 +190,8 @@ const StructureSection = (_props) => {
       {tab === 4 && <StructurePylon />}
       <br />
       <i>
-        All cult structures can be unanchored and reanchored by hitting them
-        with your ritual dagger.
+        Każdą budowlę kultu możesz odczepić od podłogi i przytwierdzić z
+        powrotem, uderzając ją sztyletem rytualnym.
       </i>
     </Section>
   );
@@ -207,37 +204,37 @@ const BloodMagicSection = (_props) => {
       <Stack.Item>
         <Tabs vertical>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Prepare Blood Magic
+            Przygotuj magię krwi
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Stun
+            Ogłuszenie
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-            Teleport
+            Teleportacja
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
-            Electromagnetic Pulse
+            Impuls elektromagnetyczny
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
-            Shadow Shackles
+            Kajdany cienia
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 6} onClick={() => setTab(6)}>
-            Twisted Construction
+            Wypaczona budowa
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
-            Summon Combat Equipment
+            Przywołaj sprzęt bojowy
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 8} onClick={() => setTab(8)}>
-            Summon Ritual Dagger
+            Przywołaj sztylet rytualny
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 9} onClick={() => setTab(9)}>
-            Hallucinations
+            Halucynacje
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 10} onClick={() => setTab(10)}>
-            Conceal Presence
+            Ukryj obecność
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 11} onClick={() => setTab(11)}>
-            Blood Rites
+            Rytuały krwi
           </Tabs.Tab>
         </Tabs>
       </Stack.Item>
@@ -254,19 +251,16 @@ const BloodMagicSection = (_props) => {
               }}
             />
             <Box inline textColor="red">
-              Prepare Blood Magic
+              Przygotuj magię krwi
             </Box>{' '}
-            allows you to carve runes into yourself in order to cast blood
-            magic. These are undetectable until they are used, and can help in
-            various situations.
+            pozwala ci wyryć na sobie runy, by rzucać magię krwi. Nie da się ich
+            wykryć, dopóki ich nie użyjesz, a przydają się w wielu sytuacjach.
             <br />
-            This only allows a maximum of 1 piece of magic to be carved into
-            you, however, with an <b>Empower</b> rune, you can carve up to 4
-            pieces of blood magic into you!
+            Normalnie możesz mieć na sobie tylko 1 zaklęcie, ale na runie
+            <b>Wzmocnienia</b> wyryjesz ich do 4!
             <br />
-            <b>Note</b>: Most blood magic is completely ineffective on holy
-            people (the chaplain) or someone with antimagic (i.e someone holding
-            an holymelon).
+            <b>Uwaga</b>: większość magii krwi nie działa na osoby święte
+            (kapłana) ani na kogoś z antymagią (np. trzymającego święty arbuz).
           </Box>
         )}
         {tab === 2 && (
@@ -276,27 +270,26 @@ const BloodMagicSection = (_props) => {
                 <i>Fuu ma&apos;jin!</i>
               </Box>
             </h2>
-            <b>Name</b>: Stun
+            <b>Nazwa</b>: Ogłuszenie
             <br />
-            <b>Charges</b>: 1
+            <b>Ładunki</b>: 1
             <br />
             <p>
-              A potent spell that will stun and mute victims upon contact.
-              Simple, clean, and quite effective for a plethora of situations.
+              Potężne zaklęcie, które przy dotyku ogłusza i ucisza ofiarę.
+              Proste, czyste i skuteczne w mnóstwie sytuacji.
             </p>
             <p>
-              Paralyzes for for 16 seconds, mutes for 12 seconds and cult-slurs
-              speech for 30 seconds (from the stun moment). If used on a cyborg
-              it stuns it as if hit by a heavy EMP.
+              Paraliżuje na 16 s, ucisza na 12 s i przez 30 s (od chwili
+              ogłuszenia) zniekształca mowę w język kultu. Na cyborga działa jak
+              silny EMP.
             </p>
             <p>
-              <b>Does not work on mindshielded personnel!</b>
+              <b>Nie działa na osoby z implantem ochrony umysłu!</b>
             </p>
             <p>
-              While slurring cult-speak, victims will speak in a disturbing,
-              incomprehensible way. This is usually a dead giveaway that a Cult
-              is onboard when shouted over the radio (unless the Bartender has
-              been handing out way too many Nar&apos;Sours).
+              Ofiara mówi wtedy w niepokojący, niezrozumiały sposób. Jeśli
+              wykrzyczy coś przez radio, zwykle zdradza to, że na pokładzie jest
+              kult (chyba że barman rozdał o wiele za dużo Nar&apos;Sourów).
             </p>
           </Box>
         )}
@@ -307,11 +300,11 @@ const BloodMagicSection = (_props) => {
                 <i>Sas&apos;so c&apos;arta forbici!</i>
               </Box>
             </h2>
-            <b>Name</b>: Teleport
-            <b>Charges</b>: 1
+            <b>Nazwa</b>: Teleportacja
+            <b>Ładunki</b>: 1
             <p>
-              Instantly teleports yourself, someone, or something to a scribed
-              teleport rune.
+              Natychmiast teleportuje ciebie, kogoś albo coś na narysowaną runę
+              Teleportacji.
             </p>
           </Box>
         )}
@@ -322,13 +315,12 @@ const BloodMagicSection = (_props) => {
                 <i>Ta&apos;gh fara&apos;qha fel d&apos;amar det!!</i>
               </Box>
             </h2>
-            <b>Name</b>: Electromagnetic Pulse
+            <b>Nazwa</b>: Impuls elektromagnetyczny
             <br />
-            <b>Charges</b>: 1
+            <b>Ładunki</b>: 1
             <p>
-              A large spell that allows a user to channel dark energy into an
-              EMP, causing all electronics in the area to malfunction or be
-              disabled.
+              Potężne zaklęcie, które przekuwa mroczną energię w EMP. Cała
+              elektronika w okolicy psuje się albo wyłącza.
             </p>
           </Box>
         )}
@@ -339,14 +331,13 @@ const BloodMagicSection = (_props) => {
                 <i>In&apos;otum Lig&apos;abis!</i>
               </Box>
             </h2>
-            <b>Name</b>: Shadow Shackles
+            <b>Nazwa</b>: Kajdany cienia
             <br />
-            <b>Charges</b>: 4
+            <b>Ładunki</b>: 4
             <p>
-              A stealthy spell that will summon shadowy handcuffs on a person,
-              and temporarily silence your victim for 10 seconds. Used for
-              keeping crew restrained until they can be converted. The
-              restraints will diseappear if the victim is converted.
+              Ciche zaklęcie, które zakuwa ofiarę w cieniste kajdanki i ucisza
+              ją na 10 s. Służy do trzymania załogi w kajdankach do czasu
+              nawrócenia. Kajdanki znikają, gdy ofiara zostanie nawrócona.
             </p>
           </Box>
         )}
@@ -357,24 +348,24 @@ const BloodMagicSection = (_props) => {
                 <i>Ethra p&apos;ni dedol!</i>
               </Box>
             </h2>
-            <b>Name</b>: Twisted Construction
+            <b>Nazwa</b>: Wypaczona budowa
             <br />
-            <b>Charges</b>: 1
+            <b>Ładunki</b>: 1
             <p>
-              Converts plasteel into runed metal, 50 iron into a construct
-              shell, living cyborgs and AIs into constructs (after a delay),
-              cyborg shells into construct shells, and airlocks into brittle
-              runed airlocks (after a delay, on harm intent)
+              Zamienia plastal w runiczny metal, 50 sztuk żelaza w powłokę
+              konstruktu, żywe cyborgi i SI w konstrukty (po chwili), powłoki
+              cyborgów w powłoki konstruktów, a śluzy w kruche runiczne śluzy
+              (po chwili, w trybie walki)
             </p>
           </Box>
         )}
         {tab === 7 && (
           <Box>
-            <b>Name</b>: Summon Combat Equipment
-            <b>Charges</b>: 1
+            <b>Nazwa</b>: Przywołaj sprzęt bojowy
+            <b>Ładunki</b>: 1
             <p>
-              When used on a cultist (including yourself), otherworldly armor,
-              including a cult blade and bola, will appear on them.
+              Użyte na kultyście (także na tobie) przywołuje na nim nieziemski
+              pancerz razem z ostrzem kultu i bolą.
             </p>
           </Box>
         )}
@@ -385,25 +376,24 @@ const BloodMagicSection = (_props) => {
                 <i>Wur d&apos;dai leev&apos;mai k&apos;sagan!!</i>
               </Box>
             </h2>
-            <b>Name</b>: Summon Ritual Dagger
+            <b>Nazwa</b>: Przywołaj sztylet rytualny
             <br />
-            <b>Charges</b>: 1
+            <b>Ładunki</b>: 1
             <p>
-              Enables you to summon a ritual dagger used to draw runes, in case
-              you lost yours or forgot to pick it up from the floor when you got
-              converted. Activate the spell and then click yourself.
+              Przywołuje sztylet rytualny do rysowania run, gdy swój zgubisz
+              albo zapomnisz go podnieść z podłogi po nawróceniu. Aktywuj
+              zaklęcie i kliknij na siebie.
             </p>
           </Box>
         )}
         {tab === 9 && (
           <Box>
-            <b>Name</b>: Hallucinations
+            <b>Nazwa</b>: Halucynacje
             <br />
-            <b>Charges</b>: 4
+            <b>Ładunki</b>: 4
             <p>
-              Silently curses someone&apos;s mind with living nightmares,
-              causing them to hallucinate. Can be used at a range, and is
-              completely silent.
+              Po cichu przeklina czyjś umysł żywymi koszmarami i wywołuje
+              halucynacje. Działa na odległość i jest zupełnie bezgłośne.
             </p>
           </Box>
         )}
@@ -414,18 +404,18 @@ const BloodMagicSection = (_props) => {
                 <i>Kla&apos;atu barada nikt&apos;o!</i>
               </Box>
             </h2>
-            <b>Name</b>: Conceal Presence
+            <b>Nazwa</b>: Ukryj obecność
             <br />
-            <b>Charges</b>: 10
+            <b>Ładunki</b>: 10
             <p>
-              A multi-function spell that alternates between hiding and
-              revealing nearby runes and cult structures within a range of{' '}
-              <b>5 tiles</b>. You can still teleport to concealed teleport runes
-              and prepare blood magic on concealed empower runes.
+              Wielofunkcyjne zaklęcie, które na przemian ukrywa i odsłania runy
+              i budowle kultu w promieniu <b>5 pól</b>. Nadal możesz
+              teleportować się na ukryte runy Teleportacji i przygotowywać magię
+              krwi na ukrytych runach Wzmocnienia.
             </p>
             <p>
-              Will make runed airlocks look like basic maintenance airlocks, but
-              only cultists will have access.
+              Runiczne śluzy wyglądają wtedy jak zwykłe śluzy techniczne, ale
+              dostęp do nich mają tylko kultyści.
             </p>
           </Box>
         )}
@@ -436,19 +426,17 @@ const BloodMagicSection = (_props) => {
                 <i>Fel&apos;th Dol Ab&apos;orod!</i>
               </Box>
             </h2>
-            <b>Name</b>: Blood Rites
+            <b>Nazwa</b>: Rytuały krwi
             <br />
-            <b>Charges</b>: 5
+            <b>Ładunki</b>: 5
             <p>
-              A complex type of blood magic, capable of healing cultists,
-              summoning a spear, firing powerful bolts of blood, or manifesting
-              a huge beam to convert walls and floors into those of
-              Nar&apos;sie.
+              Złożona magia krwi, która leczy kultystów, przywołuje włócznię,
+              wystrzeliwuje potężne krwawe pociski albo tworzy ogromny promień,
+              który zamienia ściany i podłogi w budowle Nar&apos;Sie.
             </p>
             <p>
-              Blood Rites is fueled by blood - use the hand on the floor (or
-              living victims) in order to absorb blood off the floor to fuel the
-              rites.
+              Rytuały krwi zasila krew – użyj ręki na podłodze (albo na żywych
+              ofiarach), żeby wchłonąć krew z podłogi i zasilić rytuały.
             </p>
           </Box>
         )}
@@ -464,31 +452,31 @@ const RunesSection = (_props) => {
       <Stack.Item>
         <Tabs vertical>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-            Offer
+            Ofiara
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-            Empower
+            Wzmocnienie
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 3} onClick={() => setTab(3)}>
-            Teleport
+            Teleportacja
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 4} onClick={() => setTab(4)}>
-            Revive
+            Wskrzeszenie
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 5} onClick={() => setTab(5)}>
-            Barrier
+            Bariera
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 6} onClick={() => setTab(6)}>
-            Summon Cultist
+            Przywołanie kultysty
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 7} onClick={() => setTab(7)}>
-            Boil Blood
+            Wrząca krew
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 8} onClick={() => setTab(8)}>
-            Spirit Realm
+            Kraina duchów
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 9} onClick={() => setTab(9)}>
-            Apocalypse
+            Apokalipsa
           </Tabs.Tab>
           <Tabs.Tab selected={tab === 10} onClick={() => setTab(10)}>
             Nar&apos;Sie
@@ -504,27 +492,28 @@ const RunesSection = (_props) => {
                 <i>Mah&apos;weyh pleggh at e&apos;ntrath!</i>
               </Box>
             </h2>
-            <b>Name</b>: Offer
+            <b>Nazwa</b>: Ofiara
             <br />
-            <b>Cultists Required</b>: 1 (sacrificing dead non-target), 2
-            (conversion), 3 (sacrificing target or non-dead person)
+            <b>Wymagani kultyści</b>: 1 (ofiara z martwego, który nie jest
+            celem), 2 (nawrócenie), 3 (ofiara z celu albo z żywej osoby)
             <p>
-              Instantly converts a normal crewmember on top of it to the cult,
-              healing them for 75% of their brute and burn damage, and spawning
-              a ritual dagger.
+              Natychmiast nawraca zwykłego członka załogi stojącego na runie,
+              leczy mu 75% obrażeń fizycznych i od poparzeń oraz tworzy sztylet
+              rytualny.
             </p>
             <p>
-              Mindshield-implanted crew cannot be converted, only sacrificed,
-              (but constructs are no less dangerous than humans) -{' '}
+              Załogi z implantem ochrony umysłu nie da się nawrócić, można ją
+              tylko złożyć w ofierze (a konstrukty nie są mniej groźne od ludzi)
+              –{' '}
               <b>
-                therefore it is recommended that you quickly finish off security
-                victims before their radio or suit sensors can give you away!
+                dlatego szybko dobijaj ofiary z ochrony, zanim zdradzi cię ich
+                radio albo czujniki stroju!
               </b>
             </p>
             <p>
-              Sacrifice victims will be gibbed and have their soul placed into a
-              Soul Stone, which can then be placed into a construct shell or a
-              golem shell.
+              Ofiara zostaje rozerwana na strzępy, a jej dusza trafia do
+              kamienia duszy, który możesz potem włożyć do powłoki konstruktu
+              albo golema.
             </p>
           </Box>
         )}
@@ -535,17 +524,16 @@ const RunesSection = (_props) => {
                 <i>H&apos;drak v&apos;loso, mir&apos;kanas verbot!</i>
               </Box>
             </h2>
-            <b>Name</b>: Empower
+            <b>Nazwa</b>: Wzmocnienie
             <br />
-            <b>Cultists Required</b>: 1
+            <b>Wymagani kultyści</b>: 1
             <p>
-              Allows cultists to prepare greater amounts of blood magic at far
-              less of a cost. While standing on an empowering rune, the spell
-              count is capped at 4 instead of 1.
+              Pozwala kultystom przygotować więcej magii krwi znacznie mniejszym
+              kosztem. Na runie Wzmocnienia limit zaklęć wynosi 4 zamiast 1.
             </p>
             <p>
-              Additionally, preparing blood magic takes far less time, and you
-              don&apos;t lose as much blood while doing it.
+              Do tego przygotowanie magii krwi trwa znacznie krócej i tracisz
+              przy tym mniej krwi.
             </p>
           </Box>
         )}
@@ -556,20 +544,20 @@ const RunesSection = (_props) => {
                 <i>Sas&apos;so c&apos;arta forbici!</i>
               </Box>
             </h2>
-            <b>Name</b>: Teleport
+            <b>Nazwa</b>: Teleportacja
             <br />
-            <b>Cultists Required</b>: 1
+            <b>Wymagani kultyści</b>: 1
             <p>
-              This rune warps everything above it to another teleport rune when
-              used. Creating a teleport rune will allow you to set a tag for it.
+              Ta runa przenosi wszystko, co na niej stoi, na inną runę
+              Teleportacji. Przy tworzeniu runy możesz nadać jej etykietę.
             </p>
             <p>
-              <b>Warning:</b>{' '}
+              <b>Ostrzeżenie:</b>{' '}
               <i>
-                Teleporting from Lavaland or Space will make the destination
-                rune glow brightly and open a rift in reality that may not only
-                reveal the rune, but the location of your main base as well,
-                choose your rune locations wisely!
+                Teleportacja z Lavalandu albo z kosmosu sprawia, że runa
+                docelowa jasno świeci i otwiera szczelinę w rzeczywistości,
+                która może zdradzić nie tylko runę, ale i położenie twojej
+                głównej bazy. Wybieraj miejsca na runy rozważnie!
               </i>
             </p>
           </Box>
@@ -584,20 +572,19 @@ const RunesSection = (_props) => {
                 </i>
               </Box>
             </h2>
-            <b>Name</b>: Revive
+            <b>Nazwa</b>: Wskrzeszenie
             <br />
-            <b>Cultists Required</b>: 1
+            <b>Wymagani kultyści</b>: 1
             <p>
-              Whenever someone is sacrificed on a Convert rune, they add one
-              (global) charge to this rune. Placing a cultist corpse on the rune
-              and activating it will bring them back to life, expending a hefty
-              three charges in the process. It starts with one freebie revival,
-              so use it sparingly.
+              Każda ofiara złożona na runie Ofiary dodaje tej runie jeden
+              (wspólny) ładunek. Połóż zwłoki kultysty na runie i ją aktywuj, a
+              kultysta wróci do życia kosztem aż trzech ładunków. Na start jest
+              jedno darmowe wskrzeszenie, więc korzystaj z niego oszczędnie.
             </p>
             <p>
-              Catatonic(disconnected/ghosted) cultists can be reawakened with a
-              new soul by putting them on the Revive rune and activating it.
-              This method of revival does not consume any charges.
+              Kultystów w katatonii (rozłączonych albo duchów) możesz obudzić z
+              nową duszą, kładąc ich na runie Wskrzeszenia i aktywując ją. Takie
+              wskrzeszenie nie zużywa ładunków.
             </p>
           </Box>
         )}
@@ -608,22 +595,22 @@ const RunesSection = (_props) => {
                 <i>Khari&apos;d! Eske&apos;te tannin!</i>
               </Box>
             </h2>
-            <b>Name</b>: Barrier
+            <b>Nazwa</b>: Bariera
             <br />
-            <b>Cultists Required</b>: 1
+            <b>Wymagani kultyści</b>: 1
             <p>
-              When invoked, makes a 5-minute invisible wall to block passage.
-              Can be invoked again to reverse this.
+              Po aktywacji tworzy na 5 minut niewidzialną ścianę, która blokuje
+              przejście. Ponowna aktywacja ją usuwa.
             </p>
             <p>
-              Invoking one barrier rune will chain activate other barrier runes
-              that are within 2 tiles from one another. Reversing a barrier rune
-              will not chain deactivate other barrier runes.
+              Aktywacja jednej runy Bariery łańcuchowo aktywuje inne runy
+              Bariery w odległości do 2 pól od siebie. Wyłączenie runy nie
+              wyłącza łańcuchowo pozostałych.
             </p>
             <p>
-              Costs 2 brute both to invoke and to deactivate (regardless how
-              many are chained). Active barrier runes have a subtle wriggling
-              animation, and are usually brighter.
+              Aktywacja i wyłączenie kosztują po 2 obrażenia fizyczne
+              (niezależnie od liczby połączonych run). Aktywne runy Bariery
+              delikatnie falują i zwykle są jaśniejsze.
             </p>
           </Box>
         )}
@@ -634,20 +621,20 @@ const RunesSection = (_props) => {
                 <i>N&apos;ath reth sh&apos;yro eth d&apos;rekkathnor!</i>
               </Box>
             </h2>
-            <b>Name</b>: Summon Cultist
+            <b>Nazwa</b>: Przywołanie kultysty
             <br />
-            <b>Cultists Required</b>: 2
+            <b>Wymagani kultyści</b>: 2
             <p>
-              This rune allows you to instantly summon any living cultist to the
-              rune, consuming it afterward.
+              Ta runa natychmiast przywołuje na siebie dowolnego żywego
+              kultystę, po czym znika.
             </p>
             <p>
-              <b>This rune will only work on the main space station</b>, but can
-              grab cultists from almost any location!
+              <b>Ta runa działa tylko na głównej stacji</b>, ale ściąga
+              kultystów niemal z każdego miejsca!
             </p>
             <p>
-              Does not work on restrained cultists who are buckled or being
-              pulled.
+              Nie działa na skrępowanych kultystów, którzy są przypięci albo
+              ciągnięci.
             </p>
           </Box>
         )}
@@ -658,19 +645,19 @@ const RunesSection = (_props) => {
                 <i>Dedo ol&apos;btoh!</i>
               </Box>
             </h2>
-            <b>Name</b>: Boil Blood
+            <b>Nazwa</b>: Wrząca krew
             <br />
-            <b>Cultists Required</b>: 3
+            <b>Wymagani kultyści</b>: 3
             <p>
-              When invoked, it saps some health from the invokers to send three
-              damaging pulses to anyone who can see the rune, causing 25/50/75
-              damage split evenly between brute and burn. When the effect is
-              over the rune will briefly set fire to anything over it.
+              Po aktywacji wysysa trochę zdrowia z przywołujących i wysyła trzy
+              raniące impulsy do każdego, kto widzi runę. Zadają one 25/50/75
+              obrażeń, po równo fizycznych i od poparzeń. Na koniec runa na
+              chwilę podpala wszystko, co na niej leży.
             </p>
             <p>
-              Some species, such as golems, do not have blood, and thus are
-              immune to this rune. Will also deal extra stamina damage to clock
-              cultists.
+              Niektóre rasy, na przykład golemy, nie mają krwi, więc są odporne
+              na tę runę. Kultystom Ratvara zadaje też dodatkowe obrażenia
+              wytrzymałości.
             </p>
           </Box>
         )}
@@ -681,32 +668,31 @@ const RunesSection = (_props) => {
                 <i>Gal&apos;h&apos;rfikk harfrandid mud&apos;gib!</i>
               </Box>
             </h2>
-            <b>Name</b>: Spirit Realm
+            <b>Nazwa</b>: Kraina duchów
             <br />
-            <b>Cultists Required</b>: 1
-            <p>This rune gives you two powerful options:</p>
+            <b>Wymagani kultyści</b>: 1
+            <p>Ta runa daje ci dwie potężne możliwości:</p>
             <p>
-              <b>1)</b> To manifest ghosts as semitransparent homunculi, which
-              are effectively weak, humanoid cultists with no self preservation
-              instinct. To sustain these homunculi, you must remain on the rune,
-              and each homunculi you have summoned will deal brute damage over
-              time. If you get stuck on the rune after summoning a ghost, use
-              your ritual dagger to remove the rune before you get hurt too
-              badly.
+              <b>1)</b> Zmaterializować duchy jako półprzezroczyste homunkulusy,
+              czyli słabych, humanoidalnych kultystów bez instynktu
+              samozachowawczego. Żeby je utrzymać, musisz stać na runie, a każdy
+              przywołany homunkulus z czasem zadaje ci obrażenia fizyczne. Jeśli
+              utkniesz na runie po przywołaniu ducha, usuń ją sztyletem
+              rytualnym, zanim za bardzo oberwiesz.
               <br />
-              This option is only available on the space station itself, as the
-              veil is not weak enough in space or Lavaland to give spirits a
-              physical form.
+              Ta możliwość działa tylko na samej stacji, bo w kosmosie ani na
+              Lavalandzie zasłona nie jest dość cienka, by dać duchom fizyczną
+              postać.
             </p>
             <p>
-              <b>2)</b> To ascend as a dark spirit. This option costs no health
-              to use and will give you virtually unlimited knowledge! You can
-              use information given to you by ghosts in this form, commune with
-              the cult with your booming voice, and even mark a target that will
-              be &quot;pinpointed&quot; for the rest of the cult. You can even
-              use this function after manifesting ghosts to help guide them in
-              combat - manifested ghosts can also see regular ghosts and
-              therefore can see your dark spirit as you lead them in battle!
+              <b>2)</b> Wznieść się jako mroczny duch. Nie kosztuje to zdrowia i
+              daje ci praktycznie nieograniczoną wiedzę! W tej postaci możesz
+              korzystać z informacji od duchów, przemawiać do kultu donośnym
+              głosem, a nawet oznaczyć cel, który reszta kultu będzie widzieć
+              „namierzony”. Możesz też użyć tej opcji po zmaterializowaniu
+              duchów, żeby prowadzić je w walce – zmaterializowane duchy widzą
+              zwykłe duchy, więc widzą też twojego mrocznego ducha, gdy
+              prowadzisz je do boju!
             </p>
           </Box>
         )}
@@ -717,22 +703,20 @@ const RunesSection = (_props) => {
                 <i>Ta&apos;gh fara&apos;qha fel d&apos;amar det!</i>
               </Box>
             </h2>
-            <b>Name</b>: Apocalypse
+            <b>Nazwa</b>: Apokalipsa
             <br />
-            <b>Cultists Required</b>: 3
+            <b>Wymagani kultyści</b>: 3
             <p>
-              A harbinger of the end times. It scales depending on the
-              crew&apos;s strength relative to the cult. Effects include a
-              massive EMP, unique hallucination for non-cultists, and if the
-              cult is doing poorly, certain events. The rune can only occur in
-              the Nar-Sie ritual sites and will prevent Nar-Sie from being
-              summoned there in the future.
+              Zwiastun końca czasów. Jej siła zależy od tego, jak silna jest
+              załoga w porównaniu z kultem. Wywołuje potężny EMP, wyjątkowe
+              halucynacje u nie-kultystów, a jeśli kultowi idzie słabo, także
+              pewne eventy. Runę można narysować tylko w miejscach rytuału
+              Nar&apos;Sie i potem nie da się już tam przywołać Nar&apos;Sie.
             </p>
             <p>
-              Similarly to the Ritual of Dimensional Rending, the Apocalypse
-              rune can only be scribed in one of the 3 ritual areas. After the
-              Apocalypse rune has been scribed, that particular ritual area can
-              no longer be used to summon Nar-Sie.
+              Tak jak Rytuał Rozdarcia Wymiarów, runę Apokalipsy można narysować
+              tylko w jednym z 3 miejsc rytuału. Po narysowaniu runy Apokalipsy
+              to miejsce nie nadaje się już do przywołania Nar&apos;Sie.
             </p>
           </Box>
         )}
@@ -743,22 +727,22 @@ const RunesSection = (_props) => {
                 <i>TOK-LYR RQA-NAP G&apos;OLT-ULOFT!!</i>
               </Box>
             </h2>
-            <b>Name</b>: Nar&apos;Sie
+            <b>Nazwa</b>: Nar&apos;Sie
             <br />
-            <b>Cultists Required</b>: 9
+            <b>Wymagani kultyści</b>: 9
             <p>
-              This rune tears apart dimensional barriers, calling forth the
-              Geometer. It needs a free 3x3 space, and can only be summoned in 3
-              areas around the station. To start drawing it the requested target
-              must have already been sacrificed. Starting to draw this rune
-              creates a weak forcefield around the caster and alarms the entire
-              station of its location. The caster must be defended for 45
-              seconds before it&apos;s complete.
+              Ta runa rozdziera bariery wymiarów i przywołuje Geometrę.
+              Potrzebuje wolnego miejsca 3x3 i można ją przywołać tylko w 3
+              miejscach na stacji. Zanim zaczniesz ją rysować, wyznaczony cel
+              musi już zostać złożony w ofierze. Rozpoczęcie rysowania tworzy
+              wokół rysującego słabe pole siłowe i zdradza całej stacji jego
+              położenie. Rysującego trzeba bronić przez 45 s, aż runa będzie
+              gotowa.
             </p>
             <p>
-              After it&apos;s drawn, 9 cultists, constructs, or summoned ghosts
-              must stand on the rune, which can then be invoked to manifest
-              Nar&apos;Sie herself.
+              Gdy runa jest gotowa, musi na niej stanąć 9 kultystów, konstruktów
+              albo przywołanych duchów. Wtedy można ją aktywować i przywołać
+              samą Nar&apos;Sie.
             </p>
           </Box>
         )}
@@ -770,7 +754,7 @@ const RunesSection = (_props) => {
 const PowersSection = (_props) => {
   const [tab, setTab] = useLocalState('powersTab', 1);
   return (
-    <Section title="Powers">
+    <Section title="Moce">
       <Stack vertical>
         <Stack.Item>
           <Stack>
@@ -783,17 +767,17 @@ const PowersSection = (_props) => {
                   float: 'left',
                 }}
               />
-              Your{' '}
+              Twój{' '}
               <Box inline textColor="red">
-                ritual dagger
+                sztylet rytualny
               </Box>{' '}
-              is an essential tool for your worship of Nar&apos;Sie!
+              to niezbędne narzędzie w służbie Nar&apos;Sie!
               <br />
-              It allows you to quickly draw{' '}
+              Pozwala ci szybko rysować na podłodze{' '}
               <Box inline textColor="red">
-                blood runes
+                krwawe runy
               </Box>{' '}
-              on the floor, which have a variety of abilities!
+              o najróżniejszych mocach!
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
@@ -805,14 +789,14 @@ const PowersSection = (_props) => {
                   float: 'left',
                 }}
               />
-              Use{' '}
+              Użyj{' '}
               <Box inline textColor="red">
-                Communion
-              </Box>{' '}
-              to communicate with your fellow cultists. Messages communicated
-              this way can be heard by all cultists.
+                Komunii
+              </Box>
+              , żeby porozumiewać się z innymi kultystami. Takie wiadomości
+              słyszą wszyscy kultyści.
               <br />
-              Be warned though, those standing close to you will also hear you!
+              Uważaj jednak: osoby stojące blisko ciebie też cię usłyszą!
             </Stack.Item>
           </Stack>
         </Stack.Item>
@@ -820,10 +804,10 @@ const PowersSection = (_props) => {
         <Stack.Item>
           <Tabs>
             <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
-              Blood Magic
+              Magia krwi
             </Tabs.Tab>
             <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
-              Runes
+              Runy
             </Tabs.Tab>
           </Tabs>
           {tab === 1 && <BloodMagicSection />}
@@ -842,7 +826,7 @@ export const AntagInfoBloodCult = (_props) => {
       <Window.Content scrollable>
         <Stack vertical fill>
           <Stack.Item>
-            <AntagInfoHeader name="Blood Cultist" asset="bloodcult.png" />
+            <AntagInfoHeader name="Kultysta krwi" asset="bloodcult.png" />
           </Stack.Item>
           <Stack.Item>
             <PowersSection />

@@ -1,6 +1,6 @@
 /obj/item/gun/energy/pulse
-	name = "pulse rifle"
-	desc = "A heavy-duty, multifaceted energy rifle with three modes. Preferred by front-line combat personnel."
+	name = "karabin pulsacyjny"
+	desc = "Wytrzymały, wszechstronny karabin energetyczny z trzema trybami. Ulubiona broń żołnierzy z pierwszej linii."
 	icon_state = "pulse"
 	item_state = null
 	w_class = WEIGHT_CLASS_BULKY
@@ -21,7 +21,7 @@
 	GLOB.poi_list += src
 	var/turf/T = get_turf(src)
 
-	message_admins("A pulse rifle prize has been created at [ADMIN_VERBOSEJMP(T)]")
+	message_admins("Nagroda w postaci karabinu pulsacyjnego pojawiła się w [ADMIN_VERBOSEJMP(T)]")
 	log_game("A pulse rifle prize has been created at [AREACOORD(T)]")
 
 	notify_ghosts("Ktoś wygrał karabin pulsacyjny w nagrodę!", source = src, action = NOTIFY_ORBIT, header = "Nagroda: karabin pulsacyjny")
@@ -34,8 +34,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/carbine
-	name = "pulse carbine"
-	desc = "A compact variant of the pulse rifle with less firepower but easier storage."
+	name = "karabinek pulsacyjny"
+	desc = "Kompaktowa odmiana karabinu pulsacyjnego: słabsza siła ognia, ale łatwiej ją schować."
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_carbine"
@@ -49,8 +49,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/carbine/cyborg
-	name = "pulse carbine"
-	desc = "A compact, cyborg variant of the commonly used pulse carbine."
+	name = "karabinek pulsacyjny"
+	desc = "Kompaktowa wersja popularnego karabinka pulsacyjnego dla cyborgów."
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_carbine"
@@ -62,8 +62,8 @@
 
 
 /obj/item/gun/energy/pulse/pistol
-	name = "pulse pistol"
-	desc = "A pulse rifle in an easily concealed handgun package with low capacity."
+	name = "pistolet pulsacyjny"
+	desc = "Karabin pulsacyjny zamknięty w łatwym do ukrycia pistolecie o małej pojemności."
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	icon_state = "pulse_pistol"
@@ -77,8 +77,8 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/pulse/destroyer
-	name = "pulse destroyer"
-	desc = "A heavy-duty energy rifle built for pure destruction."
+	name = "niszczyciel pulsacyjny"
+	desc = "Wytrzymały karabin energetyczny stworzony do czystego niszczenia."
 	cell_type = "/obj/item/stock_parts/cell/infinite"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/pulse)
 
@@ -87,7 +87,7 @@
 
 /obj/item/gun/energy/pulse/pistol/m1911
 	name = "\improper M1911-P"
-	desc = "A compact pulse core in a classic handgun frame for Nanotrasen officers. It's not the size of the gun, it's the size of the hole it puts through people."
+	desc = "Kompaktowy rdzeń pulsacyjny w klasycznej ramie pistoletu dla oficerów Nanotrasen. Nie liczy się rozmiar broni, tylko rozmiar dziury, którą robi w ludziach."
 	icon_state = "m1911"
 	item_state = "gun"
 	cell_type = "/obj/item/stock_parts/cell/infinite"

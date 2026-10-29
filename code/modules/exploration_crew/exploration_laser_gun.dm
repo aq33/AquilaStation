@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun/mini/exploration
-	name = "handheld multi-purpose energy gun"
-	desc = "A pistol-sized energy gun with a built-in flashlight designed for exploration crews. It serves a dual purpose and has modes for anti-creature lasers and cutting lasers."
+	name = "ręczna wielofunkcyjna broń energetyczna"
+	desc = "Broń energetyczna wielkości pistoletu z wbudowaną latarką, zaprojektowana dla odkrywców. Ma dwa zastosowania i tryby: laser przeciw stworzeniom i laser tnący."
 	pin = /obj/item/firing_pin/off_station
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/anti_creature, /obj/item/ammo_casing/energy/laser/cutting)
 
@@ -38,7 +38,7 @@
 
 /obj/item/ammo_casing/energy/laser/cutting
 	projectile_type = /obj/item/projectile/beam/laser/cutting
-	select_name = "cutting laser"
+	select_name = "laser tnący"
 	e_cost = 30
 
 /obj/item/projectile/beam/laser/cutting
@@ -61,7 +61,7 @@
 
 /obj/item/ammo_casing/energy/laser/exploration_kill
 	projectile_type = /obj/item/projectile/beam/laser/exploration_kill
-	select_name = "KILL"
+	select_name = "ZABIJ"
 	e_cost = 80
 
 /obj/item/projectile/beam/laser/exploration_kill
@@ -84,7 +84,7 @@
 
 /obj/item/ammo_casing/energy/laser/exploration_destroy
 	projectile_type = /obj/item/projectile/beam/laser/exploration_destroy
-	select_name = "DESTROY"
+	select_name = "NISZCZ"
 	e_cost = 120
 
 /obj/item/projectile/beam/laser/exploration_destroy

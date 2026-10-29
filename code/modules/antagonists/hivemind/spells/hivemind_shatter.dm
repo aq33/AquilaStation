@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/target_hive/hive_shatter
-	name = "Crush Protections"
-	desc = "We destroy any Mindshield implants a vesssel might have, granting us further control over their mind."
+	name = "Zmiażdż zabezpieczenia"
+	desc = "Niszczymy wszelkie implanty osłony umysłu w naczyniu, zyskując większą kontrolę nad jego umysłem."
 	action_icon_state = "shatter"
 
 	charge_max = 1800
@@ -10,7 +10,7 @@
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	var/success = FALSE
 	if(!hive)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	if(!hive.hivemembers)
 		return

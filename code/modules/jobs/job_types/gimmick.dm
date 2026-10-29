@@ -17,7 +17,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Peasant"
+	rpg_title = "Chłop"
 
 	allow_bureaucratic_error = FALSE
 	outfit = /datum/outfit/job/gimmick
@@ -41,7 +41,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Scissorhands"
+	rpg_title = "Nożycoręki"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman
@@ -76,7 +76,7 @@
 	paycheck_department = ACCOUNT_SRV
 
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Master Illusionist"
+	rpg_title = "Mistrz Iluzji"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/magic
@@ -115,7 +115,7 @@
 	mind_traits = list(TRAIT_MEDICAL_METABOLISM)
 
 	paycheck_department = ACCOUNT_MED
-	rpg_title = "Enchanter"
+	rpg_title = "Zaklinacz"
 
 	mind_traits = list(TRAIT_MADNESS_IMMUNE)
 
@@ -149,7 +149,7 @@
 	paycheck_department = ACCOUNT_VIP //budget will never dry
 
 	departments = DEPARTMENT_BITFLAG_SERVICE // might need to be changed
-	rpg_title = "Master of Patronage"
+	rpg_title = "Mistrz Mecenatu"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/vip

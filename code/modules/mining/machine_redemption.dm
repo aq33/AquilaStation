@@ -2,8 +2,8 @@
 //Turns all the various mining machines into a single unit to speed up mining and establish a point system
 
 /obj/machinery/mineral/ore_redemption
-	name = "ore redemption machine"
-	desc = "A machine that accepts ore and instantly transforms it into workable material sheets. Points for ore are generated based on type and can be redeemed at a mining equipment vendor."
+	name = "maszyna wymiany rudy"
+	desc = "Maszyna, która przyjmuje rudę i natychmiast przetapia ją na arkusze materiałów. Za rudę naliczane są punkty zależne od jej rodzaju, które można wydać w automacie ze sprzętem górniczym."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "ore_redemption"
 	density = TRUE
@@ -129,16 +129,16 @@
 		var/mineral_amount = mat_container.materials[mat] / MINERAL_MATERIAL_AMOUNT
 		if(mineral_amount)
 			has_minerals = TRUE
-		msg += "[capitalize(M.name)]: [mineral_amount] sheets<br>"
+		msg += "[capitalize(M.name)]: [mineral_amount] ark.<br>"
 
 	if(!has_minerals)
 		return
 
 	var/datum/signal/subspace/messaging/rc/signal = new(src, list(
 		"ore_update" = TRUE,
-		"sender" = "Ore Redemption Machine",
+		"sender" = "Maszyna wymiany rudy",
 		"message" = msg,
-		"verified" = "<font color='green'><b>Verified by Ore Redemption Machine</b></font>",
+		"verified" = "<font color='green'><b>Zweryfikowano przez maszynę wymiany rudy</b></font>",
 		"priority" = REQ_NORMAL_MESSAGE_PRIORITY
 	))
 	signal.send_to_receivers()

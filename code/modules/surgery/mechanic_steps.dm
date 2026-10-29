@@ -1,6 +1,6 @@
 //open shell
 /datum/surgery_step/mechanic_open
-	name = "unscrew shell"
+	name = "odkręć obudowę"
 	implements = list(
 		TOOL_SCREWDRIVER		= 100,
 		TOOL_SCALPEL 			= 75, // med borgs could try to unskrew shell with scalpel
@@ -25,7 +25,7 @@
 
 //close shell
 /datum/surgery_step/mechanic_close
-	name = "screw shell"
+	name = "przykręć obudowę"
 	implements = list(
 		TOOL_SCREWDRIVER		= 100,
 		TOOL_SCALPEL 			= 75,
@@ -54,7 +54,7 @@
 
 //prepare electronics
 /datum/surgery_step/prepare_electronics
-	name = "prepare electronics"
+	name = "przygotuj elektronikę"
 	implements = list(
 		TOOL_MULTITOOL = 100,
 		TOOL_HEMOSTAT = 10) // try to reboot internal controllers via short circuit with some conductor
@@ -69,7 +69,7 @@
 
 //unwrench
 /datum/surgery_step/mechanic_unwrench
-	name = "unwrench bolts"
+	name = "odkręć śruby"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -83,7 +83,7 @@
 
 //wrench
 /datum/surgery_step/mechanic_wrench
-	name = "wrench bolts"
+	name = "dokręć śruby"
 	implements = list(
 		TOOL_WRENCH = 100,
 		TOOL_RETRACTOR = 10)
@@ -97,7 +97,7 @@
 
 //open hatch
 /datum/surgery_step/open_hatch
-	name = "open the hatch"
+	name = "otwórz właz"
 	accept_hand = 1
 	time = 10
 	preop_sound = 'sound/items/ratchet.ogg'

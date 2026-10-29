@@ -143,8 +143,8 @@ GLOBAL_LIST_INIT(whitelisted_cargo_types, typecacheof(list(
 
 /// Wygłodzony niedźwiedź z Bee - przywoływany przez wadliwy artefakt
 /mob/living/simple_animal/hostile/bear/malnourished
-	name = "starving space bear"
-	desc = "You can practically see its ribcage through its thinning layer of fur. Looks like it hasn't eaten anything in a long while."
+	name = "wygłodzony kosmiczny niedźwiedź"
+	desc = "Przez przerzedzone futro niemal widać mu żebra. Wygląda, jakby od dawna nic nie jadł."
 	maxHealth = 60
 	health = 40
 	obj_damage = 30

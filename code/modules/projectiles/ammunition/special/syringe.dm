@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/syringegun
-	name = "syringe gun spring"
-	desc = "A high-power spring that throws syringes."
+	name = "sprężyna wyrzutni strzykawek"
+	desc = "Mocna sprężyna, która wyrzuca strzykawki."
 	projectile_type = /obj/item/projectile/bullet/dart/syringe
 	firing_effect_type = null
 
@@ -22,8 +22,8 @@
 	..()
 
 /obj/item/ammo_casing/chemgun
-	name = "dart synthesiser"
-	desc = "A high-power spring, linked to an energy-based dart synthesiser."
+	name = "syntezator strzałek"
+	desc = "Mocna sprężyna połączona z energetycznym syntezatorem strzałek."
 	projectile_type = /obj/item/projectile/bullet/dart
 	firing_effect_type = null
 
@@ -35,13 +35,13 @@
 		if(CG.syringes_left <= 0)
 			return
 		CG.reagents.trans_to(BB, 15, transfered_by = user)
-		BB.name = "chemical dart"
+		BB.name = "strzałka chemiczna"
 		CG.syringes_left--
 	..()
 
 /obj/item/ammo_casing/bee
-	name = "bee synthesiser"
-	desc = "A beehive shoved into a gun."
+	name = "syntezator pszczół"
+	desc = "Ul wciśnięty w broń."
 	projectile_type = /obj/item/projectile/bullet/dart/bee
 	firing_effect_type = null
 
@@ -53,13 +53,13 @@
 		if(CG.syringes_left <= 0)
 			return
 		CG.reagents.trans_to(BB, 5, transfered_by = user)
-		BB.name = "bee"
+		BB.name = "pszczoła"
 		CG.syringes_left--
 	..()
 
 /obj/item/ammo_casing/dnainjector
-	name = "rigged syringe gun spring"
-	desc = "A high-power spring that throws DNA injectors."
+	name = "przerobiona sprężyna wyrzutni strzykawek"
+	desc = "Mocna sprężyna, która wyrzuca iniektory DNA."
 	projectile_type = /obj/item/projectile/bullet/dnainjector
 	firing_effect_type = null
 

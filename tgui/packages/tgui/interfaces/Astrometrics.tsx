@@ -40,26 +40,26 @@ export const Astrometrics = (props) => {
           {screen === 0 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
               <Button
-                content="Broadcast Scanning"
+                content="Transmituj skanowanie"
                 color={broadcast ? 'default' : 'red'}
                 icon="bell"
                 onClick={() => act('broadcast')}
               />
               <Section
-                title={`Current scan: ${scan_target}`}
+                title={`Obecny skan: ${scan_target}`}
                 buttons={
                   <Button
-                    content="Cancel Scan"
+                    content="Anuluj skan"
                     icon="stop-circle-o"
                     disabled={scan_target}
                     onClick={() => act('cancel_scan')}
@@ -80,22 +80,22 @@ export const Astrometrics = (props) => {
           {screen === 1 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
               <Button
-                content="Change Sector"
+                content="Zmień sektor"
                 icon="bullseye"
                 onClick={() => act('sector')}
               />
               <Button
-                content="Broadcast Scanning"
+                content="Transmituj skanowanie"
                 icon="bell"
                 color={broadcast ? 'default' : 'red'}
                 onClick={() => act('broadcast')}
@@ -106,27 +106,27 @@ export const Astrometrics = (props) => {
           {screen === 2 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
               <Button
-                content="Broadcast Scanning"
+                content="Transmituj skanowanie"
                 icon="bell"
                 color={broadcast ? 'default' : 'red'}
                 onClick={() => act('broadcast')}
               />
               <br />
               <Section
-                title={`Current scan: ${scan_target}`}
+                title={`Obecny skan: ${scan_target}`}
                 buttons={
                   <Button
-                    content="Cancel Scan"
+                    content="Anuluj skan"
                     icon="stop-circle-o"
                     disabled={!data.can_cancel}
                     onClick={() => act('cancel_scan')}
@@ -143,24 +143,24 @@ export const Astrometrics = (props) => {
                 />
               </Section>
               <Section
-                title="System info:"
+                title="Informacje o układzie:"
                 buttons={
                   <Button
-                    content="Scan"
+                    content="Skanuj"
                     icon="arrow-right"
                     disabled={!!data.scanned}
                     onClick={() => act('scan')}
                   />
                 }
               >
-                Distance: {data.star_dist ? data.star_dist + ' LY' : '0LY'}
+                Odległość: {data.star_dist ? data.star_dist + ' ly' : '0 ly'}
                 <br />
-                Alignment: {data.alignment ? data.alignment : 'Unknown'}
+                Przynależność: {data.alignment ? data.alignment : 'Nieznana'}
                 <br />
-                System type: {data.system_type ? data.system_type : 'Unknown'}
+                Typ układu: {data.system_type ? data.system_type : 'Nieznany'}
                 <br />
               </Section>
-              <Section title="Telemetry info:">
+              <Section title="Dane telemetryczne:">
                 {Object.keys(data.anomalies).map((key) => {
                   let value = data.anomalies[key];
                   if (!data.scanned) {
@@ -170,10 +170,10 @@ export const Astrometrics = (props) => {
                     if (scan_target !== value.name) {
                       return (
                         <Section title={value.name} key={key}>
-                          Available research: {value.points}
+                          Dostępne badania: {value.points}
                           <Button
                             key={key}
-                            content="Scan"
+                            content="Skanuj"
                             icon="bullseye"
                             color={value.visible && 'green'}
                             onClick={() =>
@@ -187,10 +187,10 @@ export const Astrometrics = (props) => {
                     } else {
                       return (
                         <Section title={value.name} key={key}>
-                          Available research: {value.points}
+                          Dostępne badania: {value.points}
                           <Button
                             key={key}
-                            content="Stop scan"
+                            content="Przerwij skan"
                             icon="bullseye"
                             color={value.visible && 'green'}
                             onClick={() =>
@@ -207,7 +207,7 @@ export const Astrometrics = (props) => {
                       <Section title={value.name} key={key}>
                         <Button
                           key={key}
-                          content="Info"
+                          content="Informacje"
                           icon="search"
                           color={value.visible && 'green'}
                           onClick={() =>

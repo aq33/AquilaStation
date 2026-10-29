@@ -31,7 +31,7 @@ export const Palette = (props: PaletteProps) => {
     ...rest
   } = props;
   return (
-    <Section title="Palette">
+    <Section title="Paleta">
       <Stack {...rest} style={{ ...style, flexWrap: 'wrap', gap: '0.5rem' }}>
         {colors.map((color, i) => (
           <Stack.Item key={i} m={0}>

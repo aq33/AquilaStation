@@ -19,15 +19,15 @@
 	return FALSE
 
 /mob/living/carbon/alien/humanoid/royal/queen/proc/maidify()
-	name = "alien queen maid"
-	desc = "Lusty, Sexy"
+	name = "królowa ksenomorfów pokojówka"
+	desc = "Pożądliwa, seksowna"
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "alienqmaid"
 	caste = "qmaid"
 	update_icons()
 
 /mob/living/carbon/alien/humanoid/royal/queen/proc/unmaidify()
-	name = "alien queen"
+	name = "królowa ksenomorfów"
 	desc = ""
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "alienq"
@@ -35,7 +35,7 @@
 	update_icons()
 
 /mob/living/carbon/alien/humanoid/royal/queen
-	name = "alien queen"
+	name = "królowa ksenomorfów"
 	caste = "q"
 	maxHealth = 400
 	health = 400
@@ -52,7 +52,7 @@
 		if(Q.stat == DEAD)
 			continue
 		if(Q.client)
-			name = "alien princess ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
+			name = "księżniczka ksenomorfów ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
 			break
 
 	real_name = src.name
@@ -86,7 +86,7 @@
 	if(stat != DEAD && is_station_level(T.z))
 		SSshuttle.clearHostileEnvironment(src)
 		if(EMERGENCY_IDLE_OR_RECALLED)
-			priority_announce("Xenomorph infestation detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.", SSstation.announcer.get_rand_alert_sound())
+			priority_announce("Wykryto inwazję ksenomorfów: aktywowano kryzysowe protokoły promu – sygnały odwołania są zagłuszane na wszystkich częstotliwościach.", SSstation.announcer.get_rand_alert_sound())
 			SSshuttle.emergency.request(null, set_coefficient=0.5)
 			SSshuttle.emergencyNoRecall = TRUE
 			UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED) // we don't care anymore
@@ -108,8 +108,8 @@
 
 //Queen verbs
 /obj/effect/proc_holder/alien/lay_egg
-	name = "Lay Egg"
-	desc = "Lay an egg to produce huggers to impregnate prey with. Costs 75 Plasma."
+	name = "Złóż jajo"
+	desc = "Złóż jajo, z którego wyklują się facehuggery do zapładniania ofiar. Kosztuje 75 plazmy."
 	plasma_cost = 75
 	check_turf = TRUE
 	action_icon_state = "alien_egg"
@@ -128,8 +128,8 @@
 
 //Button to let queen choose her praetorian.
 /obj/effect/proc_holder/alien/royal/queen/promote
-	name = "Create Royal Parasite"
-	desc = "Produce a royal parasite to grant one of your children the honor of being your Praetorian. Costs 500 Plasma."
+	name = "Stwórz królewskiego pasożyta"
+	desc = "Wytwórz królewskiego pasożyta, by obdarzyć jedno ze swoich dzieci zaszczytem zostania twoim pretorianinem. Kosztuje 500 plazmy."
 	plasma_cost = 500 //Plasma cost used on promotion, not spawning the parasite.
 
 	action_icon_state = "alien_queen_promote"
@@ -154,8 +154,8 @@
 	return 0
 
 /obj/item/queenpromote
-	name = "\improper royal parasite"
-	desc = "Inject this into one of your grown children to promote her to a Praetorian!"
+	name = "\improper królewski pasożyt"
+	desc = "Wstrzyknij to jednemu ze swoich dorosłych dzieci, aby awansować je na pretorianina!"
 	icon_state = "alien_medal"
 	item_flags = ABSTRACT | DROPDEL
 	icon = 'icons/mob/alien.dmi'

@@ -1,7 +1,7 @@
 
 /obj/item/alienartifact
-	name = "artifact"
-	desc = "A strange artifact of unknown origin."
+	name = "artefakt"
+	desc = "Dziwny artefakt nieznanego pochodzenia."
 	icon = 'icons/obj/artifact.dmi'
 	icon_state = "artifact"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -52,7 +52,7 @@
 	QDEL_LIST(effects)
 
 /area/tear_in_reality
-	name = "tear in the fabric of reality"
+	name = "rozdarcie tkanki rzeczywistości"
 	area_flags = UNIQUE_AREA | HIDDEN_AREA
 	clockwork_warp_allowed = FALSE
 	requires_power = FALSE
@@ -100,7 +100,7 @@
 
 /datum/artifact_effect/throwchaos
 	signal_types = list(COMSIG_MOVABLE_PRE_THROW)
-	effect_act_descs = list("thrown")
+	effect_act_descs = list("rzucony")
 
 /datum/artifact_effect/throwchaos/register_signals(source)
 	RegisterSignal(source, COMSIG_MOVABLE_PRE_THROW, PROC_REF(throw_thing_randomly))
@@ -135,7 +135,7 @@
 
 /datum/artifact_effect/inducespasm
 	signal_types = list(COMSIG_PARENT_EXAMINE)
-	effect_act_descs = list("examined")
+	effect_act_descs = list("oglądany")
 
 /datum/artifact_effect/inducespasm/register_signals(source)
 	RegisterSignal(source, COMSIG_PARENT_EXAMINE, PROC_REF(do_effect))
@@ -193,7 +193,7 @@
 
 /datum/artifact_effect/airfreeze
 	signal_types = list(COMSIG_MOVABLE_MOVED)
-	effect_act_descs = list("depressurised")
+	effect_act_descs = list("w próżni")
 
 /datum/artifact_effect/airfreeze/Initialize(atom/source)
 	. = ..()
@@ -215,7 +215,7 @@
 //===================
 
 /datum/artifact_effect/atmosfix
-	effect_act_descs = list("depressurised")
+	effect_act_descs = list("w próżni")
 	requires_processing = TRUE
 
 /datum/artifact_effect/atmosfix/process(delta_time)
@@ -228,7 +228,7 @@
 //===================
 
 /datum/artifact_effect/gravity_well
-	effect_act_descs = list("used")
+	effect_act_descs = list("używany")
 	signal_types = list(COMSIG_ITEM_ATTACK_SELF)
 	var/next_use_world_time = 0
 
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(destabilization_spawns)
 GLOBAL_LIST_EMPTY(destabliization_exits)
 
 /obj/effect/landmark/destabilization_loc
-	name = "destabilization spawn"
+	name = "pomiot destabilizacji"
 
 /obj/effect/landmark/destabilization_loc/Initialize(mapload)
 	..()
@@ -348,7 +348,7 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 
 /datum/artifact_effect/warp
 	signal_types = list(COMSIG_ITEM_ATTACK_SELF)
-	effect_act_descs = list("used")
+	effect_act_descs = list("używany")
 	var/next_use_world_time = 0
 
 /datum/artifact_effect/warp/register_signals(source)
@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 	var/cooldown
 	var/first_time = TRUE
 	signal_types = list(COMSIG_ITEM_ATTACK_SELF)
-	effect_act_descs = list("used")
+	effect_act_descs = list("używany")
 
 /datum/artifact_effect/insanity_pulse/Initialize(source)
 	. = ..()
@@ -484,7 +484,7 @@ GLOBAL_LIST_EMPTY(destabliization_exits)
 	next_use_time = world.time + cooldown
 	var/turf/T = get_turf(pulser)
 	log_attack("[key_name_admin(pulser)] activated an insanity pulse at [COORD(T)]. [first_time ? " (Effects were unknown)" : " (Artifact had been activated before)"]")
-	message_admins("[ADMIN_LOOKUPFLW(pulser)] activated an insanity pulse [first_time ? " (Effects were unknown)" : " (Artifact had been activated before)"].")
+	message_admins("[ADMIN_LOOKUPFLW(pulser)] aktywuje impuls szaleństwa [first_time ? " (efekty były nieznane)" : " (artefakt był już wcześniej aktywowany)"].")
 	if(first_time)
 		var/research_reward = rand(5000, 20000)
 		priority_announce("Wykryto anomalię czasoprzestrzenną w [T.loc]. Analiza danych zakończona, przyznano [research_reward] pkt badań.", "Dział Badań Nanotrasen", ANNOUNCER_SPANOMALIES)

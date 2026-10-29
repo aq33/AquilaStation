@@ -2,7 +2,7 @@
 /obj/item/food/grown/chili
 	seed = /obj/item/plant_seeds/preset/chili
 	name = "chili"
-	desc = "It's spicy! Wait... IT'S BURNING ME!!"
+	desc = "Jest ostre! Chwila... PALI MNIE!!"
 	icon_state = "chilipepper"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -10,8 +10,8 @@
 
 // Ice Chili
 /obj/item/food/grown/icepepper
-	name = "ice pepper"
-	desc = "It's a mutant strain of chili."
+	name = "lodowa papryka"
+	desc = "To zmutowana odmiana chili."
 	icon_state = "icepepper"
 	bite_consumption_mod = 5
 	foodtypes = FRUIT
@@ -20,8 +20,8 @@
 
 // Ghost Chili
 /obj/item/food/grown/ghost_chili
-	name = "ghost chili"
-	desc = "It seems to be vibrating gently."
+	name = "upiorne chili"
+	desc = "Wygląda, jakby delikatnie wibrowało."
 	icon_state = "ghostchilipepper"
 	var/mob/living/carbon/human/held_mob
 	bite_consumption_mod = 5

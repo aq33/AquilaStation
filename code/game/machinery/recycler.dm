@@ -1,8 +1,8 @@
 #define SAFETY_COOLDOWN 100
 
 /obj/machinery/recycler
-	name = "recycler"
-	desc = "A large crushing machine used to recycle small items inefficiently. There are lights on the side."
+	name = "recykler"
+	desc = "Duża kruszarka, która mało wydajnie przetwarza drobne przedmioty. Z boku ma lampki."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "grinder-o0"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead
@@ -176,7 +176,7 @@
 
 	if(iscarbon(L))
 		if(L.stat == CONSCIOUS)
-			L.say("ARRRRRRRRRRRGH!!!", forced="recycler grinding")
+			L.say("AAAAAAAAAAAAAA!!!", forced="recycler grinding")
 		add_mob_blood(L)
 
 	if(!blood && !issilicon(L))
@@ -197,13 +197,13 @@
 		butchering.Butcher(src,L)
 
 /obj/machinery/recycler/deathtrap
-	name = "dangerous old crusher"
+	name = "niebezpieczna stara kruszarka"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	crush_damage = 120
 	flags_1 = NODECONSTRUCT_1
 
 /obj/item/paper/guides/recycler
-	name = "paper - 'garbage duty instructions'"
+	name = "kartka - „Instrukcja dyżuru śmieciowego”"
 	default_raw_text = "<h2>Nowy przydział</h2> Przydzielono cię do zbierania śmieci z koszy rozmieszczonych na stacji. Załoga wrzuca do nich śmieci, a ty je zbierasz.<br><br>W tunelach technicznych, w pobliżu twojej szafki, jest maszyna recyklingowa; użyj jej, by przetworzyć śmieci z niewielką szansą na odzyskanie przydatnych minerałów. Potem dostarcz te minerały do zaopatrzenia lub inżynierii. Jesteś naszą ostatnią nadzieją na czystą stację, nie spieprz tego!"
 
 #undef SAFETY_COOLDOWN

@@ -1,5 +1,5 @@
 /obj/item/modular_computer/tablet/pda/clown
-	name = "clown PDA"
+	name = "PDA klauna"
 	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Powierzchnia została pokryta teflonem i resztkami bananów."
 	note = "Honk!"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/virus/clown
@@ -24,7 +24,7 @@
 			playsound(src,'sound/machines/ping.ogg',30,TRUE)
 
 /obj/item/modular_computer/tablet/pda/mime
-	name = "mime PDA"
+	name = "PDA mima"
 	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Zmodyfikowane z myślą o ślubowaniu milczenia."
 	default_disk = /obj/item/computer_hardware/hard_drive/role/virus/mime
 	insert_type = /obj/item/toy/crayon/mime
@@ -41,63 +41,63 @@
 			msg.allow_emojis = TRUE
 
 /obj/item/modular_computer/tablet/pda/assistant
-	name = "assistant PDA"
+	name = "PDA majtka"
 	icon_state = "pda-assistant"
 
 /obj/item/modular_computer/tablet/pda/medical
-	name = "medical PDA"
+	name = "PDA lekarza"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/medical
 	icon_state = "pda-medical"
 
 /obj/item/modular_computer/tablet/pda/paramedic
-	name = "paramedic PDA"
+	name = "PDA ratownika medycznego"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/medical
 	icon_state = "pda-paramedical"
 
 /obj/item/modular_computer/tablet/pda/virologist
-	name = "virology PDA"
+	name = "PDA wirologa"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/medical
 	icon_state = "pda-virology"
 
 /obj/item/modular_computer/tablet/pda/station_engineer
-	name = "engineering PDA"
+	name = "PDA inżyniera"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/engineering
 	icon_state = "pda-engineer"
 
 /obj/item/modular_computer/tablet/pda/security
-	name = "security PDA"
+	name = "PDA policjanta"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/security
 	icon_state = "pda-security"
 
 /obj/item/modular_computer/tablet/pda/deputy
-	name = "deputy PDA"
+	name = "PDA aspiranta"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/security
 	icon_state = "pda-deputy"
 
 /obj/item/modular_computer/tablet/pda/brig_physician
-	name = "brig physician PDA"
+	name = "PDA lekarza więziennego"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/brig_physician
 	icon_state = "pda-brigphys"
 
 
 /obj/item/modular_computer/tablet/pda/detective
-	name = "detective PDA"
+	name = "PDA detektywa"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/detective
 	icon_state = "pda-detective"
 
 /obj/item/modular_computer/tablet/pda/warden
-	name = "warden PDA"
+	name = "PDA naczelnika"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/security
 	icon_state = "pda-warden"
 
 /obj/item/modular_computer/tablet/pda/janitor
-	name = "janitor PDA"
+	name = "PDA woźnego"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/janitor
 	icon_state = "pda-janitor"
 	init_ringtone = "slip"
 
 /obj/item/modular_computer/tablet/pda/science
-	name = "scientist PDA"
+	name = "PDA naukowca"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/signal/toxins
 	icon_state = "pda-science"
 	init_ringtone = "boom"
@@ -107,7 +107,7 @@
 	install_component(new /obj/item/computer_hardware/radio_card)
 
 /obj/item/modular_computer/tablet/pda/service
-	name = "service PDA"
+	name = "PDA obsługi"
 	icon_state = "pda-service"
 
 /obj/item/modular_computer/tablet/pda/heads
@@ -119,7 +119,7 @@
 	install_component(new /obj/item/computer_hardware/card_slot/secondary)
 
 /obj/item/modular_computer/tablet/pda/heads/head_of_personnel
-	name = "head of personnel PDA"
+	name = "PDA starszego oficera"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/hop
 	icon_state = "pda-hop"
 
@@ -128,22 +128,22 @@
 	install_component(new /obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/pda/heads/head_of_security
-	name = "head of security PDA"
+	name = "PDA komendanta"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/hos
 	icon_state = "pda-hos"
 
 /obj/item/modular_computer/tablet/pda/heads/chief_engineer
-	name = "chief engineer PDA"
+	name = "PDA głównego inżyniera"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/ce
 	icon_state = "pda-ce"
 
 /obj/item/modular_computer/tablet/pda/heads/chief_medical_officer
-	name = "chief medical officer PDA"
+	name = "PDA ordynatora"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/cmo
 	icon_state = "pda-cmo"
 
 /obj/item/modular_computer/tablet/pda/heads/research_director
-	name = "research director PDA"
+	name = "PDA dyrektora naukowego"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/rd
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-rd"
@@ -153,15 +153,15 @@
 	install_component(new /obj/item/computer_hardware/radio_card)
 
 /obj/item/modular_computer/tablet/pda/heads/captain
-	name = "captain PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The internals are modified to be more tough than the usual."
+	name = "PDA kapitana"
+	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Wnętrze zostało wzmocnione, przez co jest twardsze niż zwykle."
 	default_disk = /obj/item/computer_hardware/hard_drive/role/captain
 	insert_type = /obj/item/pen/fountain/captain
 	icon_state = "pda-captain"
 	detonatable = FALSE
 
 /obj/item/modular_computer/tablet/pda/cargo_technician
-	name = "cargo technician PDA"
+	name = "PDA magazyniera"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/cargo_technician
 	icon_state = "pda-cargo"
 
@@ -170,7 +170,7 @@
 	install_component(new /obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/pda/quartermaster
-	name = "quartermaster PDA"
+	name = "PDA kwatermistrza"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/quartermaster
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-qm"
@@ -180,20 +180,20 @@
 	install_component(new /obj/item/computer_hardware/printer/mini)
 
 /obj/item/modular_computer/tablet/pda/shaft_miner
-	name = "shaft miner PDA"
+	name = "PDA górnika"
 	icon_state = "pda-miner"
 
 /obj/item/modular_computer/tablet/pda/exploration_crew
-	name = "exploration crew PDA"
+	name = "PDA odkrywcy"
 	icon_state = "pda-exploration"
 
 /obj/item/modular_computer/tablet/pda/syndicate
-	name = "military PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a WGW-XL-NTOS series."
+	name = "wojskowe PDA"
+	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Jest to model z serii WGW-XL-NTOS."
 	note = "Gratulacje, twój -uszkodzone- wybrał osobisty asystent cyfrowy Thinktronic 5290 WGW-XL-NTOS!"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/virus/syndicate/military
 	saved_identification = "John Doe"
-	saved_job = "Citizen"
+	saved_job = "Obywatel"
 	icon_state = "pda-syndi"
 	messenger_invisible = TRUE
 	detonatable = FALSE
@@ -208,24 +208,24 @@
 		install_component(new /obj/item/computer_hardware/network_card/advanced/norelay)
 
 /obj/item/modular_computer/tablet/pda/chaplain
-	name = "chaplain PDA"
+	name = "PDA kapłana"
 	icon_state = "pda-chaplain"
 	init_ringtone = "holy"
 
 /obj/item/modular_computer/tablet/pda/lawyer
-	name = "lawyer PDA"
+	name = "PDA prawnika"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/lawyer
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-lawyer"
 	init_ringtone = "objection"
 
 /obj/item/modular_computer/tablet/pda/roboticist
-	name = "roboticist PDA"
+	name = "PDA robotyka"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/roboticist
 	icon_state = "pda-roboticist"
 
 /obj/item/modular_computer/tablet/pda/curator
-	name = "curator PDA"
+	name = "PDA bibliotekarza"
 	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Jest to model WGW-11 z serii e-reader."
 	note = "Gratulacje, wasza stacja wybrała czytnik e-booków i osobisty asystent cyfrowy Thinktronic 5290 WGW-11-NTOS!"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/curator
@@ -235,38 +235,38 @@
 	init_ringer_on = FALSE
 
 /obj/item/modular_computer/tablet/pda/clear
-	name = "clear PDA"
+	name = "przezroczyste PDA"
 	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. Specjalna edycja, z przezroczystą obudową."
 	note = "Gratulacje, wybrałeś osobisty asystent cyfrowy Thinktronic 5230-NTOS Deluxe Special Max Turbo Limited Edition!"
 	icon_state = "pda-clear"
 
 /obj/item/modular_computer/tablet/pda/cook
-	name = "cook PDA"
+	name = "PDA kucharza"
 	icon_state = "pda-cook"
 
 /obj/item/modular_computer/tablet/pda/bartender
-	name = "bartender PDA"
+	name = "PDA barmana"
 	insert_type = /obj/item/pen/fountain
 	icon_state = "pda-bartender"
 
 /obj/item/modular_computer/tablet/pda/atmospheric_technician
-	name = "atmospherics PDA"
+	name = "PDA technika atmosferyki"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/atmos
 	icon_state = "pda-atmos"
 
 /obj/item/modular_computer/tablet/pda/chemist
-	name = "chemist PDA"
+	name = "PDA chemika"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/chemistry
 	icon_state = "pda-chemistry"
 
 /obj/item/modular_computer/tablet/pda/geneticist
-	name = "geneticist PDA"
+	name = "PDA genetyka"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/medical
 	icon_state = "pda-genetics"
 
 /obj/item/modular_computer/tablet/pda/vip
-	name = "fancy PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a gold-plated 5230-NTOS LRP Series, and probably quite expensive."
+	name = "eleganckie PDA"
+	desc = "Przenośny minikomputer, wyprodukowany przez Thinktronic Systems, LTD. To pozłacany model z serii 5230-NTOS LRP, zapewne dość drogi."
 	note = "Gratulacje, wybrałeś osobisty asystent cyfrowy Thinktronic 5230-NTOS LRP Golden Edition!"
 	default_disk = /obj/item/computer_hardware/hard_drive/role/vip
 	insert_type = /obj/item/pen/fountain
@@ -274,21 +274,21 @@
 	init_ringtone = "brzdęk-BRZDĘK"
 
 /obj/item/modular_computer/tablet/pda/unlicensed
-	name = "unlicensed PDA"
-	desc = "A shitty knockoff of a portable microcomputer by Thinktronic Systems, LTD. Complete with a cracked operating system."
+	name = "nielicencjonowane PDA"
+	desc = "Tandetna podróbka przenośnego minikomputera Thinktronic Systems, LTD. W komplecie scrackowany system operacyjny."
 	note = "Błąd: wykryto nielicencjonowane oprogramowanie. Skontaktuj się z przełożonym."
 	default_disk = /obj/item/computer_hardware/hard_drive/role/unlicensed
 	icon_state = "pda-knockoff"
 
 // NSV13 - PDA Variants
 /obj/item/modular_computer/tablet/pda/botanist
-	name = "botanist PDA"
+	name = "PDA botanika"
 	icon_state = "pda-hydro"
 
 /obj/item/modular_computer/tablet/pda/munition
-	name = "munitions PDA"
+	name = "PDA technika amunicyjnego"
 	icon_state = "pda-munition"
 
 /obj/item/modular_computer/tablet/pda/heads/maa
-	name = "master at arms PDA"
+	name = "PDA mistrza broni"
 	icon_state = "pda-maa"

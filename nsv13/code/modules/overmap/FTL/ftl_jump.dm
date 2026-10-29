@@ -33,7 +33,7 @@
 		destination = locate(rand(40, world.maxx - 39), rand(40, world.maxy - 39), occupying_z)
 
 	if(!destination)
-		message_admins("WARNING: The [name] system has no exit point for ships! Something has caused this Z-level to despawn erroneously, please contact Kmc immediately!.")
+		message_admins("OSTRZEŻENIE: system [name] nie ma punktu wyjścia dla okrętów! Coś błędnie usunęło ten poziom Z, natychmiast skontaktuj się z Kmc!")
 		return
 	var/turf/exit = get_turf(pick(orange(15, destination)))
 	OM.forceMove(exit)
@@ -117,7 +117,7 @@
 		if(istype(X, /obj/structure/overmap))
 			var/obj/structure/overmap/ship = X
 			if(ship != OM && ship.reserved_z) //If there's somehow a player ship in the system that is somehow not in other_player_ships, emergency return.
-				message_admins("Somehow [ship] got by the initial checks for system exits. This probably shouldn't happen, yell at a coder and / or check ftl.dm")
+				message_admins("Jakimś cudem [ship] ominął wstępne sprawdzenie wyjść z systemu. To raczej nie powinno się zdarzyć – nakrzycz na kodera i/lub sprawdź ftl.dm.")
 				if(is_ftl_jump)
 					ftl_pull_small_craft(OM)
 				return
@@ -177,7 +177,7 @@
 		ftl_drive.lockout = TRUE //Prevent further jumps
 		if(ftl_drive.ftl_state == FTL_STATE_JUMPING)
 			RegisterSignal(src, COMSIG_SHIP_ARRIVED, PROC_REF(force_return_jump))
-			message_admins("[src] is already jumping, delaying recall")
+			message_admins("[src] już wykonuje skok, opóźniam przywołanie.")
 			log_game("DEBUG: force_return_jump: Players were already jumping, trying again when jump is complete")
 		else
 			SSstar_system.return_system.hidden = FALSE //Reveal where we are going
@@ -187,10 +187,10 @@
 			addtimer(CALLBACK(src, PROC_REF(check_return_jump)), SSstar_system.ships[src]["to_time"] + 35 SECONDS)
 
 	else if(target_system)
-		message_admins("Failed to force return jump! [src] does not have an FTL Drive!")
+		message_admins("Nie udało się wymusić skoku powrotnego! [src] nie ma napędu FTL!")
 		log_runtime("DEBUG: force_return_jump: [src] had no FTL drive")
 	else
-		message_admins("Failed to force return jump! No target system was found! (Tell a coder)")
+		message_admins("Nie udało się wymusić skoku powrotnego! Nie znaleziono systemu docelowego! (Powiedz koderowi)")
 		log_runtime("DEBUG: force_return_jump: No target system")
 
 /obj/structure/overmap/proc/check_return_jump()
@@ -339,21 +339,21 @@
 	force_parallax_update(FALSE)
 
 /obj/item/ftl_slipstream_chip
-	name = "Quantum slipstream field generation matrix (tier II)"
-	desc = "An upgrade to the ship's FTL computer, allowing it to benefit from cutting edge calculation technologies to result in faster jump times by changing the way in which it allows the ship to incurse into bluespace."
+	name = "matryca generatora pola kwantowego strumienia (poziom II)"
+	desc = "Ulepszenie komputera FTL okrętu. Dzięki najnowocześniejszym technikom obliczeniowym zmienia sposób, w jaki okręt wnika w bluespace, co skraca czas skoków."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "quantum_slipstream"
 	var/tier = 2
 
 /obj/item/ftl_slipstream_chip/warp
-	name = "Warp drive chip"
-	desc = "A highly experimental chip which appears to be able to accelerate starships to ludicrous speeds without the use of bluespace. Further testing required."
+	name = "układ napędu warp"
+	desc = "Wysoce eksperymentalny układ, który chyba potrafi rozpędzać okręty do absurdalnych prędkości bez użycia bluespace. Wymaga dalszych testów."
 	icon_state = "warpchip"
 	tier = 3
 
 /datum/design/ftl_slipstream_chip
-	name = "Quantum slipstream field generation matrix"
-	desc = "An upgrade for Thirring Drive computers which allows for much more efficient FTL translations."
+	name = "matryca generatora pola kwantowego strumienia"
+	desc = "Ulepszenie komputerów napędu Thirringa, które znacznie zwiększa wydajność translacji FTL."
 	id = "ftl_slipstream_chip"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plasma = 25000,/datum/material/diamond = 15000, /datum/material/silver = 20000)

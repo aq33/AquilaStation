@@ -3,7 +3,7 @@
 /datum/export/manifest_correct
 	cost = 200
 	k_elasticity = 0
-	unit_name = "approved manifest"
+	unit_name = "zatwierdzony manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 
 /datum/export/manifest_correct/applies_to(obj/O)
@@ -20,7 +20,7 @@
 /datum/export/manifest_error_denied
 	cost = -500
 	k_elasticity = 0
-	unit_name = "correctly denied manifest"
+	unit_name = "słusznie odrzucony manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 
 /datum/export/manifest_error_denied/applies_to(obj/O)
@@ -40,7 +40,7 @@
 // Erroneously approved manifest.
 // Substracts the package cost.
 /datum/export/manifest_error
-	unit_name = "erroneously approved manifest"
+	unit_name = "błędnie zatwierdzony manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 
 /datum/export/manifest_error/applies_to(obj/O)
@@ -61,7 +61,7 @@
 // Substracts the package cost minus the cost of crate.
 /datum/export/manifest_correct_denied
 	cost = 500
-	unit_name = "erroneously denied manifest"
+	unit_name = "błędnie odrzucony manifest"
 	export_types = list(/obj/item/paper/fluff/jobs/cargo/manifest)
 
 /datum/export/manifest_correct_denied/applies_to(obj/O)

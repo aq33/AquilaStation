@@ -1,6 +1,6 @@
 /*****************************Survival Pod********************************/
 /area/survivalpod
-	name = "\improper Emergency Shelter"
+	name = "\improper Schron awaryjny"
 	icon_state = "away"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	requires_power = FALSE
@@ -9,8 +9,8 @@
 
 //Survival Capsule
 /obj/item/survivalcapsule
-	name = "bluespace shelter capsule"
-	desc = "An emergency shelter stored within a pocket of bluespace."
+	name = "kapsuła schronu bluespace"
+	desc = "Schron awaryjny przechowywany w kieszeni bluespace."
 	icon_state = "capsule"
 	icon = 'icons/obj/mining.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -62,54 +62,54 @@
 
 		var/turf/T = deploy_location
 		if(!is_mining_level(T.z)) //only report capsules away from the mining/lavaland level
-			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_VERBOSEJMP(T)]")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] aktywuje kapsułę bluespace poza poziomem górniczym! [ADMIN_VERBOSEJMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
 		template.load(deploy_location, centered = TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
 /obj/item/survivalcapsule/luxury
-	name = "luxury bluespace shelter capsule"
-	desc = "An exorbitantly expensive luxury suite stored within a pocket of bluespace."
+	name = "luksusowa kapsuła schronu bluespace"
+	desc = "Nieprzyzwoicie drogi luksusowy apartament przechowywany w kieszeni bluespace."
 	icon_state = "capsulelux"
 	template_id = "shelter_beta"
 
 /obj/item/survivalcapsule/luxuryelite
-	name = "luxury elite bar capsule"
-	desc = "A luxury bar in a capsule. Bartender required and not included."
+	name = "kapsuła z luksusowym barem"
+	desc = "Luksusowy bar w kapsule. Barman wymagany, w zestawie go nie ma."
 	icon_state = "capsuleluxelite"
 	template_id = "shelter_charlie"
 
 /obj/item/survivalcapsule/encampment
-	name = "mining encampment capsule"
-	desc = "A medium-sized mining encampment in a capsule. A home away from home, away from home!"
+	name = "kapsuła obozowiska górniczego"
+	desc = "Średniej wielkości obozowisko górnicze w kapsule. Dom z dala od domu, z dala od domu!"
 	icon_state = "capsulecamp"
 	template_id = "shelter_delta"
 
 /obj/item/survivalcapsule/medical
-	name = "emergency medical capsule"
-	desc = "A small pod with medical facilities designed for station emergencies inside a bluespace capsule. Do NOT swallow."
+	name = "kapsuła medyczna awaryjna"
+	desc = "Mała kapsuła z zapleczem medycznym na wypadek awarii na stacji, zamknięta w kapsule bluespace. NIE połykać."
 	icon_state = "capsulemed"
 	icon = 'icons/obj/mining.dmi'
 	template_id = "shelter_echo"
 
 /obj/item/survivalcapsule/space
-	name = "space shelter capsule"
-	desc = "A spaceworthy shelter designed for emergencies/construction in a bluespace capsule."
+	name = "kapsuła schronu kosmicznego"
+	desc = "Zdatny do przebywania w kosmosie schron na wypadek awarii lub budowy, zamknięty w kapsule bluespace."
 	icon_state = "capsuleeng"
 	icon = 'icons/obj/mining.dmi'
 	template_id = "shelter_eta"
 
 /obj/item/survivalcapsule/barricade
-	name = "barricade capsule"
-	desc = "A 3x3 glass barricade designed for security use with energy weapons."
+	name = "kapsuła barykady"
+	desc = "Szklana barykada 3x3 przeznaczona dla ochrony z bronią energetyczną."
 	icon_state = "capsulesec"
 	icon = 'icons/obj/mining.dmi'
 	template_id = "capsule_barricade"
 
 /obj/item/survivalcapsule/party
-	name = "party capsule"
-	desc = "A 7x7 party area, fit with tables and a dancefloor. Groovy."
+	name = "kapsuła imprezowa"
+	desc = "Strefa imprezowa 7x7 ze stołami i parkietem. Odjazd."
 	icon_state = "capsuleparty"
 	icon = 'icons/obj/mining.dmi'
 	template_id = "shelter_theta"
@@ -118,7 +118,7 @@
 
 //Window
 /obj/structure/window/shuttle/survival_pod
-	name = "pod window"
+	name = "okno kapsuły"
 	icon = 'icons/obj/smooth_structures/pod_window.dmi'
 	icon_state = "smooth"
 	smooth = SMOOTH_MORE
@@ -134,13 +134,13 @@
 	dir = WEST
 
 /obj/structure/window/reinforced/survival_pod
-	name = "pod window"
+	name = "okno kapsuły"
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "pwindow"
 
 //Door
 /obj/machinery/door/airlock/survival_pod
-	name = "airlock"
+	name = "śluza"
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
@@ -151,9 +151,9 @@
 	glass = TRUE
 
 /obj/structure/door_assembly/door_assembly_pod
-	name = "pod airlock assembly"
+	name = "zespół: śluza kapsuły"
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
-	base_name = "pod airlock"
+	base_name = "śluza kapsuły"
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/survival_pod
 	glass_type = /obj/machinery/door/airlock/survival_pod/glass
@@ -196,14 +196,14 @@
 
 //NanoMed
 /obj/machinery/vending/wallmed/survival_pod
-	name = "survival pod medical supply"
-	desc = "Wall-mounted Medical Equipment dispenser. This one seems just a tiny bit smaller."
+	name = "zaopatrzenie medyczne kapsuły przetrwania"
+	desc = "Naścienny dozownik sprzętu medycznego. Ten wydaje się odrobinę mniejszy."
 	refill_canister = null
 	onstation = FALSE
 
 //Computer
 /obj/item/gps/computer
-	name = "pod computer"
+	name = "komputer kapsuły"
 	icon_state = "pod_computer"
 	icon = 'icons/obj/lavaland/pod_computer.dmi'
 	anchored = TRUE
@@ -214,7 +214,7 @@
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
+	user.visible_message("<span class='warning'>[user] rozbiera [src].</span>",
 		"<span class='notice'>Zaczynasz rozbierać [src]...</span>", "Słyszysz szczęk i łomot.")
 	if(I.use_tool(src, user, 20, volume=50))
 		new /obj/item/gps(loc)
@@ -238,8 +238,8 @@
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod
-	name = "survival pod storage"
-	desc = "A heated storage unit."
+	name = "schowek kapsuły przetrwania"
+	desc = "Ogrzewany schowek."
 	icon_state = "donkvendor"
 	icon = 'icons/obj/lavaland/donkvendor.dmi'
 	light_range = 5
@@ -271,16 +271,16 @@
 	return isitem(O)
 
 /obj/machinery/smartfridge/survival_pod/empty
-	name = "dusty survival pod storage"
-	desc = "A heated storage unit. This one's seen better days."
+	name = "zakurzony schowek kapsuły przetrwania"
+	desc = "Ogrzewany schowek. Ten widział już lepsze dni."
 	empty = TRUE
 
 //Fans
 /obj/structure/fans
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	icon_state = "fans"
-	name = "environmental regulation system"
-	desc = "A large machine releasing a constant gust of air."
+	name = "system regulacji środowiska"
+	desc = "Duża maszyna wypuszczająca nieustanny podmuch powietrza."
 	anchored = TRUE
 	density = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/iron
@@ -297,15 +297,15 @@
 	if(flags_1 & NODECONSTRUCT_1)
 		return TRUE
 
-	user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
+	user.visible_message("<span class='warning'>[user] rozbiera [src].</span>",
 		"<span class='notice'>Zaczynasz rozbierać [src]...</span>", "Słyszysz szczęk i łomot.")
 	if(I.use_tool(src, user, 20, volume=50))
 		deconstruct()
 	return TRUE
 
 /obj/structure/fans/tiny
-	name = "tiny fan"
-	desc = "A tiny fan, releasing a thin gust of air."
+	name = "mały wentylator"
+	desc = "Mały wentylator wypuszczający cienki strumień powietrza."
 	layer = ABOVE_NORMAL_TURF_LAYER
 	density = FALSE
 	icon_state = "fan_tiny"
@@ -317,20 +317,20 @@
 
 //Inivisible, indestructible fans
 /obj/structure/fans/tiny/invisible
-	name = "air flow blocker"
+	name = "bloker przepływu powietrza"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	invisibility = INVISIBILITY_ABSTRACT
 
 //Signs
 /obj/structure/sign/mining
-	name = "nanotrasen mining corps sign"
-	desc = "A sign of relief for weary miners, and a warning for would-be competitors to Nanotrasen's mining claims."
+	name = "znak korpusu górniczego Nanotrasen"
+	desc = "Znak ulgi dla znużonych górników i ostrzeżenie dla potencjalnych konkurentów roszczeń górniczych Nanotrasen."
 	icon = 'icons/turf/walls/survival_pod_walls.dmi'
 	icon_state = "ntpod"
 
 /obj/structure/sign/mining/survival
-	name = "shelter sign"
-	desc = "A high visibility sign designating a safe shelter."
+	name = "znak schronu"
+	desc = "Dobrze widoczny znak oznaczający bezpieczny schron."
 	icon = 'icons/turf/walls/survival_pod_walls.dmi'
 	icon_state = "survival"
 
@@ -338,13 +338,13 @@
 /obj/structure/tubes
 	icon_state = "tubes"
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
-	name = "tubes"
+	name = "rury"
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
 	density = FALSE
 
 /obj/item/fakeartefact
-	name = "expensive forgery"
+	name = "drogie fałszerstwo"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "x2"
 	var/possible = list(/obj/item/ship_in_a_bottle,

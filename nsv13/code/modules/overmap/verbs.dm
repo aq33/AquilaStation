@@ -79,7 +79,7 @@
 	var/new_name = stripped_input(usr, message="Jak chcesz nazwać swój myśliwiec? Pamiętaj, że szczególnie okropne nazwy mogą zostać odrzucone przez pracodawców.", max_length=MAX_CHARTER_LEN)
 	if(!new_name || length(new_name) <= 0)
 		return
-	message_admins("[key_name_admin(usr)] renamed a fighter to [new_name] [ADMIN_LOOKUPFLW(src)].")
+	message_admins("[key_name_admin(usr)] zmienia nazwę myśliwca na [new_name] [ADMIN_LOOKUPFLW(src)].")
 	name = new_name
 
 /obj/structure/overmap/verb/toggle_safety()

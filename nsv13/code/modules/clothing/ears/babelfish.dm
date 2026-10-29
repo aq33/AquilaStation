@@ -1,6 +1,6 @@
 /obj/item/clothing/ears/babelfish
-	name = "babelfish"
-	desc = "A symbiotic fish that can translate any language."
+	name = "babelryba"
+	desc = "Symbiotyczna ryba, która tłumaczy każdy język."
 	icon = 'nsv13/icons/obj/clothing/ears.dmi'
 	icon_state = "babelfish"
 	item_state = "babelfish"

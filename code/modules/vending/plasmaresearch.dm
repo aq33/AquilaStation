@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
 	name = "\improper Toximate 3000"
-	desc = "All the fine parts you need in one vending machine!"
+	desc = "Wszystkie potrzebne części w jednym automacie!"
 	products = list(/obj/item/clothing/under/rank/rnd/scientist = 3, //AQUILA EDIT
 		            /obj/item/clothing/under/aquila/scientist/hlsci = 3, //AQUILA EDIT
 					/obj/item/clothing/suit/bio_suit = 6,

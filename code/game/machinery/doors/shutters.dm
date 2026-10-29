@@ -1,7 +1,7 @@
 /obj/machinery/door/poddoor/shutters
 	gender = PLURAL
-	name = "shutters"
-	desc = "Heavy duty metal shutters that open mechanically."
+	name = "rolety"
+	desc = "Wytrzymałe metalowe rolety otwierane mechanicznie."
 	icon = 'icons/obj/doors/shutters.dmi'
 	layer = SHUTTER_LAYER
 	closingLayer = SHUTTER_LAYER
@@ -13,5 +13,5 @@
 	opacity = 0
 
 /obj/machinery/door/poddoor/shutters/indestructible
-	name = "hardened shutters"
+	name = "wzmocnione rolety"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

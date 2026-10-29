@@ -103,7 +103,7 @@
 
 	if(attached_circuit?.owner_id && item == attached_circuit.owner_id.resolve())
 		locked = !locked
-		source.balloon_alert(attacker, "[locked? "Locked" : "Unlocked"] [source]")
+		source.balloon_alert(attacker, "[locked? "Zablokowano" : "Odblokowano"]: [source]")
 		return COMPONENT_NO_AFTERATTACK
 
 	if(attached_circuit && istype(item, /obj/item/circuit_component))
@@ -137,7 +137,7 @@
 	if(locked)
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
-		source.balloon_alert(user, "It's locked!")
+		source.balloon_alert(user, "Zablokowane!")
 		return COMPONENT_BLOCK_TOOL_ATTACK
 
 	attached_circuit.interact(user)
@@ -154,7 +154,7 @@
 	if(locked)
 		if(shell_flags & SHELL_FLAG_ALLOW_FAILURE_ACTION)
 			return
-		source.balloon_alert(user, "It's locked!")
+		source.balloon_alert(user, "Zablokowane!")
 		return COMPONENT_BLOCK_TOOL_ATTACK
 
 	tool.play_tool_sound(parent)
@@ -181,7 +181,7 @@
 	SIGNAL_HANDLER
 
 	if(locked)
-		source.balloon_alert(user, "It's locked!")
+		source.balloon_alert(user, "Zablokowane!")
 		return COMPONENT_CANCEL_ADD_COMPONENT
 
 	if(length(attached_circuit.attached_components) - length(unremovable_circuit_components) >= capacity)

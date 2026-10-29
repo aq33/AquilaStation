@@ -26,19 +26,19 @@ export const FTLComputer = (props) => {
       <Window.Content scrollable>
         {(data.await_emergency_ftl_confirm && (
           <Section>
-            <Section title="OVERRIDE">
+            <Section title="NADPISANIE">
               <Button
                 icon="exclamation-triangle"
                 fluid
                 color="red"
                 onClick={() => act('emergency_jump')}
-                content="CONFIRM EMERGENCY JUMP?"
+                content="POTWIERDZIĆ SKOK AWARYJNY?"
               />
             </Section>
           </Section>
         )) || (
           <Section>
-            <Section title="Actions:">
+            <Section title="Akcje:">
               <Knob
                 tickWhileDragging
                 size={2}
@@ -52,7 +52,7 @@ export const FTLComputer = (props) => {
                 onChange={(e, value) => act('toggle_power')}
               />
             </Section>
-            <Section title="FTL Spoolup:">
+            <Section title="Rozkręcanie FTL:">
               <ProgressBar
                 value={(data.progress / data.goal) * 100 * 0.01}
                 ranges={{
@@ -62,7 +62,7 @@ export const FTLComputer = (props) => {
                 }}
               />
             </Section>
-            <Section title="Tracking:">
+            <Section title="Śledzenie:">
               {Object.keys(data.tracking).map((key) => {
                 let value = data.tracking[key];
                 return (
@@ -70,7 +70,7 @@ export const FTLComputer = (props) => {
                     <Section title={`${value.name}`}>
                       <Button
                         fluid
-                        content={`Current location: ${value.current_system}`}
+                        content={`Obecne położenie: ${value.current_system}`}
                         icon="target"
                       />
                     </Section>

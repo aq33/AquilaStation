@@ -12,8 +12,8 @@
  * Locator
  */
 /obj/item/locator
-	name = "bluespace locator"
-	desc = "Used to track portable teleportation beacons and targets with embedded tracking implants."
+	name = "lokalizator bluespace"
+	desc = "Służy do namierzania przenośnych nadajników teleportacyjnych i celów z wszczepionymi implantami namierzającymi."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
 	var/temp = null
@@ -98,8 +98,8 @@
  * Hand-tele
  */
 /obj/item/hand_tele
-	name = "hand tele"
-	desc = "A portable item using blue-space technology."
+	name = "ręczny teleporter"
+	desc = "Przenośne urządzenie wykorzystujące technologię bluespace."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
@@ -153,9 +153,9 @@
 		if(!A || A.teleport_restriction)
 			continue
 		if(com.power_station && com.power_station.teleporter_hub && com.power_station.engaged)
-			L["[get_area(target)] (Active)"] = target
+			L["[get_area(target)] (aktywny)"] = target
 		else
-			L["[get_area(target)] (Inactive)"] = target
+			L["[get_area(target)] (nieaktywny)"] = target
 	var/list/turfs = list()
 	for(var/turf/T as() in (RANGE_TURFS(10, user) - get_turf(user)))
 		if(T.x>world.maxx-8 || T.x<8)
@@ -167,7 +167,7 @@
 			continue
 		turfs += T
 	if(turfs.len)
-		L["None (Dangerous)"] = pick(turfs)
+		L["Brak (niebezpieczne)"] = pick(turfs)
 	var/t1 = input(user, "Wybierz teleporter, na którym chcesz się namierzyć.", "Teleporter ręczny") as null|anything in L
 	if (!t1 || user.get_active_held_item() != src || user.incapacitated())
 		return
@@ -231,8 +231,8 @@
  */
 
 /obj/item/teleporter
-	name = "syndicate teleporter"
-	desc = "A Syndicate reverse-engineered version of the Nanotrasen portable handheld teleporter. It uses bluespace technology to translocate users, but lacks the advanced safety features of its counterpart. Warranty voided if exposed to an electromagnetic pulse."
+	name = "teleporter Syndykatu"
+	desc = "Odtworzona przez Syndykat wersja przenośnego ręcznego teleportera Nanotrasen. Przenosi użytkowników dzięki technologii bluespace, ale brakuje mu zaawansowanych zabezpieczeń pierwowzoru. Gwarancja traci ważność po wystawieniu na impuls elektromagnetyczny."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndi_tele"
 	item_state = "electronic"
@@ -265,7 +265,7 @@
 		. += "<span class='notice'><b>Mały wyświetlacz z tyłu pokazuje:</b></span>"
 		var/timeleft = timeleft(recharge_timer)
 		var/loadingbar = num2loadingbar(timeleft/recharge_time, reverse=TRUE)
-		. += "<span class='notice'><b>CHARGING: [loadingbar] ([timeleft*0.1]s)</b></span>"
+		. += "<span class='notice'><b>ŁADOWANIE: [loadingbar] ([timeleft*0.1] s)</b></span>"
 
 /obj/item/teleporter/attack_self(mob/user)
 	..()
@@ -362,12 +362,12 @@
 		to_chat(M, "<span class='userdanger'>[user] teleportuje się w ciebie, przewracając cię falą bluespace!</span>")
 
 /obj/item/paper/teleporter
-	name = "Teleporter Guide"
+	name = "instrukcja teleportera"
 	icon_state = "paper"
 	default_raw_text = {"<b>Instrukcja twojego nowego prototypowego teleportera Syndykatu:</b><br><br>Ten eksperymentalny teleporter przenosi użytkownika o 4-8 metrów w kierunku, w którym jest zwrócony. To, co ciągniesz, nie zostanie teleportowane razem z tobą.<br><br>Ma 4 ładunki i z czasem się doładowuje. Nie, wkładanie teleportera do tesli, APC, mikrofalówki ani pod napięte drzwi nie przyspieszy ładowania.<br><br><b>Uwaga:</b> teleportacja w ścianę aktywuje awaryjną teleportację równoległą na odległość do 3 metrów, ale jeśli nie znajdzie bezpiecznego miejsca, użytkownik zostanie rozerwany na strzępy w ścianie.<br><br>Nie wystawiaj teleportera na impulsy elektromagnetyczne i nie miej przy sobie torby przechowującej podczas jego używania. Mogą wystąpić niepożądane usterki.
 "}
 /obj/item/storage/box/syndie_kit/teleporter
-	name = "syndicate teleporter kit"
+	name = "zestaw teleportera Syndykatu"
 
 /obj/item/storage/box/syndie_kit/teleporter/PopulateContents()
 	new /obj/item/teleporter(src)

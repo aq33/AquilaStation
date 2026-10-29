@@ -1,8 +1,8 @@
 WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 
 /obj/structure/grille
-	desc = "A flimsy framework of iron rods."
-	name = "grille"
+	desc = "Wątła konstrukcja z żelaznych prętów."
+	name = "krata"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
 	density = TRUE
@@ -123,7 +123,7 @@ WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message("<span class='warning'>[user] hits [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='warning'>[user] uderza [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	log_combat(user, src, "hit")
 	if(!shock(user, 70))
 		take_damage(rand(5,10), BRUTE, "melee", 1)
@@ -131,7 +131,7 @@ WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 /obj/structure/grille/attack_alien(mob/living/user)
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.visible_message("<span class='warning'>[user] mangles [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='warning'>[user] miażdży [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	if(!shock(user, 70))
 		take_damage(20, BRUTE, "melee", 1)
 
@@ -156,7 +156,7 @@ WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 		if(!shock(user, 90))
 			W.play_tool_sound(src, 100)
 			setAnchored(!anchored)
-			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] [src].</span>", \
+			user.visible_message("<span class='notice'>[user] [anchored ? "przymocowuje" : "odczepia"] [src].</span>", \
 								 "<span class='notice'>[anchored ? "Przymocowujesz [src] do" : "Odczepiasz [src] od"] podłogi.</span>")
 			return
 	else if(istype(W, /obj/item/stack/rods) && broken)
@@ -299,8 +299,8 @@ WANTS_POWER_NODE(/obj/structure/grille) // AQ EDIT - Smartwires
 	broken_type = null
 
 /obj/structure/grille/prison //grilles that trigger prison lockdown under some circumstances
-	name = "prison grille"
-	desc = "a set of rods under current used to protect the prison wing. An alarm will go off if they are breached."
+	name = "więzienna krata"
+	desc = "Zestaw prętów pod napięciem chroniący skrzydło więzienne. Przy ich przerwaniu włącza się alarm."
 	var/obj/item/assembly/control/device
 	var/id = "Prisongate"
 	var/initialized_device = FALSE

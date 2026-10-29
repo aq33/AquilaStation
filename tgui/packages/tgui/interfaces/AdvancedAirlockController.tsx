@@ -75,36 +75,36 @@ export const AACStatus = (props) => {
   const stateMap = {
     [STATE_INOPEN]: {
       color: 'good',
-      localStatusText: 'Cycled to interior',
+      localStatusText: 'Cykl do wnętrza zakończony',
     },
     [STATE_INOPENING]: {
       color: 'average',
-      localStatusText: 'Pressurizing (interior)',
+      localStatusText: 'Napełnianie ciśnieniem (wnętrze)',
     },
     [STATE_INCLOSING]: {
       color: 'average',
-      localStatusText: 'Depressurizing (interior)',
+      localStatusText: 'Spuszczanie ciśnienia (wnętrze)',
     },
 
     [STATE_OUTOPEN]: {
       color: 'good',
-      localStatusText: 'Cycled to exterior',
+      localStatusText: 'Cykl na zewnątrz zakończony',
     },
     [STATE_OUTOPENING]: {
       color: 'average',
-      localStatusText: 'Pressurizing (exterior)',
+      localStatusText: 'Napełnianie ciśnieniem (zewnątrz)',
     },
     [STATE_OUTCLOSING]: {
       color: 'average',
-      localStatusText: 'Depressurizing (exterior)',
+      localStatusText: 'Spuszczanie ciśnienia (zewnątrz)',
     },
     [STATE_CLOSED]: {
       color: 'average',
-      localStatusText: 'Unknown',
+      localStatusText: 'Nieznany',
     },
     [STATE_DOCKED]: {
       color: 'good',
-      localStatusText: 'Shuttle Docked',
+      localStatusText: 'Prom zadokowany',
     },
     [STATE_ERROR]: {
       color: 'bad',
@@ -116,10 +116,10 @@ export const AACStatus = (props) => {
   const localStatus = stateMap[cyclestate] || stateMap[0];
   const { color, localStatusText } = localStatus;
   return (
-    <Section title="Airlock Status">
+    <Section title="Stan śluzy">
       <LabeledList>
         <>
-          <LabeledList.Item label="Pressure">
+          <LabeledList.Item label="Ciśnienie">
             <ProgressBar
               ranges={{
                 good: [0.75, Infinity],
@@ -135,8 +135,8 @@ export const AACStatus = (props) => {
             {localStatusText}
           </LabeledList.Item>
           {!!emagged && (
-            <LabeledList.Item label="Warning" color="bad">
-              Safety measures offline. Device may exhibit abnormal behaviour.
+            <LabeledList.Item label="Ostrzeżenie" color="bad">
+              Zabezpieczenia wyłączone. Urządzenie może działać nieprawidłowo.
             </LabeledList.Item>
           )}
           <LabeledList.Item />
@@ -148,7 +148,7 @@ export const AACStatus = (props) => {
         cyclestate === STATE_OUTCLOSING) && (
         <Button
           icon="sync-alt"
-          content="Cycle to Exterior"
+          content="Cykl na zewnątrz"
           onClick={() =>
             act('cycle', {
               exterior: 1,
@@ -162,7 +162,7 @@ export const AACStatus = (props) => {
         data.cyclestate === STATE_INCLOSING) && (
         <Button
           icon="sync-alt"
-          content="Cycle to Interior"
+          content="Cykl do wnętrza"
           onClick={() =>
             act('cycle', {
               exterior: 0,
@@ -177,15 +177,15 @@ export const AACStatus = (props) => {
         <Button
           icon="forward"
           content={
-            'Skip ' +
+            'Pomiń ' +
             (data.cyclestate === STATE_OUTOPENING ||
             data.cyclestate === STATE_INOPENING
-              ? 'pressurization'
-              : 'depressurization') +
+              ? 'napełnianie'
+              : 'spuszczanie ciśnienia') +
             (data.skip_timer < data.skip_delay
-              ? ' (in ' +
+              ? ' (za ' +
                 Math.round((data.skip_delay - data.skip_timer) / 10) +
-                ' seconds)'
+                ' s)'
               : '')
           }
           color="danger"
@@ -211,19 +211,19 @@ export const AACControl = (props) => {
     airlocks,
   } = data;
   return (
-    <Section title="Configuration">
+    <Section title="Konfiguracja">
       {cyclestate === STATE_ERROR && !!config_error_str && (
         <Box className={classes(['NoticeBox'])}>{config_error_str}</Box>
       )}
       <LabeledList>
-        <LabeledList.Item label="Actions">
+        <LabeledList.Item label="Akcje">
           <Button
             icon="search"
-            content="Scan for Devices"
+            content="Wyszukaj urządzenia"
             onClick={() => act('scan')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Interior Pressure">
+        <LabeledList.Item label="Ciśnienie wewnątrz">
           <NumberInput
             animated
             value={parseFloat(interior_pressure)}
@@ -239,7 +239,7 @@ export const AACControl = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Exterior Pressure">
+        <LabeledList.Item label="Ciśnienie na zewnątrz">
           <NumberInput
             animated
             value={parseFloat(exterior_pressure)}
@@ -255,7 +255,7 @@ export const AACControl = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Depressurization Margin">
+        <LabeledList.Item label="Margines spuszczania ciśnienia">
           <NumberInput
             animated
             value={parseFloat(depressurization_margin)}
@@ -271,7 +271,7 @@ export const AACControl = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Time before Skip Allowed">
+        <LabeledList.Item label="Czas do możliwości pominięcia">
           <NumberInput
             animated
             value={Math.round(parseFloat(skip_delay)) / 10}
@@ -290,12 +290,12 @@ export const AACControl = (props) => {
       </LabeledList>
 
       {!vents || vents.length === 0 ? (
-        <Box className={classes(['NoticeBox'])}>No vents</Box>
+        <Box className={classes(['NoticeBox'])}>Brak nawiewników</Box>
       ) : (
         vents.map((vent) => <Vent key={vent.vent_id} state={state} {...vent} />)
       )}
       {!airlocks || airlocks.length === 0 ? (
-        <Box className={classes(['NoticeBox'])}>No Airlocks</Box>
+        <Box className={classes(['NoticeBox'])}>Brak śluz</Box>
       ) : (
         airlocks.map((airlock) => (
           <Airlock key={airlock.airlock_id} state={state} {...airlock} />
@@ -313,7 +313,7 @@ export const Vent = (props) => {
       title={decodeHtmlEntities(name)}
       buttons={
         <Button
-          content="Show Hologram"
+          content="Pokaż hologram"
           selected={data.vis_target === vent_id}
           onClick={() =>
             act(data.vis_target === vent_id ? 'clear_vis' : 'set_vis_vent', {
@@ -324,10 +324,10 @@ export const Vent = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Roles">
+        <LabeledList.Item label="Role">
           <Button
             icon="sign-out-alt"
-            content="Int. Pressurize"
+            content="Wewn. napełnij"
             selected={!!(role & ROLE_INT_PRESSURIZE)}
             onClick={() =>
               act('toggle_role', {
@@ -338,7 +338,7 @@ export const Vent = (props) => {
           />
           <Button
             icon="sign-in-alt"
-            content="Int. Depressurize"
+            content="Wewn. spuść"
             selected={!!(role & ROLE_INT_DEPRESSURIZE)}
             onClick={() =>
               act('toggle_role', {
@@ -349,7 +349,7 @@ export const Vent = (props) => {
           />
           <Button
             icon="sign-out-alt"
-            content="Ext. Pressurize"
+            content="Zewn. napełnij"
             selected={!!(role & ROLE_EXT_PRESSURIZE)}
             onClick={() =>
               act('toggle_role', {
@@ -360,7 +360,7 @@ export const Vent = (props) => {
           />
           <Button
             icon="sign-in-alt"
-            content="Ext. Depressurize"
+            content="Zewn. spuść"
             selected={!!(role & ROLE_EXT_DEPRESSURIZE)}
             onClick={() =>
               act('toggle_role', {
@@ -383,7 +383,7 @@ export const Airlock = (props) => {
       title={decodeHtmlEntities(name)}
       buttons={
         <Button
-          content="Show Hologram"
+          content="Pokaż hologram"
           selected={data.vis_target === airlock_id}
           onClick={() =>
             act(
@@ -397,10 +397,10 @@ export const Airlock = (props) => {
       }
     >
       <LabeledList>
-        <LabeledList.Item label="Roles">
+        <LabeledList.Item label="Role">
           <Button
             icon="sign-in-alt"
-            content="Interior"
+            content="Wnętrze"
             selected={!role}
             onClick={() =>
               act('set_airlock_role', {
@@ -411,7 +411,7 @@ export const Airlock = (props) => {
           />
           <Button
             icon="sign-out-alt"
-            content="Exterior"
+            content="Zewnątrz"
             selected={!!role}
             onClick={() =>
               act('set_airlock_role', {
@@ -421,7 +421,7 @@ export const Airlock = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Access">{access}</LabeledList.Item>
+        <LabeledList.Item label="Dostęp">{access}</LabeledList.Item>
       </LabeledList>
     </Section>
   );

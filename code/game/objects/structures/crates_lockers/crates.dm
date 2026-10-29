@@ -3,8 +3,8 @@
 	have to do the stuff i mentioned first and then mirror the details yet again by selecting them respectivly independently from the rest of the sprite in the x axis.
 	You may also have to adjust the position of the sprite to match the crate in DM.*/
 /obj/structure/closet/crate
-	name = "crate"
-	desc = "A rectangular steel crate."
+	name = "skrzynia"
+	desc = "Prostokątna stalowa skrzynia."
 	icon = 'icons/obj/crates.dmi'
 	icon_state = "crate"
 	req_access = null
@@ -140,8 +140,8 @@
 	update_icon()
 
 /obj/structure/closet/crate/coffin
-	name = "coffin"
-	desc = "It's a burial receptacle for the dearly departed."
+	name = "trumna"
+	desc = "Pojemnik do pochówku dla drogich zmarłych."
 	icon_state = "coffin"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -157,24 +157,24 @@
 	door_hinge = 5
 
 /obj/structure/closet/crate/internals
-	desc = "An internals crate."
-	name = "internals crate"
+	desc = "Skrzynia ze sprzętem do oddychania."
+	name = "skrzynia ze sprzętem do oddychania"
 	icon_state = "o2_crate"
 
 /obj/structure/closet/crate/trashcart
-	desc = "A heavy, metal trashcart with wheels."
-	name = "trash cart"
+	desc = "Ciężki metalowy wózek na śmieci z kółkami."
+	name = "wózek na śmieci"
 	icon_state = "trashcart"
 	door_anim_time = 0
 
 /obj/structure/closet/crate/medical
-	desc = "A medical crate."
-	name = "medical crate"
+	desc = "Skrzynia medyczna."
+	name = "skrzynia medyczna"
 	icon_state = "medical_crate"
 
 /obj/structure/closet/crate/freezer
-	desc = "A freezer."
-	name = "freezer"
+	desc = "Zamrażarka."
+	name = "zamrażarka"
 	icon_state = "freezer"
 	door_hinge = 5
 	door_anim_angle = 165
@@ -200,8 +200,8 @@
 	recursive_organ_check(src)
 
 /obj/structure/closet/crate/freezer/blood
-	name = "blood freezer"
-	desc = "A freezer containing packs of blood."
+	name = "zamrażarka na krew"
+	desc = "Zamrażarka z workami krwi."
 
 /obj/structure/closet/crate/freezer/blood/PopulateContents()
 	. = ..()
@@ -219,8 +219,8 @@
 		new /obj/item/reagent_containers/blood/random(src)
 
 /obj/structure/closet/crate/freezer/surplus_limbs
-	name = "surplus prosthetic limbs"
-	desc = "A crate containing an assortment of cheap prosthetic limbs."
+	name = "nadwyżkowe protezy kończyn"
+	desc = "Skrzynia z asortymentem tanich protez kończyn."
 
 /obj/structure/closet/crate/freezer/surplus_limbs/PopulateContents()
 	. = ..()
@@ -234,17 +234,17 @@
 	new /obj/item/bodypart/r_leg/robot/surplus(src)
 
 /obj/structure/closet/crate/radiation
-	desc = "A crate with a radiation sign on it."
-	name = "radiation crate"
+	desc = "Skrzynia ze znakiem promieniowania."
+	name = "skrzynia radiacyjna"
 	icon_state = "radiation_crate"
 
 /obj/structure/closet/crate/hydroponics
-	name = "hydroponics crate"
-	desc = "All you need to destroy those pesky weeds and pests."
+	name = "skrzynia hydroponiczna"
+	desc = "Wszystko, czego potrzebujesz, żeby wytępić te uciążliwe chwasty i szkodniki."
 	icon_state = "hydro_crate"
 
 /obj/structure/closet/crate/engineering
-	name = "engineering crate"
+	name = "skrzynia inżynieryjna"
 	icon_state = "engi_crate"
 
 /obj/structure/closet/crate/engineering/electrical
@@ -252,8 +252,8 @@
 	icon_door = "engi_crate"
 
 /obj/structure/closet/crate/rcd
-	desc = "A crate for the storage of an RCD."
-	name = "\improper RCD crate"
+	desc = "Skrzynia do przechowywania RCD."
+	name = "\improper skrzynia na RCD"
 	icon_state = "engi_crate"
 
 /obj/structure/closet/crate/rcd/PopulateContents()
@@ -263,12 +263,12 @@
 	new /obj/item/construction/rcd(src)
 
 /obj/structure/closet/crate/science
-	name = "science crate"
-	desc = "A science crate."
+	name = "skrzynia naukowa"
+	desc = "Skrzynia naukowa."
 	icon_state = "sci_crate"
 
 /obj/structure/closet/crate/solarpanel_small
-	name = "budget solar panel crate"
+	name = "skrzynia z budżetowymi panelami słonecznymi"
 	icon_state = "engi_e_crate"
 
 /obj/structure/closet/crate/solarpanel_small/PopulateContents()
@@ -280,7 +280,7 @@
 	new /obj/item/electronics/tracker(src)
 
 /obj/structure/closet/crate/goldcrate
-	name = "gold crate"
+	name = "złota skrzynia"
 
 /obj/structure/closet/crate/goldcrate/PopulateContents()
 	..()
@@ -289,7 +289,7 @@
 	new /obj/item/storage/belt/champion(src)
 
 /obj/structure/closet/crate/silvercrate
-	name = "silver crate"
+	name = "srebrna skrzynia"
 
 /obj/structure/closet/crate/silvercrate/PopulateContents()
 	..()

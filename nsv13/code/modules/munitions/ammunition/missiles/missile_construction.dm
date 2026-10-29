@@ -1,9 +1,9 @@
 //missile construction//
 
 /obj/item/ship_weapon/ammunition/missile/missile_casing
-	name = "prebuilt missile-casing"
+	name = "gotowa obudowa rakiety"
 	icon_state = "missile_case"
-	desc = "The outer casing of a 30mm missile."
+	desc = "Zewnętrzna obudowa rakiety 30 mm."
 	density = TRUE
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	claimable_gulag_points = 0

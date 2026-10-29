@@ -18,7 +18,7 @@ BONUS
 
 /datum/symptom/headache
 
-	name = "Headache"
+	name = "Ból głowy"
 	desc = "Wirus wywołuje stan zapalny w mózgu, powodując ciągłe bóle głowy."
 	stealth = -1
 	resistance = 4
@@ -57,10 +57,10 @@ BONUS
 	var/mob/living/M = A.affected_mob
 	if(power < 2)
 		if(prob(base_message_chance) || A.stage >=4)
-			to_chat(M, "<span class='warning'>[pick("Your head hurts.", "Your head pounds.")]</span>")
+			to_chat(M, "<span class='warning'>[pick("Boli cię głowa.", "Łupie cię w głowie.")]</span>")
 	if(power >= 2 && A.stage >= 4)
-		to_chat(M, "<span class='warning'>[pick("Your head hurts a lot.", "Your head pounds incessantly.")]</span>")
+		to_chat(M, "<span class='warning'>[pick("Bardzo boli cię głowa.", "Bez przerwy łupie cię w głowie.")]</span>")
 		M.adjustStaminaLoss(25)
 	if(power >= 3 && A.stage >= 5)
-		to_chat(M, "<span class='userdanger'>[pick("Your head hurts!", "You feel a burning knife inside your brain!", "A wave of pain fills your head!")]</span>")
+		to_chat(M, "<span class='userdanger'>[pick("Boli cię głowa!", "Czujesz rozżarzony nóż w mózgu!", "Fala bólu zalewa ci głowę!")]</span>")
 		M.Stun(35)

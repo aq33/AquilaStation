@@ -1,7 +1,7 @@
 
 /obj/item/gps
-	name = "global positioning system"
-	desc = "Helping lost spacemen find their way through the planets since 2016."
+	name = "system globalnego pozycjonowania"
+	desc = "Pomaga zagubionym kosmonautom odnaleźć drogę między planetami od 2016 roku."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "gps-c"
 	w_class = WEIGHT_CLASS_SMALL
@@ -24,16 +24,16 @@
 /obj/item/gps/mining
 	icon_state = "gps-m"
 	gpstag = "MINE0"
-	desc = "A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life."
+	desc = "System pozycjonowania pomocny przy ratowaniu uwięzionych lub rannych górników. Noszenie go przy sobie podczas wydobycia może uratować ci życie."
 
 /obj/item/gps/mining/exploration
 	gpstag = "EXP0"
-	desc = "A positioning system used for long-ranged tracking of important beacons."
+	desc = "System pozycjonowania do namierzania ważnych nadajników z dużej odległości."
 
 /obj/item/gps/cyborg
 	icon_state = "gps-b"
 	gpstag = "BORG0"
-	desc = "A mining cyborg internal positioning system. Used as a recovery beacon for damaged cyborg assets, or a collaboration tool for mining teams."
+	desc = "Wewnętrzny system pozycjonowania cyborga górniczego. Służy jako nadajnik do odzyskiwania uszkodzonych cyborgów albo jako narzędzie współpracy ekip górniczych."
 
 /obj/item/gps/cyborg/Initialize(mapload)
 	. = ..()
@@ -42,14 +42,14 @@
 /obj/item/gps/mining/internal
 	icon_state = "gps-m"
 	gpstag = "MINER"
-	desc = "A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life."
+	desc = "System pozycjonowania pomocny przy ratowaniu uwięzionych lub rannych górników. Noszenie go przy sobie podczas wydobycia może uratować ci życie."
 
 /obj/item/gps/visible_debug
-	name = "visible GPS"
+	name = "widoczny GPS"
 	gpstag = "ADMIN"
-	desc = "This admin-spawn GPS unit leaves the coordinates visible \
-		on any turf that it passes over, for debugging. Especially useful \
-		for marking the area around the transition edges."
+	desc = "Ten adminowski GPS zostawia widoczne współrzędne \
+		na każdym polu, przez które przejdzie (do debugowania). Szczególnie przydatny \
+		do oznaczania obszaru wokół krawędzi przejść."
 	var/list/turf/tagged
 
 /obj/item/gps/visible_debug/Initialize(mapload)

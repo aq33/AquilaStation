@@ -1,12 +1,12 @@
 /obj/item/clothing/under/rank/cargo/quartermaster
-	name = "quartermaster's jumpsuit"
-	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	name = "kombinezon kwatermistrza"
+	desc = "Kombinezon noszony przez kwatermistrza. Specjalnie zaprojektowany, by zapobiegać urazom kręgosłupa od przekładania papierów."
 	icon_state = "qm"
 	item_state = "qm"
 
 /obj/item/clothing/under/rank/cargo/quartermaster/skirt
-	name = "quartermaster's jumpskirt"
-	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
+	name = "spódnica kwatermistrza"
+	desc = "Spódnica noszona przez kwatermistrza. Specjalnie zaprojektowana, by zapobiegać urazom kręgosłupa od przekładania papierów."
 	icon_state = "qm_skirt"
 	item_state = "lb_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -15,16 +15,16 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/cargo/quartermaster/turtleneck
-	name = "quartermaster's turtleneck"
-	desc = "A snug turtleneck sweater worn by the Quartermaster, characterized by the expensive-looking pair of suit pants."
+	name = "golf kwatermistrza"
+	desc = "Przylegający golf noszony przez kwatermistrza, wyróżniający się drogo wyglądającymi spodniami od garnituru."
 	icon_state = "qmturtle"
 	item_state = "qmturtle"
 	body_parts_covered = CHEST|GROIN|ARMS
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/cargo/quartermaster/turtleneck/skirt
-	name = "quartermaster's turtleneck skirt"
-	desc = "A snug turtleneck sweater worn by the Quartermaster, as shown by the elegant double-lining of its silk skirt."
+	name = "golf ze spódnicą kwatermistrza"
+	desc = "Przylegający golf noszony przez kwatermistrza, co zdradza elegancka podwójna podszewka jedwabnej spódnicy."
 	icon_state = "qmturtle_skirt"
 	item_state = "qmturtle_skirt"
 	can_adjust = FALSE
@@ -32,8 +32,8 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/cargo/tech
-	name = "cargo technician's jumpsuit"
-	desc = "Shooooorts! They're comfy and easy to wear!"
+	name = "kombinezon magazyniera"
+	desc = "Szoooorty! Są wygodne i łatwo się je nosi!"
 	icon_state = "cargo"
 	item_state = "cargo"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -41,8 +41,8 @@
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/cargo/tech/skirt
-	name = "cargo technician's jumpskirt"
-	desc = "Skiiiiirts! They're comfy and easy to wear!"
+	name = "spódnica magazyniera"
+	desc = "Spódniiiiice! Są wygodne i łatwo się je nosi!"
 	icon_state = "cargo_skirt"
 	item_state = "lb_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -51,34 +51,34 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/cargo/miner
-	desc = "It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty."
-	name = "shaft miner's jumpsuit"
+	desc = "Zgrabny kombinezon z solidnymi ogrodniczkami. Jest bardzo brudny."
+	name = "kombinezon górnika"
 	icon_state = "miner"
 	item_state = "miner"
 
 /obj/item/clothing/under/rank/cargo/miner/lavaland
-	desc = "A green uniform for operating in hazardous environments."
-	name = "shaft miner's jumpsuit"
+	desc = "Zielony mundur do pracy w niebezpiecznym środowisku."
+	name = "kombinezon górnika"
 	icon_state = "explorer"
 	item_state = "explorer"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/cargo/exploration
-	name = "exploration uniform"
-	desc = "A robust uniform used by exploration teams."
+	name = "mundur odkrywcy"
+	desc = "Wytrzymały mundur używany przez zespoły odkrywców."
 	icon_state = "curator"
 	item_state = "curator"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/misc/mailman
-	name = "mailman's jumpsuit"
-	desc = "<i>'Special delivery!'</i>"
+	name = "kombinezon listonosza"
+	desc = "<i>„Przesyłka specjalna!”</i>"
 	icon_state = "mailman"
 	item_state = "b_suit"
 
 /obj/item/clothing/under/misc/mailman/skirt
-	name = "mailman's jumpskirt"
-	desc = "<i>'Special delivery!'</i> Beware of spacewind."
+	name = "spódnica listonosza"
+	desc = "<i>„Przesyłka specjalna!”</i> Uważaj na kosmiczny wiatr."
 	icon_state = "mailman_skirt"
 	item_state = "b_suit"
 	body_parts_covered = CHEST|GROIN|ARMS

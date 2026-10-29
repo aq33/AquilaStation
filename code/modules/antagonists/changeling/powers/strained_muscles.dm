@@ -2,8 +2,8 @@
 //Limited because of hardsuits and such; ideally, used for a quick getaway
 
 /datum/action/changeling/strained_muscles
-	name = "Strained Muscles"
-	desc = "We evolve the ability to reduce the acid buildup in our muscles, allowing us to move much faster."
+	name = "Napięte mięśnie"
+	desc = "Wykształcamy zdolność ograniczania gromadzenia się kwasu w mięśniach, dzięki czemu poruszamy się znacznie szybciej."
 	helptext = "Wysiłek nas męczy i szybko opadamy z sił. Zwykłe ograniczenia wagi, np. przez skafandry, nadal obowiązują. Nie działa w mniejszej formie."
 	button_icon_state = "strained_muscles"
 	chemical_cost = 0

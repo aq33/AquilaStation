@@ -204,7 +204,7 @@ SUBSYSTEM_DEF(ticker)
 					fail_setup()
 					return
 				else
-					message_admins("Pre-setup completed successfully, however was run late. Likely due to start-now or a bug.")
+					message_admins("Pre-setup zakończony pomyślnie, ale uruchomiony za późno. Pewnie przez start-now albo błąd.")
 					log_game("Pre-setup completed successfully, however was run late. Likely due to start-now or a bug.")
 					pre_setup_completed = TRUE
 			//Attempt normal setup
@@ -229,7 +229,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/fail_setup()
 	if(fail_counter >= 2)
 		log_game("Failed setting up [GLOB.master_mode] [fail_counter + 1] times, defaulting to extended.")
-		message_admins("Failed setting up [GLOB.master_mode] [fail_counter + 1] times, defaulting to extended.")
+		message_admins("Nie udało się skonfigurować [GLOB.master_mode] ([fail_counter + 1] razy), przechodzę na extended.")
 		//This has failed enough, lets just get on with extended.
 		failsafe_pre_setup()
 		return
@@ -242,7 +242,7 @@ SUBSYSTEM_DEF(ticker)
 	pre_setup_completed = FALSE
 	//Return to default mode
 	load_mode()
-	message_admins("Failed to setup. Failures: ([fail_counter] / 3).")
+	message_admins("Konfiguracja nieudana. Porażki: ([fail_counter] / 3).")
 	log_game("Setup failed.")
 
 //Fallback presetup that sets up extended.
@@ -270,7 +270,7 @@ SUBSYSTEM_DEF(ticker)
 			if(GLOB.secret_force_mode != "secret")
 				var/datum/game_mode/smode = config.pick_mode(GLOB.secret_force_mode)
 				if(!smode.can_start())
-					message_admins("<span class='notice'>Unable to force secret [GLOB.secret_force_mode]. [smode.required_players] players and [smode.required_enemies] eligible antagonists needed.</span>")
+					message_admins("<span class='notice'>Nie można wymusić trybu secret [GLOB.secret_force_mode]. Potrzeba graczy: [smode.required_players], uprawnionych antagonistów: [smode.required_enemies].</span>")
 				else
 					mode = smode
 
@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(ticker)
 	return mode.setup_maps()
 
 /datum/controller/subsystem/ticker/proc/setup()
-	message_admins("Setting up game.")
+	message_admins("Konfiguracja gry.")
 	var/init_start = world.timeofday
 
 	CHECK_TICK
@@ -317,7 +317,7 @@ SUBSYSTEM_DEF(ticker)
 			SSjob.ResetOccupations()
 			return FALSE
 	else
-		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
+		message_admins("<span class='notice'>DEBUG: pomijam kontrole przed startem...</span>")
 
 	CHECK_TICK
 	if(hide_mode)
@@ -360,7 +360,7 @@ SUBSYSTEM_DEF(ticker)
 	SSovermap_mode.start_reminder() //NSV13
 
 	if(SSevents.holidays)
-		to_chat(world, "<span class='notice'>and...</span>")
+		to_chat(world, "<span class='notice'>a także...</span>")
 		for(var/holidayname in SSevents.holidays)
 			var/datum/holiday/holiday = SSevents.holidays[holidayname]
 			to_chat(world, "<h4>[holiday.greet()]</h4>")
@@ -600,7 +600,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "Nanotrasen Admiralty"
+	var/news_source = "Admiralicja Nanotrasen"
 	switch(news_report)
 		if(NUKE_SYNDICATE_BASE)
 			news_message = "W śmiałym nalocie bohaterska załoga [station_name()] zdetonowała ładunek jądrowy w sercu bazy terrorystów."
@@ -633,29 +633,29 @@ SUBSYSTEM_DEF(ticker)
 		if(WIZARD_KILLED)
 			news_message = "Napięcia z Kosmiczną Federacją Czarodziejów wzrosły po śmierci jednego z jej członków na pokładzie [station_name()]."
 		if(STATION_NUKED)
-			news_message = "[station_name()] activated its self-destruct device for unknown reasons. Attempts to clone the Captain so he can be arrested and executed are underway."
+			news_message = "[station_name()] z nieznanych przyczyn uruchomiła mechanizm samozniszczenia. Trwają próby sklonowania kapitana, by można go było aresztować i stracić."
 		if(CLOCK_SUMMON)
-			news_message = "The garbled messages about hailing a mouse and strange energy readings from [station_name()] have been discovered to be an ill-advised, if thorough, prank by a clown."
+			news_message = "Zniekształcone wiadomości o oddawaniu czci myszy i dziwne odczyty energii z [station_name()] okazały się nieprzemyślanym, choć starannym żartem klauna."
 		if(CLOCK_SILICONS)
-			news_message = "The project started by [station_name()] to upgrade their silicon units with advanced equipment have been largely successful, though they have thus far refused to release schematics in a violation of company policy."
+			news_message = "Projekt modernizacji jednostek krzemowych z [station_name()] zakończył się w dużej mierze sukcesem, choć załoga, wbrew polityce firmy, wciąż odmawia udostępnienia schematów."
 		if(CLOCK_PROSELYTIZATION)
-			news_message = "The burst of energy released near [station_name()] has been confirmed as merely a test of a new weapon. However, due to an unexpected mechanical error, their communications system has been knocked offline."
+			news_message = "Potwierdzono, że wybuch energii w pobliżu [station_name()] był jedynie testem nowej broni. Niestety przez nieoczekiwaną usterkę mechaniczną padł tamtejszy system łączności."
 		if(SHUTTLE_HIJACK)
-			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after."
+			news_message = "Podczas rutynowej ewakuacji prom ratunkowy z [station_name()] zboczył z kursu przez uszkodzone protokoły nawigacji, ale wkrótce go odzyskano."
 		if(SHIP_VICTORY) //NSV13 start - news reports for nsv round ends
-			news_message = "[station_name()] has successfully completed their mission and has returned to Outpost 45 for resupply and crew transfer."
+			news_message = "[station_name()] pomyślnie wykonała misję i wróciła do Placówki 45 po zaopatrzenie i na wymianę załogi."
 		if(SHIP_DESTROYED)
-			news_message = "[station_name()] has been defeated in combat while attempting to complete their mission."
+			news_message = "[station_name()] poniosła klęskę w walce podczas próby wykonania misji."
 		if(PVP_SYNDIE_WIN)
-			news_message = "The crew of [station_name()] have been cloned and subsequently court-martialled after losing a border skirmish to the SSV Nebuchadnezzar and her crew. VICKER media would like to remind all employees to do better than that crew!"
+			news_message = "Załoga [station_name()] została sklonowana, a następnie postawiona przed sądem wojskowym po przegranej potyczce granicznej z SSV Nebuchadnezzar i jego załogą. Media VICKER przypominają wszystkim pracownikom, by spisywali się lepiej niż ta załoga!"
 		if(PVP_SYNDIE_LOSS)
-			news_message = "The crew of [station_name()] successfully repelled an attempted invasion by the SSV Nebuchadnezzar and have strengthened Nanotrasen's position in the Sol sector!"
+			news_message = "Załoga [station_name()] odparła próbę inwazji SSV Nebuchadnezzar i umocniła pozycję Nanotrasen w sektorze Sol!"
 		if(PVP_SYNDIE_PIRATE_WIN)
-			news_message = "The Sol sector has fallen into anarchistic piracy, as the Tortuga raiders used the chaos of a surprise attack by Syndicate forces to seize a large amount of territory unanswered." //NSV13 end
+			news_message = "Sektor Sol pogrążył się w anarchii i piractwie: najeźdźcy z Tortugi wykorzystali chaos po niespodziewanym ataku Syndykatu i bez oporu zajęli rozległe terytoria." //NSV13 end
 
 	if(news_message)
 		if(!AWAIT(SStopic.crosscomms_send_async("news_report", news_message, news_source), 10 SECONDS))
-			message_admins("Failed to send news report through crosscomms. The sending task expired.")
+			message_admins("Nie udało się wysłać wiadomości przez crosscomms. Zadanie wysyłania wygasło.")
 			log_game("Failed to send news report through crosscomms. The sending task expired.")
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()

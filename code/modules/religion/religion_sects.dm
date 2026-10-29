@@ -13,7 +13,7 @@
 	/// Flavorful quote given about the sect, used in tgui
 	var/quote = "Chwała Coderbusowi! Coderbus nr 1! Pieprzyć graczy!"
 	/// Opening message when someone gets converted
-	var/desc = "Oh My! What Do We Have Here?!!?!?!?"
+	var/desc = "O rety! Cóż my tu mamy?!!?!?!?"
 	/// Tgui icon used by this sect - https://fontawesome.com/icons/
 	var/tgui_icon = "bug"
 	/// holder for alignments.
@@ -122,18 +122,18 @@
 /**** Nanotrasen Approved God ****/
 
 /datum/religion_sect/puritanism
-	name = "Nanotrasen Approved God"
-	desc = "Your run-of-the-mill sect, there are no benefits or boons associated."
+	name = "Bóg zatwierdzony przez Nanotrasen"
+	desc = "Zwyczajny odłam bez żadnych korzyści ani darów."
 	quote = "Nanotrasen poleca!"
 	tgui_icon = "bible"
 
 /**** Technophile Sect ****/
 
 /datum/religion_sect/technophile
-	name = "Technophile"
+	name = "Technofil"
 	quote = "Obyś znalazł spokój w metalowej skorupie."
-	desc = "Bibles now recharge cyborgs and heal robotic limbs if targeted, but they \
-	do not heal organic limbs. You can now sacrifice cells, with favor depending on their charge."
+	desc = "Biblie ładują teraz cyborgi i leczą robotyczne kończyny, ale \
+	nie leczą kończyn organicznych. Możesz składać w ofierze baterie, a łaska zależy od ich ładunku."
 	tgui_icon = "robot"
 	alignment = ALIGNMENT_NEUT
 	desired_items = list(/obj/item/stock_parts/cell = "z ładunkiem baterii")
@@ -201,8 +201,8 @@
 /**** Ever-Burning Candle sect ****/
 
 /datum/religion_sect/candle_sect
-	name = "Ever-Burning Candle"
-	desc = "Sacrificing burning corpses with a lot of burn damage and candles grants you favor."
+	name = "Wiecznie Płonąca Świeca"
+	desc = "Ofiarowanie płonących zwłok z dużymi oparzeniami oraz świec daje ci łaskę."
 	quote = "To musi płonąć! Pierwotną energię trzeba szanować."
 	tgui_icon = "fire-alt"
 	alignment = ALIGNMENT_NEUT
@@ -229,8 +229,8 @@
 /**** Necromantic Sect ****/
 
 /datum/religion_sect/necro_sect
-	name = "Necromancy"
-	desc = "A sect dedicated to the revival and summoning of the dead. Sacrificing living animals grants you favor."
+	name = "Nekromancja"
+	desc = "Odłam poświęcony wskrzeszaniu i przywoływaniu zmarłych. Ofiarowanie żywych zwierząt daje ci łaskę."
 	quote = "Armia nieumarłych to podstawa!"
 	tgui_icon = "skull"
 	alignment = ALIGNMENT_EVIL
@@ -256,8 +256,8 @@
 /**** Carp Sect ****/
 
 /datum/religion_sect/carp_sect
-	name = "Followers of the Great Carp"
-	desc = "A sect dedicated to the space carp and carp'sie, Offer the gods meat for favor."
+	name = "Wyznawcy Wielkiego Karpia"
+	desc = "Odłam poświęcony kosmicznemu karpiowi i Carp'sie. Ofiaruj bogom mięso, by zyskać łaskę."
 	quote = "Utopcie stację w rybach i wodzie."
 	tgui_icon = "fish"
 	alignment = ALIGNMENT_NEUT

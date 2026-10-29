@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/induce_panic
-	name = "Induce Panic"
-	desc = "We unleash a burst of psionic energy, inducing a debilitating fear in those around us and reducing their combat readiness. We can also briefly affect silicon-based life with this burst."
+	name = "Wywołaj panikę"
+	desc = "Uwalniamy falę energii psionicznej, która wywołuje u otoczenia paraliżujący strach i osłabia jego gotowość bojową. Ta fala na krótko działa też na życie oparte na krzemie."
 	panel = "Hivemind Abilities"
 	charge_max = 900
 	range = 7
@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/targeted/induce_panic/cast(list/targets, mob/living/user = usr)
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	for(var/mob/living/carbon/human/target in targets)
 		if(target.stat == DEAD)

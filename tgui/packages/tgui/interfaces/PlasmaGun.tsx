@@ -27,7 +27,7 @@ export const PlasmaGun = (props) => {
         <Section>
           <Table.Row>
             <Table.Cell collapsing>
-              <Section title="Splines:">
+              <Section title="Splajny:">
                 <ProgressBar
                   value={(100 - data.cooldown) * 0.01}
                   ranges={{
@@ -43,7 +43,7 @@ export const PlasmaGun = (props) => {
         <Section>
           <Table.Row>
             <Table.Cell collapsing>
-              <Section title="Plasma Capacitor Charge:">
+              <Section title="Ładunek kondensatora plazmy:">
                 <ProgressBar
                   value={
                     (data.plasma_moles / data.plasma_moles_max) * 100 * 0.01
@@ -57,7 +57,7 @@ export const PlasmaGun = (props) => {
               </Section>
             </Table.Cell>
             <Table.Cell collapsing>
-              <Section title="Plasma Load:">
+              <Section title="Ładunek plazmy:">
                 <ProgressBar
                   value={(data.ammo / data.max_ammo) * 100 * 0.01}
                   ranges={{
@@ -69,7 +69,7 @@ export const PlasmaGun = (props) => {
               </Section>
             </Table.Cell>
           </Table.Row>
-          <Section title="Field Alignment">
+          <Section title="Wyrównanie pola">
             <ProgressBar
               value={data.alignment * 0.01}
               ranges={{
@@ -79,7 +79,7 @@ export const PlasmaGun = (props) => {
               }}
             />
           </Section>
-          <Section title="Field Integrity:">
+          <Section title="Integralność pola:">
             <ProgressBar
               value={data.field_integrity * 0.01}
               ranges={{
@@ -90,14 +90,14 @@ export const PlasmaGun = (props) => {
             />
           </Section>
         </Section>
-        <Section title="Deterrant System Controls:">
+        <Section title="Sterowanie systemem odstraszającym:">
           <Button
             fluid
             icon={data.loaded ? 'check-circle' : 'square-o'}
             color={data.loaded ? 'red' : ''}
             width="100"
             selected={data.loaded}
-            content="Condense Phoron Mass"
+            content="Skondensuj masę foronu"
             onClick={() => act('toggle_load')}
           />
           <Button
@@ -106,7 +106,7 @@ export const PlasmaGun = (props) => {
             color={data.chambered ? 'red' : ''}
             width="100"
             selected={data.chambered}
-            content="Commence Magnetic Charge"
+            content="Rozpocznij ładowanie magnetyczne"
             onClick={() => act('chamber')}
           />
           <Button
@@ -115,7 +115,7 @@ export const PlasmaGun = (props) => {
             color={data.safety ? 'red' : ''}
             width="100"
             selected={data.safety}
-            content="Release Constrictor Field"
+            content="Zwolnij pole zaciskające"
             onClick={() => act('toggle_safety')}
           />
         </Section>

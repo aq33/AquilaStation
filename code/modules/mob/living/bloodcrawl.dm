@@ -1,5 +1,5 @@
 /obj/effect/dummy/phased_mob/slaughter //Can't use the wizard one, blocked by jaunt/slow
-	name = "water"
+	name = "woda"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = 1
@@ -136,8 +136,8 @@
 	qdel(victim)
 
 /obj/item/bloodcrawl
-	name = "blood crawl"
-	desc = "You are unable to hold anything while in this form."
+	name = "pełzanie we krwi"
+	desc = "W tej postaci nie możesz niczego trzymać."
 	icon = 'icons/effects/blood.dmi'
 	item_flags = ABSTRACT | DROPDEL
 

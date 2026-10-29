@@ -3,9 +3,9 @@
 // Gauze stays the item that stops bleeding.
 
 /obj/item/stack/medical/suture
-	name = "suture"
-	singular_name = "suture"
-	desc = "Basic sterile sutures used to seal up cuts and lacerations and stop bleeding."
+	name = "nici chirurgiczne"
+	singular_name = "szew"
+	desc = "Podstawowe sterylne nici do zszywania nacięć i ran szarpanych oraz tamowania krwawienia."
 	icon = 'aquila/icons/obj/medical/stack_medical.dmi'
 	icon_state = "suture"
 	lefthand_file = 'aquila/icons/mob/inhands/equipment/medkit_lefthand.dmi'
@@ -23,10 +23,10 @@
 	amount = 1
 
 /obj/item/stack/medical/suture/medicated
-	name = "medicated suture"
-	singular_name = "medicated suture"
+	name = "nici z lekiem"
+	singular_name = "szew z lekiem"
 	icon_state = "suture_purp"
-	desc = "A suture infused with drugs that speed up wound healing of the treated laceration."
+	desc = "Nici nasączone lekami, które przyspieszają gojenie się zszytej rany."
 	heal_brute = 15
 	grind_results = list(/datum/reagent/medicine/styptic_powder = 2)
 
@@ -34,9 +34,9 @@
 	amount = 1
 
 /obj/item/stack/medical/mesh
-	name = "regenerative mesh"
-	singular_name = "mesh piece"
-	desc = "A bacteriostatic mesh used to dress burns."
+	name = "siatka regeneracyjna"
+	singular_name = "kawałek siatki"
+	desc = "Bakteriostatyczna siatka do opatrywania oparzeń."
 	icon = 'aquila/icons/obj/medical/stack_medical.dmi'
 	icon_state = "regen_mesh"
 	lefthand_file = 'aquila/icons/mob/inhands/equipment/medkit_lefthand.dmi'
@@ -53,8 +53,8 @@
 	amount = 1
 
 /obj/item/stack/medical/mesh/advanced
-	name = "advanced regenerative mesh"
-	desc = "An advanced mesh made with aloe extracts and sterilizing chemicals, used to treat burns."
+	name = "zaawansowana siatka regeneracyjna"
+	desc = "Zaawansowana siatka z ekstraktem z aloesu i środkami sterylizującymi do leczenia oparzeń."
 	icon_state = "aloe_mesh"
 	heal_burn = 15
 	grind_results = list(/datum/reagent/medicine/silver_sulfadiazine = 2)

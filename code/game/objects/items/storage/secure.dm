@@ -11,7 +11,7 @@
 //         Generic Item
 // -----------------------------
 /obj/item/storage/secure
-	name = "secstorage"
+	name = "bezpieczny schowek"
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
 	var/icon_opened = "secure0"
@@ -23,7 +23,7 @@
 	var/open = FALSE
 	var/can_hack_open = TRUE
 	w_class = WEIGHT_CLASS_NORMAL
-	desc = "This shouldn't exist. If it does, create an issue report."
+	desc = "To nie powinno istnieć. Jeśli istnieje, zgłoś błąd."
 
 /obj/item/storage/secure/ComponentInitialize()
 	. = ..()
@@ -138,13 +138,13 @@
 //        Secure Briefcase
 // -----------------------------
 /obj/item/storage/secure/briefcase
-	name = "secure briefcase"
+	name = "zabezpieczona aktówka"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "sec-case"
 	item_state = "sec-case"
 	lefthand_file = 'icons/mob/inhands/equipment/case_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/case_righthand.dmi'
-	desc = "A large briefcase with a digital locking system."
+	desc = "Duża aktówka z cyfrowym zamkiem."
 	force = 8
 	hitsound = "swing_hit"
 	throw_speed = 2
@@ -178,13 +178,13 @@
 // -----------------------------
 
 /obj/item/storage/secure/safe
-	name = "secure safe"
+	name = "zabezpieczony sejf"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	desc = "Excellent for securing things away from grubby hands."
+	desc = "Świetnie chroni rzeczy przed lepkimi łapami."
 	force = 8
 	layer = ABOVE_WINDOW_LAYER
 	w_class = WEIGHT_CLASS_GIGANTIC
@@ -208,7 +208,7 @@
 	return attack_self(user)
 
 /obj/item/storage/secure/safe/HoS
-	name = "head of security's safe"
+	name = "sejf Komendanta"
 
 /**
  * This safe is meant to be damn robust. To break in, you're supposed to get creative, or use acid or an explosion.
@@ -220,10 +220,10 @@
  * get access to it.
  */
 /obj/item/storage/secure/safe/caps_spare
-	name = "captain's spare ID safe"
-	desc = "In case of emergency, do not break glass. All Captains and Acting Captains are provided with codes to access this safe. \
-It is made out of the same material as the station's Black Box and is designed to resist all conventional weaponry. \
-There appears to be a small amount of surface corrosion. It doesn't look like it could withstand much of an explosion."
+	name = "sejf z zapasowym identyfikatorem kapitana"
+	desc = "W razie zagrożenia nie zbijać szyby. Wszyscy Kapitanowie i p.o. Kapitana dostają kody do tego sejfu. \
+Jest zrobiony z tego samego materiału co czarna skrzynka stacji i wytrzymuje każdą konwencjonalną broń. \
+Widać na nim niewielką korozję powierzchniową. Nie wygląda, jakby wytrzymał porządny wybuch."
 	can_hack_open = FALSE
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 300

@@ -73,7 +73,7 @@
 
 /datum/clockcult/scripture/proc/check_special_requirements(mob/user)
 	if(!invoker || !invoking_slab)
-		message_admins("No invoker for [name]")
+		message_admins("Brak przywołującego dla: [name]")
 		return FALSE
 	if(invoker.get_active_held_item() != invoking_slab && !iscyborg(invoker))
 		to_chat(invoker, "<span class='brass'>Nie udaje ci się przywołać: [name].</span>")
@@ -149,7 +149,7 @@
 //(stunning etc.)
 
 /datum/clockcult/scripture/slab
-	name = "Charge Slab"
+	name = "Naładowanie płyty"
 	var/use_time = 10
 	var/slab_overlay = "volt"
 	var/datum/progressbar/progress
@@ -241,9 +241,9 @@
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 
 /datum/action/innate/clockcult/quick_bind
-	name = "Quick Bind"
+	name = "Szybki dostęp"
 	button_icon_state = "telerune"
-	desc = "A quick bound spell."
+	desc = "Zaklęcie przypisane do szybkiego dostępu."
 	var/obj/item/clockwork/clockwork_slab/activation_slab
 	var/datum/clockcult/scripture/scripture
 
@@ -284,9 +284,9 @@
 // !     Hierophant Transmit      ! //
 //==================================//
 /datum/action/innate/clockcult/transmit
-	name = "Hierophant Transmit"
+	name = "Przekaz Hierofanta"
 	button_icon_state = "hierophant"
-	desc = "Transmit a message to your allies through the Hierophant."
+	desc = "Przekazujesz wiadomość sojusznikom przez Hierofanta."
 
 /datum/action/innate/clockcult/transmit/IsAvailable()
 	if(!is_servant_of_ratvar(owner))

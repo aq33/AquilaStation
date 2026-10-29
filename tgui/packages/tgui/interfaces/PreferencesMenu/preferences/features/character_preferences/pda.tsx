@@ -2,11 +2,11 @@ import { Feature, FeatureChoiced, FeatureColorInput } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const pda_theme: FeatureChoiced = {
-  name: 'PDA Theme',
+  name: 'Motyw PDA',
   component: FeatureButtonedDropdownInput,
 };
 
 export const pda_classic_color: Feature<string> = {
-  name: 'Thinktronic Classic Color',
+  name: 'Kolor Thinktronic Classic',
   component: FeatureColorInput,
 };

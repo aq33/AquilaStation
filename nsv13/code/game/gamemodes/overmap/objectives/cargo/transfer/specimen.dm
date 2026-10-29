@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/specimen
-	name = "Deliver a specimen"
-	desc = "Deliver a specific specimen provided by the objective"
-	crate_name = "Secure Specimen Transfer"
+	name = "Dostarcz okaz"
+	desc = "Dostarcz konkretny okaz przekazany w ramach celu"
+	crate_name = "Bezpieczny transfer okazu"
 
 /datum/overmap_objective/cargo/transfer/specimen/New()
 	var/picked = pick( list (

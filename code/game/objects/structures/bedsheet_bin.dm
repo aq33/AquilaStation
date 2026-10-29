@@ -1,6 +1,6 @@
 /obj/structure/bedsheetbin
-	name = "linen bin"
-	desc = "It looks rather cosy."
+	name = "pojemnik na pościel"
+	desc = "Wygląda dość przytulnie."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
 	anchored = TRUE
@@ -60,7 +60,7 @@
 			to_chat(user, "<span clas='warn'>[src] musi być najpierw pusty!</span>")
 			return
 		if(I.use_tool(src, user, 5, volume=50))
-			to_chat(user, "<span clas='notice'>Rozbierasz [src].</span>")
+			to_chat(user, "<span class='notice'>Rozbierasz [src].</span>")
 			new /obj/item/stack/rods(loc, 2)
 			qdel(src)
 

@@ -78,7 +78,7 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/xenoarchaeology_machine
-	name = "place holder (Machine Board)"
+	name = "zaślepka (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/xenoarchaeology_machine
 	req_components = list(
@@ -90,7 +90,7 @@
 	Scale, measures artifact weight
 */
 /obj/machinery/xenoarchaeology_machine/scale
-	name = "industrial scale"
+	name = "waga przemysłowa"
 	desc = "Przemysłowe urządzenie zdolne zważyć tysiące kilogramów."
 	icon_state = "scale"
 	circuit = /obj/item/circuitboard/machine/xenoarchaeology_machine/scale
@@ -132,7 +132,7 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/xenoarchaeology_machine/scale
-	name = "industrial scale (Machine Board)"
+	name = "waga przemysłowa (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/xenoarchaeology_machine/scale
 
@@ -141,7 +141,7 @@
 	Conductor, measures artifact conductivty
 */
 /obj/machinery/xenoarchaeology_machine/conductor
-	name = "conducting plate"
+	name = "płyta przewodząca"
 	desc = "Przemysłowe urządzenie do pomiaru przewodności materiałów."
 	icon_state = "conductor"
 	circuit = /obj/item/circuitboard/machine/xenoarchaeology_machine/conductor
@@ -184,7 +184,7 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/xenoarchaeology_machine/conductor
-	name = "conducting plate (Machine Board)"
+	name = "płyta przewodząca (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/xenoarchaeology_machine/conductor
 
@@ -193,7 +193,7 @@
 	Calibrator, calibrates artifacts
 */
 /obj/machinery/xenoarchaeology_machine/calibrator
-	name = "anomalous material calibrator"
+	name = "kalibrator materiałów anomalnych"
 	desc = "Eksperymentalne urządzenie naukowe służące do kalibracji anomalnych materiałów."
 	icon_state = "calibrator"
 	move_inside = TRUE
@@ -340,7 +340,7 @@
 
 //Circuitboard
 /obj/item/circuitboard/machine/xenoarchaeology_machine/calibrator
-	name = "anomalous material calibrator (Machine Board)"
+	name = "kalibrator materiałów anomalnych (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/xenoarchaeology_machine/calibrator
 	req_components = list(/obj/item/stock_parts/matter_bin = 3, /obj/item/stock_parts/manipulator = 1)

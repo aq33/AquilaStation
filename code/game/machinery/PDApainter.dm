@@ -1,6 +1,6 @@
 /obj/machinery/pdapainter
-	name = "\improper color manipulator"
-	desc = "A machine able to color PDAs and IDs with ease. Insert an ID card or PDA and pick a color scheme."
+	name = "\improper manipulator kolorów"
+	desc = "Maszyna, która bez trudu zmienia kolory PDA i kart ID. Włóż kartę ID albo PDA i wybierz schemat kolorów."
 	icon = 'nsv13/icons/obj/pda.dmi' //NSV13 - old sprites
 	icon_state = "coloriser"
 	max_integrity = 200
@@ -10,51 +10,51 @@
 	var/obj/item/card/id/storedid = null
 	//Nsv13 - Crayon eaters & MPs
 	var/pda_icons = list(
-		"Misc: Neutral" = "pda",
-		"Misc: Midshipman" = "pda-assistant", // NSV13 - midshipman
-		"Command (Standard)" = "pda-heads",
-		"Command: Captain" = "pda-captain",
-		"Service (Standard)" = "pda-service",
-		"Command: Executive Officer" = "pda-hop", // NSV13 - XO is command
-		"Service: Bartender" = "pda-bartender",
-		"Service: Botanist" = "pda-hydro", //NSV13 - we still have the botany PDA
-		"Service: Chaplain" = "pda-chaplain",
-		"Service: Clown" = "pda-clown",
-		"Service: Cook" = "pda-cook",
-		"Service: Curator" = "pda-library",
-		"Service: Janitor" = "pda-janitor",
-		"Service: Lawyer" = "pda-lawyer",
-		"Service: Mime" = "pda-mime",
-		"Cargo (Standard)" = "pda-cargo",
-		"Cargo: Quartermaster" = "pda-qm",
-		"Cargo: Cargo Technician" = "pda-cargo",
-		"Cargo: Shaft Miner" = "pda-miner",
-		"Engineering (Standard)" = "pda-engineer",
-		"Engineering: Chief Engineer" = "pda-ce",
-		"Engineering: Station Engineer" = "pda-engineer",
-		"Engineering: Atmospheric Technician" = "pda-atmos",
-		"Science (Standard)" = "pda-science",
-		"Science: Research Director" = "pda-rd",
-		"Science: Roboticist" = "pda-roboticist",
-		"Science: Scienctist" = "pda-science",
-		"Science: Exploration Crew" = "pda-exploration",
-		"Medical (Standard)" = "pda-medical",
-		"Medical: Chief Medical Officer" = "pda-cmo",
-		"Medical: Medical Doctor" = "pda-medical",
-		"Medical: Chemist" = "pda-chemistry",
-		"Medical: Paramedic" = "pda-paramedical",
-		"Medical: Geneticist" = "pda-genetics",
-		"Medical: Virologist" = "pda-virology",
-		"Security (Standard)" = "pda-security",
-		"Security: Head of Security" = "pda-hos",
-		"Security: Warden" = "pda-warden",
-		"Security: Military Police" = "pda-security", //NSV13 - MPs
-		"Security: Detective" = "pda-detective",
-		"Security: Brig Physician" = "pda-brigphys",
-		"Security: Deputy" = "pda-deputy",
-		"Munitions (Standard)" = "pda-munition", // NSV13 - munitions and MAA
-		"Munitions: Master At Arms" = "pda-maa",
-		"Misc: Prisoner" = "pda-prisoner"
+		"Różne: neutralny" = "pda",
+		"Różne: Majtek" = "pda-assistant", // NSV13 - midshipman
+		"Dowództwo (standard)" = "pda-heads",
+		"Dowództwo: Kapitan" = "pda-captain",
+		"Służba (standard)" = "pda-service",
+		"Dowództwo: Starszy Oficer" = "pda-hop", // NSV13 - XO is command
+		"Służba: Barman" = "pda-bartender",
+		"Służba: Botanik" = "pda-hydro", //NSV13 - we still have the botany PDA
+		"Służba: Kapłan" = "pda-chaplain",
+		"Służba: Klaun" = "pda-clown",
+		"Służba: Kucharz" = "pda-cook",
+		"Służba: Bibliotekarz" = "pda-library",
+		"Służba: Woźny" = "pda-janitor",
+		"Służba: Prawnik" = "pda-lawyer",
+		"Służba: Mim" = "pda-mime",
+		"Zaopatrzenie (standard)" = "pda-cargo",
+		"Zaopatrzenie: Kwatermistrz" = "pda-qm",
+		"Zaopatrzenie: Magazynier" = "pda-cargo",
+		"Zaopatrzenie: Górnik" = "pda-miner",
+		"Inżynieria (standard)" = "pda-engineer",
+		"Inżynieria: Główny Inżynier" = "pda-ce",
+		"Inżynieria: Inżynier" = "pda-engineer",
+		"Inżynieria: Technik Atmosferyki" = "pda-atmos",
+		"Nauka (standard)" = "pda-science",
+		"Nauka: Dyrektor Naukowy" = "pda-rd",
+		"Nauka: Robotyk" = "pda-roboticist",
+		"Nauka: Naukowiec" = "pda-science",
+		"Nauka: Odkrywca" = "pda-exploration",
+		"Medyczny (standard)" = "pda-medical",
+		"Medyczny: Ordynator" = "pda-cmo",
+		"Medyczny: Lekarz" = "pda-medical",
+		"Medyczny: Chemik" = "pda-chemistry",
+		"Medyczny: Ratownik Medyczny" = "pda-paramedical",
+		"Medyczny: Genetyk" = "pda-genetics",
+		"Medyczny: Wirolog" = "pda-virology",
+		"Ochrona (standard)" = "pda-security",
+		"Ochrona: Komendant" = "pda-hos",
+		"Ochrona: Naczelnik" = "pda-warden",
+		"Ochrona: Policjant" = "pda-security", //NSV13 - MPs
+		"Ochrona: Detektyw" = "pda-detective",
+		"Ochrona: Lekarz Więzienny" = "pda-brigphys",
+		"Ochrona: Aspirant" = "pda-deputy",
+		"Amunicja (standard)" = "pda-munition", // NSV13 - munitions and MAA
+		"Amunicja: Mistrz Broni" = "pda-maa",
+		"Różne: więzień" = "pda-prisoner"
 	)
 
  	// NSV13 - moved XO to command, added munitions
@@ -80,8 +80,8 @@
 	if(obj_flags & EMAGGED)
 		return
 	pda_icons += list(
-		"Transparent" = "pda-clear",
-		"Syndicate" = "pda-syndi"
+		"Przezroczysty" = "pda-clear",
+		"Syndykat" = "pda-syndi"
 	)
 	valid_jobs += list(
 		"CentCom (Custom)",

@@ -7,7 +7,7 @@ Doesn't work on other aliens/AI.*/
 
 
 /obj/effect/proc_holder/alien
-	name = "Alien Power"
+	name = "Moc obcych"
 	panel = "Alien"
 	base_action = /datum/action/spell_action/alien
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'
@@ -56,14 +56,14 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/proc/check_vent_block(mob/living/user)
 	var/obj/machinery/atmospherics/components/unary/atmos_thing = locate() in user.loc
 	if(atmos_thing)
-		var/rusure = alert(user, "Składanie jaj i formowanie żywicy tutaj zablokuje dostęp do [atmos_thing]. Kontynuować?", "Blokowanie elementu atmosferycznego", "Yes", "No")
-		if(rusure != "Yes")
+		var/rusure = alert(user, "Składanie jaj i formowanie żywicy tutaj zablokuje dostęp do [atmos_thing]. Kontynuować?", "Blokowanie elementu atmosferycznego", "Tak", "Nie")
+		if(rusure != "Tak")
 			return FALSE
 	return TRUE
 
 /obj/effect/proc_holder/alien/plant
-	name = "Plant Weeds"
-	desc = "Alien weeds spread resin which heals any alien. Costs 50 Plasma."
+	name = "Zasadź chwasty"
+	desc = "Chwasty obcych rozprowadzają żywicę, która leczy każdego obcego. Kosztuje 50 plazmy."
 	plasma_cost = 50
 	check_turf = TRUE
 	action_icon_state = "alien_plant"
@@ -77,8 +77,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /obj/effect/proc_holder/alien/whisper
-	name = "Whisper"
-	desc = "Whisper to someone through the hivemind. Costs 10 Plasma."
+	name = "Szept"
+	desc = "Szepnij do kogoś przez umysł roju. Kosztuje 10 plazmy."
 	plasma_cost = 10
 	action_icon_state = "alien_whisper"
 
@@ -89,7 +89,7 @@ Doesn't work on other aliens/AI.*/
 	var/mob/living/M = input("Wybierz, do kogo szepnąć:","Szepnąć do?",null) as null|mob in sortNames(options)
 	if(!M)
 		return FALSE
-	var/msg = stripped_input(usr, "Message:", "Szept obcych")
+	var/msg = stripped_input(usr, "Wiadomość:", "Szept obcych")
 	if(!msg)
 		return FALSE
 	if(CHAT_FILTER_CHECK(msg))
@@ -108,8 +108,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /obj/effect/proc_holder/alien/transfer
-	name = "Transfer Plasma"
-	desc = "Transfer Plasma to another alien."
+	name = "Przekaż plazmę"
+	desc = "Przekaż plazmę innemu obcemu."
 	action_icon_state = "alien_transfer"
 
 /obj/effect/proc_holder/alien/transfer/fire(mob/living/carbon/user)
@@ -120,7 +120,7 @@ Doesn't work on other aliens/AI.*/
 	var/mob/living/carbon/M = input("Wybierz, komu przekazać:","Przekazać plazmę komu?",null) as mob in sortNames(aliens_around)
 	if(!M)
 		return 0
-	var/amount = input("Amount:", "Przekaż plazmę: [M]") as num
+	var/amount = input("Ilość:", "Przekaż plazmę: [M]") as num
 	amount = min(abs(round(amount)), user.getPlasma())
 	if(!amount)
 		return FALSE
@@ -136,8 +136,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /obj/effect/proc_holder/alien/acid
-	name = "Corrosive Acid"
-	desc = "Drench an object in acid, destroying it over time. Costs 200 Plasma."
+	name = "Żrący kwas"
+	desc = "Oblej obiekt kwasem, który z czasem go zniszczy. Kosztuje 200 plazmy."
 	plasma_cost = 200
 	action_icon_state = "alien_acid"
 
@@ -163,7 +163,7 @@ Doesn't work on other aliens/AI.*/
 
 
 /obj/effect/proc_holder/alien/acid/fire(mob/living/carbon/alien/user)
-	var/O = input("Wybierz, co rozpuścić:","Dissolve",null) as obj|turf in oview(1,user)
+	var/O = input("Wybierz, co rozpuścić:","Rozpuść",null) as obj|turf in oview(1,user)
 	if(!O || user.incapacitated())
 		return 0
 	else
@@ -182,8 +182,8 @@ Doesn't work on other aliens/AI.*/
 		user.adjustPlasma(-A.plasma_cost)
 
 /obj/effect/proc_holder/alien/neurotoxin
-	name = "Spit Neurotoxin"
-	desc = "Activates your Neurotoxin glands. You can shoot paralyzing shots. Each shot costs 50 Plasma."
+	name = "Pluj neurotoksyną"
+	desc = "Uaktywnia twoje gruczoły neurotoksyny. Możesz strzelać paraliżującymi pociskami. Każdy strzał kosztuje 50 plazmy."
 	action_icon_state = "alien_neurotoxin_0"
 	active = FALSE
 
@@ -248,14 +248,14 @@ Doesn't work on other aliens/AI.*/
 	return ..()
 
 /obj/effect/proc_holder/alien/resin
-	name = "Secrete Resin"
-	desc = "Secrete tough malleable resin. Costs 55 Plasma."
+	name = "Wydziel żywicę"
+	desc = "Wydziel twardą, plastyczną żywicę. Kosztuje 55 plazmy."
 	plasma_cost = 55
 	check_turf = TRUE
 	var/list/structures = list(
-		"resin wall" = /obj/structure/alien/resin/wall,
-		"resin membrane" = /obj/structure/alien/resin/membrane,
-		"resin nest" = /obj/structure/bed/nest)
+		"ściana z żywicy" = /obj/structure/alien/resin/wall,
+		"błona z żywicy" = /obj/structure/alien/resin/membrane,
+		"gniazdo z żywicy" = /obj/structure/bed/nest)
 
 	action_icon_state = "alien_resin"
 
@@ -279,8 +279,8 @@ Doesn't work on other aliens/AI.*/
 	return TRUE
 
 /obj/effect/proc_holder/alien/sneak
-	name = "Sneak"
-	desc = "Blend into the shadows to stalk your prey."
+	name = "Skradaj się"
+	desc = "Wtop się w cienie, by podkraść się do ofiary."
 	active = 0
 	action_icon_state = "alien_sneak"
 

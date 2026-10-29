@@ -3,8 +3,8 @@
 
 ///a reaction chamber for plumbing. pretty much everything can react, but this one keeps the reagents separated and only reacts under your given terms
 /obj/machinery/plumbing/reaction_chamber
-	name = "mixing chamber"
-	desc = "Keeps chemicals separated until given conditions are met."
+	name = "komora mieszania"
+	desc = "Trzyma chemikalia osobno, dopóki nie zostaną spełnione warunki."
 	icon_state = "reaction_chamber"
 	buffer = 200
 
@@ -172,7 +172,7 @@
 
 ///Chemistry version of reaction chamber that allows for acid and base buffers to be used while reacting (fermichem z tg)
 /obj/machinery/plumbing/reaction_chamber/chem
-	name = "reaction chamber"
+	name = "komora reakcyjna"
 	desc = "Trzyma chemikalia osobno, dopóki nie zostaną spełnione warunki. Ma dwa dodatkowe wejścia na bufory pH: kwaśny z zachodu, zasadowy ze wschodu."
 
 	///If below this pH, we start dumping buffer into it

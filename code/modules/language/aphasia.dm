@@ -1,6 +1,6 @@
 /datum/language/aphasia
-	name = "Gibbering"
-	desc = "It is theorized that any sufficiently brain-damaged person can speak this language."
+	name = "Bełkot"
+	desc = "Według teorii każda osoba z dostatecznie uszkodzonym mózgiem potrafi mówić w tym języku."
 	speech_verb = "bełkocze"
 	ask_verb = "mamrocze"
 	whisper_verb = "mruczy"

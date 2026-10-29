@@ -1,9 +1,9 @@
 //NSV NOTE TO SELF: Ensure _all_ ship airlocks have a glass type!
 
 /obj/machinery/door/airlock/ship
-	name = "Airtight hatch"
+	name = "hermetyczny właz"
 	icon = 'nsv13/icons/obj/machinery/doors/standard.dmi'
-	desc = "A durasteel bulkhead which opens and closes. Hope you're good at hatch hopping"
+	desc = "Gródź z durastali, która się otwiera i zamyka. Oby przeskakiwanie przez włazy szło ci sprawnie."
 	icon_state = "closed"
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_standard.dmi'
 	assemblytype = /obj/structure/door_assembly/ship
@@ -19,7 +19,7 @@
 	glass = TRUE
 
 /obj/structure/door_assembly/ship
-	name = "airlock assembly"
+	name = "zespół: śluza"
 	icon = 'nsv13/icons/obj/machinery/doors/standard.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_standard.dmi'
 	glass_type = /obj/machinery/door/airlock/ship/glass
@@ -106,7 +106,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 
 
 /obj/machinery/door/airlock/ship/station
-	name = "Standard airlock"
+	name = "standardowa śluza"
 	icon = 'nsv13/icons/obj/machinery/doors/station.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays.dmi'
 	anim_parts = "left=-12,0;right=12,0"
@@ -115,13 +115,14 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	assemblytype = /obj/structure/door_assembly/ship/station
 
 /obj/machinery/door/airlock/ship/station/glass
-	name = "Standard airlock"
+	name = "standardowa śluza"
 	icon = 'nsv13/icons/obj/machinery/doors/station_glass.dmi'
 	opacity = 0
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/station
-	name = "Standard airlock assembly"
+	name = "zespół: standardowa śluza"
+	base_name = "standardowa śluza"
 	icon = 'nsv13/icons/obj/machinery/doors/station.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays.dmi'
 	glass_type = /obj/machinery/door/airlock/ship/station/glass
@@ -130,7 +131,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 
 
 /obj/machinery/door/airlock/ship/station/mining
-	name = "Mining airlock"
+	name = "śluza górnicza"
 	color = "#b88a3d"
 	assemblytype = /obj/structure/door_assembly/ship/station/mining
 
@@ -140,13 +141,14 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/station/mining
-	name = "Mining airlock assembly"
+	name = "zespół: śluza górnicza"
+	base_name = "śluza górnicza"
 	glass_type = /obj/machinery/door/airlock/ship/station/mining/glass
 	airlock_type = /obj/machinery/door/airlock/ship/station/mining
 
 
 /obj/machinery/door/airlock/ship/station/research
-	name = "Research airlock"
+	name = "śluza wydziału badawczego"
 	assemblytype = /obj/structure/door_assembly/ship/station/research
 
 /obj/machinery/door/airlock/ship/station/research/glass
@@ -155,14 +157,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/station/research
-	name = "Research airlock assembly"
+	name = "zespół: śluza wydziału badawczego"
+	base_name = "śluza wydziału badawczego"
 	glass_type = /obj/machinery/door/airlock/ship/station/research/glass
 	airlock_type = /obj/machinery/door/airlock/ship/station/research
 
 
 
 /obj/machinery/door/airlock/ship/hatch
-	name = "airtight hatch"
+	name = "hermetyczny właz"
 	icon = 'nsv13/icons/obj/machinery/doors/hatch.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_hatch.dmi'
 	anim_parts = "down_left=-9,-9;down_right=9,-9;up_left=-9,9;up_right=9,9;fg=0,0"
@@ -171,21 +174,22 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	assemblytype = /obj/structure/door_assembly/ship/hatch
 
 /obj/machinery/door/airlock/ship/hatch/glass
-	name = "airtight hatch"
+	name = "hermetyczny właz"
 	opacity = 0
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/hatch
-	name = "airtight hatch assembly"
+	name = "zespół: hermetyczny właz"
+	base_name = "hermetyczny właz"
 	glass_type = /obj/machinery/door/airlock/ship/hatch/glass
 	airlock_type = /obj/machinery/door/airlock/ship/hatch
 
 
 
 /obj/machinery/door/poddoor/ship
-	name = "Double reinforced durasteel blast door"
+	name = "podwójnie wzmocnione drzwi przeciwwybuchowe z durastali"
 	icon = 'nsv13/goonstation/icons/blastdoor.dmi'
-	desc = "A titanic hunk of durasteel which is designed to absorb high velocity rounds, explosive forces and general impacts. It's equipped with a triple deadlock seal, preventing anyone from getting past it."
+	desc = "Tytaniczny blok durastali zaprojektowany, by pochłaniać pociski o dużej prędkości, siłę wybuchów i wszelkie uderzenia. Ma potrójną blokadę zamka, która nie przepuści nikogo."
 
 /obj/machinery/door/poddoor/ship/preopen
 	icon_state = "open"
@@ -203,7 +207,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 
 
 /obj/machinery/door/airlock/ship/command
-	name = "Command"
+	name = "Dowództwo"
 	icon = 'nsv13/goonstation/icons/command.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
@@ -221,7 +225,8 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	note_attachment = "down"
 
 /obj/structure/door_assembly/ship/command
-	name = "Command airlock assembly"
+	name = "zespół: śluza dowództwa"
+	base_name = "śluza dowództwa"
 	glass_type = /obj/machinery/door/airlock/ship/command/glass
 	airlock_type = /obj/machinery/door/airlock/ship/command
 
@@ -243,7 +248,8 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 		update_icon()
 
 /obj/structure/door_assembly/ship/highsecurity
-	name = "High security airlock assembly"
+	name = "zespół: zaawansowana śluza ochrony"
+	base_name = "zaawansowana śluza ochrony"
 	glass_type = /obj/machinery/door/airlock/ship/glass
 	airlock_type = /obj/machinery/door/airlock/highsecurity/ship
 
@@ -260,7 +266,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 /obj/machinery/door/airlock/vault/ship
 	icon = 'nsv13/icons/obj/machinery/doors/vault.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_vault.dmi'
-	desc = "A durasteel bulkhead which opens and closes. Hope you're good at hatch hopping"
+	desc = "Gródź z durastali, która się otwiera i zamyka. Oby przeskakiwanie przez włazy szło ci sprawnie."
 	icon_state = "closed"
 	anim_parts = "left=-10,0;right=10,0"
 	assemblytype = /obj/structure/door_assembly/ship/vault
@@ -275,14 +281,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 		update_icon()
 
 /obj/structure/door_assembly/ship/vault
-	name = "Vault airlock assembly"
+	name = "zespół: drzwi skarbca"
+	base_name = "drzwi skarbca"
 	glass_type = /obj/machinery/door/airlock/ship/glass
 	airlock_type = /obj/machinery/door/airlock/vault/ship
 
 
 
 /obj/machinery/door/airlock/ship/engineering
-	name = "Engineering wing"
+	name = "Skrzydło inżynieryjne"
 	icon = 'nsv13/goonstation/icons/engineering.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
@@ -300,14 +307,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	note_attachment = "down"
 
 /obj/structure/door_assembly/ship/engineering
-	name = "Engineering airlock assembly"
+	name = "zespół: śluza inżynierii"
+	base_name = "śluza inżynierii"
 	glass_type = /obj/machinery/door/airlock/ship/engineering/glass
 	airlock_type = /obj/machinery/door/airlock/ship/engineering
 
 
 
 /obj/machinery/door/airlock/ship/external
-	name = "External airlock"
+	name = "śluza zewnętrzna"
 	icon = 'nsv13/goonstation/icons/external.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_external.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=15,0"
@@ -316,14 +324,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	assemblytype = /obj/structure/door_assembly/ship/external
 
 /obj/machinery/door/airlock/ship/external/glass
-	name = "External airlock"
+	name = "śluza zewnętrzna"
 	icon = 'nsv13/goonstation/icons/external_glass.dmi'
 	opacity = 0
 	glass = TRUE
 	anim_parts = "bg=0,0;left=-12,0;right=15,0"
 
 /obj/structure/door_assembly/ship/external
-	name = "Engineering airlock assembly"
+	name = "zespół: śluza zewnętrzna"
+	base_name = "śluza zewnętrzna"
 	glass_type = /obj/machinery/door/airlock/ship/external/glass
 	airlock_type = /obj/machinery/door/airlock/ship/external
 
@@ -331,7 +340,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 
 /obj/machinery/door/airlock/ship/maintenance
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
-	name = "Maintenance tunnels"
+	name = "tunele techniczne"
 	icon = 'nsv13/goonstation/icons/maintenance.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
 	panel_attachment = "right"
@@ -346,14 +355,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	req_one_access_txt = "12"
 
 /obj/structure/door_assembly/ship/maintenance
-	name = "Maintenance airlock assembly"
+	name = "zespół: śluza techniczna"
+	base_name = "śluza techniczna"
 	glass_type = /obj/machinery/door/airlock/ship/maintenance/glass
 	airlock_type = /obj/machinery/door/airlock/ship/maintenance
 
 
 
 /obj/machinery/door/airlock/ship/public
-	name = "Public airlock"
+	name = "śluza publiczna"
 	icon = 'nsv13/goonstation/icons/public.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
@@ -371,7 +381,8 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	note_attachment = "down"
 
 /obj/structure/door_assembly/ship/public
-	name = "Public airlock assembly"
+	name = "zespół: śluza publiczna"
+	base_name = "śluza publiczna"
 	glass_type = /obj/machinery/door/airlock/ship/public/glass
 	airlock_type = /obj/machinery/door/airlock/ship/public
 
@@ -386,7 +397,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 
 
 /obj/machinery/door/airlock/ship/medical
-	name = "Infirmary"
+	name = "Ambulatorium"
 	icon = 'nsv13/goonstation/icons/medical.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
@@ -399,14 +410,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/medical
-	name = "Infirmary airlock assembly"
+	name = "zespół: śluza medyczna"
+	base_name = "śluza medyczna"
 	glass_type = /obj/machinery/door/airlock/ship/medical/glass
 	airlock_type = /obj/machinery/door/airlock/ship/medical
 
 
 
 /obj/machinery/door/airlock/ship/security
-	name = "Brig"
+	name = "Areszt"
 	icon = 'nsv13/goonstation/icons/security.dmi'
 	overlays_file = 'nsv13/icons/obj/machinery/doors/overlays/overlays_goon.dmi'
 	anim_parts = "bg=0,0;left=-12,0;right=12,0"
@@ -419,14 +431,15 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/security
-	name = "Security airlock assembly"
+	name = "zespół: śluza ochrony"
+	base_name = "śluza ochrony"
 	glass_type = /obj/machinery/door/airlock/ship/security/glass
 	airlock_type = /obj/machinery/door/airlock/ship/security
 
 
 
 /obj/machinery/door/airlock/ship/cargo
-	name = "Cargo bay"
+	name = "Ładownia"
 	assemblytype = /obj/structure/door_assembly/ship/cargo
 
 /obj/machinery/door/airlock/ship/cargo/glass
@@ -434,6 +447,7 @@ odir = EAST / WEST. We need it to face forwards so you can get through
 	glass = TRUE
 
 /obj/structure/door_assembly/ship/cargo
-	name = "Security airlock assembly"
+	name = "zespół: śluza ładowni"
+	base_name = "śluza ładowni"
 	glass_type = /obj/machinery/door/airlock/ship/cargo/glass
 	airlock_type = /obj/machinery/door/airlock/ship/cargo

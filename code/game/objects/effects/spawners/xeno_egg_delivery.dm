@@ -12,7 +12,7 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("An alien egg has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono jajo obcych do [ADMIN_VERBOSEJMP(T)].")
 	log_game("An alien egg has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
@@ -30,7 +30,7 @@
 	new /obj/structure/alien/egg/troll(T)
 	playsound(T, 'sound/items/bikehorn.ogg', 60, 0, 0)
 
-	message_admins("\"A joke\" has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono „żart” do [ADMIN_VERBOSEJMP(T)].")
 	log_game("\"A joke\" has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))

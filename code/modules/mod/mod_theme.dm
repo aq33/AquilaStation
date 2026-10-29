@@ -8,15 +8,15 @@
 /// MODsuit theme, instanced once and then used by MODsuits to grab various statistics.
 /datum/mod_theme
 	/// Theme name for the MOD.
-	var/name = "standard"
+	var/name = "standardowy"
 	/// Description added to the MOD.
-	var/desc = "A civilian class suit by Nakamura Engineering, doesn't offer much other than slightly quicker movement."
+	var/desc = "Skafander klasy cywilnej od Nakamura Engineering; poza nieco szybszym ruchem niewiele oferuje."
 	/// Extended description on examine_more
-	var/extended_desc = "A third-generation, modular civilian class suit by Nakamura Engineering, \
-		this suit is a staple across the galaxy for civilian applications. These suits are oxygenated, \
-		spaceworthy, resistant to fire and chemical threats, and are immunized against everything between \
-		a sneeze and a bioweapon. However, their combat applications are incredibly minimal due to the amount of \
-		armor plating being installed by default, and their actuators only lead to slightly greater speed than industrial suits."
+	var/extended_desc = "Trzeciej generacji modułowy skafander klasy cywilnej od Nakamura Engineering, \
+		w całej galaktyce podstawa w zastosowaniach cywilnych. Te skafandry mają własne zasilanie w tlen, \
+		nadają się do próżni, są odporne na ogień i zagrożenia chemiczne i chronią przed wszystkim od \
+		kichnięcia po broń biologiczną. Do walki nadają się jednak bardzo słabo ze względu na ilość \
+		domyślnie montowanego poszycia, a ich siłowniki dają tylko odrobinę większą szybkość niż skafandry przemysłowe."
 	/// Default skin of the MOD.
 	var/default_skin = "standard"
 	/// The slot this mod theme fits on
@@ -123,7 +123,7 @@
 		parts += mod_part
 
 	for(var/obj/item/part as anything in parts)
-		part.name = "[name] [part.name]"
+		part.name = "[part.name] (model [name])"
 		part.desc = "[part.desc] [desc]"
 		part.armor = getArmor(arglist(armor))
 		part.resistance_flags = resistance_flags
@@ -145,8 +145,8 @@
 		var/datum/mod_part/part_datum = mod.get_part_datum(part)
 		part_datum.unsealed_layer = category[UNSEALED_LAYER]
 		part_datum.sealed_layer = category[SEALED_LAYER]
-		part_datum.unsealed_message = category[UNSEALED_MESSAGE] || "No unseal message set! Tell a coder!"
-		part_datum.sealed_message = category[SEALED_MESSAGE] || "No seal message set! Tell a coder!"
+		part_datum.unsealed_message = category[UNSEALED_MESSAGE] || "Brak komunikatu rozszczelnienia! Powiedz koderowi!"
+		part_datum.sealed_message = category[SEALED_MESSAGE] || "Brak komunikatu uszczelnienia! Powiedz koderowi!"
 		part_datum.can_overslot = category[CAN_OVERSLOT] || FALSE
 		part.clothing_flags = category[UNSEALED_CLOTHING] || NONE
 		part.visor_flags = category[SEALED_CLOTHING] || NONE
@@ -171,12 +171,12 @@
 		mod.wearer?.update_clothing(part.slot_flags)
 
 /datum/mod_theme/civilian
-	name = "civilian"
-	desc = "A light-weight civilian suit that offers unmatched ease of movement but no protection from the vacuum of space."
-	extended_desc = "An experimental design by Nakamura Engineering, intended to be marketed towards planet-bound customers. \
-		This model sacrifices the protection from biological and chemical threats and the vacuum of space in exchange for \
-		vastly improved mobility. Due to the slimmed-down profile, it also has less capacity for modifications compared to \
-		mainline models."
+	name = "cywilny"
+	desc = "Lekki skafander cywilny, który daje niezrównaną swobodę ruchu, ale nie chroni przed próżnią kosmosu."
+	extended_desc = "Eksperymentalny projekt Nakamura Engineering, przeznaczony dla klientów na planetach. \
+		Ten model rezygnuje z ochrony przed zagrożeniami biologicznymi i chemicznymi oraz próżnią w zamian za \
+		znacznie lepszą mobilność. Ze względu na odchudzoną sylwetkę ma też mniej miejsca na modyfikacje niż \
+		główne modele."
 	default_skin = "civilian"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bio" = 50, "rad" = 5, "fire" = 25, "acid" = 25, "bleed" = 10)
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
@@ -212,13 +212,13 @@
 	)
 
 /datum/mod_theme/engineering
-	name = "engineering"
-	desc = "An engineer-fit suit with heat and shock resistance. Nakamura Engineering's classic."
-	extended_desc = "A classic by Nakamura Engineering, and surely their claim to fame. This model is an \
-		improvement upon the first-generation prototype models from before the Void War, boasting an array of features. \
-		The modular flexibility of the base design has been combined with a blast-dampening insulated inner layer and \
-		a shock-resistant outer layer, making the suit nigh-invulnerable against even the extremes of high-voltage electricity. \
-		However, the capacity for modification remains the same as civilian-grade suits."
+	name = "inżynieryjny"
+	desc = "Skafander dla inżyniera, odporny na ciepło i prąd. Klasyk Nakamura Engineering."
+	extended_desc = "Klasyk od Nakamura Engineering i z pewnością ich największa duma. Ten model to \
+		ulepszenie prototypów pierwszej generacji sprzed Wojny Pustki, z całą gamą funkcji. \
+		Modułową elastyczność bazowej konstrukcji połączono z izolowaną warstwą wewnętrzną tłumiącą wybuchy i \
+		odporną na wstrząsy warstwą zewnętrzną, dzięki czemu skafander jest niemal niewrażliwy nawet na skrajnie wysokie napięcie. \
+		Pojemność na modyfikacje pozostaje jednak taka sama jak w skafandrach cywilnych."
 	default_skin = "engineering"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 50, "stamina" = 15, "bleed" = 50)
 	resistance_flags = FIRE_PROOF
@@ -267,13 +267,13 @@
 	)
 
 /datum/mod_theme/atmospheric
-	name = "atmospheric"
-	desc = "An atmospheric-resistant suit by Nakamura Engineering, offering extreme heat resistance compared to the engineer suit."
-	extended_desc = "A modified version of the Nakamura Engineering industrial model. This one has been \
-		augmented with the latest in heat-resistant alloys, paired with a series of advanced heatsinks. \
-		Additionally, the materials used to construct this suit have rendered it extremely hardy against \
-		corrosive gasses and liquids, useful in the world of pipes. \
-		However, the capacity for modification remains the same as civilian-grade suits."
+	name = "atmosferyczny"
+	desc = "Odporny na warunki atmosferyczne skafander od Nakamura Engineering, znacznie bardziej odporny na ciepło niż skafander inżynieryjny."
+	extended_desc = "Zmodyfikowana wersja przemysłowego modelu Nakamura Engineering. Ten egzemplarz \
+		wzmocniono najnowszymi stopami odpornymi na ciepło i serią zaawansowanych radiatorów. \
+		Do tego materiały użyte do budowy skafandra czynią go niezwykle odpornym na \
+		żrące gazy i ciecze, co przydaje się w świecie rur. \
+		Pojemność na modyfikacje pozostaje jednak taka sama jak w skafandrach cywilnych."
 	default_skin = "atmospheric"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 10, "energy" = 15, "bomb" = 10, "bio" = 100, "rad" = 25, "fire" = 100, "acid" = 75, "stamina" = 15, "bleed" = 50)
 	resistance_flags = FIRE_PROOF
@@ -323,13 +323,13 @@
 	)
 
 /datum/mod_theme/advanced
-	name = "advanced"
-	desc = "An advanced version of Nakamura Engineering's classic suit, shining with a white, acid and fire resistant polish."
-	extended_desc = "The flagship version of the Nakamura Engineering industrial model, and their latest product. \
-		Combining all the features of their other industrial model suits inside, with blast resistance almost approaching \
-		some EOD suits, the outside has been coated with a white polish rumored to be a corporate secret. \
-		The paint used is almost entirely immune to corrosives, and certainly looks damn fine. \
-		These come pre-installed with magnetic boots, using an advanced system to toggle them on or off as the user walks."
+	name = "zaawansowany"
+	desc = "Zaawansowana wersja klasycznego skafandra Nakamura Engineering, lśniąca białym lakierem odpornym na kwas i ogień."
+	extended_desc = "Flagowa wersja przemysłowego modelu Nakamura Engineering i ich najnowszy produkt. \
+		Łączy wszystkie funkcje pozostałych przemysłowych skafandrów firmy, a odpornością na wybuchy zbliża się \
+		do niektórych skafandrów saperskich. Zewnętrzną powłokę pokryto białym lakierem, ponoć tajemnicą firmy. \
+		Farba jest niemal całkowicie odporna na substancje żrące i wygląda cholernie dobrze. \
+		Skafander ma fabrycznie zamontowane buty magnetyczne z zaawansowanym systemem, który włącza je i wyłącza w trakcie chodu."
 	default_skin = "advanced"
 	armor = list("melee" = 20, "bullet" = 5, "laser" = 20, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90, "stamina" = 20, "bleed" = 50)
 	resistance_flags = FIRE_PROOF
@@ -382,25 +382,25 @@
 	)
 
 /datum/mod_theme/mining
-	name = "mining"
-	desc = "A Nanotrasen mining suit for on-site operations, fit with accreting ash armor and a sphere form."
-	extended_desc = "A high-powered Nanotrasen-designed suit, based off the work of Nakamura Engineering. \
-		While initial designs were built for the rigors of asteroid mining, given blast resistance through inbuilt ceramics, \
-		mining teams have since heavily tweaked the suit themselves with assistance from devices crafted by \
-		destructive analysis of unknown technologies discovered on the Indecipheres mining sites, patterned off \
-		their typical non-EVA exploration suits. The visor has been expanded to a system of seven arachnid-like cameras, \
-		offering full view of the land and its soon-to-be-dead inhabitants. The armor plating has been trimmed down to \
-		the bare essentials, geared far more for environmental hazards than combat against fauna; however, \
-		this gives way to incredible protection against corrosives and thermal protection good enough for \
-		both casual backstroking through molten magma and romantic walks through arctic terrain. \
-		Instead, the suit is capable of using its anomalous properties to attract and \
-		carefully distribute layers of ash or ice across the surface; these layers are ablative, but incredibly strong. \
-		Lastly, the suit is capable of compressing and shrinking the mass of the wearer, as well as \
-		rearranging its own constitution, to allow them to fit upright in a sphere form that can \
-		roll around at half their original size; leaving high-powered mining ordinance in its wake. \
-		However, all of this has proven to be straining on all Nanotrasen-approved cells, \
-		so much so that it comes default fueled by equally-enigmatic plasma fuel rather than a simple recharge. \
-		Additionally, the systems have been put to near their maximum load, allowing for far less customization than others."
+	name = "górniczy"
+	desc = "Górniczy skafander Nanotrasenu do pracy w terenie, z narastającym pancerzem z popiołu i formą kuli."
+	extended_desc = "Mocny skafander zaprojektowany przez Nanotrasen na bazie prac Nakamura Engineering. \
+		Pierwsze projekty powstały z myślą o trudach górnictwa na asteroidach, z odpornością na wybuchy dzięki wbudowanej ceramice, \
+		ale zespoły górnicze same mocno przerobiły skafander, wspierając się urządzeniami stworzonymi \
+		dzięki niszczącej analizie nieznanych technologii odkrytych w kopalniach Indecipheres, wzorowanymi na \
+		ich typowych skafandrach eksploracyjnych bez ochrony EVA. Wizjer rozbudowano do układu siedmiu pajęczych kamer, \
+		dających pełny widok na teren i jego niedługo martwych mieszkańców. Poszycie zredukowano \
+		do niezbędnego minimum, nastawionego bardziej na zagrożenia środowiskowe niż walkę z fauną; za to \
+		daje świetną ochronę przed substancjami żrącymi i izolację termiczną wystarczającą zarówno \
+		na swobodne pływanie grzbietem w roztopionej magmie, jak i romantyczne spacery po arktycznym terenie. \
+		Zamiast tego skafander potrafi dzięki swoim anomalnym właściwościom przyciągać i \
+		starannie rozprowadzać po powierzchni warstwy popiołu albo lodu; warstwy te się ścierają, ale są niezwykle wytrzymałe. \
+		Wreszcie skafander potrafi ścisnąć i zmniejszyć masę noszącego, a także \
+		przebudować własną strukturę, tak by ten zmieścił się w postaci kuli, która \
+		toczy się, mając połowę pierwotnych rozmiarów, i zostawia za sobą potężne ładunki górnicze. \
+		Wszystko to okazało się jednak zbyt dużym obciążeniem dla ogniw zatwierdzonych przez Nanotrasen, \
+		do tego stopnia, że skafander domyślnie zasila równie zagadkowe paliwo plazmowe, a nie zwykłe ładowanie. \
+		Do tego systemy pracują niemal na maksymalnym obciążeniu, przez co skafander pozwala na znacznie mniej modyfikacji niż inne."
 	default_skin = "mining"
 	armor = list("melee" = 25, "bullet" = 5, "laser" = 10, "energy" = 10, "bomb" = 30, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 75, "stamina" = 20, "bleed" = 60)
 	resistance_flags = FIRE_PROOF|LAVA_PROOF
@@ -487,17 +487,17 @@
 	)
 
 /datum/mod_theme/loader
-	name = "loader"
-	desc = "An unsealed experimental motorized harness manufactured by Scarborough Arms for quick and efficient munition supplies."
-	extended_desc = "This powered suit is an experimental spinoff of in-atmosphere Engineering suits. \
-		This fully articulated titanium exoskeleton is Scarborough Arms' suit of choice for their munition delivery men, \
-		and what it lacks in EVA protection, it makes up for in strength and flexibility. The primary feature of \
-		this suit are the two manipulator arms, carefully synchronized with the user's thoughts and \
-		duplicating their motions almost exactly. These are driven by myomer, an artificial analog of muscles, \
-		requiring large amounts of voltage to function; occasionally sparking under load with the sheer power of a \
-		suit capable of lifting 250 tons. Even the legs in the suit have been tuned to incredible capacity, \
-		the user being able to run at greater speeds for much longer distances and times than an unsuited equivalent. \
-		A lot of people would say loading cargo is a dull job. You could not disagree more."
+	name = "załadowczy"
+	desc = "Nieszczelna, eksperymentalna zmotoryzowana uprząż od Scarborough Arms do szybkiego i sprawnego dostarczania amunicji."
+	extended_desc = "Ten zasilany skafander to eksperymentalna odnoga skafandrów inżynieryjnych do pracy w atmosferze. \
+		Ten w pełni przegubowy tytanowy egzoszkielet to ulubiony skafander dostawców amunicji Scarborough Arms, \
+		a brak ochrony EVA nadrabia siłą i elastycznością. Główną cechą \
+		skafandra są dwa ramiona manipulatorów, starannie zsynchronizowane z myślami użytkownika i \
+		niemal dokładnie powtarzające jego ruchy. Napędza je myomer, sztuczny odpowiednik mięśni, \
+		który do działania wymaga dużego napięcia; pod obciążeniem czasem iskrzy od samej mocy \
+		skafandra zdolnego podnieść 250 ton. Nawet nogi skafandra dostrojono do niesamowitej wydajności, \
+		dzięki czemu użytkownik biega szybciej, dalej i dłużej niż bez skafandra. \
+		Wiele osób powie, że załadunek towarów to nudna praca. Nie możesz się z tym bardziej nie zgodzić."
 	default_skin = "loader"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25, "stamina" = 10, "bleed" = 25)
 	max_heat_protection_temperature = ARMOR_MAX_TEMP_PROTECT
@@ -543,14 +543,14 @@
 	)
 
 /datum/mod_theme/medical
-	name = "medical"
-	desc = "A lightweight suit by DeForest Medical Corporation, allows for easier movement."
-	extended_desc = "A lightweight suit produced by the DeForest Medical Corporation, based off the work of \
-		Nakamura Engineering. The latest in technology has been employed in this suit to render it immunized against \
-		allergens, airborne toxins, and regular pathogens. The primary asset of this suit is the speed, \
-		fusing high-powered servos and actuators with a carbon-fiber construction. While there's very little armor used, \
-		it is incredibly acid-resistant. It is slightly more demanding of power than civilian-grade models, \
-		and weak against fingers tapping the glass."
+	name = "medyczny"
+	desc = "Lekki skafander od DeForest Medical Corporation, ułatwiający poruszanie się."
+	extended_desc = "Lekki skafander produkcji DeForest Medical Corporation, oparty na pracach \
+		Nakamura Engineering. Najnowsza technologia uodparnia go na \
+		alergeny, toksyny w powietrzu i zwykłe patogeny. Główną zaletą skafandra jest szybkość, \
+		łącząca mocne serwomechanizmy i siłowniki z konstrukcją z włókna węglowego. Pancerza jest bardzo mało, ale \
+		skafander jest niezwykle odporny na kwasy. Pobiera nieco więcej energii niż modele cywilne \
+		i nie lubi pukania palcem w szybkę."
 	default_skin = "medical"
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 60, "acid" = 75, "stamina" = 15, "bleed" = 55)
 	charge_drain = DEFAULT_CHARGE_DRAIN * 1.5
@@ -639,14 +639,14 @@
 	)
 
 /datum/mod_theme/rescue
-	name = "rescue"
-	desc = "An advanced version of DeForest Medical Corporation's medical suit, designed for quick rescue of bodies from the most dangerous environments."
-	extended_desc = "An upgraded, armor-plated version of DeForest Medical Corporation's medical suit, \
-		designed for quick rescue of bodies from the most dangerous environments. The same advanced leg servos \
-		as the base version are seen here, giving paramedics incredible speed, but the same servos are also in the arms. \
-		Users are capable of quickly hauling even the heaviest crewmembers using this suit, \
-		all while being entirely immune against chemical and thermal threats. \
-		It is slightly more demanding of power than civilian-grade models, and weak against fingers tapping the glass."
+	name = "ratunkowy"
+	desc = "Zaawansowana wersja skafandra medycznego DeForest Medical Corporation do szybkiego wydobywania ciał z najniebezpieczniejszych środowisk."
+	extended_desc = "Ulepszona, opancerzona wersja skafandra medycznego DeForest Medical Corporation, \
+		zaprojektowana do szybkiego wydobywania ciał z najniebezpieczniejszych środowisk. Ma te same zaawansowane serwa nóg \
+		co wersja bazowa, dające ratownikom niesamowitą szybkość, ale takie same serwa są też w ramionach. \
+		Ten skafander pozwala szybko taszczyć nawet najcięższych członków załogi, \
+		a przy tym zapewnia pełną odporność na zagrożenia chemiczne i termiczne. \
+		Pobiera nieco więcej energii niż modele cywilne i nie lubi pukania palcem w szybkę."
 	default_skin = "rescue"
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 15, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 100, "stamina" = 20, "bleed" = 50)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -706,15 +706,15 @@
 	)
 
 /datum/mod_theme/research
-	name = "research"
-	desc = "A private military EOD suit by Aussec Armory, intended for explosive research. Bulky, but expansive."
-	extended_desc = "A private military EOD suit by Aussec Armory, based off the work of Nakamura Engineering. \
-		This suit is intended for explosive research, built incredibly bulky and well-covering. \
-		Featuring an inbuilt chemical scanning array, this suit uses two layers of plastitanium armor, \
-		sandwiching an inert layer to dissipate kinetic energy into the suit and away from the user; \
-		outperforming even the best conventional EOD suits. However, despite its immunity against even \
-		missiles and artillery, all the explosive resistance is mostly working to keep the user intact, \
-		not alive. The user will also find narrow doorframes nigh-impossible to surmount."
+	name = "badawczy"
+	desc = "Prywatny wojskowy skafander saperski od Aussec Armory do badań nad materiałami wybuchowymi. Masywny, ale pojemny."
+	extended_desc = "Prywatny wojskowy skafander saperski od Aussec Armory, oparty na pracach Nakamura Engineering. \
+		Przeznaczony do badań nad materiałami wybuchowymi, jest niezwykle masywny i szczelnie kryje ciało. \
+		Ma wbudowany zestaw skanerów chemicznych i dwie warstwy pancerza z plastytanu, \
+		między którymi znajduje się obojętna warstwa rozpraszająca energię kinetyczną w skafandrze, z dala od użytkownika; \
+		przewyższa nawet najlepsze konwencjonalne skafandry saperskie. Mimo odporności nawet na \
+		pociski rakietowe i artylerię cała ta odporność na wybuchy służy głównie temu, by użytkownik pozostał w jednym kawałku, \
+		niekoniecznie żywy. Użytkownik przekona się też, że przejście przez wąskie framugi jest niemal niemożliwe."
 	default_skin = "research"
 	armor = list("melee" = 20, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 100, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100, "stamina" = 25, "bleed" = 50)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -766,14 +766,14 @@
 	)
 
 /datum/mod_theme/security
-	name = "security"
-	desc = "An Apadyne Technologies security suit, offering quicker speed at the cost of carrying capacity."
-	extended_desc = "An Apadyne Technologies classic, this model of MODsuit has been designed for quick response to \
-		hostile situations. These suits have been layered with plating worthy enough for fires or corrosive environments, \
-		and come with composite cushioning and an advanced honeycomb structure underneath the hull to ensure protection \
-		against broken bones or possible avulsions. The suit's legs have been given more rugged actuators, \
-		allowing the suit to do more work in carrying the weight. However, the systems used in these suits are more than \
-		a few years out of date, leading to an overall lower capacity for modules."
+	name = "ochrony"
+	desc = "Skafander ochrony od Apadyne Technologies, szybszy kosztem pojemności."
+	extended_desc = "Klasyk od Apadyne Technologies; ten model MODsuitu zaprojektowano do szybkiej reakcji na \
+		wrogie sytuacje. Pokryto go poszyciem odpornym na ogień i środowiska żrące, \
+		a pod kadłubem ma kompozytowe amortyzatory i zaawansowaną strukturę plastra miodu chroniące \
+		przed złamaniami i możliwymi oderwaniami tkanek. Nogi skafandra dostały mocniejsze siłowniki, \
+		dzięki czemu skafander bardziej odciąża użytkownika przy noszeniu ciężaru. Systemy w tych skafandrach są jednak \
+		przestarzałe o dobrych kilka lat, przez co pojemność na moduły jest ogólnie mniejsza."
 	default_skin = "security"
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 15, "energy" = 25, "bomb" = 25, "bio" = 100, "rad" = 30, "fire" = 75, "acid" = 75, "stamina" = 25, "bleed" = 50)
 	complexity_max = DEFAULT_MAX_COMPLEXITY - 3
@@ -822,14 +822,14 @@
 	)
 
 /datum/mod_theme/safeguard
-	name = "safeguard"
-	desc = "An Apadyne Technologies advanced security suit, offering greater speed and fire protection than the standard security model."
-	extended_desc = "An Apadyne Technologies advanced security suit, and their latest model. This variant has \
-		ditched the presence of a reinforced glass visor entirely, replacing it with a 'blast visor' utilizing a \
-		small camera on the left side to display the outside to the user. The plating on the suit has been \
-		dramatically increased, especially in the pauldrons, giving the wearer an imposing silhouette. \
-		Heatsinks line the sides of the suit, and greater technology has been used in insulating it against \
-		both corrosive environments and sudden impacts to the user's joints."
+	name = "Safeguard"
+	desc = "Zaawansowany skafander ochrony od Apadyne Technologies, szybszy i lepiej chroniący przed ogniem niż standardowy model ochrony."
+	extended_desc = "Zaawansowany skafander ochrony od Apadyne Technologies, ich najnowszy model. W tym wariancie \
+		całkowicie zrezygnowano ze zbrojonego szklanego wizjera, zastępując go „wizjerem przeciwwybuchowym”, w którym \
+		mała kamera po lewej stronie pokazuje użytkownikowi otoczenie. Poszycie skafandra \
+		znacznie pogrubiono, zwłaszcza na naramiennikach, co nadaje noszącemu imponującą sylwetkę. \
+		Boki skafandra wyłożono radiatorami, a lepsza technologia izoluje go zarówno od \
+		środowisk żrących, jak i od nagłych uderzeń w stawy użytkownika."
 	default_skin = "safeguard"
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 15, "energy" = 25, "bomb" = 40, "bio" = 100, "rad" = 40, "fire" = 100, "acid" = 95, "stamina" = 30, "bleed" = 55)
 	resistance_flags = FIRE_PROOF
@@ -878,17 +878,17 @@
 	)
 
 /datum/mod_theme/magnate
-	name = "magnate"
-	desc = "A fancy, very protective suit for Nanotrasen's captains. Shock, fire and acid-proof while also having a large capacity and high speed."
-	extended_desc = "They say it costs four hundred thousand credits to run this MODsuit... for twelve seconds. \
-		The Magnate suit is designed for protection, comfort, and luxury for Nanotrasen Captains. \
-		The onboard air filters have been preprogrammed with an additional five hundred different fragrances that can \
-		be pumped into the helmet, all of highly-endangered flowers. A bespoke Tralex mechanical clock has been placed \
-		in the wrist, and the Magnate package comes with carbon-fibre cufflinks to wear underneath. \
-		My God, it even has a granite trim. The double-classified paint that's been painstakingly applied to the hull \
-		provides protection against shock, fire, and the strongest acids. Onboard systems employ meta-positronic learning \
-		and bluespace processing to allow for a wide array of onboard modules to be supported, and only the best actuators \
-		have been employed for speed. The resemblance to a Gorlex Marauder helmet is purely coincidental."
+	name = "Magnat"
+	desc = "Elegancki, bardzo wytrzymały skafander dla kapitanów Nanotrasenu. Odporny na prąd, ogień i kwas, a przy tym pojemny i szybki."
+	extended_desc = "Mówią, że utrzymanie tego MODsuitu kosztuje czterysta tysięcy kredytów... za dwanaście sekund. \
+		Skafander Magnat zaprojektowano z myślą o ochronie, wygodzie i luksusie kapitanów Nanotrasenu. \
+		Pokładowe filtry powietrza zaprogramowano z dodatkowymi pięciuset zapachami, które mogą \
+		być wtłaczane do hełmu, wszystkie z bardzo zagrożonych gatunków kwiatów. W nadgarstku umieszczono \
+		szyty na miarę mechaniczny zegarek Tralex, a pakiet Magnat zawiera spinki do mankietów z włókna węglowego do noszenia pod spodem. \
+		Mój Boże, ma nawet granitowe wykończenia. Podwójnie tajna farba, którą pieczołowicie nałożono na kadłub, \
+		chroni przed prądem, ogniem i najsilniejszymi kwasami. Systemy pokładowe korzystają z metapozytronowego uczenia \
+		i przetwarzania bluespace, by obsłużyć szeroką gamę modułów, a do szybkości użyto tylko najlepszych siłowników. \
+		Podobieństwo do hełmu Maruderów Gorlex jest czysto przypadkowe."
 	default_skin = "magnate"
 	armor = list("melee" = 20, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 30, "bleed" = 50)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -939,13 +939,13 @@
 	)
 
 /datum/mod_theme/cosmohonk
-	name = "cosmohonk"
-	desc = "A suit by Honk Ltd. Protects against low humor environments. Most of the tech went to lower the power cost."
-	extended_desc = "The Cosmohonk MODsuit was originally designed for interstellar comedy in low-humor environments. \
-		It utilizes tungsten electro-ceramic casing and chromium bipolars, coated in zirconium-boron paint underneath \
-		a dermatiraelian subspace alloy. Despite the glaringly obvious optronic vacuum drive pedals, \
-		this particular model does not employ manganese bipolar capacitor cleaners, thank the Honkmother. \
-		All you know is that this suit is mysteriously power-efficient, and far too colorful for the Mime to steal."
+	name = "Cosmohonk"
+	desc = "Skafander od Honk Ltd. Chroni przed środowiskami o niskim poziomie humoru. Większość technologii poszła na obniżenie poboru energii."
+	extended_desc = "MODsuit Cosmohonk pierwotnie zaprojektowano do międzygwiezdnej komedii w środowiskach o niskim poziomie humoru. \
+		Ma obudowę z elektroceramiki wolframowej i chromowe bipolary, pokryte farbą cyrkonowo-borową pod \
+		dermatiraeliańskim stopem podprzestrzennym. Mimo rzucających się w oczy pedałów optronicznego napędu próżniowego \
+		ten model nie korzysta z manganowych bipolarnych oczyszczaczy kondensatorów, dzięki niech będą Matce Honk. \
+		Wiesz tylko, że ten skafander jest zagadkowo energooszczędny i zbyt kolorowy, by Mim go ukradł."
 	default_skin = "cosmohonk"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 25, "fire" = 60, "acid" = 30, "stamina" = 5, "bleed" = 5)
 	charge_drain = DEFAULT_CHARGE_DRAIN * 0.25
@@ -995,15 +995,15 @@
 	)
 
 /datum/mod_theme/syndicate
-	name = "syndicate"
-	desc = "A suit designed by Gorlex Marauders, offering armor ruled illegal in most of Spinward Stellar."
-	extended_desc = "An advanced combat suit adorned in a sinister crimson red color scheme, produced and manufactured \
-		for special mercenary operations. The build is a streamlined layering consisting of shaped Plasteel, \
-		and composite ceramic, while the under suit is lined with a lightweight Kevlar and durathread hybrid weave \
-		to provide ample protection to the user where the plating doesn't, with an illegal onboard electric powered \
-		ablative shield module to provide resistance against conventional energy firearms. \
-		A small tag hangs off of it reading; 'Property of the Gorlex Marauders, with assistance from Cybersun Industries. \
-		All rights reserved, tampering with suit will void warranty."
+	name = "Syndykatu"
+	desc = "Skafander zaprojektowany przez Maruderów Gorlex, z pancerzem zakazanym w większości Gwiezdnej Koalicji Spinward."
+	extended_desc = "Zaawansowany skafander bojowy w złowrogiej, karmazynowej kolorystyce, projektowany i produkowany \
+		do specjalnych operacji najemniczych. Konstrukcja to opływowe warstwy formowanej plastali \
+		i kompozytowej ceramiki, a podkład wyścielono lekkim hybrydowym splotem kevlaru i duratkaniny, \
+		który chroni użytkownika tam, gdzie nie sięga poszycie; do tego nielegalny pokładowy, zasilany elektrycznie \
+		moduł tarczy ablacyjnej zapewnia odporność na konwencjonalną broń energetyczną. \
+		Zwisa z niego mała metka z napisem: „Własność Maruderów Gorlex, przy wsparciu Cybersun Industries. \
+		Wszelkie prawa zastrzeżone, ingerencja w skafander unieważnia gwarancję”."
 	default_skin = "syndicate"
 	armor = list("melee" = 22.5, "bullet" = 22.5, "laser" = 15, "energy" = 30, "bomb" = 35, "bio" = 100, "rad" = 40, "fire" = 50, "acid" = 90, "stamina" = 30, "bleed" = 70)
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
@@ -1091,14 +1091,14 @@
 	)
 
 /datum/mod_theme/elite
-	name = "elite"
-	desc = "An elite suit upgraded by Cybersun Industries, offering upgraded armor values."
-	extended_desc = "An evolution of the syndicate suit, featuring a bulkier build and a matte black color scheme, \
-		this suit is only produced for high ranking Syndicate officers and elite strike teams. \
-		It comes built with a secondary layering of ceramic and Kevlar into the plating providing it with \
-		exceptionally better protection along with fire and acid proofing. A small tag hangs off of it reading; \
-		'Property of the Gorlex Marauders, with assistance from Cybersun Industries. \
-		All rights reserved, tampering with suit will void life expectancy.'"
+	name = "elitarny"
+	desc = "Elitarny skafander ulepszony przez Cybersun Industries, z mocniejszym pancerzem."
+	extended_desc = "Ewolucja skafandra Syndykatu o masywniejszej budowie i matowej czarnej kolorystyce; \
+		produkuje się go wyłącznie dla wysokich rangą oficerów Syndykatu i elitarnych oddziałów uderzeniowych. \
+		W poszycie wbudowano drugą warstwę ceramiki i kevlaru, co daje mu \
+		wyjątkowo lepszą ochronę oraz odporność na ogień i kwas. Zwisa z niego mała metka z napisem: \
+		„Własność Maruderów Gorlex, przy wsparciu Cybersun Industries. \
+		Wszelkie prawa zastrzeżone, ingerencja w skafander unieważnia oczekiwaną długość życia”."
 	default_skin = "elite"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 35, "energy" = 35, "bomb" = 55, "bio" = 100, "rad" = 65, "fire" = 100, "acid" = 100, "stamina" = 45, "bleed" = 70)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -1152,16 +1152,16 @@
 	)
 
 /datum/mod_theme/infiltrator
-	name = "infiltrator"
-	desc = "A specialized infiltration suit, developed by the Roseus Galactic Actors Guild to strike fear and awe into the hearts of the public."
-	extended_desc = "Several questions have been raised over the years in regards to the clandestine Infiltrator modular suit. \
-		Why is the suit blood red despite being a sneaking suit? Why did a movie company of all things develop a stealth suit? \
-		The simplest answer is that Roseus Galactic hire more than a few eccentric individuals who know more about \
-		visual aesthetics and prop design than they do functional operative camouflage. But the true reason goes deeper. \
-		The visual appearance of the suit exemplifies brazen displays of power, not true stealth. However, the suit's inbuilt stealth mechanisms\
-		prevent anyone from fully recognizing the occupant, only the suit, creating perfect anonymity. This visual transformation is \
-		backed by inbuilt psi-emitters, heightening stressors common amongst Nanotrasen staff, and clouding identifiable information. \
-		Scrubbed statistical data presented a single correlation within documented psychological profiles. The fear of the Unknown."
+	name = "Infiltrator"
+	desc = "Specjalistyczny skafander infiltracyjny opracowany przez Gildię Aktorów Roseus Galactic, by budzić strach i podziw w sercach publiczności."
+	extended_desc = "Przez lata pojawiło się wiele pytań o tajny modułowy skafander Infiltrator. \
+		Dlaczego skafander do skradania jest krwistoczerwony? Dlaczego akurat wytwórnia filmowa opracowała skafander maskujący? \
+		Najprostsza odpowiedź: Roseus Galactic zatrudnia sporo ekscentryków, którzy wiedzą więcej o \
+		estetyce i projektowaniu rekwizytów niż o skutecznym kamuflażu operacyjnym. Prawdziwy powód sięga jednak głębiej. \
+		Wygląd skafandra to bezczelny pokaz siły, a nie prawdziwe ukrycie. Wbudowane mechanizmy maskujące \
+		sprawiają jednak, że nikt nie rozpozna noszącego, tylko sam skafander, co daje doskonałą anonimowość. Tę wizualną przemianę \
+		wspierają wbudowane psi-emitery, które potęgują stresory typowe dla personelu Nanotrasenu i zaciemniają dane identyfikacyjne. \
+		Oczyszczone dane statystyczne wykazały jedną korelację w udokumentowanych profilach psychologicznych. Strach przed Nieznanym."
 	default_skin = "infiltrator"
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 40, "rad" = 75, "fire" = 100, "acid" = 100, "stamina" = 40, "bleed" = 50)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -1215,15 +1215,15 @@
 	)
 
 /datum/mod_theme/enchanted
-	name = "enchanted"
-	desc = "The Wizard Federation's relatively low-tech MODsuit. Is very protective, though."
-	extended_desc = "The Wizard Federation's relatively low-tech MODsuit. This armor employs not \
-		plasteel or carbon fibre, but space dragon scales for its protection. Recruits are expected to \
-		gather these themselves, but the effort is well worth it, the suit being well-armored against threats \
-		both mundane and mystic. Rather than wholly relying on a cell, which would surely perish \
-		under the load, several naturally-occurring bluespace gemstones have been utilized as \
-		default means of power. The hood and platform boots are of unknown usage, but it's speculated that \
-		wizards trend towards the dramatic."
+	name = "zaczarowany"
+	desc = "Stosunkowo prymitywny technicznie MODsuit Federacji Czarodziejów. Za to bardzo dobrze chroni."
+	extended_desc = "Stosunkowo prymitywny technicznie MODsuit Federacji Czarodziejów. Ten pancerz nie chroni \
+		plastalą ani włóknem węglowym, tylko łuskami kosmicznego smoka. Rekruci mają je \
+		zebrać sami, ale wysiłek się opłaca, bo skafander dobrze chroni przed zagrożeniami \
+		zarówno przyziemnymi, jak i mistycznymi. Zamiast polegać wyłącznie na ogniwie, które z pewnością padłoby \
+		pod takim obciążeniem, jako domyślne źródło zasilania wykorzystano kilka naturalnie występujących \
+		kamieni szlachetnych bluespace. Przeznaczenie kaptura i butów na platformie jest nieznane, ale podejrzewa się, \
+		że czarodzieje mają skłonność do dramatyzmu."
 	default_skin = "enchanted"
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 50, "energy" = 50, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 50, "bleed" = 60)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -1272,13 +1272,13 @@
 
 /datum/mod_theme/ninja
 	name = "ninja"
-	desc = "A unique, vacuum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
-	extended_desc = "A suit of nano-enhanced armor designed specifically for Spider Clan assassin-saboteurs. \
-		This MODsuit employs the cutting edge of stealth and combat technology, built skin-tight but just as durable as \
-		suits two or three times as thick. The nanomachines making up the outermost layer of armor \
-		are capable of shifting their form into almost-microscopic radiating fins, rendering the suit itself \
-		nigh-immune to even volcanic heat. It's entirely sealed against even the strongest acids, \
-		and the myoelectric artificial muscles of the suit leave it light as a feather during movement."
+	desc = "Unikalny, szczelny na próżnię, nanowzmocniony pancerz zaprojektowany specjalnie dla zabójców Klanu Pająka."
+	extended_desc = "Nanowzmocniony pancerz zaprojektowany specjalnie dla zabójców-sabotażystów Klanu Pająka. \
+		Ten MODsuit to szczyt technologii maskowania i walki: przylega do skóry, a jest równie wytrzymały jak \
+		skafandry dwa lub trzy razy grubsze. Nanomaszyny tworzące zewnętrzną warstwę pancerza \
+		potrafią zmieniać kształt w niemal mikroskopijne żeberka chłodzące, przez co sam skafander \
+		jest prawie niewrażliwy nawet na wulkaniczny żar. Jest całkowicie szczelny nawet na najsilniejsze kwasy, \
+		a mioelektryczne sztuczne mięśnie sprawiają, że w ruchu jest lekki jak piórko."
 	default_skin = "ninja"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 20, "energy" = 30, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 100, "bleed" = 60)
 	resistance_flags = LAVA_PROOF|FIRE_PROOF|ACID_PROOF
@@ -1329,15 +1329,15 @@
 	)
 
 /datum/mod_theme/prototype
-	name = "prototype"
-	desc = "A prototype modular suit powered by locomotives. While it is comfortable and has a big capacity, it remains very bulky and power-inefficient."
-	extended_desc = "This is a prototype powered exoskeleton, a design not seen in hundreds of years, the first \
-		post-void war era modular suit to ever be safely utilized by an operator. This ancient clunker is still functional, \
-		though it's missing several modern-day luxuries from updated Nakamura Engineering designs. \
-		Primarily, the suit's myoelectric suit layer is entirely non-existant, and the servos do very little to \
-		help distribute the weight evenly across the wearer's body when the suit is deactivated, making it slow and bulky to move in. \
-		The internal heads-up display is rendered in nearly unreadable cyan, as the visor suggests, \
-		leaving the user unable to see long distances. However, the way the helmet retracts is pretty cool."
+	name = "prototypowy"
+	desc = "Prototypowy skafander modułowy napędzany lokomotywami. Jest wygodny i pojemny, ale wciąż bardzo masywny i nieoszczędny."
+	extended_desc = "To prototyp zasilanego egzoszkieletu, konstrukcja niewidziana od setek lat, pierwszy \
+		modułowy skafander z ery po Wojnie Pustki, którego operator mógł bezpiecznie używać. Ten pradawny grat wciąż działa, \
+		choć brakuje mu kilku nowoczesnych udogodnień z nowszych projektów Nakamura Engineering. \
+		Przede wszystkim mioelektryczna warstwa skafandra w ogóle nie istnieje, a serwa niewiele \
+		pomagają rozłożyć ciężar na ciało noszącego, gdy skafander jest wyłączony, przez co porusza się w nim wolno i ociężale. \
+		Wewnętrzny wyświetlacz HUD jest w niemal nieczytelnym cyjanie, co sugeruje już wizjer, \
+		przez co użytkownik nie widzi na duże odległości. Za to sposób, w jaki chowa się hełm, jest całkiem fajny."
 	default_skin = "prototype"
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 20, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75, "stamina" = 30, "bleed" = 55)
 	resistance_flags = FIRE_PROOF
@@ -1388,13 +1388,13 @@
 	)
 
 /datum/mod_theme/responsory
-	name = "responsory"
-	desc = "A high-speed rescue suit by Nanotrasen, intended for its emergency response teams."
-	extended_desc = "A streamlined suit of Nanotrasen design, these sleek black suits are only worn by \
-		elite emergency response personnel to help save the day. While the slim and nimble design of the suit \
-		cuts the ceramics and ablatives in it down, dropping the protection, \
-		it keeps the wearer safe from the harsh void of space while sacrificing no speed whatsoever. \
-		While wearing it you feel an extreme deference to darkness. "
+	name = "interwencyjny"
+	desc = "Szybki skafander ratunkowy Nanotrasenu dla zespołów reagowania kryzysowego."
+	extended_desc = "Opływowy skafander projektu Nanotrasenu; te smukłe czarne skafandry noszą wyłącznie \
+		elitarni ratownicy zespołów reagowania kryzysowego, którzy ratują sytuację. Smukła i zwinna konstrukcja \
+		ogranicza ilość ceramiki i warstw ablacyjnych, obniżając ochronę, \
+		ale chroni noszącego przed surową próżnią kosmosu, nie tracąc przy tym ani trochę szybkości. \
+		Nosząc go, czujesz ogromny szacunek dla ciemności. "
 	default_skin = "responsory"
 	armor = list("melee" = 45, "bullet" = 40, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 100, "acid" = 90, "stamina" = 40, "bleed" = 60)
 	atom_flags = PREVENT_CONTENTS_EXPLOSION_1
@@ -1477,14 +1477,14 @@
 	)
 
 /datum/mod_theme/apocryphal
-	name = "apocryphal"
-	desc = "A high-tech, only technically legal, armored suit created by a collaboration effort between Nanotrasen and Apadyne Technologies."
-	extended_desc = "A bulky and only legal by technicality suit, this ominous black and red MODsuit is only worn by \
-		Nanotrasen Black Ops teams. If you can see this suit, you fucked up. A collaborative joint effort between \
-		Apadyne and Nanotrasen the construction and modules gives the user robust protection against \
-		anything that can be thrown at it, along with acute combat awareness tools for it's wearer. \
-		Whether the wearer uses it or not is up to them. \
-		There seems to be a little inscription on the wrist that reads; \'squiddie', d'aww."
+	name = "Apocryphal"
+	desc = "Zaawansowany, legalny tylko formalnie opancerzony skafander, wspólne dzieło Nanotrasenu i Apadyne Technologies."
+	extended_desc = "Masywny i legalny tylko na mocy kruczka MODsuit; ten złowrogi czarno-czerwony skafander noszą wyłącznie \
+		oddziały Black Ops Nanotrasenu. Jeśli widzisz ten skafander, to coś spieprzyłeś. Wspólne dzieło \
+		Apadyne i Nanotrasenu; konstrukcja i moduły dają użytkownikowi solidną ochronę przed \
+		wszystkim, czym można w niego rzucić, oraz narzędzia do wyostrzonej świadomości sytuacji w walce. \
+		Czy noszący z nich skorzysta, zależy od niego. \
+		Na nadgarstku widnieje mały napis: „squiddie”, ojej."
 	default_skin = "apocryphal"
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 80, "fire" = 100, "acid" = 100, "stamina" = 50, "bleed" = 60)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -1535,15 +1535,15 @@
 	)
 
 /datum/mod_theme/corporate
-	name = "corporate"
-	desc = "A fancy, high-tech suit for Nanotrasen's high ranking officers."
-	extended_desc = "An even more costly version of the Magnate model, the corporate suit is a thermally insulated, \
-		anti-corrosion coated suit for high-ranking CentCom Officers, deploying pristine protective armor and \
-		advanced actuators, feeling practically weightless when turned on. Scraping the paint of this suit is \
-		counted as a war-crime and reason for immediate execution in over fifty Nanotrasen space stations. \
-		The resemblance to a Gorlex Marauder helmet is purely coincidental. This is the newest V2 revision, which has \
-		reflective reinforced-plasmaglass shielding weaved with advanced kevlar fibers. Sources say that some of the armor \
-		is ripped straight from an Apocryphal MODsuit."
+	name = "korporacyjny"
+	desc = "Elegancki, zaawansowany skafander dla wysokich rangą oficerów Nanotrasenu."
+	extended_desc = "Jeszcze droższa wersja modelu Magnat; skafander korporacyjny jest izolowany termicznie, \
+		pokryty powłoką antykorozyjną i przeznaczony dla wysokich rangą oficerów Centrali; rozkłada nieskazitelny pancerz ochronny i \
+		zaawansowane siłowniki, a po włączeniu jest praktycznie nieważki. Zdrapanie farby z tego skafandra \
+		uznaje się za zbrodnię wojenną i powód do natychmiastowej egzekucji na ponad pięćdziesięciu stacjach Nanotrasenu. \
+		Podobieństwo do hełmu Maruderów Gorlex jest czysto przypadkowe. To najnowsza rewizja V2, która ma \
+		odblaskową osłonę ze zbrojonego szkła plazmowego przeplecioną zaawansowanymi włóknami kevlaru. Źródła mówią, że część pancerza \
+		zdarto prosto z MODsuitu Apocryphal."
 	default_skin = "corporate"
 	armor = list("melee" = 65, "bullet" = 65, "laser" = 55, "energy" = 50, "bomb" = 60, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 100, "bleed" = 15)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -1592,11 +1592,11 @@
 	)
 
 /datum/mod_theme/debug
-	name = "debug"
-	desc = "Strangely nostalgic."
-	extended_desc = "An advanced suit that has dual ion engines powerful enough to grant a humanoid flight. \
-		Contains an internal self-recharging high-current capacitor for short, powerful bo- \
-		Oh wait, this is not actually a flight suit. Fuck."
+	name = "debugowy"
+	desc = "Dziwnie nostalgiczny."
+	extended_desc = "Zaawansowany skafander z dwoma silnikami jonowymi, na tyle mocnymi, że humanoid może latać. \
+		Zawiera wewnętrzny, samoładujący się kondensator wysokoprądowy do krótkich, potężnych zry- \
+		A nie, czekaj, to wcale nie jest skafander do latania. Kurwa."
 	default_skin = "debug"
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 50)
 	resistance_flags = FIRE_PROOF|ACID_PROOF
@@ -1646,12 +1646,12 @@
 	)
 
 /datum/mod_theme/administrative
-	name = "administrative"
-	desc = "A suit made of adminium. Who comes up with these stupid mineral names?"
-	extended_desc = "Yeah, okay, I guess you can call that an event. What I consider an event is something actually \
-		fun and engaging for the players- instead, most were sitting out, dead or gibbed, while the lucky few got to \
-		have all the fun. If this continues to be a pattern for your \"events\" (Admin Abuse) \
-		there will be an admin complaint. You have been warned."
+	name = "administracyjny"
+	desc = "Skafander z adminium. Kto wymyśla te głupie nazwy minerałów?"
+	extended_desc = "No dobra, chyba można to nazwać eventem. Dla mnie event to coś naprawdę \
+		zabawnego i wciągającego dla graczy, a tu większość siedziała z boku, martwa albo rozerwana, a tylko garstka szczęściarzy \
+		miała całą zabawę. Jeśli tak dalej będą wyglądać twoje „eventy” (Admin Abuse), \
+		będzie skarga na admina. Zostałeś ostrzeżony."
 	default_skin = "debug"
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 100, "bleed" = 100)
 	resistance_flags = INDESTRUCTIBLE|LAVA_PROOF|FIRE_PROOF|UNACIDABLE|ACID_PROOF

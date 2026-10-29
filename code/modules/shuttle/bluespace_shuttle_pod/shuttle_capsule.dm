@@ -1,6 +1,6 @@
 /obj/item/survivalcapsule/shuttle
-	name = "bluespace shuttle capsule"
-	desc = "An entire shuttle stored within a pocket of bluespace."
+	name = "kapsuła promu bluespace"
+	desc = "Cały prom zamknięty w kieszeni bluespace."
 	var/datum/map_template/shuttle/shuttle_template
 	//Static
 	//Subtypes that change this will have to redefine these.
@@ -68,7 +68,7 @@
 
 		var/turf/T = deploy_location
 		if(!is_mining_level(T.z)) //only report capsules away from the mining/lavaland level
-			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_VERBOSEJMP(T)]")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] aktywuje kapsułę bluespace poza poziomem górniczym! [ADMIN_VERBOSEJMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
 		shuttle_template.load(deploy_location, centered = TRUE)
 		for(var/turf/t_index in shuttle_template.get_affected_turfs(deploy_location, centered=TRUE))
@@ -77,7 +77,7 @@
 					continue
 				var/obj/docking_port/stationary/S = new /obj/docking_port/stationary(t_index)
 				S.delete_after = TRUE
-				S.name = "[M.name] deployment site"
+				S.name = "miejsce rozłożenia: [M.name]"
 				M.linkup(shuttle_template,S)
 				M.docked = S
 				S.docked = M

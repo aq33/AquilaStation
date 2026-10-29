@@ -1625,7 +1625,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		to_chat(user, "<span class='warning'>Nie chcesz skrzywdzić [target]!</span>")
 		return FALSE
 	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>", \
+		target.visible_message("<span class='warning'>[target] blokuje atak [user]!</span>", \
 							"<span class='userdanger'>Blokujesz atak [user]!</span>")
 		return FALSE
 	if(attacker_style?.harm_act(user,target) == MARTIAL_ATTACK_SUCCESS)
@@ -1790,7 +1790,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					"<span class='danger'>Wpychasz [target.name] do [target_pool]!</span>", null, COMBAT_MESSAGE_RANGE)
 				log_combat(user, target, "shoved", "into [target_pool] (swimming pool)")
 		else
-			user.visible_message("<span class='danger'>[user.name] shoves [target.name]!</span>",
+			user.visible_message("<span class='danger'>[user.name] popycha [target.name]!</span>",
 				"<span class='danger'>Popychasz [target.name]!</span>", null, COMBAT_MESSAGE_RANGE)
 			/*var/target_held_item = target.get_active_held_item()
 			var/knocked_item = FALSE
@@ -1850,7 +1850,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(H.check_shields(I, I.force, "[I.name]", MELEE_ATTACK, I.armour_penetration))
 			return 0
 	if(H.check_block())
-		H.visible_message("<span class='warning'>[H] blocks [I]!</span>", \
+		H.visible_message("<span class='warning'>[H] blokuje [I]!</span>", \
 						"<span class='userdanger'>Blokujesz [I]!</span>")
 		return 0
 

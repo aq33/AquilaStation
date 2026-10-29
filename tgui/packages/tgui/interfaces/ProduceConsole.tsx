@@ -312,7 +312,7 @@ function CheckoutTab(props) {
                 <Table.Cell fontSize="10px" collapsing textAlign="right">
                   {item.is_free ? (
                     <Box color="green" fontSize="10px">
-                      Free
+                      Za darmo
                     </Box>
                   ) : (
                     <Tooltip
@@ -402,7 +402,7 @@ function OrderSent(props) {
           <Icon ml="28%" color="green" name="plane-arrival" size={10} />
         </Stack.Item>
         <Stack.Item fontSize="18px" color="green">
-          Order sent! Machine on cooldown...
+          Zamówienie wysłane! Maszyna się regeneruje...
         </Stack.Item>
       </Stack>
     </Dimmer>

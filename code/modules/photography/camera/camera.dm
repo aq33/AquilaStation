@@ -2,9 +2,9 @@
 #define CAMERA_PICTURE_SIZE_HARD_LIMIT 21
 
 /obj/item/camera
-	name = "camera"
+	name = "aparat fotograficzny"
 	icon = 'icons/obj/items_and_weapons.dmi'
-	desc = "A polaroid camera."
+	desc = "Aparat typu polaroid."
 	icon_state = "camera"
 	item_state = "camera"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -163,7 +163,7 @@
 		return FALSE
 	size_x = CLAMP(size_x, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
 	size_y = CLAMP(size_y, 0, CAMERA_PICTURE_SIZE_HARD_LIMIT)
-	var/list/desc = list("This is a photo of an area of [(2*size_x)+1] meters by [(2*size_y)+1] meters.")
+	var/list/desc = list("To zdjęcie obszaru o wymiarach [(2*size_x)+1] na [(2*size_y)+1] m.")
 	var/list/mobs_spotted = list()
 	var/list/dead_spotted = list()
 	var/ai_user = isAI(user)
@@ -208,7 +208,7 @@
 	temp.Scale(psize_x, psize_y)
 	temp.Blend(get_icon, ICON_OVERLAY)
 
-	var/datum/picture/P = new("picture", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
+	var/datum/picture/P = new("ujęcie", desc.Join(" "), mobs_spotted, dead_spotted, temp, null, psize_x, psize_y, blueprints)
 	after_picture(user, P, flag)
 	blending = FALSE
 
@@ -226,13 +226,13 @@
 		user.put_in_hands(p)
 		pictures_left--
 		to_chat(user, "<span class='notice'>Pozostałe zdjęcia: [pictures_left].</span>")
-		var/customise = "No"
+		var/customise = "Nie"
 		if(can_customise)
-			customise = alert(user, "Czy chcesz dostosować zdjęcie?", "Customization", "Yes", "No")
-		if(customise == "Yes")
-			var/name1 = stripped_input(user, "Nadaj nazwę temu zdjęciu albo zostaw puste. Maks. 32 znaki.", "Name", max_length = 32)
-			var/desc1 = stripped_input(user, "Dodaj opis do zdjęcia albo zostaw puste. Maks. 128 znaków.", "Caption", max_length = 128)
-			var/caption = stripped_input(user, "Dodaj podpis do zdjęcia albo zostaw puste. Maks. 256 znaków.", "Caption", max_length = 256)
+			customise = alert(user, "Czy chcesz dostosować zdjęcie?", "Dostosowanie", "Tak", "Nie")
+		if(customise == "Tak")
+			var/name1 = stripped_input(user, "Nadaj nazwę temu zdjęciu albo zostaw puste. Maks. 32 znaki.", "Nazwa", max_length = 32)
+			var/desc1 = stripped_input(user, "Dodaj opis do zdjęcia albo zostaw puste. Maks. 128 znaków.", "Opis", max_length = 128)
+			var/caption = stripped_input(user, "Dodaj podpis do zdjęcia albo zostaw puste. Maks. 256 znaków.", "Podpis", max_length = 256)
 			if(name1)
 				picture.picture_name = name1
 			if(desc1)

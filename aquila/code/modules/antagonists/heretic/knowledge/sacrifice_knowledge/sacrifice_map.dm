@@ -73,7 +73,7 @@ GLOBAL_DATUM(heretic_sacrifice_reservation, /datum/turf_reservation)
 // AQUILA - nasz zwykły drogowskaz teleportuje na stację, więc w Mansusie stoi atrapa (jak w starym heretyku)
 // A fluff signpost object that doesn't teleport you somewhere when you touch it.
 /obj/structure/no_effect_signpost
-	name = "signpost"
+	name = "drogowskaz"
 	desc = "Czy ktoś da mi jakiś znak?"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
@@ -81,7 +81,7 @@ GLOBAL_DATUM(heretic_sacrifice_reservation, /datum/turf_reservation)
 	density = TRUE
 
 /obj/structure/no_effect_signpost/void
-	name = "signpost at the edge of the universe"
+	name = "drogowskaz na krańcu wszechświata"
 	desc = "Kierunek w pozbawionej kierunków pustce."
 	density = FALSE
 	/// Brightness of the signpost.
@@ -115,7 +115,7 @@ GLOBAL_DATUM(heretic_sacrifice_reservation, /datum/turf_reservation)
 
 // Rooms for where heretic sacrifices send people.
 /area/centcom/heretic_sacrifice
-	name = "Mansus Gate"
+	name = "Brama Mansusa"
 	icon_state = "away"
 	has_gravity = STANDARD_GRAVITY
 	ambience_index = AMBIENCE_SPOOKY
@@ -129,22 +129,22 @@ GLOBAL_DATUM(heretic_sacrifice_reservation, /datum/turf_reservation)
 	return ..()
 
 /area/centcom/heretic_sacrifice/ash //also, the default
-	name = "Mansus Ash Gate"
+	name = "Popielna Brama Mansusa"
 
 /area/centcom/heretic_sacrifice/void
-	name = "Mansus Void Gate"
+	name = "Brama Pustki Mansusa"
 	sound_environment = SOUND_ENVIRONMENT_UNDERWATER
 
 /area/centcom/heretic_sacrifice/flesh
-	name = "Mansus Flesh Gate"
+	name = "Brama Ciała Mansusa"
 	sound_environment = SOUND_ENVIRONMENT_STONEROOM
 
 /area/centcom/heretic_sacrifice/rust
-	name = "Mansus Rust Gate"
+	name = "Brama Rdzy Mansusa"
 	ambience_index = AMBIENCE_REEBE
 	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 
 /area/centcom/heretic_sacrifice/lock
-	name = "Mansus Lock Gate"
+	name = "Brama Zamka Mansusa"
 	ambience_index = AMBIENCE_DANGER
 	sound_environment = SOUND_ENVIRONMENT_PSYCHOTIC

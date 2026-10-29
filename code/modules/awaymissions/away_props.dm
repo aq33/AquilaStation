@@ -1,6 +1,6 @@
 /obj/effect/oneway
-	name = "one way effect"
-	desc = "Only lets things in from it's dir."
+	name = "efekt jednokierunkowy"
+	desc = "Wpuszcza rzeczy tylko od swojej strony."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -14,8 +14,8 @@
 
 
 /obj/effect/wind
-	name = "wind effect"
-	desc = "Creates pressure effect in it's direction. Use sparingly."
+	name = "efekt wiatru"
+	desc = "Tworzy efekt ciśnienia w swoim kierunku. Używaj oszczędnie."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "field_dir"
 	invisibility = INVISIBILITY_MAXIMUM
@@ -32,8 +32,8 @@
 
 //Keep these rare due to cost of doing these checks
 /obj/effect/path_blocker
-	name = "magic barrier"
-	desc = "You shall not pass."
+	name = "magiczna bariera"
+	desc = "Nie przejdziesz."
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = "blocker" //todo make this actually look fine when visible
 	anchored = TRUE

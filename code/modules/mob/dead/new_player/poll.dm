@@ -244,7 +244,7 @@
 		return
 	if(IsAdminAdvancedProcCall())
 		log_game("[key_name(usr)] attempted to rig the vote by voting as [key]")
-		message_admins("[key_name_admin(usr)] attempted to rig the vote by voting as [key]")
+		message_admins("[key_name_admin(usr)] próbuje sfałszować głosowanie, głosując jako [key]")
 		to_chat(usr, "<span class='danger'>Wygląda na to, że nie jesteś [key].</span>")
 		to_chat(src, "<span class='danger'>Coś poszło bardzo nie tak przy przetwarzaniu twojego głosu. Skontaktuj się z administratorem - powinien był dostać o tym wiadomość</span>")
 		return

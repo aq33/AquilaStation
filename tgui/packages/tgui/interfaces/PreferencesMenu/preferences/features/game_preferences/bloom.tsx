@@ -1,10 +1,10 @@
 import { FeatureNumberInput, FeatureNumeric } from '../base';
 
 export const bloom_amount: FeatureNumeric = {
-  name: 'Bloom Level',
+  name: 'Poziom bloomu',
   category: 'GRAPHICS',
   subcategory: 'Misc',
   description:
-    'What percentage of bloom to show. Bloom is a lighting effect that gives bright lights a whiteout effect. Disabling it entirely may increase client performance, if needed.',
+    'Ile procent bloomu pokazywać. Bloom to efekt oświetlenia, który rozmywa jasne światła w biel. Całkowite wyłączenie może w razie potrzeby poprawić wydajność klienta.',
   component: FeatureNumberInput,
 };

@@ -7,8 +7,8 @@
 
 
 /obj/machinery/power/rad_collector
-	name = "Radiation Collector Array"
-	desc = "A device which uses Hawking Radiation and plasma to produce power."
+	name = "kolektor promieniowania"
+	desc = "Urządzenie, które wytwarza energię z promieniowania Hawkinga i plazmy."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
 	anchored = FALSE

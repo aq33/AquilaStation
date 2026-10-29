@@ -1,8 +1,8 @@
 #define TANK_DISPENSER_CAPACITY 10
 
 /obj/structure/tank_dispenser
-	name = "tank dispenser"
-	desc = "A simple yet bulky storage device for gas tanks. Holds up to 10 oxygen tanks and 10 plasma tanks."
+	name = "dozownik butli"
+	desc = "Proste, ale masywne urządzenie do przechowywania butli z gazem. Mieści do 10 butli z tlenem i 10 butli z plazmą."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	density = TRUE

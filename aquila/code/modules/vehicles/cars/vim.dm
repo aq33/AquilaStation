@@ -143,7 +143,7 @@
 		else
 			break
 	if(did_the_thing)
-		user.balloon_alert_to_viewers("[(obj_integrity >= max_integrity) ? "w pełni" : "częściowo"] naprawił [src]")
+		user.balloon_alert_to_viewers("[(obj_integrity >= max_integrity) ? "w pełni" : "częściowo"] naprawia [src]")
 	else
 		user.balloon_alert_to_viewers("przestaje spawać [src]", "naprawa przerwana!")
 

@@ -128,8 +128,8 @@ export const OrbitalMap = (props) => {
           </Flex.Item>
           <Flex.Item className="OrbitalMap__panel">
             <Section fill scrollable>
-              <Section title="Orbital Body Tracking">
-                <Box bold>Tracking</Box>
+              <Section title="Śledzenie ciała orbitalnego">
+                <Box bold>Śledzony obiekt</Box>
                 <Box mb={1}>{trackedBody}</Box>
                 <Box>
                   <b>X:&nbsp;</b>
@@ -140,12 +140,12 @@ export const OrbitalMap = (props) => {
                   {trackedObject && trackedObject.position_y}
                 </Box>
                 <Box>
-                  <b>Velocity:&nbsp;</b>(
+                  <b>Prędkość:&nbsp;</b>(
                   {trackedObject && trackedObject.velocity_x},{' '}
                   {trackedObject && trackedObject.velocity_y})
                 </Box>
                 <Box>
-                  <b>Radius:&nbsp;</b>
+                  <b>Promień:&nbsp;</b>
                   {trackedObject && trackedObject.radius} BSU
                 </Box>
                 <Divider />
@@ -162,7 +162,7 @@ export const OrbitalMap = (props) => {
                 />
               </Section>
               <Divider />
-              <Section title="Flight Controls">
+              <Section title="Sterowanie lotem">
                 {!thrust_alert || (
                   <NoticeBox color="red">{thrust_alert}</NoticeBox>
                 )}
@@ -175,11 +175,9 @@ export const OrbitalMap = (props) => {
                   <ShuttleControls />
                 ) : canLaunch ? (
                   <>
-                    <NoticeBox>
-                      Currently docked, awaiting launch order.
-                    </NoticeBox>
+                    <NoticeBox>Zadokowano, czekam na rozkaz startu.</NoticeBox>
                     <Button
-                      content="INITIATE LAUNCH"
+                      content="ROZPOCZNIJ START"
                       textAlign="center"
                       fontSize="30px"
                       icon="rocket"
@@ -189,22 +187,22 @@ export const OrbitalMap = (props) => {
                     />
                   </>
                 ) : (
-                  <NoticeBox color="red">Not linked to a shuttle.</NoticeBox>
+                  <NoticeBox color="red">Brak połączenia z promem.</NoticeBox>
                 )}
               </Section>
               {!!designatorInserted &&
                 (designatorId ? !shuttleId : shuttleId) && (
                   <>
                     <Divider />
-                    <Section title="Designator Linking">
+                    <Section title="Łączenie z desygnatorem">
                       {designatorId ? (
                         <Button
-                          content="Download shuttle link from designator"
+                          content="Pobierz łącze promu z desygnatora"
                           onClick={() => act('updateLinkedId')}
                         />
                       ) : (
                         <Button
-                          content="Upload shuttle link to designator"
+                          content="Wgraj łącze promu do desygnatora"
                           onClick={() => act('updateDesignatorId')}
                         />
                       )}
@@ -239,13 +237,13 @@ export const InterdictionDisplay = (props) => {
     <>
       <NoticeBox position="absolute" color="red">
         <Box bold mt={1} ml={1}>
-          ENGINES INTERDICTED
+          SILNIKI ZABLOKOWANE
         </Box>
         <Box ml={1}>
           Flight controls disabled. Engine reboot in {interdictionTime / 10}{' '}
           seconds.
         </Box>
-        <Box ml={1}>Local shuttles have been marked on the map.</Box>
+        <Box ml={1}>Pobliskie promy są zaznaczone na mapie.</Box>
       </NoticeBox>
       <Button
         position="absolute"
@@ -460,11 +458,11 @@ export const OrbitalMapDisplay = (props) => {
         >
           <>
             <NoticeBox mt={1}>
-              DOCKING PROTOCOL ONLINE, FLIGHT DISABLED - SELECT DESTINATION.
+              PROTOKÓŁ DOKOWANIA AKTYWNY, LOT WYŁĄCZONY – WYBIERZ CEL.
             </NoticeBox>
             <Dropdown
               mt={1}
-              selected="Select Docking Location"
+              selected="Wybierz miejsce dokowania"
               width="100%"
               options={validDockingPorts.map((map_object) => (
                 <option key={map_object.id}>{map_object.name}</option>
@@ -541,7 +539,7 @@ export const RecallControl = (props) => {
   return (
     <>
       <NoticeBox>
-        Manual control disabled, this location can only recall the shuttle.
+        Ręczne sterowanie wyłączone, z tego miejsca można tylko przywołać prom.
       </NoticeBox>
       <Button
         content={request_shuttle_message}
@@ -576,7 +574,7 @@ export const ShuttleControls = (props) => {
   });
   return (
     <>
-      <Box bold>Autopilot Target</Box>
+      <Box bold>Cel autopilota</Box>
       <Dropdown
         mt={1}
         selected={shuttleTarget}
@@ -589,22 +587,23 @@ export const ShuttleControls = (props) => {
         }
       />
       <Box mt={1}>
-        Velocity line will be adjusted to relative speed of this orbital body.
+        Linia prędkości zostanie dopasowana do prędkości względnej tego ciała
+        orbitalnego.
       </Box>
       <ShuttleMap />
       <NoticeBox color="purple" mt={2}>
-        Click on the primary display to fly.
+        Kliknij główny ekran, żeby lecieć.
       </NoticeBox>
-      <Box bold>Throttle</Box>
-      <Box>Shuttle Thrust: {shuttleThrust}</Box>
+      <Box bold>Przepustnica</Box>
+      <Box>Ciąg promu: {shuttleThrust}</Box>
       <Box bold mt={2}>
-        Thrust Angle
+        Kąt ciągu
       </Box>
-      <Box>Angle: {shuttleAngle}</Box>
+      <Box>Kąt: {shuttleAngle}</Box>
       {!display_fuel || (
         <>
           <Box bold mt={2}>
-            Fuel Remaining
+            Pozostałe paliwo
           </Box>
           <ProgressBar value={fuel}>{fuel} moles.</ProgressBar>
         </>
@@ -619,16 +618,20 @@ export const ShuttleControls = (props) => {
       </Table>
       <Button
         mt={2}
-        content="Toggle Autopilot"
+        content="Przełącz autopilota"
         onClick={() => act('nautopilot')}
         color={autopilot_enabled ? 'green' : 'red'}
       />
       {!(canDock && !isDocking) || (
-        <Button mt={2} content="Initiate Docking" onClick={() => act('dock')} />
+        <Button
+          mt={2}
+          content="Rozpocznij dokowanie"
+          onClick={() => act('dock')}
+        />
       )}
       <Button
         mt={2}
-        content="ENGAGE INTERDICTOR"
+        content="WŁĄCZ BLOKADĘ"
         onClick={() => act('interdict')}
         color="purple"
       />

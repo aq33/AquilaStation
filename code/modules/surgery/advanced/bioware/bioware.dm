@@ -2,9 +2,9 @@
 //Body modifications applied through surgery. They generally affect physiology.
 
 /datum/bioware
-	var/name = "Generic Bioware"
+	var/name = "Ogólne biowyposażenie"
 	var/mob/living/carbon/human/owner
-	var/desc = "If you see this something's wrong, warn a coder."
+	var/desc = "Jeśli to widzisz, coś jest nie tak, powiadom kodera."
 	var/active = FALSE
 	var/can_process = FALSE
 	var/mod_type = BIOWARE_GENERIC

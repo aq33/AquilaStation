@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/dropper
-	name = "dropper"
-	desc = "A dropper. Holds up to 5 units."
+	name = "zakraplacz"
+	desc = "Zakraplacz. Mieści do 5 j."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dropper0"
 	worn_icon_state = "pen"

@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/wheelchair/motorized
-	name = "motorized wheelchair"
-	desc = "A chair with big wheels. It seems to have a motor in it."
+	name = "zmotoryzowany wózek inwalidzki"
+	desc = "Krzesło na dużych kołach. Wygląda na to, że ma w sobie silnik."
 	max_integrity = 150
 	var/speed = 2
 	var/power_efficiency = 1
@@ -134,7 +134,7 @@
 		. += "Jest na nim mały ekran, [(in_range(user, src) || isobserver(user)) ? "[power_cell ? "który pokazuje:" : "ale jest ciemny."]" : "ale stąd go nie widzisz."]"
 	if(!power_cell || (!in_range(user, src) && !isobserver(user)))
 		return
-	. += "Speed: [speed]"
+	. += "Prędkość: [speed]"
 	. += "Wydajność energetyczna: [power_efficiency]"
 	. += "Zasilanie: [power_cell.charge] z [power_cell.maxcharge]"
 

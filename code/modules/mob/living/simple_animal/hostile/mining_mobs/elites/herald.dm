@@ -17,8 +17,8 @@
   */
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald
-	name = "herald"
-	desc = "A monstrous beast which fires deadly projectiles at threats and prey."
+	name = "herold"
+	desc = "Potworna bestia, która ostrzeliwuje zagrożenia i ofiary zabójczymi pociskami."
 	icon_state = "herald"
 	icon_living = "herald"
 	icon_aggro = "herald"
@@ -62,25 +62,25 @@
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 20, TRUE)
 
 /datum/action/innate/elite_attack/herald_trishot
-	name = "Triple Shot"
+	name = "Potrójny strzał"
 	button_icon_state = "herald_trishot"
 	chosen_message = "<span class='boldwarning'>Teraz wystrzeliwujesz trzy pociski w wybranym kierunku.</span>"
 	chosen_attack_num = HERALD_TRISHOT
 
 /datum/action/innate/elite_attack/herald_directionalshot
-	name = "Circular Shot"
+	name = "Strzał dookolny"
 	button_icon_state = "herald_directionalshot"
 	chosen_message = "<span class='boldwarning'>Wystrzeliwujesz pociski we wszystkich kierunkach.</span>"
 	chosen_attack_num = HERALD_DIRECTIONALSHOT
 
 /datum/action/innate/elite_attack/herald_teleshot
-	name = "Teleport Shot"
+	name = "Strzał teleportujący"
 	button_icon_state = "herald_teleshot"
 	chosen_message = "<span class='boldwarning'>Teraz wystrzelisz pocisk, który teleportuje cię tam, gdzie upadnie.</span>"
 	chosen_attack_num = HERALD_TELESHOT
 
 /datum/action/innate/elite_attack/herald_mirror
-	name = "Summon Mirror"
+	name = "Przywołaj lustro"
 	button_icon_state = "herald_mirror"
 	chosen_message = "<span class='boldwarning'>Przywołasz lustro, które powiela twoje ataki.</span>"
 	chosen_attack_num = HERALD_MIRROR
@@ -187,8 +187,8 @@
 	my_mirror.faction = faction.Copy()
 
 /mob/living/simple_animal/hostile/asteroid/elite/herald/mirror
-	name = "herald's mirror"
-	desc = "This fiendish work of magic copies the herald's attacks.  Seems logical to smash it."
+	name = "lustro herolda"
+	desc = "To diabelskie dzieło magii powtarza ataki herolda. Rozbicie go wydaje się logiczne."
 	health = 60
 	maxHealth = 60
 	icon_state = "herald_mirror"
@@ -209,7 +209,7 @@
 	. = ..()
 
 /obj/item/projectile/herald
-	name ="death bolt"
+	name ="pocisk śmierci"
 	icon_state= "chronobolt"
 	damage = 15
 	armour_penetration = 60
@@ -219,7 +219,7 @@
 	pass_flags = PASSTABLE
 
 /obj/item/projectile/herald/teleshot
-	name ="golden bolt"
+	name ="złoty pocisk"
 	damage = 0
 	color = rgb(255,255,102)
 
@@ -242,8 +242,8 @@
 //Herald's loot: Cloak of the Prophet
 
 /obj/item/clothing/neck/cloak/herald_cloak
-	name = "cloak of the prophet"
-	desc = "A cloak which protects you from the heresy of the world."
+	name = "płaszcz proroka"
+	desc = "Płaszcz, który chroni cię przed herezją świata."
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "herald_cloak"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -262,7 +262,7 @@
 	H.firer = owner
 	H.fire(set_angle)
 
-/obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/neck/cloak/herald_cloak/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if(rand(1,100) > hit_reaction_chance)
 		return

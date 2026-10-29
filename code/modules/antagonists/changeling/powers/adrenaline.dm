@@ -1,6 +1,6 @@
 /datum/action/changeling/adrenaline
-	name = "Adrenaline Sacs"
-	desc = "We evolve additional sacs of adrenaline throughout our body. Costs 20 chemicals."
+	name = "Worki adrenaliny"
+	desc = "Wykształcamy w całym ciele dodatkowe worki adrenaliny. Kosztuje 20 chemikaliów."
 	helptext = "Natychmiast usuwa wszystkie ogłuszenia i na krótko zmniejsza podatność na kolejne. Można użyć w stanie nieprzytomności. Częste używanie zatruwa ciało."
 	button_icon_state = "adrenaline"
 	chemical_cost = 20

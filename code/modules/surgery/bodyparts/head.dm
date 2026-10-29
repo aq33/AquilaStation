@@ -1,6 +1,6 @@
 /obj/item/bodypart/head
 	name = BODY_ZONE_HEAD
-	desc = "Didn't make sense not to live for fun, your brain gets smart but your head gets dumb."
+	desc = "Nie było sensu nie żyć dla zabawy – mózg staje się mądry, ale głowa głupieje."
 	icon = 'icons/mob/human_parts_greyscale.dmi'
 	icon_state = "default_human_head"
 	max_damage = 200
@@ -50,7 +50,7 @@
 		brain = null
 		update_icon_dropped()
 		if(!QDELETED(brainmob)) //this shouldn't happen without badminnery.
-			message_admins("Brainmob: ([ADMIN_LOOKUPFLW(brainmob)]) was left stranded in [src] at [ADMIN_VERBOSEJMP(src)] without a brain!")
+			message_admins("Brainmob: ([ADMIN_LOOKUPFLW(brainmob)]) utknął w [src] ([ADMIN_VERBOSEJMP(src)]) bez mózgu!")
 			log_game("Brainmob: ([key_name(brainmob)]) was left stranded in [src] at [AREACOORD(src)] without a brain!")
 	if(A == brainmob)
 		brainmob = null

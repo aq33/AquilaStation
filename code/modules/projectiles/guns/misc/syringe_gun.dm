@@ -1,6 +1,6 @@
 /obj/item/gun/syringe
-	name = "syringe gun"
-	desc = "A spring loaded rifle designed to fit syringes, used to incapacitate unruly patients from a distance."
+	name = "wyrzutnia strzykawek"
+	desc = "Sprężynowy karabin na strzykawki, służący do obezwładniania krnąbrnych pacjentów z dystansu."
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -82,16 +82,16 @@
 	. += "[initial(icon_state)]_[syringe_count ? clamp(syringe_count, 1, initial(max_syringes)) : "empty"]"
 
 /obj/item/gun/syringe/rapidsyringe
-	name = "rapid syringe gun"
-	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to six syringes."
+	name = "szybka wyrzutnia strzykawek"
+	desc = "Przeróbka wyrzutni strzykawek z obrotowym bębnem mieszczącym do sześciu strzykawek."
 	icon_state = "rapidsyringegun"
 	max_syringes = 6
 	automatic = 1
 	fire_rate = 2
 
 /obj/item/gun/syringe/syndicate
-	name = "dart pistol"
-	desc = "A small spring-loaded sidearm that functions identically to a syringe gun."
+	name = "pistolet na strzałki"
+	desc = "Mała sprężynowa broń boczna, działająca tak samo jak wyrzutnia strzykawek."
 	icon_state = "syringe_pistol"
 	item_state = "gun" //Smaller inhand
 	w_class = WEIGHT_CLASS_SMALL
@@ -100,8 +100,8 @@
 	can_unsuppress = FALSE //Permanently silenced
 
 /obj/item/gun/syringe/dna
-	name = "modified syringe gun"
-	desc = "A syringe gun that has been modified to fit DNA injectors instead of normal syringes."
+	name = "przerobiona wyrzutnia strzykawek"
+	desc = "Wyrzutnia strzykawek przerobiona tak, by zamiast zwykłych strzykawek mieściła iniektory DNA."
 
 /obj/item/gun/syringe/dna/Initialize(mapload)
 	. = ..()
@@ -127,8 +127,8 @@
 	return FALSE
 
 /obj/item/gun/syringe/blowgun
-	name = "blowgun"
-	desc = "Fire syringes at a short distance."
+	name = "dmuchawka"
+	desc = "Wystrzeliwuje strzykawki na krótki dystans."
 	icon_state = "blowgun"
 	has_syringe_overlay = FALSE
 	item_state = "blowgun"

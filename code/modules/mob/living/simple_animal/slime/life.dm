@@ -174,13 +174,13 @@
 		return
 
 	if(prob(10) && M.client)
-		to_chat(M, "<span class='userdanger'>[pick("You can feel your body becoming weak!", \
-		"You feel like you're about to die!", \
-		"You feel every part of your body screaming in agony!", \
-		"A low, rolling pain passes through your body!", \
-		"Your body feels as if it's falling apart!", \
-		"You feel extremely weak!", \
-		"A sharp, deep pain bathes every inch of your body!")]</span>")
+		to_chat(M, "<span class='userdanger'>[pick("Czujesz, jak twoje ciało słabnie!", \
+		"Czujesz, że zaraz umrzesz!", \
+		"Każda część twojego ciała krzyczy z bólu!", \
+		"Przez twoje ciało przetacza się głuchy, falujący ból!", \
+		"Masz wrażenie, że twoje ciało się rozpada!", \
+		"Czujesz skrajną słabość!", \
+		"Ostry, głęboki ból zalewa każdy centymetr twojego ciała!")]</span>")
 
 	var/bonus_damage = 1
 	if(transformeffects & SLIME_EFFECT_RED)
@@ -346,22 +346,22 @@
 		var/phrase = speech_buffer[2] // What did they say?
 		if ((findtext(phrase, num2text(number)) || findtext(phrase, "slimes"))) // Talking to us
 			if (findtext(phrase, "hello") || findtext(phrase, "hi"))
-				to_say = pick("Cześć...", "Hi...")
+				to_say = pick("Cześć...", "Hej...")
 			else if (findtext(phrase, "follow"))
 				if (Leader)
 					if (Leader == who) // Already following him
 						to_say = pick("Tak...", "Prowadź...", "Idę za...")
 					else if (Friends[who] > Friends[Leader]) // VIVA
 						set_leader(who)
-						to_say = "Yes... I follow [who]..."
+						to_say = "Tak... iść za [who]..."
 					else
-						to_say = "No... I follow [Leader]..."
+						to_say = "Nie... iść za [Leader]..."
 				else
 					if (Friends[who] >= SLIME_FRIENDSHIP_FOLLOW)
 						set_leader(who)
-						to_say = "I follow..."
+						to_say = "Iść za..."
 					else // Not friendly enough
-						to_say = pick("No...", "Ja nie iść...")
+						to_say = pick("Nie...", "Ja nie iść...")
 			else if (findtext(phrase, "stop"))
 				if (buckled) // We are asked to stop feeding
 					if (Friends[who] >= SLIME_FRIENDSHIP_STOPEAT)
@@ -382,12 +382,12 @@
 							to_say = "Dobra..."
 				else if (Leader) // We are asked to stop following
 					if (Leader == who)
-						to_say = "Yes... I stay..."
+						to_say = "Tak... ja zostać..."
 						set_leader(null)
 					else
 						if (Friends[who] > Friends[Leader])
 							set_leader(null)
-							to_say = "Yes... I stop..."
+							to_say = "Tak... ja stać..."
 						else
 							to_say = "Nie... dalej iść..."
 			else if (findtext(phrase, "stay"))
@@ -410,7 +410,7 @@
 				if (rabid && prob(20))
 					set_target(who)
 					special_process = TRUE
-					to_say = "ATTACK!?!?"
+					to_say = "ATAK!?!?"
 				else if (Friends[who] >= SLIME_FRIENDSHIP_ATTACK)
 					for (var/mob/living/L in view(7,src)-list(src,who))
 						if (findtext(phrase, lowertext(L.name)))
@@ -420,7 +420,7 @@
 							else if(!Friends[L] || Friends[L] < 1)
 								set_target(L)
 								special_process = TRUE
-								to_say = "Ok... I attack [Target]"
+								to_say = "Dobra... ja atakować [Target]"
 							else
 								to_say = "Nie... lubić [L] ..."
 								add_friendship(who, -1) //Don't ask a slime to attack its friend
@@ -504,7 +504,7 @@
 			if (!slimes_near)
 				phrases += "Samotny..."
 			for (var/M in friends_near)
-				phrases += "[M]... friend..."
+				phrases += "[M]... przyjaciel..."
 				if (nutrition < get_hunger_nutrition())
 					phrases += "[M]... nakarm mnie..."
 			if(!stat)

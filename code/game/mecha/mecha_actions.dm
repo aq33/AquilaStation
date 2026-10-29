@@ -36,7 +36,7 @@
 	return ..()
 
 /datum/action/innate/mecha/mech_eject
-	name = "Eject From Mech"
+	name = "Wyjdź z mecha"
 	button_icon_state = "mech_eject"
 
 /datum/action/innate/mecha/mech_eject/Activate()
@@ -47,7 +47,7 @@
 	chassis.container_resist(chassis.occupant)
 
 /datum/action/innate/mecha/mech_toggle_internals
-	name = "Toggle Internal Airtank Usage"
+	name = "Przełącz korzystanie z wewnętrznego zbiornika powietrza"
 	button_icon_state = "mech_internals_off"
 
 /datum/action/innate/mecha/mech_toggle_internals/Activate()
@@ -60,7 +60,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_cycle_equip
-	name = "Cycle Equipment"
+	name = "Przełącz wyposażenie"
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/mecha/mech_cycle_equip/Activate()
@@ -77,7 +77,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
-		chassis.balloon_alert(owner, "[chassis.selected] selected.")
+		chassis.balloon_alert(owner, "Wybrano: [chassis.selected].")
 		SStgui.update_uis(chassis)
 		button_icon_state = "mech_cycle_equip_on"
 		UpdateButtonIcon()
@@ -100,7 +100,7 @@
 
 
 /datum/action/innate/mecha/mech_toggle_lights
-	name = "Toggle Lights"
+	name = "Przełącz światła"
 	button_icon_state = "mech_lights_off"
 
 /datum/action/innate/mecha/mech_toggle_lights/Activate()
@@ -119,7 +119,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_view_stats
-	name = "View Stats"
+	name = "Pokaż statystyki"
 	button_icon_state = "mech_view_stats"
 
 /datum/action/innate/mecha/mech_view_stats/Activate()
@@ -129,7 +129,7 @@
 
 
 /datum/action/innate/mecha/strafe
-	name = "Toggle Strafing. Disabled when Alt is held."
+	name = "Przełącz strafe. Wyłączone, gdy trzymasz Alt."
 	button_icon_state = "strafe"
 
 /datum/action/innate/mecha/strafe/Activate()
@@ -153,7 +153,7 @@
 //Need to be granted by the mech type, Not default abilities.
 
 /datum/action/innate/mecha/mech_defense_mode
-	name = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost."
+	name = "Przełącz tarczę energetyczną, która kosztem dużej ilości energii blokuje wszystkie ataki z kierunku, w którym patrzysz."
 	button_icon_state = "mech_defense_mode_off"
 	var/image/def_overlay
 
@@ -161,7 +161,7 @@
 	SEND_SIGNAL(chassis, COMSIG_MECHA_ACTION_ACTIVATE, args) ///Signal sent to the mech, to be handed to the shield. See durand.dm for more details
 
 /datum/action/innate/mecha/mech_overload_mode
-	name = "Toggle leg actuators overload"
+	name = "Przełącz przeciążenie siłowników nóg"
 	button_icon_state = "mech_overload_off"
 
 /datum/action/innate/mecha/mech_overload_mode/Activate(forced_state = null)
@@ -186,7 +186,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_smoke
-	name = "Smoke"
+	name = "Dym"
 	button_icon_state = "mech_smoke"
 
 /datum/action/innate/mecha/mech_smoke/Activate()
@@ -200,7 +200,7 @@
 
 
 /datum/action/innate/mecha/mech_zoom
-	name = "Zoom"
+	name = "Przybliżenie"
 	button_icon_state = "mech_zoom_off"
 
 /datum/action/innate/mecha/mech_zoom/Activate()
@@ -219,7 +219,7 @@
 		UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_switch_damtype
-	name = "Reconfigure arm microtool arrays"
+	name = "Przekonfiguruj mikronarzędzia ramion"
 	button_icon_state = "mech_damtype_brute"
 
 /datum/action/innate/mecha/mech_switch_damtype/Activate()
@@ -242,7 +242,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/mecha/mech_toggle_phasing
-	name = "Toggle Phasing"
+	name = "Przełącz przenikanie"
 	button_icon_state = "mech_phasing_off"
 
 /datum/action/innate/mecha/mech_toggle_phasing/Activate()
@@ -250,5 +250,5 @@
 		return
 	chassis.phasing = !chassis.phasing
 	button_icon_state = "mech_phasing_[chassis.phasing ? "on" : "off"]"
-	chassis.balloon_alert(owner, "[chassis.phasing ? "Enabled" : "Disabled"] phasing")
+	chassis.balloon_alert(owner, "Przenikanie [chassis.phasing ? "włączone" : "wyłączone"]")
 	UpdateButtonIcon()

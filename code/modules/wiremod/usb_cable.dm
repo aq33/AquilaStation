@@ -1,7 +1,7 @@
 /// A cable that can connect integrated circuits to anything with a USB port, such as computers and machines.
 /obj/item/usb_cable
-	name = "usb cable"
-	desc = "A cable that can connect integrated circuits to anything with a USB port, such as computers and machines."
+	name = "kabel USB"
+	desc = "Kabel, który łączy układy scalone z wszystkim, co ma port USB, na przykład z komputerami i maszynami."
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "usb_cable"
 	item_state = "coil"
@@ -39,7 +39,7 @@
 		return
 
 	if(prob(1))
-		balloon_alert(user, "Wrong way, god damnit.")
+		balloon_alert(user, "Nie tą stroną, do cholery.")
 		return TRUE
 
 	var/signal_result = SEND_SIGNAL(target, COMSIG_ATOM_USB_CABLE_TRY_ATTACH, src, user)
@@ -63,11 +63,11 @@
 
 	if (signal_result & COMSIG_USB_CABLE_ATTACHED)
 		// Short messages are better to read
-		var/connection_description = "port"
+		var/connection_description = "portu"
 		if (istype(target, /obj/machinery/computer))
-			connection_description = "computer"
+			connection_description = "komputera"
 		else if (ismachinery(target))
-			connection_description = "machine"
+			connection_description = "maszyny"
 
 		balloon_alert(user, "Podłączasz [src] do [connection_description].")
 		playsound(src, 'sound/items/screwdriver2.ogg', 20, TRUE)
@@ -107,7 +107,7 @@
 		return FALSE
 
 	if (!IN_GIVEN_RANGE(attached_circuit, src, USB_CABLE_MAX_RANGE))
-		balloon_alert_to_viewers("detached, too far away")
+		balloon_alert_to_viewers("odłączony, za daleko")
 		unregister_circuit_signals(attached_circuit)
 		attached_circuit = null
 		STOP_PROCESSING(SSobj, src)

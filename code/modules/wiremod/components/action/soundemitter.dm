@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/soundemitter
 	display_name = "Sound Emitter"
-	display_desc = "A component that emits a sound when it receives an input. The frequency is a multiplier which determines the speed at which the sound is played"
+	display_desc = "Komponent, który wydaje dźwięk po otrzymaniu sygnału wejściowego. Częstotliwość to mnożnik, który decyduje o szybkości odtwarzania dźwięku"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// Volume of the sound when played
@@ -23,7 +23,7 @@
 
 /obj/item/circuit_component/soundemitter/get_ui_notices()
 	. = ..()
-	. += create_ui_notice("Sound Cooldown: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
+	. += create_ui_notice("Odstęp między dźwiękami: [DisplayTimeText(sound_cooldown)]", "orange", "stopwatch")
 
 
 /obj/item/circuit_component/soundemitter/Initialize(mapload)

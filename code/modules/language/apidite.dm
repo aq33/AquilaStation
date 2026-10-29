@@ -1,8 +1,8 @@
   
 /datum/language/apidite
-	name = "Apidite"
+	name = "Apidyjski"
 	icon_state = "apidite"
-	desc = "The language of Apids, oh god, that's a lot of buzzing."
+	desc = "Język apidów. O Boże, ależ tu bzyczenia."
 	speech_verb = "brzęczy"
 	ask_verb = "brzęczy pytająco"
 	exclaim_verb = "brzęczy głośno"

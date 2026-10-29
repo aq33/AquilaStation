@@ -2,8 +2,8 @@
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "pitchfork"
-	desc = "A simple tool used for moving hay."
+	name = "widły"
+	desc = "Proste narzędzie do przerzucania siana."
 	force = 7
 	bleed_force = BLEED_CUT
 	throwforce = 15
@@ -26,8 +26,8 @@
 	..()
 
 /obj/item/pitchfork/demonic
-	name = "demonic pitchfork"
-	desc = "A red pitchfork, it looks like the work of the devil."
+	name = "demoniczne widły"
+	desc = "Czerwone widły, wyglądają na dzieło diabła."
 	force = 19
 	throwforce = 24
 

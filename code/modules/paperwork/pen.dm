@@ -12,8 +12,8 @@
  * Pens
  */
 /obj/item/pen
-	desc = "It's a normal black ink pen."
-	name = "pen"
+	desc = "Zwykły długopis z czarnym tuszem."
+	name = "długopis"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
@@ -34,24 +34,24 @@
 	return(BRUTELOSS)
 
 /obj/item/pen/blue
-	desc = "It's a normal blue ink pen."
+	desc = "Zwykły długopis z niebieskim tuszem."
 	icon_state = "pen_blue"
 	colour = "blue"
 
 /obj/item/pen/red
-	desc = "It's a normal red ink pen."
+	desc = "Zwykły długopis z czerwonym tuszem."
 	icon_state = "pen_red"
 	colour = "red"
 	throw_speed = 4 // red ones go faster (in this case, fast enough to embed!)
 
 /obj/item/pen/invisible
-	desc = "It's an invisible pen marker."
+	desc = "Marker z niewidzialnym tuszem."
 	icon_state = "pen"
 	colour = "white"
 
 /obj/item/pen/fourcolor
-	desc = "It's a fancy four-color ink pen, set to black."
-	name = "four-color pen"
+	desc = "Elegancki długopis czterokolorowy, ustawiony na czarny tusz."
+	name = "długopis czterokolorowy"
 	colour = "black"
 
 /obj/item/pen/fourcolor/attack_self(mob/living/carbon/user)
@@ -67,24 +67,24 @@
 		else
 			colour = "black"
 	to_chat(user, "<span class='notice'>[src] będzie teraz pisać kolorem: [colour].</span>")
-	desc = "It's a fancy four-color ink pen, set to [colour]."
+	desc = "Elegancki długopis czterokolorowy, ustawiony na kolor: [colour]."
 
 /obj/item/pen/fountain
-	name = "fountain pen"
-	desc = "It's a common fountain pen, with a faux wood body."
+	name = "pióro wieczne"
+	desc = "Zwykłe pióro wieczne z obudową imitującą drewno."
 	icon_state = "pen-fountain"
 	font = FOUNTAIN_PEN_FONT
 
 /obj/item/pen/charcoal
-	name = "charcoal stylus"
-	desc = "It's just a wooden stick with some compressed ash on the end. At least it can write."
+	name = "rysik węglowy"
+	desc = "To tylko drewniany patyk ze sprasowanym popiołem na końcu. Przynajmniej da się nim pisać."
 	icon_state = "pen-charcoal"
 	colour = "dimgray"
 	font = CHARCOAL_FONT
 	custom_materials = null
 
 /datum/crafting_recipe/charcoal_stylus
-	name = "Charcoal Stylus"
+	name = "Rysik węglowy"
 	result = /obj/item/pen/charcoal
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
 	time = 30
@@ -92,8 +92,8 @@
 
 
 /obj/item/pen/fountain/captain
-	name = "captain's fountain pen"
-	desc = "It's an expensive Oak fountain pen. The nib is quite sharp."
+	name = "pióro wieczne kapitana"
+	desc = "Drogie pióro wieczne w wykończeniu dębowym. Stalówka jest dość ostra."
 	icon_state = "pen-fountain-o"
 	force = 5
 	bleed_force = BLEED_SURFACE
@@ -103,11 +103,11 @@
 	materials = list(/datum/material/gold = 750)
 	sharpness = IS_SHARP
 	resistance_flags = FIRE_PROOF
-	unique_reskin = list("Oak" = "pen-fountain-o",
-						"Gold" = "pen-fountain-g",
-						"Rosewood" = "pen-fountain-r",
-						"Black and Silver" = "pen-fountain-b",
-						"Command Blue" = "pen-fountain-cb"
+	unique_reskin = list("dąb" = "pen-fountain-o",
+						"złoto" = "pen-fountain-g",
+						"palisander" = "pen-fountain-r",
+						"czerń i srebro" = "pen-fountain-b",
+						"błękit dowództwa" = "pen-fountain-cb"
 						)
 	embedding = list("embed_chance" = 75, "armour_block" = 40)
 
@@ -118,7 +118,7 @@
 /obj/item/pen/fountain/captain/reskin_obj(mob/M)
 	..()
 	if(current_skin)
-		desc = "It's an expensive [current_skin] fountain pen. The nib is quite sharp."
+		desc = "Drogie pióro wieczne (wykończenie: [current_skin]). Stalówka jest dość ostra."
 
 /obj/item/pen/attack_self(mob/living/carbon/user)
 	var/deg = input(user, "O jaki kąt chcesz obrócić główkę pióra? (1-360)", "Obróć główkę pióra") as null|num
@@ -147,10 +147,10 @@
 	. = ..()
 	//Changing Name/Description of items. Only works if they have the 'unique_rename' flag set
 	if(isobj(O) && proximity && (O.obj_flags & UNIQUE_RENAME))
-		var/penchoice = input(user, "Co chcesz edytować?", "Zmienić nazwę czy opis?") as null|anything in list("Rename","Change description")
+		var/penchoice = input(user, "Co chcesz edytować?", "Zmienić nazwę czy opis?") as null|anything in list("Zmień nazwę","Zmień opis")
 		if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 			return
-		if(penchoice == "Rename")
+		if(penchoice == "Zmień nazwę")
 			var/input = stripped_input(user,"Jak chcesz nazwać [O.name]?", ,"", MAX_NAME_LEN)
 			var/oldname = O.name
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
@@ -162,7 +162,7 @@
 				to_chat(user, "Zmieniono nazwę [oldname] na [input].")
 				O.renamedByPlayer = TRUE
 
-		if(penchoice == "Change description")
+		if(penchoice == "Zmień opis")
 			var/input = stripped_input(user,"Opisz tutaj [O.name]", ,"", 100)
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
@@ -226,7 +226,7 @@
 		force = 18
 		throw_speed = 4
 		w_class = WEIGHT_CLASS_NORMAL
-		name = "energy dagger"
+		name = "sztylet energetyczny"
 		hitsound = 'sound/weapons/blade1.ogg'
 		embedding = list(embed_chance = 200, max_damage_mult = 15, armour_block = 40) //rule of cool
 		throwforce = 35
@@ -256,7 +256,7 @@
 
 /obj/item/pen/screwdriver
 	var/extended = FALSE
-	desc = "A pen with an extendable screwdriver tip. This one has a yellow cap."
+	desc = "Długopis z wysuwaną końcówką śrubokręta. Ten ma żółtą skuwkę."
 	icon_state = "pendriver"
 	toolspeed = 1.20  // gotta have some downside
 

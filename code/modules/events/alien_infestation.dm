@@ -22,7 +22,7 @@
 	announceWhen	= 300 //NSV13 - changed from 400 to 300
 
 	minimum_required = 1
-	role_name = "alien larva"
+	role_name = "larwa obcego"
 
 	// 50% chance of being incremented by one
 	var/spawncount = 1
@@ -59,7 +59,7 @@
 				vents += temp_vent
 
 	if(!vents.len)
-		message_admins("An event attempted to spawn an alien but no suitable vents were found. Shutting down.")
+		message_admins("Event próbował stworzyć obcego, ale nie znaleziono odpowiednich wentylacji. Przerywam.")
 		return MAP_ERROR
 
 	var/list/candidates = get_candidates(ROLE_ALIEN, /datum/role_preference/midround_ghost/xenomorph)
@@ -75,7 +75,7 @@
 		new_xeno.key = C.key
 
 		spawncount--
-		message_admins("[ADMIN_LOOKUPFLW(new_xeno)] has been made into an alien by an event.")
+		message_admins("[ADMIN_LOOKUPFLW(new_xeno)] zostaje obcym w wyniku eventu.")
 		log_game("[key_name(new_xeno)] was spawned as an alien by an event.")
 		spawned_mobs += new_xeno
 

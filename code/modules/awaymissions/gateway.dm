@@ -1,8 +1,8 @@
 GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 
 /obj/machinery/gateway
-	name = "gateway"
-	desc = "A mysterious gateway built by unknown hands, it allows for faster than light travel to far-flung locations."
+	name = "brama"
+	desc = "Tajemnicza brama zbudowana nieznanymi rękami. Pozwala podróżować szybciej od światła w odległe miejsca."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
 	density = TRUE
@@ -287,7 +287,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 
 
 /obj/machinery/gateway/centeraway/admin
-	desc = "A mysterious gateway built by unknown hands, this one seems more compact."
+	desc = "Tajemnicza brama zbudowana nieznanymi rękami. Ta wydaje się bardziej zwarta."
 
 /obj/machinery/gateway/centeraway/admin/Initialize(mapload)
 	. = ..()
@@ -300,16 +300,16 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 
 /obj/item/paper/fluff/gateway
 	default_raw_text = "Gratulacje,<br><br>Wasza stacja została wybrana do realizacji Projektu Brama.<br><br>Sprzęt zostanie do was wysłany na początku następnego kwartału.<br> Macie przygotować bezpieczne miejsce na sprzęt, zgodnie z załączonymi dokumentami.<br><br>--Badania Bluespace Nanotrasen"
-	name = "Confidential Correspondence, Pg 1"
+	name = "Poufna korespondencja, str. 1"
 
 /obj/item/paper/fluff/itemnotice
 	default_raw_text = "Uwaga: w ostatnich tygodniach coraz częściej zgłaszano znajdowanie w produktach Kapsuł Bluespace zbędnych śmieci, takich jak opakowania. Jeśli w tym obozie znajdują się takie przedmioty, wyrzućcie je do kosza lub dostarczonego ogniska, zwłaszcza jeśli są to rzeczy frywolne, szczerze mówiąc żenujące. Przepraszamy za niedogodności. Dziękujemy. -- Nanotrasen BS Productions"
-	name = "Surplus Item Removal Notice"
+	name = "Zawiadomienie o usuwaniu zbędnych przedmiotów"
 
 /obj/item/paper/fluff/encampmentwelcome
 	default_raw_text = "Witaj! Jeśli to czytasz, kupiłeś i rozłożyłeś nową linię schronień z kapsuł bluespace – obóz górniczy! Ta kapsuła zapewnia standardowe wyposażenie schronienia i więcej, w tym rozszerzony automat z jedzeniem, sejf w podłodze, toaletę, schowek na skafandry, zapasowy sprzęt i osobisty automat z zamówieniami! Na zewnątrz wyłożyliśmy nawet płytki z bazaltu, by żadne kamienie nie przeszkadzały na przytulnym dziedzińcu! Mamy nadzieję, że będziesz bezpieczny i docenisz udogodnienia! - Nanotrasen BS Productions"
-	name = "Welcome!"
+	name = "Witaj!"
 
 /obj/item/paper/fluff/shuttlenotice
 	default_raw_text = "Do pełniącego obowiązki kapitana Stacji Badawczej Nanotrasen SS13. Ze względu na charakter waszej sytuacji awaryjnej musieliśmy niestety przyspieszyć budowę tego promu, przez co nie spełnia on standardowych przepisów sanitarnych. Dziękujemy za zakup i przepraszamy za niedogodności. Dziękujemy i bezpiecznego lotu! -- Zespół Inżynieryjny Nanotrasen BS Productions"
-	name = "Shuttle Notice"
+	name = "Zawiadomienie o promie"

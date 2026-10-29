@@ -5,8 +5,8 @@
 	volume = 100
 
 /obj/structure/reagent_dispensers/fueltank/cryogenic_fuel
-	name = "\improper Tyrosene fuel pump"
-	desc = "A tank full of high performance cryogenic fuel with an inbuilt fuel pump for rapid fuel delivery. Highly advisable to avoid exposure of cryogenic contents to significant heat sources"
+	name = "\improper pompa paliwa tyrozenowego"
+	desc = "Zbiornik pełen wysokowydajnego paliwa kriogenicznego z wbudowaną pompą do szybkiego tankowania. Zdecydowanie unikaj wystawiania kriogenicznej zawartości na działanie silnych źródeł ciepła"
 	icon = 'nsv13/icons/obj/objects.dmi'
 	icon_state = "cryofuel" //NSV13 - Modified objects.dmi to include a cryo fuel container
 	reagent_id = /datum/reagent/cryogenic_fuel
@@ -116,7 +116,7 @@
 		return ..()
 
 /obj/effect/ebeam/fuel_hose
-	name = "fuel hose"
+	name = "wąż paliwowy"
 	layer = LYING_MOB_LAYER
 
 /obj/structure/reagent_dispensers/fueltank/cryogenic_fuel/proc/set_nozzle(state) //@param state: are you adding or removing the nozzle. True = adding, false = removing
@@ -217,7 +217,7 @@
 	reagents.trans_to(sft, transfer_amount)
 
 /obj/item/cryofuel_nozzle
-	name = "cryofuel delivery hose"
+	name = "wąż do podawania kriopaliwa"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "atmos_nozzle"
 	item_state = "nozzleatmos"

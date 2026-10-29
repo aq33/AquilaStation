@@ -2,8 +2,8 @@
  * False Walls
  */
 /obj/structure/falsewall
-	name = "wall"
-	desc = "A huge chunk of metal used to separate rooms."
+	name = "ściana"
+	desc = "Ogromny blok metalu, który oddziela pomieszczenia."
 	anchored = TRUE
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
@@ -145,8 +145,8 @@
  */
 
 /obj/structure/falsewall/reinforced
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	name = "wzmocniona ściana"
+	desc = "Ogromny blok wzmocnionego metalu, który oddziela pomieszczenia."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
 	icon_state = "r_wall"
 	walltype = /turf/closed/wall/r_wall
@@ -166,8 +166,8 @@
  */
 
 /obj/structure/falsewall/uranium
-	name = "uranium wall"
-	desc = "A wall with uranium plating. This is probably a bad idea."
+	name = "uranowa ściana"
+	desc = "Ściana obłożona uranem. To chyba zły pomysł."
 	icon = 'icons/turf/walls/uranium_wall.dmi'
 	icon_state = "uranium"
 	mineral = /obj/item/stack/sheet/mineral/uranium
@@ -200,8 +200,8 @@
  */
 
 /obj/structure/falsewall/gold
-	name = "gold wall"
-	desc = "A wall with gold plating. Swag!"
+	name = "złota ściana"
+	desc = "Ściana obłożona złotem. Szpan!"
 	icon = 'icons/turf/walls/gold_wall.dmi'
 	icon_state = "gold"
 	mineral = /obj/item/stack/sheet/mineral/gold
@@ -209,8 +209,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/gold, /turf/closed/wall/mineral/gold)
 
 /obj/structure/falsewall/silver
-	name = "silver wall"
-	desc = "A wall with silver plating. Shiny."
+	name = "srebrna ściana"
+	desc = "Ściana obłożona srebrem. Błyszczy się!"
 	icon = 'icons/turf/walls/silver_wall.dmi'
 	icon_state = "silver"
 	mineral = /obj/item/stack/sheet/mineral/silver
@@ -218,8 +218,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/silver, /turf/closed/wall/mineral/silver)
 
 /obj/structure/falsewall/copper
-	name = "copper wall"
-	desc = "A wall with copper plating. Shiny!"
+	name = "miedziana ściana"
+	desc = "Ściana obłożona miedzią. Błyszczy się!"
 	icon = 'icons/turf/walls/copper_wall.dmi'
 	icon_state = "copper"
 	mineral = /obj/item/stack/sheet/mineral/copper
@@ -227,8 +227,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/copper, /turf/closed/wall/mineral/copper)
 
 /obj/structure/falsewall/diamond
-	name = "diamond wall"
-	desc = "A wall with diamond plating. You monster."
+	name = "diamentowa ściana"
+	desc = "Ściana obłożona diamentami. Ty potworze."
 	icon = 'icons/turf/walls/diamond_wall.dmi'
 	icon_state = "diamond"
 	mineral = /obj/item/stack/sheet/mineral/diamond
@@ -237,8 +237,8 @@
 	max_integrity = 800
 
 /obj/structure/falsewall/plasma
-	name = "plasma wall"
-	desc = "A wall with plasma plating. This is definitely a bad idea."
+	name = "plazmowa ściana"
+	desc = "Ściana obłożona plazmą. To na pewno zły pomysł."
 	icon = 'icons/turf/walls/plasma_wall.dmi'
 	icon_state = "plasma"
 	mineral = /obj/item/stack/sheet/mineral/plasma
@@ -248,7 +248,7 @@
 /obj/structure/falsewall/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300)
 		var/turf/T = get_turf(src)
-		message_admins("Plasma falsewall ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
+		message_admins("Fałszywa ściana z plazmy podpalona przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(T)]")
 		log_game("Plasma falsewall ignited by [key_name(user)] in [AREACOORD(T)]")
 		burnbabyburn()
 	else
@@ -265,8 +265,8 @@
 		burnbabyburn()
 
 /obj/structure/falsewall/bananium
-	name = "bananium wall"
-	desc = "A wall with bananium plating. Honk!"
+	name = "bananiumowa ściana"
+	desc = "Ściana obłożona bananium. Honk!"
 	icon = 'icons/turf/walls/bananium_wall.dmi'
 	icon_state = "bananium"
 	mineral = /obj/item/stack/sheet/mineral/bananium
@@ -275,8 +275,8 @@
 
 
 /obj/structure/falsewall/sandstone
-	name = "sandstone wall"
-	desc = "A wall with sandstone plating. Rough."
+	name = "ściana z piaskowca"
+	desc = "Ściana obłożona piaskowcem. Szorstka."
 	icon = 'icons/turf/walls/sandstone_wall.dmi'
 	icon_state = "sandstone"
 	mineral = /obj/item/stack/sheet/mineral/sandstone
@@ -284,8 +284,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/sandstone, /turf/closed/wall/mineral/sandstone)
 
 /obj/structure/falsewall/wood
-	name = "wooden wall"
-	desc = "A wall with wooden plating. Stiff."
+	name = "drewniana ściana"
+	desc = "Ściana obłożona drewnem. Sztywna."
 	icon = 'icons/turf/walls/wood_wall.dmi'
 	icon_state = "wood"
 	mineral = /obj/item/stack/sheet/mineral/wood
@@ -293,8 +293,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/wood, /turf/closed/wall/mineral/wood)
 
 /obj/structure/falsewall/bamboo
-	name = "bamboo wall"
-	desc = "A wall with bamboo finish. Zen."
+	name = "bambusowa ściana"
+	desc = "Ściana wykończona bambusem. Zen."
 	icon = 'icons/turf/walls/bamboo_wall.dmi'
 	icon_state = "bamboo"
 	mineral = /obj/item/stack/sheet/mineral/bamboo
@@ -302,8 +302,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/bamboo, /turf/closed/wall/mineral/bamboo)
 
 /obj/structure/falsewall/iron
-	name = "rough iron wall"
-	desc = "A wall with rough iron plating."
+	name = "szorstka żelazna ściana"
+	desc = "Ściana obłożona szorstkim żelazem."
 	icon = 'icons/turf/walls/iron_wall.dmi'
 	icon_state = "iron"
 	mineral = /obj/item/stack/rods
@@ -312,8 +312,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/iron, /turf/closed/wall/mineral/iron)
 
 /obj/structure/falsewall/abductor
-	name = "alien wall"
-	desc = "A wall with alien alloy plating."
+	name = "obca ściana"
+	desc = "Ściana obłożona obcym stopem."
 	icon = 'icons/turf/walls/abductor_wall.dmi'
 	icon_state = "abductor"
 	mineral = /obj/item/stack/sheet/mineral/abductor
@@ -321,8 +321,8 @@
 	canSmoothWith = list(/obj/structure/falsewall/abductor, /turf/closed/wall/mineral/abductor)
 
 /obj/structure/falsewall/titanium
-	name = "wall"
-	desc = "A light-weight titanium wall used in shuttles."
+	name = "ściana"
+	desc = "Lekka tytanowa ściana używana w promach."
 	icon = 'icons/turf/walls/shuttle_wall.dmi'
 	icon_state = "shuttle"
 	mineral = /obj/item/stack/sheet/mineral/titanium
@@ -331,8 +331,8 @@
 	canSmoothWith = list(/turf/closed/wall/mineral/titanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/shuttle, /obj/structure/shuttle/engine/heater)
 
 /obj/structure/falsewall/plastitanium
-	name = "wall"
-	desc = "An evil wall of plasma and titanium."
+	name = "ściana"
+	desc = "Złowroga ściana z plazmy i tytanu."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "shuttle"
 	mineral = /obj/item/stack/sheet/mineral/plastitanium
@@ -341,8 +341,8 @@
 	canSmoothWith = list(/turf/closed/wall/mineral/plastitanium, /obj/machinery/door/airlock/shuttle, /obj/machinery/door/airlock, /obj/structure/window/shuttle, /obj/structure/shuttle/engine/heater)
 
 /obj/structure/falsewall/brass
-	name = "clockwork wall"
-	desc = "A huge chunk of warm metal. The clanging of machinery emanates from within."
+	name = "mechaniczna ściana"
+	desc = "Ogromny blok ciepłego metalu. Ze środka dobiega szczęk maszynerii."
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall"
 	resistance_flags = FIRE_PROOF | ACID_PROOF

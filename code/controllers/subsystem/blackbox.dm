@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(blackbox)
 	if(sealed)
 		return FALSE
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name_admin(usr)] sealed the blackbox!")
+		message_admins("[key_name_admin(usr)] zapieczętowuje czarną skrzynkę!")
 	log_game("Blackbox sealed[IsAdminAdvancedProcCall() ? " by [key_name(usr)]" : ""].")
 	sealed = TRUE
 	return TRUE

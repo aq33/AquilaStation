@@ -1,8 +1,8 @@
 //his isn't a subtype of the syringe gun because the syringegun subtype is made to hold syringes
 //this is meant to hold reagents/obj/item/gun/syringe
 /obj/item/gun/chem
-	name = "reagent gun"
-	desc = "A Nanotrasen syringe gun, modified to automatically synthesise chemical darts, and instead hold reagents."
+	name = "pistolet na odczynniki"
+	desc = "Wyrzutnia strzykawek Nanotrasen przerobiona tak, by sama syntetyzowała strzałki chemiczne i zamiast strzykawek przechowywała odczynniki."
 	icon_state = "chemgun"
 	item_state = "chemgun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -48,8 +48,8 @@
 	last_synth = world.time
 
 /obj/item/gun/chem/bee
-	name = "bee gun"
-	desc = "An odd piece of BLF tech, which fires bees filled with whatever reagents may be in the gun's reservoir, or venom if there are none."
+	name = "pszczeli pistolet"
+	desc = "Dziwny wynalazek BLF. Strzela pszczołami wypełnionymi odczynnikami ze zbiornika broni albo jadem, jeśli zbiornik jest pusty."
 	icon_state = "beegun"
 	item_state = "chemgun"
 	fire_sound = 'sound/creatures/bee.ogg'

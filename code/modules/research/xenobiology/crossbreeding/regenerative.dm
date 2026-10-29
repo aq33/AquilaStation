@@ -4,8 +4,8 @@ Regenerative extracts:
 	Has a unique additional effect.
 */
 /obj/item/slimecross/regenerative
-	name = "regenerative extract"
-	desc = "It's filled with a milky substance, and pulses like a heartbeat."
+	name = "regeneracyjny ekstrakt"
+	desc = "Wypełnia go mlecznobiała substancja, a całość pulsuje jak bijące serce."
 	effect = "regenerative"
 	icon_state = "regenerative"
 
@@ -76,8 +76,8 @@ Regenerative extracts:
 /obj/item/slimecross/regenerative/metal/core_effect(mob/living/target, mob/user)
 	target.visible_message("<span class='warning'>Mleczna maź twardnieje i zmienia kształt, zamykając [target] w środku!</span>")
 	var/obj/structure/closet/C = new /obj/structure/closet(target.loc)
-	C.name = "slimy closet"
-	C.desc = "Looking closer, it seems to be made of a sort of solid, opaque, metal-like goo."
+	C.name = "szlamowa szafa"
+	C.desc = "Z bliska widać, że zrobiono ją z czegoś w rodzaju stałej, nieprzezroczystej, metalopodobnej mazi."
 	target.forceMove(C)
 
 /obj/item/slimecross/regenerative/yellow
@@ -128,7 +128,7 @@ Regenerative extracts:
 		target.visible_message("<span class='notice'>Część ubrania [target] pokrywa się mazią i robi się niebieska!</span>")
 
 /obj/item/slimecross/regenerative/darkblue/proc/fireproof(obj/item/clothing/C)
-	C.name = "fireproofed [C.name]"
+	C.name = "[C.name] (ognioodporność)"
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
 	C.add_atom_colour("#000080", FIXED_COLOUR_PRIORITY)
 	C.max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT

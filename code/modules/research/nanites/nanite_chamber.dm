@@ -1,6 +1,6 @@
 /obj/machinery/nanite_chamber
-	name = "nanite chamber"
-	desc = "A device that can scan, reprogram, and inject nanites."
+	name = "komora nanitów"
+	desc = "Urządzenie, które skanuje, przeprogramowuje i wszczepia nanity."
 	circuit = /obj/item/circuitboard/machine/nanite_chamber
 	icon = 'icons/obj/machines/nanite_chamber.dmi'
 	icon_state = "nanite_chamber"

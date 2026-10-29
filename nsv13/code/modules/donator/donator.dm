@@ -21,8 +21,8 @@ NSV13 Donator Item Definitions
 		return
 	playsound(src, 'sound/effects/spray.ogg', 5, 1, 5)
 	A.icon = reskin_icon
-	A.name = "Crystalline sword"
-	A.desc = "A sword made out of an otherworldy crystal which hums gently as you hold it."
+	A.name = "kryształowy miecz"
+	A.desc = "Miecz z nieziemskiego kryształu, który cicho brzęczy, gdy go trzymasz."
 	A.icon_state = "ceyellasword_off"
 	A.on_icon_state = "ceyellasword"
 	A.off_icon_state = "ceyellasword_off"

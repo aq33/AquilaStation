@@ -1,6 +1,6 @@
 /obj/item/projectile/spellcard
-	name = "enchanted card"
-	desc = "A piece of paper enchanted to give it extreme durability and stiffness, along with edges sharp enough to slice anyone unfortunate enough to get hit by a charged one."
+	name = "zaklęta karta"
+	desc = "Kawałek papieru zaklęty tak, by był niezwykle wytrzymały i sztywny, a jego krawędzie dość ostre, by pociąć każdego, kogo trafi naładowana karta."
 	icon_state = "spellcard"
 	damage_type = BRUTE
 	damage = 2

@@ -19,7 +19,7 @@
 		qdel(pda_input)
 		return
 	if(istype(signal_source) && usr.default_can_use_topic(signal_source) != UI_INTERACTIVE)
-		to_chat(usr, "<span class='warning'>Out of range! Message not sent!</span>")
+		to_chat(usr, "<span class='warning'>Poza zasięgiem! Wiadomość nie została wysłana!</span>")
 		qdel(pda_input)
 		return
 	// If we are impersonating someone, we should match their computer in the (Reply) href
@@ -43,13 +43,13 @@
 		signal.send_to_receivers()
 	var/turf/source_turf = signal_source ? get_turf(signal_source) : null
 	usr.log_message("(PDA: [pda_input.name] | [usr.real_name]) sent \"[pda_input.text]\"[signal["photo"] ? " (Photo Attached)" : ""] to [signal.format_target()] via [signal_source ? "[signal_source] at [AREACOORD(source_turf)]" : "Admin UI"]", LOG_PDA)
-	message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] sent PDA message: \"[pda_input.text]\"[signal["photo"] ? " (Photo Attached)" : ""] to [signal.format_target()] via [signal_source ? "[signal_source] at [ADMIN_VERBOSEJMP(source_turf)]" : "Admin UI"]")
+	message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] wysyła wiadomość PDA: \"[pda_input.text]\"[signal["photo"] ? " (ze zdjęciem)" : ""] do: [signal.format_target()], przez: [signal_source ? "[signal_source] ([ADMIN_VERBOSEJMP(source_turf)])" : "panel admina"]")
 	qdel(pda_input)
 
 /datum/tgui_input_pda_message
 	var/closed
 	var/submit
-	var/name = "System Administrator"
+	var/name = "Administrator systemu"
 	var/job = "Admin"
 	var/text = ""
 	var/theme
@@ -109,10 +109,10 @@
 	switch(action)
 		if("submit")
 			if(!send_all && !istype(target))
-				alert(usr, "Please select a recipient!", "Send Failure", "OK")
+				alert(usr, "Wybierz odbiorcę!", "Błąd wysyłania", "OK")
 				return
 			if(!length(name) || !length(job) || !length(text))
-				alert(usr, "Please enter text into all fields!", "Send Failure", "OK")
+				alert(usr, "Wypełnij wszystkie pola!", "Błąd wysyłania", "OK")
 				return
 			submit = TRUE
 			closed = TRUE
@@ -138,12 +138,12 @@
 					number++
 				devices[key] = messenger
 			if(can_send_all)
-				devices["Everyone"] = "Everyone"
-			var/choice = input(usr, "Select PDA to send message to.", "Select PDA.", null) as null|anything in devices
+				devices["Wszyscy"] = "Wszyscy"
+			var/choice = input(usr, "Wybierz PDA, do którego wysłać wiadomość.", "Wybierz PDA", null) as null|anything in devices
 			if(istype(target))
 				UnregisterSignal(target, COMSIG_PARENT_QDELETING)
 				target = null
-			if(can_send_all && choice == "Everyone")
+			if(can_send_all && choice == "Wszyscy")
 				send_all = TRUE
 			else if(choice in devices)
 				send_all = FALSE
@@ -175,16 +175,16 @@
 				current_image = istype(photo) ? photo.picture : null
 			if(current_image)
 				if(src_console)
-					src_console.balloon_alert(usr, "photo selected.")
+					src_console.balloon_alert(usr, "wybrano zdjęcie")
 					playsound(src_console, 'sound/machines/terminal_success.ogg', 15, TRUE)
 				else
-					usr.balloon_alert(usr, "photo selected.")
+					usr.balloon_alert(usr, "wybrano zdjęcie")
 					SEND_SOUND(usr, 'sound/machines/terminal_success.ogg')
 			else
 				if(src_console)
-					src_console.balloon_alert(usr, "no photo identified.")
+					src_console.balloon_alert(usr, "nie znaleziono zdjęcia")
 				else
-					usr.balloon_alert(usr, "no photo identified.")
+					usr.balloon_alert(usr, "nie znaleziono zdjęcia")
 			return TRUE
 		if("send_all")
 			if(!check_rights(R_ADMIN))

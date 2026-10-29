@@ -44,7 +44,7 @@ export const GasmixParser = (props: GasmixParserProps) => {
   if (total_moles <= 0) {
     return (
       <Box nowrap italic mb="10px">
-        No Gas Detected!
+        Nie wykryto gazów!
       </Box>
     );
   }
@@ -126,7 +126,7 @@ export const GasmixParser = (props: GasmixParserProps) => {
         <Stack.Item>
           <Stack vertical>
             <Stack.Item align="center" fontSize="1.2rem" color="label">
-              Active Reactions
+              Aktywne reakcje
             </Stack.Item>
             {detailedReactions ? (
               <Stack.Item>

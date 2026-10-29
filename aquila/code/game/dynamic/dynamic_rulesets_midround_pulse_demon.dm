@@ -30,6 +30,6 @@
 /// Antagonistę dodaje finish_setup()
 /datum/dynamic_ruleset/midround/from_ghosts/pulse_demon/generate_ruleset_body(mob/applicant)
 	var/mob/living/simple_animal/pulse_demon/demon = create_pulse_demon(applicant.key, pick(spawn_locs), give_antag = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(demon)] has been made into a pulse demon by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(demon)] zostaje demonem impulsu z reguły midroundowej.")
 	log_game("DYNAMIC: [key_name(demon)] was spawned as a pulse demon by the midround ruleset.")
 	return demon

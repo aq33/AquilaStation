@@ -4,8 +4,8 @@
 
 //Elite mining mobs
 /mob/living/simple_animal/hostile/asteroid/elite
-	name = "elite"
-	desc = "An elite monster, found in one of the strange tumors on lavaland."
+	name = "elita"
+	desc = "Elitarny potwór znaleziony w jednym z dziwnych guzów na Lavalandzie."
 	icon = 'icons/mob/lavaland/lavaland_elites.dmi'
 	faction = list("boss")
 	robust_searching = TRUE
@@ -41,8 +41,8 @@
 	if(istype(target, /obj/structure/elite_tumor))
 		var/obj/structure/elite_tumor/T = target
 		if(T.mychild == src && T.activity == TUMOR_PASSIVE)
-			var/elite_remove = alert("Wrócić do guza?", "Zniknąć?", "Yes", "No")
-			if(elite_remove != "Yes" || !src || QDELETED(src))
+			var/elite_remove = alert("Wrócić do guza?", "Zniknąć?", "Tak", "Nie")
+			if(elite_remove != "Tak" || !src || QDELETED(src))
 				return
 			T.mychild = null
 			T.activity = TUMOR_INACTIVE
@@ -65,7 +65,7 @@
 While using this makes the system rely on OnFire, it still gives options for timers not tied to OnFire, and it makes using attacks consistent accross the board for player-controlled elites.*/
 
 /datum/action/innate/elite_attack
-	name = "Elite Attack"
+	name = "Atak elity"
 	icon_icon = 'icons/mob/actions/actions_elites.dmi'
 	button_icon_state = ""
 	background_icon_state = "bg_default"
@@ -112,8 +112,8 @@ While using this makes the system rely on OnFire, it still gives options for tim
 //The Pulsing Tumor, the actual "spawn-point" of elites, handles the spawning, arena, and procs for dealing with basic scenarios.
 
 /obj/structure/elite_tumor
-	name = "pulsing tumor"
-	desc = "An odd, pulsing tumor sticking out of the ground.  You feel compelled to reach out and touch it..."
+	name = "pulsujący guz"
+	desc = "Dziwny, pulsujący guz wystający z ziemi. Coś każe ci wyciągnąć rękę i go dotknąć..."
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 0, "bleed" = 0)
 	resistance_flags = INDESTRUCTIBLE
 	icon = 'icons/obj/lavaland/tumor.dmi'
@@ -192,7 +192,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/structure/elite_tumor/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/gps, "Menacing Signal")
+	AddComponent(/datum/component/gps, "Groźny sygnał")
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/elite_tumor/Destroy()
@@ -219,7 +219,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		icon_state = "advanced_tumor"
 		boosted = TRUE
 		light_range = 6
-		desc = "[desc]  This one seems to glow with a strong intensity."
+		desc = "[desc] Ten zdaje się jarzyć intensywnym blaskiem."
 		qdel(core)
 		return TRUE
 
@@ -293,8 +293,8 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		to_chat(mychild, "<span class='big bold'>Pamiętaj, że jesteś potworem z Lavalandu, więc nie jesteś sojusznikiem stacji.  Nie powinieneś współpracować ani być przyjazny wobec załogi stacji, chyba że w skrajnych okolicznościach!</span>")
 
 /obj/item/tumor_shard
-	name = "tumor shard"
-	desc = "A strange, sharp, crystal shard from an odd tumor on Lavaland.  Stabbing the corpse of a lavaland elite with this will revive them, assuming their soul still lingers.  Revived lavaland elites only have half their max health, but are completely loyal to their reviver."
+	name = "odłamek guza"
+	desc = "Dziwny, ostry, kryształowy odłamek z osobliwego guza na Lavalandzie. Dźgnięcie nim zwłok elity z Lavalandu ożywi ją, o ile jej dusza wciąż się tu błąka. Ożywione elity mają tylko połowę maksymalnego zdrowia, ale są całkowicie lojalne wobec tego, kto je ożywił."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "crevice_shard"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -320,14 +320,14 @@ While using this makes the system rely on OnFire, it still gives options for tim
 		to_chat(E, "<span class='big bold'>Pamiętaj, że teraz podzielasz lojalności [user].  Oczekuje się, że nie będziesz celowo sabotować jego frakcji, chyba że dostaniesz taki rozkaz!</span>")
 		E.maxHealth = E.maxHealth * 0.5
 		E.health = E.maxHealth
-		E.desc = "[E.desc]  However, this one appears appears less wild in nature, and calmer around people."
+		E.desc = "[E.desc] Ten jednak wydaje się mniej dziki i spokojniejszy przy ludziach."
 		E.sentience_type = SENTIENCE_ORGANIC
 		qdel(src)
 	else
 		to_chat(user, "<span class='info'>[src] działa tylko na zwłokach świadomej elity Lavalandu.</span>")
 
 /obj/effect/temp_visual/elite_tumor_wall
-	name = "magic wall"
+	name = "magiczna ściana"
 	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
 	icon_state = "wall"
 	duration = 50

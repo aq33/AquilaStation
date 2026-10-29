@@ -11,8 +11,8 @@
  */
 
 /obj/item/soap
-	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
+	name = "mydło"
+	desc = "Tania kostka mydła. Niczym nie pachnie."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "soap"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -51,24 +51,24 @@
 	. += "<span class='notice'>[msg]</span>"
 
 /obj/item/soap/nanotrasen
-	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
+	desc = "Wytrzymała kostka mydła marki Nanotrasen. Pachnie plazmą."
 	grind_results = list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
 	icon_state = "soapnt"
 	cleanspeed = 28 //janitor gets this
 	uses = 300
 
 /obj/item/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
+	desc = "Domowa kostka mydła. Pachnie... no cóż...."
 	icon_state = "soapgibs"
 	cleanspeed = 30 // faster to reward chemists for going to the effort
 
 /obj/item/soap/deluxe
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of high-class luxury."
+	desc = "Luksusowa kostka mydła marki Waffle Co. Pachnie wytwornym przepychem."
 	icon_state = "soapdeluxe"
 	cleanspeed = 20 //captain gets one of these
 
 /obj/item/soap/syndie
-	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood faster."
+	desc = "Podejrzana kostka mydła z silnych środków chemicznych, które szybciej rozpuszczają krew."
 	icon_state = "soapsyndie"
 	cleanspeed = 5 //faster than mop so it is useful for traitors who want to clean crime scenes
 
@@ -144,8 +144,8 @@
  */
 
 /obj/item/bikehorn
-	name = "bike horn"
-	desc = "A horn off of a bicycle."
+	name = "trąbka"
+	desc = "Trąbka od roweru."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
@@ -179,15 +179,15 @@
 
 //air horn
 /obj/item/bikehorn/airhorn
-	name = "air horn"
-	desc = "Damn son, where'd you find this?"
+	name = "trąbka pneumatyczna"
+	desc = "No nieźle, młody, skąd to wytrzasnąłeś?"
 	icon_state = "air_horn"
 	sound_file = 'sound/items/airhorn2.ogg'
 
 //golden bikehorn
 /obj/item/bikehorn/golden
-	name = "golden bike horn"
-	desc = "Golden? Clearly, it's made with bananium! Honk!"
+	name = "złota trąbka"
+	desc = "Złota? Przecież to ewidentnie bananium! Honk!"
 	icon_state = "gold_horn"
 	item_state = "gold_horn"
 	var/flip_cooldown = 0
@@ -213,7 +213,7 @@
 
 //canned laughter
 /obj/item/reagent_containers/food/drinks/soda_cans/canned_laughter
-	name = "Canned Laughter"
-	desc = "Just looking at this makes you want to giggle."
+	name = "Śmiech w puszce"
+	desc = "Samo patrzenie na to sprawia, że chce ci się chichotać."
 	icon_state = "laughter"
 	list_reagents = list(/datum/reagent/consumable/laughter = 50)

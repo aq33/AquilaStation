@@ -2,8 +2,8 @@
 #define MENU_SURGERIES 2
 
 /obj/machinery/computer/operating
-	name = "operating computer"
-	desc = "Monitors patient vitals and displays surgery steps. Can be loaded with surgery disks to perform experimental procedures. Automatically syncs to stasis beds within its line of sight for surgical tech advancement."
+	name = "komputer operacyjny"
+	desc = "Monitoruje funkcje życiowe pacjenta i wyświetla kroki operacji. Można do niego wgrać dyski chirurgiczne, by przeprowadzać eksperymentalne zabiegi. Automatycznie łączy się z łóżkami stazy w zasięgu wzroku, by rozwijać technologię chirurgiczną."
 	icon_screen = "crew"
 	icon_keyboard = "med_key"
 	circuit = /obj/item/circuitboard/computer/operating

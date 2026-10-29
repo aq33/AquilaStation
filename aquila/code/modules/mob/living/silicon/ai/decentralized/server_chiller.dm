@@ -116,7 +116,7 @@
 	)
 
 /datum/design/board/server_chiller
-	name = "Machine Design (Server Chiller)"
+	name = "Projekt maszyny (chłodziarka serwerowni)"
 	desc = "Płytka chłodziarki serwerowni, która schładza powietrze bez rur."
 	id = "server_chiller"
 	build_path = /obj/item/circuitboard/machine/server_chiller

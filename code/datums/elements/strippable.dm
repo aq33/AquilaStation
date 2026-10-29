@@ -409,7 +409,7 @@
 	// This doesn't match with what it's used for, which is to say "Stripping the alien drone",
 	// as opposed to "Stripping The alien drone".
 	// Human names will still show without "the", as they are proper nouns.
-	data["name"] = "\the [owner]"
+	data["name"] = "[owner]"
 
 	return data
 

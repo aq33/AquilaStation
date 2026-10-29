@@ -1,6 +1,6 @@
 /obj/item/slimecross/crystalline
-	name = "crystalline extract"
-	desc = "It's crystalline,"
+	name = "krystaliczny ekstrakt"
+	desc = "Jest krystaliczny."
 	effect = "crystalline"
 	icon_state = "crystalline"
 	effect_desc = "Użyj, by postawić pylon."

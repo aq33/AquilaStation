@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(mapping)
 		var/old_config = config
 		config = global.config.defaultmap
 		if(!config || config.defaulted)
-			to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting to Box Station</span>")
+			to_chat(world, "<span class='boldannounce'>Nie udało się wczytać następnej ani domyślnej konfiguracji mapy, wczytuję Box Station</span>")
 			config = old_config
 	initialize_biomes()
 	loadWorld()
@@ -93,9 +93,9 @@ SUBSYSTEM_DEF(mapping)
 
 	// Load the virtual reality hub
 	if(CONFIG_GET(flag/virtual_reality))
-		to_chat(world, "<span class='boldannounce'>Loading virtual reality...</span>")
+		to_chat(world, "<span class='boldannounce'>Wczytywanie wirtualnej rzeczywistości...</span>")
 		load_new_z_level("_maps/RandomZLevels/VR/vrhub.dmm", "Virtual Reality Hub")
-		to_chat(world, "<span class='boldannounce'>Virtual reality loaded.</span>")
+		to_chat(world, "<span class='boldannounce'>Wirtualna rzeczywistość wczytana.</span>")
 
 	// Generate mining ruins
 	loading_ruins = TRUE
@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(mapping)
 		return
 	clearing_reserved_turfs = TRUE
 	SSshuttle.transit_requesters.Cut()
-	message_admins("Clearing dynamic reservation space.")
+	message_admins("Czyszczenie dynamicznej przestrzeni rezerwacji.")
 	var/list/obj/docking_port/mobile/in_transit = list()
 	for(var/i in SSshuttle.transit)
 		var/obj/docking_port/stationary/transit/T = i
@@ -136,7 +136,7 @@ SUBSYSTEM_DEF(mapping)
 		in_transit[T] = T.docked
 	var/go_ahead = world.time + wipe_safety_delay
 	if(in_transit.len)
-		message_admins("Shuttles in transit detected. Attempting to fast travel. Timeout is [wipe_safety_delay/10] seconds.")
+		message_admins("Wykryto promy w tranzycie. Próba szybkiego przelotu. Limit czasu: [wipe_safety_delay/10] s.")
 	var/list/cleared = list()
 	for(var/i in in_transit)
 		INVOKE_ASYNC(src, PROC_REF(safety_clear_transit_dock), i, in_transit[i], cleared)
@@ -409,7 +409,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	if (!pickedmap)
 		return
 	var/datum/map_config/VM = global.config.maplist[pickedmap]
-	message_admins("Randomly rotating map to [VM.map_name]")
+	message_admins("Losowa rotacja map na [VM.map_name]")
 	. = changemap(VM)
 	if (. && VM.map_name != config.map_name)
 		to_chat(world, "<span class='boldannounce'>Rotacja map wybrała [VM.map_name] na następną rundę!</span>")
@@ -417,7 +417,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 /datum/controller/subsystem/mapping/proc/changemap(datum/map_config/VM)
 	if(!VM.MakeNextMap())
 		next_map_config = load_map_config(default_to_box = TRUE)
-		message_admins("Failed to set new map with next_map.json for [VM.map_name]! Using default as backup!")
+		message_admins("Nie udało się ustawić nowej mapy przez next_map.json dla [VM.map_name]! Używam domyślnej!")
 		return
 
 	next_map_config = VM
@@ -442,7 +442,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	for(var/item in subtypesof(/datum/map_template/random_room))
 		var/datum/map_template/random_room/room_type = item
 		if(!(initial(room_type.mappath)))
-			message_admins("Template [initial(room_type.name)] found without mappath. Yell at coders")
+			message_admins("Znaleziono szablon [initial(room_type.name)] bez mappath. Nakrzycz na koderów")
 			continue
 		var/datum/map_template/random_room/R = new room_type()
 		random_room_templates[R.room_id] = R
@@ -528,36 +528,36 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 
 
 	if(!GLOB.the_gateway)
-		if(alert("Na stacji nie ma bramy macierzystej. Na pewno chcesz kontynuować?", "Uh oh", "Yes", "No") != "Yes")
+		if(alert("Na stacji nie ma bramy macierzystej. Na pewno chcesz kontynuować?", "Ojej", "Tak", "Nie") != "Tak")
 			return
 
-	var/list/possible_options = GLOB.potentialRandomZlevels + "Custom"
+	var/list/possible_options = GLOB.potentialRandomZlevels + "Własna"
 	var/away_name
 	var/datum/space_level/away_level
 
-	var/answer = input("What kind ? ","Away") as null|anything in possible_options
+	var/answer = input("Jaka misja?","Misja wyjazdowa") as null|anything in possible_options
 	switch(answer)
-		if("Custom")
-			var/mapfile = input("Pick file:", "File") as null|file
+		if("Własna")
+			var/mapfile = input("Wybierz plik:", "Plik") as null|file
 			if(!mapfile)
 				return
-			away_name = "[mapfile] custom"
-			to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+			away_name = "[mapfile] (własna)"
+			to_chat(usr,"<span class='notice'>Wczytywanie: [away_name]...</span>")
 			var/datum/map_template/template = new(mapfile, "Away Mission")
 			away_level = template.load_new_z()
 		else
 			if(answer in GLOB.potentialRandomZlevels)
 				away_name = answer
-				to_chat(usr,"<span class='notice'>Loading [away_name]...</span>")
+				to_chat(usr,"<span class='notice'>Wczytywanie: [away_name]...</span>")
 				var/datum/map_template/template = new(away_name, "Away Mission")
 				away_level = template.load_new_z()
 			else
 				return
 
-	message_admins("Admin [key_name_admin(usr)] has loaded [away_name] away mission.")
+	message_admins("Admin [key_name_admin(usr)] wczytuje misję wyjazdową [away_name].")
 	log_admin("Admin [key_name(usr)] has loaded [away_name] away mission.")
 	if(!away_level)
-		message_admins("Loading [away_name] failed!")
+		message_admins("Nie udało się wczytać: [away_name]!")
 		return
 
 

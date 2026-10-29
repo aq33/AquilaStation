@@ -16,8 +16,8 @@ effective or pretty fucking useless.
 */
 
 /obj/item/batterer
-	name = "mind batterer"
-	desc = "A strange device with twin antennas."
+	name = "tłuczek umysłów"
+	desc = "Dziwne urządzenie z dwiema antenami."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "batterer"
 	throwforce = 5
@@ -187,8 +187,8 @@ effective or pretty fucking useless.
 				wavelength = clamp(target, 0, 120)
 
 /obj/item/shadowcloak
-	name = "cloaker belt"
-	desc = "Makes you invisible for short periods of time. Recharges in darkness."
+	name = "pas maskujący"
+	desc = "Na krótko czyni cię niewidzialnym. Ładuje się w ciemności."
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
@@ -251,8 +251,8 @@ effective or pretty fucking useless.
 		animate(user,alpha = CLAMP(255 - charge,0,255),time = 10)
 
 /obj/item/shadowcloak/magician
-	name = "magician's cape"
-	desc = "A magician never reveals his secrets."
+	name = "peleryna magika"
+	desc = "Magik nigdy nie zdradza swoich sekretów."
 	icon = 'icons/obj/beds_chairs/beds.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
@@ -274,15 +274,15 @@ effective or pretty fucking useless.
 			playsound(user, 'sound/weapons/emitter2.ogg', 25, 1, -1)
 
 /obj/item/jammer
-	name = "signal jammer"
-	desc = "Device used to disrupt nearby wireless communication."
+	name = "zagłuszacz sygnału"
+	desc = "Urządzenie zakłócające pobliską łączność bezprzewodową."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer"
 	var/active = FALSE
 	var/range = 12
 
 /obj/item/jammer/attack_self(mob/user)
-	to_chat(user,"<span class='notice'>You [active ? "deactivate" : "activate"] [src].</span>")
+	to_chat(user,"<span class='notice'>[active ? "Dezaktywujesz" : "Aktywujesz"] [src].</span>")
 	active = !active
 	if(active)
 		GLOB.active_jammers |= src

@@ -4,12 +4,12 @@
 // Osiągnięcia za wniebowstąpienie
 
 /datum/award/achievement/misc/ash_ascension
-	name = "Nightwatcher's Eyes"
+	name = "Oczy Nocnego Strażnika"
 	desc = "Wzniosłeś się ponad płomienie i stałeś się jednym z popiołami. Odrodziłeś się jako jedno z Nocnym Strażnikiem."
 	database_id = "Ash"
 
 /datum/award/achievement/misc/flesh_ascension
-	name = "Vortex of Arms"
+	name = "Wir ramion"
 	desc = "Stałeś się czymś więcej, czymś większym. Cząstka cesarza mieszka w tobie, a ty w nim."
 	database_id = "Flesh"
 
@@ -62,7 +62,7 @@
 
 /datum/component/mind_linker
 	/// Nazwa sieci
-	var/network_name = "Mind Link"
+	var/network_name = "łącze umysłów"
 	/// Kolor wiadomości
 	var/chat_color
 	/// Sygnały rodzica, po których sieć się rozpada
@@ -82,7 +82,7 @@
 	var/list/mob/living/linked_mobs = list()
 
 /datum/component/mind_linker/Initialize(
-	network_name = "Mind Link",
+	network_name = "łącze umysłów",
 	chat_color = "#008CA2",
 	speech_action_icon = 'icons/mob/actions/actions_slime.dmi',
 	speech_action_icon_state = "link_speech",
@@ -174,7 +174,7 @@
 	var/datum/action/linker_action
 
 /datum/component/mind_linker/active_linking/Initialize(
-	network_name = "Mind Link",
+	network_name = "łącze umysłów",
 	chat_color = "#008CA2",
 	speech_action_icon = 'icons/mob/actions/actions_slime.dmi',
 	speech_action_icon_state = "link_speech",
@@ -240,7 +240,7 @@
 
 /// tg: /datum/action/innate/linked_speech. U nas ta ścieżka należy już do łącza slimeludzi, stąd inna nazwa.
 /datum/action/innate/mind_linker_speech
-	name = "Mind Link Speech"
+	name = "Mowa przez łącze umysłów"
 	desc = "Wyślij telepatyczną wiadomość do wszystkich podłączonych do twojego łącza."
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	button_icon_state = "link_speech"
@@ -253,7 +253,7 @@
 		qdel(src)
 		return
 	var/datum/component/mind_linker/linker = Target
-	name = "[linker.network_name] Speech"
+	name = "Mowa: [linker.network_name]"
 	desc = "Wyślij telepatyczną wiadomość do wszystkich podłączonych do [linker.network_name]."
 	icon_icon = linker.speech_action_icon
 	button_icon_state = linker.speech_action_icon_state

@@ -1,8 +1,8 @@
 #define CHRONO_BEAM_RANGE 3
 #define CHRONO_FRAME_COUNT 22
 /obj/item/chrono_eraser
-	name = "Timestream Eradication Device"
-	desc = "The result of outlawed time-bluespace research, this device is capable of wiping a being from the timestream. They never are, they never were, they never will be."
+	name = "Urządzenie do Wymazywania ze Strumienia Czasu"
+	desc = "Owoc zakazanych badań nad czasem i bluespace. To urządzenie potrafi wymazać istotę ze strumienia czasu. Nie ma jej, nigdy nie było i nigdy nie będzie."
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronobackpack"
 	item_state = "backpack"
@@ -41,8 +41,8 @@
 	return slot == ITEM_SLOT_BACK
 
 /obj/item/gun/energy/chrono_gun
-	name = "T.E.D. Projection Apparatus"
-	desc = "It's as if they never existed in the first place."
+	name = "aparat projekcyjny T.E.D."
+	desc = "Zupełnie jakby ktoś nigdy nie istniał."
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	item_state = "chronogun"
@@ -120,7 +120,7 @@
 
 
 /obj/item/projectile/energy/chrono_beam
-	name = "eradication beam"
+	name = "promień wymazujący"
 	icon_state = "chronobolt"
 	range = CHRONO_BEAM_RANGE
 	nodamage = TRUE
@@ -143,7 +143,7 @@
 
 
 /obj/item/ammo_casing/energy/chrono_beam
-	name = "eradication beam"
+	name = "promień wymazujący"
 	projectile_type = /obj/item/projectile/energy/chrono_beam
 	icon_state = "chronobolt"
 	e_cost = 0
@@ -161,8 +161,8 @@
 
 
 /obj/structure/chrono_field
-	name = "eradication field"
-	desc = "An aura of time-bluespace energy."
+	name = "pole wymazujące"
+	desc = "Aura energii czasu i bluespace."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	density = FALSE
@@ -195,7 +195,7 @@
 		mob_underlay = mutable_appearance(cached_icon, "frame1")
 		update_icon()
 
-		desc = initial(desc) + "<br><span class='info'>It appears to contain [target.name].</span>"
+		desc = initial(desc) + "<br><span class='info'>Wygląda na to, że zawiera: [target.name].</span>"
 	START_PROCESSING(SSobj, src)
 	return ..()
 

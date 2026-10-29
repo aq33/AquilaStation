@@ -1,9 +1,9 @@
 /*********************Hivelord stabilizer****************/
 /obj/item/hivelordstabilizer
-	name = "stabilizing serum"
+	name = "serum stabilizujące"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
-	desc = "Inject certain types of monster organs with this stabilizer to preserve their healing powers indefinitely."
+	desc = "Wstrzyknij ten stabilizator do niektórych rodzajów organów potworów, aby na zawsze zachowały swoje właściwości lecznicze."
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/hivelordstabilizer/afterattack(obj/item/organ/M, mob/user)
@@ -22,8 +22,8 @@
 
 /************************Hivelord core*******************/
 /obj/item/organ/regenerative_core
-	name = "regenerative core"
-	desc = "All that remains of a hivelord. It can be used to heal completely, but it will rapidly decay into uselessness."
+	name = "rdzeń regeneracyjny"
+	desc = "Wszystko, co zostaje z władcy roju. Może całkowicie cię uleczyć, ale szybko rozkłada się w bezużyteczną masę."
 	icon_state = "roro core 2"
 	item_flags = NOBLUDGEON
 	slot = "hivecore"
@@ -44,7 +44,7 @@
 	inert = FALSE
 	preserved = TRUE
 	update_icon()
-	desc = "All that remains of a hivelord. It is preserved, allowing you to use it to heal completely without danger of decay."
+	desc = "Wszystko, co zostaje z władcy roju. Jest zakonserwowany, więc możesz go użyć do pełnego uleczenia bez obaw o rozkład."
 	if(implanted)
 		SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "implanted"))
 	else
@@ -52,8 +52,8 @@
 
 /obj/item/organ/regenerative_core/proc/go_inert()
 	inert = TRUE
-	name = "decayed regenerative core"
-	desc = "All that remains of a hivelord. It has decayed, and is completely useless."
+	name = "zepsuty rdzeń regeneracyjny"
+	desc = "Wszystko, co zostaje z władcy roju. Rozłożył się i jest całkowicie bezużyteczny."
 	SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "inert"))
 	update_icon()
 
@@ -123,7 +123,7 @@
 
 /*************************Legion core********************/
 /obj/item/organ/regenerative_core/legion
-	desc = "A strange rock that crackles with power. It can be used to heal completely, but, outside of the insulating legion, it will rapidly decay into uselessness, and completely fail to work if not within the vicinity of the Necropolis."
+	desc = "Dziwny kamień trzeszczący od mocy. Może całkowicie cię uleczyć, ale poza izolującym ciałem legionu szybko rozkłada się w bezużyteczną masę i całkowicie przestaje działać z dala od Nekropolii."
 	icon_state = "legion_soul"
 
 /obj/item/organ/regenerative_core/legion/Initialize(mapload)
@@ -141,8 +141,8 @@
 
 /obj/item/organ/regenerative_core/legion/go_inert()
 	..()
-	desc = "[src] has become inert. It has lost all of the power of the Necropolis and died."
+	desc = "[src] traci aktywność. Cała moc Nekropolii z niego uchodzi i obumiera."
 
 /obj/item/organ/regenerative_core/legion/preserved(implanted = 0)
 	..()
-	desc = "[src] has been stabilized. However, if not in vicinity of the Necropolis, its power will be diminished."
+	desc = "[src] jest ustabilizowany. Z dala od Nekropolii jego moc jest jednak osłabiona."

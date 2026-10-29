@@ -112,14 +112,14 @@
 		var/inside_msg
 		if(ismob(holder.my_atom))
 			var/mob/owner = holder.my_atom
-			inside_msg = " inside [ADMIN_LOOKUPFLW(owner)]"
+			inside_msg = " wewnątrz: [ADMIN_LOOKUPFLW(owner)]"
 		var/lastkey = holder.my_atom.fingerprintslast
 		var/touch_msg = "N/A"
 		if(lastkey)
 			var/mob/toucher = get_mob_by_ckey(lastkey)
 			touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
 		if(!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(our_turf)][inside_msg]. Last Fingerprint: [touch_msg].")
+			message_admins("Wybuchowa reakcja odczynników w [ADMIN_VERBOSEJMP(our_turf)][inside_msg]. Ostatni odcisk palca: [touch_msg].")
 		log_game("Reagent explosion reaction occurred at [AREACOORD(our_turf)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
 		var/datum/effect_system/reagents_explosion/explosion_system = new
 		explosion_system.set_up(power, our_turf, 0, 0)

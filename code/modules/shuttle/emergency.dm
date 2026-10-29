@@ -12,8 +12,8 @@
 #define HIJACKED 5
 
 /obj/machinery/computer/emergency_shuttle
-	name = "emergency shuttle console"
-	desc = "For shuttle control."
+	name = "konsola promu ewakuacyjnego"
+	desc = "Do sterowania promem."
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
 	resistance_flags = INDESTRUCTIBLE
@@ -117,14 +117,14 @@
 			if(!(ID in authorized))
 				return //cannot retract auth if never given originally
 			authorized -= ID
-			message_admins("[ADMIN_LOOKUPFLW(user)] has deauthorized early shuttle launch, now [authorized.len] of [auth_need] needed")
+			message_admins("[ADMIN_LOOKUPFLW(user)] cofa autoryzację wcześniejszego startu promu, potrzeba teraz [authorized.len] z [auth_need]")
 			log_game("[key_name(user)] has deauthorized early shuttle launch in [COORD(src)], now [authorized.len] of [auth_need] needed.")
 
 		if("abort")
 			if(authorized.len)
 				// Abort. The action for when heads are fighting over whether
 				// to launch early.
-				message_admins("[ADMIN_LOOKUPFLW(user)] has revoked early shuttle launch.")
+				message_admins("[ADMIN_LOOKUPFLW(user)] odwołuje wcześniejszy start promu.")
 				log_game("[key_name(user)] has revoked early shuttle launch in [COORD(src)].")
 				authorized.Cut()
 				. = TRUE
@@ -152,7 +152,7 @@
 
 	authorized += ID
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] has authorized early shuttle launch, [authorized.len] of [auth_need] needed.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] autoryzuje wcześniejszy start promu, [authorized.len] z [auth_need] potrzebnych.")
 	log_game("[key_name(user)] has authorized early shuttle launch in [COORD(src)], [authorized.len] of [auth_need] needed..")
 	// Now check if we're on our way
 	. = TRUE
@@ -222,13 +222,13 @@
 	to_chat(user, "<span class='boldwarning'>[SSshuttle.emergency.hijack_status == NOT_BEGUN? "Zaczynasz" : "Kontynuujesz"] nadpisywanie protokołów nawigacyjnych [src].</span>")
 	say("Rozpoczęto nadpisywanie oprogramowania.")
 	var/turf/console_hijack_turf = get_turf(src)
-	message_admins("[src] is being overriden for hijack by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(console_hijack_turf)]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] nadpisuje [src], by porwać prom, w [ADMIN_VERBOSEJMP(console_hijack_turf)]")
 	log_game("[src] is being overriden for hijack by [key_name(user)] at [AREACOORD(src)]")
 	. = FALSE
 	if(do_after(user, hijack_stage_time * (1 / user.mind.get_hijack_speed()), target = src))
 		increase_hijack_stage()
 		console_hijack_turf = get_turf(src)
-		message_admins("[src] has had its hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACKED] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(console_hijack_turf)]")
+		message_admins("[ADMIN_LOOKUPFLW(user)] podnosi etap porwania [src] do [SSshuttle.emergency.hijack_status] z [HIJACKED] w [ADMIN_VERBOSEJMP(console_hijack_turf)]")
 		log_game("[src] has had its hijack stage increased to stage [SSshuttle.emergency.hijack_status] out of [HIJACKED] by [key_name(user)] at [AREACOORD(src)]")
 		. = TRUE
 		to_chat(user, "<span class='notice'>Przeprogramowujesz część [src], blokując konsolę na [hijack_stage_cooldown/10] s.</span>")
@@ -261,7 +261,7 @@
 		return
 
 	var/time = TIME_LEFT
-	message_admins("[ADMIN_LOOKUPFLW(user.client)] has emagged the emergency shuttle, [time] seconds before launch.")
+	message_admins("[ADMIN_LOOKUPFLW(user.client)] emaguje prom ewakuacyjny, [time] s przed startem.")
 	log_game("[key_name(user)] has emagged the emergency shuttle in [COORD(src)] [time] seconds before launch.")
 
 	obj_flags |= EMAGGED
@@ -292,7 +292,7 @@
 	. = ..()
 
 /obj/docking_port/mobile/emergency
-	name = "emergency shuttle"
+	name = "prom ewakuacyjny"
 	id = "emergency"
 
 	dwidth = 9
@@ -566,7 +566,7 @@
 
 /obj/docking_port/mobile/emergency/transit_failure()
 	..()
-	message_admins("Moving emergency shuttle directly to centcom dock to prevent deadlock.")
+	message_admins("Przenoszę prom ewakuacyjny prosto do doku Centrali, by uniknąć zakleszczenia.")
 
 	mode = SHUTTLE_ESCAPE
 	launch_status = ENDGAME_LAUNCHED
@@ -575,7 +575,7 @@
 
 
 /obj/docking_port/mobile/pod
-	name = "escape pod"
+	name = "kapsuła ratunkowa"
 	id = "pod"
 	dwidth = 1
 	width = 3
@@ -598,7 +598,7 @@
 	return
 
 /obj/machinery/computer/shuttle_flight/pod
-	name = "pod control computer"
+	name = "komputer sterowania kapsułą"
 	admin_controlled = TRUE
 	recall_docking_port_id = "null"
 	request_shuttle_message = "Wymuszona ewakuacja"
@@ -632,7 +632,7 @@
 		recall_docking_port_id = "pod_lavaland[idnum]"
 
 /obj/docking_port/stationary/random
-	name = "escape pod"
+	name = "kapsuła ratunkowa"
 	id = "pod"
 	dwidth = 1
 	width = 3
@@ -664,24 +664,24 @@
 
 
 /obj/item/clothing/head/helmet/space/orange
-	name = "emergency space helmet"
+	name = "awaryjny hełm kosmiczny"
 	icon_state = "syndicate-helm-orange"
 	item_state = "syndicate-helm-orange"
 	flash_protect = 0
 
 /obj/item/clothing/suit/space/orange
-	name = "emergency space suit"
+	name = "awaryjny skafander kosmiczny"
 	icon_state = "syndicate-orange"
 	item_state = "syndicate-orange"
 	slowdown = 3
 
 /obj/item/pickaxe/emergency
-	name = "emergency disembarkation tool"
-	desc = "For extracting yourself from rough landings."
+	name = "awaryjne narzędzie do wysiadania"
+	desc = "Do wydostawania się po twardych lądowaniach."
 
 /obj/item/storage/pod
-	name = "emergency space suits"
-	desc = "A wall mounted safe containing space suits. Will only open in emergencies."
+	name = "awaryjne skafandry kosmiczne"
+	desc = "Naścienny sejf ze skafandrami kosmicznymi. Otwiera się tylko w sytuacjach awaryjnych."
 	anchored = TRUE
 	density = FALSE
 	icon = 'icons/obj/storage.dmi'
@@ -727,7 +727,7 @@
 	to_chat(user, "Schowek odblokuje się tylko podczas alarmu bojowego lub Delta.")
 
 /obj/docking_port/mobile/emergency/backup
-	name = "backup shuttle"
+	name = "prom zapasowy"
 	id = "backup"
 	dwidth = 2
 	width = 8

@@ -6,15 +6,15 @@
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
 				if(!M.onCentCom() && !M.onSyndieBase())
 					var/reward_type = ((isAI(M)|| iscyborg(M) ? METACOIN_ESCAPE_REWARD : METACOIN_SURVIVE_REWARD))
-					inc_metabalance(reward_type, reason="Survived the shift.")
+					inc_metabalance(reward_type, reason="Przetrwanie zmiany.")
 				else
-					inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Survived the shift and escaped!")
+					inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Przetrwanie zmiany i ucieczka!")
 			else if(GLOB.crew_transfer_risa) //Nsv13 - added win condition for being competent.
-				inc_metabalance(METACOIN_ESCAPE_REWARD*2, reason="Successfully completed patrol.")
+				inc_metabalance(METACOIN_ESCAPE_REWARD*2, reason="Udany patrol.")
 			else
-				inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Survived the shift.")
+				inc_metabalance(METACOIN_ESCAPE_REWARD, reason="Przetrwanie zmiany.")
 		else
-			inc_metabalance(METACOIN_NOTSURVIVE_REWARD, reason="You tried.")
+			inc_metabalance(METACOIN_NOTSURVIVE_REWARD, reason="Za próbę.")
 
 /client/proc/process_greentext()
 	src.give_award(/datum/award/achievement/misc/greentext, src.mob)
@@ -43,7 +43,7 @@
 	query_set_metacoins.warn_execute()
 	qdel(query_set_metacoins)
 	if(ann)
-		to_chat(src, "<span class='rose bold'>Your new metacoin balance is [mc_count]!</span>")
+		to_chat(src, "<span class='rose bold'>Twoje nowe saldo metamonet: [mc_count]!</span>")
 
 /client/proc/inc_metabalance(mc_count, ann=TRUE, reason=null)
 	if(mc_count >= 0 && !CONFIG_GET(flag/grant_metacurrency))
@@ -56,6 +56,6 @@
 	qdel(query_inc_metacoins)
 	if(ann)
 		if(reason)
-			to_chat(src, "<span class='rose bold'>[abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]\s have been [mc_count >= 0 ? "deposited to" : "withdrawn from"] your account! Reason: [reason]</span>")
+			to_chat(src, "<span class='rose bold'>[mc_count >= 0 ? "Na twoje konto wpływa" : "Z twojego konta schodzi"]: [abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]! Powód: [reason]</span>")
 		else
-			to_chat(src, "<span class='rose bold'>[abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]\s have been [mc_count >= 0 ? "deposited to" : "withdrawn from"] your account!</span>")
+			to_chat(src, "<span class='rose bold'>[mc_count >= 0 ? "Na twoje konto wpływa" : "Z twojego konta schodzi"]: [abs(mc_count)] [CONFIG_GET(string/metacurrency_name)]!</span>")

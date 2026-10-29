@@ -16,7 +16,7 @@ Bonus
 */
 
 /datum/symptom/heartattack
-	name = "Heart Disease"
+	name = "Choroba serca"
 	desc = "Ta choroba atakuje serce nosiciela, powodując zatrzymanie akcji serca po długim okresie inkubacji"
 	stealth = 2
 	resistance = 1
@@ -50,9 +50,9 @@ Bonus
 	var/mob/living/carbon/M = A.affected_mob
 	if(suppress_warning && M.can_heartattack())
 		if(prob(2))
-			to_chat(M, "<span class='warning'>[pick("Your chest aches.", "You need to sit down.", "You feel out of breath.")]</span>")
+			to_chat(M, "<span class='warning'>[pick("Boli cię w klatce piersiowej.", "Musisz usiąść.", "Brakuje ci tchu.")]</span>")
 	else if(prob(2) && M.can_heartattack())
-		to_chat(M, "<span class='userdanger'>[pick("Your chest hurts!.", "You feel like your heart skipped a beat!")]</span>")
+		to_chat(M, "<span class='userdanger'>[pick("Boli cię w klatce piersiowej!", "Masz wrażenie, że serce opuściło uderzenie!")]</span>")
 	if(A.stage == 5)
 		if(M.getorgan(/obj/item/organ/heart) && M.can_heartattack())
 			if(prob(1) && prob(50))

@@ -1,7 +1,7 @@
 
 /obj/item/clothing/gloves/fingerless
-	name = "fingerless gloves"
-	desc = "Plain black gloves without fingertips for the hard working."
+	name = "rękawiczki bez palców"
+	desc = "Zwykłe czarne rękawiczki bez opuszków dla ciężko pracujących."
 	icon_state = "fingerless"
 	item_state = "fingerless"
 	worn_icon_state = "fingerless"
@@ -14,8 +14,8 @@
 	undyeable = TRUE
 
 /obj/item/clothing/gloves/botanic_leather
-	name = "botanist's leather gloves"
-	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin.  They're also quite warm."
+	name = "skórzane rękawice botanika"
+	desc = "Te skórzane rękawice chronią przed cierniami, kolcami, igłami i innymi szkodliwymi obiektami roślinnego pochodzenia. Do tego są dość ciepłe."
 	icon_state = "leather"
 	item_state = "ggloves"
 	worn_icon_state = "ggloves"
@@ -28,8 +28,8 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 30, "stamina" = 0, "bleed" = 0)
 
 /obj/item/clothing/gloves/combat
-	name = "combat gloves"
-	desc = "These tactical gloves are fireproof and shock resistant."
+	name = "rękawice bojowe"
+	desc = "Te taktyczne rękawice są ognioodporne i odporne na porażenie prądem."
 	icon_state = "cgloves"
 	item_state = "combatgloves"
 	worn_icon_state = "combatgloves"
@@ -44,8 +44,8 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50, "stamina" = 20, "bleed" = 10)
 
 /obj/item/clothing/gloves/bracer
-	name = "bone bracers"
-	desc = "For when you're expecting to get slapped on the wrist. Offers modest protection to your arms."
+	name = "kościane karwasze"
+	desc = "Na wypadek, gdyby ktoś chciał dać ci po łapach. Zapewniają skromną ochronę rąk."
 	icon_state = "bracers"
 	item_state = "bracers"
 	worn_icon_state = "bracers"
@@ -60,8 +60,8 @@
 	armor = list("melee" = 15, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 35, "bio" = 35, "rad" = 35, "fire" = 0, "acid" = 0, "stamina" = 20, "bleed" = 20)
 
 /obj/item/clothing/gloves/rapid
-	name = "Gloves of the North Star"
-	desc = "Just looking at these fills you with an urge to beat the shit out of people."
+	name = "Rękawice Gwiazdy Północy"
+	desc = "Samo patrzenie na nie budzi w tobie chęć spuszczenia ludziom porządnego łomotu."
 	icon_state = "rapid"
 	item_state = "rapid"
 	worn_icon_state = "rapid"
@@ -95,8 +95,8 @@
 		warcry = input
 
 /obj/item/clothing/gloves/color/white/magic
-	name = "white gloves"
-	desc = "These look pretty fancy."
+	name = "białe rękawiczki"
+	desc = "Wyglądają dość elegancko."
 	icon_state = "white"
 	item_state = "wgloves"
 	var/range = 3
@@ -126,8 +126,8 @@
 			return TRUE
 
 /obj/item/clothing/gloves/artifact_pinchers
-	name = "anti-tactile pinchers"
-	desc = "Used for the fine manipulation and examination of artifacts."
+	name = "antydotykowe szczypce"
+	desc = "Służą do precyzyjnego manipulowania artefaktami i ich badania."
 	icon_state = "pincher"
 	item_state = "pincher"
 	worn_icon_state = "pincher"
@@ -141,7 +141,7 @@
 	A?.override = !safety
 
 /datum/action/item_action/artifact_pincher_mode
-	name = "Toggle Safety"
+	name = "Przełącz zabezpieczenie"
 
 /datum/action/item_action/artifact_pincher_mode/Trigger()
 	var/obj/item/clothing/gloves/artifact_pinchers/pinchy = target

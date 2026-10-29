@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/cluwne
-    name = "clown wig and mask"
-    desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
+    name = "peruka i maska klauna"
+    desc = "Strój twarzy prawdziwego dowcipnisia. Klaun bez peruki i maski nie jest pełnym klaunem."
     flags_cover = MASKCOVERSEYES
     icon_state = "cluwne"
     item_state = "cluwne"
@@ -59,8 +59,8 @@
     return
 
 /obj/item/clothing/mask/cluwne/happy_cluwne
-    name = "Happy Cluwne Mask"
-    desc = "The mask of a poor cluwne that has been scrubbed of its curse by the Nanotrasen supernatural machinations division. Guaranteed to be %99 curse free and %99.9 not haunted. "
+    name = "maska wesołego cluwne"
+    desc = "Maska biednego cluwne, z której dział nadprzyrodzonych machinacji Nanotrasen zmył klątwę. Gwarancja: w 99% wolna od klątwy i w 99,9% nienawiedzona. "
     flags_1 = MASKINTERNALS
     item_flags = ABSTRACT
     var/can_cluwne = FALSE
@@ -89,7 +89,7 @@
     if(slot == ITEM_SLOT_MASK)
         if(is_cursed && can_cluwne) //logic predetermined
             log_admin("[key_name(H)] was made into a cluwne by [src]")
-            message_admins("[key_name(H)] got cluwned by [src]")
+            message_admins("[key_name(H)] zostaje zamieniony w cluwne przez [src]")
             to_chat(H, "<span class='userdanger'>Paski maski nagle zaciskają się na twojej twarzy, a straszne zielone światło wymazuje twoje myśli!</span>")
             H.dropItemToGround(src)
             H.cluwneify()
@@ -99,6 +99,6 @@
             var/mob/living/simple_animal/hostile/floor_cluwne/S = new(T)
             S.Acquire_Victim(user)
             log_admin("[key_name(user)] summoned a floor cluwne using the [src]")
-            message_admins("[key_name(user)] summoned a floor cluwne using the [src]")
+            message_admins("[key_name(user)] przywołuje podłogowego cluwne za pomocą [src]")
             to_chat(H, "<span class='warning'>Maska nagle zsuwa się z twojej twarzy i... wślizguje pod podłogę?</span>")
     to_chat(H, "<i>...ulecaijyzrp ,eibeic od yżelan ein oT</i>")

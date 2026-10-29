@@ -2,8 +2,8 @@
 // !      Tinkerer's Cache     ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/tinkerers_cache
-	name = "Tinkerer's Cache"
-	desc = "Creates a tinkerer's cache, a powerful forge capable of crafting elite equipment."
+	name = "Skrytka majsterkowicza"
+	desc = "Tworzy skrytkę majsterkowicza, potężną kuźnię, w której wytworzysz elitarny sprzęt."
 	tip = "Skrzynia pozwala tworzyć potężniejszy sprzęt (z czasem odnowienia)."
 	button_icon_state = "Tinkerer's Cache"
 	power_cost = 700
@@ -18,8 +18,8 @@
 //===============
 
 /obj/structure/destructible/clockwork/gear_base/tinkerers_cache
-	name = "tinkerer's cache"
-	desc = "A bronze store filled with parts and components."
+	name = "skrytka majsterkowicza"
+	desc = "Brązowy magazyn pełen części i komponentów."
 	clockwork_desc = "Brązowy magazyn pełen części i komponentów. Można w nim wykuwać potężne ratvariańskie przedmioty."
 	default_icon_state = "tinkerers_cache"
 	anchored = TRUE
@@ -39,14 +39,14 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='brass'>[src] wciąż się rozgrzewa, będzie gotowy za [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"Zaczynasz składać komponenty w kuźni.",,"Robes of Divinity","Shrouding Cloak","Wraith Spectacles")
+	var/choice = alert(user,"Zaczynasz składać komponenty w kuźni.",,"Szaty boskości","Płaszcz cienia","Okulary widma")
 	var/list/pickedtype = list()
 	switch(choice)
-		if("Robes of Divinity")
+		if("Szaty boskości")
 			pickedtype += /obj/item/clothing/suit/clockwork/speed
-		if("Shrouding Cloak")
+		if("Płaszcz cienia")
 			pickedtype += /obj/item/clothing/suit/clockwork/cloak
-		if("Wraith Spectacles")
+		if("Okulary widma")
 			pickedtype += /obj/item/clothing/glasses/clockwork/wraith_spectacles
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && is_servant_of_ratvar(user) && cooldowntime <= world.time)
 		cooldowntime = world.time + 2400

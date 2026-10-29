@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler
-	name = "monkey recycler"
-	desc = "A machine used for recycling dead monkeys into monkey cubes."
+	name = "recykler małp"
+	desc = "Maszyna do przerabiania martwych małp na małpie kostki."
 	icon = 'nsv13/icons/obj/kitchen.dmi' //NSV13
 	icon_state = "grinder"
 	layer = BELOW_OBJ_LAYER

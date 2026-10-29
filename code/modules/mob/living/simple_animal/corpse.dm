@@ -9,14 +9,14 @@
 //List of different corpse types
 
 /obj/effect/mob_spawn/human/corpse/syndicatesoldier
-	name = "Syndicate Operative"
-	id_job = "Operative"
+	name = "agent Syndykatu"
+	id_job = "Agent"
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 	outfit = /datum/outfit/syndicatesoldiercorpse
 
 /datum/outfit/syndicatesoldiercorpse
-	name = "Syndicate Operative Corpse"
+	name = "Zwłoki agenta Syndykatu"
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
@@ -28,14 +28,14 @@
 	id = /obj/item/card/id/syndicate
 
 /obj/effect/mob_spawn/human/corpse/syndicatecommando
-	name = "Syndicate Commando"
-	id_job = "Operative"
+	name = "komandos Syndykatu"
+	id_job = "Agent"
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 	outfit = /datum/outfit/syndicatecommandocorpse
 
 /datum/outfit/syndicatecommandocorpse
-	name = "Syndicate Commando Corpse"
+	name = "Zwłoki komandosa Syndykatu"
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi
 	shoes = /obj/item/clothing/shoes/combat
@@ -48,14 +48,14 @@
 
 
 /obj/effect/mob_spawn/human/corpse/syndicatestormtrooper
-	name = "Syndicate Stormtrooper"
-	id_job = "Operative"
+	name = "szturmowiec Syndykatu"
+	id_job = "Agent"
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 	outfit = /datum/outfit/syndicatestormtroopercorpse
 
 /datum/outfit/syndicatestormtroopercorpse
-	name = "Syndicate Stormtrooper Corpse"
+	name = "Zwłoki szturmowca Syndykatu"
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	shoes = /obj/item/clothing/shoes/combat
@@ -74,14 +74,14 @@
 	facial_hair_style = "Shaved"
 
 /obj/effect/mob_spawn/human/corpse/pirate
-	name = "Pirate"
+	name = "pirat"
 	skin_tone = "caucasian1" //all pirates are white because it's easier that way
 	outfit = /datum/outfit/piratecorpse
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 
 /datum/outfit/piratecorpse
-	name = "Pirate Corpse"
+	name = "Zwłoki pirata"
 	uniform = /obj/item/clothing/under/costume/pirate
 	shoes = /obj/item/clothing/shoes/jackboots
 	glasses = /obj/item/clothing/glasses/eyepatch
@@ -89,23 +89,23 @@
 
 
 /obj/effect/mob_spawn/human/corpse/pirate/ranged
-	name = "Pirate Gunner"
+	name = "pirat strzelec"
 	outfit = /datum/outfit/piratecorpse/ranged
 
 /datum/outfit/piratecorpse/ranged
-	name = "Pirate Gunner Corpse"
+	name = "Zwłoki pirata strzelca"
 	suit = /obj/item/clothing/suit/pirate
 	head = /obj/item/clothing/head/pirate
 
 
 /obj/effect/mob_spawn/human/corpse/russian
-	name = "Russian"
+	name = "Rosjanin"
 	outfit = /datum/outfit/russiancorpse
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 
 /datum/outfit/russiancorpse
-	name = "Russian Corpse"
+	name = "Zwłoki Rosjanina"
 	uniform = /obj/item/clothing/under/costume/soviet
 	shoes = /obj/item/clothing/shoes/jackboots
 	head = /obj/item/clothing/head/bearpelt
@@ -118,7 +118,7 @@
 	outfit = /datum/outfit/russiancorpse/ranged
 
 /datum/outfit/russiancorpse/ranged
-	name = "Ranged Russian Corpse"
+	name = "Zwłoki Rosjanina strzelca"
 	head = /obj/item/clothing/head/ushanka
 
 
@@ -126,7 +126,7 @@
 	outfit = /datum/outfit/russiancorpse/ranged/trooper
 
 /datum/outfit/russiancorpse/ranged/trooper
-	name = "Ranged Russian Trooper Corpse"
+	name = "Zwłoki rosyjskiego żołnierza strzelca"
 	uniform = /obj/item/clothing/under/syndicate/camo
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat
@@ -137,11 +137,11 @@
 
 
 /obj/effect/mob_spawn/human/corpse/russian/ranged/officer
-	name = "Russian Officer"
+	name = "rosyjski oficer"
 	outfit = /datum/outfit/russiancorpse/officer
 
 /datum/outfit/russiancorpse/officer
-	name = "Russian Officer Corpse"
+	name = "Zwłoki rosyjskiego oficera"
 	uniform = /obj/item/clothing/under/costume/russian_officer
 	suit = /obj/item/clothing/suit/security/officer/russian
 	shoes = /obj/item/clothing/shoes/combat
@@ -150,14 +150,14 @@
 
 
 /obj/effect/mob_spawn/human/corpse/wizard
-	name = "Space Wizard Corpse"
+	name = "zwłoki kosmicznego czarodzieja"
 	outfit = /datum/outfit/wizardcorpse
 	hair_style = "Bald"
 	facial_hair_style = "Long Beard"
 	skin_tone = "caucasian1"
 
 /datum/outfit/wizardcorpse
-	name = "Space Wizard Corpse"
+	name = "Zwłoki kosmicznego czarodzieja"
 	uniform = /obj/item/clothing/under/color/lightpurple
 	suit = /obj/item/clothing/suit/wizrobe
 	shoes = /obj/item/clothing/shoes/sandal/magic
@@ -165,15 +165,15 @@
 
 
 /obj/effect/mob_spawn/human/corpse/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
-	id_job = "Private Security Force"
+	name = "\improper prywatny ochroniarz Nanotrasen"
+	id_job = "Prywatne Siły Ochrony"
 	id_access = JOB_NAME_SECURITYOFFICER
 	outfit = /datum/outfit/nanotrasensoldiercorpse2
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 
 /datum/outfit/nanotrasensoldiercorpse2
-	name = "NT Private Security Officer Corpse"
+	name = "Zwłoki prywatnego ochroniarza NT"
 	uniform = /obj/item/clothing/under/rank/security/officer
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
@@ -185,8 +185,8 @@
 	id = /obj/item/card/id/job/security_officer
 
 /obj/effect/mob_spawn/human/corpse/cat_butcher
-	name = "The Cat Surgeon"
-	id_job = "Cat Surgeon"
+	name = "Koci Chirurg"
+	id_job = "Koci chirurg"
 	id_access_list = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_MAINT)
 	hair_style = "Cut Hair"
 	facial_hair_style = "Watson Mustache"
@@ -194,7 +194,7 @@
 	outfit = /datum/outfit/cat_butcher
 
 /datum/outfit/cat_butcher
-	name = "Cat Butcher Uniform"
+	name = "Strój Kociego Chirurga"
 	uniform = /obj/item/clothing/under/rank/medical/doctor/green
 	suit = /obj/item/clothing/suit/apron/surgical
 	shoes = /obj/item/clothing/shoes/sneakers/white
@@ -205,11 +205,11 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 
 /obj/effect/mob_spawn/human/corpse/bee_terrorist
-	name = "BLF Operative"
+	name = "agent BLF"
 	outfit = /datum/outfit/bee_terrorist
 
 /datum/outfit/bee_terrorist
-	name = "BLF Operative"
+	name = "Agent BLF"
 	uniform = /obj/item/clothing/under/color/yellow
 	suit = /obj/item/clothing/suit/hooded/bee_costume
 	shoes = /obj/item/clothing/shoes/sneakers/yellow
@@ -221,7 +221,7 @@
 	mask = /obj/item/clothing/mask/rat/bee
 
 /obj/effect/mob_spawn/human/corpse/sniper
-	name = "Sniper"
+	name = "snajper"
 	outfit = /datum/outfit/sniper
 	skin_tone = "caucasian1"
 	hair_style = "Bald"
@@ -230,7 +230,7 @@
 	mob_gender = MALE
 
 /datum/outfit/sniper
-	name = "Sniper"
+	name = "Snajper"
 	uniform = /obj/item/clothing/under/syndicate/camo
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat
@@ -243,7 +243,7 @@
 	id = /obj/item/card/id/job/warden
 
 /obj/effect/mob_spawn/human/corpse/psychost
-	name = "Psycho"
+	name = "psychol"
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
 	skin_tone = "caucasian1"
@@ -251,29 +251,29 @@
 	outfit = /datum/outfit/straightjacket
 
 /datum/outfit/straightjacket
-	name = "Straight jacket"
+	name = "Kaftan bezpieczeństwa"
 	suit = /obj/item/clothing/suit/straight_jacket
 
 /obj/effect/mob_spawn/human/corpse/psychost/muzzle
-	name = "Muzzled psycho"
+	name = "psychol w kagańcu"
 	outfit = /datum/outfit/straightmuz
 
 /datum/outfit/straightmuz
-	name = "Straight jacket and a muzzle"
+	name = "Kaftan bezpieczeństwa i kaganiec"
 	suit = /obj/item/clothing/suit/straight_jacket
 	mask = /obj/item/clothing/mask/muzzle
 
 /obj/effect/mob_spawn/human/corpse/psychost/trap
-	name = "Trapped psycho"
+	name = "psychol w pułapce"
 	outfit = /datum/outfit/straighttrap
 
 /datum/outfit/straighttrap
-	name = "Straight jacket and a reverse bear trap"
+	name = "Kaftan bezpieczeństwa i odwrócone wnyki"
 	suit = /obj/item/clothing/suit/straight_jacket
 	head = /obj/item/reverse_bear_trap
 
 /obj/effect/mob_spawn/human/corpse/heavy
-	name = "Heavy gunner"
+	name = "ciężki strzelec"
 	brute_damage = 300
 	hair_style = "Bald"
 	facial_hair_style = "Shaved"
@@ -282,7 +282,7 @@
 	outfit = /datum/outfit/minigunheavy
 
 /datum/outfit/minigunheavy
-	name = "Heavy gunner"
+	name = "Ciężki strzelec"
 	uniform = /obj/item/clothing/under/rank/security/head_of_security/alt
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -302,14 +302,14 @@
 	outfit = /datum/outfit/suicidezombie
 
 /datum/outfit/suicidezombie
-	name = "Guy with a grenade"
+	name = "Gość z granatem"
 	mask = /obj/item/clothing/mask/gas/cyborg
 	uniform = /obj/item/clothing/under/pants/camo
 	belt = /obj/item/storage/belt/bandolier
 	shoes = /obj/item/clothing/shoes/combat
 
 /obj/effect/mob_spawn/human/corpse/facboss
-	name = "Factory boss"
+	name = "szef Fabryki"
 	mob_species = /datum/species/ipc
 	brute_damage = 800
 	burn_damage = 100
@@ -320,7 +320,7 @@
 	outfit = /datum/outfit/facboss
 
 /datum/outfit/facboss
-	name = "The head of The Factory"
+	name = "Szef Fabryki"
 	glasses = /obj/item/clothing/glasses/hud/terminator
 	uniform = /obj/item/clothing/under/syndicate
 	suit = /obj/item/clothing/suit/jacket/leather

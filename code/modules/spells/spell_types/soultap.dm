@@ -5,8 +5,8 @@
 //the two spells that sound most problematic with this is mindswap and lichdom, but soul tap requires clothes for mindswap and lichdom takes your soul.
 
 /obj/effect/proc_holder/spell/self/tap
-	name = "Soul Tap"
-	desc = "Fuel your spells using your own soul!"
+	name = "Czerpanie z duszy"
+	desc = "Zasilasz swoje zaklęcia własną duszą!"
 	school = "necromancy" //i could see why this wouldn't be necromancy but messing with souls or whatever. ectomancy?
 	charge_max = 10
 	invocation = "ZA WSZELKĄ CENĘ!"

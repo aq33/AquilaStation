@@ -1,6 +1,6 @@
 /obj/structure/closet/wardrobe
-	name = "wardrobe"
-	desc = "It's a storage unit for standard-issue Nanotrasen attire."
+	name = "szafa na ubrania"
+	desc = "Szafa na standardowe ubrania Nanotrasen."
 	icon_door = "blue"
 
 /obj/structure/closet/wardrobe/PopulateContents()
@@ -18,7 +18,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pink
-	name = "pink wardrobe"
+	name = "różowa szafa na ubrania"
 	icon_door = "pink"
 
 /obj/structure/closet/wardrobe/pink/PopulateContents()
@@ -33,7 +33,7 @@
 	return
 
 /obj/structure/closet/wardrobe/black
-	name = "black wardrobe"
+	name = "czarna szafa na ubrania"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/black/PopulateContents()
@@ -61,7 +61,7 @@
 
 
 /obj/structure/closet/wardrobe/green
-	name = "green wardrobe"
+	name = "zielona szafa na ubrania"
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/green/PopulateContents()
@@ -81,8 +81,8 @@
 
 
 /obj/structure/closet/wardrobe/orange
-	name = "prison wardrobe"
-	desc = "It's a storage unit for Nanotrasen-regulation prisoner attire."
+	name = "więzienna szafa na ubrania"
+	desc = "Szafa na regulaminowe więzienne ubrania Nanotrasen."
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/orange/PopulateContents()
@@ -94,7 +94,7 @@
 
 
 /obj/structure/closet/wardrobe/yellow
-	name = "yellow wardrobe"
+	name = "żółta szafa na ubrania"
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/yellow/PopulateContents()
@@ -114,7 +114,7 @@
 
 
 /obj/structure/closet/wardrobe/white
-	name = "white wardrobe"
+	name = "biała szafa na ubrania"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/white/PopulateContents()
@@ -133,7 +133,7 @@
 	return
 
 /obj/structure/closet/wardrobe/pjs
-	name = "pajama wardrobe"
+	name = "szafa z piżamami"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/pjs/PopulateContents()
@@ -147,7 +147,7 @@
 
 
 /obj/structure/closet/wardrobe/grey
-	name = "grey wardrobe"
+	name = "szara szafa na ubrania"
 	icon_door = "grey"
 
 /obj/structure/closet/wardrobe/grey/PopulateContents()
@@ -181,7 +181,7 @@
 
 
 /obj/structure/closet/wardrobe/mixed
-	name = "mixed wardrobe"
+	name = "szafa z mieszanymi ubraniami"
 	icon_door = "mixed"
 
 //NSV13 - no skirts
@@ -209,7 +209,7 @@
 	return
 
 /obj/item/storage/box/suitbox/wardrobe/mixed
-	name = "compression box of crew outfits (jumpsuit)"
+	name = "kompresyjne pudełko ze strojami załogi (kombinezon)"
 	max_repetition = 2
 	repeated_items = list(
 		/obj/item/clothing/under/color/white,
@@ -225,7 +225,7 @@
 	)
 
 /obj/item/storage/box/suitbox/wardrobe/mixed/jumpskirt
-	name = "compression box of crew outfits (jumpskirt)"
+	name = "kompresyjne pudełko ze strojami załogi (kombinezon ze spódniczką)"
 	max_repetition = 2
 	repeated_items = list(
 		/obj/item/clothing/under/color/jumpskirt/white,

@@ -5,8 +5,8 @@
 // Powersink - used to drain station power
 
 /obj/item/powersink
-	name = "power sink"
-	desc = "A nulling power sink which drains energy from electrical systems."
+	name = "pochłaniacz energii"
+	desc = "Zerujący pochłaniacz, który wysysa energię z systemów elektrycznych."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "powersink0"
 	item_state = "electronic"
@@ -109,7 +109,7 @@
 				"[user] aktywuje [src]!", \
 				"<span class='notice'>Włączasz [src].</span>",
 				"<span class='italics'>Słyszysz kliknięcie.</span>")
-			message_admins("Power sink activated by [ADMIN_LOOKUPFLW(user)] at [ADMIN_VERBOSEJMP(src)]")
+			message_admins("Pochłaniacz energii aktywowany przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(src)]")
 			log_game("Power sink activated by [key_name(user)] at [AREACOORD(src)]")
 			set_mode(OPERATING)
 
@@ -139,7 +139,7 @@
 	if(power_drained > max_power * 0.98)
 		if (!admins_warned)
 			admins_warned = TRUE
-			message_admins("Power sink at ([x],[y],[z] - <A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) is 95% full. Explosion imminent.")
+			message_admins("Pochłaniacz energii w ([x],[y],[z] - <A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>) jest pełny w 95%. Wybuch nieuchronny.")
 		playsound(src, 'sound/effects/screech.ogg', 100, 1, 1)
 
 	if(power_drained >= max_power)

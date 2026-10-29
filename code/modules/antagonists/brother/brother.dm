@@ -34,7 +34,7 @@
 	return ..()
 
 /datum/antagonist/brother/antag_panel_data()
-	return "Conspirators : [get_brother_names()]"
+	return "Spiskowcy: [get_brother_names()]"
 
 /datum/antagonist/brother/proc/get_brother_names()
 	var/list/brothers = team.members - owner
@@ -43,7 +43,7 @@
 		var/datum/mind/M = brothers[i]
 		brother_text += M.name
 		if(i == brothers.len - 1)
-			brother_text += " and "
+			brother_text += " i "
 		else if(i != brothers.len)
 			brother_text += ", "
 	return brother_text
@@ -81,7 +81,7 @@
 			continue
 		candidates += L.mind
 
-	var/choice = input(admin,"Wybierz brata krwi.", "Brother") as null|anything in sortNames(candidates)
+	var/choice = input(admin,"Wybierz brata krwi.", "Brat krwi") as null|anything in sortNames(candidates)
 	if(!choice)
 		return
 	var/datum/mind/bro = choice
@@ -93,11 +93,11 @@
 	new_owner.add_antag_datum(/datum/antagonist/brother,T)
 	bro.add_antag_datum(/datum/antagonist/brother, T)
 	T.update_name()
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] and [key_name_admin(bro)] into blood brothers.")
+	message_admins("[key_name_admin(admin)] robi z [key_name_admin(new_owner)] i [key_name_admin(bro)] braci krwi.")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] and [key_name(bro)] into blood brothers.")
 
 /datum/team/brother_team
-	name = "brotherhood"
+	name = "bractwo"
 	member_name = "brat krwi"
 	var/team_id
 	var/meeting_area

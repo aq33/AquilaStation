@@ -5,7 +5,7 @@
  * world.
  */
 /obj/structure/server
-	name = "server"
+	name = "serwer"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_stationary"
 
@@ -20,5 +20,5 @@
 /obj/structure/server/wrench_act(mob/living/user, obj/item/tool)
 	anchored = !anchored
 	tool.play_tool_sound(src)
-	balloon_alert(user, "You [anchored ? "secure" : "unsecure"] [src].")
+	balloon_alert(user, "[anchored ? "Mocujesz" : "Odmocowujesz"] [src].")
 	return TRUE

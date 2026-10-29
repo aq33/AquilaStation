@@ -14,25 +14,25 @@
 			for(var/client/C in GLOB.clients)
 				var/entry = "\t[C.key]"
 				if(C.holder?.fakekey)
-					entry += " <i>(as [C.holder.fakekey])</i>"
+					entry += " <i>(jako [C.holder.fakekey])</i>"
 				if (isnewplayer(C.mob))
 					entry += " - <font color='darkgray'><b>W lobby</b></font>"
 				else
 					entry += " - Gra jako [C.mob.real_name]"
 					switch(C.mob.stat)
 						if(UNCONSCIOUS)
-							entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+							entry += " - <font color='darkgray'><b>Nieprzytomny</b></font>"
 						if(DEAD)
 							if(isobserver(C.mob))
 								var/mob/dead/observer/O = C.mob
 								if(O.started_as_observer)
-									entry += " - <font color='gray'>Observing</font>"
+									entry += " - <font color='gray'>Obserwuje</font>"
 								else
 									entry += " - <font color='black'><b>MARTWY</b></font>"
 							else
 								entry += " - <font color='black'><b>MARTWY</b></font>"
 					if(is_special_character(C.mob))
-						entry += " - <b><font color='red'>Antagonist</font></b>"
+						entry += " - <b><font color='red'>Antagonista</font></b>"
 				entry += " [ADMIN_QUE(C.mob)]"
 				entry += " ([round(C.avgping, 1)]ms)"
 				Lines += entry
@@ -40,7 +40,7 @@
 			for(var/client/C in GLOB.clients)
 				var/entry = "\t[C.key]"
 				if(C.holder && C.holder.fakekey)
-					entry += " <i>(as [C.holder.fakekey])</i>"
+					entry += " <i>(jako [C.holder.fakekey])</i>"
 				entry += " ([round(C.avgping, 1)]ms)"
 				Lines += entry
 	else
@@ -63,31 +63,31 @@
 	var/msg = "<b>Obecni admini:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.admins)
-			msg += "\t[C] is a [C.holder.rank]"
+			msg += "\t[C] – [C.holder.rank]"
 
 			if(C.holder.fakekey)
-				msg += " <i>(as [C.holder.fakekey])</i>"
+				msg += " <i>(jako [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
-				msg += " - Observing"
+				msg += " - Obserwuje"
 			else if(isnewplayer(C.mob))
-				msg += " - Lobby"
+				msg += " - W lobby"
 			else
-				msg += " - Playing"
+				msg += " - Gra"
 
 			if(C.is_afk())
 				msg += " (AFK)"
 			msg += "\n"
 		msg += "<b>Obecni mentorzy:</b>\n"
 		for(var/client/C in GLOB.mentors)
-			msg += "\t[C] is a mentor"
+			msg += "\t[C] – mentor"
 
 			if(isobserver(C.mob))
-				msg += " - Observing"
+				msg += " - Obserwuje"
 			else if(isnewplayer(C.mob))
-				msg += " - Lobby"
+				msg += " - W lobby"
 			else
-				msg += " - Playing"
+				msg += " - Gra"
 
 			if(C.is_afk())
 				msg += " (AFK)"
@@ -97,16 +97,16 @@
 			if(C.is_afk())
 				continue //Don't show afk admins to adminwho
 			if(!C.holder.fakekey)
-				msg += "\t[C] is a [C.holder.rank]\n"
+				msg += "\t[C] – [C.holder.rank]\n"
 		msg += "<b>Obecni mentorzy:</b>\n"
 		for(var/client/C in GLOB.mentors)
 			if(C.is_afk())
 				continue //Don't show afk admins to adminwho
-			msg += "\t[C] is a mentor\n"
+			msg += "\t[C] – mentor\n"
 
 		msg += "<span class='info'>Adminhelpy są też przesyłane przez TGS do usług takich jak IRC i Discord. Jeśli w grze nie ma adminów, i tak napisz adminhelp - admin to zobaczy i odpowie.</span>"
 		if(world.time - src.staff_check_rate > 1 MINUTES)
-			message_admins("[ADMIN_LOOKUPFLW(src.mob)] has checked online staff.")
+			message_admins("[ADMIN_LOOKUPFLW(src.mob)] sprawdza, kto z obsługi jest online.")
 			log_admin("[key_name(src)] has checked online staff.")
 			src.staff_check_rate = world.time
 	to_chat(src, msg)
@@ -118,31 +118,31 @@
 	var/msg = "<b>Obecni admini:</b>\n"
 	if(holder)
 		for(var/client/C in GLOB.admins)
-			msg += "\t[C] is a [C.holder.rank]"
+			msg += "\t[C] – [C.holder.rank]"
 
 			if(C.holder.fakekey)
-				msg += " <i>(as [C.holder.fakekey])</i>"
+				msg += " <i>(jako [C.holder.fakekey])</i>"
 
 			if(isobserver(C.mob))
-				msg += " - Observing"
+				msg += " - Obserwuje"
 			else if(isnewplayer(C.mob))
-				msg += " - Lobby"
+				msg += " - W lobby"
 			else
-				msg += " - Playing"
+				msg += " - Gra"
 
 			if(C.is_afk())
 				msg += " (AFK)"
 			msg += "\n"
 		msg += "<b>Obecni mentorzy:</b>\n"
 		for(var/client/C in GLOB.mentors)
-			msg += "\t[C] is a mentor"
+			msg += "\t[C] – mentor"
 
 			if(isobserver(C.mob))
-				msg += " - Observing"
+				msg += " - Obserwuje"
 			else if(isnewplayer(C.mob))
-				msg += " - Lobby"
+				msg += " - W lobby"
 			else
-				msg += " - Playing"
+				msg += " - Gra"
 
 			if(C.is_afk())
 				msg += " (AFK)"
@@ -152,16 +152,16 @@
 			if(C.is_afk())
 				continue //Don't show afk admins to adminwho
 			if(!C.holder.fakekey)
-				msg += "\t[C] is a [C.holder.rank]\n"
+				msg += "\t[C] – [C.holder.rank]\n"
 		msg += "<b>Obecni mentorzy:</b>\n"
 		for(var/client/C in GLOB.mentors)
 			if(C.is_afk())
 				continue //Don't show afk admins to adminwho
-			msg += "\t[C] is a mentor\n"
+			msg += "\t[C] – mentor\n"
 
 		msg += "<span class='info'>Adminhelpy są też przesyłane przez TGS do usług takich jak IRC i Discord. Jeśli w grze nie ma adminów, i tak napisz adminhelp - admin to zobaczy i odpowie.</span>"
 		if(world.time - src.staff_check_rate > 1 MINUTES)
-			message_admins("[ADMIN_LOOKUPFLW(src.mob)] has checked online staff.")
+			message_admins("[ADMIN_LOOKUPFLW(src.mob)] sprawdza, kto z obsługi jest online.")
 			log_admin("[key_name(src)] has checked online staff.")
 			src.staff_check_rate = world.time
 	to_chat(src, msg)

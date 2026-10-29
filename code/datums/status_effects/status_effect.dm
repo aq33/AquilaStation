@@ -107,8 +107,8 @@
 ////////////////
 
 /atom/movable/screen/alert/status_effect
-	name = "Curse of Mundanity"
-	desc = "You don't feel any different..."
+	name = "Klątwa zwyczajności"
+	desc = "Nie czujesz żadnej różnicy..."
 	var/datum/status_effect/attached_effect
 
 /atom/movable/screen/alert/status_effect/Destroy()

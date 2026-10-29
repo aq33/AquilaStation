@@ -5,14 +5,14 @@
 //it for the engine.
 //-----------------------------------------------
 /obj/machinery/atmospherics/components/unary/shuttle
-	name = "shuttle atmospherics device"
-	desc = "This does something to do with shuttle atmospherics"
+	name = "urządzenie atmosferyczne promu"
+	desc = "Robi coś związanego z atmosferą promu."
 	icon_state = "heater"
 	icon = 'icons/turf/shuttle.dmi'
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater
-	name = "engine heater"
-	desc = "Directs energy into compressed particles in order to power an attached thruster."
+	name = "podgrzewacz silnika"
+	desc = "Kieruje energię w sprężone cząstki, żeby zasilić podłączony silnik manewrowy."
 	icon_state = "heater_pipe"
 	var/icon_state_closed = "heater_pipe"
 	var/icon_state_open = "heater_pipe_open"

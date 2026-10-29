@@ -512,7 +512,7 @@
 	id = "emp_basic"
 	tech_tier = 2
 	display_name = "Teoria elektromagnetyczna"
-	description = "Study into usage of frequencies in the electromagnetic spectrum."
+	description = "Badania nad wykorzystaniem częstotliwości widma elektromagnetycznego."
 	prereq_ids = list("base")
 	design_ids = list("holosign", "holosignsec", "holosignengi", "holosignatmos", "inducer", "inducersci", "tray_goggles", "holopad")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -973,8 +973,8 @@
 	id = "mod"
 	tech_tier = 1
 	starting_node = TRUE
-	display_name = "Basic Modular Suits"
-	description = "Specialized back mounted power suits with various different modules."
+	display_name = "MODsuity: podstawy"
+	description = "Specjalistyczne kombinezony wspomagane noszone na plecach, z wieloma różnymi modułami."
 	design_ids = list(
 		"mod_boots",
 		"mod_chestplate",
@@ -996,8 +996,8 @@
 /datum/techweb_node/mod_advanced
 	id = "mod_advanced"
 	tech_tier = 2
-	display_name = "Advanced Modular Suits"
-	description = "More advanced modules, to improve modular suits."
+	display_name = "MODsuity: zaawansowane"
+	description = "Bardziej zaawansowane moduły ulepszające MODsuity."
 	prereq_ids = list("robotics")
 	design_ids = list(
 		"mod_visor_diaghud",
@@ -1013,8 +1013,8 @@
 /datum/techweb_node/mod_engineering
 	id = "mod_engineering"
 	tech_tier = 2
-	display_name = "Engineering Modular Suits"
-	description = "Engineering suits, for powered engineers."
+	display_name = "MODsuity: inżynieria"
+	description = "Kombinezony inżynieryjne dla wspomaganych inżynierów."
 	prereq_ids = list("mod_advanced", "engineering")
 	design_ids = list(
 		"mod_plating_engineering",
@@ -1031,8 +1031,8 @@
 /datum/techweb_node/mod_advanced_engineering
 	id = "mod_advanced_engineering"
 	tech_tier = 4
-	display_name = "Advanced Engineering Modular Suits"
-	description = "Advanced Engineering suits, for advanced powered engineers."
+	display_name = "MODsuity: zaawansowana inżynieria"
+	description = "Zaawansowane kombinezony inżynieryjne dla zaawansowanych wspomaganych inżynierów."
 	prereq_ids = list("mod_engineering", "adv_engi")
 	design_ids = list(
 		"mod_plating_atmospheric",
@@ -1047,8 +1047,8 @@
 /datum/techweb_node/mod_medical
 	id = "mod_medical"
 	tech_tier = 3
-	display_name = "Medical Modular Suits"
-	description = "Medical suits for quick rescue purposes."
+	display_name = "MODsuity: medycyna"
+	description = "Kombinezony medyczne do szybkich akcji ratunkowych."
 	prereq_ids = list("mod_advanced", "biotech")
 	design_ids = list(
 		"mod_plating_medical",
@@ -1065,8 +1065,8 @@
 /datum/techweb_node/mod_advanced_medical
 	id = "mod_advanced_medical"
 	tech_tier = 4
-	display_name = "Advanced Medical Modular Suits"
-	description = "Advanced medical suits for quicker rescue purposes."
+	display_name = "MODsuity: zaawansowana medycyna"
+	description = "Zaawansowane kombinezony medyczne do jeszcze szybszych akcji ratunkowych."
 	prereq_ids = list("mod_medical", "adv_biotech")
 	design_ids = list(
 		"mod_defib",
@@ -1080,8 +1080,8 @@
 /datum/techweb_node/mod_security
 	id = "mod_security"
 	tech_tier = 3
-	display_name = "Security Modular Suits"
-	description = "Security suits for space crime handling."
+	display_name = "MODsuity: ochrona"
+	description = "Kombinezony ochrony do walki z kosmiczną przestępczością."
 	prereq_ids = list("mod_advanced", "sec_basic")
 	design_ids = list(
 		"mod_plating_security",
@@ -1099,8 +1099,8 @@
 /datum/techweb_node/mod_entertainment
 	id = "mod_entertainment"
 	tech_tier = 2
-	display_name = "Entertainment Modular Suits"
-	description = "Powered suits for protection against low-humor environments."
+	display_name = "MODsuity: rozrywka"
+	description = "Kombinezony wspomagane chroniące przed środowiskiem o niskim poziomie humoru."
 	prereq_ids = list("mod_advanced", "clown")
 	design_ids = list(
 		"mod_plating_cosmohonk",
@@ -1114,8 +1114,8 @@
 /datum/techweb_node/mod_anomaly
 	id = "mod_anomaly"
 	tech_tier = 4
-	display_name = "Anomalock Modular Suits"
-	description = "Modules for modular suits that require anomaly cores to function."
+	display_name = "MODsuity: anomalock"
+	description = "Moduły do MODsuitów, które do działania potrzebują rdzeni anomalii."
 	prereq_ids = list("mod_advanced", "anomaly_research")
 	design_ids = list(
 		"mod_antigrav",
@@ -1127,8 +1127,8 @@
 /datum/techweb_node/mod_anomaly_engi
 	id = "mod_anomaly_engi"
 	tech_tier = 5
-	display_name = "Engineering Anomalock Modular Suits"
-	description = "Advanced modules for modular suits, using anomaly cores to become even better engineers."
+	display_name = "MODsuity: inżynieryjny anomalock"
+	description = "Zaawansowane moduły do MODsuitów, które dzięki rdzeniom anomalii robią z inżynierów jeszcze lepszych fachowców."
 	prereq_ids = list("mod_advanced_engineering", "mod_anomaly")
 	design_ids = list(
 		"mod_kinesis",
@@ -1138,8 +1138,8 @@
 
 /datum/techweb_node/mod_experimental
 	id = "mod_experimental"
-	display_name = "Experimental Modular Suits"
-	description = "Applications of experimentality when creating MODsuits has created these..."
+	display_name = "MODsuity: eksperymentalne"
+	description = "Eksperymentowanie przy tworzeniu MODsuitów dało w efekcie to..."
 	prereq_ids = list("base")
 	design_ids = list(
 		"mod_disposal",
@@ -1380,8 +1380,8 @@
 /*/datum/techweb_node/nanite_smart //AQUILA EDIT START
 	id = "nanite_smart"
 	tech_tier = 2
-	display_name = "Smart Nanite Programming"
-	description = "Nanite programs that require nanites to perform complex actions, act independently, roam or seek targets."
+	display_name = "Programowanie nanitów: inteligentne"
+	description = "Programy nanitów, które wymagają od nanitów wykonywania złożonych działań, samodzielnego działania, wędrowania lub szukania celów."
 	prereq_ids = list("nanite_base","robotics")
 	design_ids = list("purging_nanites", "metabolic_nanites", "stealth_nanites", "memleak_nanites","sensor_voice_nanites", "voice_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 500, TECHWEB_POINT_TYPE_NANITES = 500)
@@ -1400,8 +1400,8 @@
 /*/datum/techweb_node/nanite_bio //AQUILA EDIT START
 	id = "nanite_bio"
 	tech_tier = 3
-	display_name = "Biological Nanite Programming"
-	description = "Nanite programs that require complex biological interaction."
+	display_name = "Programowanie nanitów: biologiczne"
+	description = "Programy nanitów wymagające złożonej interakcji biologicznej."
 	prereq_ids = list("nanite_base","biotech")
 	design_ids = list("regenerative_nanites", "bloodheal_nanites", "coagulating_nanites","poison_nanites","flesheating_nanites",\
 					"sensor_crit_nanites","sensor_death_nanites", "sensor_health_nanites", "sensor_damage_nanites")
@@ -1411,8 +1411,8 @@
 /datum/techweb_node/nanite_neural
 	id = "nanite_neural"
 	tech_tier = 3
-	display_name = "Neural Nanite Programming"
-	description = "Nanite programs affecting nerves and brain matter."
+	display_name = "Programowanie nanitów: neuronowe"
+	description = "Programy nanitów działające na nerwy i tkankę mózgową."
 	prereq_ids = list("nanite_bio")
 	design_ids = list("nervous_nanites", "brainheal_nanites", "paralyzing_nanites", "stun_nanites", "selfscan_nanites","good_mood_nanites","bad_mood_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000, TECHWEB_POINT_TYPE_NANITES = 1000)
@@ -1421,8 +1421,8 @@
 /datum/techweb_node/nanite_synaptic
 	id = "nanite_synaptic"
 	tech_tier = 4
-	display_name = "Synaptic Nanite Programming"
-	description = "Nanite programs affecting mind and thoughts."
+	display_name = "Programowanie nanitów: synaptyczne"
+	description = "Programy nanitów działające na umysł i myśli."
 	prereq_ids = list("nanite_neural","neural_programming")
 	design_ids = list("mindshield_nanites", "pacifying_nanites", "blinding_nanites", "sleep_nanites", "mute_nanites", "speech_nanites","hallucination_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000, TECHWEB_POINT_TYPE_NANITES = 1000)
@@ -1431,8 +1431,8 @@
 /datum/techweb_node/nanite_harmonic
 	id = "nanite_harmonic"
 	tech_tier = 4
-	display_name = "Harmonic Nanite Programming"
-	description = "Nanite programs that require seamless integration between nanites and biology."
+	display_name = "Programowanie nanitów: harmoniczne"
+	description = "Programy nanitów wymagające płynnej integracji nanitów z biologią."
 	prereq_ids = list("nanite_bio","nanite_smart","nanite_mesh")
 	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites", "sensor_species_nanites","adrenaline_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000, TECHWEB_POINT_TYPE_NANITES = 2000)
@@ -1441,8 +1441,8 @@
 /datum/techweb_node/nanite_combat
 	id = "nanite_military"
 	tech_tier = 5
-	display_name = "Military Nanite Programming"
-	description = "Nanite programs that perform military-grade functions."
+	display_name = "Programowanie nanitów: wojskowe"
+	description = "Programy nanitów pełniące funkcje klasy wojskowej."
 	prereq_ids = list("nanite_harmonic", "syndicate_basic")
 	design_ids = list("explosive_nanites","pyro_nanites","meltdown_nanites","viral_nanites","nanite_sting_nanites", "haste_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500, TECHWEB_POINT_TYPE_NANITES = 2500)
@@ -1451,8 +1451,8 @@
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
 	tech_tier = 5
-	display_name = "Hazard Nanite Programs"
-	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
+	display_name = "Programowanie nanitów: niebezpieczne"
+	description = "Niezwykle zaawansowane programy nanitów, które mogą być skrajnie niebezpieczne."
 	prereq_ids = list("nanite_harmonic", "alientech")
 	design_ids = list("spreading_nanites","mindcontrol_nanites","mitosis_nanites")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000, TECHWEB_POINT_TYPE_NANITES = 4000)

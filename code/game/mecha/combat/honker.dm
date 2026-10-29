@@ -1,5 +1,5 @@
 /obj/mecha/combat/honker
-	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
+	desc = "Produkowany przez „Tyranny of Honk, INC” egzoszkielet ciężkiego wsparcia klaunów. Służy do szerzenia zabawy i radości życia. HONK!"
 	name = "\improper H.O.N.K"
 	icon_state = "honker"
 	step_in = 3

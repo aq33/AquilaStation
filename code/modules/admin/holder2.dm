@@ -54,7 +54,7 @@ GLOBAL_PROTECT(href_token)
 	target = ckey
 	name = "[ckey]'s admin datum ([R])"
 	rank = R
-	admin_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admin_signature = "Oficer Nanotrasen #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()
 	if(R.rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")

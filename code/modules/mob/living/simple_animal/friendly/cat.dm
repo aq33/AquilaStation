@@ -1,7 +1,7 @@
 //Cat
 /mob/living/simple_animal/pet/cat
-	name = "cat"
-	desc = "Kitty!!"
+	name = "kot"
+	desc = "Kotek!!"
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "cat2"
 	icon_living = "cat2"
@@ -42,8 +42,8 @@
 	add_verb(/mob/living/proc/lay_down)
 
 /mob/living/simple_animal/pet/cat/space
-	name = "space cat"
-	desc = "It's a cat... in space!"
+	name = "kosmiczny kot"
+	desc = "To kot... w kosmosie!"
 	icon_state = "spacecat"
 	icon_living = "spacecat"
 	icon_dead = "spacecat_dead"
@@ -54,7 +54,7 @@
 
 /mob/living/simple_animal/pet/cat/original
 	name = "Batsy"
-	desc = "The product of alien DNA and bored geneticists."
+	desc = "Owoc obcego DNA i znudzonych genetyków."
 	gender = FEMALE
 	icon_state = "original"
 	icon_living = "original"
@@ -64,8 +64,8 @@
 	held_state = "original"
 
 /mob/living/simple_animal/pet/cat/kitten
-	name = "kitten"
-	desc = "D'aaawwww."
+	name = "kociak"
+	desc = "Ojejuuu."
 	icon_state = "kitten"
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
@@ -249,11 +249,11 @@
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/pet_animal, src)
 	else
 		if(M && stat != DEAD)
-			emote("me", 1, "hisses!")
+			emote("me", 1, "syczy!")
 
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie
 	name = "Keeki"
-	desc = "It's a cat made out of cake."
+	desc = "To kot zrobiony z ciasta."
 	icon_state = "cak"
 	icon_living = "cak"
 	icon_dead = "cak_dead"
@@ -301,8 +301,8 @@
 		L.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin, 0.4)
 
 /mob/living/simple_animal/pet/cat/breadcat
-	name = "bread cat"
-	desc = "It's a cat... with a bread!"
+	name = "kot w chlebie"
+	desc = "To kot... w chlebie!"
 	gender = MALE
 	icon_state = "breadcat"
 	icon_living = "breadcat"
@@ -312,8 +312,8 @@
 	butcher_results = list(/obj/item/food/meat/slab = 2, /obj/item/organ/ears/cat = 1, /obj/item/organ/tail/cat = 1, /obj/item/organ/tongue/cat = 1, /obj/item/food/breadslice/plain = 1)
 
 /mob/living/simple_animal/pet/cat/halal
-	name = "arabian cat"
-	desc = "It's a cat with Agal on his head."
+	name = "kot arabski"
+	desc = "To kot z agalem na głowie."
 	gender = MALE
 	icon_state = "cathalal"
 	icon_living = "cathalal"

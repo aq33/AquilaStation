@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/bottler
-	name = "chemical bottler"
-	desc = "Puts reagents into containers, like bottles and beakers in the tile facing the green light spot, they will exit on the red light spot if successfully filled."
+	name = "rozlewarka chemiczna"
+	desc = "Wlewa odczynniki do pojemników, takich jak butelki i zlewki, stojących na polu przy zielonej lampce. Po napełnieniu wychodzą na polu przy czerwonej lampce."
 	icon_state = "bottler"
 	layer = ABOVE_ALL_MOB_LAYER
 	reagent_flags = TRANSPARENT | DRAINABLE
@@ -89,8 +89,8 @@
 		reagents.trans_to(AM, wanted_amount, method = INJECT)
 
 /obj/machinery/plumbing/fermenter
-	name = "chemical fermenter"
-	desc = "Turns plants into various types of booze."
+	name = "fermentor chemiczny"
+	desc = "Zamienia rośliny w różne rodzaje alkoholu."
 	icon_state = "fermenter"
 	layer = ABOVE_ALL_MOB_LAYER
 	reagent_flags = TRANSPARENT | DRAINABLE
@@ -145,8 +145,8 @@
 
 ///A bluespace input pipe for plumbing
 /obj/machinery/plumbing/sender
-	name = "chemical beacon"
-	desc = "A bluespace anchor for chemicals. Does not require power. Use a multitool linked to a Chemical Recipient on this machine to start teleporting reagents."
+	name = "nadajnik chemikaliów"
+	desc = "Kotwica bluespace dla chemikaliów. Nie wymaga zasilania. Użyj na nim multitoola połączonego z odbiornikiem chemikaliów, by zacząć teleportować odczynniki."
 	icon_state = "beacon"
 	density = FALSE
 	use_power = NO_POWER_USE
@@ -195,9 +195,9 @@
 
 ///A bluespace output pipe for plumbing. Supports multiple recipients.
 /obj/machinery/plumbing/receiver
-	name = "chemical recipient"
-	desc = "Receives chemicals from one or more chemical beacons. Use a multitool on this machine and then all subsequent chemical beacons. Reset by opening the \
-	panel and cutting the main wire."
+	name = "odbiornik chemikaliów"
+	desc = "Odbiera chemikalia z jednego lub kilku nadajników chemikaliów. Użyj multitoola na tej maszynie, a potem na każdym kolejnym nadajniku. Reset: otwórz \
+	panel i przetnij główny przewód."
 	icon_state = "recipient"
 
 	buffer = 150

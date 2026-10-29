@@ -5,7 +5,7 @@
  */
 /obj/item/circuit_component/radio
 	display_name = "Radio"
-	display_desc = "A component that can listen and send frequencies. If set to private, the component will only receive signals from other components attached to circuitboards with the same owner id."
+	display_desc = "Komponent, który potrafi nasłuchiwać częstotliwości i nadawać na nich. W trybie prywatnym odbiera tylko sygnały od innych komponentów podłączonych do płytek z tym samym identyfikatorem właściciela."
 	/// Frequency input
 	var/datum/port/input/freq
 	/// Signal input

@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(ai_networking_machines)
 	)
 
 /datum/design/board/networking_machine
-	name = "Machine Design (AI Networking Machine)"
+	name = "Projekt maszyny (nadajnik sieci SI)"
 	desc = "Płytka nadajnika łączącego odległe sieci SI."
 	id = "networking_machine"
 	build_path = /obj/item/circuitboard/machine/networking_machine

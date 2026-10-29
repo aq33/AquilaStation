@@ -10,25 +10,25 @@
 	var/static/tag_number = 0
 
 /datum/map_report/New(datum/parsed_map/map)
-	original_path = map.original_path || "Untitled"
+	original_path = map.original_path || "Bez nazwy"
 
 /// Show a rendered version of this report to a client.
 /datum/map_report/proc/show_to(client/C)
 	var/list/html = list()
 	if(crashed)
-		html += "<p><b>Validation crashed</b>: check the runtime logs.</p>"
+		html += "<p><b>Walidacja się wysypała</b>: sprawdź logi runtime.</p>"
 	if(!loadable)
-		html += "<p><b>Not loadable</b>: some tiles are missing their turfs or areas.</p>"
+		html += "<p><b>Nie da się wczytać</b>: na części pól brakuje turfów albo obszarów.</p>"
 
 	if(bad_paths.len)
-		html += "<p>Bad paths: <ol>"
+		html += "<p>Błędne ścieżki: <ol>"
 		for(var/path in bad_paths)
 			var/list/keys = bad_paths[path]
-			html += "<li><tt>[path]</tt>: used in ([keys.len]): <tt>[keys.Join("</tt>, <tt>")]</tt>"
+			html += "<li><tt>[path]</tt>: użyte w ([keys.len]): <tt>[keys.Join("</tt>, <tt>")]</tt>"
 		html += "</ol></p>"
 
 	if(bad_keys.len)
-		html += "<p>Bad keys: <ul>"
+		html += "<p>Błędne klucze: <ul>"
 		for(var/key in bad_keys)
 			var/list/messages = bad_keys[key]
 			html += "<li><tt>[key]</tt>"
@@ -38,7 +38,7 @@
 				html += "<ul><li>[messages.Join("</li><li>")]</li></ul>"
 			html += "</li>"
 		html += "</ul></p>"
-	var/datum/browser/browser = new(C.mob, "[tag]", "Report for map file [original_path]", 600, 400)
+	var/datum/browser/browser = new(C.mob, "[tag]", "Raport pliku mapy [original_path]", 600, 400)
 	browser.set_content(html.Join())
 	browser.open()
 
@@ -83,13 +83,13 @@
 
 		if(turfs == 0)
 			report.loadable = FALSE
-			LAZYADD(report.bad_keys[key], "no turf")
+			LAZYADD(report.bad_keys[key], "brak turfu")
 		else if(turfs > 1)
-			LAZYADD(report.bad_keys[key], "[turfs] stacked turfs")
+			LAZYADD(report.bad_keys[key], "nałożone turfy: [turfs]")
 
 		if(areas != 1)
 			report.loadable = FALSE
-			LAZYADD(report.bad_keys[key], "[areas] areas instead of 1")
+			LAZYADD(report.bad_keys[key], "obszary: [areas] zamiast 1")
 
 	// return the report
 	if(report.bad_paths.len || report.bad_keys.len || !report.loadable)

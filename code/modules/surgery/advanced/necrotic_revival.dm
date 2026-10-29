@@ -1,6 +1,6 @@
 /datum/surgery/advanced/necrotic_revival
-	name = "Necrotic Revival"
-	desc = "An experimental surgical procedure that stimulates the growth of a Romerol tumor inside the patient's brain. Requires zombie powder or rezadone."
+	name = "Ożywienie nekrotyczne"
+	desc = "Eksperymentalny zabieg chirurgiczny, który pobudza wzrost guza romerolowego w mózgu pacjenta. Wymaga Proszku zombie albo Rezadonu."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/saw,
@@ -17,7 +17,7 @@
 		return FALSE
 
 /datum/surgery_step/bionecrosis
-	name = "start bionecrosis"
+	name = "rozpocznij bionekrozę"
 	implements = list(/obj/item/reagent_containers/syringe = 100, /obj/item/pen = 30)
 	time = 50
 	chems_needed = list(/datum/reagent/toxin/zombiepowder, /datum/reagent/medicine/rezadone)

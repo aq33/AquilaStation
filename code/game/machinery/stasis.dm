@@ -1,7 +1,7 @@
 #define STASIS_TOGGLE_COOLDOWN 50
 /obj/machinery/stasis
-	name = "lifeform stasis unit"
-	desc = "A not-so-comfortable looking bed with nozzles on top and bottom. Placing someone here will suspend their vital processes, putting them in stasis until removed."
+	name = "łóżko stazy"
+	desc = "Niezbyt wygodnie wyglądające łóżko z dyszami u góry i u dołu. Położenie tu kogoś wstrzymuje jego procesy życiowe i utrzymuje go w stazie, dopóki ktoś go nie zdejmie."
 	icon = 'icons/obj/machines/stasis.dmi'
 	icon_state = "stasis"
 	density = FALSE

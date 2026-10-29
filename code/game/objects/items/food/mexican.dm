@@ -1,6 +1,6 @@
 /obj/item/food/tortilla
 	name = "tortilla"
-	desc = "The base for all your burritos."
+	desc = "Podstawa wszystkich twoich burrito."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "tortilla"
 	food_reagents = list(
@@ -14,7 +14,7 @@
 
 /obj/item/food/burrito
 	name = "burrito"
-	desc = "Tortilla wrapped goodness."
+	desc = "Pyszności zawinięte w tortillę."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "burrito"
 	food_reagents = list(
@@ -27,8 +27,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cheesyburrito
-	name = "cheesy burrito"
-	desc = "It's a burrito filled with cheese."
+	name = "serowe burrito"
+	desc = "To burrito wypełnione serem."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cheesyburrito"
 	food_reagents = list(
@@ -41,8 +41,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/carneburrito
-	name = "carne asada burrito"
-	desc = "The best burrito for meat lovers."
+	name = "burrito carne asada"
+	desc = "Najlepsze burrito dla miłośników mięsa."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "carneburrito"
 	food_reagents = list(
@@ -56,8 +56,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/fuegoburrito
-	name = "fuego plasma burrito"
-	desc = "A super spicy burrito."
+	name = "plazmowe burrito fuego"
+	desc = "Superostre burrito."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "fuegoburrito"
 	food_reagents = list(
@@ -73,7 +73,7 @@
 
 /obj/item/food/nachos
 	name = "nachos"
-	desc = "Chips from Space Mexico."
+	desc = "Chipsy z Kosmicznego Meksyku."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "nachos"
 	food_reagents = list(
@@ -86,8 +86,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/cheesynachos
-	name = "cheesy nachos"
-	desc = "The delicious combination of nachos and melting cheese."
+	name = "serowe nachos"
+	desc = "Pyszne połączenie nachos i topionego sera."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cheesynachos"
 	food_reagents = list(
@@ -101,8 +101,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/cubannachos
-	name = "Cuban nachos"
-	desc = "That's some dangerously spicy nachos."
+	name = "kubańskie nachos"
+	desc = "Niebezpiecznie ostre nachos."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "cubannachos"
 	food_reagents = list(
@@ -116,8 +116,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/taco
-	name = "classic taco"
-	desc = "A traditional taco with meat, cheese, and lettuce."
+	name = "klasyczne taco"
+	desc = "Tradycyjne taco z mięsem, serem i sałatą."
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "taco"
 	food_reagents = list(
@@ -131,8 +131,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/taco/plain
-	name = "plain taco"
-	desc = "A traditional taco with meat and cheese, minus the rabbit food."
+	name = "zwykłe taco"
+	desc = "Tradycyjne taco z mięsem i serem, bez tego królikowego jedzenia."
 	icon_state = "taco_plain"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -145,7 +145,7 @@
 
 /obj/item/food/enchiladas
 	name = "enchiladas"
-	desc = "Viva La Mexico!"
+	desc = "Viva México!"
 	icon = 'icons/obj/food/mexican.dmi'
 	icon_state = "enchiladas"
 	bite_consumption = 4
@@ -161,8 +161,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/stuffedlegion
-	name = "stuffed legion"
-	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
+	name = "faszerowany legion"
+	desc = "Dawna czaszka potępionego człowieka, wypełniona mięsem goliata. Ma ozdobne jeziorko lawy z ketchupu i ostrego sosu."
 	icon_state = "stuffed_legion"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,

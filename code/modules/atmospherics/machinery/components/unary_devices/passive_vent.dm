@@ -1,8 +1,8 @@
 /obj/machinery/atmospherics/components/unary/passive_vent
 	icon_state = "passive_vent_map-3"
 
-	name = "passive vent"
-	desc = "It is an open vent."
+	name = "pasywny wywiew"
+	desc = "Otwarty wylot wentylacji."
 	can_unwrench = TRUE
 
 	level = 1

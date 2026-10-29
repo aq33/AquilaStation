@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/frog
-	name = "frog"
-	desc = "It seems a little sad."
+	name = "żaba"
+	desc = "Wydaje się trochę smutna."
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"
@@ -29,8 +29,8 @@
 /mob/living/simple_animal/hostile/retaliate/frog/Initialize(mapload)
 	. = ..()
 	if(prob(1))
-		name = "rare frog"
-		desc = "It seems a little smug."
+		name = "rzadka żaba"
+		desc = "Wydaje się trochę zadowolona z siebie."
 		icon_state = "rare_frog"
 		icon_living = "rare_frog"
 		icon_dead = "rare_frog_dead"

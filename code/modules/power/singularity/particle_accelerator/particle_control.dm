@@ -1,6 +1,6 @@
 /obj/machinery/particle_accelerator/control_box
-	name = "Particle Accelerator Control Console"
-	desc = "This controls the density of the particles."
+	name = "konsola sterowania akceleratorem cząstek"
+	desc = "Steruje gęstością cząstek."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_box"
 	anchored = FALSE
@@ -90,7 +90,7 @@
 		strength++
 		strength_change()
 
-		message_admins("PA Control Computer increased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
+		message_admins("Moc akceleratora cząstek zwiększona do [strength] przez [ADMIN_LOOKUPFLW(usr)] w [ADMIN_VERBOSEJMP(src)]")
 		investigate_log("increased to <font color='red'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 
 /obj/machinery/particle_accelerator/control_box/proc/remove_strength(s)
@@ -98,7 +98,7 @@
 		strength--
 		strength_change()
 
-		message_admins("PA Control Computer decreased to [strength] by [ADMIN_LOOKUPFLW(usr)] in [ADMIN_VERBOSEJMP(src)]")
+		message_admins("Moc akceleratora cząstek zmniejszona do [strength] przez [ADMIN_LOOKUPFLW(usr)] w [ADMIN_VERBOSEJMP(src)]")
 		investigate_log("decreased to <font color='green'>[strength]</font> by [key_name(usr)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 
 /obj/machinery/particle_accelerator/control_box/power_change()
@@ -174,7 +174,7 @@
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	active = !active
 	investigate_log("turned [active?"<font color='green'>ON</font>":"<font color='red'>OFF</font>"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
-	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? ADMIN_LOOKUPFLW(usr) : "outside forces"] in [ADMIN_VERBOSEJMP(src)]")
+	message_admins("Akcelerator cząstek [active ?"włączony":"wyłączony"] przez [usr ? ADMIN_LOOKUPFLW(usr) : "siły zewnętrzne"] w [ADMIN_VERBOSEJMP(src)]")
 	if(active)
 		use_power = ACTIVE_POWER_USE
 		for(var/CP in connected_parts)

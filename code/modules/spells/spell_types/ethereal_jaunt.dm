@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt
-	name = "Ethereal Jaunt"
-	desc = "This spell turns your form ethereal, temporarily making you invisible and able to pass through walls."
+	name = "Eteryczna wędrówka"
+	desc = "To zaklęcie czyni twoją postać eteryczną: przez chwilę jesteś niewidzialny i przenikasz przez ściany."
 
 	school = "transmutation"
 	charge_max = 300
@@ -72,7 +72,7 @@
 			playsound(get_turf(target), 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
 
 /obj/effect/dummy/phased_mob/spell_jaunt
-	name = "water"
+	name = "woda"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/reappearing = FALSE

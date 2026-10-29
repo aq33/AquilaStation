@@ -1,6 +1,6 @@
 /obj/item/flamethrower
-	name = "flamethrower"
-	desc = "You are a firestarter!"
+	name = "miotacz ognia"
+	desc = "Jesteś podpalaczem!"
 	icon = 'icons/obj/flamethrower.dmi'
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
@@ -167,13 +167,13 @@
 	if(!status)
 		to_chat(user, "<span class='notice'>Najpierw zabezpiecz zapalnik!</span>")
 		return
-	to_chat(user, "<span class='notice'>You [lit ? "extinguish" : "ignite"] [src]!</span>")
+	to_chat(user, "<span class='notice'>[lit ? "Gasisz" : "Odpalasz"] [src]!</span>")
 	lit = !lit
 	if(lit)
 		playsound(loc, acti_sound, 50, TRUE)
 		START_PROCESSING(SSobj, src)
 		if(!warned_admins)
-			message_admins("[ADMIN_LOOKUPFLW(user)] has lit a flamethrower.")
+			message_admins("[ADMIN_LOOKUPFLW(user)] odpala miotacz ognia.")
 			warned_admins = TRUE
 	else
 		playsound(loc, deac_sound, 50, TRUE)
@@ -297,7 +297,7 @@
 /obj/item/flamethrower/full/tank
 	create_with_tank = TRUE
 
-/obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/flamethrower/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
 	if(ptank && damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(15))
 		owner.visible_message("<span class='danger'>[attack_text] trafia w zbiornik paliwa [name] na [owner], rozrywając go! Co za strzał!</span>")

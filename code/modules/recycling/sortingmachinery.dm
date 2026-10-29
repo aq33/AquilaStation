@@ -1,6 +1,6 @@
 /obj/structure/big_delivery
-	name = "large parcel"
-	desc = "A large delivery parcel."
+	name = "duża paczka"
+	desc = "Duża paczka do doręczenia."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
 	density = TRUE
@@ -90,8 +90,8 @@
 		disposal_holder.destinationTag = sortTag
 
 /obj/item/small_delivery
-	name = "parcel"
-	desc = "A brown paper delivery parcel."
+	name = "paczka"
+	desc = "Paczka do doręczenia owinięta brązowym papierem."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverypackage3"
 	item_state = "deliverypackage"
@@ -193,8 +193,8 @@
 		disposal_holder.destinationTag = sortTag
 
 /obj/item/dest_tagger
-	name = "destination tagger"
-	desc = "Used to set the destination of properly wrapped packages."
+	name = "znakownik adresowy"
+	desc = "Służy do ustawiania miejsca docelowego prawidłowo zapakowanych paczek."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "cargotagger"
 	var/currTag = 0 //Destinations are stored in code\globalvars\lists\flavor_misc.dm
@@ -207,15 +207,15 @@
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/dest_tagger/borg
-	name = "cyborg destination tagger"
-	desc = "Used to fool the disposal mail network into thinking that you're a harmless parcel. Does actually work as a regular destination tagger as well."
+	name = "znakownik adresowy cyborga"
+	desc = "Służy do oszukiwania poczty rurowej, żeby uznała cię za niegroźną paczkę. Działa też jak zwykły znakownik adresowy."
 
 /obj/item/dest_tagger/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] zaczyna oznaczać swój cel ostateczny! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
 	if (islizard(user))
-		to_chat(user, "<span class='notice'>*HELL*</span>")//lizard nerf
+		to_chat(user, "<span class='notice'>*PIEKŁO*</span>")//lizard nerf
 	else
-		to_chat(user, "<span class='notice'>*HEAVEN*</span>")
+		to_chat(user, "<span class='notice'>*NIEBO*</span>")
 	playsound(src, 'sound/machines/twobeep_high.ogg', 100, 1)
 	return BRUTELOSS
 

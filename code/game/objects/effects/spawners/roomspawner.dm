@@ -16,7 +16,7 @@
 /obj/effect/spawner/room/Initialize(mapload)
 	..()
 	if(!length(SSmapping.random_room_templates))
-		message_admins("Room spawner created with no templates available. This shouldn't happen.")
+		message_admins("Utworzono spawner pokoju bez dostępnych szablonów. To nie powinno się zdarzyć.")
 		return INITIALIZE_HINT_QDEL
 	//AQ EDIT START - spawners that are created after SSmapping.LoadStationRooms() (e.g. gulag.dmm) used to load their template right here,
 	//i.e. a map load nested inside SSatoms.InitializeAtoms() ("We started maploading while we were already maploading").

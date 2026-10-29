@@ -65,7 +65,7 @@
 /atom/movable/screen/swap_hand
 	layer = HUD_LAYER
 	plane = HUD_PLANE
-	name = "swap hand"
+	name = "zmień rękę"
 
 /atom/movable/screen/swap_hand/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
@@ -82,13 +82,13 @@
 	return 1
 
 /atom/movable/screen/craft
-	name = "crafting menu"
+	name = "menu wytwarzania"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
 
 /atom/movable/screen/area_creator
-	name = "create new area"
+	name = "utwórz nowy obszar"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "area_edit"
 	screen_loc = ui_building
@@ -103,7 +103,7 @@
 	create_area(usr)
 
 /atom/movable/screen/language_menu
-	name = "language menu"
+	name = "menu języków"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "talk_wheel"
 	screen_loc = ui_language_menu
@@ -114,7 +114,7 @@
 	H.open_language_menu(usr)
 
 /atom/movable/screen/ghost/pai
-	name = "pAI Candidate"
+	name = "Kandydat na pAI"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "pai_setup"
 	screen_loc = ui_ghost_pai
@@ -265,7 +265,7 @@
 	return TRUE
 
 /atom/movable/screen/close
-	name = "close"
+	name = "zamknij"
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
@@ -280,7 +280,7 @@
 	return TRUE
 
 /atom/movable/screen/drop
-	name = "drop"
+	name = "upuść"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_drop"
 	layer = HUD_LAYER
@@ -337,7 +337,7 @@
 	screen_loc = ui_borg_intents
 
 /atom/movable/screen/internals
-	name = "toggle internals"
+	name = "przełącz oddychanie z butli"
 	icon_state = "internal0"
 	screen_loc = ui_internal
 
@@ -398,7 +398,7 @@
 	C.update_action_buttons_icon()
 
 /atom/movable/screen/mov_intent
-	name = "run/walk toggle"
+	name = "bieg/chód"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "running"
 
@@ -419,7 +419,7 @@
 	user.toggle_move_intent(user)
 
 /atom/movable/screen/pull
-	name = "stop pulling"
+	name = "przestań ciągnąć"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "pull"
 
@@ -436,7 +436,7 @@
 	return ..()
 
 /atom/movable/screen/resist
-	name = "resist"
+	name = "opieraj się"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_resist"
 	layer = HUD_LAYER
@@ -448,7 +448,7 @@
 		L.resist()
 
 /atom/movable/screen/rest
-	name = "rest"
+	name = "połóż się"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_rest"
 	layer = HUD_LAYER
@@ -471,7 +471,7 @@
 	return ..()
 
 /atom/movable/screen/storage
-	name = "storage"
+	name = "schowek"
 	icon_state = "block"
 	screen_loc = "7,7 to 10,8"
 	layer = HUD_LAYER
@@ -495,7 +495,7 @@
 	return TRUE
 
 /atom/movable/screen/throw_catch
-	name = "throw/catch"
+	name = "rzut/łapanie"
 	icon = 'icons/mob/screen_midnight.dmi'
 	icon_state = "act_throw_off"
 
@@ -505,7 +505,7 @@
 		C.toggle_throw_mode()
 
 /atom/movable/screen/zone_sel
-	name = "damage zone"
+	name = "strefa ataku"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = BODY_ZONE_CHEST
@@ -653,7 +653,7 @@
 	plane = FULLSCREEN_PLANE
 
 /atom/movable/screen/healths
-	name = "health"
+	name = "zdrowie"
 	icon_state = "health0"
 	screen_loc = ui_health
 
@@ -670,23 +670,23 @@
 	screen_loc = ui_health
 
 /atom/movable/screen/healths/blob
-	name = "blob health"
+	name = "zdrowie grzyba"
 	icon_state = "block"
 	screen_loc = ui_internal
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healths/blob/naut
-	name = "health"
+	name = "zdrowie"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "nauthealth"
 
 /atom/movable/screen/healths/blob/naut/core
-	name = "overmind health"
+	name = "zdrowie grzyboga"
 	icon_state = "corehealth"
 	screen_loc = ui_health
 
 /atom/movable/screen/healths/guardian
-	name = "summoner health"
+	name = "zdrowie przywoływacza"
 	icon = 'icons/mob/guardian.dmi'
 	icon_state = "base"
 	screen_loc = ui_health
@@ -704,7 +704,7 @@
 	screen_loc = ui_internal
 
 /atom/movable/screen/healths/revenant
-	name = "essence"
+	name = "esencja"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_revenant"
 	screen_loc = ui_health
@@ -729,7 +729,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /atom/movable/screen/healthdoll
-	name = "health doll"
+	name = "lalka zdrowia"
 	screen_loc = ui_healthdoll
 
 /atom/movable/screen/healthdoll/Click()
@@ -738,12 +738,12 @@
 		C.check_self_for_injuries()
 
 /atom/movable/screen/mood
-	name = "mood"
+	name = "nastrój"
 	icon_state = "mood5"
 	screen_loc = ui_mood
 
 /atom/movable/screen/sanity
-	name = "sanity"
+	name = "poczytalność"
 	icon_state = "sanity3"
 	screen_loc = ui_mood
 

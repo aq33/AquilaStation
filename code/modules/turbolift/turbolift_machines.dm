@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(turbolifts)
 	. = ..()
 	if(!shuttle_id)
 		log_mapping("TURBOLIFT: [src] has no shuttle_id at [AREACOORD(src)]")
-		message_admins("TURBOLIFT: [src] has no shuttle_id at [AREACOORD(src)]")
+		message_admins("TURBOWINDA: [src] nie ma shuttle_id na [AREACOORD(src)]")
 		return
 	floor_id = "[shuttle_id]_[src.z]"
 
@@ -47,14 +47,14 @@ GLOBAL_LIST_EMPTY(turbolifts)
 		START_PROCESSING(SSmachines, T)
 
 /obj/machinery/computer/turbolift
-	name = "turbolift control console"
+	name = "konsola sterowania turbowindą"
 	icon = 'icons/obj/turbolift.dmi'
 	icon_state = "panel"
 	density = FALSE
 	anchored = TRUE
 	can_be_unanchored = FALSE
 	mouse_over_pointer = MOUSE_HAND_POINTER
-	desc = "Nanotrasen's decision to replace the iconic turboladder was not met with unanimous praise, experts citing increased obesity figures from crewmen no longer needing to climb vertically through several miles of deck to reach their target. However this is undoubtedly much faster."
+	desc = "Decyzja Nanotrasen o zastąpieniu kultowej turbodrabiny nie spotkała się z jednogłośnym uznaniem – eksperci wskazują na wzrost otyłości wśród załogi, która nie musi już wspinać się pionowo przez kilometry pokładów, żeby dotrzeć do celu. Bez wątpienia jest to jednak dużo szybsze."
 	pixel_y = 32
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -72,9 +72,9 @@ GLOBAL_LIST_EMPTY(turbolifts)
 	GLOB.turbolifts += src
 
 /obj/machinery/door/airlock/turbolift
-	name = "turbolift airlock"
+	name = "śluza turbowindy"
 	icon = 'icons/obj/turbolift_door.dmi'
-	desc = "A sleek airlock for walking through. This one looks extremely strong."
+	desc = "Elegancka śluza, przez którą się przechodzi. Ta wygląda na wyjątkowo wytrzymałą."
 	icon_state = "closed"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	var/dock_dir
@@ -126,12 +126,12 @@ GLOBAL_LIST_EMPTY(turbolifts)
 		icon_state = "open"
 
 /turf/open/indestructible/turbolift
-	name = "turbolift floor"
-	desc = "A turbolift floor. You'd have an easier time destroying CentCom than breaking through this."
+	name = "podłoga turbowindy"
+	desc = "Podłoga turbowindy. Łatwiej byłoby ci zniszczyć Centralę, niż się przez nią przebić."
 
 /turf/closed/indestructible/turbolift
-	name = "turbolift wall"
-	desc = "A turbolift wall. One of the strongest walls known to man."
+	name = "ściana turbowindy"
+	desc = "Ściana turbowindy. Jedna z najwytrzymalszych ścian znanych ludzkości."
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
 	canSmoothWith = list(/turf/closed/indestructible/turbolift)
@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(turbolifts)
 		STOP_PROCESSING(SSmachines, src)
 		online = FALSE
 		log_mapping("TURBOLIFT: [src] could not find mobile dock: [shuttle_id] at [AREACOORD(src)]")
-		message_admins("TURBOLIFT: [src] could not find mobile dock: [shuttle_id] at [AREACOORD(src)]")
+		message_admins("TURBOWINDA: [src] nie znajduje ruchomego doku: [shuttle_id] na [AREACOORD(src)]")
 		return
 
 
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(turbolifts)
 
 /obj/machinery/computer/turbolift/proc/post_move(var/destination_id)
 	var/obj/docking_port/stationary/turbolift/dock = SSshuttle.getDock(destination_id)
-	say("Arrived at [dock ? "Deck [dock.deck]: [dock.name]" : "destination"].")
+	say("Cel osiągnięty: [dock ? "pokład [dock.deck]: [dock.name]" : "miejsce docelowe"].")
 	for(var/datum/weakref/T in airlocks)
 		var/obj/machinery/door/airlock/turbolift/A = T.resolve()
 		if(A)

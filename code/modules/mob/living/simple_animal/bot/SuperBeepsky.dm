@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/secbot/grievous //This bot is powerful. If you managed to get 4 eswords somehow, you deserve this horror. Emag him for best results.
-	name = "General Beepsky"
-	desc = "Is that a secbot with four eswords in its arms...?"
+	name = "Generał Beepsky"
+	desc = "Czy to securitron z czterema energetycznymi mieczami w ramionach...?"
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "grievous"
 	health = 150
@@ -14,14 +14,14 @@
 
 /mob/living/simple_animal/bot/secbot/grievous/toy //A toy version of general beepsky!
 	name = "Genewul Bweepskee"
-	desc = "An adorable looking secbot with four toy swords taped to its arms"
+	desc = "Uroczy securitron z czterema zabawkowymi mieczami przyklejonymi taśmą do ramion."
 	health = 50
 	maxHealth = 50
 	baton_type = /obj/item/toy/sword
 
 /mob/living/simple_animal/bot/secbot/grievous/nullcrate
-	name = "General Griefsky"
-	desc = "The Syndicate sends their regards."
+	name = "Generał Griefsky"
+	desc = "Syndykat przesyła pozdrowienia."
 	emagged = 2
 	noloot = TRUE
 	faction = list(FACTION_SYNDICATE)

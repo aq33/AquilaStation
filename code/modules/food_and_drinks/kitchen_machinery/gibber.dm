@@ -1,6 +1,6 @@
 /obj/machinery/gibber
-	name = "gibber"
-	desc = "The name isn't descriptive enough?"
+	name = "maszynka do mięsa"
+	desc = "Nazwa nie mówi wystarczająco dużo?"
 	icon = 'nsv13/icons/obj/kitchen.dmi'
 	icon_state = "grinder"
 	density = TRUE

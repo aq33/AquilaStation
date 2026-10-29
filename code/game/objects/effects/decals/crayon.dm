@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/crayon
-	name = "rune"
-	desc = "Graffiti. Damn kids."
+	name = "runa"
+	desc = "Graffiti. Cholerne dzieciaki."
 	icon = 'icons/effects/crayondecal.dmi'
 	icon_state = "rune1"
 	gender = NEUTER
@@ -14,7 +14,7 @@
 	. = ..()
 	if(e_name)
 		name = e_name
-	desc = "A [name] vandalizing the station."
+	desc = "Graffiti ([name]) szpecące stację."
 	if(alt_icon)
 		icon = alt_icon
 	if(type)

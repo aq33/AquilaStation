@@ -1,8 +1,8 @@
 #define INFINITE -1
 
 /obj/item/autosurgeon
-	name = "autosurgeon"
-	desc = "A device that automatically inserts an implant or organ into the user without the hassle of extensive surgery. It has a slot to insert implants/organs and a screwdriver slot for removing accidentally added items."
+	name = "autochirurg"
+	desc = "Urządzenie, które samo wszczepia implant albo organ bez kłopotu z rozległą operacją. Ma otwór na implanty i organy oraz gniazdo na śrubokręt do wyjmowania przypadkowo włożonych przedmiotów."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "autoimplanter"
 	item_state = "nothing"
@@ -13,7 +13,7 @@
 	var/list/starting_organ
 
 /obj/item/autosurgeon/syndicate
-	name = "suspicious autosurgeon"
+	name = "podejrzany autochirurg"
 	icon_state = "syndicate_autoimplanter"
 
 /obj/item/autosurgeon/Initialize(mapload)
@@ -43,7 +43,7 @@
 	if(uses != INFINITE)
 		uses--
 	if(!uses)
-		desc = "[initial(desc)] Looks like it's been used up."
+		desc = "[initial(desc)] Wygląda na zużytego."
 
 /obj/item/autosurgeon/attack_self_tk(mob/user)
 	return //stops TK fuckery
@@ -80,39 +80,39 @@
 		if(uses != INFINITE)
 			uses--
 		if(!uses)
-			desc = "[initial(desc)] Looks like it's been used up."
+			desc = "[initial(desc)] Wygląda na zużytego."
 	return TRUE
 
 /obj/item/autosurgeon/cmo
-	name = "nanotrasen medical autosurgeon"
-	desc = "A single use autosurgeon that contains a medical heads-up display augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	name = "medyczny autochirurg Nanotrasen"
+	desc = "Jednorazowy autochirurg z augmentacją HUD medycznego. Można ją wyjąć śrubokrętem, ale implantów nie da się włożyć z powrotem."
 	uses = 1
 	starting_organ = list(/obj/item/organ/cyberimp/eyes/hud/medical)
 
 /obj/item/autosurgeon/syndicate/laser_arm
-	name = "suspicious autosurgeon (arm-mounted laser implant)"
-	desc = "A single use autosurgeon that contains a combat arms-up laser augment. A screwdriver can be used to remove it, but implants can't be placed back in."
+	name = "podejrzany autochirurg (implant laserowy w ręce)"
+	desc = "Jednorazowy autochirurg z bojową augmentacją laserową w ręce. Można ją wyjąć śrubokrętem, ale implantów nie da się włożyć z powrotem."
 	uses = 1
 	starting_organ = list(/obj/item/organ/cyberimp/arm/gun/laser)
 
 /obj/item/autosurgeon/syndicate/thermal_eyes
-	name = "suspicious autosurgeon (Thermal eyes)"
+	name = "podejrzany autochirurg (oczy termowizyjne)"
 	starting_organ = list(/obj/item/organ/eyes/robotic/thermals)
 
 /obj/item/autosurgeon/syndicate/xray_eyes
-	name = "suspicious autosurgeon (X-ray eyes)"
+	name = "podejrzany autochirurg (oczy rentgenowskie)"
 	starting_organ = list(/obj/item/organ/eyes/robotic/xray/syndicate)
 
 /obj/item/autosurgeon/syndicate/anti_stun
-	name = "suspicious autosurgeon (CNS Rebooter implant)"
+	name = "podejrzany autochirurg (implant restartu OUN)"
 	starting_organ = list(/obj/item/organ/cyberimp/brain/anti_stun/syndicate)
 
 /obj/item/autosurgeon/syndicate/reviver
-	name = "suspicious autosurgeon (Reviver implant)"
+	name = "podejrzany autochirurg (implant reanimacyjny)"
 	starting_organ = list(/obj/item/organ/cyberimp/chest/reviver/syndicate)
 
 /obj/item/autosurgeon/syndicate/esaw_arm
-	name = "suspicious autosurgeon (arm-mounted energy saw)"
-	desc = "A single use autosurgeon that contains an energy saw arm implant."
+	name = "podejrzany autochirurg (piła energetyczna w ręce)"
+	desc = "Jednorazowy autochirurg z implantem piły energetycznej w ręce."
 	uses = 1
 	starting_organ = list(/obj/item/organ/cyberimp/arm/esaw)

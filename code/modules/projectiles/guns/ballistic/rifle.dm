@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/rifle
-	name = "Bolt Rifle"
-	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
+	name = "karabin powtarzalny"
+	desc = "Jakiś karabin z zamkiem czterotaktowym. Masz wrażenie, że nie powinieneś go mieć."
 	icon_state = "moistnugget"
 	icon_state = "moistnugget"
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction
@@ -50,7 +50,7 @@
 
 /obj/item/gun/ballistic/rifle/boltaction
 	name = "\improper Mosin Nagant"
-	desc = "This piece of junk looks like something that could have been used 700 years ago. It feels slightly moist."
+	desc = "Ten złom wygląda, jakby używano go 700 lat temu. Jest lekko wilgotny."
 	icon_state = "moistnugget"
 	item_state = "moistnugget"
 	slot_flags = ITEM_SLOT_BACK
@@ -62,14 +62,14 @@
 	weapon_weight = WEAPON_HEAVY
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted
-	name = "enchanted bolt action rifle"
-	desc = "Careful not to lose your head."
+	name = "zaczarowany karabin powtarzalny"
+	desc = "Uważaj, żeby nie stracić głowy."
 	var/guns_left = 30
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage
-	name = "arcane barrage"
-	desc = "Pew Pew Pew."
+	name = "tajemna kanonada"
+	desc = "Piu piu piu."
 	fire_sound = 'sound/weapons/emitter.ogg'
 	pin = /obj/item/firing_pin/magic
 	icon_state = "arcane_barrage"

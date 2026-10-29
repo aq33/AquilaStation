@@ -3,25 +3,25 @@
 	var/list/content = list()
 	for(var/datum/team/T in GLOB.antagonist_teams)
 		content += "<h3>[T.name] - [T.type]</h3>"
-		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=rename_team;team=[REF(T)]'>Rename</a>"
-		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=delete_team;team=[REF(T)]'>Delete</a>"
-		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=communicate;team=[REF(T)]'>Communicate</a>"
+		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=rename_team;team=[REF(T)]'>Zmień nazwę</a>"
+		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=delete_team;team=[REF(T)]'>Usuń</a>"
+		content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=communicate;team=[REF(T)]'>Wyślij wiadomość</a>"
 		for(var/command in T.get_admin_commands())
 			content += "<a href='byond://?src=[REF(T)];command=[command]'>[command]</a>"
 		content += "<br>"
-		content += "Objectives:<br><ol>"
+		content += "Cele:<br><ol>"
 		for(var/datum/objective/O in T.objectives)
 			content += "<li>[O.explanation_text] - "
-			content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=edit_objective;team=[REF(T)];tobjective=[REF(O)]'>Edit</a>"
-			content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=remove_objective;team=[REF(T)];tobjective=[REF(O)]'>Remove</a>"
+			content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=edit_objective;team=[REF(T)];tobjective=[REF(O)]'>Edytuj</a>"
+			content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=remove_objective;team=[REF(T)];tobjective=[REF(O)]'>Usuń</a>"
 			content += "</li>"
-		content += "</ol><a href='byond://?_src_=holder;[HrefToken()];team_command=add_objective;team=[REF(T)]'>Add Objective</a><br>"
-		content += "Members: <br><ul>"
+		content += "</ol><a href='byond://?_src_=holder;[HrefToken()];team_command=add_objective;team=[REF(T)]'>Dodaj cel</a><br>"
+		content += "Członkowie: <br><ul>"
 		for(var/datum/mind/M in T.members)
-			content += "<li>[M.name] - <a href='byond://?_src_=holder;[HrefToken()];team_command=remove_member;team=[REF(T)];tmember=[REF(M)]'>Remove Member</a></li>"
-		content += "</ul><a href='byond://?_src_=holder;[HrefToken()];team_command=add_member;team=[REF(T)]'>Add Member</a>"
+			content += "<li>[M.name] - <a href='byond://?_src_=holder;[HrefToken()];team_command=remove_member;team=[REF(T)];tmember=[REF(M)]'>Usuń członka</a></li>"
+		content += "</ul><a href='byond://?_src_=holder;[HrefToken()];team_command=add_member;team=[REF(T)]'>Dodaj członka</a>"
 		content += "<hr>"
-	content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=create_team'>Create Team</a><br>"
+	content += "<a href='byond://?_src_=holder;[HrefToken()];team_command=create_team'>Utwórz drużynę</a><br>"
 	return content.Join()
 
 
@@ -30,37 +30,37 @@
 		alert("Gra jeszcze się nie zaczęła!")
 		return
 
-	var/datum/browser/popup = new(usr, "teams", "Team Listing", 500, 500)
+	var/datum/browser/popup = new(usr, "teams", "Lista drużyn", 500, 500)
 	popup.set_content(team_listing())
 	popup.open()
 
 /datum/admins/proc/admin_create_team(mob/user)
-	var/team_name = stripped_input(user,"Team name ?")
+	var/team_name = stripped_input(user,"Nazwa drużyny?")
 	if(!team_name)
 		return
 	var/datum/team/custom/T = new()
 	T.name = team_name
 
-	message_admins("[key_name_admin(usr)] created new [name] antagonist team.")
+	message_admins("[key_name_admin(usr)] tworzy nową drużynę antagonistów: [name].")
 	log_admin("[key_name(usr)] created new [name] antagonist team.")
 
 /datum/team/proc/admin_rename(mob/user)
 	var/old_name = name
-	var/team_name = stripped_input(user,"new team name ?","Team rename",old_name)
+	var/team_name = stripped_input(user,"Nowa nazwa drużyny?","Zmiana nazwy drużyny",old_name)
 	if(!team_name)
 		return
 	name = team_name
-	message_admins("[key_name_admin(usr)] renamed [old_name] team to [name]")
+	message_admins("[key_name_admin(usr)] zmienia nazwę drużyny [old_name] na [name]")
 	log_admin("[key_name(usr)] renamed [old_name] team to [name]")
 
 /datum/team/proc/admin_communicate(mob/user)
-	var/message = capped_input(user,"Wiadomość dla drużyny?","Team Message")
+	var/message = capped_input(user,"Wiadomość dla drużyny?","Wiadomość dla drużyny")
 	if(!message)
 		return
 	for(var/datum/mind/M in members)
 		to_chat(M.current,message)
 
-	message_admins("[key_name_admin(usr)] messaged [name] team with : [message]")
+	message_admins("[key_name_admin(usr)] pisze do drużyny [name]: [message]")
 	log_admin("Team Message: [key_name(usr)] -> [name] team : [message]")
 
 /datum/team/proc/admin_add_objective(mob/user)
@@ -69,7 +69,7 @@
 	if(!GLOB.admin_objective_list)
 		generate_admin_objective_list()
 
-	var/selected_type = input("Select objective type:", "Objective type") as null|anything in GLOB.admin_objective_list
+	var/selected_type = input("Wybierz typ celu:", "Typ celu") as null|anything in GLOB.admin_objective_list
 	selected_type = GLOB.admin_objective_list[selected_type]
 	if (!selected_type)
 		return
@@ -89,22 +89,22 @@
 		if(!team_antag)
 			team_antag = new /datum/antagonist/custom
 			if(!custom_antag_name)
-				custom_antag_name = stripped_input(user, "Custom team antagonist name:", "Custom antag", "Antagonist")
+				custom_antag_name = stripped_input(user, "Własna nazwa antagonisty drużyny:", "Własny antag", "Antagonista")
 				if(!custom_antag_name)
-					custom_antag_name = "Team Member"
+					custom_antag_name = "Członek drużyny"
 			team_antag.name = custom_antag_name
 			M.add_antag_datum(team_antag,src)
 		team_antag.objectives |= O
 		log_objective(M, O.explanation_text, usr)
 
-	message_admins("[key_name_admin(usr)] added objective \"[O.explanation_text]\" to [name]")
+	message_admins("[key_name_admin(usr)] dodaje cel „[O.explanation_text]” drużynie [name]")
 	log_admin("[key_name(usr)] added objective \"[O.explanation_text]\" to [name]")
 
 /datum/team/proc/admin_edit_objective(mob/user,datum/objective/old_objective)
 	if(!GLOB.admin_objective_list)
 		generate_admin_objective_list()
 
-	var/selected_type = input("Select objective type:", "Objective type") as null|anything in GLOB.admin_objective_list
+	var/selected_type = input("Wybierz typ celu:", "Typ celu") as null|anything in GLOB.admin_objective_list
 	selected_type = GLOB.admin_objective_list[selected_type]
 	if (!selected_type)
 		return
@@ -131,9 +131,9 @@
 				A.objectives.Insert(objective_pos, new_objective)
 				break
 		if(!objective_pos)
-			to_chat(user, "<span class='warning'>It seems like [M.current] does not have this objective despite being part of the team. If this is not intentional, consider removing and re-adding the objective.</span>")
+			to_chat(user, "<span class='warning'>Wygląda na to, że [M.current] nie ma tego celu, choć należy do drużyny. Jeśli to niezamierzone, usuń cel i dodaj go ponownie.</span>")
 
-	message_admins("[key_name_admin(usr)] edited team [src.name]'s objective to [new_objective.explanation_text]")
+	message_admins("[key_name_admin(usr)] zmienia cel drużyny [src.name] na: [new_objective.explanation_text]")
 	log_admin("[key_name(usr)] edited team [src.name]'s objective to [new_objective.explanation_text]")
 
 /datum/team/proc/admin_remove_objective(mob/user,datum/objective/O)
@@ -142,7 +142,7 @@
 			A.objectives -= O
 	objectives -= O
 
-	message_admins("[key_name_admin(usr)] removed objective \"[O.explanation_text]\" from [name]")
+	message_admins("[key_name_admin(usr)] usuwa cel „[O.explanation_text]” drużynie [name]")
 	log_admin("[key_name(usr)] removed objective \"[O.explanation_text]\" from [name]")
 	//qdel maybe
 
@@ -152,24 +152,24 @@
 		if(M.mind?.special_role)
 			continue
 		candidates += M.mind
-	var/datum/mind/value = input("Select new member:", "New team member", null) as null|anything in sortNames(candidates)
+	var/datum/mind/value = input("Wybierz nowego członka:", "Nowy członek drużyny", null) as null|anything in sortNames(candidates)
 	if (!value)
 		return
 
-	message_admins("[key_name_admin(usr)] added [key_name_admin(value)] as a member of [name] team")
+	message_admins("[key_name_admin(usr)] dodaje [key_name_admin(value)] do drużyny [name]")
 	log_admin("[key_name(usr)] added [key_name(value)] as a member of [name] team")
 
 	add_member(value)
 
 /datum/team/proc/admin_remove_member(mob/user,datum/mind/M)
-	message_admins("[key_name_admin(usr)] removed [key_name_admin(M)] from [name] team")
+	message_admins("[key_name_admin(usr)] usuwa [key_name_admin(M)] z drużyny [name]")
 	log_admin("[key_name(usr)] removed [key_name(M)] from [name] team")
 	remove_member(M)
 
 //After a bit of consideration i block team deletion if there's any members left until unified objective handling is in.
 /datum/team/proc/admin_delete(mob/user)
 	if(members.len > 0)
-		to_chat(user,"Team has members left, remove them first and make sure you know what you're doing.")
+		to_chat(user,"W drużynie są jeszcze członkowie. Najpierw ich usuń i upewnij się, że wiesz, co robisz.")
 		return
 	qdel(src)
 
@@ -210,7 +210,7 @@
 //This is here if you want admin created teams to tell each other apart easily.
 /datum/team/custom/proc/admin_force_hud(mob/user)
 	var/list/possible_icons = icon_states('icons/mob/hud.dmi')
-	var/new_hud_state = input(user,"Choose hud icon state","Custom HUD","traitor") as null|anything in sortList(possible_icons)
+	var/new_hud_state = input(user,"Wybierz stan ikony HUD-a","Własny HUD","traitor") as null|anything in sortList(possible_icons)
 	if(!new_hud_state)
 		return
 	//suppose could ask for color too

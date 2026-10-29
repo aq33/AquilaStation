@@ -1,6 +1,6 @@
 /obj/machinery/mineral/bluespace_miner
-	name = "bluespace mining machine"
-	desc = "A machine that uses the magic of Bluespace to slowly generate materials and add them to a linked ore silo."
+	name = "koparka bluespace"
+	desc = "Maszyna, która dzięki magii bluespace powoli wytwarza materiały i dodaje je do połączonego silosu rudy."
 	icon = 'aquila/icons/obj/machines/mining_machines.dmi'
 	icon_state = "bs_miner"
 	density = TRUE

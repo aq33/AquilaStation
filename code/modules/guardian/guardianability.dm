@@ -1,6 +1,6 @@
 /datum/guardian_ability
 	var/name = "ERROR"
-	var/desc = "You should not see this!"
+	var/desc = "Nie powinieneś tego widzieć!"
 	var/cost = 0
 	var/ui_icon
 	var/spell_type

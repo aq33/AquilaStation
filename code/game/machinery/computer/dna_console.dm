@@ -25,8 +25,8 @@
 
 
 /obj/machinery/computer/scan_consolenew
-	name = "\improper DNA scanner access console"
-	desc = "Scan DNA."
+	name = "\improper konsola dostępu do skanera DNA"
+	desc = "Skanuje DNA."
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
 	density = TRUE
@@ -148,7 +148,7 @@
 	if(istype(I, /obj/item/dnainjector/activator))
 		var/obj/item/dnainjector/activator/A = I
 		if(A.used)
-			to_chat(user,"<span class='notice'>Recycled [I].</span>")
+			to_chat(user,"<span class='notice'>Przetworzono: [I].</span>")
 			if(A.filled)
 				var/c_typepath = generate_chromosome()
 				var/obj/item/chromosome/CM = new c_typepath (drop_location())
@@ -635,8 +635,8 @@
 			if(is_nullifier)
 				var/obj/item/dnainjector/N = new /obj/item/dnainjector(loc)
 				N.remove_mutations += HM.type
-				N.name = "DNA nullifier"
-				N.desc = "Removes a specific mutation on injection."
+				N.name = "neutralizator DNA"
+				N.desc = "Po wstrzyknięciu usuwa określoną mutację."
 				N.icon_state = "dnanullifier"
 				N.base_icon_state = "dnanullifier"
 				// Printing lots of nullifiers wouldn't be good, so it has a longer cooldown
@@ -656,7 +656,7 @@
 			// Activators are also called "research" injectors and are used to create
 			//  chromosomes by recycling at the DNA Console
 			if(is_activator)
-				I.name = "DNA activator"
+				I.name = "aktywator DNA"
 				I.research = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's radiation generation
@@ -666,8 +666,8 @@
 				else
 					injectorready = world.time + INJECTOR_TIMEOUT
 			else
-				I.name = "DNA mutator"
-				I.desc = "Adds the current mutation on injection, at the cost of genetic stability."
+				I.name = "mutator DNA"
+				I.desc = "Po wstrzyknięciu dodaje bieżącą mutację kosztem stabilności genetycznej."
 				I.doitanyway = TRUE
 				// If there's an operational connected scanner, we can use its upgrades
 				//  to improve our injector's radiation generation
@@ -1121,7 +1121,7 @@
 
 			// Set the new information
 			genetic_makeup_buffer[buffer_index] = list(
-				"label"="Slot [buffer_index]:[scanner_occupant.real_name]",
+				"label"="Slot [buffer_index]: [scanner_occupant.real_name]",
 				"UI"=scanner_occupant.dna.uni_identity,
 				"UE"=scanner_occupant.dna.unique_enzymes,
 				"name"=scanner_occupant.real_name,
@@ -1397,7 +1397,7 @@
 
 			// Force apply any mutations, this is functionality similar to mutators
 			I.doitanyway = TRUE
-			I.name = "Advanced [inj_name] injector"
+			I.name = "zaawansowany iniektor: [inj_name]"
 
 			// If there's an operational connected scanner, we can use its upgrades
 			//  to improve our injector's radiation generation
@@ -1638,7 +1638,7 @@
 		var/type = delayed_action["type"]
 		var/buffer_slot = delayed_action["buffer_slot"]
 		if(apply_genetic_makeup(type, buffer_slot))
-			to_chat(connected_scanner.occupant, "<span class='notice'>[src] activates!</span>")
+			to_chat(connected_scanner.occupant, "<span class='notice'>[src] się uruchamia!</span>")
 		delayed_action = null
 
 /**

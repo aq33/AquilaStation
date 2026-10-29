@@ -1,7 +1,7 @@
 /obj/item/food/grown/nettle // "snack". yeah. try eating it, pussy
 	seed = /obj/item/plant_seeds/preset/nettle
-	name = "nettle"
-	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
+	name = "pokrzywa"
+	desc = "Chyba <B>nie</B> warto dotykać jej gołymi rękami..."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "nettle"
 	bite_consumption_mod = 2
@@ -56,8 +56,8 @@
 	force = round((5 + potency / 5), 1)
 
 /obj/item/food/grown/nettle/death
-	name = "deathnettle"
-	desc = "The <span class='danger'>glowing</span> nettle incites <span class='boldannounce'>rage</span> in you just from looking at it!"
+	name = "pokrzywa śmierci"
+	desc = "Na sam widok <span class='danger'>świecącej</span> pokrzywy budzi się w tobie <span class='boldannounce'>wściekłość</span>!"
 	icon_state = "deathnettle"
 	bite_consumption_mod = 4 // I guess if you really wanted to
 	force = 25

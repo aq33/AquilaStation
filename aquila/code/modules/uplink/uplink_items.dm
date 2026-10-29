@@ -94,27 +94,27 @@
 	purchasable_from = UPLINK_INFILTRATORS
 
 /datum/uplink_item/services/manifest_spoof
-	name = "Crew Manifest Spoof"
-	desc = "A button capable of adding a single person to the crew manifest."
+	name = "Fałszywy wpis w manifeście załogi"
+	desc = "Przycisk, który dopisuje jedną osobę do manifestu załogi."
 	item = /obj/item/service/manifest
 	cost = 4
 	limited_stock = 1
 
 /datum/uplink_item/services/fake_ion
-	name = "Fake Ion Storm"
-	desc = "Fakes an ion storm announcment. A good distraction, especially if the AI is weird anyway."
+	name = "Fałszywa burza jonowa"
+	desc = "Nadaje fałszywe ogłoszenie o burzy jonowej. Dobra dywersja, zwłaszcza gdy SI i tak dziwnie się zachowuje."
 	item = /obj/item/service/ion
 	cost = 7
 
 /datum/uplink_item/services/fake_meteor
-	name = "Fake Meteor Announcement"
-	desc = "Fakes an meteor announcment. A good way to get any C4 on the station exterior, or really any small explosion, brushed off as a meteor hit."
+	name = "Fałszywe ogłoszenie o meteorach"
+	desc = "Nadaje fałszywe ogłoszenie o meteorach. Dobry sposób, by C4 na zewnątrz statku albo każdy mały wybuch uznano za uderzenie meteoru."
 	item = /obj/item/service/meteor
 	cost = 7
 
 /datum/uplink_item/services/fake_rod
-	name = "Fake Immovable Rod"
-	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
+	name = "Fałszywy nieruchomy pręt"
+	desc = "Nadaje fałszywe ogłoszenie o nieruchomym pręcie. Dobre na krótką dywersję."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
 
@@ -125,21 +125,21 @@
 	surplus = 0
 
 /datum/uplink_item/infiltration/extra_stealthsuit
-	name = "Extra Chameleon Hardsuit"
-	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
+	name = "Dodatkowy kameleonowy skafander"
+	desc = "Skafander infiltracyjny, który potrafi natychmiast zmienić wygląd."
 	item = /obj/item/clothing/suit/space/hardsuit/infiltration
 	cost = 10
 
 /datum/uplink_item/infiltration/access_kit
-	name = "Access Kit"
-	desc = "A secret device, reverse engineered by gear retrieved from previous Nanotrasen infiltration missions. Allows you to spoof an ID card to have the assignment and access of a single low-level job."
+	name = "Zestaw dostępu"
+	desc = "Tajne urządzenie odtworzone na podstawie sprzętu zdobytego w poprzednich misjach infiltracji Nanotrasen. Pozwala podrobić kartę ID tak, by miała stanowisko i dostępy jednego niskiego zawodu."
 	item = /obj/item/access_kit/syndicate
 	limited_stock = 1
 	cost = 5
 
 /datum/uplink_item/dangerous/gremlin
-	name = "Gremlin Delivery Grenade"
-	desc = "This grenade is filled with several gremlins. They won't hurt anyone, but they love tampering with machinery: airlocks, APCs, the engine... Water makes them multiply. Fun for RnD and engineering!"
+	name = "Granat z gremlinami"
+	desc = "Ten granat jest pełen gremlinów. Nikomu nie zrobią krzywdy, ale uwielbiają grzebać w maszynach: śluzach, APC, silniku... Woda sprawia, że się mnożą. Świetna zabawa dla B+R i inżynierii!"
 	item = /obj/item/grenade/spawnergrenade/gremlin
 	cost = 2
 	surplus = 30

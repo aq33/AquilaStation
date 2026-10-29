@@ -1,6 +1,6 @@
 /obj/item/melee/powerfist
-	name = "power-fist"
-	desc = "A metal gauntlet with a piston-powered ram ontop for that extra 'ompfh' in your punch."
+	name = "pięść pneumatyczna"
+	desc = "Metalowa rękawica z taranem napędzanym tłokiem na wierzchu, dla dodatkowego „łups” w twoim ciosie."
 	icon_state = "powerfist"
 	item_state = "powerfist"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'

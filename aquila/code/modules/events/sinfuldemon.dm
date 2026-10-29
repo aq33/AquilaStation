@@ -8,7 +8,7 @@
 /datum/round_event/ghost_role/sinfuldemon
 	var/success_spawn = 0
 	minimum_required = 1
-	role_name = "demon of sin"
+	role_name = "grzeszny demon"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/sinfuldemon/kill()
@@ -37,7 +37,7 @@
 	Mind.add_antag_datum(/datum/antagonist/sinfuldemon)
 
 	spawned_mobs += sinfuldemon
-	message_admins("[ADMIN_LOOKUPFLW(sinfuldemon)] has been made into a demon of sin by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(sinfuldemon)] zostaje grzesznym demonem przez event.")
 	log_game("[key_name(sinfuldemon)] was spawned as a demon of sin by an event.")
 	var/datum/job/jobdatum = SSjob.GetJob(JOB_NAME_ASSISTANT)
 	if(SSshuttle.arrivals)

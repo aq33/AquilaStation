@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/wheelchair //ported from Hippiestation (by Jujumatic)
-	name = "wheelchair"
-	desc = "A chair with big wheels. It looks like you can move in this on your own."
+	name = "wózek inwalidzki"
+	desc = "Krzesło na dużych kołach. Wygląda na to, że możesz się na nim poruszać samodzielnie."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "wheelchair"
 	layer = OBJ_LAYER

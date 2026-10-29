@@ -1,6 +1,6 @@
 /obj/machinery/vending/autodrobe
 	name = "\improper AutoDrobe"
-	desc = "A vending machine for costumes."
+	desc = "Automat z kostiumami."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
 	req_access = list(ACCESS_THEATRE)
@@ -150,7 +150,7 @@
 	extra_price = 75
 	payment_department = ACCOUNT_SRV
 /obj/machinery/vending/autodrobe/all_access
-	desc = "A vending machine for costumes. This model appears to have no access restrictions."
+	desc = "Automat z kostiumami. Ten model chyba nie ma żadnych ograniczeń dostępu."
 	req_access = null
 
 /obj/item/vending_refill/autodrobe

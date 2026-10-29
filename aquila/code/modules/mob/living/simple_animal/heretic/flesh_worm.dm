@@ -251,7 +251,7 @@
  */
 // AQUILA - w tg część komponentu mob_chain
 /datum/action/cooldown/worm_contract
-	name = "Force Contract"
+	name = "Skurcz"
 	desc = "Ściąga całe twoje ciało na jedno pole."
 	background_icon_state = "bg_ecult"
 	icon_icon = 'icons/mob/actions/actions_ecult.dmi'

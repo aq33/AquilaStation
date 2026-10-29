@@ -2,8 +2,8 @@
 // plus Unstable Acid Spit z Monkestation (code/datums/mutations/acid_spit.dm)
 
 /datum/mutation/acidspit
-	name = "Acid Spit"
-	desc = "An ancient mutation from xenomorphs that changes the salivary glands to produce acid."
+	name = "Kwasowa plwocina"
+	desc = "Pradawna mutacja ksenomorfów, przez którą gruczoły ślinowe wytwarzają kwas."
 	quality = POSITIVE
 	instability = 50
 	difficulty = 12
@@ -14,8 +14,8 @@
 	conflicts = list(/datum/mutation/acidspit/unstable)
 
 /datum/action/cooldown/spell/pointed/projectile/acid_spit
-	name = "Acid Spit"
-	desc = "You focus your corrosive saliva to spit at your target."
+	name = "Kwasowa plwocina"
+	desc = "Zbierasz żrącą ślinę i plujesz nią w cel."
 	icon_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "alien_neurotoxin_0"
 	cooldown_time = 18 SECONDS
@@ -44,7 +44,7 @@
 		spit.multiplier = acid_multiplier
 
 /obj/item/projectile/bullet/yog_acid_spit
-	name = "acid spit"
+	name = "kwasowa plwocina"
 	icon_state = "neurotoxin"
 	damage = 2
 	damage_type = BURN
@@ -66,8 +66,8 @@
 // Unstable Acid Spit (Monkestation): bardziej niestabilna, z przepisu, rozpuszcza też kajdanki, kaftan i szafkę
 
 /datum/mutation/acidspit/unstable
-	name = "Unstable Acid Spit"
-	desc = "An ancient mutation from xenomorphs that changes the salivary glands to produce acid, this is a highly unstable strain."
+	name = "Niestabilna kwasowa plwocina"
+	desc = "Pradawna mutacja ksenomorfów, przez którą gruczoły ślinowe wytwarzają kwas. To bardzo niestabilna odmiana."
 	instability = 70
 	action_path = /datum/action/cooldown/spell/pointed/projectile/acid_spit/unstable
 	conflicts = list(/datum/mutation/acidspit)
@@ -83,8 +83,8 @@
 		spit.acid_multiplier = GET_MUTATION_POWER(src)
 
 /datum/action/cooldown/spell/pointed/projectile/acid_spit/unstable
-	name = "Unstable Acid Spit"
-	desc = "You focus your corrosive saliva to spit at your target. Used on yourself, it burns away any restraints holding you."
+	name = "Niestabilna kwasowa plwocina"
+	desc = "Zbierasz żrącą ślinę i plujesz nią w cel. Użyta na sobie wypala wszystko, co cię krępuje."
 
 /datum/action/cooldown/spell/pointed/projectile/acid_spit/unstable/cast(atom/cast_on)
 	. = ..()

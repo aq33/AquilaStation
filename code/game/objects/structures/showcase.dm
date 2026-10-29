@@ -3,17 +3,17 @@
 
 /*Completely generic structures for use by mappers to create fake objects, i.e. display rooms*/
 /obj/structure/showcase
-	name = "showcase"
+	name = "gablota"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
-	desc = "A stand with the empty body of a cyborg bolted to it."
+	desc = "Stojak z przykręconym pustym korpusem cyborga."
 	density = TRUE
 	anchored = TRUE
 	var/deconstruction_state = SHOWCASE_CONSTRUCTED
 
 /obj/structure/showcase/fakeid
-	name = "\improper CentCom identification console"
-	desc = "You can use this to change ID's."
+	name = "\improper konsola identyfikacyjna Centrali"
+	desc = "Służy do zmiany kart ID."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 
@@ -23,8 +23,8 @@
 	add_overlay("id_key")
 
 /obj/structure/showcase/fakesec
-	name = "\improper CentCom security records"
-	desc = "Used to view and edit personnel's security records."
+	name = "\improper akta ochrony Centrali"
+	desc = "Służą do przeglądania i edycji akt personelu prowadzonych przez ochronę."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 
@@ -34,71 +34,71 @@
 	add_overlay("security_key")
 
 /obj/structure/showcase/horrific_experiment
-	name = "horrific experiment"
-	desc = "Some sort of pod filled with blood and viscera. You swear you can see it moving..."
+	name = "przerażający eksperyment"
+	desc = "Jakaś kapsuła pełna krwi i wnętrzności. Dałbyś głowę, że widzisz, jak coś się w niej rusza..."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_g"
 
 /obj/structure/showcase/machinery/oldpod
-	name = "damaged cryogenic pod"
-	desc = "A damaged cryogenic pod long since lost to time, including its former occupant..."
+	name = "uszkodzona kapsuła kriogeniczna"
+	desc = "Uszkodzona kapsuła kriogeniczna dawno zapomniana przez czas, podobnie jak ten, kto w niej był..."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper-open"
 
 /obj/structure/showcase/machinery/oldpod/used
-	name = "opened cryogenic pod"
-	desc = "A cryogenic pod that has recently discharged its occupant. The pod appears non-functional."
+	name = "otwarta kapsuła kriogeniczna"
+	desc = "Kapsuła kriogeniczna, która niedawno wypuściła swojego lokatora. Wygląda na niesprawną."
 
 /obj/structure/showcase/cyborg/old
-	name = "Cyborg Statue"
-	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze."
+	name = "posąg cyborga"
+	desc = "Stary, wyłączony cyborg. Kiedyś strzegł przed intruzami, dziś tylko onieśmiela ich zimnym, stalowym spojrzeniem."
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "robot_old"
 	density = FALSE
 
 /obj/structure/showcase/mecha/marauder
-	name = "combat mech exhibit"
-	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees."
+	name = "eksponat: mech bojowy"
+	desc = "Stojak z przykręconym pustym, starym mechem bojowym Korporacji Nanotrasen. Opis przedstawia go jako czołową jednostkę broniącą interesów korporacji i jej pracowników."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "marauder"
 
 /obj/structure/showcase/mecha/ripley
-	name = "construction mech exhibit"
-	desc = "A stand with a retired construction mech bolted to it. The clamps are rated at 9300PSI. It seems to be falling apart."
+	name = "eksponat: mech budowlany"
+	desc = "Stojak z przykręconym, wycofanym z użytku mechem budowlanym. Kleszcze mają nacisk 9300 PSI. Wygląda, jakby się rozpadał."
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "firefighter"
 
 /obj/structure/showcase/machinery/implanter
-	name = "\improper Nanotrasen automated mindshield implanter exhibit"
-	desc = "A flimsy model of a standard Nanotrasen automated mindshield implant machine. With secure positioning harnesses and a robotic surgical injector, brain damage and other serious medical anomalies are now up to 60% less likely!"
+	name = "\improper eksponat: automatyczny wszczepiacz mindshieldów Nanotrasen"
+	desc = "Wątły model standardowej automatycznej maszyny Nanotrasen do wszczepiania implantów mindshield. Dzięki pewnym pasom stabilizującym i zrobotyzowanemu wstrzykiwaczowi chirurgicznemu uszkodzenia mózgu i inne poważne powikłania są teraz nawet o 60% mniej prawdopodobne!"
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 
 /obj/structure/showcase/machinery/microwave
-	name = "\improper Nanotrasen-brand microwave"
-	desc = "The famous Nanotrasen-brand microwave, the multi-purpose cooking appliance every station needs! This one appears to be drawn onto a cardboard box."
+	name = "\improper mikrofalówka marki Nanotrasen"
+	desc = "Słynna mikrofalówka marki Nanotrasen, wielofunkcyjne urządzenie kuchenne, którego potrzebuje każda stacja! Ta wygląda na narysowaną na kartonowym pudle."
 	icon = 'icons/obj/machines/microwave.dmi'
 	icon_state = "map_icon"
 
 /obj/structure/showcase/machinery/cloning_pod
-	name = "cloning pod exhibit"
-	desc = "Signs describe how cloning pods like these ensure that every Nanotrasen employee can carry out their contracts in full, even in the unlikely event of their catastrophic death. Hopefully they aren't all made of cardboard, like this one."
+	name = "eksponat: kapsuła klonująca"
+	desc = "Tabliczki wyjaśniają, jak takie kapsuły klonujące pozwalają każdemu pracownikowi Nanotrasen wypełnić kontrakt w całości, nawet w mało prawdopodobnym wypadku katastrofalnej śmierci. Oby nie wszystkie były z kartonu, jak ta."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
 
 /obj/structure/showcase/perfect_employee
-	name = "'Perfect Man' employee exhibit"
-	desc = "A stand with a model of the perfect Nanotrasen Employee bolted to it. Signs indicate it is robustly genetically engineered, as well as being ruthlessly loyal."
+	name = "eksponat: pracownik „Człowiek Idealny”"
+	desc = "Stojak z przykręconym modelem idealnego pracownika Nanotrasen. Według tabliczek jest solidnie zmodyfikowany genetycznie i bezwzględnie lojalny."
 
 /obj/structure/showcase/machinery/tv
-	name = "\improper Nanotrasen corporate newsfeed"
-	desc = "A slightly battered looking TV. Various Nanotrasen infomercials play on a loop, accompanied by a jaunty tune."
+	name = "\improper korporacyjny serwis informacyjny Nanotrasen"
+	desc = "Nieco poobijany telewizor. W pętli lecą różne reklamy Nanotrasen przy wtórze wesołej melodyjki."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "television"
 
 /obj/structure/showcase/machinery/signal_decrypter
-	name = "subsystem signal decrypter"
-	desc = "A strange machine that's supposedly used to help pick up and decrypt wave signals."
+	name = "deszyfrator sygnałów podsystemu"
+	desc = "Dziwna maszyna, która podobno pomaga odbierać i deszyfrować sygnały radiowe."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "processor"
 

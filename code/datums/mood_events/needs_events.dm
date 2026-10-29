@@ -4,7 +4,7 @@
 	mood_change = -6
 
 /datum/mood_event/wellfed
-	description = "<span class='nicegreen'>I'm stuffed!</span>\n"
+	description = "<span class='nicegreen'>Brzuch pełny!</span>\n"
 	mood_change = 8
 
 /datum/mood_event/fed
@@ -16,7 +16,7 @@
 	mood_change = -10
 
 /datum/mood_event/starving
-	description = "<span class='boldwarning'>I'm starving!</span>\n"
+	description = "<span class='boldwarning'>Umieram z głodu!</span>\n"
 	mood_change = -16
 
 //charge

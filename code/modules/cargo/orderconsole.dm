@@ -1,6 +1,6 @@
 /obj/machinery/computer/cargo
-	name = "supply console"
-	desc = "Used to order supplies, approve requests, and control the shuttle."
+	name = "konsola zaopatrzenia"
+	desc = "Służy do zamawiania zaopatrzenia, zatwierdzania zgłoszeń i sterowania promem."
 	icon_screen = "supply"
 	circuit = /obj/item/circuitboard/computer/cargo
 
@@ -22,8 +22,8 @@
 	light_color = "#E2853D"//orange
 
 /obj/machinery/computer/cargo/request
-	name = "supply request console"
-	desc = "Used to request supplies from cargo."
+	name = "konsola zgłoszeń zaopatrzenia"
+	desc = "Służy do zgłaszania zapotrzebowania do zaopatrzenia."
 	icon_screen = "request"
 	circuit = /obj/item/circuitboard/computer/cargo/request
 	can_send = FALSE
@@ -191,7 +191,7 @@
 
 			//create the paper from the cart list
 			var/obj/item/paper/requisition_paper = new(get_turf(src))
-			requisition_paper.name = "requisition form"
+			requisition_paper.name = "formularz zamówienia"
 			var/requisition_text= "<h2>Zamówienie zaopatrzenia [GLOB.station_name]</h2>"
 			requisition_text += "<hr/>"
 			requisition_text += "Czas zamówienia: [station_time_timestamp()]<br/>"
@@ -313,7 +313,7 @@
 	if((pack.hidden && !(obj_flags & EMAGGED)) || (pack.contraband && !contraband) || pack.DropPodOnly || (pack.special && !pack.special_enabled))
 		return
 
-	var/name = "*None Provided*"
+	var/name = "*Nie podano*"
 	var/rank = "*Nie podano*"
 	var/ckey = usr.ckey
 	if(ishuman(usr))
@@ -322,7 +322,7 @@
 		rank = human.get_assignment(hand_first = TRUE)
 	else if(issilicon(usr))
 		name = usr.real_name
-		rank = "Silicon"
+		rank = "Jednostka krzemowa"
 
 	var/datum/bank_account/account
 	if(self_paid && isliving(usr))
@@ -338,7 +338,7 @@
 
 	var/reason = ""
 	if(requestonly && !self_paid)
-		reason = tgui_input_text(usr, "Reason", name)
+		reason = tgui_input_text(usr, "Powód", name)
 		if(isnull(reason))
 			return
 

@@ -1,6 +1,6 @@
 /datum/action/changeling/refractive_chitin
-	name = "Refractive Chitin"
-	desc = "We form a refractive chitin around our skin, causing light to pass around us."
+	name = "Chityna załamująca światło"
+	desc = "Pokrywamy skórę chityną załamującą światło, które omija nas dookoła."
 	helptext = "Można włączać i wyłączać. Z czasem stajemy się niewidzialni; ruch lub otrzymane ciosy zaburzają załamujący światło pancerz chitynowy i robimy się bardziej widoczni. Gdy aktywna, zużywa 2 jedn. chemikaliów na sekundę."
 	button_icon_state = "chameleon_skin"
 	dna_cost = 2

@@ -1,6 +1,6 @@
 /obj/item/food/cheese
-	name = "the concept of cheese"
-	desc = "This probably shouldn't exist."
+	name = "idea sera"
+	desc = "To raczej nie powinno istnieć."
 	tastes = list("ser" = 1)
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 3)
 	foodtypes = DAIRY
@@ -8,8 +8,8 @@
 
 
 /obj/item/food/cheese/wheel
-	name = "cheese wheel"
-	desc = "A big wheel of delicious Cheddar."
+	name = "krąg sera"
+	desc = "Duży krąg pysznego cheddara."
 	icon_state = "cheesewheel"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
@@ -22,8 +22,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/cheese/wedge
-	name = "cheese wedge"
-	desc = "A wedge of delicious Cheddar. The cheese wheel it was cut from can't have gone far."
+	name = "kawałek sera"
+	desc = "Kawałek pysznego cheddara. Krąg sera, z którego go ukrojono, nie mógł odejść daleko."
 	icon_state = "cheesewedge"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,

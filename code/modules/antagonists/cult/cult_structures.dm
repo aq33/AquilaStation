@@ -53,8 +53,8 @@
 		..()
 
 /obj/structure/destructible/cult/talisman
-	name = "altar"
-	desc = "A bloodstained altar dedicated to Nar'Sie."
+	name = "ołtarz"
+	desc = "Zakrwawiony ołtarz poświęcony Nar'Sie."
 	icon_state = "talismanaltar"
 	break_message = "<span class='warning'>Ołtarz się rozpada, zostawiając tylko zawodzenie potępionych!</span>"
 
@@ -71,14 +71,14 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>Magia w [src] jest słaba, znów będzie gotowy za [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"Studiujesz schematy wyryte w ołtarzu...",,"Eldritch Whetstone","Construct Shell","Flask of Unholy Water")
+	var/choice = alert(user,"Studiujesz schematy wyryte w ołtarzu...",,"Pradawna osełka","Powłoka konstruktu","Flaszka nieświętej wody")
 	var/list/pickedtype = list()
 	switch(choice)
-		if("Eldritch Whetstone")
+		if("Pradawna osełka")
 			pickedtype += /obj/item/sharpener/cult
-		if("Construct Shell")
+		if("Powłoka konstruktu")
 			pickedtype += /obj/structure/constructshell
-		if("Flask of Unholy Water")
+		if("Flaszka nieświętej wody")
 			pickedtype += /obj/item/reagent_containers/glass/beaker/unholywater
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
 		cooldowntime = world.time + 2400
@@ -87,8 +87,8 @@
 			to_chat(user, "<span class='cultitalic'>Klękasz przed ołtarzem, a twoja wiara zostaje nagrodzona: [choice]!</span>")
 
 /obj/structure/destructible/cult/forge
-	name = "daemon forge"
-	desc = "A forge used in crafting the unholy weapons used by the armies of Nar'Sie."
+	name = "kuźnia demonów"
+	desc = "Kuźnia, w której wykuwa się nieświętą broń dla armii Nar'Sie."
 	icon_state = "forge"
 	light_range = 2
 	light_color = LIGHT_COLOR_LAVA
@@ -109,16 +109,16 @@
 		return
 	var/choice
 	if(user.mind.has_antag_datum(/datum/antagonist/cult/master))
-		choice = alert(user,"Studiujesz schematy wyryte w kuźni...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
+		choice = alert(user,"Studiujesz schematy wyryte w kuźni...",,"Szata z tarczą","Szata biczownika","Lustrzana tarcza")
 	else
-		choice = alert(user,"Studiujesz schematy wyryte w kuźni...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
+		choice = alert(user,"Studiujesz schematy wyryte w kuźni...",,"Szata z tarczą","Szata biczownika","Lustrzana tarcza")
 	var/list/pickedtype = list()
 	switch(choice)
-		if("Shielded Robe")
+		if("Szata z tarczą")
 			pickedtype += /obj/item/clothing/suit/hooded/cultrobes/cult_shield
-		if("Flagellant's Robe")
+		if("Szata biczownika")
 			pickedtype += /obj/item/clothing/suit/hooded/cultrobes/berserker
-		if("Mirror Shield")
+		if("Lustrzana tarcza")
 			pickedtype += /obj/item/shield/mirror
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
 		cooldowntime = world.time + 2400
@@ -130,7 +130,7 @@
 
 /obj/structure/destructible/cult/pylon
 	name = "pylon"
-	desc = "A floating crystal that slowly heals those faithful to Nar'Sie."
+	desc = "Unoszący się kryształ, który powoli leczy wiernych Nar'Sie."
 	icon_state = "pylon"
 	light_range = 1.5
 	light_color = LIGHT_COLOR_RED
@@ -212,8 +212,8 @@
 				last_corrupt = world.time + corrupt_delay*2
 
 /obj/structure/destructible/cult/tome
-	name = "archives"
-	desc = "A desk covered in arcane manuscripts and tomes in unknown languages. Looking at the text makes your skin crawl."
+	name = "archiwum"
+	desc = "Biurko zawalone tajemnymi rękopisami i księgami w nieznanych językach. Od samego patrzenia na ten tekst ciarki przechodzą ci po skórze."
 	icon_state = "tomealtar"
 	light_range = 1.5
 	light_color = LIGHT_COLOR_FIRE
@@ -232,14 +232,14 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>Magia w [src] jest słaba, znów będzie gotowy za [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
-	var/choice = alert(user,"Przeglądasz czarne stronice archiwum...",,"Zealot's Blindfold","Shuttle Curse","Veil Walker Set")
+	var/choice = alert(user,"Przeglądasz czarne stronice archiwum...",,"Opaska fanatyka","Klątwa promu","Zestaw wędrowca zasłony")
 	var/list/pickedtype = list()
 	switch(choice)
-		if("Zealot's Blindfold")
+		if("Opaska fanatyka")
 			pickedtype += /obj/item/clothing/glasses/hud/health/night/cultblind
-		if("Shuttle Curse")
+		if("Klątwa promu")
 			pickedtype += /obj/item/shuttle_curse
-		if("Veil Walker Set")
+		if("Zestaw wędrowca zasłony")
 			pickedtype += /obj/item/cult_shift
 			pickedtype += /obj/item/flashlight/flare/culttorch
 	if(src && !QDELETED(src) && anchored && pickedtype.len && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
@@ -252,8 +252,8 @@
 	debris = null
 
 /obj/effect/gateway
-	name = "gateway"
-	desc = "You're pretty sure that abyss is staring back."
+	name = "brama"
+	desc = "Masz niemal pewność, że otchłań odwzajemnia spojrzenie."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "hole"
 	density = TRUE

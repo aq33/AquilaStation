@@ -10,7 +10,7 @@
 	if(!allowed(user))
 		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')
 		playsound(src, sound, 100, 1)
-		to_chat(user, "<span class='warning'>Access denied</span>")
+		to_chat(user, "<span class='warning'>Odmowa dostępu</span>")
 		return
 	if(!target_location)
 		to_chat(user, "<span class='warning'>[src] nie ma przypisanej klatki na asteroidy.</span>")
@@ -82,13 +82,13 @@
 	if(!target)
 		return ..()
 	if(cooldown)
-		say("ERROR: Magnetisation circuits recharging...")
+		say("BŁĄD: obwody magnetyzujące się ładują...")
 		return FALSE
 	if(!has_overmap() || !length(target.core_composition))
 		var/sound = pick('nsv13/sound/effects/computer/error.ogg','nsv13/sound/effects/computer/error2.ogg','nsv13/sound/effects/computer/error3.ogg')
 		playsound(src, sound, 100, 1)
 		return FALSE
-	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>DANGER: Magnet has locked on to an asteroid. Vacate the asteroid cage immediately.</span>")
+	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>NIEBEZPIECZEŃSTWO: magnes namierzył asteroidę. Natychmiast opuść klatkę na asteroidy.</span>")
 	cooldown = TRUE
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 	if(prob(20))

@@ -2,8 +2,8 @@
 	icon_state = "filter_off-0"
 	density = FALSE
 
-	name = "gas filter"
-	desc = "Very useful for filtering gasses."
+	name = "filtr gazów"
+	desc = "Bardzo przydatny do filtrowania gazów."
 
 	can_unwrench = TRUE
 	var/transfer_rate = MAX_TRANSFER_RATE
@@ -123,7 +123,7 @@
 	data["max_rate"] = round(MAX_TRANSFER_RATE)
 
 	data["filter_types"] = list()
-	data["filter_types"] += list(list("name" = "Nothing", "id" = "", "selected" = !filter_type))
+	data["filter_types"] += list(list("name" = "Nic", "id" = "", "selected" = !filter_type))
 	for(var/id in GLOB.gas_data.ids)
 		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
 
@@ -216,38 +216,38 @@
 	on = TRUE
 	icon_state = "filter_on-0"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2
-	name = "nitrogen filter"
+	name = "filtr azotu"
 	filter_type = "n2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2
-	name = "oxygen filter"
+	name = "filtr tlenu"
 	filter_type = "o2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/co2
-	name = "carbon dioxide filter"
+	name = "filtr dwutlenku węgla"
 	filter_type = "co2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/n2o
-	name = "nitrous oxide filter"
+	name = "filtr podtlenku azotu"
 	filter_type = "n2o"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/plasma
-	name = "plasma filter"
+	name = "filtr plazmy"
 	filter_type = "plasma"
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped //This feels wrong, I know
 	icon_state = "filter_on-0_f"
 	flipped = TRUE
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2
-	name = "nitrogen filter"
+	name = "filtr azotu"
 	filter_type = "n2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/o2
-	name = "oxygen filter"
+	name = "filtr tlenu"
 	filter_type = "o2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/co2
-	name = "carbon dioxide filter"
+	name = "filtr dwutlenku węgla"
 	filter_type = "co2"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/n2o
-	name = "nitrous oxide filter"
+	name = "filtr podtlenku azotu"
 	filter_type = "n2o"
 /obj/machinery/atmospherics/components/trinary/filter/atmos/flipped/plasma
-	name = "plasma filter"
+	name = "filtr plazmy"
 	filter_type = "plasma"
 
 // These two filter types have critical_machine flagged to on and thus causes the area they are in to be exempt from the Grid Check event.

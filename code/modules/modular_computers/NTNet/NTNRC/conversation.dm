@@ -83,7 +83,7 @@
 		return
 	if(muted in muted_clients)
 		muted_clients.Remove(muted)
-		muted.computer.alert_call(muted, "You have been unmuted from [title]!", 'sound/machines/ping.ogg')
+		muted.computer.alert_call(muted, "Wyciszenie na kanale [title] zostaje zdjęte!", 'sound/machines/ping.ogg')
 	else
 		muted_clients.Add(muted)
 		muted.computer.alert_call(muted, "Wyciszono cię na kanale [title]!")
@@ -91,8 +91,8 @@
 /datum/ntnet_conversation/proc/ping_user(datum/computer_file/program/chatclient/pinger, datum/computer_file/program/chatclient/pinged)
 	if(pinger in muted_clients)
 		return
-	add_status_message("[pinger.username] pinged [pinged.username].")
-	pinged.computer.alert_call(pinged, "You have been pinged in [title] by [pinger.username]!", 'sound/machines/ping.ogg')
+	add_status_message("[pinger.username] pinguje użytkownika [pinged.username].")
+	pinged.computer.alert_call(pinged, "[pinger.username] pinguje cię na kanale [title]!", 'sound/machines/ping.ogg')
 
 /datum/ntnet_conversation/proc/changeop(datum/computer_file/program/chatclient/newop)
 	if(istype(newop))

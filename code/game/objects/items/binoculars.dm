@@ -1,6 +1,6 @@
 /obj/item/binoculars
-	name = "binoculars"
-	desc = "Used for long-distance surveillance."
+	name = "lornetka"
+	desc = "Służy do obserwacji na duże odległości."
 	item_state = "binoculars"
 	icon_state = "binoculars"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -59,7 +59,7 @@
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 		listeningTo = null
-	user.visible_message("<span class='notice'>[user] lowers [src].</span>", "<span class='notice'>Opuszczasz [src].</span>")
+	user.visible_message("<span class='notice'>[user] opuszcza [src].</span>", "<span class='notice'>Opuszczasz [src].</span>")
 	item_state = "binoculars"
 	user.regenerate_icons()
 	if(user && user.client)

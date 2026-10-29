@@ -1,8 +1,8 @@
 ////////////////////////////////////////////EGGS////////////////////////////////////////////
 
 /obj/item/food/chocolateegg
-	name = "chocolate egg"
-	desc = "Such, sweet, fattening food."
+	name = "czekoladowe jajko"
+	desc = "Takie słodkie, tuczące jedzenie."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "chocolateegg"
 	food_reagents = list(
@@ -18,8 +18,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/egg
-	name = "egg"
-	desc = "An egg!"
+	name = "jajko"
+	desc = "Jajko!"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "egg"
 	food_reagents = list(
@@ -45,7 +45,7 @@
 	preserved_food = TRUE
 
 /obj/item/food/egg/gland
-	desc = "An egg! It looks weird..."
+	desc = "Jajko! Wygląda dziwnie..."
 
 /obj/item/food/egg/gland/Initialize(mapload)
 	. = ..()
@@ -109,8 +109,8 @@
 	icon_state = "egg-yellow"
 
 /obj/item/food/friedegg
-	name = "fried egg"
-	desc = "A fried egg, with a touch of salt and pepper."
+	name = "jajko sadzone"
+	desc = "Jajko sadzone ze szczyptą soli i pieprzu."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "friedegg"
 	food_reagents = list(
@@ -123,8 +123,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/boiledegg
-	name = "boiled egg"
-	desc = "A hard boiled egg."
+	name = "jajko na twardo"
+	desc = "Jajko ugotowane na twardo."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "egg"
 	food_reagents = list(
@@ -147,7 +147,7 @@
 
 /obj/item/food/omelette //FUCK THIS
 	name = "omelette du fromage"
-	desc = "That's all you can say!"
+	desc = "To wszystko, co umiesz powiedzieć!"
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "omelette"
 	food_reagents = list(
@@ -180,8 +180,8 @@
 	..()
 
 /obj/item/food/benedict
-	name = "eggs benedict"
-	desc = "There is only one egg on this, how rude."
+	name = "jajka po benedyktyńsku"
+	desc = "Jest tu tylko jedno jajko. Co za nietakt."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "benedict"
 	food_reagents = list(
@@ -195,8 +195,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/eggwrap
-	name = "egg wrap"
-	desc = "The precursor to Pigs in a Blanket."
+	name = "wrap z jajkiem"
+	desc = "Przodek parówek w cieście."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "eggwrap"
 	food_reagents = list(
@@ -211,7 +211,7 @@
 
 /obj/item/food/chawanmushi
 	name = "chawanmushi"
-	desc = "A legendary egg custard that makes friends out of enemies. Probably too hot for a cat to eat."
+	desc = "Legendarny krem jajeczny, który zmienia wrogów w przyjaciół. Pewnie za gorący dla kota."
 	icon = 'icons/obj/food/egg.dmi'
 	icon_state = "chawanmushi"
 	food_reagents = list(

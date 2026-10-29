@@ -1,6 +1,6 @@
 /obj/item/ship_weapon/ammunition/missile/cruise
-	name = "MS-1 'Sparrowhawk' standard cruise missile"
-	desc = "Lethally precise, terrifyingly destructive. Can only be fired from the VLS."
+	name = "standardowy pocisk manewrujący MS-1 „Sparrowhawk”"
+	desc = "Zabójczo precyzyjny, przerażająco niszczycielski. Można go wystrzelić tylko z VLS."
 	icon = 'nsv13/icons/obj/munitions/missile.dmi'
 	icon_state = "standard"
 	bound_width = 128
@@ -8,8 +8,8 @@
 	density = TRUE
 
 /obj/machinery/ship_weapon/vls
-	name = "M14 VLS Loader"
-	desc = "A highly advanced launch platform for missiles inspired by recently discovered old-earth technology. The VLS allows for launching cruise missiles from any angle, and directly interfaces with the AMS for lethal precision."
+	name = "podajnik VLS M14"
+	desc = "Bardzo zaawansowana platforma startowa rakiet, inspirowana niedawno odkrytą technologią ze starej Ziemi. VLS pozwala odpalać pociski manewrujące pod dowolnym kątem i łączy się bezpośrednio z AMS, co daje zabójczą precyzję."
 	icon = 'nsv13/icons/obj/munitions/vls.dmi'
 	icon_state = "loader"
 	firing_sound = 'nsv13/sound/effects/ship/plasma.ogg'
@@ -119,8 +119,8 @@
 	hatch.toggle(HT_CLOSED)
 
 /obj/structure/fluff/vls_hatch
-	name = "VLS Launch Hatch"
-	desc = "A hatch designed to let cruise missiles out, and keep air in for the deck below."
+	name = "właz wyrzutni VLS"
+	desc = "Właz, który wypuszcza pociski manewrujące, a zatrzymuje powietrze na pokładzie poniżej."
 	icon = 'nsv13/icons/obj/munitions/vls.dmi'
 	icon_state = "vls_closed"
 	CanAtmosPass = FALSE

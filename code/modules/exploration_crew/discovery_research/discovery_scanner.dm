@@ -1,6 +1,6 @@
 /obj/item/discovery_scanner
-	name = "discovery scanner"
-	desc = "A scanner used by scientists to collect research data about unknown artifacts and specimins."
+	name = "skaner odkryć"
+	desc = "Skaner, którym naukowcy zbierają dane badawcze o nieznanych artefaktach i okazach."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "discovery"
 	item_state = "discoveryscanner"
@@ -22,7 +22,7 @@
 	. = ..()
 	. += "<span class='notice'>Kliknij lewym przyciskiem dowolnego moba lub okaz do zbadania, by go zeskanować i zdobyć punkty badań odkryć.</span>"
 	. += "<span class='notice'>[src] ma nieograniczony zasięg.</span>"
-	. += "<span class='notice'>Science goggles can help detect researchable items.</span>"
+	. += "<span class='notice'>Gogle naukowe pomagają wykrywać przedmioty, które można zbadać.</span>"
 
 /obj/item/discovery_scanner/attack_obj(obj/O, mob/living/user)
 	if(istype(O, /obj/machinery/computer/rdconsole))

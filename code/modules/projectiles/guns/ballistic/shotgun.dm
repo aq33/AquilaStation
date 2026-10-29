@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/shotgun
-	name = "shotgun"
-	desc = "A traditional shotgun with wood furniture and a four-shell capacity underneath."
+	name = "strzelba"
+	desc = "Tradycyjna strzelba z drewnianymi okładzinami i podlufowym magazynkiem na cztery naboje."
 	icon_state = "shotgun"
 	lefthand_file = 'icons/mob/inhands/weapons/64x_guns_left.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/64x_guns_right.dmi'
@@ -41,8 +41,8 @@
 // RIOT SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/riot //for spawn in the armory
-	name = "riot shotgun"
-	desc = "A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control."
+	name = "strzelba prewencyjna"
+	desc = "Wytrzymała strzelba z dłuższym magazynkiem i stałą kolbą taktyczną, przeznaczona do nieśmiercionośnego tłumienia zamieszek."
 	icon_state = "riotshotgun"
 	item_state = "shotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/riot
@@ -67,16 +67,16 @@
 	rack()
 
 /obj/item/gun/ballistic/shotgun/automatic/combat
-	name = "combat shotgun"
-	desc = "A semi automatic shotgun with tactical furniture and a six-shell capacity underneath."
+	name = "strzelba bojowa"
+	desc = "Półautomatyczna strzelba z taktycznymi okładzinami i podlufowym magazynkiem na sześć nabojów."
 	icon_state = "cshotgun"
 	item_state = "shotgun_combat"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com
 	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/gun/ballistic/shotgun/automatic/combat/compact
-	name = "compact combat shotgun"
-	desc = "A compact version of the semi automatic combat shotgun. For close encounters."
+	name = "kompaktowa strzelba bojowa"
+	desc = "Kompaktowa wersja półautomatycznej strzelby bojowej. Do bliskich spotkań."
 	icon_state = "cshotgunc"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/com/compact
 	weapon_weight = WEAPON_MEDIUM
@@ -92,8 +92,8 @@
 // Breaching Shotgun //
 
 /obj/item/gun/ballistic/shotgun/automatic/breaching
-	name = "tactical breaching shotgun"
-	desc = "A compact semi-auto shotgun designed to fire breaching slugs and create rapid entry points."
+	name = "taktyczna strzelba wyważająca"
+	desc = "Kompaktowa strzelba półautomatyczna do strzelania brenekami wyważającymi i szybkiego robienia wejść."
 	icon_state = "breachingshotgun"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/breaching
 	w_class = WEIGHT_CLASS_NORMAL //compact so it fits in backpacks
@@ -101,8 +101,8 @@
 //Dual Feed Shotgun
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube
-	name = "cycler shotgun"
-	desc = "An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types."
+	name = "strzelba dwumagazynkowa"
+	desc = "Zaawansowana strzelba z dwoma osobnymi magazynkami rurowymi, które pozwalają szybko przełączać rodzaj amunicji."
 	icon_state = "cycler"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/tube
 	w_class = WEIGHT_CLASS_HUGE
@@ -144,8 +144,8 @@
 // Bulldog shotgun //
 
 /obj/item/gun/ballistic/shotgun/bulldog
-	name = "\improper Bulldog Shotgun"
-	desc = "A semi-auto, mag-fed shotgun for combat in narrow corridors with a built in recoil dampening system, nicknamed 'Bulldog' by boarding parties. Compatible only with specialized 8-round drum magazines."
+	name = "\improper strzelba Bulldog"
+	desc = "Półautomatyczna strzelba zasilana z magazynka, do walki w ciasnych korytarzach, z wbudowanym tłumieniem odrzutu. Oddziały abordażowe nazywają ją „Bulldogiem”. Przyjmuje tylko specjalne 8-nabojowe magazynki bębnowe."
 	icon_state = "bulldog"
 	item_state = "bulldog"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -181,8 +181,8 @@
 /////////////////////////////
 
 /obj/item/gun/ballistic/shotgun/doublebarrel
-	name = "double-barreled shotgun"
-	desc = "A true classic."
+	name = "dwururka"
+	desc = "Prawdziwy klasyk."
 	icon_state = "dshotgun"
 	item_state = "shotgun_db"
 	w_class = WEIGHT_CLASS_BULKY
@@ -191,15 +191,15 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/dual
-	sawn_desc = "Omar's coming!"
+	sawn_desc = "Omar idzie!"
 	obj_flags = UNIQUE_RENAME
 	rack_sound_volume = 0
-	unique_reskin = list("Default" = "dshotgun",
-						"Dark Red Finish" = "dshotgun_d",
-						"Ash" = "dshotgun_f",
-						"Faded Grey" = "dshotgun_g",
-						"Maple" = "dshotgun_l",
-						"Rosewood" = "dshotgun_p"
+	unique_reskin = list("Domyślny" = "dshotgun",
+						"Ciemnoczerwone wykończenie" = "dshotgun_d",
+						"Jesion" = "dshotgun_f",
+						"Spłowiała szarość" = "dshotgun_g",
+						"Klon" = "dshotgun_l",
+						"Palisander" = "dshotgun_p"
 						)
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
@@ -223,8 +223,8 @@
 // IMPROVISED SHOTGUN //
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised
-	name = "improvised shotgun"
-	desc = "Essentially a tube that aims shotgun shells."
+	name = "improwizowana strzelba"
+	desc = "W zasadzie rura, która celuje nabojami do strzelby."
 	icon_state = "ishotgun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_BULKY
@@ -261,8 +261,8 @@
 		update_icon()
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
-	name = "sawn-off improvised shotgun"
-	desc = "A single-shot shotgun. Better not miss."
+	name = "improwizowany obrzyn"
+	desc = "Jednostrzałowa strzelba. Lepiej nie pudłuj."
 	icon_state = "ishotgun"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -271,8 +271,8 @@
 	recoil = SAWN_OFF_RECOIL
 
 /obj/item/gun/ballistic/shotgun/doublebarrel/hook
-	name = "hook modified sawn-off shotgun"
-	desc = "Range isn't an issue when you can bring your victim to you."
+	name = "obrzyn przerobiony na hak"
+	desc = "Zasięg to żaden problem, gdy możesz przyciągnąć ofiarę do siebie."
 	icon_state = "hookshotgun"
 	item_state = "shotgun"
 	load_sound = "sound/weapons/shotguninsert.ogg"

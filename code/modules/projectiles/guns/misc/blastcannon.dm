@@ -1,6 +1,6 @@
 /obj/item/gun/blastcannon
-	name = "pipe gun"
-	desc = "A pipe welded onto a gun stock, with a mechanical trigger. The pipe has an opening near the top, and there seems to be a spring loaded wheel in the hole."
+	name = "rurowa broń"
+	desc = "Rura przyspawana do kolby z mechanicznym spustem. Przy górze rury jest otwór, a w nim chyba kółko na sprężynie."
 	icon_state = "empty_blastcannon"
 	var/icon_state_loaded = "loaded_blastcannon"
 	item_state = "blastcannon_empty"
@@ -47,8 +47,8 @@
 /obj/item/gun/blastcannon/update_icon()
 	if(bomb)
 		icon_state = icon_state_loaded
-		name = "blast cannon"
-		desc = "A makeshift device used to concentrate a bomb's blast energy to a narrow wave."
+		name = "działo podmuchowe"
+		desc = "Prowizoryczne urządzenie skupiające energię wybuchu bomby w wąską falę."
 	else
 		icon_state = initial(icon_state)
 		name = initial(name)
@@ -102,7 +102,7 @@
 	playsound(user, "explosion", 100, 1)
 	var/turf/starting = get_turf(user)
 	var/turf/targturf = get_turf(target)
-	message_admins("Blast wave fired from [ADMIN_VERBOSEJMP(starting)] at [ADMIN_VERBOSEJMP(targturf)] ([target.name]) by [ADMIN_LOOKUPFLW(user)] with power [heavy]/[medium]/[light].")
+	message_admins("Fala uderzeniowa wystrzelona z [ADMIN_VERBOSEJMP(starting)] w [ADMIN_VERBOSEJMP(targturf)] ([target.name]) przez [ADMIN_LOOKUPFLW(user)], siła [heavy]/[medium]/[light].")
 	log_game("Blast wave fired from [AREACOORD(starting)] at [AREACOORD(targturf)] ([target.name]) by [key_name(user)] with power [heavy]/[medium]/[light].")
 	var/obj/item/projectile/blastwave/BW = new(loc, heavy, medium, light)
 	BW.hugbox = hugbox
@@ -111,7 +111,7 @@
 	BW.fire()
 
 /obj/item/projectile/blastwave
-	name = "blast wave"
+	name = "fala uderzeniowa"
 	icon_state = "blastwave"
 	damage = 0
 	nodamage = FALSE

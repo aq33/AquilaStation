@@ -2,19 +2,19 @@
 /client/proc/set_server_fps()
 	set category = "Debug"
 	set name = "Set Server FPS"
-	set desc = "Sets game speed in frames-per-second. Can potentially break the game"
+	set desc = "Ustawia szybkość gry w klatkach na sekundę. Może zepsuć grę"
 
 	if(!check_rights(R_DEBUG))
 		return
 
 	var/cfg_fps = CONFIG_GET(number/fps)
-	var/new_fps = round(input("Sets game frames-per-second. Can potentially break the game (default: [cfg_fps])","FPS", world.fps) as num|null)
+	var/new_fps = round(input("Ustawia liczbę klatek gry na sekundę. Może zepsuć grę (domyślnie: [cfg_fps])","FPS", world.fps) as num|null)
 
 	if(new_fps <= 0)
-		to_chat(src, "<span class='danger'>Error: set_server_fps(): Invalid world.fps value. No changes made.</span>")
+		to_chat(src, "<span class='danger'>Błąd: set_server_fps(): nieprawidłowa wartość world.fps. Nic nie zmieniono.</span>")
 		return
 	if(new_fps > cfg_fps * 1.5)
-		if(alert(src, "You are setting fps to a high value:\n\t[new_fps] frames-per-second\n\tconfig.fps = [cfg_fps]","Warning!","Confirm","ABORT-ABORT-ABORT") != "Confirm")
+		if(alert(src, "Ustawiasz wysoką wartość fps:\n\t[new_fps] klatek na sekundę\n\tconfig.fps = [cfg_fps]","Uwaga!","Potwierdź","PRZERWIJ-PRZERWIJ-PRZERWIJ") != "Potwierdź")
 			return
 
 	var/msg = "[key_name(src)] has modified world.fps to [new_fps]"

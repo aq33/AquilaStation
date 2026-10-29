@@ -6,9 +6,9 @@
 */
 
 /obj/machinery/telecomms/server
-	name = "telecommunication server"
+	name = "serwer telekomunikacyjny"
 	icon_state = "comm_server"
-	desc = "A machine used to store data and network statistics."
+	desc = "Maszyna do przechowywania danych i statystyk sieci."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
@@ -49,7 +49,7 @@
 
 	// Give the log a name and store it
 	var/identifier = num2text( rand(-1000,1000) + world.time )
-	log.name = "data packet ([rustg_hash_string(RUSTG_HASH_MD5, identifier)])"
+	log.name = "pakiet danych ([rustg_hash_string(RUSTG_HASH_MD5, identifier)])"
 	log_entries.Add(log)
 
 	// AQ EDIT START - NTSL, see aquila/code/modules/ntsl/server.dm
@@ -66,7 +66,7 @@
 // Simple log entry datum
 /datum/comm_log_entry
 	var/input_type = "Speech File"
-	var/name = "data packet (#)"
+	var/name = "pakiet danych (#)"
 	var/parameters = list()  // copied from signal.data above
 
 

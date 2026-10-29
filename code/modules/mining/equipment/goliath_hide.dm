@@ -1,10 +1,10 @@
 /**********************Goliath Hide**********************/
 /obj/item/stack/sheet/animalhide/goliath_hide
-	name = "goliath hide plates"
-	desc = "Pieces of a goliath's rocky hide, these might be able to make your suit a bit more durable to attack from the local fauna."
+	name = "płyty ze skóry goliata"
+	desc = "Kawałki skalistej skóry goliata. Mogą nieco wzmocnić twój kombinezon przed atakami miejscowej fauny."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "goliath_hide"
-	singular_name = "hide plate"
+	singular_name = "płyta ze skóry"
 	max_amount = 6
 	novariants = FALSE
 	item_flags = NOBLUDGEON

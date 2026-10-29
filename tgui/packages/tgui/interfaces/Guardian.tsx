@@ -43,7 +43,7 @@ export const Guardian = (props) => {
         <Section>
           <LabeledList>
             <LabeledList.Item
-              label="Points"
+              label="Punkty"
               color={data.points > 0 ? 'good' : 'bad'}
             >
               {data.points}
@@ -56,28 +56,28 @@ export const Guardian = (props) => {
             selected={tab === 'general'}
             onClick={() => setTab('general')}
           >
-            General
+            Ogólne
           </Tabs.Tab>
           <Tabs.Tab
             icon="fist-raised"
             selected={tab === 'stats'}
             onClick={() => setTab('stats')}
           >
-            Stats
+            Statystyki
           </Tabs.Tab>
           <Tabs.Tab
             icon="fire-alt"
             selected={tab === 'major'}
             onClick={() => setTab('major')}
           >
-            Primary Ability
+            Główna zdolność
           </Tabs.Tab>
           <Tabs.Tab
             icon="burn"
             selected={tab === 'minor'}
             onClick={() => setTab('minor')}
           >
-            Secondary Abilities
+            Dodatkowe zdolności
           </Tabs.Tab>
           <Tabs.Tab
             icon="plus-square"
@@ -102,7 +102,7 @@ const GuardianGeneral = (props) => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Name">
+        <LabeledList.Item label="Imię">
           <Input
             value={data.guardian_name}
             placeholder={data.name}
@@ -113,7 +113,7 @@ const GuardianGeneral = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Color">
+        <LabeledList.Item label="Kolor">
           <ColorBox
             color={data.guardian_color || '#FFFFFF'}
             mr={1}
@@ -123,18 +123,18 @@ const GuardianGeneral = (props) => {
         <LabeledList.Item>
           <Button
             icon="undo"
-            content="Reset All"
+            content="Resetuj wszystko"
             onClick={() => act('reset')}
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Attack Type">
+        <LabeledList.Item label="Typ ataku">
           <Button
-            content="Melee"
+            content="Wręcz"
             selected={data.melee}
             onClick={() => act('melee')}
           />
           <Button
-            content="Ranged"
+            content="Dystansowy"
             selected={!data.melee}
             disabled={data.melee && data.points < 3}
             onClick={() => act('ranged')}
@@ -213,7 +213,7 @@ const GuardianMajor = (props) => {
               </Flex.Item>
               <Flex.Item>
                 <Button
-                  content={ability.cost + ' points'}
+                  content={'Punkty: ' + ability.cost}
                   selected={ability.selected}
                   disabled={
                     !ability.selected &&
@@ -249,7 +249,7 @@ const GuardianMinor = (props) => {
               </Flex.Item>
               <Flex.Item>
                 <Button
-                  content={ability.cost + ' points'}
+                  content={'Punkty: ' + ability.cost}
                   selected={ability.selected}
                   disabled={
                     !ability.selected &&
@@ -282,17 +282,17 @@ const GuardianCreate = (props) => {
   };
   return (
     <>
-      <Section title="Appearance">
+      <Section title="Wygląd">
         <LabeledList>
-          <LabeledList.Item label="Name">
+          <LabeledList.Item label="Imię">
             {data.guardian_name || data.name}
           </LabeledList.Item>
-          <LabeledList.Item label="Color">
+          <LabeledList.Item label="Kolor">
             <ColorBox color={data.guardian_color || '#FFFFFF'} mr={1} />
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Stats">
+      <Section title="Statystyki">
         <LabeledList>
           {data.ratedskills.map((skill) => (
             <LabeledList.Item
@@ -306,7 +306,7 @@ const GuardianCreate = (props) => {
         </LabeledList>
       </Section>
       {!data.no_ability && (
-        <Section title="Major Ability">
+        <Section title="Główna zdolność">
           <LabeledList>
             {data.abilities_major.map(
               (ability) =>
@@ -319,7 +319,7 @@ const GuardianCreate = (props) => {
           </LabeledList>
         </Section>
       )}
-      <Section title="Minor Abilities">
+      <Section title="Dodatkowe zdolności">
         <LabeledList>
           {data.abilities_minor.map(
             (ability) =>
@@ -336,7 +336,7 @@ const GuardianCreate = (props) => {
         </LabeledList>
       </Section>
       <Button
-        content={'Summon ' + data.name}
+        content={'Przywołaj: ' + data.name}
         style={{
           width: '100%',
           textAlign: 'center',

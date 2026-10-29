@@ -1,11 +1,11 @@
 ///We take a constant input of reagents, and produce a patch once a set volume is reached
 /obj/machinery/plumbing/patch_dispenser
-	name = "patch dispenser"
-	desc = "A dispenser that dispenses patches."
+	name = "dozownik plastrów"
+	desc = "Dozownik, który dozuje plastry."
 	icon_state = "pill_press" //TODO SPRITE IT !!!!!!
 	active_power_usage = 80
 
-	var/patch_name = "factory patch"
+	var/patch_name = "plaster fabryczny"
 	var/patch_size = 40
 	///the icon_state number for the patch.
 	var/list/stored_patches = list()
@@ -68,5 +68,5 @@
 			. = TRUE
 		if("change_patch_name")
 			var/new_name = stripped_input(usr, "Podaj nazwę plastra.", name, patch_name)
-			patch_name = new_name + " patch"
+			patch_name = "plaster: " + new_name
 			. = TRUE

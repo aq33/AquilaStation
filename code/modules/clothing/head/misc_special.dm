@@ -11,8 +11,8 @@
  */
 
 /obj/item/clothing/head/welding
-	name = "welding helmet"
-	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
+	name = "przyłbica spawalnicza"
+	desc = "Osłona twarzy zakładana na głowę, zaprojektowana tak, by w pełni chronić noszącego przed kosmicznym oparzeniem oczu łukiem."
 	icon_state = "welding"
 	item_state = "welding"
 	clothing_flags = SNUG_FIT
@@ -34,8 +34,8 @@
  * Cakehat
  */
 /obj/item/clothing/head/hardhat/cakehat
-	name = "cakehat"
-	desc = "You put the cake on your head. Brilliant."
+	name = "tortowy kapelusz"
+	desc = "Kładziesz sobie tort na głowie. Genialne."
 	icon_state = "hardhat0_cakehat"
 	item_state = "hardhat0_cakehat"
 	hat_type = "cakehat"
@@ -85,8 +85,8 @@
 	return on * heat
 
 /obj/item/clothing/head/hardhat/cakehat/energycake
-	name = "energy cake"
-	desc = "You put the energy sword on your cake. Brilliant."
+	name = "tort energetyczny"
+	desc = "Wtykasz miecz energetyczny w tort. Genialne."
 	icon_state = "hardhat0_energycake"
 	item_state = "hardhat0_energycake"
 	hat_type = "energycake"
@@ -110,7 +110,7 @@
  * Ushanka
  */
 /obj/item/clothing/head/ushanka
-	name = "ushanka"
+	name = "uszanka"
 	desc = "Idealna na zimę na Syberii, da?"
 	icon_state = "ushankadown"
 	item_state = "ushankadown"
@@ -137,8 +137,8 @@
  * Pumpkin head
  */
 /obj/item/clothing/head/hardhat/pumpkinhead
-	name = "carved pumpkin"
-	desc = "A jack o' lantern! Believed to ward off evil spirits."
+	name = "wydrążona dynia"
+	desc = "Lampion z dyni! Podobno odstrasza złe duchy."
 	icon_state = "hardhat0_pumpkin"
 	item_state = "hardhat0_pumpkin"
 	hat_type = "pumpkin"
@@ -152,8 +152,8 @@
  * Kitty ears
  */
 /obj/item/clothing/head/kitty
-	name = "kitty ears"
-	desc = "A pair of kitty ears. Meow!"
+	name = "kocie uszy"
+	desc = "Para kocich uszu. Miau!"
 	icon_state = "kitty"
 	clothing_flags = SNUG_FIT
 	color = "#999999"
@@ -166,11 +166,11 @@
 	AddComponent(/datum/component/haircolor_clothing)
 
 /obj/item/clothing/head/kitty/genuine
-	desc = "A pair of kitty ears. A tag on the inside says \"Hand made from real cats.\""
+	desc = "Para kocich uszu. Metka w środku głosi: „Ręcznie robione z prawdziwych kotów”."
 
 /obj/item/clothing/head/hardhat/reindeer
-	name = "novelty reindeer hat"
-	desc = "Some fake antlers and a very fake red nose."
+	name = "zabawna czapka renifera"
+	desc = "Sztuczne poroże i bardzo sztuczny czerwony nos."
 	clothing_flags = SNUG_FIT
 	icon_state = "hardhat0_reindeer"
 	item_state = "hardhat0_reindeer"
@@ -187,8 +187,8 @@
 */
 
 /obj/item/clothing/head/rabbitears
-	name = "rabbit ears"
-	desc = "Wearing these makes you look useless, and only good for your sex appeal."
+	name = "królicze uszy"
+	desc = "W nich wyglądasz na bezużytecznego i dobrego tylko do wyglądania seksownie."
 	icon_state = "bunny"
 	clothing_flags = SNUG_FIT
 	dynamic_hair_suffix = ""
@@ -200,8 +200,8 @@
 	AddComponent(/datum/component/haircolor_clothing)
 
 /obj/item/clothing/head/cardborg
-	name = "cardborg helmet"
-	desc = "A helmet made out of a box."
+	name = "hełm kartonborga"
+	desc = "Hełm zrobiony z pudła."
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
 	clothing_flags = SNUG_FIT
@@ -223,8 +223,8 @@
 	user.remove_alt_appearance("standard_borg_disguise")
 
 /obj/item/clothing/head/wig
-	name = "wig"
-	desc = "A bunch of hair without a head attached."
+	name = "peruka"
+	desc = "Garść włosów bez głowy."
 	icon = 'icons/mob/human_face.dmi'	  // default icon for all hairs
 	icon_state = "hair_vlong"
 	item_state = "pwig"
@@ -277,8 +277,8 @@
 	hair_color = "#[random_short_color()]"
 
 /obj/item/clothing/head/wig/natural
-	name = "natural wig"
-	desc = "A bunch of hair without a head attached. This one changes color to match the hair of the wearer. Nothing natural about that."
+	name = "naturalna peruka"
+	desc = "Garść włosów bez głowy. Ta zmienia kolor, żeby pasować do włosów noszącego. Nic w tym naturalnego."
 	hair_color = "#FFF"
 	adjustablecolor = FALSE
 	custom_price = 25
@@ -294,16 +294,16 @@
 		user.update_inv_head()
 
 /obj/item/clothing/head/bronze
-	name = "bronze hat"
-	desc = "A crude helmet made out of bronze plates. It offers very little in the way of protection."
+	name = "brązowy hełm"
+	desc = "Toporny hełm z płyt z brązu. Daje bardzo niewielką ochronę."
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_helmet_old"
 	flags_inv = HIDEEARS|HIDEHAIR
 	armor = list("melee" = 5, "bullet" = 0, "laser" = -5, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20, "stamina" = 30)
 
 /obj/item/clothing/head/foilhat
-	name = "tinfoil hat"
-	desc = "Thought control rays, psychotronic scanning. Don't mind that, I'm protected cause I made this hat."
+	name = "czapka z folii aluminiowej"
+	desc = "Promienie kontroli myśli, skanowanie psychotroniczne. Nie przejmuję się tym, jestem chroniony, bo zrobiłem tę czapkę."
 	icon_state = "foilhat"
 	item_state = "foilhat"
 	clothing_flags = EFFECT_HAT | SNUG_FIT
@@ -349,8 +349,8 @@
 	return ..()
 
 /obj/item/clothing/head/foilhat/plasmaman
-	name = "tinfoil envirosuit helmet"
-	desc = "The Syndicate is a hoax! Dogs are fake! Space Station 13 is just a money laundering operation! See the truth!"
+	name = "hełm środowiskowy z folii aluminiowej"
+	desc = "Syndykat to mistyfikacja! Psy są nieprawdziwe! Stacja Kosmiczna 13 to tylko pralnia pieniędzy! Przejrzyj na oczy!"
 	icon_state = "tinfoil_envirohelm"
 	item_state = "tinfoil_envirohelm"
 	strip_delay = 150
@@ -388,7 +388,7 @@
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/head/speedwagon
-	name = "hat of ultimate masculinity"
+	name = "kapelusz absolutnej męskości"
 	desc = "Samo noszenie tego sprawia, że masz ochotę groźnie pozować."
 	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "speedwagon"
@@ -397,13 +397,13 @@
 	worn_y_dimension = 64
 
 /obj/item/clothing/head/speedwagon/cursed
-	name = "ULTIMATE HAT"
+	name = "KAPELUSZ OSTATECZNY"
 	desc = "Przy tym wyjątkowo pięknym kapeluszu czujesz się słaby i żałosny."
 	icon_state = "speedwagon_cursed"
 	item_state = "speedwagon_cursed"
 
 /obj/item/clothing/head/franks_hat
-	name = "Frank's Hat"
-	desc = "You feel ashamed about what you had to do to get this hat"
+	name = "Kapelusz Franka"
+	desc = "Wstydzisz się tego, co musiałeś zrobić, żeby zdobyć ten kapelusz"
 	icon_state = "cowboy"
 	item_state = "cowboy"

@@ -1,6 +1,6 @@
 /obj/machinery/modular_fabricator/component_printer
-	name = "component printer"
-	desc = "Produces components for the creation of integrated circuits."
+	name = "drukarka komponentów"
+	desc = "Wytwarza komponenty do budowy układów scalonych."
 	icon = 'icons/obj/wiremod_fab.dmi'
 	icon_state = "fab-idle"
 	circuit = /obj/item/circuitboard/machine/component_printer
@@ -28,7 +28,7 @@
 	return default_deconstruction_screwdriver(user, "fab-o", "fab-idle", tool)
 
 /obj/item/circuitboard/machine/component_printer
-	name = "\improper Component Printer (Machine Board)"
+	name = "\improper drukarka komponentów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/modular_fabricator/component_printer
 	req_components = list(

@@ -44,17 +44,17 @@ const MediPenPrinterContent = (props) => {
   return (
     <>
       <Section
-        title="Beaker"
+        title="Zlewka"
         buttons={
           !!data.isBeakerLoaded && (
             <>
               <Box inline color="label" mr={2}>
                 <AnimatedNumber value={beakerCurrentVolume} initial={0} />
-                {` / ${beakerMaxVolume} units`}
+                {` / ${beakerMaxVolume} j.`}
               </Box>
               <Button
                 icon="eject"
-                content="Eject"
+                content="Wysuń"
                 onClick={() => act('eject')}
               />
             </>
@@ -63,12 +63,12 @@ const MediPenPrinterContent = (props) => {
       >
         {!isBeakerLoaded && (
           <Box color="label" mt="3px" mb="5px">
-            No beaker loaded.
+            Nie włożono zlewki.
           </Box>
         )}
         {!!isBeakerLoaded && beakerContents.length === 0 && (
           <Box color="label" mt="3px" mb="5px">
-            Beaker is empty.
+            Zlewka jest pusta.
           </Box>
         )}
         <ChemicalBuffer>
@@ -82,16 +82,16 @@ const MediPenPrinterContent = (props) => {
         </ChemicalBuffer>
       </Section>
       <Section
-        title="Buffer"
+        title="Bufor"
         buttons={
           <>
             <Box inline color="label" mr={1}>
-              Mode:
+              Tryb:
             </Box>
             <Button
               color={data.mode ? 'good' : 'bad'}
               icon={data.mode ? 'exchange-alt' : 'times'}
-              content={data.mode ? 'Transfer' : 'Destroy'}
+              content={data.mode ? 'Przelewanie' : 'Usuwanie'}
               onClick={() => act('toggleMode')}
             />
           </>
@@ -99,7 +99,7 @@ const MediPenPrinterContent = (props) => {
       >
         {bufferContents.length === 0 && (
           <Box color="label" mt="3px" mb="5px">
-            Buffer is empty.
+            Bufor jest pusty.
           </Box>
         )}
         <ChemicalBuffer>
@@ -112,7 +112,7 @@ const MediPenPrinterContent = (props) => {
           ))}
         </ChemicalBuffer>
       </Section>
-      <Section title="Packaging">
+      <Section title="Pakowanie">
         <PackagingControls />
       </Section>
     </>
@@ -128,7 +128,7 @@ const ChemicalBufferEntry = (props) => {
     <Table.Row key={chemical.id}>
       <Table.Cell color="label">
         <AnimatedNumber value={chemical.volume} initial={0} />
-        {` units of ${chemical.name}`}
+        {` j. ${chemical.name}`}
       </Table.Cell>
       <Table.Cell collapsing>
         <Button
@@ -162,7 +162,7 @@ const ChemicalBufferEntry = (props) => {
           }
         />
         <Button
-          content="All"
+          content="Wszystko"
           onClick={() =>
             act('transfer', {
               id: chemical.id,
@@ -173,7 +173,7 @@ const ChemicalBufferEntry = (props) => {
         />
         <Button
           icon="ellipsis-h"
-          tooltip="Custom amount"
+          tooltip="Własna ilość"
           onClick={() =>
             act('transfer', {
               id: chemical.id,
@@ -204,7 +204,7 @@ const PackagingControlsItem = (props) => {
         maxValue={MaxDispense}
         onChange={onChangeAmount}
       />
-      <Button ml={1} content="Create" onClick={onCreate} />
+      <Button ml={1} content="Utwórz" onClick={onCreate} />
       <Box inline ml={1} color="label">
         {sideNote}
       </Box>
@@ -221,10 +221,10 @@ const PackagingControls = (props) => {
     <LabeledList>
       {!condi && (
         <PackagingControlsItem
-          label="injectors"
+          label="autoinjektory"
           amount={medipenAmount}
-          amountUnit="injectors"
-          sideNote="max 10u"
+          amountUnit="szt."
+          sideNote="maks. 10 j."
           onChangeAmount={(value) => setmedipenAmount(value)}
           onCreate={() =>
             act('create', {

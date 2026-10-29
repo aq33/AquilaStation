@@ -1,6 +1,6 @@
 /obj/item/screwdriver
-	name = "screwdriver"
-	desc = "You can be totally screwy with this."
+	name = "śrubokręt"
+	desc = "Możesz tym totalnie namieszać."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver_map"
 	item_state = "screwdriver"
@@ -69,8 +69,8 @@
 	return eyestab(M,user)
 
 /obj/item/screwdriver/brass
-	name = "brass screwdriver"
-	desc = "A screwdriver made of brass. The handle feels freezing cold."
+	name = "mosiężny śrubokręt"
+	desc = "Śrubokręt z mosiądzu. Rękojeść jest lodowato zimna."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "screwdriver_brass"
 	item_state = "screwdriver_brass"
@@ -80,8 +80,8 @@
 	greyscale_config_inhand_right = null
 
 /obj/item/screwdriver/abductor
-	name = "alien screwdriver"
-	desc = "An ultrasonic screwdriver."
+	name = "obcy śrubokręt"
+	desc = "Ultradźwiękowy śrubokręt."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "screwdriver_a"
 	item_state = "screwdriver_nuke"
@@ -95,8 +95,8 @@
 	return mutable_appearance('icons/obj/clothing/belt_overlays.dmi', "screwdriver_nuke")
 
 /obj/item/screwdriver/cyborg
-	name = "automated screwdriver"
-	desc = "A powerful automated screwdriver, designed to be both precise and quick."
+	name = "zautomatyzowany śrubokręt"
+	desc = "Mocny zautomatyzowany śrubokręt, zaprojektowany tak, żeby był precyzyjny i szybki."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "screwdriver_cyborg"
 	hitsound = 'sound/items/drill_hit.ogg'

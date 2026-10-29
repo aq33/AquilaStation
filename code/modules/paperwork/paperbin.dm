@@ -1,6 +1,6 @@
 /obj/item/paper_bin
-	name = "paper bin"
-	desc = "Contains all the paper you'll never need."
+	name = "podajnik papieru"
+	desc = "Zawiera cały papier, który nigdy ci się nie przyda."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
@@ -135,14 +135,14 @@
 		add_overlay(mutable_appearance(bin_pen.icon, bin_pen.icon_state))
 
 /obj/item/paper_bin/construction
-	name = "construction paper bin"
-	desc = "Contains all the paper you'll never need, IN COLOR!"
+	name = "podajnik papieru kolorowego"
+	desc = "Zawiera cały papier, który nigdy ci się nie przyda, i to W KOLORZE!"
 	icon_state = "paper_binc"
 	papertype = /obj/item/paper/construction
 
 /obj/item/paper_bin/bundlenatural
-	name = "natural paper bundle"
-	desc = "A bundle of paper created using traditional methods."
+	name = "plik naturalnego papieru"
+	desc = "Plik papieru wykonanego tradycyjnymi metodami."
 	icon_state = "paper_bundle"
 	papertype = /obj/item/paper/natural
 	resistance_flags = FLAMMABLE

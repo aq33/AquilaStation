@@ -189,8 +189,8 @@
 	updateEmbedding()
 
 /obj/effect/immovablerod/butt
-	name = "enormous ass"
-	desc = "godDAMN that ass is well rounded"
+	name = "ogromna dupa"
+	desc = "o KURDE, ale okrąglutka ta dupa"
 	icon = 'aquila/icons/obj/butt.dmi'
 	icon_state = "butt"
 

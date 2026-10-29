@@ -8,7 +8,7 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/abductor
-	name = "alien floor"
+	name = "obca podłoga"
 	icon_state = "alienpod1"
 	tiled_dirt = FALSE
 
@@ -18,7 +18,7 @@
 
 
 /turf/open/floor/plating/abductor2
-	name = "alien plating"
+	name = "obce poszycie"
 	icon_state = "alienplating"
 	tiled_dirt = FALSE
 
@@ -34,11 +34,11 @@
 /turf/open/floor/plating/ashplanet
 	icon = 'icons/turf/mining.dmi'
 	gender = PLURAL
-	name = "ash"
+	name = "popiół"
 	icon_state = "ash"
 	smooth = SMOOTH_MORE|SMOOTH_BORDER
 	var/smooth_icon = 'icons/turf/floors/ash.dmi'
-	desc = "The ground is covered in volcanic ash."
+	desc = "Ziemię pokrywa wulkaniczny popiół."
 	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock //I assume this will be a chasm eventually, once this becomes an actual surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
@@ -73,7 +73,7 @@
 
 /turf/open/floor/plating/ashplanet/rocky
 	gender = PLURAL
-	name = "rocky ground"
+	name = "skaliste podłoże"
 	icon_state = "rockyash"
 	smooth_icon = 'icons/turf/floors/rocky_ash.dmi'
 	layer = MID_TURF_LAYER
@@ -85,7 +85,7 @@
 
 /turf/open/floor/plating/ashplanet/wateryrock
 	gender = PLURAL
-	name = "wet rocky ground"
+	name = "mokre skaliste podłoże"
 	smooth = null
 	icon_state = "wateryrock"
 	slowdown = 2
@@ -100,7 +100,7 @@
 
 
 /turf/open/floor/plating/beach
-	name = "beach"
+	name = "plaża"
 	icon = 'icons/misc/beach.dmi'
 	flags_1 = NONE
 	attachment_holes = FALSE
@@ -118,26 +118,26 @@
 
 /turf/open/floor/plating/beach/sand
 	gender = PLURAL
-	name = "sand"
-	desc = "Surf's up."
+	name = "piasek"
+	desc = "Fale w sam raz."
 	icon_state = "sand"
 	baseturfs = /turf/open/floor/plating/beach/sand
 
 /turf/open/floor/plating/beach/coastline_t
-	name = "coastline"
-	desc = "Tide's high tonight. Charge your batons."
+	name = "linia brzegowa"
+	desc = "Dziś wysoki przypływ. Naładuj pałki."
 	icon_state = "sandwater_t"
 	baseturfs = /turf/open/floor/plating/beach/coastline_t
 
 /turf/open/floor/plating/beach/coastline_b
-	name = "coastline"
+	name = "linia brzegowa"
 	icon_state = "sandwater_b"
 	baseturfs = /turf/open/floor/plating/beach/coastline_b
 
 /turf/open/floor/plating/beach/water
 	gender = PLURAL
-	name = "water"
-	desc = "You get the feeling that nobody's bothered to actually make this water functional..."
+	name = "woda"
+	desc = "Masz wrażenie, że nikomu nie chciało się sprawić, żeby ta woda naprawdę działała..."
 	icon_state = "water"
 	baseturfs = /turf/open/floor/plating/beach/water
 
@@ -147,8 +147,8 @@
 
 /turf/open/floor/plating/ironsand
 	gender = PLURAL
-	name = "iron sand"
-	desc = "Like sand, but more <i>iron</i>."
+	name = "piasek żelazisty"
+	desc = "Jak piasek, tylko bardziej <i>żelazny</i>."
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	clawfootstep = FOOTSTEP_SAND
@@ -165,8 +165,8 @@
 	return
 
 /turf/open/floor/plating/ice
-	name = "ice sheet"
-	desc = "A sheet of solid ice. Looks slippery."
+	name = "tafla lodu"
+	desc = "Tafla litego lodu. Wygląda na śliską."
 	icon = 'icons/turf/floors/ice_turf.dmi'
 	icon_state = "unsmooth"
 	initial_gas_mix = FROZEN_ATMOS
@@ -207,8 +207,8 @@
 
 
 /turf/open/floor/plating/snowed
-	name = "snowed-over plating"
-	desc = "A section of heated plating, helps keep the snow from stacking up too high."
+	name = "zaśnieżone poszycie"
+	desc = "Fragment podgrzewanego poszycia. Nie pozwala, by śnieg piętrzył się zbyt wysoko."
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
 	initial_gas_mix = FROZEN_ATMOS

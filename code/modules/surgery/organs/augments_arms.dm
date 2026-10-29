@@ -1,6 +1,6 @@
 /obj/item/organ/cyberimp/arm
-	name = "arm-mounted implant"
-	desc = "You shouldn't see this! Adminhelp and report this as an issue on github!"
+	name = "implant w ręce"
+	desc = "Nie powinieneś tego widzieć! Zgłoś to adminom i jako błąd na GitHubie!"
 	zone = BODY_ZONE_R_ARM
 	icon_state = "implant-toolkit"
 	w_class = WEIGHT_CLASS_SMALL
@@ -203,8 +203,8 @@
 
 
 /obj/item/organ/cyberimp/arm/gun/laser
-	name = "arm-mounted laser implant"
-	desc = "A variant of the arm cannon implant that fires lethal laser beams. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "implant laserowy w ręce"
+	desc = "Wariant implantu działa ręcznego, który strzela zabójczymi wiązkami laserowymi. Działo wysuwa się z ręki nosiciela i chowa się w niej, gdy nie jest używane."
 	icon_state = "arm_laser"
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/gun/energy/laser/mounted)
@@ -219,8 +219,8 @@
 	laserphasergun.icon_state = icon_state
 
 /obj/item/organ/cyberimp/arm/gun/taser
-	name = "arm-mounted taser implant"
-	desc = "A variant of the arm cannon implant that fires electrodes and disabler shots. The cannon emerges from the subject's arm and remains inside when not in use."
+	name = "implant paralizatora w ręce"
+	desc = "Wariant implantu działa ręcznego, który strzela elektrodami i wiązkami obezwładniającymi. Działo wysuwa się z ręki nosiciela i chowa się w niej, gdy nie jest używane."
 	icon_state = "arm_taser"
 	items_to_create = list(/obj/item/gun/energy/e_gun/advtaser/mounted)
 
@@ -228,8 +228,8 @@
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/toolset
-	name = "integrated toolset implant"
-	desc = "A stripped-down version of the engineering cyborg toolset, designed to be installed on subject's arm. Contains advanced versions of every tool."
+	name = "implant ze zintegrowanym zestawem narzędzi"
+	desc = "Okrojona wersja zestawu narzędzi cyborga inżynieryjnego, zaprojektowana do instalacji w ręce nosiciela. Zawiera zaawansowane wersje wszystkich narzędzi."
 	items_to_create = list(/obj/item/screwdriver/cyborg, /obj/item/wrench/cyborg, /obj/item/weldingtool/largetank/cyborg,
 		/obj/item/crowbar/cyborg, /obj/item/wirecutters/cyborg, /obj/item/multitool/cyborg)
 
@@ -247,20 +247,20 @@
 	return TRUE
 
 /obj/item/organ/cyberimp/arm/esword
-	name = "arm-mounted energy blade"
-	desc = "An illegal and highly dangerous cybernetic implant that can project a deadly blade of concentrated energy."
+	name = "ostrze energetyczne w ręce"
+	desc = "Nielegalny i wyjątkowo niebezpieczny implant cybernetyczny, który wytwarza zabójcze ostrze ze skupionej energii."
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/melee/transforming/energy/blade/hardlight)
 
 /obj/item/organ/cyberimp/arm/medibeam
-	name = "integrated medical beamgun"
-	desc = "A cybernetic implant that allows the user to project a healing beam from their hand."
+	name = "zintegrowany medyczny emiter wiązki"
+	desc = "Implant cybernetyczny, który pozwala wysyłać z dłoni leczniczą wiązkę."
 	items_to_create = list(/obj/item/gun/medbeam)
 
 
 /obj/item/organ/cyberimp/arm/flash
-	name = "integrated high-intensity photon projector" //Why not
-	desc = "An integrated projector mounted onto a user's arm that is able to be used as a powerful flash."
+	name = "zintegrowany projektor fotonów wysokiej intensywności" //Why not
+	desc = "Zintegrowany projektor zamontowany w ręce, którego można użyć jako potężnego flasha."
 	items_to_create = list(/obj/item/assembly/flash/armimplant)
 
 /obj/item/organ/cyberimp/arm/flash/Initialize(mapload)
@@ -281,14 +281,14 @@
 	return ..()
 
 /obj/item/organ/cyberimp/arm/baton
-	name = "arm electrification implant"
-	desc = "An illegal combat implant that allows the user to administer disabling shocks from their arm."
+	name = "implant elektryfikacji ręki"
+	desc = "Nielegalny implant bojowy, który pozwala razić z ręki obezwładniającymi wstrząsami."
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/borg/stun)
 
 /obj/item/organ/cyberimp/arm/combat
-	name = "combat cybernetics implant"
-	desc = "A powerful cybernetic implant that contains combat modules built into the user's arm."
+	name = "implant cybernetyki bojowej"
+	desc = "Potężny implant cybernetyczny z modułami bojowymi wbudowanymi w rękę."
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/melee/transforming/energy/blade/hardlight, /obj/item/gun/medbeam, /obj/item/borg/stun, /obj/item/assembly/flash/armimplant)
 
@@ -302,26 +302,26 @@
 		flash.arm = WEAKREF(src)
 
 /obj/item/organ/cyberimp/arm/surgery
-	name = "surgical toolset implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
+	name = "implant z zestawem chirurgicznym"
+	desc = "Zestaw narzędzi chirurgicznych ukryty za maskowanym panelem w ręce."
 	items_to_create = list(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
 
 /obj/item/organ/cyberimp/arm/power_cord
-	name = "power cord implant"
-	desc = "An internal power cord hooked up to a battery. Useful if you run on volts."
+	name = "implant przewodu zasilającego"
+	desc = "Wewnętrzny przewód zasilający podłączony do akumulatora. Przydatny, jeśli działasz na prąd."
 	items_to_create = list(/obj/item/apc_powercord)
 	zone = "l_arm"
 
 /obj/item/organ/cyberimp/arm/esaw
-	name = "arm-mounted energy saw"
-	desc = "An illegal and highly dangerous implanted carbon-fiber blade with a toggleable hard-light edge."
+	name = "piła energetyczna w ręce"
+	desc = "Nielegalne i wyjątkowo niebezpieczne wszczepione ostrze z włókna węglowego z włączaną krawędzią z twardego światła."
 	icon_state = "implant-esaw_0"
 	syndicate_implant = TRUE
 	items_to_create = list(/obj/item/melee/transforming/energy/sword/esaw/implant)
 
 /obj/item/organ/cyberimp/arm/hydraulic_blade
-	name = "arm-mounted hydraulic blade"
-	desc = "Highly dangerous implanted plasteel blade."
+	name = "ostrze hydrauliczne w ręce"
+	desc = "Wyjątkowo niebezpieczne wszczepione ostrze z plastali."
 	icon_state = "hydraulic_blade"
 	items_to_create = list(/obj/item/melee/hydraulic_blade)
 
@@ -329,13 +329,13 @@
 	zone = BODY_ZONE_L_ARM
 
 /obj/item/organ/cyberimp/arm/botany
-	name = "botanical arm implant"
-	desc = "A rather simple arm implant containing tools used in gardening and botanical research."
+	name = "botaniczny implant w ręce"
+	desc = "Dość prosty implant w ręce z narzędziami do ogrodnictwa i badań botanicznych."
 	items_to_create = list(/obj/item/cultivator, /obj/item/shovel/spade, /obj/item/hatchet, /obj/item/plant_scanner, /obj/item/storage/bag/plants/portaseeder/compact)
 
 /obj/item/organ/cyberimp/arm/janitor
-	name = "janitorial tools implant"
-	desc = "A set of janitorial tools on the user's arm."
+	name = "implant z narzędziami woźnego"
+	desc = "Zestaw narzędzi woźnego w ręce."
 	items_to_create = list(/obj/item/lightreplacer/cyborg, /obj/item/holosign_creator/janibarrier, /obj/item/soap/nanotrasen, /obj/item/reagent_containers/spray/cyborg/drying_agent, /obj/item/mop/advanced/cyborg, /obj/item/paint/paint_remover, /obj/item/reagent_containers/spray/cleaner)
 
 /obj/item/organ/cyberimp/arm/janitor/emag_act(mob/user)

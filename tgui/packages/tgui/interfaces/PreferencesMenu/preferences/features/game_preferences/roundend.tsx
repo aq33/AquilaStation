@@ -1,9 +1,9 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const show_credits: FeatureToggle = {
-  name: 'Show Credits',
+  name: 'Pokaż napisy końcowe',
   category: 'UI',
   subcategory: 'HUD',
-  description: 'Enables scrolling credit screen at roundend.',
+  description: 'Włącza przewijane napisy końcowe na koniec rundy.',
   component: CheckboxInput,
 };

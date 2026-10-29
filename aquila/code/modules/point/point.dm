@@ -66,7 +66,7 @@
 	QDEL_IN(thought_bubble_effect, POINT_TIME)
 
 /obj/effect/temp_visual/point
-	name = "pointer"
+	name = "wskaźnik"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "arrow"
 	plane = POINT_LAYER

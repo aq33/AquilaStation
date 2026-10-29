@@ -1,8 +1,8 @@
 #define DONUT_SPRINKLE_CHANCE 30
 
 /obj/item/food/donut
-	name = "donut"
-	desc = "Goes great with robust coffee."
+	name = "pączek"
+	desc = "Świetnie pasuje do mocnej kawy."
 	icon = 'icons/obj/food/donuts.dmi'
 	bite_consumption = 5
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3)
@@ -14,7 +14,7 @@
 	var/decorated_icon = "donut_homer"
 	var/is_decorated = FALSE
 	var/extra_reagent = null
-	var/decorated_adjective = "sprinkled"
+	var/decorated_adjective = "z posypką"
 
 /obj/item/food/donut/Initialize(mapload)
 	. = ..()
@@ -41,7 +41,7 @@
 	if(is_decorated || !decorated_icon)
 		return
 	is_decorated = TRUE
-	name = "[decorated_adjective] [name]"
+	name = "[name] [decorated_adjective]"
 	icon_state = decorated_icon //delish~!
 	reagents.add_reagent(/datum/reagent/consumable/sprinkles, 1)
 	return TRUE
@@ -61,8 +61,8 @@
 
 //Its like eating an Midwest donut, versus a scrumptious East Coast donut. Not very filling and you just want to eat more
 /obj/item/food/donut/premade
-	name = "prepackaged donut"
-	desc = "A mass produced donut, goes great with a cup of coffee."
+	name = "pączek z paczki"
+	desc = "Pączek z masowej produkcji, świetnie pasuje do filiżanki kawy."
 	icon_state = "donut"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -71,8 +71,8 @@
 	)
 
 /obj/item/food/donut/chaos
-	name = "chaos donut"
-	desc = "Like life, it never quite tastes the same."
+	name = "pączek chaosu"
+	desc = "Jak życie: nigdy nie smakuje tak samo."
 	icon_state = "donut_chaos"
 	bite_consumption = 10
 	tastes = list("pączek" = 3, "chaos" = 1)
@@ -96,8 +96,8 @@
 	reagents.add_reagent(extra_reagent, 3)
 
 /obj/item/food/donut/meat
-	name = "Meat Donut"
-	desc = "Tastes as gross as it looks."
+	name = "mięsny pączek"
+	desc = "Smakuje tak obrzydliwie, jak wygląda."
 	icon_state = "donut_meat"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -110,8 +110,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/berry
-	name = "pink donut"
-	desc = "Goes great with a soy latte."
+	name = "różowy pączek"
+	desc = "Świetnie pasuje do latte sojowego."
 	icon_state = "donut_pink"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -123,8 +123,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/trumpet
-	name = "spaceman's donut"
-	desc = "Goes great with a cold beaker of malk."
+	name = "pączek kosmonauty"
+	desc = "Świetnie pasuje do zimnej zlewki „mleka”."
 	icon_state = "donut_purple"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -136,8 +136,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/apple
-	name = "apple donut"
-	desc = "Goes great with a shot of cinnamon schnapps."
+	name = "pączek jabłkowy"
+	desc = "Świetnie pasuje do kieliszka cynamonowego sznapsa."
 	icon_state = "donut_green"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -150,8 +150,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/caramel
-	name = "caramel donut"
-	desc = "Goes great with a mug of hot coco."
+	name = "pączek karmelowy"
+	desc = "Świetnie pasuje do kubka gorącego kakao."
 	icon_state = "donut_beige"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -164,8 +164,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/choco
-	name = "chocolate donut"
-	desc = "Goes great with a glass of warm milk."
+	name = "pączek czekoladowy"
+	desc = "Świetnie pasuje do szklanki ciepłego mleka."
 	icon_state = "donut_choc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -178,8 +178,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/blumpkin
-	name = "blumpkin donut"
-	desc = "Goes great with a mug of soothing drunken blumpkin."
+	name = "pączek z blumpkina"
+	desc = "Świetnie pasuje do kubka kojącego Pijanego blumpkina."
 	icon_state = "donut_blue"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -192,8 +192,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/bungo
-	name = "bungo donut"
-	desc = "Goes great with a mason jar of hippie's delight."
+	name = "pączek bungo"
+	desc = "Świetnie pasuje do słoika Rozkoszy hipisa."
 	icon_state = "donut_yellow"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -206,8 +206,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/matcha
-	name = "matcha donut"
-	desc = "Goes great with a cup of tea."
+	name = "pączek matcha"
+	desc = "Świetnie pasuje do filiżanki herbaty."
 	icon_state = "donut_olive"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/toxin/teapowder = 3, /datum/reagent/consumable/sprinkles = 1)
 	tastes = list("pączek" = 3, "matcha" = 1)
@@ -217,8 +217,8 @@
 //////////////////////JELLY DONUTS/////////////////////////
 
 /obj/item/food/donut/jelly
-	name = "jelly donut"
-	desc = "You jelly?"
+	name = "pączek z dżemem"
+	desc = "Zazdrościsz?"
 	icon_state = "jelly"
 	decorated_icon = "jelly_homer"
 	food_reagents = list(
@@ -244,8 +244,8 @@
 /obj/item/food/donut/jelly/plain //use this ingame to avoid inheritance related crafting issues.
 
 /obj/item/food/donut/jelly/berry
-	name = "pink jelly donut"
-	desc = "Goes great with a soy latte."
+	name = "różowy pączek z dżemem"
+	desc = "Świetnie pasuje do latte sojowego."
 	icon_state = "jelly_pink"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -258,8 +258,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/trumpet
-	name = "spaceman's jelly donut"
-	desc = "Goes great with a cold beaker of malk."
+	name = "pączek kosmonauty z dżemem"
+	desc = "Świetnie pasuje do zimnej zlewki „mleka”."
 	icon_state = "jelly_purple"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -272,8 +272,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/apple
-	name = "apple jelly donut"
-	desc = "Goes great with a shot of cinnamon schnapps."
+	name = "jabłkowy pączek z dżemem"
+	desc = "Świetnie pasuje do kieliszka cynamonowego sznapsa."
 	icon_state = "jelly_green"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -287,8 +287,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/caramel
-	name = "caramel jelly donut"
-	desc = "Goes great with a mug of hot coco."
+	name = "karmelowy pączek z dżemem"
+	desc = "Świetnie pasuje do kubka gorącego kakao."
 	icon_state = "jelly_beige"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -302,8 +302,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/choco
-	name = "chocolate jelly donut"
-	desc = "Goes great with a glass of warm milk."
+	name = "czekoladowy pączek z dżemem"
+	desc = "Świetnie pasuje do szklanki ciepłego mleka."
 	icon_state = "jelly_choc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -317,8 +317,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/blumpkin
-	name = "blumpkin jelly donut"
-	desc = "Goes great with a mug of soothing drunken blumpkin."
+	name = "pączek z dżemem z blumpkina"
+	desc = "Świetnie pasuje do kubka kojącego Pijanego blumpkina."
 	icon_state = "jelly_blue"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -332,8 +332,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/bungo
-	name = "bungo jelly donut"
-	desc = "Goes great with a mason jar of hippie's delight."
+	name = "pączek bungo z dżemem"
+	desc = "Świetnie pasuje do słoika Rozkoszy hipisa."
 	icon_state = "jelly_yellow"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -347,8 +347,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/matcha
-	name = "matcha jelly donut"
-	desc = "Goes great with a cup of tea."
+	name = "pączek matcha z dżemem"
+	desc = "Świetnie pasuje do filiżanki herbaty."
 	icon_state = "jelly_olive"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -364,8 +364,8 @@
 //////////////////////////SLIME DONUTS/////////////////////////
 
 /obj/item/food/donut/jelly/slimejelly
-	name = "jelly donut"
-	desc = "You jelly?"
+	name = "pączek z dżemem"
+	desc = "Zazdrościsz?"
 	icon_state = "jelly"
 	extra_reagent = /datum/reagent/toxin/slimejelly
 	foodtypes = JUNKFOOD | GRAIN | TOXIC | SUGAR | BREAKFAST
@@ -373,8 +373,8 @@
 /obj/item/food/donut/jelly/slimejelly/plain
 
 /obj/item/food/donut/jelly/slimejelly/berry
-	name = "pink jelly donut"
-	desc = "Goes great with a soy latte."
+	name = "różowy pączek z dżemem"
+	desc = "Świetnie pasuje do latte sojowego."
 	icon_state = "jelly_pink"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -386,8 +386,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/trumpet
-	name = "spaceman's jelly donut"
-	desc = "Goes great with a cold beaker of malk."
+	name = "pączek kosmonauty z dżemem"
+	desc = "Świetnie pasuje do zimnej zlewki „mleka”."
 	icon_state = "jelly_purple"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -400,8 +400,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/apple
-	name = "apple jelly donut"
-	desc = "Goes great with a shot of cinnamon schnapps."
+	name = "jabłkowy pączek z dżemem"
+	desc = "Świetnie pasuje do kieliszka cynamonowego sznapsa."
 	icon_state = "jelly_green"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -414,8 +414,8 @@
 	is_decorated = TRUE
 
 /obj/item/food/donut/jelly/slimejelly/caramel
-	name = "caramel jelly donut"
-	desc = "Goes great with a mug of hot coco."
+	name = "karmelowy pączek z dżemem"
+	desc = "Świetnie pasuje do kubka gorącego kakao."
 	icon_state = "jelly_beige"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -429,8 +429,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/choco
-	name = "chocolate jelly donut"
-	desc = "Goes great with a glass of warm milk."
+	name = "czekoladowy pączek z dżemem"
+	desc = "Świetnie pasuje do szklanki ciepłego mleka."
 	icon_state = "jelly_choc"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -444,8 +444,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/blumpkin
-	name = "blumpkin jelly donut"
-	desc = "Goes great with a mug of soothing drunken blumpkin."
+	name = "pączek z dżemem z blumpkina"
+	desc = "Świetnie pasuje do kubka kojącego Pijanego blumpkina."
 	icon_state = "jelly_blue"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -459,8 +459,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/bungo
-	name = "bungo jelly donut"
-	desc = "Goes great with a mason jar of hippie's delight."
+	name = "pączek bungo z dżemem"
+	desc = "Świetnie pasuje do słoika Rozkoszy hipisa."
 	icon_state = "jelly_yellow"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -474,8 +474,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/donut/jelly/slimejelly/matcha
-	name = "matcha jelly donut"
-	desc = "Goes great with a cup of tea."
+	name = "pączek matcha z dżemem"
+	desc = "Świetnie pasuje do filiżanki herbaty."
 	icon_state = "jelly_olive"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,

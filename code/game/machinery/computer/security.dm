@@ -1,6 +1,6 @@
 /obj/machinery/computer/secure_data//TODO:SANITY
-	name = "security records console"
-	desc = "Used to view and edit personnel's security records."
+	name = "konsola akt ochrony"
+	desc = "Służy do przeglądania i edycji akt ochrony personelu."
 	icon_screen = "security"
 	icon_keyboard = "security_key"
 	req_one_access = list(ACCESS_SEC_RECORDS)
@@ -27,8 +27,8 @@
 	))
 
 /obj/item/circuit_component/arrest_console_data
-	display_name = "Security Records Data"
-	display_desc = "Outputs the security records data, where it can then be filtered with a Select Query component"
+	display_name = "Dane akt ochrony"
+	display_desc = "Wysyła dane akt ochrony, które można potem filtrować komponentem Select Query."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The records retrieved
@@ -106,8 +106,8 @@
 	records.set_output(new_table)
 
 /obj/item/circuit_component/arrest_console_arrest
-	display_name = "Security Records Set Status"
-	display_desc = "Receives a table to use to set people's arrest status. Table should be from the security records data component. If New Status port isn't set, the status will be decided by the options."
+	display_name = "Ustawianie statusu w aktach ochrony"
+	display_desc = "Przyjmuje tabelę, według której ustawia ludziom status aresztowania. Tabela powinna pochodzić z komponentu danych akt ochrony. Jeśli port New Status nie jest ustawiony, status zależy od opcji."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
 	/// The targets to set the status of.
@@ -190,7 +190,7 @@
 	if(successful_set > 0)
 		investigate_log("[names_of_entries.Join(", ")] have been set to [status_to_set] by [parent.get_creator()].", INVESTIGATE_RECORDS)
 		if(successful_set > COMP_SECURITY_ARREST_AMOUNT_TO_FLAG)
-			message_admins("[successful_set] security entries have been set to [status_to_set] by [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
+			message_admins("Wpisy ochrony ([successful_set]) zostały ustawione na [status_to_set] przez [parent.get_creator_admin()]. [ADMIN_COORDJMP(src)]")
 		for(var/mob/living/carbon/human/human as anything in GLOB.carbon_list)
 			human.sec_hud_set_security_status()
 
@@ -198,8 +198,8 @@
 	icon_keyboard = "syndie_key"
 
 /obj/machinery/computer/secure_data/laptop
-	name = "security laptop"
-	desc = "A cheap Nanotrasen security laptop, it functions as a security records console. It's bolted to the table."
+	name = "laptop ochrony"
+	desc = "Tani laptop ochrony Nanotrasen, który działa jako konsola akt ochrony. Jest przykręcony do stołu."
 	icon_state = "laptop"
 	icon_screen = "seclaptop"
 	icon_keyboard = "laptop_key"
@@ -218,7 +218,7 @@
 	var/dat
 
 	if(temp)
-		dat = "<TT>[temp]</TT><BR><BR><A href='byond://?src=[REF(src)];choice=Clear Screen'>Clear Screen</A>"
+		dat = "<TT>[temp]</TT><BR><BR><A href='byond://?src=[REF(src)];choice=Clear Screen'>Wyczyść ekran</A>"
 	else
 		dat = ""
 		if(authenticated)
@@ -272,7 +272,7 @@
 						<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 							<tr id='search_tr'>
 								<td align='center'>
-									<b>Search:</b> <input type='text' id='filter' value='' style='width:300px;'>
+									<b>Szukaj:</b> <input type='text' id='filter' value='' style='width:300px;'>
 								</td>
 							</tr>
 						</table>
@@ -281,18 +281,18 @@
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
 <tr>
-<th>Records:</th>
+<th>Rekordy:</th>
 </tr>
 </table>
 
 <span id='maintable_data_archive'>
 <table id='maintable_data' style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=name'>Name</A></th>
+<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=name'>Imię</A></th>
 <th><A href='byond://?src=[REF(src)];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=rank'>Rank</A></th>
-<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
-<th>Criminal Status</th>
+<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=rank'>Stanowisko</A></th>
+<th><A href='byond://?src=[REF(src)];choice=Sorting;sort=fingerprint'>Odciski palców</A></th>
+<th>Status kryminalny</th>
 </tr>"}
 					if(!isnull(GLOB.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOB.data_core.general, sortBy, order))
@@ -336,7 +336,7 @@
 					dat += "<A href='byond://?src=[REF(src)];choice=Log Out'>{Wyloguj}</A>"
 				if(2)
 					dat += "<B>Konserwacja rekordów</B><HR>"
-					dat += "<BR><A href='byond://?src=[REF(src)];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='byond://?src=[REF(src)];choice=Return'>Back</A>"
+					dat += "<BR><A href='byond://?src=[REF(src)];choice=Delete All Records'>Usuń wszystkie akta</A><BR><BR><A href='byond://?src=[REF(src)];choice=Return'>Wstecz</A>"
 				if(3)
 					dat += "<font size='4'><b>Akta ochrony</b></font><br>"
 					if(istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1))
@@ -347,48 +347,48 @@
 							var/obj/item/photo/P2 = active1.fields["photo_side"]
 							user << browse_rsc(P2.picture.picture_image, "photo_side")
 						dat += {"<table><tr><td><table>
-						<tr><td>Name:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=name'>&nbsp;[active1.fields["name"]]&nbsp;</A></td></tr>
+						<tr><td>Imię:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=name'>&nbsp;[active1.fields["name"]]&nbsp;</A></td></tr>
 						<tr><td>ID:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=id'>&nbsp;[active1.fields["id"]]&nbsp;</A></td></tr>
-						<tr><td>Gender:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=gender'>&nbsp;[active1.fields["gender"]]&nbsp;</A></td></tr>
-						<tr><td>Age:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=age'>&nbsp;[active1.fields["age"]]&nbsp;</A></td></tr>"}
-						dat += "<tr><td>Species:</td><td><A href ='byond://?src=[REF(src)];choice=Edit Field;field=species'>&nbsp;[active1.fields["species"]]&nbsp;</A></td></tr>"
-						dat += {"<tr><td>Rank:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=rank'>&nbsp;[active1.fields["rank"]]&nbsp;</A></td></tr>
-						<tr><td>Fingerprint:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=fingerprint'>&nbsp;[active1.fields["fingerprint"]]&nbsp;</A></td></tr>
-						<tr><td>Physical Status:</td><td>&nbsp;[active1.fields["p_stat"]]&nbsp;</td></tr>
-						<tr><td>Mental Status:</td><td>&nbsp;[active1.fields["m_stat"]]&nbsp;</td></tr>
-						<tr><td>General Records:</td><td><A href='byond://?src=[REF(src)];choice=View Past General'>View&nbsp;</A></td></tr>
+						<tr><td>Płeć:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=gender'>&nbsp;[active1.fields["gender"]]&nbsp;</A></td></tr>
+						<tr><td>Wiek:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=age'>&nbsp;[active1.fields["age"]]&nbsp;</A></td></tr>"}
+						dat += "<tr><td>Gatunek:</td><td><A href ='byond://?src=[REF(src)];choice=Edit Field;field=species'>&nbsp;[active1.fields["species"]]&nbsp;</A></td></tr>"
+						dat += {"<tr><td>Stanowisko:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=rank'>&nbsp;[active1.fields["rank"]]&nbsp;</A></td></tr>
+						<tr><td>Odcisk palca:</td><td><A href='byond://?src=[REF(src)];choice=Edit Field;field=fingerprint'>&nbsp;[active1.fields["fingerprint"]]&nbsp;</A></td></tr>
+						<tr><td>Stan fizyczny:</td><td>&nbsp;[active1.fields["p_stat"]]&nbsp;</td></tr>
+						<tr><td>Stan psychiczny:</td><td>&nbsp;[active1.fields["m_stat"]]&nbsp;</td></tr>
+						<tr><td>Akta ogólne:</td><td><A href='byond://?src=[REF(src)];choice=View Past General'>Pokaż&nbsp;</A></td></tr>
 						</table></td>
 						<td><table><td align = center><a href='byond://?src=[REF(src)];choice=Edit Field;field=show_photo_front'><img src=photo_front height=80 width=80 border=4></a><br>
-						<a href='byond://?src=[REF(src)];choice=Edit Field;field=print_photo_front'>Print photo</a><br>
-						<a href='byond://?src=[REF(src)];choice=Edit Field;field=upd_photo_front'>Update front photo</a></td>
+						<a href='byond://?src=[REF(src)];choice=Edit Field;field=print_photo_front'>Drukuj zdjęcie</a><br>
+						<a href='byond://?src=[REF(src)];choice=Edit Field;field=upd_photo_front'>Zaktualizuj zdjęcie z przodu</a></td>
 						<td align = center><a href='byond://?src=[REF(src)];choice=Edit Field;field=show_photo_side'><img src=photo_side height=80 width=80 border=4></a><br>
-						<a href='byond://?src=[REF(src)];choice=Edit Field;field=print_photo_side'>Print photo</a><br>
-						<a href='byond://?src=[REF(src)];choice=Edit Field;field=upd_photo_side'>Update side photo</a></td></table>
+						<a href='byond://?src=[REF(src)];choice=Edit Field;field=print_photo_side'>Drukuj zdjęcie</a><br>
+						<a href='byond://?src=[REF(src)];choice=Edit Field;field=upd_photo_side'>Zaktualizuj zdjęcie z boku</a></td></table>
 						</td></tr></table></td></tr></table>"} //NSV13 - TEXT AMENDED, "GENERAL RECORDS" - Roleplaying Records
 					else
 						dat += "<br>Utracono akta ogólne!<br>"
 					if((istype(active2, /datum/data/record) && GLOB.data_core.security.Find(active2)))
 						dat += "<font size='4'><b>Dane ochrony</b></font>"
-						dat += "<br>Security Records: <A href='byond://?src=[REF(src)];choice=View Past Security'>View</A>" //NSV13 - Roleplaying Records
-						dat += "<br>Criminal Status: <A href='byond://?src=[REF(src)];choice=Edit Field;field=criminal'>[active2.fields["criminal"]]</A>"
-						dat += "<br><br>Citations: <A href='byond://?src=[REF(src)];choice=Edit Field;field=citation_add'>Add New</A>"
+						dat += "<br>Akta ochrony: <A href='byond://?src=[REF(src)];choice=View Past Security'>Pokaż</A>" //NSV13 - Roleplaying Records
+						dat += "<br>Status kryminalny: <A href='byond://?src=[REF(src)];choice=Edit Field;field=criminal'>[active2.fields["criminal"]]</A>"
+						dat += "<br><br>Mandaty: <A href='byond://?src=[REF(src)];choice=Edit Field;field=citation_add'>Dodaj nowy</A>"
 
 						dat +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 						<tr>
-						<th>Crime</th>
-						<th>Fine</th>
-						<th>Author</th>
-						<th>Time Added</th>
-						<th>Amount Due</th>
-						<th>Del</th>
+						<th>Przestępstwo</th>
+						<th>Grzywna</th>
+						<th>Autor</th>
+						<th>Czas dodania</th>
+						<th>Do zapłaty</th>
+						<th>Usuń</th>
 						</tr>"}
 						for(var/datum/data/crime/c in active2.fields["citation"])
 							var/owed = c.fine - c.paid
 							dat += {"<tr><td>[c.crimeName]</td>
-							<td>[c.fine] cr</td><td>[c.author]</td>
+							<td>[c.fine] kr.</td><td>[c.author]</td>
 							<td>[c.time]</td>"}
 							if(owed > 0)
-								dat += "<td>[owed] cr <A href='byond://?src=[REF(src)];choice=Pay;field=citation_pay;cdataid=[c.dataId]'>\[Pay\]</A></td></td>"
+								dat += "<td>[owed] kr. <A href='byond://?src=[REF(src)];choice=Pay;field=citation_pay;cdataid=[c.dataId]'>\[Zapłać\]</A></td></td>"
 							else
 								dat += "<td>Wszystko spłacone</td>"
 							dat += {"<td>
@@ -397,16 +397,16 @@
 							</tr>"}
 						dat += "</table>"
 
-						dat += "<br><br>Crimes: <A href='byond://?src=[REF(src)];choice=Edit Field;field=crim_add'>Add New</A>"
+						dat += "<br><br>Przestępstwa: <A href='byond://?src=[REF(src)];choice=Edit Field;field=crim_add'>Dodaj nowe</A>"
 
 
 						dat +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 						<tr>
-						<th>Crime</th>
-						<th>Details</th>
-						<th>Author</th>
-						<th>Time Added</th>
-						<th>Del</th>
+						<th>Przestępstwo</th>
+						<th>Szczegóły</th>
+						<th>Autor</th>
+						<th>Czas dodania</th>
+						<th>Usuń</th>
 						</tr>"}
 						for(var/datum/data/crime/c in active2.fields["crim"])
 							dat += "<tr><td>[c.crimeName]</td>"
@@ -420,12 +420,12 @@
 							dat += "</tr>"
 						dat += "</table>"
 
-						dat += "<br>\nImportant Notes:<br>\n\t<A href='byond://?src=[REF(src)];choice=Edit Field;field=notes'>&nbsp;[active2.fields["notes"]]&nbsp;</A>"
+						dat += "<br>\nWażne uwagi:<br>\n\t<A href='byond://?src=[REF(src)];choice=Edit Field;field=notes'>&nbsp;[active2.fields["notes"]]&nbsp;</A>"
 						dat += "<br><br><font size='4'><b>Komentarze/log</b></font><br>"
 						var/counter = 1
 						while(active2.fields[text("com_[]", counter)])
 							dat += (active2.fields[text("com_[]", counter)] + "<BR>")
-							if(active2.fields[text("com_[]", counter)] != "<B>Deleted</B>")
+							if(active2.fields[text("com_[]", counter)] != "<B>Usunięto</B>")
 								dat += text("<A href='byond://?src=[REF(src)];choice=Delete Entry;del_c=[]'>Usuń wpis</A><BR><BR>", counter)
 							counter++
 						dat += "<A href='byond://?src=[REF(src)];choice=Add Entry'>Dodaj wpis</A><br><br>"
@@ -433,7 +433,7 @@
 					else
 						dat += "Utracono akta ochrony!<br>"
 						dat += "<A href='byond://?src=[REF(src)];choice=New Record (Security)'>Nowy rekord ochrony</A><br><br>"
-					dat += "<A href='byond://?src=[REF(src)];choice=Delete Record (ALL)'>Delete Record (ALL)</A><br><A href='byond://?src=[REF(src)];choice=Print Record'>Print Record</A><BR><A href='byond://?src=[REF(src)];choice=Print Poster'>Print Wanted Poster</A><BR><A href='byond://?src=[REF(src)];choice=Print Missing'>Print Missing Persons Poster</A><BR><A href='byond://?src=[REF(src)];choice=Return'>Back</A><BR><BR>"
+					dat += "<A href='byond://?src=[REF(src)];choice=Delete Record (ALL)'>Usuń rekord (CAŁY)</A><br><A href='byond://?src=[REF(src)];choice=Print Record'>Drukuj rekord</A><BR><A href='byond://?src=[REF(src)];choice=Print Poster'>Drukuj list gończy</A><BR><A href='byond://?src=[REF(src)];choice=Print Missing'>Drukuj plakat o zaginięciu</A><BR><A href='byond://?src=[REF(src)];choice=Return'>Wstecz</A><BR><BR>"
 					dat += "<A href='byond://?src=[REF(src)];choice=Log Out'>{Wyloguj}</A>"
 				else
 		else
@@ -572,7 +572,7 @@ What a mess.*/
 					var/final_paper_text = "<CENTER><B>Akta ochrony - (SR-[GLOB.data_core.securityPrintCount])</B></CENTER><BR>"
 					if((istype(active1, /datum/data/record) && GLOB.data_core.general.Find(active1)))
 						final_paper_text += text("Imię: [] ID: []<BR>\nPłeć: []<BR>\nWiek: []<BR>", active1.fields["name"], active1.fields["id"], active1.fields["gender"], active1.fields["age"])
-						final_paper_text += "\nSpecies: [active1.fields["species"]]<BR>"
+						final_paper_text += "\nGatunek: [active1.fields["species"]]<BR>"
 						final_paper_text += text("\nOdcisk palca: []<BR>\nStan fizyczny: []<BR>\nStan psychiczny: []<BR>", active1.fields["fingerprint"], active1.fields["p_stat"], active1.fields["m_stat"])
 						//NSV13 - Roleplaying Records - Start
 						if(!(active1.fields["past_records"] == ""))
@@ -587,13 +587,13 @@ What a mess.*/
 							final_paper_text += "\nAkta ochrony:\n[active2.fields["past_records"]]\n"
 						final_paper_text += text("Status kryminalny: []", active2.fields["criminal"])
 						//NSV13 - Roleplaying Records - End
-						final_paper_text += "<BR>\n<BR>\nCrimes:<BR>\n"
+						final_paper_text += "<BR>\n<BR>\nPrzestępstwa:<BR>\n"
 						final_paper_text +={"<table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th>Crime</th>
-<th>Details</th>
-<th>Author</th>
-<th>Time Added</th>
+<th>Przestępstwo</th>
+<th>Szczegóły</th>
+<th>Autor</th>
+<th>Czas dodania</th>
 </tr>"}
 						for(var/datum/data/crime/c in active2.fields["crim"])
 							final_paper_text += "<tr><td>[c.crimeName]</td>"
@@ -603,15 +603,15 @@ What a mess.*/
 							final_paper_text += "</tr>"
 						final_paper_text += "</table>"
 
-						final_paper_text += text("<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", active2.fields["notes"])
+						final_paper_text += text("<BR>\nWażne uwagi:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Komentarze/log</B></CENTER><BR>", active2.fields["notes"])
 						var/counter = 1
 						while(active2.fields[text("com_[]", counter)])
 							final_paper_text += text("[]<BR>", active2.fields[text("com_[]", counter)])
 							counter++
-						printed_paper.name = text("SR-[] '[]'", GLOB.data_core.securityPrintCount, active1.fields["name"])
+						printed_paper.name = text("SR-[] „[]”", GLOB.data_core.securityPrintCount, active1.fields["name"])
 					else
 						final_paper_text += "<B>Utracono akta ochrony!</B><BR>"
-						printed_paper.name = text("SR-[] '[]'", GLOB.data_core.securityPrintCount, "Record Lost")
+						printed_paper.name = text("SR-[] „[]”", GLOB.data_core.securityPrintCount, "Utracone akta")
 					final_paper_text += "</TT>"
 					printed_paper.add_raw_text(final_paper_text)
 					printed_paper.update_appearance()
@@ -623,13 +623,13 @@ What a mess.*/
 						var/default_description = "Plakat ogłaszający, że [wanted_name] jest niebezpieczną osobą poszukiwaną przez Nanotrasen. Każde spotkanie natychmiast zgłaszaj ochronie."
 						var/list/crimes = active2.fields["crim"]
 						if(crimes.len)
-							default_description += "\nCrimes:"
+							default_description += "\nPrzestępstwa:"
 							for(var/datum/data/crime/c in active2.fields["crim"])
 								default_description += "\n[c.crimeName]\n"
 								default_description += "[c.crimeDetails]\n"
 
-						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj list gończy", "WANTED", 8)
-						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Number:",1) as num|null), 1, 5)
+						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj list gończy", "ŚCIGANY", 8)
+						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Liczba:",1) as num|null), 1, 5)
 						var/info = stripped_multiline_input(usr, "Podaj opis plakatu:", "Drukuj list gończy", default_description, null)
 						if(info)
 							printing = 1
@@ -647,8 +647,8 @@ What a mess.*/
 					if(missing_name)
 						var/default_description = "Plakat ogłaszający, że [missing_name] jest osobą zaginioną, za którą tęskni Nanotrasen. Każde spotkanie natychmiast zgłaszaj ochronie."
 
-						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj plakat o zaginięciu", "MISSING", 8)
-						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Number:",1) as num|null), 1, 5)
+						var/headerText = stripped_input(usr, "Podaj nagłówek plakatu (maks. 7 znaków):", "Drukuj plakat o zaginięciu", "SZUKAMY", 8)
+						var/posternum = CLAMP((input("Liczba plakatów do wydrukowania (maks. 5):","Liczba:",1) as num|null), 1, 5)
 						var/info = stripped_multiline_input(usr, "Podaj opis plakatu:", "Drukuj plakat o zaginięciu", default_description, null)
 						if(info)
 							printing = 1
@@ -664,8 +664,8 @@ What a mess.*/
 			if("Delete All Records")
 				temp = ""
 				temp += "Na pewno chcesz usunąć wszystkie akta ochrony?<br>"
-				temp += "<a href='byond://?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
-				temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
+				temp += "<a href='byond://?src=[REF(src)];choice=Purge All Records'>Tak</a><br>"
+				temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>Nie</a>"
 
 			if("Purge All Records")
 				investigate_log("[key_name(usr)] has purged all the security records.", INVESTIGATE_RECORDS)
@@ -689,28 +689,28 @@ What a mess.*/
 			if("Delete Record (ALL)")
 				if(active1)
 					temp = "<h5>Na pewno chcesz usunąć rekord (CAŁY)?</h5>"
-					temp += "<a href='byond://?src=[REF(src)];choice=Delete Record (ALL) Execute'>Yes</a><br>"
-					temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
+					temp += "<a href='byond://?src=[REF(src)];choice=Delete Record (ALL) Execute'>Tak</a><br>"
+					temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>Nie</a>"
 
 			if("Delete Record (Security)")
 				if(active2)
 					temp = "<h5>Na pewno chcesz usunąć rekord (tylko część ochrony)?</h5>"
-					temp += "<a href='byond://?src=[REF(src)];choice=Delete Record (Security) Execute'>Yes</a><br>"
-					temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
+					temp += "<a href='byond://?src=[REF(src)];choice=Delete Record (Security) Execute'>Tak</a><br>"
+					temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>Nie</a>"
 
 			if("Delete Entry")
 				if((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
-					active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+					active2.fields[text("com_[]", href_list["del_c"])] = "<B>Usunięto</B>"
 //RECORD CREATE
 			if("New Record (Security)")
 				if((istype(active1, /datum/data/record) && !( istype(active2, /datum/data/record) )))
 					var/datum/data/record/R = new /datum/data/record()
 					R.fields["name"] = active1.fields["name"]
 					R.fields["id"] = active1.fields["id"]
-					R.name = text("Security Record #[]", R.fields["id"])
+					R.name = text("Akta ochrony nr []", R.fields["id"])
 					R.fields["criminal"] = "None"
 					R.fields["crim"] = list()
-					R.fields["notes"] = "No notes."
+					R.fields["notes"] = "Brak notatek."
 					GLOB.data_core.security += R
 					active2 = R
 					screen = 3
@@ -718,7 +718,7 @@ What a mess.*/
 			if("New Record (General)")
 				//General Record
 				var/datum/data/record/G = new /datum/data/record()
-				G.fields["name"] = "New Record"
+				G.fields["name"] = "Nowy rekord"
 				G.fields["id"] = "[num2hex(rand(1, 1.6777215E7), 6)]"
 				G.fields["rank"] = "Unassigned"
 				G.fields["gender"] = "Male"
@@ -736,10 +736,10 @@ What a mess.*/
 				var/datum/data/record/R = new /datum/data/record()
 				R.fields["name"] = active1.fields["name"]
 				R.fields["id"] = active1.fields["id"]
-				R.name = text("Security Record #[]", R.fields["id"])
+				R.name = text("Akta ochrony nr []", R.fields["id"])
 				R.fields["criminal"] = "None"
 				R.fields["crim"] = list()
-				R.fields["notes"] = "No notes."
+				R.fields["notes"] = "Brak notatek."
 				GLOB.data_core.security += R
 				active2 = R
 
@@ -750,14 +750,14 @@ What a mess.*/
 				M.fields["blood_type"]	= "?"
 				M.fields["b_dna"]		= "?????"
 				M.fields["mi_dis"]		= "None"
-				M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
+				M.fields["mi_dis_d"]	= "Nie zgłoszono żadnych drobnych niepełnosprawności."
 				M.fields["ma_dis"]		= "None"
-				M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
+				M.fields["ma_dis_d"]	= "Nie zdiagnozowano żadnych poważnych niepełnosprawności."
 				M.fields["alg"]			= "None"
-				M.fields["alg_d"]		= "No allergies have been detected in this patient."
+				M.fields["alg_d"]		= "U tego pacjenta nie wykryto żadnych alergii."
 				M.fields["cdi"]			= "None"
-				M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
-				M.fields["notes"]		= "No notes."
+				M.fields["cdi_d"]		= "Obecnie nie zdiagnozowano żadnych chorób."
+				M.fields["notes"]		= "Brak notatek."
 				GLOB.data_core.medical += M
 
 
@@ -808,7 +808,7 @@ What a mess.*/
 							active1.fields["age"] = t1
 					if("species")
 						if(istype(active1, /datum/data/record))
-							var/t1 = input("Select a species", "Wybór gatunku") as null|anything in GLOB.roundstart_races
+							var/t1 = input("Wybierz gatunek", "Wybór gatunku") as null|anything in GLOB.roundstart_races
 							if(!canUseSecurityRecordsConsole(usr, t1, a1))
 								return
 							active1.fields["species"] = t1
@@ -902,8 +902,8 @@ What a mess.*/
 								if(tablet.saved_identification == active1.fields["name"])
 									var/message = "Otrzymujesz mandat w wysokości [fine] kredytów za „[t1]”. Grzywny można opłacić w ochronie."
 									var/datum/signal/subspace/messaging/tablet_msg/signal = new(src, list(
-										"name" = "Security Citation",
-										"job" = "Citation Server",
+										"name" = "Mandaty ochrony",
+										"job" = "Serwer mandatów",
 										"message" = message,
 										"targets" = list(tablet),
 										"automated" = TRUE
@@ -928,19 +928,19 @@ What a mess.*/
 						if(istype(active2, /datum/data/record))
 							temp = "<h5>Status kryminalny:</h5>"
 							temp += "<ul>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=none'>None</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=arrest'>Arrest</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=search'>Search</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=monitor'>Monitor</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=paroled'>Paroled</a></li>"
-							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=released'>Discharged</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=none'>Brak</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=arrest'>Do aresztowania</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=search'>Do przeszukania</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=monitor'>Pod obserwacją</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=incarcerated'>Uwięziony</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=paroled'>Zwolniony warunkowo</a></li>"
+							temp += "<li><a href='byond://?src=[REF(src)];choice=Change Criminal Status;criminal2=released'>Zwolniony</a></li>"
 							temp += "</ul>"
 					if("rank")
 						var/list/L = list( JOB_NAME_HEADOFPERSONNEL, JOB_NAME_CAPTAIN, JOB_NAME_AI, JOB_CENTCOM_CENTRAL_COMMAND)
 						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
 						if((istype(active1, /datum/data/record) && L.Find(rank)))
-							temp = "<h5>Rank:</h5>"
+							temp = "<h5>Stanowisko:</h5>"
 							temp += "<ul>"
 							for(var/rank in get_all_jobs())
 								temp += "<li><a href='byond://?src=[REF(src)];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
@@ -988,7 +988,7 @@ What a mess.*/
 						if(active1)
 							investigate_log("[key_name(usr)] has deleted all records for [active1.fields["name"]].", INVESTIGATE_RECORDS)
 							if(isAI(usr) || iscyborg(usr))
-								message_admins("[ADMIN_LOOKUPFLW(usr)] has deleted all records for [active1.fields["name"]] as Borg/AI Player.")
+								message_admins("[ADMIN_LOOKUPFLW(usr)] usuwa wszystkie akta osoby [active1.fields["name"]] jako gracz borga/SI.")
 							for(var/datum/data/record/R in GLOB.data_core.medical)
 								if((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)
@@ -1023,7 +1023,7 @@ What a mess.*/
 	printing = TRUE
 	sleep(20)
 	var/obj/item/photo/P = new/obj/item/photo(drop_location())
-	var/datum/picture/toEmbed = new(name = person_name, desc = "The photo on file for [person_name].", image = temp)
+	var/datum/picture/toEmbed = new(name = person_name, desc = "Zdjęcie z akt: [person_name].", image = temp)
 	P.set_picture(toEmbed, TRUE, TRUE)
 	P.pixel_x = rand(-10, 10)
 	P.pixel_y = rand(-10, 10)

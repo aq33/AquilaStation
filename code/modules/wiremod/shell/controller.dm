@@ -5,7 +5,7 @@
  * In game, this translates to having different signals for normal usage, alt-clicking, and ctrl-clicking when in your hand.
  */
 /obj/item/controller
-	name = "controller"
+	name = "kontroler"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_small_calc"
 	item_state = "electronic"
@@ -58,7 +58,7 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "Clicked the primary button.")
+	source.balloon_alert(user, "Wciskasz główny przycisk.")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	signal.set_output(COMPONENT_SIGNAL)
 
@@ -69,7 +69,7 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "Clicked the alternate button.")
+	source.balloon_alert(user, "Wciskasz przycisk alternatywny.")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	alt.set_output(COMPONENT_SIGNAL)
 
@@ -77,6 +77,6 @@
 	SIGNAL_HANDLER
 	if(!user.Adjacent(source))
 		return
-	source.balloon_alert(user, "Clicked the extra button.")
+	source.balloon_alert(user, "Wciskasz przycisk dodatkowy.")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	right.set_output(COMPONENT_SIGNAL)

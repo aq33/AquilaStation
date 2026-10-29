@@ -1,6 +1,6 @@
 /obj/item/grenade/exploration
-	name = "breaching charges"
-	desc = "Used by exploration crews to breach and demolish unknown places. Requires a nearby detonator to be triggered."
+	name = "ładunki wyważające"
+	desc = "Używane przez odkrywców do przebijania się przez nieznane miejsca i ich burzenia. Do odpalenia potrzebny jest pobliski detonator."
 	icon_state = "plastic-explosive0"
 	item_state = "plastic-explosive"
 	lefthand_file = 'icons/mob/inhands/weapons/bombs_lefthand.dmi'
@@ -53,10 +53,10 @@
 			return
 		target = AM
 
-		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)]")
+		message_admins("[ADMIN_LOOKUPFLW(user)] podkłada [name] na [target.name] w [ADMIN_VERBOSEJMP(target)]")
 		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)]")
 
-		notify_ghosts("[user] podkłada [src] na [target]!", source = target, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Explosive Planted")
+		notify_ghosts("[user] podkłada [src] na [target]!", source = target, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Podłożono ładunek")
 
 		moveToNullspace()	//Yep
 
@@ -94,7 +94,7 @@
 
 /obj/item/exploration_detonator
 	name = "detonator"
-	desc = "A detonator that can be linked to explosives and then... you know, detonate them."
+	desc = "Detonator, który można połączyć z ładunkami, a potem... no wiesz, zdetonować je."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "detonator"
 	w_class = WEIGHT_CLASS_SMALL
@@ -113,7 +113,7 @@
 		return
 	var/turf/T = get_turf(user)
 	if(is_station_level(T.z) && !(obj_flags & EMAGGED))
-		to_chat(user, "<span class='warning'>STATION SAFETY ENABLED.</span>")
+		to_chat(user, "<span class='warning'>BLOKADA BEZPIECZEŃSTWA STACJI WŁĄCZONA.</span>")
 		return
 	var/explosives_trigged = 0
 	for(var/obj/item/grenade/exploration/exploration in linked_explosives)
@@ -121,7 +121,7 @@
 		if(T2.get_virtual_z_level() == T.get_virtual_z_level() && get_dist(exploration.target, user) <= range)
 			addtimer(CALLBACK(exploration, TYPE_PROC_REF(/obj/item/grenade/exploration, prime)), 10)
 			explosives_trigged ++
-	to_chat(user, "<span class='notice'>[explosives_trigged] explosives triggered.</span>")
+	to_chat(user, "<span class='notice'>Odpalone ładunki: [explosives_trigged].</span>")
 
 /obj/item/exploration_detonator/emag_act(mob/user)
 	. = ..()

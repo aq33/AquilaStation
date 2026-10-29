@@ -1,7 +1,7 @@
 //The necropolis gate is used to call forth Legion from the Necropolis.
 /obj/structure/necropolis_gate
-	name = "necropolis gate"
-	desc = "A massive stone gateway."
+	name = "brama Nekropolii"
+	desc = "Masywna kamienna brama."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "gate_full"
 	flags_1 = ON_BORDER_1
@@ -96,7 +96,7 @@
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/attack_hand(mob/user, list/modifiers)
 	if(locked)
-		to_chat(user, "<span class='boldannounce'>It's [open ? "stuck open":"locked"].</span>")
+		to_chat(user, "<span class='boldannounce'>[open ? "Utknęła otwarta":"Jest zamknięta"].</span>")
 		return
 	toggle_the_gate(user)
 	return ..()
@@ -147,7 +147,7 @@
 
 GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 /obj/structure/necropolis_gate/legion_gate
-	desc = "A tremendous, impossibly large gateway, set into a massive tower of stone."
+	desc = "Ogromna, niewyobrażalnie wielka brama osadzona w masywnej kamiennej wieży."
 	sight_blocker_distance = 2
 
 /obj/structure/necropolis_gate/legion_gate/Initialize(mapload)
@@ -165,8 +165,8 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/structure/necropolis_gate/legion_gate/attack_hand(mob/user, list/modifiers)
 	if(!open && !changing_openness)
-		var/safety = alert(user, "Myślisz, że to może być zły pomysł...", "Zapukać do drzwi?", "Proceed", "Abort")
-		if(safety == "Abort" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated())
+		var/safety = alert(user, "Myślisz, że to może być zły pomysł...", "Zapukać do drzwi?", "Pukaj", "Odpuść")
+		if(safety == "Odpuść" || !in_range(src, user) || !src || open || changing_openness || user.incapacitated())
 			return
 		user.visible_message("<span class='warning'>[user] puka do [src]...</span>", "<span class='boldannounce'>Niepewnie pukasz do [src]...</span>")
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 100, 1)
@@ -182,10 +182,10 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 		var/turf/T = get_turf(src)
 		visible_message("<span class='userdanger'>Z Nekropolii wyłania się coś strasznego!</span>")
 		if(legion_damaged)
-			message_admins("Legion took damage while the necropolis gate was closed, and has released itself!")
+			message_admins("Legion otrzymał obrażenia przy zamkniętej bramie Nekropolii i sam się uwolnił!")
 			log_game("Legion took damage while the necropolis gate was closed and released itself.")
 		else
-			message_admins("[user ? ADMIN_LOOKUPFLW(user):"Unknown"] has released Legion!")
+			message_admins("[user ? ADMIN_LOOKUPFLW(user):"Nieznany"] uwalnia Legiona!")
 			log_game("[user ? key_name(user) : "Unknown"] released Legion.")
 
 		var/sound/legion_sound = sound('sound/creatures/legion_spawn.ogg')
@@ -211,8 +211,8 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	duration = 38
 
 /obj/structure/necropolis_arch
-	name = "necropolis arch"
-	desc = "A massive arch over the necropolis gate, set into a massive tower of stone."
+	name = "łuk Nekropolii"
+	desc = "Masywny łuk nad bramą Nekropolii, osadzony w masywnej kamiennej wieży."
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "arch_full"
 	appearance_flags = NONE
@@ -246,7 +246,7 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 #define UNIQUE_EFFECT 3 //The tile has some sort of unique effect when crossed.
 //stone tiles for boss arenas
 /obj/structure/stone_tile
-	name = "stone tile"
+	name = "kamienna płytka"
 	icon = 'icons/turf/boss_floors.dmi'
 	icon_state = "pristine_tile1"
 	layer = ABOVE_OPEN_TURF_LAYER
@@ -325,96 +325,96 @@ GLOBAL_DATUM(necropolis_gate, /obj/structure/necropolis_gate/legion_gate)
 	return
 
 /obj/structure/stone_tile/block
-	name = "stone block"
+	name = "kamienny blok"
 	icon_state = "pristine_block1"
 	tile_key = "pristine_block"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/slab
-	name = "stone slab"
+	name = "kamienna płyta"
 	icon_state = "pristine_slab1"
 	tile_key = "pristine_slab"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/center
-	name = "stone center tile"
+	name = "środkowa kamienna płytka"
 	icon_state = "pristine_center1"
 	tile_key = "pristine_center"
 	tile_random_sprite_max = 4
 
 /obj/structure/stone_tile/surrounding
-	name = "stone surrounding slab"
+	name = "okalająca kamienna płyta"
 	icon_state = "pristine_surrounding1"
 	tile_key = "pristine_surrounding"
 	tile_random_sprite_max = 2
 
 /obj/structure/stone_tile/surrounding_tile
-	name = "stone surrounding tile"
+	name = "okalająca kamienna płytka"
 	icon_state = "pristine_surrounding_tile1"
 	tile_key = "pristine_surrounding_tile"
 	tile_random_sprite_max = 2
 
 //cracked stone tiles
 /obj/structure/stone_tile/cracked
-	name = "cracked stone tile"
+	name = "pęknięta kamienna płytka"
 	icon_state = "cracked_tile1"
 	tile_key = "cracked_tile"
 
 /obj/structure/stone_tile/block/cracked
-	name = "cracked stone block"
+	name = "pęknięty kamienny blok"
 	icon_state = "cracked_block1"
 	tile_key = "cracked_block"
 
 /obj/structure/stone_tile/slab/cracked
-	name = "cracked stone slab"
+	name = "pęknięta kamienna płyta"
 	icon_state = "cracked_slab1"
 	tile_key = "cracked_slab"
 	tile_random_sprite_max = 1
 
 /obj/structure/stone_tile/center/cracked
-	name = "cracked stone center tile"
+	name = "pęknięta środkowa kamienna płytka"
 	icon_state = "cracked_center1"
 	tile_key = "cracked_center"
 
 /obj/structure/stone_tile/surrounding/cracked
-	name = "cracked stone surrounding slab"
+	name = "pęknięta okalająca kamienna płyta"
 	icon_state = "cracked_surrounding1"
 	tile_key = "cracked_surrounding"
 	tile_random_sprite_max = 1
 
 /obj/structure/stone_tile/surrounding_tile/cracked
-	name = "cracked stone surrounding tile"
+	name = "pęknięta okalająca kamienna płytka"
 	icon_state = "cracked_surrounding_tile1"
 	tile_key = "cracked_surrounding_tile"
 
 //burnt stone tiles
 /obj/structure/stone_tile/burnt
-	name = "burnt stone tile"
+	name = "osmalona kamienna płytka"
 	icon_state = "burnt_tile1"
 	tile_key = "burnt_tile"
 
 /obj/structure/stone_tile/block/burnt
-	name = "burnt stone block"
+	name = "osmalony kamienny blok"
 	icon_state = "burnt_block1"
 	tile_key = "burnt_block"
 
 /obj/structure/stone_tile/slab/burnt
-	name = "burnt stone slab"
+	name = "osmalona kamienna płyta"
 	icon_state = "burnt_slab1"
 	tile_key = "burnt_slab"
 
 /obj/structure/stone_tile/center/burnt
-	name = "burnt stone center tile"
+	name = "osmalona środkowa kamienna płytka"
 	icon_state = "burnt_center1"
 	tile_key = "burnt_center"
 
 /obj/structure/stone_tile/surrounding/burnt
-	name = "burnt stone surrounding slab"
+	name = "osmalona okalająca kamienna płyta"
 	icon_state = "burnt_surrounding1"
 	tile_key = "burnt_surrounding"
 
 /obj/structure/stone_tile/surrounding_tile/burnt
-	name = "burnt stone surrounding tile"
+	name = "osmalona okalająca kamienna płytka"
 	icon_state = "burnt_surrounding_tile1"
 	tile_key = "burnt_surrounding_tile"
 

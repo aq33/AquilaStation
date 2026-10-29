@@ -23,6 +23,25 @@ const isPurchased = (purchased_gear: string[], gear: LoadoutGear) =>
     purchased_gear.includes(gear.display_name)) &&
   !gear.multi_purchase;
 
+// AQUILA: nazwy kategorii przychodzą z DM jako klucze, tłumaczymy tylko napis
+const LOADOUT_CATEGORY_NAMES: Record<string, string> = {
+  Accessories: 'Dodatki',
+  Colorizers: 'Kolory PDA',
+  Donator: 'Donatorzy',
+  'External Wear': 'Odzież wierzchnia',
+  Footwear: 'Obuwie',
+  General: 'Ogólne',
+  Headwear: 'Nakrycia głowy',
+  OOC: 'OOC',
+  'Squad Items': 'Wyposażenie drużyny',
+  'Uniforms and Casual Dress': 'Mundury i ubrania codzienne',
+};
+
+const gearName = (gear: LoadoutGear, skirt: boolean) =>
+  skirt && gear.skirt_display_name
+    ? gear.skirt_display_name
+    : gear.display_name_pl || gear.display_name;
+
 export const LoadoutPage = (props) => {
   const { act, data } = useBackend<PreferencesMenuData>();
   const {
@@ -35,7 +54,7 @@ export const LoadoutPage = (props) => {
     <ServerPreferencesFetcher
       render={(serverData) => {
         if (!serverData) {
-          return <Box>Loading loadout data...</Box>;
+          return <Box>Wczytywanie wyposażenia...</Box>;
         }
         const { categories = [], metacurrency_name } = serverData.loadout;
         const [selectedCategory, setSelectedCategory] = useLocalState(
@@ -47,6 +66,8 @@ export const LoadoutPage = (props) => {
           return (
             gear.display_name +
             ' ' +
+            (gear.display_name_pl || '') +
+            ' ' +
             gear.skirt_display_name +
             ' ' +
             gear.allowed_roles?.join(' ')
@@ -57,7 +78,7 @@ export const LoadoutPage = (props) => {
           (c) => c.name === selectedCategory,
         )[0];
         let currency_text =
-          metacurrency_balance.toLocaleString() + ' ' + metacurrency_name + 's';
+          metacurrency_balance.toLocaleString() + ' ' + metacurrency_name;
         const showRoles =
           !selectedCategoryObject ||
           selectedCategoryObject.gear.filter((g) => g.allowed_roles?.length)
@@ -77,7 +98,7 @@ export const LoadoutPage = (props) => {
                 <Flex.Item>
                   <Button
                     icon="undo"
-                    tooltip="Rotate"
+                    tooltip="Obróć"
                     tooltipPosition="top"
                     onClick={() => act('rotate')}
                   />
@@ -104,7 +125,7 @@ export const LoadoutPage = (props) => {
                     <Icon mr={1} name="search" />
                     <Input
                       width="500px"
-                      placeholder="Search items"
+                      placeholder="Szukaj przedmiotów"
                       value={searchText}
                       onChange={(value) => setSearchText(value)}
                     />
@@ -122,7 +143,8 @@ export const LoadoutPage = (props) => {
                             selected={selectedCategory === category.name}
                             onClick={() => setSelectedCategory(category.name)}
                           >
-                            {category.name}
+                            {LOADOUT_CATEGORY_NAMES[category.name] ||
+                              category.name}
                           </Tabs.Tab>
                         ))}
                       <Tabs.Tab
@@ -130,7 +152,7 @@ export const LoadoutPage = (props) => {
                         selected={selectedCategory === 'Purchased'}
                         onClick={() => setSelectedCategory('Purchased')}
                       >
-                        Purchased
+                        Kupione
                       </Tabs.Tab>
                     </Tabs>
                   </Flex.Item>
@@ -145,15 +167,15 @@ export const LoadoutPage = (props) => {
                     <Table>
                       <Table.Row header>
                         <Table.Cell collapsing />
-                        <Table.Cell>Name</Table.Cell>
+                        <Table.Cell>Nazwa</Table.Cell>
                         {showRoles || searchText.length ? (
                           <Table.Cell style={{ width: '15rem' }}>
-                            Roles
+                            Role
                           </Table.Cell>
                         ) : null}
                         {selectedCategory !== 'Donator' && (
                           <Table.Cell collapsing textAlign="center">
-                            Cost
+                            Koszt
                           </Table.Cell>
                         )}
                         <Table.Cell style={{ minWidth: '7rem' }} collapsing />
@@ -261,17 +283,11 @@ const GearEntry = (props: {
                   : undefined
               }
             >
-              {jumpsuit_style === 'Jumpskirt' && gear.skirt_display_name
-                ? gear.skirt_display_name
-                : gear.display_name}
+              {gearName(gear, jumpsuit_style === 'Jumpskirt')}
             </Box>
           </Tooltip>
         ) : (
-          <Box inline>
-            {jumpsuit_style === 'Jumpskirt' && gear.skirt_display_name
-              ? gear.skirt_display_name
-              : gear.display_name}
-          </Box>
+          <Box inline>{gearName(gear, jumpsuit_style === 'Jumpskirt')}</Box>
         )}
       </Table.Cell>
       {showRoles && (
@@ -323,7 +339,7 @@ const GearEntry = (props: {
           <Button
             icon="eye"
             selected={data.preview_gear === gear.id}
-            tooltip="Preview"
+            tooltip="Podgląd"
             onClick={() => act('preview_gear', { id: gear.id })}
           />
         ) : null}
@@ -339,17 +355,17 @@ const GearEntry = (props: {
           tooltip={
             !isPurchased(purchased_gear, gear) &&
             gear.cost > metacurrency_balance
-              ? 'Not Enough ' + metacurrency_name + 's!'
+              ? 'Za mało środków (' + metacurrency_name + ')!'
               : null
           }
           content={
             isPurchased(purchased_gear, gear)
               ? equipped_gear.includes(gear.id)
-                ? 'Unequip'
+                ? 'Zdejmij'
                 : !gear.is_equippable
-                  ? 'Purchased'
-                  : 'Equip'
-              : 'Purchase'
+                  ? 'Kupione'
+                  : 'Załóż'
+              : 'Kup'
           }
           onClick={() =>
             act(

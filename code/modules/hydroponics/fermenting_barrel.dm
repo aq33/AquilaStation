@@ -1,6 +1,6 @@
 /obj/structure/fermenting_barrel
-	name = "wooden barrel"
-	desc = "A large wooden barrel. You can ferment fruits and such inside it, or just use it to hold liquid."
+	name = "drewniana beczka"
+	desc = "Duża drewniana beczka. Można w niej fermentować owoce i podobne rzeczy albo po prostu trzymać płyny."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrel"
 	density = TRUE
@@ -72,7 +72,7 @@
 		icon_state = "barrel"
 
 /datum/crafting_recipe/fermenting_barrel
-	name = "Wooden Barrel"
+	name = "drewniana beczka"
 	result = /obj/structure/fermenting_barrel
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 30)
 	time = 50

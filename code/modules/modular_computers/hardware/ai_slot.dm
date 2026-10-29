@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/ai_slot
-	name = "intelliCard interface slot"
-	desc = "A module allowing this computer to interface with most common intelliCard modules. Necessary for some programs to run properly."
+	name = "gniazdo interfejsu intelliCard"
+	desc = "Moduł, który pozwala temu komputerowi współpracować z najpopularniejszymi modułami intelliCard. Niektóre programy bez niego nie działają poprawnie."
 	power_usage = 100 //W
 	icon_state = "card_mini"
 	w_class = WEIGHT_CLASS_SMALL

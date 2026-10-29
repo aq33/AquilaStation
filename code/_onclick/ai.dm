@@ -46,7 +46,7 @@
 	if(!can_see(A))
 		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
 			return //So there's no point messaging admins
-		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		message_admins("[ADMIN_LOOKUPFLW(src)] może używać zmodyfikowanego klienta! (nieudane can_see przy kliknięciu SI w [A] (pole: [ADMIN_VERBOSEJMP(pixel_turf)]))")
 		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
 		log_admin(message)
 		if(REALTIMEOFDAY >= chnotify + 9000)

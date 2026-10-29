@@ -14,8 +14,8 @@
  * *	(Optional: ask Delta if you need help. (yes that is the one writing this, this time))
  */
 /obj/machinery/ship_weapon //CREDIT TO CM FOR THE SPRITES!
-	name = "A ship weapon"
-	desc = "Don't use this, use the subtypes"
+	name = "broń okrętowa"
+	desc = "Nie używaj tego, użyj podtypów."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "OBC"
 	density = TRUE
@@ -145,7 +145,7 @@
 			link_to_overmap_weapon_datum(linked)
 			return
 	else
-		message_admins("[z] not linked to an overmap - [src] will not be linked.")
+		message_admins("Poziom [z] nie jest połączony z overmapą – [src] nie zostanie połączone.")
 
 /**
  * Links the physical weapon to a ship weapon datum, or creates one if needed.

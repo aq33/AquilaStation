@@ -1,7 +1,7 @@
 /mob/living/simple_animal/pet/gondola/gondolapod
 	name = "gondola"
 	real_name = "gondola"
-	desc = "The silent walker. This one seems to be part of a delivery agency."
+	desc = "Cichy wędrowiec. Ten chyba pracuje w firmie kurierskiej."
 	response_help = "głaszcze"
 	response_disarm = "pstryka"
 	response_harm = "kopie"
@@ -37,7 +37,7 @@
 /mob/living/simple_animal/pet/gondola/gondolapod/verb/deliver()
 	set name = "Release Contents"
 	set category = "Gondola"
-	set desc = "Release any contents stored within your vast belly."
+	set desc = "Wypuść wszystko, co przechowujesz w swoim przepastnym brzuchu."
 	linked_pod.open_pod(src, forced = TRUE)
 
 /mob/living/simple_animal/pet/gondola/gondolapod/examine(mob/user)
@@ -50,7 +50,7 @@
 /mob/living/simple_animal/pet/gondola/gondolapod/verb/check()
 	set name = "Count Contents"
 	set category = "Gondola"
-	set desc = "Take a deep look inside youself, and count up what's inside"
+	set desc = "Zajrzyj głęboko w siebie i policz, co jest w środku."
 	var/total = contents.len
 	if (total)
 		to_chat(src, "<span class='notice'>Wykrywasz obiekty w swoim niewiarygodnie przepastnym brzuchu (liczba: [total]).</span>")

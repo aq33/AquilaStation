@@ -1,6 +1,6 @@
 /mob/living/simple_animal/mouse
-	name = "mouse"
-	desc = "It's a nasty, ugly, evil, disease-ridden rodent."
+	name = "mysz"
+	desc = "To paskudny, brzydki, zły i roznoszący choroby gryzoń."
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
@@ -88,7 +88,7 @@
 			M.reagents.add_reagent(/datum/reagent/blood, 2, data)
 			if(toast)
 				M.add_atom_colour("#3A3A3A", FIXED_COLOUR_PRIORITY)
-				M.desc = "It's toast."
+				M.desc = "Już po niej."
 		qdel(src)
 	else
 		..(gibbed)
@@ -99,7 +99,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, "<span class='notice'>[icon2html(src, M)] Squeak!</span>")
+			to_chat(M, "<span class='notice'>[icon2html(src, M)] Pisk!</span>")
 
 /mob/living/simple_animal/mouse/handle_automated_action()
 	if(prob(chew_probability))
@@ -137,15 +137,15 @@
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_animal/mouse/brown/Tom
 	name = "Tom"
-	desc = "Jerry the cat is not amused."
+	desc = "Kot Jerry nie jest rozbawiony."
 	response_help  = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
 	response_harm   = "rozpłaszcza"
 	gold_core_spawnable = NO_SPAWN
 
 /obj/item/food/deadmouse
-	name = "dead mouse"
-	desc = "It looks like somebody dropped the bass on it. A lizard's favorite meal. May contain diseases."
+	name = "martwa mysz"
+	desc = "Wygląda, jakby ktoś spuścił na nią bas. Ulubiony posiłek jaszczurów. Może roznosić choroby."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "mouse_gray_dead"
 	bite_consumption = 3
@@ -163,8 +163,8 @@
 	decomp_type = /obj/item/food/deadmouse/moldy
 
 /obj/item/food/deadmouse/moldy
-	name = "moldy dead mouse"
-	desc = "A dead rodent, consumed by mold and rot. There is a slim chance that a lizard might still eat it."
+	name = "spleśniała martwa mysz"
+	desc = "Martwy gryzoń strawiony przez pleśń i zgniliznę. Istnieje niewielka szansa, że jaszczur wciąż by go zjadł."
 	icon_state = "mouse_gray_dead"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,

@@ -1,6 +1,6 @@
 /datum/action/changeling/gaseous_pores
-	name = "Gaseous Pores"
-	desc = "Our skins bursts, releasing gases which bring confusion to our pursuers, covering our escape."
+	name = "Gazowe pory"
+	desc = "Nasza skóra pęka i uwalnia gazy, które dezorientują pościg i osłaniają naszą ucieczkę."
 	helptext = "Nasz gatunek jest odporny na gazy, butle z powietrzem nie są potrzebne."
 	button_icon_state = "smoke"
 	chemical_cost = 25

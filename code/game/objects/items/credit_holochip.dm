@@ -1,6 +1,6 @@
 /obj/item/holochip
-	name = "credit holochip"
-	desc = "A hard-light chip encoded with an amount of credits. It is a modern replacement for physical money that can be directly converted to virtual currency and viceversa. Keep away from magnets."
+	name = "holochip kredytowy"
+	desc = "Chip z twardego światła zakodowany określoną liczbą kredytów. To nowoczesny zamiennik gotówki, który można bezpośrednio wymienić na walutę wirtualną i z powrotem. Trzymać z dala od magnesów."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "holochip"
 	throwforce = 0
@@ -22,7 +22,7 @@
 	return credits
 
 /obj/item/holochip/update_icon()
-	name = "\improper [credits] credit holochip"
+	name = "\improper holochip ([credits] kr.)"
 	var/rounded_credits = credits
 	switch(credits)
 		if(1 to 999)

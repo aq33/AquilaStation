@@ -1,6 +1,6 @@
 /*****************Pickaxes & Drills & Shovels****************/
 /obj/item/pickaxe
-	name = "pickaxe"
+	name = "kilof"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "pickaxe"
 	flags_1 = CONDUCT_1
@@ -27,8 +27,8 @@
 	return SHAME
 
 /obj/item/pickaxe/mini
-	name = "compact pickaxe"
-	desc = "A smaller, compact version of the standard pickaxe."
+	name = "kompaktowy kilof"
+	desc = "Mniejsza, kompaktowa wersja standardowego kilofa."
 	icon_state = "minipick"
 	force = 10
 	throwforce = 7
@@ -37,25 +37,25 @@
 	materials = list(/datum/material/iron=1000)
 
 /obj/item/pickaxe/silver
-	name = "silver-plated pickaxe"
+	name = "posrebrzany kilof"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 	worn_icon_state = "spickaxe"
 	toolspeed = 0.5 //mines faster than a normal pickaxe, bought from mining vendor
-	desc = "A silver-plated pickaxe that mines slightly faster than standard-issue."
+	desc = "Posrebrzany kilof, który kopie nieco szybciej od standardowego."
 	force = 17
 
 /obj/item/pickaxe/diamond
-	name = "diamond-tipped pickaxe"
+	name = "kilof z diamentowym ostrzem"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 	worn_icon_state = "dpickaxe"
 	toolspeed = 0.3
-	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
+	desc = "Kilof z diamentową głowicą. Niezwykle skutecznie kruszy skalne ściany i rozkopuje ziemię."
 	force = 19
 
 /obj/item/pickaxe/drill
-	name = "mining drill"
+	name = "wiertło górnicze"
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 	worn_icon_state = "jackhammer"
@@ -63,11 +63,11 @@
 	toolspeed = 0.6 //available from roundstart, faster than a pickaxe.
 	usesound = 'sound/weapons/drill.ogg'
 	hitsound = 'sound/weapons/drill.ogg'
-	desc = "An electric mining drill for the especially scrawny."
+	desc = "Elektryczne wiertło górnicze dla szczególnie cherlawych."
 
 /obj/item/pickaxe/drill/cyborg
-	name = "cyborg mining drill"
-	desc = "An integrated electric mining drill."
+	name = "wiertło górnicze cyborga"
+	desc = "Zintegrowane elektryczne wiertło górnicze."
 	flags_1 = NONE
 
 /obj/item/pickaxe/drill/cyborg/Initialize(mapload)
@@ -75,29 +75,29 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CYBORG_ITEM_TRAIT)
 
 /obj/item/pickaxe/drill/diamonddrill
-	name = "diamond-tipped mining drill"
+	name = "diamentowe wiertło górnicze"
 	icon_state = "diamonddrill"
 	toolspeed = 0.2
-	desc = "Yours is the drill that will pierce the heavens!"
+	desc = "Twoje wiertło przebije niebiosa!"
 
 /obj/item/pickaxe/drill/cyborg/diamond //This is the BORG version!
-	name = "diamond-tipped cyborg mining drill" //To inherit the NODROP_1 flag, and easier to change borg specific drill mechanics.
+	name = "diamentowe wiertło górnicze cyborga" //To inherit the NODROP_1 flag, and easier to change borg specific drill mechanics.
 	icon_state = "diamonddrill"
 	toolspeed = 0.2
 
 /obj/item/pickaxe/drill/jackhammer
-	name = "sonic jackhammer"
+	name = "soniczny młot pneumatyczny"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	worn_icon_state = "jackhammer"
 	toolspeed = 0.1 //the epitome of powertools. extremely fast mining, laughs at puny walls
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'
-	desc = "Cracks rocks with sonic blasts, and doubles as a demolition power tool for smashing walls."
+	desc = "Kruszy skały falami dźwiękowymi, a przy okazji służy jako elektronarzędzie do burzenia ścian."
 
 /obj/item/shovel
-	name = "shovel"
-	desc = "A large tool for digging and moving dirt."
+	name = "łopata"
+	desc = "Duże narzędzie do kopania i przenoszenia ziemi."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "shovel"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -150,8 +150,8 @@
 	return SHAME
 
 /obj/item/shovel/spade
-	name = "spade"
-	desc = "A small tool for digging and moving dirt."
+	name = "łopatka"
+	desc = "Małe narzędzie do kopania i przenoszenia ziemi."
 	icon_state = "spade"
 	item_state = "spade"
 	worn_icon_state = "spade"

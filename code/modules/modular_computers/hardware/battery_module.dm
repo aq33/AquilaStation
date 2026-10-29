@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/battery
-	name = "power cell controller"
-	desc = "A charge controller for standard power cells, used in all kinds of modular computers."
+	name = "kontroler ogniwa zasilającego"
+	desc = "Kontroler ładowania standardowych ogniw zasilających, używany we wszelkiego rodzaju komputerach modułowych."
 	icon_state = "cell_con"
 	critical = 1
 	malfunction_probability = 1
@@ -64,35 +64,35 @@
 		return TRUE
 
 /obj/item/stock_parts/cell/computer
-	name = "standard battery"
-	desc = "A standard power cell, commonly seen in high-end portable microcomputers or low-end laptops."
+	name = "standardowa bateria"
+	desc = "Standardowe ogniwo zasilające, spotykane zwykle w droższych mikrokomputerach przenośnych albo w tanich laptopach."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cell_mini"
 	w_class = WEIGHT_CLASS_TINY
 	maxcharge = 750
 
 /obj/item/stock_parts/cell/computer/advanced
-	name = "advanced battery"
-	desc = "An advanced power cell, often used in most laptops. It is too large to be fitted into smaller devices."
+	name = "zaawansowana bateria"
+	desc = "Zaawansowane ogniwo zasilające, używane w większości laptopów. Jest za duże do mniejszych urządzeń."
 	icon_state = "cell"
 	w_class = WEIGHT_CLASS_SMALL
 	maxcharge = 1500
 
 /obj/item/stock_parts/cell/computer/super
-	name = "super battery"
-	desc = "An advanced power cell, often used in high-end laptops."
+	name = "superbateria"
+	desc = "Zaawansowane ogniwo zasilające, używane często w drogich laptopach."
 	icon_state = "cell"
 	w_class = WEIGHT_CLASS_SMALL
 	maxcharge = 2000
 
 /obj/item/stock_parts/cell/computer/micro
-	name = "micro battery"
-	desc = "A small power cell, commonly seen in most portable microcomputers."
+	name = "mikrobateria"
+	desc = "Małe ogniwo zasilające, spotykane w większości przenośnych mikrokomputerów."
 	icon_state = "cell_micro"
 	maxcharge = 500
 
 /obj/item/stock_parts/cell/computer/nano
-	name = "nano battery"
-	desc = "A tiny power cell, commonly seen in low-end portable microcomputers."
+	name = "nanobateria"
+	desc = "Malutkie ogniwo zasilające, spotykane w tanich przenośnych mikrokomputerach."
 	icon_state = "cell_micro"
 	maxcharge = 300

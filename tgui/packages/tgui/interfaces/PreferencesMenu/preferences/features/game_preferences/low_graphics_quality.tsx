@@ -1,11 +1,11 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const lowgraphicsquality: FeatureToggle = {
-  name: 'Low Graphics Quality',
+  name: 'Niska jakość grafiki',
   category: 'GRAPHICS',
   subcategory: 'Quality',
   description:
-    'Significantly reduces visual quality to consume less graphics memory. This feature is only necessary if you are experiencing rendering issues that are not fixed by clearing the cache.',
+    'Mocno obniża jakość grafiki, żeby zużywać mniej pamięci karty graficznej. Przydaje się tylko wtedy, gdy masz problemy z renderowaniem, których nie naprawia wyczyszczenie pamięci podręcznej.',
   component: CheckboxInput,
   important: false,
 };

@@ -22,21 +22,21 @@ export const NtosLogViewer = (props) => {
           <Section fill scrollable>
             <Table>
               <Table.Row header>
-                <Table.Cell>Filename</Table.Cell>
-                <Table.Cell collapsing>Size</Table.Cell>
+                <Table.Cell>Nazwa pliku</Table.Cell>
+                <Table.Cell collapsing>Rozmiar</Table.Cell>
               </Table.Row>
               {files.map((file) => (
                 <Table.Row key={file.name} className="candystripe">
                   <Table.Cell>{file.name}.log</Table.Cell>
                   <Table.Cell>
-                    {!file.remote ? `${file.size}GQ` : 'Remote'}
+                    {!file.remote ? `${file.size}GQ` : 'Zdalny'}
                   </Table.Cell>
                   <Table.Cell collapsing style={{ textAlign: 'right' }}>
                     {!!file.remote && (
                       <Button
                         disabled={!file.online}
                         icon="download"
-                        tooltip="Download"
+                        tooltip="Pobierz"
                         onClick={() =>
                           act('DownloadRemote', { name: file.name })
                         }
@@ -46,10 +46,10 @@ export const NtosLogViewer = (props) => {
                       disabled={file.remote && !file.online}
                       tooltip={
                         file.remote && !file.online
-                          ? 'Cannot establish NTNet link.'
+                          ? 'Nie można połączyć się z NTNet.'
                           : null
                       }
-                      content="Open"
+                      content="Otwórz"
                       onClick={() => setOpenFile(file.name)}
                     />
                   </Table.Cell>
@@ -95,7 +95,7 @@ class Log extends Component<any, any> {
         buttons={
           <Button
             icon="arrow-left"
-            content="Back"
+            content="Wróć"
             onClick={() => this.props.setOpenFile(null)}
           />
         }

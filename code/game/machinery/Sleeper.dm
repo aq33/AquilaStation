@@ -1,12 +1,12 @@
 /obj/machinery/sleep_console
-	name = "sleeper console"
+	name = "konsola sleepera"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "console"
 	density = FALSE
 
 /obj/machinery/sleeper
 	name = "sleeper"
-	desc = "An enclosed machine used to stabilize and heal patients."
+	desc = "Zamknięta maszyna do stabilizowania i leczenia pacjentów."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	density = FALSE
@@ -276,8 +276,8 @@
 	circuit = /obj/item/circuitboard/machine/sleeper/fullupgrade
 
 /obj/machinery/sleeper/clockwork
-	name = "soothing sleeper"
-	desc = "A large cryogenics unit built from brass. Its surface is pleasantly cool the touch."
+	name = "kojący sleeper"
+	desc = "Duża jednostka kriogeniczna z mosiądzu. Jej powierzchnia jest przyjemnie chłodna w dotyku."
 	icon_state = "sleeper_clockwork"
 	enter_message = "<span class='bold inathneq_small'>Słyszysz delikatny szum i kliknięcia maszynerii, które wprawiają cię w spokój.</span>"
 	possible_chems = list(list(/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/bicaridine, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/oculine, /datum/reagent/medicine/inacusiate, /datum/reagent/medicine/mannitol))

@@ -59,7 +59,7 @@ const byName = (a: CookRecipe, b: CookRecipe) => a.name.localeCompare(b.name);
 const listIngredients = (ingredients: Ingredient[]) =>
   ingredients
     .map((i) =>
-      i.reagent ? `${i.amount}u ${i.name}` : `${i.amount}× ${i.name}`,
+      i.reagent ? `${i.amount} j. ${i.name}` : `${i.amount}× ${i.name}`,
     )
     .join(', ');
 

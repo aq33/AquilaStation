@@ -19,7 +19,12 @@ type Data = {
 export const InertialDampener = (props) => {
   const { act, data } = useBackend<Data>();
   return (
-    <Window title="Inertial Dampener" theme="ntos" width={263} height={165}>
+    <Window
+      title="Tłumik bezwładnościowy"
+      theme="ntos"
+      width={263}
+      height={165}
+    >
       <Window.Content scrollable>
         <Section>
           <Button

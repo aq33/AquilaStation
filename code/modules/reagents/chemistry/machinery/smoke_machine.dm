@@ -1,8 +1,8 @@
 #define REAGENTS_BASE_VOLUME 100 // actual volume is REAGENTS_BASE_VOLUME plus REAGENTS_BASE_VOLUME * rating for each matterbin
 
 /obj/machinery/smoke_machine
-	name = "smoke machine"
-	desc = "A machine with a centrifuge installed into it. It produces smoke with any reagents you put into the machine."
+	name = "wytwornica dymu"
+	desc = "Maszyna z wbudowaną wirówką. Wytwarza dym z dowolnych odczynników, które do niej wlejesz."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "smoke0"
 	density = TRUE
@@ -154,7 +154,7 @@
 			update_icon()
 			. = TRUE
 			if(on)
-				message_admins("[ADMIN_LOOKUPFLW(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [ADMIN_VERBOSEJMP(src)].")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] włącza wytwornicę dymu zawierającą [english_list(reagents.reagent_list)] w [ADMIN_VERBOSEJMP(src)].")
 				log_game("[key_name(usr)] activated a smoke machine that contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")
 				log_combat(usr, src, "has activated [src] which contains [english_list(reagents.reagent_list)] at [AREACOORD(src)].")
 

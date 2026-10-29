@@ -1,6 +1,6 @@
 /obj/machinery/computer/ship/fighter_launcher
-	name = "\improper Mag-cat control console"
-	desc = "A computer which is capable of remotely activating fighter launch / arrestor systems."
+	name = "\improper konsola sterowania katapultą Mag-cat"
+	desc = "Komputer, który potrafi zdalnie uruchamiać systemy startowe i hamujące myśliwców."
 	circuit = /obj/item/circuitboard/computer/ship/fighter_launcher
 	var/next_message = 0 //Stops spam messaging
 	var/list/launchers = list()
@@ -33,7 +33,7 @@
 		var/obj/structure/overmap/small_craft/F = FL.mag_locked
 		launcher_info["can_launch"] = FL.ready
 		launcher_info["mag_locked"] = F?.name
-		launcher_info["pilot"] = (F?.pilot) ? F?.pilot.name : "No pilot"
+		launcher_info["pilot"] = (F?.pilot) ? F?.pilot.name : "Brak pilota"
 		launcher_info["pilot_id"] = (F?.pilot) ? "\ref[F.pilot]" : null
 		launcher_info["msg_cooldown"] = (world.time >= next_message)
 		launchers_info[++launchers_info.len] = launcher_info
@@ -65,8 +65,8 @@
 			to_chat(pilot, what)
 
 /obj/structure/fighter_launcher //Fighter launch track! This is both an arrestor and an assisted launch system for ease of use.
-	name = "electromagnetic catapult"
-	desc = "A large rail which uses an electromagnetic field to accelerate fighters to extreme speeds. This state of the art piece of machinery acts as both an arrestor and an assisted fighter launch system."
+	name = "katapulta elektromagnetyczna"
+	desc = "Duża szyna, która za pomocą pola elektromagnetycznego rozpędza myśliwce do ogromnych prędkości. To najnowocześniejsze urządzenie działa zarówno jako hak hamujący, jak i system wspomaganego startu myśliwców."
 	icon = 'nsv13/icons/overmap/nanotrasen/fighter.dmi'
 	icon_state = "launcher_map" //Icon to show which way theyre pointing
 	bound_width = 96
@@ -83,8 +83,8 @@
 	place_landing_waypoint = FALSE
 
 /obj/structure/fighter_launcher/galactica //If it shouldn't actually launch people. But should just catch them.
-	name = "electromagnetic arrestor"
-	desc = "A large rail which rapidly decelerates approaching ships to a safe velocity."
+	name = "elektromagnetyczny hak hamujący"
+	desc = "Duża szyna, która gwałtownie wyhamowuje nadlatujące jednostki do bezpiecznej prędkości."
 
 /obj/structure/fighter_launcher/galactica/linkup() //Tweaks the offsets so that fighters don't experience crippling visual issues on Galactica.
 	linked = get_overmap()
@@ -125,7 +125,7 @@
 	if(istype(AM, /obj/structure/overmap/small_craft) && !mag_locked && ready) //Are we able to catch this ship?
 		var/obj/structure/overmap/small_craft/OM = AM
 		mag_locked = AM
-		visible_message("<span class='warning'>CLUNK.</span>")
+		visible_message("<span class='warning'>ŁUP.</span>")
 		OM.brakes = TRUE
 		OM.velocity.a = 0
 		OM.velocity.e = 0 //Full stop.
@@ -295,7 +295,7 @@ d) the ships[] list of ssstarsystem is acting up again.
 		if(!ignore_position)
 			return FALSE
 		OM = SSstar_system.find_main_overmap()
-		message_admins("[src] has no overmap or last overmap during a forced exit, it will enter the overmap near [OM]")
+		message_admins("[src] nie ma overmapy ani ostatniej overmapy podczas wymuszonego wyjścia, więc wejdzie na overmapę w pobliżu [OM]")
 	layer = LOW_OBJ_LAYER
 	addtimer(VARSET_CALLBACK(src, layer, ABOVE_MOB_LAYER), 2 SECONDS) //Gives fighters a small window of immunity from collisions with other overmaps
 	var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)

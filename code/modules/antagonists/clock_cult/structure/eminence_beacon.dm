@@ -1,6 +1,6 @@
 /obj/structure/destructible/clockwork/eminence_beacon
-	name = "eminence spire"
-	desc = "An ancient, brass spire which holds the spirit of a powerful entity conceived by Rat'var to oversee his faithful servants."
+	name = "iglica Eminencji"
+	desc = "Pradawna mosiężna iglica, w której spoczywa duch potężnej istoty stworzonej przez Rat'vara, by czuwała nad jego wiernymi sługami."
 	icon_state = "tinkerers_daemon"
 	resistance_flags = INDESTRUCTIBLE
 	var/used = FALSE
@@ -20,13 +20,13 @@
 	if(used)
 		to_chat(user, "<span class='brass'>Eminencja została już uwolniona.</span>")
 		return
-	var/option = alert(user,"Kto ma kierować Eminencją?",,"Yourself","A ghost", "Cancel")
-	if(option != "A ghost" && option != "Yourself") //NSV13
+	var/option = alert(user,"Kto ma kierować Eminencją?",,"Ja","Duch", "Anuluj")
+	if(option != "Duch" && option != "Ja") //NSV13
 		return
-	else if(option == "Yourself")
+	else if(option == "Ja")
 		hierophant_message("[user] zgłasza siebie na Eminencję. Użyj [src], żeby zaprotestować.", span="<span class='large_brass'>")
 		vote_timer = addtimer(CALLBACK(src, PROC_REF(vote_succeed), user), 600, TIMER_STOPPABLE)
-	else if(option == "A ghost")
+	else if(option == "Duch")
 		hierophant_message("[user] chce, by Eminencją został duch. Użyj [src], żeby zaprotestować.")
 		vote_timer = addtimer(CALLBACK(src, PROC_REF(vote_succeed)), 600, TIMER_STOPPABLE)
 	vote_active = TRUE

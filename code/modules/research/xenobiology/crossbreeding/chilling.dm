@@ -4,8 +4,8 @@ Chilling extracts:
 	filled with 10u plasma and activated in-hand.
 */
 /obj/item/slimecross/chilling
-	name = "chilling extract"
-	desc = "It's cold to the touch, as if frozen solid."
+	name = "mrożący ekstrakt"
+	desc = "Jest zimny w dotyku, jakby zamarzł na kość."
 	effect = "chilling"
 	icon_state = "chilling"
 

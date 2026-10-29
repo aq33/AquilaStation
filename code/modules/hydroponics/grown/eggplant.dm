@@ -1,16 +1,16 @@
 // Eggplant
 /obj/item/food/grown/eggplant
 	seed = /obj/item/plant_seeds/preset/eggplant
-	name = "eggplant"
-	desc = "Maybe there's a chicken inside?"
+	name = "bakłażan"
+	desc = "Może w środku jest kurczak?"
 	icon_state = "eggplant"
 	foodtypes = FRUIT
 	wine_power = 20
 
 // Egg-Plant
 /obj/item/food/grown/shell/eggy
-	name = "egg-plant"
-	desc = "There MUST be a chicken inside."
+	name = "bakłażan jajeczny"
+	desc = "W środku MUSI być kurczak."
 	icon_state = "eggyplant"
 	trash_type = /obj/item/food/egg
 	foodtypes = MEAT

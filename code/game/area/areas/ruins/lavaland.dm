@@ -4,7 +4,7 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/clownplanet
-	name = "Clown Planet"
+	name = "Planeta Klaunów"
 	icon_state = "dk_yellow"
 	ambientsounds = list('sound/ambience/clown.ogg')
 
@@ -18,14 +18,14 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/golem_ship
-	name = "Free Golem Ship"
+	name = "Statek Wolnych Golemów"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/greed
 	icon_state = "dk_yellow"
 
 /area/ruin/unpowered/hierophant
-	name = "Hierophant's Arena"
+	name = "Arena Hierofanta"
 	icon_state = "dk_yellow"
 
 /area/ruin/powered/pride
@@ -35,51 +35,51 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/unpowered/syndicate_lava_base
-	name = "Secret Base"
+	name = "Tajna Baza"
 	icon_state = "dk_yellow"
 	ambience_index = AMBIENCE_DANGER
 
 /area/ruin/unpowered/syndicate_lava_base/engineering
-	name = "Syndicate Lavaland Engineering"
+	name = "Inżynieria Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/medbay
-	name = "Syndicate Lavaland Medbay"
+	name = "Ambulatorium Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/arrivals
-	name = "Syndicate Lavaland Arrivals"
+	name = "Przyloty Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/bar
-	name = "Syndicate Lavaland Bar"
+	name = "Bar Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/main
-	name = "Syndicate Lavaland Primary Hallway"
+	name = "Główny Korytarz Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/cargo
-	name = "Syndicate Lavaland Cargo Bay"
+	name = "Ładownia Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/chemistry
-	name = "Syndicate Lavaland Chemistry"
+	name = "Chemia Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/virology
-	name = "Syndicate Lavaland Virology"
+	name = "Wirusologia Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/testlab
-	name = "Syndicate Lavaland Experimentation Lab"
+	name = "Laboratorium Eksperymentalne Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/dormitories
-	name = "Syndicate Lavaland Dormitories"
+	name = "Kwatery Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/syndicate_lava_base/telecomms
-	name = "Syndicate Lavaland Telecommunications"
+	name = "Telekomunikacja Bazy Syndykatu na Lavalandzie"
 
 /area/ruin/unpowered/standruin
-	name = "Forgotten Ruin"
+	name = "Zapomniane Ruiny"
 	icon_state = "dk_yellow"
 
 //Xeno Nest
 
 /area/ruin/unpowered/xenonest
-	name = "The Hive"
+	name = "Rój"
 	always_unpowered = TRUE
 	power_environ = FALSE
 	power_equip = FALSE

@@ -236,8 +236,8 @@
 
 /// Przenikanie czarodzieja: na kilka sekund, wychodzi w ostatnim wolnym miejscu
 /datum/action/cooldown/spell/jaunt/ethereal_jaunt
-	name = "Ethereal Jaunt"
-	desc = "This spell turns your form ethereal, temporarily making you invisible and able to pass through walls."
+	name = "Eteryczne przejście"
+	desc = "To zaklęcie zmienia twoją postać w eteryczną. Na chwilę stajesz się niewidzialny i przenikasz przez ściany."
 	button_icon_state = "jaunt"
 	sound = 'sound/magic/ethereal_enter.ogg'
 	cooldown_time = 30 SECONDS
@@ -345,7 +345,7 @@
 
 /// Pojemnik przenikania w stylu tg. Osobny typ, żeby nie ruszać naszych starych (slaughter, spell_jaunt, shadow).
 /obj/effect/dummy/phased_mob/tg
-	name = "ethereal form"
+	name = "eteryczna postać"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	density = FALSE
@@ -728,7 +728,7 @@
 	return ..()
 
 /atom/movable/screen/alert/status_effect/shapeshifted
-	name = "Shapeshifted"
+	name = "Przemiana"
 	desc = "Twoja forma nie jest twoja... jesteś przemieniony w inną istotę!"
 	icon_state = "default"
 

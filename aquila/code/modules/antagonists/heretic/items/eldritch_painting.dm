@@ -1,6 +1,6 @@
 // The basic eldritch painting
 /obj/item/wallframe/painting/eldritch
-	name = "The Blank Canvas: A Study in Default Subtypes"
+	name = "Puste płótno: studium domyślnych podtypów"
 	desc = "Niemożliwy obraz z niemożliwej farby. Nie powinien istnieć w tej rzeczywistości."
 	icon = 'aquila/icons/obj/signs.dmi'
 	resistance_flags = FLAMMABLE
@@ -10,7 +10,7 @@
 	materials = list()
 
 /obj/structure/sign/painting/eldritch
-	name = "The Blank Canvas: A Study in Default Subtypes"
+	name = "Puste płótno: studium domyślnych podtypów"
 	desc = "Niemożliwy obraz z niemożliwej farby. Nie powinien istnieć w tej rzeczywistości."
 	icon = 'aquila/icons/obj/signs.dmi'
 	icon_state = "eldritch_painting_debug"
@@ -87,13 +87,13 @@
 
 // The Sister and He Who Wept eldritch painting
 /obj/item/wallframe/painting/eldritch/weeping
-	name = "\improper The Sister and He Who Wept"
+	name = "\improper Siostra i Ten, Który Płakał"
 	desc = "Piękny obraz przedstawiający urodziwą damę siedzącą obok Niego. On płacze. Jeszcze Go zobaczysz."
 	icon_state = "eldritch_painting_weeping"
 	result_path = /obj/structure/sign/painting/eldritch/weeping
 
 /obj/structure/sign/painting/eldritch/weeping
-	name = "\improper The Sister and He Who Wept"
+	name = "\improper Siostra i Ten, Który Płakał"
 	desc = "Piękny obraz przedstawiający urodziwą damę siedzącą obok Niego. On płacze. Jeszcze Go zobaczysz. Można go zdjąć nożycami do drutu."
 	icon_state = "eldritch_painting_weeping"
 	applied_status_effect = /datum/status_effect/eldritch_painting/weeping
@@ -112,13 +112,13 @@
 
 // The First Desire painting, using a lot of the painting/eldritch framework
 /obj/item/wallframe/painting/eldritch/desire
-	name = "\improper The Feast of Desire"
+	name = "\improper Uczta Pożądania"
 	desc = "Obraz wystawnej uczty. Choć składa się wyłącznie z gnijącego mięsa i rozkładających się organów, jedzenie wygląda bardzo apetycznie."
 	icon_state = "eldritch_painting_desire"
 	result_path = /obj/structure/sign/painting/eldritch/desire
 
 /obj/structure/sign/painting/eldritch/desire
-	name = "\improper The Feast of Desire"
+	name = "\improper Uczta Pożądania"
 	desc = "Obraz wystawnej uczty. Choć składa się wyłącznie z gnijącego mięsa i rozkładających się organów, jedzenie wygląda bardzo apetycznie. Można go zdjąć nożycami do drutu."
 	icon_state = "eldritch_painting_desire"
 	applied_status_effect = /datum/status_effect/eldritch_painting/desire
@@ -160,13 +160,13 @@
 
 // Great chaparral over rolling hills, this one doesn't have the sensor type
 /obj/item/wallframe/painting/eldritch/vines
-	name = "\improper Great Chaparral Over Rolling Hills"
+	name = "\improper Wielki Gąszcz nad Falistymi Wzgórzami"
 	desc = "Obraz przedstawiający ogromną gęstwinę. Tętni życiem i zdaje się napierać na ramę."
 	icon_state = "eldritch_painting_vines"
 	result_path = /obj/structure/sign/painting/eldritch/vines
 
 /obj/structure/sign/painting/eldritch/vines
-	name = "\improper Great Chaparral Over Rolling Hills"
+	name = "\improper Wielki Gąszcz nad Falistymi Wzgórzami"
 	desc = "Obraz przedstawiający ogromną gęstwinę. Tętni życiem i zdaje się napierać na ramę. Można go zdjąć nożycami do drutu."
 	icon_state = "eldritch_painting_vines"
 	applied_status_effect = null
@@ -212,13 +212,13 @@
 
 // Lady out of gates, gives a brain trauma causing the person to scratch themselves
 /obj/item/wallframe/painting/eldritch/beauty
-	name = "\improper Lady of the Gate"
+	name = "\improper Pani Bramy"
 	desc = "Obraz nieziemskiej istoty. Cienka, porcelanowa skóra jest ciasno naciągnięta na dziwną budowę kości. Ma w sobie osobliwe piękno."
 	icon_state = "eldritch_painting_beauty"
 	result_path = /obj/structure/sign/painting/eldritch/beauty
 
 /obj/structure/sign/painting/eldritch/beauty
-	name = "\improper Lady of the Gate"
+	name = "\improper Pani Bramy"
 	desc = "Obraz nieziemskiej istoty. Cienka, porcelanowa skóra jest ciasno naciągnięta na dziwną budowę kości. Ma w sobie osobliwe piękno. Można go zdjąć nożycami do drutu."
 	icon_state = "eldritch_painting_beauty"
 	applied_status_effect = /datum/status_effect/eldritch_painting/beauty
@@ -241,13 +241,13 @@
 
 // Climb over the rusted mountain, gives a brain trauma causing the person to randomly rust tiles beneath them
 /obj/item/wallframe/painting/eldritch/rust
-	name = "\improper Master of the Rusted Mountain"
+	name = "\improper Mistrz Zardzewiałej Góry"
 	desc = "Obraz dziwnej istoty wspinającej się na rdzawą górę. Pociągnięcia pędzla są nienaturalne i niepokojące."
 	icon_state = "eldritch_painting_rust"
 	result_path = /obj/structure/sign/painting/eldritch/rust
 
 /obj/structure/sign/painting/eldritch/rust
-	name = "\improper Master of the Rusted Mountain"
+	name = "\improper Mistrz Zardzewiałej Góry"
 	desc = "Obraz dziwnej istoty wspinającej się na rdzawą górę. Pociągnięcia pędzla są nienaturalne i niepokojące. Można go zdjąć nożycami do drutu."
 	icon_state = "eldritch_painting_rust"
 	applied_status_effect = /datum/status_effect/eldritch_painting/rusting

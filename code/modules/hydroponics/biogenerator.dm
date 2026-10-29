@@ -1,6 +1,6 @@
 /obj/machinery/biogenerator
 	name = "biogenerator"
-	desc = "Converts plants into biomass, which can be used to construct useful items."
+	desc = "Przetwarza rośliny na biomasę, z której można wytwarzać przydatne przedmioty."
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-empty"
 	density = TRUE
@@ -37,7 +37,7 @@
 	. = ..()
 	if(!isliving(user))
 		return
-	context.add_left_click_item_action("Insert Plant", /obj/item/shovel)
+	context.add_left_click_item_action("Włóż rośliny", /obj/item/shovel)
 
 /obj/machinery/biogenerator/contents_explosion(severity, target)
 	..()

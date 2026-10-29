@@ -10,28 +10,28 @@
 ///////DEPARTMENT DOOR REMOTE//////
 
 /obj/item/door_remote/master_at_arms
-	name = "munitions door remote"
+	name = "pilot drzwi działu amunicji"
 	icon_state = "gangtool-red"
 	region_access = 8
 
 ///////ENCRYPTION KEYS///////
 
 /obj/item/encryptionkey/atc
-	name = "air traffic control radio encryption key"
+	name = "klucz szyfrujący radia Kontroli Lotów"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_cypherkey"
 	channels = list(RADIO_CHANNEL_ATC = 1, RADIO_CHANNEL_MUNITIONS = 1, RADIO_CHANNEL_COMMAND = 1)
 	independent = TRUE
 
 /obj/item/encryptionkey/pilot
-	name = "fighter pilot radio encryption key"
+	name = "klucz szyfrujący radia pilotów myśliwców"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_cypherkey"
 	channels = list(RADIO_CHANNEL_ATC = 1, RADIO_CHANNEL_MUNITIONS = 1)
 	independent = TRUE
 
 /obj/item/encryptionkey/heads/master_at_arms
-	name = "master at arms radio encryption key"
+	name = "klucz szyfrujący radia Mistrza Broni"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_cypherkey"
 	channels = list(RADIO_CHANNEL_MUNITIONS = 1, RADIO_CHANNEL_SUPPLY = 1, RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_ATC = 1)
@@ -42,7 +42,7 @@
 	independent = FALSE
 
 /obj/item/encryptionkey/munitions_tech
-	name = "munitions department encryption key"
+	name = "klucz szyfrujący działu amunicji"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_cypherkey"
 	channels = list(RADIO_CHANNEL_MUNITIONS = 1, RADIO_CHANNEL_SUPPLY = 1)
@@ -50,63 +50,63 @@
 ///////RADIO HEADSETS//////
 
 /obj/item/radio/headset/munitions
-	name = "munitions radio headset"
+	name = "słuchawki radiowe działu amunicji"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
-	desc = "A base model for every munitions headset, even comes with ear protection!"
+	desc = "Podstawowy model wszystkich słuchawek działu amunicji, z ochroną słuchu w zestawie!"
 	icon_state = "mun_headset"
 	keyslot = new /obj/item/encryptionkey/munitions_tech
 	bang_protect = 1
 
 /obj/item/radio/headset/munitions/atc
-	name = "air traffic controller radio headset"
+	name = "słuchawki radiowe Kontrolera Lotów"
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
-	desc = "A headset capable of accessing the Nanotrasen blue channel via a special DRADIS satellite uplink, allowing fighter pilots to communicate from anywhere inside of Nanotrasen's airspace. Use :q to access the air traffic control frequency. Use :w to access the department frequency. Use :c to access the command department frequency."
+	desc = "Słuchawki z dostępem do niebieskiego kanału Nanotrasen przez specjalne łącze satelitarne DRADIS, dzięki czemu piloci myśliwców mogą się porozumiewać z dowolnego miejsca w przestrzeni Nanotrasen. Użyj :q, by mówić na częstotliwości Kontroli Lotów. Użyj :w, by mówić na częstotliwości działu. Użyj :c, by mówić na częstotliwości dowództwa."
 	icon_state = "mun_headset_alt"
 	keyslot = new /obj/item/encryptionkey/atc
 
 /obj/item/radio/headset/munitions/pilot
-	name = "pilot radio headset"
-	desc = "A headset capable of accessing the Nanotrasen blue channel via a special DRADIS satellite uplink, allowing fighter pilots to communicate from anywhere inside of Nanotrasen's airspace. Use :q to access the air traffic control frequency. Use :w to access the department frequency while on the ship."
+	name = "słuchawki radiowe pilota"
+	desc = "Słuchawki z dostępem do niebieskiego kanału Nanotrasen przez specjalne łącze satelitarne DRADIS, dzięki czemu piloci myśliwców mogą się porozumiewać z dowolnego miejsca w przestrzeni Nanotrasen. Użyj :q, by mówić na częstotliwości Kontroli Lotów. Użyj :w, by mówić na częstotliwości działu, gdy jesteś na okręcie."
 	icon_state = "mun_headset"
 	keyslot = new /obj/item/encryptionkey/pilot
 
 /obj/item/radio/headset/heads/master_at_arms
-	name = "\proper the master at arms' headset"
-	desc = "Use :w to access the department frequency. Use :u to access the supply frequency. Use :c to access the command frequency. Use :q to access the ATC frequency."
+	name = "\proper słuchawki Mistrza Broni"
+	desc = "Użyj :w, by mówić na częstotliwości działu. Użyj :u, by mówić na częstotliwości zaopatrzenia. Użyj :c, by mówić na częstotliwości dowództwa. Użyj :q, by mówić na częstotliwości Kontroli Lotów."
 	icon = 'nsv13/icons/obj/custom_radio.dmi'
 	icon_state = "mun_headset_alt"
 	keyslot = new /obj/item/encryptionkey/heads/master_at_arms
 	bang_protect = 1
 
 /obj/item/radio/headset/munitions/munitions_tech
-	name = "munitions technician radio headset"
-	desc = "Use :w to access the department frequency. Use :u to access the supply frequency."
+	name = "słuchawki radiowe Technika Amunicyjnego"
+	desc = "Użyj :w, by mówić na częstotliwości działu. Użyj :u, by mówić na częstotliwości zaopatrzenia."
 	icon_state = "mun_headset"
 	keyslot = new /obj/item/encryptionkey/munitions_tech
 
 /obj/item/radio/headset/munitions/munitions_tech/alt
-	name = "munitions technician bowmans headset"
-	desc = "Use :w to access the department frequency. Use :u to access the supply frequency"
+	name = "słuchawki nauszne Technika Amunicyjnego"
+	desc = "Użyj :w, by mówić na częstotliwości działu. Użyj :u, by mówić na częstotliwości zaopatrzenia."
 	icon_state = "mun_headset_alt"
 
 /obj/item/radio/headset/munitions/munitions_security_alt
-	name = "munitions-security bowman headset"
-	desc = "The headset used by your local munitions mall cop, but with ear protection! Now you won't go deaf!"
+	name = "słuchawki nauszne ochrony działu amunicji"
+	desc = "Słuchawki twojego lokalnego ochroniarza z działu amunicji, ale z ochroną słuchu! Teraz nie ogłuchniesz!"
 	icon_state = "munsec_headset_alt"
 	keyslot2 = new /obj/item/encryptionkey/headset_sec
 	bang_protect = 1
 
 /obj/item/radio/headset/munitions/munitions_security
-	name = "munitions-security radio headset"
-	desc = "The headset used by your local munitions mall cop."
+	name = "słuchawki radiowe ochrony działu amunicji"
+	desc = "Słuchawki twojego lokalnego ochroniarza z działu amunicji."
 	icon_state = "munsec_headset"
 	keyslot2 = new /obj/item/encryptionkey/headset_sec
 
 ////////BACKPACKS////////
 
 /obj/item/storage/backpack/duffelbag/munitions
-	name = "munitions duffel bag"
-	desc = "A large duffel bag for holding extra munitions supplies."
+	name = "torba podróżna działu amunicji"
+	desc = "Duża torba podróżna na dodatkowe zapasy działu amunicji."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "duffel-mun"
 	item_state = "duffel-mun"
@@ -114,8 +114,8 @@
 	righthand_file = 'nsv13/icons/mob/inhands/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/munitions
-	name = "munitions backpack"
-	desc = "A hardy oil-resistant backpack designed for use in ordanance filled environment."
+	name = "plecak działu amunicji"
+	desc = "Wytrzymały, olejoodporny plecak do pracy w otoczeniu pełnym uzbrojenia."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "munitionspack"
 	item_state = "munitionspack"
@@ -123,8 +123,8 @@
 	righthand_file = 'nsv13/icons/mob/inhands/backpack_righthand.dmi'
 
 /obj/item/storage/backpack/satchel/munitions
-	name = "munitions satchel"
-	desc = "A tough satchel with extra pockets."
+	name = "torba na ramię działu amunicji"
+	desc = "Wytrzymała torba na ramię z dodatkowymi kieszeniami."
 	icon = 'nsv13/icons/obj/storage.dmi'
 	icon_state = "satchel-mun"
 	item_state = "satchel-mun"
@@ -135,15 +135,15 @@
 //armband for midshipmen or security
 
 /obj/item/clothing/accessory/armband/munitions
-	name = "munitions guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is black and orange."
+	name = "opaska ochrony działu amunicji"
+	desc = "Opaska noszona przez ochronę, by pokazać, do którego działu jest przydzielona. Ta jest czarno-pomarańczowa."
 	icon_state = "muniband"
 
 
 ///////ATC STICKS///////
 /obj/item/flashlight/atc_wavy_sticks //I dont know what theyre actually called :)
-	name = "Aircraft signalling sticks"
-	desc = "A large set of fluorescent sticks used to direct aircraft around the hangar bay."
+	name = "pałki sygnalizacyjne dla statków"
+	desc = "Duży zestaw fluorescencyjnych pałek do kierowania statkami w hangarze."
 	icon = 'nsv13/icons/objects/lighting.dmi'
 	icon_state = "wavystick"
 	item_state = "glowstick"
@@ -157,7 +157,7 @@
 	var/turf/end_turf
 
 /datum/action/item_action/change_color
-	name = "Toggle Light"
+	name = "Przełącz światło"
 
 /obj/item/flashlight/atc_wavy_sticks/ui_action_click(mob/user, var/datum/action/A)
 	if(istype(A, /datum/action/item_action/pick_color))

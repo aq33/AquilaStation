@@ -4,7 +4,7 @@
 #define STABILITY_GAIN 5
 
 /obj/machinery/computer/xenoarchaeology_console
-	name = "research and development listing console"
+	name = "konsola ofert B+R"
 	desc = "Konsola naukowa do wyszukiwania sprzedawców i kupców różnych zakazanych obiektów badawczych."
 	icon_screen = "xenoartifact_console"
 	icon_keyboard = "rd_key"
@@ -137,7 +137,7 @@
 				rank = H.get_assignment(hand_first = TRUE)
 			else if(issilicon(usr))
 				name = usr.real_name
-				rank = "Silicon"
+				rank = "Syntetyk"
 			//Check if we can add the artifact to a pending order
 			var/datum/supply_order/current_order
 			var/datum/supply_pack/current_pack
@@ -258,7 +258,7 @@
 
 //Circuitboard for this console
 /obj/item/circuitboard/computer/xenoarchaeology_console
-	name = "research and development listing console (Computer Board)"
+	name = "konsola ofert B+R (płytka komputera)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/xenoarchaeology_console
 

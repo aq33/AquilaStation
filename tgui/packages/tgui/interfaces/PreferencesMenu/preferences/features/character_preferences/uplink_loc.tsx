@@ -2,8 +2,8 @@ import { FeatureChoiced } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const uplink_loc: FeatureChoiced = {
-  name: 'Backup Uplink Spawn Location',
+  name: 'Zapasowe miejsce uplinku',
   description:
-    'The uplink spawn location for antagonists which do not recieve their uplink as a hidden implant, such as blood brothers.',
+    'Gdzie pojawia się uplink antagonistów, którzy nie dostają go jako ukrytego implantu (np. braci krwi).',
   component: FeatureButtonedDropdownInput,
 };

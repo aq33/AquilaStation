@@ -1,6 +1,6 @@
 /obj/structure/extinguisher_cabinet
-	name = "extinguisher cabinet"
-	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
+	name = "szafka na gaśnicę"
+	desc = "Mała ścienna szafka do przechowywania gaśnicy."
 	icon = 'icons/obj/wallmounts.dmi'
 	icon_state = "extinguisher_closed"
 	anchored = TRUE
@@ -155,8 +155,8 @@
 	qdel(src)
 
 /obj/item/wallframe/extinguisher_cabinet
-	name = "extinguisher cabinet frame"
-	desc = "Used for building wall-mounted extinguisher cabinets."
+	name = "rama szafki na gaśnicę"
+	desc = "Służy do budowy ściennych szafek na gaśnice."
 	icon_state = "extinguisher"
 	result_path = /obj/structure/extinguisher_cabinet
 	

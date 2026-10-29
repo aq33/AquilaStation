@@ -22,12 +22,12 @@
  * Library Public Computer
  */
 /obj/machinery/computer/libraryconsole
-	name = "library visitor console"
+	name = "konsola czytelnika biblioteki"
 	icon_state = "oldcomp"
 	icon_screen = "library"
 	icon_keyboard = null
 	circuit = /obj/item/circuitboard/computer/libraryconsole
-	desc = "Checked out books MUST be returned on time."
+	desc = "Wypożyczone książki NALEŻY zwracać w terminie."
 	clockwork = TRUE //it'd look weird
 	broken_overlay_emissive = TRUE
 	///The current book id we're searching for
@@ -252,7 +252,7 @@
 
 #define PRINTER_COOLDOWN 60
 #define NEWSCASTER_COOLDOWN (10 SECONDS)
-#define LIBRARY_NEWSFEED "Nanotrasen Book Club"
+#define LIBRARY_NEWSFEED "Klub Książki Nanotrasen"
 //The different states the computer can be in, only send the info we need yeah?
 #define LIBRARY_INVENTORY 1
 #define LIBRARY_CHECKOUT 2
@@ -271,8 +271,8 @@
 // It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it.
 // It's December 25th, 2014, and this is STILL here, and it's STILL relevant. Kill me
 /obj/machinery/computer/libraryconsole/bookmanagement
-	name = "book inventory management console"
-	desc = "Librarian's command station."
+	name = "konsola zarządzania księgozbiorem"
+	desc = "Stanowisko dowodzenia bibliotekarza."
 	verb_say = "pika"
 	verb_ask = "pika"
 	verb_exclaim = "pika"
@@ -302,7 +302,7 @@
 /obj/machinery/computer/libraryconsole/bookmanagement/Initialize(mapload)
 	. = ..()
 	if(circuit)
-		circuit.name = "Book Inventory Management Console (Machine Board)"
+		circuit.name = "konsola zarządzania księgozbiorem (płytka komputera)"
 		circuit.build_path = /obj/machinery/computer/libraryconsole/bookmanagement
 
 /obj/machinery/computer/libraryconsole/bookmanagement/ui_data(mob/user)
@@ -376,13 +376,13 @@
 			data["active_newscaster_cooldown"] = COOLDOWN_FINISHED(src, newscaster_cooldown)
 			if(scan?.cache)
 				data["cache_title"] = scan.cache.name
-				data["cache_author"] = scan.cache.author || "Anonymous"
+				data["cache_author"] = scan.cache.author || "Anonim"
 				data["cache_content"] = scan.cache.dat
 
 		if(LIBRARY_PRINT)
-			data["deity"] = GLOB.deity || "Space Jesus"
-			data["religion"] = GLOB.religion || "Christianity"
-			data["bible_name"] = GLOB.bible_name || "Holy Bible"
+			data["deity"] = GLOB.deity || "Kosmiczny Jezus"
+			data["religion"] = GLOB.religion || "Chrześcijaństwo"
+			data["bible_name"] = GLOB.bible_name || "Biblia"
 			data["printer_ready"] = cooldown < world.time
 
 	return data
@@ -481,7 +481,7 @@
 					channelexists = TRUE
 					break
 			if(!channelexists)
-				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Library", null)
+				GLOB.news_network.create_feed_channel(LIBRARY_NEWSFEED, "Biblioteka", null)
 			GLOB.news_network.submit_article(scan.cache.dat, "[scan.cache.name]", LIBRARY_NEWSFEED, null)
 			say("Wgrywanie zakończone. Twój tytuł jest teraz dostępny w stacyjnych serwisach informacyjnych.")
 			COOLDOWN_START(src, newscaster_cooldown, NEWSCASTER_COOLDOWN)
@@ -548,7 +548,7 @@
 		say("Połączenie z archiwum zostało zerwane. Przerywanie.")
 		return
 	if(!scan.cache.author)
-		scan.cache.author = "Anonymous"
+		scan.cache.author = "Anonim"
 	if((length(scan.cache.name) > 45) || (length(scan.cache.author) > 45))
 		say("Pola tytułu i autora mogą mieć najwyżej po 45 znaków. Sprawdź wpis i spróbuj ponownie.")
 		return
@@ -590,7 +590,7 @@
 		var/content = query_library_print.item[4]
 		if(!QDELETED(src))
 			var/obj/item/book/B = new(get_turf(src))
-			B.name = "Book: [title]"
+			B.name = "Książka: [title]"
 			B.title = title
 			B.author = author
 			B.dat = content
@@ -631,7 +631,7 @@
  * AQUILA: bez historii akcji (nie mamy tabeli library_action), powód ukrycia/przywrócenia idzie do logów admina.
  */
 /obj/machinery/computer/libraryconsole/admin_only_do_not_map_in_you_fucker
-	name = "admin library console"
+	name = "konsola biblioteki admina"
 	interface_type = "LibraryAdmin"
 	/// If we should show deleted entries or not
 	var/show_deleted = TRUE
@@ -780,7 +780,7 @@
 		return
 	if(!check_rights_for(admin, R_ADMIN))
 		log_admin_private("[admin.ckey] tried to [hide ? "hide" : "unhide"] a book without the required perms")
-		message_admins("[admin.ckey] tried to [hide ? "hide" : "unhide"] a book without the required perms")
+		message_admins("[admin.ckey] próbuje [hide ? "ukryć" : "przywrócić"] książkę bez wymaganych uprawnień")
 		return
 
 	var/datum/DBQuery/query_hide_book = SSdbcore.NewQuery({"
@@ -852,10 +852,10 @@
  * Library Scanner
  */
 /obj/machinery/libraryscanner
-	name = "scanner control interface"
+	name = "interfejs sterowania skanerem"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
-	desc = "It servers the purpose of scanning stuff."
+	desc = "Służy do skanowania różnych rzeczy."
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
@@ -911,10 +911,10 @@
  * Book binder
  */
 /obj/machinery/bookbinder
-	name = "book binder"
+	name = "introligatornia"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
-	desc = "Only intended for binding paper products."
+	desc = "Przeznaczona wyłącznie do oprawiania wyrobów papierowych."
 	density = TRUE
 	var/busy = FALSE
 
@@ -948,7 +948,7 @@
 				raw_content += sanitize(text_input.raw_text)
 
 			B.dat = trim(raw_content, MAX_PAPER_LENGTH)
-			B.name = "Print Job #" + "[rand(100, 999)]"
+			B.name = "Wydruk nr " + "[rand(100, 999)]"
 			B.icon_state = "book[rand(1,7)]"
 			qdel(P)
 		else

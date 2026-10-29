@@ -1,5 +1,5 @@
 /obj/item/kitchen/knife/butcher/heretic
-	name = "\improper Crimson Cleaver"
+	name = "\improper szkarłatny tasak"
 	desc = "Tasak o misternie zdobionej czerwonej rękojeści i lekko zakrzywionym grzbiecie. Bez wątpienia narzędzie wojny, nie kuchni."
 	icon = 'aquila/icons/obj/weapons/khopesh.dmi'
 	force = 20

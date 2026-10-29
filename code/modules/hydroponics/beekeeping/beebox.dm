@@ -27,8 +27,8 @@
 
 
 /obj/structure/beebox
-	name = "apiary"
-	desc = "Dr. Miles Manners is just your average wasp-themed super hero by day, but by night he becomes DR. BEES!"
+	name = "pasieka"
+	desc = "Za dnia dr Miles Manners to zwykły superbohater w stylu osy, ale nocą staje się DR. PSZCZOŁĄ!"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "beebox"
 	anchored = TRUE
@@ -215,11 +215,11 @@
 		else
 			visible_message("<span class='danger'>[user] niepokoi [name], ale bez skutku!</span>")
 	else
-		var/option = alert(user, "Co chcesz zrobić?","Apiary","Remove a Honey Frame","Remove the Queen Bee", "Cancel")
+		var/option = alert(user, "Co chcesz zrobić?","Pasieka","Wyjmij ramkę z miodem","Wyjmij królową", "Anuluj")
 		if(!Adjacent(user))
 			return
 		switch(option)
-			if("Remove a Honey Frame")
+			if("Wyjmij ramkę z miodem")
 				if(!honey_frames.len)
 					to_chat(user, "<span class='warning'>Nie ma ramek z miodem do wyjęcia!</span>")
 					return
@@ -242,7 +242,7 @@
 						var/multiple = fallen > 1
 						visible_message("<span class='notice'>[user] zeskrobuje z ramki [multiple ? "plastry miodu ([fallen])" : "plaster miodu"].</span>")
 
-			if("Remove the Queen Bee")
+			if("Wyjmij królową")
 				if(!queen_bee || queen_bee.loc != src)
 					to_chat(user, "<span class='warning'>Nie ma królowej do wyjęcia!</span>")
 					return

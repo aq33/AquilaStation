@@ -4,9 +4,9 @@
 // using this solves the problem of having the APC in a wall yet also inside an area
 
 /obj/machinery/power/terminal
-	name = "terminal"
+	name = "terminal zasilania"
 	icon_state = "term"
-	desc = "It's an underfloor wiring terminal for power equipment."
+	desc = "Podpodłogowy terminal okablowania urządzeń zasilających."
 	level = 1
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
 	var/obj/machinery/power/master = null

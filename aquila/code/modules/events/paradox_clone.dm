@@ -30,13 +30,13 @@
 
 /datum/round_event/ghost_role/paradox_clone
 	minimum_required = 1
-	role_name = "Paradox Clone"
+	role_name = "Klon paradoksu"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/paradox_clone/spawn_role()
 	var/list/possible_spawns = paradox_clone_spawn_locations()
 	if(!length(possible_spawns))
-		message_admins("No valid spawn locations found for Paradox Clone event, aborting...")
+		message_admins("Brak miejsc do pojawienia się dla eventu klona paradoksu, przerywam...")
 		return MAP_ERROR
 
 	if(!paradox_clone_find_original())

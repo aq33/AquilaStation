@@ -1,6 +1,6 @@
 /obj/item/implant/weapons_auth
-	name = "firearms authentication implant"
-	desc = "Lets you shoot your guns."
+	name = "implant uwierzytelniania broni palnej"
+	desc = "Pozwala ci strzelać z twojej broni."
 	icon_state = "auth"
 	activated = 0
 
@@ -10,8 +10,8 @@
 
 
 /obj/item/implant/adrenalin
-	name = "adrenal implant"
-	desc = "Removes all stuns."
+	name = "implant adrenaliny"
+	desc = "Usuwa wszystkie ogłuszenia."
 	icon_state = "adrenal"
 	uses = 3
 
@@ -39,13 +39,13 @@
 		qdel(src)
 
 /obj/item/implanter/adrenalin
-	name = "implanter (adrenalin)"
+	name = "implanter (adrenalina)"
 	imp_type = /obj/item/implant/adrenalin
 
 
 /obj/item/implant/emp
-	name = "emp implant"
-	desc = "Triggers an EMP."
+	name = "implant EMP"
+	desc = "Wywołuje EMP."
 	icon_state = "emp"
 	uses = 3
 
@@ -64,14 +64,14 @@
 //Health Tracker Implant
 
 /obj/item/implant/health
-	name = "health implant"
+	name = "implant zdrowia"
 	activated = 0
 	var/healthstring = ""
 	var/list/raw_data = list()
 
 /obj/item/implant/health/proc/sensehealth(get_list = FALSE)
 	if (!imp_in)
-		return "ERROR"
+		return "BŁĄD"
 	else
 		if(isliving(imp_in))
 			var/mob/living/L = imp_in
@@ -82,7 +82,7 @@
 			raw_data["tox"] = list("[round(L.getToxLoss())]")		//Tox
 			raw_data["brute"] = list("[round(L.getBruteLoss())]")	//Brute
 		if(!healthstring)											//I have no idea who made it go this order but okay.
-			healthstring = "ERROR"
+			healthstring = "BŁĄD"
 		if(!length(raw_data))
 			raw_data = list("ERROR")
 		if(!get_list)
@@ -91,7 +91,7 @@
 			return raw_data
 
 /obj/item/implant/radio
-	name = "internal radio implant"
+	name = "implant radia wewnętrznego"
 	activated = TRUE
 	var/obj/item/radio/radio
 	var/radio_key
@@ -111,7 +111,7 @@
 	radio = new(src)
 	// almost like an internal headset, but without the
 	// "must be in ears to hear" restriction.
-	radio.name = "internal radio"
+	radio.name = "radio wewnętrzne"
 	radio.subspace_transmission = subspace_transmission
 	radio.canhear_range = -1
 	radio.radio_silent = radio_silent
@@ -127,12 +127,12 @@
 	radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/implant/radio/syndicate
-	desc = "Are you there God? It's me, Syndicate Comms Agent."
+	desc = "Jesteś tam, Boże? To ja, agent łączności Syndykatu."
 	radio_key = /obj/item/encryptionkey/syndicate
 	subspace_transmission = TRUE
 
 /obj/item/implant/radio/slime
-	name = "slime radio"
+	name = "radio ze szlamu"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "adamantine_resonator"
 	radio_key = /obj/item/encryptionkey/headset_sci
@@ -143,7 +143,7 @@
 	return dat
 
 /obj/item/implant/radio/syndicate/selfdestruct
-	name = "hacked internal radio implant"
+	name = "zhakowany implant radia wewnętrznego"
 
 /obj/item/implant/radio/syndicate/selfdestruct/on_implanted(mob/living/user)
 	if(!user.mind.has_antag_datum(/datum/antagonist/incursion))
@@ -154,13 +154,13 @@
 		qdel(src)
 
 /obj/item/implanter/radio
-	name = "implanter (internal radio)"
+	name = "implanter (radio wewnętrzne)"
 	imp_type = /obj/item/implant/radio
 
 /obj/item/implanter/radio/syndicate
-	name = "implanter (internal syndicate radio)"
+	name = "implanter (radio wewnętrzne Syndykatu)"
 	imp_type = /obj/item/implant/radio/syndicate
 
 /obj/item/implanter/radio/syndicate/selfdestruct
-	name = "implanter (modified internal syndicate radio)"
+	name = "implanter (zmodyfikowane radio wewnętrzne Syndykatu)"
 	imp_type = /obj/item/implant/radio/syndicate/selfdestruct

@@ -1,7 +1,7 @@
 
 /obj/structure/closet/body_bag
-	name = "body bag"
-	desc = "A plastic bag designed for the storage and transportation of cadavers."
+	name = "worek na zwłoki"
+	desc = "Plastikowy worek do przechowywania i przewożenia zwłok."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag"
 	density = FALSE
@@ -38,15 +38,15 @@
 		if(!user.canUseTopic(src, BE_CLOSE))
 			return
 		if(t)
-			name = "body bag - [t]"
+			name = "worek na zwłoki - [t]"
 			tagged = 1
 			update_icon()
 		else
-			name = "body bag"
+			name = "worek na zwłoki"
 		return
 	else if(I.tool_behaviour == TOOL_WIRECUTTER)
 		to_chat(user, "<span class='notice'>Odcinasz przywieszkę z [src].</span>")
-		name = "body bag"
+		name = "worek na zwłoki"
 		tagged = 0
 		update_icon()
 
@@ -84,8 +84,8 @@
 
 
 /obj/structure/closet/body_bag/bluespace
-	name = "bluespace body bag"
-	desc = "A bluespace body bag designed for the storage and transportation of cadavers."
+	name = "worek na zwłoki bluespace"
+	desc = "Worek na zwłoki bluespace do przechowywania i przewożenia zwłok."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bluebodybag"
 	foldedbag_path = /obj/item/bodybag/bluespace

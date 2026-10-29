@@ -151,7 +151,7 @@
 /mob/living/simple_animal/parrot/get_stat_tab_status()
 	var/list/tab_data = ..()
 	tab_data["Trzymany przedmiot"] = GENERATE_STAT_TEXT("[held_item]")
-	tab_data["Tryb"] = GENERATE_STAT_TEXT("[combat_mode ? "harm" : "help"]")
+	tab_data["Tryb"] = GENERATE_STAT_TEXT("[combat_mode ? "atak" : "pomoc"]")
 	return tab_data
 
 /mob/living/simple_animal/parrot/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, list/spans, list/message_mods = list())
@@ -882,7 +882,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
  */
 /mob/living/simple_animal/parrot/Poly
 	name = "Poly"
-	desc = "Poly the Parrot. An expert on quantum cracker theory."
+	desc = "Papuga Poly. Ekspertka od kwantowej teorii krakersów."
 	speak = list("Poly chce krakersa!", ":e Naprawcie reaktor borowiki!",":e Podpiąć panele, nieroby!",":e O JEZU ZARA JEBNIE! DZWOŃCIE PO PROM!",":e Zachary napraw reaktor!", ":e Majster do roboty!")
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 3
@@ -972,8 +972,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	WRITE_FILE(json_file, json_encode(file_data))
 
 /mob/living/simple_animal/parrot/Poly/ghost
-	name = "The Ghost of Poly"
-	desc = "Doomed to squawk the Earth."
+	name = "Duch Poly"
+	desc = "Skazana na wieczne skrzeczenie po Ziemi."
 	color = "#FFFFFF77"
 	speak_chance = 20
 	status_flags = GODMODE
@@ -1010,7 +1010,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 
 
 /mob/living/simple_animal/parrot/clock_hawk
-	name = "clock hawk"
+	name = "zegarowy jastrząb"
 	desc = "Cbyl jnaan penpxre! Fdhnnnjx!"
 	icon_state = "clock_hawk_fly"
 	icon_living = "clock_hawk_fly"

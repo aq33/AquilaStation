@@ -2,11 +2,11 @@
 
 ///Armor Booster - Grants your suit more armor and speed in exchange for EVA protection.
 /obj/item/mod/module/armor_booster
-	name = "MOD armor booster module"
-	desc = "A retrofitted series of retractable armor plates, allowing the suit to function as essentially power armor, \
-		giving the user incredible protection against conventional firearms, or everyday attacks in close-quarters. \
-		However, the additional plating cannot deploy alongside parts of the suit used for vacuum sealing, \
-		so this extra armor provides zero ability for extravehicular activity while deployed."
+	name = "moduł wzmocnienia pancerza MOD"
+	desc = "Dodany później zestaw wysuwanych płyt pancernych, dzięki którym skafander działa właściwie jak pancerz wspomagany \
+		i daje użytkownikowi niesamowitą ochronę przed konwencjonalną bronią palną i zwykłymi atakami w zwarciu. \
+		Dodatkowe poszycie nie może się jednak rozłożyć razem z częściami skafandra odpowiedzialnymi za szczelność, \
+		więc po rozłożeniu ten dodatkowy pancerz całkowicie uniemożliwia działania poza statkiem."
 	icon_state = "armor_booster"
 	module_type = MODULE_TOGGLE
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -46,7 +46,7 @@
 
 /obj/item/mod/module/armor_booster/on_activation()
 	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	balloon_alert(mod.wearer, "armor boosted, EVA lost")
+	balloon_alert(mod.wearer, "pancerz wzmocniony, brak ochrony EVA")
 	/*
 	var/datum/mod_part/head_cover = mod.get_part_datum_from_slot(ITEM_SLOT_HEAD) || mod.get_part_datum_from_slot(ITEM_SLOT_MASK) || mod.get_part_datum_from_slot(ITEM_SLOT_EYES)
 	if(head_cover)
@@ -67,7 +67,7 @@
 /obj/item/mod/module/armor_booster/on_deactivation(display_message = TRUE, deleting = FALSE)
 	if(!deleting)
 		playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-		balloon_alert(mod.wearer, "armor retracts, EVA ready")
+		balloon_alert(mod.wearer, "pancerz chowa się, gotowość do EVA")
 	/*
 	var/datum/mod_part/head_cover = mod.get_part_datum_from_slot(ITEM_SLOT_HEAD) || mod.get_part_datum_from_slot(ITEM_SLOT_MASK) || mod.get_part_datum_from_slot(ITEM_SLOT_EYES)
 	if(head_cover)
@@ -118,11 +118,11 @@
 
 ///Energy Shield - Gives you a rechargeable energy shield that nullifies attacks.
 /obj/item/mod/module/energy_shield
-	name = "MOD energy shield module"
-	desc = "A personal, protective forcefield typically seen in military applications. \
-		This advanced deflector shield is essentially a scaled down version of those seen on starships, \
-		and the power cost can be an easy indicator of this. However, it is capable of blocking nearly any incoming attack, \
-		though with its' low amount of separate charges, the user remains mortal."
+	name = "moduł tarczy energetycznej MOD"
+	desc = "Osobiste ochronne pole siłowe, spotykane zwykle w zastosowaniach wojskowych. \
+		Ta zaawansowana tarcza deflektorowa to w zasadzie pomniejszona wersja tarcz ze statków kosmicznych, \
+		co łatwo poznać po poborze energii. Potrafi zablokować niemal każdy nadchodzący atak, \
+		ale przy niewielkiej liczbie osobnych ładunków użytkownik wciąż pozostaje śmiertelny."
 	icon_state = "energy_shield"
 	complexity = 3
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.5
@@ -166,7 +166,7 @@
 	qdel(shield)
 	UnregisterSignal(mod.wearer, COMSIG_HUMAN_CHECK_SHIELDS)
 
-/obj/item/mod/module/energy_shield/proc/shield_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage = 0, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0)
+/obj/item/mod/module/energy_shield/proc/shield_reaction(mob/living/carbon/human/owner, atom/movable/hitby, damage = 0, attack_text = "atak", attack_type = MELEE_ATTACK, armour_penetration = 0)
 	SIGNAL_HANDLER
 
 	if(SEND_SIGNAL(mod, COMSIG_ITEM_HIT_REACT, owner, hitby, attack_text, 0, damage, attack_type) & COMPONENT_HIT_REACTION_BLOCK)
@@ -175,11 +175,11 @@
 	return NONE
 
 /obj/item/mod/module/energy_shield/wizard
-	name = "MOD battlemage shield module"
-	desc = "The caster wielding this spell gains a visible barrier around them, channeling arcane power through \
-		specialized runes engraved onto the surface of the suit to generate a wall of force. \
-		This shield can perfectly nullify attacks ranging from high-caliber rifles to magic missiles, \
-		though can also be drained by more mundane attacks. It will not protect the caster from social ridicule."
+	name = "moduł tarczy bojowego maga MOD"
+	desc = "Rzucający to zaklęcie zyskuje wokół siebie widoczną barierę, kierując tajemną moc przez \
+		specjalne runy wygrawerowane na powierzchni skafandra, by wytworzyć ścianę mocy. \
+		Ta tarcza doskonale niweluje ataki od wielkokalibrowych karabinów po magiczne pociski, \
+		choć mogą ją wyczerpać także bardziej przyziemne ataki. Nie ochroni rzucającego przed społecznym ośmieszeniem."
 	icon_state = "battlemage_shield"
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0 //magic
 	use_power_cost = DEFAULT_CHARGE_DRAIN * 0 //magic too
@@ -193,12 +193,12 @@
 
 ///Magic Nullifier - Protects you from magic.
 /obj/item/mod/module/anti_magic
-	name = "MOD magic nullifier module"
-	desc = "A series of obsidian rods installed into critical points around the suit, \
-		vibrated at a certain low frequency to enable them to resonate. \
-		This creates a low-range, yet strong, magic nullification field around the user, \
-		aided by a full replacement of the suit's normal coolant with holy water. \
-		Spells will spall right off this field, though it'll do nothing to help others believe you about all this."
+	name = "moduł niwelatora magii MOD"
+	desc = "Zestaw obsydianowych prętów zamontowanych w kluczowych punktach skafandra, \
+		wprawianych w drgania o niskiej częstotliwości, by rezonowały. \
+		Tworzy to wokół użytkownika krótkozasięgowe, ale silne pole niwelujące magię, \
+		wspomagane całkowitą wymianą zwykłego chłodziwa skafandra na wodę święconą. \
+		Zaklęcia będą się odbijać od tego pola, ale nie pomoże ono innym uwierzyć ci w to wszystko."
 	icon_state = "magic_nullifier"
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/anti_magic)
@@ -213,11 +213,11 @@
 	REMOVE_TRAIT(mod.wearer, TRAIT_HOLY, REF(src))
 
 /obj/item/mod/module/anti_magic/wizard
-	name = "MOD magic neutralizer module"
-	desc = "The caster wielding this spell gains an invisible barrier around them, channeling arcane power through \
-		specialized runes engraved onto the surface of the suit to generate anti-magic field. \
-		The field will neutralize all magic that comes into contact with the user. \
-		It will not protect the caster from social ridicule."
+	name = "moduł neutralizatora magii MOD"
+	desc = "Rzucający to zaklęcie zyskuje wokół siebie niewidzialną barierę, kierując tajemną moc przez \
+		specjalne runy wygrawerowane na powierzchni skafandra, by wytworzyć pole antymagiczne. \
+		Pole zneutralizuje każdą magię, która zetknie się z użytkownikiem. \
+		Nie ochroni rzucającego przed społecznym ośmieszeniem."
 	icon_state = "magic_neutralizer"
 	required_slots = list()
 
@@ -229,11 +229,11 @@
 
 ///Insignia - Gives you a skin specific stripe.
 /obj/item/mod/module/insignia
-	name = "MOD insignia module"
-	desc = "Despite the existence of IFF systems, radio communique, and modern methods of deductive reasoning involving \
-		the wearer's own eyes, colorful paint jobs remain a popular way for different factions in the galaxy to display who \
-		they are. This system utilizes a series of tiny moving paint sprayers to both apply and remove different \
-		color patterns to and from the suit."
+	name = "moduł insygniów MOD"
+	desc = "Mimo systemów IFF, łączności radiowej i nowoczesnych metod dedukcji z użyciem \
+		własnych oczu kolorowe malowania wciąż są popularnym sposobem, by różne frakcje w galaktyce pokazywały, kim \
+		są. Ten system używa zestawu małych ruchomych rozpylaczy farby, by nakładać i usuwać różne \
+		wzory kolorystyczne na skafandrze."
 	icon_state = "insignia"
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/insignia)
@@ -268,12 +268,12 @@
 	color = "#f0a00c"
 
 /obj/item/mod/module/noslip
-	name = "MOD anti slip module"
-	desc = "These are a modified variant of standard magnetic boots, utilizing piezoelectric crystals on the soles. \
-		The two plates on the bottom of the boots automatically extend and magnetize as the user steps; \
-		a pull that's too weak to offer them the ability to affix to a hull, but just strong enough to \
-		protect against the fact that you didn't read the wet floor sign. Honk Co. has come out numerous times \
-		in protest of these modules being legal."
+	name = "moduł antypoślizgowy MOD"
+	desc = "To zmodyfikowany wariant zwykłych butów magnetycznych z kryształami piezoelektrycznymi w podeszwach. \
+		Dwie płytki na spodzie butów automatycznie wysuwają się i magnesują przy każdym kroku; \
+		przyciąganie jest za słabe, by przyczepić się do kadłuba, ale wystarczająco silne, by \
+		uchronić cię przed skutkami tego, że nie przeczytałeś znaku o mokrej podłodze. Honk Co. wielokrotnie \
+		protestowało przeciwko legalności tych modułów."
 	icon_state = "noslip"
 	complexity = 1
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.1
@@ -288,8 +288,8 @@
 
 ///Flamethrower - Launches fire across the area.
 /obj/item/mod/module/flamethrower
-	name = "MOD flamethrower module"
-	desc = "A custom-manufactured flamethrower, used to burn through your path. Burn well."
+	name = "moduł miotacza ognia MOD"
+	desc = "Miotacz ognia robiony na zamówienie, do wypalania sobie drogi. Płoń jasno."
 	icon_state = "flamethrower"
 	module_type = MODULE_ACTIVE
 	complexity = 3
@@ -316,8 +316,8 @@
 
 ///Power kick - Lets the user launch themselves at someone to kick them.
 /obj/item/mod/module/power_kick
-	name = "MOD power kick module"
-	desc = "This module uses high-power myomer to generate an incredible amount of energy, transferred into the power of a kick."
+	name = "moduł potężnego kopnięcia MOD"
+	desc = "Ten moduł używa wysokowydajnego myomeru, by wytworzyć niesamowitą ilość energii, przenoszoną na siłę kopnięcia."
 	icon_state = "power_kick"
 	module_type = MODULE_ACTIVE
 	removable = FALSE
@@ -336,10 +336,10 @@
 	. = ..()
 	if(!.)
 		return
-	mod.wearer.visible_message(span_warning("[mod.wearer] starts charging a kick!"), \
-		blind_message = span_hear("You hear a charging sound."))
+	mod.wearer.visible_message(span_warning("[mod.wearer] zaczyna ładować kopnięcie!"), \
+		blind_message = span_hear("Słyszysz dźwięk ładowania."))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
-	balloon_alert(mod.wearer, "you start charging...")
+	balloon_alert(mod.wearer, "zaczynasz ładowanie...")
 	animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE|SINE_EASING|EASE_OUT)
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/atom, SpinAnimation), 3, 2), 0.3 SECONDS)
 	if(!do_after(mod.wearer, 1 SECONDS, target = mod))
@@ -378,8 +378,8 @@
 
 ///Chameleon - lets the suit disguise as any item that would fit on that slot.
 /obj/item/mod/module/chameleon
-	name = "MOD chameleon module"
-	desc = "A module using chameleon technology to disguise the MOD control unit as another backpack. Only works when the suit is deactivated."
+	name = "moduł kameleona MOD"
+	desc = "Moduł używający technologii kameleona, by upodobnić jednostkę sterującą MOD do innego plecaka. Działa tylko przy wyłączonym skafandrze."
 	icon_state = "chameleon"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -407,7 +407,7 @@
 
 /obj/item/mod/module/chameleon/used()
 	if(mod.active || mod.activating)
-		balloon_alert(mod.wearer, "unit active!")
+		balloon_alert(mod.wearer, "jednostka aktywna!")
 		return FALSE
 	return ..()
 
@@ -415,7 +415,7 @@
 	if(current_disguise)
 		return_look()
 		return
-	var/picked_name = tgui_input_list(mod.wearer, "Select look to change into", "Chameleon Settings", possible_disguises)
+	var/picked_name = tgui_input_list(mod.wearer, "Wybierz wygląd, który chcesz przyjąć", "Ustawienia kameleona", possible_disguises)
 	if(!possible_disguises[picked_name] || mod.active || mod.activating)
 		return
 	current_disguise = possible_disguises[picked_name]
@@ -436,7 +436,7 @@
 	RegisterSignal(mod, COMSIG_MOD_ACTIVATE, PROC_REF(return_look))
 
 /obj/item/mod/module/chameleon/proc/return_look()
-	mod.name = "[mod.theme.name] [initial(mod.name)]"
+	mod.name = "[initial(mod.name)] (model [mod.theme.name])"
 	mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
 	mod.update_icon_state()
 	var/list/mod_skin = mod.theme.variants[mod.skin]
@@ -452,9 +452,9 @@
 
 ///Plate Compression - Compresses the suit to normal size
 /obj/item/mod/module/plate_compression
-	name = "MOD plate compression module"
-	desc = "A module that keeps the suit in a very tightly fit state, lowering the overall size. \
-		Due to the pressure on all the parts, typical storage modules do not fit."
+	name = "moduł kompresji płyt MOD"
+	desc = "Moduł, który utrzymuje skafander bardzo ciasno dopasowany, zmniejszając jego rozmiary. \
+		Ze względu na nacisk na wszystkie części zwykłe moduły schowka się nie mieszczą."
 	icon_state = "plate_compression"
 	complexity = 2
 	incompatible_modules = list(/obj/item/mod/module/plate_compression, /obj/item/mod/module/storage)
@@ -478,10 +478,10 @@
 	mod.forceMove(drop_location())
 
 /obj/item/mod/module/demoralizer
-	name = "MOD psi-echo demoralizer module"
-	desc = "One incredibly morbid member of the RND team at Roseus Galactic posed a question to her colleagues. \
-	'I desire the power to scar my enemies mentally as I murder them. Who will stop me implementing this in our next project?' \
-	And thus the Psi-Echo Demoralizer Device was reluctantly invented. The future of psychological warfare, today!"
+	name = "moduł demoralizatora psi-echo MOD"
+	desc = "Pewna wyjątkowo makabryczna członkini zespołu badawczego Roseus Galactic zadała współpracownikom pytanie: \
+	„Pragnę mocy, by okaleczać psychikę wrogów, gdy ich mordę. Kto mnie powstrzyma przed wdrożeniem tego w naszym następnym projekcie?” \
+	I tak niechętnie wynaleziono Demoralizator Psi-Echo. Przyszłość wojny psychologicznej, już dziś!"
 	icon_state = "brain_hurties"
 	complexity = 0
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.1
@@ -497,10 +497,10 @@
 	QDEL_NULL(demoralizer)
 
 /obj/item/mod/module/infiltrator
-	name = "MOD infiltration core programs module"
-	desc = "The primary stealth systems operating within the suit. Utilizing electromagnetic signals, \
-		the wearer simply cannot be observed closely, or heard clearly by those around them.\
-		It also contains some dampening systems to help protect a user from blows to the head."
+	name = "moduł podstawowych programów infiltracyjnych MOD"
+	desc = "Główne systemy maskujące skafandra. Dzięki sygnałom elektromagnetycznym \
+		nikt w pobliżu nie może dokładnie przyjrzeć się noszącemu ani wyraźnie go usłyszeć. \
+		Zawiera też układy amortyzujące, które pomagają chronić użytkownika przed ciosami w głowę."
 	icon_state = "infiltrator"
 	complexity = 0
 	removable = FALSE

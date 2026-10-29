@@ -1,14 +1,14 @@
 /obj/item/tome
-	name = "arcane tome"
-	desc = "An old, dusty tome with frayed edges and a sinister-looking cover."
+	name = "tajemna księga"
+	desc = "Stara, zakurzona księga o postrzępionych brzegach i złowieszczej okładce."
 	icon_state ="tome"
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/melee/cultblade/dagger
-	name = "ritual dagger"
-	desc = "A strange dagger said to be used by sinister groups for \"preparing\" a corpse before sacrificing it to their dark gods."
+	name = "sztylet rytualny"
+	desc = "Dziwny sztylet, którego podobno używają złowrogie grupy do „przygotowania” zwłok przed złożeniem ich w ofierze mrocznym bogom."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	item_state = "cultdagger"
@@ -39,8 +39,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	AddComponent(/datum/component/cult_ritual_item, "<span class='cult'>[examine_text]</span>")
 
 /obj/item/melee/cultblade
-	name = "eldritch longsword"
-	desc = "A sword humming with unholy energy. It glows with a dim red light."
+	name = "pradawny długi miecz"
+	desc = "Miecz buczący nieświętą energią. Jarzy się przyćmionym czerwonym światłem."
 	icon_state = "cultblade"
 	item_state = "cultblade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -70,7 +70,7 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	..()
 
 /obj/item/melee/cultblade/ghost
-	name = "eldritch sword"
+	name = "pradawny miecz"
 	force = 19 //can't break normal airlocks
 	item_flags = NEEDS_PERMIT | DROPDEL
 	flags_1 = NONE
@@ -85,8 +85,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		to_chat(user, "<span class='cultlarge'>\"Nie radziłabym tego.\"</span>")
 
 /obj/item/cult_bastard
-	name = "bloody bastard sword"
-	desc = "An enormous sword used by Nar'Sien cultists to rapidly harvest the souls of non-believers."
+	name = "krwawy miecz półtoraręczny"
+	desc = "Ogromny miecz, którym kultyści Nar'Sie szybko zbierają dusze niewiernych."
 	w_class = WEIGHT_CLASS_HUGE
 	attack_weight = 2
 	block_level = 1
@@ -171,7 +171,7 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	else
 		..()
 
-/obj/item/cult_bastard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/cult_bastard/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(prob(final_block_chance))
 		if(attack_type == PROJECTILE_ATTACK)
 			owner.visible_message("<span class='danger'>[owner] odbija [attack_text] za pomocą [src]!</span>")
@@ -203,8 +203,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 				qdel(SS)
 
 /datum/action/innate/dash/cult
-	name = "Rend the Veil"
-	desc = "Use the sword to shear open the flimsy fabric of this reality and teleport to your target."
+	name = "Rozedrzyj zasłonę"
+	desc = "Rozcinasz mieczem kruchą tkankę tej rzeczywistości i teleportujesz się do celu."
 	icon_icon = 'icons/mob/actions/actions_cult.dmi'
 	button_icon_state = "phaseshift"
 	dash_sound = 'sound/magic/enter_blood.ogg'
@@ -222,8 +222,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /datum/action/innate/cult/spin2win
-	name = "Geometer's Fury"
-	desc = "You draw on the power of the sword's ancient runes, spinning it wildly around you as you become immune to most attacks."
+	name = "Furia Geometry"
+	desc = "Czerpiesz moc z pradawnych run miecza i wirujesz nim dziko wokół siebie, stając się odporny na większość ataków."
 	background_icon_state = "bg_demon"
 	button_icon_state = "sintouch"
 	var/cooldown = 0
@@ -259,8 +259,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	holder.update_action_buttons_icon()
 
 /obj/item/restraints/legcuffs/bola/cult
-	name = "\improper Nar'Sien bola"
-	desc = "A strong bola, bound with dark magic that allows it to pass harmlessly through Nar'Sien cultists. Throw it to trip and slow your victim."
+	name = "\improper bola Nar'Sie"
+	desc = "Mocna bola spleciona mroczną magią, dzięki której nieszkodliwie przelatuje przez kultystów Nar'Sie. Rzuć nią, by przewrócić i spowolnić ofiarę."
 	icon_state = "bola_cult"
 	item_state = "bola_cult"
 	breakouttime = 60
@@ -283,9 +283,9 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	. = ..()
 
 /obj/item/clothing/head/culthood
-	name = "ancient cultist hood"
+	name = "pradawny kaptur kultysty"
 	icon_state = "culthood"
-	desc = "A torn, dust-caked hood. Strange letters line the inside."
+	desc = "Podarty, zakurzony kaptur. Wnętrze pokrywają dziwne litery."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEEARS
 	flags_cover = HEADCOVERSEYES
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10, "stamina" = 40)
@@ -295,8 +295,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/cultrobes
-	name = "ancient cultist robes"
-	desc = "A ragged, dusty set of robes. Strange letters line the inside."
+	name = "pradawne szaty kultysty"
+	desc = "Obszarpane, zakurzone szaty. Wnętrze pokrywają dziwne litery."
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -310,8 +310,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /obj/item/clothing/head/culthood/alt
-	name = "cultist hood"
-	desc = "An armored hood worn by the followers of Nar'Sie."
+	name = "kaptur kultysty"
+	desc = "Opancerzony kaptur noszony przez wyznawców Nar'Sie."
 	icon_state = "cult_hoodalt"
 	item_state = "cult_hoodalt"
 
@@ -323,8 +323,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/suit/cultrobes/alt
-	name = "cultist robes"
-	desc = "An armored set of robes worn by the followers of Nar'Sie."
+	name = "szaty kultysty"
+	desc = "Opancerzone szaty noszone przez wyznawców Nar'Sie."
 	icon_state = "cultrobesalt"
 	item_state = "cultrobesalt"
 
@@ -337,17 +337,17 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /obj/item/clothing/head/magus
-	name = "magus helm"
+	name = "hełm maga"
 	icon_state = "magus"
 	item_state = "magus"
-	desc = "A helm worn by the followers of Nar'Sie."
+	desc = "Hełm noszony przez wyznawców Nar'Sie."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDEEYES|HIDESNOUT
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 50,"energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10, "stamina" = 50)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/suit/magusred
-	name = "magus robes"
-	desc = "A set of armored robes worn by the followers of Nar'Sie."
+	name = "szaty maga"
+	desc = "Opancerzone szaty noszone przez wyznawców Nar'Sie."
 	icon_state = "magusred"
 	item_state = "magusred"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -356,8 +356,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/head/helmet/space/hardsuit/cult
-	name = "\improper Nar'Sien hardened helmet"
-	desc = "A heavily-armored helmet worn by warriors of the Nar'Sien cult. It is reinforced by hard vacuum."
+	name = "\improper utwardzony hełm Nar'Sie"
+	desc = "Ciężko opancerzony hełm noszony przez wojowników kultu Nar'Sie. Wzmacnia go twarda próżnia."
 	icon_state = "cult_helmet"
 	item_state = "cult_helmet"
 	armor = list("melee" = 70, "bullet" = 50, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 75, "stamina" = 50)
@@ -366,31 +366,31 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	high_pressure_multiplier = 0.5
 
 /obj/item/clothing/suit/space/hardsuit/cult
-	name = "\improper Nar'Sien hardened armor"
+	name = "\improper utwardzona zbroja Nar'Sie"
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
-	desc = "A heavily-armored exosuit worn by warriors of the Nar'Sien cult."
+	desc = "Ciężko opancerzony kombinezon noszony przez wojowników kultu Nar'Sie."
 	w_class = WEIGHT_CLASS_BULKY
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade, /obj/item/tank/internals/)
 	armor = list("melee" = 70, "bullet" = 50, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 75, "stamina" = 50)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/cult
 
 /obj/item/sharpener/cult
-	name = "eldritch whetstone"
-	desc = "A block, empowered by dark magic. Sharp weapons will be enhanced when used on the stone."
+	name = "pradawna osełka"
+	desc = "Kamień wzmocniony mroczną magią. Ostra broń użyta na nim staje się silniejsza."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "cult_sharpener"
 	used = 0
 	increment = 5
 	max = 40
-	prefix = "darkened"
+	prefix = "po mrocznym naostrzeniu"
 
 /obj/item/sharpener/cult/update_icon()
 	icon_state = "cult_sharpener[used ? "_used" : ""]"
 
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
-	name = "empowered cultist armor"
-	desc = "Empowered armor which creates a powerful shield around the user."
+	name = "wzmocniona zbroja kultysty"
+	desc = "Wzmocniona zbroja, która tworzy wokół noszącego potężną tarczę."
 	icon_state = "cult_armor"
 	item_state = "cult_armor"
 	w_class = WEIGHT_CLASS_BULKY
@@ -412,8 +412,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		wearer.visible_message("<span class='danger'>Runiczna tarcza wokół [wearer] nagle znika!</span>")
 
 /obj/item/clothing/head/hooded/cult_hoodie
-	name = "empowered cultist helmet"
-	desc = "Empowered helmet which creates a powerful shield around the user."
+	name = "wzmocniony hełm kultysty"
+	desc = "Wzmocniony hełm, który tworzy wokół noszącego potężną tarczę."
 	icon_state = "cult_hoodalt"
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 40,"energy" = 30, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 50, "acid" = 60, "stamina" = 40, "bleed" = 20)
 	body_parts_covered = HEAD
@@ -429,8 +429,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		user.Paralyze(100)
 
 /obj/item/clothing/suit/hooded/cultrobes/berserker
-	name = "flagellant's robes"
-	desc = "Blood-soaked robes infused with dark magic; allows the user to move at inhuman speeds, but at the cost of increased damage."
+	name = "szaty biczownika"
+	desc = "Przesiąknięte krwią szaty nasycone mroczną magią. Pozwalają poruszać się z nieludzką szybkością, ale noszący otrzymuje większe obrażenia."
 	icon_state = "cultrobes"
 	item_state = "cultrobes"
 	flags_inv = HIDEJUMPSUIT
@@ -441,8 +441,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/berserkerhood
 
 /obj/item/clothing/head/hooded/cult_hoodie/berserkerhood
-	name = "flagellant's hood"
-	desc = "Blood-soaked hood infused with dark magic."
+	name = "kaptur biczownika"
+	desc = "Przesiąknięty krwią kaptur nasycony mroczną magią."
 	icon_state = "culthood"
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 20)
@@ -457,8 +457,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		user.Paralyze(100)
 
 /obj/item/clothing/glasses/hud/health/night/cultblind
-	desc = "may Nar'Sie guide you through the darkness and shield you from the light."
-	name = "zealot's blindfold"
+	desc = "Niech Nar'Sie prowadzi cię przez ciemność i chroni przed światłem."
+	name = "opaska fanatyka"
 	icon_state = "blindfold"
 	item_state = "blindfold"
 	flash_protect = 1
@@ -474,16 +474,16 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		user.blind_eyes(30)
 
 /obj/item/reagent_containers/glass/beaker/unholywater
-	name = "flask of unholy water"
-	desc = "Toxic to nonbelievers; reinvigorating to the faithful - this flask may be sipped or thrown."
+	name = "flaszka nieświętej wody"
+	desc = "Toksyczna dla niewiernych, ożywcza dla wiernych – z tej flaszki można się napić albo nią rzucić."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	color = "#333333"
 	list_reagents = list(/datum/reagent/fuel/unholywater = 50)
 
 /obj/item/shuttle_curse
-	name = "cursed orb"
-	desc = "You peer within this smokey orb and glimpse terrible fates befalling the escape shuttle."
+	name = "przeklęta kula"
+	desc = "Zaglądasz w tę zadymioną kulę i dostrzegasz straszny los, który czeka prom ewakuacyjny."
 	icon = 'icons/obj/cult.dmi'
 	icon_state ="shuttlecurse"
 	var/static/curselimit = 0
@@ -536,8 +536,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		curselimit++
 
 /obj/item/cult_shift
-	name = "veil shifter"
-	desc = "This relic instantly teleports you, and anything you're pulling, forward by a moderate distance."
+	name = "przesuwacz zasłony"
+	desc = "Ta relikwia natychmiast teleportuje ciebie i wszystko, co ciągniesz, na umiarkowaną odległość do przodu."
 	icon = 'icons/obj/cult.dmi'
 	icon_state ="shifter"
 	var/uses = 4
@@ -589,8 +589,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		to_chat(C, "<span class='danger'>Tutaj nie da się rozedrzeć zasłony!</span>")
 
 /obj/item/flashlight/flare/culttorch
-	name = "void torch"
-	desc = "Used by veteran cultists to instantly transport items to their needful brethren."
+	name = "pochodnia pustki"
+	desc = "Weterani kultu natychmiast przesyłają nią przedmioty potrzebującym współbraciom."
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 1
 	icon_state = "torch"
@@ -645,8 +645,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /obj/item/cult_spear
-	name = "blood halberd"
-	desc = "A sickening spear composed entirely of crystallized blood."
+	name = "krwawa halabarda"
+	desc = "Obrzydliwa włócznia z samej skrystalizowanej krwi."
 	icon_state = "bloodspear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
@@ -707,7 +707,7 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 			playsound(T, 'sound/effects/glassbr3.ogg', 100)
 	qdel(src)
 
-/obj/item/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/cult_spear/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(ISWIELDED(src))
 		final_block_chance *= 2
 	if(prob(final_block_chance))
@@ -722,8 +722,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	return FALSE
 
 /datum/action/innate/cult/spear
-	name = "Bloody Bond"
-	desc = "Call the blood spear back to your hand!"
+	name = "Krwawa więź"
+	desc = "Przywołujesz krwawą włócznię z powrotem do ręki!"
 	background_icon_state = "bg_demon"
 	button_icon_state = "bloodspear"
 	var/obj/item/cult_spear/spear
@@ -752,8 +752,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /obj/item/gun/ballistic/rifle/boltaction/enchanted/arcane_barrage/blood
-	name = "blood bolt barrage"
-	desc = "Blood for blood."
+	name = "grad krwawych pocisków"
+	desc = "Krew za krew."
 	color = "#ff0000"
 	guns_left = 24
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
@@ -768,7 +768,7 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	firing_effect_type = /obj/effect/temp_visual/cult/sparks
 
 /obj/item/projectile/magic/arcane_barrage/blood
-	name = "blood bolt"
+	name = "krwawy pocisk"
 	icon_state = "mini_leaper"
 	nondirectional_sprite = TRUE
 	damage_type = BRUTE
@@ -792,8 +792,8 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 		..()
 
 /obj/item/blood_beam
-	name = "\improper magical aura"
-	desc = "Sinister looking aura that distorts the flow of reality around it."
+	name = "\improper magiczna aura"
+	desc = "Złowieszcza aura, która zakrzywia wokół siebie bieg rzeczywistości."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
@@ -903,11 +903,11 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 
 
 /obj/effect/ebeam/blood
-	name = "blood beam"
+	name = "promień krwi"
 
 /obj/item/shield/mirror
-	name = "mirror shield"
-	desc = "An infamous shield used by Nar'Sien sects to confuse and disorient their enemies. Its edges are weighted for use as a throwing weapon - capable of disabling multiple foes with preternatural accuracy."
+	name = "lustrzana tarcza"
+	desc = "Niesławna tarcza, którą sekty Nar'Sie mylą i dezorientują wrogów. Ma obciążone krawędzie, więc nadaje się do rzucania i z nadnaturalną celnością obezwładnia wielu przeciwników."
 	icon_state = "mirror_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -922,7 +922,7 @@ Uderzenie niekultysty rozrywa za to jego ciało."}
 	hitsound = 'sound/weapons/smash.ogg'
 	var/illusions = 4
 
-/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/mirror/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(iscultist(owner))
 		. = ..()
 		if(.)

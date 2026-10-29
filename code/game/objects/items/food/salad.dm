@@ -15,8 +15,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/salad/aesirsalad
-	name = "\improper Aesir salad"
-	desc = "Probably too incredible for mortal men to fully enjoy."
+	name = "\improper sałatka Asów"
+	desc = "Chyba zbyt niezwykła, by śmiertelnicy mogli się nią w pełni nacieszyć."
 	icon_state = "aesirsalad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -27,8 +27,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/herbsalad
-	name = "herb salad"
-	desc = "A tasty salad with apples on top."
+	name = "sałatka ziołowa"
+	desc = "Smaczna sałatka z jabłkami na wierzchu."
 	icon_state = "herbsalad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -39,8 +39,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/salad/validsalad
-	name = "valid salad"
-	desc = "It's just an herb salad with meatballs and fried potato slices. Nothing suspicious about it."
+	name = "sałatka validowa"
+	desc = "To tylko sałatka ziołowa z klopsikami i smażonymi plasterkami ziemniaków. Nic podejrzanego."
 	icon_state = "validsalad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -52,8 +52,8 @@
 	foodtypes = VEGETABLES | MEAT | FRIED | FRUIT
 
 /obj/item/food/salad/fruit
-	name = "fruit salad"
-	desc = "Your standard fruit salad."
+	name = "sałatka owocowa"
+	desc = "Zwykła sałatka owocowa."
 	icon_state = "fruitsalad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -64,8 +64,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/jungle
-	name = "jungle salad"
-	desc = "Exotic fruits in a bowl."
+	name = "sałatka z dżungli"
+	desc = "Egzotyczne owoce w misce."
 	icon_state = "junglesalad"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -77,8 +77,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/salad/citrusdelight
-	name = "citrus delight"
-	desc = "Citrus overload!"
+	name = "cytrusowa rozkosz"
+	desc = "Cytrusowe przeładowanie!"
 	icon_state = "citrusdelight"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -89,8 +89,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/uncooked_rice
-	name = "uncooked rice"
-	desc = "A clump of raw rice."
+	name = "surowy ryż"
+	desc = "Grudka surowego ryżu."
 	icon_state = "uncooked_rice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("ryż" = 1)
@@ -103,8 +103,8 @@
 */
 
 /obj/item/food/boiledrice
-	name = "boiled rice"
-	desc = "A steaming cup of boiled rice. A bit bland by itself, but the basis for something delicious..."
+	name = "gotowany ryż"
+	desc = "Parująca miseczka gotowanego ryżu. Sam w sobie trochę mdły, ale to podstawa czegoś pysznego..."
 	icon_state = "cooked_rice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -115,8 +115,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/salad/ricepudding
-	name = "rice pudding"
-	desc = "Everybody loves rice pudding!"
+	name = "ryż na mleku"
+	desc = "Wszyscy kochają ryż na mleku!"
 	icon_state = "ricepudding"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -127,8 +127,8 @@
 	foodtypes = GRAIN | DAIRY | SUGAR
 
 /obj/item/food/salad/ricepork
-	name = "rice and pork"
-	desc = "Well, it looks like pork..."
+	name = "ryż z wieprzowiną"
+	desc = "No cóż, wygląda jak wieprzowina..."
 	icon_state = "riceporkbowl"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -140,8 +140,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/salad/eggbowl
-	name = "egg bowl"
-	desc = "A bowl of rice with a fried egg."
+	name = "miska ryżu z jajkiem"
+	desc = "Miska ryżu z jajkiem sadzonym."
 	icon_state = "eggbowl"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -154,8 +154,8 @@
 
 
 /obj/item/reagent_containers/glass/bowl
-	name = "bowl"
-	desc = "A simple bowl, used for soups and salads."
+	name = "miska"
+	desc = "Prosta miska na zupy i sałatki."
 	icon = 'icons/obj/food/soupsalad.dmi'
 	icon_state = "bowl"
 	reagent_flags = OPENCONTAINER
@@ -169,8 +169,8 @@
 
 // empty salad for custom salads
 /obj/item/food/salad/empty
-	name = "salad"
+	name = "sałatka"
 	foodtypes = NONE
 	tastes = list()
 	icon_state = "bowl"
-	desc = "A delicious customized salad."
+	desc = "Pyszna sałatka według własnego pomysłu."

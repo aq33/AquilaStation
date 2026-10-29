@@ -2,7 +2,7 @@
  * Photo
  */
 /obj/item/photo
-	name = "photo"
+	name = "zdjęcie"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "photo"
 	item_state = "paper"
@@ -28,7 +28,7 @@
 		if(name_override)
 			name = P.picture_name
 		else
-			name = "photo - [P.picture_name]"
+			name = "zdjęcie – [P.picture_name]"
 	if(setdesc && P.picture_desc)
 		desc = P.picture_desc
 
@@ -81,7 +81,7 @@
 	user << browse("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
-		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
+		+ "[scribble ? "<br>Na odwrocie napisano:<br><i>[scribble]</i>" : ""]"\
 		+ "</body></html>", "window=photo_showing;size=480x608")
 	onclose(user, "[name]")
 
@@ -93,5 +93,5 @@
 	var/n_name = stripped_input(usr, "Jak chcesz podpisać zdjęcie?", "Podpisywanie zdjęcia", max_length=MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(n_name && (loc == usr || loc.loc && loc.loc == usr) && usr.stat == CONSCIOUS && !usr.incapacitated())
-		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
+		name = "zdjęcie[(n_name ? text(" – „[n_name]”") : null)]"
 	add_fingerprint(usr)

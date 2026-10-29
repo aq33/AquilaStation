@@ -2,7 +2,7 @@
 /client/proc/restart_controller(controller in list("Master", "Failsafe"))
 	set category = "Debug"
 	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
+	set desc = "Restartuje jeden z kontrolerów pętli gry (ostrożnie!)"
 
 	if(!holder)
 		return
@@ -14,4 +14,4 @@
 			new /datum/controller/failsafe()
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Restart Failsafe Controller")
 
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
+	message_admins("Admin [key_name_admin(usr)] restartuje kontroler [controller].")

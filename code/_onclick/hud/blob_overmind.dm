@@ -11,8 +11,8 @@
 
 /atom/movable/screen/blob/BlobHelp
 	icon_state = "ui_help"
-	name = "Blob Help"
-	desc = "Help on playing blob!"
+	name = "Pomoc grzyba"
+	desc = "Jak grać grzybem!"
 
 /atom/movable/screen/blob/BlobHelp/Click()
 	if(isovermind(usr))
@@ -21,8 +21,8 @@
 
 /atom/movable/screen/blob/JumpToNode
 	icon_state = "ui_tonode"
-	name = "Jump to Node"
-	desc = "Moves your camera to a selected blob node."
+	name = "Skocz do węzła"
+	desc = "Przenosi twoją kamerę do wybranego węzła grzyba."
 
 /atom/movable/screen/blob/JumpToNode/Click()
 	if(isovermind(usr))
@@ -31,15 +31,15 @@
 
 /atom/movable/screen/blob/JumpToCore
 	icon_state = "ui_tocore"
-	name = "Jump to Core"
-	desc = "Moves your camera to your blob core."
+	name = "Skocz do rdzenia"
+	desc = "Przenosi twoją kamerę do rdzenia grzyba."
 
 /atom/movable/screen/blob/JumpToCore/MouseEntered(location,control,params)
 	if(hud?.mymob && isovermind(hud.mymob))
 		var/mob/camera/blob/B = hud.mymob
 		if(!B.placed)
-			name = "Place Blob Core"
-			desc = "Attempt to place your blob core at this location."
+			name = "Umieść rdzeń grzyba"
+			desc = "Próbuje umieścić rdzeń grzyba w tym miejscu."
 		else
 			name = initial(name)
 			desc = initial(desc)
@@ -54,8 +54,8 @@
 
 /atom/movable/screen/blob/Blobbernaut
 	icon_state = "ui_blobbernaut"
-	name = "Produce Blobbernaut (40)"
-	desc = "Produces a strong, smart blobbernaut from a factory blob for 40 resources.<br>The factory blob used will become fragile and unable to produce spores."
+	name = "Wyhoduj grzybonauta (40)"
+	desc = "Za 40 zasobów tworzy z grzyba fabrycznego silnego, sprytnego grzybonauta.<br>Użyty grzyb fabryczny staje się kruchy i przestaje wytwarzać zarodniki."
 
 /atom/movable/screen/blob/Blobbernaut/Click()
 	if(isovermind(usr))
@@ -64,8 +64,8 @@
 
 /atom/movable/screen/blob/ResourceBlob
 	icon_state = "ui_resource"
-	name = "Produce Resource Blob (40)"
-	desc = "Produces a resource blob for 40 resources.<br>Resource blobs will give you resources every few seconds."
+	name = "Wyhoduj grzyb zasobów (40)"
+	desc = "Za 40 zasobów tworzy grzyb zasobów.<br>Grzyby zasobów co kilka sekund dają ci zasoby."
 
 /atom/movable/screen/blob/ResourceBlob/Click()
 	if(isovermind(usr))
@@ -74,8 +74,8 @@
 
 /atom/movable/screen/blob/NodeBlob
 	icon_state = "ui_node"
-	name = "Produce Node Blob (50)"
-	desc = "Produces a node blob for 50 resources.<br>Node blobs will expand and activate nearby resource and factory blobs."
+	name = "Wyhoduj węzeł (50)"
+	desc = "Za 50 zasobów tworzy węzeł.<br>Węzły rozrastają się i aktywują pobliskie grzyby zasobów i grzyby fabryczne."
 
 /atom/movable/screen/blob/NodeBlob/Click()
 	if(isovermind(usr))
@@ -84,8 +84,8 @@
 
 /atom/movable/screen/blob/FactoryBlob
 	icon_state = "ui_factory"
-	name = "Produce Factory Blob (60)"
-	desc = "Produces a factory blob for 60 resources.<br>Factory blobs will produce spores every few seconds."
+	name = "Wyhoduj grzyb fabryczny (60)"
+	desc = "Za 60 zasobów tworzy grzyb fabryczny.<br>Grzyby fabryczne co kilka sekund wytwarzają zarodniki."
 
 /atom/movable/screen/blob/FactoryBlob/Click()
 	if(isovermind(usr))
@@ -94,15 +94,15 @@
 
 /atom/movable/screen/blob/ReadaptStrain
 	icon_state = "ui_chemswap"
-	name = "Readapt Strain"
-	desc = "Allows you to choose a new strain from 4 random choices for 40 resources."
+	name = "Zmień szczep"
+	desc = "Za 40 zasobów pozwala wybrać nowy szczep spośród 4 losowych."
 
 /atom/movable/screen/blob/ReadaptStrain/MouseEntered(location,control,params)
 	if(hud && hud.mymob && isovermind(hud.mymob))
 		var/mob/camera/blob/B = hud.mymob
 		if(B.free_strain_rerolls)
-			name = "[initial(name)] (FREE)"
-			desc = "Randomly rerolls your strain for free."
+			name = "[initial(name)] (ZA DARMO)"
+			desc = "Za darmo losuje ci nowy szczep."
 		else
 			name = "[initial(name)] ([BLOB_REROLL_COST])"
 			desc = initial(desc)
@@ -115,8 +115,8 @@
 
 /atom/movable/screen/blob/RelocateCore
 	icon_state = "ui_swap"
-	name = "Relocate Core (80)"
-	desc = "Swaps a node and your core for 80 resources."
+	name = "Przenieś rdzeń (80)"
+	desc = "Za 80 zasobów zamienia miejscami węzeł i twój rdzeń."
 
 /atom/movable/screen/blob/RelocateCore/Click()
 	if(isovermind(usr))
@@ -128,7 +128,7 @@
 	var/atom/movable/screen/using
 
 	blobpwrdisplay = new /atom/movable/screen()
-	blobpwrdisplay.name = "blob power"
+	blobpwrdisplay.name = "moc grzyba"
 	blobpwrdisplay.icon_state = "block"
 	blobpwrdisplay.screen_loc = ui_health
 	blobpwrdisplay.mouse_opacity = MOUSE_OPACITY_TRANSPARENT

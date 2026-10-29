@@ -1,26 +1,26 @@
 /datum/reagent/methane
-	name = "Methane"
+	name = "Metan"
 	description = "Lekki, łatwopalny węglowodór. Powszechnie używany do produkcji paliwa kriogenicznego."
 	reagent_state = GAS
 	color = "#ccf6ff"
 	taste_description = "nic"
 
 /datum/reagent/consumable/creamer
-	name = "Coffee Creamer"
+	name = "Zabielacz do kawy"
 	description = "Mleko w proszku do taniej kawy. Jak uroczo."
 	taste_description = "mleko"
 	color = "#efeff0"
 	nutriment_factor = 1.5 * REAGENTS_METABOLISM
 
 /datum/reagent/consumable/navy_coffee
-	name = "Naval Coffee"
+	name = "Kawa marynarki"
 	description = "Krew życia marynarki i wojska wszędzie; ta kawa jest tak mocna, że nie da ci spać przez wiele dni, zniszczy kubki smakowe i obudzi pieprzonych umarłych."
 	color = "#241000"
 	nutriment_factor = 0
 	addiction_threshold = 40 //Downing two cups in one go will make you addicted to it.
 	taste_description = "skrajna gorycz z nutą paliwa"
 	glass_icon_state = "glass_brown"
-	glass_name = "glass of navy coffee"
+	glass_name = "szklanka kawy marynarki"
 	glass_desc = "Nie upuść jej, bo zdegradują cię z powrotem do kadeta!"
 
 /datum/reagent/consumable/navy_coffee/on_mob_life(mob/living/carbon/M)
@@ -32,5 +32,5 @@
 	. = 1
 
 /obj/item/reagent_containers/food/drinks/coffee/navy_coffee
-	name = "naval coffee"
+	name = "kawa marynarki"
 	list_reagents = list(/datum/reagent/consumable/navy_coffee = 30)

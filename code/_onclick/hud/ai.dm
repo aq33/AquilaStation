@@ -6,7 +6,7 @@
 		return TRUE
 
 /atom/movable/screen/ai/aicore
-	name = "AI core"
+	name = "Rdzeń SI"
 	icon_state = "ai_core"
 
 /atom/movable/screen/ai/aicore/Click()
@@ -16,7 +16,7 @@
 	AI.view_core()
 
 /atom/movable/screen/ai/camera_list
-	name = "Show Camera List"
+	name = "Pokaż listę kamer"
 	icon_state = "camera"
 
 /atom/movable/screen/ai/camera_list/Click()
@@ -26,7 +26,7 @@
 	AI.show_camera_list()
 
 /atom/movable/screen/ai/camera_track
-	name = "Track With Camera"
+	name = "Śledź kamerą"
 	icon_state = "track"
 
 /atom/movable/screen/ai/camera_track/Click()
@@ -36,7 +36,7 @@
 	GLOB.tracking_menu.show(AI, AI) //NSV13 - Better Tracking Menu
 
 /atom/movable/screen/ai/camera_light
-	name = "Toggle Camera Light"
+	name = "Przełącz światło kamery"
 	icon_state = "camera_light"
 
 /atom/movable/screen/ai/camera_light/Click()
@@ -46,7 +46,7 @@
 	AI.toggle_camera_light()
 
 /atom/movable/screen/ai/modpc
-	name = "Messenger"
+	name = "Komunikator"
 	icon_state = "pda_send"
 	var/mob/living/silicon/ai/robot
 
@@ -61,7 +61,7 @@
 		break
 
 /atom/movable/screen/ai/crew_monitor
-	name = "Crew Monitoring Console"
+	name = "Monitor załogi"
 	icon_state = "crew_monitor"
 
 /atom/movable/screen/ai/crew_monitor/Click()
@@ -71,7 +71,7 @@
 	GLOB.crewmonitor.show(AI,AI)
 
 /atom/movable/screen/ai/crew_manifest
-	name = "Crew Manifest"
+	name = "Manifest załogi"
 	icon_state = "manifest"
 
 /atom/movable/screen/ai/crew_manifest/Click()
@@ -81,7 +81,7 @@
 	AI.ai_roster()
 
 /atom/movable/screen/ai/alerts
-	name = "Show Alerts"
+	name = "Pokaż alarmy"
 	icon_state = "alerts"
 
 /atom/movable/screen/ai/alerts/Click()
@@ -91,7 +91,7 @@
 	AI.ai_alerts()
 
 /atom/movable/screen/ai/announcement
-	name = "Make Vox Announcement"
+	name = "Ogłoszenie Vox"
 	icon_state = "announcement"
 
 /atom/movable/screen/ai/announcement/Click()
@@ -101,7 +101,7 @@
 	AI.announcement()
 
 /atom/movable/screen/ai/call_shuttle
-	name = "Call Emergency Shuttle"
+	name = "Wezwij prom ewakuacyjny"
 	icon_state = "call_shuttle"
 
 /atom/movable/screen/ai/call_shuttle/Click()
@@ -111,7 +111,7 @@
 	AI.ai_call_shuttle()
 
 /atom/movable/screen/ai/state_laws
-	name = "State Laws"
+	name = "Wyrecytuj prawa"
 	icon_state = "state_laws"
 
 /atom/movable/screen/ai/state_laws/Click()
@@ -121,7 +121,7 @@
 	AI.checklaws()
 
 /atom/movable/screen/ai/image_take
-	name = "Take Image"
+	name = "Zrób zdjęcie"
 	icon_state = "take_picture"
 
 /atom/movable/screen/ai/image_take/Click()
@@ -135,7 +135,7 @@
 		R.aicamera.toggle_camera_mode(usr)
 
 /atom/movable/screen/ai/image_view
-	name = "View Images"
+	name = "Przeglądaj zdjęcia"
 	icon_state = "view_images"
 
 /atom/movable/screen/ai/image_view/Click()
@@ -146,7 +146,7 @@
 		AI.aicamera.viewpictures(usr)
 
 /atom/movable/screen/ai/sensors
-	name = "Sensor Augmentation"
+	name = "Wzmocnienie sensorów"
 	icon_state = "ai_sensor"
 
 /atom/movable/screen/ai/sensors/Click()
@@ -156,7 +156,7 @@
 	S.toggle_sensors()
 
 /atom/movable/screen/ai/multicam
-	name = "Multicamera Mode"
+	name = "Tryb wielu kamer"
 	icon_state = "multicam"
 
 /atom/movable/screen/ai/multicam/Click()
@@ -166,7 +166,7 @@
 	AI.toggle_multicam()
 
 /atom/movable/screen/ai/add_multicam
-	name = "New Camera"
+	name = "Nowa kamera"
 	icon_state = "new_cam"
 
 /atom/movable/screen/ai/add_multicam/Click()
@@ -176,7 +176,7 @@
 	AI.drop_new_multicam()
 
 /atom/movable/screen/ai/move_z
-	name = "View Above"
+	name = "Spójrz wyżej"
 	icon_state = "move_up"
 	var/upwards = TRUE
 
@@ -194,7 +194,7 @@
 		to_chat(AI, "<span class='warning'>W tym kierunku nic nie ma!</span>")
 
 /atom/movable/screen/ai/move_z/down
-	name = "View Below"
+	name = "Spójrz niżej"
 	icon_state = "move_down"
 	upwards = FALSE
 

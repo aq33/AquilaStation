@@ -21,7 +21,7 @@
 
 /obj/item/greentext
 	name = "greentext"
-	desc = "No one knows what this massive tome does, but it feels <i><font color='green'>desirable</font></i> all the same..."
+	desc = "Nikt nie wie, do czego służy ten ogromny tom, ale i tak wydaje się <i><font color='green'>pożądany</font></i>..."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "greentext"

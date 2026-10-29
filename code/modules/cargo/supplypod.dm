@@ -1,8 +1,8 @@
 //The "pod_landingzone" temp visual is created by anything that "launches" a supplypod. This is what animates the pod and makes the pod forcemove to the station.
 //------------------------------------SUPPLY POD-------------------------------------//
 /obj/structure/closet/supplypod
-	name = "supply pod" //Names and descriptions are normally created with the setStyle() proc during initialization, but we have these default values here as a failsafe
-	desc = "A Nanotrasen supply drop pod."
+	name = "kapsuła zaopatrzeniowa" //Names and descriptions are normally created with the setStyle() proc during initialization, but we have these default values here as a failsafe
+	desc = "Zrzutowa kapsuła zaopatrzeniowa Nanotrasen."
 	icon = 'icons/obj/supplypods.dmi'
 	icon_state = "pod" //This is a common base sprite shared by a number of pods
 	pixel_x = SUPPLYPOD_X_OFFSET //2x2 sprite
@@ -66,8 +66,8 @@
 	delays = list(POD_TRANSIT = 15, POD_FALLING = 4, POD_OPENING = 30, POD_LEAVING = 30)
 
 /obj/structure/closet/supplypod/extractionpod
-	name = "Syndicate Extraction Pod"
-	desc = "A specalised, blood-red styled pod for extracting high-value targets out of active mission areas. <b>Targets must be manually stuffed inside the pod for proper delivery.</b>"
+	name = "kapsuła ewakuacyjna Syndykatu"
+	desc = "Specjalistyczna kapsuła w krwistoczerwonych barwach, służąca do wydobywania cennych celów z obszarów aktywnych misji. <b>Cele trzeba ręcznie wepchnąć do kapsuły, żeby dostawa się powiodła.</b>"
 	specialised = TRUE
 	style = STYLE_SYNDICATE
 	bluespace = TRUE
@@ -507,8 +507,8 @@
 	alpha = max(0, 255-(amount*20))
 
 /obj/effect/supplypod_rubble //This is the object that forceMoves the supplypod to it's location
-	name = "Debris"
-	desc = "A small crater of rubble. Closer inspection reveals the debris to be made primarily of space-grade metal fragments. You're pretty sure that this will disperse before too long."
+	name = "gruz"
+	desc = "Mały krater pełen gruzu. Po bliższych oględzinach widać, że to głównie odłamki metalu klasy kosmicznej. Jesteś prawie pewien, że niedługo się rozproszy."
 	icon = 'icons/obj/supplypods.dmi'
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER // We want this to go right below the layer of supplypods and supplypod_rubble's forground.
 	icon_state = "rubble_bg"
@@ -553,8 +553,8 @@
 	animate(src, transform = matrix()*0.01, time = pod.delays[POD_TRANSIT]+pod.delays[POD_FALLING])
 
 /obj/effect/pod_landingzone //This is the object that forceMoves the supplypod to it's location
-	name = "Landing Zone Indicator"
-	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
+	name = "znacznik strefy lądowania"
+	desc = "Holograficzna projekcja wyznaczająca strefę lądowania czegoś. Lepiej się odsunąć."
 	icon = 'icons/obj/supplypods_32x32.dmi'
 	icon_state = "LZ"
 	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
@@ -657,8 +657,8 @@
 
 //------------------------------------UPGRADES-------------------------------------//
 /obj/item/disk/cargo/bluespace_pod //Disk that can be inserted into the Express Console to allow for Advanced Bluespace Pods
-	name = "Bluespace Drop Pod Upgrade"
-	desc = "This disk provides a firmware update to the Express Supply Console, granting the use of Nanotrasen's Bluespace Drop Pods to the supply department."
+	name = "ulepszenie zrzutowych kapsuł bluespace"
+	desc = "Ten dysk zawiera aktualizację oprogramowania konsoli ekspresowego zaopatrzenia, dzięki której dział zaopatrzenia może korzystać ze zrzutowych kapsuł bluespace Nanotrasen."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cargodisk"
 	item_state = "card-id"

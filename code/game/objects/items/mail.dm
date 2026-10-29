@@ -1,8 +1,8 @@
 /// Mail is tamper-evident and unresealable, postmarked by CentCom for an individual recepient.
 /obj/item/mail
-	name = "mail"
+	name = "przesyłka"
 	gender = NEUTER
-	desc = "An officially postmarked, tamper-evident parcel powered by bluespace technology and regulated by CentCom, it's made of rather high-quality materials."
+	desc = "Oficjalnie ostemplowana przesyłka z plombą, napędzana technologią bluespace i nadzorowana przez Centralę. Zrobiona z dość wysokiej jakości materiałów."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "mail_small"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -94,7 +94,7 @@
 	var/static/list/department_colors
 
 /obj/item/mail/envelope
-	name = "envelope"
+	name = "koperta"
 	icon_state = "mail_large"
 	goodie_count = 2
 	stamp_max = 2
@@ -201,9 +201,9 @@
 /obj/item/mail/proc/initialize_for_recipient(datum/mind/recipient)
 	switch(rand(1,5))
 		if(5)
-			name = "[initial(name)] critical to [recipient.name] ([recipient.assigned_role])"
+			name = "[initial(name)] – pilne dla: [recipient.name] ([recipient.assigned_role])"
 		else
-			name = "[initial(name)] for [recipient.name] ([recipient.assigned_role])"
+			name = "[initial(name)] dla: [recipient.name] ([recipient.assigned_role])"
 	recipient_ref = WEAKREF(recipient)
 
 	//Recipients
@@ -225,7 +225,7 @@
 		var/atom/movable/target_atom = new target_good(src)
 		body.log_message("[key_name(body)] received [target_atom.name] in the mail ([target_good])", LOG_GAME)
 		if(target_atom.type in danger_goodies)
-			message_admins("<span class='adminnotice'><b><font color=orange>DANGEROUS ITEM RECIEVED:</font></b>[ADMIN_LOOKUPFLW(body)] received [target_atom.name] in the mail ([target_good]) as a [recipient.assigned_role]</span>")
+			message_admins("<span class='adminnotice'><b><font color=orange>OTRZYMANO NIEBEZPIECZNY PRZEDMIOT:</font></b>[ADMIN_LOOKUPFLW(body)] dostaje pocztą [target_atom.name] ([target_good]) jako [recipient.assigned_role]</span>")
 
 	return TRUE
 
@@ -245,16 +245,16 @@
 						))
 	//NSV13 - Changes Start - Changes to Junk Mail Spawning
 	var/list/junk_names = list(
-		/obj/item/paper/pamphlet/gateway = "[initial(name)] for [pick(GLOB.adjectives)] adventurers",
-		/obj/item/paper/pamphlet/violent_video_games = "[initial(name)] for the truth about the arcade centcom doesn't want to hear",
-		/obj/item/paper/fluff/junkmail_redpill = "[initial(name)] for those feeling [pick(GLOB.adjectives)] working at Nanotrasen",
+		/obj/item/paper/pamphlet/gateway = "[initial(name)] dla odważnych poszukiwaczy przygód",
+		/obj/item/paper/pamphlet/violent_video_games = "[initial(name)] z prawdą o automatach do gier, której Centrala nie chce słyszeć",
+		/obj/item/paper/fluff/junkmail_redpill = "[initial(name)] dla tych, którzy mają dość pracy w Nanotrasen",
 		/obj/item/paper/fluff/nice_argument = "[initial(name)] z NIEZWYKLE WAŻNYM ARTEFAKTEM - DOSTARCZYĆ DO DZIAŁU NAUKOWEGO. OSTROŻNIE.",
 	)
 
 	//better spam mail names instead of being "IMPORTANT MAIL", courtesy of Monkestation
 	color = "#[pick(random_short_color())]"
 	if(recipient)
-		name = "[initial(name)] for [recipient.name] ([recipient.assigned_role])"
+		name = "[initial(name)] dla: [recipient.name] ([recipient.assigned_role])"
 		recipient_ref = WEAKREF(recipient)
 	else
 		switch(rand(1,10))
@@ -264,11 +264,11 @@
 					var/turf/T = get_turf(M)
 					if(is_station_level(T.z)) // Ignore anything not on the main ship
 						candidates += M
-				name = special_name ? junk_names[junk] : "[initial(name)] for [pick(candidates)]"
+				name = special_name ? junk_names[junk] : "[initial(name)] dla: [pick(candidates)]"
 			if(4,5)
-				name = special_name ? junk_names[junk] : "DO NOT OPEN"
+				name = special_name ? junk_names[junk] : "NIE OTWIERAĆ"
 			else
-				name = special_name ? junk_names[junk] : "[pick("important","critical","crucial","serious","vital")] [initial(name)]"
+				name = special_name ? junk_names[junk] : "[initial(name)] ([pick("ważne","krytyczne","kluczowe","poważne","niezbędne")])"
 	//NSV13 - Changes Stop - Changes to Junk Mail Spawning
 	junk = new junk(src)
 	return TRUE
@@ -284,8 +284,8 @@
 	junk_mail()
 
 /obj/structure/closet/crate/mail
-	name = "mail crate"
-	desc = "A certified post crate from CentCom."
+	name = "skrzynia pocztowa"
+	desc = "Certyfikowana skrzynia pocztowa z Centrali."
 	icon_state = "mail_crate"
 	door_anim_time = 0
 
@@ -338,20 +338,20 @@
 
 /// Crate for mail that automatically generates a lot of mail. Usually only normal mail, but on lowpop it may end up just being junk.
 /obj/structure/closet/crate/mail/full
-	name = "brimming mail crate"
-	desc = "A certified post crate from CentCom. Looks stuffed to the gills."
+	name = "pękająca w szwach skrzynia pocztowa"
+	desc = "Certyfikowana skrzynia pocztowa z Centrali. Wygląda na wypchaną po brzegi."
 
 /obj/structure/closet/crate/mail/full/Initialize()
 	. = ..()
 	populate(null)
 
 /obj/item/paper/fluff/junkmail_redpill
-	name = "smudged paper"
+	name = "zamazana kartka"
 	icon_state = "scrap"
 	var/nuclear_option_odds = 0.1
 
 /obj/item/paper/fluff/nice_argument
-	name = "RE: Nice Argument..."
+	name = "RE: Niezły argument..."
 	icon_state = "paper"
 
 /obj/item/paper/fluff/nice_argument/Initialize()
@@ -369,7 +369,7 @@
 		if(nuke)
 			if(nuke.r_code == "ADMIN")
 				nuke.r_code = code
-				message_admins("Through junkmail, the self-destruct code was set to \"[code]\".")
+				message_admins("Przez pocztę śmieciową kod samozniszczenia ustawiono na „[code]”.")
 			else //Already set by admins/something else?
 				code = nuke.r_code
 		else
@@ -383,8 +383,8 @@
 	nuclear_option_odds = 100
 
 /obj/item/paper/fluff/junkmail_generic
-	name = "important document"
-	desc = "I wonder what's so important here..."
+	name = "ważny dokument"
+	desc = "Ciekawe, co tu jest takiego ważnego..."
 	icon_state = "paper_spam"
 	color = "#FFCCFF"
 

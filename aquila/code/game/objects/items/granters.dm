@@ -1,9 +1,9 @@
 /obj/item/book/granter/spell/sexonbutton
-	name = "poorly-written fanfiction"
-	desc = "A book, seemingly describing an encounter between a notorious changeling and an infamous lizard, deep in the maintance tunnels of the station's robotics bay."
+	name = "kiepsko napisany fanfik"
+	desc = "Książka, która chyba opisuje spotkanie słynnego zmiennokształtnego z osławionym jaszczurem głęboko w tunelach technicznych przy robotyce stacji."
 	icon_state = "book8"
 	spell = /obj/effect/proc_holder/spell/targeted/touch/sex
-	spellname = "Sex on button"
+	spellname = "Seks na przycisk"
 	remarks = list("Po co on tam włożył tę ssawkę?", "Oh.", "Po co on trzyma butelkę kosmicznego lubrykantu?")
 	oneuse = FALSE
 

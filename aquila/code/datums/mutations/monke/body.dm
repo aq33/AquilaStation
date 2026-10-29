@@ -1,8 +1,8 @@
 // AQUILA - port z Monkestation2.0 (code/datums/mutations/body.dm)
 
 /datum/mutation/no_fingerprints
-	name = "Invisible Fingerprints"
-	desc = "Subjects finger tips melt into a singular smooth structure, causing their fingerprints to be impossible to detect."
+	name = "Niewidoczne odciski palców"
+	desc = "Opuszki palców pacjenta zlewają się w jedną gładką powierzchnię, przez co nie da się wykryć jego odcisków palców."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Drętwieją ci opuszki palców.</span>"
 	text_lose_indication = "<span class='notice'>Opuszki palców przestają drętwieć.</span>"
@@ -10,8 +10,8 @@
 	mutation_traits = list(TRAIT_NO_FINGERPRINTS)
 
 /datum/mutation/bloodyhell
-	name = "Polycythemia"
-	desc = "A mutation that stimulates the subjects bone marrow's blood production capability and removes the subject's bone marrow's usual safeties against overproducing blood."
+	name = "Czerwienica"
+	desc = "Mutacja, która pobudza szpik kostny pacjenta do produkcji krwi i wyłącza jego zwykłe zabezpieczenia przed nadprodukcją krwi."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Przez chwilę czujesz ból w sercu, które zaczyna bić szybciej.</span>"
 	text_lose_indication = "<span class='notice'>Serce zwalnia do zwykłego tempa.</span>"
@@ -36,7 +36,7 @@
 
 /datum/mutation/anemia
 	name = "Anemia"
-	desc = "This mutation causes damage to the oxygen carrying properties of blood cells to a high degree in the subject."
+	desc = "Ta mutacja mocno upośledza zdolność krwinek pacjenta do przenoszenia tlenu."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Przez chwilę kręci ci się w głowie.</span>"
 	instability = 10
@@ -52,8 +52,8 @@
 		H.blood_volume -= MONKE_LIFE_SECONDS
 
 /datum/mutation/fat
-	name = "Obesity"
-	desc = "A strange mutation that forces the body to rapidly produce lipid tissue."
+	name = "Otyłość"
+	desc = "Dziwna mutacja, która zmusza organizm do szybkiego wytwarzania tkanki tłuszczowej."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz się tłusty i ociężały!</span>"
 	text_lose_indication = "<span class='notice'>Czujesz się wysportowany!</span>"
@@ -65,8 +65,8 @@
 		owner.nutrition += 25 * MONKE_LIFE_SECONDS
 
 /datum/mutation/dizzy
-	name = "Dizzy"
-	desc = "Causes the subjects cerebellum to shut down in certain places causing dizzyness."
+	name = "Zawroty głowy"
+	desc = "Wyłącza miejscami móżdżek pacjenta, przez co kręci mu się w głowie."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Nagle zaczyna ci się mocno kręcić w głowie...</span>"
 	text_lose_indication = "<span class='notice'>Odzyskujesz równowagę.</span>"
@@ -85,8 +85,8 @@
 		owner.dizziness = min(owner.dizziness + MONKE_TIME_TO_LIFE_TICKS(1 MINUTES * GET_MUTATION_SYNCHRONIZER(src) * GET_MUTATION_POWER(src)), max_dizzy)
 
 /datum/mutation/ear_cancer
-	name = "Tinnitus"
-	desc = "Causes the subjects to constantly hear a ringing noise."
+	name = "Szumy uszne"
+	desc = "Pacjent bez przerwy słyszy dzwonienie w uszach."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='warning'>Zaczyna ci dzwonić w uszach.</span>"
 	text_lose_indication = "<span class='notice'>Dzwonienie w uszach ustaje.</span>"

@@ -1,6 +1,6 @@
 /obj/item/soapstone
-	name = "soapstone"
-	desc = "Leave informative messages for the crew, including the crew of future shifts!\nEven if out of uses, it can still be used to remove messages.\n(Not suitable for engraving on shuttles, off station or on cats. Side effects may include prompt beatings, psychotic clown incursions, and/or orbital bombardment.)"
+	name = "steatyt"
+	desc = "Zostawiaj załodze pouczające wiadomości, także załogom przyszłych zmian!\nNawet gdy skończą się użycia, nadal można nim ścierać wiadomości.\n(Nie nadaje się do rycia na promach, poza stacją ani na kotach. Skutki uboczne mogą obejmować natychmiastowe pobicie, najazdy psychotycznych klaunów i/lub bombardowanie orbitalne.)"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "soapstone"
 	throw_speed = 3
@@ -38,7 +38,7 @@
 		user.visible_message("<span class='notice'>[user] zaczyna ścierać [existing_message].</span>", "<span class='notice'>Zaczynasz ścierać [existing_message].</span>", "<span class='italics'>Słyszysz odłupywanie.</span>")
 		playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
 		if(do_after(user, tool_speed, target = existing_message))
-			user.visible_message("<span class='notice'>[user] erases [existing_message].</span>", "<span class='notice'>Ścierasz [existing_message][existing_message.creator_key == user.ckey ? ", odzyskując użycie" : ""].</span>")
+			user.visible_message("<span class='notice'>[user] ściera [existing_message].</span>", "<span class='notice'>Ścierasz [existing_message][existing_message.creator_key == user.ckey ? ", odzyskując użycie" : ""].</span>")
 			existing_message.persists = FALSE
 			qdel(existing_message)
 			playsound(loc, 'sound/items/gavel.ogg', 50, 1, -1)
@@ -46,7 +46,7 @@
 				refund_use()
 		return
 
-	var/message = stripped_input(user, "Co chcesz wyryć?", "Leave a message")
+	var/message = stripped_input(user, "Co chcesz wyryć?", "Zostaw wiadomość")
 	if(!message)
 		to_chat(user, "<span class='notice'>Postanawiasz niczego nie ryć.</span>")
 		return
@@ -87,7 +87,7 @@
 		// This will mess up RPG loot names, but w/e
 		name = initial(name)
 	else
-		name = "dull [initial(name)]"
+		name = "zużyty [initial(name)]"
 
 /* Persistent engraved messages, etched onto the station turfs to serve
    as instructions and/or memes for the next generation of spessmen.
@@ -111,8 +111,8 @@
 		. = TRUE
 
 /obj/structure/chisel_message
-	name = "engraved message"
-	desc = "A message from a past traveler."
+	name = "wyryta wiadomość"
+	desc = "Wiadomość od dawnego podróżnika."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "soapstone_message"
 	layer = HIGH_OBJ_LAYER
@@ -213,7 +213,7 @@
 /obj/structure/chisel_message/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "EngravedMessage")
+		ui = new(user, src, "EngravedMessage", "Wyryta wiadomość")
 		ui.open()
 
 /obj/structure/chisel_message/ui_data(mob/user)

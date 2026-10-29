@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/medical1
-	name = "medicine closet"
-	desc = "Filled to the brim with medical junk."
+	name = "szafa z lekami"
+	desc = "Wypchana po brzegi medycznymi gratami."
 	icon_state = "med"
 	req_access = list(ACCESS_MEDICAL)
 
@@ -23,8 +23,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/secure_closet/medical2
-	name = "anesthetic closet"
-	desc = "Used to knock people out."
+	name = "szafa z anestetykami"
+	desc = "Do usypiania ludzi."
 	req_access = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/medical2/PopulateContents()
@@ -35,7 +35,7 @@
 		new /obj/item/clothing/mask/breath/medical(src)
 
 /obj/structure/closet/secure_closet/medical3
-	name = "medical doctor's locker"
+	name = "szafka lekarza"
 	req_access = list(ACCESS_SURGERY)
 	icon_state = "med_secure"
 
@@ -52,8 +52,8 @@
 	return
 
 /obj/structure/closet/secure_closet/medicaldanger
-	name = "group T medical closet"
-	desc = "Filled to the brim with potentially dangerous drugs. Keep away from assistants."
+	name = "szafa z lekami grupy T"
+	desc = "Wypchana po brzegi potencjalnie niebezpiecznymi lekami. Trzymać z dala od majtków."
 	req_access = list(ACCESS_MEDICAL)
 	icon_state = "med_secure"
 
@@ -74,7 +74,7 @@
 	return
 
 /obj/structure/closet/secure_closet/CMO
-	name = "\proper chief medical officer's locker"
+	name = "\proper szafka Ordynatora"
 	req_access = list(ACCESS_CMO)
 	icon_state = "cmo"
 
@@ -117,7 +117,7 @@
 	//new /obj/item/gun/energy/e_gun/mini/heads(src) NSV13 No energy weapons
 
 /obj/item/storage/box/suitbox/cmo
-	name = "compression box of chief medical officer outfits"
+	name = "kompresyjne pudełko ze strojami Ordynatora"
 
 /obj/item/storage/box/suitbox/cmo/PopulateContents()
 	new /obj/item/clothing/under/rank/medical/chief_medical_officer(src)
@@ -126,7 +126,7 @@
 	new /obj/item/clothing/head/beret/cmo(src)
 
 /obj/structure/closet/secure_closet/animal
-	name = "animal control"
+	name = "kontrola zwierząt"
 	req_access = list(ACCESS_SURGERY)
 
 /obj/structure/closet/secure_closet/animal/PopulateContents()
@@ -136,8 +136,8 @@
 		new /obj/item/electropack(src)
 
 /obj/structure/closet/secure_closet/chemical
-	name = "chemical closet"
-	desc = "Store dangerous chemicals in here."
+	name = "szafa z chemikaliami"
+	desc = "Przechowuj tu niebezpieczne chemikalia."
 	req_access = list(ACCESS_CHEMISTRY)
 	icon_door = "chemical"
 
@@ -159,7 +159,7 @@
 	new /obj/item/rcd_ammo(src)
 
 /obj/structure/closet/secure_closet/chemical/heisenberg //contains one of each beaker, syringe etc.
-	name = "advanced chemical closet"
+	name = "zaawansowana szafa z chemikaliami"
 
 /obj/structure/closet/secure_closet/chemical/heisenberg/PopulateContents()
 	..()

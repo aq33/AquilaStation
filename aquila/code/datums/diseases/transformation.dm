@@ -1,5 +1,5 @@
 /datum/disease/transformation/jungle_fever
-	name = "Jungle Fever"
+	name = "Gorączka dżungli"
 	cure_text = "Śmierć."
 	cures = list(/datum/reagent/medicine/adminordrazine)
 	spread_text = "Ugryzienia małp"
@@ -8,7 +8,7 @@
 	permeability_mod = 1
 	cure_chance = 1
 	disease_flags = CAN_CARRY|CAN_RESIST
-	desc = "Monkeys with this disease will bite humans, causing humans to mutate into a monkey."
+	desc = "Chore małpy gryzą ludzi, a pogryzieni ludzie mutują w małpy."
 	danger = DISEASE_BIOHAZARD
 	stage_prob = 4
 	visibility_flags = 0
@@ -32,7 +32,7 @@
 	if(ismonkey(affected_mob))
 		init_monkey(affected_mob)
 	if(!affected_mob.mind && ismonkey(affected_mob))
-		var/list/candidates = pollGhostCandidates("Do you want to play as an infected monkey?", ROLE_MONKEY, /datum/role_preference/antagonist/monkey, 15 SECONDS, POLL_IGNORE_MONKEY)
+		var/list/candidates = pollGhostCandidates("Czy chcesz zagrać jako zarażona małpa?", ROLE_MONKEY, /datum/role_preference/antagonist/monkey, 15 SECONDS, POLL_IGNORE_MONKEY)
 
 		if(QDELETED(src))
 			return

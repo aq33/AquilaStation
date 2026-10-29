@@ -1,7 +1,7 @@
 ///Abstract class to allow us to easily create all the generic "normal" food without too much copy pasta of adding more components
 /obj/item/food
-	name = "food"
-	desc = "you eat this"
+	name = "jedzenie"
+	desc = "To się je."
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/food/food.dmi'
@@ -134,7 +134,7 @@
 			to_chat(user, "<span class='warning'>Tego nie zjesz łyżką!</span>")
 			return
 	if(istype(W, /obj/item/pen)) //renaming food (BeeStation#13360), merged into our fork/spoon attackby
-		var/target_name = tgui_input_text(user, "What would you like to name your masterpiece?", "Name:", name || "Food", MAX_MESSAGE_LEN)
+		var/target_name = tgui_input_text(user, "Jak chcesz nazwać swoje dzieło?", "Nazwa:", name || "Jedzenie", MAX_MESSAGE_LEN)
 		if(!target_name || !length(target_name))
 			return
 		if(CHAT_FILTER_CHECK(target_name))

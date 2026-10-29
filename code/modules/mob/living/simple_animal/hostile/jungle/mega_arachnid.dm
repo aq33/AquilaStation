@@ -1,8 +1,8 @@
 //Large and powerful, but timid. It won't engage anything above 50 health, or anything without legcuffs.
 //It can fire fleshy snares that legcuff anyone that it hits, making them look especially tasty to the arachnid.
 /mob/living/simple_animal/hostile/jungle/mega_arachnid
-	name = "mega arachnid"
-	desc = "Though physically imposing, it prefers to ambush its prey, and it will only engage with an already crippled opponent."
+	name = "megapajęczak"
+	desc = "Choć budzi respekt posturą, woli zasadzać się na ofiary i atakuje tylko przeciwnika, który jest już okaleczony."
 	icon = 'icons/mob/jungle/arachnid.dmi'
 	icon_state = "arachnid"
 	icon_living = "arachnid"
@@ -50,7 +50,7 @@
 	alpha = 50
 
 /obj/item/projectile/mega_arachnid
-	name = "flesh snare"
+	name = "mięsiste sidła"
 	nodamage = TRUE
 	damage = 0
 	icon_state = "tentacle_end"
@@ -62,8 +62,8 @@
 	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/mega_arachnid
-	name = "fleshy restraints"
-	desc = "Used by mega arachnids to immobilize their prey."
+	name = "mięsiste więzy"
+	desc = "Megapajęczaki unieruchamiają nimi swoje ofiary."
 	item_flags = DROPDEL
 	flags_1 = NONE
 	icon_state = "tentacle_end"

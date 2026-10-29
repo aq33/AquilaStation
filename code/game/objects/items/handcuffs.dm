@@ -21,8 +21,8 @@
 //Handcuffs
 
 /obj/item/restraints/handcuffs
-	name = "handcuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "kajdanki"
+	desc = "Służą do trzymania więźniów w ryzach."
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handcuff"
@@ -62,7 +62,7 @@
 					apply_cuffs(C, user, TRUE)
 				else
 					apply_cuffs(C, user)
-				C.visible_message("<span class='notice'>[user] handcuffs [C].</span>", \
+				C.visible_message("<span class='notice'>[user] zakuwa [C] w kajdanki.</span>", \
 									"<span class='userdanger'>[user] zakuwa cię w kajdanki.</span>")
 				SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 
@@ -94,8 +94,8 @@
 	return
 
 /obj/item/restraints/handcuffs/cable/sinew
-	name = "sinew restraints"
-	desc = "A pair of restraints fashioned from long strands of flesh."
+	name = "więzy ze ścięgien"
+	desc = "Więzy zrobione z długich pasm ciała."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sinewcuff"
 	item_state = "sinewcuff"
@@ -103,8 +103,8 @@
 	color = null
 
 /obj/item/restraints/handcuffs/cable
-	name = "cable restraints"
-	desc = "Looks like some cables tied together. Could be used to tie something up."
+	name = "więzy z kabla"
+	desc = "Wygląda na kilka związanych ze sobą kabli. Można by nimi coś związać."
 	icon_state = "cuff"
 	item_state = "coil"
 	color = "#ff0000"
@@ -142,8 +142,8 @@
 	icon_state = "handcuffAlien"
 
 /obj/item/restraints/handcuffs/fake
-	name = "fake handcuffs"
-	desc = "Fake handcuffs meant for gag purposes."
+	name = "sztuczne kajdanki"
+	desc = "Sztuczne kajdanki do żartów."
 	breakouttime = 10 //Deciseconds = 1s
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
@@ -178,8 +178,8 @@
 		return ..()
 
 /obj/item/restraints/handcuffs/cable/zipties
-	name = "zipties"
-	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	name = "opaski zaciskowe"
+	desc = "Plastikowe, jednorazowe opaski zaciskowe. Krępują na chwilę, ale po użyciu nadają się tylko do wyrzucenia."
 	icon_state = "cuff"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -189,7 +189,7 @@
 	color = null
 
 /obj/item/restraints/handcuffs/cable/zipties/used
-	desc = "A pair of broken zipties."
+	desc = "Para zerwanych opasek zaciskowych."
 	icon_state = "cuff_used"
 	item_state = "cuff"
 
@@ -199,8 +199,8 @@
 //Legcuffs
 
 /obj/item/restraints/legcuffs
-	name = "leg cuffs"
-	desc = "Use this to keep prisoners in line."
+	name = "kajdany na nogi"
+	desc = "Służą do trzymania więźniów w ryzach."
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handcuff"
@@ -213,11 +213,11 @@
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 
 /obj/item/restraints/legcuffs/beartrap
-	name = "bear trap"
+	name = "sidła"
 	throw_speed = 1
 	throw_range = 1
 	icon_state = "beartrap"
-	desc = "A trap used to catch bears and other legged creatures."
+	desc = "Pułapka na niedźwiedzie i inne stworzenia z nogami."
 	var/armed = 0
 	var/trap_damage = 20
 
@@ -286,7 +286,7 @@
 				L.apply_damage(trap_damage, BRUTE, def_zone)
 
 /obj/item/restraints/legcuffs/beartrap/energy
-	name = "energy snare"
+	name = "sidła energetyczne"
 	armed = 1
 	icon_state = "e_snare"
 	trap_damage = 0
@@ -316,7 +316,7 @@
 
 /obj/item/restraints/legcuffs/bola
 	name = "bola"
-	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
+	desc = "Urządzenie obezwładniające do rzucania w cel. Po trafieniu oplata nogi celu, przez co trudno mu szybko się poruszać."
 	icon_state = "bola"
 	item_state = "bola"
 	lefthand_file = 'icons/mob/inhands/weapons/thrown_lefthand.dmi'
@@ -354,23 +354,23 @@
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
 /obj/item/restraints/legcuffs/bola/tactical//traitor variant
-	name = "reinforced bola"
-	desc = "A strong bola, made with a long steel chain. It looks heavy, enough so that it could trip somebody."
+	name = "wzmocniona bola"
+	desc = "Mocna bola z długiego stalowego łańcucha. Wygląda na tyle ciężko, że mogłaby kogoś przewrócić."
 	icon_state = "bola_r"
 	item_state = "bola_r"
 	breakouttime = 70
 	knockdown = 20
 
 /obj/item/restraints/legcuffs/bola/watcher //tribal bola for tribal lizards
-	name = "watcher Bola"
-	desc = "A Bola made from the stretchy sinew of fallen watchers."
+	name = "bola z obserwatora"
+	desc = "Bola z rozciągliwych ścięgien poległych obserwatorów."
 	icon_state = "bola_watcher"
 	item_state = "bola_watcher"
 	breakouttime = 45
 
 /obj/item/restraints/legcuffs/bola/energy //For Security
-	name = "energy bola"
-	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
+	name = "bola energetyczna"
+	desc = "Specjalistyczna bola z twardego światła do oplątywania uciekających przestępców i pomocy przy aresztowaniach."
 	icon_state = "ebola"
 	item_state = "ebola"
 	hitsound = 'sound/weapons/taserhit.ogg'
@@ -390,7 +390,7 @@
 
 /obj/item/restraints/legcuffs/bola/gonbola
 	name = "gonbola"
-	desc = "Hey, if you have to be hugged in the legs by anything, it might as well be this little guy."
+	desc = "Hej, skoro już coś musi ci przytulać nogi, to niech to będzie ten maluch."
 	icon_state = "gonbola"
 	item_state = "bola_r"
 	breakouttime = 300

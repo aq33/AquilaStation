@@ -103,7 +103,7 @@
 					var/datum/weakref/follow_ref = blackboard[BB_DOG_FRIENDS][1]
 					blackboard[BB_FOLLOW_TARGET] = follow_ref?.resolve()
 					if(!can_see(pawn, blackboard[BB_FOLLOW_TARGET], AI_DOG_VISION_RANGE))
-						pawn.visible_message("[pawn] can't see [blackboard[BB_FOLLOW_TARGET]]!")
+						pawn.visible_message("[pawn] nie widzi: [blackboard[BB_FOLLOW_TARGET]]!")
 						return
 				else
 					pawn.visible_message("[pawn] nie widzi niczego, za czym mógłby podążać!")
@@ -119,7 +119,7 @@
 				pawn.visible_message("[pawn] nie widzi niczego do zaatakowania!")
 				return
 			if(!can_see(pawn, blackboard[BB_ATTACK_TARGET], AI_DOG_VISION_RANGE))
-				pawn.visible_message("[pawn] can't see [blackboard[BB_ATTACK_TARGET]]!")
+				pawn.visible_message("[pawn] nie widzi: [blackboard[BB_ATTACK_TARGET]]!")
 				return
 			current_movement_target = blackboard[BB_ATTACK_TARGET]
 			queue_behavior(/datum/ai_behavior/tamed_follow/attack)

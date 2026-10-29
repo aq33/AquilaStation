@@ -1,6 +1,6 @@
 /datum/surgery/advanced/revival
-	name = "Revival"
-	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
+	name = "Ożywienie"
+	desc = "Eksperymentalny zabieg chirurgiczny polegający na odbudowie i ponownym uruchomieniu mózgu pacjenta nawet długo po śmierci. Ciało musi wciąż być zdolne do podtrzymania życia."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/saw,
@@ -26,7 +26,7 @@
 	return TRUE
 
 /datum/surgery_step/revive
-	name = "shock body"
+	name = "poraź ciało"
 	implements = list(/obj/item/shockpaddles = 100, /obj/item/melee/baton = 75, /obj/item/gun/energy = 60)
 	repeatable = TRUE
 	time = 120

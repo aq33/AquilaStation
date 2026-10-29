@@ -86,10 +86,10 @@ NOTE:
 	var/reward_txt = ""
 	for(var/i in 1 to length(rewards))
 		if(i == length(rewards))
-			reward_txt += " and " + rewards[rewards[i]]
+			reward_txt += " i " + rewards[rewards[i]]
 		else
 			reward_txt += ", " + rewards[rewards[i]]
-	return num2text(payout) + " credits" + reward_txt
+	return num2text(payout) + " kr." + reward_txt
 
 /datum/nsv_mission/proc/send_item(contents, cargo = TRUE) // Send an item to the players.
 	var/c = owner.send_supplypod(contents)
@@ -102,7 +102,7 @@ NOTE:
 	return TRUE
 
 /datum/nsv_mission/proc/update_description()
-	desc = "THIS IS A BUG AAAA"
+	desc = "TO JEST BŁĄD AAAA"
 
 
 //##############################################################################
@@ -113,7 +113,7 @@ NOTE:
 // Kill ships - Kill X ships owned by Y with no location requirement
 
 /datum/nsv_mission/kill_ships
-	name = "Ship bounty"
+	name = "Nagroda za okręty"
 
 	var/ships_to_kill
 	var/ships_remaining
@@ -176,24 +176,24 @@ NOTE:
 		if(i == 1)
 			target_ship_string = capitalize(target_faction[i])
 		else if(i == LAZYLEN(target_faction))
-			target_ship_string += " or " + capitalize(target_faction[i])
+			target_ship_string += " lub " + capitalize(target_faction[i])
 		else
 			target_ship_string += ", " + capitalize(target_faction[i])
 
-	desc = "Our supply lines have been hit hard recently. Destroy [ships_to_kill] [target_ship_string] ships in any system. You have currently destroyed [ships_to_kill - ships_remaining] ships."
+	desc = "Nasze linie zaopatrzenia mocno ostatnio oberwały. Zniszcz okręty frakcji [target_ship_string] w dowolnym układzie. Do zniszczenia: [ships_to_kill]. Zniszczono dotąd: [ships_to_kill - ships_remaining]."
 
 
 /datum/nsv_mission/kill_ships/syndicate
 	valid_factions = list("syndicate")
 	target_faction = list("nanotrasen")
 	target_factions = list(FACTION_ID_NT)
-	rewards = list(/obj/item/stack/telecrystal/twenty="20 telecrystals",
+	rewards = list(/obj/item/stack/telecrystal/twenty="20 telekryształów",
 								/obj/structure/closet/crate/nsv_mission_rewards="skrzynia amunicji")
 
 // Kill ships in system - Kill X ships owned by Y in specific systems
 
 /datum/nsv_mission/kill_ships/system
-	name = "System clearing"
+	name = "Oczyszczenie układu"
 	payout = 5000
 	var/target_system = list()
 	var/visited_systems = list()
@@ -242,7 +242,7 @@ NOTE:
 		if(i == 1)
 			target_ship_string = capitalize(target_faction[i])
 		else if(i == LAZYLEN(target_faction))
-			target_ship_string += " and " + capitalize(target_faction[i])
+			target_ship_string += " i " + capitalize(target_faction[i])
 		else
 			target_ship_string += ", " + capitalize(target_faction[i])
 
@@ -252,11 +252,11 @@ NOTE:
 		if(i == 1)
 			target_system_string = capitalize(foobar.name)
 		else if(i == LAZYLEN(target_system))
-			target_system_string += " and " + capitalize(foobar.name)
+			target_system_string += " i " + capitalize(foobar.name)
 		else
 			target_system_string += ", " + capitalize(foobar.name)
 
-	desc = "We've received intel that the enemy is attempting to amass an invasion force in [target_system_string]. Locate and destroy the enemy fleet. You have currently destroyed [ships_to_kill - ships_remaining] ships."
+	desc = "Wywiad donosi, że wróg próbuje zgromadzić siły inwazyjne w układzie: [target_system_string]. Znajdź i zniszcz wrogą flotę. Zniszczono dotąd: [ships_to_kill - ships_remaining]."
 
 
 /datum/nsv_mission/kill_ships/system/syndicate
@@ -264,14 +264,14 @@ NOTE:
 	target_faction = list("nanotrasen")
 	target_factions = list(FACTION_ID_NT)
 	system_alignment = list("nanotrasen","unaligned","uncharted")
-	rewards = list(/obj/item/stack/telecrystal/twenty="20 telecrystals",
+	rewards = list(/obj/item/stack/telecrystal/twenty="20 telekryształów",
 								/obj/structure/closet/crate/nsv_mission_rewards="skrzynia amunicji")
 
 
 // Wave hold - Destroy several waves of enemy ships
 
 /datum/nsv_mission/kill_ships/waves
-	name = "Hold system"
+	name = "Utrzymanie układu"
 	payout = 15000
 	var/total_waves
 	var/waves_remaining
@@ -343,30 +343,30 @@ NOTE:
 
 /datum/nsv_mission/kill_ships/waves/update_description()
 	if(stage == MISSION_FAILED)
-		desc = "After you fled from [target_system] our forces in a neighbouring system were overwhelmed from the fleets you were supposed to distract."
+		desc = "Po twojej ucieczce z [target_system] nasze siły w sąsiednim układzie zostały przytłoczone przez floty, które miałeś odciągnąć."
 	if(stage == MISSION_COMPLETE)
-		desc = "You held [target_system] for [total_waves] waves! Ships in a neighbouring system were able to complete their mission thanks to your distraction."
+		desc = "Utrzymujesz [target_system] przez wszystkie fale (łącznie: [total_waves])! Dzięki twojej dywersji okręty w sąsiednim układzie mogły wykonać swoją misję."
 	else if(owner.current_system != target_system)
-		desc = "We need you to cause a distraction. Travel to [target_system] and prepare to fight [waves_remaining] waves of enemy ships."
+		desc = "Potrzebujemy dywersji. Leć do [target_system] i przygotuj się na walkę z falami wrogich okrętów (fale: [waves_remaining])."
 	else if(ships_remaining)
 		var/target_ship_string
 		for(var/i in 1 to LAZYLEN(target_faction))
 			if(i == 1)
 				target_ship_string = capitalize(target_faction[i])
 			else if(i == LAZYLEN(target_faction))
-				target_ship_string += " or " + capitalize(target_faction[i])
+				target_ship_string += " lub " + capitalize(target_faction[i])
 			else
 				target_ship_string += ", " + capitalize(target_faction[i])
-		desc = "Destroy [ships_to_kill] [target_ship_string] ships located in [target_system]. You have currently destroyed [ships_to_kill - ships_remaining] ships. There are [waves_remaining] waves remaining."
+		desc = "Zniszcz okręty frakcji [target_ship_string] w układzie [target_system]. Do zniszczenia: [ships_to_kill]. Zniszczono dotąd: [ships_to_kill - ships_remaining]. Pozostałe fale: [waves_remaining]."
 	else
-		desc = "Wait for enemy reinforcements."
+		desc = "Czekaj na wrogie posiłki."
 
 
 /datum/nsv_mission/kill_ships/waves/syndicate
 	valid_factions = list("syndicate")
 	target_faction = list("nanotrasen")
 	target_factions = list(FACTION_ID_NT)
-	rewards = list(/obj/item/stack/telecrystal/twenty="20 telecrystals",
+	rewards = list(/obj/item/stack/telecrystal/twenty="20 telekryształów",
 								/obj/structure/closet/crate/nsv_mission_rewards="skrzynia amunicji")
 
 /* ideasguys zone - TODO
@@ -462,10 +462,10 @@ kill station
 	var/reward_txt = ""
 	for(var/i in 1 to LAZYLEN(rewards))
 		if(i == LAZYLEN(rewards))
-			reward_txt += " and " + rewards[rewards[i]]
+			reward_txt += " i " + rewards[rewards[i]]
 		else
 			reward_txt += ", " + rewards[rewards[i]]
-	return "Maksymalnie " + num2text(max_payout) + " credits" + reward_txt
+	return "Maksymalnie " + num2text(max_payout) + " kr." + reward_txt
 
 
 /datum/nsv_mission/cargo/proc/report_tampered_cargo(var/datum/component/nsv_mission_cargo/cargo) // We only count the cargo if delivered tampered. This is mostly a hook if you want tampers to be fails
@@ -473,7 +473,7 @@ kill station
 
 
 /datum/nsv_mission/cargo/update_description()
-	desc = "Transport [total_cargo] crates of cargo via a freight torpedo to [delivery_target.name], located in the [delivery_target.starting_system] system. You have delivered [delivered_cargo + tampered_cargo]/[total_cargo] crates."
+	desc = "Przetransportuj skrzynie z ładunkiem torpedą towarową do [delivery_target.name] w układzie [delivery_target.starting_system]. Dostarczone skrzynie: [delivered_cargo + tampered_cargo]/[total_cargo]."
 
 
 // High risk cargo - Things that react badly to being tampered with
@@ -496,7 +496,7 @@ kill station
 
 /datum/nsv_mission/cargo/nuke/register()
 	. = ..()
-	message_admins("The [owner.name] has just undertaken the live nuke mission! There will be multiple ingame warnings about the cargo.")
+	message_admins("[owner.name] podejmuje właśnie misję z uzbrojoną bombą atomową! W grze pojawi się kilka ostrzeżeń o tym ładunku.")
 	addtimer(CALLBACK(src, PROC_REF(first_warning)), 15 MINUTES) // 45 min to go
 
 
@@ -506,7 +506,7 @@ kill station
 
 
 /datum/nsv_mission/cargo/nuke/update_description()
-	desc = "Transport 9999\"; DROP CONNECTION ; NEW CONNECTION(\" Hey, I need you to move one crate of cargo to [delivery_target.name]. You'll find it in [delivery_target.starting_system]. DO NOT open the crate and ignore the ticking it is an antique alarm clock. This needs to be delivered in less than one hour."
+	desc = "Przetransportuj 9999\"; DROP CONNECTION ; NEW CONNECTION(\" Hej, potrzebuję, żebyś przewiózł jedną skrzynię z ładunkiem do [delivery_target.name]. Znajdziesz ich w układzie [delivery_target.starting_system]. NIE otwieraj skrzyni i ignoruj tykanie, to zabytkowy budzik. Musi zostać dostarczona w mniej niż godzinę."
 
 /datum/nsv_mission/cargo/nuke/proc/first_warning()
 	if(stage != MISSION_ACTIVE) // Only report the crate is suspect if the mission is ongoing
@@ -535,7 +535,7 @@ kill station
 
 
 /datum/nsv_mission/cargo/nuke/syndicate/update_description() //Exactly the same as the normal one but with different flavor text/warnings
-	desc = "You... Want to do a mission for us? Sure. I mean you've come this far, why not take a gift back to [delivery_target.name]. Hopefuly this gift will better our relations. Don't peek inside, I'm sure the admiral wants this gift undamaged."
+	desc = "Ty... chcesz wykonać dla nas misję? Jasne. Skoro już zaszedłeś tak daleko, czemu nie zawieźć prezentu do [delivery_target.name]? Mamy nadzieję, że ten prezent poprawi nasze relacje. Nie zaglądaj do środka, admirał na pewno chce dostać go w nienaruszonym stanie."
 
 
 /datum/nsv_mission/cargo/nuke/syndicate/first_warning()
@@ -579,7 +579,7 @@ kill station
 	return FALSE
 
 /datum/nsv_mission/explore/update_description()
-	desc = "We have been struggling to map a route into Syndicate space. Every time we send a scout to find a viable route they get lost. If you can navigate to and arrive in Rubicon, we'll pay you for information on the route you took. "
+	desc = "Od dawna próbujemy wytyczyć trasę na terytorium Syndykatu. Każdy zwiadowca, którego wysyłamy na poszukiwanie przejścia, ginie bez śladu. Jeśli zdołasz dotrzeć do Rubikonu, zapłacimy ci za informacje o twojej trasie. "
 
 
 //##############################################################################
@@ -590,5 +590,5 @@ kill station
 // Custom - A blank objective for admins to create custom missions. They will not automatically process
 
 /datum/nsv_mission/custom/
-	desc = "A mission missing the correct paperwork to define what is required. Contact NT if you see this!"
-	var/admin_hints = "SET 'the_client' TO THE OVERMAP STATION! Set stage to different things to mark progress. -1 is failed. 0 is idle and 2 is complete."
+	desc = "Misja bez właściwej dokumentacji określającej, czego wymaga. Jeśli to widzisz, skontaktuj się z NT!"
+	var/admin_hints = "USTAW 'the_client' NA STACJĘ OVERMAPY! Zmieniaj stage, żeby oznaczać postęp. -1 to porażka, 0 to bezczynność, a 2 to ukończenie."

@@ -1,6 +1,6 @@
 /obj/effect/portal/wormhole/clockcult
-	name = "dimensional anomaly"
-	desc = "A dimensional anomaly. It feels warm to the touch, and has a gentle puff of steam emanating from it."
+	name = "anomalia wymiarowa"
+	desc = "Anomalia wymiarowa. Jest ciepła w dotyku i delikatnie bucha z niej para."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
 	mech_sized = TRUE

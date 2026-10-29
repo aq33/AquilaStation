@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/stickman
-	name = "Angry Stick Man"
-	desc = "A being from a realm with only 2 dimensions. At least it's trying to stay faced towards you."
+	name = "wściekły patyczak"
+	desc = "Istota z krainy, która ma tylko 2 wymiary. Przynajmniej stara się być zwrócona do ciebie przodem."
 	icon_state = "stickman"
 	icon_living = "stickman"
 	icon_dead = "stickman_dead"
@@ -43,8 +43,8 @@
 
 
 /mob/living/simple_animal/hostile/stickman/dog
-	name = "Angry Stick Dog"
-	desc = "Stickman's best friend, if he could see him at least."
+	name = "wściekły patykopies"
+	desc = "Najlepszy przyjaciel patyczaka. Gdyby tylko mógł go zobaczyć."
 	icon_state = "stickdog"
 	icon_living = "stickdog"
 	icon_dead = "stickdog_dead"

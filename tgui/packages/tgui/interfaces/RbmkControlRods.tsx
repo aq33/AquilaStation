@@ -19,8 +19,8 @@ export const RbmkControlRods = (props) => {
   return (
     <Window theme="ntos" width={300} height={300}>
       <Window.Content>
-        <Section title="Control Rod Management:">
-          Control Rod Insertion:
+        <Section title="Zarządzanie prętami kontrolnymi:">
+          Wsunięcie prętów kontrolnych:
           <ProgressBar
             value={(control_rods / 100) * 100 * 0.01}
             ranges={{
@@ -30,7 +30,7 @@ export const RbmkControlRods = (props) => {
             }}
           />
           <br />
-          Neutrons per generation (K):
+          Neutrony na pokolenie (K):
           <br />
           <ProgressBar
             value={(k / 3) * 100 * 0.01}
@@ -43,7 +43,7 @@ export const RbmkControlRods = (props) => {
             {k}
           </ProgressBar>
           <br />
-          Target criticality:
+          Docelowa krytyczność:
           <br />
           <Slider
             tickWhileDragging

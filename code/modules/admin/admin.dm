@@ -1,12 +1,12 @@
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">LOG ADMINA:</span> <span class=\"message linkify\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">PRZEKAZ:</span> <span class=\"message linkify\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg)
@@ -17,7 +17,7 @@
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+	set desc="Edytuj gracza (odrodzenie, ban, leczenie itd.)"
 
 	if(!check_rights())
 		return
@@ -377,56 +377,56 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 /datum/admins/proc/restart()
 	set category = "Server"
 	set name = "Reboot World"
-	set desc="Restarts the world immediately"
+	set desc="Natychmiast restartuje świat gry"
 	if (!usr.client.holder)
 		return
 
-	var/list/options = list("Regular Restart", "Regular Restart (with delay)", "Hard Restart (No Delay/Feeback Reason)", "Hardest Restart (No actions, just reboot)")
+	var/list/options = list("Zwykły restart", "Zwykły restart (z opóźnieniem)", "Twardy restart (bez opóźnienia i powodu)", "Najtwardszy restart (bez akcji, sam reboot)")
 	if(world.TgsAvailable())
-		options += "Server Restart (Kill and restart DD)";
+		options += "Restart serwera (zabij i uruchom DD)";
 	if(check_rights(R_SERVER, FALSE))
-		options += "Hard Restart + New Campaign" // AQUILA EDIT - resets the persistent starmap, see aquila/code/modules/admin/campaign_reset.dm
+		options += "Twardy restart + nowa kampania" // AQUILA EDIT - resets the persistent starmap, see aquila/code/modules/admin/campaign_reset.dm
 
 	var/rebootconfirm
 	if(SSticker.admin_delay_notice)
-		if(alert(usr, "Na pewno? Admin już opóźnił koniec rundy z następującego powodu: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") == "Yes")
+		if(alert(usr, "Na pewno? Admin już opóźnił koniec rundy z następującego powodu: [SSticker.admin_delay_notice]", "Potwierdzenie", "Tak", "Nie") == "Tak")
 			rebootconfirm = TRUE
 	else
 		rebootconfirm = TRUE
 	if(rebootconfirm)
-		var/result = input(usr, "Select reboot method", "World Reboot", options[1]) as null|anything in options
+		var/result = input(usr, "Wybierz sposób restartu", "Restart świata", options[1]) as null|anything in options
 		if(result)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Reboot World") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-			var/init_by = "Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]."
+			var/init_by = "Restart zlecił: [usr.client.holder.fakekey ? "Admin" : usr.key]."
 			switch(result)
-				if("Regular Restart")
+				if("Zwykły restart")
 					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", 10)
-				if("Regular Restart (with delay)")
-					var/delay = input("Jakie opóźnienie ma mieć restart (w sekundach)?", "Restart Delay", 5) as num|null
+				if("Zwykły restart (z opóźnieniem)")
+					var/delay = input("Jakie opóźnienie ma mieć restart (w sekundach)?", "Opóźnienie restartu", 5) as num|null
 					if(!delay)
 						return FALSE
 					SSticker.Reboot(init_by, "admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]", delay * 10)
-				if("Hard Restart (No Delay, No Feeback Reason)")
-					to_chat(world, "World reboot - [init_by]")
+				if("Twardy restart (bez opóźnienia i powodu)")
+					to_chat(world, "Restart świata – [init_by]")
 					world.Reboot()
-				if("Hardest Restart (No actions, just reboot)")
-					to_chat(world, "Hard world reboot - [init_by]")
+				if("Najtwardszy restart (bez akcji, sam reboot)")
+					to_chat(world, "Twardy restart świata – [init_by]")
 					world.Reboot(fast_track = TRUE)
-				if("Hard Restart + New Campaign") // AQUILA EDIT
+				if("Twardy restart + nowa kampania") // AQUILA EDIT
 					usr.client.holder.hard_restart_new_campaign(init_by) // verbs run with the client as src, so go through the holder
-				if("Server Restart (Kill and restart DD)")
-					to_chat(world, "Server restart - [init_by]")
+				if("Restart serwera (zabij i uruchom DD)")
+					to_chat(world, "Restart serwera – [init_by]")
 					world.TgsEndProcess()
 
 /datum/admins/proc/end_round()
 	set category = "Round"
 	set name = "End Round"
-	set desc = "Attempts to produce a round end report and then restart the server organically."
+	set desc = "Próbuje wygenerować raport z końca rundy, a potem normalnie zrestartować serwer."
 
 	if (!usr.client.holder)
 		return
-	var/confirm = alert("Zakończyć rundę i zrestartować świat gry?", "End Round", "Yes", "Cancel")
-	if(confirm != "Yes")
+	var/confirm = alert("Zakończyć rundę i zrestartować świat gry?", "Koniec rundy", "Tak", "Anuluj")
+	if(confirm != "Tak")
 		return
 	SSticker.force_ending = 1
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "End Round") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -438,73 +438,73 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 /datum/admins/proc/announce()
 	set category = "Admin"
 	set name = "Announce"
-	set desc="Announce your desires to the world"
+	set desc="Ogłoś swoje życzenia całemu światu"
 	if(!check_rights(0))
 		return
 
-	var/message = capped_multiline_input(usr, "Wiadomość globalna do wysłania:", "Admin Announce")
+	var/message = capped_multiline_input(usr, "Wiadomość globalna do wysłania:", "Ogłoszenie admina")
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = adminscrub(message,500)
-		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b></span>\n \t [message]")
+		to_chat(world, "<span class='adminnotice'><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] ogłasza:</b></span>\n \t [message]")
 		log_admin("Announce: [key_name(usr)] : [message]")
-		discordsendmsg("ooc", "***[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:***\n       [message]")
+		discordsendmsg("ooc", "***[usr.client.holder.fakekey ? "Administrator" : usr.key] ogłasza:***\n       [message]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/set_admin_notice()
 	set category = "Adminbus"
 	set name = "Set Admin Notice"
-	set desc ="Set an announcement that appears to everyone who joins the server. Only lasts this round"
+	set desc ="Ustaw ogłoszenie, które zobaczy każdy, kto dołączy do serwera. Działa tylko w tej rundzie"
 	if(!check_rights(0))
 		return
 
-	var/new_admin_notice = capped_multiline_input(usr, "Ustaw publiczne ogłoszenie na tę rundę. Zobaczy je każdy, kto dołączy do serwera.\n(Puste pole usunie obecne ogłoszenie):","Set Notice",GLOB.admin_notice)
+	var/new_admin_notice = capped_multiline_input(usr, "Ustaw publiczne ogłoszenie na tę rundę. Zobaczy je każdy, kto dołączy do serwera.\n(Puste pole usunie obecne ogłoszenie):","Ogłoszenie",GLOB.admin_notice)
 	if(new_admin_notice == null)
 		return
 	if(new_admin_notice == GLOB.admin_notice)
 		return
 	if(new_admin_notice == "")
-		message_admins("[key_name(usr)] removed the admin notice.")
+		message_admins("[key_name(usr)] usuwa ogłoszenie admina.")
 		log_admin("[key_name(usr)] removed the admin notice:\n[GLOB.admin_notice]")
 	else
-		message_admins("[key_name(usr)] set the admin notice.")
+		message_admins("[key_name(usr)] ustawia ogłoszenie admina.")
 		log_admin("[key_name(usr)] set the admin notice:\n[new_admin_notice]")
-		to_chat(world, "<span class ='adminnotice'><b>Admin Notice:</b>\n \t [new_admin_notice]</span>")
+		to_chat(world, "<span class ='adminnotice'><b>Ogłoszenie admina:</b>\n \t [new_admin_notice]</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Admin Notice") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	GLOB.admin_notice = new_admin_notice
 	return
 
 /datum/admins/proc/toggleooc()
 	set category = "Server"
-	set desc="Toggle dis bitch"
+	set desc="Przełącz to cholerstwo"
 	set name="Toggle OOC"
 	toggle_ooc()
 	log_admin("[key_name(usr)] toggled OOC.")
-	message_admins("[key_name_admin(usr)] toggled OOC.")
+	message_admins("[key_name_admin(usr)] przełącza OOC.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle OOC", "[GLOB.ooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglelooc() //nsv13
 	set category = "Server"
-	set desc="If you see this message after trying to access LOOC, blame BYOND; LOOC is disabled."
+	set desc="Jeśli widzisz ten komunikat po próbie użycia LOOC, wiń BYOND-a; LOOC jest wyłączone."
 	set name="Toggle LOOC"
 	toggle_looc()
 	log_admin("[key_name(usr)] toggled LOOC.")
-	message_admins("[key_name_admin(usr)] [GLOB.looc_allowed ? "enabled" : "disabled"] LOOC.")
+	message_admins("[key_name_admin(usr)] [GLOB.looc_allowed ? "włącza" : "wyłącza"] LOOC.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle LOOC", "[GLOB.looc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
-	set desc="Toggle dis bitch"
+	set desc="Przełącz to cholerstwo"
 	set name="Toggle Dead OOC"
 	toggle_dooc()
 
 	log_admin("[key_name(usr)] toggled OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.")
+	message_admins("[key_name_admin(usr)] przełącza OOC martwych.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead OOC", "[GLOB.dooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
 	set category = "Round"
-	set desc="Start the round RIGHT NOW"
+	set desc="Wystartuj rundę NATYCHMIAST"
 	set name="Start Now"
 	if(SSticker.current_state == GAME_STATE_PREGAME || SSticker.current_state == GAME_STATE_STARTUP)
 		SSticker.start_immediately = TRUE
@@ -513,7 +513,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		if(SSticker.current_state == GAME_STATE_STARTUP)
 			msg = " (Serwer wciąż się przygotowuje, ale runda wystartuje najszybciej, jak to możliwe.)"
 		message_admins("<font color='blue'>\
-			[usr.key] has started the game.[msg]</font>")
+			[usr.key] startuje grę.[msg]</font>")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Start Now") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return 1
 	else
@@ -523,7 +523,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
-	set desc="People can't enter"
+	set desc="Gracze nie mogą dołączać"
 	set name="Toggle Entering"
 	GLOB.enter_allowed = !( GLOB.enter_allowed )
 	if (!( GLOB.enter_allowed ))
@@ -531,13 +531,13 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	else
 		to_chat(world, "<B>Nowi gracze mogą teraz dołączać do gry.</B>")
 	log_admin("[key_name(usr)] toggled new player game entering.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled new player game entering.</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] przełącza dołączanie nowych graczy.</span>")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Entering", "[GLOB.enter_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleAI()
 	set category = "Server"
-	set desc="People can't be AI"
+	set desc="Gracze nie mogą być SI"
 	set name="Toggle AI"
 	var/alai = CONFIG_GET(flag/allow_ai)
 	CONFIG_SET(flag/allow_ai, !alai)
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/toggleaban()
 	set category = "Server"
-	set desc="Respawn basically"
+	set desc="Po prostu odradzanie"
 	set name="Toggle Respawn"
 	var/new_nores = !CONFIG_GET(flag/norespawn)
 	CONFIG_SET(flag/norespawn, new_nores)
@@ -559,17 +559,17 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		to_chat(world, "<B>Możesz się teraz odrodzić.</B>")
 	else
 		to_chat(world, "<B>Nie możesz się już odrodzić :(</B>")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled respawn to [!new_nores ? "On" : "Off"].</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] [!new_nores ? "włącza" : "wyłącza"] odradzanie.</span>")
 	log_admin("[key_name(usr)] toggled respawn to [!new_nores ? "On" : "Off"].")
 	world.update_status()
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Respawn", "[!new_nores ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()
 	set category = "Round"
-	set desc="Delay the game start"
+	set desc="Opóźnij start gry"
 	set name="Delay pre-game"
 
-	var/newtime = input("Ustaw nowy czas w sekundach. -1 oznacza opóźnienie bez końca.","Set Delay",round(SSticker.GetTimeLeft()/10)) as num|null
+	var/newtime = input("Ustaw nowy czas w sekundach. -1 oznacza opóźnienie bez końca.","Opóźnienie",round(SSticker.GetTimeLeft()/10)) as num|null
 	if(SSticker.current_state > GAME_STATE_PREGAME)
 		return alert("Za późno... Gra już się zaczęła!")
 	if(newtime)
@@ -586,24 +586,24 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/delay_round_end()
 	set category = "Round"
-	set desc= "Delay server from rebooting the server after the round has ended"
+	set desc= "Wstrzymaj restart serwera po końcu rundy"
 	set name= "Delay round end"
 	if(!SSticker.delay_end)
-		SSticker.admin_delay_notice = input(usr, "Podaj powód opóźnienia końca rundy", "Round Delay Reason") as null|text
+		SSticker.admin_delay_notice = input(usr, "Podaj powód opóźnienia końca rundy", "Powód opóźnienia rundy") as null|text
 		if(isnull(SSticker.admin_delay_notice))
 			return
 		for(var/client/admin in GLOB.admins)
 			if(check_rights(R_FUN) && !GLOB.battle_royale && admin.tgui_panel && SSticker.current_state == GAME_STATE_FINISHED)
 				admin.tgui_panel.give_br_popup()
 	else
-		if(alert(usr, "Na pewno anulować obecne opóźnienie końca rundy? Powód obecnego opóźnienia: \"[SSticker.admin_delay_notice]\"", "Undelay round end", "Yes", "No") != "Yes")
+		if(alert(usr, "Na pewno anulować obecne opóźnienie końca rundy? Powód obecnego opóźnienia: \"[SSticker.admin_delay_notice]\"", "Anulowanie opóźnienia", "Tak", "Nie") != "Tak")
 			return
 		SSticker.admin_delay_notice = null
 	SSticker.delay_end = !SSticker.delay_end
 	var/reason = SSticker.delay_end ? "for reason: [SSticker.admin_delay_notice]" : "."//laziness
 	var/msg = "[SSticker.delay_end ? "delayed" : "undelayed"] the round end [reason]"
 	log_admin("[key_name(usr)] [msg]")
-	message_admins("[key_name_admin(usr)] [msg]")
+	message_admins("[key_name_admin(usr)] [SSticker.delay_end ? "opóźnia koniec rundy, powód: [SSticker.admin_delay_notice]" : "anuluje opóźnienie końca rundy."]")
 	if(SSticker.ready_for_reboot && !SSticker.delay_end) //we undelayed after standard reboot would occur
 		SSticker.standard_reboot()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay round end") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	set name = "Unprison"
 	if (is_centcom_level(M.z))
 		SSjob.SendToLateJoin(M)
-		message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]")
+		message_admins("[key_name_admin(usr)] wypuszcza z więzienia: [key_name_admin(M)]")
 		log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 	else
 		alert("[M.name] nie jest w więzieniu.")
@@ -623,7 +623,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
-	set desc = "(atom path) Spawn an atom"
+	set desc = "(ścieżka atomu) Stwórz atom"
 	set name = "Spawn"
 
 	if(!check_rights(R_SPAWN))
@@ -652,7 +652,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/podspawn_atom(object as text)
 	set category = "Debug"
-	set desc = "(atom path) Spawn an atom via supply drop"
+	set desc = "(ścieżka atomu) Stwórz atom w kapsule zaopatrzeniowej"
 	set name = "Podspawn"
 
 	if(!check_rights(R_SPAWN))
@@ -676,7 +676,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/spawn_cargo(object as text)
 	set category = "Debug"
-	set desc = "(atom path) Spawn a cargo crate"
+	set desc = "(ścieżka atomu) Stwórz skrzynię zaopatrzenia"
 	set name = "Spawn Cargo"
 
 	if(!check_rights(R_SPAWN))
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/show_traitor_panel(mob/M in GLOB.mob_list)
 	set category = "Admin"
-	set desc = "Edit mobs's memory and role"
+	set desc = "Edytuj pamięć i rolę moba"
 	set name = "Show Traitor Panel"
 
 	if(!istype(M))
@@ -711,20 +711,20 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
-	set desc="Reduces view range when wearing welding helmets"
+	set desc="Zmniejsza pole widzenia w maskach spawalniczych"
 	set name="Toggle tinted welding helmes"
 	GLOB.tinted_weldhelh = !( GLOB.tinted_weldhelh )
 	if (GLOB.tinted_weldhelh)
-		to_chat(world, "<B>The tinted_weldhelh has been enabled!</B>")
+		to_chat(world, "<B>Przyciemnienie masek spawalniczych włączone!</B>")
 	else
-		to_chat(world, "<B>The tinted_weldhelh has been disabled!</B>")
+		to_chat(world, "<B>Przyciemnienie masek spawalniczych wyłączone!</B>")
 	log_admin("[key_name(usr)] toggled tinted_weldhelh.")
-	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.")
+	message_admins("[key_name_admin(usr)] przełącza tinted_weldhelh.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Tinted Welding Helmets", "[GLOB.tinted_weldhelh ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
 	set category = "Server"
-	set desc="Guests can't enter"
+	set desc="Goście nie mogą dołączać"
 	set name="Toggle guests"
 	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
 	CONFIG_SET(flag/guest_ban, new_guest_ban)
@@ -733,7 +733,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 	else
 		to_chat(world, "<B>Goście mogą teraz dołączać do gry.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] [!new_guest_ban ? "zezwala" : "zabrania"] gościom dołączać do gry.</span>")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
@@ -743,19 +743,19 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		ai_number++
 		var/message = ""
 		if(isAI(S))
-			message += "<b>AI [key_name(S, usr)]'s laws:</b>"
+			message += "<b>Prawa SI [key_name(S, usr)]:</b>"
 		else if(iscyborg(S))
 			var/mob/living/silicon/robot/R = S
-			message += "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>"
+			message += "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(podległy: [key_name(R.connected_ai)])":"(niezależny)"]: prawa:</b>"
 		else if (ispAI(S))
-			message += "<b>pAI [key_name(S, usr)]'s laws:</b>"
+			message += "<b>Prawa pAI [key_name(S, usr)]:</b>"
 		else
-			message += "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"
+			message += "<b>Prawa JAKIEGOŚ SILICONA [key_name(S, usr)]:</b>"
 
 		message += "<br>"
 
 		if (S.laws == null)
-			message += "[key_name(S, usr)]'s laws are null?? Contact a coder."
+			message += "Prawa [key_name(S, usr)] są puste (null)?? Zgłoś to koderom."
 		else
 			message += jointext(S.laws.get_law_list(include_zeroth = TRUE), "<br>")
 
@@ -1105,8 +1105,8 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		question = "Ten mob ma już użytkownika ([tomob.key]), który nim steruje! "
 	question += "Czy na pewno chcesz dać [frommob.name]([frommob.key]) kontrolę nad [tomob.name]?"
 
-	var/ask = alert(question, "Dać duchowi kontrolę nad mobem?", "Yes", "No")
-	if (ask != "Yes")
+	var/ask = alert(question, "Dać duchowi kontrolę nad mobem?", "Tak", "Nie")
+	if (ask != "Tak")
 		return 1
 
 	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
@@ -1114,7 +1114,7 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 
 	tomob.ghostize(FALSE)
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] daje [frommob.key] kontrolę nad: [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
@@ -1128,9 +1128,9 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 		var/string
 		if(logout && CONFIG_GET(flag/announce_admin_logout))
 			string = pick(
-				"Admin logout: [key_name(src)]")
+				"Admin się wylogowuje: [key_name(src)]")
 		else if(!logout && CONFIG_GET(flag/announce_admin_login) && (prefs.toggles & PREFTOGGLE_ANNOUNCE_LOGIN))
 			string = pick(
-				"Admin login: [key_name(src)]")
+				"Admin się loguje: [key_name(src)]")
 		if(string)
 			message_admins("[string]")

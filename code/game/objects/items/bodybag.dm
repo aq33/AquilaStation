@@ -1,7 +1,7 @@
 
 /obj/item/bodybag
-	name = "body bag"
-	desc = "A folded bag designed for the storage and transportation of cadavers."
+	name = "worek na zwłoki"
+	desc = "Złożony worek do przechowywania i transportu zwłok."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
 	w_class = WEIGHT_CLASS_SMALL
@@ -40,8 +40,8 @@
 // Bluespace bodybag
 
 /obj/item/bodybag/bluespace
-	name = "bluespace body bag"
-	desc = "A folded bluespace body bag designed for the storage and transportation of cadavers."
+	name = "worek na zwłoki bluespace"
+	desc = "Złożony worek na zwłoki bluespace do przechowywania i transportu zwłok."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bluebodybag_folded"
 	unfoldedbag_path = /obj/structure/closet/body_bag/bluespace

@@ -1,17 +1,17 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon/wrath //emergency get out of jail card, but better.
-	name = "Wrath Demon Form"
+	name = "Postać demona gniewu"
 	shapeshift_type = /mob/living/simple_animal/lesserdemon/wrath
 
 /mob/living/simple_animal/lesserdemon/wrath //slightly more damage.
-	name = "wrathful demon"
+	name = "demon gniewu"
 	real_name = "demon gniewu"
 	melee_damage = 24
 	icon_state = "lesserdaemon_wrath"
 	icon_living = "lesserdaemon_wrath"
 
 /obj/effect/proc_holder/spell/targeted/inflict_handler/ignite
-	name = "Ignite"
-	desc = "This spell sets a person on fire from range."
+	name = "Podpal"
+	desc = "To zaklęcie podpala człowieka z odległości."
 	school = "transmutation"
 	invocation = "PŁOŃ!!"
 	invocation_type = "shout"
@@ -25,8 +25,8 @@
 	sound = 'sound/magic/fireball.ogg'
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/sin/wrath
-	name = "Greater Demonic Jaunt"
-	desc = "Briefly turn to cinder and ash, allowing you to freely pass through objects. Lasts slightly shorter than normal, but is more easily used."
+	name = "Większe demoniczne przejście"
+	desc = "Na chwilę obracasz się w żar i popiół, więc swobodnie przenikasz przez obiekty. Trwa nieco krócej niż zwykle, ale łatwiej go użyć."
 	charge_max = 25 SECONDS
 	cooldown_min = 25 SECONDS
 	jaunt_duration = 2 SECONDS

@@ -545,8 +545,8 @@
   * COMSIG_ATOM_GET_EXAMINE_NAME signal
   */
 /atom/proc/get_examine_name(mob/user)
-	. = "\a [src]"
-	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	. = "[src]"
+	var/list/override = list("", "", "[name]")
 	if(article)
 		. = "[article] [src]"
 		override[EXAMINE_POSITION_ARTICLE] = article
@@ -555,7 +555,7 @@
 
 ///Generate the full examine string of this atom (including icon for goonchat)
 /atom/proc/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
+	return "[icon2html(src, user)] [thats? "To ":""][get_examine_name(user)]"
 
 /**
   * Called when a mob examines (shift click or verb) this atom
@@ -608,16 +608,16 @@
 						else
 							taste_list += "<br/>   - [R.taste_description] (z [R.name])"
 					if(reagents.total_volume)
-						. += "<span class='notice'>Booze Power: total [total_boozepower], average [round(total_boozepower/reagents.total_volume, 0.1)] ([get_boozepower_text(total_boozepower/reagents.total_volume, user)])</span>"
+						. += "<span class='notice'>Moc alkoholu: łącznie [total_boozepower], średnio [round(total_boozepower/reagents.total_volume, 0.1)] ([get_boozepower_text(total_boozepower/reagents.total_volume, user)])</span>"
 						. += "<span class='notice'>Smakowałoby jak: [english_list(taste_list, comma_text="", and_text="")].</span>"
 				//-------------------------------
 			else
-				. += "Nothing."
+				. += "Nic."
 		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
 				. += "<span class='notice'>Pozostało: [reagents.total_volume] j.</span>"
 			else
-				. += "<span class='danger'>It's empty.</span>"
+				. += "<span class='danger'>Pusto.</span>"
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
@@ -1131,31 +1131,31 @@
 		var/turf/curturf = get_turf(src)
 		if(curturf)
 			. += "<option value='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]'>Skocz do</option>"
-	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Modify Transform")
-	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Add Reagent")
-	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "EMP Pulse")
-	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Explosion")
-	VV_DROPDOWN_OPTION(VV_HK_EDIT_FILTERS, "Edit Filters")
-	VV_DROPDOWN_OPTION(VV_HK_EDIT_COLOR_MATRIX, "Edit Color as Matrix")
-	VV_DROPDOWN_OPTION(VV_HK_ADD_AI, "Add AI controller")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_TRANSFORM, "Zmień przekształcenie")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_REAGENT, "Dodaj odczynnik")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EMP, "Impuls EMP")
+	VV_DROPDOWN_OPTION(VV_HK_TRIGGER_EXPLOSION, "Eksplozja")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_FILTERS, "Edytuj filtry")
+	VV_DROPDOWN_OPTION(VV_HK_EDIT_COLOR_MATRIX, "Edytuj kolor jako macierz")
+	VV_DROPDOWN_OPTION(VV_HK_ADD_AI, "Dodaj kontroler SI")
 	if(greyscale_colors)
-		VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE, "Modify greyscale colors")
+		VV_DROPDOWN_OPTION(VV_HK_MODIFY_GREYSCALE, "Zmień kolory greyscale")
 
 /atom/vv_do_topic(list/href_list)
 	. = ..()
 	if(href_list[VV_HK_ADD_REAGENT] && check_rights(R_VAREDIT))
 		if(!reagents)
-			var/amount = input(usr, "Podaj pojemność odczynników [src]", "Set Reagent Size", 50) as num
+			var/amount = input(usr, "Podaj pojemność odczynników [src]", "Pojemność odczynników", 50) as num
 			if(amount)
 				create_reagents(amount)
 
 		if(reagents)
 			var/chosen_id
-			switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
-				if("Search")
+			switch(alert(usr, "Wybierz metodę.", "Dodaj odczynniki", "Szukaj", "Wybierz z listy", "Szczęśliwy traf"))
+				if("Szukaj")
 					var/valid_id
 					while(!valid_id)
-						chosen_id = input(usr, "Podaj ID odczynnika, który chcesz dodać.", "Search reagents") as null|text
+						chosen_id = input(usr, "Podaj ID odczynnika, który chcesz dodać.", "Szukaj odczynników") as null|text
 						if(isnull(chosen_id)) //Get me out of here!
 							break
 						if (!ispath(text2path(chosen_id)))
@@ -1167,10 +1167,10 @@
 						if(!valid_id)
 							to_chat(usr, "<span class='warning'>Odczynnik o takim ID nie istnieje!</span>")
 
-				if("Choose from a list")
-					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in subtypesof(/datum/reagent)
+				if("Wybierz z listy")
+					chosen_id = input(usr, "Wybierz odczynnik do dodania.", "Wybierz odczynnik.") as null|anything in subtypesof(/datum/reagent)
 
-				if("I'm feeling lucky")
+				if("Szczęśliwy traf")
 					chosen_id = pick(subtypesof(/datum/reagent))
 
 			if(chosen_id)
@@ -1179,7 +1179,7 @@
 				if(amount)
 					reagents.add_reagent(chosen_id, amount)
 					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [src]")
-					message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to [src]</span>")
+					message_admins("<span class='notice'>[key_name(usr)] dodaje [amount] j. [chosen_id] do: [src]</span>")
 
 	if(href_list[VV_HK_TRIGGER_EXPLOSION] && check_rights(R_FUN))
 		usr.client.cmd_admin_explosion(src)
@@ -1188,32 +1188,32 @@
 		usr.client.cmd_admin_emp(src)
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM] && check_rights(R_VAREDIT))
-		var/result = input(usr, "Wybierz przekształcenie do zastosowania","Transform Mod") as null|anything in list("Scale","Translate","Rotate")
+		var/result = input(usr, "Wybierz przekształcenie do zastosowania","Przekształcenie") as null|anything in list("Scale","Translate","Rotate")
 		var/matrix/M = transform
 		switch(result)
 			if("Scale")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = input(usr, "Podaj wartość x","Przekształcenie") as null|num
+				var/y = input(usr, "Podaj wartość y","Przekształcenie") as null|num
 				if(!isnull(x) && !isnull(y))
 					transform = M.Scale(x,y)
 			if("Translate")
-				var/x = input(usr, "Choose x mod","Transform Mod") as null|num
-				var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+				var/x = input(usr, "Podaj wartość x","Przekształcenie") as null|num
+				var/y = input(usr, "Podaj wartość y","Przekształcenie") as null|num
 				if(!isnull(x) && !isnull(y))
 					transform = M.Translate(x,y)
 			if("Rotate")
-				var/angle = input(usr, "Wybierz kąt obrotu","Transform Mod") as null|num
+				var/angle = input(usr, "Wybierz kąt obrotu","Przekształcenie") as null|num
 				if(!isnull(angle))
 					transform = M.Turn(angle)
 
 	if(href_list[VV_HK_AUTO_RENAME] && check_rights(R_ADMIN))
-		var/newname = input(usr, "Na co chcesz zmienić nazwę?", "Automatic Rename") as null|text
+		var/newname = input(usr, "Na co chcesz zmienić nazwę?", "Automatyczna zmiana nazwy") as null|text
 		if(newname)
 			vv_auto_rename(newname)
 	if(href_list[VV_HK_ADD_AI])
 		if(!check_rights(R_VAREDIT))
 			return
-		var/result = input(usr, "Choose the AI controller to apply to this atom WARNING: Not all AI works on all atoms.", "AI controller") as null|anything in subtypesof(/datum/ai_controller)
+		var/result = input(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie.", "Kontroler SI") as null|anything in subtypesof(/datum/ai_controller)
 		if(!result)
 			return
 		ai_controller = new result(src)
@@ -1222,7 +1222,7 @@
 		usr.client.holder.modify_traits(src)
 
 	if(href_list[VV_HK_ADD_AI] && check_rights(R_VAREDIT))
-		var/result = input(usr, "Choose the AI controller to apply to this atom WARNING: Not all AI works on all atoms.", "AI controller") as null|anything in subtypesof(/datum/ai_controller)
+		var/result = input(usr, "Wybierz kontroler SI dla tego atomu. UWAGA: nie każda SI działa na każdym atomie.", "Kontroler SI") as null|anything in subtypesof(/datum/ai_controller)
 		if(!result)
 			return
 		ai_controller = new result(src)

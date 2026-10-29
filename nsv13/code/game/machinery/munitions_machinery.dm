@@ -22,11 +22,11 @@
 ///////WARDROBE///////
 
 /obj/machinery/vending/wardrobe/muni_wardrobe //Missing so many icons
-	name = "MuniDrobe"
-	desc = "A vending machine for dispensing Munitions department uniforms and gear."
+	name = "AmuniSzafa"
+	desc = "Automat wydający mundury i sprzęt działu amunicji."
 	icon = 'nsv13/icons/obj/custom_vendors.dmi'
 	icon_state = "munidrobe"
-	product_ads = "High-vis, while retaining stylish black!;Orange is the new Puce!" //cringe, someone send help from marketing
+	product_ads = "Odblaskowo, a wciąż w stylowej czerni!;Pomarańcz to nowa puce!" //cringe, someone send help from marketing
 	vend_reply = "Dziękujemy za skorzystanie z MuniDrobe!"
 	light_color = LIGHT_COLOR_ORANGE
 	products = list(/obj/item/storage/backpack/duffelbag/munitions = 3,

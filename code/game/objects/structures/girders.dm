@@ -1,9 +1,9 @@
 /obj/structure/girder
 	/// Cooldown for the quick build beep
 	var/next_beep = 0
-	name = "girder"
+	name = "dźwigar"
 	icon_state = "girder"
-	desc = "A large structural assembly made out of iron; It requires a layer of iron before it can be considered a wall."
+	desc = "Duża konstrukcja nośna z żelaza. Zanim stanie się ścianą, trzeba ją obłożyć warstwą żelaza."
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
@@ -229,7 +229,7 @@
 
 	. = FALSE
 	if(state == GIRDER_DISPLACED)
-		user.visible_message("<span class='warning'>[user] disassembles [src].</span>",
+		user.visible_message("<span class='warning'>[user] rozbiera [src].</span>",
 							"<span class='notice'>Zaczynasz rozbierać [src]...</span>",
 							"Słyszysz brzęk i łomot.")
 		if(tool.use_tool(src, user, 40, volume=100))
@@ -315,7 +315,7 @@
 	qdel(src)
 
 /obj/structure/girder/displaced
-	name = "displaced girder"
+	name = "przesunięty dźwigar"
 	icon_state = "displaced"
 	anchored = FALSE
 	state = GIRDER_DISPLACED
@@ -323,7 +323,7 @@
 	max_integrity = 120
 
 /obj/structure/girder/reinforced
-	name = "reinforced girder"
+	name = "wzmocniony dźwigar"
 	icon_state = "reinforced"
 	state = GIRDER_REINF
 	girderpasschance = 0
@@ -334,8 +334,8 @@
 //////////////////////////////////////////// cult girder //////////////////////////////////////////////
 
 /obj/structure/girder/cult
-	name = "runed girder"
-	desc = "Framework made of a strange and shockingly cold metal. It doesn't seem to have any bolts."
+	name = "runiczny dźwigar"
+	desc = "Szkielet z dziwnego, przeraźliwie zimnego metalu. Nie widać na nim żadnych śrub."
 	icon = 'icons/obj/cult.dmi'
 	icon_state= "cultgirder"
 	can_displace = FALSE
@@ -412,8 +412,8 @@
 	return FALSE
 
 /obj/structure/girder/bronze
-	name = "wall gear"
-	desc = "A girder made out of sturdy bronze, made to resemble a gear."
+	name = "ścienna zębatka"
+	desc = "Dźwigar z wytrzymałego brązu, ukształtowany na wzór koła zębatego."
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "wall_gear"
 	can_displace = FALSE

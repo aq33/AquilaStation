@@ -7,10 +7,10 @@
 // For objectives that send prepackaged items: objective approves when supplying items that have been removed from its original cargo crate
 
 /datum/overmap_objective/cargo
-	name = "cargo objective"
+	name = "cel transportowy"
 	// crate_name appears as a crate name when stations return requisition forms to players.
 	// crate_name should be named similarly to cargo supply console crate names
-	var/crate_name = "Approved Shipment"
+	var/crate_name = "Zatwierdzona przesyłka"
 	binary = TRUE
 	extension_supported = FALSE // Players won't enjoy being handed a cargo job after beating up fleets. Review this if we decide to refactor missions later
 
@@ -54,7 +54,7 @@
 	if ( freight_type_group )
 		target = freight_type_group.get_target()
 	else
-		message_admins( "BUG: A cargo objective was assigned with no delivery item types set! Automatically marking as completed" )
+		message_admins( "BŁĄD: przydzielono cel transportowy bez ustawionych typów przedmiotów do dostarczenia! Automatycznie oznaczam go jako wykonany" )
 		brief = "Succeed"
 		status = 1
 
@@ -94,7 +94,7 @@
 /datum/overmap_objective/cargo/proc/deliver_package() // Called when picking up prepackaged crates at station pickup points
 	if ( !delivered_package ) // Do not resend prepackaged contents
 		if ( !freight_type_group.deliver_package() )
-			message_admins( "BUG: A cargo objective failed to deliver a prepackaged item to the ship! Automatically marking the objective as completed." )
+			message_admins( "BŁĄD: cel transportowy nie dostarczył na statek gotowej paczki! Automatycznie oznaczam cel jako wykonany." )
 			status = 1
 		delivered_package = TRUE
 		SSovermap_mode.update_reminder(objective=TRUE) // Picking up objective cargo resets the timer

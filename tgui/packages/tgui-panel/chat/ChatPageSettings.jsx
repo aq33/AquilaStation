@@ -46,10 +46,10 @@ export const ChatPageSettings = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
-            content="Mute"
+            content="Wycisz"
             checked={page.hideUnreadCount}
             icon={page.hideUnreadCount ? 'bell-slash' : 'bell'}
-            tooltip="Disables unread counter"
+            tooltip="Wyłącza licznik nieprzeczytanych"
             onClick={() =>
               dispatch(
                 updateChatPage({
@@ -84,7 +84,7 @@ export const ChatPageSettings = (props) => {
       <Stack align="center">
         {!page.isMain ? (
           <Stack.Item>
-            Reorder Chat:&emsp;
+            Kolejność czatu:&emsp;
             <Button
               color="blue"
               onClick={() =>

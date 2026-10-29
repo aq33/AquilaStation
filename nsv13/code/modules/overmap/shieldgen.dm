@@ -7,8 +7,8 @@
 	var/obj/machinery/shield_generator/shields
 
 /obj/structure/shieldgen_frame
-	name = "shield generator frame"
-	desc = "The beginnings of a shield generator. It requires 2 cooling fans, 4 flux, 1 crystal interface, and 4 modulators."
+	name = "rama generatora tarczy"
+	desc = "Zaczątek generatora tarczy. Potrzebuje 2 wentylatorów chłodzących, 4 kondensatorów strumienia, 1 interfejsu kryształu i 4 modulatorów."
 	icon = 'nsv13/icons/obj/machinery/shieldgen.dmi'
 	icon_state = "shieldgen_build1"
 	pixel_x = -32
@@ -23,8 +23,8 @@
 
 
 /obj/item/disk/design_disk/overmap_shields
-	name = "SolGov Experimental Shielding Technology Disk"
-	desc = "This disk is the property of SolGov, unlawful use of the data contained on this disk is prohibited."
+	name = "dysk eksperymentalnej technologii tarcz SolGov"
+	desc = "Ten dysk jest własnością SolGov. Bezprawne wykorzystanie zawartych na nim danych jest zabronione."
 	icon_state = "datadisk2"
 	max_blueprints = 5
 
@@ -126,7 +126,7 @@
 				return FALSE
 	anchored = !anchored
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You [anchored?"secure":"unsecure"] [src].</span>")
+	to_chat(user, "<span class='notice'>[anchored ? "Mocujesz" : "Odczepiasz"] [src].</span>")
 	return FALSE
 
 /obj/structure/shieldgen_frame/screwdriver_act(mob/living/user, obj/item/I)
@@ -184,8 +184,8 @@
 	icon_state = "shieldgen_build[state]"
 
 /obj/machinery/shield_generator
-	name = "shield Generator"
-	desc = "A massively powerful device which is able to project energy shields around ships. This technology is highly experimental and requires a huge amount of power."
+	name = "generator tarczy"
+	desc = "Niezwykle potężne urządzenie, które roztacza wokół okrętu tarcze energetyczne. To wysoce eksperymentalna technologia, która wymaga ogromnej ilości energii."
 	icon = 'nsv13/icons/obj/machinery/shieldgen.dmi'
 	icon_state = "shieldgen"
 	idle_power_usage = IDLE_POWER_USE; //This will change to match the requirements for projecting a shield.
@@ -220,27 +220,27 @@
 
 
 /obj/item/shield_component
-	name = "shield component"
+	name = "komponent tarczy"
 	icon = 'nsv13/icons/obj/shield_components.dmi'
 
 /obj/item/shield_component/fan
-	name = "shield generator cooling fan"
-	desc = "A small fan which aids in cooling down a shield generator."
+	name = "wentylator chłodzący generatora tarczy"
+	desc = "Mały wentylator, który pomaga chłodzić generator tarczy."
 	icon_state = "cooling_fan"
 
 /obj/item/shield_component/capacitor
-	name = "Flux Capacitor"
-	desc = "A small capacitor which can generate shield flux."
+	name = "kondensator strumienia"
+	desc = "Mały kondensator, który wytwarza strumień tarczy."
 	icon_state = "capacitor"
 
 /obj/item/shield_component/modulator
-	name = "Shield Modulator"
-	desc = "A control circuit for shield systems to allow them to project energy screens around the ship."
+	name = "modulator tarczy"
+	desc = "Obwód sterujący systemów tarcz, który pozwala im roztaczać wokół okrętu ekrany energetyczne."
 	icon_state = "modulator"
 
 /obj/item/shield_component/interface
-	name = "Bluespace Crystal Interface"
-	desc = "A housing to hold a bluespace crystal which extends the generated shield around an entire ship via subspace."
+	name = "interfejs kryształu bluespace"
+	desc = "Obudowa na kryształ bluespace, który przez podprzestrzeń rozciąga wygenerowaną tarczę na cały okręt."
 	icon_state = "crystal_interface"
 
 
@@ -263,7 +263,7 @@
 	var/obj/structure/overmap/ours = get_overmap()
 	ours?.shields = src
 	if(!ours)
-		message_admins("WARNING: Shield generator in [get_area(src)] does not have a linked overmap!");
+		message_admins("OSTRZEŻENIE: generator tarczy w [get_area(src)] nie ma połączonego okrętu na overmapie!");
 		log_game("WARNING: Shield generator in [get_area(src)] does not have a linked overmap!");
 
 
@@ -339,7 +339,7 @@
 
 
 /obj/effect/temp_visual/overmap_shield_hit
-	name = "Shield hit"
+	name = "trafienie w tarczę"
 	icon = 'nsv13/icons/overmap/shieldhit.dmi'
 	icon_state = "shieldhit"
 	duration = 0.75 SECONDS

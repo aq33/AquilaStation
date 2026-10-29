@@ -105,7 +105,7 @@
 
 
 /obj/item/circuitboard/machine/quantum_server
-	name = "Quantum Server (Machine Board)"
+	name = "serwer kwantowy (płytka maszyny)"
 	icon_state = "supply"
 	build_path = /obj/machinery/quantum_server
 	req_components = list(
@@ -115,7 +115,7 @@
 	)
 
 /obj/item/circuitboard/machine/netpod
-	name = "Netpod (Machine Board)"
+	name = "netpod (płytka maszyny)"
 	icon_state = "supply"
 	build_path = /obj/machinery/netpod
 	req_components = list(
@@ -124,12 +124,12 @@
 	)
 
 /obj/item/circuitboard/computer/quantum_console
-	name = "Quantum Console (Computer Board)"
+	name = "konsola kwantowa (płytka komputera)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/quantum_console
 
 /obj/item/circuitboard/machine/byteforge
-	name = "Byteforge (Machine Board)"
+	name = "byteforge (płytka maszyny)"
 	icon_state = "supply"
 	build_path = /obj/machinery/byteforge
 	req_components = list(
@@ -137,12 +137,12 @@
 	)
 
 /obj/item/circuitboard/computer/order_console/bitrunning
-	name = "Bitrunning Vendor Console (Computer Board)"
+	name = "konsola zamówień bitrunnerów (płytka komputera)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/order_console/bitrunning
 
 /datum/design/board/quantum_console
-	name = "Computer Design (Quantum Console)"
+	name = "Projekt komputera (konsola kwantowa)"
 	desc = "Płytka konsoli kwantowej, którą bitrunnerzy sterują serwerem kwantowym."
 	id = "quantum_console"
 	build_path = /obj/item/circuitboard/computer/quantum_console
@@ -150,7 +150,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/netpod
-	name = "Machine Design (Netpod)"
+	name = "Projekt maszyny (netpod)"
 	desc = "Płytka netpoda, w którym bitrunnerzy łączą się z domenami wirtualnymi."
 	id = "netpod"
 	build_path = /obj/item/circuitboard/machine/netpod
@@ -158,7 +158,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/byteforge
-	name = "Machine Design (Byteforge)"
+	name = "Projekt maszyny (byteforge)"
 	desc = "Płytka byteforge'a, który materializuje nagrody bitrunnerów."
 	id = "byteforge"
 	build_path = /obj/item/circuitboard/machine/byteforge
@@ -166,7 +166,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/quantum_server
-	name = "Machine Design (Quantum Server)"
+	name = "Projekt maszyny (serwer kwantowy)"
 	desc = "Płytka serwera kwantowego, który tworzy domeny wirtualne."
 	id = "quantum_server"
 	build_path = /obj/item/circuitboard/machine/quantum_server
@@ -174,7 +174,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/bitrunning_vendor
-	name = "Computer Design (Bitrunning Vendor)"
+	name = "Projekt komputera (konsola zamówień bitrunnerów)"
 	desc = "Płytka konsoli NexaCache, sklepu bitrunnerów."
 	id = "bitrunning_vendor"
 	build_path = /obj/item/circuitboard/computer/order_console/bitrunning

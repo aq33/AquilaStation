@@ -107,7 +107,7 @@
 /mob/camera/blob/verb/toggle_node_req()
 	set category = "Blob"
 	set name = "Toggle Node Requirement"
-	set desc = "Toggle requiring nodes to place resource and factory blobs."
+	set desc = "Przełącza wymóg węzła przy stawianiu grzybów zasobów i fabryk."
 	nodes_required = !nodes_required
 	if(nodes_required)
 		to_chat(src, "<span class='warning'>Do stawiania fabryk i grzybów zasobów potrzebujesz teraz pobliskiego węzła lub rdzenia.</span>")
@@ -311,7 +311,7 @@
 /mob/camera/blob/verb/rally_spores_power()
 	set category = "Blob"
 	set name = "Rally Spores"
-	set desc = "Rally your spores to move to a target location."
+	set desc = "Każ zarodnikom zebrać się we wskazanym miejscu."
 	var/turf/T = get_turf(src)
 	rally_spores(T)
 
@@ -413,7 +413,7 @@
 	to_chat(src, "<b>Skróty Klawiszowe:</b> Kliknięcie = Rozrost <b>|</b> Kliknięcie Kółkiem Myszki = Zwołanie Zarodników <b>|</b> Ctrl Klik = Stworzenie Gęstego Grzyba <b>|</b> Alt Klik = Usunięcie Grzyba")
 	to_chat(src, "Próba mówienia wyśle wiadomość do wszystkich grzybonautów oraz innych grzybów, pozwalając ci na koordynację z nimi.")
 	if(!placed && autoplace_max_time <= world.time)
-		to_chat(src, "<span class='big'><font color=\"#EE4000\">Twój rdzeń zostanie automatycznie postawiony za:You will automatically place your blob core in [DisplayTimeText(autoplace_max_time - world.time)].</font></span>")
+		to_chat(src, "<span class='big'><font color=\"#EE4000\">Twój rdzeń zostanie automatycznie postawiony za [DisplayTimeText(autoplace_max_time - world.time)].</font></span>")
 		to_chat(src, "<span class='big'><font color=\"#EE4000\">[manualplace_min_time ? "Będziesz mógł":"Możesz"] postawić swój rdzeń ręcznie, klikając ikonę 'Postaw Rdzeń' znajdującą się w prawym dolnym rogu ekranu.</font></span>")
 
 #undef BLOB_REROLL_CHOICES

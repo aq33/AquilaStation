@@ -67,7 +67,7 @@
 //////////////////////// Projekty płytek ////////////////////////
 
 /datum/design/board/server_cabinet
-	name = "Machine Design (Server Cabinet)"
+	name = "Projekt maszyny (szafa serwerowa)"
 	desc = "Płytka szafy serwerowej dla sieci SI."
 	id = "server_cabinet"
 	build_path = /obj/item/circuitboard/machine/server_cabinet
@@ -75,7 +75,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/rack_creator
-	name = "Machine Design (Rack Creator)"
+	name = "Projekt maszyny (składarka racków)"
 	desc = "Płytka składarki racków serwerowych."
 	id = "rack_creator"
 	build_path = /obj/item/circuitboard/machine/rack_creator
@@ -83,7 +83,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/ai_data_core
-	name = "Machine Design (AI Data Core)"
+	name = "Projekt maszyny (rdzeń danych SI)"
 	desc = "Płytka rdzenia danych, w którym może działać SI."
 	id = "ai_data_core"
 	build_path = /obj/item/circuitboard/machine/ai_data_core
@@ -91,7 +91,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/ai_core_display
-	name = "Machine Design (AI Core Display)"
+	name = "Projekt maszyny (ekran rdzenia SI)"
 	desc = "Płytka ekranu, na którym SI pokazuje swój wizerunek."
 	id = "ai_core_display"
 	build_path = /obj/item/circuitboard/machine/ai_core_display
@@ -99,7 +99,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/ai_upload_download
-	name = "Computer Design (AI Control Console)"
+	name = "Projekt komputera (konsola sterowania SI)"
 	desc = "Płytka konsoli wgrywania i pobierania SI."
 	id = "ai_upload_download"
 	build_path = /obj/item/circuitboard/computer/ai_upload_download
@@ -107,7 +107,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/board/ai_server_overview
-	name = "Computer Design (AI Server Overview Console)"
+	name = "Projekt komputera (konsola przeglądu serwerów SI)"
 	desc = "Płytka konsoli przeglądu serwerów SI."
 	id = "ai_server_overview"
 	build_path = /obj/item/circuitboard/computer/ai_server_overview
@@ -115,7 +115,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/ai_overclocking
-	name = "Computer Design (AI Overclocking Workstation)"
+	name = "Projekt komputera (stanowisko podkręcania)"
 	desc = "Płytka stanowiska podkręcania procesorów SI."
 	id = "ai_overclocking"
 	build_path = /obj/item/circuitboard/computer/ai_overclocking
@@ -123,7 +123,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/board/ai_resource_distribution
-	name = "Computer Design (AI Resource Distribution Console)"
+	name = "Projekt komputera (konsola dystrybucji zasobów SI)"
 	desc = "Płytka konsoli dystrybucji zasobów SI."
 	id = "ai_resource_distribution"
 	build_path = /obj/item/circuitboard/computer/ai_resource_distribution

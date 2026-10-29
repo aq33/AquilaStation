@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/blood
-	name = "blood pack"
-	desc = "Contains blood used for transfusion. Must be attached to an IV drip."
+	name = "worek z krwią"
+	desc = "Zawiera krew do transfuzji. Trzeba go podłączyć do kroplówki."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 400
@@ -22,7 +22,7 @@
 		if(volume == reagents.total_volume)
 			. += "<span class='notice'>Jest całkowicie wypełniony.</span>"
 		else if(!reagents.total_volume)
-			. += "<span class='notice'>It's empty.</span>"
+			. += "<span class='notice'>Jest pusty.</span>"
 		else
 			. += "<span class='notice'>Wygląda na wypełniony w [round(reagents.total_volume/volume*100)]%.</span>"
 
@@ -39,9 +39,9 @@
 /obj/item/reagent_containers/blood/proc/update_pack_name()
 	if(!labelled)
 		if(blood_type)
-			name = "blood pack - [blood_type]"
+			name = "worek z krwią – [blood_type]"
 		else
-			name = "blood pack"
+			name = "worek z krwią"
 
 /obj/item/reagent_containers/blood/random
 	icon_state = "random_bloodpack"
@@ -80,7 +80,7 @@
 
 /obj/item/reagent_containers/blood/oozeling
 	labelled = 1
-	name = "blood pack - OZ"
+	name = "worek z krwią – OZ"
 	blood_type = "OZ"
 	unique_blood = /datum/reagent/toxin/slimeooze
 
@@ -99,7 +99,7 @@
 			return
 		if(t)
 			labelled = 1
-			name = "blood pack - [t]"
+			name = "worek z krwią – [t]"
 		else
 			labelled = 0
 			update_pack_name()

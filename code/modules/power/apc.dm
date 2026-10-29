@@ -48,8 +48,8 @@
 // three different channels (lighting/equipment/environ) - may each be set to on, off, or auto
 
 /obj/machinery/power/apc
-	name = "area power controller"
-	desc = "A control terminal for the area's electrical systems."
+	name = "kontroler zasilania obszaru"
+	desc = "Terminal sterujący instalacją elektryczną obszaru."
 
 	icon_state = "apc0"
 	use_power = NO_POWER_USE
@@ -202,7 +202,7 @@
 		area = get_area(src)
 		opened = APC_COVER_OPENED
 		operating = FALSE
-		name = "\improper [get_area_name(area, TRUE)] APC"
+		name = "\improper APC ([get_area_name(area, TRUE)])"
 		set_machine_stat(machine_stat | MAINT)
 		update_appearance()
 		addtimer(CALLBACK(src, PROC_REF(update)), 5)
@@ -263,7 +263,7 @@
 		area = A
 
 	if(auto_name)
-		name = "\improper [get_area_name(area, TRUE)] APC"
+		name = "\improper APC ([get_area_name(area, TRUE)])"
 
 	update_appearance()
 
@@ -525,7 +525,7 @@
 	if (opened && !has_electronics && !terminal)
 		if(!W.tool_start_check(user, amount=3))
 			return
-		user.visible_message("[user.name] welds [src].", \
+		user.visible_message("[user.name] spawa [src].", \
 							"<span class='notice'>Zaczynasz spawać ramę APC.</span>", \
 							"<span class='italics'>Słyszysz spawanie.</span>")
 		if(W.use_tool(src, user, 50, volume=50, amount=3))
@@ -932,7 +932,7 @@
 
 		"powerChannels" = list(
 			list(
-				"title" = "Equipment",
+				"title" = "Sprzęt",
 				"powerLoad" = display_power(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
@@ -942,7 +942,7 @@
 				)
 			),
 			list(
-				"title" = "Lighting",
+				"title" = "Oświetlenie",
 				"powerLoad" = display_power(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
@@ -952,7 +952,7 @@
 				)
 			),
 			list(
-				"title" = "Environment",
+				"title" = "Środowisko",
 				"powerLoad" = display_power(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
@@ -1153,13 +1153,13 @@
 	occupier = new /mob/living/silicon/ai(src, malf.laws, malf) //DEAR GOD WHY?	//IKR????
 	occupier.adjustOxyLoss(malf.getOxyLoss())
 	if(!findtext(occupier.name, "Kopia APC"))
-		occupier.name = "[malf.name] APC Copy"
+		occupier.name = "Kopia APC ([malf.name])"
 	if(malf.parent)
 		occupier.parent = malf.parent
 	else
 		occupier.parent = malf
 	malf.shunted = 1
-	occupier.eyeobj.name = "[occupier.name] (AI Eye)"
+	occupier.eyeobj.name = "[occupier.name] (oko SI)"
 	if(malf.parent)
 		qdel(malf)
 	occupier.add_verb(/mob/living/silicon/ai/proc/corereturn)
@@ -1211,7 +1211,7 @@
 	user.visible_message("<span class='notice'>[user] wsuwa [card] do [src]...</span>", "<span class='notice'>Rozpoczęto proces transferu. Wysyłanie prośby o zgodę SI...</span>")
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	SEND_SOUND(occupier, sound('sound/misc/notice2.ogg')) //To alert the AI that someone's trying to card them if they're tabbed out
-	if(alert(occupier, "[user] próbuje przenieść cię do [card.name]. Czy wyrażasz zgodę?", "Transfer z APC", "Yes - Transfer Me", "No - Keep Me Here") == "No - Keep Me Here")
+	if(alert(occupier, "[user] próbuje przenieść cię do [card.name]. Czy wyrażasz zgodę?", "Transfer z APC", "Tak, przenieś mnie", "Nie, zostaję tutaj") == "Nie, zostaję tutaj")
 		to_chat(user, "<span class='danger'>SI odrzuciła prośbę o transfer. Proces przerwany.</span>")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		transfer_in_progress = FALSE
@@ -1576,7 +1576,7 @@
 
 /*Power module, used for APC construction*/
 /obj/item/electronics/apc
-	name = "power control module"
+	name = "moduł sterowania zasilaniem"
 	icon_state = "power_mod"
 	custom_price = 5
-	desc = "Heavy-duty switching circuits for power control."
+	desc = "Wytrzymałe obwody przełączające do sterowania zasilaniem."

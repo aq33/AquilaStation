@@ -1,6 +1,6 @@
 /obj/machinery/door/window
-	name = "interior door"
-	desc = "A strong door."
+	name = "drzwi wewnętrzne"
+	desc = "Mocne drzwi."
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
@@ -347,7 +347,7 @@
 			INVOKE_ASYNC(src, PROC_REF(open_and_close))
 
 /obj/machinery/door/window/brigdoor
-	name = "secure door"
+	name = "drzwi zabezpieczone"
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	var/id = null
@@ -356,17 +356,17 @@
 	explosion_block = 1
 
 /obj/machinery/door/window/brigdoor/security/cell
-	name = "cell door"
-	desc = "For keeping in criminal scum."
+	name = "drzwi celi"
+	desc = "Żeby trzymać kryminalne szumowiny w środku."
 	req_access = list(ACCESS_BRIG)
 
 /obj/machinery/door/window/brigdoor/security/holding
-	name = "holding cell door"
+	name = "drzwi celi przejściowej"
 	req_one_access = list(ACCESS_SEC_DOORS, ACCESS_LAWYER, ACCESS_BRIGPHYS) //love for the lawyer and Brig Phys
 
 /obj/machinery/door/window/clockwork
-	name = "brass windoor"
-	desc = "A thin door with translucent brass paneling."
+	name = "mosiężne drzwi okienne"
+	desc = "Cienkie drzwi z półprzezroczystymi mosiężnymi panelami."
 	icon_state = "clockwork"
 	base_state = "clockwork"
 	shards = 0

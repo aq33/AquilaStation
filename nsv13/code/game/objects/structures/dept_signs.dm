@@ -1,10 +1,10 @@
 //map and direction signs specific to NSV
 /obj/structure/sign/directions/service
-	name = "service department"
-	desc = "A direction sign, pointing out which way the service department is."
+	name = "dział usług"
+	desc = "Drogowskaz pokazujący, w którą stronę jest dział usług."
 	icon_state = "direction_service"
 
 /obj/structure/sign/directions/weapons
-	name = "weapons department"
-	desc = "A direction sign, pointing out which way the weapons department is."
+	name = "dział uzbrojenia"
+	desc = "Drogowskaz pokazujący, w którą stronę jest dział uzbrojenia."
 	icon_state = "direction_weapons"

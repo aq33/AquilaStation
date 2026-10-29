@@ -41,7 +41,7 @@
 	to_chat(src, "<span class='notice'>Syndron online. Protokoły eksterminacji aktywne.</span>" )
 
 /mob/living/simple_animal/drone/syndrone/badass
-	name = "Badass Syndrone"
+	name = "Twardziel syndron"
 	default_hatmask = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
 	default_storage = /obj/item/uplink/nuclear
 
@@ -67,14 +67,14 @@
 	mob_type = /mob/living/simple_animal/drone/syndrone
 
 /obj/effect/mob_spawn/drone/syndrone/badass
-	name = "badass syndrone shell"
-	mob_name = "badass syndrone"
+	name = "powłoka syndrona twardziela"
+	mob_name = "syndron twardziel"
 	mob_type = /mob/living/simple_animal/drone/syndrone/badass
 
 /obj/effect/mob_spawn/drone/snowflake
 	name = "Nieaktywny holodron"
 	desc = "Nieaktywny dron naprawczy z wbudowanym holoprojektorem czapek."
-	mob_name = "snowflake drone"
+	mob_name = "wyjątkowy dron"
 	mob_type = /mob/living/simple_animal/drone/snowflake
 
 /mob/living/simple_animal/drone/polymorphed
@@ -97,15 +97,15 @@
 	icon_dead = "[visualAppearence]_dead"
 
 /obj/effect/mob_spawn/drone/dusty
-	name = "derelict drone shell"
-	desc = "A long-forgotten drone shell. It seems kind of... Space Russian."
+	name = "powłoka porzuconego drona"
+	desc = "Dawno zapomniana powłoka drona. Wygląda jakoś tak... kosmicznie rosyjsko."
 	icon = 'icons/mob/drone.dmi'
 	icon_state = "drone_maint_hat"
-	mob_name = "derelict drone"
+	mob_name = "porzucony dron"
 	mob_type = /mob/living/simple_animal/drone/derelict
 	short_desc = "Jesteś dawno zapomnianym dronem!"
 	flavour_text = "Jesteś dronem na Kosmicheskaya Stantsiya 13. Coś wybudziło cię z hibernacji, a stacja jest w opłakanym stanie. Buduj, naprawiaj, konserwuj i ulepszaj stację, na której cię aktywowano."
 
 /mob/living/simple_animal/drone/derelict
-	name = "derelict drone"
+	name = "porzucony dron"
 	default_hatmask = /obj/item/clothing/head/ushanka

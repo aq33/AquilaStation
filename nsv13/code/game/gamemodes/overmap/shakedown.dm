@@ -1,7 +1,7 @@
 /datum/overmap_gamemode/shakedown
-	name = "Shakedown"
+	name = "Rejs próbny"
 	config_tag = "shakedown"
-	desc = "Do some jumps and light combat"
+	desc = "Wykonaj kilka skoków i trochę lekkiej walki"
 	brief = "Przydzielono wam świeżo wyremontowaną jednostkę na rejs próbny. Rozgrzejcie Napęd Thirringa, przetestujcie uzbrojenie, a potem wróćcie na Posterunek 45."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"

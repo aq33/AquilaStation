@@ -458,7 +458,7 @@
 
 /datum/status_effect/blade_stun_absorption/proc/enable_absorption()
 	recharge_at = 0
-	owner.add_stun_absorption(absorption_key, INFINITY, 3, " zrzuca z siebie ogłuszenie!", "Zrzucasz z siebie ogłuszenie!", span_hypnophrase("[owner.p_they(TRUE)] stoi niewzruszenie."))
+	owner.add_stun_absorption(absorption_key, INFINITY, 3, " zrzuca z siebie ogłuszenie!", "Zrzucasz z siebie ogłuszenie!", span_hypnophrase("[owner] stoi niewzruszenie."))
 
 /datum/status_effect/blade_stun_absorption/tick(seconds_between_ticks)
 	if(recharge_at)

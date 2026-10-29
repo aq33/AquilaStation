@@ -12,14 +12,14 @@ export const ShipLoadout = (props) => {
   return (
     <Window theme="syndicate" width={500} height={500}>
       <Window.Content scrollable>
-        <Section title="Info:">
+        <Section title="Informacje:">
           <p>
-            Powergrid Scan: Complete. The device has identified several
-            unpowered subsystems, though the power-core can only activate one.
-            Choose wisely!
+            Skan sieci energetycznej: zakończony. Urządzenie wykryło kilka
+            niezasilanych podsystemów, ale rdzeń mocy może zasilić tylko jeden.
+            Wybieraj rozważnie!
           </p>
         </Section>
-        <Section title="Detected Subsystems:">
+        <Section title="Wykryte podsystemy:">
           {Object.keys(data.categories).map((key) => {
             let value = data.categories[key];
             return (
@@ -28,7 +28,7 @@ export const ShipLoadout = (props) => {
                 title={value.name}
                 buttons={
                   <Button
-                    content="Select"
+                    content="Wybierz"
                     icon="check-circle"
                     onClick={() => act('select', { target_id: value.id })}
                   />

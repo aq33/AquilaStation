@@ -1,8 +1,8 @@
 //Mech zrobiony ze smieci. Inspirowany locker mechem z Yogstation oraz Hippiestation. Autor pieknych spritow: Toddout (pipi popo #6667 na dc)
 //Port z aq33/tgstation#480 (B4CKU)
 /obj/mecha/working/lockermech
-	desc = "A locker with stolen wires, struts, electronics and airlock servos crudely assembled into something that resembles the functions of a exosuit."
-	name = "\improper GR-3YT1.DE Locker Exosuit"
+	desc = "Szafka z kradzionymi kablami, rozpórkami, elektroniką i serwami ze śluzy, z grubsza złożona w coś, co działa trochę jak egzoszkielet."
+	name = "\improper szafkowy egzoszkielet GR-3YT1.DE"
 	icon = 'aquila/icons/mecha/lockermech.dmi'
 	icon_state = "lockermech"
 	step_in = 4 //Predkosc Ripleya
@@ -60,8 +60,8 @@
 //-smieciowa laserowa bron
 //can_attach nie wola ..(), bo rodzice wymagaja Ripleya/mecha bojowego - sprawdzamy tylko limit slotow
 /obj/item/mecha_parts/mecha_equipment/drill/makeshift
-	name = "makeshift exosuit drill"
-	desc = "Cobbled together from likely stolen parts, this drill is nowhere near as effective as the real deal."
+	name = "prowizoryczne wiertło egzoszkieletu"
+	desc = "Sklecone z najpewniej kradzionych części. Do prawdziwego wiertła mu daleko."
 	icon = 'aquila/icons/mecha/mecha_equipment.dmi'
 	icon_state = "scrap_drill"
 	equip_cooldown = 45 //W chuj powolne
@@ -73,8 +73,8 @@
 	return istype(M, /obj/mecha/working/lockermech) && M.equipment.len < M.max_equip
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift
-	name = "makeshift hydraulic clamp"
-	desc = "Loose arrangement of cobbled together bits resembling a clamp."
+	name = "prowizoryczny chwytak hydrauliczny"
+	desc = "Luźno sklecone części, które przypominają chwytak."
 	icon = 'aquila/icons/mecha/mecha_equipment.dmi'
 	icon_state = "scrap_clamp"
 	equip_cooldown = 25
@@ -93,8 +93,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/makeshift
-	name = "makeshift exosuit laser rifle"
-	desc = "Makeshift laser rifle attached to a makeshift exosuit equipment mount. Lacks factory precision, so the damage may be inconsistent."
+	name = "prowizoryczny karabin laserowy egzoszkieletu"
+	desc = "Prowizoryczny karabin laserowy na prowizorycznym mocowaniu wyposażenia egzoszkieletu. Brakuje mu fabrycznej precyzji, więc obrażenia bywają różne."
 	icon = 'aquila/icons/mecha/mecha_equipment.dmi'
 	icon_state = "scrap_laser"
 	equip_cooldown = 15
@@ -108,7 +108,7 @@
 
 //Przepisy
 /datum/crafting_recipe/lockermech //bruh
-	name = "GR-3YT1.DE Locker Mech"
+	name = "Szafkowy mech GR-3YT1.DE"
 	result = /obj/mecha/working/lockermech
 	tools = list(TOOL_WELDER, TOOL_WRENCH, TOOL_WIRECUTTER)
 	reqs = list(/obj/item/stack/cable_coil = 15,
@@ -122,7 +122,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/lockermechdrill
-	name = "Makeshift Exosuit Drill"
+	name = "Prowizoryczne wiertło egzoszkieletu"
 	result = /obj/item/mecha_parts/mecha_equipment/drill/makeshift
 	tools = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/stack/cable_coil = 5,
@@ -132,7 +132,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/lockermechclamp
-	name = "Makeshift Exosuit Hydraulic Clamp"
+	name = "Prowizoryczny chwytak hydrauliczny egzoszkieletu"
 	result = /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/makeshift
 	tools = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/stack/cable_coil = 5,
@@ -142,7 +142,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/lockermechlaserrifle
-	name = "Makeshift Exosuit Laser Rifle"
+	name = "Prowizoryczny karabin laserowy egzoszkieletu"
 	result = /obj/item/mecha_parts/mecha_equipment/weapon/energy/makeshift
 	tools = list(TOOL_WIRECUTTER)
 	reqs = list(/obj/item/stack/cable_coil = 5,

@@ -1,7 +1,7 @@
 /datum/action/innate/cult/blood_magic //Blood magic handles the creation of blood spells (formerly talismans)
-	name = "Prepare Blood Magic"
+	name = "Przygotuj magię krwi"
 	button_icon_state = "carve"
-	desc = "Prepare blood magic by carving runes into your flesh. This is easier with an <b>empowering rune</b>."
+	desc = "Przygotowujesz magię krwi, wycinając runy na swoim ciele. Łatwiej to zrobić przy <b>runie wzmocnienia</b>."
 	var/list/spells = list()
 	var/channeling = FALSE
 
@@ -84,9 +84,9 @@
 	channeling = FALSE
 
 /datum/action/innate/cult/blood_spell //The next generation of talismans, handles storage/creation of blood magic
-	name = "Blood Magic"
+	name = "Magia krwi"
 	button_icon_state = "telerune"
-	desc = "Fear the Old Blood."
+	desc = "Lękaj się Starej Krwi."
 	var/charges = 1
 	var/magic_path = null
 	var/obj/item/melee/blood_magic/hand_magic
@@ -137,22 +137,22 @@
 
 //Cult Blood Spells
 /datum/action/innate/cult/blood_spell/stun
-	name = "Stun"
-	desc = "Empowers your hand to stun and mute a victim on contact."
+	name = "Ogłuszenie"
+	desc = "Wzmacnia twoją dłoń, by przy dotyku ogłuszała i uciszała ofiarę."
 	button_icon_state = "hand"
 	magic_path = /obj/item/melee/blood_magic/stun
 	health_cost = 10
 
 /datum/action/innate/cult/blood_spell/teleport
-	name = "Teleport"
-	desc = "Empowers your hand to teleport yourself or another cultist to a teleport rune on contact."
+	name = "Teleportacja"
+	desc = "Wzmacnia twoją dłoń, by przy dotyku teleportowała ciebie lub innego kultystę do runy teleportacji."
 	button_icon_state = "tele"
 	magic_path = /obj/item/melee/blood_magic/teleport
 	health_cost = 7
 
 /datum/action/innate/cult/blood_spell/emp
-	name = "Electromagnetic Pulse"
-	desc = "Emits a large electromagnetic pulse."
+	name = "Impuls elektromagnetyczny"
+	desc = "Wysyła silny impuls elektromagnetyczny."
 	button_icon_state = "emp"
 	health_cost = 10
 	invocation = "Ta'gh fara'qha fel d'amar det!"
@@ -168,28 +168,28 @@
 		qdel(src)
 
 /datum/action/innate/cult/blood_spell/shackles
-	name = "Shadow Shackles"
-	desc = "Empowers your hand to start handcuffing victim on contact, and mute them if successful."
+	name = "Kajdany cienia"
+	desc = "Wzmacnia twoją dłoń, by przy dotyku zaczynała skuwać ofiarę, a po udanym skuciu ją uciszała."
 	button_icon_state = "cuff"
 	charges = 4
 	magic_path = /obj/item/melee/blood_magic/shackles
 
 /datum/action/innate/cult/blood_spell/construction
-	name = "Twisted Construction"
-	desc = "Empowers your hand to corrupt certain metalic objects.<br><u>Converts:</u><br>Plasteel into runed metal<br>50 iron into a construct shell<br>Living cyborgs into constructs after a delay<br>Cyborg shells into construct shells<br>Airlocks into brittle runed airlocks after a delay (harm intent)"
+	name = "Wypaczona budowa"
+	desc = "Wzmacnia twoją dłoń, by przy dotyku wypaczała niektóre metalowe obiekty.<br><u>Zmienia:</u><br>plastal w runiczny metal<br>50 żelaza w powłokę konstruktu<br>żywe cyborgi w konstrukty (po chwili)<br>powłoki cyborgów w powłoki konstruktów<br>śluzy w kruche runiczne śluzy (po chwili, intencja krzywdy)"
 	button_icon_state = "transmute"
 	magic_path = /obj/item/melee/blood_magic/construction
 	health_cost = 12
 
 /datum/action/innate/cult/blood_spell/equipment
-	name = "Summon Combat Equipment"
-	desc = "Empowers your hand to summon combat gear onto a cultist you touch, including cult armor, a cult bola, and a cult sword. Not recommended for use before the blood cult's presence has been revealed."
+	name = "Przywołaj sprzęt bojowy"
+	desc = "Wzmacnia twoją dłoń, by przywoływała sprzęt bojowy na kultystę, którego dotkniesz: zbroję kultu, bolę kultu i miecz kultu. Odradzane, zanim obecność kultu krwi zostanie ujawniona."
 	button_icon_state = "equip"
 	magic_path = /obj/item/melee/blood_magic/armor
 
 /datum/action/innate/cult/blood_spell/dagger
-	name = "Summon Ritual Dagger"
-	desc = "Allows you to summon a ritual dagger, in case you've lost the dagger that was given to you."
+	name = "Przywołaj sztylet rytualny"
+	desc = "Pozwala przywołać sztylet rytualny, gdyby otrzymany sztylet ci zginął."
 	invocation = "Wur d'dai leev'mai k'sagan!" //where did I leave my keys, again?
 	button_icon_state = "equip" //this is the same icon that summon equipment uses, but eh, I'm not a spriter
 	/// The item given to the cultist when the spell is invoked. Typepath.
@@ -212,8 +212,8 @@
 		qdel(src)
 
 /datum/action/innate/cult/blood_spell/horror
-	name = "Hallucinations"
-	desc = "Gives hallucinations to a target at range. A silent and invisible spell."
+	name = "Halucynacje"
+	desc = "Zsyła halucynacje na cel z dystansu. Ciche i niewidoczne zaklęcie."
 	button_icon_state = "horror"
 	var/obj/effect/proc_holder/horror/PH
 	charges = 4
@@ -279,8 +279,8 @@
 			qdel(src)
 
 /datum/action/innate/cult/blood_spell/veiling
-	name = "Conceal Presence"
-	desc = "Alternates between hiding and revealing nearby cult structures and runes."
+	name = "Ukryj obecność"
+	desc = "Na przemian ukrywa i odsłania pobliskie struktury i runy kultu."
 	invocation = "Kla'atu barada nikt'o!"
 	button_icon_state = "gone"
 	charges = 10
@@ -303,7 +303,7 @@
 		for(var/turf/open/floor/engine/cult/T in RANGE_TURFS(5,owner))
 			T.realappearance.alpha = 0
 		revealing = TRUE
-		name = "Reveal Runes"
+		name = "Odsłoń runy"
 		button_icon_state = "back"
 	else
 		owner.visible_message("<span class='warning'>Z dłoni [owner] bije błysk światła!</span>", \
@@ -320,7 +320,7 @@
 		for(var/turf/open/floor/engine/cult/T in RANGE_TURFS(6,owner))
 			T.realappearance.alpha = initial(T.realappearance.alpha)
 		revealing = FALSE
-		name = "Conceal Runes"
+		name = "Ukryj runy"
 		button_icon_state = "gone"
 	if(charges<= 0)
 		qdel(src)
@@ -329,8 +329,8 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/cult/blood_spell/manipulation
-	name = "Blood Rites"
-	desc = "Empowers your hand to absorb blood to be used for advanced rites, or heal a cultist on contact. Use the spell in-hand to cast advanced rites."
+	name = "Rytuały krwi"
+	desc = "Wzmacnia twoją dłoń, by wchłaniała krew do zaawansowanych rytuałów albo leczyła kultystę przy dotyku. Użyj zaklęcia w dłoni, by odprawić zaawansowane rytuały."
 	invocation = "Fel'th Dol Ab'orod!"
 	button_icon_state = "manip"
 	charges = 5
@@ -339,8 +339,8 @@
 
 // The "magic hand" items
 /obj/item/melee/blood_magic
-	name = "\improper magical aura"
-	desc = "A sinister looking aura that distorts the flow of reality around it."
+	name = "\improper magiczna aura"
+	desc = "Złowieszcza aura, która zakrzywia wokół siebie bieg rzeczywistości."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
@@ -409,8 +409,8 @@
 
 //Stun
 /obj/item/melee/blood_magic/stun //NSV13 - reverted to pre-nerf state
-	name = "Stunning Aura"
-	desc = "Will stun and mute a victim on contact."
+	name = "aura ogłuszenia"
+	desc = "Przy dotyku ogłusza i ucisza ofiarę."
 	color = RUNE_COLOR_RED
 	invocation = "Fuu ma'jin!"
 
@@ -455,9 +455,9 @@
 
 //Teleportation
 /obj/item/melee/blood_magic/teleport
-	name = "Teleporting Aura"
+	name = "aura teleportacji"
 	color = RUNE_COLOR_TELEPORT
-	desc = "Will teleport a cultist to a teleport rune on contact."
+	desc = "Przy dotyku teleportuje kultystę do runy teleportacji."
 	invocation = "Sas'so c'arta forbici!"
 
 /obj/item/melee/blood_magic/teleport/afterattack(atom/target, mob/living/carbon/user, proximity)
@@ -498,8 +498,8 @@
 
 //Shackles
 /obj/item/melee/blood_magic/shackles
-	name = "Shackling Aura"
-	desc = "Will start handcuffing a victim on contact, and mute them if successful."
+	name = "aura skuwania"
+	desc = "Przy dotyku zaczyna skuwać ofiarę, a po udanym skuciu ją ucisza."
 	invocation = "In'totum Lig'abis!"
 	color = "#000000" // black
 
@@ -535,8 +535,8 @@
 
 
 /obj/item/restraints/handcuffs/energy/cult //For the shackling spell
-	name = "shadow shackles"
-	desc = "Shackles that bind the wrists with sinister magic."
+	name = "kajdany cienia"
+	desc = "Kajdany, które krępują nadgarstki złowrogą magią."
 	trashtype = /obj/item/restraints/handcuffs/energy/used
 	item_flags = DROPDEL
 
@@ -548,8 +548,8 @@
 
 //Construction: Converts 50 iron to a construct shell, plasteel to runed metal, airlock to brittle runed airlock, a borg to a construct, or borg shell to a construct shell
 /obj/item/melee/blood_magic/construction
-	name = "Twisting Aura"
-	desc = "Corrupts certain metalic objects on contact."
+	name = "aura wypaczenia"
+	desc = "Przy dotyku wypacza niektóre metalowe obiekty."
 	invocation = "Ethra p'ni dedol!"
 	color = "#000000" // black
 	var/channeling = FALSE
@@ -647,8 +647,8 @@
 
 //Armor: Gives the target (cultist) a basic cultist combat loadout
 /obj/item/melee/blood_magic/armor
-	name = "Arming Aura"
-	desc = "On contact, equips a cultist with combat gear."
+	name = "aura uzbrojenia"
+	desc = "Przy dotyku wyposaża kultystę w sprzęt bojowy."
 	color = "#33cc33" // green
 
 /obj/item/melee/blood_magic/armor/afterattack(atom/target, mob/living/carbon/user, proximity)
@@ -668,8 +668,8 @@
 		..()
 
 /obj/item/melee/blood_magic/manipulator
-	name = "Blood Rite Aura"
-	desc = "Absorbs blood from anything you touch. Touching cultists and constructs can heal them. Use in-hand to cast an advanced rite."
+	name = "aura rytuału krwi"
+	desc = "Wchłania krew ze wszystkiego, czego dotkniesz. Dotykiem możesz leczyć kultystów i konstrukty. Użyj w dłoni, by odprawić zaawansowany rytuał."
 	color = "#7D1717"
 
 /obj/item/melee/blood_magic/manipulator/examine(mob/user)
@@ -786,13 +786,13 @@
 
 /obj/item/melee/blood_magic/manipulator/attack_self(mob/living/user)
 	if(iscultist(user))
-		var/list/options = list("Blood Spear (150)", "Blood Bolt Barrage (300)", "Blood Beam (500)")
+		var/list/options = list("Włócznia krwi (150)", "Grad krwawych pocisków (300)", "Promień krwi (500)")
 		var/choice = input(user, "Wybierz większy rytuał krwi.", "Większe rytuały krwi") as null|anything in options
 		if(!choice)
 			to_chat(user, "<span class='cultitalic'>Rezygnujesz z odprawienia większego rytuału krwi.</span>")
 			return
 		switch(choice)
-			if("Blood Spear (150)")
+			if("Włócznia krwi (150)")
 				if(uses < BLOOD_SPEAR_COST)
 					to_chat(user, "<span class='cultitalic'>Potrzebujesz [BLOOD_SPEAR_COST] ładunków, by odprawić ten rytuał.</span>")
 				else
@@ -808,7 +808,7 @@
 					else
 						user.visible_message("<span class='warning'>U stóp [user] pojawia się [rite.name]!</span>", \
 							 "<span class='cultitalic'>U twoich stóp materializuje się [rite.name].</span>")
-			if("Blood Bolt Barrage (300)")
+			if("Grad krwawych pocisków (300)")
 				if(uses < BLOOD_BARRAGE_COST)
 					to_chat(user, "<span class='cultitalic'>Potrzebujesz [BLOOD_BARRAGE_COST] ładunków, by odprawić ten rytuał.</span>")
 				else
@@ -820,7 +820,7 @@
 					else
 						to_chat(user, "<span class='cultitalic'>Do tego rytuału potrzebujesz wolnej ręki!</span>")
 						qdel(rite)
-			if("Blood Beam (500)")
+			if("Promień krwi (500)")
 				if(uses < BLOOD_BEAM_COST)
 					to_chat(user, "<span class='cultitalic'>Potrzebujesz [BLOOD_BEAM_COST] ładunków, by odprawić ten rytuał.</span>")
 				else

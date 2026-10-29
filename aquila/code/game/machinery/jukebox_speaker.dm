@@ -106,7 +106,7 @@
 	anchored = FALSE
 
 /obj/item/circuitboard/machine/jukebox_speaker
-	name = "amp stack (Machine Board)"
+	name = "amp stack (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/jukebox_speaker
 	req_components = list(
@@ -114,7 +114,7 @@
 		/obj/item/stack/cable_coil = 5)
 
 /datum/design/board/jukebox_speaker
-	name = "Machine Design (Amp Stack)"
+	name = "Projekt maszyny (amp stack)"
 	desc = "Płytka amp stacka - głośnika podłączanego do jukeboxa."
 	id = "jukebox_speaker"
 	materials = list(/datum/material/glass = 1000)

@@ -2,8 +2,8 @@
 // !      Sigil of Vitality ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/sigil_vitality
-	name = "Vitality Matrix"
-	desc = "Summons a vitality matrix, which drains the life force of non servants, and can be used to heal or revive servants. Requires 2 invokers."
+	name = "Matryca witalności"
+	desc = "Przywołuje matrycę witalności, która wysysa siły życiowe z niesług, a sługi może leczyć i wskrzeszać. Wymaga 2 przywołujących."
 	tip = "Leczy i wskrzesza martwych sług, wysysając zdrowie z niesług."
 	button_icon_state = "Sigil of Vitality"
 	power_cost = 300
@@ -16,8 +16,8 @@
 
 //==========Vitality=========
 /obj/structure/destructible/clockwork/sigil/vitality
-	name = "vitality matrix"
-	desc = "A twisting, confusing artifact that drains the unenlightended on contact."
+	name = "matryca witalności"
+	desc = "Kręty, dezorientujący artefakt, który przy kontakcie wysysa nieoświeconych."
 	clockwork_desc = "Piękny artefakt wysysający życie z heretyków umieszczonych na nim."
 	icon_state = "sigilvitality"
 	effect_stand_time = 20
@@ -56,7 +56,7 @@
 					var/list/mob/dead/observer/candidates = pollCandidatesForMob("Chcesz zagrać jako [M.name], nieaktywny kultysta zegara?", ROLE_SERVANT_OF_RATVAR, /datum/role_preference/antagonist/clock_cultist, 7.5 SECONDS, M)
 					if(LAZYLEN(candidates))
 						var/mob/dead/observer/C = pick(candidates)
-						message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(M)]) to replace an AFK player.")
+						message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([key_name_admin(M)]) w miejsce gracza AFK.")
 						M.key = C.key
 			else
 				visible_message("<span class='neovgre'>[src] nie zdołał wskrzesić [M]!</span>")

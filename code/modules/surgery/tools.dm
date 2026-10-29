@@ -1,6 +1,6 @@
 /obj/item/retractor
-	name = "retractor"
-	desc = "Retracts stuff."
+	name = "retraktor"
+	desc = "Rozchyla różne rzeczy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -14,8 +14,8 @@
 
 
 /obj/item/retractor/augment
-	name = "retractor"
-	desc = "Micro-mechanical manipulator for retracting stuff."
+	name = "retraktor"
+	desc = "Mikromechaniczny manipulator do rozchylania różnych rzeczy."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
 	materials = list(/datum/material/iron=6000, /datum/material/glass=3000)
@@ -26,7 +26,7 @@
 
 /obj/item/hemostat
 	name = "hemostat"
-	desc = "You think you have seen this before."
+	desc = "Masz wrażenie, że już to kiedyś widziałeś."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -42,7 +42,7 @@
 
 /obj/item/hemostat/augment
 	name = "hemostat"
-	desc = "Tiny servos power a pair of pincers to stop bleeding."
+	desc = "Maleńkie serwomechanizmy napędzają parę szczypiec, które tamują krwawienie."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
 	materials = list(/datum/material/iron=5000, /datum/material/glass=2500)
@@ -53,8 +53,8 @@
 
 
 /obj/item/cautery
-	name = "cautery"
-	desc = "This stops bleeding."
+	name = "kauter"
+	desc = "To tamuje krwawienie."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "cautery"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -69,8 +69,8 @@
 
 
 /obj/item/cautery/augment
-	name = "cautery"
-	desc = "A heated element that cauterizes wounds."
+	name = "kauter"
+	desc = "Rozgrzany element, który przyżega rany."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "cautery"
 	materials = list(/datum/material/iron=2500, /datum/material/glass=750)
@@ -81,8 +81,8 @@
 
 
 /obj/item/blood_filter
-	name = "blood filter"
-	desc = "For filtering the blood."
+	name = "filtr krwi"
+	desc = "Do filtrowania krwi."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "bloodfilter"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -96,8 +96,8 @@
 
 
 /obj/item/surgicaldrill
-	name = "surgical drill"
-	desc = "You can drill using this item. You dig?"
+	name = "wiertło chirurgiczne"
+	desc = "Możesz tym wiercić. Wkręciłeś się?"
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "drill"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -119,8 +119,8 @@
 	return (MANUAL_SUICIDE)
 
 /obj/item/surgicaldrill/augment
-	name = "surgical drill"
-	desc = "Effectively a small power drill contained within your arm, edges dulled to prevent tissue damage. May or may not pierce the heavens."
+	name = "wiertło chirurgiczne"
+	desc = "W praktyce mała wiertarka ukryta w twojej ręce, ze stępionymi krawędziami, żeby nie uszkadzać tkanek. Może przebije niebiosa, a może nie."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
@@ -133,8 +133,8 @@
 
 
 /obj/item/scalpel
-	name = "scalpel"
-	desc = "Cut, cut, and once more cut."
+	name = "skalpel"
+	desc = "Tnij, tnij i jeszcze raz tnij."
 	icon = 'icons/obj/surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "scalpel"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -159,8 +159,8 @@
 	AddComponent(/datum/component/butchering, 80 * toolspeed, 100, 0)
 
 /obj/item/scalpel/augment
-	name = "scalpel"
-	desc = "Ultra-sharp blade attached directly to your bone for extra-accuracy."
+	name = "skalpel"
+	desc = "Ultraostre ostrze przymocowane wprost do twojej kości dla większej precyzji."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "scalpel"
 	flags_1 = CONDUCT_1
@@ -177,13 +177,13 @@
 	bleed_force = BLEED_CUT
 
 /obj/item/scalpel/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] podcina sobie [pick("nadgarstki", "gardło", "brzuch")] [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
+	user.visible_message("<span class='suicide'>[user] podcina sobie [pick("nadgarstki", "gardło", "brzuch")] za pomocą [src]! Wygląda na to, że próbuje popełnić samobójstwo!</span>")
 	return (BRUTELOSS)
 
 
 /obj/item/circular_saw
-	name = "circular saw"
-	desc = "For heavy duty cutting."
+	name = "piła tarczowa"
+	desc = "Do ciężkiego cięcia."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "saw"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -208,8 +208,8 @@
 	AddComponent(/datum/component/butchering, 40 * toolspeed, 100, 5, 'sound/weapons/circsawhit.ogg') //saws are very accurate and fast at butchering
 
 /obj/item/circular_saw/augment
-	name = "circular saw"
-	desc = "A small but very fast spinning saw. Edges dulled to prevent accidental cutting inside of the surgeon."
+	name = "piła tarczowa"
+	desc = "Mała, ale bardzo szybko obracająca się piła. Krawędzie są stępione, żeby przypadkiem nie pociąć chirurga od środka."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "saw"
 	hitsound = 'sound/weapons/circsawhit.ogg'
@@ -227,8 +227,8 @@
 	bleed_force = BLEED_DEEP_WOUND
 
 /obj/item/surgical_drapes
-	name = "surgical drapes"
-	desc = "Nanotrasen brand surgical drapes provide optimal safety and infection control."
+	name = "serweta chirurgiczna"
+	desc = "Serweta chirurgiczna marki Nanotrasen zapewnia optymalne bezpieczeństwo i kontrolę zakażeń."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "surgical_drapes"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -244,8 +244,8 @@
 //NSV13 - Surgery-Initiation Componentizes - Stop
 
 /obj/item/organ_storage //allows medical cyborgs to manipulate organs without hands
-	name = "organ storage bag"
-	desc = "A container for holding body parts."
+	name = "torba na organy"
+	desc = "Pojemnik na części ciała."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
 
@@ -272,7 +272,7 @@
 	I.pixel_y = yy
 	add_overlay(img)
 	add_overlay("evidence")
-	desc = "An organ storage container holding [I]."
+	desc = "Pojemnik na organy. Zawartość: [I]."
 	I.forceMove(src)
 	w_class = I.w_class
 
@@ -283,14 +283,14 @@
 		cut_overlays()
 		I.forceMove(get_turf(src))
 		icon_state = "evidenceobj"
-		desc = "A container for holding body parts."
+		desc = "Pojemnik na części ciała."
 	else
 		to_chat(user, "[src] jest pusty.")
 	return
 
 /obj/item/surgical_processor //allows medical cyborgs to scan and initiate advanced surgeries
-	name = "\improper Surgical Processor"
-	desc = "A device for scanning and initiating surgeries from a disk or operating computer."
+	name = "\improper procesor chirurgiczny"
+	desc = "Urządzenie do skanowania i rozpoczynania operacji z dysku albo komputera operacyjnego."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "spectrometer"
 	item_flags = NOBLUDGEON
@@ -316,8 +316,8 @@
 
 
 /obj/item/scalpel/advanced
-	name = "laser scalpel"
-	desc = "An advanced scalpel which uses laser technology to cut."
+	name = "skalpel laserowy"
+	desc = "Zaawansowany skalpel, który tnie za pomocą lasera."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "scalpel_a"
 	hitsound = 'sound/weapons/blade1.ogg'
@@ -350,8 +350,8 @@
 	. += " Jest ustawiony w tryb: [tool_behaviour == TOOL_SCALPEL ? "skalpel" : "piła"]."
 
 /obj/item/retractor/advanced
-	name = "mechanical pinches"
-	desc = "An agglomerate of rods and gears."
+	name = "mechaniczne szczypce"
+	desc = "Zlepek prętów i zębatek."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "retractor_a"
 	toolspeed = 0.7
@@ -372,8 +372,8 @@
 	. += " Przypomina [tool_behaviour == TOOL_RETRACTOR ? "retraktor" : "kleszcze hemostatyczne"]."
 
 /obj/item/surgicaldrill/advanced
-	name = "searing tool"
-	desc = "It projects a high power laser used for medical application."
+	name = "narzędzie przyżegające"
+	desc = "Emituje laser dużej mocy do zastosowań medycznych."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "surgicaldrill_a"
 	hitsound = 'sound/items/welder.ogg'

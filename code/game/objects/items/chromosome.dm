@@ -1,8 +1,8 @@
 /obj/item/chromosome
-	name = "blank chromosome"
+	name = "pusty chromosom"
 	icon = 'icons/obj/chromosomes.dmi'
 	icon_state = ""
-	desc = "A tube holding chromosomic data."
+	desc = "Probówka z danymi chromosomowymi."
 	force = 0
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -52,33 +52,33 @@
 
 
 /obj/item/chromosome/stabilizer
-	name = "stabilizer chromosome"
-	desc = "A chromosome that reduces mutation instability by 20%."
+	name = "chromosom stabilizujący"
+	desc = "Chromosom, który zmniejsza niestabilność mutacji o 20%."
 	icon_state = "stabilizer"
 	stabilizer_coeff = 0.8
 	weight = 1
 
 /obj/item/chromosome/synchronizer
-	name = "synchronizer chromosome"
-	desc = "A chromosome that reduces mutation knockback and downsides by 50%."
+	name = "chromosom synchronizujący"
+	desc = "Chromosom, który zmniejsza odrzut i wady mutacji o 50%."
 	icon_state = "synchronizer"
 	synchronizer_coeff = 0.5
 
 /obj/item/chromosome/power
-	name = "power chromosome"
-	desc = "A chromosome that increases mutation power by 50%."
+	name = "chromosom mocy"
+	desc = "Chromosom, który zwiększa moc mutacji o 50%."
 	icon_state = "power"
 	power_coeff = 1.5
 
 /obj/item/chromosome/energy
-	name = "energetic chromosome"
-	desc = "A chromosome that reduces action based mutation cooldowns by by 50%."
+	name = "chromosom energetyczny"
+	desc = "Chromosom, który skraca czas odnowienia aktywnych mutacji o 50%."
 	icon_state = "energy"
 	energy_coeff = 0.5
 
 /obj/item/chromosome/reinforcer
-	name = "reinforcement chromosome"
-	desc = "A chromosome that renders mutations immune to mutadone."
+	name = "chromosom wzmacniający"
+	desc = "Chromosom, który uodparnia mutacje na mutadon."
 	icon_state = "reinforcer"
 	weight = 3
 

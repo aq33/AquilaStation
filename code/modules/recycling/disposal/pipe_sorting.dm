@@ -1,8 +1,8 @@
 // A three-way junction that sorts objects based on check_sorting(H) proc
 // This is a base type, use subtypes on the map.
 /obj/structure/disposalpipe/sorting
-	name = "sorting disposal pipe"
-	desc = "An underfloor disposal pipe with a sorting mechanism."
+	name = "sortująca rura zsypowa"
+	desc = "Podpodłogowa rura zsypowa z mechanizmem sortującym."
 	icon_state = "pipe-j1s"
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 
@@ -80,7 +80,7 @@
 
 // Wrap sorting junction, sorts objects destined for the mail office mail table (tomail = 1)
 /obj/structure/disposalpipe/sorting/wrap
-	desc = "An underfloor disposal pipe which sorts wrapped and unwrapped objects."
+	desc = "Podpodłogowa rura zsypowa, która oddziela przedmioty zapakowane od niezapakowanych."
 	flip_type = /obj/structure/disposalpipe/sorting/wrap/flip
 	initialize_dirs = DISP_DIR_RIGHT | DISP_DIR_FLIP
 

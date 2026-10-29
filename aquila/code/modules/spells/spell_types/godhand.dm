@@ -1,6 +1,6 @@
 /obj/item/melee/touch_attack/sex
-	name = "questionable touch"
-	desc = "Oh god, why."
+	name = "wątpliwy dotyk"
+	desc = "O Boże, czemu."
 	catchphrase = null
 	on_use_sound = null
 	icon_state = "disintegrate"
@@ -35,7 +35,7 @@
 		return
 
 	to_chat(user,"<span class='notice'>Prosisz [M] o seks.</span>")
-	if(alert(M, "[user] chce uprawiać z tobą seks. Zgadzasz się?", "Sex on button","Yes", "No") == "No")
+	if(alert(M, "[user] chce uprawiać z tobą seks. Zgadzasz się?", "Seks na przycisk","Tak", "Nie") == "Nie")
 		to_chat(user, "[M] nie chce uprawiać seksu.")
 		return
 

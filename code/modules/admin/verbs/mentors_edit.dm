@@ -7,7 +7,7 @@ its mentors, not actual dangerous perms
 /client/proc/edit_mentors()
 	set category = "Admin"
 	set name = "Mentor Panel"
-	set desc = "Edit mentors"
+	set desc = "Edytuj mentorów"
 
 	if(!check_rights(R_PERMISSIONS))
 		return
@@ -58,7 +58,7 @@ its mentors, not actual dangerous perms
 			while(query_mentor_list.NextRow())
 				mentors += query_mentor_list.item[1]
 		else
-			to_chat(user, "<span class='danger'>Unable to pull the mentor list from the database.</span>")
+			to_chat(user, "<span class='danger'>Nie udało się pobrać listy mentorów z bazy danych.</span>")
 		qdel(query_mentor_list)
 	data["mentors"] = mentors
 	return data
@@ -68,11 +68,11 @@ its mentors, not actual dangerous perms
 	if(.)
 		return
 	if(!check_rights(R_PERMISSIONS))
-		message_admins("[key_name_admin(usr)] attempted to edit mentor permissions without sufficient rights.")
+		message_admins("[key_name_admin(usr)] próbuje edytować uprawnienia mentorów bez wystarczających uprawnień.")
 		log_admin("[key_name(usr)] attempted to edit mentor permissions without sufficient rights.")
 		return
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Mentor Edit blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Edycja mentorów zablokowana: wykryto Advanced ProcCall.</span>")
 		return
 
 	switch(action)
@@ -93,7 +93,7 @@ its mentors, not actual dangerous perms
 			if(!query_add_mentor.warn_execute())
 				qdel(query_add_mentor)
 				return
-			message_admins("[key_name(usr)] made [newguy] a mentor.")
+			message_admins("[key_name(usr)] mianuje [newguy] mentorem.")
 			log_admin("[key_name(usr)] made [newguy] a mentor.")
 			qdel(query_add_mentor)
 			load_mentors()
@@ -112,7 +112,7 @@ its mentors, not actual dangerous perms
 			if(!query_remove_mentor.warn_execute())
 				qdel(query_remove_mentor)
 				return
-			message_admins("[key_name(usr)] de-mentored [removed_mentor]")
+			message_admins("[key_name(usr)] odbiera status mentora: [removed_mentor]")
 			log_admin("[key_name(usr)] de-mentored [removed_mentor]")
 			qdel(query_remove_mentor)
 			load_mentors()

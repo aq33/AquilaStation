@@ -1,12 +1,12 @@
 
 /obj/item/clothing/under/rank/civilian/mime
-	name = "mime's outfit"
-	desc = "It's not very colourful."
+	name = "strój mima"
+	desc = "Niezbyt kolorowy."
 	icon_state = "mime"
 	item_state = "mime"
 
 /obj/item/clothing/under/rank/civilian/mime/skirt
-	name = "mime's skirt"
+	name = "spódnica mima"
 	icon_state = "mime_skirt"
 	item_state = "mime"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -16,7 +16,7 @@
 
 
 /obj/item/clothing/under/rank/civilian/mime/skirt
-	name = "mime's skirt"
+	name = "spódnica mima"
 	icon_state = "mime_skirt"
 	item_state = "mime"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -25,8 +25,8 @@
 
 
 /obj/item/clothing/under/rank/civilian/mime/sexy
-	name = "sexy mime outfit"
-	desc = "The only time when you DON'T enjoy looking at someone's rack."
+	name = "seksowny strój mima"
+	desc = "Jedyny raz, kiedy NIE cieszy cię widok czyjegoś biustu."
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	body_parts_covered = CHEST|GROIN|LEGS
@@ -34,63 +34,63 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown
-	name = "clown suit"
-	desc = "<i>'HONK!'</i>"
+	name = "strój klauna"
+	desc = "<i>„HONK!”</i>"
 	icon_state = "clown"
 	item_state = "clown"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/blue
-	name = "blue clown suit"
-	desc = "<i>'BLUE HONK!'</i>"
+	name = "niebieski strój klauna"
+	desc = "<i>„NIEBIESKI HONK!”</i>"
 	icon_state = "blueclown"
 	item_state = "blueclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/green
-	name = "green clown suit"
-	desc = "<i>'GREEN HONK!'</i>"
+	name = "zielony strój klauna"
+	desc = "<i>„ZIELONY HONK!”</i>"
 	icon_state = "greenclown"
 	item_state = "greenclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/yellow
-	name = "yellow clown suit"
-	desc = "<i>'YELLOW HONK!'</i>"
+	name = "żółty strój klauna"
+	desc = "<i>„ŻÓŁTY HONK!”</i>"
 	icon_state = "yellowclown"
 	item_state = "yellowclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/purple
-	name = "purple clown suit"
-	desc = "<i>'PURPLE HONK!'</i>"
+	name = "fioletowy strój klauna"
+	desc = "<i>„FIOLETOWY HONK!”</i>"
 	icon_state = "purpleclown"
 	item_state = "purpleclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/orange
-	name = "orange clown suit"
-	desc = "<i>'ORANGE HONK!'</i>"
+	name = "pomarańczowy strój klauna"
+	desc = "<i>„POMARAŃCZOWY HONK!”</i>"
 	icon_state = "orangeclown"
 	item_state = "orangeclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/rainbow
-	name = "rainbow clown suit"
-	desc = "<i>'R A I N B O W HONK!'</i>"
+	name = "tęczowy strój klauna"
+	desc = "<i>„T Ę C Z O W Y HONK!”</i>"
 	icon_state = "rainbowclown"
 	item_state = "rainbowclown"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/clown/jester
-	name = "jester suit"
-	desc = "A jolly dress, well suited to entertain your master, nuncle."
+	name = "strój błazna"
+	desc = "Wesoły strój, w sam raz, by zabawiać swego pana, wujaszku."
 	icon_state = "jester"
 	can_adjust = FALSE
 
@@ -98,8 +98,8 @@
 	icon_state = "jester2"
 
 /obj/item/clothing/under/rank/civilian/clown/sexy
-	name = "sexy-clown suit"
-	desc = "It makes you look HONKable!"
+	name = "seksowny strój klauna"
+	desc = "Wyglądasz w nim na kogoś do HONKnięcia!"
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
 	can_adjust = FALSE

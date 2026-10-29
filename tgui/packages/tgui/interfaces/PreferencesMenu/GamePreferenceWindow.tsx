@@ -34,7 +34,7 @@ export const GamePreferenceWindow = (props: {
 
   return (
     <Window
-      title="Game Preferences"
+      title="Ustawienia gry"
       width={1200}
       height={770}
       theme="generic-yellow"
@@ -42,7 +42,7 @@ export const GamePreferenceWindow = (props: {
         <>
           <Button
             icon="user"
-            tooltip="Open Character Preferences"
+            tooltip="Otwórz ustawienia postaci"
             tooltipPosition="bottom"
             style={{ borderRadius: '20px' }}
             onClick={() => act('open_character_preferences')}
@@ -61,7 +61,7 @@ export const GamePreferenceWindow = (props: {
                   page={GamePreferencesSelectedPage.Settings}
                   setPage={setCurrentPage}
                 >
-                  Settings
+                  Ustawienia
                 </PageButton>
               </Stack.Item>
 
@@ -71,7 +71,7 @@ export const GamePreferenceWindow = (props: {
                   page={GamePreferencesSelectedPage.Keybindings}
                   setPage={setCurrentPage}
                 >
-                  Keybindings
+                  Skróty klawiszowe
                 </PageButton>
               </Stack.Item>
             </Stack>

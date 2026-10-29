@@ -1,7 +1,7 @@
 //zmiana 10 max hp/health przez hornet/bee numer commit #5648 w #1720
 /mob/living/simple_animal/hostile/nanophage
-	name = "nanophage"
-	desc = "A little drone made of pre-programmed nanites."
+	name = "nanofag"
+	desc = "Mały dron z zaprogramowanych nanitów."
 	icon_state = "nanophage"
 	icon_living = "nanophage"
 	icon_dead = "nanophage"

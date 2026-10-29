@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/netherworld
-	name = "creature"
-	desc = "A sanity-destroying otherthing from the netherworld."
+	name = "istota"
+	desc = "Niszczące umysł coś-innego z zaświatów."
 	icon_state = "otherthing"
 	icon_living = "otherthing"
 	icon_dead = "otherthing-dead"
@@ -21,7 +21,7 @@
 
 /mob/living/simple_animal/hostile/netherworld/migo
 	name = "mi-go"
-	desc = "A pinkish, fungoid crustacean-like creature with numerous pairs of clawed appendages and a head covered with waving antennae."
+	desc = "Różowawa, grzybopodobna istota przypominająca skorupiaka, z licznymi parami szponiastych odnóży i głową pokrytą falującymi czułkami."
 	speak_emote = list("krzyczy", "klika", "terkocze", "szczeka", "jęczy", "warczy", "miauczy", "dudni", "ryczy", "piszczy", "grzechocze", "woła", "wrzeszczy", "zauważa", "mamrocze", "trajkocze", "jąka się", "kipi złością")
 	icon_state = "mi-go"
 	icon_living = "mi-go"
@@ -52,8 +52,8 @@
 		playsound(src, chosen_sound, 50, TRUE)
 
 /mob/living/simple_animal/hostile/netherworld/blankbody
-	name = "blank body"
-	desc = "This looks human enough, but its flesh has an ashy texture, and it's face is featureless save an eerie smile."
+	name = "puste ciało"
+	desc = "Wygląda dość po ludzku, ale skóra ma popielatą fakturę, a twarz jest pozbawiona rysów, nie licząc upiornego uśmiechu."
 	icon_state = "blank-body"
 	icon_living = "blank-body"
 	icon_dead = "blank-dead"
@@ -65,7 +65,7 @@
 	deathmessage = "rozpada się w drobny pył."
 
 /obj/structure/spawner/nether
-	name = "netherworld link"
+	name = "łącze z zaświatami"
 	desc = null //see examine()
 	icon_state = "nether"
 	max_integrity = 50
@@ -106,6 +106,6 @@
 				var/mob/living/simple_animal/hostile/netherworld/blankbody/blank
 				blank = new(loc)
 				blank.name = "[M]"
-				blank.desc = "It's [M], but [M.p_their()] flesh has an ashy texture, and [M.p_their()] face is featureless save an eerie smile."
+				blank.desc = "To [M], ale skóra ma popielatą fakturę, a twarz jest pozbawiona rysów, nie licząc upiornego uśmiechu."
 				src.visible_message("<span class='warning'>[M] wyłania się z połączenia!</span>")
 				qdel(M)

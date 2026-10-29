@@ -77,12 +77,12 @@
 
 /datum/antagonist/infiltrator/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
+	.["Wyślij do bazy"] = CALLBACK(src,.proc/admin_send_to_base)
 
 /datum/antagonist/infiltrator/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.assigned_role = ROLE_INFILTRATOR
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has infiltrator'ed [new_owner.current].")
+	message_admins("[key_name_admin(admin)] robi z [new_owner.current] infiltratora.")
 	log_admin("[key_name(admin)] has infiltrator'ed [new_owner.current].")
 
 /datum/antagonist/infiltrator/proc/admin_send_to_base(mob/admin)

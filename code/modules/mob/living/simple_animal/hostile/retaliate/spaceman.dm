@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/spaceman
-	name = "Spaceman"
-	desc = "What in the actual hell..?"
+	name = "kosmonauta"
+	desc = "Co to, do diabła, jest..?"
 	icon_state = "old"
 	icon_living = "old"
 	icon_dead = "old_dead"
@@ -25,8 +25,8 @@
 	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/nanotrasenpeace //this should be in a different file
-	name = "\improper Nanotrasen Private Security Officer"
-	desc = "An officer part of Nanotrasen's private security force."
+	name = "\improper prywatny ochroniarz Nanotrasen"
+	desc = "Funkcjonariusz prywatnych sił ochrony Nanotrasen."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "nanotrasen"
 	icon_living = "nanotrasen"

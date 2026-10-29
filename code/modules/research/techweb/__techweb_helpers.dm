@@ -27,7 +27,7 @@
 		if(SSresearch.point_types[i])
 			ret += "[SSresearch.point_types[i]]: [pointlist[i]]"
 		else
-			ret += "ERRORED POINT TYPE: [pointlist[i]]"
+			ret += "BŁĘDNY TYP PUNKTÓW: [pointlist[i]]"
 	if(join)
 		return ret.Join("<BR>")
 	else
@@ -36,5 +36,5 @@
 /proc/techweb_point_display_rdconsole(pointlist, last_pointlist)
 	var/list/ret = list()
 	for(var/i in pointlist)
-		ret += "[SSresearch.point_types[i] || "ERRORED POINT TYPE"]: [pointlist[i]] (+[(last_pointlist[i]) * ((SSresearch.flags & SS_TICKER)? (600 / (world.tick_lag * SSresearch.wait)) : (600 / SSresearch.wait))]/ minute)"
+		ret += "[SSresearch.point_types[i] || "BŁĘDNY TYP PUNKTÓW"]: [pointlist[i]] (+[(last_pointlist[i]) * ((SSresearch.flags & SS_TICKER)? (600 / (world.tick_lag * SSresearch.wait)) : (600 / SSresearch.wait))]/min)"
 	return ret.Join("<BR>")

@@ -10,8 +10,8 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 //Main cryopod console.
 
 /obj/machinery/computer/cryopod
-	name = "cryogenic oversight console"
-	desc = "An interface between crew and the cryogenic storage oversight systems."
+	name = "konsola nadzoru kriogenicznego"
+	desc = "Interfejs między załogą a systemami nadzoru przechowywania kriogenicznego."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole_1"
 	// circuit = /obj/item/circuitboard/cryopodcontrol
@@ -103,8 +103,8 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 */
 //Cryopods themselves.
 /obj/machinery/cryopod
-	name = "cryogenic freezer"
-	desc = "Suited for Cyborgs and Humanoids, the pod is a safe place for personnel affected by the Space Sleep Disorder to get some rest."
+	name = "zamrażarka kriogeniczna"
+	desc = "Kapsuła odpowiednia dla cyborgów i humanoidów. To bezpieczne miejsce, w którym personel dotknięty Kosmicznym Zaburzeniem Snu może odpocząć."
 	icon = 'icons/obj/cryogenic2.dmi'
 	icon_state = "cryopod-open"
 	density = TRUE
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	// Don't send messages unless we *need* the computer, and less than five minutes have passed since last time we messaged
 	if(!control_computer_weakref && urgent && last_no_computer_message + 5*60*10 < world.time)
 		log_admin("Cryopod in [get_area(src)] could not find control computer!")
-		message_admins("Cryopod in [get_area(src)] could not find control computer!")
+		message_admins("Kriokapsuła w [get_area(src)] nie może znaleźć komputera sterującego!")
 		last_no_computer_message = world.time
 
 	return control_computer_weakref != null
@@ -353,9 +353,9 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	to_chat(target, "<span class='boldnotice'>Jeśli teraz zamienisz się w ducha, wylogujesz się lub zamkniesz klienta, twoja postać wkrótce zostanie trwale usunięta z rundy.</span>")
 	name = "[name] ([occupant.name])"
 	if((world.time - SSticker.round_start_time) < 5 MINUTES)
-		message_admins("<span class='danger'>[key_name_admin(target)], the [target.job] entered a stasis pod. (<A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a></span>)")
+		message_admins("<span class='danger'>[key_name_admin(target)] ([target.job]) wchodzi do kapsuły stazy. (<A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a></span>)")
 	else
-		message_admins("[key_name_admin(target)], the [target.job] entered a stasis pod. (<A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+		message_admins("[key_name_admin(target)] ([target.job]) wchodzi do kapsuły stazy. (<A HREF='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	log_admin("<span class='notice'>[key_name(target)], the [target.job] entered a stasis pod.</span>")
 	add_fingerprint(target)
 

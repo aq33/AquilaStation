@@ -11,7 +11,7 @@
 
 /datum/round_event/ghost_role/shadow_demon
 	minimum_required = 1
-	role_name = "shadow demon"
+	role_name = "demon cieni"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/shadow_demon/spawn_role()
@@ -21,12 +21,12 @@
 
 	var/list/spawn_locs = shadow_demon_spawn_locations()
 	if(!length(spawn_locs))
-		message_admins("No valid spawn locations found for a shadow demon, aborting...")
+		message_admins("Brak miejsc do pojawienia się dla demona cieni, przerywam...")
 		return MAP_ERROR
 
 	var/mob/dead/selected = pick(candidates)
 	var/mob/living/simple_animal/shadow_demon/demon = create_shadow_demon(selected.key, pick(spawn_locs))
-	message_admins("[ADMIN_LOOKUPFLW(demon)] has been made into a shadow demon by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(demon)] zostaje demonem cieni przez event.")
 	log_game("[key_name(demon)] was spawned as a shadow demon by an event.")
 	spawned_mobs += demon
 	return SUCCESSFUL_SPAWN

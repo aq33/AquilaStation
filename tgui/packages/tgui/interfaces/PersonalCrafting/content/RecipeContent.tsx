@@ -45,7 +45,7 @@ export function RecipeContentCompact(props: Props) {
                     const is_reagent = data.atom_data[atom_id - 1]?.is_reagent;
                     const amount = item.reqs[atom_id];
                     return is_reagent
-                      ? `${name}\xa0${amount}u`
+                      ? `${name}\xa0${amount}\xa0j.`
                       : amount > 1
                         ? `${name}\xa0${amount}x`
                         : name;
@@ -63,7 +63,7 @@ export function RecipeContentCompact(props: Props) {
                           data.atom_data[atom_id - 1]?.is_reagent;
                         const amount = item.chem_catalysts[atom_id];
                         return is_reagent
-                          ? `${name}\xa0${amount}u`
+                          ? `${name}\xa0${amount}\xa0j.`
                           : amount > 1
                             ? `${name}\xa0${amount}x`
                             : name;

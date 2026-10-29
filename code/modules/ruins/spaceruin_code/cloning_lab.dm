@@ -1,5 +1,5 @@
 /obj/item/paper/fluff/ruins/exp_cloning/manual
-	name = "paper - 'H-11 Cloning Apparatus Manual"
+	name = "kartka - „Instrukcja aparatu klonującego H-11”"
 	default_raw_text = {"<h4>Pierwsze kroki</h4>
 	Gratulacje, testujesz eksperymentalne urządzenie klonujące H-11!<br>
 	Korzystanie z H-11 jest prawie tak proste jak operacja mózgu! Wystarczy umieścić docelowego humanoida w komorze skanującej i wybrać opcję klonowania, by rozpocząć klonowanie!<br>
@@ -13,7 +13,7 @@
 	<font size=1>Technologia wyprodukowana na licencji Thinktronic Systems, LTD.</font>"}
 
 /obj/item/paper/fluff/ruins/exp_cloning/log
-	name = "experiment log"
+	name = "dziennik eksperymentu"
 	default_raw_text = {"<h4>Dzień 1</h4>
 	Jesteśmy bardzo podekscytowani, że należymy do pierwszej załogi SC Irmanda!<br>
 	Ten statek zbudowano do testowania innowacyjnej technologii FTL. Na początku miałem pewne obawy, \

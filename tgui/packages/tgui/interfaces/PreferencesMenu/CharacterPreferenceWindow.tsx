@@ -44,12 +44,12 @@ const CharacterProfiles = (props: {
             }}
             tooltip={
               !props.content_unlocked && slot >= props.maxSlot
-                ? 'Buy a BYOND Membership to unlock more slots!'
+                ? 'Kup członkostwo BYOND, żeby odblokować więcej miejsc!'
                 : null
             }
             fluid
           >
-            {profile ?? 'New Character'}
+            {profile ?? 'Nowa postać'}
           </Button>
         </Flex.Item>
       ))}
@@ -97,7 +97,7 @@ export const CharacterPreferenceWindow = (props) => {
 
   return (
     <Window
-      title="Character Preferences"
+      title="Ustawienia postaci"
       width={1200}
       height={770}
       theme="generic-yellow"
@@ -105,7 +105,7 @@ export const CharacterPreferenceWindow = (props) => {
         <>
           <Button
             icon="cog"
-            tooltip="Open Game Preferences"
+            tooltip="Otwórz ustawienia gry"
             tooltipPosition="bottom"
             style={{ borderRadius: '20px' }}
             onClick={() => act('open_game_preferences')}
@@ -143,7 +143,7 @@ export const CharacterPreferenceWindow = (props) => {
                   setPage={setCurrentPage}
                   otherActivePages={[Page.Species]}
                 >
-                  Character
+                  Postać
                 </PageButton>
               </Stack.Item>
 
@@ -157,7 +157,7 @@ export const CharacterPreferenceWindow = (props) => {
                     Fun fact: This isn't "Jobs" so that it intentionally
                     catches your eyes, because it's really important!
                   */}
-                  Occupations
+                  Zawody
                 </PageButton>
               </Stack.Item>
 
@@ -167,7 +167,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Loadout}
                   setPage={setCurrentPage}
                 >
-                  Loadout
+                  Wyposażenie
                 </PageButton>
               </Stack.Item>
 
@@ -177,7 +177,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Antags}
                   setPage={setCurrentPage}
                 >
-                  Antagonists
+                  Antagoniści
                 </PageButton>
               </Stack.Item>
 
@@ -187,7 +187,7 @@ export const CharacterPreferenceWindow = (props) => {
                   page={Page.Quirks}
                   setPage={setCurrentPage}
                 >
-                  Quirks
+                  Cechy
                 </PageButton>
               </Stack.Item>
             </Stack>

@@ -1,8 +1,8 @@
 
 // CHAINSAW
 /obj/item/chainsaw
-	name = "chainsaw"
-	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
+	name = "piła łańcuchowa"
+	desc = "Wszechstronne elektronarzędzie. Przydaje się do okrzesywania drzew i odcinania kończyn ludziom."
 	icon_state = "chainsaw_off"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
@@ -68,12 +68,12 @@
 
 // DOOMGUY CHAINSAW
 /obj/item/chainsaw/doomslayer
-	name = "THE GREAT COMMUNICATOR"
+	name = "WIELKI KOMUNIKATOR"
 	desc = "<span class='warning'>VRRRRRRR!!!</span>"
 	armour_penetration = 100
 	force_on = 30
 
-/obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/chainsaw/doomslayer/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
 		owner.visible_message("<span class='danger'>Ataki z dystansu tylko bardziej rozwścieczają [owner]!</span>")
 		playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, TRUE)
@@ -82,8 +82,8 @@
 
 // ENERGY CHAINSAW
 /obj/item/chainsaw/energy
-	name = "energy chainsaw"
-	desc = "Become Leatherspace."
+	name = "energetyczna piła łańcuchowa"
+	desc = "Zostań Leatherspace'em."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "echainsaw_off"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -130,8 +130,8 @@
 
 // DOOMGUY ENERGY CHAINSAW
 /obj/item/chainsaw/energy/doom
-	name = "super energy chainsaw"
-	desc = "The chainsaw you want when you need to kill every damn thing in the room."
+	name = "super energetyczna piła łańcuchowa"
+	desc = "Piła łańcuchowa, po którą sięgasz, gdy musisz zabić w pokoju wszystko, co się rusza."
 	force_on = 60
 	w_class = WEIGHT_CLASS_NORMAL
 	block_power = 75

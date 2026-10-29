@@ -1,5 +1,5 @@
 /datum/symptom/light
-	name = "Photosensitive muscle condensation"
+	name = "Światłoczuła kondensacja mięśni"
 	desc = "Wirus sprawia, że na świetle mięśnie się kurczą, co zmniejsza szybkość, ale zwiększa wytrzymałość. W ciemności mięśnie stają się bardziej elastyczne, przez co nosiciel porusza się szybciej, ale łatwiej o siniaki."
 	stealth = 0
 	resistance = 2
@@ -36,9 +36,9 @@
 			realpower = power * -1
 			healthchange = max(1 * realpower, (10 * realpower) - currenthealthmodifier)
 			if(prob(5))
-				to_chat(M, "<span class='warning'>[pick("You feel vulnerable.", "Your limbs feel loose and limber.", "The dark makes you feel relaxed.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Czujesz się bezbronny.", "Twoje kończyny są luźne i gibkie.", "Ciemność cię odpręża.")]</span>")
 		else if(prob(5))
-			to_chat(M, "<span class='warning'>[pick("Your muscles feel tight.", "You feel lethargic.", "Your muscles feel hard and tough.")]</span>")
+			to_chat(M, "<span class='warning'>[pick("Twoje mięśnie są napięte.", "Czujesz się ospały.", "Twoje mięśnie są twarde i wytrzymałe.")]</span>")
 	if(A.stage >= 5)
 		currenthealthmodifier += healthchange 
 		M.maxHealth += healthchange

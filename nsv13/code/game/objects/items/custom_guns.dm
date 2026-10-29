@@ -2,8 +2,8 @@
 	automatic = 1
 
 /obj/item/gun/ballistic/automatic/peacekeeper
-	name = "M2A45 security pulse rifle"
-	desc = "A large personal defense weapon commonly employed by Nanotrasen security forces. This advanced weapon uses a magnetic acceleration system in favour of traditional gunpowder, allowing specialized 6mm rounds to be loaded."
+	name = "policyjny karabin pulsacyjny M2A45"
+	desc = "Duża broń osobistej obrony, powszechnie używana przez ochronę Nanotrasen. Ta zaawansowana broń zamiast tradycyjnego prochu korzysta z akceleracji magnetycznej, co pozwala ładować specjalne naboje 6 mm."
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "peacekeeper"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -26,25 +26,25 @@
 	recoil = 0.1 //Tiny jolt when you fire it.
 
 /obj/item/ammo_casing/peacekeeper
-	name =  "6mm electro-shock round"
-	desc = "A 6mm tungsten round."
+	name =  "nabój elektrowstrząsowy 6 mm"
+	desc = "Wolframowy nabój 6 mm."
 	caliber = "6mm"
 	projectile_type = /obj/item/projectile/bullet/peacekeeper/stun
 	materials = list(/datum/material/iron=4000)
 
 /obj/item/ammo_casing/peacekeeper/lethal
-	name = "6mm tungsten round"
+	name = "wolframowy nabój 6 mm"
 	projectile_type = /obj/item/projectile/bullet/peacekeeper
 
 /obj/item/projectile/bullet/peacekeeper
-	name = "6mm tungsten round"
+	name = "wolframowy nabój 6 mm"
 	damage = 10 //Hopefully making it bias towards armorpen should make it less likely to kill people straight out.
 	armour_penetration = 30
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "pdc"
 
 /obj/item/projectile/bullet/peacekeeper/stun
-	name = "6mm electro-shock round"
+	name = "nabój elektrowstrząsowy 6 mm"
 	damage = 6 //Straight up WAY worse than the security glock at stunning, but they serve a purpose
 	armour_penetration = 0 //Less strong. Can't penetrate armor.
 	stamina = 15 //Slightly more than 3 bursts to stun
@@ -54,7 +54,7 @@
 	color = "#f5e3b3"
 
 /obj/item/ammo_box/magazine/peacekeeper
-	name = "M2A45 pulse rifle magazine (nonlethal)"
+	name = "magazynek karabinu pulsacyjnego M2A45 (nieśmiercionośny)"
 	icon = 'nsv13/icons/obj/ammo.dmi'
 	icon_state = "peacekeeper_stun"
 	ammo_type = /obj/item/ammo_casing/peacekeeper
@@ -62,7 +62,7 @@
 	max_ammo = 75
 
 /obj/item/ammo_box/magazine/peacekeeper/lethal
-	name = "pinned M2A45 pulse rifle magazine (lethal)"
+	name = "zablokowany magazynek karabinu pulsacyjnego M2A45 (śmiercionośny)"
 	icon_state = "peacekeeper"
 	ammo_type = /obj/item/ammo_casing/peacekeeper/lethal
 	caliber = "6mm"
@@ -128,8 +128,8 @@
 	pin = /obj/item/firing_pin/boarding
 
 /obj/item/gun/ballistic/shotgun/automatic/pistol
-	name = "\improper Solir 4 revolver hybrid"
-	desc = "A retro high-powered shotgun revolver typically used by high ranking officials. Uses shells."
+	name = "\improper hybrydowy rewolwer Solir 4"
+	desc = "Retro rewolwer-strzelba dużej mocy, zwykle używany przez wysokich rangą urzędników. Strzela nabojami śrutowymi."
 	icon_state = "shotgunpistol"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -145,16 +145,16 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 
 /obj/item/ammo_box/shotgun_lethal
-	name = "speed loader (buckshot)"
-	desc = "Designed to quickly reload shell-based revolvers."
+	name = "szybkoładowacz (śrut)"
+	desc = "Służy do szybkiego przeładowania rewolwerów na naboje śrutowe."
 	icon_state = "shotlethal"
 	ammo_type = /obj/item/ammo_casing/shotgun/buckshot
 	max_ammo = 6
 	multiple_sprites = 1
 
 /obj/item/gun/ballistic/rifle/boltaction/pdc
-	name = "\improper Point Defence Rifle"
-	desc = "A rifle made to fire PDC rounds."
+	name = "\improper karabin obrony punktowej"
+	desc = "Karabin strzelający pociskami PDC."
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "pdcrifle"
 	item_state = "pdcrifle"

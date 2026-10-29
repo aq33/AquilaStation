@@ -1,8 +1,8 @@
 // Formerly [code/game/objects/items/devices/PDA/radio.dm]
 // Radio Cartridge, essentially a remote signaler with limited spectrum.
 /obj/item/integrated_signaler
-	name = "\improper PDA radio module"
-	desc = "An electronic radio system of Nanotrasen origin."
+	name = "\improper moduł radiowy PDA"
+	desc = "Elektroniczny system radiowy produkcji Nanotrasen."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "power_mod"
 
@@ -35,7 +35,7 @@
 	var/turf/T = get_turf(src)
 	GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> [format_frequency(frequency)]/[code]")
 	log_telecomms("[time] <B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(frequency)]/[code]")
-	message_admins("<B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(frequency)]/[code]")
+	message_admins("<B>:</B> [usr.key] używa [src] w [AREACOORD(T)] <B>:</B> częstotliwość: [format_frequency(frequency)]/[code]")
 
 	var/datum/signal/signal = new(list("code" = code))
 	radio_connection.post_signal(src, signal, filter = RADIO_SIGNALER)

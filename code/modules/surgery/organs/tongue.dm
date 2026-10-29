@@ -1,6 +1,6 @@
 /obj/item/organ/tongue
-	name = "tongue"
-	desc = "A fleshy muscle mostly used for lying."
+	name = "język"
+	desc = "Mięsisty mięsień używany głównie do kłamania."
 	icon_state = "tonguenormal"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_TONGUE
@@ -57,8 +57,8 @@
 	return is_type_in_typecache(dt, languages_possible)
 
 /obj/item/organ/tongue/lizard
-	name = "forked tongue"
-	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."
+	name = "rozwidlony język"
+	desc = "Cienki i długi mięsień typowy dla ras gadzich. Podobno dorabia też jako nos."
 	icon_state = "tonguelizard"
 	say_mod = "syczy"
 	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
@@ -85,8 +85,8 @@
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/fly
-	name = "proboscis"
-	desc = "A freakish looking meat tube that apparently can take in liquids."
+	name = "trąbka"
+	desc = "Dziwacznie wyglądająca mięsna rurka, która podobno potrafi wciągać płyny."
 	icon_state = "tonguefly"
 	say_mod = "brzęczy"
 	taste_sensitivity = 25 // you eat vomit, this is a mercy
@@ -105,8 +105,8 @@
 	speech_args[SPEECH_MESSAGE] = message
 
 /obj/item/organ/tongue/abductor
-	name = "superlingual matrix"
-	desc = "A mysterious structure that allows for instant communication between users. Pretty impressive until you need to eat something."
+	name = "matryca nadjęzykowa"
+	desc = "Tajemnicza struktura, która pozwala na natychmiastową łączność między użytkownikami. Robi wrażenie, dopóki nie trzeba czegoś zjeść."
 	icon_state = "tongueayylmao"
 	say_mod = "bełkocze"
 	taste_sensitivity = 101 // ayys cannot taste anything.
@@ -157,8 +157,8 @@
 	speech_args[SPEECH_MESSAGE] = ""
 
 /obj/item/organ/tongue/zombie
-	name = "rotting tongue"
-	desc = "Between the decay and the fact that it's just lying there you doubt a tongue has ever seemed less sexy."
+	name = "gnijący język"
+	desc = "Rozkład i to, że po prostu tak sobie leży, sprawiają, że wątpisz, by jakikolwiek język wyglądał kiedyś mniej seksownie."
 	icon_state = "tonguezombie"
 	say_mod = "jęczy"
 	modifies_speech = TRUE
@@ -177,13 +177,13 @@
 			message_list[insertpos] = inserttext + "..."
 
 		if(prob(20) && message_list.len > 3)
-			message_list.Insert(insertpos, "[pick("BRAINS", "Brains", "Braaaiinnnsss", "BRAAAIIINNSSS")]...")
+			message_list.Insert(insertpos, "[pick("MÓZGI", "Mózgi", "Móóózgiii", "MÓÓÓZGIII")]...")
 
 	speech_args[SPEECH_MESSAGE] = jointext(message_list, " ")
 
 /obj/item/organ/tongue/alien
-	name = "alien tongue"
-	desc = "According to leading xenobiologists the evolutionary benefit of having a second mouth in your mouth is \"that it looks badass\"."
+	name = "język obcego"
+	desc = "Według czołowych ksenobiologów ewolucyjna korzyść z posiadania drugich ust w ustach polega na tym, że „wygląda to zajebiście”."
 	icon_state = "tonguexeno"
 	say_mod = "syczy"
 	taste_sensitivity = 10 // LIZARDS ARE ALIENS CONFIRMED
@@ -205,8 +205,8 @@
 */ // AQ EDIT END
 
 /obj/item/organ/tongue/bee
-	name = "proboscis"
-	desc = "A freakish looking meat tube that apparently can take in liquids, this one smells slighlty like flowers."
+	name = "trąbka"
+	desc = "Dziwacznie wyglądająca mięsna rurka, która podobno potrafi wciągać płyny. Ta pachnie lekko kwiatami."
 	icon_state = "tonguefly"
 	say_mod = "brzęczy"
 	taste_sensitivity = 5
@@ -215,8 +215,8 @@
 	toxic_food = MEAT | RAW
 
 /obj/item/organ/tongue/bone
-	name = "bone \"tongue\""
-	desc = "Apparently skeletons alter the sounds they produce through oscillation of their teeth, hence their characteristic rattling."
+	name = "kostny „język”"
+	desc = "Podobno szkielety modulują wydawane dźwięki drganiami zębów, stąd ich charakterystyczne grzechotanie."
 	icon_state = "tonguebone"
 	say_mod = "grzechocze"
 	attack_verb = list("gryzie", "szczęka na", "chrupie", "emaliuje", "kościeje")
@@ -243,16 +243,16 @@
 			speech_args[SPEECH_SPANS] |= SPAN_PAPYRUS
 
 /obj/item/organ/tongue/bone/plasmaman
-	name = "plasma bone \"tongue\""
-	desc = "Like animated skeletons, Plasmamen vibrate their teeth in order to produce speech."
+	name = "plazmowy kostny „język”"
+	desc = "Podobnie jak ożywione szkielety, plazmaludzie mówią, wprawiając zęby w drgania."
 	icon_state = "tongueplasma"
 	modifies_speech = FALSE
 	disliked_food = FRUIT | CLOTH
 	liked_food = VEGETABLES
 
 /obj/item/organ/tongue/robot
-	name = "robotic voicebox"
-	desc = "A voice synthesizer that can interface with organic lifeforms."
+	name = "robotyczny syntezator mowy"
+	desc = "Syntezator głosu, który potrafi porozumiewać się z organicznymi formami życia."
 	status = ORGAN_ROBOTIC
 	organ_flags = NONE
 	icon_state = "tonguerobot"
@@ -274,7 +274,7 @@
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /obj/item/organ/tongue/snail
-	name = "snail tongue"
+	name = "ślimaczy język"
 	modifies_speech = TRUE
 	say_mod = "bełkocze"
 
@@ -289,8 +289,8 @@
 	speech_args[SPEECH_MESSAGE] = new_message
 
 /obj/item/organ/tongue/ethereal
-	name = "electric discharger"
-	desc = "A sophisticated ethereal organ, capable of synthesising speech via electrical discharge."
+	name = "wyładowywacz elektryczny"
+	desc = "Wyrafinowany organ eteryków, który syntetyzuje mowę za pomocą wyładowań elektrycznych."
 	icon_state = "electrotongue"
 	say_mod = "trzeszczy"
 	attack_verb = list("razi prądem", "wstrząsa", "razi")
@@ -302,8 +302,8 @@
 	languages_possible = languages_possible_base += typecacheof(/datum/language/voltaic)
 
 /obj/item/organ/tongue/golem
-	name = "mineral tongue"
-	desc = "A strange tongue made out of some kind of mineral. It's smooth, but flexible."
+	name = "mineralny język"
+	desc = "Dziwny język z jakiegoś minerału. Jest gładki, ale giętki."
 	say_mod = "dudni"
 	taste_sensitivity = 101 //They don't eat.
 	icon_state = "adamantine_cords"
@@ -313,25 +313,25 @@
 	languages_possible = languages_possible_base += typecacheof(/datum/language/terrum)
 
 /obj/item/organ/tongue/golem/bananium
-	name = "bananium tongue"
-	desc = "It's a tongue made out of pure bananium."
+	name = "bananiumowy język"
+	desc = "To język z czystego bananium."
 	say_mod = "trąbi"
 
 /obj/item/organ/tongue/golem/clockwork
-	name = "clockwork tongue"
-	desc = "It's a tongue made out of many tiny cogs. You can hear a very subtle clicking noise emanating from it."
+	name = "mechaniczny język"
+	desc = "To język z wielu maleńkich trybików. Słychać, jak bardzo cicho z niego klika."
 	say_mod = "klika"
 
 /obj/item/organ/tongue/cat
-	name = "cat tongue"
-	desc = "A rough tongue, full of small, boney spines all over it's surface."
+	name = "koci język"
+	desc = "Szorstki język pokryty na całej powierzchni drobnymi, kostnymi kolcami."
 	say_mod = "mówi" //NSV13
 	disliked_food = GROSS | VEGETABLES | SUGAR | CLOTH
 	liked_food = DAIRY | MEAT | GORE
 
 /obj/item/organ/tongue/slime
-	name = "slimey tongue"
-	desc = "It's a piece of slime, shaped like a tongue."
+	name = "szlamowaty język"
+	desc = "To kawałek szlamu w kształcie języka."
 	say_mod = list("bulgocze", "bąbelkuje")
 	ask_mod = "bulgocze pytająco"
 	yell_mod = "bulgocze piskliwie"
@@ -345,8 +345,8 @@
 	languages_possible = languages_possible_base += typecacheof(/datum/language/slime)
 
 /obj/item/organ/tongue/moth
-	name = "mothic tongue"
-	desc = "It's long and noodly."
+	name = "język ćmy"
+	desc = "Jest długi i makaronowaty."
 	say_mod = "trzepocze"
 	icon_state = "tonguemoth"
 	liked_food = VEGETABLES | DAIRY | CLOTH
@@ -354,15 +354,15 @@
 	toxic_food = MEAT | RAW
 
 /obj/item/organ/tongue/teratoma
-	name = "malformed tongue"
-	desc = "It's a tongue that looks off... Must be from a creature that shouldn't exist."
+	name = "zdeformowany język"
+	desc = "Ten język wygląda dziwnie... Musi pochodzić od stworzenia, które nie powinno istnieć."
 	say_mod = "mamrocze"
 	icon_state = "tonguefly"
 	disliked_food = CLOTH
 	liked_food = JUNKFOOD | FRIED | GROSS | RAW | GORE
 
 /obj/item/organ/tongue/podperson
-	name = "plant tongue"
-	desc = "It's an odd tongue, seemingly made of plant matter."
+	name = "roślinny język"
+	desc = "Dziwny język, z pozoru zrobiony z materii roślinnej."
 	disliked_food = MEAT | DAIRY
 	liked_food = VEGETABLES | FRUIT | GRAIN | CLOTH //cannibals apparently

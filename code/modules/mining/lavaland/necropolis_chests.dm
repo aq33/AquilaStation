@@ -4,14 +4,14 @@
 
 
 /obj/structure/closet/crate/necropolis
-	name = "necropolis chest"
-	desc = "It's watching you closely."
+	name = "skrzynia z Nekropolii"
+	desc = "Uważnie cię obserwuje."
 	icon_state = "necro_crate"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	door_anim_time = 0
 
 /obj/structure/closet/crate/necropolis/tendril
-	desc = "It's watching you suspiciously."
+	desc = "Podejrzliwie cię obserwuje."
 	///prevents bust_open to fire
 	integrity_failure = 0
 	/// var to check if it got opened by a key
@@ -88,8 +88,8 @@
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc
-	name = "KA Mod Disk"
-	desc = "A design disc containing the design for a unique kinetic accelerator modkit. It's compatible with a research console."
+	name = "dysk z modem KA"
+	desc = "Dysk z projektem unikatowego zestawu modyfikacji kinetycznego akceleratora. Współpracuje z konsolą badawczą."
 	icon_state = "datadisk1"
 	var/modkit_design = /datum/design/unique_modkit
 
@@ -98,19 +98,19 @@
 	blueprints[1] = new modkit_design
 
 /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe
-	name = "Offensive Mining Explosion Mod Disk"
+	name = "dysk z modem ofensywnej eksplozji górniczej"
 	modkit_design = /datum/design/unique_modkit/offensive_turf_aoe
 
 /obj/item/disk/design_disk/modkit_disc/rapid_repeater
-	name = "Rapid Repeater Mod Disk"
+	name = "dysk z modem szybkiego powtarzania"
 	modkit_design = /datum/design/unique_modkit/rapid_repeater
 
 /obj/item/disk/design_disk/modkit_disc/resonator_blast
-	name = "Resonator Blast Mod Disk"
+	name = "dysk z modem wybuchu rezonatora"
 	modkit_design = /datum/design/unique_modkit/resonator_blast
 
 /obj/item/disk/design_disk/modkit_disc/bounty
-	name = "Death Syphon Mod Disk"
+	name = "dysk z modem syfonu śmierci"
 	modkit_design = /datum/design/unique_modkit/bounty
 
 /datum/design/unique_modkit
@@ -119,29 +119,29 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/unique_modkit/offensive_turf_aoe
-	name = "Kinetic Accelerator Offensive Mining Explosion Mod"
-	desc = "A device which causes kinetic accelerators to fire AoE blasts that destroy rock and damage creatures."
+	name = "Moduł kinetycznego akceleratora: ofensywna eksplozja górnicza"
+	desc = "Urządzenie, dzięki któremu kinetyczny akcelerator strzela obszarowymi wybuchami niszczącymi skałę i raniącymi stworzenia."
 	id = "hyperaoemod"
 	materials = list(/datum/material/iron = 7000, /datum/material/glass = 3000, /datum/material/silver = 3000, /datum/material/gold = 3000, /datum/material/diamond = 4000)
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs/andmobs
 
 /datum/design/unique_modkit/rapid_repeater
-	name = "Kinetic Accelerator Rapid Repeater Mod"
-	desc = "A device which greatly reduces a kinetic accelerator's cooldown on striking a living target or rock, but greatly increases its base cooldown."
+	name = "Moduł kinetycznego akceleratora: szybkie powtarzanie"
+	desc = "Urządzenie, które mocno skraca czas odnowienia kinetycznego akceleratora po trafieniu żywego celu lub skały, ale mocno wydłuża podstawowy czas odnowienia."
 	id = "repeatermod"
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/uranium = 8000, /datum/material/bluespace = 2000)
 	build_path = /obj/item/borg/upgrade/modkit/cooldown/repeater
 
 /datum/design/unique_modkit/resonator_blast
-	name = "Kinetic Accelerator Resonator Blast Mod"
-	desc = "A device which causes kinetic accelerators to fire shots that leave and detonate resonator blasts."
+	name = "Moduł kinetycznego akceleratora: wybuch rezonatora"
+	desc = "Urządzenie, dzięki któremu kinetyczny akcelerator strzela pociskami pozostawiającymi i detonującymi wybuchy rezonatora."
 	id = "resonatormod"
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 5000, /datum/material/silver = 5000, /datum/material/uranium = 5000)
 	build_path = /obj/item/borg/upgrade/modkit/resonator_blasts
 
 /datum/design/unique_modkit/bounty
-	name = "Kinetic Accelerator Death Syphon Mod"
-	desc = "A device which causes kinetic accelerators to permanently gain damage against creature types killed with it."
+	name = "Moduł kinetycznego akceleratora: syfon śmierci"
+	desc = "Urządzenie, dzięki któremu kinetyczny akcelerator na stałe zadaje więcej obrażeń rodzajom stworzeń, które nim zabito."
 	id = "bountymod"
 	materials = list(/datum/material/iron = 4000, /datum/material/silver = 4000, /datum/material/gold = 4000, /datum/material/bluespace = 4000)
 	reagents_list = list(/datum/reagent/blood = 40)
@@ -151,8 +151,8 @@
 
 //Rod of Asclepius
 /obj/item/rod_of_asclepius
-	name = "\improper Rod of Asclepius"
-	desc = "A wooden rod about the size of your forearm with a snake carved around it, winding its way up the sides of the rod. Something about it seems to inspire in you the responsibilty and duty to help others."
+	name = "\improper Laska Asklepiosa"
+	desc = "Drewniana laska wielkości twojego przedramienia, wokół której wije się wyrzeźbiony wąż. Coś w niej budzi w tobie poczucie odpowiedzialności i obowiązku pomagania innym."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "asclepius_dormant"
 	block_upgrade_walk = 1
@@ -209,14 +209,14 @@
 /obj/item/rod_of_asclepius/proc/activated()
 	item_flags = DROPDEL
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-	desc = "A short wooden rod with a mystical snake inseparably gripping itself and the rod to your forearm. It flows with a healing energy that disperses amongst yourself and those around you. "
+	desc = "Krótka drewniana laska z mistycznym wężem, który nierozerwalnie przytwierdza siebie i laskę do twojego przedramienia. Płynie z niej lecznicza energia, rozchodząca się po tobie i ludziach wokół. "
 	icon_state = "asclepius_active"
 	activated = TRUE
 
 //Memento Mori
 /obj/item/clothing/neck/necklace/memento_mori
 	name = "Memento Mori"
-	desc = "A mysterious pendant. An inscription on it says: \"Certain death tomorrow means certain life today.\""
+	desc = "Tajemniczy wisior. Wygrawerowano na nim: „Pewna śmierć jutro to pewne życie dziś”."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "memento_mori"
 	actions_types = list(/datum/action/item_action/hands_free/memento_mori)
@@ -262,7 +262,7 @@
 /datum/action/item_action/hands_free/memento_mori
 	check_flags = NONE
 	name = "Memento Mori"
-	desc = "Bind your life to the pendant."
+	desc = "Zwiąż swoje życie z wisiorem."
 
 /datum/action/item_action/hands_free/memento_mori/Trigger()
 	var/obj/item/clothing/neck/necklace/memento_mori/MM = target
@@ -276,8 +276,8 @@
 
 //Wisp Lantern
 /obj/item/wisp_lantern
-	name = "spooky lantern"
-	desc = "This lantern gives off no light, but is home to a friendly wisp."
+	name = "upiorna latarenka"
+	desc = "Ta latarenka nie daje światła, ale mieszka w niej przyjazny ognik."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "lantern-blue"
 	item_state = "lantern"
@@ -325,8 +325,8 @@
 	return ..()
 
 /obj/effect/wisp
-	name = "friendly wisp"
-	desc = "Happy to light your way."
+	name = "przyjazny ognik"
+	desc = "Chętnie oświetli ci drogę."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "orb"
 	light_system = MOVABLE_LIGHT
@@ -379,8 +379,8 @@
 
 // Relic water bottle
 /obj/item/reagent_containers/glass/waterbottle/relic
-	name = "ancient bottle of unknown reagent"
-	desc = "A bottle of water filled with unknown liquids. It seems to be radiating some kind of energy."
+	name = "pradawna butelka nieznanego odczynnika"
+	desc = "Butelka wody wypełniona nieznanymi płynami. Wydaje się promieniować jakąś energią."
 	flip_chance = 100 // FLIPP
 	list_reagents = list()
 
@@ -394,8 +394,8 @@
 
 //Red/Blue Cubes
 /obj/item/warp_cube
-	name = "blue cube"
-	desc = "A mysterious blue cube."
+	name = "niebieska kostka"
+	desc = "Tajemnicza niebieska kostka."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "blue_cube"
 	var/teleport_color = "#3FBAFD"
@@ -447,8 +447,8 @@
 	qdel(link_holder)
 
 /obj/item/warp_cube/red
-	name = "red cube"
-	desc = "A mysterious red cube."
+	name = "czerwona kostka"
+	desc = "Tajemnicza czerwona kostka."
 	icon_state = "red_cube"
 	teleport_color = "#FD3F48"
 
@@ -468,8 +468,8 @@
 
 //Meat Hook
 /obj/item/gun/magic/hook
-	name = "meat hook"
-	desc = "Mid or feed."
+	name = "hak rzeźnicki"
+	desc = "Na mida albo na feed."
 	ammo_type = /obj/item/ammo_casing/magic/hook
 	icon_state = "hook"
 	item_state = "chain"
@@ -482,15 +482,15 @@
 	attack_weight = 2
 
 /obj/item/ammo_casing/magic/hook
-	name = "hook"
-	desc = "A hook."
+	name = "hak"
+	desc = "Hak."
 	projectile_type = /obj/item/projectile/hook
 	caliber = "hook"
 	icon_state = "hook"
 
 /obj/item/projectile/hook
 	bleed_force = BLEED_SURFACE
-	name = "hook"
+	name = "hak"
 	icon_state = "hook"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	pass_flags = PASSTABLE
@@ -524,7 +524,7 @@
 
 //just a nerfed version of the real thing for the bounty hunters.
 /obj/item/gun/magic/hook/bounty
-	name = "hook"
+	name = "hak"
 	ammo_type = /obj/item/ammo_casing/magic/hook/bounty
 
 /obj/item/gun/magic/hook/bounty/shoot_with_empty_chamber(mob/living/user)
@@ -539,8 +539,8 @@
 
 //Immortality Talisman
 /obj/item/immortality_talisman
-	name = "\improper Immortality Talisman"
-	desc = "A dread talisman that can render you completely invulnerable."
+	name = "\improper Talizman nieśmiertelności"
+	desc = "Straszliwy talizman, który może uczynić cię całkowicie niezniszczalnym."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "talisman"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -552,7 +552,7 @@
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE)
 
 /datum/action/item_action/immortality
-	name = "Immortality"
+	name = "Nieśmiertelność"
 
 /obj/item/immortality_talisman/attack_self(mob/user)
 	if(cooldown < world.time)
@@ -563,8 +563,8 @@
 		to_chat(user, "<span class='warning'>[src] nie jest jeszcze gotowy!</span>")
 
 /obj/effect/immortality_talisman
-	name = "hole in reality"
-	desc = "It's shaped an awful lot like a person."
+	name = "dziura w rzeczywistości"
+	desc = "Bardzo przypomina kształtem człowieka."
 	icon_state = "blank"
 	icon = 'icons/effects/effects.dmi'
 	var/vanish_description = "znika z rzeczywistości"
@@ -578,7 +578,7 @@
 /obj/effect/immortality_talisman/proc/vanish(mob/user)
 	user.visible_message("<span class='danger'>[user] [vanish_description], zostawiając po sobie dziurę!</span>")
 
-	desc = "It's shaped an awful lot like [user.name]."
+	desc = "Bardzo przypomina kształtem: [user.name]."
 	setDir(user.dir)
 
 	user.forceMove(src)
@@ -619,16 +619,16 @@
 //Shared Bag
 
 /obj/item/shared_storage
-	name = "paradox bag"
-	desc = "Somehow, it's in two places at once."
+	name = "paradoksalna torba"
+	desc = "Jakimś cudem jest w dwóch miejscach naraz."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "cultpack"
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/shared_storage/red
-	name = "paradox bag"
-	desc = "Somehow, it's in two places at once."
+	name = "paradoksalna torba"
+	desc = "Jakimś cudem jest w dwóch miejscach naraz."
 
 /obj/item/shared_storage/red/Initialize(mapload)
 	. = ..()
@@ -650,8 +650,8 @@
 //Book of Babel
 
 /obj/item/book_of_babel
-	name = "Book of Babel"
-	desc = "An ancient tome written in countless tongues."
+	name = "Księga Babel"
+	desc = "Pradawna księga spisana w niezliczonych językach."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book1"
 	w_class = 2
@@ -671,8 +671,8 @@
 	icon_state = "potionflask"
 
 /obj/item/reagent_containers/glass/bottle/potion/flight
-	name = "strange elixir"
-	desc = "A flask with an almost-holy aura emitting from it. The label on the bottle says: 'erqo'hyy tvi'rf lbh jv'atf'."
+	name = "dziwny eliksir"
+	desc = "Flaszka, od której bije niemal święta aura. Etykieta na butelce mówi: 'erqo'hyy tvi'rf lbh jv'atf'."
 	list_reagents = list(/datum/reagent/flightpotion = 5)
 
 /obj/item/reagent_containers/glass/bottle/potion/update_icon()
@@ -682,7 +682,7 @@
 		icon_state = "potionflask_empty"
 
 /datum/reagent/flightpotion
-	name = "Flight Potion"
+	name = "Eliksir lotu"
 	description = "Dziwny związek mutagenny nieznanego pochodzenia."
 	reagent_state = LIQUID
 	process_flags = ORGANIC | SYNTHETIC
@@ -725,8 +725,8 @@
 
 
 /obj/item/jacobs_ladder
-	name = "jacob's ladder"
-	desc = "A celestial ladder that violates the laws of physics."
+	name = "drabina Jakubowa"
+	desc = "Niebiańska drabina, która łamie prawa fizyki."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder00"
 
@@ -745,15 +745,15 @@
 
 // Inherit from unbreakable but don't set ID, to suppress the default Z linkage
 /obj/structure/ladder/unbreakable/jacob
-	name = "jacob's ladder"
-	desc = "An indestructible celestial ladder that violates the laws of physics."
+	name = "drabina Jakubowa"
+	desc = "Niezniszczalna niebiańska drabina, która łamie prawa fizyki."
 
 ///Bosses
 
 //Legion
 
 /obj/structure/closet/crate/necropolis/legion
-	name = "legion chest"
+	name = "skrzynia legionu"
 
 /obj/structure/closet/crate/necropolis/legion/PopulateContents()
 	var/list/choices = subtypesof(/obj/machinery/anomalous_crystal)
@@ -764,15 +764,15 @@
 //Miniboss Miner
 
 /obj/structure/closet/crate/necropolis/bdm
-	name = "blood-drunk miner chest"
+	name = "skrzynia górnika upojonego krwią"
 
 /obj/structure/closet/crate/necropolis/bdm/PopulateContents()
 	new /obj/item/melee/transforming/cleaving_saw(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
 
 /obj/item/melee/transforming/cleaving_saw
-	name = "cleaving saw"
-	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
+	name = "piła rozłupująca"
+	desc = "Ta piła, skuteczna w toczeniu krwi bestii, przekształca się w długi tasak korzystający z siły odśrodkowej."
 	force = 8
 	bleed_force = BLEED_CUT
 	force_on = 15 //force when active
@@ -865,7 +865,7 @@
 //Dragon
 
 /obj/structure/closet/crate/necropolis/dragon
-	name = "dragon chest"
+	name = "skrzynia smoka"
 
 /obj/structure/closet/crate/necropolis/dragon/PopulateContents()
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
@@ -874,8 +874,8 @@
 // Ghost Sword - left in for other references and admin shenanigans
 
 /obj/item/melee/ghost_sword
-	name = "\improper spectral blade"
-	desc = "A rusted and dulled blade. It doesn't look like it'd do much damage. It glows weakly."
+	name = "\improper widmowe ostrze"
+	desc = "Zardzewiałe i stępione ostrze. Nie wygląda, jakby mogło zadać duże obrażenia. Słabo świeci."
 	icon_state = "spectral"
 	item_state = "spectral"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -963,7 +963,7 @@
 	user.visible_message("<span class='danger'>[user] uderza z siłą [ghost_counter] mściwych duchów!</span>")
 	..()
 
-/obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/ghost_sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/ghost_counter = ghost_check()
 	final_block_chance += CLAMP((ghost_counter * 5), 0, 75)
 	owner.visible_message("<span class='danger'>[owner] jest chroniony przez krąg duchów (liczba: [ghost_counter])!</span>")
@@ -972,8 +972,8 @@
 //Blood
 
 /obj/item/dragons_blood
-	name = "bottle of dragons blood"
-	desc = "You're not actually going to drink this, are you?"
+	name = "butelka smoczej krwi"
+	desc = "Chyba nie zamierzasz tego pić, co?"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
 
@@ -1001,11 +1001,11 @@
 	qdel(src)
 
 /datum/disease/transformation/dragon
-	name = "dragon transformation"
-	cure_text = "nothing"
+	name = "smocza przemiana"
+	cure_text = "nic"
 	cures = list(/datum/reagent/medicine/adminordrazine)
-	agent = "dragon's blood"
-	desc = "What do dragons have to do with Space Station 13?"
+	agent = "smocza krew"
+	desc = "Co smoki mają wspólnego ze Stacją Kosmiczną 13?"
 	stage_prob = 20
 	danger = DISEASE_BIOHAZARD
 	visibility_flags = 0
@@ -1020,8 +1020,8 @@
 //Lava Staff
 
 /obj/item/lava_staff
-	name = "staff of lava"
-	desc = "The ability to fill the emergency shuttle with lava. What more could you want out of life?"
+	name = "laska lawy"
+	desc = "Możliwość zalania promu ewakuacyjnego lawą. Czego więcej chcieć od życia?"
 	icon_state = "staffofstorms"
 	item_state = "staffofstorms"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
@@ -1066,7 +1066,7 @@
 				var/old_name = T.name
 				if(T.TerraformTurf(turf_type, flags = CHANGETURF_INHERIT_AIR))
 					user.visible_message("<span class='danger'>[user] zamienia [old_name] w [transform_string]!</span>")
-					message_admins("[ADMIN_LOOKUPFLW(user)] fired the lava staff at [ADMIN_VERBOSEJMP(T)]")
+					message_admins("[ADMIN_LOOKUPFLW(user)] strzela z laski lawy w [ADMIN_VERBOSEJMP(T)]")
 					log_game("[key_name(user)] fired the lava staff at [AREACOORD(T)].")
 					timer = world.time + create_cooldown
 					playsound(T,'sound/magic/fireball.ogg', 200, 1)
@@ -1086,7 +1086,7 @@
 
 //Bubblegum
 /obj/structure/closet/crate/necropolis/bubblegum
-	name = "bubblegum chest"
+	name = "skrzynia Bubblegum"
 
 /obj/structure/closet/crate/necropolis/bubblegum/PopulateContents()
 	new /obj/item/clothing/suit/space/hostile_environment(src)
@@ -1094,8 +1094,8 @@
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
 
 /obj/item/mayhem
-	name = "mayhem in a bottle"
-	desc = "A magically infused bottle of blood, the scent of which will drive anyone nearby into a murderous frenzy."
+	name = "chaos w butelce"
+	desc = "Magicznie nasycona butelka krwi, której zapach doprowadza każdego w pobliżu do morderczego szału."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
 
@@ -1105,16 +1105,16 @@
 		INVOKE_ASYNC(B, TYPE_PROC_REF(/obj/effect/mine/pickup/bloodbath, mineEffect), H)
 	to_chat(user, "<span class='notice'>Rozbijasz butelkę!</span>")
 	playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
-	message_admins("<span class='adminnotice'>[ADMIN_LOOKUPFLW(user)] has activated a bottle of mayhem!</span>")
+	message_admins("<span class='adminnotice'>[ADMIN_LOOKUPFLW(user)] aktywuje butelkę chaosu!</span>")
 	log_combat(user, null, "activated a bottle of mayhem", src)
 	qdel(src)
 
 /obj/item/blood_contract
-	name = "blood contract"
+	name = "kontrakt krwi"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
 	color = "#FF0000"
-	desc = "Mark your target for death."
+	desc = "Naznacz swój cel na śmierć."
 	var/used = FALSE
 
 /obj/item/blood_contract/attack_self(mob/user)
@@ -1145,7 +1145,7 @@
 
 	var/mob/living/L = choice
 
-	message_admins("<span class='adminnotice'>[ADMIN_LOOKUPFLW(L)] has been marked for death by [ADMIN_LOOKUPFLW(user)]!</span>")
+	message_admins("<span class='adminnotice'>[ADMIN_LOOKUPFLW(L)] zostaje naznaczony na śmierć przez [ADMIN_LOOKUPFLW(user)]!</span>")
 
 	var/datum/antagonist/blood_contract/A = new
 	L.mind.add_antag_datum(A)
@@ -1155,7 +1155,7 @@
 
 //Colossus
 /obj/structure/closet/crate/necropolis/colossus
-	name = "colossus chest"
+	name = "skrzynia Kolosa"
 
 /obj/structure/closet/crate/necropolis/colossus/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/colossus))
@@ -1170,15 +1170,15 @@
 //Hierophant
 
 /obj/structure/closet/crate/necropolis/hierophant
-	name = "hierophant chest"
+	name = "skrzynia Hierofanta"
 
 /obj/structure/closet/crate/necropolis/hierophant/PopulateContents()
 	new /obj/item/hierophant_club(src)
 	new /obj/effect/spawner/lootdrop/megafaunaore(src)
 
 /obj/item/hierophant_club
-	name = "hierophant club"
-	desc = "The strange technology of this large club allows various nigh-magical feats. It used to beat you, but now you can set the beat."
+	name = "maczuga Hierofanta"
+	desc = "Dziwna technologia tej dużej maczugi pozwala na niemal magiczne wyczyny. Kiedyś biła cię w rytm, teraz ty nadajesz rytm."
 	icon_state = "hierophant_club_ready_beacon"
 	item_state = "hierophant_club_ready_beacon"
 	icon = 'icons/obj/lavaland/artefacts.dmi'
@@ -1447,7 +1447,7 @@
 
 //Just some minor stuff
 /obj/structure/closet/crate/necropolis/puzzle
-	name = "puzzling chest"
+	name = "zagadkowa skrzynia"
 
 /obj/structure/closet/crate/necropolis/puzzle/PopulateContents()
 	var/loot = rand(1,5)
@@ -1464,8 +1464,8 @@
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 
 /obj/item/skeleton_key
-	name = "skeleton key"
-	desc = "An artifact usually found in the hands of the natives of lavaland, which NT now holds a monopoly on."
+	name = "klucz-szkielet"
+	desc = "Artefakt spotykany zwykle w rękach tubylców Lavalandu, na który NT ma teraz monopol."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "skeleton_key"
 	w_class = WEIGHT_CLASS_SMALL

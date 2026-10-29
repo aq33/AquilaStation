@@ -31,8 +31,8 @@
 	GLOB.rpg_loot_items = TRUE
 
 /obj/item/upgradescroll
-	name = "item fortification scroll"
-	desc = "Somehow, this piece of paper can be applied to items to make them \"better\". Apparently there's a risk of losing the item if it's already \"too good\". <i>This all feels so arbitrary...</i>"
+	name = "zwój wzmacniania przedmiotów"
+	desc = "W jakiś sposób ten kawałek papieru można nałożyć na przedmiot, żeby był „lepszy”. Podobno jest ryzyko utraty przedmiotu, jeśli jest już „za dobry”. <i>Wszystko to wydaje się takie arbitralne...</i>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll"
 	w_class = WEIGHT_CLASS_TINY
@@ -78,15 +78,15 @@
 		qdel(src)
 
 /obj/item/upgradescroll/unlimited
-	name = "unlimited foolproof item fortification scroll"
-	desc = "Somehow, this piece of paper can be applied to items to make them \"better\". This scroll is made from the tongues of dead paper wizards, and can be used an unlimited number of times, with no drawbacks."
+	name = "niezawodny zwój nieograniczonego wzmacniania przedmiotów"
+	desc = "W jakiś sposób ten kawałek papieru można nałożyć na przedmiot, żeby był „lepszy”. Zwój zrobiono z języków martwych papierowych czarodziejów i można go używać bez ograniczeń i bez żadnych wad."
 	uses = INFINITY
 	can_backfire = FALSE
 
 /datum/rpg_loot
-	var/positive_prefix = "okay"
-	var/negative_prefix = "weak"
-	var/suffix = "something profound"
+	var/positive_prefix = "przeciętność"
+	var/negative_prefix = "słabość"
+	var/suffix = "czegoś głębokiego"
 	var/quality = 0
 
 	var/obj/item/attached
@@ -102,9 +102,9 @@
 	return ..()
 
 /datum/rpg_loot/proc/randomise()
-	var/static/list/prefixespositive = list("greater", "major", "blessed", "superior", "empowered", "honed", "true", "glorious", "robust")
-	var/static/list/prefixesnegative = list("lesser", "minor", "blighted", "inferior", "enfeebled", "rusted", "unsteady", "tragic", "gimped")
-	var/static/list/suffixes = list("orc slaying", "elf slaying", "corgi slaying", "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma", "the forest", "the hills", "the plains", "the sea", "the sun", "the moon", "the void", "the world", "the fool", "many secrets", "many tales", "many colors", "rending", "sundering", "the night", "the day")
+	var/static/list/prefixespositive = list("wielkość", "potęga", "błogosławieństwo", "wyższość", "wzmocnienie", "ostrość", "prawdziwość", "chwała", "krzepa")
+	var/static/list/prefixesnegative = list("małość", "liche wykonanie", "plugawość", "podrzędność", "osłabienie", "rdza", "chwiejność", "tragedia", "kalectwo")
+	var/static/list/suffixes = list("zabijania orków", "zabijania elfów", "zabijania corgi", "siły", "zręczności", "kondycji", "inteligencji", "mądrości", "charyzmy", "lasu", "wzgórz", "równin", "morza", "słońca", "księżyca", "pustki", "świata", "głupca", "wielu sekretów", "wielu opowieści", "wielu barw", "rozdzierania", "rozłupywania", "nocy", "dnia")
 
 	var/new_quality = pick(1;15, 2;14, 2;13, 2;12, 3;11, 3;10, 3;9, 4;8, 4;7, 4;6, 5;5, 5;4, 5;3, 6;2, 6;1, 6;0)
 
@@ -122,11 +122,11 @@
 	if(!original_name)
 		original_name = I.name
 	if(quality < 0)
-		I.name = "[negative_prefix] [original_name] of [suffix] [quality]"
+		I.name = "[original_name] [suffix] ([negative_prefix]) [quality]"
 	else if(quality == 0)
-		I.name = "[original_name] of [suffix]"
+		I.name = "[original_name] [suffix]"
 	else if(quality > 0)
-		I.name = "[positive_prefix] [original_name] of [suffix] +[quality]"
+		I.name = "[original_name] [suffix] ([positive_prefix]) +[quality]"
 
 /datum/rpg_loot/proc/modify(quality_mod)
 	var/obj/item/I = attached

@@ -182,7 +182,7 @@
 /datum/dynamic_ruleset/roundstart/wizard/acceptable(population=0, threat=0)
 	if(GLOB.wizardstart.len == 0)
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		message_admins("Nie można przyjąć zestawu zasad Czarodzieja. Nie znaleziono punktów pojawienia się czarodzieja.")
 		return FALSE
 	return ..()
 
@@ -439,7 +439,7 @@
 	flags = LONE_RULESET
 
 /datum/dynamic_ruleset/roundstart/extended/pre_execute()
-	message_admins("Starting a round of extended.")
+	message_admins("Rozpoczyna się runda extended.")
 	log_game("Starting a round of extended.")
 	mode.spend_roundstart_budget(mode.round_start_budget)
 	mode.spend_midround_budget(mode.mid_round_budget)

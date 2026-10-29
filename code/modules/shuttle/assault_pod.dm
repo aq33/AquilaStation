@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/assault_pod
-	name = "assault pod"
+	name = "kapsuła szturmowa"
 	id = "steel_rain"
 	dwidth = 3
 	width = 7
@@ -18,13 +18,13 @@
 
 
 /obj/item/assault_pod
-	name = "Assault Pod Targeting Device"
+	name = "urządzenie namierzające kapsuły szturmowej"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-red"
 	item_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	desc = "Used to select a landing zone for assault pods."
+	desc = "Służy do wybierania strefy lądowania kapsuł szturmowych."
 	var/shuttle_id = "steel_rain"
 	var/dwidth = 3
 	var/dheight = 0
@@ -47,7 +47,7 @@
 		return
 	var/obj/docking_port/stationary/landing_zone = new /obj/docking_port/stationary(T)
 	landing_zone.id = "assault_pod([REF(src)])"
-	landing_zone.name = "Landing Zone"
+	landing_zone.name = "Strefa lądowania"
 	landing_zone.dwidth = dwidth
 	landing_zone.dheight = dheight
 	landing_zone.width = width

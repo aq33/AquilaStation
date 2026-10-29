@@ -1,8 +1,8 @@
 //modular computer program version is located in code\modules\modular_computers\file_system\programs\powermonitor.dm, /datum/computer_file/program/power_monitor
 
 /obj/machinery/computer/monitor
-	name = "power monitoring console"
-	desc = "It monitors power levels across the station."
+	name = "konsola monitorowania zasilania"
+	desc = "Monitoruje poziomy zasilania na całej stacji."
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	light_color = LIGHT_COLOR_YELLOW
@@ -24,8 +24,8 @@
 	var/is_secret_monitor = FALSE
 
 /obj/machinery/computer/monitor/secret //Hides the power monitor (such as ones on ruins & CentCom) from PDA's to prevent metagaming.
-	name = "outdated power monitoring console"
-	desc = "It monitors power levels across the local powernet."
+	name = "przestarzała konsola monitorowania zasilania"
+	desc = "Monitoruje poziomy zasilania w lokalnej sieci energetycznej."
 	circuit = /obj/item/circuitboard/computer/powermonitor/secret
 	is_secret_monitor = TRUE
 

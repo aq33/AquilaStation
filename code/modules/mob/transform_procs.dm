@@ -200,8 +200,8 @@
 
 	// hash the original name?
 	if(tr_flags & TR_HASHNAME)
-		O.name = "living teratoma ([copytext_char(rustg_hash_string(RUSTG_HASH_MD5, real_name), 2, 6)])"
-		O.real_name = "living teratoma ([copytext_char(rustg_hash_string(RUSTG_HASH_MD5, real_name), 2, 6)])"
+		O.name = "żywa teratoma ([copytext_char(rustg_hash_string(RUSTG_HASH_MD5, real_name), 2, 6)])"
+		O.real_name = "żywa teratoma ([copytext_char(rustg_hash_string(RUSTG_HASH_MD5, real_name), 2, 6)])"
 
 	//handle DNA and other attributes
 	dna.transfer_identity(O)
@@ -505,7 +505,7 @@
 			landmark_loc += sloc.loc
 
 	if(!landmark_loc.len)
-		message_admins("Could not find ai landmark for [src]. Yell at a mapper! We are spawning them at their current location.")
+		message_admins("Nie znaleziono landmarku SI dla [src]. Nakrzycz na mappera! SI pojawia się w obecnym miejscu.")
 		landmark_loc += loc
 
 	if(client)
@@ -543,7 +543,7 @@
 	if(R.mmi)
 		R.mmi.name = "[initial(R.mmi.name)]: [real_name]"
 		if(R.mmi.brain)
-			R.mmi.brain.name = "[real_name]'s brain"
+			R.mmi.brain.name = "mózg [real_name]"
 		if(R.mmi.brainmob)
 			R.mmi.brainmob.real_name = real_name //the name of the brain inside the cyborg is the robotized human's name.
 			R.mmi.brainmob.name = real_name
@@ -649,7 +649,7 @@
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Choose a type") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Wybierz typ") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<span class='danger'>Przepraszamy, ten typ moba jest obecnie niedostępny.</span>")
@@ -671,7 +671,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Choose a type") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/mobpath = input("W jaki typ moba ma się zmienić [src]?", "Wybierz typ") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<span class='danger'>Przepraszamy, ten typ moba jest obecnie niedostępny.</span>")

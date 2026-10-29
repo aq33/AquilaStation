@@ -4,8 +4,8 @@
 	var/list/default_hardpoints = list(/obj/item/vehicle_hardpoint/engine, /obj/item/vehicle_hardpoint/wheels) //What does it start with, if anything.
 
 /obj/item/vehicle_hardpoint
-	name = "generic hardpoint"
-	desc = "Yell at kmc"
+	name = "ogólny punkt mocowania"
+	desc = "Nakrzycz na kmc."
 	icon = 'nsv13/icons/obj/vehicles32.dmi'
 	icon_state = "hitch"
 	var/obj/vehicle/sealed/car/realistic/owner = null
@@ -183,7 +183,7 @@
 /obj/vehicle/sealed/car/realistic/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CarHardpoints")
+		ui = new(user, src, "CarHardpoints", "Punkty mocowania pojazdu")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -233,8 +233,8 @@
 //Specific subtypes.
 
 /obj/item/vehicle_hardpoint/crate_loader
-	name = "C4RG-GNG Crate loader"
-	desc = "A hardpoint allowing you to load crates into a vehicle, "
+	name = "ładowacz skrzyń C4RG-GNG"
+	desc = "Punkt mocowania, który pozwala ładować skrzynie do pojazdu."
 	icon_state = "crate_storage"
 	max_capacity = 10 //Lots of crates!
 	accepted_items = list(/obj/structure/closet/crate, /obj/item/storage) //What items do we take? CSV format, typepaths.
@@ -242,29 +242,29 @@
 //Upgradable engines! Makes the car go faster.
 
 /obj/item/vehicle_hardpoint/engine
-	name = "V2 Engine"
-	desc = "A very slow, but highly efficient micro generator, capable of affording a vehicle basic propulsion. It's not particularly flashy, but it gets the job done."
+	name = "silnik V2"
+	desc = "Bardzo wolny, ale wysoce wydajny mikrogenerator, który zapewnia pojazdowi podstawowy napęd. Nie robi wrażenia, ale spełnia swoje zadanie."
 	icon_state = "engine"
 	var/torque = 2
 	var/topspeed = 7
 
 /obj/item/vehicle_hardpoint/engine/pathetic
-	name = "Speed Limited Engine"
-	desc = "A very slow, but highly efficient micro generator, capable of affording a vehicle basic propulsion. It has had a speed limiter installed to prevent workplace accidents in the hangar bay."
+	name = "silnik z ogranicznikiem prędkości"
+	desc = "Bardzo wolny, ale wysoce wydajny mikrogenerator, który zapewnia pojazdowi podstawowy napęd. Ma zamontowany ogranicznik prędkości, żeby zapobiegać wypadkom przy pracy w hangarze."
 	icon_state = "engine"
 	torque = 1
 	topspeed = 3
 
 /obj/item/vehicle_hardpoint/engine/upgraded
-	name = "V4 Turbocharged Engine"
-	desc = "A powerful engine with high torque and a turbocharger, capable of affording a vehicle some considerable speed."
+	name = "turbodoładowany silnik V4"
+	desc = "Mocny silnik z dużym momentem obrotowym i turbosprężarką, który pozwala pojazdowi rozwinąć sporą prędkość."
 	icon_state = "engine_v4"
 	torque = 4
 	topspeed = 10
 
 /obj/item/vehicle_hardpoint/engine/maxupgrade
-	name = "V8 Turbocharged Engine"
-	desc = "An extremely powerful, prototype engine, including a dump valve, turbocharger, phase of the moon sensor and electrostatic conversion matrix. This engine can make a car go EXTREMELY quickly, but may make the vehicle hard to control without sufficiently good tyres!."
+	name = "turbodoładowany silnik V8"
+	desc = "Niezwykle mocny prototypowy silnik z zaworem upustowym, turbosprężarką, czujnikiem fazy księżyca i elektrostatyczną matrycą konwersji. Ten silnik rozpędza auto NIESAMOWICIE szybko, ale bez odpowiednio dobrych opon pojazd może być trudny do opanowania!"
 	icon_state = "engine_v8"
 	torque = 10
 	topspeed = 70 //Don't make me regret this
@@ -282,24 +282,24 @@
 	target.canmove = FALSE
 
 /obj/item/vehicle_hardpoint/wheels
-	name = "Basic Tyres"
-	desc = "Some old, worn out tyres that aren't very effective. They'll keep you heading in a straight line, but don't ask too much more of them. These Tyres will skid a lot, especially at high speeds. Be careful with the accelerator."
+	name = "podstawowe opony"
+	desc = "Stare, zużyte i mało skuteczne opony. Utrzymają cię na prostej, ale nie wymagaj od nich wiele więcej. Te opony często wpadają w poślizg, zwłaszcza przy dużych prędkościach. Uważaj z gazem."
 	icon_state = "wheels"
 	var/turnspeed = 40
 	var/static_traction = 3 //How good are the tyres?. THis behaves somewhat like acceleration, but it shouldnt be more efficient than 9.8, which is the gravity on earth
 	var/kinetic_traction = 1.5 //if you are moving sideways and the static traction wasnt enough to kill it, you skid and you will have less traction, but allowing you to drift. KINETIC IE moving traction
 
 /obj/item/vehicle_hardpoint/wheels/heavy
-	name = "Heavy Duty Tyres"
-	desc = "A set of industrial tyres, with a wide tread designed to hold heavy weights. They'll keep you glued to the deck quite nicely, but may turn sluggishly. These are not designed for high speeds, and will cause you to skid a lot if you go too quickly."
+	name = "wzmocnione opony"
+	desc = "Komplet przemysłowych opon z szerokim bieżnikiem, przystosowanych do dużych obciążeń. Całkiem nieźle trzymają się pokładu, ale mogą ospale skręcać. Nie są przeznaczone do dużych prędkości i przy zbyt szybkiej jeździe często wpadają w poślizg."
 	icon_state = "wheels_upgrade"
 	turnspeed = 40
 	static_traction = 9.8 //How good are the tyres?. THis behaves somewhat like acceleration, but it shouldnt be more efficient than 9.8, which is the gravity on earth
 	kinetic_traction = 5 //if you are moving sideways and the static traction wasnt enough to kill it, you skid and you will have less traction, but allowing you to drift. KINETIC IE moving traction
 
 /obj/item/vehicle_hardpoint/wheels/sports
-	name = "Sports Tyres"
-	desc = "A set of highly advanced, finely balanced sports tyres. These have solid traction, but are still somewhat loose, making the steering feel lighter and allowing you to drift the car more easily. These Tyres are tuned for racing, and will tolerate extremely high speeds."
+	name = "opony sportowe"
+	desc = "Komplet bardzo zaawansowanych, starannie wyważonych opon sportowych. Mają solidną przyczepność, ale wciąż trochę luzu, dzięki czemu kierownica chodzi lżej, a autem łatwiej driftować. Te opony są dostrojone do wyścigów i znoszą bardzo duże prędkości."
 	icon_state = "wheels_maxupgrade"
 	turnspeed = 70
 	static_traction = 5.5 //How good are the tyres?. THis behaves somewhat like acceleration, but it shouldnt be more efficient than 9.8, which is the gravity on earth
@@ -318,8 +318,8 @@
 	target.static_traction = 0
 
 /obj/item/vehicle_hardpoint/cryo_stasis
-	name = "MGS4 Cryo Stasis Unit"
-	desc = "An advanced, vehicle mounted cryo-stasis unit used to stabilise a patient."
+	name = "jednostka kriostazy MGS4"
+	desc = "Zaawansowana jednostka kriostazy montowana w pojeździe, służąca do stabilizowania pacjenta."
 	icon_state = "cryostasis"
 	max_capacity = 1
 	accepted_items = list(/mob/living) //Yes, i'm objectifying people. Upset?
@@ -349,8 +349,8 @@
 
 //Research stuff
 /datum/design/vehicle_crate_loader
-	name = "Vehicle crate loading rack"
-	desc = "A module which allows you to store crates and other small storage objects inside of cargo tugs."
+	name = "Stojak na skrzynie do pojazdu"
+	desc = "Moduł, który pozwala przechowywać skrzynie i inne małe pojemniki w holownikach towarowych."
 	id = "vehicle_crate_loader"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000)
@@ -359,8 +359,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/vehicle_cryo_stasis
-	name = "Vehicle cryo stasis module"
-	desc = "A module which allows you to cryogenically suspend people inside of large vehicles, awaiting treatment by medical professionals."
+	name = "Moduł kriostazy do pojazdu"
+	desc = "Moduł, który pozwala zamrażać ludzi w dużych pojazdach, zanim zajmie się nimi personel medyczny."
 	id = "vehicle_cryo_stasis"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 10000)
@@ -369,8 +369,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pathetic_engine
-	name = "Speed-Limited 'Safety' Engine"
-	desc = "A basic engine for large vehicles. Comes pre-installed with a speed limiter to prevent high-speed automotive accidents or illicit races on the flight deck."
+	name = "„Bezpieczny” silnik z ogranicznikiem prędkości"
+	desc = "Podstawowy silnik do dużych pojazdów. Ma fabrycznie zamontowany ogranicznik prędkości, który zapobiega wypadkom przy dużych prędkościach i nielegalnym wyścigom na pokładzie lotniczym."
 	id = "vehicle_engine_pathetic"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000)
@@ -379,8 +379,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v2_engine
-	name = "Basic engine"
-	desc = "A basic engine for large vehicles."
+	name = "Podstawowy silnik"
+	desc = "Podstawowy silnik do dużych pojazdów."
 	id = "vehicle_engine"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000)
@@ -389,8 +389,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v4_engine
-	name = "Upgraded engine"
-	desc = "A powerful engine for large vehicles."
+	name = "Ulepszony silnik"
+	desc = "Mocny silnik do dużych pojazdów."
 	id = "vehicle_engine_upgraded"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/silver = 10000, /datum/material/copper=5000)
@@ -399,8 +399,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v8_engine
-	name = "V8 engine"
-	desc = "An experimental, extremely powerful engine for large vehicles."
+	name = "Silnik V8"
+	desc = "Eksperymentalny, niezwykle mocny silnik do dużych pojazdów."
 	id = "vehicle_engine_maxupgrade"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/silver = 10000, /datum/material/copper=5000, /datum/material/diamond=10000)
@@ -409,8 +409,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v1_wheels
-	name = "Basic Tyres"
-	desc = "Basic wheels for large vehicles."
+	name = "Podstawowe opony"
+	desc = "Podstawowe koła do dużych pojazdów."
 	id = "vehicle_tyres"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000)
@@ -419,8 +419,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v4_wheels
-	name = "Heavy Duty Tyres"
-	desc = "Heavy duty Tyres for large vehicles."
+	name = "Wzmocnione opony"
+	desc = "Wzmocnione opony do dużych pojazdów."
 	id = "vehicle_tyres_upgraded"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/silver = 10000, /datum/material/copper=5000)
@@ -429,8 +429,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/v8_wheels
-	name = "Sports Tyres"
-	desc = "An experimental, extremely powerful engine for large vehicles."
+	name = "Opony sportowe"
+	desc = "Sportowe opony do dużych pojazdów."
 	id = "vehicle_tyres_maxupgrade"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/silver=10000, /datum/material/diamond=5000)

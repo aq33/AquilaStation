@@ -49,7 +49,7 @@ export const PDSRManipulator = (props) => {
     return (
       <Window theme="ntos" width={400} height={400}>
         <Window.Content>
-          <Section title="Nanotrasen P.A.W.Sible Deniability Filter - ENABLED">
+          <Section title="Filtr Wiarygodnego Zaprzeczenia Nanotrasen (P.A.W.S.) – WŁĄCZONY">
             <img
               src={data.chosenKitty}
               style={{
@@ -68,7 +68,7 @@ export const PDSRManipulator = (props) => {
     <Window theme="ntos" width={700} height={450}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Power Statistics">
+          <Section title="Statystyki zasilania">
             <Flex spacing={1}>
               <Flex.Item grow={1}>
                 <Section fill position="relative" height="100%">
@@ -102,7 +102,7 @@ export const PDSRManipulator = (props) => {
               <Flex.Item width="280px">
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Available Power">
+                    <LabeledList.Item label="Dostępna moc">
                       <ProgressBar
                         value={data.available_power}
                         minValue={0}
@@ -116,7 +116,7 @@ export const PDSRManipulator = (props) => {
                         {data.available_power / 1e6 + ' MW'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Input Power">
+                    <LabeledList.Item label="Moc wejściowa">
                       <Slider
                         tickWhileDragging
                         value={data.r_power_input}
@@ -144,7 +144,7 @@ export const PDSRManipulator = (props) => {
                         {data.r_power_input / 1e6 + ' MW'}
                       </Slider>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Maximum Safe Power">
+                    <LabeledList.Item label="Maksymalna bezpieczna moc">
                       <ProgressBar
                         value={data.r_max_power_input}
                         minValue={0}
@@ -154,7 +154,7 @@ export const PDSRManipulator = (props) => {
                         {data.r_max_power_input / 1e6 + ' MW'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Minimum Safe Power">
+                    <LabeledList.Item label="Minimalna bezpieczna moc">
                       <ProgressBar
                         value={data.r_min_power_input}
                         minValue={0}
@@ -164,12 +164,12 @@ export const PDSRManipulator = (props) => {
                         {data.r_min_power_input / 1e6 + ' MW'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Screen Status">
+                    <LabeledList.Item label="Stan osłony">
                       <Button
                         fluid
                         icon="shield-alt"
                         color={data.s_active ? 'green' : 'red'}
-                        content={data.s_active ? 'Online' : 'Offline'}
+                        content={data.s_active ? 'Aktywna' : 'Nieaktywna'}
                       />
                     </LabeledList.Item>
                   </LabeledList>
@@ -177,10 +177,10 @@ export const PDSRManipulator = (props) => {
               </Flex.Item>
             </Flex>
           </Section>
-          <Section title="Screen Manipulation">
-            Screen Strength: {data.s_integrity + ' | ' + data.s_max_integrity}
+          <Section title="Sterowanie osłoną">
+            Siła osłony: {data.s_integrity + ' | ' + data.s_max_integrity}
             <br />
-            Screen Integrity:
+            Integralność osłony:
             <ProgressBar
               value={data.s_integrity / data.s_max_integrity}
               ranges={{
@@ -189,7 +189,7 @@ export const PDSRManipulator = (props) => {
                 bad: [-Infinity, 0.15],
               }}
             />
-            Screen Stability:
+            Stabilność osłony:
             <ProgressBar
               value={data.s_stability}
               minValue={0}
@@ -204,7 +204,7 @@ export const PDSRManipulator = (props) => {
                 bad: [-Infinity, 33],
               }}
             />
-            Screen Hardening:
+            Utwardzenie osłony:
             <Slider
               tickWhileDragging
               value={data.s_hardening}
@@ -221,7 +221,7 @@ export const PDSRManipulator = (props) => {
             >
               {data.s_hardening + ' %'}
             </Slider>
-            Screen Regeneration:
+            Regeneracja osłony:
             <Slider
               tickWhileDragging
               value={data.s_regen}
@@ -237,7 +237,7 @@ export const PDSRManipulator = (props) => {
             >
               {data.s_regen + ' %'}
             </Slider>
-            Screen Particle Density:
+            Gęstość cząstek osłony:
             <Button
               fluid
               icon="shield-alt"
@@ -247,8 +247,8 @@ export const PDSRManipulator = (props) => {
               }
               content={
                 data.s_density
-                  ? 'High - Unspecialized Deflection'
-                  : 'Low - High-Energy Kinetics Deflection'
+                  ? 'Wysoka – odbijanie niewyspecjalizowane'
+                  : 'Niska – odbijanie wysokoenergetycznej kinetyki'
               }
               onClick={() => act('density')}
             />

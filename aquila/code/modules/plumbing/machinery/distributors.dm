@@ -1,6 +1,6 @@
 /obj/machinery/plumbing/buffer
-	name = "automatic buffer"
-	desc = "A chemical holding tank that waits for neighbouring automatic buffers to complete before allowing a withdrawal. Connect/reset by screwdrivering"
+	name = "automatyczny bufor"
+	desc = "Zbiornik na chemikalia, który czeka, aż sąsiednie automatyczne bufory też się napełnią, zanim pozwoli coś pobrać. Łączysz i resetujesz go śrubokrętem."
 	icon_state = "buffer"
 	buffer = 200
 
@@ -168,8 +168,8 @@
 
 ///it splits the reagents however you want. So you can "every 60 units, 45 goes left and 15 goes straight". The side direction is EAST, you can change this in the component
 /obj/machinery/plumbing/splitter
-	name = "chemical splitter"
-	desc = "A chemical splitter for smart chemical factorization. Waits till a set of conditions is met and then stops all input and splits the buffer evenly or other in two ducts."
+	name = "rozdzielacz chemikaliów"
+	desc = "Rozdzielacz do sprytnej produkcji chemikaliów. Czeka, aż zostaną spełnione warunki, potem wstrzymuje dopływ i dzieli zawartość bufora po równo albo inaczej między dwie rury."
 	icon_state = "splitter"
 	buffer = 100
 	density = FALSE
@@ -235,8 +235,8 @@
 
 ///chemical plumbing filter. If it's not filtered by left and right, it goes straight.
 /obj/machinery/plumbing/filter
-	name = "chemical filter"
-	desc = "A chemical filter for filtering chemicals. The left and right outputs appear to be from the perspective of the input port."
+	name = "filtr chemikaliów"
+	desc = "Filtr do filtrowania chemikaliów. Lewe i prawe wyjście liczy się z perspektywy wejścia."
 	icon_state = "filter"
 	density = FALSE
 
@@ -313,8 +313,8 @@
 #define MAX_DISPOSAL_RATE 25
 
 /obj/machinery/plumbing/disposer
-	name = "chemical disposer"
-	desc = "Breaks down chemicals and annihilates them."
+	name = "utylizator chemikaliów"
+	desc = "Rozkłada chemikalia i całkowicie je niszczy."
 	icon_state = "disposal"
 	density = FALSE
 	active_power_usage = 70

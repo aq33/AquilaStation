@@ -1,6 +1,6 @@
 /obj/item/food/eggplantparm
-	name = "eggplant parmigiana"
-	desc = "The only good recipe for eggplant."
+	name = "bakłażan po parmeńsku"
+	desc = "Jedyny dobry przepis na bakłażana."
 	icon_state = "eggplantparm"
 
 	food_reagents = list(
@@ -15,7 +15,7 @@
 
 /obj/item/food/yakiimo
 	name = "yaki imo"
-	desc = "Made with roasted sweet potatoes!"
+	desc = "Z pieczonych batatów!"
 	icon_state = "yakiimo"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -27,8 +27,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/roastparsnip
-	name = "roast parsnip"
-	desc = "Sweet and crunchy."
+	name = "pieczony pasternak"
+	desc = "Słodki i chrupiący."
 	icon_state = "roastparsnip"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -41,8 +41,8 @@
 
 // Potatoes
 /obj/item/food/tatortot
-	name = "tator tot"
-	desc = "A large fried potato nugget that may or may not try to valid you."
+	name = "krokiecik ziemniaczany"
+	desc = "Duży smażony ziemniaczany nugget, który może próbować cię zvalidować. Albo nie."
 	icon_state = "tatortot"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("ziemniak" = 3, "validy" = 1)
@@ -56,8 +56,8 @@
 	AddElement(/datum/element/dunkable, 10)
 
 /obj/item/food/loaded_baked_potato
-	name = "loaded baked potato"
-	desc = "A piping hot baked potato, with the insides scooped out and mixed with bacon bits, cheese, and cabbage."
+	name = "faszerowany pieczony ziemniak"
+	desc = "Gorący pieczony ziemniak z wydrążonym środkiem wymieszanym z kawałkami boczku, serem i kapustą."
 	icon_state = "loadedbakedpotato"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
@@ -71,8 +71,8 @@
 
 // Fries
 /obj/item/food/fries
-	name = "space fries"
-	desc = "AKA: French Fries, Freedom Fries, etc."
+	name = "kosmiczne frytki"
+	desc = "Znane też jako: frytki belgijskie, frytki wolności itp."
 	icon_state = "fries"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4)
 	tastes = list("frytki" = 3, "sól" = 1)
@@ -85,8 +85,8 @@
 	AddElement(/datum/element/dunkable, 10)
 
 /obj/item/food/cheesyfries
-	name = "cheesy fries"
-	desc = "Fries. Covered in cheese. Duh."
+	name = "frytki z serem"
+	desc = "Frytki. Z serem. No przecież."
 	icon_state = "cheesyfries"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -102,8 +102,8 @@
 	AddElement(/datum/element/dunkable, 10)
 
 /obj/item/food/carrotfries
-	name = "carrot fries"
-	desc = "Tasty fries from fresh carrots."
+	name = "frytki z marchewki"
+	desc = "Smaczne frytki ze świeżej marchewki."
 	icon_state = "carrotfries"
 
 	food_reagents = list(

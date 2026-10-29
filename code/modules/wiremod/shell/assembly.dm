@@ -5,8 +5,8 @@
 */
 
 /obj/item/assembly/modular
-	name = "modular assembly"
-	desc = "a modified remote signalling device with its wiring removed and adapted for integrated circuitry."
+	name = "zespół modułowy"
+	desc = "Zmodyfikowany zdalny sygnalizator z usuniętym okablowaniem, przystosowany do układów scalonych."
 	icon_state = "wiremod"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'

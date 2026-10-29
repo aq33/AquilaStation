@@ -11,8 +11,8 @@
 	weapon_weight = WEAPON_MEDIUM
 
 /obj/item/gun/ballistic/automatic/proto
-	name = "\improper Nanotrasen Saber SMG"
-	desc = "A prototype three-round burst 9mm submachine gun, designated 'SABR'. Has a threaded barrel for suppressors."
+	name = "\improper pistolet maszynowy Saber Nanotrasen"
+	desc = "Prototypowy pistolet maszynowy 9mm strzelający seriami po trzy naboje, oznaczenie „SABR”. Lufa ma gwint na tłumik."
 	icon_state = "saber"
 	mag_type = /obj/item/ammo_box/magazine/smgm9mm
 	pin = null
@@ -57,8 +57,8 @@
 	autofire_target = null
 
 /obj/item/gun/ballistic/automatic/c20r
-	name = "\improper C-20r SMG"
-	desc = "A bullpup two-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	name = "\improper pistolet maszynowy C-20r"
+	desc = "Pistolet maszynowy .45 w układzie bullpup, strzelający seriami po dwa naboje, oznaczenie „C-20r”. Na kolbie ma wybity napis „Scarborough Arms - Per falcis, per pravitas”."
 	icon_state = "c20r"
 	item_state = "c20r"
 	mag_type = /obj/item/ammo_box/magazine/smgm45
@@ -82,8 +82,8 @@
 	update_icon()
 
 /obj/item/gun/ballistic/automatic/wt550
-	name = "security auto rifle"
-	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	name = "policyjny karabin automatyczny"
+	desc = "Przestarzała broń osobistej obrony. Strzela nabojami 4.6x30mm, oznaczenie: karabin automatyczny WT-550."
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
@@ -104,8 +104,8 @@
 	. = ..()
 
 /obj/item/gun/ballistic/automatic/mini_uzi
-	name = "\improper Type U3 Uzi"
-	desc = "A lightweight submachine gun, for when you really want someone dead. Uses 9mm rounds."
+	name = "\improper Uzi typ U3"
+	desc = "Lekki pistolet maszynowy na okazję, gdy naprawdę chcesz kogoś martwego. Strzela nabojami 9mm."
 	icon_state = "miniuzi"
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	bolt_type = BOLT_TYPE_OPEN
@@ -114,8 +114,8 @@
 	rack_sound = "sound/weapons/pistollock.ogg"
 
 /obj/item/gun/ballistic/automatic/m90
-	name = "\improper M-90gl Carbine"
-	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Ma podlufowy granatnik, z którego strzelasz prawym przyciskiem myszy."
+	name = "\improper karabinek M-90gl"
+	desc = "Karabinek 5.56 ładowany od góry, strzelający seriami po trzy naboje, oznaczenie „M-90gl”. Ma podlufowy granatnik, z którego strzelasz prawym przyciskiem myszy."
 	icon_state = "m90"
 	item_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
@@ -181,8 +181,8 @@
 	return
 
 /obj/item/gun/ballistic/automatic/tommygun
-	name = "\improper Thompson SMG"
-	desc = "Based on the classic 'Chicago Typewriter'."
+	name = "\improper pistolet maszynowy Thompson"
+	desc = "Wzorowany na klasycznej „maszynie do pisania z Chicago”."
 	icon_state = "tommygun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_HUGE
@@ -194,8 +194,8 @@
 	bolt_type = BOLT_TYPE_OPEN
 
 /obj/item/gun/ballistic/automatic/ar
-	name = "\improper NT-ARG 'Boarder'"
-	desc = "A robust assault rifle used by Nanotrasen fighting forces."
+	name = "\improper NT-ARG „Abordażysta”"
+	desc = "Solidny karabin szturmowy używany przez siły zbrojne Nanotrasen."
 	icon_state = "arg"
 	item_state = "arg"
 	slot_flags = 0
@@ -209,7 +209,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw
 	name = "\improper L6 SAW"
-	desc = "A heavily modified 7.12x82mm light machine gun, designated 'L6 SAW'. Has 'Aussec Armoury - 2531' engraved on the receiver below the designation."
+	desc = "Mocno zmodyfikowany lekki karabin maszynowy 7.12x82mm, oznaczenie „L6 SAW”. Na komorze zamkowej pod oznaczeniem wygrawerowano „Aussec Armoury - 2531”."
 	icon_state = "l6"
 	item_state = "l6closedmag"
 	w_class = WEIGHT_CLASS_HUGE
@@ -242,7 +242,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
 	cover_open = !cover_open
-	to_chat(user, "<span class='notice'>You [cover_open ? "open" : "close"] [src]'s cover.</span>")
+	to_chat(user, "<span class='notice'>[cover_open ? "Otwierasz" : "Zamykasz"] osłonę [src].</span>")
 	if(cover_open)
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	else
@@ -284,8 +284,8 @@
 // SNIPER //
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
-	name = "sniper rifle"
-	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
+	name = "karabin snajperski"
+	desc = "Broń dalekiego zasięgu, która zadaje poważne obrażenia. Nie, quickscope nie zadziała."
 	icon_state = "sniper"
 	item_state = "sniper"
 	fire_sound = "sound/weapons/sniper_shot.ogg"
@@ -306,8 +306,8 @@
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
-	name = "syndicate sniper rifle"
-	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
+	name = "karabin snajperski Syndykatu"
+	desc = "Nielegalnie zmodyfikowany karabin snajperski kalibru .50, który przyjmuje tłumik. Quickscope nadal nie działa."
 	can_suppress = TRUE
 	can_unsuppress = TRUE
 	pin = /obj/item/firing_pin/implant/pindicate
@@ -315,8 +315,8 @@
 // Old Semi-Auto Rifle //
 
 /obj/item/gun/ballistic/automatic/surplus
-	name = "Surplus Rifle"
-	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	name = "karabin z demobilu"
+	desc = "Jeden z niezliczonych przestarzałych karabinów balistycznych, wciąż używanych jako tani środek odstraszający. Strzela amunicją 10mm, a masywna konstrukcja nie pozwala strzelać z jednej ręki."
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
@@ -333,8 +333,8 @@
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
-	name = "laser rifle"
-	desc = "Though sometimes mocked for the relatively weak firepower of their energy weapons, the logistic miracle of rechargeable ammunition has given Nanotrasen a decisive edge over many a foe."
+	name = "karabin laserowy"
+	desc = "Z broni energetycznej Nanotrasen czasem się kpi z powodu stosunkowo słabej siły ognia, ale logistyczny cud amunicji wielokrotnego ładowania dał firmie decydującą przewagę nad niejednym wrogiem."
 	icon_state = "oldrifle"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/recharge

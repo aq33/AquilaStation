@@ -1,4 +1,4 @@
-/proc/tgui_select_picture(mob/user, list/datum/picture/choices, title = "Select Photo")
+/proc/tgui_select_picture(mob/user, list/datum/picture/choices, title = "Wybierz zdjęcie")
 	if (!user)
 		user = usr
 	if (!istype(user))

@@ -1,6 +1,6 @@
 /obj/item/storage/box/coffeepack/robusta
-	name = "robusta beans"
-	desc = "A bag containing fresh, dry coffee robusta beans. Ethically sourced and packaged by Waffle Corp."
+	name = "ziarna kawy robusta"
+	desc = "Torebka ze świeżymi, suchymi ziarnami kawy robusta. Pozyskane etycznie i zapakowane przez Waffle Corp."
 	illustration = null
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "robusta_beans"
@@ -16,8 +16,8 @@
 		bean.add_atom_colour("#ad7257", FIXED_COLOUR_PRIORITY)
 
 /obj/item/storage/box/coffeepack/arabica
-	name = "arabica beans"
-	desc = "A bag containing fresh, dry coffee arabica beans. Ethically sourced and packaged by Waffle Corp."
+	name = "ziarna kawy arabika"
+	desc = "Torebka ze świeżymi, suchymi ziarnami kawy arabika. Pozyskane etycznie i zapakowane przez Waffle Corp."
 	illustration = null
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "arabica_beans"

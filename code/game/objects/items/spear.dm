@@ -3,8 +3,8 @@
 	icon_state = "spearglass0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "spear"
-	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
+	name = "włócznia"
+	desc = "Sklecona byle jak, ale wciąż zabójcza broń o starożytnym wzorze."
 	force = 10
 	bleed_force = BLEED_CUT
 	w_class = WEIGHT_CLASS_BULKY
@@ -58,7 +58,7 @@
 	return ..()
 
 /obj/item/spear/explosive
-	name = "explosive lance"
+	name = "lanca wybuchowa"
 	icon_prefix = "spearbomb"
 	icon_state = "spearbomb0"
 	var/obj/item/grenade/explosive = null
@@ -81,7 +81,7 @@
 		G = new /obj/item/grenade/iedcasing() //For admin-spawned explosive lances
 	G.forceMove(src)
 	explosive = G
-	desc = "A makeshift spear with [G] attached to it"
+	desc = "Prowizoryczna włócznia z przyczepionym ładunkiem: [G]."
 	update_icon()
 
 /obj/item/spear/explosive/CheckParts(list/parts_list)
@@ -134,8 +134,8 @@
 
 //GREY TIDE
 /obj/item/spear/grey_tide
-	name = "\improper Grey Tide"
-	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualities among Nanotrasen military forces."
+	name = "\improper Szara Fala"
+	desc = "Odzyskana po buncie na pokładzie Placówki Obronnej Theta Aegis, gdzie z pozoru nieskończona fala Asystentów zadała siłom zbrojnym Nanotrasen ciężkie straty."
 	attack_verb = list("bodzie")
 	force=15
 
@@ -164,8 +164,8 @@
 /obj/item/spear/bonespear	//Blatant imitation of spear, but made out of bone. Not valid for explosive modification.
 	icon_prefix = "bone_spear"
 	icon_state = "bone_spear0"
-	name = "bone spear"
-	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
+	name = "kościana włócznia"
+	desc = "Sklecona byle jak, ale wciąż zabójcza broń. Szczyt nowoczesnej technologii."
 	force = 12
 	throwforce = 22
 	armour_penetration = 15				//Enhanced armor piercing
@@ -179,8 +179,8 @@
 	icon_state = "bamboo_spear0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "bamboo spear"
-	desc = "A haphazardly-constructed bamboo stick with a sharpened tip, ready to poke holes into unsuspecting people."
+	name = "bambusowa włócznia"
+	desc = "Sklecony byle jak bambusowy kij z zaostrzonym końcem, gotowy dziurawić niczego niespodziewających się ludzi."
 	force = 10
 	bleed_force = BLEED_CUT
 	w_class = WEIGHT_CLASS_BULKY

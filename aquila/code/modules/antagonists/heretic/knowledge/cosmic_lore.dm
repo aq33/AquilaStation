@@ -340,7 +340,7 @@
 		return FALSE
 	to_chat(to_reset, span_mansus("Twój przywoływacz cię zresetował, a twoje ciało przejął duch. Chyba nie był zadowolony z twojej roboty."))
 	to_chat(owner, span_mansus("Umysł [to_reset] przekształcił się, by lepiej ci służyć."))
-	message_admins("[key_name_admin(chosen_one)] has taken control of ([ADMIN_LOOKUPFLW(to_reset)])")
+	message_admins("[key_name_admin(chosen_one)] przejmuje kontrolę nad: [ADMIN_LOOKUPFLW(to_reset)]")
 	to_reset.ghostize(FALSE)
 	to_reset.key = chosen_one.key
 	StartCooldown()

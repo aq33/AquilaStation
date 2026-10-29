@@ -6,8 +6,8 @@
 #define ENGINE_HEATING_POWER 5000000
 
 /obj/machinery/shuttle/engine
-	name = "shuttle thruster"
-	desc = "A thruster for shuttles."
+	name = "silnik manewrowy promu"
+	desc = "Silnik manewrowy do promów."
 	density = TRUE
 	obj_integrity = 250
 	max_integrity = 250
@@ -24,8 +24,8 @@
 	var/datum/weakref/attached_heater
 
 /obj/machinery/shuttle/engine/plasma
-	name = "plasma thruster"
-	desc = "A thruster that burns plasma stored in an adjacent plasma thruster heater."
+	name = "plazmowy silnik manewrowy"
+	desc = "Silnik manewrowy, który spala plazmę zgromadzoną w sąsiednim podgrzewaczu silnika plazmowego."
 	icon_state = "burst_plasma"
 	icon_state_off = "burst_plasma_off"
 
@@ -37,8 +37,8 @@
 	cooldown = 45
 
 /obj/machinery/shuttle/engine/void
-	name = "void thruster"
-	desc = "A thruster using technology to breach voidspace for propulsion."
+	name = "silnik pustki"
+	desc = "Silnik manewrowy, który do napędu przebija się technologicznie do przestrzeni pustki."
 	icon_state = "burst_void"
 	icon_state_off = "burst_void"
 	icon_state_closed = "burst_void"

@@ -2,8 +2,8 @@
 // !      Prosperity Prism     ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/prosperityprism
-	name = "Prosperity Prism"
-	desc = "Creates a prism that will remove a large amount of toxin damage and a small amount of other forms of damage from nearby servants. Requires power from a sigil of transmission."
+	name = "Pryzmat pomyślności"
+	desc = "Tworzy pryzmat, który leczy pobliskim sługom dużo obrażeń od toksyn i trochę pozostałych obrażeń. Wymaga zasilania z pieczęci transmisji."
 	tip = "Tworzy pryzmat pomyślności, który leczy sługi Kompromisem Strażnika bez otrzymywania obrażeń."
 	button_icon_state = "Prolonging Prism"
 	power_cost = 300
@@ -15,8 +15,8 @@
 
 //Stargazer structure
 /obj/structure/destructible/clockwork/gear_base/prosperityprism
-	name = "prosperity prism"
-	desc = "A prism that seems to somehow always have its gaze locked to you."
+	name = "pryzmat pomyślności"
+	desc = "Pryzmat, który jakimś cudem zawsze patrzy prosto na ciebie."
 	clockwork_desc = "Pryzmat leczący zatrucia u pobliskich sług."
 	default_icon_state = "prolonging_prism"
 	anchored = TRUE

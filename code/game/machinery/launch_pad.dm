@@ -1,6 +1,6 @@
 /obj/machinery/launchpad
-	name = "bluespace launchpad"
-	desc = "A bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations."
+	name = "wyrzutnia bluespace"
+	desc = "Platforma bluespace, która przerzuca materię przez bluespace i teleportuje ją do pobliskich miejsc albo z nich."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "lpad-idle"
 	use_power = TRUE
@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/machine/launchpad
 	var/icon_teleport = "lpad-beam"
 	var/stationary = TRUE //to prevent briefcase pad deconstruction and such
-	var/display_name = "Launchpad"
+	var/display_name = "Wyrzutnia"
 	var/teleport_speed = 35
 	var/range = 15
 	var/teleporting = FALSE //if it's in the process of teleporting
@@ -213,8 +213,8 @@
 
 //Starts in the briefcase. Don't spawn this directly, or it will runtime when closing.
 /obj/machinery/launchpad/briefcase
-	name = "briefcase launchpad"
-	desc = "A portable bluespace pad able to thrust matter through bluespace, teleporting it to or from nearby locations. Controlled via remote."
+	name = "wyrzutnia w teczce"
+	desc = "Przenośna platforma bluespace, która przerzuca materię przez bluespace i teleportuje ją do pobliskich miejsc albo z nich. Sterowana pilotem."
 	icon_state = "blpad-idle"
 	icon_teleport = "blpad-beam"
 	anchored = FALSE
@@ -307,8 +307,8 @@
 		return ..()
 
 /obj/item/launchpad_remote
-	name = "folder"
-	desc = "A folder."
+	name = "teczka"
+	desc = "Teczka."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
 	w_class = WEIGHT_CLASS_SMALL
@@ -389,7 +389,7 @@
 			. = TRUE
 		if("remove")
 			. = TRUE
-			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "I'm Sure", "Abort") == "I'm Sure")
+			if(usr && alert(usr, "Na pewno?", "Odłącz wyrzutnię", "Tak, na pewno", "Przerwij") == "Tak, na pewno")
 				pad = null
 		if("launch")
 			sending = TRUE

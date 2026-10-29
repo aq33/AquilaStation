@@ -1,6 +1,6 @@
 /obj/structure/trap
-	name = "IT'S A TRAP"
-	desc = "Stepping on me is a guaranteed bad day."
+	name = "TO PUŁAPKA"
+	desc = "Nadepnięcie na mnie to gwarancja złego dnia."
 	icon = 'icons/obj/hand_of_god_structures.dmi'
 	icon_state = "trap"
 	density = FALSE
@@ -90,8 +90,8 @@
 	return
 
 /obj/structure/trap/stun
-	name = "shock trap"
-	desc = "A trap that will shock and render you immobile. You'd better avoid it."
+	name = "pułapka elektryczna"
+	desc = "Pułapka, która porazi cię prądem i unieruchomi. Lepiej ją omiń."
 	icon_state = "trap-shock"
 	var/stun_time = 100
 
@@ -100,8 +100,8 @@
 	L.Paralyze(stun_time)
 
 /obj/structure/trap/stun/hunter
-	name = "bounty trap"
-	desc = "A trap that only goes off when a fugitive steps on it, announcing the location and stunning the target. You'd better avoid it."
+	name = "pułapka łowcy nagród"
+	desc = "Pułapka, która uruchamia się tylko wtedy, gdy nadepnie na nią zbieg. Ogłasza jego położenie i ogłusza cel. Lepiej ją omiń."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bounty_trap_on"
 	stun_time = 200
@@ -138,8 +138,8 @@
 		caught = FALSE
 
 /obj/item/bountytrap
-	name = "bounty trap"
-	desc = "A trap that only goes off when a fugitive steps on it, announcing the location and stunning the target. It's currently inactive."
+	name = "pułapka łowcy nagród"
+	desc = "Pułapka, która uruchamia się tylko wtedy, gdy nadepnie na nią zbieg. Ogłasza jego położenie i ogłusza cel. Teraz jest nieaktywna."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "bounty_trap_off"
 	var/obj/structure/trap/stun/hunter/stored_trap
@@ -182,8 +182,8 @@
 	. = ..()
 
 /obj/structure/trap/fire
-	name = "flame trap"
-	desc = "A trap that will set you ablaze. You'd better avoid it."
+	name = "pułapka ogniowa"
+	desc = "Pułapka, która cię podpali. Lepiej ją omiń."
 	icon_state = "trap-fire"
 
 /obj/structure/trap/fire/trap_effect(mob/living/L)
@@ -196,8 +196,8 @@
 
 
 /obj/structure/trap/chill
-	name = "frost trap"
-	desc = "A trap that will chill you to the bone. You'd better avoid it."
+	name = "pułapka mrozu"
+	desc = "Pułapka, która zmrozi cię do szpiku kości. Lepiej ją omiń."
 	icon_state = "trap-frost"
 
 /obj/structure/trap/chill/trap_effect(mob/living/L)
@@ -208,8 +208,8 @@
 
 
 /obj/structure/trap/damage
-	name = "earth trap"
-	desc = "A trap that will summon a small earthquake, just for you. You'd better avoid it."
+	name = "pułapka ziemi"
+	desc = "Pułapka, która wywoła małe trzęsienie ziemi, specjalnie dla ciebie. Lepiej ją omiń."
 	icon_state = "trap-earth"
 
 
@@ -225,8 +225,8 @@
 
 
 /obj/structure/trap/ward
-	name = "divine ward"
-	desc = "A divine barrier, It looks like you could destroy it with enough effort, or wait for it to dissipate..."
+	name = "boska osłona"
+	desc = "Boska bariera. Wygląda na to, że przy odpowiednim wysiłku da się ją zniszczyć albo poczekać, aż się rozwieje..."
 	icon_state = "ward"
 	density = TRUE
 	time_between_triggers = 1200 //Exists for 2 minutes

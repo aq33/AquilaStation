@@ -5,8 +5,8 @@ Charged extracts:
 	normal extract effect.
 */
 /obj/item/slimecross/charged
-	name = "charged extract"
-	desc = "It sparks with electric power."
+	name = "naładowany ekstrakt"
+	desc = "Iskrzy energią elektryczną."
 	effect = "charged"
 	icon_state = "charged"
 
@@ -168,7 +168,7 @@ Charged extracts:
 	if(!istype(H))
 		to_chat(user, "<span class='warning'>Musisz być humanoidem, by tego użyć!</span>")
 		return
-	var/racechoice = input(H, "Choose your slime subspecies.", "Slime Selection") as null|anything in sortList(subtypesof(/datum/species/jelly), GLOBAL_PROC_REF(cmp_typepaths_asc))
+	var/racechoice = input(H, "Wybierz swój podgatunek szlamoczłowieka.", "Wybór szlamu") as null|anything in sortList(subtypesof(/datum/species/jelly), GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!racechoice)
 		to_chat(user, "<span class='notice'>Postanawiasz na razie nie zostawać szlamem.</span>")
 		return

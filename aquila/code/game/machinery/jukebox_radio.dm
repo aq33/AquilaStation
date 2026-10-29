@@ -27,7 +27,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/jukebox_radio
-	name = "radio (Machine Board)"
+	name = "radio (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/jukebox/radio
 	req_components = list(
@@ -35,7 +35,7 @@
 		/obj/item/stack/cable_coil = 2)
 
 /datum/design/board/jukebox_radio
-	name = "Machine Design (Radio)"
+	name = "Projekt maszyny (radio)"
 	desc = "Płytka małego radia z odtwarzaczem playlist."
 	id = "jukebox_radio"
 	materials = list(/datum/material/glass = 1000)

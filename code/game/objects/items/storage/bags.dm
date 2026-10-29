@@ -32,8 +32,8 @@
 //          Trash bag
 // -----------------------------
 /obj/item/storage/bag/trash
-	name = "trash bag"
-	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
+	name = "worek na śmieci"
+	desc = "Ten wytrzymały, z czarnego polimeru. Czas wynieść śmieci!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "trashbag"
 	item_state = "trashbag"
@@ -78,8 +78,8 @@
 		return
 
 /obj/item/storage/bag/trash/bluespace
-	name = "trash bag of holding"
-	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	name = "worek na śmieci bez dna"
+	desc = "Najnowsze i najlepsze udogodnienie dla woźnych: worek na śmieci, który mieści ogromne ilości odpadków."
 	icon_state = "bluetrashbag"
 	item_flags = NO_MAT_REDEMPTION
 
@@ -91,8 +91,8 @@
 
 
 /obj/item/storage/bag/trash/bluespace/hammerspace
-	name = "hammerspace belt"
-	desc = "A belt that opens into a near infinite pocket of bluespace."
+	name = "pas z kieszenią hiperprzestrzeni"
+	desc = "Pas, który otwiera się na niemal nieskończoną kieszeń bluespace."
 	icon_state = "hammerspace"
 	w_class = WEIGHT_CLASS_GIGANTIC
 
@@ -118,8 +118,8 @@
 // -----------------------------
 
 /obj/item/storage/bag/ore
-	name = "mining satchel"
-	desc = "This little bugger can be used to store and transport ores."
+	name = "torba na rudę"
+	desc = "W tym maleństwie możesz przechowywać i przenosić rudy."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -189,11 +189,11 @@
 	spam_protection = FALSE
 
 /obj/item/storage/bag/ore/cyborg
-	name = "cyborg mining satchel"
+	name = "torba na rudę cyborga"
 
 /obj/item/storage/bag/ore/holding //miners, your messiah has arrived
-	name = "mining satchel of holding"
-	desc = "A revolution in convenience, this satchel allows for huge amounts of ore storage. It's been outfitted with anti-malfunction safety measures."
+	name = "torba na rudę bez dna"
+	desc = "Rewolucja w wygodzie: ta torba mieści ogromne ilości rudy. Ma zabezpieczenia przed awariami."
 	icon_state = "satchel_bspace"
 
 /obj/item/storage/bag/ore/holding/ComponentInitialize()
@@ -208,7 +208,7 @@
 // -----------------------------
 
 /obj/item/storage/bag/plants
-	name = "plant bag"
+	name = "torba na rośliny"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "plantbag"
 	w_class = WEIGHT_CLASS_TINY
@@ -233,22 +233,22 @@
 ////////
 
 /obj/item/storage/bag/plants/portaseeder
-	name = "portable seed extractor"
-	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
+	name = "przenośny ekstraktor nasion"
+	desc = "Dla przedsiębiorczego botanika w ruchu. Mniej wydajny od modelu stacjonarnego, z każdej rośliny robi jedno nasiono."
 	icon_state = "portaseeder"
 
 /obj/item/storage/bag/plants/portaseeder/verb/dissolve_contents()
 	set name = "Activate Seed Extraction"
 	set category = "Object"
-	set desc = "Activate to convert your plants into plantable seeds."
+	set desc = "Włącz, żeby zamienić swoje rośliny w nasiona do posadzenia."
 	if(usr.incapacitated())
 		return
 	for(var/obj/item/O in contents)
 		seedify(O, 1)
 
 /obj/item/storage/bag/plants/portaseeder/compact
-	name = "compact portable seed extractor"
-	desc = "Create seeds for your plants in your arm."
+	name = "kompaktowy przenośny ekstraktor nasion"
+	desc = "Robi nasiona z twoich roślin prosto w twojej ręce."
 	icon_state = "compactseeder"
 
 /obj/item/storage/bag/plants/portaseeder/compact/ComponentInitialize()
@@ -266,8 +266,8 @@
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
-	name = "sheet snatcher"
-	desc = "A patented Nanotrasen storage system designed for any kind of mineral sheet."
+	name = "łapacz arkuszy"
+	desc = "Opatentowany przez Nanotrasen system przechowywania na każdy rodzaj arkuszy minerałów."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 
@@ -287,7 +287,7 @@
 // -----------------------------
 
 /obj/item/storage/bag/sheetsnatcher/borg
-	name = "sheet snatcher 9000"
+	name = "łapacz arkuszy 9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization
 
@@ -302,8 +302,8 @@
 // -----------------------------
 
 /obj/item/storage/bag/books
-	name = "book bag"
-	desc = "A bag for books."
+	name = "torba na książki"
+	desc = "Torba na książki."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bookbag"
 	w_class = WEIGHT_CLASS_BULKY //Bigger than a book because physics
@@ -322,10 +322,10 @@
  * Trays - Agouri
  */
 /obj/item/storage/bag/tray
-	name = "serving tray"
+	name = "taca do serwowania"
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "tray"
-	desc = "A metal tray to lay food on."
+	desc = "Metalowa taca, na której kładziesz jedzenie."
 	force = 5
 	throwforce = 10
 	throw_speed = 3
@@ -388,10 +388,10 @@
  */
 
 /obj/item/storage/bag/chemistry
-	name = "chemistry bag"
+	name = "torba chemiczna"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bag"
-	desc = "A bag for storing pills, patches, and bottles."
+	desc = "Torba na pigułki, plastry i butelki."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
@@ -408,10 +408,10 @@
  */
 
 /obj/item/storage/bag/bio
-	name = "bio bag"
+	name = "torba biologiczna"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "biobag"
-	desc = "A bag for the safe transportation and disposal of biowaste and other biological materials."
+	desc = "Torba do bezpiecznego przenoszenia i utylizacji odpadów biologicznych i innych materiałów biologicznych."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
@@ -429,10 +429,10 @@
 	return ..()
 
 /obj/item/storage/bag/construction
-	name = "construction bag"
+	name = "torba budowlana"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "construction_bag"
-	desc = "A bag for storing small construction components."
+	desc = "Torba na drobne elementy konstrukcyjne."
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 
@@ -450,8 +450,8 @@
 // -----------------------------
 
 /obj/item/storage/bag/mail
-	name = "mail bag"
-	desc = "A bag for letters, envelopes, and other postage."
+	name = "torba na pocztę"
+	desc = "Torba na listy, koperty i inne przesyłki."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "mailbag"
 	resistance_flags = FLAMMABLE

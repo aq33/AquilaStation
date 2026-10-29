@@ -3,8 +3,8 @@
 //Used to transport little animals without having to drag them across the station.
 //Comes with a handy lock to prevent them from running off.
 /obj/item/pet_carrier
-	name = "pet carrier"
-	desc = "A big white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute animals around."
+	name = "transporter dla zwierząt"
+	desc = "Duży biało-niebieski transporter dla zwierząt. Dobry do noszenia <s>mięsa do kucharza</s> uroczych zwierzątek."
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "pet_carrier_open"
 	item_state = "pet_carrier"
@@ -154,7 +154,7 @@
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
 	if(isopenturf(over_atom) && usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)) && usr.Adjacent(over_atom) && open && occupants.len)
-		usr.visible_message("<span class='notice'>[usr] unloads [src].</span>", \
+		usr.visible_message("<span class='notice'>[usr] wyładowuje [src].</span>", \
 		"<span class='notice'>Wyładowujesz [src] na [over_atom].</span>")
 		for(var/V in occupants)
 			remove_occupant(V, over_atom)

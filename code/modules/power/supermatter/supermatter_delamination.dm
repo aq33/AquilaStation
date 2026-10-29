@@ -73,13 +73,13 @@
 	created_singularity.energy = 800
 	created_singularity.consume(src)
 	should_spawn_anomalies = FALSE
-	message_admins("The Supermatter Crystal has created a singularity [ADMIN_JMP(created_singularity)].")
+	message_admins("Kryształ supermaterii utworzył osobliwość [ADMIN_JMP(created_singularity)].")
 
 /datum/supermatter_delamination/proc/call_tesla()
 	var/obj/anomaly/energy_ball/created_energy_ball = new(supermatter_turf, 200) //Gets us about 9 balls
 	call_explosion()
 	should_spawn_anomalies = FALSE
-	message_admins("The Supermatter Crystal has created an energy ball [ADMIN_JMP(created_energy_ball)].")
+	message_admins("Kryształ supermaterii utworzył kulę energii [ADMIN_JMP(created_energy_ball)].")
 
 /datum/supermatter_delamination/proc/call_explosion()
 	//Dear mappers, balance the sm max explosion radius to 17.5, 37, 39, 41

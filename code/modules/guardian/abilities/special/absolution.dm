@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/special/onewayroad // a cookie for you if you get the reference
-	name = "Absolution"
-	desc = "The guardian forms an absolute shield around it's user, protecting them from all harm."
+	name = "Rozgrzeszenie"
+	desc = "Strażnik tworzy wokół użytkownika absolutną tarczę, która chroni go przed wszelką krzywdą."
 	ui_icon = "shield-alt"
 	cost = 5
 

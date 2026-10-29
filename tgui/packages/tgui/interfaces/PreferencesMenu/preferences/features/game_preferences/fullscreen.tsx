@@ -1,11 +1,11 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const fullscreen: FeatureToggle = {
-  name: 'Fullscreen Mode',
+  name: 'Pełny ekran',
   category: 'GRAPHICS',
   subcategory: 'Quality',
   description:
-    'Enabling this will cause the game window to take up the entire screen space, hiding the taskbar.',
+    'Po włączeniu okno gry zajmuje cały ekran i zasłania pasek zadań.',
   component: CheckboxInput,
   important: true,
 };

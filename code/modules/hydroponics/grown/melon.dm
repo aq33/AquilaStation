@@ -1,8 +1,8 @@
 // Watermelon
 /obj/item/food/grown/watermelon
 	seed = /obj/item/plant_seeds/preset/watermelon
-	name = "watermelon"
-	desc = "It's full of watery goodness."
+	name = "arbuz"
+	desc = "Pełen wodnistej pyszności."
 	icon_state = "watermelon"
 	bite_consumption_mod = 2
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,12 +18,12 @@
 
 // Holymelon
 /obj/item/food/grown/holymelon
-	name = "holymelon"
-	desc = "The water within this melon has been blessed by some deity that's particularly fond of watermelon."
+	name = "święty arbuz"
+	desc = "Wodę w tym arbuzie pobłogosławiło jakieś bóstwo, które szczególnie lubi arbuzy."
 	icon_state = "holymelon"
 	bite_consumption_mod = 2
 	wine_power = 70 //Water to wine, baby.
-	wine_flavor = "divinity"
+	wine_flavor = "boskość"
 	discovery_points = 300
 
 /obj/item/food/grown/holymelon/make_dryable()

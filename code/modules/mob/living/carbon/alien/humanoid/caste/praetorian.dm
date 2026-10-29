@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/royal/praetorian
-	name = "alien praetorian"
+	name = "pretorianin obcych"
 	caste = "p"
 	maxHealth = 250
 	health = 250
@@ -19,8 +19,8 @@
 	return ..()
 
 /obj/effect/proc_holder/alien/royal/praetorian/evolve
-	name = "Evolve"
-	desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time. Costs 500 Plasma."
+	name = "Ewoluuj"
+	desc = "Wytwórz wewnętrzny worek jajowy, z którego mogą wykluwać się dzieci. Naraz może istnieć tylko jedna królowa. Kosztuje 500 plazmy."
 	plasma_cost = 500
 	action_icon_state = "alien_evolve_praetorian"
 

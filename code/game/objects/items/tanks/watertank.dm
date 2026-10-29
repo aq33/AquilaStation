@@ -1,7 +1,7 @@
 //Hydroponics tank and base code
 /obj/item/watertank
-	name = "backpack water tank"
-	desc = "A S.U.N.S.H.I.N.E. brand watertank backpack with nozzle to water plants."
+	name = "plecakowy zbiornik na wodę"
+	desc = "Plecakowy zbiornik na wodę marki S.U.N.S.H.I.N.E. z dyszą do podlewania roślin."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "waterbackpack"
 	item_state = "waterbackpack"
@@ -103,8 +103,8 @@
 // the watertank backpack. Allowing it to be placed elsewhere or created without a parent
 // watertank object will likely lead to weird behaviour or runtimes.
 /obj/item/reagent_containers/spray/mister
-	name = "water mister"
-	desc = "A mister nozzle attached to a water tank."
+	name = "zraszacz"
+	desc = "Dysza zraszacza podłączona do zbiornika na wodę."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "mister"
 	item_state = "mister"
@@ -148,8 +148,8 @@
 
 //Janitor tank
 /obj/item/watertank/janitor
-	name = "backpack cleaner tank"
-	desc = "A janitorial cleaner backpack with nozzle to clean blood and graffiti."
+	name = "plecakowy zbiornik na środek czyszczący"
+	desc = "Plecak woźnego ze środkiem czyszczącym i dyszą do zmywania krwi i graffiti."
 	icon_state = "waterbackpackjani"
 	item_state = "waterbackpackjani"
 	custom_price = 100
@@ -159,8 +159,8 @@
 	reagents.add_reagent(/datum/reagent/space_cleaner, 500)
 
 /obj/item/reagent_containers/spray/mister/janitor
-	name = "janitor spray nozzle"
-	desc = "A janitorial spray nozzle attached to a watertank, designed to clean up large messes."
+	name = "dysza spryskiwacza woźnego"
+	desc = "Dysza spryskiwacza woźnego podłączona do zbiornika, do sprzątania wielkiego bałaganu."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "misterjani"
 	item_state = "misterjani"
@@ -183,8 +183,8 @@
 #define RESIN_FOAM 2
 
 /obj/item/watertank/atmos
-	name = "backpack firefighter tank"
-	desc = "A refrigerated and pressurized backpack tank with extinguisher nozzle, intended to fight fires. Swaps between extinguisher, resin launcher and a smaller scale resin foamer."
+	name = "plecakowy zbiornik strażacki"
+	desc = "Chłodzony, ciśnieniowy zbiornik plecakowy z dyszą gaśniczą do walki z pożarami. Przełącza się między gaśnicą, wyrzutnią żywicy i mniejszym spieniaczem żywicy."
 	item_state = "waterbackpackatmos"
 	icon_state = "waterbackpackatmos"
 	volume = 200
@@ -205,8 +205,8 @@
 		N.nozzle_mode = 0
 
 /obj/item/extinguisher/mini/nozzle
-	name = "extinguisher nozzle"
-	desc = "A heavy duty nozzle attached to a firefighter's backpack tank."
+	name = "dysza gaśnicza"
+	desc = "Wytrzymała dysza podłączona do strażackiego zbiornika plecakowego."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "atmos_nozzle"
 	item_state = "nozzleatmos"
@@ -302,7 +302,7 @@
 			return
 		for(var/S in target)
 			if(istype(S, /obj/effect/particle_effect/foam/metal/resin) || istype(S, /obj/structure/foamedmetal/resin))
-				to_chat(user, "<span class='warning'>There's already resin here!</span>")
+				to_chat(user, "<span class='warning'>Tu już jest żywica!</span>")
 				return
 		if(metal_synthesis_cooldown < 5)
 			var/obj/effect/particle_effect/foam/metal/resin/F = new (get_turf(target))
@@ -331,8 +331,8 @@
 	metal_synthesis_cooldown--
 
 /obj/effect/resin_container
-	name = "resin container"
-	desc = "A compacted ball of expansive resin, used to repair the atmosphere in a room, or seal off breaches."
+	name = "pojemnik z żywicą"
+	desc = "Sprasowana kula rozprężającej się żywicy do naprawy atmosfery w pomieszczeniu albo uszczelniania wyrw."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "frozen_smoke_capsule"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -353,8 +353,8 @@
 #undef RESIN_FOAM
 
 /obj/item/reagent_containers/chemtank
-	name = "backpack chemical injector"
-	desc = "A chemical autoinjector that can be carried on your back."
+	name = "plecakowy iniektor chemikaliów"
+	desc = "Autoinjektor chemikaliów noszony na plecach."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "waterbackpackchem"
 	item_state = "waterbackpackchem"
@@ -425,7 +425,7 @@
 	on = FALSE
 	STOP_PROCESSING(SSobj, src)
 	if(ismob(loc))
-		to_chat(loc, "<span class='notice'>[src] turns off.</span>")
+		to_chat(loc, "<span class='notice'>[src] się wyłącza.</span>")
 
 /obj/item/reagent_containers/chemtank/process(delta_time)
 	if(!ishuman(loc))
@@ -447,8 +447,8 @@
 
 //Operator backpack spray
 /obj/item/watertank/op
-	name = "backpack water tank"
-	desc = "A New Russian backpack spray for systematic cleansing of carbon lifeforms."
+	name = "plecakowy zbiornik na wodę"
+	desc = "Noworosyjski spryskiwacz plecakowy do systematycznego oczyszczania węglowych form życia."
 	icon_state = "waterbackpackop"
 	item_state = "waterbackpackop"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -466,7 +466,7 @@
 	reagents.add_reagent(/datum/reagent/consumable/condensedcapsaicin,500)
 
 /obj/item/reagent_containers/spray/mister/op
-	desc = "A mister nozzle attached to several extended water tanks. It suspiciously has a compressor in the system and is labelled entirely in New Cyrillic."
+	desc = "Dysza zraszacza podłączona do kilku powiększonych zbiorników na wodę. Podejrzanie ma w układzie sprężarkę, a wszystkie napisy są w nowej cyrylicy."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "misterop"
 	item_state = "misterop"

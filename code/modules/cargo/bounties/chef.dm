@@ -1,103 +1,103 @@
 /datum/bounty/item/chef/birthday_cake
-	name = "Birthday Cake"
+	name = "Tort urodzinowy"
 	description = "Zbliżają się urodziny Nanotrasen! Wyślijcie tort urodzinowy, by to uczcić!"
 	reward = 4000
 	wanted_types = list(/obj/item/food/cake/birthday, /obj/item/food/cakeslice/birthday)
 
 /datum/bounty/item/chef/soup
-	name = "Soup"
+	name = "Zupy"
 	description = "Aby stłumić bunt bezdomnych, Nanotrasen będzie serwować zupę wszystkim niedopłacanym pracownikom. Wyślijcie dowolną zupę."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/food/soup)
 
 /datum/bounty/item/chef/popcorn
-	name = "Popcorn Bags"
+	name = "Torebki popcornu"
 	description = "Wyższe kierownictwo chce zorganizować wieczór filmowy. Wyślijcie torebki popcornu na tę okazję."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/food/popcorn)
 
 /datum/bounty/item/chef/onionrings
-	name = "Onion Rings"
+	name = "Krążki cebulowe"
 	description = "Nanotrasen obchodzi Dzień Saturna. Wyślijcie krążki cebulowe, by okazać wsparcie stacji."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/food/onionrings)
 
 /datum/bounty/item/chef/icecreamsandwich
-	name = "Ice Cream Sandwiches"
+	name = "Kanapki lodowe"
 	description = "Wyższe kierownictwo bez przerwy domaga się lodów. Wyślijcie trochę."
 	reward = 4000
 	required_count = 3
 	wanted_types = list(/obj/item/food/icecreamsandwich)
 
 /datum/bounty/item/chef/strawberryicecreamsandwich
-	name = " Strawberry Ice Cream Sandwiches"
+	name = "Truskawkowe kanapki lodowe"
 	description = "Wyższe kierownictwo bez przerwy domaga się lodów o wyrazistszym smaku. Wyślijcie trochę."
 	reward = 5000
 	required_count = 3
 	wanted_types = list(/obj/item/food/strawberryicecreamsandwich)
 
 /datum/bounty/item/chef/bread
-	name = "Bread"
+	name = "Pieczywo"
 	description = "Problemy z planowaniem centralnym sprawiły, że ceny chleba poszybowały w górę. Wyślijcie trochę chleba, by załagodzić napięcia."
 	reward = 1000
 	wanted_types = list(/obj/item/food/bread, /obj/item/food/breadslice, /obj/item/food/bun, /obj/item/food/pizzabread, /obj/item/food/rawpastrybase)
 
 /datum/bounty/item/chef/pie
-	name = "Pie"
+	name = "Ciasto"
 	description = "3,14159? Nie! Kierownictwo Centrali chce jadalnego ciasta! Wyślijcie całe."
 	reward = 3142
 	wanted_types = list(/obj/item/food/pie)
 
 /datum/bounty/item/chef/salad
-	name = "Salad or Rice Bowls"
+	name = "Sałatki lub miski ryżu"
 	description = "Kierownictwo Centrali przechodzi na zdrowe odżywianie. Macie wysłać sałatki albo miski ryżu."
 	reward = 3000
 	required_count = 3
 	wanted_types = list(/obj/item/food/salad)
 
 /datum/bounty/item/chef/carrotfries
-	name = "Carrot Fries"
+	name = "Frytki z marchewki"
 	description = "Widzenie w nocy może oznaczać życie albo śmierć! Zamówienie: frytki z marchewki."
 	reward = 3500
 	required_count = 3
 	wanted_types = list(/obj/item/food/carrotfries)
 
 /datum/bounty/item/chef/superbite
-	name = "Super Bite Burger"
+	name = "Burger Super Kęs"
 	description = "Komandor Tubbs myśli, że może pobić rekord świata w jedzeniu na czas. Potrzebuje tylko burgera super kęs."
 	reward = 12000
 	wanted_types = list(/obj/item/food/burger/superbite)
 
 /datum/bounty/item/chef/poppypretzel
-	name = "Poppy Pretzel"
+	name = "Precel z makiem"
 	description = "Centrala potrzebuje pretekstu, by zwolnić szefa działu kadr. Wyślijcie precla z makiem, by oblał test na narkotyki."
 	reward = 3000
 	wanted_types = list(/obj/item/food/poppypretzel)
 
 /datum/bounty/item/chef/cubancarp
-	name = "Cuban Carp"
+	name = "Kubański karp"
 	description = "Aby uczcić narodziny Castro XXVII, wyślijcie do Centrali jednego kubańskiego karpia."
 	reward = 8000
 	wanted_types = list(/obj/item/food/cubancarp)
 
 /datum/bounty/item/chef/hotdog
-	name = "Hot Dog"
+	name = "Hot dog"
 	description = "Nanotrasen przeprowadza testy smaku, by ustalić najlepszy przepis na hot doga. Wyślijcie wersję z waszej stacji, by wziąć udział."
 	reward = 8000
 	wanted_types = list(/obj/item/food/hotdog)
 
 /datum/bounty/item/chef/eggplantparm
-	name = "Eggplant Parmigianas"
+	name = "Bakłażany po parmeńsku"
 	description = "Do Centrali przyjeżdża słynny piosenkarz, a jego kontrakt wymaga, by podawano mu wyłącznie bakłażana po parmeńsku. Wyślijcie trochę!"
 	reward = 3500
 	required_count = 3
 	wanted_types = list(/obj/item/food/eggplantparm)
 
 /datum/bounty/item/chef/muffin
-	name = "Muffins"
+	name = "Muffinki"
 	description = "Muffin Man odwiedza Centralę, ale zapomniał muffinek! Macie temu zaradzić."
 	reward = 3000
 	required_count = 3
@@ -110,7 +110,7 @@
 	wanted_types = list(/obj/item/food/chawanmushi)
 
 /datum/bounty/item/chef/kebab
-	name = "Kebabs"
+	name = "Kebaby"
 	description = "Usunąć kebab ze stacji, ty najlepsze jedzenie. Wyślij do Centrali, by usunąć z terenu."
 	reward = 3500
 	required_count = 3
@@ -123,21 +123,21 @@
 	wanted_types = list(/obj/item/food/soylentgreen)
 
 /datum/bounty/item/chef/pancakes
-	name = "Pancakes"
+	name = "Naleśniki"
 	description = "W Nanotrasen uważamy pracowników za rodzinę. A wiecie, co rodziny kochają? Naleśniki. Wyślijcie piekarski tuzin."
 	reward = 5000
 	required_count = 13
 	wanted_types = list(/obj/item/food/pancakes)
 
 /datum/bounty/item/chef/nuggies
-	name = "Chicken Nuggets"
+	name = "Nuggetsy z kurczaka"
 	description = "Syn wiceprezesa nie przestaje gadać o kurczakowych nuggetsach. Moglibyście wysłać trochę?"
 	reward = 4000
 	required_count = 6
 	wanted_types = list(/obj/item/food/nugget)
 
 /datum/bounty/item/chef/parmesan
-	name = "Parmesan Wheel"
+	name = "Krąg parmezanu"
 	description = "Na obiad jest makaron, ale skończył nam się parmezan. Wyślijcie nam krąg."
 	reward = 10000
 	required_count = 1

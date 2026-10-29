@@ -6,8 +6,8 @@
 	icon_state = "dualsaber0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "double-bladed energy sword"
-	desc = "Handle with care."
+	name = "dwuostrzowy miecz energetyczny"
+	desc = "Obchodź się z nim ostrożnie."
 	force = 3
 	throwforce = 5
 	throw_speed = 3
@@ -140,7 +140,7 @@
 	else
 		user.adjustStaminaLoss(25)
 
-/obj/item/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/dualsaber/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(ISWIELDED(src))
 		return ..()
 	return 0

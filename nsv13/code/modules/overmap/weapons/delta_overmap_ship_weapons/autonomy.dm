@@ -106,8 +106,8 @@
 //Subtypes.
 
 /datum/ams_mode/sts
-	name = "Anti-ship"
-	desc = "Allows the AMS to automatically acquire and fire at any and all painted targets. Imprecise, but effective."
+	name = "Przeciwokrętowy"
+	desc = "Pozwala AMS automatycznie namierzać i ostrzeliwać wszystkie oznaczone cele. Nieprecyzyjny, ale skuteczny."
 	max_range = 85
 	enabled = TRUE //By default, so that AIs can use it.
 
@@ -124,8 +124,8 @@
 	return TRUE
 
 /datum/ams_mode/countermeasures
-	name = "Anti-missile countermeasures"
-	desc = "This mode will target oncoming missiles and attempt to counter them with the ship's own missile complement."
+	name = "Środki przeciwrakietowe"
+	desc = "W tym trybie AMS namierza nadlatujące rakiety i próbuje je zestrzelić własnymi rakietami okrętu."
 	max_range = 10
 
 //Only aims at locked targets because the previous code was horrendously processing intensive. Anything dangerous will have you locked anyways.
@@ -135,9 +135,9 @@
 //===Section: AMS computer===
 
 /obj/machinery/computer/ams
-	name = "AMS control console"
+	name = "konsola sterowania AMS"
 	icon_screen = "ams"
-	desc = "The Anti-Missile System (AMS) is a computer system that can automatically target and fire upon threats to the ship, such as incoming missiles or enemy ships. "
+	desc = "System antyrakietowy (AMS) to system komputerowy, który automatycznie namierza i ostrzeliwuje zagrożenia dla okrętu, takie jak nadlatujące rakiety czy wrogie okręty."
 	circuit = /obj/item/circuitboard/computer/ams
 
 /obj/machinery/computer/ams/Destroy()

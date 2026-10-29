@@ -20,8 +20,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 )) //Nsv13 - Atc chat & munitions & space pirates. Removed exploration
 
 /obj/item/radio/headset
-	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
+	name = "słuchawki radiowe"
+	desc = "Unowocześniony, modułowy interkom zakładany na głowę. Przyjmuje klucze szyfrujące."
 	icon_state = "headset"
 	item_state = "headset"
 	materials = list(/datum/material/iron=75)
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	if(item_flags & PICKED_UP && loc == user)
 		// construction of frequency description
-		var/list/avail_chans = list("Use [RADIO_KEY_COMMON] for the currently tuned frequency")
+		var/list/avail_chans = list("użyj [RADIO_KEY_COMMON], by mówić na bieżącej częstotliwości")
 		if(translate_binary)
 			avail_chans += "użyj [MODE_TOKEN_BINARY], by mówić na kanale [MODE_BINARY]"
 		if(length(channels))
@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					avail_chans += "użyj [MODE_TOKEN_DEPARTMENT] lub [GLOB.channel_tokens[channels[i]]], by mówić na kanale [lowertext(channels[i])]"
 				else
 					avail_chans += "użyj [GLOB.channel_tokens[channels[i]]], by mówić na kanale [lowertext(channels[i])]"
-		. += "<span class='notice'>A small screen on the headset displays the following available frequencies:\n[english_list(avail_chans)].</span>"
+		. += "<span class='notice'>Mały ekranik na słuchawkach wyświetla dostępne częstotliwości:\n[english_list(avail_chans)].</span>"
 
 		if(command)
 			. += "<span class='info'>Alt-kliknij, by przełączyć tryb wysokiej głośności.</span>"
@@ -88,14 +88,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
 
 /obj/item/radio/headset/syndicate/alt //undisguised bowman with flash protection
-	name = "syndicate headset"
-	desc = "A syndicate headset that can be used to hear syndicate frequencies. Protects ears from flashbangs."
+	name = "słuchawki Syndykatu"
+	desc = "Słuchawki Syndykatu, przez które słychać częstotliwości Syndykatu. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 	bang_protect = 1
 
 /obj/item/radio/headset/syndicate/alt/leader
-	name = "team leader headset"
+	name = "słuchawki dowódcy drużyny"
 	command = TRUE
 
 /obj/item/radio/headset/syndicate/Initialize(mapload)
@@ -110,63 +110,63 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	recalculateChannels()
 
 /obj/item/radio/headset/headset_sec
-	name = "security radio headset"
-	desc = "This is used by your elite security force."
+	name = "słuchawki radiowe Policji"
+	desc = "Używane przez twoje elitarne siły policyjne."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_sec
 
 /obj/item/radio/headset/headset_medsec
-	name = "medical-security radio headset"
-	desc = "Used to hear how many security officers need to be stiched back together."
+	name = "słuchawki radiowe medyczne i Policji"
+	desc = "Służą do słuchania, ilu policjantów trzeba będzie pozszywać."
 	icon_state = "medsec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsec
 
 /obj/item/radio/headset/headset_sec/alt
-	name = "security bowman headset"
-	desc = "This is used by your elite security force. Protects ears from flashbangs."
+	name = "policyjne słuchawki nauszne"
+	desc = "Używane przez twoje elitarne siły policyjne. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "sec_headset_alt"
 	item_state = "sec_headset_alt"
 	bang_protect = 1
 
 /obj/item/radio/headset/headset_eng
-	name = "engineering radio headset"
-	desc = "When the engineers wish to chat like girls."
+	name = "słuchawki radiowe Inżynierii"
+	desc = "Na wypadek, gdyby inżynierowie chcieli poplotkować jak licealistki."
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_eng
 
 /obj/item/radio/headset/headset_rob
-	name = "robotics radio headset"
-	desc = "Made specifically for the roboticists, who cannot decide between departments."
+	name = "słuchawki radiowe robotyki"
+	desc = "Zrobione specjalnie dla robotyków, którzy nie mogą się zdecydować, do którego działu należą."
 	icon_state = "rob_headset"
 	keyslot = new /obj/item/encryptionkey/headset_rob
 
 /obj/item/radio/headset/headset_med
-	name = "medical radio headset"
-	desc = "A headset for the trained staff of the medbay."
+	name = "słuchawki radiowe medyczne"
+	desc = "Słuchawki dla wyszkolonego personelu ambulatorium."
 	icon_state = "med_headset"
 	keyslot = new /obj/item/encryptionkey/headset_med
 
 /obj/item/radio/headset/headset_sci
-	name = "science radio headset"
-	desc = "A sciency headset. Like usual."
+	name = "słuchawki radiowe naukowe"
+	desc = "Naukowe słuchawki. Jak zwykle."
 	icon_state = "sci_headset"
 	keyslot = new /obj/item/encryptionkey/headset_sci
 
 /obj/item/radio/headset/headset_medsci
-	name = "medical research radio headset"
-	desc = "A headset that is a result of the mating between medical and science."
+	name = "słuchawki radiowe badań medycznych"
+	desc = "Słuchawki będące owocem krzyżówki działu medycznego z naukowym."
 	icon_state = "medsci_headset"
 	keyslot = new /obj/item/encryptionkey/headset_medsci
 
 /obj/item/radio/headset/headset_srvsec
-	name = "law and order headset"
-	desc = "In the criminal justice headset, the encryption key represents two separate but equally important groups. Sec, who investigate crime, and Service, who provide services. These are their comms."
+	name = "słuchawki prawa i porządku"
+	desc = "W słuchawkach wymiaru sprawiedliwości klucz szyfrujący reprezentuje dwie odrębne, ale równie ważne grupy: Policję, która ściga przestępstwa, i Służbę, która świadczy usługi. Oto ich łączność."
 	icon_state = "srvsec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_srvsec
 
 /obj/item/radio/headset/headset_com
-	name = "command radio headset"
-	desc = "A headset with a commanding channel."
+	name = "słuchawki radiowe Dowództwa"
+	desc = "Słuchawki z kanałem dowodzenia."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_com
 
@@ -174,94 +174,94 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 
 /obj/item/radio/headset/heads/captain
-	name = "\proper the captain's headset"
-	desc = "The headset of the king."
+	name = "\proper słuchawki Kapitana"
+	desc = "Słuchawki króla."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/heads/captain/alt
-	name = "\proper the captain's bowman headset"
-	desc = "The headset of the boss. Protects ears from flashbangs."
+	name = "\proper słuchawki nauszne Kapitana"
+	desc = "Słuchawki szefa. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 	bang_protect = 1
 
 /obj/item/radio/headset/heads/research_director
-	name = "\proper the research director's headset"
-	desc = "Headset of the fellow who keeps society marching towards technological singularity."
+	name = "\proper słuchawki Dyrektora Naukowego"
+	desc = "Słuchawki gościa, który pcha społeczeństwo ku osobliwości technologicznej."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/rd
 
 /obj/item/radio/headset/heads/hos
-	name = "\proper the head of security's headset"
-	desc = "The headset of the man in charge of keeping order and protecting the station."
+	name = "\proper słuchawki Komendanta"
+	desc = "Słuchawki osoby odpowiedzialnej za utrzymanie porządku i ochronę stacji."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/hos
 
 /obj/item/radio/headset/heads/hos/alt
-	name = "\proper the head of security's bowman headset"
-	desc = "The headset of the man in charge of keeping order and protecting the station. Protects ears from flashbangs."
+	name = "\proper słuchawki nauszne Komendanta"
+	desc = "Słuchawki osoby odpowiedzialnej za utrzymanie porządku i ochronę stacji. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
 	bang_protect = 1
 
 /obj/item/radio/headset/heads/chief_engineer
-	name = "\proper the chief engineer's headset"
-	desc = "The headset of the guy in charge of keeping the station powered and undamaged."
+	name = "\proper słuchawki Głównego Inżyniera"
+	desc = "Słuchawki gościa odpowiedzialnego za to, by stacja miała zasilanie i była cała."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/ce
 
 /obj/item/radio/headset/heads/cmo
-	name = "\proper the chief medical officer's headset"
-	desc = "The headset of the highly trained medical chief."
+	name = "\proper słuchawki Ordynatora"
+	desc = "Słuchawki znakomicie wyszkolonego szefa medycyny."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/cmo
 
 /obj/item/radio/headset/heads/xo //nsv13 - changed HoP to XO
-	name = "\proper the executive officer's headset"
-	desc = "The headset of the guy who will one day be captain."
+	name = "\proper słuchawki Starszego Oficera"
+	desc = "Słuchawki gościa, który pewnego dnia zostanie kapitanem."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/captain //NSV13 - inserted captain key for better communication facilitation
 
 /obj/item/radio/headset/headset_cargo
-	name = "supply radio headset"
-	desc = "A headset used by the QM's slaves."
+	name = "słuchawki radiowe Zaopatrzenia"
+	desc = "Słuchawki używane przez niewolników Kwatermistrza."
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/encryptionkey/headset_cargo
 
 /obj/item/radio/headset/headset_quartermaster
-	name = "quartermaster radio headset"
-	desc = "A headset used by the QM."
+	name = "słuchawki radiowe Kwatermistrza"
+	desc = "Słuchawki używane przez Kwatermistrza."
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/encryptionkey/headset_cargo
 
 /obj/item/radio/headset/headset_exploration
-	name = "exploration radio headset"
-	desc = "A headset used by exploration teams."
+	name = "słuchawki radiowe odkrywców"
+	desc = "Słuchawki używane przez zespoły odkrywców."
 	icon_state = "exploration_headset"
 	keyslot = new /obj/item/encryptionkey/headset_expteam
 
 /obj/item/radio/headset/headset_cargo/shaft_miner
-	name = "mining radio headset"
-	desc = "Headset used by shaft miners."
+	name = "słuchawki radiowe górników"
+	desc = "Słuchawki używane przez górników."
 	icon_state = "mine_headset"
 	keyslot = new /obj/item/encryptionkey/headset_mining
 
 /obj/item/radio/headset/headset_srv
-	name = "service radio headset"
-	desc = "Headset used by the service staff, tasked with keeping the station full, happy and clean."
+	name = "słuchawki radiowe Służby"
+	desc = "Słuchawki personelu Służby, którego zadaniem jest dbać, by stacja była syta, szczęśliwa i czysta."
 	icon_state = "srv_headset"
 	keyslot = new /obj/item/encryptionkey/headset_service
 
 /obj/item/radio/headset/headset_curator
-	name = "curator radio headset"
-	desc = "Headset used by the curator, which allows for communication with the exploration team."
+	name = "słuchawki radiowe Bibliotekarza"
+	desc = "Słuchawki Bibliotekarza, które pozwalają na łączność z zespołem odkrywców."
 	icon_state = "srv_headset"
 	keyslot = new /obj/item/encryptionkey/headset_curator
 
 /obj/item/radio/headset/headset_cent
-	name = "\improper CentCom headset"
-	desc = "A headset used by the upper echelons of Nanotrasen."
+	name = "\improper słuchawki Centrali"
+	desc = "Słuchawki używane przez najwyższe szczeble Nanotrasen."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_com
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
@@ -274,20 +274,20 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/headset_cent/alt
-	name = "\improper CentCom bowman headset"
-	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
+	name = "\improper słuchawki nauszne Centrali"
+	desc = "Słuchawki przeznaczone specjalnie dla zespołów reagowania kryzysowego. Chronią uszy przed granatami hukowo-błyskowymi."
 	icon_state = "cent_headset_alt"
 	item_state = "cent_headset_alt"
 	keyslot = null
 	bang_protect = 1
 
 /obj/item/radio/headset/silicon/pai
-	name = "\proper mini Integrated Subspace Transceiver "
+	name = "\proper mini zintegrowany nadajnik-odbiornik podprzestrzenny "
 	subspace_transmission = FALSE
 
 
 /obj/item/radio/headset/silicon/ai
-	name = "\proper Integrated Subspace Transceiver "
+	name = "\proper zintegrowany nadajnik-odbiornik podprzestrzenny "
 	keyslot2 = new /obj/item/encryptionkey/ai
 	command = TRUE
 

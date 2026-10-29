@@ -284,10 +284,10 @@
 				CRASH("Heretic attempted to learn non-heretic_knowledge path! (Got: [researched_path || "invalid path"])")
 			var/shop_category = params["category"]
 			if(!researchable_knowledge(researched_path, shop_category))
-				message_admins("Heretic [key_name(owner)] potentially attempted to href exploit to learn knowledge they can't learn!")
+				message_admins("Heretyk [key_name(owner)] prawdopodobnie próbował exploitu href, by zbadać niedostępną wiedzę!")
 				CRASH("Heretic attempted to learn knowledge they can't learn! (Got: [researched_path])")
 			if(ispath(researched_path, /datum/heretic_knowledge/ultimate) && can_ascend() != HERETIC_CAN_ASCEND)
-				message_admins("Heretic [key_name(owner)] potentially attempted to href exploit to learn ascension knowledge without completing objectives!")
+				message_admins("Heretyk [key_name(owner)] prawdopodobnie próbował exploitu href, by zbadać wiedzę wniebowstąpienia bez wykonania celów!")
 				CRASH("Heretic attempted to learn a final knowledge despite not being able to ascend!")
 
 
@@ -347,7 +347,7 @@
 		return FALSE // Some people take a long-ass time to type maybe they got dusted
 
 	log_game("[key_name(owner_mob)] [retain_existing ? "" : "opted out of their original objectives and "]chose a custom objective: [custom_objective_text]")
-	message_admins("[ADMIN_LOOKUPFLW(owner_mob)] has chosen a custom antagonist objective: [custom_objective_text]")
+	message_admins("[ADMIN_LOOKUPFLW(owner_mob)] wybiera własny cel antagonisty: [custom_objective_text]")
 
 	var/datum/objective/custom/custom_objective = new()
 	custom_objective.owner = owner
@@ -842,13 +842,13 @@
 
 	switch(has_living_heart())
 		if(HERETIC_NO_LIVING_HEART)
-			.["Give Living Heart"] = CALLBACK(src, PROC_REF(give_living_heart))
+			.["Daj Żywe Serce"] = CALLBACK(src, PROC_REF(give_living_heart))
 		if(HERETIC_HAS_LIVING_HEART)
-			.["Add Heart Target (Marked Mob)"] = CALLBACK(src, PROC_REF(add_marked_as_target))
-			.["Remove Heart Target"] = CALLBACK(src, PROC_REF(remove_target))
+			.["Dodaj cel serca (oznaczony mob)"] = CALLBACK(src, PROC_REF(add_marked_as_target))
+			.["Usuń cel serca"] = CALLBACK(src, PROC_REF(remove_target))
 
-	.["Adjust Knowledge Points"] = CALLBACK(src, PROC_REF(admin_change_points))
-	.["Give Focus"] = CALLBACK(src, PROC_REF(admin_give_focus))
+	.["Zmień punkty wiedzy"] = CALLBACK(src, PROC_REF(admin_change_points))
+	.["Daj skupienie"] = CALLBACK(src, PROC_REF(admin_give_focus))
 
 /**
  * Admin proc for giving a heretic a Living Heart easily.
@@ -878,7 +878,7 @@
 		to_chat(admin, span_warning("Aby to zrobić, musisz oznaczyć człowieka!"))
 		return
 
-	if(tgui_alert(admin, "Let them know their targets have been updated?", "Whispers of the Mansus", list("Yes", "No")) == "Yes")
+	if(tgui_alert(admin, "Powiadomić heretyka, że jego cele się zmieniły?", "Szepty Mansusa", list("Tak", "Nie")) == "Tak")
 		to_chat(owner.current, span_danger("Mansus zmienił twoje cele. Idź ich szukać!"))
 		to_chat(owner.current, span_danger("[new_target.real_name], [new_target.mind?.assigned_role || "człowiek"]."))
 
@@ -896,7 +896,7 @@
 	for(var/mob/living/carbon/human/old_target as anything in sac_targets)
 		removable[old_target.name] = old_target
 
-	var/name_of_removed = tgui_input_list(admin, "Choose a human to remove", "Who to Spare", removable)
+	var/name_of_removed = tgui_input_list(admin, "Wybierz człowieka do usunięcia", "Kogo oszczędzić", removable)
 	if(QDELETED(src) || !admin.client?.holder || isnull(name_of_removed))
 		return
 	var/mob/living/carbon/human/chosen_target = removable[name_of_removed]
@@ -904,10 +904,10 @@
 		return
 
 	if(!remove_sacrifice_target(chosen_target))
-		to_chat(admin, span_warning("Failed to remove [name_of_removed] from [owner]'s sacrifice list. Perhaps they're no longer in the list anyways."))
+		to_chat(admin, span_warning("Nie udało się usunąć [name_of_removed] z listy ofiar [owner]. Może już i tak go na niej nie ma."))
 		return
 
-	if(tgui_alert(admin, "Let them know their targets have been updated?", "Whispers of the Mansus", list("Yes", "No")) == "Yes")
+	if(tgui_alert(admin, "Powiadomić heretyka, że jego cele się zmieniły?", "Szepty Mansusa", list("Tak", "Nie")) == "Tak")
 		to_chat(owner.current, span_danger("Mansus zmienił twoje cele."))
 
 /**
@@ -918,12 +918,12 @@
 		to_chat(admin, span_warning("Nie powinieneś tego używać!"))
 		return
 
-	var/change_num = tgui_input_number(admin, "Add or remove knowledge points", "Points", 0, 100, -100)
+	var/change_num = tgui_input_number(admin, "Dodaj lub odejmij punkty wiedzy", "Punkty", 0, 100, -100)
 	if(!change_num || QDELETED(src))
 		return
 
 	adjust_knowledge_points(change_num)
-	message_admins("[key_name_admin(admin)] modified [key_name_admin(owner)]'s knowledge points by [change_num].")
+	message_admins("[key_name_admin(admin)] zmienia punkty wiedzy [key_name_admin(owner)] o [change_num].")
 
 /**
  * Admin proc for giving a heretic a focus.
@@ -947,19 +947,19 @@
 		else
 			string_of_knowledge += knowledge.name
 
-	return "<br><b>Research Done:</b><br>[english_list(string_of_knowledge, and_text = ", and ")]<br>"
+	return "<br><b>Zbadana wiedza:</b><br>[english_list(string_of_knowledge, and_text = " i ")]<br>"
 
 /datum/antagonist/heretic/antag_panel_objectives()
 	. = ..()
 
 	. += "<br>"
-	. += "<i><b>Current Targets:</b></i><br>"
+	. += "<i><b>Obecne cele:</b></i><br>"
 	if(LAZYLEN(sac_targets))
 		for(var/mob/living/carbon/human/target as anything in sac_targets)
-			. += " - <b>[target.real_name]</b>, the [target.mind?.assigned_role || "human"].<br>"
+			. += " - <b>[target.real_name]</b>, [target.mind?.assigned_role || "człowiek"].<br>"
 
 	else
-		. += "<i>None!</i><br>"
+		. += "<i>Brak!</i><br>"
 	. += "<br>"
 
 /datum/antagonist/heretic/proc/purchase_knowledge(datum/heretic_knowledge/knowledge_type, category = HERETIC_KNOWLEDGE_TREE, update = TRUE)

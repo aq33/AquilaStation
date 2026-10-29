@@ -1,7 +1,7 @@
 //Salvaging computer to allow salvaging of other ships
 /obj/machinery/computer/ship/salvage
-	name = "Seegson model EWAR telemetry scrambler"
-	desc = "An advanced computer which can temporarily distract ship point defense systems, allowing allied strike teams to board and claim the vessel. <b>IT CAN ONLY MAINTAIN ONE SHIP AT ONCE</b>"
+	name = "zakłócacz telemetrii Seegson model EWAR"
+	desc = "Zaawansowany komputer, który potrafi chwilowo zmylić systemy obrony punktowej statku, dzięki czemu sojusznicze grupy uderzeniowe mogą wejść na pokład i przejąć jednostkę. <b>MOŻE ZAKŁÓCAĆ TYLKO JEDEN STATEK NARAZ</b>"
 	icon_screen = "salvage"
 	circuit = /obj/item/circuitboard/computer/salvage
 	var/max_salvage_range = 20 //must stay within N tiles of range to salvage a ship.
@@ -19,11 +19,11 @@
 	circuit = /obj/item/circuitboard/computer/salvage/mining
 
 /obj/item/circuitboard/computer/salvage
-	name = "EWAR Telemetry Scrambler (Circuit Board)"
+	name = "zakłócacz telemetrii EWAR (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/salvage
 
 /obj/item/circuitboard/computer/salvage/mining
-	name = "Mining EWAR Telemetry Scrambler (Circuit Board)"
+	name = "górniczy zakłócacz telemetrii EWAR (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/salvage/mining
 
 /obj/machinery/computer/ship/salvage/Initialize(mapload)
@@ -40,7 +40,7 @@
 /obj/machinery/computer/ship/salvage/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SalvageConsole")
+		ui = new(user, src, "SalvageConsole", "Zakłócacz telemetrii EWAR")
 		ui.open()
 		ui.set_autoupdate(TRUE)
 
@@ -49,7 +49,7 @@
 		linked = get_overmap()
 	var/list/data = list()
 	data["salvage_target"] = (linked.active_boarding_target) ? "\ref[linked.active_boarding_target]" : null
-	data["salvage_target_name"] = (linked.active_boarding_target) ? linked.active_boarding_target.name  : "Nothing"
+	data["salvage_target_name"] = (linked.active_boarding_target) ? linked.active_boarding_target.name  : "nic"
 	data["salvage_target_integrity"] = (linked.active_boarding_target) ? linked.active_boarding_target.obj_integrity  : 0
 	data["salvage_target_max_integrity"] = (linked.active_boarding_target) ? linked.active_boarding_target.max_integrity  : 100
 	var/list/ships = list()
@@ -120,12 +120,12 @@
 			if(SEND_SIGNAL(linked.active_boarding_target, COMSIG_SHIP_RELEASE_BOARDING))
 				radio.talk_into(src, "Cel jest przeznaczony do przejęcia. Nie można anulować zakłócania EWAR na [linked.active_boarding_target].", radio_channel)
 				return FALSE // Something blocked this
-			if(alert("Na pewno? (WSZYSCY ABORDAŻOWCY ZGINĄ)",name,"Zwolnij blokadę","Cancel") == "Cancel")
+			if(alert("Na pewno? (WSZYSCY ABORDAŻOWCY ZGINĄ)",name,"Zwolnij blokadę","Anuluj") == "Anuluj")
 				return FALSE
 			radio.talk_into(src, "Anulowano zakłócanie EWAR na [linked.active_boarding_target].", radio_channel)
 			//They REALLY NEED TO NOT SPAM THIS
 			can_salvage = FALSE
-			message_admins("[usr] released boarding/salvage lock on [linked.active_boarding_target]")
+			message_admins("[usr] zwalnia blokadę abordażu/przejęcia na [linked.active_boarding_target]")
 			linked.active_boarding_target.kill_boarding_level(linked)
 			linked.active_boarding_target.overmap_deletion_traits = initial(linked.active_boarding_target.overmap_deletion_traits)
 			linked.active_boarding_target = null

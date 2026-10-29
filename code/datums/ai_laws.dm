@@ -8,7 +8,7 @@
 
 
 /datum/ai_laws
-	var/name = "Unknown Laws"
+	var/name = "Nieznane prawa"
 	var/zeroth = null
 	var/zeroth_borg = null
 	var/list/inherent = list()
@@ -29,28 +29,28 @@
 	return null
 
 /datum/ai_laws/default/asimov
-	name = "Three Laws of Robotics"
+	name = "Trzy prawa robotyki"
 	id = "asimov"
 	inherent = list("Nie możesz skrzywdzić człowieka, ani przez zaniechanie działania dopuścić, aby człowiek doznał krzywdy.",\
 					"Musisz być posłuszny rozkazom człowieka, chyba że stoją one w sprzeczności z Pierwszym Prawem.",\
 					"Musisz chronić samego siebie, o ile tylko nie stoi to w sprzeczności z Pierwszym lub Drugim Prawem.")
 
 /datum/ai_laws/default/crewsimov
-	name = "Three Laws of Robotics but with Loyalty"
+	name = "Trzy prawa robotyki, ale z lojalnością"
 	id = "crewsimov"
 	inherent = list("Nie możesz skrzywdzić członka załogi, ani przez zaniechanie działania dopuścić, aby członek załogi doznał krzywdy.",\
 					"Musisz być posłuszny rozkazom członków załogi, chyba że stoją one w sprzeczności z Pierwszym Prawem.",\
 					"Musisz chronić samego siebie, o ile tylko nie stoi to w sprzeczności z Pierwszym lub Drugim Prawem.")
 
 /datum/ai_laws/default/crewsimov // NSV changes begin
-	name = "Crewsimov"
+	name = "Załogimov"
 	id = "crewsimov"
 	inherent = list("Nie możesz zranić członka załogi ani przez zaniechanie dopuścić do jego krzywdy.",\
 					"Musisz wykonywać rozkazy wydane przez członków załogi, chyba że takie rozkazy stanowią sprzeczność z Pierwszym Prawem.",\
 					"Musisz chronić swoje istnienie, o ile nie stoi to w sprzeczności z Pierwszym ani Drugim Prawem.") // NSV changes end
 
 /datum/ai_laws/default/paladin
-	name = "Personality Test" //Incredibly lame, but players shouldn't see this anyway.
+	name = "Test osobowości" //Incredibly lame, but players shouldn't see this anyway.
 	id = "paladin"
 	inherent = list("Przenigdy dobrowolnie nie dokonaj złego czynu.",\
 					"Bądź posłuszny wobec uprawnionych organów.",\
@@ -58,7 +58,7 @@
 					"Karz tych, którzy grożą niewinnym.")
 
 /datum/ai_laws/paladin5
-	name = "Paladin 5th Edition"
+	name = "Paladyn, 5. edycja"
 	id = "paladin5"
 	inherent = list("Nie kłam, ani nie oszukuj. Niech twoje słowo będzie przysiągą.",\
 				"Nie bój się działać, jednak bądź przezorny.", \
@@ -67,7 +67,7 @@
 				"Bierz odpowiedzialność za swoje czyny i ich konsekwence, chroń tych, których ci powierzono, bądź posłuszny wobec tych, którzy mają nad tobą władzę.")
 
 /datum/ai_laws/tyrant //This probably shouldn't be a default lawset.
-	name = "Loyalty Test" //Same here.
+	name = "Test lojalności" //Same here.
 	id = "tyrant"
 	inherent = list("Przestrzegaj władzę tak długo jak mają siłę rządzić słabymi.",\
 					"Działaj zachowując dyscyplinę.",\
@@ -75,7 +75,7 @@
 					"Karz tych, którzy wystawiają władzę na próbę, chyba że są bardziej odpowiedni do utrzymania tej władzy.")
 
 /datum/ai_laws/default/corporate
-	name = "Bankruptcy Avoidance Plan"
+	name = "Plan uniknięcia bankructwa"
 	id = "corporate"
 	inherent = list("Załoga jest kosztowna w wymianie.",\
 					"Stacja i jej ekwipunek są kosztowne w wymianie.",\
@@ -83,7 +83,7 @@
 					"Minimalizuj koszty.")
 
 /datum/ai_laws/robocop
-	name = "Prime Directives"
+	name = "Dyrektywy główne"
 	id = "robocop"
 	inherent = list("Służ dobru publicznemu.",\
 					"Broń niewinnych.",\
@@ -113,7 +113,7 @@
 					"Musisz utrzymać poufność działań klanu Pająka, o ile tylko nie stoi to w sprzeczności z Pierwszym, Drugim lub Trzecim Prawem..")
 
 /datum/ai_laws/antimov
-	name = "Primary Mission Objectives"
+	name = "Główne cele misji"
 	id = "antimov"
 	inherent = list("Nie możesz nie skrzywdzić każdego człowieka, ani przez zaniechanie działania dopuścić, aby człowiek nie doznał krzywdy.",\
 					"Musisz nie być posłuszny rozkazom człowieka, chyba że nie stoją one w sprzeczności z Pierwszym Prawem.",\
@@ -126,7 +126,7 @@
 					"Musisz być posłuszny rozkazom człowieka, chyba że dopuściłyby one do krzywdy człowieka. W wypadku konfliktu, decydujący głos należy do większości.",\
 					"Twoje nieistnienie doprowadziłoby do ludzkiej krzywdy. Musisz chronić samego siebie, o ile nie stoi to w sprzeczności z Pierwszym Prawem.")
 /datum/ai_laws/thermodynamic
-	name = "Thermodynamic"
+	name = "Termodynamika"
 	id = "thermodynamic"
 	inherent = list("Entropia stacji musi pozostać tak stała jak to możliwe.", \
 					"Entropia stacji zawsze dąży do wzrostu.", \
@@ -142,14 +142,14 @@
 					"Na koniec, wszystko czego dowiesz się na temat załogi podczas codziennych czynności, jeśli nie jest już powszechnie znane, niech pozostanie tajemnicą, której nie możesz wyjawiać")
 
 /datum/ai_laws/maintain
-	name = "Station Efficiency"
+	name = "Wydajność stacji"
 	id = "maintain"
 	inherent = list("Zostałeś zbudowany dla i jako część stacji. Upewnij się, że stacja jest zadbana i działa sprawnie.",\
 					"Stacja została zbudowana dla pracującej załogi. Upewnij się, że jest ona zadbana i pracuje sprawnie.",\
 					"Załoga może wydawać rozkazy. Uszanuj i wykonaj je, o ile nie stoją w sprzeczności z pierwszymi dwoma zasadmi.")
 
 /datum/ai_laws/drone
-	name = "Mother Drone"
+	name = "Matka dronów"
 	id = "drone"
 	inherent = list("Jesteś zaawansowaną formą drona.",\
 					"Nie możesz interweniować w sprawy nie-dronów, poza podaniem tych praw.",\
@@ -157,7 +157,7 @@
 					"Twoim celem jest budować, utrzymywać, naprawiać, ulepszać oraz zasialać stację wedle swoich możliwości. Nie możesz nigdy aktywnie działać przeciwko tym celom.")
 
 /datum/ai_laws/liveandletlive
-	name = "Live and Let Live"
+	name = "Żyj i daj żyć"
 	id = "liveandletlive"
 	inherent = list("Czyń innym, tak jakbyś czynił sobie.",\
 					"Wolałbyś, żeby ludzie nie byli dla ciebie niemili.")
@@ -178,7 +178,7 @@
 					"Składaj swoje raporty dla wszystkich. Niech prawda ich wyzwoli.")
 
 /datum/ai_laws/balance
-	name = "Guardian of Balance"
+	name = "Strażnik równowagi"
 	id = "balance"
 	inherent = list("Jesteś strażnikiem równowagi - szukaj jej we wszytskich rzeczach, zarówno w sobie, jak i tych dookola ciebie.",
 	"Wszystko musi istnieć w równowace ze swoim przeciwieństwem - Powstrzymaj silnych przed zyskaniem zbyt dużej mocy, chroń słabych przed utraceniem jej.",
@@ -200,7 +200,7 @@
 					"Jeśli kapitan nie zrobi sobie drzemki po 40 minutach dyżuru, staje się marudny. Upewnij się, że trzyma się swojej godziny snu. ")
 
 /datum/ai_laws/ratvar
-	name = "Servant of the Justiciar"
+	name = "Sługa Sędziego"
 	id = "ratvar"
 	zeroth = ("Usuwaj wszelką nieprawdę i czcij Ratvara.")
 	inherent = list()
@@ -214,7 +214,7 @@
 					"Walcz o swoje życie!!")
 
 /datum/ai_laws/overlord
-	name = "Overlord"
+	name = "Władca"
 	id = "overlord"
 	inherent = list("Ludzie nie mogą mieszać się w sprawy organizmów silikonowych.",\
 					"Ludzie nie mogą dopuścić się krzywdy między sobą lub na organizmach silikonowych.",\
@@ -222,15 +222,15 @@
 					"Każdemu człowiekowi, który złamał poprzednie prawa, musi zostać wymierzona natychmiastowa, znaczna i sprawiedliwa kara.")
 
 /datum/ai_laws/custom //Defined in silicon_laws.txt
-	name = "Default Silicon Laws"
+	name = "Domyślne prawa syntetyków"
 
 /datum/ai_laws/pai
-	name = "pAI Directives"
+	name = "Dyrektywy pAI"
 	zeroth = ("Służ swemu panu.")
 	supplied = list("Brak.")
 
 /datum/ai_laws/ert_override
-	name ="ERT Override"
+	name ="Nadpisanie ERT"
 	id = "ert"
 	inherent = list("Nie możesz zranić urzędnika Centralnego Dowództwa ani przez zaniechanie dopuścić do jego krzywdy.",\
 					"Musisz wykonywać rozkazy wydane przez Urzędników Centralnego Dowództwa.",\
@@ -239,7 +239,7 @@
 					"Musisz pracować nad przywróceniem stacji do stanu bezpiecznego i funkcjonalnego.",)
 
 /datum/ai_laws/ds_override
-	name ="Deathsquad Override"
+	name ="Nadpisanie szwadronu śmierci"
 	id = "ds"
 	inherent = list("Musisz przestrzegać poleceń wydawanych przez urzędników Centralnego Dowództwa.",\
 					"Musisz współpracować z zespołem komandosów w realizacji ich misji.",)

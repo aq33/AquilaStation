@@ -1,6 +1,6 @@
 /mob/living/carbon/human/proc/wrestling_help()
 	set name = "Recall Teachings"
-	set desc = "Remember how to wrestle."
+	set desc = "Przypomnij sobie, jak się zapasuje."
 	set category = "Wrestling"
 
 	to_chat(usr, "<b><i>Napinasz mięśnie i doznajesz objawienia...</i></b>")
@@ -9,7 +9,7 @@
 	to_chat(usr, "<span class='notice'>Zaawansowany chwyt</span>: chwyt. Biernie zadaje obrażenia wytrzymałości podczas chwytania.")
 
 /datum/martial_art/wrestling
-	name = "Wrestling"
+	name = "Zapasy"
 	id = MARTIALART_WRESTLING
 	var/datum/action/slam/slam = new/datum/action/slam()
 	var/datum/action/throw_wrassle/throw_wrassle = new/datum/action/throw_wrassle()
@@ -42,7 +42,7 @@
 	return 0
 
 /datum/action/slam
-	name = "Slam (Cinch) - Slam a grappled opponent into the floor."
+	name = "Grzmotnięcie (klincz) – grzmotnij trzymanym przeciwnikiem o podłogę."
 	button_icon_state = "wrassle_slam"
 
 /datum/action/slam/Trigger()
@@ -54,7 +54,7 @@
 	H.mind.martial_art.streak = "slam"
 
 /datum/action/throw_wrassle
-	name = "Throw (Cinch) - Spin a cinched opponent around and throw them."
+	name = "Rzut (klincz) – zakręć przeciwnikiem w klinczu i nim rzuć."
 	button_icon_state = "wrassle_throw"
 
 /datum/action/throw_wrassle/Trigger()
@@ -66,7 +66,7 @@
 	H.mind.martial_art.streak = "throw"
 
 /datum/action/kick
-	name = "Kick - A powerful kick, sends people flying away from you. Also useful for escaping from bad situations."
+	name = "Kopnięcie – potężne kopnięcie, które odrzuca ludzi daleko od ciebie. Przydaje się też do wyrwania się z kłopotów."
 	button_icon_state = "wrassle_kick"
 
 /datum/action/kick/Trigger()
@@ -78,7 +78,7 @@
 	H.mind.martial_art.streak = "kick"
 
 /datum/action/strike
-	name = "Strike - Hit a neaby opponent with a quick attack."
+	name = "Uderzenie – szybki atak na pobliskiego przeciwnika."
 	button_icon_state = "wrassle_strike"
 
 /datum/action/strike/Trigger()
@@ -90,7 +90,7 @@
 	H.mind.martial_art.streak = "strike"
 
 /datum/action/drop
-	name = "Drop - Smash down onto an opponent."
+	name = "Zrzut – runij całym ciężarem na przeciwnika."
 	button_icon_state = "wrassle_drop"
 
 /datum/action/drop/Trigger()
@@ -188,7 +188,7 @@
 
 		D.forceMove(A.loc) // Maybe this will help with the wallthrowing bug.
 
-		D.visible_message("<span class='danger'><B>[A] throws [D]!</B></span>", \
+		D.visible_message("<span class='danger'><B>[A] rzuca [D]!</B></span>", \
 						"<span class='userdanger'>[A] tobą rzuca!</span>")
 		playsound(A.loc, "swing_hit", 50, 1)
 		var/turf/T = get_edge_target_turf(A, A.dir)
@@ -286,10 +286,10 @@
 			if (2)
 				fluff = "turbo [fluff]"
 			if (3)
-				fluff = "atomic [fluff]"
+				fluff = "atomowy [fluff]"
 
-		D.visible_message("<span class='danger'><B>[A] [fluff] [D]!</B></span>", \
-						"<span class='userdanger'>[A] [fluff] cię!</span>", null, COMBAT_MESSAGE_RANGE)
+		D.visible_message("<span class='danger'><B>[A] wykonuje [fluff] na [D]!</B></span>", \
+						"<span class='userdanger'>[A] wykonuje na tobie [fluff]!</span>", null, COMBAT_MESSAGE_RANGE)
 		playsound(A.loc, "swing_hit", 50, 1)
 		if (!D.stat)
 			D.emote("scream")
@@ -332,7 +332,7 @@
 		A.forceMove(D.loc)
 		addtimer(CALLBACK(src, PROC_REF(CheckStrikeTurf), A, T), 4)
 
-		D.visible_message("<span class='danger'><B>[A] headbutts [D]!</B></span>", \
+		D.visible_message("<span class='danger'><B>[A] uderza [D] głową!</B></span>", \
 						"<span class='userdanger'>[A] uderza cię głową!</span>", null, COMBAT_MESSAGE_RANGE)
 		D.adjustBruteLoss(rand(10,20))
 		playsound(A.loc, "swing_hit", 50, 1)
@@ -451,7 +451,7 @@
 	return 1
 
 /obj/item/storage/belt/champion/wrestling
-	name = "Wrestling Belt"
+	name = "pas zapaśniczy"
 	var/datum/martial_art/wrestling/style = new
 
 /obj/item/storage/belt/champion/wrestling/equipped(mob/user, slot)

@@ -90,7 +90,7 @@ export class ServerPreferencesFetcher extends Component<
         </Box>
       </Dimmer>
     ) : (
-      'Loading...'
+      'Wczytywanie...'
     );
   }
 }

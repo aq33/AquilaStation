@@ -35,8 +35,8 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/hierophant
-	name = "hierophant"
-	desc = "A massive metal club that hangs in the air as though waiting. It'll make you dance to its beat."
+	name = "Hierofant"
+	desc = "Masywna metalowa maczuga, która wisi w powietrzu, jakby na coś czekała. Zatańczysz, jak ci zagra."
 	health = 2500
 	maxHealth = 2500
 	attacktext = "pałuje"
@@ -57,7 +57,7 @@ Difficulty: Hard
 	loot = list(/obj/structure/closet/crate/necropolis/hierophant)
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/hierophant, /obj/item/crusher_trophy/vortex_talisman)
 	wander = FALSE
-	gps_name = "Zealous Signal"
+	gps_name = "Gorliwy sygnał"
 	achievement_type = /datum/award/achievement/boss/hierophant_kill
 	crusher_achievement_type = /datum/award/achievement/boss/hierophant_crusher
 	score_achievement_type = /datum/award/score/hierophant_score
@@ -92,28 +92,28 @@ Difficulty: Hard
 	. = ..()
 
 /datum/action/innate/megafauna_attack/blink
-	name = "Blink To Target"
+	name = "Mignij do celu"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz teleportujesz się do celu.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/chaser_swarm
-	name = "Chaser Swarm"
+	name = "Rój ścigaczy"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "hierophant_squares_indefinite"
 	chosen_message = "<span class='colossus'>Wystrzeliwujesz w cel rój ścigaczy.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/cross_blasts
-	name = "Cross Blasts"
+	name = "Krzyżowe wybuchy"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "hierophant_blast_indefinite"
 	chosen_message = "<span class='colossus'>Teraz strzelasz w cel krzyżowymi wybuchami.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/blink_spam
-	name = "Blink Chase"
+	name = "Pościg mignięciami"
 	icon_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "hierophant_club_ready_beacon"
 	chosen_message = "<span class='colossus'>Teraz wielokrotnie teleportujesz się do celu.</span>"
@@ -418,7 +418,7 @@ Difficulty: Hard
 		if(!L.dropItemToGround(W))
 			qdel(W)
 	visible_message("<span class='hierophant_warning'>\"[pick(kill_phrases)]\"</span>")
-	visible_message("<span class='hierophant_warning'>[src] annihilates [L]!</span>","<span class='userdanger'>Unicestwiasz [L], odzyskując zdrowie!</span>")
+	visible_message("<span class='hierophant_warning'>[src] unicestwia [L]!</span>","<span class='userdanger'>Unicestwiasz [L], odzyskując zdrowie!</span>")
 	adjustHealth(-L.maxHealth*0.5)
 	L.dust()
 
@@ -489,7 +489,7 @@ Difficulty: Hard
 
 //Hierophant overlays
 /obj/effect/temp_visual/hierophant
-	name = "vortex energy"
+	name = "energia wiru"
 	layer = BELOW_MOB_LAYER
 	var/mob/living/caster //who made this, anyway
 
@@ -511,7 +511,7 @@ Difficulty: Hard
 		M.gets_drilled(caster)
 
 /obj/effect/temp_visual/hierophant/wall //smoothing and pooling were not friends, but pooling is dead.
-	name = "vortex wall"
+	name = "ściana wiru"
 	icon = 'icons/turf/walls/hierophant_wall_temp.dmi'
 	icon_state = "wall"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -613,10 +613,10 @@ Difficulty: Hard
 
 /obj/effect/temp_visual/hierophant/blast
 	icon_state = "hierophant_blast"
-	name = "vortex blast"
+	name = "wybuch wiru"
 	light_range = 2
 	light_power = 2
-	desc = "Get out of the way!"
+	desc = "Zejdź z drogi!"
 	duration = 9
 	var/damage = 10 //how much damage do we do?
 	var/monster_damage_boost = TRUE //do we deal extra damage to monsters? Used by the boss
@@ -694,8 +694,8 @@ Difficulty: Hard
 	damage = 25
 
 /obj/effect/hierophant
-	name = "hierophant beacon"
-	desc = "A strange beacon, allowing mass teleportation for those able to use it."
+	name = "nadajnik Hierofanta"
+	desc = "Dziwny nadajnik, który pozwala na masową teleportację tym, którzy potrafią go użyć."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "hierophant_tele_off"
 	light_range = 2

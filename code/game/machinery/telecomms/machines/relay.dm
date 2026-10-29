@@ -7,9 +7,9 @@
 */
 
 /obj/machinery/telecomms/relay
-	name = "telecommunication relay"
+	name = "przekaźnik telekomunikacyjny"
 	icon_state = "relay"
-	desc = "A mighty piece of hardware used to send massive amounts of data far away."
+	desc = "Potężny sprzęt do przesyłania ogromnych ilości danych na duże odległości."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30

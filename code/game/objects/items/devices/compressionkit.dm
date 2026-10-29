@@ -1,6 +1,6 @@
 /obj/item/compressionkit
-	name = "bluespace compression kit"
-	desc = "An illegally modified BSRPED, capable of reducing the size of most items."
+	name = "zestaw do kompresji bluespace"
+	desc = "Nielegalnie przerobiony BSRPED, który potrafi zmniejszyć większość przedmiotów."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "compression_c"
 	item_state = "RPED"

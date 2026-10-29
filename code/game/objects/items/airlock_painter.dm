@@ -5,8 +5,8 @@
 
 
 /obj/item/airlock_painter
-	name = "airlock painter"
-	desc = "An advanced autopainter preprogrammed with several paintjobs for airlocks. Use it on an airlock during or after construction to change the paintjob. Alt-Click to remove the ink cartridge."
+	name = "malownik śluz"
+	desc = "Zaawansowany automatyczny malownik z zaprogramowanymi wzorami malowania śluz. Użyj go na śluzie w trakcie budowy albo po niej, by zmienić malowanie. Alt-kliknij, by wyjąć wkład z tuszem."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "paint_sprayer"
 	item_state = "paint_sprayer"
@@ -26,22 +26,22 @@
 	var/initial_ink_type = /obj/item/toner
 	/// Associate list of all paint jobs the airlock painter can apply. The key is the name of the airlock the user will see. The value is the type path of the airlock
 	var/list/available_paint_jobs = list(
-		"Public" = /obj/machinery/door/airlock/public,
-		"Engineering" = /obj/machinery/door/airlock/engineering,
-		"Atmospherics" = /obj/machinery/door/airlock/atmos,
-		"Security" = /obj/machinery/door/airlock/security,
-		"Command" = /obj/machinery/door/airlock/command,
-		"Medical" = /obj/machinery/door/airlock/medical,
-		"Research" = /obj/machinery/door/airlock/research,
-		"Freezer" = /obj/machinery/door/airlock/freezer,
-		"Science" = /obj/machinery/door/airlock/science,
-		"Mining" = /obj/machinery/door/airlock/mining,
-		"Maintenance" = /obj/machinery/door/airlock/maintenance,
-		"External" = /obj/machinery/door/airlock/external,
-		"External Maintenance"= /obj/machinery/door/airlock/maintenance/external,
-		"Virology" = /obj/machinery/door/airlock/virology,
-		"Standard" = /obj/machinery/door/airlock,
-		"Ship" = /obj/machinery/door/airlock/ship //NSV13 - added ship doors
+		"Publiczna" = /obj/machinery/door/airlock/public,
+		"Inżynieria" = /obj/machinery/door/airlock/engineering,
+		"Atmosferyka" = /obj/machinery/door/airlock/atmos,
+		"Ochrona" = /obj/machinery/door/airlock/security,
+		"Dowództwo" = /obj/machinery/door/airlock/command,
+		"Medyczna" = /obj/machinery/door/airlock/medical,
+		"Badania" = /obj/machinery/door/airlock/research,
+		"Chłodnia" = /obj/machinery/door/airlock/freezer,
+		"Nauka" = /obj/machinery/door/airlock/science,
+		"Górnictwo" = /obj/machinery/door/airlock/mining,
+		"Techniczna" = /obj/machinery/door/airlock/maintenance,
+		"Zewnętrzna" = /obj/machinery/door/airlock/external,
+		"Zewnętrzna techniczna"= /obj/machinery/door/airlock/maintenance/external,
+		"Wirologia" = /obj/machinery/door/airlock/virology,
+		"Standardowa" = /obj/machinery/door/airlock,
+		"Okrętowa" = /obj/machinery/door/airlock/ship //NSV13 - added ship doors
 	)
 
 /obj/item/airlock_painter/Initialize(mapload)
@@ -142,18 +142,18 @@
 	if(!ink)
 		. += "<span class='notice'>Komora tuszu jest otwarta.</span>"
 		return
-	var/ink_level = "high"
+	var/ink_level = "wysoki"
 	switch(ink.charges/ink.max_charges)
 		if(0.001 to PAINTER_LOW)
 			ink_level = "skrajnie niski"
 		if(PAINTER_LOW to PAINTER_MID)
-			ink_level = "low"
+			ink_level = "niski"
 		if(PAINTER_MID to 1)
-			ink_level = "high"
+			ink_level = "wysoki"
 		if(1 to INFINITY) //Over 100% (admin var edit)
 			ink_level = "niebezpiecznie wysoki"
 	if(ink.charges <= 0)
-		ink_level = "empty"
+		ink_level = "pusty"
 
 	. += "<span class='notice'>Poziom tuszu wygląda na: [ink_level].</span>"
 
@@ -183,8 +183,8 @@
 		update_icon()
 
 /obj/item/airlock_painter/decal
-	name = "decal painter"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to remove the ink cartridge."
+	name = "malownik oznaczeń"
+	desc = "Malownik śluz przeprogramowany na inny rodzaj farby, dzięki czemu oprócz przemalowywania drzwi nanosi też oznaczenia na płytki podłogowe. Oznaczenia znikają po zdjęciu płytek. Alt-kliknij, by wyjąć wkład z tuszem."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "decal_sprayer"
 	item_state = "decal_sprayer"
@@ -206,29 +206,29 @@
 	var/stored_custom_color
 	/// List of color options as list(user-friendly label, color value to return)
 	var/color_list = list(
-		list("Yellow", "yellow"),
-		list("Red", "red"),
-		list("White", "white"),
+		list("Żółty", "yellow"),
+		list("Czerwony", "red"),
+		list("Biały", "white"),
 	)
 	/// List of direction options as list(user-friendly label, dir value to return)
 	var/dir_list = list(
-		list("North", NORTH),
-		list("South", SOUTH),
-		list("East", EAST),
-		list("West", WEST),
+		list("Północ", NORTH),
+		list("Południe", SOUTH),
+		list("Wschód", EAST),
+		list("Zachód", WEST),
 	)
 	/// List of decal options as list(user-friendly label, icon state base value to return)
 	var/decal_list = list(
-		list("Warning Line", "warningline"),
-		list("Warning Line Corner", "warninglinecorner"),
-		list("Caution Label", "caution"),
-		list("Directional Arrows", "arrows"),
-		list("Stand Clear Label", "stand_clear"),
-		list("Bot", "bot"),
-		list("Box", "box"),
-		list("Box Corner", "box_corners"),
-		list("Delivery Marker", "delivery"),
-		list("Warning Box", "warn_full"),
+		list("Linia ostrzegawcza", "warningline"),
+		list("Narożnik linii ostrzegawczej", "warninglinecorner"),
+		list("Napis „Uwaga”", "caution"),
+		list("Strzałki kierunkowe", "arrows"),
+		list("Napis „Odsuń się”", "stand_clear"),
+		list("Miejsce dla bota", "bot"),
+		list("Ramka", "box"),
+		list("Narożnik ramki", "box_corners"),
+		list("Znacznik dostaw", "delivery"),
+		list("Pole ostrzegawcze", "warn_full"),
 	)
 	// These decals only have a south sprite.
 	var/nondirectional_decals = list(
@@ -400,13 +400,13 @@
 	return ..()
 
 /obj/item/airlock_painter/decal/debug
-	name = "extreme decal painter"
+	name = "ekstremalny malownik oznaczeń"
 	icon_state = "decal_sprayer_ex"
 	initial_ink_type = /obj/item/toner/extreme
 
 /obj/item/airlock_painter/decal/tile
-	name = "tile sprayer"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to spray colors on floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to change design."
+	name = "natryskiwacz płytek"
+	desc = "Malownik śluz przeprogramowany na inny rodzaj farby, dzięki czemu oprócz przemalowywania drzwi natryskuje też kolory na płytki podłogowe. Oznaczenia znikają po zdjęciu płytek. Alt-kliknij, by zmienić wzór."
 	icon_state = "tile_sprayer"
 	stored_dir = 2
 	stored_color = "#D4D4D432"
@@ -414,23 +414,23 @@
 	spritesheet_type = /datum/asset/spritesheet/decals/tiles
 	supports_custom_color = TRUE
 	color_list = list(
-		list("Neutral", "#D4D4D432"),
-		list("Dark", "#0e0f0f"),
-		list("Bar Burgundy", "#791500"),
-		list("Sec Red", "#DE3A3A"),
-		list("Cargo Brown", "#A46106"),
-		list("Engi Yellow", "#EFB341"),
-		list("Service Green", "#9FED58"),
-		list("Med Blue", "#52B4E9"),
-		list("R&D Purple", "#D381C9"),
+		list("Neutralny", "#D4D4D432"),
+		list("Ciemny", "#0e0f0f"),
+		list("Bordo baru", "#791500"),
+		list("Czerwień ochrony", "#DE3A3A"),
+		list("Brąz zaopatrzenia", "#A46106"),
+		list("Żółć inżynierii", "#EFB341"),
+		list("Zieleń usług", "#9FED58"),
+		list("Błękit medyczny", "#52B4E9"),
+		list("Fiolet B+R", "#D381C9"),
 	)
 	decal_list = list(
-		list("Corner", "tile_corner"),
-		list("Trimline Corner", "trimline_corner_fill"),
-		list("Trimline Fill", "trimline_fill"),
-		list("Trimline Fill L", "trimline_fill__8"), // This is a hack that lives in the spritesheet builder and paint_floor
-		list("Trimline End", "trimline_end_fill"),
-		list("Trimline Box", "trimline_box_fill"),
+		list("Narożnik", "tile_corner"),
+		list("Narożnik obwódki", "trimline_corner_fill"),
+		list("Wypełnienie obwódki", "trimline_fill"),
+		list("Wypełnienie obwódki L", "trimline_fill__8"), // This is a hack that lives in the spritesheet builder and paint_floor
+		list("Koniec obwódki", "trimline_end_fill"),
+		list("Ramka obwódki", "trimline_box_fill"),
 	)
 	nondirectional_decals = list(
 		"tile_fourcorners",

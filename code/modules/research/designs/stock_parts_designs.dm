@@ -3,8 +3,8 @@
 ////////////////////////////////////////
 
 /datum/design/RPED
-	name = "Rapid Part Exchange Device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	name = "Urządzenie do szybkiej wymiany części"
+	desc = "Specjalny moduł mechaniczny do przechowywania, sortowania i montowania standardowych części maszyn."
 	id = "rped"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/glass = 5000) //hardcore
@@ -13,8 +13,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/BS_RPED
-	name = "Bluespace RPED"
-	desc = "Powered by bluespace technology, this RPED variant can upgrade buildings from a distance, without needing to remove the panel first."
+	name = "RPED bluespace"
+	desc = "Ten wariant RPED, zasilany technologią bluespace, ulepsza maszyny z odległości, bez zdejmowania panelu."
 	id = "bs_rped"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 5000, /datum/material/silver = 2500) //hardcore
@@ -24,8 +24,8 @@
 
 //Capacitors
 /datum/design/basic_capacitor
-	name = "Basic Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "Podstawowy kondensator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "basic_capacitor"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
@@ -35,8 +35,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/adv_capacitor
-	name = "Advanced Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "Zaawansowany kondensator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "adv_capacitor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 150)
@@ -46,8 +46,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/super_capacitor
-	name = "Super Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "Superkondensator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "super_capacitor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100)
@@ -57,8 +57,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/quadratic_capacitor
-	name = "Quadratic Capacitor"
-	desc = "A stock part used in the construction of various devices."
+	name = "Kondensator kwadratowy"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "quadratic_capacitor"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/gold = 100, /datum/material/diamond = 100)
@@ -69,8 +69,8 @@
 
 //Scanning modules
 /datum/design/basic_scanning
-	name = "Basic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "Podstawowy moduł skanujący"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "basic_scanning"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50, /datum/material/copper = 50)
@@ -80,8 +80,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/adv_scanning
-	name = "Advanced Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "Zaawansowany moduł skanujący"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "adv_scanning"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 100, /datum/material/copper = 100)
@@ -91,8 +91,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/phasic_scanning
-	name = "Phasic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "Fazowy moduł skanujący"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "phasic_scanning"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 150, /datum/material/silver = 60, /datum/material/copper = 100)
@@ -102,8 +102,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/triphasic_scanning
-	name = "Triphasic Scanning Module"
-	desc = "A stock part used in the construction of various devices."
+	name = "Trójfazowy moduł skanujący"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "triphasic_scanning"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/diamond = 30, /datum/material/bluespace = 30, /datum/material/copper = 100)
@@ -114,8 +114,8 @@
 
 //Maipulators
 /datum/design/micro_mani
-	name = "Micro Manipulator"
-	desc = "A stock part used in the construction of various devices."
+	name = "Mikromanipulator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "micro_mani"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/copper = 50)
@@ -125,8 +125,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/nano_mani
-	name = "Nano Manipulator"
-	desc = "A stock part used in the construction of various devices."
+	name = "Nanomanipulator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "nano_mani"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/copper = 50)
@@ -136,8 +136,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/pico_mani
-	name = "Pico Manipulator"
-	desc = "A stock part used in the construction of various devices."
+	name = "Pikomanipulator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "pico_mani"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/copper = 50)
@@ -147,8 +147,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/femto_mani
-	name = "Femto Manipulator"
-	desc = "A stock part used in the construction of various devices."
+	name = "Femtomanipulator"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "femto_mani"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/diamond = 30, /datum/material/titanium = 30, /datum/material/copper = 50)
@@ -159,8 +159,8 @@
 
 //Micro-lasers
 /datum/design/basic_micro_laser
-	name = "Basic Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "Podstawowy mikrolaser"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "basic_micro_laser"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50, /datum/material/copper = 50)
@@ -170,8 +170,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/high_micro_laser
-	name = "High-Power Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "Mikrolaser dużej mocy"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "high_micro_laser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 100, /datum/material/copper = 50)
@@ -181,8 +181,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/ultra_micro_laser
-	name = "Ultra-High-Power Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "Mikrolaser ultrawysokiej mocy"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "ultra_micro_laser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 150, /datum/material/uranium = 60, /datum/material/copper = 50)
@@ -192,8 +192,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/quadultra_micro_laser
-	name = "Quad-Ultra Micro-Laser"
-	desc = "A stock part used in the construction of various devices."
+	name = "Mikrolaser quad-ultra"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "quadultra_micro_laser"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/uranium = 100, /datum/material/diamond = 60, /datum/material/copper = 50)
@@ -203,8 +203,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/basic_matter_bin
-	name = "Basic Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "Podstawowy zasobnik materii"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "basic_matter_bin"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100)
@@ -214,8 +214,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/adv_matter_bin
-	name = "Advanced Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "Zaawansowany zasobnik materii"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "adv_matter_bin"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150)
@@ -225,8 +225,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/super_matter_bin
-	name = "Super Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "Superzasobnik materii"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "super_matter_bin"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200)
@@ -236,8 +236,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespace_matter_bin
-	name = "Bluespace Matter Bin"
-	desc = "A stock part used in the construction of various devices."
+	name = "Zasobnik materii bluespace"
+	desc = "Część zamienna używana do budowy różnych urządzeń."
 	id = "bluespace_matter_bin"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 250, /datum/material/diamond = 100, /datum/material/bluespace = 100)
@@ -248,8 +248,8 @@
 
 //T-Comms devices
 /datum/design/subspace_ansible
-	name = "Subspace Ansible"
-	desc = "A compact module capable of sensing extradimensional activity."
+	name = "Ansibl podprzestrzenny"
+	desc = "Kompaktowy moduł wyczuwający aktywność międzywymiarową."
 	id = "s-ansible"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/silver = 100)
@@ -258,8 +258,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/hyperwave_filter
-	name = "Hyperwave Filter"
-	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
+	name = "Filtr hiperfal"
+	desc = "Maleńkie urządzenie, które filtruje i przetwarza bardzo silne fale radiowe."
 	id = "s-filter"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/silver = 100)
@@ -268,8 +268,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_amplifier
-	name = "Subspace Amplifier"
-	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
+	name = "Wzmacniacz podprzestrzenny"
+	desc = "Kompaktowa mikromaszyna, która wzmacnia słabe transmisje podprzestrzenne."
 	id = "s-amplifier"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/gold = 100, /datum/material/uranium = 100)
@@ -278,8 +278,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_treatment
-	name = "Subspace Treatment Disk"
-	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
+	name = "Dysk obróbki podprzestrzennej"
+	desc = "Kompaktowa mikromaszyna, która rozciąga hiperskompresowane fale radiowe."
 	id = "s-treatment"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/silver = 200)
@@ -288,8 +288,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_analyzer
-	name = "Subspace Analyzer"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	name = "Analizator podprzestrzenny"
+	desc = "Wyrafinowany analizator, który bada zagadkowe długości fal podprzestrzennych."
 	id = "s-analyzer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/gold = 100)
@@ -298,8 +298,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_crystal
-	name = "Ansible Crystal"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	name = "Kryształ ansibla"
+	desc = "Wyrafinowany analizator, który bada zagadkowe długości fal podprzestrzennych."
 	id = "s-crystal"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 800, /datum/material/silver = 100, /datum/material/gold = 100)
@@ -308,8 +308,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/subspace_transmitter
-	name = "Subspace Transmitter"
-	desc = "A large piece of equipment used to open a window into the subspace dimension."
+	name = "Nadajnik podprzestrzenny"
+	desc = "Duże urządzenie, które otwiera okno do wymiaru podprzestrzeni."
 	id = "s-transmitter"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 100, /datum/material/silver = 100, /datum/material/uranium = 100, /datum/material/copper = 100)

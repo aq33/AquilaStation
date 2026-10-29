@@ -1,6 +1,6 @@
 /obj/item/assembly/signaler
-	name = "remote signaling device"
-	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
+	name = "zdalny sygnalizator"
+	desc = "Służy do zdalnego uruchamiania urządzeń. Zabezpieczony sygnalizator można zsynchronizować z innym, używając go na nim."
 	icon_state = "signaller"
 	item_state = "signaler"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -118,7 +118,7 @@
 		if(secured && signaler2.secured)
 			code = signaler2.code
 			set_frequency(signaler2.frequency)
-			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
+			to_chat(user, "Przenosisz częstotliwość i kod z [signaler2.name] do [name].")
 			ui_update()
 	..()
 
@@ -132,9 +132,9 @@
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	var/turf/T = get_turf(src)
 	if(usr)
-		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> with frequency: [format_frequency(frequency)]/[code]")
+		GLOB.lastsignalers.Add("[time] <B>:</B> [usr.key] użył: [src] @ położenie ([T.x],[T.y],[T.z]) <B>:</B> częstotliwość: [format_frequency(frequency)]/[code]")
 		log_telecomms("[time] <B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(frequency)]/[code]")
-		message_admins("<B>:</B> [usr.key] used [src] @ location [AREACOORD(T)] <B>:</B> with frequency: [format_frequency(frequency)]/[code]")
+		message_admins("<B>:</B> [usr.key] użył: [src] @ położenie [AREACOORD(T)] <B>:</B> częstotliwość: [format_frequency(frequency)]/[code]")
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
 	. = FALSE
@@ -181,8 +181,8 @@
 
 // Embedded signaller used in anomalies.
 /obj/item/assembly/signaler/anomaly
-	name = "anomaly core"
-	desc = "The neutralized core of an anomaly. It'd probably be valuable for research."
+	name = "rdzeń anomalii"
+	desc = "Zneutralizowany rdzeń anomalii. Pewnie przydałby się do badań."
 	icon_state = "anomaly core"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -209,49 +209,49 @@
 
 /obj/item/assembly/signaler/anomaly/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, "<span class='notice'>Analyzing... [src]'s stabilized field is fluctuating along frequency [format_frequency(frequency)], code [code].</span>")
+		to_chat(user, "<span class='notice'>Analiza... Ustabilizowane pole [src] oscyluje na częstotliwości [format_frequency(frequency)], kod [code].</span>")
 	..()
 
 //Anomaly cores
 /obj/item/assembly/signaler/anomaly/pyro
-	name = "\improper pyroclastic anomaly core"
-	desc = "The neutralized core of a pyroclastic anomaly. It feels warm to the touch. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii piroklastycznej"
+	desc = "Zneutralizowany rdzeń anomalii piroklastycznej. Jest ciepły w dotyku. Pewnie przydałby się do badań."
 	icon_state = "pyro core"
 	anomaly_type = /obj/effect/anomaly/pyro
 
 /obj/item/assembly/signaler/anomaly/grav
-	name = "\improper gravitational anomaly core"
-	desc = "The neutralized core of a gravitational anomaly. It feels much heavier than it looks. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii grawitacyjnej"
+	desc = "Zneutralizowany rdzeń anomalii grawitacyjnej. Wydaje się dużo cięższy, niż wygląda. Pewnie przydałby się do badań."
 	icon_state = "grav core"
 	anomaly_type = /obj/effect/anomaly/grav
 
 /obj/item/assembly/signaler/anomaly/flux
-	name = "\improper flux anomaly core"
-	desc = "The neutralized core of a flux anomaly. Touching it makes your skin tingle. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii strumienia"
+	desc = "Zneutralizowany rdzeń anomalii strumienia. Gdy go dotykasz, mrowi cię skóra. Pewnie przydałby się do badań."
 	icon_state = "flux core"
 	anomaly_type = /obj/effect/anomaly/flux
 
 /obj/item/assembly/signaler/anomaly/bluespace
-	name = "\improper bluespace anomaly core"
-	desc = "The neutralized core of a bluespace anomaly. It keeps phasing in and out of view. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii bluespace"
+	desc = "Zneutralizowany rdzeń anomalii bluespace. Raz po raz znika i pojawia się z powrotem. Pewnie przydałby się do badań."
 	icon_state = "anomaly core"
 	anomaly_type = /obj/effect/anomaly/bluespace
 
 /obj/item/assembly/signaler/anomaly/vortex
-	name = "\improper vortex anomaly core"
-	desc = "The neutralized core of a vortex anomaly. It won't sit still, as if some invisible force is acting on it. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii wirowej"
+	desc = "Zneutralizowany rdzeń anomalii wirowej. Nie chce leżeć spokojnie, jakby działała na niego jakaś niewidzialna siła. Pewnie przydałby się do badań."
 	icon_state = "vortex core"
 	anomaly_type = /obj/effect/anomaly/bhole
 
 /obj/item/assembly/signaler/anomaly/delimber
-	name = "\improper delimber anomaly core"
-	desc = "The neutralized core of a delimber anomaly. It's squirming, as if moving. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii odczłonkowującej"
+	desc = "Zneutralizowany rdzeń anomalii odczłonkowującej. Wije się, jakby się ruszał. Pewnie przydałby się do badań."
 	icon_state = "delimber core"
 	anomaly_type = /obj/effect/anomaly/delimber
 
 /obj/item/assembly/signaler/anomaly/hallucination
-	name = "\improper hallucination anomaly core"
-	desc = "The neutralized core of a hallucination anomaly. It seems to be moving, but it's probably your imagination. It'd probably be valuable for research."
+	name = "\improper rdzeń anomalii halucynacyjnej"
+	desc = "Zneutralizowany rdzeń anomalii halucynacyjnej. Wydaje się poruszać, ale to pewnie twoja wyobraźnia. Pewnie przydałby się do badań."
 	icon_state = "hallucination core"
 	anomaly_type = /obj/effect/anomaly/hallucination
 

@@ -4,7 +4,7 @@
  * Immobile (but not dense) shell that can receive and dispense money.
  */
 /obj/structure/money_bot
-	name = "money bot"
+	name = "bot pieniężny"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_large"
 
@@ -31,7 +31,7 @@
 /obj/structure/money_bot/wrench_act(mob/living/user, obj/item/tool)
 	anchored = !anchored
 	tool.play_tool_sound(src)
-	balloon_alert(user, "You [anchored ? "secure" : "unsecure"] [src].")
+	balloon_alert(user, "[anchored ? "Mocujesz" : "Odmocowujesz"] [src].")
 	return TRUE
 
 
@@ -139,7 +139,7 @@
 		return
 
 	attached_bot.add_money(amount_to_insert)
-	balloon_alert(attacker, "Inserted [amount_to_insert] credits.")
+	balloon_alert(attacker, "Wkładasz [amount_to_insert] kr.")
 	money_input.set_output(amount_to_insert)
 	payer.set_output(attacker)
 	money_trigger.set_output(COMPONENT_SIGNAL)

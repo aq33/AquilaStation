@@ -5,19 +5,19 @@
 
 /obj/item/book/granter/martial/jujitsu
 	martial = /datum/martial_art/jujitsu
-	name = "surviving edged weapons"
+	name = "przetrwać atak bronią białą"
 	oneuse = TRUE
 	martialname = "Ju jitsu"
 	icon = 'nsv13/icons/obj/library.dmi'
 	icon_state = "edgedweapons"
-	desc = "An instructional manual produced in the 2180s which instructs police officers in how to survive attacks by edged weapons and more. (Comes with a FREE Martian war commemorative knife!)"
+	desc = "Podręcznik szkoleniowy z lat 2180., który uczy policjantów, jak przetrwać atak bronią białą i nie tylko. (W zestawie DARMOWY pamiątkowy nóż z wojny marsjańskiej!)"
 	greet = "<span class='sciradio'> Nagle czujesz się o wiele mniej bezbronny wobec ataków nożem... Potrafisz teraz wykonywać chwyty obezwładniające podejrzanych. Więcej o swojej nowej sztuce dowiesz się z czasownika Recall police training w zakładce ju-jitsu.</span>"
 	remarks = list("Podejrzany z nożem może pokonać 7 kroków i zadać śmiertelny cios w mniej niż półtorej sekundy...", "W razie satanistycznych rytuałów zaaplikuj sprawcy pełny magazynek...", "Podczas przeszukania zdejmij mu czapkę i obejrzyj włosy, nie dotykając ich...", "Niech partner przeszukuje cel, podczas gdy ty go obezwładniasz...", "O co chodzi z tą kulturą noża?...", "Aby zareagować, oddać co najmniej 2 strzały i mieć czas zejść z linii ataku, potrzebny jest minimalny dystans reakcji 21 stóp...")
 
 /obj/item/book/granter/martial/jujitsu/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse)
-		desc = "The pages are too thicky encrusted with coffee stains and donut residue to be legibile anymore..."
+		desc = "Strony są tak grubo pokryte plamami po kawie i resztkami pączków, że nie da się już ich przeczytać..."
 
 /datum/martial_art/jujitsu
 	name = "Ju jitsu"
@@ -33,9 +33,9 @@
 
 /mob/living/carbon/human/proc/jujitsu_help()
 	set name = "Recall Police Training"
-	set desc = "Remember your police academy martial arts training."
+	set desc = "Przypomnij sobie szkolenie ze sztuk walki z akademii policyjnej."
 	set category = "Jujitsu"
-	to_chat(usr, "<span class='notice'>Combos:</span>")
+	to_chat(usr, "<span class='notice'>Kombinacje:</span>")
 	to_chat(usr, "<span class='warning'><b>Rozbrojenie, chwyt</b> powala cel, jeśli wcześniej został spowolniony / osłabiony</span>")
 	to_chat(usr, "<span class='warning'><b>Krzywda, krzywda, chwyt</b> wykonuje rzut judo na cel, po którym lądujesz na nim w pozycji przygważdżającej. Pod warunkiem że w ostatnim kroku trzymasz go w chwycie...</span>")
 	to_chat(usr, "<span class='warning'><b>Rozbrojenie, krzywda, chwyt, chwyt</b> zakłada celowi dźwignię na rękę, rzucając was oboje na ziemię. Z tej pozycji masz jednak większą swobodę ruchu niż sprawca.</span>")

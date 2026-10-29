@@ -7,8 +7,8 @@
  *
  */
 /obj/item/grenade/plastic/ninja
-	name = "spider charge"
-	desc = "A modified C-4 charge supplied by the Spider Clan. It has great explosive power, but is keyed to only work in one specific area."
+	name = "ładunek pajęczy"
+	desc = "Zmodyfikowany ładunek C-4 od Klanu Pająka. Ma ogromną siłę wybuchu, ale działa tylko w jednym, określonym miejscu."
 	icon_state = "ninja-explosive0"
 	item_state = "ninja-explosive"
 	boom_sizes = list(4, 8, 12)
@@ -27,13 +27,13 @@
 	if (!IS_SPACE_NINJA(user))
 		return
 	if (isnull(detonation_area))
-		. += span_notice("This one was provided with no destination set, and cannot be used.")
+		. += span_notice("Ten egzemplarz nie ma ustawionego celu i nie da się go użyć.")
 	else
-		. += span_notice("This device will only function in [detonation_area].")
+		. += span_notice("To urządzenie zadziała tylko w miejscu: [detonation_area].")
 
 /obj/item/grenade/plastic/ninja/afterattack(atom/movable/target, mob/ninja, flag)
 	if(!IS_SPACE_NINJA(ninja))
-		say("Access denied.")
+		say("Odmowa dostępu.")
 		return
 	if (!check_loc(ninja))
 		return
@@ -44,7 +44,7 @@
 	if(!check_loc(detonator.resolve())) // if its moved, deactivate the c4
 		var/obj/item/grenade/plastic/ninja/new_c4 = new /obj/item/grenade/plastic/ninja(target.loc)
 		new_c4.detonation_area = detonation_area
-		new_c4.say("Invalid location!")
+		new_c4.say("Nieprawidłowe miejsce!")
 		target.cut_overlay(plastic_overlay, TRUE)
 		qdel(src)
 		return
@@ -68,10 +68,10 @@
  */
 /obj/item/grenade/plastic/ninja/proc/check_loc(mob/user)
 	if(isnull(detonation_area))
-		balloon_alert(user, "no location set!")
+		balloon_alert(user, "brak ustawionego miejsca!")
 		return FALSE
 	if((get_area(target) != detonation_area) && (get_area(src) != detonation_area))
 		if (!active)
-			balloon_alert(user, "wrong location!")
+			balloon_alert(user, "złe miejsce!")
 		return FALSE
 	return TRUE

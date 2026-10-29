@@ -4,7 +4,7 @@
  * A handheld device with one big button.
  */
 /obj/item/compact_remote
-	name = "compact remote"
+	name = "kompaktowy pilot"
 	icon = 'icons/obj/wiremod.dmi'
 	icon_state = "setup_small_simple"
 	item_state = "electronic"
@@ -45,6 +45,6 @@
  */
 /obj/item/circuit_component/compact_remote/proc/send_trigger(atom/source, mob/user)
 	SIGNAL_HANDLER
-	source.balloon_alert(user, "Clicked the primary button.")
+	source.balloon_alert(user, "Wciskasz główny przycisk.")
 	playsound(source, get_sfx("terminal_type"), 25, FALSE)
 	signal.set_output(COMPONENT_SIGNAL)

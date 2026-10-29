@@ -1,6 +1,6 @@
 //Ranged
 /obj/item/projectile/guardian
-	name = "crystal spray"
+	name = "kryształowy rozprysk"
 	icon_state = "guardian"
 	damage = 5
 	damage_type = BRUTE
@@ -79,12 +79,12 @@
 /mob/living/simple_animal/hostile/guardian/ranged/verb/Snare()
 	set name = "Set Surveillance Snare"
 	set category = "Guardian"
-	set desc = "Set an invisible snare that will alert you when living creatures walk over it. Max of 5"
+	set desc = "Zastaw niewidzialne sidła, które ostrzegą cię, gdy przejdzie po nich żywa istota. Maksymalnie 5."
 	if(src.snares.len <6)
 		var/turf/snare_loc = get_turf(src.loc)
 		var/obj/effect/snare/S = new /obj/effect/snare(snare_loc)
 		S.spawner = src
-		S.name = "[get_area(snare_loc)] snare ([rand(1, 1000)])"
+		S.name = "sidła: [get_area(snare_loc)] ([rand(1, 1000)])"
 		src.snares |= S
 		to_chat(src, "<span class='danger'><B>Sidła obserwacyjne rozstawione!</span></B>")
 	else
@@ -93,7 +93,7 @@
 /mob/living/simple_animal/hostile/guardian/ranged/verb/DisarmSnare()
 	set name = "Remove Surveillance Snare"
 	set category = "Guardian"
-	set desc = "Disarm unwanted surveillance snares."
+	set desc = "Rozbrój niepotrzebne sidła obserwacyjne."
 	var/picked_snare = input(src, "Wybierz sidła do usunięcia", "Usuń sidła") as null|anything in sortNames(src.snares)
 	if(picked_snare)
 		src.snares -= picked_snare
@@ -101,8 +101,8 @@
 		to_chat(src, "<span class='danger'><B>Sidła rozbrojone.</span></B>")
 
 /obj/effect/snare
-	name = "snare"
-	desc = "You shouldn't be seeing this!"
+	name = "sidła"
+	desc = "Nie powinieneś tego widzieć!"
 	var/mob/living/simple_animal/hostile/guardian/spawner
 	invisibility = INVISIBILITY_ABSTRACT
 

@@ -74,7 +74,7 @@
 
 	playsound(new_wall, 'aquila/sound/effects/constructform.ogg', 50, TRUE)
 	new_wall.rust_heretic_act()
-	new_wall.name = "\improper enchanted [new_wall.name]"
+	new_wall.name = "\improper [new_wall.name] (zaklęta)"
 	// AQUILA - w tg ściana dostaje /datum/component/torn_wall (u nas brak); bez dźwigara i blach przy rozbiórce
 	new_wall.hardness = 60
 	new_wall.sheet_amount = 0

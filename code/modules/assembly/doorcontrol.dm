@@ -1,6 +1,6 @@
 /obj/item/assembly/control
-	name = "blast door controller"
-	desc = "A small electronic device able to control a blast door remotely."
+	name = "sterownik drzwi przeciwwybuchowych"
+	desc = "Małe urządzenie elektroniczne do zdalnego sterowania drzwiami przeciwwybuchowymi."
 	icon_state = "control"
 	attachable = TRUE
 	var/id = null
@@ -27,8 +27,8 @@
 
 
 /obj/item/assembly/control/airlock
-	name = "airlock controller"
-	desc = "A small electronic device able to control an airlock remotely."
+	name = "sterownik śluzy"
+	desc = "Małe urządzenie elektroniczne do zdalnego sterowania śluzą."
 	id = "badmin" // Set it to null for MEGAFUN.
 	var/specialfunctions = OPEN
 	/*
@@ -72,8 +72,8 @@
 
 
 /obj/item/assembly/control/massdriver
-	name = "mass driver controller"
-	desc = "A small electronic device able to control a mass driver."
+	name = "sterownik wyrzutni masowej"
+	desc = "Małe urządzenie elektroniczne do sterowania wyrzutnią masową."
 
 /obj/item/assembly/control/massdriver/activate()
 	if(cooldown)
@@ -99,8 +99,8 @@
 
 
 /obj/item/assembly/control/igniter
-	name = "ignition controller"
-	desc = "A remote controller for a mounted igniter."
+	name = "sterownik zapłonu"
+	desc = "Zdalny sterownik zamontowanego zapalnika."
 
 /obj/item/assembly/control/igniter/activate()
 	if(cooldown)
@@ -119,8 +119,8 @@
 	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 30)
 
 /obj/item/assembly/control/flasher
-	name = "flasher controller"
-	desc = "A remote controller for a mounted flasher."
+	name = "sterownik lampy błyskowej"
+	desc = "Zdalny sterownik zamontowanej lampy błyskowej."
 
 /obj/item/assembly/control/flasher/activate()
 	if(cooldown)
@@ -134,8 +134,8 @@
 
 
 /obj/item/assembly/control/crematorium
-	name = "crematorium controller"
-	desc = "An evil-looking remote controller for a crematorium."
+	name = "sterownik krematorium"
+	desc = "Złowrogo wyglądający zdalny sterownik krematorium."
 
 /obj/item/assembly/control/crematorium/activate()
 	if(cooldown)

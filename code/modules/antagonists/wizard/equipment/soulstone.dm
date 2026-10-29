@@ -1,12 +1,12 @@
 /obj/item/soulstone
-	name = "soulstone shard"
+	name = "odłamek kamienia duszy"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	layer = HIGH_OBJ_LAYER
-	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefact's power."
+	desc = "Fragment legendarnego skarbu znanego po prostu jako „Kamień Duszy”. W odłamku wciąż migocze cząstka mocy całego artefaktu."
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = ITEM_SLOT_BELT
 	var/usability = FALSE
@@ -18,10 +18,10 @@
 /obj/item/soulstone/proc/was_used()
 	if(old_shard)
 		spent = TRUE
-		name = "dull [name]"
-		desc = "A fragment of the legendary treasure known simply as \
-			the 'Soul Stone'. The shard lies still, dull and lifeless; \
-			whatever spark it once held long extinguished."
+		name = "[name] (bez mocy)"
+		desc = "Fragment legendarnego skarbu znanego po prostu jako \
+			„Kamień Duszy”. Odłamek leży nieruchomo, matowy i martwy; \
+			iskra, którą kiedyś w sobie nosił, dawno zgasła."
 
 /obj/item/soulstone/anybody
 	usability = TRUE
@@ -36,7 +36,7 @@
 
 
 /obj/item/soulstone/anybody/chaplain
-	name = "mysterious old shard"
+	name = "tajemniczy stary odłamek"
 	old_shard = TRUE
 
 /obj/item/soulstone/pickup(mob/living/user)
@@ -69,7 +69,7 @@
 		S.cancel_camera()
 		if(purified)
 			S.icon_state = "ghost1"
-			S.name = "Purified [initial(S.name)]"
+			S.name = "Oczyszczony [initial(S.name)]"
 
 /obj/item/soulstone/proc/hot_potato(mob/living/user)
 	to_chat(user, "<span class='userdanger'>Święta magia zaklęta w [src] parzy ci dłoń!</span>")
@@ -134,10 +134,10 @@
 
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////
 /obj/structure/constructshell
-	name = "empty shell"
+	name = "pusta powłoka"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "construct-cult"
-	desc = "A wicked machine used by those skilled in magical arts. It is inactive."
+	desc = "Złowroga maszyna używana przez biegłych w sztukach magicznych. Jest nieaktywna."
 
 /obj/structure/constructshell/examine(mob/user)
 	. = ..()
@@ -225,7 +225,7 @@
 						SSticker.mode.remove_cultist(T.mind, FALSE, FALSE)
 				else
 					icon_state = "soulstone2"
-				name = "soulstone: Shade of [T.real_name]"
+				name = "kamień duszy: Cień [T.real_name]"
 				to_chat(T, "<span class='notice'>Kamień dusz chwyta twoją duszę. Jego tajemne energie odtwarzają twoją eteryczną postać.</span>")
 				if(user != T)
 					to_chat(user, "<span class='info'><b>Schwytano!</b>:</span> Dusza [T.real_name] została schwytana i zamknięta w kamieniu dusz.")
@@ -234,7 +234,7 @@
 			var/obj/structure/constructshell/T = target
 			var/mob/living/simple_animal/shade/A = locate() in src
 			if(A)
-				var/construct_class = alert(user, "Wybierz rodzaj konstruktu, który chcesz stworzyć.",,"Juggernaut","Wraith","Artificer")
+				var/construct_class = alert(user, "Wybierz rodzaj konstruktu, który chcesz stworzyć.",,"Juggernaut","Widmo","Rzemieślnik")
 				if(!T || !T.loc)
 					return
 				switch(construct_class)
@@ -246,7 +246,7 @@
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored/angelic, A, user, 0, T.loc)
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/armored/noncult, A, user, 0, T.loc)
-					if("Wraith")
+					if("Widmo")
 						if(iscultist(user) || iswizard(user))
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith, A, user, 0, T.loc)
 						else
@@ -254,7 +254,7 @@
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith/angelic, A, user, 0, T.loc)
 							else
 								makeNewConstruct(/mob/living/simple_animal/hostile/construct/wraith/noncult, A, user, 0, T.loc)
-					if("Artificer")
+					if("Rzemieślnik")
 						if(iscultist(user) || iswizard(user))
 							makeNewConstruct(/mob/living/simple_animal/hostile/construct/builder, A, user, 0, T.loc)
 						else
@@ -304,7 +304,7 @@
 	var/mob/living/simple_animal/shade/S = new /mob/living/simple_animal/shade(src)
 	S.status_flags |= GODMODE //So they won't die inside the stone somehow
 	S.mobility_flags = NONE //Can't move out of the soul stone
-	S.name = "Shade of [T.real_name]"
+	S.name = "Cień [T.real_name]"
 	S.real_name = "Cień [T.real_name]"
 	S.key = T.key
 	S.copy_languages(T, LANGUAGE_MIND)//Copies the old mobs languages into the new mob holder.
@@ -316,7 +316,7 @@
 	if(U && iscultist(U))
 		SSticker.mode.add_cultist(S.mind, 0)
 	S.cancel_camera()
-	name = "soulstone: Shade of [T.real_name]"
+	name = "kamień duszy: Cień [T.real_name]"
 	if(purified)
 		icon_state = "purified_soulstone2"
 	else

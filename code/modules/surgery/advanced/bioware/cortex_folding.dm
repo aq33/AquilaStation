@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/cortex_folding
-	name = "Cortex Folding"
-	desc = "A surgical procedure which modifies the cerebral cortex into a complex fold, giving space to non-standard neural patterns."
+	name = "Fałdowanie kory mózgowej"
+	desc = "Zabieg chirurgiczny, który układa korę mózgową w złożoną fałdę, robiąc miejsce na niestandardowe wzorce neuronowe."
 	possible_locs = list(BODY_ZONE_HEAD)
 	steps = list(
 		/datum/surgery_step/incise,
@@ -21,7 +21,7 @@
 	return ..()
 
 /datum/surgery_step/fold_cortex
-	name = "fold cortex (hand)"
+	name = "pofałduj korę (ręcznie)"
 	accept_hand = TRUE
 	time = 125
 
@@ -61,8 +61,8 @@
 	return FALSE
 
 /datum/bioware/cortex_fold
-	name = "Cortex Fold"
-	desc = "The cerebral cortex has been folded into a complex fractal pattern, and can support non-standard neural patterns."
+	name = "Pofałdowana kora"
+	desc = "Kora mózgowa została ułożona w złożony wzór fraktalny i może obsługiwać niestandardowe wzorce neuronowe."
 	mod_type = BIOWARE_CORTEX
 
 /datum/bioware/cortex_fold/on_gain()

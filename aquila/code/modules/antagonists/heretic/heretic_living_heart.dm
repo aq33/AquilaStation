@@ -305,7 +305,7 @@
 
 /atom/movable/screen/navigate_arrow
 	icon = 'aquila/icons/effects/heretic_96x96.dmi'
-	name = "farsight arrow"
+	name = "strzałka dalekowidzenia"
 	icon_state = "navigate_arrow_appear"
 	pixel_x = -32
 	pixel_y = -32

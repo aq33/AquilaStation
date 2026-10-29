@@ -2,8 +2,8 @@
 /// Drinks.
 ////////////////////////////////////////////////////////////////////////////////
 /obj/item/reagent_containers/food/drinks
-	name = "drink"
-	desc = "yummy"
+	name = "napój"
+	desc = "pycha"
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
@@ -43,7 +43,7 @@
 			if(!reagents || !reagents.total_volume)
 				return
 			gulp_amount = 50
-			user.visible_message("<span class='notice'>[user] chugs [src].</span>", \
+			user.visible_message("<span class='notice'>[user] wypija [src] duszkiem.</span>", \
 				"<span class='notice'>Wypijasz [src] duszkiem.</span>")
 			beingChugged = FALSE
 		else
@@ -136,7 +136,7 @@
 	I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
-	B.name = "broken [name]"
+	B.name = "[name] (uszkodzenie)"
 	if(ranged)
 		B.throw_scatter() // AQUILA EDIT - Yogstation#12789
 	if(prob(33))
@@ -162,8 +162,8 @@
 
 
 /obj/item/reagent_containers/food/drinks/trophy
-	name = "pewter cup"
-	desc = "Everyone gets a trophy."
+	name = "cynowy puchar"
+	desc = "Każdy dostaje trofeum."
 	icon_state = "pewter_cup"
 	w_class = WEIGHT_CLASS_TINY
 	force = 1
@@ -178,8 +178,8 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/trophy/gold_cup
-	name = "gold cup"
-	desc = "You're winner!"
+	name = "złoty puchar"
+	desc = "Jesteś zwycięzca!"
 	icon_state = "golden_cup"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14
@@ -189,8 +189,8 @@
 	volume = 150
 
 /obj/item/reagent_containers/food/drinks/trophy/silver_cup
-	name = "silver cup"
-	desc = "Best loser!"
+	name = "srebrny puchar"
+	desc = "Najlepszy z przegranych!"
 	icon_state = "silver_cup"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 10
@@ -201,8 +201,8 @@
 
 
 /obj/item/reagent_containers/food/drinks/trophy/bronze_cup
-	name = "bronze cup"
-	desc = "At least you ranked!"
+	name = "brązowy puchar"
+	desc = "Przynajmniej jesteś na podium!"
 	icon_state = "bronze_cup"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 5
@@ -217,8 +217,8 @@
 //	Formatting is the same as food.
 
 /obj/item/reagent_containers/food/drinks/coffee
-	name = "robust coffee"
-	desc = "Careful, the beverage you're about to enjoy is extremely hot."
+	name = "krzepka kawa"
+	desc = "Ostrożnie, napój, którym zaraz się delektujesz, jest bardzo gorący."
 	icon = 'nsv13/icons/obj/coffee.dmi' //NSV13 - COFFEE ICON
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/coffee = 30)
@@ -228,8 +228,8 @@
 	foodtype = BREAKFAST
 
 /obj/item/reagent_containers/food/drinks/ice
-	name = "ice cup"
-	desc = "Careful, cold ice, do not chew."
+	name = "kubek z lodem"
+	desc = "Ostrożnie, zimny lód, nie gryźć."
 	custom_price = 5
 	icon_state = "coffee"
 	list_reagents = list(/datum/reagent/consumable/ice = 30)
@@ -237,13 +237,13 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/ice/prison
-	name = "dirty ice cup"
-	desc = "Either Nanotrasen's water supply is contaminated, or this machine actually vends lemon, chocolate, and cherry snow cones."
+	name = "kubek z brudnym lodem"
+	desc = "Albo wodociąg Nanotrasen jest skażony, albo ta maszyna naprawdę wydaje cytrynowy, czekoladowy i wiśniowy kruszony lód."
 	list_reagents  = list(/datum/reagent/consumable/ice = 25, /datum/reagent/liquidgibs = 5)
 
 /obj/item/reagent_containers/food/drinks/mug/ // parent type is literally just so empty mug sprites are a thing
-	name = "mug"
-	desc = "A drink served in a classy mug."
+	name = "kubek"
+	desc = "Napój podany w eleganckim kubku."
 	icon_state = "tea"
 	item_state = "coffee"
 	spillable = TRUE
@@ -255,21 +255,21 @@
 		icon_state = "tea_empty"
 
 /obj/item/reagent_containers/food/drinks/mug/tea
-	name = "Duke Purple tea"
-	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
+	name = "herbata Duke Purple"
+	desc = "Obraza Duke Purple to obraza Kosmicznej Królowej! Każdy porządny dżentelmen stanie z tobą do walki, jeśli zbezcześcisz tę herbatę."
 	list_reagents = list(/datum/reagent/consumable/tea = 30)
 
 /obj/item/reagent_containers/food/drinks/mug/cocoa
-	name = "Dutch hot cocoa"
-	desc = "Made in Space South America."
+	name = "holenderskie gorące kakao"
+	desc = "Wyprodukowano w Kosmicznej Ameryce Południowej."
 	list_reagents = list(/datum/reagent/consumable/cocoa/hot_cocoa = 15, /datum/reagent/consumable/sugar = 5)
 	foodtype = SUGAR
 	resistance_flags = FREEZE_PROOF
 	custom_price = 42
 
 /obj/item/reagent_containers/food/drinks/dry_ramen
-	name = "cup ramen"
-	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
+	name = "kubek ramenu"
+	desc = "Wystarczy dodać 5 ml wody, sam się podgrzewa! Smak, który przypomina ci lata szkolne. Teraz w nowej, słonej wersji!"
 	icon_state = "ramen"
 	list_reagents = list(
 		/datum/reagent/consumable/dry_ramen = 15,
@@ -281,8 +281,8 @@
 	custom_price = 38
 
 /obj/item/reagent_containers/food/drinks/beer
-	name = "space beer"
-	desc = "Beer. In space."
+	name = "kosmiczne piwo"
+	desc = "Piwo. W kosmosie."
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
@@ -297,35 +297,35 @@
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer, amount)
 
 /obj/item/reagent_containers/food/drinks/syndicatebeer
-	name = "syndicate beer"
-	desc = "Consumed only by the finest syndicate agents. There is a round warning label stating 'Don't drink more than one in quick succession!'"
+	name = "piwo Syndykatu"
+	desc = "Pijane tylko przez najlepszych agentów Syndykatu. Okrągła etykieta ostrzega: „Nie pij więcej niż jednego pod rząd!”"
 	icon_state = "syndicatebeer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 10, /datum/reagent/medicine/antitoxin = 20)
 	foodtype = GRAIN | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/ftliver
-	name = "Faster-Than-Liver"
-	desc = "They've gone into plaid!"
+	name = "Szybsze-Niż-Wątroba"
+	desc = "Weszli w kratę!"
 	icon_state = "ftliver"
 	list_reagents = list(/datum/reagent/consumable/ethanol/ftliver = 30)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/beer/light
 	name = "Carp Lite"
-	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
+	desc = "Warzone na „czystej źródlanej wodzie z lodowej asteroidy”."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
 
 /obj/item/reagent_containers/food/drinks/ale
 	name = "Magm-Ale"
-	desc = "A true dorf's drink of choice."
+	desc = "Ulubiony trunek prawdziwego krasnoluda."
 	icon_state = "alebottle"
 	item_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/ale = 30)
 	foodtype = GRAIN | ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/sillycup
-	name = "paper cup"
-	desc = "A paper water cup."
+	name = "kubek papierowy"
+	desc = "Papierowy kubek na wodę."
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = list()
 	volume = 10
@@ -339,8 +339,8 @@
 		icon_state = "water_cup_e"
 
 /obj/item/reagent_containers/food/drinks/sillycup/smallcarton
-	name = "small carton"
-	desc = "A small carton, intended for holding drinks."
+	name = "mały karton"
+	desc = "Mały karton na napoje."
 	icon_state = "juicebox"
 	volume = 15 //I figure if you have to craft these it should at least be slightly better than something you can get for free from a watercooler
 
@@ -353,10 +353,10 @@
 	I.Blend(B.broken_outline, ICON_OVERLAY, rand(5), 1)
 	I.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	B.icon = I
-	B.name = "broken [name]"
+	B.name = "[name] (uszkodzenie)"
 	B.force = 0
 	B.throwforce = 0
-	B.desc = "A carton with the bottom half burst open. Might give you a papercut."
+	B.desc = "Karton z rozerwaną dolną połową. Można się o niego skaleczyć."
 	if(ranged)
 		B.throw_scatter() // AQUILA EDIT - Yogstation#12789
 	transfer_fingerprints_to(B)
@@ -368,46 +368,46 @@
 		switch(reagents.get_master_reagent_id())
 			if(/datum/reagent/consumable/orangejuice)
 				icon_state = "orangebox"
-				name = "orange juice box"
-				desc = "A great source of vitamins. Stay healthy!"
+				name = "kartonik soku pomarańczowego"
+				desc = "Świetne źródło witamin. Dbaj o zdrowie!"
 				foodtype = FRUIT | BREAKFAST
 			if(/datum/reagent/consumable/milk)
 				icon_state = "milkbox"
-				name = "carton of milk"
-				desc = "An excellent source of calcium for growing space explorers."
+				name = "karton mleka"
+				desc = "Doskonałe źródło wapnia dla rosnących kosmicznych odkrywców."
 				foodtype = DAIRY | BREAKFAST
 			if(/datum/reagent/consumable/applejuice)
 				icon_state = "juicebox"
-				name = "apple juice box"
-				desc = "Sweet apple juice. Don't be late for school!"
+				name = "kartonik soku jabłkowego"
+				desc = "Słodki sok jabłkowy. Nie spóźnij się do szkoły!"
 				foodtype = FRUIT
 			if(/datum/reagent/consumable/grapejuice)
 				icon_state = "grapebox"
-				name = "grape juice box"
-				desc = "Tasty grape juice in a fun little container. Non-alcoholic!"
+				name = "kartonik soku winogronowego"
+				desc = "Smaczny sok winogronowy w zabawnym małym opakowaniu. Bezalkoholowy!"
 				foodtype = FRUIT
 			if(/datum/reagent/consumable/pineapplejuice)
 				icon_state = "pineapplebox"
-				name = "pineapple juice box"
-				desc = "Why would you even want this?"
+				name = "kartonik soku ananasowego"
+				desc = "Po co ci to w ogóle?"
 			if(/datum/reagent/consumable/milk/chocolate_milk)
 				icon_state = "chocolatebox"
-				name = "carton of chocolate milk"
-				desc = "Milk for cool kids!"
+				name = "karton mleka czekoladowego"
+				desc = "Mleko dla fajnych dzieciaków!"
 				foodtype = SUGAR
 			if(/datum/reagent/consumable/ethanol/eggnog)
 				icon_state = "nog2"
-				name = "carton of eggnog"
-				desc = "For enjoying the most wonderful time of the year."
+				name = "karton ajerkoniaku"
+				desc = "Na najwspanialszy czas w roku."
 				foodtype = MEAT
 	else
 		icon_state = "juicebox"
-		name = "small carton"
-		desc = "A small carton, intended for holding drinks."
+		name = "mały karton"
+		desc = "Mały karton na napoje."
 
 /obj/item/reagent_containers/food/drinks/honeycomb
-	name = "Honeycomb"
-	desc = "A honeycomb made by an apid. It seems to be made out of beeswax and fairly weak."
+	name = "plaster miodu"
+	desc = "Plaster miodu zrobiony przez apida. Wygląda na zrobiony z wosku pszczelego i dość kruchy."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "honeycomb"
 	list_reagents = list(/datum/reagent/consumable/honey = 25)
@@ -428,7 +428,7 @@
 
 /obj/item/reagent_containers/food/drinks/shaker
 	name = "shaker"
-	desc = "A metal shaker to mix drinks in."
+	desc = "Metalowy shaker do mieszania drinków."
 	icon_state = "shaker"
 	materials = list(/datum/material/iron=1500)
 	amount_per_transfer_from_this = 10
@@ -436,8 +436,8 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/flask
-	name = "flask"
-	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
+	name = "piersiówka"
+	desc = "Każdy dobry kosmonauta wie, że warto mieć przy sobie parę kufli whisky, gdziekolwiek się wybiera."
 	custom_price = 30
 	icon_state = "flask"
 	materials = list(/datum/material/iron=250)
@@ -445,20 +445,20 @@
 	isGlass = FALSE
 
 /obj/item/reagent_containers/food/drinks/flask/gold
-	name = "captain's flask"
-	desc = "A gold flask belonging to the captain."
+	name = "piersiówka kapitana"
+	desc = "Złota piersiówka należąca do kapitana."
 	icon_state = "flask_gold"
 	materials = list(/datum/material/gold=500)
 
 /obj/item/reagent_containers/food/drinks/flask/det
-	name = "detective's flask"
-	desc = "The detective's only true friend."
+	name = "piersiówka detektywa"
+	desc = "Jedyny prawdziwy przyjaciel detektywa."
 	icon_state = "detflask"
 	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 30)
 
 /obj/item/reagent_containers/food/drinks/britcup
-	name = "cup"
-	desc = "A cup with the british flag emblazoned on it."
+	name = "kubek"
+	desc = "Kubek z wymalowaną brytyjską flagą."
 	icon_state = "britcup"
 	volume = 30
 	spillable = TRUE
@@ -468,7 +468,7 @@
 //These are in their own group to be used as IED's in /obj/item/grenade/ghettobomb.dm
 
 /obj/item/reagent_containers/food/drinks/soda_cans
-	name = "soda can"
+	name = "puszka"
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	reagent_flags = NONE
@@ -528,100 +528,100 @@
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/soda_cans/cola
-	name = "Space Cola"
-	desc = "Cola. in space."
+	name = "Kosmiczna Cola"
+	desc = "Cola. W kosmosie."
 	icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 30)
 	foodtype = SUGAR
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
-	name = "T-Borg's tonic water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	name = "tonik T-Borga"
+	desc = "Chinina smakuje dziwnie, ale przynajmniej odstrasza kosmiczną malarię."
 	icon_state = "tonic"
 	list_reagents = list(/datum/reagent/consumable/tonic = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sodawater
-	name = "soda water"
-	desc = "A can of soda water. Why not make a scotch and soda?"
+	name = "woda sodowa"
+	desc = "Puszka wody sodowej. Może zrobisz szkocką z wodą sodową?"
 	icon_state = "sodawater"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime
-	name = "orange soda"
-	desc = "You wanted ORANGE. It gave you Lemon Lime."
+	name = "oranżada"
+	desc = "Chciałeś POMARAŃCZOWEJ. Dostałeś Cytrynowo-Limonkowy."
 	icon_state = "lemon-lime"
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize(mapload)
 	. = ..()
-	name = "lemon-lime soda"
+	name = "napój cytrynowo-limonkowy"
 
 /obj/item/reagent_containers/food/drinks/soda_cans/space_up
-	name = "Space-Up!"
-	desc = "Tastes like a hull breach in your mouth."
+	name = "Kosmo-Up!"
+	desc = "Smakuje jak wyłom w kadłubie, tylko w ustach."
 	icon_state = "space-up"
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist
 	name = "Star-kist"
-	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
+	desc = "Smak gwiazdy w płynie. I trochę tuńczyka...?"
 	icon_state = "starkist"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 15, /datum/reagent/consumable/orangejuice = 15)
 	foodtype = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind
-	name = "Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
+	name = "Kosmiczny Górski Wiatr"
+	desc = "Przewiewa cię na wylot jak kosmiczny wiatr."
 	icon_state = "space_mountain_wind"
 	list_reagents = list(/datum/reagent/consumable/spacemountainwind = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko
-	name = "Thirteen Loko"
-	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
+	name = "Trzynaście Loko"
+	desc = "Ordynator ostrzega załogę, że picie Trzynaście Loko może wywołać drgawki, ślepotę, upicie, a nawet śmierć. Pij odpowiedzialnie."
 	icon_state = "thirteen_loko"
 	list_reagents = list(/datum/reagent/consumable/ethanol/thirteenloko = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb
 	name = "Dr. Gibb"
-	desc = "A delicious mixture of 42 different flavors."
+	desc = "Pyszna mieszanka 42 różnych smaków."
 	icon_state = "dr_gibb"
 	list_reagents = list(/datum/reagent/consumable/dr_gibb = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game
 	name = "Pwr Game"
-	desc = "The only drink with the PWR that true gamers crave."
+	desc = "Jedyny napój z MOCĄ, której pragną prawdziwi gracze."
 	icon_state = "purple_can"
 	list_reagents = list(/datum/reagent/consumable/pwr_game = 30)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/shamblers
-	name = "Shambler's juice"
-	desc = "~Shake me up some of that Shambler's Juice!~"
+	name = "Sok Shamblera"
+	desc = "~Wstrząśnij mi trochę tego Soku Shamblera!~"
 	icon_state = "shamblers"
 	list_reagents = list(/datum/reagent/consumable/shamblers = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/grey_bull
-	name = "Grey Bull"
-	desc = "Grey Bull, it gives you gloves!"
+	name = "Szary Byk"
+	desc = "Szary Byk doda ci rękawic!"
 	icon_state = "energy_drink"
 	list_reagents = list(/datum/reagent/consumable/grey_bull = 20)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
-	name = "Monkey Energy"
-	desc = "Unleash the ape!"
+	name = "Małpia Energia"
+	desc = "Uwolnij małpę!"
 	icon_state = "monkey_energy"
 	list_reagents = list(/datum/reagent/consumable/monkey_energy = 50)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/air
-	name = "canned air"
-	desc = "There is no air shortage. Do not drink."
+	name = "powietrze w puszce"
+	desc = "Nie ma niedoboru powietrza. Nie pić."
 	icon_state = "air"
 	list_reagents = list(/datum/reagent/nitrogen = 24, /datum/reagent/oxygen = 6)

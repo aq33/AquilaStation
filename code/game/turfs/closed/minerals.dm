@@ -1,7 +1,7 @@
 /**********************Mineral deposits**************************/
 
 /turf/closed/mineral //wall piece
-	name = "rock"
+	name = "skała"
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
@@ -376,7 +376,7 @@
 	defer_change = 1
 
 /turf/closed/mineral/ash_rock //wall piece
-	name = "rock"
+	name = "skała"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/rock_wall.dmi'
 	icon_state = "rock2"
@@ -389,7 +389,7 @@
 	defer_change = 1
 
 /turf/closed/mineral/snowmountain
-	name = "snowy mountainside"
+	name = "ośnieżone zbocze góry"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
 	icon_state = "mountainrock"
@@ -402,7 +402,7 @@
 	defer_change = TRUE
 
 /turf/closed/mineral/snowmountain/cavern
-	name = "ice cavern rock"
+	name = "skała lodowej jaskini"
 	icon = 'icons/turf/mining.dmi'
 	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
 	icon_state = "icerock"
@@ -437,8 +437,8 @@
 	if(stage == GIBTONITE_UNSTRUCK)
 		activated_overlay = mutable_appearance('icons/turf/smoothrocks.dmi', "rock_Gibtonite_active", ON_EDGED_TURF_LAYER)
 		add_overlay(activated_overlay)
-		name = "gibtonite deposit"
-		desc = "An active gibtonite reserve. Run!"
+		name = "złoże gibtonitu"
+		desc = "Aktywne złoże gibtonitu. Uciekaj!"
 		stage = GIBTONITE_ACTIVE
 		visible_message("<span class='danger'>W środku był gibtonit! Zaraz wybuchnie!</span>")
 
@@ -470,7 +470,7 @@
 		cut_overlay(activated_overlay)
 		activated_overlay.icon_state = "rock_Gibtonite_inactive"
 		add_overlay(activated_overlay)
-		desc = "An inactive gibtonite reserve. The ore can be extracted."
+		desc = "Nieaktywne złoże gibtonitu. Można wydobyć rudę."
 		stage = GIBTONITE_STABLE
 		if(det_time < 0)
 			det_time = 0

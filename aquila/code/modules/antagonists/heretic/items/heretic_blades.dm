@@ -1,6 +1,6 @@
 
 /obj/item/melee/sickly_blade
-	name = "\improper sickly blade"
+	name = "\improper chorobliwe ostrze"
 	desc = "Chorobliwie zielone, sierpowate ostrze zdobione ozdobnym okiem. Masz wrażenie, że ktoś cię obserwuje..."
 	icon = 'aquila/icons/obj/weapons/khopesh.dmi'
 	icon_state = "eldritch_blade"
@@ -101,7 +101,7 @@
 
 // Path of Rust's blade
 /obj/item/melee/sickly_blade/rust
-	name = "\improper rusted blade"
+	name = "\improper zardzewiałe ostrze"
 	desc = "To sierpowate ostrze jest zniszczone i trawione przez rdzę. \
 		A jednak wciąż kąsa, rozrywając ciało i kości poszarpanymi, zgniłymi zębami."
 	icon_state = "rust_blade"
@@ -110,7 +110,7 @@
 
 // Path of Ash's blade
 /obj/item/melee/sickly_blade/ash
-	name = "\improper ashen blade"
+	name = "\improper popielne ostrze"
 	desc = "Stopiony i niewykuty kawał metalu, wypaczony w żużel i popiół. \
 		Nieukończony, pragnie być czymś więcej i tępą krawędzią zadaje rany pełne sadzy."
 	icon_state = "ash_blade"
@@ -120,7 +120,7 @@
 
 // Path of Flesh's blade
 /obj/item/melee/sickly_blade/flesh
-	name = "\improper bloody blade"
+	name = "\improper krwawe ostrze"
 	desc = "Sierpowate ostrze zrodzone z wypaczonego stworzenia z ciała. \
 		W pełni świadome, pragnie dzielić z innymi cierpienie, jakie znosiło od swych strasznych początków."
 	icon_state = "flesh_blade"
@@ -145,7 +145,7 @@
 
 // Path of Void's blade
 /obj/item/melee/sickly_blade/void
-	name = "\improper void blade"
+	name = "\improper ostrze pustki"
 	desc = "Pozbawione jakiejkolwiek substancji, to ostrze odbija nicość. \
 		Jest prawdziwym obrazem czystości i chaosu, jaki następuje po jej wprowadzeniu."
 	icon_state = "void_blade"
@@ -155,7 +155,7 @@
 // Path of the Blade's... blade.
 // Opting for /dark instead of /blade to avoid "sickly_blade/blade".
 /obj/item/melee/sickly_blade/dark
-	name = "\improper sundered blade"
+	name = "\improper rozszczepione ostrze"
 	desc = "Dzielne ostrze, strzaskane i rozdarte. \
 		Tnie z furią. Srebrne blizny na zawsze wiążą je z jego mrocznym celem."
 	icon_state = "dark_blade"
@@ -209,7 +209,7 @@
 
 // Path of Cosmos's blade
 /obj/item/melee/sickly_blade/cosmic
-	name = "\improper cosmic blade"
+	name = "\improper kosmiczne ostrze"
 	desc = "Okruch niebiańskiego rezonansu ukształtowany w ostrze utkane z gwiazd. \
 		Opalizujący wygnaniec, który żłobi promienne smugi, desperacko szukając zjednoczenia."
 	icon_state = "cosmic_blade"
@@ -218,7 +218,7 @@
 
 // Path of Knock's blade
 /obj/item/melee/sickly_blade/lock
-	name = "\improper key blade"
+	name = "\improper ostrze-klucz"
 	desc = "Ostrze i klucz zarazem. Klucz do czego? \
 		Jakie wielkie bramy otwiera?"
 	icon_state = "key_blade"
@@ -229,7 +229,7 @@
 
 // Path of Moon's blade
 /obj/item/melee/sickly_blade/moon
-	name = "\improper moon blade"
+	name = "\improper księżycowe ostrze"
 	desc = "Żelazne ostrze, odbijające prawdę o ziemi: każdy kiedyś dołączy do trupy. \
 		Trupy, która niesie radość, rzeźbiąc uśmiechy na twarzach - czy tego chcą, czy nie."
 	icon_state = "moon_blade"
@@ -240,7 +240,7 @@
 // What!? This blade is given to cultists as an altar item when they sacrifice a heretic.
 // It is also given to the heretic themself if they sacrifice a cultist.
 /obj/item/melee/sickly_blade/cursed
-	name = "\improper cursed blade"
+	name = "\improper przeklęte ostrze"
 	desc = "Mroczne ostrze, przeklęte, by krwawić na wieki. Rozdarte w nieustannej walce między pozaświatowym a mrokiem, musi przyjąć każdego właściciela jako pana. \
 		Rogówka jego oka bez końca sączy krew na ziemię, a przeszywające spojrzenie wciąż spoczywa na tobie."
 	force = 25
@@ -312,7 +312,7 @@
 
 // Weaker blade variant given to people so they can participate in the heretic arena spell
 /obj/item/melee/sickly_blade/training
-	name = "\improper imperfect blade"
+	name = "\improper niedoskonałe ostrze"
 	desc = "Ostrze dane z litości tym, którzy nie potrafią przyjąć prawdy. \
 		Niech będzie błogosławieństwem w tym krótkim czasie, gdy pozostaje przy tobie."
 	force = 17

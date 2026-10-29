@@ -26,14 +26,14 @@ const IntroSection = (_props) => {
       </Stack.Item>
       <Stack.Item grow>
         <h1 style={{ position: 'relative', top: '25%', left: '-2%' }}>
-          You are the{' '}
-          <Box inline textColor="purple">
-            Abductor
-          </Box>{' '}
+          Jesteś{' '}
           <Box inline textColor="blue">
-            Scientist
+            naukowcem
           </Box>{' '}
-          of{' '}
+          <Box inline textColor="purple">
+            porywaczy
+          </Box>{' '}
+          ze statku{' '}
           <Box inline textColor="purple">
             {mothership}
           </Box>
@@ -48,22 +48,20 @@ const BasicLoreSection = (_props) => {
   return (
     <Section>
       <BlockQuote>
-        You are the{' '}
+        Jesteś{' '}
         <Box inline textColor="blue">
-          scientist
+          naukowcem
         </Box>{' '}
-        of this abductor team!
+        w tej drużynie porywaczy!
         <br />
-        You&apos;re the <b>brains</b> of the abductors, it is your job to work
-        with your{' '}
+        Jesteś <b>mózgiem</b> porywaczy: razem ze swoim{' '}
         <Box inline textColor="red">
-          agent
+          agentem
         </Box>{' '}
-        to capture test subjects and bring them back to your ship for
-        experimentation!
+        łapiesz obiekty badań i przywozisz je na statek na eksperymenty!
         <br />
-        As an abductor, you have a telepathic link with your partner, and have
-        no method of verbal communication.
+        Jako porywacz masz telepatyczną więź z partnerem i nie możesz
+        porozumiewać się słowami.
       </BlockQuote>
     </Section>
   );
@@ -71,74 +69,72 @@ const BasicLoreSection = (_props) => {
 
 const SurgerySubsection = (_props) => {
   return (
-    <Section title="Experimentation">
-      Whenever you have successfully abducted a target to your mothership, you
-      experiment on them with an{' '}
+    <Section title="Eksperymenty">
+      Gdy uda ci się porwać cel na statek-matkę, przeprowadzasz na nim operację{' '}
       <Box inline textColor="purple">
-        experimental organ replacement
-      </Box>{' '}
-      surgery. This surgery does not require you to strip the target, and
-      consists of the following steps:
+        eksperymentalnej wymiany organów
+      </Box>
+      . Nie musisz rozbierać celu, a operacja składa się z kroków:
       <br />
-      <b>1.</b>: Targeting their chest, click on the subject with{' '}
+      <b>1.</b>: Celując w klatkę piersiową, kliknij obiekt{' '}
       <Box inline textColor="blue">
-        surgical drapes
+        serwetą chirurgiczną
       </Box>{' '}
-      and select{' '}
+      i wybierz{' '}
       <Box inline textColor="purple">
-        experimental organ manipulation
+        eksperymentalną manipulację organami
       </Box>
       .
       <br />
-      <b>2.</b>: Make an incision in the subject using a{' '}
+      <b>2.</b>: Natnij obiekt{' '}
       <Box inline textColor="blue">
-        scalpel
+        skalpelem
       </Box>
       .
       <br />
-      <b>3.</b>: Clamp bleeders into the subject using a{' '}
+      <b>3.</b>: Zaciśnij krwawiące naczynia{' '}
       <Box inline textColor="blue">
-        hemostat
+        hemostatem
       </Box>
       .
       <br />
-      <b>4.</b>: Retract the subject&apos;s skin using{' '}
+      <b>4.</b>: Odciągnij skórę obiektu{' '}
       <Box inline textColor="blue">
-        retractors
+        retraktorem
       </Box>
       .
       <br />
-      <b>5.</b>: Make another incision in the subject using a{' '}
+      <b>5.</b>: Natnij obiekt drugi raz{' '}
       <Box inline textColor="blue">
-        scalpel
+        skalpelem
       </Box>
       .
       <br />
-      <b>6.</b>: Extract the subject&apos; organs using an{' '}
+      <b>6.</b>: Wyjmij organy obiektu{' '}
       <Box inline textColor="blue">
-        empty hand
+        pustą ręką
       </Box>
       .
       <br />
-      <b>7.</b>: Insert an experimental{' '}
+      <b>7.</b>: Włóż obiektowi eksperymentalny{' '}
       <Box inline textColor="blue">
-        alien organ
-      </Box>{' '}
-      into the subject.
+        organ obcych
+      </Box>
+      .
       <br />
-      <b>8.</b>: Move the target into the{' '}
+      <b>8.</b>: Przeciągnij cel do{' '}
       <Box inline textColor="purple">
-        experimentation machine
+        maszyny eksperymentalnej
       </Box>{' '}
-      via drag-clicking, ensuring they are unbuckled from your operating table.
-      Select either Probe, Analyze, or Dissect once they are in there.
+      (najpierw odepnij go od stołu operacyjnego). W środku wybierz badanie,
+      analizę albo sekcję.
     </Section>
   );
 };
 
 const EquipmentSection = (_props) => {
   return (
-    <Section title="Equipment">
+    <Section title="Wyposażenie">
       <Stack vertical>
         <Stack.Item>
           <Stack>
@@ -150,26 +146,25 @@ const EquipmentSection = (_props) => {
                   imageRendering: 'pixelated',
                 }}
               />
-              Your{' '}
+              Twoje{' '}
               <Box inline textColor="purple">
-                science tool
+                narzędzie naukowe
               </Box>{' '}
-              is essential for abducting test subjects for experimentation! It
-              has two modes:
+              jest niezbędne do porywania obiektów badań! Ma dwa tryby:
               <br />
               <Box inline textColor="blue">
-                Mark
+                Oznaczanie
               </Box>
-              : Marks a subject, allowing them to be beamed up by your camera
-              console. You can mark your agent instantly from any range (even
-              from the cameras), however test subjects require you to beam down
-              to them and mark them yourself!
+              : oznacza obiekt, żeby konsola kamer mogła go teleportować. Agenta
+              oznaczysz natychmiast z każdej odległości (nawet przez kamery),
+              ale obiekty badań musisz oznaczyć osobiście, po teleportacji na
+              dół!
               <br />
               <Box inline textColor="red">
-                Scan
+                Skanowanie
               </Box>
-              : Scans someone, adding their appearance to the potential
-              disguises for your agent. This works from the cameras.
+              : skanuje kogoś i dodaje jego wygląd do możliwych przebrań twojego
+              agenta. Działa przez kamery.
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
@@ -180,24 +175,23 @@ const EquipmentSection = (_props) => {
                   imageRendering: 'pixelated',
                 }}
               />
-              You have{' '}
+              Masz{' '}
               <Box inline textColor="purple">
-                alien surgical tools
-              </Box>{' '}
-              , which are capable of working extremely fast, faster than any
-              tool available to lesser lifeforms.
+                obce narzędzia chirurgiczne
+              </Box>
+              , które działają niezwykle szybko, szybciej niż jakiekolwiek
+              narzędzia niższych form życia.
               <br />
-              These are essential to performing experimental surgeries on
-              abducted test subjects!
+              Są niezbędne do eksperymentalnych operacji na porwanych obiektach
+              badań!
               <br />
-              In addition, you are capable of doing other high-tech surgeries,
-              such as{' '}
+              Możesz też przeprowadzać inne zaawansowane operacje, na przykład{' '}
               <Box inline textColor="purple">
-                brainwashing
+                pranie mózgu
               </Box>{' '}
-              or{' '}
+              albo{' '}
               <Box inline textColor="green">
-                max-tier wound tending
+                opatrywanie ran najwyższego poziomu
               </Box>
               .
             </Stack.Item>

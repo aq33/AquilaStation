@@ -100,7 +100,7 @@ Methods to alert the aimer about events (Surrendering/equipping an item/dropping
 	if(I != target.get_active_held_item() || !COOLDOWN_FINISHED(src, notification_cooldown)) // Checks to make sure the item was actually equipped to the target's hands
 		return
 	if(istype(I, /obj/item/gun))
-		target.balloon_alert(user, "[target] equipped a gun!")
+		target.balloon_alert(user, "[target] wyjmuje broń!")
 	else
 		target.balloon_alert(user, "[target] coś zakłada!")
 	SEND_SOUND(user, 'sound/machines/chime.ogg')
@@ -118,7 +118,7 @@ Methods to alert the aimer about events (Surrendering/equipping an item/dropping
 /datum/component/aiming/proc/on_paralyze()
 	SIGNAL_HANDLER
 	to_chat(user, "<span class='nicegreen'>[target] wygląda na to, że się poddaje!</span>")
-	target.balloon_alert(user, "[target] surrenders!")
+	target.balloon_alert(user, "[target] się poddaje!")
 
 // Cancels aiming if we can't see the target
 /datum/component/aiming/proc/on_move()

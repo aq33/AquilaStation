@@ -1,7 +1,7 @@
 
 /obj/item/pressure_plate
-	name = "pressure plate"
-	desc = "An electronic device that triggers when stepped on."
+	name = "płyta naciskowa"
+	desc = "Elektroniczne urządzenie, które uruchamia się po nadepnięciu."
 	icon = 'icons/obj/device.dmi'
 	item_state = "flash"
 	icon_state = "pressureplate"

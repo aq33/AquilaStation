@@ -8,8 +8,8 @@
  * Beds
  */
 /obj/structure/bed
-	name = "bed"
-	desc = "This is used to lie in, sleep in or strap on."
+	name = "łóżko"
+	desc = "Można się na nim położyć, przespać albo do niego przypiąć."
 	icon_state = "bed"
 	icon = 'icons/obj/beds_chairs/beds.dmi'
 	anchored = TRUE
@@ -66,7 +66,7 @@
  * Roller beds
  */
 /obj/structure/bed/roller
-	name = "roller bed"
+	name = "łóżko na kółkach"
 	icon = 'icons/obj/beds_chairs/rollerbed.dmi'
 	icon_state = "down"
 	anchored = FALSE
@@ -89,7 +89,7 @@
 		else
 			R.loaded = src
 			forceMove(R)
-			user.visible_message("[user] collects [src].", "<span class='notice'>Zbierasz [src].</span>")
+			user.visible_message("[user] składa [src].", "<span class='notice'>Zbierasz [src].</span>")
 		return 1
 	else
 		return ..()
@@ -123,8 +123,8 @@
 	M.pixel_y = M.base_pixel_y + M.get_standard_pixel_y_offset(M.lying)
 
 /obj/item/roller
-	name = "roller bed"
-	desc = "A collapsed roller bed that can be carried around."
+	name = "łóżko na kółkach"
+	desc = "Złożone łóżko na kółkach, które można nosić."
 	icon = 'icons/obj/beds_chairs/rollerbed.dmi'
 	icon_state = "folded"
 	w_class = WEIGHT_CLASS_NORMAL // No more excuses, stop getting blood everywhere
@@ -135,7 +135,7 @@
 		if(R.loaded)
 			to_chat(user, "<span class='warning'>[R] ma już załadowane łóżko na kółkach!</span>")
 			return
-		user.visible_message("<span class='notice'>[user] loads [src].</span>", "<span class='notice'>Ładujesz [src] do [R].</span>")
+		user.visible_message("<span class='notice'>[user] ładuje [src].</span>", "<span class='notice'>Ładujesz [src] do [R].</span>")
 		R.loaded = new/obj/structure/bed/roller(R)
 		qdel(src) //"Load"
 		return
@@ -158,8 +158,8 @@
 	qdel(src)
 
 /obj/item/roller/robo //ROLLER ROBO DA!
-	name = "roller bed dock"
-	desc = "A collapsed roller bed that can be ejected for emergency use. Must be collected or replaced after use."
+	name = "dok łóżka na kółkach"
+	desc = "Złożone łóżko na kółkach, które można wysunąć w nagłym wypadku. Po użyciu trzeba je złożyć albo wymienić."
 	var/obj/structure/bed/roller/loaded = null
 
 /obj/item/roller/robo/Initialize(mapload)
@@ -173,7 +173,7 @@
 /obj/item/roller/robo/deploy_roller(mob/user, atom/location)
 	if(loaded)
 		loaded.forceMove(location)
-		user.visible_message("[user] deploys [loaded].", "<span class='notice'>Rozkładasz [loaded].</span>")
+		user.visible_message("[user] rozkłada [loaded].", "<span class='notice'>Rozkładasz [loaded].</span>")
 		loaded = null
 	else
 		to_chat(user, "<span class='warning'>Dok jest pusty!</span>")
@@ -181,42 +181,42 @@
 //Dog bed
 
 /obj/structure/bed/dogbed
-	name = "dog bed"
+	name = "legowisko dla psa"
 	icon_state = "dogbed"
-	desc = "A comfy-looking dog bed. You can even strap your pet in, in case the gravity turns off."
+	desc = "Wygodnie wyglądające legowisko dla psa. Możesz nawet przypiąć do niego zwierzaka, na wypadek gdyby wysiadła grawitacja."
 	anchored = FALSE
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 10
 	var/owned = FALSE
 
 /obj/structure/bed/dogbed/ian
-	desc = "Ian's bed! Looks comfy."
-	name = "Ian's bed"
+	desc = "Legowisko Iana! Wygląda wygodnie."
+	name = "legowisko Iana"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/cayenne
-	desc = "Seems kind of... fishy."
-	name = "Cayenne's bed"
+	desc = "Wygląda jakoś... podejrzanie rybio."
+	name = "legowisko Cayenne"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/renault
-	desc = "Renault's bed! Looks comfy. A foxy person needs a foxy pet."
-	name = "Renault's bed"
+	desc = "Legowisko Renault! Wygląda wygodnie. Lisia osoba potrzebuje lisiego zwierzaka."
+	name = "legowisko Renault"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/runtime
-	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off."
-	name = "Runtime's bed"
+	desc = "Wygodnie wyglądające legowisko dla kota. Możesz nawet przypiąć do niego zwierzaka, na wypadek gdyby wysiadła grawitacja."
+	name = "legowisko Runtime"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/vector
-	desc = "Vector's bed! Wait... Do hamsters normally have beds...?"
-	name = "Vector's bed"
+	desc = "Legowisko Vectora! Chwila... Czy chomiki w ogóle mają legowiska...?"
+	name = "legowisko Vectora"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/walter
-	desc = "Walter's bed! It reeks of testosterone and motor oil."
-	name = "Walter's bed"
+	desc = "Legowisko Waltera! Cuchnie testosteronem i olejem silnikowym."
+	name = "legowisko Waltera"
 	anchored = TRUE
 
 ///Used to set the owner of a dogbed, returns FALSE if called on an owned bed or an invalid one, TRUE if the possesion succeeds
@@ -224,8 +224,8 @@
 	if(owned || type != /obj/structure/bed/dogbed) //Only marked beds work, this is hacky but I'm a hacky man
 		return FALSE //Failed
 	owned = TRUE
-	name = "[M]'s bed"
-	desc = "[M]'s bed! Looks comfy."
+	name = "legowisko: [M]"
+	desc = "Legowisko, które należy do: [M]. Wygląda wygodnie."
 	return TRUE //Let any callers know that this bed is ours now
 
 /obj/structure/bed/dogbed/buckle_mob(mob/living/M, force, check_loc)
@@ -233,8 +233,8 @@
 	update_owner(M)
 
 /obj/structure/bed/alien
-	name = "resting contraption"
-	desc = "This looks similar to a normal bed from Earth. Could aliens be stealing <b>our technology</b>?"
+	name = "urządzenie do odpoczynku"
+	desc = "Wygląda podobnie do zwykłego ziemskiego łóżka. Czyżby obcy kradli <b>naszą technologię</b>?"
 	icon_state = "abed"
 
 /obj/structure/bed/alien/examine(mob/user)
@@ -244,14 +244,14 @@
 
 //unfortunateley no sickness mechanics on them... yet
 /obj/structure/bed/maint
-	name = "dirty mattress"
-	desc = "An old grubby mattress. You try to not think about what could be the cause of those stains."
+	name = "brudny materac"
+	desc = "Stary, zapuszczony materac. Starasz się nie myśleć, skąd mogły się wziąć te plamy."
 	icon_state = "dirty_mattress"
 
 //Double Beds, for luxurious sleeping, i.e. the captain and maybe heads - if people use this for ERP, send them to skyrat, or worse, acacia
 /obj/structure/bed/double
-	name = "double bed"
-	desc = "A luxurious double bed, for those too important for small dreams."
+	name = "łóżko małżeńskie"
+	desc = "Luksusowe łóżko małżeńskie dla tych, którzy są zbyt ważni na małe sny."
 	icon_state = "bed_double"
 	buildstackamount = 4
 	max_buckled_mobs = 2
@@ -277,13 +277,13 @@
 	goldilocks = null
 
 /obj/structure/bed/double/maint
-	name = "double dirty mattress"
-	desc = "An old grubby king sized mattress. You really try to not think about what could be the cause of those stains."
+	name = "podwójny brudny materac"
+	desc = "Stary, zapuszczony materac królewskich rozmiarów. Naprawdę starasz się nie myśleć, skąd mogły się wziąć te plamy."
 	icon_state = "dirty_mattress_double"
 
 /obj/structure/bed/double/alien
-	name = "double resting contraption"
-	desc = "This looks similar to a normal double bed from Earth. Could aliens be stealing <b>our technology</b>?"
+	name = "podwójne urządzenie do odpoczynku"
+	desc = "Wygląda podobnie do zwykłego ziemskiego łóżka małżeńskiego. Czyżby obcy kradli <b>naszą technologię</b>?"
 	icon_state = "abed_double"
 
 /obj/structure/bed/double/alien/examine(mob/user)

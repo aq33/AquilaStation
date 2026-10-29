@@ -1,6 +1,6 @@
 /datum/overmap_objective/board_station
-	name = "Board Station"
-	desc = "Find and board a station, then defend the station."
+	name = "Abordaż stacji"
+	desc = "Znajdź stację, wejdź na jej pokład, a potem jej broń."
 	brief = "Przejmijcie placówkę Syndykatu CALLANADMIN: wejdźcie na pokład, pokonajcie wrogów, zmieńcie jej kody IFF, a potem odeprzyjcie kontratak."
 	var/defense_complete = FALSE
 	var/datum/star_system/target_system = null
@@ -31,7 +31,7 @@
 /datum/overmap_objective/board_station/instance()
 	. = ..()
 	if(!target_system)
-		message_admins("[name] objective couldn't find a target system, marking it as completed.")
+		message_admins("Cel [name] nie znajduje układu docelowego, oznaczam go jako wykonany.")
 		status = 1
 		return
 	// make a station
@@ -59,7 +59,7 @@
 	if(!islist(fastest_route)) //An admin may have picked a system only reachable through a wormhole
 		fastest_route = find_route(start_system, target_system)
 	if(!islist(fastest_route))
-		message_admins("[name] objective: no FTL route to [target_system], the reminder interval won't account for travel time.")
+		message_admins("Cel [name]: brak trasy FTL do [target_system], odstęp przypomnień nie uwzględni czasu podróży.")
 		fastest_route = list()
 	var/distance = 0
 	for(var/i = 2; i <= length(fastest_route); i++)
@@ -72,7 +72,7 @@
 	travel_time += 15 MINUTES //Time spent defending the objective after capture
 	travel_time *= 1.2 // Time spent lolligagging
 	SSovermap_mode.mode.objective_reminder_interval = max((travel_time / 5), SSovermap_mode.mode.objective_reminder_interval)
-	message_admins("Reminder interval set to [(SSovermap_mode.mode.objective_reminder_interval) / 600] minutes")
+	message_admins("Odstęp przypomnień ustawiony na [(SSovermap_mode.mode.objective_reminder_interval) / 600] min")
 
 /datum/overmap_objective/board_station/check_completion()
 	if(defense_complete && status == 0)

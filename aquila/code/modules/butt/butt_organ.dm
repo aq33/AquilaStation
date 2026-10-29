@@ -3,8 +3,8 @@
 // contents, so the normal storage reach checks (CanReach) work without special cases.
 
 /obj/item/organ/butt
-	name = "butt"
-	desc = "Extremely treasured body part."
+	name = "tyłek"
+	desc = "Niezwykle ceniona część ciała."
 	icon = 'aquila/icons/obj/butt.dmi'
 	icon_state = "butt"
 	item_state = "butt"
@@ -29,8 +29,8 @@
 	var/obj/item/storage/butt_pocket/inv
 
 /obj/item/organ/butt/xeno //XENOMORPH BUTTS ARE BEST BUTTS yes i agree
-	name = "alien butt"
-	desc = "Best trophy ever."
+	name = "tyłek obcego"
+	desc = "Najlepsze trofeum w historii."
 	icon_state = "xenobutt"
 	item_state = "xenobutt"
 	storage_slots = 3
@@ -39,8 +39,8 @@
 	blood_type = /obj/effect/decal/cleanable/xenoblood
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
-	name = "butt of holding"
-	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, or two small ones, or one normal one can fit."
+	name = "tyłek przechowywania"
+	desc = "Ten tyłek ma właściwości bluespace, więc zmieścisz w nim więcej rzeczy: cztery maleńkie przedmioty, dwa małe albo jeden zwykły."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
 	status = ORGAN_ROBOTIC
@@ -179,8 +179,8 @@
 // The hidden pocket
 
 /obj/item/storage/butt_pocket
-	name = "butt"
-	desc = "You probably shouldn't be seeing this."
+	name = "tyłek"
+	desc = "Raczej nie powinieneś tego widzieć."
 	icon = 'aquila/icons/obj/butt.dmi'
 	icon_state = "butt"
 	item_flags = ABSTRACT
@@ -255,7 +255,7 @@
 			user.visible_message("<span class='warning'>[user] łapie się za własny tyłek!</span>", "<span class='warning'>Łapiesz się za własny tyłek!</span>")
 			to_chat(user, "<span class='warning'>Najpierw musisz zdjąć kombinezon!</span>")
 		else
-			user.visible_message("<span class='warning'>[user] grabs [src]'s butt!</span>", "<span class='warning'>Łapiesz [src] za tyłek!</span>")
+			user.visible_message("<span class='warning'>[user] łapie [src] za tyłek!</span>", "<span class='warning'>Łapiesz [src] za tyłek!</span>")
 			to_chat(user, "<span class='warning'>Najpierw musisz zdjąć kombinezon [src]!</span>")
 			to_chat(src, "<span class='warning'>Czujesz, że ktoś łapie cię za tyłek!</span>")
 		return FALSE

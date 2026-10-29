@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/energy/ams
-	name = "\improper Laser Anti Missile System"
-	desc = "A coaxial laser system, capable of firing controlled laser bursts at a target."
+	name = "\improper laserowy system antyrakietowy"
+	desc = "Współosiowy system laserowy, który strzela w cel kontrolowanymi seriami laserowymi."
 	icon ='nsv13/icons/obj/energy_weapons.dmi'
 	icon_state = "missile_cannon"
 	ammo_type = /obj/item/ship_weapon/ammunition/railgun_ammo

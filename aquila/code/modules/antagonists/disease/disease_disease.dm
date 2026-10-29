@@ -1,7 +1,7 @@
 /datum/disease/advance/sentient_disease
 	form = "Virus"
-	name = "Sentient Virus"
-	desc = "An apparently sentient virus, extremely adaptable and resistant to outside sources of mutation."
+	name = "Świadomy wirus"
+	desc = "Wirus, który najwyraźniej ma świadomość. Niezwykle łatwo się przystosowuje i jest odporny na zewnętrzne źródła mutacji."
 	viable_mobtypes = list(/mob/living/carbon/human)
 	mutable = FALSE
 	sentient = TRUE
@@ -58,4 +58,4 @@
 	// Get the cure name from the cure_id
 	var/datum/reagent/D1 = GLOB.chemical_reagents_list[cures[1]]
 	var/datum/reagent/D2 = GLOB.chemical_reagents_list[cures[2]]
-	cure_text = "[D1.name] and [D2.name]"
+	cure_text = "[D1.name] i [D2.name]"

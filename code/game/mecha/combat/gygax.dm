@@ -1,5 +1,5 @@
 /obj/mecha/combat/gygax
-	desc = "A lightweight, security exosuit. Popular among private and corporate security."
+	desc = "Lekki egzoszkielet ochrony. Popularny wśród prywatnych i korporacyjnych służb ochrony."
 	name = "\improper Gygax"
 	icon_state = "gygax"
 	step_in = 3
@@ -17,7 +17,7 @@
 	step_energy_drain = 3
 
 /obj/mecha/combat/gygax/dark
-	desc = "A lightweight exosuit, painted in a dark scheme. This model appears to have some modifications."
+	desc = "Lekki egzoszkielet w ciemnym malowaniu. Ten model ma chyba jakieś modyfikacje."
 	name = "\improper Dark Gygax"
 	icon_state = "darkgygax"
 	max_integrity = 300

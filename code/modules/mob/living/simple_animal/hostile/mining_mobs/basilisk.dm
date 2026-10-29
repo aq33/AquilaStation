@@ -1,7 +1,7 @@
 //A beast that fire freezing blasts.
 /mob/living/simple_animal/hostile/asteroid/basilisk
-	name = "basilisk"
-	desc = "A territorial beast, covered in a thick shell that absorbs energy. Its stare causes victims to freeze from the inside."
+	name = "bazyliszek"
+	desc = "Terytorialna bestia pokryta grubym pancerzem, który pochłania energię. Jej spojrzenie zamraża ofiary od środka."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "Basilisk"
 	icon_living = "Basilisk"
@@ -13,7 +13,7 @@
 	projectiletype = /obj/item/projectile/temp/basilisk
 	projectilesound = 'sound/weapons/pierce.ogg'
 	ranged = 1
-	ranged_message = "stares"
+	ranged_message = "wbija wzrok"
 	ranged_cooldown_time = 30
 	throw_message = "nie przebija twardej skorupy"
 	vision_range = 2
@@ -35,7 +35,7 @@
 	discovery_points = 2000
 
 /obj/item/projectile/temp/basilisk
-	name = "freezing blast"
+	name = "mroźny podmuch"
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
@@ -60,8 +60,8 @@
 
 //Watcher
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher
-	name = "watcher"
-	desc = "A levitating, eye-like creature held aloft by winglike formations of sinew. A sharp spine of crystal protrudes from its body."
+	name = "obserwator"
+	desc = "Lewitujące, podobne do oka stworzenie, utrzymywane w powietrzu przez przypominające skrzydła sploty ścięgien. Z jego ciała wystaje ostry kryształowy kolec."
 	icon = 'icons/mob/lavaland/watcher.dmi'
 	icon_state = "watcher"
 	icon_living = "watcher"
@@ -92,8 +92,8 @@
 		return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/magmawing
-	name = "magmawing watcher"
-	desc = "When raised very close to lava, some watchers adapt to the extreme heat and use lava as both a weapon and wings."
+	name = "ogniskrzydły obserwator"
+	desc = "Niektóre obserwatory wychowane bardzo blisko lawy przystosowują się do ekstremalnego gorąca i używają lawy zarówno jako broni, jak i skrzydeł."
 	icon_state = "watcher_magmawing"
 	icon_living = "watcher_magmawing"
 	icon_aggro = "watcher_magmawing"
@@ -109,8 +109,8 @@
 	crusher_drop_mod = 60
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
-	name = "icewing watcher"
-	desc = "Very rarely, some watchers will eke out an existence far from heat sources. In the absence of warmth, they become icy and fragile but fire much stronger freezing blasts."
+	name = "lodoskrzydły obserwator"
+	desc = "Bardzo rzadko niektóre obserwatory wiodą nędzny żywot z dala od źródeł ciepła. Bez ciepła stają się lodowe i kruche, ale wystrzeliwują znacznie silniejsze mroźne podmuchy."
 	icon_state = "watcher_icewing"
 	icon_living = "watcher_icewing"
 	icon_aggro = "watcher_icewing"
@@ -123,7 +123,7 @@
 	crusher_drop_mod = 30
 
 /obj/item/projectile/temp/basilisk/magmawing
-	name = "scorching blast"
+	name = "palący podmuch"
 	icon_state = "lava"
 	damage = 5
 	damage_type = BURN

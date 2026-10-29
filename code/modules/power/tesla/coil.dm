@@ -1,6 +1,6 @@
 /obj/machinery/power/tesla_coil
-	name = "tesla coil"
-	desc = "For the union!"
+	name = "cewka Tesli"
+	desc = "Za związek!"
 	icon = 'nsv13/icons/obj/machinery/tesla_coil.dmi' //NSV13
 	icon_state = "coil0"
 	anchored = FALSE
@@ -116,8 +116,8 @@
 
 // Tesla R&D researcher
 /obj/machinery/power/tesla_coil/research
-	name = "Tesla Corona Analyzer"
-	desc = "A modified Tesla Coil used to study the effects of Edison's Bane for research."
+	name = "analizator korony Tesli"
+	desc = "Zmodyfikowana cewka Tesli do badania efektów Zmory Edisona."
 	icon_state = "rpcoil0"
 	circuit = /obj/item/circuitboard/machine/tesla_coil/research
 	power_loss = 20 // something something, high voltage + resistance
@@ -159,8 +159,8 @@
 		connect_to_network()
 
 /obj/machinery/power/grounding_rod
-	name = "grounding rod"
-	desc = "Keep an area from being fried from Edison's Bane."
+	name = "pręt uziemiający"
+	desc = "Chroni obszar przed usmażeniem przez Zmorę Edisona."
 	icon = 'icons/obj/tesla_engine/tesla_coil.dmi'
 	icon_state = "grounding_rod0"
 	anchored = FALSE

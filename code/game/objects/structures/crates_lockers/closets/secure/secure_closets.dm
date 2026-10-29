@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet
-	name = "secure locker"
-	desc = "It's a card-locked storage unit."
+	name = "zabezpieczona szafka"
+	desc = "Szafka zamykana na kartę."
 	locked = TRUE
 	icon_state = "secure"
 	max_integrity = 250

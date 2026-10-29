@@ -16,7 +16,7 @@
 /mob/living/carbon/human/ai_boarder/assistant/felinid
 	outfit = list(/datum/outfit/maid, /datum/outfit/maid/knpc_pistol, /datum/outfit/maid/knpc_smg)
 	taunts = list(
-		"hi hi!~ UwU",
+		"hej hej!~ UwU",
 		"Nja, Jestem tłoim abołdarzystłom. Przygotuj się na zastłałw!",
 		"Mrrr!"
 	)
@@ -41,7 +41,7 @@
 
 // Can't believe this didn't exist already
 /datum/outfit/maid
-	name = "Maid (KNPC)"
+	name = "Pokojówka (KNPC)"
 	head = /obj/item/clothing/head/maidheadband
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/costume/maid
@@ -53,7 +53,7 @@
 	backpack_contents = list(/obj/item/storage/toolbox/syndicate)
 
 /datum/outfit/maid/knpc_pistol
-	name = "Maid - Pistol (KNPC)"
+	name = "Pokojówka – pistolet (KNPC)"
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	belt = /obj/item/storage/belt/utility/syndicate
@@ -62,7 +62,7 @@
 	can_be_admin_equipped = FALSE // This presents problems
 
 /datum/outfit/maid/knpc_smg
-	name = "Maid - SMG (KNPC)"
+	name = "Pokojówka – pistolet maszynowy (KNPC)"
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/survival
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol
 	belt = /obj/item/storage/belt/utility/syndicate

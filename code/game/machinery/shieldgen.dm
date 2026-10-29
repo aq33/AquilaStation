@@ -1,6 +1,6 @@
 /obj/structure/emergency_shield
-	name = "emergency energy shield"
-	desc = "An energy shield used to contain hull breaches."
+	name = "awaryjna tarcza energetyczna"
+	desc = "Tarcza energetyczna, która uszczelnia wyłomy w kadłubie."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
 	density = TRUE
@@ -48,8 +48,8 @@
 		new /obj/effect/temp_visual/impact_effect/ion(loc)
 
 /obj/structure/emergency_shield/sanguine
-	name = "sanguine barrier"
-	desc = "A potent shield summoned by cultists to defend their rites."
+	name = "krwawa bariera"
+	desc = "Potężna tarcza przyzywana przez kultystów do obrony ich obrzędów."
 	icon_state = "shield-red"
 	max_integrity = 60
 
@@ -57,8 +57,8 @@
 	return
 
 /obj/structure/emergency_shield/invoker
-	name = "Invoker's Shield"
-	desc = "A weak shield summoned by cultists to protect them while they carry out delicate rituals."
+	name = "Tarcza inwokatora"
+	desc = "Słaba tarcza przyzywana przez kultystów, żeby chroniła ich podczas delikatnych rytuałów."
 	color = "#FF0000"
 	max_integrity = 20
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -69,8 +69,8 @@
 
 
 /obj/machinery/shieldgen
-	name = "anti-breach shielding projector"
-	desc = "Used to seal minor hull breaches."
+	name = "projektor tarczy przeciwwyłomowej"
+	desc = "Służy do uszczelniania drobnych wyłomów w kadłubie."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shieldoff"
 	density = TRUE
@@ -221,8 +221,8 @@
 WANTS_POWER_NODE(/obj/machinery/shieldwallgen) // AQ EDIT - Smartwires
 
 /obj/machinery/shieldwallgen
-	name = "shield wall generator"
-	desc = "A shield generator."
+	name = "generator ściany tarczy"
+	desc = "Generator tarczy."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "Shield_Gen"
 	anchored = FALSE
@@ -243,8 +243,8 @@ WANTS_POWER_NODE(/obj/machinery/shieldwallgen) // AQ EDIT - Smartwires
 	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, PROC_REF(block_singularity_if_active))
 
 /obj/machinery/shieldwallgen/xenobiologyaccess		//use in xenobiology containment
-	name = "xenobiology shield wall generator"
-	desc = "A shield generator meant for use in xenobiology."
+	name = "generator ściany tarczy ksenobiologii"
+	desc = "Generator tarczy przeznaczony do ksenobiologii."
 	icon_state = "Shield_Gen"
 	req_access = list(ACCESS_XENOBIOLOGY)
 
@@ -415,8 +415,8 @@ WANTS_POWER_NODE(/obj/machinery/shieldwallgen) // AQ EDIT - Smartwires
 
 //////////////Containment Field START
 /obj/machinery/shieldwall
-	name = "shield wall"
-	desc = "An energy shield."
+	name = "ściana tarczy"
+	desc = "Tarcza energetyczna."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shieldwall"
 	density = TRUE

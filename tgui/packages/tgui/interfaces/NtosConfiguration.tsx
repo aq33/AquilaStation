@@ -30,7 +30,7 @@ export const NtosConfiguration = (props) => {
     <NtosWindow>
       <NtosWindow.Content scrollable>
         {!PC_theme_locked ? (
-          <Section title="Appearance">
+          <Section title="Wygląd">
             <Dropdown
               overflow-y="scroll"
               width="240px"
@@ -38,7 +38,7 @@ export const NtosConfiguration = (props) => {
               selected={
                 Object.keys(themes).find(
                   (key) => themes[key] === PC_device_theme,
-                ) || 'NtOS Default'
+                ) || 'Domyślny NtOS'
               }
               onSelected={(value) =>
                 act('PC_select_theme', {
@@ -49,23 +49,23 @@ export const NtosConfiguration = (props) => {
             {PC_device_theme === 'thinktronic-classic' ? (
               <Button
                 icon="palette"
-                content="Set Color"
+                content="Ustaw kolor"
                 onClick={() => act('PC_set_classic_color')}
               />
             ) : null}
           </Section>
         ) : null}
         <Section
-          title="Power Supply"
+          title="Zasilanie"
           buttons={
             <Box inline bold mr={1}>
-              Power Draw: {power_usage}W
+              Pobór mocy: {power_usage} W
             </Box>
           }
         >
           <LabeledList>
             <LabeledList.Item
-              label="Battery Status"
+              label="Stan baterii"
               color={!battery_exists ? 'average' : undefined}
             >
               {battery_exists ? (
@@ -82,12 +82,12 @@ export const NtosConfiguration = (props) => {
                   {battery.charge} / {battery.max}
                 </ProgressBar>
               ) : (
-                'Not Available'
+                'Niedostępna'
               )}
             </LabeledList.Item>
           </LabeledList>
         </Section>
-        <Section title="File System">
+        <Section title="System plików">
           <ProgressBar
             value={disk_used}
             minValue={0}
@@ -97,7 +97,7 @@ export const NtosConfiguration = (props) => {
             {disk_used} GQ / {disk_size} GQ
           </ProgressBar>
         </Section>
-        <Section title="Hardware Components">
+        <Section title="Podzespoły">
           {hardware.map((component) => (
             <Section
               key={component.name}
@@ -106,7 +106,7 @@ export const NtosConfiguration = (props) => {
                 <>
                   {!component.critical && (
                     <Button.Checkbox
-                      content="Enabled"
+                      content="Włączony"
                       checked={component.enabled}
                       mr={1}
                       onClick={() =>
@@ -117,7 +117,7 @@ export const NtosConfiguration = (props) => {
                     />
                   )}
                   <Box inline bold mr={1}>
-                    Power Usage: {component.powerusage}W
+                    Pobór mocy: {component.powerusage} W
                   </Box>
                 </>
               }

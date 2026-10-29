@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/forcewall/gluttony
-	name = "Gluttonous Wall"
-	desc = "Create a magical barrier that only allows fat people to pass through."
+	name = "Ściana obżarstwa"
+	desc = "Tworzy magiczną barierę, przez którą przejdą tylko grubasy."
 	school = "transmutation"
 	charge_max = 150
 	clothes_req = FALSE
@@ -16,15 +16,15 @@
 	wall_type = /obj/effect/gluttony/timed
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/demon/gluttony //emergency get out of jail card, but better. It also eats everything.
-	name = "Gluttony Demon Form"
-	desc = "Take on your true demon form. This form is strong but very obvious. It's full demonic nature in this realm is taxing on you \
-	and you will slowly lose life while in this form, while also being especially weak to holy influences. \
-	Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them! \
-	Your unique form as a demon of gluttony also allows you to eat corpses to heal yourself."
+	name = "Postać demona obżarstwa"
+	desc = "Przybierasz swoją prawdziwą demoniczną postać. Jest silna, ale bardzo rzuca się w oczy. Pełnia demonicznej natury w tym świecie bardzo cię wyczerpuje \
+	i w tej postaci powoli tracisz życie, a do tego jesteś szczególnie wrażliwy na święte wpływy. \
+	Pamiętaj, że niskie zdrowie przechodzi między postaciami. Jeśli jesteś ciężko ranny, atakuj żywych śmiertelników, by wysysać z nich energię życiową! \
+	Jako demon obżarstwa możesz też pożerać zwłoki, by się leczyć."
 	shapeshift_type = /mob/living/simple_animal/lesserdemon/gluttony
 
 /mob/living/simple_animal/lesserdemon/gluttony //capable of devouring corpses for health
-	name = "gluttonous demon"
+	name = "demon obżarstwa"
 	real_name = "demon obżarstwa"
 	icon_state = "lesserdaemon_gluttony"
 	icon_living = "lesserdaemon_gluttony"
@@ -41,7 +41,7 @@
 	if(QDELETED(L))
 		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
+		span_danger("[src] pożera [L]!"),
 		span_userdanger("Pożerasz [L], odzyskując zdrowie!"))
 	adjustBruteLoss(-50)
 	L.gib()

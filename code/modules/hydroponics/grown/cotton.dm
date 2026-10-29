@@ -1,8 +1,8 @@
 //Cotton
 /obj/item/grown/cotton
 	seed = /obj/item/plant_seeds/preset/cotton
-	name = "cotton bundle"
-	desc = "A fluffy bundle of cotton."
+	name = "bawełna"
+	desc = "Puszysta wiązka bawełny."
 	icon_state = "cotton"
 	force = 0
 	throwforce = 0
@@ -11,7 +11,7 @@
 	throw_range = 3
 	attack_verb = list("pompfuje")
 	var/cotton_type = /obj/item/stack/sheet/cotton
-	var/cotton_name = "raw cotton"
+	var/cotton_name = "surowej bawełny"
 
 /obj/item/grown/cotton/attack_self(mob/user)
 	user.show_message("<span class='notice'>Wyciągasz trochę [cotton_name] z [name]!</span>", MSG_VISUAL)
@@ -27,8 +27,8 @@
 
 //reinforced mutated variant
 /obj/item/grown/cotton/durathread
-	name = "durathread bundle"
-	desc = "A tough bundle of durathread, good luck unraveling this."
+	name = "duranitka"
+	desc = "Twarda wiązka duranitki. Powodzenia w rozplątywaniu."
 	icon_state = "durathread"
 	force = 5
 	throwforce = 5
@@ -37,5 +37,5 @@
 	throw_range = 3
 	attack_verb = list("grzmoci", "okłada", "tłucze", "wali")
 	cotton_type = /obj/item/stack/sheet/cotton/durathread
-	cotton_name = "raw durathread"
+	cotton_name = "surowej duranitki"
 	discovery_points = 300

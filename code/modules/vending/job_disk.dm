@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/job_disk
 	name = "\improper PTech"
-	desc = "Job disks for PDAs."
+	desc = "Dyski zawodowe do PDA."
 	product_slogans = "Dyski na wynos!"
 	icon_state = "cart"
 	icon_deny = "cart-deny"

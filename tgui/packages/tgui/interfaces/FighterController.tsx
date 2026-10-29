@@ -1,11 +1,7 @@
 // NSV13
 
 import { Fragment } from 'react';
-import {
-  Button,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -21,17 +17,17 @@ export const FighterController = (props) => {
     <Window width={560} height={600}>
       <Window.Content scrollable>
         <Section
-          title="Settings"
+          title="Ustawienia"
           buttons={
             <>
               <Button
-                content="Globally toggle weapon safeties"
+                content="Przełącz bezpieczniki broni wszystkim"
                 icon="bullseye"
                 color="average"
                 onClick={() => act('global_toggle')}
               />
               <Button
-                content="EJECT ALL PILOTS"
+                content="KATAPULTUJ WSZYSTKICH PILOTÓW"
                 icon="eject"
                 color="bad"
                 onClick={() => act('global_eject')}
@@ -39,13 +35,13 @@ export const FighterController = (props) => {
             </>
           }
         />
-        <Section title="Filters:">
+        <Section title="Filtry:">
           {Object.keys(data.filter_types).map((key) => {
             let value = data.filter_types[key];
             return (
               <Button
                 key={key}
-                content={`Showing: ${value.class}s`}
+                content={`Widoczne: ${value.class}`}
                 icon="eject"
                 color={value.visible && 'green'}
                 onClick={() => act('filter', { filter: value.class })}
@@ -53,20 +49,20 @@ export const FighterController = (props) => {
             );
           })}
         </Section>
-        <Section title="Telemetry:">
+        <Section title="Telemetria:">
           {Object.keys(data.fighters).map((key) => {
             let value = data.fighters[key];
             return (
               <Fragment key={key}>
                 <Section title={`${value.name} - ${value.class}`}>
                   <Button
-                    content="Eject pilot"
+                    content="Katapultuj pilota"
                     icon="eject"
                     color={'average'}
                     onClick={() => act('eject', { target: value.name })}
                   />
                   <Button
-                    content="Toggle safeties"
+                    content="Przełącz bezpieczniki"
                     icon="bullseye"
                     color={value.safeties && 'green'}
                     onClick={() =>
@@ -74,7 +70,7 @@ export const FighterController = (props) => {
                     }
                   />
                   <Button
-                    content="Toggle docking"
+                    content="Przełącz dokowanie"
                     icon="anchor"
                     color={value.docking_mode && 'green'}
                     onClick={() =>

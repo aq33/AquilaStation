@@ -1,7 +1,7 @@
 /*				SCIENCE OBJECTIVES				*/
 
 /datum/objective/crew/cyborgs //Ported from old Hippie
-	explanation_text = "Ensure there are at least (Yell on GitHub, something broke) functioning cyborgs when the shift ends."
+	explanation_text = "Zapewnij przynajmniej (zgłoś to na GitHubie, coś się zepsuło) funkcjonujących cyborgów pod koniec zmiany."
 	jobs = "researchdirector,roboticist"
 
 /datum/objective/crew/cyborgs/New()
@@ -27,7 +27,7 @@
 /*
 /datum/objective/crew/research //inspired by old hippie's research level objective.
 	var/datum/design/targetdesign
-	explanation_text = "Make sure the research required to produce a (something broke, yell on GitHub) is available on the R&D server by the end of the shift."
+	explanation_text = "Dopilnuj, by do końca zmiany na serwerze B+R były dostępne badania potrzebne do wytworzenia: (coś się zepsuło, zgłoś to na GitHubie)."
 	jobs = "researchdirector,scientist"
 
 /datum/objective/crew/research/New()
@@ -37,7 +37,7 @@
 
 /datum/objective/crew/research/update_explanation_text()
 	. = ..()
-	explanation_text = "Make sure the research required to produce a [initial(targetdesign.name)] is available on the R&D server by the end of the shift."
+	explanation_text = "Dopilnuj, by do końca zmiany na serwerze B+R były dostępne badania potrzebne do wytworzenia: [initial(targetdesign.name)]."
 
 /datum/objective/crew/research/check_completion()
 	for(var/obj/machinery/r_n_d/server/S in GLOB.machines)

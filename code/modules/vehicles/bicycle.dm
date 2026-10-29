@@ -1,6 +1,6 @@
 /obj/vehicle/ridden/bicycle
-	name = "bicycle"
-	desc = "Keep away from electricity."
+	name = "rower"
+	desc = "Trzymać z dala od prądu."
 	icon_state = "bicycle"
 	fall_off_if_missing_arms = TRUE
 
@@ -12,8 +12,8 @@
 
 
 /obj/vehicle/ridden/bicycle/tesla_act() // :::^^^)))
-	name = "fried bicycle"
-	desc = "Well spent."
+	name = "usmażony rower"
+	desc = "Dobrze wydane pieniądze."
 	color = rgb(63, 23, 4)
 	can_buckle = FALSE
 	for(var/m in buckled_mobs)

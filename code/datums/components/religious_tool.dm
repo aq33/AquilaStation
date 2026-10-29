@@ -117,7 +117,7 @@
 /// Select the sect, called from [/datum/component/religious_tool/proc/AttemptActions]
 /datum/component/religious_tool/proc/select_sect(mob/living/user, path)
 	if(!ispath(text2path(path), /datum/religion_sect))
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has tried to spawn an item when selecting a sect.")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] próbuje zespawnować przedmiot przy wyborze sekty.")
 		return
 	if(user.mind.holy_role != HOLY_ROLE_HIGHPRIEST)
 		to_chat(user, "<span class='warning'>Nie jesteś arcykapłanem, więc nie możesz wybrać odłamu religijnego.")
@@ -141,7 +141,7 @@
 /// Perform the rite, called from [/datum/component/religious_tool/proc/AttemptActions]
 /datum/component/religious_tool/proc/perform_rite(mob/living/user, path)
 	if(!ispath(text2path(path), /datum/religion_rites))
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has tried to spawn an item when performing a rite.")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] próbuje zespawnować przedmiot przy odprawianiu obrzędu.")
 		return
 	if(user.mind.holy_role < HOLY_ROLE_PRIEST)
 		if(user.mind.holy_role == HOLY_ROLE_DEACON)
@@ -216,7 +216,7 @@
 	var/list/item_names = list()
 	for(var/atom/sac_type as anything in easy_access_sect.desired_items)
 		var/append = easy_access_sect.desired_items[sac_type]
-		var/entry = "[initial(sac_type.name)]s [append]"
+		var/entry = append ? "[initial(sac_type.name)] ([append])" : "[initial(sac_type.name)]"
 		item_names += entry
 	return english_list(item_names)
 

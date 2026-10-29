@@ -16,23 +16,23 @@ export const SecondaryID = (props) => {
     <Window theme={data.theme} width={580} height={400}>
       <Window.Content scrollable>
         <Section
-          title="Accesses:"
+          title="Dostępy:"
           buttons={
             <>
               <Button
-                content="Eject Current ID"
+                content="Wysuń obecny identyfikator"
                 disabled={!data.modifying}
                 icon="eject"
                 onClick={() => act('eject')}
               />
               <Button
-                content="Modify Assignment"
+                content="Zmień przydział"
                 disabled={!data.modifying}
                 icon="cog"
                 onClick={() => act('modifyAssignment')}
               />
               <Button
-                content="Modify Name"
+                content="Zmień imię"
                 disabled={!data.modifying}
                 icon="pen"
                 onClick={() => act('modifyName')}

@@ -40,8 +40,8 @@
 
 /obj/item/lightreplacer
 
-	name = "light replacer"
-	desc = "A device to automatically replace lights. Refill with broken or working light bulbs, or sheets of glass."
+	name = "wymieniacz żarówek"
+	desc = "Urządzenie do automatycznej wymiany oświetlenia. Uzupełnia się je zepsutymi lub działającymi żarówkami albo arkuszami szkła."
 
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "lightreplacer0"
@@ -220,7 +220,7 @@
 	obj_flags ^= EMAGGED
 	playsound(src.loc, "sparks", 100, 1)
 	if(obj_flags & EMAGGED)
-		name = "shortcircuited [initial(name)]"
+		name = "[initial(name)] (zwarcie)"
 	else
 		name = initial(name)
 	update_icon()
@@ -260,8 +260,8 @@
 	return
 
 /obj/item/lightreplacer/bluespace
-	name = "bluespace light replacer"
-	desc = "A modified light replacer that zaps lights into place. Refill with broken or working light bulbs, or sheets of glass."
+	name = "wymieniacz żarówek bluespace"
+	desc = "Zmodyfikowany wymieniacz żarówek, który teleportuje oświetlenie na miejsce. Uzupełnia się go zepsutymi lub działającymi żarówkami albo arkuszami szkła."
 	icon_state = "lightreplacer_blue0"
 	bluespace_toggle = TRUE
 

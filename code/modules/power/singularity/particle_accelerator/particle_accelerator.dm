@@ -20,8 +20,8 @@
 #define PA_CONSTRUCTION_COMPLETE   3
 
 /obj/structure/particle_accelerator
-	name = "Particle Accelerator"
-	desc = "Part of a Particle Accelerator."
+	name = "akcelerator cząstek"
+	desc = "Element akceleratora cząstek."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	anchored = FALSE
@@ -153,21 +153,21 @@
 
 
 /obj/structure/particle_accelerator/end_cap
-	name = "Alpha Particle Generation Array"
-	desc = "This is where Alpha particles are generated from \[REDACTED\]."
+	name = "układ generowania cząstek alfa"
+	desc = "Tu powstają cząstki alfa z \[UTAJNIONO\]."
 	icon_state = "end_cap"
 	reference = "end_cap"
 
 /obj/structure/particle_accelerator/power_box
-	name = "Particle Focusing EM Lens"
-	desc = "This uses electromagnetic waves to focus the Alpha particles."
+	name = "soczewka EM ogniskująca cząstki"
+	desc = "Ogniskuje cząstki alfa falami elektromagnetycznymi."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "power_box"
 	reference = "power_box"
 
 /obj/structure/particle_accelerator/fuel_chamber
-	name = "EM Acceleration Chamber"
-	desc = "This is where the Alpha particles are accelerated to <b><i>radical speeds</i></b>."
+	name = "komora przyspieszania EM"
+	desc = "Tu cząstki alfa rozpędzają się do <b><i>radykalnych prędkości</i></b>."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "fuel_chamber"
 	reference = "fuel_chamber"

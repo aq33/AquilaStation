@@ -1,8 +1,8 @@
 // A mob which only moves when it isn't being watched by living beings.
 
 /mob/living/simple_animal/hostile/statue
-	name = "statue" // matches the name of the statue with the flesh-to-stone spell
-	desc = "An incredibly lifelike marble carving. Its eyes seem to follow you.." // same as an ordinary statue with the added "eye following you" description
+	name = "posąg" // matches the name of the statue with the flesh-to-stone spell
+	desc = "Niezwykle realistyczna marmurowa rzeźba. Jej oczy zdają się za tobą wodzić.." // same as an ordinary statue with the added "eye following you" description
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "human_male"
 	icon_living = "human_male"
@@ -163,8 +163,8 @@
 
 // Flicker lights
 /obj/effect/proc_holder/spell/aoe_turf/flicker_lights
-	name = "Flicker Lights"
-	desc = "You will trigger a large amount of lights around you to flicker."
+	name = "Migotanie świateł"
+	desc = "Sprawiasz, że wiele świateł wokół ciebie zaczyna migotać."
 
 	charge_max = 300
 	clothes_req = 0
@@ -178,8 +178,8 @@
 
 //Blind AOE
 /obj/effect/proc_holder/spell/aoe_turf/blindness
-	name = "Blindness"
-	desc = "Your prey will be momentarily blind for you to advance on them."
+	name = "Ślepota"
+	desc = "Twoja ofiara na chwilę traci wzrok, a ty możesz się do niej zbliżyć."
 
 	message = "<span class='notice'>Piorunujesz wzrokiem.</span>"
 	charge_max = 600

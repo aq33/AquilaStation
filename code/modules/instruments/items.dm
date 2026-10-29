@@ -1,6 +1,6 @@
 //copy pasta of the space piano, don't hurt me -Pete
 /obj/item/instrument
-	name = "generic instrument"
+	name = "zwykły instrument"
 	resistance_flags = FLAMMABLE
 	force = 10
 	max_integrity = 100
@@ -47,23 +47,23 @@
 	song.ui_interact(user)
 
 /obj/item/instrument/violin
-	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	name = "kosmiczne skrzypce"
+	desc = "Drewniany instrument z czterema strunami i smyczkiem. „Diabeł zszedł w kosmos, szukał asystenta do griefowania.”"
 	icon_state = "violin"
 	item_state = "violin"
 	hitsound = "swing_hit"
 	allowed_instrument_ids = "violin"
 
 /obj/item/instrument/violin/golden
-	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	name = "złote skrzypce"
+	desc = "Złoty instrument z czterema strunami i smyczkiem. „Diabeł zszedł w kosmos, szukał asystenta do griefowania.”"
 	icon_state = "golden_violin"
 	item_state = "golden_violin"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/instrument/piano_synth
-	name = "synthesizer"
-	desc = "An advanced electronic synthesizer that can be used as various instruments."
+	name = "syntezator"
+	desc = "Zaawansowany syntezator elektroniczny, który może udawać różne instrumenty."
 	icon_state = "synth"
 	item_state = "synth"
 	allowed_instrument_ids = "piano"
@@ -74,7 +74,7 @@
 
 /obj/item/instrument/banjo
 	name = "banjo"
-	desc = "A 'Mura' brand banjo. It's pretty much just a drum with a neck and strings."
+	desc = "Banjo marki „Mura”. W zasadzie to bęben z gryfem i strunami."
 	icon_state = "banjo"
 	item_state = "banjo"
 	attack_verb = list("gra bluegrassa", "hum-diggituje", "kopie w goleń", "wali młotkiem")
@@ -82,8 +82,8 @@
 	allowed_instrument_ids = "banjo"
 
 /obj/item/instrument/guitar
-	name = "guitar"
-	desc = "It's made of wood and has bronze strings."
+	name = "gitara"
+	desc = "Jest z drewna i ma brązowe struny."
 	icon_state = "guitar"
 	item_state = "guitar"
 	attack_verb = list("gra metal na", "śpiewa serenadę", "wbija się w", "rozbija")
@@ -91,8 +91,8 @@
 	allowed_instrument_ids = list("guitar","csteelgt","cnylongt", "ccleangt", "cmutedgt")
 
 /obj/item/instrument/eguitar
-	name = "electric guitar"
-	desc = "Makes all your shredding needs possible."
+	name = "gitara elektryczna"
+	desc = "Spełnia wszystkie twoje potrzeby szybkiego grania."
 	icon_state = "eguitar"
 	item_state = "eguitar"
 	force = 12
@@ -101,29 +101,29 @@
 	allowed_instrument_ids = "eguitar"
 
 /obj/item/instrument/glockenspiel
-	name = "glockenspiel"
-	desc = "Smooth metal bars perfect for any marching band."
+	name = "dzwonki"
+	desc = "Gładkie metalowe sztabki, idealne dla każdej orkiestry marszowej."
 	icon_state = "glockenspiel"
 	item_state = "glockenspiel"
 	allowed_instrument_ids = list("glockenspiel","crvibr", "sgmmbox", "r3celeste")
 
 /obj/item/instrument/accordion
-	name = "accordion"
-	desc = "Pun-Pun not included."
+	name = "akordeon"
+	desc = "Pun-Pun nie jest w zestawie."
 	icon_state = "accordion"
 	item_state = "accordion"
 	allowed_instrument_ids = list("crack", "crtango", "accordion")
 
 /obj/item/instrument/trumpet
-	name = "trumpet"
-	desc = "To announce the arrival of the king!"
+	name = "trąbka"
+	desc = "Do ogłaszania przybycia króla!"
 	icon_state = "trumpet"
 	item_state = "trombone"
 	allowed_instrument_ids = "crtrumpet"
 
 /obj/item/instrument/trumpet/spectral
-	name = "spectral trumpet"
-	desc = "Things are about to get spooky!"
+	name = "widmowa trąbka"
+	desc = "Zaraz zrobi się strasznie!"
 	icon_state = "trumpet"
 	item_state = "trombone"
 	force = 0
@@ -138,15 +138,15 @@
 	..()
 
 /obj/item/instrument/saxophone
-	name = "saxophone"
-	desc = "This soothing sound will be sure to leave your audience in tears."
+	name = "saksofon"
+	desc = "Ten kojący dźwięk na pewno doprowadzi publiczność do łez."
 	icon_state = "saxophone"
 	item_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
 
 /obj/item/instrument/saxophone/spectral
-	name = "spectral saxophone"
-	desc = "This spooky sound will be sure to leave mortals in bones."
+	name = "widmowy saksofon"
+	desc = "Ten straszny dźwięk na pewno zostawi z śmiertelników same kości."
 	icon_state = "saxophone"
 	item_state = "saxophone"
 	allowed_instrument_ids = "saxophone"
@@ -162,15 +162,15 @@
 	..()
 
 /obj/item/instrument/trombone
-	name = "trombone"
-	desc = "How can any pool table ever hope to compete?"
+	name = "puzon"
+	desc = "Jak jakikolwiek stół bilardowy mógłby z tym konkurować?"
 	icon_state = "trombone"
 	item_state = "trombone"
 	allowed_instrument_ids = list("crtrombone", "crbrass", "trombone")
 
 /obj/item/instrument/trombone/spectral
-	name = "spectral trombone"
-	desc = "A skeleton's favorite instrument. Apply directly on the mortals."
+	name = "widmowy puzon"
+	desc = "Ulubiony instrument szkieletów. Stosować bezpośrednio na śmiertelnikach."
 	icon_state = "trombone"
 	item_state = "trombone"
 	force = 0
@@ -185,16 +185,16 @@
 	..()
 
 /obj/item/instrument/recorder
-	name = "recorder"
-	desc = "Just like in school, playing ability and all."
+	name = "flet prosty"
+	desc = "Zupełnie jak w szkole, łącznie z umiejętnościami gry."
 	force = 5
 	icon_state = "recorder"
 	item_state = "recorder"
 	allowed_instrument_ids = "recorder"
 
 /obj/item/instrument/harmonica
-	name = "harmonica"
-	desc = "For when you get a bad case of the space blues."
+	name = "harmonijka"
+	desc = "Na wypadek ciężkiego ataku kosmicznego bluesa."
 	icon_state = "harmonica"
 	item_state = "harmonica"
 	allowed_instrument_ids = list("harmonica", "crharmony")
@@ -219,8 +219,8 @@
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 
 /obj/item/instrument/bikehorn
-	name = "gilded bike horn"
-	desc = "An exquisitely decorated bike horn, capable of honking in a variety of notes."
+	name = "pozłacana trąbka"
+	desc = "Wyszukanie zdobiona trąbka rowerowa, która trąbi w wielu różnych tonacjach."
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	lefthand_file = 'icons/mob/inhands/equipment/horns_lefthand.dmi'
@@ -236,8 +236,8 @@
 ///
 
 /obj/item/choice_beacon/music
-	name = "instrument delivery beacon"
-	desc = "Summon your tool of art."
+	name = "nadajnik dostawy instrumentu"
+	desc = "Przywołaj swoje narzędzie sztuki."
 	icon_state = "gangtool-red"
 
 /obj/item/choice_beacon/music/generate_display_names()
@@ -263,8 +263,8 @@
 	return instruments
 
 /obj/item/instrument/musicalmoth
-	name = "musical moth"
-	desc = "Despite its popularity, this controversial musical toy was eventually banned due to its unethically sampled sounds of moths screaming in agony."
+	name = "muzyczna ćma"
+	desc = "Mimo popularności ta kontrowersyjna muzyczna zabawka została w końcu zakazana z powodu nieetycznie nagranych odgłosów ciem krzyczących w agonii."
 	icon_state = "mothsician"
 	allowed_instrument_ids = "mothscream"
 	attack_verb = list("trzepocze na", "klapie")

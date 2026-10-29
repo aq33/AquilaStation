@@ -1,9 +1,9 @@
 // AQUILA - demon cieni (port z ParadiseSS13), zastępuje koszmara jako duch z eventu i midroundu.
 
 /mob/living/simple_animal/shadow_demon
-	name = "shadow demon"
+	name = "demon cieni"
 	real_name = "demon cieni"
-	desc = "A creature that's barely tangible, you can feel its gaze piercing you."
+	desc = "Ledwie namacalna istota. Czujesz, jak przeszywa cię wzrokiem."
 	icon = 'aquila/icons/mob/shadow_demon.dmi'
 	icon_state = "shadow_demon"
 	icon_living = "shadow_demon"
@@ -182,8 +182,8 @@
 // Kokon cienia
 
 /obj/structure/shadowcocoon
-	name = "shadowy cocoon"
-	desc = "Something wrapped in what seems to be manifested darkness. Its surface distorts unnaturally, and it emanates deep shadows."
+	name = "kokon cieni"
+	desc = "Coś owiniętego w coś, co wygląda na ucieleśnioną ciemność. Jego powierzchnia nienaturalnie się wykrzywia i bije od niej głęboki cień."
 	icon = 'aquila/icons/mob/shadow_demon.dmi'
 	icon_state = "shadowcocoon"
 	light_power = -4
@@ -259,8 +259,8 @@
 // Serce ciemności - łup z demona, zjedzone daje cień-hak
 
 /obj/item/organ/heart/shadow_demon
-	name = "heart of darkness"
-	desc = "It still beats furiously, emitting an aura of fear."
+	name = "serce ciemności"
+	desc = "Wciąż bije jak szalone, roztaczając aurę strachu."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
 	color = "#1C1C1C"

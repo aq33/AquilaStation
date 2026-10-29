@@ -18,7 +18,7 @@
 
 /mob/living/simple_animal/slime/verb/Feed()
 	set category = "Slime"
-	set desc = "This will let you feed on any valid creature in the surrounding area. This should also be used to halt the feeding process."
+	set desc = "Pozwala ci żywić się dowolnym odpowiednim stworzeniem w pobliżu. Służy też do przerwania żerowania."
 
 	if(stat)
 		return 0
@@ -36,7 +36,7 @@
 		return 1
 
 /datum/action/innate/slime/feed
-	name = "Feed"
+	name = "Żeruj"
 	button_icon_state = "slimeeat"
 
 
@@ -60,10 +60,10 @@
 		if(S.damage_coeff[TOX] <= 0 && S.damage_coeff[CLONE] <= 0) //The creature wouldn't take any damage, it must be too weird even for us.
 			if(silent)
 				return FALSE
-			to_chat(src, "<span class='warning'>[pick("This subject is incompatible", \
-			"This subject does not have life energy", "This subject is empty", \
-			"I am not satisified", "I can not feed from this subject", \
-			"I do not feel nourished", "This subject is not food")]!</span>")
+			to_chat(src, "<span class='warning'>[pick("Ten obiekt jest niezgodny", \
+			"Ten obiekt nie ma energii życiowej", "Ten obiekt jest pusty", \
+			"Nie jestem nasycony", "Nie mogę się żywić tym obiektem", \
+			"Nie czuję się odżywiony", "Ten obiekt nie jest jedzeniem")]!</span>")
 			return FALSE
 
 	if(isslime(M))
@@ -117,10 +117,10 @@
 /mob/living/simple_animal/slime/proc/Feedstop(silent = FALSE, living=1)
 	if(buckled)
 		if(!living)
-			to_chat(src, "<span class='warning'>[pick("This subject is incompatible", \
-			"This subject does not have life energy", "This subject is empty", \
-			"I am not satisified", "I can not feed from this subject", \
-			"I do not feel nourished", "This subject is not food")]!</span>")
+			to_chat(src, "<span class='warning'>[pick("Ten obiekt jest niezgodny", \
+			"Ten obiekt nie ma energii życiowej", "Ten obiekt jest pusty", \
+			"Nie jestem nasycony", "Nie mogę się żywić tym obiektem", \
+			"Nie czuję się odżywiony", "Ten obiekt nie jest jedzeniem")]!</span>")
 		if(!silent)
 			visible_message("<span class='warning'>[src] puszcza [buckled]!</span>", \
 							"<span class='notice'><i>Przestaję się żywić.</i></span>")
@@ -129,7 +129,7 @@
 
 /mob/living/simple_animal/slime/verb/Evolve()
 	set category = "Slime"
-	set desc = "This will let you evolve from baby to adult slime."
+	set desc = "Pozwala ci wyewoluować z młodego szlamu w dorosłego."
 
 	if(stat)
 		to_chat(src, "<i>Muszę być przytomny, by to zrobić...</i>")
@@ -151,7 +151,7 @@
 		to_chat(src, "<i>Już wyewoluowałem...</i>")
 
 /datum/action/innate/slime/evolve
-	name = "Evolve"
+	name = "Ewoluuj"
 	button_icon_state = "slimegrow"
 	needs_growth = GROWTH_NEEDED
 
@@ -164,7 +164,7 @@
 
 /mob/living/simple_animal/slime/verb/Reproduce()
 	set category = "Slime"
-	set desc = "This will make you split into four Slimes."
+	set desc = "Dzielisz się na cztery szlamy."
 
 	if(stat)
 		to_chat(src, "<i>Muszę być przytomny, by to zrobić...</i>")
@@ -217,7 +217,7 @@
 		to_chat(src, "<i>Nie jestem jeszcze dość dorosły, by się rozmnażać...</i>")
 
 /datum/action/innate/slime/reproduce
-	name = "Reproduce"
+	name = "Rozmnóż się"
 	button_icon_state = "slimesplit"
 	needs_growth = GROWTH_NEEDED
 
@@ -252,7 +252,7 @@
 	if(transformeffects & SLIME_EFFECT_LIGHT_PINK)
 		GLOB.poi_list |= M
 		M.master = master
-		LAZYADD(GLOB.mob_spawners["[master.real_name]'s slime"], M)
+		LAZYADD(GLOB.mob_spawners["szlam: [master.real_name]"], M)
 		SSmobs.update_spawners()
 	M.set_friends(Friends)
 	if(step_away)
@@ -267,7 +267,7 @@
 /mob/living/simple_animal/slime/proc/teleport()
 	set category = "Slime"
 	set name = "teleport"
-	set desc = "teleport to random location"
+	set desc = "Teleportuje cię w losowe miejsce."
 	if(powerlevel <= 0)
 		to_chat(src, "<span class='warning'>Za mało mocy.</span>")
 	else

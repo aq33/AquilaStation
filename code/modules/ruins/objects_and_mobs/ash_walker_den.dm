@@ -1,8 +1,8 @@
 #define ASH_WALKER_SPAWN_THRESHOLD 2
 //The ash walker den consumes corpses or unconscious mobs to create ash walker eggs. For more info on those, check ghost_role_spawners.dm
 /obj/structure/lavaland/ash_walker
-	name = "necropolis tendril nest"
-	desc = "A vile tendril of corruption. It's surrounded by a nest of rapidly growing eggs..."
+	name = "gniazdo macki Nekropolii"
+	desc = "Plugawa macka zepsucia. Otacza ją gniazdo szybko rosnących jaj..."
 	icon = 'icons/mob/nest.dmi'
 	icon_state = "ash_walker_nest"
 

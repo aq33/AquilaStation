@@ -3,10 +3,10 @@
 	var/fits_type = null
 
 /obj/item/ship_weapon/parts/missile/warhead
-	name = "NTP-2 standard missile payload"
+	name = "standardowa głowica rakiety NTP-2"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "warhead_highvelocity"
-	desc = "A heavy warhead designed to be fitted to a missile. It's currently inert."
+	desc = "Ciężka głowica do zamontowania w rakiecie. Obecnie jest nieaktywna."
 	w_class = WEIGHT_CLASS_HUGE
 	target_state = 6
 	var/build_path = /obj/item/ship_weapon/ammunition/missile
@@ -14,28 +14,28 @@
 
 
 /obj/item/ship_weapon/parts/missile/guidance_system
-	name = "munition guidance system"
+	name = "układ naprowadzania pocisku"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "guidance"
-	desc = "A guidance module for soon-to-be guided munitions, allowing them to lock onto a target inside their operational range. The microcomputer inside it is capable of performing thousands of calculations a second."
+	desc = "Moduł naprowadzania dla przyszłych pocisków kierowanych, który pozwala im namierzyć cel w zasięgu działania. Mikrokomputer w środku wykonuje tysiące obliczeń na sekundę."
 	w_class = WEIGHT_CLASS_NORMAL
 	target_state = 2
 	var/accuracy = null
 
 /obj/item/ship_weapon/parts/missile/propulsion_system
-	name = "guided munition propulsion system"
+	name = "układ napędowy pocisku kierowanego"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "propulsion"
-	desc = "A gimballed thruster with an attachment nozzle, designed to be mounted in guided munitions."
+	desc = "Silnik na przegubie kardana z dyszą montażową, przeznaczony do pocisków kierowanych."
 	w_class = WEIGHT_CLASS_BULKY
 	target_state = 0
 	var/speed = 1
 
 /obj/item/ship_weapon/parts/missile/iff_card //This should be abuseable via emag
-	name = "guided munition IFF card"
+	name = "karta IFF pocisku kierowanego"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "iff"
-	desc = "An IFF chip which allows a guided munition to distinguish friend from foe. The electronics contained herein are relatively simple, but nonetheless crucial."
+	desc = "Układ IFF, dzięki któremu pocisk kierowany odróżnia swoich od wrogów. Elektronika w środku jest dość prosta, ale mimo to kluczowa."
 	w_class = WEIGHT_CLASS_SMALL
 	target_state = 4
 	var/calibrated = FALSE

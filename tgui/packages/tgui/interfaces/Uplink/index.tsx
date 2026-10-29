@@ -11,6 +11,33 @@ import { GenericUplink, type Item } from './GenericUplink';
 
 export { GenericUplink, type Item } from './GenericUplink';
 
+// Kategorie są kluczami w DM (filtered_uplink_items, team_discounts),
+// więc tłumaczymy je tylko przy wyświetlaniu.
+const UPLINK_CATEGORY_PL: Record<string, string> = {
+  'Discounted Gear': 'Przeceniony sprzęt',
+  'Discounted Team Gear': 'Przeceniony sprzęt drużyny',
+  'Limited Stock Team Gear': 'Sprzęt drużyny (ograniczony nakład)',
+  Discounts: 'Zniżki',
+  Bundles: 'Zestawy',
+  'Conspicuous Weapons': 'Rzucająca się w oczy broń',
+  'Stealthy Weapons': 'Dyskretna broń',
+  Ammunition: 'Amunicja',
+  Explosives: 'Materiały wybuchowe',
+  'Support and Exosuits': 'Wsparcie i egzoszkielety',
+  'Stealth Gadgets': 'Gadżety do ukrywania się',
+  'Space Suits': 'Skafandry kosmiczne',
+  'Misc. Gadgets': 'Różne gadżety',
+  Implants: 'Implanty',
+  'Species-Restricted': 'Tylko dla gatunku',
+  'Role-Restricted': 'Tylko dla roli',
+  '(Pointless) Badassery': '(Bezsensowny) szpan',
+  Services: 'Usługi',
+  'Infiltration Gear': 'Sprzęt infiltracyjny',
+  'Spy Unique': 'Unikaty szpiega',
+};
+
+const categoryName = (name: string) => UPLINK_CATEGORY_PL[name] ?? name;
+
 type UplinkItem = {
   name: string;
   cost: number;
@@ -36,7 +63,9 @@ export const Uplink = (props) => {
   const { act, data } = useBackend<UplinkData>();
   const { telecrystals = 0, lockable, compactMode, categories = [] } = data;
 
-  const categoryNames = categories.map((category) => category.name);
+  const categoryNames = categories.map((category) =>
+    categoryName(category.name),
+  );
   const items: Item[] = [];
   for (const category of categories) {
     for (const item of category.items || []) {
@@ -45,7 +74,7 @@ export const Uplink = (props) => {
         name: decodeHtmlEntities(item.name),
         icon: item.icon || '',
         icon_state: item.icon_state || '',
-        category: category.name,
+        category: categoryName(category.name),
         desc: (
           <>
             <Box>{decodeHtmlEntities(item.desc)}</Box>

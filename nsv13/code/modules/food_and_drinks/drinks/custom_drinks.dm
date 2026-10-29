@@ -1,35 +1,35 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/doctor_delight
-	name = "Doctor's Delight"
-	desc = "A gulp a day keeps the Medibot away!"
+	name = "Rozkosz doktora"
+	desc = "Jeden łyk dziennie trzyma medibota z daleka!"
 	list_reagents = list(/datum/reagent/consumable/doctor_delight = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/screwdrivercocktail
-	name = "Screwdriver"
-	desc = "A simple, yet superb mixture of Vodka and orange juice. Just the thing for the tired engineer."
+	name = "Śrubokręt"
+	desc = "Prosta, a znakomita mieszanka wódki i soku pomarańczowego. W sam raz dla zmęczonego inżyniera."
 	list_reagents =  list(/datum/reagent/consumable/ethanol/screwdrivercocktail = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/torp_juice
-	name = "Torpedo Juice"
-	desc = "Attention munitions: MAKE TORP."
+	name = "Sok torpedowy"
+	desc = "Uwaga, amunicja: ZRÓBCIE TORPEDĘ."
 	list_reagents = list(/datum/reagent/consumable/ethanol/torp_juice = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/quadruple_sec
 	name = "Quadruple Sec"
-	desc = "Kicks just as hard as licking the power cell on a baton, but tastier."
+	desc = "Kopie tak samo mocno jak lizanie ogniwa w pałce, ale smakuje lepiej."
 	list_reagents = list(/datum/reagent/consumable/ethanol/quadruple_sec = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/quintuple_sec
 	name = "Quintuple Sec"
-	desc = "Law, Order, Alcohol, and Police Brutality distilled into one single elixir of JUSTICE."
+	desc = "Prawo, porządek, alkohol i brutalność policji przedestylowane w jeden eliksir SPRAWIEDLIWOŚCI."
 	list_reagents = list(/datum/reagent/consumable/ethanol/quintuple_sec = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/kamikaze
 	name = "Kamikaze"
-	desc = "Divinely windy."
+	desc = "Boski wiatr."
 	list_reagents = list(/datum/reagent/consumable/ethanol/kamikaze = 50)
 	foodtype = ALCOHOL

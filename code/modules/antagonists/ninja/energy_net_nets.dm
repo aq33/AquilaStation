@@ -8,8 +8,8 @@
  * been removed.
  */
 /obj/structure/energy_net
-	name = "energy net"
-	desc = "It's a net made of green energy."
+	name = "sieć energetyczna"
+	desc = "Sieć z zielonej energii."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 	density = TRUE //Can't pass through.
@@ -34,7 +34,7 @@
 
 /obj/structure/energy_net/obj_destruction(damage_flag)
 	for(var/mob/recovered_mob as anything in buckled_mobs)
-		recovered_mob.visible_message(span_notice("[recovered_mob] is recovered from the energy net!"), span_notice("You are recovered from the energy net!"), span_hear("You hear a grunt."))
+		recovered_mob.visible_message(span_notice("[recovered_mob] wydostaje się z sieci energetycznej!"), span_notice("Wydostajesz się z sieci energetycznej!"), span_hear("Słyszysz stęknięcie."))
 	return ..()
 
 /obj/structure/energy_net/attack_paw(mob/user, list/modifiers)

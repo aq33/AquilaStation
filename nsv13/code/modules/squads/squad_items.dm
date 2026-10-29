@@ -52,8 +52,8 @@
 	slot = ITEM_SLOT_HEAD
 
 /obj/item/squad_pager
-	name = "squad pager"
-	desc = "A small device that allows you to listen to and broadcast over squad comms."
+	name = "pager drużyny"
+	desc = "Małe urządzenie, które pozwala słuchać łączności drużyny i nadawać na jej kanale."
 	icon = 'nsv13/icons/obj/squad.dmi'
 	icon_state = "squadpager"
 	w_class = 1
@@ -64,8 +64,8 @@
 
 
 /obj/item/squad_pager/all_channels
-	name = "Global Squad Pager"
-	desc = "A pager that's tuned to every single squad's comms simultaneously, allowing for overwatch to communicate with shipside fireteams more efficiently."
+	name = "globalny pager drużyn"
+	desc = "Pager dostrojony jednocześnie do łączności wszystkich drużyn, dzięki któremu dowodzenie sprawniej porozumiewa się z zespołami na pokładzie okrętu."
 	global_access = TRUE
 
 /obj/item/squad_pager/all_channels/Initialize(mapload, datum/squad/squad)
@@ -106,7 +106,7 @@
 		QDEL_NULL(squad_channel)
 	cut_overlays()
 	src.squad = squad //Ahoy mr squadward! Ack ack ack.
-	name = "[squad] pager"
+	name = "pager drużyny [squad]"
 	var/mutable_appearance/stripes = new()
 	stripes.icon = icon
 	stripes.icon_state = "squadpager_stripes"
@@ -117,8 +117,8 @@
 		squad_channel.squad = squad
 
 /obj/item/clothing/suit/ship/squad
-	name = "Armour"
-	desc = "A light piece of armour, designed to protect its wearer from basic workplace hazards during general quarters. It has been lined with protective materials to allow the wearer to survive in space for slightly longer than usual."
+	name = "pancerz"
+	desc = "Lekki pancerz, który chroni noszącego przed podstawowymi zagrożeniami w pracy podczas alarmu bojowego. Wyłożono go materiałami ochronnymi, dzięki którym w kosmosie przeżyjesz nieco dłużej niż zwykle."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "squad"
@@ -129,7 +129,7 @@
 	var/datum/squad/squad = null
 
 /obj/item/clothing/suit/ship/squad/space
-	name = "Armoured Skinsuit"
+	name = "opancerzony skafander obcisły"
 	icon_state = "skinsuit_squad"
 	w_class = WEIGHT_CLASS_NORMAL
 	gas_transfer_coefficient = 0.01
@@ -149,8 +149,8 @@
 	resistance_flags = NONE
 
 /obj/item/clothing/head/helmet/ship/squad
-	name = "Helmet"
-	desc = "A bulky helmet that's designed to keep your head in-tact while you perform essential repairs on the ship."
+	name = "hełm"
+	desc = "Masywny hełm, który chroni głowę, gdy wykonujesz niezbędne naprawy na okręcie."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "squad"
@@ -161,10 +161,10 @@
 	var/datum/squad/squad = null
 
 /obj/item/clothing/head/helmet/ship/squad/space
-	name = "Space Helmet"
+	name = "hełm kosmiczny"
 	icon_state = "skinsuit_squad"
 	item_state = "spaceold"
-	desc = "A special helmet with solar UV shielding to protect your eyes from harmful rays. It bears a squad's insignia."
+	desc = "Specjalny hełm z osłoną przed promieniowaniem UV, która chroni oczy przed szkodliwymi promieniami. Nosi insygnia drużyny."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SNUG_FIT
 	permeability_coefficient = 0.01
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70, "stamina" = 10, "bleed" = 50)
@@ -191,13 +191,13 @@
 				apply_squad(H.squad)
 
 /obj/item/clothing/head/helmet/ship/squad/leader
-	name = "Squad Lead Helmet"
-	desc = "A helmet which denotes the leader of a squad. The modern version of dead man's shoes."
+	name = "hełm dowódcy drużyny"
+	desc = "Hełm, który wyróżnia dowódcę drużyny. Współczesna wersja butów po nieboszczyku."
 	icon_state = "squad_leader"
 
 /obj/item/clothing/neck/squad
-	name = "Lanyard"
-	desc = "A holographic lanyard which, when passed to someone who isn't in a squad, will allow them to join the squad registered to it!"
+	name = "smycz"
+	desc = "Holograficzna smycz, która pozwala osobie spoza drużyny dołączyć do zarejestrowanej na niej drużyny!"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "hudsquad"
@@ -219,7 +219,7 @@
 		to_chat(user, "<span class='notice'>Smycz aktualizuje się zgodnie z twoją obecną rolą w drużynie.</span>")
 		apply_squad( user.squad )
 		return FALSE
-	if(alert(user, "Dołączyć do drużyny [squad]?",name,"Yes","No") == "Yes")
+	if(alert(user, "Dołączyć do drużyny [squad]?",name,"Tak","Nie") == "Tak")
 		if(user.squad)
 			user.squad.remove_member(user)
 		squad.add_member(user)
@@ -261,7 +261,7 @@
 		if(!ishuman(user) || !user.client || !user.squad)
 			return
 		squad = user.squad
-	name = "[squad] [initial(name)]"
+	name = "[initial(name)] drużyny [squad]"
 	src.squad = squad
 	generate_clothing_overlay(src, "[icon_state]_stripes", squad.colour)
 
@@ -272,7 +272,7 @@
 		if(!ishuman(user) || !user.client || !user.squad)
 			return
 		squad = user.squad
-	name = "[squad] [initial(name)]"
+	name = "[initial(name)] drużyny [squad]"
 	src.squad = squad
 	generate_clothing_overlay(src, "[icon_state]_stripes", squad.colour)
 
@@ -284,11 +284,11 @@
 		squad = user.squad
 	src.squad = squad
 	if(user && squad.leader == user)
-		name = "[squad] Leader Lanyard"
+		name = "smycz dowódcy drużyny [squad]"
 		icon_state = "hudsquad_lead"
 		generate_clothing_overlay(src, "hudsquad_lead_stripes", squad.colour)
 		return
-	name = "[squad] [initial(name)]"
+	name = "[initial(name)] drużyny [squad]"
 	icon_state = "hudsquad"
 	if ( user && ishuman( user ) )
 		if ( user.squad.role == MEDICAL_SQUAD )
@@ -309,7 +309,7 @@
 		squad = user.squad
 	color = squad.colour
 	src.squad = squad
-	name = "[squad.name] [initial(name)]"
+	name = "[initial(name)] drużyny [squad.name]"
 
 /obj/item/clothing/head/ship/squad
 	var/datum/squad/squad = null
@@ -329,11 +329,11 @@
 		squad = user.squad
 	color = squad.colour
 	src.squad = squad
-	name = "[squad.name] [initial(name)]"
+	name = "[initial(name)] drużyny [squad.name]"
 
 //Credit to CM / TGMC for this sprite!
 /obj/item/clothing/head/ship/squad/colouronly/headband
-	name = "Headband"
+	name = "opaska na głowę"
 	icon_state = "squadheadband"
 	desc = "Opaska w barwach oddziału noszącego."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -341,7 +341,7 @@
 
 
 /obj/item/clothing/head/ship/squad/colouronly/cap
-	name = "Cap"
+	name = "czapka"
 	icon_state = "squadsoft"
 	desc = "Stylowa kolorowa czapka w barwach i z insygniami oddziału noszącego."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -349,7 +349,7 @@
 //Credit goes to Eris for this sprite!
 
 /obj/item/clothing/suit/ship/squad/bomber
-	name = "Jacket"
+	name = "kurtka"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "squadbomber"
@@ -362,15 +362,15 @@
 //Legally not flex seal. We promise.
 
 /obj/item/sealant
-	name = "Flexi seal"
-	desc = "A neat spray can that can repair torn inflatable segments, and more!"
+	name = "uszczelniacz Flexi"
+	desc = "Zgrabny spray, którym naprawisz rozdarte segmenty nadmuchiwane i nie tylko!"
 	icon = 'nsv13/icons/obj/inflatable.dmi'
 	icon_state = "sealant"
 	w_class = 1
 
 /obj/item/inflatable
-	name = "inflatable wall"
-	desc = "A folded membrane which rapidly expands into a large cubical shape on activation. Click a tile with it to place a temporary wall there."
+	name = "nadmuchiwana ściana"
+	desc = "Złożona membrana, która po aktywacji błyskawicznie rozpręża się w duży sześcian. Kliknij nią pole, by postawić tam tymczasową ścianę."
 	icon = 'nsv13/icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
 	w_class = 1
@@ -378,8 +378,8 @@
 	var/torn = FALSE
 
 /obj/item/inflatable/torn
-	name = "torn inflatable wall"
-	desc = "A folded membrane which rapidly expands into a large cubical shape on activation. It is too torn to be usable, but could be patched up with some sealant."
+	name = "rozdarta nadmuchiwana ściana"
+	desc = "Złożona membrana, która po aktywacji błyskawicznie rozpręża się w duży sześcian. Jest zbyt rozdarta, by jej użyć, ale da się ją załatać uszczelniaczem."
 	icon = 'nsv13/icons/obj/inflatable.dmi'
 	icon_state = "folded_wall_torn"
 	torn = TRUE
@@ -392,8 +392,8 @@
 			playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
 			to_chat(user, "<span class='notice'>Łatasz [src], jak nowy!</span>")
 			torn = FALSE
-			name = "inflatable wall"
-			desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
+			name = "nadmuchiwana ściana"
+			desc = "Złożona membrana, która po aktywacji błyskawicznie rozpręża się w duży sześcian."
 			icon_state = "folded_wall"
 
 /obj/item/inflatable/attack_self(mob/user)
@@ -419,8 +419,8 @@
 	qdel(src)
 
 /obj/structure/inflatable
-	name = "inflatable wall"
-	desc = "An inflated membrane used by damage control teams to contain pressure damage though it comes apart easily under duress. Do not puncture."
+	name = "nadmuchiwana ściana"
+	desc = "Nadmuchana membrana, której zespoły kontroli uszkodzeń używają do powstrzymywania rozhermetyzowania, choć pod naciskiem łatwo się rozpada. Nie przebijać."
 	density = TRUE
 	anchored = TRUE
 	opacity = FALSE
@@ -474,7 +474,7 @@
 	. = ..()
 	if(user.stat || user.restrained())
 		return
-	if(alert(user, "Deflate [src]?",name,"Yes","Reconsider") == "Yes")
+	if(alert(user, "Spuścić powietrze: [src]?",name,"Tak","Jednak nie") == "Tak")
 		deflate()
 
 //this proc makes squad items take

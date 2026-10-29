@@ -42,7 +42,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
   */
 /obj/machinery/vending
 	name = "\improper Vendomat"
-	desc = "A generic vending machine."
+	desc = "Zwykły automat z produktami."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = BELOW_OBJ_LAYER
@@ -157,7 +157,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 	var/list/vending_machine_input = list()
 	///Display header on the input view
-	var/input_display_header = "Custom Compartment"
+	var/input_display_header = "Własna przegroda"
 
 	//The type of refill canisters used by this machine.
 	var/obj/item/vending_refill/refill_canister = null
@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					SWITCH_EMPTY_STATEMENT
 
 /obj/machinery/vending/proc/freebie(mob/fatty, freebies)
-	visible_message("<span class='notice'>[src] yields [freebies > 1 ? "several free goodies" : "a free goody"]!</span>")
+	visible_message("<span class='notice'>[src] wypluwa [freebies > 1 ? "kilka darmowych smakołyków" : "darmowy smakołyk"]!</span>")
 
 	for(var/i in 1 to freebies)
 		playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
@@ -515,7 +515,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 						var/obj/item/bodypart/head/O = C.get_bodypart(BODY_ZONE_HEAD)
 						if(O)
 							C.visible_message("<span class='danger'>[O] eksploduje deszczem krwawych szczątków pod [src]!</span>", \
-								"<span class='userdanger'>Oh f-</span>")
+								"<span class='userdanger'>O kur-</span>")
 							O.dismember()
 							O.drop_organs()
 							qdel(O)
@@ -543,7 +543,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		throw_at(get_turf(fatty), 1, 1, spin=FALSE)
 
 /obj/machinery/vending/proc/untilt(mob/user)
-	user.visible_message("<span class='notice'>[user] rights [src].</span>", \
+	user.visible_message("<span class='notice'>[user] stawia [src] z powrotem.</span>", \
 		"<span class='notice'>Stawiasz [src] z powrotem.</span>")
 
 	unbuckle_all_mobs(TRUE)
@@ -751,7 +751,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 					return
 			else if (!(R in record_to_check))
 				vend_ready = TRUE
-				message_admins("Vending machine exploit attempted by [ADMIN_LOOKUPFLW(usr)]!")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] próbuje wykorzystać exploit automatu!")
 				return
 			if (R.amount <= 0)
 				say("Wyprzedano: [R.name].")
@@ -931,7 +931,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return
 
 /obj/machinery/vending/custom
-	name = "Custom Vendor"
+	name = "własny automat"
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	max_integrity = 400
@@ -1067,8 +1067,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	if(compartmentLoadAccessCheck(user))
 		if(istype(I, /obj/item/pen))
-			name = stripped_input(user,"Set name","Name", name, 20)
-			desc = stripped_input(user,"Set description","Description", desc, 60)
+			name = stripped_input(user,"Ustaw nazwę","Nazwa", name, 20)
+			desc = stripped_input(user,"Ustaw opis","Opis", desc, 60)
 			slogan_list += stripped_input(user,"Ustaw slogan","Slogan","Epic", 60)
 			last_slogan = world.time + rand(0, slogan_delay)
 			return
@@ -1088,7 +1088,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return ..()
 
 /obj/machinery/vending/custom/unbreakable
-	name = "Indestructible Vendor"
+	name = "niezniszczalny automat"
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/item/vending_refill/custom
@@ -1097,8 +1097,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 	custom_premium_price = 100
 
 /obj/item/price_tagger
-	name = "price tagger"
-	desc = "This tool is used to set a price for items used in custom vendors."
+	name = "metkownica"
+	desc = "To narzędzie służy do ustalania cen przedmiotów sprzedawanych we własnych automatach."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pricetagger"
 	custom_premium_price = 25
@@ -1106,7 +1106,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/price = 1
 
 /obj/item/price_tagger/attack_self(mob/user)
-	price = max(1, round(input(user,"set price","price") as num|null, 1))
+	price = max(1, round(input(user,"Ustaw cenę","Cena") as num|null, 1))
 	to_chat(user, "<span class='notice'> [src] będzie teraz nadawać przedmiotom cenę [price] kr.</span>")
 
 /obj/item/price_tagger/afterattack(atom/target, mob/user, proximity)

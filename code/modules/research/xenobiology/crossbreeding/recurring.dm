@@ -4,8 +4,8 @@ Recurring extracts:
 	If depleted of its' last charge, stops working.
 */
 /obj/item/slimecross/recurring
-	name = "recurring extract"
-	desc = "A tiny, glowing core, wrapped in several layers of goo."
+	name = "odnawialny ekstrakt"
+	desc = "Maleńki, świecący rdzeń owinięty kilkoma warstwami mazi."
 	effect = "recurring"
 	icon_state = "recurring"
 	var/extract_type
@@ -34,7 +34,7 @@ Recurring extracts:
 		cooldown = max_cooldown
 	else if(extract.Uses <= 0)
 		extract.visible_message("<span class='warning'>Światło wewnątrz [extract] migocze i gaśnie.</span>")
-		extract.desc = "A tiny, inert core, bleeding dark, cerulean-colored goo."
+		extract.desc = "Maleńki, martwy rdzeń, z którego sączy się ciemna, lazurowa maź."
 		extract.icon_state = "prismatic"
 		qdel(src)
 

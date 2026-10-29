@@ -2,19 +2,19 @@
 // !           Armaments          ! //
 //==================================//
 /datum/clockcult/scripture/clockwork_armaments
-	name = "Clockwork Armaments"
-	desc = "Summon clockwork armor and weapons, to be ready for battle."
+	name = "Mechaniczne uzbrojenie"
+	desc = "Przywołujesz mechaniczną zbroję i broń, by być gotowym do walki."
 	tip = "Przywołuje mechaniczną zbroję i broń, byś był gotów do walki."
 	button_icon_state = "clockwork_armor"
 	power_cost = 150
 	invokation_time = 20
-	invokation_text = list("Dzięki odwadze i nadziei...", "we shall protect thee!")
+	invokation_text = list("Dzięki odwadze i nadziei...", "...będziemy cię chronić!")
 	category = SPELLTYPE_PRESERVATION
 	cogs_required = 0
 
 /datum/clockcult/scripture/clockwork_armaments/invoke_success()
 	var/mob/living/M = invoker
-	var/choice = input(M,"Jaką broń chcesz przywołać?", "Mechaniczne Uzbrojenie") as anything in list("Brass Spear","Brass Battlehammer","Brass Sword", "Brass Bow", "Standard Equipment (Unarmed)")
+	var/choice = input(M,"Jaką broń chcesz przywołać?", "Mechaniczne Uzbrojenie") as anything in list("Mosiężna włócznia","Mosiężny młot bojowy","Mosiężny miecz", "Mosiężny łuk", "Standardowy ekwipunek (bez broni)")
 	var/datum/antagonist/servant_of_ratvar/servant = is_servant_of_ratvar(M)
 	if(!servant)
 		return FALSE
@@ -28,13 +28,13 @@
 	if(is_species(M, /datum/species/plasmaman))
 		plasmaman.equip(M)
 	switch(choice)
-		if("Brass Spear")
+		if("Mosiężna włócznia")
 			armaments_spear.equip(M)
-		if("Brass Battlehammer")
+		if("Mosiężny młot bojowy")
 			armaments_hammer.equip(M)
-		if("Brass Sword")
+		if("Mosiężny miecz")
 			armaments_sword.equip(M)
-		if("Brass Bow")
+		if("Mosiężny łuk")
 			armaments_bow.equip(M)
-		if("Standard Equipment (Unarmed)")
+		if("Standardowy ekwipunek (bez broni)")
 			default.equip(M)

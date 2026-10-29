@@ -1,6 +1,6 @@
 /datum/language/calcic
-	name = "Calcic"
-	desc = "The disjointed and staccato language of plasmamen. Also understood by skeletons."
+	name = "Wapienny"
+	desc = "Urywany, staccatowy język plazmaludzi. Rozumieją go też szkielety."
 	key = "b"
 	space_chance = 10
 	syllables = list(

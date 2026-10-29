@@ -122,11 +122,11 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(GLOB.battle_royale)
 		to_chat(src, "<span class='warning'>Gra już trwa!</span>")
 		return
-	if(alert(src, "CZY NA PEWNO, ALE TO NA PEWNO, CHCESZ ROZPOCZĄĆ BATTLE ROYALE?",,"Yes","No") != "Yes")
+	if(alert(src, "CZY NA PEWNO, ALE TO NA PEWNO, CHCESZ ROZPOCZĄĆ BATTLE ROYALE?",,"Tak","Nie") != "Tak")
 		to_chat(src, "<span class='notice'>aha... no dobra... już wiem, jak jest... :(</span>")
 		return
 	log_admin("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
-	message_admins("[key_name(usr)] HAS TRIGGERED BATTLE ROYALE")
+	message_admins("[key_name(usr)] URUCHAMIA BATTLE ROYALE")
 
 	for(var/client/admin in GLOB.admins)
 		if(check_rights(R_ADMIN) && !GLOB.battle_royale && admin.tgui_panel)
@@ -144,11 +144,11 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	if(!GLOB.battle_royale)
 		to_chat(src, "<span class='warning'>Żadna gra nie trwa.</span>")
 		return
-	var/new_speed = input(src, "New wall delay (seconds)") as num
+	var/new_speed = input(src, "Nowe opóźnienie ściany (w sekundach)") as num
 	if(new_speed > 0)
 		GLOB.battle_royale.field_delay = new_speed
 		log_admin("[key_name(usr)] has changed the field delay to [new_speed] seconds")
-		message_admins("[key_name(usr)] has changed the field delay to [new_speed] seconds")
+		message_admins("[key_name(usr)] zmienia opóźnienie pola na [new_speed] s")
 
 /client/proc/battle_royale_varedit()
 	set name = "Battle Royale - Variable Edit"
@@ -172,7 +172,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		return
 	GLOB.battle_royale.generate_good_drop()
 	log_admin("[key_name(usr)] generated a battle royale drop.")
-	message_admins("[key_name(usr)] generated a battle royale drop.")
+	message_admins("[key_name(usr)] generuje zrzut battle royale.")
 
 /client/proc/battle_royale_spawn_loot_good()
 	set name = "Battle Royale - Spawn Loot Drop (Major)"
@@ -185,7 +185,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		return
 	GLOB.battle_royale.generate_endgame_drop()
 	log_admin("[key_name(usr)] generated a good battle royale drop.")
-	message_admins("[key_name(usr)] generated a good battle royale drop.")
+	message_admins("[key_name(usr)] generuje dobry zrzut battle royale.")
 
 /datum/battle_royale_controller
 	var/list/players
@@ -237,10 +237,10 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		winner = M
 		CHECK_TICK
 	if(living_victims <= 1 && !debug_mode)
-		to_chat(world, "<span class='ratvar'><font size=18>VICTORY ROYALE!!</font></span>")
+		to_chat(world, "<span class='ratvar'><font size=18>ZWYCIĘSTWO ROYALE!!</font></span>")
 		if(winner)
 			winner.client?.process_greentext()
-			to_chat(world, "<span class='ratvar'><font size=18>[key_name(winner)] is the winner!</font></span>")
+			to_chat(world, "<span class='ratvar'><font size=18>Wygrywa: [key_name(winner)]!</font></span>")
 			new /obj/item/melee/supermatter_sword(get_turf(winner))
 		qdel(src)
 		return
@@ -278,7 +278,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		to_chat(world, "<span class=boldannounce>Battle Royale: czekanie, aż serwer będzie gotowy...</span>")
 		SSticker.start_immediately = FALSE
 		UNTIL(SSticker.current_state >= GAME_STATE_PREGAME)
-		to_chat(world, "<span class=boldannounce>Battle Royale: Done!</span>")
+		to_chat(world, "<span class=boldannounce>Battle Royale: koniec!</span>")
 	//Delay pre-game if we are in it.
 	if(SSticker.current_state == GAME_STATE_PREGAME)
 		//Force people to be not ready and start the game
@@ -286,12 +286,12 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 			to_chat(player, "<span class=greenannounce>Zostałeś przymusowo zmieniony w obserwatora. Gdy pojawi się pytanie o dołączenie do Battle Royale, naciśnij Tak. To normalne i nadal jesteś w kolejce do gry.</span>")
 			player.ready = FALSE
 			player.make_me_an_observer(TRUE)
-		to_chat(world, "<span class='boldannounce'>Battle Royale: Force-starting game.</span>")
+		to_chat(world, "<span class='boldannounce'>Battle Royale: wymuszam start gry.</span>")
 		SSticker.start_immediately = TRUE
 	SEND_SOUND(world, sound('sound/misc/server-ready.ogg'))
 	sleep(50)
 	//Clear all living mobs
-	to_chat(world, "<span class='boldannounce'>Battle Royale: Clearing world mobs.</span>")
+	to_chat(world, "<span class='boldannounce'>Battle Royale: czyszczę moby ze świata.</span>")
 	for(var/mob/living/M as() in GLOB.mob_living_list)
 		qdel(M)
 		CHECK_TICK
@@ -304,7 +304,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	to_chat(world, "<span class='boldannounce'>Battle Royale: START ZA 5 SEKUND.</span>")
 	to_chat(world, "<span class='greenannounce'>Pamiętaj, by kliknąć Tak w wiadomości o zapisach wysłanej do wszystkich obserwatorów.</span>")
 	sleep(50)
-	to_chat(world, "<span class='boldannounce'>Battle Royale: Starting game.</span>")
+	to_chat(world, "<span class='boldannounce'>Battle Royale: start gry.</span>")
 	titanfall()
 	death_wall = list()
 	var/z_level = SSmapping.station_start
@@ -349,7 +349,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	SEND_SOUND(world, sound('sound/misc/airraid.ogg'))
 	to_chat(world, "<span class='boldannounce'>Ustanowiono 30-sekundowy okres ochronny. Powodzenia.</span>")
 	to_chat(world, "<span class='boldannounce'>OSTRZEŻENIE: JEŚLI OPUŚCISZ POZIOM Z STACJI, ZOSTANIESZ ROZERWANY NA STRZĘPY!</span>")
-	to_chat(world, "<span class='boldannounce'>[players.len] people remain...</span>")
+	to_chat(world, "<span class='boldannounce'>Pozostało graczy: [players.len]...</span>")
 
 	//Start processing our world events
 	addtimer(CALLBACK(src, PROC_REF(end_grace)), 300)
@@ -360,7 +360,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		M.RemoveSpell(/obj/effect/proc_holder/spell/aoe_turf/knock)
 		M.status_flags -= GODMODE
 		REMOVE_TRAIT(M, TRAIT_PACIFISM, BATTLE_ROYALE_TRAIT)
-		to_chat(M, "<span class='greenannounce'>You are no longer a pacifist. Be the last [M.gender == MALE ? "man" : "woman"] standing.</span>")
+		to_chat(M, "<span class='greenannounce'>Nie jesteś już pacyfistą. Zostań [M.gender == MALE ? "ostatnim stojącym na nogach" : "ostatnią stojącą na nogach"].</span>")
 
 //==================================
 // EVENTS / DROPS
@@ -375,7 +375,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 	var/list/good_drops = list()
 	for(var/i in 1 to rand(1,3))
 		good_drops += pick(GLOB.battle_royale_good_loot)
-	send_item(good_drops, announce = "Incoming extended supply materials.", force_time = 150)
+	send_item(good_drops, announce = "Nadlatują dodatkowe materiały zaopatrzeniowe.", force_time = 150)
 
 /datum/battle_royale_controller/proc/generate_endgame_drop()
 	var/obj/item = pick(GLOB.battle_royale_insane_loot)
@@ -395,7 +395,7 @@ GLOBAL_DATUM(battle_royale, /datum/battle_royale_controller)
 		pod.delays[POD_FALLING]= force_time
 	new /obj/effect/pod_landingzone(target, pod)
 	if(announce)
-		priority_announce("[announce] \nExpected Drop Location: [get_area(target)]\n ETA: [force_time/10] Seconds.", "High Command Supply Control", SSstation.announcer.get_rand_alert_sound())
+		priority_announce("[announce] \nPrzewidywane miejsce zrzutu: [get_area(target)]\n Czas do zrzutu: [force_time/10] s.", "Kontrola Zaopatrzenia Naczelnego Dowództwa", SSstation.announcer.get_rand_alert_sound())
 
 //==================================
 // WORLD BORDER

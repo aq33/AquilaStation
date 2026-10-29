@@ -12,8 +12,8 @@
 
 ///Thirring Drive PYLON///
 /obj/machinery/atmospherics/components/binary/drive_pylon
-	name = "\improper Thirring Drive Pylon"
-	desc = "Produces exotic energy for a Thirring Drive. Requires Nucleium and electricity to spool up, avoid physical contact with gyroscopes."
+	name = "\improper pylon napędu Thirringa"
+	desc = "Wytwarza egzotyczną energię dla napędu Thirringa. Do rozgrzania potrzebuje nukleium i prądu. Unikaj kontaktu z żyroskopami."
 	icon = 'nsv13/icons/obj/machinery/FTL_pylon.dmi'
 	icon_state = "pylon"
 	dir = NORTH
@@ -341,7 +341,7 @@
 
 
 /obj/machinery/atmospherics/components/binary/drive_pylon/hugbox
-	name = "\improper Hugbox Drive Pylon"
+	name = "\improper bezpieczny pylon napędu"
 	var/autoclear_waste = TRUE
 	var/autoadd_input = TRUE
 
@@ -369,7 +369,7 @@
 // VFX
 
 /obj/effect/pylon_shield
-	name = "pylon shield"
+	name = "osłona pylonu"
 	icon = 'nsv13/icons/obj/machinery/FTL_pylon.dmi'
 	icon_state = "pylon_shield_open"
 	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE | VIS_INHERIT_LAYER

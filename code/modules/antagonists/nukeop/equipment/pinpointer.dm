@@ -58,13 +58,13 @@
 	scan_for_target()
 
 /obj/item/pinpointer/nuke/syndicate // Syndicate pinpointers automatically point towards the infiltrator once the nuke is active.
-	name = "syndicate pinpointer"
-	desc = "A handheld tracking device that locks onto certain signals. It's configured to switch tracking modes once it detects the activation signal of a nuclear device."
+	name = "lokalizator Syndykatu"
+	desc = "Ręczne urządzenie namierzające, które łapie określone sygnały. Po wykryciu sygnału aktywacji ładunku nuklearnego samo zmienia tryb namierzania."
 	icon_state = "pinpointer_syndicate"
 
 /obj/item/pinpointer/syndicate_cyborg // Cyborg pinpointers just look for a random operative.
-	name = "cyborg syndicate pinpointer"
-	desc = "An integrated tracking device, jury-rigged to search for living Syndicate operatives."
+	name = "lokalizator Syndykatu dla cyborgów"
+	desc = "Wbudowane urządzenie namierzające, prowizorycznie przerobione do szukania żywych operatorów Syndykatu."
 	flags_1 = NONE
 
 /obj/item/pinpointer/syndicate_cyborg/Initialize(mapload)

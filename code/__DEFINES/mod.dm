@@ -40,14 +40,14 @@
 #define MOD_WORN_ICON_OVERRIDE "mod_worn_icon_override"
 
 //Default text for different messages for the user.
-#define HELMET_UNSEAL_MESSAGE "hisses open"
-#define HELMET_SEAL_MESSAGE "hisses closed"
-#define CHESTPLATE_UNSEAL_MESSAGE "releases your chest"
-#define CHESTPLATE_SEAL_MESSAGE "cinches tightly around your chest"
-#define GAUNTLET_UNSEAL_MESSAGE "become loose around your fingers"
-#define GAUNTLET_SEAL_MESSAGE "tighten around your fingers and wrists"
-#define BOOT_UNSEAL_MESSAGE "relax their grip on your legs"
-#define BOOT_SEAL_MESSAGE "seal around your feet"
+#define HELMET_UNSEAL_MESSAGE "otwiera się z sykiem"
+#define HELMET_SEAL_MESSAGE "zamyka się z sykiem"
+#define CHESTPLATE_UNSEAL_MESSAGE "puszcza twoją klatkę piersiową"
+#define CHESTPLATE_SEAL_MESSAGE "ciasno opina twoją klatkę piersiową"
+#define GAUNTLET_UNSEAL_MESSAGE "luzują się na twoich palcach"
+#define GAUNTLET_SEAL_MESSAGE "zaciskają się na twoich palcach i nadgarstkach"
+#define BOOT_UNSEAL_MESSAGE "luzują uścisk na twoich nogach"
+#define BOOT_SEAL_MESSAGE "uszczelniają się wokół twoich stóp"
 
 /// Global list of all /datum/mod_theme
 GLOBAL_LIST_INIT(mod_themes, setup_mod_themes())

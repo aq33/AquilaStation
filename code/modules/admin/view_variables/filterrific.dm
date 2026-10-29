@@ -67,19 +67,19 @@
 			target.add_filter(params["name"], old_filter_data["priority"], new_filter_data)
 			. = TRUE
 		if("modify_color_value")
-			var/new_color = input(usr, "Pick new filter color", "Filteriffic Colors!") as color|null
+			var/new_color = input(usr, "Wybierz nowy kolor filtra", "Kolory Filteriffic!") as color|null
 			if(new_color)
 				target.transition_filter(params["name"], 4, list("color" = new_color))
 				. = TRUE
 		if("modify_icon_value")
-			var/icon/new_icon = input("Pick icon:", "Icon") as null|icon
+			var/icon/new_icon = input("Wybierz ikonę:", "Ikona") as null|icon
 			if(new_icon)
 				target.filter_data[params["name"]]["icon"] = new_icon
 				target.update_filters()
 				. = TRUE
 		if("mass_apply")
 			if(!check_rights_for(usr.client, R_FUN))
-				to_chat(usr, "<span class='userdanger>Stay in your lane, jannie.</span>'")
+				to_chat(usr, "<span class='userdanger>Pilnuj swojego pasa, woźny.</span>'")
 				return
 			var/target_path = text2path(params["path"])
 			if(!target_path)
@@ -93,6 +93,6 @@
 					thing_at.filters = filters_to_copy
 					thing_at.filter_data = filter_data_to_copy
 					count += 1
-			message_admins("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
+			message_admins("LOKALNY KLAUN [usr.ckey] WŁAŚNIE MASOWO ZMIENIA FILTRY [count] OBIEKTÓW ZE ŚCIEŻKĄ [params["path"]]!")
 			log_admin("LOCAL CLOWN [usr.ckey] JUST MASS FILTER EDITED [count] WITH PATH OF [params["path"]]!")
 	ui_update()

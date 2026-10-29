@@ -7,8 +7,8 @@
  *
  */
 /obj/item/clothing/mask/gas/ninja
-	name = "ninja mask"
-	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
+	name = "maska ninja"
+	desc = "Dopasowana maska, która jest jednocześnie filtrem powietrza i postmodernistycznym manifestem mody."
 	icon_state = "ninja"
 	item_state = "sechailer"
 	strip_delay = 12 SECONDS
@@ -17,8 +17,8 @@
 	flags_cover = MASKCOVERSMOUTH
 
 /obj/item/clothing/under/syndicate/ninja
-	name = "ninja suit"
-	desc = "A nano-enhanced jumpsuit designed for maximum comfort and tacticality."
+	name = "kombinezon ninja"
+	desc = "Wzmocniony nanotechnologią kombinezon zaprojektowany z myślą o maksymalnym komforcie i taktyczności."
 	icon_state = "ninja_suit"
 	strip_delay = 12 SECONDS
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF

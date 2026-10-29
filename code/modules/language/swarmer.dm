@@ -1,6 +1,6 @@
 /datum/language/swarmer
-	name = "Swarmer"
-	desc = "A language only consisting of musical notes."
+	name = "Rojowy"
+	desc = "Język złożony wyłącznie z nut."
 	speech_verb = "wydaje ton"
 	ask_verb = "wydaje pytający ton"
 	exclaim_verb = "wydaje głośny ton"

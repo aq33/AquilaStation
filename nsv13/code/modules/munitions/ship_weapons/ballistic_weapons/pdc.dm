@@ -1,9 +1,9 @@
 
 /obj/machinery/ship_weapon/pdc_mount
-	name = "\improper PDC loading rack"
+	name = "\improper stojak ładowania PDC"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "pdc"
-	desc = "Seegson's all-in-one PDC targeting computer, ammunition loader, and human interface has proven extremely popular in recent times. It's rare to see a ship without one of these."
+	desc = "Zintegrowany komputer celowniczy PDC, podajnik amunicji i interfejs obsługi Seegson. Ostatnio cieszy się ogromną popularnością – rzadko spotyka się okręt bez niego."
 	anchored = TRUE
 	density = FALSE
 	pixel_y = 26

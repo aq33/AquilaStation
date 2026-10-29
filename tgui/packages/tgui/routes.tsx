@@ -43,7 +43,7 @@ function SuspendedWindow() {
 // Displays a loading screen with a spinning icon
 function RefreshingWindow() {
   return (
-    <Window title="Loading" theme="generic">
+    <Window title="Wczytywanie" theme="generic">
       <Window.Content>
         <LoadingScreen />
       </Window.Content>

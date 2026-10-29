@@ -1,6 +1,6 @@
 /datum/overmap_objective/tickets
-	name = "Tickets"
-	desc = "Acquire ticket_amount Tickets for assigned_faction"
+	name = "Punkty zwycięstwa"
+	desc = "Zdobądź ticket_amount punktów zwycięstwa dla assigned_faction"
 	binary = FALSE
 	target = 0
 	var/ticket_amount = 700
@@ -23,6 +23,6 @@
 		status = 1
 
 /datum/overmap_objective/tickets/nt
-	name = "Nanotrasen Tickets"
+	name = "Punkty zwycięstwa Nanotrasen"
 	assigned_faction = FACTION_ID_NT
 	extension_supported = TRUE

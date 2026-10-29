@@ -6,18 +6,18 @@ import {
 } from '../base';
 
 export const ooccolor: Feature<string> = {
-  name: 'OOC Color',
+  name: 'Kolor OOC',
   category: 'CHAT',
   subcategory: 'OOC',
-  description: 'The color of your OOC messages.',
+  description: 'Kolor twoich wiadomości OOC.',
   component: FeatureColorInput,
   important: true,
 };
 
 export const member_public: FeatureToggle = {
-  name: 'Show BYOND Membership',
+  name: 'Pokaż członkostwo BYOND',
   category: 'BYOND MEMBER',
-  description: 'Whether to show your BYOND membership in OOC or not.',
+  description: 'Czy pokazywać w OOC twoje członkostwo BYOND.',
   component: CheckboxInput,
   important: true,
 };

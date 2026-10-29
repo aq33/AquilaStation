@@ -1,6 +1,6 @@
 /obj/item/hand_labeler
-	name = "hand labeler"
-	desc = "A combined label printer and applicator in a portable device, designed to be easy to operate and use."
+	name = "etykieciarka"
+	desc = "Przenośne urządzenie, które drukuje i nakleja etykiety. Zaprojektowane z myślą o łatwej obsłudze."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
@@ -14,7 +14,7 @@
 	labels_left = max(labels_left - 1, 0)
 
 	var/old_real_name = user.real_name
-	user.real_name += " (suicide)"
+	user.real_name += " (samobójca)"
 	// no conflicts with their identification card
 	for(var/atom/A in user.GetAllContents())
 		if(istype(A, /obj/item/card/id))
@@ -28,11 +28,11 @@
 			their_card.update_label()
 
 	// NOT EVEN DEATH WILL TAKE AWAY THE STAIN
-	user.mind.name += " (suicide)"
+	user.mind.name += " (samobójca)"
 
 	mode = 1
 	icon_state = "labeler[mode]"
-	label = "suicide"
+	label = "samobójca"
 
 	return OXYLOSS
 
@@ -91,7 +91,7 @@
 		labels_left = initial(labels_left)	//Yes, it's capped at its initial value
 
 /obj/item/hand_labeler/borg
-	name = "cyborg-hand labeler"
+	name = "etykieciarka cyborga"
 
 /obj/item/hand_labeler/borg/afterattack(atom/A, mob/user, proximity)
 	. = ..(A, user, proximity)
@@ -113,9 +113,9 @@
 			borgy.cell.use(cost)
 
 /obj/item/hand_labeler_refill
-	name = "hand labeler paper roll"
+	name = "rolka papieru do etykieciarki"
 	icon = 'icons/obj/bureaucracy.dmi'
-	desc = "A roll of paper. Use it on a hand labeler to refill it."
+	desc = "Rolka papieru. Użyj jej na etykieciarce, by ją uzupełnić."
 	icon_state = "labeler_refill"
 	item_state = "electropack"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'

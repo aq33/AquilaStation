@@ -1,6 +1,6 @@
 /datum/language/buzzwords
-	name = "Buzzwords"
-	desc = "A common language to all insects, made by the rhythmic beating of wings."
+	name = "Bzyczący"
+	desc = "Wspólny język wszystkich owadów, tworzony rytmicznym trzepotem skrzydeł."
 	key = "z"
 	space_chance = 0
 	syllables = list(

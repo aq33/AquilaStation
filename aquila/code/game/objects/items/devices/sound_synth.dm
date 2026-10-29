@@ -2,8 +2,8 @@
 // Odtwarza dowolny wgrany plik dźwiękowy, bez listy i bez zmiany wysokości.
 
 /obj/item/soundsynth/ancient
-	name = "ancient sound synthesizer"
-	desc = "A device that is able to create sounds. This one is an ancient relic and has no restrictions."
+	name = "pradawny syntezator dźwięku"
+	desc = "Urządzenie, które wytwarza dźwięki. Ten egzemplarz to pradawny relikt bez żadnych ograniczeń."
 	shiftpitch = 0
 	volume = 100
 	sound_list = list()

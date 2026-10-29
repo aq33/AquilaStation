@@ -1,5 +1,5 @@
 /obj/item/projectile/hallucination
-	name = "bullet"
+	name = "pocisk"
 	icon = null
 	icon_state = null
 	hitsound = ""
@@ -125,7 +125,7 @@
 	return
 
 /obj/item/projectile/hallucination/bullet
-	name = "bullet"
+	name = "pocisk"
 	hal_icon_state = "bullet"
 	hal_fire_sound = "gunshot"
 	hal_hitsound = 'sound/weapons/pierce.ogg'
@@ -156,7 +156,7 @@
 	hal_target.blur_eyes(2)
 
 /obj/item/projectile/hallucination/taser
-	name = "electrode"
+	name = "elektroda"
 	damage_type = BURN
 	hal_icon_state = "spark"
 	color = "#FFFF00"
@@ -175,7 +175,7 @@
 		addtimer(CALLBACK(hal_target, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 20), 5)
 
 /obj/item/projectile/hallucination/disabler
-	name = "disabler beam"
+	name = "wiązka disablera"
 	damage_type = STAMINA
 	flag = "stamina"
 	hal_icon_state = "omnilaser"
@@ -191,7 +191,7 @@
 	hal_target.adjustStaminaLoss(25)
 
 /obj/item/projectile/hallucination/ebow
-	name = "bolt"
+	name = "pocisk energetyczny"
 	damage_type = TOX
 	hal_icon_state = "cbbolt"
 	hal_fire_sound = 'sound/weapons/genhit.ogg'
@@ -206,7 +206,7 @@
 	hal_target.adjustStaminaLoss(8)
 
 /obj/item/projectile/hallucination/change
-	name = "bolt of change"
+	name = "pocisk przemiany"
 	damage_type = BURN
 	hal_icon_state = "ice_1"
 	hal_fire_sound = 'sound/magic/staff_change.ogg'
@@ -219,7 +219,7 @@
 	new /datum/hallucination/self_delusion(hal_target, TRUE, wabbajack = FALSE)
 
 /obj/item/projectile/hallucination/death
-	name = "bolt of death"
+	name = "pocisk śmierci"
 	damage_type = BURN
 	hal_icon_state = "pulse1_bl"
 	hal_fire_sound = 'sound/magic/wandodeath.ogg'

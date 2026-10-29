@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/feces
-	name = "feces"
-	desc = "It's brown, smelly and slippery. May as well be the chef's cooking."
+	name = "odchody"
+	desc = "Brązowe, śmierdzące i śliskie. Równie dobrze mogłoby to być danie kucharza."
 	icon = 'aquila/icons/effects/feces.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")

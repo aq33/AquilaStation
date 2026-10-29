@@ -19,23 +19,23 @@ export const GaussRack = (props) => {
     <Window width={560} height={600}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Controls:">
+          <Section title="Sterowanie:">
             <Button
               fluid
-              content="Load ammunition into gun"
+              content="Załaduj amunicję do działa"
               icon="arrow-circle-up"
               disabled={data.loading}
               onClick={() => act('load')}
             />
             <Button
               fluid
-              content="Unload all ammunition from rack"
+              content="Rozładuj całą amunicję ze stojaka"
               icon="exclamation-triangle"
               color={'average'}
               onClick={() => act('unload_all')}
             />
           </Section>
-          <Section title="Loaded ammunition:">
+          <Section title="Załadowana amunicja:">
             <ProgressBar
               value={(data.capacity / data.max_capacity) * 100 * 0.01}
               ranges={{
@@ -51,7 +51,7 @@ export const GaussRack = (props) => {
                 <Fragment key={key}>
                   <Button
                     fluid
-                    content={`Unload ${value.name}`}
+                    content={`Rozładuj: ${value.name}`}
                     icon="eject"
                     onClick={() => act('unload', { id: value.id })}
                   />

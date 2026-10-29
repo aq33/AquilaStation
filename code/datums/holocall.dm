@@ -60,7 +60,7 @@
 			LAZYADD(H.holo_calls, src)
 
 	if(auto_connect_failed) // AQ EDIT
-		calling_pad.say("Auto-connection refused, falling back to call mode.")
+		calling_pad.say("Automatyczne połączenie odrzucone, przełączam na tryb połączenia.")
 
 	if(!dialed_holopads.len)
 		calling_pad.say("Błąd połączenia.")
@@ -112,7 +112,7 @@
 		var/area/A = get_area(connected_holopad)
 		calling_holopad.say("Holopad [A] rozłączony.")
 	else if(H == calling_holopad && connected_holopad)
-		connected_holopad.say("[user] disconnected.")
+		connected_holopad.say("[user] się rozłącza.")
 
 	ConnectionFailure(H, TRUE)
 
@@ -168,7 +168,7 @@
 	eye.origin = H
 	eye.eye_initialized = TRUE
 	eye.eye_user = user
-	eye.name = "Camera Eye ([user.name])"
+	eye.name = "Oko kamery ([user.name])"
 	user.remote_control = eye
 	user.reset_perspective(eye)
 	eye.setLoc(H.loc)
@@ -200,7 +200,7 @@
 		qdel(src)
 
 /datum/action/innate/end_holocall
-	name = "End Holocall"
+	name = "Zakończ holopołączenie"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/datum/holocall/hcall
@@ -227,8 +227,8 @@
 	user.setDir(olddir)
 
 /obj/item/disk/holodisk
-	name = "holorecord disk"
-	desc = "Stores recorder holocalls."
+	name = "dysk holonagrań"
+	desc = "Przechowuje nagrane holopołączenia."
 	icon_state = "holodisk"
 	obj_flags = UNIQUE_RENAME
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 100)
@@ -327,7 +327,7 @@
 /obj/item/disk/holodisk/example
 	preset_image_type = /datum/preset_holoimage/clown
 	preset_record_text = {"
-	NAME Clown
+	NAME Klaun
 	DELAY 10
 	SAY Czemu kapelan przeszedł przez techniczne?
 	DELAY 20
@@ -340,7 +340,7 @@
 	SAY A POZA TYM JESTEM POTAJEMNIE GORYLEM
 	DELAY 10
 	PRESET /datum/preset_holoimage/gorilla
-	NAME Gorilla
+	NAME Goryl
 	LANGUAGE /datum/language/common
 	SAY UGA
 	DELAY 20"}
@@ -367,25 +367,25 @@
 	outfit_type = /datum/outfit/job/clown
 
 /obj/item/disk/holodisk/donutstation/enginewars
-	name = "Conversation #DS034"
+	name = "Rozmowa nr DS034"
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
-	NAME Rigsuit Engineer #1
+	NAME Inżynier w skafandrze #1
 	DELAY 10
 	SAY Według planów instalujemy... silnik osobliwości?
 	DELAY 45
-	NAME Rigsuit Engineer #2
+	NAME Inżynier w skafandrze #2
 	DELAY 10
 	SAY No, podobno to część klasycznego projektu.
 	DELAY 45
-	NAME Rigsuit Engineer #1
+	NAME Inżynier w skafandrze #1
 	DELAY 10
 	SAY Czy silnika osobliwości już od dawna nie wycofano ze standardowego użytku?
 	DELAY 45
-	NAME Rigsuit Engineer #2
+	NAME Inżynier w skafandrze #2
 	DELAY 10
 	SAY No, ale podobno architekci przekupili kogoś z góry, żeby obejść standardowe przepisy.
 	DELAY 55
-	NAME Rigsuit Engineery #1
+	NAME Inżynier w skafandrze #1
 	DELAY 10
 	SAY Odbudowywanie tego miejsca, kiedy to coś nieuchronnie się uwolni, to będzie ból dupy..."}

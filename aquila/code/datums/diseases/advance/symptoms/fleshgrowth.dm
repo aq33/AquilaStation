@@ -1,6 +1,6 @@
 /datum/symptom/flesh
-	name = "Exolocomotive Xenomitosis"
-	desc = "The virus will grow on any surfaces it can, such as the host's skin, or even the ground, should the host remain stationary"
+	name = "Egzolokomotoryczna ksenomitoza"
+	desc = "Wirus rośnie na każdej powierzchni, na jakiej może, na przykład na skórze nosiciela, a nawet na podłodze, jeśli nosiciel stoi w miejscu"
 	stealth = -2
 	resistance = 3
 	stage_speed = 3
@@ -117,8 +117,8 @@
 
 /obj/structure/alien/flesh //this isn't a subtype of alien weeds so it wont heal aliens
 	gender = PLURAL
-	name = "infested floor"
-	desc = "A thick film of flesh covers the floor."
+	name = "zainfekowana podłoga"
+	desc = "Podłogę pokrywa gruba warstwa tkanki."
 	anchored = TRUE
 	density = FALSE
 	layer = TURF_LAYER
@@ -199,8 +199,8 @@
 
 //Weed nodes
 /obj/structure/alien/flesh/node
-	name = "putrid infection"
-	desc = "A sickly red glow emanates from the pustules on this fleshy film."
+	name = "gnilne zakażenie"
+	desc = "Z krost na tej mięsistej warstwie bije chorobliwa czerwona poświata."
 	icon_state = "weednode"
 	light_color = LIGHT_COLOR_BLOOD_MAGIC //a good, sickly atmosphere
 	light_power = 0.5

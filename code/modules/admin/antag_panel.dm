@@ -43,36 +43,36 @@ GLOBAL_VAR(antag_prototypes)
 /datum/antagonist/proc/antag_panel_objectives()
 	var/result = "<i><b>Objectives</b></i>:<br>"
 	if (objectives.len == 0)
-		result += "EMPTY<br>"
+		result += "BRAK<br>"
 	else
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
-			result += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "white"]>[objective.explanation_text]</font> <a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> <a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> <a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.completed ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a><br>"
+			result += "<B>[obj_count]</B>: <font color=[objective.check_completion() ? "green" : "white"]>[objective.explanation_text]</font> <a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>Edytuj</a> <a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>Usuń</a> <a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.completed ? "green" : "red"]>[objective.completed ? "Oznacz jako niewykonany" : "Oznacz jako wykonany"]</font></a><br>"
 			obj_count++
-	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
-	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Dodaj cel</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>Ogłoś cele</a><br>"
 	return result
 
 /datum/antagonist/proc/antag_panel_memory()
-	var/out = "<b>Memory:</b><br>"
+	var/out = "<b>Pamięć:</b><br>"
 	out += antag_memory
-	out += "<br><a href='byond://?src=[REF(src)];memory_edit=1'>Edit memory</a><br>"
+	out += "<br><a href='byond://?src=[REF(src)];memory_edit=1'>Edytuj pamięć</a><br>"
 	return out
 
 /datum/mind/proc/get_common_admin_commands()
-	var/common_commands = "<span>Common Commands:</span>"
+	var/common_commands = "<span>Wspólne polecenia:</span>"
 	if(ishuman(current))
-		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>undress</a>"
+		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>rozbierz</a>"
 	else if(iscyborg(current))
 		var/mob/living/silicon/robot/R = current
 		if(R.emagged)
-			common_commands += "<a href='byond://?src=[REF(src)];silicon=Unemag'>Unemag</a>"
+			common_commands += "<a href='byond://?src=[REF(src)];silicon=Unemag'>Cofnij emag</a>"
 	else if(isAI(current))
 		var/mob/living/silicon/ai/A = current
 		if (A.connected_robots.len)
 			for (var/mob/living/silicon/robot/R in A.connected_robots)
 				if (R.emagged)
-					common_commands += "<a href='byond://?src=[REF(src)];silicon=unemagcyborgs'>Unemag slaved cyborgs</a>"
+					common_commands += "<a href='byond://?src=[REF(src)];silicon=unemagcyborgs'>Cofnij emag podległych cyborgów</a>"
 					break
 	return common_commands
 
@@ -81,25 +81,25 @@ GLOBAL_VAR(antag_prototypes)
 	if(!current)
 		result += "<span class='bad'>Brak ciała!</span>"
 	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
-		result += "<span class='good'>Mindshielded</span>"
+		result += "<span class='good'>Implant mindshield</span>"
 	//Move these to mob
 	if(iscyborg(current))
 		var/mob/living/silicon/robot/robot = current
 		if (robot.emagged)
-			result += "<span class='bad'>Emagged</span>"
+			result += "<span class='bad'>Zemagowany</span>"
 	return result.Join(" | ")
 
 /datum/mind/proc/traitor_panel()
 	if(!SSticker.HasRoundStarted())
-		alert("Nie przed startem rundy!", "Alert")
+		alert("Nie przed startem rundy!", "Uwaga")
 		return
 	if(QDELETED(src))
-		alert("Ten umysł nie ma moba albo został usunięty! Z jakiegoś powodu!", "Edit Memory")
+		alert("Ten umysł nie ma moba albo został usunięty! Z jakiegoś powodu!", "Edycja pamięci")
 		return
 
-	var/out = "<B>[name]</B>[(current && (current.real_name!=name))?" (as [current.real_name])":""]<br>"
+	var/out = "<B>[name]</B>[(current && (current.real_name!=name))?" (jako [current.real_name])":""]<br>"
 	out += "Umysł należy obecnie do klucza: [key] [active?"(zsynchronizowany)":"(niezsynchronizowany)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='byond://?src=[REF(src)];role_edit=1'>Edit</a><br>"
+	out += "Przydzielona rola: [assigned_role]. <a href='byond://?src=[REF(src)];role_edit=1'>Edytuj</a><br>"
 	out += "Frakcja i rola specjalna: <b><font color='red'>[special_role]</font></b><br>"
 
 	var/special_statuses = get_special_statuses()
@@ -146,7 +146,7 @@ GLOBAL_VAR(antag_prototypes)
 
 		if(!current_antag) //Show antagging options
 			if(possible_admin_antags.len)
-				antag_header_parts += "<span class='highlight'>None</span>"
+				antag_header_parts += "<span class='highlight'>Brak</span>"
 				antag_header_parts += possible_admin_antags
 			else
 				//If there's no antags to show in this category skip the section completely
@@ -154,7 +154,7 @@ GLOBAL_VAR(antag_prototypes)
 		else //Show removal and current one
 			priority_sections |= antag_category
 			antag_header_parts += "<span class='bad'>[current_antag.name]</span>"
-			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
+			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>Usuń</a>"
 
 
 		//We aren't antag of this category, grab first prototype to check the prefs (This is pretty vague but really not sure how else to do this)
@@ -167,17 +167,17 @@ GLOBAL_VAR(antag_prototypes)
 				break
 		if(pref_source.banning_key)
 			if(is_banned_from(src.key, pref_source.banning_key))
-				antag_header_parts += "<span class='bad'><b>\[BANNED\]</b></span>"
+				antag_header_parts += "<span class='bad'><b>\[BAN\]</b></span>"
 			else if(current.client)
 				var/list/related_preferences = list()
 				for(var/datum/role_preference/role_pref_type as anything in GLOB.role_preference_entries)
 					if(initial(role_pref_type.antag_datum) == pref_source.type)
 						related_preferences += role_pref_type
 				if(length(related_preferences) == 1)
-					antag_header_parts += current.client.role_preference_enabled(related_preferences[1]) ? "Enabled in Prefs" : "Disabled in Prefs"
+					antag_header_parts += current.client.role_preference_enabled(related_preferences[1]) ? "Włączone w preferencjach" : "Wyłączone w preferencjach"
 				else if(length(related_preferences) >= 1)
 					for(var/datum/role_preference/preftype as anything in related_preferences)
-						antag_header_parts += "<b>[initial(preftype.name)]:</b> [current.client.role_preference_enabled(preftype) ? "Enabled Pref" : "Disabled Pref"]"
+						antag_header_parts += "<b>[initial(preftype.name)]:</b> [current.client.role_preference_enabled(preftype) ? "włączone" : "wyłączone"]"
 
 		//Traitor : None | Traitor | IAA
 		//	Command1 | Command2 | Command3
@@ -204,20 +204,20 @@ GLOBAL_VAR(antag_prototypes)
 		var/uplink_info = "<i><b>Uplink</b></i>:"
 		var/datum/component/uplink/U = find_syndicate_uplink()
 		if(U)
-			uplink_info += "<a href='byond://?src=[REF(src)];common=takeuplink'>take</a>"
+			uplink_info += "<a href='byond://?src=[REF(src)];common=takeuplink'>zabierz</a>"
 			if (check_rights(R_FUN, 0))
 				uplink_info += ", <a href='byond://?src=[REF(src)];common=crystals'>[U.telecrystals]</a> TC"
 			else
 				uplink_info += ", [U.telecrystals] TC"
 		else
-			uplink_info += "<a href='byond://?src=[REF(src)];common=uplink'>give</a>"
+			uplink_info += "<a href='byond://?src=[REF(src)];common=uplink'>daj</a>"
 		uplink_info += "." //hiel grammar
 
 		out += uplink_info + "<br>"
 	//Common Memory
-	var/common_memory = "<span>Common Memory:</span>"
+	var/common_memory = "<span>Wspólna pamięć:</span>"
 	common_memory += memory
-	common_memory += "<a href='byond://?src=[REF(src)];memory_edit=1'>Edit Memory</a>"
+	common_memory += "<a href='byond://?src=[REF(src)];memory_edit=1'>Edytuj pamięć</a>"
 	out += common_memory + "<br>"
 	//Other stuff
 	out += get_common_admin_commands()

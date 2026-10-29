@@ -15,8 +15,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 
 /obj/item/kitchen/fork
-	name = "fork"
-	desc = "Pointy."
+	name = "widelec"
+	desc = "Spiczasty."
 	icon_state = "fork"
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -66,8 +66,8 @@
 
 //NSV13 - added spoon
 /obj/item/kitchen/spoon
-	name = "spoon"
-	desc = "Not pointy."
+	name = "łyżka"
+	desc = "Niespiczasta."
 	icon_state = "spoon"
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -129,11 +129,11 @@
 	reagents.trans_to(M,amount_inject)
 
 /obj/item/kitchen/knife
-	name = "kitchen knife"
+	name = "nóż kuchenny"
 	icon = 'icons/obj/kitchen.dmi' //NSV13 - we don't have Bee's knife refactor (/obj/item/knife, knives.dmi), our knives keep their old sprites
 	icon_state = "knife"
 	item_state = "knife"
-	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	desc = "Uniwersalny nóż szefa kuchni produkcji SpaceCook Incorporated. Gwarantujemy, że zostanie ostry przez długie lata."
 	flags_1 = CONDUCT_1
 	force = 10
 	bleed_force = BLEED_CUT
@@ -171,8 +171,8 @@
 	return (BRUTELOSS)
 
 /obj/item/kitchen/knife/ritual
-	name = "ritual knife"
-	desc = "The unearthly energies that once powered this blade are now dormant."
+	name = "nóż rytualny"
+	desc = "Nieziemskie energie, które kiedyś zasilały to ostrze, teraz drzemią."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -180,10 +180,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/kitchen/knife/butcher
-	name = "butcher's cleaver"
+	name = "tasak rzeźnicki"
 	icon_state = "butch"
 	item_state = "butch"
-	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."
+	desc = "Ogromne narzędzie do rąbania i siekania mięsa. Także klaunów i produktów ubocznych klaunów."
 	flags_1 = CONDUCT_1
 	force = 15
 	throwforce = 10
@@ -193,14 +193,14 @@
 	custom_price = 60
 
 /obj/item/kitchen/knife/hunting
-	name = "hunting knife"
-	desc = "Despite its name, it's mainly used for cutting meat from dead prey rather than actual hunting."
+	name = "nóż myśliwski"
+	desc = "Mimo nazwy służy głównie do odcinania mięsa z martwej zdobyczy, a nie do samego polowania."
 	item_state = "huntingknife"
 	icon_state = "huntingknife"
 	force = 12
 
 /obj/item/kitchen/knife/poison
-	name = "venom knife"
+	name = "nóż jadowy"
 	icon_state = "poisonknife"
 	force = 12
 	throwforce = 15
@@ -208,7 +208,7 @@
 	throw_range = 7
 	var/amount_per_transfer_from_this = 5
 	var/list/possible_transfer_amounts
-	desc = "An infamous knife of syndicate design, it has a tiny hole going through the blade to the handle which stores toxins."
+	desc = "Osławiony nóż projektu Syndykatu. Przez ostrze aż do rękojeści biegnie maleńki otwór, w którym przechowuje się toksyny."
 	materials = null
 
 /obj/item/kitchen/knife/poison/Initialize(mapload)
@@ -230,9 +230,9 @@
 				return
 
 /obj/item/kitchen/knife/combat
-	name = "combat knife"
+	name = "nóż bojowy"
 	icon_state = "buckknife"
-	desc = "A military combat utility survival knife."
+	desc = "Wojskowy nóż bojowy i survivalowy."
 	embedding = list("pain_mult" = 4, "embed_chance" = 65, "fall_chance" = 10, "ignore_throwspeed_threshold" = TRUE, "armour_block" = 60)
 	force = 20
 	throwforce = 20
@@ -240,39 +240,39 @@
 	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/survival
-	name = "survival knife"
+	name = "nóż survivalowy"
 	icon_state = "survivalknife"
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10, "armour_block" = 40)
-	desc = "A hunting grade survival knife."
+	desc = "Survivalowy nóż klasy myśliwskiej."
 	force = 15
 	throwforce = 15
 	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/bone
-	name = "bone dagger"
+	name = "kościany sztylet"
 	item_state = "bone_dagger"
 	icon_state = "bone_dagger"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "A sharpened bone. The bare minimum in survival."
+	desc = "Zaostrzona kość. Absolutne minimum do przetrwania."
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10, "armour_block" = 40)
 	force = 15
 	throwforce = 15
 	materials = list()
 
 /obj/item/kitchen/knife/combat/cyborg
-	name = "cyborg knife"
+	name = "nóż cyborga"
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "knife_cyborg"
-	desc = "A cyborg-mounted plasteel knife. Extremely sharp and durable."
+	desc = "Plastalowy nóż montowany w cyborgu. Niezwykle ostry i wytrzymały."
 
 /obj/item/kitchen/knife/carrotshiv
-	name = "carrot shiv"
+	name = "kosa z marchewki"
 	icon_state = "carrotshiv"
 	item_state = "carrotshiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	desc = "Unlike other carrots, you should probably keep this far away from your eyes."
+	desc = "W przeciwieństwie do innych marchewek tę lepiej trzymać z dala od oczu."
 	force = 8
 	throwforce = 12//fuck git
 	materials = list()
@@ -281,8 +281,8 @@
 
 // Shank - Makeshift weapon that can embed on throw
 /obj/item/kitchen/knife/shank
-	name = "Shank"
-	desc = "A crude knife fashioned by wrapping some cable around a glass shard. It looks like it could be thrown with some force.. and stick. Good to throw at someone chasing you"
+	name = "kosa"
+	desc = "Prymitywny nóż zrobiony z odłamka szkła owiniętego kablem. Wygląda na to, że po mocnym rzucie mógłby się wbić. Dobry do rzucania w kogoś, kto cię goni"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "shank"
 	item_state = "shank"
@@ -300,8 +300,8 @@
 	return (BRUTELOSS)
 
 /obj/item/kitchen/rollingpin
-	name = "rolling pin"
-	desc = "Used to knock out the Bartender."
+	name = "wałek do ciasta"
+	desc = "Służy do nokautowania barmana."
 	icon_state = "rolling_pin"
 	force = 8
 	throwforce = 5

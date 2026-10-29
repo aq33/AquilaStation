@@ -10,7 +10,7 @@
 #define EXTRACT_REQUEST_MAX_AMOUNT 15
 
 /obj/machinery/slime_extract_requestor
-	name = "extract requestor pad"
+	name = "pad zamówień ekstraktów"
 	desc = "Pad do zamawiania ekstraktów szlamu u xenobiologów. Płacisz z konta na karcie, odbierasz tutaj."
 	icon = 'aquila/icons/obj/xenobiology/slime_market.dmi'
 	icon_state = "civilian_pad"
@@ -230,7 +230,7 @@
 		host_card.say("Zamówienie ekstraktów jest gotowe do odbioru.")
 
 /obj/item/circuitboard/machine/slime_extract_requestor
-	name = "Extract Requestor Pad (Machine Board)"
+	name = "pad zamówień ekstraktów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/slime_extract_requestor
 	req_components = list(
@@ -238,8 +238,8 @@
 		/obj/item/stack/sheet/glass = 1)
 
 /datum/design/board/slime_extract_requestor
-	name = "Machine Design (Extract Requestor Pad)"
-	desc = "The circuit board for an extract requestor pad."
+	name = "Projekt maszyny (pad zamówień ekstraktów)"
+	desc = "Płytka drukowana padu zamówień ekstraktów."
 	id = "slime_extract_requestor"
 	build_path = /obj/item/circuitboard/machine/slime_extract_requestor
 	category = list("Research Machinery")

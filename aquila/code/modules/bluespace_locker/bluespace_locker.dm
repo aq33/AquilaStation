@@ -4,7 +4,7 @@
 // Pokój jest ładowany jako szablon w zarezerwowanej przestrzeni przez SSbluespace_locker.
 
 /area/bluespace_locker
-	name = "Bluespace Locker"
+	name = "Szafka Bluespace"
 	icon_state = "away"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
@@ -21,7 +21,7 @@
 	return ..()
 
 /obj/structure/closet/bluespace
-	name = "bluespace locker"
+	name = "szafka bluespace"
 
 /// The locker on the other end of the link. Only the subsystem's internal/external pair is linked, a stray spawned bluespace locker acts like a normal one
 /obj/structure/closet/bluespace/proc/get_other_locker()
@@ -61,7 +61,7 @@
 // Internal locker - the "portal" inside the bluespace room. Mimics the look of the external locker.
 
 /obj/structure/closet/bluespace/internal
-	name = "bluespace locker portal"
+	name = "portal szafki bluespace"
 	icon_state = null
 	desc = ""
 	cutting_tool = null
@@ -207,8 +207,8 @@
 /turf/open/space/bluespace_locker_mirage
 	density = TRUE
 	blocks_air = TRUE
-	name = "holographic projection"
-	desc = "A holographic projection of the area surrounding the bluespace locker"
+	name = "projekcja holograficzna"
+	desc = "Holograficzna projekcja otoczenia szafki bluespace."
 	var/turf/internal_origin
 	var/turf/external_origin
 	var/turf/external_origin_prev
@@ -316,7 +316,7 @@
 	update_mirage()
 
 /datum/map_template/bluespace_locker
-	name = "Bluespace locker room"
+	name = "Pokój szafki bluespace"
 	mappath = 'aquila/_maps/templates/bluespace_locker.dmm'
 
 // Survival capsules must not overwrite the room

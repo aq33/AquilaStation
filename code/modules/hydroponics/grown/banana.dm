@@ -1,8 +1,8 @@
 // Banana
 /obj/item/food/grown/banana
 	seed = /obj/item/plant_seeds/preset/banana
-	name = "banana"
-	desc = "It's an excellent prop for a clown."
+	name = "banan"
+	desc = "Świetny rekwizyt dla klauna."
 	icon_state = "banana"
 	item_state = "banana"
 	trash_type = /obj/item/grown/bananapeel
@@ -26,7 +26,7 @@
 	sleep(25)
 	if(!user)
 		return (OXYLOSS)
-	user.say("BANG!", forced = /datum/reagent/consumable/banana)
+	user.say("BUM!", forced = /datum/reagent/consumable/banana)
 	sleep(25)
 	if(!user)
 		return (OXYLOSS)
@@ -35,8 +35,8 @@
 
 //Banana Peel
 /obj/item/grown/bananapeel
-	name = "banana peel"
-	desc = "A peel from a banana."
+	name = "skórka od banana"
+	desc = "Skórka od banana."
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	icon_state = "banana_peel"
@@ -59,38 +59,38 @@
 // Mimana - invisible sprites are totally a feature!
 /obj/item/food/grown/banana/mime
 	name = "mimana"
-	desc = "It's an excellent prop for a mime."
+	desc = "Świetny rekwizyt dla mima."
 	icon_state = "mimana"
 	trash_type = /obj/item/grown/bananapeel/mimanapeel
 	distill_reagent = /datum/reagent/consumable/ethanol/silencer
 	discovery_points = 300
 
 /obj/item/grown/bananapeel/mimanapeel
-	name = "mimana peel"
-	desc = "A mimana peel."
+	name = "skórka od mimany"
+	desc = "Skórka od mimany."
 	icon_state = "mimana_peel"
 	item_state = "mimana_peel"
 
 // Bluespace Banana
 /obj/item/food/grown/banana/bluespace
-	name = "bluespace banana"
+	name = "bluespace'owy banan"
 	icon_state = "banana_blue"
 	item_state = "bluespace_peel"
 	trash_type = /obj/item/grown/bananapeel/bluespace
 	tastes = list("banan" = 1)
 	wine_power = 60
-	wine_flavor = "slippery hypercubes"
+	wine_flavor = "śliskie hipersześciany"
 	discovery_points = 300
 
 /obj/item/grown/bananapeel/bluespace
-	name = "bluespace banana peel"
-	desc = "A peel from a bluespace banana."
+	name = "skórka od bluespace'owego banana"
+	desc = "Skórka od bluespace'owego banana."
 	icon_state = "banana_peel_blue"
 
 // Other
 /obj/item/grown/bananapeel/specialpeel //used by /obj/item/clothing/shoes/clown_shoes/banana_shoes
-	name = "synthesized banana peel"
-	desc = "A synthetic banana peel."
+	name = "syntetyczna skórka od banana"
+	desc = "Syntetyczna skórka od banana."
 
 /obj/item/grown/bananapeel/specialpeel/ComponentInitialize()
 	. = ..()

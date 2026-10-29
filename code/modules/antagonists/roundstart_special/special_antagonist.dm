@@ -75,7 +75,7 @@
 //The datum associated with the role
 
 /datum/antagonist/special
-	name = "Role that should not be accessible in game."
+	name = "Rola, która nie powinna być dostępna w grze."
 	banning_key = BAN_ROLE_ALL_ANTAGONISTS
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = FALSE

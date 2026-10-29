@@ -4,8 +4,8 @@ Reproductive extracts:
 	1 and 4 normal slime extracts of the same colour.
 */
 /obj/item/slimecross/reproductive
-	name = "reproductive extract"
-	desc = "It pulses with a strange hunger."
+	name = "rozrodczy ekstrakt"
+	desc = "Pulsuje dziwnym głodem."
 	icon_state = "reproductive"
 	effect = "reproductive"
 	effect_desc = "Nakarmiony kostkami małpimi wytwarza młodego szlama. Działa też z biotorbą."

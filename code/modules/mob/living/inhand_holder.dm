@@ -1,8 +1,8 @@
 //Generic system for picking up mobs.
 //Currently works for head and hands.
 /obj/item/clothing/head/mob_holder
-	name = "bugged mob"
-	desc = "Yell at coderbrush."
+	name = "zbugowany mob"
+	desc = "Nakrzycz na coderbrusha."
 	icon = null
 	icon_state = ""
 	slot_flags = NONE
@@ -66,7 +66,7 @@
 	held_mob.forceMove(get_turf(held_mob))
 	held_mob.reset_perspective()
 	held_mob.setDir(SOUTH)
-	held_mob.visible_message("<span class='warning'>[held_mob] uncurls!</span>")
+	held_mob.visible_message("<span class='warning'>[held_mob] się rozwija!</span>")
 	held_mob = null
 	if(del_on_release && !destroying)
 		qdel(src)
@@ -82,8 +82,8 @@
 	. = ..()
 	if(!isdrone(L))
 		qdel(src)
-	name = "drone (hiding)"
-	desc = "This drone is scared and has curled up into a ball!"
+	name = "dron (ukryty)"
+	desc = "Ten dron się boi i zwinął się w kulkę!"
 
 /obj/item/clothing/head/mob_holder/drone/update_visuals(mob/living/L)
 	var/mob/living/simple_animal/drone/D = L

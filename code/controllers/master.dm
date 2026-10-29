@@ -183,7 +183,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)
 	else
-		to_chat(world, "<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING.</span>")
+		to_chat(world, "<span class='boldannounce'>Master Controller ma problemy, trzeba ponownie zainicjalizować WSZYSTKO.</span>")
 		Initialize(20, TRUE)
 
 
@@ -201,7 +201,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
 
-	to_chat(world, "<span class='boldannounce'>Initializing subsystems...</span>")
+	to_chat(world, "<span class='boldannounce'>Inicjalizacja subsystemów...</span>")
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
 	sortTim(subsystems, GLOBAL_PROC_REF(cmp_subsystem_init))
@@ -261,11 +261,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		return //this was suppose to happen.
 	//loop ended, restart the mc
 	log_game("MC crashed or runtimed, restarting")
-	message_admins("MC crashed or runtimed, restarting")
+	message_admins("MC padł albo rzucił runtime'em, restart")
 	var/rtn2 = Recreate_MC()
 	if (rtn2 <= 0)
 		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		message_admins("Nie udało się odtworzyć MC (kod błędu: [rtn2]), teraz wszystko w rękach failsafe'a")
 		Failsafe.defcon = 2
 
 // Main loop.

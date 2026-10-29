@@ -1,6 +1,6 @@
 /obj/effect/decal/nuclear_waste
-	name = "plutonium sludge"
-	desc = "A writhing pool of heavily irradiated, spent reactor fuel. You probably shouldn't step through this..."
+	name = "szlam plutonowy"
+	desc = "Wijąca się kałuża silnie napromieniowanego, zużytego paliwa reaktorowego. Lepiej w to nie wchodzić..."
 	icon = 'nsv13/icons/obj/machinery/reactor_parts.dmi'
 	icon_state = "nuclearwaste"
 	alpha = 150
@@ -40,7 +40,7 @@
 	. = ..()
 
 /obj/effect/decal/nuclear_waste/epicenter //The one that actually does the irradiating. This is to avoid every bit of sludge PROCESSING
-	name = "dense nuclear sludge"
+	name = "gęsty szlam jądrowy"
 
 
 /obj/effect/decal/nuclear_waste/epicenter/Initialize(mapload)

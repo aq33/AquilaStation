@@ -1,12 +1,12 @@
 /obj/item/wallframe/clocktrap/delay
-	name = "clockwork timer"
-	desc = "A small timer attatched to the wall. When input is received it will send an output signal half a second later."
+	name = "mechaniczny zegar"
+	desc = "Mały zegar przymocowany do ściany. Po otrzymaniu sygnału wysyła sygnał wyjściowy pół sekundy później."
 	icon_state = "delayer"
 	result_path = /obj/structure/destructible/clockwork/trap/delay
 
 /obj/structure/destructible/clockwork/trap/delay
-	name = "clockwork timer"
-	desc = "A small timer attatched to the wall. When input is received it will send an output signal half a second later."
+	name = "mechaniczny zegar"
+	desc = "Mały zegar przymocowany do ściany. Po otrzymaniu sygnału wysyła sygnał wyjściowy pół sekundy później."
 	icon_state = "delayer"
 	component_datum = /datum/component/clockwork_trap/delay
 	unwrench_path = /obj/item/wallframe/clocktrap/delay

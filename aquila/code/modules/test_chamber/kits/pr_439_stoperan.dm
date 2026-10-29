@@ -4,7 +4,7 @@
 	description = "Sprawdź pozycję „Pigułka stoperanu” w automacie górników. Połknij pigułkę: przez 5 minut potrzeba wypróżnienia nie ma rosnąć (np. jedząc dużo), \
 		po czasie ma wrócić do normy z komunikatem. Druga pigułka odświeża czas. Toaleta nadal ma zmniejszać potrzebę. \
 		Użyj autochirurga z butt of holding: przycisk akcji opróżnia jelita w bluespace (cooldown 30 s, bez kupy na podłodze). \
-		W R&D węzeł „Pośladki bluespace” (po torbie przechowywania i eksperymentalnej chirurgii) odblokowuje projekt w protolathe."
+		W R&D węzeł „Pośladki bluespace” (po torbie przechowywania i eksperymentalnej chirurgii) odblokowuje projekt w protolacie."
 	items = list(
 		/obj/item/reagent_containers/pill/stoperan = 3,
 		/obj/item/pizzabox/margherita = 2,

@@ -6,8 +6,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/drill
-	name = "exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is the drill that'll pierce the heavens!"
+	name = "wiertło egzoszkieletu"
+	desc = "Wyposażenie inżynieryjnych i bojowych egzoszkieletów. To wiertło, które przebije niebiosa!"
 	icon_state = "mecha_drill"
 	equip_cooldown = 15
 	energy_drain = 10
@@ -144,8 +144,8 @@
 			target_part.dismember(BRUTE)
 
 /obj/item/mecha_parts/mecha_equipment/drill/diamonddrill
-	name = "diamond-tipped exosuit drill"
-	desc = "Equipment for engineering and combat exosuits. This is an upgraded version of the drill that'll pierce the heavens!"
+	name = "diamentowe wiertło egzoszkieletu"
+	desc = "Wyposażenie inżynieryjnych i bojowych egzoszkieletów. To ulepszona wersja wiertła, które przebije niebiosa!"
 	icon_state = "mecha_diamond_drill"
 	equip_cooldown = 10
 	drill_delay = 4
@@ -155,8 +155,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/mining_scanner
-	name = "exosuit mining scanner"
-	desc = "Equipment for working exosuits. It will automatically check surrounding rock for useful minerals."
+	name = "skaner górniczy egzoszkieletu"
+	desc = "Wyposażenie roboczych egzoszkieletów. Automatycznie sprawdza okoliczne skały pod kątem przydatnych minerałów."
 	icon_state = "mecha_analyzer"
 	selectable = 0
 	equip_cooldown = 15

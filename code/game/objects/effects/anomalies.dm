@@ -15,8 +15,8 @@
 /////////////////////
 
 /obj/effect/anomaly
-	name = "anomaly"
-	desc = "A mysterious anomaly, seen commonly only in the region of space that the station orbits..."
+	name = "anomalia"
+	desc = "Tajemnicza anomalia, spotykana zwykle tylko w tym rejonie kosmosu, po którym krąży stacja..."
 	icon_state = "bhole3"
 	density = FALSE
 	anchored = TRUE
@@ -41,7 +41,7 @@
 	impact_area = get_area(src)
 
 	aSignal = new(src)
-	aSignal.name = "[name] core"
+	aSignal.name = "rdzeń anomalii: [name]"
 	aSignal.code = rand(1,100)
 	aSignal.anomaly_type = type
 
@@ -96,12 +96,12 @@
 
 /obj/effect/anomaly/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, "<span class='notice'>Analyzing... [src]'s unstable field is fluctuating along frequency [format_frequency(aSignal.frequency)], code [aSignal.code].</span>")
+		to_chat(user, "<span class='notice'>Analiza... Niestabilne pole anomalii ([src]) oscyluje na częstotliwości [format_frequency(aSignal.frequency)], kod [aSignal.code].</span>")
 
 ///////////////////////
 
 /obj/effect/anomaly/grav
-	name = "gravitational anomaly"
+	name = "anomalia grawitacyjna"
 	icon_state = "shield2"
 	density = FALSE
 	var/boing = 0
@@ -165,7 +165,7 @@
 /////////////////////
 
 /obj/effect/anomaly/flux
-	name = "flux wave anomaly"
+	name = "anomalia strumienia"
 	icon_state = "electricity2"
 	density = TRUE
 	var/canshock = 0
@@ -225,7 +225,7 @@
 /////////////////////
 
 /obj/effect/anomaly/bluespace
-	name = "bluespace anomaly"
+	name = "anomalia bluespace"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
 	density = TRUE
@@ -296,7 +296,7 @@
 /////////////////////
 
 /obj/effect/anomaly/pyro
-	name = "pyroclastic anomaly"
+	name = "anomalia piroklastyczna"
 	icon_state = "mustard"
 	aSignal = /obj/item/assembly/signaler/anomaly/pyro
 	/// How much fire power the anomaly puts into its own turf every second
@@ -324,7 +324,7 @@
 			continue
 		T.IgniteTurf(fire_power * 10) //Make it hot and burny for the new slime
 	log_game("A pyroclastic anomaly has detonated at [AREACOORD(center)].")
-	message_admins("A pyroclastic anomaly has detonated at [ADMIN_VERBOSEJMP(center)].")
+	message_admins("Anomalia piroklastyczna wybucha w [ADMIN_VERBOSEJMP(center)].")
 	var/new_colour = pick("red", "orange")
 	var/mob/living/simple_animal/slime/S = new(center, new_colour)
 	S.rabid = TRUE
@@ -336,9 +336,9 @@
 /////////////////////
 
 /obj/effect/anomaly/bhole
-	name = "vortex anomaly"
+	name = "anomalia wirowa"
 	icon_state = "bhole3"
-	desc = "That's a nice station you have there. It'd be a shame if something happened to it."
+	desc = "Ładną masz tu stację. Szkoda by było, gdyby coś jej się stało."
 
 /obj/effect/anomaly/bhole/anomalyEffect()
 	..()
@@ -399,7 +399,7 @@
 /////////////////////
 
 /obj/effect/anomaly/hallucination
-	name = "hallucination anomaly"
+	name = "anomalia halucynacyjna"
 	icon_state = "hallucination_anomaly"
 	aSignal = /obj/item/assembly/signaler/anomaly/hallucination
 	/// Time passed since the last effect, increased by delta_time of the SSobj
@@ -448,7 +448,7 @@
 /////////////////////
 
 /obj/effect/anomaly/delimber
-	name = "delimber anomaly"
+	name = "anomalia odczłonkowująca"
 	icon_state = "delimber_anomaly"
 	aSignal = /obj/item/assembly/signaler/anomaly/delimber
 	/// Cooldown for every anomaly pulse
@@ -507,7 +507,7 @@
 		target.log_message("[owner] has caused [target]'s [picked_part] to turn into [new_part.name] and delimbed their [picked_user_part.name].", LOG_ATTACK)
 
 	if(message_admins)
-		message_admins("[ADMIN_LOOKUPFLW(owner)] has caused a delimber pulse affecting [english_list(affected)].")
+		message_admins("[ADMIN_LOOKUPFLW(owner)] wywołuje impuls odczłonkowujący, który trafia: [english_list(affected)].")
 
 #undef ANOMALY_MOVECHANCE
 #undef ANOMALY_DELIMBER_ZONES

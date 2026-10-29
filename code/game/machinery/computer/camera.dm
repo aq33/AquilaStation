@@ -1,8 +1,8 @@
 #define DEFAULT_MAP_SIZE 15
 
 /obj/machinery/computer/security
-	name = "security camera console"
-	desc = "Used to access the various cameras on the station."
+	name = "konsola kamer ochrony"
+	desc = "Daje dostęp do różnych kamer na stacji."
 	icon_screen = "cameras"
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/security
@@ -229,8 +229,8 @@
 // SECURITY MONITORS
 
 /obj/machinery/computer/security/wooden_tv
-	name = "security camera monitor"
-	desc = "An old TV hooked into the station's camera network."
+	name = "monitor kamer ochrony"
+	desc = "Stary telewizor podłączony do sieci kamer stacji."
 	icon_state = "television"
 	icon_keyboard = "no_keyboard"
 	icon_screen = "detective_tv"
@@ -239,42 +239,42 @@
 	pass_flags = PASSTABLE
 
 /obj/machinery/computer/security/mining
-	name = "outpost camera console"
-	desc = "Used to access the various cameras on the outpost."
+	name = "konsola kamer placówki"
+	desc = "Daje dostęp do różnych kamer w placówce."
 	icon_screen = "mining"
 	icon_keyboard = "mining_key"
 	network = list("mine", "auxbase")
 	circuit = /obj/item/circuitboard/computer/mining
 
 /obj/machinery/computer/security/research
-	name = "research camera console"
-	desc = "Used to access the various cameras in science."
+	name = "konsola kamer działu naukowego"
+	desc = "Daje dostęp do różnych kamer w dziale naukowym."
 	network = list("rd")
 	circuit = /obj/item/circuitboard/computer/research
 
 /obj/machinery/computer/security/hos
-	name = "\improper Head of Security's camera console"
-	desc = "A custom security console with added access to the labor camp network."
+	name = "\improper konsola kamer Komendanta"
+	desc = "Specjalna konsola ochrony z dodatkowym dostępem do sieci obozu pracy."
 	network = list("ss13", "labor", "headcam") //NSV13 added helmet cams
 	circuit = null
 
 /obj/machinery/computer/security/labor
-	name = "labor camp monitoring"
-	desc = "Used to access the various cameras on the labor camp."
+	name = "monitoring obozu pracy"
+	desc = "Daje dostęp do różnych kamer w obozie pracy."
 	network = list("labor")
 	circuit = null
 
 /obj/machinery/computer/security/qm
-	name = "\improper Quartermaster's camera console"
-	desc = "A console with access to the mining, auxillary base and vault camera networks."
+	name = "\improper konsola kamer Kwatermistrza"
+	desc = "Konsola z dostępem do sieci kamer górnictwa, bazy pomocniczej i skarbca."
 	network = list("mine", "auxbase", "vault")
 	circuit = null
 
 // TELESCREENS
 
 /obj/machinery/computer/security/telescreen
-	name = "\improper Telescreen"
-	desc = "Used for watching an empty arena."
+	name = "\improper teleekran"
+	desc = "Służy do oglądania pustej areny."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
 	layer = SIGN_LAYER
@@ -292,8 +292,8 @@
 	return
 
 /obj/machinery/computer/security/telescreen/entertainment
-	name = "entertainment monitor"
-	desc = "Damn, they better have the beestation channel on these things."
+	name = "monitor rozrywkowy"
+	desc = "Kurde, oby był na tym kanał beestation."
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list("thunder")
@@ -323,74 +323,74 @@
 		icon_state = icon_state_off
 
 /obj/machinery/computer/security/telescreen/rd
-	name = "\improper Research Director's telescreen"
-	desc = "Used for watching the AI and the RD's goons from the safety of his office."
+	name = "\improper teleekran Dyrektora Naukowego"
+	desc = "Służy do obserwowania SI i pachołków Dyrektora Naukowego z bezpiecznego gabinetu."
 	network = list("rd", "aicore", "aiupload", "minisat", "xeno", "test")
 
 /obj/machinery/computer/security/telescreen/research
-	name = "research telescreen"
-	desc = "A telescreen with access to the research division's camera network."
+	name = "teleekran działu naukowego"
+	desc = "Teleekran z dostępem do sieci kamer działu naukowego."
 	network = list("rd")
 
 /obj/machinery/computer/security/telescreen/ce
-	name = "\improper Chief Engineer's telescreen"
-	desc = "Used for watching the engine, telecommunications and the minisat."
+	name = "\improper teleekran Głównego Inżyniera"
+	desc = "Służy do obserwowania silnika, telekomunikacji i minisatelity."
 	network = list("engine", "singularity", "tcomms", "minisat")
 
 /obj/machinery/computer/security/telescreen/cmo
-	name = "\improper Chief Medical Officer's telescreen"
-	desc = "A telescreen with access to the medbay's camera network."
+	name = "\improper teleekran Ordynatora"
+	desc = "Teleekran z dostępem do sieci kamer ambulatorium."
 	network = list("medbay")
 
 /obj/machinery/computer/security/telescreen/vault
-	name = "vault monitor"
-	desc = "A telescreen that connects to the vault's camera network."
+	name = "monitor skarbca"
+	desc = "Teleekran podłączony do sieci kamer skarbca."
 	network = list("vault")
 
 /obj/machinery/computer/security/telescreen/toxins
-	name = "bomb test site monitor"
-	desc = "A telescreen that connects to the bomb test site's camera."
+	name = "monitor poligonu bombowego"
+	desc = "Teleekran podłączony do kamery poligonu bombowego."
 	network = list("toxins")
 
 /obj/machinery/computer/security/telescreen/engine
-	name = "engine monitor"
-	desc = "A telescreen that connects to the engine's camera network."
+	name = "monitor silnika"
+	desc = "Teleekran podłączony do sieci kamer silnika."
 	network = list("engine")
 
 /obj/machinery/computer/security/telescreen/turbine
-	name = "turbine monitor"
-	desc = "A telescreen that connects to the turbine's camera."
+	name = "monitor turbiny"
+	desc = "Teleekran podłączony do kamery turbiny."
 	network = list("turbine")
 
 /obj/machinery/computer/security/telescreen/interrogation
-	name = "interrogation room monitor"
-	desc = "A telescreen that connects to the interrogation room's camera."
+	name = "monitor pokoju przesłuchań"
+	desc = "Teleekran podłączony do kamery pokoju przesłuchań."
 	network = list("interrogation")
 
 /obj/machinery/computer/security/telescreen/prison
-	name = "prison monitor"
-	desc = "A telescreen that connects to the permabrig's camera network."
+	name = "monitor więzienia"
+	desc = "Teleekran podłączony do sieci kamer więzienia."
 	network = list("prison")
 
 /obj/machinery/computer/security/telescreen/auxbase
-	name = "auxillary base monitor"
-	desc = "A telescreen that connects to the auxillary base's camera."
+	name = "monitor bazy pomocniczej"
+	desc = "Teleekran podłączony do kamery bazy pomocniczej."
 	network = list("auxbase")
 
 /obj/machinery/computer/security/telescreen/minisat
-	name = "minisat monitor"
-	desc = "A telescreen that connects to the minisat's camera network."
+	name = "monitor minisatelity"
+	desc = "Teleekran podłączony do sieci kamer minisatelity."
 	network = list("minisat")
 
 /obj/machinery/computer/security/telescreen/aiupload
-	name = "\improper AI upload monitor"
-	desc = "A telescreen that connects to the AI upload's camera network."
+	name = "\improper monitor przesyłania praw SI"
+	desc = "Teleekran podłączony do sieci kamer Komory Programowania SI."
 	network = list("aiupload")
 
 //Nsv13 - ATC telescreen
 /obj/machinery/computer/security/telescreen/atc
-	name = "\improper Air Traffic Control Telescreen"
-	desc = "Used for monitoring launch stations from the ATC tower."
+	name = "\improper teleekran Kontroli Lotów"
+	desc = "Służy do monitorowania stanowisk startowych z wieży Kontroli Lotów."
 	network = list("hangar")
 
 #undef DEFAULT_MAP_SIZE

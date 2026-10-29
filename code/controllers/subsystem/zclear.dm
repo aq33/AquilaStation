@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(zclear)
 				announced_zombie_levels["[level.z_value]"] = TRUE
 				var/datum/orbital_object/linked_object = SSorbits.assoc_z_levels["[level.z_value]"]
 				if(linked_object)
-					priority_announce("Dalekosiężne czujniki Nanotrasen wskazują, że wszystkie świadome formy życia w priorytetowym punkcie nawigacyjnym [linked_object.name] przestały wykazywać funkcje życiowe. Dowództwu zaleca się zorganizowanie akcji ratunkowej w celu odzyskania ciał. Ze względu na charakter zagrożenia w tym miejscu zaleca się, by zespołowi ratunkowemu towarzyszył personel ochrony uzbrojony w broń śmiercionośną.", "Nanotrasen Long Range Sensors")
+					priority_announce("Dalekosiężne czujniki Nanotrasen wskazują, że wszystkie świadome formy życia w priorytetowym punkcie nawigacyjnym [linked_object.name] przestały wykazywać funkcje życiowe. Dowództwu zaleca się zorganizowanie akcji ratunkowej w celu odzyskania ciał. Ze względu na charakter zagrożenia w tym miejscu zaleca się, by zespołowi ratunkowemu towarzyszył personel ochrony uzbrojony w broń śmiercionośną.", "Dalekosiężne czujniki Nanotrasen")
 			continue
 		//Level is free, do the wiping thing.
 		LAZYREMOVE(autowipe, level)
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(zclear)
 			return picked_level
 	var/datum/space_level/picked_level = SSmapping.add_new_zlevel("Dynamic free level [LAZYLEN(free_levels)]", ZTRAITS_SPACE, orbital_body_type = null)
 	addtimer(CALLBACK(src, PROC_REF(begin_tracking), picked_level), 60 SECONDS)
-	message_admins("SSORBITS: Created a new dynamic free level ([LAZYLEN(free_levels)] now created) as none were available at the time.")
+	message_admins("SSORBITS: utworzono nowy dynamiczny wolny poziom (utworzonych: [LAZYLEN(free_levels)]), bo żaden nie był dostępny.")
 	return picked_level
 
 /datum/controller/subsystem/zclear/proc/begin_tracking(datum/space_level/sl)

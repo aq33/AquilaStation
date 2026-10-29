@@ -25,14 +25,14 @@ export const ComputerFabricator = (props) => {
     <Window width={500} height={400}>
       <Window.Content>
         <Section italic fontSize="20px">
-          Your perfect device, only three steps away...
+          Twoje idealne urządzenie jest tylko trzy kroki stąd...
         </Section>
         {data.state !== 0 && (
           <Button
             fluid
             mb={1}
             icon="circle"
-            content="Clear Order"
+            content="Wyczyść zamówienie"
             onClick={() => act('clean_order')}
           />
         )}
@@ -50,9 +50,9 @@ export const ComputerFabricator = (props) => {
 const CfStep1 = (props) => {
   const { act, data } = useBackend<Data>();
   return (
-    <Section title="Step 1" minHeight="306px">
+    <Section title="Krok 1" minHeight="306px">
       <Box mt={5} bold textAlign="center" fontSize="40px">
-        Choose your Device
+        Wybierz urządzenie
       </Box>
       <Box mt={3}>
         <Grid width="100%">
@@ -96,11 +96,11 @@ const CfStep2 = (props) => {
   const { act, data } = useBackend<Data>();
   return (
     <Section
-      title="Step 2: Customize your device"
+      title="Krok 2: dostosuj urządzenie"
       minHeight="282px"
       buttons={
         <Box bold color="good">
-          {data.totalprice} cr
+          {data.totalprice} kr.
         </Box>
       }
     >
@@ -109,12 +109,12 @@ const CfStep2 = (props) => {
           <Table.Cell bold position="relative">
             <Tooltip
               content={multiline`
-                Allows your device to operate without external utility power
-                source. Advanced batteries increase battery life.
+                Pozwala urządzeniu działać bez zewnętrznego źródła zasilania.
+                Lepsze baterie dłużej wytrzymują.
               `}
               position="right"
             >
-              Battery:
+              Bateria:
             </Tooltip>
           </Table.Cell>
           <Table.Cell>
@@ -130,7 +130,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Upgraded"
+              content="Ulepszona wersja"
               selected={data.hw_battery === 2}
               onClick={() =>
                 act('hw_battery', {
@@ -141,7 +141,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
+              content="Wersja zaawansowana"
               selected={data.hw_battery === 3}
               onClick={() =>
                 act('hw_battery', {
@@ -155,12 +155,12 @@ const CfStep2 = (props) => {
           <Table.Cell bold position="relative">
             <Tooltip
               content={multiline`
-                Stores file on your device. Advanced drives can store more
-                files, but use more power, shortening battery life.
+                Przechowuje pliki na urządzeniu. Lepsze dyski mieszczą więcej
+                plików, ale zużywają więcej energii i skracają czas pracy baterii.
               `}
               position="right"
             >
-              Hard Drive:
+              Dysk twardy:
             </Tooltip>
           </Table.Cell>
           <Table.Cell>
@@ -176,7 +176,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Upgraded"
+              content="Ulepszona wersja"
               selected={data.hw_disk === 2}
               onClick={() =>
                 act('hw_disk', {
@@ -187,7 +187,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
+              content="Wersja zaawansowana"
               selected={data.hw_disk === 3}
               onClick={() =>
                 act('hw_disk', {
@@ -201,19 +201,18 @@ const CfStep2 = (props) => {
           <Table.Cell bold position="relative">
             <Tooltip
               content={multiline`
-                Allows your device to wirelessly connect to stationwide NTNet
-                network. Basic cards are limited to on-station use, while
-                advanced cards can operate anywhere near the station, which
-                includes asteroid outposts
+                Pozwala urządzeniu łączyć się bezprzewodowo z siecią NTNet na
+                stacji. Podstawowe karty działają tylko na stacji, a zaawansowane
+                wszędzie w pobliżu stacji, także na placówkach na asteroidach.
               `}
               position="right"
             >
-              Network Card:
+              Karta sieciowa:
             </Tooltip>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
+              content="Brak"
               selected={data.hw_netcard === 0}
               onClick={() =>
                 act('hw_netcard', {
@@ -235,7 +234,7 @@ const CfStep2 = (props) => {
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="Advanced"
+              content="Wersja zaawansowana"
               selected={data.hw_netcard === 2}
               onClick={() =>
                 act('hw_netcard', {
@@ -249,19 +248,18 @@ const CfStep2 = (props) => {
           <Table.Cell bold position="relative">
             <Tooltip
               content={multiline`
-                A device that allows for various paperwork manipulations,
-                such as, scanning of documents or printing new ones.
-                This device was certified EcoFriendlyPlus and is capable of
-                recycling existing paper for printing purposes.
+                Urządzenie do pracy z dokumentami, na przykład skanowania
+                albo drukowania nowych. Ma certyfikat EcoFriendlyPlus i potrafi
+                przetwarzać zużyty papier do ponownego druku.
               `}
               position="right"
             >
-              Nano Printer:
+              Nanodrukarka:
             </Tooltip>
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
+              content="Brak"
               selected={data.hw_nanoprint === 0}
               onClick={() =>
                 act('hw_nanoprint', {
@@ -284,21 +282,21 @@ const CfStep2 = (props) => {
         </Table.Row>
         <Table.Row>
           <Table.Cell bold position="relative">
-            Secondary Card Reader:
+            Dodatkowy czytnik kart:
             <Tooltip
               content={multiline`
-                Adds a secondary RFID card reader, for manipulating or
-                reading from a second standard RFID card.
-                Please note that a primary card reader is necessary to
-                allow the device to read your identification, but one
-                is included in the base price.
+                Dodaje drugi czytnik RFID do odczytu i zmiany drugiej
+                standardowej karty RFID.
+                Pamiętaj, że główny czytnik jest potrzebny, żeby urządzenie
+                odczytało twój identyfikator, ale jest on wliczony w cenę
+                podstawową.
               `}
               position="right"
             />
           </Table.Cell>
           <Table.Cell>
             <Button
-              content="None"
+              content="Brak"
               selected={data.hw_card === 0}
               onClick={() =>
                 act('hw_card', {
@@ -325,14 +323,14 @@ const CfStep2 = (props) => {
               <Table.Cell bold position="relative">
                 <Tooltip
                   content={multiline`
-                    A component critical for your device's functionality.
-                    It allows you to run programs from your hard drive.
-                    Advanced CPUs use more power, but allow you to run
-                    more programs on background at once.
+                    Kluczowy podzespół urządzenia. Pozwala uruchamiać
+                    programy z dysku twardego. Lepsze procesory zużywają
+                    więcej energii, ale pozwalają uruchomić więcej programów
+                    naraz w tle.
                   `}
                   position="right"
                 >
-                  Processor Unit:
+                  Procesor:
                 </Tooltip>
               </Table.Cell>
               <Table.Cell>
@@ -348,7 +346,7 @@ const CfStep2 = (props) => {
               </Table.Cell>
               <Table.Cell>
                 <Button
-                  content="Advanced"
+                  content="Wersja zaawansowana"
                   selected={data.hw_cpu === 2}
                   onClick={() =>
                     act('hw_cpu', {
@@ -362,19 +360,19 @@ const CfStep2 = (props) => {
               <Table.Cell bold position="relative">
                 <Tooltip
                   content={multiline`
-                    An advanced wireless power relay that allows your device
-                    to connect to nearby area power controller to provide
-                    alternative power source. This component is currently
-                    unavailable on tablet computers due to size restrictions.
+                    Zaawansowany bezprzewodowy przekaźnik energii, który łączy
+                    urządzenie z pobliskim APC jako alternatywnym źródłem
+                    zasilania. Ze względu na rozmiar ten podzespół jest
+                    niedostępny w tabletach.
                   `}
                   position="right"
                 >
-                  Tesla Relay:
+                  Przekaźnik Tesli:
                 </Tooltip>
               </Table.Cell>
               <Table.Cell>
                 <Button
-                  content="None"
+                  content="Brak"
                   selected={data.hw_tesla === 0}
                   onClick={() =>
                     act('hw_tesla', {
@@ -401,7 +399,7 @@ const CfStep2 = (props) => {
       <Button
         fluid
         mt={3}
-        content="Confirm Order"
+        content="Potwierdź zamówienie"
         color="good"
         textAlign="center"
         fontSize="18px"
@@ -415,18 +413,18 @@ const CfStep2 = (props) => {
 const CfStep3 = (props) => {
   const { act, data } = useBackend<Data>();
   return (
-    <Section title="Step 3: Payment" minHeight="282px">
+    <Section title="Krok 3: płatność" minHeight="282px">
       <Box italic textAlign="center" fontSize="20px">
-        Your device is ready for fabrication...
+        Urządzenie jest gotowe do wytworzenia...
       </Box>
       <Box bold mt={2} textAlign="center" fontSize="16px">
-        <Box inline>Please insert the required</Box>{' '}
+        <Box inline>Włóż wymaganą kwotę:</Box>{' '}
         <Box inline color="good">
-          {data.totalprice} cr
+          {data.totalprice} kr.
         </Box>
       </Box>
       <Box bold mt={1} textAlign="center" fontSize="18px">
-        Current:
+        Obecnie:
       </Box>
       <Box
         bold
@@ -435,11 +433,11 @@ const CfStep3 = (props) => {
         fontSize="18px"
         color={data.credits >= data.totalprice ? 'good' : 'bad'}
       >
-        {data.credits} cr
+        {data.credits} kr.
       </Box>
       <Button
         fluid
-        content="Purchase"
+        content="Kup"
         disabled={data.credits < data.totalprice}
         mt={8}
         color="good"
@@ -456,11 +454,11 @@ const CfStep4 = (props) => {
   return (
     <Section minHeight="282px">
       <Box bold textAlign="center" fontSize="28px" mt={10}>
-        Thank you for your purchase!
+        Dziękujemy za zakup!
       </Box>
       <Box italic mt={1} textAlign="center">
-        If you experience any difficulties with your new device, please contact
-        your local network administrator.
+        Jeśli masz problemy z nowym urządzeniem, skontaktuj się z lokalnym
+        administratorem sieci.
       </Box>
     </Section>
   );

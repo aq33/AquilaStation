@@ -1,6 +1,6 @@
 /obj/item/storage/pill_bottle/dice
-	name = "bag of dice"
-	desc = "Contains all the luck you'll ever need."
+	name = "worek kości"
+	desc = "Mieści całe szczęście, jakiego kiedykolwiek będziesz potrzebować."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "dicebag"
 	pill_variance = 0
@@ -36,8 +36,8 @@
 	return (OXYLOSS)
 
 /obj/item/storage/pill_bottle/dice_cup
-	name = "dice cup"
-	desc = "For rolling several dice at once. A favorite of street urchins."
+	name = "kubek do kości"
+	desc = "Do rzucania kilkoma kośćmi naraz. Ulubieniec ulicznych urwisów."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "dicecup"
 	pill_variance = 0
@@ -49,8 +49,8 @@
 		die.throw_at(throw_target,1,1,user)
 
 /obj/item/dice //depreciated d6, use /obj/item/dice/d6 if you actually want a d6
-	name = "die"
-	desc = "A die with six sides. Basic and serviceable."
+	name = "kość"
+	desc = "Kość o sześciu ściankach. Prosta i niezawodna."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "d6"
 	w_class = WEIGHT_CLASS_TINY
@@ -78,19 +78,19 @@
 
 /obj/item/dice/d1
 	name = "d1"
-	desc = "A die with only one side. Deterministic!"
+	desc = "Kość o tylko jednej ściance. Deterministyczna!"
 	icon_state = "d1"
 	sides = 1
 
 /obj/item/dice/d2
 	name = "d2"
-	desc = "A die with two sides. Coins are undignified!"
+	desc = "Kość o dwóch ściankach. Monety są poniżej godności!"
 	icon_state = "d2"
 	sides = 2
 
 /obj/item/dice/d4
 	name = "d4"
-	desc = "A die with four sides. The nerd's caltrop."
+	desc = "Kość o czterech ściankach. Kolczatka nerda."
 	icon_state = "d4"
 	sides = 4
 
@@ -103,43 +103,43 @@
 	name = "d6"
 
 /obj/item/dice/d6/space
-	name = "space cube"
-	desc = "A die with six sides. 6 TIMES 255 TIMES 255 TILE TOTAL EXISTENCE, SQUARE YOUR MIND OF EDUCATED STUPID: 2 DOES NOT EXIST."
+	name = "kosmiczna kostka"
+	desc = "Kość o sześciu ściankach. 6 RAZY 255 RAZY 255 PÓL CAŁEGO ISTNIENIA, UKWADRATOWIJ SWÓJ UMYSŁ WYKSZTAŁCONEJ GŁUPOTY: 2 NIE ISTNIEJE."
 	icon_state = "spaced6"
 
 /obj/item/dice/d6/space/Initialize(mapload)
 	. = ..()
 	if(prob(10))
-		name = "spess cube"
+		name = "kosmiczna kosteczka"
 
 /obj/item/dice/fudge
-	name = "fudge die"
-	desc = "A die with six sides but only three results. Is this a plus or a minus? Your mind is drawing a blank..."
+	name = "kość fudge"
+	desc = "Kość o sześciu ściankach, ale tylko trzech wynikach. Plus czy minus? W głowie masz pustkę..."
 	sides = 3 //shhh
 	icon_state = "fudge"
 	special_faces = list("minus","blank","plus")
 
 /obj/item/dice/d8
 	name = "d8"
-	desc = "A die with eight sides. It feels... lucky."
+	desc = "Kość o ośmiu ściankach. Wydaje się... szczęśliwa."
 	icon_state = "d8"
 	sides = 8
 
 /obj/item/dice/d10
 	name = "d10"
-	desc = "A die with ten sides. Useful for percentages."
+	desc = "Kość o dziesięciu ściankach. Przydatna do procentów."
 	icon_state = "d10"
 	sides = 10
 
 /obj/item/dice/d00
 	name = "d00"
-	desc = "A die with ten sides. Works better for d100 rolls than a golf ball."
+	desc = "Kość o dziesięciu ściankach. Do rzutów d100 nadaje się lepiej niż piłka golfowa."
 	icon_state = "d00"
 	sides = 10
 
 /obj/item/dice/d12
 	name = "d12"
-	desc = "A die with twelve sides. There's an air of neglect about it."
+	desc = "Kość o dwunastu ściankach. Unosi się wokół niej aura zapomnienia."
 	icon_state = "d12"
 	sides = 12
 
@@ -151,7 +151,7 @@
 
 /obj/item/dice/d100
 	name = "d100"
-	desc = "A die with one hundred sides! Probably not fairly weighted..."
+	desc = "Kość o stu ściankach! Pewnie nie jest uczciwie wyważona..."
 	icon_state = "d100"
 	w_class = WEIGHT_CLASS_SMALL
 	sides = 100
@@ -160,21 +160,21 @@
 	return
 
 /obj/item/dice/eightbd20
-	name = "strange d20"
-	desc = "A weird die with raised text printed on the faces. Everything's white on white so reading it is a struggle. What poor design!"
+	name = "dziwna d20"
+	desc = "Dziwna kość z wypukłym napisem na ściankach. Wszystko jest białe na białym, więc odczytanie tego to męka. Co za kiepski projekt!"
 	icon_state = "8bd20"
 	sides = 20
-	special_faces = list("To pewne","Zdecydowanie tak","Without a doubt","Tak, zdecydowanie","Możesz na tym polegać","Jak ja to widzę, tak","Najprawdopodobniej","Perspektywy są dobre","Yes","Znaki wskazują, że tak","Odpowiedź niejasna, spróbuj ponownie","Zapytaj później","Lepiej, żebym teraz nie mówiła","Nie mogę teraz przewidzieć","Skup się i zapytaj ponownie","Nie licz na to","Moja odpowiedź brzmi: nie","Moje źródła mówią, że nie","Perspektywy nie są zbyt dobre","Bardzo wątpliwe")
+	special_faces = list("To pewne","Zdecydowanie tak","Bez wątpienia","Tak, zdecydowanie","Możesz na tym polegać","Jak ja to widzę, tak","Najprawdopodobniej","Perspektywy są dobre","Tak","Znaki wskazują, że tak","Odpowiedź niejasna, spróbuj ponownie","Zapytaj później","Lepiej, żebym teraz nie mówiła","Nie mogę teraz przewidzieć","Skup się i zapytaj ponownie","Nie licz na to","Moja odpowiedź brzmi: nie","Moje źródła mówią, że nie","Perspektywy nie są zbyt dobre","Bardzo wątpliwe")
 
 /obj/item/dice/eightbd20/update_icon()
 	return
 
 /obj/item/dice/fourdd6
-	name = "4d d6"
-	desc = "A die that exists in four dimensional space. Properly interpreting them can only be done with the help of a mathematician, a physicist, and a priest."
+	name = "d6 4D"
+	desc = "Kość istniejąca w przestrzeni czterowymiarowej. Prawidłowo odczytać ją można tylko z pomocą matematyka, fizyka i kapłana."
 	icon_state = "4dd6"
 	sides = 48
-	special_faces = list("Cube-Side: 1-1","Cube-Side: 1-2","Cube-Side: 1-3","Cube-Side: 1-4","Cube-Side: 1-5","Cube-Side: 1-6","Cube-Side: 2-1","Cube-Side: 2-2","Cube-Side: 2-3","Cube-Side: 2-4","Cube-Side: 2-5","Cube-Side: 2-6","Cube-Side: 3-1","Cube-Side: 3-2","Cube-Side: 3-3","Cube-Side: 3-4","Cube-Side: 3-5","Cube-Side: 3-6","Cube-Side: 4-1","Cube-Side: 4-2","Cube-Side: 4-3","Cube-Side: 4-4","Cube-Side: 4-5","Cube-Side: 4-6","Cube-Side: 5-1","Cube-Side: 5-2","Cube-Side: 5-3","Cube-Side: 5-4","Cube-Side: 5-5","Cube-Side: 5-6","Cube-Side: 6-1","Cube-Side: 6-2","Cube-Side: 6-3","Cube-Side: 6-4","Cube-Side: 6-5","Cube-Side: 6-6","Cube-Side: 7-1","Cube-Side: 7-2","Cube-Side: 7-3","Cube-Side: 7-4","Cube-Side: 7-5","Cube-Side: 7-6","Cube-Side: 8-1","Cube-Side: 8-2","Cube-Side: 8-3","Cube-Side: 8-4","Cube-Side: 8-5","Cube-Side: 8-6")
+	special_faces = list("Ściana kostki: 1-1","Ściana kostki: 1-2","Ściana kostki: 1-3","Ściana kostki: 1-4","Ściana kostki: 1-5","Ściana kostki: 1-6","Ściana kostki: 2-1","Ściana kostki: 2-2","Ściana kostki: 2-3","Ściana kostki: 2-4","Ściana kostki: 2-5","Ściana kostki: 2-6","Ściana kostki: 3-1","Ściana kostki: 3-2","Ściana kostki: 3-3","Ściana kostki: 3-4","Ściana kostki: 3-5","Ściana kostki: 3-6","Ściana kostki: 4-1","Ściana kostki: 4-2","Ściana kostki: 4-3","Ściana kostki: 4-4","Ściana kostki: 4-5","Ściana kostki: 4-6","Ściana kostki: 5-1","Ściana kostki: 5-2","Ściana kostki: 5-3","Ściana kostki: 5-4","Ściana kostki: 5-5","Ściana kostki: 5-6","Ściana kostki: 6-1","Ściana kostki: 6-2","Ściana kostki: 6-3","Ściana kostki: 6-4","Ściana kostki: 6-5","Ściana kostki: 6-6","Ściana kostki: 7-1","Ściana kostki: 7-2","Ściana kostki: 7-3","Ściana kostki: 7-4","Ściana kostki: 7-5","Ściana kostki: 7-6","Ściana kostki: 8-1","Ściana kostki: 8-2","Ściana kostki: 8-3","Ściana kostki: 8-4","Ściana kostki: 8-5","Ściana kostki: 8-6")
 
 /obj/item/dice/fourdd6/update_icon()
 	return

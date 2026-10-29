@@ -106,19 +106,19 @@
 /// This sends a poll to ghosts if they want to be a ghost spawn from a ruleset.
 /datum/dynamic_ruleset/midround/from_ghosts/proc/send_applications(list/possible_volunteers = list())
 	if (!length(possible_volunteers)) // This shouldn't happen, as ready() should return FALSE if there is not a single valid candidate
-		message_admins("Possible volunteers was 0. This shouldn't appear, because of ready(), unless you forced it!")
+		message_admins("Liczba możliwych ochotników wynosi 0. To nie powinno się pojawić przez ready(), chyba że coś wymuszono!")
 		return
-	message_admins("Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
+	message_admins("Pytanie graczy ([possible_volunteers.len]) o zgłoszenia do zestawu zasad [name].")
 	log_game("DYNAMIC: Polling [possible_volunteers.len] players to apply for the [name] ruleset.")
 
 	candidates = pollGhostCandidates("Tryb szuka ochotników na rolę [initial(antag_datum.name)] ([name])", initial(antag_datum.banning_key), role_preference, poll_time = 300)
 
 	if(!length(candidates))
-		message_admins("The ruleset [name] received no applications.")
+		message_admins("Zestaw zasad [name] nie dostał żadnych zgłoszeń.")
 		log_game("DYNAMIC: The ruleset [name] received no applications.")
 		return
 
-	message_admins("[candidates.len] players volunteered for the ruleset [name].")
+	message_admins("Ochotnicy do zestawu zasad [name]: [candidates.len].")
 	log_game("DYNAMIC: [candidates.len] players volunteered for [name].")
 	review_applications()
 
@@ -126,7 +126,7 @@
 /// Called by send_applications().
 /datum/dynamic_ruleset/midround/from_ghosts/proc/review_applications()
 	if(length(candidates) < required_applicants)
-		message_admins("Not enough players volunteered for the ruleset [name] - [candidates.len] out of [required_applicants].")
+		message_admins("Za mało ochotników do zestawu zasad [name] – [candidates.len] z [required_applicants].")
 		log_game("DYNAMIC: Not enough players volunteered for the ruleset [name] - [candidates.len] out of [required_applicants].")
 		return
 	for (var/i = 1, i <= required_candidates, i++)
@@ -155,7 +155,7 @@
 		notify_ghosts("[applicant.name] zostaje wybrany do zestawu zasad [name]!", source = new_character, action = NOTIFY_ORBIT, header="Coś ciekawego!")
 	// No one got the role
 	if(!length(assigned))
-		message_admins("No players were eligible for the ruleset [name] - the previous applicants were revived/left and could no longer take the role.")
+		message_admins("Żaden gracz nie kwalifikuje się do zestawu zasad [name] – poprzedni zgłoszeni zostali wskrzeszeni albo wyszli i nie mogą już przyjąć roli.")
 		log_game("DYNAMIC: No players were eligible for the ruleset [name] - the previous applicants were revived/left and could no longer take the role.")
 
 /datum/dynamic_ruleset/midround/from_ghosts/proc/generate_ruleset_body(mob/applicant)
@@ -305,7 +305,7 @@
 		return FALSE
 	if(!length(GLOB.wizardstart))
 		log_admin("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
-		message_admins("Cannot accept Wizard ruleset. Couldn't find any wizard spawn points.")
+		message_admins("Nie można przyjąć zestawu zasad Czarodzieja. Nie znaleziono punktów pojawienia się czarodzieja.")
 		return FALSE
 	return ..()
 
@@ -425,7 +425,7 @@
 	var/obj/vent = pick_n_take(vents)
 	var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
 	new_xeno.key = applicant.key
-	message_admins("[ADMIN_LOOKUPFLW(new_xeno)] has been made into an alien by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(new_xeno)] zostaje obcym przez zestaw zasad w trakcie rundy.")
 	log_game("DYNAMIC: [key_name(new_xeno)] was spawned as an alien by the midround ruleset.")
 	return new_xeno
 
@@ -470,7 +470,7 @@
 	player_mind.add_antag_datum(/datum/antagonist/space_dragon)
 
 	playsound(S, 'sound/magic/ethereal_exit.ogg', 50, TRUE, -1)
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into a Space Dragon by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(S)] zostaje Kosmicznym smokiem przez zestaw zasad w trakcie rundy.")
 	log_game("DYNAMIC: [key_name(S)] was spawned as a Space Dragon by the midround ruleset.")
 	priority_announce("Wygląda na to, że do [station_name()] zbliża się forma życia o magicznych śladach, prosimy czekać na dalsze informacje.", "Alarm - formy życia")
 	return S
@@ -562,7 +562,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/revenant/generate_ruleset_body(mob/applicant)
 	var/mob/living/simple_animal/revenant/revenant = new(pick(spawn_locs))
 	revenant.key = applicant.key
-	message_admins("[ADMIN_LOOKUPFLW(revenant)] has been made into a revenant by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(revenant)] zostaje Upiorem przez zestaw zasad w trakcie rundy.")
 	log_game("[key_name(revenant)] was spawned as a revenant by the midround ruleset.")
 	return revenant
 
@@ -633,6 +633,6 @@
 /datum/dynamic_ruleset/midround/obsessed/execute()
 	var/mob/living/carbon/human/obsessed = pick_n_take(candidates)
 	obsessed.gain_trauma(/datum/brain_trauma/special/obsessed)
-	message_admins("[ADMIN_LOOKUPFLW(obsessed)] has been made Obsessed by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(obsessed)] zostaje Opętanym obsesją przez zestaw zasad w trakcie rundy.")
 	log_game("[key_name(obsessed)] was made Obsessed by the midround ruleset.")
 	return ..()

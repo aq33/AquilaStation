@@ -3,33 +3,33 @@
 //Exports (selling stuff)
 /datum/export/gear/space/syndiehelmet/odst
 	cost = 300
-	unit_name = "\improper Syndicate drop trooper space suit helmet"
+	unit_name = "hełm desantowca"
 	export_types = list(/obj/item/clothing/head/helmet/space/syndicate/odst)
 
 /datum/export/gear/space/syndiesuit/odst
 	cost = 700
-	unit_name = "\improper Syndicate drop trooper space suit"
+	unit_name = "skafander desantowca"
 	export_types = list(/obj/item/clothing/suit/space/syndicate/odst)
 
 /datum/export/gear/syndie_duffel
 	cost = 200
-	unit_name = "\improper Syndicate duffelbag"
+	unit_name = "torba podróżna Syndykatu"
 	export_types = list(/obj/item/storage/backpack/duffelbag/syndie)
 
 /datum/export/weapon/pistol
 	cost = 250
-	unit_name = "Stechkin pistol"
+	unit_name = "pistolet Stieczkin"
 	export_types = list(/obj/item/gun/ballistic/automatic/pistol)
 	include_subtypes = FALSE
 
 /datum/export/weapon/c20r
 	cost = 500
-	unit_name = "\improper C-20R SMG"
+	unit_name = "pistolet maszynowy C-20r"
 	export_types = list(/obj/item/gun/ballistic/automatic/c20r)
 
 /datum/export/gear/syndie_headset
 	cost = 500
-	unit_name = "\improper Syndicate Headset"
+	unit_name = "klucz szyfrujący Syndykatu"
 	export_types = list(/obj/item/encryptionkey/syndicate) //we're actually only interested in the encryption key
 
 //Bounties

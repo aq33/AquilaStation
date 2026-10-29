@@ -6,8 +6,8 @@
 /// The limbgrower. Makes organs and limbs with synthflesh and chems.
 /// See [limbgrower_Designs.dm] for everything we can make.
 /obj/machinery/limbgrower
-	name = "organ grower"
-	desc = "It grows new body parts and organs using Synthflesh and other reagents."
+	name = "hodowca organów"
+	desc = "Hoduje nowe części ciała i organy z syntetycznego ciała i innych odczynników."
 	icon = 'nsv13/icons/obj/machinery/limbgrowernew.dmi'
 	icon_state = "limbgrower_idleoff"
 	density = TRUE
@@ -236,8 +236,8 @@
 
 	// Set this limb up using the specias name and body zone
 	limb.icon_state = "[selected_category]_[limb.body_zone]"
-	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
-	limb.desc = "A synthetic [selected_category] limb that will morph on its first use in surgery. This one is for the [parse_zone(limb.body_zone)]."
+	limb.name = "\improper syntetyczna kończyna ([selected_category], [strefa_pl(limb.body_zone)])"
+	limb.desc = "Syntetyczna kończyna ([selected_category]), która dopasuje się przy pierwszym użyciu w operacji. Ta jest przeznaczona na: [strefa_pl(limb.body_zone)]."
 	limb.limb_id = selected_category
 	limb.update_icon_dropped()
 

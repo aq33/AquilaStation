@@ -11,7 +11,7 @@ export const StatTicket = (props) => {
   if (!statPanelData) {
     return (
       <Box color="red">
-        Passed stat panel data was null, contact coderperson.
+        Dane panelu statystyk są puste, skontaktuj się z koderem.
       </Box>
     );
   }
@@ -42,14 +42,14 @@ export const StatTicketChat = (props) => {
                 <Box>
                   <Box inline bold>
                     {message.from && message.to
-                      ? 'PM from ' +
+                      ? 'PW od ' +
                         decodeHtmlEntities(message.from) +
-                        ' to ' +
+                        ' do ' +
                         decodeHtmlEntities(message.to)
                       : decodeHtmlEntities(message.from)
-                        ? 'Reply PM from ' + decodeHtmlEntities(message.from)
+                        ? 'Odpowiedź PW od ' + decodeHtmlEntities(message.from)
                         : decodeHtmlEntities(message.to)
-                          ? 'PM to ' + decodeHtmlEntities(message.to)
+                          ? 'PW do ' + decodeHtmlEntities(message.to)
                           : ''}
                   </Box>
                   <Box inline>: {decodeHtmlEntities(message.message)}</Box>

@@ -199,14 +199,14 @@ GLOBAL_LIST_INIT(scarySounds, list('sound/weapons/thudswoosh.ogg','sound/weapons
 //If you don't want to fuck up disposals, add to this list, and don't change the order.
 //If you insist on changing the order, you'll have to change every sort junction to reflect the new order. --Pete
 
-GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Disposals",
-	"Cargo Bay", "QM Office", "Engineering", "CE Office",
-	"Atmospherics", "Security", "HoS Office", "Medbay",
-	"CMO Office", "Chemistry", "Research", "RD Office",
-	"Robotics", "XO Office", "Library", "Chapel", "Theatre", //NSV13 - HoP renamed to XO
-	"Bar", "Kitchen", "Hydroponics", "Janitor Closet","Genetics",
-	"Testing Range", "Toxins", "Dormitories", "Virology",
-	"Xenobiology", "Law Office","Detective's Office","Hangar Bay","MAA Office","Weapons Bay")) //NSV13 - Added munitions department
+GLOBAL_LIST_INIT(TAGGERLOCATIONS, list("Utylizacja",
+	"Ładownia", "Biuro Kwatermistrza", "Inżynieria", "Biuro Głównego Inżyniera",
+	"Atmosferyka", "Ochrona", "Gabinet Komendanta", "Ambulatorium",
+	"Biuro Ordynatora", "Pracownia Chemiczna", "Dział Naukowy", "Biuro Dyrektora Naukowego",
+	"Robotyka", "Biuro Starszego Oficera", "Biblioteka", "Kaplica", "Teatr", //NSV13 - HoP renamed to XO
+	"Bar", "Kuchnia", "Hydroponika", "Schowek Woźnego","Laboratorium Genetyczne",
+	"Strzelnica", "Laboratorium Mieszania Toksyn", "Kwatery Załogi", "Wirusologia",
+	"Laboratorium Ksenobiologii", "Biuro Prawne","Biuro Detektywa","Hangar","Biuro Mistrza Broni","Obsługa Uzbrojenia")) //NSV13 - Added munitions department
 
 GLOBAL_LIST_INIT(station_prefixes, world.file2list("strings/station_prefixes.txt") + "")
 
@@ -229,6 +229,6 @@ GLOBAL_LIST_INIT(numbers_as_words, world.file2list("strings/numbers_as_words.txt
 
 GLOBAL_LIST_INIT(station_numerals, greek_letters + phonetic_alphabet + numbers_as_words + generate_number_strings())
 
-GLOBAL_LIST_INIT(admiral_messages, list("Wiesz, ile kosztują te stacje?","Stop wasting my time.","Spałem, wielkie dzięki.","Stańcie i walczcie, tchórze!","Znałeś ryzyko, wchodząc w to.","Stop being paranoid.","Cokolwiek jest zepsute, po prostu zbuduj nowe.","No.", "<i>null</i>","<i>Błąd: nie podano komentarza.</i>", "Dobry dzień na śmierć!"))
+GLOBAL_LIST_INIT(admiral_messages, list("Wiesz, ile kosztują te stacje?","Przestańcie marnować mój czas.","Spałem, wielkie dzięki.","Stańcie i walczcie, tchórze!","Znałeś ryzyko, wchodząc w to.","Przestańcie panikować.","Cokolwiek jest zepsute, po prostu zbuduj nowe.","Nie.", "<i>null</i>","<i>Błąd: nie podano komentarza.</i>", "Dobry dzień na śmierć!"))
 
 GLOBAL_LIST_INIT(junkmail_messages, world.file2list("strings/junkmail.txt"))

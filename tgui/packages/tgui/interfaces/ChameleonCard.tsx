@@ -30,6 +30,37 @@ type Data = {
 
 const KEEP_STYLE = 'Bez zmian';
 
+// Style karty są kluczami w DM (get_valid_styles, mapowanie HUD),
+// więc do DM idzie oryginał, a tłumaczymy tylko wyświetlaną nazwę.
+// Stanowiska JOB_NAME_* przychodzą już po polsku.
+const STYLE_PL: Record<string, string> = {
+  '----Command----': '----Dowództwo----',
+  'Command (Custom)': 'Dowództwo (własny)',
+  '----Service----': '----Służba----',
+  'Service (Custom)': 'Służba (własny)',
+  '----Cargo----': '----Zaopatrzenie----',
+  'Cargo (Custom)': 'Zaopatrzenie (własny)',
+  '----Engineering----': '----Inżynieria----',
+  'Engineering (Custom)': 'Inżynieria (własny)',
+  '----Science----': '----Nauka----',
+  'Science (Custom)': 'Nauka (własny)',
+  '----Medical----': '----Medyczny----',
+  'Medical (Custom)': 'Medyczny (własny)',
+  '----Security----': '----Ochrona----',
+  'Security (Custom)': 'Ochrona (własny)',
+  '----Munitions----': '----Amunicja----',
+  'Munitions (Custom)': 'Amunicja (własny)',
+  '----MISC----': '----Inne----',
+  Unassigned: 'Nieprzydzielony',
+  'CentCom (Custom)': 'Centrala (własny)',
+  CentCom: 'Centrala',
+  ERT: 'ERT',
+  Syndicate: 'Syndykat',
+  'Clown Operative': 'Klaun-operator',
+};
+
+const styleLabel = (value: string) => STYLE_PL[value] ?? value;
+
 export const ChameleonCard = (props) => {
   const { act, data } = useBackend<Data>();
   const {
@@ -44,13 +75,13 @@ export const ChameleonCard = (props) => {
   } = data;
 
   const [name, setName] = useState(registered_name || default_name || '');
-  const [job, setJob] = useState(assignment || 'Assistant');
+  const [job, setJob] = useState(assignment || 'Majtek');
   const [style, setStyle] = useState(KEEP_STYLE);
 
   // Po resecie/fałszowaniu pola pokazują to, co jest na karcie.
   useEffect(() => {
     setName(registered_name || default_name || '');
-    setJob(assignment || 'Assistant');
+    setJob(assignment || 'Majtek');
   }, [registered_name, assignment]);
 
   return (
@@ -80,7 +111,11 @@ export const ChameleonCard = (props) => {
               <Dropdown
                 width="100%"
                 selected={style}
-                options={[KEEP_STYLE, ...styles]}
+                displayText={styleLabel(style)}
+                options={[KEEP_STYLE, ...styles].map((value) => ({
+                  displayText: styleLabel(value),
+                  value,
+                }))}
                 onSelected={(value) => setStyle(value)}
               />
             </LabeledList.Item>

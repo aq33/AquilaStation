@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/automatic/pistol
-	name = "stechkin pistol"
-	desc = "A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors."
+	name = "pistolet Stieczkin"
+	desc = "Mały, łatwy do ukrycia pistolet 10mm. Lufa ma gwint na tłumik."
 	icon_state = "pistol"
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/m10mm
@@ -21,7 +21,7 @@
 	spawnwithmagazine = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/locker
-	desc = "A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors. This one is rusted from being inside of a locker for so long."
+	desc = "Mały, łatwy do ukrycia pistolet 10mm. Lufa ma gwint na tłumik. Ten egzemplarz zardzewiał od długiego leżenia w szafce."
 
 /obj/item/gun/ballistic/automatic/pistol/suppressed/Initialize(mapload)
 	. = ..()
@@ -30,7 +30,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
-	desc = "A classic .45 handgun with a small magazine capacity."
+	desc = "Klasyczny pistolet .45 z magazynkiem o małej pojemności."
 	icon_state = "m1911"
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
@@ -41,7 +41,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/deagle
 	name = "\improper Desert Eagle"
-	desc = "A robust .50 AE handgun."
+	desc = "Solidny pistolet .50 AE."
 	icon_state = "deagle"
 	force = 14
 	mag_type = /obj/item/ammo_box/magazine/m50
@@ -49,18 +49,18 @@
 	mag_display = TRUE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold
-	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
+	desc = "Pozłacany Desert Eagle, składany milion razy przez wybitnych marsjańskich rusznikarzy. Strzela amunicją .50 AE."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/camo
-	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
+	desc = "Deagle marki Deagle dla operatorów operujących operacyjnie. Strzela amunicją .50 AE."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
 /obj/item/gun/ballistic/automatic/pistol/APS
-	name = "stechkin APS pistol"
-	desc = "The original Russian version of a widely used Syndicate sidearm. Uses 9mm ammo."
+	name = "pistolet Stieczkin APS"
+	desc = "Oryginalna rosyjska wersja popularnej broni bocznej Syndykatu. Strzela amunicją 9mm."
 	icon_state = "aps"
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/pistolm9mm
@@ -70,8 +70,8 @@
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 
 /obj/item/gun/ballistic/automatic/pistol/stickman
-	name = "flat gun"
-	desc = "A 2 dimensional gun.. what?"
+	name = "płaski pistolet"
+	desc = "Dwuwymiarowy pistolet... co?"
 	icon_state = "flatgun"
 
 /obj/item/gun/ballistic/automatic/pistol/stickman/pickup(mob/living/user)

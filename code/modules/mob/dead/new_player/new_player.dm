@@ -387,7 +387,7 @@
 		ready = PLAYER_NOT_READY
 		if(has_antags)
 			log_admin("[src.ckey] just got booted back to lobby with no jobs, but antags enabled.")
-			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
+			message_admins("[src.ckey] zostaje odesłany do lobby bez włączonych stanowisk, ale z włączonym losowaniem antagonistów. Prawdopodobnie nadużycie losowania antagonistów.")
 
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE

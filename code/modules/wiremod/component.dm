@@ -218,11 +218,11 @@
 	. = list()
 
 	if(!removable)
-		. += create_ui_notice("Unremovable", "red", "lock")
+		. += create_ui_notice("Nieusuwalny", "red", "lock")
 
 
 	if(length(input_ports))
-		. += create_ui_notice("Power Usage Per Input: [power_usage_per_input]", "orange", "bolt")
+		. += create_ui_notice("Zużycie energii na wejście: [power_usage_per_input]", "orange", "bolt")
 
 /**
  * Creates a UI notice entry to be used in get_ui_notices()
@@ -248,11 +248,11 @@
 	SHOULD_BE_PURE(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	. = list()
-	. += create_ui_notice("Available Columns:", "grey", "question-circle")
+	. += create_ui_notice("Dostępne kolumny:", "grey", "question-circle")
 
 
 	for(var/entry in entries)
-		. += create_ui_notice("Column Name: '[entry]'", "grey", "columns")
+		. += create_ui_notice("Nazwa kolumny: „[entry]”", "grey", "columns")
 
 /obj/item/circuit_component/proc/register_usb_parent(atom/movable/parent)
 	return

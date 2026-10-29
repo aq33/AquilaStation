@@ -30,7 +30,7 @@ export const BroadSideShellPacker = (props) => {
         <Section>
           <Table.Row>
             <Table.Cell collapsing>
-              <Section title="Casings:">
+              <Section title="Łuski:">
                 <ProgressBar
                   value={(casing_amount / amount_to_pack) * 100 * 0.01}
                   ranges={{
@@ -46,7 +46,7 @@ export const BroadSideShellPacker = (props) => {
               </Section>
             </Table.Cell>
             <Table.Cell collapsing>
-              <Section title="Projectile Loads:">
+              <Section title="Ładunki pocisków:">
                 <ProgressBar
                   value={(load_amount / amount_to_pack) * 100 * 0.01}
                   ranges={{
@@ -62,7 +62,7 @@ export const BroadSideShellPacker = (props) => {
               </Section>
             </Table.Cell>
           </Table.Row>
-          <Section title="Powder Type:">
+          <Section title="Rodzaj prochu:">
             <Table.Row>
               <Table.Cell collapsing>
                 <Button
@@ -71,7 +71,7 @@ export const BroadSideShellPacker = (props) => {
                   textAlign="center"
                   color={plasma ? 'good' : 'bad'}
                 >
-                  Plasma Charge
+                  Ładunek plazmowy
                 </Button>
                 <Button
                   fluid
@@ -81,7 +81,7 @@ export const BroadSideShellPacker = (props) => {
                   disabled={!plasma}
                   onClick={() => act('eject_plasma')}
                 >
-                  Eject Plasma Charge
+                  Wysuń ładunek plazmowy
                 </Button>
               </Table.Cell>
               <Table.Cell collapsing>
@@ -91,7 +91,7 @@ export const BroadSideShellPacker = (props) => {
                   textAlign="center"
                   color={gunpowder ? 'good' : 'bad'}
                 >
-                  Gunpowder Charge
+                  Ładunek prochowy
                 </Button>
                 <Button
                   fluid
@@ -101,12 +101,12 @@ export const BroadSideShellPacker = (props) => {
                   disabled={!gunpowder}
                   onClick={() => act('eject_gunpowder')}
                 >
-                  Eject Gunpowder Charge
+                  Wysuń ładunek prochowy
                 </Button>
               </Table.Cell>
             </Table.Row>
           </Section>
-          <Section title="Controls:">
+          <Section title="Sterowanie:">
             <Table.Row>
               <Table.Cell collapsing>
                 <Button
@@ -115,7 +115,7 @@ export const BroadSideShellPacker = (props) => {
                   textAlign="center"
                   color={full ? 'good' : 'bad'}
                 >
-                  Ready to Pack
+                  Gotowe do pakowania
                 </Button>
                 <Button
                   fluid
@@ -125,7 +125,7 @@ export const BroadSideShellPacker = (props) => {
                   disabled={!full}
                   onClick={() => act('pack')}
                 >
-                  Pack Casings
+                  Pakuj łuski
                 </Button>
               </Table.Cell>
             </Table.Row>

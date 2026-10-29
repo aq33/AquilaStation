@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/frenzy
-	name = "Frenzy"
-	desc = "This guardian attacks by teleport around a target making it hard to hit, as well as speeding up its owner while manifested. REQUIRES RANGE C OR ABOVE."
+	name = "Szał"
+	desc = "Ten strażnik atakuje, teleportując się wokół celu, przez co trudno go trafić, a gdy jest zmaterializowany, przyspiesza swojego właściciela. WYMAGA ZASIĘGU C LUB WYŻSZEGO."
 	ui_icon = "fighter-jet"
 	cost = 3 // low cost because this stand is pretty much LOUD AS FUCK, and using it is stealthily is pretty hard due to it's loud, unique sounds and abilities
 				// also because in order for this to be any good, you need to spread your points real good

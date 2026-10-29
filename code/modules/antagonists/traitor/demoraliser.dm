@@ -96,27 +96,27 @@
 
 /datum/demoralise_moods/module
 	mood_category = "module"
-	antag_notification = "I feel oddly refreshed."
+	antag_notification = "Czuję dziwny przypływ sił."
 	antag_mood = /datum/mood_event/traitor_module_antag
-	crew_notification = "My head hurts. It feels like something is driving nails into my brain!"
+	crew_notification = "Boli mnie głowa. Jakby ktoś wbijał mi gwoździe w mózg!"
 	crew_mood = /datum/mood_event/traitor_module_crew
-	authority_notification = "My heads beginning to spin. The enemy is at the gate. I'm all alone..."
+	authority_notification = "Kręci mi się w głowie. Wróg jest u bram, a ja nie mam nikogo..."
 	authority_mood = /datum/mood_event/traitor_module_auth
 
 /datum/mood_event/traitor_module_antag
-	description = "I think I'll cause problems on purpose."
+	description = "Chyba celowo narobię kłopotów."
 	mood_change = 1
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_module_crew
-	description = "They're on the station! I know it! They're going to get me!"
+	description = "Oni są na statku! Wiem to! Dopadną mnie!"
 	mood_change = -4
 	timeout = 2 MINUTES
 	hidden = TRUE
 
 /datum/mood_event/traitor_module_auth
-	description = "Nobody on this station is on my side, and the enemy could be anyone! I have to take more drastic measures..."
+	description = "Nikt na tym statku nie stoi po mojej stronie, a wrogiem może być każdy! Muszę sięgnąć po bardziej drastyczne środki..."
 	mood_change = -5
 	timeout = 2 MINUTES
 	hidden = TRUE

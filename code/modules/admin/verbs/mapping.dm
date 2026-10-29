@@ -58,10 +58,10 @@ GLOBAL_LIST_INIT(admin_verbs_debug_mapping, list(
 GLOBAL_PROTECT(admin_verbs_debug_mapping)
 
 /obj/effect/debugging/mapfix_marker
-	name = "map fix marker"
+	name = "znacznik poprawki mapy"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "mapfixmarker"
-	desc = "I am a mappers mistake."
+	desc = "Jestem pomyłką mappera."
 
 /obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'
@@ -97,11 +97,11 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Dirty Varedits"
 
 	var/list/dat = list()
-	dat += "<h3>Abandon all hope ye who enter here</h3><br><br>"
+	dat += "<h3>Porzućcie wszelką nadzieję, wy, którzy tu wchodzicie</h3><br><br>"
 	for(var/thing in GLOB.dirty_vars)
 		dat += "[thing]<br>"
 		CHECK_TICK
-	var/datum/browser/popup = new(usr, "dirty_vars", "Dirty Varedits", 900, 750)
+	var/datum/browser/popup = new(usr, "dirty_vars", "Brudne varedity", 900, 750)
 	popup.set_content(dat.Join())
 	popup.open()
 #endif
@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	set name = "Camera Report"
 
 	if(!Master)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
+		alert(usr,"Nie znaleziono master_controller.","Raport kamer ochrony")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
@@ -119,18 +119,18 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
-	var/output = {"<B>Camera Abnormalities Report</B><HR>
-<B>The following abnormalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
+	var/output = {"<B>Raport nieprawidłowości kamer</B><HR>
+<B>Wykryto następujące nieprawidłowości. Te na czerwono wymagają natychmiastowej uwagi, część tych na czarno może być zamierzona.</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
 		for(var/obj/machinery/camera/C2 in CL)
 			if(C1 != C2)
 				if(C1.c_tag == C2.c_tag)
-					output += "<li><font color='red'>c_tag match for cameras at [ADMIN_VERBOSEJMP(C1)] and [ADMIN_VERBOSEJMP(C2)] - c_tag is [C1.c_tag]</font></li>"
+					output += "<li><font color='red'>Zgodny c_tag kamer w [ADMIN_VERBOSEJMP(C1)] i [ADMIN_VERBOSEJMP(C2)] - c_tag to [C1.c_tag]</font></li>"
 				if(C1.loc == C2.loc && C1.dir == C2.dir && C1.pixel_x == C2.pixel_x && C1.pixel_y == C2.pixel_y)
-					output += "<li><font color='red'>FULLY overlapping cameras at [ADMIN_VERBOSEJMP(C1)] Networks: [json_encode(C1.network)] and [json_encode(C2.network)]</font></li>"
+					output += "<li><font color='red'>CAŁKOWICIE nakładające się kamery w [ADMIN_VERBOSEJMP(C1)] Sieci: [json_encode(C1.network)] i [json_encode(C2.network)]</font></li>"
 				if(C1.loc == C2.loc)
-					output += "<li>Overlapping cameras at [ADMIN_VERBOSEJMP(C1)] Networks: [json_encode(C1.network)] and [json_encode(C2.network)]</li>"
+					output += "<li>Nakładające się kamery w [ADMIN_VERBOSEJMP(C1)] Sieci: [json_encode(C1.network)] i [json_encode(C2.network)]</li>"
 		var/turf/T = get_step(C1,turn(C1.dir,180))
 		if(!T || !isturf(T) || !T.density )
 			if(!(locate(/obj/structure/grille) in T))
@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 						window_check = 1
 						break
 				if(!window_check)
-					output += "<li><font color='red'>Camera not connected to wall at [ADMIN_VERBOSEJMP(C1)] Network: [json_encode(C1.network)]</font></li>"
+					output += "<li><font color='red'>Kamera niepodłączona do ściany w [ADMIN_VERBOSEJMP(C1)] Sieć: [json_encode(C1.network)]</font></li>"
 
 	output += "</ul>"
 	usr << browse(HTML_SKELETON(output),"window=airreport;size=1000x500")
@@ -167,10 +167,10 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 /client/proc/cmd_show_at_list()
 	set category = "Mapping"
 	set name = "Show roundstart AT list"
-	set desc = "Displays a list of active turfs coordinates at roundstart"
+	set desc = "Pokazuje listę współrzędnych aktywnych turfów na starcie rundy"
 
-	var/dat = {"<b>Coordinate list of Active Turfs at Roundstart</b>
-	 <br>Real-time Active Turfs list you can see in Air Subsystem at active_turfs var<br>"}
+	var/dat = {"<b>Lista współrzędnych aktywnych turfów na starcie rundy</b>
+	 <br>Bieżącą listę aktywnych turfów zobaczysz w podsystemie Air, w zmiennej active_turfs<br>"}
 
 	for(var/t in GLOB.active_turfs_startlist)
 		var/turf/T = t
@@ -184,7 +184,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 /client/proc/cmd_show_at_markers()
 	set category = "Mapping"
 	set name = "Show roundstart AT markers"
-	set desc = "Places a marker on all active-at-roundstart turfs"
+	set desc = "Stawia znacznik na wszystkich turfach aktywnych na starcie rundy"
 
 	var/count = 0
 	for(var/obj/effect/abstract/marker/at/AT in GLOB.all_abstract_markers)
@@ -192,12 +192,12 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 		count++
 
 	if(count)
-		to_chat(usr, "[count] AT markers removed.")
+		to_chat(usr, "Usunięte znaczniki AT: [count].")
 	else
 		for(var/t in GLOB.active_turfs_startlist)
 			new /obj/effect/abstract/marker/at(t)
 			count++
-		to_chat(usr, "[count] AT markers placed.")
+		to_chat(usr, "Postawione znaczniki AT: [count].")
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Roundstart Active Turf Markers")
 
@@ -220,7 +220,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = capped_input(src, "Which z-level?","Level?")
+	var/level = capped_input(src, "Który poziom z?","Poziom?")
 	if(!level)
 		return
 	var/num_level = text2num(level)
@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 	if(!isnum_safe(num_level))
 		return
 
-	var/type_text = capped_input(src, "Which type path?","Path?")
+	var/type_text = capped_input(src, "Jaka ścieżka typu?","Ścieżka?")
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -254,14 +254,14 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 					atom_list += A
 			CHECK_TICK
 
-	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
+	to_chat(world, "Liczba obiektów typu [type_path] na poziomie z [num_level]: [count]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Count Objects Zlevel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_all()
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = capped_input(usr, "Which type path?")
+	var/type_text = capped_input(usr, "Jaka ścieżka typu?")
 	if(!type_text)
 		return
 	var/type_path = text2path(type_text)
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(dirty_vars)
 		if(istype(A,type_path))
 			count++
 
-	to_chat(world, "There are [count] objects of type [type_path] in the game world")
+	to_chat(world, "Liczba obiektów typu [type_path] w świecie gry: [count]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Count Objects All") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -286,9 +286,9 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 
 	GLOB.say_disabled = !GLOB.say_disabled
 	if(GLOB.say_disabled)
-		message_admins("[key] used 'Disable all communication verbs', killing all communication methods.")
+		message_admins("[key] używa 'Disable all communication verbs', wyłączając wszystkie metody komunikacji.")
 	else
-		message_admins("[key] used 'Disable all communication verbs', restoring all communication methods.")
+		message_admins("[key] używa 'Disable all communication verbs', przywracając wszystkie metody komunikacji.")
 
 //This generates the icon states for job starting location landmarks.
 /client/proc/create_mapping_job_icons()
@@ -324,7 +324,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 
 	var/list/z_list = SSmapping.z_list
 	var/list/messages = list()
-	messages += "<b>World</b>: [world.maxx] x [world.maxy] x [world.maxz]<br>"
+	messages += "<b>Świat</b>: [world.maxx] x [world.maxy] x [world.maxz]<br>"
 
 	var/list/linked_levels = list()
 	var/min_x = INFINITY
@@ -334,35 +334,35 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 
 	for(var/z in 1 to max(world.maxz, z_list.len))
 		if (z > z_list.len)
-			messages += "<b>[z]</b>: Unmanaged (out of bounds)<br>"
+			messages += "<b>[z]</b>: niezarządzany (poza zakresem)<br>"
 			continue
 		var/datum/space_level/S = z_list[z]
 		if (!S)
-			messages += "<b>[z]</b>: Unmanaged (null)<br>"
+			messages += "<b>[z]</b>: niezarządzany (null)<br>"
 			continue
 		var/linkage
 		switch (S.linkage)
 			if (UNAFFECTED)
-				linkage = "no linkage"
+				linkage = "bez połączeń"
 			if (SELFLOOPING)
-				linkage = "self-looping"
+				linkage = "zapętlony sam w sobie"
 			if (CROSSLINKED)
-				linkage = "linked at ([S.xi], [S.yi])"
+				linkage = "połączony w ([S.xi], [S.yi])"
 				linked_levels += S
 				min_x = min(min_x, S.xi)
 				min_y = min(min_y, S.yi)
 				max_x = max(max_x, S.xi)
 				max_y = max(max_y, S.yi)
 			else
-				linkage = "unknown linkage '[S.linkage]'"
+				linkage = "nieznane połączenie '[S.linkage]'"
 
-		messages += "<b>[z]</b>: [S.name], [linkage], traits: [json_encode(S.traits)]<br>"
+		messages += "<b>[z]</b>: [S.name], [linkage], cechy: [json_encode(S.traits)]<br>"
 		if (S.z_value != z)
-			messages += "-- z_value is [S.z_value], should be [z]<br>"
+			messages += "-- z_value to [S.z_value], a powinno być [z]<br>"
 		if (S.name == initial(S.name))
-			messages += "-- name not set<br>"
+			messages += "-- brak nazwy<br>"
 		if (z > world.maxz)
-			messages += "-- exceeds max z"
+			messages += "-- przekracza maksymalne z"
 
 	var/grid[max_x - min_x + 1][max_y - min_y + 1]
 	for(var/datum/space_level/S in linked_levels)

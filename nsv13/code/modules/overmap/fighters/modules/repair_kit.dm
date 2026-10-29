@@ -1,6 +1,6 @@
 /obj/item/fighter_component/primary/utility/repairer
-	name = "air-to-air repair kit"
-	desc = "A module which can use hull repair foam to repair other fighters in the air."
+	name = "zestaw do napraw w locie"
+	desc = "Moduł, który za pomocą piany do naprawy kadłuba naprawia inne myśliwce w locie."
 	icon_state = "repairer_tier1"
 	accepted_ammo = /obj/structure/reagent_dispensers/foamtank/hull_repair_juice
 	power_usage = 50
@@ -18,14 +18,14 @@
 	return magazine?.reagents.maximum_volume
 
 /obj/item/fighter_component/primary/utility/repairer/tier2
-	name = "upgraded air to air repair kit"
+	name = "ulepszony zestaw do napraw w locie"
 	icon_state = "repairer_tier2"
 	tier = 2
 	fire_delay = 4 SECONDS
 	foam_consumption = 15
 
 /obj/item/fighter_component/primary/utility/repairer/tier3
-	name = "super air to air repair kit"
+	name = "superzestaw do napraw w locie"
 	icon_state = "repairer_tier3"
 	tier = 3
 	fire_delay = 3 SECONDS

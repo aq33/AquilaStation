@@ -1,6 +1,6 @@
 /obj/item/export_scanner
-	name = "export scanner"
-	desc = "A device used to check objects against Nanotrasen exports and bounty database."
+	name = "skaner eksportowy"
+	desc = "Urządzenie do sprawdzania przedmiotów w bazie eksportu i zleceń Nanotrasen."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "export_scanner"
 	item_state = "radio"

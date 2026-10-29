@@ -4,8 +4,8 @@
 #define EMITTER_WELDED 2
 
 /obj/machinery/power/emitter
-	name = "emitter"
-	desc = "A heavy-duty industrial laser, often used in containment fields and power generation."
+	name = "emiter"
+	desc = "Wytrzymały laser przemysłowy, często używany przy polach izolujących i wytwarzaniu energii."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
 
@@ -49,7 +49,7 @@
 	anchored = TRUE
 
 /obj/machinery/power/emitter/ctf
-	name = "Energy Cannon"
+	name = "działo energetyczne"
 	active = TRUE
 	active_power_usage = FALSE
 	idle_power_usage = FALSE
@@ -109,7 +109,7 @@
 /obj/machinery/power/emitter/Destroy()
 	if(SSticker.IsRoundInProgress())
 		var/turf/T = get_turf(src)
-		message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(T)]")
+		message_admins("Emiter usunięty w [ADMIN_VERBOSEJMP(T)]")
 		log_game("Emitter deleted at [AREACOORD(T)]")
 		investigate_log("<font color='red'>deleted</font> at [AREACOORD(T)]", INVESTIGATE_ENGINES)
 	QDEL_NULL(sparks)
@@ -142,7 +142,7 @@
 				shot_number = 0
 				fire_delay = maximum_fire_delay
 
-			message_admins("Emitter turned [active ? "ON" : "OFF"] by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+			message_admins("Emiter [active ? "włączony" : "wyłączony"] przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(src)]")
 			log_game("Emitter turned [active ? "ON" : "OFF"] by [key_name(user)] in [AREACOORD(src)]")
 			investigate_log("turned [active ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(user)] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
 
@@ -356,11 +356,11 @@
 		return
 	locked = FALSE
 	obj_flags |= EMAGGED
-	user?.visible_message("[user.name] emags [src].","<span class='notice'>Zwierasz zamek.</span>")
+	user?.visible_message("[user.name] emaguje [src].","<span class='notice'>Zwierasz zamek.</span>")
 
 
 /obj/machinery/power/emitter/prototype
-	name = "Prototype Emitter"
+	name = "prototypowy emiter"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "protoemitter"
 	icon_state_on = "protoemitter_+a"
@@ -415,16 +415,16 @@
 	. = ..()
 
 /datum/action/innate/protoemitter/firing
-	name = "Switch to Manual Firing"
-	desc = "The emitter will only fire on your command and at your designated target"
+	name = "Przełącz na ogień ręczny"
+	desc = "Emiter strzela tylko na twój rozkaz i w wyznaczony przez ciebie cel"
 	button_icon_state = "mech_zoom_on"
 
 /datum/action/innate/protoemitter/firing/Activate()
 	if(PE.manual)
 		playsound(PE,'sound/mecha/mechmove01.ogg', 50, TRUE)
 		PE.manual = FALSE
-		name = "Switch to Manual Firing"
-		desc = "The emitter will only fire on your command and at your designated target"
+		name = "Przełącz na ogień ręczny"
+		desc = "Emiter strzela tylko na twój rozkaz i w wyznaczony przez ciebie cel"
 		button_icon_state = "mech_zoom_on"
 		for(var/obj/item/I in U.held_items)
 			if(istype(I, /obj/item/turret_control))
@@ -433,8 +433,8 @@
 		return
 	else
 		playsound(PE,'sound/mecha/mechmove01.ogg', 50, TRUE)
-		name = "Switch to Automatic Firing"
-		desc = "Emitters will switch to periodic firing at your last target"
+		name = "Przełącz na ogień automatyczny"
+		desc = "Emitery przechodzą na okresowy ogień w twój ostatni cel"
 		button_icon_state = "mech_zoom_off"
 		PE.manual = TRUE
 		for(var/V in U.held_items)
@@ -450,7 +450,7 @@
 
 
 /obj/item/turret_control
-	name = "turret controls"
+	name = "sterowanie wieżyczką"
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = ABSTRACT | NOBLUDGEON

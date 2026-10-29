@@ -64,8 +64,8 @@
 	add_fingerprint(user)
 
 /obj/item/melee/transforming/energy/axe
-	name = "energy axe"
-	desc = "An energized battle axe."
+	name = "topór energetyczny"
+	desc = "Naładowany energią topór bojowy."
 	icon_state = "axe0"
 	lefthand_file = 'icons/mob/inhands/weapons/axes_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
@@ -89,8 +89,8 @@
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/melee/transforming/energy/sword
-	name = "energy sword"
-	desc = "May the force be within you."
+	name = "miecz energetyczny"
+	desc = "Niech moc będzie w tobie."
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -115,14 +115,14 @@
 	if(. && active && sword_color)
 		icon_state = "sword[sword_color]"
 
-/obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		return ..()
 	return 0
 
 /obj/item/melee/transforming/energy/sword/esaw //Energy Saw on it's own
-	name = "energy saw"
-	desc = "For heavy duty cutting. It has a carbon-fiber blade in addition to a toggleable hard-light edge to dramatically increase sharpness."
+	name = "piła energetyczna"
+	desc = "Do cięcia ciężkich materiałów. Ma ostrze z włókna węglowego i włączaną krawędź z twardego światła, która drastycznie zwiększa ostrość."
 	force_on = 30
 	force = 18 //About as much as a spear
 	hitsound = 'sound/weapons/circsawhit.ogg'
@@ -151,8 +151,8 @@
 		return ..()
 
 /obj/item/melee/transforming/energy/sword/cyborg/saw //Used by medical Syndicate cyborgs
-	name = "energy saw"
-	desc = "For heavy duty cutting. It has a carbon-fiber blade in addition to a toggleable hard-light edge to dramatically increase sharpness."
+	name = "piła energetyczna"
+	desc = "Do cięcia ciężkich materiałów. Ma ostrze z włókna węglowego i włączaną krawędź z twardego światła, która drastycznie zwiększa ostrość."
 	force_on = 30
 	force = 18 //About as much as a spear
 	hitsound = 'sound/weapons/circsawhit.ogg'
@@ -172,7 +172,7 @@
 		return
 	transform_weapon(user, TRUE)
 
-/obj/item/melee/transforming/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/melee/transforming/energy/sword/cyborg/saw/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0
 
 /obj/item/melee/transforming/energy/sword/esaw/implant //Energy Saw Arm Implant
@@ -227,8 +227,8 @@
 		return ..()
 
 /obj/item/melee/transforming/energy/sword/bee  //yeah its fucking stupid but I wanted a yellow esword which is weaker than what we have
-	name = "Bee Sword"
-	desc = "Channel the might of the bees with this powerful sword"
+	name = "pszczeli miecz"
+	desc = "Ten potężny miecz przekazuje moc pszczół"
 	force = 0
 	throwforce = 0
 	force_on = 22
@@ -237,8 +237,8 @@
 	light_color = "#ffff00"
 
 /obj/item/melee/transforming/energy/sword/pirate
-	name = "energy cutlass"
-	desc = "Arrrr matey."
+	name = "kordelas energetyczny"
+	desc = "Arrrr, kamracie."
 	icon_state = "cutlass0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -246,8 +246,8 @@
 	light_color = "#ff0000"
 
 /obj/item/melee/transforming/energy/blade
-	name = "energy blade"
-	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	name = "ostrze energetyczne"
+	desc = "Skupiona wiązka energii w kształcie ostrza. Bardzo stylowe... i śmiercionośne."
 	icon_state = "blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
@@ -276,7 +276,7 @@
 	return
 
 /obj/item/melee/transforming/energy/blade/hardlight
-	name = "hardlight blade"
-	desc = "An extremely sharp blade made out of hard light. Packs quite a punch."
+	name = "ostrze z twardego światła"
+	desc = "Niezwykle ostre ostrze z twardego światła. Potrafi nieźle przyłożyć."
 	icon_state = "lightblade"
 	item_state = "lightblade"

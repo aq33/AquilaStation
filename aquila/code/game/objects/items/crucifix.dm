@@ -1,7 +1,7 @@
 // AQUILA - krucyfiks przeniesiony ze starego heretyka (code/modules/antagonists/heretic/items/crucifix.dm)
 /obj/item/clothing/neck/crucifix
-	name = "crucifix"
-	desc = "In the event that one of those you falsely accused is, in fact, a real witch, this will ward you against their curses."
+	name = "krucyfiks"
+	desc = "Na wypadek, gdyby któraś z fałszywie oskarżonych przez ciebie osób naprawdę okazała się czarownicą. Chroni przed jej klątwami."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "crucifix"
@@ -17,7 +17,7 @@
 	REMOVE_TRAIT(user, TRAIT_WARDED, CLOTHING_TRAIT)
 
 /obj/item/clothing/neck/crucifix/rosary
-	name = "rosary beads"
-	desc = "A wooden crucifix meant to ward off curses and hexes."
+	name = "różaniec"
+	desc = "Drewniany krzyżyk, który odpędza klątwy i uroki."
 	resistance_flags = FLAMMABLE
 	icon_state = "rosary"

@@ -64,7 +64,7 @@
 /mob/living/simple_animal/hostile/guardian/healer/verb/Beacon()
 	set name = "Place Bluespace Beacon"
 	set category = "Guardian"
-	set desc = "Mark a floor as your beacon point, allowing you to warp targets to it. Your beacon will not work at extreme distances."
+	set desc = "Oznacz podłogę jako punkt nadajnika, do którego możesz teleportować cele. Nadajnik nie działa na bardzo duże odległości."
 
 	if(beacon_cooldown >= world.time)
 		to_chat(src, "<span class='danger'><B>Twoja moc się odnawia. Między rozstawieniem nadajników musisz odczekać pięć minut.</span></B>")
@@ -85,9 +85,9 @@
 	beacon_cooldown = world.time + 3000
 
 /obj/structure/receiving_pad
-	name = "bluespace receiving pad"
+	name = "platforma odbiorcza bluespace"
 	icon = 'icons/turf/floors.dmi'
-	desc = "A receiving zone for bluespace teleportations."
+	desc = "Strefa odbiorcza dla teleportacji bluespace."
 	icon_state = "light_on-w"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	density = FALSE

@@ -1,6 +1,6 @@
 /obj/item/disk/antivirus
 	name = "NTOS defender"
-	desc = "The default antivirus for all nanotrasen systems. Just plug it in and watch it fail to work."
+	desc = "Domyślny antywirus wszystkich systemów Nanotrasen. Wystarczy go podłączyć i patrzeć, jak nie działa."
 	var/resistcap = 6 //one higher than what it can cure
 	icon_state = "antivirus4"
 
@@ -38,18 +38,18 @@
 
 /obj/item/disk/antivirus/tier2
 	name = "Ahoy"
-	desc = "A free antivirus, which works on most mundane malware, but allows most well-engineered viruses to slip past."
+	desc = "Darmowy antywirus, który radzi sobie z większością pospolitego złośliwego oprogramowania, ale przepuszcza większość dobrze napisanych wirusów."
 	resistcap = 11
 	icon_state = "antivirus1"
 
 /obj/item/disk/antivirus/tier3
 	name = "McValozk"
-	desc = "A robust antivirus for most needs, most noteable for its ties to a notorious expatriate, who the brand has since denounced."
+	desc = "Solidny antywirus na większość potrzeb, znany głównie z powiązań z osławionym emigrantem, od którego marka się potem odcięła."
 	resistcap = 16
 	icon_state = "antivirus3"
 
 /obj/item/disk/antivirus/tier4
 	name = "Nano-Ton"
-	desc = "An expensive, non-standard antivirus mostly used by bigwigs with something to hide."
+	desc = "Drogi, niestandardowy antywirus, którego używają głównie grube ryby mające coś do ukrycia."
 	resistcap = INFINITY
 	icon_state = "antivirus2"

@@ -1,6 +1,6 @@
 /mob/living/simple_animal/sloth
-	name = "sloth"
-	desc = "An adorable, sleepy creature."
+	name = "leniwiec"
+	desc = "Urocze, zaspane stworzenie."
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "sloth"
 	icon_living = "sloth"
@@ -29,14 +29,14 @@
 //Cargo Sloth
 /mob/living/simple_animal/sloth/paperwork
 	name = "Paperwork"
-	desc = "Cargo's pet sloth. About as useful as the rest of the techs."
+	desc = "Leniwiec zaopatrzenia. Mniej więcej tak przydatny jak reszta techników."
 	gold_core_spawnable = NO_SPAWN
 
 //Cargo Sloth 2
 
 /mob/living/simple_animal/sloth/citrus
 	name = "Citrus"
-	desc = "Cargo's pet sloth. She's dressed in a horrible sweater."
+	desc = "Leniwiec zaopatrzenia. Ma na sobie okropny sweter."
 	icon_state = "cool_sloth"
 	icon_living = "cool_sloth"
 	icon_dead = "cool_sloth_dead"

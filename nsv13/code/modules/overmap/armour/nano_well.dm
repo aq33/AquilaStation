@@ -44,8 +44,8 @@ Starting Materials
 #define RR_MAX 5000
 
 /obj/machinery/armour_plating_nanorepair_well
-	name = "\improper Armour Plating Nano-repair Well"
-	desc = "Central Well for the AP thingies"
+	name = "\improper nanonaprawcza studnia płyt pancerza"
+	desc = "Centralna studnia dla pancernych ustrojstw."
 	icon = 'nsv13/icons/obj/machinery/armour_well.dmi'
 	icon_state = "well"
 	pixel_x = -16
@@ -528,7 +528,7 @@ Starting Materials
 	return data
 
 /obj/item/circuitboard/machine/armour_plating_nanorepair_well
-	name = "Armour Plating Nano-repair Well (Machine Board)"
+	name = "nanonaprawcza studnia płyt pancerza (płytka maszyny)"
 	build_path = /obj/machinery/armour_plating_nanorepair_well
 	req_components = list(
 		/obj/item/stock_parts/matter_bin = 10,
@@ -538,28 +538,28 @@ Starting Materials
 		/obj/item/stock_parts/micro_laser = 2)
 
 /obj/item/apnw_oc_module
-	name = "Armour Plating Nano-repair Well Overclocking Module (PARENT)"
-	desc = "A small electronic device that alters operational parameters of the APNW. This will likely void the warranty."
+	name = "moduł podkręcania studni nanonaprawczej (RODZIC)"
+	desc = "Małe urządzenie elektroniczne, które zmienia parametry pracy APNW. Pewnie unieważni gwarancję."
 	icon = 'nsv13/icons/obj/objects.dmi'
 	icon_state = "oc_module"
 	w_class = 3
 
 /obj/item/apnw_oc_module/power //Changes power cap to 10MW
-	name = "Armour Plating Nano-repair Well Overclocking Module (Overwattage)"
+	name = "moduł podkręcania studni nanonaprawczej (nadmiar mocy)"
 
 /obj/item/apnw_oc_module/power/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Pozwala przydzielić APNW dodatkową moc - MOŻE POWODOWAĆ PRZEGRZEWANIE</span>"
 
 /obj/item/apnw_oc_module/load //Changes stress threshold to 200%
-	name = "Armour Plating Nano-repair Well Overclocking Module (Overload)"
+	name = "moduł podkręcania studni nanonaprawczej (przeciążenie)"
 
 /obj/item/apnw_oc_module/load/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Pozwala przydzielić APNW dodatkowe obciążenie systemu - MOŻE POWODOWAĆ SKOKI NAPIĘCIA</span>"
 
 /obj/item/apnw_oc_module/cooling //Changes stress reduction to 2.5 per cycle
-	name = "Armour Plating Nano-repair Well Overclocking Module (Cooling)"
+	name = "moduł podkręcania studni nanonaprawczej (chłodzenie)"
 
 /obj/item/apnw_oc_module/cooling/examine(mob/user)
 	. = ..()

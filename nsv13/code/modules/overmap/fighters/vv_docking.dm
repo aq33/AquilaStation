@@ -3,8 +3,8 @@
 
 /obj/structure/overmap/small_craft/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_FORCE_DOCK, "Force Docking")
-	VV_DROPDOWN_OPTION(VV_HK_FORCE_UNDOCK, "Force onto Overmap")
+	VV_DROPDOWN_OPTION(VV_HK_FORCE_DOCK, "Wymuś dokowanie")
+	VV_DROPDOWN_OPTION(VV_HK_FORCE_UNDOCK, "Wymuś wejście na overmapę")
 
 /obj/structure/overmap/small_craft/vv_do_topic(list/href_list)
 	set waitfor = FALSE
@@ -13,13 +13,13 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/obj/structure/overmap/target
-		switch(alert(usr, "Which ship will it dock to?", "Select Target Ship", "Main Ship", "Choose", "Cancel"))
-			if("Cancel")
+		switch(alert(usr, "Do którego okrętu ma zadokować?", "Wybierz okręt docelowy", "Okręt załogi", "Wybierz", "Anuluj"))
+			if("Anuluj")
 				return
-			if("Main Ship")
+			if("Okręt załogi")
 				target = SSstar_system.find_main_overmap()
-			if("Choose")
-				target = input(usr, "Select target ship:", "Select Target") as null|anything in GLOB.overmap_objects //Needs to go through global list due to requiring access to any overmap.
+			if("Wybierz")
+				target = input(usr, "Wybierz okręt docelowy:", "Wybierz cel") as null|anything in GLOB.overmap_objects //Needs to go through global list due to requiring access to any overmap.
 
 		var/obj/item/fighter_component/docking_computer/DC = loadout.get_slot(HARDPOINT_SLOT_DOCKING)
 		if(!DC)
@@ -29,18 +29,18 @@
 		DC.docking_mode = TRUE
 		if(!length(target.docking_points))
 			if(usr.client?.holder?.marked_datum && isturf(usr.client.holder.marked_datum))
-				switch(alert(usr, "[target] nie ma punktów dokowania. Dodać oznaczone pole do punktów dokowania?", "Warning", "Yes", "No"))
-					if("No")
+				switch(alert(usr, "[target] nie ma punktów dokowania. Dodać oznaczone pole do punktów dokowania?", "Ostrzeżenie", "Tak", "Nie"))
+					if("Nie")
 						return
-					if("Yes")
+					if("Tak")
 						target.docking_points |= usr.client.holder.marked_datum
 			else
-				alert(usr, "[target] nie ma punktów dokowania. Nie można zadokować.", "Warning", "OK")
+				alert(usr, "[target] nie ma punktów dokowania. Nie można zadokować.", "Ostrzeżenie", "OK")
 				return
 
 		transfer_from_overmap(target)
 
-		message_admins("[key_name_admin(usr)] has transferred [src] onto [target]")
+		message_admins("[key_name_admin(usr)] przenosi [src] na [target]")
 		log_admin("[key_name_admin(usr)] has transferred [src] onto [target]")
 
 	if(href_list[VV_HK_FORCE_UNDOCK])
@@ -76,5 +76,5 @@
 		canopy_open = FALSE
 		check_overmap_elegibility(ignore_position = TRUE, ignore_cooldown = TRUE)
 
-		message_admins("[key_name_admin(usr)] has transferred [src] to the overmap")
+		message_admins("[key_name_admin(usr)] przenosi [src] na overmapę")
 		log_admin("[key_name_admin(usr)] has transferred [src] to the overmap")

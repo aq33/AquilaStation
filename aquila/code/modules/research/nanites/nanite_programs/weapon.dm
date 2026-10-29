@@ -1,6 +1,6 @@
 /datum/nanite_program/kunai
-	name = "Kunai Form"
-	desc = "When triggered, nanites attempt to gather in host's free hand, forming a Kunai knife, which disintegrates a few seconds after being thrown."
+	name = "Forma kunai"
+	desc = "Po aktywacji nanity próbują zebrać się w wolnej dłoni nosiciela i stworzyć nóż kunai, który rozpada się kilka sekund po rzuceniu."
 	can_trigger = TRUE
 	trigger_cost = 100
 	trigger_cooldown = 50
@@ -18,8 +18,8 @@
 	to_chat(C, "<span class='notice'>W twojej dłoni nagle pojawia się kunai!</span>")
 
 /datum/nanite_program/nanophage
-	name = "Nano Swarm"
-	desc = "When triggered, nanites gather in host's stomach, forming nanophages - small, pre-programmed drones, then quickly get coughed out."
+	name = "Nanorój"
+	desc = "Po aktywacji nanity zbierają się w żołądku nosiciela, tworząc nanofagi - małe, zaprogramowane drony - które zaraz zostają wykaszlane."
 	can_trigger = TRUE
 	trigger_cost = 100
 	trigger_cooldown = 300
@@ -27,7 +27,7 @@
 
 /datum/nanite_program/nanophage/register_extra_settings()
 	. = ..()
-	extra_settings[NES_HOST_AGGRESSION] = new /datum/nanite_extra_setting/boolean(TRUE, "True", "False")
+	extra_settings[NES_HOST_AGGRESSION] = new /datum/nanite_extra_setting/boolean(TRUE, "Tak", "Nie")
 
 /datum/nanite_program/nanophage/on_trigger(comm_message)
 	host_mob.visible_message("<span class='danger'>[host_mob] wymiotuje rojem nanofagów!</span>", \

@@ -2,8 +2,8 @@
 // Nasza Space Adaptation zostaje; adaptacje z tg wykluczają się z nią i między sobą.
 
 /datum/mutation/adaptation
-	name = "Adaptation"
-	desc = "The subject gains immunity to damage from extreme temperatures. Does not protect from vacuums."
+	name = "Adaptacja"
+	desc = "Pacjent staje się odporny na obrażenia od skrajnych temperatur. Nie chroni przed próżnią."
 	quality = POSITIVE
 	difficulty = 16
 	text_gain_indication = "<span class='notice'>Twoje ciało czuje się normalnie!</span>"
@@ -24,8 +24,8 @@
 	return visual_indicators[type][1]
 
 /datum/mutation/adaptation/cold
-	name = "Cold Adaptation"
-	desc = "The subject gains immunity to damage from low temperature environments."
+	name = "Adaptacja do zimna"
+	desc = "Pacjent staje się odporny na obrażenia od niskich temperatur."
 	text_gain_indication = "<span class='notice'>Twoje ciało jest przyjemnie chłodne.</span>"
 	text_lose_indication = "<span class='notice'>Chłód opuszcza twoje ciało.</span>"
 	mutation_traits = list(TRAIT_RESISTCOLD)
@@ -33,8 +33,8 @@
 	locked = FALSE
 
 /datum/mutation/adaptation/heat
-	name = "Heat Adaptation"
-	desc = "The subject gains immunity to damage from high temperatures (including fire), as well as resistance to ash storms."
+	name = "Adaptacja do gorąca"
+	desc = "Pacjent staje się odporny na obrażenia od wysokich temperatur (także od ognia) i na burze popiołu."
 	text_gain_indication = "<span class='notice'>Twoje ciało jest orzeźwiająco ciepłe.</span>"
 	text_lose_indication = "<span class='notice'>Ciepło opuszcza twoje ciało.</span>"
 	mutation_traits = list(TRAIT_RESISTHEAT)
@@ -58,9 +58,9 @@
 		added_ash_immunity = FALSE
 
 /datum/mutation/adaptation/thermal
-	name = "Thermal Adaptation"
-	desc = "The subject gains immunity to damage from both low and high temperature environments. \
-		Does not protect from high or low pressure environments, nor does it provide resistance to ash storms."
+	name = "Adaptacja termiczna"
+	desc = "Pacjent staje się odporny na obrażenia zarówno od niskich, jak i od wysokich temperatur. \
+		Nie chroni przed wysokim ani niskim ciśnieniem, nie daje też odporności na burze popiołu."
 	difficulty = 32
 	text_gain_indication = "<span class='notice'>Twoje ciało ma przyjemną, pokojową temperaturę.</span>"
 	text_lose_indication = "<span class='notice'>Twoje ciało znów czuje temperaturę otoczenia.</span>"
@@ -70,9 +70,9 @@
 	locked = TRUE // przepis
 
 /datum/mutation/adaptation/pressure
-	name = "Pressure Adaptation"
-	desc = "The subject gains immunity to damage from both low and high pressure environments. \
-		Does not protect from temperature, including the cold of space."
+	name = "Adaptacja do ciśnienia"
+	desc = "Pacjent staje się odporny na obrażenia zarówno od niskiego, jak i od wysokiego ciśnienia. \
+		Nie chroni przed temperaturą, w tym przed zimnem kosmosu."
 	text_gain_indication = "<span class='notice'>Twoje ciało czuje się imponująco sprężone.</span>"
 	text_lose_indication = "<span class='notice'>Ciśnienie w twoim ciele wraca do normy.</span>"
 	mutation_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE)

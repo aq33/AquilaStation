@@ -1,6 +1,6 @@
 /obj/item/ai_hijack_device
-	name = "serial exploitation unit"
-	desc = "A strange circuitboard, branded with a large red S, with several ports."
+	name = "moduł eksploitacji szeregowej"
+	desc = "Dziwna płytka drukowana z kilkoma portami, oznaczona dużym czerwonym S."
 	icon = 'aquila/icons/obj/module.dmi'
 	icon_state = "ai_hijack"
 
@@ -28,13 +28,13 @@
 			A.hijacking = src
 			A.hijack_start = world.time
 			A.update_icons()
-			to_chat(A, span_danger("Unknown device connected to /dev/ttySL0</span>"))
-			to_chat(A, span_danger("Connected at 115200 bps</span>"))
+			to_chat(A, span_danger("Podłączono nieznane urządzenie do /dev/ttySL0</span>"))
+			to_chat(A, span_danger("Połączono z prędkością 115200 bps</span>"))
 			to_chat(A, span_binarysay("<span style='font-size: 125%'>ntai login: root</span>"))
 			to_chat(A, span_binarysay("<span style='font-size: 125%'>Password: *****r2</span>"))
 			to_chat(A, span_binarysay("<span style='font-size: 125%'>$ dd from=/dev/ttySL0 of=/tmp/ai-hijack bs=4096 && chmod +x /tmp/ai-hijack && tmp/ai-hijack</span>"))
 			to_chat(A, span_binarysay("<span style='font-size: 125%'>111616 bytes (112 KB, 109 KiB) copied, 1 s, 14.4 KB/s</span>"))
-			message_admins("[ADMIN_LOOKUPFLW(user)] has attached a hijacking device to [ADMIN_LOOKUPFLW(A)]!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] podłącza urządzenie przejmujące do [ADMIN_LOOKUPFLW(A)]!")
 			notify_ghosts("[user] zaczyna przejmować [A]!", source = A, action = NOTIFY_ORBIT, ghost_sound = 'sound/machines/chime.ogg')
 	else
 		return ..()

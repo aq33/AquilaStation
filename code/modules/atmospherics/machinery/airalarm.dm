@@ -34,13 +34,13 @@
 	max2 = 0.5
 
 /obj/item/electronics/airalarm
-	name = "air alarm electronics"
+	name = "elektronika alarmu powietrza"
 	custom_price = 5
 	icon_state = "airalarm_electronics"
 
 /obj/item/wallframe/airalarm
-	name = "air alarm frame"
-	desc = "Used for building Air Alarms."
+	name = "rama alarmu powietrza"
+	desc = "Służy do budowy alarmów powietrza."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm_bitem"
 	result_path = /obj/machinery/airalarm
@@ -58,8 +58,8 @@
 #define AALARM_REPORT_TIMEOUT 100
 
 /obj/machinery/airalarm
-	name = "air alarm"
-	desc = "A machine that monitors atmosphere levels and alerts if the area is dangerous."
+	name = "alarm powietrza"
+	desc = "Urządzenie, które monitoruje stan atmosfery i ostrzega, gdy w obszarze robi się niebezpiecznie."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	use_power = IDLE_POWER_USE
@@ -153,20 +153,20 @@
 	locked = FALSE
 
 /obj/machinery/airalarm/engine
-	name = "engine air alarm"
+	name = "alarm powietrza silnika"
 	locked = FALSE
 	req_access = null
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE)
 
 /obj/machinery/airalarm/mixingchamber
-	name = "chamber air alarm"
+	name = "alarm powietrza komory"
 	locked = FALSE
 	req_access = null
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_TOX, ACCESS_TOX_STORAGE)
 
 /obj/machinery/airalarm/all_access
-	name = "all-access air alarm"
-	desc = "This particular atmospherics control unit appears to have no access restrictions."
+	name = "alarm powietrza bez ograniczeń dostępu"
+	desc = "Ta jednostka sterowania atmosferą najwyraźniej nie ma żadnych ograniczeń dostępu."
 	locked = FALSE
 	req_access = null
 	req_one_access = null
@@ -213,7 +213,7 @@
 		pixel_y = (dir & 3)? (dir == 1 ? -24 : 24) : 0
 
 	if(name == initial(name))
-		name = "[get_area_name(src)] Air Alarm"
+		name = "alarm powietrza ([get_area_name(src)])"
 
 	update_icon()
 

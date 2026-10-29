@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/boxing
-	name = "boxing gloves"
-	desc = "Because you really needed another excuse to punch your crewmates."
+	name = "rękawice bokserskie"
+	desc = "Bo naprawdę potrzebujesz kolejnej wymówki, żeby okładać pięściami innych członków załogi."
 	icon_state = "boxing"
 	item_state = "boxing"
 	worn_icon_state = "boxing"
@@ -23,8 +23,8 @@
 	worn_icon_state = "boxingyellow"
 
 /obj/item/clothing/gloves/boxing/yellow/insulated
-	name = "budget boxing gloves"
-	desc = "Standard boxing gloves coated in a makeshift insulating coat. This can't possibly go wrong at all."
+	name = "tanie rękawice bokserskie"
+	desc = "Zwykłe rękawice bokserskie pokryte prowizoryczną warstwą izolacji. Nic nie może pójść nie tak."
 	icon_state = "boxingyellow"
 	item_state = "boxingyellow"
 	worn_icon_state = "boxingyellow"

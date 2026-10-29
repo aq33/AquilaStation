@@ -9,8 +9,8 @@
 #define MAX_ACTIVE_TIME 400
 
 /obj/item/clothing/mask/facehugger
-	name = "alien"
-	desc = "It has some sort of a tube at the end of its tail."
+	name = "obcy"
+	desc = "Ma na końcu ogona coś w rodzaju rurki."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
@@ -212,7 +212,7 @@
 			log_game("[key_name(target)] was impregnated by a facehugger at [loc_name(T)]")
 
 	else
-		target.visible_message("<span class='danger'>[src] violates [target]'s face!</span>", \
+		target.visible_message("<span class='danger'>[src] bezcześci twarz [target]!</span>", \
 								"<span class='userdanger'>[src] bezcześci twoją twarz!</span>")
 
 /obj/item/clothing/mask/facehugger/proc/GoActive()

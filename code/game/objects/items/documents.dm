@@ -1,6 +1,6 @@
 /obj/item/documents
-	name = "secret documents"
-	desc = "\"Top Secret\" documents."
+	name = "tajne dokumenty"
+	desc = "Dokumenty „ściśle tajne”."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "docs_generic"
 	item_state = "paper"
@@ -13,27 +13,27 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/documents/nanotrasen
-	desc = "\"Top Secret\" Nanotrasen documents, filled with complex diagrams and lists of names, dates and coordinates."
+	desc = "„Ściśle tajne” dokumenty Nanotrasen, pełne skomplikowanych diagramów oraz list nazwisk, dat i współrzędnych."
 	icon_state = "docs_verified"
 
 /obj/item/documents/syndicate
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence."
+	desc = "„Ściśle tajne” dokumenty z poufnymi danymi wywiadowczymi o operacjach Syndykatu."
 
 /obj/item/documents/syndicate/red
-	name = "red secret documents"
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a red wax seal."
+	name = "czerwone tajne dokumenty"
+	desc = "„Ściśle tajne” dokumenty z poufnymi danymi wywiadowczymi o operacjach Syndykatu. Ich autentyczność potwierdza czerwona pieczęć lakowa."
 	icon_state = "docs_red"
 
 /obj/item/documents/syndicate/blue
-	name = "blue secret documents"
-	desc = "\"Top Secret\" documents detailing sensitive Syndicate operational intelligence. These documents are verified with a blue wax seal."
+	name = "niebieskie tajne dokumenty"
+	desc = "„Ściśle tajne” dokumenty z poufnymi danymi wywiadowczymi o operacjach Syndykatu. Ich autentyczność potwierdza niebieska pieczęć lakowa."
 	icon_state = "docs_blue"
 
 /obj/item/documents/syndicate/mining
-	desc = "\"Top Secret\" documents detailing Syndicate plasma mining operations."
+	desc = "„Ściśle tajne” dokumenty opisujące operacje wydobycia plazmy prowadzone przez Syndykat."
 
 /obj/item/documents/photocopy
-	desc = "A copy of some top-secret documents. Nobody will notice they aren't the originals... right?"
+	desc = "Kopia jakichś ściśle tajnych dokumentów. Nikt nie zauważy, że to nie oryginały... prawda?"
 	var/forgedseal = 0
 	var/copy_type = null
 
@@ -51,8 +51,8 @@
 			to_chat(user, "<span class='warning'>Już podrobiłeś pieczęć na [src]!</span>")
 		else
 			var/obj/item/toy/crayon/C = O
-			name = "[C.crayon_color] secret documents"
+			name = "[C.crayon_color == "red" ? "czerwone" : "niebieskie"] tajne dokumenty"
 			icon_state = "docs_[C.crayon_color]"
 			forgedseal = C.crayon_color
-			to_chat(user, "<span class='notice'>Podrabiasz oficjalną pieczęć kredką ([C.crayon_color]). Nikt nie zauważy... prawda?</span>")
+			to_chat(user, "<span class='notice'>Podrabiasz oficjalną pieczęć kredką ([C.crayon_color == "red" ? "czerwoną" : "niebieską"]). Nikt nie zauważy... prawda?</span>")
 			update_icon()

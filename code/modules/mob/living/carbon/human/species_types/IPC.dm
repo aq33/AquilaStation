@@ -1,5 +1,5 @@
 /datum/species/ipc
-	name = "\improper Integrated Positronic Chassis"
+	name = "\improper Zintegrowane podwozie pozytroniczne"
 	id = SPECIES_IPC
 	bodyflag = FLAG_IPC
 	sexes = FALSE
@@ -100,7 +100,7 @@
 	C.update_body()
 
 /datum/action/innate/change_screen
-	name = "Change Display"
+	name = "Zmień ekran"
 	check_flags = AB_CHECK_CONSCIOUS
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "drone_vision"
@@ -120,8 +120,8 @@
 	H.update_body()
 
 /obj/item/apc_powercord
-	name = "power cord"
-	desc = "An internal power cord hooked up to a battery. Useful if you run on electricity. Not so much otherwise."
+	name = "przewód zasilający"
+	desc = "Wewnętrzny przewód zasilający podłączony do baterii. Przydatny, jeśli działasz na prąd. W przeciwnym razie raczej nie."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "wire1"
 
@@ -222,12 +222,12 @@
 	playsound(H, 'aquila/sound/voice/dialup.ogg', 25) //AQUILA EDIT tu był 20 sekundowy klip, panie zbaw nasze uszy
 
 /datum/species/ipc/proc/declare_revival(mob/living/carbon/human/H)
-	H.say("Reactivating [pick("core systems", "central subroutines", "key functions")]...")
+	H.say("Reaktywacja: [pick("systemy rdzenia", "centralne podprogramy", "kluczowe funkcje")]...")
 	sleep(3 SECONDS)
 	if(QDELETED(H) || H.stat == DEAD) // AQ EDIT - ciało mogło zniknąć w trakcie
 		return
 	playsound(H, 'sound/voice/dialup.ogg', 25)
-	H.say("Reinitializing [pick("personality matrix", "behavior logic", "morality subsystems")]...")
+	H.say("Ponowna inicjalizacja: [pick("matryca osobowości", "logika zachowań", "podsystemy moralności")]...")
 	sleep(3 SECONDS)
 	if(QDELETED(H) || H.stat == DEAD) // AQ EDIT - ciało mogło zniknąć w trakcie
 		return

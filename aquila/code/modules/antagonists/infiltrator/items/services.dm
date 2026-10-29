@@ -1,7 +1,7 @@
 GLOBAL_VAR_INIT(next_button_push, 0)
 
 /obj/item/service
-	name = "big red button"
+	name = "wielki czerwony przycisk"
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bigred"
 	item_state = "electronic"
@@ -10,7 +10,7 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/service/manifest
-	desc = "Adds the name of whoever pressed it to the crew manifest. Cannot be changed or undone after the fact!"
+	desc = "Dopisuje do manifestu załogi osobę, która go naciśnie. Później nie da się tego zmienić ani cofnąć!"
 
 /obj/item/service/manifest/attack_self(mob/user)
 	if(ishuman(user))
@@ -21,10 +21,10 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 			return
 		var/record_name = ID.registered_name || H.name
 		var/assignment = ID.assignment || "Unassigned"
-		if(alert(user, "Na pewno chcesz, żeby twój wpis w manifeście załogi brzmiał: [record_name], [assignment]?", "", "Yes", "No") != "Yes")
+		if(alert(user, "Na pewno chcesz, żeby twój wpis w manifeście załogi brzmiał: [record_name], [assignment]?", "", "Tak", "Nie") != "Tak")
 			return
 		var/list/all_jobs = (GLOB.command_positions + GLOB.engineering_positions + GLOB.medical_positions + GLOB.science_positions + GLOB.supply_positions + GLOB.civilian_positions + GLOB.security_positions)
-		if(!(assignment in all_jobs) && (alert(user, "Na pewno chcesz mieć stanowisko '[assignment]'? To nie jest standardowe stanowisko i może dziwnie wyglądać w manifeście!", "", "Yes", "No") != "Yes"))
+		if(!(assignment in all_jobs) && (alert(user, "Na pewno chcesz mieć stanowisko '[assignment]'? To nie jest standardowe stanowisko i może dziwnie wyglądać w manifeście!", "", "Tak", "Nie") != "Tak"))
 			return
 		if(QDELETED(src) || !user.is_holding(src))
 			return
@@ -35,39 +35,39 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 		qdel(src)
 
 /obj/item/service/ion
-	desc = "Announces a fake ion storm."
+	desc = "Nadaje fałszywe ogłoszenie o burzy jonowej."
 
 /obj/item/service/ion/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("W pobliżu statku wykryto burzę jonową. Sprawdźcie, czy sprzęt sterowany przez SI działa poprawnie.", "Alarm - anomalia", 'sound/ai/default/ionstorm.ogg')
-	message_admins("[key_name_admin(user)] made a fake ion storm announcement!")
+	message_admins("[key_name_admin(user)] nadaje fałszywe ogłoszenie o burzy jonowej!")
 	log_game("[key_name_admin(user)] made a fake ion storm announcement!")
 	do_sparks(2, FALSE, src)
 	GLOB.next_button_push = world.time+10
 	qdel(src)
 
 /obj/item/service/meteor
-	desc = "Announces a fake meteor storm."
+	desc = "Nadaje fałszywe ogłoszenie o deszczu meteorów."
 
 /obj/item/service/meteor/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("Wykryto meteory na kursie kolizyjnym ze statkiem.", "Alarm meteorytowy", 'sound/ai/default/meteors.ogg')
-	message_admins("[key_name_admin(user)] made a fake meteor storm announcement!")
+	message_admins("[key_name_admin(user)] nadaje fałszywe ogłoszenie o deszczu meteorów!")
 	log_game("[key_name_admin(user)] made a fake meteor storm announcement!")
 	do_sparks(2, FALSE, src)
 	GLOB.next_button_push = world.time+10
 	qdel(src)
 
 /obj/item/service/rodgod
-	desc = "Announces a fake immovable rod."
+	desc = "Nadaje fałszywe ogłoszenie o nieruchomym pręcie."
 
 /obj/item/service/rodgod/attack_self(mob/user)
 	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("Co to, kurwa, było?!", "Alarm ogólny")
-	message_admins("[key_name_admin(user)] made a fake immovable rod announcement!")
+	message_admins("[key_name_admin(user)] nadaje fałszywe ogłoszenie o nieruchomym pręcie!")
 	log_game("[key_name_admin(user)] made a fake immovable rod announcement!")
 	do_sparks(2, FALSE, src)
 	GLOB.next_button_push = world.time+10

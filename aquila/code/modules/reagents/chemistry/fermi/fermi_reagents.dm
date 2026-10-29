@@ -15,10 +15,10 @@
 
 //Causes slight liver damage, and that's it.
 /datum/reagent/impurity
-	name = "Chemical Isomers"
+	name = "Izomery chemiczne"
 	description = "Nieczyste izomery powstałe w nieoptymalnej reakcji. Lekko uszkadzają wątrobę."
 	color = "#c8c8a0"
-	taste_description = "chemiczną gorycz"
+	taste_description = "chemiczna gorycz"
 	fermi_flags = REAGENT_SNEAKYNAME
 	ph = 3
 	inverse_chem = null
@@ -37,10 +37,10 @@
 
 //Basically just so people don't forget to adjust metabolization_rate
 /datum/reagent/inverse
-	name = "Toxic Monomers"
+	name = "Toksyczne monomery"
 	description = "Odwrócone odczynniki powstają, gdy czystość odczynnika spadnie poniżej jego progu odwrócenia. Tworzą się przy spożyciu, zastępując swój odczynnik, albo w samej reakcji."
 	color = "#7a1f4b"
-	taste_description = "metaliczną gorycz"
+	taste_description = "metaliczna gorycz"
 	ph = 2
 	fermi_flags = REAGENT_SNEAKYNAME
 	inverse_chem = null
@@ -56,7 +56,7 @@
 //Failed chems - generally use inverse if you want to use a impure subtype for it
 //technically not a impure chem, but it's here because it can only be made with a failed impure reaction
 /datum/reagent/consumable/failed_reaction
-	name = "Viscous Sludge"
+	name = "Lepki szlam"
 	description = "Śmierdzący szlam, który powstaje, gdy reakcja jest zbyt nieczysta."
 	nutriment_factor = -1
 	quality = -1
@@ -68,8 +68,8 @@
 ////////////////////////////// Bufory i środki reakcyjne //////////////////////////////
 
 /datum/reagent/reaction_agent
-	name = "Reaction Agent"
-	description = "Hello! I am a bugged reagent. Please report me for my crimes. Thank you!!"
+	name = "Środek reakcyjny"
+	description = "Cześć! Jestem zbugowanym odczynnikiem. Zgłoś mnie za moje zbrodnie. Dziękuję!!"
 	inverse_chem = null
 	chem_flags = CHEMICAL_NOT_SYNTH
 
@@ -103,7 +103,7 @@
 	holder.update_total()
 
 /datum/reagent/reaction_agent/acidic_buffer
-	name = "Strong Acidic Buffer"
+	name = "Mocny bufor kwaśny"
 	description = "Ten odczynnik zużywa się przy dolaniu do innego i przesuwa pH roztworu w stronę kwaśnego."
 	color = "#fbc314"
 	ph = 0
@@ -123,7 +123,7 @@
 	consume_self(amount, copy_only)
 
 /datum/reagent/reaction_agent/basic_buffer
-	name = "Strong Basic Buffer"
+	name = "Mocny bufor zasadowy"
 	description = "Ten odczynnik zużywa się przy dolaniu do innego i przesuwa pH roztworu w stronę zasadowego."
 	color = "#3853a4"
 	ph = 14
@@ -143,17 +143,17 @@
 //purity testor/reaction agent prefactors
 
 /datum/reagent/prefactor_a
-	name = "Interim Product Alpha"
+	name = "Półprodukt Alfa"
 	description = "Prekursor testera czystości. Reaguje ze stabilną plazmą."
 	color = "#bafa69"
 
 /datum/reagent/prefactor_b
-	name = "Interim Product Beta"
+	name = "Półprodukt Beta"
 	description = "Prekursor przyspieszacza reakcji. Reaguje ze stabilną plazmą."
 	color = "#8a3aa9"
 
 /datum/reagent/reaction_agent/purity_tester
-	name = "Purity Tester"
+	name = "Tester czystości"
 	description = "Ten odczynnik zużywa się przy dolaniu i gwałtownie reaguje, jeśli w zlewce jest bardzo nieczysty odczynnik."
 	ph = 3
 	color = "#ffffff"
@@ -176,7 +176,7 @@
 #define SPEED_REAGENT_STRENGTH 20
 
 /datum/reagent/reaction_agent/speed_agent
-	name = "Tempomyocin"
+	name = "Tempomiocyna"
 	description = "Ten odczynnik zużywa się i przyspiesza trwającą reakcję, zmieniając jej czystość na swoją."
 	ph = 10
 	color = "#e61f82"
@@ -199,7 +199,7 @@
 #undef SPEED_REAGENT_STRENGTH
 
 /datum/reagent/reaction_agent/inversing_buffer
-	name = "Chiral Inversing Buffer"
+	name = "Chiralny bufor odwracający"
 	description = "Ten odczynnik zużywa się i zamienia nieczyste odczynniki w ich odwrócone odpowiedniki. Ilość zależy od objętości buforu."
 	ph = 7
 	color = "#b60046"
@@ -242,7 +242,7 @@
 
 ///These alter reaction conditions while they're in the beaker
 /datum/reagent/catalyst_agent
-	name = "Catalyst agent"
+	name = "Środek katalityczny"
 	inverse_chem = null
 	///The typepath of the reagent they that they affect
 	var/target_reagent_type
@@ -258,7 +258,7 @@
 	return FALSE
 
 /datum/reagent/catalyst_agent/speed
-	name = "Speed Catalyst Agent"
+	name = "Katalizator szybkości"
 
 /datum/reagent/catalyst_agent/speed/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
@@ -267,7 +267,7 @@
 		equilibrium.time_deficit += creation_purity * (0.05 * modifier) //give the reaction a little boost too (40% faster)
 
 /datum/reagent/catalyst_agent/ph
-	name = "pH Catalyst Agent"
+	name = "Katalizator pH"
 
 /datum/reagent/catalyst_agent/ph/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
@@ -275,7 +275,7 @@
 		equilibrium.h_ion_mod = ((creation_purity - 0.5) * 2) * modifier //So a purity 1 = the modifier, and a purity 0 = the inverse modifier
 
 /datum/reagent/catalyst_agent/temperature
-	name = "Temperature Catalyst Agent"
+	name = "Katalizator temperatury"
 
 /datum/reagent/catalyst_agent/temperature/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
@@ -284,20 +284,20 @@
 
 ///Catalyst precursors. P is the harder one to make, because it is probably more useful
 /datum/reagent/catalyst_precursor_ph
-	name = "Catalysium P"
+	name = "Katalizum P"
 	description = "Bliski krewny prefaktorów, prekursor modulatora jonowego. Reaguje ze stabilną plazmą."
 	color = "#bafa69"
 	ph = 7
 
 /datum/reagent/catalyst_precursor_temp
-	name = "Catalysium T"
+	name = "Katalizum T"
 	description = "Bliski krewny prefaktorów, prekursor modulatora termicznego. Reaguje ze stabilną plazmą."
 	color = "#c91a1a"
 	ph = 7
 
 ///General catalysts
 /datum/reagent/catalyst_agent/ph/generic
-	name = "Ionic Modulator"
+	name = "Modulator jonowy"
 	target_reagent_type = /datum/reagent
 	modifier = 0.5
 	description = "Ten katalizator stabilizuje reakcje w zlewce, zmniejszając zmiany pH powodowane przez reagujące chemikalia."
@@ -305,7 +305,7 @@
 	color = "#84e30b"
 
 /datum/reagent/catalyst_agent/temperature/generic
-	name = "Thermic Modulator"
+	name = "Modulator termiczny"
 	target_reagent_type = /datum/reagent
 	modifier = 0.5
 	description = "Ten katalizator stabilizuje reakcje w zlewce, zmniejszając ich endo- i egzotermiczność."
@@ -314,7 +314,7 @@
 
 ///These affect medicines
 /datum/reagent/catalyst_agent/speed/medicine
-	name = "Palladium Synthate Catalyst"
+	name = "Katalizator z syntetatu palladu"
 	description = "Ten katalizator mocno przyspiesza wszystkie reakcje leków w tej samej zlewce."
 	target_reagent_type = /datum/reagent/medicine
 	modifier = 2

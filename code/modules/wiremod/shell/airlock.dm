@@ -1,5 +1,5 @@
 /obj/machinery/door/airlock/shell
-	name = "circuit airlock"
+	name = "śluza z układem"
 	autoclose = FALSE
 
 /obj/machinery/door/airlock/shell/Initialize(mapload)

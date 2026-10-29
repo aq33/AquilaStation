@@ -1,6 +1,6 @@
 /obj/item/food/sandwich
-	name = "sandwich"
-	desc = "A grand creation of meat, cheese, bread, and several leaves of lettuce! Arthur Dent would be proud."
+	name = "kanapka"
+	desc = "Wspaniałe dzieło z mięsa, sera, chleba i kilku liści sałaty! Arthur Dent byłby dumny."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "sandwich"
 	food_reagents = list(
@@ -15,8 +15,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/grilled_cheese_sandwich
-	name = "grilled cheese sandwich"
-	desc = "A warm, melty sandwich that goes perfectly with tomato soup."
+	name = "tost z serem"
+	desc = "Ciepła kanapka z roztopionym serem, idealna do zupy pomidorowej."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "toastedsandwich"
 	food_reagents = list(
@@ -32,8 +32,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cheese_sandwich
-	name = "cheese sandwich"
-	desc = "A light snack for a warm day. ...but what if you grilled it?"
+	name = "kanapka z serem"
+	desc = "Lekka przekąska na ciepły dzień. ...ale co, gdyby ją zgrillować?"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "sandwich"
 	food_reagents = list(
@@ -51,8 +51,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/grilled_cheese_sandwich, rand(30 SECONDS, 60 SECONDS), TRUE)
 
 /obj/item/food/jellysandwich
-	name = "jelly sandwich"
-	desc = "You wish you had some peanut butter to go with this..."
+	name = "kanapka z dżemem"
+	desc = "Szkoda, że nie masz do tego masła orzechowego..."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "jellysandwich"
 	bite_consumption = 3
@@ -79,8 +79,8 @@
 	foodtypes = GRAIN | FRUIT | SUGAR
 
 /obj/item/food/notasandwich
-	name = "not-a-sandwich"
-	desc = "Something seems to be wrong with this, you can't quite figure what. Maybe it's his moustache."
+	name = "nie-kanapka"
+	desc = "Coś tu jest nie tak, ale nie wiesz dokładnie co. Może to te wąsy."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "notasandwich"
 	food_reagents = list(
@@ -94,8 +94,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/butteredtoast
-	name = "buttered toast"
-	desc = "Butter lightly spread over a piece of toast."
+	name = "tost z masłem"
+	desc = "Kromka tostu lekko posmarowana masłem."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "butteredtoast"
 	bite_consumption = 3
@@ -110,8 +110,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/jelliedtoast
-	name = "jellied toast"
-	desc = "A slice of toast covered with delicious jam."
+	name = "tost z dżemem"
+	desc = "Kromka tostu z pysznym dżemem."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "jellytoast"
 	bite_consumption = 3
@@ -138,8 +138,8 @@
 	foodtypes = GRAIN | TOXIC | SUGAR | BREAKFAST
 
 /obj/item/food/twobread
-	name = "two bread"
-	desc = "This seems awfully bitter."
+	name = "dwa chleby"
+	desc = "Wydaje się strasznie gorzkie."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "twobread"
 	food_reagents = list(
@@ -153,8 +153,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/hotdog
-	name = "hotdog"
-	desc = "Hot and steamy hotdog weenie."
+	name = "hot dog"
+	desc = "Gorąca, parująca parówka w bułce."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "hotdog"
 	bite_consumption = 3

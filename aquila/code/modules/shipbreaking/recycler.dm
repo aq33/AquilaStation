@@ -95,7 +95,7 @@
 	needs_anchored = FALSE
 
 /datum/design/board/shipbreaker
-	name = "Machine Design (Recykler złomu)"
+	name = "Projekt maszyny (recykler złomu)"
 	desc = "Płytka recyklera złomu z wraków."
 	id = "shipbreaker_recycler"
 	build_path = /obj/item/circuitboard/machine/shipbreaker

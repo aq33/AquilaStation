@@ -53,33 +53,33 @@ export const RefillableChemDispenser = (props) => {
     <Window width={635} height={620}>
       <Window.Content scrollable>
         <Section
-          title="Status"
+          title="Stan"
           buttons={
             recording && (
               <Box inline mx={1} color="red">
                 <Icon name="circle" mr={1} />
-                Recording
+                Nagrywanie
               </Box>
             )
           }
         >
           <LabeledList>
-            <LabeledList.Item label="Capacity">
+            <LabeledList.Item label="Pojemność">
               <ProgressBar value={data.volume / data.maxVolume}>
-                {toFixed(data.volume) + ' units'}
+                {toFixed(data.volume) + ' j.'}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section
-          title="Recipes"
+          title="Receptury"
           buttons={
             <>
               {!recording && (
                 <Box inline mx={1}>
                   <Button
                     color="transparent"
-                    content="Clear recipes"
+                    content="Wyczyść receptury"
                     onClick={() => act('clear_recipes')}
                   />
                 </Box>
@@ -88,7 +88,7 @@ export const RefillableChemDispenser = (props) => {
                 <Button
                   icon="circle"
                   // disabled={!data.isBeakerLoaded}
-                  content="Record"
+                  content="Nagraj"
                   onClick={() => act('record_recipe')}
                 />
               )}
@@ -96,7 +96,7 @@ export const RefillableChemDispenser = (props) => {
                 <Button
                   icon="ban"
                   color="transparent"
-                  content="Discard"
+                  content="Odrzuć"
                   onClick={() => act('cancel_recording')}
                 />
               )}
@@ -104,7 +104,7 @@ export const RefillableChemDispenser = (props) => {
                 <Button
                   icon="save"
                   color="green"
-                  content="Save"
+                  content="Zapisz"
                   onClick={() => act('save_recording')}
                 />
               )}
@@ -126,11 +126,13 @@ export const RefillableChemDispenser = (props) => {
                 }
               />
             ))}
-            {recipes.length === 0 && <Box color="light-gray">No recipes.</Box>}
+            {recipes.length === 0 && (
+              <Box color="light-gray">Brak receptur.</Box>
+            )}
           </Box>
         </Section>
         <Section
-          title="Dispense"
+          title="Dozuj"
           buttons={beakerTransferAmounts.map((amount) => (
             <Button
               key={amount}
@@ -164,7 +166,7 @@ export const RefillableChemDispenser = (props) => {
           </Box>
         </Section>
         <Section
-          title="Beaker"
+          title="Zlewka"
           buttons={
             !!isBeakerLoaded && (
               <>
@@ -173,20 +175,20 @@ export const RefillableChemDispenser = (props) => {
                     value={data.beakerCurrentVolume}
                     initial={0}
                   />
-                  {` / ${data.beakerMaxVolume} units`}
+                  {` / ${data.beakerMaxVolume} j.`}
                 </Box>
                 <Box inline color="label" mr={1}>
-                  Mode:
+                  Tryb:
                 </Box>
                 <Button
                   color={data.mode ? 'good' : 'bad'}
                   icon={data.mode ? 'exchange-alt' : 'times'}
-                  content={data.mode ? 'Transfer' : 'Destroy'}
+                  content={data.mode ? 'Przelewanie' : 'Usuwanie'}
                   onClick={() => act('toggleMode')}
                 />
                 <Button
                   icon="eject"
-                  content="Eject"
+                  content="Wysuń"
                   onClick={() => act('eject')}
                 />
               </>
@@ -195,12 +197,12 @@ export const RefillableChemDispenser = (props) => {
         >
           {!isBeakerLoaded && !recording && (
             <Box color="label" mt="3px" mb="5px">
-              No beaker loaded.
+              Nie włożono zlewki.
             </Box>
           )}
           {!!isBeakerLoaded && beakerContents.length === 0 && (
             <Box color="label" mt="3px" mb="5px">
-              Beaker is empty.
+              Zlewka jest pusta.
             </Box>
           )}
           <ChemicalBuffer>
@@ -224,7 +226,7 @@ const ChemicalBufferEntry = (props) => {
     <Table.Row key={chemical.name}>
       <Table.Cell color="label">
         <AnimatedNumber value={chemical.volume} initial={0} />
-        {` units of ${chemical.name}`}
+        {` j. ${chemical.name}`}
       </Table.Cell>
       <Table.Cell collapsing>
         <Button
@@ -258,7 +260,7 @@ const ChemicalBufferEntry = (props) => {
           }
         />
         <Button
-          content="All"
+          content="Wszystko"
           disabled={recording}
           onClick={() =>
             act('transfer', {
@@ -269,7 +271,7 @@ const ChemicalBufferEntry = (props) => {
         />
         <Button
           icon="ellipsis-h"
-          tooltip="Custom amount"
+          tooltip="Własna ilość"
           disabled={recording}
           onClick={() =>
             act('transfer', {

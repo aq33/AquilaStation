@@ -144,16 +144,16 @@ export const Starmap = (props) => {
           {screen === 0 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
-              <Section title="Drive status:">
+              <Section title="Stan napędu:">
                 <ProgressBar
                   value={(data.ftl_progress / data.ftl_goal) * 100 * 0.01}
                   ranges={{
@@ -164,20 +164,20 @@ export const Starmap = (props) => {
                 />
               </Section>
               {(!!data.in_transit && (
-                <Section title="Current system:">
-                  In transit from:
+                <Section title="Obecny układ:">
+                  W drodze z:
                   <Button
                     content={data.from_star_name}
-                    tooltip="Click to view information about star"
+                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
                     icon="star"
                     onClick={() =>
                       act('select_system', { star_id: data.from_star_id })
                     }
                   />
-                  To:
+                  Do:
                   <Button
                     content={data.to_star_name}
-                    tooltip="Click to view information about star"
+                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
                     icon="star"
                     onClick={() =>
                       act('select_system', { star_id: data.to_star_id })
@@ -186,10 +186,10 @@ export const Starmap = (props) => {
                   ETA: {Math.round(data.time_left)}
                 </Section>
               )) || (
-                <Section title="Current system:">
+                <Section title="Obecny układ:">
                   <Button
                     content={data.star_name}
-                    tooltip="Click to view information about star"
+                    tooltip="Kliknij, żeby zobaczyć informacje o gwieździe"
                     icon="star"
                     onClick={() => act('star_id', { star_id: data.star_id })}
                   />
@@ -200,17 +200,17 @@ export const Starmap = (props) => {
           {screen === 1 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
               <Button
-                content="Change Sector"
+                content="Zmień sektor"
                 icon="bullseye"
                 onClick={() => act('sector')}
               />
@@ -220,35 +220,35 @@ export const Starmap = (props) => {
           {screen === 2 && (
             <>
               <Button
-                content="Ship Information"
+                content="Informacje o statku"
                 icon="info-circle"
                 onClick={() => act('shipinf')}
               />
               <Button
-                content="Show Map"
+                content="Pokaż mapę"
                 icon="map"
                 onClick={() => act('map')}
               />
               <Section title={data.star_name}>
-                Distance: {data.star_dist ? data.star_dist + ' LY' : '0LY'}
+                Odległość: {data.star_dist ? data.star_dist + ' ly' : '0 ly'}
                 <br />
-                Alignment: {data.alignment ? data.alignment : 'Unknown'}
+                Przynależność: {data.alignment ? data.alignment : 'Nieznana'}
                 <br />
                 <Button
-                  content="Jump"
+                  content="Skok"
                   icon="arrow-right"
                   color={data.ftl_safety_override ? 'red' : 'default'}
                   disabled={!data.can_jump}
                   onClick={() => act('jump')}
                 />
                 <Button
-                  content="Cancel jump"
+                  content="Anuluj skok"
                   icon="stop-circle-o"
                   disabled={!can_cancel}
                   onClick={() => act('cancel_jump')}
                 />
               </Section>
-              <Section title="Drive status:">
+              <Section title="Stan napędu:">
                 <ProgressBar
                   value={(data.ftl_progress / data.ftl_goal) * 100 * 0.01}
                   ranges={{

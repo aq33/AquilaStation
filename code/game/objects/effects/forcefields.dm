@@ -1,6 +1,6 @@
 /obj/effect/forcefield
-	desc = "A space wizard's magic wall."
-	name = "FORCEWALL"
+	desc = "Magiczna ściana kosmicznego czarodzieja."
+	name = "ŚCIANA MOCY"
 	icon_state = "m_shield"
 	anchored = TRUE
 	opacity = 0
@@ -19,8 +19,8 @@
 	return
 
 /obj/effect/forcefield/cult
-	desc = "An unholy shield that blocks all attacks."
-	name = "glowing wall"
+	desc = "Bezbożna tarcza, która blokuje wszystkie ataki."
+	name = "świecąca ściana"
 	icon = 'icons/effects/cult_effects.dmi'
 	icon_state = "cultshield"
 	CanAtmosPass = ATMOS_PASS_NO
@@ -30,10 +30,10 @@
 
 /obj/effect/forcefield/mime
 	icon_state = "nothing"
-	name = "invisible wall"
-	desc = "You have a bad feeling about this."
+	name = "niewidzialna ściana"
+	desc = "Masz co do tego złe przeczucia."
 
 /obj/effect/forcefield/mime/advanced
-	name = "invisible blockade"
-	desc = "You're gonna be here awhile."
+	name = "niewidzialna blokada"
+	desc = "Trochę tu posiedzisz."
 	timeleft = 600

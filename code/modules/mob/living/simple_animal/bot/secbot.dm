@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/secbot
 	name = "\improper Securitron"
-	desc = "A little security robot.  He looks less than thrilled."
+	desc = "Mały robot ochrony. Nie wygląda na zachwyconego."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "secbot"
 	density = FALSE
@@ -35,15 +35,15 @@
 	var/arrest_type = FALSE //If true, don't handcuff
 
 /mob/living/simple_animal/bot/secbot/beepsky
-	name = "Officer Beep O'sky"
-	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
+	name = "Oficer Beep O'sky"
+	desc = "To Oficer Beep O'sky! Zasila go ziemniak i kieliszek whisky."
 	idcheck = FALSE
 	weaponscheck = FALSE
 	auto_patrol = TRUE
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr
-	name = "Officer Pipsqueak"
-	desc = "It's Officer Beep O'sky's smaller, just-as aggressive cousin, Pipsqueak."
+	name = "Oficer Pipsqueak"
+	desc = "To Pipsqueak, mniejszy, ale równie agresywny kuzyn Oficera Beep O'sky'ego."
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize(mapload)
 	. = ..()
@@ -60,8 +60,8 @@
 	..()
 
 /mob/living/simple_animal/bot/secbot/pingsky
-	name = "Officer Pingsky"
-	desc = "It's Officer Pingsky! Delegated to satellite guard duty for harbouring anti-human sentiment."
+	name = "Oficer Pingsky"
+	desc = "To Oficer Pingsky! Oddelegowany do pilnowania satelity za żywienie antyludzkich uczuć."
 	radio_channel = RADIO_CHANNEL_AI_PRIVATE
 
 /mob/living/simple_animal/bot/secbot/Initialize(mapload)

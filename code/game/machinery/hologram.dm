@@ -29,7 +29,7 @@ Possible to do for anyone motivated enough:
 
 /obj/machinery/holopad
 	name = "holopad"
-	desc = "It's a floor-mounted device for projecting holographic images."
+	desc = "Montowane w podłodze urządzenie do wyświetlania obrazów holograficznych."
 	icon_state = "holopad0"
 	layer = LOW_OBJ_LAYER
 	plane = FLOOR_PLANE
@@ -71,8 +71,8 @@ Possible to do for anyone motivated enough:
 
 // AQ EDIT START - port BeeStation #14515
 /obj/machinery/holopad/secure
-	name = "secure holopad"
-	desc = "It's a floor-mounted device for projecting holographic images. This one will refuse to auto-connect incoming calls."
+	name = "zabezpieczony holopad"
+	desc = "Montowane w podłodze urządzenie do wyświetlania obrazów holograficznych. Ten nie odbiera automatycznie połączeń przychodzących."
 	secure = TRUE
 
 /obj/machinery/holopad/secure/Initialize(mapload)
@@ -245,7 +245,7 @@ Possible to do for anyone motivated enough:
 	switch(action)
 		if("AIrequest")
 			if(last_request + 20 SECONDS > world.time)
-				to_chat(usr, "<span class='info'>A request for AI presence was already sent recently.</span>")
+				to_chat(usr, "<span class='info'>Prośba o obecność SI została niedawno wysłana.</span>")
 				return
 			last_request = world.time
 			to_chat(usr, "<span class='info'>Wzywasz SI.</span>")
@@ -268,7 +268,7 @@ Possible to do for anyone motivated enough:
 				if(A)
 					LAZYADD(callnames[A], I)
 			callnames -= get_area(src)
-			var/result = tgui_input_list(usr, "Wybierz obszar, do którego chcesz zadzwonić", "Holocall", sortNames(callnames))
+			var/result = tgui_input_list(usr, "Wybierz obszar, do którego chcesz zadzwonić", "Holopołączenie", sortNames(callnames))
 			if(isnull(result) || QDELETED(usr) || outgoing_call || usr.loc != loc)
 				return
 			// Heads of staff connect straight to pads that are not secure
@@ -595,7 +595,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	Hologram.mouse_opacity = MOUSE_OPACITY_TRANSPARENT//So you can't click on it.
 	Hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
 	Hologram.setAnchored(TRUE)//So space wind cannot drag it.
-	Hologram.name = "[record.caller_name] (Hologram)"//If someone decides to right click.
+	Hologram.name = "[record.caller_name] (hologram)"//If someone decides to right click.
 	Hologram.set_light(2)	//hologram lighting
 	visible_message("<span class='notice'>Przed twoimi oczami migocząc pojawia się holograficzny obraz [record.caller_name]!</span>")
 	return Hologram
@@ -690,7 +690,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			replay_holo.cut_overlays()
 			replay_holo.add_overlay(H.build_image())
 		if(HOLORECORD_RENAME)
-			replay_holo.name = entry[2] + " (Hologram)"
+			replay_holo.name = entry[2] + " (hologram)"
 	.(entry_number+1)
 
 /obj/machinery/holopad/proc/record_stop()
@@ -726,7 +726,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return ..()
 
 /obj/effect/overlay/holoray
-	name = "holoray"
+	name = "holopromień"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "holoray"
 	layer = FLY_LAYER

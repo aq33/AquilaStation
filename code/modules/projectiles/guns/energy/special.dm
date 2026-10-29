@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
-	name = "ion rifle"
-	desc = "A man-portable anti-armor weapon designed to disable mechanical threats at range."
+	name = "karabin jonowy"
+	desc = "Przenośna broń przeciwpancerna do unieszkodliwiania zagrożeń mechanicznych na odległość."
 	icon_state = "ionrifle"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	can_flashlight = TRUE
@@ -13,8 +13,8 @@
 	flight_y_offset = 9
 
 /obj/item/gun/energy/ionrifle/carbine
-	name = "ion carbine"
-	desc = "The MK.II Prototype Ion Projector is a lightweight carbine version of the larger ion rifle, built to be ergonomic and efficient."
+	name = "karabinek jonowy"
+	desc = "Prototypowy projektor jonowy MK.II to lekka, ergonomiczna i wydajna wersja większego karabinu jonowego."
 	icon_state = "ioncarbine"
 	worn_icon_state = "ioncarbine"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -28,8 +28,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/decloner
-	name = "biological demolecularisor"
-	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
+	name = "biologiczny demolekularyzator"
+	desc = "Broń emitująca duże dawki kontrolowanego promieniowania, które powoli rozbijają cel na pierwiastki."
 	icon_state = "decloner"
 	ammo_type = list(/obj/item/ammo_casing/energy/declone)
 	pin = null
@@ -46,8 +46,8 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/declone/weak)
 
 /obj/item/gun/energy/floragun
-	name = "floral somatoray"
-	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
+	name = "roślinny somatopromiennik"
+	desc = "Narzędzie emitujące kontrolowane promieniowanie, które wywołuje mutacje w komórkach roślin."
 	icon_state = "flora"
 	item_state = "gun"
 	ammo_type = list(/obj/item/ammo_casing/energy/flora/yield, /obj/item/ammo_casing/energy/flora/mut)
@@ -56,8 +56,8 @@
 	selfcharge = 1
 
 /obj/item/gun/energy/meteorgun
-	name = "meteor gun"
-	desc = "For the love of god, make sure you're aiming this the right way!"
+	name = "działko meteorytowe"
+	desc = "Na litość boską, upewnij się, że celujesz w dobrą stronę!"
 	icon_state = "meteor_gun"
 	item_state = "c20r"
 	w_class = WEIGHT_CLASS_BULKY
@@ -67,8 +67,8 @@
 	selfcharge = 1
 
 /obj/item/gun/energy/meteorgun/pen
-	name = "meteor pen"
-	desc = "The pen is mightier than the sword."
+	name = "długopis meteorytowy"
+	desc = "Pióro jest potężniejsze od miecza."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
@@ -78,15 +78,15 @@
 
 /obj/item/gun/energy/mindflayer
 	name = "\improper Mind Flayer"
-	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
+	desc = "Prototypowa broń odzyskana z ruin Stacji Badawczej Epsilon."
 	icon_state = "xray"
 	item_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/mindflayer)
 	ammo_x_offset = 2
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow
-	name = "mini energy crossbow"
-	desc = "A weapon favored by syndicate stealth specialists."
+	name = "mini kusza energetyczna"
+	desc = "Broń ulubiona przez specjalistów od skrytych operacji Syndykatu."
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
@@ -102,15 +102,15 @@
 	max_mod_capacity = 0
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow/halloween
-	name = "candy corn crossbow"
-	desc = "A weapon favored by Syndicate trick-or-treaters."
+	name = "cukierkowa kusza"
+	desc = "Broń ulubiona przez zbieraczy słodyczy z Syndykatu."
 	icon_state = "crossbow_halloween"
 	item_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/halloween)
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow/large
-	name = "energy crossbow"
-	desc = "A reverse engineered weapon using syndicate technology."
+	name = "kusza energetyczna"
+	desc = "Broń odtworzona inżynierią wsteczną z technologii Syndykatu."
 	icon_state = "crossbowlarge"
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(/datum/material/iron=4000)
@@ -119,16 +119,16 @@
 	pin = null
 
 /obj/item/gun/energy/kinetic_accelerator/crossbow/radbow
-	name = "gamma bow"
-	desc = "A weapon favored by Madmen."
+	name = "łuk gamma"
+	desc = "Broń ulubiona przez szaleńców."
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/radbolt)
 	overheat_time = 250
 
 /obj/item/gun/energy/plasmacutter
-	name = "plasma cutter"
-	desc = "A mining tool capable of expelling concentrated plasma bursts. You could use it to cut limbs off xenos! Or, you know, mine stuff."
+	name = "przecinak plazmowy"
+	desc = "Narzędzie górnicze wyrzucające skoncentrowane impulsy plazmy. Można nim odcinać kończyny ksenomorfom! Albo, no wiesz, kopać."
 	icon_state = "plasmacutter"
 	item_state = "plasmacutter"
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma)
@@ -224,15 +224,15 @@
 	return
 
 /obj/item/gun/energy/plasmacutter/adv
-	name = "advanced plasma cutter"
+	name = "zaawansowany przecinak plazmowy"
 	icon_state = "adv_plasmacutter"
 	item_state = "adv_plasmacutter"
 	force = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
 /obj/item/gun/energy/plasmacutter/cyborg
-	name = "cyborg plasma cutter"
-	desc = "An integrated plasma cutter."
+	name = "przecinak plazmowy cyborga"
+	desc = "Wbudowany przecinak plazmowy."
 	dead_cell = FALSE
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
@@ -241,8 +241,8 @@
 
 
 /obj/item/gun/energy/wormhole_projector
-	name = "bluespace wormhole projector"
-	desc = "A projector that emits high density quantum-coupled bluespace beams."
+	name = "projektor tuneli bluespace"
+	desc = "Projektor emitujący kwantowo sprzężone wiązki bluespace o dużej gęstości."
 	ammo_type = list(/obj/item/ammo_casing/energy/wormhole, /obj/item/ammo_casing/energy/wormhole/orange)
 	item_state = null
 	icon_state = "wormhole_projector"
@@ -310,8 +310,8 @@
 /* 3d printer 'pseudo guns' for borgs */
 
 /obj/item/gun/energy/printer
-	name = "cyborg lmg"
-	desc = "An LMG that fires 3D-printed flechettes. They are slowly resupplied using the cyborg's internal power source."
+	name = "lekki karabin maszynowy cyborga"
+	desc = "Lekki karabin maszynowy strzelający lotkami z drukarki 3D. Zapas powoli uzupełnia się z wewnętrznego źródła zasilania cyborga."
 	icon_state = "l6_cyborg"
 	icon = 'icons/obj/guns/projectile.dmi'
 	cell_type = "/obj/item/stock_parts/cell/secborg"
@@ -329,9 +329,9 @@
 	return
 
 /obj/item/gun/energy/temperature
-	name = "temperature gun"
+	name = "pistolet temperaturowy"
 	icon_state = "freezegun"
-	desc = "A gun that changes temperatures."
+	desc = "Broń zmieniająca temperaturę."
 	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
 	cell_type = "/obj/item/stock_parts/cell/high"
 	automatic = 1
@@ -342,27 +342,27 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/temperature/security
-	name = "security temperature gun"
-	desc = "A weapon that can only be used to its full potential by the truly robust."
+	name = "policyjny pistolet temperaturowy"
+	desc = "Broń, z której pełnego potencjału skorzystają tylko naprawdę krzepcy."
 	pin = /obj/item/firing_pin
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/gun/energy/laser/instakill
-	name = "instakill rifle"
+	name = "karabin natychmiastowej śmierci"
 	icon_state = "instagib"
 	item_state = "instagib"
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit."
+	desc = "Specjalistyczny karabin laserowy ASMD, który większość celów dezintegruje jednym trafieniem."
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill)
 	force = 60
 
 /obj/item/gun/energy/laser/instakill/red
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a red design."
+	desc = "Specjalistyczny karabin laserowy ASMD, który większość celów dezintegruje jednym trafieniem. Ten egzemplarz ma czerwone malowanie."
 	icon_state = "instagibred"
 	item_state = "instagibred"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/red)
 
 /obj/item/gun/energy/laser/instakill/blue
-	desc = "A specialized ASMD laser-rifle, capable of flat-out disintegrating most targets in a single hit. This one has a blue design."
+	desc = "Specjalistyczny karabin laserowy ASMD, który większość celów dezintegruje jednym trafieniem. Ten egzemplarz ma niebieskie malowanie."
 	icon_state = "instagibblue"
 	item_state = "instagibblue"
 	ammo_type = list(/obj/item/ammo_casing/energy/instakill/blue)
@@ -371,8 +371,8 @@
 	return
 
 /obj/item/gun/energy/gravity_gun
-	name = "one-point bluespace-gravitational manipulator"
-	desc = "An experimental, multi-mode device that fires bolts of Zero-Point Energy, causing local distortions in gravity."
+	name = "jednopunktowy manipulator grawitacyjno-bluespace'owy"
+	desc = "Eksperymentalne, wielotrybowe urządzenie strzelające pociskami energii punktu zerowego, które lokalnie zaburzają grawitację."
 	ammo_type = list(/obj/item/ammo_casing/energy/gravity/repulse, /obj/item/ammo_casing/energy/gravity/attract, /obj/item/ammo_casing/energy/gravity/chaos)
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"

@@ -1,7 +1,7 @@
 
 /obj/item/food/bread
-	name = "bread?"
-	desc = "This shouldn't exist, report to codermonkeys"
+	name = "chleb?"
+	desc = "To nie powinno istnieć, zgłoś to koderom."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	max_volume = 80
 	tastes = list("chleb" = 10)
@@ -24,8 +24,8 @@
 		AddElement(/datum/element/processable, TOOL_SAW, slice_type, yield, 4 SECONDS, table_required = TRUE)
 
 /obj/item/food/breadslice
-	name = "breadslice?"
-	desc = "This shouldn't exist, report to codermonkeys"
+	name = "kromka chleba?"
+	desc = "To nie powinno istnieć, zgłoś to koderom."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	foodtypes = GRAIN
 	food_flags = FOOD_FINGER_FOOD
@@ -38,8 +38,8 @@
 	AddElement(/datum/element/dunkable, 10)
 
 /obj/item/food/bread/plain
-	name = "bread"
-	desc = "Some plain old earthen bread."
+	name = "chleb"
+	desc = "Zwykły, stary, ziemski chleb."
 	icon_state = "bread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10
@@ -55,8 +55,8 @@
 	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/bread/empty, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 8)
 
 /obj/item/food/breadslice/plain
-	name = "bread slice"
-	desc = "A slice of home."
+	name = "kromka chleba"
+	desc = "Kromka domu."
 	icon_state = "breadslice"
 	foodtypes = GRAIN
 	food_reagents = list(
@@ -70,8 +70,8 @@
 	AddComponent(/datum/component/customizable_reagent_holder, null, CUSTOM_INGREDIENT_ICON_STACK)
 
 /obj/item/food/breadslice/moldy
-	name = "moldy 'bread' slice"
-	desc = "Entire stations have been ripped apart arguing whether this is still good to eat."
+	name = "spleśniała kromka „chleba”"
+	desc = "Całe stacje rozpadały się w sporach o to, czy to jeszcze nadaje się do jedzenia."
 	icon_state = "moldybreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -83,13 +83,13 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/breadslice/moldy/bacteria
-	name = "bacteria-rich moldy 'bread' slice"
-	desc = "Something (possibly necroyeast) has caused this bread to rise in a macabre state of unlife. \
-		It lurchs about when unattended. You might want to locate a priest if you see this. Or maybe a flamethrower."
+	name = "spleśniała kromka „chleba” pełna bakterii"
+	desc = "Coś (pewnie nekrodrożdże) sprawiło, że ten chleb wyrósł w makabrycznym stanie nieżycia. \
+		Pełza, gdy nikt nie patrzy. Jeśli to widzisz, lepiej poszukaj kapłana. Albo miotacza ognia."
 
 /obj/item/food/bread/meat
-	name = "meatbread loaf"
-	desc = "The culinary base of every self-respecting eloquen/tg/entleman."
+	name = "bochenek chleba mięsnego"
+	desc = "Kulinarna podstawa każdego szanującego się elokwentnego /tg/entlemana."
 	icon_state = "meatbread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -101,8 +101,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/meat
-	name = "meatbread slice"
-	desc = "A slice of delicious meatbread."
+	name = "kromka chleba mięsnego"
+	desc = "Kromka pysznego chleba mięsnego."
 	icon_state = "meatbreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -113,8 +113,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/xenomeat
-	name = "xenomeatbread loaf"
-	desc = "Extra Heretical."
+	name = "bochenek chleba z mięsem ksenomorfa"
+	desc = "Wyjątkowo heretycki."
 	icon_state = "xenomeatbread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -126,8 +126,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/xenomeat
-	name = "xenomeatbread slice"
-	desc = "A slice of delicious meatbread. Extra Heretical."
+	name = "kromka chleba z mięsem ksenomorfa"
+	desc = "Kromka pysznego chleba mięsnego. Wyjątkowo heretycka."
 	icon_state = "xenobreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -138,8 +138,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/spidermeat
-	name = "spider meat loaf"
-	desc = "Reassuringly green meatloaf made from spider meat."
+	name = "pieczeń z mięsa pająka"
+	desc = "Uspokajająco zielona pieczeń z mięsa pająka."
 	icon_state = "spidermeatbread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -152,8 +152,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/spidermeat
-	name = "spider meat bread slice"
-	desc = "A slice of meatloaf made from an animal that most likely still wants you dead."
+	name = "plaster pieczeni z mięsa pająka"
+	desc = "Plaster pieczeni ze zwierzęcia, które najpewniej nadal chce twojej śmierci."
 	icon_state = "spidermeatslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -165,8 +165,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/banana
-	name = "banana-nut bread"
-	desc = "A heavenly and filling treat."
+	name = "chlebek bananowo-orzechowy"
+	desc = "Niebiański i sycący przysmak."
 	icon_state = "bananabread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -178,8 +178,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/banana
-	name = "banana-nut bread slice"
-	desc = "A slice of delicious banana bread."
+	name = "kromka chlebka bananowo-orzechowego"
+	desc = "Kromka pysznego chlebka bananowego."
 	icon_state = "bananabreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -190,8 +190,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/tofu
-	name = "Tofubread"
-	desc = "Like meatbread but for vegetarians. Not guaranteed to give superpowers."
+	name = "chleb z tofu"
+	desc = "Jak chleb mięsny, tylko dla wegetarian. Supermoce niegwarantowane."
 	icon_state = "tofubread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -203,8 +203,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/tofu
-	name = "tofubread slice"
-	desc = "A slice of delicious tofubread."
+	name = "kromka chleba z tofu"
+	desc = "Kromka pysznego chleba z tofu."
 	icon_state = "tofubreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -215,8 +215,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/creamcheese
-	name = "cream cheese bread"
-	desc = "Just a schmear."
+	name = "chleb z serkiem śmietankowym"
+	desc = "Tylko odrobina do posmarowania."
 	icon_state = "creamcheesebread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -228,8 +228,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/creamcheese
-	name = "cream cheese bread slice"
-	desc = "A slice of Brotherly love!"
+	name = "kromka chleba z serkiem śmietankowym"
+	desc = "Kromka braterskiej miłości!"
 	icon_state = "creamcheesebreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -240,8 +240,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/mimana
-	name = "mimana bread"
-	desc = "Best eaten in silence."
+	name = "chleb z mimany"
+	desc = "Najlepiej jeść w ciszy."
 	icon_state = "mimanabread"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 20,
@@ -255,8 +255,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/breadslice/mimana
-	name = "mimana bread slice"
-	desc = "A slice of silence!"
+	name = "kromka chleba z mimany"
+	desc = "Kromka ciszy!"
 	icon_state = "mimanabreadslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -268,25 +268,25 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bread/empty
-	name = "bread"
+	name = "chleb"
 	icon_state = "tofubread"
-	desc = "It's bread, customized to your wildest dreams."
+	desc = "To chleb skrojony na miarę twoich najśmielszych marzeń."
 	slice_type = /obj/item/food/breadslice/empty
 
 // What you get from cutting a custom bread. Different from custom sliced bread.
 /obj/item/food/breadslice/empty
-	name = "bread slice"
+	name = "kromka chleba"
 	icon_state = "tofubreadslice"
 	foodtypes = GRAIN
-	desc = "It's a slice of bread, customized to your wildest dreams."
+	desc = "To kromka chleba skrojona na miarę twoich najśmielszych marzeń."
 
 /obj/item/food/breadslice/empty/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/customizable_reagent_holder, null, CUSTOM_INGREDIENT_ICON_FILL, max_ingredients = 8)
 
 /obj/item/food/baguette
-	name = "baguette"
-	desc = "Bon appetit!"
+	name = "bagietka"
+	desc = "Bon appétit!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "baguette"
 	item_state = null
@@ -304,8 +304,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/baguette/mime
-	name = "French Baguette"
-	desc = "It would be a shame if it was consumed by someone unworthy..."
+	name = "francuska bagietka"
+	desc = "Szkoda by było, gdyby zjadł ją ktoś niegodny..."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
@@ -314,8 +314,8 @@
 	bite_consumption = null
 
 /obj/item/food/garlicbread
-	name = "garlic bread"
-	desc = "Alas, it is limited."
+	name = "chleb czosnkowy"
+	desc = "Niestety, jest go niewiele."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "garlicbread"
 	item_state = null
@@ -330,8 +330,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/butterbiscuit
-	name = "butter biscuit"
-	desc = "Well butter my biscuit!"
+	name = "maślane ciastko"
+	desc = "A niech mnie masłem posmarują!"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "butterbiscuit"
 	food_reagents = list(
@@ -344,8 +344,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/butterdog
-	name = "butterdog"
-	desc = "Made from exotic butters."
+	name = "maślany hot dog"
+	desc = "Zrobiony z egzotycznych maseł."
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "butterdog"
 	bite_consumption = 1

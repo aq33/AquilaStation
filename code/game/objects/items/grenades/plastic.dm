@@ -1,6 +1,6 @@
 /obj/item/grenade/plastic
-	name = "plastic explosive"
-	desc = "Used to put holes in specific areas without too much extra hole."
+	name = "materiał wybuchowy plastyczny"
+	desc = "Służy do robienia dziur w konkretnych miejscach bez zbyt wielu dodatkowych dziur."
 	icon_state = "plastic-explosive0"
 	item_state = "plastic-explosive"
 	lefthand_file = 'icons/mob/inhands/weapons/bombs_lefthand.dmi'
@@ -103,7 +103,7 @@
 	if(nadeassembly)
 		nadeassembly.attack_self(user)
 		return
-	var/newtime = input(usr, "Ustaw zapalnik.", "Timer", 10) as num
+	var/newtime = input(usr, "Ustaw zapalnik.", "Zapalnik", 10) as num
 	if(user.get_active_held_item() == src)
 		newtime = CLAMP(newtime, 10, 60000)
 		det_time = newtime
@@ -124,7 +124,7 @@
 			return
 		target = AM
 
-		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
+		message_admins("[ADMIN_LOOKUPFLW(user)] podkłada [name] na [target.name] w [ADMIN_VERBOSEJMP(target)] z zapalnikiem [det_time] s")
 		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
 
 		notify_ghosts("[user] podkłada [src] na [target] z zapalnikiem [det_time] s!", source = target, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Podłożono ładunek")
@@ -165,7 +165,7 @@
 	M.say(message_say, forced="C4 suicide")
 
 /obj/item/grenade/plastic/suicide_act(mob/user)
-	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [src] at [ADMIN_VERBOSEJMP(user)]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] popełnia samobójstwo za pomocą [src] w [ADMIN_VERBOSEJMP(user)]")
 	log_game("[key_name(user)] suicided with [src] at [AREACOORD(user)]")
 	user.visible_message("<span class='suicide'>[user] aktywuje [src] i unosi go nad głowę! Wygląda na to, że chce odejść z hukiem!</span>")
 	shout_syndicate_crap(user)
@@ -185,7 +185,7 @@
 
 /obj/item/grenade/plastic/c4
 	name = "C4"
-	desc = "Used to put holes in specific areas without too much extra hole. A saboteur's favorite."
+	desc = "Służy do robienia dziur w konkretnych miejscach bez zbyt wielu dodatkowych dziur. Ulubieniec sabotażystów."
 	gender = PLURAL
 	var/open_panel = 0
 	can_attach_mob = TRUE
@@ -204,7 +204,7 @@
 	user.visible_message("<span class='suicide'>[user] aktywuje [src.name] i unosi go nad głowę! Wygląda na to, że chce odejść z hukiem!</span>")
 	shout_syndicate_crap(user)
 	target = user
-	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [name] at [ADMIN_VERBOSEJMP(src)]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] popełnia samobójstwo za pomocą [name] w [ADMIN_VERBOSEJMP(src)]")
 	log_game("[key_name(user)] suicided with [name] at [AREACOORD(user)]")
 	sleep(10)
 	prime()
@@ -250,7 +250,7 @@
 
 /obj/item/grenade/plastic/x4
 	name = "X4"
-	desc = "A shaped high-explosive breaching charge. Designed to ensure user safety and wall nonsafety."
+	desc = "Kierunkowy ładunek wyłomowy z silnym materiałem wybuchowym. Zaprojektowany z myślą o bezpieczeństwie użytkownika i niebezpieczeństwie ściany."
 	icon_state = "plasticx40"
 	item_state = "plasticx4"
 	gender = PLURAL

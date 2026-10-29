@@ -1,6 +1,6 @@
 
 /obj/effect/proc_holder/spell/aimed
-	name = "aimed projectile spell"
+	name = "zaklęcie pocisku celowanego"
 	var/projectile_type = /obj/item/projectile/magic/teleport
 	var/deactive_msg = "Rozładowujesz pocisk..."
 	var/active_msg = "Ładujesz pocisk!"
@@ -91,8 +91,8 @@
 	return
 
 /obj/effect/proc_holder/spell/aimed/lightningbolt
-	name = "Lightning Bolt"
-	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
+	name = "Błyskawica"
+	desc = "Ciskasz błyskawicą we wrogów! Przeskakuje między celami, ale nie może ich powalić."
 	school = "evocation"
 	charge_max = 150
 	clothes_req = FALSE
@@ -109,8 +109,8 @@
 	projectile_type = /obj/item/projectile/magic/aoe/lightning
 
 /obj/effect/proc_holder/spell/aimed/fireball
-	name = "Fireball"
-	desc = "This spell fires an explosive fireball at a target."
+	name = "Kula ognia"
+	desc = "To zaklęcie wystrzeliwuje w cel wybuchową kulę ognia."
 	school = "evocation"
 	charge_max = 140
 	clothes_req = TRUE
@@ -127,8 +127,8 @@
 	active = FALSE
 
 /obj/effect/proc_holder/spell/aimed/spell_cards
-	name = "Spell Cards"
-	desc = "Magically sharpened rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
+	name = "Karty zaklęć"
+	desc = "Magicznie zaostrzone, samonaprowadzające karty miotane seriami. Ich mistyczna moc ześle twoich wrogów do krainy cieni!"
 	school = "evocation"
 	charge_max = 90
 	clothes_req = FALSE

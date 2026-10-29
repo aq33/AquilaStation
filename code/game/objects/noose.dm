@@ -1,6 +1,6 @@
 /obj/structure/chair/noose //It's a "chair".
-	name = "noose"
-	desc = "Well this just got a whole lot more morbid."
+	name = "pętla wisielcza"
+	desc = "No, zrobiło się dużo bardziej makabrycznie."
 	icon_state = "noose"
 	icon = 'icons/obj/objects.dmi'
 	layer = FLY_LAYER

@@ -18,22 +18,21 @@ const MissionNormal = (_props) => {
   return (
     <BlockQuote>
       <p>
-        Your mission is simple, blow up the station. To achieve this your team
-        must get the Nuclear Authentification Disk. Once you have the disk,
-        it&apos;s only a matter of getting the nuke aboard the station, arming
-        it, starting the timer, and then getting out before it pulverizes you in
-        its blast.
+        Twoja misja jest prosta: wysadzić stację. Żeby to zrobić, twoja drużyna
+        musi zdobyć dysk nuklearny. Gdy go macie, wystarczy dostarczyć bombę na
+        stację, uzbroić ją, uruchomić licznik i uciec, zanim wybuch obróci was w
+        pył.
       </p>
       {(!!data.leader && (
         <p>
-          You have been made the leader of this mission, you must coordinate
-          with your team and devise a strategy. If you are not up to the task,
-          you can trade your leader ID card with another team member.
+          Zostajesz dowódcą tej misji: musisz koordynować działania drużyny i
+          opracować strategię. Jeśli nie czujesz się na siłach, możesz oddać
+          swój identyfikator dowódcy innemu członkowi drużyny.
         </p>
       )) || (
         <p>
-          Coordination is key, which is why you have been assigned a leader to
-          guide the mission. Listen to them and you&apos;re bound to succeed.
+          Kluczowa jest koordynacja, dlatego misją kieruje wyznaczony dowódca.
+          Słuchaj go, a na pewno wam się uda.
         </p>
       )}
     </BlockQuote>
@@ -44,10 +43,9 @@ const MissionLone = (_props) => {
   return (
     <BlockQuote>
       <p>
-        You have been sent on a solo nuclear mission. The reason you were sent
-        alone is unclear, but your mission is to get the Nuclear
-        Authentification Disk and activate the station&apos;s self-destruct
-        device.
+        Wysłano cię samotnie na misję nuklearną. Nie wiadomo, czemu sam, ale
+        twoim zadaniem jest zdobyć dysk nuklearny i uruchomić stacyjny system
+        autodestrukcji.
       </p>
     </BlockQuote>
   );
@@ -61,7 +59,7 @@ const MissionSection = (_props) => {
         <Stack.Item>
           <Stack>
             <Stack.Item>
-              <Section title="Mission">
+              <Section title="Misja">
                 {(!data.lone && <MissionNormal />) || <MissionLone />}
               </Section>
             </Stack.Item>
@@ -76,7 +74,7 @@ const MissionSection = (_props) => {
                     float: 'left',
                   }}
                 />
-                <b>Nuke Code</b>: {data.nuke_code}
+                <b>Kod bomby</b>: {data.nuke_code}
               </Section>
             </Stack.Item>
           </Stack>
@@ -86,48 +84,47 @@ const MissionSection = (_props) => {
           <Stack>
             <Stack.Item>
               <Section title="Uplink">
-                You have a{' '}
+                W kieszeni masz{' '}
                 <Box inline textColor="red">
-                  syndicate uplink
+                  uplink Syndykatu
                 </Box>{' '}
-                in your pocket, in the form of a radio.
+                w postaci radia.
                 <br />
-                This uplink allows you to buy a variety of gear to use on your
-                mission.
+                Pozwala ci kupować różny sprzęt przydatny na misji.
                 <br />
-                Use your telecrystals wisely whenever buying gear!
+                Wydawaj telekryształy rozważnie!
               </Section>
             </Stack.Item>
             <Stack.Divider />
             <Stack.Item>
-              <Section title="Nuking 101">
+              <Section title="Bomba atomowa w pigułce">
                 <Box className="candystripe">
-                  <b>1</b>) Insert disk into nuke.
+                  <b>1</b>) Włóż dysk do bomby.
                 </Box>
                 <Box className="candystripe">
-                  <b>2</b>) Turn off the safety.
+                  <b>2</b>) Wyłącz zabezpieczenie.
                 </Box>
                 <Box className="candystripe">
-                  <b>3</b>) Set a timer on the nuke (minimum of 90 seconds).
+                  <b>3</b>) Ustaw licznik bomby (co najmniej 90 sekund).
                 </Box>
                 <Box className="candystripe">
-                  <b>4</b>) Unanchor nuke.
+                  <b>4</b>) Odczep bombę od podłogi.
                 </Box>
                 <Box className="candystripe">
-                  <b>5</b>) Drag nuke to station.
+                  <b>5</b>) Zaciągnij bombę na stację.
                 </Box>
                 <Box className="candystripe">
-                  <b>6</b>) Anchor nuke on station (not in space!)
+                  <b>6</b>) Przytwierdź bombę na stacji (nie w kosmosie!).
                 </Box>
                 <Box className="candystripe">
-                  <b>7</b>) Activate nuke.
+                  <b>7</b>) Aktywuj bombę.
                 </Box>
                 <Box className="candystripe">
-                  <b>8</b>) Eject disk from nuke and take it.
+                  <b>8</b>) Wyjmij dysk z bomby i zabierz go.
                 </Box>
                 <Box className="candystripe">
-                  <b>9</b>) Get out of the blast radius — return to the base
-                  with your fellow nukies!
+                  <b>9</b>) Uciekaj z zasięgu wybuchu – wróć do bazy z resztą
+                  operatorów!
                 </Box>
               </Section>
             </Stack.Item>
@@ -147,7 +144,7 @@ export const AntagInfoNukeOp = (_props) => {
         <Stack vertical fill>
           <Stack.Item>
             <AntagInfoHeader
-              name={antag_name || 'Nuclear Operative'}
+              name={antag_name || 'Operator nuklearny'}
               asset="nukie.png"
             />
           </Stack.Item>

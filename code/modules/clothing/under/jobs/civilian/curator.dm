@@ -1,13 +1,13 @@
 /obj/item/clothing/under/rank/civilian/curator
-	name = "sensible suit"
-	desc = "It's very... sensible."
+	name = "rozsądny garnitur"
+	desc = "Jest bardzo... rozsądny."
 	icon_state = "red_suit"
 	item_state = "red_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/civilian/curator/skirt
-	name = "sensible suitskirt"
-	desc = "It's very... sensible."
+	name = "rozsądna garsonka"
+	desc = "Jest bardzo... rozsądna."
 	icon_state = "red_suit_skirt"
 	item_state = "red_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -15,14 +15,14 @@
 	fitted = FEMALE_UNIFORM_TOP
 
 /obj/item/clothing/under/rank/civilian/curator/treasure_hunter
-	name = "treasure hunter uniform"
-	desc = "A rugged uniform suitable for treasure hunting."
+	name = "strój poszukiwacza skarbów"
+	desc = "Wytrzymały strój odpowiedni do poszukiwania skarbów."
 	icon_state = "curator"
 	item_state = "curator"
 
 /obj/item/clothing/under/rank/civilian/curator/nasa
-	name = "\improper NASA jumpsuit"
-	desc = "It has a NASA logo on it and is made of space-proofed materials."
+	name = "\improper kombinezon NASA"
+	desc = "Ma logo NASA i jest wykonany z materiałów odpornych na kosmos."
 	icon_state = "jumpsuit"
 	item_state = "jumpsuit"
 	worn_icon_state = "jumpsuit"

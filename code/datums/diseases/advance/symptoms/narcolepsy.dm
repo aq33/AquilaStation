@@ -13,7 +13,7 @@ Bonus
 //////////////////////////////////////
 */
 /datum/symptom/narcolepsy
-	name = "Narcolepsy"
+	name = "Narkolepsja"
 	desc = "Wirus powoduje zaburzenia hormonalne, przez co nosiciel jest senny i ma napady narkolepsji."
 	stealth = 1
 	resistance = -1
@@ -88,7 +88,7 @@ Bonus
 					M.adjustStaminaLoss(20)
 		if(5)
 			if(prob(25))
-				to_chat(M, "<span class='warning'>[pick("So tired...","You feel very sleepy.","You have a hard time keeping your eyes open.","You try to stay awake.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Taki zmęczony...","Bardzo chce ci się spać.","Z trudem utrzymujesz otwarte oczy.","Próbujesz nie zasnąć.")]</span>")
 				M.drowsyness = max(M.drowsyness, 2)
 				sleepy_ticks += rand(10,14)
 				if(stamina)

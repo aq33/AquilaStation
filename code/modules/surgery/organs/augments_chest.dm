@@ -1,13 +1,13 @@
 /obj/item/organ/cyberimp/chest
-	name = "cybernetic torso implant"
-	desc = "Implants for the organs in your torso."
+	name = "cybernetyczny implant tułowia"
+	desc = "Implanty do organów w tułowiu."
 	icon_state = "chest_implant"
 	implant_overlay = "chest_implant_overlay"
 	zone = BODY_ZONE_CHEST
 
 /obj/item/organ/cyberimp/chest/nutriment
-	name = "Nutriment pump implant"
-	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
+	name = "implant pompy odżywczej"
+	desc = "Ten implant syntetyzuje i wpompowuje do krwiobiegu niewielką ilość składników odżywczych, gdy głodujesz."
 	icon_state = "chest_implant"
 	implant_color = "#00AA00"
 	var/hunger_threshold = NUTRITION_LEVEL_STARVING
@@ -37,16 +37,16 @@
 
 
 /obj/item/organ/cyberimp/chest/nutriment/plus
-	name = "Nutriment pump implant PLUS"
-	desc = "This implant will synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
+	name = "implant pompy odżywczej PLUS"
+	desc = "Ten implant syntetyzuje i wpompowuje do krwiobiegu niewielką ilość składników odżywczych, gdy jesteś głodny."
 	icon_state = "chest_implant"
 	implant_color = "#006607"
 	hunger_threshold = NUTRITION_LEVEL_HUNGRY
 	poison_amount = 10
 
 /obj/item/organ/cyberimp/chest/reviver
-	name = "Reviver implant"
-	desc = "This implant will attempt to revive and heal you if you lose consciousness. For the faint of heart!"
+	name = "implant reanimacyjny"
+	desc = "Ten implant próbuje cię ocucić i uleczyć, gdy tracisz przytomność. Dla tych o słabym sercu!"
 	icon_state = "chest_implant"
 	implant_color = "#AD0000"
 	slot = ORGAN_SLOT_HEART_AID
@@ -118,9 +118,9 @@
 	syndicate_implant = TRUE
 
 /obj/item/organ/cyberimp/chest/thrusters
-	name = "implantable thrusters set"
-	desc = "An implantable set of thruster ports. They use the gas from environment or subject's internals for propulsion in zero-gravity areas. \
-	Unlike regular jetpacks, this device has no stabilization system."
+	name = "wszczepialny zestaw silników manewrowych"
+	desc = "Wszczepialny zestaw dysz silników manewrowych. Do napędu w strefach bez grawitacji używają gazu z otoczenia albo z butli nosiciela. \
+	W przeciwieństwie do zwykłych plecaków odrzutowych to urządzenie nie ma systemu stabilizacji."
 	slot = ORGAN_SLOT_THRUSTERS
 	icon_state = "imp_jetpack"
 	implant_overlay = null

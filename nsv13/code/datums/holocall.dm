@@ -1,6 +1,6 @@
 /obj/item/disk/holodisk/hammerhead_cryo
-	name = "Engineering Audit Log HH-593"
-	desc = "A holodisk containing a recording of a work order being carried out during servicing."
+	name = "Inżynieryjny dziennik kontrolny HH-593"
+	desc = "Holodysk z nagraniem realizacji zlecenia podczas serwisu."
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	NAME Almayer Gervais
@@ -34,8 +34,8 @@
 "}
 
 /obj/item/disk/holodisk/enterprise_log
-	name = "SGC Enterprise Audit Log CV-9654"
-	desc = "It has a large label on it reading 'CLASSIFIED' underneath a symbol of a large sun surrounded by wings."
+	name = "Dziennik kontrolny SGC Enterprise CV-9654"
+	desc = "Ma dużą etykietę z napisem „TAJNE” pod symbolem wielkiego słońca otoczonego skrzydłami."
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	NAME Joshua Griggs
@@ -81,8 +81,8 @@
 "}
 
 /obj/item/disk/holodisk/enterprise_log/two
-	name = "SGC Enterprise Audit Log CV-9658"
-	desc = "A diskette with a symbol of a large sun surrounded by wings. A date has been hastily scrawled onto it with a permanent marker."
+	name = "Dziennik kontrolny SGC Enterprise CV-9658"
+	desc = "Dyskietka z symbolem wielkiego słońca otoczonego skrzydłami. Ktoś w pośpiechu nabazgrał na niej datę markerem permanentnym."
 	preset_image_type = /datum/preset_holoimage/researcher
 	preset_record_text = {"
 	NAME Stewart Lance
@@ -135,8 +135,8 @@
 	outfit_type = /datum/outfit/job/curator
 
 /obj/item/disk/holodisk/galactica_history
-	name = "SGC Solaria History #1 - A battleship to surpass them all!"
-	desc = "An informational holodisk carrying information about the history of the SGV Solaria."
+	name = "Historia SGC Solaria nr 1 – pancernik, który przewyższy wszystkie!"
+	desc = "Informacyjny holodysk z historią SGV Solaria."
 	preset_image_type = /datum/preset_holoimage/curator
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 1
@@ -156,8 +156,8 @@
 "}
 
 /obj/item/disk/holodisk/galactica_history/history
-	name = "SGC Solaria History #2 - Historical significance"
-	desc = "An informational holodisk carrying information about the history of the SGV Solaria, part 2 in the series."
+	name = "Historia SGC Solaria nr 2 – znaczenie historyczne"
+	desc = "Informacyjny holodysk z historią SGV Solaria, część 2 serii."
 	preset_image_type = /datum/preset_holoimage/curator
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 2
@@ -177,8 +177,8 @@
 "}
 
 /obj/item/disk/holodisk/galactica_history/tech_specs
-	name = "SGC Solaria History #3 - Technical Specifications"
-	desc = "An informational holodisk carrying information about the history of the SGV Solaria, the final part in the series."
+	name = "Historia SGC Solaria nr 3 – specyfikacja techniczna"
+	desc = "Informacyjny holodysk z historią SGV Solaria, ostatnia część serii."
 	preset_image_type = /datum/preset_holoimage/curator
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 3
@@ -204,8 +204,8 @@
 
 //Nsv galactica 3 log files!
 /obj/item/disk/holodisk/nsv_history
-	name = "VICKER educational chronicles issue #1 - The fall of Dolos"
-	desc = "An informational holodisk carrying information about the history of the SGV Solaria."
+	name = "Kroniki edukacyjne VICKER nr 1 – upadek Dolos"
+	desc = "Informacyjny holodysk z historią SGV Solaria."
 	preset_image_type = /datum/preset_holoimage/curator
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 1
@@ -225,8 +225,8 @@
 "}
 
 /obj/item/disk/holodisk/nsv_history/galactica
-	name = "NSV Galactica History #1 - Introduction!"
-	desc = "An informational holodisk carrying information about the history of the NSV Galactica."
+	name = "Historia NSV Galactica nr 1 – wprowadzenie!"
+	desc = "Informacyjny holodysk z historią NSV Galactica."
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 1
@@ -246,7 +246,7 @@
 "}
 
 /obj/item/disk/holodisk/nsv_history/galactica/two
-	name = "NSV Galactica History #2 - Breakthroughs"
+	name = "Historia NSV Galactica nr 2 – przełomy"
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 2
@@ -264,7 +264,7 @@
 "}
 
 /obj/item/disk/holodisk/nsv_history/galactica/three
-	name = "NSV Galactica History #3 - Firepower"
+	name = "Historia NSV Galactica nr 3 – siła ognia"
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	SAY WCZYTYWANIE HOLOTAŚMY INFORMACYJNEJ NR 2
@@ -284,8 +284,8 @@
 "}
 
 /obj/item/disk/holodisk/pdsr
-	name = "Project 'Zelbinion' Operational Notes (CLASSIFIED)"
-	desc = "A holodisk plastered with 'classified' labels, the name has been somewhat redacted."
+	name = "Notatki operacyjne projektu „Zelbinion” (TAJNE)"
+	desc = "Holodysk oblepiony etykietami „tajne”, nazwa jest częściowo zamazana."
 	preset_image_type = /datum/preset_holoimage/engineer
 	preset_record_text = {"
 	NAME Almayer Gervais

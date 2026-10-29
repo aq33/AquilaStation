@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/megafauna
-	name = "boss of this gym"
-	desc = "Attack the weak point for massive damage."
+	name = "szef tej siłowni"
+	desc = "Zaatakuj słaby punkt, by zadać ogromne obrażenia."
 	health = 1000
 	maxHealth = 1000
 	spacewalk = TRUE
@@ -165,7 +165,7 @@
 	return TRUE
 
 /datum/action/innate/megafauna_attack
-	name = "Megafauna Attack"
+	name = "Atak megafauny"
 	icon_icon = 'icons/mob/actions/actions_animal.dmi'
 	button_icon_state = ""
 	var/chosen_message

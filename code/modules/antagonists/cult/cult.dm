@@ -99,7 +99,7 @@
 			to_chat(mob, "<span class='danger'>W plecaku masz: [item_name].</span>")
 			return TRUE
 		else
-			message_admins("[ADMIN_FULLMONTY(mob)] the cultist couldn't be equipped.")
+			message_admins("[ADMIN_FULLMONTY(mob)] – nie udało się wyposażyć kultysty.")
 			return FALSE
 	else
 		to_chat(mob, "<span class='danger'>Masz [item_name] w miejscu: [where].</span>")
@@ -158,27 +158,27 @@
 /datum/antagonist/cult/admin_add(datum/mind/new_owner,mob/admin)
 	give_equipment = FALSE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has cult'ed [key_name_admin(new_owner)].")
+	message_admins("[key_name_admin(admin)] przyłącza [key_name_admin(new_owner)] do kultu.")
 	log_admin("[key_name(admin)] has cult'ed [key_name(new_owner)].")
 
 /datum/antagonist/cult/admin_remove(mob/user)
-	message_admins("[key_name_admin(user)] has decult'ed [key_name_admin(owner)].")
+	message_admins("[key_name_admin(user)] odłącza [key_name_admin(owner)] od kultu.")
 	log_admin("[key_name(user)] has decult'ed [key_name(owner)].")
 	SSticker.mode.remove_cultist(owner,silent=TRUE) //disgusting
 
 /datum/antagonist/cult/get_admin_commands()
 	. = ..()
 	.["Dagger"] = CALLBACK(src,PROC_REF(admin_give_dagger))
-	.["Dagger and Metal"] = CALLBACK(src,PROC_REF(admin_give_metal))
-	.["Remove Dagger and Metal"] = CALLBACK(src, PROC_REF(admin_take_all))
+	.["Sztylet i metal"] = CALLBACK(src,PROC_REF(admin_give_metal))
+	.["Zabierz sztylet i metal"] = CALLBACK(src, PROC_REF(admin_take_all))
 
 /datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
 	if(!equip_cultist(metal=FALSE))
-		to_chat(admin, "<span class='danger'>Spawning dagger failed!</span>")
+		to_chat(admin, "<span class='danger'>Nie udało się stworzyć sztyletu!</span>")
 
 /datum/antagonist/cult/proc/admin_give_metal(mob/admin)
 	if (!equip_cultist(metal=TRUE))
-		to_chat(admin, "<span class='danger'>Spawning runed metal failed!</span>")
+		to_chat(admin, "<span class='danger'>Nie udało się stworzyć runicznego metalu!</span>")
 
 /datum/antagonist/cult/proc/admin_take_all(mob/admin)
 	var/mob/living/current = owner.current
@@ -245,7 +245,7 @@
 		H.update_body()
 
 /datum/team/cult
-	name = "Cult"
+	name = "Kult krwi"
 
 	var/blood_target
 	var/image/blood_target_image
@@ -333,7 +333,7 @@
 		if(is_valid_target(possible_target) && !is_convertable_to_cult(possible_target.current) && !(possible_target in blacklist))
 			target_candidates += possible_target
 	if(target_candidates.len == 0)
-		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
+		message_admins("Ofiara kultu: nie znaleziono celu niemożliwego do nawrócenia, szukam celu możliwego do nawrócenia.")
 		for(var/datum/mind/possible_target in get_crewmember_minds())
 			if(is_valid_target(possible_target) && !(possible_target in blacklist))
 				target_candidates += possible_target
@@ -341,7 +341,7 @@
 	if(LAZYLEN(target_candidates))
 		set_target(pick(target_candidates))
 	else
-		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
+		message_admins("Ofiara kultu: nie znaleziono żadnego celu, ani możliwego, ani niemożliwego do nawrócenia. No cóż!")
 		set_target(null)
 	update_explanation_text()
 

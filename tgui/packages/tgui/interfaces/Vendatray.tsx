@@ -23,7 +23,7 @@ export const Vendatray = (props) => {
           <Flex.Item mr={1}>{!!product_name && <VendingImage />}</Flex.Item>
           <Flex.Item grow={1}>
             <Section fontSize="18px" align="center">
-              <b>{product_name ? product_name : 'Empty'}</b>
+              <b>{product_name ? product_name : 'Pusto'}</b>
               <Box fontSize="16px">
                 <i>{product_name ? product_cost : 'N/A'} cr </i>
                 <Button icon="pen" onClick={() => act('Adjust')} />
@@ -33,14 +33,15 @@ export const Vendatray = (props) => {
               <Button
                 fluid
                 icon="window-restore"
-                content={tray_open ? 'Open' : 'Closed'}
+                content={tray_open ? 'Otwarta' : 'Zamknięta'}
                 selected={tray_open}
                 onClick={() => act('Open')}
               />
               <Button.Confirm
+                confirmContent="Na pewno?"
                 fluid
                 icon="money-bill-wave"
-                content="Purchase Item"
+                content="Kup przedmiot"
                 disabled={!product_name}
                 onClick={() => act('Buy')}
               />
@@ -53,11 +54,11 @@ export const Vendatray = (props) => {
           </Section>
         ) : (
           <>
-            <Section>Tray is unregistered.</Section>
+            <Section>Taca nie jest zarejestrowana.</Section>
             <Button
               fluid
               icon="cash-register"
-              content="Register Tray"
+              content="Zarejestruj tacę"
               disabled={registered}
               onClick={() => act('Register')}
             />

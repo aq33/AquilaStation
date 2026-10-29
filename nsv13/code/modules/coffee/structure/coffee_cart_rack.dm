@@ -1,10 +1,10 @@
 //now, how do you store coffee carts? well, in a rack, of course!
 /obj/item/storage/fancy/coffee_cart_rack
-	name = "coffeemaker cartridge rack"
-	desc = "A small rack for storing coffeemaker cartridges."
+	name = "stojak na wkłady z kawą"
+	desc = "Mały stojak do przechowywania wkładów z kawą do ekspresu."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "coffee_cartrack"
-	icon_type = "coffee cartridge"
+	icon_type = "wkład z kawą"
 	spawn_type = /obj/item/coffee_cartridge
 
 /obj/item/storage/fancy/coffee_cart_rack/ComponentInitialize()

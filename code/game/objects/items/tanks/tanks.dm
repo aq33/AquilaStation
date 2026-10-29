@@ -1,5 +1,5 @@
 /obj/item/tank
-	name = "tank"
+	name = "butla"
 	icon = 'icons/obj/tank.dmi'
 	lefthand_file = 'icons/mob/inhands/equipment/tanks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tanks_righthand.dmi'
@@ -40,7 +40,7 @@
 			if(H.wear_mask.mask_adjusted)
 				H.wear_mask.adjustmask(H)
 			if(!(H.wear_mask.clothing_flags & MASKINTERNALS))
-				to_chat(H, "<span class='warning'>[H.wear_mask] can't use [src]!</span>")
+				to_chat(H, "<span class='warning'>Nie da się użyć [src] z: [H.wear_mask]!</span>")
 				return
 
 		if(H.internal)
@@ -197,7 +197,7 @@
 				pressure = TANK_MAX_RELEASE_PRESSURE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = input("New release pressure ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):", name, distribute_pressure) as num|null
+				pressure = input("Nowe ciśnienie wylotowe ([TANK_MIN_RELEASE_PRESSURE]-[TANK_MAX_RELEASE_PRESSURE] kPa):", name, distribute_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
 			else if(text2num(pressure) != null)

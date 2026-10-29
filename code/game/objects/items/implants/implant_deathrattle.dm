@@ -64,8 +64,8 @@
 		to_chat(implant.imp_in, "<i>Słyszysz w głowie dziwny, robotyczny głos...</i> \"<span class='robot'><b>[name]</b> ginie w <b>[area]</b>.</span>\"")
 
 /obj/item/implant/deathrattle
-	name = "deathrattle implant"
-	desc = "Hope no one else dies, prepare for when they do."
+	name = "implant agonalny"
+	desc = "Miej nadzieję, że nikt więcej nie zginie, i bądź gotów, gdy to nastąpi."
 
 	activated = FALSE
 
@@ -74,6 +74,6 @@
 	return TRUE
 
 /obj/item/implantcase/deathrattle
-	name = "implant case - 'Deathrattle'"
-	desc = "A glass case containing a deathrattle implant."
+	name = "etui na implant – „Agonalny”"
+	desc = "Szklane etui z implantem agonalnym."
 	imp_type = /obj/item/implant/deathrattle

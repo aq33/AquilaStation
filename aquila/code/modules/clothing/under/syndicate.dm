@@ -1,6 +1,6 @@
 /obj/item/clothing/under/aquila/metalgear
-	name = "\improper sneaking suit"
-	desc = "It's made of a strong material developed by the Soviet Union centuries ago which provides robust protection."
+	name = "\improper kombinezon do skradania"
+	desc = "Uszyty z wytrzymałego materiału opracowanego wieki temu w Związku Radzieckim, który zapewnia solidną ochronę."
 	icon_state = "solid"
 	item_state = "solid"
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS

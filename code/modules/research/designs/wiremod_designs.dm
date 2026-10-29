@@ -1,6 +1,6 @@
 /datum/design/integrated_circuit
-	name = "Integrated Circuit"
-	desc = "The foundation of all circuits. All Circuitry go onto this."
+	name = "Układ scalony"
+	desc = "Podstawa wszystkich układów. Na nim montuje się całą elektronikę."
 	id = "integrated_circuit"
 	build_path = /obj/item/integrated_circuit
 	build_type = IMPRINTER | COMPONENT_PRINTER
@@ -9,8 +9,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/circuit_multitool
-	name = "Circuit Multitool"
-	desc = "A circuit multitool to mark entities and load them into."
+	name = "Multitool do układów"
+	desc = "Multitool do układów, którym zaznaczasz obiekty i wczytujesz je do układu."
 	id = "circuit_multitool"
 	build_path = /obj/item/multitool/circuit
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -19,8 +19,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/usb_cable
-	name = "USB Cable"
-	desc = "A cable that allows certain shells to connect to nearby computers and machines."
+	name = "Kabel USB"
+	desc = "Kabel, przez który niektóre powłoki łączą się z pobliskimi komputerami i maszynami."
 	id = "usb_cable"
 	build_path = /obj/item/usb_cable
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -30,8 +30,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/component
-	name = "Component ( NULL ENTRY )"
-	desc = "A component that goes into an integrated circuit."
+	name = "Komponent ( PUSTY WPIS )"
+	desc = "Komponent montowany w układzie scalonym."
 	build_type = IMPRINTER | COMPONENT_PRINTER
 	materials = list(/datum/material/glass = 500, /datum/material/copper = 1500)
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
@@ -44,272 +44,272 @@
 		desc = initial(component_path.display_desc)
 
 /datum/design/component/arbitrary_input_amount/arithmetic
-	name = "Arithmetic Component"
+	name = "Komponent arytmetyczny"
 	id = "comp_arithmetic"
 	build_path = /obj/item/circuit_component/arbitrary_input_amount/arithmetic
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/arbitrary_input_amount/bitwise
-	name = "Bitwise Component"
+	name = "Komponent bitowy"
 	id = "comp_bitwise"
 	build_path = /obj/item/circuit_component/arbitrary_input_amount/bitwise
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/bitflag
-	name = "Bitflag Component"
+	name = "Komponent flag bitowych"
 	id = "comp_bitflag"
 	build_path = /obj/item/circuit_component/compare/bitflag
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/clock
-	name = "Clock Component"
+	name = "Komponent zegara"
 	id = "comp_clock"
 	build_path = /obj/item/circuit_component/clock
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_TIME_COMPONENTS)
 
 /datum/design/component/comparison
-	name = "Comparison Component"
+	name = "Komponent porównania"
 	id = "comp_comparison"
 	build_path = /obj/item/circuit_component/compare/comparison
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/logic
-	name = "Logic Component"
+	name = "Komponent logiczny"
 	id = "comp_logic"
 	build_path = /obj/item/circuit_component/compare/logic
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/delay
-	name = "Delay Component"
+	name = "Komponent opóźnienia"
 	id = "comp_delay"
 	build_path = /obj/item/circuit_component/delay
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_TIME_COMPONENTS)
 
 /datum/design/component/index
-	name = "Index Component"
+	name = "Komponent indeksu"
 	id = "comp_index"
 	build_path = /obj/item/circuit_component/indexer/index
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/write
-	name = "Write Component"
+	name = "Komponent zapisu"
 	id = "comp_write"
 	build_path = /obj/item/circuit_component/indexer/write
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/append
-	name = "Append Component"
+	name = "Komponent dołączania"
 	id = "comp_append"
 	build_path = /obj/item/circuit_component/append
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/pop
-	name = "Pop Component"
+	name = "Komponent zdejmowania"
 	id = "comp_pop"
 	build_path = /obj/item/circuit_component/pop
 	category = list(WIREMOD_CIRCUITRY,WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/length
-	name = "Length Component"
+	name = "Komponent długości"
 	id = "comp_length"
 	build_path = /obj/item/circuit_component/length
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS, WIREMOD_STRING_COMPONENTS)
 
 /datum/design/component/light
-	name = "Light Component"
+	name = "Komponent światła"
 	id = "comp_light"
 	build_path = /obj/item/circuit_component/light
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_OUTPUT_COMPONENTS)
 
 /datum/design/component/list_constructor
-	name = "List Constructor"
+	name = "Konstruktor listy"
 	id = "comp_list_constructor"
 	build_path = /obj/item/circuit_component/arbitrary_input_amount/list_constructor
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/list_length_constructor
-	name = "List Length Constructor"
+	name = "Konstruktor listy o długości"
 	id = "comp_list_length_constructor"
 	build_path = /obj/item/circuit_component/list_length_constructor
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/not
-	name = "Not Component"
+	name = "Komponent negacji"
 	id = "comp_not"
 	build_path = /obj/item/circuit_component/not
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/ram
-	name = "RAM Component"
+	name = "Komponent RAM"
 	id = "comp_ram"
 	build_path = /obj/item/circuit_component/ram
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MEMORY_COMPONENTS)
 
 /datum/design/component/random
-	name = "Random Component"
+	name = "Komponent losowy"
 	id = "comp_random"
 	build_path = /obj/item/circuit_component/random
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/round
-	name = "Round Component"
+	name = "Komponent zaokrąglania"
 	id = "comp_round"
 	build_path = /obj/item/circuit_component/round
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/species
-	name = "Get Species Component"
+	name = "Komponent rozpoznawania gatunku"
 	id = "comp_species"
 	build_path = /obj/item/circuit_component/species
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/speech
-	name = "Speech Component"
+	name = "Komponent mowy"
 	id = "comp_speech"
 	build_path = /obj/item/circuit_component/speech
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_OUTPUT_COMPONENTS)
 
 /datum/design/component/tostring
-	name = "To String Component"
+	name = "Komponent konwersji na tekst"
 	id = "comp_tostring"
 	build_path = /obj/item/circuit_component/tostring
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_STRING_COMPONENTS, WIREMOD_CONVERSION_COMPONENTS)
 
 /datum/design/component/trig
-	name = "Trigonometry Component"
+	name = "Komponent trygonometryczny"
 	id = "comp_trig"
 	build_path = /obj/item/circuit_component/trig/trig
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/adv_trig
-	name = "Advanced Trigonometry Component"
+	name = "Zaawansowany komponent trygonometryczny"
 	id = "comp_adv_trig"
 	build_path = /obj/item/circuit_component/trig/adv_trig
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/hyper_trig
-	name = "Hyperbolic Trigonometry Component"
+	name = "Komponent funkcji hiperbolicznych"
 	id = "comp_hyper_trig"
 	build_path = /obj/item/circuit_component/trig/hyper_trig
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_MATH_COMPONENTS)
 
 /datum/design/component/typecast
-	name = "Typecast Component"
+	name = "Komponent rzutowania typu"
 	id = "comp_typecast"
 	build_path = /obj/item/circuit_component/compare/typecast
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/concat
-	name = "Concatenation Component"
+	name = "Komponent łączenia tekstu"
 	id = "comp_concat"
 	build_path = /obj/item/circuit_component/concat
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_STRING_COMPONENTS)
 
 /datum/design/component/textcase
-	name = "Textcase Component"
+	name = "Komponent wielkości liter"
 	id = "comp_textcase"
 	build_path = /obj/item/circuit_component/textcase
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_STRING_COMPONENTS)
 
 /datum/design/component/hear
-	name = "Voice Activator Component"
+	name = "Komponent aktywacji głosem"
 	id = "comp_hear"
 	build_path = /obj/item/circuit_component/hear
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/contains
-	name = "String Contains Component"
+	name = "Komponent wyszukiwania w tekście"
 	id = "comp_string_contains"
 	build_path = /obj/item/circuit_component/compare/contains
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_STRING_COMPONENTS)
 
 /datum/design/component/self
-	name = "Self Component"
+	name = "Komponent własny"
 	id = "comp_self"
 	build_path = /obj/item/circuit_component/self
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_REFERENCE_COMPONENTS)
 
 /datum/design/component/radio
-	name = "Radio Component"
+	name = "Komponent radiowy"
 	id = "comp_radio"
 	build_path = /obj/item/circuit_component/radio
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_OUTPUT_COMPONENTS)
 
 /datum/design/component/gps
-	name = "GPS Component"
+	name = "Komponent GPS"
 	id = "comp_gps"
 	build_path = /obj/item/circuit_component/gps
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/direction
-	name = "Direction Component"
+	name = "Komponent kierunku"
 	id = "comp_direction"
 	build_path = /obj/item/circuit_component/direction
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/health
-	name = "Health Component"
+	name = "Komponent zdrowia"
 	id = "comp_health"
 	build_path = /obj/item/circuit_component/health
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/combiner
-	name = "Combiner Component"
+	name = "Komponent łączący"
 	id = "comp_combiner"
 	build_path = /obj/item/circuit_component/combiner
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/pull
-	name = "Pull Component"
+	name = "Komponent ciągnięcia"
 	id = "comp_pull"
 	build_path = /obj/item/circuit_component/pull
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_OUTPUT_COMPONENTS)
 
 /datum/design/component/soundemitter
-	name = "Sound Emitter Component"
+	name = "Komponent emitera dźwięku"
 	id = "comp_soundemitter"
 	build_path = /obj/item/circuit_component/soundemitter
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_OUTPUT_COMPONENTS)
 
 /datum/design/component/mmi
-	name = "MMI Component"
+	name = "Komponent MMI"
 	id = "comp_mmi"
 	build_path = /obj/item/circuit_component/mmi
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_INPUT_COMPONENTS)
 
 /datum/design/component/multiplexer
-	name = "Multiplexer Component"
+	name = "Komponent multipleksera"
 	id = "comp_multiplexer"
 	build_path = /obj/item/circuit_component/multiplexer
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/component/get_column
-	name = "Get Column Component"
+	name = "Komponent pobierania kolumny"
 	id = "comp_get_column"
 	build_path = /obj/item/circuit_component/get_column
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/index_table
-	name = "Index Table Component"
+	name = "Komponent indeksu tabeli"
 	id = "comp_index_table"
 	build_path = /obj/item/circuit_component/index_table
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/concat_list
-	name = "Concatenate List Component"
+	name = "Komponent łączenia listy"
 	id = "comp_concat_list"
 	build_path = /obj/item/circuit_component/concat_list
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS)
 
 /datum/design/component/select_query
-	name = "Select Query Component"
+	name = "Komponent zapytania"
 	id = "comp_select_query"
 	build_path = /obj/item/circuit_component/select
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_LIST_COMPONENTS, WIREMOD_LOGIC_COMPONENTS)
 
 /datum/design/compact_remote_shell
-	name = "Compact Remote Shell"
-	desc = "A handheld shell with one big button."
+	name = "Powłoka: kompaktowy pilot"
+	desc = "Ręczna powłoka z jednym dużym przyciskiem."
 	id = "compact_remote_shell"
 	build_path = /obj/item/compact_remote
 	materials = list(/datum/material/glass = 2000, /datum/material/iron = 5000)
@@ -317,8 +317,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/controller_shell
-	name = "Controller Shell"
-	desc = "A handheld shell with several buttons."
+	name = "Powłoka: kontroler"
+	desc = "Ręczna powłoka z kilkoma przyciskami."
 	id = "controller_shell"
 	build_path = /obj/item/controller
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -326,8 +326,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/scanner_shell
-	name = "Scanner Shell"
-	desc = "A handheld shell with a scanner."
+	name = "Powłoka: skaner"
+	desc = "Ręczna powłoka ze skanerem."
 	id = "scanner_shell"
 	build_path = /obj/item/scanner
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -335,8 +335,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/bot_shell
-	name = "Bot Shell"
-	desc = "An immobile shell that can store more components. Has a USB port to be able to connect to computers and machines."
+	name = "Powłoka: robot"
+	desc = "Nieruchoma powłoka, która mieści więcej komponentów. Ma port USB do łączenia z komputerami i maszynami."
 	id = "bot_shell"
 	build_path = /obj/item/shell/bot
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -344,8 +344,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/money_bot_shell
-	name = "Money Bot Shell"
-	desc = "An immobile shell that is similar to a regular bot shell, but accepts monetary inputs and can also dispense money."
+	name = "Powłoka: robot finansowy"
+	desc = "Nieruchoma powłoka podobna do zwykłej powłoki robota, ale przyjmuje i wydaje pieniądze."
 	id = "money_bot_shell"
 	build_path = /obj/item/shell/money_bot
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -353,8 +353,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/drone_shell
-	name = "Drone Shell"
-	desc = "A shell with the ability to move itself around."
+	name = "Powłoka: dron"
+	desc = "Powłoka, która potrafi sama się przemieszczać."
 	id = "drone_shell"
 	build_path = /obj/item/shell/drone
 	build_type = PROTOLATHE | COMPONENT_PRINTER
@@ -366,8 +366,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/server_shell
-	name = "Server Shell"
-	desc = "A very large shell that cannot be moved around. Stores the most components."
+	name = "Powłoka: serwer"
+	desc = "Bardzo duża powłoka, której nie da się przenosić. Mieści najwięcej komponentów."
 	id = "server_shell"
 	materials = list(
 		/datum/material/glass = 5000,
@@ -379,8 +379,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/airlock_shell
-	name = "Airlock Shell"
-	desc = "A door shell that cannot be moved around when assembled."
+	name = "Powłoka: śluza"
+	desc = "Powłoka w kształcie drzwi, której po złożeniu nie da się przenosić."
 	id = "door_shell"
 	materials = list(
 		/datum/material/glass = 5000,
@@ -391,8 +391,8 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_SHELLS)
 
 /datum/design/assembly_shell
-	name = "Modular Assembly Shell"
-	desc = "A shell that functions as an assembly."
+	name = "Powłoka: zespół modułowy"
+	desc = "Powłoka, która działa jak zespół."
 	id = "assembly_shell"
 	materials = list(
 		/datum/material/glass = 2000,

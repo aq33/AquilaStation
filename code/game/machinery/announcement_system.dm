@@ -2,8 +2,8 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 /obj/machinery/announcement_system
 	density = TRUE
-	name = "\improper Automated Announcement System"
-	desc = "An automated announcement system that handles minor announcements over the radio."
+	name = "\improper Automatyczny System Ogłoszeń"
+	desc = "Automatyczny system, który nadaje drobne ogłoszenia przez radio."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "AAS_On"
 
@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	circuit = /obj/item/circuitboard/machine/announcement_system
 
 	var/obj/item/radio/headset/radio
-	var/arrival = "%PERSON zarejestrował się jako %RANK. Welcome to %STNAME."
+	var/arrival = "%PERSON zarejestrował się jako %RANK. Witamy na pokładzie %STNAME."
 	var/arrivalToggle = 1
 	var/newhead = "%PERSON, %RANK, jest głową departamentu."
 	var/newheadToggle = 1
@@ -131,7 +131,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	if(!usr.canUseTopic(src, !issilicon(usr)))
 		return
 	if(machine_stat & BROKEN)
-		visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='hear'>Słyszysz ciche brzęczenie.</span>")
+		visible_message("<span class='warning'>[src] brzęczy.</span>", "<span class='hear'>Słyszysz ciche brzęczenie.</span>")
 		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, TRUE)
 		return
 	switch(action)

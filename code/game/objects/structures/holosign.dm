@@ -2,7 +2,7 @@
 //holographic signs and barriers
 
 /obj/structure/holosign
-	name = "holo sign"
+	name = "holoznak"
 	icon = 'icons/effects/effects.dmi'
 	anchored = TRUE
 	max_integrity = 1
@@ -46,14 +46,14 @@
 			playsound(loc, 'sound/weapons/egloves.ogg', 80, 1)
 
 /obj/structure/holosign/wetsign
-	name = "wet floor sign"
-	desc = "The words flicker as if they mean nothing."
+	name = "znak „mokra podłoga”"
+	desc = "Słowa migoczą, jakby nic nie znaczyły."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
 /obj/structure/holosign/barrier
-	name = "holobarrier"
-	desc = "A short holographic barrier which can only be passed by walking."
+	name = "holobariera"
+	desc = "Niska holograficzna bariera, przez którą da się przejść tylko powoli."
 	icon_state = "holosign_sec"
 	pass_flags_self = PASSTABLE | PASSGRILLE | PASSGLASS | LETPASSTHROW
 	density = TRUE
@@ -70,8 +70,8 @@
 			return 1
 
 /obj/structure/holosign/barrier/wetsign
-	name = "wet floor holobarrier"
-	desc = "When it says walk it means walk."
+	name = "holobariera „mokra podłoga”"
+	desc = "Skoro każe iść powoli, to znaczy, że masz iść powoli."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
@@ -86,8 +86,8 @@
 	rad_insulation = RAD_LIGHT_INSULATION
 
 /obj/structure/holosign/barrier/atmos
-	name = "holofirelock"
-	desc = "A holographic barrier resembling a firelock. Though it does not prevent solid objects from passing through, gas is kept out."
+	name = "holograficzna gródź przeciwpożarowa"
+	desc = "Holograficzna bariera przypominająca gródź przeciwpożarową. Nie zatrzymuje ciał stałych, ale nie przepuszcza gazu."
 	icon_state = "holo_firelock"
 	density = FALSE
 	anchored = TRUE
@@ -113,8 +113,8 @@
 	return ..()
 
 /obj/structure/holosign/barrier/cyborg
-	name = "Energy Field"
-	desc = "A fragile energy field that blocks movement. Excels at blocking lethal projectiles."
+	name = "pole energetyczne"
+	desc = "Kruche pole energetyczne, które blokuje ruch. Świetnie zatrzymuje śmiercionośne pociski."
 	density = TRUE
 	max_integrity = 10
 	allow_walk = 0
@@ -128,8 +128,8 @@
 	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/medical
-	name = "\improper PENLITE holobarrier"
-	desc = "A holobarrier that uses biometrics to detect human viruses. Denies passing to personnel with easily-detected, malicious viruses. Good for quarantines."
+	name = "\improper holobariera PENLITE"
+	desc = "Holobariera, która wykrywa ludzkie wirusy za pomocą biometrii. Nie przepuszcza personelu z łatwo wykrywalnymi, groźnymi wirusami. Dobra na kwarantanny."
 	icon_state = "holo_medical"
 	alpha = 125 //lazy :)
 	var/force_allaccess = FALSE
@@ -174,8 +174,8 @@
 		return ..()
 
 /obj/structure/holosign/barrier/cyborg/hacked
-	name = "Charged Energy Field"
-	desc = "A powerful energy field that blocks movement. Energy arcs off it."
+	name = "naładowane pole energetyczne"
+	desc = "Potężne pole energetyczne, które blokuje ruch. Strzelają z niego łuki energii."
 	max_integrity = 20
 	var/shockcd = 0
 

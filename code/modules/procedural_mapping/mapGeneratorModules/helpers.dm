@@ -66,20 +66,20 @@
 
 /datum/mapGenerator/repressurize
 	modules = list(/datum/mapGeneratorModule/bottomLayer/repressurize)
-	buildmode_name = "Block: Restore Roundstart Air Contents"
+	buildmode_name = "Blok: przywróć powietrze ze startu rundy"
 
 /datum/mapGenerator/massdelete
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete)
-	buildmode_name = "Block: Full Mass Deletion"
+	buildmode_name = "Blok: pełne masowe usuwanie"
 
 /datum/mapGenerator/massdelete/nomob
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete/no_delete_mobs)
-	buildmode_name = "Block: Mass Deletion - Leave Mobs"
+	buildmode_name = "Blok: masowe usuwanie – zostaw moby"
 
 /datum/mapGenerator/massdelete/noturf
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete/leave_turfs)
-	buildmode_name = "Block: Mass Deletion - Leave Turfs"
+	buildmode_name = "Blok: masowe usuwanie – zostaw turfy"
 
 /datum/mapGenerator/massdelete/regen
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete/regeneration_delete)
-	buildmode_name = "Block: Mass Deletion - Leave Mobs and Turfs"
+	buildmode_name = "Blok: masowe usuwanie – zostaw moby i turfy"

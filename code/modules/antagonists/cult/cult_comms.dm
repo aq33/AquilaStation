@@ -12,8 +12,8 @@
 	return ..()
 
 /datum/action/innate/cult/comm
-	name = "Communion"
-	desc = "Whispered words that all cultists can hear.<br><b>Warning:</b>Nearby non-cultists can still hear you."
+	name = "Komunia"
+	desc = "Szeptane słowa, które słyszą wszyscy kultyści.<br><b>Uwaga:</b> pobliscy nie-kultyści wciąż mogą cię usłyszeć."
 	button_icon_state = "cult_comms"
 	check_flags = AB_CHECK_CONSCIOUS
 
@@ -55,8 +55,8 @@
 	user.log_talk(message, LOG_SAY, tag="cult")
 
 /datum/action/innate/cult/comm/spirit
-	name = "Spiritual Communion"
-	desc = "Conveys a message from the spirit realm that all cultists can hear."
+	name = "Duchowa komunia"
+	desc = "Przekazuje ze świata duchów wiadomość, którą słyszą wszyscy kultyści."
 
 /datum/action/innate/cult/comm/spirit/IsAvailable()
 	if(iscultist(owner.mind.current))
@@ -66,7 +66,7 @@
 	var/my_message
 	if(!message)
 		return
-	my_message = "<span class='cultboldtalic'>The [user.name]: [message]</span>"
+	my_message = "<span class='cultboldtalic'>[user.name]: [message]</span>"
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 		if(iscultist(M))
@@ -76,7 +76,7 @@
 			to_chat(M, "[link] [my_message]")
 
 /datum/action/innate/cult/mastervote
-	name = "Assert Leadership"
+	name = "Przejmij przywództwo"
 	button_icon_state = "cultvote"
 
 /datum/action/innate/cult/mastervote/IsAvailable()
@@ -86,8 +86,8 @@
 	return ..()
 
 /datum/action/innate/cult/mastervote/Activate()
-	var/choice = alert(owner, "Płaszcz przywódcy jest ciężki. Sukces w tej roli wymaga świetnej komunikacji i doświadczenia. Na pewno?",, "Yes", "No")
-	if(choice == "Yes" && IsAvailable())
+	var/choice = alert(owner, "Płaszcz przywódcy jest ciężki. Sukces w tej roli wymaga świetnej komunikacji i doświadczenia. Na pewno?",, "Tak", "Nie")
+	if(choice == "Tak" && IsAvailable())
 		var/datum/antagonist/cult/C = owner.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 		pollCultists(owner,C.cult_team)
 
@@ -150,8 +150,8 @@
 	return ..()
 
 /datum/action/innate/cult/master/finalreck
-	name = "Final Reckoning"
-	desc = "A single-use spell that brings the entire cult to the master's location."
+	name = "Ostateczne rozliczenie"
+	desc = "Jednorazowe zaklęcie, które sprowadza cały kult do mistrza."
 	button_icon_state = "sintouch"
 	check_flags = AB_CHECK_CONSCIOUS
 
@@ -216,8 +216,8 @@
 			playsound(get_turf(owner),'sound/magic/clockwork/narsie_attack.ogg', 100, 1)
 
 /datum/action/innate/cult/master/cultmark
-	name = "Mark Target"
-	desc = "Marks a target for the cult."
+	name = "Oznacz cel"
+	desc = "Oznacza cel dla kultu."
 	button_icon_state = "cult_mark"
 	var/obj/effect/proc_holder/cultmark/CM
 	var/cooldown = 0
@@ -304,8 +304,8 @@
 
 
 /datum/action/innate/cult/master/cultmark/ghost
-	name = "Mark a Blood Target for the Cult"
-	desc = "Marks a target for the entire cult to track."
+	name = "Oznacz krwawy cel dla kultu"
+	desc = "Oznacza cel, który będzie śledzić cały kult."
 
 /datum/action/innate/cult/master/cultmark/ghost/IsAvailable()
 	if(istype(owner, /mob/dead/observer) && iscultist(owner.mind.current))
@@ -314,8 +314,8 @@
 		qdel(src)
 
 /datum/action/innate/cult/ghostmark //Ghost version
-	name = "Blood Mark your Target"
-	desc = "Marks whatever you are orbitting - for the entire cult to track."
+	name = "Oznacz cel krwawym znakiem"
+	desc = "Oznacza to, wokół czego krążysz – cały kult będzie mógł to śledzić."
 	button_icon_state = "cult_mark"
 	var/tracking = FALSE
 	var/cooldown = 0
@@ -329,8 +329,8 @@
 
 /datum/action/innate/cult/ghostmark/proc/reset_button()
 	if(owner)
-		name = "Blood Mark your Target"
-		desc = "Marks whatever you are orbitting - for the entire cult to track."
+		name = "Oznacz cel krwawym znakiem"
+		desc = "Oznacza to, wokół czego krążysz – cały kult będzie mógł to śledzić."
 		button_icon_state = "cult_mark"
 		owner.update_action_buttons_icon()
 		SEND_SOUND(owner, 'sound/magic/enter_blood.ogg')
@@ -369,8 +369,8 @@
 			SEND_SOUND(B.current, sound(pick('sound/hallucinations/over_here2.ogg','sound/hallucinations/over_here3.ogg'),0,1,75))
 			B.current.client.images += C.cult_team.blood_target_image
 	to_chat(owner,"<span class='cultbold'>Oznaczasz [target] dla kultu! Znak potrwa [DisplayTimeText(base_cooldown)].</span>")
-	name = "Clear the Blood Mark"
-	desc = "Remove the Blood Mark you previously set."
+	name = "Usuń krwawy znak"
+	desc = "Usuwa krwawy znak, który wcześniej postawiłeś."
 	button_icon_state = "emp"
 	owner.update_action_buttons_icon()
 	C.cult_team.blood_target_reset_timer = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(reset_blood_target),C.cult_team), base_cooldown, TIMER_STOPPABLE)
@@ -382,8 +382,8 @@
 
 
 /datum/action/innate/cult/master/pulse
-	name = "Eldritch Pulse"
-	desc = "Seize upon a fellow cultist or cult structure and teleport it to a nearby location."
+	name = "Pradawny impuls"
+	desc = "Chwytasz innego kultystę albo strukturę kultu i teleportujesz w pobliskie miejsce."
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "arcane_barrage"
 	var/obj/effect/proc_holder/pulse/PM

@@ -59,21 +59,21 @@
 	if(!check_rights(R_SERVER))
 		return
 	var/path = SSmapping.config.starmap_path
-	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Nie zostanie zachowana żadna kopia zapasowa, tego nie da się cofnąć. Kontynuować?", "New Campaign", "Reset campaign", "Cancel") != "Reset campaign")
+	if(alert(usr, "To twardo zrestartuje serwer i ZRESETUJE trwałą kampanię mapy gwiezdnej ([path]) do mapy domyślnej. Nie zostanie zachowana żadna kopia zapasowa, tego nie da się cofnąć. Kontynuować?", "Nowa kampania", "Zresetuj kampanię", "Anuluj") != "Zresetuj kampanię")
 		return
-	if(alert(usr, "Czy na pewno? Każdy układ, właściciel i zmiana kampanii na mapie gwiezdnej wróci do początku.", "New Campaign - final warning", "Yes, reset and restart", "Cancel") != "Yes, reset and restart")
+	if(alert(usr, "Czy na pewno? Każdy układ, właściciel i zmiana kampanii na mapie gwiezdnej wróci do początku.", "Nowa kampania – ostatnie ostrzeżenie", "Tak, zresetuj i zrestartuj", "Anuluj") != "Tak, zresetuj i zrestartuj")
 		return
 
 	var/list/result = reset_campaign_starmap(path)
 	if(!result["success"])
 		log_admin("[key_name(usr)] tried Hard Restart + New Campaign; the starmap reset FAILED ([result["error"]]). Starmap: [path]. Restart aborted, campaign kept.")
-		message_admins("[key_name_admin(usr)] tried Hard Restart + New Campaign; the starmap reset FAILED ([result["error"]]). Restart aborted, campaign kept.")
+		message_admins("[key_name_admin(usr)] próbuje Hard Restart + New Campaign, ale reset mapy gwiezdnej się NIE POWIÓDŁ ([result["error"]]). Restart przerwany, kampania zostaje.")
 		to_chat(usr, "<span class='warning'>Reset kampanii nie powiódł się: [result["error"]]. Serwer nie został zrestartowany, a kampania pozostała bez zmian.</span>")
 		return
 	SSstar_system.campaign_reset_pending = TRUE
 	log_admin("[key_name(usr)] used Hard Restart + New Campaign. Starmap [path] reset to [CAMPAIGN_DEFAULT_STARMAP]. Restarting.")
-	message_admins("[key_name_admin(usr)] used Hard Restart + New Campaign. Starmap [path] reset. Restarting.")
-	to_chat(world, "World reboot - new campaign - [init_by]")
+	message_admins("[key_name_admin(usr)] używa Hard Restart + New Campaign. Mapa gwiezdna [path] zresetowana. Trwa restart.")
+	to_chat(world, "Restart świata – nowa kampania – [init_by]")
 	world.Reboot()
 
 #undef CAMPAIGN_DEFAULT_STARMAP

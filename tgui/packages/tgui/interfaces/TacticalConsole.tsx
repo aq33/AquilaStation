@@ -42,8 +42,8 @@ export const TacticalConsole = (props) => {
     <Window theme="nanotrasen" width={560} height={600}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Ship status">
-            <Section title="Hull integrity:">
+          <Section title="Stan statku">
+            <Section title="Integralność kadłuba:">
               <ProgressBar
                 value={(data.integrity / data.max_integrity) * 100 * 0.01}
                 ranges={{
@@ -53,10 +53,13 @@ export const TacticalConsole = (props) => {
                 }}
               />
             </Section>
-            <Section title="Armour:">
+            <Section title="Pancerz:">
               {(data.has_quadrant && (
                 <LabeledList>
-                  <LabeledList.Item label="Forward Port" labelColor="#ffffff">
+                  <LabeledList.Item
+                    label="Dziób, lewa burta"
+                    labelColor="#ffffff"
+                  >
                     <ProgressBar
                       value={
                         data.quadrant_fp_armour_current /
@@ -70,7 +73,7 @@ export const TacticalConsole = (props) => {
                     />
                   </LabeledList.Item>
                   <LabeledList.Item
-                    label="Forward Starboard"
+                    label="Dziób, prawa burta"
                     labelColor="#ffffff"
                   >
                     <ProgressBar
@@ -85,7 +88,10 @@ export const TacticalConsole = (props) => {
                       }}
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Aft Port" labelColor="#ffffff">
+                  <LabeledList.Item
+                    label="Rufa, lewa burta"
+                    labelColor="#ffffff"
+                  >
                     <ProgressBar
                       value={
                         data.quadrant_ap_armour_current /
@@ -98,7 +104,10 @@ export const TacticalConsole = (props) => {
                       }}
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Aft Starboard" labelColor="#ffffff">
+                  <LabeledList.Item
+                    label="Rufa, prawa burta"
+                    labelColor="#ffffff"
+                  >
                     <ProgressBar
                       value={
                         data.quadrant_as_armour_current /
@@ -114,7 +123,7 @@ export const TacticalConsole = (props) => {
                 </LabeledList>
               )) || (
                 <LabeledList>
-                  <LabeledList.Item label="Integrity" labelColor="#ffffff">
+                  <LabeledList.Item label="Integralność" labelColor="#ffffff">
                     <ProgressBar
                       value={
                         (data.armour_integrity / data.max_armour_integrity) *
@@ -133,13 +142,13 @@ export const TacticalConsole = (props) => {
             </Section>
           </Section>
           <Section
-            title="Armaments:"
+            title="Uzbrojenie:"
             buttons={
               <>
                 <Button
                   icon="cog"
                   color={data.additional_weapon_info ? 'good' : 'default'}
-                  content="Expanded Info"
+                  content="Więcej informacji"
                   onClick={() => act('toggle_additional_weapon_info')}
                 />
                 <Button
@@ -174,7 +183,7 @@ export const TacticalConsole = (props) => {
                             !!value.can_modify_priority && (
                               <Box>
                                 <br />
-                                {'Priority: '}
+                                {'Priorytet: '}
                                 <NumberInput
                                   step={1}
                                   value={value.weapon_priority}
@@ -192,19 +201,19 @@ export const TacticalConsole = (props) => {
                             )) || (
                             <Box>
                               <br />
-                              {'Priority: ' + value.weapon_priority}
+                              {'Priorytet: ' + value.weapon_priority}
                             </Box>
                           ))}
                         {!!value.controllers && (
                           <Box>
                             <br />
-                            {'Weapon controllers: ' + value.controllers}
+                            {'Kontrolery broni: ' + value.controllers}
                           </Box>
                         )}
                         {!!value.ammo_filter && (
                           <Box>
                             <br />
-                            {'Filtered ammo: ' + value.ammo_filter}
+                            {'Filtr amunicji: ' + value.ammo_filter}
                           </Box>
                         )}
                         <br />
@@ -215,12 +224,12 @@ export const TacticalConsole = (props) => {
               })}
             </LabeledList>
           </Section>
-          <Section title="Tracking:">
+          <Section title="Śledzenie:">
             {!data.no_gun_cam && (
               <Button
                 width="100%"
                 fluid
-                content={'Toggle Gun Camera'}
+                content={'Przełącz kamerę działa'}
                 icon="bullseye"
                 onClick={() => act('toggle_gun_camera')}
               />
@@ -245,9 +254,9 @@ export const TacticalConsole = (props) => {
                         {`${value.name}`}
                       </Button>
                       {!!(current === value.name) && !hidden && (
-                        <Section title="Armour">
+                        <Section title="Pancerz">
                           <LabeledList>
-                            <LabeledList.Item label="Forward Starboard">
+                            <LabeledList.Item label="Dziób, prawa burta">
                               <ProgressBar
                                 value={
                                   (value.quadrant_fp_armour_current /
@@ -262,7 +271,7 @@ export const TacticalConsole = (props) => {
                                 }}
                               />
                             </LabeledList.Item>
-                            <LabeledList.Item label="Forward Port">
+                            <LabeledList.Item label="Dziób, lewa burta">
                               <ProgressBar
                                 value={
                                   (value.quadrant_fs_armour_current /
@@ -277,7 +286,7 @@ export const TacticalConsole = (props) => {
                                 }}
                               />
                             </LabeledList.Item>
-                            <LabeledList.Item label="Aft Starboard">
+                            <LabeledList.Item label="Rufa, prawa burta">
                               <ProgressBar
                                 value={
                                   (value.quadrant_as_armour_current /
@@ -292,7 +301,7 @@ export const TacticalConsole = (props) => {
                                 }}
                               />
                             </LabeledList.Item>
-                            <LabeledList.Item label="Aft Port">
+                            <LabeledList.Item label="Rufa, lewa burta">
                               <ProgressBar
                                 value={
                                   (value.quadrant_ap_armour_current /
@@ -312,7 +321,7 @@ export const TacticalConsole = (props) => {
                       )}
                       <Section>
                         <LabeledList>
-                          <LabeledList.Item label="Integrity">
+                          <LabeledList.Item label="Integralność">
                             <ProgressBar
                               value={
                                 (value.integrity / value.max_integrity) *
@@ -332,15 +341,15 @@ export const TacticalConsole = (props) => {
                         fluid
                         content={
                           data.target_name === value.name
-                            ? `Stop Targeting ${value.name}`
-                            : `Target ${value.name}`
+                            ? `Przestań celować: ${value.name}`
+                            : `Wyceluj: ${value.name}`
                         }
                         icon="bullseye"
                         onClick={() => act('lock_ship', { target: value.name })}
                       />
                       <Button
                         fluid
-                        content={`Stop Tracking ${value.name}`}
+                        content={`Przestań śledzić: ${value.name}`}
                         icon="bullseye"
                         onClick={() => act('dump_lock', { target: value.name })}
                       />

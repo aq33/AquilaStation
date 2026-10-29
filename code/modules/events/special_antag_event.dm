@@ -59,12 +59,12 @@
 		M.special_role = role_name
 		var/datum/antagonist/special/A = M.add_antag_datum(antag_datum)
 		if(!A)
-			message_admins("[key_name(H.mind)] failed to become a [role_name]")
+			message_admins("[key_name(H.mind)] nie udaje się zostać: [role_name]")
 			log_game("[key_name(H.mind)] failed to become a [role_name]")
 			return
 		A.forge_objectives(M)
 		A.equip()
-		message_admins("[key_name(H.mind)] was randomly selected as [A.name]")
+		message_admins("[key_name(H.mind)] zostaje losowo wybrany jako [A.name]")
 		log_game("[key_name(H.mind)] was randomly selected as [A.name]")
 		announce_to_ghosts(H)
 		break

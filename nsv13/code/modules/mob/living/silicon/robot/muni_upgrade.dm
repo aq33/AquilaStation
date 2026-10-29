@@ -1,6 +1,6 @@
 /obj/item/borg/apparatus/munitions
-	name = "integrated mechanical clamp"
-	desc = "A mechanical clamp designed for carrying volatile equipment without causing violent reactions."
+	name = "wbudowany zacisk mechaniczny"
+	desc = "Zacisk mechaniczny do przenoszenia niestabilnego sprzętu bez wywoływania gwałtownych reakcji."
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_clamp"
 	storable = list(
@@ -24,7 +24,7 @@
 	. = ..()
 	if(stored)
 		. += "Zaciski trzymają obecnie [stored]"
-		. += "<span class='notice'<i>Alt-kliknięcie</i> upuści obecnie trzymany [stored].</span>"
+		. += "<span class='notice'><i>Alt-kliknięcie</i> upuszcza trzymany przedmiot: [stored].</span>"
 
 /obj/item/borg/apparatus/munitions/AltClick(mob/living/silicon/robot/user)
 	if(!stored)
@@ -34,8 +34,8 @@
 	stored.forceMove(get_turf(user))
 
 /obj/item/borg/upgrade/munitions
-	name = "munitions manipulation apparatus"
-	desc = "An engineering cyborg upgrade allowing for manipulation of munitions related equipment."
+	name = "aparat do obsługi amunicji"
+	desc = "Ulepszenie cyborga inżynieryjnego, które pozwala obsługiwać sprzęt amunicyjny."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)

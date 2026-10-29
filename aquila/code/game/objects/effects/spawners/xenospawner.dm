@@ -6,14 +6,14 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("An alien egg has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono jajo obcych: [ADMIN_VERBOSEJMP(T)].")
 	log_game("An alien egg has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/infectious_zombie_delivery
-	name = "infectious zombie delivery"
+	name = "dostawa zakaźnego zombie"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "zombie"
 	var/announcement_time = 1200
@@ -26,14 +26,14 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("An infectious zombie has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono zakaźnego zombie: [ADMIN_VERBOSEJMP(T)].")
 	log_game("An infectious zombie has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/swarmer_fabricator_delivery
-	name = "swarmer fabricator delivery"
+	name = "dostawa fabrykatora rojowców"
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer"
 	var/announcement_time = 1200
@@ -46,14 +46,14 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("A swarmer fabricator has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono fabrykator rojowców: [ADMIN_VERBOSEJMP(T)].")
 	log_game("A swarmer fabricator has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam tajemnicze urządzenie w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/spider_egg_delivery
-	name = "spider egg delivery"
+	name = "dostawa pajęczych jaj"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "spidereggs"
 	var/announcement_time = 1200
@@ -67,7 +67,7 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("A spider egg cluster has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono skupisko pajęczych jaj: [ADMIN_VERBOSEJMP(T)].")
 	log_game("A spider egg cluster has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
@@ -75,13 +75,13 @@
 
 
 /obj/effect/spawner/hivebot_delivery
-	name = "hivebot delivery"
+	name = "dostawa hivebota"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "hivebot_fab"
 	var/announcement_time = 1200
 
 /obj/effect/spawner/infected_monkey_delivery
-	name = "infected monkey delivery"
+	name = "dostawa zarażonej małpy"
 	icon = 'icons/mob/monkey.dmi'
 	icon_state = "monkey1"
 	var/announcement_time = 1200
@@ -96,14 +96,14 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("An infected monkey has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono zarażoną małpę: [ADMIN_VERBOSEJMP(T)].")
 	log_game("An infected monkey has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/morph_delivery
-	name = "morph delivery"
+	name = "dostawa morfa"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "morph"
 	var/announcement_time = 1200
@@ -116,7 +116,7 @@
 	new /obj/effect/temp_visual/gravpush(T)
 	playsound(T, 'sound/items/party_horn.ogg', 50, 1, -1)
 
-	message_admins("A morph has been delivered to [ADMIN_VERBOSEJMP(T)].")
+	message_admins("Dostarczono morfa: [ADMIN_VERBOSEJMP(T)].")
 	log_game("A morph has been delivered to [AREACOORD(T)]")
 	var/message = "Uwaga, [station_name()], powierzyliśmy wam okaz badawczy w [get_area_name(T, TRUE)]. Pamiętajcie o przestrzeganiu wszystkich środków bezpieczeństwa podczas pracy z okazem."
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(print_command_report), message), announcement_time))

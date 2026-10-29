@@ -18,7 +18,7 @@
 			qdel(query_find_ckey)
 			return
 		if(!query_find_ckey.NextRow())
-			if(alert(usr, "[new_key]/([new_ckey]) has not been seen before, are you sure you want to create a [type] for them?", "Unknown ckey", "Yes", "No", "Cancel") != "Yes")
+			if(alert(usr, "[new_key]/([new_ckey]) nie był wcześniej widziany. Na pewno chcesz mu utworzyć: [type]?", "Nieznany ckey", "Tak", "Nie", "Anuluj") != "Tak")
 				qdel(query_find_ckey)
 				return
 		qdel(query_find_ckey)
@@ -46,10 +46,10 @@
 			server_name = ssqlname
 
 	if(isnull(secret))
-		switch(alert("Ukryć notatkę przed graczami?", "Secret note?","Yes","No","Cancel"))
-			if("Yes")
+		switch(alert("Ukryć notatkę przed graczami?", "Tajna notatka?","Tak","Nie","Anuluj"))
+			if("Tak")
 				secret = 1
-			if("No")
+			if("Nie")
 				secret = 0
 			else
 				return
@@ -57,8 +57,8 @@
 	if(CONFIG_GET(flag/manual_note_expiry) && (type in list("note", "message")))
 		expiry = -1
 	else if(isnull(expiry))
-		if(alert(usr, "Ustawić czas wygaśnięcia? Wygasłe wiadomości są ukrywane tak jak usunięte.", "Expiry time?", "Yes", "No", "Cancel") == "Yes")
-			var/expire_time = input("Ustaw czas wygaśnięcia ([type]) w formacie RRRR-MM-DD GG:MM:SS. Wszystkie czasy według czasu serwera. GG:MM:SS jest opcjonalne, zapis 24-godzinny. Musi być późniejszy niż obecny czas, z oczywistych powodów.", "Set expiry time", SQLtime()) as null|text
+		if(alert(usr, "Ustawić czas wygaśnięcia? Wygasłe wiadomości są ukrywane tak jak usunięte.", "Czas wygaśnięcia?", "Tak", "Nie", "Anuluj") == "Tak")
+			var/expire_time = input("Ustaw czas wygaśnięcia ([type]) w formacie RRRR-MM-DD GG:MM:SS. Wszystkie czasy według czasu serwera. GG:MM:SS jest opcjonalne, zapis 24-godzinny. Musi być późniejszy niż obecny czas, z oczywistych powodów.", "Czas wygaśnięcia", SQLtime()) as null|text
 			if(!expire_time)
 				return
 			var/datum/DBQuery/query_validate_expire_time = SSdbcore.NewQuery(
@@ -79,7 +79,7 @@
 	if(expiry == -1)
 		expiry = null //This is so garbage and hacky.
 	if(type == "note" && isnull(note_severity))
-		note_severity = input("Ustaw wagę notatki.", "Severity", null, null) as null|anything in list("High", "Medium", "Minor", "None")
+		note_severity = input("Ustaw wagę notatki.", "Waga notatki", null, null) as null|anything in list("High", "Medium", "Minor", "None")
 		if(!note_severity)
 			return
 	var/datum/DBQuery/query_create_message = SSdbcore.NewQuery({"
@@ -100,7 +100,7 @@
 		"note_severity" = note_severity,
 	))
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
-	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
+	var/header = "[key_name_admin(usr)] tworzy wpis ([type])[(type == "note" || type == "message" || type == "watchlist entry") ? " dla [target_key]" : ""]"
 	if(!query_create_message.warn_execute())
 		qdel(query_create_message)
 		return
@@ -150,7 +150,7 @@
 	qdel(query_del_message)
 	if(logged)
 		var/m1 = "[user_key_name] has deleted a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for" : " made by"] [target_key]: [text]"
-		var/m2 = "[user_name_admin] has deleted a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for" : " made by"] [target_key]:<br>[text]"
+		var/m2 = "[user_name_admin] usuwa wpis ([type]) [(type == "note" || type == "message" || type == "watchlist entry") ? "dla" : "autorstwa"] [target_key]:<br>[text]"
 		log_admin_private(m1)
 		message_admins(m2)
 		if(browse)
@@ -186,7 +186,7 @@
 		var/target_key = query_find_edit_message.item[2]
 		var/admin_key = query_find_edit_message.item[3]
 		var/old_text = query_find_edit_message.item[4]
-		var/new_text = input("Input new [type]", "New [type]", "[old_text]") as null|message
+		var/new_text = input("Wpisz nową treść ([type])", "Nowa treść ([type])", "[old_text]") as null|message
 		if(!new_text)
 			qdel(query_find_edit_message)
 			return
@@ -201,7 +201,7 @@
 			return
 		qdel(query_edit_message)
 		log_admin_private("[kn] has edited a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from [old_text] to [new_text]")
-		message_admins("[kna] has edited a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from<br>[old_text]<br>to<br>[new_text]")
+		message_admins("[kna] edytuje wpis ([type])[(type == "note" || type == "message" || type == "watchlist entry") ? " dla [target_key]" : ""] autorstwa [admin_key] z<br>[old_text]<br>na<br>[new_text]")
 		if(browse)
 			browse_messages("[type]")
 		else
@@ -237,7 +237,7 @@
 		var/admin_key = query_find_edit_expiry_message.item[3]
 		var/old_expiry = query_find_edit_expiry_message.item[4]
 		var/new_expiry
-		var/expire_time = input("Set expiry time for [type] as format YYYY-MM-DD HH:MM:SS. All times in server time. HH:MM:SS is optional and 24-hour. Must be later than current time for obvious reasons. Enter -1 to remove expiry time.", "Set expiry time", old_expiry) as null|text
+		var/expire_time = input("Ustaw czas wygaśnięcia ([type]) w formacie YYYY-MM-DD HH:MM:SS. Wszystkie czasy są czasem serwera. HH:MM:SS jest opcjonalne, w formacie 24-godzinnym. Z oczywistych powodów musi to być czas późniejszy niż obecny. Wpisz -1, by usunąć czas wygaśnięcia.", "Czas wygaśnięcia", old_expiry) as null|text
 		if(!expire_time)
 			qdel(query_find_edit_expiry_message)
 			return
@@ -272,7 +272,7 @@
 			return
 		qdel(query_edit_message_expiry)
 		log_admin_private("[kn] has edited the expiration time of a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from [old_expiry] to [new_expiry]")
-		message_admins("[kna] has edited the expiration time of a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from [old_expiry] to [new_expiry]")
+		message_admins("[kna] zmienia czas wygaśnięcia wpisu ([type])[(type == "note" || type == "message" || type == "watchlist entry") ? " dla [target_key]" : ""] autorstwa [admin_key] z [old_expiry] na [new_expiry]")
 		if(browse)
 			browse_messages("[type]")
 		else
@@ -309,7 +309,7 @@
 			old_severity = "NA"
 		var/editor_key = usr.key
 		var/editor_ckey = usr.ckey
-		var/new_severity = input("Ustaw wagę notatki.", "Severity", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
+		var/new_severity = input("Ustaw wagę notatki.", "Waga notatki", null, null) as null|anything in list("high", "medium", "minor", "none") //lowercase for edit log consistency
 		if(!new_severity)
 			qdel(query_find_edit_note_severity)
 			return
@@ -326,7 +326,7 @@
 			return
 		qdel(query_edit_note_severity)
 		log_admin_private("[kn] has edited the severity of a [type] for [target_key] made by [admin_key] from [old_severity] to [new_severity]")
-		message_admins("[kna] has edited the severity time of a [type] for [target_key] made by [admin_key] from [old_severity] to [new_severity]")
+		message_admins("[kna] zmienia wagę wpisu ([type]) dla [target_key] autorstwa [admin_key] z [old_severity] na [new_severity]")
 		browse_messages(target_ckey = ckey(target_key), agegate = TRUE)
 	qdel(query_find_edit_note_severity)
 
@@ -370,7 +370,7 @@
 			return
 		qdel(query_message_secret)
 		log_admin_private("[kn] has toggled [target_key]'s [type] made by [admin_key] to [secret ? "not secret" : "secret"]")
-		message_admins("[kna] has toggled [target_key]'s [type] made by [admin_key] to [secret ? "not secret" : "secret"]")
+		message_admins("[kna] oznacza wpis ([type]) gracza [target_key] autorstwa [admin_key] jako [secret ? "jawny" : "tajny"]")
 		browse_messages(target_ckey = ckey(target_key), agegate = TRUE)
 	qdel(query_find_message_secret)
 
@@ -380,28 +380,28 @@
 		return
 	var/list/output = list()
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
-	var/list/navbar = list("<a href='byond://?_src_=holder;[HrefToken()];nonalpha=1'>All</a><a href='byond://?_src_=holder;[HrefToken()];nonalpha=2'>#</a>")
+	var/list/navbar = list("<a href='byond://?_src_=holder;[HrefToken()];nonalpha=1'>Wszystko</a><a href='byond://?_src_=holder;[HrefToken()];nonalpha=2'>#</a>")
 	for(var/letter in GLOB.alphabet)
 		navbar += "<a href='byond://?_src_=holder;[HrefToken()];showmessages=[letter]'>[letter]</a>"
-	navbar += "<a href='byond://?_src_=holder;[HrefToken()];showmemo=1'>Memos</a><a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>Watchlist</a>"
+	navbar += "<a href='byond://?_src_=holder;[HrefToken()];showmemo=1'>Notatki</a><a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>Obserwowani</a>"
 	navbar += "<br><form method='GET' name='search' action='byond://?'>\
 	<input type='hidden' name='_src_' value='holder'>\
 	[HrefTokenFormField()]\
 	<input type='text' name='searchmessages' value='[index]'>\
-	<input type='submit' value='Search'></form>"
+	<input type='submit' value='Szukaj'></form>"
 	if(!linkless)
 		output = navbar
 	if(type == "memo" || type == "watchlist entry")
 		if(type == "memo")
-			output += "<h2><center>Admin memos</h2>"
-			output += "<a href='byond://?_src_=holder;[HrefToken()];addmemo=1'>Add memo</a></center>"
+			output += "<h2><center>Notatki adminów</h2>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addmemo=1'>Dodaj notatkę</a></center>"
 		else if(type == "watchlist entry")
-			output += "<h2><center>Watchlist entries</h2>"
-			output += "<a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a>"
+			output += "<h2><center>Lista obserwowanych</h2>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Dodaj do obserwowanych</a>"
 			if(filter)
-				output += "<a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>Unfilter clients</a></center>"
+				output += "<a href='byond://?_src_=holder;[HrefToken()];showwatch=1'>Pokaż wszystkich klientów</a></center>"
 			else
-				output += "<a href='byond://?_src_=holder;[HrefToken()];showwatchfilter=1'>Filter offline clients</a></center>"
+				output += "<a href='byond://?_src_=holder;[HrefToken()];showwatchfilter=1'>Ukryj klientów offline</a></center>"
 		output += ruler
 		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery({"
 			SELECT
@@ -439,13 +439,13 @@
 				output += "[t_key] | "
 			output += "[timestamp] | [server_name] | [admin_key]"
 			if(expire_timestamp)
-				output += " | Expires [expire_timestamp]"
+				output += " | Wygasa [expire_timestamp]"
 			output += "</b>"
-			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>Change Expiry Time</a>"
-			output += " <a href='byond://?_src_=holder;[HrefToken()];deletemessageempty=[id]'>Delete</a>"
-			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageempty=[id]'>Edit</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiryempty=[id]'>Zmień czas wygaśnięcia</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];deletemessageempty=[id]'>Usuń</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];editmessageempty=[id]'>Edytuj</a>"
 			if(editor_key)
-				output += " <font size='2'>Last edit by [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
+				output += " <font size='2'>Ostatnio edytował: [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(kliknij, by zobaczyć historię zmian)</a></font>"
 			output += "<br>[text]<hr style='background:#000000; border:0; height:1px'>"
 		qdel(query_get_type_messages)
 	if(target_ckey)
@@ -509,28 +509,28 @@
 			var/list/data = list("<div style='margin:0px;[alphatext]'><p class='severity'>")
 			if(severity)
 				data += "<img src='[SSassets.transport.get_asset_url("[lowertext(severity)]_button.png")]' height='24' width='24'></img> "
-			data += "<b>[timestamp] | [server_name] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
+			data += "<b>[timestamp] | [server_name] | [admin_key][secret ? " | <i>- Tajne</i>" : ""]"
 			if(expire_timestamp)
-				data += " | Expires [expire_timestamp]"
+				data += " | Wygasa [expire_timestamp]"
 			data += "</b></p><center>"
 			if(!linkless)
 				if(type == "note")
 					if(severity)
-						data += "<a href='byond://?_src_=holder;[HrefToken()];editmessageseverity=[id]'>[severity=="none" ? "No" : "[capitalize(severity)]"] Severity</a>"
+						data += "<a href='byond://?_src_=holder;[HrefToken()];editmessageseverity=[id]'>Waga: [severity=="none" ? "brak" : "[capitalize(severity)]"]</a>"
 					else
-						data += "<a href='byond://?_src_=holder;[HrefToken()];editmessageseverity=[id]'>N/A Severity</a>"
-				data += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>Change Expiry Time</a>"
-				data += " <a href='byond://?_src_=holder;[HrefToken()];deletemessage=[id]'>Delete</a>"
+						data += "<a href='byond://?_src_=holder;[HrefToken()];editmessageseverity=[id]'>Waga: n/d</a>"
+				data += " <a href='byond://?_src_=holder;[HrefToken()];editmessageexpiry=[id]'>Zmień czas wygaśnięcia</a>"
+				data += " <a href='byond://?_src_=holder;[HrefToken()];deletemessage=[id]'>Usuń</a>"
 				if(type == "note")
-					data += " <a href='byond://?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>Secret</b>" : "Not secret"]</a>"
+					data += " <a href='byond://?_src_=holder;[HrefToken()];secretmessage=[id]'>[secret ? "<b>Tajne</b>" : "Jawne"]</a>"
 				if(type == "message sent")
 					data += " <font size='2'>Wiadomość została wysłana</font>"
 					if(editor_key)
 						data += "|"
 				else
-					data += " <a href='byond://?_src_=holder;[HrefToken()];editmessage=[id]'>Edit</a>"
+					data += " <a href='byond://?_src_=holder;[HrefToken()];editmessage=[id]'>Edytuj</a>"
 				if(editor_key)
-					data += " <font size='2'>Last edit by [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(Click here to see edit log)</a></font>"
+					data += " <font size='2'>Ostatnio edytował: [editor_key] <a href='byond://?_src_=holder;[HrefToken()];messageedits=[id]'>(kliknij, by zobaczyć historię zmian)</a></font>"
 			data += "</div></center>"
 			data += "<p style='[alphatext]'>[text]</p><hr style='background:#000000; border:0; height:1px; [alphatext]'>"
 			switch(type)
@@ -555,33 +555,33 @@
 			qdel(query_get_message_key)
 		output += "<h2><center>[target_key]</center></h2><center>"
 		if(!linkless)
-			output += "<a href='byond://?_src_=holder;[HrefToken()];addnote=[target_key]'>Add note</a>"
-			output += " <a href='byond://?_src_=holder;[HrefToken()];addmessage=[target_key]'>Add message</a>"
+			output += "<a href='byond://?_src_=holder;[HrefToken()];addnote=[target_key]'>Dodaj notkę</a>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];addmessage=[target_key]'>Dodaj wiadomość</a>"
 			output += " <a href='byond://?_src_=holder;[HrefToken()];addwatch=[target_key]'>Dodaj do listy obserwowanych</a>"
-			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Refresh page</a></center>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Odśwież stronę</a></center>"
 		else
-			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>Refresh page</a></center>"
+			output += " <a href='byond://?_src_=holder;[HrefToken()];showmessageckeylinkless=[target_ckey]'>Odśwież stronę</a></center>"
 		output += ruler
 		if(messagedata)
-			output += "<h2>Messages</h2>"
+			output += "<h2>Wiadomości</h2>"
 			output += messagedata
 		if(watchdata)
-			output += "<h2>Watchlist</h2>"
+			output += "<h2>Obserwacja</h2>"
 			output += watchdata
 		if(notedata)
-			output += "<h2>Notes</h2>"
+			output += "<h2>Notki</h2>"
 			output += notedata
 			if(!linkless)
 				if (agegate)
 					if (skipped) //the first skipped message is still shown so that we can put this link over it.
-						output += "<center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>Show [skipped] hidden messages</a></center>"
+						output += "<center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1' style='position: relative; top: -3em;'>Pokaż ukryte wiadomości ([skipped])</a></center>"
 					else
 						output += "<center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey];showall=1'>Pokaż wszystko</a></center>"
 				else
-					output += "<center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Hide Old</a></center>"
+					output += "<center><a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[target_ckey]'>Ukryj stare</a></center>"
 	if(index)
 		var/search
-		output += "<center><a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
+		output += "<center><a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>Dodaj wiadomość</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Dodaj do obserwowanych</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>Dodaj notkę</a></center>"
 		output += ruler
 		switch(index)
 			if(1)
@@ -614,9 +614,9 @@
 			output += "<a href='byond://?_src_=holder;[HrefToken()];showmessageckey=[index_ckey]'>[index_key]</a><br>"
 		qdel(query_list_messages)
 	else if(!type && !target_ckey && !index)
-		output += "<center><a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
+		output += "<center><a href='byond://?_src_=holder;[HrefToken()];addmessageempty=1'>Dodaj wiadomość</a><a href='byond://?_src_=holder;[HrefToken()];addwatchempty=1'>Dodaj do obserwowanych</a><a href='byond://?_src_=holder;[HrefToken()];addnoteempty=1'>Dodaj notkę</a></center>"
 		output += ruler
-	var/datum/browser/browser = new(usr, "Note panel", "Manage player notes", 1000, 500)
+	var/datum/browser/browser = new(usr, "Note panel", "Notki graczy", 1000, 500)
 	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	notes_assets.send(usr.client)
 	browser.set_content(jointext(output, ""))
@@ -665,12 +665,12 @@
 					return
 				qdel(query_message_read)
 			if("watchlist entry")
-				message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(target_ckey)] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
+				message_admins("<font color='red'><B>Uwaga: </B></font><font color='blue'>[key_name_admin(target_ckey)] jest na liście obserwowanych od [timestamp] i właśnie się połączył. Powód: [text]</font>")
 				send2tgs_adminless_only("Watchlist", "[key_name(target_ckey)] is on the watchlist and has just connected - Reason: [text]")
 			if("memo")
 				output += "<span class='memo'>Notatka od <span class='prefix'>[admin_key]</span>, [timestamp]"
 				if(editor_key)
-					output += "<br><span class='memoedit'>Last edit by [editor_key] <A href='byond://?_src_=holder;[HrefToken()];messageedits=[message_id]'>(Click here to see edit log)</A></span>"
+					output += "<br><span class='memoedit'>Ostatnio edytował: [editor_key] <A href='byond://?_src_=holder;[HrefToken()];messageedits=[message_id]'>(kliknij, by zobaczyć historię zmian)</A></span>"
 				output += "<br>[text]</span><br>"
 	qdel(query_get_message_output)
 	return output

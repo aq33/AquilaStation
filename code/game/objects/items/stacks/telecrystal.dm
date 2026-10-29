@@ -1,7 +1,7 @@
 /obj/item/stack/telecrystal
-	name = "telecrystal"
-	desc = "It seems to be pulsing with suspiciously enticing energies."
-	singular_name = "telecrystal"
+	name = "telekryształ"
+	desc = "Pulsuje podejrzanie kuszącą energią."
+	singular_name = "telekryształ"
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "telecrystal"
 	w_class = WEIGHT_CLASS_TINY

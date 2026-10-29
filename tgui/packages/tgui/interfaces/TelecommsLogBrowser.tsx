@@ -118,7 +118,9 @@ const ServerLogs = (props: { selected: Selected }) => {
         <LabeledList.Item label="Zapisany ruch">
           {formatTraffic(selected.traffic)}
         </LabeledList.Item>
-        <LabeledList.Item label="Wpisy">{selected.logs.length}</LabeledList.Item>
+        <LabeledList.Item label="Wpisy">
+          {selected.logs.length}
+        </LabeledList.Item>
       </LabeledList>
       {selected.logs.map((log) => (
         <Section
@@ -150,7 +152,7 @@ const ServerLogs = (props: { selected: Selected }) => {
                 )}
               </LabeledList.Item>
             </LabeledList>
-          ) : log.type === 'Execution Error' ? (
+          ) : log.type === 'Błąd wykonania' ? (
             <Stack>
               <Stack.Item color="bad">Błąd:</Stack.Item>
               <Stack.Item>{log.message}</Stack.Item>

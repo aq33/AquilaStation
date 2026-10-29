@@ -4,7 +4,7 @@
 
 /mob/living/simple_animal/hostile/hivebot
 	name = "hivebot"
-	desc = "A small robot."
+	desc = "Mały robot."
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "basic"
 	icon_living = "basic"
@@ -37,7 +37,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/range
 	name = "hivebot"
-	desc = "A smallish robot, this one is armed!"
+	desc = "Niewielki robot. Ten jest uzbrojony!"
 	icon_state = "ranged"
 	icon_living = "ranged"
 	icon_dead = "ranged"
@@ -55,11 +55,11 @@
 	minimum_distance = 5
 
 /mob/living/simple_animal/hostile/hivebot/strong
-	name = "strong hivebot"
+	name = "silny hivebot"
 	icon_state = "strong"
 	icon_living = "strong"
 	icon_dead = "strong"
-	desc = "A robot, this one is armed and looks tough!"
+	desc = "Robot. Ten jest uzbrojony i wygląda na twardego!"
 	health = 80
 	maxHealth = 80
 	ranged = 1

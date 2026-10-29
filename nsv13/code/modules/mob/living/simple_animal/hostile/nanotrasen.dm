@@ -1,8 +1,8 @@
 //// Base mob ////
 ///// Interior Mobs ////
 /mob/living/simple_animal/hostile/nsv/nanotrasen
-	name = "Nanotrasen marine"
-	desc = "About time they sent some backup!"
+	name = "żołnierz piechoty Nanotrasen"
+	desc = "Najwyższy czas, żeby przysłali wsparcie!"
 	icon = 'nsv13/icons/mob/simple_human.dmi'
 	icon_state = "nsvnt_melee"
 	icon_living = "nsvnt_melee"
@@ -36,8 +36,8 @@
 
 
 /mob/living/simple_animal/hostile/nsv/nanotrasen/ranged
-	name = "Nanotrasen marine"
-	desc = "Rocking the finest glock this side of Sol."
+	name = "żołnierz piechoty Nanotrasen"
+	desc = "Dzierży najlepszego glocka po tej stronie Sol."
 	icon = 'nsv13/icons/mob/simple_human.dmi'
 	icon_state = "nsvnt_ranged"
 	icon_living = "nsvnt_ranged"
@@ -59,10 +59,10 @@
 
 //// Space mobs ////
 /mob/living/simple_animal/hostile/nsv/nanotrasen/space
-	name = "Nanotrasen marine"
+	name = "żołnierz piechoty Nanotrasen"
 	icon_state = "nsvnt_melee_space"
 	icon_living = "nsvnt_melee_space"
-	desc = "Whilst not a cutting edge spacesuit, squadsuits work just as well."
+	desc = "Skafander drużyny to nie najnowocześniejszy skafander, ale sprawdza się równie dobrze."
 	maxHealth = 135
 	health = 135
 	melee_damage = 13
@@ -76,7 +76,7 @@
 /mob/living/simple_animal/hostile/nsv/nanotrasen/space/ranged
 	icon_state = "nsvnt_ranged_space"
 	icon_living = "nsvnt_ranged_space"
-	desc = "Bringing down the Syndicate, one 9mm round at a time!"
+	desc = "Rozbija Syndykat, pocisk 9 mm po pocisku!"
 	maxHealth = 135
 	health = 135
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -91,8 +91,8 @@
 
 /mob/living/simple_animal/hostile/nsv/nanotrasen/space/ranged/elite
 	rapid = 2
-	name = "Nanotrasen elite marine"
-	desc = "Good grief, is that Mjolnir armour?"
+	name = "elitarny żołnierz piechoty Nanotrasen"
+	desc = "Jasny gwint, czy to pancerz Mjolnir?"
 	health = 175
 	maxHealth = 175
 	melee_damage = 10

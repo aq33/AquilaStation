@@ -2,12 +2,12 @@
 	SEND_SIGNAL(src, COMSIG_SHOES_STEP_ACTION)
 
 /obj/item/clothing/shoes/sneakers/mime
-	name = "mime shoes"
+	name = "buty mima"
 	greyscale_colors = "#ffffff#ffffff"
 
 /obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
-	name = "combat boots"
-	desc = "High speed, low drag combat boots."
+	name = "buty bojowe"
+	desc = "Buty bojowe: duża prędkość, mały opór."
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -19,15 +19,15 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
-	name = "\improper SWAT boots"
-	desc = "High speed, no drag combat boots."
+	name = "\improper buty SWAT"
+	desc = "Buty bojowe: duża prędkość, zero oporu."
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
 	armor = list("melee" = 40, "bullet" = 30, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 50, "stamina" = 30, "bleed" = 20)
 
 /obj/item/clothing/shoes/sandal
 	desc = "Para dość zwyczajnych drewnianych sandałów."
-	name = "sandals"
+	name = "sandały"
 	icon_state = "wizard"
 	strip_delay = 50
 	equip_delay_other = 50
@@ -35,8 +35,8 @@
 	strip_delay = 5
 
 /obj/item/clothing/shoes/sneakers/marisa
-	desc = "A pair of magic black shoes."
-	name = "magic shoes"
+	desc = "Para magicznych czarnych butów."
+	name = "magiczne buty"
 	worn_icon_state = "marisa"
 	greyscale_colors = "#545454#ffffff"
 	greyscale_config = /datum/greyscale_config/sneakers_marisa
@@ -47,13 +47,13 @@
 	resistance_flags = FIRE_PROOF |  ACID_PROOF
 
 /obj/item/clothing/shoes/sandal/magic
-	name = "magical sandals"
-	desc = "A pair of sandals imbued with magic."
+	name = "magiczne sandały"
+	desc = "Para sandałów przesyconych magią."
 	resistance_flags = FIRE_PROOF |  ACID_PROOF
 
 /obj/item/clothing/shoes/galoshes
-	desc = "A pair of yellow rubber boots, designed to prevent slipping on wet surfaces."
-	name = "galoshes"
+	desc = "Para żółtych gumowych butów, które zapobiegają poślizgnięciu się na mokrej powierzchni."
+	name = "kalosze"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
@@ -66,8 +66,8 @@
 	custom_price = 100
 
 /obj/item/clothing/shoes/galoshes/dry
-	name = "absorbent galoshes"
-	desc = "A pair of orange rubber boots, designed to prevent slipping on wet surfaces while also drying them."
+	name = "chłonne kalosze"
+	desc = "Para pomarańczowych gumowych butów, które zapobiegają poślizgnięciu się na mokrej powierzchni i przy okazji ją osuszają."
 	icon_state = "galoshes_dry"
 
 /obj/item/clothing/shoes/galoshes/dry/step_action()
@@ -75,8 +75,8 @@
 	SEND_SIGNAL(t_loc, COMSIG_TURF_MAKE_DRY, TURF_WET_WATER, TRUE, INFINITY)
 
 /obj/item/clothing/shoes/clown_shoes
-	desc = "The prankster's standard-issue clowning shoes. Damn, they're huge! Ctrl-click to toggle waddle dampeners."
-	name = "clown shoes"
+	desc = "Standardowe buty klauna każdego dowcipnisia. Rany, ale wielkie! Ctrl-klik przełącza tłumiki kaczego chodu."
+	name = "buty klauna"
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN+1
@@ -116,13 +116,13 @@
 		enabled_waddle = FALSE
 
 /obj/item/clothing/shoes/clown_shoes/jester
-	name = "jester shoes"
-	desc = "A court jester's shoes, updated with modern squeaking technology."
+	name = "buty błazna"
+	desc = "Buty nadwornego błazna, unowocześnione o nowoczesną technologię piszczenia."
 	icon_state = "jester_shoes"
 
 /obj/item/clothing/shoes/jackboots
-	name = "jackboots"
-	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
+	name = "buty wojskowe"
+	desc = "Policyjne buty bojowe wydawane przez Nanotrasen na scenariusze bojowe i sytuacje bojowe. Walka zawsze i wszędzie."
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -137,7 +137,7 @@
 	slowdown = -1
 
 /obj/item/clothing/shoes/winterboots
-	name = "winter boots"
+	name = "buty zimowe"
 	desc = "Buty podszyte „syntetycznym” zwierzęcym futrem."
 	icon_state = "winterboots"
 	item_state = "winterboots"
@@ -149,8 +149,8 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/winterboots/noslip
-	name = "high-traction winter boots"
-	desc = "Boots lined with 'synthetic' animal fur and coated with a special freeze resistant anti-slip coating."
+	name = "antypoślizgowe buty zimowe"
+	desc = "Buty podszyte „syntetycznym” zwierzęcym futrem i pokryte specjalną mrozoodporną powłoką antypoślizgową."
 
 /obj/item/clothing/shoes/winterboots/noslip/equipped(mob/user, slot)
 	. = ..()
@@ -162,8 +162,8 @@
 	REMOVE_TRAIT(user, TRAIT_NOSLIPALL, CLOTHING_FEET_TRAIT)
 
 /obj/item/clothing/shoes/workboots
-	name = "work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar."
+	name = "buty robocze"
+	desc = "Sznurowane buty robocze Inżynierii wydawane przez Nanotrasen, dla szczególnie robotniczych."
 	icon_state = "workboots"
 	item_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -174,14 +174,14 @@
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/workboots/mining
-	name = "mining boots"
-	desc = "Steel-toed mining boots for mining in hazardous environments. Very good at keeping toes uncrushed."
+	name = "buty górnicze"
+	desc = "Buty górnicze ze stalowymi noskami do pracy w niebezpiecznym otoczeniu. Świetnie chronią palce przed zmiażdżeniem."
 	icon_state = "explorer"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/shoes/cult
-	name = "\improper Nar'Sien invoker boots"
-	desc = "A pair of boots worn by the followers of Nar'Sie."
+	name = "\improper buty przywoływacza Nar'Sie"
+	desc = "Para butów noszona przez wyznawców Nar'Sie."
 	icon_state = "cult"
 	item_state = "cult"
 	cold_protection = FEET
@@ -190,7 +190,7 @@
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 
 /obj/item/clothing/shoes/cult/alt
-	name = "cultist boots"
+	name = "buty kultysty"
 	icon_state = "cultalt"
 
 /obj/item/clothing/shoes/cult/alt/ghost
@@ -201,19 +201,19 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/shoes/sneakers/cyborg
-	name = "cyborg boots"
-	desc = "Shoes for a cyborg costume."
+	name = "buty cyborga"
+	desc = "Buty do przebrania cyborga."
 	greyscale_colors = "#4e4e4e#4e4e4e"
 
 /obj/item/clothing/shoes/laceup
-	name = "laceup shoes"
+	name = "sznurowane półbuty"
 	desc = "Szczyt mody, i to już wypastowane!"
 	icon_state = "laceups"
 	equip_delay_other = 50
 
 /obj/item/clothing/shoes/roman
-	name = "roman sandals"
-	desc = "Sandals with buckled leather straps on it."
+	name = "rzymskie sandały"
+	desc = "Sandały ze skórzanymi paskami zapinanymi na sprzączki."
 	icon_state = "roman"
 	item_state = "roman"
 	strip_delay = 100
@@ -221,15 +221,15 @@
 	permeability_coefficient = 0.9
 
 /obj/item/clothing/shoes/griffin
-	name = "griffon boots"
-	desc = "A pair of costume boots fashioned after bird talons."
+	name = "buty gryfa"
+	desc = "Para butów do przebrania wzorowanych na ptasich szponach."
 	icon_state = "griffinboots"
 	item_state = "griffinboots"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/bhop
-	name = "jump boots"
-	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
+	name = "buty skokowe"
+	desc = "Specjalistyczne buty bojowe z wbudowanym napędem do szybkiego wyskoku do przodu."
 	icon_state = "jetboots"
 	item_state = "jetboots"
 	resistance_flags = FIRE_PROOF
@@ -260,20 +260,20 @@
 		to_chat(user, "<span class='warning'>Coś nie pozwala ci skoczyć do przodu!</span>")
 
 /obj/item/clothing/shoes/singery
-	name = "yellow performer's boots"
-	desc = "These boots were made for dancing."
+	name = "żółte buty artysty"
+	desc = "Te buty stworzono do tańczenia."
 	icon_state = "ysing"
 	equip_delay_other = 50
 
 /obj/item/clothing/shoes/singerb
-	name = "blue performer's boots"
-	desc = "These boots were made for dancing."
+	name = "niebieskie buty artysty"
+	desc = "Te buty stworzono do tańczenia."
 	icon_state = "bsing"
 	equip_delay_other = 50
 
 /obj/item/clothing/shoes/bronze
-	name = "bronze boots"
-	desc = "A giant, clunky pair of shoes crudely made out of bronze. Why would anyone wear these?"
+	name = "brązowe buty"
+	desc = "Wielka, toporna para butów niezgrabnie zrobiona z brązu. Po co ktoś miałby je nosić?"
 	icon = 'icons/obj/clothing/clockwork_garb.dmi'
 	icon_state = "clockwork_treads"
 
@@ -283,7 +283,7 @@
 
 /obj/item/clothing/shoes/wheelys
 	name = "Wheely-Heels"
-	desc = "Uses patented retractable wheel technology. Never sacrifice speed for style - not that this provides much of either." //Thanks Fel
+	desc = "Wykorzystują opatentowaną technologię chowanych kółek. Nigdy nie poświęcaj prędkości dla stylu - choć te buty nie dają zbyt wiele ani jednego, ani drugiego." //Thanks Fel
 	item_state = "wheelys"
 	greyscale_colors = "#545454#ffffff"
 	greyscale_config = /datum/greyscale_config/sneakers_wheelys
@@ -325,7 +325,7 @@
 
 /obj/item/clothing/shoes/kindleKicks
 	name = "Kindle Kicks"
-	desc = "They'll sure kindle something in you, and it's not childhood nostalgia..."
+	desc = "Na pewno coś w tobie rozpalą, i nie będzie to nostalgia za dzieciństwem..."
 	icon_state = "kindleKicks"
 	item_state = "kindleKicks"
 	actions_types = list(/datum/action/item_action/kindleKicks)
@@ -355,14 +355,14 @@
 		set_light_on(active)
 
 /obj/item/clothing/shoes/russian
-	name = "russian boots"
-	desc = "Comfy shoes."
+	name = "rosyjskie buty"
+	desc = "Wygodne buty."
 	icon_state = "rus_shoes"
 	item_state = "rus_shoes"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes
 
 /obj/item/clothing/shoes/swagshoes
-	name = "swag shoes"
+	name = "szpanerskie buty"
 	desc = "Zgarnęli mnie za moje piankowce!"
 	icon_state = "SwagShoes"
 	item_state = "SwagShoes"

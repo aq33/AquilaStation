@@ -6,16 +6,16 @@
 
 /obj/item/book/codex_gigas
 	name = "\improper Codex Gigas"
-	desc = "A book documenting the nature of devils."
+	desc = "Księga opisująca naturę diabłów."
 	icon_state ="demonomicon"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
 	throw_speed = 1
 	throw_range = 10
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	author = "Forces beyond your comprehension"
+	author = "Siły przekraczające twoje pojmowanie"
 	unique = 1
-	title = "the Codex Gigas"
+	title = "Codex Gigas"
 	var/inUse = 0
 	var/currentName = ""
 	var/currentSection = PRE_TITLE

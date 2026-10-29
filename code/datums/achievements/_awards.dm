@@ -1,7 +1,7 @@
 /datum/award
 	///Name of the achievement, If null it wont show up in the achievement browser. (Handy for inheritance trees)
 	var/name
-	var/desc = "You did it."
+	var/desc = "Udało ci się."
 	///Found in /datum/asset/spritesheet/simple/achievements
 	var/icon = "default"
 	var/category = "Normal"
@@ -67,7 +67,7 @@
 
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
-	desc = "Achievement for epic people"
+	desc = "Osiągnięcie dla epickich ludzi"
 	var/reward = 100
 
 /datum/award/achievement/get_metadata_row()
@@ -87,7 +87,7 @@
 
 ///Scores are for leaderboarded things, such as killcount of a specific boss
 /datum/award/score
-	desc = "you did it sooo many times."
+	desc = "zrobiłeś to taaaak wiele razy."
 	category = "Scores"
 	default_value = 0
 	var/track_high_scores = TRUE

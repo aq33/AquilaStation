@@ -1,6 +1,6 @@
 /obj/item/extinguisher
-	name = "fire extinguisher"
-	desc = "A traditional red fire extinguisher."
+	name = "gaśnica"
+	desc = "Tradycyjna czerwona gaśnica."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "fire_extinguisher0"
 	item_state = "fire_extinguisher"
@@ -27,8 +27,8 @@
 	var/cooling_power = 2 //Sets the cooling_temperature of the water reagent datum inside of the extinguisher when it is refilled
 
 /obj/item/extinguisher/mini
-	name = "pocket fire extinguisher"
-	desc = "A light and compact fibreglass-framed model fire extinguisher."
+	name = "kieszonkowa gaśnica"
+	desc = "Lekka i kompaktowa gaśnica w obudowie z włókna szklanego."
 	icon_state = "miniFE0"
 	item_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
@@ -50,8 +50,8 @@
 	refill()
 
 /obj/item/extinguisher/advanced
-	name = "advanced fire extinguisher"
-	desc = "Used to stop thermonuclear fires from spreading inside your engine."
+	name = "zaawansowana gaśnica"
+	desc = "Służy do powstrzymywania termojądrowych pożarów w twoim silniku."
 	icon_state = "foam_extinguisher0"
 	item_state = "foam_extinguisher"
 	dog_fashion = null

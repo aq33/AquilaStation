@@ -3,9 +3,9 @@
 // --- Internal Martyrdom ---
 
 /datum/mutation/martyrdom
-	name = "Internal Martyrdom"
-	desc = "The subject violently tears itself apart when near death. The process is irreversible. \
-		The effect is not known to damage anything nearby, but is very, VERY disorienting when observed."
+	name = "Wewnętrzne męczeństwo"
+	desc = "Gdy pacjent jest bliski śmierci, gwałtownie rozrywa się na strzępy. Tego procesu nie da się odwrócić. \
+		Nie wiadomo, żeby raniło to kogoś w pobliżu, ale widok jest bardzo, BARDZO oszałamiający."
 	locked = TRUE
 	quality = POSITIVE
 	text_gain_indication = "<span class='warning'>Czujesz potworną zgagę.</span>"
@@ -63,8 +63,8 @@
 // --- Hypermetabolic Blood ---
 
 /datum/mutation/bloodier
-	name = "Hypermetabolic Blood"
-	desc = "The subject's becomes hypermetabolic, causing it to produce blood at a much faster rate."
+	name = "Hipermetaboliczna krew"
+	desc = "Metabolizm pacjenta gwałtownie przyspiesza, więc wytwarza on krew znacznie szybciej."
 	quality = POSITIVE
 	instability = 10
 	text_gain_indication = "<span class='notice'>Czujesz, jak przyspiesza ci serce.</span>"
@@ -126,8 +126,8 @@
 // --- Inexorable ---
 
 /datum/mutation/inexorable
-	name = "Inexorable"
-	desc = "The subject's body can push on beyond the limits of normal human endurance, though the process causes internal damage to the body."
+	name = "Nieugiętość"
+	desc = "Ciało pacjenta wytrzymuje więcej, niż pozwala zwykła ludzka wytrzymałość, ale odnosi przy tym obrażenia wewnętrzne."
 	quality = POSITIVE
 	instability = 25
 	text_gain_indication = "<span class='notice'>Czujesz się niepowstrzymany.</span>"
@@ -169,8 +169,8 @@
 // --- Regeneration ---
 
 /datum/mutation/limb_regeneration
-	name = "Regeneration"
-	desc = "The subject's body is able to regenerate lost limbs or organs while sleeping, given ample rest and nutrients."
+	name = "Regeneracja kończyn"
+	desc = "Ciało pacjenta potrafi we śnie odtworzyć utracone kończyny i organy, jeśli ma dość odpoczynku i składników odżywczych."
 	quality = POSITIVE
 	instability = 25
 	text_gain_indication = "<span class='notice'>Czujesz dziwne mrowienie.</span>"
@@ -265,8 +265,8 @@
 // --- Chemical Allergy ---
 
 /datum/mutation/chemical_allergy
-	name = "Chemical Allergy"
-	desc = "The subject's body is allergic to almost all forms of medicine or drug - causing a temporary flux of genetic instability, among other side effects."
+	name = "Alergia na chemikalia"
+	desc = "Pacjent jest uczulony niemal na wszystkie leki i używki. Wywołują one między innymi chwilowy wzrost niestabilności genetycznej."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Czujesz dziwne swędzenie skóry.</span>"
 	text_lose_indication = "<span class='notice'>Swędzenie skóry ustępuje.</span>"
@@ -330,9 +330,9 @@
 // --- Venomous ---
 
 /datum/mutation/venomous_strikes
-	name = "Venomous"
-	desc = "The subject's body produces a minor toxin that can be injected into others through scratches or bites. \
-		They will also filter out the same variety of toxin from their own bloodstream should they be exposed to it themselves."
+	name = "Jadowitość"
+	desc = "Ciało pacjenta wytwarza słabą toksynę, którą może wstrzyknąć innym przez zadrapania i ugryzienia. \
+		Gdy sam się na nią narazi, jego organizm usuwa ją z krwi."
 	quality = POSITIVE
 	instability = 25
 	power_coeff = 1

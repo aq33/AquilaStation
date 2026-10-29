@@ -1,14 +1,14 @@
 /turf/open/floor/goonplaque
-	name = "commemorative plaque"
+	name = "tablica pamiątkowa"
 	icon_state = "plaque"
-	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
+	desc = "„Tablica ku czci naszych towarzyszy ze Stacji G4407. Oby model TG4407 dorównał waszej sławie i fortunie”. Pod spodem ktoś wydrapał prymitywny rysunek meteoru i kosmonauty. Kosmonauta się śmieje. Meteor wybucha."
 	floor_tile = /obj/item/stack/tile/plasteel
 	tiled_dirt = FALSE
 
 /turf/open/floor/goonplaque/fland
-	name = "commemorative plaque"
+	name = "tablica pamiątkowa"
 	icon_state = "plaque"
-	desc = "\"This plaque commemorates all the effort that has been put by the construction workers of this station, their department experts advisors, and the many roaming spacemans, that took the effort to walk around this station discovering anomalies that has been found during it's construction. This is a heartfelt thanks from the head developer of this station, hoping that the station will last for as long as possible.\" Beneath the text, you see engraved on the plaque a weird orb like being with a propeller on his head and a smile on it's face."
+	desc = "„Ta tablica upamiętnia cały trud budowniczych tej stacji, ekspertów i doradców z ich działów oraz wielu wędrownych kosmonautów, którzy zadali sobie trud obchodzenia stacji i wykrywania anomalii znalezionych podczas jej budowy. To serdeczne podziękowanie od głównego twórcy tej stacji, który ma nadzieję, że przetrwa ona jak najdłużej”. Pod tekstem widzisz wygrawerowaną dziwną kulistą istotę ze śmigłem na głowie i uśmiechem na twarzy."
 	floor_tile = /obj/item/stack/tile/plasteel
 	tiled_dirt = FALSE
 
@@ -58,10 +58,10 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/telecomms/mainframe
-	name = "mainframe base"
+	name = "podstawa komputera centralnego"
 
 /turf/open/floor/circuit/telecomms/server
-	name = "server base"
+	name = "podstawa serwera"
 
 /turf/open/floor/circuit/green
 	icon_state = "gcircuit"
@@ -85,7 +85,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/circuit/green/telecomms/mainframe
-	name = "mainframe base"
+	name = "podstawa komputera centralnego"
 
 /turf/open/floor/circuit/red
 	icon_state = "rcircuit"
@@ -109,7 +109,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/pod
-	name = "pod floor"
+	name = "podłoga kapsuły"
 	icon_state = "podfloor"
 	floor_tile = /obj/item/stack/tile/pod
 
@@ -123,7 +123,7 @@
 
 
 /turf/open/floor/noslip
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip"
 	floor_tile = /obj/item/stack/tile/noslip
 	broken_states = list("noslip-damaged1","noslip-damaged2","noslip-damaged3")
@@ -131,42 +131,42 @@
 	slowdown = -0.3
 
 /turf/open/floor/noslip/standard
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_standard"
 	floor_tile = /obj/item/stack/tile/noslip/standard
 	broken_states = list("noslip-damaged1_standard","noslip-damaged2_standard","noslip-damaged3_standard")
 	burnt_states = list("noslip-scorched1_standard","noslip-scorched2_standard")
 
 /turf/open/floor/noslip/white
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_white"
 	floor_tile = /obj/item/stack/tile/noslip/white
 	broken_states = list("noslip-damaged1_white","noslip-damaged2_white","noslip-damaged3_white")
 	burnt_states = list("noslip-scorched1_white","noslip-scorched2_white")
 
 /turf/open/floor/noslip/blue
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_blue"
 	floor_tile = /obj/item/stack/tile/noslip/blue
 	broken_states = list("noslip-damaged1_blue","noslip-damaged2_blue","noslip-damaged3_blue")
 	burnt_states = list("noslip-scorched1_blue","noslip-scorched2_blue")
 
 /turf/open/floor/noslip/darkblue
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_darkblue"
 	floor_tile = /obj/item/stack/tile/noslip/darkblue
 	broken_states = list("noslip-damaged1_darkblue","noslip-damaged2_darkblue","noslip-damaged3_darkblue")
 	burnt_states = list("noslip-scorched1_darkblue","noslip-scorched2_darkblue")
 
 /turf/open/floor/noslip/dark
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_dark"
 	floor_tile = /obj/item/stack/tile/noslip/dark
 	broken_states = list("noslip-damaged1_dark","noslip-damaged2_dark","noslip-damaged3_dark")
 	burnt_states = list("noslip-scorched1_dark","noslip-scorched2_dark")
 
 /turf/open/floor/noslip/vaporwave
-	name = "high-traction floor"
+	name = "podłoga antypoślizgowa"
 	icon_state = "noslip_pinkblack"
 	floor_tile = /obj/item/stack/tile/noslip/vaporwave
 	broken_states = list("noslip-damaged1_pinkblack","noslip-damaged2_pinkblack","noslip-damaged3_pinkblack")
@@ -183,31 +183,31 @@
 /turf/open/floor/bluespace
 	slowdown = -1
 	icon_state = "bluespace"
-	desc = "Through a series of micro-teleports these tiles let people move at incredible speeds."
+	desc = "Dzięki serii mikroteleportacji te płytki pozwalają poruszać się z niesamowitą prędkością."
 	floor_tile = /obj/item/stack/tile/bluespace
 
 
 /turf/open/floor/sepia
 	slowdown = 2
 	icon_state = "sepia"
-	desc = "Time seems to flow very slowly around these tiles."
+	desc = "Czas wokół tych płytek zdaje się płynąć bardzo powoli."
 	floor_tile = /obj/item/stack/tile/sepia
 
 
 /turf/open/floor/bronze
-	name = "bronze floor"
-	desc = "Some heavy bronze tiles."
+	name = "podłoga z brązu"
+	desc = "Ciężkie płytki z brązu."
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "clockwork_floor"
 	floor_tile = /obj/item/stack/tile/bronze
 
 /turf/open/floor/white
-	name = "white floor"
-	desc = "A tile in a pure white color."
+	name = "biała podłoga"
+	desc = "Płytka w czysto białym kolorze."
 	icon_state = "pure_white"
 
 /turf/open/floor/black
-	name = "black floor"
+	name = "czarna podłoga"
 	icon_state = "black"
 //NSV13 changed monotile floor tiles to durasteel
 /turf/open/floor/monotile

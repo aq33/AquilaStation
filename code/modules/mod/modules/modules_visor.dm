@@ -2,8 +2,8 @@
 
 ///Base Visor - Adds a specific HUD and traits to you.
 /obj/item/mod/module/visor
-	name = "MOD visor module"
-	desc = "A heads-up display installed into the visor of the suit. They say these also let you see behind you."
+	name = "moduł wizjera MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Mówią, że pozwalają też widzieć, co masz za plecami."
 	module_type = MODULE_TOGGLE
 	complexity = 1
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -33,10 +33,10 @@
 //Medical Visor
 
 /obj/item/mod/module/visor/medhud
-	name = "MOD medical visor module"
-	desc = "A heads-up display installed into the visor of the suit. This cross-references suit sensor data with a modern \
-		biological scanning suite, allowing the user to visualize the current health of organic lifeforms, as well as \
-		access data such as patient files in a convenient readout. They say these also let you see behind you."
+	name = "moduł wizjera medycznego MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Zestawia dane z czujników skafandra z nowoczesnym \
+		zestawem skanowania biologicznego, pozwalając użytkownikowi widzieć aktualny stan zdrowia organicznych form życia oraz \
+		wygodnie przeglądać dane, takie jak karty pacjentów. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "medhud_visor"
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	visor_traits = list(TRAIT_MEDICAL_HUD)
@@ -44,10 +44,10 @@
 //Diagnostic Visor
 
 /obj/item/mod/module/visor/diaghud
-	name = "MOD diagnostic visor module"
-	desc = "A heads-up display installed into the visor of the suit. This uses a series of advanced sensors to access data \
-		from advanced machinery, exosuits, and other devices, allowing the user to visualize current power levels \
-		and integrity of such. They say these also let you see behind you."
+	name = "moduł wizjera diagnostycznego MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Zaawansowane czujniki odczytują dane \
+		z zaawansowanych maszyn, egzoszkieletów i innych urządzeń, pozwalając użytkownikowi widzieć ich aktualny poziom energii \
+		i stan techniczny. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "diaghud_visor"
 	hud_type = DATA_HUD_DIAGNOSTIC_ADVANCED
 	visor_traits = list(TRAIT_DIAGNOSTIC_HUD)
@@ -55,10 +55,10 @@
 //Security Visor
 
 /obj/item/mod/module/visor/sechud
-	name = "MOD security visor module"
-	desc = "A heads-up display installed into the visor of the suit. This module is a heavily-retrofitted targeting system, \
-		plugged into various criminal databases to be able to view arrest records, command simple security-oriented robots, \
-		and generally know who to shoot. They say these also let you see behind you."
+	name = "moduł wizjera ochrony MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Ten moduł to mocno przerobiony system celowniczy \
+		podłączony do różnych kartotek kryminalnych, który pozwala przeglądać rejestry aresztowań, wydawać polecenia prostym robotom ochrony \
+		i ogólnie wiedzieć, do kogo strzelać. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "sechud_visor"
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	visor_traits = list(TRAIT_SECURITY_HUD)
@@ -66,29 +66,29 @@
 //Meson Visor
 
 /obj/item/mod/module/visor/meson
-	name = "MOD meson visor module"
-	desc = "A heads-up display installed into the visor of the suit. This module is based off well-loved meson scanner \
-		technology, used by construction workers and miners across the galaxy to see basic structural and terrain layouts \
-		through walls, regardless of lighting conditions. They say these also let you see behind you."
+	name = "moduł wizjera mezonowego MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Ten moduł opiera się na lubianej technologii skanera mezonowego, \
+		której robotnicy budowlani i górnicy w całej galaktyce używają, by widzieć przez ściany podstawowy układ konstrukcji i terenu \
+		niezależnie od oświetlenia. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "meson_visor"
 	visor_traits = list(TRAIT_MESON_VISION, TRAIT_MADNESS_IMMUNE)
 
 //Thermal Visor
 
 /obj/item/mod/module/visor/thermal
-	name = "MOD thermal visor module"
-	desc = "A heads-up display installed into the visor of the suit. This uses a small IR scanner to detect and identify \
-		the thermal radiation output of objects near the user. While it can detect the heat output of even something as \
-		small as a rodent, it still produces irritating red overlay. They say these also let you see behind you."
+	name = "moduł wizjera termowizyjnego MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Mały skaner podczerwieni wykrywa i rozpoznaje \
+		promieniowanie cieplne obiektów w pobliżu użytkownika. Wykryje ciepło nawet czegoś tak \
+		małego jak gryzoń, ale wciąż daje irytującą czerwoną nakładkę. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "thermal_visor"
 	visor_traits = list(TRAIT_THERMAL_VISION)
 
 //Night Visor
 
 /obj/item/mod/module/visor/night
-	name = "MOD night visor module"
-	desc = "A heads-up display installed into the visor of the suit. Typical for both civilian and military applications, \
-		this allows the user to perceive their surroundings while in complete darkness, enhancing the view by tenfold; \
-		yet brightening everything into a spooky green glow. They say these also let you see behind you."
+	name = "moduł wizjera noktowizyjnego MOD"
+	desc = "Wyświetlacz HUD zamontowany w wizjerze skafandra. Typowy zarówno w zastosowaniach cywilnych, jak i wojskowych, \
+		pozwala widzieć otoczenie w całkowitej ciemności, dziesięciokrotnie wzmacniając obraz, \
+		choć wszystko rozjaśnia się upiorną zieloną poświatą. Mówią, że pozwalają też widzieć, co masz za plecami."
 	icon_state = "night_visor"
 	visor_traits = list(TRAIT_TRUE_NIGHT_VISION)

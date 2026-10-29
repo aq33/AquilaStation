@@ -1,10 +1,10 @@
 //Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
 /obj/item/stack/ore/bluespace_crystal
-	name = "bluespace crystal"
-	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
+	name = "kryształ bluespace"
+	desc = "Świecący kryształ bluespace. Niewiele wiadomo o tym, jak działają takie kryształy. Wygląda na bardzo delikatny."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	singular_name = "bluespace crystal"
+	singular_name = "kryształ bluespace"
 	w_class = WEIGHT_CLASS_TINY
 	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT)
 	points = 50
@@ -14,7 +14,7 @@
 	scan_state = "rock_BScrystal"
 
 /obj/item/stack/ore/bluespace_crystal/refined
-	name = "refined bluespace crystal"
+	name = "oczyszczony kryształ bluespace"
 	points = 0
 	refined_type = null
 
@@ -27,7 +27,7 @@
 	return 1
 
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
-	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>Miażdżysz [src]!</span>")
+	user.visible_message("<span class='warning'>[user] miażdży [src]!</span>", "<span class='danger'>Miażdżysz [src]!</span>")
 	new /obj/effect/particle_effect/sparks(loc)
 	playsound(loc, "sparks", 50, 1)
 	blink_mob(user)
@@ -48,8 +48,8 @@
 
 //Artificial bluespace crystal, doesn't give you much research.
 /obj/item/stack/ore/bluespace_crystal/artificial
-	name = "artificial bluespace crystal"
-	desc = "An artificially made bluespace crystal, it looks delicate."
+	name = "sztuczny kryształ bluespace"
+	desc = "Sztucznie wytworzony kryształ bluespace. Wygląda na delikatny."
 	materials = list(/datum/material/bluespace=MINERAL_MATERIAL_AMOUNT*0.5)
 	blink_range = 4 // Not as good as the organic stuff!
 	points = 0 //nice try

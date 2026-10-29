@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/gauss_gun
-	name = "NT-BSG Gauss Turret"
-	desc = "A large ship to ship weapon designed to provide a constant barrage of fire over a long distance. It has a small cockpit for a gunner to control it manually."
+	name = "wieżyczka Gaussa NT-BSG"
+	desc = "Duża broń okrętowa do prowadzenia ciągłego ostrzału na dużą odległość. Ma mały kokpit, z którego działonowy steruje nią ręcznie."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "gauss"
 	pixel_x = -45
@@ -58,7 +58,7 @@
 
 /obj/machinery/ship_weapon/gauss_gun/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_REMOVE_GAUSS_GUNNER, "Remove Gunner")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_GAUSS_GUNNER, "Usuń działonowego")
 
 /obj/machinery/ship_weapon/gauss_gun/vv_do_topic(list/href_list)
 	. = ..()
@@ -357,10 +357,10 @@
 //Rack loading
 
 /obj/structure/gauss_rack
-	name = "Gauss gun loading rack"
+	name = "stojak ładowania działa Gaussa"
 	icon = 'nsv13/icons/obj/munitions_large.dmi'
 	icon_state = "loading_rack"
-	desc = "A large rack used as an ammunition feed for gauss guns. The rack will automatically feed the gauss gun above it with ammunition. You can load a crate with ammo and click+drag it onto the rack to speedload, or manually load it with rounds by hand."
+	desc = "Duży stojak, który podaje amunicję do dział Gaussa. Sam zasila amunicją działo Gaussa nad sobą. Możesz załadować skrzynię z amunicją i przeciągnąć ją na stojak, by szybko go zapełnić, albo ładować pociski ręcznie."
 	anchored = TRUE
 	density = TRUE
 	layer = 3
@@ -385,12 +385,12 @@
 	. += "Śrubokrętem na fotelu strzelca możesz zmienić położenie stojaka."
 
 /obj/item/circuitboard/gauss_rack_upgrade
-	name = "Gauss Rack Autoload Module (Circuit)"
+	name = "moduł automatycznego ładowania stojaka Gaussa (płytka)"
 	build_path = null
 
 /datum/design/board/gauss_rack_upgrade
-	name = "Gauss Rack Autoload Module (Circuit)"
-	desc = "An upgrade which allows you to load gauss racks using conveyors."
+	name = "Moduł automatycznego ładowania stojaka Gaussa (płytka)"
+	desc = "Ulepszenie, które pozwala ładować stojaki Gaussa taśmociągami."
 	id = "gauss_rack_upgrade"
 	materials = list(/datum/material/glass = 2000, /datum/material/copper = 2000, /datum/material/gold = 5000)
 	build_path = /obj/item/circuitboard/gauss_rack_upgrade
@@ -583,8 +583,8 @@ Chair + rack handling
 	gunner_chair = chair
 
 /obj/structure/chair/fancy/gauss
-	name = "Gunner chair"
-	desc = "A chair which can be lowered down from the ceiling to feed into a gauss gun, allowing for easy access to the gun's cockpit."
+	name = "fotel działonowego"
+	desc = "Fotel, który opuszcza się z sufitu do działa Gaussa i daje łatwy dostęp do jego kokpitu."
 	icon = 'nsv13/icons/obj/chairs.dmi'
 	icon_state = "shuttle_chair"
 	item_chair = null

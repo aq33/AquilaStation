@@ -3,12 +3,12 @@ import { multiline } from 'common/string';
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const windowflashing: FeatureToggle = {
-  name: 'Enable window flashing',
+  name: 'Miganie okna',
   category: 'UI',
   subcategory: 'Misc',
   description: multiline`
-    When toggled, some important events will make your game icon flash on your
-    task tray.
+    Po włączeniu przy ważnych wydarzeniach ikona gry miga na pasku
+    zadań.
   `,
   component: CheckboxInput,
 };

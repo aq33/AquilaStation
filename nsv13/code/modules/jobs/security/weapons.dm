@@ -1,7 +1,7 @@
 
 /obj/item/gun/ballistic/tazer
-	name = "X24 Tazer"
-	desc = "A stunning weapon developed by Czanek Corp. It can deliver an extremely powerful electric shock via a specialised electrode, though the electrodes must be manually replaced after each shot. <b>It has an effective range of 2 meters</b>"
+	name = "paralizator X24"
+	desc = "Broń obezwładniająca opracowana przez CzanekCorp. Przez specjalną elektrodę razi bardzo silnym wstrząsem elektrycznym, choć po każdym strzale elektrody trzeba wymieniać ręcznie. <b>Zasięg skuteczny wynosi 2 metry</b>"
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "taser"
 	mag_type = /obj/item/ammo_box/magazine/tazer_cartridge
@@ -58,7 +58,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/glock/makarov
 	name = "Makarov NT"
-	desc = "An older handgun used by NT security forces, produced by H&KC but slowly being phased out by the Glock-13. One of the designers of the weapon went on record saying: 'There are no brakes on this commie fucktrain.'"
+	desc = "Starszy pistolet sił ochrony NT produkcji H&KC, powoli wypierany przez Glocka-13. Jeden z projektantów tej broni powiedział oficjalnie: „Ten komuszy pociąg nie ma hamulców”."
 	icon_state = "makarov"
 
 /obj/item/gun/ballistic/automatic/pistol/glock/makarov/lethal //Starts with lethal bullets loaded
@@ -66,7 +66,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/m1911/m9le
 	name = "\improper M9LE"
-	desc = "A military surplus pistol no longer in service, but boasting a higher muzzle velocity than other handguns. It's a reliable damage dealer despite its age."
+	desc = "Pistolet z demobilu, już wycofany ze służby, ale o większej prędkości wylotowej niż inne pistolety. Mimo wieku niezawodnie zadaje obrażenia."
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "m9"
 	item_state = "glock"
@@ -79,7 +79,7 @@
 	max_ammo = 24
 
 /datum/design/gulagpack
-	name = "Gulagpack"
+	name = "Gułagopak"
 	id = "gulagpack"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=10000, /datum/material/glass=2500)
@@ -183,7 +183,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/tazer
-	name = "3mm electro-shock tazer round"
+	name = "Nabój elektrowstrząsowy 3 mm do paralizatora"
 	id = "tazer_ammo"
 	build_type = AUTOLATHE
 	materials = list(/datum/material/iron = 800)
@@ -258,8 +258,8 @@
 	icon_state = "pdc"
 
 /obj/item/ammo_box/magazine/tazer_cartridge
-	name = "X24 Tazer cartridge"
-	desc = "A cartridge which can hold a taser electrode"
+	name = "kaseta paralizatora X24"
+	desc = "Kaseta mieszcząca jedną elektrodę paralizatora."
 	icon = 'nsv13/icons/obj/ammo.dmi'
 	icon_state = "taser-1"
 	ammo_type = /obj/item/ammo_casing/tazer
@@ -273,8 +273,8 @@
 ///Lets the officer have an ammo box filled with tazer cartridges ready to hotswap.
 
 /obj/item/ammo_box/magazine/tazer_cartridge_storage
-	name = "X24 cartridge storage rack"
-	desc = "A small clip which you can slot tazer electrodes into."
+	name = "stojak na kasety X24"
+	desc = "Mały zacisk, do którego wsuwasz elektrody paralizatora."
 	icon = 'nsv13/icons/obj/ammo.dmi'
 	icon_state = "taserrack-0"
 	ammo_type = /obj/item/ammo_casing/tazer
@@ -286,8 +286,8 @@
 	icon_state = "taserrack-[ammo_count()]"
 
 /obj/item/ammo_casing/tazer
-	name =  "3mm electro-shock tazer round"
-	desc = "A tazer cartridge."
+	name =  "nabój elektrowstrząsowy 3 mm do paralizatora"
+	desc = "Nabój do paralizatora."
 	caliber = "3mm"
 	icon = 'nsv13/icons/obj/ammo.dmi'
 	icon_state = "tasershell"
@@ -323,8 +323,8 @@
 
 //Secborg guns
 /obj/item/gun/energy/printer/taser
-	name = "Cyborg X25 Taser"
-	desc = "A stunning weapon developed by Czanek Corp. It can deliver an extremely powerful electric shock via a specialised electrode, the electrodes are resupplied using the cyborg's internal power source. <b>It has an effective range of 2 meters</b>"
+	name = "paralizator cyborga X25"
+	desc = "Broń obezwładniająca opracowana przez CzanekCorp. Przez specjalną elektrodę razi bardzo silnym wstrząsem elektrycznym, a elektrody uzupełnia wewnętrzne źródło zasilania cyborga. <b>Zasięg skuteczny wynosi 2 metry</b>"
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "taser"
 	recoil = 2 //BZZZZTTTTTTT
@@ -334,14 +334,14 @@
 
 /obj/item/ammo_casing/energy/taser
 	projectile_type = /obj/item/projectile/energy/electrode/hitscan
-	select_name = "electrode"
+	select_name = "elektroda"
 	fire_sound = 'sound/weapons/zapbang.ogg'
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect
 	e_cost = 600 //uses a lot more energy
 
 /obj/item/gun/energy/printer/glock
-	name = "Cyborg Glock-13BR"
-	desc = "An integrated 9mm handgun for use by Nanotrasen security cyborgs. Designed to fire lethal bullets"
+	name = "Glock-13BR cyborga"
+	desc = "Wbudowany pistolet 9 mm dla cyborgów ochrony Nanotrasen. Strzela pociskami śmiercionośnymi."
 	icon = 'nsv13/icons/obj/guns/projectile.dmi'
 	icon_state = "secborgglock"
 	ammo_type = list(/obj/item/ammo_casing/energy/c9mmbullet/rubber, /obj/item/ammo_casing/energy/c9mmbullet) //Switch between lethal or rubber bullets with attack_self
@@ -356,4 +356,4 @@
 
 /obj/item/ammo_casing/energy/c9mmbullet/rubber
 	projectile_type = /obj/item/projectile/bullet/c9mm/rubber
-	select_name = "9mm (Rubber)"
+	select_name = "9mm (gumowe)"

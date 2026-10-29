@@ -66,10 +66,10 @@
 	try
 		value = locate_appearance_variable(var_name, appearance)
 	catch
-		return "<li style='backgroundColor:white'>(READ ONLY) <font color='blue'>[var_name] = (untrackable)</font></li>"
+		return "<li style='backgroundColor:white'>(TYLKO ODCZYT) <font color='blue'>[var_name] = (nie do śledzenia)</font></li>"
 	if(value == RESULT_VARIABLE_NOT_FOUND)
-		return "<li style='backgroundColor:white'>(READ ONLY) [var_name] <font color='blue'>(Undefined var name in switch)</font></li>"
-	return "<li style='backgroundColor:white'>(READ ONLY) [var_name] = [_debug_variable_value(var_name, value, 0, appearance, sanitize = TRUE, display_flags = NONE)]</li>"
+		return "<li style='backgroundColor:white'>(TYLKO ODCZYT) [var_name] <font color='blue'>(niezdefiniowana nazwa zmiennej w switch)</font></li>"
+	return "<li style='backgroundColor:white'>(TYLKO ODCZYT) [var_name] = [_debug_variable_value(var_name, value, 0, appearance, sanitize = TRUE, display_flags = NONE)]</li>"
 
 /// manually locate a variable through string value.
 /// appearance type needs a manual var referencing because it doesn't have "vars" variable internally.
@@ -221,7 +221,7 @@
 	// Don't add any vv option carelessly unless you have a good reason to add one for /appearance.
 	// /appearance type shouldn't allow general options. Even "Mark Datum" is a questionable behaviour here.
 	VV_DROPDOWN_OPTION_APPEARANCE(thing, "", "---")
-	VV_DROPDOWN_OPTION_APPEARANCE(thing, VV_HK_EXPOSE, "Show VV To Player") // only legit option
+	VV_DROPDOWN_OPTION_APPEARANCE(thing, VV_HK_EXPOSE, "Pokaż VV graczowi") // only legit option
 	return .
 
 #undef ADD_UNUSED_VAR

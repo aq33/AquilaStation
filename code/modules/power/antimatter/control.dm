@@ -1,6 +1,6 @@
 /obj/machinery/power/am_control_unit
-	name = "antimatter control unit"
-	desc = "This device injects antimatter into connected shielding units, the more antimatter injected the more power produced.  Wrench the device to set it up."
+	name = "jednostka sterująca antymaterią"
+	desc = "To urządzenie wstrzykuje antymaterię do podłączonych jednostek osłonowych. Im więcej antymaterii, tym więcej energii. Przykręć je kluczem, by je zainstalować."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "control"
 	anchored = FALSE
@@ -241,7 +241,7 @@
 /obj/machinery/power/am_control_unit/proc/toggle_power(powerfail = 0)
 	active = !active
 	investigate_log("turned [active ? "ON" : "OFF"] by [usr ? key_name(usr) : "outside forces"] at [AREACOORD(src)]", INVESTIGATE_ENGINES)
-	message_admins("Antimatter turned [active ? "ON" : "OFF"] by [usr ? ADMIN_LOOKUPFLW(usr) : "outside forces"] in [ADMIN_VERBOSEJMP(src)]")
+	message_admins("Antymateria [active ? "WŁĄCZONA" : "WYŁĄCZONA"] przez [usr ? ADMIN_LOOKUPFLW(usr) : "siły zewnętrzne"] w [ADMIN_VERBOSEJMP(src)]")
 	if(active)
 		use_power = ACTIVE_POWER_USE
 		visible_message("[src.name] się uruchamia.")

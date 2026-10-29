@@ -1,7 +1,7 @@
 //This one's from bay12
 /obj/machinery/vending/engineering
 	name = "\improper Robco Tool Maker"
-	desc = "Everything you need for do-it-yourself station repair."
+	desc = "Wszystko, czego potrzebujesz do samodzielnej naprawy stacji."
 	icon_state = "engi"
 	icon_deny = "engi-deny"
 	light_color = LIGHT_COLOR_SLIME_LAMP

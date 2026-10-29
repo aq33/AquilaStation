@@ -1,10 +1,10 @@
 /datum/disease/transformation
-	name = "Transformation"
+	name = "Przemiana"
 	max_stages = 5
-	spread_text = "Acute"
+	spread_text = "Ostra"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	cure_text = "Miłość kodera (teoretyczna)."
-	agent = "Shenanigans"
+	agent = "Wygłupy"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey, /mob/living/carbon/alien)
 	danger = DISEASE_BIOHAZARD
 	stage_prob = 10
@@ -87,18 +87,18 @@
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Chcesz zagrać jako [affected_mob.name]?", bantype, null, 7.5 SECONDS, affected_mob, ignore_category = FALSE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(affected_mob)]) to replace a jobbanned player.")
+		message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([key_name_admin(affected_mob)]) w miejsce gracza z banem na stanowisko.")
 		affected_mob.key = C.key
 	else
 		to_chat(new_mob, "Twoja postać została zaoferowana duchom! Odwołaj się od bana na stanowisko, jeśli chcesz tego w przyszłości uniknąć!")
 
 /datum/disease/transformation/robot
 
-	name = "Robotic Transformation"
+	name = "Przemiana w robota"
 	cure_text = "Zastrzyk miedzi."
 	cures = list(/datum/reagent/copper)
 	cure_chance = 5
-	agent = "R2D2 Nanomachines"
+	agent = "Nanomaszyny R2D2"
 	desc = "Ostra infekcja nanomaszynowa, która zmienia nosiciela w cyborga."
 	danger = DISEASE_BIOHAZARD
 	visibility_flags = 0
@@ -127,11 +127,11 @@
 
 /datum/disease/transformation/xeno
 
-	name = "Xenomorph Transformation"
+	name = "Przemiana w ksenomorfa"
 	cure_text = "Spacyklina i glicerol"
 	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/glycerol)
 	cure_chance = 5
-	agent = "Rip-LEY Alien Microbes"
+	agent = "Obce mikroby Rip-LEY"
 	desc = "Ta choroba zmienia ofiarę w ksenomorfa."
 	danger = DISEASE_BIOHAZARD
 	visibility_flags = 0
@@ -156,7 +156,7 @@
 
 
 /datum/disease/transformation/slime
-	name = "Advanced Mutation Transformation"
+	name = "Zaawansowana przemiana mutacyjna"
 	cure_text = "olej mroźny"
 	cures = list(/datum/reagent/consumable/frostoil)
 	cure_chance = 80
@@ -185,14 +185,14 @@
 					human.set_species(/datum/species/jelly/slime)
 
 /datum/disease/transformation/corgi
-	name = "The Barkening"
-	cure_text = "Death"
+	name = "Szczekawica"
+	cure_text = "Śmierć"
 	cures = list(/datum/reagent/medicine/adminordrazine)
-	agent = "Fell Doge Majicks"
+	agent = "Mroczne psie czary"
 	desc = "Ta choroba zmienia ofiarę w corgi."
 	danger = DISEASE_BIOHAZARD
 	visibility_flags = 0
-	stage1	= list("BARK.")
+	stage1	= list("HAU.")
 	stage2	= list("Czujesz potrzebę noszenia głupich kapeluszy.")
 	stage3	= list("<span class='danger'>Muszę... zjeść... czekoladę....</span>", "<span class='danger'>YAP</span>")
 	stage4	= list("<span class='danger'>Twój umysł nawiedzają wizje pralek!</span>")
@@ -210,10 +210,10 @@
 				affected_mob.say(pick("Szczek!", "AUUUUUU"), forced = "transformacja w corgi")
 
 /datum/disease/transformation/morph
-	name = "Gluttony's Blessing"
+	name = "Błogosławieństwo Obżarstwa"
 	cure_text = /datum/reagent/consumable/nothing
 	cures = list(/datum/reagent/medicine/adminordrazine)
-	agent = "Gluttony's Blessing"
+	agent = "Błogosławieństwo Obżarstwa"
 	desc = "„Prezent” z jakiegoś strasznego miejsca."
 	stage_prob = 20
 	danger = DISEASE_BIOHAZARD
@@ -227,12 +227,12 @@
 	infectable_biotypes = list(MOB_ORGANIC, MOB_INORGANIC, MOB_UNDEAD) //magic!
 
 /datum/disease/transformation/gondola
-	name = "Gondola Transformation"
+	name = "Przemiana w gondolę"
 	cure_text = "Skondensowana kapsaicyna, połknięta lub wstrzyknięta." //getting pepper sprayed doesn't help
 	cures = list(/datum/reagent/consumable/condensedcapsaicin) //beats the hippie crap right out of your system
 	cure_chance = 80
 	stage_prob = 5
-	agent = "Tranquility"
+	agent = "Spokój"
 	desc = "Jedzenie mięsa Gondoli ma straszliwą cenę."
 	danger = DISEASE_BIOHAZARD
 	visibility_flags = 0
@@ -267,9 +267,9 @@
 				affected_mob.dropItemToGround(I)
 
 /datum/disease/transformation/felinid
-	name = "Nano-Feline Assimilative Toxoplasmosis"
+	name = "Nanokocia toksoplazmoza asymilacyjna"
 	cure_text = "Coś, co zabiłoby maleńkie koty."
-	spread_text = "Acute"
+	spread_text = "Ostra"
 	disease_flags = CURABLE|CAN_CARRY|CAN_RESIST
 	cures = list(/datum/reagent/consumable/cocoa, /datum/reagent/consumable/cocoa/hot_cocoa) //kills all the tiny cats that infected your organism
 	needs_all_cures = FALSE //NSV13 - only needs hot choco or chocolate, not both.
@@ -371,7 +371,7 @@
 	affected_mob.reagents.add_reagent_list(list(/datum/reagent/mutationtoxin/felinid = 1, /datum/reagent/medicine/mutadone = 1))
 
 /datum/disease/transformation/legion
-	name = "Necropolis Infestation"
+	name = "Plaga Nekropolii"
 	cure_text = "Lecznicza piana witrium z pewnej flory Lavalandu"
 	cures = list(/datum/reagent/consumable/vitfro)
 	cure_chance = 10 //about 10 seconds/5 units of Froth to heal. Takes a decent gathering period but just shy of the amount that'll fatten you

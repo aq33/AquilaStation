@@ -1,5 +1,5 @@
 /obj/structure/door_assembly
-	name = "airlock assembly"
+	name = "zespół: śluza"
 	icon = 'icons/obj/doors/airlocks/station/public.dmi'
 	icon_state = "construction"
 	var/overlays_file = 'icons/obj/doors/airlocks/station/overlays.dmi'
@@ -7,7 +7,7 @@
 	density = TRUE
 	max_integrity = 200
 	var/state = AIRLOCK_ASSEMBLY_NEEDS_WIRES
-	var/base_name = "airlock"
+	var/base_name = "śluza"
 	var/mineral = null
 	var/obj/item/electronics/airlock/electronics = null
 	var/airlock_type = /obj/machinery/door/airlock //the type path of the airlock once completed
@@ -105,7 +105,7 @@
 					if(anchored)
 						return
 					to_chat(user, "<span class='notice'>Mocujesz zespół śluzy.</span>")
-					name = "secured airlock assembly"
+					name = "zespół: śluza (przymocowany)"
 					setAnchored(TRUE)
 			else
 				to_chat(user, "Tu są już inne drzwi!")
@@ -118,7 +118,7 @@
 				if(!anchored)
 					return
 				to_chat(user, "<span class='notice'>Odczepiasz zespół śluzy.</span>")
-				name = "airlock assembly"
+				name = "zespół: śluza"
 				setAnchored(FALSE)
 
 	else if(istype(W, /obj/item/stack/cable_coil) && state == AIRLOCK_ASSEMBLY_NEEDS_WIRES && anchored )
@@ -132,7 +132,7 @@
 				return
 			state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
 			to_chat(user, "<span class='notice'>Okablowujesz zespół śluzy.</span>")
-			name = "wired airlock assembly"
+			name = "zespół: śluza (okablowany)"
 
 	else if((W.tool_behaviour == TOOL_WIRECUTTER) && state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
 		user.visible_message("[user] wycina przewody z zespołu śluzy.", \
@@ -144,7 +144,7 @@
 			to_chat(user, "<span class='notice'>Wycinasz przewody z zespołu śluzy.</span>")
 			new/obj/item/stack/cable_coil(get_turf(user), 1)
 			state = AIRLOCK_ASSEMBLY_NEEDS_WIRES
-			name = "secured airlock assembly"
+			name = "zespół: śluza (przymocowany)"
 
 	else if(istype(W, /obj/item/electronics/airlock) && state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
 		W.play_tool_sound(src, 100)
@@ -158,7 +158,7 @@
 
 			to_chat(user, "<span class='notice'>Instalujesz elektronikę śluzy.</span>")
 			state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
-			name = "near finished airlock assembly"
+			name = "zespół: śluza (prawie gotowy)"
 			electronics = W
 
 	else if(istype(W, /obj/item/electroadaptive_pseudocircuit) && state == AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
@@ -181,7 +181,7 @@
 
 				to_chat(user, "<span class='notice'>Instalujesz elektroadaptacyjny pseudoobwód.</span>")
 				state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
-				name = "near finished airlock assembly"
+				name = "zespół: śluza (prawie gotowy)"
 				electronics = AE
 			else
 				qdel(AE)
@@ -196,7 +196,7 @@
 				return
 			to_chat(user, "<span class='notice'>Wyjmujesz elektronikę śluzy.</span>")
 			state = AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS
-			name = "wired airlock assembly"
+			name = "zespół: śluza (okablowany)"
 			var/obj/item/electronics/airlock/ae
 			if (!electronics)
 				ae = new/obj/item/electronics/airlock( loc )
@@ -221,10 +221,10 @@
 								if(G.type == /obj/item/stack/sheet/rglass)
 									to_chat(user, "<span class='notice'>Instalujesz okna ([G.name]) w zespole śluzy.</span>")
 									heat_proof_finished = 1 //reinforced glass makes the airlock heat-proof
-									name = "near finished heat-proofed window airlock assembly"
+									name = "zespół: śluza (prawie gotowy, żaroodporny, z szybą)"
 								else
 									to_chat(user, "<span class='notice'>Instalujesz zwykłe szklane okna w zespole śluzy.</span>")
-									name = "near finished window airlock assembly"
+									name = "zespół: śluza (prawie gotowy, z szybą)"
 								G.use(1)
 								glass = TRUE
 					if(!mineral)
@@ -301,16 +301,21 @@
 	add_overlay(get_airlock_overlay("panel_c[state+1]", overlays_file))
 
 /obj/structure/door_assembly/update_name()
-	name = ""
+	// AQUILA: po polsku "zespół: [base_name] (stan, cechy)", bo base_name ma nieznany rodzaj
+	var/list/cechy = list()
 	switch(state)
 		if(AIRLOCK_ASSEMBLY_NEEDS_WIRES)
 			if(anchored)
-				name = "secured "
+				cechy += "przymocowany"
 		if(AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS)
-			name = "wired "
+			cechy += "okablowany"
 		if(AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER)
-			name = "near finished "
-	name += "[heat_proof_finished ? "heat-proofed " : ""][glass ? "window " : ""][base_name] assembly"
+			cechy += "prawie gotowy"
+	if(heat_proof_finished)
+		cechy += "żaroodporny"
+	if(glass)
+		cechy += "z szybą"
+	name = "zespół: [base_name][length(cechy) ? " ([jointext(cechy, ", ")])" : ""]"
 	return ..()
 
 /obj/structure/door_assembly/proc/transfer_assembly_vars(obj/structure/door_assembly/source, obj/structure/door_assembly/target, previous = FALSE)

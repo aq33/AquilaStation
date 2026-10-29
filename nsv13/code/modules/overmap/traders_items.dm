@@ -1,7 +1,7 @@
 
 //Credit goes to cdey for these sprites (Thanks!)
 /obj/structure/overmap/trader
-	name = "Trade Station"
+	name = "stacja handlowa"
 	icon = 'nsv13/icons/overmap/neutralstation.dmi'
 	icon_state = "combust"
 	damage_states = FALSE //Not yet implemented
@@ -34,11 +34,11 @@
 	return FALSE
 
 /obj/structure/overmap/trader/shipyard
-	name = "Shipyard"
+	name = "stocznia"
 	icon_state = "robust"
 
 /obj/structure/overmap/trader/syndicate
-	name = "Arms Depot"
+	name = "skład broni"
 	icon_state = "syndie"
 	faction = "syndicate"
 	supply_pod_type = /obj/structure/closet/supplypod/syndicate_odst
@@ -63,11 +63,11 @@
 		STOP_PROCESSING(SSphysics_processing, src)
 
 /datum/map_template/boarding/smalloutpost
-	name = "Crab class outpost (interior)"
+	name = "placówka klasy Crab (wnętrze)"
 	mappath = "_maps/templates/boarding/syndicate/smalloutpost.dmm"
 
 /obj/structure/overmap/trader/syndicate/outpost
-	name = "Syndicate Outpost"
+	name = "placówka Syndykatu"
 	icon = 'nsv13/icons/overmap/smallstation.dmi'
 	icon_state = "outpost"
 	ai_controlled = TRUE
@@ -88,24 +88,24 @@
 //General items:
 
 /datum/trader_item/ship_repair
-	name = "Quick n' ez ship repair"
-	desc = "We'll patch your ship up without a care, with our special ingredients: Duct tape and prayer! (Copyright CzanekCorp 2258, all rights reserved)"
+	name = "Szybka i łatwa naprawa okrętu"
+	desc = "Połatamy ci okręt bez trosk i bez stresu, dzięki naszym tajnym składnikom: taśmie klejącej i modlitwie! (Copyright CzanekCorp 2258, wszelkie prawa zastrzeżone)"
 	price = 1000
 	stock = 5
 	var/failure_chance = 20 //Chance of the repair going wrong. You get what you pay for.
 	var/repair_amount = 35 //% of health this repair will heal up.
 
 /datum/trader_item/ship_repair/tier2
-	name = "Ship armour repair"
-	desc = "A full repair of your ship's armour plating, superstructural repairs not included!"
+	name = "Naprawa pancerza okrętu"
+	desc = "Pełna naprawa płyt pancerza twojego okrętu. Naprawy konstrukcji nośnej nie są wliczone!"
 	price = 2500
 	failure_chance = 0
 	repair_amount = 50
 	stock = 2
 
 /datum/trader_item/ship_repair/tier3
-	name = "Deluxe ship repair"
-	desc = "A complete repair job of all of your ship's hull and armour, because you've earned it!"
+	name = "Luksusowa naprawa okrętu"
+	desc = "Kompletna naprawa całego kadłuba i pancerza twojego okrętu, bo na to zasłużyłeś!"
 	price = 2000
 	failure_chance = 0
 	repair_amount = 100
@@ -116,63 +116,63 @@
 	OM.repair_all_quadrants(repair_amount, failure_chance)
 
 /datum/trader_item/mining_point_card
-	name = "Mining point card"
-	desc = "A mining point transfer card worth 500 at your local equipment vendor."
+	name = "karta punktów górniczych"
+	desc = "Karta transferu punktów górniczych warta 500 w najbliższym automacie ze sprzętem."
 	price = 500                                    //1:1 price because 2000 points can turn into 1000 credits.
 	stock = 5
 	unlock_path = /obj/item/card/mining_point_card
 
 /datum/trader_item/titanium
-	name = "Titanium"
-	desc = "A necessary part of any competent combat vessels armour."
+	name = "Tytan"
+	desc = "Niezbędny składnik pancerza każdej porządnej jednostki bojowej."
 	price = 700                             //Price for minerals is roughly 6x their export value
 	stock = 30
 	unlock_path = /obj/item/stack/sheet/mineral/titanium
 
 /datum/trader_item/silver
-	name = "Silver"
-	desc = "Shiny, and affordable!."
+	name = "Srebro"
+	desc = "Błyszczące i przystępne cenowo!"
 	price = 600
 	stock = 10
 	unlock_path = /obj/item/stack/sheet/mineral/silver
 
 /datum/trader_item/diamond
-	name = "Diamond"
-	desc = "Unlike some other places these don't come covered in blood. Only lots of sweat and tears."
+	name = "Diament"
+	desc = "W przeciwieństwie do innych miejsc nasze nie są umazane krwią. Tylko mnóstwem potu i łez."
 	price = 2000
 	stock = 4
 	unlock_path = /obj/item/stack/sheet/mineral/diamond
 
 /datum/trader_item/uranium
-	name = "Uranium"
-	desc = "Slightly radioactive, handle with care."
+	name = "Uran"
+	desc = "Lekko radioaktywny, obchodź się z nim ostrożnie."
 	price = 650
 	stock = 8
 	unlock_path = /obj/item/stack/sheet/mineral/uranium
 
 /datum/trader_item/gold
-	name = "Gold"
-	desc = "Conducts electricity wonderfully! Just ask Steve."
+	name = "Złoto"
+	desc = "Wspaniale przewodzi prąd! Zapytaj Steve'a."
 	price = 800
 	stock = 5
 	unlock_path = /obj/item/stack/sheet/mineral/gold
 
 /datum/trader_item/bluespace_crystal
-	name = "Bluespace crystal"
-	desc = "A wonder material which bent our world view, now it'll bend your wallet if you want some."
+	name = "Kryształ bluespace"
+	desc = "Cudowny materiał, który wywrócił nasz obraz świata. Teraz wywróci ci portfel, jeśli zechcesz go trochę."
 	price = 8000
 	stock = 3
 	unlock_path = /obj/item/stack/ore/bluespace_crystal
 
 /datum/trader_item/mac
-	name = "Magnetic Accelerator Cannon Kit"
-	desc = "Everything you need to build the big MAC."
+	name = "Zestaw działa MAC"
+	desc = "Wszystko, czego potrzebujesz, żeby zbudować wielkie działo MAC."
 	price = 10000
 	stock = 1
 	unlock_path = /obj/structure/closet/crate/secure/weapon/trader_arms
 
 /obj/structure/closet/crate/secure/weapon/trader_arms
-	name = "MAC Construction Kit"
+	name = "zestaw konstrukcyjny działa MAC"
 	var/list/preset_contents = list(
 		/obj/structure/ship_weapon/mac_assembly,\
 		/obj/item/ship_weapon/parts/mac_barrel,\
@@ -186,14 +186,14 @@
 		new X(src)
 
 /datum/trader_item/railgun
-	name = "Railgun Kit"
-	desc = "Everything you need to build a ship to ship railgun."
+	name = "Zestaw działa szynowego"
+	desc = "Wszystko, czego potrzebujesz, żeby zbudować okrętowe działo szynowe."
 	price = 6000
 	stock = 1
 	unlock_path = /obj/structure/closet/crate/secure/weapon/trader_arms/railgun
 
 /obj/structure/closet/crate/secure/weapon/trader_arms/railgun
-	name = "Railgun Construction Kit"
+	name = "zestaw konstrukcyjny działa szynowego"
 	preset_contents = list(
 		/obj/structure/ship_weapon/railgun_assembly,\
 		/obj/item/ship_weapon/parts/railgun_rail,\
@@ -202,115 +202,115 @@
 	)
 
 /datum/trader_item/vls_circuit
-	name = "VLS tube circuit board"
-	desc = "The critical component for expanding your missile complement!"
+	name = "Płytka drukowana wyrzutni VLS"
+	desc = "Kluczowy element, jeśli chcesz powiększyć zapas rakiet!"
 	price = 5000
 	stock = 10
 	unlock_path = /obj/item/circuitboard/machine/vls
 	special_requirement = 100 //At least put some effort into it
 
 /datum/trader_item/firing_electronics
-	name = "Firing Electronics"
-	desc = "Essential electronics for building most modern naval weapons."
+	name = "Elektronika spustowa"
+	desc = "Elektronika niezbędna do budowy większości nowoczesnych broni okrętowych."
 	price = 20000
 	stock = 2
 	unlock_path = /obj/item/ship_weapon/parts/firing_electronics
 	special_requirement = 500 //Kick their ass!!!
 
 /datum/trader_item/pdc_circuit
-	name = "PDC mount circuit board"
-	desc = "Not enough point defense? Just build more!"
+	name = "Płytka drukowana stanowiska PDC"
+	desc = "Za mało obrony punktowej? Po prostu zbuduj więcej!"
 	price = 2500
 	stock = 4
 	unlock_path = /obj/item/circuitboard/machine/pdc_mount
 
 /datum/trader_item/torpedo
-	name = "Standard Torpedo"
-	desc = "A standard torpedo for ship to ship combat."
+	name = "Standardowa torpeda"
+	desc = "Standardowa torpeda do walki między okrętami."
 	price = 900 //Price is 1000 per in cargo
 	stock = 15
 	unlock_path = /obj/item/ship_weapon/ammunition/torpedo
 
 /datum/trader_item/missile
-	name = "Standard Missile"
-	desc = "A standard missile for ship to ship combat."
+	name = "Standardowa rakieta"
+	desc = "Standardowa rakieta do walki między okrętami."
 	price = 500 //Price in cargo is 833 per, this is a real steal
 	stock = 20
 	unlock_path = /obj/item/ship_weapon/ammunition/missile
 
 /datum/trader_item/hellfire
-	name = "Plasma Incendiary Torpedo"
-	desc = "The alpha and the omega, shipped to you quickly and efficiently! (WARNING: HANDLE WITH CARE)."
+	name = "Plazmowa torpeda zapalająca"
+	desc = "Alfa i omega, dostarczona szybko i sprawnie! (UWAGA: OBCHODZIĆ SIĘ OSTROŻNIE)."
 	price = 2500
 	stock = 4
 	unlock_path = /obj/item/ship_weapon/ammunition/torpedo/hellfire
 
 /datum/trader_item/c20r
-	name = "Donk Co. C20R SMG."
-	desc = "A highly powerful and versatile weapon used by Syndicate commando forces."
+	name = "Pistolet maszynowy C20R od Donk Co."
+	desc = "Bardzo potężna i wszechstronna broń używana przez komandosów Syndykatu."
 	price = 10000
 	stock = 3
 	unlock_path = /obj/item/gun/ballistic/automatic/c20r/unrestricted
 
 /datum/trader_item/stechkin
-	name = "Stechkin Pistol."
-	desc = "A reliable lethal side-arm of Syndicate origin, better than whatever NT'll give you."
+	name = "Pistolet Stieczkin"
+	desc = "Niezawodna, zabójcza broń boczna Syndykatu. Lepsza niż cokolwiek, co da ci NT."
 	price = 5500
 	stock = 5
 	unlock_path = /obj/item/gun/ballistic/automatic/pistol
 
 /datum/trader_item/c45
-	name = ".45 ACP Ammo Box"
-	desc = ".45 ACP rounds for use in firearms."
+	name = "Pudełko amunicji .45 ACP"
+	desc = "Naboje .45 ACP do broni palnej."
 	price = 1500
 	stock = 5
 	unlock_path = /obj/item/ammo_box/c45
 
 /datum/trader_item/pdc
-	name = "PDC Ammo Box"
-	desc = "PDC rounds for use in ship to ship guns."
+	name = "Skrzynka amunicji PDC"
+	desc = "Pociski PDC do okrętowych dział."
 	price = 175 //cost of buying in cargo is 200 per box
 	stock = 20
 	unlock_path = /obj/item/ammo_box/magazine/nsv/pdc
 
 /datum/trader_item/anti_air
-	name = "Anti-air Gun Ammo Box"
-	desc = "Anti-air rounds for use in ship to ship guns."
+	name = "Skrzynka amunicji przeciwlotniczej"
+	desc = "Pociski przeciwlotnicze do okrętowych dział."
 	price = 800
 	stock = 10
 	unlock_path = /obj/item/ammo_box/magazine/nsv/pdc
 
 /datum/trader_item/flak
-	name = "Flak Ammo Box"
-	desc = "Flak rounds for use in ship to ship guns."
+	name = "Skrzynka amunicji flak"
+	desc = "Pociski flak do okrętowych dział."
 	price = 500
 	stock = 10
 	unlock_path = /obj/item/ammo_box/magazine/nsv/flak
 
 /datum/trader_item/fighter/light
-	name = "Light Fighter"
-	desc = "A pre-assembled light fighter which comes pre-equipped with everything a pilot needs to get back into the fight."
+	name = "Lekki myśliwiec"
+	desc = "Zmontowany lekki myśliwiec, wyposażony we wszystko, czego pilot potrzebuje, żeby wrócić do walki."
 	price = 11000
 	stock = 2
 	unlock_path = /obj/structure/overmap/small_craft/combat/light
 
 /datum/trader_item/fighter/utility
-	name = "Utility Fighter"
-	desc = "A pre-assembled utility craft, capable of restocking and repairing other fighters."
+	name = "Jednostka pomocnicza"
+	desc = "Zmontowana jednostka pomocnicza, która uzupełnia zapasy innych myśliwców i je naprawia."
 	price = 9000
 	stock = 5
 	unlock_path = /obj/structure/overmap/small_craft/transport/sabre
 
 /datum/trader_item/fighter/heavy
-	name = "Heavy Fighter"
-	desc = "A pre-assembled Scimitar class heavy fighter produced in house by our engineers."
+	name = "Ciężki myśliwiec"
+	desc = "Zmontowany ciężki myśliwiec klasy Scimitar, wyprodukowany na miejscu przez naszych inżynierów."
 	price = 15000
 	stock = 2
 	unlock_path = /obj/structure/overmap/small_craft/combat/heavy
 
 //Trader exclusive specialty fighters
 /obj/structure/overmap/small_craft/combat/light/judgement
-	name = "executive fighter"
+	name = "myśliwiec dyrektorski"
 	icon_state = "judgement"
 	components = list(/obj/item/fighter_component/fuel_tank/tier2,
 						/obj/item/fighter_component/avionics,
@@ -327,21 +327,21 @@
 						/obj/item/fighter_component/primary/cannon)
 
 /datum/trader_item/fighter/judgement
-	name = "AX-49 'Classic' Custom Fighter"
-	desc = "A custom built light fighter tuned to perfection, attention to detail and pride fuel this beauty."
+	name = "Myśliwiec na zamówienie AX-49 „Classic”"
+	desc = "Lekki myśliwiec zbudowany na zamówienie i dopracowany do perfekcji. Tę piękność napędzają dbałość o szczegóły i duma."
 	price = 20000
 	stock = 1
 	unlock_path = /obj/structure/overmap/small_craft/combat/light/judgement
 
 /datum/trader_item/fighter/prototype
-	name = "SU-148 Chelyabinsk Superiority Fighter"
-	desc = "A highly experimental fighter prototype outfitted with a railgun. This absolute powerhouse balances speed, power and stealth in a package guaranteed to outclass anything the Syndicate can throw at you. Ammo blueprints sold seperately!"
+	name = "Myśliwiec przewagi powietrznej SU-148 Czelabińsk"
+	desc = "Wysoce eksperymentalny prototyp myśliwca z działem szynowym. Ta prawdziwa potęga łączy prędkość, siłę ognia i skrytość w pakiecie, który z gwarancją przewyższa wszystko, co może na ciebie rzucić Syndykat. Schematy amunicji sprzedawane osobno!"
 	price = 50000
 	stock = 1
 	unlock_path = /obj/structure/overmap/small_craft/combat/light/prototype
 
 /obj/structure/overmap/small_craft/combat/light/prototype
-	name = "SU-148 Chelyabinsk Superiority Fighter"
+	name = "myśliwiec przewagi powietrznej SU-148 Czelabińsk"
 	icon_state = "prototype"
 	components = list(/obj/item/fighter_component/fuel_tank/tier3,
 						/obj/item/fighter_component/avionics,
@@ -358,57 +358,57 @@
 						/obj/item/fighter_component/primary/cannon/heavy)
 
 /datum/trader_item/railgun_disk
-	name = "Outdated Railgun Slug Design Disk"
-	desc = "A disk containing railgun slug blueprints."
+	name = "Przestarzały dysk z projektami pocisków szynowych"
+	desc = "Dysk ze schematami pocisków szynowych."
 	price = 5000
 	stock = 1
 	unlock_path = /obj/item/disk/design_disk/hybrid_rail_slugs
 
 /datum/trader_item/fighter/syndicate
-	name = "AV-41 'Corvid' Syndicate Light Fighter"
-	desc = "A somewhat outdated Syndicate fighter design which may or may not be a facsimile of Nanotrasen's now defunct 'Viper' series."
+	name = "Lekki myśliwiec Syndykatu AV-41 „Corvid”"
+	desc = "Nieco przestarzała konstrukcja myśliwca Syndykatu, która być może jest kopią wycofanej już serii „Viper” od Nanotrasen."
 	price = 7000
 	stock = 5
 	unlock_path = /obj/structure/overmap/small_craft/combat/light/syndicate //Good luck using these without boarder IDs
 
 /datum/trader_item/taser
-	name = "Czanek corp Taser (Patent Pending)"
-	desc = "A cheap but highly reliable (and somewhat lethal) taser used by NT security forces."
+	name = "Paralizator CzanekCorp (zgłoszony do opatentowania)"
+	desc = "Tani, ale bardzo niezawodny (i nieco zabójczy) paralizator używany przez ochronę NT."
 	price = 1000
 	stock = 5
 	unlock_path = /obj/item/gun/ballistic/tazer
 
 /datum/trader_item/taser_ammo
-	name = "Czanek corp Taser Ammo (Patent Pending)"
-	desc = "CC taser ammunition."
+	name = "Amunicja do paralizatora CzanekCorp (zgłoszona do opatentowania)"
+	desc = "Amunicja do paralizatora CC."
 	price = 100
 	stock = 5
 	unlock_path = /obj/item/ammo_box/magazine/tazer_cartridge
 
 /datum/trader_item/overmap_shields
-	name = "SolGov Experimental Shielding Technology Disk"
-	desc = "Stolen straight out from under their noses! Pity we don't know how to read it."
+	name = "Dysk eksperymentalnej technologii tarcz SolGov"
+	desc = "Ukradziony im sprzed nosa! Szkoda, że nie umiemy go odczytać."
 	price = 100000
 	stock = 1
 	unlock_path = /obj/item/disk/design_disk/overmap_shields
 
 /datum/trader_item/deck_gun_autoelevator
-	name = "Experimental Naval Artillery Cannon Autoelevator Technology Disk"
-	desc = "A machine which can upgrade the naval artillery cannon to drastically reduce load times."
+	name = "Dysk eksperymentalnej technologii autopodnośnika działa artylerii okrętowej"
+	desc = "Ulepszenie działa artylerii okrętowej, które drastycznie skraca czas ładowania."
 	price = 10000
 	stock = 1
 	unlock_path = /obj/item/disk/design_disk/deck_gun_autoelevator
 
 /datum/trader_item/deck_gun_autorepair
-	name = "Experimental Naval Artillery Cannon Autorepair Technology Disk"
-	desc = "A machine which can upgrade the naval artillery cannon to let it self-repair."
+	name = "Dysk eksperymentalnej technologii autonaprawy działa artylerii okrętowej"
+	desc = "Ulepszenie działa artylerii okrętowej, które pozwala mu naprawiać się samemu."
 	price = 8000
 	stock = 1
 	unlock_path = /obj/item/disk/design_disk/deck_gun_autorepair
 
 /datum/trader_item/yellow_pages
-	name = "Space Yellow Pages"
-	desc = "A book full of useful information about nearby space stations"
+	name = "Kosmiczne Żółte Strony"
+	desc = "Książka pełna przydatnych informacji o pobliskich stacjach kosmicznych"
 	price = 1000
 	stock = 1
 	unlock_path = /obj/item/book/space_yellow_pages

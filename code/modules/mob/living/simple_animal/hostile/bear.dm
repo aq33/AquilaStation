@@ -1,7 +1,7 @@
 //Space bears!
 /mob/living/simple_animal/hostile/bear
-	name = "space bear"
-	desc = "You don't need to be faster than a space bear, you just need to outrun your crewmates."
+	name = "kosmiczny niedźwiedź"
+	desc = "Nie musisz być szybszy od kosmicznego niedźwiedzia, wystarczy, że prześcigniesz kolegów z załogi."
 	icon_state = "bear"
 	icon_living = "bear"
 	icon_dead = "bear_dead"
@@ -10,7 +10,7 @@
 	speak = list("RAWR!","Rawr!","GRR!","Grrr!")
 	speak_emote = list("warczy", "ryczy")
 	emote_hear = list("ryczy.","burczy.","warczy.")
-	emote_taunt = list("patrzy groźnie", "stomps")
+	emote_taunt = list("patrzy groźnie", "tupie")
 	speak_chance = 1
 	taunt_chance = 25
 	turns_per_move = 5
@@ -45,19 +45,19 @@
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
 	gender = MALE
-	desc = "Feared outlaw, this guy is one bad news bear." //I'm sorry...
+	desc = "Budzący postrach wyjęty spod prawa. Z tym misiem lepiej nie zadzierać." //I'm sorry...
 
 /mob/living/simple_animal/hostile/bear/snow
-	name = "space polar bear"
+	name = "kosmiczny niedźwiedź polarny"
 	icon_state = "snowbear"
 	icon_living = "snowbear"
 	icon_dead = "snowbear_dead"
-	desc = "It's a polar bear, in space, but not actually in space."
+	desc = "To niedźwiedź polarny w kosmosie, choć niezupełnie w kosmosie."
 	weather_immunities = list("snow")
 
 /mob/living/simple_animal/hostile/bear/russian
-	name = "combat bear"
-	desc = "A ferocious brown bear decked out in armor plating, a red star with yellow outlining details the shoulder plating."
+	name = "bojowy niedźwiedź"
+	desc = "Groźny niedźwiedź brunatny obwieszony płytami pancerza. Na naramiennikach widnieje czerwona gwiazda z żółtym obramowaniem."
 	icon_state = "combatbear"
 	icon_living = "combatbear"
 	icon_dead = "combatbear_dead"
@@ -75,9 +75,9 @@
 		add_overlay("armor_bear")
 
 /obj/item/bear_armor
-	name = "pile of bear armor"
-	desc = "A scattered pile of various shaped armor pieces fitted for a bear, some duct tape, and a nail filer. Crude instructions \
-		are written on the back of one of the plates in russian. This seems like an awful idea."
+	name = "sterta pancerza dla niedźwiedzia"
+	desc = "Rozrzucona sterta różnych kawałków pancerza dopasowanych do niedźwiedzia, trochę taśmy klejącej i pilnik do paznokci. Na odwrocie jednej z płyt \
+		ktoś nabazgrał po rosyjsku prymitywną instrukcję. To chyba okropny pomysł."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "bear_armor_upgrade"
 
@@ -102,7 +102,7 @@
 	icon_state = "butterbear"
 	icon_living = "butterbear"
 	icon_dead = "butterbear_dead"
-	desc = "I can't believe its not a bear!"
+	desc = "Nie mogę uwierzyć, że to nie niedźwiedź!"
 	faction = list("neutral", "russian")
 	obj_damage = 11
 	melee_damage = 1

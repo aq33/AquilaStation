@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/toggle/labcoat
-	name = "labcoat"
+	name = "fartuch laboratoryjny"
 	desc = "Strój chroniący przed drobnymi chemicznymi rozlaniami."
 	icon_state = "labcoat"
 	item_state = "labcoat"
@@ -7,55 +7,55 @@
 	body_parts_covered = CHEST|ARMS
 	allowed = list(/obj/item/analyzer, /obj/item/stack/medical, /obj/item/dnainjector, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer, /obj/item/flashlight/pen, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle, /obj/item/paper, /obj/item/melee/classic_baton/police/telescopic, /obj/item/soap, /obj/item/sensor_device, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 0, "bleed" = 5)
-	togglename = "buttons"
+	togglename = "guziki"
 	species_exception = list(/datum/species/golem)
 
 /obj/item/clothing/suit/toggle/labcoat/cmo
-	name = "chief medical officer's labcoat"
-	desc = "Bluer than the standard model. Issued to Chief Medical Officers, keeping them visible at all times among the sea of the wounded and other doctors."
+	name = "fartuch laboratoryjny Ordynatora"
+	desc = "Bardziej niebieski niż standardowy model. Wydawany Ordynatorom, żeby zawsze byli widoczni w morzu rannych i innych lekarzy."
 	icon_state = "labcoat_cmo"
 	item_state = "labcoat_cmo"
 
 /obj/item/clothing/suit/toggle/labcoat/paramedic
-	name = "\improper EMT's jacket"
+	name = "\improper kurtka ratownika medycznego"
 	desc = "Granatowa kurtka z odblaskowymi paskami dla ratowników medycznych."
 	icon_state = "labcoat_emt"
 	item_state = "labcoat_cmo"
 
 /obj/item/clothing/suit/toggle/labcoat/brig_physician
-	name = "security medic's labcoat"
+	name = "fartuch laboratoryjny lekarza policyjnego"
 	icon_state = "labcoat_sec"
 	item_state = "labcoat_sec"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0, fire = 50, acid = 50, stamina = 30, "bleed" = 10)
 
 /obj/item/clothing/suit/toggle/labcoat/mad
-	name = "\proper The Mad's labcoat"
-	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
+	name = "\proper fartuch laboratoryjny Szaleńca"
+	desc = "Wyglądasz w nim na kogoś, kto potrafi trzasnąć kogoś w łeb i wystrzelić go w kosmos."
 	icon_state = "labgreen"
 	item_state = "labgreen"
 
 /obj/item/clothing/suit/toggle/labcoat/genetics
-	name = "geneticist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
+	name = "fartuch laboratoryjny genetyka"
+	desc = "Strój chroniący przed drobnymi chemicznymi rozlaniami. Ma niebieski pasek na ramieniu."
 	icon_state = "labcoat_gen"
 
 /obj/item/clothing/suit/toggle/labcoat/chemist
-	name = "chemist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has an orange stripe on the shoulder."
+	name = "fartuch laboratoryjny chemika"
+	desc = "Strój chroniący przed drobnymi chemicznymi rozlaniami. Ma pomarańczowy pasek na ramieniu."
 	icon_state = "labcoat_chem"
 
 /obj/item/clothing/suit/toggle/labcoat/virologist
-	name = "virologist labcoat"
-	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
+	name = "fartuch laboratoryjny wirologa"
+	desc = "Strój chroniący przed drobnymi chemicznymi rozlaniami. Chroni przed zagrożeniami biologicznymi nieco lepiej niż standardowy model. Ma zielony pasek na ramieniu."
 	icon_state = "labcoat_vir"
 
 /obj/item/clothing/suit/toggle/labcoat/science
-	name = "scientist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a purple stripe on the shoulder."
+	name = "fartuch laboratoryjny naukowca"
+	desc = "Strój chroniący przed drobnymi chemicznymi rozlaniami. Ma fioletowy pasek na ramieniu."
 	icon_state = "labcoat_tox"
 
 /obj/item/clothing/suit/toggle/labcoat/research_director
-	name = "research director's labcoat"
-	desc = "Popped collar, ancient science fair medal from middle school.. worn out buttons that barely keep the coat closed? Oh yeah, its plasma research time. Has a legacy purple U stripe along the back."
+	name = "fartuch laboratoryjny Dyrektora Naukowego"
+	desc = "Postawiony kołnierz, prastary medal z gimnazjalnego festiwalu nauki... wytarte guziki, które ledwo trzymają poły? O tak, czas na badania nad plazmą. Wzdłuż pleców ma tradycyjny fioletowy pasek w kształcie litery U."
 	icon_state = "labcoat_rd"
 	item_state = "labcoat_tox"

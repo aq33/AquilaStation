@@ -13,7 +13,7 @@ export const NtosAirlockControl = (_) => {
   return (
     <NtosWindow width={400} height={500}>
       <NtosWindow.Content>
-        <Section fill scrollable title="Airlocks">
+        <Section fill scrollable title="Śluzy">
           <LabeledList>
             {airlocks.map((airlock) => (
               <LabeledList.Item
@@ -26,7 +26,7 @@ export const NtosAirlockControl = (_) => {
                 key={airlock.id}
                 buttons={
                   <Button
-                    content="Cycle"
+                    content="Cykl"
                     color={airlock.open ? 'red' : 'green'}
                     onClick={() => act('airlock_control', { id: airlock.id })}
                   />

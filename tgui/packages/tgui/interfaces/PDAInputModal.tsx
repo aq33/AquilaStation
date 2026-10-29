@@ -19,27 +19,27 @@ export const PDAInputModal = (props) => {
     job,
     text,
     image,
-    target = 'Select PDA',
+    target = 'Wybierz PDA',
     everyone,
     theme,
   } = data;
   return (
-    <Window title="Send PDA Message" theme={theme} width={600} height={290}>
+    <Window title="Wyślij wiadomość PDA" theme={theme} width={600} height={290}>
       <Window.Content>
         <Box>
           <Box inline color="label">
-            To:{' '}
+            Do:{' '}
           </Box>
           <Button
             ml={1}
             icon={target !== 'Select PDA' || everyone ? 'envelope' : undefined}
-            content={everyone ? 'Everyone' : target}
+            content={everyone ? 'Wszyscy' : target}
             onClick={() => act('select')}
           />
         </Box>
         <Box mt={1}>
           <Box inline color="label">
-            Name:
+            Imię:
           </Box>
           <Input
             value={name}
@@ -50,7 +50,7 @@ export const PDAInputModal = (props) => {
         </Box>
         <Box mt={1}>
           <Box inline color="label">
-            Job:
+            Zawód:
           </Box>
           <Input
             value={job}
@@ -61,19 +61,19 @@ export const PDAInputModal = (props) => {
         </Box>
         <Box mt={1}>
           <Box inline color="label">
-            Attachment:{' '}
+            Załącznik:{' '}
           </Box>
           <Button
             ml={1}
             icon="camera"
-            content={'Scan Photo'}
+            content={'Skanuj zdjęcie'}
             color={image ? 'good' : undefined}
             onClick={() => act('photo')}
           />
         </Box>
         <Box mt={0.5}>
           <Box inline color="label">
-            Message:
+            Wiadomość:
           </Box>
           <TextArea
             mt={0.25}
@@ -99,7 +99,7 @@ export const PDAInputModal = (props) => {
               align="center"
               height="100%"
               fluid
-              content="Send"
+              content="Wyślij"
               color="good"
               onClick={() => act('submit')}
             />
@@ -109,7 +109,7 @@ export const PDAInputModal = (props) => {
               align="center"
               height="100%"
               fluid
-              content="Cancel"
+              content="Anuluj"
               color="bad"
               onClick={() => act('cancel')}
             />

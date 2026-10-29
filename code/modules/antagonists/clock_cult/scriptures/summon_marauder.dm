@@ -2,14 +2,14 @@
 // !           Cogscarab          ! //
 //==================================//
 /datum/clockcult/scripture/marauder
-	name = "Summon Clockwork Marauder"
-	desc = "Summons a Clockwork Marauder, a powerful warrior that can deflect ranged attacks. Requires 3 invokers and 100 vitality."
+	name = "Przywołanie mechanicznego marudera"
+	desc = "Przywołuje mechanicznego marudera, potężnego wojownika, który odbija ataki dystansowe. Wymaga 3 przywołujących i 100 witalności."
 	tip = "Mechaniczni Maruderzy to potężni żołnierze, których wysyłasz do boju, gdy robi się gorąco."
 	button_icon_state = "Clockwork Marauder"
 	power_cost = 2000
 	vitality_cost = 100
 	invokation_time = 300
-	invokation_text = list("Przez ognie i płomienie...", "nothing outshines Eng'Ine!")
+	invokation_text = list("Przez ognie i płomienie...", "nic nie przyćmi Eng'Ine!")
 	category = SPELLTYPE_PRESERVATION
 	cogs_required = 6
 	invokers_required = 3

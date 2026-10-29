@@ -4,8 +4,8 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 */
 
 /obj/item/slimecross/warping
-	name = "warped extract"
-	desc = "It just won't stay in place."
+	name = "zakrzywiony ekstrakt"
+	desc = "Po prostu nie chce zostać w miejscu."
 	icon_state = "warping"
 	effect = "warping"
 	///what runes will be drawn depending on the crossbreed color
@@ -20,8 +20,8 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	var/cooldown = 0
 
 /obj/effect/warped_rune
-	name = "warped rune"
-	desc = "An unstable rune born of the depths of bluespace"
+	name = "zakrzywiona runa"
+	desc = "Niestabilna runa zrodzona w głębinach bluespace"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "greyspace_rune"
 	move_resist = INFINITY //here to avoid the rune being moved since it only sets it's turf once when it's drawn. doesn't include admin fuckery.
@@ -147,7 +147,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	SHOULD_CALL_PARENT(TRUE)
 	if(remove_on_activation)
 		playsound(rune_turf, dir_sound, 20, TRUE)
-		to_chat(user, ("<span class='notice'>[src] fades.</span>"))
+		to_chat(user, ("<span class='notice'>[src] blednie i znika.</span>"))
 		qdel(src)
 
 /obj/effect/warped_rune/proc/on_entered(datum/source, atom/movable/AM, oldloc)
@@ -155,18 +155,18 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 	if(activated_on_step)
 		playsound(rune_turf, dir_sound, 20, TRUE)
-		visible_message("<span class='notice'>[src] fades.</span>")
+		visible_message("<span class='notice'>[src] blednie i znika.</span>")
 		qdel(src)
 
 /obj/item/slimecross/warping/grey
-	name = "greyspace crossbreed"
+	name = "krzyżówka szarej przestrzeni"
 	colour = "grey"
 	effect_desc = "Rysuje runę. Ekstrakty leżące na runie zostają wchłonięte; 8 ekstraktów daje dorosłego szlama w tym kolorze."
 	runepath = /obj/effect/warped_rune/greyspace
 
 /obj/effect/warped_rune/greyspace
-	name = "greyspace rune"
-	desc = "Death is merely a setback, anything can be rebuilt given the right components."
+	name = "runa szarej przestrzeni"
+	desc = "Śmierć to tylko chwilowa przeszkoda. Wszystko da się odbudować, mając właściwe części."
 	icon_state = "rune_grey"
 	///extracttype is used to remember the type of the extract on the rune
 	var/extracttype
@@ -206,7 +206,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	effect_desc = "Rysuje runę, która może przywołać ognisko."
 
 /obj/effect/warped_rune/orangespace
-	desc = "This can be activated to summon a bonfire."
+	desc = "Można ją aktywować, by przywołać ognisko."
 	icon_state = "rune_orange"
 
 /obj/effect/warped_rune/orangespace/do_effect(mob/user)
@@ -220,7 +220,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	effect_desc = "Rysuje runę, którą można aktywować, by przywołać dwa losowe przedmioty medyczne."
 
 /obj/effect/warped_rune/purplespace
-	desc = "This can be activated to summon two random medical."
+	desc = "Można ją aktywować, by przywołać dwa losowe przedmioty medyczne."
 	icon_state = "rune_purple"
 
 /obj/effect/warped_rune/purplespace/do_effect(mob/user)
@@ -258,7 +258,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 /obj/effect/warped_rune/cyanspace
 	icon_state = "rune_blue"
-	desc = "Its slippery like water and may be activated to cover all adjacent tiles in ice."
+	desc = "Jest śliska jak woda. Po aktywacji pokrywa lodem wszystkie sąsiednie pola."
 
 /obj/effect/warped_rune/cyanspace/do_effect(mob/user)
 	for(var/turf/open/T in RANGE_TURFS(1, src) - rune_turf)
@@ -281,7 +281,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 /obj/effect/warped_rune/darkcyanspace
 	icon_state = "rune_dark_blue"
-	desc = "Refreshing!"
+	desc = "Orzeźwiające!"
 	remove_on_activation = FALSE
 
 /obj/effect/warped_rune/darkcyanspace/on_entered(datum/source, atom/movable/AM, oldloc)
@@ -298,7 +298,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 //It's a wall what do you want from me
 /obj/effect/warped_rune/metalspace
-	desc = "This can be activated to to create a 3x3 block of invisible walls."
+	desc = "Można ją aktywować, by stworzyć blok niewidzialnych ścian 3x3."
 	icon_state = "rune_metal"
 
 /obj/effect/warped_rune/metalspace/do_effect(mob/user)
@@ -312,7 +312,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	effect_desc = "Rysuje runę, która powoduje zakłócenia elektryczne."
 
 /obj/effect/warped_rune/yellowspace
-	desc = "Be careful with taking power cells with you!"
+	desc = "Uważaj z noszeniem przy sobie ogniw zasilających!"
 	icon_state = "rune_yellow"
 	remove_on_activation = FALSE
 
@@ -339,7 +339,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 /obj/effect/warped_rune/darkpurplespace
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "rune_dark_purple"
-	desc = "To gain something you must sacrifice something else in return."
+	desc = "By coś zyskać, musisz w zamian coś poświęcić."
 	var/static/list/materials = list(/obj/item/stack/sheet/iron, /obj/item/stack/sheet/glass, /obj/item/stack/sheet/mineral/silver,
 									/obj/item/stack/sheet/mineral/gold, /obj/item/stack/sheet/mineral/diamond, /obj/item/stack/sheet/mineral/uranium,
 									/obj/item/stack/sheet/mineral/titanium, /obj/item/stack/sheet/mineral/copper,
@@ -363,7 +363,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 	runepath = /obj/effect/warped_rune/silverspace
 
 /obj/effect/warped_rune/silverspace
-	desc = "This feeds whoever steps on it."
+	desc = "Karmi każdego, kto na nią wejdzie."
 	icon_state = "rune_silver"
 	remove_on_activation = FALSE
 
@@ -377,7 +377,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 
 /obj/item/storage/backpack/holding/bluespace
-	name = "warped rune"
+	name = "zakrzywiona runa"
 	anchored = TRUE
 	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 100, "bleed" = 0)
 	invisibility = INVISIBILITY_ABSTRACT
@@ -389,7 +389,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje runę, która służy jako pojemnik bluespace."
 
 /obj/effect/warped_rune/bluespace
-	desc = "When activated, it gives access to a bluespace container."
+	desc = "Po aktywacji daje dostęp do pojemnika bluespace."
 	icon_state = "rune_bluespace"
 	remove_on_activation = FALSE
 
@@ -408,7 +408,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Runa aktywuje się automatycznie po nadepnięciu, zatrzymując czas wokół siebie."
 
 /obj/effect/warped_rune/sepiaspace
-	desc = "stepping on it stops time around it."
+	desc = "Wejście na nią zatrzymuje czas wokół."
 	icon_state = "rune_sepia"
 	remove_on_activation = FALSE
 
@@ -423,7 +423,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje runę, która tworzy hologram pierwszej żywej istoty, która weszła na to pole."
 
 /obj/effect/warped_rune/ceruleanspace
-	desc = "A shadow of what once passed these halls, a memory perhaps?"
+	desc = "Cień tego, co kiedyś przeszło tymi korytarzami. Może wspomnienie?"
 	icon_state = "rune_cerulean"
 	remove_on_activation = FALSE
 	///hologram that will be spawned by the rune
@@ -461,7 +461,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	holotile.icon = holo_host.icon
 	holotile.icon_state = holo_host.icon_state
 	holotile.alpha = 200
-	holotile.name = "[holo_host.name] (Hologram)"
+	holotile.name = "[holo_host.name] (hologram)"
 	holotile.add_atom_colour("#77abff", FIXED_COLOUR_PRIORITY)
 	holotile.copy_overlays(holo_host, TRUE)
 	holotile.anchored = TRUE
@@ -503,7 +503,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje runę, która losowo barwi wszystko, co na nią wejdzie."
 
 /obj/effect/warped_rune/pyritespace
-	desc = "Who shall we be today? they asked, but not even the canvas would answer."
+	desc = "„Kim dziś będziemy?” – pytali, ale nawet płótno nie odpowiadało."
 	icon_state = "rune_pyrite"
 	remove_on_activation = FALSE
 	var/colour = "#FFFFFF"
@@ -525,7 +525,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje runę, która oblewa krwią każdego, kto na nią wejdzie."
 
 /obj/effect/warped_rune/redspace
-	desc = "Watch out for blood!"
+	desc = "Uważaj na krew!"
 	icon_state = "rune_red"
 	remove_on_activation = FALSE
 
@@ -549,7 +549,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	runepath = /obj/effect/warped_rune/greenspace
 
 /obj/effect/warped_rune/greenspace
-	desc = "Warning: don't step on this if you want to keep your genes."
+	desc = "Uwaga: nie wchodź na to, jeśli chcesz zachować swoje geny."
 	icon_state = "rune_green"
 	remove_on_activation = FALSE
 
@@ -566,7 +566,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	runepath = /obj/effect/warped_rune/pinkspace
 
 /obj/effect/warped_rune/pinkspace
-	desc = "Love is the only reliable source of happiness we have left. But like everything, it comes with a price."
+	desc = "Miłość to jedyne pewne źródło szczęścia, jakie nam zostało. Ale jak wszystko ma swoją cenę."
 	icon_state = "rune_pink"
 	remove_on_activation = FALSE
 
@@ -586,7 +586,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 
 /obj/effect/warped_rune/goldspace
 	icon_state = "rune_gold"
-	desc = "This can be activated to transmute valuable items into a random item."
+	desc = "Można ją aktywować, by przemienić cenne przedmioty w losowy przedmiot."
 	remove_on_activation = FALSE
 	var/target_value = 5000
 	var/static/list/common_items = list(
@@ -685,7 +685,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 
 /obj/effect/warped_rune/oilspace
 	icon_state = "rune_oil"
-	desc = "This is basically a mine."
+	desc = "To w zasadzie mina."
 	remove_on_activation = FALSE
 
 /obj/effect/warped_rune/oilspace/on_entered(datum/source, atom/movable/AM, oldloc)
@@ -704,7 +704,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 
 /obj/effect/warped_rune/blackspace
 	icon_state = "rune_black"
-	desc = "Souls are like any other material, you just have to find the right place to manufacture them."
+	desc = "Dusze są jak każdy inny materiał, trzeba tylko znaleźć właściwe miejsce, by je wytwarzać."
 
 /obj/effect/warped_rune/blackspace/do_effect(mob/user)
 	for(var/mob/living/carbon/human/host in rune_turf)
@@ -739,7 +739,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje żabę, która uspokaja każdego, kto na nią wejdzie."
 
 /obj/effect/warped_rune/lightpinkspace
-	desc = "Peace and love."
+	desc = "Pokój i miłość."
 	icon_state = "rune_light_pink"
 	remove_on_activation = FALSE
 
@@ -756,7 +756,7 @@ GLOBAL_DATUM(blue_storage, /obj/item/storage/backpack/holding/bluespace)
 	effect_desc = "Rysuje runę, która może przywołać pola odbijające."
 
 /obj/effect/warped_rune/adamantinespace
-	desc = "This can be activated to summon reflective fields."
+	desc = "Można ją aktywować, by przywołać pola odbijające."
 	icon_state = "rune_adamantine"
 
 /obj/structure/reflector/box/anchored/mob_pass/CanPass(atom/movable/mover, turf/target)
@@ -786,14 +786,14 @@ GLOBAL_DATUM(warped_room, /datum/map_template/warped_room)
 
 /obj/effect/warped_rune/rainbowspace
 	icon_state = "rune_rainbow"
-	desc = "This is where I go when I want to be alone. Yet they keep clawing at the walls until everything crumbles."
+	desc = "Tu przychodzę, gdy chcę być sam. A oni wciąż drapią w ściany, aż wszystko się rozsypie."
 	remove_on_activation = FALSE
 
 /obj/effect/warped_room_exit
-	name = "warped_rune"
+	name = "zakrzywiona runa"
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "rune_rainbow"
-	desc = "Use this rune if you want to leave this place. You will have to leave eventually."
+	desc = "Użyj tej runy, jeśli chcesz opuścić to miejsce. Kiedyś i tak będziesz musiał odejść."
 	move_resist = INFINITY
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -805,7 +805,7 @@ GLOBAL_DATUM(warped_room, /datum/map_template/warped_room)
 	var/list/rainbow_runes = list()
 
 /area/warped_room
-	name = "warped room"
+	name = "Zakrzywiony Pokój"
 	icon_state = "yellow"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 	requires_power = FALSE

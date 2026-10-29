@@ -1,6 +1,6 @@
 /obj/item/holosign_creator
-	name = "holographic sign projector"
-	desc = "A handy-dandy holographic projector that displays a janitorial sign."
+	name = "projektor holoznaków"
+	desc = "Poręczny projektor holograficzny, który wyświetla znak woźnego."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker"
 	item_state = "electronic"
@@ -60,48 +60,48 @@
 		to_chat(user, "<span class='notice'>Usuwasz wszystkie aktywne hologramy.</span>")
 
 /obj/item/holosign_creator/janibarrier
-	name = "custodial holobarrier projector"
-	desc = "A holographic projector that creates hard light wet floor barriers."
+	name = "projektor holobarier woźnego"
+	desc = "Projektor holograficzny, który tworzy bariery z twardego światła ostrzegające przed mokrą podłogą."
 	holosign_type = /obj/structure/holosign/barrier/wetsign
 	custom_price = 200
 	creation_time = 20
 	max_signs = 12
 
 /obj/item/holosign_creator/security
-	name = "security holobarrier projector"
-	desc = "A holographic projector that creates holographic security barriers."
+	name = "projektor holobarier ochrony"
+	desc = "Projektor holograficzny, który tworzy holograficzne bariery ochrony."
 	icon_state = "signmaker_sec"
 	holosign_type = /obj/structure/holosign/barrier
 	creation_time = 30
 	max_signs = 6
 
 /obj/item/holosign_creator/engineering
-	name = "engineering holobarrier projector"
-	desc = "A holographic projector that creates holographic engineering barriers."
+	name = "projektor holobarier inżynieryjnych"
+	desc = "Projektor holograficzny, który tworzy holograficzne bariery inżynieryjne."
 	icon_state = "signmaker_engi"
 	holosign_type = /obj/structure/holosign/barrier/engineering
 	creation_time = 30
 	max_signs = 6
 
 /obj/item/holosign_creator/atmos
-	name = "ATMOS holofan projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmosphere conditions."
+	name = "projektor holowentylatorów ATMOS"
+	desc = "Projektor holograficzny, który tworzy holograficzne bariery zapobiegające zmianom warunków atmosferycznych."
 	icon_state = "signmaker_atmos"
 	holosign_type = /obj/structure/holosign/barrier/atmos
 	creation_time = 0
 	max_signs = 6
 
 /obj/item/holosign_creator/medical
-	name = "\improper PENLITE barrier projector"
-	desc = "A holographic projector that creates PENLITE holobarriers. Useful during quarantines since they halt those with malicious diseases."
+	name = "\improper projektor barier PENLITE"
+	desc = "Projektor holograficzny, który tworzy holobariery PENLITE. Przydaje się podczas kwarantanny, bo zatrzymuje nosicieli groźnych chorób."
 	icon_state = "signmaker_med"
 	holosign_type = /obj/structure/holosign/barrier/medical
 	creation_time = 30
 	max_signs = 3
 
 /obj/item/holosign_creator/cyborg
-	name = "Energy Barrier Projector"
-	desc = "A holographic projector that creates fragile energy fields."
+	name = "projektor barier energetycznych"
+	desc = "Projektor holograficzny, który tworzy kruche pola energetyczne."
 	creation_time = 15
 	max_signs = 9
 	holosign_type = /obj/structure/holosign/barrier/cyborg

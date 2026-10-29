@@ -147,7 +147,7 @@
 	if(sprite)
 		sprite_hash = md5(sprite)
 		src << browse_rsc(sprite, "vv[sprite_hash].png")
-		sprite_text = no_icon ? "\[NO ICON\]" : "<img src='vv[sprite_hash].png'></td><td>"
+		sprite_text = no_icon ? "\[BRAK IKONY\]" : "<img src='vv[sprite_hash].png'></td><td>"
 
 
 	// ------------------------------------------------------
@@ -161,26 +161,26 @@
 		if(STYLE_READ_ONLY_LIST)
 			dropdown_options = list(
 				"---",
-				"Show VV To Player" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_EXPOSE, vv_spectre.dmlist_varname),
+				"Pokaż VV graczowi" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_EXPOSE, vv_spectre.dmlist_varname),
 				"---"
 			)
 		if(STYLE_SPECIAL_LIST)
 			dropdown_options = list(
 				"---",
-				"Add Item" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_LIST_ADD, vv_spectre.dmlist_varname),
-				"Remove Nulls" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_LIST_ERASE_NULLS, vv_spectre.dmlist_varname),
-				"Show VV To Player" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_EXPOSE, vv_spectre.dmlist_varname),
+				"Dodaj element" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_LIST_ADD, vv_spectre.dmlist_varname),
+				"Usuń nulle" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_LIST_ERASE_NULLS, vv_spectre.dmlist_varname),
+				"Pokaż VV graczowi" = VV_HREF_SPECIAL_MENU(vv_spectre.dmlist_origin_ref, VV_HK_EXPOSE, vv_spectre.dmlist_varname),
 				"---"
 			)
 		if(STYLE_LIST)
 			dropdown_options = list(
 				"---",
-				"Add Item" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ADD),
-				"Remove Nulls" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_NULLS),
-				"Remove Dupes" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_DUPES),
-				"Set len" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SET_LENGTH),
-				"Shuffle" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SHUFFLE),
-				"Show VV To Player" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
+				"Dodaj element" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ADD),
+				"Usuń nulle" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_NULLS),
+				"Usuń duplikaty" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_ERASE_DUPES),
+				"Ustaw długość" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SET_LENGTH),
+				"Przetasuj" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_LIST_SHUFFLE),
+				"Pokaż VV graczowi" = VV_HREF_TARGETREF_INTERNAL(refid, VV_HK_EXPOSE),
 				"---"
 			)
 	// Finalize dropdown-options for /list
@@ -375,12 +375,12 @@
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a id='refresh_link' href='byond://?_src_=vars;[HrefToken()];[href_reference_string]'>Refresh</a>
+							<a id='refresh_link' href='byond://?_src_=vars;[HrefToken()];[href_reference_string]'>Odśwież</a>
 							<form>
 								<select name="file" size="1"
 									onchange="handle_dropdown(this)"
 									onmouseclick="this.focus()">
-									<option value selected>Select option</option>
+									<option value selected>Wybierz opcję</option>
 									[dropdown_options.Join()]
 								</select>
 							</form>
@@ -391,16 +391,16 @@
 		</div>
 		<hr>
 		<font size='1'>
-			<b>E</b> - Edit, tries to determine the variable type by itself.<br>
-			<b>C</b> - Change, asks you for the var type first.<br>
-			<b>M</b> - Mass modify: changes this variable for all objects of this type.<br>
+			<b>E</b> - Edytuj, próbuje sam ustalić typ zmiennej.<br>
+			<b>C</b> - Zmień, najpierw pyta o typ zmiennej.<br>
+			<b>M</b> - Masowa zmiana: zmienia tę zmienną we wszystkich obiektach tego typu.<br>
 		</font>
 		<hr>
 		<table width='100%'>
 			<tr>
 				<td width='20%'>
 					<div align='center'>
-						<b>Search:</b>
+						<b>Szukaj:</b>
 					</div>
 				</td>
 				<td width='80%'>

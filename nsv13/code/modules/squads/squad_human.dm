@@ -7,25 +7,25 @@
 
 	if(!squad)
 		tab_data["Przydzielony oddział"] = list(
-			text = "None",
+			text = "Brak",
 			type = STAT_TEXT
 		)
 		return tab_data
 
 	tab_data["Przydzielony oddział"] = list(
-			text = "[squad.name || "Unassigned"]",
+			text = "[squad.name || "Nieprzydzielony"]",
 			type = STAT_TEXT
 		)
 	tab_data["Dowódca oddziału"] = list(
-			text = "[squad.leader || "None"]",
+			text = "[squad.leader || "Brak"]",
 			type = STAT_TEXT
 		)
 	tab_data["Cel główny"] = list(
-			text = "[squad.primary_objective || "None"]",
+			text = "[squad.primary_objective || "Brak"]",
 			type = STAT_TEXT
 		)
 	tab_data["Cel poboczny"] = list(
-			text = "[squad.secondary_objective || "None"]",
+			text = "[squad.secondary_objective || "Brak"]",
 			type = STAT_TEXT
 		)
 	return tab_data

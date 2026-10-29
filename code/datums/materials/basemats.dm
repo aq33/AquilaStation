@@ -2,7 +2,7 @@
 /datum/material/iron
 	name = "iron"
 	id = "iron"
-	desc = "Common iron ore often found in sedimentary and igneous layers of the crust."
+	desc = "Pospolita ruda żelaza, często spotykana w osadowych i magmowych warstwach skorupy."
 	color = "#878687"
 	greyscale_colors = "#878687"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -13,7 +13,7 @@
 /datum/material/glass
 	name = "glass"
 	id = "glass"
-	desc = "Glass forged by melting sand."
+	desc = "Szkło wytopione z piasku."
 	color = "#dae6f0"
 	greyscale_colors = "#dae6f0"
 	alpha = 210
@@ -26,7 +26,7 @@
 /datum/material/silver
 	name = "silver"
 	id = "silver"
-	desc = "Silver"
+	desc = "Srebro"
 	color = "#bdbebf"
 	greyscale_colors = "#bdbebf"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -37,7 +37,7 @@
 /datum/material/gold
 	name = "gold"
 	id = "gold"
-	desc = "Gold"
+	desc = "Złoto"
 	color = "#f0972b"
 	greyscale_colors = "#f0972b"
 	strength_modifier = 1.2
@@ -49,7 +49,7 @@
 /datum/material/diamond
 	name = "diamond"
 	id = "diamond"
-	desc = "Highly pressurized carbon"
+	desc = "Węgiel pod ogromnym ciśnieniem"
 	color = "#22c2d4"
 	greyscale_colors = "#22c2d4"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -60,7 +60,7 @@
 /datum/material/uranium
 	name = "uranium"
 	id = "uranium"
-	desc = "Uranium"
+	desc = "Uran"
 	color = "#1fb83b"
 	greyscale_colors = "#1fb83b"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -80,7 +80,7 @@
 /datum/material/plasma
 	name = "plasma"
 	id = "plasma"
-	desc = "Isn't plasma a state of matter? Oh whatever."
+	desc = "Czy plazma to nie jest przypadkiem stan skupienia? Zresztą nieważne."
 	color = "#c716b8"
 	greyscale_colors = "#c716b8"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -102,7 +102,7 @@
 /datum/material/bluespace
 	name = "bluespace crystal"
 	id = "bluespace_crystal"
-	desc = "Crystals with bluespace properties"
+	desc = "Kryształy o właściwościach bluespace"
 	color = "#506bc7"
 	greyscale_colors = "#506bc7"
 	categories = list(MAT_CATEGORY_ORE = TRUE)
@@ -112,7 +112,7 @@
 /datum/material/bananium
 	name = "bananium"
 	id = "bananium"
-	desc = "Material with hilarious properties"
+	desc = "Materiał o przezabawnych właściwościach"
 	color = "#fff263"
 	greyscale_colors = "#fff263"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
@@ -134,7 +134,7 @@
 /datum/material/titanium
 	name = "titanium"
 	id = "titanium"
-	desc = "Titanium"
+	desc = "Tytan"
 	color = "#b3c0c7"
 	greyscale_colors = "#b3c0c7"
 	strength_modifier = 1.3
@@ -145,7 +145,7 @@
 /datum/material/plastic
 	name = "plastic"
 	id = "plastic"
-	desc = "plastic"
+	desc = "Plastik"
 	color = "#caccd9"
 	greyscale_colors = "#caccd9"
 	strength_modifier = 0.85
@@ -155,7 +155,7 @@
 /datum/material/biomass
 	name = "biomass"
 	id = "biomass"
-	desc = "Organic matter"
+	desc = "Materia organiczna"
 	color = "#735b4d"
 	greyscale_colors = "#735b4d"
 	strength_modifier = 0.8
@@ -164,7 +164,7 @@
 /datum/material/copper
 	name = "copper"
 	id = "copper"
-	desc = "Copper is a soft, malleable, and ductile metal with very high thermal and electrical conductivity."
+	desc = "Miedź to miękki, kowalny i ciągliwy metal o bardzo wysokim przewodnictwie cieplnym i elektrycznym."
 	color = "#d95802"
 	greyscale_colors = "#d95802"
 	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)

@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/hive_probe
-	name = "Probe Mind"
-	desc = "We examine a mind for any enemy activity."
+	name = "Zbadaj umysł"
+	desc = "Badamy umysł pod kątem wrogiej aktywności."
 	panel = "Hivemind Abilities"
 	charge_max = 30
 	range = 1
@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/targeted/hive_probe/cast(list/targets, mob/living/user = usr)
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	var/mob/living/carbon/target = targets[1]
 	var/detected

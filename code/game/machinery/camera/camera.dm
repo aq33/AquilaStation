@@ -3,8 +3,8 @@
 #define CAMERA_UPGRADE_MOTION 4
 
 /obj/machinery/camera
-	name = "security camera"
-	desc = "A wireless camera used to monitor rooms. It is powered by a long-life internal battery."
+	name = "kamera ochrony"
+	desc = "Bezprzewodowa kamera do monitorowania pomieszczeń. Zasila ją wewnętrzna bateria o długiej żywotności."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera" //mapping icon to represent upgrade states. if you want a different base icon, update default_camera_icon as well as this.
 	use_power = ACTIVE_POWER_USE
@@ -56,8 +56,8 @@
 	var/datum/proximity_monitor/proximity_monitor
 
 /obj/machinery/camera/preset/toxins //Bomb test site in space
-	name = "Hardened Bomb-Test Camera"
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site. An external light is attached to the top."
+	name = "wzmocniona kamera poligonu bombowego"
+	desc = "Specjalnie wzmocniona kamera z długowieczną baterią, która monitoruje poligon do testowania bomb. Na górze ma przymocowaną zewnętrzną lampę."
 	c_tag = "Bomb Testing Site"
 	network = list("rd","toxins")
 	use_power = NO_POWER_USE //Test site is an unpowered area
@@ -403,9 +403,11 @@
 		if (isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 	GLOB.cameranet.updateChunk(x, y, z)
-	var/change_msg = "deactivates"
+	var/change_msg = "dezaktywuje"
+	var/self_change_msg = "się wyłącza"
 	if(status)
-		change_msg = "reactivates"
+		change_msg = "reaktywuje"
+		self_change_msg = "ponownie się włącza"
 		triggerCameraAlarm()
 		addtimer(CALLBACK(src, PROC_REF(cancelCameraAlarm)), 100)
 	if(displaymessage)
@@ -413,7 +415,7 @@
 			visible_message("<span class='danger'>[user] [change_msg] [src]!</span>")
 			add_hiddenprint(user)
 		else
-			visible_message("<span class='danger'>\The [src] [change_msg]!</span>")
+			visible_message("<span class='danger'>[src] [self_change_msg]!</span>")
 
 		playsound(src, 'sound/items/wirecutter.ogg', 100, TRUE)
 	update_icon() //update Initialize() if you remove this.

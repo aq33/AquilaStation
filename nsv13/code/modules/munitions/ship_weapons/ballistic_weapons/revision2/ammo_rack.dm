@@ -6,8 +6,8 @@
 
 // Ammo rack control console
 /obj/machinery/computer/ammo_sorter
-	name = "ammo rack control console"
-	desc = "This console allows you to manage and control linked ammo racks. From here, you can monitor the status of each rack, unload them remotely, and rearrange their order."
+	name = "konsola sterowania stojakami na amunicję"
+	desc = "Ta konsola pozwala zarządzać połączonymi stojakami na amunicję. Stąd monitorujesz stan każdego stojaka, zdalnie je rozładowujesz i zmieniasz ich kolejność."
 	icon_screen = "ammorack"
 	circuit = /obj/item/circuitboard/computer/ammo_sorter
 	var/id = null
@@ -61,7 +61,7 @@
 				return
 
 			AS.name = new_name
-			message_admins("[key_name(usr)] renamed an ammo rack to [new_name].")
+			message_admins("[key_name(usr)] zmienia nazwę stojaka na amunicję na: [new_name].")
 			log_game("[key_name(usr)] renamed an ammo rack to [new_name].")
 		if("moveup")
 			if(!AS)
@@ -89,7 +89,7 @@
 		var/loadedlen = length(AS.loaded)
 		if(loadedlen)
 			what = AS.loaded[loadedlen]
-		racks_info[++racks_info.len] = list("name"=AS.name, "has_loaded"=loadedlen > 0, "id"="\ref[AS]", "top"=(what ? what.name : "Nothing"))
+		racks_info[++racks_info.len] = list("name"=AS.name, "has_loaded"=loadedlen > 0, "id"="\ref[AS]", "top"=(what ? what.name : "Nic"))
 	data["racks_info"] = racks_info
 	return data
 
@@ -117,8 +117,8 @@
 
 // The ammo rack itself
 /obj/machinery/ammo_sorter
-	name = "Ammo Rack"
-	desc = "A machine that allows you to compartmentalise the ship's ammo stores, controlled by a central console."
+	name = "stojak na amunicję"
+	desc = "Maszyna, która dzieli zapasy amunicji okrętu na przegródki, sterowana z centralnej konsoli."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "ammorack"
 	circuit = /obj/item/circuitboard/machine/ammo_sorter
@@ -187,7 +187,7 @@
 			to_chat(user, "<span class='warning'>Masz za mało oleju, by nasmarować [src]!</span>")
 			busy = FALSE
 			return TRUE
-		user.visible_message("<span class='notice'>[user] lubricates [src].</span>", \
+		user.visible_message("<span class='notice'>[user] smaruje [src].</span>", \
 					"<span class='notice'>Smarujesz wnętrze [src].</span>")
 		durability = min(durability + (oil_amount * repair_multiplier), max_durability)
 		I.reagents.remove_reagent(/datum/reagent/oil, oil_amount)
@@ -367,11 +367,11 @@
 
 // Circuits for ammunition sorters
 /obj/item/circuitboard/computer/ammo_sorter
-	name = "ammo sorter console (circuitboard)"
+	name = "konsola sortownika amunicji (płytka komputera)"
 	build_path = /obj/machinery/computer/ammo_sorter
 
 /obj/item/circuitboard/machine/ammo_sorter
-	name = "ammo sorter (circuitboard)"
+	name = "sortownik amunicji (płytka maszyny)"
 	req_components = list(/obj/item/stock_parts/matter_bin = 3)
 	build_path = /obj/machinery/ammo_sorter
 	needs_anchored = FALSE

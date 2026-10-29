@@ -129,8 +129,8 @@
 	return TRUE
 
 /obj/item/gun/energy/dueling
-	name = "dueling pistol"
-	desc = "High-tech dueling pistol. Launches chaff and projectile according to preset settings."
+	name = "pistolet pojedynkowy"
+	desc = "Zaawansowany technicznie pistolet pojedynkowy. Wystrzeliwuje zakłócacze i pocisk według ustawionych trybów."
 	icon_state = "dueling_pistol"
 	item_state = "gun"
 	ammo_x_offset = 2
@@ -262,7 +262,7 @@
 //Projectile
 
 /obj/item/projectile/energy/duel
-	name = "dueling beam"
+	name = "wiązka pojedynkowa"
 	icon_state = "declone"
 	reflectable = FALSE
 	homing = TRUE
@@ -304,8 +304,8 @@
 
 //Storage case.
 /obj/item/storage/lockbox/dueling
-	name = "dueling pistol case"
-	desc = "Let's solve this like gentlespacemen."
+	name = "kasetka z pistoletami pojedynkowymi"
+	desc = "Załatwmy to jak kosmiczni dżentelmeni."
 	icon_state = "medalbox+l"
 	item_state = "medalbox+l"
 	base_icon_state = "medalbox"

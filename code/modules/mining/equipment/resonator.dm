@@ -1,12 +1,12 @@
 /**********************Resonator**********************/
 /obj/item/resonator
-	name = "resonator"
+	name = "rezonator"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "resonator"
 	item_state = "resonator"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure."
+	desc = "Ręczne urządzenie tworzące małe pola energii, które rezonują aż do wybuchu, kruszącego skałę. Zadaje większe obrażenia przy niskim ciśnieniu."
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 15
 	throwforce = 10
@@ -16,8 +16,8 @@
 	var/quick_burst_mod = 0.8
 
 /obj/item/resonator/upgraded
-	name = "upgraded resonator"
-	desc = "An upgraded version of the resonator that can produce more fields at once, as well as having no damage penalty for bursting a resonance field early."
+	name = "ulepszony rezonator"
+	desc = "Ulepszona wersja rezonatora, która tworzy więcej pól naraz i nie traci obrażeń przy wcześniejszym rozerwaniu pola rezonansowego."
 	icon_state = "resonator_u"
 	item_state = "resonator_u"
 	fieldlimit = 6
@@ -58,8 +58,8 @@
 
 //resonance field, crushes rock, damages mobs
 /obj/effect/temp_visual/resonance
-	name = "resonance field"
-	desc = "A resonating field that significantly damages anything inside of it when the field eventually ruptures. More damaging in low pressure environments."
+	name = "pole rezonansowe"
+	desc = "Rezonujące pole, które przy rozerwaniu poważnie rani wszystko w swoim wnętrzu. Groźniejsze przy niskim ciśnieniu."
 	icon_state = "shield1"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 50
@@ -93,7 +93,7 @@
 		proj_turf = get_turf(src)
 	resonance_damage = initial(resonance_damage)
 	if(lavaland_equipment_pressure_check(proj_turf))
-		name = "strong [initial(name)]"
+		name = "silne [initial(name)]"
 		resonance_damage *= 3
 	else
 		name = initial(name)

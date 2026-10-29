@@ -129,7 +129,7 @@ Returns a faction datum by its name (case insensitive!)
 		enemy_types -= what
 
 /datum/controller/subsystem/star_system/proc/instantiate_systems(_source_path = SSmapping.config.starmap_path)
-	message_admins("Loading starsystem from [_source_path]...")
+	message_admins("Wczytywanie układów gwiezdnych z [_source_path]...")
 	var/list/_systems = list()
 	//Read the file in...
 	//If we can't find starmap.json, load in the default instead. This should usually be for local servers
@@ -177,10 +177,10 @@ Returns a faction datum by its name (case insensitive!)
 			systems += next
 		}
 		catch(var/exception/e){ //Please avoid using trycatch, you CANNOT debug try-catch. It's doesn't RUNTIME TRACK trycatch. Breakpoints do not trigger in trycatch. Fix runtimes or failure proof the system instead so nobody has to manually tear apart the trycatch while debugging.
-			message_admins("WARNING: Invalid star system in json: [sys_info["name"]] ([e]). Skipping...")
+			message_admins("UWAGA: nieprawidłowy układ gwiezdny w JSON-ie: [sys_info["name"]] ([e]). Pomijam...")
 			continue
 		}
-	message_admins("Successfully loaded starmap layout from [_source_path]")
+	message_admins("Wczytano układ mapy gwiezdnej z [_source_path]")
 
 
 /datum/controller/subsystem/star_system/proc/instantiate_systems_backup()
@@ -205,13 +205,13 @@ Returns a faction datum by its name (case insensitive!)
 	if(!findtext(directory[directory.len], ".json"))
 		CRASH("ERR: Starmaps can only be written to JSON.")
 
-	message_admins("Saving current starsystem layout...")
+	message_admins("Zapisywanie obecnego układu mapy gwiezdnej...")
 	var/json_file = null
 	//Read the file in...
 	try
 		json_file = file(_destination_path)
 	catch(var/exception/ex)
-		message_admins("WARNING: Unable to open [_destination_path]: [ex]")
+		message_admins("UWAGA: nie można otworzyć [_destination_path]: [ex]")
 		return 1
 	var/list/file_data = list()
 	for(var/datum/star_system/S in systems)
@@ -256,10 +256,10 @@ Returns a faction datum by its name (case insensitive!)
 		fdel(json_file)
 		var/list/to_save = file_data
 		WRITE_FILE(json_file, json_encode(to_save))
-		message_admins("Successfully saved current starmap to: [_destination_path]")
+		message_admins("Zapisano obecną mapę gwiezdną do: [_destination_path]")
 		return 0
 	catch(var/exception/e)
-		message_admins("WARNING: Unable to save [_destination_path]: [e]")
+		message_admins("UWAGA: nie można zapisać [_destination_path]: [e]")
 		return 1
 
 ///////SPAWN SYSTEM///////
@@ -503,7 +503,7 @@ Returns a faction datum by its name (case insensitive!)
 		if("STARTUP_PROC_TYPE_ABASSI")
 			addtimer(CALLBACK(src, PROC_REF(register_abassi_achievement)), 5 SECONDS)
 			return
-	message_admins("WARNING: Invalid startup_proc declared for [name]! Review your defines (~L498, starsystem.dm), please.")
+	message_admins("UWAGA: nieprawidłowy startup_proc dla [name]! Sprawdź define'y (~L498, starsystem.dm).")
 	return 1
 
 /datum/star_system/vv_edit_var(var_name, var_value)
@@ -623,8 +623,8 @@ Returns a faction datum by its name (case insensitive!)
 	return FALSE
 
 /obj/effect/overmap_anomaly //Should not appear normally.
-	name = "Tear in reality"
-	desc = "Your mind is shattering just from looking at this."
+	name = "Rozdarcie rzeczywistości"
+	desc = "Od samego patrzenia na to twój umysł się rozpada."
 	icon = 'nsv13/goonstation/icons/effects/explosions/electricity.dmi'
 	icon_state = "rit-elec-aoe"
 	bound_width = 64
@@ -660,8 +660,8 @@ Returns a faction datum by its name (case insensitive!)
 		qdel(AM)
 
 /obj/effect/overmap_anomaly/wormhole
-	name = "Wormhole"
-	desc = "A huge tear in the fabric of space-time that can fling you to faraway places. A scan of this anomaly could advance the field of space-travel by years!"
+	name = "Tunel czasoprzestrzenny"
+	desc = "Ogromne rozdarcie w tkance czasoprzestrzeni, które może cię wyrzucić w odległe miejsca. Skan tej anomalii mógłby przyspieszyć rozwój podróży kosmicznych o lata!"
 	icon = 'nsv13/goonstation/icons/effects/overmap_anomalies/tearhuge.dmi'
 	icon_state = "tear"
 	research_points = 15000 //These things are really valuable and give you upgraded jumpdrive tech.
@@ -677,8 +677,8 @@ Returns a faction datum by its name (case insensitive!)
 #define OVERMAP_SINGULARITY_DEATH_GRAV 40
 
 /obj/effect/overmap_anomaly/singularity
-	name = "Black hole"
-	desc = "A peek into the void between worlds. These stellar demons consume everything in their path. Including you. Scanning this singularity could lead to groundbreaking discoveries in the field of quantum physics!"
+	name = "Czarna dziura"
+	desc = "Wgląd w pustkę między światami. Te gwiezdne demony pochłaniają wszystko na swojej drodze. Ciebie też. Skan tej osobliwości mógłby doprowadzić do przełomowych odkryć w fizyce kwantowej!"
 	icon = 'nsv13/goonstation/icons/effects/overmap_anomalies/blackhole.dmi'
 	icon_state = "blackhole"
 	research_points = 20000 //These things are pretty damn valuable, for their risk of course.
@@ -720,7 +720,7 @@ Returns a faction datum by its name (case insensitive!)
 			affecting += OM
 			grav_tracker[OM] = 0
 			cached_colours[OM] = OM.color //So that say, a yellow fighter doesnt get its paint cleared by redshifting
-			OM.relay(S='nsv13/sound/effects/ship/falling.ogg', message="<span class='warning'>You feel weighed down.</span>", loop=TRUE, channel=CHANNEL_HEARTBEAT)
+			OM.relay(S='nsv13/sound/effects/ship/falling.ogg', message="<span class='warning'>Czujesz, że coś cię przygniata.</span>", loop=TRUE, channel=CHANNEL_HEARTBEAT)
 			ADD_TRAIT(OM, TRAIT_NODAMPENERS, TRAIT_SOURCE_OVERMAP_BLACKHOLE)
 			OM.disable_dampeners()
 			RegisterSignal(OM, COMSIG_PARENT_QDELETING, PROC_REF(handle_affecting_del))
@@ -808,15 +808,15 @@ Returns a faction datum by its name (case insensitive!)
 	name = "Placeholder"
 
 /obj/effect/overmap_anomaly/safe/sun
-	name = "Star"
-	desc = "A huge ball of burning hydrogen that lights up space around it. Scanning its corona could yield useful information."
+	name = "Gwiazda"
+	desc = "Ogromna kula płonącego wodoru, która oświetla przestrzeń wokół siebie. Skan jej korony mógłby dać przydatne informacje."
 	icon = 'nsv13/goonstation/icons/effects/overmap_anomalies/stellarbodies.dmi'
 	icon_state = "sun"
 	research_points = 3000 //Pretty meagre, but a sustainable source of points.
 
 /obj/effect/overmap_anomaly/safe/sun/red_giant
-	name = "Red Giant"
-	desc = "A large star that is nearing the end of its life. A scan of its stellar core could lead to useful conclusions."
+	name = "Czerwony olbrzym"
+	desc = "Duża gwiazda u kresu życia. Skan jej jądra mógłby doprowadzić do przydatnych wniosków."
 	icon_state = "redgiant"
 	research_points = 4000 //Somewhat more interesting than a sun.
 
@@ -907,57 +907,57 @@ Returns a faction datum by its name (case insensitive!)
 			system_type = pick(
 				list(
 					tag = "safe",
-					label = "Empty space",
+					label = "Pusta przestrzeń",
 				),
 				list(
 					tag = "nebula",
-					label = "Nebula",
+					label = "Mgławica",
 				),
 				list(
 					tag = "gas",
-					label = "Gas cloud",
+					label = "Obłok gazu",
 				),
 				list(
 					tag = "icefield",
-					label = "Ice field",
+					label = "Pole lodowe",
 				),
 				list(
 					tag = "ice_planet",
-					label = "Planetary system",
+					label = "Układ planetarny",
 				),
 			)
 		if(THREAT_LEVEL_UNSAFE) //Unaligned and Syndicate systems have a chance to spawn threats. But nothing major.
 			system_type = pick(
 				list(
 					tag = "debris",
-					label = "Asteroid field",
+					label = "Pole asteroid",
 				),
 				list(
 					tag = "pirate",
-					label = "Debris",
+					label = "Szczątki",
 				),
 				list(
 					tag = "nebula",
-					label = "Nebula",
+					label = "Mgławica",
 				),
 				list(
 					tag = "hazardous",
-					label = "Untagged hazard",
+					label = "Nieoznaczone zagrożenie",
 				),
 			)
 		if(THREAT_LEVEL_DANGEROUS) //Extreme threat level. Time to break out the most round destroying anomalies.
 			system_type = pick(
 				list(
 					tag = "quasar",
-					label = "Quasar",
+					label = "Kwazar",
 				),
 				list(
 					tag = "radioactive",
-					label = "Radioactive",
+					label = "Promieniowanie",
 				),
 				list(
 					tag = "blackhole",
-					label = "Black hole",
+					label = "Czarna dziura",
 				),
 			)
 	apply_system_effects()
@@ -1015,7 +1015,7 @@ Returns a faction datum by its name (case insensitive!)
 
 /datum/star_system/staging
 	name = "Staging"
-	desc = "Used for round initialisation and admin event staging"
+	desc = "Służy do inicjalizacji rundy i przygotowywania eventów przez adminów"
 	hidden = TRUE
 	system_traits = STARSYSTEM_NO_ANOMALIES | STARSYSTEM_NO_ASTEROIDS | STARSYSTEM_NO_WORMHOLE
 
@@ -1033,7 +1033,7 @@ Returns a faction datum by its name (case insensitive!)
 	alignment = "solgov"
 	system_type = list(
 		tag = "planet_earth",
-		label = "Planetary system",
+		label = "Układ planetarny",
 	)
 	adjacency_list = list("Alpha Centauri", "Outpost 45", "Ross 154")
 	system_traits = STARSYSTEM_NO_ANOMALIES | STARSYSTEM_NO_WORMHOLE
@@ -1089,7 +1089,7 @@ Returns a faction datum by its name (case insensitive!)
 	y = 80
 	system_type = list(
 		tag = "demonstar",
-		label = "Demon star",
+		label = "Gwiazda demon",
 	)
 	alignment = "nanotrasen"
 	fleet_type = /datum/fleet/nanotrasen/border
@@ -1120,7 +1120,7 @@ Welcome to the neutral zone! Non corporate sanctioned traders with better gear a
 	y = 70
 	system_type = list(
 		tag = "demonstar",
-		label = "Demon star",
+		label = "Gwiazda demon",
 	)
 	alignment = "nanotrasen"
 	adjacency_list = list("Lalande 21185", "Corvi")
@@ -1166,7 +1166,7 @@ Welcome to the neutral zone! Non corporate sanctioned traders with better gear a
 	fleet_type = /datum/fleet/nanotrasen/border/defense //The foothold in the darkness
 	adjacency_list = list("Ariel", "Argo", "The Badlands", "Ida", "Sion")
 	preset_trader = /datum/trader/armsdealer
-	desc = "The last bastion of civilisation before the endless uncharted wastes beyond."
+	desc = "Ostatni bastion cywilizacji przed niekończącymi się, niezbadanymi pustkowiami."
 
 /datum/star_system/sector2/sion
 	name = "Sion"
@@ -1175,7 +1175,7 @@ Welcome to the neutral zone! Non corporate sanctioned traders with better gear a
 	threat_level = THREAT_LEVEL_UNSAFE
 	alignment = "unaligned"
 	adjacency_list = list("Foothold", "Muir", "Beylix", "Sebacien")
-	desc = "The inroad to several independent colonies long abandoned by SolGov. The Sion cluster houses criminals and opportunists alike."
+	desc = "Droga do kilku niezależnych kolonii dawno porzuconych przez SolGov. Gromada Sion skupia zarówno przestępców, jak i oportunistów."
 
 /datum/star_system/sector2/muir
 	name = "Muir"
@@ -1222,13 +1222,13 @@ Welcome to the neutral zone! Non corporate sanctioned traders with better gear a
 	alignment = "syndicate"
 	system_type = list(
 		tag = "demonstar",
-		label = "Demon star",
+		label = "Gwiazda demon",
 	)
 	is_hypergate = TRUE
 	threat_level = THREAT_LEVEL_UNSAFE
 	fleet_type = /datum/fleet/rubicon
 	adjacency_list = list("Romulus")
-	desc = "Many have attempted to cross the Rubicon, many have failed. This system bridges many different sectors together, and is an inroad for the largely unknown Abassi ridge nebula."
+	desc = "Wielu próbowało przekroczyć Rubikon i wielu poniosło porażkę. Ten układ łączy ze sobą wiele sektorów i prowadzi do w dużej mierze nieznanej mgławicy grzbietu Abassi."
 
 /**
 Random starsystem. Excluded from starmap saving, as they're generated at init.
@@ -1250,7 +1250,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 	y = 30
 	sector = 2
 	adjacency_list = list("Foothold")
-	desc = "The beginning of a sector of uncharted space known as the Delphic expanse. Ships from many opposing factions all vye for control over this new territory."
+	desc = "Początek niezbadanego sektora kosmosu zwanego Przestworzem Delfickim. Statki wielu wrogich sobie frakcji walczą o kontrolę nad tym nowym terytorium."
 	startup_proc = "STARTUP_PROC_TYPE_BRASIL"
 
 #define NONRELAXATION_PENALTY 1.2 //Encourages the badlands generator to use jump line relaxation even if a + b >= c. Set this lower if you want Brazil's jumplines to be more direct, high values might be very wacky. 1.0 will give all of the systems a direct jumpline to rubiconnector. Values below 1 might be very wacky.
@@ -1264,11 +1264,11 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 	var/list/generated = list()
 	var/amount = rand(17, 25)
 	var/toocloseconflict = 0
-	message_admins("Generating Badlands with [amount] systems.")
+	message_admins("Generowanie Badlands z liczbą układów: [amount].")
 	var/start_timeofday = REALTIMEOFDAY
 	var/datum/star_system/rubicon = SSstar_system.system_by_id("Rubicon")
 	if(!rubicon)
-		message_admins("Error setting up Badlands - No Rubicon found!") //This should never happen unless admins do bad things.
+		message_admins("Błąd tworzenia Badlands – nie znaleziono Rubikonu!") //This should never happen unless admins do bad things.
 		return
 
 	for(var/I=0;I<amount;I++){
@@ -1276,7 +1276,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 		randy.system_type = pick(
 			list(
 				tag = "radioactive",
-				label = "Radioactive",
+				label = "Promieniowanie",
 			), 0.5;
 			list(
 				tag = "blackhole",
@@ -1284,15 +1284,15 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 			list(
 				tag = "quasar",
-				label = "Quasar",
+				label = "Kwazar",
 			), 0.75;
 			list(
 				tag = "accretiondisk",
-				label = "Accretion disk",
+				label = "Dysk akrecyjny",
 			),
 			list(
 				tag = "nebula",
-				label = "Nebula",
+				label = "Mgławica",
 			),
 			list(
 				tag = "supernova",
@@ -1300,7 +1300,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 			list(
 				tag = "debris",
-				label = "Asteroid field",
+				label = "Pole asteroid",
 			),
 		)
 		randy.apply_system_effects()
@@ -1453,18 +1453,18 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 	//There we go.
-	message_admins("Badlands has been generated. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], Inroute system is [inroute]. Fun fact, jump lanes have been relaxed [relax] times by the algorithm and [random_jumpline_count] random connections have been created!")
+	message_admins("Wygenerowano Badlands. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], układ wejściowy: [inroute]. Ciekawostka: algorytm rozluźnił linie skoku tyle razy: [relax], a losowych połączeń powstało: [random_jumpline_count]!")
 	log_game("Badlands has been generated. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], Inroute system is [inroute]. Fun fact, jump lanes have been relaxed [relax] times by the algorithm and [random_jumpline_count] random connections have been created!")
 
 /datum/star_system/proc/generate_litelands()
 	var/list/generated = list()
 	var/amount = rand(8, 15)
 	var/toocloseconflict = 0
-	message_admins("Generating Badlands Lite with [amount] systems.")
+	message_admins("Generowanie Badlands Lite z liczbą układów: [amount].")
 	var/start_timeofday = REALTIMEOFDAY
 	var/datum/star_system/rubicon = SSstar_system.system_by_id(pick(list("Zalosi","Guriibuu")))
 	if(!rubicon)
-		message_admins("Error setting up Badlands Lite - No connector found!") //This should never happen unless admins do bad things.
+		message_admins("Błąd tworzenia Badlands Lite – nie znaleziono łącznika!") //This should never happen unless admins do bad things.
 		return
 
 	for(var/I=0;I<amount;I++){
@@ -1472,7 +1472,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 		randy.system_type = pick(
 			list(
 				tag = "radioactive",
-				label = "Radioactive",
+				label = "Promieniowanie",
 			), 0.5;
 			list(
 				tag = "blackhole",
@@ -1480,15 +1480,15 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 			list(
 				tag = "quasar",
-				label = "Quasar",
+				label = "Kwazar",
 			), 0.75;
 			list(
 				tag = "accretiondisk",
-				label = "Accretion disk",
+				label = "Dysk akrecyjny",
 			),
 			list(
 				tag = "nebula",
-				label = "Nebula",
+				label = "Mgławica",
 			),
 			list(
 				tag = "supernova",
@@ -1496,7 +1496,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 			),
 			list(
 				tag = "debris",
-				label = "Asteroid field",
+				label = "Pole asteroid",
 			),
 		)
 		randy.apply_system_effects()
@@ -1646,7 +1646,7 @@ Random starsystem. Excluded from starmap saving, as they're generated at init.
 
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 	//There we go.
-	message_admins("Badlands Lite has been generated. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], Inroute system is [inroute]. Fun fact, jump lanes have been relaxed [relax] times by the algorithm and [random_jumpline_count] random connections have been created!")
+	message_admins("Wygenerowano Badlands Lite. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], układ wejściowy: [inroute]. Ciekawostka: algorytm rozluźnił linie skoku tyle razy: [relax], a losowych połączeń powstało: [random_jumpline_count]!")
 	log_game("Badlands has been generated. T:[time]s CFS:[toocloseconflict]|[ir_rub]|[ir_othershit] Rubiconnector: [rubiconnector], Inroute system is [inroute]. Fun fact, jump lanes have been relaxed [relax] times by the algorithm and [random_jumpline_count] random connections have been created!")
 
 #undef NONRELAXATION_PENALTY
@@ -1691,7 +1691,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	adjacency_list = list("Aeterna Victrix", "Phobos", "Deimos", "Mediolanum")
 	system_type = list(
 		tag = "accretiondisk",
-		label = "Accretion disk",
+		label = "Dysk akrecyjny",
 	)
 	alignment = "uncharted"
 	x = 100
@@ -1702,7 +1702,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	name = "Phobos"
 	system_type = list(
 		tag = "nebula",
-		label = "Nebula",
+		label = "Mgławica",
 	)
 	adjacency_list = list("Demon's Maw", "Deimos", "Dolos Remnants")
 	fleet_type = /datum/fleet/border
@@ -1727,7 +1727,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	adjacency_list = list("Oasis Fidei", "Deimos", "Phobos") //No going back from here...
 	threat_level = THREAT_LEVEL_DANGEROUS
 	hidden = FALSE
-	desc = "A place where giants fell. You feel nothing save for an odd sense of unease and an eerie silence."
+	desc = "Miejsce, w którym upadli giganci. Nie czujesz nic poza dziwnym niepokojem i upiorną ciszą."
 	system_traits = STARSYSTEM_NO_ANOMALIES | STARSYSTEM_NO_WORMHOLE
 	startup_proc = "STARTUP_PROC_TYPE_DOLOS"
 
@@ -1739,7 +1739,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	alignment = "syndicate"
 	system_type = list(
 		tag = "demonstar",
-		label = "Demon star",
+		label = "Gwiazda demon",
 	)
 	adjacency_list = list("Dolos Remnants")
 	threat_level = THREAT_LEVEL_DANGEROUS
@@ -1754,7 +1754,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	alignment = "syndicate"
 	system_type = list(
 		tag = "radioactive",
-		label = "Radioactive",
+		label = "Promieniowanie",
 	)
 	adjacency_list = list("Abassi") //No going back from here...
 	threat_level = THREAT_LEVEL_DANGEROUS
@@ -1770,7 +1770,7 @@ Welcome to the endgame. This sector is the hardest you'll encounter in game and 
 	alignment = "syndicate"
 	system_type = list(
 		tag = "demonstar",
-		label = "Demon star",
+		label = "Gwiazda demon",
 	)
 	is_hypergate = TRUE
 	threat_level = THREAT_LEVEL_UNSAFE

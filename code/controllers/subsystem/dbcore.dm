@@ -19,9 +19,9 @@ SUBSYSTEM_DEF(dbcore)
 	//will queue properly with goonchat
 	switch(schema_mismatch)
 		if(1)
-			message_admins("Database schema ([db_major].[db_minor]) doesn't match the latest schema version ([DB_MAJOR_VERSION].[DB_MINOR_VERSION]), this may lead to undefined behaviour or errors")
+			message_admins("Schemat bazy danych ([db_major].[db_minor]) nie odpowiada najnowszej wersji schematu ([DB_MAJOR_VERSION].[DB_MINOR_VERSION]), co może prowadzić do nieokreślonego zachowania albo błędów")
 		if(2)
-			message_admins("Could not get schema version from database")
+			message_admins("Nie udało się pobrać wersji schematu z bazy danych")
 
 	return ..()
 
@@ -184,7 +184,7 @@ SUBSYSTEM_DEF(dbcore)
 /datum/controller/subsystem/dbcore/proc/NewQuery(sql_query, arguments)
 	if(IsAdminAdvancedProcCall())
 		log_admin_private("ERROR: Advanced admin proc call led to sql query: [sql_query]. Query has been blocked")
-		message_admins("ERROR: Advanced admin proc call led to sql query. Query has been blocked")
+		message_admins("BŁĄD: zaawansowane wywołanie procki przez admina doprowadziło do zapytania SQL. Zapytanie zablokowano")
 		return FALSE
 	return new /datum/DBQuery(connection, sql_query, arguments)
 
@@ -383,7 +383,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 			return FALSE
 
 /datum/DBQuery/proc/slow_query_check()
-	message_admins("HEY! A database query timed out. Did the server just hang? <a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	message_admins("HEJ! Zapytanie do bazy danych przekroczyło limit czasu. Czy serwer właśnie się zawiesił? <a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[TAK\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[NIE\]</a>")
 
 /datum/DBQuery/proc/NextRow(async = TRUE)
 	Activity("NextRow")

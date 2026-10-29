@@ -36,12 +36,12 @@ export const AmmoSorter = (props) => {
                       {!!settingsVisible && (
                         <>
                           <Button
-                            content="Rename"
+                            content="Zmień nazwę"
                             icon="pen"
                             onClick={() => act('rename', { id: value.id })}
                           />
                           <Button
-                            content="Unlink"
+                            content="Rozłącz"
                             icon="trash-alt"
                             color="bad"
                             onClick={() => act('unlink', { id: value.id })}
@@ -62,7 +62,7 @@ export const AmmoSorter = (props) => {
                   }
                 >
                   <Button
-                    content={`Unload ${value.top}`}
+                    content={`Wyładuj: ${value.top}`}
                     icon="sign-out-alt"
                     disabled={!value.has_loaded}
                     onClick={() => act('unload', { id: value.id })}

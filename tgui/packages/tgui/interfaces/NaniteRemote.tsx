@@ -46,25 +46,33 @@ export const NaniteRemoteContent = (props) => {
   } = data;
 
   const modes = ['Off', 'Local', 'Targeted', 'Area', 'Relay'];
+  // AQUILA: tryby to klucze z DM, tłumaczymy tylko napis
+  const MODE_NAMES = {
+    Off: 'Wył.',
+    Local: 'Lokalny',
+    Targeted: 'Celowany',
+    Area: 'Obszarowy',
+    Relay: 'Przekaźnik',
+  };
 
   if (locked) {
-    return <NoticeBox>This interface is locked.</NoticeBox>;
+    return <NoticeBox>Ten interfejs jest zablokowany.</NoticeBox>;
   }
 
   return (
     <>
       <Section
-        title="Nanite Control"
+        title="Sterowanie nanitami"
         buttons={
           <Button
             icon="lock"
-            content="Lock Interface"
+            content="Zablokuj interfejs"
             onClick={() => act('lock')}
           />
         }
       >
         <LabeledList>
-          <LabeledList.Item label="Name">
+          <LabeledList.Item label="Nazwa">
             <Input
               value={program_name}
               maxLength={14}
@@ -75,9 +83,9 @@ export const NaniteRemoteContent = (props) => {
                 })
               }
             />
-            <Button icon="save" content="Save" onClick={() => act('save')} />
+            <Button icon="save" content="Zapisz" onClick={() => act('save')} />
           </LabeledList.Item>
-          <LabeledList.Item label={comms ? 'Comm Code' : 'Signal Code'}>
+          <LabeledList.Item label={comms ? 'Kod komunikacji' : 'Kod sygnału'}>
             <NumberInput
               value={code}
               minValue={0}
@@ -93,7 +101,7 @@ export const NaniteRemoteContent = (props) => {
             />
           </LabeledList.Item>
           {!!comms && (
-            <LabeledList.Item label="Message">
+            <LabeledList.Item label="Wiadomość">
               <Input
                 value={message}
                 width="270px"
@@ -106,7 +114,7 @@ export const NaniteRemoteContent = (props) => {
             </LabeledList.Item>
           )}
           {mode === 'Relay' && (
-            <LabeledList.Item label="Relay Code">
+            <LabeledList.Item label="Kod przekaźnika">
               <NumberInput
                 value={relay_code}
                 minValue={0}
@@ -122,11 +130,11 @@ export const NaniteRemoteContent = (props) => {
               />
             </LabeledList.Item>
           )}
-          <LabeledList.Item label="Signal Mode">
+          <LabeledList.Item label="Tryb sygnału">
             {modes.map((key) => (
               <Button
                 key={key}
-                content={key}
+                content={MODE_NAMES[key] || key}
                 selected={mode === key}
                 onClick={() =>
                   act('select_mode', {
@@ -138,21 +146,23 @@ export const NaniteRemoteContent = (props) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section title="Saved Settings">
+      <Section title="Zapisane ustawienia">
         {saved_settings.length > 0 ? (
           <Table>
             <Table.Row header>
-              <Table.Cell width="35%">Name</Table.Cell>
-              <Table.Cell width="20%">Mode</Table.Cell>
-              <Table.Cell collapsing>Code</Table.Cell>
-              <Table.Cell collapsing>Relay</Table.Cell>
+              <Table.Cell width="35%">Nazwa</Table.Cell>
+              <Table.Cell width="20%">Tryb</Table.Cell>
+              <Table.Cell collapsing>Kod</Table.Cell>
+              <Table.Cell collapsing>Przekaźnik</Table.Cell>
             </Table.Row>
             {saved_settings.map((setting) => (
               <Table.Row key={setting.id} className="candystripe">
                 <Table.Cell bold color="label">
                   {setting.name}:
                 </Table.Cell>
-                <Table.Cell>{setting.mode}</Table.Cell>
+                <Table.Cell>
+                  {MODE_NAMES[setting.mode] || setting.mode}
+                </Table.Cell>
                 <Table.Cell>{setting.code}</Table.Cell>
                 <Table.Cell>
                   {setting.mode === 'Relay' && setting.relay_code}
@@ -181,7 +191,7 @@ export const NaniteRemoteContent = (props) => {
             ))}
           </Table>
         ) : (
-          <NoticeBox>No settings currently saved</NoticeBox>
+          <NoticeBox>Brak zapisanych ustawień</NoticeBox>
         )}
       </Section>
     </>

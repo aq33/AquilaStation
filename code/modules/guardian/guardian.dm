@@ -6,9 +6,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 #define GUARDIAN_RESET_COOLDOWN	5 MINUTES
 
 /mob/living/simple_animal/hostile/guardian
-	name = "Guardian Spirit"
-	real_name = "Guardian Spirit"
-	desc = "A mysterious being that stands by its charge, ever vigilant."
+	name = "Duch strażnik"
+	real_name = "Duch strażnik"
+	desc = "Tajemnicza istota, która czuwa u boku swojego podopiecznego, zawsze w gotowości."
 	speak_emote = list("syczy")
 	gender = NEUTER
 	mob_biotypes = list(MOB_INORGANIC)
@@ -138,39 +138,39 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	src.theme = theme
 	switch(theme)//should make it easier to create new stand designs in the future if anyone likes that
 		if(GUARDIAN_MAGIC)
-			name = "Guardian Spirit"
-			real_name = "Guardian Spirit"
+			name = "Duch strażnik"
+			real_name = "Duch strażnik"
 			bubble_icon = "guardian"
 			icon_state = "magicbase"
 			icon_living = "magicbase"
 			icon_dead = "magicbase"
 		if(GUARDIAN_TECH)
-			name = "Holoparasite"
-			real_name = "Holoparasite"
+			name = "Holoparazyt"
+			real_name = "Holoparazyt"
 			bubble_icon = "holo"
 			icon_state = "techbase"
 			icon_living = "techbase"
 			icon_dead = "techbase"
 		if(GUARDIAN_CARP)
-			name = "Holocarp"
-			real_name = "Holocarp"
+			name = "Holokarp"
+			real_name = "Holokarp"
 			bubble_icon = "holo"
 			icon_state = "holocarp"
 			icon_living = "holocarp"
 			icon_dead = "holocarp"
 			speak_emote = list("zgrzyta zębami")
-			desc = "A mysterious fish that stands by its charge, ever vigilant."
+			desc = "Tajemnicza ryba, która czuwa u boku swojego podopiecznego, zawsze w gotowości."
 			attack_sound = 'sound/weapons/bite.ogg'
 			recolorentiresprite = TRUE
 		if(GUARDIAN_HIVE)
-			name = "Hivelord"
-			real_name = "Hivelord"
+			name = "Władca roju"
+			real_name = "Władca roju"
 			bubble_icon = "guardian"
 			icon_state = "hivebase"
 			icon_living = "hivebase"
 			icon_dead = "hivebase"
 			speak_emote = list("woła telepatycznie")
-			desc = "A truly alien creature, it is a mass of unknown organic material, standing by its' owner's side."
+			desc = "Naprawdę obca istota – masa nieznanej materii organicznej, która trwa u boku swojego właściciela."
 			attack_sound = 'sound/weapons/pierce.ogg'
 	if(!recolorentiresprite) //we want this to proc before stand logs in, so the overlay isn't gone for some reason
 		cooloverlay = mutable_appearance(icon, theme)
@@ -236,7 +236,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	log_game("[key_name(src)] has went berserk.")
 	var/datum/antagonist/guardian/S = mind.has_antag_datum(/datum/antagonist/guardian)
 	if(S)
-		S.name = "Berserk Guardian"
+		S.name = "Oszalały strażnik"
 		var/datum/objective/O = new
 		O.completed = TRUE
 		O.explanation_text = "POMŚCIJ SWOJEGO PANA."
@@ -449,11 +449,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/examine(mob/user)
 	. = ..()
 	if(isobserver(user) || user == summoner?.current)
-		. += "<span class='holoparasite'><b>DAMAGE:</b> [level_to_grade(stats.damage)]</span>"
-		. += "<span class='holoparasite'><b>DEFENSE:</b> [level_to_grade(stats.defense)]</span>"
-		. += "<span class='holoparasite'><b>SPEED:</b> [level_to_grade(stats.speed)]</span>"
-		. += "<span class='holoparasite'><b>POTENTIAL:</b> [level_to_grade(stats.potential)]</span>"
-		. += "<span class='holoparasite'><b>RANGE:</b> [level_to_grade(stats.range)]</span>"
+		. += "<span class='holoparasite'><b>OBRAŻENIA:</b> [level_to_grade(stats.damage)]</span>"
+		. += "<span class='holoparasite'><b>OBRONA:</b> [level_to_grade(stats.defense)]</span>"
+		. += "<span class='holoparasite'><b>SZYBKOŚĆ:</b> [level_to_grade(stats.speed)]</span>"
+		. += "<span class='holoparasite'><b>POTENCJAŁ:</b> [level_to_grade(stats.potential)]</span>"
+		. += "<span class='holoparasite'><b>ZASIĘG:</b> [level_to_grade(stats.range)]</span>"
 		if(stats.ability)
 			. += "<span class='holoparasite'><b>ZDOLNOŚĆ SPECJALNA:</b> [stats.ability.name] - [stats.ability.desc]</span>"
 		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
@@ -546,11 +546,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	set name = "Show Powers"
 	set category = "Guardian"
 	to_chat(src, "<b>Twoje statystyki:</b>")
-	to_chat(src, "<b>DAMAGE:</b> [level_to_grade(stats.damage)]")
-	to_chat(src, "<b>DEFENSE:</b> [level_to_grade(stats.defense)]")
-	to_chat(src, "<b>SPEED:</b> [level_to_grade(stats.speed)]")
-	to_chat(src, "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]")
-	to_chat(src, "<b>RANGE:</b> [level_to_grade(stats.range)]")
+	to_chat(src, "<b>OBRAŻENIA:</b> [level_to_grade(stats.damage)]")
+	to_chat(src, "<b>OBRONA:</b> [level_to_grade(stats.defense)]")
+	to_chat(src, "<b>SZYBKOŚĆ:</b> [level_to_grade(stats.speed)]")
+	to_chat(src, "<b>POTENCJAŁ:</b> [level_to_grade(stats.potential)]")
+	to_chat(src, "<b>ZASIĘG:</b> [level_to_grade(stats.range)]")
 	if(stats.ability)
 		to_chat(src, "<b>ZDOLNOŚĆ SPECJALNA:</b> [stats.ability.name] - [stats.ability.desc]")
 	for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
@@ -560,7 +560,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/Communicate()
 	if(summoner?.current)
-		var/input = stripped_input(src, "Wpisz wiadomość do swojego przywoływacza.", "Guardian", "")
+		var/input = stripped_input(src, "Wpisz wiadomość do swojego przywoływacza.", "Strażnik", "")
 		if(!input)
 			return
 
@@ -618,8 +618,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_comm()
 	set name = "Communicate"
 	set category = "Guardian"
-	set desc = "Communicate telepathically with your guardian."
-	var/input = stripped_input(src, "Wpisz wiadomość do swojego strażnika.", "Message", "")
+	set desc = "Porozumiewaj się telepatycznie ze swoim strażnikiem."
+	var/input = stripped_input(src, "Wpisz wiadomość do swojego strażnika.", "Wiadomość", "")
 	if(!input)
 		return
 	if(CHAT_FILTER_CHECK(input))
@@ -643,7 +643,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/verb/Battlecry()
 	set name = "Set Battlecry"
 	set category = "Guardian"
-	set desc = "Choose what you shout as you punch people."
+	set desc = "Wybierz, co krzyczysz, gdy kogoś uderzasz."
 	var/input = stripped_input(src,"Jaki ma być twój okrzyk bojowy? Maksymalnie 6 znaków.", ,"", 7)
 	if(input)
 		battlecry = input
@@ -653,7 +653,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_recall()
 	set name = "Recall Guardian"
 	set category = "Guardian"
-	set desc = "Forcibly recall your guardian."
+	set desc = "Siłą przywołaj swojego strażnika z powrotem."
 	var/list/guardians = hasparasites()
 	for(var/para in guardians)
 		var/mob/living/simple_animal/hostile/guardian/G = para
@@ -662,7 +662,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/proc/guardian_reset()
 	set name = "Reset Guardian Player"
 	set category = "Guardian"
-	set desc = "Re-rolls which ghost will control your Guardian."
+	set desc = "Ponownie losuje ducha, który kieruje twoim strażnikiem."
 
 	var/list/guardians = hasparasites()
 	if(LAZYLEN(guardians))
@@ -726,7 +726,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return "F"
 
 /obj/item/projectile/guardian
-	name = "crystal spray"
+	name = "kryształowy rozprysk"
 	icon_state = "guardian"
 	damage = 5
 	damage_type = BRUTE

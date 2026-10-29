@@ -28,29 +28,29 @@ export const NtosBountyConsole = (props) => {
           buttons={
             <Button
               icon="print"
-              content="Print Bounty List"
+              content="Drukuj listę zleceń"
               onClick={() => act('Print')}
               disabled={!has_printer}
-              tooltip={!has_printer && 'No printer found'}
+              tooltip={!has_printer && 'Nie znaleziono drukarki'}
             />
           }
         >
           <Table>
             <Table.Row bold italic color="label" fontSize={1.25}>
               <Table.Cell p={1} textAlign="center">
-                Bounty Object
+                Przedmiot zlecenia
               </Table.Cell>
               <Table.Cell p={1} textAlign="center">
-                Description
+                Opis
               </Table.Cell>
               <Table.Cell p={1} textAlign="center">
-                Progress
+                Postęp
               </Table.Cell>
               <Table.Cell p={1} textAlign="center">
-                Value
+                Wartość
               </Table.Cell>
               <Table.Cell p={1} textAlign="center">
-                Claim
+                Odbierz
               </Table.Cell>
             </Table.Row>
             {bountydata.map((bounty) => (
@@ -67,7 +67,7 @@ export const NtosBountyConsole = (props) => {
                   {bounty.description}
                 </Table.Cell>
                 <Table.Cell bold p={1} textAlign="center">
-                  {bounty.priority === 1 ? <Box>High Priority</Box> : ''}
+                  {bounty.priority === 1 ? <Box>Wysoki priorytet</Box> : ''}
                   {bounty.completion_string}
                 </Table.Cell>
                 <Table.Cell bold p={1} textAlign="center">
@@ -78,7 +78,7 @@ export const NtosBountyConsole = (props) => {
                     fluid
                     textAlign="center"
                     icon={bounty.claimed === 1 ? 'check' : ''}
-                    content={bounty.claimed === 1 ? 'Claimed' : 'Claim'}
+                    content={bounty.claimed === 1 ? 'Odebrane' : 'Odbierz'}
                     disabled={bounty.claimed === 1}
                     color={bounty.can_claim === 1 ? 'green' : 'red'}
                     onClick={() =>

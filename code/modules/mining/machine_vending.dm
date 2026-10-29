@@ -1,7 +1,7 @@
 /**********************Mining Equipment Vendor**************************/
 
 /obj/machinery/vendor
-	name = "equipment vendor"
+	name = "automat ze sprzętem"
 	processing_flags = START_PROCESSING_MANUALLY
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess
 	density = TRUE
@@ -72,7 +72,7 @@
 				if(C.registered_account.account_job)
 					.["user"]["job"] = C.registered_account.account_job.title
 				else
-					.["user"]["job"] = "No Job"
+					.["user"]["job"] = "Bez stanowiska"
 
 /obj/machinery/vendor/ui_act(action, params)
 	if(..())
@@ -120,8 +120,8 @@
 	return I.mining_points
 
 /obj/machinery/vendor/mining
-	name = "mining equipment vendor"
-	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
+	name = "automat ze sprzętem górniczym"
+	desc = "Automat ze sprzętem dla górników. Można w nim wydać punkty zebrane w maszynie wymiany rudy."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "mining"
 	density = TRUE
@@ -144,13 +144,13 @@
 		new /datum/data/vendor_equipment("Pigułka stoperanu",			/obj/item/reagent_containers/pill/stoperan,							100), // AQ EDIT
 		new /datum/data/vendor_equipment("Nadajnik Fultona",				/obj/item/fulton_core,												500),
 		new /datum/data/vendor_equipment("Pakiet ewakuacyjny Fultona",		/obj/item/extraction_pack,											1000),
-		new /datum/data/vendor_equipment("Jaunter",						/obj/item/wormhole_jaunter,											750),
+		new /datum/data/vendor_equipment("Skoczek tunelowy",						/obj/item/wormhole_jaunter,											750),
 		new /datum/data/vendor_equipment("Zaawansowany skaner rudy",		/obj/item/t_scanner/adv_mining_scanner,								800),
-		new /datum/data/vendor_equipment("Explorer's Webbing",			/obj/item/storage/belt/mining,										500),
+		new /datum/data/vendor_equipment("Oporządzenie odkrywcy",			/obj/item/storage/belt/mining,										500),
 		//new /datum/data/vendor_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2000),
-		new /datum/data/vendor_equipment("Proto-kinetyczna kruszarka",		/obj/item/kinetic_crusher,											800),
+		new /datum/data/vendor_equipment("Protokinetyczny miażdżyciel",		/obj/item/kinetic_crusher,											800),
 		new /datum/data/vendor_equipment("Proto-kinetyczny akcelerator",	/obj/item/gun/energy/kinetic_accelerator,							500),
-		new /datum/data/vendor_equipment("Resonator",					/obj/item/resonator,												750),
+		new /datum/data/vendor_equipment("Rezonator",					/obj/item/resonator,												750),
 		new /datum/data/vendor_equipment("Ulepszony rezonator",			/obj/item/resonator/upgraded,										1500),
 		new /datum/data/vendor_equipment("Srebrny kilof",				/obj/item/pickaxe/silver,											500),
 		new /datum/data/vendor_equipment("Diamentowy kilof",				/obj/item/pickaxe/diamond,											1000),
@@ -173,7 +173,7 @@
 		new /datum/data/vendor_equipment("Górniczy hardsuit",				/obj/item/clothing/suit/space/hardsuit/mining,						2000),
 		new /datum/data/vendor_equipment("Powiększona awaryjna butla tlenowa",		/obj/item/tank/internals/emergency_oxygen/engi,						1000),
 		new /datum/data/vendor_equipment("Ulepszenie plecaka odrzutowego",				/obj/item/tank/jetpack/suit,										2000),
-		new /datum/data/vendor_equipment("Mining Conscription Kit",		/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
+		new /datum/data/vendor_equipment("Zestaw poborowego górnika",		/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/vendor_equipment("Nóż survivalowy",				/obj/item/kitchen/knife/combat/survival,							1000),
 		new /datum/data/vendor_equipment("Zestaw implantów śledzących", 		/obj/item/storage/box/minertracker,									1000),
 		new /datum/data/vendor_equipment("Karta transferu punktów",			/obj/item/card/mining_point_card,									500),
@@ -184,10 +184,10 @@
 		new /datum/data/vendor_equipment("Iniektor Łazarza",			/obj/item/lazarus_injector,											1000),
 		new /datum/data/vendor_equipment("1000 kosmicznych kredytów",				/obj/item/stack/spacecash/c1000,									2400),
 		new /datum/data/vendor_equipment("Pizza",						/obj/item/pizzabox/margherita,										200),
-		new /datum/data/vendor_equipment("Whiskey",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100),
-		new /datum/data/vendor_equipment("Absinthe",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100),
-		new /datum/data/vendor_equipment("Cigar",						/obj/item/clothing/mask/cigarette/cigar/havana,						150),
-		new /datum/data/vendor_equipment("Soap",						/obj/item/soap/nanotrasen,											200),
+		new /datum/data/vendor_equipment("Whisky",						/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100),
+		new /datum/data/vendor_equipment("Absynt",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100),
+		new /datum/data/vendor_equipment("Cygaro",						/obj/item/clothing/mask/cigarette/cigar/havana,						150),
+		new /datum/data/vendor_equipment("Mydło",						/obj/item/soap/nanotrasen,											200),
 		new /datum/data/vendor_equipment("Wskaźnik laserowy",				/obj/item/laser_pointer,											300),
 		new /datum/data/vendor_equipment("Zabawkowy obcy",					/obj/item/clothing/mask/facehugger/toy,								300),
 		new /datum/data/vendor_equipment("Kriogeniczny zbiornik paliwa",			/obj/structure/reagent_dispensers/fueltank/cryogenic_fuel,			10000),
@@ -210,31 +210,31 @@
 	return ..()
 
 /obj/machinery/vendor/mining/proc/RedeemVoucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/items = list("Survival Capsule and Explorer's Webbing", "Resonator Kit", "Minebot Kit", "Extraction and Rescue Kit", "Crusher Kit", "Mining Conscription Kit")
+	var/items = list("Kapsuła przetrwania i oporządzenie odkrywcy", "Zestaw z rezonatorem", "Zestaw z robotem górniczym", "Zestaw ewakuacyjno-ratunkowy", "Zestaw z miażdżycielem", "Zestaw poborowego górnika")
 
 	var/selection = input(redeemer, "Wybierz swój sprzęt", "Wymiana bonu górniczego") as null|anything in sortList(items)
 	if(!selection || !Adjacent(redeemer) || QDELETED(voucher) || voucher.loc != redeemer)
 		return
 	var/drop_location = drop_location()
 	switch(selection)
-		if("Survival Capsule and Explorer's Webbing")
+		if("Kapsuła przetrwania i oporządzenie odkrywcy")
 			new /obj/item/storage/belt/mining/vendor(drop_location)
-		if("Resonator Kit")
+		if("Zestaw z rezonatorem")
 			new /obj/item/storage/firstaid/brute(drop_location)
 			new /obj/item/resonator(drop_location)
-		if("Minebot Kit")
+		if("Zestaw z robotem górniczym")
 			new /mob/living/simple_animal/hostile/mining_drone(drop_location)
 			new /obj/item/weldingtool/hugetank(drop_location)
 			new /obj/item/clothing/head/welding(drop_location)
 			new /obj/item/borg/upgrade/modkit/minebot_passthrough(drop_location)
-		if("Extraction and Rescue Kit")
+		if("Zestaw ewakuacyjno-ratunkowy")
 			new /obj/item/extraction_pack(drop_location)
 			new /obj/item/fulton_core(drop_location)
 			new /obj/item/stack/marker_beacon/thirty(drop_location)
-		if("Crusher Kit")
+		if("Zestaw z miażdżycielem")
 			new /obj/item/extinguisher/mini(drop_location)
 			new /obj/item/kinetic_crusher(drop_location)
-		if("Mining Conscription Kit")
+		if("Zestaw poborowego górnika")
 			new /obj/item/storage/backpack/duffelbag/mining_conscript(drop_location)
 
 	SSblackbox.record_feedback("tally", "mining_voucher_redeemed", 1, selection)
@@ -243,7 +243,7 @@
 /****************Golem Point Vendor**************************/
 
 /obj/machinery/vendor/mining/golem
-	name = "golem ship equipment vendor"
+	name = "automat ze sprzętem statku golemów"
 	circuit = /obj/item/circuitboard/machine/mining_equipment_vendor/golem
 
 /obj/machinery/vendor/mining/golem/Initialize(mapload)
@@ -253,7 +253,7 @@
 		new /datum/data/vendor_equipment("Dodatkowy identyfikator",       				/obj/item/card/id/mining, 				                   		250),
 		new /datum/data/vendor_equipment("Gogle naukowe",       		/obj/item/clothing/glasses/science,								250),
 		new /datum/data/vendor_equipment("Kostka małpia",					/obj/item/food/monkeycube,        	300),
-		new /datum/data/vendor_equipment("Toolbelt",					/obj/item/storage/belt/utility,	    							350),
+		new /datum/data/vendor_equipment("Pas na narzędzia",					/obj/item/storage/belt/utility,	    							350),
 		new /datum/data/vendor_equipment("Królewska peleryna Wyzwoliciela", /obj/item/bedsheet/rd/royal_cape, 								500),
 		new /datum/data/vendor_equipment("Szary ekstrakt szlamu",			/obj/item/slime_extract/grey,									1000),
 		new /datum/data/vendor_equipment("Ulepszenie P-KA: modyfikacja spustu",	/obj/item/borg/upgrade/modkit/trigger_guard,					1000),
@@ -265,8 +265,8 @@
 /**********************Mining Equipment Voucher**********************/
 
 /obj/item/mining_voucher
-	name = "mining voucher"
-	desc = "A token to redeem a piece of equipment. Use it on a mining equipment vendor."
+	name = "bon górniczy"
+	desc = "Żeton do wymiany na sztukę sprzętu. Użyj go na automacie ze sprzętem górniczym."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "mining_voucher"
 	w_class = WEIGHT_CLASS_TINY
@@ -274,8 +274,8 @@
 /**********************Mining Point Card**********************/
 
 /obj/item/card/mining_point_card
-	name = "mining points card"
-	desc = "A small card preloaded with mining points. Swipe your ID card over it to transfer the points, then discard."
+	name = "karta punktów górniczych"
+	desc = "Mała karta z załadowanymi punktami górniczymi. Przeciągnij nad nią identyfikator, aby przenieść punkty, a potem ją wyrzuć."
 	icon_state = "data_1"
 	var/points = 500
 
@@ -296,13 +296,13 @@
 
 ///Conscript kit
 /obj/item/card/id/pass/mining_access_card
-	name = "mining access card"
-	desc = "A small card, that when used on any ID, will add mining access."
+	name = "karta dostępu górniczego"
+	desc = "Mała karta, która po użyciu na dowolnym identyfikatorze dodaje dostęp górniczy."
 	access = list(ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO)
 
 /obj/item/storage/backpack/duffelbag/mining_conscript
-	name = "mining conscription kit"
-	desc = "A kit containing everything a crewmember needs to support a shaft miner in the field."
+	name = "zestaw poborowego górnika"
+	desc = "Zestaw ze wszystkim, czego członek załogi potrzebuje, by wspierać górnika w terenie."
 
 /obj/item/storage/backpack/duffelbag/mining_conscript/PopulateContents()
 	new /obj/item/pickaxe/mini(src)

@@ -1,6 +1,6 @@
 /obj/machinery/computer/mecha
-	name = "exosuit control console"
-	desc = "Used to remotely locate or lockdown exosuits."
+	name = "konsola sterowania egzoszkieletami"
+	desc = "Służy do zdalnego namierzania i blokowania egzoszkieletów."
 	icon_screen = "mecha"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_ROBOTICS)
@@ -75,12 +75,12 @@
 			if(M)
 				MT.shock()
 				log_game("[key_name(usr)] has activated remote EMP on exosuit [M], located at [loc_name(M)], which is currently [M.occupant? "being piloted by [key_name(M.occupant)]." : "without a pilot."] ")
-				message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] has activated remote EMP on exosuit [M][ADMIN_JMP(M)], which is currently [M.occupant ? "being piloted by [key_name_admin(M.occupant)][ADMIN_FLW(M.occupant)]." : "without a pilot."] ")
+				message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] uruchamia zdalny EMP w egzoszkielecie [M][ADMIN_JMP(M)], który [M.occupant ? "pilotuje [key_name_admin(M.occupant)][ADMIN_FLW(M.occupant)]." : "nie ma pilota."] ")
 				. = TRUE
 
 /obj/item/mecha_parts/mecha_tracking
-	name = "exosuit tracking beacon"
-	desc = "Device used to transmit exosuit data."
+	name = "nadajnik lokalizacyjny egzoszkieletu"
+	desc = "Urządzenie przesyłające dane egzoszkieletu."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
 	w_class = WEIGHT_CLASS_SMALL
@@ -145,12 +145,12 @@
 	recharging = FALSE
 
 /obj/item/mecha_parts/mecha_tracking/ai_control
-	name = "exosuit AI control beacon"
-	desc = "A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit."
+	name = "nadajnik sterowania SI egzoszkieletu"
+	desc = "Urządzenie przesyłające dane egzoszkieletu. Pozwala też aktywnym jednostkom SI przejąć nad nim kontrolę."
 	ai_beacon = TRUE
 
 /obj/item/storage/box/mechabeacons
-	name = "exosuit tracking beacons"
+	name = "nadajniki lokalizacyjne egzoszkieletów"
 
 /obj/item/storage/box/mechabeacons/PopulateContents()
 	..()

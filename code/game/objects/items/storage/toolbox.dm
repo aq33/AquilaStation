@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox
-	name = "toolbox"
-	desc = "Danger. Very robust."
+	name = "skrzynka narzędziowa"
+	desc = "Niebezpieczna. Bardzo krzepka."
 	icon_state = "toolbox_default"
 	item_state = "toolbox_default"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
@@ -41,7 +41,7 @@
 	return (BRUTELOSS)
 
 /obj/item/storage/toolbox/emergency
-	name = "emergency toolbox"
+	name = "awaryjna skrzynka narzędziowa"
 	icon_state = "red"
 	item_state = "toolbox_red"
 	material_flags = MATERIAL_NO_COLOR
@@ -60,13 +60,13 @@
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/toolbox/emergency/old
-	name = "rusty red toolbox"
+	name = "zardzewiała czerwona skrzynka narzędziowa"
 	icon_state = "toolbox_red_old"
 	has_latches = FALSE
 	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/storage/toolbox/mechanical
-	name = "mechanical toolbox"
+	name = "mechaniczna skrzynka narzędziowa"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 	material_flags = MATERIAL_NO_COLOR
@@ -80,19 +80,19 @@
 	new /obj/item/wirecutters(src)
 
 /obj/item/storage/toolbox/mechanical/old
-	name = "rusty blue toolbox"
+	name = "zardzewiała niebieska skrzynka narzędziowa"
 	icon_state = "toolbox_blue_old"
 	has_latches = FALSE
 	material_flags = MATERIAL_NO_COLOR
 
 /obj/item/heirloomtoolbox //Not actually a toolbox at all, just an heirloom
-	name = "family toolbox"
+	name = "rodzinna skrzynka narzędziowa"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "toolbox_blue_old"
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
-	desc = "It may be rusted shut, but it's still an important keepsake."
+	desc = "Może i zardzewiała na amen, ale to wciąż ważna pamiątka."
 	force = 5
 	throw_speed = 2
 	throw_range = 7
@@ -101,8 +101,8 @@
 	hitsound = 'sound/weapons/smash.ogg'
 
 /obj/item/storage/toolbox/mechanical/old/clean
-	name = "toolbox"
-	desc = "A old, blue toolbox, it looks robust."
+	name = "skrzynka narzędziowa"
+	desc = "Stara, niebieska skrzynka narzędziowa, wygląda krzepko."
 	icon_state = "oldtoolboxclean"
 	item_state = "toolbox_blue"
 	has_latches = FALSE
@@ -134,7 +134,7 @@
 	new /obj/item/clothing/gloves/color/yellow(src)
 
 /obj/item/storage/toolbox/electrical
-	name = "electrical toolbox"
+	name = "elektryczna skrzynka narzędziowa"
 	icon_state = "yellow"
 	item_state = "toolbox_yellow"
 	material_flags = MATERIAL_NO_COLOR
@@ -152,7 +152,7 @@
 		new /obj/item/stack/cable_coil(src,MAXCOIL)
 
 /obj/item/storage/toolbox/syndicate
-	name = "suspicious looking toolbox"
+	name = "podejrzanie wyglądająca skrzynka narzędziowa"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	force = 15
@@ -174,7 +174,7 @@
 	new /obj/item/clothing/gloves/combat(src)
 
 /obj/item/storage/toolbox/drone
-	name = "mechanical toolbox"
+	name = "mechaniczna skrzynka narzędziowa"
 	icon_state = "blue"
 	item_state = "toolbox_blue"
 	material_flags = MATERIAL_NO_COLOR
@@ -189,8 +189,8 @@
 	new /obj/item/multitool(src)
 
 /obj/item/storage/toolbox/brass
-	name = "brass box"
-	desc = "A huge brass box with several indentations in its surface."
+	name = "mosiężna skrzynka"
+	desc = "Wielka mosiężna skrzynka z kilkoma wgłębieniami na powierzchni."
 	icon_state = "brassbox"
 	item_state = null
 	has_latches = FALSE
@@ -217,8 +217,8 @@
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/storage/toolbox/artistic
-	name = "artistic toolbox"
-	desc = "A toolbox painted bright green. Why anyone would store art supplies in a toolbox is beyond you, but it has plenty of extra space."
+	name = "artystyczna skrzynka narzędziowa"
+	desc = "Skrzynka narzędziowa pomalowana na jaskrawą zieleń. Nie pojmujesz, po co ktoś trzymałby przybory plastyczne w skrzynce narzędziowej, ale ma sporo dodatkowego miejsca."
 	icon_state = "green"
 	item_state = "artistic_toolbox"
 	w_class = WEIGHT_CLASS_GIGANTIC //Holds more than a regular toolbox!
@@ -243,8 +243,8 @@
 	new /obj/item/stack/cable_coil(src)
 
 /obj/item/storage/toolbox/ammo
-	name = "ammo box"
-	desc = "It contains a few clips."
+	name = "skrzynka z amunicją"
+	desc = "Jest w niej kilka magazynków."
 	icon_state = "ammobox"
 	item_state = "ammobox"
 	drop_sound = 'sound/items/handling/ammobox_drop.ogg'

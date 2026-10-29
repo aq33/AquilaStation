@@ -6,18 +6,19 @@ import {
 } from '../base';
 
 export const itemoutline_pref: FeatureToggle = {
-  name: 'Item outlines',
+  name: 'Obrysy przedmiotów',
   category: 'UI',
   subcategory: 'HUD',
-  description: 'When enabled, hovering over items will outline them.',
+  description:
+    'Po włączeniu najechanie kursorem na przedmiot pokazuje jego obrys.',
   component: CheckboxInput,
 };
 
 export const outline_color: Feature<string> = {
-  name: 'Item outline color',
+  name: 'Kolor obrysu przedmiotów',
   category: 'UI',
   subcategory: 'HUD',
-  description: 'The color of that hovered items will outline with.',
+  description: 'Kolor obrysu przedmiotów pod kursorem.',
   component: FeatureColorInput,
   important: true,
 };

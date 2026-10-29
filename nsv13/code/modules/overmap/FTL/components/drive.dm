@@ -6,8 +6,8 @@
 #define MAX_PYLON_DISTANCE 10
 
 /obj/machinery/computer/ship/ftl_core
-	name = "\improper Thirring Drive manifold"
-	desc = "The Lense-Thirring Precession Drive, an advanced method of FTL propulsion that utilizes exotic energy to twist space around the ship. Exotic energy must be supplied via drive pylons."
+	name = "\improper kolektor napędu Thirringa"
+	desc = "Precesyjny napęd Lensego-Thirringa, zaawansowany napęd FTL, który zakrzywia przestrzeń wokół okrętu za pomocą egzotycznej energii. Egzotyczną energię muszą dostarczać pylony napędu."
 	icon = 'nsv13/icons/obj/machinery/FTL_drive.dmi'
 	icon_state = "core_idle"
 	pixel_x = -64
@@ -195,12 +195,12 @@
 /obj/machinery/computer/ship/ftl_core/proc/upgrade()
 	switch(tier)
 		if(2)
-			name = "upgraded [initial(name)]"
+			name = "[initial(name)] (wersja ulepszona)"
 			max_range = initial(max_range) * 2
 			jump_speed_factor = 2
 
 		if(3) //Admin only, for now
-			name = "advanced [initial(name)]"
+			name = "[initial(name)] (wersja zaawansowana)"
 			auto_spool_capable = TRUE
 			jump_speed_factor = 5
 			max_range = initial(max_range) * 3
@@ -230,14 +230,14 @@ Preset classes of FTL drive with pre-programmed behaviours
 	tier = 3
 
 /obj/machinery/computer/ship/ftl_core/syndicate
-	name = "syndicate FTL core"
+	name = "rdzeń FTL Syndykatu"
 	radio_key = /obj/item/encryptionkey/syndicate
 	radio_channel = RADIO_CHANNEL_SYNDICATE
 	faction = "syndicate"
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/ship/ftl_core/mining
-	name = "mining FTL core"
+	name = "górniczy rdzeń FTL"
 	radio_key = /obj/item/encryptionkey/headset_mining
 	radio_channel = RADIO_CHANNEL_SUPPLY
 	req_access = null

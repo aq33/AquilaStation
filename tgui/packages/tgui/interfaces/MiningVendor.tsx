@@ -15,23 +15,23 @@ export const MiningVendor = (props) => {
   return (
     <Window width={425} height={600}>
       <Window.Content scrollable>
-        <Section title="User">
+        <Section title="Użytkownik">
           {(data.user && (
             <Box>
-              Welcome, <b>{data.user.name || 'Unknown'}</b>,{' '}
-              <b>{data.user.job || 'Unemployed'}</b>!
+              Witaj, <b>{data.user.name || 'Nieznajomy'}</b>,{' '}
+              <b>{data.user.job || 'Bezrobotny'}</b>!
               <br />
               Your balance is <b>{data.user.points} mining points</b>.
             </Box>
           )) || (
             <Box color="light-gray">
-              No registered ID card!
+              Brak zarejestrowanego identyfikatora!
               <br />
-              Please contact your local HoP!
+              Zgłoś się do kierownika personelu!
             </Box>
           )}
         </Section>
-        <Section title="Equipment">
+        <Section title="Wyposażenie">
           <Table>
             {inventory.map((product) => {
               return (
@@ -52,7 +52,7 @@ export const MiningVendor = (props) => {
                         textAlign: 'center',
                       }}
                       disabled={!data.user || product.price > data.user.points}
-                      content={product.price + ' points'}
+                      content={'Punkty: ' + product.price}
                       onClick={() =>
                         act('purchase', {
                           ref: product.ref,

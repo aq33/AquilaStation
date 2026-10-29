@@ -7,26 +7,26 @@
 //Areas
 
 /area/awaymission/wildwest/mines
-	name = "Wild West Mines"
+	name = "Dziki Zachód – Kopalnie"
 	icon_state = "away1"
 	requires_power = FALSE
 
 /area/awaymission/wildwest/gov
-	name = "Wild West Mansion"
+	name = "Dziki Zachód – Rezydencja"
 	icon_state = "away2"
 	requires_power = FALSE
 
 /area/awaymission/wildwest/refine
-	name = "Wild West Refinery"
+	name = "Dziki Zachód – Rafineria"
 	icon_state = "away3"
 	requires_power = FALSE
 
 /area/awaymission/wildwest/vault
-	name = "Wild West Vault"
+	name = "Dziki Zachód – Skarbiec"
 	icon_state = "away3"
 
 /area/awaymission/wildwest/vaultdoors
-	name = "Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
+	name = "Dziki Zachód – Drzwi Skarbca"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = FALSE
 
@@ -38,19 +38,19 @@
 
 
 /obj/item/paper/fluff/awaymissions/wildwest/journal/page1
-	name = "Planer Saul's Journal: Page 1"
+	name = "Dziennik planisty Saula: strona 1"
 	default_raw_text = "Znaleźliśmy coś dryfującego w kosmosie. Trudno powiedzieć, ile ma lat, ale jest porysowane i powyginane jak diabli. Obiekt ma mniej więcej wielkość pokoju, z dwuskrzydłowymi drzwiami, których jeszcze nie udało nam się sforsować. Jest dużo wytrzymalszy, niż mogliśmy przypuszczać. Postanowiliśmy nazwać go „Kryptą”."
 
 /obj/item/paper/fluff/awaymissions/wildwest/journal/page4
-	name = "Planer Saul's Journal: Page 4"
+	name = "Dziennik planisty Saula: strona 4"
 	default_raw_text = " Górnicy w miasteczku zachorowali i niemal całe wydobycie stanęło. W przypływie obłędu wrzucili cały sprzęt górniczy do pieców. Wszyscy twierdzili to samo: że jakiś głos wzywa ich, by złożyli broń. Głupi górnicy."
 
 /obj/item/paper/fluff/awaymissions/wildwest/journal/page7
-	name = "Planer Sauls' Journal: Page 7"
+	name = "Dziennik planisty Saula: strona 7"
 	default_raw_text = "Krypta... ona ciągle rośnie i rośnie. Poszedłem na codzienny spacer po ogrodzie, a ona jest teraz tuż przed rezydencją... jeszcze kilka dni temu ledwo było ją widać. Ale cokolwiek jest w środku... wzywa mnie."
 
 /obj/item/paper/fluff/awaymissions/wildwest/journal/page8
-	name = "Planer Saul's Journal: Page 8"
+	name = "Dziennik planisty Saula: strona 8"
 	default_raw_text = "Syndykat nas najechał. Ich statki pojawiły się znikąd i zapewne chcą nas wszystkich zabić i zabrać wszystko. Licząc na to, że Krypta da nam schronienie, wielu z nas postanowiło wedrzeć się do środka i zaryglować drzwi, zabierając tyle zapasów, ile zdołamy unieść. Jeśli to znajdziesz, natychmiast wezwij pomoc i otwórz Kryptę. Znajdziesz nas w środku."
 
 
@@ -58,8 +58,8 @@
  * Wish Granter
  */
 /obj/machinery/wish_granter_dark
-	name = "Wish Granter"
-	desc = "You're not so sure about this, anymore..."
+	name = "Spełniacz Życzeń"
+	desc = "Nie masz już co do tego pewności..."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 
@@ -88,26 +88,26 @@
 	else
 		chargesa--
 		insistinga = 0
-		var/wish = input("Pragniesz...","Wish") as null|anything in sortList(list("Power","Wealth","Immortality","Peace"))
+		var/wish = input("Pragniesz...","Życzenie") as null|anything in sortList(list("Moc","Bogactwo","Nieśmiertelność","Pokój"))
 		switch(wish)
-			if("Power")
+			if("Moc")
 				to_chat(user, "<B>Twoje życzenie zostaje spełnione, ale za straszliwą cenę...</B>")
 				to_chat(user, "Spełniacz Życzeń karze cię za twoje samolubstwo, zabierając twoją duszę i wykrzywiając ciało, by pasowało do ciemności w twoim sercu.")
 				user.dna.add_mutation(LASEREYES)
 				user.dna.add_mutation(SPACEMUT)
 				user.dna.add_mutation(XRAY)
 				user.set_species(/datum/species/shadow)
-			if("Wealth")
+			if("Bogactwo")
 				to_chat(user, "<B>Twoje życzenie zostaje spełnione, ale za straszliwą cenę...</B>")
 				to_chat(user, "Spełniacz Życzeń karze cię za twoje samolubstwo, zabierając twoją duszę i wykrzywiając ciało, by pasowało do ciemności w twoim sercu.")
 				new /obj/structure/closet/syndicate/resources/everything(loc)
 				user.set_species(/datum/species/shadow)
-			if("Immortality")
+			if("Nieśmiertelność")
 				to_chat(user, "<B>Twoje życzenie zostaje spełnione, ale za straszliwą cenę...</B>")
 				to_chat(user, "Spełniacz Życzeń karze cię za twoje samolubstwo, zabierając twoją duszę i wykrzywiając ciało, by pasowało do ciemności w twoim sercu.")
 				user.add_verb(/mob/living/carbon/proc/immortality)
 				user.set_species(/datum/species/shadow)
-			if("Peace")
+			if("Pokój")
 				to_chat(user, "<B>Jakakolwiek obca świadomość zamieszkuje Spełniacza Życzeń, jest usatysfakcjonowana twoim życzeniem. Słychać odległe zawodzenie, gdy ostatni z Niewiernych zaczynają umierać, a potem cisza.</B>")
 				to_chat(user, "Czujesz, że właśnie ledwo uniknąłeś straszliwego losu...")
 				for(var/mob/living/simple_animal/hostile/faithless/F in GLOB.mob_living_list)
@@ -118,8 +118,8 @@
 
 
 /obj/effect/meatgrinder
-	name = "Meat Grinder"
-	desc = "What is that thing?"
+	name = "Maszynka do mięsa"
+	desc = "Co to za rzecz?"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/mob/blob.dmi'
@@ -148,7 +148,7 @@
 	var/mob/living/carbon/human/M = AM
 
 	if(M.stat != DEAD && M.ckey)
-		visible_message("<span class='warning'>[M] triggered [src]!</span>")
+		visible_message("<span class='warning'>[M] uruchamia [src]!</span>")
 		triggered = 1
 
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

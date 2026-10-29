@@ -16,7 +16,7 @@ Bonus
 */
 
 /datum/symptom/fever
-	name = "Fever"
+	name = "Gorączka"
 	desc = "Wirus wywołuje u nosiciela reakcję gorączkową, podnosząc temperaturę jego ciała."
 	stealth = -1
 	resistance = 3
@@ -55,9 +55,9 @@ Bonus
 		return
 	var/mob/living/carbon/M = A.affected_mob
 	if(!unsafe || A.stage < 4)
-		to_chat(M, "<span class='warning'>[pick("You feel hot.", "You feel like you're burning.")]</span>")
+		to_chat(M, "<span class='warning'>[pick("Jest ci gorąco.", "Czujesz, jakbyś płonął.")]</span>")
 	else
-		to_chat(M, "<span class='userdanger'>[pick("You feel too hot.", "You feel like your blood is boiling.")]</span>")
+		to_chat(M, "<span class='userdanger'>[pick("Jest ci zdecydowanie za gorąco.", "Czujesz, jakby krew ci wrzała.")]</span>")
 	if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT || unsafe)
 		Heat(M, A)
 

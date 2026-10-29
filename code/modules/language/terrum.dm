@@ -1,6 +1,6 @@
 /datum/language/terrum
 	name = "Terrum"
-	desc = "The language of the golems. Sounds similar to old-earth Hebrew."
+	desc = "Język golemów. Brzmi podobnie do starożytnego ziemskiego hebrajskiego."
 	key = "g"
 	space_chance = 40
 	syllables = list(

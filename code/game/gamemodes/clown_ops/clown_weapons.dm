@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray/waterflower/lube
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist. A <i>slippery</i> twist."
+	name = "wodny kwiatek"
+	desc = "Z pozoru niewinny słonecznik... z haczykiem. <i>Śliskim</i> haczykiem."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
@@ -13,8 +13,8 @@
 //COMBAT CLOWN SHOES
 //Clown shoes with combat stats and noslip. Of course they still squeak.
 /obj/item/clothing/shoes/clown_shoes/combat
-	name = "combat clown shoes"
-	desc = "advanced clown shoes that protect the wearer and render them nearly immune to slipping on their own peels. They also squeak at 100% capacity."
+	name = "bojowe buty klauna"
+	desc = "Zaawansowane buty klauna, które chronią noszącego i czynią go niemal odpornym na poślizgnięcie się na własnych skórkach. Do tego piszczą na 100% mocy."
 	clothing_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 70, "acid" = 50, "stamina" = 25, "bleed" = 40)
@@ -29,8 +29,8 @@
 
 //The super annoying version
 /obj/item/clothing/shoes/clown_shoes/banana_shoes/combat
-	name = "mk-honk combat shoes"
-	desc = "The culmination of years of clown combat research, these shoes leave a trail of chaos in their wake. They will slowly recharge themselves over time, or can be manually charged with bananium."
+	name = "bojowe buty mk-honk"
+	desc = "Ukoronowanie lat badań nad walką klaunów. Te buty zostawiają za sobą ślad chaosu. Z czasem same się powoli ładują, można je też naładować ręcznie bananium."
 	slowdown = SHOES_SLOWDOWN
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 70, "acid" = 50, "stamina" = 25, "bleed" = 40)
 	strip_delay = 70
@@ -64,8 +64,8 @@
 //BANANIUM SWORD
 
 /obj/item/melee/transforming/energy/sword/bananium
-	name = "bananium sword"
-	desc = "An elegant weapon, for a more civilized age."
+	name = "miecz z bananium"
+	desc = "Elegancka broń na bardziej cywilizowane czasy."
 	force = 0
 	throwforce = 0
 	force_on = 0
@@ -130,8 +130,8 @@
 //BANANIUM SHIELD
 
 /obj/item/shield/energy/bananium
-	name = "bananium energy shield"
-	desc = "A shield that stops most melee attacks, protects user from almost all energy projectiles, and can be thrown to slip opponents."
+	name = "energetyczna tarcza z bananium"
+	desc = "Tarcza, która zatrzymuje większość ataków wręcz, chroni przed prawie wszystkimi pociskami energetycznymi i można nią rzucić, żeby przewrócić przeciwników poślizgiem."
 	throw_speed = 1
 	clumsy_check = 0
 	base_icon_state = "bananaeshield"
@@ -182,9 +182,9 @@
 //BOMBANANA]
 
 /obj/item/plant_seeds/preset/bombanana
-	name = "pack of bombanana seeds"
-	name_override = "bombnana tree"
-	desc = "They're seeds that grow into bombanana trees. When grown, give to the clown."
+	name = "nasiona: bombanan"
+	name_override = "drzewo bombananowe"
+	desc = "Nasiona, z których wyrastają drzewa bombananowe. Gdy urosną, daj owoce klaunowi."
 	plant_features = list(/datum/plant_feature/roots/sand, /datum/plant_feature/body/tree/palm/banana, /datum/plant_feature/fruit/banana/bomb)
 
 /obj/item/food/grown/banana/bombanana
@@ -194,7 +194,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment/vitamin = 1)
 
 /obj/item/grown/bananapeel/bombanana
-	desc = "A peel from a banana. Why is it beeping?"
+	desc = "Skórka od banana. Czemu ona pika?"
 	seed = /obj/item/plant_seeds/preset/bombanana
 	var/det_time = 50
 	var/obj/item/grenade/syndieminibomb/bomb
@@ -226,8 +226,8 @@
 //TEARSTACHE GRENADE
 
 /obj/item/grenade/chem_grenade/teargas/moustache
-	name = "tear-stache grenade"
-	desc = "A handsomely-attired teargas grenade."
+	name = "granat łzawiąco-wąsaty"
+	desc = "Elegancko wystrojony granat z gazem łzawiącym."
 	icon_state = "moustacheg"
 	clumsy_check = GRENADE_NONCLUMSY_FUMBLE
 
@@ -254,8 +254,8 @@
 //DARK H.O.N.K. AND CLOWN MECH WEAPONS
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar/bombanana
-	name = "bombanana mortar"
-	desc = "Equipment for clown exosuits. Launches exploding banana peels."
+	name = "moździerz bombananowy"
+	desc = "Wyposażenie egzoszkieletów klauna. Wystrzeliwuje wybuchające skórki od banana."
 	icon_state = "mecha_bananamrtr"
 	projectile = /obj/item/grown/bananapeel/bombanana
 	projectiles = 8
@@ -268,8 +268,8 @@
 	return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/tearstache
-	name = "\improper HONKeR-6 grenade launcher"
-	desc = "A weapon for combat exosuits. Launches primed tear-stache grenades."
+	name = "\improper granatnik HONKeR-6"
+	desc = "Broń dla bojowych egzoszkieletów. Wystrzeliwuje uzbrojone granaty łzawiąco-wąsate."
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/chem_grenade/teargas/moustache
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
@@ -286,7 +286,7 @@
 	return FALSE
 
 /obj/mecha/combat/honker/dark
-	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. This one has been painted black for maximum fun. HONK!"
+	desc = "Wyprodukowany przez „Tyranny of Honk, INC” egzoszkielet ciężkiego wsparcia klaunów. Ten pomalowano na czarno dla maksymalnej frajdy. HONK!"
 	name = "\improper Dark H.O.N.K"
 	icon_state = "darkhonker"
 	max_integrity = 300
@@ -317,5 +317,5 @@
 	ME.attach(src)
 
 /obj/structure/mecha_wreckage/honker/dark
-	name = "\improper Dark H.O.N.K wreckage"
+	name = "\improper wrak Dark H.O.N.K"
 	icon_state = "darkhonker-broken"

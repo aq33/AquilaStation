@@ -1,6 +1,6 @@
 /obj/item/implant/krav_maga
-	name = "krav maga implant"
-	desc = "Teaches you the arts of Krav Maga in 5 short instructional videos beamed directly into your eyeballs."
+	name = "implant krav maga"
+	desc = "Uczy cię sztuki Krav Maga w 5 krótkich filmach instruktażowych wyświetlanych prosto w twoje gałki oczne."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
 	activated = 1
@@ -27,7 +27,7 @@
 	imp_type = /obj/item/implant/krav_maga
 
 /obj/item/implantcase/krav_maga
-	name = "implant case - 'Krav Maga'"
-	desc = "A glass case containing an implant that can teach the user the arts of Krav Maga."
+	name = "etui na implant – „Krav Maga”"
+	desc = "Szklane etui z implantem, który może nauczyć użytkownika sztuki Krav Maga."
 	imp_type = /obj/item/implant/krav_maga
 

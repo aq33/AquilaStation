@@ -1,8 +1,8 @@
 // Corn
 /obj/item/food/grown/corn
 	seed = /obj/item/plant_seeds/preset/corn
-	name = "ear of corn"
-	desc = "Needs some butter!"
+	name = "kolba kukurydzy"
+	desc = "Przydałoby się trochę masła!"
 	icon_state = "corn"
 	microwaved_type = /obj/item/food/popcorn
 	trash_type = /obj/item/grown/corncob
@@ -19,8 +19,8 @@
 */
 
 /obj/item/grown/corncob
-	name = "corn cob"
-	desc = "A reminder of meals gone by."
+	name = "ogryzek kolby"
+	desc = "Pamiątka po minionych posiłkach."
 	icon_state = "corncob"
 	item_state = "corncob"
 	w_class = WEIGHT_CLASS_TINY
@@ -38,8 +38,8 @@
 
 // Snapcorn
 /obj/item/grown/snapcorn
-	name = "snap corn"
-	desc = "A cob with snap pops."
+	name = "trzaskająca kukurydza"
+	desc = "Kolba z petardkami."
 	icon_state = "snapcorn"
 	item_state = "corncob"
 	w_class = WEIGHT_CLASS_TINY

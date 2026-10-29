@@ -1,6 +1,6 @@
 /obj/item/clothing/shoes/magboots
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
-	name = "magboots"
+	desc = "Buty magnetyczne, często używane podczas aktywności pozapojazdowej, żeby noszący pozostał bezpiecznie przyczepiony do pojazdu."
+	name = "buty magnetyczne"
 	icon_state = "magboots0"
 	var/magboot_state = "magboots"
 	var/magpulse = 0
@@ -46,8 +46,8 @@
 
 
 /obj/item/clothing/shoes/magboots/advance
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
-	name = "advanced magboots"
+	desc = "Zaawansowane buty magnetyczne o słabszym przyciąganiu, które mniej obciążają noszącego."
+	name = "zaawansowane buty magnetyczne"
 	icon_state = "advmag0"
 	magboot_state = "advmag"
 	slowdown_active = SHOES_SLOWDOWN
@@ -55,14 +55,14 @@
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/clothing/shoes/magboots/syndie
-	desc = "Reverse-engineered magnetic boots that have a heavy magnetic pull. Property of Gorlex Marauders."
-	name = "blood-red magboots"
+	desc = "Buty magnetyczne odtworzone metodą inżynierii wstecznej, o silnym przyciąganiu. Własność Maruderów Gorlex."
+	name = "krwistoczerwone buty magnetyczne"
 	icon_state = "syndiemag0"
 	magboot_state = "syndiemag"
 
 /obj/item/clothing/shoes/magboots/commando
-	desc = "Military-grade magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
-	name = "commando magboots"
+	desc = "Wojskowe buty magnetyczne o słabszym przyciąganiu, które mniej obciążają noszącego."
+	name = "buty magnetyczne komandosa"
 	icon_state = "advmag0"
 	magboot_state = "advmag"
 	slowdown_active = SHOES_SLOWDOWN
@@ -84,7 +84,7 @@
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/shoes/magboots/crushing
-	desc = "Normal looking magboots that are altered to increase magnetic pull to crush anything underfoot."
+	desc = "Normalnie wyglądające buty magnetyczne, przerobione tak, by przyciągały mocniej i miażdżyły wszystko pod stopami."
 
 /obj/item/clothing/shoes/magboots/crushing/proc/crush(mob/living/user)
 	SIGNAL_HANDLER

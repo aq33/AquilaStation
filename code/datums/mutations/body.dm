@@ -2,8 +2,8 @@
 
 //Epilepsy gives a very small chance to have a seizure every life tick, knocking you unconscious.
 /datum/mutation/epilepsy
-	name = "Epilepsy"
-	desc = "A genetic defect that sporadically causes seizures."
+	name = "Epilepsja"
+	desc = "Wada genetyczna, która sporadycznie wywołuje napady drgawek."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Boli cię głowa.</span>"
 	synchronizer_coeff = 1
@@ -24,8 +24,8 @@
 
 //Unstable DNA induces random mutations!
 /datum/mutation/bad_dna
-	name = "Unstable DNA"
-	desc = "Strange mutation that causes the holder to randomly mutate."
+	name = "Niestabilne DNA"
+	desc = "Dziwna mutacja, przez którą nosiciel losowo mutuje."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Czujesz się dziwnie.</span>"
 	locked = TRUE
@@ -50,8 +50,8 @@
 
 //Cough gives you a chronic cough that causes you to drop items.
 /datum/mutation/cough
-	name = "Cough"
-	desc = "A chronic cough."
+	name = "Kaszel"
+	desc = "Przewlekły kaszel."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Zaczynasz kaszleć.</span>"
 	synchronizer_coeff = 1
@@ -67,8 +67,8 @@
 			owner.throw_at(target, cough_range, GET_MUTATION_POWER(src))
 
 /datum/mutation/paranoia
-	name = "Paranoia"
-	desc = "Subject is easily terrified, and may suffer from hallucinations."
+	name = "Paranoja"
+	desc = "Obiekt łatwo wpada w przerażenie i może miewać halucynacje."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Czujesz, jak w twoim umyśle odbijają się echem krzyki...</span>"
 	text_lose_indication = "<span class='notice'>Krzyki w twoim umyśle cichną.</span>"
@@ -81,8 +81,8 @@
 
 //Dwarfism shrinks your body and lets you pass tables.
 /datum/mutation/dwarfism
-	name = "Dwarfism"
-	desc = "A mutation believed to be the cause of dwarfism."
+	name = "Karłowatość"
+	desc = "Mutacja uważana za przyczynę karłowatości."
 	quality = POSITIVE
 	difficulty = 16
 	instability = 5
@@ -108,8 +108,8 @@
 
 //Clumsiness has a very large amount of small drawbacks depending on item.
 /datum/mutation/clumsy
-	name = "Clumsiness"
-	desc = "A genome that inhibits certain brain functions, causing the holder to appear clumsy. Honk"
+	name = "Niezdarność"
+	desc = "Genom, który hamuje niektóre funkcje mózgu, przez co nosiciel wydaje się niezdarny. Honk"
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Kręci ci się w głowie.</span>"
 
@@ -126,8 +126,8 @@
 
 //Tourettes causes you to randomly stand in place and shout.
 /datum/mutation/tourettes
-	name = "Tourette's Syndrome"
-	desc = "A chronic twitch that forces the user to scream bad words." //definitely needs rewriting
+	name = "Zespół Tourette'a"
+	desc = "Przewlekły tik, który zmusza do wykrzykiwania brzydkich słów." //definitely needs rewriting
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Drgasz.</span>"
 	synchronizer_coeff = 1
@@ -150,8 +150,8 @@
 
 //Deafness makes you deaf.
 /datum/mutation/deaf
-	name = "Deafness"
-	desc = "The holder of this genome is completely deaf."
+	name = "Głuchota"
+	desc = "Nosiciel tego genomu jest całkowicie głuchy."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Nic nie słyszysz.</span>"
 
@@ -169,8 +169,8 @@
 
 //Monified turns you into a monkey.
 /datum/mutation/race
-	name = "Monkified"
-	desc = "A strange genome, believed to be what differentiates monkeys from humans."
+	name = "Małpizm"
+	desc = "Dziwny genom, uważany za to, co odróżnia małpy od ludzi."
 	quality = NEGATIVE
 	mobtypes_allowed = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	locked = TRUE //Species specific, keep out of actual gene pool
@@ -186,8 +186,8 @@
 		. = owner.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE | TR_KEEPAI)
 
 /datum/mutation/glow
-	name = "Glowy"
-	desc = "You permanently emit a light with a random color and intensity."
+	name = "Świecenie"
+	desc = "Stale emitujesz światło o losowym kolorze i natężeniu."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja skóra zaczyna delikatnie świecić.</span>"
 	instability = 5
@@ -223,8 +223,8 @@
 	return pick(COLOR_RED, COLOR_BLUE, COLOR_YELLOW, COLOR_GREEN, COLOR_PURPLE, COLOR_ORANGE)
 
 /datum/mutation/glow/anti
-	name = "Anti-Glow"
-	desc = "Your skin seems to attract and absorb nearby light creating 'darkness' around you."
+	name = "Antyświecenie"
+	desc = "Twoja skóra przyciąga i pochłania okoliczne światło, tworząc wokół ciebie „ciemność”."
 	text_gain_indication = "<span class='notice'>Światło wokół ciebie zdaje się znikać.</span>"
 	glow_power = -1.5
 	conflicts = list(/datum/mutation/glow)
@@ -234,15 +234,15 @@
 	return COLOR_BLACK
 
 /datum/mutation/strong
-	name = "Strength"
-	desc = "The user's muscles slightly expand."
+	name = "Siła"
+	desc = "Mięśnie nosiciela lekko się rozrastają."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz się silny.</span>"
 	difficulty = 16
 
 /datum/mutation/insulated
-	name = "Insulated"
-	desc = "The affected person does not conduct electricity."
+	name = "Izolacja"
+	desc = "Osoba nie przewodzi elektryczności."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Drętwieją ci opuszki palców.</span>"
 	text_lose_indication = "<span class='notice'>Odzyskujesz czucie w opuszkach palców.</span>"
@@ -260,8 +260,8 @@
 	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "genetics")
 
 /datum/mutation/fire
-	name = "Fiery Sweat"
-	desc = "The user's skin will randomly combust, but is generally alot more resilient to burning."
+	name = "Ognisty pot"
+	desc = "Skóra nosiciela losowo się zapala, ale ogólnie jest dużo odporniejsza na oparzenia."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Jest ci gorąco.</span>"
 	text_lose_indication = "<span class='notice'>Robi ci się o wiele chłodniej.</span>"
@@ -289,8 +289,8 @@
 		H.physiology.burn_mod *= 2
 
 /datum/mutation/badblink
-	name = "Spatial Instability"
-	desc = "The victim of the mutation has a very weak link to spatial reality, and may be displaced. Often causes extreme nausea."
+	name = "Niestabilność przestrzenna"
+	desc = "Ofiara mutacji ma bardzo słabą więź z rzeczywistością przestrzenną i może zostać przemieszczona. Często wywołuje silne mdłości."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Przestrzeń wokół ciebie wykręca się w obrzydliwy sposób.</span>"
 	text_lose_indication = "<span class='notice'>Przestrzeń wokół ciebie wraca do normy.</span>"
@@ -319,8 +319,8 @@
 		warpchance += 0.25 * GET_MUTATION_ENERGY(src)
 
 /datum/mutation/acidflesh
-	name = "Acidic Flesh"
-	desc = "Subject has acidic chemicals building up underneath their skin. This is often lethal."
+	name = "Kwasowe ciało"
+	desc = "Pod skórą obiektu gromadzą się żrące chemikalia. Często kończy się to śmiercią."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='userdanger'>Ogarnia cię straszliwe pieczenie, gdy twoje ciało zamienia się w kwas!</span>"
 	text_lose_indication = "<span class='notice'>Ogarnia cię ulga, gdy twoje ciało wraca do normy.</span>"
@@ -338,8 +338,8 @@
 			playsound(owner,'sound/weapons/sear.ogg', 50, 1)
 
 /datum/mutation/gigantism
-	name = "Gigantism"//negative version of dwarfism
-	desc = "The cells within the subject spread out to cover more area, making them appear larger."
+	name = "Gigantyzm"//negative version of dwarfism
+	desc = "Komórki obiektu rozrastają się, przez co wydaje się on większy."
 	quality = MINOR_NEGATIVE
 	difficulty = 12
 	conflicts = list(DWARFISM)
@@ -359,8 +359,8 @@
 	owner.visible_message("<span class='danger'>[owner] nagle się kurczy!</span>", "<span class='notice'>Wszystko wokół ciebie zdaje się rosnąć..</span>")
 
 /datum/mutation/spastic
-	name = "Spastic"
-	desc = "Subject suffers from muscle spasms."
+	name = "Spastyczność"
+	desc = "Obiekt cierpi na skurcze mięśni."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Wzdrygasz się.</span>"
 	text_lose_indication = "<span class='notice'>Twoje wzdrygnięcia ustają.</span>"
@@ -377,8 +377,8 @@
 	owner.remove_status_effect(STATUS_EFFECT_SPASMS)
 
 /datum/mutation/extrastun
-	name = "Two Left Feet"
-	desc = "A mutation that replaces the right foot with another left foot. It makes standing up after getting knocked down very difficult."
+	name = "Dwie lewe nogi"
+	desc = "Mutacja, która zastępuje prawą stopę drugą lewą. Przez nią bardzo trudno wstać po przewróceniu."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='warning'>Twoja prawa stopa wydaje się... lewa.</span>"
 	text_lose_indication = "<span class='notice'>Twoja prawa stopa wydaje się w porządku.</span>"
@@ -394,8 +394,8 @@
 			stun_cooldown = world.time + 300
 
 /datum/mutation/strongwings
-	name = "Strengthened Wings"
-	desc = "Subject's wing muscle volume rapidly increases."
+	name = "Wzmocnione skrzydła"
+	desc = "Mięśnie skrzydeł obiektu gwałtownie rosną."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 12
@@ -438,8 +438,8 @@
 		to_chat(owner, "<span class='warning'>Twoje skrzydła wydają się słabe.</span>")
 
 /datum/mutation/catclaws
-	name = "Cat Claws"
-	desc = "Subject's hands grow sharpened claws."
+	name = "Kocie pazury"
+	desc = "Z dłoni obiektu wyrastają ostre pazury."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 12

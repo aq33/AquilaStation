@@ -11,8 +11,8 @@
  * Oxygen
  */
 /obj/item/tank/internals/oxygen
-	name = "oxygen tank"
-	desc = "A tank of oxygen, this one is blue."
+	name = "butla z tlenem"
+	desc = "Butla z tlenem, ta jest niebieska."
 	icon_state = "oxygen"
 	distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
 	force = 10
@@ -23,12 +23,12 @@
 	air_contents.set_moles(GAS_O2, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/tank/internals/oxygen/yellow
-	desc = "A tank of oxygen, this one is yellow."
+	desc = "Butla z tlenem, ta jest żółta."
 	icon_state = "oxygen_f"
 	dog_fashion = null
 
 /obj/item/tank/internals/oxygen/red
-	desc = "A tank of oxygen, this one is red."
+	desc = "Butla z tlenem, ta jest czerwona."
 	icon_state = "oxygen_fr"
 	dog_fashion = null
 
@@ -39,8 +39,8 @@
  * Anesthetic
  */
 /obj/item/tank/internals/anesthetic
-	name = "anesthetic tank"
-	desc = "A tank with an N2O/O2 gas mix."
+	name = "butla z anestetykiem"
+	desc = "Butla z mieszanką gazów N2O/O2."
 	icon_state = "anesthetic"
 	item_state = "an_tank"
 	force = 10
@@ -53,8 +53,8 @@
  * Air
  */
 /obj/item/tank/internals/air
-	name = "air tank"
-	desc = "Mixed anyone?"
+	name = "butla z powietrzem"
+	desc = "Ktoś chętny na mieszankę?"
 	icon_state = "air"
 	item_state = "air"
 	force = 10
@@ -68,8 +68,8 @@
  * Plasma
  */
 /obj/item/tank/internals/plasma
-	name = "plasma tank"
-	desc = "Contains dangerous plasma. Do not inhale. Warning: extremely flammable."
+	name = "butla z plazmą"
+	desc = "Zawiera niebezpieczną plazmę. Nie wdychać. Uwaga: skrajnie łatwopalne."
 	icon_state = "plasma"
 	flags_1 = CONDUCT_1
 	slot_flags = null	//they have no straps!
@@ -103,8 +103,8 @@
  */
 
 /obj/item/tank/internals/plasmaman
-	name = "extended-capacity plasma internals tank"
-	desc = "A tank of plasma gas designed specifically for use as internals, particularly for plasma-based lifeforms. If you're not a Plasmaman, you probably shouldn't use this."
+	name = "powiększona butla z plazmą do oddychania"
+	desc = "Butla z plazmą zaprojektowana specjalnie do oddychania, zwłaszcza dla form życia opartych na plazmie. Jeśli nie jesteś plazmamanem, raczej nie powinieneś jej używać."
 	icon_state = "plasmaman_tank"
 	item_state = "plasmaman_tank"
 	worn_icon_state = "plasmaman_tank"
@@ -122,7 +122,7 @@
 
 
 /obj/item/tank/internals/plasmaman/belt
-	name = "plasma internals belt tank"
+	name = "butla z plazmą do oddychania noszona przy pasie"
 	icon_state = "plasmaman_tank_belt"
 	item_state = "plasmaman_tank_belt"
 	worn_icon_state = "plasmaman_tank_belt"
@@ -143,8 +143,8 @@
  * Emergency Oxygen
  */
 /obj/item/tank/internals/emergency_oxygen
-	name = "emergency oxygen tank"
-	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
+	name = "awaryjna butla z tlenem"
+	desc = "Na wypadek zagrożenia. Ma bardzo mało tlenu, więc oszczędzaj go, dopóki naprawdę nie będzie potrzebny."
 	icon_state = "emergency"
 	worn_icon_state = "emergency"
 	flags_1 = CONDUCT_1
@@ -162,7 +162,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/engi
-	name = "extended-capacity emergency oxygen tank"
+	name = "powiększona awaryjna butla z tlenem"
 	icon_state = "emergency_engi"
 	worn_icon_state = "emergency_engi"
 	volume = 2 // should last a bit over 30 minutes if full
@@ -171,7 +171,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/double
-	name = "double emergency oxygen tank"
+	name = "podwójna awaryjna butla z tlenem"
 	icon_state = "emergency_double"
 	volume = 8
 
@@ -179,7 +179,7 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/magic_oxygen
-	name = "magic oxygen tank"
+	name = "magiczna butla z tlenem"
 	icon_state = "emergency_double"
 	volume = 100000000
 
@@ -187,8 +187,8 @@
 	return
 
 /obj/item/tank/internals/emergency_oxygen/clown
-	name = "emergency prank tank"
-	desc = "Used for pranking in emergencies! Has a smidge of a mystery ingredient for 200% FUN!"
+	name = "awaryjna butla z psikusem"
+	desc = "Do psikusów w razie zagrożenia! Zawiera szczyptę tajemniczego składnika dla 200% ZABAWY!"
 	icon_state = "clown"
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT

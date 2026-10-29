@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/mind_transfer
-	name = "Mind Transfer"
-	desc = "This spell allows the user to switch bodies with a target."
+	name = "Przeniesienie umysłu"
+	desc = "To zaklęcie pozwala zamienić się ciałami z celem."
 
 	school = "transmutation"
 	charge_max = 600

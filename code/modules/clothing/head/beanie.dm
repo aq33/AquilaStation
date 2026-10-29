@@ -15,86 +15,86 @@
 */
 
 /obj/item/clothing/head/beanie //Default is white, this is meant to be seen
-	name = "white beanie"
-	desc = "A stylish beanie. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their heads."
+	name = "biała czapka zimowa"
+	desc = "Stylowa czapka zimowa. Idealny zimowy dodatek dla osób z wyczuciem mody i dla tych, którzy po prostu nie znoszą zimnego wiatru na głowie."
 	icon_state = "beanie" //Default white
 	custom_price = 10
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/clothing/head/beanie/black
-	name = "black beanie"
+	name = "czarna czapka zimowa"
 	icon_state = "beanie"
 	color = "#4A4A4B" //Grey but it looks black
 
 /obj/item/clothing/head/beanie/red
-	name = "red beanie"
+	name = "czerwona czapka zimowa"
 	icon_state = "beanie"
 	color = "#D91414" //Red
 
 /obj/item/clothing/head/beanie/green
-	name = "green beanie"
+	name = "zielona czapka zimowa"
 	icon_state = "beanie"
 	color = "#5C9E54" //Green
 
 /obj/item/clothing/head/beanie/darkblue
-	name = "dark blue beanie"
+	name = "granatowa czapka zimowa"
 	icon_state = "beanie"
 	color = "#1E85BC" //Blue
 
 /obj/item/clothing/head/beanie/purple
-	name = "purple beanie"
+	name = "fioletowa czapka zimowa"
 	icon_state = "beanie"
 	color = "#9557C5" //purple
 
 /obj/item/clothing/head/beanie/yellow
-	name = "yellow beanie"
+	name = "żółta czapka zimowa"
 	icon_state = "beanie"
 	color = "#E0C14F" //Yellow
 
 /obj/item/clothing/head/beanie/orange
-	name = "orange beanie"
+	name = "pomarańczowa czapka zimowa"
 	icon_state = "beanie"
 	color = "#C67A4B" //orange
 
 /obj/item/clothing/head/beanie/cyan
-	name = "cyan beanie"
+	name = "błękitna czapka zimowa"
 	icon_state = "beanie"
 	color = "#54A3CE" //Cyan (Or close to it)
 
 //Striped Beanies have unique sprites
 
 /obj/item/clothing/head/beanie/christmas
-	name = "christmas beanie"
+	name = "świąteczna czapka zimowa"
 	icon_state = "beaniechristmas"
 
 /obj/item/clothing/head/beanie/striped
-	name = "striped beanie"
+	name = "czapka zimowa w paski"
 	icon_state = "beaniestriped"
 
 /obj/item/clothing/head/beanie/stripedred
-	name = "red striped beanie"
+	name = "czapka zimowa w czerwone paski"
 	icon_state = "beaniestripedred"
 
 /obj/item/clothing/head/beanie/stripedblue
-	name = "blue striped beanie"
+	name = "czapka zimowa w niebieskie paski"
 	icon_state = "beaniestripedblue"
 
 /obj/item/clothing/head/beanie/stripedgreen
-	name = "green striped beanie"
+	name = "czapka zimowa w zielone paski"
 	icon_state = "beaniestripedgreen"
 
 /obj/item/clothing/head/beanie/durathread
-	name = "durathread beanie"
-	desc = "A beanie made from durathread, its resilient fibres provide some protection to the wearer."
+	name = "czapka zimowa z duranici"
+	desc = "Czapka zimowa z duranici. Jej wytrzymałe włókna zapewniają noszącemu pewną ochronę."
 	icon_state = "beaniedurathread"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5, "stamina" = 20, "bleed" = 40)
 
 /obj/item/clothing/head/beanie/waldo
-	name = "red striped bobble hat"
+	name = "czapka z pomponem w czerwone paski"
 	desc = "Jeśli wybierasz się na wędrówkę dookoła świata, przyda ci się ochrona przed zimnem."
 	icon_state = "waldo_hat"
 
 /obj/item/clothing/head/beanie/rasta
-	name = "rastacap"
+	name = "czapka rasta"
 	desc = "Idealna do upchnięcia dredów."
 	icon_state = "beanierasta"

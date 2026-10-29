@@ -7,7 +7,7 @@
 
 /datum/faction
 	var/name = "Faction superclass"
-	var/desc = "Description not set."
+	var/desc = "Brak opisu."
 	var/list/relationships = list() //Dictionary, K=faction reference, V=reputation score with that faction.
 	var/id = null
 	//Presets if you want a faction to start off pre-aligned with another either negatively or positively. It's up to you to make this make sense! You can have a one-directional hatred if you want.
@@ -82,7 +82,7 @@ Set up relationships.
 		if(starsys != current_system && !starsys.hidden && (lowertext(starsys.alignment) == lowertext(src.name) || starsys.alignment == "unaligned" || starsys.alignment == "uncharted")) //Find one of our base systems and try to send a fleet out from there.
 			possible_spawns += starsys
 	if(!possible_spawns.len && !override)
-		message_admins("Failed to spawn a [name] fleet because that faction doesn't own a single system :(")
+		message_admins("Nie udało się stworzyć floty frakcji [name], bo ta frakcja nie ma ani jednego systemu :(")
 		return
 	var/datum/star_system/starsys
 	if(override)
@@ -121,13 +121,13 @@ Set up relationships.
 		if(possible_occupation_targets.len)
 			F.goal_system = pick(possible_occupation_targets)
 
-	message_admins("DEBUG: [src] spawned a [F] in [starsys][F.goal_system ? " heading towards [F.goal_system]" : ""].")
+	message_admins("DEBUG: [src] tworzy flotę [F] w [starsys][F.goal_system ? " z kursem na [F.goal_system]" : ""].")
 	return
 
 //The beginning and the end.
 /datum/faction/nanotrasen
 	name = "Nanotrasen"
-	desc = "Nanotrasen systems is a conglomerate of sub-contractors and other companies."
+	desc = "Nanotrasen Systems to konglomerat podwykonawców i innych firm."
 	preset_allies = list(FACTION_ID_SOLGOV, FACTION_ID_UNATHI)
 	preset_enemies = list(FACTION_ID_SYNDICATE, FACTION_ID_PIRATES)
 	fleet_types = list(/datum/fleet/nanotrasen/light = 1)
@@ -149,7 +149,7 @@ Set up relationships.
 
 /datum/faction/syndicate
 	name = "Syndicate"
-	desc = "The Abassi Syndicate are a collection of former Nanotrasen colonists who rebelled against their 'oppression' and formed their own government."
+	desc = "Syndykat Abassi to zbiorowisko byłych kolonistów Nanotrasen, którzy zbuntowali się przeciw „uciskowi” i utworzyli własny rząd."
 	preset_allies = list(FACTION_ID_PIRATES) //Yar HAR it's me, captain PLASMASALT
 	preset_enemies = list(FACTION_ID_NT)
 	fleet_types = list(/datum/fleet/neutral = 5, /datum/fleet/boarding = 5, /datum/fleet/wolfpack = 5, /datum/fleet/conflagration = 5)
@@ -170,7 +170,7 @@ Set up relationships.
 
 /datum/faction/pirate
 	name = "Tortuga Raiders"
-	desc = "The Tortuga raiders terrorise independent colonies and are widely recognised as 'free birds'."
+	desc = "Rajdowcy z Tortugi terroryzują niezależne kolonie i powszechnie uchodzą za „wolne ptaki”."
 	preset_allies = list(FACTION_ID_SYNDICATE) //Yar HAR it's me, captain PLASMASALT
 	preset_enemies = list(FACTION_ID_NT)
 	fleet_types = list(/datum/fleet/pirate/scout = 1, /datum/fleet/pirate/raiding = 1)
