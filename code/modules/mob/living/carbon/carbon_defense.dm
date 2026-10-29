@@ -83,6 +83,7 @@
 		add_bleeding(I.bleed_force * hit_amount)
 	if(I.force)
 		apply_damage(I.force, I.damtype, affecting)
+		apply_item_stamina_damage(I) // AQ EDIT - port Bee#14750: trafienie przedmiotem zabiera staminę
 		if(I.damtype == BRUTE && (IS_ORGANIC_LIMB(affecting)))
 			if(I.is_sharp() || I.force >= 10)
 				I.add_mob_blood(src)

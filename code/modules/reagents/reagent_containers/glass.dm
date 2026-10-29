@@ -424,7 +424,7 @@
 	..()
 	if(istype(I,/obj/item/pestle))
 		if(grinded)
-			if(user.getStaminaLoss() > 50)
+			if(HAS_TRAIT(user, TRAIT_EXHAUSTED)) // AQ EDIT - port Bee#14750
 				to_chat(user, "<span class='danger'>Jesteś zbyt zmęczony, by pracować!</span>")
 				return
 			to_chat(user, "Zaczynasz ucierać...")
