@@ -53,7 +53,7 @@ Pilot=CPL
 Psychiatra=CRW
 Magik=CRW
 Fryzjer=CRW
-Cywilne=CRW
+Gimmick=CRW
 VIP=VIP
 
 SI Statku=CPU
