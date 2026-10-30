@@ -89,6 +89,17 @@
 	},
 /turf/open/floor/durasteel/techfloor_grid,
 /area/engine/atmospherics_engine)
+"ai" = (
+/obj/structure/lattice/catwalk/over/ship,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 1
+	},
+/obj/machinery/munitions_forge/arc_forge,
+/turf/open/floor/monotile/steel,
+/area/nsv/weapons)
 "aj" = (
 /obj/structure/grille,
 /obj/structure/lattice,
@@ -8870,11 +8881,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"wp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/munitions_forge/arc_forge,
-/turf/open/floor/monotile/dark,
-/area/nsv/weapons)
 "wt" = (
 /turf/open/floor/plasteel/techmaint,
 /area/quartermaster/miningoffice)
@@ -55040,8 +55046,8 @@ DT
 Ft
 fa
 WK
-wp
-CQ
+WK
+ai
 Te
 Eu
 Dy
