@@ -70,7 +70,7 @@
 			else
 				var/switch_index = text2num(href_list["change_lag_switch"])
 				if(!SSlag_switch.set_measure(switch_index, !LAZYACCESS(SSlag_switch.measures, switch_index)))
-					to_chat(usr, span_danger("Nie udało się przełączyć środka przeciw lagom. Szczegóły w runtime'ach."), confidential = TRUE)
+					to_chat(usr, span_danger("Nie udało się przełączyć środka przeciw lagom. Szczegóły w runtime'ach."))
 				else
 					log_admin("[key_name(usr)] turned a Lag Switch measure at index ([switch_index]) [LAZYACCESS(SSlag_switch.measures, switch_index) ? "ON" : "OFF"]")
 					message_admins("[key_name_admin(usr)] [LAZYACCESS(SSlag_switch.measures, switch_index) ? "włączył" : "wyłączył"] środek przeciw lagom nr [switch_index].")
@@ -173,7 +173,6 @@
 	return ..()
 
 /datum/component/footstep/play_footstep()
-	SIGNAL_HANDLER
 	if(SSlag_switch.measures[DISABLE_FOOTSTEPS] && !HAS_TRAIT(parent, TRAIT_BYPASS_MEASURES))
 		return
 	return ..()
