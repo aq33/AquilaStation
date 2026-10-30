@@ -467,6 +467,26 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (6, 5);
 
 
 
+-- Dumping structure for table ss13tgdb.SS13_ticket
+DROP TABLE IF EXISTS `SS13_ticket`;
+CREATE TABLE IF NOT EXISTS `SS13_ticket` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`server_ip` INT(10) UNSIGNED NOT NULL,
+	`server_port` SMALLINT(5) UNSIGNED NOT NULL,
+	`round_id` INT(11) UNSIGNED NULL,
+	`ticket` SMALLINT(11) UNSIGNED NOT NULL,
+	`action` VARCHAR(20) NOT NULL DEFAULT 'Message',
+	`message` TEXT NOT NULL,
+	`timestamp` DATETIME NOT NULL,
+	`recipient` VARCHAR(32) DEFAULT NULL,
+	`sender` VARCHAR(32) DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	KEY `idx_ticket_act_recip` (`action`, `recipient`),
+	KEY `idx_ticket_act_send` (`action`, `sender`),
+	KEY `idx_ticket_tic_rid` (`ticket`, `round_id`),
+	KEY `idx_ticket_act_time_rid` (`action`, `timestamp`, `round_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Dumping structure for table ss13tgdb.SS13_stickyban
 DROP TABLE IF EXISTS `SS13_stickyban`;
 CREATE TABLE IF NOT EXISTS `SS13_stickyban` (

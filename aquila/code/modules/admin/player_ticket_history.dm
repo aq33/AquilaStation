@@ -46,6 +46,10 @@ GLOBAL_PROTECT(player_ticket_history)
 		return
 	entries = min(entries, 20)
 
+	if(!ticket_db_ready())
+		to_chat(usr, span_adminnotice("Brak tabeli ticketów w bazie i nie udało się jej utworzyć (sprawdź uprawnienie CREATE użytkownika bazy)."))
+		return
+
 	var/list/datum/ticket_history/history_cache = list()
 	ticket_histories[ckey] = history_cache
 
