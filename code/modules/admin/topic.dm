@@ -1685,7 +1685,7 @@
 			if(response.body == "[]")
 				dat += "<center><b>Wykryte bany dla [ckey]: 0</b></center>"
 			else
-				bans = json_decode(response["body"])
+				bans = json_decode(response.body) // AQ EDIT - response to datum, nie lista (runtime przy każdym graczu z banami)
 				dat += "<center><b>Wykryte bany dla [ckey]: [bans.len]</b></center>"
 				for(var/list/ban in bans)
 					dat += "<b>Serwer: </b> [sanitize(ban["sourceName"])]<br>"
