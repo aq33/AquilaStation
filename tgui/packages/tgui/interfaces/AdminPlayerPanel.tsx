@@ -344,6 +344,14 @@ export const AdminPlayerPanel = (props) => {
             )}
             <Button onClick={() => act('adminplayerobservefollow')}>FLW</Button>
             <Button onClick={() => act('logs')}>LOGI</Button>
+            {!!data.ckey && !!data.centcom_db && (
+              <Button
+                tooltip="Bany gracza na innych serwerach (baza CentCom)"
+                onClick={() => act('centcomlookup')}
+              >
+                CentCom
+              </Button>
+            )}
           </Stack>
         </Section>
         {!!data.has_client && <ClientSection />}
