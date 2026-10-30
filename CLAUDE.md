@@ -71,3 +71,6 @@ Napisz:
 - Raporty zapisuj partiami poza repo (nie commituj ich).
 ## Błędy, których nie powtarzamy
 (Dopisuj tu wnioski, np. „Nie używaj X, bo u nas psuje Y”.)
+- Linki w HTML (`href`, `action`) zaczynaj od `byond://` (np. `byond://?_src_=holder;...`). Kod portowany ze starszego tg ma `?_src_=` i CI (`check_grep.sh`) go odrzuca.
+- `/datum/http_response` czytaj przez `response.body`, nie `response["body"]` (runtime).
+- W nadpisaniu procki nie powtarzaj `SIGNAL_HANDLER` ani `SHOULD_NOT_SLEEP` (dreamchecker: tylko w pierwszej definicji). `to_chat()` nie ma u nas argumentu `confidential`.

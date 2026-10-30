@@ -155,4 +155,6 @@ VERB_MANAGER_SUBSYSTEM_DEF(input)
 	for(var/mob/user as anything in GLOB.player_list)
 		var/client/C = user?.client
 		if(C) // AQ EDIT - mob bywa jeszcze w player_list po zniknięciu klienta
+			if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP] && user.stat == DEAD && !C.holder) // AQ EDIT - lag switch: duchy bez swobodnego latania
+				continue
 			user.focus?.keyLoop(C)

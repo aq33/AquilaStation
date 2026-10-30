@@ -630,3 +630,6 @@ GHOST_ROLE_COOLDOWN 3000
 
 ## Once a typepath causes overrun from hard deletes this many times, stop hard deleting it on garbage collection failures. (set to 0 to disable)
 #HARD_DELETES_OVERRUN_LIMIT 0
+
+## Uncomment to allow drastic performance enhancement measures (lag switches) to turn on automatically once there are equal or more clients than the configured amount (will also show admin warning with a 20 second veto window)
+#AUTO_LAG_SWITCH_POP 75

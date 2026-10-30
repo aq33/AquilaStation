@@ -834,6 +834,12 @@
   - bugfix: Przyciski stanu w konsoli akt medycznych znów mają ikony, a przyciski
       nad danymi medycznymi nie nachodzą na ramkę.
 '2026-10-30':
-  sh4dow321:
-  - bugfix: Przycisk „Baza banów CentCom” w panelu gracza działa dla graczy z banami
-      na innych serwerach i dla graczy rozłączonych.
+  ZephyrTFA, Wayland-Smithy, Mothblocks:
+  - admin: Dodano historię ticketów gracza (verb Player Ticket History i przycisk
+      HIST w oknie ticketu).
+  - admin: 'Dodano panel Show Lag Switches ze środkami przeciw lagom: blokada latania
+      duchów, zoomu i t-raya, slowmode mowy, wyłączanie runechatu, ikon w examine,
+      parallaxu i kroków.'
+  - config: Nowa opcja AUTO_LAG_SWITCH_POP włącza część środków przeciw lagom automatycznie
+      od podanej liczby graczy.
+  - bugfix: Obwody wiremod nasłuchujące połączenia klienta znowu dostają ten sygnał.
