@@ -12,6 +12,12 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
 	var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK)
 
+	// AQ EDIT START - chirurgia tg przed tool_act (aquila/code/modules/surgery_tg/surgery_bridge.dm)
+	var/mob/living/living_user = user
+	if(istype(living_user) && living_user.try_tg_surgery(target, src, is_right_clicking))
+		return TRUE
+	// AQ EDIT END
+
 	if(tool_attack_chain(user, target, is_right_clicking))
 		return TRUE
 

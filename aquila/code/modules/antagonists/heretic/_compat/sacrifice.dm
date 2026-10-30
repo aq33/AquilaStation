@@ -166,14 +166,8 @@
 /datum/element/relay_attackers/proc/relay_attacker(atom/victim, atom/attacker, attack_flags, direction)
 	SEND_SIGNAL(victim, COMSIG_ATOM_WAS_ATTACKED, attacker, attack_flags, direction)
 
-// Sygnały COMSIG_ORGAN_IMPLANTED/REMOVED wysyła aquila/code/game/machinery/dna_infuser/_compat.dm
-
-/// tg: COMSIG_ORGAN_SURGICALLY_REMOVED wysyłany po wycięciu organu operacją
-/datum/surgery_step/manipulate_organs/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	var/obj/item/organ/extracting = (current_type == "extract" && I?.owner == target) ? I : null
-	. = ..()
-	if(extracting && !QDELETED(extracting) && extracting.owner != target)
-		SEND_SIGNAL(extracting, COMSIG_ORGAN_SURGICALLY_REMOVED, user, target, target_zone, tool)
+// Sygnały COMSIG_ORGAN_IMPLANTED/REMOVED wysyła aquila/code/game/machinery/dna_infuser/_compat.dm,
+// COMSIG_ORGAN_SURGICALLY_REMOVED operacja wyjęcia organu (aquila/code/modules/surgery_tg/operation_organ_manip.dm)
 
 // noticable_organ (tg) jest w aquila/code/game/machinery/dna_infuser/_compat.dm
 

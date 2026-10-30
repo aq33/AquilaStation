@@ -11,11 +11,8 @@ import {
 import { capitalizeFirst } from 'tgui-core/string';
 
 import { useBackend, useSharedState } from '../../backend';
-import {
-  type CatalogSurgery,
-  formatTools,
-  type OperatingComputerData,
-} from './types';
+import { extractRequirementMap, formatTools, recommendedTool } from './helpers';
+import type { CatalogOperation, OperatingComputerData } from './types';
 
 type SortType = 'default' | 'name' | 'tool';
 
@@ -51,59 +48,8 @@ export const SurgeryRequirementsInner = (
   );
 };
 
-/** Wymagania operacji z danych katalogu */
-const extractRequirements = (
-  surgery: CatalogSurgery,
-  unlocked: boolean,
-): Record<string, string[]> => {
-  const required: string[] = [];
-  const optional: string[] = [];
-  if (surgery.locations.length) {
-    required.push(`miejsce: ${surgery.locations.join(', ')}`);
-  }
-  if (surgery.targets.length) {
-    required.push(`pacjent: ${surgery.targets.join(', ')}`);
-  }
-  if (surgery.missingLimb) {
-    required.push('brak kończyny w tym miejscu');
-  } else if (surgery.bodypart !== 'dowolna') {
-    required.push(`część ciała: ${surgery.bodypart}`);
-  }
-  if (surgery.lying) {
-    required.push('pacjent musi leżeć');
-  }
-  if (surgery.condition) {
-    required.push(surgery.condition);
-  }
-  if (surgery.requiresTech) {
-    required.push(
-      unlocked
-        ? 'technologia z badań (zsynchronizowana)'
-        : 'technologia z badań - zsynchronizuj bazę danych',
-    );
-  }
-  if (surgery.ignoreClothes) {
-    optional.push('można operować przez ubranie');
-  }
-  if (surgery.selfOperable) {
-    optional.push('można operować samego siebie');
-  }
-  return {
-    'Wymagane:': required,
-    'Dodatkowo:': optional,
-    'Zastąpiona przez:': surgery.replacedBy ? [surgery.replacedBy] : [],
-  };
-};
-
-/** Narzędzie pierwszego kroku - podpowiedź jak w tg */
-const firstTool = (surgery: CatalogSurgery) =>
-  formatTools(surgery.steps[0]?.tools?.slice(0, 1));
-
-const isMechanic = (surgery: CatalogSurgery) =>
-  surgery.bodypart === 'robotyczna';
-
 type SurgeryProceduresViewProps = {
-  searchedSurgeries: CatalogSurgery[];
+  searchedSurgeries: CatalogOperation[];
   searchText: string;
   setSearchText: (text: string) => void;
   pinnedOperations: string[];
@@ -128,12 +74,11 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
     'catalog_filter',
     false,
   );
-  const unlockedIds = surgeries.map((surgery) => surgery.id);
 
   const rawSurgeryList = searchText ? searchedSurgeries : surgery_catalog;
 
   const surgeryList = rawSurgeryList
-    .filter((surgery) => !filterRobotic || !isMechanic(surgery))
+    .filter((surgery) => !filterRobotic || !surgery.mechanic)
     .filter(
       (surgery, index, self) =>
         index === self.findIndex((s) => s.id === surgery.id),
@@ -142,7 +87,9 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
   if (sortType === 'name') {
     surgeryList.sort((a, b) => (a.name > b.name ? 1 : -1));
   } else if (sortType === 'tool') {
-    surgeryList.sort((a, b) => (firstTool(a) > firstTool(b) ? 1 : -1));
+    surgeryList.sort((a, b) =>
+      recommendedTool(a) > recommendedTool(b) ? 1 : -1,
+    );
   }
 
   if (pinnedOperations.length > 0) {
@@ -203,8 +150,7 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
     >
       {surgeryList.map((surgery) => {
         const pinned = pinnedOperations.includes(surgery.id);
-        const unlocked =
-          !surgery.requiresTech || unlockedIds.includes(surgery.id);
+        const unlocked = !surgery.locked || surgeries.includes(surgery.id);
 
         return (
           <Stack vertical key={surgery.id} pb={2}>
@@ -230,14 +176,14 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
                 </Stack.Item>
                 {!unlocked && (
                   <Stack.Item color="average">
-                    <Tooltip content="Wymaga technologii z badań - zsynchronizuj bazę">
+                    <Tooltip content="Wymaga dysku z operacją albo technologii z badań - wczytaj dysk albo zsynchronizuj bazę">
                       <Icon name="lock" />
                     </Tooltip>
                   </Stack.Item>
                 )}
                 <Stack.Item grow />
                 <Stack.Item italic textAlign="right" fontSize="0.9rem">
-                  {firstTool(surgery)}
+                  {recommendedTool(surgery)}
                 </Stack.Item>
               </Stack>
             </Stack.Item>
@@ -254,46 +200,9 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
                 color="label"
               >
                 <Stack vertical>
-                  {!!surgery.desc && (
-                    <Stack.Item bold>{surgery.desc}</Stack.Item>
-                  )}
-                  <Stack.Item>
-                    <Collapsible title="Kroki" open={pinned}>
-                      <Stack
-                        pl={1}
-                        ml={0.5}
-                        style={{
-                          borderStyle: 'dashed',
-                          borderBottom: '0',
-                          borderRight: '0',
-                          borderTop: '0',
-                          borderWidth: '2px',
-                          flexDirection: 'column',
-                        }}
-                      >
-                        {surgery.steps.map((step, i) => (
-                          <Stack.Item key={i}>
-                            <Box>
-                              {`${i + 1}. ${step.name}`}
-                              {step.repeatable && ' (powtarzalny)'}
-                              <Box as="span" italic ml={1} fontSize="0.9rem">
-                                {`${step.time} s`}
-                              </Box>
-                            </Box>
-                            {step.tools.length > 0 && (
-                              <Box italic fontSize="0.9rem" ml={1}>
-                                {formatTools(step.tools)}
-                              </Box>
-                            )}
-                            {step.chems.length > 0 && (
-                              <Box fontSize="0.9rem" ml={1}>
-                                {`Chemikalia (${step.allChems ? 'wszystkie' : 'jedno z'}): ${step.chems.join(', ')}`}
-                              </Box>
-                            )}
-                          </Stack.Item>
-                        ))}
-                      </Stack>
-                    </Collapsible>
+                  <Stack.Item bold>{surgery.desc}</Stack.Item>
+                  <Stack.Item italic fontSize="0.9rem">
+                    {`${surgery.time} s${surgery.looping ? ', powtarza się' : ''} · ${formatTools(surgery.tools)}`}
                   </Stack.Item>
                   <Stack.Item>
                     <Collapsible title="Wymagania" open={pinned}>
@@ -309,16 +218,23 @@ export const SurgeryProceduresView = (props: SurgeryProceduresViewProps) => {
                           flexDirection: 'column',
                         }}
                       >
-                        {Object.entries(
-                          extractRequirements(surgery, unlocked),
-                        ).map(([cat_text, cat_contents], i) =>
-                          cat_contents.length > 0 ? (
-                            <SurgeryRequirementsInner
-                              key={i}
-                              cat_text={cat_text}
-                              cat_contents={cat_contents}
-                            />
-                          ) : null,
+                        {Object.entries(extractRequirementMap(surgery)).map(
+                          ([cat_text, cat_contents], i) =>
+                            cat_contents.length > 0 ? (
+                              <SurgeryRequirementsInner
+                                key={i}
+                                cat_text={cat_text}
+                                cat_contents={cat_contents}
+                              />
+                            ) : null,
+                        )}
+                        {!unlocked && (
+                          <SurgeryRequirementsInner
+                            cat_text="Odblokowanie:"
+                            cat_contents={[
+                              'dysk z operacją albo technologia z badań (zsynchronizuj bazę)',
+                            ]}
+                          />
                         )}
                       </Stack>
                     </Collapsible>

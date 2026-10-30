@@ -240,7 +240,7 @@
 //NSV13 - Surgery-Initiation Componentizes - Start
 /obj/item/surgical_drapes/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/surgery_initiator, null)
+	AddElement(/datum/element/surgery_aid, "serwety") // AQ EDIT - przygotowanie do operacji z tg (aquila/code/modules/surgery_tg/surgery_prepped.dm)
 //NSV13 - Surgery-Initiation Componentizes - Stop
 
 /obj/item/organ_storage //allows medical cyborgs to manipulate organs without hands

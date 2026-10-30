@@ -29,7 +29,7 @@
 //NSV13 - Surgery-Initiation Componentizes - Start
 /obj/item/bedsheet/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/surgery_initiator, null)
+	AddElement(/datum/element/surgery_aid, "prześcieradło") // AQ EDIT - przygotowanie do operacji z tg (aquila/code/modules/surgery_tg/surgery_prepped.dm)
 //NSV13 - Surgery-Initiation Componentizes - Stop
 
 /obj/item/bedsheet/attack_self(mob/user)

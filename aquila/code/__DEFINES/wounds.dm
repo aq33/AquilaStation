@@ -10,7 +10,6 @@
 
 /// Hits weaker than this never roll for a wound
 #define WOUND_MINIMUM_DAMAGE 5
-/// Raise to make wounds rarer, every threshold is multiplied by it
-#define WOUND_THRESHOLD_MULTIPLIER 1.2
-/// How much a fully damaged limb adds to the roll
-#define WOUND_DAMAGED_LIMB_BONUS 15
+
+/// Bonesetter from tgstation, best tool for setting a fracture in surgery
+#define TOOL_BONESET "bonesetter"

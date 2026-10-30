@@ -78,23 +78,38 @@
 			found_bleeding = TRUE
 	TEST_ASSERT(found_bleeding, "Bleeding is missing")
 
-/// AQUILA - the advanced analyzer tells the next surgery step and its tools
+/// AQUILA - the advanced analyzer and vitals monitor show the surgical state of operated zones and what can be done next
 /datum/unit_test/aquila_surgery_progress
 
 /datum/unit_test/aquila_surgery_progress/Run()
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
-	var/datum/surgery/surgery = new /datum/surgery/organ_manipulation(patient, BODY_ZONE_CHEST, patient.get_bodypart(BODY_ZONE_CHEST))
+	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
+	patient.set_resting(TRUE)
+	TEST_ASSERT(!length(patient.get_surgery_progress()), "A patient without surgery shows an operated zone")
+
+	patient.toggle_surgery_prep(doctor, BODY_ZONE_CHEST)
+	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
+	chest.add_surgical_state(SURGERY_SKIN_CUT)
 	var/list/progress = patient.get_surgery_progress()
-	TEST_ASSERT(length(progress) == 1, "The ongoing surgery is missing")
+	TEST_ASSERT(length(progress) == 1, "The operated chest is missing: [length(progress)] zones")
 	var/list/entry = progress[1]
-	TEST_ASSERT(entry["step"] == "nacięcie" && findtext(entry["tools"], "skalpel"), "Wrong first step: [entry["step"]] / [entry["tools"]]")
-	surgery.status = 3
+	TEST_ASSERT(entry["zone"] == strefa_pl(BODY_ZONE_CHEST), "Wrong zone: [entry["zone"]]")
+	TEST_ASSERT("Skóra nacięta" in entry["state"], "The cut skin is missing from the state: [jointext(entry["state"], ", ")]")
+	var/retract_name = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/retract_skin].name
+	TEST_ASSERT(retract_name in entry["next"], "Retracting the skin is not offered next: [jointext(entry["next"], ", ")]")
+
+	// the ongoing operation is shown while it lasts
+	var/datum/surgery_operation/retract = GLOB.operations.operations_by_typepath[/datum/surgery_operation/limb/retract_skin]
+	LAZYSET(patient.ongoing_operations, BODY_ZONE_CHEST, retract)
 	entry = patient.get_surgery_progress()[1]
-	TEST_ASSERT(entry["step"] == "piłowanie kości", "Wrong third step: [entry["step"]]")
+	TEST_ASSERT(entry["operation"] == capitalize(retract.name), "The ongoing operation is missing: [entry["operation"]]")
+	LAZYREMOVE(patient.ongoing_operations, BODY_ZONE_CHEST)
+
 	var/list/data = get_health_analyzer_data(patient, patient, TRUE)
-	TEST_ASSERT(length(data["surgeries"]) == 1, "The advanced analyzer window does not show the surgery")
+	TEST_ASSERT(length(data["surgeries"]) == 1, "The advanced analyzer window does not show the operated zone")
 	TEST_ASSERT(isnull(get_health_analyzer_data(patient, patient, FALSE)["surgeries"]), "The basic analyzer shows the surgery")
-	qdel(surgery)
+	TEST_ASSERT(findtext(healthscan(doctor, patient, advanced = TRUE, tochat = FALSE), "Operacja ("), "The advanced scan (vitals monitor) does not show the surgery")
+	TEST_ASSERT(!findtext(healthscan(doctor, patient, advanced = FALSE, tochat = FALSE), "Operacja ("), "The basic scan shows the surgery")
 
 /// AQUILA - vitals monitors mapped over stasis beds are connected to their own bed
 /datum/unit_test/aquila_mapped_vitals_monitors

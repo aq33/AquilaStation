@@ -11,8 +11,7 @@
 #define TRAIT_ADVANCEDTOOLUSER "advancedtooluser"
 /// Umie zwinąć pajęczynę w tkaninę (mutacja Webbing Production)
 #define TRAIT_WEB_WEAVER "web_weaver"
-/// Nie czuje bólu. U nas nie ma systemu bólu, więc na razie tylko znacznik (razem z TRAIT_IGNOREDAMAGESLOWDOWN)
-#define TRAIT_ANALGESIA "analgesia"
+// TRAIT_ANALGESIA jest w aquila/code/__DEFINES/surgery_tg.dm (chirurgia czyta go wcześniej niż ten plik)
 
 /// Sekundy na jedno wywołanie on_life() mutacji (tick Life to 2 s)
 #define TGMUT_LIFE_SECONDS 2

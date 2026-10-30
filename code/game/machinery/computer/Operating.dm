@@ -73,15 +73,7 @@
 
 /obj/machinery/computer/operating/ui_data(mob/user)
 	var/list/data = list()
-	var/list/surgeries = list()
-	for(var/X in advanced_surgeries)
-		var/datum/surgery/S = X
-		var/list/surgery = list()
-		surgery["id"] = "[S]" // AQUILA - do oznaczenia w katalogu operacji
-		surgery["name"] = initial(S.name)
-		surgery["desc"] = initial(S.desc)
-		surgeries += list(surgery)
-	data["surgeries"] = surgeries
+	data["surgeries"] = get_loaded_operation_ids() // AQ EDIT - nowa chirurgia: typy operacji z dysków i badań (aquila/code/game/machinery/computer/operating_computer.dm)
 
 	//If there's no patient just hop to it yeah?
 	if(!table && !sbed)
@@ -133,33 +125,7 @@
 	if(!((NOBLOOD in patient.dna?.species?.species_traits) || HAS_TRAIT(patient, TRAIT_NO_BLOOD)))
 		data["patient"]["blood_level"] = patient.blood_volume
 		data["patient"]["standard_blood_level"] = BLOOD_VOLUME_NORMAL
-	data["procedures"] = list()
-	if(patient.surgeries.len)
-		for(var/datum/surgery/procedure in patient.surgeries)
-			var/datum/surgery_step/surgery_step = procedure.get_surgery_step()
-			var/chems_needed = surgery_step.get_chem_list()
-			var/alternative_step
-			var/alt_chems_needed = ""
-			var/list/alt_tools // AQUILA - narzędzia kroku alternatywnego
-			if(surgery_step.repeatable)
-				var/datum/surgery_step/next_step = procedure.get_surgery_next_step()
-				if(next_step)
-					alternative_step = capitalize(next_step.name)
-					alt_chems_needed = next_step.get_chem_list()
-					alt_tools = surgery_catalog_step(next_step)["tools"]
-				else
-					alternative_step = "Zakończ operację"
-			data["procedures"] += list(list(
-				"name" = capitalize("[parse_zone(procedure.location)] [procedure.name]"),
-				"next_step" = capitalize(surgery_step.name),
-				"chems_needed" = chems_needed,
-				"alternative_step" = alternative_step,
-				"alt_chems_needed" = alt_chems_needed,
-				// AQUILA - narzędzia do kroków (z katalogu operacji)
-				"next_tools" = surgery_catalog_step(surgery_step)["tools"],
-				"surgery_name" = capitalize(procedure.name),
-				"alt_tools" = alt_tools,
-			))
+	add_patient_surgery_data(data, patient) // AQ EDIT - nowa chirurgia: stan chirurgiczny strefy i operacje dostępne dalej
 	return data
 
 // AQUILA - pełny katalog operacji z krokami i narzędziami (okno z tg)

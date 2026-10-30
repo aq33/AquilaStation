@@ -1,33 +1,23 @@
+import type { BodyZone } from '../common/BodyZoneSelector';
+
 export type SurgeryTool = {
   name: string;
   speed: number;
 };
 
-export type SurgeryStep = {
-  name: string;
-  tools: SurgeryTool[];
-  time: number;
-  repeatable: boolean;
-  chems: string[];
-  allChems: boolean;
-};
-
-/** Pozycja z katalogu operacji (aquila/code/modules/surgery/surgery_catalog.dm) */
-export type CatalogSurgery = {
+/** Operacja z katalogu (aquila/code/modules/surgery/surgery_catalog.dm) */
+export type CatalogOperation = {
   id: string;
   name: string;
-  desc: string | null;
-  locations: string[];
-  targets: string[];
-  bodypart: string;
-  missingLimb: boolean;
-  requiresTech: boolean;
-  replacedBy: string | null;
-  condition: string | null;
-  lying: boolean;
-  selfOperable: boolean;
-  ignoreClothes: boolean;
-  steps: SurgeryStep[];
+  desc: string;
+  tools: SurgeryTool[];
+  /** Wymagane wszystkie, wymagane jedno z, opcjonalne, blokujące */
+  requirements: string[][];
+  time: number;
+  locked: boolean;
+  mechanic: boolean;
+  priority: boolean;
+  looping: boolean;
 };
 
 export type PatientData = {
@@ -43,33 +33,21 @@ export type PatientData = {
   oxyLoss: number;
   blood_level?: number;
   standard_blood_level?: number;
-};
-
-export type Procedure = {
-  name: string;
-  surgery_name?: string;
-  next_step: string;
-  chems_needed: string;
-  alternative_step?: string;
-  alt_chems_needed?: string;
-  next_tools?: SurgeryTool[];
-  alt_tools?: SurgeryTool[];
-};
-
-/** Operacje zaawansowane zsynchronizowane z bazą badań */
-export type AdvancedSurgery = {
-  id: string;
-  name: string;
-  desc: string;
+  surgery_state?: string[];
+  prepped?: boolean;
+  ongoing?: string | null;
 };
 
 export type OperatingComputerData = {
   table?: unknown;
   patient?: PatientData | null;
-  procedures?: Procedure[];
-  surgeries: AdvancedSurgery[];
+  target_zone?: BodyZone;
+  /** Typy operacji możliwych dalej w wybranej strefie */
+  next_operations?: string[];
+  /** Typy zablokowanych operacji wczytanych z dysków i badań */
+  surgeries: string[];
   // static
-  surgery_catalog: CatalogSurgery[];
+  surgery_catalog: CatalogOperation[];
 };
 
 export type damageType = {
@@ -106,12 +84,3 @@ export enum ComputerTabs {
   PatientState = 1,
   OperationCatalog = 2,
 }
-
-/** „skalpel / nóż (55%)” - narzędzia kroku, najlepsze pierwsze */
-export const formatTools = (tools: SurgeryTool[] = []) =>
-  [...tools]
-    .sort((a, b) => b.speed - a.speed)
-    .map((tool) =>
-      tool.speed >= 100 ? tool.name : `${tool.name} (${tool.speed}%)`,
-    )
-    .join(' / ');

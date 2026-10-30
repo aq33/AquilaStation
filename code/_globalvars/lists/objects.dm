@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(uploads_list)						//list of all silicon uploads
 GLOBAL_LIST(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 GLOBAL_LIST(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 GLOBAL_LIST_EMPTY(tech_list)					//list of all /datum/tech datums indexed by id.
-GLOBAL_LIST_EMPTY(surgeries_list)				//list of all surgeries by name, associated with their path.
+// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/: usunięte GLOB.surgeries_list
 GLOBAL_LIST_EMPTY(crafting_recipes)				//list of all table craft recipes
 GLOBAL_LIST_EMPTY(rcd_list)					//list of Rapid Construction Devices.
 GLOBAL_LIST_EMPTY(apcs_list)					//list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.
