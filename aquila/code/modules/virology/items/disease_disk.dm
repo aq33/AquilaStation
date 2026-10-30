@@ -1,0 +1,19 @@
+/obj/item/disk/disease
+	name = "blank GNA disk"
+	desc = "A disk for storing the structure of a pathogen's Glycol Nucleic Acid pertaining to a specific symptom."
+	var/datum/symptom/acute/effect = null
+	var/stage = 1
+	var/analyzed = FALSE
+
+/obj/item/disk/disease/premade
+
+/obj/item/disk/disease/premade/Initialize(mapload)
+	. = ..()
+	name = "blank GNA disk (stage: [stage])"
+	effect = new /datum/symptom/acute
+
+/obj/item/disk/disease/update_desc(updates)
+	. = ..()
+	desc = "[initial(desc)]\n"
+	desc += "Strength: [effect.multiplier]\n"
+	desc += "Occurrence: [effect.chance]"

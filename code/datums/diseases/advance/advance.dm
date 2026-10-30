@@ -33,7 +33,7 @@
 	var/transmission
 	var/severity
 	var/speed
-	var/list/symptoms = list() // The symptoms of the disease.
+	// AQ EDIT - var/list/symptoms przeniesione na /datum/disease (aquila/code/modules/virology/disease/base_disease_folder/_base.dm), bo disease2 też go używa
 	var/id = ""
 	var/processing = FALSE
 	var/mutable = TRUE //set to FALSE to prevent most in-game methods of altering the disease via virology

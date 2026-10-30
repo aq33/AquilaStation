@@ -1,0 +1,21 @@
+/datum/symptom/acute/hair
+	name = "Hair Loss"
+	desc = "Causes rapid hairloss in the infected."
+	stage = 2
+	badness = EFFECT_DANGER_FLAVOR
+	severity = 1
+	multiplier = 1
+	max_multiplier = 5
+
+/datum/symptom/acute/hair/activate(mob/living/mob)
+	if(ishuman(mob))
+		var/mob/living/carbon/human/victim = mob
+		if(victim.hair_style != "Bald")
+			if (victim.hair_style != "Balding Hair")
+				to_chat(victim, span_danger("Your hair starts to fall out in clumps..."))
+				if (prob(multiplier * power * 20))
+					victim.hair_style = "Balding Hair"
+			else
+				to_chat(victim, span_danger("You have almost no hair left..."))
+				if (prob(multiplier * power * 20))
+					victim.hair_style = "Bald"

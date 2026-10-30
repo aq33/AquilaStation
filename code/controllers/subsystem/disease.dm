@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(disease)
 	var/list/diseases
 	var/list/archive_diseases = list()
 
-	var/static/list/list_symptoms = subtypesof(/datum/symptom)
+	var/static/list/list_symptoms = subtypesof(/datum/symptom) - typesof(/datum/symptom/acute) // AQ EDIT - symptomy disease2 (aquila/code/modules/virology) nie należą do advance
 
 /datum/controller/subsystem/disease/PreInit()
 	if(!diseases)

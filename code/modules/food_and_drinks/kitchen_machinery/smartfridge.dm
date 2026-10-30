@@ -568,7 +568,7 @@
 
 /obj/machinery/smartfridge/chemistry/virology/preloaded/debug/Initialize(mapload)
 	. = ..()
-	for(var/symptom in subtypesof(/datum/symptom))
+	for(var/symptom in SSdisease.list_symptoms) // AQ EDIT - bez symptomów disease2
 		var/datum/symptom/S = new symptom
 		var/datum/disease/advance/symptomholder = new
 		symptomholder.name = S.name
