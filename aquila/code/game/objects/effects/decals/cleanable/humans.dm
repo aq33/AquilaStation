@@ -30,6 +30,11 @@
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range, speed = 1)
 	for(var/i in 1 to range)
+		var/turf/next = get_step_towards(src, T)
+		if(!next || next == loc)
+			break
+		if(hit_obstacle(next))
+			return
 		step_towards(src,T)
 		sleep(speed)
 		if(QDELETED(src))
@@ -60,26 +65,26 @@
 			break
 	qdel(src)
 
-/obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	if(istype(A, /obj/structure/window) && land_on_window(A))
-		skip = TRUE
-		qdel(src)
-		return
-	if(istype(A, /turf/closed/wall))
-		if(istype(prev_loc))
-			loc = A
+/// The splatter isn't dense, so it would fly through walls: stop before a wall or a full window and stain it
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/hit_obstacle(turf/next)
+	var/hit_dir = get_dir(loc, next)
+	for(var/obj/structure/window/window in next)
+		if(window.fulltile && land_on_window(window))
 			skip = TRUE
-			var/mob/living/carbon/human/H = blood_source
-			if(istype(H))
-				var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
-				if(istype(B))
-					B.add_mob_blood(H) // kolor krwi gatunku
-					B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
-					B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
-		else
-			loc = A
-			QDEL_IN(src, 3)
+			qdel(src)
+			return TRUE
+	if(!isclosedturf(next))
+		return FALSE
+	skip = TRUE
+	if(!QDELETED(blood_source) && isturf(loc))
+		var/obj/effect/decal/cleanable/blood/splatter/on_wall/stain = new(loc)
+		if(!QDELETED(stain))
+			stain.add_mob_blood(blood_source)
+			stain.pixel_x = (hit_dir & EAST) ? 32 : ((hit_dir & WEST) ? -32 : 0)
+			stain.pixel_y = (hit_dir & NORTH) ? 32 : ((hit_dir & SOUTH) ? -32 : 0)
+			playsound(loc, 'aquila/sound/effects/splatter.ogg', 40, TRUE, -1)
 	qdel(src)
+	return TRUE
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
 	if(istype(loc, /turf) && !skip && !QDELETED(blood_source))

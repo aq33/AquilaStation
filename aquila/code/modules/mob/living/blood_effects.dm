@@ -80,6 +80,13 @@
 	is_slippery = FALSE
 	leaves_trace = FALSE
 
+/// Blood that hit a wall: lies on the floor next to it, shifted onto the wall and drawn above it
+/obj/effect/decal/cleanable/blood/splatter/on_wall
+	name = "krew na ścianie"
+	layer = ABOVE_WINDOW_LAYER
+	alpha = 200
+	is_slippery = FALSE
+
 /// Returns TRUE if the splatter stuck to the window
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/land_on_window(obj/structure/window/window)
 	if(!window.fulltile || QDELETED(blood_source))

@@ -22,16 +22,6 @@
 	category = list("initial", "Medical", "Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
-/datum/design/blood_scanner
-	name = "Hemoanalytic Scanner"
-	desc = "Skaner, który igłą bada grupę krwi, niedotlenienie, ilość krwi i toksyny."
-	id = "blood_scanner"
-	build_type = PROTOLATHE
-	materials = list(/datum/material/iron = 400, /datum/material/glass = 100)
-	build_path = /obj/item/blood_scanner
-	category = list("initial", "Medical", "Tool Designs")
-	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
-
 /datum/design/stasis_bodybag
 	name = "Stasis Body Bag"
 	desc = "Jednorazowy worek, który utrzymuje pacjenta w stazie. Sam worek nie wytrzyma długo i w końcu się rozpadnie."
@@ -44,7 +34,7 @@
 
 /datum/techweb_node/basic_tools/New()
 	. = ..()
-	design_ids += list("bonesetter", "surgical_tape", "blood_scanner")
+	design_ids += list("bonesetter", "surgical_tape")
 
 /datum/techweb_node/biotech/New()
 	. = ..()
@@ -59,7 +49,6 @@
 /obj/machinery/vending/medical/Initialize(mapload)
 	products[/obj/item/stack/medical/bone_gel] = 4
 	products[/obj/item/stack/sticky_tape/surgical] = 3
-	products[/obj/item/blood_scanner] = 2
 	return ..()
 
 /obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()

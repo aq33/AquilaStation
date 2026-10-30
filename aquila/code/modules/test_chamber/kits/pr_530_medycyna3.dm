@@ -31,7 +31,7 @@
 	description = "Pacjent ma ranę postrzałową na prawej ręce, złamanie otwarte na lewej nodze i przebite oko. Rana kłuta: kauter albo zapalniczka (na kimś trzeba go chwycić agresywnie) obniża ją o stopień. \
 	Złamanie: żel kostny, potem taśma chirurgiczna; analizator pokazuje postęp zrastania. Po wyleczeniu poważnej rany zostaje blizna widoczna przy oglądaniu. \
 	Strzelaj z pistoletu w manekina z bliska: krople krwi, smugi, rany kłute, kula czasem zostaje w ciele (analizator: Tkwi w ciele). \
-	Skaner krwi: lewy i prawy klik. Plaster: Z odrywa folię. Automat do medipenów: wlej epinefrynę, włóż pusty medipen. Worek stazy: po 5 s staza. Analizator: przycisk w prawym górnym rogu okna przełącza na tryb tekstowy."
+	Plaster: Z odrywa folię. Automat do medipenów: wlej epinefrynę, włóż pusty medipen. Worek stazy: po 5 s staza. Analizator: przycisk w prawym górnym rogu okna przełącza na tryb tekstowy."
 	items = list(
 		/obj/item/gun/ballistic/automatic/pistol = 1,
 		/obj/item/cautery = 1,
@@ -39,7 +39,6 @@
 		/obj/item/stack/medical/bone_gel = 1,
 		/obj/item/stack/sticky_tape/surgical = 1,
 		/obj/item/bonesetter = 1,
-		/obj/item/blood_scanner = 1,
 		/obj/item/bodybag/stasis = 1,
 		/obj/item/stack/medical/bandage = 2,
 		/obj/item/reagent_containers/pill/patch/styptic = 2,
