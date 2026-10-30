@@ -833,4 +833,7 @@
   - bugfix: Polskie znaki w statusie serwera na hubie BYOND wyświetlają się poprawnie.
   - bugfix: Przyciski stanu w konsoli akt medycznych znów mają ikony, a przyciski
       nad danymi medycznymi nie nachodzą na ramkę.
-  - tweak: 'Atlas: publiczna lodówka botaniki jest wbudowana w ścianę zamiast okna.'
+'2026-10-30':
+  sh4dow321:
+  - bugfix: Przycisk „Baza banów CentCom” w panelu gracza działa dla graczy z banami
+      na innych serwerach i dla graczy rozłączonych.
