@@ -147,9 +147,12 @@
 			if(!isliving(user))
 				return TRUE
 
-			var/obj/item/weapon/virusdish/VD = user.get_active_hand()
-			if(istype(VD))
-				add_dish(VD, user, slot)
+			// AQ: u nas get_active_hand() zwraca KONCZYNE, nie trzymany przedmiot (w Monke odwrotnie)
+			var/obj/item/weapon/virusdish/VD = user.get_active_held_item()
+			if(!istype(VD))
+				to_chat(user, span_warning("You need to hold a growth dish to put it in \the [src]."))
+				return TRUE
+			add_dish(VD, user, slot)
 
 			return TRUE
 

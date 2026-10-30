@@ -1,3 +1,6 @@
+/// Ile ticków SSmachines zajmuje jedno izolowanie.
+#define ISOLATOR_ISOLATION_TICKS 40
+
 /obj/machinery/disease2/isolator
 	name = "Pathogenic Isolator"
 	desc = "Takes a syringe of blood, and isolates the pathogens inside into a dish."
@@ -7,113 +10,120 @@
 	icon_state = "isolator"
 	var/datum/disease/acute/isolated_disease = null
 	var/isolating = 0
-	var/beaker = null
+	// AQ: w Monke to bylo nietypowane i czytane operatorem : (beaker:reagents)
+	var/obj/item/reagent_containers/syringe/beaker = null
 
 /obj/machinery/disease2/isolator/Destroy()
 	isolated_disease = null
+	if(!QDELETED(beaker))
+		beaker.forceMove(drop_location())
+	beaker = null
 	return ..()
 
 /obj/machinery/disease2/isolator/attackby(obj/item/tool, mob/user, params)
 	if(!istype(tool, /obj/item/reagent_containers/syringe))
 		return NONE
 
-	var/obj/item/reagent_containers/syringe/B = tool
 	if(beaker)
-		to_chat(user, "A syringe is already loaded into the machine.")
+		to_chat(user, span_warning("A syringe is already loaded into the machine."))
 		return TRUE
-	if(!user.dropItemToGround(B))
+	if(!user.transferItemToLoc(tool, src))
 		return TRUE
-	if(!B.forceMove(src))
-		return TRUE
-	beaker = B
-	to_chat(user, "You add the syringe to the machine!")
-	src.updateUsrDialog()
+
+	beaker = tool
+	to_chat(user, span_notice("You add the syringe to the machine."))
+	playsound(src, 'sound/machines/click.ogg', vol = 50, vary = TRUE)
 	icon_state = "isolator_in"
+	SStgui.update_uis(src)
 	return TRUE
 
-/obj/machinery/disease2/isolator/Topic(href, href_list)
-	if(..())
-		return
-
-	usr.machine = src
-	if(!beaker)
-		return
-	var/datum/reagents/R = beaker:reagents
-
-	if (href_list["isolate"])
-		var/datum/reagent/Blood
-		for(var/datum/reagent/B in R.reagent_list)
-			if(length(B.data) && ("viruses" in B.data))
-				Blood = B
-				break
-		// /vg/: Try to fix isolators
-		if(!Blood)
-			to_chat(usr, span_warning("ERROR: Unable to locate blood within the beaker.  Bug?"))
-//			testing("Unable to locate blood in [beaker]!")
-			return
-		var/list/virus = virus_copylist(Blood.data["viruses"])
-		var/choice = text2num(href_list["isolate"])
-		for (var/datum/disease/acute/V in virus)
-			if (V.uniqueID == choice)
-				isolated_disease = V
-				isolating = 40
-				icon_state = "isolator_processing"
-		src.updateUsrDialog()
-		return
-
-	else if (href_list["main"])
-		attack_hand(usr)
-		return
-	else if (href_list["eject"])
-		beaker:forceMove(src.loc)
-		beaker = null
-		icon_state = "isolator"
-		src.updateUsrDialog()
-		return
-
+// AQ: stan sprawdzamy PRZED ..(), bo ..() otwiera juz okno TGUI przez interact()
 /obj/machinery/disease2/isolator/attack_hand(mob/user, list/modifiers)
 	if(machine_stat & BROKEN)
-		return
-	user.machine = src
-	var/dat = ""
-	if(!beaker)
+		to_chat(user, span_warning("\The [src] is broken. Some components will have to be replaced before it can work again."))
+		return TRUE
+	return ..()
 
-		dat = {"Please insert sample into the isolator.<BR>
-<A href='byond://?src=[REF(src)];close=1'>Close</A>"}
-	else if(isolating)
-		dat = "Isolating"
-	else
-		var/datum/reagents/R = beaker:reagents
-		dat += "<A href='byond://?src=[REF(src)];eject=1'>Eject</A><BR><BR>"
-		if(!R.total_volume)
-			dat += "[beaker] is empty."
-		else
-			dat += "Contained reagents:<ul>"
-			var/passes = FALSE
-			for(var/datum/reagent/G in R.reagent_list)
-				if(length(G.data) && ("viruses" in G.data))
-					var/list/virus = G.data["viruses"]
-					// AQ: we krwi siedza tez nasze stare /datum/disease bez uniqueID - pomijamy je; |= na tekscie wywalalo runtime
-					for (var/datum/disease/acute/V in virus)
-						passes = TRUE
-						dat += "<li>[G.name]: <A href='byond://?src=[REF(src)];isolate=[V.uniqueID]'>Isolate pathogen #[V.uniqueID]</a></li>"
-			if(!passes)
-				dat += "<li><em>No pathogen</em></li>"
-			dat += "</ul>"
-	// AQ: onclose() bez klienta (NPC) daje runtime "bad client"
-	if(!user.client)
+/obj/machinery/disease2/isolator/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DiseaseIsolator", "Pathogenic Isolator")
+		// AQ: u nas okna TGUI nie odswieżaja sie same, a tu leci postep izolowania
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/obj/machinery/disease2/isolator/ui_data(mob/user)
+	var/list/data = list()
+	data["isolating"] = isolating > 0
+	data["progress"] = isolating > 0 ? round(100 * (ISOLATOR_ISOLATION_TICKS - isolating) / ISOLATOR_ISOLATION_TICKS, 1) : 0
+	data["beaker"] = beaker?.name
+	data["empty"] = beaker ? !beaker.reagents.total_volume : TRUE
+
+	var/list/pathogens = list()
+	if(beaker)
+		for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
+			if(!length(reagent.data) || !("viruses" in reagent.data))
+				continue
+			// AQ: we krwi siedza tez stare /datum/disease bez uniqueID - pomijamy je
+			for(var/datum/disease/acute/pathogen in reagent.data["viruses"])
+				pathogens += list(list(
+					"id" = pathogen.uniqueID,
+					"name" = "[reagent.name]: pathogen #[pathogen.uniqueID]",
+				))
+	data["pathogens"] = pathogens
+
+	return data
+
+/obj/machinery/disease2/isolator/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
-	user << browse(HTML_SKELETON_TITLE("Pathogenic Isolator", dat), "window=isolator;size=575x400")
-	onclose(user, "isolator")
-	return
+
+	var/mob/user = ui.user
+	switch(action)
+		if("eject")
+			if(!beaker)
+				return TRUE
+			beaker.forceMove(drop_location())
+			if(Adjacent(user))
+				user.put_in_hands(beaker)
+			beaker = null
+			icon_state = "isolator"
+			return TRUE
+
+		if("isolate")
+			if(isolating > 0 || !beaker)
+				return TRUE
+			var/chosen_id = text2num(params["id"])
+			if(!isnum(chosen_id))
+				return TRUE
+			for(var/datum/reagent/reagent in beaker.reagents.reagent_list)
+				if(!length(reagent.data) || !("viruses" in reagent.data))
+					continue
+				for(var/datum/disease/acute/pathogen in virus_copylist(reagent.data["viruses"]))
+					if(pathogen.uniqueID != chosen_id)
+						continue
+					isolated_disease = pathogen
+					isolating = ISOLATOR_ISOLATION_TICKS
+					icon_state = "isolator_processing"
+					return TRUE
+			return TRUE
 
 /obj/machinery/disease2/isolator/process()
-	if(isolating > 0)
-		isolating -= 1
-		if(isolating == 0)
-			var/obj/item/weapon/virusdish/d = new /obj/item/weapon/virusdish(src.loc)
-			d.contained_virus = isolated_disease.Copy()
-			d.contained_virus.log += "[ROUND_TIME()] <br />Transferred to Virus dish"
-			d.update_icon()
-			isolated_disease = null
-			icon_state = "isolator_in"
+	if(isolating <= 0)
+		return
+
+	isolating -= 1
+	if(isolating <= 0)
+		if(isolated_disease)
+			var/obj/item/weapon/virusdish/dish = new(drop_location())
+			dish.contained_virus = isolated_disease.Copy()
+			dish.contained_virus.log += "[ROUND_TIME()] <br />Transferred to Virus dish"
+			dish.update_icon()
+			visible_message(span_notice("\The [src] prints a growth dish."))
+		isolated_disease = null
+		icon_state = beaker ? "isolator_in" : "isolator"
+
+	SStgui.update_uis(src)
+
+#undef ISOLATOR_ISOLATION_TICKS

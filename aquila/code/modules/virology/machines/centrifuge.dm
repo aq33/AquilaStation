@@ -15,8 +15,6 @@
 
 	processing_flags = START_PROCESSING_MANUALLY
 
-	var/datum/browser/popup = null
-
 	var/on = FALSE
 
 	var/list/tubes = list(null,null,null,null)
@@ -94,7 +92,7 @@
 		visible_message(span_notice("[user] adds \the [inserting_tube] to \the [src]."), span_notice("You add \the [inserting_tube] to \the [src]."))
 		playsound(src, 'sound/machines/click.ogg', vol = 50, vary = TRUE)
 		update_appearance(UPDATE_OVERLAYS)
-		updateUsrDialog()
+		SStgui.update_uis(src)
 		return TRUE
 
 	to_chat(user, span_warning("There is no room for more tubes."))
@@ -174,48 +172,54 @@
 	if(!is_operational)
 		set_on(FALSE)
 
-/obj/machinery/disease2/centrifuge/proc/add_tube_dat(obj/item/reagent_containers/glass/tube/tube, list/tube_task = list(0,0,0,0,0), slot = 1)
-	var/dat = ""
-	var/valid = tube_valid[slot]
+/obj/machinery/disease2/centrifuge/proc/tube_ui_data(slot)
+	var/list/data = list(
+		"slot" = slot,
+		"inserted" = FALSE,
+		"name" = "Empty slot",
+		"volume" = 0,
+		"has_blood" = FALSE,
+		"has_pathogen" = FALSE,
+		"has_antibodies" = FALSE,
+		"vaccine" = null,
+		"task" = null,
+		"target" = null,
+		"progress" = 0,
+	)
 
-	var/passes = FALSE
-	for(var/datum/reagent/blood in tube.reagents.reagent_list)
-		if (!length(blood.data) || !("blood_DNA" in blood.data))
+	var/obj/item/reagent_containers/glass/tube/tube = tubes[slot]
+	if(!tube)
+		return data
+
+	data["inserted"] = TRUE
+	data["name"] = tube.name
+	data["volume"] = round(tube.reagents.total_volume, 0.01)
+	data["has_antibodies"] = tube_valid[slot] ? TRUE : FALSE
+
+	for(var/datum/reagent/reagent in tube.reagents.reagent_list)
+		if(!length(reagent.data))
 			continue
-		passes = TRUE
+		if("blood_DNA" in reagent.data)
+			data["has_blood"] = TRUE
+		if(length(reagent.data["viruses"]))
+			data["has_pathogen"] = TRUE
 
-	if(!passes)
-		var/datum/reagent/vaccine/vaccine = locate() in tube.reagents.reagent_list
-		if (!vaccine)
-			dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (no blood detected)</a>"
-		else
-			var/vaccines = ""
-			for (var/A in vaccine.data["antigen"])
-				vaccines += "[A]"
-			if (vaccines == "")
-				vaccines = "blank"
-			dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (Vaccine ([vaccines]))</a>"
-	else
-		if (tube_task[1])
-			switch (tube_task[1])
-				if ("dish")
-					var/target = tube_task[2]
-					var/progress = tube_task[3]
-					dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (isolating [target]: [round(progress)]%)</a> <A href='byond://?src=[REF(src)];interrupt=[slot]'>X</a>"
-				if ("vaccine")
-					var/target = tube_task[2]
-					var/progress = tube_task[3]
-					dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (synthesizing vaccine ([target]): [round(progress)]%)</a> <A href='byond://?src=[REF(src)];interrupt=[slot]'>X</a>"
+	var/datum/reagent/vaccine/vaccine = locate() in tube.reagents.reagent_list
+	if(vaccine)
+		var/antigens = ""
+		var/list/vaccine_data = vaccine.data
+		if(length(vaccine_data))
+			for(var/antigen in vaccine_data["antigen"])
+				antigens += "[antigen]"
+		data["vaccine"] = antigens || "blank"
 
-		else
-			for(var/datum/reagent/blood in tube.reagents.reagent_list)
-				if(length(blood.data) && blood.data["viruses"])
-					var/list/blood_diseases = blood.data["viruses"]
-					if (length(blood_diseases) > 0)
-						dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (pathogen detected)</a> <A href='byond://?src=[REF(src)];isolate=[slot]'>ISOLATE TO DISH</a> [valid ? "<A href='byond://?src=[REF(src)];synthvaccine=[slot]'>SYNTHESIZE VACCINE</a>" : "(not enough antibodies for a vaccine)"]"
-					else
-						dat += "<A href='byond://?src=[REF(src)];ejectvial=[slot]'>[tube.name] (no pathogen detected)</a> [valid ? "<A href='byond://?src=[REF(src)];synthvaccine=[slot]'>SYNTHESIZE VACCINE</a>" : "(not enough antibodies for a vaccine)"]"
-	return dat
+	var/list/task = tube_task[slot]
+	if(task[1])
+		data["task"] = task[1]
+		data["target"] = "[task[2]]"
+		data["progress"] = round(task[3], 0.1)
+
+	return data
 
 /obj/machinery/disease2/centrifuge/proc/eject_when_no_power()
 	ejecting = TRUE
@@ -232,41 +236,40 @@
 		sleep(0.1 SECONDS)
 	ejecting = FALSE
 
+// AQ: sprawdzamy stan PRZED ..(), bo ..() otwiera juz okno TGUI przez interact()
 /obj/machinery/disease2/centrifuge/attack_hand(mob/user, list/modifiers)
-	. = ..()
 	if(machine_stat & (BROKEN))
 		to_chat(user, span_notice("\The [src] is broken. Some components will have to be replaced before it can work again.") )
-		return
+		return TRUE
 
 	if(machine_stat & (NOPOWER))
 		if(!ejecting)
 			to_chat(user, span_notice("Deprived of power, \the [src] is unresponsive."))
 			INVOKE_ASYNC(src, PROC_REF(eject_when_no_power))
-		return
-
-	if(.)
-		return
-
-	user.set_machine(src)
+		return TRUE
 
 	special = CENTRIFUGE_LIGHTSPECIAL_OFF
+	return ..()
 
-	var/dat = ""
-	dat += "Power status: <A href='byond://?src=[REF(src)];power=1'>[on?"On":"Off"]</a>"
-	dat += "<hr>"
-	for (var/i = 1 to length(tubes))
-		if(tubes[i])
-			dat += add_tube_dat(tubes[i],tube_task[i],i)
-		else
-			dat += "<A href='byond://?src=[REF(src)];insertvial=[i]'>Insert a tube</a>"
-		if(i < length(tubes))
-			dat += "<BR>"
-	dat += "<hr>"
+/obj/machinery/disease2/centrifuge/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DiseaseCentrifuge", "Isolation Centrifuge")
+		// AQ: u nas okna TGUI nie odswieżaja sie same, a tu leci postep zadan
+		ui.set_autoupdate(TRUE)
+		ui.open()
 
-	popup = new(user, "centrifuge", "Isolation Centrifuge", 666, 189)
-	popup.set_window_options("can_close=1;can_minimize=1;can_maximize=0;can_resize=1;titlebar=1;")
-	popup.set_content(dat)
-	popup.open()
+/obj/machinery/disease2/centrifuge/ui_data(mob/user)
+	var/list/data = list()
+	data["on"] = on
+	data["efficiency"] = round(efficiency, 0.01)
+
+	var/list/tube_data = list()
+	for(var/i = 1 to length(tubes))
+		tube_data += list(tube_ui_data(i))
+	data["tubes"] = tube_data
+
+	return data
 
 /obj/machinery/disease2/centrifuge/process()
 	if(!on || !is_operational)
@@ -303,7 +306,7 @@
 			tube_task[i] = centrifuge_act(tubes[i],tube_task[i])
 
 	if(should_update)
-		updateUsrDialog()
+		SStgui.update_uis(src)
 		update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/disease2/centrifuge/proc/centrifuge_act(obj/item/reagent_containers/glass/tube/tube, list/tube_task = list(0,0,0,0,0))
@@ -333,71 +336,68 @@
 				result = list(0,0,0,0,0)
 	return result
 
-/obj/machinery/disease2/centrifuge/Topic(href, href_list)
+/obj/machinery/disease2/centrifuge/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
 
-	if(..())
-		return TRUE
-
+	var/mob/user = ui.user
 	special = CENTRIFUGE_LIGHTSPECIAL_OFF
 
-	if (href_list["power"])
-		set_on(!on)
+	if(action == "power")
+		set_on(!on, user)
+		update_appearance()
+		return TRUE
 
-	else if (href_list["insertvial"])
-		var/mob/living/user
-		if (isliving(usr))
-			user = usr
-		if (!user)
-			return
-		var/obj/item/reagent_containers/glass/tube/tube = user.get_active_hand()
-		if (istype(tube))
-			if (on)
+	var/slot = text2num(params["slot"])
+	if(!isnum(slot) || !ISINRANGE(slot, 1, length(tubes)))
+		return TRUE
+
+	switch(action)
+		if("insert_tube")
+			if(on)
 				to_chat(user, span_warning("You cannot add or remove tubes while the centrifuge is active. Turn it off first."))
-				return
-			else
-				var/i = text2num(href_list["insertvial"])
-				if (!tubes[i])
-					if(!user.transferItemToLoc(tube, src))
-						return
-					tubes[i] = tube
-					tube_valid[i] = tube_has_antibodies(tube)
-					visible_message(span_notice("[user] adds \the [tube] to \the [src]."), span_notice("You add \the [tube] to \the [src]."))
-					playsound(src, 'sound/machines/click.ogg', vol = 50, vary = TRUE)
-				else
-					to_chat(user,span_warning("There is already a tube in that slot."))
-					return
+				return TRUE
+			if(tubes[slot])
+				to_chat(user, span_warning("There is already a tube in that slot."))
+				return TRUE
+			// AQ: u nas get_active_hand() zwraca KONCZYNE, nie trzymany przedmiot (w Monke odwrotnie)
+			var/obj/item/reagent_containers/glass/tube/tube = user.get_active_held_item()
+			if(!istype(tube))
+				to_chat(user, span_warning("You need to hold a tube to put it in \the [src]."))
+				return TRUE
+			if(!user.transferItemToLoc(tube, src))
+				return TRUE
+			tubes[slot] = tube
+			tube_valid[slot] = tube_has_antibodies(tube)
+			visible_message(span_notice("[user] adds \the [tube] to \the [src]."), span_notice("You add \the [tube] to \the [src]."))
+			playsound(src, 'sound/machines/click.ogg', vol = 50, vary = TRUE)
 
-	else if (href_list["ejectvial"])
-		if (on)
-			to_chat(usr,span_warning("You cannot add or remove tubes while the centrifuge is active. Turn it Off first."))
-			return
-		else
-			var/i = text2num(href_list["ejectvial"])
-			var/obj/item/reagent_containers/glass/tube/tube = tubes[i]
-			if (tube)
-				tube.forceMove(drop_location())
-				if (Adjacent(usr))
-					usr.put_in_hands(tube)
-				tubes[i] = null
-				tube_valid[i] = 0
-				tube_task[i] = list(0,0,0,0,0)
+		if("eject_tube")
+			if(on)
+				to_chat(user, span_warning("You cannot add or remove tubes while the centrifuge is active. Turn it off first."))
+				return TRUE
+			var/obj/item/reagent_containers/glass/tube/tube = tubes[slot]
+			if(!tube)
+				return TRUE
+			tube.forceMove(drop_location())
+			if(Adjacent(user))
+				user.put_in_hands(tube)
+			tubes[slot] = null
+			tube_valid[slot] = 0
+			tube_task[slot] = list(0,0,0,0,0)
 
-	else if (href_list["interrupt"])
-		var/i = text2num(href_list["interrupt"])
-		tube_task[i] = list(0,0,0,0,0)
+		if("interrupt")
+			tube_task[slot] = list(0,0,0,0,0)
 
-	else if (href_list["isolate"])
-		var/i = text2num(href_list["isolate"])
-		tube_task[i] = isolate(tubes[i],usr)
+		if("isolate")
+			tube_task[slot] = isolate(tubes[slot], user)
 
-	else if (href_list["synthvaccine"])
-		var/i = text2num(href_list["synthvaccine"])
-		tube_task[i] = cure(tubes[i],usr)
+		if("synthvaccine")
+			tube_task[slot] = cure(tubes[slot], user)
 
 	update_appearance()
-	add_fingerprint(usr)
-	updateUsrDialog()
-	attack_hand(usr)
+	return TRUE
 
 /obj/machinery/disease2/centrifuge/proc/isolate(obj/item/reagent_containers/glass/tube/tube, mob/user)
 	var/list/result = list(0,0,0,0,0)
@@ -412,13 +412,16 @@
 				for (var/datum/disease/acute/D in blood_viruses)
 					if(!istype(D))
 						continue
+					// AQ: dwa patogeny tej samej formy nadpisywaly sie w liscie wyboru
 					var/pathogen_name = "Unknown [D.form]"
-					pathogen_list[pathogen_name] = D
+					var/unique_name = pathogen_name
+					var/suffix = 2
+					while(unique_name in pathogen_list)
+						unique_name = "[pathogen_name] ([suffix])"
+						suffix++
+					pathogen_list[unique_name] = D
 
-				popup.close()
-				user.unset_machine()
-				var/choice = input(user, "Choose a pathogen to isolate on a growth dish.", "Isolate to dish") as null|anything in pathogen_list
-				user.set_machine()
+				var/choice = tgui_input_list(user, "Choose a pathogen to isolate on a growth dish.", "Isolate to dish", pathogen_list)
 				if (!choice)
 					return result
 				var/datum/disease/acute/target = pathogen_list[choice]
@@ -461,10 +464,7 @@
 					to_chat(user,span_warning("Impossible to create a vaccine from this blood sample. Antibody levels too low. Minimal level = 30%. The higher the concentration, the faster the vaccine is synthesized.") )
 					return result
 
-				popup.close()
-				user.unset_machine()
-				var/choice = input(user, "Choose an antibody to develop into a vaccine. This will destroy the blood sample. The higher the concentration, the faster the vaccine is synthesized.", "Synthesize Vaccine") as null|anything in antibody_choices
-				user.set_machine()
+				var/choice = tgui_input_list(user, "Choose an antibody to develop into a vaccine. This will destroy the blood sample. The higher the concentration, the faster the vaccine is synthesized.", "Synthesize Vaccine", antibody_choices)
 				if (!choice)
 					return result
 
