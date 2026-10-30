@@ -55,7 +55,7 @@ Debtor=SPM
 Psychiatra=SPM
 Magik=SPM
 Fryzjer=SPM
-Cywilne=SPM
+Gimmick=SPM
 VIP=VIP
 
 SI Statku=CPU

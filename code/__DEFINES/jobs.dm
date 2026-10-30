@@ -219,7 +219,7 @@
 #define JOB_CENTCOM_RESEARCH_OFFICER "Research Officer"
 
 // Misc & Off-Station
-#define JOB_NAME_GIMMICK "Cywilne" // gimmick
+#define JOB_NAME_GIMMICK "Gimmick" // gimmick
 #define JOB_NAME_KING    "King"
 #define JOB_NAME_PRISONER "Prisoner"
 #define JOB_SPACE_POLICE "Space Police"

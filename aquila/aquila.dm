@@ -1057,6 +1057,7 @@
 #include "code\modules\spells\spell_types\godhand.dm"
 #include "code\modules\spells\spell_types\touch_attacks.dm"
 #include "code\modules\spells\spell_types\inflict_handler.dm"
+#include "code\modules\squads\squad_cleanup.dm"
 #include "code\modules\surgery\autopsy.dm"
 #include "code\modules\surgery\bodyparts\bodyparts.dm"
 #include "code\modules\surgery\ear_surgery.dm"
