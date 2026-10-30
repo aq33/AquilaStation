@@ -1145,10 +1145,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(response.errored || response.status_code != 200 || response.body == "[]")
 		return
 
-	bans = json_decode(response["body"])
+	bans = json_decode(response.body) // AQ EDIT - response to datum, nie lista
 	for(var/list/ban in bans)
 		var/list/ban_attributes = ban["banAttributes"]
-		if(ban_attributes["BeeStationGlobal"])
+		if(LAZYACCESS(ban_attributes, "BeeStationGlobal")) // AQ EDIT - bany z innych serwerów nie mają banAttributes
 			if(CONFIG_GET(flag/respect_upstream_permabans) && ban["expires"])
 				continue
 
