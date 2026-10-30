@@ -124,6 +124,7 @@
 	var/client/C = M.client
 	data["has_client"] = !!C
 	data["log_src"] = C ? LOGSRC_CLIENT : LOGSRC_MOB
+	data["centcom_db"] = !!CONFIG_GET(string/centcom_ban_db) // AQ EDIT - też dla rozłączonych graczy
 	if(!C)
 		return data
 	data["client_name"] = "[C]"
@@ -133,7 +134,6 @@
 	data["join_date"] = C.player_join_date
 	data["account_join_date"] = C.account_join_date
 	data["telemetry"] = get_telemetry_data(C)
-	data["centcom_db"] = !!CONFIG_GET(string/centcom_ban_db)
 	data["antag_rep"] = SSpersistence.antag_rep[M.ckey] || 0
 	data["antag_tokens"] = antag_tokens
 	data["metacurrency_name"] = CONFIG_GET(string/metacurrency_name)
@@ -227,9 +227,9 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 			holder.ui_topic(list("editrights" = (GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey]) ? "rank" : "add", "key" = M.key))
 			return TRUE
 		if("centcomlookup")
-			if(!C)
+			if(!M.ckey) // AQ EDIT - ckey z moba, żeby działało też dla rozłączonych graczy
 				return
-			holder.ui_topic(list("centcomlookup" = C.ckey))
+			holder.ui_topic(list("centcomlookup" = M.ckey))
 			return
 		if("relatedacc")
 			if(!C || !(params["type"] in list("cid", "ip")))

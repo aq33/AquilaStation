@@ -214,6 +214,8 @@
 #include "aquila\code\__DEFINES\fermichem.dm"
 // AQ EDIT - protezy z przedmiotów i odsłonięte organy (tg#91573, tg#98023), sygnał używany w dismemberment.dm
 #include "aquila\code\__DEFINES\prosthetics.dm"
+// AQ EDIT - lag switches z tg (#59717), indeksy i cecha używane w hookach core
+#include "aquila\code\__DEFINES\lag_switch.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_string_lists.dm"

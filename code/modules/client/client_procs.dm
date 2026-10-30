@@ -476,6 +476,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	view_size.setZoomMode()
 	fit_viewport()
 	Master.UpdateTickRate()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src) // AQ EDIT - lag switch (automatyczne włączanie) i obwody wiremod
 
 	if(GLOB.ckey_redirects.Find(ckey))
 		if(isnewplayer(mob))
@@ -1144,10 +1145,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(response.errored || response.status_code != 200 || response.body == "[]")
 		return
 
-	bans = json_decode(response["body"])
+	bans = json_decode(response.body) // AQ EDIT - response to datum, nie lista
 	for(var/list/ban in bans)
 		var/list/ban_attributes = ban["banAttributes"]
-		if(ban_attributes["BeeStationGlobal"])
+		if(LAZYACCESS(ban_attributes, "BeeStationGlobal")) // AQ EDIT - bany z innych serwerów nie mają banAttributes
 			if(CONFIG_GET(flag/respect_upstream_permabans) && ban["expires"])
 				continue
 
