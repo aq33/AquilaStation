@@ -25,10 +25,10 @@
 		return
 
 	var/list/dat = list("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>Lag Switches</title></head><body><h2><B>Środki przeciw lagom</B></h2>")
-	dat += "Automatyczne włączanie: <a href='?_src_=holder;[HrefToken()];change_lag_switch_option=TOGGLE_AUTO'><b>[SSlag_switch.auto_switch ? "Wł." : "Wył."]</b></a><br/>"
-	dat += "Próg graczy: <a href='?_src_=holder;[HrefToken()];change_lag_switch_option=NUM'><b>[SSlag_switch.trigger_pop]</b></a><br/>"
-	dat += "Odstęp slowmode (włączanie niżej): <a href='?_src_=holder;[HrefToken()];change_lag_switch_option=SLOWCOOL'><b>[SSlag_switch.slowmode_cooldown / 10] s</b></a><br/>"
-	dat += "<br/><b>WSZYSTKIE: <a href='?_src_=holder;[HrefToken()];change_lag_switch=ALL_ON'>WŁ.</a> | <a href='?_src_=holder;[HrefToken()];change_lag_switch=ALL_OFF'>WYŁ.</a></b><br/>"
+	dat += "Automatyczne włączanie: <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch_option=TOGGLE_AUTO'><b>[SSlag_switch.auto_switch ? "Wł." : "Wył."]</b></a><br/>"
+	dat += "Próg graczy: <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch_option=NUM'><b>[SSlag_switch.trigger_pop]</b></a><br/>"
+	dat += "Odstęp slowmode (włączanie niżej): <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch_option=SLOWCOOL'><b>[SSlag_switch.slowmode_cooldown / 10] s</b></a><br/>"
+	dat += "<br/><b>WSZYSTKIE: <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch=ALL_ON'>WŁ.</a> | <a href='byond://?_src_=holder;[HrefToken()];change_lag_switch=ALL_OFF'>WYŁ.</a></b><br/>"
 	dat += "<br/>Bez zoomu i t-raya duchów (poza adminami): [lag_switch_link(DISABLE_GHOST_ZOOM_TRAY)]<br/>"
 	dat += "<br/>============! STREFA WŚCIEKŁYCH DUCHÓW !============<br/>"
 	dat += "Bez swobodnego latania duchów (poza adminami, ogłasza w dchacie): [lag_switch_link(DISABLE_DEAD_KEYLOOP)]<br/>"
@@ -45,7 +45,7 @@
 
 /// Link przełączający jeden środek w panelu
 /datum/admins/proc/lag_switch_link(measure)
-	return "<a href='?_src_=holder;[HrefToken()];change_lag_switch=[measure]'><b>[SSlag_switch.measures[measure] ? "Wł." : "Wył."]</b></a>"
+	return "<a href='byond://?_src_=holder;[HrefToken()];change_lag_switch=[measure]'><b>[SSlag_switch.measures[measure] ? "Wł." : "Wył."]</b></a>"
 
 /datum/admins/Topic(href, href_list)
 	if(!href_list["change_lag_switch"] && !href_list["change_lag_switch_option"])
