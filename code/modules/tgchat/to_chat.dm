@@ -19,6 +19,10 @@
 		return
 	if(target == world)
 		target = GLOB.clients
+	// AQ EDIT START - BYOND dokleja "the" przed wstawionymi obiektami
+	html = strip_auto_articles(html)
+	text = strip_auto_articles(text)
+	// AQ EDIT END
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -52,6 +56,10 @@
 		return
 	if(target == world)
 		target = GLOB.clients
+	// AQ EDIT START - BYOND dokleja "the" przed wstawionymi obiektami
+	html = strip_auto_articles(html)
+	text = strip_auto_articles(text)
+	// AQ EDIT END
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
