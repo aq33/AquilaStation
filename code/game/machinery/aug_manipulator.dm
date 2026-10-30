@@ -1,6 +1,6 @@
 /obj/machinery/aug_manipulator
-	name = "\improper augment manipulator"
-	desc = "A machine for custom fitting augmentations. Features a built-in spraypainter."
+	name = "\improper manipulator augmentacji"
+	desc = "Maszyna do dopasowywania augmentacji. Ma wbudowany malownik natryskowy."
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "robocolorer"
 	density = TRUE

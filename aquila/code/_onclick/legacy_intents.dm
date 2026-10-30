@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(legacy_intent_choices, list(INTENT_HELP, INTENT_DISARM, INTENT_
 
 // Stary wybór intencji (przed portem trzymany w code/_onclick/hud/screen_objects.dm)
 /atom/movable/screen/act_intent
-	name = "intent"
+	name = "intencja"
 	icon_state = "help"
 	screen_loc = ui_acti
 	mouse_over_pointer = MOUSE_HAND_POINTER

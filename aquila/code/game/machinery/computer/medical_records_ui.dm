@@ -122,7 +122,7 @@
 	var/list/comments = list()
 	var/counter = 1
 	while(active2.fields["com_[counter]"])
-		comments += list(list("index" = counter, "text" = active2.fields["com_[counter]"], "deleted" = active2.fields["com_[counter]"] == "<B>Deleted</B>"))
+		comments += list(list("index" = counter, "text" = active2.fields["com_[counter]"], "deleted" = active2.fields["com_[counter]"] == "<B>Usunięto</B>"))
 		counter++
 	return list(
 		"blood_type" = active2.fields["blood_type"],

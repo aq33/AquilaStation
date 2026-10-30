@@ -204,6 +204,7 @@ const PaiOptions = (props) => {
           {prime_directive ? decodeHtmlEntities(prime_directive) : 'Brak'}
           {!!prime_directive && !!is_master && (
             <Button.Confirm
+              confirmContent="Na pewno?"
               ml={1}
               color="bad"
               icon="eraser"

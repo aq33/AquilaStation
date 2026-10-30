@@ -1,8 +1,8 @@
 //Programs that are generally useful for population control and non-harmful suppression.
 
 /datum/nanite_program/sleepy
-	name = "Sleep Induction"
-	desc = "The nanites cause rapid narcolepsy when triggered."
+	name = "Indukcja snu"
+	desc = "Po aktywacji nanity wywołują nagły atak narkolepsji."
 	can_trigger = TRUE
 	trigger_cost = 15
 	trigger_cooldown = 1200
@@ -14,8 +14,8 @@
 	addtimer(CALLBACK(host_mob, TYPE_PROC_REF(/mob/living, Sleeping), 200), rand(60,200))
 
 /datum/nanite_program/paralyzing
-	name = "Paralysis"
-	desc = "The nanites force muscle contraction, effectively paralyzing the host."
+	name = "Paraliż"
+	desc = "Nanity wymuszają skurcz mięśni, skutecznie paraliżując nosiciela."
 	use_rate = 3
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -31,8 +31,8 @@
 	to_chat(host_mob, "<span class='notice'>Twoje mięśnie się rozluźniają i znów możesz się ruszać.</span>")
 
 /datum/nanite_program/shocking
-	name = "Electric Shock"
-	desc = "The nanites shock the host when triggered. Destroys a large amount of nanites!"
+	name = "Porażenie prądem"
+	desc = "Po aktywacji nanity porażają nosiciela prądem. Niszczy to dużą liczbę nanitów!"
 	can_trigger = TRUE
 	trigger_cost = 10
 	trigger_cooldown = 300
@@ -43,8 +43,8 @@
 	host_mob.electrocute_act(rand(5,10), "shock nanites", 1, SHOCK_NOGLOVES)
 
 /datum/nanite_program/stun
-	name = "Neural Shock"
-	desc = "The nanites pulse the host's nerves when triggered, inapacitating them for a short period."
+	name = "Wstrząs nerwowy"
+	desc = "Po aktywacji nanity wysyłają impuls do nerwów nosiciela, na krótko go obezwładniając."
 	can_trigger = TRUE
 	trigger_cost = 4
 	trigger_cooldown = 300
@@ -55,8 +55,8 @@
 	host_mob.Paralyze(80)
 
 /datum/nanite_program/pacifying
-	name = "Pacification"
-	desc = "The nanites suppress the aggression center of the brain, preventing the host from causing direct harm to others."
+	name = "Pacyfikacja"
+	desc = "Nanity tłumią ośrodek agresji w mózgu, przez co nosiciel nie może bezpośrednio krzywdzić innych."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
@@ -69,8 +69,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_PACIFISM, "nanites")
 
 /datum/nanite_program/blinding
-	name = "Blindness"
-	desc = "The nanites suppress the host's ocular nerves, blinding them while they're active."
+	name = "Ślepota"
+	desc = "Póki są aktywne, nanity tłumią nerwy wzrokowe nosiciela, oślepiając go."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -83,8 +83,8 @@
 	host_mob.cure_blind("nanites")
 
 /datum/nanite_program/mute
-	name = "Mute"
-	desc = "The nanites suppress the host's speech, making them mute while they're active."
+	name = "Niemota"
+	desc = "Póki są aktywne, nanity tłumią mowę nosiciela, odbierając mu głos."
 	use_rate = 0.75
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
@@ -97,8 +97,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_MUTE, "nanites")
 
 /datum/nanite_program/fake_death
-	name = "Death Simulation"
-	desc = "The nanites induce a death-like coma into the host, able to fool most medical scans."
+	name = "Symulacja śmierci"
+	desc = "Nanity wprowadzają nosiciela w śpiączkę przypominającą śmierć, która zmyli większość skanów medycznych."
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/nerve_decay, /datum/nanite_program/necrotic, /datum/nanite_program/brain_decay)
 
@@ -128,8 +128,8 @@
 		trigger(comm_message)
 
 /datum/nanite_program/comm/speech
-	name = "Forced Speech"
-	desc = "The nanites force the host to say a pre-programmed sentence when triggered."
+	name = "Wymuszona mowa"
+	desc = "Po aktywacji nanity zmuszają nosiciela do wypowiedzenia zaprogramowanego zdania."
 	unique = FALSE
 	trigger_cost = 3
 	trigger_cooldown = 20
@@ -156,8 +156,8 @@
 	host_mob.say(sent_message, forced = "nanite speech")
 
 /datum/nanite_program/comm/voice
-	name = "Skull Echo"
-	desc = "The nanites echo a synthesized message inside the host's skull."
+	name = "Echo w czaszce"
+	desc = "Nanity odtwarzają w czaszce nosiciela syntetyczną wiadomość."
 	unique = FALSE
 	trigger_cost = 1
 	trigger_cooldown = 20
@@ -177,8 +177,8 @@
 	to_chat(host_mob, "<i>Słyszysz w głowie dziwny, robotyczny głos...</i> \"<span class='robot'>[html_encode(sent_message)]</span>\"")
 
 /datum/nanite_program/comm/hallucination
-	name = "Hallucination"
-	desc = "The nanites make the host hallucinate something when triggered."
+	name = "Halucynacje"
+	desc = "Po aktywacji nanity wywołują u nosiciela halucynację."
 	trigger_cost = 4
 	trigger_cooldown = 80
 	unique = FALSE
@@ -187,19 +187,19 @@
 /datum/nanite_program/comm/hallucination/register_extra_settings()
 	. = ..()
 	var/list/options = list(
-		"Message",
-		"Battle",
-		"Sound",
-		"Weird Sound",
-		"Station Message",
-		"Health",
+		"Wiadomość",
+		"Walka",
+		"Dźwięk",
+		"Dziwny dźwięk",
+		"Ogłoszenie",
+		"Zdrowie",
 		"Alert",
-		"Fire",
-		"Shock",
-		"Plasma Flood",
-		"Random"
+		"Ogień",
+		"Porażenie",
+		"Zalanie plazmą",
+		"Losowa"
 	)
-	extra_settings[NES_HALLUCINATION_TYPE] = new /datum/nanite_extra_setting/type("Message", options)
+	extra_settings[NES_HALLUCINATION_TYPE] = new /datum/nanite_extra_setting/type("Wiadomość", options)
 	extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/text("")
 
 /datum/nanite_program/comm/hallucination/on_trigger(comm_message)
@@ -207,7 +207,7 @@
 	var/hal_type = hal_setting.get_value()
 	var/datum/nanite_extra_setting/hal_detail_setting = extra_settings[NES_HALLUCINATION_DETAIL]
 	var/hal_details = hal_detail_setting.get_value()
-	if(comm_message && (hal_type != "Message")) //Triggered via comm remote, but not set to a message hallucination
+	if(comm_message && (hal_type != "Wiadomość")) //Triggered via comm remote, but not set to a message hallucination
 		return
 	var/sent_message = comm_message //Comm remotes can send custom hallucination messages for the chat hallucination
 	if(!sent_message)
@@ -218,21 +218,21 @@
 	var/mob/living/carbon/C = host_mob
 	if(hal_details == "random")
 		hal_details = null
-	if(hal_type == "Random")
+	if(hal_type == "Losowa")
 		C.hallucination += 15
 	else
 		switch(hal_type)
-			if("Message")
+			if("Wiadomość")
 				new /datum/hallucination/chat(C, TRUE, null, sent_message)
-			if("Battle")
+			if("Walka")
 				new /datum/hallucination/battle(C, TRUE, hal_details)
-			if("Sound")
+			if("Dźwięk")
 				new /datum/hallucination/sounds(C, TRUE, hal_details)
-			if("Weird Sound")
+			if("Dziwny dźwięk")
 				new /datum/hallucination/weird_sounds(C, TRUE, hal_details)
-			if("Station Message")
+			if("Ogłoszenie")
 				new /datum/hallucination/stationmessage(C, TRUE, hal_details)
-			if("Health")
+			if("Zdrowie")
 				switch(hal_details)
 					if("critical")
 						hal_details = SCREWYHUD_CRIT
@@ -243,28 +243,28 @@
 				new /datum/hallucination/hudscrew(C, TRUE, hal_details)
 			if("Alert")
 				new /datum/hallucination/fake_alert(C, TRUE, hal_details)
-			if("Fire")
+			if("Ogień")
 				new /datum/hallucination/fire(C, TRUE)
-			if("Shock")
+			if("Porażenie")
 				new /datum/hallucination/shock(C, TRUE)
-			if("Plasma Flood")
+			if("Zalanie plazmą")
 				new /datum/hallucination/fake_flood(C, TRUE)
 
 /datum/nanite_program/comm/hallucination/set_extra_setting(setting, value)
 	. = ..()
 	if(setting == NES_HALLUCINATION_TYPE)
 		switch(value)
-			if("Message")
+			if("Wiadomość")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/text("")
-			if("Battle")
+			if("Walka")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","laser","disabler","esword","gun","stunprod","harmbaton","bomb"))
-			if("Sound")
+			if("Dźwięk")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","airlock","airlock pry","console","explosion","far explosion","mech","glass","alarm","beepsky","mech","wall decon","door hack"))
-			if("Weird Sound")
+			if("Dziwny dźwięk")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","phone","hallelujah","highlander","laughter","hyperspace","game over","creepy","tesla"))
-			if("Station Message")
+			if("Ogłoszenie")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","ratvar","shuttle dock","blob alert","malf ai","meteors","supermatter"))
-			if("Health")
+			if("Zdrowie")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","critical","dead","healthy"))
 			if("Alert")
 				extra_settings[NES_HALLUCINATION_DETAIL] = new /datum/nanite_extra_setting/type("random", list("random","not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure"))
@@ -272,8 +272,8 @@
 				extra_settings.Remove(NES_HALLUCINATION_DETAIL)
 
 /datum/nanite_program/good_mood
-	name = "Happiness Enhancer"
-	desc = "The nanites synthesize serotonin inside the host's brain, creating an artificial sense of happiness."
+	name = "Wzmacniacz szczęścia"
+	desc = "Nanity syntetyzują serotoninę w mózgu nosiciela, wywołując sztuczne poczucie szczęścia."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
 
@@ -290,8 +290,8 @@
 	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_happy")
 
 /datum/nanite_program/bad_mood
-	name = "Happiness Suppressor"
-	desc = "The nanites suppress the production of serotonin inside the host's brain, creating an artificial state of depression."
+	name = "Tłumik szczęścia"
+	desc = "Nanity tłumią wytwarzanie serotoniny w mózgu nosiciela, wywołując sztuczny stan depresji."
 	use_rate = 0.1
 	rogue_types = list(/datum/nanite_program/brain_decay)
 

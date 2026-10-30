@@ -6,7 +6,7 @@
 	cure_text = "Synaptizyna i siarka"
 	cures = list(/datum/reagent/medicine/synaptizine,/datum/reagent/sulfur)
 	cure_chance = 15//higher chance to cure, since two reagents are required
-	agent = "Gravitokinetic Bipotential SADS+"
+	agent = "Grawitokinetyczny bipotencjalny SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	disease_flags = CAN_CARRY|CAN_RESIST|CURABLE
 	permeability_mod = 1

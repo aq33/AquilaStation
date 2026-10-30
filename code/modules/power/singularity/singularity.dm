@@ -1,8 +1,8 @@
 
 
 /obj/anomaly/singularity
-	name = "gravitational singularity"
-	desc = "A gravitational singularity."
+	name = "osobliwość grawitacyjna"
+	desc = "Osobliwość grawitacyjna."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	anchored = TRUE
@@ -53,7 +53,7 @@
 			new_component.target = singubeacon
 			break
 	if(!mapload)
-		notify_ghosts("IT'S LOOSE", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/warning-buzzer.ogg', header = "IT'S LOOSE", notify_volume = 75)
+		notify_ghosts("UWOLNIŁO SIĘ", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/warning-buzzer.ogg', header = "UWOLNIŁO SIĘ", notify_volume = 75)
 
 /obj/anomaly/singularity/Destroy()
 	STOP_PROCESSING(SSsinguloprocess, src)
@@ -105,7 +105,7 @@
 	var/turf/T = get_turf(src)
 	var/count = locate(/obj/machinery/field/containment) in urange(30, src, 1)
 	if(!count)
-		message_admins("A singulo has been created without containment fields active at [ADMIN_VERBOSEJMP(T)].")
+		message_admins("Powstała osobliwość bez aktywnych pól izolujących w [ADMIN_VERBOSEJMP(T)].")
 	investigate_log("was created at [AREACOORD(T)]. [count?"":"<font color='red'>No containment fields were active</font>"]", INVESTIGATE_ENGINES)
 
 /obj/anomaly/singularity/proc/expand(force_size)
@@ -230,8 +230,8 @@
 	var/gain = thing.singularity_act(current_size, src)
 	energy += gain
 	if(istype(thing, /obj/machinery/power/supermatter_crystal) && !consumed_supermatter)
-		desc = "[initial(desc)] It glows fiercely with inner fire."
-		name = "supermatter-charged [initial(name)]"
+		desc = "[initial(desc)] Płonie zaciekle wewnętrznym ogniem."
+		name = "[initial(name)] (naładowanie supermaterią)"
 		consumed_supermatter = TRUE
 		set_light(10)
 

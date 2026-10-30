@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/target_hive/choose_targets(mob/user = usr)
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive || !hive.hivemembers)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	var/list/possible_targets = list()
 	var/list/targets = list()

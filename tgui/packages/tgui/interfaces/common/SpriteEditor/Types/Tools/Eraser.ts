@@ -48,7 +48,7 @@ class EraserTransaction implements LayerTransaction {
       command: 'transaction',
       transaction: {
         type: 'eraser',
-        name: 'Eraser',
+        name: 'Gumka',
         layer: this.layer + 1,
         dir: `${this.dir}`,
         points: this.points.values().toArray(),

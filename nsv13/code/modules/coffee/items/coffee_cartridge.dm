@@ -1,7 +1,7 @@
 //Coffee Cartridges: like toner, but for your coffee!
 /obj/item/coffee_cartridge
-	name = "coffeemaker cartridge - Navy Coffee"
-	desc = "A coffee cartridge manufactured by Piccionaia Coffee, for use with the Modello 3 system."
+	name = "wkład z kawą – Kawa marynarki"
+	desc = "Wkład z kawą produkcji Piccionaia Coffee do systemu Modello 3."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "cartridge_basic"
 	w_class = WEIGHT_CLASS_TINY
@@ -18,8 +18,8 @@
 		. += "<span class='warning'>We wkładzie nie została żadna zmielona kawa.</span>"
 
 /obj/item/coffee_cartridge/fancy
-	name = "coffeemaker cartridge - Caffè Fantasioso"
-	desc = "A fancy coffee cartridge manufactured by Piccionaia Coffee, for use with the Modello 3 system."
+	name = "wkład z kawą – Caffè Fantasioso"
+	desc = "Wykwintny wkład z kawą produkcji Piccionaia Coffee do systemu Modello 3."
 	icon_state = "cartridge_blend"
 	drink_type = list(/datum/reagent/consumable/cafe_latte = 120)
 
@@ -30,34 +30,34 @@
 	var/coffee_type = pick("blend", "blue_mountain", "kilimanjaro", "mocha")
 	switch(coffee_type)
 		if("blend")
-			name = "coffeemaker cartridge - Miscela di Piccione"
+			name = "wkład z kawą – Miscela di Piccione"
 			icon_state = "cartridge_blend"
 		if("blue_mountain")
-			name = "coffeemaker cartridge - Montagna Blu"
+			name = "wkład z kawą – Montagna Blu"
 			icon_state = "cartridge_blue_mtn"
 		if("kilimanjaro")
-			name = "coffeemaker cartridge - Kilimangiaro"
+			name = "wkład z kawą – Kilimangiaro"
 			icon_state = "cartridge_kilimanjaro"
 		if("mocha")
-			name = "coffeemaker cartridge - Moka Arabica"
+			name = "wkład z kawą – Moka Arabica"
 			icon_state = "cartridge_mocha"
 
 /obj/item/coffee_cartridge/decaf
-	name = "coffeemaker cartridge - Caffè Decaffeinato"
-	desc = "A decaf coffee cartridge manufactured by Piccionaia Coffee, for use with the Modello 3 system."
+	name = "wkład z kawą – Caffè Decaffeinato"
+	desc = "Wkład z kawą bezkofeinową produkcji Piccionaia Coffee do systemu Modello 3."
 	icon_state = "cartridge_decaf"
 	drink_type = list(/datum/reagent/consumable/soy_latte = 120)
 
 // no you can't just squeeze the juice bag into a glass!
 /obj/item/coffee_cartridge/bootleg
-	name = "coffeemaker cartridge - Botany Blend"
-	desc = "A jury-rigged coffee cartridge. Should work with a Modello 3 system, though it might void the warranty."
+	name = "wkład z kawą – Mieszanka Botaniczna"
+	desc = "Prowizoryczny wkład z kawą. Powinien działać w systemie Modello 3, choć może unieważnić gwarancję."
 	icon_state = "cartridge_bootleg"
 	drink_type = list(/datum/reagent/consumable/coffee = 120)
 
 // blank cartridge for crafting's sake, can be made at the service lathe
 /obj/item/blank_coffee_cartridge
-	name = "blank coffee cartridge"
-	desc = "A blank coffee cartridge, ready to be filled with coffee paste."
+	name = "pusty wkład na kawę"
+	desc = "Pusty wkład na kawę, gotowy do napełnienia pastą kawową."
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "cartridge_blank"

@@ -1,6 +1,6 @@
 /obj/structure/closet/athletic_mixed
-	name = "athletic wardrobe"
-	desc = "It's a storage unit for athletic wear."
+	name = "szafa na odzież sportową"
+	desc = "Szafa na odzież sportową."
 	icon_door = "mixed"
 
 /obj/structure/closet/athletic_mixed/PopulateContents()
@@ -15,8 +15,8 @@
 
 
 /obj/structure/closet/boxinggloves
-	name = "boxing gloves"
-	desc = "It's a storage unit for gloves for use in the boxing ring."
+	name = "rękawice bokserskie"
+	desc = "Szafa na rękawice do używania na ringu bokserskim."
 
 /obj/structure/closet/boxinggloves/PopulateContents()
 	..()
@@ -27,8 +27,8 @@
 
 
 /obj/structure/closet/masks
-	name = "mask closet"
-	desc = "IT'S A STORAGE UNIT FOR FIGHTER MASKS OLE!"
+	name = "szafa z maskami"
+	desc = "TO SZAFA NA MASKI ZAPAŚNIKÓW, OLE!"
 
 /obj/structure/closet/masks/PopulateContents()
 	..()
@@ -38,8 +38,8 @@
 
 
 /obj/structure/closet/lasertag/red
-	name = "red laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	name = "czerwony sprzęt do laser taga"
+	desc = "Szafa na sprzęt do laser taga."
 	icon_door = "red"
 
 /obj/structure/closet/lasertag/red/PopulateContents()
@@ -52,8 +52,8 @@
 
 
 /obj/structure/closet/lasertag/blue
-	name = "blue laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	name = "niebieski sprzęt do laser taga"
+	desc = "Szafa na sprzęt do laser taga."
 	icon_door = "blue"
 
 /obj/structure/closet/lasertag/blue/PopulateContents()

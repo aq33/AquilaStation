@@ -1,7 +1,7 @@
 //NSV13 constricted plasma combustion - acts identical to a plasma fire
 /datum/gas_reaction/constricted_plasmafire
 	priority = -3 //fire should ALWAYS be last, but plasma fires happen after tritium fires
-	name = "Constricted Plasma Combustion"
+	name = "Spalanie skondensowanej plazmy"
 	id = "constricted_plasmafire"
 
 /datum/gas_reaction/constricted_plasmafire/init_reqs()

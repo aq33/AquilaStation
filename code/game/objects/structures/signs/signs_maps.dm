@@ -1,8 +1,8 @@
 //map and direction signs
 
 /obj/structure/sign/map
-	name = "station map"
-	desc = "A framed picture of the station."
+	name = "mapa statku"
+	desc = "Ramka z obrazkiem przedstawiającym statek."
 	max_integrity = 500
 
 /obj/structure/sign/map/left
@@ -12,101 +12,101 @@
 	icon_state = "map-right"
 
 /obj/structure/sign/directions/science
-	name = "science department"
-	desc = "A direction sign, pointing out which way the Science department is."
+	name = "dział naukowy"
+	desc = "Znak wskazujący drogę do działu naukowego."
 	icon_state = "direction_sci"
 
 /obj/structure/sign/directions/engineering
-	name = "engineering department"
-	desc = "A direction sign, pointing out which way the Engineering department is."
+	name = "dział inżynierii"
+	desc = "Znak wskazujący drogę do działu inżynierii."
 	icon_state = "direction_eng"
 
 /obj/structure/sign/directions/security
-	name = "security department"
-	desc = "A direction sign, pointing out which way the Security department is."
+	name = "dział ochrony"
+	desc = "Znak wskazujący drogę do działu ochrony."
 	icon_state = "direction_sec"
 
 /obj/structure/sign/directions/medical
-	name = "medical bay"
-	desc = "A direction sign, pointing out which way the Medical Bay is."
+	name = "ambulatorium"
+	desc = "Znak wskazujący drogę do ambulatorium."
 	icon_state = "direction_med"
 
 /obj/structure/sign/directions/evac
-	name = "escape arm"
-	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	name = "droga ewakuacyjna"
+	desc = "Znak wskazujący drogę do doku promu ewakuacyjnego."
 	icon_state = "direction_evac"
 
 /obj/structure/sign/directions/supply
-	name = "cargo bay"
-	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	name = "ładownia"
+	desc = "Znak wskazujący drogę do ładowni."
 	icon_state = "direction_supply"
 
 /obj/structure/sign/directions/command
-	name = "command department"
-	desc = "A direction sign, pointing out which way the Command department is."
+	name = "dowództwo"
+	desc = "Znak wskazujący drogę do dowództwa."
 	icon_state = "direction_bridge"
 
 /obj/structure/sign/directions/plaque/science
-	name = "science department"
-	desc = "A direction sign, pointing out which way the Science department is."
+	name = "dział naukowy"
+	desc = "Znak wskazujący drogę do działu naukowego."
 	icon_state = "minskydirection_sci"
 
 /obj/structure/sign/directions/plaque/engineering
-	name = "engineering department"
-	desc = "A direction sign, pointing out which way the Engineering department is."
+	name = "dział inżynierii"
+	desc = "Znak wskazujący drogę do działu inżynierii."
 	icon_state = "minskydirection_eng"
 
 /obj/structure/sign/directions/plaque/security
-	name = "security department"
-	desc = "A direction sign, pointing out which way the Security department is."
+	name = "dział ochrony"
+	desc = "Znak wskazujący drogę do działu ochrony."
 	icon_state = "minskydirection_sec"
 
 /obj/structure/sign/directions/plaque/medical
-	name = "medical bay"
-	desc = "A direction sign, pointing out which way the Medical Bay is."
+	name = "ambulatorium"
+	desc = "Znak wskazujący drogę do ambulatorium."
 	icon_state = "minskydirection_med"
 
 /obj/structure/sign/directions/plaque/evac
-	name = "escape arm"
-	desc = "A direction sign, pointing out which way the escape shuttle dock is."
+	name = "droga ewakuacyjna"
+	desc = "Znak wskazujący drogę do doku promu ewakuacyjnego."
 	icon_state = "minskydirection_evac"
 
 /obj/structure/sign/directions/plaque/supply
-	name = "cargo bay"
-	desc = "A direction sign, pointing out which way the Cargo Bay is."
+	name = "ładownia"
+	desc = "Znak wskazujący drogę do ładowni."
 	icon_state = "minskydirection_supply"
 
 /obj/structure/sign/directions/plaque/command
-	name = "command department"
-	desc = "A direction sign, pointing out which way the Command department is."
+	name = "dowództwo"
+	desc = "Znak wskazujący drogę do dowództwa."
 	icon_state = "minskydirection_bridge"
 
 /obj/structure/sign/directions/plaque/hangar
-	name = "ship's hanger"
-	desc = "A direction sign, pointing out which way the hangar bay is."
+	name = "hangar statku"
+	desc = "Znak wskazujący drogę do hangaru."
 	icon_state = "minskydirection_hangar"
 
 /obj/structure/sign/directions/plaque/munitions
-	name = "munitions bay"
-	desc = "A direction sign, pointing out which way the munitions bay is."
+	name = "dział amunicji"
+	desc = "Znak wskazujący drogę do działu amunicji."
 	icon_state = "minskydirection_munitions"
 
 /obj/structure/sign/directions/plaque/atc
-	name = "air traffic control"
-	desc = "A direction sign, pointing out which way air traffic control is."
+	name = "kontrola lotów"
+	desc = "Znak wskazujący drogę do kontroli lotów."
 	icon_state = "minskydirection_atc"
 
 /obj/structure/sign/directions/plaque/ladder
-	name = "ship's ladder"
-	desc = "A direction sign, pointing out which way the nearest ship's ladder is."
+	name = "drabina"
+	desc = "Znak wskazujący drogę do najbliższej drabiny na statku."
 	icon_state = "minskydirection_ladder"
 
 /obj/structure/sign/directions/plaque/lift
-	name = "ship's lift"
-	desc = "A direction sign, pointing out which way the nearest ship's lift is."
+	name = "winda"
+	desc = "Znak wskazujący drogę do najbliższej windy na statku."
 	icon_state = "minskydirection_lift"
 
 /obj/structure/sign/directions/plaque/stairs
-	name = "ship's stairs"
-	desc = "A direction sign, pointing out which way the nearest ship's stairs are."
+	name = "schody"
+	desc = "Znak wskazujący drogę do najbliższych schodów na statku."
 	icon_state = "minskydirection_stairs"

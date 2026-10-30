@@ -76,7 +76,7 @@
 /mob/living/silicon/proc/create_access_card(list/access_list)
 	if(!internal_id_card)
 		internal_id_card = new()
-		internal_id_card.name = "[src] internal access"
+		internal_id_card.name = "dostęp wewnętrzny: [src]"
 	internal_id_card.access |= access_list
 
 /mob/living/silicon/proc/create_modularInterface()
@@ -168,7 +168,7 @@
 		if(alarm_types_show["Camera"])
 			msg += "KAMERY: wykryte alarmy: [alarm_types_show["Camera"]]. - "
 
-		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
+		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Pokaż alarmy\]</a>"
 		to_chat(src, msg)
 
 	if(alarms_to_clear.len < 3)
@@ -193,7 +193,7 @@
 		if(alarm_types_show["Camera"])
 			msg += "KAMERY: odwołane alarmy: [alarm_types_clear["Camera"]]. - "
 
-		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Show Alerts\]</a>"
+		msg += "<A href=byond://?src=[REF(src)];showalerts=1'>\[Pokaż alarmy\]</a>"
 		to_chat(src, msg)
 
 	alarms_to_show = list()
@@ -470,14 +470,14 @@
 		return
 
 	//Ask the user to pick a channel from what it has available.
-	var/Autochan = input("Select a channel:") as null|anything in list("Default","None") + radio.channels
+	var/Autochan = input("Wybierz kanał:") as null|anything in list("Domyślny","Brak") + radio.channels
 
 	if(!Autochan)
 		return
-	if(Autochan == "Default") //Autospeak on whatever frequency to which the radio is set, usually Common.
+	if(Autochan == "Domyślny") //Autospeak on whatever frequency to which the radio is set, usually Common.
 		radiomod = ";"
 		Autochan += " ([radio.frequency])"
-	else if(Autochan == "None") //Prevents use of the radio for automatic annoucements.
+	else if(Autochan == "Brak") //Prevents use of the radio for automatic annoucements.
 		radiomod = ""
 	else	//For department channels, if any, given by the internal radio.
 		for(var/key in GLOB.department_radio_keys)
@@ -485,7 +485,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, "<span class='notice'>Automatyczne ogłoszenia [Autochan == "None" ? "nie będą używać radia." : "ustawione na kanał [Autochan]."]</span>")
+	to_chat(src, "<span class='notice'>Automatyczne ogłoszenia [Autochan == "Brak" ? "nie będą używać radia." : "ustawione na kanał [Autochan]."]</span>")
 
 /mob/living/silicon/put_in_hand_check() // This check is for borgs being able to receive items, not put them in others' hands.
 	return 0

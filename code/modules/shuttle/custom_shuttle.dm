@@ -2,8 +2,8 @@
 #define CUSTOM_SHUTTLE_MIN_THRUST_TO_WEIGHT 1
 
 /obj/machinery/computer/shuttle_flight/custom_shuttle
-	name = "nanotrasen shuttle flight controller"
-	desc = "A terminal used to fly shuttles defined by the Shuttle Zoning Designator"
+	name = "sterownik lotu promu Nanotrasen"
+	desc = "Terminal do pilotowania promów wyznaczonych Wyznacznikiem Stref Promu."
 	circuit = /obj/item/circuitboard/computer/shuttle/flight_control
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
@@ -34,18 +34,18 @@
 	var/obj/item/shuttle_creator/designator = designator_ref?.resolve()
 	data["fuel"] = get_fuel()
 	data["display_stats"] = list(
-		"Shuttle Mass" = "[calculated_mass/10] Tons",
-		"Engine Force" = "[calculated_dforce]kN ([calculated_engine_count] engines)",
-		"Supercruise Acceleration" = "[calculated_acceleration] ms^-2",
-		"Fuel Consumption" = "[calculated_consumption] moles per second",
-		"Engine Cooldown" = "[calculated_cooldown] seconds"
+		"Masa promu" = "[calculated_mass/10] t",
+		"Siła silników" = "[calculated_dforce] kN (silniki: [calculated_engine_count])",
+		"Przyspieszenie w supercruise" = "[calculated_acceleration] m/s^2",
+		"Zużycie paliwa" = "[calculated_consumption] mol/s",
+		"Odnowienie silników" = "[calculated_cooldown] s"
 	)
 	if(calculated_acceleration < CUSTOM_SHUTTLE_MIN_THRUST_TO_WEIGHT)
-		data["thrust_alert"] = "Insufficient engine power at last callibration. Launch shuttle to recalculate thrust."
+		data["thrust_alert"] = "Przy ostatniej kalibracji moc silników była niewystarczająca. Wystartuj promem, by przeliczyć ciąg."
 	else
 		data["thrust_alert"] = 0
 	if(calculated_non_operational_thrusters > 0)
-		data["damage_alert"] = "[calculated_non_operational_thrusters] thrusters offline."
+		data["damage_alert"] = "Wyłączone silniki: [calculated_non_operational_thrusters]."
 	else
 		data["thrust_alert"] = 0
 
@@ -134,7 +134,7 @@
 			else
 				//Send shuttle object to random location
 				var/datum/orbital_object/z_linked/beacon/z_linked = new /datum/orbital_object/z_linked/beacon/ruin/stranded_shuttle(new /datum/orbital_vector(shuttleObject.position.x, shuttleObject.position.y))
-				z_linked.name = "Stranded [shuttleObject]"
+				z_linked.name = "Unieruchomiony prom: [shuttleObject]"
 				if(!z_linked)
 					say("Nie udało się zdławić promu, skontaktuj się z przełożonym Nanotrasen.")
 					return

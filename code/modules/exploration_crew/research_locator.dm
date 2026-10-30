@@ -1,7 +1,7 @@
 
 /obj/item/research_disk_pinpointer
-	name = "research disk locator"
-	desc = "A small handheld device that detects nearby research disks. Despite its extremely high sensitivity, the returned signal from research disks is so weak that it only has a short range."
+	name = "lokalizator dysków badawczych"
+	desc = "Małe ręczne urządzenie wykrywające pobliskie dyski badawcze. Mimo bardzo wysokiej czułości sygnał zwrotny z dysków jest tak słaby, że ma tylko krótki zasięg."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "researchlocator"
 	var/next_use_time = 0
@@ -9,7 +9,7 @@
 
 /obj/item/research_disk_pinpointer/attack_self(mob/user)
 	if(world.time < next_use_time)
-		to_chat(user, "<span class='notice'>Internal capacitors recharging...</span>")
+		to_chat(user, "<span class='notice'>Wewnętrzne kondensatory się ładują...</span>")
 		return
 	to_chat(user, "<span class='notice'>Wysyłasz impuls w poszukiwaniu pobliskich dysków badawczych.</span>")
 	pulse_effect(get_turf(src), 6)

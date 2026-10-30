@@ -63,7 +63,7 @@
 				if(isturf(I.loc))
 					I.attack_hand(src)
 					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
-						visible_message("<span class='warning'>[src] catches [I]!</span>", \
+						visible_message("<span class='warning'>[src] łapie [I]!</span>", \
 										"<span class='userdanger'>Łapiesz [I] w locie!</span>")
 						throw_mode_off(THROW_MODE_TOGGLE)
 						return 1
@@ -314,7 +314,7 @@
 		if(!get_bodypart(check_zone(M.zone_selected)))
 			to_chat(M, "<span class='warning'>[src] nie ma [M.zone_selected == BODY_ZONE_L_ARM ? "lewej" : "prawej"] ręki!</span>")
 		else
-			M.visible_message("<span class='notice'>[M] shakes [src]'s hand.</span>", \
+			M.visible_message("<span class='notice'>[M] ściska dłoń [src].</span>", \
 						"<span class='notice'>Ściskasz dłoń [src].</span>")
 	else if(M.zone_selected == BODY_ZONE_PRECISE_GROIN)
 		to_chat(M, "<span class='warning'>ERP jest zakazane na tym serwerze!</span>")

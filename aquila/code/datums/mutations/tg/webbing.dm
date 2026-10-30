@@ -1,8 +1,8 @@
 // AQUILA - port z tgstation (code/datums/mutations/webbing.dm), na naszych pająkach z tg (aquila/code/game/objects/effects/spiderwebs.dm)
 
 /datum/mutation/webbing
-	name = "Webbing Production"
-	desc = "The subject gains the ability to lay webbing, and travel through it."
+	name = "Wytwarzanie pajęczyny"
+	desc = "Pacjent potrafi tkać pajęczynę i swobodnie się po niej poruszać."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja skóra wydaje się pajęcza.</span>"
 	instability = 25 // przydatne, dopóki cię nie zlinczują

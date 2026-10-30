@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	msg = emoji_parse(msg)
 
 	if((msg[1] in list(".",";",":","#")) || findtext_char(msg, "say", 1, 5))
-		if(alert("Twoja wiadomość \"[raw_msg]\" wygląda na przeznaczoną do komunikacji w grze. Napisać ją na OOC?", "Na pewno na OOC?", "No", "Yes") != "Yes")
+		if(alert("Twoja wiadomość \"[raw_msg]\" wygląda na przeznaczoną do komunikacji w grze. Napisać ją na OOC?", "Na pewno na OOC?", "Nie", "Tak") != "Tak")
 			return
 
 	if(!holder)
@@ -49,12 +49,12 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Reklamowanie innych serwerów jest zabronione.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			message_admins("[key_name_admin(src)] próbuje reklamować coś na OOC: [msg]")
 			return
 		if(findtext(msg, "://") || findtext(msg, "www."))
 			to_chat(src, "<B>Wysyłanie klikalnych linków na OOC jest zabronione.</B>")
 			log_admin("[key_name(src)] has attempted to post a clickable link in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to post a clickable link in OOC: [msg]")
+			message_admins("[key_name_admin(src)] próbuje wysłać klikalny link na OOC: [msg]")
 			return
 
 	if(!(prefs.chat_toggles & CHAT_OOC))
@@ -119,13 +119,13 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
-	set desc = "Modifies player OOC Color"
+	set desc = "Zmienia kolor OOC gracza"
 	set category = "Fun"
 	GLOB.OOC_COLOR = sanitize_ooccolor(newColor)
 
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
-	set desc = "Returns player OOC Color to default"
+	set desc = "Przywraca domyślny kolor OOC gracza"
 	set category = "Fun"
 	GLOB.OOC_COLOR = null
 
@@ -146,7 +146,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/resetcolorooc()
 	set name = "Reset Your OOC Color"
-	set desc = "Returns your OOC Color to default"
+	set desc = "Przywraca domyślny kolor twojego OOC"
 	set category = "Preferences"
 
 	if(!holder || !check_rights_for(src, R_ADMIN))
@@ -160,7 +160,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/admin_notice()
 	set name = "Adminnotice"
 	set category = "Admin"
-	set desc ="Check the admin notice if it has been set"
+	set desc ="Sprawdź komunikat administracji, jeśli został ustawiony"
 
 	if(GLOB.admin_notice)
 		to_chat(src, "<span class='boldnotice'>Komunikat administracji:</span>\n \t [GLOB.admin_notice]")
@@ -170,7 +170,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/motd()
 	set name = "MOTD"
 	set category = "OOC"
-	set desc ="Check the Message of the Day"
+	set desc ="Sprawdź wiadomość dnia"
 
 	var/motd = global.config.motd
 	if(motd)
@@ -181,7 +181,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/self_notes()
 	set name = "View Admin Remarks"
 	set category = "OOC"
-	set desc = "View the notes that admins have written about you"
+	set desc = "Zobacz notatki, które admini napisali o tobie"
 
 	if(!CONFIG_GET(flag/see_own_notes))
 		to_chat(usr, "<span class='notice'>Niestety ta funkcja nie jest włączona na tym serwerze.</span>")
@@ -192,7 +192,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/self_playtime()
 	set name = "View tracked playtime"
 	set category = "OOC"
-	set desc = "View the amount of playtime for roles the server has tracked."
+	set desc = "Zobacz czas gry w rolach, który zarejestrował serwer."
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
 		to_chat(usr, "<span class='notice'>Niestety śledzenie jest obecnie wyłączone.</span>")
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/select_ignore()
 	set name = "Ignore"
 	set category = "OOC"
-	set desc ="Ignore a player's messages on the OOC channel"
+	set desc ="Ignoruj wiadomości gracza na kanale OOC"
 
 
 	var/see_ghost_names = isobserver(mob)
@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		else
 			choices[displayed_choicename] = C
 	choices = sortList(choices)
-	var/selection = input("Wybierz gracza!", "Ignore", null, null) as null|anything in choices
+	var/selection = input("Wybierz gracza!", "Ignoruj", null, null) as null|anything in choices
 	if(!selection || !(selection in choices))
 		return
 	displayed_choicename = selection // ckey string
@@ -241,14 +241,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/show_previous_roundend_report()
 	set name = "Your Last Round"
 	set category = "OOC"
-	set desc = "View the last round end report you've seen"
+	set desc = "Zobacz ostatni widziany raport z końca rundy"
 
 	SSticker.show_roundend_report(src, TRUE)
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
 	set category = "OOC"
-	set desc = "Fit the width of the map window to match the viewport"
+	set desc = "Dopasuj szerokość okna mapy do widoku"
 
 	// Fetch aspect ratio
 	var/view_size = getviewsize(view)
@@ -294,7 +294,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/view_runtimes_minimal()
 	set name = "View Minimal Runtimes"
 	set category = "OOC"
-	set desc = "Open the runtime error viewer, with reduced information"
+	set desc = "Otwórz podgląd błędów runtime z ograniczonymi informacjami"
 
 	if(!isobserver(mob) && SSticker.current_state != GAME_STATE_FINISHED)
 		to_chat(src, "<span class='warning'>Nie możesz teraz tego zrobić, zaczekaj do końca rundy albo obserwuj.</span>")
@@ -306,7 +306,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/speech_format_help()
 	set name = "Speech Format Help"
 	set category = "OOC"
-	set desc = "Chat formatting help"
+	set desc = "Pomoc do formatowania czatu"
 
 	var/message = "<span class='big'>Możesz wyróżniać tekst, otaczając słowa lub zdania określonymi znakami.</span>\n +pogrubienie+, _podkreślenie_ i |kursywa| są obsługiwane.\n\n <span class='big'>Możesz tworzyć własne czasowniki mowy, pisząc np. <i>say 'krzyczy* POMOCY, UMIERAM!'</i>. Działa to też przez radio i można tak robić emotki przez radio.</span>\n Przykład: say ';śmieje się szaleńczo!*' >> \[Common] Jan Kowalski śmieje się szaleńczo!"
 

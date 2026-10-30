@@ -88,16 +88,16 @@
 
 /obj/item/book/granter/action/origami
 	granted_action = /datum/action/innate/origami
-	name = "The Art of Origami"
-	desc = "A meticulously in-depth manual explaining the art of paper folding."
+	name = "Sztuka origami"
+	desc = "Niezwykle szczegółowy podręcznik wyjaśniający sztukę składania papieru."
 	icon_state = "origamibook"
 	actionname = "origami"
 	oneuse = TRUE
 	remarks = list("Stabilność lotu bez napędu...", "Symetria zdaje się odgrywać dość dużą rolę...", "Uwzględnianie wiatru bocznego... serio?", "Współczynniki oporu różnych rodzajów papieru...", "Stosunek ciągu do masy?", "Dodatni kąt wzniosu?", "Środek ciężkości przed środkiem siły nośnej...")
 
 /datum/action/innate/origami
-	name = "Origami Folding"
-	desc = "Toggles your ability to catch robust paper airplanes."
+	name = "Składanie origami"
+	desc = "Włącza lub wyłącza łapanie papierowych samolocików."
 	button_icon_state = "origami_off"
 	check_flags = NONE
 
@@ -152,9 +152,9 @@
 
 /obj/item/book/granter/spell/fireball
 	spell = /obj/effect/proc_holder/spell/aimed/fireball
-	spellname = "fireball"
+	spellname = "kula ognia"
 	icon_state ="bookfireball"
-	desc = "This book feels warm to the touch."
+	desc = "Ta księga jest ciepła w dotyku."
 	remarks = list("Celuj... CELUJ, GŁUPCZE!", "Samo podpalenie nie wystarczy...", "Uwzględnianie wiatru bocznego... serio?", "Chyba właśnie poparzyłem sobie rękę...", "Po co ta głupia poza? To tylko ruch dłoni...", "OMEE... ONI... Ech...", "Jaka jest różnica między kulą ognia a pyroblastem...")
 
 /obj/item/book/granter/spell/fireball/recoil(mob/user)
@@ -166,14 +166,14 @@
 	spell = /obj/effect/proc_holder/spell/targeted/sacred_flame
 	spellname = "święty płomień"
 	icon_state ="booksacredflame"
-	desc = "Become one with the flames that burn within... and invite others to do so as well."
+	desc = "Stań się jednością z płomieniami, które płoną w środku... i zaproś do tego innych."
 	remarks = list("Cóż, to jeden ze sposobów, by powstrzymać napastnika...", "Będę potrzebował dobrego sprzętu, żeby nie spłonąć na śmierć...", "Mieć pod ręką gaśnicę, jasne...", "Chyba właśnie poparzyłem sobie rękę...", "Przyłożyć płomień bezpośrednio do klatki piersiowej, by porządnie zapłonęło...", "Bez bólu nie ma efektów...", "Jedność z płomieniem...")
 
 /obj/item/book/granter/spell/smoke
 	spell = /obj/effect/proc_holder/spell/targeted/smoke
-	spellname = "smoke"
+	spellname = "dym"
 	icon_state ="booksmoke"
-	desc = "This book is overflowing with the dank arts."
+	desc = "Ta księga aż kipi od zielonej magii."
 	remarks = list("Bomba dymna! He...", "Bomba dymna też by się sprawdziła...", "Chwila, w chemii jest maszyna, która robi to samo?", "Ta książka okropnie śmierdzi...", "Po co te wszystkie żarty o zielsku? Po prostu powiedz, jak to rzucić...", "Wiatr zrujnuje całe zaklęcie, dobrze, że jesteśmy w kosmosie... Prawda?", "A więc tak robi to klan pająka...")
 
 /obj/item/book/granter/spell/smoke/lesser //Chaplain smoke book
@@ -189,9 +189,9 @@
 
 /obj/item/book/granter/spell/blind
 	spell = /obj/effect/proc_holder/spell/targeted/blind
-	spellname = "blind"
+	spellname = "oślepienie"
 	icon_state ="bookblind"
-	desc = "This book looks blurry, no matter how you look at it."
+	desc = "Ta księga wygląda na rozmazaną, niezależnie od tego, jak na nią patrzysz."
 	remarks = list("No nie nauczę się niczego, jak nie mogę tego cholerstwa przeczytać!", "Po co używać ciemnej czcionki na ciemnym tle...", "Ach, nic nie wid- Och, wszystko dobrze...", "Nie widzę własnej ręki...!", "Mrugam ręcznie, niech cię szlag, książko...", "Nie mogę przeczytać tej strony, ale jakimś cudem czuję, że czegoś się z niej nauczyłem...", "Hej, kto zgasił światło?")
 
 /obj/item/book/granter/spell/blind/recoil(mob/user)
@@ -201,16 +201,18 @@
 
 /obj/item/book/granter/spell/mindswap
 	spell = /obj/effect/proc_holder/spell/targeted/mind_transfer
-	spellname = "mindswap"
+	spellname = "zamiana umysłów"
 	icon_state ="bookmindswap"
-	desc = "This book's cover is pristine, though its pages look ragged and torn."
+	desc = "Okładka tej księgi jest nieskazitelna, ale strony wyglądają na postrzępione i podarte."
 	var/mob/stored_swap //Used in used book recoils to store an identity for mindswaps
 	remarks = list("Jeśli zamienisz się umysłem z myszą, po powrocie będzie bezbronna...", "Chwila, gdzie ja jestem...?", "Od tej książki strasznie boli mnie głowa...", "Ta strona jest pusta, ale czuję, jak w głowie pojawiają mi się słowa...", "GYNU... GYRO... Ech...", "Głosy w mojej głowie muszą przestać, próbuję tu czytać...", "Chyba nikt się nie ucieszy, kiedy rzucę to zaklęcie...")
 
 /obj/item/book/granter/spell/mindswap/onlearned()
-	spellname = pick("fireball","smoke","blind","forcewall","knock","barnyard","charge")
-	icon_state = "book[spellname]"
-	name = "spellbook of [spellname]" //Note, desc doesn't change by design
+	var/static/list/disguise_names = list("fireball" = "kula ognia", "smoke" = "dym", "blind" = "oślepienie", "forcewall" = "ściana mocy", "knock" = "otwarcie", "barnyard" = "klątwa zagrody", "charge" = "naładowanie")
+	var/disguise = pick(disguise_names)
+	icon_state = "book[disguise]"
+	spellname = disguise_names[disguise]
+	name = "księga zaklęć: [spellname]" //Note, desc doesn't change by design
 	..()
 
 /obj/item/book/granter/spell/mindswap/recoil(mob/user)
@@ -235,9 +237,9 @@
 
 /obj/item/book/granter/spell/forcewall
 	spell = /obj/effect/proc_holder/spell/targeted/forcewall
-	spellname = "forcewall"
+	spellname = "ściana mocy"
 	icon_state ="bookforcewall"
-	desc = "This book has a dedication to mimes everywhere inside the front cover."
+	desc = "Na wewnętrznej stronie okładki tej księgi jest dedykacja dla mimów na całym świecie."
 	remarks = list("Mogę przechodzić przez ściany! Super.", "Czemu tu tyle nawiązań do mimów...?", "Na korytarzu narobiłoby to sporo zamieszania...", "Zaskakująco silna magia jak na stworzenie ściany, przez którą nikt nie przejdzie...", "Po co ta głupia poza? To tylko ruch dłoni...", "Czemu te strony tak ciężko się przewraca, czy to w ogóle papier?", "Nie mogę się rus- Och, wszystko dobrze...")
 
 /obj/item/book/granter/spell/forcewall/recoil(mob/living/user)
@@ -248,9 +250,9 @@
 
 /obj/item/book/granter/spell/knock
 	spell = /obj/effect/proc_holder/spell/aoe_turf/knock
-	spellname = "knock"
+	spellname = "otwarcie"
 	icon_state ="bookknock"
-	desc = "This book is hard to hold closed properly."
+	desc = "Ciężko utrzymać tę księgę zamkniętą."
 	remarks = list("Sezamie, otwórz się!", "A więc TO jest magiczne hasło!", "Zwolnij, książko. Jeszcze nie skończyłem tej strony...", "Ta książka nie przestaje się ruszać!", "Chyba to szkodzi grzbietowi książki...", "Nie mogę przejść do następnej strony, przykleiła się d- Dobra, sama się przewróciła.", "No tak, laska drzwi robi to samo. Kto by pomyślał...")
 
 /obj/item/book/granter/spell/knock/recoil(mob/living/user)
@@ -260,9 +262,9 @@
 
 /obj/item/book/granter/spell/barnyard
 	spell = /obj/effect/proc_holder/spell/targeted/barnyardcurse
-	spellname = "barnyard"
+	spellname = "klątwa zagrody"
 	icon_state ="bookhorses"
-	desc = "This book is more horse than your mind has room for."
+	desc = "W tej księdze jest więcej konia, niż zmieści twój umysł."
 	remarks = list("Muuuuuuuu!","Muu!","Muuuu!", "NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!", "Chrum!", "Kwiiiiiiii!", "Chrum chrum!", "Iii!!", "Iiii!!", "REEE!!", "REEEEE!!")
 
 /obj/item/book/granter/spell/barnyard/recoil(mob/living/carbon/user)
@@ -278,10 +280,10 @@
 
 /obj/item/book/granter/spell/charge
 	spell = /obj/effect/proc_holder/spell/targeted/charge
-	spellname = "charge"
+	spellname = "naładowanie"
 	icon_state ="bookcharge"
-	desc = "This book is made of 100% postconsumer wizard."
-	remarks = list("Czuję, że ŻYJĘ!", "CZUJĘ SMAK MANY!", "What a RUSH!", "PRZELATUJĘ przez te strony!", "TEN GENIUSZ TO ROBI!", "Ta książka jest PEŁNA AKCJI!", "ZROBIŁ TO", "JAZDAAAAAAAAAAA")
+	desc = "Ta księga jest w 100% z czarodzieja z recyklingu."
+	remarks = list("Czuję, że ŻYJĘ!", "CZUJĘ SMAK MANY!", "Co za KOP!", "PRZELATUJĘ przez te strony!", "TEN GENIUSZ TO ROBI!", "Ta książka jest PEŁNA AKCJI!", "ZROBIŁ TO", "JAZDAAAAAAAAAAA")
 
 /obj/item/book/granter/spell/charge/recoil(mob/user)
 	..()
@@ -292,7 +294,7 @@
 	spell = /obj/effect/proc_holder/spell/targeted/summonitem
 	spellname = "natychmiastowe przywołanie"
 	icon_state ="booksummons"
-	desc = "This book is bright and garish, very hard to miss."
+	desc = "Ta księga jest jaskrawa i krzykliwa, bardzo trudno jej nie zauważyć."
 	remarks = list("Nie mogę oderwać wzroku od książki!", "Słowa zdają się skakać po stronie...", "Muszę się skupić tylko na jednym przedmiocie...", "Rzucając zaklęcie, trzeba go mocno trzymać...", "Zwolnij, książko. Jeszcze nie skończyłem tej strony...", "Brzmi świetnie w połączeniu z innymi magicznymi artefaktami...", "Iluzjoniści muszą to uwielbiać.")
 
 /obj/item/book/granter/spell/summonitem/recoil(mob/user)
@@ -339,9 +341,9 @@
 
 /obj/item/book/granter/martial/cqc
 	martial = /datum/martial_art/cqc
-	name = "old manual"
+	name = "stary podręcznik"
 	martialname = "walka w zwarciu"
-	desc = "A small, black manual. There are drawn instructions of tactical hand-to-hand combat."
+	desc = "Mały, czarny podręcznik z narysowanymi instrukcjami taktycznej walki wręcz."
 	greet = "<span class='boldannounce'>Opanowujesz podstawy CQC.</span>"
 	icon_state = "cqcmanual"
 	remarks = list("Kopnięcie... Rzut...", "Dźwignia... Kopnięcie...", "Uderzaj w brzuch, szyję i plecy, by zadać krytyczne obrażenia...", "Rzut... Dźwignia...", "Pewnie dałoby się to połączyć z innymi sztukami walki!", "Słowa, które zabijają...", "Ostatnia i ostateczna chwila należy do ciebie...")
@@ -352,7 +354,7 @@
 		to_chat(user, "<span class='warning'>[src] złowieszczo pika...</span>")
 
 /obj/item/book/granter/martial/cqc/recoil(mob/living/carbon/user)
-	to_chat(user, "<span class='warning'>[src] explodes!</span>")
+	to_chat(user, "<span class='warning'>[src] wybucha!</span>")
 	playsound(src,'sound/effects/explosion1.ogg',40,1)
 	user.flash_act(1, 1)
 	user.adjustBruteLoss(6)
@@ -361,9 +363,9 @@
 
 /obj/item/book/granter/martial/carp
 	martial = /datum/martial_art/the_sleeping_carp
-	name = "mysterious scroll"
+	name = "tajemniczy zwój"
 	martialname = "śpiący karp"
-	desc = "A scroll filled with strange markings. It seems to be drawings of some sort of martial art."
+	desc = "Zwój pełen dziwnych znaków. Wyglądają na rysunki jakiejś sztuki walki."
 	greet = "<span class='sciradio'>Poznajesz starożytną sztukę walki Śpiącego Karpia! Twoja walka wręcz staje się znacznie skuteczniejsza i potrafisz odbijać wszelkie wymierzone w ciebie pociski. Nie możesz jednak używać broni dystansowej. Więcej o swojej nowej sztuce dowiesz się z czasownika Recall Teachings w zakładce Sleeping Carp.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
@@ -372,15 +374,15 @@
 /obj/item/book/granter/martial/carp/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse == TRUE)
-		desc = "It's completely blank."
-		name = "empty scroll"
+		desc = "Jest zupełnie pusty."
+		name = "pusty zwój"
 		icon_state = "blankscroll"
 
 /obj/item/book/granter/martial/tribal_claw
 	martial = /datum/martial_art/tribal_claw
-	name = "old scroll"
+	name = "stary zwój"
 	martialname = "plemienny pazur"
-	desc = "A scroll filled with ancient draconic markings."
+	desc = "Zwój pełen starożytnych smoczych znaków."
 	greet = "<span class='sciradio'>Poznajesz starożytną sztukę walki Plemiennego Pazura! Potrafisz teraz o wiele lepiej używać w walce ogona i pazurów. Dostępne kombinacje sprawdzisz czasownikiem Recall Teachings w zakładce Tribal Claw</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
@@ -390,8 +392,8 @@
 	..()
 	if(!oneuse)
 		return
-	desc = "It's completely blank."
-	name = "empty scroll"
+	desc = "Jest zupełnie pusty."
+	name = "pusty zwój"
 	icon_state = "blankscroll"
 
 /obj/item/book/granter/martial/tribal_claw/already_known(mob/user)
@@ -403,9 +405,9 @@
 
 /obj/item/book/granter/martial/plasma_fist
 	martial = /datum/martial_art/plasma_fist
-	name = "frayed scroll"
+	name = "postrzępiony zwój"
 	martialname = "plazmowa pięść"
-	desc = "An aged and frayed scrap of paper written in shifting runes. There are hand-drawn illustrations of pugilism."
+	desc = "Stary, postrzępiony skrawek papieru zapisany zmieniającymi się runami. Są na nim ręcznie rysowane ilustracje boksu."
 	greet = "<span class='boldannounce'>Poznajesz starożytną sztukę walki Plazmowej Pięści. Twoje kombinacje są niezwykle trudne do wykonania, ale obejmują jedne z najbardziej śmiercionośnych ciosów, jakie widziano, w tym plazmową pięść, która po udanym wykonaniu sprawia, że przeciwnik gwałtownie eksploduje.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
@@ -414,15 +416,15 @@
 /obj/item/book/granter/martial/plasma_fist/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse == TRUE)
-		desc = "It's completely blank."
-		name = "empty scroll"
+		desc = "Jest zupełnie pusty."
+		name = "pusty zwój"
 		icon_state = "blankscroll"
 
 /obj/item/book/granter/martial/karate
 	martial = /datum/martial_art/karate
-	name = "dusty scroll"
+	name = "zakurzony zwój"
 	martialname = "karate"
-	desc = "A dusty scroll filled with martial lessons. There seems to be drawings of some sort of martial art."
+	desc = "Zakurzony zwój pełen lekcji walki. Wyglądają na rysunki jakiejś sztuki walki."
 	greet = "<span class='sciradio'>Poznajesz starożytną sztukę walki Karate! Twoja walka wręcz staje się skuteczniejsza, ale kombinacje wymagają umiejętności. Więcej o swojej nowej sztuce dowiesz się z czasownika Recall Teachings w zakładce Karate.</span>"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "scroll2"
@@ -431,8 +433,8 @@
 /obj/item/book/granter/martial/karate/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse == TRUE)
-		desc = "It's completely blank."
-		name = "empty scroll"
+		desc = "Jest zupełnie pusty."
+		name = "pusty zwój"
 		icon_state = "blankscroll"
 
 // I did not include mushpunch's grant, it is not a book and the item does it just fine.
@@ -452,8 +454,8 @@
 		to_chat(user,"<span class='notice'>Uczysz się robić [initial(R.name)].</span>")
 
 /obj/item/book/granter/crafting_recipe/cooking_sweets_101
-	name = "Cooking Desserts 101"
-	desc = "A cook book that teaches you some more of the newest desserts. AI approved, and a best seller on Honkplanet."
+	name = "Pieczenie deserów dla początkujących"
+	desc = "Książka kucharska, która uczy cię kilku najnowszych deserów. Zatwierdzona przez SI i bestseller na Planecie Honk."
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/food/mimetart,
 		/datum/crafting_recipe/food/berrytart,

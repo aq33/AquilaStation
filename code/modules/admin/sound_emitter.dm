@@ -7,8 +7,8 @@
 
 //Admin sound emitters with highly customizable functions!
 /obj/effect/sound_emitter
-	name = "sound emitter"
-	desc = "Emits sounds, presumably."
+	name = "emiter dźwięku"
+	desc = "Emituje dźwięki. Tak przypuszczalnie."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield2"
 	invisibility = INVISIBILITY_OBSERVER
@@ -37,9 +37,9 @@
 	. = ..()
 	if(!isobserver(user))
 		return
-	. += "<span class='boldnotice'>Sound File:</span> [sound_file ? sound_file : "None chosen"]"
-	. += "<span class='boldnotice'>Mode:</span> [motus_operandi]</span>"
-	. += "<span class='boldnotice'>Range:</span> [emitter_range]</span>"
+	. += "<span class='boldnotice'>Plik dźwiękowy:</span> [sound_file ? sound_file : "nie wybrano"]"
+	. += "<span class='boldnotice'>Tryb:</span> [motus_operandi]</span>"
+	. += "<span class='boldnotice'>Zasięg:</span> [emitter_range]</span>"
 	. += "<b>Dźwięk gra z głośnością [sound_volume]%.</b>"
 	if(user.client.holder)
 		. += "<b>Alt-klik, by szybko go aktywować!</b>"
@@ -54,20 +54,20 @@
 /obj/effect/sound_emitter/AltClick(mob/user)
 	if(check_rights_for(user.client, R_SOUND))
 		activate(user)
-		to_chat(user, "<span class='notice'>Sound emitter activated.</span>")
+		to_chat(user, "<span class='notice'>Aktywowano emiter dźwięku.</span>")
 
 /obj/effect/sound_emitter/proc/edit_emitter(mob/user)
 	var/dat = ""
-	dat += "<b>Label:</b> <a href='byond://?src=\ref[src];edit_label=1'>[maptext ? maptext : "No label set!"]</a><br>"
+	dat += "<b>Etykieta:</b> <a href='byond://?src=\ref[src];edit_label=1'>[maptext ? maptext : "Brak etykiety!"]</a><br>"
 	dat += "<br>"
-	dat += "<b>Sound File:</b> <a href='byond://?src=\ref[src];edit_sound_file=1'>[sound_file ? sound_file : "No file chosen!"]</a><br>"
-	dat += "<b>Volume:</b> <a href='byond://?src=\ref[src];edit_volume=1'>[sound_volume]%</a><br>"
+	dat += "<b>Plik dźwiękowy:</b> <a href='byond://?src=\ref[src];edit_sound_file=1'>[sound_file ? sound_file : "Nie wybrano pliku!"]</a><br>"
+	dat += "<b>Głośność:</b> <a href='byond://?src=\ref[src];edit_volume=1'>[sound_volume]%</a><br>"
 	dat += "<br>"
-	dat += "<b>Mode:</b> <a href='byond://?src=\ref[src];edit_mode=1'>[motus_operandi]</a><br>"
+	dat += "<b>Tryb:</b> <a href='byond://?src=\ref[src];edit_mode=1'>[motus_operandi]</a><br>"
 	if(motus_operandi != SOUND_EMITTER_LOCAL)
-		dat += "<b>Range:</b> <a href='byond://?src=\ref[src];edit_range=1'>[emitter_range]</a>[emitter_range == SOUND_EMITTER_RADIUS ? "<a href='byond://?src=\ref[src];edit_radius=1'>[play_radius]-tile radius</a>" : ""]<br>"
+		dat += "<b>Zasięg:</b> <a href='byond://?src=\ref[src];edit_range=1'>[emitter_range]</a>[emitter_range == SOUND_EMITTER_RADIUS ? "<a href='byond://?src=\ref[src];edit_radius=1'>promień: [play_radius] pól</a>" : ""]<br>"
 	dat += "<br>"
-	dat += "<a href='byond://?src=\ref[src];play=1'>Play Sound</a> (interrupts other sound emitter sounds)"
+	dat += "<a href='byond://?src=\ref[src];play=1'>Odtwórz dźwięk</a> (przerywa dźwięki innych emiterów)"
 	var/datum/browser/popup = new(user, "emitter", "", 500, 600)
 	popup.set_content(dat)
 	popup.open()
@@ -78,19 +78,19 @@
 		return
 	var/mob/user = usr
 	if(href_list["edit_label"])
-		var/new_label = stripped_input(user, "Wybierz nową etykietę.", "Sound Emitter")
+		var/new_label = stripped_input(user, "Wybierz nową etykietę.", "Emiter dźwięku")
 		if(!new_label)
 			return
 		maptext = MAPTEXT(new_label)
 		to_chat(user, "<span class='notice'>Ustawiono etykietę na [maptext].</span>")
 	if(href_list["edit_sound_file"])
-		var/new_file = input(user, "Wybierz plik dźwiękowy.", "Sound Emitter") as null|sound
+		var/new_file = input(user, "Wybierz plik dźwiękowy.", "Emiter dźwięku") as null|sound
 		if(!new_file)
 			return
 		sound_file = new_file
 		to_chat(user, "<span class='notice'>Ustawiono nowy plik dźwiękowy [sound_file].</span>")
 	if(href_list["edit_volume"])
-		var/new_volume = input(user, "Choose a volume.", "Sound Emitter", sound_volume) as null|num
+		var/new_volume = input(user, "Wybierz głośność.", "Emiter dźwięku", sound_volume) as null|num
 		if(isnull(new_volume))
 			return
 		new_volume = CLAMP(new_volume, 0, 100)
@@ -98,22 +98,22 @@
 		to_chat(user, "<span class='notice'>Ustawiono głośność na [sound_volume]%.</span>")
 	if(href_list["edit_mode"])
 		var/new_mode
-		var/mode_list = list("Local (normal sound)" = SOUND_EMITTER_LOCAL, "Direct (not affected by environment/location)" = SOUND_EMITTER_DIRECT)
-		new_mode = input(user, "Wybierz nowy tryb.", "Sound Emitter") as null|anything in mode_list
+		var/mode_list = list("Lokalny (zwykły dźwięk)" = SOUND_EMITTER_LOCAL, "Bezpośredni (bez wpływu otoczenia/położenia)" = SOUND_EMITTER_DIRECT)
+		new_mode = input(user, "Wybierz nowy tryb.", "Emiter dźwięku") as null|anything in mode_list
 		if(!new_mode)
 			return
 		motus_operandi = mode_list[new_mode]
 		to_chat(user, "<span class='notice'>Ustawiono tryb na [motus_operandi].</span>")
 	if(href_list["edit_range"])
 		var/new_range
-		var/range_list = list("Radius (all mobs within a radius)" = SOUND_EMITTER_RADIUS, "Z-Level (all mobs on the same z)" = SOUND_EMITTER_ZLEVEL, "Global (all players)" = SOUND_EMITTER_GLOBAL)
-		new_range = input(user, "Wybierz nowy zasięg.", "Sound Emitter") as null|anything in range_list
+		var/range_list = list("Promień (wszystkie moby w promieniu)" = SOUND_EMITTER_RADIUS, "Poziom Z (wszystkie moby na tym samym z)" = SOUND_EMITTER_ZLEVEL, "Globalny (wszyscy gracze)" = SOUND_EMITTER_GLOBAL)
+		new_range = input(user, "Wybierz nowy zasięg.", "Emiter dźwięku") as null|anything in range_list
 		if(!new_range)
 			return
 		emitter_range = range_list[new_range]
 		to_chat(user, "<span class='notice'>Ustawiono zasięg na [emitter_range].</span>")
 	if(href_list["edit_radius"])
-		var/new_radius = input(user, "Choose a radius.", "Sound Emitter", sound_volume) as null|num
+		var/new_radius = input(user, "Wybierz promień.", "Emiter dźwięku", sound_volume) as null|num
 		if(isnull(new_radius))
 			return
 		new_radius = CLAMP(new_radius, 0, 127)

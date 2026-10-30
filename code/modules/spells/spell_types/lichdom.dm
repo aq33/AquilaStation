@@ -1,11 +1,11 @@
 /obj/effect/proc_holder/spell/targeted/lichdom
-	name = "Bind Soul"
-	desc = "A dark necromantic pact that can forever bind your soul to an \
-	item of your choosing. So long as both your body and the item remain \
-	intact and on the same plane you can revive from death, though the time \
-	between reincarnations grows steadily with use, along with the weakness \
-	that the new skeleton body will experience upon 'birth'. Note that \
-	becoming a lich destroys all internal organs except the brain."
+	name = "Związanie duszy"
+	desc = "Mroczny pakt nekromantyczny, który na zawsze wiąże twoją duszę z \
+	wybranym przedmiotem. Dopóki zarówno twoje ciało, jak i przedmiot pozostają \
+	nienaruszone i na tym samym planie, możesz powstawać z martwych, choć czas \
+	między reinkarnacjami stale rośnie z każdym użyciem, podobnie jak słabość \
+	nowego ciała szkieletu po „narodzinach”. Pamiętaj, że \
+	przemiana w lisza niszczy wszystkie narządy wewnętrzne poza mózgiem."
 	school = "necromancy"
 	charge_max = 10
 	clothes_req = FALSE
@@ -53,7 +53,7 @@
 			to_chat(M, "<span class='warning'>Twoja dusza wraca gwałtownie do ciała, gdy przestajesz przenosić ją do [marked_item]!</span>")
 			return
 
-		marked_item.name = "ensouled [marked_item.name]"
+		marked_item.name = "[marked_item.name] (z duszą)"
 		marked_item.desc += "\nTen przedmiot otacza straszliwa aura; samo jego istnienie obraża życie..."
 		marked_item.add_atom_colour("#003300", ADMIN_COLOUR_PRIORITY)
 
@@ -76,8 +76,8 @@
 
 
 /obj/item/phylactery
-	name = "phylactery"
-	desc = "Stores souls. Revives liches. Also repels mosquitos."
+	name = "filakteria"
+	desc = "Przechowuje dusze. Ożywia lisze. Odstrasza też komary."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
 	color = "#003300"
@@ -94,7 +94,7 @@
 /obj/item/phylactery/Initialize(mapload, datum/mind/newmind)
 	. = ..()
 	mind = newmind
-	name = "phylactery of [mind.name]"
+	name = "filakteria: [mind.name]"
 
 	active_phylacteries++
 	GLOB.poi_list |= src
@@ -151,7 +151,10 @@
 				var/obj/item/organ/I = X
 				I.Remove(C)
 				I.forceMove(body_turf)
+		var/static/list/kierunki_pl = list("north" = "północ", "south" = "południe", "east" = "wschód", "west" = "zachód", "northeast" = "północny wschód", "southeast" = "południowy wschód", "northwest" = "północny zachód", "southwest" = "południowy zachód")
 		var/wheres_wizdo = dir2text(get_dir(body_turf, item_turf))
+		if(wheres_wizdo)
+			wheres_wizdo = kierunki_pl[wheres_wizdo]
 		if(wheres_wizdo)
 			old_body.visible_message("<span class='warning'>Nagle zwłoki [old_body.name] rozpadają się na kawałki! Widzisz, jak ze szczątków unosi się dziwna energia i mknie w kierunku: [wheres_wizdo]!</span>")
 			body_turf.Beam(item_turf,icon_state="lichbeam",time=10+10*resurrections,maxdistance=INFINITY)

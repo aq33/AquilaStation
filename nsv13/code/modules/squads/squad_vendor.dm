@@ -56,7 +56,7 @@
 
 /obj/machinery/squad_vendor/ui_data(mob/user)
 	var/list/data = list()
-	data["user_name"] = (user) ? compose_rank(user)+user.name : "Unassigned"
+	data["user_name"] = (user) ? compose_rank(user)+user.name : "Nieprzydzielony"
 	data["already_loaned"] = (user in loans_info)
 	var/mob/living/carbon/human/H = user
 	var/datum/squad/squad = ishuman(H) ? H?.squad : null

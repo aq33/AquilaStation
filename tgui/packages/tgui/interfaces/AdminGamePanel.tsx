@@ -40,7 +40,7 @@ type Data = {
 // AQUILA - dodatkowe tryby spoza config.modes (weighted to tryb Aquili)
 const EXTRA_MODES: Mode[] = [
   { id: 'secret', name: 'Secret' },
-  { id: 'random', name: 'Random' },
+  { id: 'random', name: 'Losowy' },
   { id: 'weighted', name: 'Weighted' },
 ];
 

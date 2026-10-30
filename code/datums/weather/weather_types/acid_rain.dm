@@ -1,7 +1,7 @@
 //Acid rain is part of the natural weather cycle in the humid forests of Planetstation, and cause acid damage to anyone unprotected.
 /datum/weather/acid_rain
-	name = "acid rain"
-	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
+	name = "kwaśny deszcz"
+	desc = "Burze na tej planecie są z natury kwaśne i spalą każdego, kto stoi pod nimi bez ochrony."
 
 	telegraph_duration = 400
 	telegraph_message = "<span class='boldwarning'>Wysoko w górze dudni grzmot. Słyszysz, jak krople bębnią o osłonę. Znajdź schronienie.</span>"

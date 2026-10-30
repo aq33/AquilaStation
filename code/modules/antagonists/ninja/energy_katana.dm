@@ -1,5 +1,5 @@
 /obj/item/energy_katana
-	name = "energy katana"
+	name = "energetyczna katana"
 	desc = "Katana nasycona potężną energią. Prawy przycisk myszy, by wykonać zryw."
 	icon_state = "energy_katana"
 	item_state = "energy_katana"

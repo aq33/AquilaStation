@@ -1,16 +1,16 @@
 /obj/item/stack/tile/glass
-	name = "glass tile"
+	name = "płytka szklana"
 	icon = 'nsv13/icons/obj/tiles.dmi'
-	singular_name = "glass floor tile"
-	desc = "The glass you walk on."
+	singular_name = "szklana płytka podłogowa"
+	desc = "Szkło, po którym chodzisz."
 	icon_state = "glass_tile"
 	turf_type = /turf/open/floor/glass
 	materials = list(/datum/material/glass=500)
 
 /obj/item/stack/tile/glass/reinforced
-	name = "reinforced glass tile"
-	singular_name = "reinforced glass tile"
-	desc = "The glass you walk on."
+	name = "płytka ze szkła zbrojonego"
+	singular_name = "płytka ze szkła zbrojonego"
+	desc = "Szkło, po którym chodzisz."
 	icon_state = "rglass_tile"
 	turf_type = /turf/open/floor/glass/reinforced
 	materials = list(/datum/material/glass=500, /datum/material/iron=250)
@@ -18,9 +18,9 @@
 
 //durasteel tiles
 /obj/item/stack/tile/durasteel
-	name = "durasteel floor tile"
-	singular_name = "durasteel floor tile"
-	desc = "A durasteel tile. Those could work as a pretty decent throwing weapon."
+	name = "durastalowa płytka podłogowa"
+	singular_name = "durastalowa płytka podłogowa"
+	desc = "Płytka z durastali. Może posłużyć za całkiem niezłą broń do rzucania."
 	icon = 'nsv13/icons/obj/custom_tiles.dmi'
 	icon_state = "durasteel_tile"
 	force = 6
@@ -165,9 +165,9 @@
 //carpet
 
 /obj/item/stack/tile/carpet/ship
-	name = "nanoweave carpet tile"
-	singular_name = "nanoweave carpet tile"
-	desc = "A regular nanoweave carpet tile"
+	name = "płytka wykładziny z nanowłókna"
+	singular_name = "płytka wykładziny z nanowłókna"
+	desc = "Zwykła płytka wykładziny z nanowłókna."
 	icon = 'nsv13/icons/turf/dark_carpet.dmi'
 	icon_state = "dark_carpet_tile"
 	resistance_flags = FLAMMABLE
@@ -175,31 +175,31 @@
 	turf_type = /turf/open/floor/carpet/ship
 
 /obj/item/stack/tile/carpet/ship/blue
-	name = "nanoweave carpet tile (blue)"
+	name = "płytka wykładziny z nanowłókna (niebieska)"
 	icon = 'nsv13/icons/turf/blue_carpet.dmi'
 	icon_state = "blue_carpet_tile"
 	turf_type = /turf/open/floor/carpet/ship/blue
 
 /obj/item/stack/tile/carpet/ship/orange_carpet
-	name = "nanoweave carpet tile (orange)"
+	name = "płytka wykładziny z nanowłókna (pomarańczowa)"
 	icon = 'nsv13/icons/turf/orange_carpet.dmi'
 	icon_state = "orange_carpet_tile"
 	turf_type = /turf/open/floor/carpet/ship/orange_carpet
 
 /obj/item/stack/tile/carpet/ship/purple_carpet
-	name = "nanoweave carpet tile (purple)"
+	name = "płytka wykładziny z nanowłókna (fioletowa)"
 	icon = 'nsv13/icons/turf/purple_carpet.dmi'
 	icon_state = "purple_carpet_tile"
 	turf_type = /turf/open/floor/carpet/ship/purple_carpet
 
 /obj/item/stack/tile/carpet/ship/beige_carpet
-	name = "nanoweave carpet tile (beige)"
+	name = "płytka wykładziny z nanowłókna (beżowa)"
 	icon = 'nsv13/icons/turf/beige_carpet.dmi'
 	icon_state = "beige_carpet_tile"
 	turf_type = /turf/open/floor/carpet/ship/beige_carpet
 
 /obj/item/stack/tile/carpet/ship/red_carpet
-	name = "nanoweave carpet tile (red)"
+	name = "płytka wykładziny z nanowłókna (czerwona)"
 	icon = 'nsv13/icons/turf/beige_carpet.dmi'
 	icon_state = "red_carpet_tile"
 	turf_type = /turf/open/floor/carpet/ship/red_carpet

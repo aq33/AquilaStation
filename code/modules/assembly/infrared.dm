@@ -1,6 +1,6 @@
 /obj/item/assembly/infra
-	name = "infrared emitter"
-	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	name = "emiter podczerwieni"
+	desc = "Emituje widoczną lub niewidoczną wiązkę i uruchamia się, gdy wiązka zostanie przerwana."
 	icon_state = "infrared"
 	custom_materials = list(/datum/material/iron=1000, /datum/material/glass=500)
 	is_position_sensitive = TRUE
@@ -219,7 +219,7 @@
 /***************************IBeam*********************************/
 
 /obj/effect/beam/i_beam
-	name = "infrared beam"
+	name = "wiązka podczerwieni"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
 	anchored = TRUE

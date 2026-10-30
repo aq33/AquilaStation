@@ -1,6 +1,6 @@
 /datum/nanite_rule
-	var/name = "Generic Condition"
-	var/desc = "When triggered, the program is active"
+	var/name = "Ogólny warunek"
+	var/desc = "Po aktywacji program jest aktywny"
 	var/datum/nanite_program/program
 
 /datum/nanite_rule/New(datum/nanite_program/new_program)
@@ -25,8 +25,8 @@
 	new type(new_program)
 
 /datum/nanite_rule/health
-	name = "Health"
-	desc = "Checks the host's health status."
+	name = "Zdrowie"
+	desc = "Sprawdza stan zdrowia nosiciela."
 
 	var/threshold = 50
 	var/above = TRUE
@@ -51,8 +51,8 @@
 
 //TODO allow inversion
 /datum/nanite_rule/crit
-	name = "Crit"
-	desc = "Checks if the host is in critical condition."
+	name = "Stan krytyczny"
+	desc = "Sprawdza, czy nosiciel jest w stanie krytycznym."
 
 /datum/nanite_rule/crit/check_rule()
 	if(program.host_mob.InCritical())
@@ -60,8 +60,8 @@
 	return FALSE
 
 /datum/nanite_rule/death
-	name = "Death"
-	desc = "Checks if the host is dead."
+	name = "Śmierć"
+	desc = "Sprawdza, czy nosiciel nie żyje."
 
 /datum/nanite_rule/death/check_rule()
 	if(program.host_mob.stat == DEAD || HAS_TRAIT(program.host_mob, TRAIT_FAKEDEATH))
@@ -69,12 +69,12 @@
 	return FALSE
 
 /datum/nanite_rule/cloud_sync
-	name = "Cloud Sync"
-	desc = "Checks if the nanites have cloud sync enabled or disabled."
-	var/check_type = "Enabled"
+	name = "Synchronizacja z chmurą"
+	desc = "Sprawdza, czy nanity mają włączoną lub wyłączoną synchronizację z chmurą."
+	var/check_type = "Włączona"
 
 /datum/nanite_rule/cloud_sync/check_rule()
-	if(check_type == "Enabled")
+	if(check_type == "Włączona")
 		return program.nanites.cloud_active
 	else
 		return !program.nanites.cloud_active
@@ -87,8 +87,8 @@
 	return "[name]:[check_type]"
 
 /datum/nanite_rule/nanites
-	name = "Nanite Volume"
-	desc = "Checks the host's nanite volume."
+	name = "Objętość nanitów"
+	desc = "Sprawdza objętość nanitów w nosicielu."
 
 	var/threshold = 50
 	var/above = TRUE
@@ -112,8 +112,8 @@
 	return "[name] [above ? ">" : "<"] [threshold]%"
 
 /datum/nanite_rule/damage
-	name = "Damage"
-	desc = "Checks the host's damage."
+	name = "Obrażenia"
+	desc = "Sprawdza obrażenia nosiciela."
 
 	var/threshold = 50
 	var/above = TRUE
@@ -151,8 +151,8 @@
 	return "[damage_type] [above ? ">" : "<"] [threshold]"
 
 /datum/nanite_rule/species
-	name = "Species"
-	desc = "Checks the host's race"
+	name = "Gatunek"
+	desc = "Sprawdza gatunek nosiciela"
 
 	var/species_rule = /datum/species/human
 	var/mode_rule = "is"
@@ -179,4 +179,4 @@
 	rule.species_name_rule = species_name_rule
 
 /datum/nanite_rule/species/display()
-	return "[mode_rule ? "IS" : "IS NOT"] [species_name_rule]"
+	return "[mode_rule ? "JEST" : "NIE JEST"] [species_name_rule]"

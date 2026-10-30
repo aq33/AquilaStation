@@ -1,7 +1,7 @@
 #define EMP_RANDOMISE_TIME 300
 
 /datum/action/item_action/chameleon/drone/randomise
-	name = "Randomise Headgear"
+	name = "Losowe nakrycie głowy"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "random"
 
@@ -21,7 +21,7 @@
 
 
 /datum/action/item_action/chameleon/drone/togglehatmask
-	name = "Toggle Headgear Mode"
+	name = "Przełącz tryb nakrycia głowy"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 
 /datum/action/item_action/chameleon/drone/togglehatmask/New()
@@ -69,7 +69,7 @@
 
 
 /datum/action/chameleon_outfit
-	name = "Select Chameleon Outfit"
+	name = "Wybierz strój kameleona"
 	button_icon_state = "chameleon_outfit"
 	var/list/outfit_options //By default, this list is shared between all instances. It is not static because if it were, subtypes would not be able to have their own. If you ever want to edit it, copy it first.
 
@@ -136,11 +136,11 @@
 
 
 /datum/action/item_action/chameleon/change
-	name = "Chameleon Change"
+	name = "Zmiana kameleona"
 	var/list/chameleon_blacklist = list() //This is a typecache
 	var/list/chameleon_list = list()
 	var/chameleon_type = null
-	var/chameleon_name = "Item"
+	var/chameleon_name = "Przedmiot"
 
 	var/emp_timer
 
@@ -164,7 +164,7 @@
 
 /datum/action/item_action/chameleon/change/proc/initialize_disguises()
 	if(button)
-		button.name = "Change [chameleon_name] Appearance"
+		button.name = "Zmień wygląd: [chameleon_name]"
 
 	chameleon_blacklist |= typecacheof(target.type)
 	for(var/V in typesof(chameleon_type))
@@ -179,7 +179,7 @@
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
 	var/obj/item/picked_item
 	var/picked_name
-	picked_name = input("Wybierz [chameleon_name], w który chcesz się przebrać", "Chameleon [chameleon_name]", picked_name) as null|anything in sortList(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
+	picked_name = input("Wybierz, w co chcesz się przebrać ([chameleon_name])", "Kameleon: [chameleon_name]", picked_name) as null|anything in sortList(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!picked_name)
 		return
 	picked_item = chameleon_list[picked_name]
@@ -259,8 +259,8 @@
 					keepname = TRUE
 					var/mob/M = usr
 					if(initial(ID_from.assignment))
-						var/popup_input = alert(M, "Czy chcesz zmienić stanowisko na domyślne dla wybranej karty kameleona?", "Stanowisko na ID agenta", "Yes", "Nie (zachowaj obecne stanowisko)")
-						if(popup_input == "Yes")
+						var/popup_input = alert(M, "Czy chcesz zmienić stanowisko na domyślne dla wybranej karty kameleona?", "Stanowisko na ID agenta", "Tak", "Nie (zachowaj obecne stanowisko)")
+						if(popup_input == "Tak")
 							ID.assignment = initial(ID_from.assignment)
 							ID.update_label()
 			else
@@ -308,14 +308,14 @@
 
 /obj/item/clothing/under/chameleon
 //starts off as black
-	name = "black jumpsuit"
+	name = "czarny kombinezon"
 	icon_state = "jumpsuit"
 	greyscale_colors = "#3f3f3f"
 	greyscale_config = /datum/greyscale_config/jumpsuit
 	greyscale_config_inhand_left = /datum/greyscale_config/jumpsuit_inhand_left
 	greyscale_config_inhand_right = /datum/greyscale_config/jumpsuit_inhand_right
 	greyscale_config_worn = /datum/greyscale_config/jumpsuit_worn
-	desc = "It's a plain jumpsuit. It has a small dial on the wrist."
+	desc = "Zwykły kombinezon. Na nadgarstku ma małe pokrętło."
 	sensor_mode = SENSOR_OFF //Hey who's this guy on the Syndicate Shuttle??
 	random_sensor = FALSE
 	resistance_flags = NONE
@@ -325,8 +325,8 @@
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/clothing/under/chameleon/envirosuit
-	name = "plasma envirosuit"
-	desc = "A special containment suit that allows plasma-based lifeforms to exist safely in an oxygenated environment, and automatically extinguishes them in a crisis. Despite being airtight, it's not spaceworthy. It has a small dial on the wrist."
+	name = "kombinezon środowiskowy plazmamana"
+	desc = "Specjalny kombinezon izolujący, który pozwala plazmowym formom życia bezpiecznie przebywać w atmosferze z tlenem, a w razie kryzysu automatycznie je gasi. Choć jest szczelny, nie nadaje się do kosmosu. Na nadgarstku ma małe pokrętło."
 	icon_state = "plasmaman"
 	item_state = "plasmaman"
 	resistance_flags = FIRE_PROOF
@@ -338,8 +338,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/under/chameleon/ratvar
-	name = "ratvarian engineer's jumpsuit"
-	desc = "A tough jumpsuit woven from alloy threads. It can take on the appearance of other jumpsuits."
+	name = "kombinezon ratvariańskiego inżyniera"
+	desc = "Wytrzymały kombinezon utkany z nici ze stopu metali. Może przybierać wygląd innych kombinezonów."
 	icon_state = "engine"
 	item_state = "engi_suit"
 	greyscale_colors = null
@@ -349,8 +349,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/under/chameleon/envirosuit/ratvar
-	name = "ratvarian engineer's envirosuit"
-	desc = "A tough envirosuit woven from alloy threads. It can take on the appearance of other jumpsuits."
+	name = "kombinezon środowiskowy ratvariańskiego inżyniera"
+	desc = "Wytrzymały kombinezon środowiskowy utkany z nici ze stopu metali. Może przybierać wygląd innych kombinezonów."
 	icon_state = "engineer_envirosuit"
 	item_state = "engineer_envirosuit"
 
@@ -358,7 +358,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/under
-	chameleon_action.chameleon_name = "Jumpsuit"
+	chameleon_action.chameleon_name = "Kombinezon"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/under, /obj/item/clothing/under/color, /obj/item/clothing/under/rank, /obj/item/clothing/under/changeling), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -373,8 +373,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/suit/chameleon
-	name = "armor"
-	desc = "A slim armored vest that protects against most types of damage."
+	name = "pancerz"
+	desc = "Smukła kamizelka kuloodporna, która chroni przed większością rodzajów obrażeń."
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -387,7 +387,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/suit
-	chameleon_action.chameleon_name = "Suit"
+	chameleon_action.chameleon_name = "Strój"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/suit/armor/abductor, /obj/item/clothing/suit/changeling), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -402,8 +402,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/glasses/chameleon
-	name = "Optical Meson Scanner"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
+	name = "gogle mezonowe"
+	desc = "Używane przez inżynierów i górników, by widzieć przez ściany podstawowy układ konstrukcji i terenu, niezależnie od oświetlenia."
 	icon_state = "meson"
 	item_state = "meson"
 	resistance_flags = NONE
@@ -415,7 +415,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
-	chameleon_action.chameleon_name = "Glasses"
+	chameleon_action.chameleon_name = "Okulary"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -430,15 +430,15 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/glasses/chameleon/flashproof
-	name = "welding goggles"
-	desc = "Protects the eyes from welders; approved by the mad scientist association."
+	name = "gogle spawalnicze"
+	desc = "Chronią oczy przed spawarkami. Zatwierdzone przez stowarzyszenie szalonych naukowców."
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	flash_protect = 3
 
 /obj/item/clothing/gloves/chameleon
-	desc = "These gloves provide protection against electric shock."
-	name = "insulated gloves"
+	desc = "Te rękawice chronią przed porażeniem prądem."
+	name = "rękawice izolacyjne"
 	icon_state = "yellow"
 	item_state = "ygloves"
 	worn_icon_state = "ygloves"
@@ -452,7 +452,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/gloves
-	chameleon_action.chameleon_name = "Gloves"
+	chameleon_action.chameleon_name = "Rękawice"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/clothing/gloves, /obj/item/clothing/gloves/color, /obj/item/clothing/gloves/changeling), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -467,8 +467,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/gloves/chameleon/combat
-	name = "combat gloves"
-	desc = "These tactical gloves are fireproof and shock resistant."
+	name = "rękawice bojowe"
+	desc = "Te taktyczne rękawice są ognioodporne i odporne na porażenie prądem."
 	icon_state = "cgloves"
 	item_state = "combatgloves"
 	worn_icon_state = "combatgloves"
@@ -482,8 +482,8 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 10, "bleed" = 10)
 
 /obj/item/clothing/head/chameleon
-	name = "grey cap"
-	desc = "It's a baseball hat in a tasteful grey colour."
+	name = "szara czapka"
+	desc = "Czapka bejsbolówka w gustownym szarym kolorze."
 	clothing_flags = SNUG_FIT
 	icon_state = "greysoft"
 
@@ -496,7 +496,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/head
-	chameleon_action.chameleon_name = "Hat"
+	chameleon_action.chameleon_name = "Nakrycie głowy"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/head/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -511,8 +511,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/head/chameleon/envirohelm
-	name = "plasma envirosuit helmet"
-	desc = "A special containment helmet that allows plasma-based lifeforms to exist safely in an oxygenated environment. It is space-worthy, and may be worn in tandem with other EVA gear."
+	name = "hełm środowiskowy plazmamana"
+	desc = "Specjalny hełm izolujący, który pozwala plazmowym formom życia bezpiecznie przebywać w atmosferze z tlenem. Nadaje się do kosmosu i można go nosić razem z innym sprzętem EVA."
 	icon_state = "plasmaman-helm"
 	item_state = "plasmaman-helm"
 	resistance_flags = FIRE_PROOF
@@ -527,8 +527,8 @@
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
 /obj/item/clothing/head/chameleon/envirohelm/ratvar
-	name = "ratvarian engineer's envirosuit helmet"
-	desc = "A tough envirohelm woven from alloy threads. It can take on the appearance of other headgear."
+	name = "hełm środowiskowy ratvariańskiego inżyniera"
+	desc = "Wytrzymały hełm środowiskowy utkany z nici ze stopu metali. Może przybierać wygląd innych nakryć głowy."
 	icon_state = "engineer_envirohelm"
 	item_state = "engineer_envirohelm"
 	flash_protect = 1
@@ -550,8 +550,8 @@
 	randomise_action.UpdateButtonIcon()
 
 /obj/item/clothing/mask/chameleon
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. While good for concealing your identity, it isn't good for blocking gas flow." //More accurate
+	name = "maska gazowa"
+	desc = "Maska zakrywająca twarz, którą można podłączyć do źródła powietrza. Dobrze ukrywa tożsamość, ale słabo blokuje przepływ gazów." //More accurate
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	resistance_flags = NONE
@@ -570,7 +570,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/mask
-	chameleon_action.chameleon_name = "Mask"
+	chameleon_action.chameleon_name = "Maska"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/mask/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -608,12 +608,12 @@
 	to_chat(user, "<span class='notice'>[src] nie ma modulatora głosu.</span>")
 
 /obj/item/clothing/shoes/chameleon
-	name = "black shoes"
+	name = "czarne buty"
 	icon_state = "sneakers"
 	greyscale_colors = "#545454#ffffff"
 	greyscale_config = /datum/greyscale_config/sneakers
 	greyscale_config_worn = /datum/greyscale_config/sneakers_worn
-	desc = "A pair of black shoes."
+	desc = "Para czarnych butów."
 	permeability_coefficient = 0.05
 	resistance_flags = NONE
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 10, "bleed" = 10)
@@ -625,7 +625,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/shoes
-	chameleon_action.chameleon_name = "Shoes"
+	chameleon_action.chameleon_name = "Buty"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/shoes/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -644,14 +644,14 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/storage/backpack/chameleon
-	name = "backpack"
+	name = "plecak"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/storage/backpack/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/storage/backpack
-	chameleon_action.chameleon_name = "Backpack"
+	chameleon_action.chameleon_name = "Plecak"
 	chameleon_action.initialize_disguises()
 
 /obj/item/storage/backpack/chameleon/emp_act(severity)
@@ -665,8 +665,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/storage/belt/chameleon
-	name = "toolbelt"
-	desc = "Holds tools."
+	name = "pas na narzędzia"
+	desc = "Mieści narzędzia."
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/storage/belt/chameleon/Initialize(mapload)
@@ -674,7 +674,7 @@
 
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/storage/belt
-	chameleon_action.chameleon_name = "Belt"
+	chameleon_action.chameleon_name = "Pas"
 	chameleon_action.initialize_disguises()
 
 /obj/item/storage/belt/chameleon/ComponentInitialize()
@@ -693,14 +693,14 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/radio/headset/chameleon
-	name = "radio headset"
+	name = "słuchawki radiowe"
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/radio/headset/chameleon/Initialize(mapload)
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/radio/headset
-	chameleon_action.chameleon_name = "Headset"
+	chameleon_action.chameleon_name = "Słuchawki"
 	chameleon_action.initialize_disguises()
 
 /obj/item/radio/headset/chameleon/emp_act(severity)
@@ -714,7 +714,7 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/radio/headset/chameleon/bowman
-	name = "bowman headset"
+	name = "słuchawki nauszne"
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 	bang_protect = 3
@@ -727,7 +727,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/modular_computer/tablet/pda
-	chameleon_action.chameleon_name = "tablet"
+	chameleon_action.chameleon_name = "Tablet"
 	chameleon_action.chameleon_blacklist = typecacheof(list(/obj/item/modular_computer/tablet/pda/heads), only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -748,7 +748,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/stamp
-	chameleon_action.chameleon_name = "Stamp"
+	chameleon_action.chameleon_name = "Pieczątka"
 	chameleon_action.initialize_disguises()
 
 /obj/item/stamp/chameleon/broken/Initialize(mapload)
@@ -756,8 +756,8 @@
 	chameleon_action.emp_randomise(INFINITY)
 
 /obj/item/clothing/neck/chameleon
-	name = "black tie"
-	desc = "A neosilk clip-on tie."
+	name = "czarny krawat"
+	desc = "Krawat z neojedwabiu na klips."
 	icon_state = "blacktie"
 	resistance_flags = NONE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 0, "bleed" = 0)
@@ -769,7 +769,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/neck
-	chameleon_action.chameleon_name = "Neck Accessory"
+	chameleon_action.chameleon_name = "Dodatek na szyję"
 	chameleon_action.initialize_disguises()
 
 /obj/item/clothing/neck/chameleon/emp_act(severity)

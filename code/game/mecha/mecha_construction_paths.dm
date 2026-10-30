@@ -75,23 +75,23 @@
 	return list(
 		list(
 			"key" = TOOL_WRENCH,
-			"desc" = "The hydraulic systems are disconnected."
+			"desc" = "Układ hydrauliczny jest odłączony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "The hydraulic systems are connected."
+			"desc" = "Układ hydrauliczny jest podłączony."
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The hydraulic systems are active."
+			"desc" = "Układ hydrauliczny jest aktywny."
 		),
 		list(
 			"key" = TOOL_WIRECUTTER,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is added."
+			"desc" = "Okablowanie jest dodane."
 		)
 	)
 
@@ -103,23 +103,23 @@
 			"key" = circuit_control,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The wiring is adjusted."
+			"desc" = "Okablowanie jest wyregulowane."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Central control module is installed."
+			"desc" = "Centralny moduł sterowania jest zamontowany."
 		),
 		list(
 			"key" = circuit_periph,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Central control module is secured."
+			"desc" = "Centralny moduł sterowania jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Peripherals control module is installed."
+			"desc" = "Moduł sterowania peryferiami jest zamontowany."
 		)
 	)
 
@@ -131,12 +131,12 @@
 			"key" = circuit_weapon,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Peripherals control module is secured."
+			"desc" = "Moduł sterowania peryferiami jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Weapons control module is installed."
+			"desc" = "Moduł sterowania uzbrojeniem jest zamontowany."
 		)
 	)
 
@@ -154,29 +154,29 @@
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Scanner module is installed."
+			"desc" = "Moduł skanujący jest zamontowany."
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanner module is secured."
+			"desc" = "Moduł skanujący jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Capacitor is installed."
+			"desc" = "Kondensator jest zamontowany."
 		),
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Capacitor is secured."
+			"desc" = "Kondensator jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The power cell is installed."
+			"desc" = "Ogniwo zasilania jest zamontowane."
 		)
 	)
 
@@ -190,7 +190,7 @@
 				"key" = inner_plating,
 				"amount" = inner_plating_amount,
 				"back_key" = TOOL_SCREWDRIVER,
-				"desc" = "The power cell is secured."
+				"desc" = "Ogniwo zasilania jest zabezpieczone."
 			)
 		)
 	else
@@ -199,7 +199,7 @@
 				"key" = inner_plating,
 				"action" = ITEM_DELETE,
 				"back_key" = TOOL_SCREWDRIVER,
-				"desc" = "The power cell is secured."
+				"desc" = "Ogniwo zasilania jest zabezpieczone."
 			)
 		)
 
@@ -207,12 +207,12 @@
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Inner plating is installed."
+			"desc" = "Wewnętrzne poszycie jest zamontowane."
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "Inner Plating is wrenched."
+			"desc" = "Wewnętrzne poszycie jest przykręcone."
 		)
 	)
 
@@ -226,7 +226,7 @@
 				"key" = outer_plating,
 				"amount" = outer_plating_amount,
 				"back_key" = TOOL_WELDER,
-				"desc" = "Inner plating is welded."
+				"desc" = "Wewnętrzne poszycie jest przyspawane."
 			)
 		)
 	else
@@ -235,7 +235,7 @@
 				"key" = outer_plating,
 				"action" = ITEM_DELETE,
 				"back_key" = TOOL_WELDER,
-				"desc" = "Inner plating is welded."
+				"desc" = "Wewnętrzne poszycie jest przyspawane."
 			)
 		)
 
@@ -243,12 +243,12 @@
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "External armor is installed."
+			"desc" = "Zewnętrzny pancerz jest zamontowany."
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "External armor is wrenched."
+			"desc" = "Zewnętrzny pancerz jest przykręcony."
 		)
 	)
 
@@ -282,12 +282,12 @@
 			"key" = /obj/item/stack/rods,
 			"amount" = 10,
 			"back_key" = TOOL_WELDER,
-			"desc" = "Outer Plating is welded."
+			"desc" = "Zewnętrzne poszycie jest przyspawane."
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "Cockpit wire screen is installed."
+			"desc" = "Siatka osłonowa kokpitu jest zamontowana."
 		),
 	)
 
@@ -350,12 +350,12 @@
 				user.visible_message("[user] odkręca moduł skanera.", "<span class='notice'>Odkręcasz moduł skanera.</span>")
 		if(12)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures [I].", "<span class='notice'>Zabezpieczasz [I].</span>")
+				user.visible_message("[user] zabezpiecza [I].", "<span class='notice'>Zabezpieczasz [I].</span>")
 			else
 				user.visible_message("[user] wyjmuje kondensator z [parent].", "<span class='notice'>Wyjmujesz kondensator z [parent].</span>")
 		if(13)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs [I].", "<span class='notice'>Montujesz [I].</span>")
+				user.visible_message("[user] montuje [I].", "<span class='notice'>Montujesz [I].</span>")
 			else
 				user.visible_message("[user] odbezpiecza kondensator w [parent].", "<span class='notice'>Odbezpieczasz kondensator w [parent].</span>")
 		if(14)
@@ -564,23 +564,23 @@
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
 			"back_key" = TOOL_WELDER,
-			"desc" = "Internal armor is welded."
+			"desc" = "Wewnętrzny pancerz jest przyspawany."
 		),
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"amount" = 5,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "External armor is being installed."
+			"desc" = "Trwa montaż zewnętrznego pancerza."
 		),
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "External armor is installed."
+			"desc" = "Zewnętrzny pancerz jest zamontowany."
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "External armor is wrenched."
+			"desc" = "Zewnętrzny pancerz jest przykręcony."
 		),
 	)
 
@@ -981,51 +981,51 @@
 			"key" = /obj/item/stock_parts/scanning_module,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Weapon control module is secured."
+			"desc" = "Moduł sterowania uzbrojeniem jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Scanner module is installed."
+			"desc" = "Moduł skanujący jest zamontowany."
 		),
 		list(
 			"key" = /obj/item/stock_parts/capacitor,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Scanner module is secured."
+			"desc" = "Moduł skanujący jest zabezpieczony."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "Capacitor is installed."
+			"desc" = "Kondensator jest zamontowany."
 		),
 		list(
 			"key" = /obj/item/stack/ore/bluespace_crystal,
 			"amount" = 1,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "Capacitor is secured."
+			"desc" = "Kondensator jest zabezpieczony."
 		),
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 5,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The bluespace crystal is installed."
+			"desc" = "Kryształ bluespace jest zamontowany."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_WIRECUTTER,
-			"desc" = "The bluespace crystal is connected."
+			"desc" = "Kryształ bluespace jest podłączony."
 		),
 		list(
 			"key" = /obj/item/stock_parts/cell,
 			"action" = ITEM_MOVE_INSIDE,
 			"back_key" = TOOL_SCREWDRIVER,
-			"desc" = "The bluespace crystal is engaged."
+			"desc" = "Kryształ bluespace jest aktywny."
 		),
 		list(
 			"key" = TOOL_SCREWDRIVER,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "The power cell is installed.",
+			"desc" = "Ogniwo zasilania jest zamontowane.",
 			"icon_state" = "phazon17"
 			// This is the point where a step icon is skipped, so "icon_state" had to be set manually starting from here.
 		)
@@ -1038,23 +1038,23 @@
 			"amount" = 1,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WELDER,
-			"desc" = "Internal armor is welded."
+			"desc" = "Wewnętrzny pancerz jest przyspawany."
 		),
 		list(
 			"key" = TOOL_WRENCH,
 			"back_key" = TOOL_CROWBAR,
-			"desc" = "External armor is installed."
+			"desc" = "Zewnętrzny pancerz jest zamontowany."
 		),
 		list(
 			"key" = TOOL_WELDER,
 			"back_key" = TOOL_WRENCH,
-			"desc" = "External armor is wrenched."
+			"desc" = "Zewnętrzny pancerz jest przykręcony."
 		),
 		list(
 			"key" = /obj/item/assembly/signaler/anomaly,
 			"action" = ITEM_DELETE,
 			"back_key" = TOOL_WELDER,
-			"desc" = "Anomaly core socket is open.",
+			"desc" = "Gniazdo rdzenia anomalii jest otwarte.",
 			"icon_state" = "phazon24"
 		)
 	)
@@ -1134,7 +1134,7 @@
 				user.visible_message("[user] wyjmuje kondensator z [parent].", "<span class='notice'>Wyjmujesz kondensator z [parent].</span>")
 		if(15)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs [I].", "<span class='notice'>Montujesz [I].</span>")
+				user.visible_message("[user] montuje [I].", "<span class='notice'>Montujesz [I].</span>")
 			else
 				user.visible_message("[user] odbezpiecza kondensator w [parent].", "<span class='notice'>Odbezpieczasz kondensator w [parent].</span>")
 		if(16)

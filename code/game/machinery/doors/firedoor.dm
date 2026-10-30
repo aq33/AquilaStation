@@ -7,8 +7,8 @@
 #define RECLOSE_DELAY 5 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum.
 #define FIRE_ALARM 2
 /obj/machinery/door/firedoor
-	name = "firelock"
-	desc = "A convenable firelock. It has a card reader and a set of indicator lights on the side."
+	name = "gródź przeciwpożarowa"
+	desc = "Wygodna gródź przeciwpożarowa. Z boku ma czytnik kart i zestaw kontrolek."
 	icon = 'icons/obj/doors/doorfireglass.dmi'
 	icon_state = "door_open"
 	opacity = FALSE
@@ -180,12 +180,12 @@
 			if(!C.use_tool(src, user, 50))
 				return
 			playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
-			user.visible_message("<span class='notice'>[user] unfastens [src]'s bolts.</span>", \
+			user.visible_message("<span class='notice'>[user] odkręca rygle podłogowe [src].</span>", \
 								 "<span class='notice'>Odkręcasz rygle podłogowe [src].</span>")
 			deconstruct(TRUE)
 			return
 		if(C.tool_behaviour == TOOL_SCREWDRIVER)
-			user.visible_message("<span class='notice'>[user] [boltslocked ? "unlocks" : "locks"] [src]'s bolts.</span>", \
+			user.visible_message("<span class='notice'>[user] [boltslocked ? "odblokowuje" : "blokuje"] rygle podłogowe [src].</span>", \
 								 "<span class='notice'>[boltslocked ? "Odblokowujesz" : "Blokujesz"] rygle podłogowe [src].</span>")
 			C.play_tool_sound(src)
 			boltslocked = !boltslocked
@@ -240,7 +240,7 @@
 /obj/machinery/door/firedoor/try_to_weld_secondary(obj/item/weldingtool/W, mob/user)
 	if(!W.tool_start_check(user, amount=0))
 		return
-	user.visible_message("<span class='notice'>[user] starts [welded ? "unwelding" : "welding"] [src].</span>", "<span class='notice'>Zaczynasz spawać [src].</span>")
+	user.visible_message("<span class='notice'>[user] zaczyna [welded ? "rozspawywać" : "zaspawywać"] [src].</span>", "<span class='notice'>Zaczynasz spawać [src].</span>")
 	if(W.use_tool(src, user, 40, volume=50))
 		welded = !welded
 		user.visible_message("<span class='danger'>[user] [welded?"zaspawuje":"rozspawuje"] [src].</span>", "<span class='notice'>[welded ? "Zaspawujesz" : "Rozspawujesz"] [src].</span>")
@@ -567,7 +567,7 @@
 //NSV13 end
 
 /obj/machinery/door/firedoor/heavy
-	name = "heavy firelock"
+	name = "ciężka gródź przeciwpożarowa"
 	icon = 'icons/obj/doors/doorfire.dmi'
 	glass = FALSE
 	explosion_block = 2
@@ -575,9 +575,9 @@
 	max_integrity = 550
 
 /obj/machinery/door/firedoor/window
-	name = "firelock window shutter"
+	name = "przeciwpożarowa osłona okna"
 	icon = 'icons/obj/doors/doorfirewindow.dmi'
-	desc = "A second window that slides in when the original window is broken, designed to protect against hull breaches. Truly a work of genius by NT engineers."
+	desc = "Drugie okno, które wsuwa się, gdy pierwotne zostanie rozbite, i chroni przed rozszczelnieniem kadłuba. Prawdziwe dzieło geniuszu inżynierów NT."
 	glass = TRUE
 	explosion_block = 0
 	max_integrity = 100
@@ -594,14 +594,14 @@
 	return PROCESS_KILL
 
 /obj/item/electronics/firelock
-	name = "firelock circuitry"
+	name = "obwody grodzi przeciwpożarowej"
 	custom_price = 5
-	desc = "A circuit board used in construction of firelocks."
+	desc = "Płytka drukowana używana do budowy grodzi przeciwpożarowych."
 	icon_state = "mainboard"
 
 /obj/structure/firelock_frame
-	name = "firelock frame"
-	desc = "A partially completed firelock."
+	name = "rama grodzi przeciwpożarowej"
+	desc = "Częściowo ukończona gródź przeciwpożarowa."
 	icon = 'icons/obj/doors/doorfire.dmi'
 	icon_state = "frame1"
 	anchored = FALSE
@@ -680,7 +680,7 @@
 				if(do_after(user, 60, target = src))
 					if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || P.get_amount() < 2 || !P)
 						return
-					user.visible_message("<span class='notice'>[user] reinforces [src].</span>", \
+					user.visible_message("<span class='notice'>[user] wzmacnia [src].</span>", \
 										 "<span class='notice'>Wzmacniasz [src].</span>")
 					playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
 					P.use(2)
@@ -824,12 +824,12 @@
 	return FALSE
 
 /obj/structure/firelock_frame/heavy
-	name = "heavy firelock frame"
+	name = "rama ciężkiej grodzi przeciwpożarowej"
 	reinforced = TRUE
 	firelock_type = /obj/machinery/door/firedoor/heavy
 
 /obj/structure/firelock_frame/border
-	name = "firelock frame"
+	name = "rama grodzi przeciwpożarowej"
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	icon_state = "door_frame"
 	density = FALSE
@@ -843,7 +843,7 @@
 	return
 
 /obj/structure/firelock_frame/window
-	name = "window firelock frame"
+	name = "rama przeciwpożarowej osłony okna"
 	icon = 'icons/obj/doors/doorfirewindow.dmi'
 	icon_state = "door_frame"
 	firelock_type = /obj/machinery/door/firedoor/window

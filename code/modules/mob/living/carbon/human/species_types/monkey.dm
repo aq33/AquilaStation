@@ -1,7 +1,7 @@
 ///DO NOT USE set_species(/datum/species/monkey)
 ///USE monkeyize() INSTEAD
 /datum/species/monkey
-	name = "\improper Monkey"
+	name = "\improper Małpa"
 	id = SPECIES_MONKEY
 	skinned_type = /obj/item/stack/sheet/animalhide/
 	changesource_flags = MIRROR_BADMIN

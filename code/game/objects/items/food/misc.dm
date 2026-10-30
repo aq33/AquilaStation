@@ -1,7 +1,7 @@
 ////////////////////////////////////////////OTHER////////////////////////////////////////////
 /obj/item/food/watermelonslice
-	name = "watermelon slice"
-	desc = "A slice of watery goodness."
+	name = "plaster arbuza"
+	desc = "Plaster wodnistej rozkoszy."
 	icon_state = "watermelonslice"
 	food_reagents = list(
 		/datum/reagent/water = 1,
@@ -15,8 +15,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/hugemushroomslice
-	name = "huge mushroom slice"
-	desc = "A slice from a huge mushroom."
+	name = "plaster ogromnego grzyba"
+	desc = "Plaster z ogromnego grzyba."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "hugemushroomslice"
 	food_reagents = list(
@@ -29,7 +29,7 @@
 
 /obj/item/food/popcorn
 	name = "popcorn"
-	desc = "Now let's find some cinema."
+	desc = "Teraz poszukajmy jakiegoś kina."
 	icon_state = "popcorn"
 	trash_type = /obj/item/trash/popcorn
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -41,8 +41,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/soydope
-	name = "soy dope"
-	desc = "Dope from a soy."
+	name = "sojowy odlot"
+	desc = "Odlot z soi."
 	icon_state = "soydope"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
@@ -54,8 +54,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/badrecipe
-	name = "burned mess"
-	desc = "Someone should be demoted from cook for this."
+	name = "spalona breja"
+	desc = "Ktoś powinien za to wylecieć ze stanowiska kucharza."
 	icon_state = "badrecipe"
 	food_reagents = list(/datum/reagent/toxin/bad_food = 30)
 	foodtypes = GROSS
@@ -63,8 +63,8 @@
 	preserved_food = TRUE //Can't decompose any more than this
 
 /obj/item/food/badrecipe/moldy
-	name = "moldy mess"
-	desc = "A rancid, disgusting culture of mold and ants. Somewhere under there, at <i>some point,</i> there was food."
+	name = "spleśniała breja"
+	desc = "Zjełczała, obrzydliwa hodowla pleśni i mrówek. Gdzieś tam pod spodem, <i>kiedyś,</i> było jedzenie."
 	food_reagents = list(/datum/reagent/consumable/mold = 30)
 	preserved_food = FALSE
 	ant_attracting = TRUE
@@ -72,8 +72,8 @@
 	decomposition_time = 30 SECONDS
 
 /obj/item/food/badrecipe/moldy/bacteria
-	name = "bacteria rich moldy mess"
-	desc = "Not only is this rancid lump of disgusting bile crawling with insect life, but it is also teeming with various microscopic cultures. <i>It moves when you're not looking.</i>"
+	name = "spleśniała breja pełna bakterii"
+	desc = "Ta zjełczała bryła obrzydliwej żółci nie tylko roi się od owadów, ale też kipi od różnych mikroskopijnych kultur. <i>Rusza się, kiedy nie patrzysz.</i>"
 
 /obj/item/food/badrecipe/Initialize()
 	. = ..()
@@ -99,8 +99,8 @@
 	return
 
 /obj/item/food/spidereggs
-	name = "spider eggs"
-	desc = "A cluster of juicy spider eggs. A great side dish for when you care not for your health."
+	name = "pajęcze jaja"
+	desc = "Grono soczystych pajęczych jaj. Świetny dodatek, gdy nie dbasz o zdrowie."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spidereggs"
 	food_reagents = list(
@@ -113,8 +113,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/spiderling
-	name = "spiderling"
-	desc = "It's slightly twitching in your hand. Ew..."
+	name = "pajączek"
+	desc = "Lekko drga ci w dłoni. Fuj..."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spiderling"
 	food_reagents = list(
@@ -126,8 +126,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/melonfruitbowl
-	name = "melon fruit bowl"
-	desc = "For people who wants edible fruit bowls."
+	name = "arbuzowa misa owoców"
+	desc = "Dla ludzi, którzy chcą jadalnych mis na owoce."
 	icon_state = "melonfruitbowl"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 6,
@@ -140,8 +140,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/melonkeg
-	name = "melon keg"
-	desc = "Who knew vodka was a fruit?"
+	name = "arbuzowa beczka"
+	desc = "Kto by pomyślał, że wódka to owoc?"
 	icon_state = "melonkeg"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 9,
@@ -155,8 +155,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/honeybar
-	name = "honey nut bar"
-	desc = "Oats and nuts compressed together into a bar, held together with a honey glaze."
+	name = "baton miodowo-orzechowy"
+	desc = "Owies i orzechy sprasowane w baton i sklejone miodową glazurą."
 	icon_state = "honeybar"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -169,8 +169,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/powercrepe
-	name = "Powercrepe"
-	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
+	name = "supernaleśnik"
+	desc = "Z wielką mocą przychodzi wielki naleśnik. Wygląda jak naleśnik z dżemem, ale ma niezłego kopa."
 	icon_state = "powercrepe"
 	item_state = "powercrepe"
 	food_reagents = list(
@@ -193,8 +193,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_5
 
 /obj/item/food/branrequests
-	name = "Bran Requests Cereal"
-	desc = "A dry cereal that satiates your requests for bran. Tastes uniquely like raisins and salt."
+	name = "płatki Otrębowe Życzenia"
+	desc = "Suche płatki, które spełniają twoje życzenia co do otrębów. Smakują wyjątkowo jak rodzynki i sól."
 	icon_state = "bran_requests"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -207,8 +207,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/butter
-	name = "stick of butter"
-	desc = "A stick of delicious, golden, fatty goodness."
+	name = "kostka masła"
+	desc = "Kostka pysznej, złocistej, tłustej rozkoszy."
 	icon_state = "butter"
 	food_reagents = list(/datum/reagent/consumable/nutriment/fat = 5)
 	tastes = list("masło" = 1)
@@ -235,15 +235,15 @@
 	..()
 
 /obj/item/food/butter/on_a_stick //there's something so special about putting it on a stick.
-	name = "butter on a stick"
-	desc = "delicious, golden, fatty goodness on a stick."
+	name = "masło na patyku"
+	desc = "Pyszna, złocista, tłusta rozkosz na patyku."
 	icon_state = "butteronastick"
 	trash_type = /obj/item/stack/rods
 	food_flags = FOOD_FINGER_FOOD
 
 /obj/item/food/onionrings
-	name = "onion rings"
-	desc = "Onion slices coated in batter."
+	name = "krążki cebulowe"
+	desc = "Plastry cebuli w cieście."
 	icon_state = "onionrings"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	gender = PLURAL
@@ -253,8 +253,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/pineappleslice
-	name = "pineapple slice"
-	desc = "A sliced piece of juicy pineapple."
+	name = "plaster ananasa"
+	desc = "Pokrojony kawałek soczystego ananasa."
 	icon_state = "pineapple_slice"
 	juice_typepath = /datum/reagent/consumable/pineapplejuice
 	tastes = list("ananas" = 1)
@@ -262,8 +262,8 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/food/crab_rangoon
-	name = "Crab Rangoon"
-	desc = "Has many names, like crab puffs, cheese won'tons, crab dumplings? Whatever you call them, they're a fabulous blast of cream cheesy crab."
+	name = "krab rangoon"
+	desc = "Ma wiele nazw: krabowe ptysie, serowe wontony, pierożki z krabem? Jakkolwiek je nazwiesz, to wspaniała eksplozja kraba z serkiem śmietankowym."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "crabrangoon"
 	food_reagents = list(
@@ -277,8 +277,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/cornchips
-	name = "boritos corn chips"
-	desc = "Triangular corn chips. They do seem a bit bland but would probably go well with some kind of dipping sauce."
+	name = "chipsy kukurydziane Boritos"
+	desc = "Trójkątne chipsy kukurydziane. Wydają się trochę mdłe, ale pewnie dobrze pasowałyby do jakiegoś dipu."
 	icon_state = "boritos"
 	trash_type = /obj/item/trash/boritos
 	bite_consumption = 2
@@ -293,7 +293,7 @@
 
 /obj/item/food/pingles
 	name = "pingles"
-	desc = "A perfect blend of sour cream and onion on a potato chip. May cause space lag."
+	desc = "Idealne połączenie kwaśnej śmietany i cebuli na chipsie ziemniaczanym. Może powodować kosmiczny lag."
 	icon_state = "pingles"
 	trash_type = /obj/item/c_tube
 	food_reagents = list(
@@ -306,8 +306,8 @@
 	foodtypes = FRIED
 
 /obj/item/food/rationpack
-	name = "ration pack"
-	desc = "A square bar that sadly <i>looks</i> like chocolate, packaged in a nondescript grey wrapper. Has saved soldiers' lives before - usually by stopping bullets."
+	name = "racja żywnościowa"
+	desc = "Kwadratowy baton, który niestety tylko <i>wygląda</i> jak czekolada, w nijakim szarym opakowaniu. Nieraz uratował życie żołnierzom – zwykle zatrzymując kule."
 	icon_state = "rationpack"
 	bite_consumption = 3
 	junkiness = 15
@@ -326,7 +326,7 @@
 
 /obj/item/food/onigiri
 	name = "onigiri"
-	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed. Can add fillings!"
+	desc = "Kulka ugotowanego ryżu wokół nadzienia, uformowana w trójkąt i owinięta wodorostami. Można dodać nadzienie!"
 	icon = 'icons/obj/food/sushi.dmi'
 	icon_state = "onigiri"
 	food_reagents = list(
@@ -347,4 +347,4 @@
 	foodtypes = VEGETABLES
 	tastes = list()
 	icon_state = "onigiri"
-	desc = "A ball of cooked rice surrounding a filling formed into a triangular shape and wrapped in seaweed."
+	desc = "Kulka ugotowanego ryżu wokół nadzienia, uformowana w trójkąt i owinięta wodorostami."

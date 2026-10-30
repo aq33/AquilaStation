@@ -214,7 +214,7 @@ Bullet reactions
 				structure_crit_alert ++
 		if(15 MINUTES to INFINITY)
 			if(structure_crit_alert == 9)
-				message_admins("Critical Structure Failure Occurred in [src.name]")
+				message_admins("Nastąpiło krytyczne załamanie struktury w [src.name]")
 				handle_critical_failure_part_2()
 				structure_crit_alert ++
 
@@ -279,7 +279,7 @@ Bullet reactions
 
 
 /obj/effect/temp_visual/explosion_telegraph
-	name = "Explosion imminent!"
+	name = "Wybuch nieuchronny!"
 	icon = 'nsv13/icons/overmap/effects.dmi'
 	icon_state = "target"
 	duration = 6 SECONDS

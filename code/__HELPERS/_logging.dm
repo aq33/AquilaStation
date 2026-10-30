@@ -208,7 +208,7 @@
 
 /proc/log_href_exploit(atom/user, data = "")
 	WRITE_LOG(GLOB.href_exploit_attempt_log, "HREF: [key_name(user)] has potentially attempted an href exploit.[data]")
-	message_admins("[key_name_admin(user)] has potentially attempted an href exploit.[data]")
+	message_admins("[key_name_admin(user)] mógł próbować wykorzystać lukę w href.[data]")
 
 /* Log to both DD and the logfile. */
 /proc/log_world(text)

@@ -40,8 +40,8 @@ GLOBAL_LIST_EMPTY(all_wormholes) // So we can pick wormholes to teleport to
 	wormholes = null
 
 /obj/effect/portal/wormhole
-	name = "wormhole"
-	desc = "It looks highly unstable; It could close at any moment."
+	name = "tunel czasoprzestrzenny"
+	desc = "Wygląda na bardzo niestabilny; może się zamknąć w każdej chwili."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
 	mech_sized = TRUE

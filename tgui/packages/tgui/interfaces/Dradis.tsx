@@ -110,7 +110,7 @@ export const DradisContent = (props) => {
 
   return (
     <Section
-      title="Settings:"
+      title="Ustawienia:"
       buttons={
         <>
           <Button icon="search-plus" onClick={() => act('zoomin')} />
@@ -118,7 +118,7 @@ export const DradisContent = (props) => {
           {!!data.can_use_radar && (
             <>
               <Button
-                content="Radar Pulse"
+                content="Impuls radaru"
                 icon="bullseye"
                 disabled={!data.can_radar_pulse}
                 onClick={() => act('radar_pulse')}
@@ -136,13 +136,13 @@ export const DradisContent = (props) => {
             </>
           )}
           <Button
-            content="Re-focus"
+            content="Wyśrodkuj"
             icon="camera"
             onClick={() => setFocusKey(focusKey + 1)}
           />
           {!!data.can_target && (
             <Button
-              content={dradis_targeting ? 'Targeting' : 'Hailing'}
+              content={dradis_targeting ? 'Celowanie' : 'Wywoływanie'}
               icon={dradis_targeting ? 'bullseye' : 'square-o'}
               disabled={!data.can_target}
               color={data.dradis_targeting ? 'bad' : 'good'}
@@ -152,63 +152,63 @@ export const DradisContent = (props) => {
         </>
       }
     >
-      Allies:
+      Sojusznicy:
       <Knob
         tickWhileDragging
         inline
         mx={1}
         color={!!showFriendlies && 'green'}
         value={showFriendlies}
-        unit="scan strength"
+        unit="siła skanu"
         minValue={0}
         maxValue={100}
         step={1}
         stepPixelSize={1}
         onChange={(e, value) => act('showFriendlies', { alpha: value })}
       />
-      Enemies:
+      Wrogowie:
       <Knob
         tickWhileDragging
         inline
         mx={1}
         color={!!showEnemies && 'green'}
         value={showEnemies}
-        unit="scan strength"
+        unit="siła skanu"
         minValue={0}
         maxValue={100}
         step={1}
         stepPixelSize={1}
         onChange={(e, value) => act('showEnemies', { alpha: value })}
       />
-      Asteroids:
+      Asteroidy:
       <Knob
         tickWhileDragging
         inline
         mx={1}
         color={!!showAsteroids && 'green'}
         value={showAsteroids}
-        unit="scan strength"
+        unit="siła skanu"
         minValue={0}
         maxValue={100}
         step={1}
         stepPixelSize={1}
         onChange={(e, value) => act('showAsteroids', { alpha: value })}
       />
-      Anomalies:
+      Anomalie:
       <Knob
         tickWhileDragging
         inline
         mx={1}
         color={!!showAnomalies && 'green'}
         value={showAnomalies}
-        unit="scan strength"
+        unit="siła skanu"
         minValue={0}
         maxValue={100}
         step={1}
         stepPixelSize={1}
         onChange={(e, value) => act('showAnomalies', { alpha: value })}
       />
-      Zoom:
+      Przybliżenie:
       <Knob
         tickWhileDragging
         inline

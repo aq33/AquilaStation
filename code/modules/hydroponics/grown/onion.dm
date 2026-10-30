@@ -1,8 +1,8 @@
 //Onion
 /obj/item/food/grown/onion
 	seed = /obj/item/plant_seeds/preset/onion
-	name = "onion"
-	desc = "Nothing to cry over."
+	name = "cebula"
+	desc = "Nie ma co płakać."
 	icon_state = "onion"
 	tastes = list("cebula" = 1)
 	wine_power = 30
@@ -12,8 +12,8 @@
 
 //Red
 /obj/item/food/grown/onion/red
-	name = "red onion"
-	desc = "Purple despite the name."
+	name = "czerwona cebula"
+	desc = "Fioletowa, mimo nazwy."
 	icon_state = "onion_red"
 	wine_power = 60
 	discovery_points = 300
@@ -31,8 +31,8 @@
 	return ..()
 
 /obj/item/food/onion_slice
-	name = "onion slices"
-	desc = "Rings, not for wearing."
+	name = "krążki cebuli"
+	desc = "Krążki, ale nie do noszenia."
 	icon_state = "onionslice"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -48,8 +48,8 @@
 */
 
 /obj/item/food/onion_slice/red
-	name = "red onion slices"
-	desc = "They shine like exceptionally low quality amethyst."
+	name = "krążki czerwonej cebuli"
+	desc = "Błyszczą jak wyjątkowo kiepski ametyst."
 	icon_state = "onionslice_red"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,

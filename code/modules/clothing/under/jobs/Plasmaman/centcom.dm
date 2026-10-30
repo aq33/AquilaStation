@@ -1,17 +1,17 @@
 /obj/item/clothing/under/plasmaman/commander
-	name = "CentCom commander envirosuit"
-	desc = "An envirosuit worn by CentCom's highest-tier Commanders."
+	name = "kombinezon środowiskowy komandora Centrali"
+	desc = "Kombinezon środowiskowy noszony przez najwyższych rangą komandorów Centrali."
 	icon_state = "commander_envirosuit"
 	item_state = "commander_envirosuit"
 
 /obj/item/clothing/under/plasmaman/official
-	name = "CentCom official envirosuit"
-	desc = "An envirosuit worn by CentCom Officers."
+	name = "kombinezon środowiskowy przedstawiciela Centrali"
+	desc = "Kombinezon środowiskowy noszony przez oficerów Centrali."
 	icon_state = "official_envirosuit"
 	item_state = "official_envirosuit"
 
 /obj/item/clothing/under/plasmaman/intern
-	name = "CentCom intern envirosuit"
-	desc = "An envirosuit worn by those interning for CentCom. The top is styled after a polo shirt for easy identification."
+	name = "kombinezon środowiskowy stażysty Centrali"
+	desc = "Kombinezon środowiskowy noszony przez stażystów Centrali. Góra przypomina koszulkę polo, żeby łatwo ich rozpoznać."
 	icon_state = "intern_envirosuit"
 	item_state = "intern_envirosuit"

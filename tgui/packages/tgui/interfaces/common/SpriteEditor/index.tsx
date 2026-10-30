@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Floating, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
-import { capitalize } from 'tgui-core/string';
 
 import {
   colorsAtom,
@@ -103,7 +102,7 @@ const HistoryButton = (props: HistoryButtonProps) => {
         mr={0}
         icon={type}
         disabled={stackEmpty}
-        tooltip={`${capitalize(type)}${stackEmpty ? '' : ` ${stack[stack.length - 1]}`}`}
+        tooltip={`${type === 'undo' ? 'Cofnij' : 'Ponów'}${stackEmpty ? '' : `: ${stack[stack.length - 1]}`}`}
         onClick={() => action()}
         style={{
           borderTopRightRadius: 0,

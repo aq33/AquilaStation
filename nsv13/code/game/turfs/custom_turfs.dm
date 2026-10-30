@@ -3,8 +3,8 @@
 /turf/closed/wall/ship
 	icon = 'nsv13/icons/turf/interior_wall.dmi'
 	icon_state = "solid"
-	name = "Durasteel hull"
-	desc = "A large hull segment designed to create vessels and structures capable of supporting life in even the most hazardous places."
+	name = "durastalowy kadłub"
+	desc = "Duży segment kadłuba do budowy statków i konstrukcji zdolnych podtrzymać życie nawet w najniebezpieczniejszych miejscach."
 	legacy_smooth = TRUE //Override /tg/ iconsmooths
 	smooth = TRUE
 	sheet_type = /obj/item/stack/sheet/durasteel
@@ -12,8 +12,8 @@
 
 /obj/structure/falsewall/durasteel
 	icon = 'nsv13/icons/turf/interior_wall.dmi'
-	name = "Durasteel hull"
-	desc = "A large hull segment designed to create vessels and structures capable of supporting life in even the most hazardous places."
+	name = "durastalowy kadłub"
+	desc = "Duży segment kadłuba do budowy statków i konstrukcji zdolnych podtrzymać życie nawet w najniebezpieczniejszych miejscach."
 	legacy_smooth = TRUE //Override /tg/ iconsmooths
 	smooth = TRUE
 	walltype = /turf/closed/wall/ship
@@ -21,8 +21,8 @@
 /turf/closed/wall/r_wall/ship
 	icon = 'nsv13/icons/turf/reinforced_wall.dmi'
 	icon_state = "solid"
-	name = "Duranium hull"
-	desc = "A large hull segment designed to create vessels and structures capable of supporting life in even the most hazardous places."
+	name = "duranowy kadłub"
+	desc = "Duży segment kadłuba do budowy statków i konstrukcji zdolnych podtrzymać życie nawet w najniebezpieczniejszych miejscach."
 	legacy_smooth = TRUE //Override /tg/ iconsmooths
 	smooth = TRUE
 	color = null
@@ -33,8 +33,8 @@
 /obj/structure/falsewall/duranium
 	icon = 'nsv13/icons/turf/reinforced_wall.dmi'
 	icon_state = "solid"
-	name = "Duranium hull"
-	desc = "A large hull segment designed to create vessels and structures capable of supporting life in even the most hazardous places."
+	name = "duranowy kadłub"
+	desc = "Duży segment kadłuba do budowy statków i konstrukcji zdolnych podtrzymać życie nawet w najniebezpieczniejszych miejscach."
 	legacy_smooth = TRUE //Override /tg/ iconsmooths
 	smooth = TRUE
 	walltype = /turf/closed/wall/r_wall/ship
@@ -106,8 +106,8 @@
 // WINDOWS
 
 /obj/structure/window/reinforced/fulltile/ship
-	name = "Nanocarbon reinforced window"
-	desc = "A heavyset window reinforced with tiny carbon structures which is designed to take a beating."
+	name = "okno zbrojone nanowęglem"
+	desc = "Masywne okno wzmocnione drobnymi strukturami węglowymi, zaprojektowane tak, by wytrzymać ciosy."
 	glass_type = /obj/item/stack/sheet/nanocarbon_glass
 	canSmoothWith = list(/turf/closed/wall,/obj/machinery/door,/obj/structure/window/fulltile,/obj/structure/window/reinforced/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/falsewall)
 	armor = list("melee" = 50, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 100, "overmap_light" = 65, "overmap_heavy" = 25)
@@ -116,8 +116,8 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced/fulltile/ship/interior
-	name = "Interior reinforced window"
-	desc = "A heavyset window reinforced with tiny carbon structures which is designed to take a beating."
+	name = "wewnętrzne wzmocnione okno"
+	desc = "Masywne okno wzmocnione drobnymi strukturami węglowymi, zaprojektowane tak, by wytrzymać ciosy."
 	glass_type = /obj/item/stack/sheet/rglass
 	glass_amount = 2
 
@@ -125,7 +125,7 @@
 	anchored = FALSE
 
 /obj/effect/spawner/structure/window/reinforced
-	name = "reinforced window spawner"
+	name = "spawner wzmocnionego okna"
 	icon_state = "rwindow_spawner"
 	spawn_list = list(/obj/structure/grille, /obj/structure/window/reinforced/fulltile/ship/interior, /obj/machinery/door/firedoor/window) //All windows should "batten down" on zebra.
 
@@ -140,8 +140,8 @@
 	color = "#94bbd1"
 
 /obj/structure/fluff/support_beam
-	name = "Support beam"
-	desc = "A large metal support which helps hold the ship together."
+	name = "belka nośna"
+	desc = "Duża metalowa podpora, która pomaga utrzymać okręt w całości."
 	icon = 'nsv13/icons/obj/structures/ship_structures.dmi'
 	icon_state = "support_beam"
 	density = FALSE
@@ -151,7 +151,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/closed/indestructible/boarding_cordon
-	name = "ship interior cordon"
+	name = "kordon wnętrza okrętu"
 	icon_state = "cordon"
 
 /turf/closed/indestructible/boarding_cordon/Initialize(mapload)
@@ -168,5 +168,5 @@
 	return ..()
 
 /turf/open/floor/engine/nucleium
-	name = "Nucleium Floor"
+	name = "podłoga z nukleium"
 	initial_gas_mix = ATMOS_TANK_NUCLEIUM

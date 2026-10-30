@@ -1,7 +1,7 @@
 //computer that handle the points and teleports the prisoner
 /obj/machinery/computer/prisoner/gulag_teleporter_computer
-	name = "labor camp teleporter console"
-	desc = "Used to send criminals to the Labor Camp."
+	name = "konsola teleportu do obozu pracy"
+	desc = "Służy do wysyłania przestępców do Obozu Pracy."
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_SECURITY)//AQ EDIT

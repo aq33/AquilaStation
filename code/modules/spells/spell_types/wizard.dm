@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/projectile/magic_missile
-	name = "Magic Missile"
-	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
+	name = "Magiczny pocisk"
+	desc = "To zaklęcie wystrzeliwuje w pobliskie cele kilka powolnych magicznych pocisków."
 
 	school = "evocation"
 	charge_max = 200
@@ -15,7 +15,7 @@
 	sound = 'sound/magic/magic_missile.ogg'
 
 /obj/item/projectile/magic/spell/magic_missile
-	name = "a magic missile"
+	name = "magiczny pocisk"
 	icon_state = "magicm"
 	range = 20
 	speed = 5
@@ -33,8 +33,8 @@
 	paralyze += spell_level * 10
 
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
-	name = "Mutate"
-	desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
+	name = "Mutacja"
+	desc = "To zaklęcie na krótko zmienia cię w hulka i daje ci laserowy wzrok."
 
 	school = "transmutation"
 	charge_max = 400
@@ -53,8 +53,8 @@
 
 
 /obj/effect/proc_holder/spell/targeted/smoke
-	name = "Smoke"
-	desc = "This spell spawns a cloud of choking smoke at your location."
+	name = "Dym"
+	desc = "To zaklęcie tworzy w twoim położeniu chmurę duszącego dymu."
 
 	school = "conjuration"
 	charge_max = 120
@@ -71,8 +71,8 @@
 	action_icon_state = "smoke"
 
 /obj/effect/proc_holder/spell/targeted/smoke/lesser //Chaplain smoke book
-	name = "Smoke"
-	desc = "This spell spawns a small cloud of choking smoke at your location."
+	name = "Dym"
+	desc = "To zaklęcie tworzy w twoim położeniu małą chmurę duszącego dymu."
 
 	school = "conjuration"
 	charge_max = 360
@@ -88,8 +88,8 @@
 	action_icon_state = "smoke"
 
 /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
-	name = "Disable Tech"
-	desc = "This spell disables all weapons, cameras and most other technology in range."
+	name = "Wyłączenie technologii"
+	desc = "To zaklęcie wyłącza w zasięgu wszelką broń, kamery i większość innej technologii."
 	charge_max = 400
 	clothes_req = TRUE
 	invocation = "NEC CANTIO"
@@ -103,8 +103,8 @@
 	sound = 'sound/magic/disable_tech.ogg'
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
-	name = "Blink"
-	desc = "This spell randomly teleports you a short distance."
+	name = "Mignięcie"
+	desc = "To zaklęcie teleportuje cię losowo na niewielką odległość."
 
 	school = "abjuration"
 	charge_max = 20
@@ -127,15 +127,15 @@
 	sound2 = 'sound/magic/blink.ogg'
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/cult
-	name = "quickstep"
+	name = "szybki krok"
 
 	charge_max = 100
 	clothes_req = FALSE
 	clothes_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/teleport
-	name = "Teleport"
-	desc = "This spell teleports you to an area of your selection."
+	name = "Teleportacja"
+	desc = "To zaklęcie teleportuje cię do wybranego obszaru."
 
 	school = "abjuration"
 	charge_max = 600
@@ -153,15 +153,15 @@
 	sound2 = 'sound/magic/teleport_app.ogg'
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/teleport/santa
-	name = "Santa Teleport"
+	name = "Teleportacja Mikołaja"
 
 	invocation = "HO HO HO"
 	clothes_req = FALSE
 	say_destination = FALSE // Santa moves in mysterious ways
 
 /obj/effect/proc_holder/spell/aoe_turf/timestop
-	name = "Stop Time"
-	desc = "This spell stops time for everyone except for you, allowing you to move freely while your enemies and even projectiles are frozen."
+	name = "Zatrzymanie czasu"
+	desc = "To zaklęcie zatrzymuje czas dla wszystkich poza tobą, dzięki czemu poruszasz się swobodnie, podczas gdy wrogowie, a nawet pociski, zamierają w bezruchu."
 	charge_max = 500
 	clothes_req = TRUE
 	invocation = "TOKI WO TOMARE"
@@ -176,8 +176,8 @@
 	new /obj/effect/timestop/magic(get_turf(user), timestop_range, timestop_duration, list(user))
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/carp
-	name = "Summon Carp"
-	desc = "This spell conjures a simple carp."
+	name = "Przywołanie karpia"
+	desc = "To zaklęcie przywołuje zwykłego karpia."
 
 	school = "conjuration"
 	charge_max = 1200
@@ -191,8 +191,8 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/construct
-	name = "Artificer"
-	desc = "This spell conjures a construct which may be controlled by Shades."
+	name = "Rzemieślnik"
+	desc = "To zaklęcie przywołuje konstrukt, którym mogą sterować Cienie."
 
 	school = "conjuration"
 	charge_max = 600
@@ -208,8 +208,8 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature
-	name = "Summon Creature Swarm"
-	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth."
+	name = "Przywołanie roju stworzeń"
+	desc = "To zaklęcie rozdziera tkankę rzeczywistości, przez co wylewają się z niej straszliwe demony."
 
 	school = "conjuration"
 	charge_max = 1200
@@ -223,17 +223,17 @@
 	cast_sound = 'sound/magic/summonitems_generic.ogg'
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature/cult
-	name = "Summon Creatures (DANGEROUS)"
+	name = "Przywołanie stworzeń (NIEBEZPIECZNE)"
 	clothes_req = TRUE
 	charge_max = 5000
 	summon_amt = 2
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/creature/bee
-	name = "Lesser summon bees"
-	desc = "This spell magically kicks a transdimensional beehive, instantly summoning a swarm of bees to your location. These bees are NOT friendly to anyone."
+	name = "Pomniejsze przywołanie pszczół"
+	desc = "To zaklęcie magicznie kopie transwymiarowy ul, natychmiast przywołując w twoje położenie rój pszczół. Te pszczoły NIE są przyjazne dla nikogo."
 	charge_max = 600
 	clothes_req = TRUE
-	invocation = "NOT THE BEES"
+	invocation = "TYLKO NIE PSZCZOŁY"
 	summon_amt = 9
 	action_icon_state = "bee"
 	cooldown_min = 20 SECONDS
@@ -242,8 +242,8 @@
 	cast_sound = 'sound/voice/moth/scream_moth.ogg'
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse
-	name = "Repulse"
-	desc = "This spell throws everything around the user away."
+	name = "Odepchnięcie"
+	desc = "To zaklęcie odrzuca wszystko wokół rzucającego."
 	charge_max = 400
 	clothes_req = TRUE
 	invocation = "GITTAH WEIGH"
@@ -298,8 +298,8 @@
 			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
-	name = "Tail Sweep"
-	desc = "Throw back attackers with a sweep of your tail."
+	name = "Zamach ogonem"
+	desc = "Odrzucasz napastników zamachem ogona."
 	sound = 'sound/magic/tail_swing.ogg'
 	charge_max = 150
 	clothes_req = FALSE
@@ -321,8 +321,8 @@
 	..(targets, user, 60)
 
 /obj/effect/proc_holder/spell/targeted/sacred_flame
-	name = "Sacred Flame"
-	desc = "Makes everyone around you more flammable, and lights yourself on fire."
+	name = "Święty płomień"
+	desc = "Sprawia, że wszyscy wokół ciebie stają się bardziej łatwopalni, i podpala ciebie."
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "FI'RAN DADISKO"
@@ -345,8 +345,8 @@
 			U.IgniteMob()
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket
-	name = "Thrown Lightning"
-	desc = "Forged from eldrich energies, a packet of pure power, known as a spell packet will appear in your hand, that when thrown will stun the target."
+	name = "Rzucona błyskawica"
+	desc = "W twojej dłoni pojawia się wykuty z pradawnych energii pakiet czystej mocy, zwany pakietem zaklęcia, który po rzuceniu ogłusza cel."
 	clothes_req = TRUE
 	item_type = /obj/item/spellpacket/lightningbolt
 	charge_max = 10
@@ -358,8 +358,8 @@
 		C.throw_mode_on(THROW_MODE_TOGGLE)
 
 /obj/item/spellpacket/lightningbolt
-	name = "\improper Lightning bolt Spell Packet"
-	desc = "Some birdseed wrapped in cloth that crackles with electricity."
+	name = "\improper pakiet zaklęcia błyskawicy"
+	desc = "Trochę ptasiej karmy zawiniętej w szmatkę, która trzeszczy od elektryczności."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
@@ -376,4 +376,4 @@
 	. = ..()
 	if(ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
-		H.say("LIGHTNINGBOLT!!", forced = "spell")
+		H.say("BŁYSKAWICA!!", forced = "spell")

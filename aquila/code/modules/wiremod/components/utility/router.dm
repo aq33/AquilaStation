@@ -69,7 +69,7 @@
 	output.set_output(input.value)
 
 /obj/item/circuit_component/router/multiplexer
-	display_name = "Multiplexer"
+	display_name = "Multiplekser"
 	desc = "Kopiuje wejście wybrane przez \"Input Selector\" na wyjście."
 	output_port_amount = 1
 

@@ -7,7 +7,7 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		if(z > 6)
-			to_chat(user, "<span class='boldannounce'>Unable to establish a connection</span>: \black You're too far away from the station!")
+			to_chat(user, "<span class='boldannounce'>Nie można nawiązać połączenia</span>: \black Jesteś za daleko od stacji!")
 			return
 		if(isliving(user))
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -99,7 +99,7 @@
 	var/list/comments = list()
 	var/counter = 1
 	while(active2.fields["com_[counter]"])
-		comments += list(list("index" = counter, "text" = active2.fields["com_[counter]"], "deleted" = active2.fields["com_[counter]"] == "<B>Deleted</B>"))
+		comments += list(list("index" = counter, "text" = active2.fields["com_[counter]"], "deleted" = active2.fields["com_[counter]"] == "<B>Usunięto</B>"))
 		counter++
 	return list(
 		"criminal" = active2.fields["criminal"],

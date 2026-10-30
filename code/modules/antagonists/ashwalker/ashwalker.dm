@@ -1,5 +1,5 @@
 /datum/team/ashwalkers
-	name = "Ashwalkers"
+	name = "Popielni wędrowcy"
 	show_roundend_report = FALSE
 
 /datum/antagonist/ashwalker

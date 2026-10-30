@@ -4,8 +4,8 @@
 /////////////////////////////////////////
 
 /datum/design/health_hud
-	name = "Health Scanner HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	name = "HUD medyczny"
+	desc = "Wyświetlacz przezierny, który skanuje widocznych ludzi i podaje dokładne dane o ich stanie zdrowia."
 	id = "health_hud"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/copper = 200)
@@ -14,8 +14,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/health_hud_night
-	name = "Night Vision Health Scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	name = "Noktowizyjny HUD medyczny"
+	desc = "Zaawansowany medyczny wyświetlacz przezierny, dzięki któremu lekarze znajdują pacjentów w zupełnej ciemności."
 	id = "health_hud_night"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/silver = 350, /datum/material/copper = 300)
@@ -24,8 +24,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/security_hud
-	name = "Security HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
+	name = "HUD ochrony"
+	desc = "Wyświetlacz przezierny, który skanuje widocznych ludzi i podaje dokładne dane z ich identyfikatorów."
 	id = "security_hud"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/copper = 200)
@@ -34,8 +34,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/security_hud_night
-	name = "Night Vision Security HUD"
-	desc = "A heads-up display which provides id data and vision in complete darkness."
+	name = "HUD ochrony z noktowizją"
+	desc = "Wyświetlacz przezierny, który podaje dane z identyfikatorów i pozwala widzieć w zupełnej ciemności."
 	id = "security_hud_night"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/gold = 350, /datum/material/copper = 300)
@@ -44,8 +44,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/diagnostic_hud
-	name = "Diagnostic HUD"
-	desc = "A HUD used to analyze and determine faults within robotic machinery."
+	name = "HUD diagnostyczny"
+	desc = "HUD do analizy i wykrywania usterek w maszynach robotycznych."
 	id = "diagnostic_hud"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/copper = 250)
@@ -54,8 +54,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/diagnostic_hud_night
-	name = "Night Vision Diagnostic HUD"
-	desc = "Upgraded version of the diagnostic HUD designed to function during a power failure."
+	name = "Noktowizyjny HUD diagnostyczny"
+	desc = "Ulepszona wersja HUD-u diagnostycznego, zaprojektowana do pracy podczas awarii zasilania."
 	id = "diagnostic_hud_night"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/uranium = 1000, /datum/material/plasma = 300, /datum/material/copper = 300)
@@ -68,8 +68,8 @@
 /////////////////////////////////////////
 
 /datum/design/welding_mask
-	name = "Welding Gas Mask"
-	desc = "A gas mask with built in welding goggles and face shield. Looks like a skull, clearly designed by a nerd."
+	name = "Maska spawalnicza"
+	desc = "Maska gazowa z wbudowanymi goglami spawalniczymi i osłoną twarzy. Wygląda jak czaszka, najwyraźniej zaprojektował ją nerd."
 	id = "weldingmask"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1000)
@@ -78,8 +78,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/portaseeder
-	name = "Portable Seed Extractor"
-	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."
+	name = "Przenośny ekstraktor nasion"
+	desc = "Dla przedsiębiorczego botanika w drodze. Mniej wydajny od modelu stacjonarnego, daje jedno nasiono z rośliny."
 	id = "portaseeder"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 400)
@@ -88,8 +88,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/air_horn
-	name = "Air Horn"
-	desc = "Damn son, where'd you find this?"
+	name = "Trąbka pneumatyczna"
+	desc = "Stary, skąd to wytrzasnąłeś?"
 	id = "air_horn"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/bananium = 1000)
@@ -98,8 +98,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL			//HONK!
 
 /datum/design/mesons
-	name = "Optical Meson Scanners"
-	desc = "Used by engineering and mining staff to see basic structural and terrain layouts through walls, regardless of lighting condition."
+	name = "Gogle mezonowe"
+	desc = "Używane przez inżynierów i górników, by widzieć przez ściany podstawowy układ konstrukcji i terenu, niezależnie od oświetlenia."
 	id = "mesons"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -108,8 +108,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/engine_goggles
-	name = "Engineering Scanner Goggles"
-	desc = "Goggles used by engineers. The Meson Scanner mode lets you see basic structural and terrain layouts through walls, regardless of lighting condition. The T-ray Scanner mode lets you see underfloor objects such as cables and pipes."
+	name = "Inżynieryjne gogle skanujące"
+	desc = "Gogle używane przez inżynierów. Tryb skanera mezonowego pozwala widzieć przez ściany podstawowy układ konstrukcji i terenu, niezależnie od oświetlenia. Tryb skanera T-ray pozwala widzieć obiekty pod podłogą, takie jak kable i rury."
 	id = "engine_goggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/plasma = 100)
@@ -118,8 +118,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/tray_goggles
-	name = "Optical T-Ray Scanners"
-	desc = "Used by engineering staff to see underfloor objects such as cables and pipes."
+	name = "Gogle T-ray"
+	desc = "Używane przez inżynierów, by widzieć obiekty pod podłogą, takie jak kable i rury."
 	id = "tray_goggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -128,8 +128,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/nvgmesons
-	name = "Night Vision Optical Meson Scanners"
-	desc = "Prototype meson scanners fitted with an extra sensor which amplifies the visible light spectrum and overlays it to the UHD display."
+	name = "Noktowizyjne gogle mezonowe"
+	desc = "Prototypowe gogle mezonowe z dodatkowym czujnikiem, który wzmacnia widmo światła widzialnego i nakłada je na wyświetlacz UHD."
 	id = "nvgmesons"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000)
@@ -138,8 +138,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/night_vision_goggles
-	name = "Night Vision Goggles"
-	desc = "Goggles that let you see through darkness unhindered."
+	name = "Gogle noktowizyjne"
+	desc = "Gogle, które pozwalają swobodnie widzieć w ciemności."
 	id = "night_visision_goggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 600, /datum/material/plasma = 350, /datum/material/uranium = 1000)
@@ -148,8 +148,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/magboots
-	name = "Magnetic Boots"
-	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle."
+	name = "Buty magnetyczne"
+	desc = "Buty magnetyczne, często używane podczas prac poza pojazdem, by użytkownik pozostał bezpiecznie przyczepiony do kadłuba."
 	id = "magboots"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4500, /datum/material/silver = 1500, /datum/material/gold = 2500)
@@ -158,8 +158,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/forcefield_projector
-	name = "Forcefield Projector"
-	desc = "A device which can project temporary forcefields to seal off an area."
+	name = "Projektor pola siłowego"
+	desc = "Urządzenie, które wyświetla tymczasowe pola siłowe, by odciąć obszar."
 	id = "forcefield_projector"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 1000)
@@ -168,8 +168,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/sci_goggles
-	name = "Science Goggles"
-	desc = "Goggles fitted with a portable analyzer capable of determining the research worth of an item or components of a machine."
+	name = "Gogle naukowe"
+	desc = "Gogle z przenośnym analizatorem, który określa wartość badawczą przedmiotu albo części maszyny."
 	id = "scigoggles"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -178,8 +178,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/diskplantgene
-	name = "Plant Data Disk"
-	desc = "A disk for storing plant genetic data."
+	name = "Dysk danych roślin"
+	desc = "Dysk do przechowywania danych genetycznych roślin."
 	id = "diskplantgene"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=200, /datum/material/glass = 100)
@@ -189,8 +189,8 @@
 
 //TODO: Add designs for all the new botany machines -Racc
 /datum/design/tray_maker
-	name = "Hydroponic Plumbing Constructor"
-	desc = "A plumbing tool for botany equipment."
+	name = "Hydroponiczny konstruktor hydrauliczny"
+	desc = "Narzędzie hydrauliczne do sprzętu botanicznego."
 	id = "traymaker"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500, /datum/material/plastic = 1000)
@@ -199,8 +199,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/roastingstick
-	name = "Advanced Roasting Stick"
-	desc = "A roasting stick for cooking sausages in exotic ovens."
+	name = "Zaawansowany kij do pieczenia"
+	desc = "Kijek do pieczenia kiełbasek w egzotycznych piecach."
 	id = "roastingstick"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=1000, /datum/material/glass = 500, /datum/material/bluespace = 250)
@@ -209,8 +209,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/locator
-	name = "Bluespace Locator"
-	desc = "Used to track portable teleportation beacons and targets with embedded tracking implants."
+	name = "Lokalizator bluespace"
+	desc = "Służy do namierzania przenośnych nadajników teleportacyjnych i celów z wszczepionymi implantami namierzającymi."
 	id = "locator"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=1000, /datum/material/glass = 500, /datum/material/silver = 500)
@@ -219,8 +219,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/quantum_keycard
-	name = "Quantum Keycard"
-	desc = "Allows for the construction of a quantum keycard."
+	name = "Kwantowa karta-klucz"
+	desc = "Pozwala wykonać kwantową kartę-klucz."
 	id = "quantum_keycard"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/iron = 500, /datum/material/silver = 500, /datum/material/bluespace = 1000)
@@ -229,8 +229,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/anomaly_neutralizer
-	name = "Anomaly Neutralizer"
-	desc = "An advanced tool capable of instantly neutralizing anomalies, designed to capture the fleeting aberrations created by the engine."
+	name = "Neutralizator anomalii"
+	desc = "Zaawansowane narzędzie, które natychmiast neutralizuje anomalie. Zaprojektowano je do chwytania ulotnych aberracji wytwarzanych przez silnik."
 	id = "anomaly_neutralizer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/gold = 2000, /datum/material/plasma = 5000, /datum/material/uranium = 2000)
@@ -239,8 +239,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/donksoft_refill
-	name = "Donksoft Toy Vendor Refill"
-	desc = "A refill canister for Donksoft Toy Vendors."
+	name = "Wkład do automatu z zabawkami Donksoft"
+	desc = "Pojemnik uzupełniający do automatów z zabawkami Donksoft."
 	id = "donksoft_refill"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000, /datum/material/glass = 15000, /datum/material/plasma = 20000, /datum/material/gold = 10000, /datum/material/silver = 10000)
@@ -248,8 +248,8 @@
 	category = list("Equipment")
 
 /datum/design/oxygen_tank
-	name = "Oxygen Tank"
-	desc = "An empty oxygen tank."
+	name = "Butla z tlenem"
+	desc = "Pusta butla z tlenem."
 	id = "oxygen_tank"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000)
@@ -258,8 +258,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/plasma_tank
-	name = "Plasma Tank"
-	desc = "An empty oxygen tank."
+	name = "Butla z plazmą"
+	desc = "Pusta butla z tlenem."
 	id = "plasma_tank"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000)
@@ -268,8 +268,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/xenoartifact_labeller
-	name = "Artifact Labeler"
-	desc = "A scientific labeler used to warn others of the dangers of an alien artifact."
+	name = "Etykieciarka artefaktów"
+	desc = "Naukowa etykieciarka do ostrzegania innych przed niebezpieczeństwami obcego artefaktu."
 	id = "xenoa_labeler"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000, /datum/material/gold = 3000)
@@ -278,8 +278,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/artifact_pinchers
-	name = "Anti-Tactile Pinchers"
-	desc = "A pair of precise operable pinchers, used to examine artifacts."
+	name = "Antydotykowe szczypce"
+	desc = "Precyzyjne szczypce do badania artefaktów."
 	id = "xenoa_gloves"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/silver = 1000)
@@ -288,8 +288,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/xenoartifact_tracker
-	name = "Artifact Tracker"
-	desc = "A tracker for researching artifacts."
+	name = "Lokalizator artefaktów"
+	desc = "Lokalizator do badania artefaktów."
 	id = "xenoa_tracker"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 500, /datum/material/gold = 500)
@@ -302,8 +302,8 @@
 /////////////////////////////////////////
 
 /datum/design/larryframe
-	name = "Larry Frame"
-	desc = "A housing that serves as the base for constructing Larries."
+	name = "Rama Larry'ego"
+	desc = "Obudowa, która służy za podstawę do budowy Larrych."
 	id = "larry"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200)
@@ -312,8 +312,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/advmop
-	name = "Advanced Mop"
-	desc = "An upgraded mop with a large internal capacity for holding water or other cleaning chemicals."
+	name = "Zaawansowany mop"
+	desc = "Ulepszony mop z dużym wewnętrznym zbiornikiem na wodę lub inne środki czyszczące."
 	id = "advmop"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 200)
@@ -322,8 +322,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/blutrash
-	name = "Trashbag of Holding"
-	desc = "An advanced trash bag with bluespace properties; capable of holding a plethora of garbage."
+	name = "Worek na śmieci bez dna"
+	desc = "Zaawansowany worek na śmieci o właściwościach bluespace. Zmieści mnóstwo odpadków."
 	id = "blutrash"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/gold = 1500, /datum/material/uranium = 250, /datum/material/plasma = 1500)
@@ -332,8 +332,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/buffer
-	name = "Floor Buffer Upgrade"
-	desc = "A floor buffer that can be attached to vehicular janicarts."
+	name = "Ulepszenie: polerka do podłóg"
+	desc = "Polerka do podłóg, którą można zamontować na wózku woźnego."
 	id = "buffer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
@@ -342,8 +342,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/spraybottle
-	name = "Spray Bottle"
-	desc = "A spray bottle, with an unscrewable top."
+	name = "Spryskiwacz"
+	desc = "Spryskiwacz z odkręcaną nakrętką."
 	id = "spraybottle"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 200)
@@ -352,8 +352,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/beartrap
-	name = "Bear Trap"
-	desc = "A trap used to catch space bears and other legged creatures."
+	name = "Wnyki"
+	desc = "Pułapka do łapania kosmicznych niedźwiedzi i innych stworzeń z nogami."
 	id = "beartrap"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/titanium = 1000)
@@ -366,8 +366,8 @@
 /////////////////////////////////////////
 
 /datum/design/holosign
-	name = "Holographic Sign Projector"
-	desc = "A holograpic projector used to project various warning signs."
+	name = "Projektor holoznaków"
+	desc = "Projektor holograficzny wyświetlający różne znaki ostrzegawcze."
 	id = "holosign"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
@@ -376,8 +376,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/holobarrier_jani
-	name = "Custodial Holobarrier Projector"
-	desc = "A holograpic projector used to project hard light wet floor barriers."
+	name = "Projektor holobarier woźnego"
+	desc = "Projektor holograficzny wyświetlający bariery z twardego światła ostrzegające przed mokrą podłogą."
 	id = "holobarrier_jani"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000, /datum/material/silver = 1000)
@@ -386,8 +386,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/holosignsec
-	name = "Security Holobarrier Projector"
-	desc = "A holographic projector that creates holographic security barriers."
+	name = "Projektor holobarier ochrony"
+	desc = "Projektor holograficzny tworzący holograficzne bariery ochrony."
 	id = "holosignsec"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 1000, /datum/material/silver = 1000)
@@ -396,8 +396,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/holosignengi
-	name = "Engineering Holobarrier Projector"
-	desc = "A holographic projector that creates holographic engineering barriers."
+	name = "Projektor holobarier inżynieryjnych"
+	desc = "Projektor holograficzny tworzący holograficzne bariery inżynieryjne."
 	id = "holosignengi"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 1000, /datum/material/silver = 1000)
@@ -406,8 +406,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/holosignatmos
-	name = "ATMOS Holofan Projector"
-	desc = "A holographic projector that creates holographic barriers that prevent changes in atmospheric conditions."
+	name = "Projektor holowentylatorów ATMOS"
+	desc = "Projektor holograficzny tworzący holograficzne bariery, które zapobiegają zmianom warunków atmosferycznych."
 	id = "holosignatmos"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 1000, /datum/material/silver = 1000)
@@ -416,8 +416,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/holobarrier_med
-	name = "PENLITE Holobarrier Projector"
-	desc = "PENLITE holobarriers, a device that halts individuals with malicious diseases."
+	name = "Projektor holobarier PENLITE"
+	desc = "Holobariery PENLITE, urządzenie zatrzymujące osoby z groźnymi chorobami."
 	build_type = PROTOLATHE
 	build_path = /obj/item/holosign_creator/medical
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500, /datum/material/silver = 100) //a hint of silver since it can troll 2 antags (bad viros and sentient disease)
@@ -430,8 +430,8 @@
 /////////////////////////////////////////
 
 /datum/design/reactive_armour
-	name = "Reactive Armour Shell"
-	desc = "An experimental suit of armour capable of utilizing an implanted anomaly core to protect the user."
+	name = "Skorupa pancerza reaktywnego"
+	desc = "Eksperymentalny pancerz, który chroni użytkownika za pomocą wszczepionego rdzenia anomalii."
 	id = "reactive_armour"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 10000, /datum/material/diamond = 5000, /datum/material/uranium = 8000, /datum/material/silver = 4500, /datum/material/gold = 5000)
@@ -444,8 +444,8 @@
 /////////////////////////////////////////
 
 /datum/design/seclite
-	name = "Seclite"
-	desc = "A robust flashlight used by security."
+	name = "Latarka policyjna"
+	desc = "Solidna latarka używana przez ochronę."
 	id = "seclite"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500)
@@ -454,8 +454,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/detective_scanner
-	name = "Forensic Scanner"
-	desc = "Used to remotely scan objects and biomass for DNA and fingerprints. Can print a report of the findings."
+	name = "Skaner kryminalistyczny"
+	desc = "Służy do zdalnego skanowania przedmiotów i biomasy w poszukiwaniu DNA i odcisków palców. Potrafi wydrukować raport z wynikami."
 	id = "detective_scanner"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000, /datum/material/gold = 2500, /datum/material/silver = 2000)
@@ -464,8 +464,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/pepperspray
-	name = "Pepper Spray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly. Printed pepper sprays do not contain reagents."
+	name = "Gaz pieprzowy"
+	desc = "Produkt UhangInc, służy do szybkiego oślepienia i powalenia przeciwnika. Wydrukowane gazy pieprzowe nie zawierają odczynników."
 	id = "pepperspray"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 1000)
@@ -474,8 +474,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/bola_energy
-	name = "Energy Bola"
-	desc = "A specialized hard-light bola designed to ensnare fleeing criminals and aid in arrests."
+	name = "Bola energetyczna"
+	desc = "Specjalna bola z twardego światła do pętania uciekających przestępców i pomocy przy aresztowaniach."
 	id = "bola_energy"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/silver = 500, /datum/material/plasma = 500, /datum/material/titanium = 500)
@@ -484,8 +484,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/zipties
-	name = "Zipties"
-	desc = "Plastic, disposable zipties that can be used to restrain temporarily but are destroyed after use."
+	name = "Opaski zaciskowe"
+	desc = "Plastikowe, jednorazowe opaski zaciskowe do tymczasowego skrępowania. Po użyciu ulegają zniszczeniu."
 	id = "zipties"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 250)
@@ -494,8 +494,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/evidencebag
-	name = "Evidence Bag"
-	desc = "An empty evidence bag."
+	name = "Torebka na dowody"
+	desc = "Pusta torebka na dowody."
 	id = "evidencebag"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 100)
@@ -504,7 +504,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
 /datum/design/plumbing_rcd
-	name = "Plumbing Constructor"
+	name = "Konstruktor hydrauliczny"
 	id = "plumbing_rcd"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500, /datum/material/plastic = 1000)
@@ -513,8 +513,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/glasses_prescription
-	name = "Prescription Glasses"
-	desc = "Made by Nerd. Co."
+	name = "Okulary korekcyjne"
+	desc = "Produkt Nerd. Co."
 	id = "glasses_prescription"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 2000)
@@ -527,7 +527,7 @@
 /////////////////////////////////////////
 
 /datum/design/sticky_tape
-	name = "Sticky Tape"
+	name = "Taśma klejąca"
 	id = "sticky_tape"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 500)
@@ -536,7 +536,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/super_sticky_tape
-	name = "Super Sticky Tape"
+	name = "Superklejąca taśma"
 	id = "super_sticky_tape"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 3000)
@@ -545,7 +545,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/pointy_tape
-	name = "Pointy Tape"
+	name = "Kolczasta taśma"
 	id = "pointy_tape"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1500, /datum/material/plastic = 1000)
@@ -554,8 +554,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/oven_tray
-	name = "Oven Tray"
-	desc = "Gotta shove something in!"
+	name = "Blacha do piekarnika"
+	desc = "Trzeba coś tam wsadzić!"
 	id = "oven_tray"
 	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(/datum/material/iron = 500)

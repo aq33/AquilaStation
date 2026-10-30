@@ -12,8 +12,8 @@
 
 /obj/machinery/atmospherics/components/binary/volume_pump
 	icon_state = "volpump_map-3"
-	name = "volumetric gas pump"
-	desc = "A pump that moves gas by volume."
+	name = "pompa objętościowa"
+	desc = "Pompa, która przetłacza gaz według objętości."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE

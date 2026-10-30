@@ -1,5 +1,5 @@
 /obj/machinery/portable_atmospherics
-	name = "portable_atmospherics"
+	name = "przenośne urządzenie atmosferyczne"
 	icon = 'icons/obj/atmos.dmi'
 	use_power = NO_POWER_USE
 	max_integrity = 250

@@ -13,8 +13,8 @@
 #define GUILLOTINE_ACTION_WRENCH     6
 
 /obj/structure/guillotine
-	name = "guillotine"
-	desc = "A large structure used to remove the heads of traitors and treasonists."
+	name = "gilotyna"
+	desc = "Duża konstrukcja służąca do pozbawiania głów zdrajców i wichrzycieli."
 	icon = 'icons/obj/guillotine.dmi'
 	icon_state = "guillotine_raised"
 	can_buckle = TRUE

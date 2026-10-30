@@ -29,7 +29,7 @@
 			var/data2 = reject_bad_text(lower_text || "", MAX_STATUS_LINE_LENGTH)
 			status_signal.data["msg1"] = data1
 			status_signal.data["msg2"] = data2
-			message_admins("[ADMIN_LOOKUPFLW(usr)] changed the Status Message to - [data1], [data2] - From the Status Display app.")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] zmienia komunikat wyświetlaczy stanu na: [data1], [data2] (aplikacja Wyświetlacz stanu).")
 			log_game("[key_name(usr)] changed the Status Message to - [data1], [data2] - From the Status Display app.")
 		if("alert")
 			status_signal.data["picture_state"] = picture

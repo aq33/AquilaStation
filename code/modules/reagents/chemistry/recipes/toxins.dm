@@ -14,20 +14,20 @@
 	required_temp = 674
 
 /datum/chemical_reaction/cyanide
-	name = "Cyanide"
+	name = "Cyjanek"
 	id = /datum/reagent/toxin/cyanide
 	results = list(/datum/reagent/toxin/cyanide = 3)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/ammonia = 1, /datum/reagent/oxygen = 1)
 	required_temp = 380
 
 /datum/chemical_reaction/itching_powder
-	name = "Itching Powder"
+	name = "Proszek swędzący"
 	id = /datum/reagent/toxin/itching_powder
 	results = list(/datum/reagent/toxin/itching_powder = 3)
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/ammonia = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/facid
-	name = "Fluorosulfuric acid"
+	name = "Kwas fluorosulfonowy"
 	id = /datum/reagent/toxin/acid/fluacid
 	results = list(/datum/reagent/toxin/acid/fluacid = 4)
 	required_reagents = list(/datum/reagent/toxin/acid = 1, /datum/reagent/fluorine = 1, /datum/reagent/hydrogen = 1, /datum/reagent/potassium = 1)
@@ -46,49 +46,49 @@
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/diethylamine = 1, /datum/reagent/medicine/ephedrine = 1)
 
 /datum/chemical_reaction/mutagen
-	name = "Unstable mutagen"
+	name = "Niestabilny mutagen"
 	id = /datum/reagent/toxin/mutagen
 	results = list(/datum/reagent/toxin/mutagen = 3)
 	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/lexorin
-	name = "Lexorin"
+	name = "Leksoryna"
 	id = /datum/reagent/toxin/lexorin
 	results = list(/datum/reagent/toxin/lexorin = 4)
 	required_reagents = list(/datum/reagent/toxin/plasma = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1, /datum/reagent/toxin/sulfonal = 1)
 
 /datum/chemical_reaction/chloralhydrate
-	name = "Chloral Hydrate"
+	name = "Wodzian chloralu"
 	id = /datum/reagent/toxin/chloralhydrate
 	results = list(/datum/reagent/toxin/chloralhydrate = 1)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 3, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/mutetoxin //i'll just fit this in here snugly between other unfun chemicals :v
-	name = "Mute Toxin"
+	name = "Toksyna niemoty"
 	id = /datum/reagent/toxin/mutetoxin
 	results = list(/datum/reagent/toxin/mutetoxin = 2)
 	required_reagents = list(/datum/reagent/uranium = 2, /datum/reagent/water = 1, /datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/zombiepowder
-	name = "Zombie Powder"
+	name = "Proszek zombie"
 	id = /datum/reagent/toxin/zombiepowder
 	results = list(/datum/reagent/toxin/zombiepowder = 2)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/medicine/morphine = 5, /datum/reagent/copper = 5)
 
 /datum/chemical_reaction/ghoulpowder
-	name = "Ghoul Powder"
+	name = "Proszek ghula"
 	id = /datum/reagent/toxin/ghoulpowder
 	results = list(/datum/reagent/toxin/ghoulpowder = 2)
 	required_reagents = list(/datum/reagent/toxin/zombiepowder = 1, /datum/reagent/medicine/epinephrine = 1)
 
 /datum/chemical_reaction/mindbreaker
-	name = "Mindbreaker Toxin"
+	name = "Toksyna łamiąca umysł"
 	id = /datum/reagent/toxin/mindbreaker
 	results = list(/datum/reagent/toxin/mindbreaker = 5)
 	required_reagents = list(/datum/reagent/silicon = 1, /datum/reagent/hydrogen = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/heparin
-	name = "Heparin"
+	name = "Heparyna"
 	id = "Heparin"
 	results = list(/datum/reagent/toxin/heparin = 4)
 	required_reagents = list(/datum/reagent/toxin/formaldehyde = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1, /datum/reagent/lithium = 1)
@@ -108,13 +108,13 @@
 	required_reagents = list(/datum/reagent/medicine/haloperidol = 1, /datum/reagent/impedrezene = 1, /datum/reagent/uranium/radium = 1)
 
 /datum/chemical_reaction/mimesbane
-	name = "Mime's Bane"
+	name = "Zguba mima"
 	id = /datum/reagent/toxin/mimesbane
 	results = list(/datum/reagent/toxin/mimesbane = 3)
 	required_reagents = list(/datum/reagent/uranium/radium = 1, /datum/reagent/toxin/mutetoxin = 1, /datum/reagent/consumable/nothing = 1)
 
 /datum/chemical_reaction/bonehurtingjuice
-	name = "Bone Hurting Juice"
+	name = "Sok bolących kości"
 	id = /datum/reagent/toxin/bonehurtingjuice
 	results = list(/datum/reagent/toxin/bonehurtingjuice = 5)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/toxin/itching_powder = 3, /datum/reagent/consumable/milk = 1)

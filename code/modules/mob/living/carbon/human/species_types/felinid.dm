@@ -84,7 +84,7 @@
 		if(prob(40))
 			M.adjust_disgust(20)
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
+			M.visible_message("<span class='warning'>[M] [pick("ma suche torsje!","kaszle!","krztusi się!")]</span>")
 		if(prob(10))
 			var/sick_message = pick("Robi ci się niedobrze.", "Nie czujesz się najlepiej.","Masz wrażenie, że twoje wnętrzności się topią.","Czujesz się chory.") //NSV13
 			to_chat(M, "<span class='notice'>[sick_message]</span>")

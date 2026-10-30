@@ -1,9 +1,9 @@
 /datum/computer_file/program/newscaster
 	filename = "newscaster"
-	filedesc = "Newscaster & Bounty Board"
+	filedesc = "Newscaster i tablica zleceń"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "newscaster"
-	extended_desc = "This program allows any user to access the Newscaster network from anywhere."
+	extended_desc = "Ten program pozwala każdemu użytkownikowi korzystać z sieci Newscastera z dowolnego miejsca."
 	size = 5
 	requires_ntnet = TRUE
 	available_on_ntnet = TRUE

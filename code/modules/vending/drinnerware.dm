@@ -1,6 +1,6 @@
 /obj/machinery/vending/dinnerware
-	name = "\improper Plasteel Chef's Dinnerware Vendor"
-	desc = "A kitchen and restaurant equipment vendor."
+	name = "\improper automat z zastawą Plasteel Chef"
+	desc = "Automat z wyposażeniem kuchni i restauracji."
 	product_ads = "Mm, żarcie!;Jedzenie i akcesoria do niego.;Bierz swój talerz!;Lubisz widelce?;Lubię widelce.;Woo, naczynia.;Tak naprawdę tego nie potrzebujesz..."
 	icon_state = "dinnerware"
 	light_color = LIGHT_COLOR_BLUEGREEN
@@ -28,5 +28,5 @@
 	payment_department = ACCOUNT_SRV
 
 /obj/item/vending_refill/dinnerware
-	machine_name = "Plasteel Chef's Dinnerware Vendor"
+	machine_name = "automat z zastawą Plasteel Chef"
 	icon_state = "refill_smoke"

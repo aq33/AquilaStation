@@ -4,7 +4,7 @@
  * Receives data through NTNet.
  */
 /obj/item/circuit_component/ntnet_receive
-	display_name = "NTNet Receiver"
+	display_name = "Odbiornik NTNet"
 	desc = "Odbiera pakiety danych przez NTNet. Jeśli ustawiono klucz szyfrowania, odbierane będą tylko sygnały z tym samym kluczem."
 	category = "NTNet"
 

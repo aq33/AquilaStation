@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(explosions)
 	set name = "Check Bomb Impact"
 	set category = "Debug"
 
-	var/newmode = alert("Use reactionary explosions?","Check Bomb Impact", "Yes", "No")
+	var/newmode = alert("Użyć eksplozji reakcyjnych?","Sprawdź zasięg bomby", "Tak", "Nie")
 	var/turf/epicenter = get_turf(mob)
 	if(!epicenter)
 		return
@@ -92,27 +92,27 @@ SUBSYSTEM_DEF(explosions)
 	var/dev = 0
 	var/heavy = 0
 	var/light = 0
-	var/list/choices = list("Small Bomb","Medium Bomb","Big Bomb","Custom Bomb")
-	var/choice = input("Bomb Size?") in choices
+	var/list/choices = list("Mała bomba","Średnia bomba","Duża bomba","Własna bomba")
+	var/choice = input("Rozmiar bomby?") in choices
 	switch(choice)
 		if(null)
 			return 0
-		if("Small Bomb")
+		if("Mała bomba")
 			dev = 1
 			heavy = 2
 			light = 3
-		if("Medium Bomb")
+		if("Średnia bomba")
 			dev = 2
 			heavy = 3
 			light = 4
-		if("Big Bomb")
+		if("Duża bomba")
 			dev = 3
 			heavy = 5
 			light = 7
-		if("Custom Bomb")
-			dev = input("Devastation range (Tiles):") as num
-			heavy = input("Heavy impact range (Tiles):") as num
-			light = input("Light impact range (Tiles):") as num
+		if("Własna bomba")
+			dev = input("Zasięg zniszczenia (pola):") as num
+			heavy = input("Zasięg ciężkich uszkodzeń (pola):") as num
+			light = input("Zasięg lekkich uszkodzeń (pola):") as num
 
 	var/max_range = max(dev, heavy, light)
 	var/x0 = epicenter.x
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(explosions)
 		wipe_colours += T
 		var/dist = cheap_hypotenuse(T.x, T.y, x0, y0)
 
-		if(newmode == "Yes")
+		if(newmode == "Tak")
 			var/turf/TT = T
 			while(TT != epicenter)
 				TT = get_step_towards(TT,epicenter)
@@ -214,10 +214,10 @@ SUBSYSTEM_DEF(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
+		message_admins("Eksplozja o rozmiarze ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) w [ADMIN_VERBOSEJMP(epicenter)]")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
 		if(SSmapping.level_trait(epicenter.z, ZTRAIT_BOARDABLE)) //nsv13 - changed is_station_level to a boardable ztrait
-			deadchat_broadcast("<span class='ghostalert'>Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [get_area(epicenter)]!</span>", turf_target = epicenter)
+			deadchat_broadcast("<span class='ghostalert'>Eksplozja o rozmiarze ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) w: [get_area(epicenter)]!</span>", turf_target = epicenter)
 
 	var/x0 = epicenter.x
 	var/y0 = epicenter.y

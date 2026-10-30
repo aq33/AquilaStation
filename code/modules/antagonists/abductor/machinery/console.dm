@@ -12,8 +12,8 @@
 //Console
 
 /obj/machinery/abductor/console
-	name = "abductor console"
-	desc = "Ship command center."
+	name = "konsola porywaczy"
+	desc = "Centrum dowodzenia statku."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "console"
 	density = TRUE

@@ -1,6 +1,6 @@
 /datum/brain_trauma/special/obsessed
-	name = "Psychotic Schizophrenia"
-	desc = "Patient has a subtype of delusional disorder, becoming irrationally attached to someone."
+	name = "Schizofrenia psychotyczna"
+	desc = "Pacjent cierpi na odmianę zaburzeń urojeniowych i irracjonalnie przywiązuje się do kogoś."
 	scan_desc = "urojenia psychotyczno-schizofreniczne"
 	gain_text = "Jeśli widzisz tę wiadomość, zgłoś błąd na githubie. Uraz zainicjalizował się nieprawidłowo."
 	lose_text = "<span class='warning'>Głosy w twojej głowie milkną.</span>"

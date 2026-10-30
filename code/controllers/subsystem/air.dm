@@ -142,11 +142,11 @@ SUBSYSTEM_DEF(air)
 
 /proc/reset_all_air()
 	SSair.can_fire = 0
-	message_admins("Air reset begun.")
+	message_admins("Rozpoczęto reset atmosfery.")
 	for(var/turf/open/T in world)
 		T.Initalize_Atmos(0)
 		CHECK_TICK
-	message_admins("Air reset done.")
+	message_admins("Zakończono reset atmosfery.")
 	SSair.can_fire = 1
 
 /datum/controller/subsystem/air/proc/check_threads()

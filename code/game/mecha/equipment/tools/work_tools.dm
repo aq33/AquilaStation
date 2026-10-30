@@ -3,8 +3,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp
-	name = "hydraulic clamp"
-	desc = "Equipment for engineering exosuits. Lifts objects and loads them into cargo."
+	name = "chwytak hydrauliczny"
+	desc = "Wyposażenie inżynieryjnych egzoszkieletów. Podnosi obiekty i ładuje je do ładowni."
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
@@ -76,7 +76,7 @@
 				return
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
-			target.visible_message("<span class='danger'>[chassis] squeezes [target]!</span>", \
+			target.visible_message("<span class='danger'>[chassis] ściska [target]!</span>", \
 								"<span class='userdanger'>[chassis] cię ściska!</span>",\
 								"<span class='italics'>Słyszysz, jak coś pęka.</span>")
 			log_combat(chassis.occupant, M, "atakuje", "[name]", "(COMBAT MODE: [chassis.occupant.combat_mode ? "ON" : "OFF"]) (DAMTYPE: [uppertext(damtype)])")
@@ -90,14 +90,14 @@
 
 //This is pretty much just for the death-ripley
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill
-	name = "\improper KILL CLAMP"
-	desc = "They won't know what clamped them!"
+	name = "\improper ZABÓJCZY CHWYTAK"
+	desc = "Nie będą wiedzieć, co ich złapało!"
 	energy_drain = 0
 	dam_force = 0
 	var/real_clamp = FALSE
 
 /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill/real
-	desc = "They won't know what clamped them! This time for real!"
+	desc = "Nie będą wiedzieć, co ich złapało! Tym razem na serio!"
 	energy_drain = 10
 	dam_force = 20
 	real_clamp = TRUE
@@ -175,8 +175,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/extinguisher
-	name = "exosuit extinguisher"
-	desc = "Equipment for engineering exosuits. A rapid-firing high capacity fire extinguisher."
+	name = "gaśnica egzoszkieletu"
+	desc = "Wyposażenie inżynieryjnych egzoszkieletów. Szybkostrzelna gaśnica o dużej pojemności."
 	icon_state = "mecha_exting"
 	equip_cooldown = 5
 	energy_drain = 0
@@ -243,8 +243,8 @@
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/rcd
-	name = "mounted RCD"
-	desc = "An exosuit-mounted Rapid Construction Device."
+	name = "montowane RCD"
+	desc = "Montowane na egzoszkielecie urządzenie do szybkiej budowy (RCD)."
 	icon_state = "mecha_rcd"
 	equip_cooldown = 10
 	energy_drain = 250
@@ -274,20 +274,20 @@
 		if(0)
 			if(iswallturf(target))
 				var/turf/closed/wall/W = target
-				occupant_message("Deconstructing [W]...")
+				occupant_message("Rozbierasz: [W]...")
 				if(do_after_cooldown(W))
 					chassis.spark_system.start()
 					W.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(W, 'sound/items/deconstruct.ogg', 50, 1)
 			else if(isfloorturf(target))
 				var/turf/open/floor/F = target
-				occupant_message("Deconstructing [F]...")
+				occupant_message("Rozbierasz: [F]...")
 				if(do_after_cooldown(target))
 					chassis.spark_system.start()
 					F.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 					playsound(F, 'sound/items/deconstruct.ogg', 50, 1)
 			else if (istype(target, /obj/machinery/door/airlock))
-				occupant_message("Deconstructing [target]...")
+				occupant_message("Rozbierasz: [target]...")
 				if(do_after_cooldown(target))
 					chassis.spark_system.start()
 					qdel(target)
@@ -346,8 +346,8 @@
 
 //Dunno where else to put this so shrug
 /obj/item/mecha_parts/mecha_equipment/ripleyupgrade
-	name = "Ripley MK-II Conversion Kit"
-	desc = "A pressurized canopy attachment kit for an Autonomous Power Loader Unit \"Ripley\" MK-I mecha, to convert it to the slower, but space-worthy MK-II design. This kit cannot be removed, once applied."
+	name = "zestaw konwersji Ripley MK-II"
+	desc = "Zestaw z hermetyczną kabiną do mecha APLU „Ripley” MK-I, który przerabia go na wolniejszą, ale zdolną do lotu w kosmosie wersję MK-II. Po założeniu nie da się go zdjąć."
 	icon_state = "ripleyupgrade"
 	mech_flags = EXOSUIT_MODULE_RIPLEY
 

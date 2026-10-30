@@ -2,8 +2,8 @@
 |*********** kombinezon HEV **********|
 \*************************************/
 /obj/item/clothing/head/helmet/space/hardsuit/aquila/hazard_suit
-	name = "HEV suit helmet"
-	desc = "A Hazardous Environment Helmet. It fits snug over the suit and has a heads-up display for researchers."
+	name = "hełm kombinezonu HEV"
+	desc = "Hełm do pracy w niebezpiecznym środowisku. Ściśle przylega do kombinezonu i ma wyświetlacz HUD dla naukowców."
 	icon_state = "hardsuit0-hev"
 	hardsuit_type = "hev"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -30,8 +30,8 @@
 		DHUD.remove_hud_from(user)
 
 /obj/item/clothing/suit/space/hardsuit/aquila/hazard_suit
-	name = "HEV Suit"
-	desc = "A Hazardous Environment suit, often called the Hazard suit. It was designed to protect scientists from the blunt trauma, radiation, energy discharge that hazardous materials might produce or entail. Fits you like a glove. The automatic medical system seems broken."
+	name = "kombinezon HEV"
+	desc = "Kombinezon do pracy w niebezpiecznym środowisku, często nazywany po prostu Hazard suit. Zaprojektowano go, by chronił naukowców przed urazami, promieniowaniem i wyładowaniami energii, które mogą wywołać niebezpieczne materiały. Leży jak ulał. Automatyczny system medyczny chyba jest zepsuty."
 	item_state = "hardsuit-hev"
 	icon_state = "hardsuit-hev"
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON //jak ci sie nie podoba to dostosuj sprite i zmien var na DIGITIGRADE_VARIATION

@@ -1,6 +1,6 @@
 /datum/overmap_objective/cargo/donation/minerals
-	name = "Donate minerals"
-	desc = "Donate 1 or more minerals"
+	name = "Przekaż minerały"
+	desc = "Przekaż co najmniej jeden minerał"
 	var/list/possible_minerals = list(
 		/obj/item/stack/sheet/mineral/sandstone,
 		/obj/item/stack/sheet/mineral/diamond,
@@ -16,7 +16,7 @@
 	var/picked = pick( possible_minerals )
 	var/atom/P = new picked()
 	freight_type_group = new( list( new /datum/freight_type/single/object/mineral( picked ) ) )
-	crate_name = "Surplus [P.name] crate"
+	crate_name = "Nadwyżka surowca: [P.name]"
 
 /datum/overmap_objective/cargo/donation/minerals/pick_station()
 	// Pick a random existing station to give this objective to

@@ -1,14 +1,14 @@
 ///Pathfinder - Can fly the suit from a long distance to an implant installed in someone.
 /obj/item/mod/module/pathfinder
-	name = "MOD pathfinder module"
-	desc = "This module, brought to you by Nakamura Engineering, has two components. \
-		The first component is a series of thrusters and a computerized location subroutine installed into the \
-		very control unit of the suit, allowing it flight at highway speeds using the suit's access locks \
-		to navigate through the station, and to be able to locate the second part of the system; \
-		a pathfinding implant installed into the base of the user's spine, \
-		broadcasting their location to the suit and allowing them to recall it to their person at any time. \
-		The implant is stored in the module and needs to be injected in a human to function. \
-		Nakamura Engineering swears up and down there's airbrakes."
+	name = "moduł nawigatora MOD"
+	desc = "Ten moduł od Nakamura Engineering składa się z dwóch części. \
+		Pierwsza to zestaw silniczków i skomputeryzowana podprocedura lokalizacji zainstalowana w samej \
+		jednostce sterującej skafandra; pozwala mu latać z prędkością autostradową, korzystając z blokad dostępu skafandra \
+		do nawigacji po stacji, i odnaleźć drugą część systemu: \
+		implant nawigacyjny wszczepiany u podstawy kręgosłupa użytkownika, \
+		który nadaje jego położenie do skafandra i pozwala w każdej chwili przywołać go do siebie. \
+		Implant jest przechowywany w module i trzeba go wstrzyknąć człowiekowi, żeby działał. \
+		Nakamura Engineering zarzeka się, że są hamulce aerodynamiczne."
 	icon_state = "pathfinder"
 	complexity = 1
 	module_type = MODULE_USABLE
@@ -21,10 +21,10 @@
 	var/faithful_return = FALSE
 
 /obj/item/mod/module/pathfinder/plus
-	name = "MOD pathfinder+ module"
-	desc = "This modified pathfinder module, based on Nakamura Engineering's design, \
-		has been altered by DonkCo with an anti-personal shock field that guarantees \
-		would-be thieves a nasty surprise, and a swift return of the suit to the owner."
+	name = "moduł nawigatora+ MOD"
+	desc = "Ten zmodyfikowany moduł nawigatora, oparty na projekcie Nakamura Engineering, \
+		DonkCo przerobiło, dodając pole porażające, które gwarantuje \
+		niedoszłym złodziejom paskudną niespodziankę, a właścicielowi szybki powrót skafandra."
 
 	faithful_return = TRUE
 
@@ -49,23 +49,23 @@
 /obj/item/mod/module/pathfinder/examine(mob/user)
 	. = ..()
 	if(implant)
-		. += span_notice("Use it on a human to implant them.")
+		. += span_notice("Użyj go na człowieku, by mu go wszczepić.")
 	else
-		. += span_warning("The implant is missing.")
+		. += span_warning("Brakuje implantu.")
 
 /obj/item/mod/module/pathfinder/attack(mob/living/target, mob/living/user, params)
 	if(!ishuman(target) || !implant)
 		return
 	if(!do_after(user, 1.5 SECONDS, target = target))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "przerwano!")
 		return
 	if(!implant.implant(target, user))
-		balloon_alert(user, "can't implant!")
+		balloon_alert(user, "nie da się wszczepić!")
 		return
 	if(target == user)
-		to_chat(user, span_notice("You implant yourself with [implant]."))
+		to_chat(user, span_notice("Wszczepiasz sobie: [implant]."))
 	else
-		target.visible_message(span_notice("[user] implants [target]."), span_notice("[user] implants you with [implant]."))
+		target.visible_message(span_notice("[user] wszczepia implant: [target]."), span_notice("[user] wszczepia ci: [implant]."))
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
 
 /obj/item/mod/module/pathfinder/proc/attach(mob/living/user)
@@ -78,7 +78,7 @@
 		return
 	mod.quick_deploy(user)
 	human_user.update_action_buttons(TRUE)
-	balloon_alert(human_user, "[mod] attached")
+	balloon_alert(human_user, "podłączono: [mod]")
 	playsound(mod, 'sound/machines/ping.ogg', 50, TRUE)
 	drain_power(use_power_cost)
 	module_type = MODULE_PASSIVE
@@ -88,9 +88,9 @@
 	if (!ishuman(mod.wearer) || !implant)
 		return
 	if(!implant.implant(mod.wearer, mod.wearer))
-		balloon_alert(mod.wearer, "can't implant!")
+		balloon_alert(mod.wearer, "nie da się wszczepić!")
 		return
-	balloon_alert(mod.wearer, "implanted")
+	balloon_alert(mod.wearer, "wszczepiono")
 	playsound(src, 'sound/effects/spray.ogg', 30, TRUE, -6)
 	module_type = MODULE_PASSIVE
 	var/datum/action/item_action/mod/pinned_module/existing_action = pinned_to[REF(mod.wearer)]
@@ -99,8 +99,8 @@
 		qdel(existing_action)
 
 /obj/item/implant/mod
-	name = "MOD pathfinder implant"
-	desc = "Lets you recall a MODsuit to you at any time."
+	name = "implant nawigatora MOD"
+	desc = "Pozwala w każdej chwili przywołać do siebie MODsuit."
 	actions_types = list(/datum/action/item_action/mod_recall)
 	/// The pathfinder module we are linked to.
 	var/obj/item/mod/module/pathfinder/module
@@ -122,34 +122,34 @@
 	return ..()
 
 /obj/item/implant/mod/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> Nakamura Engineering Pathfinder Implant<BR>
-				<b>Implant Details:</b> Allows for the recall of a Modular Outerwear Device by the implant owner at any time.<BR>"}
+	var/dat = {"<b>Specyfikacja implantu:</b><BR>
+				<b>Nazwa:</b> Implant nawigatora Nakamura Engineering<BR>
+				<b>Szczegóły implantu:</b> pozwala posiadaczowi implantu w każdej chwili przywołać Modularne Urządzenie Zewnętrzne.<BR>"}
 	return dat
 
 /obj/item/implant/mod/proc/recall()
 	if(!module?.mod)
-		balloon_alert(imp_in, "no connected unit!")
+		balloon_alert(imp_in, "brak połączonej jednostki!")
 		return FALSE
 	if(module.mod.open)
-		balloon_alert(imp_in, "cover open!")
+		balloon_alert(imp_in, "pokrywa otwarta!")
 		return FALSE
 	if(module.mod.ai_controller)
-		balloon_alert(imp_in, "already moving!")
+		balloon_alert(imp_in, "już się porusza!")
 		return FALSE
 	if(ismob(get_atom_on_turf(module.mod)))
 		var/mob/living/carbon/carrying_mob = get_atom_on_turf(module.mod)
 		if(carrying_mob == imp_in)
-			balloon_alert(imp_in, "already on user!")
+			balloon_alert(imp_in, "już jest na użytkowniku!")
 			return FALSE
 		if(!module.faithful_return)
-			balloon_alert(imp_in, "already on someone!")
+			balloon_alert(imp_in, "już jest na kimś!")
 			return FALSE //Someone is in the suit, but our suit doesn't love us
 		check_recall_mob() //The suit is stolen, and is faithful to us
 		return FALSE
 	//balloon_alert(imp_in, "check returned TRUE!")
 	if(module.z != z || get_dist(imp_in, module.mod) > MOD_AI_RANGE)
-		balloon_alert(imp_in, "too far!")
+		balloon_alert(imp_in, "za daleko!")
 		return FALSE
 	var/datum/ai_controller/mod_ai = new /datum/ai_controller/mod(module.mod)
 	module.mod.ai_controller = mod_ai
@@ -161,13 +161,13 @@
 	animate(module.mod, 0.2 SECONDS, pixel_x = base_pixel_y, pixel_y = base_pixel_y)
 	module.mod.add_overlay(jet_icon)
 	RegisterSignal(module.mod, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-	balloon_alert(imp_in, "suit recalled")
+	balloon_alert(imp_in, "skafander przywołany")
 	return TRUE
 
 /obj/item/implant/mod/proc/check_recall_mob()
-	balloon_alert(imp_in, "deploying countermeasures in 3 seconds.")
+	balloon_alert(imp_in, "środki zaradcze za 3 sekundy.")
 	var/mob/living/carbon/carrying_mob = get_atom_on_turf(module.mod)
-	balloon_alert(carrying_mob, "deploying countermeasures!")
+	balloon_alert(carrying_mob, "uruchamianie środków zaradczych!")
 	playsound(carrying_mob, 'sound/creatures/guarddeath2.ogg', 50, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(recall_zap_thief), carrying_mob), 3 SECONDS)
 	//return FALSE //We zapped them, but its still not valid until the modsuit is actually dropped
@@ -189,9 +189,9 @@
 	module.mod.transform = matrix()
 	UnregisterSignal(module.mod, COMSIG_MOVABLE_MOVED)
 	if(!successful)
-		balloon_alert(imp_in, "suit lost connection!")
+		balloon_alert(imp_in, "skafander stracił połączenie!")
 	else
-		balloon_alert(imp_in, "I missed you!")
+		balloon_alert(imp_in, "Tęskniłem za tobą!")
 
 /obj/item/implant/mod/proc/on_move(atom/movable/source, atom/old_loc, dir, forced)
 	SIGNAL_HANDLER
@@ -201,8 +201,8 @@
 	source.transform = mod_matrix
 
 /datum/action/item_action/mod_recall
-	name = "Recall MOD"
-	desc = "Recall a MODsuit anyplace, anytime."
+	name = "Przywołaj MOD"
+	desc = "Przywołuje MODsuit wszędzie i zawsze."
 	check_flags = AB_CHECK_CONSCIOUS
 	background_icon_state = "bg_mod"
 	icon_icon = 'icons/mob/actions/actions_mod.dmi'
@@ -221,7 +221,7 @@
 		return FALSE
 	var/obj/item/implant/mod/implant = target
 	if(!COOLDOWN_FINISHED(src, recall_cooldown))
-		implant.balloon_alert(implant.imp_in, "on cooldown!")
+		implant.balloon_alert(implant.imp_in, "odnawia się!")
 		return
 	if(implant.recall())
 		COOLDOWN_START(src, recall_cooldown, 15 SECONDS)

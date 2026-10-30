@@ -4,7 +4,7 @@
 	Currently just a prototype
 */
 /obj/item/sticker/artifact_tracker
-	name = "anomalous material tracker"
+	name = "znacznik materiałów anomalnych"
 	icon = 'icons/obj/xenoarchaeology/xenoartifact_tech.dmi'
 	icon_state = "tracker"
 	sticker_icon_state = "tracker_small"

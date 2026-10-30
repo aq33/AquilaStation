@@ -1,12 +1,12 @@
 /client/proc/system_manager() //Creates a verb for admins to open up the ui
 	set name = "Starsystem Management"
-	set desc = "Manage fleets / systems that exist in game"
+	set desc = "Zarządzaj flotami i układami istniejącymi w grze"
 	set category = "Adminbus"
 	var/datum/starsystem_manager/man = new(usr)//create the datum
 	man.ui_interact(usr)//datum has a tgui component, here we open the window
 
 /datum/starsystem_manager
-	var/name = "Starsystem manager"
+	var/name = "Menedżer układów gwiezdnych"
 	var/client/holder = null
 	var/current_sector = 2
 
@@ -50,19 +50,19 @@
 		sys_inf["hidden"] = (SS.sector != current_sector)
 		var/label = ""
 		if(SS.hidden)
-			label += " HIDDEN"
+			label += " UKRYTY"
 		if(SS.is_hypergate)
-			label += " HYPERGATE"
+			label += " HIPERBRAMA"
 		if(SS.is_capital && !label)
-			label = " CAPITAL"
+			label = " STOLICA"
 		if(SS.trader && SS.sector != 3) //Use shortnames in brazil for readability
 			label = " [SS.trader.name]"
 		if(SS.trader && SS.sector == 3) //Use shortnames in brazil for readability
 			label = " [SS.trader.shortname]"
 		if(SS.mission_sector)
-			label += " OCCUPIED"
+			label += " OKUPOWANY"
 		if(SS.objective_sector)
-			label += " MISSION"
+			label += " MISJA"
 		sys_inf["label"] = label
 		sys_inf["fleets"] = list() //2d array mess in 3...2...1..
 		for(var/datum/fleet/F in SS.fleets)
@@ -101,7 +101,7 @@
 		for(var/thename in SS.adjacency_list) //Draw the lines joining our systems
 			var/datum/star_system/sys = SSstar_system.system_by_id(thename)
 			if(!sys)
-				message_admins("[thename] exists in a system adjacency list, but does not exist. Go create a starsystem datum for it.")
+				message_admins("[thename] jest na liście sąsiedztwa układów, ale nie istnieje. Utwórz dla niego datum układu gwiezdnego.")
 				continue
 			var/is_wormhole = (LAZYFIND(sys.wormhole_connections, SS.name) || LAZYFIND(SS.wormhole_connections, sys.name))
 			if(sys.sector != SS.sector) //Secret One way wormholes show you faint, purple paths.
@@ -144,29 +144,29 @@
 			var/datum/fleet/target = locate(params["id"])
 			if(!istype(target))
 				return FALSE
-			var/command = tgui_alert(usr, "Co chcesz zrobić z [target]?", "Starsystem Management", list("Jump", "Variables", "Delete"))
+			var/command = tgui_alert(usr, "Co chcesz zrobić z [target]?", "Zarządzanie układami", list("Skok", "Zmienne", "Usuń"))
 			if(!command)
 				return FALSE
-			if(command == "Jump")
-				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Fleet Management", null) as null|anything in SSstar_system.systems
+			if(command == "Skok")
+				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Zarządzanie flotą", null) as null|anything in SSstar_system.systems
 				if(!sys || !istype(sys))
 					return FALSE
-				message_admins("[key_name(usr)] forced [target] to jump to [sys].")
+				message_admins("[key_name(usr)] wymusza skok [target] do [sys].")
 				target.move(sys, TRUE)
 				return TRUE
-			if(command == "Delete")
+			if(command == "Usuń")
 				var/fleetname = target.name
 				var/sysname = target.current_system
 				if(usr.client.cmd_admin_delete(target))
-					message_admins("[key_name(usr)] deleted [fleetname] in [sysname].")
+					message_admins("[key_name(usr)] usuwa [fleetname] w [sysname].")
 				return TRUE
-			if(command == "Variables")
+			if(command == "Zmienne")
 				usr.client.debug_variables(target)
 		if("createFleet")
 			var/datum/star_system/target = locate(params["sys_id"])
 			if(!istype(target))
 				return
-			var/fleet_type = input(usr, "What fleet template would you like to use?","Fleet Creation", null) as null|anything in typecacheof(/datum/fleet)
+			var/fleet_type = input(usr, "Jakiego szablonu floty chcesz użyć?","Tworzenie floty", null) as null|anything in typecacheof(/datum/fleet)
 			if(!fleet_type)
 				return
 			var/datum/fleet/F = new fleet_type()
@@ -176,12 +176,12 @@
 			for(var/obj/structure/overmap/OM in target.system_contents)
 				if(length(OM.mobs_in_ship) && OM.reserved_z)
 					F.encounter(OM)
-			message_admins("[key_name(usr)] created a fleet ([F.name]) at [target].")
+			message_admins("[key_name(usr)] tworzy flotę ([F.name]) w [target].")
 		if("createObject")
 			var/datum/star_system/target = locate(params["sys_id"])
 			if(!istype(target))
 				return
-			var/object_type = input(usr, "What kind of object?","Overmap Object Creation", null) as null|anything in (typecacheof(/obj/structure/overmap/asteroid) + typecacheof(/obj/effect/overmap_anomaly) + typecacheof(/obj/structure/overmap/trader))
+			var/object_type = input(usr, "Jaki obiekt?","Tworzenie obiektu overmapy", null) as null|anything in (typecacheof(/obj/structure/overmap/asteroid) + typecacheof(/obj/effect/overmap_anomaly) + typecacheof(/obj/structure/overmap/trader))
 			if(!object_type)
 				return
 			if(ispath(object_type, /obj/structure/overmap))
@@ -193,40 +193,40 @@
 			var/obj/structure/overmap/target = locate(params["id"])
 			if(!istype(target))
 				return
-			var/command = tgui_alert(usr, "Co chcesz zrobić z [target]?", "Starsystem Management", list("Jump", "Hail", "Delete", "Variables"))
+			var/command = tgui_alert(usr, "Co chcesz zrobić z [target]?", "Zarządzanie układami", list("Skok", "Wezwanie", "Usuń", "Zmienne"))
 			if(!command)
 				return FALSE
-			if(command == "Jump")
-				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Fleet Management", null) as null|anything in SSstar_system.systems
+			if(command == "Skok")
+				var/datum/star_system/sys = input(usr, "Wybierz cel skoku dla [target]...","Zarządzanie flotą", null) as null|anything in SSstar_system.systems
 				if(!sys || !istype(sys))
 					return FALSE
 				// Handle player ships
 				if(length(target.linked_areas))
-					var/when = alert(usr, "Kiedy mają przybyć?", "Skok do [sys]", "Now", "After FTL", "Cancel")
-					if(!when || when == "Cancel")
+					var/when = alert(usr, "Kiedy mają przybyć?", "Skok do [sys]", "Teraz", "Po FTL", "Anuluj")
+					if(!when || when == "Anuluj")
 						return FALSE
-					message_admins("[key_name(usr)] forced [target] to jump to [sys].")
-					if(when == "After FTL")
+					message_admins("[key_name(usr)] wymusza skok [target] do [sys].")
+					if(when == "Po FTL")
 						target.jump_start(sys, TRUE)
 						return TRUE
-					if(when == "Now")
+					if(when == "Teraz")
 						target.current_system.remove_ship(target)
 						target.jump_end(sys)
 						return TRUE
-				message_admins("[key_name(usr)] forced [target] to jump to [sys].")
+				message_admins("[key_name(usr)] wymusza skok [target] do [sys].")
 				SSstar_system.move_existing_object(target, sys)
 				return TRUE
-			if(command == "Hail")
-				var/message = capped_input(usr, "Wpisz wiadomość", "Hail")
-				var/from = capped_input(usr, "Od kogo jest?", "Hail")
+			if(command == "Wezwanie")
+				var/message = capped_input(usr, "Wpisz wiadomość", "Wezwanie")
+				var/from = capped_input(usr, "Od kogo jest?", "Wezwanie")
 				if(!message || !from)
 					return FALSE
 				target.hail(message, from)
 				return
-			if(command == "Delete")
+			if(command == "Usuń")
 				usr.client.cmd_admin_delete(target)
 				return TRUE
-			if(command == "Variables")
+			if(command == "Zmienne")
 				usr.client.debug_variables(target)
 			if(command == "Delete")
 				usr.client.cmd_admin_delete(target)

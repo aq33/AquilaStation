@@ -1,6 +1,6 @@
 /obj/item/mob_lasso
-	name = "space lasso"
-	desc = "Comes standard with every space-cowboy.\nCan be used to tame space carp."
+	name = "kosmiczne lasso"
+	desc = "Standardowe wyposażenie każdego kosmicznego kowboja.\nPozwala oswajać kosmiczne karpie."
 	icon = 'icons/obj/carp_lasso.dmi'
 	icon_state = "lasso"
 	///Ref to timer
@@ -68,13 +68,13 @@
 
 ///Primal version, allows lavaland goobers to tame goliaths
 /obj/item/mob_lasso/primal
-	name = "primal lasso"
-	desc = "Found amongst Ash Walker tools.\nCan be used to tame goliaths."
+	name = "pierwotne lasso"
+	desc = "Spotykane wśród narzędzi popielnych wędrowców.\nPozwala oswajać goliaty."
 	whitelist_mobs = list(/mob/living/simple_animal/hostile/asteroid/goliath/beast, /mob/living/simple_animal/hostile/asteroid/goliath, /mob/living/simple_animal/hostile/asteroid/goldgrub)
 
 /obj/item/mob_lasso/antag
-	name = "bluespace lasso"
-	desc = "Comes standard with every evil space-cowboy!\nCan be used to tame almost anything."
+	name = "lasso bluespace"
+	desc = "Standardowe wyposażenie każdego złego kosmicznego kowboja!\nPozwala oswoić niemal wszystko."
 	///blacklist of disallowed mobs
 	var/list/blacklist_mobs = list(/mob/living/simple_animal/hostile/megafauna, /mob/living/simple_animal/hostile/alien, /mob/living/simple_animal/hostile/syndicate)
 
@@ -86,7 +86,7 @@
 	return(!locate(target) in blacklist_mobs)
 
 /obj/item/mob_lasso/antag/debug
-	name = "debug lasso"
-	desc = "Comes standard with every administrator space-cowboy!\nCan be used to tame anything."
+	name = "lasso debugowe"
+	desc = "Standardowe wyposażenie każdego kosmicznego kowboja-administratora!\nPozwala oswoić wszystko."
 	blacklist_mobs = list() //anything goes
 

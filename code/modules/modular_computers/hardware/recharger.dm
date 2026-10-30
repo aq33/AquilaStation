@@ -24,8 +24,8 @@
 
 
 /obj/item/computer_hardware/recharger/APC
-	name = "area power connector"
-	desc = "A device that wirelessly recharges connected device from nearby APC."
+	name = "złącze zasilania obszaru"
+	desc = "Urządzenie, które bezprzewodowo ładuje podłączony sprzęt z pobliskiego APC."
 	icon_state = "charger_APC"
 	w_class = WEIGHT_CLASS_SMALL // Can't be installed into tablets/PDAs
 
@@ -47,8 +47,8 @@
 	return 0
 
 /obj/item/computer_hardware/recharger/wired
-	name = "wired power connector"
-	desc = "A power connector that recharges connected device from nearby power wire. Incompatible with portable computers."
+	name = "przewodowe złącze zasilania"
+	desc = "Złącze zasilania, które ładuje podłączony sprzęt z pobliskiego kabla. Niezgodne z komputerami przenośnymi."
 	icon_state = "charger_wire"
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -80,8 +80,8 @@
 /// This recharger exists only in borg built-in tablets. I would have tied it to the borg's cell but
 /// the program that displays laws should always be usable, and the exceptions were starting to pile.
 /obj/item/computer_hardware/recharger/cyborg
-	name = "modular interface power harness"
-	desc = "A standard connection to power a small computer device from a cyborg's chassis."
+	name = "wiązka zasilająca interfejsu modułowego"
+	desc = "Standardowe złącze, które zasila małe urządzenie komputerowe z korpusu cyborga."
 
 /obj/item/computer_hardware/recharger/cyborg/use_power(amount, charging=0)
 	return TRUE
@@ -89,8 +89,8 @@
 
 // This is not intended to be obtainable in-game. Intended for adminbus and debugging purposes.
 /obj/item/computer_hardware/recharger/lambda
-	name = "lambda coil"
-	desc = "A very complex device that draws power from its own bluespace dimension."
+	name = "cewka lambda"
+	desc = "Bardzo skomplikowane urządzenie, które czerpie energię z własnego wymiaru bluespace."
 	icon_state = "charger_lambda"
 	w_class = WEIGHT_CLASS_TINY
 	charge_rate = 100000

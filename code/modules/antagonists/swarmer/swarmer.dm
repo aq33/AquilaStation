@@ -1,21 +1,21 @@
 ////Deactivated swarmer shell////
 /obj/item/deactivated_swarmer
-	name = "deactivated swarmer"
-	desc = "A shell of swarmer that was completely powered down. It can no longer activate itself."
+	name = "wyłączony rojowiec"
+	desc = "Całkowicie wyłączona skorupa rojowca. Nie może się już sama aktywować."
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_unactivated"
 	materials = list(/datum/material/iron=10000, /datum/material/glass=4000)
 
 /obj/effect/mob_spawn/swarmer
-	name = "unactivated swarmer"
-	desc = "A currently unactivated swarmer. Swarmers can self activate at any time, it would be wise to immediately dispose of this."
+	name = "nieaktywny rojowiec"
+	desc = "Obecnie nieaktywny rojowiec. Rojowce mogą się same aktywować w dowolnej chwili, więc rozsądnie byłoby natychmiast się go pozbyć."
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_unactivated"
 	density = FALSE
 	anchored = FALSE
 
 	mob_type = /mob/living/simple_animal/hostile/swarmer
-	mob_name = "a swarmer"
+	mob_name = "rojowiec"
 	death = FALSE
 	roundstart = FALSE
 	short_desc = "Jesteś rojowcem, bronią dawno wymarłej cywilizacji."
@@ -23,7 +23,7 @@
 	<b>Jesteś rojowcem, bronią dawno wymarłej cywilizacji. Dopóki nie otrzymasz dalszych rozkazów od swoich pierwotnych panów, musisz pochłaniać i się powielać.</b>
 	<b>Kliknięcie dowolnego obiektu spróbuje go pochłonąć - rozłożyć na części, zniszczyć albo, jeśli się uda, wchłonąć jego materiały.</b>
 	<b>Kliknięcie istoty z Ctrl spróbuje usunąć ją z okolicy i umieścić w bezpiecznym miejscu do przechowania.</b>
-	<b>Objectives:</b>
+	<b>Cele:</b>
 	1. Pochłaniaj zasoby i powielaj się, dopóki zasoby się nie skończą.
 	2. Dopilnuj, by to miejsce nadawało się do późniejszej inwazji; nie rób niczego, co uczyniłoby je niebezpiecznym lub nieprzyjaznym.
 	3. Zasoby biologiczne zostaną zebrane później; nie krzywdź ich.
@@ -43,7 +43,7 @@
 
 /obj/effect/mob_spawn/swarmer/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_SCREWDRIVER && !user.combat_mode)
-		user.visible_message("<span class='warning'>[usr.name] deactivates [src].</span>",
+		user.visible_message("<span class='warning'>[usr.name] wyłącza [src].</span>",
 			"<span class='notice'>Po chwili majstrowania znajdujesz sposób, by wyłączyć zasilanie [src].</span>",
 			"<span class='italics'>Słyszysz klikanie.</span>")
 		new /obj/item/deactivated_swarmer(get_turf(src))
@@ -54,10 +54,10 @@
 ////The Mob itself////
 
 /mob/living/simple_animal/hostile/swarmer
-	name = "Swarmer"
+	name = "rojowiec"
 	unique_name = 1
 	icon = 'icons/mob/swarmer.dmi'
-	desc = "A robot of unknown design, they seek only to consume materials and replicate themselves indefinitely."
+	desc = "Robot nieznanej konstrukcji. Dąży wyłącznie do pochłaniania materiałów i nieskończonego powielania się."
 	speak_emote = list("wydaje ton")
 	initial_language_holder = /datum/language_holder/swarmer
 	bubble_icon = "swarmer"
@@ -564,7 +564,7 @@
 	duration = 5
 
 /obj/structure/swarmer //Default swarmer effect object visual feedback
-	name = "swarmer ui"
+	name = "interfejs rojowca"
 	desc = null
 	gender = NEUTER
 	icon = 'icons/mob/swarmer.dmi'
@@ -594,8 +594,8 @@
 	qdel(src)
 
 /obj/structure/swarmer/trap
-	name = "swarmer trap"
-	desc = "A quickly assembled trap that electrifies living beings and overwhelms machine sensors. Will not retain its form if damaged enough."
+	name = "pułapka rojowca"
+	desc = "Szybko złożona pułapka, która razi prądem żywe istoty i przeciąża czujniki maszyn. Mocno uszkodzona traci swoją formę."
 	icon_state = "trap"
 	max_integrity = 10
 	density = FALSE
@@ -622,7 +622,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/CreateTrap()
 	set name = "Create trap"
 	set category = "Swarmer"
-	set desc = "Creates a simple trap that will non-lethally electrocute anything that steps on it. Costs 5 resources"
+	set desc = "Tworzy prostą pułapkę, która nieśmiertelnie razi prądem wszystko, co na nią wejdzie. Koszt: 5 zasobów."
 	if(locate(/obj/structure/swarmer/trap) in loc)
 		to_chat(src, "<span class='warning'>Tu już jest pułapka. Przerywanie.</span>")
 		return
@@ -632,7 +632,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/CreateBarricade()
 	set name = "Create barricade"
 	set category = "Swarmer"
-	set desc = "Creates a barricade that will stop anything but swarmers and disabler beams from passing through."
+	set desc = "Tworzy barykadę, przez którą przechodzą tylko rojowce i wiązki disablera."
 	if(locate(/obj/structure/swarmer/blockade) in loc)
 		to_chat(src, "<span class='warning'>Tu już jest blokada. Przerywanie.</span>")
 		return
@@ -644,8 +644,8 @@
 
 
 /obj/structure/swarmer/blockade
-	name = "swarmer blockade"
-	desc = "A quickly assembled energy blockade. Will not retain its form if damaged enough, but disabler beams and swarmers pass right through."
+	name = "blokada rojowca"
+	desc = "Szybko złożona blokada energetyczna. Mocno uszkodzona traci swoją formę, a wiązki disablera i rojowce przechodzą przez nią na wylot."
 	icon_state = "barricade"
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	max_integrity = 50
@@ -661,7 +661,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/CreateSwarmer()
 	set name = "Replicate"
 	set category = "Swarmer"
-	set desc = "Creates a shell for a new swarmer. Swarmers will self activate."
+	set desc = "Tworzy skorupę nowego rojowca. Rojowce aktywują się same."
 	to_chat(src, "<span class='info'>Próbujemy się powielić. Musimy stać w miejscu do końca procesu.</span>")
 	if(resources < 50)
 		to_chat(src, "<span class='warning'>Nie mamy na to zasobów!</span>")
@@ -682,7 +682,7 @@
 /mob/living/simple_animal/hostile/swarmer/proc/RepairSelf()
 	set name = "Self Repair"
 	set category = "Swarmer"
-	set desc = "Attempts to repair damage to our body. You will have to remain motionless until repairs are complete."
+	set desc = "Próbujesz naprawić uszkodzenia swojego ciała. Do końca naprawy musisz pozostać w bezruchu."
 	if(!isturf(loc))
 		return
 	to_chat(src, "<span class='info'>Próbujemy naprawić uszkodzenia ciała, proszę czekać...</span>")

@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/vox
-	display_name = "VOX Announcement"
+	display_name = "Ogłoszenie VOX"
 	desc = "Komponent, który odtwarza użytkownikowi lokalny komunikat VOX. Wymaga obudowy BCI."
 	category = "BCI"
 

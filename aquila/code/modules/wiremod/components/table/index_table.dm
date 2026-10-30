@@ -4,7 +4,7 @@
  * Gets the row of a table as an associative list using the index inputted. Will return no value if the index is invalid or a proper table is not returned.
  */
 /obj/item/circuit_component/index_table
-	display_name = "Index Table"
+	display_name = "Indeks tabeli"
 	desc = "Pobiera wiersz tabeli pod podanym indeksem jako listę asocjacyjną. Nie zwraca wartości, jeśli indeks jest nieprawidłowy lub nie podano poprawnej tabeli."
 	category = "List"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

@@ -11,8 +11,8 @@
 #define ACROMEGALY_STAGGER_MAX (10 SECONDS)
 
 /datum/mutation/acromegaly
-	name = "Acromegaly"
-	desc = "The subject's cells stack on top of one another, making the subject appear unusually tall."
+	name = "Akromegalia"
+	desc = "Komórki pacjenta piętrzą się jedna na drugiej, przez co wydaje się on niezwykle wysoki."
 	quality = MINOR_NEGATIVE
 	difficulty = 16
 	synchronizer_coeff = 1

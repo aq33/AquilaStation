@@ -2,8 +2,8 @@
 // tg ma /datum/embedding, u nas embedding to lista na przedmiocie + /datum/component/embedded.
 
 /datum/mutation/tongue_spike
-	name = "Tongue Spike"
-	desc = "The subject gains the ability to voluntary shoot their tongue out as a deadly weapon."
+	name = "Kolec z języka"
+	desc = "Pacjent potrafi na zawołanie wystrzelić swój język jak śmiercionośną broń."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz, że mógłbyś rzucić swoim głosem.</span>"
 	instability = 5
@@ -12,7 +12,7 @@
 	synchronizer_coeff = 1
 
 /datum/action/cooldown/spell/tongue_spike
-	name = "Launch spike"
+	name = "Wystrzel kolec"
 	desc = "Wystrzel język w kierunku, w którym patrzysz. Wbija się w cel i rani go, dopóki ktoś go nie wyciągnie."
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
 	button_icon_state = "spike"
@@ -40,8 +40,8 @@
 	spike.throw_at(get_edge_target_turf(cast_on, cast_on.dir), 14, 4, cast_on)
 
 /obj/item/hardened_spike
-	name = "biomass spike"
-	desc = "Hardened biomass, shaped into a spike. Very pointy!"
+	name = "kolec z biomasy"
+	desc = "Stwardniała biomasa w kształcie kolca. Bardzo ostra!"
 	icon = 'aquila/icons/mutations/tg/items.dmi'
 	icon_state = "tonguespike"
 	force = 2
@@ -84,8 +84,8 @@
 	return TRUE
 
 /datum/mutation/tongue_spike/chem
-	name = "Chem Spike"
-	desc = "The subject gains the ability to voluntary shoot their tongue out as biomass, allowing a long range transfer of chemicals."
+	name = "Chemiczny kolec"
+	desc = "Pacjent potrafi na zawołanie wystrzelić język z biomasy i przelewać przez niego chemikalia na odległość."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz, że rzucając głosem mógłbyś naprawdę zbliżyć się do ludzi.</span>"
 	instability = 10
@@ -95,15 +95,15 @@
 	synchronizer_coeff = 1
 
 /datum/action/cooldown/spell/tongue_spike/chem
-	name = "Launch chem spike"
+	name = "Wystrzel chemiczny kolec"
 	desc = "Wystrzel język w kierunku, w którym patrzysz. Wbija się w cel i prawie go nie rani, \
 		a dopóki w nim tkwi, możesz przelać mu swoje chemikalia."
 	button_icon_state = "spikechem"
 	spike_path = /obj/item/hardened_spike/chem
 
 /obj/item/hardened_spike/chem
-	name = "chem spike"
-	desc = "Hardened biomass, shaped into... something."
+	name = "chemiczny kolec"
+	desc = "Stwardniała biomasa w kształcie... czegoś."
 	icon_state = "tonguespikechem"
 	throwforce = 2
 	embedding = list("embed_chance" = 100, "fall_chance" = 0, "pain_mult" = 0, "pain_chance" = 0, "jostle_pain_mult" = 0, "ignore_throwspeed_threshold" = TRUE)
@@ -130,7 +130,7 @@
 	return ..()
 
 /datum/action/send_chems
-	name = "Transfer Chemicals"
+	name = "Przelej chemikalia"
 	desc = "Przelej wszystkie swoje reagenty do osoby, w której tkwi chemiczny kolec. Jednorazowe."
 	background_icon_state = "bg_spell"
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'

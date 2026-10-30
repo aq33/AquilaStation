@@ -2,8 +2,8 @@
 #define OCULAR_WARDEN_RANGE 3
 
 /datum/clockcult/scripture/create_structure/ocular_warden
-	name = "Ocular Warden"
-	desc = "An eye turret that will fire upon nearby targets. Requires 2 invokers."
+	name = "Oczny strażnik"
+	desc = "Wieżyczka w kształcie oka, która strzela do pobliskich celów. Wymaga 2 przywołujących."
 	tip = "Rozstawiaj je, by załoga nie mogła przebiec obok twoich umocnień."
 	button_icon_state = "Ocular Warden"
 	power_cost = 400
@@ -26,8 +26,8 @@
 	return TRUE
 
 /obj/structure/destructible/clockwork/ocular_warden
-	name = "ocular warden"
-	desc = "A wide, open eye that stares intently into your soul. It seems resistant to energy based weapons."
+	name = "oczny strażnik"
+	desc = "Szeroko otwarte oko, które wpatruje się w twoją duszę. Wydaje się odporne na broń energetyczną."
 	clockwork_desc = "Urządzenie obronne, które walczy z pobliskimi intruzami."
 	break_message = "<span class='warning'>Ze strażnika ocznego wycieka czarna maź, a on powoli osuwa się na ziemię.</span>"
 	icon_state = "ocular_warden"

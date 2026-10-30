@@ -2,7 +2,7 @@
  * USB wiremod interface for temperature pumps
  */
 /obj/item/circuit_component/atmos_temperature_pump
-	display_name = "Atmospheric Temperature Pump"
+	display_name = "Pompa ciepła"
 	desc = "Interfejs do komunikacji z pompą temperatury."
 
 	///Set the percent of the heat delta to transfer

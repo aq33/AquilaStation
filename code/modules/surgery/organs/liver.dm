@@ -2,12 +2,12 @@
 #define LIVER_DEFAULT_TOX_LETHALITY 0.01 //lower values lower how harmful toxins are to the liver
 
 /obj/item/organ/liver
-	name = "liver"
+	name = "wątroba"
 	icon_state = "liver"
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_LIVER
-	desc = "Pairing suggestion: chianti and fava beans."
+	desc = "Sugerowane połączenie: chianti i bób."
 
 	maxHealth = STANDARD_ORGAN_THRESHOLD
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -68,27 +68,27 @@
 #undef HAS_PAINFUL_TOXIN
 
 /obj/item/organ/liver/fly
-	name = "insectoid liver"
+	name = "owadzia wątroba"
 	icon_state = "liver-x" //xenomorph liver? It's just a black liver so it fits.
-	desc = "A mutant liver designed to handle the unique diet of a flyperson."
+	desc = "Zmutowana wątroba przystosowana do wyjątkowej diety muchoczłowieka."
 	alcohol_tolerance = 0.007 //flies eat vomit, so a lower alcohol tolerance is perfect!
 
 /obj/item/organ/liver/plasmaman
-	name = "reagent processing crystal"
+	name = "kryształ przetwarzający reagenty"
 	icon_state = "liver-p"
-	desc = "A large crystal that is somehow capable of metabolizing chemicals, these are found in plasmamen."
+	desc = "Duży kryształ, który w jakiś sposób metabolizuje chemikalia. Występuje u plazmaludzi."
 
 /obj/item/organ/liver/alien
-	name = "alien liver" // doesnt matter for actual aliens because they dont take toxin damage
+	name = "wątroba obcego" // doesnt matter for actual aliens because they dont take toxin damage
 	icon_state = "liver-x" // Same sprite as fly-person liver.
-	desc = "A liver that used to belong to a killer alien, who knows what it used to eat."
+	desc = "Wątroba, która należała kiedyś do zabójczego obcego. Kto wie, co jadał."
 	toxLethality = LIVER_DEFAULT_TOX_LETHALITY * 2.5 // rejects its owner early after too much punishment
 	toxTolerance = 15 // complete toxin immunity like xenos have would be too powerful
 
 /obj/item/organ/liver/cybernetic
-	name = "cybernetic liver"
+	name = "cybernetyczna wątroba"
 	icon_state = "liver-c"
-	desc = "An electronic device designed to mimic the functions of a human liver. Handles toxins slightly better than an organic liver."
+	desc = "Urządzenie elektroniczne, które naśladuje funkcje ludzkiej wątroby. Radzi sobie z toksynami nieco lepiej niż organiczna wątroba."
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
 	maxHealth = 1.1 * STANDARD_ORGAN_THRESHOLD
@@ -96,9 +96,9 @@
 	toxLethality = 0.009
 
 /obj/item/organ/liver/cybernetic/upgraded
-	name = "upgraded cybernetic liver"
+	name = "ulepszona cybernetyczna wątroba"
 	icon_state = "liver-c-u"
-	desc = "An upgraded version of the cybernetic liver, designed to improve further upon organic livers. It is resistant to alcohol poisoning and is very robust at filtering toxins."
+	desc = "Ulepszona wersja cybernetycznej wątroby, jeszcze lepsza od organicznych. Jest odporna na zatrucie alkoholem i bardzo skutecznie filtruje toksyny."
 	alcohol_tolerance = 0.001
 	maxHealth = 2 * STANDARD_ORGAN_THRESHOLD
 	toxTolerance = 15 //can shrug off up to 15u of toxins
@@ -115,10 +115,10 @@
 			damage+=50
 
 /obj/item/organ/liver/cybernetic/upgraded/ipc
-	name = "substance processor"
+	name = "procesor substancji"
 	icon_state = "substance_processor"
 	attack_verb = list("przetwarza")
-	desc = "A machine component, installed in the chest. This grants the Machine the ability to process chemicals that enter its systems."
+	desc = "Podzespół maszyny montowany w klatce piersiowej. Pozwala maszynie przetwarzać chemikalia, które dostają się do jej systemów."
 	alcohol_tolerance = 0
 	toxTolerance = -1
 	toxLethality = 0

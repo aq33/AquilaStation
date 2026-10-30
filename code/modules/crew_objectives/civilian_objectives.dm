@@ -3,7 +3,7 @@
 /datum/objective/crew/druglordbot //ported from old Hippie with adjustments
 	var/targetchem = "none"
 	var/datum/reagent/chempath
-	explanation_text = "Have at least (somethin broke here) harvested plants containing (report this on GitHub) when the shift ends."
+	explanation_text = "Zbierz przynajmniej (coś się tu zepsuło) roślin zawierających (zgłoś to na GitHubie) przed końcem zmiany."
 	jobs = "botanist"
 
 /datum/objective/crew/druglordbot/New()
@@ -32,7 +32,7 @@
 /datum/objective/crew/foodhoard
 	var/datum/crafting_recipe/food/targetfood
 	var/obj/item/reagent_containers/food/foodpath
-	explanation_text = "Personally deliver at least (Something broke, yell on GitHub) to CentCom."
+	explanation_text = "Osobiście dostarcz przynajmniej (coś się zepsuło, zgłoś to na GitHubie) do Centrali."
 	jobs = "cook"
 
 /datum/objective/crew/foodhoard/New()
@@ -55,7 +55,7 @@
 		return ..()
 
 /datum/objective/crew/cocktail
-	explanation_text = "Have a bottle(any type) that contains 'something' when the shift ends. Each of them must be at least 'something'u."
+	explanation_text = "Pod koniec zmiany miej butelkę (dowolnego rodzaju), która zawiera „coś”. Każdego z nich musi być co najmniej „coś” j."
 	jobs = "bartender"
 	var/targetchems = list()
 	var/list/chemnames = list()
@@ -93,7 +93,7 @@
 /datum/objective/crew/clean //ported from old Hippie
 	var/list/areas = list()
 	var/hardmode = FALSE
-	explanation_text = "Ensure sure that (Yo, something broke. Yell about this on GitHub.) remain spotless at the end of the shift."
+	explanation_text = "Upewnij się, że (hej, coś się zepsuło, zgłoś to na GitHubie) pozostaną nieskazitelnie czyste do końca zmiany."
 	jobs = "janitor"
 
 /datum/objective/crew/clean/New()
@@ -120,10 +120,10 @@
 		if(i != areas.len && areas.len >= 3)
 			explanation_text += ","
 		if(i == areas.len - 1)
-			explanation_text += "and"
+			explanation_text += " i"
 	explanation_text += " [(areas.len ==1) ? "jest całkowicie" : "są [(areas.len == 2) ? "całkowicie" : "wszystkie"]"] czyste do pod koniec zmiany."
 	if(hardmode)
-		explanation_text += " Chop-chop."
+		explanation_text += " Raz-dwa."
 
 /datum/objective/crew/clean/check_completion()
 	for(var/area/A in areas)
@@ -132,7 +132,7 @@
 	return TRUE
 
 /datum/objective/crew/exterminator
-	explanation_text = "Ensure that there are no more than (Yell on github, this objective broke) living mice on the station when the round ends."
+	explanation_text = "Upewnij się, że nie więcej niż (zgłoś to na GitHubie, ten cel się zepsuł) żywych myszy biega po stacji pod koniec zmiany."
 	jobs = "janitor"
 
 /datum/objective/crew/exterminator/New()
@@ -163,7 +163,7 @@
 	return ..()
 
 /datum/objective/crew/slipster //ported from old Hippie with adjustments
-	explanation_text = "Slip at least (Yell on GitHub if you see this) different people with your PDA, and have it on you at the end of the shift."
+	explanation_text = "Poślizgnij przynajmniej (jeśli to widzisz, zgłoś to na GitHubie) różnych osób za pomocą swojego PDA i zachowaj je do końca zmiany."
 	jobs = "clown"
 
 /datum/objective/crew/slipster/New()
@@ -187,7 +187,7 @@
 		return ..()
 
 /datum/objective/crew/shoethief
-	explanation_text = "Steal at least (Yell on github, this objective broke) pairs of shoes, and have them in your bag at the end of the shift. Bonus points if they are stolen from crewmembers instead of ClothesMates."
+	explanation_text = "Ukradnij przynajmniej (zgłoś to na GitHubie, ten cel się zepsuł) par butów i miej je w plecaku do końca zmiany. Bonusowe punkty, jeśli ukradniesz je załodze, a nie z automatów z ubraniami."
 	jobs = "clown"
 
 /datum/objective/crew/shoethief/New()
@@ -242,7 +242,7 @@
 
 /datum/objective/crew/reporter //ported from old hippie
 	var/charcount = 100
-	explanation_text = "Publish at least (Yo something broke) articles containing at least (Report this on GitHub) characters."
+	explanation_text = "Opublikuj przynajmniej (hej, coś się zepsuło) artykułów zawierających co najmniej (zgłoś to na GitHubie) znaków."
 	jobs = "curator"
 
 /datum/objective/crew/reporter/New()
@@ -270,7 +270,7 @@
 
 /datum/objective/crew/pwrgame //ported from Goon with adjustments
 	var/obj/item/clothing/targettidegarb
-	explanation_text = "Get your grubby hands on a (Dear god something broke. Report this on GitHub)."
+	explanation_text = "Połóż swoje chytre rączki na (o Boże, coś się zepsuło, zgłoś to na GitHubie)."
 	jobs = "assistant"
 
 /datum/objective/crew/pwrgame/New()

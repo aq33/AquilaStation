@@ -3,8 +3,8 @@
 // Teratoma monkey: aq33/NSV13#240, restores what BeeStation/BeeStation-Hornet#7421 removed
 
 /datum/symptom/heal/symbiotic
-	name = "Symbiotic Regeneration"
-	desc = "The virus forms a symbiotic relationship with vital organs in the host's body, accelerating the host's natural healing processes while resting."
+	name = "Regeneracja symbiotyczna"
+	desc = "Wirus wchodzi w symbiozę z ważnymi organami nosiciela i przyspiesza jego naturalne gojenie się podczas odpoczynku."
 	stealth = -3
 	resistance = -1
 	stage_speed = 2
@@ -56,8 +56,8 @@
 
 // Ghost role spawner. Comes from overclocked Pituitary Disruption loot, xenobiology deliveries, mail and the Living Tumor event (events/teratoma.dm). For ling teratomas see changeling/teratoma.dm
 /obj/effect/mob_spawn/teratomamonkey //spawning these is one of the downsides of overclocking the symptom
-	name = "fleshy mass"
-	desc = "A writhing mass of flesh."
+	name = "mięsista masa"
+	desc = "Wijąca się masa tkanki."
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_spore_temp"
 	density = FALSE
@@ -65,7 +65,7 @@
 
 	antagonist_type = /datum/antagonist/teratoma/hugbox
 	mob_type = /mob/living/carbon/monkey/tumor
-	mob_name = "a living tumor"
+	mob_name = "żywy guz"
 	death = FALSE
 	roundstart = FALSE
 	use_cooldown = TRUE
@@ -85,7 +85,7 @@
 	if(A && COOLDOWN_FINISHED(src, ghost_notify_cooldown))
 		COOLDOWN_START(src, ghost_notify_cooldown, TERATOMA_GHOST_NOTIFY_COOLDOWN)
 		ghosts_notified = TRUE
-		notify_ghosts("A living tumor has been born in [A.name].", 'sound/effects/splat.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
+		notify_ghosts("Żywy guz narodził się w obszarze: [A.name].", 'sound/effects/splat.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
 
 /obj/effect/mob_spawn/teratomamonkey/attack_hand(mob/living/user)
 	. = ..()

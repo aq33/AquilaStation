@@ -9,8 +9,8 @@
 	return things
 
 /obj/machinery/am_shielding
-	name = "antimatter reactor section"
-	desc = "This device was built using a plasma life-form that seems to increase plasma's natural ability to react with neutrinos while reducing the combustibility."
+	name = "sekcja reaktora antymaterii"
+	desc = "To urządzenie zbudowano z użyciem plazmowej formy życia, która zdaje się wzmacniać naturalną zdolność plazmy do reagowania z neutrinami, a przy tym zmniejszać jej palność."
 
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
@@ -33,7 +33,7 @@
 	addtimer(CALLBACK(src, PROC_REF(controllerscan)), 10)
 
 /obj/machinery/am_shielding/proc/overheat()
-	visible_message("<span class='danger'>[src] melts!</span>")
+	visible_message("<span class='danger'>[src] się topi!</span>")
 	new /obj/effect/hotspot(loc)
 	qdel(src)
 
@@ -232,8 +232,8 @@
 
 
 /obj/item/am_shielding_container
-	name = "packaged antimatter reactor section"
-	desc = "A small storage unit containing an antimatter reactor section.  To use place near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
+	name = "spakowana sekcja reaktora antymaterii"
+	desc = "Mały pojemnik z sekcją reaktora antymaterii. Aby jej użyć, połóż ją obok jednostki sterującej antymaterią albo rozłożonej sekcji reaktora i aktywuj pakunek multitoolem."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"

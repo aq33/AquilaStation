@@ -1,6 +1,6 @@
 /obj/item/ammo_casing
-	name = "bullet casing"
-	desc = "A bullet casing."
+	name = "łuska"
+	desc = "Łuska pocisku."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
 	flags_1 = CONDUCT_1
@@ -23,7 +23,7 @@
 	var/exists = TRUE
 
 /obj/item/ammo_casing/spent
-	name = "spent bullet casing"
+	name = "zużyta łuska"
 	BB = null
 
 /obj/item/ammo_casing/Initialize(mapload)
@@ -45,7 +45,7 @@
 /obj/item/ammo_casing/update_icon()
 	..()
 	icon_state = "[initial(icon_state)][BB ? "-live" : ""]"
-	desc = "[initial(desc)][BB ? "" : " This one is spent."]"
+	desc = "[initial(desc)][BB ? "" : " Ten egzemplarz jest już zużyty."]"
 
 //proc to magically refill a casing with a new projectile
 /obj/item/ammo_casing/proc/newshot() //For energy weapons, syringe gun, shotgun shells and wands (!).

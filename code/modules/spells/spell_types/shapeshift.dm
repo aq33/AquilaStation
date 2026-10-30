@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/shapeshift
-	name = "Shapechange"
-	desc = "Take on the shape of another for a time to use their natural abilities. Once you've made your choice it cannot be changed."
+	name = "Zmiana kształtu"
+	desc = "Na jakiś czas przybierasz kształt innej istoty, by korzystać z jej naturalnych zdolności. Gdy raz wybierzesz, nie możesz już zmienić wyboru."
 	clothes_req = FALSE
 	human_req = FALSE
 	charge_max = 200
@@ -36,7 +36,7 @@
 			for(var/path in possible_shapes)
 				var/mob/living/simple_animal/A = path
 				animal_list[initial(A.name)] = path
-			var/new_shapeshift_type = input(M, "Choose Your Animal Form!", "It's Morphing Time!", null) as null|anything in sortList(animal_list)
+			var/new_shapeshift_type = input(M, "Wybierz swoją zwierzęcą postać!", "Czas na przemianę!", null) as null|anything in sortList(animal_list)
 			if(shapeshift_type)
 				return
 			shapeshift_type = new_shapeshift_type
@@ -74,8 +74,8 @@
 	human_req = initial(human_req)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/dragon
-	name = "Dragon Form"
-	desc = "Take on the shape a lesser ash drake."
+	name = "Postać smoka"
+	desc = "Przybierasz kształt pomniejszego popielnego smoka."
 	invocation = "RAAAAAAAAWR!"
 	convert_damage = FALSE
 
@@ -84,7 +84,7 @@
 
 
 /obj/shapeshift_holder
-	name = "Shapeshift holder"
+	name = "pojemnik zmiany kształtu"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
 	var/mob/living/stored
 	var/mob/living/shape

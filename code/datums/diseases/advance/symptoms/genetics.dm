@@ -16,7 +16,7 @@ Bonus
 */
 
 /datum/symptom/genetic_mutation
-	name = "Deoxyribonucleic Acid Saboteur"
+	name = "Sabotażysta DNA"
 	desc = "Wirus łączy się z DNA nosiciela, powodując szkodliwe mutacje, dopóki nie zostanie usunięty."
 	stealth = -2
 	resistance = -3
@@ -47,7 +47,7 @@ Bonus
 		return
 	switch(A.stage)
 		if(4, 5)
-			to_chat(C, "<span class='warning'>[pick("Your skin feels itchy.", "You feel light headed.")]</span>")
+			to_chat(C, "<span class='warning'>[pick("Swędzi cię skóra.", "Kręci ci się w głowie.")]</span>")
 			C.dna.remove_mutation_group(possible_mutations)
 			for(var/i in 1 to power)
 				C.randmut(possible_mutations)

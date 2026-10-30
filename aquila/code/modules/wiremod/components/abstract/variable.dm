@@ -4,7 +4,7 @@
  * Abstract component for handling variables
  */
 /obj/item/circuit_component/variable
-	display_name = "Abstract Variable Component"
+	display_name = "Zmienna (abstrakcyjna)"
 	desc = "Nie powinieneś tego widzieć."
 
 	/// Variable name

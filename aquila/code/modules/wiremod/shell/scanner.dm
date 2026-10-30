@@ -4,7 +4,7 @@
  * A handheld device that lets you flash it over people.
  */
 /obj/item/wiremod_scanner
-	name = "scanner"
+	name = "skaner"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_small"
 	item_state = "electronic"
@@ -23,7 +23,7 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/wiremod_scanner
-	display_name = "Scanner"
+	display_name = "Skaner"
 	desc = "Odbiera obiekty zeskanowane przez skaner."
 
 	/// Called when afterattack is called on the shell.

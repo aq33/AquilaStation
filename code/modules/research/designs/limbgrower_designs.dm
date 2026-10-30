@@ -3,7 +3,7 @@
 /////////////////////////////////////
 
 /datum/design/leftarm
-	name = "Left Arm"
+	name = "Lewa ręka"
 	id = "l_arm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -11,7 +11,7 @@
 	category = list("initial","human","lizard","fly","moth","plasmaman")
 
 /datum/design/rightarm
-	name = "Right Arm"
+	name = "Prawa ręka"
 	id = "r_arm"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -19,7 +19,7 @@
 	category = list("initial","human","lizard","fly","moth","plasmaman")
 
 /datum/design/leftleg
-	name = "Left Leg"
+	name = "Lewa noga"
 	id = "l_leg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -27,7 +27,7 @@
 	category = list("initial","human","lizard","fly","moth","plasmaman")
 
 /datum/design/rightleg
-	name = "Right Leg"
+	name = "Prawa noga"
 	id = "r_leg"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 25)
@@ -35,7 +35,7 @@
 	category = list("initial","human","lizard","fly","moth","plasmaman")
 
 /datum/design/armblade
-	name = "Arm Blade"
+	name = "Ostrze z ręki"
 	id = "armblade"
 	build_type = LIMBGROWER
 	reagents_list = list(/datum/reagent/medicine/synthflesh = 75)

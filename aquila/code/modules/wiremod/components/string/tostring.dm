@@ -4,7 +4,7 @@
  * Converts any value into a string
  */
 /obj/item/circuit_component/tostring
-	display_name = "To String"
+	display_name = "Na tekst"
 	desc = "Komponent, który zamienia wejście na tekst."
 	category = "String"
 

@@ -28,14 +28,14 @@
 	var/smartguy
 	if(user.can_see_reagents())
 		smartguy = TRUE
-	. += "Zawiera:\n100 jednostek [smartguy ? initial(rand_cont.name) : "różnych odczynników"]" //Luckily science goggles say nothing if there's no reagents
+	. += "Zawiera:\n100 j. [smartguy ? initial(rand_cont.name) : "różnych odczynników"]" //Luckily science goggles say nothing if there's no reagents
 
 /obj/item/reagent_containers/glass/chem_heirloom/update_name() //This has to be done after init, since the heirloom component is added after.
 	. = ..()
 	rand_cont = get_random_reagent_id(CHEMICAL_RNG_FUN)
-	name ="hard locked bottle of [initial(rand_cont.name)]"
+	name ="szczelnie zamknięta butelka: [initial(rand_cont.name)]"
 	var/datum/component/heirloom/H = GetComponent(/datum/component/heirloom)
-	desc = H ? "[ishuman(H.owner) ? "The [H.family_name]" : "[H.owner.name]'s"] family's long-cherished wish is to open this bottle and get its chemical outside. Can you make that wish come true?" : "A hard locked bottle of [initial(rand_cont.name)]."
+	desc = H ? "Od dawna wymarzonym życzeniem rodziny [ishuman(H.owner) ? H.family_name : H.owner.name] jest otworzyć tę butelkę i wydostać z niej chemikalia. Czy spełnisz to życzenie?" : "Szczelnie zamknięta butelka: [initial(rand_cont.name)]."
 
 /obj/item/reagent_containers/glass/chem_heirloom/proc/unlock()
 	if(!locked) //A little bird said this would be an issue if a goober-min tried to call this twice.
@@ -43,8 +43,8 @@
 	if(isliving(loc))
 		var/mob/living/M = loc
 		to_chat(M, "<span class='notice'>[src] się odblokowuje!</span>")
-	desc = "An opened bottle of [initial(rand_cont.name)]."
-	name = "bottle of [initial(rand_cont.name)]"
+	desc = "Otwarta butelka: [initial(rand_cont.name)]."
+	name = "butelka: [initial(rand_cont.name)]"
 	volume = CHEM_H_VOL
 	item_state = "hard_locked_open"
 	icon_state = "hard_locked_open"

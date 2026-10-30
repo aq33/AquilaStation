@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord
-	name = "hivelord"
-	desc = "A truly alien creature, it is a mass of unknown organic material, constantly fluctuating. When attacking, pieces of it split off and attack in tandem with the original."
+	name = "władca roju"
+	desc = "Prawdziwie obca istota: nieustannie falująca masa nieznanej materii organicznej. Podczas ataku odrywają się od niej kawałki, które atakują razem z oryginałem."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "Hivelord"
 	icon_living = "Hivelord"
@@ -55,8 +55,8 @@
 
 //A fragile but rapidly produced creature
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood
-	name = "hivelord brood"
-	desc = "A fragment of the original Hivelord, rallying behind its original. One isn't much of a threat, but..."
+	name = "pomiot władcy roju"
+	desc = "Fragment władcy roju, który wspiera swój oryginał. Pojedynczy nie stanowi większego zagrożenia, ale..."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "Hivelordbrood"
 	icon_living = "Hivelordbrood"
@@ -88,7 +88,7 @@
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
 	name = "legion"
-	desc = "You can still see what was once a human under the shifting mass of corruption."
+	desc = "Pod falującą masą zepsucia wciąż widać, kim kiedyś był: człowiekiem."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -119,8 +119,8 @@
 		return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf
-	name = "dwarf legion"
-	desc = "You can still see what was once a rather small human under the shifting mass of corruption."
+	name = "karłowaty legion"
+	desc = "Pod falującą masą zepsucia wciąż widać, kim kiedyś był: dość niskim człowiekiem."
 	icon_state = "dwarf_legion"
 	icon_living = "dwarf_legion"
 	icon_aggro = "dwarf_legion"
@@ -152,7 +152,7 @@
 //Legion skull
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	name = "legion"
-	desc = "One of many."
+	desc = "Jeden z wielu."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "legion_head"
 	icon_living = "legion_head"
@@ -213,7 +213,7 @@
 //Legion that spawns Legions
 /mob/living/simple_animal/hostile/big_legion
 	name = "legion"
-	desc = "One of many."
+	desc = "Jeden z wielu."
 	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
@@ -248,9 +248,9 @@
 
 //Tendril-spawned Legion remains, the charred skeletons of those whose bodies sank into laval or fell into chasms.
 /obj/effect/mob_spawn/human/corpse/charredskeleton
-	name = "charred skeletal remains"
+	name = "zwęglone szczątki szkieletu"
 	burn_damage = 1000
-	mob_name = "ashen skeleton"
+	mob_name = "popielny szkielet"
 	mob_gender = NEUTER
 	husk = FALSE
 	mob_species = /datum/species/skeleton
@@ -349,7 +349,7 @@
 			r_pocket = /obj/item/tank/internals/emergency_oxygen
 			mask = /obj/item/clothing/mask/breath
 		if("Operative")
-			id_job = "Operative"
+			id_job = "Agent"
 			outfit = /datum/outfit/syndicatecommandocorpse
 		if("Shadow")
 			mob_species = /datum/species/shadow

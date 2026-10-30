@@ -3,8 +3,8 @@
 #define FIRING_PIN_REMOVAL_DELAY 50
 
 /obj/item/gun
-	name = "gun"
-	desc = "It's a gun. It's pretty terrible, though."
+	name = "broń"
+	desc = "To broń. Choć dość kiepska."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "detective"
 	item_state = "gun"
@@ -188,7 +188,7 @@
 	return loc != user ? TRUE : FALSE
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	balloon_alert(user, "[src] clicks.")
+	balloon_alert(user, "[src] klika.")
 	playsound(src, dry_fire_sound, 30, TRUE)
 
 /obj/item/gun/proc/fire_sounds()
@@ -226,7 +226,7 @@
 					PBT.throw_at(throw_target, pb_knockback, 2)
 			else if(!tk_firing(user))
 				user.visible_message(
-					"<span class='danger'>[user] fires [src]!</span>", \
+					"<span class='danger'>[user] strzela z [src]!</span>", \
 					"<span class='danger'>Strzelasz z [src]!</span>", \
 					"<span class='hear'>Słyszysz wystrzał!</span>", \
 					COMBAT_MESSAGE_RANGE, \
@@ -711,7 +711,7 @@
 /////////////
 
 /datum/action/toggle_scope_zoom
-	name = "Toggle Scope"
+	name = "Przełącz celownik"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_LYING
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"

@@ -18,7 +18,7 @@ export const ExaminePanel = (props) => {
       <Window.Content>
         <Stack fill>
           <Stack.Item grow width="30%">
-            <Section fill title="Character Preview">
+            <Section fill title="Podgląd postaci">
               {!obscured && (
                 <ByondUi
                   height="100%"

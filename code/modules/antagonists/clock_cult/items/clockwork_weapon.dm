@@ -1,7 +1,7 @@
 /obj/item/clockwork/weapon
 	bleed_force = BLEED_CUT
-	name = "Clockwork Weapon"
-	desc = "Something"
+	name = "mechaniczna broń"
+	desc = "Coś."
 	icon = 'icons/obj/clockwork_objects.dmi'
 	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi';
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
@@ -74,8 +74,8 @@
 	return
 
 /obj/item/clockwork/weapon/brass_spear
-	name = "brass spear"
-	desc = "A razor-sharp spear made of brass. It thrums with barely-contained energy."
+	name = "mosiężna włócznia"
+	desc = "Ostra jak brzytwa włócznia z mosiądzu. Wibruje ledwo powstrzymywaną energią."
 	clockwork_desc = "Ostra jak brzytwa włócznia z magnetycznego stopu mosiądzu. Na Reebe przyspiesza w stronę celów, zadając większe obrażenia."
 	icon_state = "ratvarian_spear"
 	embedding = list("max_damage_mult" = 15, "armour_block" = 80)
@@ -85,8 +85,8 @@
 	clockwork_hint = "Na Reebe rzut włócznią zadaje dodatkowe obrażenia."
 
 /obj/item/clockwork/weapon/brass_battlehammer
-	name = "brass battle-hammer"
-	desc = "A brass hammer glowing with energy."
+	name = "mosiężny młot bojowy"
+	desc = "Mosiężny młot jarzący się energią."
 	clockwork_desc = "Mosiężny młot nasycony pradawną mocą, pozwalającą uderzać wrogów z niewiarygodną siłą."
 	icon_state = "ratvarian_hammer"
 	throwforce = 25
@@ -106,8 +106,8 @@
 	target.throw_at(throw_target, thrown ? 2 : 1, 4)
 
 /obj/item/clockwork/weapon/brass_sword
-	name = "brass longsword"
-	desc = "A large sword made of brass."
+	name = "mosiężny długi miecz"
+	desc = "Duży miecz z mosiądzu."
 	clockwork_desc = "Duży mosiężny miecz. Zawiera zorzę energii przeznaczoną do zakłócania elektroniki."
 	icon_state = "ratvarian_sword"
 	force = 26
@@ -147,8 +147,8 @@
 	to_chat(target, "<span class='brass'>[src] świeci - następny atak zakłóci elektronikę celu.</span>")
 
 /obj/item/gun/ballistic/bow/clockwork
-	name = "Brass Bow"
-	desc = "A bow made from brass and other components that you can't quite understand. It glows with a deep energy and frabricates arrows by itself."
+	name = "mosiężny łuk"
+	desc = "Łuk z mosiądzu i innych części, których do końca nie rozumiesz. Jarzy się głęboką energią i sam wytwarza strzały."
 	icon_state = "bow_clockwork"
 	force = 10
 	mag_type = /obj/item/ammo_box/magazine/internal/bow/clockcult
@@ -185,13 +185,13 @@
 	start_empty = FALSE
 
 /obj/item/ammo_casing/caseless/arrow/clockbolt
-	name = "energy bolt"
-	desc = "An arrow made from a strange energy."
+	name = "bełt energii"
+	desc = "Strzała z dziwnej energii."
 	icon_state = "arrow_redlight"
 	projectile_type = /obj/item/projectile/energy/clockbolt
 
 /obj/item/projectile/energy/clockbolt
-	name = "energy bolt"
+	name = "bełt energii"
 	icon_state = "arrow_energy"
 	damage = 24
 	damage_type = BURN

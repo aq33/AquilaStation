@@ -64,7 +64,7 @@ const MissionTracker = (props) => {
   const { act, data } = useBackend<Data>();
   if (data.holding_cargo && data.holding_cargo.length) {
     return (
-      <Section title="Mission Tracking">
+      <Section title="Śledzenie misji">
         {Object.keys(data.holding_cargo).map((key) => {
           let value = data.holding_cargo[key];
           return (
@@ -73,7 +73,7 @@ const MissionTracker = (props) => {
               key={key}
               buttons={
                 <Button
-                  content={'Receive Mission Cargo'}
+                  content={'Odbierz ładunek misji'}
                   icon="arrow-circle-down"
                   onClick={() => act('receive_cargo', { objective: value.id })}
                 />

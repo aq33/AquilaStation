@@ -100,8 +100,8 @@
 Borg Hypospray
 */
 /obj/item/reagent_containers/borghypo
-	name = "cyborg hypospray"
-	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
+	name = "hypospray cyborga"
+	desc = "Zaawansowany syntezator chemiczny z układem wstrzykiwania, przeznaczony do wytrzymałego sprzętu medycznego."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -197,7 +197,7 @@ Borg Hypospray
 
 		if(injectee.reagents)
 			hypospray_injector.trans_to(injectee, amount_per_transfer_from_this, transfered_by = user, method = INJECT)
-			balloon_alert(user, "[amount_per_transfer_from_this] unit\s injected")
+			balloon_alert(user, "wstrzyknięto: [amount_per_transfer_from_this] j.")
 			log_combat(user, injectee, "injected", src, "(CHEMICALS: [selected_reagent])")
 	else
 		balloon_alert(user, "[strefa_pl(user.zone_selected)]: zablokowane!")
@@ -244,7 +244,7 @@ Borg Hypospray
 				var/obj/item/robot_module/container_model = loc
 				cyborg = container_model.loc
 			playsound(cyborg, 'sound/effects/pop.ogg', 50, FALSE)
-			balloon_alert(cyborg, "dispensing [selected_reagent.name]")
+			balloon_alert(cyborg, "wybrano: [selected_reagent.name]")
 			break
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
@@ -288,38 +288,38 @@ Borg Hypospray
 
 /// Peacekeeper hypospray
 /obj/item/reagent_containers/borghypo/peace
-	name = "Peace Hypospray"
+	name = "hypospray pokoju"
 	default_reagent_types = BASE_PEACE_REAGENTS
 
 /obj/item/reagent_containers/borghypo/peace/hacked
-	desc = "Everything's peaceful in death!"
+	desc = "W śmierci wszystko jest spokojne!"
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_PEACE_REAGENTS
 
 /// Clownborg hypospray
 /obj/item/reagent_containers/borghypo/clown
-	name = "laughter injector"
-	desc = "Keeps the crew happy and productive!"
+	name = "iniektor śmiechu"
+	desc = "Utrzymuje załogę w dobrym humorze i wydajną!"
 	default_reagent_types = BASE_CLOWN_REAGENTS
 
 /obj/item/reagent_containers/borghypo/clown/hacked
-	desc = "Keeps the crew so happy they don't work!"
+	desc = "Utrzymuje załogę w tak dobrym humorze, że nie pracuje!"
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_CLOWN_REAGENTS
 
 /// Standard borg Hypospray
 /obj/item/reagent_containers/borghypo/epi
-	name = "epinephrine injector"
-	desc = "An advanced chemical synthesizer and injection system, designed to stabilize patients."
+	name = "iniektor epinefryny"
+	desc = "Zaawansowany syntezator chemiczny z układem wstrzykiwania, przeznaczony do stabilizowania pacjentów."
 	default_reagent_types = BASE_REAGENTS
 
 /// Syndicate medborg hypospray
 /obj/item/reagent_containers/borghypo/syndicate
-	name = "syndicate cyborg hypospray"
-	desc = "An experimental piece of Syndicate technology used to produce powerful restorative nanites used to very quickly restore injuries of all types. \
-		Also metabolizes potassium iodide for radiation poisoning, inacusiate for ear damage and morphine for offense."
+	name = "hypospray cyborga Syndykatu"
+	desc = "Eksperymentalna technologia Syndykatu wytwarzająca potężne nanity naprawcze, które bardzo szybko leczą wszelkie obrażenia. \
+		Wytwarza też jodek potasu na chorobę popromienną, inakuzjat na uszkodzenia uszu i morfinę do ataku."
 	icon_state = "borghypo_s"
 	tgui_theme = "syndicate"
 	charge_cost = 20
@@ -329,8 +329,8 @@ Borg Hypospray
 
 /// Borg Shaker for the serviceborgs
 /obj/item/reagent_containers/borghypo/borgshaker
-	name = "cyborg shaker"
-	desc = "An advanced drink synthesizer and mixer."
+	name = "shaker cyborga"
+	desc = "Zaawansowany syntezator i mikser napojów."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "shaker"
 	possible_transfer_amounts = list(5,10,20)
@@ -397,11 +397,11 @@ Borg Hypospray
 		shaker.add_reagent(selected_reagent.type, amount_per_transfer_from_this, no_react = TRUE)
 
 		shaker.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
-		balloon_alert(user, "[amount_per_transfer_from_this] unit\s poured")
+		balloon_alert(user, "wlano: [amount_per_transfer_from_this] j.")
 
 /obj/item/reagent_containers/borghypo/borgshaker/hacked
-	name = "cyborg shaker"
-	desc = "Will mix drinks that knock them dead."
+	name = "shaker cyborga"
+	desc = "Miesza drinki, które zwalają z nóg na amen."
 	icon_state = "threemileislandglass"
 	tgui_theme = "syndicate"
 	default_reagent_types = HACKED_SERVICE_REAGENTS

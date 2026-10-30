@@ -1,6 +1,6 @@
 /datum/action/changeling/fleshmend
-	name = "Fleshmend"
-	desc = "Our flesh rapidly regenerates, rapidly healing brute wounds and shortness of breath as well as slowly healing burns and genetic damage. Costs 25 chemicals."
+	name = "Zrastanie ciała"
+	desc = "Nasze ciało błyskawicznie się regeneruje: szybko leczy obrażenia fizyczne i duszność, a powoli oparzenia i uszkodzenia genetyczne. Kosztuje 25 chemikaliów."
 	helptext = "Nie działa, gdy płoniemy. Nie odtwarza kończyn ani utraconej krwi. Działa w stanie nieprzytomności."
 	button_icon_state = "fleshmend"
 	chemical_cost = 25

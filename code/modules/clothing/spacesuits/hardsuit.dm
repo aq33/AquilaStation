@@ -1,7 +1,7 @@
 	//Baseline hardsuits
 /obj/item/clothing/head/helmet/space/hardsuit
-	name = "hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
+	name = "hełm hardsuitu"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę przed promieniowaniem."
 	icon_state = "hardsuit0-engineering"
 	item_state = "eng_helm"
 	max_integrity = 300
@@ -103,7 +103,7 @@
 
 /obj/item/clothing/suit/space/hardsuit
 	name = "hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę przed promieniowaniem."
 	icon_state = "hardsuit-engineering"
 	item_state = "eng_hardsuit"
 	max_integrity = 300
@@ -180,8 +180,8 @@
 
 	//Engineering
 /obj/item/clothing/head/helmet/space/hardsuit/engine
-	name = "engineering hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
+	name = "inżynieryjny hełm hardsuitu"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę przed promieniowaniem."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //NSV13
 	worn_icon = 'nsv13/icons/mob/head.dmi' //NSV13
 	icon_state = "hardsuit0-engineering-legacy" //NSV13
@@ -191,8 +191,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/engine
-	name = "engineering hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding."
+	name = "inżynieryjny hardsuit"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę przed promieniowaniem."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi' //NSV13
 	worn_icon = 'nsv13/icons/mob/suit.dmi' //NSV13
 	icon_state = "hardsuit-engineering-legacy" //NSV13
@@ -204,8 +204,8 @@
 
 	//Atmospherics
 /obj/item/clothing/head/helmet/space/hardsuit/engine/atmos
-	name = "atmospherics hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has thermal shielding."
+	name = "hełm hardsuitu atmosferyki"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę termiczną."
 	icon_state = "hardsuit0-atmospherics-legacy" //NSV13
 	item_state = "atmo_helm"
 	hardsuit_type = "atmospherics-legacy" //NSV13
@@ -214,8 +214,8 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/space/hardsuit/engine/atmos
-	name = "atmospherics hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal shielding."
+	name = "hardsuit atmosferyki"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma osłonę termiczną."
 	icon_state = "hardsuit-atmospherics-legacy" //NSV13
 	supports_variations = DIGITIGRADE_VARIATION //NSV13 - legacy sprite has digisprite.
 	item_state = "atmo_hardsuit"
@@ -227,8 +227,8 @@
 
 	//Chief Engineer's hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/engine/elite
-	name = "advanced hardsuit helmet"
-	desc = "An advanced helmet designed for work in a hazardous, low pressure environment. Shines with a high polish."
+	name = "zaawansowany hełm hardsuitu"
+	desc = "Zaawansowany hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Lśni od wypolerowania."
 	icon_state = "hardsuit0-white-legacy" //NSV13
 	item_state = "ce_helm"
 	hardsuit_type = "white-legacy" //NSV13
@@ -239,8 +239,8 @@
 /obj/item/clothing/suit/space/hardsuit/engine/elite
 	icon_state = "hardsuit-white-legacy" //NSV13
 	supports_variations = DIGITIGRADE_VARIATION //NSV13 - legacy sprite has digisprite.
-	name = "advanced hardsuit"
-	desc = "An advanced suit that protects against hazardous, low pressure environments. Shines with a high polish."
+	name = "zaawansowany hardsuit"
+	desc = "Zaawansowany skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Lśni od wypolerowania."
 	item_state = "ce_hardsuit"
 	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90, "stamina" = 30, "bleed" = 70)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -250,8 +250,8 @@
 
 	//Mining hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/mining
-	name = "mining hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating for wildlife encounters and dual floodlights."
+	name = "górniczy hełm hardsuitu"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma wzmocnione płyty na spotkania z dziką fauną i podwójne reflektory."
 	icon_state = "hardsuit0-mining"
 	item_state = "mining_helm"
 	hardsuit_type = "mining"
@@ -269,8 +269,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/mining
 	icon_state = "hardsuit-mining"
-	name = "mining hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters."
+	name = "górniczy hardsuit"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma wzmocnione płyty na spotkania z dziką fauną."
 	item_state = "mining_hardsuit"
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
@@ -287,8 +287,8 @@
 
 	//Exploration hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/exploration
-	name = "exploration hardsuit helmet"
-	desc = "An advanced space-proof hardsuit designed to protect against off-station threats."
+	name = "hełm hardsuitu odkrywcy"
+	desc = "Zaawansowany hardsuit odporny na próżnię, zaprojektowany do ochrony przed zagrożeniami poza statkiem."
 	icon_state = "hardsuit0-exploration"
 	item_state = "death_commando_mask"
 	hardsuit_type = "exploration"
@@ -299,9 +299,9 @@
 
 /obj/item/clothing/suit/space/hardsuit/exploration
 	icon_state = "hardsuit-exploration"
-	name = "exploration hardsuit"
-	desc = "An advanced space-proof hardsuit designed to protect against off-station threats. Despite looking remarkably similar to the mining hardsuit \
-		Nanotrasen officials note that it is unique in every way and the design has not been copied in any way."
+	name = "hardsuit odkrywcy"
+	desc = "Zaawansowany hardsuit odporny na próżnię, zaprojektowany do ochrony przed zagrożeniami poza statkiem. Choć wygląda uderzająco podobnie do górniczego hardsuitu, \
+		przedstawiciele Nanotrasen podkreślają, że jest pod każdym względem wyjątkowy, a projektu w żaden sposób nie skopiowano."
 	item_state = "exploration_hardsuit"
 	armor = list("melee" = 35, "bullet" = 15, "laser" = 20, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 75, "stamina" = 20, "bleed" = 70)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/storage/bag/ore, /obj/item/pickaxe)
@@ -312,8 +312,8 @@
 	//A kind of side-grade to the explorer suit, sacrificing burn protection for brute. If you can kill the guy inside it, anyways.
 
 /obj/item/clothing/head/helmet/space/hardsuit/cybersun
-	name = "Cybersun hardsuit helmet"
-	desc = "A bulbous red helmet designed for scavenging in hazardous, low pressure environments. Has dual floodlights, and a 360 Degree view."
+	name = "hełm hardsuitu Cybersun"
+	desc = "Bulwiasty czerwony hełm do szabrowania w niebezpiecznym środowisku o niskim ciśnieniu. Ma podwójne reflektory i widok 360 stopni."
 	icon_state = "hardsuit0-cybersun"
 	item_state = "death_commando_mask"
 	hardsuit_type = "cybersun"
@@ -322,10 +322,10 @@
 
 /obj/item/clothing/suit/space/hardsuit/cybersun
 	icon_state = "cybersun"
-	name = "Cybersun hardsuit"
-	desc = "A bulky, protective suit designed to protect against the perils facing Cybersun Employed Engineers, Researchers, and more as they head from the safety of \
-		more stable employment to the dangers of Nanotrasen Controlled Deep Space. Designed to get the job done despite on-site hazards in derelicts, laser armor was \
-		sacrificed in favor of more effective blunt armor plates and radiation shielding."
+	name = "hardsuit Cybersun"
+	desc = "Masywny skafander ochronny, który chroni inżynierów, naukowców i innych pracowników Cybersun przed niebezpieczeństwami, gdy porzucają bezpieczeństwo \
+		stabilniejszej posady na rzecz zagrożeń głębokiego kosmosu kontrolowanego przez Nanotrasen. Zaprojektowano go tak, by dało się w nim pracować mimo zagrożeń we wrakach, \
+		więc ochronę przed laserami poświęcono na rzecz skuteczniejszych płyt przeciw obrażeniom obuchowym i osłony przed promieniowaniem."
 	armor = list("melee" = 30, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = 60, "bio" = 100, "rad" = 55, "fire" = 30, "acid" = 60, "stamina" = 15, "bleed" = 70)
 	hardsuit_type = "cybersun"
 	item_state = "death_commando_mask"
@@ -334,9 +334,9 @@
 
 	//Syndicate hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
-	name = "blood-red hardsuit helmet"
-	desc = "A dual-mode advanced helmet designed for work in special operations. It is in EVA mode. Property of Gorlex Marauders."
-	alt_desc = "A dual-mode advanced helmet designed for work in special operations. It is in combat mode. Property of Gorlex Marauders."
+	name = "krwistoczerwony hełm hardsuitu"
+	desc = "Zaawansowany dwutrybowy hełm do operacji specjalnych. Jest w trybie EVA. Własność Maruderów Gorlex."
+	alt_desc = "Zaawansowany dwutrybowy hełm do operacji specjalnych. Jest w trybie bojowym. Własność Maruderów Gorlex."
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
@@ -424,7 +424,7 @@
 	on = TRUE
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/proc/activate_combat_mode()
-	name = "[initial(name)] (combat)"
+	name = "[initial(name)] (tryb bojowy)"
 	desc = alt_desc
 	set_light_on(FALSE)
 	clothing_flags &= ~visor_flags
@@ -434,9 +434,9 @@
 	on = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/syndi
-	name = "blood-red hardsuit"
-	desc = "A dual-mode advanced hardsuit designed for work in special operations. It is in EVA mode. Property of Gorlex Marauders."
-	alt_desc = "A dual-mode advanced hardsuit designed for work in special operations. It is in combat mode. Property of Gorlex Marauders."
+	name = "krwistoczerwony hardsuit"
+	desc = "Zaawansowany dwutrybowy hardsuit do operacji specjalnych. Jest w trybie EVA. Własność Maruderów Gorlex."
+	alt_desc = "Zaawansowany dwutrybowy hardsuit do operacji specjalnych. Jest w trybie bojowym. Własność Maruderów Gorlex."
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
@@ -477,7 +477,7 @@
 		return
 	beacon.toggle_visibility(!beacon.visible)
 	if(beacon.visible)
-		to_chat(user, "<span class='notice'>You enable the tracking beacon on [src]. Anybody on the same frequency will now be able to track your location.</span>")
+		to_chat(user, "<span class='notice'>Włączasz nadajnik lokalizacyjny w [src]. Każdy na tej samej częstotliwości może teraz śledzić twoje położenie.</span>")
 	else
 		to_chat(user, "<span class='warning'>Wyłączasz nadajnik lokalizacyjny w [src].</span>")
 
@@ -518,7 +518,7 @@
 		H.update_inv_w_uniform()
 
 /obj/item/clothing/suit/space/hardsuit/syndi/proc/activate_combat_mode()
-	name = "[initial(name)] (combat)"
+	name = "[initial(name)] (tryb bojowy)"
 	desc = alt_desc
 	slowdown = cm_slowdown //NSV13
 	clothing_flags &= ~STOPSPRESSUREDAMAGE
@@ -531,9 +531,9 @@
 
 //Elite Syndie suit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
-	name = "elite syndicate hardsuit helmet"
-	desc = "An elite version of the syndicate helmet, with improved armour and fireproofing. It is in EVA mode. Property of Gorlex Marauders."
-	alt_desc = "An elite version of the syndicate helmet, with improved armour and fireproofing. It is in combat mode. Property of Gorlex Marauders."
+	name = "elitarny hełm hardsuitu Syndykatu"
+	desc = "Elitarna wersja hełmu Syndykatu z lepszym pancerzem i ognioodpornością. Jest w trybie EVA. Własność Maruderów Gorlex."
+	alt_desc = "Elitarna wersja hełmu Syndykatu z lepszym pancerzem i ognioodpornością. Jest w trybie bojowym. Własność Maruderów Gorlex."
 	icon_state = "hardsuit0-syndielite"
 	hardsuit_type = "syndielite"
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 60, "bomb" = 55, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100, "stamina" = 80, "bleed" = 70)
@@ -541,9 +541,9 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 /obj/item/clothing/suit/space/hardsuit/syndi/elite
-	name = "elite syndicate hardsuit"
-	desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing. It is in travel mode."
-	alt_desc = "An elite version of the syndicate hardsuit, with improved armour and fireproofing. It is in combat mode."
+	name = "elitarny hardsuit Syndykatu"
+	desc = "Elitarna wersja hardsuitu Syndykatu z lepszym pancerzem i ognioodpornością. Jest w trybie podróżnym."
+	alt_desc = "Elitarna wersja hardsuitu Syndykatu z lepszym pancerzem i ognioodpornością. Jest w trybie bojowym."
 	icon_state = "hardsuit0-syndielite"
 	hardsuit_type = "syndielite"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
@@ -554,9 +554,9 @@
 
 //The Owl Hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/owl
-	name = "owl hardsuit helmet"
-	desc = "A dual-mode advanced helmet designed for any crime-fighting situation. It is in travel mode."
-	alt_desc = "A dual-mode advanced helmet designed for any crime-fighting situation. It is in combat mode."
+	name = "sowi hełm hardsuitu"
+	desc = "Zaawansowany dwutrybowy hełm na każdą okazję do walki z przestępczością. Jest w trybie podróżnym."
+	alt_desc = "Zaawansowany dwutrybowy hełm na każdą okazję do walki z przestępczością. Jest w trybie bojowym."
 	icon_state = "hardsuit1-owl"
 	item_state = "s_helmet"
 	hardsuit_type = "owl"
@@ -565,9 +565,9 @@
 	on = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/syndi/owl
-	name = "owl hardsuit"
-	desc = "A dual-mode advanced hardsuit designed for any crime-fighting situation. It is in travel mode."
-	alt_desc = "A dual-mode advanced hardsuit designed for any crime-fighting situation. It is in combat mode."
+	name = "sowi hardsuit"
+	desc = "Zaawansowany dwutrybowy hardsuit na każdą okazję do walki z przestępczością. Jest w trybie podróżnym."
+	alt_desc = "Zaawansowany dwutrybowy hardsuit na każdą okazję do walki z przestępczością. Jest w trybie bojowym."
 	icon_state = "hardsuit1-owl"
 	item_state = "s_suit"
 	hardsuit_type = "owl"
@@ -576,8 +576,8 @@
 
 	//Wizard hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/wizard
-	name = "gem-encrusted hardsuit helmet"
-	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
+	name = "wysadzany klejnotami hełm hardsuitu"
+	desc = "Dziwaczny hełm wysadzany klejnotami, z którego bije magiczna energia."
 	icon_state = "hardsuit0-wiz"
 	item_state = "wiz_helm"
 	hardsuit_type = "wiz"
@@ -588,8 +588,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/wizard
 	icon_state = "hardsuit-wiz"
-	name = "gem-encrusted hardsuit"
-	desc = "A bizarre gem-encrusted suit that radiates magical energies."
+	name = "wysadzany klejnotami hardsuit"
+	desc = "Dziwaczny skafander wysadzany klejnotami, z którego bije magiczna energia."
 	item_state = "wiz_hardsuit"
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -609,8 +609,8 @@
 
 	//Medical hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/medical
-	name = "medical hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Built with lightweight materials for extra comfort, but does not protect the eyes from intense light."
+	name = "medyczny hełm hardsuitu"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Wykonany z lekkich materiałów dla większej wygody, ale nie chroni oczu przed intensywnym światłem."
 	icon_state = "hardsuit0-medical"
 	item_state = "medical_helm"
 	hardsuit_type = "medical"
@@ -620,8 +620,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/medical
 	icon_state = "hardsuit-medical"
-	name = "medical hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement."
+	name = "medyczny hardsuit"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Wykonany z lekkich materiałów, więc łatwiej się w nim ruszać."
 	item_state = "medical_hardsuit"
 	supports_variations = DIGITIGRADE_VARIATION
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/storage/firstaid, /obj/item/healthanalyzer, /obj/item/stack/medical)
@@ -630,18 +630,18 @@
 	slowdown = 0.5
 
 /obj/item/clothing/head/helmet/space/hardsuit/medical/cmo
-	name = "chief medical officer's hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Built with lightweight materials for extra comfort and protects the eyes from intense light."
+	name = "hełm hardsuitu Ordynatora"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Wykonany z lekkich materiałów dla większej wygody i chroni oczy przed intensywnym światłem."
 	flash_protect = 2
 
 /obj/item/clothing/suit/space/hardsuit/medical/cmo
-	name = "chief medical officer's hardsuit"
+	name = "hardsuit Ordynatora"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical/cmo
 /* aquila edit start
 	//Research Director hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/rd
-	name = "prototype hardsuit helmet"
-	desc = "A prototype helmet designed for research in a hazardous, low pressure environment. Scientific data flashes across the visor."
+	name = "prototypowy hełm hardsuitu"
+	desc = "Prototypowy hełm do badań w niebezpiecznym środowisku o niskim ciśnieniu. Po wizjerze przewijają się dane naukowe."
 	icon_state = "hardsuit0-rd"
 	hardsuit_type = "rd"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -669,8 +669,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/research_director
 	icon_state = "hardsuit-rd"
-	name = "prototype hardsuit"
-	desc = "A prototype suit that protects against hazardous, low pressure environments. Fitted with extensive plating for handling explosives and dangerous research materials."
+	name = "prototypowy hardsuit"
+	desc = "Prototypowy skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma rozbudowane opancerzenie do pracy z materiałami wybuchowymi i niebezpiecznymi materiałami badawczymi."
 	item_state = "hardsuit-rd"
 	supports_variations = DIGITIGRADE_VARIATION
 	resistance_flags = ACID_PROOF | FIRE_PROOF
@@ -686,8 +686,8 @@
 */ //aquila edit end
 	//Security hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security
-	name = "security hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
+	name = "policyjny hełm hardsuitu"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	icon_state = "hardsuit0-sec"
 	item_state = "sec_helm"
 	hardsuit_type = "sec"
@@ -696,8 +696,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/security
 	icon_state = "hardsuit-sec"
-	name = "security hardsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
+	name = "policyjny hardsuit"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	item_state = "sec_hardsuit"
 	supports_variations = DIGITIGRADE_VARIATION
 	armor = list("melee" = 35, "bullet" = 45, "laser" = 15, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "stamina" = 50, "bleed" = 70) //NSV13
@@ -709,8 +709,8 @@
 
 	//Head of Security hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security/hos
-	name = "head of security's hardsuit helmet"
-	desc = "A special bulky helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
+	name = "hełm hardsuitu Komendanta"
+	desc = "Specjalny, masywny hełm do pracy w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	icon_state = "hardsuit0-hos"
 	hardsuit_type = "hos"
 	armor = list("melee" = 45, "bullet" = 60, "laser" = 15, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95, "stamina" = 60, "bleed" = 70) //NSV13
@@ -718,19 +718,19 @@
 
 /obj/item/clothing/suit/space/hardsuit/security/head_of_security
 	icon_state = "hardsuit-hos"
-	name = "head of security's hardsuit"
+	name = "hardsuit Komendanta"
 	supports_variations = DIGITIGRADE_VARIATION
-	desc = "A special bulky suit that protects against hazardous, low pressure environments. Has an additional layer of armor."
+	desc = "Specjalny, masywny skafander chroniący w niebezpiecznym środowisku o niskim ciśnieniu. Ma dodatkową warstwę pancerza."
 	armor = list("melee" = 45, "bullet" = 60, "laser" = 15, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95, "stamina" = 60, "bleed" = 70) //NSV13
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	jetpack = /obj/item/tank/jetpack/suit
 
 	//SWAT MKII
 /obj/item/clothing/head/helmet/space/hardsuit/swat
-	name = "\improper MK.II SWAT Helmet"
+	name = "\improper hełm SWAT MK.II"
 	icon_state = "swat2helm"
 	item_state = "swat2helm"
-	desc = "A tactical SWAT helmet MK.II."
+	desc = "Taktyczny hełm SWAT MK.II."
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 20, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 60, "bleed" = 70) //NSV13
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
@@ -741,8 +741,8 @@
 /obj/item/clothing/head/helmet/space/hardsuit/swat/attack_self()
 
 /obj/item/clothing/suit/space/hardsuit/swat
-	name = "\improper MK.II SWAT Suit"
-	desc = "A MK.II SWAT suit with streamlined joints and armor made out of superior materials, insulated against intense heat. The most advanced tactical armor available."
+	name = "\improper skafander SWAT MK.II"
+	desc = "Skafander SWAT MK.II z opływowymi stawami i pancerzem z najlepszych materiałów, izolowany od intensywnego ciepła. Najbardziej zaawansowany dostępny pancerz taktyczny."
 	icon_state = "swat2"
 	item_state = "swat2"
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 20, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 60, "bleed" = 70) //NSV13
@@ -757,30 +757,30 @@
 
 	//Captain
 /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
-	name = "captain's hardsuit helmet"
+	name = "hełm hardsuitu kapitana"
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
-	desc = "A tactical MK.II SWAT helmet boasting better protection and a horrible fashion sense."
+	desc = "Taktyczny hełm SWAT MK.II, który może się pochwalić lepszą ochroną i okropnym gustem."
 
 /obj/item/clothing/suit/space/hardsuit/swat/captain
-	name = "captain's SWAT suit"
-	desc = "A MK.II SWAT suit with streamlined joints and armor made out of superior materials, insulated against intense heat. The most advanced tactical armor available. Usually reserved for heavy hitter corporate security, this one has a regal finish in Nanotrasen company colors. Better not let the assistants get a hold of it."
+	name = "skafander SWAT kapitana"
+	desc = "Skafander SWAT MK.II z opływowymi stawami i pancerzem z najlepszych materiałów, izolowany od intensywnego ciepła. Najbardziej zaawansowany dostępny pancerz taktyczny. Zwykle zarezerwowany dla najcięższej korporacyjnej ochrony, ten ma królewskie wykończenie w barwach Nanotrasen. Lepiej, żeby asystenci go nie dorwali."
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
 
 	//Clown
 /obj/item/clothing/head/helmet/space/hardsuit/clown
-	name = "cosmohonk hardsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low-humor environment. Has radiation shielding."
+	name = "hełm hardsuitu kosmohonk"
+	desc = "Specjalny hełm do pracy w niebezpiecznym środowisku o niskim poziomie humoru. Ma osłonę przed promieniowaniem."
 	icon_state = "hardsuit0-clown"
 	item_state = "hardsuit0-clown"
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 30, "stamina" = 20, "bleed" = 70)
 	hardsuit_type = "clown"
 
 /obj/item/clothing/suit/space/hardsuit/clown
-	name = "cosmohonk hardsuit"
-	desc = "A special suit that protects against hazardous, low humor environments. Has radiation shielding. Only a true clown can wear it."
+	name = "hardsuit kosmohonk"
+	desc = "Specjalny skafander chroniący w niebezpiecznym środowisku o niskim poziomie humoru. Ma osłonę przed promieniowaniem. Może go nosić tylko prawdziwy klaun."
 	icon_state = "hardsuit-clown"
 	item_state = "clown_hardsuit"
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 30, "stamina" = 20, "bleed" = 70)
@@ -797,8 +797,8 @@
 
 	//Old Prototype
 /obj/item/clothing/head/helmet/space/hardsuit/ancient
-	name = "prototype RIG hardsuit helmet"
-	desc = "Early prototype RIG hardsuit helmet, designed to quickly shift over a user's head. Design constraints of the helmet mean it has no inbuilt cameras, thus it restricts the users visability."
+	name = "prototypowy hełm hardsuitu RIG"
+	desc = "Wczesny prototyp hełmu hardsuitu RIG, który szybko nasuwa się na głowę. Przez ograniczenia konstrukcji nie ma wbudowanych kamer, więc ogranicza widoczność."
 	icon_state = "hardsuit0-ancient"
 	item_state = "anc_helm"
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75, "stamina" = 30, "bleed" = 70)
@@ -806,8 +806,8 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/space/hardsuit/ancient
-	name = "prototype RIG hardsuit"
-	desc = "Prototype powered RIG hardsuit. Provides excellent protection from the elements of space while being comfortable to move around in, thanks to the powered locomotives. Remains very bulky however."
+	name = "prototypowy hardsuit RIG"
+	desc = "Prototypowy zasilany hardsuit RIG. Świetnie chroni przed żywiołami kosmosu, a dzięki zasilanym siłownikom wygodnie się w nim porusza. Wciąż jest jednak bardzo masywny."
 	icon_state = "hardsuit-ancient"
 	item_state = "anc_hardsuit"
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 75, "stamina" = 30, "bleed" = 70)
@@ -819,8 +819,8 @@
 /////////////SHIELDED//////////////////////////////////
 
 /obj/item/clothing/suit/space/hardsuit/shielded
-	name = "shielded hardsuit"
-	desc = "A hardsuit with built in energy shielding. Will rapidly recharge when not under fire."
+	name = "hardsuit z tarczą"
+	desc = "Hardsuit z wbudowaną tarczą energetyczną. Szybko się ładuje, gdy nikt do ciebie nie strzela."
 	icon_state = "hardsuit-hos"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	allowed = null
@@ -851,8 +851,8 @@
 ///////////////Capture the Flag////////////////////
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf
-	name = "white shielded hardsuit"
-	desc = "Standard issue hardsuit for playing capture the flag."
+	name = "biały hardsuit z tarczą"
+	desc = "Standardowy hardsuit do gry w zdobywanie flagi."
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
 	hardsuit_type = "ert_medical"
@@ -863,7 +863,7 @@
 	max_charges = 5
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/red
-	name = "red shielded hardsuit"
+	name = "czerwony hardsuit z tarczą"
 	icon_state = "ert_security"
 	item_state = "ert_security"
 	hardsuit_type = "ert_security"
@@ -871,8 +871,8 @@
 	shield_icon = "shield-red"
 
 /obj/item/clothing/suit/space/hardsuit/shielded/ctf/blue
-	name = "blue shielded hardsuit"
-	desc = "Standard issue hardsuit for playing capture the flag."
+	name = "niebieski hardsuit z tarczą"
+	desc = "Standardowy hardsuit do gry w zdobywanie flagi."
 	icon_state = "ert_command"
 	item_state = "ert_command"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/blue
@@ -880,8 +880,8 @@
 
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
-	name = "shielded hardsuit helmet"
-	desc = "Standard issue hardsuit helmet for playing capture the flag."
+	name = "hełm hardsuitu z tarczą"
+	desc = "Standardowy hełm hardsuitu do gry w zdobywanie flagi."
 	icon_state = "hardsuit0-ert_medical"
 	item_state = "hardsuit0-ert_medical"
 	hardsuit_type = "ert_medical"
@@ -894,8 +894,8 @@
 	hardsuit_type = "ert_security"
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf/blue
-	name = "shielded hardsuit helmet"
-	desc = "Standard issue hardsuit helmet for playing capture the flag."
+	name = "hełm hardsuitu z tarczą"
+	desc = "Standardowy hełm hardsuitu do gry w zdobywanie flagi."
 	icon_state = "hardsuit0-ert_commander"
 	item_state = "hardsuit0-ert_commander"
 	hardsuit_type = "ert_commander"
@@ -907,8 +907,8 @@
 //////Syndicate Version
 
 /obj/item/clothing/suit/space/hardsuit/shielded/syndi
-	name = "blood-red hardsuit"
-	desc = "An advanced hardsuit with built in energy shielding."
+	name = "krwistoczerwony hardsuit"
+	desc = "Zaawansowany hardsuit z wbudowaną tarczą energetyczną."
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
@@ -944,7 +944,7 @@
 		return
 	beacon.toggle_visibility(!beacon.visible)
 	if(beacon.visible)
-		to_chat(user, "<span class='notice'>You enable the tracking beacon on [src]. Anybody on the same frequency will now be able to track your location.</span>")
+		to_chat(user, "<span class='notice'>Włączasz nadajnik lokalizacyjny w [src]. Każdy na tej samej częstotliwości może teraz śledzić twoje położenie.</span>")
 	else
 		to_chat(user, "<span class='warning'>Wyłączasz nadajnik lokalizacyjny w [src].</span>")
 
@@ -958,8 +958,8 @@
 //Helmet - With built in HUD
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
-	name = "blood-red hardsuit helmet"
-	desc = "An advanced hardsuit helmet with built in energy shielding."
+	name = "krwistoczerwony hełm hardsuitu"
+	desc = "Zaawansowany hełm hardsuitu z wbudowaną tarczą energetyczną."
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
@@ -999,8 +999,8 @@
 
 ///SWAT version
 /obj/item/clothing/suit/space/hardsuit/shielded/swat
-	name = "death commando spacesuit"
-	desc = "An advanced hardsuit favored by commandos for use in special operations."
+	name = "skafander Komandosa Śmierci"
+	desc = "Zaawansowany hardsuit, który komandosi chętnie zabierają na operacje specjalne."
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	hardsuit_type = "syndi"
@@ -1014,8 +1014,8 @@
 	dog_fashion = /datum/dog_fashion/back/deathsquad
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
-	name = "death commando helmet"
-	desc = "A tactical helmet with built in energy shielding."
+	name = "hełm Komandosa Śmierci"
+	desc = "Taktyczny hełm z wbudowaną tarczą energetyczną."
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	hardsuit_type = "syndi"
@@ -1025,16 +1025,16 @@
 	actions_types = list()
 
 /obj/item/clothing/suit/space/hardsuit/shielded/swat/honk
-	name = "honk squad spacesuit"
-	desc = "A hilarious hardsuit favored by HONK squad troopers for use in special pranks."
+	name = "skafander oddziału HONK"
+	desc = "Przezabawny hardsuit, który żołnierze oddziału HONK chętnie zabierają na specjalne psikusy."
 	icon_state = "hardsuit-clown"
 	item_state = "clown_hardsuit"
 	hardsuit_type = "clown"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat/honk
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat/honk
-	name = "honk squad helmet"
-	desc = "A hilarious helmet with built in anti-mime propaganda shielding."
+	name = "hełm oddziału HONK"
+	desc = "Przezabawny hełm z wbudowaną osłoną przed propagandą mimów."
 	icon_state = "hardsuit0-clown"
 	item_state = "hardsuit0-clown"
 	hardsuit_type = "clown"
@@ -1042,8 +1042,8 @@
 
 // Doomguy ERT version
 /obj/item/clothing/suit/space/hardsuit/shielded/doomguy
-	name = "juggernaut armor"
-	desc = "A somehow spaceworthy set of armor with outstanding protection against almost everything. Comes in an oddly nostalgic green. "
+	name = "pancerz juggernauta"
+	desc = "Jakimś cudem nadający się do kosmosu pancerz, który świetnie chroni przed niemal wszystkim. W dziwnie nostalgicznym zielonym kolorze. "
 	icon_state = "doomguy"
 	item_state = "doomguy"
 	max_charges = 1
@@ -1056,8 +1056,8 @@
 	dog_fashion = /datum/dog_fashion/back/deathsquad
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/doomguy
-	name = "juggernaut helmet"
-	desc = "A dusty old helmet, somehow capable of resisting the strongest of blows."
+	name = "hełm juggernauta"
+	desc = "Zakurzony stary hełm, który jakimś cudem wytrzymuje nawet najsilniejsze ciosy."
 	icon_state = "doomguy"
 	item_state = "doomguy"
 	armor = list("melee" = 135, "bullet" = 135, "laser" = 135, "energy" = 135, "bomb" = 135, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 100, "bleed" = 100)

@@ -1,8 +1,8 @@
 /datum/clockcult/scripture/slab/vanguard
-	name = "Vanguard"
+	name = "Awangarda"
 	use_time = 300
 	slab_overlay = "vanguard"
-	desc = "Provides the user with 30 seconds of stun immunity, however other spells cannot be invoked while it is active."
+	desc = "Daje ci 30 sekund odporności na ogłuszenie, ale w tym czasie nie możesz przywoływać innych zaklęć."
 	tip = "Daje chwilową odporność na pałki i disablery."
 	invokation_time = 10
 	button_icon_state = "Vanguard"

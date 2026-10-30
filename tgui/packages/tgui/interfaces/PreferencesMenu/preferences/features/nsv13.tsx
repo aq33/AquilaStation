@@ -15,32 +15,32 @@ import { FeatureButtonedDropdownInput } from './dropdowns';
 // Postać
 
 export const feature_ethcolor: FeatureChoiced = {
-  name: 'Ethereal Color',
+  name: 'Kolor eteryka',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_ipc_chassis: FeatureChoiced = {
-  name: 'Chassis',
+  name: 'Obudowa',
   component: FeatureButtonedDropdownInput,
 };
 
 export const preferred_pilot_role: FeatureChoiced = {
-  name: 'Preferred Pilot Role',
+  name: 'Preferowana rola pilota',
   component: FeatureButtonedDropdownInput,
 };
 
 export const preferred_squad: FeatureChoiced = {
-  name: 'Preferred GQ Squad',
+  name: 'Preferowana drużyna (GQ)',
   component: FeatureButtonedDropdownInput,
 };
 
 export const lizard_hiss_style: FeatureChoiced = {
-  name: 'Lizard Hiss',
+  name: 'Syk jaszczura',
   component: FeatureButtonedDropdownInput,
 };
 
 export const preferred_syndie_role: Feature<string> = {
-  name: 'Preferred Syndicate Role',
+  name: 'Preferowana rola w Syndykacie',
   component: (props: FeatureValueProps<string>) => {
     const { act, value } = props;
 
@@ -49,7 +49,7 @@ export const preferred_syndie_role: Feature<string> = {
         <Stack.Item grow>{value}</Stack.Item>
         <Stack.Item>
           <Button icon="pen" onClick={() => act('open_syndie_roles')}>
-            Change
+            Zmień
           </Button>
         </Stack.Item>
       </Stack>
@@ -72,7 +72,7 @@ const TextPreferenceInput = (props: FeatureValueProps<string>) => {
             textOverflow: 'ellipsis',
           }}
         >
-          {value || 'Empty'}
+          {value || 'Pusto'}
         </Box>
       </Stack.Item>
       <Stack.Item>
@@ -81,7 +81,7 @@ const TextPreferenceInput = (props: FeatureValueProps<string>) => {
           tooltip={value || undefined}
           onClick={() => act('edit_text_preference', { preference: featureId })}
         >
-          Edit
+          Edytuj
         </Button>
       </Stack.Item>
     </Stack>
@@ -89,31 +89,31 @@ const TextPreferenceInput = (props: FeatureValueProps<string>) => {
 };
 
 export const flavor_text: Feature<string> = {
-  name: 'Flavor Text',
+  name: 'Opis postaci',
   predictable: false,
   component: TextPreferenceInput,
 };
 
 export const silicon_flavor_text: Feature<string> = {
-  name: 'Silicon Flavor Text',
+  name: 'Opis syntetyka',
   predictable: false,
   component: TextPreferenceInput,
 };
 
 export const general_record: Feature<string> = {
-  name: 'General Record',
+  name: 'Akta ogólne',
   predictable: false,
   component: TextPreferenceInput,
 };
 
 export const security_record: Feature<string> = {
-  name: 'Security Record',
+  name: 'Akta ochrony',
   predictable: false,
   component: TextPreferenceInput,
 };
 
 export const medical_record: Feature<string> = {
-  name: 'Medical Record',
+  name: 'Akta medyczne',
   predictable: false,
   component: TextPreferenceInput,
 };
@@ -121,7 +121,7 @@ export const medical_record: Feature<string> = {
 // Ustawienia gry
 
 export const sound_lobby: FeatureToggle = {
-  name: 'Lobby music',
+  name: 'Muzyka w lobby',
   category: 'SOUND',
   subcategory: 'Music',
   component: CheckboxInput,
@@ -129,25 +129,25 @@ export const sound_lobby: FeatureToggle = {
 };
 
 export const sound_midi: FeatureToggle = {
-  name: 'Admin music',
+  name: 'Muzyka od adminów',
   category: 'SOUND',
   subcategory: 'Music',
-  description: 'Play music played by admins.',
+  description: 'Odtwarzaj muzykę puszczaną przez adminów.',
   component: CheckboxInput,
   important: true,
 };
 
 export const sound_instruments: FeatureToggle = {
-  name: 'Instruments',
+  name: 'Instrumenty',
   category: 'SOUND',
   subcategory: 'IC',
-  description: 'Hear instruments played by other players.',
+  description: 'Słysz instrumenty, na których grają inni gracze.',
   component: CheckboxInput,
   important: true,
 };
 
 export const sound_ambience: FeatureToggle = {
-  name: 'Ambience',
+  name: 'Dźwięki otoczenia',
   category: 'SOUND',
   subcategory: 'Ambience',
   component: CheckboxInput,
@@ -155,10 +155,10 @@ export const sound_ambience: FeatureToggle = {
 };
 
 export const sound_ship_ambience: FeatureToggle = {
-  name: 'Ship ambience',
+  name: 'Odgłosy statku',
   category: 'SOUND',
   subcategory: 'Ambience',
-  description: 'The background hum of the ship.',
+  description: 'Szum statku w tle.',
   component: CheckboxInput,
   important: true,
 };
@@ -171,14 +171,14 @@ export const tesla_volume: FeatureNumeric = {
 };
 
 export const chat_looc: FeatureToggle = {
-  name: 'See LOOC',
+  name: 'Widzisz LOOC',
   category: 'CHAT',
   subcategory: 'OOC',
   component: CheckboxInput,
 };
 
 export const widescreen: FeatureToggle = {
-  name: 'Widescreen',
+  name: 'Panoramiczny widok',
   category: 'GRAPHICS',
   subcategory: 'Scaling',
   component: CheckboxInput,
@@ -186,25 +186,25 @@ export const widescreen: FeatureToggle = {
 };
 
 export const walk_animation: FeatureToggle = {
-  name: 'Walk animation',
+  name: 'Animacja chodu',
   category: 'GRAPHICS',
   subcategory: 'Misc',
-  description: 'Animate the arms and legs of your character when walking.',
+  description: 'Animuje ręce i nogi twojej postaci podczas chodzenia.',
   component: CheckboxInput,
 };
 
 export const tgui_fancy: FeatureToggle = {
-  name: 'Fancy TGUI windows',
+  name: 'Ozdobne okna TGUI',
   category: 'UI',
   subcategory: 'TGUI',
-  description: 'Use borderless windows for TGUI.',
+  description: 'Okna TGUI bez ramek systemowych.',
   component: CheckboxInput,
 };
 
 export const announce_login: FeatureToggle = {
-  name: 'Announce login',
+  name: 'Ogłaszaj logowanie',
   category: 'ADMIN',
   subcategory: 'Misc',
-  description: 'Admins will be notified when you log in.',
+  description: 'Admini dostają powiadomienie, gdy się logujesz.',
   component: CheckboxInput,
 };

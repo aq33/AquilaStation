@@ -1,9 +1,9 @@
 /obj/effect/ebeam/curse_arm
-	name = "curse arm"
+	name = "przeklęte ramię"
 	layer = LARGE_MOB_LAYER
 
 /obj/item/projectile/curse_hand
-	name = "curse hand"
+	name = "przeklęta dłoń"
 	icon_state = "cursehand0"
 	item_state = "cursehand"
 	hitsound = 'sound/effects/curse4.ogg'
@@ -68,7 +68,7 @@
 		finale()
 
 /obj/item/projectile/curse_hand/hel //Used in helbital's impure reagent
-	name = "Hel's grasp"
+	name = "uścisk Hel"
 	damage = 5
 	paralyze = 0 //Lets not stun people!
 	speed = 1

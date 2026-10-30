@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(aquila_prisoner_crimes, list(
 
 /datum/round_event/ghost_role/aquila_prisoner_transfer
 	minimum_required = 1
-	role_name = "Transferred Prisoner"
+	role_name = "Przeniesiony więzień"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_prisoner_transfer/spawn_role()
@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(aquila_prisoner_crimes, list(
 		Wyrok: [sentence_minutes] minut. Kapsuła z więźniem wyląduje w obszarze [get_area_name(landing, TRUE)]. \
 		Ochrona proszona jest o przejęcie osadzonego.", "Transfer więźnia")
 
-	message_admins("[ADMIN_LOOKUPFLW(prisoner)] has been made into a transferred prisoner by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(prisoner)] zostaje przeniesionym więźniem w wyniku eventu.")
 	log_game("[key_name(prisoner)] was spawned as a transferred prisoner by an event at [AREACOORD(landing)].")
 	spawned_mobs += prisoner
 	return SUCCESSFUL_SPAWN

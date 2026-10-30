@@ -1,6 +1,6 @@
 /obj/machinery/light/runway
-	name = "runway light"
-	desc = "A small light which was traditionally included on planes and early spacecraft to allow them to be spotted even when instrumentation had failed. In keeping with tradition, these somewhat redundant lights persist on most Nanotrasen ships."
+	name = "światło pozycyjne"
+	desc = "Małe światło, które tradycyjnie montowano na samolotach i pierwszych statkach kosmicznych, żeby było je widać nawet po awarii przyrządów. Zgodnie z tradycją te nieco zbędne światła wciąż są na większości okrętów Nanotrasen."
 	icon = 'nsv13/goonstation/icons/lighting.dmi'
 	overlayicon = 'nsv13/goonstation/icons//lighting_overlay.dmi'
 	icon_state = "runway"

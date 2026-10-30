@@ -1,8 +1,8 @@
 /obj/machinery/dish_drive
-	name = "dish drive"
-	desc = "A culinary marvel that uses matter-to-energy conversion to store dishes and shards. Convenient! \
-	Additional features include a vacuum function to suck in nearby dishes, and an automatic transfer beam that empties its contents into nearby disposal bins every now and then. \
-	Or you can just drop your plates on the floor, like civilized folk."
+	name = "zbieracz naczyń"
+	desc = "Kulinarny cud, który przechowuje naczynia i odłamki, zamieniając materię w energię. Wygodne! \
+	Ma też funkcję odkurzacza, która wciąga pobliskie naczynia, i automatyczny promień transferowy, który co jakiś czas opróżnia zawartość do pobliskich koszy zsypowych. \
+	Możesz też po prostu rzucać talerze na podłogę, jak cywilizowany człowiek."
 	icon = 'goon/icons/obj/kitchen.dmi'
 	icon_state = "synthesizer"
 	idle_power_usage = 8 //5 with default parts

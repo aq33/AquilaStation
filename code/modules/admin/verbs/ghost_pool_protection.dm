@@ -2,7 +2,7 @@
 
 /client/proc/ghost_pool_protection() //Creates a verb for admins to open up the ui
 	set name = "Ghost Pool Protection"
-	set desc = "Choose which ways people can get into the round, or just clear it out completely for admin events."
+	set desc = "Wybierz, którymi drogami gracze mogą wejść do rundy, albo zamknij je wszystkie na czas eventu admina."
 	set category = "Adminbus"
 	var/datum/ghost_pool_menu/tgui  = new(usr)//create the datum
 	tgui.ui_interact(usr)//datum has a tgui component, here we open the window
@@ -80,14 +80,14 @@
 			new_role_flags = NONE
 			. = TRUE
 		if("apply_settings")
-			to_chat(usr, "Settings Applied!")
+			to_chat(usr, "Zastosowano ustawienia!")
 			var/msg
 			switch(new_role_flags)
 				if(ALL)
-					msg = "enabled all of"
+					msg = "włącza wszystkie"
 				if(NONE)
-					msg = "disabled all of"
+					msg = "wyłącza wszystkie"
 				else
-					msg = "modified"
-			message_admins("[key_name_admin(holder)] has [msg] this round's allowed ghost roles.")
+					msg = "zmienia"
+			message_admins("[key_name_admin(holder)] [msg] dozwolone w tej rundzie role dla duchów.")
 			GLOB.ghost_role_flags = new_role_flags

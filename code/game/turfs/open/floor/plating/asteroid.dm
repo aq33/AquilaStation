@@ -3,7 +3,7 @@
 
 /turf/open/floor/plating/asteroid //floor piece
 	gender = PLURAL
-	name = "asteroid sand"
+	name = "piasek asteroidy"
 	baseturfs = /turf/open/floor/plating/asteroid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
@@ -84,7 +84,7 @@
 	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 
 /turf/open/floor/plating/asteroid/basalt
-	name = "volcanic floor"
+	name = "wulkaniczne podłoże"
 	baseturfs = /turf/open/floor/plating/asteroid/basalt
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
@@ -135,8 +135,8 @@
 
 /turf/open/floor/plating/asteroid/snow
 	gender = PLURAL
-	name = "snow"
-	desc = "Looks cold."
+	name = "śnieg"
+	desc = "Wygląda na zimny."
 	icon = 'icons/turf/snow.dmi'
 	baseturfs = /turf/open/floor/plating/asteroid/snow
 	icon_state = "snow"
@@ -161,8 +161,8 @@
 	return FALSE
 
 /turf/open/floor/plating/asteroid/snow/ice
-	name = "icy snow"
-	desc = "Looks colder."
+	name = "oblodzony śnieg"
+	desc = "Wygląda na jeszcze zimniejszy."
 	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
 	initial_gas_mix = "n2=82;plasma=24;TEMP=120"
 	floor_variance = 0

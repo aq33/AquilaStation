@@ -24,9 +24,9 @@
 	AddComponent(/datum/component/waddling)
 
 /mob/living/simple_animal/pet/penguin/emperor
-	name = "Emperor penguin"
-	real_name = "penguin"
-	desc = "Emperor of all they survey."
+	name = "pingwin cesarski"
+	real_name = "pingwin"
+	desc = "Cesarz wszystkiego, na co spojrzy."
 	icon_state = "penguin"
 	icon_living = "penguin"
 	icon_dead = "penguin_dead"
@@ -35,8 +35,8 @@
 	butcher_results = list(/obj/item/organ/ears/penguin = 1, /obj/item/food/meat/slab/penguin = 3)
 
 /mob/living/simple_animal/pet/penguin/emperor/shamebrero
-	name = "Shamebrero penguin"
-	desc = "Shameful of all he surveys."
+	name = "pingwin w hańbrero"
+	desc = "Hańba wszystkiego, na co spojrzy."
 	icon_state = "penguin_shamebrero"
 	icon_living = "penguin_shamebrero"
 	gold_core_spawnable = NO_SPAWN
@@ -44,9 +44,9 @@
 
 /mob/living/simple_animal/pet/penguin/baby
 	speak = list("gah", "noot noot", "noot!", "noot", "squeee!", "noo!")
-	name = "Penguin chick"
-	real_name = "penguin"
-	desc = "Can't fly and barely waddles, yet the prince of all chicks."
+	name = "pisklę pingwina"
+	real_name = "pingwin"
+	desc = "Nie lata i ledwo się kołysze, a jednak jest księciem wszystkich piskląt."
 	icon_state = "penguin_baby"
 	icon_living = "penguin_baby"
 	icon_dead = "penguin_baby_dead"

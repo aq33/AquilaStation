@@ -1,6 +1,6 @@
 /obj/item/reactive_armour_shell
-	name = "reactive armour shell"
-	desc = "An experimental suit of armour, awaiting installation of an anomaly core."
+	name = "skorupa zbroi reaktywnej"
+	desc = "Eksperymentalna zbroja czekająca na włożenie rdzenia anomalii."
 	icon_state = "reactiveoff"
 	icon = 'icons/obj/clothing/suits.dmi'
 	w_class = WEIGHT_CLASS_BULKY
@@ -27,8 +27,8 @@
 
 //Reactive armor
 /obj/item/clothing/suit/armor/reactive
-	name = "reactive armor"
-	desc = "Doesn't seem to do much for some reason."
+	name = "zbroja reaktywna"
+	desc = "Z jakiegoś powodu niewiele robi."
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
@@ -92,7 +92,7 @@
  * Called from the suit activating while off cooldown, with no emp.
  * Returning TRUE will block the attack that triggered this
  */
-/obj/item/clothing/suit/armor/reactive/proc/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/proc/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Zbroja reaktywna niewiele robi! Nic zaskakującego.</span>")
 	return TRUE
 
@@ -101,7 +101,7 @@
  * Called from the suit activating while off cooldown, while the armor is still suffering from the effect of an EMP.
  * Returning TRUE will block the attack that triggered this
  */
-/obj/item/clothing/suit/armor/reactive/proc/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/proc/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Zbroja reaktywna niewiele robi, mimo że dostała EMP! Poza wyświetleniem specjalnej wiadomości, oczywiście.</span>")
 	return TRUE
 
@@ -126,22 +126,22 @@
 
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive/teleport
-	name = "reactive teleport armor"
-	desc = "Someone separated our Research Director from his own head!"
+	name = "teleportacyjna zbroja reaktywna"
+	desc = "Ktoś oddzielił naszego dyrektora naukowego od jego własnej głowy!"
 	emp_message = "<span class='warning'>Obliczenia teleportacyjne zbroi reaktywnej zaczynają sypać błędami!</span>"
 	cooldown_message = "<span class='danger'>Reaktywny system teleportacji wciąż się ładuje! Nie udaje mu się aktywować!</span>"
 	reactivearmor_cooldown_duration = 10 SECONDS
 	var/tele_range = 6
 	var/rad_amount= 15
 
-/obj/item/clothing/suit/armor/reactive/teleport/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/teleport/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Reaktywny system teleportacji odrzuca [owner] z dala od [attack_text], wyłączając się przy tym!</span>")
 	playsound(get_turf(owner),'sound/magic/blink.ogg', 100, 1)
 	do_teleport(teleatom = owner, destination = get_turf(owner), no_effects = TRUE, precision = tele_range, channel = TELEPORT_CHANNEL_BLUESPACE)
 	owner.rad_act(rad_amount)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/teleport/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/teleport/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Reaktywny system teleportacji odrzuca sam siebie z dala od [attack_text], zostawiając przy tym kogoś w tyle!</span>")
 	owner.dropItemToGround(src, TRUE, TRUE)
 	playsound(get_turf(owner), 'sound/machines/buzz-sigh.ogg', 50, 1)
@@ -153,12 +153,12 @@
 //Fire
 
 /obj/item/clothing/suit/armor/reactive/fire
-	name = "reactive incendiary armor"
-	desc = "An experimental suit of armor with a reactive sensor array rigged to a flame emitter. For the stylish pyromaniac."
+	name = "zapalająca zbroja reaktywna"
+	desc = "Eksperymentalna zbroja z reaktywnym zestawem czujników podpiętym do miotacza płomieni. Dla stylowego piromana."
 	cooldown_message = "<span class='danger'>Reaktywna zbroja zapalająca aktywuje się, ale nie wyrzuca płomieni, bo wciąż ładuje dysze!</span>"
 	emp_message = "<span class='warning'>System celowania reaktywnej zbroi zapalającej zaczyna się restartować...</span>"
 
-/obj/item/clothing/suit/armor/reactive/fire/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/fire/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], wyrzucając strumienie ognia!</span>")
 	playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
 	for(var/mob/living/carbon/C in ohearers(6, owner))
@@ -167,7 +167,7 @@
 	owner.fire_stacks = -20
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/fire/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/fire/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] tylko pogarsza [attack_text], plując ogniem na [owner]!</span>")
 	playsound(get_turf(owner),'sound/magic/fireball.ogg', 100, 1)
 	owner.fire_stacks += 12
@@ -177,8 +177,8 @@
 //Stealth
 
 /obj/item/clothing/suit/armor/reactive/stealth
-	name = "reactive stealth armor"
-	desc = "An experimental suit of armor that renders the wearer invisible on detection of imminent harm, and creates a decoy that runs away from the owner. You can't fight what you can't see."
+	name = "maskująca zbroja reaktywna"
+	desc = "Eksperymentalna zbroja, która po wykryciu nadchodzącego zagrożenia czyni noszącego niewidzialnym i tworzy wabik uciekający od właściciela. Nie walczy się z tym, czego się nie widzi."
 	cooldown_message = "<span class='danger'>Reaktywny system maskujący aktywuje się, ale nie jest wystarczająco naładowany, by całkowicie ukryć!</span>"
 	emp_message = "<span class='warning'>System oceny zagrożeń reaktywnej zbroi maskującej się zawiesza...</span>"
 
@@ -199,7 +199,7 @@
 	animate(owner, alpha = initial(owner.alpha), time = cooldown_animation_time)
 	..()
 
-/obj/item/clothing/suit/armor/reactive/stealth/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/stealth/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	var/mob/living/simple_animal/hostile/illusion/escape/decoy = new(owner.loc)
 	decoy.Copy_Parent(owner, 50)
 	decoy.GiveTarget(owner) //so it starts running right away
@@ -214,7 +214,7 @@
 	in_stealth = FALSE
 	animate(owner, alpha = initial(owner.alpha), time = animation_time)
 
-/obj/item/clothing/suit/armor/reactive/stealth/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/stealth/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	if(!isliving(hitby))
 		return FALSE //it just doesn't activate
 	var/mob/living/attacker = hitby
@@ -226,8 +226,8 @@
 //Tesla
 
 /obj/item/clothing/suit/armor/reactive/tesla
-	name = "reactive tesla armor"
-	desc = "An experimental suit of armor with sensitive detectors hooked up to a huge capacitor grid, with emitters strutting out of it. Zap."
+	name = "zbroja reaktywna Tesli"
+	desc = "Eksperymentalna zbroja z czułymi detektorami podpiętymi do ogromnej sieci kondensatorów, z której sterczą emitery. Bzzt."
 	siemens_coefficient = -1
 	cooldown_message = "<span class='danger'>Kondensatory Tesli w reaktywnej zbroi Tesli wciąż się ładują! Zbroja jedynie sypie iskrami.</span>"
 	emp_message = "<span class='warning'>Kondensatory Tesli przez chwilę złowieszczo piszczą.</span>"
@@ -251,12 +251,12 @@
 	sparks.start()
 	..()
 
-/obj/item/clothing/suit/armor/reactive/tesla/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/tesla/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], wypuszczając łuki błyskawic!</span>")
 	tesla_zap(owner, tesla_range, tesla_power, tesla_flags)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/tesla/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/tesla/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], ale ściąga do [owner] ogromny ładunek energii z otoczenia!</span>")
 	if(istype(owner))
 		owner.flags_1 &= ~TESLA_IGNORE_1
@@ -267,13 +267,13 @@
 //Repulse
 
 /obj/item/clothing/suit/armor/reactive/repulse
-	name = "reactive repulse armor"
-	desc = "An experimental suit of armor that violently throws back attackers."
+	name = "odpychająca zbroja reaktywna"
+	desc = "Eksperymentalna zbroja, która gwałtownie odrzuca napastników."
 	cooldown_message = "<span class='danger'>Generator odpychania wciąż się ładuje! Nie udaje mu się wytworzyć wystarczająco silnej fali!</span>"
 	emp_message = "<span class='warning'>Generator odpychania wraca do ustawień domyślnych...</span>"
 	var/repulse_force = MOVE_FORCE_EXTREMELY_STRONG
 
-/obj/item/clothing/suit/armor/reactive/repulse/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/repulse/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	playsound(get_turf(owner),'sound/magic/repulse.ogg', 100, 1)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], zamieniając atak w falę uderzeniową!</span>")
 	var/turf/T = get_turf(owner)
@@ -287,7 +287,7 @@
 
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/repulse/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/repulse/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	playsound(get_turf(owner),'sound/magic/repulse.ogg', 100, 1)
 	owner.visible_message("<span class='danger'>[src] nie blokuje [attack_text], zamiast tego wytwarzając siłę przyciągającą!</span>")
 	var/turf/T = get_turf(owner)
@@ -303,13 +303,13 @@
 //Table
 
 /obj/item/clothing/suit/armor/reactive/table
-	name = "reactive table armor"
-	desc = "If you can't beat the memes, embrace them."
+	name = "stołowa zbroja reaktywna"
+	desc = "Jeśli nie możesz pokonać memów, przyłącz się do nich."
 	cooldown_message = "<span class='danger'>Fabrykatory reaktywnej zbroi stołowej wciąż się odnawiają!</span>"
 	emp_message = "<span class='danger'>Fabrykatory reaktywnej zbroi stołowej przez chwilę złowieszczo klikają i furczą...</span>"
 	var/tele_range = 10
 
-/obj/item/clothing/suit/armor/reactive/table/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/table/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Reaktywny system teleportacji odrzuca [owner] z dala od [attack_text] i ciska go na wytworzony stół!</span>")
 	owner.visible_message("<font color='red' size='3'>[owner] LĄDUJE NA STOLE!!!</font>")
 	owner.Paralyze(40)
@@ -318,7 +318,7 @@
 	new /obj/structure/table(get_turf(owner))
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/table/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/table/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>Reaktywny system teleportacji odrzuca [owner] z dala od [attack_text] i ciska go na wytworzony szklany stół!</span>")
 	owner.visible_message("<font color='red' size='3'>[owner] LĄDUJE NA STOLE!!!</font>")
 	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
@@ -330,8 +330,8 @@
 //Hallucinating
 
 /obj/item/clothing/suit/armor/reactive/hallucinating
-	name = "reactive hallucinating armor"
-	desc = "An experimental suit of armor with sensitive detectors hooked up to the mind of the wearer, sending mind pulses that causes hallucinations around you."
+	name = "halucynogenna zbroja reaktywna"
+	desc = "Eksperymentalna zbroja z czułymi detektorami podpiętymi do umysłu noszącego, wysyłająca impulsy umysłowe, które wywołują halucynacje u osób dookoła."
 	cooldown_message = "<span class='warning'>Połączenie jest obecnie rozsynchronizowane... Ponowna kalibracja.</span>"
 	emp_message = "<span class='warning'>Czujesz odbicie impulsu umysłowego.</span>"
 	var/effect_range = 3
@@ -352,14 +352,14 @@
 	sparks.start()
 	..()
 
-/obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/hallucinating/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], wysyłając impulsy umysłowe!</span>")
 	var/turf/location = get_turf(owner)
 	if(location)
 		hallucination_pulse(location, effect_range, strength = 25)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/hallucinating/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], ale ściąga do [owner] ogromny ładunek energii umysłowej z otoczenia!</span>")
 	owner.hallucination += 25
 	owner.hallucination = clamp(owner.hallucination, 0, 150)
@@ -368,8 +368,8 @@
 //Delimbering
 
 /obj/item/clothing/suit/armor/reactive/delimbering
-	name = "reactive delimbering armor"
-	desc = "An experimental suit of armor with sensitive detectors hooked up to a biohazard release valve. It scrambles the bodies of those around."
+	name = "przemieszająca zbroja reaktywna"
+	desc = "Eksperymentalna zbroja z czułymi detektorami podpiętymi do zaworu uwalniającego materiał biologiczny. Miesza ciała osób dookoła."
 	cooldown_message = "<span class='danger'>Połączenie jest obecnie rozsynchronizowane... Ponowna kalibracja.</span>"
 	emp_message = "<span class='warning'>Czujesz, jak zbroja się wierci.</span>"
 	///Range of the effect.
@@ -381,12 +381,12 @@
 	sparks.start()
 	return ..()
 
-/obj/item/clothing/suit/armor/reactive/delimbering/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/delimbering/reactive_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], uwalniając biologiczne przemieszanie ciała!</span>")
 	delimber_pulse(owner, range, FALSE, TRUE)
 	return TRUE
 
-/obj/item/clothing/suit/armor/reactive/delimbering/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/reactive/delimbering/emp_activation(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	owner.visible_message("<span class='danger'>[src] blokuje [attack_text], ale ściąga do [owner] ogromny ładunek materiału biologicznego z otoczenia!</span>")
 	delimber_pulse(owner, range, TRUE, TRUE)
 	return TRUE

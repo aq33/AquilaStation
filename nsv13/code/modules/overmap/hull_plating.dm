@@ -2,8 +2,8 @@
 GLOBAL_LIST_EMPTY(plating_repairers) //A tiiny bit inefficient but the only alternative I can see would be messing with the achievement subsystem (I am not doing that)
 
 /obj/structure/hull_plate
-	name = "nanolaminate reinforced hull plating"
-	desc = "A heavy piece of hull plating designed to reinforced the ship's superstructure. The Nanotrasen official starship operational manual states that any damage sustained can be patched up temporarily with a welder."
+	name = "poszycie kadłuba wzmocnione nanolaminatem"
+	desc = "Ciężki fragment poszycia kadłuba, który wzmacnia konstrukcję nośną okrętu. Oficjalny podręcznik eksploatacji okrętów Nanotrasen podaje, że wszelkie uszkodzenia można tymczasowo załatać spawarką."
 	icon = 'nsv13/icons/obj/structures/ship_structures.dmi'
 	icon_state = "tgmc_outerhull"
 	anchored = TRUE
@@ -47,7 +47,7 @@ Method to try locate an overmap object that we should attach to. Recursively cal
 
 /obj/structure/hull_plate/proc/try_find_parent()
 	if(tries <= 0)
-		message_admins("Hull plates in [get_area(src)] have no overmap object!")
+		message_admins("Płyty kadłuba w [get_area(src)] nie mają obiektu overmapy!")
 		qdel(src) //This should be enough of a hint....
 		return
 	parent = get_overmap()
@@ -64,7 +64,7 @@ Method to try locate an overmap object that we should attach to. Recursively cal
 	. = ..()
 
 /datum/reagent/hull_repair_juice
-	name = "Hull Repair Juice"
+	name = "Płyn do naprawy kadłuba"
 	description = "Szybko naprawia poszycie kadłuba."
 	reagent_state = LIQUID
 	color = "#CC8899"
@@ -75,26 +75,26 @@ Method to try locate an overmap object that we should attach to. Recursively cal
 //Hull repair juice -> stabilizing agent, iron, carbon
 
 /obj/effect/particle_effect/foam/hull_repair_juice
-	name = "Hull Repair Foam"
+	name = "piana do naprawy kadłuba"
 	slippery_foam = FALSE
 	color = "#CC8899"
 
 /obj/structure/reagent_dispensers/foamtank/hull_repair_juice
-	name = "hull repair juice tank"
-	desc = "A tank full of hull repair foam."
+	name = "zbiornik płynu do naprawy kadłuba"
+	desc = "Zbiornik pełen piany do naprawy kadłuba."
 	icon_state = "foam"
 	reagent_id = /datum/reagent/hull_repair_juice
 	tank_volume = 1500 //I NEED A LOT OF FOAM OK.
 
 /obj/item/extinguisher/advanced/hull_repair_juice
-	name = "hull damage extinguisher"
-	desc = "For when the hull plates just won't STOP."
+	name = "gaśnica do uszkodzeń kadłuba"
+	desc = "Na wypadek, gdy płyty kadłuba po prostu nie chcą PRZESTAĆ."
 	icon = 'nsv13/icons/obj/inflatable.dmi'
 	chem = /datum/reagent/hull_repair_juice
 	tanktype = /obj/structure/reagent_dispensers/foamtank/hull_repair_juice
 
 /datum/chemical_reaction/hull_repair_juice
-	name = "Hull Repair Juice"
+	name = "Płyn do naprawy kadłuba"
 	id = /datum/reagent/hull_repair_juice
 	results = list(/datum/reagent/hull_repair_juice = 10)
 	required_reagents = list(/datum/reagent/stabilizing_agent = 1, /datum/reagent/iron = 1,/datum/reagent/carbon = 1)

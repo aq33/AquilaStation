@@ -7,8 +7,8 @@
 
 //AGENT VEST
 /obj/item/clothing/suit/armor/abductor/vest
-	name = "agent vest"
-	desc = "A vest outfitted with advanced stealth technology. It has two modes - combat and stealth."
+	name = "kamizelka agenta"
+	desc = "Kamizelka wyposażona w zaawansowaną technologię maskującą. Ma dwa tryby: bojowy i maskujący."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "vest_stealth"
 	item_state = "armor"
@@ -93,7 +93,7 @@
 		M.cut_overlays()
 		M.regenerate_icons()
 
-/obj/item/clothing/suit/armor/abductor/vest/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/armor/abductor/vest/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	DeactivateStealth()
 
 /obj/item/clothing/suit/armor/abductor/vest/IsReflect()
@@ -165,8 +165,8 @@
 		. = TRUE
 
 /obj/item/abductor/gizmo
-	name = "science tool"
-	desc = "A dual-mode tool for retrieving specimens and scanning appearances. Scanning can be done through cameras."
+	name = "narzędzie naukowe"
+	desc = "Dwutrybowe narzędzie do pozyskiwania okazów i skanowania wyglądu. Skanować można też przez kamery."
 	icon_state = "gizmo_scan"
 	item_state = "silencer"
 	var/mode = GIZMO_SCAN
@@ -252,8 +252,8 @@
 
 
 /obj/item/abductor/silencer
-	name = "abductor silencer"
-	desc = "A compact device used to shut down communications equipment."
+	name = "wyciszacz porywaczy"
+	desc = "Kompaktowe urządzenie do wyłączania sprzętu łączności."
 	icon_state = "silencer"
 	item_state = "gizmo"
 
@@ -293,9 +293,9 @@
 				r.broadcasting = 0 //goddamned headset hacks
 
 /obj/item/abductor/mind_device
-	name = "mental interface device"
-	desc = "A dual-mode tool for directly communicating with sentient brains. It can be used to send a direct message to a target, \
-			or to send a command to a test subject with a charged gland."
+	name = "interfejs mentalny"
+	desc = "Dwutrybowe narzędzie do bezpośredniej łączności z myślącymi mózgami. Pozwala wysłać celowi wiadomość prosto do głowy \
+			albo wydać rozkaz obiektowi badań z naładowanym gruczołem."
 	icon_state = "mind_device_message"
 	item_state = "silencer"
 	var/mode = MIND_DEVICE_MESSAGE
@@ -378,19 +378,19 @@
 
 
 /obj/item/firing_pin/abductor
-	name = "alien firing pin"
+	name = "obca iglica"
 	icon_state = "firing_pin_ayy"
-	desc = "This firing pin is slimy and warm; you can swear you feel it \
-		constantly trying to mentally probe you."
+	desc = "Ta iglica jest śliska i ciepła. Mógłbyś przysiąc, że czujesz, \
+		jak bez przerwy próbuje zbadać twój umysł."
 	fail_message = "<span class='abductor'>\
-		Firing error, please contact Command.</span>"
+		Błąd strzału, skontaktuj się z dowództwem.</span>"
 
 /obj/item/firing_pin/abductor/pin_auth(mob/living/user)
 	. = isabductor(user)
 
 /obj/item/gun/energy/alien
-	name = "alien pistol"
-	desc = "A complicated gun that fires bursts of high-intensity radiation, electromagnetic disruption bolts or freezing shots."
+	name = "obcy pistolet"
+	desc = "Skomplikowana broń, która strzela seriami silnego promieniowania, pociskami zakłóceń elektromagnetycznych albo zamrażającymi strzałami."
 	ammo_type = list(/obj/item/ammo_casing/energy/declone, /obj/item/ammo_casing/energy/ion, /obj/item/ammo_casing/energy/temp)
 	pin = /obj/item/firing_pin/abductor
 	icon_state = "alienpistol"
@@ -398,7 +398,7 @@
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/paper/guides/antag/abductor
-	name = "Dissection Guide"
+	name = "poradnik sekcji zwłok"
 	icon_state = "alienpaper_words"
 	show_written_words = FALSE
 	default_raw_text = {"<b>Sekcja zwłok dla opornych</b><br>
@@ -433,8 +433,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 #define BATON_MODES 4
 
 /obj/item/abductor/baton
-	name = "advanced baton"
-	desc = "A quad-mode baton used for incapacitation and restraining of specimens."
+	name = "zaawansowana pałka"
+	desc = "Czterotrybowa pałka do obezwładniania i krępowania okazów."
 	var/mode = BATON_STUN
 	icon_state = "wonderprodStun"
 	item_state = "wonderprod"
@@ -491,7 +491,7 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
+		if(H.check_shields(src, 0, "[name] ([user])", MELEE_ATTACK))
 			playsound(H, 'sound/weapons/genhit.ogg', 50, TRUE)
 			return FALSE
 
@@ -600,8 +600,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 	to_chat(user, "[helptext]")
 
 /obj/item/restraints/handcuffs/energy
-	name = "hard-light energy field"
-	desc = "A hard-light field restraining the hands."
+	name = "pole energii twardego światła"
+	desc = "Pole twardego światła krępujące ręce."
 	icon_state = "cuff" // Needs sprite
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
@@ -633,8 +633,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 			. += "<span class='warning'>Pałka jest w trybie badania.</span>"
 
 /obj/item/radio/headset/abductor
-	name = "alien headset"
-	desc = "An advanced alien headset designed to monitor communications of human space stations. Why does it have a microphone? No one knows."
+	name = "obce słuchawki"
+	desc = "Zaawansowane słuchawki obcych do podsłuchiwania łączności ludzkich stacji kosmicznych. Po co im mikrofon? Nikt nie wie."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "abductor_headset"
 	item_state = "abductor_headset"
@@ -651,8 +651,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 	return ..()
 
 /obj/item/abductor_machine_beacon
-	name = "machine beacon"
-	desc = "A beacon designed to instantly tele-construct abductor machinery."
+	name = "radiolatarnia maszyny"
+	desc = "Radiolatarnia do natychmiastowej telekonstrukcji maszyn porywaczy."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "beacon"
 	w_class = WEIGHT_CLASS_TINY
@@ -682,49 +682,49 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 
 /obj/item/abductor_machine_beacon/chem_dispenser
-	name = "beacon - Reagent Synthesizer"
+	name = "radiolatarnia: syntezator odczynników"
 	spawned_machine = /obj/machinery/chem_dispenser/abductor
 
 /obj/item/scalpel/alien
-	name = "alien scalpel"
-	desc = "It's a gleaming sharp knife made out of silvery-green metal."
+	name = "obcy skalpel"
+	desc = "Lśniący, ostry nóż ze srebrzystozielonego metalu."
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/hemostat/alien
-	name = "alien hemostat"
-	desc = "You've never seen this before."
+	name = "obce kleszczyki"
+	desc = "Nigdy wcześniej czegoś takiego nie widzisz."
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/retractor/alien
-	name = "alien retractor"
-	desc = "You're not sure if you want the veil pulled back."
+	name = "obcy retraktor"
+	desc = "Nie wiesz, czy chcesz, żeby ktoś uchylał tę zasłonę."
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/circular_saw/alien
-	name = "alien saw"
-	desc = "Do the aliens also lose this, and need to find an alien hatchet?"
+	name = "obca piła"
+	desc = "Czy obcy też to gubią i muszą szukać obcej siekierki?"
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/surgicaldrill/alien
-	name = "alien drill"
-	desc = "Maybe alien surgeons have finally found a use for the drill."
+	name = "obca wiertarka"
+	desc = "Może obcy chirurdzy w końcu znaleźli zastosowanie dla wiertarki."
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/cautery/alien
-	name = "alien cautery"
-	desc = "Why would bloodless aliens have a tool to stop bleeding? \
-		Unless..."
+	name = "obcy kauter"
+	desc = "Po co bezkrwistym obcym narzędzie do tamowania krwawień? \
+		Chyba że..."
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
 /obj/item/clothing/head/helmet/abductor
-	name = "agent headgear"
-	desc = "Abduct with style - spiky style. Prevents digital tracking."
+	name = "hełm agenta"
+	desc = "Porywaj ze stylem – kolczastym stylem. Zapobiega cyfrowemu śledzeniu."
 	icon_state = "alienhelmet"
 	item_state = "alienhelmet"
 	flash_protect = 1
@@ -734,15 +734,15 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 // Operating Table / Beds / Lockers
 
 /obj/structure/bed/abductor
-	name = "resting contraption"
-	desc = "This looks similar to contraptions from Earth. Could aliens be stealing our technology?"
+	name = "urządzenie do odpoczynku"
+	desc = "Wygląda podobnie do urządzeń z Ziemi. Czyżby obcy kradli naszą technologię?"
 	icon = 'icons/obj/abductor.dmi'
 	buildstacktype = /obj/item/stack/sheet/mineral/abductor
 	icon_state = "bed"
 
 /obj/structure/table_frame/abductor
-	name = "alien table frame"
-	desc = "A sturdy table frame made from alien alloy."
+	name = "rama obcego stołu"
+	desc = "Solidna rama stołu z obcego stopu."
 	icon_state = "alien_frame"
 	framestack = /obj/item/stack/sheet/mineral/abductor
 	framestackamount = 1
@@ -780,8 +780,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 			qdel(src)
 
 /obj/structure/table/abductor
-	name = "alien table"
-	desc = "Advanced flat surface technology at work!"
+	name = "obcy stół"
+	desc = "Zaawansowana technologia płaskiej powierzchni w akcji!"
 	icon = 'icons/obj/smooth_structures/alien_table.dmi'
 	icon_state = "alien_table"
 	buildstack = /obj/item/stack/sheet/mineral/abductor
@@ -792,8 +792,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 	frame = /obj/structure/table_frame/abductor
 
 /obj/structure/table/optable/abductor
-	name = "alien operating table"
-	desc = "Used for alien medical procedures. The surface is covered in tiny spines."
+	name = "obcy stół operacyjny"
+	desc = "Służy do obcych zabiegów medycznych. Powierzchnię pokrywają drobne kolce."
 	frame = /obj/structure/table_frame/abductor
 	buildstack = /obj/item/stack/sheet/mineral/silver
 	framestack = /obj/item/stack/sheet/mineral/abductor
@@ -834,8 +834,8 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 	. = ..()
 
 /obj/structure/closet/abductor
-	name = "alien locker"
-	desc = "Contains secrets of the universe."
+	name = "obca szafka"
+	desc = "Skrywa tajemnice wszechświata."
 	icon_state = "abductor"
 	icon_door = "abductor"
 	can_weld_shut = FALSE
@@ -843,17 +843,17 @@ Gratulacje! Masz teraz przeszkolenie z inwazyjnych badań ksenobiologicznych!"}
 	door_anim_time = 0 // no animation
 
 /obj/structure/door_assembly/door_assembly_abductor
-	name = "alien airlock assembly"
+	name = "zespół: obca śluza"
 	icon = 'icons/obj/doors/airlocks/abductor/abductor_airlock.dmi'
-	base_name = "alien airlock"
+	base_name = "obca śluza"
 	overlays_file = 'icons/obj/doors/airlocks/abductor/overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/abductor
 	material_type = /obj/item/stack/sheet/mineral/abductor
 	noglass = TRUE
 
 /obj/item/clothing/under/abductor
-	desc = "The most advanced form of jumpsuit known to reality, looks uncomfortable."
-	name = "alien jumpsuit"
+	desc = "Najbardziej zaawansowana forma kombinezonu znana rzeczywistości. Wygląda na niewygodny."
+	name = "obcy kombinezon"
 	icon_state = "abductor-suit"
 	item_state = "bl_suit"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 10, rad = 0, fire = 0, acid = 0, stamina = 0, "bleed" = 0)

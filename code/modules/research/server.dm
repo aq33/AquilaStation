@@ -1,6 +1,6 @@
 /obj/machinery/rnd/server
-	name = "\improper R&D Server"
-	desc = "A computer system running a deep neural network that processes arbitrary information to produce data useable in the development of new technologies. In layman's terms, it makes research points."
+	name = "\improper serwer B+R"
+	desc = "System komputerowy z głęboką siecią neuronową, która przetwarza dowolne informacje na dane przydatne przy rozwijaniu nowych technologii. Mówiąc prościej, robi punkty badań."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "RD-server-on"
 	var/datum/techweb/stored_research
@@ -162,8 +162,8 @@
 		return list(TECHWEB_POINT_TYPE_GENERIC = 0)
 
 /obj/machinery/computer/rdservercontrol
-	name = "R&D Server Controller"
-	desc = "Used to manage access to research and manufacturing databases."
+	name = "kontroler serwerów B+R"
+	desc = "Służy do zarządzania dostępem do baz danych badań i produkcji."
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	req_access = list(ACCESS_RD_SERVER)

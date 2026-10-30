@@ -12,6 +12,139 @@ import { useBackend } from '../backend';
 import { Grid } from '../components';
 import { Window } from '../layouts';
 
+// Nazwy ustawień (NES_*) i część wartości z list wyboru to klucze w DM
+// (extra_settings[name], porównania w on_trigger), więc do DM idzie
+// oryginał, a tłumaczymy tylko to, co widać w oknie.
+export const NANITE_SETTING_PL: Record<string, string> = {
+  'Sent Code': 'Wysyłany kod',
+  Delay: 'Opóźnienie',
+  Mode: 'Tryb',
+  'Comm Code': 'Kod komunikacji',
+  'Relay Channel': 'Kanał przekaźnika',
+  'Health Percent': 'Procent zdrowia',
+  Direction: 'Kierunek',
+  'Nanite Percent': 'Procent nanitów',
+  'Damage Type': 'Rodzaj obrażeń',
+  Damage: 'Obrażenia',
+  Sentence: 'Zdanie',
+  Message: 'Wiadomość',
+  Directive: 'Dyrektywa',
+  'Inclusive Mode': 'Dopasowanie',
+  Race: 'Rasa',
+  'Hallucination Type': 'Rodzaj halucynacji',
+  'Hallucination Detail': 'Szczegół halucynacji',
+  'Mood Message': 'Komunikat nastroju',
+  'Program Overwrite': 'Nadpisywanie programów',
+  'Cloud Overwrite': 'Nadpisanie chmury',
+  'Scan Type': 'Rodzaj skanu',
+  'Button Name': 'Nazwa przycisku',
+  Icon: 'Ikona',
+  Color: 'Kolor',
+  Logic: 'Logika',
+  'Host Aggression': 'Agresja nosiciela',
+  'Receive Messages': 'Odbieranie wiadomości',
+  'Send Messages': 'Wysyłanie wiadomości',
+};
+
+// Rodzaje obrażeń (BRUTE, BURN, TOX, OXY, CLONE) osobno, bo "fire" jest też
+// alertem w halucynacjach.
+const NANITE_DAMAGE_PL: Record<string, string> = {
+  brute: 'Obrażenia fizyczne',
+  fire: 'Oparzenia',
+  tox: 'Toksyny',
+  oxy: 'Niedotlenienie',
+  clone: 'Uszkodzenia komórkowe',
+};
+
+export const NANITE_VALUE_PL: Record<string, string> = {
+  // kierunki
+  NORTH: 'Północ',
+  SOUTH: 'Południe',
+  EAST: 'Wschód',
+  WEST: 'Zachód',
+  // ikony i kolory przycisku pilota
+  one: 'Jeden',
+  two: 'Dwa',
+  three: 'Trzy',
+  four: 'Cztery',
+  five: 'Pięć',
+  plus: 'Plus',
+  minus: 'Minus',
+  power: 'Zasilanie',
+  green: 'Zielony',
+  red: 'Czerwony',
+  yellow: 'Żółty',
+  blue: 'Niebieski',
+  // szczegóły halucynacji
+  random: 'Losowo',
+  laser: 'Laser',
+  disabler: 'Disabler',
+  esword: 'Miecz energetyczny',
+  gun: 'Pistolet',
+  stunprod: 'Pałka elektryczna',
+  harmbaton: 'Pałka',
+  bomb: 'Bomba',
+  airlock: 'Śluza',
+  'airlock pry': 'Podważanie śluzy',
+  console: 'Konsola',
+  explosion: 'Wybuch',
+  'far explosion': 'Odległy wybuch',
+  mech: 'Mech',
+  glass: 'Szkło',
+  alarm: 'Alarm',
+  beepsky: 'Beepsky',
+  'wall decon': 'Rozbiórka ściany',
+  'door hack': 'Hakowanie drzwi',
+  phone: 'Telefon',
+  hallelujah: 'Alleluja',
+  highlander: 'Highlander',
+  laughter: 'Śmiech',
+  hyperspace: 'Nadprzestrzeń',
+  'game over': 'Koniec gry',
+  creepy: 'Upiorne szepty',
+  tesla: 'Tesla',
+  ratvar: 'Ratvar',
+  'shuttle dock': 'Dokowanie promu',
+  'blob alert': 'Alarm bloba',
+  'malf ai': 'Zbuntowana SI',
+  meteors: 'Meteory',
+  supermatter: 'Supermateria',
+  critical: 'Stan krytyczny',
+  dead: 'Śmierć',
+  healthy: 'Zdrowie',
+  not_enough_oxy: 'Brak tlenu',
+  not_enough_tox: 'Brak plazmy',
+  not_enough_co2: 'Brak CO2',
+  too_much_oxy: 'Za dużo tlenu',
+  too_much_co2: 'Za dużo CO2',
+  too_much_tox: 'Za dużo plazmy',
+  newlaw: 'Nowe prawo',
+  nutrition: 'Głód',
+  charge: 'Niski poziom energii',
+  gravity: 'Brak grawitacji',
+  fire: 'Ogień',
+  locked: 'Zablokowanie',
+  hacked: 'Zhakowanie',
+  temphot: 'Za gorąco',
+  tempcold: 'Za zimno',
+  pressure: 'Ciśnienie',
+  // gatunki (id z GLOB.roundstart_races)
+  human: 'Człowiek',
+};
+
+export const naniteSettingName = (name: string) =>
+  NANITE_SETTING_PL[name] ?? name;
+
+export const naniteValueName = (value, settingName?: string) => {
+  if (typeof value !== 'string') {
+    return value;
+  }
+  if (settingName === 'Damage Type') {
+    return NANITE_DAMAGE_PL[value] ?? value;
+  }
+  return NANITE_VALUE_PL[value] ?? value;
+};
+
 type Data = {
   activated: any;
   activation_code: any;
@@ -38,9 +171,9 @@ export const NaniteCodes = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Codes" mr={1}>
+    <Section title="Kody" mr={1}>
       <LabeledList>
-        <LabeledList.Item label="Activation">
+        <LabeledList.Item label="Aktywacja">
           <NumberInput
             step={1}
             value={data.activation_code}
@@ -55,7 +188,7 @@ export const NaniteCodes = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Deactivation">
+        <LabeledList.Item label="Dezaktywacja">
           <NumberInput
             step={1}
             value={data.deactivation_code}
@@ -70,7 +203,7 @@ export const NaniteCodes = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Kill">
+        <LabeledList.Item label="Zniszczenie">
           <NumberInput
             step={1}
             value={data.kill_code}
@@ -86,7 +219,7 @@ export const NaniteCodes = (props) => {
           />
         </LabeledList.Item>
         {!!data.can_trigger && (
-          <LabeledList.Item label="Trigger">
+          <LabeledList.Item label="Wyzwolenie">
             <NumberInput
               step={1}
               value={data.trigger_code}
@@ -111,9 +244,9 @@ export const NaniteDelays = (props) => {
   const { act, data } = useBackend<Data>();
 
   return (
-    <Section title="Delays" ml={1}>
+    <Section title="Opóźnienia" ml={1}>
       <LabeledList>
-        <LabeledList.Item label="Restart Timer">
+        <LabeledList.Item label="Czas do restartu">
           <NumberInput
             step={1}
             value={data.timer_restart}
@@ -128,7 +261,7 @@ export const NaniteDelays = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Shutdown Timer">
+        <LabeledList.Item label="Czas do wyłączenia">
           <NumberInput
             step={1}
             value={data.timer_shutdown}
@@ -145,7 +278,7 @@ export const NaniteDelays = (props) => {
         </LabeledList.Item>
         {!!data.can_trigger && (
           <>
-            <LabeledList.Item label="Trigger Repeat Timer">
+            <LabeledList.Item label="Powtarzanie wyzwolenia">
               <NumberInput
                 step={1}
                 value={data.timer_trigger}
@@ -160,7 +293,7 @@ export const NaniteDelays = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Trigger Delay">
+            <LabeledList.Item label="Opóźnienie wyzwolenia">
               <NumberInput
                 step={1}
                 value={data.timer_trigger_delay}
@@ -192,7 +325,9 @@ export const NaniteExtraEntry = (props) => {
     boolean: <NaniteExtraBoolean extra_setting={extra_setting} />,
   };
   return (
-    <LabeledList.Item label={name}>{typeComponentMap[type]}</LabeledList.Item>
+    <LabeledList.Item label={naniteSettingName(name)}>
+      {typeComponentMap[type]}
+    </LabeledList.Item>
   );
 };
 
@@ -244,8 +379,12 @@ export const NaniteExtraType = (props) => {
     <Dropdown
       over
       selected={value}
+      displayText={naniteValueName(value, name)}
       width="150px"
-      options={types}
+      options={(types || []).map((option) => ({
+        displayText: naniteValueName(option, name),
+        value: option,
+      }))}
       onSelected={(val) =>
         act('set_extra_setting', {
           target_setting: name,
@@ -301,16 +440,16 @@ export const NaniteProgrammerContent = (props) => {
 
   if (!has_disk) {
     return (
-      <NoticeBox textAlign="center">Insert a nanite program disk</NoticeBox>
+      <NoticeBox textAlign="center">Włóż dysk z programem nanitów</NoticeBox>
     );
   }
 
   if (!has_program) {
     return (
       <Section
-        title="Blank Disk"
+        title="Pusty dysk"
         buttons={
-          <Button icon="eject" content="Eject" onClick={() => act('eject')} />
+          <Button icon="eject" content="Wysuń" onClick={() => act('eject')} />
         }
       />
     );
@@ -320,21 +459,21 @@ export const NaniteProgrammerContent = (props) => {
     <Section
       title={name}
       buttons={
-        <Button icon="eject" content="Eject" onClick={() => act('eject')} />
+        <Button icon="eject" content="Wysuń" onClick={() => act('eject')} />
       }
     >
-      <Section title="Info">
+      <Section title="Informacje">
         <Grid>
           <Grid.Column>{desc}</Grid.Column>
           <Grid.Column size={0.7}>
             <LabeledList>
-              <LabeledList.Item label="Use Rate">{use_rate}</LabeledList.Item>
+              <LabeledList.Item label="Zużycie">{use_rate}</LabeledList.Item>
               {!!can_trigger && (
                 <>
-                  <LabeledList.Item label="Trigger Cost">
+                  <LabeledList.Item label="Koszt wyzwolenia">
                     {trigger_cost}
                   </LabeledList.Item>
-                  <LabeledList.Item label="Trigger Cooldown">
+                  <LabeledList.Item label="Odnowienie wyzwolenia">
                     {trigger_cooldown}
                   </LabeledList.Item>
                 </>
@@ -344,11 +483,11 @@ export const NaniteProgrammerContent = (props) => {
         </Grid>
       </Section>
       <Section
-        title="Settings"
+        title="Ustawienia"
         buttons={
           <Button
             icon={activated ? 'power-off' : 'times'}
-            content={activated ? 'Active' : 'Inactive'}
+            content={activated ? 'Aktywny' : 'Nieaktywny'}
             selected={activated}
             color="bad"
             bold

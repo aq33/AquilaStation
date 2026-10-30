@@ -19,7 +19,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 	departments = DEPARTMENT_BITFLAG_SERVICE
-	rpg_title = "Paladin"
+	rpg_title = "Paladyn"
 
 	species_outfits = list(
 		SPECIES_PLASMAMAN = /datum/outfit/plasmaman/chaplain
@@ -55,51 +55,51 @@
 
 	switch(lowertext(new_religion))
 		if("christianity") // DEFAULT_RELIGION
-			B.name = pick("The Holy Bible","The Dead Sea Scrolls")
+			B.name = pick("Pismo Święte","Zwoje znad Morza Martwego")
 		if("buddhism")
-			B.name = "The Sutras"
+			B.name = "Sutry"
 		if("clownism","honkmother","honk","honkism","comedy")
-			B.name = pick("The Holy Joke Book", "Just a Prank", "Hymns to the Honkmother")
+			B.name = pick("Święta Księga Żartów", "To tylko żart", "Hymny do Honkmatki")
 		if("chaos")
-			B.name = "The Book of Lorgar"
+			B.name = "Księga Lorgara"
 		if("cthulhu")
-			B.name = "The Necronomicon"
+			B.name = "Necronomicon"
 		if("hinduism")
-			B.name = "The Vedas"
+			B.name = "Wedy"
 		if("imperium")
-			B.name = "Uplifting Primer"
+			B.name = "Budujący Elementarz"
 		if("islam")
-			B.name = "Quran"
+			B.name = "Koran"
 		if("judaism")
-			B.name = "The Torah"
+			B.name = "Tora"
 		if("lampism")
-			B.name = "Fluorescent Incandescence"
+			B.name = "Fluorescencyjne Żarzenie"
 		if("monkeyism","apism","gorillism","primatism")
-			B.name = pick("Going Bananas", "Bananas Out For Harambe")
+			B.name = pick("Bananowe Szaleństwo", "Banany dla Harambe")
 		if("mormonism")
-			B.name = "The Book of Mormon"
+			B.name = "Księga Mormona"
 		if("pastafarianism")
-			B.name = "The Gospel of the Flying Spaghetti Monster"
+			B.name = "Ewangelia Latającego Potwora Spaghetti"
 		if("rastafarianism","rasta")
-			B.name = "The Holy Piby"
+			B.name = "Święta Piby"
 		if("satanism")
-			B.name = "The Unholy Bible"
+			B.name = "Nieświęta Biblia"
 		if("science")
-			B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
+			B.name = pick("Zasada Względności", "Kwantowa Zagadka: Fizyka Spotyka Świadomość", "Programowanie Wszechświata", "Fizyka Kwantowa i Teologia", "Teoria Strun dla Opornych", "Poradnik: Zbuduj Własny Napęd Warp", "Tajemnice Bluespace", "Zabawa w Boga: Edycja Kolekcjonerska")
 		if("scientology")
-			B.name = pick("The Biography of L. Ron Hubbard","Dianetics")
+			B.name = pick("Biografia L. Rona Hubbarda","Dianetyka")
 		if("servicianism", "partying")
-			B.name = "The Tenets of Servicia"
-			B.deity_name = pick("Servicia", "Space Bacchus", "Space Dionysus")
-			B.desc = "Happy, Full, Clean. Live it and give it."
+			B.name = "Zasady Servicii"
+			B.deity_name = pick("Servicia", "Kosmiczny Bachus", "Kosmiczny Dionizos")
+			B.desc = "Szczęśliwy, syty, czysty. Żyj tym i dawaj to innym."
 		if("subgenius")
-			B.name = "Book of the SubGenius"
+			B.name = "Księga SubGeniusza"
 		if("toolboxia","greytide")
-			B.name = pick("Toolbox Manifesto","iGlove Assistants")
+			B.name = pick("Manifest Skrzynki z Narzędziami","Asystenci iRękawic")
 		if("weeaboo","kawaii")
-			B.name = pick("Fanfiction Compendium","Japanese for Dummies","The Manganomicon","Establishing Your O.T.P")
+			B.name = pick("Kompendium Fanfików","Japoński dla Opornych","Manganomicon","Jak Ustalić Swój OTP")
 		else
-			B.name = "The Holy Book of [new_religion]"
+			B.name = "Święta Księga: [new_religion]"
 
 	GLOB.religion = new_religion
 	GLOB.bible_name = B.name

@@ -1,6 +1,6 @@
 /datum/quirk/spaceborn
-	name = "Spaceborn"
-	desc = "You've spent most of your life in low gravity environments and your body has adapted as such. You've learnt to go without oxygen longer than most but you don't handle higher G-forces very well."
+	name = "Urodzony w kosmosie"
+	desc = "Większość życia spędzasz w niskiej grawitacji i twoje ciało się do tego przystosowało. Wytrzymujesz bez tlenu dłużej niż większość ludzi, ale słabo znosisz duże przeciążenia."
 	value = 0
 	mob_trait = TRAIT_GFORCE_WEAKNESS
 	human_only = TRUE

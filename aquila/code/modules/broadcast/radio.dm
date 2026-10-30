@@ -68,7 +68,7 @@
 
 /// Przenośny odbiornik kanału rozrywkowego
 /obj/item/radio/entertainment/speakers/physical
-	name = "entertainment radio"
+	name = "radio rozrywkowe"
 	desc = "Przenośne radio jednokierunkowe, na stałe nastrojone na kanał rozrywkowy."
 
 /// Mikrofon: tylko nadaje (wbudowany w kamery reporterskie)
@@ -84,7 +84,7 @@
 
 /// Ręczny mikrofon na kanał rozrywkowy
 /obj/item/radio/entertainment/microphone/physical
-	name = "microphone"
+	name = "mikrofon"
 	desc = "Bez komentarza."
 	icon = 'aquila/icons/obj/broadcast.dmi'
 	icon_state = "microphone"

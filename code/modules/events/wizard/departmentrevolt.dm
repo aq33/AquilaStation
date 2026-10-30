@@ -52,4 +52,4 @@
 		var/message
 		for(var/job in jobs_to_revolt)
 			message += "[job],"
-		message_admins("The nation of [nation_name] has been formed. Affected jobs are [message]")
+		message_admins("Powstaje naród [nation_name]. Objęte zawody: [message]")

@@ -22,8 +22,8 @@ Difficulty: Very Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/colossus
-	name = "colossus"
-	desc = "A monstrous creature protected by heavy shielding."
+	name = "Kolos"
+	desc = "Potworna istota chroniona ciężką osłoną."
 	health = 2500
 	maxHealth = 2500
 	attacktext = "osądza"
@@ -42,7 +42,7 @@ Difficulty: Very Hard
 	pixel_x = -32
 	base_pixel_x = -32
 	del_on_death = TRUE
-	gps_name = "Angelic Signal"
+	gps_name = "Anielski sygnał"
 	achievement_type = /datum/award/achievement/boss/colussus_kill
 	crusher_achievement_type = /datum/award/achievement/boss/colussus_crusher
 	score_achievement_type = /datum/award/score/colussus_score
@@ -58,28 +58,28 @@ Difficulty: Very Hard
 	var/invulnerable_finale = FALSE
 
 /datum/action/innate/megafauna_attack/spiral_attack
-	name = "Spiral Shots"
+	name = "Spiralne strzały"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz strzelasz spiralnie.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/aoe_attack
-	name = "All Directions"
+	name = "Wszystkie kierunki"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "at_shield2"
 	chosen_message = "<span class='colossus'>Teraz strzelasz we wszystkich kierunkach.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/shotgun
-	name = "Shotgun Fire"
+	name = "Ogień śrutowy"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
 	chosen_message = "<span class='colossus'>Teraz strzelasz śrutem tam, gdzie celujesz.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/alternating_cardinals
-	name = "Alternating Shots"
+	name = "Naprzemienne strzały"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "pistol"
 	chosen_message = "<span class='colossus'>Teraz strzelasz na przemian w czterech głównych kierunkach.</span>"
@@ -96,8 +96,8 @@ Difficulty: Very Hard
 					final_attack()
 				else
 					telegraph()
-					say("Judgment")
-					visible_message("<span class='colossus'>\"<b>Judgment</b>\"</span>")
+					say("Sąd")
+					visible_message("<span class='colossus'>\"<b>Sąd</b>\"</span>")
 					select_spiral_attack()
 					ranged_cooldown = world.time + 30
 			if(2)
@@ -144,11 +144,11 @@ Difficulty: Very Hard
 
 	if(health <= maxHealth/10) 					//Ultimate attack guaranteed at below 10% HP
 		say("Giń..")
-		visible_message("<span class='colossus'>\"<b>Die..</b>\"</span>")
+		visible_message("<span class='colossus'>\"<b>Giń..</b>\"</span>")
 		random_attack_num = 5
 	else if(prob(20+anger_modifier))			//If more than 10% HP, determine next attack randomly
-		say("Judgment")
-		visible_message("<span class='colossus'>\"<b>Judgment</b>\"</span>")
+		say("Sąd")
+		visible_message("<span class='colossus'>\"<b>Sąd</b>\"</span>")
 		random_attack_num = 1
 	else
 		switch(rand(1, 3))
@@ -201,7 +201,7 @@ Difficulty: Very Hard
 		if(finale_counter > 4)
 			telegraph()
 			say("Giń!!")
-			visible_message("<span class='colossus'>\"<b>Die!</b>\"</span>")
+			visible_message("<span class='colossus'>\"<b>Giń!</b>\"</span>")
 			blast()
 		if(finale_counter > 1)
 			finale_counter--
@@ -211,15 +211,15 @@ Difficulty: Very Hard
 		sleep(finale_counter + 1)
 	for(var/ii in 1 to 3)
 		telegraph()
-		say("Die")
-		visible_message("<span class='colossus'>\"<b>Die..</b>\"</span>")
+		say("Giń")
+		visible_message("<span class='colossus'>\"<b>Giń..</b>\"</span>")
 		random_shots()
 		finale_counter += 6
 		sleep(finale_counter)
 	for(var/iii in 1 to 4)
 		telegraph()
 		say("Giń..")
-		visible_message("<span class='colossus'>\"<b>Die..</b>\"</span>")
+		visible_message("<span class='colossus'>\"<b>Giń..</b>\"</span>")
 		invulnerable_finale = FALSE
 		sleep(30) //Long cooldown (total 15 seconds with one last 30 applied in ) after this attack finally concludes
 
@@ -289,8 +289,8 @@ Difficulty: Very Hard
 	L.dust()
 
 /obj/effect/temp_visual/at_shield
-	name = "anti-toolbox field"
-	desc = "A shimmering forcefield protecting the colossus."
+	name = "pole antyskrzynkowe"
+	desc = "Migoczące pole siłowe chroniące Kolosa."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "at_shield2"
 	layer = FLY_LAYER
@@ -315,7 +315,7 @@ Difficulty: Very Hard
 	return ..()
 
 /obj/item/projectile/colossus
-	name ="death bolt"
+	name ="pocisk śmierci"
 	icon_state= "chronobolt"
 	damage = 25
 	armour_penetration = 100
@@ -339,8 +339,8 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 //Black Box
 
 /obj/machinery/smartfridge/black_box
-	name = "black box"
-	desc = "A completely indestructible chunk of crystal, rumoured to predate the start of this universe. It looks like you could store things inside it."
+	name = "czarna skrzynka"
+	desc = "Całkowicie niezniszczalny kawał kryształu. Podobno jest starszy niż ten wszechświat. Wygląda na to, że można w nim coś przechowywać."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "blackbox"
 	light_range = 8
@@ -453,8 +453,8 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 #define ACTIVATE_MAGIC "magic"
 
 /obj/machinery/anomalous_crystal
-	name = "anomalous crystal"
-	desc = "A strange chunk of crystal, being in the presence of it fills you with equal parts excitement and dread."
+	name = "anomalny kryształ"
+	desc = "Dziwny kawał kryształu. Jego obecność napełnia cię w równym stopniu ekscytacją i grozą."
 	var/observer_desc = "Anomalne kryształy mają opisy, które widzą tylko obserwatorzy. Ale ten nie został zmieniony z domyślnego."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "anomaly_crystal"
@@ -680,15 +680,15 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	if(..() && !ready_to_deploy)
 		GLOB.poi_list |= src
 		ready_to_deploy = TRUE
-		notify_ghosts("An anomalous crystal has been activated in [get_area(src)]! This crystal can always be used by ghosts hereafter.", enter_link = "<a href=byond://?src=[REF(src)];ghostjoin=1>(Click to enter)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACK, header = "Anomalous crystal activated")
+		notify_ghosts("Anomalny kryształ zostaje aktywowany w: [get_area(src)]! Od teraz duchy zawsze mogą go używać.", enter_link = "<a href=byond://?src=[REF(src)];ghostjoin=1>(Kliknij, by wejść)</a>", ghost_sound = 'sound/effects/ghost2.ogg', source = src, action = NOTIFY_ATTACK, header = "Aktywacja anomalnego kryształu")
 
 /obj/machinery/anomalous_crystal/helpers/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(.)
 		return
 	if(ready_to_deploy)
-		var/be_helper = alert("Zostać Światłoduchem? (Uwaga: nie będzie można cię sklonować!)",,"Yes","No")
-		if(be_helper == "Yes" && !QDELETED(src) && isobserver(user))
+		var/be_helper = alert("Zostać Światłoduchem? (Uwaga: nie będzie można cię sklonować!)",,"Tak","Nie")
+		if(be_helper == "Tak" && !QDELETED(src) && isobserver(user))
 			var/mob/living/simple_animal/hostile/lightgeist/W = new /mob/living/simple_animal/hostile/lightgeist(get_turf(loc))
 			W.key = user.key
 
@@ -700,8 +700,8 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 			attack_ghost(ghost)
 
 /mob/living/simple_animal/hostile/lightgeist
-	name = "lightgeist"
-	desc = "This small floating creature is a completely unknown form of life... being near it fills you with a sense of tranquility."
+	name = "świetlik"
+	desc = "To małe unoszące się stworzenie jest zupełnie nieznaną formą życia... Jego bliskość napełnia cię spokojem."
 	icon_state = "lightgeist"
 	icon_living = "lightgeist"
 	icon_dead = "butterfly_dead"
@@ -759,7 +759,7 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 		death()
 
 /mob/living/simple_animal/hostile/lightgeist/slime
-	name = "crystalline lightgeist"
+	name = "kryształowy świetlik"
 
 /obj/machinery/anomalous_crystal/refresher //Deletes and recreates a copy of the item, "refreshing" it.
 	observer_desc = "Ten kryształ \"odświeża\" przedmioty, na które działa, czyniąc je jak nowe."
@@ -802,8 +802,8 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 				new /mob/living/simple_animal/cockroach(get_step(src,dir)) //Just in case there aren't any animals on the station, this will leave you with a terrible option to possess if you feel like it
 
 /obj/structure/closet/stasis
-	name = "quantum entanglement stasis warp field"
-	desc = "You can hardly comprehend this thing... which is why you can't see it."
+	name = "pole zakrzywienia stazy splątania kwantowego"
+	desc = "Ledwo pojmujesz tę rzecz... i właśnie dlatego jej nie widzisz."
 	icon_state = null //This shouldn't even be visible, so if it DOES show up, at least nobody will notice
 	density = TRUE
 	anchored = TRUE
@@ -855,8 +855,8 @@ GLOBAL_DATUM(blackbox, /obj/machinery/smartfridge/black_box)
 	return
 
 /obj/effect/proc_holder/spell/targeted/exit_possession
-	name = "Exit Possession"
-	desc = "Exits the body you are possessing."
+	name = "Opuść ciało"
+	desc = "Opuszczasz ciało, które opętujesz."
 	charge_max = 60
 	clothes_req = 0
 	invocation_type = "none"

@@ -2,7 +2,7 @@
 
 /// Pad, na który kładzie się przedmioty do zleceń cywilnych
 /obj/machinery/piratepad/civilian
-	name = "civilian bounty pad"
+	name = "pad zleceń cywilnych"
 	desc = "Pad wysyłający przedmioty do zleceń cywilnych prosto do Centrali."
 	layer = TABLE_LAYER
 	resistance_flags = FIRE_PROOF
@@ -27,7 +27,7 @@
 
 /// Konsola przypisująca zlecenia do kart i wysyłająca rzeczy z padu
 /obj/machinery/computer/piratepad_control/civilian
-	name = "civilian bounty control terminal"
+	name = "konsola zleceń cywilnych"
 	desc = "Konsola przypisująca zlecenia cywilne do włożonej karty identyfikacyjnej i sterująca padem zleceń."
 	status_report = "Gotowe do wysyłki."
 	icon_screen = "civ_bounty"
@@ -428,7 +428,7 @@
 
 /// Beacon zrzucający pad i konsolę zleceń cywilnych
 /obj/item/civ_bounty_beacon
-	name = "civilian bounty beacon"
+	name = "nadajnik zleceń cywilnych"
 	desc = "Zatwierdzony przez NT beacon zleceń cywilnych. Użyj go, a dostarczy pad i konsolę zleceń."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "beacon"
@@ -455,7 +455,7 @@
 	uses--
 
 /obj/item/circuitboard/machine/bountypad
-	name = "civilian bounty pad (Machine Board)"
+	name = "pad zleceń cywilnych (płytka maszyny)"
 	icon_state = "supply"
 	build_path = /obj/machinery/piratepad/civilian
 	req_components = list(
@@ -465,6 +465,6 @@
 	)
 
 /obj/item/circuitboard/computer/bountypad
-	name = "civilian bounty control terminal (Computer Board)"
+	name = "konsola zleceń cywilnych (płytka komputera)"
 	icon_state = "supply"
 	build_path = /obj/machinery/computer/piratepad_control/civilian

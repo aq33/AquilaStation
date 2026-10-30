@@ -1,5 +1,5 @@
 /datum/orbital_object/z_linked/beacon
-	name = "Unidentified Signal"
+	name = "Niezidentyfikowany sygnał"
 	mass = 0
 	radius = 30
 	can_dock_anywhere = TRUE
@@ -24,14 +24,14 @@
 	set_orbitting_around_body(linked_map.center, 4000 + 250 * linked_z_level[1].z_value)
 
 /datum/orbital_object/z_linked/beacon/weak
-	name = "Weak Signal"
+	name = "Słaby sygnał"
 
 //====================
 // Asteroids
 //====================
 
 /datum/orbital_object/z_linked/beacon/ruin/asteroid
-	name = "Asteroid"
+	name = "Asteroida"
 	render_mode = RENDER_MODE_DEFAULT
 
 /datum/orbital_object/z_linked/beacon/ruinasteroid/New()
@@ -55,7 +55,7 @@
 //====================
 
 /datum/orbital_object/z_linked/beacon/ruin/spaceruin
-	name = "Unknown Signal"
+	name = "Nieznany sygnał"
 
 /datum/orbital_object/z_linked/beacon/ruin/spaceruin/New()
 	. = ..()
@@ -105,7 +105,7 @@
 //Stranded shuttles
 //====================
 /datum/orbital_object/z_linked/beacon/ruin/stranded_shuttle
-	name = "Distress Beacon"
+	name = "Sygnał alarmowy"
 	static_object = TRUE
 
 /datum/orbital_object/z_linked/beacon/ruin/stranded_shuttle/assign_z_level()
@@ -121,7 +121,7 @@
 //Interdiction
 //====================
 /datum/orbital_object/z_linked/beacon/ruin/interdiction
-	name = "Distress Beacon"
+	name = "Sygnał alarmowy"
 	static_object = TRUE
 
 /datum/orbital_object/z_linked/beacon/ruin/interdiction/assign_z_level()

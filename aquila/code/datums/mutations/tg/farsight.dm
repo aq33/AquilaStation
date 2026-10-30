@@ -1,8 +1,8 @@
 // AQUILA - port z tgstation (code/datums/mutations/farsight.dm)
 
 /datum/mutation/farsight
-	name = "Farsight"
-	desc = "The subject's eyes are able to see further than normal."
+	name = "Dalekowzroczność"
+	desc = "Oczy pacjenta widzą dalej niż zwykle."
 	quality = POSITIVE
 	instability = 10
 	text_gain_indication = "<span class='notice'>Mrowią cię oczy.</span>"
@@ -26,7 +26,7 @@
 		to_modify.set_sight_range(initial(to_modify.sight_range) * (GET_MUTATION_POWER(src) == 1 ? 1 : 3))
 
 /datum/action/cooldown/spell/farsight
-	name = "Farsight"
+	name = "Dalekowzroczność"
 	desc = "Widzisz dalej niż zwykle."
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
 	button_icon_state = "eye"

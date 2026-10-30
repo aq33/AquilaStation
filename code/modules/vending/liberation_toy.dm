@@ -1,6 +1,6 @@
 /obj/machinery/vending/toyliberationstation
-	name = "\improper Syndicate Donksoft Toy Vendor"
-	desc = "An ages 8 and up approved vendor that dispenses toys. If you were to find the right wires, you can unlock the adult mode setting!"
+	name = "\improper automat z zabawkami Donksoft Syndykatu"
+	desc = "Automat z zabawkami dopuszczony dla dzieci od 8 lat. Jeśli znajdziesz właściwe przewody, odblokujesz tryb dla dorosłych!"
 	icon_state = "syndi"
 	product_slogans = "Zdobądź swoje super zabawki dziś!;Striggeruj swojego validhuntera już dziś!;Zabawkowe bronie najlepszej jakości w niskiej cenie!;Daj je HoPowi za AA!;Daj je Szefowi Ochrony za bilet do permy!"
 	product_ads = "Poczuj się robustny ze swoimi zabawkami!;Wyraź swoje wewnętrzne dziecko już dziś!;Zabawkowe bronie nie zabijają ludzi. Ale validhunterzy już tak!;Kto potrzebuje odpowiedzialności jeśli masz zabawkowe bronie?;Uczyń swoje następne morderstwo ZABAWNYM!"

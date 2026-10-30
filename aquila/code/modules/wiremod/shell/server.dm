@@ -5,7 +5,7 @@
  * world.
  */
 /obj/structure/server
-	name = "server"
+	name = "serwer"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_stationary"
 

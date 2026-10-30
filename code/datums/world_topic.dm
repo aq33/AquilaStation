@@ -155,7 +155,7 @@
 	. = ..()
 	if(CHAT_FILTER_CHECK(input["message"])) // prevents any.. diplomatic incidents
 		minor_announce("W trosce o produktywność stacji i higienę psychiczną wiadomość od [input["message_sender"]] została przechwycona przez KKC i uznana za nieodpowiednią dla załogi.", "Komisja Komunikacji Centrali")
-		message_admins("Incomming cross-comms message from [input["message_sender"]] blocked: [input["message"]]")
+		message_admins("Zablokowano przychodzącą wiadomość międzyserwerową od [input["message_sender"]]: [input["message"]]")
 		statuscode = 451 // "Unavailable for legal reasons" ahaha; i.e. censored
 		response = "Ocenzurowano – wiadomość zablokowana przez filtr czatu"
 		return

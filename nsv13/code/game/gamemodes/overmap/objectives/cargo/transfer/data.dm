@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/data
-	name = "Deliver data chip"
-	desc = "Deliver a disk with arbitrary data under the table"
-	crate_name = "Secure Data Transfer"
+	name = "Dostarcz chip z danymi"
+	desc = "Dostarcz pod stołem dysk z dowolnymi danymi"
+	crate_name = "Bezpieczny transfer danych"
 
 /datum/overmap_objective/cargo/transfer/data/New()
 	var/datum/freight_type/single/object/C = new /datum/freight_type/single/object( /obj/item/disk/tech_disk )

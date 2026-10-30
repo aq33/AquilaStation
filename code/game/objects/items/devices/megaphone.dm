@@ -1,6 +1,6 @@
 /obj/item/megaphone
-	name = "megaphone"
-	desc = "A device used to project your voice. Loudly."
+	name = "megafon"
+	desc = "Urządzenie do wzmacniania głosu. Głośno."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "megaphone"
 	item_state = "megaphone"
@@ -47,23 +47,23 @@
 	voicespan = list(SPAN_REALLYBIG, "userdanger")
 
 /obj/item/megaphone/sec
-	name = "security megaphone"
+	name = "megafon ochrony"
 	icon_state = "megaphone-sec"
 	item_state = "megaphone-sec"
 
 /obj/item/megaphone/command
-	name = "command megaphone"
+	name = "megafon dowództwa"
 	icon_state = "megaphone-command"
 	item_state = "megaphone-command"
 
 /obj/item/megaphone/cargo
-	name = "supply megaphone"
+	name = "megafon zaopatrzenia"
 	icon_state = "megaphone-cargo"
 	item_state = "megaphone-cargo"
 
 /obj/item/megaphone/clown
-	name = "clown's megaphone"
-	desc = "Something that should not exist."
+	name = "megafon klauna"
+	desc = "Coś, co nie powinno istnieć."
 	icon_state = "megaphone-clown"
 	item_state = "megaphone-clown"
 	voicespan = list(SPAN_CLOWN)

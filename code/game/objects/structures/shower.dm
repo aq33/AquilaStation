@@ -24,8 +24,8 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 // AQ EDIT END
 
 /obj/machinery/shower
-	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
+	name = "prysznic"
+	desc = "HS-451. Zamontowany w latach 2550. przez Dział Higieny Nanotrasen."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -50,10 +50,10 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 	// AQ EDIT END
 
 /obj/structure/showerframe
-	name = "shower frame"
+	name = "rama prysznica"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower_frame"
-	desc = "A shower frame, that needs 2 plastic sheets to finish construction into a basic shower, or can be made into a blast shower by adding a sheet of titanium instead." //NSV13 - blast shower construction info.
+	desc = "Rama prysznica. Dwa arkusze plastiku zmienią ją w zwykły prysznic, a arkusz tytanu zamiast nich – w prysznic przeciwwybuchowy." //NSV13 - blast shower construction info.
 	anchored = FALSE
 
 /obj/structure/showerframe/Initialize(mapload)
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, "<span class='notice'>Temperatura wody wydaje się: [current_temperature].</span>")
+		to_chat(user, "<span class='notice'>Temperatura wody wydaje się: [current_temperature == SHOWER_FREEZING ? "lodowata" : (current_temperature == SHOWER_BOILING ? "wrząca" : "normalna")].</span>")
 	// AQ EDIT START - plumbing port from tg
 	else if(istype(I, /obj/item/stock_parts/water_recycler))
 		if(has_water_reclaimer)
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 				current_temperature = SHOWER_BOILING
 			if(SHOWER_BOILING)
 				current_temperature = SHOWER_NORMAL
-		user.visible_message("<span class='notice'>[user] reguluje prysznic za pomocą [I].</span>", "<span class='notice'>Ustawiasz temperaturę prysznica za pomocą [I] na: [current_temperature].</span>")
+		user.visible_message("<span class='notice'>[user] reguluje prysznic za pomocą [I].</span>", "<span class='notice'>Ustawiasz temperaturę prysznica za pomocą [I] na: [current_temperature == SHOWER_FREEZING ? "lodowata" : (current_temperature == SHOWER_BOILING ? "wrząca" : "normalna")].</span>")
 		user.log_message("has wrenched a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
 		add_hiddenprint(user)
 	handle_mist()
@@ -444,7 +444,7 @@ GLOBAL_LIST_INIT(shower_mode_descriptions, list(
 // AQ EDIT END
 
 /obj/effect/mist
-	name = "mist"
+	name = "mgiełka"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
 	layer = FLY_LAYER

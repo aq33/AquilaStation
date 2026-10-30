@@ -1,6 +1,6 @@
 /obj/item/organ/wings
-	name = "Pair of wings"
-	desc = "A pair of wings. They look skinny and useless"
+	name = "para skrzydeł"
+	desc = "Para skrzydeł. Wyglądają na chude i bezużyteczne."
 	icon_state = "angelwings"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_WINGS
@@ -75,8 +75,8 @@
 	return FALSE
 
 /obj/item/organ/wings/cybernetic
-	name = "cybernetic wingpack"
-	desc = "A compact pair of mechanical wings, which use the atmosphere to create thrust."
+	name = "cybernetyczny plecak skrzydłowy"
+	desc = "Kompaktowa para mechanicznych skrzydeł, które wytwarzają ciąg dzięki atmosferze."
 	icon_state = "wingpack"
 	flight_level = WINGS_FLYING
 	wing_type = "Robot"
@@ -90,7 +90,7 @@
 		var/mob/living/carbon/human/H = owner
 		var/datum/species/S = H.dna.species
 		var/outofcontrol = ((rand(1, 10)) * severity)
-		to_chat(H, "<span_class = 'userdanger'>Tracisz panowanie nad [src]!</span>")
+		to_chat(H, "<span class='userdanger'>Tracisz panowanie nad [src]!</span>")
 		while(outofcontrol)
 			if(S.CanFly(H))
 				if(H.movement_type & FLYING)
@@ -110,13 +110,13 @@
 			stoplag(5)
 
 /obj/item/organ/wings/cybernetic/ayy
-	name = "advanced cybernetic wingpack"
-	desc = "A compact pair of mechanical wings. They are equipped with miniaturized void engines, and can fly in any atmosphere, or lack thereof."
+	name = "zaawansowany cybernetyczny plecak skrzydłowy"
+	desc = "Kompaktowa para mechanicznych skrzydeł. Mają zminiaturyzowane silniki próżniowe i latają w każdej atmosferze, a nawet bez niej."
 	flight_level = WINGS_MAGIC
 
 /obj/item/organ/wings/moth
-	name = "pair of moth wings"
-	desc = "A pair of moth wings."
+	name = "para skrzydeł ćmy"
+	desc = "Para skrzydeł ćmy."
 	icon_state = "mothwings"
 	flight_level = WINGS_FLIGHTLESS
 	basewings = "moth_wings"
@@ -128,7 +128,7 @@
 	return ..()
 
 /obj/item/organ/wings/moth/robust
-	desc = "A pair of moth wings. They look robust enough to fly in an atmosphere"
+	desc = "Para skrzydeł ćmy. Wyglądają na dość mocne, by latać w atmosferze."
 	flight_level = WINGS_FLYING
 
 /obj/item/organ/wings/moth/on_life()
@@ -148,24 +148,24 @@
 			H.dna.species.handle_mutant_bodyparts(H)
 
 /obj/item/organ/wings/angel
-	name = "pair of feathered wings"
-	desc = "A pair of feathered wings. They seem robust enough for flight"
+	name = "para pierzastych skrzydeł"
+	desc = "Para pierzastych skrzydeł. Wydają się dość mocne, by latać."
 	flight_level = WINGS_FLYING
 
 /obj/item/organ/wings/dragon
-	name = "pair of dragon wings"
-	desc = "A pair of dragon wings. They seem robust enough for flight"
+	name = "para smoczych skrzydeł"
+	desc = "Para smoczych skrzydeł. Wydają się dość mocne, by latać."
 	icon_state = "dragonwings"
 	flight_level = WINGS_FLYING
 	wing_type = "Dragon"
 
 /obj/item/organ/wings/dragon/fake
-	desc = "A pair of fake dragon wings. They're useless"
+	desc = "Para sztucznych smoczych skrzydeł. Są bezużyteczne."
 	flight_level = WINGS_COSMETIC
 
 /obj/item/organ/wings/bee
-	name = "pair of bee wings"
-	desc = "A pair of bee wings. They seem tiny and undergrown"
+	name = "para pszczelich skrzydeł"
+	desc = "Para pszczelich skrzydeł. Wydają się malutkie i niedorośnięte."
 	icon_state = "beewings"
 	flight_level = WINGS_COSMETIC
 	actions_types = list(/datum/action/item_action/organ_action/use/bee_dash)
@@ -233,7 +233,7 @@
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
 
 /datum/action/innate/flight
-	name = "Toggle Flight"
+	name = "Przełącz lot"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_STUN
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "flight"

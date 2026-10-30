@@ -1,6 +1,6 @@
 /datum/mutation/jellybones
-	name = "Jelly Bones"
-	desc = "All of that yoga seems to have paid off."
+	name = "Galaretowate kości"
+	desc = "Cała ta joga chyba się opłaciła."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoje kości wydają się galaretowate, pewnie dałbyś radę wcisnąć się do szybu wentylacyjnego.</span>"
 	text_lose_indication = "<span class='notice'>Twoje kości znów wydają się twarde.</span>"
@@ -18,8 +18,8 @@
 	owner.ventcrawler = VENTCRAWLER_NONE
 
 /datum/mutation/breathless
-	name = "Breathless"
-	desc = "Affected person does not need to breathe."
+	name = "Bezdech"
+	desc = "Pacjent nie musi oddychać."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoje płuca wydają się wypełnione powietrzem.</span>"
 	text_lose_indication = "<span class='notice'>Twoje płuca znów wydają się puste.</span>"
@@ -37,8 +37,8 @@
 	REMOVE_TRAIT(owner, TRAIT_NOBREATH, GENETIC_MUTATION)
 
 /datum/mutation/toxicfart
-	name = "Toxic Fart"
-	desc = "A mutation that causes the subject to synthesize plasma in their intestines."
+	name = "Toksyczne bąki"
+	desc = "Mutacja, przez którą w jelitach pacjenta powstaje plazma."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twój żołądek wydaje się ciężki.</span>"
 	text_lose_indication = "<span class='notice'>Twój żołądek znów wydaje się lekki.</span>"
@@ -57,8 +57,8 @@
 
 
 /datum/mutation/megafart
-	name = "Mega Fart"
-	desc = "A mutation that causes the subject to fart with enough force to knock everyone around them back."
+	name = "Megabąk"
+	desc = "Mutacja, przez którą pacjent puszcza bąki z taką siłą, że odrzuca wszystkich wokół."
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Czujesz się wzdęty i pełen gazów.</span>"
 	text_lose_indication = "<span class='notice'>Znów czujesz się lekko.</span>"
@@ -79,12 +79,12 @@
 	locked = FALSE
 
 /datum/mutation/catclaws
-	name = "Claws"
-	desc = "Subject's hands grow sharpened claws."
+	name = "Pazury"
+	desc = "Na dłoniach pacjenta wyrastają ostre pazury."
 	locked = FALSE
 	species_allowed = list()
 
 /datum/mutation/firebreath
-	desc = "An ancient mutation that lets the subject breathe fire."
+	desc = "Pradawna mutacja, dzięki której pacjent zieje ogniem."
 	locked = FALSE
 	species_allowed = list()

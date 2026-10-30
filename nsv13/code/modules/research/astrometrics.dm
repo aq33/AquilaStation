@@ -9,8 +9,8 @@ you build.
 */
 
 /obj/machinery/computer/ship/navigation/astrometrics
-	name = "Astrometrics computer"
-	desc = "A computer which is capable of interfacing with subspace sensor arrays to gather intel on starsystems. It is capable of performing rudimentary, long range analysis on anomalies, however a probe torpedo will need to be constructed and fired at the anomaly to fully collect its available research."
+	name = "komputer astrometrii"
+	desc = "Komputer, który łączy się z podprzestrzennymi układami czujników, żeby zbierać dane o układach gwiezdnych. Potrafi przeprowadzić podstawową, dalekosiężną analizę anomalii, ale żeby w pełni zebrać z nich dane badawcze, trzeba zbudować torpedę sondującą i wystrzelić ją w anomalię."
 	req_access = list(ACCESS_RESEARCH)
 	circuit = /obj/item/circuitboard/computer/astrometrics
 	var/max_range = 40 //In light years, the range at which we can scan systems for data. This is quite short.

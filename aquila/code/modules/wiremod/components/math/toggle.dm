@@ -4,7 +4,7 @@
  * Does a toggle between true and false on trigger
  */
 /obj/item/circuit_component/compare/toggle
-	display_name = "Toggle"
+	display_name = "Przełącznik"
 	desc = "Komponent, który po wyzwoleniu przełącza się między włączonym a wyłączonym. Wszystkie porty wejściowe (poza ustawieniem przełącznika) wyzwalają komponent."
 	category = "Math"
 

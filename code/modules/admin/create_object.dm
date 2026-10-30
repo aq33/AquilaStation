@@ -446,7 +446,7 @@
 	var/turf/T = get_turf(user)
 	log_admin("[key_name(user)] created [amount]ea [atom_to_spawn] at [AREACOORD(T)]")
 	if(ispath(atom_to_spawn, /mob))
-		message_admins("[key_name_admin(user)] created [amount]ea [atom_to_spawn]")
+		message_admins("[key_name_admin(user)] tworzy [atom_to_spawn] ×[amount]")
 
 #undef WHERE_FLOOR_BELOW_MOB
 #undef WHERE_SUPPLY_BELOW_MOB

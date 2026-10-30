@@ -13,9 +13,9 @@
 	// AQUILA - u nas /datum nie ma abstract_type, więc deklarujemy ją tutaj
 	var/abstract_type = /datum/heretic_knowledge
 	/// Name of the knowledge, shown to the heretic.
-	var/name = "Basic knowledge"
+	var/name = "Podstawowa wiedza"
 	/// Description of the knowledge, shown to the heretic. Describes what it unlocks / does.
-	var/desc = "Basic knowledge of forbidden arts."
+	var/desc = "Podstawy zakazanych sztuk."
 	/// Text describing how you create the thing
 	var/transmute_text = ""
 	/// Big red notices about the knowledge
@@ -635,7 +635,7 @@
 	summoned.move_resist = MOVE_FORCE_OVERPOWERING
 	animate(summoned, 10 SECONDS, alpha = 155)
 
-	message_admins("A [summoned.name] is being summoned by [ADMIN_LOOKUPFLW(user)] in [ADMIN_COORDJMP(summoned)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] przyzywa: [summoned.name] w [ADMIN_COORDJMP(summoned)].")
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Czy chcesz zagrać jako [summoned.name]?", ROLE_HERETIC, null, 10 SECONDS, summoned, poll_ignore_define)
 	var/mob/dead/observer/chosen_one = LAZYLEN(candidates) ? pick(candidates) : null
 	if(isnull(chosen_one) || QDELETED(summoned))
@@ -657,7 +657,7 @@
 		summoned_animal.toggle_ai(initial(summoned_animal.AIStatus)) // z graczem AI i tak nie działa, po wyjściu gracza wraca
 
 	user.log_message("created a [summoned.name], controlled by [key_name(chosen_one)].", LOG_GAME)
-	message_admins("[ADMIN_LOOKUPFLW(user)] created a [summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] przywołuje: [summoned.name], [ADMIN_LOOKUPFLW(summoned)].")
 
 	SEND_SIGNAL(user, COMSIG_HERETIC_SUMMONED_MOB, summoned)
 

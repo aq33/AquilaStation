@@ -30,20 +30,20 @@
 #define AIRLOCK_CYCLEROLE_EXT_DEPRESSURIZE 8
 
 /obj/item/electronics/advanced_airlock_controller
-	name = "airlock controller electronics"
+	name = "elektronika kontrolera śluzy"
 	custom_price = 5
 	icon_state = "airalarm_electronics"
 
 /obj/item/wallframe/advanced_airlock_controller
-	name = "airlock controller frame"
-	desc = "Used for building advanced airlock controllers."
+	name = "rama kontrolera śluzy"
+	desc = "Służy do budowy zaawansowanych kontrolerów śluzy."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "aac_bitem"
 	result_path = /obj/machinery/advanced_airlock_controller
 
 /obj/machinery/advanced_airlock_controller
-	name = "advanced airlock controller"
-	desc = "A machine designed to control the operation of cycling airlocks"
+	name = "zaawansowany kontroler śluzy"
+	desc = "Maszyna sterująca pracą cyklicznych śluz."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "aac"
 	use_power = IDLE_POWER_USE
@@ -639,7 +639,7 @@
 		))
 	for(var/A in airlocks)
 		var/obj/machinery/door/airlock/airlock = A
-		var/access_str = "None"
+		var/access_str = "Brak"
 		airlock.gen_access()
 		if(islist(airlock.req_access) && airlock.req_access.len)
 			access_str = airlock.req_access.len > 1 ? "Wszystkie z " : ""

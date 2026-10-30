@@ -41,7 +41,7 @@
 				continue
 			new_home.visible_message("<span class='revenwarning'>Ponury jęk niesie się echem, gdy drobiny [src] osiadają na [new_home]!</span>")
 			log_game("A revenant was trapped inside [new_home] at [AREACOORD(new_home)]")
-			message_admins("A revenant was trapped inside [new_home] [ADMIN_JMP(new_home)]")
+			message_admins("Revenant zostaje uwięziony w: [new_home] [ADMIN_JMP(new_home)]")
 			revenant = null // nie usuwaj go razem z ektoplazmą
 			break
 	return ..()
@@ -124,7 +124,7 @@
 	if(!our_guy)
 		return FALSE
 	our_guy.forceMove(release_turf)
-	message_admins("[our_guy] [ADMIN_FLW(our_guy)] has been released from [old_home] [ADMIN_JMP(old_home)]. Cause: [cause]")
+	message_admins("[our_guy] [ADMIN_FLW(our_guy)] zostaje uwolniony z: [old_home] [ADMIN_JMP(old_home)]. Przyczyna: [cause]")
 	log_game("[our_guy] was released from [old_home] at [AREACOORD(release_turf)]. Cause: [cause]")
 	INVOKE_ASYNC(our_guy, TYPE_PROC_REF(/mob/living/simple_animal/revenant, reform_from_prison), old_key, essence, fresh)
 	return TRUE
@@ -151,7 +151,7 @@
 		var/mob/dead/observer/chosen = LAZYLEN(candidates) ? pick(candidates) : null
 		key_of_revenant = chosen?.key
 	if(!key_of_revenant)
-		message_admins("No candidates were found for the revenant released from a mirror.")
+		message_admins("Nie znaleziono kandydatów na upiora uwolnionego z lustra.")
 		visible_message("<span class='revenwarning'>Z powietrza wysypuje się niebieski pył i osiada na ziemi.</span>")
 		var/obj/item/ectoplasm/revenant/dust = new(get_turf(src))
 		dust.reforming = FALSE
@@ -159,7 +159,7 @@
 		qdel(src)
 		return FALSE
 	key = key_of_revenant
-	message_admins("[key_of_revenant] has been made into a revenant released from a mirror.")
+	message_admins("[key_of_revenant] zostaje revenantem uwolnionym z lustra.")
 	log_game("[key_of_revenant] was made into a revenant released from a mirror.")
 	return TRUE
 

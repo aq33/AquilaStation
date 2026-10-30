@@ -51,7 +51,7 @@
 		var/datum/objective/O = X
 		to_chat(owner, "<b>[i].</b> [O.explanation_text]")
 		i++
-	owner.current.client?.tgui_panel?.give_antagonist_popup("Brainwashed",
+	owner.current.client?.tgui_panel?.give_antagonist_popup("Ofiara prania mózgu",
 		"Wyprano ci mózg!\n\
 		Wykonuj swoją dyrektywę bez względu na koszty.")
 
@@ -82,25 +82,25 @@
 		return
 	var/list/objectives = list()
 	do
-		var/objective = stripped_input(admin, "Dodaj cel albo zostaw puste, by zakończyć.", "Brainwashing", null, MAX_MESSAGE_LEN)
+		var/objective = stripped_input(admin, "Dodaj cel albo zostaw puste, by zakończyć.", "Pranie mózgu", null, MAX_MESSAGE_LEN)
 		if(objective)
 			objectives += objective
 			log_objective(C, objective, admin)
-	while(alert(admin,"Add another objective?","More Brainwashing","Yes","No") == "Yes")
+	while(alert(admin,"Dodać kolejny cel?","Więcej prania mózgu","Tak","Nie") == "Tak")
 
-	if(alert(admin,"Confirm Brainwashing?","Na pewno?","Yes","No") != "Yes")
+	if(alert(admin,"Potwierdzić pranie mózgu?","Na pewno?","Tak","Nie") != "Tak")
 		return
 
 	if(!LAZYLEN(objectives))
 		return
 
 	if(QDELETED(C))
-		to_chat(admin, "Mob doesn't exist anymore")
+		to_chat(admin, "Ten mob już nie istnieje.")
 		return
 
 	brainwash(C, objectives)
 	var/obj_list = english_list(objectives)
-	message_admins("[key_name_admin(admin)] has brainwashed [key_name_admin(C)] with the following objectives: [obj_list].")
+	message_admins("[key_name_admin(admin)] pierze mózg graczowi [key_name_admin(C)], cele: [obj_list].")
 	log_admin("[key_name(admin)] has brainwashed [key_name(C)] with the following objectives: [obj_list].")
 
 /datum/objective/brainwashing

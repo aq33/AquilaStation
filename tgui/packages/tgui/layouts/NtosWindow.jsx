@@ -110,7 +110,7 @@ export const NtosWindow = (props) => {
                 textAlign="center"
                 color="transparent"
                 icon="window-minimize-o"
-                tooltip="Minimize"
+                tooltip="Minimalizuj"
                 tooltipPosition="bottom"
                 onClick={() => act('PC_minimize')}
               />
@@ -123,7 +123,7 @@ export const NtosWindow = (props) => {
                 textAlign="center"
                 color="transparent"
                 icon="window-close-o"
-                tooltip="Close"
+                tooltip="Zamknij"
                 tooltipPosition="bottom-start"
                 onClick={() => act('PC_exit')}
               />
@@ -136,7 +136,7 @@ export const NtosWindow = (props) => {
                 textAlign="center"
                 color="transparent"
                 icon="power-off"
-                tooltip="Power off"
+                tooltip="Wyłącz"
                 tooltipPosition="bottom-start"
                 onClick={() => act('PC_shutdown')}
               />

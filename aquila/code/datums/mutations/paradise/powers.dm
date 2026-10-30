@@ -9,15 +9,15 @@
 // Incendiary Mitochondria - samozapłon
 
 /datum/mutation/immolate
-	name = "Incendiary Mitochondria"
-	desc = "The subject becomes able to convert excess cellular energy into thermal energy."
+	name = "Zapalające mitochondria"
+	desc = "Pacjent potrafi zamieniać nadmiar energii komórkowej w ciepło."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='warning'>Nagle robi ci się dość gorąco.</span>"
 	text_lose_indication = "<span class='notice'>Nie jest ci już nieprzyjemnie gorąco.</span>"
 	action_path = /datum/action/cooldown/spell/paradise/immolate
 
 /datum/action/cooldown/spell/paradise/immolate
-	name = "Incendiary Mitochondria"
+	name = "Zapalające mitochondria"
 	desc = "Zamień nadmiar energii komórkowej w ciepło i stań w płomieniach."
 	button_icon_state = "genetic_incendiary"
 	cooldown_time = 60 SECONDS
@@ -35,8 +35,8 @@
 // Empathic Thought - czytanie stanu, nastroju i myśli
 
 /datum/mutation/empath
-	name = "Empathic Thought"
-	desc = "The subject becomes able to read the minds of others for certain information."
+	name = "Empatyczna myśl"
+	desc = "Pacjent potrafi wyczytać z cudzych umysłów pewne informacje."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Nagle zauważasz u innych więcej niż wcześniej.</span>"
 	text_lose_indication = "<span class='notice'>Nie wyczuwasz już cudzych zamiarów.</span>"
@@ -46,7 +46,7 @@
 	action_path = /datum/action/cooldown/spell/pointed/paradise_empath
 
 /datum/action/cooldown/spell/pointed/paradise_empath
-	name = "Read Mind"
+	name = "Czytaj w umyśle"
 	desc = "Zajrzyj w cudze myśli po kilka informacji."
 	icon_icon = 'aquila/icons/mutations/paradise/actions.dmi'
 	button_icon_state = "genetic_empath"
@@ -148,8 +148,8 @@
 // Polymorphism - przybranie wyglądu kogoś obok
 
 /datum/mutation/polymorph
-	name = "Polymorphism"
-	desc = "Enables the subject to reconfigure their appearance to mimic that of others."
+	name = "Polimorfizm"
+	desc = "Pacjent potrafi zmienić wygląd tak, żeby przypominać inne osoby."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Jakoś nie czujesz się do końca sobą.</span>"
 	text_lose_indication = "<span class='notice'>Czujesz się pewnie we własnej tożsamości.</span>"
@@ -159,7 +159,7 @@
 	action_path = /datum/action/cooldown/spell/pointed/paradise_polymorph
 
 /datum/action/cooldown/spell/pointed/paradise_polymorph
-	name = "Polymorph"
+	name = "Polimorfia"
 	desc = "Przybierz wygląd kogoś, kto stoi obok."
 	icon_icon = 'aquila/icons/mutations/paradise/actions.dmi'
 	button_icon_state = "genetic_poly"
@@ -200,8 +200,8 @@
 // Morphism - dowolna zmiana wyglądu z menu (jak magiczne lustro, bez zmiany rasy i imienia)
 
 /datum/mutation/morph
-	name = "Morphism"
-	desc = "Enables the subject to reconfigure their appearance to that of any human."
+	name = "Morfizm"
+	desc = "Pacjent potrafi zmienić wygląd na wygląd dowolnego człowieka."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz, że twoje ciało potrafi zmieniać wygląd.</span>"
 	text_lose_indication = "<span class='notice'>Twoje ciało nie potrafi już zmieniać wyglądu.</span>"
@@ -211,7 +211,7 @@
 	action_path = /datum/action/cooldown/spell/paradise/morph
 
 /datum/action/cooldown/spell/paradise/morph
-	name = "Morph"
+	name = "Przemiana"
 	desc = "Zmień swój wygląd według uznania."
 	button_icon_state = "genetic_morph"
 	cooldown_time = 180 SECONDS
@@ -314,8 +314,8 @@
 // Remote Viewing - podgląd innych zdalnych widzów z dowolnej odległości
 
 /datum/mutation/remote_view
-	name = "Remote Viewing"
-	desc = "Allows the subject to project their sight into the minds of other remote viewers, at any range."
+	name = "Zdalne widzenie"
+	desc = "Pacjent może z dowolnej odległości przenieść swój wzrok do umysłów innych zdalnych obserwatorów."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twój umysł widzi rzeczy z daleka.</span>"
 	text_lose_indication = "<span class='notice'>Twój umysł nie widzi już rzeczy z daleka.</span>"
@@ -329,7 +329,7 @@
 		view.check_view()
 
 /datum/action/cooldown/spell/paradise/remote_view
-	name = "Remote View"
+	name = "Zdalny podgląd"
 	desc = "Podglądaj ludzi z dowolnej odległości. Użyj ponownie, żeby wrócić do siebie."
 	button_icon_state = "genetic_view"
 	cooldown_time = 10 SECONDS
@@ -411,8 +411,8 @@
 // Jumpy - wielki skok
 
 /datum/mutation/jumpy
-	name = "Jumpy"
-	desc = "Allows the subject to leap great distances."
+	name = "Skoczność"
+	desc = "Pacjent potrafi skakać na duże odległości."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Mięśnie twoich nóg są napięte i silne.</span>"
 	text_lose_indication = "<span class='notice'>Mięśnie twoich nóg wracają do normy.</span>"
@@ -429,7 +429,7 @@
 		leap.leap_distance = round(initial(leap.leap_distance) * GET_MUTATION_POWER(src))
 
 /datum/action/cooldown/spell/paradise/leap
-	name = "Jump"
+	name = "Skok"
 	desc = "Skocz bardzo daleko w kierunku, w którym patrzysz!"
 	button_icon_state = "genetic_jump"
 	cooldown_time = 6 SECONDS

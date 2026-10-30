@@ -21,8 +21,8 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	export_price = 5000
 
 /datum/design/deepcore1
-	name = "Polytrinic non magnetic asteroid arrestor upgrade"
-	desc = "An upgrade module for the mining ship's asteroid arrestor, allowing it to lock on to asteroids containing valuable non ferrous metals such as gold, silver, copper and plasma"
+	name = "Polytriniczne ulepszenie zaczepu asteroid (metale nieżelazne)"
+	desc = "Moduł ulepszający zaczep asteroid statku górniczego. Pozwala namierzać asteroidy z cennymi metalami nieżelaznymi, takimi jak złoto, srebro, miedź i plazma."
 	id = "deepcore1"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000,/datum/material/titanium = 25000, /datum/material/silver = 5000)
@@ -31,8 +31,8 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/deepcore2
-	name = "Phasic asteroid arrestor upgrade"
-	desc = "An upgrade module for the mining ship's asteroid arrestor, allowing it to lock on to asteroids containing rare and valuable minerals such as diamond, uranium and the exceedingly rare bluespace crystals."
+	name = "Fazowe ulepszenie zaczepu asteroid"
+	desc = "Moduł ulepszający zaczep asteroid statku górniczego. Pozwala namierzać asteroidy z rzadkimi i cennymi minerałami, takimi jak diamenty, uran i niezwykle rzadkie kryształy bluespace."
 	id = "deepcore2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/copper = 25000,/datum/material/titanium = 25000, /datum/material/gold = 10000, /datum/material/silver = 10000, /datum/material/plasma = 10000, /datum/material/uranium = 5000, /datum/material/diamond = 5000)
@@ -41,8 +41,8 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/asteroidscanner
-	name = "Tier II asteroid sensor module"
-	desc = "An upgrade for dradis computers, allowing them to scan for asteroids containing valuable non ferrous metals such as gold, silver, copper and plasma"
+	name = "Moduł czujnika asteroid (poziom II)"
+	desc = "Ulepszenie konsol DRADIS. Pozwala wyszukiwać asteroidy z cennymi metalami nieżelaznymi, takimi jak złoto, srebro, miedź i plazma."
 	id = "asteroidscanner"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 25000,/datum/material/titanium = 5000, /datum/material/silver = 2000)
@@ -51,8 +51,8 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/asteroidscanner2
-	name = "Tier III asteroid sensor module"
-	desc = "An upgrade for dradis computers, allowing them to scan for asteroids containing rare and valuable minerals such as diamond, uranium and the exceedingly rare bluespace crystals."
+	name = "Moduł czujnika asteroid (poziom III)"
+	desc = "Ulepszenie konsol DRADIS. Pozwala wyszukiwać asteroidy z rzadkimi i cennymi minerałami, takimi jak diamenty, uran i niezwykle rzadkie kryształy bluespace."
 	id = "asteroidscanner2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/copper = 25000,/datum/material/titanium = 25000, /datum/material/plasma = 2000, /datum/material/uranium = 2000, /datum/material/diamond = 2000)
@@ -61,8 +61,8 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_SCIENCE
 
 /obj/structure/overmap/asteroid
-	name = "Asteroid (Ferrous)"
-	desc = "A huge asteroid...IN SPACE"
+	name = "Asteroida (metale żelazne)"
+	desc = "Wielka asteroida... W KOSMOSIE"
 	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_32x.dmi'
 	icon_state = "1"
 	obj_integrity = 100
@@ -82,7 +82,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	stop_piloting(user) //Dirty but that is what you get for trying to do this.
 
 /obj/structure/overmap/asteroid/medium
-	name = "Asteroid (Non Ferrous)"
+	name = "Asteroida (metale nieżelazne)"
 	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_96x.dmi'
 	core_composition = list(/turf/closed/mineral/copper, /turf/closed/mineral/silver, /turf/closed/mineral/gold, /turf/closed/mineral/plasma)
 	required_tier = 2
@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	mass = MASS_MEDIUM
 
 /obj/structure/overmap/asteroid/large
-	name = "Asteroid (Exotic Composition)"
+	name = "Asteroida (skład egzotyczny)"
 	icon = 'nsv13/icons/overmap/stellarbodies/asteroidfield/icefield/asteroid_ice_128x.dmi'
 	core_composition = list(/turf/closed/mineral/diamond, /turf/closed/mineral/uranium, /turf/closed/mineral/bscrystal)
 	required_tier = 3
@@ -170,31 +170,31 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	return ..()
 
 /obj/item/deepcore_upgrade
-	name = "Polytrinic non magnetic asteroid arrestor upgrade"
-	desc = "A component which, when slotted into an asteroid magnet computer, will allow it to capture increasingly valuable asteroids."
+	name = "polytriniczne ulepszenie zaczepu asteroid (metale nieżelazne)"
+	desc = "Podzespół, który po włożeniu do konsoli magnesu asteroid pozwala jej przechwytywać coraz cenniejsze asteroidy."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "minescanner_upgrade"
 	var/tier = 2
 
 /obj/item/deepcore_upgrade/max
-	name = "Phasic asteroid arrestor upgrade"
+	name = "fazowe ulepszenie zaczepu asteroid"
 	icon_state = "minescanner_upgrade_max"
 	tier = 3
 
 /obj/item/mining_sensor_upgrade
-	name = "Dradis mineral sensor upgrade (tier II)"
-	desc = "A component which, when slotted into an asteroid magnet computer, will allow it to capture increasingly valuable asteroids."
+	name = "ulepszenie czujnika minerałów DRADIS (poziom II)"
+	desc = "Podzespół, który po włożeniu do konsoli magnesu asteroid pozwala jej przechwytywać coraz cenniejsze asteroidy."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "minesensor"
 	var/tier = 2
 
 /obj/item/mining_sensor_upgrade/max
-	name = "Dradis mineral sensor upgrade (tier III)"
+	name = "ulepszenie czujnika minerałów DRADIS (poziom III)"
 	icon_state = "minesensor_max"
 	tier = 3
 
 /obj/machinery/computer/ship/mineral_magnet
-	name = "Asteroid Magnet Computer"
+	name = "konsola magnesu asteroid"
 	icon = 'nsv13/icons/obj/terminals.dmi'
 	icon_state = "magnet"
 	req_access = list(ACCESS_MINING)
@@ -260,7 +260,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 		dat += "<A href='byond://?src=\ref[src];pull_asteroid=1'>Przyciągnij asteroidę</font></A><BR>"
 	else
 		dat += "<A href='byond://?src=\ref[src];push_asteroid=1'>Odepchnij asteroidę</font></A><BR>"
-	var/datum/browser/popup = new(user, "Przyciąganie asteroid", name, 400, 500)
+	var/datum/browser/popup = new(user, "asteroid_magnet", name, 400, 500)
 	popup.set_content(dat)
 	popup.open()
 
@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 	if(href_list["pull_asteroid"])
 		pull_in_asteroid(usr)
 	if(href_list["push_asteroid"])
-		if(alert(usr, "Na pewno chcesz uwolnić obecnie trzymaną asteroidę?",name,"Yes","No") == "Yes" && Adjacent(usr))
+		if(alert(usr, "Na pewno chcesz uwolnić obecnie trzymaną asteroidę?",name,"Tak","Nie") == "Tak" && Adjacent(usr))
 			start_push()
 
 	attack_hand(usr) //Refresh window
@@ -291,7 +291,7 @@ GLOBAL_LIST_EMPTY(asteroid_spawn_markers)		//handles mining asteroids, kind of s
 		playsound(src, sound, 100, 1)
 		to_chat(user, "<span class='notice'>Nie można namierzyć żadnej asteroidy w pobliżu [linked]</span>")
 		return FALSE
-	var/obj/structure/overmap/asteroid/AS = input(usr, "Wybierz cel:", "Target") as null|anything in asteroids
+	var/obj/structure/overmap/asteroid/AS = input(usr, "Wybierz cel:", "Cel") as null|anything in asteroids
 	if(!AS || !length(AS.core_composition))
 		return FALSE
 	linked.relay('nsv13/sound/effects/ship/tractor.ogg', "<span class='warning'>DANGER: Magnet has locked on to an asteroid. Vacate the asteroid cage immediately.</span>")

@@ -1,5 +1,5 @@
 /datum/orbital_object/z_linked
-	name = "Unidentified Beacon"
+	name = "Niezidentyfikowany nadajnik"
 	collision_type = COLLISION_Z_LINKED
 	collision_flags = COLLISION_SHUTTLES
 	priority = 1
@@ -23,7 +23,7 @@
 		name = level.name
 
 /datum/orbital_object/z_linked/explode()
-	message_admins("ORBITAL BODY [name] WAS DESTROYED.")
+	message_admins("CIAŁO ORBITALNE [name] ZOSTAŁO ZNISZCZONE.")
 	log_game("Orbital body [name] was destroyed.")
 	//Holy shit this is bad.
 	for(var/mob/living/L in GLOB.mob_living_list)

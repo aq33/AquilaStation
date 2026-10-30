@@ -1,6 +1,6 @@
 
 /obj/item/reagent_containers/glass
-	name = "glass"
+	name = "szkło"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
@@ -32,7 +32,7 @@
 
 			if(isturf(target) && reagents.reagent_list.len && thrownby)
 				log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]")
-				message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] at [ADMIN_VERBOSEJMP(target)].")
+				message_admins("[ADMIN_LOOKUPFLW(thrownby)] chlusta (rzutem) [english_list(reagents.reagent_list)] na [target] w [ADMIN_VERBOSEJMP(target)].")
 			reagents.reaction(M, TOUCH)
 			log_combat(user, M, "splashed", R)
 			reagents.clear_reagents()
@@ -114,8 +114,8 @@
 
 
 /obj/item/reagent_containers/glass/beaker
-	name = "beaker"
-	desc = "A beaker. It can hold up to 50 units."
+	name = "zlewka"
+	desc = "Zlewka. Mieści do 50 j."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
@@ -130,14 +130,14 @@
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
+	name = "słoik na miód"
+	desc = "Słoik na miód. Mieści do 50 j. słodkiej rozkoszy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "vapour"
 
 /obj/item/reagent_containers/glass/beaker/large
-	name = "large beaker"
-	desc = "A large beaker. Can hold up to 100 units."
+	name = "duża zlewka"
+	desc = "Duża zlewka. Mieści do 100 j."
 	icon_state = "beakerlarge"
 	materials = list(/datum/material/glass=2500)
 	volume = 100
@@ -145,8 +145,8 @@
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
 
 /obj/item/reagent_containers/glass/beaker/plastic
-	name = "x-large beaker"
-	desc = "An extra-large beaker. Can hold up to 120 units."
+	name = "bardzo duża zlewka"
+	desc = "Bardzo duża zlewka. Mieści do 120 j."
 	icon_state = "beakerwhite"
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000)
 	volume = 120
@@ -155,8 +155,8 @@
 	fill_icon_thresholds = list(1, 10, 20, 40, 60, 80, 100) //AQUILA EDIT - own fill states, large beaker ones are Paradise now
 
 /obj/item/reagent_containers/glass/beaker/meta
-	name = "metamaterial beaker"
-	desc = "A large beaker. Can hold up to 180 units."
+	name = "zlewka z metamateriału"
+	desc = "Duża zlewka. Mieści do 180 j."
 	icon_state = "beakergold"
 	fill_icon_thresholds = list(1, 10, 25, 50, 60, 80, 100) //AQUILA EDIT
 	materials = list(/datum/material/glass=2500, /datum/material/plastic=3000, /datum/material/gold=1000, /datum/material/titanium=1000)
@@ -165,9 +165,9 @@
 	possible_transfer_amounts = list(5,10,15,20,25,30,60,120,180)
 
 /obj/item/reagent_containers/glass/beaker/noreact
-	name = "cryostasis beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without \
-		reactions. Can hold up to 50 units."
+	name = "zlewka kriostatyczna"
+	desc = "Zlewka kriostatyczna, w której chemikalia można przechowywać bez \
+		reakcji. Mieści do 50 j."
 	icon_state = "beakernoreact"
 	materials = list(/datum/material/iron=3000)
 	reagent_flags = OPENCONTAINER | NO_REACT
@@ -175,10 +175,10 @@
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/glass/beaker/bluespace
-	name = "bluespace beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology \
-		and Element Cuban combined with the Compound Pete. Can hold up to \
-		300 units."
+	name = "zlewka bluespace"
+	desc = "Zlewka bluespace, zasilana eksperymentalną technologią bluespace \
+		oraz Pierwiastkiem Kubańskim połączonym ze Związkiem Pete. Mieści do \
+		300 j."
 	icon_state = "beakerbluespace"
 	materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
 	volume = 300
@@ -195,27 +195,27 @@
 	list_reagents = list(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/styptic
-	name = "styptic reserve tank"
+	name = "zbiornik rezerwowy: proszek hemostatyczny"
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine
-	name = "silver sulfadiazine reserve tank"
+	name = "zbiornik rezerwowy: sulfadiazyna srebra"
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/charcoal
-	name = "charcoal reserve tank"
+	name = "zbiornik rezerwowy: węgiel aktywowany"
 	list_reagents = list(/datum/reagent/medicine/charcoal = 50)
 
 /obj/item/reagent_containers/glass/beaker/large/epinephrine
-	name = "epinephrine reserve tank"
+	name = "zbiornik rezerwowy: epinefryna"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 50)
 
 /obj/item/reagent_containers/glass/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 50)
 
 /obj/item/reagent_containers/glass/bucket
-	name = "bucket"
-	desc = "It's a bucket."
+	name = "wiadro"
+	desc = "To wiadro."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
@@ -281,8 +281,8 @@
 	return ..()
 
 /obj/item/reagent_containers/glass/waterbottle
-	name = "bottle of water"
-	desc = "A bottle of water filled at an old Earth bottling facility."
+	name = "butelka wody"
+	desc = "Butelka wody napełniona w starej rozlewni na Ziemi."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "smallbottle"
 	item_state = "bottle"
@@ -384,7 +384,7 @@
 	cap_on = FALSE
 
 /obj/item/reagent_containers/glass/waterbottle/large
-	desc = "A fresh commercial-sized bottle of water."
+	desc = "Świeża, duża butelka wody ze sklepu."
 	icon_state = "largebottle"
 	materials = list(/datum/material/glass=0)
 	list_reagents = list(/datum/reagent/water = 100)
@@ -397,15 +397,15 @@
 	cap_on = FALSE
 
 /obj/item/pestle
-	name = "pestle"
-	desc = "An ancient, simple tool used in conjunction with a mortar to grind or juice items."
+	name = "tłuczek"
+	desc = "Starożytne, proste narzędzie, którym razem z moździerzem miażdży się przedmioty albo wyciska z nich sok."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pestle"
 	force = 7
 
 /obj/item/reagent_containers/glass/mortar
-	name = "mortar"
-	desc = "A specially formed bowl of ancient design. It is possible to crush or juice items placed in it using a pestle; however the process, unlike modern methods, is slow and physically exhausting. Alt click to eject the item."
+	name = "moździerz"
+	desc = "Specjalnie wyprofilowana misa o starożytnym kształcie. Włożone do niej przedmioty można zmiażdżyć tłuczkiem albo wycisnąć z nich sok, ale w przeciwieństwie do nowoczesnych metod jest to powolne i męczące. Alt + klik wyjmuje przedmiot."
 	icon_state = "mortar"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50, 100)
@@ -462,6 +462,6 @@
 	to_chat(user, "<span class='danger'>Nie możesz tego utrzeć!</span>")
 
 /obj/item/reagent_containers/glass/saline
-	name = "saline canister"
+	name = "kanister soli fizjologicznej"
 	volume = 5000
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 5000)

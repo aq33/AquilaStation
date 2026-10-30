@@ -6,7 +6,7 @@
  */
 /obj/effect/dummy/lighting_obj
 	name = "lighting"
-	desc = "Tell a coder if you're seeing this."
+	desc = "Jeśli to widzisz, powiedz koderowi."
 	icon_state = "nothing"
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE

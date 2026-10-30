@@ -1,6 +1,6 @@
 /obj/structure/destructible/clockwork/gear_base
-	name = "gear base"
-	desc = "A large cog lying on the floor at feet level."
+	name = "podstawa zębatki"
+	desc = "Duża zębatka leżąca na podłodze na wysokości stóp."
 	clockwork_desc = "Duża zębatka leżąca na podłodze na wysokości stóp."
 	anchored = FALSE
 	break_message = "<span class='warning'>O, zepsuło się. Możesz to zgłosić koderom albo, no wiesz, zignorować tę wiadomość i dalej zabijać tych przeklętych heretyków, którzy idą zniszczyć Arkę.</span>"

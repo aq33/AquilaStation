@@ -1,5 +1,5 @@
 /datum/symptom/robotic_adaptation
-	name = "Biometallic Replication"
+	name = "Replikacja biometaliczna"
 	desc = "Wirus potrafi manipulować metalem i związkami krzemianowymi, zyskując zdolność zarażania istot robotycznych. Zapewnia też odpowiednie podłoże dla nanitów w nosicielach, którzy w innym razie byliby dla nich nieprzyjaźni"
 	stealth = 0
 	resistance = 1
@@ -47,7 +47,7 @@
 	switch(A.stage)
 		if(3, 4)
 			if(replaceorgans)
-				to_chat(H, "<span class='warning'><b>[pick("You feel a grinding pain in your abdomen.", "You exhale a jet of steam.")]</span>")
+				to_chat(H, "<span class='warning'><b>[pick("Czujesz zgrzytający ból w brzuchu.", "Wydychasz strumień pary.")]</span>")
 		if(5)
 			if(replaceorgans || replacebody)
 				Replace(H)
@@ -61,8 +61,8 @@
 				continue
 			switch(O.slot) //i hate doing it this way, but the cleaner way runtimes and does not work
 				if(ORGAN_SLOT_BRAIN)
-					O.name = "enigmatic gearbox"
-					O.desc ="An engineer would call this inconcievable wonder of gears and metal a 'black box'"
+					O.name = "zagadkowa przekładnia"
+					O.desc ="Inżynier nazwałby ten niewyobrażalny cud z trybików i metalu „czarną skrzynką”"
 					O.icon_state = "brain-clock"
 					O.status = ORGAN_ROBOTIC
 					O.organ_flags = ORGAN_SYNTHETIC
@@ -230,24 +230,24 @@
 
 //below this point lies all clockwork bits that make this symptom tick. no pun intended.
 /obj/item/organ/ears/robot/clockwork
-	name = "biometallic recorder"
+	name = "biometaliczny rejestrator"
 	desc = "Dziwny mikrofon, który wygląda raczej na wyhodowany niż zbudowany."
 	icon_state = "ears-clock"
 
 /obj/item/organ/eyes/robotic/clockwork
-	name = "biometallic receptors"
+	name = "biometaliczne receptory"
 	desc = "Delikatny zestaw małych, mechanicznych kamer."
 	icon_state = "clockwork_eyeballs"
 
 /obj/item/organ/heart/clockwork //this heart doesnt have the fancy bits normal cyberhearts do. However, it also doesnt fucking kill you when EMPd
-	name = "biomechanical pump"
+	name = "biomechaniczna pompa"
 	desc = "Złożona, wielozaworowa pompa hydrauliczna, która idealnie pasuje tam, gdzie normalnie jest serce."
 	icon_state = "heart-clock"
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
 
 /obj/item/organ/stomach/clockwork
-	name = "nutriment refinery"
+	name = "rafineria składników odżywczych"
 	desc = "Biomechaniczny piec, który zamienia kalorie w energię mechaniczną."
 	icon_state = "stomach-clock"
 	status = ORGAN_ROBOTIC
@@ -257,7 +257,7 @@
 	owner.adjust_nutrition(-200/severity)
 
 /obj/item/organ/stomach/battery/clockwork
-	name = "biometallic flywheel"
+	name = "biometaliczne koło zamachowe"
 	desc = "Biomechaniczna bateria, która magazynuje energię mechaniczną."
 	icon_state = "stomach-clock"
 	status = ORGAN_ROBOTIC
@@ -266,19 +266,19 @@
 	charge = 7500
 
 /obj/item/organ/tongue/robot/clockwork
-	name = "dynamic micro-phonograph"
+	name = "dynamiczny mikrofonograf"
 	desc = "Staroświecko wyglądające urządzenie połączone z dziwnym, zmieniającym się cylindrem."
 	icon_state = "tongueclock"
 
 /obj/item/organ/tongue/robot/clockwork/better
-	name = "amplified dynamic micro-phonograph"
+	name = "wzmocniony dynamiczny mikrofonograf"
 
 /obj/item/organ/tongue/robot/clockwork/better/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 	speech_args[SPEECH_SPANS] |= SPAN_REALLYBIG  //yes, this is a really really good idea, trust me
 
 /obj/item/organ/brain/clockwork
-	name = "enigmatic gearbox"
+	name = "zagadkowa przekładnia"
 	desc ="Inżynier nazwałby ten niewyobrażalny cud z trybików i metalu „czarną skrzynką”"
 	icon_state = "brain-clock"
 	status = ORGAN_ROBOTIC
@@ -298,7 +298,7 @@
 		SEND_SOUND(owner, pickweight(list('sound/effects/clock_tick.ogg' = 6, 'sound/effects/smoke.ogg' = 2, 'sound/spookoween/chain_rattling.ogg' = 1, 'sound/ambience/ambiruin3.ogg' = 1)))
 
 /obj/item/organ/liver/clockwork
-	name = "biometallic alembic"
+	name = "biometaliczny alembik"
 	desc = "Zestaw małych pomp i kotłów, zaprojektowany do wspierania prawidłowego metabolizmu."
 	icon_state = "liver-clock"
 	organ_flags = ORGAN_SYNTHETIC
@@ -308,7 +308,7 @@
 	toxTolerance = 1 //while the organ isn't damaged by doing its job, it doesnt do it very well
 
 /obj/item/organ/lungs/clockwork
-	name = "clockwork diaphragm"
+	name = "mechaniczna przepona"
 	desc = "Użytkowy miech, który pompuje tlen do ciała automatonu."
 	icon_state = "lungs-clock"
 	organ_flags = ORGAN_SYNTHETIC
@@ -316,7 +316,7 @@
 
 
 /obj/item/organ/wings/cybernetic/clockwork
-	name = "biometallic wings"
+	name = "biometaliczne skrzydła"
 	desc = "Para cienkich metalowych membran."
 	flight_level = WINGS_FLIGHTLESS
 	wing_type = "Clockwork"
@@ -325,7 +325,7 @@
 	canopen = FALSE
 
 /obj/item/organ/tail/clockwork
-	name = "biomechanical tail"
+	name = "biomechaniczny ogon"
 	desc = "Sztywny ogon z dziwnego stopu."
 	color = null
 	tail_type = "Clockwork"
@@ -348,42 +348,42 @@
 		H.update_body()
 
 /obj/item/bodypart/l_arm/robot/clockwork
-	name = "clockwork left arm"
+	name = "mechaniczna lewa ręka"
 	desc = "Dziwne metalowe ramię z palcami napędzanymi hydrauliką na krew."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
 /obj/item/bodypart/r_arm/robot/clockwork
-	name = "clockwork right arm"
+	name = "mechaniczna prawa ręka"
 	desc = "Dziwne metalowe ramię z palcami napędzanymi hydrauliką na krew."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
 /obj/item/bodypart/l_leg/robot/clockwork
-	name = "clockwork left leg"
+	name = "mechaniczna lewa noga"
 	desc = "Dziwna metalowa noga pełna misternych mechanizmów."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
 /obj/item/bodypart/r_leg/robot/clockwork
-	name = "clockwork right leg"
+	name = "mechaniczna prawa noga"
 	desc = "Dziwna metalowa noga pełna misternych mechanizmów."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
 /obj/item/bodypart/head/robot/clockwork
-	name = "clockwork head"
+	name = "mechaniczna głowa"
 	desc = "Dziwna metalowa głowa, wciąż ciepła w dotyku."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0
 	burn_reduction = 0
 
 /obj/item/bodypart/chest/robot/clockwork
-	name = "clockwork torso"
+	name = "mechaniczny tułów"
 	desc = "Dziwny metalowy tułów pełen trybików i rur. Wciąż wydaje się żywy."
 	static_icon = 'icons/mob/augmentation/augments_clockwork.dmi'
 	brute_reduction = 0

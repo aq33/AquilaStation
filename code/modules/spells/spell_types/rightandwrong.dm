@@ -126,7 +126,7 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 
 	var/in_hand = H.put_in_hands(G) // not always successful
 
-	to_chat(H, "<span class='warning'>\A [G] appears [in_hand ? "in your hand" : "at your feet"]!</span>")
+	to_chat(H, "<span class='warning'>[in_hand ? "W twojej dłoni" : "U twoich stóp"] pojawia się [G]!</span>")
 
 /proc/give_magic(mob/living/carbon/human/H)
 	if(H.stat == DEAD || !(H.client))
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 
 	var/in_hand = H.put_in_hands(M)
 
-	to_chat(H, "<span class='warning'>\A [M] appears [in_hand ? "in your hand" : "at your feet"]!</span>")
+	to_chat(H, "<span class='warning'>[in_hand ? "W twojej dłoni" : "U twoich stóp"] pojawia się [M]!</span>")
 	if(lucky)
 		to_chat(H, "<span class='notice'>Czujesz się niewiarygodnie szczęśliwy.</span>")
 
@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 /proc/rightandwrong(summon_type, mob/user, survivor_probability)
 	if(user) //in this case either someone holding a spellbook or a badmin
 		to_chat(user, "<span class='warning'>Przywołujesz: [summon_type]!</span>")
-		message_admins("[ADMIN_LOOKUPFLW(user)] summoned [summon_type]!")
+		message_admins("[ADMIN_LOOKUPFLW(user)] przywołuje: [summon_type]!")
 		log_game("[key_name(user)] summoned [summon_type]!")
 
 	if(summon_type == SUMMON_MAGIC)
@@ -190,7 +190,7 @@ GLOBAL_VAR_INIT(summon_magic_triggered, FALSE)
 			SSevents.frequency_upper = SSevents.frequency_lower
 
 		SSevents.reschedule()
-		message_admins("Summon Events intensifies, events will now occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes.")
+		message_admins("Przywołanie zdarzeń się nasila, zdarzenia będą teraz występować co [SSevents.frequency_lower / 600]–[SSevents.frequency_upper / 600] min.")
 		log_game("Summon Events was increased!")
 
 #undef SPECIALIST_MAGIC_PROB

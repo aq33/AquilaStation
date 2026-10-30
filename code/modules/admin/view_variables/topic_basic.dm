@@ -16,11 +16,11 @@
 					if("ckey")
 						var/mob/living/L = target
 						if(istype(L))
-							vv_update_display(target, "ckey", L.ckey || "No ckey")
+							vv_update_display(target, "ckey", L.ckey || "Brak ckeya")
 					if("real_name")
 						var/mob/living/L = target
 						if(istype(L))
-							vv_update_display(target, "real_name", L.real_name || "No real name")
+							vv_update_display(target, "real_name", L.real_name || "Brak prawdziwego imienia")
 			if(href_list[VV_HK_BASIC_CHANGE])
 				modify_variables(target, target_var, 0)
 			if(href_list[VV_HK_BASIC_MASSEDIT])
@@ -34,11 +34,11 @@
 		if(!C)
 			return
 		if(!target)
-			to_chat(usr, "<span class='warning'>The object you tried to expose to [C] no longer exists (nulled or hard-deled)</span>")
+			to_chat(usr, "<span class='warning'>Obiekt, który próbujesz pokazać ([C]), już nie istnieje (wyzerowany lub twardo usunięty)</span>")
 			return
-		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='byond://?_src_=vars;datumrefresh=[REF(target)]'>VV window</a>")
+		message_admins("[key_name_admin(usr)] pokazuje [key_name_admin(C)] <a href='byond://?_src_=vars;datumrefresh=[REF(target)]'>okno VV</a>")
 		log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [target]")
-		to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window")
+		to_chat(C, "[holder.fakekey ? "Administrator" : "[usr.client.key]"] daje ci dostęp do podglądu okna View Variables")
 		C.debug_variables(target)
 
 	if(check_rights(R_DEBUG) && href_list[VV_HK_DELETE])
@@ -69,11 +69,11 @@
 		names += componentsubtypes
 		names += "---Elements---"
 		names += sortList(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
-		var/result = input(usr, "Choose a component/element to add","better know what ur fuckin doin pal") as null|anything in names
+		var/result = input(usr, "Wybierz komponent/element do dodania","lepiej wiedz, co do cholery robisz, kolego") as null|anything in names
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return
 		if(QDELETED(target))
-			to_chat(usr, "That thing doesn't exist anymore!")
+			to_chat(usr, "Ta rzecz już nie istnieje!")
 			return
 		var/list/lst = get_callproc_args()
 		if(!lst)
@@ -87,7 +87,7 @@
 			datumname = "element"
 			target._AddElement(arglist(lst))
 		log_admin("[key_name(usr)] has added [result] [datumname] to [target].")
-		message_admins("<span class='notice'>[key_name_admin(usr)] has added [result] [datumname] to [target].</span>")
+		message_admins("<span class='notice'>[key_name_admin(usr)] dodaje [datumname] [result] do [target].</span>")
 
 	if(href_list[VV_HK_MODIFY_GREYSCALE] && check_rights(NONE))
 		var/datum/greyscale_modify_menu/menu = new(target, usr, SSgreyscale.configurations)

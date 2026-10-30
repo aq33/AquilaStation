@@ -1,6 +1,6 @@
 /obj/structure/dresser
-	name = "dresser"
-	desc = "A nicely-crafted wooden dresser. It's filled with lots of undies."
+	name = "komoda"
+	desc = "Starannie wykonana drewniana komoda. Jest pełna bielizny."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "dresser"
 	density = TRUE
@@ -32,25 +32,25 @@
 			to_chat(user, "<span class='warning'>Nie możesz nosić bielizny.</span>")
 			return
 
-		var/choice = input(user, "Bielizna, podkoszulek czy skarpetki?", "Changing") as null|anything in list("Underwear","Underwear Color","Undershirt","Socks")
+		var/choice = input(user, "Bielizna, podkoszulek czy skarpetki?", "Przebieranie") as null|anything in list("Bielizna","Kolor bielizny","Podkoszulek","Skarpetki")
 
 		if(!Adjacent(user))
 			return
 		switch(choice)
-			if("Underwear")
-				var/new_undies = input(user, "Wybierz bieliznę", "Changing")  as null|anything in unlocked_accessories(GLOB.underwear_list, user.client) // AQ EDIT
+			if("Bielizna")
+				var/new_undies = input(user, "Wybierz bieliznę", "Przebieranie")  as null|anything in unlocked_accessories(GLOB.underwear_list, user.client) // AQ EDIT
 				if(new_undies)
 					H.underwear = new_undies
-			if("Underwear Color")
+			if("Kolor bielizny")
 				var/new_underwear_color = tgui_color_picker(H, "Wybierz kolor bielizny", "Kolor bielizny","#"+H.underwear_color)
 				if(new_underwear_color)
 					H.underwear_color = sanitize_hexcolor(new_underwear_color)
-			if("Undershirt")
-				var/new_undershirt = input(user, "Wybierz podkoszulek", "Changing") as null|anything in unlocked_accessories(GLOB.undershirt_list, user.client) // AQ EDIT
+			if("Podkoszulek")
+				var/new_undershirt = input(user, "Wybierz podkoszulek", "Przebieranie") as null|anything in unlocked_accessories(GLOB.undershirt_list, user.client) // AQ EDIT
 				if(new_undershirt)
 					H.undershirt = new_undershirt
-			if("Socks")
-				var/new_socks = input(user, "Wybierz skarpetki", "Changing") as null|anything in unlocked_accessories(GLOB.socks_list, user.client) // AQ EDIT
+			if("Skarpetki")
+				var/new_socks = input(user, "Wybierz skarpetki", "Przebieranie") as null|anything in unlocked_accessories(GLOB.socks_list, user.client) // AQ EDIT
 				if(new_socks)
 					H.socks= new_socks
 

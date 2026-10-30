@@ -1,10 +1,10 @@
 /datum/instrument/piano
-	name = "Generic piano"
-	category = "Piano"
+	name = "Ogólne pianino"
+	category = "Fortepiany"
 	abstract_type = /datum/instrument/piano
 
 /datum/instrument/piano/fluid_piano
-	name = "FluidR3 Grand Piano"
+	name = "Fortepian (FluidR3)"
 	id = "r3grand"
 	real_samples = list("36"='sound/instruments/synthesis_samples/piano/fluid_piano/c2.ogg',
 				   "48"='sound/instruments/synthesis_samples/piano/fluid_piano/c3.ogg',
@@ -15,7 +15,7 @@
 				   "108"='sound/instruments/synthesis_samples/piano/fluid_piano/c8.ogg')
 
 /datum/instrument/piano/fluid_harpsichord
-	name = "FluidR3 Harpsichord"
+	name = "Klawesyn (FluidR3)"
 	id = "r3harpsi"
 	real_samples = list("36"='sound/instruments/synthesis_samples/piano/fluid_harpsi/c2.ogg',
 				   "48"='sound/instruments/synthesis_samples/piano/fluid_harpsi/c3.ogg',
@@ -26,7 +26,7 @@
 				   "108"='sound/instruments/synthesis_samples/piano/fluid_harpsi/c8.ogg')
 
 /datum/instrument/piano/crisis_harpsichord
-	name = "Crisis Harpsichord"
+	name = "Klawesyn (Crisis)"
 	id = "crharpsi"
 	real_samples = list("36"='sound/instruments/synthesis_samples/piano/crisis_harpsichord/c2.ogg',
 				   "48"='sound/instruments/synthesis_samples/piano/crisis_harpsichord/c3.ogg',
@@ -34,7 +34,7 @@
 				   "72"='sound/instruments/synthesis_samples/piano/crisis_harpsichord/c5.ogg')
 
 /datum/instrument/piano/crisis_grandpiano_uni
-	name = "Crisis Grand Piano One"
+	name = "Fortepian I (Crisis)"
 	id = "crgrand1"
 	real_samples = list("36"='sound/instruments/synthesis_samples/piano/crisis_grand_piano/c2.ogg',
 				   "48"='sound/instruments/synthesis_samples/piano/crisis_grand_piano/c3.ogg',
@@ -45,7 +45,7 @@
 				   "108"='sound/instruments/synthesis_samples/piano/crisis_grand_piano/c8.ogg')
 
 /datum/instrument/piano/crisis_brightpiano_uni
-	name = "Crisis Bright Piano One"
+	name = "Jasne pianino I (Crisis)"
 	id = "crbright1"
 	real_samples = list("36"='sound/instruments/synthesis_samples/piano/crisis_bright_piano/c2.ogg',
 				   "48"='sound/instruments/synthesis_samples/piano/crisis_bright_piano/c3.ogg',

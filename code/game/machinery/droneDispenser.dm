@@ -3,8 +3,8 @@
 #define DRONE_READY "ready"
 
 /obj/machinery/droneDispenser //Most customizable machine 2015
-	name = "drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a drone shell. Does not need to be manually operated."
+	name = "dozownik skorup dronów"
+	desc = "Masywna maszyna, która zasilana żelazem i szkłem co jakiś czas tworzy skorupę drona. Nie wymaga ręcznej obsługi."
 
 	icon = 'icons/obj/machines/droneDispenser.dmi'
 	icon_state = "on"
@@ -42,7 +42,7 @@
 
 	var/begin_create_message = "budzi się do życia!"
 	var/end_create_message = "wydaje powłokę drona."
-	var/recharge_message = "pings."
+	var/recharge_message = "piszczy."
 	var/recharging_text = "Warczy i klika. Wygląda na to, że się ładuje."
 
 	var/break_message = "wydaje cienki alarm, po czym gaśnie."
@@ -63,8 +63,8 @@
 	starting_amount = 5000
 
 /obj/machinery/droneDispenser/syndrone //Please forgive me
-	name = "syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting."
+	name = "dozownik skorup syndronów"
+	desc = "Podejrzana maszyna, która zasilana żelazem i szkłem tworzy drony eksterminacyjne Syndykatu. Obrzydliwe."
 	dispense_type = /obj/effect/mob_spawn/drone/syndrone
 	//If we're gonna be a jackass, go the full mile - 10 second recharge timer
 	cooldownTime = 100
@@ -72,15 +72,15 @@
 	starting_amount = 25000
 
 /obj/machinery/droneDispenser/syndrone/badass //Please forgive me
-	name = "badass syndrone shell dispenser"
-	desc = "A suspicious machine that will create Syndicate exterminator drones when supplied with iron and glass. Disgusting. This one seems ominous."
+	name = "twardzielski dozownik skorup syndronów"
+	desc = "Podejrzana maszyna, która zasilana żelazem i szkłem tworzy drony eksterminacyjne Syndykatu. Obrzydliwe. Ta wygląda złowieszczo."
 	dispense_type = /obj/effect/mob_spawn/drone/syndrone/badass
 	end_create_message = "wydaje złowieszczą, podejrzaną powłokę drona."
 
 // I don't need your forgiveness, this is awesome.
 /obj/machinery/droneDispenser/snowflake
-	name = "snowflake drone shell dispenser"
-	desc = "A hefty machine that, when supplied with iron and glass, will periodically create a snowflake drone shell. Does not need to be manually operated."
+	name = "dozownik skorup dronów-płatków śniegu"
+	desc = "Masywna maszyna, która zasilana żelazem i szkłem co jakiś czas tworzy skorupę drona-płatka śniegu. Nie wymaga ręcznej obsługi."
 	dispense_type = /obj/effect/mob_spawn/drone/snowflake
 	end_create_message = "wydaje wyjątkową powłokę drona."
 	// Those holoprojectors aren't cheap
@@ -92,8 +92,8 @@
 // An example of a custom drone dispenser.
 // This one requires no materials and creates basic hivebots
 /obj/machinery/droneDispenser/hivebot
-	name = "hivebot fabricator"
-	desc = "A large, bulky machine that whirs with activity, steam hissing from vents in its sides."
+	name = "fabrykator hivebotów"
+	desc = "Duża, nieporęczna maszyna, która warczy pracą, a z otworów w jej bokach syczy para."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "hivebot_fab"
 	icon_off = "hivebot_fab"
@@ -111,8 +111,8 @@
 	recharge_message = null
 
 /obj/machinery/droneDispenser/swarmer
-	name = "swarmer fabricator"
-	desc = "An alien machine of unknown origin. It whirs and hums with green-blue light, the air above it shimmering."
+	name = "fabrykator swarmerów"
+	desc = "Obca maszyna nieznanego pochodzenia. Warczy i buczy zielononiebieskim światłem, a powietrze nad nią migocze."
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "toffcenter"
 	icon_off = "toffcenter"
@@ -232,7 +232,7 @@
 			return
 
 		user.visible_message(
-			"<span class='notice'>[user] fixes [src]!</span>",
+			"<span class='notice'>[user] naprawia [src]!</span>",
 			"<span class='notice'>Przywracasz [src] do działania.</span>")
 
 		set_machine_stat(machine_stat & ~BROKEN)

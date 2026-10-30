@@ -1,13 +1,13 @@
 /client/verb/setup_character()
 	set name = "Preferencje Gry"
 	set category = "Preferences"
-	set desc = "Open Game Preferences Window"
+	set desc = "Otwórz okno preferencji gry"
 	prefs.open_game_menu(usr) // AQ EDIT - port BeeStation #8776: okno PreferencesMenu zamiast ShowChoices
 
 /client/verb/toggle_ghost_ears()
 	set name = "Pokaż/Ukryj GhostEars"
 	set category = "Preferences"
-	set desc = "See All Speech"
+	set desc = "Słyszenie wszystkich rozmów"
 	prefs.chat_toggles ^= CHAT_GHOSTEARS
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTEARS) ? "widział wiadomości z całej gry" : "widział wiadomości tylko obok ciebie"].")
 	prefs.save_preferences()
@@ -16,7 +16,7 @@
 /client/verb/toggle_ghost_sight()
 	set name = "Pokaż/Ukryj GhostSight"
 	set category = "Preferences"
-	set desc = "See All Emotes"
+	set desc = "Widzenie wszystkich emotek"
 	prefs.chat_toggles ^= CHAT_GHOSTSIGHT
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTSIGHT) ? "widział emotikony z całej gry" : "widział emotikony tylko obok ciebie"].")
 	prefs.save_preferences()
@@ -25,7 +25,7 @@
 /client/verb/toggle_ghost_whispers()
 	set name = "Pokaż/Ukryj GhostWhispers"
 	set category = "Preferences"
-	set desc = "See All Whispers"
+	set desc = "Słyszenie wszystkich szeptów"
 	prefs.chat_toggles ^= CHAT_GHOSTWHISPER
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTWHISPER) ? "widział szepty z całej gry" : "widział szepty tylko obok ciebie"].")
 	prefs.save_preferences()
@@ -34,7 +34,7 @@
 /client/verb/toggle_ghost_radio()
 	set name = "Pokaż/Ukryj GhostRadio"
 	set category = "Preferences"
-	set desc = "See All Radio Chatter"
+	set desc = "Słyszenie całej komunikacji radiowej"
 	prefs.chat_toggles ^= CHAT_GHOSTRADIO
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTRADIO) ? "widział wiadomości radiowe" : "nie widział wiadomości radiowych"].")
 	prefs.save_preferences()
@@ -43,7 +43,7 @@
 /client/verb/toggle_ghost_pda()
 	set name = "Pokaż/Ukryj GhostPDA"
 	set category = "Preferences"
-	set desc = "See All PDA Messages"
+	set desc = "Widzenie wszystkich wiadomości PDA"
 	prefs.chat_toggles ^= CHAT_GHOSTPDA
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTPDA) ? "widział wiadomości PDA z całej gry" : "widział wiadomości PDA tylko obok ciebie"].")
 	prefs.save_preferences()
@@ -52,7 +52,7 @@
 /client/verb/toggle_ghost_laws()
 	set name = "Pokaż/Ukryj GhostLaws"
 	set category = "Preferences"
-	set desc = "See All Law Changes"
+	set desc = "Widzenie wszystkich zmian praw"
 	prefs.chat_toggles ^= CHAT_GHOSTLAWS
 	to_chat(usr, "Jako duch, będziesz teraz [(prefs.chat_toggles & CHAT_GHOSTLAWS) ? "powiadamiany o zmianach w prawie AI" : "nie powiadamiany o zmianach w prawie AI"].")
 	prefs.save_preferences()
@@ -62,7 +62,7 @@
 /client/verb/toggle_deathrattle()
 	set name = "Toggle Deathrattle"
 	set category = "Preferences"
-	set desc = "Death"
+	set desc = "Śmierć"
 	prefs.toggles ^= PREFTOGGLE_DISABLE_DEATHRATTLE
 	prefs.save_preferences()
 	to_chat(usr, "[(prefs.toggles & PREFTOGGLE_DISABLE_DEATHRATTLE) ? "Nie będziesz już dostawać" : "Będziesz teraz dostawać"] powiadomień o śmierci świadomych istot.")
@@ -71,7 +71,7 @@
 /client/verb/toggle_arrivalrattle()
 	set name = "Toggle Arrivalrattle"
 	set category = "Preferences"
-	set desc = "New Player Arrival"
+	set desc = "Przybycie nowego gracza"
 	prefs.toggles ^= PREFTOGGLE_DISABLE_ARRIVALRATTLE
 	to_chat(usr, "[(prefs.toggles & PREFTOGGLE_DISABLE_ARRIVALRATTLE) ? "Nie będziesz już dostawać" : "Będziesz teraz dostawać"] powiadomień o dołączeniu kogoś do statku.")
 	prefs.save_preferences()
@@ -122,7 +122,7 @@
 /client/verb/Toggle_Soundscape()
 	set name = "Hear/Silence Ambience"
 	set category = "Preferences"
-	set desc = "Hear Ambient Sound Effects"
+	set desc = "Słyszenie dźwięków otoczenia"
 	prefs.toggles ^= PREFTOGGLE_SOUND_AMBIENCE
 	prefs.save_preferences()
 	if(prefs.toggles & PREFTOGGLE_SOUND_AMBIENCE)
@@ -227,14 +227,14 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 			O.ghost_orbit = new_orbit
 
 /client/proc/pick_ghost_accs()
-	var/new_ghost_accs = alert("Czy twój duch ma pokazywać wszystkie dodatki, gdy to możliwe, ukrywać dodatki, ale nadal używać sprite'ów kierunkowych, czy ignorować kierunki i używać domyślnych sprite'ów?",,"full accessories", "only directional sprites", "default sprites")
+	var/new_ghost_accs = alert("Czy twój duch ma pokazywać wszystkie dodatki, gdy to możliwe, ukrywać dodatki, ale nadal używać sprite'ów kierunkowych, czy ignorować kierunki i używać domyślnych sprite'ów?",,"Wszystkie dodatki", "Tylko kierunkowe", "Domyślne sprite'y")
 	if(new_ghost_accs)
 		switch(new_ghost_accs)
-			if("full accessories")
+			if("Wszystkie dodatki")
 				prefs.ghost_accs = GHOST_ACCS_FULL
-			if("only directional sprites")
+			if("Tylko kierunkowe")
 				prefs.ghost_accs = GHOST_ACCS_DIR
-			if("default sprites")
+			if("Domyślne sprite'y")
 				prefs.ghost_accs = GHOST_ACCS_NONE
 		prefs.save_preferences()
 		if(isobserver(mob))
@@ -244,14 +244,14 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/verb/pick_ghost_customization()
 	set name = "Ghost Customization"
 	set category = "Preferences"
-	set desc = "Customize your ghastly appearance."
+	set desc = "Dostosuj swój upiorny wygląd."
 	if(is_content_unlocked())
-		switch(alert("Które ustawienie chcesz zmienić?",,"Ghost Form","Ghost Orbit","Ghost Accessories"))
-			if("Ghost Form")
+		switch(alert("Które ustawienie chcesz zmienić?",,"Wygląd ducha","Orbita ducha","Dodatki ducha"))
+			if("Wygląd ducha")
 				pick_form()
-			if("Ghost Orbit")
+			if("Orbita ducha")
 				pick_ghost_orbit()
-			if("Ghost Accessories")
+			if("Dodatki ducha")
 				pick_ghost_accs()
 	else
 		pick_ghost_accs()
@@ -259,15 +259,15 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/verb/pick_ghost_others()
 	set name = "Ghosts of Others"
 	set category = "Preferences"
-	set desc = "Change display settings for the ghosts of other players."
-	var/new_ghost_others = alert("Czy duchy innych mają wyglądać tak, jak sobie ustawili, jako ich domyślne sprite'y, czy zawsze jako domyślny biały duch?",,"Their Setting", "Default Sprites", "White Ghost")
+	set desc = "Zmień sposób wyświetlania duchów innych graczy."
+	var/new_ghost_others = alert("Czy duchy innych mają wyglądać tak, jak sobie ustawili, jako ich domyślne sprite'y, czy zawsze jako domyślny biały duch?",,"Ich ustawienie", "Domyślne sprite'y", "Biały duch")
 	if(new_ghost_others)
 		switch(new_ghost_others)
-			if("Their Setting")
+			if("Ich ustawienie")
 				prefs.ghost_others = GHOST_OTHERS_THEIR_SETTING
-			if("Default Sprites")
+			if("Domyślne sprite'y")
 				prefs.ghost_others = GHOST_OTHERS_DEFAULT_SPRITE
-			if("White Ghost")
+			if("Biały duch")
 				prefs.ghost_others = GHOST_OTHERS_SIMPLE
 		prefs.save_preferences()
 		if(isobserver(mob))
@@ -277,16 +277,16 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/verb/toggle_intent_style()
 	set name = "Toggle Intent Selection Style"
 	set category = "Preferences"
-	set desc = "Toggle between directly clicking the desired intent or clicking to rotate through."
+	set desc = "Przełącz między wybieraniem intencji bezpośrednim kliknięciem a przełączaniem ich po kolei."
 	prefs.toggles ^= PREFTOGGLE_INTENT_STYLE
-	to_chat(src, "[(prefs.toggles & PREFTOGGLE_INTENT_STYLE) ? "Clicking directly on intents selects them." : "Clicking on intents rotates selection clockwise."]")
+	to_chat(src, "[(prefs.toggles & PREFTOGGLE_INTENT_STYLE) ? "Kliknięcie intencji wybiera ją bezpośrednio." : "Kliknięcie intencji przełącza je po kolei zgodnie z ruchem wskazówek zegara."]")
 	prefs.save_preferences()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Intent Selection", "[prefs.toggles & PREFTOGGLE_INTENT_STYLE ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_hud_pref()
 	set name = "Toggle Ghost HUD"
 	set category = "Preferences"
-	set desc = "Hide/Show Ghost HUD"
+	set desc = "Ukryj/pokaż HUD ducha"
 
 	prefs.toggles2 ^= PREFTOGGLE_2_GHOST_HUD
 	to_chat(src, "HUD ducha będzie teraz [(prefs.toggles2 & PREFTOGGLE_2_GHOST_HUD) ? "widoczny" : "ukryty"].")
@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/verb/toggle_show_credits()
 	set name = "Toggle Credits"
 	set category = "Preferences"
-	set desc = "Hide/Show Credits"
+	set desc = "Ukryj/pokaż napisy końcowe"
 
 	prefs.toggles2 ^= PREFTOGGLE_2_SHOW_CREDITS
 	to_chat(src, "Napisy końcowe będą teraz [prefs.toggles2 & PREFTOGGLE_2_SHOW_CREDITS ? "widoczne" : "ukryte"].")
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"
-	set desc = "Sets whether your ghost examines everything on click by default"
+	set desc = "Ustala, czy twój duch domyślnie ogląda wszystko, co kliknie"
 	set category = "Preferences"
 
 	prefs.toggles2 ^= PREFTOGGLE_2_GHOST_INQUISITIVENESS
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/toggleadminhelpsound()
 	set name = "Hear/Silence Adminhelps"
 	set category = "Prefs - Admin"
-	set desc = "Toggle hearing a notification when admin PMs are received"
+	set desc = "Włącz lub wyłącz dźwięk powiadomienia przy nowych PM od adminów"
 	if(!holder)
 		return
 	prefs.toggles ^= PREFTOGGLE_SOUND_ADMINHELP
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/toggleannouncelogin()
 	set name = "Do/Don't Announce Login"
 	set category = "Prefs - Admin"
-	set desc = "Toggle if you want an announcement to admins when you login during a round"
+	set desc = "Włącz lub wyłącz powiadamianie adminów o twoim zalogowaniu w trakcie rundy"
 	if(!holder)
 		return
 	prefs.toggles ^= PREFTOGGLE_ANNOUNCE_LOGIN
@@ -344,7 +344,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/toggle_hear_radio()
 	set name = "Show/Hide Radio Chatter"
 	set category = "Prefs - Admin"
-	set desc = "Toggle seeing radiochatter from nearby radios and speakers"
+	set desc = "Włącz lub wyłącz rozmowy z pobliskich radioodbiorników i głośników"
 	if(!holder)
 		return
 	prefs.chat_toggles ^= CHAT_RADIO
@@ -355,7 +355,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/deadchat()
 	set name = "Show/Hide Deadchat"
 	set category = "Prefs - Admin"
-	set desc ="Toggles seeing deadchat"
+	set desc ="Włącza lub wyłącza widoczność deadchatu"
 	if(!holder)
 		return
 	prefs.chat_toggles ^= CHAT_DEAD
@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/toggleprayers()
 	set name = "Show/Hide Prayers"
 	set category = "Prefs - Admin"
-	set desc = "Toggles seeing prayers"
+	set desc = "Włącza lub wyłącza widoczność modlitw"
 	if(!holder)
 		return
 	prefs.chat_toggles ^= CHAT_PRAYER
@@ -377,7 +377,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/toggle_prayer_sound()
 	set name = "Hear/Silence Prayer Sounds"
 	set category = "Prefs - Admin"
-	set desc = "Hear Prayer Sounds"
+	set desc = "Słyszenie dźwięków modlitw"
 	if(!holder)
 		return
 	prefs.toggles ^= PREFTOGGLE_SOUND_PRAYERS
@@ -388,7 +388,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 /client/proc/colorasay()
 	set name = "Set Admin Say Color"
 	set category = "Prefs - Admin"
-	set desc = "Set the color of your ASAY messages"
+	set desc = "Ustaw kolor swoich wiadomości ASAY"
 	if(!holder)
 		return
 	if(!CONFIG_GET(flag/allow_admin_asaycolor))
@@ -403,7 +403,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 
 /client/proc/resetasaycolor()
 	set name = "Reset your Admin Say Color"
-	set desc = "Returns your ASAY Color to default"
+	set desc = "Przywraca domyślny kolor ASAY"
 	set category = "Prefs - Admin"
 	if(!holder)
 		return

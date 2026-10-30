@@ -1,5 +1,5 @@
 /obj/item/projectile/gravityrepulse
-	name = "repulsion bolt"
+	name = "pocisk odpychający"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/weapons/wave.ogg'
@@ -34,7 +34,7 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/item/projectile/gravityattract
-	name = "attraction bolt"
+	name = "pocisk przyciągający"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/weapons/wave.ogg'
@@ -68,7 +68,7 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/item/projectile/gravitychaos
-	name = "gravitational blast"
+	name = "podmuch grawitacyjny"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "chronofield"
 	hitsound = 'sound/weapons/wave.ogg'

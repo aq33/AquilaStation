@@ -4,7 +4,7 @@
 ///////////////// Booze & Bottles ///////////////////
 
 /datum/crafting_recipe/lizardwine
-	name = "Lizard Wine"
+	name = "butelka wina jaszczurczego"
 	time = 40
 	reqs = list(
 		/obj/item/organ/tail/lizard = 1,
@@ -14,7 +14,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/moonshinejug
-	name = "Moonshine Jug"
+	name = "dzbanek samogonu"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -24,7 +24,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/hoochbottle
-	name = "Hooch Bottle"
+	name = "butelka bimbru"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -35,7 +35,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/blazaambottle
-	name = "Blazaam Bottle"
+	name = "butelka Blazaam"
 	time = 20
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -45,7 +45,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/champagnebottle
-	name = "Champagne Bottle"
+	name = "butelka szampana"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -55,7 +55,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/trappistbottle
-	name = "Trappist Bottle"
+	name = "butelka piwa trapistów"
 	time = 15
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank/small = 1,
@@ -65,7 +65,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/goldschlagerbottle
-	name = "Goldschlager Bottle"
+	name = "butelka goldschlägera"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -75,7 +75,7 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/patronbottle
-	name = "Patron Bottle"
+	name = "butelka Patrona"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -87,7 +87,7 @@
 ////////////////////// Non-alcoholic recipes ///////////////////
 
 /datum/crafting_recipe/holybottle
-	name = "Holy Water Flask"
+	name = "flaszka wody święconej"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -99,7 +99,7 @@
 //flask of unholy water is a beaker for some reason, I will try making it a bottle and add it here once the antag freeze is over. t. kryson
 
 /datum/crafting_recipe/nothingbottle
-	name = "Nothing Bottle"
+	name = "butelka niczego"
 	time = 30
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/bottle/blank = 1,
@@ -109,14 +109,14 @@
 	category = CAT_DRINK
 
 /datum/crafting_recipe/smallcarton
-	name = "Small Carton"
+	name = "mały karton"
 	result = /obj/item/reagent_containers/food/drinks/sillycup/smallcarton
 	time = 10
 	reqs = list(/obj/item/stack/sheet/cardboard = 1)
 	category = CAT_DRINK
 
 /datum/crafting_recipe/honeycomb
-	name = "Honeycomb"
+	name = "plaster miodu"
 	result = /obj/item/reagent_containers/food/drinks/honeycomb
 	always_available = FALSE
 	time = 30

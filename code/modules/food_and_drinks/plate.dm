@@ -1,6 +1,6 @@
 /obj/item/plate
-	name = "plate"
-	desc = "Holds food. Powerful. Good for morale when you're not eating your spaghetti off of a desk."
+	name = "talerz"
+	desc = "Trzyma jedzenie. Potężne. Dobre dla morale, kiedy nie jesz spaghetti prosto z biurka."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "plate"
 	w_class = WEIGHT_CLASS_BULKY //No backpack.
@@ -67,23 +67,23 @@
 	ItemRemovedFromPlate(moved_item)
 
 /obj/item/plate/large
-	name = "buffet plate"
-	desc = "A large plate made for the professional catering industry but also apppreciated by mukbangers and other persons of considerable size and heft."
+	name = "półmisek"
+	desc = "Duży talerz dla profesjonalnego cateringu, ceniony też przez mukbangerów i inne osoby o pokaźnych rozmiarach i wadze."
 	icon_state = "plate_large"
 	max_items = 12
 	max_x_offset = 8
 	max_height_offset = 12
 
 /obj/item/plate/small
-	name = "appetizer plate"
-	desc = "A small plate, perfect for appetizers, desserts or trendy modern cusine."
+	name = "talerzyk deserowy"
+	desc = "Mały talerzyk, idealny na przystawki, desery albo modną nowoczesną kuchnię."
 	icon_state = "plate_small"
 	max_items = 4
 	max_x_offset = 4
 	max_height_offset = 5
 
 /obj/item/plate_shard
-	name = "ceramic shard"
+	name = "ceramiczny odłamek"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "plate_shard1"
 	force = 5

@@ -25,8 +25,8 @@ To add a crossbreed:
 \*==========================================*/
 
 /obj/item/slimecross //The base type for crossbred extracts. Mostly here for posterity, and to set base case things.
-	name = "crossbred slime extract"
-	desc = "An extremely potent slime extract, formed through crossbreeding."
+	name = "krzyżówkowy ekstrakt szlamu"
+	desc = "Niezwykle silny ekstrakt szlamu powstały przez krzyżowanie."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "base"
 	var/colour = "null"
@@ -45,7 +45,9 @@ To add a crossbreed:
 
 /obj/item/slimecross/Initialize(mapload)
 	. = ..()
-	name =  effect + " " + colour + " extract"
+	var/static/list/effect_pl = list("burning" = "płonący", "charged" = "naładowany", "chilling" = "mrożący", "consuming" = "pożerający", "crystalline" = "krystaliczny", "gentle" = "łagodny", "industrial" = "przemysłowy", "prismatic" = "pryzmatyczny", "recurring" = "odnawialny", "regenerative" = "regeneracyjny", "reproductive" = "rozrodczy", "self-sustaining" = "samowystarczalny", "stabilized" = "ustabilizowany", "transformative" = "przemieniający", "warping" = "zakrzywiający")
+	var/static/list/colour_pl = list("grey" = "szary", "orange" = "pomarańczowy", "purple" = "fioletowy", "blue" = "niebieski", "metal" = "metalowy", "yellow" = "żółty", "dark purple" = "ciemnofioletowy", "dark blue" = "ciemnoniebieski", "silver" = "srebrny", "bluespace" = "bluespace", "sepia" = "sepiowy", "cerulean" = "lazurowy", "pyrite" = "pirytowy", "red" = "czerwony", "green" = "zielony", "pink" = "różowy", "gold" = "złoty", "oil" = "naftowy", "black" = "czarny", "light pink" = "jasnoróżowy", "adamantine" = "adamantytowy", "rainbow" = "tęczowy")
+	name = "[effect_pl[effect] || effect] ekstrakt ([colour_pl[colour] || colour])"
 	var/itemcolor = "#FFFFFF"
 	switch(colour)
 		if("orange")
@@ -91,8 +93,8 @@ To add a crossbreed:
 	add_atom_colour(itemcolor, FIXED_COLOUR_PRIORITY)
 
 /obj/item/slimecrossbeaker //To be used as a result for extract reactions that make chemicals.
-	name = "result extract"
-	desc = "You shouldn't see this."
+	name = "ekstrakt wynikowy"
+	desc = "Nie powinieneś tego widzieć."
 	icon = 'icons/obj/slimecrossing.dmi'
 	icon_state = "base"
 	var/del_on_empty = TRUE
@@ -117,20 +119,20 @@ To add a crossbreed:
 		qdel(src)
 
 /obj/item/slimecrossbeaker/bloodpack //Pack of 50u blood. Deletes on empty.
-	name = "blood extract"
-	desc = "A sphere of liquid blood, somehow managing to stay together."
+	name = "ekstrakt krwi"
+	desc = "Kula płynnej krwi, która jakimś cudem się nie rozpada."
 	color = "#FF0000"
 	list_reagents = list(/datum/reagent/blood = 50)
 
 /obj/item/slimecrossbeaker/pax //5u synthpax.
-	name = "peace-inducing extract"
-	desc = "A small blob of synthetic pax."
+	name = "ekstrakt pokoju"
+	desc = "Mała kropla syntetycznego paksu."
 	color = "#FFCCCC"
 	list_reagents = list(/datum/reagent/pax/peaceborg = 5)
 
 /obj/item/slimecrossbeaker/omnizine //15u omnizine.
-	name = "healing extract"
-	desc = "A gelatinous extract of pure omnizine."
+	name = "ekstrakt leczniczy"
+	desc = "Galaretowaty ekstrakt czystej omnizyny."
 	color = "#FF00FF"
 	list_reagents = list(/datum/reagent/medicine/omnizine = 15)
 
@@ -163,22 +165,22 @@ To add a crossbreed:
 
 /obj/item/slimecrossbeaker/autoinjector/regenpack
 	ignore_flags = TRUE //It is, after all, intended to heal.
-	name = "mending solution"
-	desc = "A strange glob of sweet-smelling semifluid, which seems to stick to skin rather easily."
+	name = "roztwór gojący"
+	desc = "Dziwna grudka słodko pachnącej półpłynnej mazi, która bardzo łatwo przykleja się do skóry."
 	color = "#FF00FF"
 	list_reagents = list(/datum/reagent/medicine/regen_jelly = 20)
 
 /obj/item/slimecrossbeaker/autoinjector/slimejelly //Primarily for slimepeople, but you do you.
 	self_use_only = TRUE
 	ignore_flags = TRUE
-	name = "slime jelly bubble"
-	desc = "A sphere of slime jelly. It seems to stick to your skin, but avoids other surfaces."
+	name = "bańka galaretki ze szlamu"
+	desc = "Kula galaretki ze szlamu. Przykleja się do skóry, ale omija inne powierzchnie."
 	color = "#00FF00"
 	list_reagents = list(/datum/reagent/toxin/slimejelly = 50)
 
 /obj/item/slimecrossbeaker/autoinjector/peaceandlove
-	name = "peaceful distillation"
-	desc = "A light pink gooey sphere. Simply touching it makes you a little dizzy."
+	name = "destylat spokoju"
+	desc = "Jasnoróżowa, lepka kula. Samo dotknięcie przyprawia o lekkie zawroty głowy."
 	color = "#DDAAAA"
 	list_reagents = list(/datum/reagent/pax/peaceborg = 10, /datum/reagent/drug/space_drugs = 15) //Peace, dudes
 
@@ -187,7 +189,7 @@ To add a crossbreed:
 	reagents.flags = NONE // It won't be *that* easy to get your hands on pax.
 
 /obj/item/slimecrossbeaker/autoinjector/slimestimulant
-	name = "invigorating gel"
-	desc = "A bubbling purple mixture, designed to heal and boost movement."
+	name = "żel orzeźwiający"
+	desc = "Bulgocząca fioletowa mieszanka, która leczy i przyspiesza ruchy."
 	color = "#FF00FF"
 	list_reagents = list(/datum/reagent/medicine/regen_jelly = 30, /datum/reagent/drug/methamphetamine = 9)

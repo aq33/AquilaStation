@@ -8,12 +8,12 @@
 /**********************Mineral ores**************************/
 
 /obj/item/stack/ore
-	name = "rock"
+	name = "skała"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore"
 	item_state = "ore"
 	full_w_class = WEIGHT_CLASS_BULKY
-	singular_name = "ore chunk"
+	singular_name = "bryła rudy"
 	var/points = 0 //How many points this ore gets you from the ore redemption machine
 	var/refined_type = null //What this ore defaults to being refined into
 	novariants = TRUE // Ore stacks handle their icon updates themselves to keep the illusion that there's more going
@@ -66,10 +66,10 @@
 			qdel(src)
 
 /obj/item/stack/ore/uranium
-	name = "uranium ore"
+	name = "ruda uranu"
 	icon_state = "Uranium ore"
 	item_state = "Uranium ore"
-	singular_name = "uranium ore chunk"
+	singular_name = "bryła rudy uranu"
 	points = 30
 	materials = list(/datum/material/uranium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/uranium
@@ -77,10 +77,10 @@
 	spreadChance = 5
 
 /obj/item/stack/ore/iron
-	name = "iron ore"
+	name = "ruda żelaza"
 	icon_state = "Iron ore"
 	item_state = "Iron ore"
-	singular_name = "iron ore chunk"
+	singular_name = "bryła rudy żelaza"
 	points = 1
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/iron
@@ -88,10 +88,10 @@
 	spreadChance = 20
 
 /obj/item/stack/ore/glass
-	name = "sand pile"
+	name = "kupka piasku"
 	icon_state = "Glass ore"
 	item_state = "Glass ore"
-	singular_name = "sand pile"
+	singular_name = "kupka piasku"
 	points = 1
 	materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/glass
@@ -99,7 +99,7 @@
 
 GLOBAL_LIST_INIT(sand_recipes, list(\
 		new /datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50),\
-		new /datum/stack_recipe("aesthetic volcanic floor tile", /obj/item/stack/tile/basalt, 2, 1, 50)\
+		new /datum/stack_recipe("ozdobna płytka z wulkanicznej posadzki", /obj/item/stack/tile/basalt, 2, 1, 50)\
 ))
 
 /obj/item/stack/ore/glass/Initialize(mapload, new_amount, merge = TRUE)
@@ -125,16 +125,16 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	qdel(src)
 
 /obj/item/stack/ore/glass/basalt
-	name = "volcanic ash"
+	name = "popiół wulkaniczny"
 	icon_state = "volcanic_sand"
 	icon_state = "volcanic_sand"
-	singular_name = "volcanic ash pile"
+	singular_name = "kupka popiołu wulkanicznego"
 
 /obj/item/stack/ore/plasma
-	name = "plasma ore"
+	name = "ruda plazmy"
 	icon_state = "Plasma ore"
 	item_state = "Plasma ore"
-	singular_name = "plasma ore chunk"
+	singular_name = "bryła rudy plazmy"
 	points = 15
 	materials = list(/datum/material/plasma=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
@@ -146,10 +146,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	return TRUE
 
 /obj/item/stack/ore/copper
-	name = "copper ore"
+	name = "ruda miedzi"
 	icon_state = "copper_ore"
 	item_state = "Copper ore"
-	singular_name = "Copper ore chunk"
+	singular_name = "bryła rudy miedzi"
 	points = 5
 	materials = list(/datum/material/copper=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/copper
@@ -157,10 +157,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	spreadChance = 5
 
 /obj/item/stack/ore/silver
-	name = "silver ore"
+	name = "ruda srebra"
 	icon_state = "Silver ore"
 	item_state = "Silver ore"
-	singular_name = "silver ore chunk"
+	singular_name = "bryła rudy srebra"
 	points = 16
 	materials = list(/datum/material/silver=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/silver
@@ -168,10 +168,10 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	spreadChance = 5
 
 /obj/item/stack/ore/gold
-	name = "gold ore"
+	name = "ruda złota"
 	icon_state = "Gold ore"
 	icon_state = "Gold ore"
-	singular_name = "gold ore chunk"
+	singular_name = "bryła rudy złota"
 	points = 18
 	materials = list(/datum/material/gold=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/gold
@@ -179,30 +179,30 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	spreadChance = 5
 
 /obj/item/stack/ore/diamond
-	name = "diamond ore"
+	name = "ruda diamentów"
 	icon_state = "Diamond ore"
 	item_state = "Diamond ore"
-	singular_name = "diamond ore chunk"
+	singular_name = "bryła rudy diamentów"
 	points = 50
 	materials = list(/datum/material/diamond=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/diamond
 	scan_state = "rock_Diamond"
 
 /obj/item/stack/ore/bananium
-	name = "bananium ore"
+	name = "ruda bananium"
 	icon_state = "Bananium ore"
 	item_state = "Bananium ore"
-	singular_name = "bananium ore chunk"
+	singular_name = "bryła rudy bananium"
 	points = 60
 	materials = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/bananium
 	scan_state = "rock_Bananium"
 
 /obj/item/stack/ore/titanium
-	name = "titanium ore"
+	name = "ruda tytanu"
 	icon_state = "Titanium ore"
 	item_state = "Titanium ore"
-	singular_name = "titanium ore chunk"
+	singular_name = "bryła rudy tytanu"
 	points = 50
 	materials = list(/datum/material/titanium=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/titanium
@@ -210,15 +210,15 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	spreadChance = 5
 
 /obj/item/stack/ore/slag
-	name = "slag"
-	desc = "Completely useless."
+	name = "żużel"
+	desc = "Całkowicie bezużyteczny."
 	icon_state = "slag"
 	item_state = "slag"
-	singular_name = "slag chunk"
+	singular_name = "bryła żużlu"
 
 /obj/item/gibtonite
-	name = "gibtonite ore"
-	desc = "Extremely explosive if struck with mining equipment, Gibtonite is often used by miners to speed up their work by using it as a mining charge. This material is illegal to possess by unauthorized personnel under space law."
+	name = "ruda gibtonitu"
+	desc = "Gibtonit jest niezwykle wybuchowy, gdy uderzy się go sprzętem górniczym, więc górnicy często używają go jako ładunku, żeby przyspieszyć pracę. Według prawa kosmicznego posiadanie tego materiału przez nieupoważniony personel jest nielegalne."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "Gibtonite ore"
 	item_state = "Gibtonite ore"
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		else if(triggered_by == 2)
 			var/turf/bombturf = get_turf(src)
 			if(notify_admins)
-				message_admins("A signal has triggered a [name] to detonate at [ADMIN_VERBOSEJMP(bombturf)]. Igniter attacher: [ADMIN_LOOKUPFLW(attacher)]")
+				message_admins("Sygnał wywołuje detonację: [name] w [ADMIN_VERBOSEJMP(bombturf)]. Przyczepił zapalnik: [ADMIN_LOOKUPFLW(attacher)]")
 			var/bomb_message = "A signal has primed a [name] for detonation at [AREACOORD(bombturf)]. Igniter attacher: [key_name(attacher)]."
 			log_game(bomb_message)
 			GLOB.bombers += bomb_message
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 // This is the only way to make coins that are possible to produce on station actually worth anything.
 /obj/item/coin
 	icon = 'icons/obj/economy.dmi'
-	name = "coin"
+	name = "moneta"
 	icon_state = "coin__heads"
 	flags_1 = CONDUCT_1
 	force = 1
@@ -378,7 +378,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 		. += "<span class='info'>Jest warta [value] kr.</span>"
 
 /obj/item/coin/gold
-	name = "gold coin"
+	name = "złota moneta"
 	cmineral = "gold"
 	icon_state = "coin_gold_heads"
 	value = 25
@@ -386,7 +386,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/gold = 4)
 
 /obj/item/coin/silver
-	name = "silver coin"
+	name = "srebrna moneta"
 	cmineral = "silver"
 	icon_state = "coin_silver_heads"
 	value = 10
@@ -394,7 +394,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/silver = 4)
 
 /obj/item/coin/diamond
-	name = "diamond coin"
+	name = "diamentowa moneta"
 	cmineral = "diamond"
 	icon_state = "coin_diamond_heads"
 	value = 100
@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/carbon = 4)
 
 /obj/item/coin/iron
-	name = "iron coin"
+	name = "żelazna moneta"
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
 	value = 1
@@ -410,7 +410,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/iron = 4)
 
 /obj/item/coin/plasma
-	name = "plasma coin"
+	name = "plazmowa moneta"
 	cmineral = "plasma"
 	icon_state = "coin_plasma_heads"
 	value = 40
@@ -418,7 +418,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/toxin/plasma = 4)
 
 /obj/item/coin/uranium
-	name = "uranium coin"
+	name = "uranowa moneta"
 	cmineral = "uranium"
 	icon_state = "coin_uranium_heads"
 	value = 25
@@ -426,7 +426,7 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/uranium = 4)
 
 /obj/item/coin/bananium
-	name = "bananium coin"
+	name = "bananiumowa moneta"
 	cmineral = "bananium"
 	icon_state = "coin_bananium_heads"
 	value = 200 //makes the clown cry
@@ -434,13 +434,13 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	grind_results = list(/datum/reagent/consumable/banana = 4)
 
 /obj/item/coin/adamantine
-	name = "adamantine coin"
+	name = "adamantytowa moneta"
 	cmineral = "adamantine"
 	icon_state = "coin_adamantine_heads"
 	value = 100
 
 /obj/item/coin/mythril
-	name = "mythril coin"
+	name = "mithrilowa moneta"
 	cmineral = "mythril"
 	icon_state = "coin_mythril_heads"
 	value = 300
@@ -448,26 +448,26 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 /obj/item/coin/twoheaded
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
-	desc = "Hey, this coin's the same on both sides!"
+	desc = "Hej, ta moneta ma po obu stronach to samo!"
 	sideslist = list("heads")
 	materials = list(/datum/material/iron = MINERAL_MATERIAL_AMOUNT*0.2)
 	value = 1
 	grind_results = list(/datum/reagent/iron = 4)
 
 /obj/item/coin/antagtoken
-	name = "antag token"
+	name = "żeton antagonisty"
 	icon_state = "coin_valid_valid"
 	cmineral = "valid"
-	desc = "A novelty coin that helps the heart know what hard evidence cannot prove."
+	desc = "Pamiątkowa moneta, dzięki której serce wie to, czego twarde dowody nie potrafią udowodnić."
 	sideslist = list("valid", "salad")
 	value = 0
 	grind_results = list(/datum/reagent/consumable/sodiumchloride = 4)
 
 /obj/item/coin/arcade_token
-	name = "arcade token"
+	name = "żeton automatu"
 	icon_state = "coin_bananium_heads"
 	cmineral = "bananium"
-	desc = "A coin that allows you to redeem a prize from an arcade machine."
+	desc = "Moneta, za którą odbierzesz nagrodę z automatu do gier."
 	value = 0
 
 /obj/item/coin/attackby(obj/item/W, mob/user, params)

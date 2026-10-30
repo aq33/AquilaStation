@@ -1,9 +1,9 @@
 //////////////////The Monster
 
 /mob/living/simple_animal/slaughter
-	name = "slaughter demon"
+	name = "demon rzezi"
 	real_name = "demon rzezi"
-	desc = "A large, menacing creature covered in armored black scales."
+	desc = "Duże, groźne stworzenie pokryte czarnymi, pancernymi łuskami."
 	speak_emote = list("bulgocze")
 	emote_hear = list("zawodzi","skrzeczy")
 	response_help  = "rozmyśla się i nie dotyka"
@@ -57,8 +57,8 @@
 		bloodspell.phased = TRUE
 
 /obj/effect/decal/cleanable/blood/innards
-	name = "pile of viscera"
-	desc = "A repulsive pile of guts and gore."
+	name = "sterta wnętrzności"
+	desc = "Odrażająca sterta flaków i posoki."
 	gender = NEUTER
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "innards"
@@ -72,8 +72,8 @@
 
 //The loot from killing a slaughter demon - can be consumed to allow the user to blood crawl
 /obj/item/organ/heart/demon
-	name = "demon heart"
-	desc = "Still it beats furiously, emanating an aura of utter hate."
+	name = "serce demona"
+	desc = "Wciąż bije wściekle, roztaczając aurę bezgranicznej nienawiści."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
 	decay_factor = 0
@@ -113,9 +113,9 @@
 /mob/living/simple_animal/slaughter/laughter
 	// The laughter demon! It's everyone's best friend! It just wants to hug
 	// them so much, it wants to hug everyone at once!
-	name = "laughter demon"
+	name = "demon śmiechu"
 	real_name = "demon śmiechu"
-	desc = "A large, adorable creature covered in armor with pink bows."
+	desc = "Duże, urocze stworzenie w pancerzu przyozdobionym różowymi kokardkami."
 	speak_emote = list("chichocze","chichocze","podśmiewa się")
 	emote_hear = list("rechocze","śmieje się")
 	response_help  = "przytula"

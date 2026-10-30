@@ -47,16 +47,16 @@
 				switch(aspell.spell_level)
 					if(1)
 						to_chat(user, "<span class='notice'>Ulepszasz [aspell.name] do wersji wydajnej.</span>")
-						aspell.name = "Efficient [aspell.name]"
+						aspell.name = "[aspell.name] (wersja wydajna)"
 					if(2)
 						to_chat(user, "<span class='notice'>Dalej ulepszasz [aspell.name] do wersji przyspieszonej.</span>")
-						aspell.name = "Quickened [aspell.name]"
+						aspell.name = "[aspell.name] (wersja przyspieszona)"
 					if(3)
 						to_chat(user, "<span class='notice'>Dalej ulepszasz [aspell.name] do wersji darmowej.</span>")
-						aspell.name = "Free [aspell.name]"
+						aspell.name = "[aspell.name] (wersja darmowa)"
 					if(4)
 						to_chat(user, "<span class='notice'>Dalej ulepszasz [aspell.name] do wersji natychmiastowej.</span>")
-						aspell.name = "Instant [aspell.name]"
+						aspell.name = "[aspell.name] (wersja natychmiastowa)"
 				if(aspell.spell_level >= aspell.level_max)
 					to_chat(user, "<span class='notice'>Tego zaklęcia nie da się już bardziej wzmocnić.</span>")
 				SSblackbox.record_feedback("nested tally", "wizard_spell_improved", 1, list("[name]", "[aspell.spell_level]"))
@@ -311,55 +311,55 @@
 	)
 
 /datum/spellbook_entry/item/staffchange
-	name = "Staff of Change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself."
+	name = "Laska przemiany"
+	desc = "Artefakt miotający pociski migoczącej energii, które przekształcają samą postać celu."
 	item_path = /obj/item/gun/magic/staff/change
 
 /datum/spellbook_entry/item/staffanimation
-	name = "Staff of Animation"
-	desc = "An arcane staff capable of shooting bolts of eldritch energy which cause inanimate objects to come to life. This magic doesn't affect machines."
+	name = "Laska ożywienia"
+	desc = "Tajemna laska strzelająca pociskami niesamowitej energii, które ożywiają martwe przedmioty. Ta magia nie działa na maszyny."
 	item_path = /obj/item/gun/magic/staff/animate
 	category = "Assistance"
 
 /datum/spellbook_entry/item/staffchaos
-	name = "Staff of Chaos"
-	desc = "A caprious tool that can fire all sorts of magic without any rhyme or reason. Using it on people you care about is not recommended."
+	name = "Laska chaosu"
+	desc = "Kapryśne narzędzie, które miota wszelkiego rodzaju magią bez ładu i składu. Nie zaleca się używania go na ludziach, na których ci zależy."
 	item_path = /obj/item/gun/magic/staff/chaos
 
 /datum/spellbook_entry/item/spellblade
-	name = "Spellblade"
-	desc = "A sword capable of firing blasts of energy which rip targets limb from limb."
+	name = "Zaklęte ostrze"
+	desc = "Miecz strzelający wybuchami energii, które rozrywają cele na kawałki."
 	item_path = /obj/item/gun/magic/staff/spellblade
 
 /datum/spellbook_entry/item/staffdoor
-	name = "Staff of Door Creation"
-	desc = "A particular staff that can mold solid walls into ornate doors. Useful for getting around in the absence of other transportation. Does not work on glass."
+	name = "Laska tworzenia drzwi"
+	desc = "Osobliwa laska, która przekształca lite ściany w zdobione drzwi. Przydaje się do poruszania się, gdy brak innego transportu. Nie działa na szkło."
 	item_path = /obj/item/gun/magic/staff/door
 	cost = 1
 	category = "Mobility"
 
 /datum/spellbook_entry/item/staffhealing
-	name = "Staff of Healing"
-	desc = "An altruistic staff that can heal the lame and raise the dead."
+	name = "Laska uzdrowienia"
+	desc = "Altruistyczna laska, która leczy kalekich i wskrzesza zmarłych."
 	item_path = /obj/item/gun/magic/staff/healing
 	cost = 1
 	category = "Defensive"
 
 /datum/spellbook_entry/item/lockerstaff
-	name = "Staff of the Locker"
-	desc = "A staff that shoots lockers. It eats anyone it hits on its way, leaving a welded locker with your victims behind."
+	name = "Laska szafki"
+	desc = "Laska strzelająca szafkami. Pochłania każdego, kogo trafi po drodze, i zostawia za sobą zaspawaną szafkę z twoimi ofiarami."
 	item_path = /obj/item/gun/magic/staff/locker
 	category = "Defensive"
 
 /datum/spellbook_entry/item/scryingorb
-	name = "Scrying Orb"
-	desc = "An incandescent orb of crackling energy. Using it will allow you to release your ghost while alive, allowing you to spy upon the station and talk to the deceased. In addition, buying it will permanently grant you X-ray vision."
+	name = "Kula jasnowidzenia"
+	desc = "Rozżarzona kula trzaskającej energii. Pozwala uwolnić ducha za życia, dzięki czemu możesz szpiegować statek i rozmawiać ze zmarłymi. Do tego zakup na stałe daje ci wzrok rentgenowski."
 	item_path = /obj/item/scrying
 	category = "Defensive"
 
 /datum/spellbook_entry/item/soulstones
-	name = "Six Soul Stone Shards and the spell Artificer"
-	desc = "Soul Stone Shards are ancient tools capable of capturing and harnessing the spirits of the dead and dying. The spell Artificer allows you to create arcane machines for the captured souls to pilot."
+	name = "Sześć odłamków kamienia duszy i zaklęcie Rzemieślnik"
+	desc = "Odłamki kamienia duszy to pradawne narzędzia zdolne chwytać i ujarzmiać dusze zmarłych i umierających. Zaklęcie Rzemieślnik pozwala tworzyć tajemne maszyny, którymi sterują schwytane dusze."
 	item_path = /obj/item/storage/belt/soulstone/full
 	category = "Assistance"
 
@@ -370,20 +370,20 @@
 	return .
 
 /datum/spellbook_entry/item/necrostone
-	name = "A Necromantic Stone"
-	desc = "A Necromantic stone is able to resurrect three dead individuals as skeletal thralls for you to command."
+	name = "Kamień nekromancji"
+	desc = "Kamień nekromancji potrafi wskrzesić trzy martwe osoby jako szkieletowe sługi pod twoim rozkazem."
 	item_path = /obj/item/necromantic_stone
 	category = "Assistance"
 
 /datum/spellbook_entry/item/wands
-	name = "Wand Assortment"
-	desc = "A collection of wands that allow for a wide variety of utility. Wands have a limited number of charges, so be conservative with their use. Comes in a handy belt."
+	name = "Zestaw różdżek"
+	desc = "Kolekcja różdżek o najróżniejszych zastosowaniach. Różdżki mają ograniczoną liczbę ładunków, więc używaj ich oszczędnie. W komplecie poręczny pas."
 	item_path = /obj/item/storage/belt/wands/full
 	category = "Defensive"
 
 /datum/spellbook_entry/item/armor
-	name = "Mastercrafted Armor Set"
-	desc = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space."
+	name = "Mistrzowski komplet zbroi"
+	desc = "Zbroja-artefakt, która pozwala rzucać zaklęcia i lepiej chroni przed atakami i próżnią kosmosu."
 	item_path = /obj/item/clothing/suit/space/hardsuit/wizard
 	category = "Defensive"
 
@@ -396,36 +396,36 @@
 		new /obj/item/tank/internals/emergency_oxygen/magic_oxygen(get_turf(user)) // so you have something to actually breathe. Near infinite.
 
 /datum/spellbook_entry/item/contract
-	name = "Contract of Apprenticeship"
-	desc = "A magical contract binding an apprentice wizard to your service, using it will summon them to your side."
+	name = "Umowa terminowania"
+	desc = "Magiczna umowa wiążąca ucznia czarodzieja z twoją służbą. Jej użycie przywoła go u twojego boku."
 	item_path = /obj/item/antag_spawner/contract
 	category = "Assistance"
 
 /datum/spellbook_entry/item/guardian
-	name = "Guardian Deck"
-	desc = "A deck of guardian tarot cards, capable of binding a personal guardian to your body. There are multiple types of guardian available, but all of them will transfer some amount of damage to you. \
-	It would be wise to avoid buying these with anything capable of causing you to swap bodies with others."
+	name = "Talia strażników"
+	desc = "Talia kart tarota strażników, zdolna związać osobistego strażnika z twoim ciałem. Dostępnych jest kilka rodzajów strażników, ale każdy przenosi na ciebie część obrażeń. \
+	Rozsądnie będzie nie kupować jej razem z niczym, co może sprawić, że zamienisz się z kimś ciałem."
 	item_path = /obj/item/guardiancreator/wizard
 	category = "Assistance"
 
 /datum/spellbook_entry/item/bloodbottle
-	name = "Bottle of Blood"
-	desc = "A bottle of magically infused blood, the smell of which will attract extradimensional \
-		beings when broken. Be careful though, the kinds of creatures summoned by blood magic are \
-		indiscriminate in their killing, and you yourself may become a victim."
+	name = "Butelka krwi"
+	desc = "Butelka magicznie nasyconej krwi, której zapach po rozbiciu przyciąga istoty \
+		spoza tego wymiaru. Uważaj jednak: stworzenia przyzywane magią krwi zabijają \
+		bez wyboru i sam też możesz paść ich ofiarą."
 	item_path = /obj/item/antag_spawner/slaughter_demon
 	limit = 1
 	category = "Assistance"
 
 /datum/spellbook_entry/item/hugbottle
-	name = "Bottle of Tickles"
-	desc = "A bottle of magically infused fun, the smell of which will \
-		attract adorable extradimensional beings when broken. These beings \
-		are similar to slaughter demons, but they do not permamently kill \
-		their victims, instead putting them in an extradimensional hugspace, \
-		to be released on the demon's death. Chaotic, but not ultimately \
-		damaging. The crew's reaction to the other hand could be very \
-		destructive."
+	name = "Butelka łaskotek"
+	desc = "Butelka magicznie nasyconej zabawy, której zapach po rozbiciu \
+		przyciąga urocze istoty spoza tego wymiaru. Istoty te \
+		przypominają demony rzezi, ale nie zabijają swoich ofiar na zawsze, \
+		tylko umieszczają je w międzywymiarowej przestrzeni przytulasów, \
+		z której wychodzą po śmierci demona. Chaotyczne, ale w gruncie rzeczy \
+		nieszkodliwe. Za to reakcja załogi może być bardzo \
+		niszczycielska."
 	item_path = /obj/item/antag_spawner/slaughter_demon/laughter
 	cost = 1 //non-destructive; it's just a jape, sibling!
 	limit = 1
@@ -433,17 +433,17 @@
 
 /datum/spellbook_entry/item/mjolnir
 	name = "Mjolnir"
-	desc = "A mighty hammer on loan from Thor, God of Thunder. It crackles with barely contained power."
+	desc = "Potężny młot pożyczony od Thora, boga piorunów. Trzeszczy z ledwo powstrzymywanej mocy."
 	item_path = /obj/item/mjollnir
 
 /datum/spellbook_entry/item/singularity_hammer
-	name = "Singularity Hammer"
-	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact."
+	name = "Młot osobliwości"
+	desc = "Młot, który w miejscu uderzenia tworzy niezwykle silne pole grawitacyjne i przyciąga wszystko w pobliżu do punktu trafienia."
 	item_path = /obj/item/singularityhammer
 
 /datum/spellbook_entry/item/battlemage
-	name = "Battlemage Armour"
-	desc = "An enchanted MODsuit that lets you cast spells, protected by a powerful rechargeable shield and sealed against the void of space."
+	name = "Zbroja maga bitewnego"
+	desc = "Zaczarowany MODsuit, który pozwala rzucać zaklęcia, jest chroniony potężną, odnawialną tarczą i szczelny w próżni kosmosu."
 	item_path = /obj/item/mod/control/pre_equipped/enchanted
 	limit = 1
 	category = "Defensive"
@@ -464,15 +464,15 @@
 	return TRUE
 
 /datum/spellbook_entry/item/battlemage_charge
-	name = "Battlemage Armour Charges"
-	desc = "A powerful defensive rune, it will grant eight additional charges to a suit of battlemage armour."
+	name = "Ładunki zbroi maga bitewnego"
+	desc = "Potężna runa obronna, która daje zbroi maga bitewnego osiem dodatkowych ładunków."
 	item_path = /obj/item/wizard_armour_charge
 	category = "Defensive"
 	cost = 1
 
 /datum/spellbook_entry/item/warpwhistle
-	name = "Warp Whistle"
-	desc = "A strange whistle that will transport you to a distant safe place on the station. There is a window of vulnerability at the beginning of every use."
+	name = "Gwizdek przenosin"
+	desc = "Dziwny gwizdek, który przenosi cię w odległe, bezpieczne miejsce na statku. Na początku każdego użycia przez chwilę jesteś bezbronny."
 	item_path = /obj/item/warpwhistle
 	category = "Mobility"
 	cost = 1
@@ -508,8 +508,8 @@
 		user.say(ritual_invocation, forced = "spell")
 
 /datum/spellbook_entry/summon/ghosts
-	name = "Summon Ghosts"
-	desc = "Spook the crew out by making them see dead people. Be warned, ghosts are capricious and occasionally vindicative, and some will use their incredibly minor abilities to frustrate you."
+	name = "Przywołanie duchów"
+	desc = "Przestrasz załogę, sprawiając, że zobaczy zmarłych. Uwaga: duchy są kapryśne i czasem mściwe, a niektóre użyją swoich niezwykle drobnych zdolności, żeby uprzykrzyć ci życie."
 	cost = 0
 	ritual_invocation = "ALADAL DESINARI ODORI'IN TUUR'IS OVOR'E POR"
 
@@ -523,8 +523,8 @@
 	return TRUE
 
 /datum/spellbook_entry/summon/guns
-	name = "Summon Guns"
-	desc = "Nothing could possibly go wrong with arming a crew of lunatics just itching for an excuse to kill you. There is a good chance that they will shoot each other first."
+	name = "Przywołanie broni"
+	desc = "Cóż złego mogłoby wyniknąć z uzbrojenia załogi szaleńców, którzy tylko czekają na pretekst, żeby cię zabić? Jest spora szansa, że najpierw postrzelają się nawzajem."
 	ritual_invocation = "ALADAL DESINARI ODORI'IN DOL'G FLAM OVOR'E POR"
 
 /datum/spellbook_entry/summon/guns/IsAvailable()
@@ -546,8 +546,8 @@
 	return TRUE
 
 /datum/spellbook_entry/summon/magic
-	name = "Summon Magic"
-	desc = "Share the wonders of magic with the crew and show them why they aren't to be trusted with it at the same time."
+	name = "Przywołanie magii"
+	desc = "Podziel się z załogą cudami magii i przy okazji pokaż, czemu nie można jej jej powierzać."
 	ritual_invocation = "ALADAL DESINARI ODORI'IN IDO'LEX SPERMITA OVOR'E POR"
 
 /datum/spellbook_entry/summon/magic/IsAvailable()
@@ -569,8 +569,8 @@
 	return TRUE
 
 /datum/spellbook_entry/summon/events
-	name = "Summon Events"
-	desc = "Give Murphy's law a little push and replace all events with special wizard ones that will confound and confuse everyone. Multiple castings increase the rate of these events."
+	name = "Przywołanie wydarzeń"
+	desc = "Popchnij nieco prawo Murphy'ego i zastąp wszystkie wydarzenia specjalnymi wydarzeniami czarodziejskimi, które wszystkich zdezorientują i zmylą. Każde kolejne rzucenie zwiększa ich częstotliwość."
 	var/times = 0
 	ritual_invocation = "ALADAL DESINARI ODORI'IN IDO'LEX MANAG'ROKT OVOR'E POR"
 
@@ -597,8 +597,8 @@
 	.["times"] = times
 
 /datum/spellbook_entry/summon/curse_of_madness
-	name = "Curse of Madness"
-	desc = "Curses the station, warping the minds of everyone inside, causing lasting traumas. Warning: this spell can affect you if not cast from a safe distance."
+	name = "Klątwa obłędu"
+	desc = "Przeklina statek, wypaczając umysły wszystkich na pokładzie i wywołując trwałe traumy. Uwaga: zaklęcie może dotknąć i ciebie, jeśli nie rzucisz go z bezpiecznej odległości."
 	cost = 4
 	ritual_invocation = "ALADAL DESINARI ODORI'IN PORES ENHIDO'LEN MORI MAKA TU"
 
@@ -614,9 +614,9 @@
 	return TRUE
 
 /datum/spellbook_entry/summon/wild_magic
-	name = "Wild Magic Manipulation"
-	desc = "multiply your remaining spell points by 70%(round down) and expand all of them to Wild Magic Manipulation. \
-		You purchase random spells and items upto the spell points you expanded. Spells from this ritual will no longer be refundable even if you learned it manually, but also the book will no longer accept items to refund."
+	name = "Manipulacja dziką magią"
+	desc = "Mnoży pozostałe punkty zaklęć o 70% (w dół) i wydaje je wszystkie na Manipulację dziką magią. \
+		Kupujesz losowe zaklęcia i przedmioty za wydane punkty. Zaklęć z tego rytuału nie da się zwrócić, nawet jeśli nauczysz się ich ręcznie, a księga nie przyjmie już przedmiotów do zwrotu."
 	cost = 0
 	ritual_invocation = "ALADAL DESINARI ODORI'IN A'EN SPERMITEN G'ATUA H'UN OVORA DUN SPERMITUN"
 
@@ -627,7 +627,7 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, name)
 	book.uses = round(book.uses*WIZARD_WILDMAGIC_SPELLPOINT_MULTIPLIER) // more spell points
 	book.refuses_refund = TRUE
-	book.desc = "An unearthly tome that once had a great power."
+	book.desc = "Nieziemska księga, która kiedyś miała wielką moc."
 	while(book.uses)
 		var/datum/spellbook_entry/target = pick(book.entries)
 		if(istype(target, /datum/spellbook_entry/summon/wild_magic))
@@ -643,8 +643,8 @@
 #undef MINIMUM_THREAT_FOR_RITUALS
 
 /obj/item/spellbook
-	name = "spell book"
-	desc = "An unearthly tome that glows with power."
+	name = "księga zaklęć"
+	desc = "Nieziemska księga, która lśni mocą."
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
 	throw_speed = 2

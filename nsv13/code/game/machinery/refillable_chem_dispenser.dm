@@ -1,6 +1,6 @@
 /obj/machinery/refillable_chem_dispenser
-	name = "refillable chem dispenser"
-	desc = "Stores and dispenses chemicals."
+	name = "uzupełniany dozownik chemikaliów"
+	desc = "Przechowuje i wydaje chemikalia."
 	density = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
@@ -241,8 +241,8 @@
 					total_space_needed += amount
 			var/free = beaker.reagents.maximum_volume - beaker.reagents.total_volume
 			if(!enough_stored || (free < total_space_needed))
-				var/reply = alert(usr, "[enough_stored ? "There is not enough space for this recipe." : "There are not enough reagents stored for this recipe."] Continue?", "Recipe", "OK", "Cancel")
-				if(reply == "Cancel")
+				var/reply = alert(usr, "[enough_stored ? "Za mało miejsca na tę recepturę." : "Za mało zmagazynowanych reagentów na tę recepturę."] Kontynuować?", "Receptura", "OK", "Anuluj")
+				if(reply == "Anuluj")
 					return
 			// Transfer them for real
 			for(var/key in chemicals_to_dispense)
@@ -262,24 +262,24 @@
 					recording_recipe[key] += dispense_amount
 			. = TRUE
 		if("clear_recipes")
-			var/yesno = alert("Usunąć wszystkie receptury?",, "Yes","No")
-			if(yesno == "Yes")
+			var/yesno = alert("Usunąć wszystkie receptury?",, "Tak","Nie")
+			if(yesno == "Tak")
 				saved_recipes = list()
 			. = TRUE
 		if("record_recipe")
 			recording_recipe = list()
 			. = TRUE
 		if("save_recording")
-			var/name = stripped_input(usr,"Name","What do you want to name this recipe?", "Recipe", MAX_NAME_LEN)
+			var/name = stripped_input(usr,"Nazwa","Jak chcesz nazwać ten przepis?", "Przepis", MAX_NAME_LEN)
 			if(!usr.canUseTopic(src, !issilicon(usr)))
 				return
-			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Yes", "No") == "No")
+			if(saved_recipes[name] && alert("\"[name]\" już istnieje, czy chcesz to nadpisać?",, "Tak", "Nie") == "Nie")
 				return
 			if(name && recording_recipe)
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent)]
 					if(!dispensable_reagents.Find(reagent_id))
-						visible_message("<span class='warning'>[src] buzzes.</span>", "<span class='italics'>Słyszysz ciche brzęczenie.</span>")
+						visible_message("<span class='warning'>[src] brzęczy.</span>", "<span class='italics'>Słyszysz ciche brzęczenie.</span>")
 						to_chat(usr, "<span class ='danger'>[src] nie może znaleźć <b>[reagent]</b>!</span>")
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
 						return

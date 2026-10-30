@@ -6,8 +6,8 @@
 	resilience = TRAUMA_RESILIENCE_LOBOTOMY
 
 /datum/brain_trauma/magic/lumiphobia
-	name = "Lumiphobia"
-	desc = "Patient has an inexplicable adverse reaction to light."
+	name = "Lumifobia"
+	desc = "Pacjent ma niewytłumaczalną negatywną reakcję na światło."
 	scan_desc = "nadwrażliwość na światło"
 	gain_text = "<span class='warning'>Czujesz głód ciemności.</span>"
 	lose_text = "<span class='notice'>Światło już ci nie przeszkadza.</span>"
@@ -26,7 +26,7 @@
 
 /datum/brain_trauma/magic/poltergeist
 	name = "Poltergeist"
-	desc = "Patient appears to be targeted by a violent invisible entity."
+	desc = "Pacjent wydaje się celem agresywnej niewidzialnej istoty."
 	scan_desc = "aktywność paranormalna"
 	gain_text = "<span class='warning'>Czujesz blisko siebie nienawistną obecność.</span>"
 	lose_text = "<span class='notice'>Czujesz, jak nienawistna obecność się rozwiewa.</span>"
@@ -46,8 +46,8 @@
 			throwing.throw_at(owner, 8, 2)
 
 /datum/brain_trauma/magic/antimagic
-	name = "Athaumasia"
-	desc = "Patient is completely inert to magical forces."
+	name = "Ataumazja"
+	desc = "Pacjent jest całkowicie odporny na siły magiczne."
 	scan_desc = "pustka taumatyczna"
 	gain_text = "<span class='notice'>Uświadamiasz sobie, że magia nie może być prawdziwa.</span>"
 	lose_text = "<span class='notice'>Uświadamiasz sobie, że magia może być prawdziwa.</span>"
@@ -61,8 +61,8 @@
 	..()
 
 /datum/brain_trauma/magic/stalker
-	name = "Stalking Phantom"
-	desc = "Patient is stalked by a phantom only they can see."
+	name = "Śledzący fantom"
+	desc = "Pacjenta śledzi fantom, którego tylko on widzi."
 	scan_desc = "paranoja pozazmysłowa"
 	gain_text = "<span class='warning'>Masz wrażenie, że coś chce cię zabić...</span>"
 	lose_text = "<span class='notice'>Nie czujesz już na plecach niczyjego wzroku.</span>"
@@ -110,6 +110,6 @@
 
 /obj/effect/hallucination/simple/stalker_phantom
 	name = "???"
-	desc = "It's coming closer..."
+	desc = "Zbliża się..."
 	image_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	image_state = "curseblob"

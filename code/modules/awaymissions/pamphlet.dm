@@ -1,12 +1,12 @@
 /obj/item/paper/pamphlet
-	name = "pamphlet"
+	name = "broszura"
 	icon_state = "pamphlet"
 	show_written_words = FALSE
 
 
 /obj/item/paper/pamphlet/violent_video_games
-	name = "pamphlet - \'Violent Video Games and You\'"
-	desc = "A pamphlet encouraging the reader to maintain a balanced lifestyle and take care of their mental health, while still enjoying video games in a healthy way. You probably don't need this..."
+	name = "broszura – „Brutalne gry wideo a ty”"
+	desc = "Broszura zachęcająca do zrównoważonego trybu życia i dbania o zdrowie psychiczne przy zdrowym korzystaniu z gier wideo. Raczej tego nie potrzebujesz..."
 	default_raw_text = "Nie każą wam zabijać ludzi. No, powiedzieliśmy to. A teraz wracajcie do pracy!"
 
 /obj/item/paper/pamphlet/gateway

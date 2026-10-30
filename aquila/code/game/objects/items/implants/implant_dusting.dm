@@ -1,6 +1,6 @@
 /obj/item/implant/dusting
-	name = "duster implant"
-	desc = "An alarm which monitors host vital signs, transmitting a radio message and dusting the corpse on death."
+	name = "implant prochowy"
+	desc = "Alarm, który monitoruje funkcje życiowe nosiciela. Po śmierci wysyła komunikat radiowy i obraca zwłoki w proch."
 	actions_types = list(/datum/action/item_action/dusting_implant)
 	var/popup = FALSE // is the DOUWANNABLOWUP window open?
 	var/active = FALSE
@@ -17,15 +17,15 @@
 		if(popup) // confirmation window already open
 			return FALSE
 		popup = TRUE
-		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Rozpadniesz się w proch!", "[name] Confirmation", "Yes", "No")
+		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Rozpadniesz się w proch!", "Potwierdzenie: [name]", "Tak", "Nie")
 		popup = FALSE
-		if(response != "Yes" || !imp_in || active)
+		if(response != "Tak" || !imp_in || active)
 			return FALSE
 	active = TRUE //to avoid it triggering multiple times due to dying
 	to_chat(imp_in, "<span class='notice'>Twój implant obracający w proch się aktywuje!</span>")
 	imp_in.visible_message("<span class='warning'>[imp_in] spala się w mgnieniu oka!</span>")
 	var/turf/T = get_turf(imp_in)
-	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(T)], with cause of [cause].")
+	message_admins("[ADMIN_LOOKUPFLW(imp_in)] aktywuje implant ([name]) w [ADMIN_VERBOSEJMP(T)], przyczyna: [cause].")
 	for(var/obj/item/I in imp_in.contents)
 		if(I == src || I == imp_in)
 			continue

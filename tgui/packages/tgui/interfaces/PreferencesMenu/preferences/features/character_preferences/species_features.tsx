@@ -10,31 +10,31 @@ import {
 } from '../dropdowns';
 
 const eyePresets = {
-  '#aaccff': 'Baby Blue',
-  '#0099bb': 'Blue-Green',
-  '#3399ff': 'Light Blue',
-  '#0066ff': 'Blue',
-  '#337788': 'Teal Blue',
-  '#005577': 'Dark Cerulean Blue',
-  '#889988': 'Artichoke Green',
-  '#447766': 'Green-Blue',
-  '#117744': 'Teal Green',
-  '#336611': 'Forest Green',
-  '#aaaa66': 'Hazel',
-  '#554411': 'Brown-Green',
-  '#664433': 'Brown',
-  '#663300': 'Rich Brown',
-  '#441100': 'Deep Brown',
-  '#884400': 'Amber',
-  '#667788': 'Gray',
-  '#445566': 'Deep Gray',
-  '#eeeeee': 'Albino White',
-  '#ccaaaa': 'Albino Pink',
-  '#bbddee': 'Albino Blue',
+  '#aaccff': 'Błękitny',
+  '#0099bb': 'Niebieskozielony',
+  '#3399ff': 'Jasnoniebieski',
+  '#0066ff': 'Niebieski',
+  '#337788': 'Morski',
+  '#005577': 'Ciemny lazurowy',
+  '#889988': 'Karczochowy',
+  '#447766': 'Zielononiebieski',
+  '#117744': 'Morska zieleń',
+  '#336611': 'Leśna zieleń',
+  '#aaaa66': 'Piwny',
+  '#554411': 'Brązowozielony',
+  '#664433': 'Brązowy',
+  '#663300': 'Głęboki brąz',
+  '#441100': 'Ciemny brąz',
+  '#884400': 'Bursztynowy',
+  '#667788': 'Szary',
+  '#445566': 'Ciemnoszary',
+  '#eeeeee': 'Biały (albinos)',
+  '#ccaaaa': 'Różowy (albinos)',
+  '#bbddee': 'Niebieski (albinos)',
 };
 
 export const eye_color: Feature<string> = {
-  name: 'Eye Color',
+  name: 'Kolor oczu',
   small_supplemental: false,
   predictable: false,
   component: (props: FeatureValueProps<string>) => {
@@ -58,55 +58,55 @@ export const eye_color: Feature<string> = {
 };
 
 const hairPresets = {
-  '#111111': 'Black',
-  '#222222': 'Off Black',
-  '#332222': 'Deep Brown',
-  '#443322': 'Dark Brown',
-  '#443333': 'Medium Dark Brown',
-  '#553333': 'Dark Chestnut Brown',
-  '#664444': 'Light Chestnut Brown',
-  '#554433': 'Dark Golden Brown',
-  '#997766': 'Light Ash Brown',
-  '#aa8866': 'Light Golden Brown',
-  '#bb9977': 'Dark Honey Blonde',
-  '#ddbb99': 'Light Ash Blonde',
-  '#eeccaa': 'Light Blonde',
-  '#eeddbb': 'Bleached Blonde',
-  '#666666': 'Dark Gray',
-  '#999999': 'Medium Gray',
-  '#bbbbbb': 'Light Gray',
-  '#ffeeee': 'White',
-  '#884444': 'Soft Auburn',
-  '#bb5544': 'Soft Terracotta',
-  '#aa5500': 'Ginger Brown',
-  '#cc5522': 'Ginger Orange',
-  '#ff0000': 'Vibrant Red',
-  '#aa0000': 'Simply Red',
-  '#ff7700': 'Vibrant Orange',
-  '#ffff00': 'Vibrant Yellow',
-  '#aa9900': 'Simply Yellow',
-  '#00ff00': 'Vibrant Green',
-  '#00aa00': 'Simply Green',
-  '#00ccaa': 'Turqouise',
-  '#00ffff': 'Vibrant Cyan',
-  '#00aaaa': 'Simply Cyan',
-  '#229988': 'Teal',
-  '#0000ff': 'Vibrant Blue',
-  '#0000aa': 'Simply Blue',
-  '#6600ff': 'Vibrant Indigo',
-  '#9922ff': 'Purple',
-  '#8800ff': 'Violet',
-  '#550088': 'Deep Purple',
-  '#ff00ff': 'Vibrant Magenta',
-  '#aa00aa': 'Simply Magenta',
-  '#ff0066': 'Raspberry',
-  '#ff2288': 'Hot Pink',
-  '#ff99bb': 'Pink',
-  '#ee8888': 'Faded Pink',
+  '#111111': 'Czarny',
+  '#222222': 'Prawie czarny',
+  '#332222': 'Ciemny brąz',
+  '#443322': 'Ciemnobrązowy',
+  '#443333': 'Średni ciemny brąz',
+  '#553333': 'Ciemny kasztan',
+  '#664444': 'Jasny kasztan',
+  '#554433': 'Ciemny złoty brąz',
+  '#997766': 'Jasny popielaty brąz',
+  '#aa8866': 'Jasny złoty brąz',
+  '#bb9977': 'Ciemny miodowy blond',
+  '#ddbb99': 'Jasny popielaty blond',
+  '#eeccaa': 'Jasny blond',
+  '#eeddbb': 'Rozjaśniony blond',
+  '#666666': 'Ciemnoszary',
+  '#999999': 'Średnioszary',
+  '#bbbbbb': 'Jasnoszary',
+  '#ffeeee': 'Biały',
+  '#884444': 'Miękki kasztanowy rudy',
+  '#bb5544': 'Miękka terakota',
+  '#aa5500': 'Rudobrązowy',
+  '#cc5522': 'Rudy',
+  '#ff0000': 'Jaskrawa czerwień',
+  '#aa0000': 'Czerwony',
+  '#ff7700': 'Jaskrawy pomarańcz',
+  '#ffff00': 'Jaskrawa żółć',
+  '#aa9900': 'Żółty',
+  '#00ff00': 'Jaskrawa zieleń',
+  '#00aa00': 'Zielony',
+  '#00ccaa': 'Turkusowy',
+  '#00ffff': 'Jaskrawy cyjan',
+  '#00aaaa': 'Cyjan',
+  '#229988': 'Morski',
+  '#0000ff': 'Jaskrawy niebieski',
+  '#0000aa': 'Niebieski',
+  '#6600ff': 'Jaskrawy indygo',
+  '#9922ff': 'Purpurowy',
+  '#8800ff': 'Fioletowy',
+  '#550088': 'Ciemna purpura',
+  '#ff00ff': 'Jaskrawa magenta',
+  '#aa00aa': 'Magenta',
+  '#ff0066': 'Malinowy',
+  '#ff2288': 'Jaskraworóżowy',
+  '#ff99bb': 'Różowy',
+  '#ee8888': 'Blady róż',
 };
 
 export const facial_hair_color: Feature<string> = {
-  name: 'Facial Hair Color',
+  name: 'Kolor zarostu',
   small_supplemental: false,
   predictable: false,
   component: (props: FeatureValueProps<string>) => {
@@ -130,12 +130,12 @@ export const facial_hair_color: Feature<string> = {
 };
 
 export const facial_hair_gradient: FeatureChoiced = {
-  name: 'Facial Hair Gradient',
+  name: 'Gradient zarostu',
   component: FeatureButtonedDropdownInput,
 };
 
 export const facial_hair_gradient_color: Feature<string> = {
-  name: 'Facial Hair Gradient Color',
+  name: 'Kolor gradientu zarostu',
   small_supplemental: false,
   predictable: false,
   component: (props: FeatureValueProps<string>) => {
@@ -159,7 +159,7 @@ export const facial_hair_gradient_color: Feature<string> = {
 };
 
 export const hair_color: Feature<string> = {
-  name: 'Hair Color',
+  name: 'Kolor włosów',
   small_supplemental: false,
   predictable: false,
   component: (props: FeatureValueProps<string>) => {
@@ -183,12 +183,12 @@ export const hair_color: Feature<string> = {
 };
 
 export const gradient_style: FeatureChoiced = {
-  name: 'Hair gradient',
+  name: 'Gradient włosów',
   component: FeatureButtonedDropdownInput,
 };
 
 export const gradient_color: Feature<string> = {
-  name: 'Gradient Color',
+  name: 'Kolor gradientu',
   small_supplemental: false,
   predictable: false,
   component: (props: FeatureValueProps<string>) => {
@@ -212,51 +212,51 @@ export const gradient_color: Feature<string> = {
 };
 
 export const feature_lizard_legs: FeatureChoiced = {
-  name: 'Leg Type',
+  name: 'Typ nóg',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_mcolor: Feature<string> = {
-  name: 'Mutant Color',
+  name: 'Kolor mutanta',
   component: FeatureColorInput,
 };
 
 export const underwear_color: Feature<string> = {
-  name: 'Underwear Color',
+  name: 'Kolor bielizny',
   component: FeatureColorInput,
 };
 
 export const helmet_style: FeatureChoiced = {
-  name: 'Helmet Style',
+  name: 'Styl hełmu',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_ipc_antenna_color: Feature<string> = {
-  name: 'Antenna Color',
+  name: 'Kolor anteny',
   component: FeatureColorInput,
 };
 
 export const feature_ipc_screen_color: Feature<string> = {
-  name: 'Screen Color',
+  name: 'Kolor ekranu',
   component: FeatureColorInput,
 };
 
 export const feature_human_tail: FeatureChoiced = {
-  name: 'Tail',
+  name: 'Ogon',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_human_ears: FeatureChoiced = {
-  name: 'Ears',
+  name: 'Uszy',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_insect_type: FeatureChoiced = {
-  name: 'Insect Type',
+  name: 'Typ owada',
   component: FeatureButtonedDropdownInput,
 };
 
 export const feature_moth_eyes: FeatureChoiced = {
-  name: 'Eye Type',
+  name: 'Typ oczu',
   component: FeatureButtonedDropdownInput,
 };

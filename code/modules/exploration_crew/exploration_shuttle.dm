@@ -1,6 +1,6 @@
 /obj/machinery/computer/shuttle_flight/custom_shuttle/exploration
-	name = "exploration shuttle console"
-	desc = "Used to pilot the exploration shuttle."
+	name = "konsola promu badawczego"
+	desc = "Służy do pilotowania promu badawczego."
 	circuit = /obj/item/circuitboard/computer/shuttle/exploration_shuttle
 	shuttleId = "exploration"
 	possible_destinations = "exploration_home"

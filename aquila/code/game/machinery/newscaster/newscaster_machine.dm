@@ -3,7 +3,7 @@
 
 /obj/machinery/newscaster
 	name = "newscaster"
-	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
+	desc = "Standardowy czytnik wiadomości na licencji Nanotrasen do komercyjnych stacji kosmicznych. Wszystkie zupełnie ci niepotrzebne wiadomości w jednym miejscu!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "newscaster_off"
 	/// AQUILA: our atoms have no base_icon_state
@@ -78,7 +78,7 @@
 
 /// Kept for our maps, the BeeStation newscaster gives security tools to anyone with security access
 /obj/machinery/newscaster/security_unit
-	name = "security newscaster"
+	name = "newscaster ochrony"
 
 /obj/machinery/newscaster/security_unit/north
 	dir = NORTH
@@ -183,7 +183,7 @@
 		else if(card.registered_account.account_job)
 			data["user"]["job"] = card.registered_account.account_job.title
 		else
-			data["user"]["job"] = "No Job"
+			data["user"]["job"] = "Brak zawodu"
 	else if(issilicon(user))
 		data["user"]["authenticated"] = TRUE
 		data["user"]["silicon"] = TRUE
@@ -256,7 +256,7 @@
 
 	if(!current_channel)
 		data["channelAuthor"] = "Nanotrasen Inc"
-		data["channelDesc"] = "Welcome to Newscaster Net. Interface & News networks Operational."
+		data["channelDesc"] = "Witaj w sieci Newscaster. Interfejs i sieci wiadomości działają."
 		data["channelLocked"] = TRUE
 	else
 		data["channelDesc"] = current_channel.channel_desc
@@ -328,7 +328,7 @@
 
 		if("createStory")
 			if(!current_channel)
-				balloon_alert(usr, "select a channel first!")
+				balloon_alert(usr, "najpierw wybierz kanał!")
 				return TRUE
 			var/prototype_channel = params["current"]
 			create_story(channel_name = prototype_channel)
@@ -387,7 +387,7 @@
 					var/mob/living/living_user = usr
 					id_card = living_user.get_idcard(hand_first = TRUE)
 				if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-					say("ERROR: Unauthorized request.")
+					say("BŁĄD: nieautoryzowane żądanie.")
 					return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message as anything in current_channel.messages)
@@ -404,7 +404,7 @@
 					var/mob/living/living_user = usr
 					id_card = living_user.get_idcard(hand_first = TRUE)
 				if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-					say("ERROR: Unauthorized request.")
+					say("BŁĄD: nieautoryzowane żądanie.")
 					return TRUE
 			var/questionable_message = params["messageID"]
 			for(var/datum/feed_message/iterated_feed_message in current_channel.messages)
@@ -421,7 +421,7 @@
 					var/mob/living/living_user = usr
 					id_card = living_user.get_idcard(hand_first = TRUE)
 				if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-					say("ERROR: Unauthorized request.")
+					say("BŁĄD: nieautoryzowane żądanie.")
 					return TRUE
 			var/prototype_channel = (params["channel"])
 			for(var/datum/feed_channel/potential_channel in GLOB.news_network.network_channels)
@@ -433,7 +433,7 @@
 
 		if("startComment")
 			if(!get_registered_account(usr) && !silicon)
-				say("ERROR: Cannote locate linked account ID.")
+				say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 				creating_comment = FALSE
 				return TRUE
 			creating_comment = TRUE
@@ -471,14 +471,14 @@
 			return TRUE
 
 		if("setCriminalName")
-			var/temp_name = stripped_input(usr, "Write the Criminal's Name", "Warrent Alert Handler", "John Doe", MAX_NAME_LEN)
+			var/temp_name = stripped_input(usr, "Wpisz imię i nazwisko przestępcy", "Obsługa listów gończych", "John Doe", MAX_NAME_LEN)
 			if(!temp_name)
 				return TRUE
 			criminal_name = temp_name
 			return TRUE
 
 		if("setCrimeData")
-			var/temp_desc = stripped_multiline_input(usr, "Write the Criminal's Crimes", "Warrent Alert Handler", "Unknown", MAX_BROADCAST_LEN)
+			var/temp_desc = stripped_multiline_input(usr, "Wpisz przestępstwa przestępcy", "Obsługa listów gończych", "Unknown", MAX_BROADCAST_LEN)
 			if(!temp_desc)
 				return TRUE
 			crime_description = temp_desc
@@ -488,11 +488,11 @@
 			if(ispAI(usr))
 				return TRUE
 			if(!crime_description || !criminal_name)
-				say("ERROR: Missing crime details.")
+				say("BŁĄD: brak szczegółów przestępstwa.")
 				return TRUE
 			var/datum/bank_account/account = get_registered_account(usr)
 			if(!istype(account) && !silicon)
-				say("ERROR: Cannot locate linked account ID.")
+				say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 				return TRUE
 			if(!silicon)
 				var/obj/item/card/id/id_card
@@ -500,7 +500,7 @@
 					var/mob/living/living_user = usr
 					id_card = living_user.get_idcard(hand_first = TRUE)
 				if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-					say("ERROR: Unauthorized request.")
+					say("BŁĄD: nieautoryzowane żądanie.")
 					return TRUE
 			GLOB.news_network.submit_wanted(criminal_name, crime_description, silicon ? usr.name : account.account_holder, current_image, adminMsg = FALSE, newMessage = TRUE, has_image = wanted_image)
 			current_image = null
@@ -520,7 +520,7 @@
 					var/mob/living/living_user = usr
 					id_card = living_user.get_idcard(hand_first = TRUE)
 				if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-					say("ERROR: Unauthorized request.")
+					say("BŁĄD: nieautoryzowane żądanie.")
 					return TRUE
 			clear_wanted_issue(user = usr)
 			for(var/obj/machinery/newscaster/other_newscaster in GLOB.allCasters)
@@ -562,42 +562,42 @@
 
 /obj/machinery/newscaster/attackby(obj/item/I, mob/living/user, list/modifiers)
 	if(I.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
+		to_chat(user, span_notice("Zaczynasz [anchored ? "odkręcać" : "przykręcać"] [name]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 60))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			if(machine_stat & BROKEN)
-				to_chat(user, span_warning("The broken remains of [src] fall on the ground."))
+				to_chat(user, span_warning("Szczątki [src] spadają na ziemię."))
 				new /obj/item/stack/sheet/iron(loc, 5)
 				new /obj/item/shard(loc)
 				new /obj/item/shard(loc)
 			else
-				to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
+				to_chat(user, span_notice("[anchored ? "Odkręcasz" : "Przykręcasz"] [name]."))
 				new /obj/item/wallframe/newscaster(loc)
 			qdel(src)
 	else if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(machine_stat & BROKEN)
 			if(!I.tool_start_check(user, amount=0))
 				return
-			user.visible_message(span_notice("[user] is repairing [src]."), \
-							span_notice("You begin repairing [src]..."), \
-							span_hear("You hear welding."))
+			user.visible_message(span_notice("[user] naprawia [src]."), \
+							span_notice("Zaczynasz naprawiać [src]..."), \
+							span_hear("Słyszysz spawanie."))
 			if(I.use_tool(src, user, 40, volume=50))
 				if(!(machine_stat & BROKEN))
 					return
-				to_chat(user, span_notice("You repair [src]."))
+				to_chat(user, span_notice("Naprawiasz [src]."))
 				obj_integrity = max_integrity
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_icon()
 		else
-			to_chat(user, span_notice("[src] does not need repairs."))
+			to_chat(user, span_notice("[src] nie wymaga naprawy."))
 
 	else if(istype(I, /obj/item/paper))
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
 		else
 			paper_remaining ++
-			to_chat(user, span_notice("You insert the [I] into \the [src]! It now holds [paper_remaining] sheets of paper."))
+			to_chat(user, span_notice("Wkładasz [I] do [src]! Arkusze papieru w środku: [paper_remaining]."))
 			qdel(I)
 			return
 	return ..()
@@ -628,7 +628,7 @@
 
 /obj/machinery/newscaster/attack_paw(mob/living/user, list/modifiers)
 	if(!user.combat_mode)
-		to_chat(user, span_warning("The newscaster controls are far too complicated for your tiny brain!"))
+		to_chat(user, span_warning("Sterowanie newscastera jest o wiele za trudne dla twojego móżdżku!"))
 	else
 		take_damage(5, BRUTE, "melee")
 
@@ -667,7 +667,7 @@
 	if(issilicon(usr))
 		return TRUE
 	if(paper_remaining <= 0)
-		balloon_alert_to_viewers("out of paper!")
+		balloon_alert_to_viewers("brak papieru!")
 		return TRUE
 	SSblackbox.record_feedback("amount", "newspapers_printed", 1)
 	var/obj/item/newspaper/new_newspaper = new /obj/item/newspaper
@@ -696,14 +696,14 @@
 /obj/machinery/newscaster/proc/news_alert(channel, update_alert = TRUE)
 	if(channel)
 		if(update_alert)
-			say("Breaking news from [channel]!")
+			say("Pilne wiadomości z kanału [channel]!")
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 75, TRUE)
 		alert = TRUE
 		update_overlays()
 		addtimer(CALLBACK(src, PROC_REF(remove_alert)), ALERT_DELAY, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	else if(!channel && update_alert)
-		say("Attention! Wanted issue distributed!")
+		say("Uwaga! Rozesłano list gończy!")
 		playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, TRUE)
 
 /**
@@ -714,18 +714,18 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel.channel_name == channel_name)
-			alert(usr, "ERROR: Feed channel with that name already exists on the Network.", "Okay")
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
-		say("ERROR: No channel description present.")
+		say("BŁĄD: brak opisu kanału.")
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		stop_creating_channel()
 		return TRUE
-	var/choice = alert(usr, "Please confirm feed channel creation","Network Channel Handler", "Confirm", "Cancel")
-	if(choice == "Confirm")
+	var/choice = alert(usr, "Potwierdź utworzenie kanału","Obsługa kanałów sieci", "Potwierdź", "Anuluj")
+	if(choice == "Potwierdź")
 		GLOB.news_network.create_feed_channel(channel_name, issilicon(usr) ? usr.name : account.account_holder, channel_desc, locked = channel_locked)
 		SSblackbox.record_feedback("text", "newscaster_channels", 1, "[channel_name]")
 	stop_creating_channel()
@@ -735,18 +735,18 @@
 		return
 	for(var/datum/feed_channel/iterated_feed_channel as anything in GLOB.news_network.network_channels)
 		if(iterated_feed_channel != current_channel && iterated_feed_channel.channel_name == channel_name)
-			alert(usr, "ERROR: Feed channel with that name already exists on the Network.", "Okay")
+			alert(usr, "BŁĄD: kanał o tej nazwie już istnieje w sieci.", "OK")
 			return TRUE
 	if(!channel_desc)
-		say("ERROR: No channel description present.")
+		say("BŁĄD: brak opisu kanału.")
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		stop_editing_channel()
 		return TRUE
 	if(current_channel.author != (issilicon(usr) ? usr.name : account.account_holder))
-		say("ERROR: Unauthorized request.")
+		say("BŁĄD: nieautoryzowane żądanie.")
 		stop_editing_channel()
 		return TRUE
 	current_channel.channel_name = channel_name
@@ -775,7 +775,7 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		creating_comment = FALSE
 		return TRUE
 	var/datum/feed_comment/new_feed_comment = new/datum/feed_comment
@@ -797,7 +797,7 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		stop_creating_channel()
 		return TRUE
 	//This first block checks for pre-existing reasons to prevent you from making a new channel, like being censored, or if you have a channel already.
@@ -810,7 +810,7 @@
 	var/usr_name = issilicon(usr) ? usr.name : account.account_holder
 	if((usr_name == "Unknown") || (usr_name in existing_authors) || isnull(usr_name))
 		stop_creating_channel()
-		alert(usr, "ERROR: User cannot be found or already has an owned feed channel.", "Okay")
+		alert(usr, "BŁĄD: nie znaleziono użytkownika albo ma on już własny kanał.", "OK")
 		return TRUE
 	creating_channel = TRUE
 	return TRUE
@@ -820,11 +820,11 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		stop_editing_channel()
 		return TRUE
 	if(current_channel.author != (issilicon(usr) ? usr.name : account.account_holder))
-		say("ERROR: Unauthorized request.")
+		say("BŁĄD: nieautoryzowane żądanie.")
 		stop_editing_channel()
 		return TRUE
 	// set initial values to current channel settings
@@ -842,7 +842,7 @@
 /obj/machinery/newscaster/proc/create_story(channel_name)
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account) && !issilicon(usr))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		return TRUE
 	for(var/datum/feed_channel/potential_channel as anything in GLOB.news_network.network_channels)
 		if(channel_name == potential_channel.channel_ID)
@@ -850,9 +850,9 @@
 			break
 	var/usr_name = issilicon(usr) ? usr.name : account.account_holder
 	if(current_channel.locked && current_channel.author != usr_name)
-		say("ERROR: Unauthorized request.")
+		say("BŁĄD: nieautoryzowane żądanie.")
 		return TRUE
-	var/temp_message = stripped_multiline_input(usr, "Write your Feed story", "Network Channel Handler", feed_channel_message)
+	var/temp_message = stripped_multiline_input(usr, "Napisz swój artykuł", "Obsługa kanałów sieci", feed_channel_message)
 	if(length(temp_message) <= 1)
 		return TRUE
 	if(temp_message)
@@ -868,7 +868,7 @@
  */
 /obj/machinery/newscaster/proc/toggle_photo()
 	if(current_image)
-		balloon_alert(usr, "current photo cleared.")
+		balloon_alert(usr, "usunięto bieżące zdjęcie.")
 		current_image = null
 		if(editing_wanted)
 			wanted_image = FALSE
@@ -878,10 +878,10 @@
 		if(editing_wanted)
 			wanted_image = !!current_image
 		if(current_image)
-			balloon_alert(usr, "photo selected.")
+			balloon_alert(usr, "wybrano zdjęcie.")
 			playsound(src, 'sound/machines/terminal_success.ogg', 15, TRUE)
 		else
-			balloon_alert(usr, "no photo identified.")
+			balloon_alert(usr, "nie wykryto zdjęcia.")
 
 /obj/machinery/newscaster/proc/clear_wanted_issue(user)
 	if(ispAI(usr))
@@ -892,7 +892,7 @@
 			var/mob/living/living_user = usr
 			id_card = living_user.get_idcard(hand_first = TRUE)
 		if(!(ACCESS_ARMORY in id_card?.GetAccess()))
-			say("Clearance not found.")
+			say("Brak uprawnień.")
 			return TRUE
 	GLOB.news_network.wanted_issue.active = FALSE
 	wanted_image = FALSE
@@ -907,17 +907,17 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
 	if(!active_request)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
 	if(active_request?.owner != account.account_holder)
-		say("ERROR: Unauthorized request.")
+		say("BŁĄD: nieautoryzowane żądanie.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
-	say("Deleted current request.")
+	say("Usunięto bieżące zlecenie.")
 	GLOB.request_list.Remove(active_request)
 
 /**
@@ -929,21 +929,21 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
 	if(!bounty_text)
-		say("ERROR: No bounty text.")
+		say("BŁĄD: brak treści zlecenia.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
 		return TRUE
 	for(var/datum/station_request/iterated_station_request as anything in GLOB.request_list)
 		if(iterated_station_request.req_number == account.account_id)
-			say("ERROR: Account already has active bounty.")
+			say("BŁĄD: to konto ma już aktywne zlecenie.")
 			return TRUE
 	var/datum/station_request/curr_request = new /datum/station_request(account.account_holder, bounty_value,bounty_text, account.account_id, account)
 	GLOB.request_list += list(curr_request)
 	for(var/obj/iterated_bounty_board as anything in GLOB.allbountyboards)
-		iterated_bounty_board.say("New bounty added!")
+		iterated_bounty_board.say("Dodano nowe zlecenie!")
 		playsound(iterated_bounty_board.loc, 'sound/effects/cashregister.ogg', 30, TRUE)
 /**
  * This sorts through the current list of bounties, and confirms that the intended request found is correct.
@@ -954,7 +954,7 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		return TRUE
 	if(account.account_holder == active_request.owner)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 20, TRUE)
@@ -972,24 +972,24 @@
 		return TRUE
 	var/datum/bank_account/account = get_registered_account(usr)
 	if(!istype(account))
-		say("ERROR: Cannot locate linked account ID.")
+		say("BŁĄD: nie można odnaleźć ID powiązanego konta.")
 		return TRUE
 	var/has_money = account.has_money(active_request.value)
 	if((account.account_holder != active_request.owner) || !has_money)
 		if(has_money)
-			say("ERROR: Unauthorized request.")
+			say("BŁĄD: nieautoryzowane żądanie.")
 		else
-			say("ERROR: Insufficient funds.")
+			say("BŁĄD: niewystarczające środki.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return TRUE
 	payment_target.transfer_money(account, active_request.value)
-	say("Paid out [active_request.value] credits.")
+	say("Wypłacono [active_request.value] kr.")
 	GLOB.request_list.Remove(active_request)
 	qdel(active_request)
 
 /obj/item/wallframe/newscaster
-	name = "newscaster frame"
-	desc = "Used to build newscasters, just secure to the wall."
+	name = "rama newscastera"
+	desc = "Służy do budowy newscasterów. Wystarczy przymocować do ściany."
 	icon_state = "newscaster"
 	custom_materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster

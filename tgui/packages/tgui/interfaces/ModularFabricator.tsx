@@ -85,7 +85,7 @@ export const ModularFabricator = () => {
                               })
                             }
                           >
-                            Queue All
+                            Dodaj wszystko
                           </Button>
                         )
                       : undefined
@@ -253,12 +253,12 @@ const SidePanel = (props: { availableMaterials: MaterialMap }) => {
         <Section
           fill
           className="Fabricator__QueuePanel"
-          title="Queue"
+          title="Kolejka"
           buttons={
             <>
               <Button
                 icon="redo-alt"
-                tooltip="Repeat the queue"
+                tooltip="Powtarzaj kolejkę"
                 selected={data.queue_repeating}
                 onClick={() =>
                   act('queue_repeat', {
@@ -270,19 +270,19 @@ const SidePanel = (props: { availableMaterials: MaterialMap }) => {
                 disabled={!queue.length}
                 color="bad"
                 icon="times"
-                content="Clear"
+                content="Wyczyść"
                 onClick={() => act('clear_queue')}
               />
               {data.processing ? (
                 <Button
-                  content="Stop"
+                  content="Zatrzymaj"
                   icon="stop"
                   onClick={() => act('stop_queue')}
                 />
               ) : (
                 <Button
                   disabled={!queue.length}
-                  content="Build"
+                  content="Buduj"
                   icon="play"
                   onClick={() => act('build_queue')}
                 />
@@ -321,7 +321,7 @@ const SidePanel = (props: { availableMaterials: MaterialMap }) => {
                     <div className="FabricatorRecipe__Button">
                       &times;{entry.amount}
                     </div>
-                    <Tooltip content="Remove one from queue">
+                    <Tooltip content="Usuń jedną sztukę z kolejki">
                       <div
                         className={classes([
                           'FabricatorRecipe__Button',
@@ -336,7 +336,7 @@ const SidePanel = (props: { availableMaterials: MaterialMap }) => {
                         <Icon name="minus-circle" />
                       </div>
                     </Tooltip>
-                    <Tooltip content="Remove from queue">
+                    <Tooltip content="Usuń z kolejki">
                       <div
                         className="FabricatorRecipe__Button FabricatorRecipe__Button--icon"
                         onClick={() =>
@@ -378,7 +378,7 @@ const SecurityControls = () => {
     <NoticeBox color={data.sec_interface_unlock ? 'green' : 'red'} m={0}>
       <Stack vertical>
         <Stack.Item>
-          Security protocol {data.hacked ? 'disengaged' : 'engaged'}.
+          Protokół bezpieczeństwa {data.hacked ? 'wyłączony' : 'włączony'}.
         </Stack.Item>
         {/* The side panel is too narrow to hold the label and both buttons on
             one row, so the buttons share a row of their own. */}
@@ -390,8 +390,8 @@ const SecurityControls = () => {
                 textAlign="center"
                 color={data.sec_interface_unlock ? 'green' : 'red'}
                 icon={data.sec_interface_unlock ? 'unlock' : 'lock'}
-                tooltip="Swipe a valid ID to unlock safety controls"
-                content={data.hacked ? 'Reactivate' : 'Deactivate'}
+                tooltip="Przeciągnij ważny identyfikator, żeby odblokować zabezpieczenia"
+                content={data.hacked ? 'Włącz ponownie' : 'Wyłącz'}
                 onClick={() => act('toggle_safety')}
               />
             </Stack.Item>
@@ -401,7 +401,9 @@ const SecurityControls = () => {
                 textAlign="center"
                 color={data.sec_interface_unlock ? 'green' : 'red'}
                 icon={data.sec_interface_unlock ? 'unlock' : 'lock'}
-                content={data.sec_interface_unlock ? 'Unlocked' : 'Locked'}
+                content={
+                  data.sec_interface_unlock ? 'Odblokowane' : 'Zablokowane'
+                }
                 onClick={() => act('toggle_lock')}
               />
             </Stack.Item>
@@ -438,18 +440,18 @@ const DiskControls = () => {
 
   return (
     <Stack align="center">
-      <Stack.Item bold>Data disk</Stack.Item>
+      <Stack.Item bold>Dysk z danymi</Stack.Item>
       <Stack.Item grow>
         <Button
           disabled={!data.disk_inserted || !data.can_upload_disk}
           icon="upload"
-          content="Upload"
+          content="Wgraj"
           onClick={() => act('upload_disk')}
         />
         <Button
           disabled={!data.disk_inserted}
           icon="folder-open"
-          content="Eject"
+          content="Wysuń"
           onClick={() => act('eject_disk')}
         />
       </Stack.Item>

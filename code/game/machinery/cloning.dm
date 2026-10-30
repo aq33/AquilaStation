@@ -9,8 +9,8 @@
 #define SPEAK(message) radio.talk_into(src, message, radio_channel)
 
 /obj/machinery/clonepod
-	name = "cloning pod"
-	desc = "An electronically-lockable pod for growing organic tissue."
+	name = "kapsuła klonująca"
+	desc = "Zamykana elektronicznie kapsuła do hodowli tkanki organicznej."
 	density = TRUE
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
@@ -119,7 +119,7 @@
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
 /obj/item/disk/data
-	name = "cloning data disk"
+	name = "dysk danych klonowania"
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	var/list/genetic_makeup_buffer = list()
 	var/list/fields = list()
@@ -142,8 +142,8 @@
 	. += "Blokada zapisu jest ustawiona na: [read_only ? "chroniony" : "niechroniony"]."
 
 /obj/item/disk/data/debug
-	name = "Debug genetic data disk"
-	desc = "A disk that contains all existing genetic mutations."
+	name = "dysk danych genetycznych (debug)"
+	desc = "Dysk zawierający wszystkie istniejące mutacje genetyczne."
 	max_mutations = 100
 
 /obj/item/disk/data/debug/Initialize(mapload)
@@ -244,7 +244,7 @@
 	occupant = H
 
 	if(!clonename)	//to prevent null names
-		clonename = "clone ([rand(1,999)])"
+		clonename = "klon ([rand(1,999)])"
 	H.real_name = clonename
 
 	icon_state = "pod_1"
@@ -302,7 +302,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		H.key = C.key
 		log_game("[key_name(C)] became [H.real_name]'s experimental clone.")
-		message_admins("[key_name_admin(C)] became [H.real_name]'s experimental clone.")
+		message_admins("[key_name_admin(C)] zostaje eksperymentalnym klonem: [H.real_name].")
 		to_chat(H, "<span class='warning'>Jeśli zamienisz się w ducha, natychmiast zginiesz. Zaczekaj, aż klonowanie się zakończy.</span>")
 
 //Grow clones to maturity then kick them out.  FREELOADERS
@@ -629,8 +629,8 @@
 
 //Experimental cloner; clones a body regardless of the owner's status.
 /obj/machinery/clonepod/experimental
-	name = "experimental cloning pod"
-	desc = "An ancient cloning pod. It seems to be an early prototype of the experimental cloners used in Nanotrasen Stations."
+	name = "eksperymentalna kapsuła klonująca"
+	desc = "Starożytna kapsuła klonująca. Wygląda na wczesny prototyp eksperymentalnych klonerów używanych na stacjach Nanotrasen."
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = null
@@ -643,7 +643,7 @@
  */
 
 /obj/item/paper/guides/jobs/medical/cloning
-	name = "paper - 'H-87 Cloning Apparatus Manual"
+	name = "kartka – „Instrukcja aparatu klonującego H-87”"
 	default_raw_text = {"<h4>Pierwsze kroki</h4>
 	Gratulacje, twoja stacja zakupiła przemysłowe urządzenie klonujące H-87!<br>
 	Korzystanie z H-87 jest prawie tak proste jak operacja mózgu! Wystarczy umieścić docelowego humanoida w komorze skanującej i wybrać opcję skanowania, by utworzyć nowy profil!<br>

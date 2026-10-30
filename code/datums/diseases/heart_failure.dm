@@ -1,10 +1,10 @@
 /datum/disease/heart_failure
-	form = "Condition"
-	name = "Myocardial Infarction"
+	form = "Schorzenie"
+	name = "Zawał mięśnia sercowego"
 	max_stages = 5
 	stage_prob = 2
 	cure_text = "Leczy się przeszczepem serca. Po zatrzymaniu akcji serca skuteczna może też być defibrylacja (lub, w ostateczności, niekontrolowane rażenie prądem). Korazon może też łagodzić zatrzymanie akcji serca."
-	agent = "Shitty Heart"
+	agent = "Gówniane serce"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
 	desc = "Nieleczony chory umrze!"

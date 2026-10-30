@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/hypospray/autoinjector
-	name = "autoinjector"
-	desc = "An autoinjector, delivers 10u of a desired drug instantly. Compatible with hardsuit intravenous systems."
+	name = "autoinjektor"
+	desc = "Autoinjektor, który natychmiast podaje 10 j. wybranego leku. Zgodny z systemami dożylnymi hardsuitów."
 	icon = 'nsv13/icons/obj/hypospray.dmi'
 	icon_state = "autoinjector"
 	item_state = "autoinjector"

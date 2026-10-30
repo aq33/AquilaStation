@@ -6,10 +6,11 @@
 	if(!SSdbcore.IsConnected())
 		to_chat(src, "<span class='danger'>Nie udało się połączyć z bazą danych.</span>")
 		return
-	var/memotask = input(usr,"Choose task.","Memo") in list("Show","Write","Edit","Remove")
+	var/list/memo_tasks = list("Pokaż" = "Show", "Napisz" = "Write", "Edytuj" = "Edit", "Usuń" = "Remove")
+	var/memotask = input(usr,"Wybierz zadanie.","Notatki") in memo_tasks
 	if(!memotask)
 		return
-	mentor_memo_output(memotask)
+	mentor_memo_output(memo_tasks[memotask])
 
 /client/proc/show_mentor_memo()
 	set name = "Show Memos"
@@ -42,7 +43,7 @@
 				to_chat(src, "Masz już ustawioną notatkę.")
 				qdel(query_memocheck)
 				return
-			var/memotext = capped_multiline_input(src,"Napisz swoją notatkę","Memo")
+			var/memotext = capped_multiline_input(src,"Napisz swoją notatkę","Notatka")
 			if(!memotext)
 				qdel(query_memocheck)
 				return
@@ -58,7 +59,7 @@
 				qdel(query_memoadd)
 				return
 			log_admin("[key_name(src)] has set a mentor memo: [memotext]")
-			message_admins("[key_name_admin(src)] has set a mentor memo:<br>[memotext]")
+			message_admins("[key_name_admin(src)] ustawia notatkę mentora:<br>[memotext]")
 			qdel(query_memocheck)
 			qdel(query_memoadd)
 		if("Edit")
@@ -76,7 +77,7 @@
 				to_chat(src, "W bazie danych nie znaleziono notatek.")
 				qdel(query_memolist)
 				return
-			var/target_ckey = input(src, "Wybierz, czyją notatkę edytować", "Select memo") as null|anything in memolist
+			var/target_ckey = input(src, "Wybierz, czyją notatkę edytować", "Wybierz notatkę") as null|anything in memolist
 			if(!target_ckey)
 				qdel(query_memolist)
 				return
@@ -92,7 +93,7 @@
 				return
 			if(query_memofind.NextRow())
 				var/old_memo = query_memofind.item[1]
-				var/new_memo = capped_multiline_input(src, "Input new memo", "New Memo", "[old_memo]")
+				var/new_memo = capped_multiline_input(src, "Wpisz nową notatkę", "Nowa notatka", "[old_memo]")
 				if(!new_memo)
 					qdel(query_memolist)
 					qdel(query_memofind)
@@ -111,10 +112,10 @@
 					return
 				if(target_ckey == ckey)
 					log_admin("[key_name(src)] has edited their mentor memo from [old_memo] to [new_memo]")
-					message_admins("[key_name_admin(src)] has edited their mentor memo from<br>[old_memo]<br>to<br>[new_memo]")
+					message_admins("[key_name_admin(src)] edytuje swoją notatkę mentora z<br>[old_memo]<br>na<br>[new_memo]")
 				else
 					log_admin("[key_name(src)] has edited [target_ckey]'s mentor memo from [old_memo] to [new_memo]")
-					message_admins("[key_name_admin(src)] has edited [target_ckey]'s mentor memo from<br>[old_memo]<br>to<br>[new_memo]")
+					message_admins("[key_name_admin(src)] edytuje notatkę mentora [target_ckey] z<br>[old_memo]<br>na<br>[new_memo]")
 				qdel(update_query)
 			qdel(query_memolist)
 			qdel(query_memofind)
@@ -156,7 +157,7 @@
 				to_chat(src, "W bazie danych nie znaleziono notatek.")
 				qdel(query_memodellist)
 				return
-			var/target_ckey = input(src, "Wybierz, czyją notatkę mentora usunąć", "Select mentor memo") as null|anything in memolist
+			var/target_ckey = input(src, "Wybierz, czyją notatkę mentora usunąć", "Wybierz notatkę mentora") as null|anything in memolist
 			if(!target_ckey)
 				qdel(query_memodellist)
 				return
@@ -172,9 +173,9 @@
 				return
 			if(target_ckey == ckey)
 				log_admin("[key_name(src)] has removed their mentor memo.")
-				message_admins("[key_name_admin(src)] has removed their mentor memo.")
+				message_admins("[key_name_admin(src)] usuwa swoją notatkę mentora.")
 			else
 				log_admin("[key_name(src)] has removed [target_ckey]'s mentor memo.")
-				message_admins("[key_name_admin(src)] has removed [target_ckey]'s mentor memo.")
+				message_admins("[key_name_admin(src)] usuwa notatkę mentora [target_ckey].")
 			qdel(query_memodellist)
 			qdel(query_memodel)

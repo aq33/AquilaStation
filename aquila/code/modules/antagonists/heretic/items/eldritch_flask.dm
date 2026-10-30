@@ -1,7 +1,7 @@
 // An unholy water flask, but for heretics.
 // Heals heretics, harms non-heretics. Pretty much identical.
 /obj/item/reagent_containers/glass/beaker/eldritch
-	name = "flask of eldritch essence"
+	name = "flaszka pradawnej esencji"
 	desc = "Trująca dla ciasnych umysłów, a orzeźwiająca dla tych, którzy znają to, co poza."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	icon_state = "eldritch_flask"
@@ -10,7 +10,7 @@
 
 // Unique bottle that lets you instantly draw blood from a victim
 /obj/item/reagent_containers/glass/phylactery
-	name = "phylactery of damnation"
+	name = "filakteria potępienia"
 	desc = "Służy do kradzieży krwi przyszłym ofiarom. Prawym przyciskiem (w intencjach: na rozbrajaniu) pobierasz krew, nawet z daleka."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	icon_state = "phylactery"
@@ -67,7 +67,7 @@
 
 // Funny potion that is basically an aheal. The downside is that it puts you to sleep for a minute.
 /obj/item/ether
-	name = "ether of the newborn"
+	name = "eter nowonarodzonych"
 	desc = "Flaszka mdlącego, gęstego, zielonego płynu. W pełni przywraca ciało, a potem zapada się w pogłębiony sen na pełną minutę."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	icon_state = "poison_flask"
@@ -113,7 +113,7 @@
 	owner.SetStasis(FALSE)
 
 /atom/movable/screen/alert/status_effect/eldritch_sleep
-	name = "Eldritch Slumber"
+	name = "Pradawny sen"
 	desc = "Czujesz nieopisane ciepło, które cię chroni..."
 	icon = 'aquila/icons/hud/screen_alert.dmi'
 	icon_state = "eldritch_slumber"

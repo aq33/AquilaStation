@@ -1,8 +1,8 @@
 /obj/machinery/ship_weapon/broadside
-	name = "\improper SN 'Sucker Punch' Broadside Cannon"
+	name = "\improper działo burtowe SN „Sucker Punch”"
 	icon = 'nsv13/icons/obj/broadside.dmi'
 	icon_state = "broadside"
-	desc = "Line 'em up, knock 'em down."
+	desc = "Ustaw ich w szeregu i powal."
 	anchored = TRUE
 
 	density = TRUE
@@ -42,8 +42,8 @@
 	dir = NORTH
 
 /obj/item/circuitboard/machine/broadside
-	name = "circuit board (broadside)"
-	desc = "Man the cannons!"
+	name = "działo burtowe (płytka maszyny)"
+	desc = "Obsadzić działa!"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 20,
 		/obj/item/stack/sheet/iron = 50,
@@ -251,7 +251,7 @@
 
 
 /obj/effect/particle_effect/muzzleflash //Flash Effect when the weapon fires
-	name = "muzzleflash"
+	name = "błysk z lufy"
 	light_range = 3
 	light_power = 30
 	light_color = LIGHT_COLOR_ORANGE
@@ -388,8 +388,8 @@
 	busy = FALSE
 
 /obj/item/swabber
-	name = "swabber"
-	desc = "This a gun barrel swabber, it's covered in cotton and metal bristles. It can be used to clean the broadside's barrels."
+	name = "wycior"
+	desc = "Wycior do luf, pokryty bawełną i metalowym włosiem. Służy do czyszczenia luf działa burtowego."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "swabber"
 	lefthand_file = 'nsv13/icons/mob/inhands/items_lefthand.dmi'

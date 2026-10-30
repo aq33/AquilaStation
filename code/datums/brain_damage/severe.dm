@@ -6,8 +6,8 @@
 	resilience = TRAUMA_RESILIENCE_SURGERY
 
 /datum/brain_trauma/severe/mute
-	name = "Mutism"
-	desc = "Patient is completely unable to speak."
+	name = "Mutyzm"
+	desc = "Pacjent zupełnie nie może mówić."
 	scan_desc = "rozległe uszkodzenie ośrodka mowy w mózgu"
 	gain_text = "<span class='warning'>Zapominasz, jak się mówi!</span>"
 	lose_text = "<span class='notice'>Nagle przypominasz sobie, jak się mówi.</span>"
@@ -21,8 +21,8 @@
 	..()
 
 /datum/brain_trauma/severe/aphasia
-	name = "Aphasia"
-	desc = "Patient is unable to speak or understand any language."
+	name = "Afazja"
+	desc = "Pacjent nie potrafi mówić ani rozumieć żadnego języka."
 	scan_desc = "rozległe uszkodzenie ośrodka językowego w mózgu"
 	gain_text = "<span class='warning'>Masz problem z układaniem słów w głowie...</span>"
 	lose_text = "<span class='notice'>Nagle przypominasz sobie, jak działają języki.</span>"
@@ -38,8 +38,8 @@
 	..()
 
 /datum/brain_trauma/severe/blindness
-	name = "Cerebral Blindness"
-	desc = "Patient's brain is no longer connected to its eyes."
+	name = "Ślepota korowa"
+	desc = "Mózg pacjenta nie jest już połączony z oczami."
 	scan_desc = "rozległe uszkodzenie płata potylicznego"
 	gain_text = "<span class='warning'>Nic nie widzisz!</span>"
 	lose_text = "<span class='notice'>Wzrok ci wraca.</span>"
@@ -53,8 +53,8 @@
 	..()
 
 /datum/brain_trauma/severe/paralysis
-	name = "Paralysis"
-	desc = "Patient's brain can no longer control part of its motor functions."
+	name = "Paraliż"
+	desc = "Mózg pacjenta nie kontroluje już części funkcji ruchowych."
 	scan_desc = "paraliż mózgowy"
 	gain_text = ""
 	lose_text = ""
@@ -118,8 +118,8 @@
 	resilience = TRAUMA_RESILIENCE_ABSOLUTE
 
 /datum/brain_trauma/severe/narcolepsy
-	name = "Narcolepsy"
-	desc = "Patient may involuntarily fall asleep during normal activities."
+	name = "Narkolepsja"
+	desc = "Pacjent może mimowolnie zasypiać podczas zwykłych czynności."
 	scan_desc = "urazowa narkolepsja"
 	gain_text = "<span class='warning'>Ciągle czujesz senność...</span>"
 	lose_text = "<span class='notice'>Znów czujesz się rozbudzony i przytomny.</span>"
@@ -141,9 +141,9 @@
 		owner.drowsyness += 10
 
 /datum/brain_trauma/severe/monophobia
-	name = "Monophobia"
-	desc = "Patient feels sick and distressed when not around other people, leading to potentially lethal levels of stress."
-	scan_desc = "monophobia"
+	name = "Monofobia"
+	desc = "Pacjent źle się czuje i cierpi, gdy nie ma przy nim innych ludzi, co prowadzi do potencjalnie śmiertelnego stresu."
+	scan_desc = "monofobia"
 	gain_text = ""
 	lose_text = "<span class='notice'>Czujesz, że sam też byłbyś bezpieczny.</span>"
 	var/stress = 0
@@ -220,8 +220,8 @@
 			SWITCH_EMPTY_STATEMENT
 
 /datum/brain_trauma/severe/discoordination
-	name = "Discoordination"
-	desc = "Patient is unable to use complex tools or machinery."
+	name = "Zaburzenia koordynacji"
+	desc = "Pacjent nie potrafi używać złożonych narzędzi ani maszyn."
 	scan_desc = "skrajne zaburzenie koordynacji"
 	gain_text = "<span class='warning'>Ledwo panujesz nad rękami!</span>"
 	lose_text = "<span class='notice'>Znów panujesz nad rękami.</span>"
@@ -235,8 +235,8 @@
 	..()
 
 /datum/brain_trauma/severe/pacifism
-	name = "Traumatic Non-Violence"
-	desc = "Patient is extremely unwilling to harm others in violent ways."
+	name = "Urazowy pacyfizm"
+	desc = "Pacjent wyjątkowo niechętnie krzywdzi innych przemocą."
 	scan_desc = "syndrom pacyfistyczny"
 	gain_text = "<span class='userdanger'>Nie chcesz już krzywdzić innych!</span>"
 	lose_text = "<span class='notice'>Nie czujesz już przymusu, by nie krzywdzić.</span>"
@@ -250,8 +250,8 @@
 	..()
 
 /datum/brain_trauma/severe/hypnotic_stupor
-	name = "Hypnotic Stupor"
-	desc = "Patient is prone to episodes of extreme stupor that leaves them extremely suggestible."
+	name = "Otępienie hipnotyczne"
+	desc = "Pacjent miewa epizody skrajnego otępienia, w których jest wyjątkowo podatny na sugestię."
 	scan_desc = "oniryczna pętla sprzężenia zwrotnego"
 	gain_text = "<span class='warning'>Czujesz się nieco oszołomiony.</span>"
 	lose_text = "<span class='notice'>Czujesz, jakby mgła opadła z twojego umysłu.</span>"

@@ -9,7 +9,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/shell
-	name = "circuit airlock"
+	name = "śluza z układem"
 	autoclose = FALSE
 
 /obj/machinery/door/airlock/shell/Initialize(mapload)
@@ -36,7 +36,7 @@
 	return isAdminGhostAI(user)
 
 /obj/item/circuit_component/airlock
-	display_name = "Airlock"
+	display_name = "Sterowanie śluzą"
 	desc = "Ogólny interfejs śluzy. Zawiera podstawowe stany śluzy."
 
 	/// The shell, if it is an airlock.
@@ -132,7 +132,7 @@
 
 
 /obj/item/circuit_component/airlock_access_event
-	display_name = "Airlock Access Event"
+	display_name = "Zdarzenie dostępu do śluzy"
 	desc = "Zdarzenie, które komponenty układu mogą obsłużyć, by zdecydować, czy drzwi mają się otworzyć przed obiektem próbującym przez nie przejść."
 	circuit_flags = CIRCUIT_FLAG_INSTANT
 

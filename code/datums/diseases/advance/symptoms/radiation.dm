@@ -1,5 +1,5 @@
 /datum/symptom/radiation
-	name = "Iraddiant Cells"
+	name = "Promieniujące komórki"
 	desc = "Sprawia, że komórki w ciele nosiciela emitują szkodliwe promieniowanie."
 	stealth = -1
 	resistance = 2
@@ -44,7 +44,7 @@
 	return 1
 
 /datum/symptom/radconversion
-	name = "Aptotic Culling"
+	name = "Apoptotyczna selekcja"
 	desc = "Wirus sprawia, że zarażone komórki obumierają po wystawieniu na promieniowanie, przez co na ciele nosiciela pojawiają się otwarte rany. Efektem końcowym jest usunięcie skażenia radioaktywnego z nosiciela."
 	stealth = 1
 	resistance = 1

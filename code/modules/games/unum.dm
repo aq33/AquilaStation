@@ -1,7 +1,7 @@
 /// A deck of unum cards. Classic.
 /obj/item/toy/cards/deck/unum
-	name = "\improper UNUM deck"
-	desc = "A deck of unum cards. House rules to argue over not included."
+	name = "\improper talia UNUM"
+	desc = "Talia kart unum. Domowe zasady do kłótni nie są w zestawie."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "deck_unum_full"
 	deckstyle = "unum"

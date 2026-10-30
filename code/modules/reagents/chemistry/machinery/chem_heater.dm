@@ -1,6 +1,6 @@
 // AQ EDIT - podgrzewacz przepisany pod fermichem z tg (tgstation@b3949ec362): bufory pH, podgląd reakcji, grzanie w trakcie reakcji
 /obj/machinery/chem_heater
-	name = "chemical heater"
+	name = "podgrzewacz chemiczny"
 	density = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0b"
@@ -318,7 +318,7 @@
 
 /// Debug heater with plenty of buffer and upgraded parts (tg: /obj/machinery/chem_heater/debug)
 /obj/machinery/chem_heater/debug
-	name = "debug chemical heater"
+	name = "debugowy podgrzewacz chemiczny"
 	desc = "Teraz z jeszcze większą ilością buforów!"
 
 /obj/machinery/chem_heater/debug/Initialize(mapload)

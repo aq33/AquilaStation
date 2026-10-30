@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack
-	name = "fulton extraction pack"
-	desc = "A balloon that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
+	name = "balonowy pakiet ewakuacyjny"
+	desc = "Balon, którym można wysłać sprzęt albo ludzi do nadajnika odzysku Fultona. Przenieść da się wszystko, co nie jest przykręcone. Połącz pakiet z nadajnikiem, używając go w ręce."
 	icon = 'icons/obj/fulton.dmi'
 	icon_state = "extraction_pack"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -139,8 +139,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 
 /obj/item/fulton_core
-	name = "extraction beacon signaller"
-	desc = "Emits a signal which fulton recovery devices can lock onto. Activate in hand to create a beacon."
+	name = "sygnalizator nadajnika ewakuacji"
+	desc = "Emituje sygnał, na który mogą namierzać się urządzenia odzysku Fultona. Aktywuj w ręce, aby utworzyć nadajnik."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "subspace_amplifier"
 
@@ -150,8 +150,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 		qdel(src)
 
 /obj/structure/extraction_point
-	name = "fulton recovery beacon"
-	desc = "A beacon for the fulton recovery system. Activate a pack in your hand to link it to a beacon."
+	name = "nadajnik odzysku Fultona"
+	desc = "Nadajnik systemu odzysku Fultona. Aktywuj pakiet w ręce, aby połączyć go z nadajnikiem."
 	icon = 'icons/obj/fulton.dmi'
 	icon_state = "extraction_point"
 	anchored = TRUE
@@ -168,8 +168,8 @@ GLOBAL_LIST_EMPTY(total_extraction_beacons)
 	..()
 
 /obj/effect/extraction_holder
-	name = "extraction holder"
-	desc = "you shouldn't see this"
+	name = "uchwyt ewakuacji"
+	desc = "nie powinieneś tego widzieć"
 	var/atom/movable/stored_obj
 
 /obj/item/extraction_pack/proc/check_for_living_mobs(atom/A)

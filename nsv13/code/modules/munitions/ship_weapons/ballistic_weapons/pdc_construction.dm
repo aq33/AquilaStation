@@ -1,14 +1,14 @@
 /obj/item/wallframe/pdc_frame
-	name = "\improper PDC loading rack frame"
-	desc = "Used for building PDC loading racks."
+	name = "\improper rama stojaka ładowania PDC"
+	desc = "Służy do budowy stojaków ładowania PDC."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "pdc_frame"
 	result_path = /obj/structure/frame/machine/ship_weapon/pdc_mount
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*5)
 
 /obj/structure/frame/machine/ship_weapon/pdc_mount
-	name = "\improper PDC loading rack frame"
-	desc = "Used for building PDC loading racks."
+	name = "\improper rama stojaka ładowania PDC"
+	desc = "Służy do budowy stojaków ładowania PDC."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "pdc_frame"
 	pixel_y = 26

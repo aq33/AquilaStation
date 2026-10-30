@@ -1,7 +1,7 @@
 //goat
 /mob/living/simple_animal/hostile/retaliate/goat
-	name = "goat"
-	desc = "Not known for their pleasant disposition."
+	name = "koza"
+	desc = "Nie słynie z miłego usposobienia."
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -106,8 +106,8 @@
 			NB.dismember()
 //cow
 /mob/living/simple_animal/cow
-	name = "cow"
-	desc = "Known for their milk, just don't tip them over."
+	name = "krowa"
+	desc = "Słynie z mleka. Tylko jej nie przewracaj."
 	icon_state = "cow"
 	icon_living = "cow"
 	icon_dead = "cow_dead"
@@ -187,8 +187,8 @@
 		"<span class='revennotice'>[internal]</span>")
 
 /mob/living/simple_animal/chick
-	name = "\improper chick"
-	desc = "Adorable! They make such a racket though."
+	name = "\improper pisklę"
+	desc = "Urocze! Choć narobi strasznego hałasu."
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -251,8 +251,8 @@
 	amount_grown = 0
 
 /mob/living/simple_animal/chicken
-	name = "\improper chicken"
-	desc = "Hopefully the eggs are good this season."
+	name = "\improper kura"
+	desc = "Oby jajka w tym sezonie się udały."
 	gender = FEMALE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
 	icon_state = "chicken_brown"
@@ -354,8 +354,8 @@
 		STOP_PROCESSING(SSobj, src)
 
 /mob/living/simple_animal/chicken/turkey
-	name = "\improper turkey"
-	desc = "it's that time again."
+	name = "\improper indyk"
+	desc = "Znowu nadszedł ten czas."
 	icon_state = "turkey_plain"
 	icon_living = "turkey_plain"
 	icon_dead = "turkey_plain_dead"
@@ -377,8 +377,8 @@
 	chat_color = "#FFDC9B"
 
 /mob/living/simple_animal/sheep
-	name = "sheep"
-	desc = "It's so fluffy!"
+	name = "owca"
+	desc = "Jaka puchata!"
 	icon_state = "sheep"
 	icon_living = "sheep"
 	icon_dead = "sheep_dead"
@@ -459,15 +459,15 @@
 
 //udder
 /obj/item/udder
-	name = "udder"
+	name = "wymię"
 	var/milktype = /datum/reagent/consumable/milk
 
 /obj/item/udder/sheep
-	name = "sheep udder"
+	name = "wymię owcy"
 	milktype = /datum/reagent/consumable/milk/sheep
 
 /obj/item/udder/goat
-	name = "goat udder"
+	name = "wymię kozy"
 	milktype = /datum/reagent/consumable/milk/goat
 
 

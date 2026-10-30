@@ -96,7 +96,7 @@
 			"<span class='warning'>Napierasz na ścianę. Jest wyraźnie niestabilna i wydaje niepokojący metaliczny jęk!</span>", \
 			"<span class='warning'>Słyszysz niepokojący metaliczny jęk!</span>")
 		return TRUE
-	user.visible_message("<span class='warning'>[user] napiera na ścianę, a ta kruszy się pod [user.p_their()] dotykiem!</span>", \
+	user.visible_message("<span class='warning'>[user] napiera na ścianę, a ta kruszy się pod [user.p_jego()] dotykiem!</span>", \
 		"<span class='warning'>Napierasz na ścianę, a ta kruszy się pod twoim dotykiem!</span>", \
 		"<span class='warning'>Słyszysz, jak coś się kruszy!</span>")
 	dismantle_wall()

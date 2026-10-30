@@ -54,8 +54,8 @@
 	return TRUE
 
 /obj/machinery/computer/upload/ai
-	name = "\improper AI upload console"
-	desc = "Used to upload laws to the AI."
+	name = "\improper konsola przesyłania praw SI"
+	desc = "Służy do przesyłania praw do SI."
 	circuit = /obj/item/circuitboard/computer/aiupload
 
 /obj/machinery/computer/upload/ai/interact(mob/user)
@@ -75,8 +75,8 @@
 
 
 /obj/machinery/computer/upload/borg
-	name = "cyborg upload console"
-	desc = "Used to upload laws to Cyborgs."
+	name = "konsola przesyłania praw cyborgów"
+	desc = "Służy do przesyłania praw do cyborgów."
 	circuit = /obj/item/circuitboard/computer/borgupload
 
 /obj/machinery/computer/upload/borg/interact(mob/user)

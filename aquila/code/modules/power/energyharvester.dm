@@ -1,6 +1,6 @@
 /obj/item/energy_harvester
-	desc = "A Device which upon connection to a node, will harvest the energy and send it to engineerless stations in return for credits, derived from a syndicate powersink model."
-	name = "Energy Harvesting Module"
+	desc = "Urządzenie oparte na modelu pochłaniacza energii Syndykatu. Po podłączeniu do węzła zbiera energię i wysyła ją na stacje bez inżynierów w zamian za kredyty."
+	name = "moduł zbierania energii"
 	icon_state = "powersink0"
 	icon = 'icons/obj/device.dmi'
 	item_state = "electronic"

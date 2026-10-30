@@ -66,12 +66,14 @@
 	qdel(existing)
 
 	// The event puts exactly one fleshy mass on one of the candidates
-	var/spawners_before = length(GLOB.mob_spawners["fleshy mass"])
+	var/obj/effect/mob_spawn/teratomamonkey/mass_type = /obj/effect/mob_spawn/teratomamonkey
+	var/spawner_key = initial(mass_type.name)
+	var/spawners_before = length(GLOB.mob_spawners[spawner_key])
 	var/obj/effect/mob_spawn/teratomamonkey/mass = event.spawn_mass()
 	TEST_ASSERT(mass, "The event spawned nothing")
 	allocated += mass
 	TEST_ASSERT(get_turf(mass) in candidates, "The event spawned outside the candidate turfs, at [AREACOORD(mass)]")
-	TEST_ASSERT_EQUAL(length(GLOB.mob_spawners["fleshy mass"]), spawners_before + 1, "The event did not spawn exactly one spawner")
+	TEST_ASSERT_EQUAL(length(GLOB.mob_spawners[spawner_key]), spawners_before + 1, "The event did not spawn exactly one spawner")
 	var/masses_on_turf = 0
 	for(var/obj/effect/mob_spawn/teratomamonkey/M in get_turf(mass))
 		masses_on_turf++

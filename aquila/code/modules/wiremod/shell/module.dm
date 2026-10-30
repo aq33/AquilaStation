@@ -1,7 +1,7 @@
 // Obudowa MOD z tg (code/modules/wiremod/shell/module.dm), przepięta na nasz system MOD z code/modules/mod/.
 // U nas nie ma /datum/action/item_action/mod/pinnable, więc przypinana akcja układu jest osobnym podtypem akcji MOD.
 /obj/item/mod/module/circuit
-	name = "\improper MOD circuit adapter module"
+	name = "\improper moduł adaptera układów MOD"
 	desc = "Moduł-obudowa, który pozwala włożyć układ scalony do MODsuitu i połączyć go z kombinezonem."
 	module_type = MODULE_USABLE
 	complexity = 1
@@ -72,7 +72,7 @@
 	. = ..()
 	var/unnamed_action_index = 1
 	for(var/obj/item/circuit_component/equipment_action/action_comp as anything in action_comps)
-		.[REF(action_comp)] = add_ui_configuration(action_comp.button_name.value || "Unnamed Action [unnamed_action_index++]", "pin", !!action_comp.granted_to[REF(user)])
+		.[REF(action_comp)] = add_ui_configuration(action_comp.button_name.value || "Akcja bez nazwy [unnamed_action_index++]", "pin", !!action_comp.granted_to[REF(user)])
 
 /obj/item/mod/module/circuit/configure_edit(key, value)
 	. = ..()
@@ -101,7 +101,7 @@
 
 /// Akcja układu przypięta do paska akcji z panelu MODsuitu.
 /datum/action/item_action/mod/circuit_pin
-	name = "Action"
+	name = "Akcja"
 	desc = "Wysyła sygnał do układu w module."
 	icon_icon = 'aquila/icons/obj/wiremod/bci_actions.dmi'
 	button_icon_state = "bci_blank"
@@ -124,7 +124,7 @@
 	pinner = user
 	action_comp.granted_to[REF(user)] = src
 	circuit_component = action_comp
-	name = action_comp.button_name.value || "Action"
+	name = action_comp.button_name.value || "Akcja"
 	button_icon_state = "bci_[replacetextEx(lowertext(action_comp.icon_options.value), " ", "_")]"
 	RegisterSignal(user, COMSIG_PARENT_PREQDELETED, PROC_REF(pinner_deleted))
 
@@ -158,7 +158,7 @@
 	qdel(src)
 
 /obj/item/circuit_component/mod_adapter_core
-	display_name = "MOD circuit adapter core"
+	display_name = "Rdzeń adaptera układów MOD"
 	desc = "Podaje użytkownika MODsuitu i pozwala układowi włączać kombinezon oraz rozkładać jego części."
 
 	/// The MODsuit module this circuit is associated with

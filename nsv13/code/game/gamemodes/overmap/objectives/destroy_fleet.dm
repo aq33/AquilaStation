@@ -1,6 +1,6 @@
 /datum/overmap_objective/destroy_fleets
-	name = "Destroy fleets"
-	desc = "Destroy fleets_required enemy fleets"
+	name = "Zniszcz floty"
+	desc = "Zniszcz wrogie floty (liczba: fleets_required)"
 	binary = FALSE
 	target = 1
 
@@ -14,8 +14,8 @@
 /datum/overmap_objective/destroy_fleets/instance()
 	.=..()
 	target = rand(minimum_fleets, maximum_fleets) // Doing this in instance in case people want different numbers of them
-	desc = "Destroy [target] enemy fleets"
-	brief = "Defeat [target] [(target_faction == "any") ? "hostile" : "[target_faction]"] [(target != 1) ? "fleets" : "fleet" ]"
+	desc = "Zniszcz wrogie floty (liczba: [target])"
+	brief = "Pokonajcie [(target != 1) ? "wrogie floty" : "wrogą flotę"][(target_faction == "any") ? "" : " ([target_faction])"] (liczba: [target])"
 	RegisterSignal(SSstar_system.find_main_overmap(), COMSIG_SHIP_KILLED_FLEET, PROC_REF(register_kill))
 
 /datum/overmap_objective/destroy_fleets/proc/register_kill()

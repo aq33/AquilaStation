@@ -1,6 +1,6 @@
 /obj/machinery/vending/liberationstation
 	name = "\improper Liberation Station"
-	desc = "An overwhelming amount of <b>ancient patriotism</b> washes over you just by looking at the machine."
+	desc = "Już na sam widok tej maszyny zalewa cię przytłaczająca fala <b>pradawnego patriotyzmu</b>."
 	icon_state = "liberationstation"
 	product_slogans = "Liberation Station: twój sklep z wszystkim, co dotyczy drugiej poprawki!;Bądź dziś patriotą, kup broń!;Jakościowa broń w niskich cenach!;Lepiej martwy niż czerwony!"
 	product_ads = "Płyń jak astronauta, kąsaj jak kula!;Wyraź dziś swoją drugą poprawkę!;Broń nie zabija ludzi, ale ty możesz!;Komu potrzebna odpowiedzialność, gdy ma się broń?"

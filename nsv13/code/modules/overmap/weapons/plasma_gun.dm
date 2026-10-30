@@ -1,8 +1,8 @@
 /obj/machinery/ship_weapon/plasma_caster
-	name = "\improper Magnetic Phoron Acceleration Caster"
+	name = "\improper magnetyczny miotacz akceleracji foronu"
 	icon = 'nsv13/icons/obj/plasma_gun.dmi'
 	icon_state = "plasma_gun"
-	desc = "An MPAC, a strong deterrent used by the Dominion as a method of staving off attackers. It requires a lot of maintenance."
+	desc = "MPAC, potężny środek odstraszający, którym Dominium odpiera napastników. Wymaga mnóstwa konserwacji."
 	anchored = TRUE
 	max_integrity = 1200 //It has no chance to survive a self-induced plasmafire
 	obj_integrity = 1200
@@ -272,8 +272,8 @@
 
 /obj/machinery/ship_weapon/plasma_caster/default_deconstruction_crowbar(obj/item/I, ignore_panel)
 	var/mob/living/fool = usr
-	var/confirm = alert("Gdy przysuwasz łom, czujesz elektryczne mrowienie, a im bliżej, tym dziwniej gorąco. Na pewno to dobry pomysł?", "Rozbierz miotacz foronu", "Yes", "No")
-	if(confirm == "Yes")
+	var/confirm = alert("Gdy przysuwasz łom, czujesz elektryczne mrowienie, a im bliżej, tym dziwniej gorąco. Na pewno to dobry pomysł?", "Rozbierz miotacz foronu", "Tak", "Nie")
+	if(confirm == "Tak")
 		visible_message("<span class='danger'>Z działa zaczyna buchać płonąca energia i foron, który przypieka [usr]!</span>")
 		field_integrity -= rand(30,50)
 		alignment = max(alignment - rand(50,80), 0)
@@ -290,9 +290,9 @@
 	if(maint_state == 0)
 		to_chat(user, "<span class='notice'>Zanim odkręcisz osłonę ochronną, musisz najpierw otworzyć panel serwisowy!</span>")
 	if(maint_state == 1)
-		to_chat(user, "<span class='notice'>You must unbolt the protective casing before tuning the magnetic frequency!</span>")
+		to_chat(user, "<span class='notice'>Zanim dostroisz częstotliwość magnetyczną, musisz odkręcić osłonę ochronną!</span>")
 	else
-		to_chat(user, "<span class='notice'>You being tuning the magnetic frequency.</span>")
+		to_chat(user, "<span class='notice'>Zaczynasz dostrajać częstotliwość magnetyczną.</span>")
 		while(alignment < 100)
 			if(!do_after(user, 5, target = src))
 				return
@@ -345,14 +345,14 @@
 	return
 
 /obj/item/ship_weapon/ammunition/plasma_core
-	name = "\improper Condensed Phoron Core"
-	desc = "A heavy, condensed ball of phoron coated in a thick shell to prevent accidents."
+	name = "\improper skondensowany rdzeń foronu"
+	desc = "Ciężka, skondensowana kula foronu w grubej skorupie, która ma zapobiegać wypadkom."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "plasma_core"
 	projectile_type = /obj/item/projectile/bullet/plasma_caster
 
 /obj/item/projectile/bullet/plasma_caster
-	name = "plasma ball"
+	name = "kula plazmy"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "plasma_ball" //No longer bad test sprite, animated and globulated
 	can_home = TRUE
@@ -442,51 +442,51 @@
 		S.set_playable()
 
 /obj/item/book/manual/plasma_caster
-	name = "Vintergatan Manual"
-	desc = "The book is laden with actual gold trim and embelishments, a single sheet of paper is sandwiched between the cover and the first page with the translation."
+	name = "instrukcja Vintergatan"
+	desc = "Książka jest obszyta prawdziwym złotem i zdobieniami. Między okładką a pierwszą stroną wciśnięto pojedynczą kartkę z tłumaczeniem."
 	icon = 'nsv13/icons/obj/library.dmi'
 	icon_state = "plasma_gun"
-	author = "Fleet Presider Izatha Radiata, translated by Intern Andy Smith"
+	author = "Przewodnicząca Floty Izatha Radiata, przekład: stażysta Andy Smith"
 	title = "Vintergatan"
 	dat = {"<html>
 				<h1>Vintergatan</h1>
-				<p>Hello and many thank yous for the use of the Serendipity Ship!<br>
-				This deterrent is meant to ward off the hostile,<br>
-				but it can be many trouble to use so super careful!<br>
-				Misuse can be burning and blinding.<p>
+				<p>Witaj i bardzo wiele dziękować za używanie Statek Serendipity!<br>
+				Ten odstraszacz jest do odganiać wrogi,<br>
+				ale może być dużo kłopot w używanie, więc super ostrożnie!<br>
+				Złe używanie może być parzenie i oślepianie.<p>
 
-				<h4>Step by Step</h4>
+				<h4>Krok po Krok</h4>
 
-				<p>-Insert phoron core<br>
-				-Condense of the mass<br>
-				-Rub magnets<br>
-				-Disengage container fielding<br>
-				-Utilize ship console and fire<br></p>
+				<p>-Włożyć rdzeń foronu<br>
+				-Skondensować tego masy<br>
+				-Pocierać magnesy<br>
+				-Odłączyć polowanie pojemnika<br>
+				-Wykorzystać konsola statku i ognia<br></p>
 
-				<h4>Maintaining</h4>
-				<p>-Drive the screws counterspin wise<br>
-				-Bolt the unwrench
-				-Switch alignments with manytool
-				-Rewrench the unbolted
-				-Screws the rightspin
-				-Alignment will regain
+				<h4>Utrzymywanie</h4>
+				<p>-Kręcić śruby przeciwkręcnie<br>
+				-Zaśrubować odkluczone
+				-Przełączyć ustawienia wielonarzędziem
+				-Przykluczyć odśrubowane
+				-Śruby w prawokręt
+				-Ustawienie się odzyska
 
-				-Leave field on to replenish integrity
-				-Splines autoriticulate with time</pr>
+				-Zostawić pole włączone dla uzupełniać integralność
+				-Splajny autosiatkują się z czasem</pr>
 
-				<h4>Warnings</h4>
+				<h4>Ostrzeżenia</h4>
 
-				<p>-Turns the off of gas compressing before firing<br>
-				-Ensure eyes are dark before firing<br>
-				-Splines must be reticulate before firing<br>
-				-Alignments must be highs at all time<br>
-				-Do not off the fields too long<br>
-				-Do not try to open with corvidbar<br>
-				-Will not magnetize to tiny metal vessels<br>
-				-Compressor will eject non-plasma<br>
-				-Some time weapon will stop, toggle safety to stop stopping</pr>
+				<p>-Wyłącza się sprężanie gazu przed ogniem<br>
+				-Upewnić, że oczy są ciemne przed ogniem<br>
+				-Splajny muszą być siatkowane przed ogniem<br>
+				-Ustawienia muszą być wysokie cały czas<br>
+				-Nie wyłączać pola za długo<br>
+				-Nie próbować otwierać łomokrukiem<br>
+				-Nie zmagnetyzuje do małych metalowych naczyń<br>
+				-Sprężarka wyrzuci nie-plazmę<br>
+				-Czasem broń się zatrzyma, przełączyć bezpiecznik żeby przestać zatrzymywać</pr>
 
-				<p><b>Safety Moth Says: Malfires causes big fires!</b><br>
-				<b>Ensure safe use of deterrents!</b></p>
+				<p><b>Ćma Bezpieczeństwa Mówi: Złe ognie robią wielkie pożary!</b><br>
+				<b>Zapewnij bezpieczne używanie odstraszaczy!</b></p>
 				</html>
 				"}

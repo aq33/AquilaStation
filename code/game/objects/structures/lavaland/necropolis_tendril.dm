@@ -1,7 +1,7 @@
 //Necropolis Tendrils, which spawn lavaland monsters and break into a chasm when killed
 /obj/structure/spawner/lavaland
-	name = "necropolis tendril"
-	desc = "A vile tendril of corruption, originating deep underground. Terrible monsters are pouring out of it."
+	name = "macka Nekropolii"
+	desc = "Plugawa macka zepsucia, wyrastająca z głębi ziemi. Wylewają się z niej straszliwe potwory."
 
 	icon = 'icons/mob/nest.dmi'
 	icon_state = "tendril"
@@ -31,7 +31,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 	emitted_light = new(loc)
 	for(var/turf/closed/mineral/M in RANGE_TURFS(1, src))
 		M.ScrapeAway(null, CHANGETURF_IGNORE_AIR)
-	AddComponent(/datum/component/gps, "Eerie Signal")
+	AddComponent(/datum/component/gps, "Niepokojący sygnał")
 	GLOB.tendrils += src
 
 /obj/structure/spawner/lavaland/deconstruct(disassembled)
@@ -63,8 +63,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 	light_color = LIGHT_COLOR_LAVA
 
 /obj/effect/collapse
-	name = "collapsing necropolis tendril"
-	desc = "Get clear!"
+	name = "zapadająca się macka Nekropolii"
+	desc = "Uciekaj!"
 	layer = TABLE_LAYER
 	icon = 'icons/mob/nest.dmi'
 	icon_state = "tendril"

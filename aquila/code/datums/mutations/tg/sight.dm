@@ -1,16 +1,16 @@
 // AQUILA - port z tgstation (code/datums/mutations/sight.dm)
 
 /datum/mutation/illiterate
-	name = "Illiterate"
-	desc = "The subject loses the ability to read or write."
+	name = "Analfabetyzm"
+	desc = "Pacjent traci umiejętność czytania i pisania."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Czujesz, że nie umiesz czytać ani pisać.</span>"
 	text_lose_indication = "<span class='danger'>Znów umiesz czytać i pisać.</span>"
 	mutation_traits = list(TRAIT_ILLITERATE)
 
 /datum/mutation/night_vision
-	name = "Night Vision"
-	desc = "The subject can see in the dark."
+	name = "Widzenie w ciemności"
+	desc = "Pacjent widzi w ciemności."
 	quality = POSITIVE
 	instability = 35
 	text_gain_indication = "<span class='notice'>Ciemność w kątach pomieszczenia znika.</span>"

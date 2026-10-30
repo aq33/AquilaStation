@@ -23,8 +23,8 @@
 			new /mob/living/simple_animal/hostile/carp/ranged(C.loc)
 
 /mob/living/simple_animal/hostile/carp/ranged
-	name = "magicarp"
-	desc = "50% magic, 50% carp, 100% horrible."
+	name = "magikarp"
+	desc = "50% magii, 50% karpia, 100% okropieństwa."
 	icon_state = "magicarp"
 	icon_living = "magicarp"
 	icon_dead = "magicarp_dead"
@@ -48,8 +48,8 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/carp/ranged/chaos
-	name = "chaos magicarp"
-	desc = "50% carp, 100% magic, 150% horrible."
+	name = "magikarp chaosu"
+	desc = "50% karpia, 100% magii, 150% okropieństwa."
 	color = "#00FFFF"
 	maxHealth = 75
 	health = 75
@@ -61,13 +61,13 @@
 	..()
 
 /mob/living/simple_animal/hostile/carp/ranged/xenobio
-	desc = "45% magic, 50% carp, 5% slime, 100% horrible."
+	desc = "45% magii, 50% karpia, 5% szlamu, 100% okropieństwa."
 	allowed_projectile_types = list( /obj/item/projectile/magic/animate, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
 	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
 	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/simple_animal/hostile/carp/ranged/chaos/xenobio
-	desc = "95% magic, 50% carp, 5% slime, 150% horrible."
+	desc = "95% magii, 50% karpia, 5% szlamu, 150% okropieństwa."
 	allowed_projectile_types = list( /obj/item/projectile/magic/animate, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/fireball,
 	/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage)
 	gold_core_spawnable = HOSTILE_SPAWN

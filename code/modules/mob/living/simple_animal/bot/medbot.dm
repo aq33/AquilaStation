@@ -14,7 +14,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 
 /mob/living/simple_animal/bot/medbot
 	name = "\improper Medibot"
-	desc = "A little medical robot. He looks somewhat underwhelmed."
+	desc = "Mały robot medyczny. Wygląda na nieco rozczarowanego."
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "medibot0"
 	density = FALSE
@@ -73,14 +73,14 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	var/medibot_counter = 0 //we use this to stop multibotting
 
 /mob/living/simple_animal/bot/medbot/mysterious
-	name = "\improper Mysterious Medibot"
-	desc = "International Medibot of mystery."
+	name = "\improper Tajemniczy medibot"
+	desc = "Międzynarodowy medibot zagadka."
 	skin = MEDBOT_SKIN_BEZERK
 	heal_amount = 10
 
 /mob/living/simple_animal/bot/medbot/derelict
-	name = "\improper Old Medibot"
-	desc = "Looks like it hasn't been modified since the late 2080s."
+	name = "\improper Stary medibot"
+	desc = "Wygląda, jakby nikt go nie modyfikował od końca lat 80. XXI wieku."
 	skin = MEDBOT_SKIN_BEZERK
 	heal_threshold = 0
 	declare_crit = 0
@@ -242,12 +242,12 @@ GLOBAL_VAR(medibot_unique_id_gen)
 	if(user)
 		user.visible_message("<span class='notice'>[user] stawia [src] z powrotem na nogi!</span>", "<span class='green'>Stawiasz [src] z powrotem na nogi!</span>")
 		if(user.name == tipper_name)
-			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
+			messagevoice = list("Wybaczam ci." = 'sound/voice/medbot/forgive.ogg')
 		else
-			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
+			messagevoice = list("Dziękuję!" = 'sound/voice/medbot/thank_you.ogg', "Jesteś dobrym człowiekiem." = 'sound/voice/medbot/youre_good.ogg')
 	else
 		visible_message("<span class='notice'>[src] wierci się na tyle, że udaje mu się wstać.</span>")
-		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
+		messagevoice = list("Pierdol się." = 'sound/voice/medbot/fuck_you.ogg', "Twoje zachowanie zostało zgłoszone, miłego dnia." = 'sound/voice/medbot/reported.ogg')
 
 	tipper_name = null
 	if(world.time > last_tipping_action_voice + 15 SECONDS)
@@ -266,15 +266,15 @@ GLOBAL_VAR(medibot_unique_id_gen)
 
 	switch(tipped_status)
 		if(MEDBOT_PANIC_LOW)
-			messagevoice = list("I require assistance." = 'sound/voice/medbot/i_require_asst.ogg')
+			messagevoice = list("Potrzebuję pomocy." = 'sound/voice/medbot/i_require_asst.ogg')
 		if(MEDBOT_PANIC_MED)
-			messagevoice = list("Please put me back." = 'sound/voice/medbot/please_put_me_back.ogg')
+			messagevoice = list("Proszę, odstaw mnie z powrotem." = 'sound/voice/medbot/please_put_me_back.ogg')
 		if(MEDBOT_PANIC_HIGH)
-			messagevoice = list("Please, I am scared!" = 'sound/voice/medbot/please_im_scared.ogg')
+			messagevoice = list("Proszę, boję się!" = 'sound/voice/medbot/please_im_scared.ogg')
 		if(MEDBOT_PANIC_AAAA)
-			messagevoice = list("I DON'T LIKE THIS, I NEED HELP!" = 'sound/voice/medbot/dont_like.ogg', "THIS HURTS, MY PAIN IS REAL!" = 'sound/voice/medbot/pain_is_real.ogg')
+			messagevoice = list("NIE PODOBA MI SIĘ TO, POTRZEBUJĘ POMOCY!" = 'sound/voice/medbot/dont_like.ogg', "TO BOLI, MÓJ BÓL JEST PRAWDZIWY!" = 'sound/voice/medbot/pain_is_real.ogg')
 		if(MEDBOT_PANIC_ENDING)
-			messagevoice = list("Is this the end?" = 'sound/voice/medbot/is_this_the_end.ogg', "Nooo!" = 'sound/voice/medbot/nooo.ogg')
+			messagevoice = list("Czy to już koniec?" = 'sound/voice/medbot/is_this_the_end.ogg', "Nieee!" = 'sound/voice/medbot/nooo.ogg')
 		if(MEDBOT_PANIC_END)
 			speak("ALARM PSYCHOLOGICZNY: członek załogi [tipper_name] wykazuje skłonności aspołeczne, znęcając się nad botami w [get_area(src)]. Prosimy o umówienie oceny psychologicznej.", radio_channel)
 			set_right() // strong independent medbot
@@ -443,7 +443,7 @@ GLOBAL_VAR(medibot_unique_id_gen)
 
 		if(world.time > last_tipping_action_voice + 15 SECONDS)
 			last_tipping_action_voice = world.time // message for tipping happens when we start interacting, message for righting comes after finishing
-			var/list/messagevoice = list("Hey, wait..." = 'sound/voice/medbot/hey_wait.ogg',"Please don't..." = 'sound/voice/medbot/please_dont.ogg',"I trusted you..." = 'sound/voice/medbot/i_trusted_you.ogg', "Nooo..." = 'sound/voice/medbot/nooo.ogg', "Oh fuck-" = 'sound/voice/medbot/oh_fuck.ogg')
+			var/list/messagevoice = list("Hej, czekaj..." = 'sound/voice/medbot/hey_wait.ogg',"Proszę, nie..." = 'sound/voice/medbot/please_dont.ogg',"Ufałem ci..." = 'sound/voice/medbot/i_trusted_you.ogg', "Nieee..." = 'sound/voice/medbot/nooo.ogg', "O kurwa-" = 'sound/voice/medbot/oh_fuck.ogg')
 			var/message = pick(messagevoice)
 			speak(message)
 			playsound(src, messagevoice[message], 70, FALSE)

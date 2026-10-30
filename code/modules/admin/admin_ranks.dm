@@ -113,7 +113,7 @@ GLOBAL_PROTECT(protected_ranks)
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Zablokowano synchronizację rang adminów z DB: wykryto Advanced ProcCall.</span>")
 		return
 
 	var/list/sql_ranks = list()
@@ -124,7 +124,7 @@ GLOBAL_PROTECT(protected_ranks)
 //load our rank - > rights associations
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin Reload blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Zablokowano przeładowanie adminów: wykryto Advanced ProcCall.</span>")
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
@@ -151,7 +151,7 @@ GLOBAL_PROTECT(protected_ranks)
 		else
 			var/datum/DBQuery/query_load_admin_ranks = SSdbcore.NewQuery("SELECT `rank`, flags, exclude_flags, can_edit_flags FROM [format_table_name("admin_ranks")]")
 			if(!query_load_admin_ranks.Execute())
-				message_admins("Error loading admin ranks from database. Loading from backup.")
+				message_admins("Błąd wczytywania rang adminów z bazy danych. Wczytuję z kopii zapasowej.")
 				log_sql("Error loading admin ranks from database. Loading from backup.")
 				dbfail = 1
 			else
@@ -203,7 +203,7 @@ GLOBAL_PROTECT(protected_ranks)
 /proc/load_admins(no_update)
 	var/dbfail
 	if(!CONFIG_GET(flag/admin_legacy_system) && !SSdbcore.Connect())
-		message_admins("Failed to connect to database while loading admins. Loading from backup.")
+		message_admins("Nie udało się połączyć z bazą danych przy wczytywaniu adminów. Wczytuję z kopii zapasowej.")
 		log_sql("Failed to connect to database while loading admins. Loading from backup.")
 		dbfail = 1
 	//clear the datums references
@@ -230,7 +230,7 @@ GLOBAL_PROTECT(protected_ranks)
 	if(!CONFIG_GET(flag/admin_legacy_system) || dbfail)
 		var/datum/DBQuery/query_load_admins = SSdbcore.NewQuery("SELECT ckey, `rank` FROM [format_table_name("admin")] ORDER BY `rank`")
 		if(!query_load_admins.Execute())
-			message_admins("Error loading admins from database. Loading from backup.")
+			message_admins("Błąd wczytywania adminów z bazy danych. Wczytuję z kopii zapasowej.")
 			log_sql("Error loading admins from database. Loading from backup.")
 			dbfail = 1
 		else
@@ -239,7 +239,7 @@ GLOBAL_PROTECT(protected_ranks)
 				var/admin_rank = query_load_admins.item[2]
 				var/skip
 				if(rank_names[admin_rank] == null)
-					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
+					message_admins("[admin_ckey] wczytany z nieprawidłową rangą admina: [admin_rank].")
 					skip = 1
 				if(GLOB.admin_datums[admin_ckey] || GLOB.deadmins[admin_ckey])
 					skip = 1

@@ -155,7 +155,7 @@
 
 
 /obj/item/projectile/beam/overmap/aiming_beam
-	name = "aiming beam"
+	name = "wiązka celownicza"
 	icon = null
 	hitsound = null
 	hitsound_wall = null

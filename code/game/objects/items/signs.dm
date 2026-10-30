@@ -1,7 +1,7 @@
 /obj/item/picket_sign
 	icon_state = "picket"
-	name = "blank picket sign"
-	desc = "It's blank."
+	name = "pusta tabliczka protestacyjna"
+	desc = "Nic na niej nie ma."
 	force = 5
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("grzmoci","trzepie")
@@ -12,8 +12,8 @@
 	var/last_wave = 0
 
 /obj/item/picket_sign/cyborg
-	name = "metallic nano-sign"
-	desc = "A high tech picket sign used by silicons that can reprogram its surface at will. Probably hurts to get hit by, too."
+	name = "metalowa nanotabliczka"
+	desc = "Zaawansowana tabliczka protestacyjna używana przez syntetyków, która dowolnie przeprogramowuje swoją powierzchnię. Pewnie boli też, kiedy ktoś cię nią uderzy."
 	force = 13
 	resistance_flags = NONE
 	actions_types = list(/datum/action/item_action/nano_picket_sign)
@@ -25,8 +25,8 @@
 	var/txt = stripped_input(user, "Co chcesz napisać na tabliczce?", "Napis na tabliczce", null , 30)
 	if(txt && user.canUseTopic(src, BE_CLOSE))
 		label = txt
-		name = "[label] sign"
-		desc =	"It reads: [label]"
+		name = "tabliczka: [label]"
+		desc =	"Napis: [label]"
 
 /obj/item/picket_sign/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/toy/crayon))
@@ -44,7 +44,7 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 
 /datum/crafting_recipe/picket_sign
-	name = "Picket Sign"
+	name = "Tabliczka protestacyjna"
 	result = /obj/item/picket_sign
 	reqs = list(/obj/item/stack/rods = 1,
 				/obj/item/stack/sheet/cardboard = 2)

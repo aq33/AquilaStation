@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/wizard
-	name = "Space Wizard"
+	name = "Kosmiczny czarodziej"
 	desc = "EI NATH?"
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "wizard"

@@ -4,7 +4,7 @@
  * Return the species of a mob
  */
 /obj/item/circuit_component/species
-	display_name = "Get Species"
+	display_name = "Pobierz gatunek"
 	desc = "Komponent, który zwraca gatunek podanego obiektu."
 	category = "Entity"
 

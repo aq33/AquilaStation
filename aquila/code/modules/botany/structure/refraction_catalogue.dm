@@ -150,7 +150,7 @@
 	req_components = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/stock_parts/manipulator = 1, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/refraction_catalogue
-	name = "Płytka matrycy refrakcyjnej"
+	name = "Projekt maszyny (matryca refrakcyjna)"
 	id = "refraction_catalogue_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/refraction_catalogue

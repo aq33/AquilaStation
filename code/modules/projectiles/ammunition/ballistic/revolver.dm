@@ -1,69 +1,69 @@
 // .357 (Syndie Revolver)
 
 /obj/item/ammo_casing/a357
-	name = ".357 bullet casing"
-	desc = "A .357 bullet casing."
+	name = "łuska .357"
+	desc = "Łuska .357."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357
 
 /obj/item/ammo_casing/a357/match
-	name = ".357 match bullet casing"
-	desc = "A .357 bullet casing, manufactured to exceedingly high standards."
+	name = "łuska .357 wyczynowa"
+	desc = "Łuska .357 wykonana według wyjątkowo wysokich standardów."
 	caliber = "357"
 	projectile_type = /obj/item/projectile/bullet/a357/match
 
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762
-	name = "7.62x38mmR bullet casing"
-	desc = "A 7.62x38mmR bullet casing."
+	name = "łuska 7.62x38mmR"
+	desc = "Łuska 7.62x38mmR."
 	caliber = "n762"
 	projectile_type = /obj/item/projectile/bullet/n762
 
 // .38 (Detective's Gun)
 
 /obj/item/ammo_casing/c38
-	name = ".38 bullet casing"
-	desc = "A .38 bullet casing."
+	name = "łuska .38"
+	desc = "Łuska .38."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38
 
 /obj/item/ammo_casing/c38/trac
-	name = ".38 TRAC bullet casing"
-	desc = "A .38 \"TRAC\" bullet casing."
+	name = "łuska .38 TRAC"
+	desc = "Łuska .38 „TRAC”."
 	projectile_type = /obj/item/projectile/bullet/c38/trac
 
 /obj/item/ammo_casing/c38/hotshot
-	name = ".38 Hot Shot bullet casing"
-	desc = "A .38 Hot Shot bullet casing."
+	name = "łuska .38 Hot Shot"
+	desc = "Łuska .38 Hot Shot."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/hotshot
 
 /obj/item/ammo_casing/c38/iceblox
-	name = ".38 Iceblox bullet casing"
-	desc = "A .38 Iceblox bullet casing."
+	name = "łuska .38 Iceblox"
+	desc = "Łuska .38 Iceblox."
 	caliber = "38"
 	projectile_type = /obj/item/projectile/bullet/c38/iceblox
 
 /obj/item/ammo_casing/c38/match
-	name = ".38 Match bullet casing"
-	desc = "A .38 bullet casing, manufactured to exceedingly high standards."
+	name = "łuska .38 wyczynowa"
+	desc = "Łuska .38 wykonana według wyjątkowo wysokich standardów."
 	projectile_type = /obj/item/projectile/bullet/c38/match
 
 /obj/item/ammo_casing/c38/match/bouncy
-	name = ".38 Bouncy Rubber bullet casing"
-	desc = "A .38 bouncy rubber bullet casing, manufactured to exceedingly high standards."
+	name = "łuska .38 z odbijającym się gumowym pociskiem"
+	desc = "Łuska .38 z odbijającym się gumowym pociskiem, wykonana według wyjątkowo wysokich standardów."
 	projectile_type = /obj/item/projectile/bullet/c38/match/bouncy
 
 /obj/item/ammo_casing/c38/dumdum
-	name = ".38 DumDum bullet casing"
-	desc = "A .38 DumDum bullet casing."
+	name = "łuska .38 dum-dum"
+	desc = "Łuska .38 dum-dum."
 	projectile_type = /obj/item/projectile/bullet/c38/dumdum
 
 /obj/item/ammo_casing/caseless/mime
-	name = "invisible .38 bullet casing"
+	name = "niewidzialna łuska .38"
 	icon_state = null
-	desc = "You shouldn't be seeing this."
+	desc = "Nie powinieneś tego widzieć."
 	caliber = "mime"
 	projectile_type = /obj/item/projectile/bullet/c38/mime
 	exists = FALSE

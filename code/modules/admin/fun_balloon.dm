@@ -1,6 +1,6 @@
 /obj/effect/fun_balloon
-	name = "fun balloon"
-	desc = "This is going to be a laugh riot."
+	name = "balon zabawy"
+	desc = "Będzie co niemiara śmiechu."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -27,7 +27,7 @@
 	return
 
 /obj/effect/fun_balloon/proc/pop()
-	visible_message("[src] pops!")
+	visible_message("[src] pęka!")
 	playsound(get_turf(src), 'sound/items/party_horn.ogg', 50, 1, -1)
 	qdel(src)
 
@@ -35,15 +35,15 @@
 /obj/effect/fun_balloon/attack_ghost(mob/user)
 	if(!user.client || !user.client.holder || popped)
 		return
-	var/confirmation = alert("Pop [src]?","Fun Balloon","Yes","No")
-	if(confirmation == "Yes" && !popped)
+	var/confirmation = alert("Przebić [src]?","Balon zabawy","Tak","Nie")
+	if(confirmation == "Tak" && !popped)
 		popped = TRUE
 		effect()
 		pop()
 
 /obj/effect/fun_balloon/sentience
-	name = "sentience fun balloon"
-	desc = "When this pops, things are gonna get more aware around here."
+	name = "balon zabawy ze świadomością"
+	desc = "Gdy pęknie, wszystko dookoła zrobi się bardziej świadome."
 	var/effect_range = 3
 	var/group_name = "banda wielkich pająków"
 
@@ -59,13 +59,13 @@
 		var/mob/living/body = pick_n_take(bodies)
 
 		to_chat(body, "Twój mob został przejęty przez ducha!")
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(body)])")
+		message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([key_name_admin(body)])")
 		body.ghostize(0)
 		body.key = C.key
 		new /obj/effect/temp_visual/gravpush(get_turf(body))
 
 /obj/effect/fun_balloon/sentience/emergency_shuttle
-	name = "shuttle sentience fun balloon"
+	name = "balon zabawy ze świadomością na promie"
 	var/trigger_time = 60
 
 /obj/effect/fun_balloon/sentience/emergency_shuttle/check()
@@ -74,8 +74,8 @@
 		. = TRUE
 
 /obj/effect/fun_balloon/scatter
-	name = "scatter fun balloon"
-	desc = "When this pops, you're not going to be around here anymore."
+	name = "balon zabawy z rozrzutem"
+	desc = "Gdy pęknie, już cię tu nie będzie."
 	var/effect_range = 5
 
 /obj/effect/fun_balloon/scatter/effect()
@@ -83,11 +83,11 @@
 		var/turf/T = find_safe_turf()
 		new /obj/effect/temp_visual/gravpush(get_turf(M))
 		M.forceMove(T)
-		to_chat(M, "<span class='notice'>Pop!</span>")
+		to_chat(M, "<span class='notice'>Pyk!</span>")
 
 /obj/effect/station_crash
-	name = "station crash"
-	desc = "With no survivors!"
+	name = "katastrofa stacji"
+	desc = "Bez ocalałych!"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "syndballoon"
 	anchored = TRUE
@@ -133,12 +133,12 @@
 		to_chat(L, "Nie jesteś jeszcze godzien przejścia. Przyciągnij odciętą głowę do bariery, by zostać wpuszczonym do sali czempionów.")
 
 /obj/effect/landmark/shuttle_arena_safe
-	name = "hall of champions"
-	desc = "For the winners."
+	name = "sala czempionów"
+	desc = "Dla zwycięzców."
 
 /obj/effect/landmark/shuttle_arena_entrance
-	name = "\proper the arena"
-	desc = "A lava filled battlefield."
+	name = "\proper arena"
+	desc = "Pole bitwy pełne lawy."
 
 
 /obj/effect/forcefield/arena_shuttle_entrance
@@ -164,6 +164,6 @@
 
 
 /area/shuttle_arena
-	name = "arena"
+	name = "Arena"
 	has_gravity = STANDARD_GRAVITY
 	requires_power = FALSE

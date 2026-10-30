@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/summon_mirror
-	name = "Summon Mirror"
-	desc = "Summon forth a temporary mirror of sin that will allow you and others to change anything they want about themselves."
+	name = "Przywołaj lustro"
+	desc = "Przywołuje na chwilę lustro grzechu, przy którym ty i inni możecie zmienić w sobie, co tylko chcecie."
 	invocation = "Czyż nie jestem wspaniały?"
 	invocation_type = "whisper"
 	clothes_req = FALSE
@@ -14,8 +14,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/effect/proc_holder/spell/targeted/touch/mend
-	name = "Mend"
-	desc = "Engulfs your arm in a healing powers. Striking someone with it will heal them a moderate amount. Can't target yourself."
+	name = "Uleczenie"
+	desc = "Spowija twoją rękę leczniczą mocą. Uderzenie nią umiarkowanie leczy cel. Nie działa na ciebie."
 	hand_path = /obj/item/melee/touch_attack/mend
 	school = "evocation"
 	charge_max = 12 SECONDS
@@ -25,8 +25,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/item/melee/touch_attack/mend
-	name = "Mending Hand"
-	desc = "A seemingly pleasant mass of mending energy, ready to heal."
+	name = "Lecząca dłoń"
+	desc = "Pozornie przyjemna masa leczniczej energii, gotowa do uzdrawiania."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	color = "#d4a017"

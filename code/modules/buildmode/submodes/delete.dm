@@ -3,8 +3,8 @@
 
 /datum/buildmode_mode/delete/show_help(client/c)
 	to_chat(c, "<span class='notice'>***********************************************************\n\
-		Left Mouse Button on anything to delete it. If you break it, you buy it.\n\
-		Right Mouse Button on anything to delete everything of the type. Probably don\'t do this unless you know what you are doing.\n\
+		LPM na czymkolwiek usuwa to. Zepsujesz – płacisz.\n\
+		PPM na czymkolwiek usuwa wszystko tego typu. Lepiej tego nie rób, jeśli nie wiesz, co robisz.\n\
 		***********************************************************</span>")
 
 /datum/buildmode_mode/delete/handle_click(client/c, params, object)
@@ -25,19 +25,19 @@
 		if(isturf(object))
 			return
 		var/atom/deleting = object
-		var/action_type = alert(usr,"Strict type ([deleting.type]) or type and all subtypes?","Strict type","Type and subtypes","Cancel")
-		if(action_type == "Cancel" || !action_type)
+		var/action_type = alert(usr,"Tylko ten typ ([deleting.type]) czy typ ze wszystkimi podtypami?","Tylko ten typ","Typ i podtypy","Anuluj")
+		if(action_type == "Anuluj" || !action_type)
 			return
 
-		if(alert(usr,"Are you really sure you want to delete all instances of type [deleting.type]?","Yes","No") != "Yes")
+		if(alert(usr,"Na pewno chcesz usunąć wszystkie instancje typu [deleting.type]?","Tak","Nie") != "Tak")
 			return
 
-		if(alert(usr,"Second confirmation required. Delete?","Yes","No") != "Yes")
+		if(alert(usr,"Wymagane drugie potwierdzenie. Usunąć?","Tak","Nie") != "Tak")
 			return
 
 		var/O_type = deleting.type
 		switch(action_type)
-			if("Strict type")
+			if("Tylko ten typ")
 				var/i = 0
 				for(var/atom/Obj in world)
 					if(Obj.type == O_type)
@@ -45,11 +45,11 @@
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No instances of this type exist")
+					to_chat(usr, "Nie istnieją żadne instancje tego typu")
 					return
 				log_admin("[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted) ")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all instances of type [O_type] ([i] instances deleted)</span>")
-			if("Type and subtypes")
+				message_admins("<span class='notice'>[key_name(usr)] usuwa wszystkie instancje typu [O_type] (usunięto: [i])</span>")
+			if("Typ i podtypy")
 				var/i = 0
 				for(var/Obj in world)
 					if(istype(Obj,O_type))
@@ -57,7 +57,7 @@
 						qdel(Obj)
 					CHECK_TICK
 				if(!i)
-					to_chat(usr, "No instances of this type exist")
+					to_chat(usr, "Nie istnieją żadne instancje tego typu")
 					return
 				log_admin("[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted) ")
-				message_admins("<span class='notice'>[key_name(usr)] deleted all instances of type or subtype of [O_type] ([i] instances deleted)</span> ")
+				message_admins("<span class='notice'>[key_name(usr)] usuwa wszystkie instancje typu lub podtypu [O_type] (usunięto: [i])</span> ")

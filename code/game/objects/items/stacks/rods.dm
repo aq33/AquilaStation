@@ -1,16 +1,16 @@
 GLOBAL_LIST_INIT(rod_recipes, list ( \
-	new/datum/stack_recipe("grille", /obj/structure/grille, 2, time = 10, one_per_turf = TRUE, on_floor = FALSE), \
-	new/datum/stack_recipe("ladder", /obj/structure/ladder, 10, time = 60, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("table frame", /obj/structure/table_frame, 2, time = 10, one_per_turf = 1), \
-	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
-	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = 0), \
-	new/datum/stack_recipe("railing", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
+	new/datum/stack_recipe("krata", /obj/structure/grille, 2, time = 10, one_per_turf = TRUE, on_floor = FALSE), \
+	new/datum/stack_recipe("drabina", /obj/structure/ladder, 10, time = 60, one_per_turf = TRUE, on_floor = TRUE), \
+	new/datum/stack_recipe("rama stołu", /obj/structure/table_frame, 2, time = 10, one_per_turf = 1), \
+	new/datum/stack_recipe("rama hulajnogi", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
+	new/datum/stack_recipe("pojemnik na pościel", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = 0), \
+	new/datum/stack_recipe("barierka", /obj/structure/railing, 3, time = 18, window_checks = TRUE), \
 	)) //NSV13 removed on_floor
 
 /obj/item/stack/rods
-	name = "iron rod"
-	desc = "Some rods. Can be used for building or something."
-	singular_name = "iron rod"
+	name = "żelazny pręt"
+	desc = "Kilka prętów. Przydadzą się do budowania albo czegoś tam."
+	singular_name = "żelazny pręt"
 	icon_state = "rods"
 	item_state = "rods"
 	flags_1 = CONDUCT_1

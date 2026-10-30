@@ -1,5 +1,5 @@
 /datum/symptom/wizarditis
-	name = "Wizarditis"
+	name = "Czarodziejowica"
 	desc = "Sprawia, że nosiciel podświadomie wierzy, że jest w istocie czarodziejem."
 	stealth = 1
 	resistance = -2

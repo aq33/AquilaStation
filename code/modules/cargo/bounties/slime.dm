@@ -3,37 +3,37 @@
 
 /datum/bounty/item/slime/New()
 	..()
-	description = "Główny naukowiec Nanotrasen poluje na rzadki i egzotyczny [name]. Za jego znalezienie wyznaczono nagrodę."
+	description = "Główny naukowiec Nanotrasen poluje na rzadki i egzotyczny [lowertext(name)]. Za jego znalezienie wyznaczono nagrodę."
 	reward += rand(0, 4) * 500
 
 /datum/bounty/item/slime/green
-	name = "Green Slime Extract"
+	name = "Zielony ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/green)
 
 /datum/bounty/item/slime/pink
-	name = "Pink Slime Extract"
+	name = "Różowy ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/pink)
 
 /datum/bounty/item/slime/gold
-	name = "Gold Slime Extract"
+	name = "Złoty ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/gold)
 
 /datum/bounty/item/slime/oil
-	name = "Oil Slime Extract"
+	name = "Naftowy ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/oil)
 
 /datum/bounty/item/slime/black
-	name = "Black Slime Extract"
+	name = "Czarny ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/black)
 
 /datum/bounty/item/slime/lightpink
-	name = "Light Pink Slime Extract"
+	name = "Jasnoróżowy ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/lightpink)
 
 /datum/bounty/item/slime/adamantine
-	name = "Adamantine Slime Extract"
+	name = "Adamantytowy ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/adamantine)
 
 /datum/bounty/item/slime/rainbow
-	name = "Rainbow Slime Extract"
+	name = "Tęczowy ekstrakt szlamu"
 	wanted_types = list(/obj/item/slime_extract/rainbow)

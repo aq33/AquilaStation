@@ -1,6 +1,6 @@
 /obj/item/fuel_rod
-	name = "uranium-238 fuel rod"
-	desc = "A titanium sheathed rod containing a measure of enriched uranium-dioxide powder, used to kick off a fission reaction."
+	name = "pręt paliwowy z uranem-238"
+	desc = "Pręt w tytanowej osłonie z porcją proszku wzbogaconego dwutlenku uranu, służący do zapoczątkowania reakcji rozszczepienia."
 	icon = 'nsv13/icons/obj/control_rod.dmi'
 	icon_state = "irradiated"
 	w_class = WEIGHT_CLASS_BULKY
@@ -72,8 +72,8 @@
 
 /obj/item/fuel_rod/plutonium
 	fuel_power = 0.20
-	name = "plutonium-239 fuel rod"
-	desc = "A highly energetic titanium sheathed rod containing a sizeable measure of weapons grade plutonium, it's highly efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
+	name = "pręt paliwowy z plutonem-239"
+	desc = "Wysokoenergetyczny pręt w tytanowej osłonie ze sporą porcją plutonu do celów wojskowych. To bardzo wydajne paliwo jądrowe, ale źle użyte wymknie reakcję spod kontroli."
 	icon_state = "inferior"
 	rad_strength = 1500
 	process = TRUE
@@ -85,8 +85,8 @@
 
 /obj/item/fuel_rod/depleted
 	fuel_power = 0.05
-	name = "depleted fuel rod"
-	desc = "A highly radioactive fuel rod which has expended most of it's useful energy."
+	name = "wypalony pręt paliwowy"
+	desc = "Silnie radioaktywny pręt paliwowy, który zużył już większość użytecznej energii."
 	icon_state = "normal"
 	rad_strength = 6000 // smelly
 	depletion_conversion_type = null // we don't want it to turn into anything
@@ -194,8 +194,8 @@
 	. += "<span class='disarm'>Zapełnione gniazda na [material_name]: [initial_amount]/[max_initial_amount].</span>"
 
 /obj/item/fuel_rod/material/telecrystal
-	name = "telecrystal fuel rod"
-	desc = "A disguised titanium sheathed rod containing several small slots infused with uranium dioxide. Permits the insertion of telecrystals for transmutation. Fissiles much faster than its standard counterpart."
+	name = "telekryształowy pręt paliwowy"
+	desc = "Zamaskowany pręt w tytanowej osłonie z kilkoma małymi gniazdami nasyconymi dwutlenkiem uranu. Można do niego włożyć telekryształy do transmutacji. Rozszczepia się znacznie szybciej niż zwykły pręt."
 	icon_state = "inferior"
 	fuel_power = 0.30 // twice as powerful as a normal rod
 	depletion_speed_modifier = 3 // headstart, otherwise it takes two hours
@@ -203,22 +203,22 @@
 	max_initial_amount = 8
 	multiplier = 3
 	material_type = /obj/item/stack/telecrystal
-	material_name = "telecrystals"
-	material_name_singular = "telecrystal"
+	material_name = "telekryształy"
+	material_name_singular = "telekryształ"
 
 /obj/item/fuel_rod/material/telecrystal/depletion_final(result_rod)
 	..()
 	if(result_rod)
 		return
 	fuel_power = 0.60 // thrice as powerful as plutonium, you'll want to get this one out quick!
-	name = "exhausted [name]"
-	desc = "A highly energetic, disguised titanium sheathed rod containing a number of slots filled with greatly expanded telecrystals which can be removed by hand. It's extremely efficient as nuclear fuel, but will cause the reaction to get out of control if not properly utilised."
+	name = "[name] (wypalony)"
+	desc = "Wysokoenergetyczny, zamaskowany pręt w tytanowej osłonie z gniazdami pełnymi mocno rozrośniętych telekryształów, które można wyjąć ręcznie. To niezwykle wydajne paliwo jądrowe, ale źle użyte wymknie reakcję spod kontroli."
 	icon_state = "tc_used"
 	AddComponent(/datum/component/radioactive, 3000, src)
 
 /obj/item/fuel_rod/material/bananium
-	name = "bananium fuel rod"
-	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than its cowardly counterparts. However, its cutting-edge cosmic clown technology allows rooms for extraordinarily exhilarating extraterrestrial element called bananium to menacingly multiply."
+	name = "bananiowy pręt paliwowy"
+	desc = "Przezabawny, wytrzymały pręt paliwowy, który rozszczepia się nieco wolniej od swoich tchórzliwych odpowiedników. Za to jego najnowocześniejsza kosmiczna technologia klaunów pozwala, by niezwykle ekscytujący element pozaziemski zwany bananium groźnie się mnożył."
 	icon_state = "bananium"
 	fuel_power = 0.15
 	depletion_speed_modifier = 3
@@ -239,7 +239,7 @@
 	if(result_rod)
 		return
 	fuel_power = 0.3 // Be warned
-	name = "exhausted [name]"
-	desc = "A hilarious heavy-duty fuel rod which fissiles a bit slower than it cowardly counterparts. Its greatly grimacing grwoth stage is now over, and bananium outgrowth hums as if it's blatantly honking bike horns."
+	name = "[name] (wypalony)"
+	desc = "Przezabawny, wytrzymały pręt paliwowy, który rozszczepia się nieco wolniej od swoich tchórzliwych odpowiedników. Jego groteskowo grymaśny etap wzrostu dobiegł końca, a narośl bananium buczy, jakby bezczelnie trąbiła klaksonami rowerowymi."
 	icon_state = "bananium_used"
 	AddComponent(/datum/component/radioactive, 1250, src)

@@ -4,7 +4,7 @@
 // Circuitboard
 
 /obj/item/circuitboard
-	name = "circuit board"
+	name = "płytka drukowana"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"

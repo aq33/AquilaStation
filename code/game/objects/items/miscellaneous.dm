@@ -1,6 +1,6 @@
 /obj/item/caution
-	desc = "Caution! Wet Floor!"
-	name = "wet floor sign"
+	desc = "Uwaga! Mokra podłoga!"
+	name = "znak „mokra podłoga”"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "caution"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'
@@ -13,8 +13,8 @@
 	attack_verb = list("ostrzega", "upomina", "rozbija")
 
 /obj/item/choice_beacon
-	name = "choice beacon"
-	desc = "Hey, why are you viewing this?!! Please let CentCom know about this odd occurrence."
+	name = "nadajnik wyboru"
+	desc = "Hej, czemu to oglądasz?!! Daj znać Centrali o tym dziwnym zdarzeniu."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-blue"
 	item_state = "radio"
@@ -64,8 +64,8 @@
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
 
 /obj/item/choice_beacon/hero
-	name = "heroic beacon"
-	desc = "To summon heroes from the past to protect the future."
+	name = "nadajnik bohaterów"
+	desc = "Przywołuje bohaterów z przeszłości, by chronili przyszłość."
 
 /obj/item/choice_beacon/hero/generate_display_names()
 	var/static/list/hero_item_list
@@ -78,7 +78,7 @@
 	return hero_item_list
 
 /obj/item/storage/box/hero
-	name = "Courageous Tomb Raider - 1940's."
+	name = "Odważny łowca grobowców – lata 40. XX wieku."
 
 /obj/item/storage/box/hero/PopulateContents()
 	new /obj/item/clothing/head/fedora/curator(src)
@@ -88,7 +88,7 @@
 	new /obj/item/melee/curator_whip(src)
 
 /obj/item/storage/box/hero/astronaut
-	name = "First Man on the Moon - 1960's."
+	name = "Pierwszy człowiek na Księżycu – lata 60. XX wieku."
 
 /obj/item/storage/box/hero/astronaut/PopulateContents()
 	new /obj/item/clothing/suit/space/nasavoid(src)
@@ -97,7 +97,7 @@
 	new /obj/item/gps(src)
 
 /obj/item/storage/box/hero/scottish
-	name = "Braveheart, the Scottish rebel - 1300's."
+	name = "Waleczne Serce, szkocki buntownik – XIV wiek."
 
 /obj/item/storage/box/hero/scottish/PopulateContents()
 	new /obj/item/clothing/under/costume/kilt(src)
@@ -106,7 +106,7 @@
 	new /obj/item/clothing/shoes/sandal(src)
 
 /obj/item/storage/box/hero/ghostbuster
-	name = "Spectre Inspector - 1980's."
+	name = "Inspektor od widm – lata 80. XX wieku."
 
 /obj/item/storage/box/hero/ghostbuster/PopulateContents()
 	new /obj/item/clothing/glasses/welding/ghostbuster(src)
@@ -119,7 +119,7 @@
 	new /obj/item/grenade/chem_grenade/ghostbuster(src)
 
 /obj/item/storage/box/hero/carphunter
-	name = "Carp Hunter, Wildlife Expert - 2506."
+	name = "Łowca karpi, ekspert od dzikiej przyrody – 2506."
 
 /obj/item/storage/box/hero/carphunter/PopulateContents()
 	new /obj/item/clothing/suit/space/hardsuit/carp/old(src)
@@ -127,7 +127,7 @@
 	new /obj/item/kitchen/knife/hunting(src)
 
 /obj/item/storage/box/hero/ronin
-    name = "Sword Saint, Wandering Vagabond - 1600's."
+    name = "Święty miecza, wędrowny tułacz – XVII wiek."
 
 /obj/item/storage/box/hero/ronin/PopulateContents()
     new /obj/item/clothing/under/costume/kamishimo(src)
@@ -136,8 +136,8 @@
     new /obj/item/clothing/shoes/sandal(src)
 
 /obj/item/choice_beacon/augments
-	name = "augment beacon"
-	desc = "Summons augmentations. Can be used 3 times!"
+	name = "nadajnik augmentacji"
+	desc = "Przywołuje augmentacje. Można go użyć 3 razy!"
 	uses = 3
 
 /obj/item/choice_beacon/augments/generate_display_names()
@@ -161,8 +161,8 @@
 	to_chat(M, "Przez chwilę słyszysz trzaski z nadajnika, po czym odzywa się głos.  \"Proszę czekać na wiadomość od S.E.L.F. Treść wiadomości: <span class='bold'>Otrzymano zamówienie. Twoja paczka została przesłana, użyj dołączonego autochirurga, by zainstalować ulepszenie.</span> Koniec wiadomości.\"")
 
 /obj/item/choice_beacon/magic
-	name = "beacon of summon magic"
-	desc = "Not actually magical."
+	name = "nadajnik przywołania magii"
+	desc = "Tak naprawdę wcale nie jest magiczny."
 
 /obj/item/choice_beacon/magic/generate_display_names()
 	var/static/list/magic_item_list
@@ -175,19 +175,19 @@
 	return magic_item_list
 
 /obj/item/storage/box/magic
-	name = "Tele-Gloves"
+	name = "Telerękawiczki"
 
 /obj/item/storage/box/magic/PopulateContents()
 	new /obj/item/clothing/gloves/color/white/magic(src)
 
 /obj/item/storage/box/magic/cloak
-	name = "Invisibility Cloak"
+	name = "Peleryna niewidka"
 
 /obj/item/storage/box/magic/cloak/PopulateContents()
 	new /obj/item/shadowcloak/magician(src)
 
 /obj/item/storage/box/magic/hat
-	name = "Bottomless Top Hat"
+	name = "Cylinder bez dna"
 
 /obj/item/storage/box/magic/hat/PopulateContents()
 	new /obj/item/clothing/head/that/bluespace(src)
@@ -286,7 +286,7 @@
 	capacity += user.mob_size
 
 /obj/item/skub
-	desc = "It's skub."
+	desc = "To skub."
 	name = "skub"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "skub"
@@ -301,8 +301,8 @@
 	return MANUAL_SUICIDE
 
 /obj/item/choice_beacon/ouija
-	name = "spirit board delivery beacon"
-	desc = "Ghost communication on demand! It is unclear how this thing is still operational."
+	name = "nadajnik dostawy tabliczki ouija"
+	desc = "Komunikacja z duchami na żądanie! Nie wiadomo, jakim cudem to jeszcze działa."
 
 /obj/item/choice_beacon/ouija/generate_display_names()
 	var/static/list/ouija_spaghetti_list
@@ -315,8 +315,8 @@
 	return ouija_spaghetti_list
 
 /obj/item/upgradewand
-	desc = "A wand laced with nanotech calibration devices, used to enhance gear commonly used by modern stage magicians."
-	name = "Upgrade Wand"
+	desc = "Różdżka naszpikowana nanotechnologicznymi kalibratorami. Służy do ulepszania sprzętu używanego przez współczesnych iluzjonistów."
+	name = "różdżka ulepszeń"
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "nothingwand"
 	item_state = "wand"
@@ -324,8 +324,8 @@
 	var/used = FALSE
 
 /obj/item/choice_beacon/pet
-	name = "animal delivery beacon"
-	desc = "There are no faster ways, only more humane."
+	name = "nadajnik dostawy zwierzęcia"
+	desc = "Nie ma szybszych sposobów, są tylko bardziej humanitarne."
 	var/default_name = "Bacon"
 	var/mob_choice = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
 
@@ -355,53 +355,53 @@
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
 
 /obj/item/choice_beacon/pet/cat
-	name = "cat delivery beacon"
+	name = "nadajnik dostawy kota"
 	default_name = "Tom"
 	mob_choice = /mob/living/simple_animal/pet/cat
 
 /obj/item/choice_beacon/pet/mouse
-	name = "mouse delivery beacon"
+	name = "nadajnik dostawy myszy"
 	default_name = "Jerry"
 	mob_choice = /mob/living/simple_animal/mouse
 
 /obj/item/choice_beacon/pet/corgi
-	name = "corgi delivery beacon"
+	name = "nadajnik dostawy corgiego"
 	default_name = "Tosha"
 	mob_choice = /mob/living/simple_animal/pet/dog/corgi
 
 /obj/item/choice_beacon/pet/hamster
-	name = "hamster delivery beacon"
-	default_name = "Doctor"
+	name = "nadajnik dostawy chomika"
+	default_name = "Doktor"
 	mob_choice = /mob/living/simple_animal/pet/hamster
 
 /obj/item/choice_beacon/pet/pug
-	name = "pug delivery beacon"
+	name = "nadajnik dostawy mopsa"
 	default_name = "Silvestro"
 	mob_choice = /mob/living/simple_animal/pet/dog/pug
 
 /obj/item/choice_beacon/pet/ems
-	name = "emotional support animal delivery beacon"
-	default_name = "Hugsie"
+	name = "nadajnik dostawy zwierzęcia wsparcia emocjonalnego"
+	default_name = "Przytulak"
 	mob_choice = /mob/living/simple_animal/pet/cat/kitten
 
 /obj/item/choice_beacon/pet/pingu
-	name = "penguin delivery beacon"
+	name = "nadajnik dostawy pingwina"
 	default_name = "Pingu"
 	mob_choice = /mob/living/simple_animal/pet/penguin/baby
 
 /obj/item/choice_beacon/pet/clown
-	name = "living lube delivery beacon"
-	default_name = "Offensive"
+	name = "nadajnik dostawy żywego lubrykantu"
+	default_name = "Obraźliwy"
 	mob_choice = /mob/living/simple_animal/hostile/retaliate/clown/lube
 
 /obj/item/choice_beacon/pet/goat
-	name = "goat delivery beacon"
+	name = "nadajnik dostawy kozy"
 	default_name = "Billy"
 	mob_choice = /mob/living/simple_animal/hostile/retaliate/goat
 
 /obj/item/choice_beacon/janicart
-	name = "janicart delivery beacon"
-	desc = "Summons a pod containing one (1) pimpin ride."
+	name = "nadajnik dostawy wózka woźnego"
+	desc = "Przywołuje kapsułę z jedną (1) wypasioną furą."
 
 /obj/item/choice_beacon/janicart/generate_display_names()
-	return list("janitor cart" = /obj/vehicle/ridden/janicart/upgraded/keyless)
+	return list("wózek woźnego" = /obj/vehicle/ridden/janicart/upgraded/keyless)

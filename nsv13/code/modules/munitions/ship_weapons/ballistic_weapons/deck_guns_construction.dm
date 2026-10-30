@@ -15,8 +15,8 @@
 // Final step - insert loading tray
 
 /obj/structure/ship_weapon/artillery_frame
-	name = "naval artillery frame"
-	desc = "The beginnings of a huge deck gun, internals notwithstanding."
+	name = "rama artylerii okrętowej"
+	desc = "Początki ogromnego działa pokładowego, na razie bez wnętrzności."
 	icon = 'nsv13/icons/obj/munitions/deck_turret.dmi'
 	icon_state = "platform"
 	anchored = TRUE
@@ -44,9 +44,6 @@
 
 /obj/structure/ship_weapon/artillery_frame/examine(mob/user)
 	. = ..()
-	var/sare = (max_barrels != 1) ? "s are" : " is"
-	var/thit = (max_barrels != 1) ? "they" : "it"
-	//shorthands for if barrels are plural or not
 	switch(state)
 		if(BS_MOUNT_UNBOLTED)
 			. += "Jest <i>odkręcony</i> od podłogi i można go <b>rozciąć</b>."
@@ -64,20 +61,20 @@
 			var/igniters_left = max_barrels - igniters_added
 			. += "Ulepszenie wielolufowe jest <b>przykręcone</b>. Wolne gniazda na <i>zapalniki</i>: [igniters_left]."
 		if(BS_IGNITERS_PLACED)
-			. += "The igniter[sare] unsecured, and [thit] can either be <b>removed</b> by hand, or <i>screwed</i> into place."
+			. += "Zapalniki nie są zamocowane. Możesz je <b>wyjąć</b> ręką albo <i>przykręcić</i>."
 		if(BS_IGNITERS_SECURED)
-			. += "The igniter[sare] <b>screwed</b> in place, but lack <i>wiring</i>."
+			. += "Zapalniki są <b>przykręcone</b>, ale brakuje <i>okablowania</i>."
 		if(BS_WIRED)
-			. += "The igniter[sare] <b>wired</b> to the electronics and the wiring can be <i>soldered<i/>."
+			. += "Zapalniki są <b>podłączone</b> do elektroniki, a przewody można <i>zlutować<i/>."
 		if(BS_WIRES_SOLDERED)
-			. += "The wiring has been <b>soldered</b>, and can be covered with a <i>plasteel casing</i>."
+			. += "Przewody są <b>zlutowane</b> i można je przykryć <i>plastalową obudową</i>."
 		if(BS_CASING_ADDED)
 			var/barrels_left = max_barrels - barrels_added
 			. += "Plastalową obudowę można <b>odciąć</b>, a wolne gniazda na <i>lufy</i>: [barrels_left]."
 		if(BS_BARRELS_PLACED)
-			. += "The barrel[sare] loose in the frame, and [thit] can either be <i>welded<i> to the frame or <b>pried out</b>."
+			. += "Lufy leżą luźno w ramie. Możesz je <i>przyspawać<i> do ramy albo <b>wyważyć</b>."
 		if(BS_BARRELS_SECURED)
-			. += "The barrel[sare] <b>welded</b> to the frame, and the assembly can be finished with a <i>loading tray</i>."
+			. += "Lufy są <b>przyspawane</b> do ramy, a montaż można dokończyć <i>podajnikiem</i>."
 
 /obj/structure/ship_weapon/artillery_frame/proc/set_final_state()
 	state = BS_BARRELS_SECURED
@@ -362,14 +359,14 @@
 				return TRUE
 
 /obj/item/circuitboard/multibarrel_upgrade
-	name = "Naval Artillery Cannon Multibarrel Upgrade"
-	desc = "this should not exist"
+	name = "ulepszenie wielolufowe działa artylerii okrętowej"
+	desc = "to nie powinno istnieć"
 	var/barrels = 1
 	build_path = null
 
 /obj/item/circuitboard/multibarrel_upgrade/_3
-	name = "Naval Artillery Cannon Triple Barrel Upgrade"
-	desc = "An upgrade that allows you to add two more barrels to a Naval Artillery Cannon. You must partially deconstruct the cannon to install this."
+	name = "ulepszenie trzylufowe działa artylerii okrętowej"
+	desc = "Ulepszenie, które pozwala dodać do działa artylerii okrętowej dwie kolejne lufy. Żeby je zainstalować, musisz częściowo rozebrać działo."
 	barrels = 3
 	build_path = null
 

@@ -2,10 +2,10 @@
 //Artillery shells
 
 /obj/item/ship_weapon/ammunition/naval_artillery //Huh gee this sure looks familiar don't it...
-	name = "\improper FTL-13 Naval Artillery Round"
+	name = "\improper pocisk artylerii okrętowej FTL-13"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "torpedo"
-	desc = "A large shell designed to deliver a high-yield warhead upon high-speed impact with solid objects. You need to arm it with a multitool before firing."
+	desc = "Duży pocisk, który przy szybkim uderzeniu w twardy obiekt odpala głowicę o dużej mocy. Przed strzałem musisz go uzbroić multitoolem."
 	anchored = FALSE
 	w_class = WEIGHT_CLASS_GIGANTIC
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
@@ -30,8 +30,8 @@
 	return
 
 /obj/item/ship_weapon/ammunition/naval_artillery/cannonball
-	name = "cannon ball"
-	desc = "The QM blew the cargo budget on corgis, the clown stole all our ammo, we've got half a tank of plasma and are halfway to Dolos. Hit it."
+	name = "kula armatnia"
+	desc = "Kwatermistrz przepuścił budżet zaopatrzenia na corgi, klaun ukradł całą amunicję, zostało pół zbiornika plazmy, a do Dolos jeszcze pół drogi. Jazda."
 	icon_state = "torpedo_ball"
 	projectile_type = /obj/item/projectile/bullet/mac_round/cannonshot
 	obj_integrity = 100
@@ -48,7 +48,7 @@
 	return ..()
 
 /obj/item/ship_weapon/ammunition/naval_artillery/cannonball/admin
-	desc = "This cannon ball seems to be so comically large it's impossible to scale!"
+	desc = "Ta kula armatnia jest tak komicznie wielka, że nie da się na nią wspiąć!"
 	anchored = TRUE
 	no_trolley = TRUE //Can still be loaded into a gun if you're really dedicated.
 	projectile_type = /obj/item/projectile/bullet/mac_round/cannonshot/admin
@@ -58,8 +58,8 @@
 	max_integrity = 1000
 
 /obj/item/ship_weapon/ammunition/naval_artillery/ap
-	name = "\improper TX-101 Armour Penetrating Naval Artillery Round"
-	desc = "A massive diamond-tipped round which can slice through armour plating with ease to deliver a lethal impact. Best suited for targets with heavy armour such as destroyers and up."
+	name = "\improper przeciwpancerny pocisk artylerii okrętowej TX-101"
+	desc = "Masywny pocisk z diamentowym czubkiem, który z łatwością przebija płyty pancerza i zadaje zabójczy cios. Najlepszy na ciężko opancerzone cele, od niszczycieli w górę."
 	icon_state = "torpedo_ap"
 	projectile_type = /obj/item/projectile/bullet/mac_round/ap
 
@@ -70,8 +70,8 @@
 	proj.armour_penetration = proj.armour_penetration * CLAMP(sqrt(speed * 0.5), 0.5, 3)
 
 /obj/item/ship_weapon/ammunition/naval_artillery/homing
-	name = "FTL-1301 Magneton Naval Artillery Round"
-	desc = "A specialist artillery shell which can home in on a target using its hull's innate magnetism, while less accurate than torpedoes, these shells are still a very viable option."
+	name = "pocisk artylerii okrętowej FTL-1301 Magneton"
+	desc = "Specjalistyczny pocisk artyleryjski, który naprowadza się na cel dzięki naturalnemu magnetyzmowi kadłuba. Jest mniej celny niż torpedy, ale wciąż to bardzo dobra opcja."
 	icon_state = "torpedo_homing"
 	projectile_type = /obj/item/projectile/bullet/mac_round/magneton
 
@@ -87,14 +87,14 @@
 
 /obj/item/ship_weapon/ammunition/naval_artillery/examine(mob/user)
 	. = ..()
-	. += "[(armed) ? "<span class='userdanger'>It is currently armed and ready to fire!</span>" : "<span class ='notice'>It must be armed before firing.</span>"]"
+	. += "[(armed) ? "<span class='userdanger'>Jest uzbrojony i gotowy do strzału!</span>" : "<span class ='notice'>Przed strzałem trzeba go uzbroić.</span>"]"
 
 
 //Powder bags
 
 /obj/item/powder_bag
-	name = "gunpowder bag"
-	desc = "A highly flammable bag of gunpowder which is used in naval artillery systems."
+	name = "worek prochu"
+	desc = "Łatwopalny worek prochu używany w systemach artylerii okrętowej."
 	icon = 'nsv13/icons/obj/munitions/deck_gun.dmi'
 	icon_state = "powder"
 	density = TRUE
@@ -108,15 +108,15 @@
 	AddComponent(/datum/component/volatile, volatility, TRUE)
 
 /obj/item/powder_bag/plasma
-	name = "plasma-based projectile accelerant"
-	desc = "An extremely powerful 'bomb waiting to happen' which can propel naval artillery shells to high speeds with half the amount of regular powder!"
+	name = "plazmowy przyspieszacz pocisków"
+	desc = "Niezwykle silna „bomba z opóźnionym zapłonem”, która rozpędza pociski artylerii okrętowej do dużych prędkości przy połowie zwykłej ilości prochu!"
 	icon_state = "spicypowder"
 	power = 1
 	volatility = 4 //DANGEROUSLY VOLATILE. Can send the entire magazine up in smoke.
 
 /obj/item/powder_bag/hungry
-	name = "gunpowder bag" // full name is built in update_name()
-	desc = "Cute!"
+	name = "worek prochu" // full name is built in update_name()
+	desc = "Słodziak!"
 	icon_state  = "hungrypowder"
 	power = 1
 	volatility = 3
@@ -148,28 +148,28 @@
 	var/prefix
 	switch(Elevel)
 		if(0 to 3)
-			prefix = "famished"
+			prefix = "wygłodzony"
 		if(4 to 6)
-			prefix = "ravenous"
+			prefix = "wygłodniały"
 			icon_state = "hungrypowder_wobble"
 		if(7 to 9)
-			prefix = "starving"
+			prefix = "głodujący"
 		if(10 to 12)
-			prefix = "malnourished"
+			prefix = "niedożywiony"
 			icon_state = "hungrypowder_fastwobble"
 		if(13 to 15)
-			prefix = "hungry"
+			prefix = "głodny"
 		if(16 to 18)
-			prefix = "peckish"
+			prefix = "lekko głodny"
 		if(19 to 21)
 			prefix = "najedzony"
 			icon_state = "hungrypowder_shake"
 		if(22 to 24)
-			prefix = "stuffed"
+			prefix = "przejedzony"
 		if(25 to 27)
-			prefix = "gluttonized"
+			prefix = "obżarty"
 		else
-			prefix = "enraged"
+			prefix = "rozwścieczony"
 			icon_state = "hungrypowder_shakeflash"
 			SpinAnimation(20, 1, pick(0, 1))
 			if(!enraged)
@@ -253,11 +253,11 @@
 				else
 					var/turf/step = get_step_towards(T, FT)
 					Move(step, get_dir(T, step))
-					var/static/list/messagepool = list("HELLO", "HI!!", "HENLO!", "PERSON", "YAY", "HUNGRY", "FOOD", "MMMMM", "YES", "PLAY") // (HE IS A VERY GOOD BOY)
+					var/static/list/messagepool = list("CZEŚĆ", "HEJ!!", "HEJO!", "CZŁOWIEK", "JEJ", "GŁODNY", "JEDZENIE", "MMMMM", "TAK", "ZABAWA") // (HE IS A VERY GOOD BOY)
 					say(pick(messagepool))
 					sleep(1)
 			if(feeder) // How could be so naive? There is no escape
-				say("SAD")
+				say("SMUTNO")
 				playsound(feeder, 'sound/effects/tendril_destroyed.ogg', 100, 0)
 				feeder = null
 	// update our component
@@ -289,7 +289,7 @@
 	SpinAnimation(20, 1, pick(0, 1), parallel = FALSE) // he does tricks!
 	var/segsleep = consumeTime * 0.5
 	sleep(segsleep)
-	say("NOM")
+	say("MNIAM")
 	sleep(segsleep)
 	energy = max((next_evolve - energy) * 2, energy)
 	if(isplasmaman(target))

@@ -251,7 +251,7 @@ export class OrbitalMapSvg extends Component {
         )}
         ;
         {/*
-          Shuttle Target Locator
+          Lokalizator celu promu
         */}
         {(shuttleTargetX || shuttleTargetY) && ourRenderableObject && (
           <>

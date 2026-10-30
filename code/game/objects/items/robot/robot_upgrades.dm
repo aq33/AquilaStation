@@ -2,8 +2,8 @@
 // Contains various borg upgrades.
 
 /obj/item/borg/upgrade
-	name = "borg upgrade module."
-	desc = "Protected by FRM."
+	name = "moduł ulepszenia cyborga"
+	desc = "Chronione przez FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
 	var/locked = FALSE
@@ -32,8 +32,8 @@
 	return TRUE
 
 /obj/item/borg/upgrade/rename
-	name = "cyborg reclassification board"
-	desc = "Used to rename a cyborg."
+	name = "płytka przeklasyfikowania cyborga"
+	desc = "Służy do zmiany nazwy cyborga."
 	icon_state = "cyborg_upgrade1"
 	var/heldname = ""
 	one_use = TRUE
@@ -54,8 +54,8 @@
 		log_game("[key_name(user)] have used a cyborg reclassification board to rename [oldkeyname] to [key_name(R)] at [loc_name(user)]")
 
 /obj/item/borg/upgrade/restart
-	name = "cyborg emergency reboot module"
-	desc = "Used to force a reboot of a disabled-but-repaired cyborg, bringing it back online."
+	name = "moduł awaryjnego restartu cyborga"
+	desc = "Wymusza restart wyłączonego, ale naprawionego cyborga i przywraca go do działania."
 	icon_state = "cyborg_upgrade1"
 	one_use = TRUE
 
@@ -73,8 +73,8 @@
 	R.logevent("System uruchomiony.")
 
 /obj/item/borg/upgrade/vtec
-	name = "cyborg VTEC module"
-	desc = "Used to kick in a cyborg's VTEC systems, increasing their speed."
+	name = "moduł VTEC cyborga"
+	desc = "Włącza systemy VTEC cyborga, zwiększając jego prędkość."
 	icon_state = "cyborg_upgrade2"
 	require_module = 1
 
@@ -94,8 +94,8 @@
 		R.speed = initial(R.speed)
 
 /obj/item/borg/upgrade/disablercooler
-	name = "cyborg rapid disabler cooling module"
-	desc = "Used to cool a mounted disabler, increasing the potential current in it and thus its recharge rate."
+	name = "moduł szybkiego chłodzenia disablera cyborga"
+	desc = "Chłodzi zamontowany disabler, zwiększając możliwy prąd, a więc i tempo ładowania."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/security)
@@ -124,8 +124,8 @@
 		T.charge_delay = initial(T.charge_delay)
 
 /obj/item/borg/upgrade/thrusters
-	name = "ion thruster upgrade"
-	desc = "An energy-operated thruster system for cyborgs."
+	name = "ulepszenie: silniki jonowe"
+	desc = "Zasilany energią system silników manewrowych dla cyborgów."
 	icon_state = "cyborg_upgrade3"
 
 /obj/item/borg/upgrade/thrusters/action(mob/living/silicon/robot/R, user = usr)
@@ -144,8 +144,8 @@
 		R.ionpulse = FALSE
 
 /obj/item/borg/upgrade/ddrill
-	name = "mining cyborg diamond drill"
-	desc = "A diamond drill replacement for the mining module's standard drill."
+	name = "diamentowe wiertło cyborga górniczego"
+	desc = "Diamentowe wiertło zastępujące standardowe wiertło modułu górniczego."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/miner)
@@ -177,8 +177,8 @@
 		R.module.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/soh
-	name = "mining cyborg satchel of holding"
-	desc = "A satchel of holding replacement for mining cyborg's ore satchel module."
+	name = "torba na rudę bez dna cyborga górniczego"
+	desc = "Torba bez dna zastępująca torbę na rudę cyborga górniczego."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/miner)
@@ -205,8 +205,8 @@
 		R.module.add_module(S, FALSE, TRUE)
 
 /obj/item/borg/upgrade/cutter
-	name = "mining cyborg plasma cutter"
-	desc = "An upgrade to the mining module granting a self-recharging plasma cutter."
+	name = "przecinak plazmowy cyborga górniczego"
+	desc = "Ulepszenie modułu górniczego, które daje samoładujący się przecinak plazmowy."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/miner)
@@ -225,8 +225,8 @@
 		R.module.remove_module(P, TRUE)
 
 /obj/item/borg/upgrade/tboh
-	name = "janitor cyborg trash bag of holding"
-	desc = "A trash bag of holding replacement for the janiborg's standard trash bag."
+	name = "worek na śmieci bez dna cyborga porządkowego"
+	desc = "Worek na śmieci bez dna zastępujący standardowy worek cyborga porządkowego."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/janitor)
@@ -253,8 +253,8 @@
 		R.module.add_module(TB, FALSE, TRUE)
 
 /obj/item/borg/upgrade/amop
-	name = "janitor cyborg advanced mop"
-	desc = "An advanced mop replacement for the janiborg's standard mop."
+	name = "zaawansowany mop cyborga porządkowego"
+	desc = "Zaawansowany mop zastępujący standardowy mop cyborga porządkowego."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/janitor)
@@ -281,8 +281,8 @@
 		R.module.add_module(M, FALSE, TRUE)
 
 /obj/item/borg/upgrade/syndicate
-	name = "illegal equipment module"
-	desc = "Unlocks the hidden, deadlier functions of a cyborg."
+	name = "moduł nielegalnego wyposażenia"
+	desc = "Odblokowuje ukryte, zabójczniejsze funkcje cyborga."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 
@@ -304,8 +304,8 @@
 		R.SetEmagged(FALSE)
 
 /obj/item/borg/upgrade/lavaproof
-	name = "mining cyborg lavaproof chassis"
-	desc = "An upgrade kit to apply specialized coolant systems and insulation layers to a mining cyborg's chassis, enabling them to withstand exposure to molten rock."
+	name = "lawoodporna obudowa cyborga górniczego"
+	desc = "Zestaw, który montuje w obudowie cyborga górniczego specjalne układy chłodzenia i warstwy izolacji, dzięki czemu wytrzymuje on kontakt ze stopioną skałą."
 	icon_state = "ash_plating"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 	require_module = 1
@@ -323,8 +323,8 @@
 		R.weather_immunities -= "lava"
 
 /obj/item/borg/upgrade/selfrepair
-	name = "self-repair module"
-	desc = "This module will repair the cyborg over time."
+	name = "moduł samonaprawy"
+	desc = "Ten moduł stopniowo naprawia cyborga."
 	icon_state = "cyborg_upgrade5"
 	require_module = 1
 	var/repair_amount = -1
@@ -426,19 +426,19 @@
 
 		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_BORG_SELF_REPAIR))
 			TIMER_COOLDOWN_START(src, COOLDOWN_BORG_SELF_REPAIR, 200 SECONDS)
-			var/msgmode = "standby"
+			var/msgmode = "czuwania"
 			if(cyborg.health < 0)
-				msgmode = "critical"
+				msgmode = "krytycznym"
 			else if(cyborg.health < cyborg.maxHealth)
-				msgmode = "normal"
+				msgmode = "normalnym"
 			to_chat(cyborg, "<span class='notice'>Samonaprawa działa w trybie <span class='boldnotice'>[msgmode]</span>.</span>")
 	else
 		deactivate_sr()
 
 /obj/item/borg/upgrade/hypospray
-	name = "medical cyborg hypospray advanced synthesiser"
-	desc = "An upgrade to the Medical module cyborg's hypospray, allowing it \
-		to produce more advanced and complex medical reagents."
+	name = "zaawansowany syntezator hypospraya cyborga medycznego"
+	desc = "Ulepszenie hypospraya modułu medycznego, które pozwala mu \
+		wytwarzać bardziej zaawansowane i złożone odczynniki medyczne."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/medical)
@@ -459,15 +459,15 @@
 			H.remove_hypo_upgrade()
 
 /obj/item/borg/upgrade/hypospray/expanded
-	name = "medical cyborg expanded hypospray"
-	desc = "An upgrade to the Medical module's hypospray, allowing it \
-		to treat a wider range of conditions and problems."
+	name = "rozszerzony hypospray cyborga medycznego"
+	desc = "Ulepszenie hypospraya modułu medycznego, które pozwala mu \
+		leczyć szerszy zakres schorzeń i problemów."
 	///NSV13 - Borg Hypospray Update - Stop
 
 /obj/item/borg/upgrade/piercing_hypospray
-	name = "cyborg piercing hypospray"
-	desc = "An upgrade to a cyborg's hypospray, allowing it to \
-		pierce armor and thick material."
+	name = "przebijający hypospray cyborga"
+	desc = "Ulepszenie hypospraya cyborga, które pozwala mu \
+		przebijać pancerz i gruby materiał."
 	icon_state = "cyborg_upgrade3"
 
 /obj/item/borg/upgrade/piercing_hypospray/action(mob/living/silicon/robot/R, user = usr)
@@ -488,9 +488,9 @@
 			H.bypass_protection = initial(H.bypass_protection)
 
 /obj/item/borg/upgrade/defib
-	name = "medical cyborg defibrillator"
-	desc = "An upgrade to the Medical module, installing a built-in \
-		defibrillator, for on the scene revival."
+	name = "defibrylator cyborga medycznego"
+	desc = "Ulepszenie modułu medycznego, które instaluje wbudowany \
+		defibrylator do reanimacji na miejscu."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/medical)
@@ -511,10 +511,10 @@
 
 
 /obj/item/borg/upgrade/processor
-	name = "medical cyborg surgical processor"
-	desc = "An upgrade to the Medical module, installing a processor \
-		capable of scanning surgery disks and carrying \
-		out procedures"
+	name = "procesor chirurgiczny cyborga medycznego"
+	desc = "Ulepszenie modułu medycznego, które instaluje procesor \
+		zdolny skanować dyski chirurgiczne i przeprowadzać \
+		zabiegi."
 	icon_state = "cyborg_upgrade3"
 	require_module = 1
 	module_type = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical)
@@ -534,8 +534,8 @@
 		R.module.remove_module(SP, TRUE)
 
 /obj/item/borg/upgrade/ai
-	name = "B.O.R.I.S. module"
-	desc = "Bluespace Optimized Remote Intelligence Synchronization. An uplink device which takes the place of an MMI in cyborg endoskeletons, creating a robotic shell controlled by an AI."
+	name = "moduł B.O.R.I.S."
+	desc = "Bluespace Optimized Remote Intelligence Synchronization. Urządzenie łącza, które zajmuje miejsce MMI w endoszkielecie cyborga i tworzy robotyczną powłokę sterowaną przez SI."
 	icon_state = "boris"
 
 /obj/item/borg/upgrade/ai/action(mob/living/silicon/robot/R, user = usr)
@@ -558,8 +558,8 @@
 			R.notify_ai(AI_SHELL)
 
 /obj/item/borg/upgrade/expand
-	name = "borg expander"
-	desc = "A cyborg resizer, it makes a cyborg huge."
+	name = "powiększacz cyborga"
+	desc = "Zmienia rozmiar cyborga – robi z niego olbrzyma."
 	icon_state = "cyborg_upgrade3"
 
 /obj/item/borg/upgrade/expand/action(mob/living/silicon/robot/R, user = usr)
@@ -598,8 +598,8 @@
 			R.update_transform()
 
 /obj/item/borg/upgrade/rped
-	name = "engineering cyborg RPED"
-	desc = "A rapid part exchange device for the engineering cyborg."
+	name = "RPED cyborga inżynieryjnego"
+	desc = "Urządzenie do szybkiej wymiany części dla cyborga inżynieryjnego."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "borgrped"
 	require_module = TRUE
@@ -627,8 +627,8 @@
 			R.module.remove_module(RPED, TRUE)
 
 /obj/item/borg/upgrade/pinpointer
-	name = "medical cyborg crew pinpointer"
-	desc = "A crew pinpointer module for the medical cyborg. Permits remote access to the crew monitor."
+	name = "pinpointer załogi cyborga medycznego"
+	desc = "Moduł pinpointera załogi dla cyborga medycznego. Daje zdalny dostęp do monitora załogi."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinpointer_crew"
 	require_module = TRUE
@@ -670,8 +670,8 @@
 
 
 /obj/item/borg/upgrade/transform
-	name = "borg module picker (Standard)"
-	desc = "Allows you to to turn a cyborg into a standard cyborg."
+	name = "wybierak modułu cyborga (standardowy)"
+	desc = "Pozwala zmienić cyborga w cyborga standardowego."
 	icon_state = "cyborg_upgrade3"
 	var/obj/item/robot_module/new_module = /obj/item/robot_module/standard
 
@@ -681,21 +681,21 @@
 		R.module.transform_to(new_module)
 
 /obj/item/borg/upgrade/transform/clown
-	name = "borg module picker (Clown)"
-	desc = "Allows you to to turn a cyborg into a clown, honk."
+	name = "wybierak modułu cyborga (klaun)"
+	desc = "Pozwala zmienić cyborga w klauna, honk."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/clown
 
 /obj/item/borg/upgrade/transform/security
-	name = "borg module picker (Security)"
-	desc = "Allows you to turn a cyborg into a hunter, HALT!"
+	name = "wybierak modułu cyborga (ochrona)"
+	desc = "Pozwala zmienić cyborga w łowcę. STAĆ!"
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/security
 	module_flags = BORG_MODULE_SECURITY
 
 /obj/item/borg/upgrade/transform/borgi
-	name = "borg module picker (Borgi)"
-	desc = "Allows you to to turn a cyborg into a weapon to surpass Ian-gear."
+	name = "wybierak modułu cyborga (Borgi)"
+	desc = "Pozwala zmienić cyborga w broń, która przewyższy Ian-gear."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/borgi
 
@@ -706,8 +706,8 @@
 	return ..()
 
 /obj/item/borg/upgrade/circuit_app
-	name = "circuit manipulation apparatus"
-	desc = "An engineering cyborg upgrade allowing for manipulation of circuit boards."
+	name = "aparat do manipulacji płytkami"
+	desc = "Ulepszenie cyborga inżynieryjnego, które pozwala obsługiwać płytki drukowane."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = list(/obj/item/robot_module/engineering, /obj/item/robot_module/saboteur)
@@ -733,8 +733,8 @@
 			R.module.remove_module(C, TRUE)
 
 /obj/item/borg/upgrade/beaker_app
-	name = "beaker storage apparatus"
-	desc = "A supplementary beaker storage apparatus for medical cyborgs."
+	name = "aparat do przechowywania zlewek"
+	desc = "Dodatkowy aparat do przechowywania zlewek dla cyborgów medycznych."
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = list(/obj/item/robot_module/medical)
@@ -761,7 +761,7 @@
 
 
 /obj/item/borg/upgrade/speciality
-	name = "Speciality Module"
+	name = "Moduł specjalizacji"
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = list(/obj/item/robot_module/butler)
@@ -810,8 +810,8 @@
 		///NSV13 - Borg Hypospray Update - Stop
 
 /obj/item/borg/upgrade/speciality/kitchen
-	name = "Cook Speciality"
-	desc = "A service cyborg upgrade allowing for basic food handling."
+	name = "Specjalizacja: kucharz"
+	desc = "Ulepszenie cyborga usługowego, które pozwala na podstawową obsługę jedzenia."
 	hat = /obj/item/clothing/head/chefhat
 	addmodules = list (
 		/obj/item/kitchen/knife,
@@ -825,8 +825,8 @@
 	)
 
 /obj/item/borg/upgrade/speciality/botany
-	name = "Botany Speciality"
-	desc = "A service cyborg upgrade allowing for plant tending and manipulation."
+	name = "Specjalizacja: botanika"
+	desc = "Ulepszenie cyborga usługowego, które pozwala pielęgnować rośliny i nimi manipulować."
 	hat = /obj/item/clothing/head/rice_hat
 	addmodules = list (
 		/obj/item/storage/bag/plants/portaseeder,
@@ -840,8 +840,8 @@
 
 
 /obj/item/borg/upgrade/speciality/casino
-	name = "Gambler Speciality"
-	desc = "It's not crew harm if they do it themselves!"
+	name = "Specjalizacja: hazardzista"
+	desc = "To nie jest krzywdzenie załogi, jeśli robią to sami!"
 	hat = /obj/item/clothing/head/rabbitears
 	addmodules = list (
 		/obj/item/gobbler,
@@ -850,8 +850,8 @@
 	)
 
 /obj/item/borg/upgrade/speciality/party
-	name = "Party Speciality"
-	desc = "The night's still young..."
+	name = "Specjalizacja: impreza"
+	desc = "Noc jest jeszcze młoda..."
 	hat = /obj/item/clothing/head/beanie/rasta
 	addmodules = list (
 		/obj/item/stack/tile/light/cyborg,

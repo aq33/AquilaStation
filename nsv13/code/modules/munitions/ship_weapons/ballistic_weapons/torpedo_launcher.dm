@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/torpedo_launcher //heavily modified CM sprite
-	name = "M4-B Torpedo tube"
-	desc = "A weapon system that's employed by nigh on all modern ships. It's capable of delivering a self-propelling warhead with pinpoint accuracy to utterly annihilate a target."
+	name = "wyrzutnia torped M4-B"
+	desc = "System uzbrojenia używany na niemal wszystkich nowoczesnych okrętach. Z dokładnością co do metra dostarcza samobieżną głowicę, która całkowicie unicestwia cel."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "torpedo"
 	bound_height = 32

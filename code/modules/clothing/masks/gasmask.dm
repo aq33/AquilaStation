@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/gas
-	name = "gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. While good for concealing your identity, it isn't good for blocking gas flow." //More accurate
+	name = "maska gazowa"
+	desc = "Maska zakrywająca twarz, którą można podłączyć do źródła powietrza. Dobrze ukrywa tożsamość, ale słabo blokuje przepływ gazów." //More accurate
 	icon_state = "gas_alt"
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
@@ -14,8 +14,8 @@
 // **** Welding gas mask ****
 
 /obj/item/clothing/mask/gas/welding
-	name = "welding mask"
-	desc = "A gas mask with built-in welding goggles and a face shield. Looks like a skull - clearly designed by a nerd."
+	name = "maska spawalnicza"
+	desc = "Maska gazowa z wbudowanymi goglami spawalniczymi i osłoną twarzy. Wygląda jak czaszka - wyraźnie zaprojektował ją nerd."
 	icon_state = "weldingmask"
 	materials = list(/datum/material/iron=4000, /datum/material/glass=2000)
 	flash_protect = 2
@@ -41,21 +41,21 @@
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
-	name = "plague doctor mask"
-	desc = "A modernised version of the classic design, this mask will not only filter out toxins but it can also be connected to an air supply."
+	name = "maska doktora plagi"
+	desc = "Unowocześniona wersja klasycznego wzoru. Ta maska nie tylko filtruje toksyny, ale można ją też podłączyć do źródła powietrza."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 2,"energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
 
 /obj/item/clothing/mask/gas/syndicate
-	name = "syndicate mask"
-	desc = "A close-fitting tactical mask that can be connected to an air supply."
+	name = "maska Syndykatu"
+	desc = "Dopasowana maska taktyczna, którą można podłączyć do źródła powietrza."
 	icon_state = "syndicate"
 	strip_delay = 60
 
 /obj/item/clothing/mask/gas/clown_hat
-	name = "clown wig and mask"
-	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
+	name = "peruka i maska klauna"
+	desc = "Strój twarzy prawdziwego dowcipnisia. Klaun bez peruki i maski nie jest pełnym klaunem."
 	clothing_flags = MASKINTERNALS | SHOWEROKAY //NSV13 - kept SHOWEROKAY
 	icon_state = "clown"
 	item_state = "clown_hat"
@@ -70,12 +70,12 @@
 		return
 
 	var/list/options = list()
-	options["True Form"] = "clown"
-	options["The Feminist"] = "sexyclown"
-	options["The Madman"] = "joker"
-	options["The Rainbow Color"] ="rainbow"
-	options["The Jester"] ="chaos" //Nepeta33Leijon is holding me captive and forced me to help with this please send help
-	options["The Lunatic"] = "trickymask"
+	options["Prawdziwa forma"] = "clown"
+	options["Feministka"] = "sexyclown"
+	options["Szaleniec"] = "joker"
+	options["Tęczowe barwy"] ="rainbow"
+	options["Błazen"] ="chaos" //Nepeta33Leijon is holding me captive and forced me to help with this please send help
+	options["Wariat"] = "trickymask"
 
 	var/choice = input(user,"W jaką formę chcesz przemienić tę maskę?","Przemiana maski") in sortList(options)
 
@@ -89,8 +89,8 @@
 		return 1
 
 /obj/item/clothing/mask/gas/sexyclown
-	name = "sexy-clown wig and mask"
-	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
+	name = "peruka i maska seksownej klaunicy"
+	desc = "Kobieca maska klauna dla początkujących crossdresserów i artystek estradowych."
 	clothing_flags = MASKINTERNALS | SHOWEROKAY //NSV13 - kept SHOWEROKAY
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
@@ -98,8 +98,8 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/mime
-	name = "mime mask"
-	desc = "The traditional mime's mask. It has an eerie facial posture."
+	name = "maska mima"
+	desc = "Tradycyjna maska mima. Ma niepokojący wyraz twarzy."
 	clothing_flags = MASKINTERNALS | SHOWEROKAY //NSV13 - kept SHOWEROKAY
 	icon_state = "mime"
 	item_state = "mime"
@@ -130,8 +130,8 @@
 		return 1
 
 /obj/item/clothing/mask/gas/monkeymask
-	name = "monkey mask"
-	desc = "A mask used when acting as a monkey."
+	name = "maska małpy"
+	desc = "Maska do odgrywania małpy."
 	clothing_flags = MASKINTERNALS
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
@@ -139,8 +139,8 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/sexymime
-	name = "sexy mime mask"
-	desc = "A traditional female mime's mask."
+	name = "maska seksownej mimki"
+	desc = "Tradycyjna maska mimki."
 	clothing_flags = MASKINTERNALS | SHOWEROKAY //NSV13 - kept SHOWEROKAY
 	icon_state = "sexymime"
 	item_state = "sexymime"
@@ -148,32 +148,32 @@
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/death_commando
-	name = "Death Commando Mask"
+	name = "maska komandosa śmierci"
 	icon_state = "death_commando_mask"
 	item_state = "death_commando_mask"
 
 /obj/item/clothing/mask/gas/cyborg
-	name = "cyborg visor"
-	desc = "Beep boop."
+	name = "wizjer cyborga"
+	desc = "Bip bup."
 	icon_state = "death"
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/owl_mask
-	name = "owl mask"
-	desc = "Twoooo!"
+	name = "maska sowy"
+	desc = "Hu-huuu!"
 	icon_state = "owl"
 	clothing_flags = MASKINTERNALS
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
 /obj/item/clothing/mask/gas/carp
-	name = "carp mask"
-	desc = "Gnash gnash."
+	name = "maska karpia"
+	desc = "Kłap kłap."
 	icon_state = "carp_mask"
 
 /obj/item/clothing/mask/gas/tiki_mask
-	name = "tiki mask"
-	desc = "A creepy wooden mask. Surprisingly expressive for a poorly carved bit of wood."
+	name = "maska tiki"
+	desc = "Upiorna drewniana maska. Zaskakująco wyrazista jak na niezgrabnie wyrzeźbiony kawałek drewna."
 	icon_state = "tiki_eyebrow"
 	item_state = "tiki_eyebrow"
 	resistance_flags = FLAMMABLE
@@ -185,10 +185,10 @@
 /obj/item/clothing/mask/gas/tiki_mask/ui_action_click(mob/user)
 	var/mob/M = usr
 	var/list/options = list()
-	options["Original Tiki"] = "tiki_eyebrow"
-	options["Happy Tiki"] = "tiki_happy"
-	options["Confused Tiki"] = "tiki_confused"
-	options["Angry Tiki"] ="tiki_angry"
+	options["Oryginalna tiki"] = "tiki_eyebrow"
+	options["Wesoła tiki"] = "tiki_happy"
+	options["Zdezorientowana tiki"] = "tiki_confused"
+	options["Wściekła tiki"] ="tiki_angry"
 
 	var/choice = input(M,"W jaką formę chcesz zmienić tę maskę?","Przemiana maski") in sortList(options)
 
@@ -206,14 +206,14 @@
 	actions_types = list()
 
 /obj/item/clothing/mask/gas/hunter
-	name = "bounty hunting mask"
-	desc = "A custom tactical mask with decals added."
+	name = "maska łowcy nagród"
+	desc = "Przerobiona maska taktyczna z dodanymi naklejkami."
 	icon_state = "hunter"
 	item_state = "hunter"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEFACIALHAIR|HIDEFACE|HIDEEYES|HIDEEARS|HIDEHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/gas/old
-	desc = "A face-covering mask that can be connected to an air supply. This one appears to be one of the older models."
+	desc = "Maska zakrywająca twarz, którą można podłączyć do źródła powietrza. Ta wygląda na jeden ze starszych modeli."
 	icon_state = "gas_alt_old"
 	item_state = "gas_alt_old"

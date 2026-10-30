@@ -2,8 +2,8 @@
 /obj/item/food/grown/citrus
 	seed = /obj/item/plant_seeds/preset/lime
 	abstract_type = /obj/item/food/grown/citrus
-	name = "citrus"
-	desc = "It's so sour, your face will twist."
+	name = "cytrus"
+	desc = "Tak kwaśne, że wykrzywi ci twarz."
 	icon_state = "lime"
 	foodtypes = FRUIT
 	wine_power = 30
@@ -11,16 +11,16 @@
 // Lime
 /obj/item/food/grown/citrus/lime
 	seed = /obj/item/plant_seeds/preset/lime
-	name = "lime"
-	desc = "It's so sour, your face will twist."
+	name = "limonka"
+	desc = "Tak kwaśne, że wykrzywi ci twarz."
 	icon_state = "lime"
 	juice_typepath = /datum/reagent/consumable/limejuice
 
 // Orange
 /obj/item/food/grown/citrus/orange
 	seed = /obj/item/plant_seeds/preset/orange
-	name = "orange"
-	desc = "It's a tangy fruit."
+	name = "pomarańcza"
+	desc = "Cierpki owoc."
 	icon_state = "orange"
 	juice_typepath = /datum/reagent/consumable/orangejuice
 	distill_reagent = /datum/reagent/consumable/ethanol/triple_sec
@@ -28,15 +28,15 @@
 // Lemon
 /obj/item/food/grown/citrus/lemon
 	seed = /obj/item/plant_seeds/preset/lemon
-	name = "lemon"
-	desc = "When life gives you lemons, make lemonade."
+	name = "cytryna"
+	desc = "Kiedy życie daje ci cytryny, zrób lemoniadę."
 	icon_state = "lemon"
 	juice_typepath = /datum/reagent/consumable/lemonjuice
 
 // Combustible lemon
 /obj/item/food/grown/firelemon
-	name = "Combustible Lemon"
-	desc = "Made for burning houses down."
+	name = "wybuchowa cytryna"
+	desc = "Stworzona do palenia domów."
 	icon_state = "firelemon"
 	foodtypes = FRUIT
 	wine_power = 70
@@ -52,8 +52,8 @@
 
 //3D Orange
 /obj/item/food/grown/citrus/orange_3d
-	name = "extradimensional orange"
-	desc = "You can hardly wrap your head around this thing."
+	name = "pozawymiarowa pomarańcza"
+	desc = "Ledwo jesteś w stanie to ogarnąć umysłem."
 	icon_state = "orang"
 	bite_consumption_mod = 2
 	juice_typepath = /datum/reagent/consumable/orangejuice

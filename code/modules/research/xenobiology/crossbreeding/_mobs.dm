@@ -6,8 +6,8 @@ Slimecrossing Mobs
 
 //Slime transformation power - Burning Black
 /obj/effect/proc_holder/spell/targeted/shapeshift/slimeform
-	name = "Slime Transformation"
-	desc = "Transform from a human to a slime, or back again!"
+	name = "Przemiana w szlama"
+	desc = "Zmień się z człowieka w szlama albo z powrotem!"
 	action_icon_state = "transformslime"
 	cooldown_min = 0
 	charge_max = 0
@@ -27,14 +27,14 @@ Slimecrossing Mobs
 /mob/living/simple_animal/slime/transformedslime
 
 /mob/living/simple_animal/slime/transformedslime/Reproduce() //Just in case.
-	to_chat(src, "<span class='warning'>I can't reproduce...</span>")
+	to_chat(src, "<span class='warning'>Nie mogę się rozmnażać...</span>")
 	return
 
 //Slime corgi - Chilling Pink
 /mob/living/simple_animal/pet/dog/corgi/puppy/slime
-	name = "\improper slime corgi puppy"
-	real_name = "slime corgi puppy"
-	desc = "An unbearably cute pink slime corgi puppy."
+	name = "\improper szlamowy szczeniak corgi"
+	real_name = "szlamowy szczeniak corgi"
+	desc = "Nieznośnie uroczy różowy szlamowy szczeniak corgi."
 	icon_state = "slime_puppy"
 	icon_living = "slime_puppy"
 	icon_dead = "slime_puppy_dead"

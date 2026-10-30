@@ -2,7 +2,7 @@
 
 /datum/species/zombie
 	// 1spooky
-	name = "\improper High-Functioning Zombie"
+	name = "\improper Wysokofunkcyjne zombie"
 	id = "zombie"
 	sexes = 0
 	meat = /obj/item/food/meat/slab/human/mutant/zombie
@@ -27,7 +27,7 @@
 	return ..()
 
 /datum/species/zombie/infectious
-	name = "\improper Infectious Zombie"
+	name = "\improper Zakaźne zombie"
 	id = "memezombies"
 	examine_limb_id = "zombie"
 	mutanthands = /obj/item/zombie_hand
@@ -86,7 +86,7 @@
 		infection.Insert(C)
 
 /datum/species/zombie/infectious/fast
-	name = "\improper Fast Infectious Zombie"
+	name = "\improper Szybkie zakaźne zombie"
 	id = "memezombiesfast"
 	armor = 0
 	speedmod = 0
@@ -94,7 +94,7 @@
 
 // Your skin falls off
 /datum/species/human/krokodil_addict
-	name = "\improper Human"
+	name = "\improper Człowiek"
 	id = "goofzombies"
 	meat = /obj/item/food/meat/slab/human/mutant/zombie
 	mutanttongue = /obj/item/organ/tongue/zombie
@@ -123,7 +123,7 @@
 			BP.skin_tone ||= skintone
 			BP.limb_id = SPECIES_HUMAN
 			BP.should_draw_greyscale = TRUE
-			BP.name = "human [parse_zone(BP.body_zone)]"
+			BP.name = "[strefa_pl(BP.body_zone)] człowieka"
 			BP.update_limb()
 
 

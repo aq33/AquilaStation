@@ -85,7 +85,7 @@
 	if(!target?.current)
 		explanation_text = "Cel dowolny"
 		if(owner)
-			message_admins("WARNING! [ADMIN_LOOKUPFLW(owner.current)] paradox clone objectives forged without an original!")
+			message_admins("UWAGA! Cele klona paradoksu ([ADMIN_LOOKUPFLW(owner.current)]) wygenerowano bez oryginału!")
 		return
 	explanation_text = "Zabij i zastąp [target.name], [!target_role_type ? target.assigned_role : target.special_role]. Pamiętaj, masz się wtopić w tłum - nie zabijaj nikogo innego, chyba że musisz!"
 
@@ -164,6 +164,6 @@
 	playsound(clone, 'sound/weapons/zapbang.ogg', 30, TRUE)
 	new /obj/item/storage/toolbox/mechanical(clone.loc) //so they dont get stuck in maints
 
-	message_admins("[ADMIN_LOOKUPFLW(clone)] has been made into a Paradox Clone of [ADMIN_LOOKUPFLW(original)] by [source].")
+	message_admins("[ADMIN_LOOKUPFLW(clone)] zostaje klonem paradoksu postaci [ADMIN_LOOKUPFLW(original)] (źródło: [source]).")
 	log_game("[key_name(clone)] was spawned as a Paradox Clone of [key_name(original)] by [source].")
 	return clone

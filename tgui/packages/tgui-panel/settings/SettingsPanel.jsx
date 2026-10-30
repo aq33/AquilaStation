@@ -251,6 +251,7 @@ export const SettingsGeneral = (props) => {
         </Stack.Item>
         <Stack.Item mt={0.15}>
           <Button.Confirm
+            confirmContent="Na pewno?"
             content="Wyczyść czat"
             icon="trash"
             tooltip="Usuń historię bieżącej karty"

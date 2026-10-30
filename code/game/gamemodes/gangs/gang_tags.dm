@@ -7,7 +7,7 @@
 	gender = NEUTER
 	var/datum/team/gang/gang
 
-/obj/effect/decal/gang/Initialize(mapload, datum/team/gang/G, e_name = "gang tag", rotation = 0,  mob/user)
+/obj/effect/decal/gang/Initialize(mapload, datum/team/gang/G, e_name = "znak gangu", rotation = 0,  mob/user)
 	if(!G)
 		qdel(src)
 		return
@@ -16,7 +16,7 @@
 	G.new_territories |= list(territory.type = territory.name)
 
 	name = e_name
-	desc = "A [name] vandalizing the station."
+	desc = "Znak ([name]) szpecący stację."
 	icon_state = G.name
 	add_atom_colour(G.color, FIXED_COLOUR_PRIORITY)
 

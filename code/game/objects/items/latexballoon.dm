@@ -1,6 +1,6 @@
 /obj/item/latexballon
-	name = "latex glove"
-	desc = "Sterile and airtight."
+	name = "lateksowa rękawiczka"
+	desc = "Sterylna i szczelna."
 	icon_state = "latexballon"
 	item_state = "lgloves"
 	force = 0

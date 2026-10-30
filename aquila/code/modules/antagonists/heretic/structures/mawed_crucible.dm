@@ -1,6 +1,6 @@
 // The mawed crucible, a heretic structure that can create potions from bodyparts and organs.
 /obj/structure/destructible/eldritch_crucible
-	name = "mawed crucible"
+	name = "zębaty tygiel"
 	desc = "Głęboka misa z żeliwa, unieśmiertelniona przez stalowe zęby, które trzymają ją w miejscu. \
 		Wpatrywanie się w plugawy wyciąg w środku napełnia umysł strasznymi pomysłami."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
@@ -263,7 +263,7 @@
 
 // Potions created by the mawed crucible.
 /obj/item/eldritch_potion
-	name = "brew of day and night"
+	name = "wywar dnia i nocy"
 	desc = "Nie powinieneś tego widzieć."
 	icon = 'aquila/icons/obj/antags/eldritch.dmi'
 	w_class = WEIGHT_CLASS_SMALL
@@ -317,7 +317,7 @@
 	carbon_user.apply_status_effect(status_effect)
 
 /obj/item/eldritch_potion/crucible_soul
-	name = "brew of the crucible soul"
+	name = "wywar duszy tygla"
 	desc = "Szklana butelka z jasnopomarańczowym, przejrzystym płynem."
 	icon_state = "crucible_soul"
 	status_effect = /datum/status_effect/crucible_soul
@@ -331,14 +331,14 @@
 	return ..()
 
 /obj/item/eldritch_potion/duskndawn
-	name = "brew of dusk and dawn"
+	name = "wywar zmierzchu i świtu"
 	desc = "Szklana butelka z matowożółtym płynem. Regularnie to blednie, to znów nabiera barwy."
 	icon_state = "clarity"
 	status_effect = /datum/status_effect/duskndawn
 	crucible_tip = "Pozwala widzieć przez ściany i przedmioty. Trwa 90 sekund."
 
 /obj/item/eldritch_potion/wounded
-	name = "brew of the wounded soldier"
+	name = "wywar rannego żołnierza"
 	desc = "Szklana butelka z bezbarwnym, ciemnym płynem."
 	icon_state = "marshal"
 	status_effect = /datum/status_effect/marshal

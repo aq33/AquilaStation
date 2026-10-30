@@ -2,7 +2,7 @@
 	Apply bee buff
 */
 /obj/item/projectile/energy/floramut
-	name = "alpha somatoray"
+	name = "somatopromień alfa"
 	icon_state = "energy"
 	damage = 0
 	damage_type = TOX
@@ -22,7 +22,7 @@
 	Removes all weeds & pests
 */
 /obj/item/projectile/energy/florayield
-	name = "beta somatoray"
+	name = "somatopromień beta"
 	icon_state = "energy2"
 	damage = 0
 	damage_type = TOX

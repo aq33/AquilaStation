@@ -524,7 +524,7 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 					SEND_SIGNAL(S, COMSIG_TRY_STORAGE_INSERT, M, H, TRUE)
 
 			if(H.put_in_hands(target_item))
-				H.visible_message("<span class='warning'>[H] grabs [target_item]!</span>")
+				H.visible_message("<span class='warning'>[H] chwyta [target_item]!</span>")
 
 ///Checks that G exists, has ammo and that H can fire it. Returns G if yes, FALSE otherwise.
 /datum/ai_goal/human/acquire_weapon/proc/gun_suitable(mob/living/carbon/human/H, obj/item/gun/G)
@@ -683,7 +683,7 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 								H.do_attack_animation(target, ATTACK_EFFECT_KICK)
 								target.visible_message("<span class='warning'>[H] wbija [target] kolano w brzuch!</span>", \
 												"<span class='userdanger'>[H] pozbawia cię tchu kolanem w brzuch!</span>")
-								target.audible_message("<b>[target]</b> gags!")
+								target.audible_message("<b>[target]</b> krztusi się!")
 								target.losebreath += 3
 
 					else
@@ -755,7 +755,7 @@ This is to account for sec Ju-Jitsuing boarding commandos.
 	get_next_patrol_node(HA)
 
 /obj/effect/landmark/patrol_node
-	name = "AI patrol node"
+	name = "punkt patrolowy AI"
 	icon = 'nsv13/icons/effects/mapping_helpers.dmi'
 	icon_state = "patrol_node"
 	var/id = null

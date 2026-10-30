@@ -4,7 +4,7 @@
  * A handheld device with one big button.
  */
 /obj/item/compact_remote
-	name = "compact remote"
+	name = "kompaktowy pilot"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_small_simple"
 	item_state = "electronic"
@@ -23,7 +23,7 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/compact_remote
-	display_name = "Compact Remote"
+	display_name = "Kompaktowy pilot"
 	desc = "Odbiera sygnały z obudowy kompaktowego pilota. Użyj obudowy w ręce, aby wyzwolić sygnał wyjściowy."
 
 	/// Called when attack_self is called on the shell.

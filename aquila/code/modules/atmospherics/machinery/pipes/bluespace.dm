@@ -4,8 +4,8 @@
 GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 
 /obj/machinery/atmospherics/pipe/bluespace
-	name = "bluespace pipe"
-	desc = "Transmits gas across large distances of space. Developed using bluespace technology."
+	name = "rura bluespace"
+	desc = "Przesyła gaz na duże odległości w przestrzeni. Opracowana dzięki technologii bluespace."
 	icon = 'aquila/icons/obj/atmospherics/pipes/bluespace.dmi'
 	icon_state = "map"
 	pipe_state = "bluespace"
@@ -118,7 +118,7 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 	. += "<span class='notice'>Jest połączona z siecią \"[html_encode(bluespace_network_name)]\".</span>"
 
 /obj/item/pipe/bluespace/attack_self(mob/user)
-	var/new_name = stripped_input(user, "Podaj identyfikator sieci rur bluespace", "bluespace pipe", bluespace_network_name, MAX_NAME_LEN)
+	var/new_name = stripped_input(user, "Podaj identyfikator sieci rur bluespace", "Rura bluespace", bluespace_network_name, MAX_NAME_LEN)
 	if(!isnull(new_name) && user.canUseTopic(src, BE_CLOSE))
 		bluespace_network_name = new_name
 
@@ -156,8 +156,8 @@ GLOBAL_LIST_EMPTY(bluespace_pipe_networks)
 // Design
 
 /datum/design/bluespace_pipe
-	name = "Bluespace Pipe"
-	desc = "A pipe that teleports gases."
+	name = "rura bluespace"
+	desc = "Rura, która teleportuje gazy."
 	id = "bluespace_pipe"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/gold = 1000, /datum/material/diamond = 750, /datum/material/uranium = 250, /datum/material/bluespace = 2000)

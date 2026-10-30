@@ -95,7 +95,7 @@
 	if(error)
 		data["error"] = error
 	if(!computer || !HDD)
-		data["error"] = "I/O ERROR: Unable to access hard drive."
+		data["error"] = "BŁĄD WE/WY: brak dostępu do dysku twardego."
 	else
 		var/list/files = list()
 		for(var/datum/computer_file/F in HDD.stored_files)

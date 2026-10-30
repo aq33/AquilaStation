@@ -22,7 +22,7 @@
 	B.take_damage(damage, BURN, "energy")
 
 /datum/reagent/blob/energized_jelly
-	name = "Energized Jelly"
+	name = "Naładowana galaretka"
 	taste_description = "żelatyna"
 	color = "#EFD65A"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

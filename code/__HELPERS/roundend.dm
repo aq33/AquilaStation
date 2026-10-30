@@ -390,15 +390,15 @@
 				parts += "[GLOB.TAB]<i>Podczas tej zmiany nikt nie zginął!</i>"
 	if(istype(SSticker.mode, /datum/game_mode/dynamic))
 		var/datum/game_mode/dynamic/mode = SSticker.mode
-		parts += "[FOURSPACES]Threat level: [mode.threat_level]"
-		parts += "[FOURSPACES]Threat left: [mode.mid_round_budget]"
+		parts += "[FOURSPACES]Poziom zagrożenia: [mode.threat_level]"
+		parts += "[FOURSPACES]Pozostałe zagrożenie: [mode.mid_round_budget]"
 		if(mode.roundend_threat_log.len)
-			parts += "[FOURSPACES]Threat edits:"
+			parts += "[FOURSPACES]Zmiany zagrożenia:"
 			for(var/entry as anything in mode.roundend_threat_log)
 				parts += "[FOURSPACES][FOURSPACES][entry]<BR>"
-		parts += "[FOURSPACES]Executed rules:"
+		parts += "[FOURSPACES]Wykonane reguły:"
 		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] zagrożenia"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -477,13 +477,13 @@
 	var/list/parts = list()
 	parts += "<b>[SSovermap_mode.mode.name]</b>"
 	parts += "" //Line Break
-	parts += "Objectives:"
+	parts += "Cele:"
 	for(var/datum/overmap_objective/O in SSovermap_mode.mode.objectives)
 		switch(O.status)
 			if(0,2)
-				parts += "[O.brief]: <font color=red><b>FAILED</b></font>"
+				parts += "[O.brief]: <font color=red><b>NIEWYKONANY</b></font>"
 			if(1,3)
-				parts += "[O.brief]: <font color=green><b>COMPLETED</b></font>"
+				parts += "[O.brief]: <font color=green><b>WYKONANY</b></font>"
 
 	parts += "" //Line Break
 	var/did_you_win_son = FALSE
@@ -627,7 +627,7 @@
 	to_chat(C,"<a href='byond://?src=[REF(R)];report=1'>Pokaż ponownie raport z końca rundy</a>")
 
 /datum/action/report
-	name = "Show roundend report"
+	name = "Pokaż raport z końca rundy"
 	button_icon_state = "round_end"
 
 /datum/action/report/Trigger()
@@ -690,7 +690,7 @@
 
 /datum/controller/subsystem/ticker/proc/save_admin_data()
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
+		to_chat(usr, "<span class='admin prefix'>Zablokowano synchronizację rang adminów z bazą: wykryto Advanced ProcCall.</span>")
 		return
 	if(CONFIG_GET(flag/admin_legacy_system)) //we're already using legacy system so there's nothing to save
 		return
@@ -758,30 +758,30 @@
 
 /datum/controller/subsystem/ticker/proc/sendtodiscord(var/survivors, var/escapees, var/integrity)
     var/discordmsg = ""
-    discordmsg += "--------------ROUND END--------------\n"
-    discordmsg += "Server: [CONFIG_GET(string/servername)]\n"
-    discordmsg += "Round Number: [GLOB.round_id]\n"
-    discordmsg += "Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]\n"
-    discordmsg += "Players: [GLOB.player_list.len]\n"
-    discordmsg += "Survivors: [survivors]\n"
-    discordmsg += "Escapees: [escapees]\n"
-    discordmsg += "Integrity: [integrity]\n"
-    discordmsg += "Gamemode: [SSticker.mode.name]\n"
+    discordmsg += "-----------KONIEC RUNDY-----------\n"
+    discordmsg += "Serwer: [CONFIG_GET(string/servername)]\n"
+    discordmsg += "Numer rundy: [GLOB.round_id]\n"
+    discordmsg += "Czas trwania: [DisplayTimeText(world.time - SSticker.round_start_time)]\n"
+    discordmsg += "Gracze: [GLOB.player_list.len]\n"
+    discordmsg += "Ocaleni: [survivors]\n"
+    discordmsg += "Ewakuowani: [escapees]\n"
+    discordmsg += "Stan statku: [integrity]\n"
+    discordmsg += "Tryb gry: [SSticker.mode.name]\n"
     if(istype(SSticker.mode, /datum/game_mode/dynamic))
         var/datum/game_mode/dynamic/mode = SSticker.mode
-        discordmsg += "Threat level: [mode.threat_level]\n"
-        discordmsg += "Threat left: [mode.mid_round_budget]\n"
-        discordmsg += "Executed rules:\n"
+        discordmsg += "Poziom zagrożenia: [mode.threat_level]\n"
+        discordmsg += "Pozostałe zagrożenie: [mode.mid_round_budget]\n"
+        discordmsg += "Wykonane reguły:\n"
         for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-            discordmsg += "[rule.ruletype] - [rule.name]: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat\n"
+            discordmsg += "[rule.ruletype] - [rule.name]: -[rule.cost + rule.scaled_times * rule.scaling_cost] zagrożenia\n"
     discordsendmsg("ooc", discordmsg)
     discordmsg = ""
     var/list/ded = SSblackbox.first_death
     if(ded)
-        discordmsg += "First Death: [ded["name"]], [ded["role"]], at [ded["area"]]\n"
-        var/last_words = ded["last_words"] ? "Their last words were: \"[ded["last_words"]]\"\n" : "Nie mieli ostatnich słów.\n"
+        discordmsg += "Pierwsza śmierć: [ded["name"]], [ded["role"]], miejsce: [ded["area"]]\n"
+        var/last_words = ded["last_words"] ? "Ostatnie słowa: \"[ded["last_words"]]\"\n" : "Nie mieli ostatnich słów.\n"
         discordmsg += "[last_words]\n"
     else
-        discordmsg += "Nobody died!\n"
+        discordmsg += "Nikt nie zginął!\n"
     discordmsg += "--------------------------------------\n"
     discordsendmsg("ooc", discordmsg)

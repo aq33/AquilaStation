@@ -1,7 +1,7 @@
 /obj/eldritch/narsie/toddsie
-	name = "Todd'Sie's Avatar"
+	name = "awatar Todd'Sie"
 	icon = 'icons/obj/toddsie.dmi'
-	desc = "Your mind begins to bubble and ooze as it tries to comprehend what it sees. You realize for some reason you want to buy Skyrim."
+	desc = "Twój umysł zaczyna bulgotać i wyciekać, gdy próbuje pojąć to, co widzi. Z jakiegoś powodu nagle masz ochotę kupić Skyrima."
 	pixel_x = -236
 	pixel_y = -256
 	anchored = TRUE

@@ -1,7 +1,7 @@
 // Jukebox gra wyłącznie playlisty z YouTube (jukebox_youtube.dm). Tutaj: maszyna, UI i zasięg słyszenia.
 
 /obj/machinery/jukebox
-	name = "Jukebox"
+	name = "szafa grająca"
 	desc = "Tradycyjny odtwarzacz muzyczny."
 	icon = 'aquila/icons/obj/jukebox.dmi'
 	icon_state = "jukebox"
@@ -42,11 +42,11 @@
 	var/can_broadcast = TRUE
 
 /obj/machinery/jukebox/disco
-	name = "Disco Jukebox"
+	name = "szafa grająca disco"
 	desc = "Odtwarzacz muzyczny w wersji Disco."
 
 /obj/machinery/jukebox/disco/indestructible
-	name = "Niezniszczalny Disco Jukebox"
+	name = "niezniszczalna szafa grająca disco"
 	req_access = null
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -156,7 +156,7 @@
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	if (!is_secured())
-		to_chat(user,"<span class='warning'>To urządzenie musi wpierw był przykręcone do podłoża!</span>")
+		to_chat(user,"<span class='warning'>To urządzenie musi najpierw być przykręcone do podłoża!</span>")
 		return
 	var/datum/browser/popup = new(user, "vending", "[name]", 500, 680)
 	popup.set_content(yt_ui(user))

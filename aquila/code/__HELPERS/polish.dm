@@ -85,3 +85,13 @@
 		if("right foot", BODY_ZONE_PRECISE_R_FOOT)
 			return biernik ? "prawą stopę" : "prawa stopa"
 	return zone
+
+/// BYOND sam dokleja angielskie "the"/"The" przed każdym wstawionym obiektem o nazwie małą literą ("[src]" daje "the teczka").
+/// W polskich komunikatach to zawsze błąd, więc wycinamy je z wiadomości czatu.
+/proc/strip_auto_articles(text)
+	var/static/regex/article
+	if(!istext(text))
+		return text
+	if(!article)
+		article = regex(@{"(^|[\s>(„"'])[Tt]he (?=\S)"}, "g")
+	return article.Replace(text, "$1")

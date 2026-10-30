@@ -31,7 +31,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/paradox_clone/execute()
 	possible_spawns = paradox_clone_spawn_locations()
 	if(!length(possible_spawns))
-		message_admins("No valid spawn locations found for Paradox Clone ruleset, aborting...")
+		message_admins("Reguła Klona paradoksu nie znalazła żadnego miejsca na spawn, przerywam...")
 		log_game("DYNAMIC: [ruletype] ruleset [name] execute failed due to no valid spawn locations.")
 		return FALSE
 	return ..()
@@ -39,7 +39,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/paradox_clone/generate_ruleset_body(mob/applicant)
 	var/mob/living/carbon/human/original = paradox_clone_find_original()
 	if(!original)
-		message_admins("The [name] ruleset found no crew member to clone after polling, [key_name_admin(applicant)] was not spawned.")
+		message_admins("Reguła [name] nie znalazła po ankiecie członka załogi do sklonowania, więc [key_name_admin(applicant)] się nie pojawia.")
 		log_game("DYNAMIC: [name] found no crew member to clone after polling.")
 		return applicant
 	return create_paradox_clone(applicant.key, original, pick(possible_spawns), "the midround ruleset")

@@ -1,6 +1,6 @@
 //Aux base construction console
 /mob/camera/ai_eye/remote/base_construction
-	name = "construction holo-drone"
+	name = "budowlany holodron"
 	move_on_shuttle = 1 //Allows any curious crew to watch the base after it leaves. (This is safe as the base cannot be modified once it leaves)
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "construction_drone"
@@ -21,14 +21,14 @@
 	..()
 
 /obj/item/construction/rcd/internal //Base console's internal RCD. Roundstart consoles are filled, rebuilt cosoles start empty.
-	name = "internal RCD"
+	name = "wewnętrzny RCD"
 	max_matter = 600 //Bigger container and faster speeds due to being specialized and stationary.
 	no_ammo_message = "<span class='warning'>Wewnętrzna materia wyczerpana. Dodaj więcej materiałów.</span>"
 	delay_mod = 0.5
 
 /obj/machinery/computer/camera_advanced/base_construction
-	name = "base construction console"
-	desc = "An industrial computer integrated with a camera-assisted rapid construction drone."
+	name = "konsola budowy bazy"
+	desc = "Komputer przemysłowy zintegrowany z dronem szybkiej budowy sterowanym przez kamerę."
 	networks = list("ss13")
 	var/obj/item/construction/rcd/internal/RCD //Internal RCD. The computer passes user commands to this in order to avoid massive copypaste.
 	circuit = /obj/item/circuitboard/computer/base_construction
@@ -158,12 +158,12 @@
 	return TRUE
 
 /datum/action/innate/camera_off/base_construction
-	name = "Log out"
+	name = "Wyloguj"
 
 //*******************FUNCTIONS*******************
 
 /datum/action/innate/aux_base/build
-	name = "Build"
+	name = "Buduj"
 	button_icon_state = "build"
 
 /datum/action/innate/aux_base/build/Activate()
@@ -186,20 +186,20 @@
 	playsound(target_turf, 'sound/items/deconstruct.ogg', 60, 1)
 
 /datum/action/innate/aux_base/switch_mode
-	name = "Switch Mode"
+	name = "Zmień tryb"
 	button_icon_state = "builder_mode"
 
 /datum/action/innate/aux_base/switch_mode/Activate()
 	if(..())
 		return
 
-	var/list/buildlist = list("Walls and Floors" = 1,"Airlocks" = 2,"Deconstruction" = 3,"Windows and Grilles" = 4)
+	var/list/buildlist = list("Ściany i podłogi" = 1,"Śluzy" = 2,"Rozbiórka" = 3,"Okna i kraty" = 4)
 	var/buildmode = tgui_input_list("Ustaw tryb budowy.", "Konsola bazy", buildlist)
 	B.RCD.mode = buildlist[buildmode]
 	to_chat(owner, "Tryb budowy: [buildmode].")
 
 /datum/action/innate/aux_base/airlock_type
-	name = "Select Airlock Type"
+	name = "Wybierz typ śluzy"
 	button_icon_state = "airlock_select"
 
 /datum/action/innate/aux_base/airlock_type/Activate()
@@ -210,7 +210,7 @@
 
 
 /datum/action/innate/aux_base/window_type
-	name = "Select Window Type"
+	name = "Wybierz typ okna"
 	button_icon_state = "window_select"
 
 /datum/action/innate/aux_base/window_type/Activate()
@@ -219,7 +219,7 @@
 	B.RCD.toggle_window_type()
 
 /datum/action/innate/aux_base/place_fan
-	name = "Place Tiny Fan"
+	name = "Postaw mały wentylator"
 	button_icon_state = "build_fan"
 
 /datum/action/innate/aux_base/place_fan/Activate()
@@ -245,7 +245,7 @@
 	playsound(fan_turf, 'sound/machines/click.ogg', 50, 1)
 
 /datum/action/innate/aux_base/install_turret
-	name = "Install Plasma Anti-Wildlife Turret"
+	name = "Zainstaluj plazmową wieżyczkę przeciw faunie"
 	button_icon_state = "build_turret"
 
 /datum/action/innate/aux_base/install_turret/Activate()

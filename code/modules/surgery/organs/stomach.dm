@@ -1,5 +1,5 @@
 /obj/item/organ/stomach
-	name = "stomach"
+	name = "żołądek"
 	icon_state = "stomach"
 	w_class = WEIGHT_CLASS_SMALL
 	zone = BODY_ZONE_CHEST
@@ -85,19 +85,19 @@
 	return ..()
 
 /obj/item/organ/stomach/fly
-	name = "insectoid stomach"
+	name = "owadzi żołądek"
 	icon_state = "stomach-x" //xenomorph liver? It's just a black liver so it fits.
-	desc = "A mutant stomach designed to handle the unique diet of a flyperson."
+	desc = "Zmutowany żołądek przystosowany do wyjątkowej diety muchoczłowieka."
 
 /obj/item/organ/stomach/plasmaman
-	name = "digestive crystal"
+	name = "kryształ trawienny"
 	icon_state = "stomach-p"
-	desc = "A strange crystal that is responsible for metabolizing the unseen energy force that feeds plasmamen."
+	desc = "Dziwny kryształ, który metabolizuje niewidzialną energię odżywiającą plazmaludzi."
 
 /obj/item/organ/stomach/battery
-	name = "implantable battery"
+	name = "wszczepialna bateria"
 	icon_state = "implant-power"
-	desc = "A battery that stores charge for species that run on electricity."
+	desc = "Bateria magazynująca ładunek dla gatunków zasilanych prądem."
 	var/max_charge = 5000 //same as upgraded+ cell
 	var/charge = 5000
 
@@ -148,11 +148,11 @@
 			applyOrganDamage(15)
 
 /obj/item/organ/stomach/battery/ipc
-	name = "micro-cell"
+	name = "mikroogniwo"
 	icon_state = "microcell"
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("napada i pobija")
-	desc = "A micro-cell, for IPC use. Do not swallow."
+	desc = "Mikroogniwo dla IPC. Nie połykać."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 	max_charge = 2750 //50 nutrition from 250 charge
@@ -167,9 +167,9 @@
 			to_chat(owner, "<span class='warning'>Alarm: wykryto EMP. Przełączanie baterii.</span>")
 
 /obj/item/organ/stomach/battery/ethereal
-	name = "biological battery"
+	name = "bateria biologiczna"
 	icon_state = "stomach-p" //Welp. At least it's more unique in functionaliy.
-	desc = "A crystal-like organ that stores the electric charge of ethereals."
+	desc = "Kryształopodobny organ, który magazynuje ładunek elektryczny eteryków."
 	max_charge = 2500 //same as upgraded cell
 	charge = 2500
 
@@ -197,18 +197,18 @@
 	to_chat(owner, "<span class='notice'>Pochłaniasz część wstrząsu swoim ciałem!</span>")
 
 /obj/item/organ/stomach/cybernetic
-	name = "basic cybernetic stomach"
+	name = "podstawowy cybernetyczny żołądek"
 	icon_state = "stomach-c"
-	desc = "A basic device designed to mimic the functions of a human stomach"
+	desc = "Proste urządzenie, które naśladuje funkcje ludzkiego żołądka."
 	organ_flags = ORGAN_SYNTHETIC
 	maxHealth = STANDARD_ORGAN_THRESHOLD * 0.5
 	var/emp_vulnerability = 80 //Chance of permanent effects if emp-ed.
 	COOLDOWN_DECLARE(severe_cooldown)
 
 /obj/item/organ/stomach/cybernetic/upgraded
-	name = "cybernetic stomach"
+	name = "cybernetyczny żołądek"
 	icon_state = "stomach-c-u"
-	desc = "An electronic device designed to mimic the functions of a human stomach. Handles disgusting food a bit better."
+	desc = "Urządzenie elektroniczne, które naśladuje funkcje ludzkiego żołądka. Nieco lepiej znosi obrzydliwe jedzenie."
 	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD
 	disgust_metabolism = 2
 	emp_vulnerability = 40

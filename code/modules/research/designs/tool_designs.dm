@@ -4,8 +4,8 @@
 /////////////////////////////////////////
 
 /datum/design/handdrill
-	name = "Hand Drill"
-	desc = "A small electric hand drill with an interchangeable screwdriver and bolt bit."
+	name = "Wiertarka ręczna"
+	desc = "Mała elektryczna wiertarka ręczna z wymienną końcówką śrubokrętu i klucza."
 	id = "handdrill"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3500, /datum/material/silver = 1500, /datum/material/titanium = 2500)
@@ -14,8 +14,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/jawsoflife
-	name = "Jaws of Life"
-	desc = "A small, compact Jaws of Life with an interchangeable pry jaws and cutting jaws."
+	name = "Szczęki życia"
+	desc = "Małe, kompaktowe szczęki życia z wymiennymi szczękami rozpierającymi i tnącymi."
 	id = "jawsoflife" // added one more requirment since the Jaws of Life are a bit OP
 	build_path = /obj/item/powertool/jaws_of_life
 	build_type = PROTOLATHE
@@ -24,8 +24,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/shuttlecreator
-	name = "Rapid Shuttle Designator"
-	desc = "An advanced device capable of defining areas for use in the creation of shuttles."
+	name = "Szybki wyznacznik promów"
+	desc = "Zaawansowane urządzenie do wyznaczania obszarów pod budowę promów."
 	id = "shuttle_creator"
 	build_path = /obj/item/shuttle_creator
 	build_type = PROTOLATHE
@@ -34,8 +34,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/exwelder
-	name = "Experimental Welding Tool"
-	desc = "An experimental welder capable of self-fuel generation."
+	name = "Eksperymentalna spawarka"
+	desc = "Eksperymentalna spawarka, która sama wytwarza paliwo."
 	id = "exwelder"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500, /datum/material/plasma = 1500, /datum/material/uranium = 200)
@@ -44,8 +44,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/ranged_analyzer
-	name = "Long-range Analyzer"
-	desc = "A new advanced atmospheric analyzer design, capable of performing scans at long range."
+	name = "Analizator gazów dalekiego zasięgu"
+	desc = "Nowy, zaawansowany analizator atmosfery, który skanuje z dużej odległości."
 	id = "ranged_analyzer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 1000, /datum/material/uranium = 800, /datum/material/gold = 200, /datum/material/plastic = 200)
@@ -54,7 +54,7 @@
 	departmental_flags =  DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rpd
-	name = "Rapid Pipe Dispenser (RPD)"
+	name = "Szybki dozownik rur (RPD)"
 	id = "rpd_loaded"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500)
@@ -63,8 +63,8 @@
 	departmental_flags =  DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/rcd_loaded
-	name = "Rapid Construction Device"
-	desc = "A tool that can construct and deconstruct walls, airlocks and floors on the fly."
+	name = "Szybki konstruktor (RCD)"
+	desc = "Narzędzie, które w locie stawia i rozbiera ściany, śluzy i podłogi."
 	id = "rcd_loaded"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 60000, /datum/material/glass = 5000)  // costs more than what it did in the autolathe, this one comes loaded.
@@ -74,8 +74,8 @@
 
 
 /datum/design/rcd_upgrade/frames
-	name = "RCD frames designs upgrade"
-	desc = "Adds computer and machine frame designs to the RCD."
+	name = "Ulepszenie RCD: projekty ram"
+	desc = "Dodaje do RCD projekty ram komputerów i maszyn."
 	id = "rcd_upgrade_frames"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 1500, /datum/material/titanium = 2000)
@@ -84,8 +84,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/simple_circuits
-	name = "RCD simple circuits designs upgrade"
-	desc = "Adds the ability to produce simple circuits using the RCD."
+	name = "Ulepszenie RCD: proste układy"
+	desc = "Pozwala wytwarzać za pomocą RCD proste układy."
 	id = "rcd_upgrade_simple_circuits"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 5000, /datum/material/glass = 2500, /datum/material/silver = 1500, /datum/material/titanium = 2000)
@@ -94,8 +94,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/rcd_upgrade/silo_link
-	name = "Advanced RCD silo link upgrade"
-	desc = "Upgrades the RCD to be able to pull materials from the ore silo. The RCD must be linked to the silo using a multitool before it will function."
+	name = "Zaawansowane ulepszenie RCD: połączenie z silosem"
+	desc = "Pozwala RCD pobierać materiały z silosu rudy. Zanim zacznie działać, trzeba połączyć RCD z silosem za pomocą multitoola."
 	id = "rcd_upgrade_silo_link"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 2500, /datum/material/silver = 2500, /datum/material/titanium = 2500, /datum/material/bluespace = 2500)
@@ -108,8 +108,8 @@
 /////////////////////////////////////////
 
 /datum/design/alienwrench
-	name = "Alien Wrench"
-	desc = "An advanced wrench obtained through Abductor technology."
+	name = "Obcy klucz"
+	desc = "Zaawansowany klucz uzyskany dzięki technologii Porywaczy."
 	id = "alien_wrench"
 	build_path = /obj/item/wrench/abductor
 	build_type = PROTOLATHE
@@ -118,8 +118,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/alienwirecutters
-	name = "Alien Wirecutters"
-	desc = "Advanced wirecutters obtained through Abductor technology."
+	name = "Obcy przecinak"
+	desc = "Zaawansowany przecinak uzyskany dzięki technologii Porywaczy."
 	id = "alien_wirecutters"
 	build_path = /obj/item/wirecutters/abductor
 	build_type = PROTOLATHE
@@ -128,8 +128,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/alienscrewdriver
-	name = "Alien Screwdriver"
-	desc = "An advanced screwdriver obtained through Abductor technology."
+	name = "Obcy śrubokręt"
+	desc = "Zaawansowany śrubokręt uzyskany dzięki technologii Porywaczy."
 	id = "alien_screwdriver"
 	build_path = /obj/item/screwdriver/abductor
 	build_type = PROTOLATHE
@@ -138,8 +138,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/aliencrowbar
-	name = "Alien Crowbar"
-	desc = "An advanced crowbar obtained through Abductor technology."
+	name = "Obcy łom"
+	desc = "Zaawansowany łom uzyskany dzięki technologii Porywaczy."
 	id = "alien_crowbar"
 	build_path = /obj/item/crowbar/abductor
 	build_type = PROTOLATHE
@@ -148,8 +148,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/alienwelder
-	name = "Alien Welding Tool"
-	desc = "An advanced welding tool obtained through Abductor technology."
+	name = "Obca spawarka"
+	desc = "Zaawansowana spawarka uzyskana dzięki technologii Porywaczy."
 	id = "alien_welder"
 	build_path = /obj/item/weldingtool/abductor
 	build_type = PROTOLATHE
@@ -158,8 +158,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/alienmultitool
-	name = "Alien Multitool"
-	desc = "An advanced multitool obtained through Abductor technology."
+	name = "Obcy multitool"
+	desc = "Zaawansowany multitool uzyskany dzięki technologii Porywaczy."
 	id = "alien_multitool"
 	build_path = /obj/item/multitool/abductor
 	build_type = PROTOLATHE
@@ -172,8 +172,8 @@
 /////////////////////////////////////////
 
 /datum/design/alienscalpel
-	name = "Alien Scalpel"
-	desc = "An advanced scalpel obtained through Abductor technology."
+	name = "Obcy skalpel"
+	desc = "Zaawansowany skalpel uzyskany dzięki technologii Porywaczy."
 	id = "alien_scalpel"
 	build_path = /obj/item/scalpel/alien
 	build_type = PROTOLATHE
@@ -182,8 +182,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/alienhemostat
-	name = "Alien Hemostat"
-	desc = "An advanced hemostat obtained through Abductor technology."
+	name = "Obce szczypce chirurgiczne"
+	desc = "Zaawansowane szczypce chirurgiczne uzyskane dzięki technologii Porywaczy."
 	id = "alien_hemostat"
 	build_path = /obj/item/hemostat/alien
 	build_type = PROTOLATHE
@@ -192,8 +192,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/alienretractor
-	name = "Alien Retractor"
-	desc = "An advanced retractor obtained through Abductor technology."
+	name = "Obcy retraktor"
+	desc = "Zaawansowany retraktor uzyskany dzięki technologii Porywaczy."
 	id = "alien_retractor"
 	build_path = /obj/item/retractor/alien
 	build_type = PROTOLATHE
@@ -202,8 +202,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/aliensaw
-	name = "Alien Circular Saw"
-	desc = "An advanced surgical saw obtained through Abductor technology."
+	name = "Obca piła tarczowa"
+	desc = "Zaawansowana piła chirurgiczna uzyskana dzięki technologii Porywaczy."
 	id = "alien_saw"
 	build_path = /obj/item/circular_saw/alien
 	build_type = PROTOLATHE
@@ -212,8 +212,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/aliendrill
-	name = "Alien Drill"
-	desc = "An advanced drill obtained through Abductor technology."
+	name = "Obca wiertarka"
+	desc = "Zaawansowana wiertarka uzyskana dzięki technologii Porywaczy."
 	id = "alien_drill"
 	build_path = /obj/item/surgicaldrill/alien
 	build_type = PROTOLATHE
@@ -222,8 +222,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/aliencautery
-	name = "Alien Cautery"
-	desc = "An advanced cautery obtained through Abductor technology."
+	name = "Obcy kauter"
+	desc = "Zaawansowany kauter uzyskany dzięki technologii Porywaczy."
 	id = "alien_cautery"
 	build_path = /obj/item/cautery/alien
 	build_type = PROTOLATHE
@@ -232,7 +232,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/discoveryscanner
-	name = "Discovery Scanner"
+	name = "Skaner odkryć"
 	id = "discovery_scanner"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 50)
@@ -241,7 +241,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/researchdisklocator
-	name = "Research Disk Locator"
+	name = "Lokalizator dysków badawczych"
 	id = "researchdisk_locator"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 250, /datum/material/glass = 25)
@@ -250,8 +250,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/wirebrush
-	name = "Wirebrush"
-	desc = "A tool to remove rust from walls."
+	name = "Szczotka druciana"
+	desc = "Narzędzie do usuwania rdzy ze ścian."
 	id = "wirebrush"
 	build_type = AUTOLATHE | PROTOLATHE
 	category = list("initial", "Tools")
@@ -261,8 +261,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/wirebrush_adv
-	name = "Advanced Wirebrush"
-	desc = "An advanced wirebrush."
+	name = "Zaawansowana szczotka druciana"
+	desc = "Zaawansowana szczotka druciana."
 	id = "wirebrush_adv"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/uranium = 200, /datum/material/plasma = 200)

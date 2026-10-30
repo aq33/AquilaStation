@@ -1,6 +1,6 @@
 /datum/surgery/advanced/bioware/muscled_veins
-	name = "Vein Muscle Membrane"
-	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing them to pump blood without a heart."
+	name = "Mięśniowa błona żył"
+	desc = "Zabieg chirurgiczny, który dodaje do naczyń krwionośnych umięśnioną błonę, dzięki czemu mogą pompować krew bez serca."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -12,7 +12,7 @@
 	bioware_target = BIOWARE_CIRCULATION
 
 /datum/surgery_step/muscled_veins
-	name = "shape vein muscles"
+	name = "uformuj mięśnie żył"
 	accept_hand = TRUE
 	time = 125
 
@@ -29,8 +29,8 @@
 	return TRUE
 
 /datum/bioware/muscled_veins
-	name = "Threaded Veins"
-	desc = "The circulatory system is woven into a mesh, severely reducing the amount of blood lost from wounds."
+	name = "Umięśnione żyły"
+	desc = "Naczynia krwionośne mają umięśnioną błonę, dzięki której pompują krew bez serca."
 	mod_type = BIOWARE_CIRCULATION
 
 /datum/bioware/muscled_veins/on_gain()

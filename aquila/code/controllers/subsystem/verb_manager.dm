@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(verb_manager)
  */
 /datum/controller/subsystem/verb_manager/proc/queue_verb(datum/callback/verb_callback/incoming_callback)
 	if(message_admins_on_queue)
-		message_admins("[name] verb queuing: tick usage: [TICK_USAGE]%, proc: [incoming_callback.delegate], object: [incoming_callback.object], usr: [usr]")
+		message_admins("[name]: kolejkowanie verba, użycie ticka: [TICK_USAGE]%, procka: [incoming_callback.delegate], obiekt: [incoming_callback.object], usr: [usr]")
 	verb_queue += incoming_callback
 	return TRUE
 

@@ -1,6 +1,6 @@
 /obj/item/crowbar
-	name = "pocket crowbar"
-	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles or opening unpowered doors."
+	name = "kieszonkowy łom"
+	desc = "Mały łom. To poręczne narzędzie przydaje się do wielu rzeczy, na przykład do podważania płytek podłogowych albo otwierania drzwi bez zasilania."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "crowbar"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -30,15 +30,15 @@
 	force = 8
 
 /obj/item/crowbar/brass
-	name = "brass crowbar"
-	desc = "A brass crowbar. It feels faintly warm to the touch."
+	name = "mosiężny łom"
+	desc = "Mosiężny łom. W dotyku jest lekko ciepły."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "crowbar_brass"
 	toolspeed = 0.5
 
 /obj/item/crowbar/abductor
-	name = "alien crowbar"
-	desc = "A hard-light crowbar. It appears to pry by itself, without any effort required."
+	name = "obcy łom"
+	desc = "Łom z twardego światła. Wygląda, jakby podważał sam, bez żadnego wysiłku."
 	icon = 'icons/obj/abductor.dmi'
 	usesound = 'sound/weapons/sonic_jackhammer.ogg'
 	icon_state = "crowbar"
@@ -46,8 +46,8 @@
 
 
 /obj/item/crowbar/large
-	name = "crowbar"
-	desc = "It's a big crowbar. It doesn't fit in your pockets, because it's big."
+	name = "łom"
+	desc = "To duży łom. Nie mieści się w kieszeniach, bo jest duży."
 	force = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
@@ -58,8 +58,8 @@
 	toolspeed = 0.7
 
 /obj/item/crowbar/cyborg
-	name = "hydraulic crowbar"
-	desc = "A hydraulic prying tool, simple but powerful."
+	name = "hydrauliczny łom"
+	desc = "Hydrauliczne narzędzie do podważania, proste, ale mocne."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "crowbar_cyborg"
 	usesound = 'sound/items/jaws_pry.ogg'

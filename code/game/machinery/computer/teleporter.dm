@@ -1,6 +1,6 @@
 /obj/machinery/computer/teleporter
-	name = "teleporter control console"
-	desc = "Used to control a linked teleportation Hub and Station."
+	name = "konsola sterowania teleporterem"
+	desc = "Służy do sterowania połączonym węzłem i stacją teleportacyjną."
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
 	light_color = LIGHT_COLOR_BLUE
@@ -69,7 +69,7 @@
 	data["regime_set"] = regime_set
 	if(target)
 		target_area_name = "[get_area(target)]"
-	data["target"] = !target ? "None" : "[target_area_name] [(regime_set != "Gate") ? "" : "Teleporter"]"
+	data["target"] = !target ? "Brak" : "[target_area_name] [(regime_set != "Gate") ? "" : "(teleporter)"]"
 	data["calibrating"] = calibrating
 
 	if(power_station?.teleporter_hub?.calibrated || power_station?.teleporter_hub?.accuracy >= 4)
@@ -164,7 +164,7 @@
 				if(is_eligible(I))
 					L[avoid_assoc_duplicate_keys("[M.real_name] ([get_area(M)])", areaindex)] = I
 
-		var/desc = input("Please select a location to lock in.", "Locking Computer") as null|anything in sortList(L)
+		var/desc = input("Wybierz lokalizację do namierzenia.", "Namierzanie") as null|anything in sortList(L)
 		target_ref = WEAKREF(L[desc])
 		var/turf/T = get_turf(L[desc])
 		log_game("[key_name(user)] has set the teleporter target to [L[desc]] at [AREACOORD(T)]")
@@ -178,7 +178,7 @@
 		if(!L.len)
 			to_chat(user, "<span class='alert'>Nie znaleziono aktywnych połączonych stacji.</span>")
 			return
-		var/desc = input("Please select a station to lock in.", "Locking Computer") as null|anything in sortList(L)
+		var/desc = input("Wybierz stację do namierzenia.", "Namierzanie") as null|anything in sortList(L)
 		var/obj/machinery/teleport/station/target_station = L[desc]
 		if(!target_station || !target_station.teleporter_hub)
 			return

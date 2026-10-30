@@ -43,8 +43,8 @@ other types of metals and chemistry for reagents).
 	var/search_metadata
 
 /datum/design/error_design
-	name = "ERROR"
-	desc = "This usually means something in the database has corrupted. If this doesn't go away automatically, inform Central Comamnd so their techs can fix this ASAP(tm)"
+	name = "BŁĄD"
+	desc = "Zwykle oznacza to, że coś w bazie danych uległo uszkodzeniu. Jeśli to nie zniknie samo, powiadom Centralę, żeby jej technicy jak najszybciej(tm) to naprawili."
 
 /datum/design/Destroy()
 	SSresearch.techweb_designs -= id
@@ -73,8 +73,8 @@ other types of metals and chemistry for reagents).
 ////////////////////////////////////////
 
 /obj/item/disk/design_disk
-	name = "Component Design Disk"
-	desc = "A disk for storing device design data for construction in lathes."
+	name = "dysk z projektami komponentów"
+	desc = "Dysk do przechowywania danych projektów urządzeń, które potem buduje się w protolatach."
 	icon_state = "datadisk1"
 	materials = list(/datum/material/iron = 300, /datum/material/glass =100)
 	var/list/blueprints = list()
@@ -88,7 +88,7 @@ other types of metals and chemistry for reagents).
 		blueprints += null
 
 /obj/item/disk/design_disk/adv
-	name = "Advanced Component Design Disk"
-	desc = "A disk for storing device design data for construction in lathes. This one has extra storage space."
+	name = "zaawansowany dysk z projektami komponentów"
+	desc = "Dysk do przechowywania danych projektów urządzeń, które potem buduje się w protolatach. Ten ma dodatkowe miejsce."
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/silver = 50)
 	max_blueprints = 5

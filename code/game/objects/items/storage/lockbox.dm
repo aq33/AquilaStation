@@ -1,6 +1,6 @@
 /obj/item/storage/lockbox
-	name = "lockbox"
-	desc = "A locked box."
+	name = "kasetka"
+	desc = "Zamykane pudełko."
 	icon_state = "lockbox+l"
 	item_state = "lockbox+l"
 	lefthand_file = 'icons/mob/inhands/equipment/case_lefthand.dmi'
@@ -45,7 +45,7 @@
 	if(!locked)
 		return ..()
 	else
-		to_chat(user, "<span class='danger'>It's locked!</span>")
+		to_chat(user, "<span class='danger'>Jest zamknięta!</span>")
 
 /obj/item/storage/lockbox/emag_act(mob/user)
 	if(!broken)
@@ -69,7 +69,7 @@
 	update_icon()
 
 /obj/item/storage/lockbox/loyalty
-	name = "lockbox of mindshield implants"
+	name = "kasetka z implantami ochrony umysłu"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/PopulateContents()
@@ -78,8 +78,8 @@
 	new /obj/item/implanter/mindshield(src)
 
 /obj/item/storage/lockbox/medal
-	name = "medal box"
-	desc = "A locked box used to store medals of honor."
+	name = "kasetka na medale"
+	desc = "Zamykane pudełko na medale honorowe."
 	icon_state = "medalbox+l"
 	item_state = "medalbox+l"
 	base_icon_state = "medalbox"
@@ -143,8 +143,8 @@
 				add_overlay(medalicon)
 
 /obj/item/storage/lockbox/medal/sec
-	name = "security medal box"
-	desc = "A locked box used to store medals to be given to members of the security department."
+	name = "kasetka na medale ochrony"
+	desc = "Zamykane pudełko na medale dla członków działu ochrony."
 	req_access = list(ACCESS_HOS)
 
 /obj/item/storage/lockbox/medal/sec/PopulateContents()
@@ -152,24 +152,24 @@
 		new /obj/item/clothing/accessory/medal/silver/security(src)
 
 /obj/item/storage/lockbox/medal/cargo
-	name = "cargo award box"
-	desc = "A locked box used to store awards to be given to members of the cargo department."
+	name = "kasetka na odznaczenia zaopatrzenia"
+	desc = "Zamykane pudełko na odznaczenia dla członków działu zaopatrzenia."
 	req_access = list(ACCESS_QM)
 
 /obj/item/storage/lockbox/medal/cargo/PopulateContents()
 		new /obj/item/clothing/accessory/medal/ribbon/cargo(src)
 
 /obj/item/storage/lockbox/medal/service
-	name = "service award box"
-	desc = "A locked box used to store awards to be given to members of the service department."
+	name = "kasetka na odznaczenia serwisu"
+	desc = "Zamykane pudełko na odznaczenia dla członków działu serwisu."
 	req_access = list(ACCESS_HOP)
 
 /obj/item/storage/lockbox/medal/service/PopulateContents()
 		new /obj/item/clothing/accessory/medal/silver/excellence(src)
 
 /obj/item/storage/lockbox/medal/sci
-	name = "science medal box"
-	desc = "A locked box used to store medals to be given to members of the science department."
+	name = "kasetka na medale nauki"
+	desc = "Zamykane pudełko na medale dla członków działu nauki."
 	req_access = list(ACCESS_RD)
 
 /obj/item/storage/lockbox/medal/sci/PopulateContents()
@@ -177,8 +177,8 @@
 		new /obj/item/clothing/accessory/medal/plasma/nobel_science(src)
 
 /obj/item/storage/lockbox/medal/med
-	name = "medical medal box"
-	desc = "A locked box used to store medals to be given to members of the medical department."
+	name = "kasetka na medale medyczne"
+	desc = "Zamykane pudełko na medale dla członków działu medycznego."
 	req_access = list(ACCESS_CMO)
 
 /obj/item/storage/lockbox/medal/med/PopulateContents()

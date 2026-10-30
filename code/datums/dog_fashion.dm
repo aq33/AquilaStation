@@ -46,29 +46,29 @@
 	icon_file = 'icons/mob/corgi_back.dmi'
 
 /datum/dog_fashion/head/helmet
-	name = "Sergeant REAL_NAME"
-	desc = "The ever-loyal, the ever-vigilant."
+	name = "Sierżant REAL_NAME"
+	desc = "Zawsze lojalny, zawsze czujny."
 
 /datum/dog_fashion/head/chef
-	name = "Sous chef REAL_NAME"
-	desc = "Your food will be taste-tested.  All of it."
+	name = "Zastępca szefa kuchni REAL_NAME"
+	desc = "Twoje jedzenie zostanie skosztowane. Całe."
 
 
 /datum/dog_fashion/head/captain
-	name = "Captain REAL_NAME"
-	desc = "Probably better than the last captain."
+	name = "Kapitan REAL_NAME"
+	desc = "Pewnie lepszy niż poprzedni kapitan."
 
 /datum/dog_fashion/head/kitty
 	name = "Runtime"
 	emote_see = list("wykasłuje kłębek sierści", "przeciąga się")
 	emote_hear = list("mruczy")
 	speak = list("Mrrr", "Miau!", "MIAUUUUU!", "SSSSSS", "MIAUUUUUU")
-	desc = "It's a cute little kitty-cat! ... wait ... what the hell?"
+	desc = "To słodki mały kotek! ...chwila... co jest, do diabła?"
 
 /datum/dog_fashion/head/rabbit
 	name = "Hoppy"
 	emote_see = list("porusza noskiem", "trochę skacze dookoła")
-	desc = "This is Hoppy. It's a corgi-...urmm... bunny rabbit."
+	desc = "To Hoppy. To corgi... yyy... króliczek."
 
 /datum/dog_fashion/head/beret
 	name = "Yann"
@@ -78,99 +78,99 @@
 
 
 /datum/dog_fashion/head/detective
-	name = "Detective REAL_NAME"
-	desc = "NAME sees through your lies..."
+	name = "Detektyw REAL_NAME"
+	desc = "NAME przejrzy twoje kłamstwa..."
 	emote_see = list("bada okolicę.","węszy w poszukiwaniu wskazówek.","szuka chrupek Scooby.","wyjmuje cukierka z kapelusza.")
 
 
 /datum/dog_fashion/head/nurse
-	name = "Nurse REAL_NAME"
-	desc = "NAME needs 100cc of beef jerky... STAT!"
+	name = "Pielęgniarz REAL_NAME"
+	desc = "NAME potrzebuje 100 cm³ suszonej wołowiny... NATYCHMIAST!"
 
 /datum/dog_fashion/head/pirate
-	name = "Pirate-title Pirate-name"
-	desc = "Yaarghh!! Thar' be a scurvy dog!"
+	name = "Piracki-tytuł Pirackie-imię"
+	desc = "Arrrgh!! Toż to parszywy pies!"
 	emote_see = list("poluje na skarby.","patrzy chłodno...","zgrzyta swoimi malutkimi ząbkami!")
 	emote_hear = list("warczy zajadle!", "warczy.")
 	speak = list("Arrrrgh!!","Grrrrrr!")
 
 /datum/dog_fashion/head/pirate/New(mob/M)
 	..()
-	name = "[pick("Ol'","Scurvy","Black","Rum","Gammy","Bloody","Gangrene","Death","Long-John")] [pick("kibble","leg","beard","tooth","poop-deck","Threepwood","Le Chuck","corsair","Silver","Crusoe")]"
+	name = "[pick("Stary","Parszywy","Czarny","Rumowy","Kulawy","Krwawy","Zgniły","Śmiertelny","Długi John")] [pick("Chrupek","Kulas","Brodacz","Ząbek","Pokładowiec","Threepwood","Le Chuck","Korsarz","Silver","Crusoe")]"
 
 /datum/dog_fashion/head/ushanka
-	name = "Communist-title Realname"
-	desc = "A follower of Karl Barx."
+	name = "Komunistyczny-tytuł Imię"
+	desc = "Wyznawca Karola Barksa."
 	emote_see = list("rozważa wady kapitalistycznego modelu gospodarczego.", "rozmyśla nad zaletami i wadami awangardyzmu.")
 
 /datum/dog_fashion/head/ushanka/New(mob/M)
 	..()
-	name = "[pick("Comrade","Commissar","Glorious Leader")] [M.real_name]"
+	name = "[pick("Towarzysz","Komisarz","Chwalebny Przywódca")] [M.real_name]"
 
 /datum/dog_fashion/head/warden
-	name = "Officer REAL_NAME"
+	name = "Oficer REAL_NAME"
 	emote_see = list("ślini się.","szuka pączków.")
-	desc = "Stop right there criminal scum!"
+	desc = "Stój, przestępcza szumowino!"
 
 /datum/dog_fashion/head/blue_wizard
-	name = "Grandwizard REAL_NAME"
+	name = "Arcymag REAL_NAME"
 	speak = list("YAP", "Hau!", "Hau hau!", "AUUUUUU", "EI  NATH!")
 
 /datum/dog_fashion/head/red_wizard
-	name = "Pyromancer REAL_NAME"
+	name = "Piromanta REAL_NAME"
 	speak = list("YAP", "Hau!", "Hau hau!", "AUUUUUU", "ONI SOMA!")
 
 /datum/dog_fashion/head/cardborg
 	name = "Borgi"
 	speak = list("Ping!","Bip!","Hau!")
 	emote_see = list("wymyka się spod kontroli.", "wywęszy nieludzi.")
-	desc = "Result of robotics budget cuts."
+	desc = "Efekt cięć w budżecie robotyki."
 
 /datum/dog_fashion/head/ghost
-	name = "\improper Ghost"
+	name = "\improper Duch"
 	speak = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
 	emote_see = list("zatacza się.", "drży.")
 	emote_hear = list("wyje!","jęczy.")
-	desc = "Spooky!"
+	desc = "Straszne!"
 	obj_icon_state = "sheet"
 
 /datum/dog_fashion/head/santa
-	name = "Santa's Corgi Helper"
+	name = "Pomocnik Mikołaja, corgi"
 	emote_hear = list("szczeka kolędy.", "radośnie ujada!")
 	emote_see = list("szuka prezentów.", "sprawdza swoją listę.")
-	desc = "He's very fond of milk and cookies."
+	desc = "Uwielbia mleko i ciasteczka."
 
 /datum/dog_fashion/head/cargo_tech
-	name = "Corgi Tech REAL_NAME"
-	desc = "The reason your yellow gloves have chew-marks."
+	name = "Technik corgi REAL_NAME"
+	desc = "To przez niego twoje żółte rękawice są pogryzione."
 
 /datum/dog_fashion/head/reindeer
-	name = "REAL_NAME the red-nosed Corgi"
+	name = "REAL_NAME, czerwononosy corgi"
 	emote_hear = list("oświetla drogę!", "świeci.", "ujada!")
-	desc = "He has a very shiny nose."
+	desc = "Ma bardzo błyszczący nos."
 
 /datum/dog_fashion/head/sombrero
-	name = "Segnor REAL_NAME"
-	desc = "You must respect Elder Dogname"
+	name = "Señor REAL_NAME"
+	desc = "Musisz szanować Starszego Psiaka"
 
 /datum/dog_fashion/head/sombrero/New(mob/M)
 	..()
-	desc = "You must respect Elder [M.real_name]."
+	desc = "Musisz szanować Starszego: [M.real_name]."
 
 /datum/dog_fashion/head/hop
-	name = "Lieutenant REAL_NAME"
-	desc = "Can actually be trusted to not run off on his own."
+	name = "Porucznik REAL_NAME"
+	desc = "Można mu zaufać, że sam nie ucieknie."
 
 /datum/dog_fashion/head/deathsquad
-	name = "Trooper REAL_NAME"
-	desc = "That's not red paint. That's real corgi blood."
+	name = "Szturmowiec REAL_NAME"
+	desc = "To nie czerwona farba. To prawdziwa krew corgi."
 
 /datum/dog_fashion/head/clown
-	name = "REAL_NAME the Clown"
-	desc = "Honkman's best friend."
+	name = "REAL_NAME, klaun"
+	desc = "Najlepszy przyjaciel Honkmana."
 	speak = list("HONK!", "Honk!")
 	emote_see = list("płata figle.", "poślizguje się.")
 
 /datum/dog_fashion/back/deathsquad
-	name = "Trooper REAL_NAME"
-	desc = "That's not red paint. That's real corgi blood."
+	name = "Szturmowiec REAL_NAME"
+	desc = "To nie czerwona farba. To prawdziwa krew corgi."

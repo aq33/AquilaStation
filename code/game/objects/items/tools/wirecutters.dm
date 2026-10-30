@@ -1,6 +1,6 @@
 /obj/item/wirecutters
-	name = "wirecutters"
-	desc = "This cuts wires."
+	name = "przecinak do drutu"
+	desc = "Tnie przewody."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters_map"
 	item_state = "cutters"
@@ -61,16 +61,16 @@
 	return (BRUTELOSS)
 
 /obj/item/wirecutters/brass
-	name = "brass wirecutters"
-	desc = "A pair of wirecutters made of brass. The handle feels freezing cold to the touch."
+	name = "mosiężny przecinak do drutu"
+	desc = "Przecinak do drutu z mosiądzu. Rękojeść jest lodowato zimna w dotyku."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "cutters_brass"
 	random_color = FALSE
 	toolspeed = 0.5
 
 /obj/item/wirecutters/abductor
-	name = "alien wirecutters"
-	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
+	name = "obcy przecinak do drutu"
+	desc = "Niesamowicie ostry przecinak do drutu ze srebrzystozielonego metalu."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.1
@@ -78,8 +78,8 @@
 	random_color = FALSE
 
 /obj/item/wirecutters/cyborg
-	name = "powered wirecutters"
-	desc = "Cuts wires with the power of ELECTRICITY. Faster than normal wirecutters."
+	name = "elektryczny przecinak do drutu"
+	desc = "Tnie przewody mocą ELEKTRYCZNOŚCI. Szybszy od zwykłego przecinaka."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "wirecutters_cyborg"
 	toolspeed = 0.5

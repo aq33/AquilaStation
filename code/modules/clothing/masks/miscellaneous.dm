@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/muzzle
-	name = "muzzle"
-	desc = "To stop that awful noise."
+	name = "kaganiec"
+	desc = "Żeby uciszyć ten okropny hałas."
 	icon_state = "muzzle"
 	item_state = "blindfold"
 	flags_cover = MASKCOVERSMOUTH
@@ -17,8 +17,8 @@
 	..()
 
 /obj/item/clothing/mask/surgical
-	name = "sterile mask"
-	desc = "A sterile mask designed to help prevent the spread of diseases."
+	name = "maseczka chirurgiczna"
+	desc = "Sterylna maseczka, która pomaga zapobiegać rozprzestrzenianiu się chorób."
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = WEIGHT_CLASS_TINY
@@ -35,14 +35,14 @@
 	adjustmask(user)
 
 /obj/item/clothing/mask/fakemoustache
-	name = "fake moustache"
-	desc = "Warning: moustache is fake."
+	name = "sztuczny wąs"
+	desc = "Uwaga: wąs jest sztuczny."
 	icon_state = "fake-moustache"
 	flags_inv = HIDEFACE
 
 /obj/item/clothing/mask/fakemoustache/italian
-	name = "italian moustache"
-	desc = "Made from authentic Italian moustache hairs. Gives the wearer an irresistable urge to gesticulate wildly."
+	name = "włoski wąs"
+	desc = "Zrobiony z autentycznych włosów włoskich wąsów. Budzi w noszącym nieodpartą chęć dzikiego gestykulowania."
 	clothing_flags = SHOWEROKAY //NSV13 - kept SHOWEROKAY
 	modifies_speech = TRUE
 
@@ -66,8 +66,8 @@
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 /obj/item/clothing/mask/joy
-	name = "emotion mask"
-	desc = "Express your happiness or hide your sorrows with this cultured cutout."
+	name = "maska emocji"
+	desc = "Wyraź radość albo ukryj smutki za tą kulturalną wycinanką."
 	icon_state = "joy"
 	item_state = "joy"
 	flags_inv = HIDESNOUT
@@ -80,11 +80,11 @@
 		return
 
 	var/list/options = list()
-	options["Joy"] = "joy"
-	options["Flushed"] = "flushed"
-	options["Pensive"] = "pensive"
-	options["Angry"] = "angry"
-	options["Pleading"] ="pleading"
+	options["Radość"] = "joy"
+	options["Rumieniec"] = "flushed"
+	options["Zaduma"] = "pensive"
+	options["Złość"] = "angry"
+	options["Błaganie"] ="pleading"
 
 	var/choice = input(user,"W jaką formę chcesz przemienić tę maskę?","Przemiana maski") in sortList(options)
 
@@ -99,8 +99,8 @@
 
 
 /obj/item/clothing/mask/pig
-	name = "pig mask"
-	desc = "A rubber pig mask with a builtin voice modulator."
+	name = "maska świni"
+	desc = "Gumowa maska świni z wbudowanym modulatorem głosu."
 	icon_state = "pig"
 	item_state = "pig"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -113,8 +113,8 @@
 		speech_args[SPEECH_MESSAGE] = pick("Chrum!","Kwiiiiiiiii!","Chrum chrum!")
 
 /obj/item/clothing/mask/pig/cursed
-	name = "pig face"
-	desc = "It looks like a mask, but closer inspection reveals it's melded onto this persons face!"
+	name = "świński ryj"
+	desc = "Wygląda jak maska, ale z bliska widać, że zrosła się z twarzą tej osoby!"
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
@@ -125,8 +125,8 @@
 
 ///frog mask - reeee!!
 /obj/item/clothing/mask/frog
-	name = "frog mask"
-	desc = "An ancient mask carved in the shape of a frog.<br> Sanity is like gravity, all it needs is a push."
+	name = "maska żaby"
+	desc = "Starożytna maska wyrzeźbiona w kształcie żaby.<br> Zdrowy rozsądek jest jak grawitacja, wystarczy go lekko popchnąć."
 	icon_state = "frog"
 	item_state = "frog"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
@@ -155,7 +155,7 @@
 	return ..()
 
 /obj/item/clothing/mask/cowmask
-	name = "cow mask"
+	name = "maska krowy"
 	icon_state = "cowmask"
 	item_state = "cowmask"
 	clothing_flags = VOICEBOX_TOGGLABLE
@@ -168,8 +168,8 @@
 		speech_args[SPEECH_MESSAGE] = pick("Muuuuuuu!","Muu!","Muuuu!")
 
 /obj/item/clothing/mask/cowmask/cursed
-	name = "cow face"
-	desc = "It looks like a cow mask, but closer inspection reveals it's melded onto this persons face!"
+	name = "krowi pysk"
+	desc = "Wygląda jak maska krowy, ale z bliska widać, że zrosła się z twarzą tej osoby!"
 	flags_inv = HIDEFACIALHAIR
 	clothing_flags = NONE
 
@@ -179,8 +179,8 @@
 	playsound(get_turf(src), 'sound/magic/cowhead_curse.ogg', 50, 1)
 
 /obj/item/clothing/mask/horsehead
-	name = "horse head mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
+	name = "maska końskiej głowy"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę konia."
 	icon_state = "horsehead"
 	item_state = "horsehead"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEYES|HIDEEARS|HIDESNOUT
@@ -193,8 +193,8 @@
 		speech_args[SPEECH_MESSAGE] = pick("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
 
 /obj/item/clothing/mask/horsehead/cursed
-	name = "horse face"
-	desc = "It initially looks like a mask, but it's melded into the poor person's face."
+	name = "koński pysk"
+	desc = "Na pierwszy rzut oka wygląda jak maska, ale zrosła się z twarzą tego biedaka."
 	clothing_flags = NONE
 	flags_inv = HIDEFACIALHAIR
 
@@ -204,58 +204,58 @@
 	playsound(get_turf(src), 'sound/magic/horsehead_curse.ogg', 50, 1)
 
 /obj/item/clothing/mask/rat
-	name = "rat mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a rat."
+	name = "maska szczura"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę szczura."
 	icon_state = "rat"
 	item_state = "rat"
 	flags_inv = HIDEFACE|HIDESNOUT
 	flags_cover = MASKCOVERSMOUTH
 
 /obj/item/clothing/mask/rat/fox
-	name = "fox mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a fox."
+	name = "maska lisa"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę lisa."
 	icon_state = "fox"
 	item_state = "fox"
 
 /obj/item/clothing/mask/rat/bee
-	name = "bee mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bee."
+	name = "maska pszczoły"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę pszczoły."
 	icon_state = "bee"
 	item_state = "bee"
 
 /obj/item/clothing/mask/rat/bear
-	name = "bear mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bear."
+	name = "maska niedźwiedzia"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę niedźwiedzia."
 	icon_state = "bear"
 	item_state = "bear"
 
 /obj/item/clothing/mask/rat/bat
-	name = "bat mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a bat."
+	name = "maska nietoperza"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę nietoperza."
 	icon_state = "bat"
 	item_state = "bat"
 
 /obj/item/clothing/mask/rat/raven
-	name = "raven mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a raven."
+	name = "maska kruka"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę kruka."
 	icon_state = "raven"
 	item_state = "raven"
 
 /obj/item/clothing/mask/rat/jackal
-	name = "jackal mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a jackal."
+	name = "maska szakala"
+	desc = "Maska z miękkiego winylu i lateksu przedstawiająca głowę szakala."
 	icon_state = "jackal"
 	item_state = "jackal"
 
 /obj/item/clothing/mask/rat/tribal
-	name = "tribal mask"
-	desc = "A mask carved out of wood, detailed carefully by hand."
+	name = "maska plemienna"
+	desc = "Maska wyrzeźbiona w drewnie, starannie wykończona ręcznie."
 	icon_state = "bumba"
 	item_state = "bumba"
 
 /obj/item/clothing/mask/bandana
-	name = "botany bandana"
-	desc = "A fine bandana with nanotech lining and a hydroponics pattern."
+	name = "bandana botanika"
+	desc = "Porządna bandana z nanotechnologiczną podszewką i wzorem hydroponicznym."
 	w_class = WEIGHT_CLASS_TINY
 	flags_cover = MASKCOVERSMOUTH
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
@@ -279,8 +279,8 @@
 	else
 		if(user.is_holding(src))
 			var/obj/item/clothing/neck/neckerchief/nk = new(src)
-			nk.name = "[name] neckerchief"
-			nk.desc = "[desc] It's tied up like a neckerchief."
+			nk.name = "[name] (apaszka)"
+			nk.desc = "[desc] Jest zawiązana jak apaszka."
 			nk.icon_state = icon_state
 			nk.sourceBandanaType = src.type
 			var/currentHandIndex = user.get_held_index_of_item(src)
@@ -292,57 +292,57 @@
 			to_chat(user, "<span class='warning'>Musisz trzymać [src], by ją zawiązać!")
 
 /obj/item/clothing/mask/bandana/red
-	name = "red bandana"
-	desc = "A fine red bandana with nanotech lining."
+	name = "czerwona bandana"
+	desc = "Porządna czerwona bandana z nanotechnologiczną podszewką."
 	icon_state = "bandred"
 
 /obj/item/clothing/mask/bandana/blue
-	name = "blue bandana"
-	desc = "A fine blue bandana with nanotech lining."
+	name = "niebieska bandana"
+	desc = "Porządna niebieska bandana z nanotechnologiczną podszewką."
 	icon_state = "bandblue"
 
 /obj/item/clothing/mask/bandana/green
-	name = "green bandana"
-	desc = "A fine green bandana with nanotech lining."
+	name = "zielona bandana"
+	desc = "Porządna zielona bandana z nanotechnologiczną podszewką."
 	icon_state = "bandgreen"
 
 /obj/item/clothing/mask/bandana/gold
-	name = "gold bandana"
-	desc = "A fine gold bandana with nanotech lining."
+	name = "złota bandana"
+	desc = "Porządna złota bandana z nanotechnologiczną podszewką."
 	icon_state = "bandgold"
 
 /obj/item/clothing/mask/bandana/black
-	name = "black bandana"
-	desc = "A fine black bandana with nanotech lining."
+	name = "czarna bandana"
+	desc = "Porządna czarna bandana z nanotechnologiczną podszewką."
 	icon_state = "bandblack"
 
 /obj/item/clothing/mask/bandana/skull
-	name = "skull bandana"
-	desc = "A fine black bandana with nanotech lining and a skull emblem."
+	name = "bandana z czaszką"
+	desc = "Porządna czarna bandana z nanotechnologiczną podszewką i emblematem czaszki."
 	icon_state = "bandskull"
 
 /obj/item/clothing/mask/bandana/durathread
-	name = "durathread bandana"
-	desc =  "A bandana made from durathread, you wish it would provide some protection to its wearer, but it's far too thin..."
+	name = "bandana z duranici"
+	desc =  "Bandana z duranici. Chciałoby się, żeby dawała noszącemu jakąś ochronę, ale jest o wiele za cienka..."
 	icon_state = "banddurathread"
 
 /obj/item/clothing/mask/mummy
-	name = "mummy mask"
-	desc = "Ancient bandages."
+	name = "maska mumii"
+	desc = "Starożytne bandaże."
 	icon_state = "mummy_mask"
 	item_state = "mummy_mask"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/scarecrow
-	name = "sack mask"
-	desc = "A burlap sack with eyeholes."
+	name = "maska z worka"
+	desc = "Worek z juty z otworami na oczy."
 	icon_state = "scarecrow_sack"
 	item_state = "scarecrow_sack"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/mask/gondola
-	name = "gondola mask"
-	desc = "Genuine gondola fur."
+	name = "maska gondoli"
+	desc = "Prawdziwe futro gondoli."
 	icon_state = "gondola"
 	item_state = "gondola"
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT

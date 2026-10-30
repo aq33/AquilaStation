@@ -1,9 +1,9 @@
 
 
 /obj/item/clothing/head/centhat
-	name = "\improper CentCom hat"
+	name = "\improper kapelusz Centrali"
 	icon_state = "centcom"
-	desc = "It's good to be emperor."
+	desc = "Dobrze jest być cesarzem."
 	item_state = "that"
 	flags_inv = NONE
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30)
@@ -11,13 +11,13 @@
 	clothing_flags = SNUG_FIT // prevents bypassing the strip delay
 
 /obj/item/clothing/head/powdered_wig
-	name = "powdered wig"
-	desc = "A powdered wig."
+	name = "pudrowana peruka"
+	desc = "Pudrowana peruka."
 	icon_state = "pwig"
 	item_state = "pwig"
 
 /obj/item/clothing/head/that
-	name = "top-hat"
+	name = "cylinder"
 	desc = "Kapelusz wyglądający jak u amiszów."
 	icon_state = "tophat"
 	item_state = "that"
@@ -25,45 +25,45 @@
 	throwforce = 1
 
 /obj/item/clothing/head/canada
-	name = "striped red tophat"
-	desc = "It smells like fresh donut holes. / <i>Il sent comme des trous de beignets frais.</i>"
+	name = "cylinder w czerwone paski"
+	desc = "Pachnie jak świeże dziurki od pączków. / <i>Il sent comme des trous de beignets frais.</i>"
 	icon_state = "canada"
 	item_state = "canada"
 
 /obj/item/clothing/head/redcoat
-	name = "redcoat's hat"
+	name = "kapelusz czerwonego kubraka"
 	icon_state = "redcoat"
-	desc = "<i>'I guess it's a redhead.'</i>"
+	desc = "<i>„Chyba jest rudy.”</i>"
 
 /obj/item/clothing/head/mailman
-	name = "mailman's hat"
+	name = "czapka listonosza"
 	icon_state = "mailman"
-	desc = "<i>'Right-on-time'</i> mail service head wear."
+	desc = "Nakrycie głowy poczty <i>„Zawsze na czas”</i>."
 
 /obj/item/clothing/head/plaguedoctorhat
-	name = "plague doctor's hat"
-	desc = "These were once used by plague doctors. They're pretty much useless."
+	name = "kapelusz doktora plagi"
+	desc = "Kiedyś nosili je doktorzy plagi. Są właściwie bezużyteczne."
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/head/nursehat
-	name = "nurse's hat"
-	desc = "It allows quick identification of trained medical personnel."
+	name = "czepek pielęgniarski"
+	desc = "Pozwala szybko rozpoznać przeszkolony personel medyczny."
 	icon_state = "nursehat"
 	dynamic_hair_suffix = ""
 
 	dog_fashion = /datum/dog_fashion/head/nurse
 
 /obj/item/clothing/head/syndicatefake
-	name = "black space-helmet replica"
+	name = "replika czarnego hełmu kosmicznego"
 	icon_state = "syndicate-helm-black-red"
 	item_state = "syndicate-helm-black-red"
-	desc = "A plastic replica of a Syndicate agent's space helmet. You'll look just like a real murderous Syndicate agent in this! This is a toy, it is not made for use in space!"
+	desc = "Plastikowa replika hełmu kosmicznego agenta Syndykatu. Wyglądasz w niej jak prawdziwy morderczy agent Syndykatu! To zabawka, nie nadaje się do użytku w kosmosie!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/cueball
-	name = "cueball helmet"
+	name = "hełm bila"
 	desc = "Duża, gładka biała kula do noszenia na głowie. Jak ty w ogóle przez to coś widzisz?"
 	icon_state = "cueball"
 	item_state="cueball"
@@ -72,8 +72,8 @@
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/snowman
-	name = "Snowman Head"
-	desc = "A ball of white styrofoam. So festive."
+	name = "głowa bałwana"
+	desc = "Kula z białego styropianu. Jak świątecznie."
 	icon_state = "snowman_h"
 	item_state = "snowman_h"
 	flags_cover = HEADCOVERSEYES
@@ -81,8 +81,8 @@
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/justice
-	name = "justice hat"
-	desc = "Fight for what's righteous!"
+	name = "kapelusz sprawiedliwości"
+	desc = "Walcz o to, co słuszne!"
 	icon_state = "justicered"
 	item_state = "justicered"
 	flags_inv = HIDEHAIR|HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
@@ -106,14 +106,14 @@
 	item_state = "justicepink"
 
 /obj/item/clothing/head/flatcap
-	name = "flat cap"
+	name = "kaszkiet"
 	desc = "Czapka człowieka pracy."
 	icon_state = "flat_cap"
 	item_state = "detective"
 
 /obj/item/clothing/head/pirate
-	name = "pirate hat"
-	desc = "Yarr."
+	name = "kapelusz piracki"
+	desc = "Jarr."
 	icon_state = "pirate"
 	item_state = "pirate"
 	dog_fashion = /datum/dog_fashion/head/pirate
@@ -142,53 +142,53 @@
 	item_state = "hgpiratecap"
 
 /obj/item/clothing/head/bandana
-	name = "pirate bandana"
-	desc = "Yarr."
+	name = "piracka bandana"
+	desc = "Jarr."
 	icon_state = "bandana"
 	item_state = "bandana"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/bowler
-	name = "bowler-hat"
+	name = "melonik"
 	desc = "Dżentelmeni, elita na pokładzie!"
 	icon_state = "bowler"
 	item_state = "bowler"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/witchwig
-	name = "witch costume wig"
-	desc = "Eeeee~heheheheheheh!"
+	name = "peruka do przebrania czarownicy"
+	desc = "Iiiii~hihihihihihih!"
 	icon_state = "witch"
 	item_state = "witch"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/chicken
-	name = "chicken suit head"
-	desc = "Bkaw!"
+	name = "głowa przebrania kurczaka"
+	desc = "Ko-ko!"
 	icon_state = "chickenhead"
 	item_state = "chickensuit"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/griffin
-	name = "griffon head"
-	desc = "Why not 'eagle head'? Who knows."
+	name = "głowa gryfa"
+	desc = "Czemu nie „głowa orła”? Kto to wie."
 	icon_state = "griffinhat"
 	item_state = "griffinhat"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/bearpelt
-	name = "bear pelt hat"
-	desc = "Fuzzy."
+	name = "czapka z niedźwiedziej skóry"
+	desc = "Puchata."
 	icon_state = "bearpelt"
 	item_state = "bearpelt"
 
 /obj/item/clothing/head/xenos
-	name = "xenos helmet"
+	name = "hełm ksenomorfa"
 	icon_state = "xenos"
 	item_state = "xenos_helm"
-	desc = "A helmet made out of chitinous alien hide."
+	desc = "Hełm z chitynowej skóry obcego."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	clothing_flags = SNUG_FIT
 
@@ -219,7 +219,7 @@
 	dog_fashion = /datum/dog_fashion/head/sombrero
 
 /obj/item/clothing/head/sombrero/green
-	name = "green sombrero"
+	name = "zielone sombrero"
 	icon_state = "greensombrero"
 	item_state = "greensombrero"
 	desc = "Elegancki jak tańczący kaktus."
@@ -227,10 +227,10 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/sombrero/shamebrero
-	name = "shamebrero"
+	name = "wstydbrero"
 	icon_state = "shamebrero"
 	item_state = "shamebrero"
-	desc = "Once it's on, it never comes off."
+	desc = "Raz założone, nigdy nie schodzi."
 	dog_fashion = null
 
 /obj/item/clothing/head/sombrero/shamebrero/Initialize(mapload)
@@ -238,22 +238,22 @@
 	ADD_TRAIT(src, TRAIT_NODROP, SHAMEBRERO_TRAIT)
 
 /obj/item/clothing/head/flatcap
-	name = "flat cap"
-	desc = "A working man's cap."
+	name = "kaszkiet"
+	desc = "Czapka człowieka pracy."
 	icon_state = "flat_cap"
 	item_state = "detective"
 
 /obj/item/clothing/head/hunter
-	name = "bounty hunting hat"
-	desc = "Ain't nobody gonna cheat the hangman in my town."
+	name = "kapelusz łowcy nagród"
+	desc = "W moim mieście nikt nie wykiwa kata."
 	icon_state = "hunter"
 	item_state = "hunter"
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 20)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/cone
-	desc = "This cone is trying to warn you of something!"
-	name = "warning cone"
+	desc = "Ten pachołek próbuje cię przed czymś ostrzec!"
+	name = "pachołek ostrzegawczy"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cone"
 	item_state = "cone"
@@ -267,8 +267,8 @@
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/santa
-	name = "santa hat"
-	desc = "On the first day of christmas my employer gave to me!"
+	name = "czapka Mikołaja"
+	desc = "W pierwszy dzień świąt dał mi pracodawca!"
 	icon_state = "santahatnorm"
 	item_state = "that"
 	cold_protection = HEAD
@@ -276,91 +276,91 @@
 	dog_fashion = /datum/dog_fashion/head/santa
 
 /obj/item/clothing/head/jester
-	name = "jester hat"
-	desc = "A hat with bells, to add some merriness to the suit."
+	name = "czapka błazna"
+	desc = "Czapka z dzwoneczkami, która dodaje strojowi wesołości."
 	icon_state = "jester_hat"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/rice_hat
-	name = "rice hat"
-	desc = "Welcome to the rice fields, motherfucker."
+	name = "kapelusz ryżowy"
+	desc = "Witaj na polach ryżowych, skurwielu."
 	icon_state = "rice_hat"
 
 /obj/item/clothing/head/lizard
-	name = "lizardskin cloche hat"
-	desc = "How many lizards died to make this hat? Not enough."
+	name = "kapelusz cloche z jaszczurczej skóry"
+	desc = "Ile jaszczurów zginęło, żeby powstał ten kapelusz? Za mało."
 	icon_state = "lizard"
 
 /obj/item/clothing/head/papersack
-	name = "paper sack hat"
-	desc = "A paper sack with crude holes cut out for eyes. Useful for hiding one's identity or ugliness."
+	name = "papierowa torba na głowę"
+	desc = "Papierowa torba z niezgrabnie wyciętymi otworami na oczy. Przydaje się do ukrycia tożsamości albo brzydoty."
 	icon_state = "papersack"
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/papersack/smiley
-	name = "paper sack hat"
-	desc = "A paper sack with crude holes cut out for eyes and a sketchy smile drawn on the front. Not creepy at all."
+	name = "papierowa torba na głowę"
+	desc = "Papierowa torba z niezgrabnie wyciętymi otworami na oczy i koślawym uśmiechem narysowanym z przodu. Wcale nie jest straszna."
 	icon_state = "papersack_smile"
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS|HIDESNOUT
 
 /obj/item/clothing/head/crown
-	name = "crown"
-	desc = "A crown fit for a king, a petty king maybe."
+	name = "korona"
+	desc = "Korona godna króla. No, może królika."
 	icon_state = "crown"
 	armor = list("melee" = 15, "bullet" = 0, "laser" = 0,"energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50, "stamina" = 40)
 	resistance_flags = FIRE_PROOF
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/crown/fancy
-	name = "magnificent crown"
-	desc = "A crown worn by only the highest emperors of the <s>land</s> space."
+	name = "wspaniała korona"
+	desc = "Korona noszona tylko przez najwyższych cesarzy <s>ziemi</s> kosmosu."
 	icon_state = "fancycrown"
 
 /obj/item/clothing/head/scarecrow_hat
-	name = "scarecrow hat"
-	desc = "A simple straw hat."
+	name = "kapelusz stracha na wróble"
+	desc = "Prosty słomkowy kapelusz."
 	icon_state = "scarecrow_hat"
 
 /obj/item/clothing/head/lobsterhat
-	name = "foam lobster head"
-	desc = "When everything's going to crab, protecting your head is the best choice."
+	name = "piankowa głowa homara"
+	desc = "Gdy wszystko idzie do raka, najlepiej chronić głowę."
 	icon_state = "lobster_hat"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	clothing_flags = SNUG_FIT
 
 /obj/item/clothing/head/drfreezehat
-	name = "doctor freeze's wig"
-	desc = "A cool wig for cool people."
+	name = "peruka doktora Freeze'a"
+	desc = "Chłodna peruka dla fajnych ludzi."
 	icon_state = "drfreeze_hat"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/pharaoh
-	name = "pharaoh hat"
-	desc = "Walk like an Egyptian."
+	name = "nakrycie głowy faraona"
+	desc = "Chodź jak Egipcjanin."
 	icon_state = "pharoah_hat"
 	icon_state = "pharoah_hat"
 
 /obj/item/clothing/head/jester/alt
-	name = "jester hat"
-	desc = "A hat with bells, to add some merriness to the suit."
+	name = "czapka błazna"
+	desc = "Czapka z dzwoneczkami, która dodaje strojowi wesołości."
 	icon_state = "jester_hat2"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/nemes
-	name = "headdress of Nemes"
-	desc = "Lavish space tomb not included."
+	name = "chusta nemes"
+	desc = "Wystawny kosmiczny grobowiec nie jest dołączony."
 	icon_state = "nemes_headdress"
 	icon_state = "nemes_headdress"
 
 /obj/item/clothing/head/delinquent
-	name = "delinquent hat"
+	name = "czapka chuligana"
 	desc = "Dobry Boże."
 	icon_state = "delinquent"
 
 /obj/item/clothing/head/frenchberet
-	name = "french beret"
-	desc = "A quality beret, infused with the aroma of chain-smoking, wine-swilling Parisians. You feel less inclined to engage military conflict, for some reason."
+	name = "francuski beret"
+	desc = "Porządny beret przesiąknięty aromatem paryżan, którzy palą jednego za drugim i chleją wino. Z jakiegoś powodu masz mniejszą ochotę na udział w konfliktach zbrojnych."
 	icon_state = "beret"
 	dynamic_hair_suffix = ""
 
@@ -397,41 +397,41 @@
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
 /obj/item/clothing/head/clownmitre
-	name = "Hat of the Honkmother"
-	desc = "It's hard for parishoners to see a banana peel on the floor when they're looking up at your glorious chapeau."
+	name = "Kapelusz Matki Honku"
+	desc = "Wiernym trudno dostrzec skórkę od banana na podłodze, gdy wpatrują się w twój wspaniały kapelusz."
 	icon_state = "clownmitre"
 
 /obj/item/clothing/head/kippah
-	name = "kippah"
-	desc = "Signals that you follow the Jewish Halakha. Keeps the head covered and the soul extra-Orthodox."
+	name = "kipa"
+	desc = "Pokazuje, że przestrzegasz żydowskiej halachy. Zakrywa głowę i czyni duszę wyjątkowo ortodoksyjną."
 	icon_state = "kippah"
 
 /obj/item/clothing/head/medievaljewhat
-	name = "medieval Jew hat"
-	desc = "A silly looking hat, intended to be placed on the heads of the station's oppressed religious minorities."
+	name = "średniowieczny kapelusz żydowski"
+	desc = "Głupio wyglądający kapelusz przeznaczony dla uciskanych mniejszości religijnych na stacji."
 	icon_state = "medievaljewhat"
 
 /obj/item/clothing/head/taqiyahwhite
-	name = "white taqiyah"
-	desc = "An extra-mustahabb way of showing your devotion to Allah."
+	name = "biała takijja"
+	desc = "Wyjątkowo mustahabb sposób okazania oddania Allahowi."
 	icon_state = "taqiyahwhite"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
 /obj/item/clothing/head/taqiyahred
-	name = "red taqiyah"
-	desc = "An extra-mustahabb way of showing your devotion to Allah."
+	name = "czerwona takijja"
+	desc = "Wyjątkowo mustahabb sposób okazania oddania Allahowi."
 	icon_state = "taqiyahred"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/small
 
 /obj/item/clothing/head/intern
-	name = "\improper CentCom Head Intern beancap"
-	desc = "A horrifying mix of beanie and softcap in CentCom green. You'd have to be pretty desperate for power over your peers to agree to wear this."
+	name = "\improper czapko-czapeczka starszego stażysty Centrali"
+	desc = "Przerażające skrzyżowanie czapki zimowej z bejsbolówką w zieleni Centrali. Trzeba naprawdę rozpaczliwie pragnąć władzy nad kolegami, żeby zgodzić się to nosić."
 	icon_state = "intern_hat"
 	item_state = "intern_hat"
 
 /obj/item/clothing/head/rainbowbunchcrown
-	name = "rainbow flower crown"
-	desc = "A flower crown made out of the flowers of the rainbow bunch plant."
+	name = "tęczowy wianek"
+	desc = "Wianek z kwiatów tęczowej kiści."
 	dynamic_hair_suffix = ""
 	attack_verb = list("koronuje")
 
@@ -453,22 +453,22 @@
 			icon_state = "rainbow_bunch_crown_4"
 
 /obj/item/clothing/head/sunflowercrown
-	name = "sunflower crown"
-	desc = "A bright flower crown made out sunflowers that is sure to brighten up anyone's day!"
+	name = "wianek ze słoneczników"
+	desc = "Jasny wianek ze słoneczników, który na pewno rozjaśni każdemu dzień!"
 	icon_state = "sunflower_crown"
 	dynamic_hair_suffix = ""
 	attack_verb = list("koronuje")
 
 /obj/item/clothing/head/poppycrown
-	name = "poppy crown"
-	desc = "A flower crown made out of a string of bright red poppies."
+	name = "wianek z maków"
+	desc = "Wianek ze sznura jaskrawoczerwonych maków."
 	icon_state = "poppy_crown"
 	dynamic_hair_suffix = ""
 	attack_verb = list("koronuje")
 
 /obj/item/clothing/head/lilycrown
-	name = "lily crown"
-	desc = "A leafy flower crown with a cluster of large white lilies at at the front."
+	name = "wianek z lilii"
+	desc = "Liściasty wianek z kiścią dużych białych lilii z przodu."
 	icon_state = "lily_crown"
 	dynamic_hair_suffix = ""
 	attack_verb = list("koronuje")
@@ -478,28 +478,28 @@
 /////////////////
 
 /obj/item/clothing/head/gangsterwig
-	name = "gangstar wig"
+	name = "peruka gangstera"
 	desc = "Jaki ojciec, taki syn."
 	icon_state = "gangster_wig"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/oldhat
-	name = "old man hat"
+	name = "kapelusz staruszka"
 	desc = "O MÓJ BOŻE."
 	icon_state = "oldmanhat"
 
 /obj/item/clothing/head/marine
-	name = "mariner hat"
+	name = "czapka marynarza"
 	desc = "Nie ma to jak poranna bryza od oceanu."
 	icon_state = "marine"
 
 /obj/item/clothing/head/chicken_head_retro
-	name = "chicken head"
+	name = "głowa kurczaka"
 	desc = "Wygląda zupełnie jak prawdziwa."
 	icon_state = "chicken"
 	flags_inv = HIDEHAIR
 
 /obj/item/clothing/head/maidheadband
-	name = "maid headband"
-	desc = "Just like from one of those chinese cartoons!"
+	name = "opaska pokojówki"
+	desc = "Zupełnie jak z tych chińskich kreskówek!"
 	icon_state = "maid_headband"

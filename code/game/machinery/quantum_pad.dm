@@ -1,6 +1,6 @@
 /obj/machinery/quantumpad
-	name = "quantum pad"
-	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
+	name = "pad kwantowy"
+	desc = "Telepad bluespace z łączem kwantowym, który teleportuje obiekty do innych padów kwantowych."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "qpad-idle"
 	use_power = IDLE_POWER_USE
@@ -193,5 +193,5 @@
 		. = TRUE
 
 /obj/item/paper/guides/quantumpad
-	name = "Quantum Pad For Dummies"
+	name = "Pady kwantowe dla opornych"
 	default_raw_text = "<center><b>Poradnik dla opornych: pady kwantowe</b></center><br><br><center>Nie znosisz myśli, że trzeba używać nóg, a co dopiero <i>chodzić</i>? Dzięki Padowi Kwantowemu (tm) strach przed kardio już nigdy nie powstrzyma cię przed wyjściem z domu!<br><br><c><b>Jak skonfigurować Pad Kwantowy(tm)</b></center><br><br>1. Odkręć Pad Kwantowy(tm), który chcesz połączyć.<br>2. Użyj multitoola, by zapisać w buforze Pad Kwantowy(tm), który chcesz połączyć.<br>3. Przyłóż multitool do drugiego Padu Kwantowego(tm), który chcesz połączyć z pierwszym Padem Kwantowym(tm)<br><br><center>Jeśli dokładnie wykonałeś te instrukcje, twoje Pady Kwantowe(tm) powinny być teraz poprawnie połączone, co pozwoli na niemal natychmiastowe przemieszczanie się po stacji! Pamiętaj, że to technicznie teleport jednokierunkowy, więc jeśli chcesz podróżować w obie strony, musisz powtórzyć ten proces, łącząc drugi pad z pierwszym.</center>"

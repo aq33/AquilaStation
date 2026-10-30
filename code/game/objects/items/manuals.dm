@@ -7,184 +7,184 @@
 	unique = TRUE   // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
 
 /obj/item/book/manual/hydroponics_pod_people
-	name = "The Human Harvest - From seed to market"
+	name = "Ludzkie żniwa – od nasiona do targu"
 	icon_state ="bookHydroponicsPodPeople"
-	author = "Farmer John" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
-	title = "The Human Harvest - From seed to market"
+	author = "Rolnik Jan" // Whoever wrote the paper or book, can be changed by pen or PC. It is not automatically assigned.
+	title = "Ludzkie żniwa – od nasiona do targu"
 	//book contents below
-	dat = {"<h3>Growing Humans</h3>
+	dat = {"<h3>Hodowla ludzi</h3>
 
-				Why would you want to grow humans? Well I'm expecting most readers to be in the slave trade, but a few might actually
-				want to revive fallen comrades. Growing pod people is easy, but prone to disaster.
+				Po co hodować ludzi? Cóż, spodziewam się, że większość czytelników zajmuje się handlem niewolnikami, ale niektórzy mogą naprawdę
+				chcieć ożywić poległych towarzyszy. Hodowla ludzi ze strąków jest łatwa, ale łatwo też o katastrofę.
 				<p>
 				<ol>
-				<li>Find a dead person who is in need of cloning. </li>
-				<li>Take a blood sample with a syringe. </li>
-				<li>Inject a seed pack with the blood sample. </li>
-				<li>Plant the seeds. </li>
-				<li>Tend to the plants water and nutrition levels until it is time to harvest the cloned human.</li>
+				<li>Znajdź martwą osobę, która wymaga sklonowania. </li>
+				<li>Pobierz strzykawką próbkę krwi. </li>
+				<li>Wstrzyknij próbkę krwi do paczki nasion. </li>
+				<li>Posadź nasiona. </li>
+				<li>Pilnuj poziomu wody i składników odżywczych roślin, aż przyjdzie czas zebrać sklonowanego człowieka.</li>
 				</ol>
 				<p>
-				It really is that easy! Good luck!"}
+				To naprawdę takie proste! Powodzenia!"}
 
 /obj/item/book/manual/ripley_build_and_repair
-	name = "APLU \"Ripley\" Construction and Operation Manual"
+	name = "Podręcznik budowy i obsługi APLU \"Ripley\""
 	icon_state ="book"
 	author = "Weyland-Yutani Corp"
-	title = "APLU \"Ripley\" Construction and Operation Manual"
+	title = "Podręcznik budowy i obsługi APLU \"Ripley\""
 	dat = {"<center>
-				<b style='font-size: 12px;'>Weyland-Yutani - Building Better Worlds</b>
-				<h1>Autonomous Power Loader Unit \"Ripley\"</h1>
+				<b style='font-size: 12px;'>Weyland-Yutani – budujemy lepsze światy</b>
+				<h1>Autonomiczny ładowacz z napędem \"Ripley\"</h1>
 				</center>
-				<h2>Specifications:</h2>
+				<h2>Specyfikacja:</h2>
 				<ul>
-				<li><b>Class:</b> Autonomous Power Loader</li>
-				<li><b>Scope:</b> Logistics and Construction</li>
-				<li><b>Weight:</b> 820kg (without operator and with empty cargo compartment)</li>
-				<li><b>Height:</b> 2.5m</li>
-				<li><b>Width:</b> 1.8m</li>
-				<li><b>Top speed:</b> 5km/hour</li>
-				<li><b>Operation in vacuum/hostile environment:</b> Possible</b>
-				<li><b>Airtank Volume:</b> 500 liters</li>
-				<li><b>Devices:</b>
+				<li><b>Klasa:</b> autonomiczny ładowacz z napędem</li>
+				<li><b>Zastosowanie:</b> logistyka i budownictwo</li>
+				<li><b>Masa:</b> 820 kg (bez operatora i z pustą ładownią)</li>
+				<li><b>Wysokość:</b> 2,5 m</li>
+				<li><b>Szerokość:</b> 1,8 m</li>
+				<li><b>Prędkość maksymalna:</b> 5 km/h</li>
+				<li><b>Praca w próżni / wrogim środowisku:</b> możliwa</b>
+				<li><b>Pojemność zbiornika powietrza:</b> 500 litrów</li>
+				<li><b>Urządzenia:</b>
 					<ul>
-					<li>Hydraulic Clamp</li>
-					<li>High-speed Drill</li>
+					<li>Chwytak hydrauliczny</li>
+					<li>Szybkoobrotowe wiertło</li>
 					</ul>
 				</li>
-				<li><b>Propulsion Device:</b> Electro-hydraulic system.</li>
-				<li><b>Power cell capacity:</b> Varies.</li>
+				<li><b>Napęd:</b> układ elektrohydrauliczny.</li>
+				<li><b>Pojemność ogniwa zasilającego:</b> różna.</li>
 				</ul>
 
-				<h2>Construction:</h2>
+				<h2>Budowa:</h2>
 				<ol>
-				<li>Connect all exosuit parts to the chassis frame.</li>
-				<li>Connect all hydraulic fittings and tighten them up with a wrench.</li>
-				<li>Adjust the servohydraulics with a screwdriver.</li>
-				<li>Wire the chassis (cable is not included).</li>
-				<li>Use the wirecutters to remove the excess cable if needed.</li>
-				<li>Install the central control module (not included. Use supplied datadisk to create one).</li>
-				<li>Secure the mainboard with a screwdriver.</li>
-				<li>Install the peripherals control module (not included. Use supplied datadisk to create one).</li>
-				<li>Secure the peripherals control module with a screwdriver.</li>
-				<li>Install the internal armor plating (not included due to Nanotrasen regulations. Can be made using 5 iron sheets).</li>
-				<li>Secure the internal armor plating with a wrench.</li>
-				<li>Weld the internal armor plating to the chassis.</li>
-				<li>Install the external reinforced armor plating (not included due to Nanotrasen regulations. Can be made using 5 reinforced iron sheets).</li>
-				<li>Secure the external reinforced armor plating with a wrench.</li>
-				<li>Weld the external reinforced armor plating to the chassis.</li>
+				<li>Podłącz wszystkie części egzoszkieletu do ramy podwozia.</li>
+				<li>Podłącz wszystkie złączki hydrauliczne i dokręć je kluczem.</li>
+				<li>Wyreguluj serwohydraulikę śrubokrętem.</li>
+				<li>Okabluj podwozie (kabel nie jest dołączony).</li>
+				<li>W razie potrzeby usuń nadmiar kabla przecinakiem.</li>
+				<li>Zainstaluj centralny moduł sterowania (nie jest dołączony; wytwórz go z dołączonego dysku z danymi).</li>
+				<li>Przykręć płytę główną śrubokrętem.</li>
+				<li>Zainstaluj moduł sterowania peryferiami (nie jest dołączony; wytwórz go z dołączonego dysku z danymi).</li>
+				<li>Przykręć moduł sterowania peryferiami śrubokrętem.</li>
+				<li>Zamontuj wewnętrzne płyty pancerza (niedołączone z powodu przepisów Nanotrasen; można je zrobić z 5 arkuszy żelaza).</li>
+				<li>Przykręć wewnętrzne płyty pancerza kluczem.</li>
+				<li>Przyspawaj wewnętrzne płyty pancerza do podwozia.</li>
+				<li>Zamontuj zewnętrzne wzmocnione płyty pancerza (niedołączone z powodu przepisów Nanotrasen; można je zrobić z 5 arkuszy wzmocnionego żelaza).</li>
+				<li>Przykręć zewnętrzne wzmocnione płyty pancerza kluczem.</li>
+				<li>Przyspawaj zewnętrzne wzmocnione płyty pancerza do podwozia.</li>
 				<li></li>
-				<li>Additional Information:</li>
-				<li>The firefighting variation is made in a similar fashion.</li>
-				<li>A firesuit must be connected to the Firefighter chassis for heat shielding.</li>
-				<li>Internal armor is plasteel for additional strength.</li>
-				<li>External armor must be installed in 2 parts, totaling 10 sheets.</li>
-				<li>Completed mech is more resiliant against fire, and is a bit more durable overall.</li>
-				<li>Nanotrasen is determined to the safety of its <s>investments</s> employees.</li>
+				<li>Informacje dodatkowe:</li>
+				<li>Wersję strażacką buduje się podobnie.</li>
+				<li>Do podwozia wersji strażackiej trzeba podłączyć kombinezon przeciwpożarowy jako osłonę termiczną.</li>
+				<li>Wewnętrzny pancerz jest z plastali dla dodatkowej wytrzymałości.</li>
+				<li>Zewnętrzny pancerz montuje się w 2 częściach, łącznie 10 arkuszy.</li>
+				<li>Gotowy mech jest odporniejszy na ogień i ogólnie nieco wytrzymalszy.</li>
+				<li>Nanotrasen dba o bezpieczeństwo swoich <s>inwestycji</s> pracowników.</li>
 				</ol>
 
-				<h2>Operation:</h2>
-				Please consult the Nanotrasen compendium "Robotics for Dummies".
+				<h2>Obsługa:</h2>
+				Zajrzyj do kompendium Nanotrasen „Robotyka dla opornych”.
 			"}
 
 /obj/item/book/manual/chef_recipes
-	name = "Chef Recipes"
+	name = "Przepisy kucharza"
 	icon_state = "cooked_book"
 	author = "Lord Frenrir Cageth"
-	title = "Chef Recipes"
-	dat = {"<h1>Food for Dummies</h1>
-				Here is a guide on basic food recipes and also how to not poison your customers accidentally.
+	title = "Przepisy kucharza"
+	dat = {"<h1>Jedzenie dla opornych</h1>
+				Oto przewodnik po podstawowych przepisach i po tym, jak przypadkiem nie otruć klientów.
 
 
-				<h2>Basic ingredients preparation:</h2>
+				<h2>Przygotowanie podstawowych składników:</h2>
 
-				<b>Dough:</b> 10u water + 15u flour for simple dough.<br>
-				15u egg yolk + 15u flour + 5u sugar for cake batter.<br>
-				Doughs can be transformed by using a knife and rolling pin.<br>
-				All doughs can be microwaved.<br>
-				<b>Bowl:</b> Add water to it for soup preparation.<br>
-				<b>Meat:</b> Microwave it, process it, slice it into microwavable cutlets with your knife, or use it raw.<br>
-				<b>Cheese:</b> Add 5u universal enzyme (catalyst) to milk and soy milk to prepare cheese (sliceable) and tofu.<br>
-				<b>Rice:</b> Mix 10u rice with 10u water in a bowl then microwave it.
+				<b>Ciasto:</b> 10 j. wody + 15 j. mąki daje zwykłe ciasto.<br>
+				15 j. żółtka + 15 j. mąki + 5 j. cukru daje masę na ciasto.<br>
+				Ciasto można przerabiać nożem i wałkiem do ciasta.<br>
+				Każde ciasto można upiec w mikrofalówce.<br>
+				<b>Miska:</b> dodaj do niej wodę, żeby przygotować zupę.<br>
+				<b>Mięso:</b> upiecz je w mikrofalówce, przetwórz, pokrój nożem na kotlety do mikrofalówki albo użyj na surowo.<br>
+				<b>Ser:</b> dodaj 5 j. enzymu uniwersalnego (katalizator) do mleka i mleka sojowego, żeby zrobić ser (do krojenia) i tofu.<br>
+				<b>Ryż:</b> wymieszaj w misce 10 j. ryżu z 10 j. wody, a potem podgrzej w mikrofalówce.
 
-				<h2>Custom food:</h2>
-				Add ingredients to a base item to prepare a custom meal.<br>
-				The bases are:<br>
-				- bun (burger)<br>
-				- breadslices(sandwich)<br>
-				- plain bread<br>
-				- plain pie<br>
-				- vanilla cake<br>
-				- empty bowl (salad)<br>
-				- bowl with 10u water (soup)<br>
-				- boiled spaghetti<br>
-				- pizza bread<br>
-				- iron rod (kebab)
+				<h2>Własne dania:</h2>
+				Dodawaj składniki do bazy, żeby przygotować własne danie.<br>
+				Bazy to:<br>
+				- bułka (burger)<br>
+				- kromki chleba (kanapka)<br>
+				- zwykły chleb<br>
+				- zwykły placek<br>
+				- ciasto waniliowe<br>
+				- pusta miska (sałatka)<br>
+				- miska z 10 j. wody (zupa)<br>
+				- ugotowane spaghetti<br>
+				- spód do pizzy<br>
+				- żelazny pręt (kebab)
 
-				<h2>Table Craft:</h2>
-				Put ingredients on table, then click and drag the table onto yourself to see what recipes you can prepare.
+				<h2>Wytwarzanie na stole:</h2>
+				Połóż składniki na stole, a potem kliknij i przeciągnij stół na siebie, żeby zobaczyć, co możesz przygotować.
 
-				<h2>Microwave:</h2>
-				Use it to cook or boil food ingredients (meats, doughs, egg, spaghetti, donkpocket, etc...).
-				It can cook multiple items at once.
+				<h2>Mikrofalówka:</h2>
+				Służy do gotowania i pieczenia składników (mięso, ciasto, jajka, spaghetti, pierogi itd.).
+				Może przygotować kilka rzeczy naraz.
 
-				<h2>Processor:</h2>
-				Use it to process certain ingredients (meat into meatball, doughslice into spaghetti, potato into fries,etc...)
+				<h2>Przetwórca:</h2>
+				Służy do przetwarzania niektórych składników (mięso w klopsiki, porcję ciasta w spaghetti, ziemniaki we frytki itd.)
 
-				<h2>Gibber:</h2>
-				Stuff an animal in it to grind it into meat.
+				<h2>Mielarka:</h2>
+				Wepchnij do niej zwierzę, żeby zmielić je na mięso.
 
-				<h2>Meat spike:</h2>
-				Stick an animal on it then begin collecting its meat.
+				<h2>Hak na mięso:</h2>
+				Nadziej na niego zwierzę i zacznij zbierać mięso.
 
 
-				<h2>Example recipes:</h2>
-				<b>Vanilla Cake</b>: Microwave cake batter.<br>
-				<b>Burger:</b> 1 bun + 1 meat steak<br>
-				<b>Bread:</b> Microwave dough.<br>
-				<b>Waffles:</b> 2 pastry base<br>
-				<b>Popcorn:</b> Microwave corn.<br>
-				<b>Meat Steak:</b> Microwave meat.<br>
-				<b>Meat Pie:</b> 1 plain pie + 1u black pepper + 1u salt + 2 meat cutlets<br>
-				<b>Boiled Spagetti:</b> Microwave spaghetti.<br>
-				<b>Donuts:</b> 1u sugar + 1 pastry base<br>
-				<b>Fries:</b> Process potato.
+				<h2>Przykładowe przepisy:</h2>
+				<b>Ciasto waniliowe</b>: upiecz masę na ciasto w mikrofalówce.<br>
+				<b>Burger:</b> 1 bułka + 1 stek<br>
+				<b>Chleb:</b> upiecz ciasto w mikrofalówce.<br>
+				<b>Gofry:</b> 2 spody do ciasta<br>
+				<b>Popcorn:</b> podgrzej kukurydzę w mikrofalówce.<br>
+				<b>Stek:</b> upiecz mięso w mikrofalówce.<br>
+				<b>Placek z mięsem:</b> 1 zwykły placek + 1 j. czarnego pieprzu + 1 j. soli + 2 kotlety<br>
+				<b>Ugotowane spaghetti:</b> podgrzej spaghetti w mikrofalówce.<br>
+				<b>Pączki:</b> 1 j. cukru + 1 spód do ciasta<br>
+				<b>Frytki:</b> przetwórz ziemniaka.
 
-				<h2>Sharing your food:</h2>
-				You can put your meals on your kitchen counter or load them in the snack vending machines."}
+				<h2>Dzielenie się jedzeniem:</h2>
+				Możesz kłaść dania na blacie kuchennym albo ładować je do automatów z przekąskami."}
 
 /obj/item/book/manual/nuclear
-	name = "Fission Mailed: Nuclear Sabotage 101"
+	name = "Rozszczepienie nieudane: sabotaż jądrowy dla początkujących"
 	icon_state ="bookNuclear"
-	author = "Syndicate"
-	title = "Fission Mailed: Nuclear Sabotage 101"
-	dat = {"Nuclear Explosives 101:<br>
-			Hello and thank you for choosing the Syndicate for your nuclear information needs.<br>
-			Today's crash course will deal with the operation of a Fusion Class Nanotrasen made Nuclear Device.<br>
-			First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE.<br>
-			Pressing any button on the compacted bomb will cause it to extend and bolt itself into place.<br>
-			If this is done to unbolt it one must completely log in which at this time may not be possible.<br>
-			To make the nuclear device functional:<br>
-			<li>Place the nuclear device in the designated detonation zone.</li>
-			<li>Extend and anchor the nuclear device from its interface.</li>
-			<li>Insert the nuclear authorisation disk into slot.</li>
-			<li>Type numeric authorisation code into the keypad. This should have been provided. Note: If you make a mistake press R to reset the device.
-			<li>Press the E button to log onto the device.</li>
-			You now have activated the device. To deactivate the buttons at anytime for example when you've already prepped the bomb for detonation	remove the auth disk OR press the R on the keypad.<br>
-			Now the bomb CAN ONLY be detonated using the timer. Manual detonation is not an option.<br>
-			Note: Nanotrasen is a pain in the neck.<br>
-			Toggle off the SAFETY.<br>
-			Note: You wouldn't believe how many Syndicate Operatives with doctorates have forgotten this step.<br>
-			So use the - - and + + to set a det time between 5 seconds and 10 minutes.<br>
-			Then press the timer toggle button to start the countdown.<br>
-			Now remove the auth. disk so that the buttons deactivate.<br>
-			Note: THE BOMB IS STILL SET AND WILL DETONATE<br>
-			Now before you remove the disk if you need to move the bomb you can:<br>
-			Toggle off the anchor, move it, and re-anchor.<br><br>
-			Good luck. Remember the order:<br>
-			<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br>
-			Intelligence Analysts believe that normal Nanotrasen procedure is for the Captain to secure the nuclear authorisation disk.<br>
-			Good luck!"}
+	author = "Syndykat"
+	title = "Rozszczepienie nieudane: sabotaż jądrowy dla początkujących"
+	dat = {"Ładunki jądrowe dla początkujących:<br>
+			Dzień dobry i dziękujemy, że w sprawach wiedzy jądrowej wybierasz Syndykat.<br>
+			Dzisiejszy przyspieszony kurs dotyczy obsługi ładunku jądrowego klasy fuzyjnej produkcji Nanotrasen.<br>
+			Przede wszystkim NIE DOTYKAJ NICZEGO, DOPÓKI BOMBA NIE BĘDZIE NA MIEJSCU.<br>
+			Naciśnięcie dowolnego przycisku na złożonej bombie sprawi, że się rozłoży i przykręci na miejscu.<br>
+			Żeby ją wtedy odkręcić, trzeba się w pełni zalogować, co w tej chwili może nie być możliwe.<br>
+			Żeby uruchomić ładunek jądrowy:<br>
+			<li>Umieść ładunek jądrowy w wyznaczonej strefie detonacji.</li>
+			<li>Rozłóż i zakotwicz ładunek jądrowy z poziomu jego interfejsu.</li>
+			<li>Włóż dysk autoryzacji jądrowej do gniazda.</li>
+			<li>Wpisz na klawiaturze numeryczny kod autoryzacji. Powinieneś go otrzymać. Uwaga: jeśli się pomylisz, naciśnij R, żeby zresetować urządzenie.
+			<li>Naciśnij przycisk E, żeby zalogować się do urządzenia.</li>
+			Urządzenie jest teraz aktywne. Żeby w dowolnej chwili dezaktywować przyciski, na przykład gdy bomba jest już przygotowana do detonacji, wyjmij dysk autoryzacji ALBO naciśnij R na klawiaturze.<br>
+			Teraz bombę MOŻNA zdetonować TYLKO zapalnikiem czasowym. Ręczna detonacja nie wchodzi w grę.<br>
+			Uwaga: Nanotrasen to wrzód na tyłku.<br>
+			Wyłącz BEZPIECZNIK.<br>
+			Uwaga: nie uwierzyłbyś, ilu agentów Syndykatu z doktoratem zapomniało o tym kroku.<br>
+			Użyj - - i + +, żeby ustawić czas detonacji od 5 sekund do 10 minut.<br>
+			Potem naciśnij przycisk zapalnika, żeby zacząć odliczanie.<br>
+			Teraz wyjmij dysk autoryzacji, żeby przyciski się dezaktywowały.<br>
+			Uwaga: BOMBA WCIĄŻ JEST USTAWIONA I WYBUCHNIE<br>
+			Jeśli przed wyjęciem dysku musisz przenieść bombę, możesz:<br>
+			wyłączyć kotwiczenie, przenieść ją i zakotwiczyć ponownie.<br><br>
+			Powodzenia. Zapamiętaj kolejność:<br>
+			<b>Dysk, kod, bezpiecznik, zapalnik, dysk, UCIEKAJ!</b><br>
+			Analitycy wywiadu uważają, że według standardowej procedury Nanotrasen dysk autoryzacji jądrowej zabezpiecza kapitan.<br>
+			Powodzenia!"}
 
 // Wiki books that are linked to the configured wiki link.
 
@@ -199,44 +199,44 @@
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(!wikiurl)
 		return
-	if(alert(user, "To otworzy stronę wiki w twojej przeglądarce. Na pewno?", null, "Yes", "No") != "Yes")
+	if(alert(user, "To otworzy stronę wiki w twojej przeglądarce. Na pewno?", null, "Tak", "Nie") != "Tak")
 		return
 	DIRECT_OUTPUT(user, link("[wikiurl]/[page_link]"))
 
 /obj/item/book/manual/wiki/chemistry
-	name = "Chemistry Textbook"
+	name = "Podręcznik chemii"
 	icon_state ="chemistrybook"
 	author = "Nanotrasen"
-	title = "Chemistry Textbook"
+	title = "Podręcznik chemii"
 	page_link = "Guide_to_chemistry"
 
 /obj/item/book/manual/wiki/engineering_construction
-	name = "Station Repairs and Construction"
+	name = "Naprawy i budowa na stacji"
 	icon_state ="bookEngineering"
-	author = "Engineering Encyclopedia"
-	title = "Station Repairs and Construction"
+	author = "Encyklopedia Inżynierii"
+	title = "Naprawy i budowa na stacji"
 	page_link = "Guide_to_construction"
 
 /obj/item/book/manual/wiki/engineering_guide
-	name = "Engineering Textbook"
+	name = "Podręcznik inżynierii"
 	icon_state ="bookEngineering2"
-	author = "Engineering Encyclopedia"
-	title = "Engineering Textbook"
+	author = "Encyklopedia Inżynierii"
+	title = "Podręcznik inżynierii"
 	page_link = "Guide_to_engineering"
 
 /obj/item/book/manual/wiki/engineering_singulo_tesla
-	name = "Singularity and Tesla for Dummies"
+	name = "Osobliwość i Tesla dla opornych"
 	icon_state ="bookEngineeringSingularitySafety"
-	author = "Engineering Encyclopedia"
-	title = "Singularity and Tesla for Dummies"
+	author = "Encyklopedia Inżynierii"
+	title = "Osobliwość i Tesla dla opornych"
 	page_link = "Singularity_and_Tesla_engines"
 
 /obj/item/book/manual/wiki/security_space_law
-	name = "Space Law"
-	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
+	name = "Prawo kosmiczne"
+	desc = "Zbiór wytycznych Nanotrasen dotyczących utrzymania prawa i porządku na jej stacjach kosmicznych."
 	icon_state = "bookSpaceLaw"
 	author = "Nanotrasen"
-	title = "Space Law"
+	title = "Prawo kosmiczne"
 	page_link = "Space_Law"
 
 /obj/item/book/manual/wiki/security_space_law/suicide_act(mob/living/user)
@@ -244,116 +244,116 @@
 	return OXYLOSS
 
 /obj/item/book/manual/wiki/infections
-	name = "Infections - Making your own pandemic!"
+	name = "Infekcje – zrób sobie własną pandemię!"
 	icon_state = "bookInfections"
-	author = "Infections Encyclopedia"
-	title = "Infections - Making your own pandemic!"
+	author = "Encyklopedia Infekcji"
+	title = "Infekcje – zrób sobie własną pandemię!"
 	page_link = "Infections"
 
 /obj/item/book/manual/wiki/telescience
-	name = "Teleportation Science - Bluespace for dummies!"
+	name = "Nauka o teleportacji – bluespace dla opornych!"
 	icon_state = "book7"
-	author = "University of Bluespace"
-	title = "Teleportation Science - Bluespace for dummies!"
+	author = "Uniwersytet Bluespace"
+	title = "Nauka o teleportacji – bluespace dla opornych!"
 	page_link = "Guide_to_telescience"
 
 /obj/item/book/manual/wiki/engineering_hacking
-	name = "Hacking"
+	name = "Hakowanie"
 	icon_state ="bookHacking"
-	author = "Engineering Encyclopedia"
-	title = "Hacking"
+	author = "Encyklopedia Inżynierii"
+	title = "Hakowanie"
 	page_link = "Hacking"
 
 /obj/item/book/manual/wiki/detective
-	name = "The Film Noir: Proper Procedures for Investigations"
+	name = "Film noir: właściwe procedury śledcze"
 	icon_state ="bookDetective"
 	author = "Nanotrasen"
-	title = "The Film Noir: Proper Procedures for Investigations"
+	title = "Film noir: właściwe procedury śledcze"
 	page_link = "Detective"
 
 /obj/item/book/manual/wiki/barman_recipes
-	name = "Barman Recipes: Mixing Drinks and Changing Lives"
+	name = "Przepisy barmana: mieszanie drinków i zmienianie życia"
 	icon_state = "barbook"
 	author = "Sir John Rose"
-	title = "Barman Recipes: Mixing Drinks and Changing Lives"
+	title = "Przepisy barmana: mieszanie drinków i zmienianie życia"
 	page_link = "Guide_to_drinks" //NSV13 - Split the Guide to Food and Drinks into two separate pages
 
 /obj/item/book/manual/wiki/robotics_cyborgs
-	name = "Robotics for Dummies"
+	name = "Robotyka dla opornych"
 	icon_state = "borgbook"
 	author = "XISC"
-	title = "Robotics for Dummies"
+	title = "Robotyka dla opornych"
 	page_link = "Guide_to_robotics"
 
 /obj/item/book/manual/wiki/research_and_development
-	name = "Research and Development 101"
+	name = "Badania i rozwój dla początkujących"
 	icon_state = "rdbook"
 	author = "Dr. L. Ight"
-	title = "Research and Development 101"
+	title = "Badania i rozwój dla początkujących"
 	page_link = "Guide_to_Research_and_Development"
 
 /obj/item/book/manual/wiki/experimentor
-	name = "Mentoring your Experiments"
+	name = "Prowadzenie eksperymentów"
 	icon_state = "rdbook"
 	author = "Dr. H.P. Kritz"
-	title = "Mentoring your Experiments"
+	title = "Prowadzenie eksperymentów"
 	page_link = "Experimentor"
 
 /obj/item/book/manual/wiki/medical_cloning
-	name = "Cloning techniques of the 26th century"
+	name = "Techniki klonowania XXVI wieku"
 	icon_state ="bookCloning"
-	author = "Medical Journal, volume 3"
-	title = "Cloning techniques of the 26th century"
+	author = "Dziennik Medyczny, tom 3"
+	title = "Techniki klonowania XXVI wieku"
 	page_link = "Guide_to_genetics#Cloning"
 
 /obj/item/book/manual/wiki/cooking_to_serve_man
-	name = "To Serve Man"
-	desc = "It's a cookbook!"
+	name = "Jak służyć człowiekowi"
+	desc = "To książka kucharska!"
 	icon_state ="cooked_book"
-	author = "the Kanamitan Empire"
-	title = "To Serve Man"
+	author = "Imperium Kanamitów"
+	title = "Jak służyć człowiekowi"
 	page_link = "Guide_to_food" //NSV13 - Split the Guide to Food and Drinks into two separate pages
 
 /obj/item/book/manual/wiki/tcomms
-	name = "Subspace Telecommunications And You"
+	name = "Telekomunikacja podprzestrzenna i ty"
 	icon_state = "book3"
-	author = "Engineering Encyclopedia"
-	title = "Subspace Telecommunications And You"
+	author = "Encyklopedia Inżynierii"
+	title = "Telekomunikacja podprzestrzenna i ty"
 	page_link = "Guide_to_Telecommunications"
 
 /obj/item/book/manual/wiki/atmospherics
 	name = "Lexica Atmosia"
 	icon_state = "book5"
-	author = "the City-state of Atmosia"
+	author = "Miasto-państwo Atmosja"
 	title = "Lexica Atmosia"
 	page_link = "Guide_to_Atmospherics"
 
 /obj/item/book/manual/wiki/medicine
-	name = "Medical Space Compendium, Volume 638"
+	name = "Kosmiczne kompendium medyczne, tom 638"
 	icon_state = "book8"
-	author = "Medical Journal"
-	title = "Medical Space Compendium, Volume 638"
+	author = "Dziennik Medyczny"
+	title = "Kosmiczne kompendium medyczne, tom 638"
 	page_link = "Guide_to_medicine"
 
 /obj/item/book/manual/wiki/surgery
-	name = "Brain Surgery for Dummies"
+	name = "Chirurgia mózgu dla opornych"
 	icon_state = "book4"
 	author = "Dr. F. Fran"
-	title = "Brain Surgery for Dummies"
+	title = "Chirurgia mózgu dla opornych"
 	page_link = "Surgery"
 
 /obj/item/book/manual/wiki/grenades
-	name = "DIY Chemical Grenades"
+	name = "Granaty chemiczne – zrób to sam"
 	icon_state = "book2"
 	author = "W. Powell"
-	title = "DIY Chemical Grenades"
+	title = "Granaty chemiczne – zrób to sam"
 	page_link = "Grenade"
 
 /obj/item/book/manual/wiki/toxins
-	name = "Toxins or: How I Learned to Stop Worrying and Love the Maxcap"
+	name = "Toksyny, czyli jak przestałem się martwić i pokochałem maxcapa"
 	icon_state = "book6"
 	author = "Cuban Pete"
-	title = "Toxins or: How I Learned to Stop Worrying and Love the Maxcap"
+	title = "Toksyny, czyli jak przestałem się martwić i pokochałem maxcapa"
 	page_link = "Guide_to_toxins"
 
 //NSV13 - Change
@@ -364,50 +364,50 @@
 	icon = 'nsv13/icons/obj/nsv_bureaucracy.dmi' //created own dmi for the books
 
 /obj/item/book/manual/wiki/sop/security
-	name = "Standard operating Procedure: Security"
-	title = "Standard operating Procedure: Security"
+	name = "Standardowa procedura operacyjna: ochrona"
+	title = "Standardowa procedura operacyjna: ochrona"
 	page_link = "Department_Standard_Operating_Procedure:_Security"
 	icon_state = "sop_sec"
 
 /obj/item/book/manual/wiki/sop/science
-	name = "Standard operating Procedure: Science"
-	title = "Standard operating Procedure: Science"
+	name = "Standardowa procedura operacyjna: nauka"
+	title = "Standardowa procedura operacyjna: nauka"
 	page_link = "Department_Standard_Operating_Procedure:_Science"
 	icon_state = "sop_sci"
 
 /obj/item/book/manual/wiki/sop/service
-	name = "Standard operating Procedure: Service"
-	title = "Standard operating Procedure: Service"
+	name = "Standardowa procedura operacyjna: służba"
+	title = "Standardowa procedura operacyjna: służba"
 	page_link = "Department_Standard_Operating_Procedure:_Service/Civilian"
 	icon_state = "sop_service"
 
 /obj/item/book/manual/wiki/sop/command
-	name = "Standard operating Procedure: Command"
-	title = "Standard operating Procedure: Command"
+	name = "Standardowa procedura operacyjna: dowództwo"
+	title = "Standardowa procedura operacyjna: dowództwo"
 	page_link = "Department_Standard_Operating_Procedure:_Command"
 	icon_state = "sop_comdom"
 
 /obj/item/book/manual/wiki/sop/engineering
-	name = "Standard operating Procedure: Engineering"
-	title = "Standard operating Procedure: Engineering"
+	name = "Standardowa procedura operacyjna: inżynieria"
+	title = "Standardowa procedura operacyjna: inżynieria"
 	page_link = "Department_Standard_Operating_Procedure:_Engineering"
 	icon_state = "sop_engi"
 
 /obj/item/book/manual/wiki/sop/supply
-	name = "Standard operating Procedure: Supply"
-	title = "Standard operating Procedure: Supply"
+	name = "Standardowa procedura operacyjna: zaopatrzenie"
+	title = "Standardowa procedura operacyjna: zaopatrzenie"
 	page_link = "Department_Standard_Operating_Procedure:_Supply"
 	icon_state = "sop_cargo"
 
 /obj/item/book/manual/wiki/sop/medical
-	name = "Standard operating Procedure: Medical"
-	title = "Standard operating Procedure: Medical"
+	name = "Standardowa procedura operacyjna: dział medyczny"
+	title = "Standardowa procedura operacyjna: dział medyczny"
 	page_link = "Department_Standard_Operating_Procedure:_Medical"
 	icon_state = "sop_med"
 
 /obj/item/book/manual/wiki/sop/munitions
-	name = "Standard operating Procedure: Munitions"
-	title = "Standard operating Procedure: Munitions"
+	name = "Standardowa procedura operacyjna: amunicja"
+	title = "Standardowa procedura operacyjna: amunicja"
 	page_link = "Department_Standard_Operating_Procedure:_Munitions"
 	icon_state = "sop_muni"
 
@@ -416,16 +416,16 @@
 	icon_state = "sop_muni_puce"
 
 /obj/item/book/manual/wiki/sop/catalogue //Directs to standard SoP page. Able to check any department at will. For command / lawyer
-	name = "Standard operating Procedure: Catalogue"
-	title = "Standard operating Procedure: Catalogue"
+	name = "Standardowa procedura operacyjna: katalog"
+	title = "Standardowa procedura operacyjna: katalog"
 	page_link = "Standard_Operating_Procedure"
 	icon_state = "sop_catalogue"
 
 /obj/item/book/manual/wiki/supermatter_guide //NSV13
-	name = "Supermatter Textbook"
+	name = "Podręcznik supermaterii"
 	icon_state ="bookEngineering2"
-	author = "Engineering Encyclopedia"
-	title = "Supermatter Textbook"
+	author = "Encyklopedia Inżynierii"
+	title = "Podręcznik supermaterii"
 	page_link = "Guide_to_the_Supermatter"
 
 /obj/item/book/manual/wiki/toxins/suicide_act(mob/user)
@@ -450,10 +450,10 @@
 	return (BRUTELOSS)
 
 /obj/item/book/manual/wiki/plumbing
-	name = "Chemical Factories Without Narcotics"
+	name = "Fabryki chemiczne bez narkotyków"
 	icon_state ="plumbingbook"
 	author = "Nanotrasen"
-	title = "Chemical Factories Without Narcotics"
+	title = "Fabryki chemiczne bez narkotyków"
 	page_link = "Guide_to_plumbing"
 
 
@@ -473,8 +473,8 @@
 	color = "#fff"
 	new /obj/item/sticker/sticky_note/tutorial/book(src)
 /obj/item/book/manual/wiki/xenoarchaeology
-	name = "Xenoarchaeology Fieldguide"
+	name = "Przewodnik terenowy ksenoarcheologii"
 	icon_state ="xenoarchaeology"
 	author = "Phillippe French"
-	title = "Xenoarchaeology Fieldguide"
+	title = "Przewodnik terenowy ksenoarcheologii"
 	page_link = "Guide_to_Artifacts"

@@ -1,6 +1,6 @@
 /datum/surgery/advanced/lobotomy
-	name = "Lobotomy"
-	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
+	name = "Lobotomia"
+	desc = "Inwazyjny zabieg chirurgiczny, który gwarantuje usunięcie niemal wszystkich urazów mózgu, ale w zamian może wywołać inny trwały uraz."
 	steps = list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/retract_skin,
@@ -22,7 +22,7 @@
 	return TRUE
 
 /datum/surgery_step/lobotomize
-	name = "perform lobotomy"
+	name = "przeprowadź lobotomię"
 	implements = list(TOOL_SCALPEL = 85, /obj/item/melee/transforming/energy/sword = 55, /obj/item/kitchen/knife = 35,
 		/obj/item/shard = 25, /obj/item = 20)
 	time = 100

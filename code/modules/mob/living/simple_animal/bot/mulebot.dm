@@ -11,7 +11,7 @@
 
 /mob/living/simple_animal/bot/mulebot
 	name = "\improper MULEbot"
-	desc = "A Multiple Utility Load Effector bot."
+	desc = "Bot typu MULE – Wielofunkcyjny Efektor Ładunkowy."
 	icon_state = "mulebot0"
 	density = TRUE
 	move_resist = MOVE_FORCE_STRONG
@@ -181,7 +181,7 @@
 		emagged = TRUE
 	if(!open)
 		locked = !locked
-		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s controls!</span>")
+		to_chat(user, "<span class='notice'>[locked ? "Blokujesz" : "Odblokowujesz"] sterowanie [src]!</span>")
 	flick("[base_icon]-emagged", src)
 	playsound(src, "sparks", 100, FALSE)
 
@@ -246,7 +246,7 @@
 	data["on"] = on
 	data["locked"] = locked
 	data["siliconUser"] = user.has_unlimited_silicon_privilege
-	data["mode"] = mode ? mode_name[mode] : "Ready"
+	data["mode"] = mode ? mode_name[mode] : "Gotowy"
 	data["modeStatus"] = ""
 	switch(mode)
 		if(BOT_IDLE, BOT_DELIVER, BOT_GO_HOME)
@@ -364,12 +364,12 @@
 	var/dat
 	dat += "<h3>Wielofunkcyjny Efektor Ładunkowy Mk. V</h3>"
 	dat += "<b>ID:</b> [id]<BR>"
-	dat += "<b>Power:</b> [on ? "On" : "Off"]<BR>"
+	dat += "<b>Zasilanie:</b> [on ? "Wł." : "Wył."]<BR>"
 	dat += "<h3>Status</h3>"
 	dat += "<div class='statusDisplay'>"
 	switch(mode)
 		if(BOT_IDLE)
-			dat += "<span class='good'>Ready</span>"
+			dat += "<span class='good'>Gotowy</span>"
 		if(BOT_DELIVER)
 			dat += "<span class='good'>[mode_name[BOT_DELIVER]]</span>"
 		if(BOT_GO_HOME)
@@ -383,7 +383,7 @@
 	dat += "</div>"
 
 	dat += "<b>Obecny ładunek:</b> [isobserver(load) ? "<i>Nieznany</i>" : (load ? load.name : "<i>Brak</i>")]<BR>"
-	dat += "<b>Destination:</b> [!destination ? "<i>none</i>" : destination]<BR>"
+	dat += "<b>Cel:</b> [!destination ? "<i>brak</i>" : destination]<BR>"
 	dat += "<b>Poziom zasilania:</b> [cell ? cell.percent() : 0]%"
 
 	if(locked && !ai && !IsAdminGhost(user))
@@ -393,7 +393,7 @@
 
 		dat += "<A href='byond://?src=[REF(src)];op=power'>Włącz/wyłącz</A><BR>"
 		dat += "<A href='byond://?src=[REF(src)];op=stop'>Stop</A><BR>"
-		dat += "<A href='byond://?src=[REF(src)];op=go'>Proceed</A><BR>"
+		dat += "<A href='byond://?src=[REF(src)];op=go'>Jedź</A><BR>"
 		dat += "<A href='byond://?src=[REF(src)];op=home'>Wróć do bazy</A><BR>"
 		dat += "<A href='byond://?src=[REF(src)];op=destination'>Ustaw cel</A><BR>"
 		dat += "<A href='byond://?src=[REF(src)];op=setid'>Ustaw ID bota</A><BR>"

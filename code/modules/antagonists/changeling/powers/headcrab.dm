@@ -1,6 +1,6 @@
 /datum/action/changeling/headcrab
-	name = "Last Resort"
-	desc = "We sacrifice our current body in a moment of need, placing us in control of a vessel that can plant our likeness in a new host. Cannot be used while being absorbed by another changeling. Costs 20 chemicals."
+	name = "Ostatnia deska ratunku"
+	desc = "W potrzebie poświęcamy obecne ciało i przejmujemy kontrolę nad nosicielem, który może zasiać nasze podobieństwo w nowym gospodarzu. Nie działa, gdy wchłania nas inny zmiennokształtny. Kosztuje 20 chemikaliów."
 	helptext = "Przejmujemy kontrolę nad małą, kruchą istotą. W tej postaci możemy zaatakować zwłoki, by złożyć jajo, z którego powoli wyrośnie nasza nowa forma. Nie działa, gdy wchłania nas inny zmiennokształtny."
 	button_icon_state = "last_resort"
 	chemical_cost = 20
@@ -19,7 +19,7 @@
 			if(other_ling?.isabsorbing)
 				to_chat(user, "<span class='warning'>Inny zmiennokształtny zakłóca naszą ostatnią deskę ratunku!</span>")
 				return
-	if(alert("Czy na pewno chcemy się zabić i stworzyć ślimaka-pasożyta?",,"Yes", "No") != "Yes")
+	if(alert("Czy na pewno chcemy się zabić i stworzyć ślimaka-pasożyta?",,"Tak", "Nie") != "Tak")
 		return
 	if(isliving(user))
 		var/mob/living/L = user

@@ -1,8 +1,8 @@
 // Picture frames
 
 /obj/item/wallframe/picture
-	name = "picture frame"
-	desc = "The perfect showcase for your favorite deathtrap memories."
+	name = "ramka na zdjęcie"
+	desc = "Idealna gablotka na ulubione wspomnienia ze śmiertelnej pułapki."
 	icon = 'icons/obj/decals.dmi'
 	materials = list()
 	flags_1 = 0
@@ -18,7 +18,7 @@
 			displayed = I
 			update_icon()
 		else
-			to_chat(user, "<span class=notice>W [src] jest już zdjęcie.</span>")
+			to_chat(user, "<span class='notice'>W [src] jest już zdjęcie.</span>")
 	..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
@@ -60,8 +60,8 @@
 		I.forceMove(PF)
 
 /obj/structure/sign/picture_frame
-	name = "picture frame"
-	desc = "Every time you look it makes you laugh."
+	name = "ramka na zdjęcie"
+	desc = "Za każdym razem, gdy na nią patrzysz, wywołuje uśmiech."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "frame-empty"
 	layer = ABOVE_WINDOW_LAYER
@@ -137,7 +137,7 @@
 			framed = P
 			update_icon()
 		else
-			to_chat(user, "<span class=notice>W [src] jest już zdjęcie.</span>")
+			to_chat(user, "<span class='notice'>W [src] jest już zdjęcie.</span>")
 
 	..()
 

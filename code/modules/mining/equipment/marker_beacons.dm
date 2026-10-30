@@ -15,9 +15,9 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 "Fuchsia" = LIGHT_COLOR_PINK)))
 
 /obj/item/stack/marker_beacon
-	name = "marker beacon"
-	singular_name = "marker beacon"
-	desc = "Prism-brand path illumination devices. Used by miners to mark paths and warn of danger."
+	name = "znaczniki"
+	singular_name = "znacznik"
+	desc = "Urządzenia do oświetlania ścieżek marki Prism. Górnicy oznaczają nimi drogę i ostrzegają przed niebezpieczeństwem."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "markerrandom"
 	merge_type = /obj/item/stack/marker_beacon
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 /obj/item/stack/marker_beacon/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input_color = input(user, "Choose a color.", "Kolor znacznika") as null|anything in GLOB.marker_beacon_colors
+	var/input_color = input(user, "Wybierz kolor.", "Kolor znacznika") as null|anything in GLOB.marker_beacon_colors
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(input_color)
@@ -67,8 +67,8 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 		update_icon()
 
 /obj/structure/marker_beacon
-	name = "marker beacon"
-	desc = "A Prism-brand path illumination device. It is anchored in place and glowing steadily."
+	name = "znacznik"
+	desc = "Urządzenie do oświetlania ścieżek marki Prism. Jest zakotwiczone w miejscu i świeci równym światłem."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "markerrandom"
 	layer = BELOW_OPEN_DOOR_LAYER
@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(marker_beacon_colors, sortList(list(
 /obj/structure/marker_beacon/AltClick(mob/living/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
-	var/input_color = input(user, "Choose a color.", "Kolor znacznika") as null|anything in GLOB.marker_beacon_colors
+	var/input_color = input(user, "Wybierz kolor.", "Kolor znacznika") as null|anything in GLOB.marker_beacon_colors
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	if(input_color)

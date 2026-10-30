@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/syringe
-	name = "syringe"
-	desc = "A syringe that can hold up to 15 units."
+	name = "strzykawka"
+	desc = "Strzykawka mieszcząca do 15 j."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	base_icon_state = "syringe"
@@ -205,8 +205,8 @@
 	forceMove(C)
 
 /obj/item/reagent_containers/syringe/used
-	name = "used syringe"
-	desc = "A syringe that can hold up to 15 units. This one is old, and it's probably a bad idea to use it."
+	name = "zużyta strzykawka"
+	desc = "Strzykawka mieszcząca do 15 j. Ta jest stara i używanie jej to chyba zły pomysł."
 
 /obj/item/reagent_containers/syringe/used/Initialize(mapload)
 	. = ..()
@@ -215,53 +215,53 @@
 		syringediseases += R
 
 /obj/item/reagent_containers/syringe/epinephrine
-	name = "syringe (epinephrine)"
-	desc = "Contains epinephrine - used to stabilize patients."
+	name = "strzykawka (epinefryna)"
+	desc = "Zawiera epinefrynę – służy do stabilizowania pacjentów."
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 15)
 
 /obj/item/reagent_containers/syringe/charcoal
-	name = "syringe (charcoal)"
-	desc = "Contains charcoal."
+	name = "strzykawka (węgiel aktywowany)"
+	desc = "Zawiera węgiel aktywowany."
 	list_reagents = list(/datum/reagent/medicine/charcoal = 15)
 
 /obj/item/reagent_containers/syringe/antitoxin
-	name = "syringe (antitoxin)"
-	desc = "Contains antitoxin."
+	name = "strzykawka (antytoksyna)"
+	desc = "Zawiera antytoksynę."
 	list_reagents = list(/datum/reagent/medicine/antitoxin = 15)
 
 /obj/item/reagent_containers/syringe/diphenhydramine
-	name = "syringe (diphenhydramine)"
-	desc = "Contains diphenhydramine, an antihistamine agent."
+	name = "strzykawka (difenhydramina)"
+	desc = "Zawiera difenhydraminę, lek przeciwhistaminowy."
 	list_reagents = list(/datum/reagent/medicine/diphenhydramine = 15)
 
 /obj/item/reagent_containers/syringe/calomel
-	name = "syringe (calomel)"
-	desc = "Contains calomel."
+	name = "strzykawka (kalomel)"
+	desc = "Zawiera kalomel."
 	list_reagents = list(/datum/reagent/medicine/calomel = 15)
 
 /obj/item/reagent_containers/syringe/antiviral
-	name = "syringe (spaceacillin)"
-	desc = "Contains antiviral agents."
+	name = "strzykawka (spacyklina)"
+	desc = "Zawiera środki przeciwwirusowe."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
 /obj/item/reagent_containers/syringe/bioterror
-	name = "bioterror syringe"
-	desc = "Contains several paralyzing reagents."
+	name = "strzykawka bioterrorystyczna"
+	desc = "Zawiera kilka paraliżujących odczynników."
 	list_reagents = list(/datum/reagent/consumable/ethanol/neurotoxin = 5, /datum/reagent/toxin/mutetoxin = 5, /datum/reagent/toxin/sodium_thiopental = 5)
 
 /obj/item/reagent_containers/syringe/calomel
-	name = "syringe (calomel)"
-	desc = "Contains calomel."
+	name = "strzykawka (kalomel)"
+	desc = "Zawiera kalomel."
 	list_reagents = list(/datum/reagent/medicine/calomel = 15)
 
 /obj/item/reagent_containers/syringe/plasma
-	name = "syringe (plasma)"
-	desc = "Contains plasma."
+	name = "strzykawka (plazma)"
+	desc = "Zawiera plazmę."
 	list_reagents = list(/datum/reagent/toxin/plasma = 15)
 
 /obj/item/reagent_containers/syringe/lethal
-	name = "lethal injection syringe"
-	desc = "A syringe used for lethal injections. It can hold up to 50 units."
+	name = "strzykawka do śmiertelnego zastrzyku"
+	desc = "Strzykawka do śmiertelnych zastrzyków. Mieści do 50 j."
 	amount_per_transfer_from_this = 50
 	volume = 50
 
@@ -273,21 +273,21 @@
 
 /obj/item/reagent_containers/syringe/mulligan
 	name = "Mulligan"
-	desc = "A syringe used to completely change the users identity."
+	desc = "Strzykawka, która całkowicie zmienia tożsamość użytkownika."
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/mulligan = 1)
 
 /obj/item/reagent_containers/syringe/gluttony
-	name = "Gluttony's Blessing"
-	desc = "A syringe recovered from a dread place. It probably isn't wise to use."
+	name = "Błogosławieństwo Obżarstwa"
+	desc = "Strzykawka wydobyta ze strasznego miejsca. Używanie jej to chyba niezbyt mądry pomysł."
 	amount_per_transfer_from_this = 1
 	volume = 1
 	list_reagents = list(/datum/reagent/gluttonytoxin = 1)
 
 /obj/item/reagent_containers/syringe/bluespace
-	name = "bluespace syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals."
+	name = "strzykawka bluespace"
+	desc = "Zaawansowana strzykawka mieszcząca 60 j. chemikaliów."
 	amount_per_transfer_from_this = 20
 	icon_state = "bluespace_0"
 	base_icon_state = "bluespace"
@@ -296,8 +296,8 @@
 	initial_inject = 8
 
 /obj/item/reagent_containers/syringe/cryo
-	name = "cryo syringe"
-	desc = "An advanced syringe that freezes reagents close to absolute 0. It can hold up to 20 units."
+	name = "kriostrzykawka"
+	desc = "Zaawansowana strzykawka, która zamraża odczynniki niemal do zera absolutnego. Mieści do 20 j."
 	icon_state = "cryo_0"
 	base_icon_state = "cryo"
 	volume = 20
@@ -326,8 +326,8 @@
 		processing = FALSE
 
 /obj/item/reagent_containers/syringe/piercing
-	name = "piercing syringe"
-	desc = "A diamond-tipped syringe that pierces armor. It can hold up to 10 units."
+	name = "strzykawka przebijająca"
+	desc = "Strzykawka z diamentową końcówką, która przebija pancerz. Mieści do 10 j."
 	icon_state = "piercing_0"
 	base_icon_state = "piercing"
 	volume = 10
@@ -336,13 +336,13 @@
 	initial_inject = 3
 
 /obj/item/reagent_containers/syringe/crude
-	name = "crude syringe"
-	desc = "A crudely made syringe. The flimsy wooden construction makes it hold a minimal amount of reagents."
+	name = "prymitywna strzykawka"
+	desc = "Prymitywnie wykonana strzykawka. Przez lichą drewnianą konstrukcję mieści minimalną ilość odczynników."
 	icon_state = "crude_0"
 	base_icon_state = "crude"
 	volume = 5
 
 /obj/item/reagent_containers/syringe/spider_extract
-	name = "spider extract syringe"
-	desc = "Contains crikey juice - makes any gold core create the most deadly companions in the world."
+	name = "strzykawka z ekstraktem pajęczym"
+	desc = "Zawiera sok krikey – sprawia, że każdy złoty rdzeń tworzy najzabójczych towarzyszy na świecie."
 	list_reagents = list(/datum/reagent/spider_extract = 1)

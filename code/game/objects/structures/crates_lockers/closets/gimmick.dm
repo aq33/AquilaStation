@@ -1,6 +1,6 @@
 /obj/structure/closet/cabinet
-	name = "cabinet"
-	desc = "Old will forever be in fashion."
+	name = "szafka"
+	desc = "Stare zawsze będzie modne."
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
 	open_sound = 'sound/machines/wooden_closet_open.ogg'
@@ -11,19 +11,19 @@
 	door_anim_time = 0 // no animation
 
 /obj/structure/closet/acloset
-	name = "strange closet"
-	desc = "It looks alien!"
+	name = "dziwna szafa"
+	desc = "Wygląda obco!"
 	icon_state = "alien"
 
 
 /obj/structure/closet/gimmick
-	name = "administrative supply closet"
-	desc = "It's a storage unit for things that have no right being here."
+	name = "szafa z zapasami administracyjnymi"
+	desc = "Szafa na rzeczy, które nie mają prawa tu być."
 	icon_state = "syndicate"
 
 /obj/structure/closet/gimmick/russian
-	name = "\improper Russian surplus closet"
-	desc = "It's a storage unit for Russian standard-issue surplus."
+	name = "\improper szafa z rosyjskimi demobilami"
+	desc = "Szafa na rosyjskie standardowe demobile."
 
 /obj/structure/closet/gimmick/russian/PopulateContents()
 	..()
@@ -33,8 +33,8 @@
 		new /obj/item/clothing/under/costume/soviet(src)
 
 /obj/structure/closet/gimmick/tacticool
-	name = "tacticool gear closet"
-	desc = "It's a storage unit for Tacticool gear."
+	name = "szafa ze sprzętem taktykulnym"
+	desc = "Szafa na taktykulny sprzęt."
 
 /obj/structure/closet/gimmick/tacticool/PopulateContents()
 	..()
@@ -55,12 +55,12 @@
 
 
 /obj/structure/closet/thunderdome
-	name = "\improper Thunderdome closet"
-	desc = "Everything you need!"
+	name = "\improper szafa Thunderdome"
+	desc = "Wszystko, czego potrzebujesz!"
 	anchored = TRUE
 
 /obj/structure/closet/thunderdome/tdred
-	name = "red-team Thunderdome closet"
+	name = "szafa Thunderdome drużyny czerwonej"
 	icon_door = "red"
 
 /obj/structure/closet/thunderdome/tdred/PopulateContents()
@@ -79,7 +79,7 @@
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
 /obj/structure/closet/thunderdome/tdgreen
-	name = "green-team Thunderdome closet"
+	name = "szafa Thunderdome drużyny zielonej"
 	icon_door = "green"
 
 /obj/structure/closet/thunderdome/tdgreen/PopulateContents()
@@ -98,7 +98,7 @@
 		new /obj/item/clothing/head/helmet/thunderdome(src)
 
 /obj/structure/closet/malf/suits
-	desc = "It's a storage unit for operational gear."
+	desc = "Szafa na sprzęt operacyjny."
 	icon_state = "syndicate"
 
 /obj/structure/closet/malf/suits/PopulateContents()

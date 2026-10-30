@@ -8,7 +8,7 @@
 #define GALACTIC_MATERIAL_ORDER "Galaktyczny Rynek Materiałów"
 
 /obj/machinery/materials_market
-	name = "galactic materials market"
+	name = "galaktyczny rynek materiałów"
 	desc = "Maszyna do kupna i sprzedaży arkuszy minerałów w całym układzie. \
 		Ceny potrafią się zmieniać bardzo często, czasem nawet w ciągu minuty. Wszystkie transakcje są ostateczne."
 	icon = 'aquila/icons/obj/economy/bounty_market.dmi'
@@ -275,7 +275,7 @@
 	return TRUE
 
 /obj/item/circuitboard/machine/materials_market
-	name = "galactic materials market (Machine Board)"
+	name = "galaktyczny rynek materiałów (płytka maszyny)"
 	icon_state = "supply"
 	build_path = /obj/machinery/materials_market
 	req_components = list(
@@ -431,7 +431,7 @@
 /datum/export/stock_block
 	cost = 1
 	k_elasticity = 0
-	unit_name = "stock block"
+	unit_name = "blok akcji"
 	export_types = list(/obj/item/stock_block)
 
 /datum/export/stock_block/get_amount(obj/O)

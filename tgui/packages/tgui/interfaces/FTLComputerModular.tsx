@@ -14,6 +14,16 @@ type Data = {
   pylons: any;
 };
 
+// AQUILA: PYLON_STATE_* z DM to klucze, tłumaczymy tylko napis
+const PYLON_STATUS_NAMES: Record<string, string> = {
+  offline: 'wyłączony',
+  shutdown: 'zatrzymany',
+  starting: 'uruchamianie',
+  warmup: 'rozgrzewanie',
+  spooling: 'rozkręcanie',
+  active: 'aktywny',
+};
+
 export const FTLComputerModular = (props) => {
   const { act, data } = useBackend<Data>();
   return (
@@ -25,19 +35,19 @@ export const FTLComputerModular = (props) => {
       <Window.Content scrollable>
         {(data.await_emergency_ftl_confirm && (
           <Section>
-            <Section title="OVERRIDE">
+            <Section title="NADPISANIE">
               <Button
                 icon="exclamation-triangle"
                 fluid
                 color="red"
                 onClick={() => act('emergency_jump')}
-                content="CONFIRM EMERGENCY JUMP?"
+                content="POTWIERDZIĆ SKOK AWARYJNY?"
               />
             </Section>
           </Section>
         )) || (
           <Section>
-            <Section title="Pylon control:">
+            <Section title="Sterowanie pylonami:">
               <Table.Row>
                 {Object.keys(data.pylons).map((key) => {
                   let value = data.pylons[key];
@@ -45,7 +55,7 @@ export const FTLComputerModular = (props) => {
                     <Table.Cell key={key}>
                       <Section title={`${value.name}`}>
                         <Button
-                          content="Toggle Power"
+                          content="Przełącz zasilanie"
                           icon="power-off"
                           color={
                             value.status === 'shutdown'
@@ -59,17 +69,20 @@ export const FTLComputerModular = (props) => {
                         />
                         <Button
                           content={
-                            value.shielded ? 'Open Shield' : 'Close Shield'
+                            value.shielded ? 'Otwórz osłonę' : 'Zamknij osłonę'
                           }
                           icon="exclamation-triangle"
                           color={value.shielded && 'average'}
                           onClick={() => act('toggle_shield', { id: value.id })}
                         />
                         <br />
-                        Cycle Status: <b>{value.status}</b>
+                        Stan cyklu:{' '}
+                        <b>
+                          {PYLON_STATUS_NAMES[value.status] || value.status}
+                        </b>
                         <br />
                         <br />
-                        Gyro Speed:
+                        Prędkość żyroskopu:
                         <ProgressBar
                           value={value.gyro}
                           ranges={{
@@ -79,7 +92,7 @@ export const FTLComputerModular = (props) => {
                           }}
                         />
                         <br />
-                        Capacitor Charge:
+                        Ładunek kondensatora:
                         <ProgressBar
                           value={value.capacitor}
                           ranges={{
@@ -89,7 +102,7 @@ export const FTLComputerModular = (props) => {
                           }}
                         />
                         <br />
-                        Power Draw: <b>{value.draw}</b>
+                        Pobór mocy: <b>{value.draw}</b>
                         <br />
                         Nucleium: <b>{value.nucleium}</b> mol
                         {value.nucleium !== 1 ? 's' : ''} / s
@@ -99,16 +112,16 @@ export const FTLComputerModular = (props) => {
                 })}
               </Table.Row>
               <Button
-                content="Find Pylons"
+                content="Znajdź pylony"
                 icon="search"
                 onClick={() => act('find_pylons')}
               />
             </Section>
-            <Section title="Manifold controls:">
+            <Section title="Sterowanie kolektorem:">
               <Button
                 color={!!data.powered && 'green'}
                 disabled={data.jumping || !data.pylons.length}
-                content={data.progress ? 'Shutdown Drive' : 'Spool Drive'}
+                content={data.progress ? 'Wyłącz napęd' : 'Rozkręć napęd'}
                 onClick={() => act('toggle_power')}
               />
               <Button
@@ -116,13 +129,13 @@ export const FTLComputerModular = (props) => {
                 disabled={!data.can_auto_spool}
                 content={
                   data.auto_spool_enabled
-                    ? 'Disable Autospool'
-                    : 'Enable Autospool'
+                    ? 'Wyłącz autorozkręcanie'
+                    : 'Włącz autorozkręcanie'
                 }
                 onClick={() => act('toggle_autospool')}
               />
             </Section>
-            <Section title="FTL Spoolup:">
+            <Section title="Rozkręcanie FTL:">
               <ProgressBar
                 value={data.progress / data.goal}
                 ranges={{

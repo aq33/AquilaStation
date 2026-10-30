@@ -1,6 +1,6 @@
 /datum/brain_trauma/hypnosis
-	name = "Hypnosis"
-	desc = "Patient's unconscious is completely enthralled by a word or sentence, focusing their thoughts and actions on it."
+	name = "Hipnoza"
+	desc = "Podświadomość pacjenta jest całkowicie zniewolona przez słowo lub zdanie, na którym skupia on myśli i działania."
 	scan_desc = "zapętlony wzorzec myślowy"
 	gain_text = ""
 	lose_text = ""
@@ -21,18 +21,18 @@
 	..()
 
 /datum/brain_trauma/hypnosis/on_gain()
-	message_admins("[ADMIN_LOOKUPFLW(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
+	message_admins("[ADMIN_LOOKUPFLW(owner)] zostaje zahipnotyzowany frazą '[hypnotic_phrase]'.")
 	owner.log_message("was hypnotized with the phrase '[hypnotic_phrase]'.", LOG_ATTACK, color="#960000")
 	log_game("[key_name(owner)] was hypnotized with the phrase '[hypnotic_phrase]'.")
 	to_chat(owner, "<span class='reallybig hypnophrase'>[hypnotic_phrase]</span>")
-	to_chat(owner, "<span class='notice'>[pick("You feel your thoughts focusing on this phrase... you can't seem to get it out of your head.",\
-												"Your head hurts, but this is all you can think of. It must be vitally important.",\
-												"You feel a part of your mind repeating this over and over. You need to follow these words.",\
-												"Something about this sounds... right, for some reason. You feel like you should follow these words.",\
-												"These words keep echoing in your mind. You find yourself completely fascinated by them.")]</span>")
+	to_chat(owner, "<span class='notice'>[pick("Czujesz, jak twoje myśli skupiają się na tym zdaniu... nie możesz wyrzucić go z głowy.",\
+												"Boli cię głowa, ale tylko o tym potrafisz myśleć. To musi być niezwykle ważne.",\
+												"Część twojego umysłu powtarza to w kółko. Musisz wykonać te słowa.",\
+												"Z jakiegoś powodu to brzmi... słusznie. Czujesz, że powinieneś wykonać te słowa.",\
+												"Te słowa wciąż odbijają się echem w twoim umyśle. Całkowicie cię fascynują.")]</span>")
 	to_chat(owner, "<span class='boldwarning'>Zahipnotyzowało cię to zdanie. Musisz wykonywać te słowa. Jeśli nie jest to jasny rozkaz, możesz dowolnie interpretować, jak go wykonać, o ile zachowujesz się tak, jakby te słowa były twoim najwyższym priorytetem.</span>")
 	var/atom/movable/screen/alert/hypnosis/hypno_alert = owner.throw_alert("hypnosis", /atom/movable/screen/alert/hypnosis)
-	hypno_alert.desc = "\"[hypnotic_phrase]\"... your mind seems to be fixated on this concept."
+	hypno_alert.desc = "„[hypnotic_phrase]”... twój umysł obsesyjnie krąży wokół tej myśli."
 	var/datum/atom_hud/antag/traitorhud = GLOB.huds[ANTAG_HUD_BRAINWASHED]
 	traitorhud.join_hud(owner.mind.current)
 	if(!owner.mind.antag_hud_icon_state)
@@ -40,7 +40,7 @@
 	..()
 
 /datum/brain_trauma/hypnosis/on_lose()
-	message_admins("[ADMIN_LOOKUPFLW(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
+	message_admins("[ADMIN_LOOKUPFLW(owner)] nie jest już zahipnotyzowany frazą '[hypnotic_phrase]'.")
 	log_game("[key_name(owner)] is no longer hypnotized with the phrase '[hypnotic_phrase]'.")
 	owner.log_message("is no longer hypnotized with the phrase '[hypnotic_phrase]'.", LOG_ATTACK, color="#960000")
 	to_chat(owner, "<span class='userdanger'>Nagle wyrywasz się z hipnozy. Wyrażenie '[hypnotic_phrase]' nie wydaje ci się już ważne.</span>")

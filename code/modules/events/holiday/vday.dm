@@ -60,8 +60,8 @@ GLOBAL_LIST(valentine_mobs)
 	priority_announce("Walentynki! Daj walentynkę tej wyjątkowej osobie!", sound = SSstation.announcer.get_rand_alert_sound())
 
 /obj/item/valentine
-	name = "valentine"
-	desc = "A Valentine's card! Wonder what it says..."
+	name = "walentynka"
+	desc = "Kartka walentynkowa! Ciekawe, co na niej jest..."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "sc_Ace of Hearts_syndicate" // shut up
 	var/message = "Zwykłe wyznanie miłości czy coś."
@@ -137,8 +137,8 @@ GLOBAL_LIST(valentine_mobs)
 		new_card.message = message
 		new_card.sender = user
 		new_card.target = picked_human
-		new_card.name = "valentines card from [new_card.sender]"
-		new_card.desc = "A Valentine's card! It is addressed to [new_card.target]."
+		new_card.name = "walentynka od: [new_card.sender]"
+		new_card.desc = "Kartka walentynkowa! Adresat: [new_card.target]."
 		new_card.used = TRUE
 		picked_human.equip_to_appropriate_slot(new_card)
 		to_chat(picked_human, "<span class='clown'>Nagle pojawia się magiczna kartka!</span>")
@@ -160,10 +160,10 @@ GLOBAL_LIST(valentine_mobs)
 	user.examinate(src)
 
 /obj/item/food/candyheart
-	name = "candy heart"
+	name = "cukierkowe serduszko"
 	icon = 'icons/obj/holiday_misc.dmi'
 	icon_state = "candyheart"
-	desc = "A heart-shaped candy that reads: "
+	desc = "Cukierek w kształcie serca z napisem: "
 	food_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 

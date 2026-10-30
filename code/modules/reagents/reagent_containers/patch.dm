@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/pill/patch
-	name = "chemical patch"
-	desc = "A chemical patch for touch based applications."
+	name = "plaster chemiczny"
+	desc = "Plaster chemiczny do podawania przez skórę."
 	icon = 'icons/obj/medicine_containers.dmi'
 	icon_state = "bandaid_small_cross"
 	item_state = "bandaid_small_cross"
@@ -28,19 +28,19 @@
 	return TRUE // Masks were stopping people from "eating" patches. Thanks, inheritance.
 
 /obj/item/reagent_containers/pill/patch/styptic
-	name = "brute patch"
-	desc = "Helps with brute injuries."
+	name = "plaster na urazy"
+	desc = "Pomaga na urazy fizyczne."
 	list_reagents = list(/datum/reagent/medicine/styptic_powder = 30)
 	icon_state = "bandaid_big_brute"
 
 /obj/item/reagent_containers/pill/patch/silver_sulf
-	name = "burn patch"
-	desc = "Helps with burn injuries."
+	name = "plaster na oparzenia"
+	desc = "Pomaga na oparzenia."
 	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 30)
 	icon_state = "bandaid_big_burn"
 
 /obj/item/reagent_containers/pill/patch/synthflesh
-	name = "synthflesh patch"
-	desc = "Helps with brute and burn injuries."
+	name = "plaster z syntetycznym ciałem"
+	desc = "Pomaga na urazy fizyczne i oparzenia."
 	list_reagents = list(/datum/reagent/medicine/synthflesh = 30)
 	icon_state = "bandaid_big_both"

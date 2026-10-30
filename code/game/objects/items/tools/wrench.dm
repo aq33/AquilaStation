@@ -1,6 +1,6 @@
 /obj/item/wrench
-	name = "wrench"
-	desc = "A wrench with common uses. Can be found in your hand."
+	name = "klucz nastawny"
+	desc = "Klucz do typowych zastosowań. Znajdziesz go w swojej ręce."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "wrench"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -25,23 +25,23 @@
 	return (BRUTELOSS)
 
 /obj/item/wrench/brass
-	name = "brass wrench"
-	desc = "A brass wrench. It's faintly warm to the touch."
+	name = "mosiężny klucz"
+	desc = "Mosiężny klucz. W dotyku jest lekko ciepły."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "wrench_brass"
 	toolspeed = 0.5
 
 /obj/item/wrench/abductor
-	name = "alien wrench"
-	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
+	name = "obcy klucz"
+	desc = "Spolaryzowany klucz. Obraca wszystko, co znajdzie się między jego szczękami."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
 	toolspeed = 0.1
 
 /obj/item/wrench/medical
-	name = "medical wrench"
-	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
+	name = "klucz medyczny"
+	desc = "Klucz medyczny do typowych (medycznych?) zastosowań. Znajdziesz go w swojej ręce."
 	icon_state = "wrench_medical"
 	force = 2 //MEDICAL
 	throwforce = 4
@@ -75,8 +75,8 @@
 	return OXYLOSS
 
 /obj/item/wrench/cyborg
-	name = "hydraulic wrench"
-	desc = "An advanced robotic wrench, powered by internal hydraulics. Twice as fast as the handheld version."
+	name = "klucz hydrauliczny"
+	desc = "Zaawansowany klucz robotyczny napędzany wewnętrzną hydrauliką. Dwa razy szybszy od wersji ręcznej."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "wrench_cyborg"
 	toolspeed = 0.5

@@ -2,14 +2,14 @@
 // !           Cogscarab          ! //
 //==================================//
 /datum/clockcult/scripture/cogscarab
-	name = "Summon Cogscarab"
-	desc = "Summon a Cogscarab shell, which will be possessed by fallen Rat'Varian soldiers. Requires 2 invokers. Takes longer the more cogscarabs are alive. Requires 20 vitality."
+	name = "Przywołanie zębatkoskarabeusza"
+	desc = "Przywołuje skorupę zębatkoskarabeusza, którą opętają polegli żołnierze Rat'vara. Wymaga 2 przywołujących. Trwa tym dłużej, im więcej zębatkoskarabeuszy żyje. Wymaga 20 witalności."
 	tip = "Używaj zębatkoskarabeuszy do umacniania Reebe, podczas gdy ludzcy słudzy nawracają i sabotują załogę."
 	button_icon_state = "Cogscarab"
 	power_cost = 500
 	vitality_cost = 20
 	invokation_time = 120
-	invokation_text = list("My fallen brothers,", "Nadszedł czas, byśmy powstali", "Protect our lord", "Achieve greatness!")
+	invokation_text = list("Moi polegli bracia,", "Nadszedł czas, byśmy powstali", "Chrońcie naszego pana", "Osiągnijcie wielkość!")
 	category = SPELLTYPE_PRESERVATION
 	cogs_required = 5
 	invokers_required = 2

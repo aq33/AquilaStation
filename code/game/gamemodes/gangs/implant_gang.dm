@@ -1,6 +1,6 @@
 /obj/item/implant/gang
-	name = "gang implant"
-	desc = "Makes you a gangster or such."
+	name = "implant gangu"
+	desc = "Robi z ciebie gangstera czy coś."
 	activated = 0
 	var/datum/team/gang/gang
 
@@ -9,15 +9,15 @@
 	gang = setgang
 
 /obj/item/implant/gang/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-				<b>Name:</b> Criminal brainwash implant<BR>
-				<b>Life:</b> A few seconds after injection.<BR>
-				<b>Important Notes:</b> Illegal<BR>
+	var/dat = {"<b>Specyfikacja implantu:</b><BR>
+				<b>Nazwa:</b> przestępczy implant prania mózgu<BR>
+				<b>Żywotność:</b> kilka sekund po wstrzyknięciu.<BR>
+				<b>Ważne uwagi:</b> nielegalny<BR>
 				<HR>
-				<b>Implant Details:</b><BR>
-				<b>Function:</b> Contains a small pod of nanobots that change the host's brain to be loyal to a certain organization.<BR>
-				<b>Notice:</b> Latest NT Mindshield implants counteract the effect of this implant.<BR>
-				<b>Integrity:</b> Latest NT Mindshield will neutralize this implant."}
+				<b>Szczegóły implantu:</b><BR>
+				<b>Działanie:</b> zawiera małą kapsułę nanobotów, które przestawiają mózg nosiciela na lojalność wobec określonej organizacji.<BR>
+				<b>Uwaga:</b> najnowsze implanty ochrony umysłu NT przeciwdziałają temu implantowi.<BR>
+				<b>Trwałość:</b> najnowszy implant ochrony umysłu NT neutralizuje ten implant."}
 	return dat
 
 /obj/item/implant/gang/implant(mob/living/target, mob/user, silent = 0)

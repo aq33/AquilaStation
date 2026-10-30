@@ -1,11 +1,11 @@
 /obj/item/transfer_valve
 	icon = 'icons/obj/assemblies.dmi'
-	name = "tank transfer valve"
+	name = "zawór transferowy butli"
 	icon_state = "valve_1"
 	item_state = "ttv"
 	lefthand_file = 'icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/bombs_righthand.dmi'
-	desc = "Regulates the transfer of air between two tanks."
+	desc = "Reguluje przepływ powietrza między dwiema butlami."
 	w_class = WEIGHT_CLASS_BULKY
 
 
@@ -41,7 +41,7 @@
 			to_chat(user, "<span class='notice'>Podłączasz butlę do zaworu transferowego.</span>")
 
 		if(tank_one && tank_two)
-			message_admins("[ADMIN_LOOKUPFLW(user)] has added two tanks to \the [src] at [ADMIN_VERBOSEJMP(src)]!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] dodaje dwie butle do [src] w [ADMIN_VERBOSEJMP(src)]!")
 
 
 		update_icon()
@@ -166,17 +166,17 @@
 		var/admin_attachment_message
 		var/attachment_message
 		if(attachment && !manual)
-			admin_attachment_message = " with [attachment] attached by [attacher ? ADMIN_LOOKUPFLW(attacher) : "Unknown CKEY"]"
+			admin_attachment_message = " z dołączonym urządzeniem [attachment] (dołączył: [attacher ? ADMIN_LOOKUPFLW(attacher) : "nieznany CKEY"])"
 			attachment_message = " with [attachment] attached by [attacher ? key_name_admin(attacher) : "Unknown CKEY"]"
 
 		var/mob/bomber = get_mob_by_ckey(fingerprintslast)
 		var/admin_bomber_message
 		var/bomber_message
 		if(bomber)
-			admin_bomber_message = " - Last touched by: [ADMIN_LOOKUPFLW(bomber)]"
+			admin_bomber_message = " - ostatnio dotykał: [ADMIN_LOOKUPFLW(bomber)]"
 			bomber_message = " - Last touched by: [key_name_admin(bomber)]"
 
-		var/admin_bomb_message = "Bomb valve opened [manual ? "manually" : ""] in [ADMIN_VERBOSEJMP(bombturf)][admin_attachment_message][admin_bomber_message]"
+		var/admin_bomb_message = "Otwarto zawór bomby[manual ? " ręcznie" : ""] w [ADMIN_VERBOSEJMP(bombturf)][admin_attachment_message][admin_bomber_message]"
 		GLOB.bombers += admin_bomb_message
 		message_admins(admin_bomb_message)
 		log_game("Bomb valve opened [manual ? "manually " : ""]in [AREACOORD(bombturf)][attachment_message][bomber_message]")

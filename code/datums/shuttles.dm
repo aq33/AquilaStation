@@ -1,5 +1,5 @@
 /datum/map_template/shuttle
-	name = "Base Shuttle Template"
+	name = "Bazowy szablon promu"
 	var/prefix = "_maps/shuttles/"
 	var/suffix
 	var/port_id
@@ -171,17 +171,17 @@
 
 /datum/map_template/shuttle/emergency
 	port_id = "emergency"
-	name = "Base Shuttle Template (Emergency)"
+	name = "Bazowy szablon promu (ewakuacyjny)"
 	untowable = TRUE
 
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
-	name = "Base Shuttle Template (Cargo)"
+	name = "Bazowy szablon promu (zaopatrzenie)"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
-	name = "Base Shuttle Template (Ferry)"
+	name = "Bazowy szablon promu (transportowy)"
 
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
@@ -235,12 +235,12 @@
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
-	name = "Backup Shuttle"
+	name = "Prom zapasowy"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
-	name = "Build your own shuttle kit"
+	name = "Zestaw „zbuduj własny prom”"
 	description = "Dla przedsiębiorczego inżyniera promów! Kadłub zadokuje zaraz po zakupie, ale start trzeba będzie jak zwykle zatwierdzić przez wezwanie promu. Zaopatrzony w materiały budowlane."
 	admin_notes = "Bez aresztu, bez zaplecza medycznego, bez konsoli promu."
 	credit_cost = -2500
@@ -258,34 +258,34 @@
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
-	name = "Asteroid Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Asteroid"
 	description = "Szanowany prom średniej wielkości, który po raz pierwszy służył do przewożenia załogi Nanotrasen do i z placówek w pasie asteroid."
 	credit_cost = 3000
 
 /datum/map_template/shuttle/emergency/bar
 	suffix = "bar"
-	name = "The Emergency Escape Bar"
+	name = "Bar ewakuacyjny"
 	description = "Na wyposażeniu: świadoma obsługa baru (Bardron i Barmanka), łazienka, wysokiej klasy salonik dla szefów oraz duży stół do spotkań."
 	admin_notes = "Bardron i Barmanka mają GODMODE i zostaną automatycznie ożywieni przez balon zabawy 60 sekund przed przylotem. Ma zaplecze medyczne."
 	credit_cost = 5000
 
 /datum/map_template/shuttle/emergency/pod
 	suffix = "pod"
-	name = "Emergency Pods"
+	name = "Kapsuły ratunkowe"
 	description = "Nie spodziewaliśmy się tak szybkiej ewakuacji. Mamy do dyspozycji tylko dwie kapsuły ratunkowe."
 	admin_notes = "Do karania graczy."
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
-	name = "Mother Russia Bleeds"
+	name = "Matuszka Rosja krwawi"
 	description = "To jest wysokiej jakości prom, da. Dużo miejsc, dużo przestrzeni, cały sprzęt! Jest nawet rozrywka! Na przykład dużo picia i arena walk, żeby pijana załoga mogła się zabawić! Jak arena za mało zabawna, wystarczy nacisnąć przycisk wypuszczania niedźwiedzi. Nie martw się, niedźwiedzie wytresowane, żeby nie uciekać z areny, więc zupełnie bezpiecznie, dopóki nikt nie jest tak głupi albo pijany, żeby zostawić otwarte drzwi. Postaraj się, żeby asimovowe borgi nie zepsuły zabawy!"
 	admin_notes = "Zawiera niewielki wybór broni. I niedźwiedzie. Tylko dostęp kapitański pozwala wypuścić niedźwiedzie. Niedźwiedzie same nie rozbiją okien, ale mogą uciec, jeśli ktoś je wypuści."
 	credit_cost = 5000 // While the shuttle is rusted and poorly maintained, trained bears are costly.
 
 /datum/map_template/shuttle/emergency/meteor
 	suffix = "meteor"
-	name = "Asteroid With Engines Strapped To It"
+	name = "Asteroida z przypiętymi silnikami"
 	description = "Wydrążona asteroida z przypiętymi silnikami; procedura drążenia bardzo utrudnia porwanie, ale jest bardzo droga. Ze względu na rozmiar i trudne sterowanie ten prom może uszkodzić strefę dokowania."
 	admin_notes = "Ten prom najpewniej zmiażdży strefę ewakuacji, zabijając wszystkich, którzy tam są."
 	credit_cost = 15000
@@ -293,7 +293,7 @@
 
 /datum/map_template/shuttle/emergency/luxury
 	suffix = "luxury"
-	name = "Luxury Shuttle"
+	name = "Luksusowy prom"
 	description = "Luksusowy złoty prom z krytym basenem. Każdy członek załogi, który chce wejść na pokład, musi przynieść 500 kredytów, płatnych gotówką i monetami z minerałów."
 	extra_desc = "Wejście na pokład tego promu kosztuje 500 kredytów."
 	admin_notes = "Z powodu ograniczonego miejsca dla niepłacącej załogi ten prom może wywołać zamieszki."
@@ -308,7 +308,7 @@
 
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
-	name = "The Arena"
+	name = "Arena"
 	description = "Aby wejść na pokład tego promu, załoga musi przejść przez nieziemską arenę. Należy spodziewać się ogromnych strat. Aby odblokować ten prom, trzeba wytropić i zlikwidować źródło Krwawego Sygnału."
 	admin_notes = "ROZERWIJ I ROZSZARP."
 	credit_cost = 10000
@@ -328,24 +328,24 @@
 		arena_template.load_new_z()
 
 /datum/map_template/arena
-	name = "The Arena"
+	name = "Arena"
 	mappath = "_maps/templates/the_arena.dmm"
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
-	name = "Birdboat Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Birdboat"
 	description = "Choć trochę mały, ten prom ma wszystko, czego trzeba, czego nie da się powiedzieć o typie stacji, dla którego go zamówiono."
 	credit_cost = 1000
 
 /datum/map_template/shuttle/emergency/shelter
 	suffix = "shelter"
-	name = "BSP Collapsable Emergency Shuttle"
+	name = "Składany prom ewakuacyjny BSP"
 	description = "Nowy produkt spółki zależnej Nanotrasen, zaprojektowany z myślą o szybkiej budowie i użyciu, z udogodnieniami małego promu ewakuacyjnego, w tym kapsułami medycznymi. Na szczęście prom rzeczywiście szybciej się rozkłada. Na nieszczęście dochodzi do tego czas budowy, więc przelot wcale nie będzie szybszy."
 	credit_cost = 2500
 
 /datum/map_template/shuttle/emergency/box
 	suffix = "box"
-	name = "Box Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Box"
 	credit_cost = 2000
 	description = "Złoty standard ewakuacji awaryjnej; ta sprawdzona konstrukcja ma wszystko, czego załoga potrzebuje do bezpiecznego lotu do domu."
 
@@ -358,49 +358,49 @@
 
 /datum/map_template/shuttle/emergency/cramped
 	suffix = "cramped"
-	name = "Secure Transport Vessel 5 (STV5)"
+	name = "Bezpieczny statek transportowy 5 (STV5)"
 	description = "Wygląda na to, że Centrala miała w okolicy tylko ten statek; pewnie nie spodziewali się, że tak szybko będziecie potrzebować ewakuacji. Lepiej nie grzebcie w sprzęcie, który przewozili. Mam nadzieję, że lubicie współpracowników, bo miejsca jest tu bardzo mało.\n\nZawiera kontrabandową broń ze zbrojowni, łupy z tuneli technicznych i porzucone skrzynie!"
 	admin_notes = "Jako że był to zabezpieczony statek dla jednego pilota, ma na pokładzie aktywny GPS oznaczony STV5. Ma mniej więcej tyle miejsca co Hi Daniel, tylko ze skrzyniami wybuchowymi."
 
 /datum/map_template/shuttle/emergency/meta
 	suffix = "meta"
-	name = "Meta Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Meta"
 	credit_cost = 4000
 	description = "Dość standardowy prom, choć większy i nieco lepiej wyposażony niż wariant z Box Station."
 
 /datum/map_template/shuttle/emergency/kilo
 	suffix = "kilo"
-	name = "Kilo Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Kilo"
 	credit_cost = 5000
 	description = "W pełni funkcjonalny prom z kompletnym ambulatorium, magazynami i zwykłymi udogodnieniami."
 
 /datum/map_template/shuttle/emergency/corg
 	suffix = "corg"
-	name = "Corg Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Corg"
 	credit_cost = 4000
 	description = "Mniejszy prom z miejscem dla personelu zaopatrzenia, medycznego i ochrony."
 
 /datum/map_template/shuttle/emergency/fland
 	suffix = "fland"
-	name = "Flandstation Wide shuttle"
+	name = "Szeroki prom stacji Fland"
 	description = "To gruby prom dla dość nietypowej stacji... hmm..."
 	admin_notes = "Jest duży, więc może zahaczyć o otoczenie na innych mapach, które nie mają ogromnej strefy dokowania awaryjnego."
 	credit_cost = 8000
 
 /datum/map_template/shuttle/emergency/donut //NSV13 - we were using that shuttle
 	suffix = "donut"
-	name = "Donut Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Donut"
 	credit_cost = 4000
 
 /datum/map_template/shuttle/emergency/mini
 	suffix = "mini"
-	name = "Ministation emergency shuttle"
+	name = "Prom ewakuacyjny Ministacji"
 	credit_cost = 1000
 	description = "Mimo nazwy ten prom jest tylko nieco mniejszy od standardowego i wciąż ma areszt oraz ambulatorium."
 
 /datum/map_template/shuttle/emergency/scrapheap
 	suffix = "scrapheap"
-	name = "Standby Evacuation Vessel \"Scrapheap Challenge\""
+	name = "Rezerwowy statek ewakuacyjny „Złomowisko”"
 	credit_cost = -1000
 	description = "Z powodu braku sprawnych promów ewakuacyjnych kupiliśmy ten z drugiej ręki na złomowisku i wcieliliśmy go do służby. Prosimy nie opierać się zbyt mocno o zewnętrzne okna, są kruche."
 	admin_notes = "Pokraka bez działającego ambulatorium, z brakującymi sekcjami i bardzo kruchymi oknami. Zaskakująco szczelna."
@@ -408,7 +408,7 @@
 
 /datum/map_template/shuttle/emergency/narnar
 	suffix = "narnar"
-	name = "Shuttle 667"
+	name = "Prom 667"
 	description = "Wygląda na to, że ten prom w drodze na stację zabłądził w ciemność między gwiazdami. Lepiej nie zastanawiać się zbyt długo, skąd się wzięły te wszystkie ciała."
 	admin_notes = "Zawiera prawdziwe ruiny kultu, gałki oczne i nieaktywne konstrukty. Moby kultu zostaną automatycznie ożywione przez balon zabawy. Kapsuły klonujące w „ambulatorium” są atrapami i nie działają."
 
@@ -419,21 +419,21 @@
 
 /datum/map_template/shuttle/emergency/pubby
 	suffix = "pubby"
-	name = "Pubby Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Pubby"
 	description = "Pociąg, tylko w kosmosie! Z pierwszą i drugą klasą, aresztem i magazynem."
 	admin_notes = "Ciuch ciuch, skurczybyku!"
 	credit_cost = 1000
 
 /datum/map_template/shuttle/emergency/cere
 	suffix = "cere"
-	name = "Cere Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Cere"
 	description = "Duża, wzmocniona wersja standardowego promu z Box. Zawiera powiększony areszt, w pełni zaopatrzone ambulatorium, rozbudowany magazyn zaopatrzenia z ładowarkami mechów, maszynownię z różnymi zapasami, a na dokładkę mieści ponad 80 osób załogi. Żyj z rozmachem, żyj jak na Cere."
 	admin_notes = "Naprawdę wielki, nawet większy od promu Delta."
 	credit_cost = 10000
 
 /datum/map_template/shuttle/emergency/supermatter
 	suffix = "supermatter"
-	name = "Hyperfractal Gigashuttle"
+	name = "Hiperfraktalny gigaprom"
 	description = "„Nie wiem, to wydaje się niepotrzebnie skomplikowane.”\n„Według kadeta Centrali Yinsa ten prom ma bardzo wysoki wskaźnik bezpieczeństwa.”\n„Na pewno?”\n„Tak, ma wskaźnik bezpieczeństwa N-A-N, a to podobno więcej niż 100%.”"
 	admin_notes = "Supermateria pojawiająca się na promie to specjalna, przytwierdzona supermateria „hugbox”, która nie otrzymuje obrażeń i nie pochłania ani nie emituje gazu. Bez ingerencji admina nie może wybuchnąć. Nadal jednak obraca w pył wszystko, czego dotknie, emituje wysokie promieniowanie i wywołuje halucynacje u każdego, kto patrzy na nią bez gogli ochronnych. Emitery pojawiają się włączone; spodziewaj się powiadomień dla adminów, są nieszkodliwe."
 	credit_cost = 100000
@@ -462,44 +462,44 @@
 
 /datum/map_template/shuttle/emergency/omega
 	suffix = "omega"
-	name = "Omegastation Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Omega"
 	description = "Raczej niewielki, o nowoczesnym wyglądzie; ten prom jest dla załogi, która lubi przytulne wnętrza, ale wciąż chce mieć gdzie rozprostować nogi."
 	credit_cost = 1000
 
 /datum/map_template/shuttle/ferry/base
 	suffix = "base"
-	name = "transport ferry"
+	name = "prom transportowy"
 	description = "Standardowy prom Centrali dla stacji Box/Meta."
 
 /datum/map_template/shuttle/ferry/meat
 	suffix = "meat"
-	name = "\"meat\" ferry"
+	name = "prom „mięsny”"
 	description = "Ahoj! Mamy tu na rufie wszelkie mięsiwo. Mięso z ludzi-roślin, z ludzi, co są ciemni, nie w rasistowskim sensie, po prostu są czarni jak smoła. A, i mięso jaszczurów też, cholernie popularne. Na pewno w 100% świeże, spytaj tego gościa. *osoba na haku na mięso jęczy* Widzisz? Na pewno wysokiej jakości mięso, nic mu nie brakuje, nic nie dodane, na pewno żadnych zombifikujących odczynników!"
 	admin_notes = "Mięso obecnie nie zawiera zombifikujących odczynników, jaszczura na haku trzeba zespawnować."
 
 /datum/map_template/shuttle/ferry/lighthouse
 	suffix = "lighthouse"
-	name = "The Lighthouse(?)"
+	name = "Latarnia(?)"
 	description = "*szum*... część znacznie większego statku, możliwe, że wojskowego. Oznaczenia broni nie przypominają niczego, co widzieliśmy ...szum... prawie nigdy przez tę samą osobę dwa razy, możliwe użycie nieznanego magazynu ...szum... widząc na pokładzie oficerów ERT, ale w aktach nie ma misji dla ...szum...szum...irytujący dżingiel... tylko w LIGHTHOUSE! Zaspokajamy potrzeby, o których nawet nie wiedziałeś. Mamy WSZYSTKO, i jeszcze coś!"
 	admin_notes = "Obecnie większy niż port dokowania promu na Box; w nic nie uderzy, ale trzeba go dokować siłą. Handlarz i ochroniarze ERT nie są wliczeni."
 
 /datum/map_template/shuttle/ferry/fancy
 	suffix = "fancy"
-	name = "fancy transport ferry"
+	name = "elegancki prom transportowy"
 	description = "W pewnym momencie ktoś ulepszył prom, dając mu bardziej wymyślną podłogę... i mniej siedzeń."
 
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
-	name = "kilo transport ferry"
+	name = "prom transportowy (Kilo)"
 	description = "Standardowy prom Centrali dla stacji typu Kilo. Zawiera dodatkowy sprzęt i ładowarki."
 
 /datum/map_template/shuttle/whiteship/box
 	suffix = "box"
-	name = "Hospital Ship"
+	name = "Statek szpitalny"
 
 /datum/map_template/shuttle/whiteship/meta
 	suffix = "meta"
-	name = "Salvage Ship"
+	name = "Statek złomiarzy"
 
 /datum/map_template/shuttle/whiteship/pubby
 	suffix = "pubby"
@@ -507,42 +507,42 @@
 
 /datum/map_template/shuttle/whiteship/cere
 	suffix = "cere"
-	name = "NT Construction Vessel"
+	name = "Statek budowlany NT"
 
 /datum/map_template/shuttle/whiteship/delta
 	suffix = "delta"
-	name = "NT Frigate"
+	name = "Fregata NT"
 
 /datum/map_template/shuttle/whiteship/pod
 	suffix = "whiteship_pod"
-	name = "Salvage Pod"
+	name = "Kapsuła złomiarzy"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
-	name = "supply shuttle (Box)"
+	name = "prom zaopatrzeniowy (Box)"
 
 /datum/map_template/shuttle/cargo/kilo
 	suffix = "kilo"
-	name = "supply shuttle (Kilo)"
+	name = "prom zaopatrzeniowy (Kilo)"
 
 /datum/map_template/shuttle/cargo/corg
 	suffix = "corg"
-	name = "supply shuttle (Corg)"
+	name = "prom zaopatrzeniowy (Corg)"
 
 /datum/map_template/shuttle/cargo/birdboat
 	suffix = "birdboat"
-	name = "supply shuttle (Birdboat)"
+	name = "prom zaopatrzeniowy (Birdboat)"
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
-	name = "Delta Station Emergency Shuttle"
+	name = "Prom ewakuacyjny stacji Delta"
 	description = "Duży prom dla dużej stacji; zmieści wygodnie całe twoje przeludnienie i tłok. Ze wszystkimi udogodnieniami i dodatkowym sprzętem."
 	admin_notes = "Na bogato albo wcale."
 	credit_cost = 7500
 
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
-	name = "CentCom Raven Cruiser"
+	name = "Krążownik Centrali Raven"
 	description = "Krążownik Raven Centrali to dawny statek ratowniczy wysokiego ryzyka, przerobiony na prom ewakuacyjny. Kiedyś pierwszy na miejscu, by przeczesywać strefy działań wojennych w poszukiwaniu cennych szczątków, teraz świetnie sprawdza się przy ewakuacji stacji pod ciężkim ostrzałem sił zewnętrznych. Ten prom ma osłony i liczne wieżyczki przeciwpiechotne strzegące jego obwodu, by odpierać meteory i próby abordażu."
 	admin_notes = "Ma wieżyczki, które celują we wszystko spoza neutralnej frakcji (nukeopsi, ksenomorfy itd., ale nie zwierzaki)."
 	credit_cost = 30000
@@ -561,159 +561,159 @@
 
 /datum/map_template/shuttle/arrival/box
 	suffix = "box"
-	name = "arrival shuttle (Box)"
+	name = "prom przylotów (Box)"
 
 /datum/map_template/shuttle/cargo/box
 	suffix = "box"
-	name = "cargo ferry (Box)"
+	name = "prom towarowy (Box)"
 
 /datum/map_template/shuttle/mining/box
 	suffix = "box"
-	name = "mining shuttle (Box)"
+	name = "prom górniczy (Box)"
 
 /datum/map_template/shuttle/labour/box
 	suffix = "box"
-	name = "labour shuttle (Box)"
+	name = "prom obozu pracy (Box)"
 
 /datum/map_template/shuttle/arrival/corg
 	suffix = "corg"
-	name = "arrival shuttle (Corg)"
+	name = "prom przylotów (Corg)"
 
 /datum/map_template/shuttle/infiltrator/basic
 	suffix = "basic"
-	name = "basic syndicate infiltrator"
+	name = "podstawowy infiltrator Syndykatu"
 
 /datum/map_template/shuttle/infiltrator/advanced
 	suffix = "advanced"
-	name = "advanced syndicate infiltrator"
+	name = "zaawansowany infiltrator Syndykatu"
 
 /datum/map_template/shuttle/cargo/delta
 	suffix = "delta"
-	name = "cargo ferry (Delta)"
+	name = "prom towarowy (Delta)"
 
 /datum/map_template/shuttle/mining/delta
 	suffix = "delta"
-	name = "mining shuttle (Delta)"
+	name = "prom górniczy (Delta)"
 
 /datum/map_template/shuttle/mining/kilo
 	suffix = "kilo"
-	name = "mining shuttle (Kilo)"
+	name = "prom górniczy (Kilo)"
 
 /datum/map_template/shuttle/mining/large
 	suffix = "large"
-	name = "mining shuttle (Large)"
+	name = "prom górniczy (duży)"
 
 /datum/map_template/shuttle/science
 	port_id = "science"
 	suffix = "outpost"
-	name = "science outpost shuttle"
+	name = "prom placówki naukowej"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/exploration
 	port_id = "exploration"
 	suffix = "shuttle"
-	name = "exploration shuttle"
+	name = "prom eksploracyjny"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/exploration/corg
 	suffix = "corg"
-	name = "corg exploration shuttle"
+	name = "prom eksploracyjny (Corg)"
 
 /datum/map_template/shuttle/exploration/delta
 	suffix = "delta"
-	name = "delta exploration shuttle"
+	name = "prom eksploracyjny (Delta)"
 
 /datum/map_template/shuttle/exploration/kilo
 	suffix = "kilo"
-	name = "kilo exploration shuttle"
+	name = "prom eksploracyjny (Kilo)"
 
 /datum/map_template/shuttle/labour/delta
 	suffix = "delta"
-	name = "labour shuttle (Delta)"
+	name = "prom obozu pracy (Delta)"
 
 /datum/map_template/shuttle/labour/kilo
 	suffix = "kilo"
-	name = "labour shuttle (Kilo)"
+	name = "prom obozu pracy (Kilo)"
 
 /datum/map_template/shuttle/labour/corg
 	suffix = "corg"
-	name = "labour shuttle (Corg)"
+	name = "prom obozu pracy (Corg)"
 
 /datum/map_template/shuttle/arrival/delta
 	suffix = "delta"
-	name = "arrival shuttle (Delta)"
+	name = "prom przylotów (Delta)"
 
 /datum/map_template/shuttle/arrival/kilo
 	suffix = "kilo"
-	name = "arrival shuttle (Kilo)"
+	name = "prom przylotów (Kilo)"
 
 /datum/map_template/shuttle/arrival/pubby
 	suffix = "pubby"
-	name = "arrival shuttle (Pubby)"
+	name = "prom przylotów (Pubby)"
 
 /datum/map_template/shuttle/arrival/omega
 	suffix = "omega"
-	name = "arrival shuttle (Omega)"
+	name = "prom przylotów (Omega)"
 
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
-	name = "auxilliary base (Default)"
+	name = "baza pomocnicza (domyślna)"
 
 /datum/map_template/shuttle/aux_base/small
 	suffix = "small"
-	name = "auxilliary base (Small)"
+	name = "baza pomocnicza (mała)"
 
 /datum/map_template/shuttle/escape_pod/default
 	suffix = "default"
-	name = "escape pod (Default)"
+	name = "kapsuła ratunkowa (domyślna)"
 
 /datum/map_template/shuttle/escape_pod/large
 	suffix = "large"
-	name = "escape pod (Large)"
+	name = "kapsuła ratunkowa (duża)"
 
 /datum/map_template/shuttle/assault_pod/default
 	suffix = "default"
-	name = "assault pod (Default)"
+	name = "kapsuła szturmowa (domyślna)"
 
 /datum/map_template/shuttle/pirate/default
 	suffix = "default"
-	name = "pirate ship (Default)"
+	name = "statek piracki (domyślny)"
 
 /datum/map_template/shuttle/hunter/space_cop
 	suffix = "space_cop"
-	name = "Police Spacevan"
+	name = "Kosmiczny radiowóz"
 
 /datum/map_template/shuttle/hunter/russian
 	suffix = "russian"
-	name = "Russian Cargo Ship"
+	name = "Rosyjski statek towarowy"
 
 /datum/map_template/shuttle/hunter/bounty
 	suffix = "bounty"
-	name = "Bounty Hunter Ship"
+	name = "Statek łowców nagród"
 
 /datum/map_template/shuttle/ruin/caravan_victim
 	suffix = "caravan_victim"
-	name = "Small Freighter"
+	name = "Mały frachtowiec"
 
 /datum/map_template/shuttle/ruin/pirate_cutter
 	suffix = "pirate_cutter"
-	name = "Pirate Cutter"
+	name = "Kuter piracki"
 
 /datum/map_template/shuttle/ruin/syndicate_dropship
 	suffix = "syndicate_dropship"
-	name = "Syndicate Dropship"
+	name = "Statek desantowy Syndykatu"
 
 /datum/map_template/shuttle/ruin/syndicate_fighter_shiv
 	suffix = "syndicate_fighter_shiv"
-	name = "Syndicate Fighter"
+	name = "Myśliwiec Syndykatu"
 
 /datum/map_template/shuttle/snowdin/mining
 	suffix = "mining"
-	name = "Snowdin Mining Elevator"
+	name = "Winda górnicza Snowdin"
 
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
-	name = "Snowdin Excavation Elevator"
+	name = "Winda wykopaliskowa Snowdin"
 
  // Turbolifts
 /datum/map_template/shuttle/turbolift
@@ -723,7 +723,7 @@
 /datum/map_template/shuttle/turbolift/debug/primary
 	port_id = "debug"
 	suffix = "primary"
-	name = "primary turbolift (multi-z debug)"
+	name = "główna turbowinda (debug multi-z)"
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/tram
@@ -732,32 +732,32 @@
 
 /datum/map_template/shuttle/tram/corg
 	suffix = "corg"
-	name = "corgstation transport shuttle"
+	name = "prom transportowy (Corg)"
 
 //---------cargo_fland.dmm
 /datum/map_template/shuttle/cargo/fland
 	suffix = "fland"
-	name = "supply shuttle (fland)"
+	name = "prom zaopatrzeniowy (Fland)"
 
 //---------labour_fland.dmm
 /datum/map_template/shuttle/cargo/fland
 	suffix = "fland"
-	name = "cargo ferry (Fland)"
+	name = "prom towarowy (Fland)"
 
 //---------mining_fland.dmm
 /datum/map_template/shuttle/mining/fland
 	suffix = "fland"
-	name = "mining shuttle (fland)"
+	name = "prom górniczy (Fland)"
 
 //---------labour_fland.dmm
 /datum/map_template/shuttle/labour/fland
 	suffix = "fland"
-	name = "labour shuttle (Fland)"
+	name = "prom obozu pracy (Fland)"
 
 //---------arrival_fland.dmm
 /datum/map_template/shuttle/arrival/fland
 	suffix = "fland"
-	name = "arrival shuttle (Fland)"
+	name = "prom przylotów (Fland)"
 
 //---------whiteship_fland.dmm
 /datum/map_template/shuttle/whiteship/fland
@@ -767,16 +767,16 @@
 //---------exploration_fland.dmm
 /datum/map_template/shuttle/exploration/fland
 	suffix = "fland"
-	name = "Fland exploration shuttle"
+	name = "prom eksploracyjny (Fland)"
 
 //---------ferry_fland.dmm
 /datum/map_template/shuttle/ferry/fland
 	suffix = "fland"
-	name = "fland transport ferry"
+	name = "prom transportowy (Fland)"
 	description = "Standardowy prom Centrali dla stacji fland. Zawiera dodatkowy sprzęt i ładowarkę."
 
 /datum/map_template/shuttle/turbolift/semmes/aircraft //NSV13
 	port_id = "aircraft"
 	suffix = "semmes"
-	name = "Aircraft elevator (NSV Semmes)"
+	name = "Winda lotnicza (NSV Semmes)"
 	can_be_bought = FALSE

@@ -1,7 +1,7 @@
 
 /obj/item/bodypart
-	name = "limb"
-	desc = "Why is it detached..."
+	name = "kończyna"
+	desc = "Czemu jest odczepiona..."
 	force = 3
 	throwforce = 3
 	icon = 'icons/mob/human_parts_greyscale.dmi'
@@ -68,17 +68,17 @@
 	var/dmg_overlay_type //the type of damage overlay (if any) to use when this bodypart is bruised/burned.
 
 	//Damage messages used by help_shake_act()
-	var/light_brute_msg = "bruised"
-	var/medium_brute_msg = "battered"
-	var/heavy_brute_msg = "mangled"
+	var/light_brute_msg = "posiniaczona"
+	var/medium_brute_msg = "poobijana"
+	var/heavy_brute_msg = "zmasakrowana"
 
-	var/light_burn_msg = "numb"
-	var/medium_burn_msg = "blistered"
+	var/light_burn_msg = "zdrętwiała"
+	var/medium_burn_msg = "pokryta pęcherzami"
 	var/heavy_burn_msg = "odpada"
 
 /obj/item/bodypart/Initialize(mapload)
 	. = ..()
-	name = "[limb_id] [parse_zone(body_zone)]"
+	name = strefa_pl(body_zone)
 	if(is_dimorphic)
 		limb_gender = pick("m", "f")
 	update_icon_dropped()
@@ -486,7 +486,7 @@
 
 /obj/item/bodypart/chest
 	name = BODY_ZONE_CHEST
-	desc = "It's impolite to stare at a person's chest."
+	desc = "Gapienie się na czyjąś klatkę piersiową jest niegrzeczne."
 	icon_state = "default_human_chest"
 	max_damage = 200
 	body_zone = BODY_ZONE_CHEST
@@ -545,11 +545,11 @@
 	animal_origin = LARVA_BODYPART
 
 /obj/item/bodypart/l_arm
-	name = "left arm"
-	desc = "Did you know that the word 'sinister' stems originally from the \
-		Latin 'sinestra' (left hand), because the left hand was supposed to \
-		be possessed by the devil? This arm appears to be possessed by no \
-		one though."
+	name = "lewa ręka"
+	desc = "Czy wiesz, że angielskie słowo „sinister” (złowrogi) pochodzi od \
+		łacińskiego „sinistra” (lewa ręka), bo lewa ręka miała być \
+		opętana przez diabła? Ta ręka nie wygląda jednak na opętaną \
+		przez kogokolwiek."
 	icon_state = "default_human_l_arm"
 	attack_verb = list("policzkuje", "uderza pięścią")
 	max_damage = 50
@@ -617,9 +617,9 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/r_arm
-	name = "right arm"
-	desc = "Over 87% of humans are right handed. That figure is much lower \
-		among humans missing their right arm."
+	name = "prawa ręka"
+	desc = "Ponad 87% ludzi jest praworęcznych. Wśród ludzi bez prawej ręki \
+		odsetek ten jest znacznie niższy."
 	icon_state = "default_human_r_arm"
 	attack_verb = list("policzkuje", "uderza pięścią")
 	max_damage = 50
@@ -688,9 +688,9 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/l_leg
-	name = "left leg"
-	desc = "Some athletes prefer to tie their left shoelaces first for good \
-		luck. In this instance, it probably would not have helped."
+	name = "lewa noga"
+	desc = "Niektórzy sportowcy na szczęście wiążą najpierw lewe sznurówki. \
+		W tym przypadku raczej by to nie pomogło."
 	icon_state = "default_human_l_leg"
 	attack_verb = list("kopie", "depcze")
 	max_damage = 50
@@ -751,10 +751,10 @@
 	animal_origin = DEVIL_BODYPART
 
 /obj/item/bodypart/r_leg
-	name = "right leg"
-	desc = "You put your right leg in, your right leg out. In, out, in, out, \
-		shake it all about. And apparently then it detaches.\n\
-		The hokey pokey has certainly changed a lot since space colonisation."
+	name = "prawa noga"
+	desc = "Prawa noga do środka, prawa noga na zewnątrz. Do środka, na zewnątrz, \
+		potrząśnij nią. I najwyraźniej wtedy odpada.\n\
+		Hokey pokey bardzo się zmieniło od czasów kolonizacji kosmosu."
 	// alternative spellings of 'pokey' are available
 	icon_state = "default_human_r_leg"
 	attack_verb = list("kopie", "depcze")

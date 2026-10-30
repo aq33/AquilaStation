@@ -1,6 +1,6 @@
 /obj/item/organ/heart
-	name = "heart"
-	desc = "I feel bad for the heartless bastard who lost this."
+	name = "serce"
+	desc = "Szkoda mi tego bezdusznego drania, który to zgubił."
 	icon_state = "heart-on"
 	zone = BODY_ZONE_CHEST
 	slot = ORGAN_SLOT_HEART
@@ -94,8 +94,8 @@
 		failed = TRUE
 
 /obj/item/organ/heart/cursed
-	name = "cursed heart"
-	desc = "A heart that, when inserted, will force you to pump it manually."
+	name = "przeklęte serce"
+	desc = "Serce, które po wszczepieniu zmusza cię do pompowania go ręcznie."
 	icon_state = "cursedheart-off"
 	icon_base = "cursedheart"
 	decay_factor = 0
@@ -142,7 +142,7 @@
 	M.remove_client_colour(/datum/client_colour/cursed_heart_blood)
 
 /datum/action/item_action/organ_action/cursed_heart
-	name = "Pump your blood"
+	name = "Pompuj krew"
 
 //You are now brea- pumping blood manually
 /datum/action/item_action/organ_action/cursed_heart/Trigger()
@@ -174,8 +174,8 @@
 	colour = "red"
 
 /obj/item/organ/heart/cybernetic
-	name = "cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma."
+	name = "cybernetyczne serce"
+	desc = "Urządzenie elektroniczne, które naśladuje funkcje organicznego ludzkiego serca. Zawiera też awaryjną dawkę epinefryny, podawaną automatycznie po ciężkim urazie."
 	icon_state = "heart-c"
 	organ_flags = ORGAN_SYNTHETIC
 	status = ORGAN_ROBOTIC
@@ -199,8 +199,8 @@
 	dose_available = FALSE
 
 /obj/item/organ/heart/cybernetic/upgraded
-	name = "upgraded cybernetic heart"
-	desc = "An electronic device designed to mimic the functions of an organic human heart. Also holds an emergency dose of epinephrine, used automatically after facing severe trauma. This upgraded model can regenerate its dose after use."
+	name = "ulepszone cybernetyczne serce"
+	desc = "Urządzenie elektroniczne, które naśladuje funkcje organicznego ludzkiego serca. Zawiera też awaryjną dawkę epinefryny, podawaną automatycznie po ciężkim urazie. Ten ulepszony model odnawia dawkę po użyciu."
 	icon_state = "heart-c-u"
 
 /obj/item/organ/heart/cybernetic/upgraded/used_dose()
@@ -208,7 +208,7 @@
 	addtimer(VARSET_CALLBACK(src, dose_available, TRUE), 5 MINUTES)
 
 /obj/item/organ/heart/cybernetic/ipc
-	desc = "An electronic device that appears to mimic the functions of an organic heart."
+	desc = "Urządzenie elektroniczne, które zdaje się naśladować funkcje organicznego serca."
 	dose_available = FALSE
 
 /obj/item/organ/heart/cybernetic/ipc/emp_act()
@@ -217,8 +217,8 @@
 	addtimer(CALLBACK(src, PROC_REF(Restart)), 10 SECONDS)
 
 /obj/item/organ/heart/freedom
-	name = "heart of freedom"
-	desc = "This heart pumps with the passion to give... something freedom."
+	name = "serce wolności"
+	desc = "To serce bije z pasją dawania... czemuś wolności."
 	organ_flags = ORGAN_SYNTHETIC //the power of freedom prevents heart attacks
 	var/min_next_adrenaline = 0
 
@@ -235,9 +235,9 @@
 //NSV13 - Rest of file is purely ours from down here - Ethereal Crystalization
 
 /obj/item/organ/heart/ethereal
-	name = "crystal core"
+	name = "kryształowy rdzeń"
 	icon_state = "ethereal_heart" //Welp. At least it's more unique in functionaliy.
-	desc = "A crystal-like organ that functions similarly to a heart for Ethereals. It can revive its owner."
+	desc = "Kryształopodobny organ, który u eteryków pełni funkcję serca. Potrafi ożywić swojego właściciela."
 
 	///Cooldown for the next time we can crystalize
 	COOLDOWN_DECLARE(crystalize_cooldown)
@@ -386,8 +386,8 @@
 	stop_crystalization_process(ethereal)
 
 /obj/structure/ethereal_crystal
-	name = "Ethereal Resurrection Crystal"
-	desc = "It seems to contain the corpse of an ethereal mending its wounds."
+	name = "kryształ wskrzeszenia eteryka"
+	desc = "Wygląda na to, że w środku zwłoki eteryka leczą swoje rany."
 	icon = 'nsv13/icons/obj/ethereal_crystal.dmi'
 	icon_state = "ethereal_crystal"
 	max_integrity = 100

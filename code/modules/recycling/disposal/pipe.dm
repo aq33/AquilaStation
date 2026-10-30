@@ -1,8 +1,8 @@
 // Disposal pipes
 
 /obj/structure/disposalpipe
-	name = "disposal pipe"
-	desc = "An underfloor disposal pipe."
+	name = "rura zsypowa"
+	desc = "Podpodłogowa rura zsypowa."
 	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
 	anchored = TRUE
 	density = FALSE
@@ -285,7 +285,7 @@
 
 // a broken pipe
 /obj/structure/disposalpipe/broken
-	desc = "A broken piece of disposal pipe."
+	desc = "Uszkodzony kawałek rury zsypowej."
 	icon_state = "pipe-b"
 	initialize_dirs = DISP_DIR_NONE
 	// broken pipes always have dpdir=0 so they're not found as 'real' pipes

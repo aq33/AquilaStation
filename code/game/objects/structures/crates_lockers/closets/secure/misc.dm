@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/ertCom
-	name = "emergency response team commander's locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Commander."
+	name = "szafka Dowódcy Zespołu Reagowania Kryzysowego"
+	desc = "Szafka ze sprzętem dla Dowódcy Zespołu Reagowania Kryzysowego."
 	req_access = list(ACCESS_CENT_CAPTAIN)
 	icon_state = "cap"
 
@@ -20,8 +20,8 @@
 		new /obj/item/gun/ballistic/revolver/mateba(src)
 
 /obj/structure/closet/secure_closet/ertSec
-	name = "emergency response team security locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Security Officer."
+	name = "szafka Operatora Kryzysowego Reagowania"
+	desc = "Szafka ze sprzętem dla Operatora Kryzysowego Reagowania."
 	req_access = list(ACCESS_CENT_SPECOPS)
 	icon_state = "hos"
 
@@ -34,8 +34,8 @@
 	new /obj/item/shield/riot/tele(src)
 
 /obj/structure/closet/secure_closet/ertMed
-	name = "emergency response team medical locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Medical Officer."
+	name = "szafka Sanitariusza Kryzysowego Reagowania"
+	desc = "Szafka ze sprzętem dla Sanitariusza Kryzysowego Reagowania."
 	req_access = list(ACCESS_CENT_MEDICAL)
 	icon_state = "cmo"
 
@@ -50,8 +50,8 @@
 	new /mob/living/simple_animal/bot/medbot(src)
 
 /obj/structure/closet/secure_closet/ertEngi
-	name = "emergency response team engineer locker"
-	desc = "A storage unit containing equipment for an Emergency Response Team Engineer."
+	name = "szafka Inżyniera Kryzysowego Reagowania"
+	desc = "Szafka ze sprzętem dla Inżyniera Kryzysowego Reagowania."
 	req_access = list(ACCESS_CENT_STORAGE)
 	icon_state = "ce"
 

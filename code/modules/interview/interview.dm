@@ -60,10 +60,10 @@
 	GLOB.interviews.approved_ckeys |= owner_ckey
 	GLOB.interviews.close_interview(src)
 	log_admin_private("[key_name(approved_by)] has approved interview #[id] for [owner_ckey][!owner ? "(DC)": ""].")
-	message_admins("<span class='adminnotice'>[key_name(approved_by)] has approved interview #[id] for [owner_ckey][!owner ? "(DC)": ""].</span>")
+	message_admins("<span class='adminnotice'>[key_name(approved_by)] akceptuje rozmowę kwalifikacyjną #[id] gracza [owner_ckey][!owner ? " (rozłączony)": ""].</span>")
 	if (owner)
 		SEND_SOUND(owner, sound('sound/effects/adminhelp.ogg'))
-		to_chat(owner, "<font color='red' size='4'><b>-- Interview Update --</b></font>" \
+		to_chat(owner, "<font color='red' size='4'><b>-- Rozmowa kwalifikacyjna: aktualizacja --</b></font>" \
 			+ "\n<span class='adminsay'>Twoja rozmowa kwalifikacyjna została zaakceptowana, za 5 sekund zostaniesz ponownie połączony.</span>")
 		addtimer(CALLBACK(src, PROC_REF(reconnect_owner)), 5 SECONDS)
 
@@ -80,19 +80,19 @@
 	GLOB.interviews.denied_ckeys |= owner_ckey
 	var/can_retry = CONFIG_GET(flag/panic_bunker_interview_retries)
 	log_admin_private("[key_name(denied_by)] has denied interview #[id] for [owner_ckey][!owner ? "(DC)": ""]. Retries [can_retry ? "enabled" : "disabled"].")
-	message_admins("<span class='adminnotice'>[key_name(denied_by)] has denied interview #[id] for [owner_ckey][!owner ? "(DC)": ""]. Retries [can_retry ? "enabled" : "disabled"].</span>")
+	message_admins("<span class='adminnotice'>[key_name(denied_by)] odrzuca rozmowę kwalifikacyjną #[id] gracza [owner_ckey][!owner ? " (rozłączony)": ""]. Ponowne próby: [can_retry ? "włączone" : "wyłączone"].</span>")
 	if(can_retry)
 		addtimer(CALLBACK(GLOB.interviews, TYPE_PROC_REF(/datum/interview_manager, release_from_cooldown), owner_ckey), 180 SECONDS)
 		if (owner)
 			SEND_SOUND(owner, sound('sound/effects/adminhelp.ogg'))
-			to_chat(owner, "<font color='red' size='4'><b>-- Interview Update --</b></font>" \
+			to_chat(owner, "<font color='red' size='4'><b>-- Rozmowa kwalifikacyjna: aktualizacja --</b></font>" \
 				+ "\n<span class='adminsay'>Niestety twoja rozmowa kwalifikacyjna została odrzucona. Spróbuj wysłać kolejny kwestionariusz." \
 				+ " Możesz to zrobić za trzy minuty.</span>")
 	else
 		addtimer(CALLBACK(GLOB.interviews, TYPE_PROC_REF(/datum/interview_manager, give_the_boot), owner_ckey), 30 SECONDS)
 		if (owner)
 			SEND_SOUND(owner, sound('sound/effects/adminhelp.ogg'))
-			to_chat(owner, "<font color='red' size='4'><b>-- Interview Update --</b></font>" \
+			to_chat(owner, "<font color='red' size='4'><b>-- Rozmowa kwalifikacyjna: aktualizacja --</b></font>" \
 				+ "\n<span class='adminsay'>Niestety twoja rozmowa kwalifikacyjna została odrzucona. Zostaniesz usunięty na czas trwania rundy." \
 				+ " Zostaniesz wyrzucony za 30 sekund.</span>")
 

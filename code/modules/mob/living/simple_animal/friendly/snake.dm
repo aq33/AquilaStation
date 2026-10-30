@@ -10,8 +10,8 @@
 			L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_animal/hostile/retaliate/poison/snake
-	name = "snake"
-	desc = "A slithery snake. These legless reptiles are the bane of mice and adventurers alike."
+	name = "wąż"
+	desc = "Śliski wąż. Te beznogie gady to zmora zarówno myszy, jak i poszukiwaczy przygód."
 	icon_state = "snake"
 	icon_living = "snake"
 	icon_dead = "snake_dead"

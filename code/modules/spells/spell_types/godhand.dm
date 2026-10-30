@@ -1,7 +1,7 @@
 /obj/item/melee/touch_attack
-	name = "\improper outstretched hand"
-	desc = "High Five?"
-	var/catchphrase = "High Five!"
+	name = "\improper wyciągnięta dłoń"
+	desc = "Piątka?"
+	var/catchphrase = "Przybij piątkę!"
 	var/on_use_sound = null
 	var/obj/effect/proc_holder/spell/targeted/touch/attached_spell
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -58,8 +58,8 @@
 	return ..()
 
 /obj/item/melee/touch_attack/disintegrate
-	name = "\improper disintegrating touch"
-	desc = "This hand of mine glows with an awesome power!"
+	name = "\improper dezintegrujący dotyk"
+	desc = "Ta moja dłoń lśni niesamowitą mocą!"
 	catchphrase = "EI NATH!!"
 	on_use_sound = 'sound/magic/disintegrate.ogg'
 	icon_state = "disintegrate"
@@ -97,8 +97,8 @@
 	return ..()
 
 /obj/item/melee/touch_attack/fleshtostone
-	name = "\improper petrifying touch"
-	desc = "That's the bottom line, because flesh to stone said so!"
+	name = "\improper petryfikujący dotyk"
+	desc = "I to by było na tyle, bo ciało w kamień tak mówi!"
 	catchphrase = "STAUN EI!!"
 	on_use_sound = 'sound/magic/fleshtostone.ogg'
 	icon_state = "fleshtostone"
@@ -125,8 +125,8 @@
 
 
 /obj/item/melee/touch_attack/megahonk
-	name = "\improper honkmother's blessing"
-	desc = "You've got a feeling they won't be laughing after this one. Honk honk."
+	name = "\improper błogosławieństwo Honkmatki"
+	desc = "Masz przeczucie, że po tym nie będzie im do śmiechu. Honk honk."
 	catchphrase = "HONKDOOOOUKEN!"
 	on_use_sound = 'sound/items/airhorn.ogg'
 	icon = 'icons/mecha/mecha_equipment.dmi'
@@ -160,8 +160,8 @@
 	qdel(src)
 
 /obj/item/melee/touch_attack/bspie
-	name = "\improper bluespace pie"
-	desc = "A thing you can barely comprehend as you hold it in your hand. You're fairly sure you could fit an entire body inside."
+	name = "\improper placek bluespace"
+	desc = "Coś, co ledwie pojmujesz, trzymając to w dłoni. Jesteś prawie pewien, że zmieściłoby się w tym całe ciało."
 	on_use_sound = 'sound/magic/demon_consume.ogg'
 	icon = 'icons/obj/food/piecake.dmi'
 	icon_state = "frostypie"
@@ -185,7 +185,7 @@
 	if(do_mob(user, M, 250))
 		var/name = M.real_name
 		var/obj/item/food/pie/cream/body/pie = new(get_turf(M))
-		pie.name = "\improper [name] [pie.name]"
+		pie.name = "\improper [pie.name] ([name])"
 
 		. = ..()
 

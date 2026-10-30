@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/hand
-	name = "The Hand"
-	desc = "The guardian can use it's hand(s) to erase the space in front of it, bring any desired target closer."
+	name = "Ręka"
+	desc = "Strażnik może ręką (lub rękami) wymazać przestrzeń przed sobą i przyciągnąć do siebie dowolny cel."
 	ui_icon = "hand-lizard"
 	cost = 5
 	var/next_hand = 0

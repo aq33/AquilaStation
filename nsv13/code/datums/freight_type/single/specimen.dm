@@ -33,7 +33,7 @@
 
 /datum/freight_type/single/specimen/get_brief_segment()
 	if ( reveal_specimen )
-		return (target==1?"[item_name] specimen":"[target] [item_name] specimens")
+		return (target==1?"okaz: [item_name]":"okazy: [item_name] ([target])")
 	else
 		return (target==1?"zabezpieczony okaz":"zabezpieczone okazy ([target])")
 
@@ -42,6 +42,6 @@
 
 /datum/freight_type/single/specimen/get_item_name()
 	if ( reveal_specimen )
-		return (target==1?"[item_name] specimen":"[target] [item_name] specimens")
+		return (target==1?"okaz: [item_name]":"okazy: [item_name] ([target])")
 	else
 		return (target==1?"zabezpieczony okaz":"zabezpieczone okazy ([target])")

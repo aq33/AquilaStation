@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_info_reader
-	display_name = "Read ID Info"
+	display_name = "Odczyt danych ID"
 	desc = "Komponent, który odczytuje imię, stanowisko i wiek z karty ID."
 	category = "ID"
 

@@ -1,19 +1,19 @@
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/projectile/bullet/n762
-	name = "7.62x38mmR bullet"
+	name = "pocisk 7.62x38mmR"
 	damage = 60
 
 // .50AE (Desert Eagle)
 
 /obj/item/projectile/bullet/a50AE
-	name = ".50AE bullet"
+	name = "pocisk .50AE"
 	damage = 60
 
 // .38 (Detective's Gun)
 
 /obj/item/projectile/bullet/c38
-	name = ".38 bullet"
+	name = "pocisk .38"
 	damage = 25
 	ricochets_max = 2
 	ricochet_chance = 50
@@ -21,7 +21,7 @@
 	ricochet_auto_aim_range = 3
 
 /obj/item/projectile/bullet/c38/match
-	name = ".38 Match bullet"
+	name = "pocisk .38 wyczynowy"
 	ricochets_max = 4
 	ricochet_chance = 100
 	ricochet_auto_aim_angle = 40
@@ -32,7 +32,7 @@
 
 /obj/item/projectile/bullet/c38/match/bouncy
 	bleed_force = BLEED_SCRATCH
-	name = ".38 Bouncy Rubber bullet"
+	name = "gumowy odbijający się pocisk .38"
 	damage = 10
 	stamina = 30
 	armour_penetration = -30
@@ -43,14 +43,14 @@
 	shrapnel_type = NONE
 
 /obj/item/projectile/bullet/c38/dumdum
-	name = ".38 DumDum bullet"
+	name = "pocisk .38 dum-dum"
 	damage = 15
 	armour_penetration = -30
 	ricochets_max = 0
 	shrapnel_type = /obj/item/shrapnel/bullet/c38/dumdum
 
 /obj/item/projectile/bullet/c38/trac
-	name = ".38 TRAC bullet"
+	name = "pocisk .38 TRAC"
 	damage = 10
 	ricochets_max = 0
 
@@ -66,7 +66,7 @@
 	imp.implant(M)
 
 /obj/item/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
+	name = "pocisk .38 Hot Shot"
 	damage = 20
 	ricochets_max = 0
 
@@ -78,7 +78,7 @@
 		M.IgniteMob()
 
 /obj/item/projectile/bullet/c38/iceblox //see /obj/item/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
+	name = "pocisk .38 Iceblox"
 	damage = 20
 	var/temperature = 100
 	ricochets_max = 0
@@ -91,7 +91,7 @@
 
 /obj/item/projectile/bullet/c38/mime
 	bleed_force = 0
-	name = "invisible .38 bullet"
+	name = "niewidzialny pocisk .38"
 	icon_state = null
 	damage = 0
 	nodamage = TRUE
@@ -109,7 +109,7 @@
 			to_chat(M, "<span class='userdanger'>Trafia cię strzał z palca-pistoletu!</span>")
 
 /obj/item/projectile/bullet/c38/mime_lethal
-	name = "invisible .38 bullet"
+	name = "niewidzialny pocisk .38"
 	icon_state = null
 	damage = 20
 
@@ -121,12 +121,12 @@
 // .357 (Syndie Revolver)
 
 /obj/item/projectile/bullet/a357
-	name = ".357 bullet"
+	name = "pocisk .357"
 	damage = 60
 
 // admin only really, for ocelot memes
 /obj/item/projectile/bullet/a357/match
-	name = ".357 match bullet"
+	name = "pocisk .357 wyczynowy"
 	ricochets_max = 5
 	ricochet_chance = 140
 	ricochet_auto_aim_angle = 50

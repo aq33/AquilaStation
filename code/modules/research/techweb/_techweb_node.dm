@@ -20,7 +20,7 @@
 
 /datum/techweb_node/error_node
 	id = "ERROR"
-	display_name = "ERROR"
+	display_name = "BŁĄD"
 	description = "Zwykle oznacza to, że coś w bazie danych uległo uszkodzeniu. Jeśli nie zniknie samo, poinformuj Centralę, by jej technicy jak najszybciej(tm) to naprawili"
 
 /datum/techweb_node/proc/Initialize()

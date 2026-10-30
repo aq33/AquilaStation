@@ -1,8 +1,8 @@
 //separate dm since hydro is getting bloated already
 
 /obj/structure/glowshroom
-	name = "glowshroom"
-	desc = "Mycena Bregprox, a species of mushroom that glows in the dark."
+	name = "świecący grzyb"
+	desc = "Mycena Bregprox, gatunek grzyba świecącego w ciemności."
 	anchored = TRUE
 	opacity = 0
 	density = FALSE
@@ -20,14 +20,14 @@
 	/turf/open/floor/plating/beach/water))
 
 /obj/structure/glowshroom/glowcap
-	name = "glowcap"
-	desc = "Mycena Ruthenia, a species of mushroom that, while it does glow in the dark, is not actually bioluminescent."
+	name = "świecący kapelusz"
+	desc = "Mycena Ruthenia, gatunek grzyba, który wprawdzie świeci w ciemności, ale tak naprawdę nie jest bioluminescencyjny."
 	icon_state = "glowcap"
 	myseed = /obj/item/plant_seeds/preset/glowcap
 
 /obj/structure/glowshroom/shadowshroom
-	name = "shadowshroom"
-	desc = "Mycena Umbra, a species of mushroom that emits shadow instead of light."
+	name = "cienisty grzyb"
+	desc = "Mycena Umbra, gatunek grzyba, który zamiast światła emituje cień."
 	icon_state = "shadowshroom"
 	myseed = /obj/item/plant_seeds/preset/shadowshroom
 
@@ -176,5 +176,5 @@
 	. = 1
 	visible_message("<span class='danger'>[src] się roztapia!</span>")
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
-	I.desc = "Looks like this was \an [src] some time ago."
+	I.desc = "Wygląda na to, że jakiś czas temu było to: [src]."
 	qdel(src)

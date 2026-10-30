@@ -214,25 +214,25 @@
 				to_chat(H, "<span class='warning'>BŁĄD: brak dostępu</span>")
 				return
 			if(href_list["p_stat"])
-				var/health_status = input(usr, "Podaj nowy stan fizyczny tej osoby.", "HUD medyczny", general_record.fields["p_stat"]) in list("Active", "Physically Unfit", "*Unconscious*", "*Deceased*", "Cancel")
+				var/health_status = input(usr, "Podaj nowy stan fizyczny tej osoby.", "HUD medyczny", general_record.fields["p_stat"]) in list("Active", "Physically Unfit", "*Unconscious*", "*Deceased*", "Anuluj")
 				if(!general_record)
 					return
 				if(!H.canUseHUD())
 					return
 				if(!HAS_TRAIT(H, TRAIT_MEDICAL_HUD))
 					return
-				if(health_status && health_status != "Cancel")
+				if(health_status && health_status != "Anuluj")
 					general_record.fields["p_stat"] = health_status
 				return
 			if(href_list["m_stat"])
-				var/health_status = input(usr, "Podaj nowy stan psychiczny tej osoby.", "HUD medyczny", general_record.fields["m_stat"]) in list("Stable", "*Watch*", "*Unstable*", "*Insane*", "Cancel")
+				var/health_status = input(usr, "Podaj nowy stan psychiczny tej osoby.", "HUD medyczny", general_record.fields["m_stat"]) in list("Stable", "*Watch*", "*Unstable*", "*Insane*", "Anuluj")
 				if(!general_record)
 					return
 				if(!H.canUseHUD())
 					return
 				if(!HAS_TRAIT(H, TRAIT_MEDICAL_HUD))
 					return
-				if(health_status && health_status != "Cancel")
+				if(health_status && health_status != "Anuluj")
 					general_record.fields["m_stat"] = health_status
 				return
 			if(href_list["medrecords"])
@@ -268,8 +268,8 @@
 				to_chat(usr, "<span class='warning'>BŁĄD: nie znaleziono wpisu celu w rdzeniu danych.</span>")
 				return
 			if(href_list["status"])
-				var/setcriminal = input(usr, "Podaj nowy status karny tej osoby.", "HUD ochrony", sec_record.fields["criminal"]) in list("None", "Arrest", "Search", "Monitor", "Incarcerated", "Paroled", "Discharged", "Cancel")
-				if(setcriminal != "Cancel")
+				var/setcriminal = input(usr, "Podaj nowy status karny tej osoby.", "HUD ochrony", sec_record.fields["criminal"]) in list("None", "Arrest", "Search", "Monitor", "Incarcerated", "Paroled", "Discharged", "Anuluj")
+				if(setcriminal != "Anuluj")
 					if(!sec_record)
 						return
 					if(!H.canUseHUD())
@@ -288,14 +288,14 @@
 					return
 				to_chat(usr, "<b>Imię:</b> [sec_record.fields["name"]]	<b>Status karny:</b> [sec_record.fields["criminal"]]")
 				for(var/datum/data/crime/c in sec_record.fields["crim"])
-					to_chat(usr, "<b>Crime:</b> [c.crimeName]")
+					to_chat(usr, "<b>Przestępstwo:</b> [c.crimeName]")
 					if (c.crimeDetails)
-						to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
+						to_chat(usr, "<b>Szczegóły:</b> [c.crimeDetails]")
 					else
-						to_chat(usr, "<b>Details:</b> <A href='byond://?src=[REF(src)];hud=s;add_details=1;cdataid=[c.dataId]'>\[Add details]</A>")
+						to_chat(usr, "<b>Szczegóły:</b> <A href='byond://?src=[REF(src)];hud=s;add_details=1;cdataid=[c.dataId]'>\[Dodaj szczegóły]</A>")
 					to_chat(usr, "Dodane przez [c.author] o [c.time]")
 					to_chat(usr, "----------")
-				to_chat(usr, "<b>Notes:</b> [sec_record.fields["notes"]]")
+				to_chat(usr, "<b>Notatki:</b> [sec_record.fields["notes"]]")
 				to_chat(usr, "<br>Akta ochrony:</b> [sec_record.fields["past_records"]]")
 				return
 
@@ -326,8 +326,8 @@
 					if(tablet.saved_identification == sec_record.fields["name"])
 						var/message = "Otrzymujesz mandat w wysokości [fine] kredytów za '[t1]'. Mandaty można opłacić w ochronie."
 						var/datum/signal/subspace/messaging/tablet_msg/signal = new(src, list(
-							"name" = "Security Citation",
-							"job" = "Citation Server",
+							"name" = "Mandat ochrony",
+							"job" = "Serwer mandatów",
 							"message" = message,
 							"targets" = list(tablet),
 							"automated" = TRUE
@@ -390,7 +390,7 @@
 				var/counter = 1
 				while(sec_record.fields[text("com_[]", counter)])
 					counter++
-				sec_record.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+YEAR_OFFSET, t1) //NSV13 edit: year offset change
+				sec_record.fields[text("com_[]", counter)] = text("Dodane przez [] dnia [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+YEAR_OFFSET, t1) //NSV13 edit: year offset change
 				to_chat(usr, "<span class='notice'>Dodano komentarz.</span>")
 				return
 		//NSV13 - Roleplaying Records - End
@@ -765,14 +765,14 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("", "---------")
-	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
-	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Add/Remove Quirks")
-	VV_DROPDOWN_OPTION(VV_HK_MAKE_MONKEY, "Make Monkey")
-	VV_DROPDOWN_OPTION(VV_HK_MAKE_CYBORG, "Make Cyborg")
-	VV_DROPDOWN_OPTION(VV_HK_MAKE_SLIME, "Make Slime")
-	VV_DROPDOWN_OPTION(VV_HK_MAKE_ALIEN, "Make Alien")
-	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
-	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Toggle Purrbation")
+	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Kopiuj strój")
+	VV_DROPDOWN_OPTION(VV_HK_MOD_QUIRKS, "Dodaj/usuń cechy")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_MONKEY, "Zrób małpę")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_CYBORG, "Zrób cyborga")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_SLIME, "Zrób szlama")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_ALIEN, "Zrób obcego")
+	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Ustaw gatunek")
+	VV_DROPDOWN_OPTION(VV_HK_PURRBATION, "Przełącz kocią kuratelę")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
 	. = ..()
@@ -784,15 +784,15 @@
 		if(!check_rights(R_SPAWN))
 			return
 
-		var/list/options = list("Clear"="Clear")
+		var/list/options = list("Wyczyść"="Wyczyść")
 		for(var/x in subtypesof(/datum/quirk))
 			var/datum/quirk/T = x
 			var/qname = initial(T.name)
-			options[has_quirk(T) ? "[qname] (Remove)" : "[qname] (Add)"] = T
+			options[has_quirk(T) ? "[qname] (usuń)" : "[qname] (dodaj)"] = T
 
-		var/result = input(usr, "Wybierz cechę do dodania/usunięcia","Quirk Mod") as null|anything in options
+		var/result = input(usr, "Wybierz cechę do dodania/usunięcia","Modyfikacja cech") as null|anything in options
 		if(result)
-			if(result == "Clear")
+			if(result == "Wyczyść")
 				for(var/datum/quirk/q in roundstart_quirks)
 					remove_quirk(q.type)
 			else
@@ -804,34 +804,34 @@
 	if(href_list[VV_HK_MAKE_MONKEY])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("monkeyone"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_CYBORG])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makerobot"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_ALIEN])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makealien"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_MAKE_SLIME])
 		if(!check_rights(R_SPAWN))
 			return
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+		if(alert("Potwierdzić zmianę typu moba?",,"Przemień","Anuluj") != "Przemień")
 			return
 		usr.client.holder.Topic("vv_override", list("makeslime"=href_list[VV_HK_TARGET]))
 	if(href_list[VV_HK_SET_SPECIES])
 		if(!check_rights(R_SPAWN))
 			return
-		var/result = input(usr, "Wybierz nowy gatunek","Species") as null|anything in GLOB.species_list
+		var/result = input(usr, "Wybierz nowy gatunek","Gatunek") as null|anything in GLOB.species_list
 		if(result)
 			var/newtype = GLOB.species_list[result]
-			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src] to [result]")
+			admin_ticket_log("[key_name_admin(usr)] zmienia gatunek [src] na [result]")
 			set_species(newtype)
 	if(href_list[VV_HK_PURRBATION])
 		if(!check_rights(R_SPAWN))
@@ -841,16 +841,16 @@
 			return
 		var/success = purrbation_toggle(src)
 		if(success)
-			to_chat(usr, "Put [src] on purrbation.")
+			to_chat(usr, "[src] trafia pod kocią kuratelę.")
 			log_admin("[key_name(usr)] has put [key_name(src)] on purrbation.")
-			var/msg = "<span class='notice'>[key_name_admin(usr)] has put [key_name(src)] on purrbation.</span>"
+			var/msg = "<span class='notice'>[key_name_admin(usr)] oddaje [key_name(src)] pod kocią kuratelę.</span>"
 			message_admins(msg)
 			admin_ticket_log(src, msg)
 
 		else
-			to_chat(usr, "Removed [src] from purrbation.")
+			to_chat(usr, "[src] wychodzi spod kociej kurateli.")
 			log_admin("[key_name(usr)] has removed [key_name(src)] from purrbation.")
-			var/msg = "<span class='notice'>[key_name_admin(usr)] has removed [key_name(src)] from purrbation.</span>"
+			var/msg = "<span class='notice'>[key_name_admin(usr)] zdejmuje [key_name(src)] z kociej kurateli.</span>"
 			message_admins(msg)
 			admin_ticket_log(src, msg)
 
@@ -899,7 +899,7 @@
 				if(BP)
 					BP.receive_damage(36) //so 3 toolbox hits
 
-				T.visible_message("<span class='warning'>[src] curbstomps [T]!</span>", "<span class='warning'>[src] kopie cię brutalnie!</span>")
+				T.visible_message("<span class='warning'>[src] brutalnie depcze [T]!</span>", "<span class='warning'>[src] kopie cię brutalnie!</span>")
 
 				log_combat(src, T, "curbstomped")
 

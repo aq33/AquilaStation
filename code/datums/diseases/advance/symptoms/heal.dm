@@ -1,7 +1,7 @@
 #define TELEPORT_COOLDOWN 60 SECONDS
 
 /datum/symptom/heal
-	name = "Basic Healing (does nothing)" //warning for adminspawn viruses
+	name = "Podstawowe leczenie (nic nie robi)" //warning for adminspawn viruses
 	desc = "Nie powinieneś tego widzieć."
 	stealth = 0
 	resistance = 0
@@ -44,7 +44,7 @@
 	return TRUE
 
 /datum/symptom/heal/chem
-	name = "Toxolysis"
+	name = "Toksoliza"
 	stealth = 0
 	resistance = -2
 	stage_speed = 2
@@ -74,7 +74,7 @@
 	return 1
 
 /datum/symptom/heal/coma
-	name = "Regenerative Coma"
+	name = "Śpiączka regeneracyjna"
 	desc = "Wirus sprawia, że przy ciężkich obrażeniach nosiciel zapada w śpiączkę przypominającą śmierć, a potem szybko naprawia obrażenia. Leczy tylko oparzenia i obrażenia fizyczne."
 	stealth = 0
 	resistance = 2
@@ -172,7 +172,7 @@
 	return FALSE
 
 /datum/symptom/heal/surface
-	name = "Superficial Healing"
+	name = "Powierzchowne leczenie"
 	desc = "Wirus przyspiesza naturalne gojenie, przez co drobne rany szybko się goją. Powoduje mocne bliznowacenie."
 	stealth = -1
 	resistance = -2
@@ -224,7 +224,7 @@
 	return M.getBruteLoss() <= threshhold || M.getFireLoss() <= threshhold
 
 /datum/symptom/heal/metabolism
-	name = "Metabolic Boost"
+	name = "Przyspieszenie metabolizmu"
 	stealth = -1
 	resistance = -2
 	stage_speed = 2
@@ -266,7 +266,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 */
 
 /datum/symptom/EMP
-	name = "Organic Flux Induction"
+	name = "Indukcja przepływu organicznego"
 	desc = "Wywołuje zakłócenia elektromagnetyczne wokół nosiciela"
 	stealth = 0
 	resistance = -1
@@ -309,13 +309,13 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 				M.reagents.add_reagent(/datum/reagent/medicine/mutadone = 1)
 			if(bigemp)
 				empulse(M.loc, 0, 1)
-			to_chat(M, "<span class='userdanger'>[pick("Your mind fills with static!", "You feel a jolt!", "Your sense of direction flickers out!")]</span>")
+			to_chat(M, "<span class='userdanger'>[pick("Twój umysł wypełniają zakłócenia!", "Czujesz wstrząs!", "Twój zmysł orientacji na chwilę gaśnie!")]</span>")
 		else
-			to_chat(M, "<span class='notice'>[pick("You feel a slight tug toward the station's wall.", "Nearby electronics flicker.", "Your hair stands on end.")]</span>")
+			to_chat(M, "<span class='notice'>[pick("Czujesz lekkie przyciąganie w stronę ściany stacji.", "Pobliska elektronika migocze.", "Włosy stają ci dęba.")]</span>")
 	return
 
 /datum/symptom/sweat
-	name = "Hyperperspiration"
+	name = "Nadmierne pocenie"
 	desc = "Sprawia, że nosiciel obficie się poci, zostawiając małe kałuże wody i gasząc małe pożary"
 	stealth = 1
 	resistance = -1
@@ -371,11 +371,11 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 				S.splash()
 				to_chat(M, "<span class='userdanger'>Wypacasz z siebie prawie wszystko!</span>")
 		else
-			to_chat(M, "<span class='notice'>[pick("You feel moist.", "Your clothes are soaked.", "You're sweating buckets!")]</span>")
+			to_chat(M, "<span class='notice'>[pick("Jesteś wilgotny.", "Twoje ubranie jest przemoczone.", "Pocisz się jak mysz!")]</span>")
 	return
 
 /obj/effect/sweatsplash
-	name = "Sweatsplash"
+	name = "Chlust potu"
 
 /obj/effect/sweatsplash/Initialize(mapload)
 	create_reagents(1000)
@@ -386,7 +386,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 	qdel(src)
 
 /datum/symptom/teleport
-	name = "Thermal Retrostable Displacement"
+	name = "Termiczne przemieszczenie retrostabilne"
 	desc = "Gdy jest za gorąco lub za zimno, nosiciel wraca do niedawnego miejsca, w którym doświadczył bezpiecznej homeostazy."
 	stealth = 1
 	resistance = 2
@@ -450,11 +450,11 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 				location_return = null
 		else
 			if(prob(7))
-				to_chat(M, "<span class='notice'>[pick("Your warm breath fizzles out of existence.", "You feel attracted to temperate climates", "You feel like you're forgetting something")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Twój ciepły oddech rozpływa się w nicość.", "Ciągnie cię do umiarkowanego klimatu", "Masz wrażenie, że o czymś zapominasz")]</span>")
 	return
 
 /datum/symptom/growth
-	name = "Pituitary Disruption"
+	name = "Zaburzenie przysadki"
 	desc = "Powoduje niekontrolowany wzrost nosiciela."
 	stealth = -3
 	resistance = -2
@@ -547,7 +547,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 					M.adjustCloneLoss(1)
 		else
 			if(prob(5))
-				to_chat(M, "<span class='notice'>[pick("You feel bloated.", "The station seems small.", "You are the strongest.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Czujesz się wzdęty.", "Stacja wydaje się mała.", "Jesteś najsilniejszy.")]</span>")
 	return
 
 /datum/symptom/growth/End(datum/disease/advance/A)
@@ -560,7 +560,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 #undef TELEPORT_COOLDOWN
 
 /datum/symptom/vampirism
-	name = "Hemetophagy"
+	name = "Hematofagia"
 	desc = "Nosiciel wchłania krew z zewnętrznych źródeł i bezproblemowo włącza ją do własnego krwiobiegu, bez względu na grupę krwi i sposób przyjęcia. Wirus jednak powoli pochłania krew nosiciela"
 	stealth = 1
 	resistance = -2
@@ -615,7 +615,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 	switch(A.stage)
 		if(1 to 4)
 			if(prob(5))
-				to_chat(M, "<span class='warning'>[pick("You feel cold...", "You feel a bit thirsty", "It dawns upon you that every single human on this station has warm blood pulsing through their veins.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Jest ci zimno...", "Chce ci się trochę pić", "Dociera do ciebie, że w żyłach każdego człowieka na tej stacji pulsuje ciepła krew.")]</span>")
 		if(5)
 			ADD_TRAIT(A.affected_mob, TRAIT_DRINKSBLOOD, DISEASE_TRAIT)
 			var/grabbedblood = succ(M) //before adding sucked blood to bloodpoints, immediately try to heal bloodloss
@@ -648,7 +648,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 					M.blood_volume = (M.blood_volume - 1)
 
 			if(!bloodpoints && prob(3))
-				to_chat(M, "<span class='warning'>[pick("You feel a pang of thirst.", "No food can sate your hunger", "Blood...")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Czujesz ukłucie pragnienia.", "Żadne jedzenie nie zaspokoi twojego głodu", "Krew...")]</span>")
 
 /datum/symptom/vampirism/End(datum/disease/advance/A)
 	. = ..()
@@ -795,7 +795,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 
 
 /datum/symptom/parasite
-	name = "Xenobiological Symbiosis"
+	name = "Symbioza ksenobiologiczna"
 	desc = "Wirus zawiera utajone plany DNA do stworzenia jaja robaka pożerającego toksyny, który pasożytuje na szlamach i ludziach-szlamach. Jego normalnie toksyczne, zakaźne mięso po ugotowaniu staje się bezpieczne i pyszne."
 	stealth = 1
 	resistance = 2
@@ -839,7 +839,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(1, 2)
-			to_chat(M, "<span class='warning'>[pick("You feel something crawling in your veins!", "You feel an unpleasant throbbing.", "You hear something squishy in your ear.")]</span>")
+			to_chat(M, "<span class='warning'>[pick("Czujesz, że coś pełza ci w żyłach!", "Czujesz nieprzyjemne pulsowanie.", "Słyszysz w uchu coś mlaskającego.")]</span>")
 		if(3 to 5)
 			var/slowdown = 0
 			for(var/mob/living/simple_animal/hostile/redgrub/grub in grubs)//check if grubs need to be born, then feed existing grubs, or get them closer to hatching
@@ -899,7 +899,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 		M.visible_message("<span class='warning'>Rój czerwonych robaków zjada [M] żywcem!</span>")
 
 /datum/symptom/jitters
-	name = "Hyperactivity"
+	name = "Nadpobudliwość"
 	desc = "Wirus powoduje niepokój, nerwowość i nadpobudliwość, zwiększając tempo, w jakim nosiciel musi jeść, ale sprawiając, że trudniej go zmęczyć"
 	stealth = -4
 	resistance = 0
@@ -941,7 +941,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 			if(prob(power) && M.stat)
 				M.Jitter(2 * power)
 				M.emote("twitch")
-				to_chat(M, "<span class='notice'>[pick("You feel energetic!", "You feel well-rested.", "You feel great!")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Masz mnóstwo energii!", "Czujesz się wypoczęty.", "Czujesz się świetnie!")]</span>")
 		if(4 to 5)
 			M.adjustStaminaLoss((-5 * power), 0)
 			M.drowsyness = max(0, M.drowsyness - 10 * power)
@@ -951,7 +951,7 @@ im not even gonna bother with these for the following symptoms. typed em out, co
 				if(M.stat)
 					M.emote("twitch")
 					M.Jitter(2 * power)
-				to_chat(M, "<span class='notice'>[pick("You feel nervous...", "You feel anxious.", "You feel like everything is moving in slow motion.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Jesteś zdenerwowany...", "Czujesz niepokój.", "Masz wrażenie, że wszystko dzieje się w zwolnionym tempie.")]</span>")
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "hyperactivity", /datum/mood_event/nervous)
 			if(M.satiety > NUTRITION_LEVEL_HUNGRY - (30 * power))
 				M.satiety = max(NUTRITION_LEVEL_HUNGRY - (30 * power), M.satiety - (2 * power))

@@ -299,7 +299,7 @@
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/plant_analyser
-	name = "Płytka analizatora roślin"
+	name = "Projekt maszyny (analizator roślin)"
 	id = "plant_analyser_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/plant_analyser

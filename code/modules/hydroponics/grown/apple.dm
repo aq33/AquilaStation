@@ -1,8 +1,8 @@
 // Apple
 /obj/item/food/grown/apple
 	seed = /obj/item/plant_seeds/preset/apple
-	name = "apple"
-	desc = "It's a little piece of Eden."
+	name = "jabłko"
+	desc = "To mały kawałek Edenu."
 	icon_state = "apple"
 	bite_consumption_mod = 100 // Always eat apples in one bite
 	foodtypes = FRUIT
@@ -12,8 +12,8 @@
 
 // Gold Apple
 /obj/item/food/grown/apple/gold
-	name = "golden apple"
-	desc = "Emblazoned upon the apple is the word 'Kallisti'."
+	name = "złote jabłko"
+	desc = "Na jabłku widnieje napis „Kallisti”."
 	icon_state = "goldapple"
 	distill_reagent = null
 	wine_power = 50

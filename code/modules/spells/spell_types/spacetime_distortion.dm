@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/spacetime_dist
-	name = "Spacetime Distortion"
-	desc = "Entangle the strings of space-time in an area around you, randomizing the layout and making proper movement impossible. The strings vibrate..."
+	name = "Zakrzywienie czasoprzestrzeni"
+	desc = "Plączesz struny czasoprzestrzeni na obszarze wokół siebie, losowo przestawiając układ i uniemożliwiając normalne poruszanie się. Struny wibrują..."
 	charge_max = 450
 	var/duration = 150
 	range = 7
@@ -64,13 +64,13 @@
 	ready = TRUE
 
 /obj/effect/cross_action
-	name = "cross me"
-	desc = "for crossing"
+	name = "przejdź przeze mnie"
+	desc = "do przechodzenia"
 	anchored = TRUE
 
 /obj/effect/cross_action/spacetime_dist
-	name = "spacetime distortion"
-	desc = "A distortion in spacetime. You can hear faint music..."
+	name = "zakrzywienie czasoprzestrzeni"
+	desc = "Zakrzywienie czasoprzestrzeni. Słyszysz cichą muzykę..."
 	icon_state = ""
 	var/obj/effect/cross_action/spacetime_dist/linked_dist
 	var/busy = FALSE

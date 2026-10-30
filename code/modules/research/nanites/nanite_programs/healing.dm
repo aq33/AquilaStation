@@ -1,8 +1,8 @@
 //Programs that heal the host in some way.
 
 /datum/nanite_program/regenerative
-	name = "Accelerated Regeneration"
-	desc = "The nanites boost the host's natural regeneration, increasing their healing speed. Does not consume nanites if the host is unharmed."
+	name = "Przyspieszona regeneracja"
+	desc = "Nanity wzmacniają naturalną regenerację nosiciela, przyspieszając gojenie. Nie zużywa nanitów, gdy nosiciel nie jest ranny."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -30,8 +30,8 @@
 		host_mob.adjustFireLoss(-0.5, TRUE)
 
 /datum/nanite_program/temperature
-	name = "Temperature Adjustment"
-	desc = "The nanites adjust the host's internal temperature to an ideal level."
+	name = "Regulacja temperatury"
+	desc = "Nanity ustawiają temperaturę wewnętrzną nosiciela na idealnym poziomie."
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
 
@@ -47,8 +47,8 @@
 		host_mob.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
 
 /datum/nanite_program/purging
-	name = "Blood Purification"
-	desc = "The nanites purge toxins and chemicals from the host's bloodstream."
+	name = "Oczyszczanie krwi"
+	desc = "Nanity usuwają toksyny i chemikalia z krwiobiegu nosiciela."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
@@ -64,8 +64,8 @@
 		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/brain_heal
-	name = "Neural Regeneration"
-	desc = "The nanites fix neural connections in the host's brain, reversing brain damage and minor traumas."
+	name = "Regeneracja neuronów"
+	desc = "Nanity naprawiają połączenia nerwowe w mózgu nosiciela, cofając uszkodzenia mózgu i drobne urazy."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/brain_decay)
 
@@ -86,8 +86,8 @@
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 
 /datum/nanite_program/blood_restoring
-	name = "Blood Regeneration"
-	desc = "The nanites stimulate and boost blood cell production in the host."
+	name = "Regeneracja krwi"
+	desc = "Nanity pobudzają i wzmacniają wytwarzanie krwinek u nosiciela."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/suffocating)
 
@@ -106,8 +106,8 @@
 		C.blood_volume += 2
 
 /datum/nanite_program/repairing
-	name = "Mechanical Repair"
-	desc = "The nanites fix damage in the host's mechanical limbs."
+	name = "Naprawa mechaniczna"
+	desc = "Nanity naprawiają uszkodzenia mechanicznych kończyn nosiciela."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -142,9 +142,9 @@
 		host_mob.adjustFireLoss(-1.5, TRUE)
 
 /datum/nanite_program/purging_advanced
-	name = "Selective Blood Purification"
-	desc = "The nanites purge toxins and dangerous chemicals from the host's bloodstream, while ignoring beneficial chemicals. \
-			The added processing power required to analyze the chemicals severely increases the nanite consumption rate."
+	name = "Wybiórcze oczyszczanie krwi"
+	desc = "Nanity usuwają toksyny i niebezpieczne chemikalia z krwiobiegu nosiciela, pomijając te korzystne. \
+			Dodatkowa moc obliczeniowa potrzebna do analizy chemikaliów znacznie zwiększa zużycie nanitów."
 	use_rate = 2
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
@@ -163,9 +163,9 @@
 		host_mob.reagents.remove_reagent(R.type,1)
 
 /datum/nanite_program/regenerative_advanced
-	name = "Bio-Reconstruction"
-	desc = "The nanites manually repair and replace organic cells, acting much faster than normal regeneration. \
-			However, this program cannot detect the difference between harmed and unharmed, causing it to consume nanites even if it has no effect."
+	name = "Biorekonstrukcja"
+	desc = "Nanity ręcznie naprawiają i wymieniają komórki organiczne, działając znacznie szybciej niż zwykła regeneracja. \
+			Program nie odróżnia jednak tkanek uszkodzonych od zdrowych, więc zużywa nanity nawet wtedy, gdy nic nie daje."
 	use_rate = 5.5
 	rogue_types = list(/datum/nanite_program/suffocating, /datum/nanite_program/necrotic)
 
@@ -186,8 +186,8 @@
 		host_mob.adjustFireLoss(-3, TRUE)
 
 /datum/nanite_program/brain_heal_advanced
-	name = "Neural Reimaging"
-	desc = "The nanites are able to backup and restore the host's neural connections, potentially replacing entire chunks of missing or damaged brain matter."
+	name = "Odtwarzanie połączeń nerwowych"
+	desc = "Nanity potrafią zapisać kopię połączeń nerwowych nosiciela i je odtworzyć, zastępując nawet całe fragmenty brakującej lub uszkodzonej tkanki mózgowej."
 	use_rate = 3
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
@@ -208,8 +208,8 @@
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 
 /datum/nanite_program/defib
-	name = "Defibrillation"
-	desc = "The nanites shock the host's heart when triggered, bringing them back to life if the body can sustain it."
+	name = "Defibrylacja"
+	desc = "Po aktywacji nanity porażają serce nosiciela, przywracając go do życia, jeśli ciało jest w stanie to znieść."
 	can_trigger = TRUE
 	trigger_cost = 25
 	trigger_cooldown = 120

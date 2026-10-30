@@ -1,6 +1,6 @@
 /datum/overmap_objective/board_ship
-	name = "Board Ship"
-	desc = "Find and board a ship"
+	name = "Abordaż okrętu"
+	desc = "Znajdź okręt i wejdź na jego pokład"
 	brief = "Przejmijcie jednostkę Syndykatu CALLANADMIN: wejdźcie na pokład, pokonajcie wrogów i zmieńcie jej kody IFF."
 	var/datum/star_system/target_system = null
 	var/obj/structure/overmap/target_ship = null
@@ -55,7 +55,7 @@
 	travel_time += 2 MINUTES * length(fastest_route) // Time spent spooling FTL drive
 	travel_time *= 1.2 // Time spent lolligagging
 	SSovermap_mode.mode.objective_reminder_interval = max((travel_time / 5), SSovermap_mode.mode.objective_reminder_interval)
-	message_admins("Reminder interval set to [(SSovermap_mode.mode.objective_reminder_interval) / 600] minutes")
+	message_admins("Odstęp przypomnień ustawiony na [(SSovermap_mode.mode.objective_reminder_interval) / 600] min")
 
 /datum/overmap_objective/board_ship/check_completion()
 	if (target_ship.faction == SSovermap_mode.mode.starting_faction)

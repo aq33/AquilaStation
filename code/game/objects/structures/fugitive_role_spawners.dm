@@ -19,14 +19,14 @@
 	fughunter.backstory = back_story
 	new_spawn.mind.add_antag_datum(fughunter)
 	fughunter.greet()
-	message_admins("[ADMIN_LOOKUPFLW(new_spawn)] has been made into a Fugitive Hunter by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(new_spawn)] zostaje Łowcą zbiegów w wyniku eventu.")
 	log_game("[key_name(new_spawn)] was spawned as a Fugitive Hunter by an event.")
 
 /obj/effect/mob_spawn/human/fugitive/spacepol
-	name = "police pod"
+	name = "kapsuła policyjna"
 	short_desc = "Jesteś członkiem Kosmicznej Policji!"
-	desc = "A small sleeper typically used to put people to sleep for briefing on the mission."
-	mob_name = "a spacepol officer"
+	desc = "Mały sleeper, w którym zwykle usypia się ludzi przed odprawą na misję."
+	mob_name = "funkcjonariusz Kosmicznej Policji"
 	flavour_text = "Sprawiedliwość przybyła. Jestem członkiem Kosmicznej Policji!"
 	back_story = "space cop"
 	outfit = /datum/outfit/spacepol
@@ -34,23 +34,23 @@
 	icon_state = "sleeper"
 
 /obj/effect/mob_spawn/human/fugitive/russian
-	name = "russian pod"
+	name = "rosyjska kapsuła"
 	short_desc = "Jesteś zbiegiem!"
 	flavour_text = "Aj, blyat. Jestem kosmicznym rosyjskim przemytnikiem! Byliśmy w połowie lotu, gdy nasz ładunek przeteleportowano z naszego statku!"
 	back_story = "russian"
-	desc = "A small sleeper typically used to make long distance travel a bit more bearable."
-	mob_name = "russian"
+	desc = "Mały sleeper, zwykle używany, by dalekie podróże były trochę znośniejsze."
+	mob_name = "Rosjanin"
 	outfit = /datum/outfit/russiancorpse/hunter
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
 /obj/effect/mob_spawn/human/fugitive/bounty
-	name = "bounty hunter pod"
+	name = "kapsuła łowcy nagród"
 	short_desc = "Jesteś łowcą nagród!"
 	flavour_text = "Mamy nową nagrodę za jakichś zbiegów, żywych lub martwych."
 	back_story = "bounty hunters"
-	desc = "A small sleeper typically used to make long distance travel a bit more bearable."
-	mob_name = "bounty hunter"
+	desc = "Mały sleeper, zwykle używany, by dalekie podróże były trochę znośniejsze."
+	mob_name = "łowca nagród"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 

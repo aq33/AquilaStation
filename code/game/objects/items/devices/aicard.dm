@@ -1,6 +1,6 @@
 /obj/item/aicard
 	name = "intelliCard"
-	desc = "A storage device for AIs. Patent pending."
+	desc = "Nośnik do przechowywania SI. Zgłoszenie patentowe w toku."
 	icon = 'icons/obj/aicards.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "electronic"
@@ -15,12 +15,12 @@
 
 /obj/item/aicard/aitater
 	name = "intelliTater"
-	desc = "A stylish upgrade (?) to the intelliCard."
+	desc = "Stylowe ulepszenie (?) intelliCarda."
 	icon_state = "aitater"
 
 /obj/item/aicard/aispook
 	name = "intelliLantern"
-	desc = "A spoOoOoky upgrade to the intelliCard."
+	desc = "StraaAaAszne ulepszenie intelliCarda."
 	icon_state = "aispook"
 
 /obj/item/aicard/suicide_act(mob/living/user)
@@ -86,8 +86,8 @@
 			if(flush)
 				flush = FALSE
 			else
-				var/confirm = alert("Na pewno chcesz wyczyścić pamięć tej karty?", name, "Yes", "No")
-				if(confirm == "Yes" && !..())
+				var/confirm = alert("Na pewno chcesz wyczyścić pamięć tej karty?", name, "Tak", "Nie")
+				if(confirm == "Tak" && !..())
 					flush = TRUE
 					if(AI && AI.loc == src)
 						to_chat(AI, "Twoje pliki rdzenia są usuwane!")

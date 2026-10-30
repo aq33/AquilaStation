@@ -1,6 +1,6 @@
 /obj/machinery/autodoc
 	name = "autodoc"
-	desc = "An advanced machine used for inserting organs and implants into the occupant."
+	desc = "Zaawansowana maszyna, która wszczepia organy i implanty osobie w środku."
 	density = TRUE
 	state_open = FALSE
 	icon = 'icons/obj/machines/autodoc.dmi'
@@ -66,7 +66,7 @@
 			if(!processing)
 				return
 
-		occupant.visible_message("<span class='warning'>[src] dismembers [occupant]!", "<span class='warning'>[src] rozpiłowuje twoje ciało!</span>")
+		occupant.visible_message("<span class='warning'>[src] rozpiłowuje ciało [occupant]!", "<span class='warning'>[src] rozpiłowuje twoje ciało!</span>")
 
 	else
 		sleep(surgerytime)
@@ -86,7 +86,7 @@
 
 /obj/machinery/autodoc/open_machine(mob/user)
 	if(processing)
-		occupant.visible_message("<span class='notice'>[user] cancels [src]'s procedure.", "<span class='notice'>[src] przestaje wszczepiać narząd do twojego ciała.</span>")
+		occupant.visible_message("<span class='notice'>[user] przerywa procedurę [src].", "<span class='notice'>[src] przestaje wszczepiać organ do twojego ciała.</span>")
 		processing = FALSE
 	if(occupant)
 		occupant.forceMove(drop_location())

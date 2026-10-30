@@ -7,7 +7,7 @@
 // Cień-hak
 
 /obj/effect/proc_holder/spell/aimed/shadow_grapple
-	name = "Shadow Grapple"
+	name = "Cienisty hak"
 	desc = "Wystrzel jedną z dłoni. Trafiona osoba zostaje przyciągnięta do ciebie, a trafienie w ścianę przyciąga ciebie do niej. Gasi światła w promieniu dwóch pól od miejsca trafienia."
 	school = "evocation"
 	charge_max = 10 SECONDS
@@ -29,7 +29,7 @@
 	return // jedna ikona, bez wariantu aktywnego
 
 /obj/item/projectile/magic/shadow_hand
-	name = "shadow hand"
+	name = "dłoń cienia"
 	icon = 'aquila/icons/mob/shadow_demon.dmi'
 	icon_state = "shadow_hand"
 	hitsound = 'aquila/sound/shadowdemon/shadowattack1.ogg'
@@ -88,7 +88,7 @@
 // Cienisty pełz
 
 /obj/effect/proc_holder/spell/shadow_crawl
-	name = "Shadow Crawl"
+	name = "Cienisty pełz"
 	desc = "Wtop się w cienie: poruszasz się szybciej, przenikasz przez ściany i nikt cię nie widzi. Działa tylko w ciemności."
 	charge_max = 1 SECONDS
 	clothes_req = FALSE
@@ -187,7 +187,7 @@
 	flick(animation_state, src) // ustawienie icon_state na animację gubi klatki
 
 /obj/effect/dummy/phased_mob/shadow_crawl
-	name = "darkness"
+	name = "ciemność"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	density = FALSE
@@ -222,7 +222,7 @@
 // Demoniczny szept
 
 /obj/effect/proc_holder/spell/targeted/telepathy/shadow_demon
-	name = "Demonic Whisper"
+	name = "Demoniczny szept"
 	desc = "Przemów wprost do umysłu wybranej osoby."
 	action_icon = 'aquila/icons/mob/actions/actions_shadow_demon.dmi'
 	action_icon_state = "shadow_whisper"

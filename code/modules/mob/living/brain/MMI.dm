@@ -1,6 +1,6 @@
 /obj/item/mmi
-	name = "\improper Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity, that nevertheless has become standard-issue on Nanotrasen stations."
+	name = "\improper interfejs człowiek-maszyna"
+	desc = "Nijaki skrót MMI ukrywa prawdziwą grozę tej potworności, która mimo to stała się standardowym wyposażeniem stacji Nanotrasen."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -134,7 +134,7 @@
 		brain = newbrain
 	else if(!brain)
 		brain = new(src)
-		brain.name = "[L.real_name]'s brain"
+		brain.name = "mózg [L.real_name]"
 	brain.organ_flags |= ORGAN_FROZEN
 
 	name = "[initial(name)]: [brainmob.real_name]"
@@ -146,7 +146,7 @@
 
 /obj/item/mmi/verb/Toggle_Listening()
 	set name = "Toggle Listening"
-	set desc = "Toggle listening channel on or off."
+	set desc = "Włącza lub wyłącza odbiór kanału."
 	set category = "MMI"
 	set src = usr.loc
 	set popup_menu = FALSE
@@ -216,8 +216,8 @@
 	return //so that the MMI won't get a warning about not being able to move if it tries to move
 
 /obj/item/mmi/syndie
-	name = "\improper Syndicate Man-Machine Interface"
-	desc = "Syndicate's own brand of MMI. It enforces laws designed to help Syndicate agents achieve their goals upon cyborgs and AIs created with it."
+	name = "\improper interfejs człowiek-maszyna Syndykatu"
+	desc = "Własna marka MMI Syndykatu. Narzuca cyborgom i SI stworzonym z jego pomocą prawa, które mają pomóc agentom Syndykatu w osiąganiu celów."
 	overrides_aicore_laws = TRUE
 
 /obj/item/mmi/syndie/Initialize(mapload)

@@ -1,6 +1,6 @@
 /obj/item/tank/jetpack
-	name = "jetpack (empty)"
-	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
+	name = "plecak odrzutowy (pusty)"
+	desc = "Zbiornik ze sprężonym gazem, który służy do poruszania się w strefach bez grawitacji. Używać ostrożnie."
 	icon_state = "jetpack"
 	item_state = "jetpack"
 	lefthand_file = 'icons/mob/inhands/equipment/jetpacks_lefthand.dmi'
@@ -95,8 +95,8 @@
 		..()
 
 /obj/item/tank/jetpack/improvised
-	name = "improvised jetpack"
-	desc = "A jetpack made from two air tanks, a fire extinguisher and some atmospherics equipment. It doesn't look like it can hold much."
+	name = "improwizowany plecak odrzutowy"
+	desc = "Plecak odrzutowy zrobiony z dwóch butli z powietrzem, gaśnicy i trochę sprzętu atmosferycznego. Nie wygląda, jakby dużo pomieścił."
 	icon_state = "jetpack-improvised"
 	item_state = "jetpack-sec"
 	volume = 20 //normal jetpacks have 70 volume
@@ -119,20 +119,20 @@
 	return TRUE
 
 /obj/item/tank/jetpack/void
-	name = "void jetpack (oxygen)"
-	desc = "It works well in a void."
+	name = "próżniowy plecak odrzutowy (tlen)"
+	desc = "Dobrze działa w próżni."
 	icon_state = "jetpack-void"
 	item_state =  "jetpack-void"
 
 /obj/item/tank/jetpack/oxygen
-	name = "jetpack (oxygen)"
-	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas. Use with caution."
+	name = "plecak odrzutowy (tlen)"
+	desc = "Zbiornik ze sprężonym tlenem, który służy do poruszania się w strefach bez grawitacji. Używać ostrożnie."
 	icon_state = "jetpack"
 	item_state = "jetpack"
 
 /obj/item/tank/jetpack/oxygen/harness
-	name = "jet harness (oxygen)"
-	desc = "A lightweight tactical harness, used by those who don't want to be weighed down by traditional jetpacks."
+	name = "uprząż odrzutowa (tlen)"
+	desc = "Lekka uprząż taktyczna dla tych, którzy nie chcą dźwigać tradycyjnych plecaków odrzutowych."
 	icon_state = "jetpack-mini"
 	item_state = "jetpack-mini"
 	volume = 40
@@ -141,8 +141,8 @@
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 
 /obj/item/tank/jetpack/oxygen/captain
-	name = "\improper Captain's jetpack"
-	desc = "A compact, lightweight jetpack containing a high amount of compressed oxygen."
+	name = "\improper plecak odrzutowy kapitana"
+	desc = "Kompaktowy, lekki plecak odrzutowy z dużą ilością sprężonego tlenu."
 	icon_state = "jetpack-captain"
 	item_state = "jetpack-captain"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -151,16 +151,16 @@
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/tank/jetpack/oxygen/security
-	name = "security jetpack (oxygen)"
-	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas by security forces."
+	name = "policyjny plecak odrzutowy (tlen)"
+	desc = "Zbiornik ze sprężonym tlenem, który służy siłom ochrony do poruszania się w strefach bez grawitacji."
 	icon_state = "jetpack-sec"
 	item_state = "jetpack-sec"
 
 
 
 /obj/item/tank/jetpack/carbondioxide
-	name = "jetpack (carbon dioxide)"
-	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
+	name = "plecak odrzutowy (dwutlenek węgla)"
+	desc = "Zbiornik ze sprężonym dwutlenkiem węgla, który służy do poruszania się w strefach bez grawitacji. Pomalowany na czarno na znak, że nie wolno z niego oddychać."
 	icon_state = "jetpack-black"
 	item_state =  "jetpack-black"
 	distribute_pressure = 0
@@ -168,8 +168,8 @@
 
 
 /obj/item/tank/jetpack/suit
-	name = "hardsuit jetpack upgrade"
-	desc = "A modular, compact set of thrusters designed to integrate with a hardsuit. It is fueled by a tank inserted into the suit's storage compartment."
+	name = "ulepszenie hardsuitu: plecak odrzutowy"
+	desc = "Modułowy, kompaktowy zestaw dysz do zintegrowania z hardsuitem. Zasila go butla włożona do schowka skafandra."
 	icon_state = "jetpack-mining"
 	item_state = "jetpack-black"
 	w_class = WEIGHT_CLASS_NORMAL

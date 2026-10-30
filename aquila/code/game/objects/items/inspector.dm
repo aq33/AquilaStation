@@ -4,7 +4,7 @@
 #define INSPECTOR_SCAN_COST 5
 
 /obj/item/inspector
-	name = "\improper N-spect scanner"
+	name = "\improper skaner N-spect"
 	desc = "Standardowe urządzenie inspekcyjne Centrali. Precyzyjnie sprawdza, czy przedmiot albo jego zawartość jest kontrabandą."
 	icon = 'aquila/icons/obj/sec_med/sec_med.dmi'
 	icon_state = "inspector"
@@ -106,7 +106,7 @@
 	scans_correctly = FALSE
 
 /datum/design/inspector
-	name = "N-spect Scanner"
+	name = "Skaner N-spect"
 	desc = "Skaner kontrabandy Centrali. Zasilany ogniwem."
 	id = "inspector"
 	build_type = PROTOLATHE

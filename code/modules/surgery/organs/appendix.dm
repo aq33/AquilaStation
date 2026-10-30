@@ -1,5 +1,5 @@
 /obj/item/organ/appendix
-	name = "appendix"
+	name = "wyrostek robaczkowy"
 	icon_state = "appendix"
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_APPENDIX
@@ -15,10 +15,10 @@
 /obj/item/organ/appendix/update_icon()
 	if(inflamed)
 		icon_state = "appendixinflamed"
-		name = "inflamed appendix"
+		name = "zapalony wyrostek robaczkowy"
 	else
 		icon_state = "appendix"
-		name = "appendix"
+		name = "wyrostek robaczkowy"
 
 /obj/item/organ/appendix/on_life()
 	..()

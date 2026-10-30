@@ -9,7 +9,7 @@
 	AddComponent(/datum/component/anti_magic, TRUE, TRUE, null, FALSE) //makes the leader hoodie immune without giving the follower hoodies immunity
 
 /obj/item/clothing/head/helmet/chaplain
-	name = "crusader helmet"
+	name = "hełm krzyżowca"
 	desc = "Deus Vult."
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
@@ -20,8 +20,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/suit/armor/riot/chaplain
-	name = "crusader armour"
-	desc = "God wills it!"
+	name = "zbroja krzyżowca"
+	desc = "Bóg tak chce!"
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
@@ -30,8 +30,8 @@
 	move_sound = null
 
 /obj/item/choice_beacon/holy
-	name = "armaments beacon"
-	desc = "Contains a set of armaments for the chaplain that have been reinforced with a silver and beryllium-bronze alloy, providing immunity to magic and its influences."
+	name = "nadajnik uzbrojenia"
+	desc = "Zawiera zestaw uzbrojenia dla kapłana, wzmocniony stopem srebra i brązu berylowego, który zapewnia odporność na magię i jej wpływy."
 
 /obj/item/choice_beacon/holy/canUseBeacon(mob/living/user)
 	if(user.mind?.holy_role)
@@ -56,30 +56,30 @@
 	SSblackbox.record_feedback("tally", "chaplain_armor", 1, "[choice]")
 
 /obj/item/storage/box/holy
-	name = "Templar Kit"
+	name = "Zestaw templariusza"
 
 /obj/item/storage/box/holy/PopulateContents()
 	new /obj/item/clothing/head/helmet/chaplain(src)
 	new /obj/item/clothing/suit/armor/riot/chaplain(src)
 
 /obj/item/storage/box/holy/student
-	name = "Profane Scholar Kit"
+	name = "Zestaw bezbożnego uczonego"
 
 /obj/item/storage/box/holy/student/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/studentuni(src)
 	new /obj/item/clothing/head/helmet/chaplain/cage(src)
 
 /obj/item/clothing/suit/armor/riot/chaplain/studentuni
-	name = "student robe"
-	desc = "The uniform of a bygone institute of learning."
+	name = "szata studenta"
+	desc = "Mundurek dawno zapomnianej uczelni."
 	icon_state = "studentuni"
 	item_state = "studentuni"
 	body_parts_covered = ARMS|CHEST
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
 
 /obj/item/clothing/head/helmet/chaplain/cage
-	name = "cage"
-	desc = "A cage that restrains the will of the self, allowing one to see the profane world for what it is."
+	name = "klatka"
+	desc = "Klatka, która krępuje wolę jaźni i pozwala ujrzeć bezbożny świat takim, jaki jest naprawdę."
 	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "cage"
 	item_state = "cage"
@@ -88,26 +88,26 @@
 	dynamic_hair_suffix = ""
 
 /obj/item/storage/box/holy/sentinel
-	name = "Stone Sentinel Kit"
+	name = "Zestaw kamiennego strażnika"
 
 /obj/item/storage/box/holy/sentinel/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/ancient(src)
 	new /obj/item/clothing/head/helmet/chaplain/ancient(src)
 
 /obj/item/clothing/head/helmet/chaplain/ancient
-	name = "ancient helmet"
-	desc = "None may pass!"
+	name = "starożytny hełm"
+	desc = "Nikt nie przejdzie!"
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
 
 /obj/item/clothing/suit/armor/riot/chaplain/ancient
-	name = "ancient armour"
-	desc = "Defend the treasure..."
+	name = "starożytna zbroja"
+	desc = "Strzeż skarbu..."
 	icon_state = "knight_ancient"
 	item_state = "knight_ancient"
 
 /obj/item/storage/box/holy/witchhunter
-	name = "Witchhunter Kit"
+	name = "Zestaw łowcy czarownic"
 
 /obj/item/storage/box/holy/witchhunter/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/witchhunter(src)
@@ -115,21 +115,21 @@
 	new /obj/item/clothing/neck/crucifix(src)
 
 /obj/item/clothing/suit/armor/riot/chaplain/witchhunter
-	name = "witchunter garb"
-	desc = "This worn outfit saw much use back in the day."
+	name = "strój łowcy czarownic"
+	desc = "Ten znoszony strój swego czasu wiele przeszedł."
 	icon_state = "witchhunter"
 	item_state = "witchhunter"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
 /obj/item/clothing/head/helmet/chaplain/witchunter_hat
-	name = "witchunter hat"
-	desc = "This hat saw much use back in the day."
+	name = "kapelusz łowcy czarownic"
+	desc = "Ten kapelusz swego czasu wiele przeszedł."
 	icon_state = "witchhunterhat"
 	item_state = "witchhunterhat"
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/storage/box/holy/graverobber
-	name = "Grave Robber Kit"
+	name = "Zestaw rabusia grobów"
 
 /obj/item/storage/box/holy/graverobber/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/graverobber_coat(src)
@@ -138,22 +138,22 @@
 	new /obj/item/clothing/gloves/graverobber_gloves(src)
 
 /obj/item/clothing/suit/armor/riot/chaplain/graverobber_coat
-	name = "grave robber coat"
-	desc = "To those with a keen eye, gold gleams like a dagger's point."
+	name = "płaszcz rabusia grobów"
+	desc = "Dla bystrego oka złoto lśni jak ostrze sztyletu."
 	icon_state = "graverobber_coat"
 	item_state = "graverobber_coat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 
 /obj/item/clothing/head/chaplain/graverobber_hat
-	name = "grave robber hat"
-	desc = "A tattered leather hat. It reeks of death."
+	name = "kapelusz rabusia grobów"
+	desc = "Podarty skórzany kapelusz. Cuchnie śmiercią."
 	icon_state = "graverobber_hat"
 	item_state = "graverobber_hat"
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/gloves/graverobber_gloves
-	name = "grave robber gloves"
-	desc = "A pair of leather gloves in poor condition."
+	name = "rękawice rabusia grobów"
+	desc = "Para skórzanych rękawic w kiepskim stanie."
 	icon_state = "graverobber-gloves"
 	item_state = "graverobber-gloves"
 	permeability_coefficient = 0.9
@@ -165,34 +165,34 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 20, "stamina" = 0)
 
 /obj/item/clothing/under/rank/civilian/graverobber_under
-	name = "grave robber uniform"
-	desc = "A shirt and some leather pants in poor condition."
+	name = "ubranie rabusia grobów"
+	desc = "Koszula i skórzane spodnie w kiepskim stanie."
 	icon_state = "graverobber_under"
 	item_state = "graverobber_under"
 	can_adjust = FALSE
 
 /obj/item/storage/box/holy/adept
-	name = "Divine Adept Kit"
+	name = "Zestaw boskiego adepta"
 
 /obj/item/storage/box/holy/adept/PopulateContents()
 	new /obj/item/clothing/suit/armor/riot/chaplain/adept(src)
 	new /obj/item/clothing/head/helmet/chaplain/adept(src)
 
 /obj/item/clothing/head/helmet/chaplain/adept
-	name = "adept hood"
-	desc = "Its only heretical when others do it."
+	name = "kaptur adepta"
+	desc = "To herezja tylko wtedy, gdy robią to inni."
 	icon_state = "crusader"
 	item_state = "crusader"
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
 /obj/item/clothing/suit/armor/riot/chaplain/adept
-	name = "adept robes"
-	desc = "The ideal outfit for burning the unfaithful."
+	name = "szaty adepta"
+	desc = "Idealny strój do palenia niewiernych."
 	icon_state = "crusader"
 	item_state = "crusader"
 
 /obj/item/storage/box/holy/follower
-	name = "Followers of the Chaplain Kit"
+	name = "Zestaw wyznawców kapłana"
 
 /obj/item/storage/box/holy/follower/PopulateContents()
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie/leader(src)
@@ -202,8 +202,8 @@
 	new /obj/item/clothing/suit/hooded/chaplain_hoodie(src)
 
 /obj/item/clothing/suit/hooded/chaplain_hoodie
-	name = "follower hoodie"
-	desc = "Hoodie made for acolytes of the chaplain."
+	name = "bluza wyznawcy"
+	desc = "Bluza z kapturem dla akolitów kapłana."
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
@@ -211,30 +211,30 @@
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood
 
 /obj/item/clothing/head/hooded/chaplain_hood
-	name = "follower hood"
-	desc = "Hood made for acolytes of the chaplain."
+	name = "kaptur wyznawcy"
+	desc = "Kaptur dla akolitów kapłana."
 	icon_state = "chaplain_hood"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEFACE|HIDEEARS
 
 /obj/item/clothing/suit/hooded/chaplain_hoodie/leader
-	name = "leader hoodie"
-	desc = "Now you're ready for some 50 dollar bling water."
+	name = "bluza przywódcy"
+	desc = "Teraz jesteś gotów na wodę bling za 50 dolarów."
 	icon_state = "chaplain_hoodie_leader"
 	item_state = "chaplain_hoodie_leader"
 	hoodtype = /obj/item/clothing/head/hooded/chaplain_hood/leader
 
 /obj/item/clothing/head/hooded/chaplain_hood/leader
-	name = "leader hood"
-	desc = "I mean, you don't /have/ to seek bling water. I just think you should."
+	name = "kaptur przywódcy"
+	desc = "Znaczy, nie /musisz/ szukać wody bling. Po prostu uważam, że powinieneś."
 	icon_state = "chaplain_hood_leader"
 
 
 // CHAPLAIN NULLROD AND CUSTOM WEAPONS //
 
 /obj/item/nullrod
-	name = "null rod"
-	desc = "A rod of pure obsidian; its very presence disrupts and dampens the powers of Nar'Sie and Ratvar's followers."
+	name = "święty kij"
+	desc = "Pręt z czystego obsydianu; sama jego obecność zakłóca i tłumi moce wyznawców Nar'Sie i Ratvara."
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -305,7 +305,7 @@
 	var/obj/effect/rune/target_rune = target
 	if(target_rune.log_when_erased)
 		log_game("[target_rune.cultist_name] rune erased by [key_name(user)] using a null rod.")
-		message_admins("[ADMIN_LOOKUPFLW(user)] erased a [target_rune.cultist_name] rune with a null rod.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] ściera runę ([target_rune.cultist_name]) za pomocą świętego kija.")
 	SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_NARNAR] = TRUE
 
 /obj/item/nullrod/godhand
@@ -313,8 +313,8 @@
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
-	name = "god hand"
-	desc = "This hand of yours glows with an awesome power!"
+	name = "boska dłoń"
+	desc = "Twoja dłoń lśni niesamowitą mocą!"
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/sear.ogg'
@@ -331,8 +331,8 @@
 	item_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	name = "red holy staff"
-	desc = "It has a mysterious, protective aura."
+	name = "czerwony święty kostur"
+	desc = "Otacza go tajemnicza, ochronna aura."
 	w_class = WEIGHT_CLASS_HUGE
 	force = 5
 	slot_flags = ITEM_SLOT_BACK
@@ -347,7 +347,7 @@
 		. += mutable_appearance('icons/effects/effects.dmi', shield_icon, MOB_SHIELD_LAYER)
 
 /obj/item/nullrod/staff/blue
-	name = "blue holy staff"
+	name = "niebieski święty kostur"
 	icon_state = "godstaff-blue"
 	item_state = "godstaff-blue"
 	shield_icon = "shield-old"
@@ -358,8 +358,8 @@
 	item_state = "claymore"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "holy claymore"
-	desc = "A weapon fit for a crusade!"
+	name = "święty claymore"
+	desc = "Broń godna krucjaty!"
 	w_class = WEIGHT_CLASS_HUGE
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	block_flags = BLOCKING_NASTY | BLOCKING_ACTIVE
@@ -376,16 +376,16 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	name = "dark blade"
-	desc = "Spread the glory of the dark gods!"
+	name = "mroczne ostrze"
+	desc = "Szerz chwałę mrocznych bogów!"
 	slot_flags = ITEM_SLOT_BELT
 	hitsound = 'sound/hallucinations/growl1.ogg'
 
 /obj/item/nullrod/claymore/chainsaw_sword
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
-	name = "sacred chainsaw sword"
-	desc = "Suffer not a heretic to live."
+	name = "święty miecz łańcuchowy"
+	desc = "Nie pozwól heretykowi żyć."
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("piłuje", "rozdziera", "tnie", "rąbie", "sieka")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
@@ -395,13 +395,13 @@
 /obj/item/nullrod/claymore/glowing
 	icon_state = "swordon"
 	item_state = "swordon"
-	name = "force weapon"
-	desc = "The blade glows with the power of faith. Or possibly a battery."
+	name = "broń mocy"
+	desc = "Ostrze lśni mocą wiary. Albo może baterii."
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/nullrod/claymore/katana
-	name = "\improper Hanzo steel"
-	desc = "Capable of cutting clean through a holy claymore."
+	name = "\improper stal Hanzo"
+	desc = "Potrafi przeciąć na wylot święty claymore."
 	icon_state = "katana"
 	item_state = "katana"
 	worn_icon_state = "katana"
@@ -410,8 +410,8 @@
 	block_power = 0
 
 /obj/item/nullrod/claymore/multiverse
-	name = "extradimensional blade"
-	desc = "Once the harbinger of an interdimensional war, its sharpness fluctuates wildly."
+	name = "pozawymiarowe ostrze"
+	desc = "Niegdyś zwiastun wojny między wymiarami. Jego ostrość szaleńczo się waha."
 	icon_state = "multiverse"
 	item_state = "multiverse"
 	slot_flags = ITEM_SLOT_BELT
@@ -421,29 +421,29 @@
 	..()
 
 /obj/item/nullrod/claymore/saber
-	name = "light energy sword"
+	name = "jasny miecz energetyczny"
 	hitsound = 'sound/weapons/blade1.ogg'
 	icon = 'icons/obj/transforming_energy.dmi'
 	icon_state = "swordblue"
 	item_state = "swordblue"
-	desc = "If you strike me down, I shall become more robust than you can possibly imagine."
+	desc = "Jeśli mnie powalisz, stanę się potężniejszy, niż jesteś w stanie sobie wyobrazić."
 	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/nullrod/claymore/saber/red
-	name = "dark energy sword"
+	name = "ciemny miecz energetyczny"
 	icon_state = "swordred"
 	item_state = "swordred"
-	desc = "Woefully ineffective when used on steep terrain."
+	desc = "Żałośnie nieskuteczny na stromym terenie."
 
 /obj/item/nullrod/claymore/saber/pirate
-	name = "nautical energy sword"
+	name = "morski miecz energetyczny"
 	icon_state = "cutlass1"
 	item_state = "cutlass1"
-	desc = "Convincing HR that your religion involved piracy was no mean feat."
+	desc = "Przekonanie kadr, że twoja religia obejmuje piractwo, nie było łatwym zadaniem."
 
 /obj/item/nullrod/sord
-	name = "\improper UNREAL SORD"
-	desc = "This thing is so unspeakably HOLY you are having a hard time even holding it."
+	name = "\improper NIEREALNY MIECZ"
+	desc = "Ta rzecz jest tak niewypowiedzianie ŚWIĘTA, że ledwo potrafisz ją utrzymać."
 	icon_state = "sord"
 	item_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -455,7 +455,7 @@
 	attack_verb = list("atakuje", "ciacha", "dźga", "kroi", "rozdziera", "rozrywa", "sieka", "tnie")
 	block_level = 1
 
-/obj/item/nullrod/sord/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/nullrod/sord/on_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", damage = 0, attack_type = MELEE_ATTACK)
 	if(isitem(hitby))
 		var/obj/item/I = hitby
 		owner.attackby(src)
@@ -469,8 +469,8 @@
 	item_state = "scythe1"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "reaper scythe"
-	desc = "Ask not for whom the bell tolls..."
+	name = "kosa żniwiarza"
+	desc = "Nie pytaj, komu bije dzwon..."
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 35
 	block_level = 1
@@ -489,8 +489,8 @@
 	item_state = "hfrequency1"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "high frequency blade"
-	desc = "Bad references are the DNA of the soul."
+	name = "ostrze wysokiej częstotliwości"
+	desc = "Kiepskie nawiązania to DNA duszy."
 	attack_verb = list("rąbie", "kroi", "tnie", "zandatsuje")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
@@ -500,8 +500,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	icon = 'icons/obj/guns/magic.dmi'
-	name = "dormant spellblade"
-	desc = "The blade grants the wielder nearly limitless power...if they can figure out how to turn it on, that is."
+	name = "uśpione ostrze zaklęć"
+	desc = "Ostrze daje władającemu niemal nieograniczoną moc... o ile ten wymyśli, jak je włączyć."
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
 /obj/item/nullrod/scythe/talking
@@ -509,8 +509,8 @@
 	item_state = "talking_sword"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "possessed blade"
-	desc = "When the station falls into chaos, it's nice to have a friend by your side."
+	name = "opętane ostrze"
+	desc = "Gdy stacja pogrąża się w chaosie, miło mieć przyjaciela u boku."
 	attack_verb = list("rąbie", "kroi", "tnie")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/possessed = FALSE
@@ -558,8 +558,8 @@
 /obj/item/nullrod/scythe/talking/chainsword
 	icon_state = "chainswordon"
 	item_state = "chainswordon"
-	name = "possessed chainsaw sword"
-	desc = "Suffer not a heretic to live."
+	name = "opętany miecz łańcuchowy"
+	desc = "Nie pozwól heretykowi żyć."
 	chaplain_spawnable = FALSE
 	force = 30
 	slot_flags = ITEM_SLOT_BELT
@@ -573,8 +573,8 @@
 	item_state = "hammeron"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	name = "relic war hammer"
-	desc = "This war hammer cost the chaplain forty thousand space dollars."
+	name = "relikwiarny młot bojowy"
+	desc = "Ten młot bojowy kosztował kapłana czterdzieści tysięcy kosmicznych dolarów."
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_HUGE
 	attack_verb = list("rozbija", "grzmoci", "wali młotem", "chrupie")
@@ -582,8 +582,8 @@
 
 /obj/item/nullrod/chainsaw
 	bleed_force = BLEED_CUT
-	name = "chainsaw hand"
-	desc = "Good? Bad? You're the guy with the chainsaw hand."
+	name = "ręka-piła łańcuchowa"
+	desc = "Dobry? Zły? To ty jesteś gościem z piłą łańcuchową zamiast ręki."
 	icon_state = "chainsaw_on"
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
@@ -609,16 +609,16 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "clownrender"
 	item_state = "render"
-	name = "clown dagger"
-	desc = "Used for absolutely hilarious sacrifices."
+	name = "sztylet klauna"
+	desc = "Do absolutnie przezabawnych ofiar."
 	hitsound = 'sound/items/bikehorn.ogg'
 	sharpness = IS_SHARP
 	attack_verb = list("atakuje", "ciacha", "dźga", "kroi", "rozdziera", "rozrywa", "sieka", "tnie")
 
 /obj/item/nullrod/pride_hammer
 	icon_state = "pride"
-	name = "Pride-struck Hammer"
-	desc = "It resonates an aura of Pride."
+	name = "Młot Pychy"
+	desc = "Promieniuje aurą Pychy."
 	force = 16
 	throwforce = 15
 	w_class = 4
@@ -638,8 +638,8 @@
 		to_chat(H, "<span class='userdanger'>Czujesz się niepewnie, biorąc na siebie ciężar [user].</span>")
 
 /obj/item/nullrod/whip
-	name = "holy whip"
-	desc = "What a terrible night to be on Space Station 13."
+	name = "święty bicz"
+	desc = "Cóż za okropna noc, by być na Stacji Kosmicznej 13."
 	icon_state = "chain"
 	item_state = "chain"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
@@ -649,8 +649,8 @@
 	hitsound = 'sound/weapons/chainhit.ogg'
 
 /obj/item/nullrod/fedora
-	name = "atheist's fedora"
-	desc = "The brim of the hat is as sharp as your wit. The edge would hurt almost as much as disproving the existence of God."
+	name = "fedora ateisty"
+	desc = "Rondo kapelusza jest ostre jak twój dowcip. Cięcie bolałoby niemal tak bardzo jak obalenie istnienia Boga."
 	icon_state = "fedora"
 	item_state = "fedora"
 	slot_flags = ITEM_SLOT_HEAD
@@ -665,8 +665,8 @@
 
 /obj/item/nullrod/armblade
 	bleed_force = BLEED_CUT
-	name = "dark blessing"
-	desc = "Particularly twisted deities grant gifts of dubious value."
+	name = "mroczne błogosławieństwo"
+	desc = "Szczególnie pokręcone bóstwa dają dary wątpliwej wartości."
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
@@ -683,13 +683,13 @@
 	AddComponent(/datum/component/butchering, 80, 70)
 
 /obj/item/nullrod/armblade/tentacle
-	name = "unholy blessing"
+	name = "bezbożne błogosławieństwo"
 	icon_state = "tentacle"
 	item_state = "tentacle"
 
 /obj/item/nullrod/carp
-	name = "carp-sie plushie"
-	desc = "An adorable stuffed toy that resembles the god of all carp. The teeth look pretty sharp. Activate it to receive the blessing of Carp-Sie."
+	name = "pluszak Karp-Sie"
+	desc = "Uroczy pluszak przypominający boga wszystkich karpi. Zęby wyglądają na całkiem ostre. Aktywuj go, by otrzymać błogosławieństwo Karp-Sie."
 	icon = 'icons/obj/plushes.dmi'
 	icon_state = "carpplush"
 	item_state = "carp_plushie"
@@ -708,8 +708,8 @@
 		used_blessing = TRUE
 
 /obj/item/nullrod/claymore/bostaff //May as well make it a "claymore" and inherit the blocking
-	name = "monk's staff"
-	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
+	name = "kostur mnicha"
+	desc = "Długi, wysoki kostur z polerowanego drewna. Tradycyjnie używany w starożytnych sztukach walki Starej Ziemi, dziś służy do nękania klauna."
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14
 	block_power = 40
@@ -729,9 +729,9 @@
 	item_state = "crysknife"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	name = "arrhythmic knife"
+	name = "arytmiczny nóż"
 	w_class = WEIGHT_CLASS_HUGE
-	desc = "They say fear is the true mind killer, but stabbing them in the head works too. Honour compels you to not sheathe it once drawn."
+	desc = "Mówią, że to strach naprawdę zabija umysł, ale dźgnięcie w głowę też działa. Honor nie pozwala ci schować go do pochwy, gdy raz go dobędziesz."
 	sharpness = IS_SHARP
 	slot_flags = null
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -759,16 +759,16 @@
 	icon_state = "pitchfork0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "unholy pitchfork"
+	name = "bezbożne widły"
 	w_class = WEIGHT_CLASS_NORMAL
-	desc = "Holding this makes you look absolutely devilish."
+	desc = "Gdy je trzymasz, wyglądasz absolutnie diabelsko."
 	attack_verb = list("szturcha", "nadziewa", "przebija", "dźga")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = IS_SHARP
 
 /obj/item/nullrod/egyptian
-	name = "egyptian staff"
-	desc = "A tutorial in mummification is carved into the staff. You could probably craft the wraps if you had some cloth."
+	name = "egipska laska"
+	desc = "Na lasce wyryto poradnik mumifikacji. Mając trochę materiału, pewnie dasz radę zrobić bandaże."
 	icon = 'icons/obj/guns/magic.dmi'
 	icon_state = "pharoah_sceptre"
 	item_state = "pharoah_sceptre"
@@ -784,8 +784,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	name = "hypertool"
-	desc = "A tool so powerful even you cannot perfectly use it."
+	name = "hipernarzędzie"
+	desc = "Narzędzie tak potężne, że nawet ty nie potrafisz używać go idealnie."
 	armour_penetration = 35
 	damtype = BRAIN
 	attack_verb = list("pulsuje w", "łata", "tnie")
@@ -793,8 +793,8 @@
 
 /obj/item/nullrod/spear
 	bleed_force = BLEED_CUT
-	name = "ancient spear"
-	desc = "An ancient spear made of brass, I mean gold, I mean bronze. It looks highly mechanical."
+	name = "starożytna włócznia"
+	desc = "Starożytna włócznia z mosiądzu, znaczy złota, znaczy brązu. Wygląda na wysoce mechaniczną."
 	icon_state = "ratvarian_spear"
 	item_state = "ratvarian_spear"
 	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'

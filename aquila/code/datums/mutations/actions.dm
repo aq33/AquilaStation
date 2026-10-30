@@ -1,6 +1,6 @@
 /datum/mutation/tentacle
-	name = "Tentacle Arm"
-	desc = "A horrific mutation that gives the user the abilitiy to turn their arm into tentacle made out of muscle and tendons."
+	name = "Ręka-macka"
+	desc = "Przerażająca mutacja, dzięki której nosiciel zmienia rękę w mackę z mięśni i ścięgien."
 	quality = POSITIVE
 	difficulty = 12
 	text_gain_indication = "<span class='notice'>Twoje ramiona wydają się rozciągliwe.</span>"
@@ -9,8 +9,8 @@
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/tentacle
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/tentacle
-	name = "Tentacle"
-	desc = "A fleshy tentacle that can stretch out and grab things or people, just like in the chinesee cartoons."
+	name = "Macka"
+	desc = "Mięsista macka, która rozciąga się i chwyta rzeczy albo ludzi, zupełnie jak w chińskich kreskówkach."
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "tentacle"
 	charge_max = 50
@@ -19,8 +19,8 @@
 	item_type = /obj/item/gun/magic/tentacle_mutation
 
 /obj/item/gun/magic/tentacle_mutation
-	name = "tentacle"
-	desc = "A fleshy tentacle that can stretch out and grab things or people."
+	name = "macka"
+	desc = "Mięsista macka, która rozciąga się i chwyta rzeczy albo ludzi."
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "tentacle"
 	item_state = "tentacle"
@@ -65,8 +65,8 @@
 |***********ARMBLADE MUTATION***********|
 \***************************************/
 /datum/mutation/armblade
-	name = "Arm Blade"
-	desc = "A horrific mutation that gives user the ability to turn their arm into a grotesque blade made of bone and flesh."
+	name = "Ręka-ostrze"
+	desc = "Przerażająca mutacja, dzięki której nosiciel zmienia rękę w groteskowe ostrze z kości i mięsa."
 	locked = TRUE
 	text_gain_indication = "<span class='warning'>Czujesz, jak kości w twoim ramieniu boleśnie się przekształcają!</span>"
 	text_lose_indication = "<span class='warning'>Twoje ramiona boleśnie wracają do normy.</span>"
@@ -74,8 +74,8 @@
 	power = /obj/effect/proc_holder/spell/targeted/conjure_item/armblade
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/armblade
-	name = "Arm Blade"
-	desc = "Reform one of your arms into a deadly blade."
+	name = "Ręka-ostrze"
+	desc = "Przekształć jedną z rąk w zabójcze ostrze."
 	action_icon = 'icons/mob/actions/actions_changeling.dmi'
 	action_icon_state = "armblade"
 	charge_max = 50
@@ -83,8 +83,8 @@
 	item_type = /obj/item/melee/arm_blade_mut
 
 /obj/item/melee/arm_blade_mut //nowy obiekt, bo bazowanie klasy o /obj/item/melee/arm_blade jest w chuj nieporęczne. wymagałoby nadpisania kilku funkcji w bardzo nieprzyjemny sposób
-	name = "arm blade"
-	desc = "A grotesque blade made out of bone and flesh that cleaves through people as a hot knife through butter. This one doesn't look sturdy enough to force an airlock."
+	name = "ręka-ostrze"
+	desc = "Groteskowe ostrze z kości i mięsa, które tnie ludzi jak gorący nóż masło. To nie wygląda na dość mocne, żeby wyważyć śluzę."
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
@@ -125,8 +125,8 @@
 |***********VORE MUTATION*************|
 \*************************************/
 /datum/mutation/vore //ta mutacja to nie byl moj pomysl, miejcie pretensje do jokura
-	name = "Matter Eater"
-	desc = "A mutation that gives a subject the ability to eat anything around them whole."
+	name = "Pożeracz materii"
+	desc = "Mutacja, dzięki której pacjent może zjeść w całości wszystko, co ma wokół siebie."
 	quality = POSITIVE
 	text_gain_indication = "<span class='warning'>Czujesz ogromny głód!</span>"
 	text_lose_indication = "<span class='notice'>Znów czujesz się syty.</span>"
@@ -135,8 +135,8 @@
 	power = /obj/effect/proc_holder/spell/targeted/vore
 
 /obj/effect/proc_holder/spell/targeted/vore
-	name = "Eat Matter"
-	desc = "Eat the item you're currently holding or puke out the item you ate."
+	name = "Zjedz materię"
+	desc = "Zjedz przedmiot, który trzymasz, albo zwymiotuj przedmiot, który zjadłeś."
 	action_icon = 'aquila/icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "stomach"
 	charge_max = 40

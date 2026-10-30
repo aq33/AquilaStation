@@ -2,8 +2,8 @@
 #define SOLARGENRATE 1500
 
 /obj/machinery/power/solar
-	name = "solar panel"
-	desc = "A solar panel. Generates electricity when in contact with sunlight."
+	name = "panel słoneczny"
+	desc = "Panel słoneczny. Wytwarza prąd, gdy pada na niego światło słońca."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "sp_base"
 	density = TRUE
@@ -178,8 +178,8 @@
 //
 
 /obj/item/solar_assembly
-	name = "solar panel assembly"
-	desc = "A solar panel assembly kit, allows constructions of a solar panel, or with a tracking circuit board, a solar tracker."
+	name = "zespół panelu słonecznego"
+	desc = "Zestaw do złożenia panelu słonecznego, a z płytką śledzącą także nadążnika słonecznego."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "sp_base"
 	item_state = "electropack"
@@ -254,8 +254,8 @@
 //
 
 /obj/machinery/power/solar_control
-	name = "solar panel control"
-	desc = "A controller for solar panel arrays."
+	name = "konsola paneli słonecznych"
+	desc = "Sterownik pól paneli słonecznych."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
@@ -522,5 +522,5 @@
 //
 
 /obj/item/paper/guides/jobs/engi/solars
-	name = "paper- 'Going green! Setup your own solar array instructions.'"
+	name = "kartka - „Zielona energia! Jak zbudować własne pole paneli słonecznych”"
 	default_raw_text = "<h1>Witamy</h1><p>W greencorps kochamy środowisko i kosmos. Dzięki temu zestawowi możesz pomóc matce naturze i wytwarzać energię bez paliw kopalnych ani plazmy! Energia z osobliwości jest niebezpieczna, a słoneczna bezpieczna, dlatego jest lepsza. Oto jak zbudować własne pole paneli słonecznych.</p><p>Panel słoneczny zrobisz, przykręcając zespół panelu do węzła kabla. Dodanie tafli szkła, zbrojonego lub zwykłego, zakończy budowę panelu. To takie proste!</p><p>Po zbudowaniu kolejnych 19 paneli zbuduj tracker słoneczny, by śledzić dar matki natury – słońce. Kroki są takie same jak wcześniej, tylko przed ostatnim etapem, czyli dodaniem szkła, wkładasz do zespołu obwód trackera. Masz tracker! Ostatni krok to dodanie komputera, który oblicza ruch słońca i wysyła panelom polecenia, by obracały się za nim. Budowa komputera słonecznego wygląda jak budowa każdego innego komputera, więc nie powinieneś mieć z tym problemu. Pod komputerem musi jednak być węzeł przewodu, a przewód musi być podłączony do trackera.</p><p>Gratulacje, powinieneś mieć działające pole paneli słonecznych. Jeśli masz problemy, oto kilka wskazówek. Upewnij się, że cały sprzęt słoneczny stoi na węzłach kabla, nawet komputer. Jeśli się pomylisz, zawsze możesz rozebrać swoje konstrukcje.</p><p>To wszystko, bądź bezpieczny, bądź eko!</p>"

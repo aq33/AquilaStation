@@ -190,7 +190,7 @@
 	needs_anchored = FALSE
 
 /datum/design/board/seeder
-	name = "Siewnik przemysłowy"
+	name = "Projekt maszyny (siewnik przemysłowy)"
 	desc = "Ta maszyna zamienia owoce i rośliny w nasiona."
 	id = "seeder"
 	build_path = /obj/item/circuitboard/machine/seeder

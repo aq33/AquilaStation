@@ -96,7 +96,7 @@
 		else
 			var/number = 1
 			number = nuke_team.members.Find(owner)
-			owner.current.real_name = "[nuke_team.syndicate_name] Operative #[number]"
+			owner.current.real_name = "Operator [nuke_team.syndicate_name] nr [number]"
 
 /datum/antagonist/nukeop/proc/memorize_code()
 	if(nuke_team && nuke_team.tracked_nuke && nuke_team.memorized_code)
@@ -147,13 +147,13 @@
 /datum/antagonist/nukeop/admin_add(datum/mind/new_owner,mob/admin)
 	new_owner.assigned_role = ROLE_OPERATIVE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has nuke op'ed [key_name_admin(new_owner)].")
+	message_admins("[key_name_admin(admin)] zmienia [key_name_admin(new_owner)] w operatora nuklearnego.")
 	log_admin("[key_name(admin)] has nuke op'ed [key_name(new_owner)].")
 
 /datum/antagonist/nukeop/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,PROC_REF(admin_send_to_base))
-	.["Tell code"] = CALLBACK(src,PROC_REF(admin_tell_code))
+	.["Wyślij do bazy"] = CALLBACK(src,PROC_REF(admin_send_to_base))
+	.["Podaj kod"] = CALLBACK(src,PROC_REF(admin_tell_code))
 
 /datum/antagonist/nukeop/proc/admin_send_to_base(mob/admin)
 	owner.current.forceMove(pick(GLOB.nukeop_start))
@@ -181,7 +181,7 @@
 	if(nuke_team?.memorized_code)
 		var/obj/item/paper/nuke_code_paper = new
 		nuke_code_paper.add_raw_text("Kod autoryzacji ładunku nuklearnego: <b>[nuke_team.memorized_code]</b>")
-		nuke_code_paper.name = "nuclear bomb code"
+		nuke_code_paper.name = "kod bomby nuklearnej"
 		var/mob/living/carbon/human/H = owner.current
 		if(!istype(H))
 			nuke_code_paper.forceMove(get_turf(H))
@@ -190,11 +190,11 @@
 			H.update_icons()
 
 /datum/antagonist/nukeop/leader/give_alias()
-	title = pick("Czar", "Boss", "Commander", "Chief", "Kingpin", "Director", "Overlord")
+	title = pick("Car", "Boss", "Dowódca", "Szef", "Herszt", "Dyrektor", "Władca")
 	if(nuke_team && nuke_team.syndicate_name)
-		owner.current.real_name = "[nuke_team.syndicate_name] [title]"
+		owner.current.real_name = "[title] [nuke_team.syndicate_name]"
 	else
-		owner.current.real_name = "Syndicate [title]"
+		owner.current.real_name = "[title] Syndykatu"
 
 /datum/antagonist/nukeop/leader/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0, use_reverb = FALSE)
@@ -213,7 +213,7 @@
 
 /datum/team/nuclear/proc/rename_team(new_name)
 	syndicate_name = new_name
-	name = "[syndicate_name] Team"
+	name = "Drużyna [syndicate_name]"
 	for(var/I in members)
 		var/datum/mind/synd_mind = I
 		var/mob/living/carbon/human/H = synd_mind.current

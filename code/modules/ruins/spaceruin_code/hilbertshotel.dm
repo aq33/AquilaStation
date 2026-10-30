@@ -3,8 +3,8 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 // Someone for the love of god kill whoever indented this with spaces
 /obj/item/hilbertshotel
-    name = "Hilbert's Hotel"
-    desc = "A sphere of what appears to be an intricate network of bluespace. Observing it in detail seems to give you a headache as you try to comprehend the infinite amount of infinitesimally distinct points on its surface."
+    name = "Hotel Hilberta"
+    desc = "Kula z czegoś, co wygląda na misterną sieć bluespace. Gdy przyglądasz się jej z bliska i próbujesz pojąć nieskończoną liczbę nieskończenie małych, odrębnych punktów na jej powierzchni, zaczyna cię boleć głowa."
     icon_state = "hilbertshotel"
     w_class = WEIGHT_CLASS_SMALL
     resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -120,7 +120,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 /obj/item/hilbertshotel/proc/linkTurfs(var/datum/turf_reservation/currentReservation, var/currentRoomnumber)
     var/area/hilbertshotel/currentArea = get_area(locate(currentReservation.bottom_left_coords[1], currentReservation.bottom_left_coords[2], currentReservation.bottom_left_coords[3]))
-    currentArea.name = "Hilbert's Hotel Room [currentRoomnumber]"
+    currentArea.name = "Pokój Hotelu Hilberta [currentRoomnumber]"
     currentArea.parentSphere = src
     currentArea.storageTurf = storageTurf
     currentArea.roomnumber = currentRoomnumber
@@ -128,7 +128,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     currentArea.virtual_z_value = get_new_virtual_z()
     for(var/turf/closed/indestructible/hoteldoor/door in currentArea)
         door.parentSphere = src
-        door.desc = "The door to this hotel room. The placard reads 'Room [currentRoomnumber]'. Strange, this door doesnt even seem openable. The doorknob, however, seems to buzz with unusual energy...<br /><span class='info'>Alt-Click to look through the peephole.</span>"
+        door.desc = "Drzwi do tego pokoju hotelowego. Tabliczka głosi: „Pokój [currentRoomnumber]”. Dziwne, te drzwi chyba nawet nie dają się otworzyć. Za to klamka zdaje się brzęczeć niezwykłą energią...<br /><span class='info'>Alt+klik, by zajrzeć przez wizjer.</span>"
     for(var/turf/open/space/bluespace/BSturf in currentArea)
         BSturf.parentSphere = src
 
@@ -196,26 +196,26 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 //Turfs and Areas
 /turf/closed/indestructible/hotelwall
-	name = "hotel wall"
-	desc = "A wall designed to protect the security of the hotel's guests."
+	name = "ściana hotelu"
+	desc = "Ściana zaprojektowana, by chronić bezpieczeństwo gości hotelu."
 	icon_state = "hotelwall"
 	canSmoothWith = list(/turf/closed/indestructible/hotelwall)
 	explosion_block = INFINITY
 
 /turf/open/indestructible/hotelwood
-    desc = "Stylish dark wood with extra reinforcement. Secured firmly to the floor to prevent tampering."
+    desc = "Stylowe ciemne drewno z dodatkowym wzmocnieniem. Mocno przytwierdzone do podłoża, by nikt przy nim nie majstrował."
     icon_state = "wood"
     footstep = FOOTSTEP_WOOD
     tiled_dirt = FALSE
 
 /turf/open/indestructible/hoteltile
-    desc = "Smooth tile with extra reinforcement. Secured firmly to the floor to prevent tampering."
+    desc = "Gładka płytka z dodatkowym wzmocnieniem. Mocno przytwierdzona do podłoża, by nikt przy niej nie majstrował."
     icon_state = "showroomfloor"
     footstep = FOOTSTEP_FLOOR
     tiled_dirt = FALSE
 
 /turf/open/space/bluespace
-    name = "\proper bluespace hyperzone"
+    name = "\proper hiperstrefa bluespace"
     icon_state = "bluespace"
     baseturfs = /turf/open/space/bluespace
     flags_1 = NOJAUNT_1
@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     do_sparks(3, FALSE, get_turf(arrived))
 
 /turf/closed/indestructible/hoteldoor
-    name = "Hotel Door"
+    name = "drzwi hotelowe"
     icon_state = "hoteldoor"
     explosion_block = INFINITY
     var/obj/item/hilbertshotel/parentSphere
@@ -241,7 +241,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     if(!parentSphere)
         to_chat(user, "<span class='warning'>Drzwi chyba się zepsuły i nie chcą działać!</span>")
         return
-    if(alert(user, "Hotel Hilberta przypomina, że choć zrobimy wszystko, by chronić pozostawione przez ciebie rzeczy, nie gwarantujemy ich bezpieczeństwa podczas twojej nieobecności, zwłaszcza zdrowia żywych stworzeń. Mając to na uwadze, czy jesteś gotów wyjść?", "Exit", "Leave", "Stay") == "Leave")
+    if(alert(user, "Hotel Hilberta przypomina, że choć zrobimy wszystko, by chronić pozostawione przez ciebie rzeczy, nie gwarantujemy ich bezpieczeństwa podczas twojej nieobecności, zwłaszcza zdrowia żywych stworzeń. Mając to na uwadze, czy jesteś gotów wyjść?", "Wyjście", "Wyjdź", "Zostań") == "Wyjdź")
         if(!(user.mobility_flags & MOBILITY_MOVE) || (get_dist(get_turf(src), get_turf(user)) > 1)) //no teleporting around if they're dead or moved away during the prompt.
             return
         user.forceMove(get_turf(parentSphere))
@@ -295,8 +295,8 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
             PHC.Trigger()
 
 /datum/action/peepholeCancel
-    name = "Cancel View"
-    desc = "Stop looking through the bluespace peephole."
+    name = "Przestań patrzeć"
+    desc = "Przestań patrzeć przez bluespace'owy wizjer."
     button_icon_state = "cancel_peephole"
 
 /datum/action/peepholeCancel/Trigger()
@@ -307,7 +307,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     qdel(src)
 
 /area/hilbertshotel
-    name = "Hilbert's Hotel Room"
+    name = "Pokój Hotelu Hilberta"
     icon_state = "hilbertshotel"
     requires_power = FALSE
     has_gravity = TRUE
@@ -349,7 +349,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     var/turf/T = get_turf(H)
     var/area/A = T.loc
     log_game("[H] entered itself. Moving it to [loc_name(targetturf)].")
-    message_admins("[H] entered itself. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
+    message_admins("[H] wchodzi do samego siebie. Przenoszę go na [ADMIN_VERBOSEJMP(targetturf)].")
     for(var/mob/M in A)
         to_chat(M, "<span class='danger'>[H] niemal imploduje, ale szybko się odbija, wystrzeliwując w losowy punkt w kosmosie!</span>")
     H.forceMove(targetturf)
@@ -375,7 +375,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     var/obj/item/abstracthotelstorage/storageObj = new(storageTurf)
     storageObj.roomNumber = roomnumber
     storageObj.parentSphere = parentSphere
-    storageObj.name = "Room [roomnumber] Storage"
+    storageObj.name = "Schowek pokoju [roomnumber]"
     for(var/i=0, i<parentSphere.hotelRoomTemp.width, i++)
         for(var/j=0, j<parentSphere.hotelRoomTemp.height, j++)
             var/list/turfContents = list()
@@ -391,7 +391,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     qdel(reservation)
 
 /area/hilbertshotelstorage
-    name = "Hilbert's Hotel Storage Room"
+    name = "Schowek Hotelu Hilberta"
     icon_state = "hilbertshotel"
     requires_power = FALSE
     area_flags = HIDDEN_AREA | UNIQUE_AREA
@@ -420,11 +420,11 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 
 //Space Ruin stuff
 /area/ruin/space/has_grav/hilbertresearchfacility
-    name = "Hilbert Research Facility"
+    name = "Placówka Badawcza Hilberta"
 
 /obj/item/analyzer/hilbertsanalyzer
-    name = "custom rigged analyzer"
-    desc = "A hand-held environmental scanner which reports current gas levels. This one seems custom rigged to additionally be able to analyze some sort of bluespace device."
+    name = "przerobiony analizator"
+    desc = "Ręczny skaner środowiskowy, który podaje aktualne poziomy gazów. Ten wygląda na przerobiony tak, by dodatkowo analizować jakieś urządzenie bluespace."
     icon_state = "hilbertsanalyzer"
 
 /obj/item/analyzer/hilbertsanalyzer/afterattack(atom/target, mob/user, proximity)
@@ -448,14 +448,14 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
             to_chat(user, "Brak zwolnionych pokoi.")
 
 /obj/effect/mob_spawn/human/doctorhilbert
-	name = "Doctor Hilbert"
-	mob_name = "Doctor Hilbert"
+	name = "Doktor Hilbert"
+	mob_name = "Doktor Hilbert"
 	mob_gender = "male"
 	assignedrole = null
 	ghost_usable = FALSE
 	oxy_damage = 500
 	mob_species = /datum/species/skeleton
-	id_job = "Head Researcher"
+	id_job = "Główny badacz"
 	id_access = ACCESS_RESEARCH
 	id_access_list = list(ACCESS_AWAY_GENERIC3, ACCESS_RESEARCH)
 	instant = TRUE
@@ -468,7 +468,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	banType = ROLE_HOTEL_STAFF
 
 /obj/item/paper/crumpled/docslogs
-	name = "Research Logs"
+	name = "Dziennik badań"
 
 /obj/item/paper/crumpled/docslogs/Initialize(mapload)
 	. = ..()
@@ -498,7 +498,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	<i>Doktor Hilbert</i>"}
 
 /obj/item/paper/crumpled/robertsworkjournal
-	name = "Work Journal"
+	name = "Dziennik pracy"
 	default_raw_text = {"<h4>Pierwszy tydzień!</h4>
 	Pierwszy tydzień w nowej pracy. To posada sekretarza, ale co tam, byle płacili rachunki. Poza tym wygląda na to, że dzieją się tu ciekawe rzeczy.<br>
 	Doktor mówi, że najlepiej, żebym nie rozmawiał otwarcie z innymi o jego badaniach; chyba nie chce, żeby coś wyciekło. Parę razy złapałem się na tym, że coś mi się wymsknęło w rozmowie, trudno się nie chwalić czymś tak fajnym!<br>
@@ -524,7 +524,7 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
 	<i>Robert P.</i>"}
 
 /obj/item/paper/crumpled/bloody/docsdeathnote
-	name = "note"
+	name = "notatka"
 	default_raw_text = {"To już koniec, prawda?<br>
 	Nikt nie przyjdzie z pomocą, tyle stało się jasne.<br>
 	Jasne, jest samotnie, ale czy mam duży wybór? Przynajmniej zabrałem ze sobą analizator, bez niego nie powinni mnie znaleźć.<br>

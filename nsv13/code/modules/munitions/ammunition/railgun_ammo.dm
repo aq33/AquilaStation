@@ -6,8 +6,8 @@
 
 //Legacy Ammo
 /obj/item/ship_weapon/ammunition/railgun_ammo //The big slugs that you load into the railgun. These are able to be carried...one at a time
-	name = "\improper M4 NTRS 400mm teflon coated tungsten round"
-	desc = "A gigantic slug that's designed to be fired out of a railgun. It's extremely heavy, but doesn't actually contain any volatile components, so it's safe to manhandle."
+	name = "\improper wolframowy pocisk M4 NTRS 400 mm z powłoką teflonową"
+	desc = "Gigantyczny pocisk do działa szynowego. Jest wyjątkowo ciężki, ale nie zawiera żadnych niestabilnych składników, więc można go bezpiecznie nosić."
 	icon_state = "railgun_ammo"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -20,15 +20,15 @@
 	AddComponent(/datum/component/two_handed, require_twohands=TRUE)
 
 /obj/item/ship_weapon/ammunition/railgun_ammo/uranium
-	name = "\improper U4 NTRK 400mm teflon coated uranium round"
-	desc = "A gigantic slug that's designed to be fired out of a railgun. It's extremely heavy, but doesn't actually contain any volatile components, so it's safe to manhandle."
+	name = "\improper uranowy pocisk U4 NTRK 400 mm z powłoką teflonową"
+	desc = "Gigantyczny pocisk do działa szynowego. Jest wyjątkowo ciężki, ale nie zawiera żadnych niestabilnych składników, więc można go bezpiecznie nosić."
 	icon_state = "railgun_ammo"
 	projectile_type = /obj/item/projectile/bullet/railgun_slug/uranium
 
 //Forged railgun ammunition
 /obj/item/ship_weapon/ammunition/railgun_ammo/forged
-	name = "\improper Forged 400mm" //Partial name - to be completed by the forging proc
-	desc = "A gigantic slug that's designed to be fired out of a railgun. It's extremely heavy, but doesn't actually contain any volatile components, so it's safe to manhandle."
+	name = "\improper kuty pocisk 400 mm" //Partial name - to be completed by the forging proc
+	desc = "Gigantyczny pocisk do działa szynowego. Jest wyjątkowo ciężki, ale nie zawiera żadnych niestabilnych składników, więc można go bezpiecznie nosić."
 	icon_state = "railgun_ammo"
 	projectile_type = /obj/item/projectile/bullet/railgun_forged
 	var/railgun_flags = null
@@ -37,14 +37,14 @@
 	var/material_hardness = 0
 
 /obj/item/ship_weapon/ammunition/railgun_ammo/forged/pre_gen_copper_iron //test round
-	name = "\improper Forged 400mm copper coated iron slug"
+	name = "\improper kuty pocisk 400 mm (żelazo, powłoka: miedź)"
 	material_conductivity = 4.675
 	material_density = 15
 	material_hardness = 4.25
 
 /obj/item/ship_weapon/ammunition/railgun_ammo_canister
-	name = "\improper Forged 800mm" //Partial name - to be completed by the forging proc
-	desc = "A gigantic cansiter that's designed to be fired out of a railgun. It's extremely heavy, containing an internal chamber for charged ions, unsafe for direct handling."
+	name = "\improper kuty kanister 800 mm" //Partial name - to be completed by the forging proc
+	desc = "Gigantyczny kanister do działa szynowego. Jest wyjątkowo ciężki i ma wewnętrzną komorę na naładowane jony, więc nie należy go dotykać gołymi rękami."
 	icon_state = "railgun_canister_unsealed"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -222,7 +222,7 @@
 			to_chat(user,"<span class='notice'>Gdy dotykasz [src], twoja dłoń mrowi i robi się ciepła.</span>")
 
 /obj/item/ship_weapon/ammunition/railgun_ammo_canister/pre_gen_copper_iron //test round
-	name = "\improper Forged 800mm copper coated iron canister"
+	name = "\improper kuty kanister 800 mm (żelazo, powłoka: miedź)"
 	material_conductivity = 3.94
 	material_density = 16
 	material_hardness = 4.8

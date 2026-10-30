@@ -31,7 +31,7 @@
 	var/list/max_requirements
 	var/exclude = FALSE //do it this way to allow for addition/removal of reactions midmatch in the future
 	var/priority = 100 //lower numbers are checked/react later than higher numbers. if two reactions have the same priority they may happen in either order
-	var/name = "reaction"
+	var/name = "reakcja"
 	var/id = "r"
 
 /datum/gas_reaction/New()
@@ -44,7 +44,7 @@
 
 /datum/gas_reaction/nobliumsupression
 	priority = INFINITY
-	name = "Hyper-Noblium Reaction Suppression"
+	name = "Tłumienie reakcji przez hipernoblium"
 	id = "nobstop"
 
 /datum/gas_reaction/nobliumsupression/init_reqs()
@@ -56,7 +56,7 @@
 //water vapor: puts out fires?
 /datum/gas_reaction/water_vapor
 	priority = 1
-	name = "Water Vapor"
+	name = "Para wodna"
 	id = "vapor"
 
 /datum/gas_reaction/water_vapor/init_reqs()
@@ -75,7 +75,7 @@
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/nitrous_decomp
 	priority = 0
-	name = "Nitrous Oxide Decomposition"
+	name = "Rozkład podtlenku azotu"
 	id = "nitrous_decomp"
 
 /datum/gas_reaction/nitrous_decomp/init_reqs()
@@ -109,7 +109,7 @@
 //tritium combustion: combustion of oxygen and tritium (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/tritfire
 	priority = -1 //fire should ALWAYS be last, but tritium fires happen before plasma fires
-	name = "Tritium Combustion"
+	name = "Spalanie trytu"
 	id = "tritfire"
 
 /datum/gas_reaction/tritfire/init_reqs()
@@ -183,7 +183,7 @@
 //plasma combustion: combustion of oxygen and plasma (treated as hydrocarbons). creates hotspots. exothermic
 /datum/gas_reaction/plasmafire
 	priority = -2 //fire should ALWAYS be last, but plasma fires happen after tritium fires
-	name = "Plasma Combustion"
+	name = "Spalanie plazmy"
 	id = "plasmafire"
 
 /datum/gas_reaction/plasmafire/init_reqs()
@@ -254,7 +254,7 @@
 
 /datum/gas_reaction/genericfire
 	priority = -4 // very last reaction //NSV13 - changed from -3 to give room for constricted plasmafire
-	name = "Combustion"
+	name = "Spalanie"
 	id = "genericfire"
 
 /datum/gas_reaction/genericfire/init_reqs()
@@ -337,7 +337,7 @@
 /datum/gas_reaction/fusion
 	exclude = FALSE
 	priority = 2
-	name = "Plasmic Fusion"
+	name = "Fuzja plazmowa"
 	id = "fusion"
 
 /datum/gas_reaction/fusion/init_reqs()
@@ -428,7 +428,7 @@
 
 /datum/gas_reaction/nitrylformation //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
 	priority = 3
-	name = "Nitryl formation"
+	name = "Powstawanie nitrylu"
 	id = "nitrylformation"
 
 /datum/gas_reaction/nitrylformation/init_reqs()
@@ -459,7 +459,7 @@
 
 /datum/gas_reaction/bzformation //Formation of BZ by combining plasma and tritium at low pressures. Exothermic.
 	priority = 4
-	name = "BZ Gas formation"
+	name = "Powstawanie gazu BZ"
 	id = "bzformation"
 
 /datum/gas_reaction/bzformation/init_reqs()
@@ -494,7 +494,7 @@
 
 /datum/gas_reaction/stimformation //Stimulum formation follows a strange pattern of how effective it will be at a given temperature, having some multiple peaks and some large dropoffs. Exo and endo thermic.
 	priority = 5
-	name = "Stimulum formation"
+	name = "Powstawanie stymulum"
 	id = "stimformation"
 
 /datum/gas_reaction/stimformation/init_reqs()
@@ -527,7 +527,7 @@
 
 /datum/gas_reaction/nobliumformation //Hyper-Noblium formation is extrememly endothermic, but requires high temperatures to start. Due to its high mass, hyper-nobelium uses large amounts of nitrogen and tritium. BZ can be used as a catalyst to make it less endothermic.
 	priority = 6
-	name = "Hyper-Noblium condensation"
+	name = "Kondensacja hipernoblium"
 	id = "nobformation"
 
 /datum/gas_reaction/nobliumformation/init_reqs()
@@ -555,7 +555,7 @@
 
 /datum/gas_reaction/stim_ball
 	priority = 7
-	name ="Stimulum Energy Ball"
+	name ="Kula energii stymulum"
 	id = "stimball"
 
 /datum/gas_reaction/stim_ball/init_reqs()

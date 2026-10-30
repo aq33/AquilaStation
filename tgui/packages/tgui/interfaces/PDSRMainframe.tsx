@@ -42,7 +42,7 @@ export const PDSRMainframe = (props) => {
     return (
       <Window theme="ntos" width={400} height={400}>
         <Window.Content>
-          <Section title="Nanotrasen P.A.W.Sible Deniability Filter - ENABLED">
+          <Section title="Filtr Wiarygodnego Zaprzeczenia Nanotrasen (P.A.W.S.) – WŁĄCZONY">
             <img
               src={data.chosenKitty}
               style={{
@@ -61,7 +61,7 @@ export const PDSRMainframe = (props) => {
     <Window theme="ntos" width={700} height={500}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Reactor Containment Statistics">
+          <Section title="Statystyki osłony reaktora">
             <Flex spacing={1}>
               <Flex.Item grow={1}>
                 <Section fill position="relative" height="100%">
@@ -87,7 +87,7 @@ export const PDSRMainframe = (props) => {
               <Flex.Item width="280px">
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Reaction Polarity">
+                    <LabeledList.Item label="Polaryzacja reakcji">
                       <ProgressBar
                         value={data.r_polarity}
                         minValue={-1}
@@ -101,7 +101,7 @@ export const PDSRMainframe = (props) => {
                         {data.r_polarity}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Injection Polarity">
+                    <LabeledList.Item label="Polaryzacja wtrysku">
                       <Button
                         fluid
                         icon={
@@ -111,12 +111,12 @@ export const PDSRMainframe = (props) => {
                         }
                         color={data.r_polarity_injection ? 'white' : 'black'}
                         content={
-                          data.r_polarity_injection ? 'Positive' : 'Negative'
+                          data.r_polarity_injection ? 'Dodatnia' : 'Ujemna'
                         }
                         onClick={() => act('polarity')}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Reaction Containment">
+                    <LabeledList.Item label="Osłona reakcji">
                       <ProgressBar
                         value={data.r_containment}
                         minValue={0}
@@ -126,13 +126,13 @@ export const PDSRMainframe = (props) => {
                         }}
                       />
                     </LabeledList.Item>
-                    <LabeledList.Item label="Reactor Controls">
+                    <LabeledList.Item label="Sterowanie reaktorem">
                       <Section>
                         <Button
                           fluid
                           icon="fire"
                           color="orange"
-                          content="Initialize"
+                          content="Uruchom"
                           disabled={!(data.r_state <= 1)}
                           onClick={() => act('ignition')}
                         />
@@ -140,7 +140,7 @@ export const PDSRMainframe = (props) => {
                           fluid
                           icon="ban"
                           color="red"
-                          content="Terminate"
+                          content="Zakończ"
                           disabled={!(data.r_state <= 1)}
                           onClick={() => act('shutdown')}
                         />
@@ -148,7 +148,7 @@ export const PDSRMainframe = (props) => {
                           fluid
                           icon="snowflake"
                           color={data.r_cooling && 'blue'}
-                          content={'Cycle Coolant'}
+                          content={'Wymień chłodziwo'}
                           onClick={() => act('cooling')}
                         />
                       </Section>
@@ -158,7 +158,7 @@ export const PDSRMainframe = (props) => {
               </Flex.Item>
             </Flex>
           </Section>
-          <Section title="Nucleium Injection">
+          <Section title="Wtrysk nukleium">
             <Slider
               tickWhileDragging
               value={data.r_injection_rate}
@@ -181,8 +181,8 @@ export const PDSRMainframe = (props) => {
               {data.r_injection_rate + ' mol/s'}
             </Slider>
           </Section>
-          <Section title="Reaction Statistics">
-            Temperature:
+          <Section title="Statystyki reakcji">
+            Temperatura:
             <ProgressBar
               minValue={0}
               maxValue={1000}
@@ -198,7 +198,7 @@ export const PDSRMainframe = (props) => {
             >
               {toFixed(data.r_temp) + ' °C'}
             </ProgressBar>
-            Reaction Rate:
+            Tempo reakcji:
             <ProgressBar
               value={data.r_reaction_rate}
               minValue={0}
@@ -211,7 +211,7 @@ export const PDSRMainframe = (props) => {
             >
               {data.r_reaction_rate + ' mol/s'}
             </ProgressBar>
-            Screen Capacity:
+            Pojemność osłony:
             <ProgressBar
               value={data.r_energy_output}
               minValue={0}

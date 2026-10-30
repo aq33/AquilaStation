@@ -1,20 +1,20 @@
 #define INTERDICTION_LENS_RANGE 5
 
 /datum/clockcult/scripture/create_structure/interdiction
-	name = "Interdiction Lens"
-	desc = "Creates a device that will slow non servants in the area and damage mechanised exosuits. Requires power from a sigil of transmission."
+	name = "Soczewka zakazu"
+	desc = "Tworzy urządzenie, które spowalnia w okolicy wszystkich poza sługami i uszkadza egzoszkielety. Wymaga zasilania z pieczęci transmisji."
 	tip = "Buduje soczewkę zaporową, która spowalnia wrogi szturm."
 	button_icon_state = "Interdiction Lens"
 	power_cost = 500
 	invokation_time = 80
-	invokation_text = list("Oh great lord...", "niech twa boskość powstrzyma obcych.")
+	invokation_text = list("O wielki panie...", "niech twa boskość powstrzyma obcych.")
 	summoned_structure = /obj/structure/destructible/clockwork/gear_base/interdiction_lens
 	cogs_required = 4
 	category = SPELLTYPE_STRUCTURES
 
 /obj/structure/destructible/clockwork/gear_base/interdiction_lens
-	name = "interdiction lens"
-	desc = "A mesmerizing light that flashes to a rhythm that you just can't stop tapping to."
+	name = "soczewka zakazu"
+	desc = "Hipnotyzujące światło migające w rytmie, do którego nie możesz przestać wystukiwać taktu."
 	clockwork_desc = "Niewielkie urządzenie spowalniające pobliskich napastników niewielkim kosztem energii."
 	default_icon_state = "interdiction_lens"
 	anchored = TRUE
@@ -114,7 +114,7 @@
 		tracked += P
 
 /obj/item/borg/projectile_dampen/clockcult
-	name = "internal clockcult projectile dampener"
+	name = "wewnętrzny tłumik pocisków kultu zegara"
 
 /obj/item/borg/projectile_dampen/clockcult/process_recharge()
 	energy = maxenergy

@@ -9,8 +9,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 /client/proc/vv_parse_text(O, new_var)
 	if(O && findtext(new_var,"\["))
-		var/process_vars = alert(usr,"\[] detected in string, process as variables?","Process Variables?","Yes","No")
-		if(process_vars == "Yes")
+		var/process_vars = alert(usr,"W tekście wykryto \[]. Przetworzyć jako zmienne?","Przetworzyć zmienne?","Tak","Nie")
+		if(process_vars == "Tak")
 			. = string2listofvars(new_var, O)
 
 //do they want you to include subtypes?
@@ -24,10 +24,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (!subtypes || !subtypes.len)
 		return FALSE
 	if (subtypes && subtypes.len)
-		switch(alert("Strict object type detection?", "Type detection", "Strictly this type","This type and subtypes", "Cancel"))
-			if("Strictly this type")
+		switch(alert("Ścisłe wykrywanie typu obiektu?", "Wykrywanie typu", "Tylko ten typ","Ten typ i podtypy", "Anuluj"))
+			if("Tylko ten typ")
 				return FALSE
-			if("This type and subtypes")
+			if("Ten typ i podtypy")
 				return TRUE
 			else
 				return
@@ -97,27 +97,27 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	L += var_value
 
-	switch(alert("Would you like to associate a value with the list entry?",,"Yes","No"))
-		if("Yes")
+	switch(alert("Czy chcesz przypisać wartość do wpisu listy?",,"Tak","Nie"))
+		if("Tak")
 			L[var_value] = mod_list_add_ass(O) //hehe
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
+			to_chat(src, "Obiekt odrzucił twoją zmianę.")
 			return
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: ADDED=[var_value]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
-	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
+	message_admins("[key_name_admin(src)] zmienia [objectvar] w [original_name]: DODANO=[var_value]")
 
 /client/proc/mod_list(list/L, atom/O, original_name, objectvar, index, autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))
 		return
 	if(!istype(L, /list))
-		to_chat(src, "Not a List.")
+		to_chat(src, "To nie jest lista.")
 		return
 
 	if(L.len > 1000)
-		var/confirm = alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
-		if(confirm != "Continue")
+		var/confirm = alert(src, "Lista, którą próbujesz edytować, jest bardzo długa. Kontynuacja może wywalić serwer.", "Uwaga", "Kontynuuj", "Przerwij")
+		if(confirm != "Kontynuuj")
 			return
 
 	var/is_normal_list = IS_NORMAL_LIST(L)
@@ -131,7 +131,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			value = "null"
 		names["#[i] [key] = [value]"] = i
 	if (!index)
-		var/variable = input("Which var?","Var") as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
+		var/variable = input("Która zmienna?","Zmienna") as null|anything in names + "(ADD VAR)" + "(CLEAR NULLS)" + "(CLEAR DUPES)" + "(SHUFFLE)"
 
 		if(variable == null)
 			return
@@ -144,31 +144,31 @@ GLOBAL_PROTECT(VVpixelmovement)
 			L = L.Copy()
 			listclearnulls(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, "Your edit was rejected by the object.")
+				to_chat(src, "Obiekt odrzucił twoją zmianę.")
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR NULLS")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR NULLS")
-			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR NULLS")
+			message_admins("[key_name_admin(src)] zmienia listę [objectvar] w [original_name]: USUNIĘTO NULLE")
 			return
 
 		if(variable == "(CLEAR DUPES)")
 			L = uniqueList(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, "Your edit was rejected by the object.")
+				to_chat(src, "Obiekt odrzucił twoją zmianę.")
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR DUPES")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR DUPES")
-			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR DUPES")
+			message_admins("[key_name_admin(src)] zmienia listę [objectvar] w [original_name]: USUNIĘTO DUPLIKATY")
 			return
 
 		if(variable == "(SHUFFLE)")
 			L = shuffle(L)
 			if (!O.vv_edit_var(objectvar, L))
-				to_chat(src, "Your edit was rejected by the object.")
+				to_chat(src, "Obiekt odrzucił twoją zmianę.")
 				return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: SHUFFLE")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: SHUFFLE")
-			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: SHUFFLE")
+			message_admins("[key_name_admin(src)] zmienia listę [objectvar] w [original_name]: PRZETASOWANO")
 			return
 
 		index = names[variable]
@@ -178,10 +178,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (index == null)
 		return
 	var/assoc = 0
-	var/prompt = alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")
-	if (prompt == "Cancel" || !prompt)
+	var/prompt = alert(src, "Chcesz edytować klucz czy przypisaną mu wartość?", "Lista asocjacyjna", "Klucz", "Przypisana wartość", "Anuluj")
+	if (prompt == "Anuluj" || !prompt)
 		return
-	if (prompt == "Assigned Value")
+	if (prompt == "Przypisana wartość")
 		assoc = 1
 		assoc_key = L[index]
 	var/default
@@ -201,9 +201,9 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	default = vv_get_class(objectvar, variable)
 
-	to_chat(src, "Variable appears to be <b>[uppertext(default)]</b>.")
+	to_chat(src, "Zmienna wygląda na typ <b>[uppertext(default)]</b>.")
 
-	to_chat(src, "Variable contains: [variable]")
+	to_chat(src, "Zawartość zmiennej: [variable]")
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -219,7 +219,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(usr, "If a direction, direction is: [dir_text]")
+			to_chat(usr, "Jeśli to kierunek, to: [dir_text]")
 
 	var/original_var = variable
 
@@ -247,11 +247,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 			L.Cut(index, index+1)
 			if (O)
 				if (O.vv_edit_var(objectvar, L))
-					to_chat(src, "Your edit was rejected by the object.")
+					to_chat(src, "Obiekt odrzucił twoją zmianę.")
 					return
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: REMOVED=[html_encode("[original_var]")]")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
-			message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
+			message_admins("[key_name_admin(src)] zmienia [objectvar] w [original_name]: USUNIĘTO=[original_var]")
 			return
 
 		if(VV_TEXT)
@@ -269,11 +269,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 				L[new_var] = old_assoc_value
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
+			to_chat(src, "Obiekt odrzucił twoją zmianę.")
 			return
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: [original_var]=[new_var]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
-	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
+	message_admins("[key_name_admin(src)] zmienia listę zmiennych [objectvar] w [original_name]: [original_var]=[new_var]")
 
 /proc/vv_varname_lockcheck(param_var_name)
 	if(param_var_name in GLOB.VVlocked)
@@ -297,7 +297,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	if(param_var_name)
 		if(!(param_var_name in O.vars))
-			to_chat(src, "A variable with this name ([param_var_name]) doesn't exist in this datum ([O])")
+			to_chat(src, "Zmienna o tej nazwie ([param_var_name]) nie istnieje w tym datum ([O])")
 			return
 		variable = param_var_name
 
@@ -308,7 +308,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		names = sortList(names)
 
-		variable = input("Which var?","Var") as null|anything in names
+		variable = input("Która zmienna?","Zmienna") as null|anything in names
 		if(!variable)
 			return
 
@@ -322,11 +322,11 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/default = vv_get_class(variable, var_value)
 
 	if(isnull(default))
-		to_chat(src, "Unable to determine variable type.")
+		to_chat(src, "Nie udało się ustalić typu zmiennej.")
 	else
-		to_chat(src, "Variable appears to be <b>[uppertext(default)]</b>.")
+		to_chat(src, "Zmienna wygląda na typ <b>[uppertext(default)]</b>.")
 
-	to_chat(src, "Variable contains: [var_value]")
+	to_chat(src, "Zawartość zmiennej: [var_value]")
 
 	if(default == VV_NUM)
 		var/dir_text = ""
@@ -341,7 +341,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				dir_text += "WEST"
 
 		if(dir_text)
-			to_chat(src, "If a direction, direction is: [dir_text]")
+			to_chat(src, "Jeśli to kierunek, to: [dir_text]")
 
 	if(autodetect_class && default != VV_NULL)
 		if (default == VV_TEXT)
@@ -378,12 +378,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	if (O.vv_edit_var(variable, var_new) == FALSE)
-		to_chat(src, "Your edit was rejected by the object.")
+		to_chat(src, "Obiekt odrzucił twoją zmianę.")
 		return
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
 	log_world("### VarEdit by [key_name(src)]: [O.type] [variable]=[var_value] => [var_new]")
 	log_admin("[key_name(src)] modified [original_name]'s [variable] from [html_encode("[var_value]")] to [html_encode("[var_new]")]")
-	var/msg = "[key_name_admin(src)] modified [original_name]'s [variable] from [var_value] to [var_new]"
+	var/msg = "[key_name_admin(src)] zmienia [variable] w [original_name] z [var_value] na [var_new]"
 	message_admins(msg)
 	admin_ticket_log(O, msg)
 	return TRUE

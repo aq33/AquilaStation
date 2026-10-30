@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	if(!user.canUseTopic(parent, BE_CLOSE))
 		return //user not valid to use gps
 	if(emped)
-		to_chat(user, "<span class='warning'>It's busted!</span>")
+		to_chat(user, "<span class='warning'>Jest zepsute!</span>")
 		return
 	var/atom/A = parent
 	if(tracking)
@@ -153,7 +153,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 			gpstag = a
 			. = TRUE
-			parentasatom.name = "global positioning system ([gpstag])"
+			parentasatom.name = "GPS ([gpstag])"
 
 		if("power")
 			toggletracking(usr)

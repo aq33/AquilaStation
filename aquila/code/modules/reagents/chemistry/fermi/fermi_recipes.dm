@@ -1,7 +1,7 @@
 // Receptury buforów, testera czystości i katalizatorów z tg (tgstation@b3949ec362, recipes/reaction_agents.dm, recipes/catalysts.dm)
 
 /datum/chemical_reaction/basic_buffer
-	name = "Strong Basic Buffer"
+	name = "Mocny bufor zasadowy"
 	id = /datum/reagent/reaction_agent/basic_buffer
 	results = list(/datum/reagent/reaction_agent/basic_buffer = 10)
 	required_reagents = list(/datum/reagent/ammonia = 3, /datum/reagent/chlorine = 2, /datum/reagent/hydrogen = 2, /datum/reagent/oxygen = 2) //vagely NH4OH + NH4Cl buffer
@@ -21,7 +21,7 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL
 
 /datum/chemical_reaction/acidic_buffer
-	name = "Strong Acidic Buffer"
+	name = "Mocny bufor kwaśny"
 	id = /datum/reagent/reaction_agent/acidic_buffer
 	results = list(/datum/reagent/reaction_agent/acidic_buffer = 10)
 	required_reagents = list(/datum/reagent/sodium = 2, /datum/reagent/hydrogen = 2, /datum/reagent/consumable/ethanol = 2, /datum/reagent/water = 2)
@@ -43,7 +43,7 @@
 //////////////////// Example competitive reaction (REACTION_COMPETITIVE) ////////////////////
 
 /datum/chemical_reaction/prefactor_a
-	name = "Interim Product Alpha"
+	name = "Półprodukt Alfa"
 	id = /datum/reagent/prefactor_a
 	results = list(/datum/reagent/prefactor_a = 5)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/consumable/ethanol = 3, /datum/reagent/toxin/plasma = 1)
@@ -64,7 +64,7 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_COMPETITIVE
 
 /datum/chemical_reaction/prefactor_b
-	name = "Interim Product Beta"
+	name = "Półprodukt Beta"
 	id = /datum/reagent/prefactor_b
 	results = list(/datum/reagent/prefactor_b = 5)
 	required_reagents = list(/datum/reagent/prefactor_a = 5)
@@ -112,7 +112,7 @@
 
 //The actual results
 /datum/chemical_reaction/prefactor_a/purity_tester
-	name = "Purity Tester"
+	name = "Tester czystości"
 	id = /datum/reagent/reaction_agent/purity_tester
 	results = list(/datum/reagent/reaction_agent/purity_tester = 5)
 	required_reagents = list(/datum/reagent/prefactor_a = 5, /datum/reagent/stable_plasma = 5)
@@ -121,7 +121,7 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_COMPETITIVE
 
 /datum/chemical_reaction/prefactor_b/speed_agent
-	name = "Tempomyocin"
+	name = "Tempomiocyna"
 	id = /datum/reagent/reaction_agent/speed_agent
 	results = list(/datum/reagent/reaction_agent/speed_agent = 5)
 	required_reagents = list(/datum/reagent/prefactor_b = 5, /datum/reagent/stable_plasma = 5)
@@ -132,7 +132,7 @@
 /////////////////////////// PRECURSOR ////////////////////////////
 
 /datum/chemical_reaction/catalyst_precursor_temp
-	name = "Catalysium T"
+	name = "Katalizum T"
 	id = /datum/reagent/catalyst_precursor_temp
 	results = list(/datum/reagent/catalyst_precursor_temp = 5)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/toxin/mutagen = 3, /datum/reagent/toxin/plasma = 1)
@@ -153,7 +153,7 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_COMPETITIVE
 
 /datum/chemical_reaction/catalyst_precursor_ph
-	name = "Catalysium P"
+	name = "Katalizum P"
 	id = /datum/reagent/catalyst_precursor_ph
 	results = list(/datum/reagent/catalyst_precursor_ph = 5)
 	required_reagents = list(/datum/reagent/catalyst_precursor_temp = 5)
@@ -190,7 +190,7 @@
 /////////////////////////// CATALYSTS ////////////////////////////
 
 /datum/chemical_reaction/thermic_modulator
-	name = "Thermic Modulator"
+	name = "Modulator termiczny"
 	id = /datum/reagent/catalyst_agent/temperature/generic
 	results = list(/datum/reagent/catalyst_agent/temperature/generic = 5)
 	required_reagents = list(/datum/reagent/catalyst_precursor_temp = 5, /datum/reagent/stable_plasma = 5)
@@ -199,7 +199,7 @@
 	reaction_tags = REACTION_TAG_EASY | REACTION_TAG_CHEMICAL | REACTION_TAG_COMPETITIVE
 
 /datum/chemical_reaction/ionic_modulator
-	name = "Ionic Modulator"
+	name = "Modulator jonowy"
 	id = /datum/reagent/catalyst_agent/ph/generic
 	results = list(/datum/reagent/catalyst_agent/ph/generic = 5)
 	required_reagents = list(/datum/reagent/catalyst_precursor_ph = 5, /datum/reagent/stable_plasma = 5)

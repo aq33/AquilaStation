@@ -1,13 +1,13 @@
 /datum/reagent/blood
 	data = list("viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null,"quirks"=null)
-	name = "Blood"
+	name = "Krew"
 	color = "#C80000" // rgb: 200, 0, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST
 	metabolization_rate = 5 //fast rate so it disappears fast.
 	taste_description = "żelazo"
 	taste_mult = 1.3
 	glass_icon_state = "glass_red"
-	glass_name = "glass of tomato juice"
+	glass_name = "szklanka soku pomidorowego"
 	glass_desc = "Na pewno to sok pomidorowy?"
 	shot_glass_icon_state = "shotglassred"
 
@@ -105,7 +105,7 @@
 		B.add_blood_DNA(list(data["blood_DNA"] = data["blood_type"]))
 
 /datum/reagent/liquidgibs
-	name = "Liquid gibs"
+	name = "Płynne flaki"
 	color = "#FF9966"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY
 	description = "Nawet nie chcesz myśleć, co tu jest."
@@ -114,7 +114,7 @@
 
 /datum/reagent/vaccine
 	//data must contain virus type
-	name = "Vaccine"
+	name = "Szczepionka"
 	color = "#C81040" // rgb: 200, 16, 64
 	chem_flags = NONE
 	taste_description = "szlam"
@@ -174,14 +174,14 @@
 	H.restore()
 
 /datum/reagent/water
-	name = "Water"
+	name = "Woda"
 	description = "Wszechobecna substancja chemiczna złożona z wodoru i tlenu."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha)
 	chem_flags = CHEMICAL_BASIC_ELEMENT | CHEMICAL_RNG_GENERAL // because we want to give it to oozelings
 	taste_description = "woda"
 	var/cooling_temperature = 2
 	glass_icon_state = "glass_clear"
-	glass_name = "glass of water"
+	glass_name = "szklanka wody"
 	glass_desc = "Ojciec wszelkiego orzeźwienia."
 	shot_glass_icon_state = "shotglassclear"
 	process_flags = ORGANIC | SYNTHETIC
@@ -266,12 +266,12 @@
 	..()
 
 /datum/reagent/water/holywater
-	name = "Holy Water"
+	name = "Woda święcona"
 	description = "Woda pobłogosławiona przez jakieś bóstwo."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST
 	glass_icon_state  = "glass_clear"
-	glass_name = "glass of holy water"
+	glass_name = "szklanka wody święconej"
 	glass_desc = "Szklanka wody święconej."
 	self_consuming = TRUE //divine intervention won't be limited by the lack of a liver
 
@@ -307,8 +307,8 @@
 			if(prob(10))
 				M.visible_message("<span class='danger'>[M] dostaje napadu drgawek!</span>", "<span class='userdanger'>Dostajesz napadu drgawek!</span>")
 				M.Unconscious(120)
-				to_chat(M, "<span class='cultlarge'>[pick("Your blood is your bond - you are nothing without it", "Do not forget your place", \
-				"All that power, and you still fail?", "If you cannot scour this poison, I shall scour your meager life!")].</span>")
+				to_chat(M, "<span class='cultlarge'>[pick("Twoja krew jest twoją więzią – bez niej jesteś niczym", "Nie zapominaj, gdzie twoje miejsce", \
+				"Cała ta moc, a i tak zawodzisz?", "Jeśli nie umiesz wypalić tej trucizny, ja wypalę twoje marne życie!")].</span>")
 	if(data["misc"] >= 60)	// 30 units, 135 seconds
 		if(iscultist(M) || is_servant_of_ratvar(M))
 			// AQ EDIT - kult krwi „Cult 4”: woda święcona nie nawraca już kultystów (jak w drafcie Monke), robi to rytuał kapelana
@@ -330,7 +330,7 @@
 	T.Bless()
 
 /datum/reagent/fuel/unholywater		//if you somehow managed to extract this from someone, dont splash it on yourself and have a smoke
-	name = "Unholy Water"
+	name = "Nieświęta woda"
 	description = "Coś, co nie powinno istnieć na tym planie egzystencji."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "cierpienie"
@@ -368,7 +368,7 @@
 	return TRUE
 
 /datum/reagent/hellwater			//if someone has this in their system they've really pissed off an eldrich god
-	name = "Hell Water"
+	name = "Piekielna woda"
 	description = "TWOJE CIAŁO! PŁONIE!"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "pieczenie"
@@ -383,13 +383,13 @@
 	holder.remove_reagent(type, 1)
 
 /datum/reagent/medicine/omnizine/godblood
-	name = "Godblood"
+	name = "Krew boga"
 	description = "Powoli leczy wszystkie rodzaje obrażeń. Ma dość wysoki próg przedawkowania. Świeci tajemniczą mocą."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	overdose_threshold = 150
 
 /datum/reagent/lube
-	name = "Space Lube"
+	name = "Kosmiczny lubrykant"
 	description = "Smar to substancja wprowadzana między dwie poruszające się powierzchnie, by zmniejszyć tarcie i zużycie. He, he."
 	color = "#009CA8" // rgb: 0, 156, 168
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -404,14 +404,14 @@
 
 ///Stronger kind of lube. Applies TURF_WET_SUPERLUBE.
 /datum/reagent/lube/superlube
-	name = "Super Duper Lube"
+	name = "Super-duper lubrykant"
 	description = "Ten \[UTAJNIONO\] został zakazany po incydencie na \[DANE USUNIĘTE\]."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	lube_kind = TURF_WET_SUPERLUBE
 
 
 /datum/reagent/spraytan
-	name = "Spray Tan"
+	name = "Samoopalacz w sprayu"
 	description = "Substancja nakładana na skórę, by ją przyciemnić."
 	color = "#FFC080" // rgb: 255, 196, 128  Bright orange
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -517,7 +517,7 @@
 #define MUT_MSG_ABOUT2TURN 3
 
 /datum/reagent/mutationtoxin
-	name = "Stable Mutation Toxin"
+	name = "Stabilna toksyna mutacyjna"
 	description = "Uczłowieczająca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -525,11 +525,11 @@
 	taste_description = "szlam"
 	var/race = /datum/species/human
 	process_flags = ORGANIC | SYNTHETIC
-	var/list/mutationtexts = list( "You don't feel very well." = MUT_MSG_IMMEDIATE,
-									"Your skin feels a bit abnormal." = MUT_MSG_IMMEDIATE,
-									"Your limbs begin to take on a different shape." = MUT_MSG_EXTENDED,
-									"Your appendages begin morphing." = MUT_MSG_EXTENDED,
-									"You feel as though you're about to change at any moment!" = MUT_MSG_ABOUT2TURN)
+	var/list/mutationtexts = list( "Nie czujesz się najlepiej." = MUT_MSG_IMMEDIATE,
+									"Twoja skóra wydaje się jakaś dziwna." = MUT_MSG_IMMEDIATE,
+									"Twoje kończyny zaczynają zmieniać kształt." = MUT_MSG_EXTENDED,
+									"Twoje odnóża zaczynają się przekształcać." = MUT_MSG_EXTENDED,
+									"Czujesz, że lada chwila się przemienisz!" = MUT_MSG_ABOUT2TURN)
 	var/cycles_to_turn = 20 //the current_cycle threshold / iterations needed before one can transform
 
 /datum/reagent/mutationtoxin/on_mob_life(mob/living/carbon/human/H)
@@ -563,14 +563,14 @@
 	..()
 
 /datum/reagent/mutationtoxin/classic //The one from plasma on green slimes
-	name = "Mutation Toxin"
+	name = "Toksyna mutacyjna"
 	description = "Wypaczająca toksyna."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	race = /datum/species/jelly/slime
 
 /datum/reagent/mutationtoxin/unstable
-	name = "Unstable Mutation Toxin"
+	name = "Niestabilna toksyna mutacyjna"
 	description = "W większości bezpieczna toksyna mutująca."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -587,14 +587,14 @@
 						/datum/species/skeleton)
 
 /datum/reagent/mutationtoxin/felinid
-	name = "Felinid Mutation Toxin"
+	name = "Toksyna mutacyjna (felinid)"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	race = /datum/species/human/felinid
 	taste_description = "coś niezbyt dobrego, miau"
 
 /datum/reagent/mutationtoxin/lizard
-	name = "Lizard Mutation Toxin"
+	name = "Toksyna mutacyjna (jaszczur)"
 	description = "Jaszczurząca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -602,7 +602,7 @@
 	taste_description = "smoczy oddech, ale nie tak fajny"
 
 /datum/reagent/mutationtoxin/fly
-	name = "Fly Mutation Toxin"
+	name = "Toksyna mutacyjna (muchoczłowiek)"
 	description = "Uowadniająca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -610,7 +610,7 @@
 	taste_description = "śmieci"
 
 /datum/reagent/mutationtoxin/moth
-	name = "Moth Mutation Toxin"
+	name = "Toksyna mutacyjna (ćma)"
 	description = "Świecąca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -618,7 +618,7 @@
 	taste_description = "ubrania"
 
 /datum/reagent/mutationtoxin/apid
-	name = "Apid Mutation Toxin"
+	name = "Toksyna mutacyjna (apid)"
 	description = "Słodko pachnąca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -626,7 +626,7 @@
 	taste_description = "miód"
 
 /datum/reagent/mutationtoxin/pod
-	name = "Podperson Mutation Toxin"
+	name = "Toksyna mutacyjna (roślinoczłowiek)"
 	description = "Uroślinniająca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -634,7 +634,7 @@
 	taste_description = "kwiaty"
 
 /datum/reagent/mutationtoxin/jelly
-	name = "Imperfect Mutation Toxin"
+	name = "Niedoskonała toksyna mutacyjna"
 	description = "Galaretująca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -657,7 +657,7 @@
 	return ..()
 
 /datum/reagent/mutationtoxin/golem
-	name = "Golem Mutation Toxin"
+	name = "Toksyna mutacyjna (golem)"
 	description = "Kryształowa toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -665,14 +665,14 @@
 	taste_description = "kamienie"
 
 /datum/reagent/mutationtoxin/abductor
-	name = "Abductor Mutation Toxin"
+	name = "Toksyna mutacyjna (porywacz)"
 	description = "Obca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	race = /datum/species/abductor
 	taste_description = "coś nie z tego świata... nie, wszechświata!"
 /datum/reagent/mutationtoxin/ethereal
-	name = "Ethereal Mutation Toxin"
+	name = "Toksyna mutacyjna (eteryk)"
 	description = "Pozytywnie elektryczna toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -680,7 +680,7 @@
 	taste_description = "szok"
 
 /datum/reagent/mutationtoxin/oozeling
-	name = "Oozeling Mutation Toxin"
+	name = "Toksyna mutacyjna (oozeling)"
 	description = "Sącząca się toksyna"
 	color = "#611e80" //RGB: 97, 30, 128
 	chem_flags = CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -689,7 +689,7 @@
 
 //BLACKLISTED RACES
 /datum/reagent/mutationtoxin/skeleton
-	name = "Skeleton Mutation Toxin"
+	name = "Toksyna mutacyjna (szkielet)"
 	description = "Przerażająca toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -697,7 +697,7 @@
 	taste_description = "mleko... i to dużo"
 
 /datum/reagent/mutationtoxin/zombie
-	name = "Zombie Mutation Toxin"
+	name = "Toksyna mutacyjna (zombie)"
 	description = "Nieumarła toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -705,7 +705,7 @@
 	taste_description = "móóóz... nic szczególnego"
 
 /datum/reagent/mutationtoxin/goofzombie
-	name = "Zombie Mutation Toxin"
+	name = "Toksyna mutacyjna (zombie)"
 	description = "Nieumarła toksyna... tak jakby..."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -714,7 +714,7 @@
 
 
 /datum/reagent/mutationtoxin/ash
-	name = "Ash Mutation Toxin"
+	name = "Toksyna mutacyjna (popielny wędrowiec)"
 	description = "Popielna toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -724,7 +724,7 @@
 
 //DANGEROUS RACES
 /datum/reagent/mutationtoxin/shadow
-	name = "Shadow Mutation Toxin"
+	name = "Toksyna mutacyjna (cieniak)"
 	description = "Mroczna toksyna."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -732,7 +732,7 @@
 	taste_description = "noc"
 
 /datum/reagent/mutationtoxin/plasma
-	name = "Plasma Mutation Toxin"
+	name = "Toksyna mutacyjna (plazmaman)"
 	description = "Toksyna na bazie plazmy."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -744,7 +744,7 @@
 #undef MUT_MSG_ABOUT2TURN
 
 /datum/reagent/mulligan
-	name = "Mulligan Toxin"
+	name = "Toksyna Mulligana"
 	description = "Ta toksyna błyskawicznie zmienia DNA ludzi. Powszechnie używana przez szpiegów i zabójców Syndykatu, którzy potrzebują awaryjnej zmiany tożsamości."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_RNG_FUN
@@ -760,7 +760,7 @@
 	randomize_human(H)
 
 /datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
+	name = "Zaawansowana toksyna mutacyjna"
 	description = "Zaawansowana wypaczająca toksyna wytwarzana przez szlamy."
 	color = "#13BC5E" // rgb: 19, 188, 94
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -771,7 +771,7 @@
 		L.ForceContractDisease(new /datum/disease/transformation/slime(), FALSE, TRUE)
 
 /datum/reagent/gluttonytoxin
-	name = "Gluttony's Blessing"
+	name = "Błogosławieństwo Obżarstwa"
 	description = "Zaawansowana wypaczająca toksyna wytwarzana przez coś okropnego."
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -795,7 +795,7 @@
 	..()
 
 /datum/reagent/oxygen
-	name = "Oxygen"
+	name = "Tlen"
 	description = "Bezbarwny, bezwonny gaz. Rośnie na drzewach, ale wciąż jest dość cenny."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -816,7 +816,7 @@
 	return
 
 /datum/reagent/copper
-	name = "Copper"
+	name = "Miedź"
 	description = "Bardzo ciągliwy metal. Rzeczy z miedzi nie są zbyt trwałe, ale nadaje się nieźle na przewody elektryczne."
 	reagent_state = SOLID
 	color = "#6E3B08" // rgb: 110, 59, 8
@@ -832,7 +832,7 @@
 		M.use(reac_volume)
 
 /datum/reagent/nitrogen
-	name = "Nitrogen"
+	name = "Azot"
 	description = "Bezbarwny, bezwonny, pozbawiony smaku gaz. Prosty gaz duszący, który potrafi po cichu wypierać niezbędny tlen."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -853,7 +853,7 @@
 	return
 
 /datum/reagent/hydrogen
-	name = "Hydrogen"
+	name = "Wodór"
 	description = "Bezbarwny, bezwonny, niemetaliczny, pozbawiony smaku, łatwopalny gaz dwuatomowy."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -862,7 +862,7 @@
 
 
 /datum/reagent/potassium
-	name = "Potassium"
+	name = "Potas"
 	description = "Miękkie, niskotopliwe ciało stałe, które łatwo przeciąć nożem. Gwałtownie reaguje z wodą."
 	reagent_state = SOLID
 	color = "#A0A0A0" // rgb: 160, 160, 160
@@ -871,14 +871,14 @@
 
 
 /datum/reagent/mercury
-	name = "Mercury"
+	name = "Rtęć"
 	description = "Dziwny metal, który w temperaturze pokojowej jest cieczą. Neurodegeneracyjny i bardzo szkodliwy dla umysłu."
 	color = "#484848" // rgb: 72, 72, 72A
 	chem_flags = CHEMICAL_BASIC_ELEMENT | CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN // because brain damage is fun
 	taste_mult = 0 // apparently tasteless.
 
 /datum/reagent/mercury/lead_acetate
-	name = "Lead Acetate"
+	name = "Octan ołowiu"
 	description = "Słodka substancja neurotoksyczna. Sekret rzymskiego słodkiego wina."
 	color = "#AAAAAA"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN // because brain damage is fun
@@ -894,7 +894,7 @@
 	..()
 
 /datum/reagent/sulfur
-	name = "Sulfur"
+	name = "Siarka"
 	description = "Chorobliwie żółte ciało stałe, znane głównie z paskudnego zapachu. W biochemii jest o wiele bardziej przydatne, niż wygląda."
 	reagent_state = SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
@@ -902,7 +902,7 @@
 	taste_description = "zgniłe jaja"
 
 /datum/reagent/carbon
-	name = "Carbon"
+	name = "Węgiel"
 	description = "Kruche czarne ciało stałe, które choć fizycznie niezbyt ekscytujące, stanowi podstawę całego znanego życia. Całkiem ważna rzecz."
 	reagent_state = SOLID
 	color = "#1C1300" // rgb: 30, 20, 0
@@ -916,7 +916,7 @@
 			new /obj/effect/decal/cleanable/dirt(T)
 
 /datum/reagent/chlorine
-	name = "Chlorine"
+	name = "Chlor"
 	description = "Bladożółty gaz znany jako utleniacz. Choć tworzy wiele nieszkodliwych cząsteczek, w postaci pierwiastkowej jest daleki od nieszkodliwego."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -930,7 +930,7 @@
 	..()
 
 /datum/reagent/fluorine
-	name = "Fluorine"
+	name = "Fluor"
 	description = "Komicznie reaktywny pierwiastek. Wszechświat w najmniejszym stopniu nie chce, by istniał w tej postaci."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
@@ -945,7 +945,7 @@
 	..()
 
 /datum/reagent/sodium
-	name = "Sodium"
+	name = "Sód"
 	description = "Miękki srebrzysty metal, który łatwo przeciąć nożem. To jeszcze nie sól, więc nie posypuj nim frytek."
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
@@ -953,7 +953,7 @@
 	taste_description = "słony metal"
 
 /datum/reagent/phosphorus
-	name = "Phosphorus"
+	name = "Fosfor"
 	description = "Rdzawoczerwony proszek, który łatwo się zapala. Choć występuje w wielu kolorach, ogólna zasada jest zawsze ta sama."
 	reagent_state = SOLID
 	color = "#832828" // rgb: 131, 40, 40
@@ -962,7 +962,7 @@
 	weed_kill = 0.2
 
 /datum/reagent/lithium
-	name = "Lithium"
+	name = "Lit"
 	description = "Srebrzysty metal, słynący z wyjątkowo niskiej gęstości. Jest aż za skuteczny w uspokajaniu się."
 	reagent_state = SOLID
 	color = "#808080" // rgb: 128, 128, 128
@@ -977,14 +977,14 @@
 	..()
 
 /datum/reagent/glycerol
-	name = "Glycerol"
+	name = "Glicerol"
 	description = "Glicerol to prosty związek z grupy polioli. Ma słodki smak i niską toksyczność."
 	color = "#808080" // rgb: 128, 128, 128
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST
 	taste_description = "słodycz"
 
 /datum/reagent/space_cleaner/sterilizine
-	name = "Sterilizine"
+	name = "Sterylizyna"
 	description = "Odkaża rany przed operacją."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -999,7 +999,7 @@
 	..()
 
 /datum/reagent/iron
-	name = "Iron"
+	name = "Żelazo"
 	description = "Czyste żelazo to metal."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	chem_flags = CHEMICAL_BASIC_ELEMENT
@@ -1019,7 +1019,7 @@
 	..()
 
 /datum/reagent/gold
-	name = "Gold"
+	name = "Złoto"
 	description = "Złoto to gęsty, miękki, błyszczący metal, najbardziej plastyczny i ciągliwy ze znanych metali."
 	reagent_state = SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
@@ -1027,7 +1027,7 @@
 	taste_description = "drogi metal"
 
 /datum/reagent/silver
-	name = "Silver"
+	name = "Srebro"
 	description = "Miękki, biały, lśniący metal przejściowy o najwyższej przewodności elektrycznej spośród pierwiastków i najwyższej przewodności cieplnej spośród metali."
 	reagent_state = SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
@@ -1040,7 +1040,7 @@
 	..()
 
 /datum/reagent/uranium
-	name ="Uranium"
+	name ="Uran"
 	description = "Srebrzystobiały metaliczny pierwiastek z grupy aktynowców, słabo radioaktywny."
 	reagent_state = SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
@@ -1063,7 +1063,7 @@
 				GG.reagents.add_reagent(type, reac_volume)
 
 /datum/reagent/uranium/radium
-	name = "Radium"
+	name = "Rad"
 	description = "Rad to metal ziem alkalicznych. Jest skrajnie radioaktywny."
 	reagent_state = SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
@@ -1074,7 +1074,7 @@
 
 
 /datum/reagent/bluespace
-	name = "Bluespace Dust"
+	name = "Pył bluespace"
 	description = "Pył z mikroskopijnych kryształów bluespace o lekkich właściwościach zakrzywiających przestrzeń."
 	reagent_state = SOLID
 	color = "#0000CC"
@@ -1108,7 +1108,7 @@
 
 
 /datum/reagent/silicon
-	name = "Silicon"
+	name = "Krzem"
 	description = "Czterowartościowy półmetal; krzem jest mniej reaktywny niż jego chemiczny odpowiednik, węgiel."
 	reagent_state = SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
@@ -1117,13 +1117,13 @@
 
 
 /datum/reagent/fuel
-	name = "Welding Fuel"
+	name = "Paliwo spawalnicze"
 	description = "Potrzebne do spawarek. Łatwopalne."
 	color = "#660000" // rgb: 102, 0, 0
 	chem_flags = CHEMICAL_BASIC_ELEMENT
 	taste_description = "obrzydliwy metal"
 	glass_icon_state = "dr_gibb_glass"
-	glass_name = "glass of welder fuel"
+	glass_name = "szklanka paliwa spawalniczego"
 	glass_desc = "Jeśli nie jesteś narzędziem przemysłowym, to raczej nie nadaje się do spożycia."
 	process_flags = ORGANIC | SYNTHETIC
 
@@ -1140,7 +1140,7 @@
 	return TRUE
 
 /datum/reagent/space_cleaner
-	name = "Space Cleaner"
+	name = "Kosmiczny środek czyszczący"
 	description = "Związek do czyszczenia. Teraz z 50% więcej podchlorynu sodu! Nie nadaje się do spożycia. W razie połknięcia natychmiast skontaktuj się z ośrodkiem toksykologicznym"
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST
@@ -1227,7 +1227,7 @@
 		M.adjustFireLoss(1.5)
 
 /datum/reagent/cryptobiolin
-	name = "Cryptobiolin"
+	name = "Kryptobiolina"
 	description = "Kryptobiolina powoduje dezorientację i zawroty głowy."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BOTANIST_HARVEST
@@ -1242,7 +1242,7 @@
 	..()
 
 /datum/reagent/impedrezene
-	name = "Impedrezene"
+	name = "Impedrezen"
 	description = "Impedrezen to narkotyk upośledzający sprawność przez spowolnienie wyższych funkcji komórek mózgowych."
 	color = "#C8A5DC" // rgb: 200, 165, 220A
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -1259,7 +1259,7 @@
 	..()
 
 /datum/reagent/nanomachines
-	name = "Nanomachines"
+	name = "Nanomaszyny"
 	description = "Mikroskopijne roboty budowlane."
 	color = "#535E66" // rgb: 83, 94, 102
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -1270,7 +1270,7 @@
 		L.ForceContractDisease(new /datum/disease/transformation/robot(), FALSE, TRUE)
 
 /datum/reagent/xenomicrobes
-	name = "Xenomicrobes"
+	name = "Ksenomikroby"
 	description = "Mikroby o zupełnie obcej budowie komórkowej."
 	color = "#535E66" // rgb: 83, 94, 102
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -1281,7 +1281,7 @@
 		L.ForceContractDisease(new /datum/disease/transformation/xeno(), FALSE, TRUE)
 
 /datum/reagent/fungalspores
-	name = "Tubercle bacillus Cosmosis microbes"
+	name = "Mikroby Tubercle bacillus Cosmosis"
 	description = "Aktywne zarodniki grzybów."
 	color = "#92D17D" // rgb: 146, 209, 125
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -1293,7 +1293,7 @@
 		L.ForceContractDisease(new /datum/disease/tuberculosis(), FALSE, TRUE)
 
 /datum/reagent/snail
-	name = "Agent-S"
+	name = "Środek S"
 	description = "Czynnik wirusologiczny zarażający gastrolozą."
 	color = "#003300" // rgb(0, 51, 0)
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -1304,14 +1304,14 @@
 		L.ForceContractDisease(new /datum/disease/gastrolosis(), FALSE, TRUE)
 
 /datum/reagent/fluorosurfactant//foam precursor
-	name = "Fluorosurfactant"
+	name = "Fluorosurfaktant"
 	description = "Perfluorowany kwas sulfonowy, który po zmieszaniu z wodą tworzy pianę."
 	color = "#9E6B38" // rgb: 158, 107, 56
 	chem_flags = NONE
 	taste_description = "metal"
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
-	name = "Foaming agent"
+	name = "Środek pianotwórczy"
 	description = "Środek, który po zmieszaniu z lekkim metalem i silnym kwasem daje metaliczną pianę."
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
@@ -1319,7 +1319,7 @@
 	taste_description = "metal"
 
 /datum/reagent/smart_foaming_agent //Smart foaming agent. Functions similarly to metal foam, but conforms to walls.
-	name = "Smart foaming agent"
+	name = "Inteligentny środek pianotwórczy"
 	description = "Środek, który po zmieszaniu z lekkim metalem i silnym kwasem daje metaliczną pianę dopasowującą się do granic obszaru."
 	reagent_state = SOLID
 	color = "#664B63" // rgb: 102, 75, 99
@@ -1327,7 +1327,7 @@
 	taste_description = "metal"
 
 /datum/reagent/ammonia
-	name = "Ammonia"
+	name = "Amoniak"
 	description = "Żrąca substancja powszechnie używana w nawozach i domowych środkach czystości."
 	reagent_state = GAS
 	color = "#404030" // rgb: 64, 64, 48
@@ -1335,14 +1335,14 @@
 	taste_description = "zaprawa"
 
 /datum/reagent/diethylamine
-	name = "Diethylamine"
+	name = "Dietyloamina"
 	description = "Amina drugorzędowa, lekko żrąca."
 	color = "#604030" // rgb: 96, 64, 48
 	chem_flags = NONE
 	taste_description = "żelazo"
 
 /datum/reagent/carbondioxide
-	name = "Carbon Dioxide"
+	name = "Dwutlenek węgla"
 	reagent_state = GAS
 	description = "Gaz powszechnie powstający przy spalaniu paliw węglowych. Twoje płuca ciągle go wytwarzają."
 	color = "#B0B0B0" // rgb : 192, 192, 192
@@ -1362,7 +1362,7 @@
 	return
 
 /datum/reagent/nitrous_oxide
-	name = "Nitrous Oxide"
+	name = "Podtlenek azotu"
 	description = "Silny utleniacz używany jako paliwo rakietowe i jako środek znieczulający podczas operacji."
 	reagent_state = LIQUID
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -1454,7 +1454,7 @@
 //For colouring in /proc/mix_color_from_reagents
 
 /datum/reagent/colorful_reagent/powder
-	name = "Mundane Powder" //the name's a bit similar to the name of colorful reagent, but hey, they're practically the same chem anyway
+	name = "Zwykły proszek" //the name's a bit similar to the name of colorful reagent, but hey, they're practically the same chem anyway
 	var/colorname = "none"
 	description = "Proszek do barwienia rzeczy."
 	reagent_state = SOLID
@@ -1471,55 +1471,55 @@
 		description = "Proszek ([colorname]) do barwienia rzeczy na kolor: [colorname]."
 
 /datum/reagent/colorful_reagent/powder/red
-	name = "Red Powder"
+	name = "Czerwony proszek"
 	colorname = "red"
 	color = "#DA0000" // red
 	random_color_list = list("#FC7474")
 
 /datum/reagent/colorful_reagent/powder/orange
-	name = "Orange Powder"
+	name = "Pomarańczowy proszek"
 	colorname = "orange"
 	color = "#FF9300" // orange
 	random_color_list = list("#FF9300")
 
 /datum/reagent/colorful_reagent/powder/yellow
-	name = "Yellow Powder"
+	name = "Żółty proszek"
 	colorname = "yellow"
 	color = "#FFF200" // yellow
 	random_color_list = list("#FFF200")
 
 /datum/reagent/colorful_reagent/powder/green
-	name = "Green Powder"
+	name = "Zielony proszek"
 	colorname = "green"
 	color = "#A8E61D" // green
 	random_color_list = list("#A8E61D")
 
 /datum/reagent/colorful_reagent/powder/blue
-	name = "Blue Powder"
+	name = "Niebieski proszek"
 	colorname = "blue"
 	color = "#00B7EF" // blue
 	random_color_list = list("#00B7EF")
 
 /datum/reagent/colorful_reagent/powder/purple
-	name = "Purple Powder"
+	name = "Fioletowy proszek"
 	colorname = "purple"
 	color = "#DA00FF" // purple
 	random_color_list = list("#BD8FC4")
 
 /datum/reagent/colorful_reagent/powder/invisible
-	name = "Invisible Powder"
+	name = "Niewidzialny proszek"
 	colorname = "invisible"
 	color = "#FFFFFF00" // white + no alpha
 	random_color_list = list(null)	//because using the powder color turns things invisible
 
 /datum/reagent/colorful_reagent/powder/black
-	name = "Black Powder"
+	name = "Czarny proszek"
 	colorname = "black"
 	color = "#1C1C1C" // not quite black
 	random_color_list = list("#404040")
 
 /datum/reagent/colorful_reagent/powder/white
-	name = "White Powder"
+	name = "Biały proszek"
 	colorname = "white"
 	color = "#FFFFFF" // white
 	random_color_list = list("#FFFFFF") //doesn't actually change appearance at all
@@ -1527,51 +1527,51 @@
  /* used by crayons, can't color living things but still used for stuff like food recipes */
 
 /datum/reagent/colorful_reagent/powder/red/crayon
-	name = "Red Crayon Powder"
+	name = "Proszek z czerwonej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/orange/crayon
-	name = "Orange Crayon Powder"
+	name = "Proszek z pomarańczowej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/yellow/crayon
-	name = "Yellow Crayon Powder"
+	name = "Proszek z żółtej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/green/crayon
-	name = "Green Crayon Powder"
+	name = "Proszek z zielonej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/blue/crayon
-	name = "Blue Crayon Powder"
+	name = "Proszek z niebieskiej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/purple/crayon
-	name = "Purple Crayon Powder"
+	name = "Proszek z fioletowej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 //datum/reagent/colorful_reagent/powder/invisible/crayon
 
 /datum/reagent/colorful_reagent/powder/black/crayon
-	name = "Black Crayon Powder"
+	name = "Proszek z czarnej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 /datum/reagent/colorful_reagent/powder/white/crayon
-	name = "White Crayon Powder"
+	name = "Proszek z białej kredki"
 	chem_flags = NONE
 	can_colour_mobs = FALSE
 
 //////////////////////////////////Hydroponics stuff///////////////////////////////
 
 /datum/reagent/plantnutriment
-	name = "Generic nutriment"
+	name = "Zwykły nawóz"
 	description = "Jakaś pożywka. Nie da się stwierdzić, co to jest. Lepiej to zgłoś, razem z tym, jak to zdobyłeś."
 	color = "#000000" // RBG: 0, 0, 0
 	chem_flags = CHEMICAL_NOT_DEFINED // this shouldn't exist
@@ -1616,7 +1616,7 @@
 
 
 /datum/reagent/oil
-	name = "Oil"
+	name = "Olej"
 	description = "Pali się małym, dymiącym ogniem, używany głównie do pozyskiwania popiołu."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1626,7 +1626,7 @@
 
 
 /datum/reagent/stable_plasma
-	name = "Stable Plasma"
+	name = "Stabilna plazma"
 	description = "Niepalna plazma zamknięta w postaci ciekłej, która nie może się zapalić ani przejść w stan gazowy czy stały."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1641,7 +1641,7 @@
 	..()
 
 /datum/reagent/iodine
-	name = "Iodine"
+	name = "Jod"
 	description = "Powszechnie dodawany do soli kuchennej jako składnik odżywczy. Sam w sobie smakuje o wiele mniej przyjemnie."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1650,7 +1650,7 @@
 
 
 /datum/reagent/carpet
-	name = "Carpet"
+	name = "Dywan"
 	description = "Dla tych, którzy potrzebują bardziej kreatywnego sposobu na rozwinięcie czerwonego dywanu."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1664,7 +1664,7 @@
 	..()
 
 /datum/reagent/bromine
-	name = "Bromine"
+	name = "Brom"
 	description = "Brązowawy, wysoce reaktywny płyn. Przydatny do zatrzymywania wolnych rodników, ale nie jest przeznaczony do spożycia przez ludzi."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1672,7 +1672,7 @@
 	taste_description = "chemikalia"
 
 /datum/reagent/phenol
-	name = "Phenol"
+	name = "Fenol"
 	description = "Aromatyczny pierścień węglowy z grupą hydroksylową. Przydatny prekursor niektórych leków, ale sam nie ma właściwości leczniczych."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1680,7 +1680,7 @@
 	taste_description = "kwas"
 
 /datum/reagent/ash
-	name = "Ash"
+	name = "Popiół"
 	description = "Podobno z tego powstają feniksy, ale nigdy tego nie widziałeś."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1688,7 +1688,7 @@
 	taste_description = "popiół"
 
 /datum/reagent/acetone
-	name = "Acetone"
+	name = "Aceton"
 	description = "Śliski płyn o właściwościach rakotwórczych. Ma mnóstwo przyziemnych zastosowań w codziennym życiu."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1696,7 +1696,7 @@
 	taste_description = "kwas"
 
 /datum/reagent/colorful_reagent
-	name = "Colorful Reagent"
+	name = "Kolorowy odczynnik"
 	description = "Dokładnie spróbuj tęczy."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1727,7 +1727,7 @@
 	..()
 
 /datum/reagent/hair_dye
-	name = "Quantum Hair Dye"
+	name = "Kwantowa farba do włosów"
 	description = "Ma dużą szansę sprawić, że będziesz wyglądać jak szalony naukowiec."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1744,7 +1744,7 @@
 			H.update_hair()
 
 /datum/reagent/barbers_aid
-	name = "Barber's Aid"
+	name = "Pomoc fryzjera"
 	description = "Rozwiązanie problemu łysienia na całym świecie."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1762,7 +1762,7 @@
 			H.update_hair()
 
 /datum/reagent/concentrated_barbers_aid
-	name = "Concentrated Barber's Aid"
+	name = "Skoncentrowana pomoc fryzjera"
 	description = "Skoncentrowane rozwiązanie problemu łysienia na całym świecie."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -1778,7 +1778,7 @@
 			H.update_hair()
 
 /datum/reagent/saltpetre
-	name = "Saltpetre"
+	name = "Saletra"
 	description = "Dość nieszkodliwa substancja, która może zwiększyć moc różnych gatunków roślin."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
@@ -1787,7 +1787,7 @@
 
 
 /datum/reagent/lye
-	name = "Lye"
+	name = "Ług"
 	description = "Znany też jako wodorotlenek sodu. Jako zawód robienie tego jest dość rozczarowujące."
 	reagent_state = LIQUID
 	chem_flags = NONE
@@ -1796,7 +1796,7 @@
 
 
 /datum/reagent/drying_agent
-	name = "Drying agent"
+	name = "Środek osuszający"
 	description = "Środek osuszający. Można nim suszyć rzeczy."
 	reagent_state = LIQUID
 	color = "#A70FFF"
@@ -1817,69 +1817,69 @@
 // Virology virus food chems.
 
 /datum/reagent/toxin/mutagen/mutagenvirusfood
-	name = "Mutagenic Agar"
+	name = "Agar mutagenny"
 	color = "#A3C00F" // rgb: 163,192,15
 	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "kwaśność"
 
 /datum/reagent/toxin/mutagen/mutagenvirusfood/sugar
-	name = "Sucrose Agar"
+	name = "Agar sacharozowy"
 	color = "#41B0C0" // rgb: 65,176,192
 	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "słodycz"
 
 /datum/reagent/medicine/synaptizine/synaptizinevirusfood
-	name = "Virus Rations"
+	name = "Racje dla wirusów"
 	color = "#D18AA5" // rgb: 209,138,165
 	chem_flags = CHEMICAL_RNG_BOTANY
 	taste_description = "gorycz"
 
 /datum/reagent/toxin/plasma/plasmavirusfood
-	name = "Virus Plasma"
+	name = "Plazma wirusowa"
 	color = "#A69DA9" // rgb: 166,157,169
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "gorycz"
 	taste_mult = 1.5
 
 /datum/reagent/toxin/plasma/plasmavirusfood/weak
-	name = "Weakened Virus Plasma"
+	name = "Osłabiona plazma wirusowa"
 	color = "#CEC3C6" // rgb: 206,195,198
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "gorycz"
 	taste_mult = 1.5
 
 /datum/reagent/uranium/uraniumvirusfood
-	name = "Decaying Uranium Gel"
+	name = "Rozpadający się żel uranowy"
 	color = "#67ADBA" // rgb: 103,173,186
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "wnętrze reaktora"
 
 /datum/reagent/uranium/uraniumvirusfood/unstable
-	name = "Unstable Uranium Gel"
+	name = "Niestabilny żel uranowy"
 	color = "#2FF2CB" // rgb: 47,242,203
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "wnętrze reaktora"
 
 /datum/reagent/uranium/uraniumvirusfood/stable
-	name = "Stable Uranium Gel"
+	name = "Stabilny żel uranowy"
 	color = "#04506C" // rgb: 4,80,108
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "wnętrze reaktora"
 
 /datum/reagent/consumable/laughter/laughtervirusfood
-	name = "Anomolous Virus Food"
+	name = "Anomalna pożywka dla wirusów"
 	color = "#ffa6ff" //rgb: 255,166,255
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	taste_description = "zły pomysł"
 
 /datum/reagent/consumable/virus_food/advvirusfood
-	name = "Highly Unstable Virus Food"
+	name = "Wysoce niestabilna pożywka dla wirusów"
 	color = "#ffffff" //rgb: 255,255,255 ITS PURE WHITE CMON
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
 	taste_description = "SKRAJNIE zły pomysł"
 
 /datum/reagent/consumable/virus_food/viralbase
-	name = "Experimental Viral Base"
+	name = "Eksperymentalna baza wirusowa"
 	description = "Niedawno odkryta przez najlepszych naukowców Nanotrasen po latach badań; po wystawieniu na uran ta substancja może posłużyć jako baza dla niezwykle rzadkich i niezwykle niebezpiecznych wirusów."
 	color = "#fff0da"
 	chem_flags = CHEMICAL_NOT_SYNTH
@@ -1888,7 +1888,7 @@
 // Bee chemicals
 
 /datum/reagent/royal_bee_jelly
-	name = "Royal Bee Jelly"
+	name = "Mleczko pszczele"
 	description = "Królewskie mleczko pszczele; wstrzyknięte kosmicznej królowej pszczół sprawia, że dzieli się ona na dwie pszczoły."
 	color = "#00ff80"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -1930,7 +1930,7 @@
 		M.gorillize()
 
 /datum/reagent/growthserum
-	name = "Growth Serum"
+	name = "Serum wzrostu"
 	description = "Komercyjna substancja stworzona, by pomagać starszym panom w sypialni."//not really it just makes you a giant
 	color = "#ff0000"//strong red. rgb 255, 0, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_GOAL_BOTANIST_HARVEST
@@ -1963,14 +1963,14 @@
 	..()
 
 /datum/reagent/plastic_polymers
-	name = "Plastic Polymers"
+	name = "Polimery plastiku"
 	description = "Ropopochodne składniki plastiku."
 	color = "#f7eded"
 	chem_flags = NONE
 	taste_description = "plastik"
 
 /datum/reagent/glitter
-	name = "Generic Glitter"
+	name = "Zwykły brokat"
 	description = "Jeśli widzisz ten opis, skontaktuj się z koderem."
 	color = "#FFFFFF" //pure white
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY
@@ -1984,18 +1984,18 @@
 	new glitter_type(T)
 
 /datum/reagent/glitter/pink
-	name = "Pink Glitter"
+	name = "Różowy brokat"
 	description = "Różowe brokaty, które dostają się wszędzie."
 	color = "#ff8080" //A light pink color
 	glitter_type = /obj/effect/decal/cleanable/glitter/pink
 
 /datum/reagent/glitter/white
-	name = "White Glitter"
+	name = "Biały brokat"
 	description = "Białe brokaty, które dostają się wszędzie."
 	glitter_type = /obj/effect/decal/cleanable/glitter/white
 
 /datum/reagent/glitter/blue
-	name = "Blue Glitter"
+	name = "Niebieski brokat"
 	description = "Niebieskie brokaty, które dostają się wszędzie."
 	color = "#4040FF" //A blueish color
 	glitter_type = /obj/effect/decal/cleanable/glitter/blue
@@ -2017,7 +2017,7 @@
 	..()
 
 /datum/reagent/bz_metabolites
-	name = "BZ metabolites"
+	name = "Metabolity BZ"
 	description = "Nieszkodliwy metabolit gazu BZ."
 	color = "#FAFF00"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN // botany can't spam this. lings will have this disaster from scrub or maint pill.
@@ -2032,7 +2032,7 @@
 	return ..()
 
 /datum/reagent/pax/peaceborg
-	name = "Synthpax"
+	name = "Syntpax"
 	description = "Bezbarwny płyn, który tłumi u przyjmujących agresywne popędy. Tańszy w syntezie niż zwykły Pax, ale szybciej przestaje działać."
 	chem_flags = NONE
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -2041,7 +2041,7 @@
 	chem_flags = CHEMICAL_NOT_DEFINED
 
 /datum/reagent/peaceborg/confuse
-	name = "Dizzying Solution"
+	name = "Roztwór oszałamiający"
 	description = "Wytrąca cel z równowagi i przyprawia o zawroty głowy."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -2057,7 +2057,7 @@
 	..()
 
 /datum/reagent/peaceborg/inabizine
-	name = "Inabizine"
+	name = "Inabizyna"
 	description = "Wywołuje rozluźnienie mięśni, przez co trudno trzymać przedmioty i stać."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -2074,7 +2074,7 @@
 	..()
 
 /datum/reagent/peaceborg/tire
-	name = "Tiring Solution"
+	name = "Roztwór męczący"
 	description = "Bardzo łagodna toksyna wytrzymałości, która męczy cel. Całkowicie nieszkodliwa."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -2089,7 +2089,7 @@
 	..()
 
 /datum/reagent/tranquility
-	name = "Tranquility"
+	name = "Spokój"
 	description = "Wysoce mutagenny płyn nieznanego pochodzenia."
 	color = "#9A6750" //RGB: 154, 103, 80
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN
@@ -2100,14 +2100,14 @@
 		L.ForceContractDisease(new /datum/disease/transformation/gondola(), FALSE, TRUE)
 
 /datum/reagent/liquidadamantine
-	name = "Liquid Adamantine"
+	name = "Płynny adamantyt"
 	description = "Upłynniony legendarny, życiodajny metal."
 	color = "#10cca6" //RGB: 16, 204, 166
 	chem_flags = CHEMICAL_NOT_SYNTH
 	taste_description = "życiodajny metal"
 
 /datum/reagent/spider_extract
-	name = "Spider Extract"
+	name = "Wyciąg pajęczy"
 	description = "Wysoce specjalistyczny wyciąg z sektora Australicus, używany do tworzenia pajęczych matek."
 	color = "#ED2939"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
@@ -2118,7 +2118,7 @@
 // who knows.
 // maybe nar'sie is considered to be too "mainstream" of a god to worship in the heretic community.
 /datum/reagent/eldritch
-	name = "Eldritch Essence"
+	name = "Pradawna esencja"
 	description = "Dziwny płyn, który przeczy prawom fizyki. Dodaje energii i leczy tych, którzy widzą poza tę kruchą rzeczywistość, ale jest niesamowicie szkodliwy dla ludzi o zamkniętych umysłach. Metabolizuje się bardzo szybko."
 	taste_description = "Ag'hsj'saje'sh"
 	color = "#1f8016"
@@ -2146,7 +2146,7 @@
 	return TRUE
 
 /datum/reagent/consumable/ratlight
-	name = "Ratvarian Light"
+	name = "Ratvariańskie światło"
 	description = "Specjalna mikstura, podobno pobłogosławiona przez pradawnego boga. Sprawia, że pijący świeci dosłownym oświeceniem."
 	color = "#B5A642"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_FUN | CHEMICAL_RNG_BOTANY
@@ -2176,7 +2176,7 @@
 	..()
 
 /datum/reagent/helgrasp
-	name = "Helgrasp"
+	name = "Uchwyt Hel"
 	description = "Uważa się, że ta rzadka i zakazana mikstura przybliża cię do uścisku nordyckiej bogini Hel."
 	metabolization_rate = 1*REM //This is fast
 	//Compensates for delta_time lag by spawning multiple hands at the end
@@ -2242,19 +2242,19 @@ Basically, we fill the time between now and 2s from now with hands based off the
 	return ..()
 
 /datum/reagent/helgrasp/heretic
-	name = "Grasp of the Mansus"
+	name = "Uchwyt Mansusa"
 	description = "Dłoń Mansusa jest na twojej szyi."
 	metabolization_rate = 1 * REM
 
 /datum/reagent/ants
-	name = "Ants"
+	name = "Mrówki"
 	description = "Próbka zaginionej rasy kosmicznych mrówek (formicidae bastardium tyrannus), słynących z niszczenia w chuj wszystkiego, co napotkają."
 	reagent_state = SOLID
 	color = "#993333"
 	taste_mult = 1.3
 	taste_description = "maleńkie nóżki przebierające w dół gardła."
 	metabolization_rate = 5 * REAGENTS_METABOLISM //1u per second
-	glass_name = "glass of ants"
+	glass_name = "szklanka mrówek"
 	glass_desc = "Do dna...?"
 	/// How much damage the ants are going to be doing (rises with each tick the ants are in someone's body)
 	var/ant_damage = 0

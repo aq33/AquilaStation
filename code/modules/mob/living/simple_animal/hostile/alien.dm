@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/alien
-	name = "alien hunter"
-	desc = "Hiss!"
+	name = "łowca obcych"
+	desc = "Sssss!"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "alienh"
 	icon_living = "alienh"
@@ -40,7 +40,7 @@
 	discovery_points = 2000
 
 /mob/living/simple_animal/hostile/alien/drone
-	name = "alien drone"
+	name = "dron obcych"
 	icon_state = "aliend"
 	icon_living = "aliend"
 	icon_dead = "aliend_dead"
@@ -59,7 +59,7 @@
 			SpreadPlants()
 
 /mob/living/simple_animal/hostile/alien/sentinel
-	name = "alien sentinel"
+	name = "strażnik obcych"
 	icon_state = "aliens"
 	icon_living = "aliens"
 	icon_dead = "aliens_dead"
@@ -74,7 +74,7 @@
 
 
 /mob/living/simple_animal/hostile/alien/queen
-	name = "alien queen"
+	name = "królowa ksenomorfów"
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
@@ -126,7 +126,7 @@
 	new /obj/structure/alien/egg(loc)
 
 /mob/living/simple_animal/hostile/alien/queen/large
-	name = "alien empress"
+	name = "cesarzowa ksenomorfów"
 	icon = 'icons/mob/alienqueen.dmi'
 	icon_state = "alienq"
 	icon_living = "alienq"
@@ -141,7 +141,7 @@
 	gold_core_spawnable = NO_SPAWN
 
 /obj/item/projectile/neurotox
-	name = "neurotoxin"
+	name = "neurotoksyna"
 	damage = 30
 	icon_state = "toxin"
 
@@ -156,7 +156,7 @@
 		clear_alert("temp")
 
 /mob/living/simple_animal/hostile/alien/maid
-	name = "lusty xenomorph maid"
+	name = "lubieżna pokojówka ksenomorfów"
 	melee_damage = 0
 	combat_mode = FALSE
 	friendly = "pieści"

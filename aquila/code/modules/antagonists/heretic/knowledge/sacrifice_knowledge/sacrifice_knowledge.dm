@@ -69,8 +69,8 @@
 	// AQUILA - zamiast lazy template z tg: szablon mapy w zarezerwowanym bloku (sacrifice_map.dm)
 	if(!load_heretic_sacrifice_level())
 		log_game("The heretic sacrifice template failed to load.")
-		message_admins("The heretic sacrifice template failed to load. Heretic sacrifices won't be teleported to the shadow realm. \
-			If you want, you can spawn an /obj/effect/landmark/heretic somewhere to stop that from happening.")
+		message_admins("Nie udało się wczytać szablonu ofiar heretyka. Ofiary heretyka nie będą teleportowane do krainy cieni. \
+			Jeśli chcesz temu zapobiec, postaw gdzieś /obj/effect/landmark/heretic.")
 		CRASH("Failed to load heretic sacrifice template!")
 
 /datum/heretic_knowledge/hunt_and_sacrifice/recipe_snowflake_check(mob/living/user, list/atoms, list/selected_atoms, turf/loc)
@@ -651,7 +651,7 @@
 	to_chat(sac_target, span_big(span_hypnophrase("To przeżycie zostawia twój umysł rozdarty, a wspomnienia w strzępach. Po wskrzeszeniu nie będziesz pamiętać niczego sprzed niego.")))
 
 	var/obj/effect/visible_heretic_influence/illusion = new(get_turf(sac_target))
-	illusion.name = "\improper weakened rift in reality"
+	illusion.name = "\improper osłabiona szczelina w rzeczywistości"
 	illusion.desc = "Szczelina dość szeroka, by coś... albo ktoś... mógł się przez nią przedostać."
 	illusion.color = COLOR_DARK_RED
 

@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/install_detector
-	display_name = "Install Detector"
+	display_name = "Wykrywacz instalacji"
 	desc = "Komponent, który wykrywa zainstalowanie układu w użytkowniku lub wyjęcie go."
 	category = "Entity"
 

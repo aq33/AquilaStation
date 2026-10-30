@@ -1,5 +1,5 @@
 /*/obj/effect/temp_visual/point //AQ EDIT
-	name = "pointer"
+	name = "wskaźnik"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "arrow"
 	layer = POINT_LAYER
@@ -15,7 +15,7 @@
 */ //AQ EDIT
 //Used by spraybottles.
 /obj/effect/decal/chempuff
-	name = "chemicals"
+	name = "chemikalia"
 	icon = 'icons/obj/chempuff.dmi'
 	pass_flags = PASSTABLE | PASSGRILLE
 	layer = FLY_LAYER
@@ -94,8 +94,8 @@
 		qdel(src)
 
 /obj/effect/decal/fakelattice
-	name = "lattice"
-	desc = "A lightweight support lattice."
+	name = "kratownica"
+	desc = "Lekka kratownica nośna."
 	icon = 'icons/obj/smooth_structures/lattice.dmi'
 	icon_state = "lattice"
 	density = TRUE

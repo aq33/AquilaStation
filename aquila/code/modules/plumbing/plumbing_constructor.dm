@@ -1,7 +1,7 @@
 /// Plumbing constructor (RPLD) ported from tg, with the tg TGUI window (RapidPlumbingDevice).
 /obj/item/construction/plumbing
-	name = "Plumbing Constructor"
-	desc = "An expertly modified RCD outfitted to construct plumbing machinery."
+	name = "konstruktor instalacji"
+	desc = "Fachowo przerobione RCD przystosowane do budowy maszyn instalacji chemicznej."
 	icon_state = "plumberer2"
 	icon = 'aquila/icons/obj/plumbing/plumbing_items.dmi'
 	slot_flags = ITEM_SLOT_BELT
@@ -215,8 +215,8 @@
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /obj/item/construction/plumbing/service
-	name = "service plumbing constructor"
-	desc = "A type of plumbing constructor designed to rapidly deploy the machines needed to make a brewery."
+	name = "serwisowy konstruktor instalacji"
+	desc = "Odmiana konstruktora instalacji do szybkiego stawiania maszyn potrzebnych w browarze."
 	icon_state = "plumberer_service"
 	design_types = list(
 		"Synthesizers" = list(

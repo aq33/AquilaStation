@@ -4,7 +4,7 @@
  * A component that has an input, output
  */
 /obj/item/circuit_component/module
-	display_name = "Module"
+	display_name = "Moduł"
 	desc = "Komponent zawierający w sobie inne komponenty, działający jak funkcja. Użyj go w ręce, by ustalić liczbę portów wejściowych i wyjściowych oraz uzyskać dostęp do układu scalonego w środku."
 	category = "Abstract"
 
@@ -33,7 +33,7 @@
 /obj/item/integrated_circuit/module/set_display_name(new_name)
 	. = ..()
 	attached_module.display_name = new_name
-	attached_module.name = "module ([new_name])"
+	attached_module.name = "moduł ([new_name])"
 
 /obj/item/integrated_circuit/module/load_component(type)
 	if(!attached_module)
@@ -65,7 +65,7 @@
 	return ..()
 
 /obj/item/circuit_component/module_input
-	display_name = "Input"
+	display_name = "Wejście"
 	desc = "Komponent, który odbiera dane z modułu, do którego jest podłączony."
 
 	removable = FALSE
@@ -78,7 +78,7 @@
 	return ..()
 
 /obj/item/circuit_component/module_output
-	display_name = "Output"
+	display_name = "Wyjście"
 	desc = "Komponent, który wysyła dane do modułu, do którego jest podłączony."
 
 	removable = FALSE

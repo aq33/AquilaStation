@@ -3,7 +3,7 @@
 ///////////////////////////////////
 
 /datum/design/milk
-	name = "10 Milk"
+	name = "10 j. mleka"
 	id = "milk"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 20)
@@ -11,7 +11,7 @@
 	category = list("initial","Food")
 
 /datum/design/cream
-	name = "10 Cream"
+	name = "10 j. śmietanki"
 	id = "cream"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 30)
@@ -19,7 +19,7 @@
 	category = list("initial","Food")
 
 /datum/design/milk_carton
-	name = "Milk Carton"
+	name = "Karton mleka"
 	id = "milk_carton"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 100)
@@ -27,7 +27,7 @@
 	category = list("initial","Food")
 
 /datum/design/cream_carton
-	name = "Cream Carton"
+	name = "Karton śmietanki"
 	id = "cream_carton"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -35,7 +35,7 @@
 	category = list("initial","Food")
 
 /datum/design/black_pepper
-	name = "10u Black Pepper"
+	name = "10 j. czarnego pieprzu"
 	id = "black_pepper"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 25)
@@ -43,7 +43,7 @@
 	category = list("initial","Food")
 
 /datum/design/pepper_mill
-	name = "Pepper Mill"
+	name = "Młynek do pieprzu"
 	id = "pepper_mill"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 50)
@@ -52,7 +52,7 @@
 	category = list("initial","Food")
 
 /datum/design/enzyme
-	name = "10u Universal Enzyme"
+	name = "10 j. uniwersalnego enzymu"
 	id = "enzyme"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 30)
@@ -61,14 +61,14 @@
 
 
 /datum/design/flour_sack
-	name = "Flour Sack"
+	name = "Worek mąki"
 	id = "flour_sack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 150)
 	build_path = /obj/item/reagent_containers/food/condiment/flour
 	category = list("initial","Food")
 /datum/design/sugar_sack
-	name = "Sugar Sack"
+	name = "Worek cukru"
 	id = "sugar_sack"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 200)
@@ -76,7 +76,7 @@
 	category = list("initial","Food")
 
 /datum/design/monkey_cube
-	name = "Monkey Cube"
+	name = "Małpia kostka"
 	id = "mcube"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 250)
@@ -84,7 +84,7 @@
 	category = list("initial", "Food")
 
 /datum/design/ez_nut
-	name = "E-Z Nutrient"
+	name = "E-Z-Nutrient"
 	id = "ez_nut"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 10)
@@ -108,7 +108,7 @@
 	category = list("initial","Botany Chemicals")
 
 /datum/design/weed_killer
-	name = "Weed Killer"
+	name = "Środek chwastobójczy"
 	id = "weed_killer"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 50)
@@ -116,7 +116,7 @@
 	category = list("initial","Botany Chemicals")
 
 /datum/design/pest_spray
-	name = "Pest Killer"
+	name = "Pestycyd"
 	id = "pest_spray"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 50)
@@ -124,7 +124,7 @@
 	category = list("initial","Botany Chemicals")
 
 /datum/design/botany_bottle
-	name = "Empty Bottle"
+	name = "Pusta butelka"
 	id = "botany_bottle"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 5)
@@ -132,7 +132,7 @@
 	category = list("initial", "Botany Chemicals")
 
 /datum/design/cloth
-	name = "Roll of Cloth"
+	name = "Rolka tkaniny"
 	id = "cloth"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 50)
@@ -140,7 +140,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/cardboard
-	name = "Sheet of Cardboard"
+	name = "Arkusz tektury"
 	id = "cardboard"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 25)
@@ -148,7 +148,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/leather
-	name = "Sheet of Leather"
+	name = "Arkusz skóry"
 	id = "leather"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 150)
@@ -156,7 +156,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/toolbelt
-	name = "Tool Belt"
+	name = "Pas na narzędzia"
 	id = "toolbelt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -164,7 +164,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/secbelt
-	name = "Security Belt"
+	name = "Pas policyjny"
 	id = "secbelt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -172,7 +172,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/medbelt
-	name = "Medical Belt"
+	name = "Pas medyczny"
 	id = "medbel"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -180,7 +180,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/janibelt
-	name = "Janitorial Belt"
+	name = "Pas woźnego"
 	id = "janibelt"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -188,7 +188,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/s_holster
-	name = "Shoulder Holster"
+	name = "Kabura naramienna"
 	id = "s_holster"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 400)
@@ -196,7 +196,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/rice_hat
-	name = "Rice Hat"
+	name = "Kapelusz ryżowy"
 	id = "rice_hat"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 300)
@@ -204,7 +204,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/carton_soy_milk
-	name = "Soy Milk Carton"
+	name = "Karton mleka sojowego"
 	id = "soy_milk_carton"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 100)
@@ -212,7 +212,7 @@
 	category = list("initial","Food")
 
 /datum/design/seaweed_sheet
-	name = "Seaweed Sheet"
+	name = "Arkusz wodorostów"
 	id = "seaweed_sheet"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 30)
@@ -221,7 +221,7 @@
 
 //Substrates
 /datum/design/substrate_dirt
-	name = "Dirt Substrate"
+	name = "Podłoże: ziemia"
 	id = "dirt_substrate"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 300)
@@ -229,7 +229,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/substrate_clay
-	name = "Clay Substrate"
+	name = "Podłoże: glina"
 	id = "clay_substrate"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 300)
@@ -237,7 +237,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/substrate_sand
-	name = "Sand Substrate"
+	name = "Podłoże: piasek"
 	id = "sand_substrate"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 300)
@@ -245,7 +245,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/substrate_debris
-	name = "Debris Substrate"
+	name = "Podłoże: gruz"
 	id = "debris_substrate"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 300)
@@ -253,7 +253,7 @@
 	category = list("initial","Organic Materials")
 
 /datum/design/substrate_fairy
-	name = "Mysterious Substrate"
+	name = "Tajemnicze podłoże"
 	id = "mysterious_substrate"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass = 10000)

@@ -15,7 +15,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/bullet/aa_round
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "pdc"
-	name = "anti-aircraft round"
+	name = "pocisk przeciwlotniczy"
 	damage = 40
 	flag = "overmap_light"
 	spread = 5
@@ -28,7 +28,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/bullet/mac_relayed_round	//!Projectile relayed by all default MAC shells on overmap hit. No difference for AP / others as their values don't really matter on z level.
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "railgun"
-	name = "artillery round"
+	name = "pocisk artyleryjski"
 	damage = 60
 	range = 255
 	speed = 1.85
@@ -38,7 +38,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/bullet/mac_round
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "railgun"
-	name = "artillery round"
+	name = "pocisk artyleryjski"
 	damage = 400
 	speed = 1.85
 	//Not easily stopped.
@@ -84,7 +84,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 ///Improvised ammunition, does terrible damage but is cheap to produce
 /obj/item/projectile/bullet/mac_round/cannonshot
-	name = "cannonball"
+	name = "kula armatnia"
 	damage = 350
 	icon_state = "cannonshot"
 	flag = "overmap_medium"
@@ -103,7 +103,7 @@ Misc projectile types, effects, think of this as the special FX file.
 ///Dirty shell: Stage 1 - overmap projectile
 /obj/item/projectile/bullet/mac_round/dirty
 	damage = 150
-	name = "dirty artillery round"
+	name = "brudny pocisk artyleryjski"
 	relay_projectile_type = /obj/item/projectile/bullet/delayed_prime/dirty_shell_stage_two
 
 
@@ -111,7 +111,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/bullet/delayed_prime
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "railgun"
-	name = "uh oh this isn't supposed to exist!"
+	name = "ojej, to nie powinno istnieć!"
 	range = 255
 	speed = 1.85
 	movement_type = FLYING
@@ -142,7 +142,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 ///Dirty shell: Stage 2 - z level sludge payload projectile
 /obj/item/projectile/bullet/delayed_prime/dirty_shell_stage_two
-	name = "dirty artillery round"
+	name = "brudny pocisk artyleryjski"
 	icon_state = "railgun"
 	penetration_fuze = 4
 
@@ -189,7 +189,7 @@ Misc projectile types, effects, think of this as the special FX file.
 ///Dirty Shell: Stage 3 - spread of irradiating pellets
 /obj/item/projectile/energy/nuclear_particle/dirty_shell_stage_three
 	irradiate = 300	//Less radiation than the "true" gumballs
-	name = "irradiated pellet"
+	name = "napromieniowana kulka"
 
 /obj/item/projectile/energy/nuclear_particle/dirty_shell_stage_three/on_hit(atom/target, blocked)
 	. = ..()
@@ -203,7 +203,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/delayed_prime/relayed_incendiary_torpedo
 	icon_state = "torpedo_hellfire"
-	name = "incendiary torpedo"
+	name = "torpeda zapalająca"
 	penetration_fuze = 2
 
 /obj/item/projectile/bullet/delayed_prime/relayed_incendiary_torpedo/fuze_trigger_value(atom/target)
@@ -232,7 +232,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/delayed_prime/relayed_viscerator_torpedo
 	icon_state = "torpedo"
-	name = "armoured torpedo"
+	name = "torpeda opancerzona"
 	penetration_fuze = 3
 	damage = 25
 
@@ -258,7 +258,7 @@ Misc projectile types, effects, think of this as the special FX file.
 /obj/item/projectile/bullet/delayed_prime/relayed_plushtorp
 	damage = 0
 	icon_state = "torpedo"
-	name = "emotional support torpedo"
+	name = "torpeda wsparcia emocjonalnego"
 	speed = 3
 	penetration_fuze = 2
 	hitsound = 'sound/items/toysqueak1.ogg'
@@ -288,7 +288,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/railgun_slug
 	icon_state = "mac"
-	name = "tungsten slug"
+	name = "pocisk wolframowy"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 150
 	speed = 1
@@ -297,7 +297,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/torpedo
 
 /obj/item/projectile/bullet/railgun_slug/uranium //Heavier version
-	name = "uranium slug"
+	name = "pocisk uranowy"
 	damage = 185
 	armour_penetration = 10
 
@@ -308,7 +308,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/railgun_forged //The properties of this projectile will be generated on each instance of it being fired
 	icon_state = "mac"
-	name = "railgun slug"
+	name = "pocisk szynowy"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 1
 	speed = 1
@@ -343,7 +343,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/gauss_slug
 	icon_state = "gaussgun"
-	name = "tungsten round"
+	name = "nabój wolframowy"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 80
 	obj_integrity = 500 //Flak doesn't shoot this down....
@@ -351,7 +351,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/light_cannon_round
 	icon_state = "pdc"
-	name = "light cannon round"
+	name = "pocisk lekkiego działka"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 40
 	armour_penetration = 2
@@ -360,7 +360,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/heavy_cannon_round
 	icon_state = "pdc"
-	name = "heavy cannon round"
+	name = "pocisk ciężkiego działka"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 30
 	spread = 5
@@ -368,14 +368,14 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/hailstorm_bullet
 	icon_state = "50cal"
-	name = "hailstorm fragment"
+	name = "odłamek Hailstorm"
 	damage = 20
 	spread = 90
 	flag = "overmap_medium"
 
 /obj/item/projectile/bullet/prototype_bsa
 	icon_state = "proto_bsa"
-	name = "Prototype BSA Round"
+	name = "prototypowy pocisk BSA"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	speed = 0.7
 	damage = 325
@@ -454,7 +454,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/guided_munition/torpedo
 	icon_state = "torpedo"
-	name = "plasma torpedo"
+	name = "torpeda plazmowa"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	speed = 2.75
 	valid_angle = 150
@@ -475,7 +475,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/guided_munition/torpedo/viscerator
 	//icon_state = "???"	- alt sprite would be nice
-	name = "armoured torpedo"
+	name = "torpeda opancerzona"
 	relay_projectile_type = /obj/item/projectile/bullet/delayed_prime/relayed_viscerator_torpedo
 	damage = 75	//Simply kinetic damagewise..
 	flag = "overmap_medium"
@@ -488,7 +488,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/guided_munition/torpedo/shredder
 	icon_state = "torpedo_shredder"
-	name = "plasma charge"
+	name = "ładunek plazmowy"
 	damage = 200
 	armour_penetration = 40
 
@@ -515,7 +515,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/guided_munition/torpedo/hellfire
 	icon_state = "torpedo_hellfire"
-	name = "hellfire missile"
+	name = "rakieta hellfire"
 	damage = 400
 	obj_integrity = 25
 	max_integrity = 25
@@ -537,7 +537,7 @@ Misc projectile types, effects, think of this as the special FX file.
 		target.hullburn_power = max(target.hullburn_power, 6)
 
 /obj/item/projectile/guided_munition/torpedo/plushtide
-	name = "emotional support torpedo"
+	name = "torpeda wsparcia emocjonalnego"
 	damage = 0
 	obj_integrity = 400
 	max_integrity = 400
@@ -552,7 +552,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/guided_munition/torpedo/disruptor
 	icon_state = "torpedo_disruptor"
-	name = "disruption torpedo"
+	name = "torpeda zakłócająca"
 	damage = 140	//Lower damage, does some special stuff when it hits a target.
 	obj_integrity = 40
 	max_integrity = 40
@@ -561,7 +561,7 @@ Misc projectile types, effects, think of this as the special FX file.
 
 ///Player-accessible version of parent. Weaker effect because reverse engineered, buffed durability because player ship
 /obj/item/projectile/guided_munition/torpedo/disruptor/prototype
-	name = "prototype disruption torpedo"
+	name = "prototypowa torpeda zakłócająca"
 	ai_disruption = 15 //Do you like stuncombat? Well the AI doesn't.
 	ai_disruption_cap = 30 //Very effective if applied spaced out over time against damage-resistant ships.
 	obj_integrity = 120
@@ -594,7 +594,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	can_home = FALSE
 
 /obj/item/projectile/guided_munition/missile
-	name = "\improper Triton cruise missile"
+	name = "\improper pocisk manewrujący Triton"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "conventional_missile"
 	speed = 1
@@ -625,14 +625,14 @@ Misc projectile types, effects, think of this as the special FX file.
 
 /obj/item/projectile/bullet/pdc_round
 	icon_state = "pdc"
-	name = "PDC round"
+	name = "pocisk PDC"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	damage = 15
 	flag = "overmap_light"
 	spread = 5
 
 /obj/item/projectile/beam/laser/heavylaser/phaser
-	name = "phaser beam"
+	name = "wiązka fazera"
 	damage = 200
 	flag = "overmap_heavy"
 	hitscan = TRUE //Extremely powerful in ship combat
@@ -654,7 +654,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	explosion(get_turf(target), 0, 2, 4, 6, flame_range = 4) //I halved the BSA's explosion, and then poked it some myself - big boom
 
 /obj/item/projectile/beam/laser/phaser/pd
-	name = "point defense phaser"
+	name = "fazer obrony punktowej"
 	damage = 60 // Doesn't scale with power input, but fires fairly quickly especially when upgraded
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "pdphaser"
@@ -669,7 +669,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	explosion(get_turf(target), 0, 0, 2, 3, flame_range = 2) //weak, but still damaging... I hope
 
 /obj/item/projectile/beam/laser/point_defense
-	name = "laser pointer"
+	name = "wskaźnik laserowy"
 	damage = 30
 	flag = "overmap_light"
 	hitscan = TRUE //Extremely powerful in ship combat
@@ -700,7 +700,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	explosion(get_turf(target), 0, 0, 2, 3, flame_range = 2) //weak, but still damaging... I hope
 
 /obj/item/projectile/bullet/broadside
-	name = "broadside shell"
+	name = "pocisk burtowy"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "broadside"
 	damage = 125
@@ -714,7 +714,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	damage = 20
 
 /obj/item/projectile/bullet/broadside/plasma
-	name = "plasma-packed broadside shell"
+	name = "pocisk burtowy z plazmą"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "broadside_plasma"
 	damage = 175
@@ -728,7 +728,7 @@ Misc projectile types, effects, think of this as the special FX file.
 	projectile_piercing = ALL
 
 /obj/item/projectile/bullet/broadside/uranium
-	name = "depleted uranium broadside shell"
+	name = "pocisk burtowy ze zubożonym uranem"
 	icon = 'nsv13/icons/obj/projectiles_nsv.dmi'
 	icon_state = "broadside_uranium"
 	damage = 200

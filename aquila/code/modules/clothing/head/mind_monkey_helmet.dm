@@ -1,6 +1,6 @@
 /obj/item/clothing/head/monkey_sentience_helmet
-	name = "Monkey mind-magnification helmet"
-	desc = "This helmet rapidly stimulates a monkey's mind to increase brain function, and in turn enables critical thinking skills."
+	name = "hełm wzmacniający umysł małpy"
+	desc = "Ten hełm gwałtownie pobudza umysł małpy, zwiększając wydajność mózgu, a przez to pozwala jej krytycznie myśleć."
 	flags_inv = HIDEHAIR
 	icon = 'aquila/icons/obj/clothing/hats.dmi'
 	icon_state = "monkeymind"

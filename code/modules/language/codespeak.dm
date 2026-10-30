@@ -1,6 +1,6 @@
 /datum/language/codespeak
-	name = "Codespeak"
-	desc = "Syndicate operatives can use a series of codewords to convey complex information, while sounding like random concepts and drinks to anyone listening in."
+	name = "Kodomowa"
+	desc = "Agenci Syndykatu mogą przekazywać złożone informacje szeregiem słów kodowych, które dla podsłuchujących brzmią jak przypadkowe pojęcia i nazwy drinków."
 	key = "t"
 	default_priority = 0
 	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
@@ -31,8 +31,8 @@
 	add_to_cache(input, .)
 
 /obj/item/codespeak_manual
-	name = "codespeak manual"
-	desc = "The book's cover reads: \"Codespeak(tm) - Secure your communication with metaphors so elaborate, they seem randomly generated!\""
+	name = "podręcznik Kodomowy"
+	desc = "Na okładce napisano: „Kodomowa(tm) – zabezpiecz swoją komunikację metaforami tak wymyślnymi, że wydają się losowe!”"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book2"
 	var/charges = 1
@@ -79,5 +79,5 @@
 		user.put_in_active_hand(book)
 
 /obj/item/codespeak_manual/unlimited
-	name = "deluxe codespeak manual"
+	name = "podręcznik Kodomowy deluxe"
 	charges = INFINITY

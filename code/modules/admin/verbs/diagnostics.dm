@@ -31,8 +31,8 @@
 		M.next_move = 1
 		M.next_click = 0
 
-	message_admins("[ADMIN_LOOKUPFLW(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [DisplayTimeText(largest_move_time)]!")
-	message_admins("[ADMIN_LOOKUPFLW(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [DisplayTimeText(largest_click_time)]!")
+	message_admins("[ADMIN_LOOKUPFLW(largest_move_mob)] ma największe opóźnienie ruchu: [largest_move_time] klatek / [DisplayTimeText(largest_move_time)]!")
+	message_admins("[ADMIN_LOOKUPFLW(largest_click_mob)] ma największe opóźnienie kliknięcia: [largest_click_time] klatek / [DisplayTimeText(largest_click_time)]!")
 	message_admins("world.time = [world.time]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unfreeze Everyone") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -41,17 +41,17 @@
 	set category = "Debug"
 	set name = "Radio report"
 
-	var/output = "<b>Radio Report</b><hr>"
+	var/output = "<b>Raport radia</b><hr>"
 	for (var/fq in SSradio.frequencies)
-		output += "<b>Freq: [fq]</b><br>"
+		output += "<b>Częst.: [fq]</b><br>"
 		var/datum/radio_frequency/fqs = SSradio.frequencies[fq]
 		if (!fqs)
-			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
+			output += "&nbsp;&nbsp;<b>BŁĄD</b><br>"
 			continue
 		for (var/filter in fqs.devices)
 			var/list/filtered = fqs.devices[filter]
 			if (!filtered)
-				output += "&nbsp;&nbsp;[filter]: ERROR<br>"
+				output += "&nbsp;&nbsp;[filter]: BŁĄD<br>"
 				continue
 			output += "&nbsp;&nbsp;[filter]: [filtered.len]<br>"
 			for(var/datum/weakref/device_ref as anything in filtered)
@@ -75,19 +75,19 @@
 	if(!src.holder)
 		return
 
-	var/confirm = alert(src, "Are you sure you want to reload all admins?", "Confirm", "Yes", "No")
-	if(confirm !="Yes")
+	var/confirm = alert(src, "Na pewno chcesz przeładować wszystkich adminów?", "Potwierdzenie", "Tak", "Nie")
+	if(confirm !="Tak")
 		return
 
 	load_admins()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Reload All Admins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	message_admins("[key_name_admin(usr)] manually reloaded admins")
+	message_admins("[key_name_admin(usr)] ręcznie przeładowuje adminów")
 
 /client/proc/toggle_cdn()
 	set name = "Toggle CDN"
 	set category = "Server"
 	var/static/admin_disabled_cdn_transport = null
-	if (alert(usr, "Are you sure you want to toggle the CDN asset transport?", "Confirm", "Yes", "No") != "Yes")
+	if (alert(usr, "Na pewno chcesz przełączyć transport zasobów przez CDN?", "Potwierdzenie", "Tak", "Nie") != "Tak")
 		return
 	var/current_transport = CONFIG_GET(string/asset_transport)
 	if (!current_transport || current_transport == "simple")
@@ -95,18 +95,18 @@
 			CONFIG_SET(string/asset_transport, admin_disabled_cdn_transport)
 			admin_disabled_cdn_transport = null
 			SSassets.OnConfigLoad()
-			message_admins("[key_name_admin(usr)] re-enabled the CDN asset transport")
+			message_admins("[key_name_admin(usr)] ponownie włącza transport zasobów przez CDN")
 			log_admin("[key_name(usr)] re-enabled the CDN asset transport")
 		else
-			to_chat(usr, "<span class='adminnotice'>The CDN is not enabled!</span>")
-			if (alert(usr, "The CDN asset transport is not enabled! If you having issues with assets you can also try disabling filename mutations.", "The CDN asset transport is not enabled!", "Try disabling filename mutations", "Nevermind") == "Try disabling filename mutations")
+			to_chat(usr, "<span class='adminnotice'>CDN nie jest włączony!</span>")
+			if (alert(usr, "Transport zasobów przez CDN nie jest włączony! Jeśli masz problemy z zasobami, możesz też spróbować wyłączyć zmiany nazw plików.", "Transport zasobów przez CDN nie jest włączony!", "Wyłącz zmiany nazw plików", "Nieważne") == "Wyłącz zmiany nazw plików")
 				SSassets.transport.dont_mutate_filenames = !SSassets.transport.dont_mutate_filenames
-				message_admins("[key_name_admin(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
+				message_admins("[key_name_admin(usr)] [(SSassets.transport.dont_mutate_filenames ? "wyłącza" : "ponownie włącza")] zmiany nazw plików zasobów")
 				log_admin("[key_name(usr)] [(SSassets.transport.dont_mutate_filenames ? "disabled" : "re-enabled")] asset filename transforms")
 	else
 		admin_disabled_cdn_transport = current_transport
 		CONFIG_SET(string/asset_transport, "simple")
 		SSassets.OnConfigLoad()
 		SSassets.transport.dont_mutate_filenames = TRUE
-		message_admins("[key_name_admin(usr)] disabled the CDN asset transport")
+		message_admins("[key_name_admin(usr)] wyłącza transport zasobów przez CDN")
 		log_admin("[key_name(usr)] disabled the CDN asset transport")

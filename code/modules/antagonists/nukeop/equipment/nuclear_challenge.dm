@@ -4,7 +4,7 @@
 #define CHALLENGE_SHUTTLE_DELAY 35 MINUTES	//35 minutes, giving nukies at least 20 minutes to enact their assault.
 
 /obj/item/nuclear_challenge
-	name = "Declaration of War (Challenge Mode)"
+	name = "Deklaracja wojny (tryb wyzwania)"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-red"
 	item_state = "radio"
@@ -21,26 +21,26 @@
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, "Skonsultuj się ze swoją drużyną zanim zadeklarujecie wojnę na [station_name()]. [check_pop()? "" : "Ze względu na wielkość załogi nie dostaniecie dotatkowego ekwipunku. "]", "Declare war?", list("Yes", "No")) // AQ EDIT - tgui_alert bierze listę przycisków
+	var/are_you_sure = tgui_alert(user, "Skonsultuj się ze swoją drużyną zanim zadeklarujecie wojnę na [station_name()]. [check_pop()? "" : "Ze względu na wielkość załogi nie dostaniecie dotatkowego ekwipunku. "]", "Wypowiedzieć wojnę?", list("Tak", "Nie")) // AQ EDIT - tgui_alert bierze listę przycisków
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
 		return
 
-	if(are_you_sure != "Yes")
+	if(are_you_sure != "Tak")
 		//to_chat(user, "On second thought, the element of surprise isn't so bad after all.")
 		return
 
 	var/war_declaration = "[user.real_name] zadeklarowa[user.gender == MALE ? "ł" : "ła"] [user.p_jego()] zamiar całkowitego zniszczenia [station_name()] przy użyciu ładunku nuklearnego, oraz rzuca wyzwanie załodze, aby spróbować [user.p_je()] powstrzymać."
 
 	declaring_war = TRUE
-	var/custom_threat = alert(user, "Czy chcesz zmienić tekst deklaracji?", "Customize?", "Yes", "No")
+	var/custom_threat = alert(user, "Czy chcesz zmienić tekst deklaracji?", "Zmiana deklaracji", "Tak", "Nie")
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
 		return
 
-	if(custom_threat == "Yes")
+	if(custom_threat == "Tak")
 		declaring_war = TRUE
 		war_declaration = stripped_input(user, "Podaj nowy tekst deklaracji", "Deklaracja")
 		declaring_war = FALSE

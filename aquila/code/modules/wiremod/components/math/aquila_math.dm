@@ -13,7 +13,7 @@
  * All input and output values are floored
  */
 /obj/item/circuit_component/bitwise
-	display_name = "Bitwise"
+	display_name = "Operacje bitowe"
 	desc = "Komponent, który działa na bitach liczb całkowitych. Wartości dziesiętne są ignorowane."
 	category = "Math"
 
@@ -89,7 +89,7 @@
  * Its best use is to combine it with the bitwise component to put multiple booleans in one number.
  */
 /obj/item/circuit_component/compare/bitflag
-	display_name = "Bitflag"
+	display_name = "Flaga bitowa"
 	desc = "Komponent, który określa, czy dany bit liczby jest włączony, czy wyłączony."
 	category = "Math"
 
@@ -117,7 +117,7 @@
  * This component can round, floor, and ceil number inputs.
  */
 /obj/item/circuit_component/round
-	display_name = "Round"
+	display_name = "Zaokrąglanie"
 	desc = "Komponent, który potrafi obciąć niechlujne części dziesiętne liczby."
 	category = "Math"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
@@ -176,7 +176,7 @@
  * Secant, cosecant, cotangent and the hyperbolic functions. Plain sine/cosine/tangent live in the tg trigonometry component.
  */
 /obj/item/circuit_component/advanced_trigonometry
-	display_name = "Advanced Trigonometry"
+	display_name = "Trygonometria zaawansowana"
 	desc = "Po wybitnych postępach w dziedzinie matematyki naukowcy NanoTrasen odkryli, jak obliczać odwrotności funkcji trygonometrycznych i funkcje hiperboliczne."
 	category = "Math"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

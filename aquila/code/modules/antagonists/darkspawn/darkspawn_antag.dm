@@ -520,40 +520,40 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 /datum/antagonist/darkspawn/get_admin_commands()
 	. = ..()
 	if(darkspawn_state == DARKSPAWN_MUNDANE)
-		.["Force Divulge"] = CALLBACK(src, PROC_REF(divulge), TRUE)
-	.["Set Lucidity"] = CALLBACK(src, PROC_REF(admin_set_lucidity))
-	.["Set Willpower"] = CALLBACK(src, PROC_REF(admin_set_willpower))
-	.["Set Psi Values"] = CALLBACK(src, PROC_REF(admin_set_psi))
-	.["Set Max Thralls"] = CALLBACK(src, PROC_REF(admin_set_max_thralls))
+		.["Wymuś objawienie"] = CALLBACK(src, PROC_REF(divulge), TRUE)
+	.["Ustaw jasność"] = CALLBACK(src, PROC_REF(admin_set_lucidity))
+	.["Ustaw wolę"] = CALLBACK(src, PROC_REF(admin_set_willpower))
+	.["Ustaw wartości psi"] = CALLBACK(src, PROC_REF(admin_set_psi))
+	.["Ustaw limit thralli"] = CALLBACK(src, PROC_REF(admin_set_max_thralls))
 	if(picked_class)
-		.["Refund Ability"] = CALLBACK(src, PROC_REF(admin_refund_ability))
-	.["Set Class"] = CALLBACK(src, PROC_REF(admin_set_class))
+		.["Zwróć zdolność"] = CALLBACK(src, PROC_REF(admin_refund_ability))
+	.["Ustaw klasę"] = CALLBACK(src, PROC_REF(admin_set_class))
 	if(darkspawn_state == DARKSPAWN_DIVULGED)
-		.["Sacrament (ENDS THE ROUND)"] = CALLBACK(src, PROC_REF(sacrament))
+		.["Sakrament (KOŃCZY RUNDĘ)"] = CALLBACK(src, PROC_REF(sacrament))
 
 /datum/antagonist/darkspawn/proc/admin_set_lucidity(mob/admin)
-	var/lucid = input(admin, "How much lucidity should the darkspawn team have?", "Lucidity", team?.lucidity) as null|num
+	var/lucid = input(admin, "Ile jasności ma mieć drużyna darkspawnów?", "Jasność", team?.lucidity) as null|num
 	if(!isnull(lucid) && team)
 		team.lucidity = max(0, lucid)
 
 /datum/antagonist/darkspawn/proc/admin_set_willpower(mob/admin)
-	var/will = input(admin, "How much willpower should [owner] have?", "Willpower", willpower) as null|num
+	var/will = input(admin, "Ile woli ma mieć [owner]?", "Wola", willpower) as null|num
 	if(!isnull(will))
 		willpower = max(0, will)
 
 /datum/antagonist/darkspawn/proc/admin_set_psi(mob/admin)
-	var/max = input(admin, "What should the psi cap be?", "Psi", psi_cap) as null|num
+	var/max = input(admin, "Jaki ma być limit psi?", "Psi", psi_cap) as null|num
 	if(!isnull(max))
 		psi_cap = max(0, max)
-	var/regen = input(admin, "How much psi should be regenerated per second?", "Psi", psi_per_second) as null|num
+	var/regen = input(admin, "Ile psi ma się odnawiać na sekundę?", "Psi", psi_per_second) as null|num
 	if(!isnull(regen))
 		psi_per_second = max(1, regen)
-	var/delay = input(admin, "What should the delay to psi regeneration be (deciseconds)?", "Psi", psi_regen_delay) as null|num
+	var/delay = input(admin, "Jakie ma być opóźnienie odnowy psi (w decysekundach)?", "Psi", psi_regen_delay) as null|num
 	if(!isnull(delay))
 		psi_regen_delay = max(0, delay)
 
 /datum/antagonist/darkspawn/proc/admin_set_max_thralls(mob/admin)
-	var/thrall = input(admin, "How many thralls should the darkspawn team be able to get?", "Thralls", team?.max_thralls) as null|num
+	var/thrall = input(admin, "Ilu thralli może mieć drużyna darkspawnów?", "Thralle", team?.max_thralls) as null|num
 	if(!isnull(thrall) && team)
 		team.max_thralls = max(0, thrall)
 
@@ -565,9 +565,9 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 		if(ability.willpower_cost)
 			abilities[ability.name] = ability
 	if(!length(abilities))
-		to_chat(admin, "<span class='warning'>There are no abilities to refund.</span>")
+		to_chat(admin, "<span class='warning'>Nie ma zdolności do zwrotu.</span>")
 		return
-	var/choice = tgui_input_list(admin, "Select which ability to refund.", "Select Ability", abilities)
+	var/choice = tgui_input_list(admin, "Wybierz zdolność do zwrotu.", "Wybierz zdolność", abilities)
 	var/datum/psi_web/picked_ability = abilities[choice]
 	if(!picked_ability || QDELETED(src) || QDELETED(picked_class))
 		return
@@ -576,8 +576,8 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 /datum/antagonist/darkspawn/proc/admin_set_class(mob/admin)
 	var/list/classes = list()
 	for(var/datum/component/darkspawn_class/class as anything in subtypesof(/datum/component/darkspawn_class))
-		classes["[initial(class.name)][initial(class.choosable) ? "" : " (not selectable)"]"] = class
-	var/choice = tgui_input_list(admin, "Select which class to force on the target.", "Select Class", classes)
+		classes["[initial(class.name)][initial(class.choosable) ? "" : " (niewybieralna)"]"] = class
+	var/choice = tgui_input_list(admin, "Wybierz klasę, którą narzucisz celowi.", "Wybierz klasę", classes)
 	var/chosen = classes[choice]
 	if(!chosen || QDELETED(src) || QDELETED(owner.current))
 		return
@@ -590,12 +590,12 @@ GLOBAL_VAR_INIT(sacrament_done, FALSE)
 /datum/antagonist/darkspawn/antag_panel_data()
 	. = ""
 	if(team)
-		. += "<b>Lucidity:</b> [team.lucidity] / [team.required_succs]<br>"
-		. += "<b>Max Thralls:</b> [team.max_thralls]<br>"
-	. += "<b>Willpower:</b> [willpower]<br>"
-	. += "<b>Psi:</b> [psi]/[psi_cap], [psi_per_second]/s, [psi_regen_delay ? "[psi_regen_delay / 10] s delay" : "no delay"]<br>"
+		. += "<b>Jasność:</b> [team.lucidity] / [team.required_succs]<br>"
+		. += "<b>Limit thralli:</b> [team.max_thralls]<br>"
+	. += "<b>Wola:</b> [willpower]<br>"
+	. += "<b>Psi:</b> [psi]/[psi_cap], [psi_per_second]/s, [psi_regen_delay ? "opóźnienie [psi_regen_delay / 10] s" : "bez opóźnienia"]<br>"
 	if(picked_class)
-		. += "<b>Class:</b> [picked_class.name]<br><b>Upgrades:</b><br>"
+		. += "<b>Klasa:</b> [picked_class.name]<br><b>Ulepszenia:</b><br>"
 		for(var/datum/psi_web/ability as anything in picked_class.learned_abilities)
 			. += "[ability.name]<br>"
 

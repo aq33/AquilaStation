@@ -1,14 +1,14 @@
 //The effect when you wrap a dead body in gift wrap
 /obj/effect/spresent
-	name = "strange present"
-	desc = "It's a ... present?"
+	name = "dziwny prezent"
+	desc = "To... prezent?"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "strangepresent"
 	density = TRUE
 	anchored = FALSE
 
 /obj/effect/beam
-	name = "beam"
+	name = "promień"
 	var/def_zone
 	pass_flags = PASSTABLE
 
@@ -31,8 +31,8 @@
 	var/list/container = list(  )
 
 /obj/effect/overlay/thermite
-	name = "thermite"
-	desc = "Looks hot."
+	name = "termit"
+	desc = "Wygląda na gorący."
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "2" //what?
 	anchored = TRUE

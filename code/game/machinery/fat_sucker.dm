@@ -1,6 +1,6 @@
 /obj/machinery/fat_sucker
-	name = "lipid extractor"
-	desc = "Safely and efficiently extracts excess fat from a subject."
+	name = "ekstraktor lipidów"
+	desc = "Bezpiecznie i skutecznie usuwa nadmiar tłuszczu z obiektu."
 	icon = 'icons/obj/machines/fat_sucker.dmi'
 	icon_state = "fat"
 

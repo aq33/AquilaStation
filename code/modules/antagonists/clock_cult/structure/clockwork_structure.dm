@@ -1,7 +1,7 @@
 //The base clockwork structure. Can have an alternate desc and will show up in the list of clockwork objects.
 /obj/structure/destructible/clockwork
-	name = "meme structure"
-	desc = "Some frog or something, the fuck?"
+	name = "memiczna struktura"
+	desc = "Jakaś żaba czy coś, co do cholery?"
 	var/clockwork_desc //Shown to servants when they examine
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "rare_pepe"
@@ -33,8 +33,8 @@
 
 //for the ark and Ratvar
 /obj/structure/destructible/clockwork/massive
-	name = "massive construct"
-	desc = "A very large construction."
+	name = "ogromny konstrukt"
+	desc = "Bardzo duża konstrukcja."
 	layer = MASSIVE_OBJ_LAYER
 	density = FALSE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF

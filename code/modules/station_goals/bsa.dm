@@ -3,7 +3,7 @@
 // Requires high amount of power
 // Requires high level stock parts
 /datum/station_goal/bluespace_cannon
-	name = "Bluespace Artillery"
+	name = "Artyleria bluespace"
 
 /datum/station_goal/bluespace_cannon/get_report()
 	return list(
@@ -38,8 +38,8 @@
 	return TRUE
 
 /obj/machinery/bsa/back
-	name = "Bluespace Artillery Generator"
-	desc = "Generates cannon pulse. Needs to be linked with a fusor."
+	name = "generator artylerii bluespace"
+	desc = "Wytwarza impuls działa. Trzeba go połączyć z fuzorem."
 	icon_state = "power_box"
 
 /obj/machinery/bsa/back/multitool_act(mob/living/user, obj/item/I)
@@ -51,8 +51,8 @@
 	return TRUE
 
 /obj/machinery/bsa/front
-	name = "Bluespace Artillery Bore"
-	desc = "Do not stand in front of cannon during operation. Needs to be linked with a fusor."
+	name = "lufa artylerii bluespace"
+	desc = "Nie stawaj przed działem podczas pracy. Trzeba ją połączyć z fuzorem."
 	icon_state = "emitter_center"
 
 /obj/machinery/bsa/front/multitool_act(mob/living/user, obj/item/I)
@@ -64,8 +64,8 @@
 	return TRUE
 
 /obj/machinery/bsa/middle
-	name = "Bluespace Artillery Fusor"
-	desc = "Contents classified by Nanotrasen Naval Command. Needs to be linked with the other BSA parts using multitool."
+	name = "fuzor artylerii bluespace"
+	desc = "Zawartość utajniona przez Dowództwo Marynarki Nanotrasen. Trzeba go połączyć multitoolem z pozostałymi częściami BSA."
 	icon_state = "fuel_chamber"
 	var/datum/weakref/back_ref
 	var/datum/weakref/front_ref
@@ -129,8 +129,8 @@
 
 
 /obj/machinery/bsa/full
-	name = "Bluespace Artillery"
-	desc = "Long range bluespace artillery."
+	name = "artyleria bluespace"
+	desc = "Dalekosiężna artyleria bluespace."
 	icon = 'icons/obj/lavaland/cannon.dmi'
 	icon_state = "orbital_cannon1"
 	var/static/mutable_appearance/top_layer
@@ -213,11 +213,11 @@
 	new /obj/effect/temp_visual/bsa_splash(point, dir)
 
 	if(!blocker)
-		message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] przeprowadza ostrzał artyleryjski w cel: [ADMIN_VERBOSEJMP(bullseye)].")
 		log_game("[key_name(user)] has launched an artillery strike targeting [AREACOORD(bullseye)].")
 		explosion(bullseye, ex_power, ex_power*2, ex_power*4)
 	else
-		message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)] but it was blocked by [blocker] at [ADMIN_VERBOSEJMP(target)].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] przeprowadza ostrzał artyleryjski w cel: [ADMIN_VERBOSEJMP(bullseye)], ale blokuje go [blocker] w [ADMIN_VERBOSEJMP(target)].")
 		log_game("[key_name(user)] has launched an artillery strike targeting [AREACOORD(bullseye)] but it was blocked by [blocker] at [AREACOORD(target)].")
 
 
@@ -232,7 +232,7 @@
 	ui_update()
 
 /obj/structure/filler
-	name = "big machinery part"
+	name = "duża część maszynerii"
 	density = TRUE
 	anchored = TRUE
 	invisibility = INVISIBILITY_ABSTRACT
@@ -242,7 +242,7 @@
 	return
 
 /obj/machinery/computer/bsa_control
-	name = "bluespace artillery control"
+	name = "sterowanie artylerią bluespace"
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
 	icon = 'icons/obj/machines/particle_accelerator.dmi'

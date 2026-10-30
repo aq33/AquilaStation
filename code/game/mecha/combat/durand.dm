@@ -1,5 +1,5 @@
 /obj/mecha/combat/durand
-	desc = "An aging combat exosuit utilized by the Nanotrasen corporation. Originally developed to combat hostile alien lifeforms."
+	desc = "Starzejący się bojowy egzoszkielet używany przez korporację Nanotrasen. Pierwotnie zaprojektowany do walki z wrogimi obcymi formami życia."
 	name = "\improper Durand"
 	icon_state = "durand"
 	step_in = 4
@@ -134,7 +134,7 @@ attack is passed to the shield. The shield takes the damage, uses it to calculat
 own integrity back to max. Shield is automatically dropped if we run out of power or the user gets out.*/
 
 /obj/durand_shield //projectiles get passed to this when defense mode is enabled
-	name = "defense grid"
+	name = "siatka obronna"
 	icon = 'icons/mecha/durand_shield.dmi'
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
@@ -183,7 +183,7 @@ the shield is disabled by means other than the action button (like running out o
 	chassis.defense_mode = !chassis.defense_mode
 	chassis.defense_action.button_icon_state = "mech_defense_mode_[chassis.defense_mode ? "on" : "off"]" //This is backwards because we haven't changed the var yet
 	if(!signal_args[1])
-		chassis.balloon_alert(chassis.occupant, "Shield [chassis.defense_mode ? "enabled" : "disabled"].")
+		chassis.balloon_alert(chassis.occupant, "Tarcza [chassis.defense_mode ? "włączona" : "wyłączona"].")
 		chassis.log_message("User has toggled defense mode -- now [chassis.defense_mode ? "enabled" : "disabled"].", LOG_MECHA)
 	else
 		chassis.log_message("defense mode state changed -- now [chassis.defense_mode ? "enabled" : "disabled"].", LOG_MECHA)

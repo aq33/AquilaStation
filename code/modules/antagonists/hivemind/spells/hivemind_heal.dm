@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/self/hive_drain
-	name = "Repair Protocol"
-	desc = "Our many vessels sacrifice a small portion of their mind's vitality to cure us of our physical and mental ailments."
+	name = "Protokół naprawczy"
+	desc = "Nasze liczne naczynia poświęcają cząstkę witalności swoich umysłów, by uleczyć nasze dolegliwości fizyczne i psychiczne."
 
 	panel = "Hivemind Abilities"
 	charge_max = 600

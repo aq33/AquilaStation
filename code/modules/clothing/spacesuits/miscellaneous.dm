@@ -18,8 +18,8 @@ Contains:
 
 	//Death squad armored space suits, not hardsuits!
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad
-	name = "MK.III SWAT Helmet"
-	desc = "An advanced tactical space helmet."
+	name = "hełm SWAT MK.III"
+	desc = "Zaawansowany taktyczny hełm kosmiczny."
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "stamina" = 100, "bleed" = 100)
@@ -32,8 +32,8 @@ Contains:
 	return
 
 /obj/item/clothing/suit/space/hardsuit/deathsquad
-	name = "MK.III SWAT Suit"
-	desc = "A prototype designed to replace the ageing MK.II SWAT suit. Based on the streamlined MK.II model, the traditional ceramic and graphene plate construction was replaced with plasteel, allowing superior armor against most threats. There's room for some kind of energy projection device on the back."
+	name = "skafander SWAT MK.III"
+	desc = "Prototyp, który ma zastąpić starzejący się skafander SWAT MK.II. Bazuje na opływowym modelu MK.II, ale tradycyjne płyty z ceramiki i grafenu zastąpiono plastalą, co daje lepszą ochronę przed większością zagrożeń. Na plecach jest miejsce na jakiś projektor energii."
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/kitchen/knife/combat)
@@ -47,8 +47,8 @@ Contains:
 
 	//NEW SWAT suit
 /obj/item/clothing/suit/space/swat
-	name = "MK.I SWAT Suit"
-	desc = "A tactical space suit first developed in a joint effort by the defunct IS-ERI and Nanotrasen in 20XX for military space operations. A tried and true workhorse, it is very difficult to move in but offers robust protection against all threats!"
+	name = "skafander SWAT MK.I"
+	desc = "Taktyczny skafander kosmiczny opracowany w 20XX roku wspólnie przez nieistniejące już IS-ERI i Nanotrasen na potrzeby wojskowych operacji w kosmosie. Sprawdzony wół roboczy – bardzo trudno się w nim ruszać, ale solidnie chroni przed każdym zagrożeniem!"
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/kitchen/knife/combat)
@@ -58,8 +58,8 @@ Contains:
 	move_sound = list('sound/effects/suitstep1.ogg', 'sound/effects/suitstep2.ogg')
 
 /obj/item/clothing/head/helmet/space/beret
-	name = "officer's beret"
-	desc = "An armored beret commonly used by special operations officers. Uses advanced force field technology to protect the head from space."
+	name = "beret oficera"
+	desc = "Opancerzony beret, jaki zwykle noszą oficerowie sił specjalnych. Chroni głowę przed próżnią dzięki zaawansowanej technologii pola siłowego."
 	icon_state = "dsberet"
 	dynamic_hair_suffix = "+generic"
 	dynamic_fhair_suffix = "+generic"
@@ -70,8 +70,8 @@ Contains:
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/space/officer
-	name = "officer's jacket"
-	desc = "An armored, space-proof jacket used in special operations."
+	name = "kurtka oficera"
+	desc = "Opancerzona, odporna na próżnię kurtka używana w operacjach specjalnych."
 	icon_state = "specops"
 	item_state = "specops"
 	blood_overlay_type = "coat"
@@ -86,44 +86,44 @@ Contains:
 
 	//NASA Voidsuit
 /obj/item/clothing/head/helmet/space/nasavoid
-	name = "NASA Void Helmet"
-	desc = "An old, NASA CentCom branch designed, dark red space suit helmet."
+	name = "próżniowy hełm NASA"
+	desc = "Stary, ciemnoczerwony hełm kosmiczny zaprojektowany przez oddział NASA Centrali."
 	icon_state = "void"
 	item_state = "void"
 
 /obj/item/clothing/suit/space/nasavoid
-	name = "NASA Voidsuit"
+	name = "skafander próżniowy NASA"
 	icon_state = "void"
 	item_state = "void"
-	desc = "An old, NASA CentCom branch designed, dark red space suit."
+	desc = "Stary, ciemnoczerwony skafander kosmiczny zaprojektowany przez oddział NASA Centrali."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/multitool)
 
 /obj/item/clothing/head/helmet/space/nasavoid/old
-	name = "Engineering Void Helmet"
-	desc = "A CentCom engineering dark red space suit helmet. While old and dusty, it still gets the job done."
+	name = "inżynieryjny hełm próżniowy"
+	desc = "Ciemnoczerwony inżynieryjny hełm kosmiczny Centrali. Stary i zakurzony, ale wciąż daje radę."
 	icon_state = "void"
 	item_state = "void"
 
 /obj/item/clothing/suit/space/nasavoid/old
-	name = "Engineering Voidsuit"
+	name = "inżynieryjny skafander próżniowy"
 	icon_state = "void"
 	item_state = "void"
-	desc = "A CentCom engineering dark red space suit. Age has degraded the suit making is difficult to move around in."
+	desc = "Ciemnoczerwony inżynieryjny skafander kosmiczny Centrali. Z wiekiem się zużył, więc trudno się w nim ruszać."
 	slowdown = 4
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/multitool)
 
 	//Space santa outfit suit
 /obj/item/clothing/head/helmet/space/santahat
-	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas!"
+	name = "czapka Mikołaja"
+	desc = "Ho, ho, ho. Wesołych Świąt!"
 	icon_state = "santahat"
 	flags_cover = HEADCOVERSEYES
 
 	dog_fashion = /datum/dog_fashion/head/santa
 
 /obj/item/clothing/suit/space/santa
-	name = "Santa's suit"
-	desc = "Festive!"
+	name = "strój Mikołaja"
+	desc = "Świątecznie!"
 	icon_state = "santa"
 	item_state = "santa"
 	slowdown = 0
@@ -132,8 +132,8 @@ Contains:
 
 	//Space pirate outfit
 /obj/item/clothing/head/helmet/space/pirate
-	name = "pirate hat"
-	desc = "Yarr."
+	name = "kapelusz piracki"
+	desc = "Jarr."
 	icon_state = "pirate"
 	item_state = "pirate"
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 30,"energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 60, "acid" = 75, "stamina" = 20, "bleed" = 20)
@@ -143,13 +143,13 @@ Contains:
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/space/pirate/bandana
-	name = "pirate bandana"
+	name = "piracka bandana"
 	icon_state = "bandana"
 	item_state = "bandana"
 
 /obj/item/clothing/suit/space/pirate
-	name = "pirate coat"
-	desc = "Yarr."
+	name = "płaszcz piracki"
+	desc = "Jarr."
 	icon_state = "pirate"
 	item_state = "pirate"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -162,8 +162,8 @@ Contains:
 
 	//Emergency Response Team suits
 /obj/item/clothing/head/helmet/space/hardsuit/ert
-	name = "emergency response team commander helmet"
-	desc = "The integrated helmet of an ERT hardsuit, this one has blue highlights."
+	name = "hełm dowódcy ZRK"
+	desc = "Zintegrowany hełm hardsuitu ZRK, ten ma niebieskie akcenty."
 	icon_state = "hardsuit0-ert_commander"
 	item_state = "hardsuit0-ert_commander"
 	armor = list("melee" = 65, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80, "stamina" = 70, "bleed" = 70)
@@ -210,8 +210,8 @@ Contains:
 		to_chat(user, "<span class='warning'>Wyłączasz wyświetlacz HUD swojego kombinezonu.</span>")
 
 /obj/item/clothing/suit/space/hardsuit/ert
-	name = "emergency response team commander hardsuit"
-	desc = "The standard issue hardsuit of the ERT, this one has blue highlights. Offers superb protection against environmental hazards."
+	name = "hardsuit dowódcy ZRK"
+	desc = "Standardowy hardsuit ZRK, ten ma niebieskie akcenty. Doskonale chroni przed zagrożeniami środowiskowymi."
 	icon_state = "ert_command"
 	item_state = "ert_command"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert
@@ -244,7 +244,7 @@ Contains:
 		return
 	beacon.toggle_visibility(!beacon.visible)
 	if(beacon.visible)
-		to_chat(user, "<span class='notice'>You enable the tracking beacon on [src]. Anybody on the same frequency will now be able to track your location.</span>")
+		to_chat(user, "<span class='notice'>Włączasz nadajnik lokalizacyjny w [src]. Każdy na tej samej częstotliwości może teraz śledzić twoje położenie.</span>")
 	else
 		to_chat(user, "<span class='warning'>Wyłączasz nadajnik lokalizacyjny w [src].</span>")
 
@@ -257,15 +257,15 @@ Contains:
 
 	//ERT Security
 /obj/item/clothing/head/helmet/space/hardsuit/ert/sec
-	name = "emergency response team security helmet"
-	desc = "The integrated helmet of an ERT hardsuit, this one has red highlights."
+	name = "hełm operatora ZRK"
+	desc = "Zintegrowany hełm hardsuitu ZRK, ten ma czerwone akcenty."
 	icon_state = "hardsuit0-ert_security"
 	item_state = "hardsuit0-ert_security"
 	beacon_colour = "#ec4848"
 
 /obj/item/clothing/suit/space/hardsuit/ert/sec
-	name = "emergency response team security hardsuit"
-	desc = "The standard issue hardsuit of the ERT, this one has red highlights. Offers superb protection against environmental hazards."
+	name = "hardsuit operatora ZRK"
+	desc = "Standardowy hardsuit ZRK, ten ma czerwone akcenty. Doskonale chroni przed zagrożeniami środowiskowymi."
 	icon_state = "ert_security"
 	item_state = "ert_security"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/sec
@@ -273,15 +273,15 @@ Contains:
 
 	//ERT Engineering
 /obj/item/clothing/head/helmet/space/hardsuit/ert/engi
-	name = "emergency response team engineering helmet"
-	desc = "The integrated helmet of an ERT hardsuit, this one has orange highlights."
+	name = "hełm inżyniera ZRK"
+	desc = "Zintegrowany hełm hardsuitu ZRK, ten ma pomarańczowe akcenty."
 	icon_state = "hardsuit0-ert_engineer"
 	item_state = "hardsuit0-ert_engineer"
 	beacon_colour = "#ecaa48"
 
 /obj/item/clothing/suit/space/hardsuit/ert/engi
-	name = "emergency response team engineering hardsuit"
-	desc = "The standard issue hardsuit of the ERT, this one has orange highlights. Offers superb protection against environmental hazards."
+	name = "hardsuit inżyniera ZRK"
+	desc = "Standardowy hardsuit ZRK, ten ma pomarańczowe akcenty. Doskonale chroni przed zagrożeniami środowiskowymi."
 	icon_state = "ert_engineer"
 	item_state = "ert_engineer"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/engi
@@ -289,15 +289,15 @@ Contains:
 
 	//ERT Medical
 /obj/item/clothing/head/helmet/space/hardsuit/ert/med
-	name = "emergency response team medical helmet"
-	desc = "The integrated helmet of an ERT hardsuit, this one has white highlights."
+	name = "hełm sanitariusza ZRK"
+	desc = "Zintegrowany hełm hardsuitu ZRK, ten ma białe akcenty."
 	icon_state = "hardsuit0-ert_medical"
 	item_state = "hardsuit0-ert_medical"
 	beacon_colour = "#88ecec"
 
 /obj/item/clothing/suit/space/hardsuit/ert/med
-	name = "emergency response team medical hardsuit"
-	desc = "The standard issue hardsuit of the ERT, this one has white highlights. Offers superb protection against environmental hazards."
+	name = "hardsuit sanitariusza ZRK"
+	desc = "Standardowy hardsuit ZRK, ten ma białe akcenty. Doskonale chroni przed zagrożeniami środowiskowymi."
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/med
@@ -305,38 +305,38 @@ Contains:
 
 	//ERT Janitor
 /obj/item/clothing/head/helmet/space/hardsuit/ert/jani
-	name = "emergency response team janitorial helmet"
-	desc = "The integrated helmet of an ERT hardsuit, this one has purple highlights."
+	name = "hełm woźnego ZRK"
+	desc = "Zintegrowany hełm hardsuitu ZRK, ten ma fioletowe akcenty."
 	icon_state = "hardsuit0-ert_janitor"
 	item_state = "hardsuit0-ert_janitor"
 	beacon_colour = "#be43ce"
 
 /obj/item/clothing/suit/space/hardsuit/ert/jani
-	name = "emergency response team janitorial hardsuit"
-	desc = "The standard issue hardsuit of the ERT, this one has purple highlights. Offers superb protection against environmental hazards. This one has extra clips for holding various janitorial tools."
+	name = "hardsuit woźnego ZRK"
+	desc = "Standardowy hardsuit ZRK, ten ma fioletowe akcenty. Doskonale chroni przed zagrożeniami środowiskowymi. Ma dodatkowe uchwyty na różne narzędzia do sprzątania."
 	icon_state = "ert_janitor"
 	item_state = "ert_janitor"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/jani
 	allowed = list(/obj/item/storage/bag/trash, /obj/item/melee/flyswatter, /obj/item/mop, /obj/item/holosign_creator/janibarrier, /obj/item/reagent_containers/glass/bucket, /obj/item/reagent_containers/spray/chemsprayer/janitor)
 
 /obj/item/clothing/suit/space/eva
-	name = "EVA suit"
+	name = "skafander EVA"
 	icon_state = "space"
 	item_state = "eva_suit"
-	desc = "A lightweight space suit with the basic ability to protect the wearer from the vacuum of space during emergencies."
+	desc = "Lekki skafander kosmiczny, który w nagłych wypadkach zapewnia podstawową ochronę przed próżnią."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65, "stamina" = 0, "bleed" = 30)
 
 /obj/item/clothing/head/helmet/space/eva
-	name = "EVA helmet"
+	name = "hełm EVA"
 	icon_state = "space"
 	item_state = "eva_helmet"
-	desc = "A lightweight space helmet with the basic ability to protect the wearer from the vacuum of space during emergencies."
+	desc = "Lekki hełm kosmiczny, który w nagłych wypadkach zapewnia podstawową ochronę przed próżnią."
 	flash_protect = 0
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 20, "fire" = 50, "acid" = 65, "stamina" = 0, "bleed" = 30)
 
 /obj/item/clothing/head/helmet/space/freedom
-	name = "eagle helmet"
-	desc = "An advanced, space-proof helmet. It appears to be modeled after an old-world eagle."
+	name = "orli hełm"
+	desc = "Zaawansowany hełm odporny na próżnię. Wygląda na wzorowany na ziemskim orle."
 	icon_state = "griffinhat"
 	item_state = "griffinhat"
 	armor = list("melee" = 20, "bullet" = 40, "laser" = 30, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 80, "stamina" = 10, "bleed" = 30)
@@ -345,8 +345,8 @@ Contains:
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /obj/item/clothing/suit/space/freedom
-	name = "eagle suit"
-	desc = "An advanced, light suit, fabricated from a mixture of synthetic feathers and space-resistant material. A gun holster appears to be integrated into the suit and the wings appear to be stuck in 'freedom' mode."
+	name = "orli skafander"
+	desc = "Zaawansowany, lekki skafander z mieszanki syntetycznych piór i materiału odpornego na próżnię. Ma wbudowaną kaburę, a skrzydła chyba zacięły się w trybie „wolność”."
 	icon_state = "freedom"
 	item_state = "freedom"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
@@ -358,8 +358,8 @@ Contains:
 
 //Carpsuit, bestsuit, lovesuit
 /obj/item/clothing/head/helmet/space/hardsuit/carp
-	name = "carp helmet"
-	desc = "Spaceworthy and it looks like a space carp's head, smells like one too."
+	name = "hełm karpia"
+	desc = "Nadaje się do kosmosu i wygląda jak głowa kosmicznego karpia. Pachnie zresztą tak samo."
 	icon_state = "carp_helm"
 	item_state = "syndicate"
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 100, "rad" = 75, "fire" = 60, "acid" = 75, "stamina" = 40)
@@ -372,8 +372,8 @@ Contains:
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
 
 /obj/item/clothing/suit/space/hardsuit/carp
-	name = "carp space suit"
-	desc = "A slimming piece of dubious space carp technology."
+	name = "skafander kosmiczny karpia"
+	desc = "Wyszczuplający wytwór wątpliwej technologii kosmicznych karpi."
 	icon_state = "carp_suit"
 	item_state = "space_suit_syndicate"
 	slowdown = 0	//Space carp magic, never stop believing
@@ -392,21 +392,21 @@ Contains:
 		user.faction -= "carp"
 
 /obj/item/clothing/head/helmet/space/hardsuit/carp/old
-	name = "battered carp helmet"
-	desc = "It's covered in bite marks and scratches, yet seems to be still perfectly functional."
+	name = "poobijany hełm karpia"
+	desc = "Jest pokryty śladami ugryzień i zadrapaniami, ale wciąż wydaje się w pełni sprawny."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70, "stamina" = 10)
 
 /obj/item/clothing/suit/space/hardsuit/carp/old
-	name = "battered carp space suit"
-	desc = "It's covered in bite marks and scratches, yet seems to be still perfectly functional."
+	name = "poobijany skafander kosmiczny karpia"
+	desc = "Jest pokryty śladami ugryzień i zadrapaniami, ale wciąż wydaje się w pełni sprawny."
 	slowdown = 1
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70, "stamina" = 10)
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/multitool)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/carp/old
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal
-	name = "paranormal response team helmet"
-	desc = "A helmet worn by those who deal with paranormal threats for a living."
+	name = "hełm zespołu reagowania paranormalnego"
+	desc = "Hełm noszony przez tych, którzy zawodowo zajmują się zagrożeniami paranormalnymi."
 	icon_state = "hardsuit0-prt"
 	item_state = "hardsuit0-prt"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -415,8 +415,8 @@ Contains:
 	beacon_colour = "#9ddb56"
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal
-	name = "paranormal response team hardsuit"
-	desc = "Powerful wards are built into this hardsuit, protecting the user from all manner of paranormal threats."
+	name = "hardsuit zespołu reagowania paranormalnego"
+	desc = "W ten hardsuit wbudowano potężne zabezpieczenia, które chronią przed wszelkimi zagrożeniami paranormalnymi."
 	icon_state = "knight_grey"
 	item_state = "knight_grey"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal
@@ -430,52 +430,52 @@ Contains:
 //Lavaland suits
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/lavaland
-	desc = "Powerful wards are built into this hardsuit, protecting the user from all manner of paranormal threats with armor designed specifically for low pressures."
+	desc = "W ten hardsuit wbudowano potężne zabezpieczenia, które chronią przed wszelkimi zagrożeniami paranormalnymi, a pancerz zaprojektowano specjalnie z myślą o niskim ciśnieniu."
 	high_pressure_multiplier = 0.4
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/lavaland
 	high_pressure_multiplier = 0.4
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/lavaland/beserker
-	name = "champion's hardsuit"
-	desc = "Voices echo from the hardsuit, driving the user insane."
+	name = "hardsuit czempiona"
+	desc = "Z hardsuitu dobiegają głosy, które doprowadzają noszącego do szaleństwa."
 	icon_state = "hardsuit-beserker"
 	item_state = "hardsuit-beserker"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/lavaland/beserker
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/lavaland/beserker
-	name = "champion's helmet"
-	desc = "Peering into the eyes of the helmet is enough to seal damnation."
+	name = "hełm czempiona"
+	desc = "Wystarczy spojrzeć w oczy tego hełmu, by przypieczętować swoje potępienie."
 	icon_state = "hardsuit0-beserker"
 	item_state = "hardsuit0-beserker"
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/lavaland/inquisitor
-	name = "inquisitor's hardsuit"
+	name = "hardsuit inkwizytora"
 	icon_state = "hardsuit-inq"
 	item_state = "hardsuit-inq"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/lavaland/inquisitor
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/lavaland/inquisitor
-	name = "inquisitor's helmet"
+	name = "hełm inkwizytora"
 	icon_state = "hardsuit0-inq"
 	item_state = "hardsuit0-inq"
 
 //End lavaland suits
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/inquisitor
-	name = "inquisitor's hardsuit"
+	name = "hardsuit inkwizytora"
 	icon_state = "hardsuit-inq"
 	item_state = "hardsuit-inq"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/inquisitor
-	name = "inquisitor's helmet"
+	name = "hełm inkwizytora"
 	icon_state = "hardsuit0-inq"
 	item_state = "hardsuit0-inq"
 
 /obj/item/clothing/head/helmet/space/fragile
-	name = "emergency space helmet"
-	desc = "A bulky, air-tight helmet meant to protect the user during emergency situations. It doesn't look very durable."
+	name = "awaryjny hełm kosmiczny"
+	desc = "Nieporęczny, szczelny hełm do ochrony w sytuacjach awaryjnych. Nie wygląda na zbyt wytrzymały."
 	icon_state = "syndicate-helm-orange"
 	item_state = "syndicate-helm-orange"
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 5)
@@ -483,8 +483,8 @@ Contains:
 	flash_protect = 0
 
 /obj/item/clothing/suit/space/fragile
-	name = "emergency space suit"
-	desc = "A bulky, air-tight suit meant to protect the user during emergency situations. It doesn't look very durable."
+	name = "awaryjny skafander kosmiczny"
+	desc = "Nieporęczny, szczelny skafander do ochrony w sytuacjach awaryjnych. Nie wygląda na zbyt wytrzymały."
 	var/torn = FALSE
 	icon_state = "syndicate-orange"
 	item_state = "syndicate-orange"
@@ -493,19 +493,19 @@ Contains:
 	strip_delay = 65
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/clothing/suit/space/fragile/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!torn && prob(50))
 		to_chat(owner, "<span class='warning'>[src] rozdziera się od obrażeń, tracąc szczelność!</span>")
 		clothing_flags &= ~STOPSPRESSUREDAMAGE
-		name = "torn [src]"
-		desc = "A bulky suit meant to protect the user during emergency situations, at least until someone tore a hole in the suit."
+		name = "[src] (rozdarcie)"
+		desc = "Nieporęczny skafander do ochrony w sytuacjach awaryjnych – przynajmniej dopóki ktoś nie zrobił w nim dziury."
 		torn = TRUE
 		playsound(loc, 'sound/weapons/slashmiss.ogg', 50, 1)
 		playsound(loc, 'sound/effects/refill.ogg', 50, 1)
 
 /obj/item/clothing/suit/space/hunter
-	name = "bounty hunting suit"
-	desc = "A custom version of the MK.II SWAT suit, modified to look rugged and tough. Works as a space suit, if you can find a helmet."
+	name = "skafander łowcy nagród"
+	desc = "Zmodyfikowana wersja skafandra SWAT MK.II, przerobiona tak, by wyglądała surowo i groźnie. Działa jako skafander kosmiczny, jeśli znajdziesz do niego hełm."
 	icon_state = "hunter"
 	item_state = "swat_suit"
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/restraints/handcuffs, /obj/item/tank/internals, /obj/item/kitchen/knife/combat)
@@ -514,13 +514,13 @@ Contains:
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/skinsuit
-	name = "skinsuit helmet"
+	name = "hełm skafandra obcisłego"
 	icon = 'icons/obj/clothing/hats.dmi'
 	worn_icon = 'icons/mob/clothing/head.dmi'
 	icon_state = "skinsuit_helmet"
 	item_state = "skinsuit_helmet"
 	max_integrity = 200
-	desc = "An airtight helmet meant to protect the wearer during emergency situations."
+	desc = "Szczelny hełm do ochrony w sytuacjach awaryjnych."
 	permeability_coefficient = 0.01
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 10)
 	min_cold_protection_temperature = EMERGENCY_HELM_MIN_TEMP_PROTECT
@@ -539,8 +539,8 @@ Contains:
 	return
 
 /obj/item/clothing/suit/space/hardsuit/skinsuit
-	name = "skinsuit"
-	desc = "A slim, compression-based spacesuit meant to protect the user during emergency situations. It's only a little warmer than your uniform."
+	name = "skafander obcisły"
+	desc = "Smukły skafander uciskowy do ochrony w sytuacjach awaryjnych. Jest tylko trochę cieplejszy od twojego munduru."
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	icon_state = "skinsuit"

@@ -4,7 +4,7 @@
  * Return an array of binary digits from a number input.
  */
 /obj/item/circuit_component/binary_conversion
-	display_name = "Binary Conversion"
+	display_name = "Konwersja na system dwójkowy"
 	desc = "Rozkłada liczbę dziesiętną na tablicę cyfr binarnych, czyli bitów, zapisanych jako 1 lub 0, często używanych w operacjach logicznych i binarnych, takich jak AND, OR i XOR."
 	category = "Math"
 

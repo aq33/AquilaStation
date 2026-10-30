@@ -6,7 +6,7 @@
  */
 
 /obj/item/circuit_component/counter_overlay
-	display_name = "Counter Overlay"
+	display_name = "Nakładka licznika"
 	desc = "Komponent, który wyświetla trzycyfrowy licznik. Wymaga obudowy BCI."
 	category = "BCI"
 

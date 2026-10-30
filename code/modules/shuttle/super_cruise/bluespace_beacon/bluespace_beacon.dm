@@ -1,13 +1,13 @@
 /obj/item/sbeacondrop/exploration
-	name = "bluespace beacon"
-	desc = "A label on it reads: <i>Warning: Activating this device will send a bluespace gigabeacon to your location, which will allow you to return to promising stations.</i>."
+	name = "nadajnik bluespace"
+	desc = "Etykieta głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje położenie giganadajnik bluespace, dzięki któremu wrócisz do obiecujących stacji.</i>"
 	droptype = /obj/structure/bluespace_beacon
 
 //Beacon structure
 
 /obj/structure/bluespace_beacon
-	name = "bluespace giga-beacon"
-	desc = "Locks a location on the navigational map, allowing for it to be returned to at any time."
+	name = "giganadajnik bluespace"
+	desc = "Zapisuje lokalizację na mapie nawigacyjnej, by można było do niej wrócić w dowolnej chwili."
 	icon = 'icons/obj/machines/NavBeacon.dmi'
 	icon_state = "beacon-item"
 	density = TRUE

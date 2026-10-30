@@ -4,8 +4,8 @@
 	icon = 'icons/obj/atmospherics/pipes/he-manifold.dmi'
 	icon_state = "manifold4w-3"
 
-	name = "4-way pipe manifold"
-	desc = "A manifold composed of heat-exchanging pipes."
+	name = "rozgałęźnik czterodrożny"
+	desc = "Rozgałęźnik złożony z rur wymiennika ciepła."
 
 	initialize_directions = NORTH|SOUTH|EAST|WEST
 

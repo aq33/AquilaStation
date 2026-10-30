@@ -1,6 +1,6 @@
 /obj/machinery/anesthetic_machine
-	name = "Anesthetic Tank Holder"
-	desc = "A wheeled machine that can hold an anesthetic tank and distribute the air using a breath mask."
+	name = "uchwyt na butlę z anestetykiem"
+	desc = "Maszyna na kółkach, która mieści butlę z anestetykiem i podaje gaz przez maskę oddechową."
 	icon = 'icons/obj/iv_drip.dmi'
 	icon_state = "breath_machine"
 	anchored = FALSE
@@ -84,7 +84,7 @@
 				target.update_internals_hud_icon(1)
 				update_icon()
 		else
-			to_chat(usr, "<span class='warning'>[mask_out ? "The machine is already in use!" : "The machine has no attached tank!"]</span>")
+			to_chat(usr, "<span class='warning'>[mask_out ? "Maszyna jest już w użyciu!" : "Maszyna nie ma podłączonej butli!"]</span>")
 
 /obj/machinery/anesthetic_machine/process()
 	if(!mask_out) // If not on someone, stop processing

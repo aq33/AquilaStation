@@ -4,7 +4,7 @@
  * General string concatenation component. Puts strings together.
  */
 /obj/item/circuit_component/concat
-	display_name = "Concatenate"
+	display_name = "Konkatenacja"
 	desc = "Komponent, który łączy teksty."
 	category = "String"
 

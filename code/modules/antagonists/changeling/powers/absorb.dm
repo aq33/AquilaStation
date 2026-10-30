@@ -1,6 +1,6 @@
 /datum/action/changeling/absorbDNA
-	name = "Absorb DNA"
-	desc = "Absorb the DNA of our victim. Requires us to strangle them."
+	name = "Wchłoń DNA"
+	desc = "Wchłaniamy DNA ofiary. Musimy ją najpierw dusić."
 	button_icon_state = "absorb_dna"
 	chemical_cost = 0
 	dna_cost = 0

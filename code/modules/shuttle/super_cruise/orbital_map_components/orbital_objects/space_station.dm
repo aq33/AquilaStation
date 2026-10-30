@@ -1,5 +1,5 @@
 /datum/orbital_object/z_linked/station
-	name = "Space Station 13"
+	name = "Stacja Kosmiczna 13"
 	mass = 0
 	radius = 30
 	priority = 50

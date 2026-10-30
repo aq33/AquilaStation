@@ -1,7 +1,7 @@
 /mob/living/simple_animal/shade
-	name = "Shade"
-	real_name = "Shade"
-	desc = "A bound spirit."
+	name = "Cień"
+	real_name = "Cień"
+	desc = "Związany duch."
 	gender = PLURAL
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "shade"

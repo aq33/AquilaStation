@@ -1,7 +1,7 @@
 /turf/open/space
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
-	name = "\proper space"
+	name = "\proper kosmos"
 	intact = 0
 
 	FASTDMM_PROP(\

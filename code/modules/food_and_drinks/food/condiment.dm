@@ -6,8 +6,8 @@
 
 //Food items that aren't eaten normally and leave an empty container behind.
 /obj/item/reagent_containers/food/condiment
-	name = "condiment bottle"
-	desc = "Just your average condiment bottle."
+	name = "butelka na przyprawy"
+	desc = "Zwykła butelka na przyprawy."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "bottle"
 	item_state = "beer" //Generic held-item sprite until unique ones are made.
@@ -96,8 +96,8 @@
 		to_chat(user, "<span class='notice'>Przelewasz [trans] j. przyprawy do [target].</span>")
 
 /obj/item/reagent_containers/food/condiment/enzyme
-	name = "universal enzyme"
-	desc = "Used in cooking various dishes."
+	name = "enzym uniwersalny"
+	desc = "Używany do przyrządzania różnych potraw."
 	icon_state = "enzyme"
 	list_reagents = list(/datum/reagent/consumable/enzyme = 50)
 	fill_icon_thresholds = null
@@ -111,8 +111,8 @@
 	. += "<span class='warning'>Pamiętaj, enzym się nie zużywa, więc wlej go z powrotem do butelki, głąbie!</span>"
 
 /obj/item/reagent_containers/food/condiment/sugar
-	name = "sugar sack"
-	desc = "Tasty spacey sugar!"
+	name = "worek cukru"
+	desc = "Smaczny kosmiczny cukier!"
 	icon_state = "sugar"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -129,8 +129,8 @@
 	. += "<span class='notice'>[flour_required] mąki, [eggyolk_required] żółtka (lub mleka sojowego) i [sugar_required] cukru daje ciasto na tort. Można z niego zrobić ciasto na placek.</span>"
 
 /obj/item/reagent_containers/food/condiment/saltshaker		//Separate from above since it's a small shaker rather then
-	name = "salt shaker"											//	a large one.
-	desc = "Salt. From space oceans, presumably."
+	name = "solniczka"											//	a large one.
+	desc = "Sól. Pewnie z kosmicznych oceanów."
 	icon_state = "saltshakersmall"
 	icon_empty = "emptyshaker"
 	item_state = ""
@@ -146,7 +146,7 @@
 	name = "[user.name]"
 	user.name = newname
 	user.real_name = newname
-	desc = "Salt. From dead crew, presumably."
+	desc = "Sól. Pewnie z martwej załogi."
 	return (TOXLOSS)
 
 /obj/item/reagent_containers/food/condiment/saltshaker/afterattack(obj/target, mob/living/user, proximity)
@@ -163,8 +163,8 @@
 		return
 
 /obj/item/reagent_containers/food/condiment/peppermill
-	name = "pepper mill"
-	desc = "Often used to flavor food or make people sneeze."
+	name = "młynek do pieprzu"
+	desc = "Często używany do przyprawiania jedzenia albo do wywoływania kichania."
 	icon_state = "peppermillsmall"
 	icon_empty = "emptyshaker"
 	item_state = ""
@@ -175,40 +175,40 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/mesophilic
-	name = "bottle of mesophilic culture"
-	desc = "A mixture of mesophilic bacteria used to make most cheeses."
+	name = "butelka kultury mezofilnej"
+	desc = "Mieszanka bakterii mezofilnych, z których robi się większość serów."
 	icon_state = "mixedcondiments"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/mesophilicculture = 30)
 
 /obj/item/reagent_containers/food/condiment/pcandidum
-	name = "bottle of penicillium candidum"
-	desc = "A special bacterium used to make brie."
+	name = "butelka Penicillium candidum"
+	desc = "Specjalna bakteria do wyrobu brie."
 	icon_state = "mixedcondiments"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumcandidum = 30)
 
 /obj/item/reagent_containers/food/condiment/proqueforti
-	name = "bottle of penicillium roqueforti"
-	desc = "A special bacterium used to make blue cheese."
+	name = "butelka Penicillium roqueforti"
+	desc = "Specjalna bakteria do wyrobu sera pleśniowego."
 	icon_state = "mixedcondiments"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/penicilliumroqueforti = 30)
 
 /obj/item/reagent_containers/food/condiment/thermophilic
-	name = "bottle of thermophilic culture"
-	desc = "A mixture of thermophilic bacteria used to make some cheeses."
+	name = "butelka kultury termofilnej"
+	desc = "Mieszanka bakterii termofilnych, z których robi się niektóre sery."
 	icon_state = "mixedcondiments"
 	amount_per_transfer_from_this = 1
 	volume = 30
 	list_reagents = list(/datum/reagent/consumable/thermophilicculture = 30)
 
 /obj/item/reagent_containers/food/condiment/milk
-	name = "space milk"
-	desc = "It's milk. White and nutritious goodness!"
+	name = "kosmiczne mleko"
+	desc = "To mleko. Biała i pożywna pyszność!"
 	icon_state = "milk"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -225,8 +225,8 @@
 	. += "<span class='warning'>Pamiętaj, enzym się nie zużywa, więc wlej go z powrotem do butelki, głąbie!</span>"
 
 /obj/item/reagent_containers/food/condiment/flour
-	name = "flour sack"
-	desc = "A big bag of flour. Good for baking!"
+	name = "worek mąki"
+	desc = "Duży worek mąki. Dobry do pieczenia!"
 	icon_state = "flour"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -248,8 +248,8 @@
 	. += "<span class='notice'>[cakebatter_flour_required] mąki, [cakebatter_eggyolk_required] żółtka (lub mleka sojowego) i [cakebatter_sugar_required] cukru daje ciasto na tort. Można z niego zrobić ciasto na placek.</span>"
 
 /obj/item/reagent_containers/food/condiment/soymilk
-	name = "soy milk"
-	desc = "It's soy milk. White and nutritious goodness!"
+	name = "mleko sojowe"
+	desc = "To mleko sojowe. Biała i pożywna pyszność!"
 	icon_state = "soymilk"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -258,8 +258,8 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/rice
-	name = "rice sack"
-	desc = "A big bag of rice. Good for cooking!"
+	name = "worek ryżu"
+	desc = "Duży worek ryżu. Dobry do gotowania!"
 	icon_state = "rice"
 	item_state = "carton"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
@@ -269,8 +269,8 @@
 
 /*
 /obj/item/reagent_containers/condiment/cornmeal
-	name = "cornmeal box"
-	desc = "A big box of cornmeal. Great for southern style cooking."
+	name = "pudełko mąki kukurydzianej"
+	desc = "Duże pudełko mąki kukurydzianej. Świetne do kuchni z amerykańskiego Południa."
 	icon_state = "cornmeal"
 	inhand_icon_state = "carton"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
@@ -280,74 +280,74 @@
 */
 
 /obj/item/reagent_containers/food/condiment/bbqsauce
-	name = "bbq sauce"
-	desc = "Hand wipes not included."
+	name = "sos barbecue"
+	desc = "Chusteczki nawilżane nie są w zestawie."
 	icon_state = "bbqsauce"
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 50)
 
 /obj/item/reagent_containers/food/condiment/soysauce
-	name = "soy sauce"
-	desc = "A salty soy-based flavoring."
+	name = "sos sojowy"
+	desc = "Słony dodatek smakowy na bazie soi."
 	icon_state = "soysauce"
 	list_reagents = list(/datum/reagent/consumable/soysauce = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/mayonnaise
-	name = "mayonnaise"
-	desc = "An oily condiment made from egg yolks."
+	name = "majonez"
+	desc = "Tłusta przyprawa z żółtek."
 	icon_state = "mayonnaise"
 	list_reagents = list(/datum/reagent/consumable/mayonnaise = 50)
 	fill_icon_thresholds = null
 
 /*
 /obj/item/reagent_containers/condiment/vinegar
-	name = "vinegar"
-	desc = "Perfect for chips, if you're feeling Space British."
+	name = "ocet"
+	desc = "Idealny do frytek, jeśli czujesz się jak kosmiczny Brytyjczyk."
 	icon_state = "vinegar"
 	list_reagents = list(/datum/reagent/consumable/vinegar = 50)
 	fill_icon_thresholds = null
 */
 
 /obj/item/reagent_containers/food/condiment/vegetable_oil
-	name = "cooking oil"
-	desc = "For all your deep-frying needs."
+	name = "olej spożywczy"
+	desc = "Do wszystkiego, co chcesz usmażyć w głębokim tłuszczu."
 	icon_state = "cooking_oil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/olive_oil
-	name = "quality oil"
-	desc = "For the fancy chef inside everyone."
+	name = "olej najwyższej jakości"
+	desc = "Dla wytwornego kucharza, który drzemie w każdym z nas."
 	icon_state = "oliveoil"
 	list_reagents = list(/datum/reagent/consumable/nutriment/fat/oil/olive = 50)
 	fill_icon_thresholds = null
 
 /*
 /obj/item/reagent_containers/condiment/yoghurt
-	name = "yoghurt carton"
-	desc = "Creamy and smooth."
+	name = "karton jogurtu"
+	desc = "Kremowy i gładki."
 	icon_state = "yoghurt"
 	list_reagents = list(/datum/reagent/consumable/yoghurt = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/condiment/peanut_butter
-	name = "peanut butter"
-	desc = "Tasty, fattening processed peanuts in a jar."
+	name = "masło orzechowe"
+	desc = "Smaczne, tuczące, przetworzone orzeszki ziemne w słoiku."
 	icon_state = "peanutbutter"
 	list_reagents = list(/datum/reagent/consumable/peanut_butter = 50)
 	fill_icon_thresholds = null
 */
 
 /obj/item/reagent_containers/food/condiment/cherryjelly
-	name = "cherry jelly"
-	desc = "A jar of super-sweet cherry jelly."
+	name = "galaretka wiśniowa"
+	desc = "Słoik bardzo słodkiej galaretki wiśniowej."
 	icon_state = "cherryjelly"
 	list_reagents = list(/datum/reagent/consumable/cherryjelly = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/honey
-	name = "honey"
-	desc = "A jar of sweet and viscous honey."
+	name = "miód"
+	desc = "Słoik słodkiego, gęstego miodu."
 	icon_state = "honey"
 	list_reagents = list(/datum/reagent/consumable/honey = 50)
 	fill_icon_thresholds = null
@@ -356,28 +356,28 @@
 	name = "ketchup"
 	// At time of writing, "ketchup" mechanically, is just ground tomatoes,
 	// rather than // tomatoes plus vinegar plus sugar.
-	desc = "A tomato slurry in a tall plastic bottle. Somehow still vaguely American."
+	desc = "Pomidorowa breja w wysokiej plastikowej butelce. Jakimś cudem wciąż trochę amerykańska."
 	icon_state = "ketchup"
 	list_reagents = list(/datum/reagent/consumable/ketchup = 50)
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/hotsauce
-	name = "hotsauce bottle"
-	desc= "You can almost TASTE the stomach ulcers!"
+	name = "butelka ostrego sosu"
+	desc= "Już niemal CZUJESZ SMAK wrzodów żołądka!"
 	icon_state = "hotsauce"
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 50)
 
 /obj/item/reagent_containers/food/condiment/coldsauce
-	name = "coldsauce bottle"
-	desc= "Leaves the tongue numb from its passage."
+	name = "butelka lodowego sosu"
+	desc= "Pozostawia zdrętwiały język."
 	icon_state = "coldsauce"
 	list_reagents = list(/datum/reagent/consumable/frostoil = 50)
 
 //Food packs. To easily apply deadly toxi... delicious sauces to your food!
 
 /obj/item/reagent_containers/food/condiment/pack
-	name = "condiment pack"
-	desc = "A small plastic pack with condiments to put on your food."
+	name = "saszetka"
+	desc = "Mała plastikowa saszetka z przyprawą do jedzenia."
 	icon_state = "condi_empty"
 	volume = 10
 	amount_per_transfer_from_this = 10
@@ -402,7 +402,7 @@
 		/datum/reagent/consumable/mayonnaise = list("condi_mayo", "Mayonnaise", "To nie instrument."),
 	)
 	/// Can't use initial(name) for this. This stores the name set by condimasters.
-	var/originalname = "condiment"
+	var/originalname = "przyprawa"
 
 /obj/item/reagent_containers/food/condiment/pack/update_icon()
 	return
@@ -440,29 +440,29 @@
 			desc = temp_list[3]
 		else
 			icon_state = "condi_mixed"
-			desc = "A small condiment pack. The label says it contains [originalname]"
+			desc = "Mała saszetka. Według etykiety zawiera: [originalname]."
 	else
 		icon_state = "condi_empty"
-		desc = "A small condiment pack. It is empty."
+		desc = "Mała saszetka. Jest pusta."
 
 //Ketchup
 /obj/item/reagent_containers/food/condiment/pack/ketchup
-	name = "ketchup pack"
+	name = "saszetka ketchupu"
 	originalname = "ketchup"
 	list_reagents = list(/datum/reagent/consumable/ketchup = 10)
 
 //Hot sauce
 /obj/item/reagent_containers/food/condiment/pack/hotsauce
-	name = "hotsauce pack"
-	originalname = "hotsauce"
+	name = "saszetka ostrego sosu"
+	originalname = "ostry sos"
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 10)
 
 /obj/item/reagent_containers/food/condiment/pack/astrotame
-	name = "astrotame pack"
-	originalname = "astrotame"
+	name = "saszetka astrotamu"
+	originalname = "astrotam"
 	list_reagents = list(/datum/reagent/consumable/astrotame = 5)
 
 /obj/item/reagent_containers/food/condiment/pack/bbqsauce
-	name = "bbq sauce pack"
-	originalname = "bbq sauce"
+	name = "saszetka sosu barbecue"
+	originalname = "sos barbecue"
 	list_reagents = list(/datum/reagent/consumable/bbqsauce = 10)

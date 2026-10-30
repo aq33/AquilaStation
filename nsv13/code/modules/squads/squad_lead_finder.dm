@@ -12,8 +12,8 @@
 /atom/movable/screen/squad_lead_finder
 	icon = 'nsv13/icons/mob/screen_squad.dmi'
 	icon_state = "leadfinder"
-	name = "Squad Lead Locator"
-	desc = "Allows you to track your squad leader anywhere in the world!"
+	name = "Lokalizator dowódcy drużyny"
+	desc = "Pozwala namierzyć dowódcę drużyny w dowolnym miejscu!"
 	screen_loc = "EAST-1:28,CENTER-4:10"
 	var/datum/squad/squad = null
 	var/mob/user = null

@@ -1,5 +1,5 @@
 /datum/orbital_objective/artifact
-	name = "Artifact Recovery"
+	name = "Odzyskanie artefaktu"
 	var/generated = FALSE
 	//The blackbox required to recover.
 	var/obj/item/xenoartifact/objective/linked_artifact
@@ -19,7 +19,7 @@
 	shuffle_inplace(valid_turfs)
 	for(var/i in 1 to rand(4, 10))
 		if(i > valid_turfs.len)
-			message_admins("Ran out of valid turfs to create artifact defenses on.")
+			message_admins("Zabrakło prawidłowych pól, na których można utworzyć obronę artefaktu.")
 			return
 		var/turf/selected_turf = valid_turfs[i]
 		new /obj/structure/alien_artifact/watcher(selected_turf)

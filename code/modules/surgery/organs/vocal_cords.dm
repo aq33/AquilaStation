@@ -4,7 +4,7 @@
 #define COOLDOWN_NONE 10 SECONDS
 
 /obj/item/organ/vocal_cords //organs that are activated through speech with the :x/MODE_KEY_VOCALCORDS channel
-	name = "vocal cords"
+	name = "struny głosowe"
 	icon_state = "appendix"
 	zone = BODY_ZONE_PRECISE_MOUTH
 	slot = ORGAN_SLOT_VOICE
@@ -23,28 +23,28 @@
 	owner.say(message, spans = spans, sanitize = FALSE)
 
 /obj/item/organ/adamantine_resonator
-	name = "adamantine resonator"
-	desc = "Fragments of adamantine exist in all golems, stemming from their origins as purely magical constructs. These are used to \"hear\" messages from their leaders."
+	name = "adamantytowy rezonator"
+	desc = "Fragmenty adamantytu ma każdy golem, co wynika z ich pochodzenia jako czysto magicznych konstruktów. Służą do „słyszenia” wiadomości od przywódców."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_ADAMANTINE_RESONATOR
 	icon_state = "adamantine_resonator"
 
 /obj/item/organ/vocal_cords/adamantine
-	name = "adamantine vocal cords"
-	desc = "When adamantine resonates, it causes all nearby pieces of adamantine to resonate as well. Adamantine golems use this to broadcast messages to nearby golems."
+	name = "adamantytowe struny głosowe"
+	desc = "Gdy adamantyt rezonuje, wprawia w rezonans wszystkie pobliskie kawałki adamantytu. Adamantytowe golemy używają tego do nadawania wiadomości pobliskim golemom."
 	actions_types = list(/datum/action/item_action/organ_action/use/adamantine_vocal_cords)
 	icon_state = "adamantine_cords"
 
 /datum/action/item_action/organ_action/use/adamantine_vocal_cords/Trigger()
 	if(!IsAvailable())
 		return
-	var/message = input(owner, "Przekaż wiadomość wszystkim pobliskim golemom.", "Resonate")
+	var/message = input(owner, "Przekaż wiadomość wszystkim pobliskim golemom.", "Rezonans")
 	if(QDELETED(src) || QDELETED(owner) || !message)
 		return
 	owner.say(".x[message]")
 
 /obj/item/organ/vocal_cords/adamantine/handle_speech(message)
-	var/msg = "<span class='resonate'><span class='name'>[owner.real_name]</span> <span class='message'>resonates, \"[message]\"</span></span>"
+	var/msg = "<span class='resonate'><span class='name'>[owner.real_name]</span> <span class='message'>rezonuje: „[message]”</span></span>"
 	for(var/m in GLOB.player_list)
 		if(iscarbon(m))
 			var/mob/living/carbon/C = m
@@ -56,8 +56,8 @@
 
 //Colossus drop, forces the listeners to obey certain commands
 /obj/item/organ/vocal_cords/colossus
-	name = "divine vocal cords"
-	desc = "They carry the voice of an ancient god."
+	name = "boskie struny głosowe"
+	desc = "Niosą głos pradawnego boga."
 	icon_state = "voice_of_god"
 	actions_types = list(/datum/action/item_action/organ_action/colossus)
 	var/next_command = 0
@@ -66,7 +66,7 @@
 	spans = list("colossus","yell")
 
 /datum/action/item_action/organ_action/colossus
-	name = "Voice of God"
+	name = "Głos Boga"
 	var/obj/item/organ/vocal_cords/colossus/cords = null
 
 /datum/action/item_action/organ_action/colossus/New()
@@ -93,7 +93,7 @@
 		if(world.time < cords.next_command)
 			to_chat(owner, "<span class='notice'>Musisz odczekać [DisplayTimeText(cords.next_command - world.time)], zanim znów przemówisz.</span>")
 		return
-	var/command = input(owner, "Przemów Głosem Boga", "Command")
+	var/command = input(owner, "Przemów Głosem Boga", "Polecenie")
 	if(QDELETED(src) || QDELETED(owner))
 		return
 	if(!command)
@@ -385,7 +385,7 @@
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
-			addtimer(CALLBACK(L, TYPE_PROC_REF(/atom/movable, say), "Who's there?"), 5 * i)
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/atom/movable, say), "Kto tam?"), 5 * i)
 			i++
 
 	//STATE LAWS
@@ -567,7 +567,7 @@
 		cooldown = COOLDOWN_NONE
 
 	if(message_admins)
-		message_admins("[ADMIN_LOOKUPFLW(user)] has said '[log_message]' with a Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] mówi „[log_message]” Głosem Boga. Działa na: [english_list(listeners)], mnożnik mocy: [power_multiplier].")
 	log_game("[key_name(user)] has said '[log_message]' with a Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
 	SSblackbox.record_feedback("tally", "voice_of_god", 1, log_message)
 

@@ -1,7 +1,7 @@
 // .50 (Sniper)
 
 /obj/item/projectile/bullet/p50
-	name =".50 bullet"
+	name ="pocisk .50"
 	speed = 0.4
 	damage = 70
 	paralyze = 100
@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/soporific
-	name =".50 soporific bullet"
+	name ="pocisk usypiający .50"
 	armour_penetration = 0
 	damage = 0
 	dismemberment = 0
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/p50/penetrator
-	name =".50 penetrator bullet"
+	name ="pocisk penetrujący .50"
 	icon_state = "gauss"
 	damage = 60
 	projectile_piercing = PASSMOB

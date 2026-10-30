@@ -1,8 +1,8 @@
 //Programs that buff the host in generally passive ways.
 
 /datum/nanite_program/nervous
-	name = "Nerve Support"
-	desc = "The nanites act as a secondary nervous system, reducing the amount of time the host is stunned."
+	name = "Wsparcie nerwów"
+	desc = "Nanity działają jak drugi układ nerwowy, skracając czas ogłuszenia nosiciela."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/nerve_decay)
 
@@ -19,8 +19,8 @@
 		H.physiology.stun_mod *= 2
 
 /datum/nanite_program/adrenaline
-	name = "Adrenaline Burst"
-	desc = "The nanites cause a burst of adrenaline when triggered, allowing the user to push their body past its normal limits."
+	name = "Zastrzyk adrenaliny"
+	desc = "Po aktywacji nanity wywołują wyrzut adrenaliny, który pozwala nosicielowi przekroczyć zwykłe granice możliwości ciała."
 	can_trigger = TRUE
 	trigger_cost = 20
 	trigger_cooldown = 1200
@@ -34,8 +34,8 @@
 	host_mob.update_mobility()
 
 /datum/nanite_program/hardening
-	name = "Dermal Hardening"
-	desc = "The nanites form a mesh under the host's skin, protecting them from melee and bullet impacts."
+	name = "Utwardzenie skóry"
+	desc = "Nanity tworzą pod skórą nosiciela siatkę, która chroni go przed ciosami i pociskami."
 	use_rate = 0.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
 
@@ -56,8 +56,8 @@
 		H.physiology.armor.bullet -= 30
 
 /datum/nanite_program/refractive
-	name = "Dermal Refractive Surface"
-	desc = "The nanites form a membrane above the host's skin, reducing the effect of laser and energy impacts."
+	name = "Refrakcyjna powłoka skóry"
+	desc = "Nanity tworzą na skórze nosiciela błonę, która osłabia trafienia laserów i broni energetycznej."
 	use_rate = 0.50
 	rogue_types = list(/datum/nanite_program/skin_decay)
 
@@ -76,8 +76,8 @@
 		H.physiology.armor.energy -= 30
 
 /datum/nanite_program/coagulating
-	name = "Rapid Coagulation"
-	desc = "The nanites induce rapid coagulation when the host is wounded, dramatically reducing bleeding rate."
+	name = "Szybkie krzepnięcie"
+	desc = "Gdy nosiciel jest ranny, nanity wywołują szybkie krzepnięcie, drastycznie ograniczając krwawienie."
 	use_rate = 0.10
 	rogue_types = list(/datum/nanite_program/suffocating)
 
@@ -94,8 +94,8 @@
 		H.physiology.bleed_mod *= 10
 
 /datum/nanite_program/conductive
-	name = "Electric Conduction"
-	desc = "The nanites act as a grounding rod for electric shocks, protecting the host. Shocks can still damage the nanites themselves."
+	name = "Przewodnictwo elektryczne"
+	desc = "Nanity działają jak uziemienie dla porażeń prądem, chroniąc nosiciela. Porażenia wciąż mogą uszkodzić same nanity."
 	use_rate = 0.20
 	program_flags = NANITE_SHOCK_IMMUNE
 	rogue_types = list(/datum/nanite_program/nerve_decay)
@@ -109,8 +109,8 @@
 	REMOVE_TRAIT(host_mob, TRAIT_SHOCKIMMUNE, "nanites")
 
 /datum/nanite_program/mindshield
-	name = "Mental Barrier"
-	desc = "The nanites form a protective membrane around the host's brain, shielding them from abnormal influences while they're active."
+	name = "Bariera umysłowa"
+	desc = "Póki są aktywne, nanity tworzą wokół mózgu nosiciela ochronną błonę, która osłania go przed nienaturalnymi wpływami."
 	use_rate = 0.40
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 
@@ -126,8 +126,8 @@
 	host_mob.sec_hud_set_implants()
 
 /datum/nanite_program/haste
-	name = "Amphetamine Injection"
-	desc = "The nanites synthesize amphetamine when triggered, which temporarily increases the host's running speed."
+	name = "Wstrzyknięcie amfetaminy"
+	desc = "Po aktywacji nanity syntetyzują amfetaminę, która chwilowo przyspiesza bieg nosiciela."
 	can_trigger = TRUE
 	trigger_cost = 10
 	trigger_cooldown = 1200

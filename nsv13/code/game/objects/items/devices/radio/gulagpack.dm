@@ -1,6 +1,6 @@
 /obj/item/storage/backpack/gulagpack
-	name = "gulagpack"
-	desc = "A spraypainted electropack painted in security colors to signal the wearer is serving the ship under surveillance."
+	name = "gułagopak"
+	desc = "Elektropak pomalowany sprayem w barwach ochrony, by było widać, że noszący służy okrętowi pod nadzorem."
 	worn_icon = 'nsv13/icons/mob/back.dmi'
 	icon = 'nsv13/icons/obj/gulagpack.dmi'
 	icon_state = "gulagpack0"

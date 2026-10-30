@@ -42,6 +42,7 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 
 | Hook | Location | Feature |
 |---|---|---|
+| `strip_auto_articles()` on `html` and `text` | `code/modules/tgchat/to_chat.dm` (`to_chat()`, `to_chat_immediate()`) | BYOND inserts an English "the"/"The" before every embedded object with a lowercase name, which broke every Polish message ("To the teczka"). Test: `aquila_auto_articles` |
 | `INVOKE_ASYNC(...)` without `return` in the `COMSIG_PARENT_ATTACKBY` handler | `code/datums/components/construction.dm` (`action()`), `code/game/mecha/mecha_construction_paths.dm` (gygax `action()`) | `INVOKE_ASYNC` returns a `/datum/task` since the 515 compatibility change; `_SendSignal` ORed it into the flags and runtimed on every mech construction click. Test: `aquila_logi_rund_26_10` |
 | `return ..()` at the end of `/obj/machinery/deepfryer/deconstruct()` | `code/modules/food_and_drinks/kitchen_machinery/deep_fryer.dm` | Without the parent call a destroyed fryer stayed on the map at 0 integrity and every hit logged a stack trace. Test: `aquila_logi_rund_26_10` |
 | `if(!magazine?.max_ammo) return ..()` | `code/modules/projectiles/guns/ballistic.dm` (`fire_sounds()`) | A shot without a magazine divided by null and played no sound. Test: `aquila_logi_rund_26_10` |

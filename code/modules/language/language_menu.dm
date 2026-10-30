@@ -66,46 +66,46 @@
 				. = TRUE
 		if("grant_language")
 			if((is_admin || isobserver(AM)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
+				var/list/choices = list("Tylko mówienie", "Tylko rozumienie", "Oba")
 				var/choice = input(user,"Jak chcesz dodać ten język?","[language_datum]",null) as null|anything in choices
 				var/spoken = FALSE
 				var/understood = FALSE
 				switch(choice)
-					if("Only Spoken")
+					if("Tylko mówienie")
 						spoken = TRUE
-					if("Only Understood")
+					if("Tylko rozumienie")
 						understood = TRUE
-					if("Both")
+					if("Oba")
 						spoken = TRUE
 						understood = TRUE
 				language_holder.grant_language(language_datum, understood, spoken)
 				if(is_admin)
-					message_admins("[key_name_admin(user)] granted the [language_name] language to [key_name_admin(AM)].")
+					message_admins("[key_name_admin(user)] nadaje [key_name_admin(AM)] język: [language_name].")
 					log_admin("[key_name(user)] granted the language [language_name] to [key_name(AM)].")
 				. = TRUE
 		if("remove_language")
 			if((is_admin || isobserver(AM)) && language_datum)
-				var/list/choices = list("Only Spoken", "Only Understood", "Both")
+				var/list/choices = list("Tylko mówienie", "Tylko rozumienie", "Oba")
 				var/choice = input(user,"Którą część chcesz usunąć?","[language_datum]",null) as null|anything in choices
 				var/spoken = FALSE
 				var/understood = FALSE
 				switch(choice)
-					if("Only Spoken")
+					if("Tylko mówienie")
 						spoken = TRUE
-					if("Only Understood")
+					if("Tylko rozumienie")
 						understood = TRUE
-					if("Both")
+					if("Oba")
 						spoken = TRUE
 						understood = TRUE
 				language_holder.remove_language(language_datum, understood, spoken)
 				if(is_admin)
-					message_admins("[key_name_admin(user)] removed the [language_name] language to [key_name_admin(AM)].")
+					message_admins("[key_name_admin(user)] odbiera [key_name_admin(AM)] język: [language_name].")
 					log_admin("[key_name(user)] removed the language [language_name] to [key_name(AM)].")
 				. = TRUE
 		if("toggle_omnitongue")
 			if(is_admin || isobserver(AM))
 				language_holder.omnitongue = !language_holder.omnitongue
 				if(is_admin)
-					message_admins("[key_name_admin(user)] [language_holder.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that they know) of [key_name_admin(AM)].")
+					message_admins("[key_name_admin(user)] [language_holder.omnitongue ? "włącza" : "wyłącza"] [key_name_admin(AM)] zdolność mówienia we wszystkich (znanych) językach.")
 					log_admin("[key_name(user)] [language_holder.omnitongue ? "enabled" : "disabled"] the ability to speak all languages (that_they know) of [key_name(AM)].")
 				. = TRUE

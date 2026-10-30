@@ -78,7 +78,7 @@
 			thing.update_greyscale()
 
 /datum/greyscale_config/proc/EnableAutoRefresh(live_type)
-	message_admins("Config auto refresh has been enabled for '[live_type]' with configuration [DebugName()]. Expect heavy lag.")
+	message_admins("Włączono automatyczne odświeżanie konfiguracji dla '[live_type]' z konfiguracją [DebugName()]. Spodziewaj się dużych lagów.")
 	if(live_type)
 		if(!live_edit_types)
 			live_edit_types = list()
@@ -88,7 +88,7 @@
 /datum/greyscale_config/proc/DisableAutoRefresh(live_type, remove_all=FALSE)
 	if(!remove_all && !(live_type in live_edit_types))
 		return
-	message_admins("Config auto refresh has been disabled for '[live_type]' with configuration [DebugName()]")
+	message_admins("Wyłączono automatyczne odświeżanie konfiguracji dla '[live_type]' z konfiguracją [DebugName()]")
 	if(remove_all)
 		live_edit_types = null
 	else if(live_type && live_edit_types)

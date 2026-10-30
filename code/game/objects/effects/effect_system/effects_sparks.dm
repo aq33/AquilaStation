@@ -14,7 +14,7 @@
 
 
 /obj/effect/particle_effect/sparks
-	name = "sparks"
+	name = "iskry"
 	icon_state = "sparks"
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
@@ -54,7 +54,7 @@
 //electricity
 
 /obj/effect/particle_effect/sparks/electricity
-	name = "lightning"
+	name = "błyskawica"
 	icon_state = "electricity"
 
 /datum/effect_system/lightning_spread

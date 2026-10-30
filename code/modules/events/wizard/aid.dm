@@ -45,14 +45,14 @@
 					S.charge_counter = S.charge_max
 				switch(S.spell_level)
 					if(1)
-						S.name = "Efficient [S.name]"
+						S.name = "[S.name] (wydajność)"
 					if(2)
-						S.name = "Quickened [S.name]"
+						S.name = "[S.name] (przyspieszenie)"
 					if(3)
-						S.name = "Free [S.name]"
+						S.name = "[S.name] (za darmo)"
 					if(4)
-						S.name = "Instant [S.name]"
+						S.name = "[S.name] (natychmiast)"
 					if(5)
-						S.name = "Ludicrous [S.name]"
+						S.name = "[S.name] (absurdalna moc)"
 
 			to_chat(L, "<span class='notice'>Nagle czujesz, że lepiej radzisz sobie z rzucaniem zaklęć!</span>")

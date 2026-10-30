@@ -1,5 +1,5 @@
 /datum/team/xeno
-	name = "Aliens"
+	name = "Obcy"
 
 //Simply lists them.
 /datum/team/xeno/roundend_report()

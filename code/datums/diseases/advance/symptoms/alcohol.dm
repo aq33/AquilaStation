@@ -1,5 +1,5 @@
 /datum/symptom/alcohol
-	name = "Autobrewery Syndrome"
+	name = "Zespół autobrowaru"
 	desc = "Wirus wywołuje fermentację w żołądku, prowadząc do chronicznego upojenia."
 	stealth = -1
 	resistance = -2

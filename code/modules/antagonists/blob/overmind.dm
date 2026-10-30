@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 /mob/camera/blob
 	name = "Grzybóg"
 	real_name = "Grzybóg"
-	desc = "The overmind. It controls the blob."
+	desc = "Grzybóg. Steruje grzybem."
 	icon = 'icons/mob/cameramob.dmi'
 	icon_state = "marker"
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			if(!(A.area_flags & BLOBS_ALLOWED))
 				continue
 			A.color = blobstrain.color
-			A.name = "blob"
+			A.name = "Grzyb"
 			A.icon = 'icons/mob/blob.dmi'
 			A.icon_state = "blob_shield"
 			A.layer = BELOW_MOB_LAYER

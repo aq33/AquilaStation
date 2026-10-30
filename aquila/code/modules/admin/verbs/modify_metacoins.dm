@@ -34,9 +34,9 @@
 			log_text = "Subtracted [num2text(msg)]"
 			C.inc_metabalance(-msg)
 		else
-			to_chat(src, "Invalid operation for metacoins modification: [operation] by user [key_name(usr)]")
+			to_chat(src, "Nieprawidłowa operacja zmiany metacoinów: [operation], użytkownik: [key_name(usr)]")
 			return
 
 	log_admin("[key_name(usr)]: Modified [key_name(C)]'s metacoins [log_text]")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: Modified [key_name(C)]'s metacoins ([log_text])</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: zmienia metacoiny gracza [key_name(C)] ([log_text])</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Modify Metacoins") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

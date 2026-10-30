@@ -5,7 +5,7 @@
 		return
 	var/list/options = params2list(possible_destinations)
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	var/dat = "Status: [M ? M.getStatusText() : "*Brak*"]<br><br>"
 	if(M)
 		var/destination_found
 		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
@@ -23,9 +23,9 @@
 			if(admin_controlled)
 				dat += "Tylko dla upoważnionego personelu<br>"
 				dat += "<A href='byond://?src=[REF(src)];request=1]'>Poproś o autoryzację</A><br>"
-	dat += "<a href='byond://?src=[REF(user)];mach_close=computer'>Close</a>"
+	dat += "<a href='byond://?src=[REF(user)];mach_close=computer'>Zamknij</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "prom", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.open()
 
@@ -55,7 +55,7 @@
 			return
 		if(!(href_list["move"] in params2list(possible_destinations)))
 			log_admin("[usr] attempted to forge a target location through a href exploit on [src]")
-			message_admins("[ADMIN_FULLMONTY(usr)] attempted to forge a target location through a href exploit on [src]")
+			message_admins("[ADMIN_FULLMONTY(usr)] próbuje podrobić cel lotu przez exploit href w: [src]")
 			return
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)

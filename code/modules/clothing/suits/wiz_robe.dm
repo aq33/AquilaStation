@@ -1,6 +1,6 @@
 /obj/item/clothing/head/wizard
-	name = "wizard hat"
-	desc = "Strange-looking hat-wear that most certainly belongs to a real magic user."
+	name = "kapelusz czarodzieja"
+	desc = "Dziwnie wyglądające nakrycie głowy, które z pewnością należy do prawdziwego użytkownika magii."
 	clothing_flags = SNUG_FIT | THICKMATERIAL
 	icon_state = "wizard"
 	gas_transfer_coefficient = 0.01 // IT'S MAGICAL OKAY JEEZ +1 TO NOT DIE
@@ -12,26 +12,26 @@
 	dog_fashion = /datum/dog_fashion/head/blue_wizard
 
 /obj/item/clothing/head/wizard/red
-	name = "red wizard hat"
-	desc = "Strange-looking red hat-wear that most certainly belongs to a real magic user."
+	name = "czerwony kapelusz czarodzieja"
+	desc = "Dziwnie wyglądające czerwone nakrycie głowy, które z pewnością należy do prawdziwego użytkownika magii."
 	icon_state = "redwizard"
 	dog_fashion = /datum/dog_fashion/head/red_wizard
 
 /obj/item/clothing/head/wizard/yellow
-	name = "yellow wizard hat"
-	desc = "Strange-looking yellow hat-wear that most certainly belongs to a powerful magic user."
+	name = "żółty kapelusz czarodzieja"
+	desc = "Dziwnie wyglądające żółte nakrycie głowy, które z pewnością należy do potężnego użytkownika magii."
 	icon_state = "yellowwizard"
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/black
-	name = "black wizard hat"
-	desc = "Strange-looking black hat-wear that most certainly belongs to a real skeleton. Spooky."
+	name = "czarny kapelusz czarodzieja"
+	desc = "Dziwnie wyglądające czarne nakrycie głowy, które z pewnością należy do prawdziwego szkieletu. Upiorne."
 	icon_state = "blackwizard"
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/fake
-	name = "wizard hat"
-	desc = "It has WIZZARD written across it in sequins. Comes with a cool beard."
+	name = "kapelusz czarodzieja"
+	desc = "Cekinami wyszyto na nim napis CZARODZIEJJ. W zestawie fajna broda."
 	icon_state = "wizard-fake"
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
@@ -41,28 +41,28 @@
 	clothing_flags = NONE
 
 /obj/item/clothing/head/wizard/marisa
-	name = "witch hat"
-	desc = "Strange-looking hat-wear. Makes you want to cast fireballs."
+	name = "kapelusz wiedźmy"
+	desc = "Dziwnie wyglądające nakrycie głowy. Masz ochotę rzucać kule ognia."
 	icon_state = "marisa"
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/magus
-	name = "\improper Magus helm"
-	desc = "A mysterious helmet that hums with an unearthly power."
+	name = "\improper hełm Maga"
+	desc = "Tajemniczy hełm, który buczy nieziemską mocą."
 	icon_state = "magus"
 	item_state = "magus"
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/santa
-	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas!"
+	name = "czapka Świętego Mikołaja"
+	desc = "Ho ho ho. Wesołych Świąt!"
 	icon_state = "santahat"
 	flags_inv = HIDEHAIR|HIDEFACIALHAIR
 	dog_fashion = null
 
 /obj/item/clothing/suit/wizrobe
-	name = "wizard robe"
-	desc = "A magnificent, gem-lined robe that seems to radiate power."
+	name = "szata czarodzieja"
+	desc = "Wspaniała szata wysadzana klejnotami, która zdaje się promieniować mocą."
 	icon_state = "wizard"
 	item_state = "wizrobe"
 	gas_transfer_coefficient = 0.01
@@ -81,51 +81,51 @@
 	AddComponent(/datum/component/anti_artifact, INFINITY, FALSE, 100)
 
 /obj/item/clothing/suit/wizrobe/red
-	name = "red wizard robe"
-	desc = "A magnificent red gem-lined robe that seems to radiate power."
+	name = "czerwona szata czarodzieja"
+	desc = "Wspaniała czerwona szata wysadzana klejnotami, która zdaje się promieniować mocą."
 	icon_state = "redwizard"
 	item_state = "redwizrobe"
 
 /obj/item/clothing/suit/wizrobe/yellow
-	name = "yellow wizard robe"
-	desc = "A magnificent yellow gem-lined robe that seems to radiate power."
+	name = "żółta szata czarodzieja"
+	desc = "Wspaniała żółta szata wysadzana klejnotami, która zdaje się promieniować mocą."
 	icon_state = "yellowwizard"
 	item_state = "yellowwizrobe"
 
 /obj/item/clothing/suit/wizrobe/black
-	name = "black wizard robe"
-	desc = "An unnerving black gem-lined robe that reeks of death and decay."
+	name = "czarna szata czarodzieja"
+	desc = "Niepokojąca czarna szata wysadzana klejnotami, cuchnąca śmiercią i rozkładem."
 	icon_state = "blackwizard"
 	item_state = "blackwizrobe"
 
 /obj/item/clothing/suit/wizrobe/marisa
-	name = "witch robe"
-	desc = "Magic is all about the spell power, ZE!"
+	name = "szata wiedźmy"
+	desc = "W magii chodzi tylko o moc zaklęć, ZE!"
 	icon_state = "marisa"
 	item_state = "marisarobe"
 
 /obj/item/clothing/suit/wizrobe/magusblue
-	name = "\improper Magus robe"
-	desc = "A set of armored robes that seem to radiate a dark power."
+	name = "\improper szata Maga"
+	desc = "Opancerzone szaty, które zdają się promieniować mroczną mocą."
 	icon_state = "magusblue"
 	item_state = "magusblue"
 
 /obj/item/clothing/suit/wizrobe/magusred
-	name = "\improper Magus robe"
-	desc = "A set of armored robes that seem to radiate a dark power."
+	name = "\improper szata Maga"
+	desc = "Opancerzone szaty, które zdają się promieniować mroczną mocą."
 	icon_state = "magusred"
 	item_state = "magusred"
 
 
 /obj/item/clothing/suit/wizrobe/santa
-	name = "Santa's suit"
-	desc = "Festive!"
+	name = "strój Świętego Mikołaja"
+	desc = "Świątecznie!"
 	icon_state = "santa"
 	item_state = "santa"
 
 /obj/item/clothing/suit/wizrobe/fake
-	name = "wizard robe"
-	desc = "A rather dull blue robe meant to mimick real wizard robes."
+	name = "szata czarodzieja"
+	desc = "Dość nijaka niebieska szata, która ma naśladować prawdziwe szaty czarodzieja."
 	icon_state = "wizard-fake"
 	item_state = "wizrobe"
 	gas_transfer_coefficient = 1
@@ -135,8 +135,8 @@
 	clothing_flags = NONE
 
 /obj/item/clothing/head/wizard/marisa/fake
-	name = "witch hat"
-	desc = "Strange-looking hat-wear, makes you want to cast fireballs."
+	name = "kapelusz wiedźmy"
+	desc = "Dziwnie wyglądające nakrycie głowy, przez które masz ochotę rzucać kule ognia."
 	icon_state = "marisa"
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
@@ -145,8 +145,8 @@
 	clothing_flags = NONE
 
 /obj/item/clothing/suit/wizrobe/marisa/fake
-	name = "witch robe"
-	desc = "Magic is all about the spell power, ZE!"
+	name = "szata wiedźmy"
+	desc = "W magii chodzi tylko o moc zaklęć, ZE!"
 	icon_state = "marisa"
 	item_state = "marisarobe"
 	gas_transfer_coefficient = 1
@@ -156,8 +156,8 @@
 	clothing_flags = NONE
 
 /obj/item/clothing/suit/wizrobe/paper
-	name = "papier-mache robe" // no non-latin characters!
-	desc = "A robe held together by various bits of clear-tape and paste."
+	name = "szata z masy papierowej" // no non-latin characters!
+	desc = "Szata trzymająca się dzięki kawałkom przezroczystej taśmy i klajstrowi."
 	icon_state = "wizard-paper"
 	item_state = "wizard-paper"
 	var/robe_charge = TRUE
@@ -193,8 +193,8 @@
 //Shielded Armour
 
 /obj/item/clothing/suit/space/hardsuit/shielded/wizard
-	name = "battlemage armour"
-	desc = "Not all wizards are afraid of getting up close and personal."
+	name = "zbroja maga bitewnego"
+	desc = "Nie każdy czarodziej boi się walki w zwarciu."
 	icon_state = "battlemage"
 	item_state = "battlemage"
 	recharge_delay = 0 // no auto-recharge
@@ -208,8 +208,8 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard
-	name = "battlemage helmet"
-	desc = "A suitably impressive helmet.."
+	name = "hełm maga bitewnego"
+	desc = "Odpowiednio imponujący hełm.."
 	icon_state = "battlemage"
 	item_state = "battlemage"
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
@@ -223,8 +223,8 @@
 
 // The actual code for this is handled in the shielded component, see [/datum/component/shielded/proc/check_recharge_rune]
 /obj/item/wizard_armour_charge
-	name = "battlemage shield charges"
-	desc = "A powerful rune that will increase the number of hits a suit of battlemage armour can take before failing.."
+	name = "ładunki tarczy maga bitewnego"
+	desc = "Potężna runa, która zwiększa liczbę trafień, jakie zbroja maga bitewnego wytrzyma, zanim zawiedzie.."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	/// How many charges get restored

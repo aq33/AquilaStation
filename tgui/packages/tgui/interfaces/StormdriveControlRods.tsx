@@ -16,7 +16,7 @@ export const StormdriveControlRods = (props) => {
     <Window theme="hackerman" width={560} height={600}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Installed Control Rods:">
+          <Section title="Zamontowane pręty kontrolne:">
             {!!data.mounted_control_rods && (
               <Section>
                 {Object.keys(data.mounted_control_rods).map((key) => {
@@ -27,7 +27,7 @@ export const StormdriveControlRods = (props) => {
                         <>
                           <Button
                             fluid
-                            content={`Eject ${value.name}`}
+                            content={`Wysuń: ${value.name}`}
                             icon="eject"
                             onClick={() =>
                               act('remove_rod', { target: value.id })

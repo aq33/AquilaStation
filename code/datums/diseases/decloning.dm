@@ -1,12 +1,12 @@
 /datum/disease/decloning
-	form = "Virus"
-	name = "Cellular Degeneration"
+	form = "Wirus"
+	name = "Degeneracja komórkowa"
 	max_stages = 5
 	stage_prob = 1
 	cure_text = "Rezadon albo śmierć."
 	agent = "Poważne uszkodzenia genetyczne"
 	viable_mobtypes = list(/mob/living/carbon/human)
-	desc = @"If left untreated the subject will [REDACTED]!"
+	desc = @"Nieleczony pacjent [UTAJNIONE]!"
 	danger = DISEASE_DANGEROUS
 	cures = list(/datum/reagent/medicine/rezadone)
 	disease_flags = CAN_CARRY|CAN_RESIST

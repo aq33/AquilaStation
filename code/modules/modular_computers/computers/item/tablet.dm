@@ -1,5 +1,5 @@
 /obj/item/modular_computer/tablet  //Its called tablet for theme of 90ies but actually its a "big smartphone" sized
-	name = "tablet computer"
+	name = "tablet"
 	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "tablet-red"
 	icon_state_unpowered = "tablet"
@@ -166,7 +166,7 @@
 		var/mob/victim = loc
 		victim.show_message("<span class='userdanger'>Twój [src] wybucha!</span>", MSG_VISUAL, "<span class='warning'>Słyszysz głośne *pyk*!</span>", MSG_AUDIBLE)
 	else
-		visible_message("<span class='danger'>[src] explodes!</span>", "<span class='warning'>Słyszysz głośne *pyk*!</span>")
+		visible_message("<span class='danger'>[src] wybucha!</span>", "<span class='warning'>Słyszysz głośne *pyk*!</span>")
 
 	if(current_turf)
 		current_turf.hotspot_expose(700,125)
@@ -179,7 +179,7 @@
 // SUBTYPES
 
 /obj/item/modular_computer/tablet/syndicate_contract_uplink
-	name = "contractor tablet"
+	name = "tablet kontraktora"
 	icon = 'icons/obj/contractor_tablet.dmi'
 	icon_state = "tablet"
 	icon_state_unpowered = "tablet"
@@ -212,7 +212,7 @@
 
 /// Borg Built-in tablet interface
 /obj/item/modular_computer/tablet/integrated
-	name = "modular interface"
+	name = "interfejs modułowy"
 	icon_state = "tablet-silicon"
 	icon_state_unpowered = "tablet-silicon"
 	icon_state_powered = "tablet-silicon"

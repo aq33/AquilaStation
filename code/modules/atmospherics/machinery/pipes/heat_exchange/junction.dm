@@ -2,8 +2,8 @@
 	icon = 'icons/obj/atmospherics/pipes/he-junction.dmi'
 	icon_state = "pipe11-3"
 
-	name = "junction"
-	desc = "A one meter junction that connects regular and heat-exchanging pipe."
+	name = "złączka"
+	desc = "Metrowa złączka łącząca zwykłą rurę z rurą wymiennika ciepła."
 
 	minimum_temperature_difference = 300
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT

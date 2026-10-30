@@ -9,8 +9,8 @@
 //// Base mob ////
 
 /mob/living/simple_animal/hostile/nsv
-	name = "Assistant"
-	desc = "Get another greyshirt into the fight!"
+	name = "majtek"
+	desc = "Wrzuć do walki kolejnego szaraka!"
 	icon = 'nsv13/icons/mob/simple_human.dmi'
 	icon_state = "generic"
 	icon_living = "generic"
@@ -44,8 +44,8 @@
 
 ///// Interior Mobs ////
 /mob/living/simple_animal/hostile/nsv/syndicate
-	name = "Syndicate crew"
-	desc = "A generic member of the Syndicate Navy."
+	name = "członek załogi Syndykatu"
+	desc = "Zwykły członek marynarki Syndykatu."
 	icon = 'nsv13/icons/mob/simple_human.dmi'
 	icon_state = "nsvsyndie"
 	icon_living = "nsvsyndie"
@@ -69,8 +69,8 @@
 	mobchatspan = "syndmob"
 
 /mob/living/simple_animal/hostile/nsv/syndicate/ranged
-	name = "Syndicate crew"
-	desc = "Looks like this one has taken up arms."
+	name = "członek załogi Syndykatu"
+	desc = "Wygląda na to, że ten chwycił za broń."
 	icon_state = "nsvsyndie_gun"
 	icon_living = "nsvsyndie_gun"
 	melee_damage = 6
@@ -89,8 +89,8 @@
 
 /mob/living/simple_animal/hostile/nsv/syndicate/ranged/smg
 	rapid = 2
-	name = "Syndicate marine"
-	desc = "Stop looking, start shooting!"
+	name = "żołnierz piechoty Syndykatu"
+	desc = "Przestań się gapić, zacznij strzelać!"
 	health = 130
 	maxHealth = 130
 	melee_damage = 10
@@ -102,8 +102,8 @@
 	projectilesound = 'sound/weapons/gunshot_smg.ogg'
 
 /mob/living/simple_animal/hostile/nsv/syndicate/ranged/shotgun
-	name = "Syndicate breacher"
-	desc = "If you're reading this, it's probably too late."
+	name = "wyważacz Syndykatu"
+	desc = "Jeśli to czytasz, pewnie jest już za późno."
 	health = 155
 	maxHealth = 155
 	melee_damage = 14
@@ -134,7 +134,7 @@
 /mob/living/simple_animal/hostile/nsv/syndicate/space
 	icon_state = "nsvsyndie_space"
 	icon_living = "nsvsyndie_space"
-	desc = "A generic member of the Syndicate Navy, now in a spacesuit."
+	desc = "Zwykły członek marynarki Syndykatu, tym razem w skafandrze."
 	maxHealth = 100
 	health = 100
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -145,7 +145,7 @@
 /mob/living/simple_animal/hostile/nsv/syndicate/space/ranged
 	icon_state = "nsvsyndie_gun_space"
 	icon_living = "nsvsyndie_gun_space"
-	desc = "A generic member of the Syndicate Navy, now in a spacesuit. This one also has a gun!"
+	desc = "Zwykły członek marynarki Syndykatu, tym razem w skafandrze. Ten ma jeszcze broń!"
 	maxHealth = 120
 	health = 120
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -158,8 +158,8 @@
 
 /mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/smg
 	rapid = 2
-	name = "Syndicate stormtrooper"
-	desc = "Stop looking, start shooting!"
+	name = "szturmowiec Syndykatu"
+	desc = "Przestań się gapić, zacznij strzelać!"
 	health = 175
 	maxHealth = 175
 	melee_damage = 10
@@ -171,10 +171,10 @@
 	projectilesound = 'sound/weapons/gunshot_smg.ogg'
 
 /mob/living/simple_animal/hostile/nsv/syndicate/space/sword
-	name = "Syndicate stormtrooper"
+	name = "szturmowiec Syndykatu"
 	icon_state = "nsvsyndie_melee_space"
 	icon_living = "nsvsyndie_melee_space"
-	desc = "Relentless... Fearless... and rapidly approaching."
+	desc = "Nieubłagany... Nieustraszony... i szybko się zbliża."
 	attack_sound = 'sound/weapons/blade1.ogg'
 	attacktext = "tnie"
 	melee_damage = 32
@@ -201,8 +201,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/nsv/syndicate/space/ranged/shotgun
-	name = "Syndicate stormtrooper"
-	desc = "Feet first into hell."
+	name = "szturmowiec Syndykatu"
+	desc = "Nogami naprzód prosto do piekła."
 	health = 200
 	maxHealth = 200
 	melee_damage = 10

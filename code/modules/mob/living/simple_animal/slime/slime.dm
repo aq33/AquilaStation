@@ -1,6 +1,6 @@
 #define SLIME_CARES_ABOUT(to_check) (to_check && (to_check == Target || to_check == Leader || (to_check in Friends)))
 /mob/living/simple_animal/slime
-	name = "grey baby slime (123)"
+	name = "młody szlam (szary, 123)"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey baby slime"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -72,7 +72,7 @@
 
 	do_footstep = TRUE
 
-	var/static/regex/slime_name_regex = new("\\w+ (baby|adult) slime \\(\\d+\\)")
+	var/static/regex/slime_name_regex = new("(młody|dorosły) szlam \\(.+, \\d+\\)")
 	///////////TIME FOR SUBSPECIES
 
 	var/colour = "grey"
@@ -133,7 +133,11 @@
 	. = ..()
 	if(slime_name_regex.Find(name))
 		number = rand(1, 1000)
-		name = "[colour] [is_adult ? "adult" : "baby"] slime ([number])"
+		var/static/list/kolory_pl = list("rainbow" = "tęczowy", "grey" = "szary", "purple" = "fioletowy", "metal" = "metalowy", "orange" = "pomarańczowy",
+			"blue" = "niebieski", "dark blue" = "ciemnoniebieski", "dark purple" = "ciemnofioletowy", "yellow" = "żółty", "silver" = "srebrny", "pink" = "różowy", "red" = "czerwony",
+			"gold" = "złoty", "green" = "zielony", "adamantine" = "adamantytowy", "oil" = "naftowy", "light pink" = "jasnoróżowy", "bluespace" = "bluespace",
+			"cerulean" = "lazurowy", "sepia" = "sepiowy", "black" = "czarny", "pyrite" = "pirytowy")
+		name = "[is_adult ? "dorosły" : "młody"] szlam ([kolory_pl[colour] || colour], [number])"
 		real_name = name
 
 /mob/living/simple_animal/slime/proc/random_colour()
@@ -532,7 +536,7 @@
 	return .
 
 /mob/living/simple_animal/slime/get_spawner_desc()
-	return "be a slime[master ? " under the command of [master.real_name]" : ""]."
+	return "Zostań szlamem[master ? " pod rozkazami [master.real_name]" : ""]."
 
 /mob/living/simple_animal/slime/get_spawner_flavour_text()
 	return "Jesteś szlamem urodzonym i wychowanym w laboratorium.[master ? " Twoim obowiązkiem jest wykonywać rozkazy [master.real_name].": ""]"

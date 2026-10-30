@@ -1,5 +1,5 @@
 /datum/species/moth
-	name = "\improper Mothman"
+	name = "\improper Ćma"
 	id = SPECIES_MOTH
 	bodyflag = FLAG_MOTH
 	default_color = "00FF00"

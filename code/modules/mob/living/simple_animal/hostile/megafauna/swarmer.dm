@@ -41,14 +41,14 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 
 /mob/living/simple_animal/hostile/megafauna/swarmer_swarm_beacon
-	name = "swarmer beacon"
-	desc = "That name is a bit of a mouthful, but stop paying attention to your mouth they're eating everything!"
+	name = "nadajnik rojowców"
+	desc = "Nazwa trochę łamie język, ale przestań myśleć o języku, one zjadają wszystko!"
 	icon = 'icons/mob/swarmer.dmi'
 	icon_state = "swarmer_console"
 	health = 750
 	maxHealth = 750 //""""low-ish"""" HP because it's a passive boss, and the swarm itself is the real foe
 	mob_biotypes = list(MOB_ROBOTIC)
-	gps_name = "Hungry Signal"
+	gps_name = "Głodny sygnał"
 	achievement_type = /datum/award/achievement/boss/swarmer_beacon_kill
 	crusher_achievement_type = /datum/award/achievement/boss/swarmer_beacon_crusher
 	score_achievement_type = /datum/award/score/swarmer_beacon_score
@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 //SWARMER CATWALKS
 //Used so they can survive lavaland better
 /obj/structure/lattice/catwalk/swarmer_catwalk
-	name = "swarmer catwalk"
-	desc = "A catwalk-like mesh, produced by swarmers to allow them to navigate hostile terrain."
+	name = "kładka rojowców"
+	desc = "Siatka przypominająca kładkę, wytwarzana przez rojowce, by mogły poruszać się po nieprzyjaznym terenie."
 	icon = 'icons/obj/smooth_structures/swarmer_catwalk.dmi'
 	icon_state = "swarmer_catwalk"

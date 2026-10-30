@@ -22,8 +22,8 @@ GLOBAL_LIST_INIT(cable_colors, list(
 ////////////////////////////////
 
 /obj/structure/cable
-	name = "power cable"
-	desc = "A flexible, superconducting insulated cable for heavy-duty power transfer."
+	name = "kabel zasilający"
+	desc = "Giętki, nadprzewodzący, izolowany kabel do przesyłu dużych mocy."
 	icon = 'aquila/icons/obj/power_cond/cables.dmi'
 	icon_state = "0-1-2-4-8"
 	level = 1 //is underfloor
@@ -393,7 +393,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 	if (target.shock(user, 50))
 		return TOOL_ACT_SIGNAL_BLOCKING
 
-	user.visible_message("[user] cuts [target].", "<span class='notice'>Przecinasz [target].</span>")
+	user.visible_message("[user] przecina [target].", "<span class='notice'>Przecinasz [target].</span>")
 	target.investigate_log("was cut by [key_name(usr)] in [AREACOORD(target)]", INVESTIGATE_WIRES)
 	target.deconstruct()
 	return TOOL_ACT_TOOLTYPE_SUCCESS
@@ -419,7 +419,7 @@ GLOBAL_LIST_INIT(cable_colors, list(
 /obj/structure/cable/proc/resolve_ambiguous_target(mob/user)
 	var/list/targets = list()
 	for (var/obj/structure/cable/cable in loc)
-		targets["Cable [cable.omni ? "(Omni)" : "([cable.cable_color])"]"] = cable
+		targets["Kabel [cable.omni ? "(omni)" : "([cable.cable_color])"]"] = cable
 	if (length(targets) <= 1)
 		return src
 	var/result = show_radial_menu(user, user, targets, tooltips = TRUE)

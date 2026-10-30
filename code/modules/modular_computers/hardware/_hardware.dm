@@ -1,6 +1,6 @@
 /obj/item/computer_hardware
-	name = "hardware"
-	desc = "Unknown Hardware."
+	name = "sprzęt"
+	desc = "Nieznany sprzęt."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 

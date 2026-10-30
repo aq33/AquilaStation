@@ -1,6 +1,6 @@
 /datum/species/jelly
 	// Entirely alien beings that seem to be made entirely out of gel. They have three eyes and a skeleton visible within them.
-	name = "\improper Jellyperson"
+	name = "\improper Galaretoczłowiek"
 	id = SPECIES_JELLYPERSON
 	default_color = "00FF90"
 	species_traits = list(MUTCOLORS,EYECOLOR,NOBLOOD)
@@ -74,7 +74,7 @@
 	H.blood_volume += 20
 
 /datum/action/innate/regenerate_limbs
-	name = "Regenerate Limbs"
+	name = "Regeneruj kończyny"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeheal"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -117,7 +117,7 @@
 //Slime people are able to split like slimes, retaining a single mind that can swap between bodies at will, even after death.
 
 /datum/species/jelly/slime
-	name = "Slimeperson"
+	name = "Szlamoczłowiek"
 	id = SPECIES_SLIMEPERSON
 	default_color = "00FFFF"
 	species_traits = list(MUTCOLORS,EYECOLOR,HAIR,FACEHAIR,NOBLOOD)
@@ -189,7 +189,7 @@
 	..()
 
 /datum/action/innate/split_body
-	name = "Split Body"
+	name = "Rozdziel ciało"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimesplit"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -267,7 +267,7 @@
 
 
 /datum/action/innate/swap_body
-	name = "Swap Body"
+	name = "Zamień ciało"
 	check_flags = NONE
 	button_icon_state = "slimeswap"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -468,8 +468,8 @@
 	glow.set_light_range_power_color(glow_intensity, glow_intensity, C.dna.features["mcolor"])
 
 /datum/action/innate/integrate_extract
-	name = "Integrate Extract"
-	desc = "Eat a slime extract to use its properties."
+	name = "Wchłoń ekstrakt"
+	desc = "Zjedz ekstrakt szlamu, by korzystać z jego właściwości."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeconsume"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -478,11 +478,11 @@
 /datum/action/innate/integrate_extract/proc/update_name()
 	var/datum/species/jelly/luminescent/species = target
 	if(!species || !species.current_extract)
-		name = "Integrate Extract"
-		desc = "Eat a slime extract to use its properties."
+		name = "Wchłoń ekstrakt"
+		desc = "Zjedz ekstrakt szlamu, by korzystać z jego właściwości."
 	else
-		name = "Eject Extract"
-		desc = "Eject your current slime extract."
+		name = "Wyrzuć ekstrakt"
+		desc = "Wyrzuć obecny ekstrakt szlamu."
 
 /datum/action/innate/integrate_extract/UpdateButtonIcon(status_only, force)
 	var/datum/species/jelly/luminescent/species = target
@@ -529,8 +529,8 @@
 			to_chat(H, "<span class='warning'>Musisz trzymać nieużyty ekstrakt ze szlamu w aktywnej ręce!</span>")
 
 /datum/action/innate/use_extract
-	name = "Extract Minor Activation"
-	desc = "Pulse the slime extract with energized jelly to activate it."
+	name = "Słaba aktywacja ekstraktu"
+	desc = "Pobudź ekstrakt szlamu naenergetyzowaną galaretą, by go aktywować."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeuse1"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
@@ -564,8 +564,8 @@
 		species.extract_cooldown = world.time + cooldown
 
 /datum/action/innate/use_extract/major
-	name = "Extract Major Activation"
-	desc = "Pulse the slime extract with plasma jelly to activate it."
+	name = "Silna aktywacja ekstraktu"
+	desc = "Pobudź ekstrakt szlamu plazmową galaretą, by go aktywować."
 	button_icon_state = "slimeuse2"
 	activation_type = SLIME_ACTIVATE_MAJOR
 
@@ -574,7 +574,7 @@
 //Stargazers are the telepathic branch of jellypeople, able to project psychic messages and to link minds with willing participants.
 
 /datum/species/jelly/stargazer
-	name = "Stargazer"
+	name = "Gwiezdny obserwator"
 	id = SPECIES_STARGAZER
 	var/datum/action/innate/project_thought/project_thought
 	var/datum/action/innate/link_minds/link_minds
@@ -657,8 +657,8 @@
 	qdel(action)
 
 /datum/action/innate/linked_speech
-	name = "Slimelink"
-	desc = "Send a psychic message to everyone connected to your slime link."
+	name = "Szlamowa więź"
+	desc = "Wyślij psychiczną wiadomość do wszystkich połączonych twoją szlamową więzią."
 	button_icon_state = "link_speech"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -671,7 +671,7 @@
 		Remove(H)
 		return
 
-	var/message = stripped_input(usr, "Message:", "Szlamowa telepatia")
+	var/message = stripped_input(usr, "Wiadomość:", "Szlamowa telepatia")
 	if(CHAT_FILTER_CHECK(message))
 		to_chat(usr, "<span class='warning'>Twoja wiadomość zawiera zakazane słowa.</span>")
 		return
@@ -703,8 +703,8 @@
 			to_chat(M, "[link] [msg]")
 
 /datum/action/innate/project_thought
-	name = "Send Thought"
-	desc = "Send a private psychic message to someone you can see."
+	name = "Wyślij myśl"
+	desc = "Wyślij prywatną psychiczną wiadomość do kogoś, kogo widzisz."
 	button_icon_state = "send_mind"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"
@@ -724,7 +724,7 @@
 	if(!M)
 		return
 
-	var/msg = stripped_input(usr, "Message:", "Telepathy")
+	var/msg = stripped_input(usr, "Wiadomość:", "Telepatia")
 	if(!msg)
 		return
 	if(CHAT_FILTER_CHECK(msg))
@@ -742,8 +742,8 @@
 		to_chat(dead, "[follow_link_user] <span class='name'>[H]</span> <span class='alertalien'>Szlamowa telepatia --> </span> [follow_link_target] <span class='name'>[M]</span> <span class='noticealien'>[msg]</span>")
 
 /datum/action/innate/link_minds
-	name = "Link Minds"
-	desc = "Link someone's mind to your Slime Link, allowing them to communicate telepathically with other linked minds."
+	name = "Połącz umysły"
+	desc = "Połącz czyjś umysł ze swoją szlamową więzią, by mógł telepatycznie porozumiewać się z innymi połączonymi umysłami."
 	button_icon_state = "mindlink"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'
 	background_icon_state = "bg_alien"

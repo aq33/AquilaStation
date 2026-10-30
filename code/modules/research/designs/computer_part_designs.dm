@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 
 /datum/design/disk/normal
-	name = "Hard Disk Drive"
+	name = "Dysk twardy"
 	id = "hdd_basic"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 100, /datum/material/copper = 150)
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/disk/advanced
-	name = "Advanced Hard Disk Drive"
+	name = "Zaawansowany dysk twardy"
 	id = "hdd_advanced"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 800, /datum/material/glass = 200, /datum/material/copper = 300)
@@ -21,7 +21,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/disk/super
-	name = "Super Hard Disk Drive"
+	name = "Superdysk twardy"
 	id = "hdd_super"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1600, /datum/material/glass = 400, /datum/material/copper = 600)
@@ -30,7 +30,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/disk/cluster
-	name = "Cluster Hard Disk Drive"
+	name = "Klastrowy dysk twardy"
 	id = "hdd_cluster"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3200, /datum/material/glass = 800, /datum/material/copper = 1000)
@@ -39,7 +39,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/disk/small
-	name = "Solid State Drive"
+	name = "Dysk SSD"
 	id = "ssd_small"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 800, /datum/material/glass = 200, /datum/material/copper = 200)
@@ -48,7 +48,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/disk/micro
-	name = "Micro Solid State Drive"
+	name = "Mikrodysk SSD"
 	id = "ssd_micro"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 100, /datum/material/copper = 150)
@@ -58,7 +58,7 @@
 
 // Network cards
 /datum/design/netcard/basic
-	name = "Network Card"
+	name = "Karta sieciowa"
 	id = "netcard_basic"
 	build_type = IMPRINTER
 	materials = list(/datum/material/iron = 250, /datum/material/glass = 100, /datum/material/copper = 100)
@@ -67,7 +67,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/netcard/advanced
-	name = "Advanced Network Card"
+	name = "Zaawansowana karta sieciowa"
 	id = "netcard_advanced"
 	build_type = IMPRINTER
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 200, /datum/material/copper = 200)
@@ -76,7 +76,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/netcard/wired
-	name = "Wired Network Card"
+	name = "Przewodowa karta sieciowa"
 	id = "netcard_wired"
 	build_type = IMPRINTER
 	materials = list(/datum/material/iron = 2500, /datum/material/glass = 400, /datum/material/copper = 400)
@@ -86,7 +86,7 @@
 
 // Data disks
 /datum/design/portabledrive/basic
-	name = "Data Disk"
+	name = "Dysk z danymi"
 	id = "portadrive_basic"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 800, /datum/material/copper = 200)
@@ -95,7 +95,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/portabledrive/advanced
-	name = "Advanced Data Disk"
+	name = "Zaawansowany dysk z danymi"
 	id = "portadrive_advanced"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 1600, /datum/material/copper = 300)
@@ -104,7 +104,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/portabledrive/super
-	name = "Super Data Disk"
+	name = "Superdysk z danymi"
 	id = "portadrive_super"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 3200, /datum/material/copper = 400)
@@ -114,7 +114,7 @@
 
 // Card slot
 /datum/design/cardslot
-	name = "ID Card Slot"
+	name = "Gniazdo na identyfikator"
 	id = "cardslot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/copper = 100)
@@ -124,7 +124,7 @@
 
 // Intellicard slot
 /datum/design/aislot
-	name = "Intellicard Slot"
+	name = "Gniazdo na intelliCard"
 	id = "aislot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/copper = 100)
@@ -134,7 +134,7 @@
 
 // Mini printer
 /datum/design/miniprinter
-	name = "Miniprinter"
+	name = "Minidrukarka"
 	id = "miniprinter"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/copper = 100)
@@ -144,7 +144,7 @@
 
 // APC Link
 /datum/design/APClink
-	name = "Area Power Connector"
+	name = "Złącze zasilania obszaru"
 	id = "APClink"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000)
@@ -154,7 +154,7 @@
 
 // Batteries
 /datum/design/battery/controller
-	name = "Power Cell Controller"
+	name = "Kontroler ogniwa zasilającego"
 	id = "bat_control"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400)
@@ -163,7 +163,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/battery/normal
-	name = "Battery Module"
+	name = "Moduł baterii"
 	id = "bat_normal"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400)
@@ -172,7 +172,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/battery/advanced
-	name = "Advanced Battery Module"
+	name = "Zaawansowany moduł baterii"
 	id = "bat_advanced"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 800)
@@ -181,7 +181,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/battery/super
-	name = "Super Battery Module"
+	name = "Supermoduł baterii"
 	id = "bat_super"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1600)
@@ -190,7 +190,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/battery/nano
-	name = "Nano Battery Module"
+	name = "Nanomoduł baterii"
 	id = "bat_nano"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200)
@@ -199,7 +199,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/battery/micro
-	name = "Micro Battery Module"
+	name = "Mikromoduł baterii"
 	id = "bat_micro"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400)
@@ -209,7 +209,7 @@
 
 // Processor unit
 /datum/design/cpu
-	name = "Processor Board"
+	name = "Płytka procesora"
 	id = "cpu_normal"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 200, /datum/material/copper = 1600)
@@ -218,7 +218,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cpu/small
-	name = "Microprocessor"
+	name = "Mikroprocesor"
 	id = "cpu_small"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 100, /datum/material/copper = 800)
@@ -227,7 +227,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cpu/photonic
-	name = "Photonic Processor Board"
+	name = "Fotoniczna płytka procesora"
 	id = "pcpu_normal"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 6400, /datum/material/gold = 2000, /datum/material/copper = 800)
@@ -236,7 +236,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/cpu/photonic/small
-	name = "Photonic Microprocessor"
+	name = "Fotoniczny mikroprocesor"
 	id = "pcpu_small"
 	build_type = IMPRINTER
 	materials = list(/datum/material/glass = 3200, /datum/material/gold = 1000, /datum/material/copper = 400)
@@ -247,8 +247,8 @@
 //antivirus. While not a computer bit, it makes more flavor-sense in here
 
 /datum/design/antivirus1
-	name = "Basic Antivirus"
-	desc = "A licensed copy of NTOS defender"
+	name = "Podstawowy antywirus"
+	desc = "Licencjonowana kopia NTOS defender."
 	id = "antivirus"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/iron = 100, /datum/material/glass = 50, /datum/material/copper = 50)
@@ -258,8 +258,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/antivirus2
-	name = "Upgraded Antivirus"
-	desc = "A licensed copy of Ahoy antivirus."
+	name = "Ulepszony antywirus"
+	desc = "Licencjonowana kopia antywirusa Ahoy."
 	id = "antivirus2"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 150, /datum/material/glass = 100, /datum/material/copper = 100)
@@ -269,8 +269,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/antivirus3
-	name = "Robust Antivirus"
-	desc = "A licensed copy of McValosk antivirus."
+	name = "Wytrzymały antywirus"
+	desc = "Licencjonowana kopia antywirusa McValosk."
 	id = "antivirus3"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 150, /datum/material/silver = 60, /datum/material/copper = 100)
@@ -280,8 +280,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/antivirus4
-	name = "Luxury Antivirus"
-	desc = "A licensed copy of Nano-Ton antivirus."
+	name = "Luksusowy antywirus"
+	desc = "Licencjonowana kopia antywirusa Nano-Ton."
 	id = "antivirus4"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 200, /datum/material/diamond = 30, /datum/material/bluespace = 30, /datum/material/copper = 100)
@@ -291,7 +291,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/sensorpackage
-	name = "Sensor Package"
+	name = "Pakiet czujników"
 	id = "sensorpackage"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 200, /datum/material/glass = 100, /datum/material/gold = 50, /datum/material/silver = 50)
@@ -300,7 +300,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/signaler_part
-	name = "Integrated Signaler"
+	name = "Zintegrowany sygnalizator"
 	id = "signalpart"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 400, /datum/material/glass = 100)

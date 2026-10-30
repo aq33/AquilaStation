@@ -1,8 +1,8 @@
 /// How many seconds between each fuel depletion tick ("use" proc)
 #define WELDER_FUEL_BURN_INTERVAL 9
 /obj/item/weldingtool
-	name = "welding tool"
-	desc = "A standard edition welder provided by Nanotrasen."
+	name = "spawarka"
+	desc = "Standardowa spawarka dostarczana przez Nanotrasen."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "welder"
 	item_state = "welder"
@@ -143,7 +143,7 @@
 			handle_fuel_and_temps(1, user)
 			var/mob/living/attacked_mob = attacked_atom
 			if(attacked_mob.IgniteMob())
-				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(attacked_mob)] on fire with [src] at [AREACOORD(user)]")
+				message_admins("[ADMIN_LOOKUPFLW(user)] podpala [key_name_admin(attacked_mob)] za pomocą [src] w [AREACOORD(user)]")
 				log_game("[key_name(user)] set [key_name(attacked_mob)] on fire with [src] at [AREACOORD(user)]")
 
 	if(!status && attacked_atom.is_refillable())
@@ -162,13 +162,13 @@
 		if(!QDELETED(attacked_atom) && isliving(attacked_atom)) // can't ignite something that doesn't exist
 			var/mob/living/attacked_mob = attacked_atom
 			if(attacked_mob.IgniteMob())
-				message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(attacked_mob)] on fire with [src] at [AREACOORD(user)].")
+				message_admins("[ADMIN_LOOKUPFLW(user)] podpala [key_name_admin(attacked_mob)] za pomocą [src] w [AREACOORD(user)].")
 				log_game("set [key_name(attacked_mob)] on fire with [src]")
 
 
 /obj/item/weldingtool/attack_self(mob/user)
 	if(src.reagents.has_reagent(/datum/reagent/toxin/plasma))
-		message_admins("[ADMIN_LOOKUPFLW(user)] activated a rigged welder at [AREACOORD(user)].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] włącza przerobioną spawarkę w [AREACOORD(user)].")
 		log_game("activated a rigged welder", LOG_ATTACK)
 		explode()
 	switched_on(user)
@@ -241,7 +241,7 @@
 			update_icon()
 			START_PROCESSING(SSobj, src)
 		else
-			balloon_alert(user, "[src] jest pusty!")
+			balloon_alert(user, "Brak paliwa!")
 			switched_off(user)
 	else
 		balloon_alert(user, "Wyłączasz [src].")
@@ -332,8 +332,8 @@
 		return ""
 
 /obj/item/weldingtool/largetank
-	name = "industrial welding tool"
-	desc = "A slightly larger welder with a larger tank."
+	name = "przemysłowa spawarka"
+	desc = "Nieco większa spawarka z większym zbiornikiem."
 	icon_state = "indwelder"
 	max_fuel = 40
 	materials = list(/datum/material/glass=60)
@@ -342,8 +342,8 @@
 	return
 
 /obj/item/weldingtool/largetank/cyborg
-	name = "integrated welding tool"
-	desc = "An advanced welder designed to be used in robotic systems. Custom framework doubles the speed of welding."
+	name = "zintegrowana spawarka"
+	desc = "Zaawansowana spawarka do systemów robotycznych. Specjalna konstrukcja podwaja szybkość spawania."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "indwelder_cyborg"
 	toolspeed = 0.5
@@ -354,8 +354,8 @@
 	switched_on(user)
 
 /obj/item/weldingtool/mini
-	name = "emergency welding tool"
-	desc = "A miniature welder used during emergencies."
+	name = "awaryjna spawarka"
+	desc = "Miniaturowa spawarka do użycia w razie zagrożenia."
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = WEIGHT_CLASS_TINY
@@ -366,8 +366,8 @@
 	return
 
 /obj/item/weldingtool/abductor
-	name = "alien welding tool"
-	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
+	name = "obca spawarka"
+	desc = "Obca spawarka. Niezależnie od tego, na jakim paliwie działa, nigdy się ono nie kończy."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "welder"
 	toolspeed = 0.1
@@ -382,16 +382,16 @@
 	..()
 
 /obj/item/weldingtool/hugetank
-	name = "upgraded industrial welding tool"
-	desc = "An upgraded welder based of the industrial welder."
+	name = "ulepszona przemysłowa spawarka"
+	desc = "Ulepszona spawarka oparta na spawarce przemysłowej."
 	icon_state = "upindwelder"
 	item_state = "upindwelder"
 	max_fuel = 80
 	materials = list(/datum/material/iron=70, /datum/material/glass=120)
 
 /obj/item/weldingtool/experimental
-	name = "experimental welding tool"
-	desc = "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+	name = "eksperymentalna spawarka"
+	desc = "Eksperymentalna spawarka, która sama wytwarza paliwo i mniej szkodzi oczom."
 	icon_state = "exwelder"
 	item_state = "exwelder"
 	max_fuel = 40
@@ -404,8 +404,8 @@
 	var/nextrefueltick = 0
 
 /obj/item/weldingtool/experimental/brass
-	name = "brass welding tool"
-	desc = "A brass welder that seems to constantly refuel itself. It is faintly warm to the touch."
+	name = "mosiężna spawarka"
+	desc = "Mosiężna spawarka, która wydaje się bez przerwy sama uzupełniać paliwo. W dotyku jest lekko ciepła."
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	icon_state = "brasswelder"
 	item_state = "brasswelder"

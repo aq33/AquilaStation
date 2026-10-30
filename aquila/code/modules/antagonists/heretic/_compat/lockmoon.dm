@@ -188,12 +188,12 @@
 // --- Osiągnięcia wzniesienia ---
 
 /datum/award/achievement/misc/lock_ascension
-	name = "Secrets of the Locked Labyrinth"
+	name = "Sekrety Zamkniętego Labiryntu"
 	desc = "Udało ci się otworzyć bramę do Mansusa."
 	database_id = "Lock Ascension"
 
 /datum/award/achievement/misc/moon_ascension
-	name = "The Last Act"
+	name = "Ostatni akt"
 	desc = "Udało ci się zostać przewodnikiem parady i zabić kłamstwo."
 	database_id = "Moon Ascension"
 

@@ -1,6 +1,6 @@
 /obj/item/fighter_component/primary/utility/refuel
-	name = "air to air refueling kit"
-	desc = "A large hose line which can allow a utility craft to perform air to air refuelling and battery jumpstarts."
+	name = "zestaw do tankowania w locie"
+	desc = "Długi wąż, dzięki któremu jednostka pomocnicza może tankować inne jednostki w locie i doładowywać im rozładowane akumulatory."
 	icon_state = "resupply_tier1"
 	overmap_firing_sounds = list(
 		'nsv13/sound/effects/fighters/refuel.ogg')
@@ -40,13 +40,13 @@
 	return F.get_max_fuel()
 
 /obj/item/fighter_component/primary/utility/refuel/tier2
-	name = "upgraded air to air resupply kit"
+	name = "ulepszony zestaw do zaopatrywania w locie"
 	icon_state = "resupply_tier2"
 	fire_delay = 3 SECONDS
 	tier = 2
 
 /obj/item/fighter_component/primary/utility/refuel/tier3
-	name = "super air to air resupply kit"
+	name = "superzestaw do zaopatrywania w locie"
 	icon_state = "resupply_tier3"
 	fire_delay = 2 SECONDS
 	tier = 3

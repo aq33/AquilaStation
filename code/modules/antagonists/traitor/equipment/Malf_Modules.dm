@@ -21,8 +21,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 //The malf AI action subtype. All malf actions are subtypes of this.
 /datum/action/innate/ai
-	name = "AI Action"
-	desc = "You aren't entirely sure what this does, but it's very beepy and boopy."
+	name = "Akcja SI"
+	desc = "Nie do końca wiesz, co to robi, ale strasznie pipka i bzyczy."
 	background_icon_state = "bg_tech_blue"
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	var/mob/living/silicon/ai/owner_AI //The owner AI, so we don't have to typecast every time
@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 //Framework for ranged abilities that can have different effects by left-clicking stuff.
 /datum/action/innate/ai/ranged
-	name = "Ranged AI Action"
+	name = "Dystansowa akcja SI"
 	auto_use_uses = FALSE //This is so we can do the thing and disable/enable freely without having to constantly add uses
 	var/obj/effect/proc_holder/ranged_ai/linked_ability //The linked proc holder that contains the actual ability code
 	var/linked_ability_type //The path of our linked ability
@@ -95,8 +95,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 //The actual ranged proc holder.
 /obj/effect/proc_holder/ranged_ai
-	var/enable_text = "<span class='notice'>Hello World!</span>" //Appears when the user activates the ability
-	var/disable_text = "<span class='danger'>Goodbye Cruel World!</span>" //Context clues!
+	var/enable_text = "<span class='notice'>Witaj, świecie!</span>" //Appears when the user activates the ability
+	var/disable_text = "<span class='danger'>Żegnaj, okrutny świecie!</span>" //Context clues!
 	var/datum/action/innate/ai/ranged/attached_action
 
 /obj/effect/proc_holder/ranged_ai/Destroy()
@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 	var/power_type = /datum/action/innate/ai //If the module gives an active ability, use this. Mutually exclusive with upgrade.
 	var/upgrade //If the module gives a passive upgrade, use this. Mutually exclusive with power_type.
-	var/unlock_text = "<span class='notice'>Hello World!</span>" //Text shown when an ability is unlocked
+	var/unlock_text = "<span class='notice'>Witaj, świecie!</span>" //Text shown when an ability is unlocked
 	var/unlock_sound //Sound played when an ability is unlocked
 
 /datum/AI_Module/proc/upgrade(mob/living/silicon/ai/AI) //Apply upgrades!
@@ -263,8 +263,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_text = "<span class='notice'>Powoli i ostrożnie nawiązujesz połączenie z pokładowym systemem samozniszczenia. Możesz go teraz aktywować w dowolnej chwili.</span>"
 
 /datum/action/innate/ai/nuke_station
-	name = "Doomsday Device"
-	desc = "Activates the doomsday device. This is not reversible."
+	name = "Urządzenie zagłady"
+	desc = "Aktywuje urządzenie zagłady. Tego nie da się cofnąć."
 	button_icon_state = "doomsday_device"
 	auto_use_uses = FALSE
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	if(!istype(T) || !is_station_level(T.z))
 		to_chat(owner, "<span class='warning'>Nie możesz aktywować urządzenia zagłady poza statkiem!</span>")
 		return
-	if(tgui_alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", list("confirm = TRUE;", "confirm = FALSE;")) != "confirm = TRUE;")
+	if(tgui_alert(owner, "Wysłać sygnał uzbrojenia? (true = uzbrój, false = anuluj)", "purge_all_life()", list("confirm = TRUE;", "confirm = FALSE;")) != "confirm = TRUE;")
 		return
 	if (active)
 		return //prevent the AI from activating an already active doomsday
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	if(!owner || QDELETED(owner))
 		return
 	owner.playsound_local(owner, 'sound/misc/bloblarm.ogg', 50, 0, use_reverb = FALSE)
-	to_chat(owner, "<span class='userdanger'>!!! UNAUTHORIZED SELF-DESTRUCT ACCESS !!!</span>")
+	to_chat(owner, "<span class='userdanger'>!!! NIEAUTORYZOWANY DOSTĘP DO AUTODESTRUKCJI !!!</span>")
 	to_chat(owner, "<span class='boldannounce'>To naruszenie bezpieczeństwa klasy 3. Incydent zostanie zgłoszony Centrali.</span>")
 	for(var/i in 1 to 3)
 		sleep(20)
@@ -355,9 +355,9 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /obj/machinery/doomsday_device
 	icon = 'icons/obj/machines/nuke_terminal.dmi'
-	name = "doomsday device"
+	name = "urządzenie zagłady"
 	icon_state = "nuclearbomb_base"
-	desc = "A weapon which disintegrates all organic life in a large area."
+	desc = "Broń, która rozkłada na atomy całe życie organiczne na dużym obszarze."
 	density = TRUE
 	verb_exclaim = "wyje"
 	var/timing = FALSE
@@ -456,8 +456,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/machines/boltsdown.ogg'
 
 /datum/action/innate/ai/lockdown
-	name = "Lockdown"
-	desc = "Closes, bolts, and depowers every airlock, firelock, and blast door on the station. After 90 seconds, they will reset themselves."
+	name = "Blokada"
+	desc = "Zamyka, rygluje i odcina od zasilania każdą śluzę, drzwi przeciwpożarowe i gródź na statku. Po 90 sekundach wszystkie same się resetują."
 	button_icon_state = "lockdown"
 	uses = 1
 
@@ -492,8 +492,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/items/timer.ogg'
 
 /datum/action/innate/ai/destroy_rcds
-	name = "Destroy RCDs"
-	desc = "Detonate all non-cyborg RCDs on the station."
+	name = "Zniszcz RCD"
+	desc = "Detonuje wszystkie RCD na statku poza tymi w cyborgach."
 	button_icon_state = "detonate_rcds"
 	uses = 1
 	cooldown_period = 100
@@ -534,8 +534,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'goon/sound/machinery/firealarm.ogg'
 
 /datum/action/innate/ai/break_fire_alarms
-	name = "Override Thermal Sensors"
-	desc = "Disables the automatic temperature sensing on all fire alarms, making them effectively useless."
+	name = "Obejdź czujniki termiczne"
+	desc = "Wyłącza automatyczny pomiar temperatury we wszystkich alarmach przeciwpożarowych, przez co stają się praktycznie bezużyteczne."
 	button_icon_state = "break_fire_alarms"
 	uses = 1
 
@@ -562,8 +562,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/effects/space_wind.ogg'
 
 /datum/action/innate/ai/break_air_alarms
-	name = "Override Air Alarm Safeties"
-	desc = "Enables the Flood setting on all air alarms."
+	name = "Obejdź zabezpieczenia alarmów powietrza"
+	desc = "Włącza tryb zalewania we wszystkich alarmach powietrza."
 	button_icon_state = "break_air_alarms"
 	uses = 1
 
@@ -587,8 +587,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/effects/comfyfire.ogg' //definitely not comfy, but it's the closest sound to "roaring fire" we have
 
 /datum/action/innate/ai/ranged/overload_machine
-	name = "Overload Machine"
-	desc = "Overheats a machine, causing a small explosion after a short time."
+	name = "Przeciąż maszynę"
+	desc = "Przegrzewa maszynę, która po chwili wybucha z niewielką siłą."
 	button_icon_state = "overload_machine"
 	uses = 2
 	linked_ability_type = /obj/effect/proc_holder/ranged_ai/overload_machine
@@ -596,7 +596,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 /datum/action/innate/ai/ranged/overload_machine/proc/detonate_machine(obj/machinery/M)
 	if(M && !QDELETED(M))
 		var/turf/T = get_turf(M)
-		message_admins("[ADMIN_LOOKUPFLW(usr)] overloaded [M.name] at [ADMIN_VERBOSEJMP(T)].")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] przeciąża [M.name] w [ADMIN_VERBOSEJMP(T)].")
 		log_game("[key_name(usr)] overloaded [M.name] at [AREACOORD(T)].")
 		explosion(get_turf(M), 0, 2, 3, 0)
 		if(M) //to check if the explosion killed it before we try to delete it
@@ -640,8 +640,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/machines/airlock_alien_prying.ogg'
 
 /datum/action/innate/ai/ranged/override_machine
-	name = "Override Machine"
-	desc = "Animates a targeted machine, causing it to attack anyone nearby."
+	name = "Przejmij maszynę"
+	desc = "Ożywia wybraną maszynę, która zaczyna atakować każdego w pobliżu."
 	button_icon_state = "override_machine"
 	uses = 4
 	linked_ability_type = /obj/effect/proc_holder/ranged_ai/override_machine
@@ -689,8 +689,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/machines/ping.ogg'
 
 /datum/action/innate/ai/place_transformer
-	name = "Place Robotics Factory"
-	desc = "Places a machine that converts humans into cyborgs. Conveyor belts included!"
+	name = "Postaw fabrykę robotyki"
+	desc = "Stawia maszynę, która zamienia ludzi w cyborgi. Taśmociągi w zestawie!"
 	button_icon_state = "robotic_factory"
 	uses = 1
 	auto_use_uses = FALSE //So we can attempt multiple times
@@ -706,7 +706,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	if(!owner_AI.can_place_transformer(src))
 		return
 	active = TRUE
-	if(tgui_alert(owner, "Na pewno chcesz postawić maszynę tutaj?", "Na pewno?", list("Yes", "No")) == "Yes")
+	if(tgui_alert(owner, "Na pewno chcesz postawić maszynę tutaj?", "Na pewno?", list("Tak", "Nie")) == "Tak")
 		active = FALSE
 		return
 	if(!owner_AI.can_place_transformer(src))
@@ -755,7 +755,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 //Blackout: Overloads a random number of lights across the station. Three uses.
 /datum/AI_Module/small/blackout
-	module_name = "Blackout"
+	module_name = "Zaciemnienie"
 	mod_pick_name = "blackout"
 	description = "Próbuje przeciążyć obwody oświetlenia na statku, niszcząc część żarówek. Trzy użycia."
 	cost = 15
@@ -764,8 +764,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = "sparks"
 
 /datum/action/innate/ai/blackout
-	name = "Blackout"
-	desc = "Overloads lights across the station."
+	name = "Zaciemnienie"
+	desc = "Przeciąża światła na całym statku."
 	button_icon_state = "blackout"
 	uses = 3
 
@@ -791,8 +791,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = "sparks"
 
 /datum/action/innate/ai/emergency_lights
-	name = "Disable Emergency Lights"
-	desc = "Disables all emergency lighting. Note that emergency lights can be restored through reboot at an APC."
+	name = "Wyłącz oświetlenie awaryjne"
+	desc = "Wyłącza całe oświetlenie awaryjne. Uwaga: oświetlenie awaryjne można przywrócić, restartując APC."
 	button_icon_state = "emergency_lights"
 	uses = 1
 
@@ -818,8 +818,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = 'sound/items/wirecutter.ogg'
 
 /datum/action/innate/ai/reactivate_cameras
-	name = "Reactivate Cameras"
-	desc = "Reactivates disabled cameras across the station; remaining uses can be used later."
+	name = "Reaktywuj kamery"
+	desc = "Reaktywuje wyłączone kamery na całym statku. Niewykorzystane użycia zostają na później."
 	button_icon_state = "reactivate_cameras"
 	uses = 30
 	auto_use_uses = FALSE
@@ -827,7 +827,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/reactivate_cameras/New()
 	..()
-	desc = "[desc] There are 30 reactivations remaining."
+	desc = "[desc] Pozostałe reaktywacje: 30."
 	button.desc = desc
 
 /datum/action/innate/ai/reactivate_cameras/Activate()
@@ -845,7 +845,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	owner.playsound_local(owner, 'sound/items/wirecutter.ogg', 50, 0)
 	adjust_uses(0, TRUE) //Checks the uses remaining
 	if(src && uses) //Not sure if not having src here would cause a runtime, so it's here to be safe
-		desc = "[initial(desc)] There are [uses] reactivations remaining."
+		desc = "[initial(desc)] Pozostałe reaktywacje: [uses]."
 
 
 //Upgrade Camera Network: EMP-proofs all cameras, in addition to giving them X-ray vision.
@@ -911,8 +911,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = "sparks"
 
 /datum/action/innate/ai/fake_alert
-	name = "Fake Alert"
-	desc = "Scare the crew with a fake alert."
+	name = "Fałszywy alarm"
+	desc = "Straszysz załogę fałszywym alarmem."
 	button_icon_state = "fake_alert"
 	uses = 1
 
@@ -945,8 +945,8 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	unlock_sound = "sparks"
 
 /datum/action/innate/ai/fake_alert
-	name = "Fake Alert"
-	desc = "Scare the crew with a fake alert."
+	name = "Fałszywy alarm"
+	desc = "Straszysz załogę fałszywym alarmem."
 	button_icon_state = "fake_alert"
 	uses = 1
 

@@ -4,8 +4,8 @@
 
 
 /obj/structure/mecha_wreckage
-	name = "exosuit wreckage"
-	desc = "Remains of some unfortunate mecha. Completely irreparable, but perhaps something can be salvaged."
+	name = "wrak egzoszkieletu"
+	desc = "Szczątki jakiegoś nieszczęsnego mecha. Nie do naprawy, ale może da się coś odzyskać."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
@@ -102,7 +102,7 @@
 
 
 /obj/structure/mecha_wreckage/gygax
-	name = "\improper Gygax wreckage"
+	name = "\improper wrak Gygax"
 	icon_state = "gygax-broken"
 
 /obj/structure/mecha_wreckage/gygax/Initialize(mapload)
@@ -122,30 +122,30 @@
 
 
 /obj/structure/mecha_wreckage/gygax/dark
-	name = "\improper Dark Gygax wreckage"
+	name = "\improper wrak Dark Gygax"
 	icon_state = "darkgygax-broken"
 
 /obj/structure/mecha_wreckage/marauder
-	name = "\improper Marauder wreckage"
+	name = "\improper wrak Marauder"
 	icon_state = "marauder-broken"
 
 /obj/structure/mecha_wreckage/mauler
-	name = "\improper Mauler wreckage"
+	name = "\improper wrak Mauler"
 	icon_state = "mauler-broken"
-	desc = "The syndicate won't be very happy about this..."
+	desc = "Syndykat nie będzie z tego zadowolony..."
 
 /obj/structure/mecha_wreckage/seraph
-	name = "\improper Seraph wreckage"
+	name = "\improper wrak Seraph"
 	icon_state = "seraph-broken"
 
 /obj/structure/mecha_wreckage/reticence
-	name = "\improper Reticence wreckage"
+	name = "\improper wrak Reticence"
 	icon_state = "reticence-broken"
 	color = "#87878715"
 	desc = "..."
 
 /obj/structure/mecha_wreckage/ripley
-	name = "\improper Ripley wreckage"
+	name = "\improper wrak Ripley"
 	icon_state = "ripley-broken"
 
 /obj/structure/mecha_wreckage/ripley/Initialize(mapload)
@@ -162,7 +162,7 @@
 			parts -= part
 
 /obj/structure/mecha_wreckage/ripley/mkii
-	name = "\improper Ripley MK-II wreckage"
+	name = "\improper wrak Ripley MK-II"
 	icon_state = "ripleymkii-broken"
 
 /obj/structure/mecha_wreckage/ripley/mkii/Initialize(mapload)
@@ -180,7 +180,7 @@
 
 
 /obj/structure/mecha_wreckage/ripley/firefighter
-	name = "\improper Firefighter wreckage"
+	name = "\improper wrak Firefighter"
 	icon_state = "firefighter-broken"
 
 /obj/structure/mecha_wreckage/ripley/firefighter/Initialize(mapload)
@@ -199,14 +199,14 @@
 
 
 /obj/structure/mecha_wreckage/ripley/deathripley
-	name = "\improper Death-Ripley wreckage"
+	name = "\improper wrak Death-Ripley"
 	icon_state = "deathripley-broken"
 
 
 /obj/structure/mecha_wreckage/honker
-	name = "\improper H.O.N.K wreckage"
+	name = "\improper wrak H.O.N.K"
 	icon_state = "honker-broken"
-	desc = "All is right in the universe."
+	desc = "We wszechświecie wszystko jest tak, jak być powinno."
 
 /obj/structure/mecha_wreckage/honker/Initialize(mapload)
 	. = ..()
@@ -226,7 +226,7 @@
 
 
 /obj/structure/mecha_wreckage/durand
-	name = "\improper Durand wreckage"
+	name = "\improper wrak Durand"
 	icon_state = "durand-broken"
 
 /obj/structure/mecha_wreckage/durand/Initialize(mapload)
@@ -246,12 +246,12 @@
 
 
 /obj/structure/mecha_wreckage/phazon
-	name = "\improper Phazon wreckage"
+	name = "\improper wrak Phazon"
 	icon_state = "phazon-broken"
 
 
 /obj/structure/mecha_wreckage/odysseus
-	name = "\improper Odysseus wreckage"
+	name = "\improper wrak Odysseus"
 	icon_state = "odysseus-broken"
 
 /obj/structure/mecha_wreckage/odysseus/Initialize(mapload)

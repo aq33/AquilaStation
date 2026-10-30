@@ -47,7 +47,7 @@ export const CloningConsole = (props) => {
     <Window width={400} height={600}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Cloning Pod Status">
+          <Section title="Stan kapsuły klonującej">
             <Box backgroundColor="#40638a" p="1px">
               <Box backgroundColor="black" color="white" p="5px">
                 {temp}
@@ -55,7 +55,7 @@ export const CloningConsole = (props) => {
             </Box>
           </Section>
           {!lacksMachine.length ? (
-            <Section title="Scanner Functions">
+            <Section title="Funkcje skanera">
               <Box backgroundColor="#40638a" p="1px">
                 <Box backgroundColor="black" color="white" p="5px">
                   {scanTemp}
@@ -63,14 +63,14 @@ export const CloningConsole = (props) => {
               </Box>
               <br />
               <Button
-                content={'Full Scan'}
+                content={'Pełny skan'}
                 icon={'search'}
                 disabled={!hasOccupant}
                 onClick={() => act('scan')}
               />
               {!experimental ? (
                 <Button
-                  content={'Body only'}
+                  content={'Tylko ciało'}
                   disabled={!hasOccupant}
                   icon={'search'}
                   onClick={() => act('scan_body_only')}
@@ -79,14 +79,14 @@ export const CloningConsole = (props) => {
                 ''
               )}
               <Button
-                content={scannerLocked ? 'Unlock Scanner' : 'Lock Scanner'}
+                content={scannerLocked ? 'Odblokuj skaner' : 'Zablokuj skaner'}
                 icon={scannerLocked ? 'lock' : 'lock-open'}
                 disabled={!hasOccupant && !scannerLocked}
                 onClick={() => act('toggle_lock')}
               />
             </Section>
           ) : (
-            <Section title="Modules">
+            <Section title="Moduły">
               {lacksMachine.map((machine) => (
                 <Box key={machine} color="red">
                   {machine}
@@ -97,10 +97,10 @@ export const CloningConsole = (props) => {
           )}
           {useRecords ? (
             <Section>
-              <Section title="Database Functions">
+              <Section title="Funkcje bazy danych">
                 <NoticeBox>
                   <Collapsible title={recordsLength}>
-                    <h2>Current Records: </h2>
+                    <h2>Obecne akta: </h2>
                     {records.map((record) => (
                       <Section
                         backgroundColor="#191919"
@@ -111,9 +111,9 @@ export const CloningConsole = (props) => {
                           title={
                             record['name'] +
                             (record['body_only']
-                              ? ' (Body Only)'
+                              ? ' (tylko ciało)'
                               : record['last_death'] < 0
-                                ? ' (Presaved)'
+                                ? ' (zapis wstępny)'
                                 : '')
                           }
                           color={
@@ -130,10 +130,10 @@ export const CloningConsole = (props) => {
                               wordBreak: 'break-all',
                             }}
                           >
-                            Scan ID {record['id']}
+                            ID skanu: {record['id']}
                             <br />
                             <Button
-                              content="Clone"
+                              content="Klonuj"
                               icon="power-off" // NSV13, makes empty clones possible again, removed "disable=body-only && !experimental"
                               onClick={() =>
                                 act('clone', {
@@ -142,7 +142,7 @@ export const CloningConsole = (props) => {
                               }
                             />
                             <Button
-                              content="Delete Record"
+                              content="Usuń akta"
                               icon="user-slash"
                               onClick={() =>
                                 act('delrecord', {
@@ -151,7 +151,7 @@ export const CloningConsole = (props) => {
                               }
                             />
                             <Button
-                              content="Save to Disk"
+                              content="Zapisz na dysk"
                               icon="upload"
                               disabled={diskData.length === 0}
                               onClick={() =>
@@ -163,28 +163,28 @@ export const CloningConsole = (props) => {
                             <br />
                             {record['damages'] ? (
                               <>
-                                Health Implant Data
+                                Dane implantu zdrowia
                                 <br />
                                 <small>
-                                  Oxygen Deprivation Damage:
+                                  Obrażenia od niedotlenienia:
                                   <br />
                                   <ProgressBar
                                     color="blue"
                                     value={record['damages']['oxy'] / 100}
                                   />
-                                  Fire Damage:
+                                  Obrażenia od ognia:
                                   <br />
                                   <ProgressBar
                                     color="orange"
                                     value={record['damages']['burn'] / 100}
                                   />
-                                  Toxin Damage:
+                                  Obrażenia od toksyn:
                                   <br />
                                   <ProgressBar
                                     color="green"
                                     value={record['damages']['tox'] / 100}
                                   />
-                                  Brute Damage:
+                                  Obrażenia fizyczne:
                                   <br />
                                   <ProgressBar
                                     color="red"
@@ -195,19 +195,19 @@ export const CloningConsole = (props) => {
                               </>
                             ) : (
                               <>
-                                Health implant data not available
+                                Brak danych implantu zdrowia
                                 <br />
                               </>
                             )}
-                            Unique Identifier:
+                            Unikalny identyfikator:
                             <br />
                             {record['UI']}
                             <br />
-                            Unique Enzymes:
+                            Unikalne enzymy:
                             <br />
                             {record['UE']}
                             <br />
-                            Blood Type:
+                            Grupa krwi:
                             <br />
                             {record['blood_type']}
                             <br />
@@ -219,17 +219,17 @@ export const CloningConsole = (props) => {
                 </NoticeBox>
               </Section>
               <Section
-                title="Disk"
+                title="Dysk"
                 buttons={
                   <Box>
                     <Button
-                      content="Load"
+                      content="Wczytaj"
                       icon="download"
                       disabled={!diskData['name']}
                       onClick={() => act('load')}
                     />
                     <Button
-                      content="Eject Disk"
+                      content="Wysuń dysk"
                       icon="eject"
                       disabled={diskData.length === 0}
                       onClick={() => act('eject')}
@@ -243,11 +243,11 @@ export const CloningConsole = (props) => {
                       diskData['name']
                         ? diskData['name'] +
                           (diskData['body_only']
-                            ? ' (Body Only)'
+                            ? ' (tylko ciało)'
                             : diskData['last_death'] < 0
-                              ? ' (Presaved)'
+                              ? ' (zapis wstępny)'
                               : '')
-                        : 'Empty Disk'
+                        : 'Pusty dysk'
                     }
                     color={
                       diskData['name']
@@ -271,15 +271,15 @@ export const CloningConsole = (props) => {
                         <br />
                         UE: {diskData['UE']}
                         <br />
-                        Blood Type: {diskData['blood_type']}
+                        Grupa krwi: {diskData['blood_type']}
                         <br />
                       </Box>
                     ) : (
-                      'No Data'
+                      'Brak danych'
                     )}
                   </Collapsible>
                 ) : (
-                  'No Disk'
+                  'Brak dysku'
                 )}
               </Section>
             </Section>

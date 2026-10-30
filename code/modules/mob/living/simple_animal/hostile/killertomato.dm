@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/killertomato
-	name = "Killer Tomato"
-	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
+	name = "pomidor zabójca"
+	desc = "To przerażająco ogromny pomidor malinowy, który ma niezłą krzepę!"
 	icon_state = "tomato"
 	icon_living = "tomato"
 	icon_dead = "tomato_dead"

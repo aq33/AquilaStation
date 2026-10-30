@@ -1,5 +1,5 @@
 /atom/movable/screen/alert/bitrunning
-	name = "Generic Bitrunning Alert"
+	name = "Alert bitrunningu"
 	icon_state = "template"
 	timeout = 10 SECONDS
 

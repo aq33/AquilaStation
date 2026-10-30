@@ -1,6 +1,6 @@
 /obj/item/desynchronizer
-	name = "desynchronizer"
-	desc = "An experimental device that can temporarily desynchronize the user from spacetime, effectively making them disappear while it's active."
+	name = "desynchronizator"
+	desc = "Eksperymentalne urządzenie, które potrafi tymczasowo odsynchronizować użytkownika od czasoprzestrzeni, przez co znika on, dopóki urządzenie działa."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "desynchronizer"
 	item_state = "electronic"
@@ -34,7 +34,7 @@
 /obj/item/desynchronizer/AltClick(mob/living/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return
-	var/new_duration = input(user, "Ustaw czas trwania (5-300):", "Desynchronizer", duration / 10) as null|num
+	var/new_duration = input(user, "Ustaw czas trwania (5-300):", "Desynchronizator", duration / 10) as null|num
 	if(new_duration)
 		new_duration = new_duration SECONDS
 		new_duration = CLAMP(new_duration, 50, max_duration)
@@ -68,8 +68,8 @@
 	return ..()
 
 /obj/effect/abstract/sync_holder
-	name = "desyncronized pocket"
-	desc = "A pocket in spacetime, keeping the user a fraction of a second in the future."
+	name = "odsynchronizowana kieszeń"
+	desc = "Kieszeń w czasoprzestrzeni, utrzymująca użytkownika ułamek sekundy w przyszłości."
 	icon = null
 	icon_state = null
 	alpha = 0

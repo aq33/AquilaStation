@@ -1,5 +1,5 @@
 /datum/orbital_object/star
-	name = "Stellar Body"
+	name = "Ciało gwiezdne"
 	mass = 100000
 	radius = 200
 	static_object = TRUE
@@ -11,7 +11,7 @@
 	if(other.collision_ignored || collision_ignored)
 		return
 	//You didnt get lucky this time
-	message_admins("Orbital body [other.name] collided with the star [name] and was destroyed.")
+	message_admins("Ciało orbitalne [other.name] zderza się z gwiazdą [name] i ulega zniszczeniu.")
 	log_game("Orbital body [other.name] collided with the star [name] and was destroyed.")
 	//Rip.
 	if(istype(other, /datum/orbital_object/star))

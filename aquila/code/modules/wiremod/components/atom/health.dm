@@ -4,7 +4,7 @@
  * Return the health of a mob
  */
 /obj/item/circuit_component/health
-	display_name = "Get Health"
+	display_name = "Pobierz zdrowie"
 	desc = "Komponent, który zwraca zdrowie organizmu."
 	category = "Entity"
 

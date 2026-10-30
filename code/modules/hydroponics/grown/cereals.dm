@@ -1,8 +1,8 @@
 // Wheat
 /obj/item/food/grown/wheat
 	seed = /obj/item/plant_seeds/preset/wheat
-	name = "wheat"
-	desc = "Sigh... wheat... a-grain?"
+	name = "pszenica"
+	desc = "Ech... pszenica... znowu zboże?"
 	gender = PLURAL
 	icon_state = "wheat"
 	bite_consumption_mod = 0.5 // Chewing on wheat grains?
@@ -13,8 +13,8 @@
 
 // Oat
 /obj/item/food/grown/oat
-	name = "oat"
-	desc = "Eat oats, do squats."
+	name = "owies"
+	desc = "Jedz owies, rób przysiady."
 	seed = /obj/item/plant_seeds/preset/oats
 	gender = PLURAL
 	icon_state = "oat"
@@ -28,8 +28,8 @@
 // Rice
 /obj/item/food/grown/rice
 	seed = /obj/item/plant_seeds/preset/rice
-	name = "rice"
-	desc = "Rice to meet you."
+	name = "ryż"
+	desc = "Ryżo cię poznać."
 	gender = PLURAL
 	icon_state = "rice"
 	bite_consumption_mod = 0.5
@@ -40,8 +40,8 @@
 
 //Meatwheat - grows into synthetic meat
 /obj/item/food/grown/meatwheat
-	name = "meatwheat"
-	desc = "Some blood-drenched wheat stalks. You can crush them into what passes for meat if you squint hard enough."
+	name = "mięsopszenica"
+	desc = "Kilka przesiąkniętych krwią źdźbeł pszenicy. Można je zgnieść w coś, co przy odrobinie wyobraźni uchodzi za mięso."
 	icon_state = "meatwheat"
 	gender = PLURAL
 	bite_consumption_mod = 0.5

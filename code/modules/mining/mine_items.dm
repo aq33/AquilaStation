@@ -2,7 +2,7 @@
 
 //this item is intended to give the effect of entering the mine, so that light gradually fades
 /obj/effect/light_emitter
-	name = "Light emitter"
+	name = "emiter światła"
 	anchored = TRUE
 	invisibility = 101
 	var/set_luminosity = 8
@@ -21,7 +21,7 @@
 /**********************Miner Lockers**************************/
 
 /obj/structure/closet/wardrobe/miner
-	name = "mining wardrobe"
+	name = "szafa górnicza"
 	icon_door = "mixed"
 
 /obj/structure/closet/wardrobe/miner/PopulateContents()
@@ -45,7 +45,7 @@
 	new /obj/item/clothing/gloves/color/black(src)
 
 /obj/structure/closet/secure_closet/miner
-	name = "miner's equipment"
+	name = "sprzęt górnika"
 	icon_state = "mining"
 	req_access = list(ACCESS_MINING)
 
@@ -72,8 +72,8 @@
 /**********************Shuttle Computer**************************/
 
 /obj/machinery/computer/shuttle_flight/mining
-	name = "mining shuttle console"
-	desc = "Used to call and send the mining shuttle."
+	name = "konsola promu górniczego"
+	desc = "Służy do wzywania i odsyłania promu górniczego."
 	circuit = /obj/item/circuitboard/computer/shuttle/mining_shuttle
 	shuttleId = "mining"
 	possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
@@ -90,8 +90,8 @@
 
 //It is on lavaland, soooo....
 /obj/machinery/computer/shuttle_flight/science
-	name = "science outpost shuttle console"
-	desc = "Used to call and send the science shuttle."
+	name = "konsola promu placówki naukowej"
+	desc = "Służy do wzywania i odsyłania promu naukowego."
 	circuit = /obj/item/circuitboard/computer/shuttle/science_shuttle
 	shuttleId = "science"
 	possible_destinations = "science_station;science_outpost"
@@ -99,7 +99,7 @@
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 
 /obj/structure/closet/crate/miningcar
-	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
-	name = "Mining car (not for rails)"
+	desc = "Wózek górniczy. Ten nie jeździ po szynach, trzeba go ciągnąć."
+	name = "wózek górniczy (nie na szyny)"
 	icon_state = "miningcar"
 	door_anim_time = 0

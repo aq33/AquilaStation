@@ -1,5 +1,5 @@
 /obj/item/gun/energy/laser/retro/old/research
-	desc = "An older model of the basic lasergun, no longer used by Nanotrasen's private security or military forces."
+	desc = "Starszy model podstawowego karabinu laserowego, którego nie używa już prywatna ochrona Nanotrasen ani wojsko."
 	dual_wield_spread = 60
 	can_flashlight = TRUE
 	w_class = WEIGHT_CLASS_BULKY

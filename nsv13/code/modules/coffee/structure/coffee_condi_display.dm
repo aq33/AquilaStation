@@ -1,8 +1,8 @@
 /obj/item/storage/fancy/coffee_condi_display
 	icon = 'nsv13/icons/obj/coffee.dmi'
 	icon_state = "coffee_condi_display"
-	name = "coffee condiments display"
-	desc = "A neat small wooden box, holding all your favorite coffee condiments."
+	name = "pudełko z dodatkami do kawy"
+	desc = "Zgrabne drewniane pudełeczko ze wszystkimi twoimi ulubionymi dodatkami do kawy."
 	//icon_type = "coffee condiment"
 	fancy_open = TRUE
 

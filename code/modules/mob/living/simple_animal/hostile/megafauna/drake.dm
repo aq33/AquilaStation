@@ -27,8 +27,8 @@ Difficulty: Medium
 */
 
 /mob/living/simple_animal/hostile/megafauna/dragon
-	name = "ash drake"
-	desc = "Guardians of the necropolis."
+	name = "popielny smok"
+	desc = "Strażnicy Nekropolii."
 	health = 2500
 	maxHealth = 2500
 	attacktext = "chrupie"
@@ -52,7 +52,7 @@ Difficulty: Medium
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/ashdrake = 10)
 	var/swooping = NONE
 	var/player_cooldown = 0
-	gps_name = "Fiery Signal"
+	gps_name = "Ognisty sygnał"
 	achievement_type = /datum/award/achievement/boss/drake_kill
 	crusher_achievement_type = /datum/award/achievement/boss/drake_crusher
 	score_achievement_type = /datum/award/score/drake_score
@@ -66,28 +66,28 @@ Difficulty: Medium
 	small_sprite_type = /datum/action/small_sprite/megafauna/drake
 
 /datum/action/innate/megafauna_attack/fire_cone
-	name = "Fire Cone"
+	name = "Stożek ognia"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "fireball"
 	chosen_message = "<span class='colossus'>Teraz zionisz ogniem w cel.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/fire_cone_meteors
-	name = "Fire Cone With Meteors"
+	name = "Stożek ognia z meteorami"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz zionisz ogniem w cel i sprowadzasz deszcz ognia wokół siebie.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/mass_fire
-	name = "Mass Fire Attack"
+	name = "Zmasowany atak ognia"
 	icon_icon = 'icons/effects/fire.dmi'
 	button_icon_state = "1"
 	chosen_message = "<span class='colossus'>Teraz zionisz zmasowanym ogniem w cel.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/lava_swoop
-	name = "Lava Swoop"
+	name = "Lawowy nalot"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "lavastaff_warn"
 	chosen_message = "<span class='colossus'>Teraz pikujesz i zrzucasz lawę na cel.</span>"
@@ -448,8 +448,8 @@ Difficulty: Medium
 		T.ChangeTurf(reset_turf, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/effect/temp_visual/drakewall
-	desc = "An ash drakes true flame."
-	name = "Fire Barrier"
+	desc = "Prawdziwy płomień popielnego smoka."
+	name = "ognista bariera"
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
 	anchored = TRUE
@@ -467,8 +467,8 @@ Difficulty: Medium
 	duration = 13
 
 /obj/effect/temp_visual/dragon_swoop
-	name = "certain death"
-	desc = "Don't just stand there, move!"
+	name = "pewna śmierć"
+	desc = "Nie stój tak, ruszaj się!"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "landing"
 	layer = BELOW_MOB_LAYER
@@ -516,8 +516,8 @@ Difficulty: Medium
 /obj/effect/temp_visual/fireball
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "fireball"
-	name = "fireball"
-	desc = "Get out of the way!"
+	name = "kula ognia"
+	desc = "Zejdź z drogi!"
 	layer = FLY_LAYER
 	randomdir = FALSE
 	duration = 9
@@ -563,7 +563,7 @@ Difficulty: Medium
 			L.adjustFireLoss(10) //if we've already hit them, do way less damage
 
 /mob/living/simple_animal/hostile/megafauna/dragon/lesser
-	name = "lesser ash drake"
+	name = "mniejszy popielny smok"
 	maxHealth = 200
 	health = 200
 	faction = list("neutral")

@@ -74,60 +74,60 @@ export const StormdriveConsole = (props) => {
     <Window theme="ntos" width={560} height={600}>
       <Window.Content scrollable>
         <Section>
-          <Section title="Control presets:">
+          <Section title="Ustawienia wstępne:">
             <>
               <Button
                 fluid
-                content="AZ-1 - FULLY RAISE CONTROL RODS"
+                content="AZ-1 - CAŁKOWICIE WYSUŃ PRĘTY KONTROLNE"
                 icon="exclamation-triangle"
                 color="bad"
                 onClick={() => act('rods_1')}
               />
               <Button
                 fluid
-                content="AZ-2 - HIGH TEMPERATURE OPERATION"
+                content="AZ-2 - PRACA W WYSOKIEJ TEMPERATURZE"
                 icon="temperature-high"
                 color="average"
                 onClick={() => act('rods_2')}
               />
               <Button
                 fluid
-                content="AZ-3 - NOMINAL OPERATION"
+                content="AZ-3 - PRACA NOMINALNA"
                 icon="temperature-low"
                 color="yellow"
                 onClick={() => act('rods_3')}
               />
               <Button
                 fluid
-                content="AZ-4 - COLD START"
+                content="AZ-4 - ZIMNY START"
                 icon="snowflake"
                 color="blue"
                 onClick={() => act('rods_4')}
               />
               <Button
                 fluid
-                content="AZ-5 - SCRAM"
+                content="AZ-5 - SCRAM (AWARYJNE WYŁĄCZENIE)"
                 icon="radiation-alt"
                 color="bad"
                 onClick={() => act('rods_5')}
               />
               <Button
                 fluid
-                content="AZ-6 - MAINTENANCE MODE"
+                content="AZ-6 - TRYB KONSERWACJI"
                 icon="cog"
                 color={data.reactor_maintenance && 'white'}
                 onClick={() => act('maintenance')}
               />
               <Button
                 fluid
-                content="AZ-7 - FUEL DUMP"
+                content="AZ-7 - ZRZUT PALIWA"
                 icon="gas-pump"
                 color={data.pipe_open && 'white'}
                 onClick={() => act('pipe')}
               />
             </>
           </Section>
-          <Section title="Control Rod Insertion:">
+          <Section title="Wsunięcie prętów kontrolnych:">
             <Slider
               tickWhileDragging
               value={data.control_rod_percent}
@@ -142,8 +142,8 @@ export const StormdriveConsole = (props) => {
               }
             />
           </Section>
-          <Section title="Statistics:">
-            Temperature:
+          <Section title="Statystyki:">
+            Temperatura:
             <ProgressBar
               value={data.heat / data.reactor_meltdown}
               ranges={{
@@ -156,7 +156,7 @@ export const StormdriveConsole = (props) => {
             >
               {toFixed(data.heat) + ' °C'}
             </ProgressBar>
-            Rod Integrity:
+            Integralność prętów:
             <ProgressBar
               value={(data.rod_integrity / 100) * 100 * 0.01}
               ranges={{
@@ -164,7 +164,7 @@ export const StormdriveConsole = (props) => {
                 bad: [-Infinity, 0.15],
               }}
             />
-            Power Output:
+            Moc wyjściowa:
             <ProgressBar
               value={data.last_power_produced / data.theoretical_maximum_power}
               ranges={{
@@ -174,7 +174,7 @@ export const StormdriveConsole = (props) => {
             >
               {data.last_power_produced / 1e6 + ' MW'}
             </ProgressBar>
-            Reaction Rate:
+            Tempo reakcji:
             <ProgressBar
               value={data.reaction_rate * 0.05}
               ranges={{
@@ -184,7 +184,7 @@ export const StormdriveConsole = (props) => {
             >
               {data.reaction_rate + ' mol/s'}
             </ProgressBar>
-            Fuel Ratio:
+            Udział paliwa:
             <ProgressBar
               value={data.fuel_mix / data.total_moles}
               ranges={{
@@ -194,7 +194,7 @@ export const StormdriveConsole = (props) => {
             >
               {toFixed((data.fuel_mix / data.total_moles) * 100) + ' %'}
             </ProgressBar>
-            Fuel Moles:
+            Mole paliwa:
             <ProgressBar
               value={data.total_moles / data.mole_threshold_very_high}
               ranges={{
@@ -211,12 +211,12 @@ export const StormdriveConsole = (props) => {
               {data.total_moles + ' mol'}
             </ProgressBar>
           </Section>
-          <Section title="Fuel Line Composition:">
+          <Section title="Skład w linii paliwowej:">
             <Flex spacing={1}>
               <Flex.Item width="200px">
                 <Section>
                   <LabeledList>
-                    <LabeledList.Item label="Constricted Plasma">
+                    <LabeledList.Item label="Skondensowana plazma">
                       <ProgressBar
                         value={
                           (data.constricted_plasma / data.total_moles) * 100
@@ -230,7 +230,7 @@ export const StormdriveConsole = (props) => {
                         ) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Plasma">
+                    <LabeledList.Item label="Plazma">
                       <ProgressBar
                         value={(data.plasma / data.total_moles) * 100}
                         minValue={0}
@@ -240,7 +240,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.plasma / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Tritium">
+                    <LabeledList.Item label="Tryt">
                       <ProgressBar
                         value={(data.tritium / data.total_moles) * 100}
                         minValue={0}
@@ -251,7 +251,7 @@ export const StormdriveConsole = (props) => {
                           ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Oxygen">
+                    <LabeledList.Item label="Tlen">
                       <ProgressBar
                         value={(data.o2 / data.total_moles) * 100}
                         minValue={0}
@@ -261,7 +261,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.o2 / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Nitrogen">
+                    <LabeledList.Item label="Azot">
                       <ProgressBar
                         value={(data.n2 / data.total_moles) * 100}
                         minValue={0}
@@ -271,7 +271,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.n2 / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Carbon Dioxide">
+                    <LabeledList.Item label="Dwutlenek węgla">
                       <ProgressBar
                         value={(data.co2 / data.total_moles) * 100}
                         minValue={0}
@@ -281,7 +281,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.co2 / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Water Vapour">
+                    <LabeledList.Item label="Para wodna">
                       <ProgressBar
                         value={(data.water_vapour / data.total_moles) * 100}
                         minValue={0}
@@ -292,7 +292,7 @@ export const StormdriveConsole = (props) => {
                           ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Hypernoblium">
+                    <LabeledList.Item label="Hipernoblium">
                       <ProgressBar
                         value={(data.nob / data.total_moles) * 100}
                         minValue={0}
@@ -302,7 +302,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.nob / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Nitrous Oxide">
+                    <LabeledList.Item label="Podtlenek azotu">
                       <ProgressBar
                         value={(data.n2o / data.total_moles) * 100}
                         minValue={0}
@@ -312,7 +312,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.n2o / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Nitryl">
+                    <LabeledList.Item label="Dwutlenek azotu (nitryl)">
                       <ProgressBar
                         value={(data.no2 / data.total_moles) * 100}
                         minValue={0}
@@ -342,7 +342,7 @@ export const StormdriveConsole = (props) => {
                         {toFixed((data.stim / data.total_moles) * 100) + ' %'}
                       </ProgressBar>
                     </LabeledList.Item>
-                    <LabeledList.Item label="Pluoxium">
+                    <LabeledList.Item label="Pluoksium">
                       <ProgressBar
                         value={(data.pluoxium / data.total_moles) * 100}
                         minValue={0}

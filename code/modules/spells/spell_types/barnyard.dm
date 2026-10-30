@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/barnyardcurse
-	name = "Curse of the Barnyard"
-	desc = "This spell dooms an unlucky soul to possess the speech and facial attributes of a barnyard animal."
+	name = "Klątwa podwórka"
+	desc = "To zaklęcie skazuje nieszczęsną duszę na mowę i rysy twarzy zwierzęcia z podwórka."
 	school = "transmutation"
 	charge_type = "recharge"
 	charge_max	= 150

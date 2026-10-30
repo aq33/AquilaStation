@@ -8,7 +8,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 /datum/cameranet
 	/// Name to show for VV and stat()
-	var/name = "Camera Net"
+	var/name = "Sieć kamer"
 
 	/// The cameras on the map, no matter if they work or not. Updated in obj/machinery/camera.dm by New() and Del().
 	var/list/cameras = list()
@@ -147,7 +147,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 /datum/cameranet/proc/stat_entry()
 	var/list/tab_data = list()
 	tab_data["[name]"] = list(
-		text="Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]",
+		text="Kamery: [GLOB.cameranet.cameras.len] | Fragmenty: [GLOB.cameranet.chunks.len]",
 		action = "statClickDebug",
 		params=list(
 			"targetRef" = REF(src),
@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	return tab_data
 
 /obj/effect/overlay/camera_static
-	name = "static"
+	name = "zakłócenia"
 	icon = null
 	icon_state = null
 	anchored = TRUE  // should only appear in vis_contents, but to be safe

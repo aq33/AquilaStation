@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/summon_spear
-	name = "Summon Weapon"
-	desc = "Summons your weapon from across time and space."
+	name = "Przywołanie broni"
+	desc = "Przywołuje twoją broń przez czas i przestrzeń."
 
 	charge_max = 20
 	invocation = "none"

@@ -6,9 +6,9 @@
 //A plant rooted in the ground that forfeits its melee attack in favor of ranged barrages.
 //It will fire flurries of solar energy, and occasionally charge up a powerful blast that makes it vulnerable to attack.
 /mob/living/simple_animal/hostile/jungle/seedling
-	name = "seedling"
-	desc = "This oversized, predatory flower conceals what can only be described as an organic energy cannon, and it will not die until its hidden vital organs are sliced out. \
-	 The concentrated streams of energy it sometimes produces require its full attention, attacking it during this time will prevent it from finishing its attack."
+	name = "sadzonka"
+	desc = "Ten przerośnięty, drapieżny kwiat skrywa coś, co można opisać tylko jako organiczne działo energetyczne, i nie zginie, dopóki nie wytnie się jego ukrytych organów. \
+	 Skupione strumienie energii, które czasem wytwarza, wymagają jego pełnej uwagi, więc atak w tym czasie przerwie mu natarcie."
 	icon = 'icons/mob/jungle/seedling.dmi'
 	icon_state = "seedling"
 	icon_living = "seedling"
@@ -37,7 +37,7 @@
 	var/solar_beam_identifier = 0
 
 /obj/item/projectile/seedling
-	name = "solar energy"
+	name = "energia słoneczna"
 	icon_state = "seedling"
 	damage = 10
 	damage_type = BURN
@@ -56,7 +56,7 @@
 	return ..()
 
 /obj/effect/temp_visual/solarbeam_killsat
-	name = "beam of solar energy"
+	name = "promień energii słonecznej"
 	icon_state = "solar_beam"
 	icon = 'icons/effects/beam.dmi'
 	layer = LIGHTING_LAYER

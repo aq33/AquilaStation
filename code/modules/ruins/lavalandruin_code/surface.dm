@@ -1,14 +1,14 @@
 //////lavaland surface papers
 
 /obj/item/paper/fluff/stations/lavaland/surface/henderson_report
-	name = "Important Notice - Mrs. Henderson"
+	name = "Ważne zawiadomienie - pani Henderson"
 	default_raw_text = "Nic ciekawego do zgłoszenia."
 
 //ratvar
 
 /obj/structure/dead_ratvar
-	name = "hulking wreck"
-	desc = "The remains of a monstrous war machine."
+	name = "potężny wrak"
+	desc = "Szczątki monstrualnej machiny wojennej."
 	icon = 'icons/obj/lavaland/dead_ratvar.dmi'
 	icon_state = "dead_ratvar"
 	flags_1 = ON_BORDER_1

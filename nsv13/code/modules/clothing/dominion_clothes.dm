@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/space/hardsuit/dominion
-	name = "Dominion hardsuit"
-	desc = "A Dominion hardsuit, with room for antennae and neck fluff!"
+	name = "hardsuit Dominium"
+	desc = "Hardsuit Dominium z miejscem na czułki i puszek na szyi!"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	icon_state = "hardsuit-dominion"
 	item_state = "hardsuit-dominion"
@@ -13,8 +13,8 @@
 	flash_protect = 2
 
 /obj/item/clothing/head/helmet/space/hardsuit/dominion
-	name = "Dominion hardsuit helmet"
-	desc = "The helmet to a Dominion hardsuit with flash resistance glass and room for antennae and neck fluff."
+	name = "hełm hardsuitu Dominium"
+	desc = "Hełm do hardsuitu Dominium, z szybą odporną na błyski i miejscem na czułki i puszek na szyi."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit0-dominion"
@@ -22,8 +22,8 @@
 	hardsuit_type = "dominion"
 
 /obj/item/clothing/suit/space/hardsuit/dominion/engi
-	name = "Dominion Engineering hardsuit"
-	desc = "A Dominion engineering hardsuit, built to last!"
+	name = "inżynieryjny hardsuit Dominium"
+	desc = "Inżynieryjny hardsuit Dominium, zrobiony, by przetrwać!"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	icon_state = "hardsuit-dominion-engi"
 	item_state = "hardsuit-dominion-engi"
@@ -36,8 +36,8 @@
 	flash_protect = 2
 
 /obj/item/clothing/head/helmet/space/hardsuit/dominion/engi
-	name = "Dominion engineering helmet"
-	desc = "The helmet to a Dominion engineering hardsuit."
+	name = "inżynieryjny hełm Dominium"
+	desc = "Hełm do inżynieryjnego hardsuitu Dominium."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit0-dominion-engi"
@@ -45,8 +45,8 @@
 	hardsuit_type = "dominion-engi"
 
 /obj/item/clothing/suit/space/hardsuit/dominion/atmo
-	name = "Dominion Atmospherics hardsuit"
-	desc = "A Dominion atmospherics hardsuit, built to last!"
+	name = "hardsuit atmosferyki Dominium"
+	desc = "Hardsuit atmosferyki Dominium, zrobiony, by przetrwać!"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	icon_state = "hardsuit-dominion-atmo"
 	item_state = "hardsuit-dominion-atmo"
@@ -59,8 +59,8 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/head/helmet/space/hardsuit/dominion/atmo
-	name = "Dominion atmospherics helmet"
-	desc = "The helmet to a Dominion atmospherics hardsuit."
+	name = "hełm atmosferyki Dominium"
+	desc = "Hełm do hardsuitu atmosferyki Dominium."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit0-dominion-atmo"
@@ -70,9 +70,9 @@
 
 /obj/item/clothing/suit/space/hardsuit/dominion/mining
 	icon_state = "hardsuit-dominion-mining"
-	name = "Dominion mining hardsuit"
+	name = "górniczy hardsuit Dominium"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
-	desc = "A special hardsuit designed for mining asteroids."
+	desc = "Specjalny hardsuit do wydobycia na asteroidach."
 	item_state = "dominion-mining"
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF
@@ -87,8 +87,8 @@
 	AddComponent(/datum/component/armor_plate)
 
 /obj/item/clothing/head/helmet/space/hardsuit/dominion/mining
-	name = "Dominion mining hardsuit helmet"
-	desc = "A specially designed helmet for the Dominion mining hardsuit."
+	name = "hełm górniczego hardsuitu Dominium"
+	desc = "Specjalnie zaprojektowany hełm do górniczego hardsuitu Dominium."
 	icon_state = "hardsuit0-dominion-mining"
 	item_state = "hardsuit0-dominion-mining"
 	hardsuit_type = "dominion-mining"

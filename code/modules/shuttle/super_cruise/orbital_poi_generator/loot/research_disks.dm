@@ -1,5 +1,5 @@
 /obj/item/disk/tech_disk/research
-	desc = "A research disk that will unlock a research node when uploaded into a research console."
+	desc = "Dysk badawczy, który po wgraniu do konsoli badań odblokowuje węzeł badań."
 	var/node_id
 
 /obj/item/disk/tech_disk/research/Initialize(mapload)
@@ -8,7 +8,7 @@
 	if(node_id)
 		stored_research.hidden_nodes[node_id] = FALSE
 		var/datum/techweb_node/node = SSresearch.techweb_node_by_id(node_id)
-		name = "research disk ([node.display_name])"
+		name = "dysk badawczy ([node.display_name])"
 
 /obj/item/disk/tech_disk/research/Destroy()
 	SSorbits.research_disks -= src

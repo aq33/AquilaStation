@@ -67,7 +67,7 @@
 * a pH booklet that contains pH paper pages that will change color depending on the pH of the reagents datum it's attacked onto
 */
 /obj/item/ph_booklet
-	name = "pH indicator booklet"
+	name = "książeczka wskaźnikowa pH"
 	desc = "Książeczka z papierkami nasączonymi wskaźnikiem uniwersalnym. Weź ją do ręki i kliknij, żeby wyrwać papierek."
 	icon_state = "pHbooklet"
 	icon = 'aquila/icons/obj/chemistry/ph_tools.dmi'
@@ -110,7 +110,7 @@
 * pH paper will change color depending on the pH of the reagents datum it's attacked onto
 */
 /obj/item/ph_paper
-	name = "pH indicator strip"
+	name = "pasek wskaźnikowy pH"
 	desc = "Pasek papieru, który zmienia kolor zależnie od pH roztworu."
 	icon_state = "pHpaper"
 	icon = 'aquila/icons/obj/chemistry/ph_tools.dmi'
@@ -134,7 +134,7 @@
 	var/ph = round(cont.reagents.ph, 1)
 	color = ph_to_color(ph)
 	desc += " Wygląda na pH około [ph]."
-	name = "used [name]"
+	name = "[name] (zużyty)"
 	used = TRUE
 	return TRUE
 
@@ -142,7 +142,7 @@
 * pH meter that will give a detailed or truncated analysis of all the reagents in of an object with a reagents datum attached to it. Only way of detecting purity for now.
 */
 /obj/item/ph_meter
-	name = "chemical analyzer"
+	name = "analizator chemiczny"
 	desc = "Elektroda podłączona do małej skrzynki z układem, która wyświetla szczegóły roztworu: pH, temperaturę i czystość każdego odczynnika. Można przełączyć, czy ma pokazywać opisy odczynników."
 	icon_state = "pHmeter"
 	icon = 'aquila/icons/obj/chemistry/ph_tools.dmi'
@@ -168,21 +168,21 @@
 		return
 	var/list/out_message = list()
 	to_chat(user, "<i>Analizator chemiczny pika i wyświetla:</i>")
-	out_message += "<b>Objętość: [round(cont.reagents.total_volume, 0.01)]u, temperatura: [round(cont.reagents.chem_temp, 0.1)] K, pH: [round(cont.reagents.ph, 0.01)]</b>"
+	out_message += "<b>Objętość: [round(cont.reagents.total_volume, 0.01)] j., temperatura: [round(cont.reagents.chem_temp, 0.1)] K, pH: [round(cont.reagents.ph, 0.01)]</b>"
 	out_message += "<b>Chemikalia w [target.name]:</b>"
 	if(cont.reagents.is_reacting)
 		out_message += "<span class='warning'>W środku trwa reakcja.</span>"
 	for(var/datum/reagent/reagent as anything in cont.reagents.reagent_list)
-		var/details = scanmode ? "[reagent.overdose_threshold ? "<b>Przedawkowanie:</b> [reagent.overdose_threshold]u, " : ""]<b>Bazowe pH:</b> [initial(reagent.ph)], <b>Obecne pH:</b> [round(reagent.ph, 0.01)]." : "<b>Obecne pH:</b> [round(reagent.ph, 0.01)]."
+		var/details = scanmode ? "[reagent.overdose_threshold ? "<b>Przedawkowanie:</b> [reagent.overdose_threshold] j., " : ""]<b>Bazowe pH:</b> [initial(reagent.ph)], <b>Obecne pH:</b> [round(reagent.ph, 0.01)]." : "<b>Obecne pH:</b> [round(reagent.ph, 0.01)]."
 		if(reagent.inverse_chem && reagent.purity < reagent.inverse_chem_val) //If the reagent is impure
 			var/datum/reagent/inverse_reagent = GLOB.chemical_reagents_list[reagent.inverse_chem]
-			out_message += "<span class='warning'>Wykryto odwrócony odczynnik:</span> <b>[round(reagent.volume, 0.01)]u [inverse_reagent.name]</b>, <b>Czystość:</b> [round(1 - reagent.purity, 0.0001) * 100]%, [details]"
+			out_message += "<span class='warning'>Wykryto odwrócony odczynnik:</span> <b>[round(reagent.volume, 0.01)] j. [inverse_reagent.name]</b>, <b>Czystość:</b> [round(1 - reagent.purity, 0.0001) * 100]%, [details]"
 		else
-			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)]u [reagent.name]</b>, <b>Czystość:</b> [round(reagent.purity, 0.0001) * 100]%, [details]"
+			out_message += "<b>[round(reagent.volume, CHEMICAL_VOLUME_ROUNDING)] j. [reagent.name]</b>, <b>Czystość:</b> [round(reagent.purity, 0.0001) * 100]%, [details]"
 		if(scanmode)
 			out_message += "<b>Analiza:</b> [reagent.description]"
 	to_chat(user, "<div class='examine_block'><span class='notice'>[out_message.Join("<br>")]</span></div>")
-	desc = "Elektroda podłączona do małej skrzynki z układem. Ekran pokazuje: objętość [round(cont.reagents.total_volume, 0.01)]u, pH [round(cont.reagents.ph, 0.1)]."
+	desc = "Elektroda podłączona do małej skrzynki z układem. Ekran pokazuje: objętość [round(cont.reagents.total_volume, 0.01)] j., pH [round(cont.reagents.ph, 0.1)]."
 	return TRUE
 
 #undef DETAILED_CHEM_OUTPUT

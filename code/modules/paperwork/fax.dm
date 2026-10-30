@@ -1,6 +1,6 @@
 /obj/machinery/fax
-	name = "Fax Machine"
-	desc = "Bluespace technologies on the application of bureaucracy"
+	name = "faks"
+	desc = "Technologie bluespace w służbie biurokracji."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "fax"
 	density = TRUE

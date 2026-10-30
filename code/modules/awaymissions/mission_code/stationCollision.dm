@@ -20,12 +20,12 @@
  * Landmarks - Instead of spawning a new object type, I'll spawn the bible using a landmark!
  */
 /obj/effect/landmark/sc_bible_spawner
-	name = "Safecode hint spawner"
+	name = "spawner podpowiedzi do sejfu"
 
 /obj/effect/landmark/sc_bible_spawner/Initialize(mapload)
 	..()
 	var/obj/item/storage/book/bible/B = new /obj/item/storage/book/bible/booze(loc)
-	B.name = "The Holy book of the Geometer"
+	B.name = "Święta księga Geometry"
 	B.deity_name = "Narsie"
 	B.icon_state = "melted"
 	B.item_state = "melted"
@@ -40,9 +40,9 @@
  */
 //Captain's retro laser - Fires practice laser shots instead.
 /obj/item/gun/energy/laser/retro/sc_retro
-	name ="retro laser"
+	name ="retro karabin laserowy"
 	icon_state = "retro"
-	desc = "An older model of the basic lasergun, no longer used by Nanotrasen's security or military forces."
+	desc = "Starszy model podstawowego karabinu laserowego, którego ochrona i wojsko Nanotrasen już nie używają."
 //	projectile_type = "/obj/item/projectile/practice"
 	clumsy_check = 0 //No sense in having a harmless gun blow up in the clowns face
 
@@ -66,8 +66,8 @@
 
 //Lasers
 /obj/item/gun/energy/laser/practice/sc_laser
-	name = "Old laser"
-	desc = "A once potent weapon, years of dust have collected in the chamber and lens of this weapon, weakening the beam significantly."
+	name = "stary laser"
+	desc = "Niegdyś potężna broń. Przez lata w komorze i soczewce zebrał się kurz, który znacznie osłabia wiązkę."
 	clumsy_check = 0
 
 /*
@@ -83,25 +83,25 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
 
 //Pieces of paper actually containing the hints
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_prison
-	name = "smudged paper"
+	name = "rozmazana kartka"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_prison/Initialize(mapload)
 	default_raw_text = "<i>Atrament jest rozmazany, da się odczytać tylko kilka cyfr:</i> '[GLOB.sc_safecode1]**[GLOB.sc_safecode4]*'"
 	return ..()
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_hydro
-	name = "shredded paper"
+	name = "podarta kartka"
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_hydro/Initialize(mapload)
 	default_raw_text = "<i>Choć kartka jest podarta, wyraźnie widać liczbę:</i> '[GLOB.sc_safecode2]'"
 	return ..()
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_caf
-	name = "blood-soaked paper"
+	name = "przesiąknięta krwią kartka"
 	//This does not have to be in New() because it is a constant. There are no variables in it i.e. [sc_safcode]
 	default_raw_text = "<font color=red><i>Ta kartka jest przesiąknięta krwią, nie da się odczytać żadnego tekstu.</i></font>"
 
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_bible
-	name = "hidden paper"
+	name = "ukryta kartka"
 /obj/item/paper/fluff/awaymissions/stationcollision/safehint_paper_bible/Initialize(mapload)
 	default_raw_text = {"<i>Wygląda na to, że długopis schowany razem z kartką wylał na nią atrament. Da się jednak odczytać trzy ostatnie cyfry:</i>'[GLOB.sc_safecode3][GLOB.sc_safecode4][GLOB.sc_safecode5]'
 			"}
@@ -123,7 +123,7 @@ GLOBAL_VAR_INIT(sc_safecode5, "[rand(0,9)]")
  * Captain's safe
  */
 /obj/item/storage/secure/safe/sc_ssafe
-	name = "Captain's secure safe"
+	name = "zabezpieczony sejf kapitana"
 
 /obj/item/storage/secure/safe/sc_ssafe/Initialize(mapload)
 	. = ..()

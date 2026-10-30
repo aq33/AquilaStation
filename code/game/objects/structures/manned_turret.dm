@@ -1,8 +1,8 @@
 /////// MANNED TURRET ////////
 
 /obj/machinery/manned_turret
-	name = "machine gun turret"
-	desc = "While the trigger is held down, this gun will redistribute recoil to allow its user to easily shift targets."
+	name = "wieżyczka z karabinem maszynowym"
+	desc = "Dopóki trzymasz spust, broń rozkłada odrzut tak, że łatwo przenosisz ogień między celami."
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "machinegun"
 	can_buckle = TRUE
@@ -165,7 +165,7 @@
 	P.fire()
 
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
-	name = "Infinity Gun"
+	name = "Działo Nieskończoności"
 	view_range = 12
 	projectile_type = /obj/item/projectile/bullet/manned_turret
 
@@ -177,7 +177,7 @@
 	fire_helper(user)
 
 /obj/item/gun_control
-	name = "turret controls"
+	name = "sterowanie wieżyczką"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE

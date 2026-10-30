@@ -76,7 +76,7 @@ GLOBAL_DATUM(voidwalker_void_reservation, /datum/turf_reservation)
 
 /// Samochodzik z duszą: porwany jeździ nim po pustce, je kulki i się leczy, zanim wróci na statek
 /obj/effect/wisp_mobile
-	name = "wisp"
+	name = "ognik"
 	desc = "Mała, ciepła iskierka."
 	icon = 'aquila/icons/obj/voidwalker_items.dmi'
 	icon_state = "wisp"
@@ -173,7 +173,7 @@ GLOBAL_DATUM(voidwalker_void_reservation, /datum/turf_reservation)
 
 /// Kulka do zjedzenia przez wispy
 /obj/effect/wisp_food
-	name = "wisp"
+	name = "ognik"
 	desc = "Mała, ciepła iskierka. Wygląda smacznie."
 	icon = 'aquila/icons/obj/voidwalker_items.dmi'
 	icon_state = "wisp"

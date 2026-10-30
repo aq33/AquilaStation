@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/ant
-	name = "giant ant"
-	desc = "A writhing mass of ants, glued together to make an adorable pet!"
+	name = "olbrzymia mrówka"
+	desc = "Wijąca się masa mrówek, sklejona w uroczego zwierzaka!"
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "ant"
 	icon_living = "ant"

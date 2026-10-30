@@ -26,7 +26,7 @@
 
 /datum/round_event/ghost_role/infiltrators
 	minimum_required = 3
-	role_name = "infiltration team"
+	role_name = "zespół infiltracyjny"
 
 /datum/round_event/ghost_role/infiltrators/spawn_role()
 	var/list/candidates = pollGhostCandidates("Czy chcesz być brany pod uwagę do zespołu infiltracyjnego?", ROLE_INFILTRATOR)

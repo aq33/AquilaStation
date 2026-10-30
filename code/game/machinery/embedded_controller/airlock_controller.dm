@@ -197,7 +197,7 @@
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
 
-	name = "airlock console"
+	name = "konsola śluzy"
 	density = FALSE
 
 	frequency = FREQ_AIRLOCK_CONTROL
@@ -212,7 +212,7 @@
 	var/sanitize_external
 
 /obj/machinery/embedded_controller/radio/airlock_controller/incinerator_toxmix
-	name = "Incinerator Access Console"
+	name = "konsola dostępu do spalarni"
 	airpump_tag = INCINERATOR_TOXMIX_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_TOXMIX_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_TOXMIX_AIRLOCK_CONTROLLER
@@ -221,7 +221,7 @@
 	sensor_tag = INCINERATOR_TOXMIX_AIRLOCK_SENSOR
 
 /obj/machinery/embedded_controller/radio/airlock_controller/incinerator_atmos
-	name = "Incinerator Access Console"
+	name = "konsola dostępu do spalarni"
 	airpump_tag = INCINERATOR_ATMOS_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_ATMOS_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_ATMOS_AIRLOCK_CONTROLLER
@@ -230,7 +230,7 @@
 	sensor_tag = INCINERATOR_ATMOS_AIRLOCK_SENSOR
 
 /obj/machinery/embedded_controller/radio/airlock_controller/incinerator_syndicatelava
-	name = "Incinerator Access Console"
+	name = "konsola dostępu do spalarni"
 	airpump_tag = INCINERATOR_SYNDICATELAVA_DP_VENTPUMP
 	exterior_door_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_EXTERIOR
 	id_tag = INCINERATOR_SYNDICATELAVA_AIRLOCK_CONTROLLER

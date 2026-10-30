@@ -4,9 +4,9 @@
 	if(.)
 		return
 	var/msg = !auth ? "no" : "a bad"
-	message_admins("[key_name_admin(usr)] clicked an href with [msg] authorization key!")
+	message_admins("[key_name_admin(usr)] klika href z [auth ? "błędnym" : "brakującym"] kluczem autoryzacji!")
 	if(CONFIG_GET(flag/debug_admin_hrefs))
-		message_admins("Debug mode enabled, call not blocked. Please ask your coders to review this round's logs.")
+		message_admins("Tryb debugowania włączony, wywołanie nie zostało zablokowane. Poproś koderów o przejrzenie logów tej rundy.")
 		log_world("UAH: [href]")
 		return TRUE
 	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
@@ -59,7 +59,7 @@
 	..()
 
 	if(usr.client != src.owner || !check_rights(0))
-		message_admins("[usr.key] has attempted to override the admin panel!")
+		message_admins("[usr.key] próbuje obejść panel admina!")
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		return
 
@@ -109,110 +109,110 @@
 			return
 		switch(href_list["makeAntag"])
 			if("traitors")
-				var/maxCount = input("Ustaw liczbę zdrajców","Set Traitor Count (max)",1) as num|null
+				var/maxCount = input("Ustaw liczbę zdrajców","Liczba zdrajców (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeTraitors(maxCount))
-					message_admins("[key_name_admin(usr)] created [maxCount] traitor(s).")
+					message_admins("[key_name_admin(usr)] tworzy zdrajców: [maxCount].")
 					log_admin("[key_name(usr)] created [maxCount] traitor(s).")
 				else
-					message_admins("[key_name_admin(usr)] tried to create  [maxCount] traitor(s). Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć zdrajców ([maxCount]). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create [maxCount] traitor(s).")
 			if("changelings")
-				var/maxCount = input("Ustaw liczbę zmiennokształtnych","Set Changeling Count (max)",1) as num|null
+				var/maxCount = input("Ustaw liczbę zmiennokształtnych","Liczba zmiennokształtnych (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeChangelings(maxCount))
-					message_admins("[key_name(usr)] created [maxCount] changelings.")
+					message_admins("[key_name(usr)] tworzy changelingi: [maxCount].")
 					log_admin("[key_name(usr)] created [maxCount] changelings.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create [maxCount] changelings. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć zmiennokształtnych ([maxCount]). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create [maxCount] changelings.")
 			if("revs")
-				var/maxCount = input("Ustaw liczbę rewolucjonistów","Set Revolutionaries Count (max)",1) as num|null
+				var/maxCount = input("Ustaw liczbę rewolucjonistów","Liczba rewolucjonistów (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeRevs(maxCount))
-					message_admins("[key_name(usr)] started a revolution with [maxCount] freedom fighters.")
+					message_admins("[key_name(usr)] wszczyna rewolucję, bojowników o wolność: [maxCount].")
 					log_admin("[key_name(usr)] started a [maxCount] freedom fighters.")
 				else
-					message_admins("[key_name_admin(usr)] tried to start a revolution with [maxCount] freedom fighters. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje wszcząć rewolucję ([maxCount] bojowników o wolność). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to start a revolution with [maxCount] freedom fighters.")
 			if("cult")
-				var/maxCount = input("Ustaw liczbę kultystów","Set Cultist Count (max)",1) as num|null
+				var/maxCount = input("Ustaw liczbę kultystów","Liczba kultystów (maks.)",1) as num|null
 				if (!maxCount)
 					return
 				if(src.makeCult(maxCount))
-					message_admins("[key_name(usr)] started a cult with [maxCount] cultists.")
+					message_admins("[key_name(usr)] zakłada kult, kultystów: [maxCount].")
 					log_admin("[key_name(usr)] started a cult with [maxCount] cultists.")
 				else
-					message_admins("[key_name_admin(usr)] tried to start a cult with [maxCount] cultists. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje założyć kult ([maxCount] kultystów). Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to start a cult with [maxCount] cultists.")
 			if("wizard")
-				message_admins("[key_name(usr)] is creating a wizard...")
+				message_admins("[key_name(usr)] tworzy czarodzieja...")
 				if(src.makeWizard())
-					message_admins("[key_name(usr)] created a wizard.")
+					message_admins("[key_name(usr)] tworzy czarodzieja.")
 					log_admin("[key_name(usr)] created a wizard.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a wizard. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć czarodzieja. Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create a wizard.")
 			if("nukeops")
-				message_admins("[key_name(usr)] is creating a nuke team...")
-				var/maxCount = input("Ustaw liczbę operatorów nuklearnych","Set Nuke OP Count (max)",5) as num|null
+				message_admins("[key_name(usr)] tworzy drużynę nuklearną...")
+				var/maxCount = input("Ustaw liczbę operatorów nuklearnych","Liczba operatorów (maks.)",5) as num|null
 				if (!maxCount)
-					message_admins("[key_name_admin(usr)] has cancelled the creation of a Nuke team.")
+					message_admins("[key_name_admin(usr)] anuluje tworzenie drużyny nuklearnej.")
 					return
 				if(src.makeNukeTeam(maxCount))
-					message_admins("[key_name(usr)] created a nuke team with [maxCount] operatives")
+					message_admins("[key_name(usr)] tworzy drużynę nuklearną, agentów: [maxCount]")
 					log_admin("[key_name(usr)] created a nuke team with [maxCount] operatives")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a nuke team with [maxCount] operatives Unfortunately, there were not enough candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć drużynę nuklearną ([maxCount] agentów). Niestety było za mało chętnych.")
 					log_admin("[key_name(usr)] failed to create a nuke team with [maxCount] operatives.")
 			if("ninja")
-				message_admins("[key_name(usr)] spawned a ninja.")
+				message_admins("[key_name(usr)] tworzy ninję.")
 				log_admin("[key_name(usr)] spawned a ninja.")
 				src.makeSpaceNinja()
 			if("aliens")
-				message_admins("[key_name(usr)] started an alien infestation.")
+				message_admins("[key_name(usr)] wywołuje inwazję obcych.")
 				log_admin("[key_name(usr)] started an alien infestation.")
 				src.makeAliens()
 			if("deathsquad")
-				message_admins("[key_name(usr)] is creating a death squad...")
+				message_admins("[key_name(usr)] tworzy szwadron śmierci...")
 				if(src.makeDeathsquad())
-					message_admins("[key_name(usr)] created a death squad.")
+					message_admins("[key_name(usr)] tworzy szwadron śmierci.")
 					log_admin("[key_name(usr)] created a death squad.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a death squad. Unfortunately, there were not enough candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć szwadron śmierci. Niestety było za mało chętnych.")
 					log_admin("[key_name(usr)] failed to create a death squad.")
 			if("blob")
-				var/strength = input("Set Blob Resource Gain Rate","Set Resource Rate",1) as num|null
+				var/strength = input("Ustaw tempo zdobywania zasobów grzyba","Tempo zasobów",1) as num|null
 				if(!strength)
 					return
-				message_admins("[key_name(usr)] spawned a blob with base resource gain [strength].")
+				message_admins("[key_name(usr)] tworzy grzyba z bazowym przyrostem zasobów [strength].")
 				log_admin("[key_name(usr)] spawned a blob with base resource gain [strength].")
 				new/datum/round_event/ghost_role/blob(TRUE, strength)
 			if("centcom")
-				message_admins("[key_name(usr)] is creating a CentCom response team...")
+				message_admins("[key_name(usr)] tworzy zespół reagowania Centrali...")
 				if(src.makeEmergencyresponseteam())
-					message_admins("[key_name(usr)] created a CentCom response team.")
+					message_admins("[key_name(usr)] tworzy zespół reagowania Centrali.")
 					log_admin("[key_name(usr)] created a CentCom response team.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć zespół reagowania Centrali. Niestety było za mało chętnych.")
 					log_admin("[key_name(usr)] failed to create a CentCom response team.")
 			if("abductors")
-				message_admins("[key_name(usr)] is creating an abductor team...")
+				message_admins("[key_name(usr)] tworzy drużynę porywaczy...")
 				if(src.makeAbductorTeam())
-					message_admins("[key_name(usr)] created an abductor team.")
+					message_admins("[key_name(usr)] tworzy drużynę porywaczy.")
 					log_admin("[key_name(usr)] created an abductor team.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create an abductor team. Unfortunately there were not enough candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć drużynę porywaczy. Niestety było za mało chętnych.")
 					log_admin("[key_name(usr)] failed to create an abductor team.")
 			if("revenant")
 				if(src.makeRevenant())
-					message_admins("[key_name(usr)] created a revenant.")
+					message_admins("[key_name(usr)] tworzy upiora.")
 					log_admin("[key_name(usr)] created a revenant.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć upiora. Niestety nie było chętnych.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
 
 	else if(href_list["forceevent"])
@@ -224,18 +224,18 @@
 			var/datum/round_event/event = E.runEvent()
 			if(event.announceWhen>0)
 				event.processing = FALSE
-				var/prompt = alert(usr, "Czy chcesz powiadomić załogę?", "Alert", "Yes", "No", "Cancel")
+				var/prompt = alert(usr, "Czy chcesz powiadomić załogę?", "Alert", "Tak", "Nie", "Anuluj")
 				switch(prompt)
-					if("Yes")
+					if("Tak")
 						event.announceChance = 100
-					if("Cancel")
+					if("Anuluj")
 						event.kill()
 						return
-					if("No")
+					if("Nie")
 						event.announceChance = 0
 				event.on_admin_trigger()
 				event.processing = TRUE
-			message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
+			message_admins("[key_name_admin(usr)] wywołuje zdarzenie. ([E.name])")
 			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
@@ -268,16 +268,16 @@
 		if(SSticker && SSticker.mode)
 			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode.", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic.", null, null, null, null)
 		var/roundstart_rules = list()
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/roundstart))
 			var/datum/dynamic_ruleset/roundstart/newrule = new rule()
 			roundstart_rules[newrule.name] = newrule
-		var/added_rule = input(usr,"What ruleset do you want to force? This will bypass threat level and population restrictions.", "Rigging Roundstart", null) as null|anything in roundstart_rules
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Ustawianie startu rundy", null) as null|anything in roundstart_rules
 		if (added_rule)
 			GLOB.dynamic_forced_roundstart_ruleset += roundstart_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.")
-			message_admins("[key_name(usr)] set [added_rule] to be a forced roundstart ruleset.", 1)
+			message_admins("[key_name(usr)] wymusza zestaw reguł na start rundy: [added_rule].", 1)
 			Game()
 
 	else if(href_list["f_dynamic_roundstart_clear"])
@@ -286,7 +286,7 @@
 		GLOB.dynamic_forced_roundstart_ruleset = list()
 		Game()
 		log_admin("[key_name(usr)] cleared the rigged roundstart rulesets. The mode will pick them as normal.")
-		message_admins("[key_name(usr)] cleared the rigged roundstart rulesets. The mode will pick them as normal.", 1)
+		message_admins("[key_name(usr)] czyści wymuszone zestawy reguł na start rundy. Tryb wybierze je normalnie.", 1)
 
 	else if(href_list["f_dynamic_roundstart_remove"])
 		if(!check_rights(R_ADMIN))
@@ -295,7 +295,7 @@
 		GLOB.dynamic_forced_roundstart_ruleset -= rule
 		Game()
 		log_admin("[key_name(usr)] removed [rule] from the forced roundstart rulesets.")
-		message_admins("[key_name(usr)] removed [rule] from the forced roundstart rulesets.", 1)
+		message_admins("[key_name(usr)] usuwa [rule] z wymuszonych zestawów reguł na start rundy.", 1)
 
 	else if(href_list["f_dynamic_latejoin"])
 		if(!check_rights(R_ADMIN))
@@ -303,18 +303,18 @@
 		if(!SSticker || !SSticker.mode)
 			return alert(usr, "Najpierw gra musi się zacząć.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 		var/latejoin_rules = list()
 		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/latejoin))
 			var/datum/dynamic_ruleset/latejoin/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			latejoin_rules[newrule.name] = newrule
-		var/added_rule = input(usr,"What ruleset do you want to force upon the next latejoiner? This will bypass threat level and population restrictions.", "Rigging Latejoin", null) as null|anything in latejoin_rules
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić na następnym spóźnialskim? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Ustawianie późnego dołączenia", null) as null|anything in latejoin_rules
 		if (added_rule)
 			mode.forced_latejoin_rule = latejoin_rules[added_rule]
 			log_admin("[key_name(usr)] set [added_rule] to proc on the next latejoin.")
-			message_admins("[key_name(usr)] set [added_rule] to proc on the next latejoin.", 1)
+			message_admins("[key_name(usr)] ustawia [added_rule] na następne późne dołączenie.", 1)
 			Game()
 
 	else if(href_list["f_dynamic_latejoin_clear"])
@@ -325,7 +325,7 @@
 			mode.forced_latejoin_rule = null
 			Game()
 			log_admin("[key_name(usr)] cleared the forced latejoin ruleset.")
-			message_admins("[key_name(usr)] cleared the forced latejoin ruleset.", 1)
+			message_admins("[key_name(usr)] czyści wymuszony zestaw reguł dla późnego dołączenia.", 1)
 
 	else if(href_list["f_dynamic_midround"])
 		if(!check_rights(R_ADMIN))
@@ -333,17 +333,17 @@
 		if(!SSticker || !SSticker.mode)
 			return alert(usr, "Najpierw gra musi się zacząć.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 		var/midround_rules = list()
 		var/datum/game_mode/dynamic/mode = SSticker.mode
 		for (var/rule in subtypesof(/datum/dynamic_ruleset/midround))
 			var/datum/dynamic_ruleset/midround/newrule = new rule()
 			mode.configure_ruleset(newrule)
 			midround_rules[newrule.name] = rule
-		var/added_rule = input(usr,"What ruleset do you want to force right now? This will bypass threat level and population restrictions.", "Execute Ruleset", null) as null|anything in midround_rules
+		var/added_rule = input(usr,"Który zestaw reguł chcesz wymusić teraz? To pominie ograniczenia poziomu zagrożenia i liczby graczy.", "Wykonaj zestaw reguł", null) as null|anything in midround_rules
 		if (added_rule)
 			log_admin("[key_name(usr)] executed the [added_rule] ruleset.")
-			message_admins("[key_name(usr)] executed the [added_rule] ruleset.", 1)
+			message_admins("[key_name(usr)] wykonuje zestaw reguł: [added_rule].", 1)
 			mode.picking_specific_rule(midround_rules[added_rule],1)
 
 	else if (href_list["f_dynamic_options"])
@@ -353,7 +353,7 @@
 		if(SSticker && SSticker.mode)
 			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		dynamic_mode_options(usr)
 
@@ -362,11 +362,11 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		GLOB.dynamic_forced_extended = !GLOB.dynamic_forced_extended
 		log_admin("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
-		message_admins("[key_name(usr)] set 'forced_extended' to [GLOB.dynamic_forced_extended].")
+		message_admins("[key_name(usr)] ustawia 'forced_extended' na [GLOB.dynamic_forced_extended].")
 		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_no_stacking"])
@@ -374,11 +374,11 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
 		GLOB.dynamic_no_stacking = !GLOB.dynamic_no_stacking
 		log_admin("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
-		message_admins("[key_name(usr)] set 'no_stacking' to [GLOB.dynamic_no_stacking].")
+		message_admins("[key_name(usr)] ustawia 'no_stacking' na [GLOB.dynamic_no_stacking].")
 		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_stacking_limit"])
@@ -386,11 +386,11 @@
 			return
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
-		GLOB.dynamic_stacking_limit = input(usr,"Change the threat limit at which round-endings rulesets will start to stack.", "Change stacking limit", null) as num
+		GLOB.dynamic_stacking_limit = input(usr,"Zmień próg zagrożenia, od którego zestawy reguł kończące rundę zaczną się kumulować.", "Limit kumulacji", null) as num
 		log_admin("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
-		message_admins("[key_name(usr)] set 'stacking_limit' to [GLOB.dynamic_stacking_limit].")
+		message_admins("[key_name(usr)] ustawia 'stacking_limit' na [GLOB.dynamic_stacking_limit].")
 		dynamic_mode_options(usr)
 
 	else if(href_list["f_dynamic_forced_threat"])
@@ -401,15 +401,15 @@
 			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 
 		if(!SSticker.is_mode("dynamic"))
-			return alert(usr, "The game mode has to be dynamic mode!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem dynamic!", null, null, null, null)
 
-		var/new_value = input(usr, "Enter the forced threat level for dynamic mode.", "Forced threat level") as num
+		var/new_value = input(usr, "Podaj wymuszony poziom zagrożenia dla trybu dynamic.", "Wymuszony poziom zagrożenia") as num
 		if (new_value > 100)
-			return alert(usr, "The value must be be under 100.", null, null, null, null)
+			return alert(usr, "Wartość musi być mniejsza niż 100.", null, null, null, null)
 		GLOB.dynamic_forced_threat_level = new_value
 
 		log_admin("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
-		message_admins("[key_name(usr)] set 'forced_threat_level' to [GLOB.dynamic_forced_threat_level].")
+		message_admins("[key_name(usr)] ustawia 'forced_threat_level' na [GLOB.dynamic_forced_threat_level].")
 		dynamic_mode_options(usr)
 
 	else if(href_list["call_shuttle"])
@@ -423,7 +423,7 @@
 					return
 				SSshuttle.emergency.request()
 				log_admin("[key_name(usr)] called the Emergency Shuttle.")
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] called the Emergency Shuttle to the station.</span>")
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] wzywa prom ewakuacyjny na stację.</span>")
 
 			if("2")
 				if(EMERGENCY_AT_LEAST_DOCKED)
@@ -432,11 +432,11 @@
 					if(SHUTTLE_CALL)
 						SSshuttle.emergency.cancel()
 						log_admin("[key_name(usr)] sent the Emergency Shuttle back.")
-						message_admins("<span class='adminnotice'>[key_name_admin(usr)] sent the Emergency Shuttle back.</span>")
+						message_admins("<span class='adminnotice'>[key_name_admin(usr)] odsyła prom ewakuacyjny.</span>")
 					else
 						SSshuttle.emergency.cancel()
 						log_admin("[key_name(usr)] called the Emergency Shuttle.")
-						message_admins("<span class='adminnotice'>[key_name_admin(usr)] called the Emergency Shuttle to the station.</span>")
+						message_admins("<span class='adminnotice'>[key_name_admin(usr)] wzywa prom ewakuacyjny na stację.</span>")
 
 
 
@@ -444,13 +444,13 @@
 		if(!check_rights(R_SERVER))
 			return
 
-		var/timer = input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", SSshuttle.emergency.timeLeft() ) as num|null
+		var/timer = input("Podaj nowy czas promu (w sekundach):","Czas promu", SSshuttle.emergency.timeLeft() ) as num|null
 		if(!timer)
 			return
 		SSshuttle.emergency.setTimer(timer*10)
 		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
 		minor_announce("Prom ewakuacyjny dotrze do celu za [round(SSshuttle.emergency.timeLeft(600))] min.")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia czas promu ewakuacyjnego na [timer] s.</span>")
 	else if(href_list["trigger_centcom_recall"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -466,7 +466,7 @@
 		else
 			continuous[SSticker.mode.config_tag] = FALSE
 
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled the round to [continuous[SSticker.mode.config_tag] ? "continue if all antagonists die" : "end with the antagonists"].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia rundę tak, by [continuous[SSticker.mode.config_tag] ? "trwała dalej po śmierci wszystkich antagonistów" : "kończyła się razem z antagonistami"].</span>")
 		check_antagonists()
 
 	else if(href_list["toggle_midround_antag"])
@@ -479,30 +479,30 @@
 		else
 			midround_antag[SSticker.mode.config_tag] = FALSE
 
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled the round to [midround_antag[SSticker.mode.config_tag] ? "use" : "skip"] the midround antag system.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] [midround_antag[SSticker.mode.config_tag] ? "włącza" : "wyłącza"] w tej rundzie system antagonistów w trakcie rundy.</span>")
 		check_antagonists()
 
 	else if(href_list["alter_midround_time_limit"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/timer = input("Enter new maximum time",, CONFIG_GET(number/midround_antag_time_check)) as num|null
+		var/timer = input("Podaj nowy maksymalny czas",, CONFIG_GET(number/midround_antag_time_check)) as num|null
 		if(!timer)
 			return
 		CONFIG_SET(number/midround_antag_time_check, timer)
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the maximum midround antagonist time to [timer] minutes.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia maksymalny czas antagonistów w trakcie rundy na [timer] min.</span>")
 		check_antagonists()
 
 	else if(href_list["alter_midround_life_limit"])
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/ratio = input("Enter new life ratio",, CONFIG_GET(number/midround_antag_life_check) * 100) as num
+		var/ratio = input("Podaj nowy odsetek żywych",, CONFIG_GET(number/midround_antag_life_check) * 100) as num
 		if(!ratio)
 			return
 		CONFIG_SET(number/midround_antag_life_check, ratio / 100)
 
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the midround antagonist living crew ratio to [ratio]% alive.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia próg żywej załogi dla antagonistów w trakcie rundy na [ratio]%.</span>")
 		check_antagonists()
 
 	else if(href_list["toggle_noncontinuous_behavior"])
@@ -514,7 +514,7 @@
 		else
 			SSticker.mode.round_ends_with_antag_death = 0
 
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the midround antagonist system to [SSticker.mode.round_ends_with_antag_death ? "end the round" : "continue as extended"] upon failure.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia, że po porażce systemu antagonistów w trakcie rundy [SSticker.mode.round_ends_with_antag_death ? "runda się kończy" : "gra toczy się dalej jak extended"].</span>")
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])
@@ -526,16 +526,16 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] is considering ending the round.</span>")
-		if(alert(usr, "To zakończy rundę, czy na PEWNO chcesz to zrobić?", "Confirmation", "Yes", "No") == "Yes")
-			if(alert(usr, "Ostateczne potwierdzenie: zakończyć rundę TERAZ?", "Confirmation", "Yes", "No") == "Yes")
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] has ended the round.</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] rozważa zakończenie rundy.</span>")
+		if(alert(usr, "To zakończy rundę, czy na PEWNO chcesz to zrobić?", "Potwierdzenie", "Tak", "Nie") == "Tak")
+			if(alert(usr, "Ostateczne potwierdzenie: zakończyć rundę TERAZ?", "Potwierdzenie", "Tak", "Nie") == "Tak")
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] kończy rundę.</span>")
 				SSticker.force_ending = 1 //Yeah there we go APC destroyed mission accomplished
 				return
 			else
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] decided against ending the round.</span>")
+				message_admins("<span class='adminnotice'>[key_name_admin(usr)] rezygnuje z zakończenia rundy.</span>")
 		else
-			message_admins("<span class='adminnotice'>[key_name_admin(usr)] decided against ending the round.</span>")
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] rezygnuje z zakończenia rundy.</span>")
 
 	else if(href_list["simplemake"])
 		if(!check_rights(R_SPAWN))
@@ -547,14 +547,14 @@
 			return
 
 		var/delmob = FALSE
-		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
-			if("Cancel")
+		switch(alert("Usunąć starego moba?","Wiadomość","Tak","Nie","Anuluj"))
+			if("Anuluj")
 				return
-			if("Yes")
+			if("Tak")
 				delmob = TRUE
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] używa prostej przemiany na [key_name_admin(M)]. Przemiana w: [href_list["simplemake"]].; deletemob=[delmob]</span>")
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -618,7 +618,7 @@
 			if(!check_if_greater_rights_than(M.client))
 				to_chat(usr, "<span class='danger'>Błąd: ma większe uprawnienia niż ty.</span>")
 				return
-			if(alert(usr, "Kick [key_name(M)]?", "Confirm", "Yes", "No") != "Yes")
+			if(alert(usr, "Wyrzucić [key_name(M)]?", "Potwierdź", "Tak", "Nie") != "Tak")
 				return
 			if(!M)
 				to_chat(usr, "<span class='danger'>Błąd: [M] już nie istnieje!</span>")
@@ -628,7 +628,7 @@
 				return
 			to_chat(M, "<span class='danger'>Zostałeś wyrzucony z serwera przez [usr.client.holder.fakekey ? "Administratora" : "[usr.client.key]"].</span>")
 			log_admin("[key_name(usr)] kicked [key_name(M)].")
-			message_admins("<span class='adminnotice'>[key_name_admin(usr)] kicked [key_name_admin(M)].</span>")
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] wyrzuca [key_name_admin(M)].</span>")
 			qdel(M.client)
 
 	else if(href_list["addmessage"])
@@ -672,16 +672,16 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = alert("Delete message/note?",,"Yes","No");
-		if (safety == "Yes")
+		var/safety = alert("Usunąć wiadomość/notkę?",,"Tak","Nie");
+		if (safety == "Tak")
 			var/message_id = href_list["deletemessage"]
 			delete_message(message_id)
 
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/safety = alert("Delete message/note?",,"Yes","No");
-		if (safety == "Yes")
+		var/safety = alert("Usunąć wiadomość/notkę?",,"Tak","Nie");
+		if (safety == "Tak")
 			var/message_id = href_list["deletemessageempty"]
 			delete_message(message_id, browse = TRUE)
 
@@ -781,7 +781,7 @@
 		if(query_get_message_edits.NextRow())
 			var/edit_log = query_get_message_edits.item[1]
 			if(!QDELETED(usr))
-				var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				var/datum/browser/browser = new(usr, "Note edits", "Historia zmian notki")
 				browser.set_content(jointext(edit_log, ""))
 				browser.open()
 		qdel(query_get_message_edits)
@@ -806,14 +806,14 @@
 			HandleCMode()
 			return
 		if(SSticker.gamemode_hotswap_disabled)
-			alert("A gamemode has already loaded maps and cannot be changed!")
+			alert("Tryb gry już wczytał mapy i nie można go zmienić!")
 			HandleCMode()
 			return
 		GLOB.master_mode = href_list["c_mode2"]
 		//Disable presetup so their gamemode gets loaded.
 		SSticker.pre_setup_completed = FALSE
 		log_admin("[key_name(usr)] set the mode as [GLOB.master_mode].")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] set the mode as [GLOB.master_mode].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia tryb na [GLOB.master_mode].</span>")
 		to_chat(world, "<span class='adminnotice'><b>Tryb to teraz: [GLOB.master_mode]</b></span>")
 		Game() // updates the main game menu
 		HandleCMode()
@@ -825,10 +825,10 @@
 		if(SSticker.HasRoundStarted())
 			return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 		if(GLOB.master_mode != "secret")
-			return alert(usr, "The game mode has to be secret!", null, null, null, null)
+			return alert(usr, "Tryb gry musi być trybem secret!", null, null, null, null)
 		GLOB.secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [GLOB.secret_force_mode].")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] set the forced secret mode as [GLOB.secret_force_mode].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] ustawia wymuszony tryb secret na [GLOB.secret_force_mode].</span>")
 		Game() // updates the main game menu
 		HandleFSecret()
 
@@ -838,11 +838,11 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)].")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] attempting to monkeyize [key_name_admin(H)].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] próbuje zmienić w małpę: [key_name_admin(H)].</span>")
 		H.monkeyize()
 
 	else if(href_list["humanone"])
@@ -851,11 +851,11 @@
 
 		var/mob/living/carbon/monkey/Mo = locate(href_list["humanone"])
 		if(!istype(Mo))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/monkey.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/monkey.")
 			return
 
 		log_admin("[key_name(usr)] attempting to humanize [key_name(Mo)].")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] attempting to humanize [key_name_admin(Mo)].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] próbuje zmienić w człowieka: [key_name_admin(Mo)].</span>")
 		Mo.humanize()
 
 	else if(href_list["corgione"])
@@ -864,11 +864,11 @@
 
 		var/mob/living/carbon/C = locate(href_list["corgione"])
 		if(!istype(C))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon.")
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(C)].")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] attempting to corgize [key_name_admin(C)].</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] próbuje zmienić w corgi: [key_name_admin(C)].</span>")
 		C.corgize()
 
 
@@ -878,15 +878,15 @@
 
 		var/mob/M = locate(href_list["forcespeech"])
 		if(!ismob(M))
-			to_chat(usr, "this can only be used on instances of type /mob.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob.")
 
-		var/speech = input("What will [key_name(M)] say?", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input("Co ma powiedzieć [key_name(M)]?", "Wymuszona mowa", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
 		M.say(speech, forced = "admin speech")
 		speech = sanitize(speech) // Nah, we don't trust them
 		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] forced [key_name_admin(M)] to say: [speech]</span>")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] zmusza [key_name_admin(M)] do powiedzenia: [speech]</span>")
 
 	else if(href_list["sendtoprison"])
 		if(!check_rights(R_ADMIN))
@@ -897,17 +897,17 @@
 			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob.")
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 
-		if(alert(usr, "Send [key_name(M)] to Prison?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Wysłać [key_name(M)] do więzienia?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		M.forceMove(pick(GLOB.prisonwarp))
 		to_chat(M, "<span class='adminnotice'>Zostałeś wysłany do więzienia!</span>")
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] to Prison!")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to Prison!")
+		message_admins("[key_name_admin(usr)] wysyła [key_name_admin(M)] do więzienia!")
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -923,11 +923,11 @@
 			to_chat(usr, "<span class='warning'>Wygląda na to, że [M] nie ma aktywnego klienta.</span>")
 			return
 
-		if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Odesłać [key_name(M)] do lobby?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
-		message_admins("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+		message_admins("[key_name(usr)] odsyła [key_name(M)] do lobby.")
 
 		var/mob/dead/new_player/NP = new()
 		NP.ckey = M.ckey
@@ -937,15 +937,15 @@
 		if(!check_rights(R_FUN))
 			return
 
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdome1"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living.")
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 		var/mob/living/L = M
 
@@ -958,21 +958,21 @@
 		spawn(50)
 			to_chat(L, "<span class='adminnotice'>Zostałeś wysłany do Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 1)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 1)")
+		message_admins("[key_name_admin(usr)] wysyła [key_name_admin(L)] na Thunderdome. (drużyna 1)")
 
 	else if(href_list["tdome2"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdome2"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living.")
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 		var/mob/living/L = M
 
@@ -985,21 +985,21 @@
 		spawn(50)
 			to_chat(L, "<span class='adminnotice'>Zostałeś wysłany do Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 2)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 2)")
+		message_admins("[key_name_admin(usr)] wysyła [key_name_admin(L)] na Thunderdome. (drużyna 2)")
 
 	else if(href_list["tdomeadmin"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdomeadmin"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living.")
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 		var/mob/living/L = M
 
@@ -1009,21 +1009,21 @@
 		spawn(50)
 			to_chat(L, "<span class='adminnotice'>Zostałeś wysłany do Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Admin.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Admin.)")
+		message_admins("[key_name_admin(usr)] wysyła [key_name_admin(L)] na Thunderdome. (admin)")
 
 	else if(href_list["tdomeobserve"])
 		if(!check_rights(R_FUN))
 			return
 
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 
 		var/mob/M = locate(href_list["tdomeobserve"])
 		if(!isliving(M))
-			to_chat(usr, "This can only be used on instances of type /mob/living.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living.")
 			return
 		if(isAI(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/living/silicon/ai.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/living/silicon/ai.")
 			return
 		var/mob/living/L = M
 
@@ -1040,7 +1040,7 @@
 		spawn(50)
 			to_chat(L, "<span class='adminnotice'>Zostałeś wysłany do Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Observer.)")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Observer.)")
+		message_admins("[key_name_admin(usr)] wysyła [key_name_admin(L)] na Thunderdome. (obserwator)")
 
 	else if(href_list["revive"])
 		if(!check_rights(R_ADMIN))
@@ -1048,11 +1048,11 @@
 
 		var/mob/living/L = locate(href_list["revive"])
 		if(!istype(L))
-			to_chat(usr, "This can only be used on instances of type /mob/living.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living.")
 			return
 
 		L.revive(full_heal = 1, admin_revive = 1)
-		message_admins("<span class='danger'>Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</span>")
+		message_admins("<span class='danger'>Admin [key_name_admin(usr)] leczy / ożywia [key_name_admin(L)]!</span>")
 		log_admin("[key_name(usr)] healed / Revived [key_name(L)].")
 
 	else if(href_list["makeai"])
@@ -1061,10 +1061,10 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
-		message_admins("<span class='danger'>Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!</span>")
+		message_admins("<span class='danger'>Admin [key_name_admin(usr)] zmienia w SI: [key_name_admin(H)]!</span>")
 		log_admin("[key_name(usr)] AIized [key_name(H)].")
 		H.AIize(TRUE, H.client)
 
@@ -1075,7 +1075,7 @@
 		if(!istype(H))
 			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob.")
 			return
-		message_admins("<span class='danger'>Admin [key_name_admin(usr)] PAI'd [key_name_admin(H)]!</span>")
+		message_admins("<span class='danger'>Admin [key_name_admin(usr)] zmienia w pAI: [key_name_admin(H)]!</span>")
 		log_admin("[key_name(usr)] PAI'd [key_name(H)].")
 		H.makePAI(TRUE)
 
@@ -1085,7 +1085,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		usr.client.cmd_admin_alienize(H)
@@ -1096,7 +1096,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeslime"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		usr.client.cmd_admin_slimeize(H)
@@ -1107,7 +1107,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeblob"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		usr.client.cmd_admin_blobize(H)
@@ -1117,7 +1117,7 @@
 			return
 		var/mob/living/carbon/human/H = locate(href_list["makecluwne"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 		message_admins("[key_name(usr)] cluwned [key_name(H)]")
 		log_admin("[key_name(usr)] cluwned [key_name(H)]")
@@ -1129,7 +1129,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		usr.client.cmd_admin_robotize(H)
@@ -1140,7 +1140,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 		if(isnewplayer(M))
-			to_chat(usr, "This cannot be used on instances of type /mob/dead/new_player.")
+			to_chat(usr, "Nie można tego użyć na instancjach typu /mob/dead/new_player.")
 			return
 
 		usr.client.cmd_admin_animalize(M)
@@ -1212,9 +1212,9 @@
 		for(var/datum/job/job in SSjob.occupations)
 			if(job.title == Add)
 				var/newtime = null
-				newtime = input(usr, "How many jebs do you want?", "Add wanted posters", "[newtime]") as num|null
+				newtime = input(usr, "Ile chcesz etatów?", "Dodaj ogłoszenia o pracę", "[newtime]") as num|null
 				if(!newtime)
-					to_chat(src.owner, "Setting to amount of positions filled for the job")
+					to_chat(src.owner, "Ustawiam na liczbę zajętych stanowisk w tym zawodzie")
 					job.total_positions = job.current_positions
 					break
 				job.total_positions = newtime
@@ -1267,7 +1267,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human.")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human.")
 			return
 
 		var/obj/item/food/cookie/cookie = new(H)
@@ -1276,11 +1276,11 @@
 		else
 			qdel(cookie)
 			log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
-			message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
+			message_admins("[key_name(H)] ma pełne ręce, więc nie dostaje ciasteczka od [key_name(src.owner)].")
 			return
 
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)].")
-		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)].")
+		message_admins("[key_name(H)] dostaje ciasteczko od [key_name(src.owner)].")
 		SSblackbox.record_feedback("amount", "admin_cookies_spawned", 1)
 		to_chat(H, "<span class='adminnotice'>Twoje modlitwy zostały wysłuchane!! Otrzymujesz <b>najlepsze ciasteczko</b>!</span>")
 		SEND_SOUND(H, sound('sound/effects/pray_chaplain.ogg'))
@@ -1291,7 +1291,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in GLOB.mob_list
 		if(!H || !istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "Można tego użyć tylko na instancjach typu /mob/living/carbon/human")
 			return
 
 		usr.client.smite(H)
@@ -1334,7 +1334,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
+		if(alert(usr, "Potwierdzasz?", "Wiadomość", "Tak", "Nie") != "Tak")
 			return
 		var/mob/M = locate(href_list["getmob"])
 		usr.client.Getmob(M)
@@ -1393,7 +1393,7 @@
 		if(!ismob(M))
 			var/datum/mind/D = M
 			if(!istype(D))
-				to_chat(usr, "This can only be used on instances of type /mob and /mind")
+				to_chat(usr, "Można tego użyć tylko na instancjach typu /mob i /mind")
 				return
 			else
 				D.traitor_panel()
@@ -1406,7 +1406,7 @@
 
 		var/mob/M = locate(href_list["borgpanel"])
 		if(!iscyborg(M))
-			to_chat(usr, "This can only be used on cyborgs")
+			to_chat(usr, "Można tego użyć tylko na cyborgach")
 		else
 			open_borgopanel(M)
 
@@ -1415,7 +1415,7 @@
 			return
 		var/mob/M = locate(href_list["initmind"])
 		if(!ismob(M) || M.mind)
-			to_chat(usr, "This can only be used on instances on mindless mobs")
+			to_chat(usr, "Można tego użyć tylko na mobach bez umysłu")
 			return
 		M.mind_initialize()
 
@@ -1467,10 +1467,10 @@
 			paths += path
 
 		if(!paths)
-			alert("The path list you sent is empty.")
+			alert("Wysłana lista ścieżek jest pusta.")
 			return
 		if(length(paths) > 5)
-			alert("Select fewer object types, (max 5).")
+			alert("Wybierz mniej typów obiektów (maks. 5).")
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
@@ -1493,7 +1493,7 @@
 		switch(where)
 			if("inhand")
 				if (!iscarbon(usr) && !iscyborg(usr))
-					to_chat(usr, "Can only spawn in hand when you're a carbon mob or cyborg.")
+					to_chat(usr, "Do ręki możesz tworzyć tylko jako mob węglowy albo cyborg.")
 					where = "onfloor"
 				target = usr
 
@@ -1505,10 +1505,10 @@
 						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
 			if("inmarked")
 				if(!marked_datum)
-					to_chat(usr, "You don't have any object marked. Abandoning spawn.")
+					to_chat(usr, "Nie masz oznaczonego obiektu. Przerywam tworzenie.")
 					return
 				else if(!istype(marked_datum, /atom))
-					to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
+					to_chat(usr, "Oznaczonego obiektu nie można użyć jako celu. Cel musi być typu /atom. Przerywam tworzenie.")
 					return
 				else
 					target = marked_datum
@@ -1561,13 +1561,13 @@
 			log_admin("[key_name(usr)] created a [english_list(paths)] at [AREACOORD(T)]")
 			for(var/path in paths)
 				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created a [english_list(paths)]")
+					message_admins("[key_name_admin(usr)] tworzy: [english_list(paths)]")
 					break
 		else
 			log_admin("[key_name(usr)] created [number]ea [english_list(paths)] at [AREACOORD(T)]")
 			for(var/path in paths)
 				if(ispath(path, /mob))
-					message_admins("[key_name_admin(usr)] created [number]ea [english_list(paths)]")
+					message_admins("[key_name_admin(usr)] tworzy [number] szt.: [english_list(paths)]")
 					break
 		return
 
@@ -1581,7 +1581,7 @@
 			return
 		if(SSticker.IsRoundInProgress())
 			var/afkonly = text2num(href_list["afkonly"])
-			if(alert("Czy na pewno chcesz wyrzucić z lobby wszystkich [afkonly ? "AFK" : ""] klientów??","Message","Yes","Cancel") != "Yes")
+			if(alert("Czy na pewno chcesz wyrzucić z lobby wszystkich [afkonly ? "AFK" : ""] klientów??","Wiadomość","Tak","Anuluj") != "Tak")
 				to_chat(usr, "Przerwano wyrzucanie klientów z lobby")
 				return
 			var/list/listkicked = kick_clients_in_lobby("<span class='danger'>Zostałeś wyrzucony z lobby przez [usr.client.holder.fakekey ? "Administratora" : "[usr.client.key]"].</span>", afkonly)
@@ -1589,7 +1589,7 @@
 			var/strkicked = ""
 			for(var/name in listkicked)
 				strkicked += "[name], "
-			message_admins("[key_name_admin(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
+			message_admins("[key_name_admin(usr)] wyrzuca z lobby [afkonly ? "wszystkich klientów AFK" : "wszystkich klientów"]. Wyrzuceni ([length(listkicked)]): [strkicked ? strkicked : "--"]")
 			log_admin("[key_name(usr)] has kicked [afkonly ? "all AFK" : "all"] clients from the lobby. [length(listkicked)] clients kicked: [strkicked ? strkicked : "--"]")
 		else
 			to_chat(usr, "Możesz tego użyć tylko w trakcie gry.")
@@ -1600,34 +1600,34 @@
 		var/code = random_code(5)
 		for(var/obj/machinery/nuclearbomb/selfdestruct/SD in GLOB.nuke_list)
 			SD.r_code = code
-		message_admins("[key_name_admin(usr)] has set the self-destruct \
-			code to \"[code]\".")
+		message_admins("[key_name_admin(usr)] ustawia kod \
+			samozniszczenia na „[code]”.")
 
 	else if(href_list["add_station_goal"])
 		if(!check_rights(R_ADMIN))
 			return
 		var/list/type_choices = typesof(/datum/station_goal)
-		var/picked = input("Choose goal type") in type_choices|null
+		var/picked = input("Wybierz typ celu") in type_choices|null
 		if(!picked)
 			return
 		var/datum/station_goal/G = new picked()
 		if(picked == /datum/station_goal)
-			var/newname = capped_input(usr, "Enter goal name:")
+			var/newname = capped_input(usr, "Podaj nazwę celu:")
 			if(!newname)
 				return
 			G.name = newname
-			var/description = capped_multiline_input(usr, "Enter CentCom message contents:")
+			var/description = capped_multiline_input(usr, "Podaj treść wiadomości od Centrali:")
 			if(!description)
 				return
 			G.report_message = description
-		message_admins("[key_name(usr)] created \"[G.name]\" station goal.")
+		message_admins("[key_name(usr)] tworzy cel stacji „[G.name]”.")
 		SSticker.mode.station_goals += G
 		modify_goals()
 
 	else if(href_list["viewruntime"])
 		var/datum/error_viewer/error_viewer = locate(href_list["viewruntime"])
 		if(!istype(error_viewer))
-			to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+			to_chat(usr, "<span class='warning'>Ten podgląd runtime'u już nie istnieje.</span>")
 			return
 
 		if(href_list["viewruntime_backto"])
@@ -1647,10 +1647,10 @@
 		thing_to_check = splittext(thing_to_check, ", ")
 
 
-		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
+		var/list/dat = list("Powiązane konta wg [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		var/datum/browser/browser = new(usr, "related_[C]", "Powiązane konta: [C.ckey]", 420, 300)
 		browser.set_content(dat.Join("<br>"))
 		browser.open()
 
@@ -1659,7 +1659,7 @@
 			return
 
 		if(!CONFIG_GET(string/centcom_ban_db))
-			to_chat(usr, "<span class='warning'>CentCom Galactic Ban DB is disabled!</span>")
+			to_chat(usr, "<span class='warning'>Galaktyczna baza banów Centrali jest wyłączona!</span>")
 			return
 
 		var/ckey = href_list["centcomlookup"]
@@ -1678,32 +1678,32 @@
 		var/list/dat = list()
 
 		if(response.errored)
-			dat += "<br>Failed to connect to CentCom."
+			dat += "<br>Nie udało się połączyć z Centralą."
 		else if(response.status_code != 200)
-			dat += "<br>Failed to connect to CentCom. Status code: [response.status_code]"
+			dat += "<br>Nie udało się połączyć z Centralą. Kod statusu: [response.status_code]"
 		else
 			if(response.body == "[]")
-				dat += "<center><b>0 bans detected for [ckey]</b></center>"
+				dat += "<center><b>Wykryte bany dla [ckey]: 0</b></center>"
 			else
 				bans = json_decode(response.body) // AQ EDIT - response to datum, nie lista (runtime przy każdym graczu z banami)
-				dat += "<center><b>[bans.len] ban\s detected for [ckey]</b></center>"
+				dat += "<center><b>Wykryte bany dla [ckey]: [bans.len]</b></center>"
 				for(var/list/ban in bans)
-					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
-					dat += "<b>RP Level: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
-					dat += "<b>Type: </b> [sanitize(ban["type"])]<br>"
-					dat += "<b>Banned By: </b> [sanitize(ban["bannedBy"])]<br>"
-					dat += "<b>Reason: </b> [sanitize(ban["reason"])]<br>"
-					dat += "<b>Datetime: </b> [sanitize(ban["bannedOn"])]<br>"
+					dat += "<b>Serwer: </b> [sanitize(ban["sourceName"])]<br>"
+					dat += "<b>Poziom RP: </b> [sanitize(ban["sourceRoleplayLevel"])]<br>"
+					dat += "<b>Typ: </b> [sanitize(ban["type"])]<br>"
+					dat += "<b>Zbanował: </b> [sanitize(ban["bannedBy"])]<br>"
+					dat += "<b>Powód: </b> [sanitize(ban["reason"])]<br>"
+					dat += "<b>Data i godzina: </b> [sanitize(ban["bannedOn"])]<br>"
 					var/expiration = ban["expires"]
-					dat += "<b>Expires: </b> [expiration ? "[sanitize(expiration)]" : "Permanent"]<br>"
+					dat += "<b>Wygasa: </b> [expiration ? "[sanitize(expiration)]" : "permanentny"]<br>"
 					if(ban["type"] == "job")
-						dat += "<b>Jobs: </b> "
+						dat += "<b>Zawody: </b> "
 						var/list/jobs = ban["jobs"]
 						dat += sanitize(jobs.Join(", "))
 						dat += "<br>"
 					dat += "<hr>"
 
-		var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>Central Command Galactic Ban Database</div>", 700, 600)
+		var/datum/browser/popup = new(usr, "centcomlookup-[ckey]", "<div align='center'>Galaktyczna baza banów Centrali</div>", 700, 600)
 		popup.set_content(dat.Join())
 		popup.open(FALSE)
 
@@ -1722,8 +1722,8 @@
 		var/answer = href_list["slowquery"]
 		if(answer == "yes")
 			log_query_debug("[usr.key] | Reported a server hang")
-			if(alert(usr, "Czy właśnie naciskałeś jakieś przyciski admina?", "Query server hang report", "Yes", "No") == "Yes")
-				var/response = input(usr,"Co właśnie robiłeś?","Query server hang report") as null|text
+			if(alert(usr, "Czy właśnie naciskałeś jakieś przyciski admina?", "Zgłoszenie zawieszenia serwera", "Tak", "Nie") == "Tak")
+				var/response = input(usr,"Co właśnie robiłeś?","Zgłoszenie zawieszenia serwera") as null|text
 				if(response)
 					log_query_debug("[usr.key] | [response]")
 		else if(answer == "no")
@@ -1737,8 +1737,8 @@
 	else if(href_list["rebootworld"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/confirm = alert("Czy na pewno chcesz zrestartować serwer?", "Confirm Reboot", "Yes", "No")
-		if(confirm != "Yes")
+		var/confirm = alert("Czy na pewno chcesz zrestartować serwer?", "Potwierdź restart", "Tak", "Nie")
+		if(confirm != "Tak")
 			return
 		restart()
 
@@ -1873,13 +1873,13 @@
 	else if(href_list["retrieveboh"])
 		var/obj/boh_tear/tear = locate(href_list["retrieveboh"])
 		if(!tear)
-			to_chat(usr, "Either items were already retrieved or 10 minutes have passed and they were deleted.")
+			to_chat(usr, "Przedmioty zostały już odzyskane albo minęło 10 minut i zostały usunięte.")
 			return
-		var/confirm = alert("This will teleport all items consumed to the BoH tear back to the BoH tear original location, and delete the BoH if it still exists. Are you sure?", "Confirm Damage Control", "Yes", "No")
-		if(confirm != "Yes")
+		var/confirm = alert("To przeniesie wszystkie przedmioty pochłonięte przez rozdarcie BoH z powrotem w pierwotne miejsce rozdarcia i usunie BoH, jeśli wciąż istnieje. Na pewno?", "Potwierdź ograniczanie szkód", "Tak", "Nie")
+		if(confirm != "Tak")
 			return
 		var/turf/T = get_turf(tear.old_loc)
-		message_admins("The items consumed by the BoH tear at [ADMIN_VERBOSEJMP(T)] were retrieved by [key_name_admin(usr)].")
+		message_admins("[key_name_admin(usr)] odzyskuje przedmioty pochłonięte przez rozdarcie BoH w [ADMIN_VERBOSEJMP(T)].")
 		tear.investigate_log("Items consumed at [AREACOORD(T)] retrieved by [key_name(usr)].", INVESTIGATE_ENGINES)
 		tear.retrieve_consumed_items()
 
@@ -1986,5 +1986,5 @@
 	if(SSticker.HasRoundStarted())
 		return alert(usr, "Gra już się zaczęła.", null, null, null, null)
 	if(GLOB.master_mode != "secret")
-		return alert(usr, "The game mode has to be secret!", null, null, null, null)
+		return alert(usr, "Tryb gry musi być trybem secret!", null, null, null, null)
 	Game()

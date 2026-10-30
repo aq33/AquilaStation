@@ -24,8 +24,8 @@
 	infodisplay += stamina
 
 /atom/movable/screen/stamina
-	name = "stamina"
-	desc = "Stamina (sprint, zamachy, odpychanie). Kliknij, żeby zobaczyć dokładną wartość."
+	name = "wytrzymałość"
+	desc = "Wytrzymałość (sprint, zamachy, odpychanie). Kliknij, żeby zobaczyć dokładną wartość."
 	icon = 'aquila/icons/hud/screen_stamina.dmi'
 	icon_state = "stamina_full"
 	screen_loc = ui_stamina
@@ -48,7 +48,7 @@
 	if(!istype(C) || !C.stamina)
 		return
 	var/datum/stamina_container/pool = C.stamina
-	var/status = "Stamina: [round(pool.current)]/[pool.maximum], regeneracja [round(pool.regen_rate, 0.1)]/s."
+	var/status = "Wytrzymałość: [round(pool.current)]/[pool.maximum], regeneracja [round(pool.regen_rate, 0.1)]/s."
 	if(HAS_TRAIT(C, TRAIT_EXHAUSTED))
 		status += " Wyczerpanie minie przy [round(pool.maximum * STAMINA_EXHAUSTION_RECOVERY_THRESHOLD_MODIFIER)]."
 	else

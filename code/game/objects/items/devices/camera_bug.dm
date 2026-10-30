@@ -6,8 +6,8 @@
 
 
 /obj/item/camera_bug
-	name = "camera bug"
-	desc = "For illicit snooping through the camera network."
+	name = "pluskwa kamerowa"
+	desc = "Do nielegalnego podglądania przez sieć kamer."
 	icon = 'icons/obj/device.dmi'
 	icon_state	= "camera_bug"
 	w_class		= WEIGHT_CLASS_TINY
@@ -157,7 +157,7 @@
 		var/stage = round(S.current_size / 2)+1
 		report += list(list(
 			"name" = names[S.name] > 1 ? "[S.name] ([names[S.name]])" : S.name,
-			"extra" = "Stage [stage]",
+			"extra" = "Stadium [stage]",
 			"ref" = REF(S),
 		))
 	for(var/obj/mecha/M in seen)

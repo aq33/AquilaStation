@@ -35,6 +35,36 @@ const CATEGORIES_ORDER = [
   'GAMEPLAY',
 ];
 
+// AQUILA: polskie nazwy kategorii i podkategorii (klucze zostają po angielsku)
+const CATEGORY_NAMES: Record<string, string> = {
+  ADMIN: 'ADMIN',
+  CHAT: 'CZAT',
+  GRAPHICS: 'GRAFIKA',
+  SOUND: 'DŹWIĘK',
+  GHOST: 'DUCH',
+  UI: 'INTERFEJS',
+  'BYOND MEMBER': 'CZŁONEK BYOND',
+  GAMEPLAY: 'ROZGRYWKA',
+};
+
+const SUBCATEGORY_NAMES: Record<string, string> = {
+  Appearance: 'Wygląd',
+  Ambience: 'Otoczenie',
+  Behavior: 'Zachowanie',
+  Chat: 'Czat',
+  Deadmin: 'Zrzucanie uprawnień',
+  Misc: 'Różne',
+  Music: 'Muzyka',
+  Quality: 'Jakość',
+  Scaling: 'Skalowanie',
+  Sound: 'Dźwięk',
+  Tooltips: 'Podpowiedzi',
+};
+
+const categoryName = (category: string) => CATEGORY_NAMES[category] || category;
+const subcategoryName = (subcategory: string) =>
+  SUBCATEGORY_NAMES[subcategory] || subcategory;
+
 // Specific scales used to make the layout better
 const SUBCATEGORY_SCALES = {
   ADMIN: {
@@ -143,7 +173,7 @@ export const GamePreferencesPage = (props) => {
             />
           )) || (
             <Box as="b" color="red">
-              ...is not filled out properly!!!
+              ...nie jest poprawnie wypełnione!!!
             </Box>
           )}
         </Flex.Item>
@@ -208,7 +238,9 @@ export const GamePreferencesPage = (props) => {
                   pb={1}
                   backgroundColor="rgba(40, 40, 45, 0.25)"
                   style={{ boxShadow: '1px 1px 5px rgba(0, 0, 0, 0.4)' }}
-                  title={<Box fontSize={1.1}>{subcategory}</Box>}
+                  title={
+                    <Box fontSize={1.1}>{subcategoryName(subcategory)}</Box>
+                  }
                 >
                   <Box backgroundColor="rgba(40, 40, 45, 0.75)">
                     {preferences.map((preference) => preference.children)}

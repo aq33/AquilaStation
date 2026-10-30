@@ -87,15 +87,15 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return TRUE
 
 /obj/item/book/manual/wiki/rbmk
-	name = "\improper Haynes nuclear reactor owner's manual"
+	name = "\improper instrukcja obsługi reaktora jądrowego Haynes"
 	icon_state ="bookEngineering2"
-	author = "CogWerk Engineering Reactor Design Department"
-	title = "Haynes nuclear reactor owner's manual"
+	author = "Dział Projektowania Reaktorów CogWerk Engineering"
+	title = "Instrukcja obsługi reaktora jądrowego Haynes"
 	page_link = "Guide_to_the_Nuclear_Reactor"
 
 /obj/machinery/atmospherics/components/trinary/nuclear_reactor
-	name = "\improper Advanced Gas-Cooled Nuclear Reactor"
-	desc = "A tried and tested design which can output stable power at an acceptably low risk. The moderator can be changed to provide different effects."
+	name = "\improper zaawansowany reaktor jądrowy chłodzony gazem"
+	desc = "Sprawdzona konstrukcja, która daje stabilną moc przy akceptowalnie niskim ryzyku. Moderator można wymieniać, by uzyskać różne efekty."
 	icon = 'nsv13/icons/obj/machinery/rbmk.dmi'
 	icon_state = "reactor_map"
 	pixel_x = -32
@@ -378,17 +378,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 				return //To give the illusion that it's actually cooking omegalul.
 			switch(power)
 				if(20 to 39)
-					grilled_item.name = "grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "[initial(I.desc)] It's been grilled over a nuclear reactor."
+					grilled_item.name = "[initial(grilled_item.name)] (z grilla)"
+					grilled_item.desc = "[initial(I.desc)] Ktoś to zgrillował nad reaktorem jądrowym."
 				if(40 to 70)
-					grilled_item.name = "heavily grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "[initial(I.desc)] It's been heavily grilled through the magic of nuclear fission."
+					grilled_item.name = "[initial(grilled_item.name)] (mocno z grilla)"
+					grilled_item.desc = "[initial(I.desc)] Ktoś to porządnie zgrillował dzięki magii rozszczepienia jądrowego."
 				if(70 to 95)
-					grilled_item.name = "Three-Mile Nuclear-Grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "A [initial(grilled_item.name)]. It's been put on top of a nuclear reactor running at extreme power by some badass engineer."
+					grilled_item.name = "[initial(grilled_item.name)] z atomowego grilla Three Mile"
+					grilled_item.desc = "Danie: [initial(grilled_item.name)]. Jakiś inżynier twardziel położył to na reaktorze jądrowym pracującym z ekstremalną mocą."
 				if(95 to INFINITY)
-					grilled_item.name = "Ultimate Meltdown Grilled [initial(grilled_item.name)]"
-					grilled_item.desc = "A [initial(grilled_item.name)]. A grill this perfect is a rare technique only known by a few engineers who know how to perform a 'controlled' meltdown whilst also having the time to throw food on a reactor. I'll bet it tastes amazing."
+					grilled_item.name = "[initial(grilled_item.name)] z grilla Ostatecznego Stopienia"
+					grilled_item.desc = "Danie: [initial(grilled_item.name)]. Tak doskonały grill to rzadka technika, którą zna tylko garstka inżynierów potrafiących przeprowadzić „kontrolowane” stopienie rdzenia i jednocześnie znaleźć czas, by rzucić jedzenie na reaktor. Założę się, że smakuje niesamowicie."
 			if(power >= 20) //newfood keeps foodtypes in the edible component
 				if(istype(grilled_item, /obj/item/reagent_containers/food))
 					var/obj/item/reagent_containers/food/old_food = grilled_item
@@ -464,7 +464,7 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	AddComponent(/datum/component/radioactive, 15000 , src)
 	var/obj/effect/landmark/nuclear_waste_spawner/NSW = new /obj/effect/landmark/nuclear_waste_spawner/strong(get_turf(src))
 	var/obj/structure/overmap/OM = get_overmap()
-	OM.relay('nsv13/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>You hear a horrible metallic hissing.</span>")
+	OM.relay('nsv13/sound/effects/rbmk/meltdown.ogg', "<span class='userdanger'>Słyszysz okropny metaliczny syk.</span>")
 	OM?.stop_relay(CHANNEL_REACTOR_ALERT)
 	NSW.fire() //This will take out engineering for a decent amount of time as they have to clean up the sludge.
 	for(var/obj/machinery/power/apc/A in GLOB.apcs_list)
@@ -561,8 +561,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //Controlling the reactor.
 
 /obj/machinery/computer/reactor
-	name = "reactor control console"
-	desc = "Scream"
+	name = "konsola sterowania reaktorem"
+	desc = "Krzycz."
 	light_color = "#55BA55"
 	light_power = 1
 	light_range = 3
@@ -586,8 +586,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 #define FREQ_RBMK_CONTROL 1439.69
 
 /obj/machinery/computer/reactor/control_rods
-	name = "control rod management computer"
-	desc = "A computer which can remotely raise / lower the control rods of a reactor."
+	name = "komputer zarządzania prętami sterującymi"
+	desc = "Komputer, który zdalnie podnosi i opuszcza pręty sterujące reaktora."
 	icon_screen = "rbmk_rods"
 
 /obj/machinery/computer/reactor/control_rods/attack_hand(mob/living/user)
@@ -622,8 +622,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return data
 
 /obj/machinery/computer/reactor/stats
-	name = "reactor statistics console"
-	desc = "A console for monitoring the statistics of a nuclear reactor."
+	name = "konsola statystyk reaktora"
+	desc = "Konsola do monitorowania statystyk reaktora jądrowego."
 	icon_screen = "rbmk_stats"
 	var/next_stat_interval = 0
 	var/list/psiData = list()
@@ -671,8 +671,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	return data
 
 /obj/machinery/computer/reactor/fuel_rods
-	name = "Reactor Fuel Management Console"
-	desc = "A console which can remotely raise fuel rods out of nuclear reactors."
+	name = "konsola zarządzania paliwem reaktora"
+	desc = "Konsola, która zdalnie wyciąga pręty paliwowe z reaktorów jądrowych."
 	icon_screen = "rbmk_fuel"
 
 /obj/machinery/computer/reactor/fuel_rods/attack_hand(mob/living/user)
@@ -707,8 +707,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 	frequency = FREQ_RBMK_CONTROL
 
 /obj/machinery/computer/reactor/pump
-	name = "reactor inlet valve computer"
-	desc = "A computer which controls valve settings on an advanced gas cooled reactor. Alt click it to remotely set pump pressure."
+	name = "komputer zaworu wlotowego reaktora"
+	desc = "Komputer sterujący ustawieniami zaworów zaawansowanego reaktora chłodzonego gazem. Alt-kliknij, by zdalnie ustawić ciśnienie pompy."
 	icon_screen = "rbmk_input"
 	id = "rbmk_input"
 	var/datum/radio_frequency/radio_connection
@@ -758,17 +758,17 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 
 //Preset subtypes for mappers
 /obj/machinery/computer/reactor/pump/rbmk_input
-	name = "Reactor inlet valve computer"
+	name = "komputer zaworu wlotowego reaktora"
 	icon_screen = "rbmk_input"
 	id = "rbmk_input"
 
 /obj/machinery/computer/reactor/pump/rbmk_output
-	name = "Reactor output valve computer"
+	name = "komputer zaworu wylotowego reaktora"
 	icon_screen = "rbmk_output"
 	id = "rbmk_output"
 
 /obj/machinery/computer/reactor/pump/rbmk_moderator
-	name = "Reactor moderator valve computer"
+	name = "komputer zaworu moderatora reaktora"
 	icon_screen = "rbmk_moderator"
 	id = "rbmk_moderator"
 
@@ -776,8 +776,8 @@ The reactor CHEWS through moderator. It does not do this slowly. Be very careful
 //FINALLY WE CAN RECREATE THE ROBLOX NUCLEAR DISASTER - 18/08/2020
 
 /turf/open/indestructible/sound/pool/spentfuel
-	name = "Spent fuel pool"
-	desc = "A dumping ground for spent nuclear fuel, can you touch the bottom?"
+	name = "basen wypalonego paliwa"
+	desc = "Składowisko wypalonego paliwa jądrowego. Dosięgniesz dna?"
 	icon = 'nsv13/icons/obj/pool.dmi'
 	icon_state = "spentfuelpool"
 

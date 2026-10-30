@@ -1,6 +1,6 @@
 /obj/structure/bot_elevator
-	name = "bot elevator"
-	desc = "A basic service elevator built specifically for the various bots onboard the vessel."
+	name = "winda dla botów"
+	desc = "Prosta winda serwisowa zbudowana specjalnie dla różnych botów na pokładzie okrętu."
 	icon = 'icons/obj/structures/bot_elevator.dmi'
 	icon_state = "elevator1"
 	anchored = TRUE

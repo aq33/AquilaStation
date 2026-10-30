@@ -27,12 +27,12 @@
 /datum/round_event/aquila_teratoma/proc/spawn_mass()
 	var/list/turfs = candidate_turfs()
 	if(!length(turfs))
-		message_admins("Living Tumor event found no safe maintenance turf, nothing was spawned.")
+		message_admins("Event żywego guza nie znalazł bezpiecznego pola w tunelach serwisowych, nic się nie pojawiło.")
 		log_game("Living Tumor event found no safe maintenance turf, nothing was spawned.")
 		return
 	var/turf/spot = pick(turfs)
 	var/obj/effect/mob_spawn/teratomamonkey/mass = new(spot)
-	message_admins("Living Tumor event spawned [mass] at [ADMIN_VERBOSEJMP(spot)].")
+	message_admins("Event żywego guza tworzy [mass] w [ADMIN_VERBOSEJMP(spot)].")
 	log_game("Living Tumor event spawned [mass] at [AREACOORD(spot)].")
 	return mass
 

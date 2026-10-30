@@ -23,7 +23,7 @@
 		for(var/mob/M in GLOB.dead_mob_list)
 			deadMobs++
 		if(deadMobs < REVENANT_SPAWN_THRESHOLD)
-			message_admins("Event attempted to spawn a revenant, but there were only [deadMobs]/[REVENANT_SPAWN_THRESHOLD] dead mobs.")
+			message_admins("Wydarzenie próbuje stworzyć upiora, ale martwych mobów jest tylko [deadMobs]/[REVENANT_SPAWN_THRESHOLD].")
 			return WAITING_FOR_SOMETHING
 
 	var/list/candidates = get_candidates(ROLE_REVENANT, /datum/role_preference/midround_ghost/revenant)
@@ -54,7 +54,7 @@
 
 	var/mob/living/simple_animal/revenant/revvie = new(pick(spawn_locs))
 	revvie.key = selected.key
-	message_admins("[ADMIN_LOOKUPFLW(revvie)] has been made into a revenant by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(revvie)] zostaje upiorem w wyniku wydarzenia.")
 	log_game("[key_name(revvie)] was spawned as a revenant by an event.")
 	spawned_mobs += revvie
 	return SUCCESSFUL_SPAWN

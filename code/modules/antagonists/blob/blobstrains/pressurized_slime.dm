@@ -33,7 +33,7 @@
 				L.ExtinguishMob()
 
 /datum/reagent/blob/pressurized_slime
-	name = "Pressurized Slime"
+	name = "Sprężony szlam"
 	taste_description = "gąbka"
 	color = "#AAAABB"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

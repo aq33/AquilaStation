@@ -1,6 +1,6 @@
 /obj/item/toy/eightball
-	name = "magic eightball"
-	desc = "A black ball with a stenciled number eight in white on the side. It seems full of dark liquid.\nThe instructions state that you should ask your question aloud, and then shake."
+	name = "magiczna kula ósemka"
+	desc = "Czarna kula z namalowaną z boku białą ósemką. Wygląda na wypełnioną ciemnym płynem.\nZgodnie z instrukcją należy zadać pytanie na głos, a potem potrząsnąć."
 
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "eightball"
@@ -17,13 +17,13 @@
 	var/static/list/possible_answers = list(
 		"To pewne",
 		"Zdecydowanie tak",
-		"Without a doubt",
+		"Bez wątpienia",
 		"Tak, zdecydowanie",
 		"Możesz na tym polegać",
 		"Jak ja to widzę, tak",
 		"Najprawdopodobniej",
 		"Perspektywy są dobre",
-		"Yes",
+		"Tak",
 		"Znaki wskazują, że tak",
 		"Odpowiedź niejasna, spróbuj ponownie",
 		"Zapytaj później",
@@ -80,8 +80,8 @@
 // A broken magic eightball, it only says "YOU SUCK" over and over again.
 
 /obj/item/toy/eightball/broken
-	name = "broken magic eightball"
-	desc = "A black ball with a stenciled number eight in white on the side. It is cracked and seems empty."
+	name = "zepsuta magiczna kula ósemka"
+	desc = "Czarna kula z namalowaną z boku białą ósemką. Jest pęknięta i wygląda na pustą."
 	var/fixed_answer
 
 /obj/item/toy/eightball/broken/Initialize(mapload)

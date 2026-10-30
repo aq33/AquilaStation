@@ -11,10 +11,10 @@
  */
 
 /obj/structure/bookcase
-	name = "bookcase"
+	name = "regał na książki"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bookempty"
-	desc = "A great place for storing knowledge."
+	desc = "Świetne miejsce do przechowywania wiedzy."
 	anchored = FALSE
 	density = TRUE
 	opacity = 0
@@ -105,7 +105,7 @@
 				if(!newname)
 					return
 				else
-					name = "bookcase ([sanitize(newname)])"
+					name = "regał na książki ([sanitize(newname)])"
 			else if(I.tool_behaviour == TOOL_CROWBAR)
 				if(contents.len)
 					to_chat(user, "<span class='warning'>Najpierw musisz wyjąć książki!</span>")
@@ -156,7 +156,7 @@
 
 
 /obj/structure/bookcase/manuals/medical
-	name = "medical manuals bookcase"
+	name = "regał z podręcznikami medycznymi"
 
 /obj/structure/bookcase/manuals/medical/Initialize(mapload)
 	. = ..()
@@ -165,7 +165,7 @@
 
 
 /obj/structure/bookcase/manuals/engineering
-	name = "engineering manuals bookcase"
+	name = "regał z podręcznikami inżynieryjnymi"
 
 /obj/structure/bookcase/manuals/engineering/Initialize(mapload)
 	. = ..()
@@ -178,7 +178,7 @@
 
 
 /obj/structure/bookcase/manuals/research_and_development
-	name = "\improper R&D manuals bookcase"
+	name = "\improper regał z podręcznikami B+R"
 
 /obj/structure/bookcase/manuals/research_and_development/Initialize(mapload)
 	. = ..()
@@ -190,10 +190,10 @@
  * Book
  */
 /obj/item/book
-	name = "book"
+	name = "książka"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
-	desc = "Crack it open, inhale the musk of its pages, and learn something new."
+	desc = "Otwórz ją, wciągnij zapach stron i naucz się czegoś nowego."
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
@@ -257,11 +257,11 @@
 		if(!literate)
 			to_chat(user, "<span class='notice'>Gryzmolisz nieczytelnie na okładce [src]!</span>")
 			return
-		var/choice = input("Co chcesz zmienić?") in list("Title", "Contents", "Author", "Cancel")
+		var/choice = input("Co chcesz zmienić?") in list("Tytuł", "Treść", "Autor", "Anuluj")
 		if(!user.canUseTopic(src, BE_CLOSE, literate))
 			return
 		switch(choice)
-			if("Title")
+			if("Tytuł")
 				var/newtitle = reject_bad_text(stripped_input(user, "Wpisz nowy tytuł:"))
 				if(!user.canUseTopic(src, BE_CLOSE, literate))
 					return
@@ -274,7 +274,7 @@
 				else
 					name = newtitle
 					title = newtitle
-			if("Contents")
+			if("Treść")
 				var/content = stripped_input(user, "Wpisz treść książki (HTML NIEDOZWOLONY):","","",8192)
 				if(!user.canUseTopic(src, BE_CLOSE, literate))
 					return
@@ -283,7 +283,7 @@
 					return
 				else
 					dat += content
-			if("Author")
+			if("Autor")
 				var/newauthor = stripped_input(user, "Wpisz imię autora:")
 				if(!user.canUseTopic(src, BE_CLOSE, literate))
 					return
@@ -352,10 +352,10 @@
  * Barcode Scanner
  */
 /obj/item/barcodescanner
-	name = "barcode scanner"
+	name = "skaner kodów kreskowych"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="scanner"
-	desc = "A fabulous tool if you need to scan a barcode."
+	desc = "Wspaniałe narzędzie, jeśli musisz zeskanować kod kreskowy."
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -379,8 +379,8 @@
 		if(3)
 			modedesc = "Skanuj książkę do lokalnego bufora, spróbuj dodać książkę do katalogu ogólnego."
 		else
-			modedesc = "ERROR"
-	to_chat(user, " - Mode [mode] : [modedesc]")
+			modedesc = "BŁĄD"
+	to_chat(user, " - Tryb [mode]: [modedesc]")
 	if(computer)
 		to_chat(user, "<font color=green>Powiązano komputer z tym urządzeniem.</font>")
 	else

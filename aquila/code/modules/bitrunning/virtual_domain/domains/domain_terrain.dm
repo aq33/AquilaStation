@@ -152,7 +152,7 @@
 	ranged_cooldown_time = 4 SECONDS
 	pixel_x = -16
 	base_pixel_x = -16
-	gps_name = "Berserk Signal"
+	gps_name = "Sygnał berserka"
 	loot = list()
 	butcher_results = list()
 	wander = FALSE

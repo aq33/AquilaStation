@@ -25,7 +25,7 @@
 /datum/round_event/aquila_ship_partition/start()
 	var/list/line = aquila_partition_line()
 	if(!length(line))
-		message_admins("Ship Partition event found no station turfs, nothing was spawned.")
+		message_admins("Event podziału statku nie znajduje pól statku, nic się nie pojawia.")
 		log_game("Ship Partition event found no station turfs, nothing was spawned.")
 		return
 	var/vertical = line["vertical"]
@@ -45,7 +45,7 @@
 			barriers++
 		CHECK_TICK
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Bariera energetyczna przedzielająca statek wygasła.", "Bariera energetyczna"), duration)
-	message_admins("Ship Partition event split the ship along [vertical ? "x" : "y"] = [position] with [barriers] barrier tiles for [DisplayTimeText(duration)].")
+	message_admins("Event podziału statku dzieli statek wzdłuż [vertical ? "x" : "y"] = [position] (pola bariery: [barriers]) na [DisplayTimeText(duration)].")
 	log_game("Ship Partition event split the ship along [vertical ? "x" : "y"] = [position] with [barriers] barrier tiles for [DisplayTimeText(duration)].")
 
 /// Where to cut the ship: the middle of its longer side. Returns list("vertical" = TRUE if the line runs north-south, "position" = x or y), or null

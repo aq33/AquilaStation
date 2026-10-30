@@ -1,6 +1,6 @@
 /mob/living/simple_animal/cockroach
-	name = "cockroach"
-	desc = "This station is just crawling with bugs."
+	name = "karaluch"
+	desc = "Na tej stacji aż roi się od robactwa."
 	icon_state = "cockroach"
 	icon_dead = "cockroach"
 	health = 1
@@ -48,7 +48,7 @@
 			var/mob/living/A = AM
 			if(A.mob_size > MOB_SIZE_SMALL && !(A.movement_type & FLYING))
 				if(prob(squish_chance))
-					A.visible_message("<span class='notice'>[A] squashed [src].</span>", "<span class='notice'>Rozgniatasz [src].</span>")
+					A.visible_message("<span class='notice'>[A] rozgniata [src].</span>", "<span class='notice'>Rozgniatasz [src].</span>")
 					adjustBruteLoss(1) //kills a normal cockroach
 				else
 					visible_message("<span class='notice'>[src] unika zgniecenia.</span>")

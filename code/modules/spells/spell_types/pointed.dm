@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/pointed
-	name = "pointed spell"
+	name = "zaklęcie celowane"
 	ranged_mousepointer = 'icons/effects/throw_target.dmi'
 	/// Message showing to the spell owner upon deactivating pointed spell.
 	var/deactive_msg = "Rozpraszasz magię..."

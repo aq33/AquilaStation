@@ -18,7 +18,7 @@
 
 /client/proc/centcom_podlauncher() //Creates a verb for admins to open up the ui
 	set name = "Config/Launch Supplypod"
-	set desc = "Configure and launch a CentCom supplypod full of whatever your heart desires!"
+	set desc = "Skonfiguruj i wystrzel kapsułę zaopatrzeniową Centrali pełną wszystkiego, czego dusza zapragnie!"
 	set category = "Adminbus"
 	if(!check_rights(R_SPAWN))
 		return
@@ -255,7 +255,7 @@
 				oldTurf = current_location
 			M.forceMove(dropoff_turf) //Perform the actual teleport
 			log_admin("[key_name(usr)] jumped to [AREACOORD(dropoff_turf)]")
-			message_admins("[key_name_admin(usr)] jumped to [AREACOORD(dropoff_turf)]")
+			message_admins("[key_name_admin(usr)] skacze do [AREACOORD(dropoff_turf)]")
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
 			var/mob/holder_mob = holder.mob //We teleport whatever mob the client is attached to at the point of clicking
@@ -267,7 +267,7 @@
 			holder_mob.forceMove(teleport_turf) //Perform the actual teleport
 			if (holder.holder)
 				log_admin("[key_name(usr)] jumped to [AREACOORD(teleport_turf)]")
-				message_admins("[key_name_admin(usr)] jumped to [AREACOORD(teleport_turf)]")
+				message_admins("[key_name_admin(usr)] skacze do [AREACOORD(teleport_turf)]")
 			. = TRUE
 		if("teleportBack") //After teleporting to centcom/dropoff, this button allows the user to teleport to the last spot they were at.
 			var/mob/M = holder.mob
@@ -277,7 +277,7 @@
 			M.forceMove(oldTurf) //Perform the actual teleport
 			if (holder.holder)
 				log_admin("[key_name(usr)] jumped to [AREACOORD(oldTurf)]")
-				message_admins("[key_name_admin(usr)] jumped to [AREACOORD(oldTurf)]")
+				message_admins("[key_name_admin(usr)] skacze do [AREACOORD(oldTurf)]")
 			. = TRUE
 
 		////////////////////////////LAUNCH STYLE CHANGES//////////////////
@@ -309,10 +309,10 @@
 				explosionChoice = 0
 				temp_pod.explosionSize = list(0,0,0,0)
 			else
-				var/list/expNames = list("Devastation", "Ciężkie obrażenia", "Lekkie obrażenia", "Flame") //Explosions have a range of different types of damage
+				var/list/expNames = list("Całkowite zniszczenie", "Ciężkie obrażenia", "Lekkie obrażenia", "Płomienie") //Explosions have a range of different types of damage
 				var/list/boomInput = list()
 				for (var/i=1 to expNames.len) //Gather input from the user for the value of each type of damage
-					boomInput.Add(input("Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", "[expNames[i]] Range",  0) as null|num)
+					boomInput.Add(input("Podaj zasięg eksplozji (rodzaj: [expNames[i]]). UWAGA: to ignoruje limit bomb!", "Zasięg: [expNames[i]]",  0) as null|num)
 					if (isnull(boomInput[i]))
 						return
 					if (!isnum_safe(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
@@ -372,7 +372,7 @@
 			if (temp_pod.effectShrapnel == TRUE) //If already doing custom damage, set back to default (no shrapnel)
 				temp_pod.effectShrapnel = FALSE
 			else
-				var/shrapnelInput = input("Please enter the type of pellet cloud you'd like to create on landing (Can be any projectile!)", "Projectile Typepath",  0) in sortList(subtypesof(/obj/item/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc))
+				var/shrapnelInput = input("Wybierz typ chmury odłamków tworzonej przy lądowaniu (może to być dowolny pocisk!)", "Ścieżka typu pocisku",  0) in sortList(subtypesof(/obj/item/projectile), GLOBAL_PROC_REF(cmp_typepaths_asc))
 				if (isnull(shrapnelInput))
 					return
 				var/shrapnelMagnitude = input("Podaj siłę chmury odłamków. Zwykle jest to wartość około 1-5. Ryll-Ryll prosi, by ci przekazać, że jeśli przesadzisz z pociskami, możesz wywalić serwer. Więc, ee, delikatnie!", "Siła odłamków", 0) as null|num
@@ -431,7 +431,7 @@
 				specificTarget = null
 			else
 				var/list/mobs = getpois()//code stolen from observer.dm
-				var/inputTarget = input("Wybierz moba! (Smiting robi to automatycznie)", "Target", null, null) as null|anything in mobs
+				var/inputTarget = input("Wybierz moba! (Smiting robi to automatycznie)", "Cel", null, null) as null|anything in mobs
 				if (isnull(inputTarget))
 					return
 				var/mob/target = mobs[inputTarget]
@@ -551,7 +551,7 @@
 			updateSelector()
 			. = TRUE
 		if("clearBay") //Delete all mobs and objs in the selected bay
-			if(alert(usr, "To usunie wszystkie obiekty i moby w [bay]. Na pewno?", "Confirmation", "Delete that shit", "No") == "Delete that shit")
+			if(alert(usr, "To usunie wszystkie obiekty i moby w [bay]. Na pewno?", "Potwierdzenie", "Usuń to cholerstwo", "Nie") == "Usuń to cholerstwo")
 				clearBay()
 				refreshBay()
 			. = TRUE
@@ -817,14 +817,14 @@
 	. = ..()
 
 /datum/centcom_podlauncher/proc/supplypod_punish_log(var/list/whoDyin)
-	var/podString = effectBurst ? "5 pods" : "a pod"
+	var/podString = effectBurst ? "5 kapsuł" : "kapsułę"
 	var/whomString = ""
 	if (LAZYLEN(whoDyin))
 		for (var/mob/living/M in whoDyin)
 			whomString += "[key_name(M)], "
 
-	var/msg = "launched [podString] towards [whomString]"
-	message_admins("[key_name_admin(usr)] [msg] in [ADMIN_VERBOSEJMP(specificTarget)].")
+	var/msg = "wystrzeliwuje [podString] w stronę: [whomString]"
+	message_admins("[key_name_admin(usr)] [msg] w [ADMIN_VERBOSEJMP(specificTarget)].")
 	if (length(whoDyin))
 		for (var/mob/living/M in whoDyin)
 			admin_ticket_log(M, "[key_name_admin(usr)] [msg]")
@@ -895,14 +895,14 @@ GLOBAL_DATUM_INIT(podlauncher, /datum/centcom_podlauncher, new)
 	indicator.forceMove(target_turf)
 
 /obj/effect/hallucination/simple/supplypod_selector
-	name = "Supply Selector (Only you can see this)"
+	name = "selektor zrzutu (widzisz go tylko ty)"
 	image_icon = 'icons/obj/supplypods_32x32.dmi'
 	image_state = "selector"
 	image_layer = FLY_LAYER
 	alpha = 150
 
 /obj/effect/hallucination/simple/dropoff_location
-	name = "Dropoff Location (Only you can see this)"
+	name = "miejsce odbioru (widzisz je tylko ty)"
 	image_icon = 'icons/obj/supplypods_32x32.dmi'
 	image_state = "dropoff_indicator"
 	image_layer = FLY_LAYER

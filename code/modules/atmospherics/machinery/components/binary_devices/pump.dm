@@ -12,8 +12,8 @@
 
 /obj/machinery/atmospherics/components/binary/pump
 	icon_state = "pump_map-3"
-	name = "gas pump"
-	desc = "A pump that moves gas by pressure."
+	name = "pompa gazu"
+	desc = "Pompa, która przetłacza gaz według ciśnienia."
 
 	can_unwrench = TRUE
 	shift_underlay_only = FALSE

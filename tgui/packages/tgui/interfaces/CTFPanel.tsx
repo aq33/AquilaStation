@@ -49,7 +49,7 @@ export const CTFPanel = (props) => {
   const { act, data } = useBackend<CTFPanelData>();
 
   return (
-    <Window title="Capture the Flag" width={700} height={600}>
+    <Window title="Zdobądź flagę" width={700} height={600}>
       <Window.Content scrollable>
         {!!data.is_admin && (
           <Section>

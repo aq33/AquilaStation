@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/touch/envy
-	name = "Vanity Steal"
-	desc = "Engulfs your arm in a jealous might, allowing you to steal the look of the first human-like struck with it, along with the access of their ID. Note, the form change is not reversible."
+	name = "Kradzież wizerunku"
+	desc = "Spowija twoją rękę zazdrosną mocą. Pierwszy człekokształtny, którego nią uderzysz, traci na twoją rzecz swój wygląd i dostępy z karty ID. Uwaga: zmiany wyglądu nie da się cofnąć."
 	hand_path = /obj/item/melee/touch_attack/envy
 	school = "evocation"
 	charge_max = 150
@@ -13,8 +13,8 @@
 	action_background_icon_state = "bg_demon"
 
 /obj/item/melee/touch_attack/envy
-	name = "Envious Hand"
-	desc = "A writhing, burning aura of jealousy, ready to be unleashed."
+	name = "Zawistna dłoń"
+	desc = "Wijąca się, paląca aura zazdrości, gotowa do uwolnienia."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	color = "#3fa33f"

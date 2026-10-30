@@ -1,6 +1,6 @@
 /obj/machinery/vending/wallmed
 	name = "\improper NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser."
+	desc = "Naścienny automat ze sprzętem medycznym."
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = FALSE

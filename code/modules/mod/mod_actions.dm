@@ -37,7 +37,7 @@
 		return FALSE
 	var/obj/item/mod/control/mod = target
 	if(mod.malfunctioning && prob(75))
-		mod.balloon_alert(usr, "button malfunctions!")
+		mod.balloon_alert(usr, "przycisk zawodzi!")
 		return FALSE
 	on_activate(owner, mod, trigger_flags)
 	return TRUE
@@ -47,8 +47,8 @@
 	return
 
 /datum/action/item_action/mod/deploy
-	name = "Deploy MODsuit"
-	desc = "Click: Deploy/Undeploy part. Alt-click: Deploy/Undeploy full suit."
+	name = "Rozłóż MODsuit"
+	desc = "Klik: rozłóż lub złóż część. Alt-klik: rozłóż lub złóż cały skafander."
 	button_icon_state = "deploy"
 
 /datum/action/item_action/mod/deploy/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
@@ -61,8 +61,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/activate
-	name = "Activate MODsuit"
-	desc = "Click: Activate/Deactivate suit with prompt. Alt-click: Activate/Deactivate suit skipping prompt."
+	name = "Aktywuj MODsuit"
+	desc = "Klik: włącz lub wyłącz skafander z potwierdzeniem. Alt-klik: włącz lub wyłącz skafander bez potwierdzenia."
 	button_icon_state = "activate"
 	/// First time clicking this will set it to TRUE, second time will activate it.
 	var/ready = FALSE
@@ -87,8 +87,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/module
-	name = "Toggle Module"
-	desc = "Toggle a MODsuit module."
+	name = "Przełącz moduł"
+	desc = "Przełącza moduł MODsuitu."
 	button_icon_state = "module"
 
 /datum/action/item_action/mod/module/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
@@ -98,8 +98,8 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/panel
-	name = "MODsuit Panel"
-	desc = "Open the MODsuit's panel."
+	name = "Panel MODsuitu"
+	desc = "Otwiera panel MODsuitu."
 	button_icon_state = "panel"
 
 /datum/action/item_action/mod/panel/on_activate(mob/user, obj/item/mod/control/mod, trigger_flags)
@@ -109,7 +109,7 @@
 	ai_action = TRUE
 
 /datum/action/item_action/mod/pinned_module
-	desc = "Activate the module."
+	desc = "Aktywuje moduł."
 	/// Overrides the icon applications.
 	var/override = FALSE
 	/// Module we are linked to.
@@ -130,8 +130,8 @@
 	if(linked_module.allow_flags & MODULE_ALLOW_INCAPACITATED)
 		// clears check hands and check conscious
 		check_flags = NONE
-	name = "Activate [capitalize(linked_module.name)]"
-	desc = "Quickly activate [linked_module]."
+	name = "Aktywuj: [linked_module.name]"
+	desc = "Szybko aktywuje moduł: [linked_module]."
 	button.name = name
 	button.desc = desc
 	icon_icon = linked_module.icon

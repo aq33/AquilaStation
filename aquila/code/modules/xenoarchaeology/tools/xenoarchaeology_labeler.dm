@@ -1,5 +1,5 @@
 /obj/item/xenoarchaeology_labeler
-	name = "artifact labeler"
+	name = "etykieciarka artefaktów"
 	icon = 'icons/obj/xenoarchaeology/xenoartifact_tech.dmi'
 	icon_state = "labeler"
 	desc = "Narzędzie, którym naukowcy oznaczają swoje obce bomby."
@@ -138,7 +138,7 @@
 	Debug variant, spawns artifacts
 */
 /obj/item/xenoarchaeology_labeler/debug
-	name = "xenoartifact debug labeler"
+	name = "debugowa etykieciarka ksenoartefaktów"
 	desc = "Służy do tworzenia konkretnych ksenoartefaktów."
 	icon_state = "labeler_debug"
 	sticker_cooldown = 0 SECONDS
@@ -184,7 +184,7 @@
 /obj/item/sticker/xenoartifact_label
 	icon = 'icons/obj/xenoarchaeology/xenoartifact_sticker.dmi'
 	icon_state = "sticker_star"
-	name = "artifact label"
+	name = "etykieta artefaktu"
 	desc = "Samoprzylepna etykieta na artefakty."
 	do_outline = FALSE
 	roll_unusual = FALSE
@@ -196,7 +196,7 @@
 	var/old_custom_price
 
 /obj/item/sticker/xenoartifact_label/old
-	name = "old artifact label"
+	name = "stara etykieta artefaktu"
 	color = "#bd812e"
 
 /obj/item/sticker/xenoartifact_label/old/build_stuck_appearance()

@@ -3,7 +3,7 @@
 #define PLASMA_COMBO "HDDDH"
 
 /datum/martial_art/plasma_fist
-	name = "Plasma Fist"
+	name = "Plazmowa pięść"
 	id = MARTIALART_PLASMAFIST
 	var/nobomb = FALSE
 	var/plasma_power = 1 //starts at a 1, 2, 4 explosion.
@@ -111,7 +111,7 @@
 
 	//before ghosting to prevent issues
 	log_combat(A, A, "triggered final plasma explosion with size [plasma_power], [plasma_power*2], [plasma_power*4] (Plasma Fist)")
-	message_admins("[key_name_admin(A)] triggered final plasma explosion with size [plasma_power], [plasma_power*2], [plasma_power*4].")
+	message_admins("[key_name_admin(A)] wywołuje ostateczną eksplozję plazmy o rozmiarze [plasma_power], [plasma_power*2], [plasma_power*4].")
 
 	to_chat(A, "<span class='userdanger'>Eksplozja wybija twoją duszę z ciała!</span>")
 	A.ghostize(FALSE) //prevents... horrible memes just believe me
@@ -175,7 +175,7 @@
 	desc = "Płynąca energia."
 
 /datum/martial_art/plasma_fist/nobomb
-	name = "Novice Plasma Fist"
+	name = "Plazmowa pięść nowicjusza"
 	nobomb = TRUE
 
 #undef TORNADO_COMBO

@@ -1,7 +1,7 @@
 // Laser PD system control console
 /obj/machinery/computer/laser_pd
-	name = "point-defense laser console"
-	desc = "A computer that allows you to control a connected point-defense laser."
+	name = "konsola lasera obrony punktowej"
+	desc = "Komputer, który steruje połączonym laserem obrony punktowej."
 	icon_screen = "50cal"
 	circuit = /obj/item/circuitboard/computer/laser_pd
 	var/obj/machinery/ship_weapon/energy/laser_pd/turret
@@ -48,8 +48,8 @@
 
 // The laser PD turret itself
 /obj/machinery/ship_weapon/energy/laser_pd
-	name = "laser point defense turret"
-	desc = "A low-wattage laser designed to provide close-combat relief to large ships."
+	name = "wieżyczka lasera obrony punktowej"
+	desc = "Laser małej mocy, który wspiera duże okręty w walce na bliski dystans."
 	icon ='nsv13/icons/obj/energy_weapons.dmi'
 	icon_state = "pd_cannon"
 	bound_width = 64

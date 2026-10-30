@@ -1,6 +1,6 @@
 /obj/item/projectile/bullet/dart
 	bleed_force = BLEED_SURFACE
-	name = "dart"
+	name = "strzałka"
 	icon_state = "cbbolt"
 	damage = 6
 	var/piercing = FALSE
@@ -43,11 +43,11 @@
 
 
 /obj/item/projectile/bullet/dart/syringe
-	name = "syringe"
+	name = "strzykawka"
 	icon_state = "syringeproj"
 
 /obj/item/projectile/bullet/dart/bee
-	name = "bee"
+	name = "pszczoła"
 	icon_state = "bee"
 	damage = 1
 	flag = "melee"
@@ -89,7 +89,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/dart/tranq
-	name = "tranquilizer dart"
+	name = "strzałka usypiająca"
 
 /obj/item/projectile/bullet/dart/tranq/Initialize(mapload)
 	. = ..()

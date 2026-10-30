@@ -1,5 +1,5 @@
 /obj/item/multitool/circuit
-	name = "circuit multitool"
+	name = "multitool do układów"
 	desc = "Multitool do układów. Służy do oznaczania obiektów, które potem można wgrać do komponentów przyciskiem wgrywania przy porcie. \
 	Poza tym działa jak zwykły multitool. Użyj w ręce, aby wyczyścić oznaczony obiekt i móc oznaczyć kolejny."
 	icon_state = "multitool_circuit"

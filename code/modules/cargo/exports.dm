@@ -195,9 +195,7 @@ Credit dupes that require a lot of manual work shouldn't be removed, unless they
 		msg = "+" + msg
 
 	if(unit_name)
-		msg += unit_name
-		if(total_amount > 1)
-			msg += "s"
+		msg += "szt. – [unit_name]" // AQUILA: bez angielskiego "s"; format jak w message eksportów bez unit_name
 		if(message)
 			msg += " "
 

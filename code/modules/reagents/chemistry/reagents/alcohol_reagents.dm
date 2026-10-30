@@ -7,7 +7,7 @@
 //////////////
 
 /datum/reagent/consumable/ethanol
-	name = "Ethanol"
+	name = "Etanol"
 	description = "Powszechnie znany alkohol o wielu zastosowaniach."
 	weed_kill = 0.1
 	color = "#404030" // rgb: 64, 64, 48
@@ -87,25 +87,25 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/beer
-	name = "Beer"
+	name = "Piwo"
 	description = "Napój alkoholowy warzony od starożytności na Starej Ziemi. Wciąż popularny."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
 	taste_description = "siki"
-	glass_name = "glass of beer"
+	glass_name = "kufel piwa"
 	glass_desc = "Lodowato zimny kufel piwa."
 
 /datum/reagent/consumable/ethanol/ftliver
-	name = "Faster-Than-Liver"
+	name = "Szybsze niż wątroba"
 	description = "Napój zrodzony wśród gwiazd; mówią, że picie go w nadmiarze przypomina tranzyt FTL."
 	color = "#0D0D0D" // rgb: 13, 13, 13
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 52
 	taste_description = "pusta przestrzeń"
 	glass_icon_state = "ftliver"
-	glass_name = "glass of Faster-Than-Liver"
+	glass_name = "szklanka „Szybsze niż wątroba”"
 	glass_desc = "Mój Boże, jest pełny gwiazd!"
 	var/HasTraveled = 0
 
@@ -123,22 +123,22 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.cure_nearsighted("ftliver")
 
 /datum/reagent/consumable/ethanol/beer/light
-	name = "Light Beer"
+	name = "Lekkie piwo"
 	description = "Napój alkoholowy warzony od starożytności na Starej Ziemi. Ta odmiana ma mniej kalorii i alkoholu."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 5 //Space Europeans hate it
 	taste_description = "pomyje"
-	glass_name = "glass of light beer"
+	glass_name = "kufel lekkiego piwa"
 	glass_desc = "Lodowato zimny kufel wodnistego jasnego piwa."
 
 /datum/reagent/consumable/ethanol/beer/green
-	name = "Green Beer"
+	name = "Zielone piwo"
 	description = "Napój alkoholowy warzony od starożytności na Starej Ziemi. Ta odmiana jest świątecznie zabarwiona na zielono."
 	color = "#A8E61D"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	taste_description = "zielone siki"
 	glass_icon_state = "greenbeerglass"
-	glass_name = "glass of green beer"
+	glass_name = "kufel zielonego piwa"
 	glass_desc = "Lodowato zimny kufel zielonego piwa. Świątecznie."
 
 /datum/reagent/consumable/ethanol/beer/green/on_mob_life(mob/living/carbon/M)
@@ -156,7 +156,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 45
 	glass_icon_state = "kahluaglass"
-	glass_name = "glass of RR coffee liquor"
+	glass_name = "kieliszek likieru kawowego RR"
 	glass_desc = "KURCZĘ, TO WYGLĄDA ROBUSTOWO!"
 	shot_glass_icon_state = "shotglasscream"
 
@@ -170,14 +170,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = 1
 
 /datum/reagent/consumable/ethanol/whiskey
-	name = "Whiskey"
+	name = "Whisky"
 	description = "Wyborna, dobrze leżakowana whisky single malt. Kurczę."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 75
 	taste_description = "melasa"
 	glass_icon_state = "whiskeyglass"
-	glass_name = "glass of whiskey"
+	glass_name = "szklanka whisky"
 	glass_desc = "Jedwabista, dymna whisky w szklance sprawia, że drink wygląda bardzo elegancko."
 	shot_glass_icon_state = "shotglassbrown"
 
@@ -193,7 +193,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	addiction_threshold = 30
 	taste_description = "drgawki i śmierć"
 	glass_icon_state = "thirteen_loko_glass"
-	glass_name = "glass of Thirteen Loko"
+	glass_name = "szklanka Thirteen Loko"
 	glass_desc = "To szklanka Thirteen Loko, wygląda na najwyższej jakości. Drink, nie szklanka."
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/M)
@@ -218,7 +218,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			M.Jitter(10)
 
 	if(prob(7))
-		to_chat(M, "<span class='notice'>[pick("You have a really bad headache.", "Your eyes hurt.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]</span>")
+		to_chat(M, "<span class='notice'>[pick("Strasznie boli cię głowa.", "Bolą cię oczy.", "Trudno ci usiedzieć w miejscu.", "Czujesz, jak serce niemal wyskakuje ci z piersi.")]</span>")
 
 	if(prob(5) && iscarbon(M))
 		var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
@@ -246,14 +246,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
 
 /datum/reagent/consumable/ethanol/vodka
-	name = "Vodka"
+	name = "Wódka"
 	description = "Napój i paliwo numer jeden dla Rosjan na całym świecie."
 	color = "#0064C8" // rgb: 0, 100, 200
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 65
 	taste_description = "spirytus zbożowy"
 	glass_icon_state = "ginvodkaglass"
-	glass_name = "glass of vodka"
+	glass_name = "kieliszek wódki"
 	glass_desc = "Szklanka zawiera wódkę. Na zdrowie."
 	shot_glass_icon_state = "shotglassclear"
 
@@ -262,7 +262,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/bilk
-	name = "Bilk"
+	name = "Mlekiwo"
 	description = "To chyba piwo zmieszane z mlekiem. Obrzydliwe."
 	color = "#895C4C" // rgb: 137, 92, 76
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -270,7 +270,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 15
 	taste_description = "desperacja i laktoza"
 	glass_icon_state = "glass_brown"
-	glass_name = "glass of bilk"
+	glass_name = "kufel mlekiwa"
 	glass_desc = "Mieszanka mleka i piwa. Dla alkoholików, którzy boją się osteoporozy."
 
 /datum/reagent/consumable/ethanol/bilk/on_mob_life(mob/living/carbon/M)
@@ -288,7 +288,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_FANTASTIC
 	taste_description = "suchość"
 	glass_icon_state = "threemileislandglass"
-	glass_name = "Three Mile Island Ice Tea"
+	glass_name = "Three Mile Island Iced Tea"
 	glass_desc = "Szklanka tego na pewno zapobiegnie stopieniu rdzenia."
 
 /datum/reagent/consumable/ethanol/threemileisland/on_mob_life(mob/living/carbon/M)
@@ -303,7 +303,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 45
 	taste_description = "alkoholowa choinka"
 	glass_icon_state = "ginvodkaglass"
-	glass_name = "glass of gin"
+	glass_name = "szklanka ginu"
 	glass_desc = "Krystalicznie czysta szklanka ginu Griffeater."
 
 /datum/reagent/consumable/ethanol/rum
@@ -314,7 +314,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 60
 	taste_description = "zaprawiony karmel"
 	glass_icon_state = "rumglass"
-	glass_name = "glass of rum"
+	glass_name = "szklanka rumu"
 	glass_desc = "Teraz chcesz się pomodlić o strój pirata, prawda?"
 	shot_glass_icon_state = "shotglassbrown"
 
@@ -326,36 +326,36 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 70
 	taste_description = "rozpuszczalnik do farb"
 	glass_icon_state = "tequilaglass"
-	glass_name = "glass of tequila"
+	glass_name = "kieliszek tequili"
 	glass_desc = "Teraz brakuje tylko dziwnie kolorowych okularów!"
 	shot_glass_icon_state = "shotglassgold"
 
 /datum/reagent/consumable/ethanol/vermouth
-	name = "Vermouth"
+	name = "Wermut"
 	description = "Nagle masz ochotę na martini..."
 	color = "#91FF91" // rgb: 145, 255, 145
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 45
 	taste_description = "wytrawny alkohol"
 	glass_icon_state = "vermouthglass"
-	glass_name = "glass of vermouth"
+	glass_name = "kieliszek wermutu"
 	glass_desc = "Zastanawiasz się, czemu w ogóle pijesz to bez niczego."
 	shot_glass_icon_state = "shotglassclear"
 
 /datum/reagent/consumable/ethanol/wine
-	name = "Wine"
+	name = "Wino"
 	description = "Ekskluzywny napój alkoholowy z destylowanego soku winogronowego."
 	color = "#7E4043" // rgb: 126, 64, 67
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 35
 	taste_description = "gorzka słodycz"
 	glass_icon_state = "wineglass"
-	glass_name = "glass of wine"
+	glass_name = "kieliszek wina"
 	glass_desc = "Bardzo elegancko wyglądający drink."
 	shot_glass_icon_state = "shotglassred"
 
 /datum/reagent/consumable/ethanol/lizardwine
-	name = "Lizard wine"
+	name = "Wino jaszczurcze"
 	description = "Napój alkoholowy z Kosmicznych Chin, robiony przez nasączanie etanolu jaszczurczymi ogonami."
 	color = "#7E4043" // rgb: 126, 64, 67
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -371,30 +371,30 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 60
 	taste_description = "elegancka gorzka słodycz"
 	glass_icon_state = "grappa"
-	glass_name = "glass of grappa"
+	glass_name = "kieliszek grappy"
 	glass_desc = "Wyborny trunek, pierwotnie robiony z resztek po produkcji wina, by nic się nie zmarnowało."
 
 /datum/reagent/consumable/ethanol/cognac
-	name = "Cognac"
+	name = "Koniak"
 	description = "Słodki i mocny trunek, powstający po wielu destylacjach i latach dojrzewania. Elegancki jak diabli."
 	color = "#AB3C05" // rgb: 171, 60, 5
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 75
 	taste_description = "elegancka francuska brandy"
 	glass_icon_state = "cognacglass"
-	glass_name = "glass of cognac"
+	glass_name = "kieliszek koniaku"
 	glass_desc = "Kurczę, czujesz się jak francuski arystokrata, ledwo to trzymając."
 	shot_glass_icon_state = "shotglassbrown"
 
 /datum/reagent/consumable/ethanol/absinthe
-	name = "Absinthe"
+	name = "Absynt"
 	description = "Mocny napój alkoholowy. Podobno wywołuje halucynacje, ale nie wywołuje."
 	color = rgb(10, 206, 0)
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 80 //Very strong even by default
 	taste_description = "śmierć i lukrecja"
 	glass_icon_state = "absinthe"
-	glass_name = "glass of absinthe"
+	glass_name = "kieliszek absyntu"
 	glass_desc = "Jest tak mocny, jak pachnie."
 	shot_glass_icon_state = "shotglassgreen"
 
@@ -404,14 +404,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/hooch
-	name = "Hooch"
+	name = "Bimber"
 	description = "Albo czyjaś porażka w robieniu koktajli, albo próba produkcji alkoholu. Tak czy inaczej, naprawdę chcesz to pić?"
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 100
 	taste_description = "czysta rezygnacja"
 	glass_icon_state = "glass_brown2"
-	glass_name = "Hooch"
+	glass_name = "Bimber"
 	glass_desc = "Teraz naprawdę sięgnąłeś dna... twoja wątroba spakowała się i wyszła zeszłej nocy."
 
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/carbon/M)
@@ -428,11 +428,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 65
 	taste_description = "treściwe jęczmienne ale"
 	glass_icon_state = "aleglass"
-	glass_name = "glass of ale"
+	glass_name = "kufel ale"
 	glass_desc = "Lodowato zimny kufel pysznego ale."
 
 /datum/reagent/consumable/ethanol/goldschlager
-	name = "Goldschlager"
+	name = "Goldschläger"
 	description = "Cynamonowy sznaps 100 proof, dla nastoletnich alkoholiczek na wiosennej przerwie."
 	color = "#FFFF91" // rgb: 255, 255, 145
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -440,7 +440,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "palący cynamon"
 	glass_icon_state = "goldschlagerglass"
-	glass_name = "glass of goldschlager"
+	glass_name = "kieliszek Goldschlägera"
 	glass_desc = "100% dowód na to, że nastolatki wypiją wszystko, co ma w sobie złoto."
 	shot_glass_icon_state = "shotglassgold"
 
@@ -453,12 +453,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "metaliczny i drogi"
 	glass_icon_state = "patronglass"
-	glass_name = "glass of patron"
+	glass_name = "kieliszek patrona"
 	glass_desc = "Pijemy patrona w barze, z kiepskimi paniami."
 	shot_glass_icon_state = "shotglassclear"
 
 /datum/reagent/consumable/ethanol/gintonic
-	name = "Gin and Tonic"
+	name = "Gin z tonikiem"
 	description = "Klasyka wszech czasów, łagodny koktajl."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -466,11 +466,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "łagodny i cierpki"
 	glass_icon_state = "gintonicglass"
-	glass_name = "Gin and Tonic"
+	glass_name = "Gin z tonikiem"
 	glass_desc = "Łagodny, ale wciąż świetny koktajl. Pij jak prawdziwy Anglik."
 
 /datum/reagent/consumable/ethanol/rum_coke
-	name = "Rum and Coke"
+	name = "Rum z colą"
 	description = "Rum zmieszany z colą."
 	taste_description = "cola"
 	color = "#3E1B00"
@@ -478,7 +478,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 40
 	quality = DRINK_NICE
 	glass_icon_state = "whiskeycolaglass"
-	glass_name = "Rum and Coke"
+	glass_name = "Rum z colą"
 	glass_desc = "Klasyczny wybór kosmicznych bractw studenckich."
 
 /datum/reagent/consumable/ethanol/cuba_libre
@@ -503,7 +503,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..() || .
 
 /datum/reagent/consumable/ethanol/whiskey_cola
-	name = "Whiskey Cola"
+	name = "Whisky z colą"
 	description = "Whisky z colą. Zaskakująco orzeźwiające."
 	color = "#3E1B00" // rgb: 62, 27, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -511,12 +511,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "cola"
 	glass_icon_state = "whiskeycolaglass"
-	glass_name = "whiskey cola"
+	glass_name = "Whisky z colą"
 	glass_desc = "Niewinnie wyglądająca mieszanka coli i whisky. Pyszna."
 
 
 /datum/reagent/consumable/ethanol/martini
-	name = "Classic Martini"
+	name = "Klasyczne martini"
 	description = "Wermut z ginem. Nie tak, jak lubił go 007, ale wciąż pyszny."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -524,11 +524,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "wytrawna klasa"
 	glass_icon_state = "martiniglass"
-	glass_name = "Classic Martini"
+	glass_name = "Klasyczne martini"
 	glass_desc = "Kurczę, barman nawet go zamieszał, a nie wstrząsnął."
 
 /datum/reagent/consumable/ethanol/vodkamartini
-	name = "Vodka Martini"
+	name = "Wódka martini"
 	description = "Wódka z ginem. Nie tak, jak lubił go 007, ale wciąż pyszny."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -536,11 +536,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "wstrząśnięte, nie zmieszane"
 	glass_icon_state = "martiniglass"
-	glass_name = "Vodka martini"
+	glass_name = "Wódka martini"
 	glass_desc ="Wypaczenie klasycznego martini. Wciąż świetne."
 
 /datum/reagent/consumable/ethanol/white_russian
-	name = "White Russian"
+	name = "Biały Rosjanin"
 	description = "To tylko, no wiesz, twoja opinia, stary..."
 	color = "#A68340" // rgb: 166, 131, 64
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -548,11 +548,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "gorzka śmietanka"
 	glass_icon_state = "whiterussianglass"
-	glass_name = "White Russian"
+	glass_name = "Biały Rosjanin"
 	glass_desc = "Bardzo ładnie wyglądający drink. Ale to tylko, no wiesz, twoja opinia, stary."
 
 /datum/reagent/consumable/ethanol/screwdrivercocktail
-	name = "Screwdriver"
+	name = "Śrubokręt"
 	description = "Wódka zmieszana ze zwykłym sokiem pomarańczowym. Wynik jest zaskakująco pyszny."
 	color = "#A68310" // rgb: 166, 131, 16
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -560,7 +560,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "pomarańcze"
 	glass_icon_state = "screwdriverglass"
-	glass_name = "Screwdriver"
+	glass_name = "Śrubokręt"
 	glass_desc = "Prosta, a jednocześnie wyborna mieszanka wódki i soku pomarańczowego. W sam raz dla zmęczonego inżyniera."
 
 /datum/reagent/consumable/ethanol/screwdrivercocktail/on_mob_life(mob/living/carbon/M)
@@ -569,18 +569,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/booger
-	name = "Booger"
+	name = "Glut"
 	description = "Fuuuj..."
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 45
 	taste_description = "słodko i kremowo"
 	glass_icon_state = "booger"
-	glass_name = "Booger"
+	glass_name = "Glut"
 	glass_desc = "Fuuuj..."
 
 /datum/reagent/consumable/ethanol/bloody_mary
-	name = "Bloody Mary"
+	name = "Krwawa Mary"
 	description = "Dziwna, ale przyjemna mieszanka wódki, pomidora i soku z limonki. A przynajmniej MYŚLISZ, że to czerwone to sok pomidorowy."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -588,7 +588,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "pomidory z nutą limonki"
 	glass_icon_state = "bloodymaryglass"
-	glass_name = "Bloody Mary"
+	glass_name = "Krwawa Mary"
 	glass_desc = "Sok pomidorowy zmieszany z wódką i odrobiną limonki. Smakuje jak płynne morderstwo."
 
 /datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/carbon/C)
@@ -597,7 +597,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/brave_bull
-	name = "Brave Bull"
+	name = "Dzielny Byk"
 	description = "Równie skuteczne jak holenderska odwaga!"
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -605,7 +605,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "alkoholowa odwaga"
 	glass_icon_state = "bravebullglass"
-	glass_name = "Brave Bull"
+	glass_name = "Dzielny Byk"
 	glass_desc = "Tequila i likier kawowy połączone w ślinotoczną mieszankę. Pij."
 	var/tough_text
 
@@ -629,7 +629,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "pomarańcze z nutą granatu"
 	glass_icon_state = "tequilasunriseglass"
-	glass_name = "tequila Sunrise"
+	glass_name = "Tequila Sunrise"
 	glass_desc = "No świetnie, teraz tęsknisz za wschodami słońca na Terze..."
 	var/obj/effect/light_holder
 
@@ -650,7 +650,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	QDEL_NULL(light_holder)
 
 /datum/reagent/consumable/ethanol/toxins_special
-	name = "Toxins Special"
+	name = "Specjał Toksykologii"
 	description = "TO SIĘ PALI! WEZWIJCIE TEN CHOLERNY PROM!"
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -658,7 +658,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "ostre toksyny"
 	glass_icon_state = "toxinsspecialglass"
-	glass_name = "Toxins Special"
+	glass_name = "Specjał Toksykologii"
 	glass_desc = "Łooo, to się pali!"
 	shot_glass_icon_state = "toxinsspecialglass"
 
@@ -714,7 +714,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/irish_cream
-	name = "Irish Cream"
+	name = "Irlandzki likier śmietankowy"
 	description = "Śmietanka z whisky. Czego innego spodziewać się po Irlandczykach?"
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -722,11 +722,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "kremowy alkohol"
 	glass_icon_state = "irishcreamglass"
-	glass_name = "Irish Cream"
+	glass_name = "Irlandzki likier śmietankowy"
 	glass_desc = "Śmietanka z whisky. Czego innego spodziewać się po Irlandczykach?"
 
 /datum/reagent/consumable/ethanol/manly_dorf
-	name = "The Manly Dorf"
+	name = "Męski Krasnolud"
 	description = "Piwo i ale połączone w pyszną mieszankę. Tylko dla prawdziwych mężczyzn."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -734,7 +734,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "włosy na klacie i brodzie"
 	glass_icon_state = "manlydorfglass"
-	glass_name = "The Manly Dorf"
+	glass_name = "Męski Krasnolud"
 	glass_desc = "Piwo i ale połączone w pyszną mieszankę. Tylko dla prawdziwych mężczyzn."
 	var/dorf_mode
 
@@ -766,14 +766,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/moonshine
-	name = "Moonshine"
+	name = "Samogon"
 	description = "Teraz naprawdę sięgnąłeś dna. Twoja wątroba spakowała się i wyszła zeszłej nocy."
 	color = "#AAAAAA77" // rgb: 170, 170, 170, 77 (alpha) (like water)
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING | CHEMICAL_GOAL_BOTANIST_HARVEST
 	boozepwr = 95
 	taste_description = "gorycz"
 	glass_icon_state = "glass_clear"
-	glass_name = "Moonshine"
+	glass_name = "Samogon"
 	glass_desc = "Teraz naprawdę sięgnąłeś dna. Twoja wątroba spakowała się i wyszła zeszłej nocy."
 
 /datum/reagent/consumable/ethanol/b52
@@ -793,7 +793,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	playsound(M, 'sound/effects/explosion_distant.ogg', 100, FALSE)
 
 /datum/reagent/consumable/ethanol/irishcoffee
-	name = "Irish Coffee"
+	name = "Kawa po irlandzku"
 	description = "Kawa i alkohol. Przyjemniejsze na rano niż mimosa."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -801,7 +801,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "poddanie się na cały dzień"
 	glass_icon_state = "irishcoffeeglass"
-	glass_name = "Irish Coffee"
+	glass_name = "Kawa po irlandzku"
 	glass_desc = "Kawa i alkohol. Przyjemniejsze na rano niż mimosa."
 
 /datum/reagent/consumable/ethanol/margarita
@@ -817,7 +817,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Z lodem i solą na brzegu. Arriba~!"
 
 /datum/reagent/consumable/ethanol/black_russian
-	name = "Black Russian"
+	name = "Czarny Rosjanin"
 	description = "Dla osób z nietolerancją laktozy. Wciąż elegancki jak White Russian."
 	color = "#360000" // rgb: 54, 0, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -825,7 +825,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "gorycz"
 	glass_icon_state = "blackrussianglass"
-	glass_name = "Black Russian"
+	glass_name = "Czarny Rosjanin"
 	glass_desc = "Dla osób z nietolerancją laktozy. Wciąż elegancki jak White Russian."
 
 
@@ -843,7 +843,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/manhattan_proj
-	name = "Manhattan Project"
+	name = "Projekt Manhattan"
 	description = "Ulubiony drink naukowców. Świetny do rozmyślania, jak wysadzić stację."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -851,7 +851,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "śmierć, niszczyciel światów"
 	glass_icon_state = "proj_manhattanglass"
-	glass_name = "Manhattan Project"
+	glass_name = "Projekt Manhattan"
 	glass_desc = "Ulubiony drink naukowców. Świetny do myślenia, jak wysadzić stację."
 
 
@@ -860,7 +860,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda
-	name = "Whiskey Soda"
+	name = "Whisky z wodą sodową"
 	description = "Dla bardziej wyrafinowanego gryfa."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -868,11 +868,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "napój gazowany"
 	glass_icon_state = "whiskeysodaglass2"
-	glass_name = "whiskey soda"
+	glass_name = "Whisky z wodą sodową"
 	glass_desc = "Ostateczne orzeźwienie."
 
 /datum/reagent/consumable/ethanol/antifreeze
-	name = "Anti-freeze"
+	name = "Płyn niezamarzający"
 	description = "Ostateczne orzeźwienie. To nie to, na co brzmi."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -880,7 +880,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "siki Dziadka Mroza"
 	glass_icon_state = "antifreeze"
-	glass_name = "Anti-freeze"
+	glass_name = "Płyn niezamarzający"
 	glass_desc = "Ostateczne orzeźwienie."
 
 /datum/reagent/consumable/ethanol/antifreeze/on_mob_life(mob/living/carbon/M)
@@ -888,7 +888,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/barefoot
-	name = "Barefoot"
+	name = "Na bosaka"
 	description = "Bosa i w ciąży."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -896,7 +896,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "kremowe jagody"
 	glass_icon_state = "b&p"
-	glass_name = "Barefoot"
+	glass_name = "Na bosaka"
 	glass_desc = "Bosa i w ciąży."
 
 /datum/reagent/consumable/ethanol/barefoot/on_mob_life(mob/living/carbon/M)
@@ -908,7 +908,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..() || .
 
 /datum/reagent/consumable/ethanol/snowwhite
-	name = "Snow White"
+	name = "Królewna Śnieżka"
 	description = "Zimne orzeźwienie."
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -916,11 +916,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "orzeźwiający chłód"
 	glass_icon_state = "snowwhite"
-	glass_name = "Snow White"
+	glass_name = "Królewna Śnieżka"
 	glass_desc = "Zimne orzeźwienie."
 
 /datum/reagent/consumable/ethanol/demonsblood //Prevents the imbiber from being dragged into a pool of blood by a slaughter demon.
-	name = "Demon's Blood"
+	name = "Krew demona"
 	description = "AHHHH!!!!"
 	color = "#820000" // rgb: 130, 0, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -928,12 +928,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "słodkie żelazo"
 	glass_icon_state = "demonsblood"
-	glass_name = "Demons Blood"
+	glass_name = "Krew demona"
 	glass_desc = "Samo patrzenie na to sprawia, że włosy na karku stają dęba."
 
 
 /datum/reagent/consumable/ethanol/devilskiss //If eaten by a slaughter demon, the demon will regret it.
-	name = "Devil's Kiss"
+	name = "Pocałunek diabła"
 	description = "Upiorna pora!"
 	color = "#A68310" // rgb: 166, 131, 16
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -941,12 +941,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "gorzkie żelazo"
 	glass_icon_state = "devilskiss"
-	glass_name = "Devils Kiss"
+	glass_name = "Pocałunek diabła"
 	glass_desc = "Upiorna pora!"
 
 
 /datum/reagent/consumable/ethanol/vodkatonic
-	name = "Vodka and Tonic"
+	name = "Wódka z tonikiem"
 	description = "Gdy gin z tonikiem nie jest dość rosyjski."
 	color = "#0064C8" // rgb: 0, 100, 200
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -954,12 +954,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "cierpka gorycz"
 	glass_icon_state = "vodkatonicglass"
-	glass_name = "vodka and tonic"
+	glass_name = "Wódka z tonikiem"
 	glass_desc = "Gdy gin z tonikiem nie jest dość rosyjski."
 
 
 /datum/reagent/consumable/ethanol/ginfizz
-	name = "Gin Fizz"
+	name = "Gin fizz"
 	description = "Orzeźwiająco cytrynowy, wybornie wytrawny."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -967,7 +967,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "wytrawne, cierpkie cytryny"
 	glass_icon_state = "ginfizzglass"
-	glass_name = "gin fizz"
+	glass_name = "Gin fizz"
 	glass_desc = "Orzeźwiająco cytrynowy, wybornie wytrawny."
 
 
@@ -1012,7 +1012,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/red_mead
-	name = "Red Mead"
+	name = "Czerwony miód pitny"
 	description = "Prawdziwy napój wikingów! Choć ma dziwny czerwony kolor."
 	color = "#C73C00" // rgb: 199, 60, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1020,11 +1020,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "słodko-słony alkohol"
 	glass_icon_state = "red_meadglass"
-	glass_name = "Red Mead"
+	glass_name = "Czerwony miód pitny"
 	glass_desc = "Prawdziwy napój wikingów! Choć ma dziwny czerwony kolor."
 
 /datum/reagent/consumable/ethanol/mead
-	name = "Mead"
+	name = "Miód pitny"
 	description = "Napój wikingów, choć tani."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1033,18 +1033,18 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "słodki, słodki alkohol"
 	glass_icon_state = "meadglass"
-	glass_name = "Mead"
+	glass_name = "Miód pitny"
 	glass_desc = "Napój wikinga, choć tani."
 
 /datum/reagent/consumable/ethanol/iced_beer
-	name = "Iced Beer"
+	name = "Mrożone piwo"
 	description = "Piwo tak zimne, że zamarza wokół niego powietrze."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 15
 	taste_description = "orzeźwiająco zimne"
 	glass_icon_state = "iced_beerglass"
-	glass_name = "iced beer"
+	glass_name = "Mrożone piwo"
 	glass_desc = "Piwo tak mroźne, że zamarza wokół niego powietrze."
 
 /datum/reagent/consumable/ethanol/iced_beer/on_mob_life(mob/living/carbon/M)
@@ -1064,7 +1064,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/aloe
-	name = "Aloe"
+	name = "Aloes"
 	description = "Taki bardzo, bardzo, bardzo dobry."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1072,11 +1072,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "słodko i kremowo"
 	glass_icon_state = "aloe"
-	glass_name = "Aloe"
+	glass_name = "Aloes"
 	glass_desc = "Bardzo, bardzo, bardzo dobry."
 
 /datum/reagent/consumable/ethanol/andalusia
-	name = "Andalusia"
+	name = "Andaluzja"
 	description = "Ładny drink o dziwnej nazwie."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1084,11 +1084,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "cytryny"
 	glass_icon_state = "andalusia"
-	glass_name = "Andalusia"
+	glass_name = "Andaluzja"
 	glass_desc = "Ładny drink o dziwnej nazwie."
 
 /datum/reagent/consumable/ethanol/alliescocktail
-	name = "Allies Cocktail"
+	name = "Koktajl Aliantów"
 	description = "Drink zrobiony z twoich sojuszników. Nie tak słodki jak te z twoich wrogów."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1096,11 +1096,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "gorzki, ale wolny"
 	glass_icon_state = "alliescocktail"
-	glass_name = "Allies cocktail"
+	glass_name = "Koktajl Aliantów"
 	glass_desc = "Drink zrobiony z twoich sojuszników. Nie tak słodki jak te z twoich wrogów."
 
 /datum/reagent/consumable/ethanol/acid_spit
-	name = "Acid Spit"
+	name = "Kwaśna plwocina"
 	description = "Drink dla odważnych! Zawiera o 20% więcej żywych obcych."
 	color = "#365000" // rgb: 54, 80, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1108,7 +1108,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "kwas żołądkowy"
 	glass_icon_state = "acidspitglass"
-	glass_name = "Acid Spit"
+	glass_name = "Kwaśna plwocina"
 	glass_desc = "Drink dla odważnych! Zawiera o 20% więcej żywych obcych."
 
 /datum/reagent/consumable/ethanol/amasec
@@ -1124,7 +1124,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Oficjalny drink Klubu Strzeleckiego Nanotrasen!"
 
 /datum/reagent/consumable/ethanol/changelingsting
-	name = "Changeling Sting"
+	name = "Żądło zmiennokształtnego"
 	description = "Bierzesz malutki łyk i czujesz pieczenie..."
 	color = "#2E6671" // rgb: 46, 102, 113
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1132,7 +1132,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "mózg wyciekający ci nosem"
 	glass_icon_state = "changelingsting"
-	glass_name = "Changeling Sting"
+	glass_name = "Żądło zmiennokształtnego"
 	glass_desc = "Kłujący drink."
 
 /datum/reagent/consumable/ethanol/changelingsting/on_mob_life(mob/living/carbon/M)
@@ -1144,7 +1144,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/irishcarbomb
-	name = "Irish Car Bomb"
+	name = "Irlandzka bomba samochodowa"
 	description = "Mmm, smakuje jak tort czekoladowy..."
 	color = "#2E6671" // rgb: 46, 102, 113
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1152,11 +1152,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "pyszna złość"
 	glass_icon_state = "irishcarbomb"
-	glass_name = "Irish Car Bomb"
+	glass_name = "Irlandzka bomba samochodowa"
 	glass_desc = "Irlandzka bomba samochodowa."
 
 /datum/reagent/consumable/ethanol/syndicatebomb
-	name = "Syndicate Bomb"
+	name = "Bomba Syndykatu"
 	description = "Smakuje jak terroryzm!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1164,7 +1164,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "oczyszczony antagonizm"
 	glass_icon_state = "syndicatebomb"
-	glass_name = "Syndicate Bomb"
+	glass_name = "Bomba Syndykatu"
 	glass_desc = "Bomba Syndykatu."
 
 /datum/reagent/consumable/ethanol/syndicatebomb/on_mob_life(mob/living/carbon/M)
@@ -1173,7 +1173,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/erikasurprise
-	name = "Erika Surprise"
+	name = "Niespodzianka Eriki"
 	description = "Niespodzianka: jest zielony!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1181,11 +1181,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "cierpkość i banany"
 	glass_icon_state = "erikasurprise"
-	glass_name = "Erika Surprise"
+	glass_name = "Niespodzianka Eriki"
 	glass_desc = "Niespodzianka: jest zielony!"
 
 /datum/reagent/consumable/ethanol/driestmartini
-	name = "Driest Martini"
+	name = "Najwytrawniejsze martini"
 	description = "Tylko dla doświadczonych. Wydaje ci się, że w szklance pływa piasek."
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#2E6671" // rgb: 46, 102, 113
@@ -1194,11 +1194,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "plaża"
 	glass_icon_state = "driestmartiniglass"
-	glass_name = "Driest Martini"
+	glass_name = "Najwytrawniejsze martini"
 	glass_desc = "Tylko dla doświadczonych. Wydaje ci się, że w szklance pływa piasek."
 
 /datum/reagent/consumable/ethanol/bananahonk
-	name = "Banana Honk"
+	name = "Bananowy Honk"
 	description = "Drink z Nieba Klaunów."
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFF91" // rgb: 255, 255, 140
@@ -1207,7 +1207,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "kiepski żart"
 	glass_icon_state = "bananahonkglass"
-	glass_name = "Banana Honk"
+	glass_name = "Bananowy Honk"
 	glass_desc = "Drink z Nieba Klaunów."
 
 /datum/reagent/consumable/ethanol/bananahonk/on_mob_life(mob/living/carbon/M)
@@ -1217,7 +1217,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..() || .
 
 /datum/reagent/consumable/ethanol/silencer
-	name = "Silencer"
+	name = "Tłumik"
 	description = "Drink z Nieba Mimów."
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#664300" // rgb: 102, 67, 0
@@ -1226,7 +1226,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "gumka do ścierania"
 	glass_icon_state = "silencerglass"
-	glass_name = "Silencer"
+	glass_name = "Tłumik"
 	glass_desc = "Drink z Nieba Mimów."
 
 /datum/reagent/consumable/ethanol/silencer/on_mob_life(mob/living/carbon/M)
@@ -1237,7 +1237,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..() || .
 
 /datum/reagent/consumable/ethanol/drunkenblumpkin
-	name = "Drunken Blumpkin"
+	name = "Pijany blumpkin"
 	description = "Dziwna mieszanka whisky i soku z blumpkina."
 	color = "#1EA0FF" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1245,11 +1245,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "melasa i haust wody z basenu"
 	glass_icon_state = "drunkenblumpkin"
-	glass_name = "Drunken Blumpkin"
+	glass_name = "Pijany blumpkin"
 	glass_desc = "Dziwna mieszanka whisky i soku z blumpkina."
 
 /datum/reagent/consumable/ethanol/whiskey_sour //Requested since we had whiskey cola and soda but not sour.
-	name = "Whiskey Sour"
+	name = "Whisky sour"
 	description = "Sok z cytryny zmieszany z whisky i odrobiną cukru. Zaskakująco satysfakcjonujący."
 	color = rgb(255, 201, 49)
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1257,11 +1257,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "kwaśne cytryny"
 	glass_icon_state = "whiskey_sour"
-	glass_name = "whiskey sour"
+	glass_name = "Whisky sour"
 	glass_desc = "Sok z cytryny zmieszany z whisky i odrobiną cukru. Zaskakująco satysfakcjonujący."
 
 /datum/reagent/consumable/ethanol/hcider
-	name = "Hard Cider"
+	name = "Cydr"
 	description = "Smakuje jak jesień. Nie, czekaj, jak liście spadające z drzew!"
 	color = "#CD6839"
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
@@ -1269,13 +1269,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 25
 	taste_description = "pora roku, która <i>spada</i> między latem a zimą"
 	glass_icon_state = "whiskeyglass"
-	glass_name = "hard cider"
+	glass_name = "szklanka cydru"
 	glass_desc = "Smakuje jak jesień. Nie, czekaj, jak liście spadające z drzew!"
 	shot_glass_icon_state = "shotglassbrown"
 
 
 /datum/reagent/consumable/ethanol/fetching_fizz //A reference to one of my favorite games of all time. Pulls nearby ores to the imbiber!
-	name = "Fetching Fizz"
+	name = "Przyciągający fizz"
 	description = "Mieszanka whisky sour, żelaza i uranu, z której powstaje silnie magnetyczna breja. Niska zawartość alkoholu." //Requires no alcohol to make but has alcohol anyway because ~magic~
 	color = rgb(255, 91, 15)
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1284,7 +1284,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 	taste_description = "naładowany metal" // the same as teslium, honk honk.
 	glass_icon_state = "fetching_fizz"
-	glass_name = "Fetching Fizz"
+	glass_name = "Przyciągający fizz"
 	glass_desc = "Wywołuje magnetyzm u pijącego. Zaczęło się jako barowy żart, ale stało się popularne wśród górników i złomiarzy. Metaliczny posmak."
 
 
@@ -1295,7 +1295,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 //Another reference. Heals those in critical condition extremely quickly.
 /datum/reagent/consumable/ethanol/hearty_punch
-	name = "Hearty Punch"
+	name = "Krzepiący poncz"
 	description = "Mieszanka brave bull, bomby Syndykatu i absyntu, z której powstaje energetyzujący napój. Niska zawartość alkoholu."
 	color = rgb(140, 0, 0)
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1304,7 +1304,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 0.4 * REAGENTS_METABOLISM
 	taste_description = "brawura w obliczu katastrofy"
 	glass_icon_state = "hearty_punch"
-	glass_name = "Hearty Punch"
+	glass_name = "Krzepiący poncz"
 	glass_desc = "Aromatyczny napój podawany gorący. Według ludowych opowieści potrafi niemal obudzić zmarłych."
 
 
@@ -1319,20 +1319,20 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..() || .
 
 /datum/reagent/consumable/ethanol/bacchus_blessing //An EXTREMELY powerful drink. Smashed in seconds, dead in minutes.
-	name = "Bacchus' Blessing"
+	name = "Błogosławieństwo Bachusa"
 	description = "Niezidentyfikowana mieszanka. Niemierzalnie wysoka zawartość alkoholu."
 	color = rgb(51, 19, 3) //Sickly brown
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 300 //I warned you
 	taste_description = "ściana z cegieł"
 	glass_icon_state = "glass_brown2"
-	glass_name = "Bacchus' Blessing"
+	glass_name = "Błogosławieństwo Bachusa"
 	glass_desc = "Nie sądziłeś, że płyn może być aż tak odrażający. Na pewno tego chcesz...?"
 
 
 
 /datum/reagent/consumable/ethanol/atomicbomb
-	name = "Atomic Bomb"
+	name = "Bomba atomowa"
 	description = "Proliferacja broni jądrowej nigdy nie smakowała tak dobrze."
 	color = "#666300" // rgb: 102, 99, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1340,7 +1340,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_FANTASTIC
 	taste_description = "bomba"
 	glass_icon_state = "atomicbombglass"
-	glass_name = "Atomic Bomb"
+	glass_name = "Bomba atomowa"
 	glass_desc = "Nanotrasen nie ponosi prawnej odpowiedzialności za twoje czyny po spożyciu."
 
 /datum/reagent/consumable/ethanol/atomicbomb/on_mob_life(mob/living/carbon/M)
@@ -1362,7 +1362,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/gargle_blaster
-	name = "Pan-Galactic Gargle Blaster"
+	name = "Pangalaktyczny Gardłogrzmot"
 	description = "Łooo, to wygląda na niestabilne!"
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1370,7 +1370,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "mózg wybity plasterkiem cytryny owiniętym wokół sztabki złota"
 	glass_icon_state = "gargleblasterglass"
-	glass_name = "Pan-Galactic Gargle Blaster"
+	glass_name = "Pangalaktyczny Gardłogrzmot"
 	glass_desc = "Jakby ktoś wybił ci mózg plasterkiem cytryny owiniętym wokół dużej sztabki złota."
 
 /datum/reagent/consumable/ethanol/gargle_blaster/on_mob_life(mob/living/carbon/M)
@@ -1391,7 +1391,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/neurotoxin
-	name = "Neurotoxin"
+	name = "Neurotoksyna"
 	description = "Silna neurotoksyna, która wprowadza ofiarę w stan przypominający śmierć."
 	color = "#2E2E61" // rgb: 46, 46, 97
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1400,7 +1400,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "uczucie odrętwienia"
 	metabolization_rate = 1 * REAGENTS_METABOLISM
 	glass_icon_state = "neurotoxinglass"
-	glass_name = "Neurotoxin"
+	glass_name = "Neurotoksyna"
 	glass_desc = "Drink, który gwarantuje, że cię znokautuje."
 
 
@@ -1439,7 +1439,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/hippies_delight
-	name = "Hippie's Delight"
+	name = "Rozkosz hipisa"
 	description = "Po prostu tego nie łapiesz, staaary."
 	color = "#664300" // rgb: 102, 67, 0
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1449,7 +1449,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "daj szansę pokojowi"
 	glass_icon_state = "hippiesdelightglass"
-	glass_name = "Hippie's Delight"
+	glass_name = "Rozkosz hipisa"
 	glass_desc = "Drink, którym delektowano się w latach 60."
 
 
@@ -1486,7 +1486,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/eggnog
-	name = "Eggnog"
+	name = "Ajerkoniak"
 	description = "Na najcudowniejszą porę roku."
 	color = "#fcfdc6" // rgb: 252, 253, 198
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1495,7 +1495,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "budyń i alkohol"
 	glass_icon_state = "glass_yellow"
-	glass_name = "eggnog"
+	glass_name = "Ajerkoniak"
 	glass_desc = "Na najcudowniejszą porę roku."
 
 
@@ -1529,36 +1529,36 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Szklanka czystego Triple Sec."
 
 /datum/reagent/consumable/ethanol/creme_de_menthe
-	name = "Creme de Menthe"
+	name = "Likier miętowy"
 	description = "Miętowy likier, doskonały do orzeźwiających, chłodnych drinków."
 	color = "#00cc00"
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 20
 	taste_description = "miętowy, chłodny i orzeźwiający plusk zimnej wody ze strumienia"
 	glass_icon_state = "glass_green"
-	glass_name = "Creme de Menthe"
+	glass_name = "Likier miętowy"
 	glass_desc = "Patrząc na to, niemal czujesz pierwszy oddech wiosny."
 
 /datum/reagent/consumable/ethanol/creme_de_cacao
-	name = "Creme de Cacao"
+	name = "Likier kakaowy"
 	description = "Czekoladowy likier doskonały do nadawania napojom deserowych nut i przekupywania studenckich stowarzyszeń."
 	color = "#996633"
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 20
 	taste_description = "gładka i aromatyczna nuta czekolady wirująca w kęsie alkoholu"
 	glass_icon_state = "glass_brown"
-	glass_name = "Creme de Cacao"
+	glass_name = "Likier kakaowy"
 	glass_desc = "Ten skromny składnik zapoczątkował milion pozwów o otrzęsiny i zatruć alkoholowych."
 
 /datum/reagent/consumable/ethanol/creme_de_coconut
-	name = "Creme de Coconut"
+	name = "Likier kokosowy"
 	description = "Kokosowy likier do gładkich, kremowych, tropikalnych drinków."
 	color = "#F7F0D0"
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 20
 	taste_description = "słodki, mleczny smak z nutą przypalonego cukru"
 	glass_icon_state = "glass_white"
-	glass_name = "Creme de Coconut"
+	glass_name = "Likier kokosowy"
 	glass_desc = "Niegroźnie wyglądająca szklanka likieru kokosowego."
 
 /datum/reagent/consumable/ethanol/quadruple_sec
@@ -1603,7 +1603,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/grasshopper
-	name = "Grasshopper"
+	name = "Konik polny"
 	description = "Świeży i słodki deserowy shot. Trudno wyglądać męsko, pijąc to."
 	color = "#00ff00"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1611,7 +1611,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "czekolada i mięta tańczące w ustach"
 	glass_icon_state = "grasshopper"
-	glass_name = "Grasshopper"
+	glass_name = "Konik polny"
 	glass_desc = "Nie wiedziałeś, że jadalne napoje mogą być tak zielone."
 
 /datum/reagent/consumable/ethanol/stinger
@@ -1627,7 +1627,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Zastanawiasz się, co by się stało, gdybyś skierował to na źródło ciepła..."
 
 /datum/reagent/consumable/ethanol/bastion_bourbon
-	name = "Bastion Bourbon"
+	name = "Burbon Bastionu"
 	description = "Kojący, gorący napar ziołowy o właściwościach regenerujących. Nuty cytrusów i jagód."
 	color = "#00FFFF"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1636,7 +1636,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "gorący napar ziołowy z nutą owoców"
 	metabolization_rate = 2 * REAGENTS_METABOLISM //0.8u per tick
 	glass_icon_state = "bastion_bourbon"
-	glass_name = "Bastion Bourbon"
+	glass_name = "Burbon Bastionu"
 	glass_desc = "Jeśli masz doła, licz na maślany smak naszego bastion bourbonu."
 	shot_glass_icon_state = "shotglassgreen"
 
@@ -1666,7 +1666,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/squirt_cider
-	name = "Squirt Cider"
+	name = "Tryskający cydr"
 	description = "Sfermentowany ekstrakt z kałamarniczki o bukiecie czerstwego chleba i wody morskiej. Czymkolwiek jest kałamarniczka."
 	color = "#FF0000"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1674,7 +1674,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "czerstwy chleb z jeszcze czerstwszym posmakiem"
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	glass_icon_state = "squirt_cider"
-	glass_name = "Squirt Cider"
+	glass_name = "Tryskający cydr"
 	glass_desc = "Cydr z kałamarniczki od razu cię zahartuje. Szkoda tego stęchłego posmaku."
 	shot_glass_icon_state = "shotglassgreen"
 
@@ -1684,7 +1684,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = TRUE
 
 /datum/reagent/consumable/ethanol/fringe_weaver
-	name = "Fringe Weaver"
+	name = "Tkacz krawędzi"
 	description = "Musujący, elegancki i bez wątpienia mocny - klasyk z Glitch City."
 	color = "#FFEAC4"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1692,11 +1692,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "alkohol etylowy z nutą cukru"
 	glass_icon_state = "fringe_weaver"
-	glass_name = "Fringe Weaver"
+	glass_name = "Tkacz krawędzi"
 	glass_desc = "Cud, że nie wylewa się ze szklanki."
 
 /datum/reagent/consumable/ethanol/sugar_rush
-	name = "Sugar Rush"
+	name = "Cukrowy haj"
 	description = "Słodki, lekki i owocowy - bardziej dziewczęcy być nie może."
 	color = "#FF226C"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1705,7 +1705,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "cukier zatykający ci tętnice"
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	glass_icon_state = "sugar_rush"
-	glass_name = "Sugar Rush"
+	glass_name = "Cukrowy haj"
 	glass_desc = "Jak nie umiesz zmiksować Sugar Rush, to nie nadajesz się na barmana."
 
 /datum/reagent/consumable/ethanol/sugar_rush/on_mob_life(mob/living/carbon/M)
@@ -1714,7 +1714,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = TRUE
 
 /datum/reagent/consumable/ethanol/crevice_spike
-	name = "Crevice Spike"
+	name = "Kolec szczeliny"
 	description = "Kwaśny, gorzki i zabójczo trzeźwiący. Nie trzeźwi osób o słabej głowie."
 	color = "#5BD231"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1722,7 +1722,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "gorzki KOLEC z kwaśnym posmakiem"
 	glass_icon_state = "crevice_spike"
-	glass_name = "Crevice Spike"
+	glass_name = "Kolec szczeliny"
 	glass_desc = "Albo wybije z ciebie pijaństwo, albo cię znokautuje. Pewnie jedno i drugie."
 
 
@@ -1737,7 +1737,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 70
 	taste_description = "słodkie wino ryżowe"
 	glass_icon_state = "sakecup"
-	glass_name = "cup of sake"
+	glass_name = "czarka sake"
 	glass_desc = "Tradycyjna czarka sake."
 
 /datum/reagent/consumable/ethanol/peppermint_patty
@@ -1803,7 +1803,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Jedyna przejażdżka, przy której chętnie oddasz kierownicę."
 
 /datum/reagent/consumable/ethanol/between_the_sheets
-	name = "Between the Sheets"
+	name = "Między prześcieradłami"
 	description = "Klasyk o prowokacyjnej nazwie. Co zabawne, lekarze zalecają go wypić przed drzemką."
 	color = "#F4C35A"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1811,7 +1811,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "uwodzenie"
 	glass_icon_state = "between_the_sheets"
-	glass_name = "Between the Sheets"
+	glass_name = "Między prześcieradłami"
 	glass_desc = "Jedyny drink z etykietą przypominającą o polityce zerowej tolerancji Nanotrasen wobec rozwiązłości."
 
 /datum/reagent/consumable/ethanol/between_the_sheets/on_mob_life(mob/living/L)
@@ -1858,7 +1858,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 80
 	taste_description = "totalna gorycz"
-	glass_name = "glass of fernet"
+	glass_name = "kieliszek fernetu"
 	glass_desc = "Szklanka czystego Fernetu. Tylko kompletny szaleniec piłby to bez niczego." //Hi Kevum
 
 /datum/reagent/consumable/ethanol/fernet/on_mob_life(mob/living/carbon/M)
@@ -1869,7 +1869,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/fernet_cola
-	name = "Fernet Cola"
+	name = "Fernet z colą"
 	description = "Bardzo popularny, gorzko-słodki digestif, idealny po ciężkim posiłku. Według tradycji najlepiej podawany w obciętej butelce po coli."
 	color = "#390600" // rgb: 57, 6,
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -1877,7 +1877,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "słodka ulga"
 	glass_icon_state = "godlyblend"
-	glass_name = "glass of fernet cola"
+	glass_name = "szklanka fernetu z colą"
 	glass_desc = "Obcięta butelka po coli wypełniona Fernetem z colą. Nie ma nic lepszego po obżarciu się jak świnia."
 
 /datum/reagent/consumable/ethanol/fernet_cola/on_mob_life(mob/living/carbon/M)
@@ -1897,7 +1897,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "słodka, trzeźwiąca mieszanka"
 	glass_icon_state = "fanciulli"
-	glass_name = "glass of fanciulli"
+	glass_name = "szklanka fanciulli"
 	glass_desc = "Szklanka Fanciulli. To po prostu Manhattan z Fernetem."
 
 /datum/reagent/consumable/ethanol/fanciulli/on_mob_life(mob/living/carbon/M)
@@ -1921,7 +1921,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "gorzka świeżość"
 	glass_icon_state= "minted_fernet"
-	glass_name = "glass of branca menta"
+	glass_name = "kieliszek branca menta"
 	glass_desc = "Szklanka Branca Menta, idealna na leniwe, upalne letnie niedzielne popołudnia." //Get lazy literally by drinking this
 
 
@@ -1936,7 +1936,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/blank_paper
-	name = "Blank Paper"
+	name = "Czysta kartka"
 	description = "Bąbelkująca szklanka czystej kartki. Samo patrzenie na nią odświeża."
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#DCDCDC" // rgb: 220, 220, 220
@@ -1945,7 +1945,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "bąbelkujące możliwości"
 	glass_icon_state = "blank_paper"
-	glass_name = "glass of blank paper"
+	glass_name = "szklanka czystej kartki"
 	glass_desc = "Musujący koktajl dla tych, którzy chcą zacząć od nowa."
 
 
@@ -1957,7 +1957,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/fruit_wine
-	name = "Fruit Wine"
+	name = "Wino owocowe"
 	description = "Wino z uprawianych roślin."
 	color = "#FFFFFF"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2001,7 +2001,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	var/const/minimum_percent = 0.15 //Percentages measured between 0 and 1.
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
-	glass_name = "glass of [name]"
+	glass_name = "kieliszek: [name]"
 	glass_desc = description
 	for(var/taste in tastes)
 		switch(tastes[taste])
@@ -2019,9 +2019,9 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			name += "[fruit_name] "
 			named = TRUE
 	if(named)
-		name += "wine"
+		name = "Wino owocowe ([trim(name)])"
 	else
-		name = "mixed [names_in_order[1]] wine"
+		name = "Wino owocowe mieszane ([names_in_order[1]])"
 
 	var/alcohol_description
 	switch(boozepwr)
@@ -2030,15 +2030,15 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		if(90 to 120)
 			alcohol_description = "dość mocne"
 		if(70 to 90)
-			alcohol_description = "strong"
+			alcohol_description = "mocne"
 		if(40 to 70)
-			alcohol_description = "rich"
+			alcohol_description = "bogate"
 		if(20 to 40)
-			alcohol_description = "mild"
+			alcohol_description = "łagodne"
 		if(0 to 20)
-			alcohol_description = "sweet"
+			alcohol_description = "słodkie"
 		else
-			alcohol_description = "watery" //How the hell did you get negative boozepwr?
+			alcohol_description = "wodniste" //How the hell did you get negative boozepwr?
 
 	var/list/fruits = list()
 	if(names_in_order.len <= 3)
@@ -2052,7 +2052,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 	var/flavor = ""
 	if(!primary_tastes.len)
-		primary_tastes = list("[alcohol_description] alcohol")
+		primary_tastes = list("[alcohol_description] wino")
 	flavor += english_list(primary_tastes)
 	if(secondary_tastes.len)
 		flavor += ", z nutą: "
@@ -2063,14 +2063,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/champagne //How the hell did we not have champagne already!?
-	name = "Champagne"
+	name = "Szampan"
 	description = "Musujące wino znane z tego, że uderza szybko i mocno."
 	color = "#ffffc1"
 	chem_flags = CHEMICAL_BASIC_DRINK | CHEMICAL_RNG_GENERAL
 	boozepwr = 40
 	taste_description = "pomyślne okazje i złe decyzje"
 	glass_icon_state = "champagne_glass"
-	glass_name = "Champagne"
+	glass_name = "Szampan"
 	glass_desc = "W kieliszku wyraźnie widać powoli unoszące się bąbelki."
 
 
@@ -2095,7 +2095,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/bug_spray
-	name = "Bug Spray"
+	name = "Środek na owady"
 	description = "Ostry, cierpki, gorzki drink dla tych, którzy muszą się na coś przygotować."
 	color = "#33ff33"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2103,7 +2103,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "ból dziesięciu tysięcy zabitych komarów"
 	glass_icon_state = "bug_spray"
-	glass_name = "Bug Spray"
+	glass_name = "Środek na owady"
 	glass_desc = "Oczy zaczynają ci łzawić, gdy dociera do nich szczypiący alkohol."
 
 /datum/reagent/consumable/ethanol/bug_spray/on_mob_life(mob/living/carbon/M)
@@ -2155,12 +2155,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/turbo/on_mob_life(mob/living/carbon/M)
 	if(prob(4))
-		to_chat(M, "<span class='notice'>[pick("You feel disregard for the rule of law.", "You feel pumped!", "Your head is pounding.", "Your thoughts are racing..")]</span>")
+		to_chat(M, "<span class='notice'>[pick("Masz w nosie praworządność.", "Czujesz się napompowany!", "Łupie cię w głowie.", "Myśli pędzą ci jak szalone...")]</span>")
 	M.adjustStaminaLoss(-M.drunkenness * 0.25)
 	return ..()
 
 /datum/reagent/consumable/ethanol/old_timer
-	name = "Old Timer"
+	name = "Staruszek"
 	description = "Archaiczny trunek, którym delektują się starzy dziwacy w każdym wieku."
 	color = "#996835"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2168,7 +2168,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "prostsze czasy"
 	glass_icon_state = "old_timer"
-	glass_name = "Old Timer"
+	glass_name = "Staruszek"
 	glass_desc = "OSTRZEŻENIE! Może powodować przedwczesne starzenie!"
 
 /datum/reagent/consumable/ethanol/old_timer/on_mob_life(mob/living/carbon/M)
@@ -2193,7 +2193,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/rubberneck
-	name = "Rubberneck"
+	name = "Gapiszyja"
 	description = "Porządny rubberneck nie powinien zawierać żadnych obrzydliwych naturalnych składników."
 	color = "#ffe65b"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2201,7 +2201,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_GOOD
 	taste_description = "sztuczna owocowość"
 	glass_icon_state = "rubberneck"
-	glass_name = "Rubberneck"
+	glass_name = "Gapiszyja"
 	glass_desc = "Popularny drink wśród zwolenników całkowicie syntetycznej diety."
 
 /datum/reagent/consumable/ethanol/duplex
@@ -2217,7 +2217,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_desc = "Picie jednego składnika osobno od drugiego uważa się za wielką gafę."
 
 /datum/reagent/consumable/ethanol/trappist
-	name = "Trappist Beer"
+	name = "Piwo trapistów"
 	description = "Mocne ciemne ale warzone przez kosmicznych mnichów."
 	color = "#390c00"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2225,7 +2225,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_VERYGOOD
 	taste_description = "suszone śliwki i słód"
 	glass_icon_state = "trappistglass"
-	glass_name = "Trappist Beer"
+	glass_name = "Piwo trapistów"
 	glass_desc = "zaprawiony katolicyzm w szklance."
 
 /datum/reagent/consumable/ethanol/trappist/on_mob_life(mob/living/carbon/M)
@@ -2261,14 +2261,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 
 /datum/reagent/consumable/ethanol/planet_cracker
-	name = "Planet Cracker"
+	name = "Łamacz planet"
 	description = "Ten radosny drink świętuje triumf ludzkości nad obcym zagrożeniem. Może urazić nieludzkich członków załogi."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 50
 	quality = DRINK_FANTASTIC
 	taste_description = "triumf z nutą goryczy"
 	glass_icon_state = "planet_cracker"
-	glass_name = "Planet Cracker"
+	glass_name = "Łamacz planet"
 	glass_desc = "Choć historycy uważają, że drink powstał, by upamiętnić koniec ważnego konfliktu w przeszłości ludzkości, jego pochodzenie w dużej mierze zapomniano i dziś uchodzi raczej za ogólny symbol ludzkiej supremacji."
 
 /datum/reagent/consumable/ethanol/mauna_loa
@@ -2293,7 +2293,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/painkiller
-	name = "Painkiller"
+	name = "Uśmierzacz"
 	description = "Tępi ból. Emocjonalny ból, ma się rozumieć."
 	boozepwr = 20
 	color = "#EAD677"
@@ -2301,11 +2301,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_NICE
 	taste_description = "słodka cierpkość"
 	glass_icon_state = "painkiller"
-	glass_name = "Painkiller"
+	glass_name = "Uśmierzacz"
 	glass_desc = "Połączenie tropikalnych soków i rumu. Na pewno poczujesz się po tym lepiej."
 
 /datum/reagent/consumable/ethanol/pina_colada
-	name = "Pina Colada"
+	name = "Piña colada"
 	description = "Świeży napój ananasowy z rumem kokosowym. Mniam."
 	boozepwr = 40
 	color = "#FFF1B2"
@@ -2313,11 +2313,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = DRINK_FANTASTIC
 	taste_description = "ananas, kokos i nuta oceanu"
 	glass_icon_state = "pina_colada"
-	glass_name = "Pina Colada"
+	glass_name = "Piña colada"
 	glass_desc = "Jeśli lubisz piña coladę i łapanie deszczu... cóż, polubisz ten drink."
 
 /datum/reagent/consumable/ethanol/plasmaflood
-	name = "Plasma Flood"
+	name = "Powódź plazmy"
 	description = "Z oczywistych powodów niezbyt popularny wśród plazmoludzi."
 	color = "#630480" // rgb: 99, 4, 128
 	chem_flags = NONE
@@ -2326,7 +2326,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 1.25 * REAGENTS_METABOLISM
 	taste_description = "plazmowy pożar w ustach"
 	glass_icon_state = "plasmaflood"
-	glass_name = "Plasma Flood"
+	glass_name = "Powódź plazmy"
 	glass_desc = "Ulubieniec szarej fali. Na ironię, podczas picia nie zaleca się stania w plazmie."
 
 /datum/reagent/consumable/ethanol/plasmaflood/on_mob_metabolize(mob/living/L)
@@ -2349,7 +2349,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = ..()
 
 /datum/reagent/consumable/ethanol/fourthwall
-	name = "Fourth Wall"
+	name = "Czwarta ściana"
 	description = "Ta substancja wygląda na coś, co nie powinno istnieć."
 	color = "#0b43a3"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
@@ -2358,7 +2358,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	metabolization_rate = 0.3
 	taste_description = "kod binarny"
 	glass_icon_state = "fourthwallglass"
-	glass_name = "Fourth Wall"
+	glass_name = "Czwarta ściana"
 	glass_desc = "Samo patrzenie na to przyprawia o ból głowy."
 	var/list/trauma_list
 
@@ -2400,34 +2400,34 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /datum/reagent/consumable/ethanol/ratvander
-	name = "Rat'vander Cocktail"
+	name = "Koktajl Rat'vander"
 	description = "Skutki uboczne obejmują chomikowanie mosiądzu i nienawiść do krwi."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 10
 	quality = DRINK_FANTASTIC
 	taste_description = "słodki mosiądz"
 	glass_icon_state = "ratvander"
-	glass_name = "Rat'vander Cocktail"
+	glass_name = "Koktajl Rat'vander"
 	glass_desc = "Nowy koktajl, pierwotnie zmiksowany przez TRNE Corp. Podobno nasycony pradawną magią."
 
 
 /datum/reagent/consumable/ethanol/ratvander/on_mob_life(mob/living/carbon/M)
 	if(prob(10))
-		to_chat(M, "<span class = 'warning'>[pick("You can faintly hear the sound of gears.","You can feel an unnatural hatred towards exposed blood.","You swear you can feel steam eminating from the drink.","You hear faint, pleasant whispers.","You can see a white void within your mind.")]</span>")
+		to_chat(M, "<span class = 'warning'>[pick("Słyszysz cichy szczęk zębatek.","Czujesz nienaturalną nienawiść do odsłoniętej krwi.","Mógłbyś przysiąc, że z drinka bucha para.","Słyszysz ciche, przyjemne szepty.","W umyśle widzisz białą pustkę.")]</span>")
 	M.clockslurring = min(M.clockslurring + 3, 3)
 	M.stuttering = min(M.stuttering + 3, 3)
 	..()
 	. = 1
 
 /datum/reagent/consumable/ethanol/icewing
-	name = "Icewing"
+	name = "Lodowe skrzydło"
 	description = "Promień mrozu na lodzie."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 50
 	quality = DRINK_FANTASTIC
 	taste_description = "odmrożenie"
 	glass_icon_state = "icewing"
-	glass_name = "Icewing"
+	glass_name = "Lodowe skrzydło"
 	glass_desc = "Ulubiony drink łowców obserwatorów. Uleczy odmrożenia albo cię schłodzi."
 
 
@@ -2438,14 +2438,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 
 /datum/reagent/consumable/ethanol/sarsaparilliansunset
-	name = "Sarsaparillian Sunset"
+	name = "Sarsaparylowy zachód słońca"
 	description = "Smak pustkowi."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 70
 	quality = DRINK_FANTASTIC
 	taste_description = "przyjemne pieczenie"
 	glass_icon_state = "sarsaparilliansunset"
-	glass_name = "Sarsaparillian Sunset"
+	glass_name = "Sarsaparylowy zachód słońca"
 	glass_desc = "Widok zachodu słońca nad napromieniowanym pustkowiem. Koi oparzenia, ale nie pij za dużo."
 	var/power = /obj/effect/proc_holder/spell/aimed/firebreath/weak
 	overdose_threshold = 50
@@ -2471,8 +2471,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 /obj/effect/proc_holder/spell/aimed/firebreath/weak
-	name = "Fire Upchuck"
-	desc = "You can feel heat rising from your stomach"
+	name = "Ogniste rzygi"
+	desc = "Czujesz, jak z żołądka podchodzi ci żar"
 	range = 20
 	charge_max = 300
 	projectile_type = /obj/item/projectile/magic/fireball/firebreath/weak
@@ -2481,7 +2481,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	exp_fire = 1
 
 /datum/reagent/consumable/ethanol/beesknees
-	name = "Bee's Knees"
+	name = "Pszczele kolanka"
 	description = "Tu jest zdecydowanie za dużo miodu."
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	chem_flags = NONE
@@ -2489,7 +2489,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	quality = 0
 	taste_description = "słodszy miód pitny"
 	glass_icon_state = "beesknees"
-	glass_name = "Bee's Knees"
+	glass_name = "Pszczele kolanka"
 	glass_desc = "Z tej szklanki aż ścieka miód. Trochę za dużo miodu, by kusiło kogokolwiek poza pewnym owadem."
 
 /datum/reagent/consumable/ethanol/beesknees/on_mob_metabolize(mob/living/M)
@@ -2510,14 +2510,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	. = ..()
 
 /datum/reagent/consumable/ethanol/beeffizz
-	name = "Beef Fizz"
+	name = "Wołowy fizz"
 	description = "To wołowy napój gazowany, WOŁOWY NAPÓJ GAZOWANY, NIE MA BOGA"
 	chem_flags = CHEMICAL_RNG_GENERAL | CHEMICAL_RNG_BOTANY | CHEMICAL_GOAL_BARTENDER_SERVING
 	boozepwr = 15
 	quality = DRINK_BAD
 	taste_description = "Ładny i słony niegazowany sok wołowy z odrobiną cytryny"
 	glass_icon_state = "beef_fizz"
-	glass_name = "Beef Fizz"
+	glass_name = "Wołowy fizz"
 	glass_desc = "KTO UZNAŁ, ŻE TO DOBRY POMYSŁ??"
 
 
@@ -2529,12 +2529,12 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 //NSV13
 /datum/reagent/consumable/ethanol/torp_juice
-        name = "Torpedo Juice"
+        name = "Sok torpedowy"
         color = "#F9E43D"
         description = "Uwaga, dział uzbrojenia: ROBIĆ TORPEDĘ."
         taste_description = "eksplozja w ustach"
         glass_icon_state = "torp_juice"
-        glass_name = "glass of torpedo juice"
+        glass_name = "szklanka soku torpedowego"
         glass_desc = "Uwaga, dział uzbrojenia: ROBIĆ TORPEDĘ."
         quality = DRINK_VERYGOOD
         boozepwr = 70

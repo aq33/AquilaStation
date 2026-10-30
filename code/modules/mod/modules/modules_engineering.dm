@@ -2,10 +2,10 @@
 
 ///Welding Protection - Makes the helmet protect from flashes and welding.
 /obj/item/mod/module/welding
-	name = "MOD welding protection module"
-	desc = "A module installed into the visor of the suit, this projects a \
-		polarized, holographic overlay in front of the user's eyes. It's rated high enough for \
-		immunity against extremities such as spot and arc welding, solar eclipses, and handheld flashlights."
+	name = "moduł ochrony przy spawaniu MOD"
+	desc = "Moduł montowany w wizjerze skafandra; wyświetla przed oczami użytkownika \
+		spolaryzowaną holograficzną nakładkę. Ma certyfikat odporności na \
+		skrajności takie jak spawanie punktowe i łukowe, zaćmienia słońca i ręczne latarki."
 	icon_state = "welding"
 	complexity = 1
 	incompatible_modules = list(/obj/item/mod/module/welding, /obj/item/mod/module/armor_booster)
@@ -27,10 +27,10 @@
 
 ///T-Ray Scan - Scans the terrain for undertile objects.
 /obj/item/mod/module/t_ray
-	name = "MOD t-ray scan module"
-	desc = "A module installed into the visor of the suit, allowing the user to use a pulse of terahertz radiation \
-		to essentially echolocate things beneath the floor, mostly cables and pipes. \
-		A staple of atmospherics work, and counter-smuggling work."
+	name = "moduł skanera T-ray MOD"
+	desc = "Moduł montowany w wizjerze skafandra; pozwala użytkownikowi wysłać impuls promieniowania terahercowego \
+		i w zasadzie echolokować to, co pod podłogą, głównie kable i rury. \
+		Podstawa w pracy atmosferyka i w walce z przemytem."
 	icon_state = "tray"
 	module_type = MODULE_TOGGLE
 	complexity = 1
@@ -45,11 +45,11 @@
 
 ///Magnetic Stability - Gives the user a slowdown but makes them negate gravity and be immune to slips.
 /obj/item/mod/module/magboot
-	name = "MOD magnetic stability module"
-	desc = "These are powerful electromagnets fitted into the suit's boots, allowing users both \
-		excellent traction no matter the condition indoors, and to essentially hitch a ride on the exterior of a hull. \
-		However, these basic models do not feature computerized systems to automatically toggle them on and off, \
-		so numerous users report a certain stickiness to their steps."
+	name = "moduł stabilizacji magnetycznej MOD"
+	desc = "To potężne elektromagnesy zamontowane w butach skafandra, które dają użytkownikowi zarówno \
+		świetną przyczepność w każdych warunkach w pomieszczeniach, jak i możliwość jazdy na gapę na zewnątrz kadłuba. \
+		Te podstawowe modele nie mają jednak skomputeryzowanych układów, które same by je włączały i wyłączały, \
+		więc wielu użytkowników skarży się na pewną lepkość kroków."
 	icon_state = "magnet"
 	module_type = MODULE_TOGGLE
 	complexity = 2
@@ -81,17 +81,17 @@
 		module_slowdowns += slowdown_active
 
 /obj/item/mod/module/magboot/advanced
-	name = "MOD advanced magnetic stability module"
+	name = "zaawansowany moduł stabilizacji magnetycznej MOD"
 	removable = FALSE
 	complexity = 0
 	slowdown_active = 0
 
 ///Emergency Tether - Shoots a grappling hook projectile in 0g that throws the user towards it.
 /obj/item/mod/module/tether
-	name = "MOD emergency tether module"
-	desc = "A custom-built grappling-hook powered by a winch capable of hauling the user. \
-		While some older models of cargo-oriented grapples have capacities of a few tons, \
-		these are only capable of working in zero-gravity environments, a blessing to some Engineers."
+	name = "moduł awaryjnej liny MOD"
+	desc = "Hak z liną robiony na zamówienie, napędzany wyciągarką zdolną przyciągnąć użytkownika. \
+		Niektóre starsze modele chwytaków do ładunków mają udźwig kilku ton, \
+		ale te działają tylko w zerowej grawitacji, co dla niektórych inżynierów jest błogosławieństwem."
 	icon_state = "tether"
 	module_type = MODULE_ACTIVE
 	module_type = MODULE_ACTIVE
@@ -102,7 +102,7 @@
 
 /obj/item/mod/module/tether/used()
 	if(mod.wearer.has_gravity(get_turf(src)))
-		balloon_alert(mod.wearer, "too much gravity!")
+		balloon_alert(mod.wearer, "za duża grawitacja!")
 		playsound(src, 'sound/weapons/gun_dry_fire.ogg', 25, TRUE)
 		return FALSE
 	return ..()
@@ -119,7 +119,7 @@
 	drain_power(use_power_cost)
 
 /obj/item/projectile/tether
-	name = "tether"
+	name = "lina"
 	icon_state = "tether_projectile"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	damage = 0
@@ -147,9 +147,9 @@
 
 ///Radiation Protection - Protects the user from radiation.
 /obj/item/mod/module/rad_protection
-	name = "MOD radiation protection module"
-	desc = "A module utilizing polymers and reflective shielding to protect the user against ionizing radiation; \
-		a common danger in space, especially next to a supermatter crystal."
+	name = "moduł ochrony przed promieniowaniem MOD"
+	desc = "Moduł wykorzystujący polimery i odblaskowe osłony, by chronić użytkownika przed promieniowaniem jonizującym; \
+		to częste zagrożenie w kosmosie, zwłaszcza obok kryształu supermaterii."
 	icon_state = "radshield"
 	complexity = 2
 	idle_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
@@ -176,11 +176,11 @@
 
 ///Constructor - Lets you build quicker and create RCD holograms.
 /obj/item/mod/module/constructor
-	name = "MOD constructor module"
-	desc = "This module entirely occupies the wearer's forearm, notably causing conflict with \
-		advanced arm servos meant to carry crewmembers. However, it functions as an \
-		extremely advanced construction hologram scanner, as well as containing the \
-		latest engineering schematics combined with inbuilt memory to help the user build walls."
+	name = "moduł konstruktora MOD"
+	desc = "Ten moduł zajmuje całe przedramię noszącego, przez co wyraźnie gryzie się z \
+		zaawansowanymi serwami ramion do noszenia członków załogi. Działa za to jako \
+		niezwykle zaawansowany skaner hologramów budowlanych, a do tego zawiera \
+		najnowsze schematy inżynieryjne i wbudowaną pamięć, które pomagają użytkownikowi stawiać ściany."
 	icon_state = "constructor"
 	module_type = MODULE_USABLE
 	complexity = 2
@@ -202,8 +202,8 @@
 
 ///Mister - Sprays water over an area.
 /obj/item/mod/module/mister
-	name = "MOD water mister module"
-	desc = "A module containing a mister, able to spray it over areas."
+	name = "moduł zraszacza wody MOD"
+	desc = "Moduł ze zraszaczem, który potrafi spryskiwać okolicę."
 	icon_state = "mister"
 	module_type = MODULE_ACTIVE
 	complexity = 2
@@ -220,8 +220,8 @@
 
 ///Resin Mister - Sprays resin over an area.
 /obj/item/mod/module/mister/atmos
-	name = "MOD resin mister module"
-	desc = "An atmospheric resin mister, able to fix up areas quickly."
+	name = "moduł zraszacza żywicy MOD"
+	desc = "Atmosferyczny zraszacz żywicy, który pozwala szybko naprawić okolicę."
 	device = /obj/item/extinguisher/mini/nozzle/mod
 	volume = 250
 
@@ -230,5 +230,5 @@
 	reagents.add_reagent(/datum/reagent/water, volume)
 
 /obj/item/extinguisher/mini/nozzle/mod
-	name = "MOD atmospheric mister"
-	desc = "An atmospheric resin mister with three modes, mounted as a module."
+	name = "atmosferyczny zraszacz MOD"
+	desc = "Atmosferyczny zraszacz żywicy z trzema trybami, zamontowany jako moduł."

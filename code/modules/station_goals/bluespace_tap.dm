@@ -1,11 +1,11 @@
 //Station goal stuff goes here
 /datum/station_goal/bluespace_tap
-	name = "Bluespace Harvester"
+	name = "Kombajn Bluespace"
 	var/goal = 45000
 
 /datum/station_goal/bluespace_tap/get_report()
 	return list(
-	"<blockquote><b>Bluespace Harvester Experiment</b>",
+	"<blockquote><b>Eksperyment z Kombajnem Bluespace</b>",
 	"Inna stacja badawcza opracowała urządzenie zwane Kombajnem Bluespace.",
 	"Sięga ono przez bluespace do innych wymiarów, by przeczesywać je w poszukiwaniu ciekawych obiektów.",
 	"Z powodu nieprzewidzianych okoliczności test prototypu na dużą skalę nie mógł zostać przeprowadzony na pierwotnej stacji badawczej. Zamiast tego zostanie przeprowadzony na waszej stacji.",
@@ -43,7 +43,7 @@
 	product_cost = cost
 
 /obj/item/circuitboard/machine/bluespace_tap
-	name = "Bluespace Harvester"
+	name = "kombajn bluespace (płytka maszyny)"
 	icon_state = "command"
 	build_path = /obj/machinery/power/bluespace_tap
 	req_components = list(
@@ -51,11 +51,11 @@
 							/obj/item/stack/ore/bluespace_crystal = 5)
 
 /obj/effect/spawner/lootdrop/bluespace_tap
-	name = "bluespace harvester reward spawner"
+	name = "spawner nagród kombajnu bluespace"
 	lootcount = 1
 
 /obj/effect/spawner/lootdrop/bluespace_tap/hat
-	name = "exotic hat"
+	name = "egzotyczny kapelusz"
 	loot = list(
 			/obj/item/clothing/head/collectable/chef,	//same weighing on all of them
 			/obj/item/clothing/head/collectable/paper,
@@ -82,7 +82,7 @@
 
 
 /obj/effect/spawner/lootdrop/bluespace_tap/cultural
-	name = "cultural artifacts"
+	name = "artefakty kulturowe"
 	loot = list(
 		/obj/item/grenade/clusterbuster/cleaner = 10,
 		/obj/item/grenade/clusterbuster/soap = 10,
@@ -116,7 +116,7 @@
 	)
 
 /obj/effect/spawner/lootdrop/bluespace_tap/organic
-	name = "organic objects"
+	name = "obiekty organiczne"
 	loot = list(
 		/obj/item/plant_seeds/random = 10,
 		/obj/item/storage/pill_bottle/charcoal = 25,
@@ -141,7 +141,7 @@
 	)
 
 /obj/effect/spawner/lootdrop/bluespace_tap/food
-	name = "fancy food"
+	name = "wykwintne jedzenie"
 	lootcount = 3
 	loot = list(
 		/obj/item/food/burger/crab,
@@ -178,7 +178,7 @@
   * has to be generated for the station goal to count as completed.
   */
 /obj/machinery/power/bluespace_tap
-	name = "Bluespace harvester"
+	name = "kombajn bluespace"
 	icon = 'icons/obj/machines/bluespace_tap.dmi'
 	icon_state = "bluespace_tap"	//sprites by Ionward
 	max_integrity = 300
@@ -198,10 +198,10 @@
 
 	/// list of possible products
 	var/static/product_list = list(
-	new /datum/data/bluespace_tap_product("Unknown Exotic Hat", /obj/effect/spawner/lootdrop/bluespace_tap/hat, 5000),
-	new /datum/data/bluespace_tap_product("Unknown Snack", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
-	new /datum/data/bluespace_tap_product("Unknown Cultural Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
-	new /datum/data/bluespace_tap_product("Unknown Biological Artifact", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000)
+	new /datum/data/bluespace_tap_product("Nieznany egzotyczny kapelusz", /obj/effect/spawner/lootdrop/bluespace_tap/hat, 5000),
+	new /datum/data/bluespace_tap_product("Nieznana przekąska", /obj/effect/spawner/lootdrop/bluespace_tap/food, 6000),
+	new /datum/data/bluespace_tap_product("Nieznany artefakt kulturowy", /obj/effect/spawner/lootdrop/bluespace_tap/cultural, 15000),
+	new /datum/data/bluespace_tap_product("Nieznany artefakt biologiczny", /obj/effect/spawner/lootdrop/bluespace_tap/organic, 20000)
 	)
 
 	/// The level the machine is currently mining at. 0 means off
@@ -405,7 +405,7 @@
 /obj/machinery/power/bluespace_tap/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BluespaceTap", "Bluespace Harvester")
+		ui = new(user, src, "BluespaceTap", "Kombajn Bluespace")
 		ui.open()
 
 //emaging provides slightly more points but at much greater risk
@@ -427,7 +427,7 @@
 	return ..()
 
 /obj/item/paper/bluespace_tap
-	name = "paper- 'The Experimental NT Bluespace Harvester - Mining other universes for science and profit!'"
+	name = "kartka - „Eksperymentalny Kombajn Bluespace NT – wydobycie z innych wszechświatów dla nauki i zysku!”"
 	default_raw_text = "<h1>Ważne instrukcje!</h1>Postępuj zgodnie ze wszystkimi instrukcjami montażu, by zapewnić prawidłowe działanie. <br>1. Utwórz węzeł przewodu z dużym dostępem do zapasowej mocy. Urządzenie działa niezależnie od APC. <br>2. Zbuduj na węźle przewodu zwykłą ramę maszyny, uwzględniając wymiary urządzenia (3 na 3 metry). <br>3. Włóż okablowanie, płytkę i wymagane komponenty i dokończ budowę zgodnie ze standardami inżynieryjnymi NT. <br>4. Upewnij się, że urządzenie jest podłączone do właściwej sieci energetycznej, a sieć ma dość mocy. <br>5. Ustaw maszynę na żądany poziom. Okresowo sprawdzaj postęp maszyny. <br>6. Opcjonalnie wydaj zdobyte punkty na zabawne i ekscytujące nagrody. <br><hr><h2>Zasady działania</h2> <p>Kombajn Bluespace potrafi przyjąć niemal nieograniczoną ilość mocy, by przeszukiwać inne wszechświaty w poszukiwaniu cennych rzeczy do odzyskania. Szybkość wyszukiwania reguluje się „poziomem” urządzenia. Choć na niskim poziomie może go zasilać niemal każdy system wytwarzania energii, wyższe poziomy wymagają pracy oddanego zespołu inżynieryjnego. Ponieważ interesuje nas, jak urządzenie radzi sobie pod obciążeniem, zachęcamy do testów obciążeniowych i sprawdzenia, ile mocy jesteście w stanie mu dostarczyć. Z tego powodu łączna produkcja punktów w trakcie zmiany zostanie obliczona i ogłoszona na jej końcu. Wysokie wyniki mogą skutkować premiami dla członków działu inżynieryjnego. <p><p>Dyrektoriat Naukowy NT, Grupa Badawcza Eksploatacji Międzywymiarowej</p> <p><small>Urządzenie wysoce eksperymentalne. Nie na sprzedaż. Nie używać w pobliżu małych dzieci ani ważnych zasobów NT. Nie ingerować w maszynę. W razie egzystencjalnego lęku natychmiast zatrzymać maszynę. Prosimy dokumentować wszelkie wtargnięcia z innych wymiarów. W razie bliskiej śmierci prosimy zostawić tę dokumentację na widoku, by mogły ją odzyskać ekipy sprzątające.</small></p>"
 
 #undef kW

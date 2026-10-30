@@ -1,5 +1,5 @@
 /obj/item/projectile/temp
-	name = "freeze beam"
+	name = "wiązka zamrażająca"
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN
@@ -14,11 +14,11 @@
 		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature
 
 /obj/item/projectile/temp/hot
-	name = "heat beam"
+	name = "wiązka cieplna"
 	temperature = 400
 
 /obj/item/projectile/temp/cryo
-	name = "cryo beam"
+	name = "wiązka kriogeniczna"
 	range = 3
 
 /obj/item/projectile/temp/cryo/on_range()

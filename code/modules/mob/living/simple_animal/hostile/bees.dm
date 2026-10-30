@@ -13,8 +13,8 @@
 #define BEE_FOODGROUPS RAW | MEAT | GORE /*| BUGS*/
 
 /mob/living/simple_animal/hostile/poison/bees
-	name = "bee"
-	desc = "Buzzy buzzy bee, stingy sti- Ouch!"
+	name = "pszczoła"
+	desc = "Bzyku bzyku pszczółka, żąd... Au!"
 	icon_state = ""
 	icon_living = ""
 	icon = 'icons/mob/bees.dmi'
@@ -212,8 +212,8 @@
 	assign_reagent(GLOB.chemical_reagents_list[R])
 
 /mob/living/simple_animal/hostile/poison/bees/queen
-	name = "queen bee"
-	desc = "She's the queen of bees, BZZ BZZ!"
+	name = "królowa pszczół"
+	desc = "To królowa pszczół, BZZ BZZ!"
 	icon_base = "queen"
 	isqueen = TRUE
 
@@ -246,8 +246,8 @@
 
 
 /obj/item/queen_bee
-	name = "queen bee"
-	desc = "She's the queen of bees, BZZ BZZ!"
+	name = "królowa pszczół"
+	desc = "To królowa pszczół, BZZ BZZ!"
 	icon_state = "queen_item"
 	item_state = ""
 	icon = 'icons/mob/bees.dmi'
@@ -299,7 +299,7 @@
 		..()
 
 /mob/living/simple_animal/hostile/poison/bees/short
-	desc = "These bees seem unstable and won't survive for long."
+	desc = "Te pszczoły wydają się niestabilne i długo nie pożyją."
 
 /mob/living/simple_animal/hostile/poison/bees/short/Initialize(mapload)
 	. = ..()
@@ -307,8 +307,8 @@
 
 
 /mob/living/simple_animal/hostile/poison/bees/space
-	name = "killer space bee"
-	desc = "I mean, killer is 'IN' the name..."
+	name = "kosmiczna pszczoła zabójczyni"
+	desc = "No cóż, „zabójczyni” jest W NAZWIE..."
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	maxbodytemp = 1500

@@ -5,8 +5,8 @@
 #define SENSOR_MODE_RADAR 2
 
 /obj/machinery/computer/ship/dradis
-	name = "\improper DRADIS computer"
-	desc = "The DRADIS system is a series of highly sensitive detection, identification, navigation and tracking systems used to determine the range and speed of objects. This forms the most central component of a spaceship's navigational systems, as it can project the whereabouts of enemies that are out of visual sensor range by tracking their engine signatures."
+	name = "\improper komputer DRADIS"
+	desc = "DRADIS to zespół bardzo czułych systemów wykrywania, identyfikacji, nawigacji i śledzenia, które ustalają odległość i prędkość obiektów. To najważniejszy element systemów nawigacyjnych okrętu: śledząc sygnatury silników, pokazuje położenie wrogów poza zasięgiem czujników wizualnych."
 	icon_screen = "teleport"
 	req_access = list()
 	circuit = /obj/item/circuitboard/computer/ship/dradis
@@ -129,11 +129,11 @@ Called by add_sensor_profile_penalty if remove_in is used.
 	return TRUE
 
 /obj/machinery/computer/ship/dradis/minor //Secondary dradis consoles usable by people who arent on the bridge. All secondary dradis consoles should be a subtype of this
-	name = "air traffic control console"
+	name = "konsola kontroli lotów"
 	can_use_radar = FALSE
 
 /obj/machinery/computer/ship/dradis/minor/cargo //Another dradis like air traffic control, links to cargo torpedo tubes and delivers freight
-	name = "\improper Cargo freight delivery console"
+	name = "\improper konsola dostaw ładunków"
 	circuit = /obj/item/circuitboard/computer/ship/dradis/cargo
 	var/obj/machinery/ship_weapon/torpedo_launcher/cargo/linked_launcher = null
 	var/dradis_id = null
@@ -177,14 +177,14 @@ Called by add_sensor_profile_penalty if remove_in is used.
 		return ..()
 
 /obj/machinery/computer/ship/dradis/mining
-	name = "mining DRADIS computer"
-	desc = "A modified dradis console which links to the mining ship's mineral scanners, able to pick up asteroids that can be mined."
+	name = "górniczy komputer DRADIS"
+	desc = "Zmodyfikowana konsola DRADIS połączona ze skanerami minerałów statku górniczego. Wykrywa asteroidy nadające się do wydobycia."
 	req_one_access_txt = "31;48"
 	circuit = /obj/item/circuitboard/computer/ship/dradis/mining
 	show_asteroids = TRUE
 
 /obj/machinery/computer/ship/dradis/internal
-	name = "integrated dradis console"
+	name = "zintegrowana konsola DRADIS"
 	use_power = 0
 	start_with_sound = FALSE
 	base_sensor_range = SENSOR_RANGE_FIGHTER
@@ -375,7 +375,7 @@ Called by add_sensor_profile_penalty if remove_in is used.
 	var/ship_count = 0
 	for(var/obj/effect/overmap_anomaly/OA in linked?.current_system?.system_contents)
 		if(OA && istype(OA) && OA.z == linked?.z)
-			blips.Add(list(list("x" = OA.x, "y" = OA.y, "colour" = "#eb9534", "name" = "[(OA.scanned) ? OA.name : "anomaly"]", opacity=showAnomalies*0.01, alignment = "uncharted")))
+			blips.Add(list(list("x" = OA.x, "y" = OA.y, "colour" = "#eb9534", "name" = "[(OA.scanned) ? OA.name : "anomalia"]", opacity=showAnomalies*0.01, alignment = "uncharted")))
 	for(var/obj/structure/overmap/OM in GLOB.overmap_objects) //Iterate through overmaps in the world! - Needs to go through global overmaps since it may be on a ship's z level or in hyperspace.
 		var/sensor_visible = (OM != linked && OM.faction != linked.faction) ? ((overmap_dist(linked, OM) > max(sensor_range * 2, OM.sensor_profile)) ? 0 : OM.is_sensor_visible(linked)) : SENSOR_VISIBILITY_FULL //You can always see your own ship, or allied, cloaked ships.
 		if(OM.z == linked.z && (sensor_visible >= SENSOR_VISIBILITY_FAINT || linked.target_painted[OM]))
@@ -406,7 +406,7 @@ Called by add_sensor_profile_penalty if remove_in is used.
 					thecolour = "#FF0000"
 					filterType = showEnemies
 					ship_count ++
-			var/thename = (inRange) ? OM.name : "UNKNOWN"
+			var/thename = (inRange) ? OM.name : "NIEZNANY"
 			var/thefaction = ((OM.faction == "nanotrasen" || OM.faction == "syndicate") && inRange) ? OM.faction : "unaligned" //You runnin with the blues or reds? Obfuscate faction too :)
 			thecolour = (inRange) ? thecolour : "#a66300"
 			filterType = (inRange) ? filterType : 100 //Can't hide things that you don't have sensor resolution on, this is to stop you being able to say, turn off enemy vision, see a target outside of scanner range go dark, and then go HMM.
@@ -419,7 +419,7 @@ Called by add_sensor_profile_penalty if remove_in is used.
 	if(ship_count > last_ship_count) //Play a tone if ship count changes
 		var/delta = ship_count - last_ship_count
 		last_ship_count = ship_count
-		visible_message("<span class='warning'>[icon2html(src, viewers(src))] [delta <= 1 ? "DRADIS contact" : "Multiple DRADIS contacts"]</span>")
+		visible_message("<span class='warning'>[icon2html(src, viewers(src))] [delta <= 1 ? "Kontakt DRADIS" : "Wiele kontaktów DRADIS"]</span>")
 		playsound(src, 'nsv13/sound/effects/ship/contact.ogg', 100, FALSE)
 	data["zoom_factor"] = zoom_factor
 	data["zoom_factor_min"] = zoom_factor_min

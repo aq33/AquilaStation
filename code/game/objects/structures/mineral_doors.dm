@@ -2,7 +2,7 @@
 //machineryness
 
 /obj/structure/mineral_door
-	name = "metal door"
+	name = "metalowe drzwi"
 	density = TRUE
 	anchored = TRUE
 	opacity = TRUE
@@ -158,7 +158,7 @@
 
 	user.visible_message("[user] zaczyna rozspawywać [src]!", "<span class='notice'>Zaczynasz rozspawywać [src].</span>")
 	if(!I.use_tool(src, user, 60, 5, 50))
-		to_chat(user, "<span class='warning'>Nie udało ci się rozspawać [src]!/span>")
+		to_chat(user, "<span class='warning'>Nie udało ci się rozspawać [src]!</span>")
 		return
 
 	user.visible_message("[user] rozspawuje [src] na kawałki!", "<span class='notice'>Rozspawujesz [src]!</span>")
@@ -172,7 +172,7 @@
 
 	user.visible_message("[user] zaczyna wyważać [src]!", "<span class='notice'>Zaczynasz wyważać [src].</span>")
 	if(!I.use_tool(src, user, 60, volume = 50))
-		to_chat(user, "<span class='warning'>Nie udało ci się wyważyć [src]!/span>")
+		to_chat(user, "<span class='warning'>Nie udało ci się wyważyć [src]!</span>")
 		return
 
 	user.visible_message("[user] wyważa [src] na kawałki!", "<span class='notice'>Wyważasz [src]!</span>")
@@ -192,31 +192,31 @@
 
 
 /obj/structure/mineral_door/iron
-	name = "iron door"
+	name = "żelazne drzwi"
 	max_integrity = 300
 
 /obj/structure/mineral_door/copper
-	name = "copper door"
+	name = "miedziane drzwi"
 	icon_state = "copper"
 	sheetType = /obj/item/stack/sheet/mineral/copper
 	max_integrity = 300
 	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/mineral_door/silver
-	name = "silver door"
+	name = "srebrne drzwi"
 	icon_state = "silver"
 	sheetType = /obj/item/stack/sheet/mineral/silver
 	max_integrity = 300
 	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/mineral_door/gold
-	name = "gold door"
+	name = "złote drzwi"
 	icon_state = "gold"
 	sheetType = /obj/item/stack/sheet/mineral/gold
 	rad_insulation = RAD_HEAVY_INSULATION
 
 /obj/structure/mineral_door/uranium
-	name = "uranium door"
+	name = "uranowe drzwi"
 	icon_state = "uranium"
 	sheetType = /obj/item/stack/sheet/mineral/uranium
 	max_integrity = 300
@@ -226,7 +226,7 @@
 	return
 
 /obj/structure/mineral_door/sandstone
-	name = "sandstone door"
+	name = "drzwi z piaskowca"
 	icon_state = "sandstone"
 	sheetType = /obj/item/stack/sheet/mineral/sandstone
 	max_integrity = 100
@@ -240,7 +240,7 @@
 	set_opacity(FALSE)
 
 /obj/structure/mineral_door/transparent/plasma
-	name = "plasma door"
+	name = "plazmowe drzwi"
 	icon_state = "plasma"
 	sheetType = /obj/item/stack/sheet/mineral/plasma
 
@@ -253,7 +253,7 @@
 /obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot())
 		var/turf/T = get_turf(src)
-		message_admins("Plasma mineral door ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
+		message_admins("Plazmowe drzwi podpalone przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(T)]")
 		log_game("Plasma mineral door ignited by [key_name(user)] in [AREACOORD(T)]")
 		TemperatureAct()
 	else
@@ -268,14 +268,14 @@
 	deconstruct(FALSE)
 
 /obj/structure/mineral_door/transparent/diamond
-	name = "diamond door"
+	name = "diamentowe drzwi"
 	icon_state = "diamond"
 	sheetType = /obj/item/stack/sheet/mineral/diamond
 	max_integrity = 1000
 	rad_insulation = RAD_EXTREME_INSULATION
 
 /obj/structure/mineral_door/wood
-	name = "wood door"
+	name = "drewniane drzwi"
 	icon_state = "wood"
 	openSound = 'sound/effects/doorcreaky.ogg'
 	closeSound = 'sound/effects/doorcreaky.ogg'
@@ -301,7 +301,7 @@
 	return ..()
 
 /obj/structure/mineral_door/paperframe
-	name = "paper frame door"
+	name = "drzwi z papierową ramą"
 	icon_state = "paperframe"
 	openSound = 'sound/effects/doorcreaky.ogg'
 	closeSound = 'sound/effects/doorcreaky.ogg'

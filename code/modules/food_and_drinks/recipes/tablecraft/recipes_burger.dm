@@ -5,7 +5,7 @@
 
 
 /datum/crafting_recipe/food/humanburger
-	name = "Human burger"
+	name = "ludzki burger"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/patty/human = 1
@@ -17,7 +17,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/burger
-	name = "Burger"
+	name = "burger"
 	reqs = list(
 			/obj/item/food/patty/plain = 1,
 			/obj/item/food/bun = 1
@@ -27,7 +27,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/corgiburger
-	name = "Corgi burger"
+	name = "burger z corgiego"
 	reqs = list(
 			/obj/item/food/patty/corgi = 1,
 			/obj/item/food/bun = 1
@@ -37,7 +37,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/appendixburger
-	name = "Appendix burger"
+	name = "burger z wyrostka"
 	reqs = list(
 		/obj/item/organ/appendix = 1,
 		/obj/item/food/bun = 1
@@ -46,7 +46,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/brainburger
-	name = "Brain burger"
+	name = "mózgoburger"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/food/bun = 1
@@ -55,7 +55,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/xenoburger
-	name = "Xeno burger"
+	name = "ksenoburger"
 	reqs = list(
 		/obj/item/food/patty/xeno = 1,
 		/obj/item/food/bun = 1
@@ -64,7 +64,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/bearger
-	name = "Bearger"
+	name = "niedźwiburger"
 	reqs = list(
 		/obj/item/food/patty/bear = 1,
 		/obj/item/food/bun = 1
@@ -73,7 +73,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/fishburger
-	name = "Fish burger"
+	name = "kanapka fillet-o-karp"
 	reqs = list(
 		/obj/item/food/fishmeat/carp = 1,
 		/obj/item/food/cheese/wedge = 1,
@@ -83,7 +83,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/tofuburger
-	name = "Tofu burger"
+	name = "burger z tofu"
 	reqs = list(
 		/obj/item/food/tofu = 1,
 		/obj/item/food/bun = 1
@@ -92,7 +92,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/ghostburger
-	name = "Ghost burger"
+	name = "upiorny burger"
 	reqs = list(
 		/obj/item/ectoplasm = 1,
 		/datum/reagent/consumable/sodiumchloride = 2,
@@ -102,7 +102,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/clownburger
-	name = "Clown burger"
+	name = "burger klauna"
 	reqs = list(
 		/obj/item/clothing/mask/gas/clown_hat = 1,
 		/obj/item/food/bun = 1
@@ -111,7 +111,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/mimeburger
-	name = "Mime burger"
+	name = "burger mima"
 	reqs = list(
 		/obj/item/clothing/mask/gas/mime = 1,
 		/obj/item/food/bun = 1
@@ -120,7 +120,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/redburger
-	name = "Red burger"
+	name = "czerwony burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/red = 1,
@@ -130,7 +130,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/orangeburger
-	name = "Orange burger"
+	name = "pomarańczowy burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/orange = 1,
@@ -140,7 +140,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/yellowburger
-	name = "Yellow burger"
+	name = "żółty burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/yellow = 1,
@@ -150,7 +150,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/greenburger
-	name = "Green burger"
+	name = "zielony burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/green = 1,
@@ -160,7 +160,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/blueburger
-	name = "Blue burger"
+	name = "niebieski burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/blue = 1,
@@ -170,7 +170,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/purpleburger
-	name = "Purple burger"
+	name = "fioletowy burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/purple = 1,
@@ -180,7 +180,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/blackburger
-	name = "Black burger"
+	name = "czarny burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/black = 1,
@@ -190,7 +190,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/whiteburger
-	name = "White burger"
+	name = "biały burger"
 	reqs = list(
 		/obj/item/food/patty/plain = 1,
 		/obj/item/toy/crayon/white = 1,
@@ -200,7 +200,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/spellburger
-	name = "Spell burger"
+	name = "zaklęty burger"
 	reqs = list(
 		/obj/item/clothing/head/wizard/fake = 1,
 		/obj/item/food/bun = 1
@@ -209,7 +209,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/spellburger2
-	name = "Spell burger"
+	name = "zaklęty burger"
 	reqs = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/food/bun = 1
@@ -218,7 +218,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/bigbiteburger
-	name = "Big bite burger"
+	name = "burger Wielki Kęs"
 	reqs = list(
 		/obj/item/food/patty/plain = 3,
 		/obj/item/food/cheese/wedge = 2,
@@ -228,7 +228,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/superbiteburger
-	name = "Super bite burger"
+	name = "burger Super Kęs"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 5,
 		/datum/reagent/consumable/blackpepper = 5,
@@ -244,7 +244,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/slimeburger
-	name = "Jelly burger"
+	name = "burger z galaretką"
 	reqs = list(
 		/datum/reagent/toxin/slimejelly = 5,
 		/obj/item/food/bun = 1
@@ -253,7 +253,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/jellyburger
-	name = "Jelly burger"
+	name = "burger z galaretką"
 	reqs = list(
 			/datum/reagent/consumable/cherryjelly = 5,
 			/obj/item/food/bun = 1
@@ -262,7 +262,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/fivealarmburger
-	name = "Five alarm burger"
+	name = "burger na pięć alarmów"
 	reqs = list(
 			/obj/item/food/patty/plain = 1,
 			/obj/item/food/grown/ghost_chili = 2,
@@ -272,7 +272,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/ratburger
-	name = "Rat burger"
+	name = "szczurzy burger"
 	reqs = list(
 			/obj/item/food/deadmouse = 1,
 			/obj/item/food/bun = 1
@@ -281,7 +281,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/baseballburger
-	name = "Home run baseball burger"
+	name = "burger home run"
 	reqs = list(
 			/obj/item/melee/baseball_bat = 1,
 			/obj/item/food/bun = 1
@@ -290,7 +290,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/baconburger
-	name = "Bacon Burger"
+	name = "burger z boczkiem"
 	reqs = list(
 			/obj/item/food/meat/bacon = 3,
 			/obj/item/food/bun = 1
@@ -300,7 +300,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/empoweredburger
-	name = "Empowered Burger"
+	name = "naładowany burger"
 	reqs = list(
 			/obj/item/stack/sheet/mineral/plasma = 2,
 			/obj/item/food/bun = 1
@@ -310,7 +310,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/crabburger
-	name = "Crab Burger"
+	name = "krabburger"
 	reqs = list(
 			/obj/item/food/meat/crab = 2,
 			/obj/item/food/bun = 1
@@ -320,7 +320,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/cheeseburger
-	name = "Cheese Burger"
+	name = "cheeseburger"
 	reqs = list(
 			/obj/item/food/patty/plain = 1,
 			/obj/item/food/cheese/wedge = 1,
@@ -330,7 +330,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/soylentburger
-	name = "Soylent Burger"
+	name = "burger z soylentu"
 	reqs = list(
 			/obj/item/food/soylentgreen = 1, //two full meats worth.
 			/obj/item/food/cheese/wedge = 2,
@@ -340,7 +340,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/ribburger
-	name = "McRib"
+	name = "mcrib"
 	reqs = list(
 			/obj/item/food/bbqribs = 1, //The sauce is already included in the ribs
 			/obj/item/food/onion_slice = 1, //feel free to remove if too burdensome.
@@ -350,7 +350,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/mcguffin
-	name = "McGuffin"
+	name = "mcguffin"
 	reqs = list(
 			/obj/item/food/friedegg = 1,
 			/obj/item/food/meat/bacon = 2,
@@ -360,7 +360,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/chickenburger
-	name = "Chicken Sandwich"
+	name = "kanapka z kurczakiem"
 	reqs = list(
 			/obj/item/food/patty/chicken = 1,
 			/datum/reagent/consumable/mayonnaise = 5,
@@ -370,7 +370,7 @@
 	subcategory = CAT_BURGER
 
 /datum/crafting_recipe/food/crazyhamburger
-	name = "Crazy Hamburger"
+	name = "szalony hamburger"
 	reqs = list(
 			/obj/item/food/patty/plain = 1, // we have no horse meat sadly
 			/obj/item/food/grown/chili = 2,

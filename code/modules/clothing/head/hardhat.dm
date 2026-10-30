@@ -15,7 +15,7 @@
 */
 
 /obj/item/clothing/head/hardhat
-	name = "hard hat"
+	name = "kask"
 	desc = "Nakrycie głowy chroniące ją w niebezpiecznych warunkach pracy. Ma wbudowaną latarkę."
 	icon_state = "hardhat0_yellow"
 	item_state = "hardhat0_yellow"
@@ -73,8 +73,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/red
-	name = "firefighter helmet"
-	desc = "A helmet designed to be used in very hot, high pressure areas."
+	name = "hełm strażacki"
+	desc = "Hełm przeznaczony do pracy w bardzo gorących miejscach o wysokim ciśnieniu."
 	icon_state = "hardhat0_red"
 	item_state = "hardhat0_red"
 	hat_type = "red"
@@ -86,8 +86,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/white
-	name = "white hard hat"
-	desc = "It's a hard hat, but painted white. Probably belongs to the Chief Engineer. Looks a little more solid."
+	name = "biały kask"
+	desc = "Kask, tylko pomalowany na biało. Pewnie należy do Głównego Inżyniera. Wygląda na trochę solidniejszy."
 	icon_state = "hardhat0_white"
 	item_state = "hardhat0_white"
 	hat_type = "white"
@@ -105,8 +105,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/atmos
-	name = "atmospheric technician's firefighting helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation."
+	name = "hełm strażacki technika atmosferyki"
+	desc = "Hełm strażacki, który w każdej sytuacji pozwala zachować chłodną głowę."
 	icon_state = "hardhat0_atmos"
 	item_state = "hardhat0_atmos"
 	hat_type = "atmos"
@@ -119,8 +119,8 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/weldhat
-	name = "welding hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield! The bulb seems a little smaller though."
+	name = "kask spawalniczy"
+	desc = "Nakrycie głowy chroniące ją w niebezpiecznych warunkach pracy. Ma wbudowaną latarkę ORAZ osłonę spawalniczą! Żarówka wydaje się jednak trochę mniejsza."
 	light_range = 3 //Needs a little bit of tradeoff
 	dog_fashion = null
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_welding_screen)
@@ -164,7 +164,7 @@
 	hat_type = "orange"
 
 /obj/item/clothing/head/hardhat/weldhat/white
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight AND welding shield!" //This bulb is not smaller
+	desc = "Nakrycie głowy chroniące ją w niebezpiecznych warunkach pracy. Ma wbudowaną latarkę ORAZ osłonę spawalniczą!" //This bulb is not smaller
 	icon_state = "hardhat0_white"
 	item_state = "hardhat0_white"
 	light_range = 4 //Boss always takes the best stuff

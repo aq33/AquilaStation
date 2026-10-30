@@ -7,18 +7,18 @@
 			return
 		switch(href_list["makeAntag"])
 			if("infiltrator")
-				message_admins("[key_name(usr)] is creating an infiltration team...")
+				message_admins("[key_name(usr)] tworzy drużynę infiltratorów...")
 				if(makeInfiltratorTeam())
-					message_admins("[key_name(usr)] created an infiltration team.")
+					message_admins("[key_name(usr)] tworzy drużynę infiltratorów.")
 					log_admin("[key_name(usr)] created an infiltration team.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create an infiltration team. Unfortunately, there were not enough candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć drużynę infiltratorów, ale zabrakło kandydatów.")
 					log_admin("[key_name(usr)] failed to create an infiltration team.")
 			if("vampire")
 				if(makeVampire())
-					message_admins("[key_name(usr)] created a vampire.")
+					message_admins("[key_name(usr)] tworzy wampira.")
 					log_admin("[key_name(usr)] created a vampire.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a vampire. Unfortunately, there were no candidates available.")
+					message_admins("[key_name_admin(usr)] próbuje stworzyć wampira, ale nie ma żadnych kandydatów.")
 					log_admin("[key_name(usr)] failed to create a vampire.")
 	.=..()

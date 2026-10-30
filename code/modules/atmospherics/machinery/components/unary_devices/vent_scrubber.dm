@@ -4,8 +4,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber
 	icon_state = "scrub_map-3"
 
-	name = "air scrubber"
-	desc = "Has a valve and pump attached to it."
+	name = "oczyszczacz powietrza"
+	desc = "Ma zamontowany zawór i pompę."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 60
@@ -112,7 +112,7 @@
 
 	var/area/A = get_area(src)
 	if(!A.air_scrub_names[id_tag])
-		name = "\improper [A.name] air scrubber #[A.air_scrub_names.len + 1]"
+		name = "\improper oczyszczacz powietrza #[A.air_scrub_names.len + 1] ([A.name])"
 		A.air_scrub_names[id_tag] = name
 
 	A.air_scrub_info[id_tag] = signal.data

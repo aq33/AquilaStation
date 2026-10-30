@@ -1,7 +1,7 @@
 // The language of the podpeople. Yes, it's a shameless ripoff of elvish.
 /datum/language/sylvan
-	name = "Sylvan"
-	desc = "A complicated, ancient language spoken by sentient plants."
+	name = "Sylwański"
+	desc = "Złożony, starożytny język, którym posługują się rozumne rośliny."
 	key = "h"
 	space_chance = 20
 	syllables = list(

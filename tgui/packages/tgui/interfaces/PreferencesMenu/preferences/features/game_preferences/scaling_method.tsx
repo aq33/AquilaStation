@@ -1,15 +1,15 @@
 import { createDropdownInput, Feature } from '../base';
 
 export const scaling_method: Feature<string> = {
-  name: 'Scaling method',
+  name: 'Metoda skalowania',
   category: 'GRAPHICS',
   subcategory: 'Scaling',
   description:
-    'The scaling algorithm used by BYOND to resize game objects. Point sampling looks best, followed by Nearest Neighbor.',
+    'Algorytm, którym BYOND skaluje obiekty gry. Najlepiej wygląda próbkowanie punktowe, potem najbliższy sąsiad.',
   component: createDropdownInput({
-    blur: 'Bilinear',
-    distort: 'Nearest Neighbor',
-    normal: 'Point Sampling',
+    blur: 'Dwuliniowe',
+    distort: 'Najbliższy sąsiad',
+    normal: 'Próbkowanie punktowe',
   }),
   important: true,
 };

@@ -27,7 +27,7 @@ export const PortableBasicInfo = (props) => {
         buttons={
           <Button
             icon={on ? 'power-off' : 'times'}
-            content={on ? 'On' : 'Off'}
+            content={on ? 'Wł.' : 'Wył.'}
             selected={on}
             onClick={() => act('power')}
           />

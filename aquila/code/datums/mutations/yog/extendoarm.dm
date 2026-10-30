@@ -2,8 +2,8 @@
 // Ręka leci jako pocisk: chwyta przedmiot, odkłada trzymany albo klika (attack_hand) cel i wraca.
 
 /datum/mutation/extendoarm
-	name = "Extendo Arm"
-	desc = "Allows the affected to stretch their arms to grab objects from a distance."
+	name = "Wydłużona ręka"
+	desc = "Pacjent potrafi wydłużyć ręce i chwytać przedmioty z daleka."
 	quality = POSITIVE
 	difficulty = 16
 	text_gain_indication = "<span class='notice'>Twoje ręce są rozciągliwe.</span>"
@@ -12,8 +12,8 @@
 	instability = 30
 
 /datum/action/cooldown/spell/pointed/projectile/extendoarm
-	name = "Arm"
-	desc = "Stretch your arm to grab or put stuff down."
+	name = "Ręka"
+	desc = "Wydłuż rękę, żeby coś chwycić albo odłożyć."
 	icon_icon = 'aquila/icons/mutations/yog/actions.dmi'
 	button_icon_state = "arm"
 	cooldown_time = 5 SECONDS
@@ -67,7 +67,7 @@
 	firing_arm.arm.forceMove(firing_arm)
 
 /obj/item/projectile/extendo_arm
-	name = "arm"
+	name = "ręka"
 	icon = 'aquila/icons/mutations/yog/projectiles.dmi'
 	icon_state = "arm"
 	suppressed = TRUE

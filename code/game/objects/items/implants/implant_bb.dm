@@ -1,6 +1,6 @@
 /obj/item/implant/bloodbrother
-	name = "communication implant"
-	desc = "Use this to communicate with your fellow blood brother(s)."
+	name = "implant komunikacyjny"
+	desc = "Służy do komunikacji z twoim bratem (braćmi) krwi."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "headset"
 	var/span_implant_colour = "cfc_redpurple" // AQ EDIT - port BeeStation #9908: chat class, not a hex color
@@ -53,7 +53,7 @@
 	return dat
 
 /obj/item/implanter/bloodbrother
-	name = "implanter (communication)"
+	name = "implanter (komunikacja)"
 	imp_type = /obj/item/implant/bloodbrother
 
 

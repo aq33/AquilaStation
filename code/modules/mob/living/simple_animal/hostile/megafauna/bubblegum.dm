@@ -25,8 +25,8 @@ Difficulty: Hard
 */
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum
-	name = "bubblegum"
-	desc = "In what passes for a hierarchy among slaughter demons, this one is king."
+	name = "Bubblegum"
+	desc = "W czymś, co u demonów rzezi uchodzi za hierarchię, ten jest królem."
 	health = 2500
 	maxHealth = 2500
 	attacktext = "rozdziera"
@@ -56,7 +56,7 @@ Difficulty: Hard
 	var/enrage_till = 0
 	var/enrage_time = 70
 	var/revving_charge = FALSE
-	gps_name = "Bubbly Signal"
+	gps_name = "Bąbelkowy sygnał"
 	achievement_type = /datum/award/achievement/boss/bubblegum_kill
 	crusher_achievement_type = /datum/award/achievement/boss/bubblegum_crusher
 	score_achievement_type = /datum/award/score/bubblegum_score
@@ -76,28 +76,28 @@ Difficulty: Hard
 				return INITIALIZE_HINT_QDEL //There can be only one
 
 /datum/action/innate/megafauna_attack/triple_charge
-	name = "Triple Charge"
+	name = "Potrójna szarża"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz szarżujesz trzykrotnie na kliknięty cel.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/hallucination_charge
-	name = "Hallucination Charge"
+	name = "Halucynacyjna szarża"
 	icon_icon = 'icons/effects/bubblegum.dmi'
 	button_icon_state = "smack ya one"
 	chosen_message = "<span class='colossus'>Teraz szarżujesz z halucynacjami na kliknięty cel.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/hallucination_surround
-	name = "Surround Target"
+	name = "Otocz cel"
 	icon_icon = 'icons/turf/walls/wall.dmi'
 	button_icon_state = "wall"
 	chosen_message = "<span class='colossus'>Teraz otaczasz kliknięty cel halucynacjami.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/blood_warp
-	name = "Blood Warp"
+	name = "Krwawy skok"
 	icon_icon = 'icons/effects/blood.dmi'
 	button_icon_state = "floor1"
 	chosen_message = "<span class='colossus'>Teraz przenosisz się do krwi wokół klikniętego miejsca.</span>"
@@ -404,8 +404,8 @@ Difficulty: Hard
 			B.setDir(pick(GLOB.cardinals))
 
 /obj/effect/decal/cleanable/blood/gibs/bubblegum
-	name = "thick blood"
-	desc = "Thick, splattered blood."
+	name = "gęsta krew"
+	desc = "Gęsta, rozbryzgana krew."
 	random_icon_states = list("gib3", "gib5", "gib6")
 	bloodiness = 20
 	can_dry = FALSE // AQ EDIT
@@ -518,8 +518,8 @@ Difficulty: Hard
 	icon_state = "leftsmack"
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination
-	name = "bubblegum's hallucination"
-	desc = "Is that really just a hallucination?"
+	name = "halucynacja Bubblegum"
+	desc = "Czy to naprawdę tylko halucynacja?"
 	health = 1
 	maxHealth = 1
 	alpha = 127.5
@@ -576,8 +576,8 @@ Difficulty: Hard
 	return max_amount
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/slaughter
-	name = "slaughterling"
-	desc = "Though not yet strong enough to create a true physical form, it's nonetheless determined to murder you."
+	name = "rzeźniczek"
+	desc = "Choć nie jest jeszcze dość silny, by przybrać prawdziwą fizyczną postać, i tak jest zdeterminowany, by cię zamordować."
 	icon_state = "bloodbrood"
 	icon_living = "bloodbrood"
 	icon_aggro = "bloodbrood"

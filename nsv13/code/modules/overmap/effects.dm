@@ -17,7 +17,7 @@
 	pixel_y = -96
 
 /obj/effect/particle_effect/phoron_explosion
-	name = "phoron explosion"
+	name = "eksplozja foronu"
 	icon = 'nsv13/icons/overmap/effects.dmi'
 	icon_state = "phoron_explosion"
 	opacity = 1

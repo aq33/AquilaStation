@@ -65,7 +65,7 @@
 
 	SSnetworks.networks[network_id] = src
 
-	SSnetworks.add_log("Network was created: [network_id]")
+	SSnetworks.add_log("Utworzono sieć: [network_id]")
 
 	return ..()
 
@@ -86,7 +86,7 @@
 	root_devices = null
 	networks = null
 	network_node_id = null
-	SSnetworks.add_log("Network was destroyed: [network_id]")
+	SSnetworks.add_log("Zniszczono sieć: [network_id]")
 	network_id = null
 
 	return ..()
@@ -256,7 +256,7 @@
 // If new NTNet datum is spawned, it replaces the old one.
 /datum/ntnet/station_root/New(root_name)
 	. = ..()
-	SSnetworks.add_log("NTNet logging system activated for [root_name]")
+	SSnetworks.add_log("Aktywowano system logowania NTNet dla: [root_name]")
 
 
 

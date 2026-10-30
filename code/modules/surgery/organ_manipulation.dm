@@ -1,5 +1,5 @@
 /datum/surgery/organ_manipulation
-	name = "organ manipulation"
+	name = "manipulacja organami"
 	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	requires_real_bodypart = 1
@@ -27,7 +27,7 @@
 		)
 
 /datum/surgery/organ_manipulation/alien
-	name = "alien organ manipulation"
+	name = "manipulacja organami obcego"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
 	target_mobtypes = list(/mob/living/carbon/alien/humanoid)
 	steps = list(
@@ -40,7 +40,7 @@
 		)
 
 /datum/surgery/organ_manipulation/mechanic
-	name = "prosthesis organ manipulation"
+	name = "manipulacja organami protezy"
 	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 	requires_bodypart_type = BODYTYPE_ROBOTIC
 	lying_required = FALSE
@@ -68,7 +68,7 @@
 
 /datum/surgery_step/manipulate_organs
 	time = 64
-	name = "manipulate organs"
+	name = "manipuluj organami"
 	repeatable = 1
 	implements = list(/obj/item/organ = 100, /obj/item/organ_storage = 100)
 	var/implements_extract = list(TOOL_HEMOSTAT = 100, TOOL_CROWBAR = 55)
@@ -133,7 +133,7 @@
 				organs -= O
 				organs[O.name] = O
 
-			I = input("Który narząd usunąć?", "Surgery", null, null) as null|anything in sortList(organs)
+			I = input("Który narząd usunąć?", "Operacja", null, null) as null|anything in sortList(organs)
 			if(I && user && target && user.Adjacent(target) && user.get_active_held_item() == tool)
 				I = organs[I]
 				if(!I)

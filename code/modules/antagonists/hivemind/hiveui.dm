@@ -1,7 +1,7 @@
 //Hivemind monitoring and powers shop
 
 /datum/psychic_plane
-	var/name = "psychic plane"
+	var/name = "Plan psychiczny"
 	var/datum/antagonist/hivemind/hivehost
 
 /datum/psychic_plane/New(my_hivehost)
@@ -78,7 +78,7 @@
 
 
 /datum/action/innate/psychic_plane
-	name = "Psychic Plane"
+	name = "Plan psychiczny"
 	icon_icon = 'icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "scan"
 	background_icon_state = "bg_hive"

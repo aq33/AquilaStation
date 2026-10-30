@@ -264,7 +264,7 @@ export const StandardizedPalette = (props: {
                 .includes(safeValue!) && (
                 <Flex.Item>
                   <Tooltip
-                    content={`Your Custom Selection (${safeValue})`}
+                    content={`Twój własny wybór (${safeValue})`}
                     position="bottom"
                   >
                     <Box
@@ -288,7 +288,7 @@ export const StandardizedPalette = (props: {
 
               <Flex.Item ml={0.5}>
                 <Button
-                  tooltip="Choose Custom"
+                  tooltip="Wybierz własny"
                   tooltipPosition="bottom"
                   height={height + 4 + 'px'}
                   fontSize={height - 4 + 'px'}

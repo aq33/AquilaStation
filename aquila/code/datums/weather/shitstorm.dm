@@ -1,7 +1,7 @@
 //Radiation storms occur when the station passes through an irradiated area, and irradiate anyone not standing in protected areas (maintenance, emergency storage, etc.)
 /datum/weather/shit_storm
-	name = "shitstorm"
-	desc = "A cloud of intense radiation passes through the area dealing rad damage to those who are unprotected."
+	name = "gównoburza"
+	desc = "Przez okolicę przechodzi chmura silnego promieniowania, która napromieniowuje każdego bez osłony."
 
 	telegraph_duration = 400
 	telegraph_message = null

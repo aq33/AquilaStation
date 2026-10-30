@@ -9,7 +9,7 @@
 	stat_value = rand(4, 11)
 	if(rand(3) == 1)
 		stat_value *= -1
-	name = "Virus ([stat_name] of [stat_value])"
+	name = "Wirus ([stat_name]: [stat_value])"
 	description = "Nanotrasen interesuje się wirusem o parametrze „[stat_name]” równym dokładnie [stat_value]. Centrala sowicie zapłaci za taki wirus."
 	reward += rand(0, 4) * 500
 
@@ -52,28 +52,28 @@
 	return TRUE
 
 /datum/bounty/virus/resistance
-	stat_name = "resistance"
+	stat_name = "odporność"
 
 /datum/bounty/virus/resistance/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.resistance == stat_value
 
 /datum/bounty/virus/stage_speed
-	stat_name = "stage speed"
+	stat_name = "szybkość stadiów"
 
 /datum/bounty/virus/stage_speed/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.stage_rate == stat_value
 
 /datum/bounty/virus/stealth
-	stat_name = "stealth"
+	stat_name = "ukrycie"
 
 /datum/bounty/virus/stealth/accepts_virus(V)
 	var/datum/disease/advance/A = V
 	return A.stealth == stat_value
 
 /datum/bounty/virus/transmit
-	stat_name = "transmissible"
+	stat_name = "transmisja"
 
 /datum/bounty/virus/transmit/accepts_virus(V)
 	var/datum/disease/advance/A = V

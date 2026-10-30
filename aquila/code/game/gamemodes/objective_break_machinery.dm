@@ -10,7 +10,7 @@
  * The idea is that the traitor must commit to breaking the machines.
  */
 /datum/objective/break_machinery
-	name = "destroy some machines"
+	name = "zniszcz maszyny"
 	explanation_text = "Zniszcz wszystkie maszyny danego typu w miejscach, w których stoją."
 	/// The machine type to get rid of
 	var/obj/machinery/target_obj_type
@@ -65,7 +65,7 @@
 		return FALSE
 
 	var/machine_name = format_text(initial(target_obj_type.name))
-	name = "destroy [machine_name]"
+	name = "zniszcz: [machine_name]"
 	var/list/area_names = list()
 	for(var/area/A as anything in target_areas)
 		area_names += A.name
@@ -82,4 +82,4 @@
 
 // The base telecomms type had no name, so the objective would read "machinery"
 /obj/machinery/telecomms
-	name = "telecommunications machine"
+	name = "maszyna telekomunikacyjna"

@@ -12,7 +12,7 @@
 	var/datum/action/blink/button = new
 
 /datum/action/blink
-	name = "Blink"
+	name = "Mrugnij"
 	icon_icon = 'icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "see"						//Feel free to replace
 

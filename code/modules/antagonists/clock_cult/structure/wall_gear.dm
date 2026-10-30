@@ -1,12 +1,12 @@
 //A massive gear, effectively a girder for clocks.
 /obj/structure/destructible/clockwork/wall_gear
-	name = "massive gear"
+	name = "ogromna zębatka"
 	icon_state = "wall_gear"
 	unanchored_icon = "wall_gear"
 	climbable = TRUE
 	max_integrity = 100
 	layer = BELOW_OBJ_LAYER
-	desc = "A massive brass gear. You could probably secure or unsecure it with a wrench, or just climb over it."
+	desc = "Ogromna mosiężna zębatka. Pewnie da się ją przykręcić albo odkręcić kluczem, albo po prostu przez nią przeleźć."
 	break_message = "<span class='warning'>Zębatka rozpada się na odłamki stopu!</span>"
 	debris = list(/obj/item/clockwork/alloy_shards/large = 1, \
 	/obj/item/clockwork/alloy_shards/medium = 4, \

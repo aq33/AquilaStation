@@ -34,8 +34,8 @@
 
 //Cleanbot assembly
 /obj/item/bot_assembly/cleanbot
-	desc = "It's a bucket with a sensor attached."
-	name = "incomplete cleanbot assembly"
+	desc = "To wiadro z przymocowanym czujnikiem."
+	name = "niedokończony zespół cleanbota"
 	icon_state = "bucket_proxy"
 	throwforce = 5
 	created_name = "Cleanbot"
@@ -53,8 +53,8 @@
 		qdel(src)
 
 /obj/item/bot_assembly/larry
-	name = "incomplete larry frame"
-	desc = "It's a larry with a sensor attached"
+	name = "niedokończona rama Larry'ego"
+	desc = "To Larry z przymocowanym czujnikiem."
 	icon_state = "larry_proxy"
 	throwforce = 5
 	created_name = "Larry"
@@ -73,8 +73,8 @@
 
 //Edbot Assembly
 /obj/item/bot_assembly/ed209
-	name = "incomplete ED-209 assembly"
-	desc = "Some sort of bizarre assembly."
+	name = "niedokończony zespół ED-209"
+	desc = "Jakiś dziwaczny zespół."
 	icon_state = "ed209_frame"
 	item_state = "ed209_frame"
 	created_name = "ED-209 Security Robot" //To preserve the name if it's a unique securitron I guess
@@ -90,7 +90,7 @@
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 				qdel(W)
-				name = "legs/frame assembly"
+				name = "zespół nogi/rama"
 				if(build_step == ASSEMBLY_FIRST_STEP)
 					item_state = "ed209_leg"
 					icon_state = "ed209_leg"
@@ -112,7 +112,7 @@
 				vest_type = W.type
 				to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 				qdel(W)
-				name = "vest/legs/frame assembly"
+				name = "zespół kamizelka/nogi/rama"
 				item_state = "[lasercolor]ed209_shell"
 				icon_state = "[lasercolor]ed209_shell"
 				build_step++
@@ -120,7 +120,7 @@
 		if(ASSEMBLY_FOURTH_STEP)
 			if(W.tool_behaviour == TOOL_WELDER)
 				if(W.use_tool(src, user, 0, volume=40))
-					name = "shielded frame assembly"
+					name = "zespół ramy z osłoną"
 					to_chat(user, "<span class='notice'>Przyspawasz kamizelkę do [src].</span>")
 					build_step++
 
@@ -142,7 +142,7 @@
 				return
 			to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 			qdel(W)
-			name = "covered and shielded frame assembly"
+			name = "zespół ramy z osłoną i pokrywą"
 			item_state = "[lasercolor]ed209_hat"
 			icon_state = "[lasercolor]ed209_hat"
 			build_step++
@@ -154,7 +154,7 @@
 				build_step++
 				to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 				qdel(W)
-				name = "covered, shielded and sensored frame assembly"
+				name = "zespół ramy z osłoną, pokrywą i czujnikiem"
 				item_state = "[lasercolor]ed209_prox"
 				icon_state = "[lasercolor]ed209_prox"
 
@@ -169,7 +169,7 @@
 					if(coil.get_amount() >= 1 && build_step == 6)
 						coil.use(1)
 						to_chat(user, "<span class='notice'>Okablowujesz [src].</span>")
-						name = "wired ED-209 assembly"
+						name = "okablowany zespół ED-209"
 						build_step++
 
 		if(7)
@@ -187,7 +187,7 @@
 					return
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
-			name = "[W.name] ED-209 assembly"
+			name = "zespół ED-209 ([W.name])"
 			to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 			item_state = "[lasercolor]ed209_taser"
 			icon_state = "[lasercolor]ed209_taser"
@@ -198,7 +198,7 @@
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
 				to_chat(user, "<span class='notice'>Zaczynasz mocować broń do ramy...</span>")
 				if(W.use_tool(src, user, 40, volume=100))
-					name = "armed [name]"
+					name = "[name] (uzbrojony)"
 					to_chat(user, "<span class='notice'>Broń jest teraz solidnie przymocowana do ramy.</span>")
 					build_step++
 
@@ -216,8 +216,8 @@
 
 //Floorbot assemblies
 /obj/item/bot_assembly/floorbot
-	desc = "It's a toolbox with tiles sticking out the top."
-	name = "tiles and toolbox"
+	desc = "To skrzynka narzędziowa, z której wystają płytki podłogowe."
+	name = "płytki i skrzynka narzędziowa"
 	icon_state = "toolbox_tiles"
 	throwforce = 10
 	created_name = "Floorbot"
@@ -237,8 +237,8 @@
 			icon_state = "[toolbox_color]toolbox_tiles"
 
 		if(ASSEMBLY_SECOND_STEP)
-			desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
-			name = "incomplete floorbot assembly"
+			desc = "To skrzynka narzędziowa, z której wystają płytki podłogowe, z przymocowanym czujnikiem."
+			name = "niedokończony zespół floorbota"
 			icon_state = "[toolbox_color]toolbox_tiles_sensor"
 
 /obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)
@@ -268,8 +268,8 @@
 
 //Medbot Assembly
 /obj/item/bot_assembly/medbot
-	name = "incomplete medibot assembly"
-	desc = "A first aid kit with a robot arm permanently grafted to it."
+	name = "niedokończony zespół medibota"
+	desc = "Apteczka z na stałe przytwierdzonym ramieniem robota."
 	icon_state = "firstaid_arm"
 	created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
@@ -292,7 +292,7 @@
 				healthanalyzer = W.type
 				to_chat(user, "<span class='notice'>Dodajesz [W] do [src].</span>")
 				qdel(W)
-				name = "first aid/robot arm/health analyzer assembly"
+				name = "zespół apteczka/ramię robota/analizator zdrowia"
 				add_overlay("na_scanner")
 				build_step++
 
@@ -312,8 +312,8 @@
 
 //Honkbot Assembly
 /obj/item/bot_assembly/honkbot
-	name = "incomplete honkbot assembly"
-	desc = "The clown's up to no good once more"
+	name = "niedokończony zespół honkbota"
+	desc = "Klaun znowu coś knuje."
 	icon_state = "honkbot_arm"
 	created_name = "Honkbot"
 
@@ -326,7 +326,7 @@
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]!</span>")
 				icon_state = "honkbot_proxy"
-				name = "incomplete Honkbot assembly"
+				name = "niedokończony zespół honkbota"
 				qdel(I)
 				build_step++
 
@@ -346,8 +346,8 @@
 
 //Secbot Assembly
 /obj/item/bot_assembly/secbot
-	name = "incomplete securitron assembly"
-	desc = "Some sort of bizarre assembly made from a proximity sensor, helmet, and signaler."
+	name = "niedokończony zespół securitrona"
+	desc = "Jakiś dziwaczny zespół z czujnika zbliżeniowego, hełmu i sygnalizatora."
 	icon_state = "helmet_signaler"
 	item_state = "helmet"
 	created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
@@ -377,7 +377,7 @@
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]!</span>")
 				add_overlay("hs_eye")
-				name = "helmet/signaler/prox sensor assembly"
+				name = "zespół hełm/sygnalizator/czujnik zbliżeniowy"
 				qdel(I)
 				build_step++
 
@@ -392,7 +392,7 @@
 				if(!user.temporarilyRemoveItemFromInventory(I))
 					return
 				to_chat(user, "<span class='notice'>Dodajesz [I] do [src]!</span>")
-				name = "helmet/signaler/prox sensor/robot arm assembly"
+				name = "zespół hełm/sygnalizator/czujnik zbliżeniowy/ramię robota"
 				add_overlay("hs_arm")
 				robot_arm = I.type
 				qdel(I)
@@ -423,8 +423,8 @@
 				if(toyswordamt < 3 && swordamt <= 0)
 					if(!user.temporarilyRemoveItemFromInventory(I))
 						return
-					created_name = "General Beepsky"
-					name = "helmet/signaler/prox sensor/robot arm/toy sword assembly"
+					created_name = "Generał Beepsky"
+					name = "zespół hełm/sygnalizator/czujnik zbliżeniowy/ramię robota/zabawkowy miecz"
 					icon_state = "grievous_assembly"
 					to_chat(user, "<span class='notice'>Przyklejasz [I] superklejem do jednego z gniazd ramion [src].</span>")
 					qdel(I)
@@ -456,8 +456,8 @@
 				if(swordamt < 3)
 					if(!user.temporarilyRemoveItemFromInventory(I))
 						return
-					created_name = "General Beepsky"
-					name = "helmet/signaler/prox sensor/robot arm/energy sword assembly"
+					created_name = "Generał Beepsky"
+					name = "zespół hełm/sygnalizator/czujnik zbliżeniowy/ramię robota/energetyczny miecz"
 					icon_state = "grievous_assembly"
 					to_chat(user, "<span class='notice'>Przykręcasz [I] do jednego z gniazd ramion [src].</span>")
 					qdel(I)
@@ -481,8 +481,8 @@
 
 //Firebot Assembly
 /obj/item/bot_assembly/firebot
-	name = "incomplete firebot assembly"
-	desc = "A fire extinguisher with an arm attached to it."
+	name = "niedokończony zespół firebota"
+	desc = "Gaśnica z przymocowanym ramieniem."
 	icon_state = "firebot_arm"
 	created_name = "Firebot"
 
@@ -495,7 +495,7 @@
 					return
 				to_chat(user,"<span class='notice'>Dodajesz [I] do [src]!</span>")
 				icon_state = "firebot_helmet"
-				desc = "An incomplete firebot assembly with a fire helmet."
+				desc = "Niedokończony zespół firebota z hełmem strażackim."
 				qdel(I)
 				build_step++
 
@@ -511,8 +511,8 @@
 
 //Atmosbot Assembly
 /obj/item/bot_assembly/atmosbot
-	name = "incomplete atmosbot assembly"
-	desc = "An incomplete atmosbot with an analyser attached to it"
+	name = "niedokończony zespół atmosbota"
+	desc = "Niedokończony atmosbot z przymocowanym analizatorem."
 	icon_state = "atmosbot_assembly"
 	created_name = "Atmosbot"
 
@@ -525,7 +525,7 @@
 					return
 				to_chat(user,"<span class='notice'>Dodajesz [I] do [src]!</span>")
 				icon_state = "atmosbot_assembly_tank"
-				desc = "An incomplete atmosbot assembly with a tank strapped to it."
+				desc = "Niedokończony zespół atmosbota z przypiętym zbiornikiem."
 				qdel(I)
 				build_step++
 

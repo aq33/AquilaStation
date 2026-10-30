@@ -2,18 +2,18 @@ import { CheckboxInputInverse, Feature, FeatureToggle } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const hotkeys: FeatureToggle = {
-  name: 'Classic hotkeys',
+  name: 'Klasyczne skróty klawiszowe',
   category: 'GAMEPLAY',
   description:
-    'When enabled, will revert to the legacy hotkeys, using the input bar rather than popups.',
+    'Po włączeniu wracają stare skróty klawiszowe, które używają paska wprowadzania zamiast okienek.',
   component: CheckboxInputInverse,
 };
 
 export const zone_select: Feature<string> = {
-  name: 'Bodyzone Targeting Mode',
+  name: 'Tryb celowania w części ciała',
   category: 'GAMEPLAY',
   description:
-    'When set to simplified, the bodyzone system will be replaced with a grouped system where the bodyparts are put into 3 groups: Arms, Legs and Body/Chest. This setting is recommended if you do not have a numpad or want a simpler experience',
+    'W trybie uproszczonym części ciała są połączone w 3 grupy: ręce, nogi i tułów/klatka piersiowa. Zalecane, jeśli nie masz klawiatury numerycznej albo wolisz prostsze sterowanie.',
   component: FeatureButtonedDropdownInput,
   important: true,
 };

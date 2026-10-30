@@ -1,9 +1,9 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const ambientocclusion: FeatureToggle = {
-  name: 'Enable ambient occlusion',
+  name: 'Okluzja otoczenia',
   category: 'GRAPHICS',
   subcategory: 'Quality',
-  description: 'Adds soft shadows around the edges of objects.',
+  description: 'Dodaje miękkie cienie wokół krawędzi obiektów.',
   component: CheckboxInput,
 };

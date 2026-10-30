@@ -1,14 +1,14 @@
 /obj/item/bombcore/miniature/pizza
-	name = "pizza bomb"
-	desc = "Special delivery!"
+	name = "bomba w pizzy"
+	desc = "Przesyłka specjalna!"
 	icon_state = "pizzabomb_inactive"
 	item_state = "eshield0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 
 /obj/item/pizzabox
-	name = "pizza box"
-	desc = "A box suited for pizzas."
+	name = "pudełko po pizzy"
+	desc = "Pudełko na pizzę."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	item_state = "pizzabox"
@@ -52,19 +52,19 @@
 		boxtag_set = TRUE
 	if(open)
 		if(pizza)
-			desc = "[desc] It appears to have \a [pizza] inside. Use your other hand to take it out."
+			desc = "[desc] W środku jest chyba coś takiego: [pizza]. Użyj drugiej ręki, żeby to wyjąć."
 		if(bomb)
-			desc = "[desc] Wait, what?! It has \a [bomb] inside!"
+			desc = "[desc] Chwila, co?! W środku jest [bomb]!"
 			if(bomb_defused)
-				desc = "[desc] The bomb seems inert. Use your other hand to activate it."
+				desc = "[desc] Bomba wygląda na nieaktywną. Użyj drugiej ręki, żeby ją uzbroić."
 			if(bomb_active)
-				desc = "[desc] It looks like it's about to go off!"
+				desc = "[desc] Wygląda na to, że zaraz wybuchnie!"
 	else
 		var/obj/item/pizzabox/box = boxes.len ? boxes[boxes.len] : src
 		if(boxes.len)
-			desc = "A pile of boxes suited for pizzas. There appear to be [boxes.len + 1] boxes in the pile."
+			desc = "Sterta pudełek na pizzę. Pudełek w stercie: [boxes.len + 1]."
 		if(box.boxtag != "")
-			desc = "[desc] The [boxes.len ? "top box" : "box"]'s tag reads: [box.boxtag]"
+			desc = "[desc] Napis na [boxes.len ? "górnym pudełku" : "pudełku"]: [box.boxtag]"
 
 	// Icon/Overlays
 	cut_overlays()
@@ -209,7 +209,7 @@
 		if(wires && bomb)
 			wires.interact(user)
 	else if(istype(I, /obj/item/reagent_containers/food))
-		to_chat(user, "<span class='warning'>That's not a pizza!</span>")
+		to_chat(user, "<span class='warning'>To nie jest pizza!</span>")
 	..()
 
 /obj/item/pizzabox/process(delta_time)

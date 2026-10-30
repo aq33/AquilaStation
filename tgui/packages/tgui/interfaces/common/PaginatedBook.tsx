@@ -386,7 +386,7 @@ export const BookUI = <Type extends unknown>(props: BookUIProps<Type>) => {
                 page={page}
                 setPage={setPage}
                 maxPage={lastPage}
-                title={page <= finalTOCPage ? `Table of Contents` : title}
+                title={page <= finalTOCPage ? `Spis treści` : title}
               />
             </Section>
           </Stack.Item>

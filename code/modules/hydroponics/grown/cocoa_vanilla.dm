@@ -1,8 +1,8 @@
 // Cocoa Pod
 /obj/item/food/grown/cocoapod
 	seed = /obj/item/plant_seeds/preset/cocoa
-	name = "cocoa pod"
-	desc = "Fattening... Mmmmm... Chocolate."
+	name = "strąk kakaowca"
+	desc = "Tuczące... Mmmm... Czekolada."
 	icon_state = "cocoapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -11,8 +11,8 @@
 
 // Vanilla Pod
 /obj/item/food/grown/vanillapod
-	name = "vanilla pod"
-	desc = "Fattening... Mmmmm... Vanilla."
+	name = "laska wanilii"
+	desc = "Tuczące... Mmmm... Wanilia."
 	icon_state = "vanillapod"
 	bite_consumption_mod = 2
 	foodtypes = FRUIT
@@ -22,8 +22,8 @@
 
 //Bungo
 /obj/item/food/grown/bungofruit
-	name = "bungo fruit"
-	desc = "A strange fruit, tough leathery skin protects its juicy flesh and large poisonous seed."
+	name = "owoc bungo"
+	desc = "Dziwny owoc. Twarda, skórzasta skórka chroni soczysty miąższ i dużą trującą pestkę."
 	icon_state = "bungo"
 	bite_consumption_mod = 2
 	trash_type = /obj/item/food/grown/bungopit
@@ -34,10 +34,10 @@
 	discovery_points = 300
 
 /obj/item/food/grown/bungopit
-	name = "bungo pit"
+	name = "pestka bungo"
 	icon_state = "bungopit"
 	bite_consumption_mod = 5
-	desc = "A large seed, it is said to be potent enough to be able to stop a mans heart."
+	desc = "Duża pestka. Podobno jest na tyle silna, że może zatrzymać ludzkie serce."
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
 	throw_speed = 3

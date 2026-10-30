@@ -3,8 +3,8 @@
 // i /mob/living/carbon/human/IsAdvancedToolUser() (AQUILA EDIT).
 
 /datum/mutation/clever
-	name = "Clever"
-	desc = "The subject's intelligence level is raised to that of the average assistant."
+	name = "Bystrość"
+	desc = "Inteligencja pacjenta rośnie do poziomu przeciętnego asystenta."
 	quality = POSITIVE
 	instability = 25 // dorównuje sprzętowi na stacji
 	text_gain_indication = "<span class='danger'>Czujesz się odrobinę mądrzejszy.</span>"

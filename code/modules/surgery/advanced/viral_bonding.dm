@@ -1,6 +1,6 @@
 /datum/surgery/advanced/viral_bonding
-	name = "Viral Bonding"
-	desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. The patient must be dosed with spaceacillin, virus food, and formaldehyde."
+	name = "Wiązanie wirusowe"
+	desc = "Zabieg chirurgiczny wymuszający symbiozę między wirusem a jego nosicielem. Pacjent musi dostać Spacyklinę, Pożywkę dla wirusów i Formaldehyd."
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/clamp_bleeders,
@@ -20,7 +20,7 @@
 	return TRUE
 
 /datum/surgery_step/viral_bond
-	name = "viral bond"
+	name = "zwiąż wirusa"
 	implements = list(TOOL_CAUTERY = 100, TOOL_WELDER = 50, /obj/item = 30) // 30% success with any hot item.
 	time = 100
 	chems_needed = list(/datum/reagent/medicine/spaceacillin,/datum/reagent/consumable/virus_food,/datum/reagent/toxin/formaldehyde)

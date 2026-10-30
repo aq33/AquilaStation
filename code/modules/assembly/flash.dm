@@ -4,8 +4,8 @@
 #define FLASH_FAIL 0
 
 /obj/item/flashbulb
-	name = "flashbulb"
-	desc = "A powerful bulb that, when placed into a flash device can emit a bright light that will disorientate and subdue targets."
+	name = "żarówka błyskowa"
+	desc = "Mocna żarówka, która po włożeniu do flasha emituje jasne światło dezorientujące i obezwładniające cele."
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "flashbulb"
 	throwforce = 0
@@ -39,7 +39,7 @@
 	return FLASH_USE
 
 /obj/item/flashbulb/weak
-	name = "weakened flashbulb"
+	name = "osłabiona żarówka błyskowa"
 	charges_left = 4
 
 /obj/item/flashbulb/recharging
@@ -65,17 +65,17 @@
 		recharging = TRUE
 
 /obj/item/flashbulb/recharging/revolution
-	name = "modified flashbulb"
+	name = "zmodyfikowana żarówka błyskowa"
 	charges_left = 10
 	max_charges = 10
 	charge_time = 15 SECONDS
 
 /obj/item/flashbulb/recharging/cyborg
-	name = "cyborg flashbulb"
+	name = "żarówka błyskowa cyborga"
 
 /obj/item/assembly/flash
 	name = "flash"
-	desc = "A powerful and versatile flashbulb device, with applications ranging from disorienting attackers to acting as visual receptors in robot production."
+	desc = "Mocne i wszechstronne urządzenie z żarówką błyskową. Służy zarówno do dezorientowania napastników, jak i jako receptor wzrokowy przy produkcji robotów."
 	icon_state = "flash"
 	item_state = "flashtool"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -320,8 +320,8 @@
 	return
 
 /obj/item/assembly/flash/memorizer
-	name = "memorizer"
-	desc = "If you see this, you're not likely to remember it any time soon."
+	name = "wymazywacz pamięci"
+	desc = "Jeśli to widzisz, raczej szybko tego nie zapamiętasz."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "memorizer"
 	item_state = "nullrod"
@@ -329,8 +329,8 @@
 /obj/item/assembly/flash/handheld //this is now the regular pocket flashes
 
 /obj/item/assembly/flash/armimplant
-	name = "photon projector"
-	desc = "A high-powered photon projector implant normally used for lighting purposes, but also doubles as a flashbulb weapon. Self-repair protocols fix the flashbulb if it ever burns out."
+	name = "projektor fotonów"
+	desc = "Implant mocnego projektora fotonów, zwykle używany do oświetlenia, ale działający też jak broń błyskowa. Protokoły samonaprawy naprawiają żarówkę, gdy się przepali."
 	var/flashcd = 20
 	var/overheat = 0
 	//Wearef to our arm
@@ -364,7 +364,7 @@
 	return
 
 /obj/item/assembly/flash/hypnotic
-	desc = "A modified flash device, programmed to emit a sequence of subliminal flashes that can send a vulnerable target into a hypnotic trance."
+	desc = "Zmodyfikowany flash zaprogramowany na serię podprogowych błysków, które mogą wprowadzić podatny cel w trans hipnotyczny."
 	flashing_overlay = "flash-hypno"
 	light_color = LIGHT_COLOR_PINK
 	cooldown = 20

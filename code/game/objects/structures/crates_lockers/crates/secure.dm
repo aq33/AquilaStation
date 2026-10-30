@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/secure
-	desc = "A secure crate."
-	name = "secure crate"
+	desc = "Zabezpieczona skrzynia."
+	name = "zabezpieczona skrzynia"
 	icon_state = "secure_crate"
 	secure = TRUE
 	locked = TRUE
@@ -40,42 +40,42 @@
 	qdel(src)
 
 /obj/structure/closet/crate/secure/weapon
-	desc = "A secure weapons crate."
-	name = "weapons crate"
+	desc = "Zabezpieczona skrzynia z bronią."
+	name = "skrzynia z bronią"
 	icon_state = "weapon_crate"
 	icon_door = null
 	icon_door_override = FALSE
 
 /obj/structure/closet/crate/secure/plasma
-	desc = "A secure plasma crate."
-	name = "plasma crate"
+	desc = "Zabezpieczona skrzynia z plazmą."
+	name = "skrzynia z plazmą"
 	icon_state = "plasma_crate"
 	icon_door = null
 	icon_door_override = FALSE
 
 /obj/structure/closet/crate/secure/gear
-	desc = "A secure gear crate."
-	name = "gear crate"
+	desc = "Zabezpieczona skrzynia ze sprzętem."
+	name = "skrzynia ze sprzętem"
 	icon_state = "secgear_crate"
 	icon_door = null
 	icon_door_override = FALSE
 
 /obj/structure/closet/crate/secure/hydroponics
-	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
-	name = "secure hydroponics crate"
+	desc = "Zamykana skrzynia pomalowana w barwach stacyjnych botaników."
+	name = "zabezpieczona skrzynia hydroponiczna"
 	icon_state = "hydro_secure_crate"
 	icon_door = null
 	icon_door_override = FALSE
 
 /obj/structure/closet/crate/secure/freezer //for consistency with other "freezer" closets/crates
-	desc = "An insulated crate with a lock on it, used to secure perishables."
-	name = "secure kitchen crate"
+	desc = "Izolowana, zamykana skrzynia do zabezpieczania łatwo psującej się żywności."
+	name = "zabezpieczona skrzynia kuchenna"
 	icon_state = "kitchen_secure_crate"
 	icon_door_override = TRUE
 
 /obj/structure/closet/crate/secure/freezer/pizza
-	name = "secure pizza crate"
-	desc = "An insulated crate with a lock on it, used to secure pizza."
+	name = "zabezpieczona skrzynia na pizzę"
+	desc = "Izolowana, zamykana skrzynia do zabezpieczania pizzy."
 	req_access = list(28)
 	tamperproof = 10
 
@@ -84,20 +84,20 @@
 	new /obj/effect/spawner/lootdrop/pizzaparty(src)
 
 /obj/structure/closet/crate/secure/engineering
-	desc = "A crate with a lock on it, painted in the scheme of the station's engineers."
-	name = "secure engineering crate"
+	desc = "Zamykana skrzynia pomalowana w barwach stacyjnych inżynierów."
+	name = "zabezpieczona skrzynia inżynieryjna"
 	icon_state = "engi_secure_crate"
 	icon_door = "engi_secure_crate"
 
 /obj/structure/closet/crate/secure/science
-	name = "secure science crate"
-	desc = "A crate with a lock on it, painted in the scheme of the station's scientists."
+	name = "zabezpieczona skrzynia naukowa"
+	desc = "Zamykana skrzynia pomalowana w barwach stacyjnych naukowców."
 	icon_state = "sci_secure_crate"
 	icon_door = "sci_secure_crate"
 
 /obj/structure/closet/crate/secure/owned
-	name = "private crate"
-	desc = "A crate cover designed to only open for who purchased its contents."
+	name = "prywatna skrzynia"
+	desc = "Pokrywa skrzyni, która otwiera się tylko przed tym, kto kupił jej zawartość."
 	icon_state = "private_crate"
 	icon_door = null
 	icon_door_override = FALSE

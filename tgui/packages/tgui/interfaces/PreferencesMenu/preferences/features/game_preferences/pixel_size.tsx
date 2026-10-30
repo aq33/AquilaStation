@@ -1,20 +1,20 @@
 import { createDropdownInput, Feature } from '../base';
 
 export const pixel_size: Feature<number> = {
-  name: 'Pixel Scaling',
+  name: 'Skalowanie pikseli',
   category: 'GRAPHICS',
   subcategory: 'Scaling',
   description:
-    'The size of the game and its icons within the map window. Stretch to fit works with all screen sizes, but Pixel Perfect will produce cleaner scaling, if any fit your window.',
+    'Rozmiar gry i jej ikon w oknie mapy. Rozciągnięcie działa przy każdym rozmiarze ekranu, ale skalowanie co do piksela daje czystszy obraz, jeśli któreś pasuje do twojego okna.',
   component: createDropdownInput({
-    0: 'Stretch to fit',
-    1: 'Pixel Perfect 1x',
-    1.5: 'Pixel Perfect 1.5x',
-    2: 'Pixel Perfect 2x',
-    3: 'Pixel Perfect 3x',
-    4: 'Pixel Perfect 4x',
-    4.5: 'Pixel Perfect 4.5x',
-    5: 'Pixel Perfect 5x',
+    0: 'Rozciągnij',
+    1: 'Co do piksela 1x',
+    1.5: 'Co do piksela 1.5x',
+    2: 'Co do piksela 2x',
+    3: 'Co do piksela 3x',
+    4: 'Co do piksela 4x',
+    4.5: 'Co do piksela 4.5x',
+    5: 'Co do piksela 5x',
   }),
   important: true,
 };

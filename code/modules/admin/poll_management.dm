@@ -77,18 +77,18 @@
 	for(var/p in GLOB.polls)
 		var/datum/poll_question/poll = p
 		output += {"[poll.question]
-		<a href='byond://?_src_=holder;[HrefToken()];editpoll=[REF(poll)]'> Edit</a>
-		<a href='byond://?_src_=holder;[HrefToken()];deletepoll=[REF(poll)]'> Delete</a>
+		<a href='byond://?_src_=holder;[HrefToken()];editpoll=[REF(poll)]'> Edytuj</a>
+		<a href='byond://?_src_=holder;[HrefToken()];deletepoll=[REF(poll)]'> Usuń</a>
 		"}
 		if(poll.subtitle)
 			output += "<br>[poll.subtitle]"
-		output += "<br>[poll.future_poll ? "Starts" : "Started"] at [poll.start_datetime] | Ends at [poll.end_datetime]"
+		output += "<br>[poll.future_poll ? "Start" : "Wystartowała"]: [poll.start_datetime] | Koniec: [poll.end_datetime]"
 		if(poll.admin_only)
-			output += " | Admin only"
+			output += " | Tylko dla adminów"
 		if(poll.dont_show)
 			output += " | Ukryta przed śledzeniem do zakończenia"
 		output += " | [poll.poll_type == POLLTYPE_TEXT ? "Odpowiedziało" : "Zagłosowało"] graczy: [poll.poll_votes]<hr style='background:#000000; border:0; height:3px'>"
-	var/datum/browser/panel = new(usr, "plpanel", "Poll list Panel", 700, 400)
+	var/datum/browser/panel = new(usr, "plpanel", "Lista ankiet", 700, 400)
 	panel.set_content(jointext(output, ""))
 	panel.open()
 
@@ -98,61 +98,61 @@
   */
 /datum/admins/proc/poll_management_panel(datum/poll_question/poll)
 	var/list/output = list("<form method='get' action='byond://?src=[REF(src)]'>[HrefTokenFormField()]")
-	output += {"<input type='hidden' name='src' value='[REF(src)]'>Poll type
+	output += {"<input type='hidden' name='src' value='[REF(src)]'>Typ ankiety
 	<div class="select">
 		<select name='polltype' [poll ? " disabled": ""]>
-			<option value='[POLLTYPE_OPTION]'[poll?.poll_type == POLLTYPE_OPTION ? " selected" : ""]>Single Option</option>
-			<option value='[POLLTYPE_TEXT]'[poll?.poll_type == POLLTYPE_TEXT ? " selected" : ""]>Text Reply</option>
-			<option value='[POLLTYPE_RATING]'[poll?.poll_type == POLLTYPE_RATING ? " selected" : ""]>Rating</option>
-			<option value='[POLLTYPE_MULTI]'[poll?.poll_type == POLLTYPE_MULTI ? " selected" : ""]>Multiple Choice</option>
-			<option value='[POLLTYPE_IRV]'[poll?.poll_type == POLLTYPE_IRV ? " selected" : ""]>Instant Runoff</option>
+			<option value='[POLLTYPE_OPTION]'[poll?.poll_type == POLLTYPE_OPTION ? " selected" : ""]>Jedna opcja</option>
+			<option value='[POLLTYPE_TEXT]'[poll?.poll_type == POLLTYPE_TEXT ? " selected" : ""]>Odpowiedź tekstowa</option>
+			<option value='[POLLTYPE_RATING]'[poll?.poll_type == POLLTYPE_RATING ? " selected" : ""]>Ocena</option>
+			<option value='[POLLTYPE_MULTI]'[poll?.poll_type == POLLTYPE_MULTI ? " selected" : ""]>Wielokrotny wybór</option>
+			<option value='[POLLTYPE_IRV]'[poll?.poll_type == POLLTYPE_IRV ? " selected" : ""]>Głosowanie preferencyjne (IRV)</option>
 		</select>
 	</div>
-	Question
+	Pytanie
 	<input type='text' name='question' size='34' value='[poll?.question]'>
-	Multiple-choice options allowed
+	Liczba dozwolonych opcji przy wielokrotnym wyborze
 	<input type='text' name='optionsallowed' size='2' value='[poll?.options_allowed]'>
 	<br>
 	<label class='inputlabel checkbox'>
-		Admin only
+		Tylko dla adminów
 		<input type='checkbox' id='adminonly' name='adminonly' value='1'[poll?.admin_only ? " checked" : ""]>
 		<div class='inputbox'></div>
 	</label>
 	<label class='inputlabel checkbox'>
-		Hide results before completion
+		Ukryj wyniki do zakończenia
 		<input type='checkbox' id='dontshow' name='dontshow' value='1'[poll?.dont_show ? " checked" : ""]>
 		<div class='inputbox'></div>
 	</label>
 	<label class='inputlabel checkbox'>
-		Allow re-voting
+		Pozwól głosować ponownie
 		<input type='checkbox' id='allowrevoting' name='allowrevoting' value='1'[poll?.allow_revoting ? " checked" : ""]>
 		<div class='inputbox'></div>
 	</label>
 	<hr>
 	<div class='row'>
 		<div class='column left'>
-			<b>Duration</b>
+			<b>Czas trwania</b>
 			<br>
 			<label class='inputlabel radio'>
-				Run for
+				Trwa przez
 				<input type='radio' id='runfor' name='radioduration' value='runfor'[poll?.interval ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
 			<input type='text' name='duration' size='7'[poll?.interval ? " value='[poll?.duration]''" : ""]'>
 			<div class="select">
 				<select name='durationtype'>
-					<option value='SECOND'[poll?.interval == "SECOND" ? " selected" : ""]>Seconds</option>
-					<option value='MINUTE'[poll?.interval == "MINUTE" ? " selected" : ""]>Minutes</option>
-					<option value='HOUR'[poll?.interval == "HOUR" ? " selected" : ""]>Hours</option>
-					<option value='DAY'[(!poll?.interval || poll?.interval == "DAY") ? " selected" : ""]>Days</option>
-					<option value='WEEK'[poll?.interval == "WEEK" ? " selected" : ""]>Weeks</option>
-					<option value='MONTH'[poll?.interval == "MONTH" ? " selected" : ""]>Months</option>
-					<option value='YEAR'[poll?.interval == "YEAR" ? " selected" : ""]>Years</option>
+					<option value='SECOND'[poll?.interval == "SECOND" ? " selected" : ""]>sekund</option>
+					<option value='MINUTE'[poll?.interval == "MINUTE" ? " selected" : ""]>minut</option>
+					<option value='HOUR'[poll?.interval == "HOUR" ? " selected" : ""]>godzin</option>
+					<option value='DAY'[(!poll?.interval || poll?.interval == "DAY") ? " selected" : ""]>dni</option>
+					<option value='WEEK'[poll?.interval == "WEEK" ? " selected" : ""]>tygodni</option>
+					<option value='MONTH'[poll?.interval == "MONTH" ? " selected" : ""]>miesięcy</option>
+					<option value='YEAR'[poll?.interval == "YEAR" ? " selected" : ""]>lat</option>
 				</select>
 			</div>
 			<br>
 			<label class='inputlabel radio'>
-				Run until
+				Trwa do
 				<input type='radio' id='rununtil' name='radioduration' value='rununtil' [!poll?.interval ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
@@ -162,29 +162,29 @@
 			<b>Start</b>
 			<br>
 			<label class='inputlabel radio'>
-				Now
+				Teraz
 				<input type='radio' id='startnow' name='radiostart' value='startnow'[!poll?.start_datetime ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
 			</div>
 			<br>
 			<label class='inputlabel radio'>
-				At datetime
+				O dacie i godzinie
 				<input type='radio' id='startdatetime' name='radiostart' value='startdatetime'[poll?.start_datetime ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
 			<input type='text' name='startdatetimetext' size='24' value='[poll?.start_datetime ? "[poll.start_datetime]" : "YYYY-MM-DD HH:MM:SS"]'>
 		<div class='column'>
-			<b>Minimum playtime to vote (in hours)</b>
+			<b>Minimalny czas gry do głosowania (w godzinach)</b>
 			<br>
 			<label class='inputlabel radio'>
-				None
+				Brak
 				<input type='radio' id='noplaytime' name='radioplaytime' value='noplaytime'[!poll?.minimumplaytime ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
 			<br>
 			<label class='inputlabel radio'>
-				At playtime
+				Od czasu gry
 				<input type='radio' id='setplaytime' name='radioplaytime' value='setplaytime'[poll?.minimumplaytime ? " checked" : ""]>
 				<div class='inputbox'></div>
 			</label>
@@ -192,7 +192,7 @@
 		</div></div>
 		<div class='row'>
 		<div class='column left'>
-			Subtitle (Optional)
+			Podtytuł (opcjonalny)
 			<br>
 			<textarea class='textbox' name='subtitle'>[poll?.subtitle]</textarea>
 		</div>
@@ -201,18 +201,18 @@
 	var/option_count = 0
 	if(!poll)
 		output += {"<br><input type='hidden' name='initializepoll' value='1'>
-		<input type='submit' value='Initialize Question'>
+		<input type='submit' value='Zainicjuj pytanie'>
 		</div></div>
 		</form>
 		<hr>
-		First enter the poll question, duration, start, and playtime requirement then press Initialize Question.
+		Najpierw wpisz pytanie ankiety, czas trwania, start i wymagany czas gry, a potem naciśnij Zainicjuj pytanie.
 		<br>
-		Then add poll options and press Submit Poll to save and create the question and options. No options are required for Text Reply polls.
+		Następnie dodaj opcje ankiety i naciśnij Wyślij ankietę, by zapisać i utworzyć pytanie oraz opcje. Ankiety z odpowiedzią tekstową nie wymagają opcji.
 		<br>
-		<a href='[CONFIG_GET(string/wikiurl)]/Guide_to_poll_types'>Which poll type should I use?</a>
+		<a href='[CONFIG_GET(string/wikiurl)]/Guide_to_poll_types'>Jakiego typu ankiety użyć?</a>
 		"}
 	else
-		output += "<br><input type='hidden' name='submitpoll' value='[REF(poll)]'><input type='submit' value='Submit poll'>"
+		output += "<br><input type='hidden' name='submitpoll' value='[REF(poll)]'><input type='submit' value='Wyślij ankietę'>"
 		if(poll.edit_ready)
 			output += {"<label class='inputlabel checkbox'>Wyczyść głosy przy edycji
 			<input type='checkbox' id='clearvotesedit' name='clearvotesedit' value='1' checked>
@@ -227,24 +227,24 @@
 		if(poll.poll_type == POLLTYPE_TEXT)
 			output += "</div></div>"
 		else
-			output += "</div></div><hr><a href='byond://?_src_=holder;[HrefToken()];addpolloption=[REF(poll)]'>Add Option</a><br>"
+			output += "</div></div><hr><a href='byond://?_src_=holder;[HrefToken()];addpolloption=[REF(poll)]'>Dodaj opcję</a><br>"
 			if(length(poll.options))
 				for(var/o in poll.options)
 					var/datum/poll_option/option = o
 					option_count++
-					output += {"Option [option_count]
-					<a href='byond://?_src_=holder;[HrefToken()];editpolloption=[REF(option)];parentpoll=[REF(poll)]'> Edit</a>
-					<a href='byond://?_src_=holder;[HrefToken()];deletepolloption=[REF(option)]'> Delete</a>
+					output += {"Opcja [option_count]
+					<a href='byond://?_src_=holder;[HrefToken()];editpolloption=[REF(option)];parentpoll=[REF(poll)]'> Edytuj</a>
+					<a href='byond://?_src_=holder;[HrefToken()];deletepolloption=[REF(option)]'> Usuń</a>
 					<br>[option.text]
 					"}
 					if(poll.poll_type == POLLTYPE_RATING)
-						output += {"<br>Minimum value: [option.min_val] | Maximum value: [option.max_val]
-						<br>Minimum description: [option.desc_min]
-						<br>Middle description: [option.desc_mid]
-						<br>Maximum description: [option.desc_max]
+						output += {"<br>Wartość minimalna: [option.min_val] | Wartość maksymalna: [option.max_val]
+						<br>Opis minimum: [option.desc_min]
+						<br>Opis środka: [option.desc_mid]
+						<br>Opis maksimum: [option.desc_max]
 						"}
 					output += "<hr style='background:#000000; border:0; height:3px'>"
-	var/datum/browser/panel = new(usr, "pmpanel", "Poll Management Panel", 780, 640)
+	var/datum/browser/panel = new(usr, "pmpanel", "Zarządzanie ankietą", 780, 640)
 	panel.add_stylesheet("admin_panelscss", 'html/admin/admin_panels.css')
 	if(usr.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI) //some browsers (IE8) have trouble with unsupported css3 elements that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
 		panel.add_stylesheet("admin_panelscss3", 'html/admin/admin_panels_css3.css')
@@ -459,7 +459,7 @@
 		log_admin_private("[kn] [msg]")
 	else
 		log_admin("[kn] [msg]")
-	message_admins("[kna] [msg]")
+	message_admins("[kna] [new_poll ? "tworzy nową" : "edytuje"][admin_only ? " adminowską" : ""] ankietę serwerową. Pytanie: [question]")
 
 /**
   * Saves all options of a poll to the database.
@@ -499,7 +499,7 @@
 		return
 	qdel(query_clear_poll_votes)
 	poll_votes = 0
-	to_chat(usr, "<span class='danger'>Poll [poll_type == POLLTYPE_TEXT ? "responses" : "votes"] cleared.</span>")
+	to_chat(usr, "<span class='danger'>Wyczyszczono [poll_type == POLLTYPE_TEXT ? "odpowiedzi" : "głosy"] w ankiecie.</span>")
 
 /**
   * Show the options for creating a poll option or editing its parameters.
@@ -507,27 +507,27 @@
   */
 /datum/admins/proc/poll_option_panel(datum/poll_question/poll, datum/poll_option/option)
 	var/list/output = list("<form method='get' action='byond://?src=[REF(src)]'>[HrefTokenFormField()]")
-	output += {"<input type='hidden' name='src' value='[REF(src)]'>	Option for poll [poll.question]
+	output += {"<input type='hidden' name='src' value='[REF(src)]'>	Opcja ankiety: [poll.question]
 	<br>
 	<textarea class='textbox' name='optiontext'>[option?.text]</textarea>
 	<br>
 	"}
 	if(poll.poll_type == POLLTYPE_RATING)
-		output += {"Minimum value
+		output += {"Wartość minimalna
 		<input type='text' name='minval' size='3' value='[option?.min_val]'>
-		Maximum Value
+		Wartość maksymalna
 		<input type='text' name='maxval' size='3' value='[option?.max_val]'>
 		<div class='row'>
   			<div class='column left'>
-				<label class='inputlabel checkbox'>Minimum description
+				<label class='inputlabel checkbox'>Opis minimum
 				<input type='checkbox' id='descmincheck' name='descmincheck' value='1'[option?.desc_min ? " checked": ""]>
 				<div class='inputbox'></div></label>
 				<br>
-				<label class='inputlabel checkbox'>Middle description
+				<label class='inputlabel checkbox'>Opis środka
 				<input type='checkbox' id='descmidcheck' name='descmidcheck' value='1'[option?.desc_mid ? " checked": ""]>
 				<div class='inputbox'></div></label>
 				<br>
-				<label class='inputlabel checkbox'>Maximum description
+				<label class='inputlabel checkbox'>Opis maksimum
 				<input type='checkbox' id='descmaxcheck' name='descmaxcheck' value='1'[option?.desc_max ? " checked": ""]>
 				<div class='inputbox'></div></label>
 			</div>
@@ -545,12 +545,12 @@
 	<div class='inputbox'></div></label><br>
 	<input type='hidden' name='submitoption' value='[REF(option)]'>
 	<input type='hidden' name='submitoptionpoll' value='[REF(poll)]'>
-	<input type='submit' value='Add option'>
+	<input type='submit' value='Dodaj opcję'>
 	"}
 	var/panel_height = 180
 	if(poll.poll_type == POLLTYPE_RATING)
 		panel_height = 320
-	var/datum/browser/panel = new(usr, "popanel", "Poll Option Panel", 370, panel_height)
+	var/datum/browser/panel = new(usr, "popanel", "Opcja ankiety", 370, panel_height)
 	panel.add_stylesheet("admin_panelscss", 'html/admin/admin_panels.css')
 	if(usr.client.prefs.toggles2 & PREFTOGGLE_2_FANCY_TGUI) //some browsers (IE8) have trouble with unsupported css3 elements that break the panel's functionality, so we won't load those if a user is in no frills tgui mode since that's for similar compatability support
 		panel.add_stylesheet("admin_panelscss3", 'html/admin/admin_panels_css3.css')

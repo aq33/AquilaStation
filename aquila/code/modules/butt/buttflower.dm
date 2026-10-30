@@ -4,8 +4,8 @@
 
 /obj/item/food/grown/buttflower
 	seed = /obj/item/plant_seeds/preset/butt
-	name = "buttflower"
-	desc = "Gives off a pungent aroma once it blooms."
+	name = "kwiat-tyłek"
+	desc = "Gdy rozkwita, wydziela ostry zapach."
 	icon = 'aquila/icons/obj/buttflower.dmi'
 	icon_state = "buttflower" //coder spriting ftw
 	trash_type = /obj/item/organ/butt

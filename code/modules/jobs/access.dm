@@ -206,203 +206,203 @@
 /proc/get_region_accesses_name(code)
 	switch(code)
 		if(0)
-			return "All"
+			return "Wszystko"
 		if(1) //station general
-			return "General"
+			return "Ogólne"
 		if(2) //security
-			return "Security"
+			return "Ochrona"
 		if(3) //medbay
-			return "Medbay"
+			return "Ambulatorium"
 		if(4) //research
-			return "Research"
+			return "Nauka"
 		if(5) //engineering and maintenance
-			return "Engineering"
+			return "Inżynieria"
 		if(6) //supply
-			return "Supply"
+			return "Zaopatrzenie"
 		if(7) //command
-			return "Command"
+			return "Dowództwo"
 		if(8) //munitions - NSV13
-			return "Munitions"
+			return "Amunicja"
 
 /proc/get_access_desc(A)
 	switch(A)
 		if(ACCESS_CARGO)
-			return "Cargo Bay"
+			return "Ładownia"
 		if(ACCESS_SECURITY)
-			return "Security"
+			return "Ochrona"
 		if(ACCESS_BRIG)
-			return "Holding Cells"
+			return "Cele Tymczasowe"
 		if(ACCESS_COURT)
-			return "Courtroom"
+			return "Sala Sądowa"
 		if(ACCESS_FORENSICS_LOCKERS)
-			return "Forensics"
+			return "Kryminalistyka"
 		if(ACCESS_MEDICAL)
-			return "Medical"
+			return "Medyczny"
 		if(ACCESS_GENETICS)
-			return "Genetics Lab"
+			return "Laboratorium Genetyczne"
 		if(ACCESS_MORGUE)
-			return "Morgue"
+			return "Kostnica"
 		if(ACCESS_TOX)
-			return "R&D Lab"
+			return "Laboratorium B+R"
 		if(ACCESS_TOX_STORAGE)
-			return "Toxins Lab"
+			return "Laboratorium Mieszania Toksyn"
 		if(ACCESS_CHEMISTRY)
-			return "Chemistry Lab"
+			return "Pracownia Chemiczna"
 		if(ACCESS_BRIGPHYS)
-			return "Brig Physician"
+			return "Lekarz Więzienny"
 		if(ACCESS_RD)
-			return "RD Office"
+			return "Biuro Dyrektora Naukowego"
 		if(ACCESS_BAR)
 			return "Bar"
 		if(ACCESS_JANITOR)
-			return "Custodial Closet"
+			return "Schowek Woźnego"
 		if(ACCESS_ENGINE)
-			return "Engineering"
+			return "Inżynieria"
 		if(ACCESS_ENGINE_EQUIP)
-			return "Power and Engineering Equipment"
+			return "Zasilanie i Sprzęt Inżynieryjny"
 		if(ACCESS_MAINT_TUNNELS)
-			return "Maintenance"
+			return "Tunele Techniczne"
 		if(ACCESS_EXTERNAL_AIRLOCKS)
-			return "External Airlocks"
+			return "Śluzy Zewnętrzne"
 		if(ACCESS_CHANGE_IDS)
-			return "ID Console"
+			return "Konsola Identyfikatorów"
 		if(ACCESS_AI_UPLOAD)
-			return "AI Chambers"
+			return "Komory SI"
 		if(ACCESS_TELEPORTER)
 			return "Teleporter"
 		if(ACCESS_EVA)
 			return "EVA"
 		if(ACCESS_HEADS)
-			return "Bridge"
+			return "Mostek"
 		if(ACCESS_CAPTAIN)
-			return "Captain"
+			return "Kapitan"
 		if(ACCESS_ALL_PERSONAL_LOCKERS)
-			return "Personal Lockers"
+			return "Szafki Osobiste"
 		if(ACCESS_CHAPEL_OFFICE)
-			return "Chapel Office"
+			return "Biuro Kaplicy"
 		if(ACCESS_TECH_STORAGE)
-			return "Technical Storage"
+			return "Magazyn Techniczny"
 		if(ACCESS_ATMOSPHERICS)
-			return "Atmospherics"
+			return "Atmosferyka"
 		if(ACCESS_CREMATORIUM)
-			return "Crematorium"
+			return "Krematorium"
 		if(ACCESS_ARMORY)
-			return "Armory"
+			return "Zbrojownia"
 		if(ACCESS_CONSTRUCTION)
-			return "Construction"
+			return "Budowa"
 		if(ACCESS_KITCHEN)
-			return "Kitchen"
+			return "Kuchnia"
 		if(ACCESS_HYDROPONICS)
-			return "Hydroponics"
+			return "Hydroponika"
 		if(ACCESS_LIBRARY)
-			return "Library"
+			return "Biblioteka"
 		if(ACCESS_LAWYER)
-			return "Law Office"
+			return "Biuro Prawne"
 		if(ACCESS_ROBOTICS)
-			return "Robotics"
+			return "Robotyka"
 		if(ACCESS_VIROLOGY)
-			return "Virology"
+			return "Wirusologia"
 		if(ACCESS_CMO)
-			return "CMO Office"
+			return "Biuro Ordynatora"
 		if(ACCESS_QM)
-			return "Quartermaster"
+			return "Kwatermistrz"
 		if(ACCESS_EXPLORATION)
-			return "Exploration Dock"
+			return "Dok Eksploracyjny"
 		if(ACCESS_SURGERY)
-			return "Surgery"
+			return "Chirurgia"
 		if(ACCESS_THEATRE)
-			return "Theatre"
+			return "Teatr"
 		if(ACCESS_RESEARCH)
-			return "Science"
+			return "Nauka"
 		if(ACCESS_RD_SERVER)
-			return "Research Server Room"
+			return "Serwerownia"
 		if(ACCESS_MINING)
-			return "Mining"
+			return "Górnictwo"
 		if(ACCESS_MAILSORTING)
-			return "Cargo Office"
+			return "Biuro Zaopatrzenia"
 		if(ACCESS_VAULT)
-			return "Main Vault"
+			return "Skarbiec"
 		if(ACCESS_MINING_STATION)
-			return "Mining EVA"
+			return "EVA Górnicze"
 		if(ACCESS_XENOBIOLOGY)
-			return "Xenobiology Lab"
+			return "Laboratorium Ksenobiologii"
 		if(ACCESS_HOP)
-			return "HoP Office"
+			return "Biuro Starszego Oficera"
 		if(ACCESS_HOS)
-			return "HoS Office"
+			return "Gabinet Komendanta"
 		if(ACCESS_CE)
-			return "CE Office"
+			return "Biuro Głównego Inżyniera"
 		if(ACCESS_RC_ANNOUNCE)
-			return "RC Announcements"
+			return "Ogłoszenia przez konsolę zgłoszeń"
 		if(ACCESS_KEYCARD_AUTH)
-			return "Keycode Auth."
+			return "Autoryzacja kluczem"
 		if(ACCESS_TCOMSAT)
-			return "Telecommunications"
+			return "Telekomunikacja"
 		if(ACCESS_GATEWAY)
-			return "Gateway"
+			return "Brama"
 		if(ACCESS_SEC_DOORS)
-			return "Brig"
+			return "Areszt"
 		if(ACCESS_SEC_RECORDS)
-			return "Security Records"
+			return "Akta Ochrony"
 		if(ACCESS_MINERAL_STOREROOM)
-			return "Mineral Storage"
+			return "Magazyn Minerałów"
 		if(ACCESS_MINISAT)
-			return "AI Satellite"
+			return "Satelita SI"
 		if(ACCESS_WEAPONS)
-			return "Weapon Permit"
+			return "Pozwolenie na Broń"
 		if(ACCESS_NETWORK)
-			return "Network Access"
+			return "Dostęp do Sieci"
 		if(ACCESS_CLONING)
-			return "Cloning Room"
+			return "Laboratorium Klonowania"
 		if(ACCESS_MECH_MINING)
-			return "Mining Mech Access"
+			return "Dostęp do Mechów Górniczych"
 		if(ACCESS_MECH_MEDICAL)
-			return "Medical Mech Access"
+			return "Dostęp do Mechów Medycznych"
 		if(ACCESS_MECH_SECURITY)
-			return "Security Mech Access"
+			return "Dostęp do Mechów Ochrony"
 		if(ACCESS_MECH_SCIENCE)
-			return "Science Mech Access"
+			return "Dostęp do Mechów Naukowych"
 		if(ACCESS_MECH_ENGINE)
-			return "Engineering Mech Access"
+			return "Dostęp do Mechów Inżynieryjnych"
 		if(ACCESS_MUNITIONS) //Nsv13 - munitions
-			return "Munitions Access"
+			return "Dostęp do Amunicji"
 		if(ACCESS_MAA) //NSV13 - Munitions
-			return "MAA Office"
+			return "Biuro Mistrza Uzbrojenia"
 		if(ACCESS_MUNITIONS_STORAGE) // NSV13 - Munitions
-			return "Munitions Storage"
+			return "Magazyn Amunicji"
 		if(ACCESS_COMBAT_PILOT) //NSV13 - Munitions
-			return "Combat Pilot Permit"
+			return "Licencja Pilota Bojowego"
 		if(ACCESS_TRANSPORT_PILOT) //NSV13 - Munitions
-			return "Transport Pilot Permit"
+			return "Licencja Pilota Transportowego"
 		if(ACCESS_HANGAR) //NSV13 - Munitions
-			return "Hangar Access"
+			return "Dostęp do Hangaru"
 		if(ACCESS_AUX_BASE)
-			return "Auxiliary Base"
+			return "Baza Pomocnicza"
 		if(ACCESS_BIT_DEN) // AQ EDIT - bitrunning
-			return "Bitrunner Den"
+			return "Nora Bitrunnerów"
 		if(ACCESS_TCOMMS_ADMIN) // AQ EDIT - NTSL
-			return "Telecomms Admin"
+			return "Administracja Telekomunikacji"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
 		if(ACCESS_CENT_GENERAL)
-			return "Code Grey"
+			return "Kod Szary"
 		if(ACCESS_CENT_THUNDER)
-			return "Code Yellow"
+			return "Kod Żółty"
 		if(ACCESS_CENT_STORAGE)
-			return "Code Orange"
+			return "Kod Pomarańczowy"
 		if(ACCESS_CENT_LIVING)
-			return "Code Green"
+			return "Kod Zielony"
 		if(ACCESS_CENT_MEDICAL)
-			return "Code White"
+			return "Kod Biały"
 		if(ACCESS_CENT_TELEPORTER)
-			return "Code Blue"
+			return "Kod Niebieski"
 		if(ACCESS_CENT_SPECOPS)
-			return "Code Black"
+			return "Kod Czarny"
 		if(ACCESS_CENT_CAPTAIN)
-			return "Code Gold"
+			return "Kod Złoty"
 		if(ACCESS_CENT_BAR)
-			return "Code Scotch"
+			return "Kod Szkocki"
 
 /proc/get_all_jobs()
 	return list(JOB_NAME_CAPTAIN,

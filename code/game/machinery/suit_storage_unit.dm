@@ -1,7 +1,7 @@
 // SUIT STORAGE UNIT /////////////////
 /obj/machinery/suit_storage_unit
-	name = "suit storage unit"
-	desc = "An industrial unit made to hold and decontaminate irradiated equipment. It comes with a built-in UV cauterization mechanism. A small warning label advises that organic matter should not be placed into the unit."
+	name = "szafa na skafandry"
+	desc = "Przemysłowe urządzenie do przechowywania i odkażania napromieniowanego sprzętu. Ma wbudowany mechanizm kauteryzacji UV. Mała naklejka ostrzega, żeby nie wkładać do środka materii organicznej."
 	icon = 'icons/obj/machines/suit_storage.dmi'
 	icon_state = "close"
 	use_power = ACTIVE_POWER_USE
@@ -149,7 +149,7 @@
 	storage_type = /obj/item/tank/internals/emergency_oxygen/double
 
 /obj/machinery/suit_storage_unit/radsuit
-	name = "radiation suit storage unit"
+	name = "szafa na skafandry przeciwradiacyjne"
 	suit_type = /obj/item/clothing/suit/radiation
 	helmet_type = /obj/item/clothing/head/radiation
 	storage_type = /obj/item/geiger_counter
@@ -428,7 +428,7 @@
 			mask = I
 		else if(istype(I, /obj/item/mod/control))
 			if(mod)
-				to_chat(user, "<span class='warning'>The unit already contains a MOD!</span>")
+				to_chat(user, "<span class='warning'>Urządzenie już zawiera MOD!</span>")
 				return
 			if(!user.transferItemToLoc(I, src))
 				return

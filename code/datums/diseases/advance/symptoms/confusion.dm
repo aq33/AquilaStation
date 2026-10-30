@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/confusion
 
-	name = "Confusion"
+	name = "Dezorientacja"
 	desc = "Wirus zakłóca prawidłową pracę układu nerwowego, prowadząc do napadów dezorientacji i chaotycznych ruchów."
 	stealth = 1
 	resistance = -1
@@ -55,7 +55,7 @@ Bonus
 	switch(A.stage)
 		if(1, 2, 3, 4)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("Your head hurts.", "Your mind blanks for a moment.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Boli cię głowa.", "Na chwilę masz pustkę w głowie.")]</span>")
 		else
 			to_chat(M, "<span class='userdanger'>Nie możesz jasno myśleć!</span>")
 			M.confused = min(100 * power, M.confused + 8)

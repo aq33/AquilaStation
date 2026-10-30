@@ -5,8 +5,8 @@
 
 //trees
 /obj/structure/flora/tree
-	name = "tree"
-	desc = "A large tree."
+	name = "drzewo"
+	desc = "Duże drzewo."
 	density = TRUE
 	pixel_x = -16
 	layer = FLY_LAYER
@@ -25,7 +25,7 @@
 					new /obj/item/grown/log/tree(get_turf(src))
 
 				var/obj/structure/flora/stump/S = new(loc)
-				S.name = "[name] stump"
+				S.name = "pniak: [name]"
 
 				qdel(src)
 
@@ -33,16 +33,16 @@
 		return ..()
 
 /obj/structure/flora/stump
-	name = "stump"
-	desc = "This represents our promise to the crew, and the station itself, to cut down as many trees as possible." //running naked through the trees
+	name = "pniak"
+	desc = "Symbol naszej obietnicy wobec załogi i samej stacji: wyciąć jak najwięcej drzew." //running naked through the trees
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "tree_stump"
 	density = FALSE
 	pixel_x = -16
 
 /obj/structure/flora/tree/pine
-	name = "pine tree"
-	desc = "A coniferous pine tree."
+	name = "sosna"
+	desc = "Iglasta sosna."
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 	var/list/icon_states = list("pine_1", "pine_2", "pine_3")
@@ -54,14 +54,14 @@
 		icon_state = pick(icon_states)
 
 /obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
-	desc = "A wondrous decorated Christmas tree."
+	name = "choinka"
+	desc = "Cudownie przystrojona choinka."
 	icon_state = "pine_c"
 	icon_states = null
 
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
-	desc = "A wondrous decorated Christmas tree. It has presents!"
+	desc = "Cudownie przystrojona choinka. Są pod nią prezenty!"
 	var/gift_type = /obj/item/a_gift/anything
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
@@ -90,17 +90,17 @@
 	user.put_in_hands(G)
 
 /obj/structure/flora/tree/pine/xmas/presents/unlimited
-	desc = "A wonderous decorated Christmas tree. It has a seemly endless supply of presents!"
+	desc = "Cudownie przystrojona choinka. Prezentów pod nią chyba nigdy nie zabraknie!"
 	unlimited = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
-	desc = "A dead tree. How it died, you know not."
+	desc = "Martwe drzewo. Jak umarło, tego nie wiesz."
 	icon_state = "tree_1"
 
 /obj/structure/flora/tree/palm
 	icon = 'icons/misc/beach2.dmi'
-	desc = "A tree straight from the tropics."
+	desc = "Drzewo prosto z tropików."
 	icon_state = "palm1"
 
 /obj/structure/flora/tree/palm/Initialize(mapload)
@@ -109,14 +109,14 @@
 	pixel_x = 0
 
 /obj/structure/festivus
-	name = "festivus pole"
+	name = "słup Festivusa"
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "festivus_pole"
-	desc = "During last year's Feats of Strength the Research Director was able to suplex this passing immobile rod into a planter."
+	desc = "Podczas zeszłorocznych Pokazów Siły Dyrektor Naukowy zdołał suplexem wbić ten przelatujący nieruchomy pręt do donicy."
 
 /obj/structure/festivus/anchored
-	name = "suplexed rod"
-	desc = "A true feat of strength, almost as good as last year."
+	name = "pręt po suplexie"
+	desc = "Prawdziwy pokaz siły, prawie tak dobry jak w zeszłym roku."
 	icon_state = "anchored_rod"
 	anchored = TRUE
 
@@ -125,9 +125,9 @@
 	. = ..()
 
 /obj/structure/flora/tree/jungle
-	name = "tree"
+	name = "drzewo"
 	icon_state = "tree"
-	desc = "It's seriously hampering your view of the jungle."
+	desc = "Mocno zasłania ci widok na dżunglę."
 	icon = 'icons/obj/flora/jungletrees.dmi'
 	pixel_x = -48
 	pixel_y = -20
@@ -143,8 +143,8 @@
 
 //grass
 /obj/structure/flora/grass
-	name = "grass"
-	desc = "A patch of overgrown grass."
+	name = "trawa"
+	desc = "Kępa zarośniętej trawy."
 	icon = 'icons/obj/flora/snowflora.dmi'
 	gender = PLURAL	//"this is grass" not "this is a grass"
 
@@ -173,8 +173,8 @@
 
 //bushes
 /obj/structure/flora/bush
-	name = "bush"
-	desc = "Some type of shrub."
+	name = "krzak"
+	desc = "Jakiś rodzaj krzewu."
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
 	anchored = TRUE
@@ -186,8 +186,8 @@
 //newbushes
 
 /obj/structure/flora/ausbushes
-	name = "bush"
-	desc = "Some kind of plant."
+	name = "krzak"
+	desc = "Jakaś roślina."
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
 
@@ -302,10 +302,10 @@
 	. = ..()
 
 /obj/item/kirbyplants
-	name = "potted plant"
+	name = "roślina w doniczce"
 	icon = 'icons/obj/flora/plants.dmi'
 	icon_state = "plant-01"
-	desc = "A little bit of nature contained in a pot."
+	desc = "Odrobina natury zamknięta w doniczce."
 	layer = ABOVE_MOB_LAYER
 	w_class = WEIGHT_CLASS_HUGE
 	force = 10
@@ -362,13 +362,13 @@
 
 
 /obj/item/kirbyplants/dead
-	name = "RD's potted plant"
-	desc = "A gift from the botanical staff, presented after the RD's reassignment. There's a tag on it that says \"Y'all come back now, y'hear?\"\nIt doesn't look very healthy..."
+	name = "roślina w doniczce Dyrektora Naukowego"
+	desc = "Prezent od botaników, wręczony po przeniesieniu Dyrektora Naukowego. Ma przyczepioną karteczkę: „Wracaj do nas, słyszysz?”\nNie wygląda zbyt zdrowo..."
 	icon_state = "plant-25"
 
 /obj/item/kirbyplants/photosynthetic
-	name = "photosynthetic potted plant"
-	desc = "A bioluminescent plant."
+	name = "fotosyntetyczna roślina w doniczce"
+	desc = "Bioluminescencyjna roślina."
 	icon_state = "plant-09"
 	light_color = "#2cb2e8"
 	light_range = 3
@@ -379,7 +379,7 @@
 
 /obj/structure/flora/rock
 	icon_state = "basalt"
-	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
+	desc = "Wulkaniczna skała. Pionierzy jeździli na takich całymi kilometrami."
 	icon = 'icons/obj/flora/rocks.dmi'
 	resistance_flags = FIRE_PROOF
 	density = TRUE
@@ -390,14 +390,14 @@
 
 /obj/structure/flora/rock/pile
 	icon_state = "lavarocks"
-	desc = "A pile of rocks."
+	desc = "Sterta kamieni."
 	density = FALSE
 
 //Jungle grass
 
 /obj/structure/flora/grass/jungle
-	name = "jungle grass"
-	desc = "Thick alien flora."
+	name = "trawa z dżungli"
+	desc = "Gęsta obca roślinność."
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	icon_state = "grassa"
 
@@ -412,8 +412,8 @@
 //Jungle rocks
 
 /obj/structure/flora/rock/jungle
-	name = "pile of rocks"
-	desc = "A pile of rocks."
+	name = "sterta kamieni"
+	desc = "Sterta kamieni."
 	icon_state = "rock"
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	density = FALSE
@@ -426,8 +426,8 @@
 //Jungle bushes
 
 /obj/structure/flora/junglebush
-	name = "bush"
-	desc = "A wild plant that is found in jungles."
+	name = "krzak"
+	desc = "Dzika roślina rosnąca w dżunglach."
 	icon = 'icons/obj/flora/jungleflora.dmi'
 	icon_state = "busha"
 
@@ -449,7 +449,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/structure/flora/rock/pile/largejungle
-	name = "rocks"
+	name = "kamienie"
 	icon_state = "rocks"
 	icon = 'icons/obj/flora/largejungleflora.dmi'
 	density = FALSE

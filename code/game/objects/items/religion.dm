@@ -1,6 +1,6 @@
 /obj/item/banner
-	name = "banner"
-	desc = "A banner with Nanotrasen's logo on it."
+	name = "sztandar"
+	desc = "Sztandar z logo Nanotrasen."
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
 	item_state = "banner"
@@ -26,7 +26,7 @@
 	if(morale_time > world.time)
 		to_chat(user, "<span class='warning'>Nie czujesz się jeszcze dość natchniony, by znów wymachiwać [src].</span>")
 		return
-	user.visible_message("<span class='big notice'>[user] flourishes [src]!</span>", \
+	user.visible_message("<span class='big notice'>[user] wymachuje [src]!</span>", \
 	"<span class='notice'>Unosisz [src] ku niebu, inspirując sojuszników!</span>")
 	playsound(src, "rustle", 100, FALSE)
 	if(warcry)
@@ -75,8 +75,8 @@
 	return
 
 /obj/item/banner/security
-	name = "securistan banner"
-	desc = "The banner of Securistan, ruling the station with an iron fist."
+	name = "sztandar Securistanu"
+	desc = "Sztandar Securistanu, który rządzi stacją żelazną ręką."
 	icon_state = "banner_security"
 	item_state = "banner_security"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -88,7 +88,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/security_banner
-	name = "Securistan Banner"
+	name = "Sztandar Securistanu"
 	result = /obj/item/banner/security/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -96,8 +96,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/medical
-	name = "meditopia banner"
-	desc = "The banner of Meditopia, generous benefactors that cure wounds and shelter the weak."
+	name = "sztandar Meditopii"
+	desc = "Sztandar Meditopii, hojnych dobroczyńców, którzy leczą rany i chronią słabych."
 	icon_state = "banner_medical"
 	item_state = "banner_medical"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -112,7 +112,7 @@
 	return H.stat //Meditopia is moved to help those in need
 
 /datum/crafting_recipe/medical_banner
-	name = "Meditopia Banner"
+	name = "Sztandar Meditopii"
 	result = /obj/item/banner/medical/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -125,8 +125,8 @@
 	H.reagents.add_reagent(/datum/reagent/medicine/inaprovaline, 5)
 
 /obj/item/banner/science
-	name = "sciencia banner"
-	desc = "The banner of Sciencia, bold and daring thaumaturges and researchers that take the path less traveled."
+	name = "sztandar Sciencji"
+	desc = "Sztandar Sciencji, śmiałych i odważnych taumaturgów i badaczy, którzy wybierają mniej uczęszczane ścieżki."
 	icon_state = "banner_science"
 	item_state = "banner_science"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -141,7 +141,7 @@
 	return H.on_fire //Sciencia is pleased by dedication to the art of Toxins
 
 /datum/crafting_recipe/science_banner
-	name = "Sciencia Banner"
+	name = "Sztandar Sciencji"
 	result = /obj/item/banner/science/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -149,8 +149,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/cargo
-	name = "cargonia banner"
-	desc = "The banner of the eternal Cargonia, with the mystical power of conjuring any object into existence."
+	name = "sztandar Cargonii"
+	desc = "Sztandar wiecznej Cargonii, która ma mistyczną moc przywoływania do istnienia dowolnego przedmiotu."
 	icon_state = "banner_cargo"
 	item_state = "banner_cargo"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -162,7 +162,7 @@
 	inspiration_available = FALSE
 
 /datum/crafting_recipe/cargo_banner
-	name = "Cargonia Banner"
+	name = "Sztandar Cargonii"
 	result = /obj/item/banner/cargo/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -170,8 +170,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/engineering
-	name = "engitopia banner"
-	desc = "The banner of Engitopia, wielders of limitless power."
+	name = "sztandar Engitopii"
+	desc = "Sztandar Engitopii, władców nieograniczonej mocy."
 	icon_state = "banner_engineering"
 	item_state = "banner_engineering"
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -186,7 +186,7 @@
 	H.radiation = 0
 
 /datum/crafting_recipe/engineering_banner
-	name = "Engitopia Banner"
+	name = "Sztandar Engitopii"
 	result = /obj/item/banner/engineering/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -194,8 +194,8 @@
 	category = CAT_MISC
 
 /obj/item/banner/command
-	name = "command banner"
-	desc = "The banner of Command, a staunch and ancient line of bueraucratic kings and queens."
+	name = "sztandar Dowództwa"
+	desc = "Sztandar Dowództwa, niezłomnego i starożytnego rodu biurokratycznych królów i królowych."
 	//No icon state here since the default one is the NT banner
 	job_loyalties = list(JOB_NAME_CAPTAIN, JOB_NAME_HEADOFPERSONNEL, JOB_NAME_CHIEFENGINEER, JOB_NAME_HEADOFSECURITY, JOB_NAME_RESEARCHDIRECTOR, JOB_NAME_CHIEFMEDICALOFFICER, JOB_NAME_MASTERATARMS) //NSV13 - added MAA
 	warcry = "Wiwat Nanotrasen!"
@@ -207,7 +207,7 @@
 	return HAS_TRAIT(H, TRAIT_MINDSHIELD) //Command is stalwart but rewards their allies.
 
 /datum/crafting_recipe/command_banner
-	name = "Command Banner"
+	name = "Sztandar Dowództwa"
 	result = /obj/item/banner/command/mundane
 	time = 40
 	reqs = list(/obj/item/stack/rods = 2,
@@ -215,20 +215,20 @@
 	category = CAT_MISC
 
 /obj/item/banner/red
-	name = "red banner"
+	name = "czerwony sztandar"
 	icon_state = "banner-red"
 	item_state = "banner-red"
-	desc = "A banner with the logo of the red deity."
+	desc = "Sztandar z logo czerwonego bóstwa."
 
 /obj/item/banner/blue
-	name = "blue banner"
+	name = "niebieski sztandar"
 	icon_state = "banner-blue"
 	item_state = "banner-blue"
-	desc = "A banner with the logo of the blue deity."
+	desc = "Sztandar z logo niebieskiego bóstwa."
 
 /obj/item/storage/backpack/bannerpack
-	name = "nanotrasen banner backpack"
-	desc = "It's a backpack with lots of extra room.  A banner with Nanotrasen's logo is attached, that can't be removed."
+	name = "plecak ze sztandarem Nanotrasen"
+	desc = "Plecak z mnóstwem dodatkowego miejsca. Ma przyczepiony sztandar z logo Nanotrasen, którego nie da się zdjąć."
 	icon_state = "bannerpack"
 
 /obj/item/storage/backpack/bannerpack/Initialize(mapload)
@@ -237,19 +237,19 @@
 	STR.max_combined_w_class = 27 //6 more then normal, for the tradeoff of declaring yourself an antag at all times.
 
 /obj/item/storage/backpack/bannerpack/red
-	name = "red banner backpack"
-	desc = "It's a backpack with lots of extra room.  A red banner is attached, that can't be removed."
+	name = "plecak z czerwonym sztandarem"
+	desc = "Plecak z mnóstwem dodatkowego miejsca. Ma przyczepiony czerwony sztandar, którego nie da się zdjąć."
 	icon_state = "bannerpack-red"
 
 /obj/item/storage/backpack/bannerpack/blue
-	name = "blue banner backpack"
-	desc = "It's a backpack with lots of extra room.  A blue banner is attached, that can't be removed."
+	name = "plecak z niebieskim sztandarem"
+	desc = "Plecak z mnóstwem dodatkowego miejsca. Ma przyczepiony niebieski sztandar, którego nie da się zdjąć."
 	icon_state = "bannerpack-blue"
 
 //this is all part of one item set
 /obj/item/clothing/suit/armor/plate/crusader
-	name = "Crusader's Armour"
-	desc = "Armour that's comprised of metal and cloth."
+	name = "zbroja krzyżowca"
+	desc = "Zbroja z metalu i tkaniny."
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 2.0 //gotta pretend we're balanced.
@@ -263,8 +263,8 @@
 	icon_state = "crusader-blue"
 
 /obj/item/clothing/head/helmet/plate/crusader
-	name = "Crusader's Hood"
-	desc = "A brownish hood."
+	name = "kaptur krzyżowca"
+	desc = "Brązowawy kaptur."
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_inv = HIDEHAIR|HIDEEARS|HIDEFACE
@@ -278,8 +278,8 @@
 
 //Prophet helmet
 /obj/item/clothing/head/helmet/plate/crusader/prophet
-	name = "Prophet's Hat"
-	desc = "A religious-looking hat."
+	name = "kapelusz proroka"
+	desc = "Kapelusz o religijnym wyglądzie."
 	worn_icon = 'icons/mob/large-worn-icons/64x64/head.dmi'
 	flags_1 = 0
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60, "stamina" = 60, "bleed" = 60) //religion protects you from disease and radiation, honk.
@@ -294,8 +294,8 @@
 
 //Structure conversion staff
 /obj/item/godstaff
-	name = "godstaff"
-	desc = "It's a stick..?"
+	name = "laska boża"
+	desc = "To patyk..?"
 	icon_state = "godstaff-red"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
@@ -322,9 +322,9 @@
 	conversion_color = "#0000ff"
 
 /obj/item/clothing/gloves/plate
-	name = "Plate Gauntlets"
+	name = "płytowe rękawice"
 	icon_state = "crusader"
-	desc = "They're like gloves, but made of metal."
+	desc = "Jak rękawiczki, tylko z metalu."
 	siemens_coefficient = 0
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
@@ -338,8 +338,8 @@
 	icon_state = "crusader-blue"
 
 /obj/item/clothing/shoes/plate
-	name = "Plate Boots"
-	desc = "Metal boots, they look heavy."
+	name = "płytowe buty"
+	desc = "Metalowe buty, wyglądają na ciężkie."
 	icon_state = "crusader"
 	w_class = WEIGHT_CLASS_NORMAL
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60, "stamina" = 30, "bleed" = 60) //does this even do anything on boots?
@@ -358,8 +358,8 @@
 
 
 /obj/item/storage/box/itemset/crusader
-	name = "Crusader's Armour Set" //i can't into ck2 references
-	desc = "This armour is said to be based on the armor of kings on another world thousands of years ago, who tended to assassinate, conspire, and plot against everyone who tried to do the same to them.  Some things never change."
+	name = "zestaw zbroi krzyżowca" //i can't into ck2 references
+	desc = "Ta zbroja podobno wzorowana jest na zbrojach królów z innego świata sprzed tysięcy lat, którzy mordowali, spiskowali i knuli przeciwko każdemu, kto próbował zrobić im to samo. Niektóre rzeczy się nie zmieniają."
 
 
 /obj/item/storage/box/itemset/crusader/blue/PopulateContents()
@@ -377,7 +377,7 @@
 
 
 /obj/item/claymore/weak
-	desc = "This one is rusted."
+	desc = "Ten jest zardzewiały."
 	force = 30
 	block_level = 1
 	block_upgrade_walk = 1
@@ -385,13 +385,13 @@
 	armour_penetration = 15
 
 /obj/item/claymore/weak/ceremonial
-	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
+	desc = "Zardzewiały claymore, niegdyś serce potężnego szkockiego klanu pokonanego i uciskanego przez tyranów. Przekazywany z pokolenia na pokolenie jako symbol oporu."
 	force = 15
 	block_power = 30
 	armour_penetration = 5
 
 /obj/item/katana/weak/curator
-	desc = "An ancient Katana. Forged by... Well, it doesn't really say, but surely it's authentic! And sharp to boot!"
+	desc = "Starożytna katana. Wykuta przez... cóż, nie jest napisane, ale na pewno jest autentyczna! I do tego ostra!"
 	force = 15
 	block_power = 5
 

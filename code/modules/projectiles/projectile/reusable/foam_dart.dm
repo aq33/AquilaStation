@@ -1,7 +1,7 @@
 /obj/item/projectile/bullet/reusable/foam_dart
 	bleed_force = 0
-	name = "foam dart"
-	desc = "I hope you're wearing eye protection."
+	name = "piankowa strzałka"
+	desc = "Mam nadzieję, że nosisz ochronę oczu."
 	damage = 0 // It's a damn toy.
 	damage_type = OXY
 	nodamage = TRUE
@@ -38,7 +38,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/reusable/foam_dart/riot
-	name = "riot foam dart"
+	name = "prewencyjna piankowa strzałka"
 	icon_state = "foamdart_riot_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 	nodamage = FALSE

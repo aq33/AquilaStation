@@ -1,6 +1,6 @@
 /turf/open/floor/light
-	name = "light floor"
-	desc = "A wired glass tile embedded into the floor."
+	name = "podłoga świecąca"
+	desc = "Okablowana szklana płytka wpuszczona w podłogę."
 	light_range = 5
 	icon_state = "light_on"
 	floor_tile = /obj/item/stack/tile/light
@@ -98,11 +98,11 @@
 //Two different "dancefloor" types so that you can have a checkered pattern
 // (also has a longer delay than colour_cycle between cycling colours)
 /turf/open/floor/light/colour_cycle/dancefloor_a
-	name = "dancefloor"
-	desc = "Funky floor."
+	name = "parkiet taneczny"
+	desc = "Odjazdowa podłoga."
 	coloredlights = list("dancefloor_A")
 
 /turf/open/floor/light/colour_cycle/dancefloor_b
-	name = "dancefloor"
-	desc = "Funky floor."
+	name = "parkiet taneczny"
+	desc = "Odjazdowa podłoga."
 	coloredlights = list("dancefloor_B")

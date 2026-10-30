@@ -5,7 +5,7 @@
 	greyscale_config_worn = /datum/greyscale_config/sneakers_worn
 
 /obj/item/clothing/shoes/sneakers/black
-	name = "black shoes"
+	name = "czarne buty"
 	desc = "Para czarnych butów."
 	custom_price = 20
 	greyscale_colors = "#545454#ffffff"
@@ -16,39 +16,39 @@
 	max_heat_protection_temperature = SHOES_MAX_TEMP_PROTECT
 
 /obj/item/clothing/shoes/sneakers/brown
-	name = "brown shoes"
+	name = "brązowe buty"
 	desc = "Para brązowych butów."
 	greyscale_colors = "#814112#ffffff"
 
 /obj/item/clothing/shoes/sneakers/blue
-	name = "blue shoes"
+	name = "niebieskie buty"
 	greyscale_colors = "#16a9eb#ffffff"
 
 /obj/item/clothing/shoes/sneakers/green
-	name = "green shoes"
+	name = "zielone buty"
 	greyscale_colors = "#54eb16#ffffff"
 
 /obj/item/clothing/shoes/sneakers/yellow
-	name = "yellow shoes"
+	name = "żółte buty"
 	greyscale_colors = "#ebe216#ffffff"
 
 /obj/item/clothing/shoes/sneakers/purple
-	name = "purple shoes"
+	name = "fioletowe buty"
 	greyscale_colors = "#ad16eb#ffffff"
 
 /obj/item/clothing/shoes/sneakers/red
-	name = "red shoes"
+	name = "czerwone buty"
 	desc = "Stylowe czerwone buty."
 	greyscale_colors = "#ff2626#ffffff"
 
 /obj/item/clothing/shoes/sneakers/white
-	name = "white shoes"
+	name = "białe buty"
 	greyscale_colors = "#ffffff#ffffff"
 	permeability_coefficient = 0.01
 
 /obj/item/clothing/shoes/sneakers/rainbow
-	name = "rainbow shoes"
-	desc = "Very gay shoes."
+	name = "tęczowe buty"
+	desc = "Bardzo gejowskie buty."
 	icon_state = "rain_bow"
 	greyscale_colors = null
 	greyscale_config = null
@@ -57,7 +57,7 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/shoes/sneakers/orange
-	name = "orange shoes"
+	name = "pomarańczowe buty"
 	greyscale_colors = "#eb7016#ffffff"
 	greyscale_config = /datum/greyscale_config/sneakers_orange
 	greyscale_config_worn = /datum/greyscale_config/sneakers_orange_worn

@@ -1,6 +1,6 @@
 /datum/nanite_program/movement
-	name = "Forced Locomotion"
-	desc = "The nanites force the host to walk in a pre-programmed direction when triggered."
+	name = "Wymuszony ruch"
+	desc = "Po aktywacji nanity zmuszają nosiciela do marszu w zaprogramowanym kierunku."
 	can_trigger = TRUE
 	unique = FALSE
 	trigger_cost = 5

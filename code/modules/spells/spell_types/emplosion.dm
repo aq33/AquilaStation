@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/emplosion
-	name = "Emplosion"
-	desc = "This spell emplodes an area."
+	name = "Emplozja"
+	desc = "To zaklęcie wywołuje emplozję na obszarze."
 
 	var/emp_heavy = 2
 	var/emp_light = 3

@@ -31,7 +31,7 @@
 /datum/objective/crew/chems //Ported from old Hippie
 	var/targetchem = "none"
 	var/datum/reagent/chempath
-	explanation_text = "Have (yell about this on GitHub, something broke) in your bloodstream when the shift ends."
+	explanation_text = "Miej (zgłoś to na GitHubie, coś się zepsuło) w swoim krwiobiegu pod koniec zmiany."
 	jobs = "chiefmedicalofficer,chemist"
 
 /datum/objective/crew/chems/New()
@@ -55,7 +55,7 @@
 	var/targetchem = "none"
 	var/datum/reagent/chempath
 	var/chemamount = 0
-	explanation_text = "Have at least (something broke here) pills containing at least (like really broke) units of (yell on GitHub) when the shift ends."
+	explanation_text = "Posiadaj co najmniej (coś się tu zepsuło) tabletek zawierających co najmniej (naprawdę się zepsuło) j. (zgłoś to na GitHubie), kiedy skończy się zmiana."
 	jobs = "chemist"
 
 /datum/objective/crew/druglordchem/New()

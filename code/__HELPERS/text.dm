@@ -46,7 +46,7 @@
 		alert("Nie możesz ustawić imienia zawierającego słowo zakazane na czacie IC!")
 		return ""
 	if(t == "space" || t == "floor" || t == "wall" || t == "r-wall" || t == "monkey" || t == "unknown" || t == "inactive ai")	//prevents these common metagamey names
-		alert("Invalid name.")
+		alert("Niedozwolone imię.")
 		return ""
 	return sanitize(t)
 
@@ -889,17 +889,17 @@ GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l",
 /proc/weight_class_to_text(var/w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
-			. = "tiny"
+			. = "maleńki"
 		if(WEIGHT_CLASS_SMALL)
-			. = "small"
+			. = "mały"
 		if(WEIGHT_CLASS_NORMAL)
-			. = "normal-sized"
+			. = "średni"
 		if(WEIGHT_CLASS_BULKY)
-			. = "bulky"
+			. = "duży"
 		if(WEIGHT_CLASS_HUGE)
-			. = "huge"
+			. = "ogromny"
 		if(WEIGHT_CLASS_GIGANTIC)
-			. = "gigantic"
+			. = "gigantyczny"
 		else
 			. = ""
 
@@ -913,9 +913,9 @@ GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l",
 			if(-INFINITY to 1)
 				. = "Dla dzieci"
 			if(300 to INFINITY)
-				. = pick("Shift wrecking hammering",
-						"Get new liver after consumption",
-						"Post-consumption support groups exist",
+				. = pick("Rozwala całą zmianę",
+						"Po wypiciu kup sobie nową wątrobę",
+						"Po wypiciu są grupy wsparcia",
 						"Lepiej wlej do koktajlu Mołotowa",
 						"Potykać się i bełkotać – oto wola Bachusa")
 			if(100 to 100)
@@ -927,51 +927,51 @@ GLOBAL_LIST_INIT(alphabet, list("a","b","c","d","e","f","g","h","i","j","k","l",
 			if(90 to 100)
 				. = "Prosto do izby wytrzeźwień"
 			if(80 to 90)
-				. = "Liver pickler"
+				. = "Marynata dla wątroby"
 			if(70 to 80)
-				. = "Drunkard's Challenge"
+				. = "Wyzwanie dla pijaka"
 			if(60 to 70)
 				. = "Miej strzelbę w pogotowiu"
 			if(50 to 60)
-				. = "3 rounds till down"
+				. = "Trzy kolejki i leżysz"
 			if(40 to 50)
-				. = "Drunkard's fixers"
+				. = "Klin dla pijaka"
 			if(30 to 40)
-				. = "Stick arounds"
+				. = "Na dłuższe posiedzenie"
 			if(20 to 30)
-				. = "Flask fillers"
+				. = "Do piersiówki"
 			if(10 to 20)
-				. = "Tipsy stuff"
+				. = "Na lekki rausz"
 			if(1 to 10)
-				. = "Lightweight's dream"
+				. = "Marzenie słabej głowy"
 	else
 		switch(booze_power)
 			if(-INFINITY to 1)
 				. = "Bezpieczne w pracy"
 			if(300 to INFINITY)
-				. = "Lethal"
+				. = "Zabójcze"
 			if(100 to 300)
-				. = "Deadly"
+				. = "Śmiertelne"
 			if(90 to 100)
-				. = "Dangerous"
+				. = "Niebezpieczne"
 			if(80 to 90)
-				. = "Extreme"
+				. = "Ekstremalne"
 			if(70 to 80)
-				. = "Challenging"
+				. = "Wymagające"
 			if(60 to 70)
-				. = "Stronger"
+				. = "Mocniejsze"
 			if(50 to 60)
-				. = "Strong"
+				. = "Mocne"
 			if(40 to 50)
-				. = "Average"
+				. = "Przeciętne"
 			if(30 to 40)
-				. = "Less than average"
+				. = "Słabsze niż przeciętne"
 			if(20 to 30)
-				. = "Light"
+				. = "Lekkie"
 			if(10 to 20)
-				. = "Mild"
+				. = "Łagodne"
 			if(1 to 10)
-				. = "Delightfully mild"
+				. = "Przyjemnie łagodne"
 
 	if(!.)
 		. = "niemierzalna. Zapytaj kosmicznego boga, co jest nie tak z tym drinkiem."

@@ -16,7 +16,7 @@ Bonus
 */
 
 /datum/symptom/shivering
-	name = "Shivering"
+	name = "Dreszcze"
 	desc = "Wirus hamuje termoregulację, schładzając ciało."
 	stealth = 0
 	resistance = 2

@@ -317,16 +317,16 @@
 		for(var/mob/living/silicon/robot/R in connected_robots)
 			var/robot_status = "Nominal"
 			if(R.shell)
-				robot_status = "AI SHELL"
+				robot_status = "POWŁOKA SI"
 			else if(R.stat || !R.client)
 				robot_status = "OFFLINE"
 			else if(!R.cell || R.cell.charge <= 0)
-				robot_status = "DEPOWERED"
+				robot_status = "BEZ ZASILANIA"
 			//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
 			index++
-			tab_data["[R.name] (Connection [index])"] = list(
-				text="S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
-					Module: [R.designation] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]",
+			tab_data["[R.name] (połączenie [index])"] = list(
+				text="Integralność: [R.health]% | Ogniwo: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "brak"] | \
+					Moduł: [R.designation] | Lokalizacja: [get_area_name(R, TRUE)] | Status: [robot_status]",
 				type=STAT_TEXT)
 		tab_data["Wykryte powłoki SI"] = GENERATE_STAT_TEXT("[LAZYLEN(GLOB.available_ai_shells)]") //Count of total AI shells
 	else
@@ -472,14 +472,14 @@
 /mob/living/silicon/ai/verb/wipe_core()
 	set name = "Wipe Core"
 	set category = "OOC"
-	set desc = "Wipe your core. This is functionally equivalent to cryo, freeing up your job slot."
+	set desc = "Wyczyść swój rdzeń. Działa tak samo jak kriokomora i zwalnia twoje stanowisko."
 
 	if(stat)
 		return
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
 	if(alert("OSTRZEŻENIE: to natychmiast wyczyści twój rdzeń i zamieni cię w ducha, trwale usuwając twoją postać z rundy (podobnie jak kriokomora, więc najpierw napisz ahelp). Czy na pewno chcesz to zrobić?",
-					"Wyczyść rdzeń", "No", "No", "Yes") != "Yes")
+					"Wyczyść rdzeń", "Nie", "Nie", "Tak") != "Tak")
 		return
 
 	// We warned you.
@@ -624,7 +624,7 @@
 			mech_has_controlbeacon = TRUE
 			break
 		if(!can_dominate_mechs && !mech_has_controlbeacon)
-			message_admins("Warning: possible href exploit by [key_name(usr)] - attempted control of a mecha without can_dominate_mechs or a control beacon in the mech.")
+			message_admins("Ostrzeżenie: możliwy exploit href ze strony [key_name(usr)] – próba sterowania mechem bez can_dominate_mechs ani nadajnika sterującego w mechu.")
 			log_game("Warning: possible href exploit by [key_name(usr)] - attempted control of a mecha without can_dominate_mechs or a control beacon in the mech.")
 			return
 
@@ -663,13 +663,13 @@
 /mob/living/silicon/ai/proc/botcall()
 	set category = "AI Commands"
 	set name = "Access Robot Control"
-	set desc = "Wirelessly control various automatic robots."
+	set desc = "Bezprzewodowo steruj różnymi automatycznymi robotami."
 	/* NSV13 CHANGES START -- Robot Remote Control TGUI Update
 	if(incapacitated())
 		return
 
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless control is disabled.</span>")
+		to_chat(src, "<span class='warning'>Sterowanie bezprzewodowe jest wyłączone.</span>")
 		return
 	// NSV13 start -- checks if bot is in any occupied z level in the occupied overmap
 	var/turf/ai_current_turf = get_turf(src)
@@ -754,11 +754,11 @@
 			for (var/obj/machinery/camera/I in our_cams)
 				dat2 += text("[]<A HREF=byond://?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (!foo) ? "" : " | ", I.c_tag) //I'm not fixing this shit...
 				foo = 1
-			queueAlarm(text ("--- [] alarm detected in []! ([])", class, home.name, dat2), class)
+			queueAlarm(text ("--- Alarm ([]) wykryty w []! ([])", class, home.name, dat2), class)
 		else
-			queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, home.name), class)
+			queueAlarm(text("--- Alarm ([]) wykryty w []! (brak kamery)", class, home.name), class)
 	else
-		queueAlarm(text("--- [] alarm detected in []! (No Camera)", class, home.name), class)
+		queueAlarm(text("--- Alarm ([]) wykryty w []! (brak kamery)", class, home.name), class)
 	update_ai_alerts()
 	return 1
 
@@ -938,14 +938,14 @@
 //I am the icon meister. Bow fefore me.	//>fefore
 /mob/living/silicon/ai/proc/ai_hologram_change()
 	set name = "Change Hologram"
-	set desc = "Change the default hologram available to AI to something else."
+	set desc = "Zmień domyślny hologram SI na coś innego."
 	set category = "AI Commands"
 
 	if(incapacitated())
 		return
 	var/input
-	switch(alert("Chcesz wybrać hologram oparty na członku załogi, zwierzęciu, czy unikalny awatar?",,"Crew Member","Unique","Animal"))
-		if("Crew Member")
+	switch(alert("Chcesz wybrać hologram oparty na członku załogi, zwierzęciu, czy unikalny awatar?",,"Członek załogi","Unikalny","Zwierzę"))
+		if("Członek załogi")
 			var/list/personnel_list = list()
 
 			for(var/datum/data/record/t in GLOB.data_core.locked)//Look in data core locked.
@@ -960,7 +960,7 @@
 			else
 				alert("Nie znaleziono odpowiednich akt. Przerwano.")
 
-		if("Animal")
+		if("Zwierzę")
 			var/list/icon_list = list(
 			"bear" = 'icons/mob/animal.dmi',
 			"carp" = 'icons/mob/animal.dmi',
@@ -1066,7 +1066,7 @@
 
 /mob/living/silicon/ai/proc/control_integrated_radio()
 	set name = "Transceiver Settings"
-	set desc = "Allows you to change settings of your radio."
+	set desc = "Pozwala zmienić ustawienia twojego radia."
 	set category = "AI Commands"
 
 	if(incapacitated())
@@ -1082,7 +1082,7 @@
 
 /mob/living/silicon/ai/proc/set_automatic_say_channel()
 	set name = "Set Auto Announce Mode"
-	set desc = "Modify the default radio setting for your automatic announcements."
+	set desc = "Zmień domyślne ustawienie radia dla twoich automatycznych ogłoszeń."
 	set category = "AI Commands"
 
 	if(incapacitated())
@@ -1160,7 +1160,7 @@
 	..()
 	if(oldname != real_name)
 		if(eyeobj)
-			eyeobj.name = "[newname] (AI Eye)"
+			eyeobj.name = "[newname] (oko SI)"
 			modularInterface.saved_identification = real_name
 
 		// Notify Cyborgs
@@ -1274,8 +1274,8 @@
 	diag_hud_set_deployed()
 
 /datum/action/innate/deploy_shell
-	name = "Deploy to AI Shell"
-	desc = "Wirelessly control a specialized cyborg shell."
+	name = "Przejdź do powłoki SI"
+	desc = "Bezprzewodowo steruj specjalną powłoką cyborga."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_shell"
 
@@ -1286,8 +1286,8 @@
 	AI.deploy_to_shell()
 
 /datum/action/innate/deploy_last_shell
-	name = "Reconnect to shell"
-	desc = "Reconnect to the most recently used AI shell."
+	name = "Połącz ponownie z powłoką"
+	desc = "Połącz się ponownie z ostatnio używaną powłoką SI."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_last_shell"
 	var/mob/living/silicon/robot/last_used_shell

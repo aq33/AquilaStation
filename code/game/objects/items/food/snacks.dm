@@ -3,8 +3,8 @@
 //don't even bother looking for recipes for these
 
 /obj/item/food/candy
-	name = "candy"
-	desc = "Nougat love it or hate it."
+	name = "cukierek"
+	desc = "Nugat: kochasz albo nienawidzisz."
 	icon_state = "candy"
 	trash_type = /obj/item/trash/candy
 	food_reagents = list(
@@ -19,9 +19,9 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/sosjerky
-	name = "\improper Scaredy's Private Reserve Beef Jerky"
+	name = "\improper suszona wołowina Scaredy's Private Reserve"
 	icon_state = "sosjerky"
-	desc = "Beef jerky made from the finest space cows."
+	desc = "Suszona wołowina z najlepszych kosmicznych krów."
 	trash_type = /obj/item/trash/sosjerky
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 3,
@@ -35,8 +35,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/sosjerky/healthy
-	name = "homemade beef jerky"
-	desc = "Homemade beef jerky made from the finest space cows."
+	name = "domowa suszona wołowina"
+	desc = "Domowa suszona wołowina z najlepszych kosmicznych krów."
 	icon_state = "sosjerky_homemade"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 6,
@@ -46,20 +46,20 @@
 	junkiness = 0
 
 /obj/item/food/sosjerky/healthy/lean
-	name = "lean beef jerky"
-	desc = "Homemade beef jerky made from the finest space cows. Special lean cuts edition!"
+	name = "chuda suszona wołowina"
+	desc = "Domowa suszona wołowina z najlepszych kosmicznych krów. Specjalna edycja z chudych kawałków!"
 	icon_state = "sosjerky_lowfat"
 	tastes = list("suszone mięso" = 3, "kurczak" = 1)	//is it really chicken, or something else?....
 
 /obj/item/food/sosjerky/healthy/lizard
-	name = "dinosaur jerky"
-	desc = "Homemade jerky made from the finest dinosaurs of Sauria. Natural dinosaur flavour!"
+	name = "suszone mięso dinozaura"
+	desc = "Domowe suszone mięso z najlepszych dinozaurów Saurii. Naturalny smak dinozaura!"
 	icon_state = "sosjerky_dinosaur"
 	tastes = list("suszone mięso" = 1, "łuski" = 1)
 
 /obj/item/food/sosjerky/healthy/pig
-	name = "pork jerky"
-	desc = "Homemade jerky made from the cleanliest pigs in the sector."
+	name = "suszona wieprzowina"
+	desc = "Domowe suszone mięso z najczystszych świń w sektorze."
 	icon_state = "sosjerky_pig"
 	tastes = list("suszone mięso" = 1, "żołędzie" = 1)
 	food_reagents = list(
@@ -69,15 +69,15 @@
 	)
 
 /obj/item/food/sosjerky/healthy/mouse
-	name = "lizard treats"
-	desc = "Homemade jerky made from the locally-sourced space mice. \n20% of all proceeds go to pest control efforts of underfunded space stations. \n100% of meat goes to your pet lizard's happiness!"
+	name = "przysmaki dla jaszczurów"
+	desc = "Domowe suszone mięso z lokalnych kosmicznych myszy. \n20% dochodu idzie na walkę ze szkodnikami na niedofinansowanych stacjach kosmicznych. \n100% mięsa idzie na szczęście twojego jaszczura!"
 	icon_state = "sosjerky_lizard_treats"
 	tastes = list("suszone mięso" = 1, "szkodniki" = 1)
 	foodtypes = JUNKFOOD | MEAT | GORE
 
 /obj/item/food/sosjerky/pemmican
-	name = "\improper Space Pemmican(tm) ration pack"
-	desc = "Meat product processed chemically, dehydrated, preserved.\nMay contain Azodicarbonamide, Propylparaben, Erythrosine.\nConsists of more than 35% connective tissue. \nSpace Pemmican(tm) is deemed unfit for human consumption in Jupiter II Europan Outer Solar System Economic Zone."
+	name = "\improper racja żywnościowa Space Pemmican(tm)"
+	desc = "Produkt mięsny przetworzony chemicznie, odwodniony, zakonserwowany.\nMoże zawierać azodikarbonamid, propyloparaben, erytrozynę.\nW ponad 35% składa się z tkanki łącznej. \nSpace Pemmican(tm) uznano za niezdatny do spożycia przez ludzi w Strefie Ekonomicznej Zewnętrznego Układu Słonecznego Jowisz II Europa."
 	icon_state = "sosjerky_synth_pemmican"
 	tastes = list("aromat mięsny" = 2, "mączka z krwi" = 2, "naturalne i sztuczne barwniki" = 1, "gastronomiczny niepokój" = 1)
 	foodtypes = JUNKFOOD | MEAT | GROSS
@@ -88,32 +88,32 @@
 	junkiness = 45	//At least Scaredy's Private Reserve is made from real meat! What the hell is this?! Is this even food at this point?!
 
 /obj/item/food/sosjerky/healthy/bugs
-	name = "bug snacks"
-	desc = "Homemade high-protein snacks made from an assortment of insects. Thank you for supporting the path towards sustainable foods!"
+	name = "przekąski z robaków"
+	desc = "Domowe wysokobiałkowe przekąski z mieszanki owadów. Dziękujemy za wspieranie drogi ku zrównoważonej żywności!"
 	icon_state = "sosjerky_bugs"
 	tastes = list("chrupiąca tkanka" = 4, "postępowość" = 1)
 
 /obj/item/food/sosjerky/healthy/bees
-	name = "bee snacks"
-	desc = "Homemade high-protein snacks made from 100% bees."
+	name = "przekąski z pszczół"
+	desc = "Domowe wysokobiałkowe przekąski w 100% z pszczół."
 	icon_state = "sosjerky_bees"
 	tastes = list("chrupiąca delikatność" = 4, "pyłek" = 1)
 
 /obj/item/food/sosjerky/healthy/synthmeat
-	name = "cruelty-free jerky"
-	desc = "Homemade jerky made from synthetic meat. Not a single animal suffered during the creation of this product."
+	name = "suszone mięso bez okrucieństwa"
+	desc = "Domowe suszone mięso z syntetycznego mięsa. Przy produkcji nie ucierpiało ani jedno zwierzę."
 	icon_state = "sosjerky_synth"
 	tastes = list("suszone mięso" = 3, "kolor niebieski" = 1)
 
 /obj/item/food/sosjerky/healthy/monkey
-	name = "ape jerky"
-	desc = "Homemade jerky made from ape meat. \nNaturally contains banana flavour. \nHIV vaccine-free."
+	name = "suszone mięso małpy"
+	desc = "Domowe suszone mięso z małpy. \nNaturalnie zawiera smak bananowy. \nBez szczepionki na HIV."
 	icon_state = "sosjerky_monkey"
 	tastes = list("suszone mięso" = 1, "banany" = 1)
 
 /obj/item/food/sosjerky/healthy/diona
-	name = "vegetable jerky"
-	desc = "Homemade meat-imitating vegetable jerky. \nThis product has NOT been approved by the ethics commitee. \nMay be offensive to some plant-based crewmembers."
+	name = "suszone warzywa"
+	desc = "Domowe suszone warzywa udające mięso. \nTen produkt NIE został zatwierdzony przez komisję etyki. \nMoże urazić niektórych roślinnych członków załogi."
 	icon_state = "sosjerky_vegan"
 	tastes = list("suszone buraki" = 3, "sfermentowane pomidory" = 2, "sałata" = 2, "wegetariańskie wyrzuty sumienia" = 1)
 	foodtypes = JUNKFOOD | VEGETABLES
@@ -122,8 +122,8 @@
 	)
 
 /obj/item/food/sosjerky/healthy/mushroom
-	name = "dried mushrooms"
-	desc = "An assortment of dried mushroom slices. Should not be poisonous."
+	name = "suszone grzyby"
+	desc = "Mieszanka suszonych plasterków grzybów. Nie powinny być trujące."
 	icon_state = "sosjerky_mushroom"
 	tastes = list("suszone grzyby" = 3, "ziemia" = 1)
 	foodtypes = JUNKFOOD | VEGETABLES
@@ -143,8 +143,8 @@
 		reagents.add_reagent(/datum/reagent/drug/mushroomhallucinogen, 3)
 
 /obj/item/food/sosjerky/healthy/jelly
-	name = "dried jelly strips"
-	desc = "Homemade dried jelly strips. \nMay be toxic to most lifeforms."
+	name = "suszone paski galaretki"
+	desc = "Domowe suszone paski galaretki. \nMogą być toksyczne dla większości form życia."
 	icon_state = "sosjerky_jelly"
 	tastes = list("galaretka" = 2, "galaretka" = 2, "kwaśność" = 1)
 	foodtypes = JUNKFOOD | TOXIC | SUGAR
@@ -155,8 +155,8 @@
 	)
 
 /obj/item/food/sosjerky/healthy/ethereal
-	name = "dried static charge"
-	desc = "This is what's left when you dry out electricity itself. \nMay cause static shocks."
+	name = "suszony ładunek elektrostatyczny"
+	desc = "To, co zostaje po wysuszeniu samej elektryczności. \nMoże kopać prądem."
 	icon_state = "sosjerky_electric"
 	tastes = list("ładunek elektrostatyczny" = 2, "elektrodynamika" = 2, "narastający żal" = 1)
 	foodtypes = JUNKFOOD
@@ -165,8 +165,8 @@
 	)
 
 /obj/item/food/chips
-	name = "chips"
-	desc = "Commander Riker's What-The-Crisps."
+	name = "chipsy"
+	desc = "Chipsy Co-Do-Licha komandora Rikera."
 	icon_state = "chips"
 	trash_type = /obj/item/trash/chips
 	bite_consumption = 1
@@ -182,9 +182,9 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/no_raisin
-	name = "\improper 4no raisins"
+	name = "\improper rodzynki 4no"
 	icon_state = "4no_raisins"
-	desc = "Best raisins in the universe. Not sure why."
+	desc = "Najlepsze rodzynki we wszechświecie. Nie wiadomo czemu."
 	trash_type = /obj/item/trash/raisins
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
@@ -199,8 +199,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/no_raisin/healthy
-	name = "homemade raisins"
-	desc = "Homemade raisins, the best in all of spess."
+	name = "domowe rodzynki"
+	desc = "Domowe rodzynki, najlepsze w całym kosmosie."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/nutriment/vitamin = 2
@@ -212,7 +212,7 @@
 /obj/item/food/spacetwinkie
 	name = "\improper Space Twinkie"
 	icon_state = "space_twinkie"
-	desc = "Guaranteed to survive longer than you will."
+	desc = "Gwarantujemy, że przetrwa dłużej niż ty."
 	food_reagents = list(
 		/datum/reagent/consumable/sugar = 4
 	)
@@ -225,7 +225,7 @@
 
 /obj/item/food/cheesiehonkers
 	name = "\improper Cheesie Honkers"
-	desc = "Bite sized cheesie snacks that will honk all over your mouth."
+	desc = "Serowe przekąski na jeden kęs, które zahonkają ci w całej buzi."
 	icon_state = "cheesie_honkers"
 	trash_type = /obj/item/trash/cheesie
 	food_reagents = list(
@@ -241,7 +241,7 @@
 /obj/item/food/syndicake
 	name = "\improper Syndi-Cakes"
 	icon_state = "syndi_cakes"
-	desc = "An extremely moist snack cake that tastes just as good after being nuked."
+	desc = "Niezwykle wilgotne ciastko, które smakuje równie dobrze po wybuchu jądrowym."
 	trash_type = /obj/item/trash/syndi_cakes
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -253,9 +253,9 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/energybar
-	name = "\improper High-power energy bars"
+	name = "\improper batony energetyczne dużej mocy"
 	icon_state = "energybar"
-	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
+	desc = "Baton energetyczny z niezłym kopem. Lepiej go nie jedz, jeśli nie jesteś Eterykiem."
 	trash_type = /obj/item/trash/energybar
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,

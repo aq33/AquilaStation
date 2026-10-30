@@ -4,7 +4,7 @@
  * A component that emits a sound when it receives an input.
  */
 /obj/item/circuit_component/soundemitter
-	display_name = "Sound Emitter"
+	display_name = "Emiter dźwięku"
 	desc = "Komponent, który odtwarza dźwięk po otrzymaniu sygnału. Częstotliwość to mnożnik określający szybkość odtwarzania dźwięku."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

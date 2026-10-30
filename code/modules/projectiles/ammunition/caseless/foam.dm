@@ -1,6 +1,6 @@
 /obj/item/ammo_casing/caseless/foam_dart
-	name = "foam dart"
-	desc = "It's nerf or nothing! Ages 8 and up."
+	name = "strzałka piankowa"
+	desc = "Nerf albo nic! Od 8 lat."
 	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart
 	caliber = "foam_force"
 	icon = 'icons/obj/guns/toy.dmi'
@@ -13,12 +13,12 @@
 	..()
 	if (modified)
 		icon_state = "foamdart_empty"
-		desc = "It's nerf or nothing! ... Although, this one doesn't look too safe."
+		desc = "Nerf albo nic! ...Choć ta nie wygląda na zbyt bezpieczną."
 		if(BB)
 			BB.icon_state = "foamdart_empty"
 	else
 		icon_state = initial(icon_state)
-		desc = "It's nerf or nothing! Ages 8 and up."
+		desc = "Nerf albo nic! Od 8 lat."
 		if(BB)
 			BB.icon_state = initial(BB.icon_state)
 
@@ -58,8 +58,8 @@
 		FD.pen = null
 
 /obj/item/ammo_casing/caseless/foam_dart/riot
-	name = "riot foam dart"
-	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	name = "prewencyjna strzałka piankowa"
+	desc = "Kto wpadł na genialny pomysł, by tłumić zamieszki zabawkami? Od 18 lat."
 	projectile_type = /obj/item/projectile/bullet/reusable/foam_dart/riot
 	icon_state = "foamdart_riot"
 	materials = list(/datum/material/iron = 1125)

@@ -1,8 +1,8 @@
 #define MAX_NOTICES 5
 
 /obj/structure/noticeboard
-	name = "notice board"
-	desc = "A board for pinning important notices upon."
+	name = "tablica ogłoszeń"
+	desc = "Tablica do przypinania ważnych ogłoszeń."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
 	layer = ABOVE_WINDOW_LAYER
@@ -113,43 +113,43 @@
 // Notice boards for the heads of staff (plus the qm)
 
 /obj/structure/noticeboard/captain
-	name = "Captain's Notice Board"
-	desc = "Important notices from the Captain."
+	name = "tablica ogłoszeń Kapitana"
+	desc = "Ważne ogłoszenia od Kapitana."
 	req_access = list(ACCESS_CAPTAIN)
 
 /obj/structure/noticeboard/hop
-	name = "Head of Personnel's Notice Board"
-	desc = "Important notices from the Head of Personnel."
+	name = "tablica ogłoszeń Starszego Oficera"
+	desc = "Ważne ogłoszenia od Starszego Oficera."
 	req_access = list(ACCESS_HOP)
 
 /obj/structure/noticeboard/ce
-	name = "Chief Engineer's Notice Board"
-	desc = "Important notices from the Chief Engineer."
+	name = "tablica ogłoszeń Głównego Inżyniera"
+	desc = "Ważne ogłoszenia od Głównego Inżyniera."
 	req_access = list(ACCESS_CE)
 
 /obj/structure/noticeboard/hos
-	name = "Head of Security's Notice Board"
-	desc = "Important notices from the Head of Security."
+	name = "tablica ogłoszeń Komendanta"
+	desc = "Ważne ogłoszenia od Komendanta."
 	req_access = list(ACCESS_HOS)
 
 /obj/structure/noticeboard/cmo
-	name = "Chief Medical Officer's Notice Board"
-	desc = "Important notices from the Chief Medical Officer."
+	name = "tablica ogłoszeń Ordynatora"
+	desc = "Ważne ogłoszenia od Ordynatora."
 	req_access = list(ACCESS_CMO)
 
 /obj/structure/noticeboard/rd
-	name = "Research Director's Notice Board"
-	desc = "Important notices from the Research Director."
+	name = "tablica ogłoszeń Dyrektora Naukowego"
+	desc = "Ważne ogłoszenia od Dyrektora Naukowego."
 	req_access = list(ACCESS_RD)
 
 /obj/structure/noticeboard/qm
-	name = "Quartermaster's Notice Board"
-	desc = "Important notices from the Quartermaster."
+	name = "tablica ogłoszeń Kwatermistrza"
+	desc = "Ważne ogłoszenia od Kwatermistrza."
 	req_access = list(ACCESS_QM)
 
 /obj/structure/noticeboard/staff
-	name = "Staff Notice Board"
-	desc = "Important notices from the heads of staff."
+	name = "tablica ogłoszeń personelu"
+	desc = "Ważne ogłoszenia od szefów działów."
 	req_access = list(ACCESS_HEADS)
 
 #undef MAX_NOTICES

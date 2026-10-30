@@ -27,13 +27,13 @@
 
 #define RDSCREEN_NOBREAK "<NO_HTML_BREAK>"
 
-#define RDSCREEN_TEXT_NO_PROTOLATHE "<div><h3>No Protolathe Linked!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_IMPRINTER "<div><h3>No Circuit Imprinter Linked!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_DECONSTRUCT "<div><h3>No Destructive Analyzer Linked!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_TDISK "<div><h3>No Technology Disk Inserted!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_DDISK "<div><h3>No Design Disk Inserted!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_SNODE "<div><h3>No Technology Node Selected!</h3></div><br>"
-#define RDSCREEN_TEXT_NO_SDESIGN "<div><h3>No Design Selected!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_PROTOLATHE "<div><h3>Brak połączonego protolatu!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_IMPRINTER "<div><h3>Brak połączonej drukarki obwodów!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_DECONSTRUCT "<div><h3>Brak połączonego analizatora destrukcyjnego!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_TDISK "<div><h3>Nie włożono dysku technologii!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_DDISK "<div><h3>Nie włożono dysku projektów!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_SNODE "<div><h3>Nie wybrano węzła technologii!</h3></div><br>"
+#define RDSCREEN_TEXT_NO_SDESIGN "<div><h3>Nie wybrano projektu!</h3></div><br>"
 
 #define RDSCREEN_UI_LATHE_CHECK if(QDELETED(linked_lathe)) { return RDSCREEN_TEXT_NO_PROTOLATHE }
 #define RDSCREEN_UI_IMPRINTER_CHECK if(QDELETED(linked_imprinter)) { return RDSCREEN_TEXT_NO_IMPRINTER }
@@ -76,11 +76,11 @@
 
 //defined here so people don't forget to change this! -Nsv13 Changed this to add wormhole research
 #define TECHWEB_POINT_TYPE_LIST_ASSOCIATIVE_NAMES list(\
-	TECHWEB_POINT_TYPE_GENERIC = "General Research",\
-	TECHWEB_POINT_TYPE_DISCOVERY = "Discovery Research",\
-	TECHWEB_POINT_TYPE_WORMHOLE = "Wormhole Research",\
-	TECHWEB_POINT_TYPE_NANITES = "Nanite Research",\
-	TECHWEB_POINT_TYPE_AI = "AI Research"\
+	TECHWEB_POINT_TYPE_GENERIC = "Badania ogólne",\
+	TECHWEB_POINT_TYPE_DISCOVERY = "Badania odkrywcze",\
+	TECHWEB_POINT_TYPE_WORMHOLE = "Badania tuneli czasoprzestrzennych",\
+	TECHWEB_POINT_TYPE_NANITES = "Badania nanitów",\
+	TECHWEB_POINT_TYPE_AI = "Badania SI"\
 	)
 
 #define TECHWEB_BOMB_POINTCAP		50000 //! Adjust as needed; Stops toxins from nullifying RND progression mechanics. Current Value Cap Radius: 100

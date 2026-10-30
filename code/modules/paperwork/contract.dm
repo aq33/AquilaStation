@@ -27,7 +27,7 @@
 
 
 /obj/item/paper/contract/employment/update_text()
-	name = "paper- [target] employment contract"
+	name = "kartka – umowa o pracę ([target])"
 	add_raw_text("<center>Warunki zatrudnienia</center><BR><BR><BR><BR>Niniejsza Umowa zostaje zawarta z dniem złożenia ostatniego podpisu poniżej, pomiędzy [target] (zwanym dalej NIEWOLNIKIEM) a Nanotrasen (zwanym dalej wszechobecnym i pomocnym strażnikiem ludzkości).<BR>ZWAŻYWSZY, ŻE:<BR>NIEWOLNIK jest urodzonym człowiekiem lub humanoidem, posiadającym umiejętności, którymi może wspomóc wszechobecnego i pomocnego strażnika ludzkości, i szuka zatrudnienia u wszechobecnego i pomocnego strażnika ludzkości.<BR>ZWAŻYWSZY, ŻE wszechobecny i pomocny strażnik ludzkości zgadza się sporadycznie wypłacać NIEWOLNIKOWI wynagrodzenie w zamian za dożywotnią służbę.<BR>W ZWIĄZKU Z TYM, w zamian za wzajemne zobowiązania zawarte w niniejszej umowie oraz inne istotne i wartościowe świadczenia, strony zgodnie ustalają, co następuje:<BR>W zamian za marne wynagrodzenie NIEWOLNIK zgadza się pracować dla wszechobecnego i pomocnego strażnika ludzkości przez resztę swojego obecnego i przyszłych żyć.<BR>Ponadto NIEWOLNIK zgadza się przenieść własność swojej duszy na dział lojalności wszechobecnego i pomocnego strażnika ludzkości.<BR>Jeśli przeniesienie duszy nie będzie możliwe, zostanie ustanowiony zastaw.<BR>Podpisano,<BR><i>[target]</i>")
 
 
@@ -58,36 +58,36 @@
 	icon_state = "paper_onfire"
 
 /obj/item/paper/contract/infernal/power
-	name = "paper- contract for infernal power"
+	name = "kartka – kontrakt na piekielną moc"
 	contractType = CONTRACT_POWER
 
 /obj/item/paper/contract/infernal/wealth
-	name = "paper- contract for unlimited wealth"
+	name = "kartka – kontrakt na nieograniczone bogactwo"
 	contractType = CONTRACT_WEALTH
 
 /obj/item/paper/contract/infernal/prestige
-	name = "paper- contract for prestige"
+	name = "kartka – kontrakt na prestiż"
 	contractType = CONTRACT_PRESTIGE
 
 /obj/item/paper/contract/infernal/magic
-	name = "paper- contract for magical power"
+	name = "kartka – kontrakt na magię"
 	contractType = CONTRACT_MAGIC
 
 /obj/item/paper/contract/infernal/revive
-	name = "paper- contract of resurrection"
+	name = "kartka – kontrakt na wskrzeszenie"
 	contractType = CONTRACT_REVIVE
 	var/cooldown = FALSE
 
 /obj/item/paper/contract/infernal/knowledge
-	name = "paper- contract for knowledge"
+	name = "kartka – kontrakt na wiedzę"
 	contractType = CONTRACT_KNOWLEDGE
 
 /obj/item/paper/contract/infernal/friend
-	name = "paper- contract for a friend"
+	name = "kartka – kontrakt na przyjaciela"
 	contractType = CONTRACT_FRIEND
 
 /obj/item/paper/contract/infernal/unwilling
-	name = "paper- infernal contract"
+	name = "kartka – piekielny kontrakt"
 	contractType = CONTRACT_UNWILLING
 
 /obj/item/paper/contract/infernal/Initialize(mapload, mob/living/nTarget, datum/mind/nOwner)
@@ -227,15 +227,15 @@
 		cooldown = TRUE
 		var/mob/living/carbon/human/H = M
 		var/mob/dead/observer/ghost = H.get_ghost()
-		var/response = "No"
+		var/response = "Nie"
 		if(ghost)
-			ghost.notify_cloning("A devil has offered you revival, at the cost of your soul.",'sound/effects/genetics.ogg', H)
-			response = tgalert(ghost, "Diabeł oferuje ci kolejną szansę na życie w zamian za twoją duszę; czy przyjmujesz?", "Piekielne wskrzeszenie", "Yes", "No", "Never for this round", 0, 200)
+			ghost.notify_cloning("Diabeł oferuje ci wskrzeszenie w zamian za twoją duszę.",'sound/effects/genetics.ogg', H)
+			response = tgalert(ghost, "Diabeł oferuje ci kolejną szansę na życie w zamian za twoją duszę; czy przyjmujesz?", "Piekielne wskrzeszenie", "Tak", "Nie", "Nigdy w tej rundzie", 0, 200)
 			if(!ghost)
 				return		//handle logouts that happen whilst the alert is waiting for a response.
 		else
-			response = tgalert(target.current, "Diabeł oferuje ci kolejną szansę na życie w zamian za twoją duszę; czy przyjmujesz?", "Piekielne wskrzeszenie", "Yes", "No", "Never for this round", 0, 200)
-		if(response == "Yes")
+			response = tgalert(target.current, "Diabeł oferuje ci kolejną szansę na życie w zamian za twoją duszę; czy przyjmujesz?", "Piekielne wskrzeszenie", "Tak", "Nie", "Nigdy w tej rundzie", 0, 200)
+		if(response == "Tak")
 			H.revive(1,0)
 			log_combat(user, H, "infernally revived via contract")
 			user.visible_message("<span class='notice'>W nagłym rozbłysku [H] znów staje na nogi.</span>")

@@ -9,14 +9,14 @@
 #define PTURRET_EXTERNAL_ARMOUR_ON  8
 
 /obj/machinery/porta_turret_construct
-	name = "turret frame"
+	name = "rama wieżyczki"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_frame"
-	desc = "An unfinished covered turret frame."
+	desc = "Niedokończona, osłonięta rama wieżyczki."
 	anchored = FALSE
 	density = TRUE
 	var/build_step = PTURRET_UNSECURED //the current step in the building process
-	var/finish_name = "turret"	//the name applied to the product turret
+	var/finish_name = "wieżyczka"	//the name applied to the product turret
 	var/obj/item/gun/installed_gun = null
 
 /obj/machinery/porta_turret_construct/attackby(obj/item/I, mob/user, params)

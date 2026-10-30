@@ -1,11 +1,11 @@
 /datum/disease/pierrot_throat
-	name = "Pierrot's Throat"
+	name = "Gardło Pierrota"
 	max_stages = 4
-	spread_text = "Airborne"
+	spread_text = "Drogą powietrzną"
 	cure_text = "Produkty bananowe, zwłaszcza chlebek bananowy."
 	cures = list(/datum/reagent/consumable/banana)
 	cure_chance = 75
-	agent = "H0NI<42 Virus"
+	agent = "Wirus H0NI<42"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75
 	desc = "Nieleczony chory pewnie doprowadzi innych do szaleństwa."

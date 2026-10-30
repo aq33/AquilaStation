@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	if(.)
 		return
 	if(locked)
-		to_chat(user, "<span class='danger'>It's locked.</span>")
+		to_chat(user, "<span class='danger'>Jest zamknięte.</span>")
 		return
 	if(!connected)
 		to_chat(user, "To chyba nie ma tacy.")
@@ -151,8 +151,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  * Morgue
  */
 /obj/structure/bodycontainer/morgue
-	name = "morgue"
-	desc = "Used to keep bodies in until someone fetches them. Now includes a high-tech alert system."
+	name = "kostnica"
+	desc = "Przechowuje się w niej ciała, dopóki ktoś ich nie odbierze. Teraz z nowoczesnym systemem alarmowym."
 	icon_state = "morgue1"
 	dir = EAST
 	var/beeper = TRUE
@@ -199,7 +199,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 
 
 /obj/item/paper/guides/jobs/medical/morgue
-	name = "morgue memo"
+	name = "notatka z kostnicy"
 	default_raw_text = "<font size='2'>Ponieważ ambulatorium tej stacji chyba nigdy nie narzeka na brak bezmyślnych małp przeznaczonych do eksperymentów genetycznych, zostawiam tu przypomnienie dla każdego, kto zajmuje się stosem trupów, które konowały na pewno zostawią.</font><BR><BR><font size='4'><font color=red>Czerwone światło oznacza, że w środku jest zwykłe martwe ciało.</font><BR><BR><font color=orange>Żółte światło oznacza, że w środku są przedmioty inne niż ciało.</font><BR><font size='2'>Pewnie rzeczy zdjęte z czyichś zwłok, a jak masz szczęście, to schowana gorzała.</font><BR><BR><font color=green>Zielone światło oznacza, że system kostnicy wykrywa, że ciało może dać się sklonować.</font></font><BR><font size='2'>Nie wiem, jak to działa, ale trzymaj to z dala od kuchni i idź nakrzyczeć na genetyków.</font><BR><BR>- Inspektor medyczny Centrali"
 
 /*
@@ -207,8 +207,8 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  */
 GLOBAL_LIST_EMPTY(crematoriums)
 /obj/structure/bodycontainer/crematorium
-	name = "crematorium"
-	desc = "A human incinerator. Works well on barbecue nights."
+	name = "krematorium"
+	desc = "Spalarka ludzi. Sprawdza się na wieczorkach z grillem."
 	icon_state = "crema1"
 	dir = SOUTH
 	var/id = 1
@@ -296,8 +296,8 @@ GLOBAL_LIST_EMPTY(crematoriums)
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1) //you horrible people
 
 /obj/structure/bodycontainer/crematorium/creamatorium
-	name = "creamatorium"
-	desc = "A human incinerator. Works well during ice cream socials."
+	name = "kremowatorium"
+	desc = "Spalarka ludzi. Sprawdza się na lodowych spotkaniach towarzyskich."
 
 /obj/structure/bodycontainer/crematorium/creamatorium/cremate(mob/user)
 	var/list/icecreams = new()
@@ -387,16 +387,16 @@ GLOBAL_LIST_EMPTY(crematoriums)
  * Crematorium tray
  */
 /obj/structure/tray/c_tray
-	name = "crematorium tray"
-	desc = "Apply body before burning."
+	name = "taca krematorium"
+	desc = "Połóż ciało przed spaleniem."
 	icon_state = "cremat"
 
 /*
  * Morgue tray
  */
 /obj/structure/tray/m_tray
-	name = "morgue tray"
-	desc = "Apply corpse before closing."
+	name = "szuflada kostnicy"
+	desc = "Połóż zwłoki przed zamknięciem."
 	icon_state = "morguet"
 	pass_flags_self = PASSTABLE
 

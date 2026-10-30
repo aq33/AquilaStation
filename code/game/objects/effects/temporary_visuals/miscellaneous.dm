@@ -48,7 +48,7 @@
 	color = null
 
 /obj/effect/temp_visual/dir_setting/speedbike_trail
-	name = "speedbike trails"
+	name = "smugi ścigacza"
 	icon_state = "ion_fade"
 	layer = BELOW_MOB_LAYER
 	duration = 10
@@ -82,7 +82,7 @@
 	duration = 3
 
 /obj/effect/temp_visual/dir_setting/ninja
-	name = "ninja shadow"
+	name = "cień ninja"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "uncloak"
 	duration = 9
@@ -94,14 +94,14 @@
 	icon_state = "shadow"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase
-	name = "ninja energy"
+	name = "energia ninja"
 	icon_state = "phasein"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase/out
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/dir_setting/wraith
-	name = "blood"
+	name = "krew"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "phase_shift2"
 	duration = 12
@@ -154,8 +154,8 @@
 	update_icon()
 
 /obj/effect/temp_visual/bsa_splash
-	name = "\improper Bluespace energy wave"
-	desc = "A massive, rippling wave of bluepace energy, all rapidly exhausting itself the moment it leaves the concentrated beam of light."
+	name = "fala energii bluespace"
+	desc = "Potężna, falująca fala energii bluespace, która szybko się wyczerpuje, gdy tylko opuści skupiony promień światła."
 	icon = 'icons/effects/beam_splash.dmi'
 	icon_state = "beam_splash_l"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -174,7 +174,7 @@
 	icon_state = "[icon_state][handedness]"
 
 /obj/effect/temp_visual/wizard
-	name = "water"
+	name = "woda"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "reappear"
 	duration = 5
@@ -207,7 +207,7 @@
 	icon_state = "phaseout"
 
 /obj/effect/temp_visual/decoy
-	desc = "It's a decoy!"
+	desc = "To wabik!"
 	duration = 15
 
 /obj/effect/temp_visual/decoy/Initialize(mapload, atom/mimiced_atom)
@@ -247,7 +247,7 @@
 	duration = 10
 
 /obj/effect/temp_visual/revenant
-	name = "spooky lights"
+	name = "upiorne światła"
 	icon_state = "purplesparkles"
 
 /obj/effect/temp_visual/blightdisease
@@ -255,37 +255,37 @@
 	icon_state = "greenshatter"
 
 /obj/effect/temp_visual/revenant/cracks
-	name = "glowing cracks"
+	name = "świecące pęknięcia"
 	icon_state = "purplecrack"
 	duration = 6
 
 /obj/effect/temp_visual/gravpush
-	name = "gravity wave"
+	name = "fala grawitacyjna"
 	icon_state = "shieldsparkles"
 	duration = 5
 
 /obj/effect/temp_visual/telekinesis
-	name = "telekinetic force"
+	name = "siła telekinetyczna"
 	icon_state = "empdisable"
 	duration = 5
 
 /obj/effect/temp_visual/telegloves
-	name = "telekinetic force"
+	name = "siła telekinetyczna"
 	icon_state = "empdisable"
 	duration = 10
 
 /obj/effect/temp_visual/emp
-	name = "emp sparks"
+	name = "iskry EMP"
 	icon_state = "empdisable"
 
 /obj/effect/temp_visual/emp/pulse
-	name = "emp pulse"
+	name = "impuls EMP"
 	icon_state = "emppulse"
 	duration = 8
 	randomdir = 0
 
 /obj/effect/temp_visual/bluespace_fissure
-	name = "bluespace fissure"
+	name = "szczelina bluespace"
 	icon_state = "bluestream_fade"
 	duration = 9
 
@@ -317,7 +317,7 @@
 	duration = 20
 
 /obj/effect/temp_visual/heal //color is white by default, set to whatever is needed
-	name = "healing glow"
+	name = "leczniczy blask"
 	icon_state = "heal"
 	duration = 15
 
@@ -329,14 +329,14 @@
 	pixel_y = rand(-9, 0)
 
 /obj/effect/temp_visual/kinetic_blast
-	name = "kinetic explosion"
+	name = "wybuch kinetyczny"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "kinetic_blast"
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 4
 
 /obj/effect/temp_visual/explosion
-	name = "explosion"
+	name = "wybuch"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "explosion"
 	pixel_x = -32
@@ -355,7 +355,7 @@
 	duration = 6
 
 /obj/effect/temp_visual/desynchronizer
-	name = "desynchronizer field"
+	name = "pole desynchronizatora"
 	icon_state = "chronofield"
 	duration = 3
 
@@ -393,7 +393,7 @@
 	duration = 6
 
 /obj/effect/temp_visual/heart
-	name = "heart"
+	name = "serce"
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "heart"
 	duration = 25
@@ -405,7 +405,7 @@
 	animate(src, pixel_y = pixel_y + 32, alpha = 0, time = 25)
 
 /obj/effect/temp_visual/love_heart
-	name = "love heart"
+	name = "serduszko"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "heart"
 	duration = 25
@@ -428,7 +428,7 @@
 	animate(I, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/bleed
-	name = "bleed"
+	name = "krwawienie"
 	icon = 'icons/effects/bleed.dmi'
 	icon_state = "bleed0"
 	duration = 10
@@ -523,8 +523,8 @@
 	qdel(src)
 
 /obj/effect/temp_visual/steam
-	name = "steam"
-	desc = "Steam! It's hot. It also serves as a game distribution platform."
+	name = "para"
+	desc = "Para! Jest gorąca. Służy też jako platforma dystrybucji gier."
 	icon_state = "smoke"
 	duration = 15
 
@@ -547,7 +547,7 @@
 	animate(src, pixel_x = x_offset, pixel_y = y_offset, alpha = 50, time = 15)
 
 /obj/effect/temp_visual/steam_release
-	name = "all the steam"
+	name = "cała ta para"
 
 /obj/effect/temp_visual/steam_release/Initialize(mapload)
 	..()

@@ -2,8 +2,8 @@
 //Space Pirate ships go here
 
 /obj/structure/overmap/spacepirate/HomeOne
-	name = "HomeOne Class Pirate Raider"
-	desc = "A heavily modified hauler that was rebuilt using outdated armaments for maximum firepower and speed, these self-sufficient raiding vessels are not known for their durability."
+	name = "piracki rajder klasy HomeOne"
+	desc = "Mocno przerobiony frachtowiec, przebudowany z użyciem przestarzałego uzbrojenia dla maksymalnej siły ognia i prędkości. Te samowystarczalne jednostki łupieżcze nie słyną z wytrzymałości."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "spacepirate_hauler"
 	mass = MASS_SMALL
@@ -25,8 +25,8 @@
 //AI versions
 
 /obj/structure/overmap/spacepirate/ai
-	name = "Space Pirate"
-	desc = "A Space Pirate Vessel"
+	name = "kosmiczny pirat"
+	desc = "Jednostka kosmicznych piratów."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "spacepirate_hauler"
 	faction = "pirate"
@@ -78,8 +78,8 @@
 	ai_flags = AI_FLAG_BOARDER
 
 /obj/structure/overmap/spacepirate/ai/nt_missile
-	name = "Space Pirate Missile Boat"
-	desc = "This vessel appears to have been commandeered by the space pirates"
+	name = "piracki ścigacz rakietowy"
+	desc = "Wygląda na to, że tę jednostkę przejęli kosmiczni piraci."
 	icon = 'nsv13/icons/overmap/new/nanotrasen/frigate.dmi'
 	icon_state = "spacepirate_frigate"
 	mass = MASS_SMALL
@@ -120,8 +120,8 @@
 			new /datum/overmap_ship_weapon/pdc_mount(src)
 
 /obj/structure/overmap/spacepirate/ai/syndie_gunboat
-	name = "Space Pirate Gunboat"
-	desc = "This vessel appears to have been commandeered by the space pirates"
+	name = "piracka kanonierka"
+	desc = "Wygląda na to, że tę jednostkę przejęli kosmiczni piraci."
 	icon = 'nsv13/icons/overmap/syndicate/syn_light_cruiser.dmi'
 	icon_state = "spacepirate_cruiser"
 	mass = MASS_MEDIUM
@@ -142,8 +142,8 @@
 	new /datum/overmap_ship_weapon/pdc_mount(src)
 
 /obj/structure/overmap/spacepirate/ai/dreadnought //And you thought the pirates only had small ships
-	name = "Space Pirate Dreadnought"
-	desc = "Hoist the colours high"
+	name = "piracki drednot"
+	desc = "Banderę w górę!"
 	icon = 'nsv13/icons/overmap/syndicate/gunboat.dmi' //who knows which one should be which??? vOv
 	icon_state = "spacepirate_gunboat"
 	mass = MASS_LARGE

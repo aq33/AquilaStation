@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/forcewall/hive
-	name = "Telekinetic Field"
-	desc = "Our psionic powers form a barrier around us in the physical world that only we can pass through."
+	name = "Pole telekinetyczne"
+	desc = "Nasze moce psioniczne tworzą wokół nas w świecie fizycznym barierę, przez którą tylko my możemy przejść."
 	panel = "Hivemind Abilities"
 	charge_max = 600
 	clothes_req = 0
@@ -21,8 +21,8 @@
 		new wall_type_b(get_step(user, dir), null, user)
 
 /obj/effect/forcefield/wizard/hive
-	name = "Telekinetic Field"
-	desc = "You think, therefore it is."
+	name = "pole telekinetyczne"
+	desc = "Myślisz, więc jest."
 	timeleft = 150
 	pixel_x = -32 //Centres the 96x96 sprite
 	pixel_y = -32

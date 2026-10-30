@@ -3,16 +3,16 @@
 
 //Last stop of the error train
 /datum/nanite_program/glitch
-	name = "Glitch"
-	desc = "A heavy software corruption that causes nanites to gradually break down."
+	name = "Usterka"
+	desc = "Poważne uszkodzenie oprogramowania, przez które nanity stopniowo się rozpadają."
 	use_rate = 1.5
 	unique = FALSE
 	rogue_types = list()
 
 //Generic body-affecting programs will decay into this
 /datum/nanite_program/necrotic
-	name = "Necrosis"
-	desc = "The nanites attack internal tissues indiscriminately, causing widespread damage."
+	name = "Martwica"
+	desc = "Nanity bez różnicy atakują tkanki wewnętrzne, wywołując rozległe uszkodzenia."
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -24,8 +24,8 @@
 
 //Programs that don't directly interact with the body will decay into this
 /datum/nanite_program/toxic
-	name = "Toxin Buildup"
-	desc = "The nanites cause a slow but constant toxin buildup inside the host."
+	name = "Kumulacja toksyn"
+	desc = "Nanity powodują powolne, ale stałe gromadzenie się toksyn w nosicielu."
 	use_rate = 0.25
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -37,8 +37,8 @@
 
 //Generic blood-affecting programs will decay into this
 /datum/nanite_program/suffocating
-	name = "Hypoxemia"
-	desc = "The nanites prevent the host's blood from absorbing oxygen efficiently."
+	name = "Hipoksemia"
+	desc = "Nanity utrudniają krwi nosiciela skuteczne wchłanianie tlenu."
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/glitch)
@@ -50,8 +50,8 @@
 
 //Generic brain-affecting programs will decay into this
 /datum/nanite_program/brain_decay
-	name = "Neuro-Necrosis"
-	desc = "The nanites seek and attack brain cells, causing extensive neural damage to the host."
+	name = "Neuromartwica"
+	desc = "Nanity wyszukują i atakują komórki mózgowe, wywołując u nosiciela rozległe uszkodzenia nerwowe."
 	use_rate = 0.75
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)
@@ -63,8 +63,8 @@
 
 //Generic brain-affecting programs can also decay into this
 /datum/nanite_program/brain_misfire
-	name = "Brain Misfire"
-	desc = "The nanites interfere with neural pathways, causing minor psychological disturbances."
+	name = "Zakłócenia mózgowe"
+	desc = "Nanity zakłócają szlaki nerwowe, wywołując drobne zaburzenia psychiczne."
 	use_rate = 0.50
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/brain_decay)
@@ -83,8 +83,8 @@
 
 //Generic skin-affecting programs will decay into this
 /datum/nanite_program/skin_decay
-	name = "Dermalysis"
-	desc = "The nanites attack skin cells, causing irritation, rashes, and minor damage."
+	name = "Dermaliza"
+	desc = "Nanity atakują komórki skóry, wywołując podrażnienia, wysypki i drobne obrażenia."
 	use_rate = 0.25
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)
@@ -96,13 +96,13 @@
 		var/obj/item/bodypart/bodypart = host_mob.get_bodypart(picked_bodypart)
 		var/can_scratch = !host_mob.incapacitated() && get_location_accessible(host_mob, picked_bodypart)
 
-		host_mob.visible_message("[can_scratch ? "<span class='warning'>[host_mob] scratches [host_mob.p_their()] [bodypart.name].</span>" : ""]",\
+		host_mob.visible_message("[can_scratch ? "<span class='warning'>[host_mob] drapie się: [bodypart.name].</span>" : ""]",\
 		"<span class='warning'>Swędzi cię [strefa_pl(bodypart.body_zone)].[can_scratch ? " Drapiesz się." : ""]</span>")
 
 //Generic nerve-affecting programs will decay into this
 /datum/nanite_program/nerve_decay
-	name = "Nerve Decay"
-	desc = "The nanites attack the host's nerves, causing lack of coordination and short bursts of paralysis."
+	name = "Rozpad nerwów"
+	desc = "Nanity atakują nerwy nosiciela, wywołując brak koordynacji i krótkie napady paraliżu."
 	use_rate = 1
 	unique = FALSE
 	rogue_types = list(/datum/nanite_program/necrotic)

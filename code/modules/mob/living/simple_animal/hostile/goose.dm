@@ -1,8 +1,8 @@
 #define GOOSE_SATIATED 50
 
 /mob/living/simple_animal/hostile/retaliate/goose
-	name = "goose"
-	desc = "It's loose"
+	name = "gęś"
+	desc = "Gęś na wolności."
 	icon_state = "goose" // sprites by cogwerks from goonstation, used with permission
 	icon_living = "goose"
 	icon_dead = "goose_dead"
@@ -13,7 +13,7 @@
 	response_help = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
 	response_harm = "kopie"
-	emote_taunt = list("hisses")
+	emote_taunt = list("syczy")
 	taunt_chance = 30
 	speed = 0
 	maxHealth = 25
@@ -40,7 +40,7 @@
 /mob/living/simple_animal/hostile/retaliate/goose/vomit
 	name = "Birdboat"
 	real_name = "Birdboat"
-	desc = "It's a sick-looking goose, probably ate too much maintenance trash. Best not to move it around too much."
+	desc = "Gęś o chorym wyglądzie, pewnie zjadła za dużo śmieci z tuneli technicznych. Lepiej za bardzo jej nie ruszać."
 	gender = MALE
 	response_help  = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
@@ -58,7 +58,7 @@
 	goosevomit.Grant(src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(goosement))
 	if(prob(50))
-		desc = "[initial(desc)] It's waddling more than usual. It seems to be possessed."
+		desc = "[initial(desc)] Kołysze się bardziej niż zwykle. Wygląda na opętaną."
 		deadchat_plays_goose()
 
 /mob/living/simple_animal/hostile/retaliate/goose/vomit/Destroy()
@@ -172,7 +172,7 @@
 		feed(tasty)
 
 /datum/action/cooldown/vomit
-	name = "Vomit"
+	name = "Zwymiotuj"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "vomit"
 	icon_icon = 'icons/mob/animal.dmi'

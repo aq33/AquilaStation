@@ -9,7 +9,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 */
 
 /obj/effect/overlay/poolwater
-	name = "pool water"
+	name = "woda w basenie"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "water"
 	anchored = TRUE
@@ -17,8 +17,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /turf/open/indestructible/sound/pool
-	name = "swimming pool"
-	desc = "A fun place where you go to swim! <b>Drag and drop yourself onto it to climb in...</b>"
+	name = "basen"
+	desc = "Wesołe miejsce do pływania! <b>Przeciągnij na nie swoją postać, by wejść do wody...</b>"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "pool"
 	sound = 'sound/effects/splash.ogg'
@@ -183,7 +183,7 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 		return TRUE
 
 /obj/effect/turf_decal/pool
-	name = "pool siding"
+	name = "obrzeże basenu"
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "poolborder"
 
@@ -196,8 +196,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 //Pool machinery
 
 /obj/structure/pool_ladder
-	name = "pool ladder"
-	desc = "A faster and safer way to leave the pool."
+	name = "drabinka basenowa"
+	desc = "Szybszy i bezpieczniejszy sposób na wyjście z basenu."
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "ladder"
 	anchored = TRUE
@@ -241,8 +241,8 @@ Place a pool filter somewhere in the pool if you want people to be able to modif
 GLOBAL_LIST_EMPTY(pool_filters)
 
 /obj/machinery/pool_filter
-	name = "pool filter"
-	desc = "A device which can help you regulate conditions in a pool. Use a <b>wrench</b> to change its operating temperature, or hit it with a reagent container to load in new liquid to add to the pool."
+	name = "filtr basenowy"
+	desc = "Urządzenie do regulowania warunków w basenie. Użyj <b>klucza</b>, by zmienić temperaturę pracy, albo uderz je pojemnikiem z odczynnikiem, by dodać do basenu nowej cieczy."
 	icon = 'icons/obj/pool.dmi'
 	icon_state = "poolfilter"
 	pixel_y = 12 //So it sits above the water

@@ -3,13 +3,13 @@
 #define MAX_PAPER_INTEGRATED_CLIPBOARD 10
 
 /obj/item/pen/cyborg
-	name = "integrated pen"
+	name = "wbudowany długopis"
 	font = CYBORG_FONT
-	desc = "You can almost hear the sound of gears grinding against one another as you write with this pen. Almost."
+	desc = "Gdy piszesz tym długopisem, prawie słyszysz, jak zębatki ocierają się o siebie. Prawie."
 
 /obj/item/clipboard/cyborg
-	name = "\improper integrated clipboard"
-	desc = "A clipboard which seems to come adapted with a paper synthetizer, carefully hidden in its paper clip."
+	name = "\improper wbudowana podkładka"
+	desc = "Podkładka z syntetyzatorem papieru, starannie ukrytym w klipsie."
 	integrated_pen = TRUE
 	/// When was the last time the printer was used?
 	COOLDOWN_DECLARE(printer_cooldown)
@@ -58,13 +58,13 @@
 		to_chat(user, "<span class='warning'>Wbudowana drukarka [src] odmawia drukowania kolejnych kartek, bo bluespace'owy syntetyzator papieru nie odnowił się jeszcze po ostatniej syntezie.</span>")
 
 /obj/item/hand_labeler/cyborg
-	name = "integrated hand labeler"
+	name = "wbudowana etykieciarka"
 	labels_left = 9000 // I don't want to bother forcing them to recharge, honestly, that's a lot of code for a very niche functionality
 
 // The clamps
 /obj/item/borg/hydraulic_clamp
-	name = "integrated hydraulic clamp"
-	desc = "A neat way to lift and move around few small packages for quick and painless deliveries!"
+	name = "wbudowany zacisk hydrauliczny"
+	desc = "Zgrabny sposób na podnoszenie i przenoszenie kilku małych paczek. Dostawy szybkie i bezbolesne!"
 	icon = 'icons/mecha/mecha_equipment.dmi' // Just some temporary sprites because I don't have any unique one yet
 	icon_state = "mecha_clamp"
 	/// How much power does it draw per operation?
@@ -156,7 +156,7 @@
 		choices[item] = index
 		index++
 
-	var/selection = tgui_input_list(user, "Which item would you like to prioritize?", "Choose an item to prioritize", choices)
+	var/selection = tgui_input_list(user, "Który przedmiot ma mieć pierwszeństwo?", "Wybierz przedmiot z pierwszeństwem", choices)
 	if(!selection)
 		return
 
@@ -250,8 +250,8 @@
 		in_use = FALSE
 
 /obj/item/borg/hydraulic_clamp/better
-	name = "improved integrated hydraulic clamp"
-	desc = "A neat way to lift and move around wrapped crates for quick and painless deliveries!"
+	name = "ulepszony wbudowany zacisk hydrauliczny"
+	desc = "Zgrabny sposób na podnoszenie i przenoszenie owiniętych skrzyń. Dostawy szybkie i bezbolesne!"
 	storage_capacity = 2
 	whitelisted_item_types = list(/obj/item/small_delivery, /obj/structure/big_delivery) // If they want to carry a small package instead, so be it, honestly.
 	whitelisted_item_description = "owinięte paczki"
@@ -264,8 +264,8 @@
 	. += "W wewnętrznym schowku zacisku przechowywanych jest skrzyń: <b>[crate_count > 0 ? crate_count : "żadnych"]</b>."
 
 /obj/item/borg/hydraulic_clamp/mail
-	name = "integrated rapid mail delivery device"
-	desc = "Allows you to carry around a lot of mail, to distribute it around the ship like the good little mailbot you are!"
+	name = "wbudowane urządzenie do szybkiego doręczania poczty"
+	desc = "Pozwala nosić mnóstwo poczty i roznosić ją po okręcie, jak na grzecznego małego pocztobota przystało!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "mailbag"
 	storage_capacity = 100
@@ -273,13 +273,13 @@
 	unloading_time = 0.25 SECONDS
 	cooldown_duration = 0.25 SECONDS
 	whitelisted_item_types = list(/obj/item/mail)
-	whitelisted_item_description = "enveloppes"
+	whitelisted_item_description = "koperty"
 	item_weight_limit = WEIGHT_CLASS_NORMAL
 	clamp_sound_volume = 25
 	clamp_sound = 'sound/items/pshoom.ogg'
 
 /datum/design/borg_upgrade_clamp
-	name = "Cyborg Upgrade (Improved Integrated Hydraulic Clamp)"
+	name = "Ulepszenie cyborga: ulepszony wbudowany zacisk hydrauliczny"
 	id = "borg_upgrade_clamp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/better_clamp
@@ -288,8 +288,8 @@
 	category = list("Cyborg Upgrade Modules")
 
 /obj/item/borg/upgrade/better_clamp
-	name = "improved integrated hydraulic clamp"
-	desc = "An improved hydraulic clamp that trades its storage quantity to allow for bigger packages to be picked up instead!"
+	name = "ulepszony wbudowany zacisk hydrauliczny"
+	desc = "Ulepszony zacisk hydrauliczny, który kosztem pojemności pozwala podnosić większe paczki!"
 	icon_state = "cyborg_upgrade3"
 	require_module = TRUE
 	module_type = list(/obj/item/robot_module/cargo)
@@ -319,22 +319,22 @@
 /// Holders for the package wrap and the wrapping paper synthesizers.
 
 /datum/robot_energy_storage/package_wrap
-	name ="Package wrapper synthetizer"
+	name ="syntetyzator papieru pakowego"
 	max_energy = 25
 	recharge_rate = 2
 
 
 /datum/robot_energy_storage/wrapping_paper
-	name ="Wrapping paper synthetizer"
+	name ="syntetyzator papieru do pakowania"
 	max_energy = 25
 	recharge_rate = 2
 
 /obj/item/stack/package_wrap/cyborg
-	name = "integrated package wrapper"
+	name = "wbudowany papier pakowy"
 	is_cyborg = TRUE
 
 /obj/item/stack/wrapping_paper/cyborg
-	name = "integrated wrapping paper"
+	name = "wbudowany papier do pakowania"
 	is_cyborg = TRUE
 
 /obj/item/stack/wrapping_paper/cyborg/use(used, transfer, check = FALSE) // Check is set to FALSE here, so the stack istn't deleted.

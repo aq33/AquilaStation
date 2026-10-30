@@ -1,6 +1,6 @@
 /obj/item/implant/mindshield
-	name = "mindshield implant"
-	desc = "Protects against brainwashing."
+	name = "implant ochrony umysłu"
+	desc = "Chroni przed praniem mózgu."
 	activated = 0
 
 /obj/item/implant/mindshield/get_data()
@@ -71,10 +71,10 @@
 	return 0
 
 /obj/item/implanter/mindshield
-	name = "implanter (mindshield)"
+	name = "implanter (ochrona umysłu)"
 	imp_type = /obj/item/implant/mindshield
 
 /obj/item/implantcase/mindshield
-	name = "implant case - 'Mindshield'"
-	desc = "A glass case containing a mindshield implant."
+	name = "etui na implant – „Ochrona umysłu”"
+	desc = "Szklane etui z implantem ochrony umysłu."
 	imp_type = /obj/item/implant/mindshield

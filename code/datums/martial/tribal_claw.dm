@@ -4,7 +4,7 @@
 #define TAIL_GRAB_COMBO "DHGG"
 
 /datum/martial_art/tribal_claw
-	name = "Tribal Claw"
+	name = "Plemienny pazur"
 	id = MARTIALART_TRIBALCLAW
 	display_combos = TRUE
 

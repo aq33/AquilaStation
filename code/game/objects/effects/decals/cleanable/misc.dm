@@ -1,12 +1,12 @@
 /obj/effect/decal/cleanable/generic
-	name = "clutter"
-	desc = "Someone should clean that up."
+	name = "bałagan"
+	desc = "Ktoś powinien to posprzątać."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "shards"
 
 /obj/effect/decal/cleanable/ash
-	name = "ashes"
-	desc = "Ashes to ashes, dust to dust, and into space."
+	name = "popiół"
+	desc = "Z popiołu powstałeś, w proch się obrócisz i w kosmos polecisz."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
 	mergeable_decal = FALSE
@@ -23,14 +23,14 @@
 	turf_loc_check = FALSE
 
 /obj/effect/decal/cleanable/ash/large
-	name = "large pile of ashes"
+	name = "duża kupka popiołu"
 	icon_state = "big_ash"
 	decal_reagent = /datum/reagent/ash
 	reagent_amount = 60
 
 /obj/effect/decal/cleanable/glass
-	name = "tiny shards"
-	desc = "Back to sand."
+	name = "drobne odłamki"
+	desc = "Z powrotem w piasek."
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "tiny"
 
@@ -45,8 +45,8 @@
 	icon_state = "plasmatiny"
 
 /obj/effect/decal/cleanable/dirt
-	name = "dirt"
-	desc = "Someone should clean that up."
+	name = "brud"
+	desc = "Ktoś powinien to posprzątać."
 	icon_state = "dirt"
 	canSmoothWith = list(/obj/effect/decal/cleanable/dirt, /turf/closed/wall, /obj/structure/falsewall)
 	smooth = SMOOTH_FALSE
@@ -67,12 +67,12 @@
 	return ..()
 
 /obj/effect/decal/cleanable/dirt/dust
-	name = "dust"
-	desc = "A thin layer of dust coating the floor."
+	name = "kurz"
+	desc = "Cienka warstwa kurzu na podłodze."
 
 /obj/effect/decal/cleanable/greenglow
-	name = "glowing goo"
-	desc = "Jeez. I hope that's not for lunch."
+	name = "świecąca maź"
+	desc = "Rany. Mam nadzieję, że to nie na obiad."
 	icon_state = "greenglow"
 	light_power = 3
 	light_range = 2
@@ -90,13 +90,13 @@
 	. = ..()
 
 /obj/effect/decal/cleanable/greenglow/ecto
-	name = "ectoplasmic puddle"
-	desc = "You know who to call."
+	name = "kałuża ektoplazmy"
+	desc = "Wiesz, po kogo zadzwonić."
 	light_power = 2
 
 /obj/effect/decal/cleanable/cobweb
-	name = "cobweb"
-	desc = "Somebody should remove that."
+	name = "pajęczyna"
+	desc = "Ktoś powinien to usunąć."
 	gender = NEUTER
 	layer = WALL_OBJ_LAYER
 	icon_state = "cobweb1"
@@ -106,21 +106,21 @@
 	icon_state = "cobweb2"
 
 /obj/effect/decal/cleanable/molten_object
-	name = "gooey grey mass"
-	desc = "It looks like a melted... something."
+	name = "lepka szara masa"
+	desc = "Wygląda jak stopione... coś."
 	gender = NEUTER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "molten"
 	mergeable_decal = FALSE
 
 /obj/effect/decal/cleanable/molten_object/large
-	name = "big gooey grey mass"
+	name = "duża lepka szara masa"
 	icon_state = "big_molten"
 
 //Vomit (sorry)
 /obj/effect/decal/cleanable/vomit
-	name = "vomit"
-	desc = "Gosh, how unpleasant."
+	name = "wymiociny"
+	desc = "Ojej, jakie to nieprzyjemne."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "vomit_1"
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
@@ -145,8 +145,8 @@
 			qdel(src)
 
 /obj/effect/decal/cleanable/vomit/old
-	name = "crusty dried vomit"
-	desc = "You try not to look at the chunks, and fail."
+	name = "zaschnięte wymiociny"
+	desc = "Próbujesz nie patrzeć na kawałki i ci się nie udaje."
 	var/list/disease = list()
 
 /obj/effect/decal/cleanable/vomit/old/Initialize(mapload, list/datum/disease/diseases)
@@ -166,15 +166,15 @@
 	return TRUE
 
 /obj/effect/decal/cleanable/chem_pile
-	name = "chemical pile"
-	desc = "A pile of chemicals. You can't quite tell what's inside it."
+	name = "kupka chemikaliów"
+	desc = "Kupka chemikaliów. Trudno powiedzieć, co jest w środku."
 	gender = NEUTER
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
 
 /obj/effect/decal/cleanable/shreds
-	name = "shreds"
-	desc = "The shredded remains of what appears to be clothing."
+	name = "strzępy"
+	desc = "Poszarpane resztki czegoś, co wygląda na ubranie."
 	icon_state = "shreds"
 	gender = PLURAL
 	mergeable_decal = FALSE
@@ -189,42 +189,42 @@
 	. = ..()
 
 /obj/effect/decal/cleanable/glitter
-	name = "generic glitter pile"
-	desc = "The herpes of arts and crafts."
+	name = "kupka zwykłego brokatu"
+	desc = "Opryszczka świata rękodzieła."
 	icon = 'icons/effects/atmospherics.dmi'
 	icon_state = "plasma_old"
 	gender = NEUTER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/decal/cleanable/glitter/pink
-	name = "pink glitter"
+	name = "różowy brokat"
 	icon_state = "plasma"
 
 /obj/effect/decal/cleanable/glitter/white
-	name = "white glitter"
+	name = "biały brokat"
 	icon_state = "nitrous_oxide"
 
 /obj/effect/decal/cleanable/glitter/blue
-	name = "blue glitter"
+	name = "niebieski brokat"
 	icon_state = "freon"
 
 /obj/effect/decal/cleanable/plasma
-	name = "stabilized plasma"
-	desc = "A puddle of stabilized plasma."
+	name = "ustabilizowana plazma"
+	desc = "Kałuża ustabilizowanej plazmy."
 	icon_state = "flour"
 	icon = 'icons/effects/tomatodecal.dmi'
 	color = "#2D2D2D"
 
 /obj/effect/decal/cleanable/insectguts
-	name = "insect guts"
-	desc = "One bug squashed. Four more will rise in its place."
+	name = "wnętrzności owada"
+	desc = "Jeden robal rozgnieciony. Na jego miejsce przyjdą cztery kolejne."
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "xfloor1"
 	random_icon_states = list("xfloor1", "xfloor2", "xfloor3", "xfloor4", "xfloor5", "xfloor6", "xfloor7")
 
 /obj/effect/decal/cleanable/ants
-	name = "space ants"
-	desc = "A small colony of space ants. They're normally used to the vacuum of space, so they can't climb too well."
+	name = "kosmiczne mrówki"
+	desc = "Mała kolonia kosmicznych mrówek. Zwykle żyją w próżni kosmosu, więc nie wspinają się zbyt dobrze."
 	icon = 'icons/obj/debris.dmi'
 	icon_state = "ants"
 	//beauty = -150

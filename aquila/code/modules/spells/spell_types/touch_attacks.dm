@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/touch/sex
-	name = "Sex on button"
-	desc = "This forbidden technique allows you to have sex."
+	name = "Seks na przycisk"
+	desc = "Ta zakazana technika pozwala ci uprawiać seks."
 	hand_path = /obj/item/melee/touch_attack/sex
 
 	school = "degeneracy"

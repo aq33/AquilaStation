@@ -5,8 +5,8 @@
 GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 /obj/machinery/power/supermatter_crystal
-	name = "supermatter crystal"
-	desc = "A strangely translucent and iridescent crystal."
+	name = "kryształ supermaterii"
+	desc = "Dziwnie przejrzysty, mieniący się kryształ."
 	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
 	layer = ABOVE_MOB_LAYER
@@ -178,11 +178,13 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		data["SM_moles"] = air.total_moles()
 		for(var/gasid in air.get_gases())
 			gasdata.Add(list(list(
+			"id" = gasid,
 			"name"= GLOB.gas_data.names[gasid],
 			"amount" = round(100*air.get_moles(gasid)/air.total_moles(),0.01))))
 	else
 		for(var/gasid in air.get_gases())
 			gasdata.Add(list(list(
+				"id" = gasid,
 				"name"= GLOB.gas_data.names[gasid],
 				"amount" = 0)))
 	data["gases"] = gasdata
@@ -472,7 +474,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 				lastwarning = REALTIMEOFDAY
 				if(!has_reached_emergency)
 					investigate_log("has reached the emergency point for the first time.", INVESTIGATE_ENGINES)
-					message_admins("[src] has reached the emergency point [ADMIN_JMP(src)].")
+					message_admins("[src] osiąga punkt krytyczny [ADMIN_JMP(src)].")
 					has_reached_emergency = TRUE
 			else if(damage >= damage_archived) // The damage is still going up
 				radio.talk_into(src, "[warning_alert] Integrity: [get_integrity_percent()]%", engineering_channel)
@@ -507,7 +509,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			power += Proj.damage * config_bullet_energy
 			if(!has_been_powered)
 				investigate_log("has been powered for the first time.", INVESTIGATE_ENGINES)
-				message_admins("[src] has been powered for the first time [ADMIN_JMP(src)].")
+				message_admins("[src] zostaje zasilony po raz pierwszy [ADMIN_JMP(src)].")
 				has_been_powered = TRUE
 				SSblackbox.record_feedback("tally", "engine_stats", 1, "started")
 				SSblackbox.record_feedback("tally", "engine_stats", 1, "supermatter")
@@ -518,7 +520,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/singularity_act()
 	var/gain = 100
 	investigate_log("Supermatter shard consumed by singularity.", INVESTIGATE_ENGINES)
-	message_admins("Singularity has consumed a supermatter shard and can now become stage six.")
+	message_admins("Osobliwość pochłonęła odłamek supermaterii i może teraz osiągnąć szósty stopień.")
 	visible_message("<span class='userdanger'>Osobliwość pochłania [src]!</span>")
 	for(var/mob/M in GLOB.player_list)
 		if(M.get_virtual_z_level() == get_virtual_z_level())
@@ -679,7 +681,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		var/mob/living/user = AM
 		if(user.status_flags & GODMODE)
 			return
-		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
+		message_admins("[src] pochłania [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", INVESTIGATE_ENGINES)
 		user.dust(force = TRUE)
 		if(power_changes)
@@ -698,8 +700,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(!iseffect(AM))
 			var/suspicion = ""
 			if(AM.fingerprintslast)
-				suspicion = "last touched by [AM.fingerprintslast]"
-				message_admins("[src] has consumed [AM], [suspicion] [ADMIN_JMP(src)].")
+				suspicion = "ostatnio dotykane przez [AM.fingerprintslast]"
+				message_admins("[src] pochłania [AM], [suspicion] [ADMIN_JMP(src)].")
 			investigate_log("has consumed [AM] - [suspicion].", INVESTIGATE_ENGINES)
 		qdel(AM)
 	if(!iseffect(AM) && power_changes)
@@ -729,8 +731,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	is_main_engine = TRUE
 
 /obj/machinery/power/supermatter_crystal/shard
-	name = "supermatter shard"
-	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure."
+	name = "odłamek supermaterii"
+	desc = "Dziwnie przejrzysty, mieniący się kryształ, który wygląda, jakby kiedyś był częścią większej struktury."
 	base_icon_state = "darkmatter_shard"
 	icon_state = "darkmatter_shard"
 	anchored = FALSE
@@ -741,7 +743,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	anomaly_event = FALSE
 
 /obj/machinery/power/supermatter_crystal/shard/engine
-	name = "anchored supermatter shard"
+	name = "zakotwiczony odłamek supermaterii"
 	is_main_engine = TRUE
 	anchored = TRUE
 	moveable = FALSE
@@ -749,7 +751,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 // When you wanna make a supermatter shard for the dramatic effect, but
 // don't want it exploding suddenly
 /obj/machinery/power/supermatter_crystal/shard/hugbox
-	name = "anchored supermatter shard"
+	name = "zakotwiczony odłamek supermaterii"
 	takes_damage = FALSE
 	produces_gas = FALSE
 	power_changes = FALSE
@@ -758,7 +760,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	anchored = TRUE
 
 /obj/machinery/power/supermatter_crystal/shard/hugbox/fakecrystal //Hugbox shard with crystal visuals, used in the Supermatter/Hyperfractal shuttle
-	name = "supermatter crystal"
+	name = "kryształ supermaterii"
 	base_icon_state = "darkmatter"
 	icon_state = "darkmatter"
 
@@ -848,7 +850,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			. = zapdir
 
 	if(target_mob)
-		target_mob.electrocute_act(rand(5,10), "Supermatter Discharge Bolt", 1, stun = 0)
+		target_mob.electrocute_act(rand(5,10), "Wyładowanie supermaterii", 1, stun = 0)
 		if(prob(15))
 			supermatter_zap(target_mob, 5, power / 2)
 			supermatter_zap(target_mob, 5, power / 2)

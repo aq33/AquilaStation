@@ -2,7 +2,7 @@
 
 /datum/tgs_chat_command/ircstatus
 	name = "status"
-	help_text = "Gets the admincount, playercount, gamemode, and true game mode of the server"
+	help_text = "Podaje liczbę adminów, liczbę graczy, tryb gry i prawdziwy tryb gry serwera"
 	admin_only = TRUE
 	var/last_irc_status = 0
 
@@ -13,13 +13,13 @@
 	last_irc_status = rtod
 	var/list/adm = get_admin_counts()
 	var/list/allmins = adm["total"]
-	var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]). "
-	status += "Players: [GLOB.clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [SSticker.mode ? SSticker.mode.name : "Not started"]."
+	var/status = "Admini: [allmins.len] (aktywni: [english_list(adm["present"])], AFK: [english_list(adm["afk"])], ukryci: [english_list(adm["stealth"])], pominięci: [english_list(adm["noflags"])]). "
+	status += "Gracze: [GLOB.clients.len] (aktywni: [get_active_player_count(0,1,0)]). Tryb: [SSticker.mode ? SSticker.mode.name : "nie wystartował"]."
 	return status
 
 /datum/tgs_chat_command/irccheck
 	name = "check"
-	help_text = "Gets the playercount, gamemode, and address of the server"
+	help_text = "Podaje liczbę graczy, tryb gry i adres serwera"
 	var/last_irc_check = 0
 
 /datum/tgs_chat_command/irccheck/Run(datum/tgs_chat_user/sender, params)
@@ -28,7 +28,7 @@
 		return
 	last_irc_check = rtod
 	var/server = CONFIG_GET(string/server)
-	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]" 
+	return "[GLOB.round_id ? "Runda #[GLOB.round_id]: " : ""]graczy: [GLOB.clients.len] na mapie [SSmapping.config.map_name], tryb: [GLOB.master_mode]; runda [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "trwa" : "się kończy") : "się zaczyna"] -- [server ? server : "[world.internet_address]:[world.port]"]" 
 
 /** -- Not for use within BeeStation
 /datum/tgs_chat_command/ahelp
@@ -56,20 +56,20 @@
 
 /datum/tgs_chat_command/namecheck
 	name = "namecheck"
-	help_text = "Returns info on the specified target"
+	help_text = "Zwraca informacje o wskazanym celu"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/namecheck/Run(datum/tgs_chat_user/sender, params)
 	params = trim(params)
 	if(!params)
-		return "Insufficient parameters"
+		return "Za mało parametrów"
 	log_admin("Chat Name Check: [sender.friendly_name] on [params]")
-	message_admins("Name checking [params] from [sender.friendly_name]")
+	message_admins("Sprawdzanie nazwy [params] przez [sender.friendly_name]")
 	return keywords_lookup(params, 1)
 
 /datum/tgs_chat_command/adminwho
 	name = "adminwho"
-	help_text = "Lists administrators currently on the server"
+	help_text = "Wypisuje adminów obecnych na serwerze"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/adminwho/Run(datum/tgs_chat_user/sender, params)
@@ -79,7 +79,7 @@ GLOBAL_LIST(round_end_notifiees)
 
 /datum/tgs_chat_command/notify
 	name = "notify"
-	help_text = "Pings the invoker when the round ends"
+	help_text = "Pinguje wywołującego, gdy runda się skończy"
 	admin_only = TRUE
 
 /datum/tgs_chat_command/notify/Run(datum/tgs_chat_user/sender, params)
@@ -109,13 +109,13 @@ GLOBAL_LIST(round_end_notifiees)
 
 /datum/tgs_chat_command/reload_admins
 	name = "reload_admins"
-	help_text = "Forces the server to reload admins."
+	help_text = "Wymusza na serwerze ponowne wczytanie adminów."
 	admin_only = TRUE
 
 /datum/tgs_chat_command/reload_admins/Run(datum/tgs_chat_user/sender, params)
 	ReloadAsync()
 	log_admin("[sender.friendly_name] reloaded admins via chat command.")
-	return "Admins reloaded."
+	return "Przeładowano adminów."
 
 /datum/tgs_chat_command/reload_admins/proc/ReloadAsync()
 	set waitfor = FALSE

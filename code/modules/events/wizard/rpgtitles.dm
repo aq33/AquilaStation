@@ -49,15 +49,15 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 	var/list/biotype_titles = list(
 		null, //organic is too common to be a descriptor
 		null, //mineral is only used with carbons
-		list("Mechanical", "Robot"),
-		list("Reanimated", "Undead"),
-		list("Bipedal", "Humanoid"),
-		list("Insectile", "Bug"),
-		list("Beastly", "Beast"),
-		list("Monstrous", "Megafauna"),
-		list("Reptilian", "Lizard"),
-		list("Paranormal", "Spirit"),
-		list("Flowering", "Plant"),
+		list("Mechaniczny", "Robot"),
+		list("Ożywiony", "Nieumarły"),
+		list("Dwunożny", "Humanoid"),
+		list("Owadzi", "Robal"),
+		list("Zwierzęcy", "Zwierz"),
+		list("Potworny", "Potwór"),
+		list("Gadzi", "Jaszczur"),
+		list("Paranormalny", "Duch"),
+		list("Kwitnący", "Krzak"),
 	)
 
 	var/maptext_title = ""
@@ -73,7 +73,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 				if(biotype_titles[biotype_flag_position+1]) //if there is a fitting verbage for this biotype...
 					applicable_biotypes += list(biotype_titles[biotype_flag_position+1])//...add it to the list of applicable biotypes
 		if(!applicable_biotypes.len) //there will never be an adjective anomaly because anomaly is only added when there are no choices
-			applicable_biotypes += list(null, "Anomaly")
+			applicable_biotypes += list(null, "Anomalia")
 
 		//shuffle it to allow for some cool combinations of adjectives and nouns
 		applicable_biotypes = shuffle(applicable_biotypes)
@@ -87,7 +87,7 @@ GLOBAL_DATUM(rpgtitle_controller, /datum/rpgtitle_controller)
 			maptext_title += "[applicable_biotypes[iteration][1]] "
 
 	//mother of all strings...
-	new_crewmember.maptext = "<span class='maptext' style='text-align: center'><span style='color: [new_crewmember.chat_color || rgb(rand(100,255), rand(100,255), rand(100,255))]'> [new_crewmember.real_name] Level [rand(1, 100)] [maptext_title]</span></span>"
+	new_crewmember.maptext = "<span class='maptext' style='text-align: center'><span style='color: [new_crewmember.chat_color || rgb(rand(100,255), rand(100,255), rand(100,255))]'> [new_crewmember.real_name], poziom [rand(1, 100)], [maptext_title]</span></span>"
 
 
 /**

@@ -1,5 +1,5 @@
 /datum/orbital_objective/recover_blackbox
-	name = "Blackbox Recovery"
+	name = "Odzyskanie czarnej skrzynki"
 	var/generated = FALSE
 	//The blackbox required to recover.
 	var/obj/item/blackbox/objective/linked_blackbox
@@ -28,13 +28,13 @@
  * from completing their objective and recover invaluable data.
  */
 /obj/item/blackbox/objective
-	name = "damaged blackbox"
+	name = "uszkodzona czarna skrzynka"
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/blackbox/objective/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/gps, "BLACKBOX #[rand(1000, 9999)]", TRUE)
+	AddComponent(/datum/component/gps, "CZARNA SKRZYNKA #[rand(1000, 9999)]", TRUE)
 
 /obj/item/blackbox/objective/proc/setup_recover(linked_mission)
 	AddComponent(/datum/component/recoverable, linked_mission)

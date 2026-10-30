@@ -1,6 +1,6 @@
 /obj/item/implant/infiltrator
-	name = "infiltration implant"
-	desc = "A sneaky implant for sneaky infiltrators"
+	name = "implant infiltracyjny"
+	desc = "Podstępny implant dla podstępnych infiltratorów"
 	activated = FALSE
 	var/obj/item/radio/alert_radio
 	var/datum/team/infiltrator/team
@@ -16,7 +16,7 @@
 	alert_radio.listening = FALSE
 	alert_radio.canhear_range = 0
 	alert_radio.set_frequency(FREQ_SYNDICATE)
-	alert_radio.name = "infiltration cruiser autopilot"
+	alert_radio.name = "autopilot krążownika infiltracyjnego"
 	team = _team
 
 /obj/item/implant/infiltrator/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
@@ -41,8 +41,8 @@
 		TC.use(TC.amount)
 		return
 	var/list/radial_menu = list()
-	radial_menu["Syndicate Uplink"] = image(icon = 'icons/obj/radio.dmi', icon_state = "radio")
-	radial_menu["Change Pinpointer Target"] = image(icon = 'icons/obj/device.dmi', icon_state = "pinpointer_syndicate")
+	radial_menu["Uplink Syndykatu"] = image(icon = 'icons/obj/radio.dmi', icon_state = "radio")
+	radial_menu["Zmień cel pinpointera"] = image(icon = 'icons/obj/device.dmi', icon_state = "pinpointer_syndicate")
 	var/obj/docking_port/mobile/cutter = SSshuttle.getShuttle("syndicatecutter")
 	var/obj/docking_port/stationary/homePort = SSshuttle.getDock("infiltrator_away")
 	// Created by the cutter's flight console when the infiltrators designate a landing spot
@@ -50,16 +50,16 @@
 	if (cutter)
 		if (is_centcom_level(cutter.z))
 			if (targetPort)
-				radial_menu["Call Ship"] = image(icon = 'icons/obj/decals.dmi', icon_state = "drop")
+				radial_menu["Wezwij statek"] = image(icon = 'icons/obj/decals.dmi', icon_state = "drop")
 		else if (homePort)
-			radial_menu["Send Ship Away"] = image(icon = 'icons/obj/decals.dmi', icon_state = "evac")
+			radial_menu["Odeślij statek"] = image(icon = 'icons/obj/decals.dmi', icon_state = "evac")
 	var/chosen = show_radial_menu(imp_in, imp_in, radial_menu, "infiltrator_implant")
 	if (!chosen || !imp_in)
 		return
 	switch (chosen)
-		if ("Syndicate Uplink")
+		if ("Uplink Syndykatu")
 			uplink.implant_activation()
-		if ("Change Pinpointer Target")
+		if ("Zmień cel pinpointera")
 			var/datum/status_effect/infiltrator_pinpointer/pinpointer = imp_in.has_status_effect(/datum/status_effect/infiltrator_pinpointer)
 			if (!pinpointer)
 				return
@@ -71,22 +71,22 @@
 				else if(istype(targets[A], /atom))
 					var/atom/AT = targets[A]
 					pinpointer_menu[A] = image(AT.icon, AT.icon_state)
-			pinpointer_menu["Infiltration Cruiser"] = image(icon = 'icons/turf/shuttle.dmi', icon_state = "burst_s")
+			pinpointer_menu["Krążownik infiltracyjny"] = image(icon = 'icons/turf/shuttle.dmi', icon_state = "burst_s")
 			var/pinpointer_chosen = show_radial_menu(imp_in, imp_in, pinpointer_menu, "infiltrator_implant_pinpointer")
 			if (pinpointer_chosen)
-				if (pinpointer_chosen == "Infiltration Cruiser")
+				if (pinpointer_chosen == "Krążownik infiltracyjny")
 					pinpointer.scan_target = SSshuttle.getShuttle("syndicatecutter")
 					to_chat(imp_in, span_notice("Cel pinpointera ustawiony na krążownik infiltracyjny."))
 				else
 					pinpointer.scan_target = targets[pinpointer_chosen]
 					to_chat(imp_in, span_notice("Cel pinpointera ustawiony na [pinpointer.scan_target]"))
 				pinpointer.point_to_target()
-		if ("Send Ship Away")
+		if ("Odeślij statek")
 			if (QDELETED(cutter) || QDELETED(homePort))
 				return
 			alert_radio.talk_into(alert_radio, "[imp_in.real_name] zdalnie wysłał krążownik infiltracyjny do bazy")
 			cutter.request(homePort)
-		if ("Call Ship")
+		if ("Wezwij statek")
 			if (QDELETED(cutter) || QDELETED(targetPort))
 				return
 			alert_radio.talk_into(alert_radio, "[imp_in.real_name] zdalnie wysłał krążownik infiltracyjny do [station_name()]")
@@ -111,8 +111,8 @@
 	return targets
 
 /atom/movable/screen/alert/status_effect/infiltrator_pinpointer
-	name = "Infilitrator Integrated Pinpointer"
-	desc = "The stealthiest pinpointer."
+	name = "Zintegrowany pinpointer infiltratora"
+	desc = "Najbardziej skryty pinpointer."
 	icon = 'aquila/icons/misc/infiltrator_pinpointer.dmi'
 	icon_state = "overlay"
 

@@ -2,8 +2,8 @@
 // W źródle to natywna mutacja Floran, ale sama mutacja nie ma ograniczenia rasy. U nas nie ma Floran, więc jest w puli dla wszystkich.
 
 /datum/mutation/spores
-	name = "Agaricale Pores" // Pory, nie spory!
-	desc = "An ancient mutation found in floran DNA that allows the user to emit spores."
+	name = "Pory pieczarkowców" // Pory, nie spory!
+	desc = "Pradawna mutacja z DNA floran, dzięki której nosiciel wydziela zarodniki."
 	quality = POSITIVE
 	difficulty = 12
 	text_gain_indication = "<span class='notice'>Twoje pory stają się dziwnie wrażliwe..?</span>"
@@ -12,8 +12,8 @@
 	energy_coeff = 1
 
 /datum/action/cooldown/spell/monke_spores
-	name = "Release Spores"
-	desc = "Release your blood in a mist using pores."
+	name = "Uwolnij zarodniki"
+	desc = "Wypuść porami swoją krew w postaci mgiełki."
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "smoke"
 	sound = 'sound/effects/smoke.ogg'

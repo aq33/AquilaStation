@@ -3,8 +3,8 @@
 // Recode CanAllowThrough() at some point, it won't allow ridden vehicles
 
 /obj/machinery/turnstile
-	name = "turnstile"
-	desc = "A mechanical door that permits one-way access to the brig."
+	name = "bramka"
+	desc = "Mechaniczne drzwi, które przepuszczają do aresztu tylko w jedną stronę."
 	icon = 'icons/obj/machines/turnstile.dmi' //ADD ICON
 	icon_state = "turnstile_map" //ADD ICON
 	power_channel = AREA_USAGE_ENVIRON
@@ -27,8 +27,8 @@
 	var/state = TURNSTILE_SECURED
 
 /obj/item/circuitboard/machine/turnstile
-	name = "Turnstile circuitboard"
-	desc = "The circuit board for a turnstile machine."
+	name = "bramka (płytka maszyny)"
+	desc = "Płytka drukowana do bramki."
 	build_path = /obj/machinery/turnstile
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
@@ -50,12 +50,12 @@
 
 //Executive officer's line variant. For rule of cool. NSV13 We use this
 /obj/machinery/turnstile/xo
-	name = "\improper XO line turnstile"
+	name = "\improper bramka kolejki do XO"
 	req_one_access = list(ACCESS_BRIG, ACCESS_HEADS)
 
 /obj/structure/closet/secure_closet/genpop
-	name = "Prisoner locker"
-	desc = "A locker used to store a prisoner's valuables, that they can collect at a later date."
+	name = "szafka więźnia"
+	desc = "Szafka na kosztowności więźnia, które może odebrać później."
 	req_access = list(ACCESS_BRIG)
 	anchored = TRUE
 	locked = FALSE
@@ -77,9 +77,9 @@
 				say("Nieprawidłowe; najpierw przypisz tę szafkę więźniom, zanim jej użyjesz!") // Prevents officers from "forgetting" to assign lockers to the prisoners they are handling.
 				return
 			else
-				var/unassign = alert(user, "Czy chcesz cofnąć przypisanie tej szafki?", "Szafka więźnia", "Yes", "No")
+				var/unassign = alert(user, "Czy chcesz cofnąć przypisanie tej szafki?", "Szafka więźnia", "Tak", "Nie")
 				switch(unassign)
-					if("Yes")
+					if("Tak")
 						var/obj/item/card/id/prisoner/P = assigned_id
 						P.assigned_locker = null
 						registered_name = null
@@ -87,7 +87,7 @@
 						locked = FALSE
 						update_icon()
 						playsound(src, 'sound/machines/ping.ogg', 50, 0)
-					if("No")
+					if("Nie")
 						locked = FALSE
 						update_icon()
 				return
@@ -101,7 +101,7 @@
 				P.assigned_locker = src
 				assigned_id = I
 				registered_name = I.registered_name
-				desc = "A locker used to store a prisoner's valuables, that they can collect at a later date.\nCurrently assigned to: [I.registered_name]. Swipe a security officer ID to unassign it."
+				desc = "Szafka na kosztowności więźnia, które może odebrać później.\nObecnie przypisana do: [I.registered_name]. Przeciągnij ID funkcjonariusza ochrony, by cofnąć przypisanie."
 				say("Szafka zaplombowana. Przypisano do: [I.registered_name]")
 				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 				locked = TRUE
@@ -335,10 +335,10 @@
 
 //Officer interface.
 /obj/machinery/genpop_interface
-	name = "Prisoner Management Interface"
+	name = "interfejs zarządzania więźniami"
 	icon = 'icons/obj/machines/genpop_display.dmi'
 	icon_state = "frame"
-	desc = "An all-in-one interface for officers to manage prisoners!"
+	desc = "Interfejs „wszystko w jednym”, w którym funkcjonariusze zarządzają więźniami!"
 	req_access = list(ACCESS_BRIG)
 	density = FALSE
 	maptext_height = 26
@@ -360,8 +360,8 @@
 
 //Prisoner interface wallframe
 /obj/item/wallframe/genpop_interface
-	name = "\improper prisoner interface frame"
-	desc = "Frame used to build the prisoner interface."
+	name = "\improper rama interfejsu więziennego"
+	desc = "Rama do budowy interfejsu więziennego."
 	icon = 'icons/obj/machines/genpop_display.dmi'
 	icon_state = "frame"
 	pixel_shift = 32
@@ -369,9 +369,9 @@
 	result_path = /obj/machinery/genpop_interface
 
 /obj/item/electronics/genpop_interface
-	name = "prisoner interface circuitboard"
+	name = "płytka interfejsu więziennego"
 	icon_state = "power_mod"
-	desc = "Central processing unit for the prisoner interface."
+	desc = "Jednostka centralna interfejsu więziennego."
 
 /obj/machinery/genpop_interface/Initialize(mapload, nbuild)
 	. = ..()
@@ -392,7 +392,7 @@
 	// Generate the crime list
 	try crime_list = json_decode(file2text(config_file))
 	catch(var/exception/e)
-		message_admins("<span class='boldannounce'>[e] caught on [e.file]:[e.line].</span>")
+		message_admins("<span class='boldannounce'>Złapano [e] w [e.file]:[e.line].</span>")
 		load_default_crimelist()
 		return
 	build_crime_sentences() // AQ EDIT
@@ -400,7 +400,7 @@
 /obj/machinery/genpop_interface/proc/load_default_crimelist()
 	crime_list = list()
 	//Hardcoded crimes list from crimes.dm, not used unless the config file is missing somehow.
-	message_admins("<span class='boldannounce'>Failed to read the space_law config file! Defaulting to hardcoded datums.</span>") //Hardcoded crimes list from crimes.dm, not used unless the config file is missing somehow.
+	message_admins("<span class='boldannounce'>Nie udało się wczytać pliku konfiguracji space_law! Używam wbudowanych datumów.</span>") //Hardcoded crimes list from crimes.dm, not used unless the config file is missing somehow.
 	for (var/datum/crime/crime_path as() in subtypesof(/datum/crime))
 		// Ignore this crime, it is abstract
 		if (isnull(initial(crime_path.name)))
@@ -636,18 +636,18 @@
 	switch(action)
 		if("prisoner_name")
 			// Encode the name and ensure it is saniticed for IC input
-			var/prisoner_name = stripped_input(usr, "Podaj imię więźnia...", "Crimes", desired_name)
+			var/prisoner_name = stripped_input(usr, "Podaj imię więźnia...", "Zarzuty", desired_name)
 			prisoner_name = sanitize_name(prisoner_name)
 			if(!prisoner_name || (!Adjacent(usr) && !IsAdminGhost(usr)))
 				return FALSE
 			desired_name = prisoner_name
-			var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Crimes", desired_details)
+			var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Zarzuty", desired_details)
 			if (!prisoner_details || CHAT_FILTER_CHECK(prisoner_details) || (!Adjacent(usr) && !IsAdminGhost(usr)))
 				return TRUE
 			desired_details = prisoner_details
 			// Ask them for the details of the crime
 		if("edit_details")
-			var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Crimes", desired_details)
+			var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Zarzuty", desired_details)
 			if (!prisoner_details || CHAT_FILTER_CHECK(prisoner_details) || (!Adjacent(usr) && !IsAdminGhost(usr)))
 				return FALSE
 			desired_details = prisoner_details
@@ -656,7 +656,7 @@
 			if (!desired_name)
 				return
 			if (!desired_details)
-				var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Crimes", desired_details)
+				var/prisoner_details = stripped_input(usr, "Podaj szczegóły wykroczenia...", "Zarzuty", desired_details)
 				if (!prisoner_details || CHAT_FILTER_CHECK(prisoner_details) || (!Adjacent(usr) && !IsAdminGhost(usr)))
 					say("Podaj prawidłowy opis zdarzenia, które doprowadziło do zarzutu.")
 					return
@@ -718,7 +718,7 @@
 				return
 			// AQ EDIT - zwolniony już więzień (Ex-Convict) wraca za kratki: karta traci dostęp i znowu liczy czas
 			if(id.served_time >= id.sentence)
-				id.assignment = "Convict"
+				id.assignment = "Więzień"
 				id.access = list()
 				id.update_label(id.registered_name, id.assignment)
 				START_PROCESSING(SSobj, id)
@@ -736,7 +736,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 /obj/item/card/id/prisoner //renamed existing prisonner id to id/gulag
 	icon_state = "orange"
 	item_state = "orange-id"
-	assignment = "convict"
+	assignment = "więzień"
 	hud_state = JOB_HUD_PRISONER
 	var/served_time = 0 //Seconds.
 	var/sentence = 0 //'ard time innit.
@@ -751,10 +751,10 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 	if(_sentence)
 		sentence = _sentence
 		if(!_name)
-			registered_name = "Prisoner WR-ROSETTA#[rand(0, 10000)]"
+			registered_name = "Więzień WR-ROSETTA#[rand(0, 10000)]"
 		else
 			registered_name = _name
-		update_label(registered_name, "Convict")
+		update_label(registered_name, "Więzień")
 		START_PROCESSING(SSobj, src)
 
 /obj/item/card/id/prisoner/Destroy()
@@ -774,7 +774,7 @@ GLOBAL_LIST_EMPTY(prisoner_ids)
 /obj/item/card/id/prisoner/process(delta_time)
 	served_time += delta_time
 	if(served_time >= sentence) //FREEDOM!
-		assignment = "Ex-Convict"
+		assignment = "Były więzień"
 		access = list(ACCESS_PRISONER)
 		update_label(registered_name, assignment)
 		playsound(loc, 'sound/machines/ping.ogg', 50, 1)

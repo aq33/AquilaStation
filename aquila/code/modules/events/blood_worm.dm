@@ -52,7 +52,7 @@
 /datum/round_event/ghost_role/blood_worm/spawn_role()
 	var/list/vents = find_blood_worm_vent_spawns()
 	if(!length(vents))
-		message_admins("An event attempted to spawn blood worms but no suitable vents were found. Shutting down.")
+		message_admins("Event próbuje stworzyć krwawe robaki, ale nie ma odpowiednich wentylacji. Przerywam.")
 		return MAP_ERROR
 	var/list/candidates = get_candidates(ROLE_BLOOD_WORM, /datum/role_preference/midround_ghost/blood_worm, POLL_IGNORE_BLOOD_WORM)
 	if(!length(candidates))
@@ -62,7 +62,7 @@
 		var/obj/vent = length(vents) >= 2 ? pick_n_take(vents) : vents[1]
 		var/mob/dead/selected = pick_n_take(candidates)
 		var/mob/living/simple_animal/hostile/blood_worm/worm = create_blood_worm(selected.key, vent)
-		message_admins("[ADMIN_LOOKUPFLW(worm)] has been made into a blood worm by an event.")
+		message_admins("[ADMIN_LOOKUPFLW(worm)] zostaje krwawym robakiem przez event.")
 		log_game("[key_name(worm)] was spawned as a blood worm by an event.")
 		spawned_mobs += worm
 		spawncount--
@@ -102,7 +102,7 @@
 /datum/dynamic_ruleset/midround/from_ghosts/blood_worms/generate_ruleset_body(mob/applicant)
 	var/obj/vent = length(vents) >= 2 ? pick_n_take(vents) : vents[1]
 	var/mob/living/simple_animal/hostile/blood_worm/worm = create_blood_worm(applicant.key, vent, give_antag = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(worm)] has been made into a blood worm by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(worm)] zostaje krwawym robakiem przez regułę midround.")
 	log_game("DYNAMIC: [key_name(worm)] was spawned as a blood worm by the midround ruleset.")
 	return worm
 

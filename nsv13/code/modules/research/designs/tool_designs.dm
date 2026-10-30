@@ -1,6 +1,6 @@
 /datum/design/rld
-	name = "Rapid Light Dispenser"
-	desc = "Adds the Rapid Light Dispenser capable of constructing light fixtures and synthesising glowsticks."
+	name = "Szybki oświetlacz (RLD)"
+	desc = "Dodaje szybki oświetlacz (RLD), który montuje oprawy oświetleniowe i syntetyzuje świetliki chemiczne."
 	id = "rld"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/uranium = 200, /datum/material/glass = 1000)
@@ -10,7 +10,7 @@
 
 /datum/techweb_node/rld
 	id = "rld"
-	display_name = "Advanced Lamp Construction"
+	display_name = "Zaawansowana budowa lamp"
 	description = "Koniec z marnowaniem czasu na robienie lamp!"
 	prereq_ids = list("janitor")
 	design_ids = list("rld")

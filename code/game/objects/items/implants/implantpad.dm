@@ -1,6 +1,6 @@
 /obj/item/implantpad
-	name = "implant pad"
-	desc = "Used to modify implants."
+	name = "pad implantów"
+	desc = "Służy do modyfikowania implantów."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "implantpad-0"
 	item_state = "electronic"

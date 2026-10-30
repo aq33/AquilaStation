@@ -1,18 +1,19 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const arrivals_rattle: FeatureToggle = {
-  name: 'Arrivals',
+  name: 'Przybycia',
   category: 'GHOST',
   subcategory: 'Chat',
-  description: 'When enabled, you will be notified as a ghost for new crew.',
+  description:
+    'Po włączeniu jako duch dostajesz powiadomienia o nowej załodze.',
   component: CheckboxInput,
 };
 
 export const death_rattle: FeatureToggle = {
-  name: 'Deaths',
+  name: 'Śmierci',
   category: 'GHOST',
   subcategory: 'Chat',
   description:
-    'When enabled, you will be notified as a ghost whenever someone dies.',
+    'Po włączeniu jako duch dostajesz powiadomienie, gdy ktoś umiera.',
   component: CheckboxInput,
 };

@@ -1,8 +1,8 @@
 // AQUILA - port z Monkestation2.0 (code/datums/mutations/sight.dm)
 
 /datum/mutation/meson_vision
-	name = "Meson Visual Enhancement"
-	desc = "A mutation that manipulates the subject's eyes in a way that makes them able to see behind walls to a limited degree."
+	name = "Mezonowe wzmocnienie wzroku"
+	desc = "Mutacja, która tak zmienia oczy pacjenta, że w pewnym stopniu widzi on przez ściany."
 	locked = TRUE
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Do twoich oczu zdaje się docierać więcej informacji...</span>"
@@ -21,8 +21,8 @@
 	owner.update_sight()
 
 /datum/mutation/flash_protection
-	name = "Protected Cornea"
-	desc = "A mutation that causes reinforcement to subject's eyes, allowing them to protect against disorientation from bright flashes via distributing excessive photons hitting the subject's eyes."
+	name = "Chroniona rogówka"
+	desc = "Mutacja, która wzmacnia oczy pacjenta. Rozprasza nadmiar fotonów, więc jasne błyski go nie oszałamiają."
 	locked = TRUE
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Przestajesz zauważać blask świateł...</span>"
@@ -74,8 +74,8 @@
 /datum/client_colour/monochrome/monke_colorblind
 
 /datum/mutation/colorblindness
-	name = "Genetic achromatopy"
-	desc = "This genetic sequence makes the subject occipital lobe not interpret color, rendering the patient completely colorblind."
+	name = "Genetyczna achromatopsja"
+	desc = "Ta sekwencja genetyczna sprawia, że płat potyliczny pacjenta nie rozpoznaje kolorów, przez co pacjent zupełnie nie widzi barw."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='notice'>Czujesz, jak twój mózg trochę drętwieje..?</span>"
 	text_lose_indication = "<span class='notice'>Znów prawidłowo widzisz kolory.</span>"
@@ -95,8 +95,8 @@
 // X-Ray przełączany, kosztem zdrowia oczu
 
 /datum/mutation/weaker_xray
-	name = "X-Ray Vision"
-	desc = "A strange genome that allows the user to see between the spaces of walls at the cost of their eye health."
+	name = "Wzrok rentgenowski"
+	desc = "Dziwny genom, dzięki któremu nosiciel widzi przez szczeliny w ścianach kosztem zdrowia oczu."
 	quality = POSITIVE
 	locked = TRUE
 	action_path = /datum/action/cooldown/spell/toggle/monke_xray
@@ -119,14 +119,14 @@
 		xray.synchronizer = GET_MUTATION_SYNCHRONIZER(src)
 
 /datum/mutation/weaker_xray/syndicate
-	name = "Refined X-Ray Vision"
-	desc = "A strange genome that allows the user to see between the spaces of walls at the cost of their eye health. This one seems to be high-quality making it more stable."
+	name = "Udoskonalony wzrok rentgenowski"
+	desc = "Dziwny genom, dzięki któremu nosiciel widzi przez szczeliny w ścianach kosztem zdrowia oczu. Ten wygląda na wysokiej jakości, więc jest stabilniejszy."
 	instability = 40
 	conflicts = list(/datum/mutation/thermal/x_ray, /datum/mutation/weaker_xray)
 
 /datum/action/cooldown/spell/toggle/monke_xray
-	name = "Toggle X-ray"
-	desc = "Concentrate your eyes to see through the walls, this makes your eyes take damage and be weaker to flashes."
+	name = "Przełącz wzrok rentgenowski"
+	desc = "Skup wzrok, żeby widzieć przez ściany. Oczy odnoszą przy tym obrażenia i gorzej znoszą błyski."
 	icon_icon = 'icons/mob/actions/actions_changeling.dmi'
 	button_icon_state = "augmented_eyesight"
 	cooldown_time = 0
@@ -222,8 +222,8 @@
 // Niestabilne laserowe oczy: ograniczona liczba strzałów, każdy pali oczy i głowę
 
 /datum/mutation/laser_eyes/unstable
-	name = "Unstable Laser Eyes"
-	desc = "Reflects concentrated light back from the eyes, however this mutation is very unstable and causes damage to the user."
+	name = "Niestabilne laserowe oczy"
+	desc = "Oczy odbijają skupione światło, ale ta mutacja jest bardzo niestabilna i rani nosiciela."
 	instability = 60
 	conflicts = list(/datum/mutation/laser_eyes, /datum/mutation/laser_eyes/unstable/syndicate)
 	synchronizer_coeff = 1
@@ -289,7 +289,7 @@
 		return PROCESS_KILL
 
 /datum/mutation/laser_eyes/unstable/syndicate
-	name = "Stabilized Laser Eyes"
-	desc = "Reflects concentrated light back from the eyes, this strain of the mutation is high-quality, yet still causes the user to take damage on use."
+	name = "Ustabilizowane laserowe oczy"
+	desc = "Oczy odbijają skupione światło. Ta odmiana mutacji jest wysokiej jakości, ale nadal rani nosiciela przy każdym użyciu."
 	conflicts = list(/datum/mutation/laser_eyes, /datum/mutation/laser_eyes/unstable)
 	instability = 40

@@ -1,5 +1,5 @@
 /obj/item/implant/uplink
-	name = "uplink implant"
+	name = "implant uplinku"
 	desc = "Sneeki breeki."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "radio"
@@ -34,7 +34,7 @@
 	. = ..()
 
 /obj/item/implanter/uplink/precharged
-	name = "implanter (precharged uplink)"
+	name = "implanter (naładowany uplink)"
 	imp_type = /obj/item/implant/uplink/precharged
 
 /obj/item/implant/uplink/precharged

@@ -1,5 +1,5 @@
 /datum/symptom/braindamage
-	name = "Neural Decay"
+	name = "Rozpad neuronów"
 	desc = "Powoduje naturalne obumieranie komórek mózgowych nosiciela, prowadząc do poważnych uszkodzeń mózgu."
 	stealth = 1
 	resistance = -2

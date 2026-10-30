@@ -1,6 +1,6 @@
 /datum/language/mouse
-	name = "Mouse"
-	desc = "A rather simple language spoken and understood by mice. It has been developed and shared by genetically advanced mice."
+	name = "Mysi"
+	desc = "Dość prosty język, którym mówią i który rozumieją myszy. Rozwinęły go i rozpowszechniły genetycznie ulepszone myszy."
 	speech_verb = "piszczy"
 	ask_verb = "piszczy"
 	exclaim_verb = "piszczy"
@@ -8,5 +8,5 @@
 	flags = NO_STUTTER | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_UNDERSTOOD
 
 /datum/language/mouse/scramble(input)
-	. = "Squeak"
+	. = "Pisk"
 	. += (copytext(input, length(input)) == "?") ? "?" : "!"

@@ -53,8 +53,8 @@
 	var/range_far = 16
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer
-	name = "Internal Affairs Integrated Pinpointer"
-	desc = "Even stealthier than a normal implant."
+	name = "Wbudowany lokalizator spraw wewnętrznych"
+	desc = "Jeszcze dyskretniejszy niż zwykły implant."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinon"
 
@@ -252,8 +252,8 @@
 
 	to_chat(owner.current, "<span class='userdanger'>Na koniec: uważaj na siebie. Twój cel ma wpływowych przyjaciół, a wywiad sugeruje, że ktoś mógł zlecić własny kontrakt, by go chronić.</span>")
 	owner.announce_objectives()
-	owner.current.client?.tgui_panel?.give_antagonist_popup("[syndicate ? "External Affairs" : "Internal Affairs"]",
-		"[syndicate?"Eliminate your target and cause as much damage to Nanotrasen property as you see fit."\
+	owner.current.client?.tgui_panel?.give_antagonist_popup("[syndicate ? "Sprawy zewnętrzne" : "Sprawy wewnętrzne"]",
+		"[syndicate?"Wyeliminuj swój cel i zniszcz tyle mienia Nanotrasen, ile uznasz za stosowne."\
 		: "Wyeliminuj swój cel, nie zwracając na siebie zbytniej uwagi, ale uważaj, bo ktoś na ciebie poluje."]")
 
 /datum/antagonist/traitor/internal_affairs/greet()

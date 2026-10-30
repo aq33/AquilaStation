@@ -8,7 +8,7 @@
  */
 
 /turf/open/floor/bamboo
-	desc = "A bamboo mat with a decorative trim."
+	desc = "Bambusowa mata z ozdobnym obszyciem."
 	icon = 'icons/turf/floors/bamboo_mat.dmi'
 	icon_state = "bamboo"
 	floor_tile = /obj/item/stack/tile/bamboo
@@ -27,7 +27,7 @@
 	. += "<span class='notice'>Przy krawędzi jest <b>małe pęknięcie</b>.</span>"
 
 /turf/open/floor/wood
-	desc = "Stylish dark wood."
+	desc = "Stylowe ciemne drewno."
 	icon_state = "wood"
 	floor_tile = /obj/item/stack/tile/wood
 	broken_states = list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
@@ -87,8 +87,8 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/grass
-	name = "grass patch"
-	desc = "You can't tell if this is real grass or just cheap plastic imitation."
+	name = "kępka trawy"
+	desc = "Nie umiesz stwierdzić, czy to prawdziwa trawa, czy tania plastikowa podróbka."
 	icon_state = "grass"
 	floor_tile = /obj/item/stack/tile/grass
 	broken_states = list("sand")
@@ -99,7 +99,7 @@
 	clawfootstep = FOOTSTEP_GRASS
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	var/ore_type = /obj/item/stack/ore/glass
-	var/turfverb = "uproot"
+	var/turfverb = "Wyrywasz"
 	tiled_dirt = FALSE
 
 /turf/open/floor/grass/Initialize(mapload)
@@ -109,15 +109,15 @@
 /turf/open/floor/grass/attackby(obj/item/C, mob/user, params)
 	if((C.tool_behaviour == TOOL_SHOVEL) && params)
 		new ore_type(src, 2)
-		user.visible_message("[user] rozkopuje [src].", "<span class='notice'>You [turfverb] [src].</span>")
+		user.visible_message("[user] rozkopuje [src].", "<span class='notice'>[turfverb] [src].</span>")
 		playsound(src, 'sound/effects/shovel_dig.ogg', 50, 1)
 		make_plating()
 	if(..())
 		return
 
 /turf/open/floor/grass/fairy //like grass but fae-er
-	name = "fairygrass patch"
-	desc = "Something about this grass makes you want to frolic. Or get high."
+	name = "kępka czarodziejskiej trawy"
+	desc = "Coś w tej trawie sprawia, że masz ochotę hasać. Albo się nią upalić."
 	icon_state = "fairygrass"
 	floor_tile = /obj/item/stack/tile/fairygrass
 	light_range = 2
@@ -126,47 +126,47 @@
 	color = "#33CCFF"
 
 /turf/open/floor/grass/fairy/white
-	name = "white fairygrass patch"
+	name = "kępka białej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/white
 	light_color = "#FFFFFF"
 	color = "#FFFFFF"
 
 /turf/open/floor/grass/fairy/red
-	name = "red fairygrass patch"
+	name = "kępka czerwonej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/red
 	light_color = "#FF3333"
 	color = "#FF3333"
 
 /turf/open/floor/grass/fairy/yellow
-	name = "yellow fairygrass patch"
+	name = "kępka żółtej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/yellow
 	light_color = "#FFFF66"
 	color = "#FFFF66"
 
 /turf/open/floor/grass/fairy/green
-	name = "green fairygrass patch"
+	name = "kępka zielonej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/green
 	light_color = "#99FF99"
 	color = "#99FF99"
 
 /turf/open/floor/grass/fairy/blue
 	floor_tile = /obj/item/stack/tile/fairygrass/blue
-	name = "blue fairygrass patch"
+	name = "kępka niebieskiej czarodziejskiej trawy"
 
 /turf/open/floor/grass/fairy/purple
-	name = "purple fairygrass patch"
+	name = "kępka fioletowej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/purple
 	light_color = "#D966FF"
 	color = "#D966FF"
 
 /turf/open/floor/grass/fairy/pink
-	name = "pink fairygrass patch"
+	name = "kępka różowej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/pink
 	light_color = "#FFB3DA"
 	color = "#FFB3DA"
 
 /turf/open/floor/grass/fairy/dark
-	name = "dark fairygrass patch"
+	name = "kępka ciemnej czarodziejskiej trawy"
 	floor_tile = /obj/item/stack/tile/fairygrass/dark
 	light_power = -0.15
 	light_range = 2
@@ -175,9 +175,9 @@
 
 /turf/open/floor/grass/snow
 	gender = PLURAL
-	name = "snow"
+	name = "śnieg"
 	icon = 'icons/turf/snow.dmi'
-	desc = "Looks cold."
+	desc = "Wygląda na zimny."
 	icon_state = "snow"
 	ore_type = /obj/item/stack/sheet/mineral/snow
 	planetary_atmos = TRUE
@@ -198,7 +198,7 @@
 
 /turf/open/floor/grass/snow/basalt //By your powers combined, I am captain planet
 	gender = NEUTER
-	name = "volcanic floor"
+	name = "wulkaniczne podłoże"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
 	ore_type = /obj/item/stack/ore/glass/basalt
@@ -217,13 +217,13 @@
 
 
 /turf/open/floor/grass/fakebasalt //Heart is not a real planeteer power
-	name = "aesthetic volcanic flooring"
-	desc = "Safely recreated turf for your hellplanet-scaping."
+	name = "ozdobna wulkaniczna posadzka"
+	desc = "Bezpiecznie odtworzone podłoże do urządzania piekielnej planety."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "basalt"
 	floor_tile = /obj/item/stack/tile/basalt
 	ore_type = /obj/item/stack/ore/glass/basalt
-	turfverb = "dig up"
+	turfverb = "Wykopujesz"
 	slowdown = 0
 	footstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
@@ -238,8 +238,8 @@
 
 
 /turf/open/floor/carpet
-	name = "carpet"
-	desc = "Soft velvet carpeting. Feels good between your toes."
+	name = "dywan"
+	desc = "Miękka aksamitna wykładzina. Przyjemnie czuć ją między palcami."
 	icon = 'icons/turf/floors/carpet.dmi'
 	icon_state = "carpet"
 	floor_tile = /obj/item/stack/tile/carpet
@@ -321,15 +321,15 @@
 	canSmoothWith = list(/turf/open/floor/carpet/royalblue)
 
 /turf/open/floor/carpet/grimy
-	name = "grimy carpet"
-	desc = "Hold on, wasn't this made with steel once?"
+	name = "brudny dywan"
+	desc = "Chwila, czy to kiedyś nie było ze stali?"
 	icon = 'icons/turf/floors/carpet_grimy.dmi'
 	floor_tile = /obj/item/stack/tile/carpet/grimy
 	canSmoothWith = list(/turf/open/floor/carpet/grimy)
 
 /turf/open/floor/eighties
-	name = "retro floor"
-	desc = "This one takes you back."
+	name = "podłoga retro"
+	desc = "Ta przywołuje wspomnienia."
 	icon_state = "eighties"
 	floor_tile = /obj/item/stack/tile/eighties
 	broken_states = list("damaged")
@@ -356,7 +356,7 @@
 
 
 /turf/open/floor/fakepit
-	desc = "A clever illusion designed to look like a bottomless pit."
+	desc = "Sprytna iluzja, która ma wyglądać jak bezdenna otchłań."
 	smooth = SMOOTH_TRUE | SMOOTH_BORDER | SMOOTH_MORE
 	canSmoothWith = list(/turf/open/floor/fakepit)
 	icon = 'icons/turf/floors/Chasms.dmi'
@@ -387,9 +387,9 @@
 	return TRUE
 
 /turf/open/floor/wax
-	name = "wax"
+	name = "wosk"
 	icon_state = "honeyfloor"
-	desc = "Hard wax. Makes you feel like part of a hive."
+	desc = "Twardy wosk. Czujesz się jak część ula."
 	floor_tile = /obj/item/stack/tile/mineral/wax
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_WOOD_BAREFOOT

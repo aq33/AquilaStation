@@ -1,12 +1,7 @@
 // NSV13
 
 import { Fragment } from 'react';
-import {
-  Box,
-  Button,
-  ProgressBar,
-  Section,
-} from 'tgui-core/components';
+import { Box, Button, ProgressBar, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
@@ -24,12 +19,12 @@ export const OrdnanceConsole = (props) => {
       <Window.Content scrollable>
         <Section>
           <Section
-            title="Armaments:"
+            title="Uzbrojenie:"
             buttons={
               <Button
                 icon="cog"
                 color={data.additional_weapon_info ? 'good' : 'bad'}
-                content="Expanded Info"
+                content="Więcej informacji"
                 onClick={() => act('toggle_additional_weapon_info')}
               />
             }
@@ -51,13 +46,13 @@ export const OrdnanceConsole = (props) => {
                       {!!value.controllers && (
                         <Box>
                           <br />
-                          {'Weapon controllers: ' + value.controllers}
+                          {'Kontrolery broni: ' + value.controllers}
                         </Box>
                       )}
                       {!!value.ammo_filter && (
                         <Box>
                           <br />
-                          {'Filtered ammo: ' + value.ammo_filter}
+                          {'Filtr amunicji: ' + value.ammo_filter}
                         </Box>
                       )}
                     </Section>

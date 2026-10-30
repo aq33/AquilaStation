@@ -1,5 +1,5 @@
 /obj/item/circuit_component/equipment_action
-	display_name = "Equipment Action"
+	display_name = "Akcja wyposażenia"
 	desc = "Reprezentuje akcję, którą użytkownik może wykonać, korzystając z obsługiwanych obudów."
 	category = "BCI"
 	required_shells = list(/obj/item/organ/cyberimp/bci, /obj/item/mod/module/circuit)
@@ -89,12 +89,12 @@
 /obj/item/circuit_component/equipment_action/proc/update_actions()
 	for(var/target in granted_to)
 		var/datum/action/granted_action = granted_to[target]
-		granted_action.name = button_name.value || "Action"
+		granted_action.name = button_name.value || "Akcja"
 		granted_action.button_icon_state = "bci_[replacetextEx(lowertext(icon_options.value), " ", "_")]"
 		granted_action.UpdateButtonIcon()
 
 /datum/action/innate/circuit_equipment_action
-	name = "Action"
+	name = "Akcja"
 	icon_icon = 'aquila/icons/obj/wiremod/bci_actions.dmi'
 	button_icon_state = "bci_power"
 	check_flags = AB_CHECK_CONSCIOUS

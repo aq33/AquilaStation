@@ -38,34 +38,45 @@ export const ShuttleDesignator = (props) => {
   } = data;
 
   const directions = ['North', 'South', 'East', 'West'];
+  // AQUILA: kierunki idą do DM, tłumaczymy tylko napis
+  const DIRECTION_NAMES = {
+    North: 'Północ',
+    South: 'Południe',
+    East: 'Wschód',
+    West: 'Zachód',
+  };
+  const directionOptions = directions.map((dir) => ({
+    value: dir,
+    displayText: DIRECTION_NAMES[dir],
+  }));
 
   return (
     <Window width={500} height={500}>
       <Window.Content />
       {shuttleId && (
-        <Section title="Shuttle Information">
-          Shuttle name: {name}
+        <Section title="Informacje o promie">
+          Nazwa promu: {name}
           <br />
-          Shuttle mass: {shuttle_mass / 10} tons
+          Masa promu: {shuttle_mass / 10} t
           <br />
-          Buffered mass: {buffered_mass / 10} tons
+          Masa w buforze: {buffered_mass / 10} t
           <br />
-          Current capacity: {current_capacity / 10} tons
+          Obecna ładowność: {current_capacity / 10} t
           <br />
-          Ideal capacity: {ideal_capacity / 10} tons
+          Idealna ładowność: {ideal_capacity / 10} t
         </Section>
       )}
-      <Section title="Shuttle Designation">
+      <Section title="Wyznaczanie promu">
         {inFlight ? (
           <NoticeBox color="Red">
-            Shuttle in flight, designation unavailable.
+            Prom w locie, wyznaczanie niedostępne.
           </NoticeBox>
         ) : (
           <>
             {!!shuttleId || (
               <NoticeBox color="yellow">No linked shuttle.</NoticeBox>
             )}
-            Buffer capacity:
+            Pojemność bufora:
             <ProgressBar
               value={buffered_mass / max_size}
               ranges={{
@@ -78,7 +89,7 @@ export const ShuttleDesignator = (props) => {
               }}
             />
             <Button
-              content="Designate Area"
+              content="Wyznacz obszar"
               textAlign="center"
               onClick={() => act('designate')}
             />
@@ -86,17 +97,23 @@ export const ShuttleDesignator = (props) => {
         )}
       </Section>
       {shuttleId && !inFlight && (
-        <Section title="Shuttle Configuration">
-          Current Direction:
+        <Section title="Konfiguracja promu">
+          Obecny kierunek:
           <Dropdown
             selected={current_direction}
-            options={directions}
+            displayText={
+              DIRECTION_NAMES[current_direction] || current_direction
+            }
+            options={directionOptions}
             onSelected={(dir) => act('current_direction', { direction: dir })}
           />
-          Travel Direction:
+          Kierunek lotu:
           <Dropdown
             selected={preferred_direction}
-            options={directions}
+            displayText={
+              DIRECTION_NAMES[preferred_direction] || preferred_direction
+            }
+            options={directionOptions}
             onSelected={(dir) => act('preferred_direction', { direction: dir })}
           />
         </Section>

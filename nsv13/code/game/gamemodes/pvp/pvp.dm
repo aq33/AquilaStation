@@ -99,7 +99,7 @@ Method to spawn in the Syndi ship on a brand new Z-level with the "boardable" tr
 
 		var/ship_file = file("_maps/map_files/Instanced/[pick(possible)]")
 		if(!isfile(ship_file)) //Why would this ever happen? Who knows, I sure don't.
-			message_admins("ERROR SETTING UP PVP: Invalid json file [ship_file]. Tell a coder to fix this.")
+			message_admins("BŁĄD KONFIGURACJI PVP: nieprawidłowy plik json [ship_file]. Zgłoś to koderowi.")
 			CRASH("Invalid json file \"[ship_file]\" tried to load in PVP setup.")
 		syndiship = instance_ship_from_json(ship_file)
 
@@ -108,7 +108,7 @@ Method to spawn in the Syndi ship on a brand new Z-level with the "boardable" tr
 		RegisterSignal(syndiship, COMSIG_PARENT_QDELETING, PROC_REF(force_loss))
 		RegisterSignal(SSstar_system.find_main_overmap(), COMSIG_PARENT_QDELETING, PROC_REF(force_win))
 		SSovermap_mode.mode = new/datum/overmap_gamemode/galactic_conquest //Change the overmap gamemode
-		message_admins("Galactic Conquest in progress. Overmap gamemode is now [SSovermap_mode.mode.name]")
+		message_admins("Trwa Galaktyczny Podbój. Tryb gry overmapy to teraz [SSovermap_mode.mode.name]")
 		var/enemies_to_spawn = max(1, round(num_players()/2.5)) //Syndicates scale with pop. On a standard 30 pop, this'll be 30 - 10 -> 20 / 10 -> 2 floored = 2, where FLOOR rounds the number to a whole number.
 		for(var/i = 0, i < enemies_to_spawn, i++)
 			var/datum/mind/new_op = pick_n_take(antag_candidates)

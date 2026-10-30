@@ -132,6 +132,6 @@
 			continue
 		crate_value -= item.cost
 		new item.item(crate)
-	message_admins("A stray syndicate cargo pod is landing in [impact_area].")
+	message_admins("Zabłąkana kapsuła zaopatrzeniowa Syndykatu ląduje w: [impact_area].")
 	log_game("A stray syndicate cargo pod is landing in [impact_area].")
 	return crate

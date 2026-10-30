@@ -3,8 +3,8 @@
 
 // You eat rocks
 /datum/mutation/rock_eater
-	name = "Rock Eater"
-	desc = "The subject's body is able to digest rocks and minerals."
+	name = "Pożeracz kamieni"
+	desc = "Organizm pacjenta potrafi trawić kamienie i minerały."
 	quality = POSITIVE
 	instability = 5
 	text_gain_indication = "<span class='notice'>Masz ochotę na kamienie.</span>"
@@ -15,8 +15,8 @@
 
 // You eat rock but also get buffs from them
 /datum/mutation/rock_absorber
-	name = "Rock Absorber"
-	desc = "The subject's body is able to digest rocks and minerals, taking on their properties."
+	name = "Pochłaniacz kamieni"
+	desc = "Organizm pacjenta potrafi trawić kamienie i minerały, a przy tym przejmuje ich właściwości."
 	quality = POSITIVE
 	instability = 35
 	text_gain_indication = "<span class='notice'>Masz przemożną ochotę na kamienie.</span>"

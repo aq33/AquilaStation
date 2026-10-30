@@ -247,7 +247,7 @@
 
 /// Lodowe żyły: spowalnia każdego, kto ma to we krwi
 /datum/reagent/shadowfrost
-	name = "Shadowfrost"
+	name = "Cieniomróz"
 	description = "Ciemna ciecz, która zdaje się spowalniać wszystko, czego dotknie."
 	color = "#000000"
 
@@ -261,7 +261,7 @@
 
 /// Oślepiające miazmaty: oślepia wrogów, chroni darkspawnów przed światłem
 /datum/reagent/darkspawn_darkness_smoke
-	name = "odd black liquid"
+	name = "dziwny czarny płyn"
 	description = "<::BŁĄD::> NIE MOŻNA PRZEANALIZOWAĆ ODCZYNNIKA <::BŁĄD::>"
 	color = "#000000"
 

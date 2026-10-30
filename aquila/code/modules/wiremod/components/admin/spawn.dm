@@ -4,7 +4,7 @@
  * Spawns an atom.
  */
 /obj/item/circuit_component/spawn_atom
-	display_name = "Spawn Atom"
+	display_name = "Spawn atomu"
 	desc = "Tworzy obiekt we wskazanym miejscu."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

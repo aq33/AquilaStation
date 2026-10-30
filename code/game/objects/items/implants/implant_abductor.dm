@@ -1,6 +1,6 @@
 /obj/item/implant/abductor
-	name = "recall implant"
-	desc = "Returns you to the mothership."
+	name = "implant powrotny"
+	desc = "Zabiera cię z powrotem na statek-matkę."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "implant"
 	activated = 1

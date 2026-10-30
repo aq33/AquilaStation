@@ -1,7 +1,7 @@
 // AQUILA - okno pustki, w które wędrowiec zamienia ściany (tg: voidwalker_window.dm)
 
 /obj/structure/window/fulltile/voidwalker
-	name = "void-smeared window"
+	name = "okno umazane pustką"
 	desc = "Okno tak przyciemnione, że po drugiej stronie widać tylko blask gwiazd. Nic się w nim nie odbija."
 	max_integrity = 75 // bez odporności okna wzmocnionego
 	/// Cząsteczki, żeby okno wyglądało upiornie

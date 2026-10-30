@@ -1,6 +1,6 @@
 /obj/structure/mopbucket
-	name = "mop bucket"
-	desc = "Fill it with water, but don't forget a mop!"
+	name = "wiadro na mop"
+	desc = "Napełnij je wodą, ale nie zapomnij o mopie!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
 	density = TRUE

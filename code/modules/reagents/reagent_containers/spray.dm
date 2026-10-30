@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/spray
-	name = "spray bottle"
-	desc = "A spray bottle, with an unscrewable top."
+	name = "spryskiwacz"
+	desc = "Spryskiwacz z odkręcaną nakrętką."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
@@ -105,7 +105,7 @@
 	set src in usr
 	if(usr.incapacitated())
 		return
-	if (alert(usr, "Na pewno chcesz to opróżnić?", "Opróżnij butelkę:", "Yes", "No") != "Yes")
+	if (alert(usr, "Na pewno chcesz to opróżnić?", "Opróżnij butelkę:", "Tak", "Nie") != "Tak")
 		return
 	if(isturf(usr.loc) && src.loc == usr)
 		to_chat(usr, "<span class='notice'>Opróżniasz [src] na podłogę.</span>")
@@ -129,8 +129,8 @@
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
-	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner! A warning label reads 'CAUTION! NOT SAFE FOR INGESTION'"
+	name = "kosmiczny środek czyszczący"
+	desc = "Niepieniący się kosmiczny środek czyszczący marki BLAM!. Etykieta ostrzega: „UWAGA! NIE DO SPOŻYCIA”"
 	volume = 100
 	list_reagents = list(/datum/reagent/space_cleaner = 100)
 	amount_per_transfer_from_this = 2
@@ -152,16 +152,16 @@
 
 //spray tan
 /obj/item/reagent_containers/spray/spraytan
-	name = "spray tan"
+	name = "samoopalacz w sprayu"
 	volume = 50
-	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
+	desc = "Samoopalacz w sprayu marki Gyaro. Nie pryskać w pobliżu oczu ani innych otworów ciała."
 	list_reagents = list(/datum/reagent/spraytan = 50)
 
 
 //pepperspray
 /obj/item/reagent_containers/spray/pepper
-	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
+	name = "gaz pieprzowy"
+	desc = "Produkt UhangInc. Służy do szybkiego oślepienia i powalenia przeciwnika."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
@@ -187,8 +187,8 @@
 
 //water flower
 /obj/item/reagent_containers/spray/waterflower
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist."
+	name = "wodny kwiatek"
+	desc = "Z pozoru niewinny słonecznik... z niespodzianką."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
@@ -200,8 +200,8 @@
 	return
 
 /obj/item/reagent_containers/spray/waterflower/superlube
-	name = "clown flower"
-	desc = "A delightly devilish flower... you got a feeling where this is going."
+	name = "klauński kwiatek"
+	desc = "Rozkosznie diabelski kwiatek... chyba wiesz, do czego to zmierza."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "clownflower"
 	volume = 30
@@ -218,8 +218,8 @@
 	can_fill_from_container = FALSE
 
 /obj/item/reagent_containers/spray/waterflower/cyborg/hacked
-	name = "nova flower"
-	desc = "This doesn't look safe at all..."
+	name = "kwiatek nova"
+	desc = "To wcale nie wygląda bezpiecznie..."
 	list_reagents = list(/datum/reagent/clf3 = 3)
 	volume = 3
 	generate_type = /datum/reagent/clf3
@@ -249,8 +249,8 @@
 
 //chemsprayer
 /obj/item/reagent_containers/spray/chemsprayer
-	name = "chem sprayer"
-	desc = "A utility used to spray large amounts of reagents in a given area."
+	name = "rozpylacz chemiczny"
+	desc = "Urządzenie do rozpylania dużych ilości odczynników na danym obszarze."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
@@ -288,8 +288,8 @@
 
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
-	name = "janitor chem sprayer"
-	desc = "A utility used to spray large amounts of cleaning reagents in a given area. It regenerates space cleaner by itself but it's unable to be fueled by normal means."
+	name = "rozpylacz chemiczny woźnego"
+	desc = "Urządzenie do rozpylania dużych ilości środków czyszczących na danym obszarze. Samo odnawia kosmiczny środek czyszczący, ale nie da się go napełnić zwykłym sposobem."
 	icon_state = "chemsprayer_janitor"
 	item_state = "chemsprayer_janitor"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -319,7 +319,7 @@
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor/clown
 	name = "lubinator 8000"
-	desc = "A modified industrial cleaning sprayer, capable of coating entire hallways in high performance lubricant, honk!"
+	desc = "Przerobiony przemysłowy rozpylacz czyszczący, który pokrywa całe korytarze wysokowydajnym lubrykantem, honk!"
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	list_reagents = list(/datum/reagent/lube = 1000)
@@ -328,7 +328,7 @@
 // Plant-B-Gone
 /obj/item/reagent_containers/spray/plantbgone // -- Skie
 	name = "Plant-B-Gone"
-	desc = "Kills those pesky weeds!"
+	desc = "Zabija uciążliwe chwasty!"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
@@ -363,27 +363,27 @@
 				reagents.add_reagent(set_reagent, 5)
 
 /obj/item/reagent_containers/spray/cyborg/drying_agent
-	name = "drying agent spray"
-	desc = "A spray for cleaning up wet floors."
+	name = "spray ze środkiem osuszającym"
+	desc = "Spray do osuszania mokrych podłóg."
 	color = "#A000A0"
 	set_reagent = /datum/reagent/drying_agent
 
 /obj/item/reagent_containers/spray/cyborg/plantbgone
 	name = "Plant-B-Gone"
-	desc = "A bottle of weed killer spray for stopping kudzu-based harm."
+	desc = "Spryskiwacz ze środkiem chwastobójczym, który powstrzymuje szkody od kudzu."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	set_reagent = /datum/reagent/toxin/plantbgone
 
 /obj/item/reagent_containers/spray/cyborg/lube
-	name = "lube spray"
-	desc = "A spray filled with space lube, for sabotaging the crew."
+	name = "spray z lubrykantem"
+	desc = "Spray z kosmicznym lubrykantem do sabotowania załogi."
 	color = "#009CA8"
 	set_reagent = /datum/reagent/lube
 
 /obj/item/reagent_containers/spray/cyborg/acid
-	name = "acid spray"
-	desc = "A spray filled with sulphuric acid for offensive use."
+	name = "spray z kwasem"
+	desc = "Spray z kwasem siarkowym do celów ofensywnych."
 	color = "#00FF32"
 	set_reagent = /datum/reagent/toxin/acid

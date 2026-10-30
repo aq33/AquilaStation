@@ -1,7 +1,7 @@
 //An ore-devouring but easily scared creature
 /mob/living/simple_animal/hostile/asteroid/goldgrub
-	name = "goldgrub"
-	desc = "A worm that grows fat from eating everything in its sight. Seems to enjoy precious metals and other shiny things, hence the name."
+	name = "złoty pędrak"
+	desc = "Robak, który tyje, pożerając wszystko, co zobaczy. Najwyraźniej uwielbia metale szlachetne i inne błyszczące rzeczy, stąd nazwa."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "Goldgrub"
 	icon_living = "Goldgrub"

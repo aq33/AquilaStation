@@ -12,7 +12,7 @@
 
 /datum/round_event/ghost_role/pulse_demon
 	minimum_required = 1
-	role_name = "pulse demon"
+	role_name = "demon impulsu"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/pulse_demon/spawn_role()
@@ -22,12 +22,12 @@
 
 	var/list/spawn_locs = pulse_demon_spawn_locations()
 	if(!length(spawn_locs))
-		message_admins("No powered cables found for a pulse demon, aborting...")
+		message_admins("Brak zasilanych kabli dla demona impulsu, przerywam...")
 		return MAP_ERROR
 
 	var/mob/dead/selected = pick(candidates)
 	var/mob/living/simple_animal/pulse_demon/demon = create_pulse_demon(selected.key, pick(spawn_locs))
-	message_admins("[ADMIN_LOOKUPFLW(demon)] has been made into a pulse demon by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(demon)] zostaje demonem impulsu przez event.")
 	log_game("[key_name(demon)] was spawned as a pulse demon by an event.")
 	spawned_mobs += demon
 	return SUCCESSFUL_SPAWN

@@ -1,6 +1,6 @@
 /obj/machinery/chem_dispenser/chem_synthesizer //formerly SCP-294 made by mrty, but now only for testing purposes
-	name = "\improper debug chemical synthesizer"
-	desc = "If you see this, yell at adminbus."
+	name = "\improper debugowy syntezator chemiczny"
+	desc = "Jeśli to widzisz, nakrzycz na adminów."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 	amount = 10

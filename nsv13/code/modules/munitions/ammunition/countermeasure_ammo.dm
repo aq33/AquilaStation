@@ -1,14 +1,14 @@
 /obj/item/ship_weapon/ammunition/countermeasure_charge //A single use of the countermeasure system
-	name = "three shot countermeasure tri-charge"
-	desc = "Three tri-charges of countermeasure chaff for a fighter"
+	name = "potrójny ładunek środków przeciwdziałania (3 strzały)"
+	desc = "Trzy potrójne ładunki flar dla myśliwca."
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "iff" //temp
 	var/restock_amount = 3
 	w_class = 3
 
 /obj/item/ship_weapon/ammunition/countermeasure_charge/five
-	name = "five shot countermeasure tri-charge"
-	desc = "Five tri-charges of countermeasure chaff for an upgraded countermeasure system"
+	name = "potrójny ładunek środków przeciwdziałania (5 strzałów)"
+	desc = "Pięć potrójnych ładunków flar do ulepszonego systemu środków przeciwdziałania."
 	icon_state = "iff" //temp :)
 	restock_amount = 5
 

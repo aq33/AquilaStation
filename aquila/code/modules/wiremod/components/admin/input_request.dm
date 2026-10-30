@@ -8,7 +8,7 @@
  * Requests an input from someone.
  */
 /obj/item/circuit_component/input_request
-	display_name = "Input Request"
+	display_name = "Prośba o dane"
 	desc = "Komponent, który prosi gracza o podanie wartości."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_ADMIN

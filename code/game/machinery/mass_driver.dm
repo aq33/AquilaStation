@@ -1,6 +1,6 @@
 /obj/machinery/mass_driver
-	name = "mass driver"
-	desc = "The finest in spring-loaded piston toy technology, now on a space station near you."
+	name = "wyrzutnia masowa"
+	desc = "Szczytowe osiągnięcie technologii zabawek na sprężynowy tłok, teraz na stacji kosmicznej w twojej okolicy."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
 	use_power = IDLE_POWER_USE

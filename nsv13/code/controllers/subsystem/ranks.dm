@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(pecking_order, world.file2list("config/ranks/pecking_order.txt"
 			if(jobs.group && jobs.group[1])
 				J.display_rank = "[jobs.group[1]]"
 			else
-				message_admins("No rank found for: [J.title]")
+				message_admins("Brak rangi dla: [J.title]")
 				missed += J
 				J.display_rank = ""
 		if(!length(missed))
@@ -23,11 +23,11 @@ GLOBAL_LIST_INIT(pecking_order, world.file2list("config/ranks/pecking_order.txt"
 			//Try to default rank-less jobs to another rank
 			var/datum/job/A = select_substitute_rank()
 			if(A)
-				message_admins("Substituting rank [A.display_rank] for missing ranks")
+				message_admins("Ranga [A.display_rank] zastępuje brakujące rangi")
 				for(var/datum/job/J in missed)
 					J.display_rank = A.display_rank
 		else
-			message_admins("No rank information found.")
+			message_admins("Nie znaleziono informacji o rangach.")
 
 /proc/check_outranks(atom/movable/us, atom/movable/them)
 	if (!CONFIG_GET(flag/show_ranks) || !GLOB.pecking_order?.len || them == us)
@@ -130,7 +130,7 @@ Checks two text ranks, see which one outranks the other. Used for squad rank ass
 // Admin verb to switch rank structure
 /client/proc/changeranks()
 	set name = "Change Ranks"
-	set desc = "Set the rank structure for the current round."
+	set desc = "Ustaw strukturę rang na bieżącą rundę."
 	set category = "Admin"
 
 	browse_rank_configs()
@@ -143,16 +143,16 @@ Checks two text ranks, see which one outranks the other. Used for squad rank ass
 	if(file_spam_check())
 		return
 
-	message_admins("[key_name_admin(src)] accessed file: [path]")
-	switch(alert("View (in game), Open (in your system's text editor), or Load?", path, "View", "Open", "Load"))
-		if ("View")
+	message_admins("[key_name_admin(src)] otwiera plik: [path]")
+	switch(alert("Podgląd (w grze), Otwórz (w edytorze tekstu systemu) czy Wczytaj?", path, "Podgląd", "Otwórz", "Wczytaj"))
+		if ("Podgląd")
 			src << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
-		if ("Open")
+		if ("Otwórz")
 			src << run(file(path))
-		if ("Load")
-			message_admins("[key_name_admin(src)] changed rank configuration to: [path]")
+		if ("Wczytaj")
+			message_admins("[key_name_admin(src)] zmienia konfigurację rang na: [path]")
 			SSjob.LoadRanks(path)
 		else
 			return
-	to_chat(src, "Attempting to send [path].")
+	to_chat(src, "Próba wysłania: [path].")
 	return

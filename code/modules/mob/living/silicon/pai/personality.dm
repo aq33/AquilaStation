@@ -51,7 +51,7 @@
 	if (isnull(version) || version != 1)
 		fdel(path)
 		if (!silent)
-			alert(user, "Your savefile was incompatible with this version and was deleted.")
+			alert(user, "Twój plik zapisu był niezgodny z tą wersją i został usunięty.")
 		return 0
 
 	F["name"] >> src.name

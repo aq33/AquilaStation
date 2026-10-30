@@ -14,7 +14,7 @@ BONUS
 //////////////////////////////////////
 */
 /datum/symptom/viraladaptation
-	name = "Viral Self-Adaptation"
+	name = "Samoadaptacja wirusa"
 	desc = "Wirus naśladuje działanie normalnych komórek ciała, przez co trudniej go wykryć i zwalczyć, ale wolniej się rozwija. Ten objaw zniechęca do mutacji choroby"
 	stealth = 3
 	resistance = 5
@@ -45,7 +45,7 @@ BONUS
 //////////////////////////////////////
 */
 /datum/symptom/viralevolution
-	name = "Viral Evolutionary Acceleration"
+	name = "Przyspieszenie ewolucji wirusa"
 	desc = "Wirus szybko przystosowuje się do jak najszybszego rozprzestrzeniania się zarówno na zewnątrz, jak i wewnątrz nosiciela. Przez to jednak łatwiej go wykryć i gorzej broni się przed lekarstwem. Ten objaw sprzyja mutacji choroby"
 	stealth = -2
 	resistance = -3
@@ -80,7 +80,7 @@ Bonus
 
 /datum/symptom/viralreverse
 
-	name = "Viral Aggressive Metabolism"
+	name = "Agresywny metabolizm wirusa"
 	desc = "Wirus poświęca długoterminową przeżywalność, by niemal natychmiast w pełni rozprzestrzenić się w nosicielu. Zaczyna od ostatniego stadium, ale w końcu sam zanika i obumiera."
 	stealth = 1
 	resistance = 1
@@ -135,7 +135,7 @@ Bonus
 */
 
 /datum/symptom/viralincubate
-	name = "Viral Suspended Animation"
+	name = "Wirusowe zawieszenie funkcji życiowych"
 	desc = "Wirus ma bardzo słabe działanie, dopóki nie osiągnie ostatniego stadium"
 	stealth = 4
 	resistance = -2
@@ -182,7 +182,7 @@ Bonus
 //////////////////////////////////////
 */
 /datum/symptom/viralpower
-	name = "Viral power multiplier"
+	name = "Mnożnik siły wirusa"
 	desc = "Wirus ma silniejsze objawy. Może mieć nieprzewidywalne skutki"
 	stealth = 2
 	resistance = 2

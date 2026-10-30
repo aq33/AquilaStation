@@ -3,7 +3,7 @@
 // Macki cienia wojownika
 
 /obj/item/umbral_tendrils
-	name = "umbral tendrils"
+	name = "mroczne macki"
 	desc = "Masa pulsujących, chitynowych macek z odsłoniętym fioletowym ciałem."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "umbral_tendrils"
@@ -161,7 +161,7 @@
 	darkspawn.spend_psi(30)
 
 /obj/item/projectile/umbral_tendrils
-	name = "umbral tendrils"
+	name = "mroczne macki"
 	icon_state = "cursehand0"
 	hitsound = 'aquila/sound/darkspawn/pass_attack.ogg'
 	layer = LARGE_MOB_LAYER
@@ -217,7 +217,7 @@
 // Laska skupienia czarnoksiężnika
 
 /obj/item/gun/magic/darkspawn
-	name = "channeling staff"
+	name = "laska skupienia"
 	desc = "Laska z czystej ciemności."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "shadow_staff"
@@ -292,7 +292,7 @@
 		P.effect_flags = staff.effect_flags
 
 /obj/item/projectile/magic/darkspawn
-	name = "bolt of nothingness"
+	name = "pocisk nicości"
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_projectiles.dmi'
 	icon_state = "staff_blast"
 	damage = 35
@@ -333,7 +333,7 @@
 // Miotacz cieni zwiadowcy
 
 /obj/item/gun/ballistic/bow/shadow_caster
-	name = "shadow caster"
+	name = "łuk cieni"
 	desc = "Łuk z litej ciemności. Wystrzeliwane z niego strzały zdają się wysysać światło z otoczenia."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "shadow_caster"
@@ -383,14 +383,14 @@
 	start_empty = FALSE
 
 /obj/item/ammo_casing/caseless/arrow/shadow
-	name = "shadow arrow"
+	name = "strzała cienia"
 	desc = "Zdaje się wysysać światło z otoczenia."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
 	projectile_type = /obj/item/projectile/bullet/shadow_arrow
 
 /obj/item/projectile/bullet/shadow_arrow
-	name = "shadow arrow"
+	name = "strzała cienia"
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_projectiles.dmi'
 	icon_state = "caster_arrow"
 	damage = 25
@@ -412,7 +412,7 @@
 // Pułapki psi zwiadowcy
 
 /obj/structure/trap/darkspawn
-	name = "void rune"
+	name = "runa pustki"
 	desc = "Dziwne, ulotne cienie splecione w niezwykłe symbole."
 	max_integrity = 75
 	time_between_triggers = 1 MINUTES
@@ -497,7 +497,7 @@
 
 /// Ciemne sidła z pułapki unieruchamiającej
 /obj/item/restraints/legcuffs/beartrap/dark
-	name = "dark snare"
+	name = "mroczne sidła"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	armed = TRUE
 	icon_state = "e_snare"
@@ -526,7 +526,7 @@
 // Psioniczna bariera z Divulge i Sakramentu
 
 /obj/structure/psionic_barrier
-	name = "psionic barrier"
+	name = "bariera psioniczna"
 	desc = "Migoczące fioletowe drobiny tańczące w powietrzu. Nie da się przez nie przejść."
 	max_integrity = 200
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_effects.dmi'
@@ -564,7 +564,7 @@
 // Panopticon: ciemna kula do patrzenia oczami sojuszników
 
 /obj/structure/darkspawn_panopticon
-	name = "dark orb"
+	name = "mroczna kula"
 	desc = "Niepokojąca, wirująca masa ciemności. Kto w nią patrzy, zdaje się poznawać zakazaną wiedzę."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "panopticon"
@@ -643,7 +643,7 @@ GLOBAL_LIST_EMPTY(darkspawn_void_eyes)
 
 /// Oko pustki: unoszące się oko, przez które patrzy Panopticon
 /obj/structure/darkspawn_void_eye
-	name = "void eye"
+	name = "oko pustki"
 	desc = "Unoszące się oko z ciemności. Zdaje się na ciebie patrzeć."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_items.dmi'
 	icon_state = "camera"
@@ -663,7 +663,7 @@ GLOBAL_LIST_EMPTY(darkspawn_void_eyes)
 // Macki otchłani czarnoksiężnika
 
 /obj/effect/temp_visual/goliath_tentacle/darkspawn
-	name = "darkspawn tendril"
+	name = "macka darkspawna"
 	desc = "Coś wyciąga się zza zasłony."
 	light_system = MOVABLE_LIGHT
 	light_range = 1

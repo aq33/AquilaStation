@@ -6,8 +6,8 @@ FLOOR SAFES
 
 //SAFES
 /obj/structure/safe
-	name = "safe"
-	desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Scarborough Arms - 2 tumbler safe, guaranteed thermite resistant, explosion resistant, and assistant resistant.\""
+	name = "sejf"
+	desc = "Ogromny blok metalu z wbudowanym pokrętłem. Drobny druk na pokrętle głosi: „Scarborough Arms – sejf z 2 zapadkami, gwarantowana odporność na termit, wybuchy i asystentów”."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "safe"
 	anchored = TRUE
@@ -57,7 +57,7 @@ FLOOR SAFES
 			to_chat(user, "<span class='italics'>Słyszysz [pick("dzyń", "brzdęk", "plink")] z [src].</span>")
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
 		if(user)
-			visible_message("<i><b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!</b></i>")
+			visible_message("<i><b>[pick("Klik", "Klak", "Bdziong", "Brzdęk", "Chrup")]!</b></i>")
 		return TRUE
 	return FALSE
 
@@ -112,16 +112,16 @@ FLOOR SAFES
 		explosion_count++
 		switch(explosion_count)
 			if(1)
-				desc = initial(desc) + "\nIt looks a little banged up."
+				desc = initial(desc) + "\nWygląda na trochę poobijany."
 			if(2)
-				desc = initial(desc) + "\nIt's pretty heavily damaged."
+				desc = initial(desc) + "\nJest dość mocno uszkodzony."
 			if(3)
-				desc = initial(desc) + "\nThe lock seems to be broken."
+				desc = initial(desc) + "\nZamek wygląda na zepsuty."
 
 
 //FLOOR SAFES
 /obj/structure/safe/floor
-	name = "floor safe"
+	name = "sejf podłogowy"
 	icon_state = "floorsafe"
 	density = FALSE
 	level = 1	//underfloor

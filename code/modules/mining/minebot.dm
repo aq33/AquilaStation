@@ -4,8 +4,8 @@
 #define MODE_MINING "mining" /// Ore collection/mining mode for AI, plasma cutter usage mode for players
 
 /mob/living/simple_animal/hostile/mining_drone
-	name = "minebot"
-	desc = "A small robot used to support miners. It can be set to search and collect loose ore, mine any ore it detects, or help fend off wildlife. It is equipped with a mining drill and kinetic accelerator, with mounting points for a plasma cutter."
+	name = "robot górniczy"
+	desc = "Mały robot wspierający górników. Można go ustawić, by szukał i zbierał luźną rudę, wydobywał każdą wykrytą rudę albo pomagał odpierać dziką faunę. Ma wiertło górnicze i kinetyczny akcelerator oraz uchwyt na przecinarkę plazmową."
 	gender = NEUTER
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "mining_drone"
@@ -494,7 +494,7 @@
 
 /// Toggles a minebot's inbuilt meson scanners.
 /datum/action/innate/minedrone/toggle_meson_vision
-	name = "Toggle Meson Vision"
+	name = "Przełącz wizję mezonową"
 	icon_icon = 'icons/obj/clothing/glasses.dmi'
 	button_icon_state = "trayson-"
 
@@ -516,7 +516,7 @@
 
 /// Toggles a minebot's inbuilt light.
 /datum/action/innate/minedrone/toggle_light
-	name = "Toggle Light"
+	name = "Przełącz światło"
 	button_icon_state = "mech_lights_off"
 
 /datum/action/innate/minedrone/toggle_light/Activate()
@@ -528,7 +528,7 @@
 
 /// Toggles the minebot's mode from combat to mining mode, effectively switching between the minebot's plasma cutter and PKA.
 /datum/action/innate/minedrone/toggle_mode
-	name = "Toggle Mode"
+	name = "Przełącz tryb"
 	button_icon_state = "mech_zoom_off"
 
 /datum/action/innate/minedrone/toggle_mode/Activate()
@@ -539,7 +539,7 @@
 
 /// Allows a minebot to manually dump its own ore.
 /datum/action/innate/minedrone/dump_ore
-	name = "Dump Ore"
+	name = "Zrzuć rudę"
 	button_icon_state = "mech_eject"
 
 /datum/action/innate/minedrone/dump_ore/Activate()
@@ -548,7 +548,7 @@
 
 /// Toggles a minebot's mining scanner on and off.
 /datum/action/innate/minedrone/toggle_scanner
-	name = "Toggle Mining Scanner"
+	name = "Przełącz skaner górniczy"
 	button_icon_state = "mech_cycle_equip_off"
 
 /datum/action/innate/minedrone/toggle_scanner/Activate()
@@ -564,8 +564,8 @@
 // Base
 /// The abstract for minebot upgrades. This handles all the equipping/unequipping stuff so we don't have to repeat it for each upgrade.
 /obj/item/minebot_upgrade
-	name = "generic minebot upgrade"
-	desc = "A generic minebot upgrade. It doesn't seem to do anything."
+	name = "ogólne ulepszenie robota górniczego"
+	desc = "Ogólne ulepszenie robota górniczego. Chyba nic nie robi."
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	var/mob/living/simple_animal/hostile/mining_drone/linked_bot
@@ -604,8 +604,8 @@
 // Health Bonus
 // Gives a health bonus to the minebot.
 /obj/item/minebot_upgrade/health
-	name = "minebot armor upgrade"
-	desc = "Improves a minebot's armor, allowing them to sustain more damage before being disabled."
+	name = "ulepszenie pancerza robota górniczego"
+	desc = "Wzmacnia pancerz robota górniczego, dzięki czemu wytrzymuje więcej obrażeń, zanim zostanie unieruchomiony."
 	var/health_upgrade = 45
 
 /obj/item/minebot_upgrade/health/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/minebot, mob/user)
@@ -622,8 +622,8 @@
 // Automatic Ore Pickup
 /// This allows a minebot to automatically pick up ore as they walk over it.
 /obj/item/minebot_upgrade/ore_pickup
-	name = "minebot ore scoop upgrade"
-	desc = "Allows a minebot to automatically pick up ores while moving."
+	name = "ulepszenie robota górniczego: szufla do rudy"
+	desc = "Pozwala robotowi górniczemu automatycznie zbierać rudę w ruchu."
 
 /obj/item/minebot_upgrade/ore_pickup/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/minebot, mob/user)
 	if(!..())
@@ -642,8 +642,8 @@
 // Medical
 /// This allows a minebot to carry medipens and use them on other mobs (ideally dying miners).
 /obj/item/minebot_upgrade/medical
-	name = "minebot medical upgrade"
-	desc = "Allows a sentient minebot to carry and administer a medipen."
+	name = "ulepszenie medyczne robota górniczego"
+	desc = "Pozwala świadomemu robotowi górniczemu nosić i podawać medipen."
 	var/obj/item/reagent_containers/hypospray/medipen/stored_medipen
 
 /obj/item/minebot_upgrade/medical/Initialize()
@@ -657,7 +657,7 @@
 /obj/item/minebot_upgrade/medical/examine(mob/user)
 	. = ..()
 	if(stored_medipen)
-		. += "<span class='notice'>[src] contains \a [stored_medipen].</span>"
+		. += "<span class='notice'>[src] zawiera: [stored_medipen].</span>"
 		return
 	. += "<span class='notice'>Do [src] nie jest przymocowany żaden medipen.</span>"
 
@@ -665,7 +665,7 @@
 /obj/item/minebot_upgrade/medical/get_stat_data()
 	if(stored_medipen)
 		return list("Przechowywany medipen", "[stored_medipen]")
-	return list("Przechowywany medipen", "None")
+	return list("Przechowywany medipen", "Brak")
 
 // Handles manually loading/unloading medipens.
 /obj/item/minebot_upgrade/medical/attackby(obj/item/item, mob/living/user, params)
@@ -706,8 +706,8 @@
 // Anti-Weather
 // This allows a minebot to survive lava and ash storms
 /obj/item/minebot_upgrade/antiweather
-	name = "minebot weatherproof chassis"
-	desc = "A chassis reinforcement kit that allows a minebot to withstand exposure to high winds and molten rock."
+	name = "odporne na pogodę podwozie robota górniczego"
+	desc = "Zestaw wzmacniający podwozie, dzięki któremu robot górniczy wytrzymuje silny wiatr i roztopioną skałę."
 
 /obj/item/minebot_upgrade/antiweather/upgrade_bot(mob/living/simple_animal/hostile/mining_drone/minebot, mob/user)
 	. = ..()
@@ -722,8 +722,8 @@
 // Minebot Sentience
 
 /obj/item/slimepotion/slime/sentience/mining
-	name = "minebot AI upgrade"
-	desc = "Can be used to grant sentience to minebots."
+	name = "ulepszenie SI robota górniczego"
+	desc = "Może nadać robotom górniczym świadomość."
 	icon_state = "door_electronics"
 	icon = 'icons/obj/module.dmi'
 	sentience_type = SENTIENCE_MINEBOT

@@ -2,7 +2,7 @@
 
 /client/proc/select_syndie_role() //Lets you pick your Syndicate roles!
 	set name = "Select Syndicate Role"
-	set desc = "Set your syndicate role prefs"
+	set desc = "Ustaw preferowaną rolę w załodze Syndykatu"
 	set category = "OOC"
 	var/datum/syndicate_job_menu/js  = new(usr)//create the datum
 	js.ui_interact(usr)//datum has a tgui component, here we open the window
@@ -24,7 +24,7 @@
 /datum/syndicate_job_menu/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "SyndieJobSelect")
+		ui = new(user, src, "SyndieJobSelect", "Wybór roli Syndykatu")
 		ui.open()
 
 /datum/syndicate_job_menu/ui_data(mob/user)
@@ -83,8 +83,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 
 //Example only, never instantiated.
 /datum/syndicate_crew_role
-	var/name = "Syndicate Shipside Crew"
-	var/desc = "Do your job"
+	var/name = "Załoga okrętowa Syndykatu"
+	var/desc = "Rób swoje"
 	var/preference_flag = null
 	var/antag_datum_type = /datum/antagonist/nukeop/syndi_crew
 	var/essential = TRUE //Does this role _need_ to be filled? 90% of them do!
@@ -101,8 +101,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 //Priority 1: Captain. We _always_ need a captain! Anything from this point on is in DESCENDING ORDER of priority! With autofill being the absolute last.
 
 /datum/syndicate_crew_role/captain
-	name = "Syndicate Captain"
-	desc = "Wield the might of an advanced Syndicate battlecruiser and ensure Nanotrasen's presence in this sector is severely diminished. Primary duties: Lead the ship into battle, coordinate with the strategist and enact any maneuvers they see fit, outperform your Nanotrasen counterpart."
+	name = "Kapitan Syndykatu"
+	desc = "Dowodzisz potęgą zaawansowanego krążownika liniowego Syndykatu i dbasz o to, żeby obecność Nanotrasen w tym sektorze mocno osłabła. Główne obowiązki: prowadź statek do walki, współpracuj ze strategiem i wykonuj manewry, które uzna za stosowne, przewyższ swojego odpowiednika z Nanotrasen."
 	preference_flag = CONQUEST_ROLE_CAPTAIN
 	antag_datum_type = /datum/antagonist/nukeop/leader/syndi_crew
 
@@ -119,54 +119,54 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 
 //Syndicate ID card that isn't the agent card for the crew
 /obj/item/card/id/syndi_crew
-	name = "\improper Syndicate ID Card"
+	name = "identyfikator Syndykatu"
 	icon_state = "syndicate"
 	item_state = "syndicate_id"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
-	assignment = "Crew"
+	assignment = "Załogant"
 
 /obj/item/card/id/syndi_crew/captain
-	name = "\improper Captain's ID"
+	name = "identyfikator kapitana"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER, ACCESS_SYNDICATE_ENGINEERING, ACCESS_SYNDICATE_REQUISITIONS, ACCESS_SYNDICATE_MARINE_ARMOURY)
 	assignment = JOB_NAME_CAPTAIN
 
 /obj/item/card/id/syndi_crew/admiral
-	name = "\improper Strategist's ID"
+	name = "identyfikator stratega"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER, ACCESS_SYNDICATE_ENGINEERING, ACCESS_SYNDICATE_REQUISITIONS, ACCESS_SYNDICATE_MARINE_ARMOURY)
-	assignment = "Strategist"
+	assignment = "Strateg"
 
 /obj/item/card/id/syndi_crew/requisitions_officer
-	name = "\improper Requisitions Officer's ID"
+	name = "identyfikator kwatermistrza"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_REQUISITIONS)
-	assignment = "Requisitions Officer"
+	assignment = "Kwatermistrz"
 
 /obj/item/card/id/syndi_crew/bridge
-	name = "\improper Bridge Crew's ID"
-	assignment = "Bridge Crew"
+	name = "identyfikator załogi mostka"
+	assignment = "Załoga mostka"
 
 /obj/item/card/id/syndi_crew/technician
-	name = "\improper Ship Technician's ID"
+	name = "identyfikator technika okrętowego"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_ENGINEERING)
-	assignment = "Ship Technician"
+	assignment = "Technik okrętowy"
 
 /obj/item/card/id/syndi_crew/cag
-	name = "\improper Commander Air Group's ID"
-	assignment = "Commander Air Group"
+	name = "identyfikator dowódcy grupy lotniczej"
+	assignment = "Dowódca grupy lotniczej"
 
 /obj/item/card/id/syndi_crew/pilot
-	name = "\improper Pilot's ID"
+	name = "identyfikator pilota"
 	assignment = JOB_NAME_PILOT
 
 /obj/item/card/id/syndi_crew/marine_sergeant
-	name = "\improper Marine Sergeant's ID"
+	name = "identyfikator sierżanta piechoty"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_SYNDICATE_MARINE_ARMOURY)
 
 /obj/item/card/id/syndi_crew/chef
-	name = "\improper Line Cook's ID"
-	assignment = "Line Cook"
+	name = "identyfikator kucharza"
+	assignment = "Kucharz"
 
 /obj/item/card/id/syndi_crew/marine
-	name = "\improper Marine's ID"
+	name = "identyfikator żołnierza piechoty"
 	assignment = JOB_NAME_ASSISTANT
 
 //Syndicate crew outfits
@@ -206,11 +206,11 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	uplink_type = null //Nope :) Go to the req officer you ungas.
 
 /datum/antagonist/nukeop/leader/syndi_crew/give_alias()
-	title = pick("Captain", "Commander", "Commodore")
+	title = pick("Kapitan", "Komandor porucznik", "Komandor")
 	if(nuke_team && nuke_team.syndicate_name)
 		owner.current.real_name = "[nuke_team.syndicate_name] [title]"
 	else
-		owner.current.real_name = "Syndicate [title]"
+		owner.current.real_name = "[title] Syndykatu"
 
 /datum/antagonist/nukeop/leader/syndi_crew/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0)
@@ -221,8 +221,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 
 //Syndicate crew roles, defined in order of priority.
 /datum/syndicate_crew_role/strategist
-	name = "Syndicate Strategist"
-	desc = "Syndicate strategists are specialist admirals assigned to assist Captains with making tactical decisions in the heat of battle. Although the captain has the final say in decisions, your job is to think strategically and suggest possible strategies to the crew."
+	name = "Strateg Syndykatu"
+	desc = "Stratedzy Syndykatu to wyspecjalizowani admirałowie przydzieleni do pomocy kapitanom w podejmowaniu decyzji taktycznych w ogniu walki. Ostatnie słowo należy do kapitana, ale twoim zadaniem jest myśleć strategicznie i podsuwać załodze możliwe strategie."
 	preference_flag = CONQUEST_ROLE_ADMIRAL
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/strategist
 	essential = FALSE
@@ -255,8 +255,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	owner.announce_objectives()
 
 /datum/syndicate_crew_role/requisitions_officer
-	name = "Syndicate Requisitions Officer"
-	desc = "As the defacto master at arms / Quartermaster aboard Syndicate vessels, the requisitions officer is authorised to use the ship's budget to keep weaponry loaded and the crew effective. This is mostly done by communicating with traders."
+	name = "Kwatermistrz Syndykatu"
+	desc = "Jako faktyczny mistrz broni i kwatermistrz na statkach Syndykatu, kwatermistrz może wydawać budżet statku, żeby broń była załadowana, a załoga skuteczna. Robi to głównie przez kontakty z handlarzami."
 	preference_flag = CONQUEST_ROLE_REQUISITIONS
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/requisitions_officer
 
@@ -265,8 +265,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	nukeop_outfit = /datum/outfit/syndicate/no_crystals/syndi_crew/requisitions
 
 /obj/item/clothing/suit/ship/syndicate_crew/syndicate_requisitions
-	name = "Syndicate Requisitions Officer's Jacket"
-	desc = "A suit worn by the man who decides whether the ship has enough budget to buy another fighter because you exploded yours."
+	name = "kurtka kwatermistrza Syndykatu"
+	desc = "Strój człowieka, który decyduje, czy w budżecie statku starczy na kolejny myśliwiec, bo swój właśnie wysadziłeś."
 	icon_state = "syndicate_requisitions"
 
 /datum/outfit/syndicate/no_crystals/syndi_crew/requisitions
@@ -281,8 +281,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	l_pocket = /obj/item/card/id/departmental_budget/syndicate
 
 /datum/syndicate_crew_role/bridge
-	name = "Syndicate Bridge Staff"
-	desc = "Syndicate bridge operatives are responsible for flying the ship and eliminating enemy targets."
+	name = "Załoga mostka Syndykatu"
+	desc = "Operatorzy mostka Syndykatu odpowiadają za pilotowanie statku i eliminowanie wrogich celów."
 	preference_flag = CONQUEST_ROLE_BRIDGE
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/bridge
 	max_count = 2
@@ -300,8 +300,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/bridge
 
 /datum/syndicate_crew_role/technician
-	name = "Syndicate Technician"
-	desc = "Shipside techs are engineers who specialise in supplying a ship with power, maintaining its weapons, and launching its fighters."
+	name = "Technik Syndykatu"
+	desc = "Technicy okrętowi to inżynierowie, którzy specjalizują się w zasilaniu statku, konserwacji jego uzbrojenia i wypuszczaniu myśliwców."
 	preference_flag = CONQUEST_ROLE_TECHNICIAN
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/technician
 	max_count = 4
@@ -320,8 +320,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/technician
 
 /datum/syndicate_crew_role/cag
-	name = "Syndicate CAG"
-	desc = "The commander of air group leads the air assault wing into battle. The pilots all look to you for orders, so stay frosty, however you'll often find yourself performing ATC duties if there are no techs available."
+	name = "CAG Syndykatu"
+	desc = "Dowódca grupy lotniczej prowadzi skrzydło szturmowe do walki. Wszyscy piloci czekają na twoje rozkazy, więc zachowaj zimną krew. Często jednak, gdy brakuje techników, sam zajmujesz się kontrolą lotów."
 	preference_flag = CONQUEST_ROLE_CAG
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/cag
 
@@ -338,8 +338,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/cag
 
 /datum/syndicate_crew_role/pilot
-	name = "Syndicate Fighter Pilot"
-	desc = "Syndicate fighter pilots have shorter average life expectancies than WW1 biplane pilots and are assigned to fly the Syndicate's fighter jets in close air support of their carrier ship under the command of the CAG."
+	name = "Pilot myśliwca Syndykatu"
+	desc = "Piloci myśliwców Syndykatu żyją średnio krócej niż piloci dwupłatowców z I wojny światowej. Pod dowództwem CAG latają myśliwcami Syndykatu, zapewniając bliskie wsparcie powietrzne swojemu lotniskowcowi."
 	preference_flag = CONQUEST_ROLE_PILOT
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/pilot
 	max_count = 4
@@ -356,8 +356,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/pilot
 
 /datum/syndicate_crew_role/sergeant
-	name = "Syndicate Marine Sergeant"
-	desc = "Syndicate Sergeants lead Syndicate shipside security forces in repelling boarders, or conducting sabotage against enemy ships. This role coordinates with requisitions to arm up boarding parties, or enforce ship law."
+	name = "Sierżant piechoty Syndykatu"
+	desc = "Sierżanci Syndykatu dowodzą okrętowymi siłami bezpieczeństwa Syndykatu przy odpieraniu abordażu albo sabotowaniu wrogich statków. Ta rola współpracuje z kwatermistrzem przy uzbrajaniu grup abordażowych i pilnuje prawa na statku."
 	preference_flag = CONQUEST_ROLE_SERGEANT
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/sergeant
 
@@ -374,8 +374,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/marine_sergeant
 
 /datum/syndicate_crew_role/clown
-	name = "Syndicate Clown"
-	desc = "Because what ship would be complete without its beloved clown. Keep the crew entertained through wacky exploits, and turn into a hyper-competent killing machine when called upon."
+	name = "Klaun Syndykatu"
+	desc = "Bo który statek byłby kompletny bez ukochanego klauna? Zabawiaj załogę szalonymi wybrykami, a gdy trzeba, zmieniaj się w nadzwyczaj skuteczną maszynę do zabijania."
 	preference_flag = CONQUEST_ROLE_CLOWN
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/clown
 	essential = FALSE //No, just no
@@ -394,8 +394,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	head = /obj/item/clothing/head/delinquent
 
 /datum/syndicate_crew_role/line_cook
-	name = "Syndicate Line Cook"
-	desc = "Syndicate line cooks are non-combat personnel who ensure that the crew stays fed and morale is high. Unlike your NT counterpart, Syndicate cooks also get free reign of botany and the bar and are expected to be self sufficient in feeding and maintaining the crew's welfare."
+	name = "Kucharz Syndykatu"
+	desc = "Kucharze Syndykatu to personel niebojowy, który dba o to, żeby załoga była najedzona, a morale wysokie. W przeciwieństwie do kucharzy NT kucharze Syndykatu mają też wolną rękę w botanice i barze i sami muszą zadbać o wyżywienie i dobre samopoczucie załogi."
 	preference_flag = CONQUEST_ROLE_LINECOOK
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/line_cook
 	essential = FALSE
@@ -412,8 +412,8 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	id = /obj/item/card/id/syndi_crew/chef
 
 /datum/syndicate_crew_role/marine
-	name = "Autofill"
-	desc = "Let the game randomly assign you to a job. This usually relegates you to doing grunt security or boarding work under the Sergeant!"
+	name = "Przydział automatyczny"
+	desc = "Gra losowo przydzieli ci stanowisko. Zwykle kończy się to czarną robotą w ochronie albo przy abordażu pod dowództwem sierżanta!"
 	preference_flag = CONQUEST_ROLE_GRUNT
 	antag_datum_type = /datum/antagonist/nukeop/syndi_crew/marine
 	max_count = INFINITY
@@ -453,7 +453,7 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	if(istype(SSticker.mode, /datum/game_mode/pvp))
 		var/datum/game_mode/pvp/mode = SSticker.mode
 		var/list/parts = list()
-		parts += "<span class='header'>[syndicate_name] Crewmen:</span>"
+		parts += "<span class='header'>Załoga [syndicate_name]:</span>"
 
 		var result = get_result()
 		//First off, did they manage to nuke the ship?
@@ -531,7 +531,7 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 
 //Ultra stripped down ID console for assigning secondary ship accesses.
 /obj/machinery/computer/secondary_ship_id_console
-	name = "secondary ship ID console"
+	name = "pomocnicza konsola identyfikatorów"
 	circuit = /obj/item/circuitboard/computer/card/secondary_ship_id_console
 	icon_screen = "idhos"
 	light_color = LIGHT_COLOR_RED
@@ -556,7 +556,7 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	ui = new(user, src, "SecondaryID")
+	ui = new(user, src, "SecondaryID", "Konsola identyfikatorów")
 	ui.open()
 
 /obj/machinery/computer/secondary_ship_id_console/ui_data(mob/user)
@@ -618,13 +618,13 @@ Singleton to handle conquest roles. This exists to populate the roles list and n
 	modifying = null
 
 /obj/machinery/computer/secondary_ship_id_console/syndicate
-	name = "Syndicate Navy ID console"
-	target_accesses = list("General Syndicate Access" = ACCESS_SYNDICATE, "Syndicate Engineering" = ACCESS_SYNDICATE_ENGINEERING, "Syndicate Captain" = ACCESS_SYNDICATE_LEADER, "Syndicate Armoury" = ACCESS_SYNDICATE_MARINE_ARMOURY, "Syndicate Requisitions" = ACCESS_SYNDICATE_REQUISITIONS)
+	name = "konsola identyfikatorów floty Syndykatu"
+	target_accesses = list("Ogólny dostęp Syndykatu" = ACCESS_SYNDICATE, "Inżynieria Syndykatu" = ACCESS_SYNDICATE_ENGINEERING, "Kapitan Syndykatu" = ACCESS_SYNDICATE_LEADER, "Zbrojownia Syndykatu" = ACCESS_SYNDICATE_MARINE_ARMOURY, "Zaopatrzenie Syndykatu" = ACCESS_SYNDICATE_REQUISITIONS)
 	req_one_access = list(ACCESS_SYNDICATE_LEADER) //Syndicate captain does the XO's job.
 	theme = "syndicate"
 	circuit = /obj/item/circuitboard/computer/card/secondary_ship_id_console/syndicate
 
 /obj/machinery/computer/security/syndicate
-	name = "Syndicate Camera Console"
+	name = "konsola kamer Syndykatu"
 	network = list("syndicate") //I hate all of you
 	circuit = /obj/item/circuitboard/computer/security/syndicate

@@ -1,5 +1,5 @@
 /obj/item/chameleon
-	name = "chameleon-projector"
+	name = "projektor kameleona"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	flags_1 = CONDUCT_1
@@ -54,7 +54,7 @@
 		if(!(istype(target, /obj/effect/decal))) //be a footprint
 			return
 	playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-	to_chat(user, "<span class='notice'>Scanned [target].</span>")
+	to_chat(user, "<span class='notice'>Skanujesz: [target].</span>")
 	var/obj/temp = new/obj()
 	temp.appearance = target.appearance
 	temp.layer = initial(target.layer) // scanning things in your inventory

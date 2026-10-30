@@ -1,7 +1,7 @@
 ///We pump liquids from activated(plungerated) geysers to a plumbing outlet. We need to be wired.
 /obj/machinery/power/liquid_pump
-	name = "liquid pump"
-	desc = "Pump up those sweet liquids from under the surface."
+	name = "pompa cieczy"
+	desc = "Wypompuj spod powierzchni te słodkie płyny."
 	icon = 'aquila/icons/obj/plumbing/plumbers.dmi'
 	icon_state = "pump"
 	anchored = FALSE

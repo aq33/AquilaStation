@@ -1,6 +1,6 @@
 /datum/language/draconic
-	name = "Draconic"
-	desc = "The common language of lizard-people, composed of sibilant hisses and rattles."
+	name = "Drakoński"
+	desc = "Wspólny język jaszczuroludzi, złożony z syczenia i grzechotania."
 	speech_verb = "syczy"
 	ask_verb = "syczy"
 	exclaim_verb = "ryczy"

@@ -1,6 +1,6 @@
 /obj/machinery/wish_granter
-	name = "wish granter"
-	desc = "You're not so sure about this, anymore..."
+	name = "spełniacz życzeń"
+	desc = "Już nie jesteś tego taki pewny..."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 

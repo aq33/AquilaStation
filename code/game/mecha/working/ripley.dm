@@ -1,5 +1,5 @@
 /obj/mecha/working/ripley
-	desc = "Autonomous Power Loader Unit MK-I. Designed primarily around heavy lifting, the Ripley can be outfitted with utility equipment to fill a number of roles."
+	desc = "Autonomiczny ładowacz energetyczny MK-I. Ripley powstał głównie do dźwigania ciężarów, ale z odpowiednim wyposażeniem użytkowym nadaje się do wielu zadań."
 	name = "\improper APLU MK-I \"Ripley\""
 	icon_state = "ripley"
 	silicon_icon_state = "ripley-empty"
@@ -73,7 +73,7 @@
 
 
 /obj/mecha/working/ripley/mkii
-	desc = "Autonomous Power Loader Unit MK-II. This prototype Ripley is refitted with a pressurized cabin, trading its prior speed for atmospheric protection"
+	desc = "Autonomiczny ładowacz energetyczny MK-II. Ten prototypowy Ripley ma hermetyczną kabinę – kosztem dawnej szybkości zyskuje ochronę przed atmosferą."
 	name = "\improper APLU MK-II \"Ripley\""
 	icon_state = "ripleymkii"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
@@ -87,7 +87,7 @@
 	opacity = TRUE
 
 /obj/mecha/working/ripley/firefighter
-	desc = "Autonomous Power Loader Unit MK-III. This model is refitted with a pressurized cabin and additional hazard protection."
+	desc = "Autonomiczny ładowacz energetyczny MK-III. Ten model ma hermetyczną kabinę i dodatkową ochronę przed zagrożeniami."
 	name = "\improper APLU MK-III \"Firefighter\""
 	icon_state = "firefighter"
 	max_temperature = 65000
@@ -108,7 +108,7 @@
 
 
 /obj/mecha/working/ripley/deathripley
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
+	desc = "O CHOLERA, TO SZWADRON ŚMIERCI, WSZYSCY ZGINIEMY"
 	name = "\improper DEATH-RIPLEY"
 	icon_state = "deathripley"
 	fast_pressure_step_in = 2 //step_in while in low pressure conditions
@@ -130,7 +130,7 @@
 	ME.attach(src)
 
 /obj/mecha/working/ripley/deathripley/real
-	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE. FOR REAL"
+	desc = "O CHOLERA, TO SZWADRON ŚMIERCI, WSZYSCY ZGINIEMY. NAPRAWDĘ"
 
 /obj/mecha/working/ripley/deathripley/real/Initialize(mapload)
 	. = ..()
@@ -142,7 +142,7 @@
 	ME.attach(src)
 
 /obj/mecha/working/ripley/mining
-	desc = "An old, dusty mining Ripley."
+	desc = "Stary, zakurzony górniczy Ripley."
 	name = "\improper APLU \"Miner\""
 	obj_integrity = 75 //Low starting health
 

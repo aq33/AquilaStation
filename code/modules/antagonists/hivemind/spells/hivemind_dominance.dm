@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/self/hive_dominance
-	name = "One Mind"
-	desc = "Our true power... finally within reach."
+	name = "Jeden umysł"
+	desc = "Nasza prawdziwa moc... wreszcie w zasięgu."
 	panel = "Hivemind Abilities"
 	charge_type = "charges"
 	charge_max = 1
@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/self/hive_dominance/cast(mob/living/user = usr)
 	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
 	if(!hive)
-		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		to_chat(user, "<span class='notice'>To błąd. Kod: HIVE1</span>")
 		return
 	hive.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
 	for(var/datum/antagonist/hivevessel/vessel in hive.avessels)

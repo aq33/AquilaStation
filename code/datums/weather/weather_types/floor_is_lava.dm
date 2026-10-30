@@ -1,7 +1,7 @@
 //Causes fire damage to anyone not standing on a dense object.
 /datum/weather/floor_is_lava
-	name = "the floor is lava"
-	desc = "The ground turns into surprisingly cool lava, lightly damaging anything on the floor."
+	name = "podłoga to lawa"
+	desc = "Podłoże zamienia się w zaskakująco chłodną lawę, która lekko rani wszystko na podłodze."
 
 	telegraph_message = "<span class='warning'>Czujesz, jak ziemia pod tobą się nagrzewa. Fale gorąca zniekształcają powietrze.</span>"
 	telegraph_duration = 150

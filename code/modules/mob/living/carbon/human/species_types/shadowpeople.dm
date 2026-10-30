@@ -38,7 +38,7 @@
 	return ..()
 
 /datum/species/shadow/nightmare
-	name = "Nightmare"
+	name = "Koszmar"
 	id = "nightmare"
 	burnmod = 1.5
 	no_equip = list(ITEM_SLOT_MASK, ITEM_SLOT_OCLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_FEET, ITEM_SLOT_ICLOTHING, ITEM_SLOT_SUITSTORE)
@@ -72,8 +72,8 @@
 //Organs
 
 /obj/item/organ/brain/nightmare
-	name = "tumorous mass"
-	desc = "A fleshy growth that was dug out of the skull of a Nightmare."
+	name = "nowotworowa masa"
+	desc = "Mięsista narośl wykopana z czaszki Koszmara."
 	icon_state = "brain-x-d"
 	var/obj/effect/proc_holder/spell/targeted/shadowwalk/shadowwalk
 
@@ -94,8 +94,8 @@
 
 
 /obj/item/organ/heart/nightmare
-	name = "heart of darkness"
-	desc = "An alien organ that twists and writhes when exposed to light."
+	name = "serce ciemności"
+	desc = "Obcy organ, który skręca się i wije wystawiony na światło."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
 	color = "#1C1C1C"
@@ -161,7 +161,7 @@
 //Weapon
 
 /obj/item/light_eater
-	name = "light eater" //as opposed to heavy eater
+	name = "pożeracz światła" //as opposed to heavy eater
 	icon = 'icons/obj/changeling_items.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"

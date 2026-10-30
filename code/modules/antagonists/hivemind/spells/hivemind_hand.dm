@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/touch/hive_fist
-	name = "Mental Fist"
-	desc = "We channel the strength of our host's hive into a physical weapon, specially effective on rival hives."
+	name = "Pięść umysłu"
+	desc = "Przekuwamy siłę roju naszego nosiciela w fizyczną broń, szczególnie skuteczną przeciw rywalizującym rojom."
 	hand_path = /obj/item/melee/touch_attack/hive_fist
 	school = "evocation"
 	charge_max = 150
@@ -10,8 +10,8 @@
 	action_background_icon_state = "bg_hive"
 
 /obj/item/melee/touch_attack/hive_fist
-	name = "Mental Fist"
-	desc = "The physical embodiment of a hivemind's might."
+	name = "pięść umysłu"
+	desc = "Fizyczne ucieleśnienie potęgi roju."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	catchphrase = null

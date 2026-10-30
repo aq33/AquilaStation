@@ -7,9 +7,9 @@
 */
 
 /obj/machinery/telecomms/processor
-	name = "processor unit"
+	name = "procesor telekomunikacyjny"
 	icon_state = "processor"
-	desc = "This machine is used to process large quantities of information."
+	desc = "Ta maszyna przetwarza duże ilości informacji."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
@@ -54,7 +54,7 @@
 	autolinkers = list("processor4")
 
 /obj/machinery/telecomms/processor/preset_one/birdstation
-	name = "Processor"
+	name = "procesor"
 
 /obj/machinery/telecomms/processor/preset_exploration
 	id = "Exploration Processor"

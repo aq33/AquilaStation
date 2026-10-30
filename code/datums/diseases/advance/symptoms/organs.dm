@@ -1,5 +1,5 @@
 /datum/symptom/mind_restoration //heals damage to the brain
-	name = "Mind Restoration"
+	name = "Odbudowa umysłu"
 	desc = "Wirus wzmacnia połączenia między neuronami, skracając czas trwania wszelkich dolegliwości umysłu."
 	stealth = -1
 	resistance = -2
@@ -63,7 +63,7 @@
 
 
 /datum/symptom/sensory_restoration //heals damage to the eyes and ears
-	name = "Sensory Restoration"
+	name = "Odbudowa zmysłów"
 	desc = "Wirus stymuluje wytwarzanie i wymianę tkanek zmysłowych, przez co nosiciel odtwarza uszkodzone oczy i uszy."
 	stealth = 0
 	resistance = 1
@@ -103,11 +103,11 @@
 				eyes.applyOrganDamage(-1)
 		else
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your eyes feel great.","You feel like your eyes can focus more clearly.", "You don't feel the need to blink.","Your ears feel great.","Your healing feels more acute.")]</span>")
+				to_chat(M, "<span class='notice'>[pick("Twoje oczy czują się świetnie.","Masz wrażenie, że oczy lepiej ostrzą obraz.", "Nie czujesz potrzeby mrugania.","Twoje uszy czują się świetnie.","Twój słuch się wyostrza.")]</span>")
 
 
 /datum/symptom/organ_restoration //heals damage to other internal organs that get damaged far less often
-	name = "Organ Restoration"
+	name = "Odbudowa organów"
 	desc = "Wirus pobudza szybki wzrost komórek w tkankach narządów, z czasem powoli je naprawiając."
 	stealth = 2
 	resistance = 3
@@ -216,4 +216,4 @@
 						M.add_splatter_floor(get_turf(M))
 						return
 	if(prob(2))
-		to_chat(M, "<span class='notice'>[pick("You feel healthy!.","You feel energetic!", "You feel rejuvenated!")]</span>")
+		to_chat(M, "<span class='notice'>[pick("Czujesz się zdrowo!","Masz mnóstwo energii!", "Czujesz się odmłodzony!")]</span>")

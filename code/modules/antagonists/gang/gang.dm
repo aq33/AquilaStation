@@ -100,18 +100,18 @@
 // Admin commands
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,PROC_REF(admin_promote))
-	.["Set Influence"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
+	.["Awansuj"] = CALLBACK(src,PROC_REF(admin_promote))
+	.["Ustaw wpływy"] = CALLBACK(src, PROC_REF(admin_adjust_influence))
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
-	var/new_or_existing = input(admin, "Którą bandę chcesz przypisać użytkownikowi?", "Gangs") as null|anything in list("New","Existing")
+	var/new_or_existing = input(admin, "Którą bandę chcesz przypisać użytkownikowi?", "Bandy") as null|anything in list("Nowa","Istniejąca")
 	if(isnull(new_or_existing))
 		return
-	else if(new_or_existing == "New")
-		var/newgang = input(admin, "Wybierz bandę albo wybierz losową.", "New gang") as null|anything in GLOB.possible_gangs + "Random"
+	else if(new_or_existing == "Nowa")
+		var/newgang = input(admin, "Wybierz bandę albo wybierz losową.", "Nowa banda") as null|anything in GLOB.possible_gangs + "Losowa"
 		if(isnull(newgang))
 			return
-		else if(newgang == "Random")
+		else if(newgang == "Losowa")
 			var/datum/team/gang/G = pick_n_take(GLOB.possible_gangs)
 			gang = new G
 		else
@@ -121,10 +121,10 @@
 		if(!GLOB.gangs.len) // no gangs exist
 			to_chat(admin, "<span class='danger'>Nie istnieją żadne bandy, stwórz nową.</span>")
 			return
-		var/existinggang = input(admin, "Wybierz bandę albo wybierz losową.", "Existing gang") as null|anything in GLOB.gangs + "Random"
+		var/existinggang = input(admin, "Wybierz bandę albo wybierz losową.", "Istniejąca banda") as null|anything in GLOB.gangs + "Losowa"
 		if(isnull(existinggang))
 			return
-		else if(existinggang == "Random")
+		else if(existinggang == "Losowa")
 			gang = pick(GLOB.gangs)
 		else
 			gang = existinggang
@@ -132,15 +132,15 @@
 	return TRUE
 
 /datum/antagonist/gang/proc/admin_promote(mob/admin)
-	message_admins("[key_name_admin(admin)] has promoted [owner] to gang boss.")
+	message_admins("[key_name_admin(admin)] awansuje [owner] na szefa gangu.")
 	log_admin("[key_name(admin)] has promoted [owner] to boss.")
 	promote()
 
 /datum/antagonist/gang/proc/admin_adjust_influence()
-	var/inf = input("Wpływy bandy [gang.name]","Gang influence", gang.influence) as null | num
+	var/inf = input("Wpływy bandy [gang.name]","Wpływy gangu", gang.influence) as null | num
 	if(!isnull(inf))
 		gang.influence = inf
-		message_admins("[key_name_admin(usr)] changed [gang.name]'s influence to [inf].")
+		message_admins("[key_name_admin(usr)] zmienia wpływy gangu [gang.name] na [inf].")
 		log_admin("[key_name(usr)] changed [gang.name]'s influence to [inf].")
 
 /datum/antagonist/gang/proc/add_to_gang()
@@ -223,16 +223,16 @@
 		to_chat(new_owner.current, "<span class='userdanger'>Należysz teraz do przywództwa gangu [gang.name]!</span>")
 		return
 	promote()
-	message_admins("[key_name_admin(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
+	message_admins("[key_name_admin(admin)] czyni [new_owner.current] szefem gangu [gang.name].")
 	log_admin("[key_name(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
 	to_chat(new_owner.current, "<span class='userdanger'>Należysz teraz do przywództwa gangu [gang.name]!</span>")
 
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
-	. -= "Promote"
-	.["Take gangtool"] = CALLBACK(src,PROC_REF(admin_take_gangtool))
-	.["Give gangtool"] = CALLBACK(src,PROC_REF(admin_give_gangtool))
-	.["Demote"] = CALLBACK(src,PROC_REF(admin_demote))
+	. -= "Awansuj"
+	.["Zabierz gangtool"] = CALLBACK(src,PROC_REF(admin_take_gangtool))
+	.["Daj gangtool"] = CALLBACK(src,PROC_REF(admin_give_gangtool))
+	.["Zdegraduj"] = CALLBACK(src,PROC_REF(admin_demote))
 
 /datum/antagonist/gang/boss/proc/demote()
 	var/old_gang = gang
@@ -250,7 +250,7 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/device/gangtool/gangtool = locate() in L
 	if (!gangtool)
-		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
+		to_chat(admin, "<span class='danger'>Nie udało się usunąć gangtoola!</span>")
 		return
 	qdel(gangtool)
 
@@ -258,7 +258,7 @@
 	equip_gang(TRUE, FALSE, FALSE, FALSE)
 
 /datum/antagonist/gang/boss/proc/admin_demote(datum/mind/target,mob/user)
-	message_admins("[key_name_admin(user)] has demoted [owner.current] from gang boss.")
+	message_admins("[key_name_admin(user)] degraduje [owner.current] z szefa gangu.")
 	log_admin("[key_name(user)] has demoted [owner.current] from gang boss.")
 	admin_take_gangtool(user)
 	demote()

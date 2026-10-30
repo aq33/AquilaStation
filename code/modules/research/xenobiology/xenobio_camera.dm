@@ -18,8 +18,8 @@
 		return
 
 /obj/machinery/computer/camera_advanced/xenobio
-	name = "Slime management console"
-	desc = "A computer used for remotely handling slimes."
+	name = "konsola zarządzania szlamami"
+	desc = "Komputer do zdalnej obsługi szlamów."
 	networks = list("ss13")
 	circuit = /obj/item/circuitboard/computer/xenobiology
 	var/datum/action/innate/slime_place/slime_place_action
@@ -179,7 +179,7 @@
 		return TRUE
 
 /datum/action/innate/slime_place
-	name = "Place Slimes"
+	name = "Wypuść szlamy"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_down"
 
@@ -199,7 +199,7 @@
 		to_chat(owner, "<span class='warning'>Cel nie znajduje się w pobliżu kamery. Nie można kontynuować.</span>")
 
 /datum/action/innate/slime_pick_up
-	name = "Pick up Slime"
+	name = "Podnieś szlama"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_up"
 
@@ -225,7 +225,7 @@
 
 
 /datum/action/innate/feed_slime
-	name = "Feed Slimes"
+	name = "Nakarm szlamy"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "monkey_down"
 
@@ -252,7 +252,7 @@
 
 
 /datum/action/innate/monkey_recycle
-	name = "Recycle Monkeys"
+	name = "Przetwórz małpy"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "monkey_up"
 
@@ -280,7 +280,7 @@
 		to_chat(owner, "<span class='warning'>Cel nie znajduje się w pobliżu kamery. Nie można kontynuować.</span>")
 
 /datum/action/innate/slime_scan
-	name = "Scan Slime"
+	name = "Zeskanuj szlama"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_scan"
 
@@ -297,7 +297,7 @@
 		to_chat(owner, "<span class='warning'>Cel nie znajduje się w pobliżu kamery. Nie można kontynuować.</span>")
 
 /datum/action/innate/feed_potion
-	name = "Apply Potion"
+	name = "Podaj miksturę"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "slime_potion"
 
@@ -322,7 +322,7 @@
 		to_chat(owner, "<span class='warning'>Cel nie znajduje się w pobliżu kamery. Nie można kontynuować.</span>")
 
 /datum/action/innate/hotkey_help
-	name = "Hotkey Help"
+	name = "Pomoc: skróty"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "hotkey_help"
 

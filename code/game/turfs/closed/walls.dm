@@ -1,8 +1,8 @@
 #define MAX_DENT_DECALS 15
 
 /turf/closed/wall
-	name = "wall"
-	desc = "A huge chunk of metal used to separate rooms."
+	name = "ściana"
+	desc = "Ogromny blok metalu, który oddziela pomieszczenia."
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
 	rcd_memory = RCD_MEMORY_WALL
@@ -121,7 +121,7 @@
 	switch(M.damtype)
 		if(BRUTE)
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
-			M.visible_message("<span class='danger'>[M.name] hits [src]!</span>", \
+			M.visible_message("<span class='danger'>[M.name] uderza w [src]!</span>", \
 							"<span class='danger'>Uderzasz w [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 			if(prob(hardness + M.force) && M.force > 20)
 				dismantle_wall(1)

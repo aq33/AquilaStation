@@ -2,82 +2,82 @@
 
 /datum/map_template/shuttle/cargo/hammerhead
 	suffix = "hammerhead"
-	name = "\[NSV\] cargo ferry (Hammerhead)"
+	name = "\[NSV\] prom zaopatrzeniowy (Hammerhead)"
 
 /datum/map_template/shuttle/ferry/galactica
 	suffix = "galactica"
-	name = "\[NSV\] centcom ferry (Galactica)"
+	name = "\[NSV\] prom transportowy Centrali (Galactica)"
 
 /datum/map_template/shuttle/cargo/sausage
 	suffix = "sausage"
-	name = "\[NSV\] cargo ferry (Jolly Sausage)"
+	name = "\[NSV\] prom zaopatrzeniowy (Jolly Sausage)"
 
 /datum/map_template/shuttle/cargo/gladius
 	suffix = "gladius"
-	name = "\[NSV\] cargo ferry (Gladius)"
+	name = "\[NSV\] prom zaopatrzeniowy (Gladius)"
 
 /datum/map_template/shuttle/cargo/atlas
 	suffix = "atlas"
-	name = "\[NSV\] cargo elevator (Atlas)"
+	name = "\[NSV\] winda zaopatrzeniowa (Atlas)"
 
 /datum/map_template/shuttle/cargo/shrike
 	suffix = "shrike"
-	name = "\[NSV\] cargo ferry (Shrike)"
+	name = "\[NSV\] prom zaopatrzeniowy (Shrike)"
 
 /datum/map_template/shuttle/cargo/serendipity
 	suffix = "serendipity"
-	name = "\[NSV\] cargo ferry (Serendipity)"
+	name = "\[NSV\] prom zaopatrzeniowy (Serendipity)"
 
 //Arrivals
 
 /datum/map_template/shuttle/arrival/aetherwhisp
 	suffix = "aetherwhisp"
-	name = "arrival shuttle (Aetherwhisp)"
+	name = "prom przylotów (Aetherwhisp)"
 
 /datum/map_template/shuttle/arrival/gladius
 	suffix = "gladius"
-	name = "arrival shuttle (Gladius)"
+	name = "prom przylotów (Gladius)"
 
 /datum/map_template/shuttle/arrival/shrike
 	suffix = "shrike"
-	name = "arrival shuttle (Shrike)"
+	name = "prom przylotów (Shrike)"
 
 /datum/map_template/shuttle/arrival/serendipity
 	suffix = "serendipity"
-	name = "arrival shuttle (Serendipity)"
+	name = "prom przylotów (Serendipity)"
 
 /datum/map_template/shuttle/hammurabi //This is definitely an elevator trust me.
 	prefix = "_maps/shuttles/turbolifts/"
 	port_id = "elevator"
 	suffix = "hammurabi"
-	name = "Hammurabi mining elevator"
+	name = "winda górnicza (Hammurabi)"
 //Mining
 
 /datum/map_template/shuttle/mining/shrike
 	suffix = "shrike"
-	name = "mining shuttle (Shrike)"
+	name = "prom górniczy (Shrike)"
 
 //Escape
 /datum/map_template/shuttle/escape_pod/shrike
 	suffix = "shrike"
-	name = "escape pod (Shrike)"
+	name = "kapsuła ratunkowa (Shrike)"
 
 /datum/map_template/shuttle/emergency/void
 	suffix = "void"
-	name = "Void Emergency Shuttle"
+	name = "Pustka zamiast promu ewakuacyjnego"
 	description = "Nawet nie prom."
-	admin_notes = "Used for escape pod only maps"
+	admin_notes = "Do map, na których są tylko kapsuły ratunkowe"
 	credit_cost = 0
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/emergency/atlas
 	suffix = "atlas"
-	name = "Danube Class Yacht"
+	name = "Jacht klasy Danube"
 	description = "Mały, luksusowy prom, który w komforcie i stylu przewiezie małe i średnie załogi."
 	credit_cost = 4000
 
 /datum/map_template/shuttle/emergency/celerity
 	suffix = "celerity"
-	name = "Dominion of Light Evacuation Shuttle, Celerity Class"
-	admin_notes = "This shuttle will not work for any other ship than the Serendipity"
+	name = "Prom ewakuacyjny klasy Celerity Dominium Światła"
+	admin_notes = "Ten prom nie działa na żadnym statku poza Serendipity"
 	can_be_bought = FALSE

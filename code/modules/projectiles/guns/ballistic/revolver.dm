@@ -1,6 +1,6 @@
 /obj/item/gun/ballistic/revolver
-	name = "\improper .357 revolver"
-	desc = "A suspicious revolver. Uses .357 ammo." //usually used by syndicates
+	name = "\improper rewolwer .357"
+	desc = "Podejrzany rewolwer. Strzela amunicją .357." //usually used by syndicates
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
 	fire_sound = 'sound/weapons/revolver357shot.ogg'
@@ -48,7 +48,7 @@
 /obj/item/gun/ballistic/revolver/verb/spin()
 	set name = "Spin Chamber"
 	set category = "Object"
-	set desc = "Click to spin your revolver's chamber."
+	set desc = "Kliknij, by zakręcić bębenkiem rewolweru."
 
 	var/mob/M = usr
 
@@ -61,7 +61,7 @@
 
 	if(do_spin())
 		playsound(usr, "revolver_spin", 30, FALSE)
-		usr.visible_message("[usr] spins [src]'s chamber.", "<span class='notice'>Kręcisz bębenkiem [src].</span>")
+		usr.visible_message("[usr] kręci bębenkiem [src].", "<span class='notice'>Kręcisz bębenkiem [src].</span>")
 	else
 		remove_verb(/obj/item/gun/ballistic/revolver/verb/spin)
 
@@ -89,21 +89,21 @@
 
 /obj/item/gun/ballistic/revolver/detective
 	name = "\improper Colt Detective Special"
-	desc = "A classic, if not outdated, law enforcement firearm. Uses .38-special rounds."
+	desc = "Klasyczna, choć może przestarzała, broń stróżów prawa. Strzela nabojami .38 special."
 	fire_sound = 'sound/weapons/revolver38shot.ogg'
 	icon_state = "detective"
 	fire_rate = 2
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev38/rubber
 	obj_flags = UNIQUE_RENAME
-	unique_reskin = list("Default" = "detective",
+	unique_reskin = list("Domyślny" = "detective",
 						"Fitz Special" = "detective_fitz",
 						"Police Positive Special" = "detective_police",
-						"Blued Steel" = "detective_blued",
-						"Stainless Steel" = "detective_stainless",
-						"Gold Trim" = "detective_gold",
-						"Leopard Spots" = "detective_leopard",
-						"The Peacemaker" = "detective_peacemaker",
-						"Black Panther" = "detective_panther"
+						"Stal oksydowana" = "detective_blued",
+						"Stal nierdzewna" = "detective_stainless",
+						"Złote wykończenie" = "detective_gold",
+						"Cętki lamparta" = "detective_leopard",
+						"Rozjemca" = "detective_peacemaker",
+						"Czarna pantera" = "detective_panther"
 						)
 
 /obj/item/gun/ballistic/revolver/detective/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -133,7 +133,7 @@
 			magazine.caliber = "357"
 			fire_rate = 1 //worse than a nromal .357
 			fire_sound = 'sound/weapons/revolver357shot.ogg'
-			desc = "The barrel and chamber assembly seems to have been modified."
+			desc = "Zespół lufy i komory wygląda na przerobiony."
 			to_chat(user, "<span class='notice'>Wzmacniasz lufę [src]. Teraz będzie strzelać nabojami .357.</span>")
 	else
 		to_chat(user, "<span class='notice'>Zaczynasz cofać modyfikacje [src]...</span>")
@@ -154,13 +154,13 @@
 
 
 /obj/item/gun/ballistic/revolver/mateba
-	name = "\improper Unica 6 auto-revolver"
-	desc = "A retro high-powered autorevolver typically used by officers of the New Russia military. Uses .357 ammo."
+	name = "\improper autorewolwer Unica 6"
+	desc = "Retro autorewolwer dużej mocy, zwykle noszony przez oficerów armii Nowej Rosji. Strzela amunicją .357."
 	icon_state = "mateba"
 
 /obj/item/gun/ballistic/revolver/golden
-	name = "\improper Golden revolver"
-	desc = "This ain't no game, ain't never been no show, And I'll gladly gun down the oldest lady you know. Uses .357 ammo."
+	name = "\improper złoty rewolwer"
+	desc = "To nie gra i nigdy nie był to pokaz, z radością odstrzelę najstarszą babcię, jaką znasz. Strzela amunicją .357."
 	icon_state = "goldrevolver"
 	fire_sound = 'sound/weapons/resonator_blast.ogg'
 	recoil = 8
@@ -168,8 +168,8 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/revolver/nagant
-	name = "\improper Nagant revolver"
-	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
+	name = "\improper rewolwer Nagant"
+	desc = "Stary model rewolweru rodem z Rosji. Przyjmuje tłumik. Strzela amunicją 7.62x38mmR."
 	icon_state = "nagant"
 	can_suppress = TRUE
 
@@ -180,8 +180,8 @@
 // You can spin the chamber to randomize the position of the bullet.
 
 /obj/item/gun/ballistic/revolver/russian
-	name = "\improper Russian revolver"
-	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
+	name = "\improper rosyjski rewolwer"
+	desc = "Rewolwer rosyjskiej produkcji do gier alkoholowych. Strzela amunicją .357, a mechanizm wymaga zakręcenia bębenkiem przed każdym pociągnięciem spustu."
 	icon_state = "russianrevolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
 	var/spun = FALSE
@@ -242,7 +242,7 @@
 				chambered = null
 				return
 
-		user.visible_message("<span class='danger'>*click*</span>")
+		user.visible_message("<span class='danger'>*klik*</span>")
 		playsound(src, dry_fire_sound, 30, TRUE)
 
 /obj/item/gun/ballistic/revolver/russian/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -255,8 +255,8 @@
 	user.visible_message("<span class='danger'>[user.name] strzela sobie z [src] w głowę!</span>", "<span class='userdanger'>Strzelasz sobie z [src] w głowę!</span>", "<span class='italics'>Słyszysz wystrzał!</span>")
 
 /obj/item/gun/ballistic/revolver/russian/soul
-	name = "cursed Russian revolver"
-	desc = "To play with this revolver requires wagering your very soul."
+	name = "przeklęty rosyjski rewolwer"
+	desc = "Gra tym rewolwerem wymaga postawienia na szali własnej duszy."
 
 /obj/item/gun/ballistic/revolver/russian/soul/shoot_self(mob/living/user)
 	..()
@@ -279,8 +279,8 @@
 		user.Paralyze(80)
 
 /obj/item/gun/ballistic/revolver/mime
-	name = "finger gun"
-	desc = "Your hand, pointed into the shape of a gun."
+	name = "palec-pistolet"
+	desc = "Twoja dłoń ułożona w kształt pistoletu."
 	fire_sound = null
 	dry_fire_sound = 'sound/misc/fingersnap1.ogg'
 	icon_state = "detective"

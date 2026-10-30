@@ -118,7 +118,7 @@
 	eyeobj.off_action = new
 	eyeobj.off_action.remote_eye = eyeobj
 	eyeobj.eye_user = user
-	eyeobj.name = "[name] observer"
+	eyeobj.name = "obserwator: [name]"
 	eyeobj.off_action.target = user
 	eyeobj.off_action.user = user
 	eyeobj.off_action.ship = src
@@ -133,7 +133,7 @@
 
 //Now it's time to handle people observing the ship.
 /mob/camera/ai_eye/remote/overmap_observer
-	name = "Inactive Camera Eye"
+	name = "Nieaktywne oko obserwatora"
 	var/datum/action/innate/camera_off/overmap/off_action
 	animate_movement = 0 //Stops glitching with overmap movement
 	use_static = FALSE
@@ -151,7 +151,7 @@
 	return ..()
 
 /datum/action/innate/camera_off/overmap
-	name = "Stop observing"
+	name = "Przestań obserwować"
 	icon_icon = 'icons/mob/actions/actions_silicon.dmi'
 	button_icon_state = "camera_off"
 	var/mob/camera/ai_eye/remote/overmap_observer/remote_eye

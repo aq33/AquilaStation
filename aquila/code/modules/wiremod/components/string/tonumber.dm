@@ -4,7 +4,7 @@
  * Converts a string into a Number
  */
 /obj/item/circuit_component/tonumber
-	display_name = "To Number"
+	display_name = "Na liczbę"
 	desc = "Komponent, który zamienia wejście (tekst) na liczbę. Tekst jest brany pod uwagę tylko wtedy, gdy zaczyna się od liczby. Pobierana jest ta liczba, a reszta zostaje pominięta."
 	category = "String"
 

@@ -1,6 +1,6 @@
 /obj/machinery/shuttle
-	name = "shuttle component"
-	desc = "Something for shuttles."
+	name = "część promu"
+	desc = "Coś do promów."
 	density = TRUE
 	obj_integrity = 250
 	max_integrity = 250

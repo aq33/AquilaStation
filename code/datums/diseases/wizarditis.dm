@@ -1,8 +1,8 @@
 /datum/disease/wizarditis
-	name = "Wizarditis"
+	name = "Czarodziejowica"
 	max_stages = 4
-	spread_text = "Airborne"
-	cure_text = "The Manly Dorf"
+	spread_text = "Drogą powietrzną"
+	cure_text = "Męski Krasnolud"
 	cures = list(/datum/reagent/consumable/ethanol/manly_dorf)
 	cure_chance = 100
 	agent = "Rincewindus Vulgaris"

@@ -1,6 +1,6 @@
 /obj/machinery/computer/warrant
-	name = "security warrant console"
-	desc = "Used to view outstanding warrants."
+	name = "konsola nakazów ochrony"
+	desc = "Służy do przeglądania aktywnych nakazów."
 	icon_screen = "security"
 	icon_keyboard = "security_key"
 	circuit = /obj/item/circuitboard/computer/warrant

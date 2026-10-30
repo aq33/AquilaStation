@@ -1,6 +1,6 @@
 /obj/item/firing_pin
-	name = "electronic firing pin"
-	desc = "A small authentication device, to be inserted into a firearm receiver to allow operation. NT safety regulations require all new designs to incorporate one."
+	name = "elektroniczna iglica"
+	desc = "Małe urządzenie uwierzytelniające, które wkłada się do komory zamkowej broni, by dało się z niej strzelać. Przepisy bezpieczeństwa NT wymagają jej we wszystkich nowych konstrukcjach."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "firing_pin"
 	item_state = "pen"
@@ -64,7 +64,7 @@
 	if(selfdestruct)
 		if(user)
 			user.show_message("<span class='danger'>AUTODESTRUKCJA...</span><br>", MSG_VISUAL)
-			to_chat(user, "<span class='userdanger'>[gun] explodes!</span>")
+			to_chat(user, "<span class='userdanger'>[gun] wybucha!</span>")
 		explosion(get_turf(gun), -1, 0, 2, 3)
 		if(gun)
 			qdel(gun)
@@ -72,14 +72,14 @@
 
 
 /obj/item/firing_pin/magic
-	name = "magic crystal shard"
-	desc = "A small enchanted shard which allows magical weapons to fire."
+	name = "odłamek magicznego kryształu"
+	desc = "Mały zaklęty odłamek, dzięki któremu magiczna broń może strzelać."
 
 
 // Test pin, works only near firing range.
 /obj/item/firing_pin/test_range
-	name = "test-range firing pin"
-	desc = "This safety firing pin allows weapons to be fired within proximity to a firing range."
+	name = "iglica strzelnicowa"
+	desc = "Ta iglica bezpieczeństwa pozwala strzelać tylko w pobliżu strzelnicy."
 	fail_message = "<span class='warning'>KONTROLA STRZELNICY NIEUDANA.</span>"
 	pin_removeable = TRUE
 
@@ -93,8 +93,8 @@
 
 // Implant pin, checks for implant
 /obj/item/firing_pin/implant
-	name = "implant-keyed firing pin"
-	desc = "This is a security firing pin which only authorizes users who are implanted with a certain device."
+	name = "iglica z kluczem implantu"
+	desc = "Iglica ochrony, która dopuszcza tylko użytkowników z określonym implantem."
 	fail_message = "<span class='warning'>KONTROLA IMPLANTU NIEUDANA.</span>"
 	var/obj/item/implant/req_implant = null
 
@@ -106,13 +106,13 @@
 	return FALSE
 
 /obj/item/firing_pin/implant/mindshield
-	name = "mindshield firing pin"
-	desc = "This Security firing pin authorizes the weapon for only mindshield-implanted users."
+	name = "iglica ochrony umysłu"
+	desc = "Ta iglica ochrony dopuszcza do strzelania tylko użytkowników z implantem ochrony umysłu."
 	icon_state = "firing_pin_loyalty"
 	req_implant = /obj/item/implant/mindshield
 
 /obj/item/firing_pin/implant/pindicate
-	name = "syndicate firing pin"
+	name = "iglica Syndykatu"
 	icon_state = "firing_pin_pindi"
 	req_implant = /obj/item/implant/weapons_auth
 
@@ -121,8 +121,8 @@
 // Honk pin, clown's joke item.
 // Can replace other pins. Replace a pin in cap's laser for extra fun!
 /obj/item/firing_pin/clown
-	name = "hilarious firing pin"
-	desc = "Advanced clowntech that can convert any firearm into a far more useful object."
+	name = "przezabawna iglica"
+	desc = "Zaawansowana technologia klaunów, która zmienia każdą broń palną w znacznie pożyteczniejszy przedmiot."
 	color = "#FFFF00"
 	fail_message = "<span class='warning'>HONK!</span>"
 	force_replace = TRUE
@@ -149,15 +149,15 @@
 
 // Now two times deadlier!
 /obj/item/firing_pin/clown/ultra/selfdestruct
-	desc = "Advanced clowntech that can convert any firearm into a far more useful object. It has a small nitrobananium charge on it."
+	desc = "Zaawansowana technologia klaunów, która zmienia każdą broń palną w znacznie pożyteczniejszy przedmiot. Ma przyczepiony mały ładunek nitrobananium."
 	selfdestruct = TRUE
 
 
 // DNA-keyed pin.
 // When you want to keep your toys for yourself.
 /obj/item/firing_pin/dna
-	name = "DNA-keyed firing pin"
-	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link."
+	name = "iglica z kluczem DNA"
+	desc = "Iglica zablokowana DNA, która dopuszcza tylko jednego użytkownika. Spróbuj raz strzelić, by powiązać ją ze swoim DNA."
 	icon_state = "firing_pin_dna"
 	fail_message = "<span class='warning'>KONTROLA DNA NIEUDANA.</span>"
 	var/unique_enzymes = null
@@ -185,14 +185,14 @@
 		..()
 
 /obj/item/firing_pin/dna/dredd
-	desc = "This is a DNA-locked firing pin which only authorizes one user. Attempt to fire once to DNA-link. It has a small explosive charge on it."
+	desc = "Iglica zablokowana DNA, która dopuszcza tylko jednego użytkownika. Spróbuj raz strzelić, by powiązać ją ze swoim DNA. Ma przyczepiony mały ładunek wybuchowy."
 	selfdestruct = TRUE
 
 // Paywall pin, brought to you by ARMA 3 DLC.
 // Checks if the user has a valid bank account on an ID and if so attempts to extract a one-time payment to authorize use of the gun. Otherwise fails to shoot.
 /obj/item/firing_pin/paywall
-	name = "paywall firing pin"
-	desc = "A firing pin with a built-in configurable paywall."
+	name = "płatna iglica"
+	desc = "Iglica z wbudowaną, konfigurowalną bramką płatności."
 	color = "#FFD700"
 	fail_message = ""
 	var/list/gun_owners = list() //list of people who've accepted the license prompt. If this is the multi-payment pin, then this means they accepted the waiver that each shot will cost them money
@@ -273,13 +273,13 @@
 				return FALSE
 			return TRUE
 		if(credit_card_details && !active_prompt)
-			var/license_request = alert(usr, "Czy chcesz zapłacić [payment_amount] kr za [( multi_payment ) ? "każdy strzał z [gun.name]" : "licencję na użytkowanie [gun.name]"]?", "Zakup broni", "Yes", "No")
+			var/license_request = alert(usr, "Czy chcesz zapłacić [payment_amount] kr za [( multi_payment ) ? "każdy strzał z [gun.name]" : "licencję na użytkowanie [gun.name]"]?", "Zakup broni", "Tak", "Nie")
 			active_prompt = TRUE
 			if(!user.canUseTopic(src, BE_CLOSE))
 				active_prompt = FALSE
 				return FALSE
 			switch(license_request)
-				if("Yes")
+				if("Tak")
 					if(credit_card_details.adjust_money(-payment_amount))
 						pin_owner.registered_account.adjust_money(payment_amount)
 						gun_owners += H
@@ -288,7 +288,7 @@
 						return FALSE //we return false here so you don't click initially to fire, get the prompt, accept the prompt, and THEN the gun
 					to_chat(user, "<span class='warning'>BŁĄD: niewystarczające saldo użytkownika do przeprowadzenia transakcji!</span>")
 					return FALSE
-				if("No")
+				if("Nie")
 					to_chat(user, "<span class='warning'>BŁĄD: użytkownik odmówił zakupu licencji na broń!</span>")
 					return FALSE
 		to_chat(user, "<span class='warning'>BŁĄD: użytkownik nie ma ważnego konta bankowego, z którego można pobrać środki!</span>")
@@ -297,8 +297,8 @@
 
 // Laser tag pins
 /obj/item/firing_pin/tag
-	name = "laser tag firing pin"
-	desc = "A recreational firing pin, used in laser tag units to ensure users have their vests on."
+	name = "iglica do laser taga"
+	desc = "Rekreacyjna iglica do broni laser taga, która pilnuje, by gracze mieli na sobie kamizelki."
 	fail_message = "<span class='warning'>KONTROLA STROJU NIEUDANA.</span>"
 	var/obj/item/clothing/suit/suit_requirement = null
 	var/tagcolor = ""
@@ -312,16 +312,16 @@
 	return FALSE
 
 /obj/item/firing_pin/tag/red
-	name = "red laser tag firing pin"
+	name = "czerwona iglica do laser taga"
 	icon_state = "firing_pin_red"
 	suit_requirement = /obj/item/clothing/suit/redtag
-	tagcolor = "red"
+	tagcolor = "czerwony"
 
 /obj/item/firing_pin/tag/blue
-	name = "blue laser tag firing pin"
+	name = "niebieska iglica do laser taga"
 	icon_state = "firing_pin_blue"
 	suit_requirement = /obj/item/clothing/suit/bluetag
-	tagcolor = "blue"
+	tagcolor = "niebieski"
 
 /obj/item/firing_pin/Destroy()
 	if(gun)

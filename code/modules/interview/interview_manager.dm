@@ -36,34 +36,34 @@ GLOBAL_DATUM_INIT(interviews, /datum/interview_manager, new)
 		var/datum/interview/I = open_interviews[ckey]
 		if (I && !I.owner)
 			dc++
-	var/dc_string = "([length(open_interviews) - dc] online / [dc] disconnected)"
+	var/dc_string = "(online: [length(open_interviews) - dc] / rozłączeni: [dc])"
 
 	var/list/tab_data = list()
-	tab_data["Interviews"] = list(
-		text = "Open Interview Browser",
+	tab_data["Rozmowy kwalifikacyjne"] = list(
+		text = "Otwórz przeglądarkę rozmów",
 		type = STAT_BUTTON,
 		action = "browseinterviews",
 	)
 
-	tab_data["Active"] = list(
+	tab_data["Aktywne"] = list(
 		text = "[length(open_interviews)] [dc_string]",
 		type = STAT_BUTTON,
 		action = "browseinterviews",
 	)
 
-	tab_data["Queued"] = list(
+	tab_data["W kolejce"] = list(
 		text = "[length(interview_queue)]",
 		type = STAT_BUTTON,
 		action = "browseinterviews",
 	)
 
-	tab_data["Closed"] = list(
+	tab_data["Zamknięte"] = list(
 		text = "[length(closed_interviews)]",
 		type = STAT_BUTTON,
 		action = "browseinterviews",
 	)
 
-	tab_data["Denied"] = list(
+	tab_data["Odrzucone"] = list(
 		text = "[length(denied_ckeys)]",
 		type = STAT_BUTTON,
 		action = "browseinterviews",

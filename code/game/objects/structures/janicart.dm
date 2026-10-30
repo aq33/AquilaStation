@@ -1,6 +1,6 @@
 /obj/structure/janitorialcart
-	name = "janitorial cart"
-	desc = "This is the alpha and omega of sanitation."
+	name = "wózek woźnego"
+	desc = "Alfa i omega sanitacji."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	anchored = FALSE
@@ -116,7 +116,7 @@
 	if(myreplacer)
 		dat += "<a href='byond://?src=[REF(src)];replacer=1'>[myreplacer.name]</a><br>"
 	if(signs)
-		dat += "<a href='byond://?src=[REF(src)];sign=1'>[signs] sign\s</a><br>"
+		dat += "<a href='byond://?src=[REF(src)];sign=1'>Znaki: [signs]</a><br>"
 	var/datum/browser/popup = new(user, "janicart", name, 240, 160)
 	popup.set_content(dat)
 	popup.open()

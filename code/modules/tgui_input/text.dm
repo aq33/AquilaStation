@@ -15,7 +15,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
+/proc/tgui_input_text(mob/user, message = "", title = "Wpisz tekst", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -57,7 +57,7 @@
  * * encode - If toggled, input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * callback - The callback to be invoked when a choice is made.
  */
-/proc/tgui_input_text_async(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
+/proc/tgui_input_text_async(mob/user, message = "", title = "Wpisz tekst", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, datum/callback/callback, timeout = 60 SECONDS)
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -169,7 +169,7 @@
 				if(length(params["entry"]) > max_length)
 					CRASH("[usr] typed a text string longer than the max length")
 				if(encode && (length(html_encode(params["entry"])) > max_length))
-					to_chat(usr, "<span class='notice'>Input uses special characters, thus reducing the maximum length.</span>")
+					to_chat(usr, "<span class='notice'>Tekst zawiera znaki specjalne, przez co maksymalna długość jest mniejsza.</span>")
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)

@@ -1,5 +1,5 @@
 /obj/effect/sliding_puzzle
-	name = "Sliding puzzle generator"
+	name = "generator przesuwanej układanki"
 	icon = 'icons/obj/items_and_weapons.dmi' //mapping
 	icon_state = "syndballoon"
 	invisibility = INVISIBILITY_ABSTRACT
@@ -195,8 +195,8 @@
 		make_solvable()
 
 /obj/structure/puzzle_element
-	name = "mysterious pillar"
-	desc = "puzzling..."
+	name = "tajemniczy filar"
+	desc = "zagadkowe..."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "puzzle_pillar"
 	anchored = FALSE
@@ -301,8 +301,8 @@
 	return
 
 /obj/item/prisoncube
-	name = "Prison Cube"
-	desc = "Dusty cube with humanoid imprint on it."
+	name = "kostka-więzienie"
+	desc = "Zakurzona kostka z odciskiem humanoida."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "prison_cube"
 

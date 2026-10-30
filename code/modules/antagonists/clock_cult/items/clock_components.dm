@@ -1,7 +1,7 @@
 //Components: Used in scripture.
 /obj/item/clockwork/component
-	name = "meme component"
-	desc = "A piece of a famous meme."
+	name = "komponent mema"
+	desc = "Kawałek słynnego mema."
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/component_id //What the component is identified as
 	var/cultist_message = "Nie jesteś godny tego mema." //Showed to Nar'Sian cultists if they pick up the component in addition to chaplains
@@ -19,24 +19,24 @@
 			user.put_in_active_hand(wrath)
 
 /obj/item/clockwork/component/belligerent_eye
-	name = "belligerent eye"
-	desc = "A brass construct with a rotating red center. It's as though it's looking for something to hurt."
+	name = "wojownicze oko"
+	desc = "Mosiężna konstrukcja z obracającym się czerwonym środkiem. Jakby szukała, komu zrobić krzywdę."
 	icon_state = "belligerent_eye"
 	cultist_message = "Oko obrzuca cię intensywnie nienawistnym spojrzeniem."
 	servant_of_ratvar_messages = list("\"...\"" = FALSE, "Na chwilę twój umysł zalewają skrajnie brutalne myśli." = FALSE, "\"...Zgiń.\"" = TRUE)
 	message_span = "neovgre"
 
 /obj/item/clockwork/component/belligerent_eye/blind_eye
-	name = "blind eye"
-	desc = "A heavy brass eye, its red iris fallen dark."
+	name = "ślepe oko"
+	desc = "Ciężkie mosiężne oko, którego czerwona tęczówka zgasła."
 	icon_state = "blind_eye"
 	cultist_message = "Oko łypie na ciebie z intensywną nienawiścią, po czym gaśnie."
 	servant_of_ratvar_messages = list("Oko migocze, po czym gaśnie." = FALSE, "Czujesz się obserwowany." = FALSE, "\"...\"" = FALSE)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clockwork/component/belligerent_eye/lens_gem
-	name = "lens gem"
-	desc = "A tiny pinkish gem. It catches the light oddly, almost glowing."
+	name = "klejnot soczewki"
+	desc = "Malutki różowawy klejnot. Dziwnie łapie światło, jakby niemal świecił."
 	icon_state = "lens_gem"
 	cultist_message = "Klejnot na chwilę czernieje i zimnieje, po czym wraca jego zwykły blask."
 	servant_of_ratvar_messages = list("\"Obrzydliwa porażka.\"" = TRUE, "Czujesz się badany wzrokiem." = FALSE, "\"Słabeusze.\"" = TRUE, "\"Żałosna obrona.\"" = TRUE)
@@ -46,16 +46,16 @@
 	light_color = "#F42B9D"
 
 /obj/item/clockwork/component/vanguard_cogwheel
-	name = "vanguard cogwheel"
-	desc = "A sturdy brass cog with a faintly glowing blue gem in its center."
+	name = "koło zębate straży przedniej"
+	desc = "Solidne mosiężne koło zębate z lekko świecącym niebieskim klejnotem w środku."
 	icon_state = "vanguard_cogwheel"
 	cultist_message = "\"Módl się do swojego boga, byśmy nigdy się nie spotkali.\""
 	servant_of_ratvar_messages = list("\"Uważaj na siebie, dziecko.\"" = FALSE, "Czujesz niewytłumaczalną otuchę." = FALSE, "\"Nigdy nie zapominaj: ból jest chwilowy. To, co robisz dla Sędziego, jest wieczne.\"" = FALSE)
 	message_span = "inathneq"
 
 /obj/item/clockwork/component/vanguard_cogwheel/onyx_prism
-	name = "onyx prism"
-	desc = "An onyx prism with a small aperture. It's very heavy."
+	name = "onyksowy pryzmat"
+	desc = "Onyksowy pryzmat z małym otworem. Jest bardzo ciężki."
 	icon_state = "onyx_prism"
 	cultist_message = "Pryzmat robi się w twoich dłoniach boleśnie gorący."
 	servant_of_ratvar_messages = list("Pryzmat wcale nie robi się lżejszy." = FALSE, "\"A więc... jeszcze nie zawiodłeś. Miej nadzieję, dziecko.\"" = TRUE, \
@@ -63,8 +63,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clockwork/component/geis_capacitor
-	name = "geis capacitor"
-	desc = "A curiously cold brass doodad. It seems as though it really doesn't appreciate being held."
+	name = "kondensator przymusu"
+	desc = "Dziwnie zimny mosiężny bibelot. Wygląda na to, że naprawdę nie lubi, gdy ktoś go trzyma."
 	icon_state = "geis_capacitor"
 	cultist_message = "\"Postaraj się nie postradać zmysłów - będą mi potrzebne. He he...\""
 	servant_of_ratvar_messages = list("\"Obrzydliwe.\"" = FALSE, "\"No proszę, ale z ciebie ciekawski.\"" = FALSE, "Plugawa obecność przenika twój umysł, po czym znika." = FALSE, \
@@ -72,24 +72,24 @@
 	message_span = "sevtug"
 
 /obj/item/clockwork/component/geis_capacitor/fallen_armor
-	name = "fallen armor"
-	desc = "Lifeless chunks of armor. They're designed in a strange way and won't fit on you."
+	name = "poległa zbroja"
+	desc = "Martwe kawałki zbroi. Mają dziwny kształt i nie pasują na ciebie."
 	icon_state = "fallen_armor"
 	cultist_message = "Z oka maski bucha czerwony płomień, po czym gaśnie."
 	servant_of_ratvar_messages = list("Część zbroi na chwilę odpływa od reszty." = FALSE, "W napierśniku pojawia się czerwony płomień, po czym gaśnie." = FALSE)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clockwork/component/geis_capacitor/antennae
-	name = "mania motor antennae"
-	desc = "A pair of dented and bent antennae. They constantly emit a static hiss."
+	name = "anteny silnika manii"
+	desc = "Para wgniecionych i wygiętych anten. Bez przerwy wydają szumiący syk."
 	icon_state = "mania_motor_antennae"
 	cultist_message = "Twoją głowę wypełnia wybuch szumu."
 	servant_of_ratvar_messages = list("\"Kto to zepsuł.\"" = TRUE, "\"SAM to poodłamywałeś?\"" = TRUE, "\"Właściwie po co daliśmy to takim prostaczkom?\"" = TRUE, \
 	"\"Przynajmniej do czegoś się to przyda - w przeciwieństwie do ciebie.\"" = TRUE)
 
 /obj/item/clockwork/component/replicant_alloy
-	name = "replicant alloy"
-	desc = "A seemingly strong but very malleable chunk of metal. It seems as though it wants to be molded into something greater."
+	name = "stop replikujący"
+	desc = "Pozornie twardy, ale bardzo plastyczny kawałek metalu. Jakby chciał, żeby uformować z niego coś większego."
 	icon_state = "replicant_alloy"
 	cultist_message = "Stop na chwilę przybiera wygląd krzyczącej twarzy."
 	servant_of_ratvar_messages = list("\"Zawsze jest coś do zrobienia. Do roboty.\"" = FALSE, "\"Bezczynne ręce są gorsze od połamanych. Do pracy.\"" = FALSE, \
@@ -97,16 +97,16 @@
 	message_span = "nezbere"
 
 /obj/item/clockwork/component/replicant_alloy/smashed_anima_fragment
-	name = "smashed anima fragment"
-	desc = "Shattered chunks of metal. Damaged beyond repair and completely unusable."
+	name = "rozbity fragment animy"
+	desc = "Roztrzaskane kawałki metalu. Zniszczone nie do naprawy i zupełnie bezużyteczne."
 	icon_state = "smashed_anime_fragment"
 	cultist_message = "Odłamki na chwilę wibrują w twoich dłoniach."
 	servant_of_ratvar_messages = list("\"...wciąż walczę...\"" = FALSE, "\"...gdzie ja jestem...?\"" = FALSE, "\"...sprowadź mnie... z powrotem...\"" = FALSE)
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clockwork/component/replicant_alloy/replication_plate
-	name = "replication plate"
-	desc = "A flat, heavy disc of metal with a triangular formation on its surface."
+	name = "płyta replikacyjna"
+	desc = "Płaski, ciężki metalowy dysk z trójkątnym wzorem na powierzchni."
 	icon_state = "replication_plate"
 	cultist_message = "Płyta drży w twoich dłoniach, jakby próbowała uciec."
 	servant_of_ratvar_messages = list("\"Włóż to do płyty i wracaj do pracy.\"" = FALSE, "\"Gorsi słudzy od ciebie to trzymali.\"" = TRUE, \
@@ -114,17 +114,17 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/clockwork/component/hierophant_ansible
-	name = "hierophant ansible"
-	desc = "Some sort of transmitter? It seems as though it's trying to say something."
+	name = "ansibl hierofanta"
+	desc = "Jakiś nadajnik? Wygląda, jakby próbował coś powiedzieć."
 	icon_state = "hierophant_ansible"
-	cultist_message = "\"Gur obff fnlf vg'f abg ntnvafg gur ehyrf gb-xvyy lbh.\""
+	cultist_message = "\"Fmrs zójv, żr mnovpvr pvę jpnyr avr łnzvr mnfnq.\""
 	servant_of_ratvar_messages = list("\"Wygnanie jest takie nudne. Nie ma tu na co polować.\"" = TRUE, "\"Na co czekasz? Chcę iść coś zabić.\"" = TRUE, \
 	"\"HEHEHEHEHEHEH!\"" = FALSE, "\"Gdybym cię zabił dość szybko, myślisz, że szef by zauważył?\"" = TRUE)
 	message_span = "nzcrentr"
 
 /obj/item/clockwork/component/hierophant_ansible/obelisk
-	name = "obelisk prism"
-	desc = "A prism that occasionally glows brightly. It seems not-quite there."
+	name = "pryzmat obelisku"
+	desc = "Pryzmat, który co jakiś czas jasno rozbłyska. Jakby nie do końca tu był."
 	cultist_message = "Pryzmat dziko migocze w twoich dłoniach, po czym wraca do zwykłego blasku."
 	servant_of_ratvar_messages = list("Przez chwilę słyszysz charakterystyczny dźwięk Sieci Hierofanta." = FALSE, "\"Awa'ria prze'ka'zu Hiero'fan'ta.\"" = TRUE, \
 	"Obelisk dziko migocze, jakby próbował otworzyć bramę." = FALSE, "\"Awa'ria bra'my prze'strzen'nej.\"" = TRUE)
@@ -133,8 +133,8 @@
 
 //Shards of Alloy, suitable only as a source of power for a replica fabricator.
 /obj/item/clockwork/alloy_shards
-	name = "replicant alloy shards"
-	desc = "Broken shards of some oddly malleable metal. They occasionally move and seem to glow."
+	name = "odłamki stopu replikującego"
+	desc = "Połamane odłamki dziwnie plastycznego metalu. Czasem się poruszają i jakby świecą."
 	icon_state = "alloy_shards"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	var/randomsinglesprite = FALSE
@@ -150,12 +150,12 @@
 		pixel_y = rand(-sprite_shift, sprite_shift)
 
 /obj/item/clockwork/alloy_shards/proc/replace_name_desc()
-	name = "replicant alloy shard"
-	desc = "A broken shard of some oddly malleable metal. It occasionally moves and seems to glow."
+	name = "odłamek stopu replikującego"
+	desc = "Ułamany odłamek dziwnie plastycznego metalu. Czasem się porusza i jakby świeci."
 
 /obj/item/clockwork/alloy_shards/clockgolem_remains
-	name = "clockwork golem scrap"
-	desc = "A pile of scrap metal. It seems damaged beyond repair."
+	name = "złom mechanicznego golema"
+	desc = "Sterta złomu. Wygląda na zniszczoną nie do naprawy."
 	icon_state = "clockgolem_dead"
 	sprite_shift = 0
 
@@ -177,14 +177,14 @@
 	sprite_shift = 12
 
 /obj/item/clockwork/alloy_shards/medium/gear_bit/replace_name_desc()
-	name = "gear bit"
-	desc = "A broken chunk of a gear. You want it."
+	name = "kawałek zębatki"
+	desc = "Ułamany kawałek koła zębatego. Chcesz go mieć."
 
 /obj/item/clockwork/alloy_shards/medium/gear_bit/large //gives more power
 
 /obj/item/clockwork/alloy_shards/medium/gear_bit/large/replace_name_desc()
 	..()
-	name = "complex gear bit"
+	name = "złożony kawałek zębatki"
 
 /obj/item/clockwork/alloy_shards/small
 	w_class = WEIGHT_CLASS_TINY
@@ -194,6 +194,6 @@
 	sprite_shift = 12
 
 /obj/item/clockwork/alloy_shards/pinion_lock
-	name = "pinion lock"
-	desc = "A dented and scratched gear. It's very heavy."
+	name = "zamek zębaty"
+	desc = "Wgniecione i porysowane koło zębate. Jest bardzo ciężkie."
 	icon_state = "pinion_lock"

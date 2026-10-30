@@ -1,5 +1,5 @@
 /mob/living/simple_animal/bot/secbot/armsky
-	name = "Sergeant-At-Armsky"
+	name = "Sierżant Armsky"
 	health = 45
 	idcheck = TRUE
 	weaponscheck = TRUE

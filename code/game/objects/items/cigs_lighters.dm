@@ -16,8 +16,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //MATCHES//
 ///////////
 /obj/item/match
-	name = "match"
-	desc = "A simple match stick, used for lighting fine smokables."
+	name = "zapałka"
+	desc = "Zwykła zapałka do odpalania wykwintnych używek."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "match_unlit"
 	var/lit = FALSE
@@ -47,8 +47,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		force = 3
 		hitsound = 'sound/items/welder.ogg'
 		item_state = "cigon"
-		name = "lit [initial(name)]"
-		desc = "A [initial(name)]. This one is lit."
+		name = "[initial(name)] (płonąca)"
+		desc = "Płonąca [initial(name)]."
 		attack_verb = list("parzy","przypala")
 		START_PROCESSING(SSobj, src)
 		update_icon()
@@ -61,8 +61,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		force = initial(force)
 		icon_state = "match_burnt"
 		item_state = "cigoff"
-		name = "burnt [initial(name)]"
-		desc = "A [initial(name)]. This one has seen better days."
+		name = "[initial(name)] (wypalona)"
+		desc = "Wypalona [initial(name)]. Widziała lepsze dni."
 		attack_verb = list("pstryka")
 		STOP_PROCESSING(SSobj, src)
 
@@ -77,7 +77,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!isliving(M))
 		return
 	if(lit && M.IgniteMob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
+		message_admins("[ADMIN_LOOKUPFLW(user)] podpala [key_name_admin(M)] za pomocą [src] w [AREACOORD(user)]")
 		log_game("[key_name(user)] set [key_name(M)] on fire with [src] at [AREACOORD(user)]")
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(lit && cig && !user.combat_mode)
@@ -87,10 +87,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cig.attackby(src, user)
 		else
 			if(cig.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-				message_admins("[cig] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z plazmą: [cig]!")
 				log_game("[cig] that contains plasma was lit by [key_name(user)] for [key_name(M)]!")
 			if(cig.reagents.get_reagent_amount(/datum/reagent/fuel))
-				message_admins("[cig] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z paliwem: [cig]!")
 				log_game("[cig] that contains fuel was lit by [key_name(user)] for [key_name(M)]!")
 			cig.light("<span class='notice'>[user] podaje ogień [M] za pomocą [src], zapalając [cig].</span>")
 	else
@@ -105,8 +105,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return lit * heat
 
 /obj/item/match/firebrand
-	name = "firebrand"
-	desc = "An unlit firebrand. It makes you wonder why it's not just called a stick."
+	name = "żagiew"
+	desc = "Niezapalona żagiew. Zastanawiasz się, czemu nikt nie nazywa tego po prostu patykiem."
 	smoketime = 40
 	grind_results = list(/datum/reagent/carbon = 2)
 
@@ -118,8 +118,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //FINE SMOKABLES//
 //////////////////
 /obj/item/clothing/mask/cigarette
-	name = "cigarette"
-	desc = "A roll of tobacco and nicotine."
+	name = "papieros"
+	desc = "Zwitek tytoniu i nikotyny."
 	icon_state = "cigoff"
 	throw_speed = 0.5
 	item_state = "cigoff"
@@ -169,10 +169,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/lighting_text = W.ignition_effect(src, user)
 		if(lighting_text)
 			if(src.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-				message_admins("[src] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z plazmą: [src]!")
 				log_game("[src] that contains plasma was lit by  [key_name(user)]!")
 			if(src.reagents.get_reagent_amount(/datum/reagent/fuel))
-				message_admins("[src] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z paliwem: [src]!")
 				log_game("[src] that contains fuel was lit by [key_name(user)]!")
 			light(lighting_text)
 	else
@@ -185,7 +185,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(istype(glass))	//you can dip cigarettes into beakers
 		if(glass.reagents.trans_to(src, chem_volume, transfered_by = user))	//if reagents were transfered, show the message
 			to_chat(user, "<span class='notice'>Zanurzasz [src] w [glass].</span>")
-			message_admins("[ADMIN_LOOKUPFLW(user)] added reagents to [src], it now contains [english_list(src.reagents.reagent_list)]!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] dodaje odczynniki do [src], teraz zawiera: [english_list(src.reagents.reagent_list)]!")
 			log_game("[key_name(user)] added reagents to [src], it now contains [english_list(src.reagents.reagent_list)]!")
 		else			//if not, either the beaker was empty, or the cigarette was full
 			if(!glass.reagents.total_volume)
@@ -203,7 +203,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 
 	lit = TRUE
-	name = "lit [name]"
+	name = "[name] (tli się)"
 	attack_verb = list("parzy", "przypala")
 	hitsound = 'sound/items/welder.ogg'
 	damtype = "fire"
@@ -241,7 +241,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/cigarette/extinguish()
 	if(!lit)
 		return
-	name = copytext_char(name, 5) //5 == length_char("lit ") + 1
+	name = replacetext(name, " (tli się)", "")
 	attack_verb = null
 	hitsound = null
 	damtype = BRUTE
@@ -309,10 +309,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 	if(M.on_fire && !lit)
 		if(src.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-			message_admins("[src] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)]!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z plazmą: [src]!")
 			log_game("[src] that contains plasma was lit by [key_name(user)]!")
 		if(src.reagents.get_reagent_amount(/datum/reagent/fuel))
-			message_admins("[src] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)]!")
+			message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z paliwem: [src]!")
 			log_game("[src] that contains fuel was lit by [key_name(user)]!")
 		light("<span class='notice'>[user] odpala [src] od płonącego ciała [M]. Co za zimnokrwisty twardziel.</span>")
 		return
@@ -322,18 +322,18 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			to_chat(user, "<span class='notice'>[cig.name] już się pali.</span>")
 		if(M == user)
 			if(cig.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-				message_admins("[cig] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z plazmą: [cig]!")
 				log_game("[cig] that contains plasma was lit by [key_name(user)]!")
 			if(cig.reagents.get_reagent_amount(/datum/reagent/fuel))
-				message_admins("[cig] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala przedmiot z paliwem: [cig]!")
 				log_game("[cig] that contains fuel was lit by [key_name(user)]!")
 			cig.attackby(src, user)
 		else
 			if(cig.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-				message_admins("[cig] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z plazmą: [cig]!")
 				log_game("[cig] that contains plasma was lit by [key_name(user)] for [key_name(M)]!")
 			if(cig.reagents.get_reagent_amount(/datum/reagent/fuel))
-				message_admins("[cig] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+				message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z paliwem: [cig]!")
 				log_game("[cig] that contains fuel was lit by [key_name(user)] for [key_name(M)]!")
 			cig.light("<span class='notice'>[user] podaje ogień [M], zapalając mu [cig.name] za pomocą [name].</span>")
 
@@ -342,10 +342,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/fire_act(exposed_temperature, exposed_volume)
 	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-		message_admins("[src] that contains plasma was lit by the enviroment - Last touched by [src.fingerprintslast]!")
+		message_admins("Otoczenie zapala przedmiot z plazmą: [src] - ostatnio dotykał: [src.fingerprintslast]!")
 		log_game("[src] that contains plasma was lit by the enviroment - Last touched by [src.fingerprintslast]!")
 	if(src.reagents.get_reagent_amount(/datum/reagent/fuel))
-		message_admins("[src] that contains fuel was lit by the enviroment - Last touched by [src.fingerprintslast]!")
+		message_admins("Otoczenie zapala przedmiot z paliwem: [src] - ostatnio dotykał: [src.fingerprintslast]!")
 		log_game("[src] that contains fuel was lit by the enviroment - Last touched by [src.fingerprintslast]!")
 	light()
 
@@ -355,48 +355,48 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 // Cigarette brands.
 
 /obj/item/clothing/mask/cigarette/space_cigarette
-	desc = "A Space Cigarette brand cigarette."
+	desc = "Papieros marki Space Cigarette."
 
 /obj/item/clothing/mask/cigarette/dromedary
-	desc = "A DromedaryCo brand cigarette."
+	desc = "Papieros marki DromedaryCo."
 
 /obj/item/clothing/mask/cigarette/uplift
-	desc = "An Uplift Smooth brand cigarette."
+	desc = "Papieros marki Uplift Smooth."
 	list_reagents = list(/datum/reagent/drug/nicotine = 13, /datum/reagent/consumable/menthol = 5)
 
 /obj/item/clothing/mask/cigarette/robust
-	desc = "A Robust brand cigarette."
+	desc = "Papieros marki Robust."
 
 /obj/item/clothing/mask/cigarette/robustgold
-	desc = "A Robust Gold brand cigarette."
+	desc = "Papieros marki Robust Gold."
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/gold = 3) // Just enough to taste a hint of expensive metal.
 
 /obj/item/clothing/mask/cigarette/carp
-	desc = "A Carp Classic brand cigarette."
+	desc = "Papieros marki Carp Classic."
 
 /obj/item/clothing/mask/cigarette/plasma
 	list_reagents = list(/datum/reagent/toxin/plasma = 5)
 
 /obj/item/clothing/mask/cigarette/syndicate
-	desc = "An unknown brand cigarette."
+	desc = "Papieros nieznanej marki."
 	chem_volume = 60
 	smoketime = 2 * 60
 	smoke_all = TRUE
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/omnizine = 15)
 
 /obj/item/clothing/mask/cigarette/shadyjims
-	desc = "A Shady Jim's Super Slims cigarette."
+	desc = "Papieros Shady Jim's Super Slims."
 	list_reagents = list(/datum/reagent/drug/nicotine = 15, /datum/reagent/toxin/lipolicide = 4, /datum/reagent/ammonia = 2, /datum/reagent/toxin/plantbgone = 1, /datum/reagent/toxin = 1.5)
 
 /obj/item/clothing/mask/cigarette/xeno
-	desc = "A Xeno Filtered brand cigarette."
+	desc = "Papieros marki Xeno Filtered."
 	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
 // Rollies.
 
 /obj/item/clothing/mask/cigarette/rollie
-	name = "rollie"
-	desc = "A roll of dried plant matter wrapped in thin paper."
+	name = "skręt"
+	desc = "Zwitek suszu roślinnego zawinięty w cienką bibułkę."
 	icon_state = "spliffoff"
 	icon_on = "spliffon"
 	icon_off = "spliffoff"
@@ -426,8 +426,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 35, /datum/reagent/toxin/lipolicide = 15)
 
 /obj/item/cigbutt/roach
-	name = "roach"
-	desc = "A manky old roach, or for non-stoners, a used rollup."
+	name = "niedopałek skręta"
+	desc = "Obleśny stary kiepek, czyli dla niepalących – wypalony skręt."
 	icon_state = "roach"
 
 /obj/item/cigbutt/roach/Initialize(mapload)
@@ -440,8 +440,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 // CIGARS //
 ////////////
 /obj/item/clothing/mask/cigarette/cigar
-	name = "premium cigar"
-	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
+	name = "cygaro premium"
+	desc = "Brązowy zwój tytoniu i... cóż, sam nie wiesz czego. Ale kolos!"
 	icon_state = "cigaroff"
 	icon_on = "cigaron"
 	icon_off = "cigaroff" //make sure to add positional sprites in icons/obj/cigarettes.dmi if you add more.
@@ -453,7 +453,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents = list(/datum/reagent/drug/nicotine = 25)
 
 /obj/item/clothing/mask/cigarette/cigar/cohiba
-	name = "\improper Cohiba Robusto cigar"
+	name = "\improper cygaro Cohiba Robusto"
 	desc = "Od cygara nie można chcieć wiele więcej."
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
@@ -463,7 +463,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents =list(/datum/reagent/drug/nicotine = 40)
 
 /obj/item/clothing/mask/cigarette/cigar/havana
-	name = "premium Havanian cigar"
+	name = "hawańskie cygaro premium"
 	desc = "Cygaro tylko dla najlepszych z najlepszych."
 	icon_state = "cigar2off"
 	icon_on = "cigar2on"
@@ -473,8 +473,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	list_reagents =list(/datum/reagent/drug/nicotine = 15)
 
 /obj/item/cigbutt
-	name = "cigarette butt"
-	desc = "A manky old cigarette butt."
+	name = "niedopałek"
+	desc = "Obleśny stary niedopałek papierosa."
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "cigbutt"
 	w_class = WEIGHT_CLASS_TINY
@@ -482,16 +482,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	grind_results = list(/datum/reagent/carbon = 2)
 
 /obj/item/cigbutt/cigarbutt
-	name = "cigar butt"
-	desc = "A manky old cigar butt."
+	name = "niedopałek cygara"
+	desc = "Obleśny stary niedopałek cygara."
 	icon_state = "cigarbutt"
 
 /////////////////
 //SMOKING PIPES//
 /////////////////
 /obj/item/clothing/mask/cigarette/pipe
-	name = "smoking pipe"
-	desc = "A pipe, for smoking. Probably made of meerschaum or something."
+	name = "fajka"
+	desc = "Fajka do palenia. Pewnie z pianki morskiej czy czegoś w tym stylu."
 	icon_state = "pipeoff"
 	item_state = "pipeoff"
 	icon_on = "pipeon"  //Note - these are in masks.dmi
@@ -505,7 +505,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/pipe/Initialize(mapload)
 	. = ..()
-	name = "empty [initial(name)]"
+	name = "[initial(name)] (pusta)"
 
 /obj/item/clothing/mask/cigarette/pipe/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -524,7 +524,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			item_state = icon_off
 			M.update_inv_wear_mask()
 			packeditem = 0
-			name = "empty [initial(name)]"
+			name = "[initial(name)] (pusta)"
 		STOP_PROCESSING(SSobj, src)
 		return
 	open_flame()
@@ -540,7 +540,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				to_chat(user, "<span class='notice'>Napychasz [O] do [src].</span>")
 				smoketime = 13 * 60
 				packeditem = TRUE
-				name = "[O.name]-packed [initial(name)]"
+				name = "[initial(name)] (nabita: [O.name])"
 				if(O.reagents)
 					O.reagents.trans_to(src, O.reagents.total_volume, transfered_by = user)
 				qdel(O)
@@ -573,12 +573,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		packeditem = 0
 		smoketime = 0
 		reagents.clear_reagents()
-		name = "empty [initial(name)]"
+		name = "[initial(name)] (pusta)"
 	return
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe
-	name = "corn cob pipe"
-	desc = "A nicotine delivery system popularized by folksy backwoodsmen and kept popular in the modern age and beyond by space hipsters. Can be loaded with objects."
+	name = "fajka z kolby kukurydzy"
+	desc = "System dostarczania nikotyny spopularyzowany przez prostych chłopów z głuszy, a w czasach nowożytnych i później podtrzymywany przy życiu przez kosmicznych hipsterów. Można ją czymś nabić."
 	icon_state = "cobpipeoff"
 	item_state = "cobpipeoff"
 	icon_on = "cobpipeon"  //Note - these are in masks.dmi
@@ -590,7 +590,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //ZIPPO//
 /////////
 /obj/item/lighter
-	name = "\improper Zippo lighter"
+	name = "\improper zapalniczka Zippo"
 	desc = "Zippo."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "zippo"
@@ -710,7 +710,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/lighter/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(lit && M.IgniteMob())
-		message_admins("[ADMIN_LOOKUPFLW(user)] set [key_name_admin(M)] on fire with [src] at [AREACOORD(user)]")
+		message_admins("[ADMIN_LOOKUPFLW(user)] podpala [key_name_admin(M)] za pomocą [src] w [AREACOORD(user)]")
 		log_game("[key_name(user)] set [key_name(M)] on fire with [src] at [AREACOORD(user)]")
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(lit && cig && !user.combat_mode)
@@ -721,18 +721,18 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		else
 			if(fancy)
 				if(cig.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-					message_admins("[cig.name] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+					message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z plazmą: [cig.name]!")
 					log_game("[cig.name] that contains plasma was lit by [key_name(user)] for [key_name(M)]!")
 				if(cig.reagents.get_reagent_amount(/datum/reagent/fuel))
-					message_admins("[cig.name] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+					message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z paliwem: [cig.name]!")
 					log_game("[cig.name] that contains fuel was lit by [key_name(user)] for [key_name(M)]!")
 				cig.light("<span class='rose'>[user] wyciąga [name] i podaje ogień [M]. Ręka [user] jest równie pewna jak niemigoczący płomień, którym zapala [cig].</span>")
 			else
 				if(cig.reagents.get_reagent_amount(/datum/reagent/toxin/plasma))
-					message_admins("[cig.name] that contains plasma was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+					message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z plazmą: [cig.name]!")
 					log_game("[cig.name] that contains plasma was lit by [key_name(user)] for [key_name(M)]!")
 				if(cig.reagents.get_reagent_amount(/datum/reagent/fuel))
-					message_admins("[cig.name] that contains fuel was lit by [ADMIN_LOOKUPFLW(user)] for [key_name_admin(M)]!")
+					message_admins("[ADMIN_LOOKUPFLW(user)] zapala [key_name_admin(M)] przedmiot z paliwem: [cig.name]!")
 					log_game("[cig.name] that contains fuel was lit by [key_name(user)] for [key_name(M)]!")
 				cig.light("<span class='notice'>[user] podaje ogień [M], zapalając mu [cig.name] za pomocą [name].</span>")
 	else
@@ -746,7 +746,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/lighter/greyscale
-	name = "cheap lighter"
+	name = "tania zapalniczka"
 	desc = "Tania zapalniczka."
 	icon_state = "lighter"
 	fancy = FALSE
@@ -795,8 +795,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/lighter/slime
-	name = "slime zippo"
-	desc = "A specialty zippo made from slimes and industry. Has a much hotter flame than normal."
+	name = "szlamowa zapalniczka Zippo"
+	desc = "Specjalna zapalniczka Zippo zrobiona ze szlamów i przemysłu. Ma o wiele gorętszy płomień niż zwykła."
 	icon_state = "slighter"
 	heat = 3000 //Blue flame!
 	light_color = LIGHT_COLOR_CYAN
@@ -808,8 +808,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //ROLLING//
 ///////////
 /obj/item/rollingpaper
-	name = "rolling paper"
-	desc = "A thin piece of paper used to make fine smokeables."
+	name = "bibułka"
+	desc = "Cienki kawałek papieru do skręcania wykwintnych używek."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig_paper"
 	w_class = WEIGHT_CLASS_TINY
@@ -828,7 +828,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			qdel(src)
 			user.put_in_active_hand(R)
 			to_chat(user, "<span class='notice'>Zawijasz [target.name] w bibułkę.</span>")
-			R.desc = "Dried [target.name] rolled up in a thin piece of paper."
+			R.desc = "Susz zawinięty w cienką bibułkę: [target.name]."
 		else
 			to_chat(user, "<span class='warning'>Najpierw musisz to wysuszyć!</span>")
 
@@ -836,8 +836,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //VAPE NATION//
 ///////////////
 /obj/item/clothing/mask/vape
-	name = "\improper E-Cigarette"
-	desc = "A classy and highly sophisticated electronic cigarette, for classy and dignified gentlemen. A warning label reads \"Warning: Do not fill with flammable materials.\""//<<< i'd vape to that.
+	name = "\improper e-papieros"
+	desc = "Elegancki i wysoce wyrafinowany elektroniczny papieros dla eleganckich i dystyngowanych dżentelmenów. Etykieta ostrzega: „Uwaga: nie napełniać materiałami łatwopalnymi”."//<<< i'd vape to that.
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "red_vape"
 	item_state = null

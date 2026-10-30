@@ -1,7 +1,7 @@
 /turf/open/water
 	gender = PLURAL
-	name = "water"
-	desc = "Shallow water."
+	name = "woda"
+	desc = "Płytka woda."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "riverwater_motion"
 	baseturfs = /turf/open/floor/plating/asteroid/airless //NSV 13 - rocks don't have chasms and no cases currently exist where they'd make sense.

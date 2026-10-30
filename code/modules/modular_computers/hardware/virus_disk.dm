@@ -1,5 +1,5 @@
 /obj/item/computer_hardware/hard_drive/role/virus
-	name = "\improper generic virus disk"
+	name = "\improper zwykły dysk z wirusem"
 	icon_state = "cart-detomatrix"
 	var/charges = 5
 
@@ -7,8 +7,8 @@
 	return
 
 /obj/item/computer_hardware/hard_drive/role/virus/clown
-	name = "\improper H.O.N.K. disk"
-	desc = "A data disk for portable microcomputers. It smells vaguely of bananas."
+	name = "\improper dysk H.O.N.K."
+	desc = "Dysk z danymi do przenośnych mikrokomputerów. Pachnie lekko bananami."
 	icon_state = "cart-clown"
 
 /obj/item/computer_hardware/hard_drive/role/virus/clown/send_virus(obj/item/modular_computer/tablet/target, mob/living/user)
@@ -53,7 +53,7 @@
 	return FALSE
 
 /obj/item/computer_hardware/hard_drive/role/virus/mime
-	name = "\improper sound of silence disk"
+	name = "\improper dysk dźwięku ciszy"
 
 /obj/item/computer_hardware/hard_drive/role/virus/mime/send_virus(obj/item/modular_computer/tablet/target, mob/living/user)
 	if(charges <= 0)
@@ -71,7 +71,7 @@
 		to_chat(user, "<span class='notice'>BŁĄD: nie znaleziono urządzenia.</span>")
 
 /obj/item/computer_hardware/hard_drive/role/virus/syndicate
-	name = "\improper D.E.T.O.M.A.T.I.X. disk"
+	name = "\improper dysk D.E.T.O.M.A.T.I.X."
 	icon_state = "cart-detomatrix"
 	charges = 4
 
@@ -102,13 +102,13 @@
 		target.explode(target, user)
 
 /obj/item/computer_hardware/hard_drive/role/virus/syndicate/military
-	name = "\improper D.E.T.O.M.A.T.I.X. Deluxe disk"
+	name = "\improper dysk D.E.T.O.M.A.T.I.X. Deluxe"
 	disk_flags = DISK_REMOTE_AIRLOCK
 	// Make sure this matches the syndicate shuttle's shield/door id in _maps/shuttles/infiltrator/infiltrator_basic.dmm
 	controllable_airlocks = list("smindicate")
 
 /obj/item/computer_hardware/hard_drive/role/virus/frame
-	name = "\improper F.R.A.M.E. disk"
+	name = "\improper dysk F.R.A.M.E."
 	icon_state = "cart-prove"
 	var/telecrystals = 0
 

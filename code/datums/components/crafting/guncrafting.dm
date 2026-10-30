@@ -3,19 +3,19 @@
 // PARTS //
 
 /obj/item/weaponcrafting/receiver
-	name = "modular receiver"
-	desc = "A prototype modular receiver and trigger assembly for a firearm."
+	name = "modułowa komora zamkowa"
+	desc = "Prototypowa modułowa komora zamkowa z mechanizmem spustowym do broni palnej."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "receiver"
 
 /obj/item/weaponcrafting/stock
-	name = "rifle stock"
-	desc = "A classic rifle stock that doubles as a grip, roughly carved out of wood."
+	name = "kolba karabinu"
+	desc = "Klasyczna kolba karabinu, która służy też za chwyt, z grubsza wystrugana z drewna."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "riflestock"
 
 /obj/item/weaponcrafting/silkstring
-	name = "silkstring"
-	desc = "A long piece of Silk that looks like a cable coil."
+	name = "jedwabna cięciwa"
+	desc = "Długi kawałek jedwabiu, który wygląda jak zwój kabla."
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "silkstring"

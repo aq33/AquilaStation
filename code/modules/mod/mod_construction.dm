@@ -1,68 +1,68 @@
 /obj/item/mod/construction
-	desc = "A part used in MOD construction."
+	desc = "Część do budowy MOD."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	item_state = "rack_parts"
 
 /obj/item/mod/construction/helmet
-	name = "MOD helmet"
+	name = "hełm MOD"
 	icon_state = "helmet"
 
 /obj/item/mod/construction/helmet/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice("Możesz to włożyć do <b>skorupy MOD</b>...")
 
 /obj/item/mod/construction/chestplate
-	name = "MOD chestplate"
+	name = "napierśnik MOD"
 	icon_state = "chestplate"
 
 /obj/item/mod/construction/chestplate/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert it into a <b>MOD shell</b>...")
+	. += span_notice("Możesz to włożyć do <b>skorupy MOD</b>...")
 
 /obj/item/mod/construction/gauntlets
-	name = "MOD gauntlets"
+	name = "rękawice MOD"
 	icon_state = "gauntlets"
 
 /obj/item/mod/construction/gauntlets/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice("Możesz je włożyć do <b>skorupy MOD</b>...")
 
 /obj/item/mod/construction/boots
-	name = "MOD boots"
+	name = "buty MOD"
 	icon_state = "boots"
 
 /obj/item/mod/construction/boots/examine(mob/user)
 	. = ..()
-	. += span_notice("You could insert these into a <b>MOD shell</b>...")
+	. += span_notice("Możesz je włożyć do <b>skorupy MOD</b>...")
 
 /obj/item/mod/construction/broken_core
-	name = "broken MOD core"
+	name = "uszkodzony rdzeń MOD"
 	icon_state = "mod-core"
-	desc = "An internal power source for a Modular Outerwear Device. You don't seem to be able to source any power from this one, though."
+	desc = "Wewnętrzne źródło zasilania Modularnego Urządzenia Zewnętrznego. Z tego jednak nie da się chyba pobrać żadnej energii."
 
 /obj/item/mod/construction/broken_core/examine(mob/user)
 	. = ..()
-	. += span_notice("You could repair it with a <b>screwdriver</b>...")
+	. += span_notice("Możesz to naprawić <b>śrubokrętem</b>...")
 
 /obj/item/mod/construction/broken_core/screwdriver_act(mob/living/user, obj/item/tool)
 	. = ..()
-	balloon_alert(user, "repairing...")
+	balloon_alert(user, "naprawianie...")
 	if(!tool.use_tool(src, user, 5 SECONDS, volume = 30))
-		balloon_alert(user, "interrupted!")
+		balloon_alert(user, "przerwano!")
 		return
 	new /obj/item/mod/core/standard(drop_location())
 	qdel(src)
 
 /obj/item/mod/construction/plating
-	name = "MOD external plating"
-	desc = "External plating used to finish a MOD control unit."
+	name = "zewnętrzne poszycie MOD"
+	desc = "Zewnętrzne poszycie do ukończenia jednostki sterującej MOD."
 	icon_state = "standard-plating"
 	var/datum/mod_theme/theme = /datum/mod_theme
 
 /obj/item/mod/construction/plating/Initialize(mapload)
 	. = ..()
 	var/datum/mod_theme/used_theme = GLOB.mod_themes[theme]
-	name = "MOD [used_theme.name] external plating"
+	name = "zewnętrzne poszycie MOD (model [used_theme.name])"
 	desc = "[desc] [used_theme.desc]"
 	icon_state = "[used_theme.default_skin]-plating"
 
@@ -95,9 +95,9 @@
 #define SCREWED_ASSEMBLY_STEP "screwed_assembly"
 
 /obj/item/mod/construction/shell
-	name = "MOD shell"
+	name = "skorupa MOD"
 	icon_state = "mod-construction_start"
-	desc = "A MOD shell."
+	desc = "Skorupa MOD."
 	var/obj/item/core
 	var/obj/item/helmet
 	var/obj/item/chestplate
@@ -110,23 +110,23 @@
 	var/display_text
 	switch(step)
 		if(START_STEP)
-			display_text = "It looks like it's missing a <b>MOD core</b>..."
+			display_text = "Wygląda na to, że brakuje <b>rdzenia MOD</b>..."
 		if(CORE_STEP)
-			display_text = "The core seems <b>loose</b>..."
+			display_text = "Rdzeń wydaje się <b>poluzowany</b>..."
 		if(SCREWED_CORE_STEP)
-			display_text = "It looks like it's missing a <b>helmet</b>..."
+			display_text = "Wygląda na to, że brakuje <b>hełmu</b>..."
 		if(HELMET_STEP)
-			display_text = "It looks like it's missing a <b>chestplate</b>..."
+			display_text = "Wygląda na to, że brakuje <b>napierśnika</b>..."
 		if(CHESTPLATE_STEP)
-			display_text = "It looks like it's missing <b>gauntlets</b>..."
+			display_text = "Wygląda na to, że brakuje <b>rękawic</b>..."
 		if(GAUNTLETS_STEP)
-			display_text = "It looks like it's missing <b>boots</b>..."
+			display_text = "Wygląda na to, że brakuje <b>butów</b>..."
 		if(BOOTS_STEP)
-			display_text = "The assembly seems <b>unsecured</b>..."
+			display_text = "Konstrukcja wydaje się <b>niezabezpieczona</b>..."
 		if(WRENCHED_ASSEMBLY_STEP)
-			display_text = "The assembly seems <b>loose</b>..."
+			display_text = "Konstrukcja wydaje się <b>poluzowana</b>..."
 		if(SCREWED_ASSEMBLY_STEP)
-			display_text = "All it's missing is <b>external plating</b>..."
+			display_text = "Brakuje już tylko <b>poszycia zewnętrznego</b>..."
 	. += span_notice(display_text)
 
 /obj/item/mod/construction/shell/attackby(obj/item/part, mob/user, params)
@@ -136,116 +136,116 @@
 			if(!istype(part, /obj/item/mod/core))
 				return
 			if(!user.transferItemToLoc(part, src))
-				balloon_alert(user, "it's stuck!")
+				balloon_alert(user, "zablokowane!")
 				return
 			playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-			balloon_alert(user, "core inserted")
+			balloon_alert(user, "rdzeń włożony")
 			core = part
 			step = CORE_STEP
 		if(CORE_STEP)
 			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "core screwed")
+					balloon_alert(user, "rdzeń przykręcony")
 					step = SCREWED_CORE_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					core.forceMove(drop_location())
 					core = null
-					balloon_alert(user, "core taken out")
+					balloon_alert(user, "rdzeń wyjęty")
 					step = START_STEP
 		if(SCREWED_CORE_STEP)
 			if(istype(part, /obj/item/mod/construction/helmet)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "zablokowane!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "helmet added")
+				balloon_alert(user, "hełm dodany")
 				helmet = part
 				step = HELMET_STEP
 			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "core unscrewed")
+					balloon_alert(user, "rdzeń odkręcony")
 					step = CORE_STEP
 		if(HELMET_STEP)
 			if(istype(part, /obj/item/mod/construction/chestplate)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "zablokowane!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "chestplate added")
+				balloon_alert(user, "napierśnik dodany")
 				chestplate = part
 				step = CHESTPLATE_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					helmet.forceMove(drop_location())
-					balloon_alert(user, "helmet removed")
+					balloon_alert(user, "hełm zdjęty")
 					helmet = null
 					step = SCREWED_CORE_STEP
 		if(CHESTPLATE_STEP)
 			if(istype(part, /obj/item/mod/construction/gauntlets)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "zablokowane!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "gauntlets added")
+				balloon_alert(user, "rękawice dodane")
 				gauntlets = part
 				step = GAUNTLETS_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					chestplate.forceMove(drop_location())
-					balloon_alert(user, "chestplate removed")
+					balloon_alert(user, "napierśnik zdjęty")
 					chestplate = null
 					step = HELMET_STEP
 		if(GAUNTLETS_STEP)
 			if(istype(part, /obj/item/mod/construction/boots)) //Construct
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "zablokowane!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
-				balloon_alert(user, "boots added")
+				balloon_alert(user, "buty dodane")
 				boots = part
 				step = BOOTS_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					gauntlets.forceMove(drop_location())
-					balloon_alert(user, "gauntlets removed")
+					balloon_alert(user, "rękawice zdjęte")
 					gauntlets = null
 					step = CHESTPLATE_STEP
 		if(BOOTS_STEP)
 			if(part.tool_behaviour == TOOL_WRENCH) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly secured")
+					balloon_alert(user, "konstrukcja zabezpieczona")
 					step = WRENCHED_ASSEMBLY_STEP
 			else if(part.tool_behaviour == TOOL_CROWBAR) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
 					boots.forceMove(drop_location())
-					balloon_alert(user, "boots removed")
+					balloon_alert(user, "buty zdjęte")
 					boots = null
 					step = GAUNTLETS_STEP
 		if(WRENCHED_ASSEMBLY_STEP)
 			if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly screwed")
+					balloon_alert(user, "konstrukcja skręcona")
 					step = SCREWED_ASSEMBLY_STEP
 			else if(part.tool_behaviour == TOOL_WRENCH) //Deconstruct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly unsecured")
+					balloon_alert(user, "konstrukcja odkręcona")
 					step = BOOTS_STEP
 		if(SCREWED_ASSEMBLY_STEP)
 			if(istype(part, /obj/item/mod/construction/plating)) //Construct
 				var/obj/item/mod/construction/plating/external_plating = part
 				if(!user.transferItemToLoc(part, src))
-					balloon_alert(user, "it's stuck!")
+					balloon_alert(user, "zablokowane!")
 					return
 				playsound(src, 'sound/machines/click.ogg', 30, TRUE)
 				var/obj/item/mod = new /obj/item/mod/control(drop_location(), external_plating.theme, null, core)
 				core = null
 				qdel(src)
 				user.put_in_hands(mod)
-				mod.balloon_alert(user, "unit finished")
+				mod.balloon_alert(user, "jednostka gotowa")
 			else if(part.tool_behaviour == TOOL_SCREWDRIVER) //Construct
 				if(part.use_tool(src, user, 0, volume=30))
-					balloon_alert(user, "assembly unscrewed")
+					balloon_alert(user, "konstrukcja rozkręcona")
 					step = SCREWED_ASSEMBLY_STEP
 	update_icon_state()
 

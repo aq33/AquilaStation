@@ -1,5 +1,5 @@
 /datum/symptom/macrophage
-	name = "Macrophage"
+	name = "Makrofag"
 	desc = "Wirus rośnie w nosicielu, przestając być mikroskopijny i wyrządzając poważne szkody w ciele. Te fagi szukają, atakują i zarażają kolejnych odpowiednich nosicieli"
 	stealth = -4
 	resistance = 1
@@ -14,10 +14,10 @@
 	var/gigagerms = FALSE
 	var/netspeed = 0
 	var/phagecounter = 10
-	threshold_desc = "<b>Stage Speed:</b>The higher the stage speed, the more frequently phages will burst from the host.<br>\
-                      <b>Resistance:</b>The higher the resistance, the more health phages will have, and the more damage they will do.<br>\
-					  <b>Transmission 10:</b>Phages can be larger, more aggressive, and able to pierce thick clothing, with some effort.<br>\
-                      <b>Transmission 12:</b>Phages will carry all diseases within the host, instead of only diseases containing their own symptom"
+	threshold_desc = "<b>Szybkość stadiów:</b> im wyższa szybkość stadiów, tym częściej fagi wyrywają się z nosiciela.<br>\
+                      <b>Odporność:</b> im wyższa odporność, tym więcej zdrowia mają fagi i tym większe zadają obrażenia.<br>\
+					  <b>Transmisja 10:</b> fagi mogą być większe, bardziej agresywne i z pewnym wysiłkiem przebijać grube ubrania.<br>\
+                      <b>Transmisja 12:</b> fagi przenoszą wszystkie choroby nosiciela, a nie tylko te z ich własnym symptomem"
 
 
 

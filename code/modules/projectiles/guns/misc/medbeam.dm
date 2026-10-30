@@ -1,6 +1,6 @@
 /obj/item/gun/medbeam
-	name = "Medical Beamgun"
-	desc = "Don't cross the streams!"
+	name = "medyczny miotacz wiązki"
+	desc = "Nie krzyżuj strumieni!"
 	icon = 'icons/obj/chronos.dmi'
 	icon_state = "chronogun"
 	item_state = "chronogun"
@@ -125,7 +125,7 @@
 	return
 
 /obj/effect/ebeam/medical
-	name = "medical beam"
+	name = "wiązka medyczna"
 
 //////////////////////////////Mech Version///////////////////////////////
 /obj/item/gun/medbeam/mech

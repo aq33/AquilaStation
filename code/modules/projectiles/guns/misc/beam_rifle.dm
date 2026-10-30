@@ -9,10 +9,10 @@
 #define AIMING_BEAM_ANGLE_CHANGE_THRESHOLD 0.1
 
 /obj/item/gun/energy/beam_rifle
-	name = "particle acceleration rifle"
-	desc = "An energy-based anti material marksman rifle that uses highly charged particle beams moving at extreme velocities to decimate whatever is unfortunate enough to be targeted by one. \
-		<span class='boldnotice'>Hold down left click while scoped to aim, when weapon is fully aimed (Tracer goes from red to green as it charges), release to fire. Moving while aiming or \
-		changing where you're pointing at while aiming will delay the aiming process depending on how much you changed.</span>"
+	name = "karabin akceleracji cząstek"
+	desc = "Energetyczny karabin wyborowy przeciwko sprzętowi. Strzela silnie naładowanymi wiązkami cząstek pędzącymi z ogromną prędkością, które dziesiątkują wszystko, co ma pecha znaleźć się na celowniku. \
+		<span class='boldnotice'>Przytrzymaj lewy przycisk myszy z włączonym celownikiem, by celować. Gdy broń w pełni wyceluje (smuga zmienia kolor z czerwonego na zielony), puść, by strzelić. Ruch podczas celowania albo \
+		zmiana punktu celowania opóźnia celowanie, zależnie od tego, jak duża była zmiana.</span>"
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "esniper"
 	item_state = "esniper"
@@ -320,8 +320,8 @@
 	aiming_time_left = CLAMP(aiming_time_left + amount, 0, aiming_time)
 
 /obj/item/ammo_casing/energy/beam_rifle
-	name = "particle acceleration lens"
-	desc = "Don't look into barrel!"
+	name = "soczewka akceleracji cząstek"
+	desc = "Nie zaglądaj do lufy!"
 	var/wall_pierce_amount = 0
 	var/wall_devastate = 0
 	var/aoe_structure_range = 1
@@ -406,7 +406,7 @@
 	fire_sound = 'sound/weapons/beam_sniper.ogg'
 
 /obj/item/projectile/beam/beam_rifle
-	name = "particle beam"
+	name = "wiązka cząstek"
 	icon = null
 	hitsound = 'sound/effects/explosion3.ogg'
 	damage = 0				//Handled manually.
@@ -519,7 +519,7 @@
 
 /obj/item/projectile/beam/beam_rifle/hitscan/aiming_beam
 	tracer_type = /obj/effect/projectile/tracer/tracer/aiming
-	name = "aiming beam"
+	name = "wiązka celownicza"
 	hitsound = null
 	hitsound_wall = null
 	nodamage = TRUE

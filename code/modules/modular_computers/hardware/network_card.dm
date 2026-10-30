@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/network_card
-	name = "network card"
-	desc = "A basic wireless network card for usage with standard NTNet frequencies."
+	name = "karta sieciowa"
+	desc = "Podstawowa bezprzewodowa karta sieciowa do standardowych częstotliwości NTNet."
 	power_usage = 50
 	icon_state = "radio_mini"
 	network_id = NETWORK_CARDS	// Network we are on
@@ -66,8 +66,8 @@
 
 
 /obj/item/computer_hardware/network_card/advanced
-	name = "advanced network card"
-	desc = "An advanced network card for usage with standard NTNet frequencies. Its transmitter is strong enough to connect even off-station."
+	name = "zaawansowana karta sieciowa"
+	desc = "Zaawansowana karta sieciowa do standardowych częstotliwości NTNet. Jej nadajnik jest na tyle silny, że łączy się nawet poza stacją."
 	long_range = TRUE
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "radio"
@@ -76,20 +76,20 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/computer_hardware/network_card/advanced/norelay
-	name = "ultra-advanced network card"
-	desc = "An advanced network card for usage with standard NTNet frequencies. Its transmitter is strong enough to connect even off-station, even without a telecomms relay."
+	name = "ultrazaawansowana karta sieciowa"
+	desc = "Zaawansowana karta sieciowa do standardowych częstotliwości NTNet. Jej nadajnik jest na tyle silny, że łączy się nawet poza stacją, i to bez przekaźnika telekomunikacyjnego."
 	ignore_relay = TRUE
 
 /obj/item/computer_hardware/network_card/wired
-	name = "wired network card"
-	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
+	name = "przewodowa karta sieciowa"
+	desc = "Zaawansowana karta sieciowa do standardowych częstotliwości NTNet. Ta obsługuje też połączenie przewodowe."
 	ethernet = 1
 	power_usage = 100 // Better range but higher power usage.
 	icon_state = "net_wired"
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/computer_hardware/network_card/integrated //Borg tablet version, only works while the borg has power and is not locked
-	name = "cyborg data link"
+	name = "łącze danych cyborga"
 
 /obj/item/computer_hardware/network_card/integrated/get_signal(specific_action = 0)
 	var/obj/item/modular_computer/tablet/integrated/modularInterface = holder

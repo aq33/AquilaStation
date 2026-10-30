@@ -2,8 +2,8 @@
 //Singularity beacon
 ////////////////////////////////////////
 /obj/machinery/power/singularity_beacon
-	name = "ominous beacon"
-	desc = "This looks suspicious..."
+	name = "złowieszczy nadajnik"
+	desc = "Wygląda podejrzanie..."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "beacon0"
 
@@ -109,12 +109,12 @@
 
 // SINGULO BEACON SPAWNER
 /obj/item/sbeacondrop
-	name = "suspicious beacon"
+	name = "podejrzany nadajnik"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	desc = "A label on it reads: <i>Warning: Activating this device will send a special beacon to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce specjalny nadajnik</i>."
 	w_class = WEIGHT_CLASS_SMALL
 	var/droptype = /obj/machinery/power/singularity_beacon/syndicate
 
@@ -128,29 +128,29 @@
 	return
 
 /obj/item/sbeacondrop/bomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a high-ordinance explosive to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce silny ładunek wybuchowy</i>."
 	droptype = /obj/machinery/syndicatebomb
 
 /obj/item/sbeacondrop/powersink
-	desc = "A label on it reads: <i>Warning: Activating this device will send a power draining device to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce urządzenie wysysające energię</i>."
 	droptype = /obj/item/powersink
 
 /obj/item/sbeacondrop/clownbomb
-	desc = "A label on it reads: <i>Warning: Activating this device will send a silly explosive to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce głupkowaty ładunek wybuchowy</i>."
 	droptype = /obj/machinery/syndicatebomb/badmin/clown
 
 /obj/item/sbeacondrop/constructshell
-	desc = "A label on it reads: <i>Warning: Activating this device will send a Nar'sian construct shell to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce pancerz konstruktu Nar'Sie</i>."
 	droptype = /obj/structure/constructshell
 
 /obj/item/sbeacondrop/semiautoturret
-	desc = "A label on it reads: <i>Warning: Activating this device will send a semi-auto turret to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce półautomatyczną wieżyczkę</i>."
 	droptype = /obj/machinery/porta_turret/syndicate/pod
 
 /obj/item/sbeacondrop/heavylaserturret
-	desc = "A label on it reads: <i>Warning: Activating this device will send a heavy laser turret to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce ciężką wieżyczkę laserową</i>."
 	droptype = /obj/machinery/porta_turret/syndicate/energy/heavy
 
 /obj/item/sbeacondrop/penetratorturret
-	desc = "A label on it reads: <i>Warning: Activating this device will send a penetrator turret to your location</i>."
+	desc = "Naklejka głosi: <i>Uwaga: aktywacja tego urządzenia ściągnie w twoje miejsce wieżyczkę z pociskami przebijającymi</i>."
 	droptype = /obj/machinery/porta_turret/syndicate/shuttle

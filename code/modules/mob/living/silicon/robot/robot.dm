@@ -163,7 +163,7 @@
 		mmi = new (src)
 		mmi.brain = new /obj/item/organ/brain(mmi)
 		mmi.brain.organ_flags |= ORGAN_FROZEN
-		mmi.brain.name = "[real_name]'s brain"
+		mmi.brain.name = "mózg [real_name]"
 		mmi.name = "[initial(mmi.name)]: [real_name]"
 		mmi.brainmob = new(mmi)
 		mmi.brainmob.name = src.real_name
@@ -532,7 +532,7 @@
 		else
 			to_chat(user, "<span class='notice'>Zaczynasz odkręcać śruby mocujące [src].</span>")
 			if(W.use_tool(src, user, 50, volume=50) && !cell)
-				user.visible_message("[user] deconstructs [src]!", "<span class='notice'>Odkręcasz śruby mocujące, a [src] rozpada się na kawałki!</span>")
+				user.visible_message("[user] rozbiera [src]!", "<span class='notice'>Odkręcasz śruby mocujące, a [src] rozpada się na kawałki!</span>")
 				log_attack("[key_name(user)] deconstructed [name] at [AREACOORD(src)].")
 				deconstruct()
 
@@ -630,7 +630,7 @@
 	else
 		if(allowed(usr))
 			locked = !locked
-			to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+			to_chat(user, "<span class='notice'>[ locked ? "Blokujesz" : "Odblokowujesz"] pokrywę [src].</span>")
 			update_icons()
 			if(emagged)
 				to_chat(user, "<span class='notice'>Interfejs pokrywy na ułamek sekundy się zawiesza.</span>")
@@ -708,7 +708,7 @@
 
 /mob/living/silicon/robot/proc/self_destruct(mob/usr)
 	var/turf/groundzero = get_turf(src)
-	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonated [key_name_admin(src, client)] at [ADMIN_VERBOSEJMP(groundzero)]!</span>")
+	message_admins("<span class='notice'>[ADMIN_LOOKUPFLW(usr)] detonuje [key_name_admin(src, client)] w [ADMIN_VERBOSEJMP(groundzero)]!</span>")
 	log_game("\<span class='notice'>[key_name(usr)] detonated [key_name(src)]!</span>")
 	log_combat(usr, src, "detonated cyborg")
 	if(connected_ai)
@@ -1153,7 +1153,7 @@
 		upgrades |= new /obj/item/borg/upgrade/ai(src)
 	shell = TRUE
 	braintype = "AI Shell"
-	name = "[designation] AI Shell [rand(100,999)]"
+	name = "[designation] powłoka SI [rand(100,999)]"
 	real_name = name
 	GLOB.available_ai_shells |= src
 	if(!QDELETED(builtInCamera))
@@ -1170,14 +1170,14 @@
 		qdel(boris)
 	shell = FALSE
 	GLOB.available_ai_shells -= src
-	name = "Unformatted Cyborg [rand(100,999)]"
+	name = "Niesformatowany cyborg [rand(100,999)]"
 	real_name = name
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name
 	diag_hud_set_aishell()
 
 /mob/living/silicon/robot/proc/deploy_init(var/mob/living/silicon/ai/AI)
-	real_name = "[AI.real_name] shell [rand(100, 999)] - [designation]"	//Randomizing the name so it shows up separately in the shells list
+	real_name = "[AI.real_name] powłoka [rand(100, 999)] - [designation]"	//Randomizing the name so it shows up separately in the shells list
 	name = real_name
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name	//update the camera name too
@@ -1200,8 +1200,8 @@
 	wires.ui_update()
 
 /datum/action/innate/undeployment
-	name = "Disconnect from shell"
-	desc = "Stop controlling your shell and resume normal core operations."
+	name = "Odłącz się od powłoki"
+	desc = "Przestań sterować powłoką i wróć do normalnej pracy rdzenia."
 	icon_icon = 'icons/mob/actions/actions_AI.dmi'
 	button_icon_state = "ai_core"
 

@@ -2,8 +2,8 @@
 // !       Hateful Manacles       ! //
 //==================================//
 /datum/clockcult/scripture/slab/hateful_manacles
-	name = "Hateful Manacles"
-	desc = "Forms replicant manacles around a target's wrists that function like handcuffs, restraining the target."
+	name = "Nienawistne kajdany"
+	desc = "Tworzy na nadgarstkach celu kajdany ze stopu replik, które działają jak kajdanki i krępują cel."
 	tip = "Skuwa cel z bliska, by go obezwładnić do nawrócenia lub wyssania witalności."
 	button_icon_state = "Hateful Manacles"
 	power_cost = 25
@@ -37,7 +37,7 @@
 	return FALSE
 
 /obj/item/restraints/handcuffs/clockwork
-	name = "replicant manacles"
-	desc = "Heavy manacles made out of freezing-cold metal. It looks like brass, but feels much more solid."
+	name = "kajdany ze stopu replik"
+	desc = "Ciężkie kajdany z lodowato zimnego metalu. Wyglądają jak mosiądz, ale są dużo twardsze."
 	icon_state = "brass_manacles"
 	item_flags = DROPDEL

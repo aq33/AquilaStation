@@ -93,7 +93,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/proc/Buy(mob/camera/disease/D, silent = FALSE, trigger_cooldown = TRUE)
 	if(!silent)
-		to_chat(D, "<span class='notice'>Purchased [name].</span>")
+		to_chat(D, "<span class='notice'>Kupujesz: [name].</span>")
 	D.points -= cost
 	D.unpurchased_abilities -= src
 	if(trigger_cooldown)
@@ -120,7 +120,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 /datum/disease_ability/proc/Refund(mob/camera/disease/D, silent = FALSE, trigger_cooldown = TRUE)
 	if(!silent)
-		to_chat(D, "<span class='notice'>Refunded [name].</span>")
+		to_chat(D, "<span class='notice'>Zwrot: [name].</span>")
 	D.points += cost
 	D.unpurchased_abilities[src] = TRUE
 	if(trigger_cooldown)
@@ -152,7 +152,7 @@ new /datum/disease_ability/symptom/powerful/youth
 //active abilities and their associated actions
 
 /datum/disease_ability/action/cough
-	name = "Voluntary Coughing"
+	name = "Kaszel na życzenie"
 	actions = list(/datum/action/cooldown/disease_cough)
 	cost = 0
 	required_total_points = 0
@@ -162,10 +162,10 @@ new /datum/disease_ability/symptom/powerful/youth
 
 
 /datum/action/cooldown/disease_cough
-	name = "Cough"
+	name = "Kaszel"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "cough"
-	desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
+	desc = "Zmuś nosiciela, za którym podążasz, do mocnego kaszlu. Zarażasz wtedy wszystkich w promieniu dwóch metrów od niego, nawet przy niskiej zaraźliwości.<br>Odnowienie: 10 s"
 	cooldown_time = 100
 
 /datum/action/cooldown/disease_cough/Trigger()
@@ -188,7 +188,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 
 /datum/disease_ability/action/sneeze
-	name = "Voluntary Sneezing"
+	name = "Kichanie na życzenie"
 	actions = list(/datum/action/cooldown/disease_sneeze)
 	cost = 2
 	required_total_points = 3
@@ -196,10 +196,10 @@ new /datum/disease_ability/symptom/powerful/youth
 	long_desc = "Zmusza śledzonego nosiciela do mocnego kichnięcia, przenosząc infekcję na wszystkich w stożku 4 metrów przed nim.<br>Odnowienie: 20 sekund"
 
 /datum/action/cooldown/disease_sneeze
-	name = "Sneeze"
+	name = "Kichnięcie"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "sneeze"
-	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmissibility is low.<br>Cooldown: 20 seconds"
+	desc = "Zmuś nosiciela, za którym podążasz, do mocnego kichnięcia. Zarażasz wtedy wszystkich w stożku 4 metrów przed nim, nawet przy niskiej zaraźliwości.<br>Odnowienie: 20 s"
 	cooldown_time = 200
 
 /datum/action/cooldown/disease_sneeze/Trigger()
@@ -226,7 +226,7 @@ new /datum/disease_ability/symptom/powerful/youth
 
 
 /datum/disease_ability/action/infect
-	name = "Secrete Infection"
+	name = "Wydzielanie infekcji"
 	actions = list(/datum/action/cooldown/disease_infect)
 	cost = 2
 	required_total_points = 3
@@ -234,10 +234,10 @@ new /datum/disease_ability/symptom/powerful/youth
 	long_desc = "Sprawia, że śledzony nosiciel wydziela porami zakaźną substancję i przez 30 sekund wszystko, co dotyka jego skóry, zaraża dotykających. Dotyczy to podłogi, jeśli nie ma butów, i trzymanych przedmiotów, jeśli nie ma rękawiczek.<br>Odnowienie: 40 sekund"
 
 /datum/action/cooldown/disease_infect
-	name = "Secrete Infection"
+	name = "Wydziel infekcję"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "infect"
-	desc = "Cause the host you are following to excrete an infective substance from their pores, causing all objects touching their skin to transmit your infection to anyone who touches them for the next 30 seconds.<br>Cooldown: 40 seconds"
+	desc = "Nosiciel, za którym podążasz, wydziela porami zakaźną substancję. Przez 30 sekund wszystko, co dotyka jego skóry, przenosi twoją infekcję na każdego, kto tego dotknie.<br>Odnowienie: 40 s"
 	cooldown_time = 400
 
 /datum/action/cooldown/disease_infect/Trigger()
@@ -295,13 +295,13 @@ new /datum/disease_ability/symptom/powerful/youth
 /******MILD******/
 
 /datum/disease_ability/symptom/mild/cough
-	name = "Involuntary Coughing"
+	name = "Mimowolny kaszel"
 	symptoms = list(/datum/symptom/cough)
 	short_desc = "Wywołuje u ofiar napady kaszlu."
 	long_desc = "Wywołuje u ofiar napady kaszlu, które przy wysokiej zaraźliwości przenoszą infekcję."
 
 /datum/disease_ability/symptom/mild/sneeze
-	name = "Involuntary Sneezing"
+	name = "Mimowolne kichanie"
 	symptoms = list(/datum/symptom/sneeze)
 	short_desc = "Wywołuje u ofiar napady kichania."
 	long_desc = "Wywołuje u ofiar napady kichania, które przenoszą infekcję i zwiększają zaraźliwość oraz odporność kosztem skrytości."

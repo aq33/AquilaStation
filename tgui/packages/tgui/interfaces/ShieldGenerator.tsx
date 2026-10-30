@@ -29,10 +29,10 @@ export const ShieldGenerator = (props) => {
   return (
     <Window theme="ntos" width={600} height={660}>
       <Window.Content scrollable>
-        <Section title="Shield Status:">
-          Shield integrity: {progress}
+        <Section title="Stan tarcz:">
+          Integralność tarcz: {progress}
           <br />
-          Shield strength: {goal}
+          Siła tarcz: {goal}
           <br />
           <ProgressBar
             value={(progress / goal) * 100 * 0.01}
@@ -43,7 +43,7 @@ export const ShieldGenerator = (props) => {
             }}
           />
           <br />
-          Available Power:
+          Dostępna moc:
           <br />
           <ProgressBar
             value={availablePower}
@@ -55,17 +55,17 @@ export const ShieldGenerator = (props) => {
           </ProgressBar>
         </Section>
         <Section
-          title="Settings:"
+          title="Ustawienia:"
           buttons={
             <Button
-              content={data.active ? 'Lower Shields' : 'Raise Shields'}
+              content={data.active ? 'Opuść tarcze' : 'Podnieś tarcze'}
               icon="shield-alt"
               color={data.active && 'good'}
               onClick={() => act('activeToggle')}
             />
           }
         >
-          Shield Strength:
+          Siła tarcz:
           <Slider
             tickWhileDragging
             value={maxHealthPriority}
@@ -80,7 +80,7 @@ export const ShieldGenerator = (props) => {
               })
             }
           />
-          Shield Regeneration:
+          Regeneracja tarcz:
           <Slider
             tickWhileDragging
             value={regenPriority}
@@ -94,7 +94,7 @@ export const ShieldGenerator = (props) => {
               })
             }
           />
-          Power allocation (MW):
+          Przydział mocy (MW):
           <Slider
             tickWhileDragging
             value={powerAlloc}

@@ -5,7 +5,7 @@
  */
 
 /obj/item/circuit_component/view_sensor
-	display_name = "View Sensor"
+	display_name = "Czujnik widoku"
 	desc = "Zwraca listę wszystkich ruchomych obiektów w polu widzenia. Wymaga obudowy. Maksymalny zasięg 5 pól."
 	category = "Sensor"
 

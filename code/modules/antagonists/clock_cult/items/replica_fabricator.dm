@@ -1,10 +1,10 @@
 #define BRASS_POWER_COST 10
 
 /obj/item/clockwork/replica_fabricator
-	name = "replica fabricator"
+	name = "fabrykator replik"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "replica_fabricator"
-	desc = "A strange, brass device with many twisting cogs and vents."
+	desc = "Dziwne mosiężne urządzenie z mnóstwem obracających się zębatek i otworów wentylacyjnych."
 	clockwork_desc = "Urządzenie do szybkiego wytwarzania mosiądzu."
 
 /obj/item/clockwork/replica_fabricator/examine(mob/user)

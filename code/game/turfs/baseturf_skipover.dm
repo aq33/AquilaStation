@@ -1,7 +1,7 @@
 // This is a typepath to just sit in baseturfs and act as a marker for other things.
 /turf/baseturf_skipover
-	name = "Baseturf skipover placeholder"
-	desc = "This shouldn't exist"
+	name = "zaślepka pomijania baseturfu"
+	desc = "To nie powinno istnieć."
 
 /turf/baseturf_skipover/Initialize(mapload)
 	. = ..()
@@ -9,10 +9,10 @@
 	ScrapeAway()
 
 /turf/baseturf_skipover/shuttle
-	name = "Shuttle baseturf skipover"
-	desc = "Acts as the bottom of the shuttle, if this isn't here the shuttle floor is broken through."
+	name = "pomijanie baseturfu promu"
+	desc = "Służy za dno promu. Bez tego podłoga promu zostaje przebita."
 
 /turf/baseturf_bottom
-	name = "Z-level baseturf placeholder"
-	desc = "Marker for z-level baseturf, usually resolves to space."
+	name = "zaślepka baseturfu poziomu Z"
+	desc = "Znacznik baseturfu poziomu Z, zwykle zamienia się w kosmos."
 	baseturfs = /turf/baseturf_bottom

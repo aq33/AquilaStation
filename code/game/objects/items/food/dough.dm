@@ -1,8 +1,8 @@
 //Note for this file: All the raw pastries should not have microwave results, use baking instead. All cooked products can use baking, but should also support a microwave.
 
 /obj/item/food/dough
-	name = "dough"
-	desc = "A piece of dough."
+	name = "kula ciasta"
+	desc = "Kawałek ciasta."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "dough"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -18,8 +18,8 @@
 	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/food/flatdough, 1, 3 SECONDS, table_required = TRUE, screentip_verb = "Rozwałkuj")
 
 /obj/item/food/flatdough
-	name = "flat dough"
-	desc = "A flattened dough."
+	name = "rozwałkowane ciasto"
+	desc = "Rozpłaszczone ciasto."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "flat dough"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6)
@@ -35,8 +35,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/doughslice, 3, 3 SECONDS, table_required = TRUE, screentip_verb = "Pokrój")
 
 /obj/item/food/pizzabread
-	name = "pizza bread"
-	desc = "Add ingredients to make a pizza."
+	name = "spód do pizzy"
+	desc = "Dodaj składniki, żeby zrobić pizzę."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "pizzabread"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7)
@@ -49,8 +49,8 @@
 	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/pizza/margherita, CUSTOM_INGREDIENT_ICON_SCATTER, max_ingredients = 12)
 
 /obj/item/food/doughslice
-	name = "dough slice"
-	desc = "A slice of dough. Can be cooked into a bun."
+	name = "porcja ciasta"
+	desc = "Porcja ciasta. Po upieczeniu staje się bułką."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "doughslice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -63,8 +63,8 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/bun, rand(20 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/bun
-	name = "bun"
-	desc = "A base for any self-respecting burger."
+	name = "bułka"
+	desc = "Podstawa każdego szanującego się burgera."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "bun"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3)
@@ -78,8 +78,8 @@
 	AddComponent(/datum/component/customizable_reagent_holder, /obj/item/food/burger/empty, CUSTOM_INGREDIENT_ICON_STACKPLUSTOP)
 
 /obj/item/food/cakebatter
-	name = "cake batter"
-	desc = "Bake it to get a cake."
+	name = "masa na ciasto"
+	desc = "Upiecz ją, żeby dostać ciasto."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "cakebatter"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 9)
@@ -95,8 +95,8 @@
 	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, /obj/item/food/piedough, 1, 3 SECONDS, table_required = TRUE, screentip_verb = "Rozwałkuj")
 
 /obj/item/food/piedough
-	name = "pie dough"
-	desc = "Cook it to get a pie."
+	name = "ciasto na placek"
+	desc = "Upiecz je, żeby dostać placek."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "piedough"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 9)
@@ -111,8 +111,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/rawpastrybase, 6, 3 SECONDS, table_required = TRUE, screentip_verb = "Pokrój")
 
 /obj/item/food/rawpastrybase
-	name = "raw pastry base"
-	desc = "Must be cooked before use."
+	name = "surowy spód do ciasta"
+	desc = "Przed użyciem trzeba go upiec."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "rawpastrybase"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -125,8 +125,8 @@
 	AddComponent(/datum/component/bakeable, /obj/item/food/pastrybase, rand(20 SECONDS, 25 SECONDS), TRUE, TRUE)
 
 /obj/item/food/pastrybase
-	name = "pastry base"
-	desc = "A base for any self-respecting pastry."
+	name = "spód do ciasta"
+	desc = "Podstawa każdego szanującego się wypieku."
 	icon = 'icons/obj/food/food_ingredients.dmi'
 	icon_state = "pastrybase"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3)

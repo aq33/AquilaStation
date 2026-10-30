@@ -1,7 +1,7 @@
 //Gutlunches, passive mods that devour blood and gibs
 /mob/living/simple_animal/hostile/asteroid/gutlunch
-	name = "gutlunch"
-	desc = "A scavenger that eats raw meat, often found alongside ash walkers. Produces a thick, nutritious milk."
+	name = "żarłoczek"
+	desc = "Padlinożerca jedzący surowe mięso, często spotykany u boku popielnych wędrowców. Daje gęste, pożywne mleko."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "gutlunch"
 	icon_living = "gutlunch"
@@ -96,7 +96,7 @@
 
 //Male gutlunch. They're smaller and more colorful!
 /mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck
-	name = "gubbuck"
+	name = "żarłoczek samiec"
 	gender = MALE
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/gubbuck/Initialize(mapload)
@@ -107,7 +107,7 @@
 
 //Lady gutlunch. They make the babby.
 /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen
-	name = "guthen"
+	name = "żarłoczka"
 	gender = FEMALE
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/guthen/Life()
@@ -122,7 +122,7 @@
 		regenerate_icons()
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch
-	name = "grublunch"
+	name = "młody żarłoczek"
 	wanted_objects = list() //They don't eat.
 	gold_core_spawnable = NO_SPAWN
 	var/growth = 0
@@ -155,7 +155,7 @@
 
 //Gutlunch udder
 /obj/item/udder/gutlunch
-	name = "nutrient sac"
+	name = "worek odżywczy"
 
 /obj/item/udder/gutlunch/Initialize(mapload)
 	. = ..()

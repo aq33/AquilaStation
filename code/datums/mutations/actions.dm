@@ -1,6 +1,6 @@
 /datum/mutation/telepathy
-	name = "Telepathy"
-	desc = "A rare mutation that allows the user to telepathically communicate to others."
+	name = "Telepatia"
+	desc = "Rzadka mutacja, która pozwala porozumiewać się z innymi telepatycznie."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Słyszysz w umyśle echo własnego głosu!</span>"
 	text_lose_indication = "<span class='notice'>Nie słyszysz już echa swojego umysłu.</span>"
@@ -11,8 +11,8 @@
 
 
 /datum/mutation/olfaction
-	name = "Transcendent Olfaction"
-	desc = "Your sense of smell is comparable to that of a canine."
+	name = "Transcendentny węch"
+	desc = "Twój węch dorównuje psiemu."
 	quality = POSITIVE
 	difficulty = 12
 	text_gain_indication = "<span class='notice'>Zapachy zaczynają mieć więcej sensu...</span>"
@@ -43,8 +43,8 @@
 	reek = hygiene_now
 
 /obj/effect/proc_holder/spell/targeted/olfaction
-	name = "Remember the Scent"
-	desc = "Get a scent off of the item you're currently holding to track it. With an empty hand, you'll track the scent you've remembered."
+	name = "Zapamiętaj zapach"
+	desc = "Złap zapach przedmiotu, który trzymasz, żeby go wytropić. Z pustą ręką tropisz zapamiętany zapach."
 	charge_max = 100
 	clothes_req = FALSE
 	range = -1
@@ -101,8 +101,8 @@
 		to_chat(user,"<span class='notice'>Analizujesz zapach [tracking_target]. Trop prowadzi <b>[direction_text].</b></span>")
 
 /datum/mutation/firebreath
-	name = "Fire Breath"
-	desc = "An ancient mutation that gives lizards breath of fire."
+	name = "Ognisty oddech"
+	desc = "Pradawna mutacja, która daje jaszczurom ognisty oddech."
 	quality = POSITIVE
 	difficulty = 12
 	locked = TRUE
@@ -121,8 +121,8 @@
 		S.strength = GET_MUTATION_POWER(src)
 
 /obj/effect/proc_holder/spell/aimed/firebreath
-	name = "Fire Breath"
-	desc = "You can breathe fire at a target."
+	name = "Ognisty oddech"
+	desc = "Możesz zionąć ogniem w cel."
 	school = "evocation"
 	charge_max = 600
 	clothes_req = FALSE
@@ -153,7 +153,7 @@
 	F.exp_fire += strength
 
 /obj/item/projectile/magic/fireball/firebreath
-	name = "fire breath"
+	name = "ognisty oddech"
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 0
@@ -161,8 +161,8 @@
 	magic = FALSE
 
 /datum/mutation/void
-	name = "Void Magnet"
-	desc = "A rare genome that attracts odd forces not usually observed."
+	name = "Magnes pustki"
+	desc = "Rzadki genom, który przyciąga dziwne, zwykle niespotykane siły."
 	quality = MINOR_NEGATIVE //upsides and downsides
 	text_gain_indication = "<span class='notice'>Czujesz ciężką, tępą siłę tuż za ścianami, która cię obserwuje.</span>"
 	instability = 30
@@ -177,8 +177,8 @@
 		new /obj/effect/immortality_talisman/void(get_turf(owner), owner)
 
 /obj/effect/proc_holder/spell/self/void
-	name = "Convoke Void" //magic the gathering joke here
-	desc = "A rare genome that attracts odd forces not usually observed. May sometimes pull you in randomly."
+	name = "Zwołaj pustkę" //magic the gathering joke here
+	desc = "Rzadki genom, który przyciąga dziwne, zwykle niespotykane siły. Czasem może cię losowo wciągnąć."
 	school = "evocation"
 	clothes_req = FALSE
 	charge_max = 600
@@ -196,8 +196,8 @@
 	new /obj/effect/immortality_talisman/void(get_turf(user), user)
 
 /datum/mutation/self_amputation
-	name = "Autotomy"
-	desc = "Allows a creature to voluntary discard a random appendage."
+	name = "Autotomia"
+	desc = "Pozwala istocie dobrowolnie odrzucić losową kończynę."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoje stawy wydają się luźne.</span>"
 	instability = 30
@@ -207,8 +207,8 @@
 	synchronizer_coeff = 1
 
 /obj/effect/proc_holder/spell/self/self_amputation
-	name = "Drop a limb"
-	desc = "Concentrate to make a random limb pop right off your body."
+	name = "Odrzuć kończynę"
+	desc = "Skup się, żeby losowa kończyna odpadła ci od ciała."
 	clothes_req = FALSE
 	human_req = FALSE
 	charge_max = 100
@@ -235,8 +235,8 @@
 	BP.dismember()
 
 /datum/mutation/overload
-	name = "Overload"
-	desc = "Allows an Ethereal to overload their skin to cause a bright flash."
+	name = "Przeciążenie"
+	desc = "Pozwala eterykowi przeciążyć skórę, by wywołać jasny błysk."
 	quality = POSITIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Twoja skóra wydaje się bardziej trzeszcząca.</span>"
@@ -245,8 +245,8 @@
 	species_allowed = list(SPECIES_ETHEREAL)
 
 /obj/effect/proc_holder/spell/self/overload
-	name = "Overload"
-	desc = "Concentrate to make your skin energize."
+	name = "Przeciążenie"
+	desc = "Skup się, żeby naładować skórę energią."
 	clothes_req = FALSE
 	human_req = FALSE
 	charge_max = 400
@@ -269,8 +269,8 @@
 		S.max_distance = 4 * GET_MUTATION_POWER(src)
 
 /datum/mutation/acidooze
-	name = "Acidic Hands"
-	desc = "Allows an Oozeling to metabolize some of their blood into acid, concentrated on their hands."
+	name = "Kwasowe dłonie"
+	desc = "Pozwala oozelingowi przemienić część krwi w kwas skupiony na dłoniach."
 	quality = POSITIVE
 	locked = TRUE
 	text_gain_indication = "<span class='notice'>Bolą cię dłonie.</span>"
@@ -279,8 +279,8 @@
 	species_allowed = list(SPECIES_OOZELING)
 
 /obj/effect/proc_holder/spell/targeted/touch/acidooze
-	name = "Acidic Hands"
-	desc = "Concentrate to make some of your blood become acidic."
+	name = "Kwasowe dłonie"
+	desc = "Skup się, żeby część twojej krwi zmieniła się w kwas."
 	clothes_req = FALSE
 	human_req = FALSE
 	charge_max = 100
@@ -291,8 +291,8 @@
 	dropmessage = "Pozwalasz, by kwas w twojej dłoni się rozwiał."
 
 /obj/item/melee/touch_attack/acidooze
-	name = "\improper acidic hand"
-	desc = "Keep away from children, paperwork, and children doing paperwork."
+	name = "\improper kwasowa dłoń"
+	desc = "Trzymać z dala od dzieci, papierów i dzieci wypełniających papiery."
 	catchphrase = null
 	icon = 'icons/effects/blood.dmi'
 	color = COLOR_BLOOD

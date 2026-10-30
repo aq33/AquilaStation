@@ -3,9 +3,9 @@
 
 /obj/machinery/syndicatebomb
 	icon = 'icons/obj/assemblies.dmi'
-	name = "syndicate bomb"
+	name = "bomba Syndykatu"
 	icon_state = "syndicate-bomb"
-	desc = "A large and menacing device. Can be bolted down with a wrench."
+	desc = "Duże, groźne urządzenie. Można je przykręcić do podłogi kluczem."
 
 	anchored = FALSE
 	density = FALSE
@@ -200,11 +200,11 @@
 	notify_ghosts("W [get_area(src)] aktywowano [src]!", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Podłożono bombę")
 
 /obj/machinery/syndicatebomb/proc/settings(mob/user)
-	var/new_timer = input(user, "Ustaw zapalnik.", "Timer", "[timer_set]") as num
+	var/new_timer = input(user, "Ustaw zapalnik.", "Zapalnik czasowy", "[timer_set]") as num
 	if(in_range(src, user) && isliving(user)) //No running off and setting bombs from across the station
 		timer_set = CLAMP(new_timer, minimum_timer, maximum_timer)
 		loc.visible_message("<span class='notice'>[icon2html(src, viewers(src))] zapalnik ustawiony na [timer_set] s.</span>")
-	if(alert(user,"Chcesz teraz rozpocząć odliczanie?",,"Yes","No") == "Yes" && in_range(src, user) && isliving(user))
+	if(alert(user,"Chcesz teraz rozpocząć odliczanie?",,"Tak","Nie") == "Tak" && in_range(src, user) && isliving(user))
 		if(!active)
 			visible_message("<span class='danger'>[icon2html(src, viewers(loc))] [timer_set] s do detonacji, opuśćcie teren.</span>")
 			activate()
@@ -218,27 +218,27 @@
 ///Bomb Subtypes///
 
 /obj/machinery/syndicatebomb/training
-	name = "training bomb"
+	name = "bomba szkoleniowa"
 	icon_state = "training-bomb"
-	desc = "A salvaged syndicate device gutted of its explosives to be used as a training aid for aspiring bomb defusers."
+	desc = "Odzyskane urządzenie Syndykatu bez materiałów wybuchowych, które służy jako pomoc szkoleniowa dla przyszłych saperów."
 	payload = /obj/item/bombcore/training
 
 /obj/machinery/syndicatebomb/badmin
-	name = "generic summoning badmin bomb"
-	desc = "Oh god what is in this thing?"
+	name = "ogólna przywołująca bomba badmina"
+	desc = "O Boże, co jest w środku?"
 	payload = /obj/item/bombcore/badmin/summon
 
 /obj/machinery/syndicatebomb/badmin/clown
-	name = "clown bomb"
+	name = "bomba klauna"
 	icon_state = "clown-bomb"
 	desc = "HONK."
 	payload = /obj/item/bombcore/badmin/summon/clown
 	beepsound = 'sound/items/bikehorn.ogg'
 
 /obj/machinery/syndicatebomb/empty
-	name = "bomb"
+	name = "bomba"
 	icon_state = "base-bomb"
-	desc = "An ominous looking device designed to detonate an explosive payload. Can be bolted down using a wrench."
+	desc = "Złowieszczo wyglądające urządzenie do detonowania ładunku wybuchowego. Można je przykręcić do podłogi kluczem."
 	payload = null
 	open_panel = TRUE
 	timer_set = 120
@@ -248,16 +248,16 @@
 	wires.cut_all()
 
 /obj/machinery/syndicatebomb/self_destruct
-	name = "self-destruct device"
-	desc = "Do not taunt. Warranty invalid if exposed to high temperature. Not suitable for agents under 3 years of age."
+	name = "urządzenie autodestrukcji"
+	desc = "Nie drażnić. Wysoka temperatura unieważnia gwarancję. Nieodpowiednie dla agentów poniżej 3 lat."
 	payload = /obj/item/bombcore/large
 	can_unanchor = FALSE
 
 ///Bomb Cores///
 
 /obj/item/bombcore
-	name = "bomb payload"
-	desc = "A powerful secondary explosive of syndicate design and unknown composition, it should be stable under normal conditions..."
+	name = "ładunek bomby"
+	desc = "Silny wtórny materiał wybuchowy projektu Syndykatu o nieznanym składzie. W normalnych warunkach powinien być stabilny..."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bombcore"
 	item_state = "eshield0"
@@ -294,8 +294,8 @@
 ///Bomb Core Subtypes///
 
 /obj/item/bombcore/training
-	name = "dummy payload"
-	desc = "A Nanotrasen replica of a syndicate payload. It's not intended to explode but to announce that it WOULD have exploded, then rewire itself to allow for more training."
+	name = "atrapa ładunku"
+	desc = "Replika ładunku Syndykatu od Nanotrasen. Nie wybucha, tylko ogłasza, że WYBUCHŁABY, a potem sama się przełącza, żeby można było dalej ćwiczyć."
 	var/defusals = 0
 	var/attempts = 0
 
@@ -332,8 +332,8 @@
 			reset()
 
 /obj/item/bombcore/badmin
-	name = "badmin payload"
-	desc = "If you're seeing this someone has either made a mistake or gotten dangerously savvy with var editing!"
+	name = "ładunek badmina"
+	desc = "Jeśli to widzisz, ktoś albo się pomylił, albo za dobrze opanował edycję zmiennych!"
 
 /obj/item/bombcore/badmin/defuse() //because we wouldn't want them being harvested by players
 	var/obj/machinery/syndicatebomb/B = loc
@@ -359,14 +359,14 @@
 	..()
 
 /obj/item/bombcore/large
-	name = "large bomb payload"
+	name = "duży ładunek bomby"
 	range_heavy = 5
 	range_medium = 10
 	range_light = 20
 	range_flame = 20
 
 /obj/item/bombcore/miniature
-	name = "small bomb core"
+	name = "mały rdzeń bomby"
 	w_class = WEIGHT_CLASS_SMALL
 	range_heavy = 1
 	range_medium = 2
@@ -374,8 +374,8 @@
 	range_flame = 2
 
 /obj/item/bombcore/chemical
-	name = "chemical payload"
-	desc = "An explosive payload designed to spread chemicals, dangerous or otherwise, across a large area. Properties of the core may vary with grenade casing type, and must be loaded before use."
+	name = "ładunek chemiczny"
+	desc = "Ładunek wybuchowy, który rozprasza chemikalia, groźne lub nie, na dużym obszarze. Właściwości rdzenia zależą od rodzaju obudowy granatu. Przed użyciem trzeba go załadować."
 	icon_state = "chemcore"
 	var/list/beakers = list()
 	var/max_beakers = 1 // Read on about grenade casing properties below
@@ -499,8 +499,8 @@
 ///Syndicate Detonator (aka the big red button)///
 
 /obj/item/syndicatedetonator
-	name = "big red button"
-	desc = "Your standard issue bomb synchronizing button. Five second safety delay to prevent 'accidents'."
+	name = "wielki czerwony guzik"
+	desc = "Standardowy przycisk synchronizacji bomb. Pięciosekundowe opóźnienie zabezpiecza przed „wypadkami”."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "bigred"
 	item_state = "electronic"

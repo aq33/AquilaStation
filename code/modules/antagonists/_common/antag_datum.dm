@@ -4,7 +4,7 @@ GLOBAL_LIST(admin_antag_list)
 /datum/antagonist
 	var/tips
 	var/name = "Antagonist"
-	var/roundend_category = "other antagonists"				//Section of roundend report, datums with same category will be displayed together, also default header for the section
+	var/roundend_category = "inni antagoniści"				//Section of roundend report, datums with same category will be displayed together, also default header for the section
 	var/show_in_roundend = TRUE								//Set to false to hide the antagonists from roundend report
 	var/prevent_roundtype_conversion = TRUE		//If false, the roundtype will still convert with this antag active
 	var/datum/mind/owner						//Mind that owns this datum
@@ -143,7 +143,7 @@ GLOBAL_LIST(admin_antag_list)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		to_chat(owner, "Twoją postać przejął duch! Odwołaj się od bana na rolę, jeśli chcesz tego w przyszłości uniknąć!")
-		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(owner)]) to replace a jobbanned player.")
+		message_admins("[key_name_admin(C)] przejmuje kontrolę nad postacią ([key_name_admin(owner)]) w miejsce gracza z banem na rolę.")
 		owner.current.ghostize(FALSE)
 		owner.current.key = C.key
 	else
@@ -261,7 +261,7 @@ GLOBAL_LIST(admin_antag_list)
 
 //Called when using admin tools to give antag status
 /datum/antagonist/proc/admin_add(datum/mind/new_owner,mob/admin)
-	message_admins("[key_name_admin(admin)] made [key_name_admin(new_owner)] into [name].")
+	message_admins("[key_name_admin(admin)] nadaje [key_name_admin(new_owner)] rolę: [name].")
 	log_admin("[key_name(admin)] made [key_name(new_owner)] into [name].")
 	new_owner.add_antag_datum(src)
 
@@ -269,7 +269,7 @@ GLOBAL_LIST(admin_antag_list)
 /datum/antagonist/proc/admin_remove(mob/user)
 	if(!user)
 		return
-	message_admins("[key_name_admin(user)] has removed [name] antagonist status from [key_name_admin(owner)].")
+	message_admins("[key_name_admin(user)] odbiera status antagonisty ([name]) graczowi [key_name_admin(owner)].")
 	log_admin("[key_name(user)] has removed [name] antagonist status from [key_name(owner)].")
 	on_removal()
 
@@ -328,7 +328,7 @@ GLOBAL_LIST(admin_antag_list)
 	return custom_team
 
 /datum/antagonist/custom/admin_add(datum/mind/new_owner,mob/admin)
-	var/custom_name = stripped_input(admin, "Custom antagonist name:", "Custom antag", "Antagonist")
+	var/custom_name = stripped_input(admin, "Nazwa własnego antagonisty:", "Własny antagonista", "Antagonista")
 	if(custom_name)
 		name = custom_name
 	else

@@ -156,7 +156,7 @@
 //==========================
 
 /datum/team/clock_cult
-	name = "Servants Of Ratvar"
+	name = "Słudzy Ratvara"
 
 /datum/team/clock_cult/proc/setup_objectives()
 	objectives = list(new /datum/objective/clockcult)

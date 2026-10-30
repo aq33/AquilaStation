@@ -1,7 +1,7 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
 /client/verb/wiki(query as text)
 	set name = "wiki"
-	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
+	set desc = "Wpisz, o czym chcesz się dowiedzieć. Otworzy to wiki w twojej przeglądarce. Nie wpisuj nic, żeby przejść na stronę główną."
 	set hidden = 1
 	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
@@ -16,11 +16,11 @@
 
 /client/verb/forum()
 	set name = "forum"
-	set desc = "Visit the forum."
+	set desc = "Odwiedź forum."
 	set hidden = 1
 	var/forumurl = CONFIG_GET(string/forumurl)
 	if(forumurl)
-		if(alert("To otworzy forum w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy forum w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(forumurl)
 	else
@@ -29,11 +29,11 @@
 
 /client/verb/rules()
 	set name = "rules"
-	set desc = "Show Server Rules."
+	set desc = "Pokaż zasady serwera."
 	set hidden = 1
 	var/rulesurl = CONFIG_GET(string/rulesurl)
 	if(rulesurl)
-		if(alert("To otworzy zasady w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy zasady w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(rulesurl)
 	else
@@ -42,11 +42,11 @@
 
 /client/verb/github()
 	set name = "github"
-	set desc = "Visit Github"
+	set desc = "Odwiedź GitHuba"
 	set hidden = 1
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
-		if(alert("To otworzy repozytorium GitHub w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy repozytorium GitHub w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(githuburl)
 	else
@@ -55,7 +55,7 @@
 
 /client/verb/reportissue()
 	set name = "report-issue"
-	set desc = "Report an issue"
+	set desc = "Zgłoś błąd"
 	set hidden = 1
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
@@ -65,7 +65,7 @@
 			message += GLOB.revdata.GetTestMergeInfo(FALSE)
 		// We still use tgalert here because some people were concerned that if someone wanted to report that tgui wasn't working
 		// then the report issue button being tgui-based would be problematic.
-		if(tgalert(src, message, "Report Issue","Yes","No")!="Yes")
+		if(tgalert(src, message, "Zgłoś błąd","Tak","Nie")!="Tak")
 			return
 		var/static/issue_template = rustg_file_read(".github/ISSUE_TEMPLATE.md")
 		var/servername = CONFIG_GET(string/servername)
@@ -172,11 +172,11 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 
 /client/verb/donate()
 	set name = "donate"
-	set desc = "Donate to the server"
+	set desc = "Wesprzyj serwer"
 	set hidden = 1
 	var/donateurl = CONFIG_GET(string/donateurl)
 	if(donateurl)
-		if(alert("To otworzy stronę darowizn w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy stronę darowizn w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(donateurl)
 	else
@@ -185,11 +185,11 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 
 /client/verb/discord()
 	set name = "discord"
-	set desc = "Join the Discord"
+	set desc = "Dołącz do Discorda"
 	set hidden = 1
 	var/discordurl = CONFIG_GET(string/discordurl)
 	if(discordurl)
-		if(alert("To otworzy zaproszenie na Discorda w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy zaproszenie na Discorda w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link(discordurl)
 	else
@@ -198,12 +198,12 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 
 /client/verb/map()
 	set name = "View Webmap"
-	set desc = "View the current map in the webviewer"
+	set desc = "Pokaż obecną mapę w przeglądarce map"
 	set category = "OOC"
 	if(SSmapping.config.map_link == "None")
 		to_chat(src,"<span class='danger'>Obecna mapa nie ma mapy w przeglądarce. </span>")
 	else if(SSmapping.config.map_link)
-		if(alert("To otworzy obecną mapę w twojej przeglądarce. Na pewno?",,"Yes","No")!="Yes")
+		if(alert("To otworzy obecną mapę w twojej przeglądarce. Na pewno?",,"Tak","Nie")!="Tak")
 			return
 		src << link("https://webmap.affectedarc07.co.uk/maps/aquila/[SSmapping.config.map_link]")
 	else
@@ -212,6 +212,6 @@ GLOBAL_DATUM(hotkeys_tgui, /datum/hotkeys_help)
 //NSV13 - alias to "map"
 /client/verb/nsv13_map()
 	set name = "Map"
-	set desc = "View the current map in the webviewer"
+	set desc = "Pokaż obecną mapę w przeglądarce map"
 	set hidden = 1
 	map()

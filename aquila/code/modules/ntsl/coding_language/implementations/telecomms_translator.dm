@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 	var/datum/TCS_Compiler/Compiler
 
 /datum/n_Interpreter/TCS_Interpreter/HandleError(datum/runtimeError/e)
-	Compiler.Holder.add_entry(e.ToString(), "Execution Error")
+	Compiler.Holder.add_entry(e.ToString(), "Błąd wykonania")
 
 /datum/n_Interpreter/TCS_Interpreter/garbage_collect()
 	. = ..()
@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(allowed_translations, list(
 
 		connection.post_signal(S, signal)
 
-		message_admins("Telecomms server \"[S.id]\" sent a signal command, which was triggered by NTSL<B>: </B> [format_frequency(freq)]/[code]")
+		message_admins("Serwer telekomunikacji \"[S.id]\" wysłał polecenie sygnału, wywołane przez NTSL<B>: </B> [format_frequency(freq)]/[code]")
 
 ///Broadcasts a message to the radio.
 /datum/n_function/default/broadcast

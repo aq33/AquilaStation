@@ -237,6 +237,7 @@ function AccessView(props) {
             <Stack.Item>
               <Tooltip content="Zaczyna wyłączanie. Powiadomi wszystkich podłączonych.">
                 <Button.Confirm
+                  confirmContent="Na pewno?"
                   disabled={!ready || !generated_domain}
                   onClick={() => act('stop_domain')}
                 >

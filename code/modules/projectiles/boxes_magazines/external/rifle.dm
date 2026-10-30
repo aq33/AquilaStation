@@ -1,6 +1,6 @@
 /obj/item/ammo_box/magazine/m10mm/rifle
-	name = "rifle magazine (10mm)"
-	desc = "A well-worn magazine fitted for the surplus rifle."
+	name = "magazynek karabinowy (10mm)"
+	desc = "Mocno zużyty magazynek do karabinu z demobilu."
 	icon_state = "75-8"
 	ammo_type = /obj/item/ammo_casing/c10mm
 	caliber = "10mm"

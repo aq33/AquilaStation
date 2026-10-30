@@ -17,7 +17,7 @@ BONUS
 
 /datum/symptom/youth
 
-	name = "Eternal Youth"
+	name = "Wieczna młodość"
 	desc = "Wirus łączy się symbiotycznie z komórkami ciała nosiciela, zapobiegając starzeniu i je odwracając. W zamian wirus staje się odporniejszy, szybciej się rozprzestrzenia i trudniej go wykryć, choć bez nosiciela rozwija się gorzej."
 	stealth = 3
 	resistance = 4

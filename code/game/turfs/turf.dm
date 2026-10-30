@@ -195,10 +195,10 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	var/list/tool_list = list()
 	var/turf/above = above()
 	if(above)
-		tool_list["Up"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH)
+		tool_list["W górę"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH)
 	var/turf/below = below()
 	if(below)
-		tool_list["Down"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH)
+		tool_list["W dół"] = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH)
 
 	if(!length(tool_list))
 		return
@@ -209,9 +209,9 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 	switch(result)
 		if("Cancel")
 			return
-		if("Up")
+		if("W górę")
 			travel_z(user, above, TRUE)
-		if("Down")
+		if("W dół")
 			travel_z(user, below, FALSE)
 
 /turf/proc/travel_z(mob/user, turf/target, upwards = TRUE)
@@ -426,7 +426,7 @@ GLOBAL_LIST_EMPTY(created_baseturf_lists)
 			// A baseturfs list over 100 members long is silly
 			// Because of how this is all structured it will only runtime/message once per type
 			stack_trace("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
-			message_admins("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			message_admins("Turf <[type]> utworzył listę baseturfów dłuższą niż 100 elementów. To najpewniej nieskończona pętla.")
 			break
 		new_baseturfs.Insert(1, next_target)
 		current_target = next_target

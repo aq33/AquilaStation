@@ -51,7 +51,7 @@
 	return golem_name
 
 /datum/species/golem/random
-	name = "Random golem"
+	name = "Losowy golem"
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	var/static/list/random_golem_types
 
@@ -69,7 +69,7 @@
 	to_chat(H, "[initial(golem_type.info_text)]")
 
 /datum/species/golem/adamantine
-	name = "Adamantine Golem"
+	name = "Adamantytowy golem"
 	id = "adamantine_golem"
 	meat = /obj/item/food/meat/slab/human/mutant/golem/adamantine
 	mutant_organs = list(/obj/item/organ/adamantine_resonator, /obj/item/organ/vocal_cords/adamantine)
@@ -88,7 +88,7 @@
 
 //The suicide bombers of golemkind
 /datum/species/golem/plasma
-	name = "Plasma Golem"
+	name = "Plazmowy golem"
 	id = "plasma_golem"
 	fixed_mut_color = "a3d"
 	meat = /obj/item/stack/ore/plasma
@@ -131,8 +131,8 @@
 	..()
 
 /datum/action/innate/ignite
-	name = "Ignite"
-	desc = "Set yourself aflame, bringing yourself closer to exploding!"
+	name = "Podpal się"
+	desc = "Podpal się, przybliżając się do wybuchu!"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "sacredflame"
 
@@ -147,7 +147,7 @@
 
 //Harder to hurt
 /datum/species/golem/diamond
-	name = "Diamond Golem"
+	name = "Diamentowy golem"
 	id = "diamond_golem"
 	fixed_mut_color = "0ff"
 	armor = 70 //up from 55
@@ -158,7 +158,7 @@
 
 //Faster but softer and less armoured
 /datum/species/golem/gold
-	name = "Gold Golem"
+	name = "Złoty golem"
 	id = "gold_golem"
 	fixed_mut_color = "cc0"
 	speedmod = 1
@@ -170,7 +170,7 @@
 
 //Heavier, thus higher chance of stunning when punching
 /datum/species/golem/silver
-	name = "Silver Golem"
+	name = "Srebrny golem"
 	id = "silver_golem"
 	fixed_mut_color = "ddd"
 	meat = /obj/item/stack/ore/silver
@@ -188,7 +188,7 @@
 
 // Softer and faster, but conductive
 /datum/species/golem/copper
-	name = "Copper Golem"
+	name = "Miedziany golem"
 	id = "copper_golem"
 	fixed_mut_color = "#d95802"
 	speedmod = 1.5
@@ -202,7 +202,7 @@
 
 //Harder to stun, deals more damage, massively slowpokes, but gravproof and obstructive. Basically, The Wall.
 /datum/species/golem/plasteel
-	name = "Plasteel Golem"
+	name = "Plastalowy golem"
 	id = "plasteel_golem"
 	fixed_mut_color = "bbb"
 	stunmod = 0.4
@@ -228,7 +228,7 @@
 
 //Immune to ash storms
 /datum/species/golem/titanium
-	name = "Titanium Golem"
+	name = "Tytanowy golem"
 	id = "titanium_golem"
 	fixed_mut_color = "fff"
 	meat = /obj/item/stack/ore/titanium
@@ -247,7 +247,7 @@
 
 //Immune to ash storms and lava
 /datum/species/golem/plastitanium
-	name = "Plastitanium Golem"
+	name = "Plastytanowy golem"
 	id = "plastitanium_golem"
 	fixed_mut_color = "888"
 	meat = /obj/item/stack/ore/titanium
@@ -268,7 +268,7 @@
 
 //Fast and regenerates... but can only speak like an abductor
 /datum/species/golem/alloy
-	name = "Alien Alloy Golem"
+	name = "Golem z obcego stopu"
 	id = "alloy_golem"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOTRANSSTING)
 	meat = /obj/item/stack/sheet/mineral/abductor
@@ -295,7 +295,7 @@
 
 //Since this will usually be created from a collaboration between podpeople and free golems, wood golems are a mix between the two races
 /datum/species/golem/wood
-	name = "Wood Golem"
+	name = "Drewniany golem"
 	id = "wood_golem"
 	fixed_mut_color = "9E704B"
 	meat = /obj/item/stack/sheet/mineral/wood
@@ -338,7 +338,7 @@
 
 //Radioactive
 /datum/species/golem/uranium
-	name = "Uranium Golem"
+	name = "Uranowy golem"
 	id = "uranium_golem"
 	fixed_mut_color = "7f0"
 	meat = /obj/item/stack/ore/uranium
@@ -360,7 +360,7 @@
 
 //Immune to physical bullets and resistant to brute, but very vulnerable to burn damage. Dusts on death.
 /datum/species/golem/sand
-	name = "Sand Golem"
+	name = "Piaskowy golem"
 	id = "sand_golem"
 	fixed_mut_color = "ffdc8f"
 	meat = /obj/item/stack/ore/glass //this is sand
@@ -391,7 +391,7 @@
 
 //Reflects lasers and resistant to burn damage, but very vulnerable to brute damage. Shatters on death.
 /datum/species/golem/glass
-	name = "Glass Golem"
+	name = "Szklany golem"
 	id = "glass_golem"
 	fixed_mut_color = "5a96b4aa" //transparent body
 	meat = /obj/item/shard
@@ -405,7 +405,7 @@
 
 /datum/species/golem/glass/spec_death(gibbed, mob/living/carbon/human/H)
 	playsound(H, "shatter", 70, 1)
-	H.visible_message("<span class='danger'>[H] shatters!</span>")
+	H.visible_message("<span class='danger'>[H] rozpada się na kawałki!</span>")
 	for(var/obj/item/W in H)
 		H.dropItemToGround(W)
 	for(var/i=1, i <= rand(3,5), i++)
@@ -428,7 +428,7 @@
 
 //Teleports when hit or when it wants to
 /datum/species/golem/bluespace
-	name = "Bluespace Golem"
+	name = "Golem bluespace"
 	id = "bluespace_golem"
 	fixed_mut_color = "33f"
 	meat = /obj/item/stack/ore/bluespace_crystal
@@ -443,7 +443,7 @@
 	var/last_teleport = 0
 
 /datum/species/golem/bluespace/proc/reactive_teleport(mob/living/carbon/human/H)
-	H.visible_message("<span class='warning'>[H] teleports!</span>", "<span class='danger'>Tracisz stabilność i się teleportujesz!</span>")
+	H.visible_message("<span class='warning'>[H] się teleportuje!</span>", "<span class='danger'>Tracisz stabilność i się teleportujesz!</span>")
 	new /obj/effect/particle_effect/sparks(get_turf(H))
 	playsound(get_turf(H), "sparks", 50, 1)
 	do_teleport(H, get_turf(H), 6, asoundin = 'sound/weapons/emitter2.ogg', channel = TELEPORT_CHANNEL_BLUESPACE)
@@ -487,7 +487,7 @@
 	..()
 
 /datum/action/innate/unstable_teleport
-	name = "Unstable Teleport"
+	name = "Niestabilna teleportacja"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "jaunt"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
@@ -521,7 +521,7 @@
 
 //honk
 /datum/species/golem/bananium
-	name = "Bananium Golem"
+	name = "Bananiumowy golem"
 	id = "bananium_golem"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOTRANSSTING)
 	punchdamage = 0
@@ -609,7 +609,7 @@
 	speech_args[SPEECH_SPANS] |= SPAN_CLOWN
 
 /datum/species/golem/runic
-	name = "Runic Golem"
+	name = "Runiczny golem"
 	id = "cult_golem"
 	sexes = FALSE
 	info_text = "Jako <span class='danger'>runiczny golem</span> masz pradawne moce nadane przez Starszą Boginię Nar'Sie."
@@ -673,7 +673,7 @@
 		return TRUE
 	return ..()
 /datum/species/golem/clockwork
-	name = "Clockwork Golem"
+	name = "Zegarowy golem"
 	id = "clockwork_golem"
 	info_text = "<span class='bold alloy'>Jako </span><span class='bold brass'>mechaniczny golem</span><span class='bold alloy'> jesteś szybszy od innych golemów. Po śmierci rozpadniesz się na złom.</span>"
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYESPRITES,NOFLASH,NOTRANSSTING)
@@ -731,7 +731,7 @@
 	info_text = "<span class='bold alloy'>Jako </span><span class='bold brass'>mechaniczny golem-sługa</span><span class='bold alloy'> jesteś szybszy od innych golemów.</span>" //warcult golems leave a corpse
 
 /datum/species/golem/cloth
-	name = "Cloth Golem"
+	name = "Materiałowy golem"
 	id = "cloth_golem"
 	sexes = FALSE
 	info_text = "Jako <span class='danger'>materiałowy golem</span> możesz odrodzić się po śmierci, o ile twoje szczątki nie zostaną spalone ani zniszczone. Jesteś oczywiście bardzo łatwopalny. Będąc z materiału, jesteś odporny na magię i szybszy od innych golemów, ale słabszy i mniej wytrzymały."
@@ -789,8 +789,8 @@
 	..()
 
 /obj/structure/cloth_pile
-	name = "pile of bandages"
-	desc = "It emits a strange aura, as if there was still life within it..."
+	name = "stos bandaży"
+	desc = "Emanuje dziwną aurą, jakby wciąż tliło się w nim życie..."
 	max_integrity = 50
 	armor = list("melee" = 90, "bullet" = 90, "laser" = 25, "energy" = 80, "bomb" = 50, "bio" = 100, "fire" = -50, "acid" = -50, "stamina" = 0, "bleed" = 0)
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -849,7 +849,7 @@
 		fire_act()
 
 /datum/species/golem/plastic
-	name = "Plastic Golem"
+	name = "Plastikowy golem"
 	id = "plastic_golem"
 	prefix = "Plastic"
 	special_names = list("Sheet", "Bag", "Bottle")
@@ -865,7 +865,7 @@
 	C.ventcrawler = initial(C.ventcrawler)
 
 /datum/species/golem/bronze
-	name = "Bronze Golem"
+	name = "Brązowy golem"
 	id = "bronze_golem"
 	prefix = "Bronze"
 	special_names = list("Bell")
@@ -934,7 +934,7 @@
 
 
 /datum/species/golem/cardboard //Faster but weaker, can also make new shells on its own
-	name = "Cardboard Golem"
+	name = "Kartonowy golem"
 	id = "cardboard_golem"
 	prefix = "Cardboard"
 	special_names = list("Box")
@@ -986,7 +986,7 @@
 	last_creation = world.time
 
 /datum/species/golem/leather
-	name = "Leather Golem"
+	name = "Skórzany golem"
 	id = "leather_golem"
 	special_names = list("Face", "Man", "Belt") //Ah dude 4 strength 4 stam leather belt AHHH
 	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER, TRAIT_STRONG_GRABBER)
@@ -997,7 +997,7 @@
 	attack_sound = 'sound/weapons/whip.ogg'
 
 /datum/species/golem/durathread
-	name = "Durathread Golem"
+	name = "Duranicowy golem"
 	id = "durathread_golem"
 	prefix = "Durathread"
 	special_names = list("Boll","Weave")
@@ -1018,7 +1018,7 @@
 	target.apply_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 
 /datum/species/golem/bone
-	name = "Bone Golem"
+	name = "Kościany golem"
 	id = "bone_golem"
 	prefix = "Bone"
 	special_names = list("Head", "Broth", "Fracture", "Rattler", "Appetit")
@@ -1065,8 +1065,8 @@
 		return TRUE
 	return ..()
 /datum/action/innate/bonechill
-	name = "Bone Chill"
-	desc = "Rattle your bones and strike fear into your enemies!"
+	name = "Kościany dreszcz"
+	desc = "Zagrzechocz kośćmi i wzbudź strach we wrogach!"
 	check_flags = AB_CHECK_CONSCIOUS
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "bonechill"
@@ -1100,7 +1100,7 @@
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "spooked", /datum/mood_event/spooked)
 
 /datum/species/golem/snow
-	name = "Snow Golem"
+	name = "Śnieżny golem"
 	id = "snow_golem"
 	fixed_mut_color = "null" //custom sprites
 	armor = 45 //down from 55
@@ -1151,15 +1151,15 @@
 		C.RemoveSpell(cryo)
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/snowball
-	name = "Snowball"
-	desc = "Concentrates cryokinetic forces to create snowballs, useful for throwing at people."
+	name = "Śnieżka"
+	desc = "Skupia siły kriokinetyczne, by tworzyć śnieżki, którymi można rzucać w ludzi."
 	item_type = /obj/item/toy/snowball
 	charge_max = 15
 	action_icon = 'icons/obj/toy.dmi'
 	action_icon_state = "snowball"
 
 /datum/species/golem/capitalist
-	name = "Capitalist Golem"
+	name = "Kapitalistyczny golem"
 	id = "capitalist_golem"
 	prefix = "Capitalist"
 	attack_verb = "monopoliz"
@@ -1205,7 +1205,7 @@
 	speech_args[SPEECH_MESSAGE] = "Cześć, lubię pieniądze!"
 
 /datum/species/golem/soviet
-	name = "Soviet Golem"
+	name = "Radziecki golem"
 	id = "soviet_golem"
 	prefix = "Comrade"
 	attack_verb = "nationaliz"
@@ -1248,7 +1248,7 @@
 	speech_args[SPEECH_MESSAGE] = "Cyka Blyat"
 
 /datum/species/golem/cheese
-	name = "Cheese Golem"
+	name = "Serowy golem"
 	id = "cheese golem"
 	fixed_mut_color = "F1D127"
 	meat = /obj/item/stack/sheet/cheese

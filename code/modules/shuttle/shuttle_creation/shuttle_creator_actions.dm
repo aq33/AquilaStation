@@ -20,7 +20,7 @@
 
 //Add an area
 /datum/action/innate/shuttle_creator/designate_area
-	name = "Designate Room"
+	name = "Wyznacz pomieszczenie"
 	button_icon_state = "designate_area"
 
 /datum/action/innate/shuttle_creator/designate_area/Activate()
@@ -30,7 +30,7 @@
 
 //Add a single turf
 /datum/action/innate/shuttle_creator/designate_turf
-	name = "Designate Turf"
+	name = "Wyznacz pole"
 	button_icon_state = "designate_turf"
 
 /datum/action/innate/shuttle_creator/designate_turf/Activate()
@@ -53,7 +53,7 @@
 
 //Clear a single entire area
 /datum/action/innate/shuttle_creator/clear_turf
-	name = "Clear Turf"
+	name = "Wyczyść pole"
 	button_icon_state = "clear_turf"
 
 /datum/action/innate/shuttle_creator/clear_turf/Activate()
@@ -63,7 +63,7 @@
 
 //Clear the entire area
 /datum/action/innate/shuttle_creator/reset
-	name = "Reset Buffer"
+	name = "Wyczyść bufor"
 	button_icon_state = "clear_area"
 
 /datum/action/innate/shuttle_creator/reset/Activate()
@@ -73,7 +73,7 @@
 
 //Finish the shuttle
 /datum/action/innate/shuttle_creator/airlock
-	name = "Select Docking Airlock"
+	name = "Wybierz śluzę dokującą"
 	button_icon_state = "select_airlock"
 
 /datum/action/innate/shuttle_creator/airlock/Activate()
@@ -102,7 +102,7 @@
 	internal_console.remove_eye_control(owner)
 
 /datum/action/innate/shuttle_creator/modify
-	name = "Confirm Shuttle Modifications"
+	name = "Zatwierdź modyfikacje promu"
 	button_icon_state = "modify"
 
 /datum/action/innate/shuttle_creator/modify/Activate()

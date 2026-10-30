@@ -15,8 +15,8 @@
 // Final step - insert loading tray
 
 /obj/structure/ship_weapon/railgun_assembly
-	name = "\improper NT-STC4 Ship railgun mount"
-	desc = "An incomplete assembly for an NT-STC4 ship mounted railgun chamber."
+	name = "\improper okrętowe stanowisko działa szynowego NT-STC4"
+	desc = "Niedokończony montaż komory okrętowego działa szynowego NT-STC4."
 	icon = 'nsv13/icons/obj/railgun.dmi'
 	icon_state = "railgun_platform"
 	bound_width = 128

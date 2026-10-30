@@ -183,7 +183,7 @@
 				to_chat(user, span_notice("[capitalize(src.name)] wchłania moc runy [initial(spell.name)].") )
 				qdel(R)
 			if (RUNE_CANNOT)//like, that shouldn't even be possible because of the earlier if() check, but just in case.
-				message_admins("Error! ([key_name(user)]) managed to imbue a Conjure Talisman rune. That shouldn't be possible!")
+				message_admins("Błąd! ([key_name(user)]) udało się nasycić talizman runą Conjure Talisman. To nie powinno być możliwe!")
 				return
 
 /obj/item/talisman/proc/word_pulse(datum/rune_word/W)

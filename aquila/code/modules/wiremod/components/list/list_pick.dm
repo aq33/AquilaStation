@@ -4,7 +4,7 @@
  * Allows user to select 1 entry from a list
  */
 /obj/item/circuit_component/list_pick
-	display_name = "List Pick"
+	display_name = "Wybór z listy"
 	desc = "Komponent, który pozwala użytkownikowi wybrać 1 element z listy. Zwraca wybrany element."
 	category = "List"
 

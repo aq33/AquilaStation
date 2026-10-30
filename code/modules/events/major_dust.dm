@@ -12,8 +12,8 @@
 		"Statek przelatuje przez chmurę odłamków, możliwe drobne uszkodzenia \
 		zewnętrznych elementów i wyposażenia.",
 		"Wydział Superbroni Nanotrasen testuje nowy prototyp: \
-		[pick("field","projection","nova","super-colliding","reactive")] \
-		[pick("cannon","artillery","tank","cruiser","\[REDACTED\]")], \
+		[pick("działo","artyleria","czołg","krążownik","\[UTAJNIONO\]")] \
+		typu [pick("Pole","Projekcja","Nova","Superzderzacz","Reakcja")], \
 		możliwe niewielkie odłamki.",
 		"Sąsiednia stacja rzuca w was kamieniami. (Może mają \
 		dość waszych wiadomości.)")

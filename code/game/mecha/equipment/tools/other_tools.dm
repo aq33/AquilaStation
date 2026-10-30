@@ -5,8 +5,8 @@
 ////////////////////////////////////////////// TELEPORTER ///////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
-	name = "mounted teleporter"
-	desc = "An exosuit module that allows exosuits to teleport to any position in view."
+	name = "montowany teleporter"
+	desc = "Moduł, który pozwala egzoszkieletowi teleportować się w dowolne widoczne miejsce."
 	icon_state = "mecha_teleport"
 	equip_cooldown = 150
 	energy_drain = 1000
@@ -25,8 +25,8 @@
 ////////////////////////////////////////////// WORMHOLE GENERATOR //////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator
-	name = "mounted wormhole generator"
-	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
+	name = "montowany generator tuneli"
+	desc = "Moduł egzoszkieletu, który wytwarza małe, quasi-stabilne tunele czasoprzestrzenne."
 	icon_state = "mecha_wholegen"
 	equip_cooldown = 50
 	energy_drain = 300
@@ -58,7 +58,7 @@
 		return
 	var/list/obj/effect/portal/created = create_portal_pair(get_turf(src), target_turf, src, 300, 1, /obj/effect/portal/anom)
 	var/turf/T = get_turf(target)
-	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Wormhole Generator in [ADMIN_VERBOSEJMP(T)]")
+	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] używa generatora tuneli w [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(chassis.occupant)] used a Wormhole Generator in [AREACOORD(T)]")
 	src = null
 	QDEL_LIST_IN(created, rand(150,300))
@@ -68,8 +68,8 @@
 /////////////////////////////////////// GRAVITATIONAL CATAPULT ///////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
-	name = "mounted gravitational catapult"
-	desc = "An exosuit mounted Gravitational Catapult."
+	name = "montowana katapulta grawitacyjna"
+	desc = "Katapulta grawitacyjna montowana na egzoszkielecie."
 	icon_state = "mecha_teleport"
 	equip_cooldown = 10
 	energy_drain = 100
@@ -130,7 +130,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
-	return "[..()] [mode==1?"([locked||"Nothing"])":null] \[<a href='byond://?src=[REF(src)];mode=1'>S</a>|<a href='byond://?src=[REF(src)];mode=2'>P</a>\]"
+	return "[..()] [mode==1?"([locked||"nic"])":null] \[<a href='byond://?src=[REF(src)];mode=1'>S</a>|<a href='byond://?src=[REF(src)];mode=2'>P</a>\]"
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
 	..()
@@ -146,8 +146,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from TK mutants.
-	name = "armor booster module (Close Combat Weaponry)"
-	desc = "Boosts exosuit armor against armed melee attacks. Requires energy to operate."
+	name = "moduł wzmocnienia pancerza (broń do walki wręcz)"
+	desc = "Wzmacnia pancerz egzoszkieletu przed atakami bronią białą. Do działania potrzebuje energii."
 	icon_state = "mecha_abooster_ccw"
 	equip_cooldown = 10
 	energy_drain = 50
@@ -164,8 +164,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
-	name = "armor booster module (Ranged Weaponry)"
-	desc = "Boosts exosuit armor against ranged attacks. Completely blocks taser shots. Requires energy to operate."
+	name = "moduł wzmocnienia pancerza (broń dystansowa)"
+	desc = "Wzmacnia pancerz egzoszkieletu przed atakami z dystansu. Całkowicie blokuje strzały z paralizatora. Do działania potrzebuje energii."
 	icon_state = "mecha_abooster_proj"
 	equip_cooldown = 10
 	energy_drain = 50
@@ -184,8 +184,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
-	name = "exosuit repair droid"
-	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
+	name = "droid naprawczy egzoszkieletu"
+	desc = "Automatyczny droid naprawczy do egzoszkieletów. Wyszukuje uszkodzenia i je naprawia. Usuwa niemal każdy rodzaj uszkodzeń zewnętrznych i wewnętrznych."
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0
@@ -269,8 +269,8 @@
 /////////////////////////////////// TESLA ENERGY RELAY ////////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
-	name = "exosuit energy relay"
-	desc = "An exosuit module that wirelessly drains energy from any available power channel in area. The performance index is quite low."
+	name = "przekaźnik energii egzoszkieletu"
+	desc = "Moduł egzoszkieletu, który bezprzewodowo pobiera energię z dowolnego dostępnego kanału zasilania w obszarze. Wydajność jest dość niska."
 	icon_state = "tesla"
 	energy_drain = 0
 	range = 0
@@ -354,8 +354,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator
-	name = "exosuit plasma converter"
-	desc = "An exosuit module that generates power using solid plasma as fuel. Pollutes the environment."
+	name = "konwerter plazmy egzoszkieletu"
+	desc = "Moduł egzoszkieletu, który wytwarza energię ze stałej plazmy jako paliwa. Zanieczyszcza otoczenie."
 	icon_state = "tesla"
 	range = MECHA_MELEE
 	var/coeff = 100
@@ -395,7 +395,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='byond://?src=[REF(src)];toggle=1'>[equip_ready?"A":"Dea"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.amount*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='byond://?src=[REF(src)];toggle=1'>[equip_ready?"Aktywuj":"Dezaktywuj"]</a>"
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)
 	if(chassis)
@@ -449,8 +449,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear
-	name = "exonuclear reactor"
-	desc = "An exosuit module that generates power using uranium as fuel. Pollutes the environment."
+	name = "reaktor egzojądrowy"
+	desc = "Moduł egzoszkieletu, który wytwarza energię z uranu jako paliwa. Zanieczyszcza otoczenie."
 	icon_state = "tesla"
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
@@ -469,8 +469,8 @@
 /////////////////////////////////////////// THRUSTERS /////////////////////////////////////////////
 
 /obj/item/mecha_parts/mecha_equipment/thrusters
-	name = "generic exosuit thrusters" //parent object, in-game sources will be a child object
-	desc = "A generic set of thrusters, from an unknown source. Uses not-understood methods to propel exosuits seemingly for free."
+	name = "ogólne silniki manewrowe egzoszkieletu" //parent object, in-game sources will be a child object
+	desc = "Ogólny zestaw silników manewrowych nieznanego pochodzenia. Niezrozumiałymi metodami napędza egzoszkielet pozornie za darmo."
 	icon_state = "thrusters"
 	selectable = FALSE
 	var/effect_type = /obj/effect/particle_effect/sparks
@@ -513,16 +513,16 @@
 	if (chassis.active_thrusters == src)
 		return
 	chassis.active_thrusters = src
-	occupant_message("<span class='notice'>[src] enabled.</span>")
+	occupant_message("<span class='notice'>Włączono: [src].</span>")
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/proc/disable()
 	if(chassis.active_thrusters != src)
 		return
 	chassis.active_thrusters = null
-	occupant_message("<span class='notice'>[src] disabled.</span>")
+	occupant_message("<span class='notice'>Wyłączono: [src].</span>")
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/get_equip_info()
-	return "[..()] \[<a href='byond://?src=[REF(src)];mode=0'>Enable</a>|<a href='byond://?src=[REF(src)];mode=1'>Disable</a>\]"
+	return "[..()] \[<a href='byond://?src=[REF(src)];mode=0'>Włącz</a>|<a href='byond://?src=[REF(src)];mode=1'>Wyłącz</a>\]"
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/proc/thrust(var/movement_dir)
 	if(!chassis)
@@ -538,8 +538,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/gas
-	name = "RCS thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments, by expelling gas from the internal life support tank."
+	name = "zestaw silników manewrowych RCS"
+	desc = "Zestaw silników manewrowych, który pozwala egzoszkieletowi poruszać się w nieważkości, wyrzucając gaz z wewnętrznej butli podtrzymywania życia."
 	effect_type = /obj/effect/particle_effect/smoke
 	var/move_cost = 20 //moles per step
 
@@ -563,8 +563,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/thrusters/ion //for mechs with built-in thrusters, should never really exist un-attached to a mech
-	name = "Ion thruster package"
-	desc = "A set of thrusters that allow for exosuit movement in zero-gravity environments."
+	name = "zestaw jonowych silników manewrowych"
+	desc = "Zestaw silników manewrowych, który pozwala egzoszkieletowi poruszać się w nieważkości."
 	detachable = FALSE
 	salvageable = FALSE
 	effect_type = /obj/effect/particle_effect/ion_trails

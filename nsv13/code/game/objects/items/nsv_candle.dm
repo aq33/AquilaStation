@@ -1,6 +1,6 @@
 /obj/item/candle/incense
-	name = "Incense"
-	desc = "Though incense is common all throughout the Federation, the Dominion is particularly known for it's use of incense. This one smells like sandalwood."
+	name = "kadzidło"
+	desc = "Choć kadzidło jest powszechne w całej Federacji, to Dominium słynie szczególnie z jego używania. To pachnie drzewem sandałowym."
 	icon = 'nsv13/icons/obj/incense.dmi'
 	icon_state = "candle_teal_off"
 	item_state = "candle_teal_off"
@@ -12,8 +12,8 @@
 	icon_state = "[lit ? "candle_teal_lit" : ""]"
 
 /obj/item/candle/incense/pink
-	name = "Pink Incense"
-	desc = "The Dominion is known for its use of incense in religious ceremony, this one smells like the dawn of winter, a breeze of cold and a shiver through ones spine."
+	name = "różowe kadzidło"
+	desc = "Dominium słynie z używania kadzidła w obrzędach religijnych. To pachnie jak świt zimy, chłodny powiew i dreszcz przebiegający po plecach."
 	icon_state = "candle_pink_off"
 	item_state = "candle_pink_off"
 

@@ -1,6 +1,6 @@
 /obj/item/implant/chem
-	name = "chem implant"
-	desc = "Injects things."
+	name = "implant chemiczny"
+	desc = "Wstrzykuje różne rzeczy."
 	icon_state = "reagents"
 	activated = FALSE
 
@@ -41,8 +41,8 @@
 
 
 /obj/item/implantcase/chem
-	name = "implant case - 'Remote Chemical'"
-	desc = "A glass case containing a remote chemical implant."
+	name = "etui na implant – „Zdalny chemiczny”"
+	desc = "Szklane etui ze zdalnie sterowanym implantem chemicznym."
 	imp_type = /obj/item/implant/chem
 
 /obj/item/implantcase/chem/attackby(obj/item/W, mob/user, params)

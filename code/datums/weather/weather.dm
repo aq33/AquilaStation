@@ -1,8 +1,8 @@
 //The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
 
 /datum/weather
-	var/name = "space wind"
-	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
+	var/name = "kosmiczny wiatr"
+	var/desc = "Silne podmuchy wiatru smagają okolicę i co jakiś czas przewracają każdego, kto jest na otwartej przestrzeni."
 
 	var/telegraph_message = "<span class='warning'>Wiatr zaczyna się wzmagać.</span>" //The message displayed in chat to foreshadow the weather's beginning
 	var/telegraph_duration = 300 //In deciseconds, how long from the beginning of the telegraph until the weather begins

@@ -1,19 +1,19 @@
 
 /datum/chemical_reaction/leporazine
-	name = "Leporazine"
+	name = "Leporazyna"
 	id = /datum/reagent/medicine/leporazine
 	results = list(/datum/reagent/medicine/leporazine = 2)
 	required_reagents = list(/datum/reagent/silicon = 1, /datum/reagent/copper = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/rezadone
-	name = "Rezadone"
+	name = "Rezadon"
 	id = /datum/reagent/medicine/rezadone
 	results = list(/datum/reagent/medicine/rezadone = 3)
 	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/spaceacillin
-	name = "Spaceacillin"
+	name = "Spacyklina"
 	id = /datum/reagent/medicine/spaceacillin
 	results = list(/datum/reagent/medicine/spaceacillin = 2)
 	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/epinephrine = 1)
@@ -25,13 +25,13 @@
 	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/charcoal = 1)
 
 /datum/chemical_reaction/synaptizine
-	name = "Synaptizine"
+	name = "Synaptizyna"
 	id = /datum/reagent/medicine/synaptizine
 	results = list(/datum/reagent/medicine/synaptizine = 3)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/charcoal
-	name = "Charcoal"
+	name = "Węgiel aktywowany"
 	id = /datum/reagent/medicine/charcoal
 	results = list(/datum/reagent/medicine/charcoal = 2)
 	required_reagents = list(/datum/reagent/ash = 1, /datum/reagent/consumable/sodiumchloride = 1)
@@ -39,69 +39,69 @@
 	required_temp = 380
 
 /datum/chemical_reaction/silver_sulfadiazine
-	name = "Silver Sulfadiazine"
+	name = "Sulfadiazyna srebra"
 	id = /datum/reagent/medicine/silver_sulfadiazine
 	results = list(/datum/reagent/medicine/silver_sulfadiazine = 5)
 	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/silver = 1, /datum/reagent/sulfur = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/salglu_solution
-	name = "Saline-Glucose Solution"
+	name = "Sól fizjologiczna z glukozą"
 	id = /datum/reagent/medicine/salglu_solution
 	results = list(/datum/reagent/medicine/salglu_solution = 3)
 	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/water = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/mine_salve
-	name = "Miner's Salve"
+	name = "Maść górnicza"
 	id = /datum/reagent/medicine/mine_salve
 	results = list(/datum/reagent/medicine/mine_salve = 3)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/water = 1, /datum/reagent/iron = 1)
 
 /datum/chemical_reaction/mine_salve2
-	name = "Miner's Salve"
+	name = "Maść górnicza"
 	id = /datum/reagent/medicine/mine_salve
 	results = list(/datum/reagent/medicine/mine_salve = 15)
 	required_reagents = list(/datum/reagent/toxin/plasma = 5, /datum/reagent/iron = 5, /datum/reagent/consumable/sugar = 1) // A sheet of plasma, a twinkie and a sheet of metal makes four of these
 
 /datum/chemical_reaction/synthflesh
-	name = "Synthflesh"
+	name = "Syntetyczne ciało"
 	id = /datum/reagent/medicine/synthflesh
 	results = list(/datum/reagent/medicine/synthflesh = 4)
 	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/styptic_powder = 1, /datum/reagent/medicine/silver_sulfadiazine = 1)
 
 /datum/chemical_reaction/styptic_powder
-	name = "Styptic Powder"
+	name = "Proszek hemostatyczny"
 	id = /datum/reagent/medicine/styptic_powder
 	results = list(/datum/reagent/medicine/styptic_powder = 4)
 	required_reagents = list(/datum/reagent/aluminium = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1, /datum/reagent/toxin/acid = 1)
 	mix_message = "Roztwór daje ściągający proszek."
 
 /datum/chemical_reaction/calomel
-	name = "Calomel"
+	name = "Kalomel"
 	id = /datum/reagent/medicine/calomel
 	results = list(/datum/reagent/medicine/calomel = 2)
 	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/chlorine = 1)
 	required_temp = 374
 
 /datum/chemical_reaction/potass_iodide
-	name = "Potassium Iodide"
+	name = "Jodek potasu"
 	id = /datum/reagent/medicine/potass_iodide
 	results = list(/datum/reagent/medicine/potass_iodide = 2)
 	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/iodine = 1)
 
 /datum/chemical_reaction/pen_acid
-	name = "Pentetic Acid"
+	name = "Kwas pentetowy"
 	id = /datum/reagent/medicine/pen_acid
 	results = list(/datum/reagent/medicine/pen_acid = 6)
 	required_reagents = list(/datum/reagent/fuel = 1, /datum/reagent/chlorine = 1, /datum/reagent/ammonia = 1, /datum/reagent/toxin/formaldehyde = 1, /datum/reagent/sodium = 1, /datum/reagent/toxin/cyanide = 1)
 
 /datum/chemical_reaction/sal_acid
-	name = "Salicyclic Acid"
+	name = "Kwas salicylowy"
 	id = /datum/reagent/medicine/sal_acid
 	results = list(/datum/reagent/medicine/sal_acid = 5)
 	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/phenol = 1, /datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/oxandrolone
-	name = "Oxandrolone"
+	name = "Oksandrolon"
 	id = /datum/reagent/medicine/oxandrolone
 	results = list(/datum/reagent/medicine/oxandrolone = 6)
 	required_reagents = list(/datum/reagent/carbon = 3, /datum/reagent/phenol = 1, /datum/reagent/hydrogen = 1, /datum/reagent/oxygen = 1)
@@ -113,7 +113,7 @@
 	required_reagents = list(/datum/reagent/medicine/sal_acid = 1, /datum/reagent/lithium = 1, /datum/reagent/aluminium = 1, /datum/reagent/bromine = 1, /datum/reagent/ammonia = 1)
 
 /datum/chemical_reaction/perfluorodecalin
-	name = "Perfluorodecalin"
+	name = "Perfluorodekalina"
 	id = /datum/reagent/medicine/perfluorodecalin
 	results = list(/datum/reagent/medicine/perfluorodecalin = 3)
 	required_reagents = list(/datum/reagent/hydrogen = 1, /datum/reagent/fluorine = 1, /datum/reagent/oil = 1)
@@ -121,40 +121,40 @@
 	mix_message = "Mieszanina błyskawicznie zamienia się w gęsty różowy płyn."
 
 /datum/chemical_reaction/ephedrine
-	name = "Ephedrine"
+	name = "Efedryna"
 	id = /datum/reagent/medicine/ephedrine
 	results = list(/datum/reagent/medicine/ephedrine = 4)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/oil = 1, /datum/reagent/hydrogen = 1, /datum/reagent/diethylamine = 1)
 	mix_message = "Roztwór musuje i wydziela toksyczne opary."
 
 /datum/chemical_reaction/diphenhydramine
-	name = "Diphenhydramine"
+	name = "Difenhydramina"
 	id = /datum/reagent/medicine/diphenhydramine
 	results = list(/datum/reagent/medicine/diphenhydramine = 4)
 	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/carbon = 1, /datum/reagent/bromine = 1, /datum/reagent/diethylamine = 1, /datum/reagent/consumable/ethanol = 1)
 	mix_message = "Mieszanina zasycha w bladoniebieski proszek."
 
 /datum/chemical_reaction/oculine
-	name = "Oculine"
+	name = "Okulina"
 	id = /datum/reagent/medicine/oculine
 	results = list(/datum/reagent/medicine/oculine = 3)
 	required_reagents = list(/datum/reagent/medicine/charcoal = 1, /datum/reagent/carbon = 1, /datum/reagent/hydrogen = 1)
 	mix_message = "Mieszanina głośno skwierczy i przybiera bladoróżowy kolor."
 
 /datum/chemical_reaction/atropine
-	name = "Atropine"
+	name = "Atropina"
 	id = /datum/reagent/medicine/atropine
 	results = list(/datum/reagent/medicine/atropine = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/acetone = 1, /datum/reagent/diethylamine = 1, /datum/reagent/phenol = 1, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/epinephrine
-	name = "Epinephrine"
+	name = "Epinefryna"
 	id = /datum/reagent/medicine/epinephrine
 	results = list(/datum/reagent/medicine/epinephrine = 6)
 	required_reagents = list(/datum/reagent/phenol = 1, /datum/reagent/acetone = 1, /datum/reagent/diethylamine = 1, /datum/reagent/oxygen = 1, /datum/reagent/chlorine = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/strange_reagent
-	name = "Strange Reagent"
+	name = "Dziwny odczynnik"
 	id = /datum/reagent/medicine/strange_reagent
 	results = list(/datum/reagent/medicine/strange_reagent = 3)
 	required_reagents = list(/datum/reagent/medicine/omnizine = 1, /datum/reagent/water/holywater = 1, /datum/reagent/toxin/mutagen = 1)
@@ -167,13 +167,13 @@
 	mix_message = "Roztwór lekko bulgocze, gęstniejąc."
 
 /datum/chemical_reaction/neurine
-	name = "Neurine"
+	name = "Neuryna"
 	id = /datum/reagent/medicine/neurine
 	results = list(/datum/reagent/medicine/neurine = 3)
 	required_reagents = list(/datum/reagent/medicine/mannitol = 1, /datum/reagent/acetone = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/mutadone
-	name = "Mutadone"
+	name = "Mutadon"
 	id = /datum/reagent/medicine/mutadone
 	results = list(/datum/reagent/medicine/mutadone = 3)
 	required_reagents = list(/datum/reagent/toxin/mutagen = 1, /datum/reagent/acetone = 1, /datum/reagent/bromine = 1)
@@ -185,19 +185,19 @@
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/medicine/charcoal = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/cryoxadone
-	name = "Cryoxadone"
+	name = "Kriooksadon"
 	id = /datum/reagent/medicine/cryoxadone
 	results = list(/datum/reagent/medicine/cryoxadone = 3)
 	required_reagents = list(/datum/reagent/stable_plasma = 1, /datum/reagent/acetone = 1, /datum/reagent/toxin/mutagen = 1)
 
 /datum/chemical_reaction/pyroxadone
-	name = "Pyroxadone"
+	name = "Pirooksadon"
 	id = /datum/reagent/medicine/pyroxadone
 	results = list(/datum/reagent/medicine/pyroxadone = 2)
 	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/toxin/slimejelly = 1)
 
 /datum/chemical_reaction/clonexadone
-	name = "Clonexadone"
+	name = "Klonoksadon"
 	id = /datum/reagent/medicine/clonexadone
 	results = list(/datum/reagent/medicine/clonexadone = 2)
 	required_reagents = list(/datum/reagent/medicine/cryoxadone = 1, /datum/reagent/sodium = 1)
@@ -210,62 +210,62 @@
 	required_reagents = list(/datum/reagent/chlorine = 1, /datum/reagent/fluorine = 1, /datum/reagent/aluminium = 1, /datum/reagent/medicine/potass_iodide = 1, /datum/reagent/oil = 1)
 
 /datum/chemical_reaction/bicaridine
-	name = "Bicaridine"
+	name = "Bikarydyna"
 	id = /datum/reagent/medicine/bicaridine
 	results = list(/datum/reagent/medicine/bicaridine = 3)
 	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/dexalin
-	name = "Dexalin"
+	name = "Deksalina"
 	id = "dexalin"
 	results = list(/datum/reagent/medicine/dexalin = 5)
 	required_reagents = list(/datum/reagent/oxygen = 5, /datum/reagent/nitrogen = 5)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/dexalinp
-	name = "Dexalin Plus"
+	name = "Deksalina Plus"
 	id = "dexalinp"
 	results = list(/datum/reagent/medicine/dexalinp = 3)
 	required_reagents = list(/datum/reagent/medicine/dexalin = 1, /datum/reagent/carbon = 1, /datum/reagent/iron = 1)
 
 /datum/chemical_reaction/kelotane
-	name = "Kelotane"
+	name = "Kelotan"
 	id = /datum/reagent/medicine/kelotane
 	results = list(/datum/reagent/medicine/kelotane = 2)
 	required_reagents = list(/datum/reagent/carbon = 1, /datum/reagent/silicon = 1)
 
 /datum/chemical_reaction/antitoxin
-	name = "Antitoxin"
+	name = "Antytoksyna"
 	id = /datum/reagent/medicine/antitoxin
 	results = list(/datum/reagent/medicine/antitoxin = 3)
 	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/tricordrazine
-	name = "Tricordrazine"
+	name = "Trikordrazyna"
 	id = /datum/reagent/medicine/tricordrazine
 	results = list(/datum/reagent/medicine/tricordrazine = 3)
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 1, /datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/antitoxin = 1)
 
 /datum/chemical_reaction/regen_jelly
-	name = "Regenerative Jelly"
+	name = "Galaretka regeneracyjna"
 	id = /datum/reagent/medicine/regen_jelly
 	results = list(/datum/reagent/medicine/regen_jelly = 2)
 	required_reagents = list(/datum/reagent/medicine/tricordrazine = 1, /datum/reagent/toxin/slimejelly = 1)
 
 /datum/chemical_reaction/regen_ooze
-	name = "Regenerative Ooze"
+	name = "Maź regeneracyjna"
 	id = /datum/reagent/medicine/regen_ooze
 	results = list(/datum/reagent/medicine/regen_ooze = 2)
 	required_reagents = list(/datum/reagent/medicine/tricordrazine = 1, /datum/reagent/toxin/slimeooze = 1)
 
 /datum/chemical_reaction/corazone
-	name = "Corazone"
+	name = "Korazon"
 	id = /datum/reagent/medicine/corazone
 	results = list(/datum/reagent/medicine/corazone = 3)
 	required_reagents = list(/datum/reagent/phenol = 2, /datum/reagent/lithium = 1)
 
 /datum/chemical_reaction/morphine
-	name = "Morphine"
+	name = "Morfina"
 	id = /datum/reagent/medicine/morphine
 	results = list(/datum/reagent/medicine/morphine = 2)
 	required_reagents = list(/datum/reagent/carbon = 2, /datum/reagent/hydrogen = 2, /datum/reagent/consumable/ethanol = 1, /datum/reagent/oxygen = 1)
@@ -279,19 +279,19 @@
 	required_catalysts = list(/datum/reagent/bromine = 1) // as close to the real world synthesis as possible
 
 /datum/chemical_reaction/psicodine
-	name = "Psicodine"
+	name = "Psykodyna"
 	id = /datum/reagent/medicine/psicodine
 	results = list(/datum/reagent/medicine/psicodine = 5)
 	required_reagents = list( /datum/reagent/medicine/mannitol = 2, /datum/reagent/water = 2, /datum/reagent/impedrezene = 1)
 
 /datum/chemical_reaction/system_cleaner
-	name = "System Cleaner"
+	name = "Czyścik systemowy"
 	id = /datum/reagent/medicine/system_cleaner
 	results = list(/datum/reagent/medicine/system_cleaner = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 1, /datum/reagent/phenol = 2, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/liquid_solder
-	name = "Liquid Solder"
+	name = "Płynny lut"
 	id = /datum/reagent/medicine/liquid_solder
 	results = list(/datum/reagent/medicine/liquid_solder = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/copper = 1, /datum/reagent/silver = 1)
@@ -299,27 +299,27 @@
 	mix_message = "Mieszanina zamienia się w metaliczną breję."
 
 /datum/chemical_reaction/carthatoline
-	name = "Carthatoline"
+	name = "Kartatolina"
 	id = "carthatoline"
 	results = list(/datum/reagent/medicine/carthatoline = 3)
 	required_reagents = list(/datum/reagent/medicine/antitoxin = 1, /datum/reagent/carbon = 2)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 1)
 
 /datum/chemical_reaction/meclizine
-	name = "Meclizine"
+	name = "Meklizyna"
 	id = /datum/reagent/medicine/meclizine
 	results = list(/datum/reagent/medicine/meclizine = 4)
 	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/chlorine = 1, /datum/reagent/carbon = 2)
 
 /datum/chemical_reaction/hepanephrodaxon
-	name = "Hepanephrodaxon"
+	name = "Hepanefrodakson"
 	id = "hepanephrodaxon"
 	results = list(/datum/reagent/medicine/hepanephrodaxon = 5)
 	required_reagents = list(/datum/reagent/medicine/carthatoline = 2, /datum/reagent/carbon = 2, /datum/reagent/lithium = 1)
 	required_catalysts = list(/datum/reagent/toxin/plasma = 5)
 
 /datum/chemical_reaction/liquidelectricity
-	name = "Liquid Electricity"
+	name = "Płynna elektryczność"
 	id = /datum/reagent/consumable/liquidelectricity
 	results = list(/datum/reagent/consumable/liquidelectricity = 3)
 	required_reagents = list(/datum/reagent/consumable/ethanol = 3, /datum/reagent/consumable/liquidelectricity = 1, /datum/reagent/toxin/plasma = 1)

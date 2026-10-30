@@ -13,7 +13,7 @@
 	plane = -1
 
 /obj/effect/decal/cleanable/blood/hitsplatter
-	name = "blood splatter"
+	name = "bryzg krwi"
 	pass_flags = PASSTABLE | PASSGRILLE
 	icon_state = "hitsplatter1"
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
@@ -88,7 +88,7 @@
 /obj/effect/decal/cleanable/blood/proc/make_old()
 	ASSERT(!is_old)
 	dry_timer = null
-	name = "dried [name]"
+	name = "[name] (po zaschnięciu)"
 
 	is_old = TRUE
 	bloodiness = 0

@@ -2,36 +2,36 @@ import { FeatureChoiced } from '../base';
 import { FeatureButtonedDropdownInput } from '../dropdowns';
 
 export const quirk_prosthetic_limb_location: FeatureChoiced = {
-  name: 'Prosthetic Limb Location',
+  name: 'Miejsce protezy',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_phobia: FeatureChoiced = {
-  name: 'Phobia Type',
+  name: 'Rodzaj fobii',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_multilingual_language: FeatureChoiced = {
-  name: 'Second Language',
+  name: 'Drugi język',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_smoker_cigarettes: FeatureChoiced = {
-  name: 'Type Of Cigarettes',
+  name: 'Rodzaj papierosów',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_junkie_drug: FeatureChoiced = {
-  name: 'Drug Addiction',
+  name: 'Uzależnienie od narkotyku',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_alcohol_type: FeatureChoiced = {
-  name: 'Type Of Alcohol',
+  name: 'Rodzaj alkoholu',
   component: FeatureButtonedDropdownInput,
 };
 
 export const quirk_accent: FeatureChoiced = {
-  name: 'Accent',
+  name: 'Akcent',
   component: FeatureButtonedDropdownInput,
 };

@@ -1,5 +1,5 @@
 /datum/disease/gastrolosis
-	name = "Invasive Gastrolosis"
+	name = "Inwazyjna gastroloza"
 	max_stages = 4
 	spread_text = "Wirus degeneracyjny"
 	spread_flags = DISEASE_SPREAD_SPECIAL

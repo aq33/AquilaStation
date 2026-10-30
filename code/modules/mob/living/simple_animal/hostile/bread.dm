@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/breadloaf
-	name = "mutant bread"
-	desc = "THE BREAD ARE WALKING! RUN!"
+	name = "zmutowany chleb"
+	desc = "CHLEB CHODZI! UCIEKAJ!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "mutantbread"
 	icon_living = "mutantbread"
@@ -43,8 +43,8 @@
 		mutations++
 
 /mob/living/simple_animal/hostile/breadloaf/slice
-	name = "mutant bread slice"
-	desc = "THE BREAD ARE WALKING! RUN!"
+	name = "zmutowana kromka chleba"
+	desc = "CHLEB CHODZI! UCIEKAJ!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "mutantbreadslice"
 	icon_living = "mutantbreadslice"

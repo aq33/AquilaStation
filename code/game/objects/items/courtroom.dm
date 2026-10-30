@@ -3,8 +3,8 @@
 // Gavel Block
 
 /obj/item/gavelhammer
-	name = "gavel hammer"
-	desc = "Order, order! No bombs in my courthouse."
+	name = "młotek sędziowski"
+	desc = "Proszę o spokój! Żadnych bomb na mojej sali sądowej."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "gavelhammer"
 	force = 5
@@ -19,8 +19,8 @@
 	return (BRUTELOSS)
 
 /obj/item/gavelblock
-	name = "gavel block"
-	desc = "Smack it with a gavel hammer when the assistants get rowdy."
+	name = "podstawka pod młotek"
+	desc = "Walnij w nią młotkiem sędziowskim, gdy asystenci zaczną się burzyć."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "gavelblock"
 	force = 2

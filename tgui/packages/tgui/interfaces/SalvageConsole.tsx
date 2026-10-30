@@ -19,13 +19,13 @@ export const SalvageConsole = (props) => {
         <br />
         {!!data.salvage_target && (
           <Section
-            title={'Currently maintaining: ' + data.salvage_target_name}
+            title={'Obecnie utrzymywany cel: ' + data.salvage_target_name}
             buttons={
               <Button
                 icon="bullseye"
-                content="Release Hammerlock"
+                content="Zwolnij Hammerlock"
                 color="average"
-                tooltip="Stop scrambling this ship's defenses. This will cause any forces boarding it to be killed."
+                tooltip="Przestań zakłócać obronę tego statku. Wszystkie siły, które dokonują na nim abordażu, zginą."
                 onClick={() => act('stop_salvage')}
               />
             }
@@ -45,7 +45,7 @@ export const SalvageConsole = (props) => {
             />
           </Section>
         )}
-        <Section title="Available Salvage Targets:">
+        <Section title="Dostępne cele do złomowania:">
           {Object.keys(data.ships).map((key) => {
             let value = data.ships[key];
             return (
@@ -54,7 +54,7 @@ export const SalvageConsole = (props) => {
                 title={value.name}
                 buttons={
                   <Button
-                    content="Establish Hammerlock"
+                    content="Nawiąż Hammerlock"
                     icon="anchor"
                     onClick={() => act('salvage', { target: value.id })}
                   />

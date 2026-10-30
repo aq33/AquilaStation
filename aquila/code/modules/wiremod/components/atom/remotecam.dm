@@ -16,7 +16,7 @@
  * Attaches a camera for surveillance-on-the-go.
  */
 /obj/item/circuit_component/remotecam
-	display_name = "Camera Abstract Type"
+	display_name = "Kamera (typ abstrakcyjny)"
 	desc = "Typ abstrakcyjny, nie używaj go bezpośrednio!"
 	category = "Entity"
 	circuit_flags = CIRCUIT_NO_DUPLICATES
@@ -40,7 +40,7 @@
 	/// The shell storing the parent circuit
 	var/atom/movable/shell_parent = null
 	/// The shell's type (used for prefix naming)
-	var/camera_prefix = "Camera"
+	var/camera_prefix = "Kamera"
 	/// Camera random ID
 	var/c_tag_random = 0
 
@@ -190,7 +190,7 @@
  */
 /obj/item/circuit_component/remotecam/proc/update_camera_name_network()
 	if(!parent || !parent.display_name || parent.display_name == "")
-		shell_camera.c_tag = "[camera_prefix]: unspecified #[c_tag_random]"
+		shell_camera.c_tag = "[camera_prefix]: bez nazwy #[c_tag_random]"
 		current_camera_name = ""
 	else if(current_camera_name != parent.display_name)
 		current_camera_name = parent.display_name
@@ -199,7 +199,7 @@
 		if(new_cam_name)
 			shell_camera.c_tag = "[camera_prefix]: [new_cam_name] #[c_tag_random]"
 		else
-			shell_camera.c_tag = "[camera_prefix]: unspecified #[c_tag_random]"
+			shell_camera.c_tag = "[camera_prefix]: bez nazwy #[c_tag_random]"
 
 	if(!network.value || network.value == "")
 		shell_camera.network = list("ss13")
@@ -316,7 +316,7 @@
 	set_camera_status(current_camera_state)
 
 /obj/item/circuit_component/remotecam/bci
-	display_name = "BCI Camera"
+	display_name = "Kamera BCI"
 	desc = "Cyfryzuje wzrok użytkownika na potrzeby mobilnego monitoringu. Użytkownik musi mieć w pełni sprawne oczy. Zasięg: 0 (blisko) albo 1 (daleko). Pole Network ustala sieć kamer."
 	category = "BCI"
 	camera_prefix = "BCI"
@@ -329,14 +329,14 @@
 	var/mob/living/carbon/bciuser = null
 
 /obj/item/circuit_component/remotecam/drone
-	display_name = "Remote Camera"
+	display_name = "Kamera zdalna"
 	desc = "Rejestruje otoczenie na potrzeby mobilnego monitoringu. Zasięg: 0 (blisko) albo 1 (daleko). Pole Network ustala sieć kamer."
-	camera_prefix = "Drone"
+	camera_prefix = "Dron"
 
 /obj/item/circuit_component/remotecam/airlock
-	display_name = "Peephole Camera"
+	display_name = "Kamera w wizjerze"
 	desc = "Kamera w wizjerze, która widzi obie strony śluzy. Pole Network ustala sieć kamer."
-	camera_prefix = "Airlock"
+	camera_prefix = "Śluza"
 
 	/// Hardcode camera to near range
 	camera_range_settable = FALSE

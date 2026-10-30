@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/hypospray/bloody_eye
-	name = "\improper bloody eye spray"
-	desc = "This vial of Bloody Eye is equipped with a spray nozzle and a handy measuring ring to make sure the spray cone is just the right size."
+	name = "\improper spray Krwawe Oko"
+	desc = "Ta fiolka Krwawego Oka ma dyszę rozpylającą i poręczny pierścień miarowy, dzięki któremu stożek mgiełki ma idealny rozmiar."
 	icon = 'nsv13/icons/obj/nsv13_syringe.dmi'
 	icon_state = "bloody"
 	amount_per_transfer_from_this = 30
@@ -12,7 +12,7 @@
 	list_reagents = list(/datum/reagent/drug/bloody_eye = 30)
 
 /datum/reagent/drug/bloody_eye
-	name = "Bloody Eye"
+	name = "Krwawe Oko"
 	description = "Silny narkotyk pochodzący z Syndykatu. Wytwarzany, by dawać użytkownikowi niesamowicie ekscytujący haj, zwykle wprawiając go w stan psychozy wywołanej wściekłością. Zwiększa siłę fizyczną i pozwala ignorować skutki stanu krytycznego."
 	reagent_state = LIQUID
 	color = "#D92323"
@@ -135,8 +135,8 @@
 		to_chat(M, "<span class='warning'>Najpierw musisz odsłonić oczy!</span>")
 
 /datum/uplink_item/dangerous/bloody_eye
-	 name = "Bloody Eye Spray"
-	 desc = "Spray into your eye or someone else's to go into a bloody thirsty rage. Don't expect to live after using it."
+	 name = "Spray Krwawe Oko"
+	 desc = "Psiknij sobie albo komuś w oko, by wpaść w krwiożerczy szał. Nie licz na to, że przeżyjesz."
 	 item = /obj/item/reagent_containers/hypospray/bloody_eye
 	 cost = 10
 
@@ -157,7 +157,7 @@
 	owner.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/status_effect/bloody_eye/on_apply()
-	to_chat(owner, "<span class='warning'>KILLKILLKILL</span>")
+	to_chat(owner, "<span class='warning'>ZABIJZABIJZABIJ</span>")
 	ADD_TRAIT(owner,TRAIT_DISCOORDINATED,type) // AQ EDIT (TRAIT_MONKEYLIKE -> TRAIT DISCOORDINATED)
 	ADD_TRAIT(owner,TRAIT_NOCRITDAMAGE,type)
 	ADD_TRAIT(owner,TRAIT_NOSOFTCRIT,type)

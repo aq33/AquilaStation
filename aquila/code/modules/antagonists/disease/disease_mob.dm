@@ -8,8 +8,8 @@ the new instance inside the host to be updated to the template's stats.
 */
 
 /mob/camera/disease
-	name = "Sentient Disease"
-	real_name = "Sentient Disease"
+	name = "Świadoma choroba"
+	real_name = "Świadoma choroba"
 	desc = ""
 	icon = 'icons/mob/cameramob.dmi'
 	icon_state = "marker"
@@ -145,14 +145,14 @@ the new instance inside the host to be updated to the template's stats.
 	while(!set_name)
 		var/input = sanitize_name(stripped_input(src, "Wybierz nazwę swojej choroby", "Wybór nazwy", "", MAX_NAME_LEN))
 		if(!input)
-			set_name = "Sentient Virus"
+			set_name = "Świadomy wirus"
 			break
 		if(taken_names[input])
 			to_chat(src, "<span class='notice'>Nie możesz użyć nazwy tak znanej choroby!</span>")
 		else
 			set_name = input
-	real_name = "[set_name] (Sentient Disease)"
-	name = "[set_name] (Sentient Disease)"
+	real_name = "[set_name] (świadoma choroba)"
+	name = "[set_name] (świadoma choroba)"
 	disease_template.AssignName(set_name)
 	var/datum/antagonist/disease/A = mind.has_antag_datum(/datum/antagonist/disease)
 	if(A)
@@ -285,7 +285,7 @@ the new instance inside the host to be updated to the template's stats.
 /mob/camera/disease/ClickOn(var/atom/A, params)
 	if(freemove && ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(alert(src, "Wybrać [H.name] jako pierwszego nosiciela?", "Wybór nosiciela", "Yes", "No") != "Yes")
+		if(alert(src, "Wybrać [H.name] jako pierwszego nosiciela?", "Wybór nosiciela", "Tak", "Nie") != "Tak")
 			return
 		if(!freemove)
 			return
@@ -400,7 +400,7 @@ the new instance inside the host to be updated to the template's stats.
 
 
 /datum/action/innate/disease_adapt
-	name = "Adaptation Menu"
+	name = "Menu adaptacji"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "disease_menu"
 

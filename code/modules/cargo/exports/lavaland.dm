@@ -3,7 +3,7 @@
 
 /datum/export/lavaland/minor
 	cost = 10000
-	unit_name = "minor lava planet artifact"
+	unit_name = "pomniejszy artefakt z planety lawy"
 	export_types = list(/obj/item/immortality_talisman,
 						/obj/item/book_of_babel,
 						/obj/item/gun/magic/hook,
@@ -29,7 +29,7 @@
 
 /datum/export/lavaland/major //valuable chest/ruin loot and staff of storms
 	cost = 20000
-	unit_name = "lava planet artifact"
+	unit_name = "artefakt z planety lawy"
 	export_types = list(/obj/item/guardiancreator,
 						/obj/item/rod_of_asclepius,
 						/obj/item/clothing/suit/space/hardsuit/ert/paranormal,
@@ -40,7 +40,7 @@
 
 /datum/export/lavaland/megafauna
 	cost = 40000
-	unit_name = "major lava planet artifact"
+	unit_name = "potężny artefakt z planety lawy"
 	export_types = list(/obj/item/hierophant_club,
 						/obj/item/melee/transforming/cleaving_saw,
 						/obj/item/organ/vocal_cords/colossus,
@@ -56,10 +56,10 @@
 
 /datum/export/lavaland/megafauna/hev/suit
 	cost = 30000
-	unit_name = "H.E.C.K. suit"
+	unit_name = "kombinezon H.E.C.K."
 	export_types = list(/obj/item/clothing/suit/space/hostile_environment)
 
 /datum/export/lavaland/megafauna/hev/helmet
 	cost = 10000
-	unit_name = "H.E.C.K. helmet"
+	unit_name = "hełm H.E.C.K."
 	export_types = list(/obj/item/clothing/head/helmet/space/hostile_environment)

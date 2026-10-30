@@ -13,7 +13,7 @@
 	src.parallax_movedir = parallax_movedir
 
 /area/maintenance/ship_exterior //Used so that the FTL effect doesnt go away when you step outside.
-	name = "Ship exterior"
+	name = "Zewnętrze Statku"
 	icon_state = "space_near"
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 

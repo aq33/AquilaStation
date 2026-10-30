@@ -155,7 +155,7 @@
 			C.registered_account.adjust_money(ransom * 0.35)
 
 			C.registered_account.bank_card_talk("Okup przetworzony, agencie. Oto twoja działka - twoje saldo wynosi teraz \
-			[C.registered_account.account_balance] cr.", TRUE)
+			[C.registered_account.account_balance] kr.", TRUE)
 
 // They're off to holding - handle the return timer and give some text about what's going on.
 /datum/syndicate_contract/proc/handleVictimExperience(var/mob/living/M)
@@ -208,7 +208,7 @@
 		return_pod.style = STYLE_SYNDICATE
 
 		do_sparks(8, FALSE, M)
-		M.visible_message("<span class='notice'>[M] vanishes...</span>")
+		M.visible_message("<span class='notice'>[M] znika...</span>")
 
 		for(var/obj/item/W in M)
 			if (ishuman(M))

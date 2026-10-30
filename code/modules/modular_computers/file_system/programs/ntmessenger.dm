@@ -112,7 +112,7 @@
 			var/mob/living/usr_mob = usr
 			if(!in_range(computer, usr_mob) || computer.loc != usr_mob)
 				return
-			var/new_ringtone = stripped_input(usr, "Podaj nowy dzwonek", "Ringtone", ringtone, 20)
+			var/new_ringtone = stripped_input(usr, "Podaj nowy dzwonek", "Dzwonek", ringtone, 20)
 			if(!new_ringtone)
 				return
 			if(SEND_SIGNAL(computer, COMSIG_TABLET_CHANGE_RINGTONE, usr_mob, new_ringtone) & COMPONENT_STOP_RINGTONE_CHANGE)
@@ -277,9 +277,9 @@
 		if(mime_mode)
 			message = emoji_sanitize(message)
 	else if(mime_mode)
-		message = emoji_sanitize(tgui_input_emoji(user, "NT Messaging"))
+		message = emoji_sanitize(tgui_input_emoji(user, "Komunikator NT"))
 	else
-		message = tgui_input_text(user, "Enter a message", "NT Messaging[target_name ? " ([target_name])" : ""]")
+		message = tgui_input_text(user, "Wpisz wiadomość", "Komunikator NT[target_name ? " ([target_name])" : ""]")
 
 	if (!message || !sending_and_receiving)
 		return
@@ -290,7 +290,7 @@
 /datum/computer_file/program/messenger/proc/send_message(mob/living/user, list/obj/item/modular_computer/targets, everyone = FALSE, fake_name = null, fake_job = null, multi_delay = 0, preset_message = null)
 	if(!targets.len)
 		return FALSE
-	var/target_name = length(targets) == 1 ? targets[1].saved_identification : "Everyone"
+	var/target_name = length(targets) == 1 ? targets[1].saved_identification : "Wszyscy"
 	var/message = msg_input(user, target_name, preset_message) //AQUILA EDIT - preset_message
 	if(!message)
 		return FALSE
@@ -379,7 +379,7 @@
 
 	last_text = world.time
 	if (everyone)
-		message_data["name"] = "Everyone"
+		message_data["name"] = "Wszyscy"
 		message_data["job"] = ""
 		last_text_everyone = world.time
 
@@ -411,7 +411,7 @@
 		L = get(computer, /mob/living/silicon)
 
 	if(L && (L.stat == CONSCIOUS || L.stat == SOFT_CRIT))
-		var/reply = "(<a href='byond://?src=[REF(src)];choice=Message;skiprefresh=1;target=[signal.data["ref"]]'>Reply</a>)"
+		var/reply = "(<a href='byond://?src=[REF(src)];choice=Message;skiprefresh=1;target=[signal.data["ref"]]'>Odpowiedz</a>)"
 		var/hrefstart
 		var/hrefend
 		if (isAI(L))
@@ -419,13 +419,13 @@
 			hrefend = "</a>"
 
 		if(signal.data["automated"])
-			reply = "\[Automated Message\]"
+			reply = "\[Wiadomość automatyczna\]"
 
 		var/inbound_message = signal.format_message(include_photo = TRUE)
 		if(signal.data["emojis"] == TRUE)//so will not parse emojis as such from pdas that don't send emojis
 			inbound_message = emoji_parse(inbound_message)
 
-		to_chat(L, "<span class='infoplain'>[icon2html(src)] <b>PDA message from [hrefstart][signal.data["name"]] ([signal.data["job"]])[hrefend], </b>[inbound_message] [reply]</span>")
+		to_chat(L, "<span class='infoplain'>[icon2html(src)] <b>Wiadomość PDA od [hrefstart][signal.data["name"]] ([signal.data["job"]])[hrefend], </b>[inbound_message] [reply]</span>")
 
 
 	if (ringer_status)

@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/drone
-	name = "alien drone"
+	name = "dron obcych"
 	caste = "d"
 	maxHealth = 125
 	health = 125
@@ -16,8 +16,8 @@
 	return ..()
 
 /obj/effect/proc_holder/alien/evolve
-	name = "Evolve to Praetorian"
-	desc = "Praetorian"
+	name = "Ewoluuj w pretorianina"
+	desc = "Pretorianin"
 	plasma_cost = 500
 	action_icon_state = "alien_evolve_drone"
 

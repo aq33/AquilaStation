@@ -8,8 +8,8 @@ GLOBAL_LIST_INIT(abstraction_crystals, list())
 	counts_towards_total = FALSE
 
 /datum/clockcult/scripture/create_structure/abstraction_crystal
-	name = "Abstraction Crystal"
-	desc = "Summons an Abstraction Crystal, which allows servants to manifest themself to protect the nearby area."
+	name = "Kryształ abstrakcji"
+	desc = "Przywołuje kryształ abstrakcji, dzięki któremu słudzy mogą się w nim manifestować, by chronić okolicę."
 	tip = "Gdy twoja manifestacja otrzymuje obrażenia, ty dostajesz tylko 40% z nich."
 	button_icon_state = "Clockwork Obelisk"
 	power_cost = 750
@@ -107,8 +107,8 @@ GLOBAL_LIST_INIT(abstraction_crystals, list())
 //===================
 
 /obj/structure/destructible/clockwork/abstraction_crystal
-	name = "abstraction crystal"
-	desc = "An other-worldly structure, its lattice pulsating with a bright, pulsating light."
+	name = "kryształ abstrakcji"
+	desc = "Nieziemska struktura, której krystaliczna sieć pulsuje jasnym światłem."
 	icon_state = "obelisk_inactive"
 	clockwork_desc = "Potężny kryształ, który pozwala użytkownikowi manifestować się przy innych kryształach abstrakcji."
 	max_integrity = 200

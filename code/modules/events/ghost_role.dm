@@ -21,32 +21,32 @@
 	status = spawn_role()
 	if((status == WAITING_FOR_SOMETHING))
 		if(retry >= MAX_SPAWN_ATTEMPT)
-			message_admins("[role_name] event has exceeded maximum spawn attempts. Aborting and refunding.")
+			message_admins("Event [role_name] przekracza limit prób pojawienia się. Przerywam i zwracam.")
 			if(control && control.occurrences > 0)	//Don't refund if it hasn't
 				control.occurrences--
 			return
 		var/waittime = 300 * (2**retry)
-		message_admins("The event will not spawn a [role_name] until certain \
-			conditions are met. Waiting [waittime/10]s and then retrying.")
+		message_admins("Event nie stworzy roli [role_name], dopóki nie zostaną \
+			spełnione pewne warunki. Czekam [waittime/10] s i ponawiam.")
 		addtimer(CALLBACK(src, PROC_REF(try_spawning), 0, ++retry), waittime)
 		return
 
 	if(status == MAP_ERROR)
-		message_admins("[role_name] cannot be spawned due to a map error.")
+		message_admins("Nie można stworzyć roli [role_name] z powodu błędu mapy.")
 	else if(status == NOT_ENOUGH_PLAYERS)
-		message_admins("[role_name] cannot be spawned due to lack of players \
-			signing up.")
+		message_admins("Nie można stworzyć roli [role_name], bo nie zgłosiło się \
+			dość graczy.")
 	else if(status == SUCCESSFUL_SPAWN)
-		message_admins("[role_name] spawned successfully.")
+		message_admins("Rola [role_name] pojawia się pomyślnie.")
 		if(spawned_mobs.len)
 			for (var/mob/M in spawned_mobs)
 				announce_to_ghosts(M)
 		else
-			message_admins("No mobs found in the `spawned_mobs` list, this is \
-				a bug.")
+			message_admins("Brak mobów na liście `spawned_mobs`, to jest \
+				błąd.")
 	else
-		message_admins("An attempt to spawn [role_name] returned [status], \
-			this is a bug.")
+		message_admins("Próba stworzenia roli [role_name] zwraca [status], \
+			to jest błąd.")
 
 	processing = TRUE
 

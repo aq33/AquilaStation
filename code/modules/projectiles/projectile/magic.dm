@@ -1,5 +1,5 @@
 /obj/item/projectile/magic
-	name = "bolt of nothing"
+	name = "pocisk niczego"
 	icon_state = "energy"
 	damage = 0
 	damage_type = OXY
@@ -9,7 +9,7 @@
 	martial_arts_no_deflect = TRUE
 
 /obj/item/projectile/magic/death
-	name = "bolt of death"
+	name = "pocisk śmierci"
 	icon_state = "pulse1_bl"
 	martial_arts_no_deflect = FALSE
 
@@ -23,7 +23,7 @@
 		M.death(0)
 
 /obj/item/projectile/magic/resurrection
-	name = "bolt of resurrection"
+	name = "pocisk wskrzeszenia"
 	icon_state = "ion"
 	damage = 0
 	damage_type = OXY
@@ -49,7 +49,7 @@
 			to_chat(target, "<span class='notice'>Czujesz się świetnie!</span>")
 
 /obj/item/projectile/magic/teleport
-	name = "bolt of teleportation"
+	name = "pocisk teleportacji"
 	icon_state = "bluespace"
 	damage = 0
 	damage_type = OXY
@@ -78,7 +78,7 @@
 				smoke.start()
 
 /obj/item/projectile/magic/safety
-	name = "bolt of safety"
+	name = "pocisk bezpieczeństwa"
 	icon_state = "bluespace"
 	damage = 0
 	damage_type = OXY
@@ -105,7 +105,7 @@
 			smoke.start()
 
 /obj/item/projectile/magic/door
-	name = "bolt of door creation"
+	name = "pocisk tworzenia drzwi"
 	icon_state = "energy"
 	damage = 0
 	damage_type = OXY
@@ -134,7 +134,7 @@
 	D.open()
 
 /obj/item/projectile/magic/change
-	name = "bolt of change"
+	name = "pocisk przemiany"
 	icon_state = "ice_1"
 	damage = 0
 	damage_type = BURN
@@ -301,7 +301,7 @@
 	return new_mob
 
 /obj/item/projectile/magic/animate
-	name = "bolt of animation"
+	name = "pocisk ożywienia"
 	icon_state = "red_1"
 	damage = 0
 	damage_type = BURN
@@ -318,7 +318,7 @@
 			if(P.petrified_mob)
 				var/mob/living/L = P.petrified_mob
 				var/mob/living/simple_animal/hostile/statue/S = new(P.loc, owner)
-				S.name = "statue of [L.name]"
+				S.name = "posąg: [L.name]"
 				if(owner)
 					S.faction = list("[REF(owner)]")
 				S.icon = P.icon
@@ -346,7 +346,7 @@
 			C.ChangeOwner(owner)
 
 /obj/item/projectile/magic/spellblade
-	name = "blade energy"
+	name = "energia ostrza"
 	icon_state = "lavastaff"
 	damage = 15
 	damage_type = BURN
@@ -365,7 +365,7 @@
 	. = ..()
 
 /obj/item/projectile/magic/arcane_barrage
-	name = "arcane bolt"
+	name = "tajemny pocisk"
 	icon_state = "arcane_barrage"
 	damage = 20
 	damage_type = BURN
@@ -386,7 +386,7 @@
 
 
 /obj/item/projectile/magic/locker
-	name = "locker bolt"
+	name = "pocisk szafki"
 	icon_state = "locker"
 	nodamage = TRUE
 	flag = "magic"
@@ -467,7 +467,7 @@
 	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 
 /obj/item/projectile/magic/flying
-	name = "bolt of flying"
+	name = "pocisk lotu"
 	icon_state = "flight"
 	martial_arts_no_deflect = FALSE
 
@@ -482,7 +482,7 @@
 		L.throw_at(throw_target, 200, 4)
 
 /obj/item/projectile/magic/bounty
-	name = "bolt of bounty"
+	name = "pocisk obfitości"
 	icon_state = "bounty"
 	martial_arts_no_deflect = FALSE
 
@@ -496,7 +496,7 @@
 		L.apply_status_effect(STATUS_EFFECT_BOUNTY, firer)
 
 /obj/item/projectile/magic/antimagic
-	name = "bolt of antimagic"
+	name = "pocisk antymagii"
 	icon_state = "antimagic"
 	martial_arts_no_deflect = FALSE
 
@@ -510,7 +510,7 @@
 		L.apply_status_effect(STATUS_EFFECT_ANTIMAGIC)
 
 /obj/item/projectile/magic/fetch
-	name = "bolt of fetching"
+	name = "pocisk przywołania"
 	icon_state = "fetch"
 	martial_arts_no_deflect = FALSE
 
@@ -525,7 +525,7 @@
 		L.throw_at(throw_target, 200, 4)
 
 /obj/item/projectile/magic/sapping
-	name = "bolt of sapping"
+	name = "pocisk wysysania"
 	icon_state = "sapping"
 	martial_arts_no_deflect = FALSE
 
@@ -539,7 +539,7 @@
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/sapped)
 
 /obj/item/projectile/magic/necropotence
-	name = "bolt of necropotence"
+	name = "pocisk nekropotencji"
 	icon_state = "necropotence"
 	martial_arts_no_deflect = FALSE
 
@@ -562,7 +562,7 @@
 			spell.update_icon()
 
 /obj/item/projectile/magic/wipe
-	name = "bolt of possession"
+	name = "pocisk opętania"
 	icon_state = "wipe"
 	martial_arts_no_deflect = FALSE
 
@@ -586,13 +586,13 @@
 	var/poll_message = "Chcesz zagrać jako [M.real_name]?"
 	var/ban_key = BAN_ROLE_ALL_ANTAGONISTS
 	if(M.mind?.assigned_role)
-		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
+		poll_message = "[poll_message] Stanowisko: [M.mind.assigned_role]."
 	if(M.mind?.special_role)
-		poll_message = "[poll_message] Status:[M.mind.special_role]."
+		poll_message = "[poll_message] Status: [M.mind.special_role]."
 	else if(M.mind)
 		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist)
 		if(A)
-			poll_message = "[poll_message] Status:[A.name]."
+			poll_message = "[poll_message] Status: [A.name]."
 			ban_key = A.banning_key
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ban_key, null, 10 SECONDS, M, ignore_category = FALSE)
 	if(M.stat == DEAD)//boo.
@@ -612,8 +612,8 @@
 		qdel(trauma)
 
 /obj/item/projectile/magic/aoe
-	name = "Area Bolt"
-	desc = "What the fuck does this do?!"
+	name = "pocisk obszarowy"
+	desc = "Co to, kurwa, w ogóle robi?!"
 	damage = 0
 	var/proxdet = TRUE
 	martial_arts_no_deflect = FALSE
@@ -627,7 +627,7 @@
 
 
 /obj/item/projectile/magic/aoe/lightning
-	name = "lightning bolt"
+	name = "błyskawica"
 	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
 	damage = 15
 	damage_type = BURN
@@ -667,7 +667,7 @@
 	. = ..()
 
 /obj/item/projectile/magic/fireball
-	name = "bolt of fireball"
+	name = "pocisk ognistej kuli"
 	icon_state = "fireball"
 	damage = 10
 	damage_type = BRUTE
@@ -702,7 +702,7 @@
 	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire, magic = magic, holy = holy)
 
 /obj/item/projectile/magic/fireball/infernal
-	name = "infernal fireball"
+	name = "piekielna kula ognia"
 	exp_heavy = -1
 	exp_light = -1
 	exp_flash = 4
@@ -723,7 +723,7 @@
 //still magic related, but a different path
 
 /obj/item/projectile/temp/chill
-	name = "bolt of chills"
+	name = "pocisk chłodu"
 	icon_state = "ice_2"
 	damage = 0
 	damage_type = BURN

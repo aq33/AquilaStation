@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(vote)
 
 	if(!istype(to_vote))
 		if(vote_initiator)
-			to_chat(vote_initiator, "<span class='warning'>Invalid voting choice.</span>")
+			to_chat(vote_initiator, "<span class='warning'>Nieprawidłowy wybór głosowania.</span>")
 		return FALSE
 
 	if(to_vote.can_be_initiated(forced) != VOTE_AVAILABLE)
@@ -169,7 +169,7 @@ SUBSYSTEM_DEF(vote)
 	// Give everyone a voter action
 	for(var/client/new_voter as anything in GLOB.clients)
 		var/datum/action/vote/voting_action = new()
-		voting_action.name = "Vote: [current_vote.override_question || current_vote.name]"
+		voting_action.name = "Głosowanie: [current_vote.override_question || current_vote.name]"
 		voting_action.Grant(new_voter.mob)
 		new_voter.player_details.player_actions += voting_action
 		generated_actions += voting_action
@@ -188,7 +188,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/can_vote_start(mob/vote_initiator, forced)
 	if(!initialized)
 		if(vote_initiator)
-			to_chat(vote_initiator, "<span class='warning'>You cannot start a vote now, the server is not done initializing.</span>")
+			to_chat(vote_initiator, "<span class='warning'>Nie możesz teraz rozpocząć głosowania, serwer jeszcze się nie zainicjalizował.</span>")
 		return FALSE
 
 	if(forced)
@@ -197,12 +197,12 @@ SUBSYSTEM_DEF(vote)
 	var/next_allowed_time = last_vote_time + CONFIG_GET(number/vote_delay)
 	if(next_allowed_time > world.time)
 		if(vote_initiator)
-			to_chat(vote_initiator, "<span class='warning'>A vote was initiated recently. You must wait [DisplayTimeText(next_allowed_time - world.time)] before a new vote can be started!</span>")
+			to_chat(vote_initiator, "<span class='warning'>Niedawno było głosowanie. Do rozpoczęcia nowego musisz poczekać: [DisplayTimeText(next_allowed_time - world.time)]!</span>")
 		return FALSE
 
 	if(current_vote)
 		if(vote_initiator)
-			to_chat(vote_initiator, "<span class='warning'>There is already a vote in progress! Please wait for it to finish.</span>")
+			to_chat(vote_initiator, "<span class='warning'>Głosowanie już trwa! Poczekaj, aż się skończy.</span>")
 		return FALSE
 
 	return TRUE
@@ -212,7 +212,7 @@ SUBSYSTEM_DEF(vote)
 	CONFIG_SET(flag/no_dead_vote, switch_deadvote_config)
 	var/text_verb = !switch_deadvote_config ? "enabled" : "disabled"
 	log_admin("[key_name(toggle_initiator)] [text_verb] Dead Vote.")
-	message_admins("[key_name_admin(toggle_initiator)] [text_verb] Dead Vote.")
+	message_admins("[key_name_admin(toggle_initiator)] [!switch_deadvote_config ? "włącza" : "wyłącza"] głosowanie umarłych.")
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/datum/action/vote/voting_action as anything in generated_actions)
@@ -326,31 +326,31 @@ SUBSYSTEM_DEF(vote)
 	switch(action)
 		if("cancel")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to cancel the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] próbuje anulować bieżące głosowanie bez uprawnień admina. \
+					To może być złośliwy exploit, warto to odnotować.")
 				return
 			log_admin("[key_name(voter)] cancelled a vote.")
-			message_admins("[key_name_admin(voter)] has cancelled the current vote.")
+			message_admins("[key_name_admin(voter)] anuluje bieżące głosowanie.")
 			SStgui.close_uis(src)
 			reset()
 			return TRUE
 
 		if("endNow")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to end the current vote while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] próbuje zakończyć bieżące głosowanie bez uprawnień admina. \
+					To może być złośliwy exploit, warto to odnotować.")
 				return
 			if(!current_vote)
 				return
 			log_admin("[key_name(voter)] ended the current vote early.")
-			message_admins("[key_name_admin(voter)] has ended the current vote.")
+			message_admins("[key_name_admin(voter)] kończy bieżące głosowanie.")
 			end_vote()
 			return TRUE
 
 		if("toggleDeadVote")
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote abillity for ghosts while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] próbuje przełączyć możliwość głosowania duchów bez uprawnień admina. \
+					To może być złośliwy exploit, warto to odnotować.")
 				return
 			toggle_dead_voting(voter)
 			return TRUE
@@ -360,8 +360,8 @@ SUBSYSTEM_DEF(vote)
 			if(!istype(selected))
 				return
 			if(!check_rights_for(voter.client, R_ADMIN))
-				message_admins("[key_name(voter)] tried to toggle vote availability while having improper rights, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] próbuje przełączyć dostępność głosowania bez uprawnień admina. \
+					To może być złośliwy exploit, warto to odnotować.")
 				return
 			selected.toggle_votable()
 			return TRUE
@@ -397,8 +397,8 @@ SUBSYSTEM_DEF(vote)
 
 		if("resetCooldown")
 			if(!voter.client?.holder)
-				message_admins("[key_name(voter)] tried to reset the vote cooldown while having no admin holder, \
-					this is potentially a malicious exploit and worth noting.")
+				message_admins("[key_name(voter)] próbuje zresetować czas odnowienia głosowania bez uprawnień admina. \
+					To może być złośliwy exploit, warto to odnotować.")
 				return
 			last_vote_time = -INFINITY
 			return TRUE
@@ -413,13 +413,13 @@ SUBSYSTEM_DEF(vote)
 
 	// AQUILA EDIT - src, not usr: initiate_vote() calls this for every client to pop the window up, and then usr is not that player
 	if(!SSvote.initialized)
-		to_chat(src, "<span class='notice'><i>Voting is not set up yet!</i></span>")
+		to_chat(src, "<span class='notice'><i>Głosowanie nie jest jeszcze gotowe!</i></span>")
 		return
 	SSvote.ui_interact(src)
 
 /// Action given to mobs that allows players to vote on the current vote
 /datum/action/vote
-	name = "Vote!"
+	name = "Głosuj!"
 	button_icon_state = "vote"
 
 /datum/action/vote/Trigger()

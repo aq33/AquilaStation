@@ -227,7 +227,7 @@
 		for(var/direction in GLOB.cardinals)
 			nearby_turf = get_step(dest_turf, direction)
 			if(locate(recipe.result) in nearby_turf)
-				to_chat(crafter, span_warning("\The [recipe.name] must not be built directly adjacent to another!"))
+				to_chat(crafter, span_warning("[recipe.name] nie może stać tuż obok drugiego takiego obiektu!"))
 				return ", nie może stać obok drugiego!"
 
 	if(recipe.placement_checks & STACK_CHECK_ADJACENT)
@@ -422,7 +422,7 @@
 /datum/component/personal_crafting/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PersonalCrafting", "Crafting")
+		ui = new(user, src, "PersonalCrafting", "Tworzenie")
 		ui.open()
 	ui.set_autoupdate(TRUE)
 
@@ -522,10 +522,10 @@
 		user.put_in_hands(result)
 	else if(!istype(result, /obj/effect/spawner))
 		result.forceMove(user.drop_location())
-	to_chat(user, span_notice("[recipe.name] crafted."))
+	to_chat(user, span_notice("Tworzysz: [recipe.name]."))
 	log_game("[key_name(user)] crafted [recipe.name] at [AREACOORD(user)]")
 	if(recipe.dangerous_craft && !user.mind?.special_role)
-		message_admins("[ADMIN_LOOKUPFLW(user)] crafted [recipe.name], which is potentially dangerous.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] tworzy: [recipe.name]. To potencjalnie niebezpieczne.")
 
 	recipe.on_craft_completion(user, result)
 	return TRUE
@@ -545,7 +545,7 @@
 				while(make_action(crafting_recipe, user))
 					crafted_items++
 				if(crafted_items)
-					to_chat(user, span_notice("You made [crafted_items] item\s."))
+					to_chat(user, span_notice("Tworzysz przedmioty. Liczba: [crafted_items]."))
 			else
 				make_action(crafting_recipe, user)
 			busy = FALSE
@@ -659,11 +659,11 @@
 				var/id = atoms.Find(reaction.required_container)
 				data["reqs"]["[id]"] = 1
 				var/obj/required_container = reaction.required_container
-				data["steps"] += "Add all ingredients into \a [initial(required_container.name)]"
+				data["steps"] += "Dodaj wszystkie składniki do pojemnika: [initial(required_container.name)]"
 			else if(length(recipe.reqs) > 1 || length(reaction.required_catalysts))
-				data["steps"] += "Mix all ingredients together"
+				data["steps"] += "Wymieszaj wszystkie składniki"
 			if(reaction.required_temp > T20C)
-				data["steps"] += "Heat up to [reaction.required_temp]K"
+				data["steps"] += "Podgrzej do [reaction.required_temp] K"
 		else
 			stack_trace("Invalid reaction found in recipe code! ([recipe.reaction])")
 	else if(!isnull(recipe.reaction))

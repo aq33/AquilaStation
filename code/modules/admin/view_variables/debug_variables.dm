@@ -41,7 +41,7 @@
 
 	switch(hyperlink_style)
 		if(STYLE_READ_ONLY)
-			. = "<li style='backgroundColor:white'>(Disabled) "
+			. = "<li style='backgroundColor:white'>(Wyłączone) "
 		if(STYLE_NORMAL)
 			. = "<li style='backgroundColor:white'>([VV_HREF_TARGET_1V(owner, VV_HK_BASIC_EDIT, "E", name)]) ([VV_HREF_TARGET_1V(owner, VV_HK_BASIC_CHANGE, "C", name)]) ([VV_HREF_TARGET_1V(owner, VV_HK_BASIC_MASSEDIT, "M", name)]) "
 		if(STYLE_LIST)
@@ -174,7 +174,7 @@
 
 /datum/weakref/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	. = ..()
-	return "[.] <a href='byond://?_src_=vars;[HrefToken()];Vars=[reference]'>(Resolve)</a>"
+	return "[.] <a href='byond://?_src_=vars;[HrefToken()];Vars=[reference]'>(Rozwiąż)</a>"
 
 /matrix/debug_variable_value(name, level, datum/owner, sanitize, display_flags)
 	return {"<span class='value'>

@@ -3,8 +3,8 @@
 #define MIXER_CAPACITY 100
 
 /obj/machinery/food_cart
-	name = "food cart"
-	desc = "New generation hot dog stand."
+	name = "wózek z jedzeniem"
+	desc = "Budka z hot dogami nowej generacji."
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "foodcart"
 	density = TRUE
@@ -21,7 +21,7 @@
 	. = ..()
 	create_reagents(LIQUID_CAPACIY, OPENCONTAINER | NO_REACT)
 	mixer = new /obj/item/reagent_containers(src, MIXER_CAPACITY)
-	mixer.name = "Mixer"
+	mixer.name = "mikser"
 
 /obj/machinery/food_cart/Destroy()
 	QDEL_NULL(mixer)
@@ -160,8 +160,8 @@
 	qdel(src)
 
 /obj/machinery/food_cart/coffee
-	name = "coffee cart"
-	desc = "Ah! The bitter drink of the Gods."
+	name = "wózek z kawą"
+	desc = "Ach! Gorzki napój bogów."
 	icon_state = "icecream_vat"
 	glasses = 10
 	portion = 20

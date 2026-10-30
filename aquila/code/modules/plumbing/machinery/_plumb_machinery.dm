@@ -4,7 +4,7 @@
 * Also please note that the plumbing component is toggled on and off by the component using a signal from set_anchored, so dont worry about it
 */
 /obj/machinery/plumbing
-	name = "pipe thing"
+	name = "rurowa rzecz"
 	icon = 'aquila/icons/obj/plumbing/plumbers.dmi'
 	icon_state = "pump"
 	density = TRUE
@@ -89,8 +89,8 @@
 
 ///We can empty beakers in here and everything
 /obj/machinery/plumbing/input
-	name = "input gate"
-	desc = "Can be manually filled with reagents from containers."
+	name = "bramka wejściowa"
+	desc = "Można ją ręcznie napełniać odczynnikami z pojemników."
 	icon_state = "pipe_input"
 	density = FALSE
 	reagent_flags = TRANSPARENT | NO_REACT | REFILLABLE
@@ -101,8 +101,8 @@
 
 ///We can fill beakers in here and everything. we dont inheret from input because it has nothing that we need
 /obj/machinery/plumbing/output
-	name = "output gate"
-	desc = "A manual output for plumbing systems, for taking reagents directly into containers."
+	name = "bramka wyjściowa"
+	desc = "Ręczne wyjście instalacji, z którego nalewasz odczynniki prosto do pojemników."
 	icon_state = "pipe_output"
 	density = FALSE
 	reagent_flags = TRANSPARENT | DRAINABLE
@@ -113,14 +113,14 @@
 
 ///For pouring reagents from ducts directly into cups
 /obj/machinery/plumbing/output/tap
-	name = "drinking tap"
-	desc = "A manual output for plumbing systems, for taking drinks directly into glasses."
+	name = "kran z napojami"
+	desc = "Ręczne wyjście instalacji, z którego nalewasz napoje prosto do szklanek."
 	icon_state = "tap_output"
 
 ///For storing large volume of reagents
 /obj/machinery/plumbing/tank
-	name = "chemical tank"
-	desc = "A massive chemical holding tank."
+	name = "zbiornik chemikaliów"
+	desc = "Ogromny zbiornik na chemikalia."
 	icon_state = "tank"
 	buffer = 400
 
@@ -130,8 +130,8 @@
 
 ///Layer manifold machine that connects a bunch of layers
 /obj/machinery/plumbing/layer_manifold
-	name = "layer manifold"
-	desc = "A plumbing manifold for layers."
+	name = "rozgałęźnik warstw"
+	desc = "Rozgałęźnik instalacji łączący warstwy."
 	icon_state = "manifold"
 	density = FALSE
 

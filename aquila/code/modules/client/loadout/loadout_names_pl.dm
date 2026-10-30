@@ -257,7 +257,15 @@ GLOBAL_LIST_INIT(gear_names_pl, list(
 	"winter boots" = "Buty zimowe",
 	"winter coat" = "Kurtka zimowa",
 	"wooden sandals" = "Drewniane sandały",
-	"yellow jumpsuit" = "Żółty kombinezon"
+	"yellow jumpsuit" = "Żółty kombinezon",
+	"event token" = "Żeton eventu",
+	"admin item token" = "Żeton przedmiotu od admina",
+	"Captain's Cloak Colorizer (Royal)" = "Kolor peleryny kapitana (królewski)",
+	"Head of Security's Cloak Colorizer (Royal)" = "Kolor peleryny komendanta (królewski)",
+	"Research Director's Cloak Colorizer (Royal)" = "Kolor peleryny Dyrektora Naukowego (królewski)",
+	"Ian Colorizer (Death Squad)" = "Kolor Iana (szwadron śmierci)",
+	"Captain's Clothes Colouriser (Military)" = "Kolor stroju kapitana (wojskowy)",
+	"Su-818 Rapier Colorizer (Flight Lead)" = "Kolor Su-818 Rapier (dowódca klucza)"
 ))
 
 /// Nazwa przedmiotu wyposażenia do wyświetlenia

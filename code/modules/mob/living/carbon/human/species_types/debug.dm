@@ -1,5 +1,5 @@
 /datum/species/debug
-	name = "CODER DISASTER"
+	name = "KATASTROFA KODERA"
 	id = "debug"
 	bodyflag = FLAG_DEBUG_SPECIES
 	changesource_flags = MIRROR_BADMIN
@@ -33,8 +33,8 @@
 			return
 
 /obj/item/clothing/head/ushanka/spritesheet_debug
-	name = "Racist Ushanka"
-	desc = "The Return"
+	name = "Rasistowska uszanka"
+	desc = "Powrót"
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "ushankadown"
 	item_state = "ushankadown"

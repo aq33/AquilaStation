@@ -72,7 +72,7 @@
 
 
 	var/obj/item/bloodcrawl/antiwelder = new(H)
-	antiwelder.name = "compulsion of honor"
-	antiwelder.desc = "You are unable to hold anything in this hand until you're the last one left!"
+	antiwelder.name = "przymus honoru"
+	antiwelder.desc = "Nie możesz niczego trzymać w tej ręce, dopóki nie zostaniesz ostatni!"
 	antiwelder.icon_state = "bloodhand_right"
 	H.put_in_hands(antiwelder)

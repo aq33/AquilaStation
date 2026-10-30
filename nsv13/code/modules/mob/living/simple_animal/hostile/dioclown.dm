@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/dio_clown
 	name = "Honkferatu"
-	desc = "An ancient and cursed being forced to live its life in utter solitude."
+	desc = "Pradawna, przeklęta istota skazana na życie w zupełnej samotności."
 	icon = 'nsv13/icons/mob/animal.dmi'
 	icon_state = "dioclown"
 	icon_living = "dioclown"
@@ -25,8 +25,8 @@
 	unsuitable_atmos_damage = 10
 
 /obj/structure/closet/crate/coffin/dio_clown
-	name = "Ancient coffin"
-	desc = "An ancient, barnacle encrusted coffin which seems to have a name printed on it. The name is illegible, but seems to be comprised of 3 letters."
+	name = "pradawna trumna"
+	desc = "Pradawna trumna obrośnięta pąklami, z wypisanym na niej imieniem. Imię jest nieczytelne, ale chyba składa się z 3 liter."
 	var/clown_spawned = FALSE
 
 /obj/structure/closet/crate/coffin/dio_clown/open(mob/living/user)
@@ -53,8 +53,8 @@
 	playsound(src.loc, 'sound/items/bikehorn.ogg', 50, TRUE)
 
 /obj/item/clothing/mask/gas/pillarmen
-	name = "vampiric mask"
-	desc = "An strange looking stone mask with what looks like spines coming out of it. The spines seem to have been sawed off."
+	name = "wampirza maska"
+	desc = "Dziwna kamienna maska, z której wystają jakby kolce. Kolce wyglądają na spiłowane."
 	icon = 'nsv13/icons/obj/clothing/masks.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/mask.dmi'
 	icon_state = "pillarmen"

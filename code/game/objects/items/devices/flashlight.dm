@@ -1,6 +1,6 @@
 /obj/item/flashlight
-	name = "flashlight"
-	desc = "A hand-held emergency light."
+	name = "latarka"
+	desc = "Ręczna latarka awaryjna."
 	custom_price = 10
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
@@ -113,11 +113,11 @@
 					for(var/I in 1 to organ_count)
 						if(I > 1)
 							if(I == mouth_organs.len)
-								organ_list += ", and "
+								organ_list += " i "
 							else
 								organ_list += ", "
 						var/obj/item/organ/O = mouth_organs[I]
-						organ_list += (O.gender == "plural" ? O.name : "\an [O.name]")
+						organ_list += O.name
 
 				var/pill_count = 0
 				for(var/datum/action/item_action/hands_free/activate_pill/AP in M.actions)
@@ -164,8 +164,8 @@
 		return ..()
 
 /obj/item/flashlight/pen
-	name = "penlight"
-	desc = "A pen-sized light, used by medical staff. It can also be used to create a hologram to alert people of incoming medical assistance."
+	name = "latarka diagnostyczna"
+	desc = "Latarka wielkości długopisu, używana przez personel medyczny. Może też wyświetlić hologram, który informuje, że nadchodzi pomoc medyczna."
 	icon_state = "penlight"
 	item_state = ""
 	flags_1 = CONDUCT_1
@@ -186,8 +186,8 @@
 			return
 
 /obj/effect/temp_visual/medical_holosign
-	name = "medical holosign"
-	desc = "A small holographic glow that indicates a medic is coming to treat a patient."
+	name = "medyczny holoznak"
+	desc = "Mała holograficzna poświata oznaczająca, że medyk idzie opatrzyć pacjenta."
 	icon_state = "medi_holo"
 	duration = 30
 
@@ -199,8 +199,8 @@
 
 
 /obj/item/flashlight/seclite
-	name = "seclite"
-	desc = "A robust flashlight used by security."
+	name = "latarka policyjna"
+	desc = "Solidna latarka używana przez ochronę."
 	icon_state = "seclite"
 	item_state = "seclite"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -211,8 +211,8 @@
 
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp
-	name = "desk lamp"
-	desc = "A desk lamp with an adjustable mount."
+	name = "lampka biurkowa"
+	desc = "Lampka biurkowa z regulowanym ramieniem."
 	icon_state = "lamp"
 	item_state = "lamp"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
@@ -228,7 +228,7 @@
 
 // green-shaded desk lamp
 /obj/item/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
+	desc = "Klasyczna lampka biurkowa z zielonym kloszem."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 
@@ -244,16 +244,16 @@
 
 //Bananalamp
 /obj/item/flashlight/lamp/bananalamp
-	name = "banana lamp"
-	desc = "Only a clown would think to make a ghetto banana-shaped lamp. Even has a goofy pullstring."
+	name = "bananowa lampka"
+	desc = "Tylko klaun mógł wpaść na pomysł prowizorycznej lampki w kształcie banana. Ma nawet głupkowaty sznureczek."
 	icon_state = "bananalamp"
 	item_state = "bananalamp"
 
 // FLARES
 
 /obj/item/flashlight/flare
-	name = "flare"
-	desc = "A red Nanotrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	name = "raca"
+	desc = "Czerwona raca z przydziału Nanotrasen. Na boku jest instrukcja: „pociągnij za sznurek, zrób światło”."
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 7 // Pretty bright.
 	light_system = MOVABLE_LIGHT
@@ -326,8 +326,8 @@
 	return on * heat
 
 /obj/item/flashlight/flare/torch
-	name = "torch"
-	desc = "A torch fashioned from some leaves and a log."
+	name = "pochodnia"
+	desc = "Pochodnia zrobiona z kilku liści i kłody."
 	w_class = WEIGHT_CLASS_BULKY
 	light_range = 4
 	icon_state = "torch"
@@ -339,31 +339,31 @@
 	slot_flags = null
 
 /obj/item/flashlight/lantern
-	name = "lantern"
+	name = "latarenka"
 	icon_state = "lantern"
 	item_state = "lantern"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	desc = "A mining lantern."
+	desc = "Górnicza latarenka."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
 
 /obj/item/flashlight/lantern/heirloom_moth
-	name = "old lantern"
-	desc = "An old lantern that has seen plenty of use."
+	name = "stara latarenka"
+	desc = "Stara latarenka, która niejedno już widziała."
 	light_range = 4
 
 /obj/item/flashlight/lantern/syndicate
-	name = "suspicious lantern"
-	desc = "A suspicious looking lantern."
+	name = "podejrzana latarenka"
+	desc = "Podejrzanie wyglądająca latarenka."
 	icon_state = "syndilantern"
 	item_state = "syndilantern"
 	light_range = 10
 
 /obj/item/flashlight/slime
 	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "Extract from a yellow slime. It emits a strong light when squeezed."
+	name = "świecący ekstrakt szlamu"
+	desc = "Ekstrakt z żółtego szlamu. Ściśnięty emituje silne światło."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "slime"
 	item_state = "slime"
@@ -422,15 +422,15 @@
 	return
 
 /obj/item/flashlight/emp/debug //for testing emp_act()
-	name = "debug EMP flashlight"
+	name = "debugowa latarka EMP"
 	emp_max_charges = 100
 	emp_cur_charges = 100
 
 // Glowsticks, in the uncomfortable range of similar to flares,
 // but not similar enough to make it worth a refactor
 /obj/item/flashlight/glowstick
-	name = "glowstick"
-	desc = "A military-grade glowstick."
+	name = "świetlik chemiczny"
+	desc = "Wojskowy świetlik chemiczny."
 	custom_price = 10
 	w_class = WEIGHT_CLASS_SMALL
 	light_range = 4
@@ -514,31 +514,31 @@
 	return (FIRELOSS)
 
 /obj/item/flashlight/glowstick/red
-	name = "red glowstick"
+	name = "czerwony świetlik chemiczny"
 	color = LIGHT_COLOR_RED
 
 /obj/item/flashlight/glowstick/blue
-	name = "blue glowstick"
+	name = "niebieski świetlik chemiczny"
 	color = LIGHT_COLOR_BLUE
 
 /obj/item/flashlight/glowstick/cyan
-	name = "cyan glowstick"
+	name = "błękitny świetlik chemiczny"
 	color = LIGHT_COLOR_CYAN
 
 /obj/item/flashlight/glowstick/orange
-	name = "orange glowstick"
+	name = "pomarańczowy świetlik chemiczny"
 	color = LIGHT_COLOR_ORANGE
 
 /obj/item/flashlight/glowstick/yellow
-	name = "yellow glowstick"
+	name = "żółty świetlik chemiczny"
 	color = LIGHT_COLOR_YELLOW
 
 /obj/item/flashlight/glowstick/pink
-	name = "pink glowstick"
+	name = "różowy świetlik chemiczny"
 	color = LIGHT_COLOR_PINK
 
 /obj/effect/spawner/lootdrop/glowstick
-	name = "random colored glowstick"
+	name = "świetlik chemiczny w losowym kolorze"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "random_glowstick"
 
@@ -561,8 +561,8 @@
 	found.burn_pickup = TRUE
 
 /obj/item/flashlight/spotlight //invisible lighting source
-	name = "disco light"
-	desc = "Groovy..."
+	name = "światło dyskotekowe"
+	desc = "Odjazdowo..."
 	icon_state = null
 	light_system = MOVABLE_LIGHT
 	light_range = 4
@@ -590,8 +590,8 @@
 
 
 /obj/item/flashlight/flashdark
-	name = "flashdark"
-	desc = "A strange device manufactured with mysterious elements that somehow emits darkness. Or maybe it just sucks in light? Nobody knows for sure."
+	name = "ciemniarka"
+	desc = "Dziwne urządzenie z tajemniczych elementów, które jakimś cudem emituje ciemność. A może po prostu wsysa światło? Nikt nie wie na pewno."
 	icon_state = "flashdark"
 	item_state = "flashdark"
 	light_system = STATIC_LIGHT //The overlay light component is not yet ready to produce darkness.
@@ -611,8 +611,8 @@
 
 
 /obj/item/flashlight/eyelight
-	name = "eyelight"
-	desc = "This shouldn't exist outside of someone's head, how are you seeing this?"
+	name = "światło oczu"
+	desc = "To nie powinno istnieć poza czyjąś głową. Jak to w ogóle widzisz?"
 	light_range = 15
 	light_system = MOVABLE_LIGHT
 	light_power = 1

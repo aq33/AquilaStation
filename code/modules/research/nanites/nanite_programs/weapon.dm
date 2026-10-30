@@ -2,8 +2,8 @@
 //Very dangerous!
 
 /datum/nanite_program/flesh_eating
-	name = "Cellular Breakdown"
-	desc = "The nanites destroy cellular structures in the host's body, causing brute damage."
+	name = "Rozpad komórkowy"
+	desc = "Nanity niszczą struktury komórkowe w ciele nosiciela, zadając obrażenia fizyczne."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -17,8 +17,8 @@
 		to_chat(host_mob, "<span class='warning'>Czujesz kłujący ból gdzieś w środku.</span>")
 
 /datum/nanite_program/poison
-	name = "Poisoning"
-	desc = "The nanites deliver poisonous chemicals to the host's internal organs, causing toxin damage and vomiting."
+	name = "Zatrucie"
+	desc = "Nanity dostarczają trujące chemikalia do organów wewnętrznych nosiciela, wywołując zatrucie i wymioty."
 	use_rate = 1.5
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -31,8 +31,8 @@
 			C.vomit(20)
 
 /datum/nanite_program/memory_leak
-	name = "Memory Leak"
-	desc = "This program invades the memory space used by other programs, causing frequent corruptions and errors."
+	name = "Wyciek pamięci"
+	desc = "Ten program wdziera się w przestrzeń pamięci innych programów, wywołując częste uszkodzenia i błędy."
 	use_rate = 0
 	rogue_types = list(/datum/nanite_program/toxic)
 
@@ -44,8 +44,8 @@
 		target.software_error()
 
 /datum/nanite_program/aggressive_replication
-	name = "Aggressive Replication"
-	desc = "Nanites will consume organic matter to improve their replication rate, damaging the host. The efficiency increases with the volume of nanites, requiring 200 to break even."
+	name = "Agresywna replikacja"
+	desc = "Nanity pochłaniają materię organiczną, by szybciej się replikować, raniąc przy tym nosiciela. Wydajność rośnie z liczbą nanitów, a bilans wychodzi na zero przy 200."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/necrotic)
 
@@ -55,9 +55,9 @@
 	host_mob.adjustBruteLoss(extra_regen / 2, TRUE)
 
 /datum/nanite_program/meltdown
-	name = "Meltdown"
-	desc = "Causes an internal meltdown inside the nanites, causing internal burns inside the host as well as rapidly destroying the nanite population.\
-			Sets the nanites' safety threshold to 0 when activated."
+	name = "Stopienie"
+	desc = "Wywołuje wewnętrzne stopienie nanitów, które parzy nosiciela od środka i szybko niszczy populację nanitów. \
+			Po aktywacji ustawia próg bezpieczeństwa nanitów na 0."
 	use_rate = 10
 	rogue_types = list(/datum/nanite_program/glitch)
 
@@ -74,8 +74,8 @@
 	to_chat(host_mob, "<span class='warning'>Twoja krew stygnie, a ból stopniowo mija.</span>")
 
 /datum/nanite_program/explosive
-	name = "Chain Detonation"
-	desc = "Detonates all the nanites inside the host in a chain reaction when triggered."
+	name = "Detonacja łańcuchowa"
+	desc = "Po aktywacji detonuje w reakcji łańcuchowej wszystkie nanity w nosicielu."
 	can_trigger = TRUE
 	trigger_cost = 25 //plus every idle nanite left afterwards
 	trigger_cooldown = 100 //Just to avoid double-triggering
@@ -97,8 +97,8 @@
 //TODO make it defuse if triggered again
 
 /datum/nanite_program/heart_stop
-	name = "Heart-Stopper"
-	desc = "Stops the host's heart when triggered; restarts it if triggered again."
+	name = "Zatrzymanie serca"
+	desc = "Po aktywacji zatrzymuje serce nosiciela, a po ponownej aktywacji uruchamia je z powrotem."
 	can_trigger = TRUE
 	trigger_cost = 12
 	trigger_cooldown = 10
@@ -115,8 +115,8 @@
 				heart.Restart()
 
 /datum/nanite_program/emp
-	name = "Electromagnetic Resonance"
-	desc = "The nanites cause an electromagnetic pulse around the host when triggered. Will corrupt other nanite programs!"
+	name = "Rezonans elektromagnetyczny"
+	desc = "Po aktywacji nanity wywołują wokół nosiciela impuls elektromagnetyczny. Uszkodzi to inne programy nanitów!"
 	can_trigger = TRUE
 	trigger_cost = 10
 	trigger_cooldown = 50
@@ -131,8 +131,8 @@
 	host_mob.IgniteMob()
 
 /datum/nanite_program/pyro
-	name = "Sub-Dermal Combustion"
-	desc = "The nanites cause buildup of flammable fluids under the host's skin, then ignites them."
+	name = "Spalanie podskórne"
+	desc = "Nanity gromadzą pod skórą nosiciela łatwopalne płyny, a potem je zapalają."
 	use_rate = 4
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/cryo)
 
@@ -146,8 +146,8 @@
 	host_mob.IgniteMob()
 
 /datum/nanite_program/cryo
-	name = "Cryogenic Treatment"
-	desc = "The nanites rapidly sink heat through the host's skin, lowering their temperature."
+	name = "Terapia kriogeniczna"
+	desc = "Nanity szybko odprowadzają ciepło przez skórę nosiciela, obniżając jego temperaturę."
 	use_rate = 1
 	rogue_types = list(/datum/nanite_program/skin_decay, /datum/nanite_program/pyro)
 
@@ -160,8 +160,8 @@
 	host_mob.adjust_bodytemperature(-rand(15,25), 50)
 
 /datum/nanite_program/comm/mind_control
-	name = "Mind Control"
-	desc = "The nanites imprint an absolute directive onto the host's brain for one minute when triggered."
+	name = "Kontrola umysłu"
+	desc = "Po aktywacji nanity wpajają mózgowi nosiciela bezwzględną dyrektywę na minutę."
 	trigger_cost = 30
 	trigger_cooldown = 1800
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)

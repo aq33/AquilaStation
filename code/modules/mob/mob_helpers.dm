@@ -504,11 +504,11 @@
 	to_chat(M, "Kontrolę nad twoją postacią zaoferowano martwym graczom.")
 	if(usr)
 		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
+		message_admins("[key_name_admin(usr)] oferuje duchom kontrolę nad ([ADMIN_LOOKUPFLW(M)])")
 	var/poll_message = "Chcesz zagrać jako [M.real_name]?"
 	var/ban_key = BAN_ROLE_ALL_ANTAGONISTS
 	if(M.mind && M.mind.assigned_role)
-		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
+		poll_message = "[poll_message] Zawód: [M.mind.assigned_role]."
 	if(M.mind && M.mind.special_role)
 		poll_message = "[poll_message] Status:[M.mind.special_role]."
 	else if(M.mind)
@@ -521,13 +521,13 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		to_chat(M, "Twoją postać przejął duch!")
-		message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(M)])")
+		message_admins("[key_name_admin(C)] przejmuje kontrolę nad ([ADMIN_LOOKUPFLW(M)])")
 		M.ghostize(0)
 		M.key = C.key
 		return TRUE
 	else
 		to_chat(M, "Żaden duch nie chciał przejąć kontroli.")
-		message_admins("No ghosts were willing to take control of [ADMIN_LOOKUPFLW(M)])")
+		message_admins("Żaden duch nie chce przejąć kontroli nad [ADMIN_LOOKUPFLW(M)]")
 		return FALSE
 
 ///Is the mob a flying mob

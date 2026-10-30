@@ -3,8 +3,8 @@
 /////////////////////////////////////////
 
 /datum/design/mmi
-	name = "Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
+	name = "Interfejs człowiek-maszyna"
+	desc = "Mdły skrót Wojownika, MMI, skrywa prawdziwą grozę tej potworności."
 	id = "mmi"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(/datum/material/iron = 1000, /datum/material/glass = 500)
@@ -14,8 +14,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/posibrain
-	name = "Positronic Brain"
-	desc = "The latest in Artificial Intelligences."
+	name = "Mózg pozytroniczny"
+	desc = "Najnowsze osiągnięcie w dziedzinie sztucznej inteligencji."
 	id = "mmi_posi"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(/datum/material/iron = 1700, /datum/material/glass = 1350, /datum/material/gold = 500, /datum/material/copper = 500) //Gold, because SWAG.
@@ -25,8 +25,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/bluespacebeaker
-	name = "Bluespace Beaker"
-	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
+	name = "Zlewka bluespace"
+	desc = "Zlewka bluespace zasilana eksperymentalną technologią bluespace oraz Pierwiastkiem Kubańskim połączonym ze Związkiem Pete'a. Mieści do 300 j."
 	id = "bluespacebeaker"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
@@ -35,8 +35,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/noreactbeaker
-	name = "Cryostasis Beaker"
-	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
+	name = "Zlewka kriostatyczna"
+	desc = "Zlewka kriostatyczna, w której chemikalia można przechowywać bez reakcji. Mieści do 50 j."
 	id = "splitbeaker"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000)
@@ -45,7 +45,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/xlarge_beaker
-	name = "X-large Beaker"
+	name = "Bardzo duża zlewka"
 	id = "xlarge_beaker"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -54,7 +54,7 @@
 	category = list("Medical Designs")
 
 /datum/design/meta_beaker
-	name = "Metamaterial Beaker"
+	name = "Zlewka z metamateriału"
 	id = "meta_beaker"
 	build_type = PROTOLATHE
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
@@ -63,8 +63,8 @@
 	category = list("Medical Designs")
 
 /datum/design/bluespacesyringe
-	name = "Bluespace Syringe"
-	desc = "An advanced syringe that can hold 60 units of chemicals"
+	name = "Strzykawka bluespace"
+	desc = "Zaawansowana strzykawka, która mieści 60 j. chemikaliów."
 	id = "bluespacesyringe"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2000, /datum/material/plasma = 1000, /datum/material/diamond = 1000, /datum/material/bluespace = 500)
@@ -73,8 +73,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/cloning_disk
-	name = "Cloning Data Disk"
-	desc = "Produce additional disks for storing genetic data."
+	name = "Dysk danych klonowania"
+	desc = "Wytwarza dodatkowe dyski do przechowywania danych genetycznych."
 	id = "cloning_disk"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 300, /datum/material/glass = 100, /datum/material/silver = 50, /datum/material/copper = 50)
@@ -83,8 +83,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/noreactsyringe
-	name = "Cryo Syringe"
-	desc = "An advanced syringe that stops reagents inside from reacting. It can hold up to 20 units."
+	name = "Kriostrzykawka"
+	desc = "Zaawansowana strzykawka, która powstrzymuje reakcje odczynników w środku. Mieści do 20 j."
 	id = "noreactsyringe"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2000, /datum/material/gold = 1000)
@@ -93,8 +93,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/piercesyringe
-	name = "Piercing Syringe"
-	desc = "A diamond-tipped syringe that pierces armor when launched at high velocity. It can hold up to 10 units."
+	name = "Strzykawka przebijająca"
+	desc = "Strzykawka z diamentowym czubkiem, która przebija pancerz, gdy zostanie wystrzelona z dużą prędkością. Mieści do 10 j."
 	id = "piercesyringe"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 2000, /datum/material/diamond = 1000)
@@ -103,8 +103,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/bluespacebodybag
-	name = "Bluespace Body Bag"
-	desc = "A bluespace body bag, powered by experimental bluespace technology. It can hold loads of bodies and the largest of creatures."
+	name = "Worek na zwłoki bluespace"
+	desc = "Worek na zwłoki bluespace zasilany eksperymentalną technologią bluespace. Mieści mnóstwo ciał, a nawet największe stworzenia."
 	id = "bluespacebodybag"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/plasma = 2000, /datum/material/diamond = 500, /datum/material/bluespace = 500)
@@ -113,8 +113,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/plasmarefiller
-	name = "Plasma-Man Jumpsuit Refill"
-	desc = "A refill pack for the auto-extinguisher on Plasma-man suits."
+	name = "Wkład gaśniczy do kombinezonu plazmamana"
+	desc = "Wkład uzupełniający do automatycznej gaśnicy w kombinezonach plazmaludzi."
 	id = "plasmarefiller" //Why did this have no plasmatech
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 4000, /datum/material/plasma = 1000)
@@ -123,8 +123,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
 
 /datum/design/crewpinpointer
-	name = "Crew Pinpointer"
-	desc = "Allows tracking of someone's location if their suit sensors are turned to tracking beacon."
+	name = "Pinpointer załogi"
+	desc = "Pozwala śledzić położenie osoby, jeśli jej czujniki kombinezonu są ustawione na śledzenie."
 	id = "crewpinpointer"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 3000, /datum/material/glass = 1500, /datum/material/gold = 200, /datum/material/copper = 200)
@@ -133,8 +133,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/defibrillator
-	name = "Defibrillator"
-	desc = "A portable defibrillator, used for resuscitating recently deceased crew."
+	name = "Defibrylator"
+	desc = "Przenośny defibrylator do reanimacji niedawno zmarłych członków załogi."
 	id = "defibrillator"
 	build_type = PROTOLATHE
 	build_path = /obj/item/defibrillator
@@ -143,8 +143,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/defibrillator_mount
-	name = "Defibrillator Wall Mount"
-	desc = "An all-in-one mounted frame for holding defibrillators, complete with ID-locked clamps and recharging cables."
+	name = "Uchwyt ścienny defibrylatora"
+	desc = "Kompletna rama ścienna na defibrylatory z zaciskami blokowanymi identyfikatorem i kablami ładującymi."
 	id = "defibmount"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 2000, /datum/material/glass = 1000)
@@ -153,8 +153,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/defibrillator_compact
-	name = "Compact Defibrillator"
-	desc = "A compact defibrillator that can be worn on a belt."
+	name = "Kompaktowy defibrylator"
+	desc = "Kompaktowy defibrylator, który można nosić przy pasie."
 	id = "defibrillator_compact"
 	build_type = PROTOLATHE
 	build_path = /obj/item/defibrillator/compact
@@ -163,8 +163,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/genescanner
-	name = "Genetic Sequence Analyzer"
-	desc = "A handy hand-held analyzers for quickly determining mutations and collecting the full sequence."
+	name = "Analizator sekwencji genetycznej"
+	desc = "Poręczny ręczny analizator do szybkiego określania mutacji i zbierania pełnej sekwencji."
 	id = "genescanner"
 	build_path = /obj/item/sequence_scanner
 	build_type = PROTOLATHE
@@ -173,8 +173,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/healthanalyzer_advanced
-	name = "Advanced Health Analyzer"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
+	name = "Zaawansowany analizator zdrowia"
+	desc = "Ręczny skaner ciała, który z dużą dokładnością rozróżnia funkcje życiowe badanego."
 	id = "healthanalyzer_advanced"
 	build_path = /obj/item/healthanalyzer/advanced
 	build_type = PROTOLATHE
@@ -183,8 +183,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/medspray
-	name = "Medical Spray"
-	desc = "A medical spray bottle, designed for precision application, with an unscrewable cap."
+	name = "Spray medyczny"
+	desc = "Butelka ze sprayem medycznym do precyzyjnej aplikacji, z odkręcaną nakrętką."
 	id = "medspray"
 	build_path = /obj/item/reagent_containers/medspray
 	build_type = PROTOLATHE
@@ -193,8 +193,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/medipen_epi
-	name = "Epinephrine Medipen"
-	desc = "A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Contains a powerful preservative that can delay decomposition when applied to a dead body."
+	name = "Medipen z epinefryną"
+	desc = "Szybki i bezpieczny sposób na stabilizację pacjentów w stanie krytycznym dla personelu bez zaawansowanej wiedzy medycznej. Zawiera silny środek konserwujący, który opóźnia rozkład, gdy poda się go zwłokom."
 	id = "medipen_epi"
 	build_path = /obj/item/reagent_containers/hypospray/medipen
 	build_type = PROTOLATHE
@@ -204,8 +204,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/medipen_dex
-	name = "Dexalin Medipen"
-	desc = "An autoinjector containing dexalin, used to heal oxygen damage quickly."
+	name = "Medipen z deksaliną"
+	desc = "Autoinjektor z deksaliną do szybkiego leczenia niedotlenienia."
 	id = "medipen_dex"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/dexalin
 	build_type = PROTOLATHE
@@ -215,8 +215,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/medipen_atropine
-	name = "Atropine Medipen"
-	desc = "A rapid way to save a person from a critical injury state!"
+	name = "Medipen z atropiną"
+	desc = "Szybki sposób na uratowanie kogoś ze stanu krytycznego!"
 	id = "medipen_atropine"
 	build_path = /obj/item/reagent_containers/hypospray/medipen/atropine
 	build_type = PROTOLATHE
@@ -226,7 +226,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/surgical_drapes
-	name = "Surgical Drapes"
+	name = "Serweta chirurgiczna"
 	id = "surgical_drapes"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 2000)
@@ -235,8 +235,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/laserscalpel
-	name = "Laser Scalpel"
-	desc = "A laser scalpel used for precise cutting."
+	name = "Skalpel laserowy"
+	desc = "Skalpel laserowy do precyzyjnego cięcia."
 	id = "laserscalpel"
 	build_path = /obj/item/scalpel/advanced
 	build_type = PROTOLATHE
@@ -245,8 +245,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/mechanicalpinches
-	name = "Mechanical Pinches"
-	desc = "These pinches can be either used as retractor or hemostat."
+	name = "Mechaniczne szczypce"
+	desc = "Te szczypce mogą służyć jako retraktor albo hemostat."
 	id = "mechanicalpinches"
 	build_path = /obj/item/retractor/advanced
 	build_type = PROTOLATHE
@@ -255,8 +255,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/searingtool
-	name = "Searing Tool"
-	desc = "Used to mend tissue togheter."
+	name = "Narzędzie przyżegające"
+	desc = "Służy do zespalania tkanek."
 	id = "searingtool"
 	build_path = /obj/item/surgicaldrill/advanced
 	build_type = PROTOLATHE
@@ -269,8 +269,8 @@
 /////////////////////////////////////////
 
 /datum/design/cyberimp_welding
-	name = "Welding Shield Eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	name = "Osłonięte robotyczne oczy"
+	desc = "Te reaktywne mikroosłony chronią cię przed spawarkami i flashami, nie zasłaniając widoku."
 	id = "ci-welding"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -280,8 +280,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_gloweyes
-	name = "Luminescent Eyes"
-	desc = "A pair of cybernetic eyes that can emit multicolored light"
+	name = "Oczy luminescencyjne"
+	desc = "Para cybernetycznych oczu, które emitują wielobarwne światło."
 	id = "ci-gloweyes"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -291,8 +291,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_breather
-	name = "Breathing Tube Implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
+	name = "Implant rurki oddechowej"
+	desc = "Ten prosty implant dodaje na plecach złącze butli, dzięki czemu możesz oddychać z butli bez maski i nie da się cię udusić."
 	id = "ci-breather"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 35
@@ -302,8 +302,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_surgical
-	name = "Surgical Arm Implant"
-	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
+	name = "Implant z zestawem chirurgicznym"
+	desc = "Zestaw narzędzi chirurgicznych ukryty za panelem w ręce użytkownika."
 	id = "ci-surgery"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500, /datum/material/copper = 200)
@@ -313,8 +313,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_toolset
-	name = "Toolset Arm Implant"
-	desc = "A stripped-down version of engineering cyborg toolset, designed to be installed on subject's arm."
+	name = "Implant z zestawem narzędzi"
+	desc = "Okrojona wersja zestawu narzędzi cyborga inżynieryjnego, przeznaczona do wszczepienia w rękę."
 	id = "ci-toolset"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (/datum/material/iron = 2500, /datum/material/glass = 1500, /datum/material/silver = 1500, /datum/material/copper = 200)
@@ -324,8 +324,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_botany
-	name = "Botanical toolset implant"
-	desc = "Everything a botanist needs in an arm implant, designed to be installed on a subject's arm."
+	name = "Botaniczny implant w ręce"
+	desc = "Wszystko, czego potrzebuje botanik, w implancie przeznaczonym do wszczepienia w rękę."
 	id = "ci-botany"
 	build_type = MECHFAB | PROTOLATHE
 	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500, /datum/material/plastic = 2000)
@@ -335,8 +335,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_janitor
-	name = "Janitorial Arm Implant"
-	desc = "A set of janitor tools fitted into an arm implant, designed to be installed on subject's arm."
+	name = "Implant z narzędziami woźnego"
+	desc = "Zestaw narzędzi woźnego zamknięty w implancie przeznaczonym do wszczepienia w rękę."
 	id = "ci-janitor"
 	build_type = PROTOLATHE | MECHFAB
 	materials = list (/datum/material/iron = 3500, /datum/material/glass = 1500, /datum/material/silver = 1500)
@@ -346,8 +346,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_medical_hud
-	name = "Medical HUD Implant"
-	desc = "These cybernetic eyes will display a medical HUD over everything you see. Wiggle eyes to control."
+	name = "Implant HUD medycznego"
+	desc = "Te cybernetyczne oczy wyświetlają HUD medyczny na wszystkim, co widzisz. Steruje się nimi, poruszając oczami."
 	id = "ci-medhud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -357,8 +357,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_security_hud
-	name = "Security HUD Implant"
-	desc = "These cybernetic eyes will display a security HUD over everything you see. Wiggle eyes to control."
+	name = "Implant HUD ochrony"
+	desc = "Te cybernetyczne oczy wyświetlają HUD ochrony na wszystkim, co widzisz. Steruje się nimi, poruszając oczami."
 	id = "ci-sechud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -368,8 +368,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_diagnostic_hud
-	name = "Diagnostic HUD Implant"
-	desc = "These cybernetic eyes will display a diagnostic HUD over everything you see. Wiggle eyes to control."
+	name = "Implant HUD diagnostycznego"
+	desc = "Te cybernetyczne oczy wyświetlają HUD diagnostyczny na wszystkim, co widzisz. Steruje się nimi, poruszając oczami."
 	id = "ci-diaghud"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -379,8 +379,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_xray
-	name = "X-ray Eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	name = "Oczy rentgenowskie"
+	desc = "Te cybernetyczne oczy dają ci widzenie rentgenowskie. Mruganie nic nie daje."
 	id = "ci-xray"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -390,8 +390,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_thermals
-	name = "Thermal Eyes"
-	desc = "These cybernetic eyes will give you Thermal vision. Vertical slit pupil included."
+	name = "Oczy termowizyjne"
+	desc = "Te cybernetyczne oczy dają ci widzenie termowizyjne. Pionowa źrenica w zestawie."
 	id = "ci-thermals"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -401,8 +401,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_antidrop
-	name = "Anti-Drop Implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	name = "Implant przeciw upuszczaniu"
+	desc = "Ten cybernetyczny implant mózgu pozwala wymusić skurcz mięśni dłoni, żeby nie upuszczać przedmiotów. Włączasz go, poruszając uchem."
 	id = "ci-antidrop"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -412,8 +412,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_antistun
-	name = "CNS Rebooter Implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	name = "Implant restartu OUN"
+	desc = "Ten implant automatycznie przywraca ci kontrolę nad ośrodkowym układem nerwowym i skraca czas ogłuszenia."
 	id = "ci-antistun"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -423,8 +423,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_linkedsurgery
-	name = "Surgical Serverlink Brain Implant"
-	desc = "A brain implant with a bluespace technology that lets you perform an advanced surgery through your station research server."
+	name = "Implant mózgu z łączem serwera chirurgicznego"
+	desc = "Implant mózgu z technologią bluespace, który pozwala przeprowadzać zaawansowane operacje dzięki serwerowi badawczemu stacji."
 	id = "ci-linkedsurgery"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -435,8 +435,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_nutriment
-	name = "Nutriment Pump Implant"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are starving."
+	name = "Implant pompy odżywczej"
+	desc = "Ten implant syntetyzuje i wpompowuje do krwiobiegu niewielką ilość składników odżywczych, gdy głodujesz."
 	id = "ci-nutriment"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -446,8 +446,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_nutriment_plus
-	name = "Nutriment Pump Implant PLUS"
-	desc = "This implant with synthesize and pump into your bloodstream a small amount of nutriment when you are hungry."
+	name = "Implant pompy odżywczej PLUS"
+	desc = "Ten implant syntetyzuje i wpompowuje do krwiobiegu niewielką ilość składników odżywczych, gdy jesteś głodny."
 	id = "ci-nutrimentplus"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -457,8 +457,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_reviver
-	name = "Reviver Implant"
-	desc = "This implant will attempt to revive you if you lose consciousness. For the faint of heart!"
+	name = "Implant reanimacyjny"
+	desc = "Ten implant próbuje cię ocucić, gdy tracisz przytomność. Dla ludzi o słabym sercu!"
 	id = "ci-reviver"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 60
@@ -468,8 +468,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_thrusters
-	name = "Thrusters Set Implant"
-	desc = "This implant will allow you to use gas from environment or your internals for propulsion in zero-gravity areas."
+	name = "Wszczepialny zestaw silników manewrowych"
+	desc = "Ten implant pozwala używać gazu z otoczenia albo z butli do poruszania się w strefach bez grawitacji."
 	id = "ci-thrusters"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 80
@@ -479,8 +479,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cyberimp_hydraulic_blade
-	name = "Hydraulic Blade"
-	desc = "Highly dangerous implanted plasteel blade."
+	name = "Ostrze hydrauliczne"
+	desc = "Niezwykle niebezpieczne wszczepione ostrze z plastali."
 	id = "hydraulic_blade"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 250
@@ -495,7 +495,7 @@
 
 /datum/design/implanter
 	name = "Implanter"
-	desc = "A sterile automatic implant injector."
+	desc = "Sterylny automatyczny iniektor implantów."
 	id = "implanter"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 600, /datum/material/glass = 200)
@@ -504,8 +504,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/implantcase
-	name = "Implant Case"
-	desc = "A glass case for containing an implant."
+	name = "Etui na implant"
+	desc = "Szklane etui na implant."
 	id = "implantcase"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500)
@@ -514,8 +514,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/implant_sadtrombone
-	name = "Sad Trombone Implant Case"
-	desc = "Makes death amusing."
+	name = "Etui z implantem „Smutny puzon”"
+	desc = "Sprawia, że śmierć staje się zabawna."
 	id = "implant_trombone"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/bananium = 500)
@@ -524,8 +524,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_ALL		//if you get bananium you get the sad trombones.
 
 /datum/design/implant_chem
-	name = "Chemical Implant Case"
-	desc = "A glass case containing an implant."
+	name = "Etui z implantem chemicznym"
+	desc = "Szklane etui z implantem."
 	id = "implant_chem"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 700)
@@ -534,8 +534,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY | DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/implant_tracking
-	name = "Tracking Implant Case"
-	desc = "A glass case containing an implant."
+	name = "Etui z implantem śledzącym"
+	desc = "Szklane etui z implantem."
 	id = "implant_tracking"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 500, /datum/material/glass = 500)
@@ -546,8 +546,8 @@
 //Cybernetic organs
 
 /datum/design/cybernetic_liver
-	name = "Cybernetic Liver"
-	desc = "A cybernetic liver"
+	name = "Cybernetyczna wątroba"
+	desc = "Cybernetyczna wątroba."
 	id = "cybernetic_liver"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -557,8 +557,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_liver_u
-	name = "Upgraded Cybernetic Liver"
-	desc = "An upgraded cybernetic liver"
+	name = "Ulepszona cybernetyczna wątroba"
+	desc = "Ulepszona cybernetyczna wątroba."
 	id = "cybernetic_liver_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -568,8 +568,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_heart
-	name = "Cybernetic Heart"
-	desc = "A cybernetic heart"
+	name = "Cybernetyczne serce"
+	desc = "Cybernetyczne serce."
 	id = "cybernetic_heart"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -579,8 +579,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_heart_u
-	name = "Upgraded Cybernetic Heart"
-	desc = "An upgraded cybernetic heart"
+	name = "Ulepszone cybernetyczne serce"
+	desc = "Ulepszone cybernetyczne serce."
 	id = "cybernetic_heart_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -590,8 +590,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_lungs
-	name = "Cybernetic Lungs"
-	desc = "A pair of cybernetic lungs."
+	name = "Cybernetyczne płuca"
+	desc = "Para cybernetycznych płuc."
 	id = "cybernetic_lungs"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -601,8 +601,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_lungs_u
-	name = "Upgraded Cybernetic Lungs"
-	desc = "A pair of upgraded cybernetic lungs."
+	name = "Ulepszone cybernetyczne płuca"
+	desc = "Para ulepszonych cybernetycznych płuc."
 	id = "cybernetic_lungs_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -612,8 +612,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_stomach
-	name = "Cybernetic Stomach"
-	desc = "A cybernetic cybernetic stomach."
+	name = "Cybernetyczny żołądek"
+	desc = "Cybernetyczny żołądek."
 	id = "cybernetic_stomach"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 40
@@ -623,8 +623,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/cybernetic_stomach_u
-	name = "Upgraded Cybernetic Stomach"
-	desc = "A upgraded cybernetic stomach."
+	name = "Ulepszony cybernetyczny żołądek"
+	desc = "Ulepszony cybernetyczny żołądek."
 	id = "cybernetic_stomach_u"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 50
@@ -634,8 +634,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/wingpack
-	name = "Cybernetic Wingpack"
-	desc = "A compact pair of mechanical wings, which use the atmosphere to create thrust."
+	name = "Cybernetyczny plecak skrzydłowy"
+	desc = "Kompaktowa para mechanicznych skrzydeł, które wytwarzają ciąg z atmosfery."
 	id = "wingpack"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 500
@@ -645,8 +645,8 @@
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/wingpack_alien
-	name = "Advanced Cybernetic Wingpack"
-	desc = "A compact pair of mechanical wings. They are equipped with miniaturized void engines, and can fly in any atmosphere, or lack thereof."
+	name = "Zaawansowany cybernetyczny plecak skrzydłowy"
+	desc = "Kompaktowa para mechanicznych skrzydeł z miniaturowymi silnikami pustki. Latają w każdej atmosferze, a nawet bez niej."
 	id = "wingpack_ayy"
 	build_type = PROTOLATHE | MECHFAB
 	construction_time = 1000
@@ -659,160 +659,160 @@
 ///Surgery Designs///
 /////////////////////
 /datum/design/surgery
-	name = "Surgery Design"
-	desc = "what"
+	name = "Projekt operacji"
+	desc = "co"
 	id = "surgery_parent"
 	research_icon = 'icons/obj/surgery.dmi'
 	research_icon_state = "surgery_any"
 	var/surgery
 
 /datum/design/surgery/experimental_dissection
-	name = "Experimental Dissection"
-	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
+	name = "Eksperymentalna sekcja"
+	desc = "Zabieg chirurgiczny, który dogłębnie analizuje biologię zwłok i automatycznie dodaje nowe odkrycia do bazy danych badań."
 	id = "surgery_exp_dissection"
 	surgery = /datum/surgery/advanced/experimental_dissection
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/lobotomy
-	name = "Lobotomy"
-	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
+	name = "Lobotomia"
+	desc = "Inwazyjny zabieg chirurgiczny, który gwarantuje usunięcie niemal wszystkich urazów mózgu, ale w zamian może wywołać inny, trwały uraz."
 	id = "surgery_lobotomy"
 	surgery = /datum/surgery/advanced/lobotomy
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/pacify
-	name = "Pacification"
-	desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
+	name = "Pacyfikacja"
+	desc = "Zabieg chirurgiczny, który trwale hamuje ośrodek agresji w mózgu, przez co pacjent nie chce nikogo bezpośrednio krzywdzić."
 	id = "surgery_pacify"
 	surgery = /datum/surgery/advanced/pacify
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/viral_bonding
-	name = "Viral Bonding"
-	desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. The patient must be dosed with spaceacillin, virus food, and formaldehyde."
+	name = "Wiązanie wirusowe"
+	desc = "Zabieg chirurgiczny, który wymusza symbiozę między wirusem a nosicielem. Pacjent musi dostać spacyklinę, pożywkę dla wirusów i formaldehyd."
 	id = "surgery_viral_bond"
 	surgery = /datum/surgery/advanced/viral_bonding
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/healing //PLEASE ACCOUNT FOR UNIQUE HEALING BRANCHES IN THE hptech HREF (currently 2 for Brute/Burn; Combo is bonus)
-	name = "Tend Wounds"
-	desc = "An upgraded version of the original surgery."
+	name = "Opatrywanie ran"
+	desc = "Ulepszona wersja pierwotnej operacji."
 	id = "surgery_healing_base" //holder because travis cries otherwise. Not used in techweb unlocks.
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/healing/brute_upgrade
-	name = "Tend Wounds (Brute) Upgrade"
+	name = "Opatrywanie ran (stłuczenia, zaaw.)"
 	surgery = /datum/surgery/healing/brute/upgraded
 	id = "surgery_heal_brute_upgrade"
 
 /datum/design/surgery/healing/brute_upgrade_2
-	name = "Tend Wounds (Brute) Upgrade"
+	name = "Opatrywanie ran (stłuczenia, eksp.)"
 	surgery = /datum/surgery/healing/brute/upgraded/femto
 	id = "surgery_heal_brute_upgrade_femto"
 
 /datum/design/surgery/healing/burn_upgrade
-	name = "Tend Wounds (Burn) Upgrade"
+	name = "Opatrywanie ran (oparzenia, zaaw.)"
 	surgery = /datum/surgery/healing/burn/upgraded
 	id = "surgery_heal_burn_upgrade"
 
 /datum/design/surgery/healing/burn_upgrade_2
-	name = "Tend Wounds (Burn) Upgrade"
+	name = "Opatrywanie ran (oparzenia, eksp.)"
 	surgery = /datum/surgery/healing/burn/upgraded/femto
 	id = "surgery_heal_burn_upgrade_femto"
 
 /datum/design/surgery/healing/combo
-	name = "Tend Wounds (Physical)"
-	desc = "A surgical procedure that repairs both bruises and burns. Repair efficiency is not as high as the individual surgeries but it is faster."
+	name = "Opatrywanie ran (mieszane, podst.)"
+	desc = "Zabieg chirurgiczny, który leczy zarówno stłuczenia, jak i oparzenia. Skuteczność jest niższa niż w osobnych operacjach, ale zabieg trwa krócej."
 	surgery = /datum/surgery/healing/combo
 	id = "surgery_heal_combo"
 
 /datum/design/surgery/healing/combo_upgrade
-	name = "Tend Wounds (Physical) Upgrade"
+	name = "Opatrywanie ran (mieszane, zaaw.)"
 	surgery = /datum/surgery/healing/combo/upgraded
 	id = "surgery_heal_combo_upgrade"
 
 /datum/design/surgery/healing/combo_upgrade_2
-	name = "Tend Wounds (Physical) Upgrade"
-	desc = "A surgical procedure that repairs both bruises and burns faster than their individual counterparts. It is more effective than both the individual surgeries."
+	name = "Opatrywanie ran (mieszane, eksp.)"
+	desc = "Zabieg chirurgiczny, który leczy stłuczenia i oparzenia szybciej niż osobne operacje. Jest skuteczniejszy od każdej z nich."
 	surgery = /datum/surgery/healing/combo/upgraded/femto
 	id = "surgery_heal_combo_upgrade_femto"
 
 /datum/design/surgery/revival
-	name = "Revival"
-	desc = "An experimental surgical procedure which involves reconstruction and reactivation of the patient's brain even long after death. The body must still be able to sustain life."
+	name = "Ożywienie"
+	desc = "Eksperymentalny zabieg chirurgiczny, który odbudowuje i ponownie uruchamia mózg pacjenta nawet długo po śmierci. Ciało musi wciąż być zdolne do życia."
 	id = "surgery_revival"
 	surgery = /datum/surgery/advanced/revival
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
-	name = "Brainwashing"
-	desc = "A surgical procedure which directly implants a directive into the patient's brain, making it their absolute priority. It can be cleared using a mindshield implant."
+	name = "Pranie mózgu"
+	desc = "Zabieg chirurgiczny, który wszczepia rozkaz bezpośrednio do mózgu pacjenta i czyni go jego najwyższym priorytetem. Można go usunąć implantem ochrony umysłu."
 	id = "surgery_brainwashing"
 	surgery = /datum/surgery/advanced/brainwashing
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/nerve_splicing
-	name = "Nerve Splicing"
-	desc = "A surgical procedure which splices the patient's nerves, making them more resistant to stuns."
+	name = "Łączenie nerwów"
+	desc = "Zabieg chirurgiczny, który łączy nerwy pacjenta, przez co staje się on odporniejszy na ogłuszenia."
 	id = "surgery_nerve_splice"
 	surgery = /datum/surgery/advanced/bioware/nerve_splicing
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/nerve_grounding
-	name = "Nerve Grounding"
-	desc = "A surgical procedure which makes the patient's nerves act as grounding rods, protecting them from electrical shocks."
+	name = "Uziemienie nerwów"
+	desc = "Zabieg chirurgiczny, po którym nerwy pacjenta działają jak pręty uziemiające i chronią go przed porażeniem prądem."
 	id = "surgery_nerve_ground"
 	surgery = /datum/surgery/advanced/bioware/nerve_grounding
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/vein_threading
-	name = "Vein Threading"
-	desc = "A surgical procedure which severely reduces the amount of blood lost in case of injury."
+	name = "Przeplatanie żył"
+	desc = "Zabieg chirurgiczny, który znacznie ogranicza utratę krwi w razie zranienia."
 	id = "surgery_vein_thread"
 	surgery = /datum/surgery/advanced/bioware/vein_threading
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/muscled_veins
-	name = "Vein Muscle Membrane"
-	desc = "A surgical procedure which adds a muscled membrane to blood vessels, allowing them to pump blood without a heart."
+	name = "Mięśniowa błona żył"
+	desc = "Zabieg chirurgiczny, który dodaje do naczyń krwionośnych umięśnioną błonę, dzięki czemu pompują krew bez serca."
 	id = "surgery_muscled_veins"
 	surgery = /datum/surgery/advanced/bioware/muscled_veins
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_hook
-	name = "Ligament Hook"
-	desc = "A surgical procedure which reshapes the connections between torso and limbs, making it so limbs can be attached manually if severed. \
-	However this weakens the connection, making them easier to detach as well."
+	name = "Hak więzadłowy"
+	desc = "Zabieg chirurgiczny, który przekształca połączenia między tułowiem a kończynami, dzięki czemu odcięte kończyny można przyczepić ręcznie. \
+	Osłabia to jednak połączenie, więc kończyny łatwiej też odpadają."
 	id = "surgery_ligament_hook"
 	surgery = /datum/surgery/advanced/bioware/ligament_hook
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_reinforcement
-	name = "Ligament Reinforcement"
-	desc = "A surgical procedure which adds a protective tissue and bone cage around the connections between the torso and limbs, preventing dismemberment. \
-	However, the nerve connections as a result are more easily interrupted, making it easier to disable limbs with damage."
+	name = "Wzmocnienie więzadeł"
+	desc = "Zabieg chirurgiczny, który otacza połączenia między tułowiem a kończynami ochronną klatką z tkanki i kości, co zapobiega odcięciu kończyn. \
+	Przez to jednak połączenia nerwowe łatwiej się przerywają, więc obrażenia łatwiej unieruchamiają kończyny."
 	id = "surgery_ligament_reinforcement"
 	surgery = /datum/surgery/advanced/bioware/ligament_reinforcement
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/cortex_imprint
-	name = "Cortex Imprint"
-	desc = "A surgical procedure which modifies the cerebral cortex into a redundant neural pattern, making the brain able to bypass damage caused by minor brain traumas."
+	name = "Odcisk kory mózgowej"
+	desc = "Zabieg chirurgiczny, który przekształca korę mózgową w nadmiarowy wzorzec neuronowy, dzięki czemu mózg omija uszkodzenia wywołane drobnymi urazami mózgu."
 	id = "surgery_cortex_imprint"
 	surgery = /datum/surgery/advanced/bioware/cortex_imprint
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/cortex_folding
-	name = "Cortex Folding"
-	desc = "A surgical procedure which modifies the cerebral cortex into a complex fold, giving space to non-standard neural patterns."
+	name = "Fałdowanie kory mózgowej"
+	desc = "Zabieg chirurgiczny, który układa korę mózgową w złożoną fałdę i robi miejsce na niestandardowe wzorce neuronowe."
 	id = "surgery_cortex_folding"
 	surgery = /datum/surgery/advanced/bioware/cortex_folding
 	research_icon_state = "surgery_head"
 
 
 /datum/design/surgery/necrotic_revival
-	name = "Necrotic Revival"
-	desc = "An experimental surgical procedure that stimulates the growth of a Romerol tumor inside the patient's brain. Requires zombie powder or rezadone."
+	name = "Ożywienie nekrotyczne"
+	desc = "Eksperymentalny zabieg chirurgiczny, który pobudza wzrost guza romerolowego w mózgu pacjenta. Wymaga proszku zombie albo rezadonu."
 	id = "surgery_zombie"
 	surgery = /datum/surgery/advanced/necrotic_revival
 	research_icon_state = "surgery_head"

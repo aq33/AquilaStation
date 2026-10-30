@@ -1,6 +1,6 @@
 /obj/machinery/vending/snack
 	name = "\improper Getmore Chocolate Corp"
-	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
+	desc = "Automat z przekąskami od marsjańskiej Getmore Chocolate Corporation."
 	product_slogans = "Spróbuj naszego nowego batonika nugatowego!;Dwa razy więcej kalorii za pół ceny!"
 	product_ads = "Najzdrowsze!;Wygrywające nagrody batoniki czekoladowe!;Mmm! Jakie dobre!;O mój boże, jakie soczyste!;Weź przekąsk.;Przekąski są dla ciebie dobre!;Weź trochę więcej Getmore!;Najlepszej jakości przysmaki prosto z Marsa.;Kochamy czekoladę!;Spróbuj naszego nowego suszonego mięsa!"
 	icon_state = "snack"
@@ -92,7 +92,7 @@
 /obj/machinery/vending/snack/random
 	name = "\improper Random Snackies"
 	icon_state = "random_snack"
-	desc = "Uh oh!"
+	desc = "Ojej!"
 
 /obj/machinery/vending/snack/random/Initialize(mapload)
 	..()

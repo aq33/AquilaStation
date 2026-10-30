@@ -1,6 +1,6 @@
 /datum/mutation/shock
-	name = "Shock Touch"
-	desc = "The affected can channel excess electricity through their hands without shocking themselves, allowing them to shock others."
+	name = "Porażający dotyk"
+	desc = "Nosiciel potrafi przepuszczać nadmiar elektryczności przez dłonie, nie rażąc samego siebie, więc może razić innych."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16
@@ -11,8 +11,8 @@
 	locked = TRUE
 
 /obj/effect/proc_holder/spell/targeted/touch/shock
-	name = "Shock Touch"
-	desc = "Channel electricity to your hand to shock people with."
+	name = "Porażający dotyk"
+	desc = "Skieruj elektryczność do dłoni, żeby razić nią ludzi."
 	drawmessage = "Kierujesz elektryczność do dłoni."
 	dropmessage = "Pozwalasz, by elektryczność z twojej dłoni się rozwiała."
 	hand_path = /obj/item/melee/touch_attack/shock
@@ -21,8 +21,8 @@
 	action_icon_state = "zap"
 
 /obj/item/melee/touch_attack/shock
-	name = "\improper shock touch"
-	desc = "This is kind of like when you rub your feet on a shag rug so you can zap your friends, only a lot less safe."
+	name = "\improper porażający dotyk"
+	desc = "To trochę jak pocieranie stopami o dywan, żeby kopnąć prądem kumpli, tylko dużo mniej bezpieczne."
 	catchphrase = null
 	on_use_sound = 'sound/weapons/zapbang.ogg'
 	icon_state = "zapper"
@@ -38,7 +38,7 @@
 			C.dropItemToGround(C.get_active_held_item())
 			C.dropItemToGround(C.get_inactive_held_item())
 			C.confused += 15
-			C.visible_message("<span class='danger'>[user] electrocutes [target]!</span>","<span class='userdanger'>[user] razi cię prądem!</span>")
+			C.visible_message("<span class='danger'>[user] razi [target] prądem!</span>","<span class='userdanger'>[user] razi cię prądem!</span>")
 			use_charge(user)
 			return ..()
 		else
@@ -48,7 +48,7 @@
 	else if(isliving(target))
 		var/mob/living/L = target
 		L.electrocute_act(15, user, 1, FALSE, FALSE, FALSE, FALSE)
-		L.visible_message("<span class='danger'>[user] electrocutes [target]!</span>","<span class='userdanger'>[user] razi cię prądem!</span>")
+		L.visible_message("<span class='danger'>[user] razi [target] prądem!</span>","<span class='userdanger'>[user] razi cię prądem!</span>")
 		use_charge(user)
 		return ..()
 	else

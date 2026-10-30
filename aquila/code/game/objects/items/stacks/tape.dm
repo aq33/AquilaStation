@@ -27,7 +27,7 @@
 	log_combat(user, target, "taped mouth shut", src)
 
 /obj/item/clothing/mask/muzzle/tape
-	name = "tape gag"
+	name = "knebel z taśmy"
 	desc = "Pasek lepkiej taśmy przyklejony komuś na usta. Zrywanie go nie będzie przyjemne."
 	icon = 'aquila/icons/obj/clothing/tape_gag.dmi'
 	worn_icon = 'aquila/icons/mob/tape_gag.dmi'

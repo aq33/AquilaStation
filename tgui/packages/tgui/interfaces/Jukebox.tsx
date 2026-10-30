@@ -52,7 +52,7 @@ export const Jukebox = () => {
                 selected={active}
                 onClick={() => act('toggle')}
               >
-                {active ? 'Stop' : 'Graj'}
+                {active ? 'Zatrzymaj' : 'Graj'}
               </Button>
               <Button.Checkbox
                 icon={'arrow-rotate-left'}

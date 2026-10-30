@@ -19,10 +19,10 @@
 /datum/disease/advance
 	name = "Unknown" // We will always let our Virologist name our disease.
 	desc = "Zaprojektowana choroba, która może zawierać wiele objawów."
-	form = "Advance Disease" // Will let med-scanners know that this disease was engineered.
-	agent = "advance microbes"
+	form = "Choroba zaawansowana" // Will let med-scanners know that this disease was engineered.
+	agent = "zaawansowane mikroby"
 	max_stages = 5
-	spread_text = "Unknown"
+	spread_text = "Nieznana"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey, /mob/living/carbon/monkey/tumor)
 
 	/// last player to modify the disease.
@@ -294,18 +294,18 @@
 /datum/disease/advance/proc/SetSpread()
 	if(faltered)
 		spread_flags = DISEASE_SPREAD_FALTERED
-		spread_text = "Intentional Injection"
+		spread_text = "Celowy zastrzyk"
 	else if(dormant)
 		spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
-		spread_text = "None"
+		spread_text = "Brak"
 	else
 		switch(transmission)
 			if(-INFINITY to 5)
 				spread_flags = DISEASE_SPREAD_BLOOD
-				spread_text = "Blood"
+				spread_text = "Przez krew"
 			if(6 to 10)
 				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS
-				spread_text = "Fluids"
+				spread_text = "Przez płyny ustrojowe"
 			if(11 to INFINITY)
 				spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_FLUIDS | DISEASE_SPREAD_CONTACT_SKIN
 				spread_text = "Przez kontakt"
@@ -445,7 +445,7 @@
 /datum/disease/advance/proc/NeuterSymptom(datum/symptom/S)
 	if(!S.neutered)
 		S.neutered = TRUE
-		S.name += " (neutered)"
+		S.name += " (zneutralizowany)"
 		S.OnRemove(src)
 
 /*
@@ -504,11 +504,11 @@
 	D.symptoms = list()
 
 	var/list/symptoms = list()
-	symptoms += "Done"
+	symptoms += "Gotowe"
 	symptoms += SSdisease.list_symptoms.Copy()
 	do
 		if(user)
-			var/symptom = input(user, "Wybierz objaw do dodania (pozostało: [i])", "Choose a Symptom") in sortList(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc))
+			var/symptom = input(user, "Wybierz objaw do dodania (pozostało: [i])", "Wybierz symptom") in sortList(symptoms, GLOBAL_PROC_REF(cmp_typepaths_asc))
 			if(isnull(symptom))
 				return
 			else if(istext(symptom))
@@ -542,7 +542,7 @@
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
-		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.admin_details()]")
+		message_admins("[key_name_admin(user)] wywołuje epidemię własnego wirusa: [D.admin_details()]")
 		log_virus("[key_name(user)] has triggered a custom virus outbreak of [D.admin_details()]!")
 
 /datum/disease/advance/infect(var/mob/living/infectee, make_copy = TRUE)
@@ -672,7 +672,7 @@
 	if(holder?.my_atom?.fingerprintslast)
 		last_modified_by = holder.my_atom.fingerprintslast
 	else
-		message_admins("[name], a disease, has been modified ([modification_type]) without logging a CKEY. Please report this to coders")
+		message_admins("Choroba [name] została zmodyfikowana ([modification_type]) bez zapisania CKEY. Zgłoś to koderom")
 		log_virus("[name], a disease, has been modified ([modification_type]) without logging a CKEY. Please report this to coders")
 		// if someone finds a way to avoid being logged while modifiying a virus, admins should be notified so coders can be notified.
 		return FALSE

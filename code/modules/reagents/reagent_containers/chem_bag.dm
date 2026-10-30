@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/chem_bag
-	name = "chemical bag"
-	desc = "Contains chemicals used for transfusion. Must be attached to an IV drip."
+	name = "worek chemiczny"
+	desc = "Zawiera chemikalia do transfuzji. Trzeba go podłączyć do kroplówki."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
 	volume = 200
@@ -19,11 +19,11 @@
 		if(volume == reagents.total_volume)
 			. += "<span class='notice'>Jest całkowicie wypełniony.</span>"
 		else if(!reagents.total_volume)
-			. += "<span class='notice'>It's empty.</span>"
+			. += "<span class='notice'>Jest pusty.</span>"
 		else
 			. += "<span class='notice'>Wygląda na wypełniony w [round(reagents.total_volume/volume*100)]%.</span>"
 
 /obj/item/reagent_containers/chem_bag/epinephrine
-	name = "epinephrine chemical bag"
+	name = "worek chemiczny: epinefryna"
 	label_name = "epinephrine"
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 200)

@@ -1,5 +1,5 @@
 /area/shuttle/stealthcruiser
-	name = "Syndicate Infiltration Cruiser"
+	name = "Krążownik Infiltracyjny Syndykatu"
 
 /area/shuttle/stealthcruiser/poweralert(state, obj/source)
 	return

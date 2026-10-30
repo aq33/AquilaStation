@@ -5,7 +5,7 @@ Here we define the cargo crate, as well as the contents
 */
 
 /obj/structure/closet/crate/large/cargo/
-  desc = "A hefty wooden crate. This crate is fitted with an anti-tamper seal. If you really want to open it you'll need a crowbar to get it open."
+  desc = "Pokaźna drewniana skrzynia z plombą zabezpieczającą. Jeśli naprawdę chcesz ją otworzyć, potrzebujesz łomu."
   icon = 'nsv13/icons/obj/custom_crates.dmi'
   icon_state = "large_cargo_crate"
 
@@ -17,8 +17,8 @@ Here we define the cargo crate, as well as the contents
 
 /obj/structure/closet/crate/large/cargo/attackby(obj/item/W, mob/user, params)  
   if(W.tool_behaviour == TOOL_CROWBAR)
-    var/choice = input("OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni zmniejszy wynagrodzenie za misję. Na pewno chcesz ją otworzyć?", "WARNING!", "No") in list("Yes", "No")
-    if(choice != "Yes") 
+    var/choice = input("OSTRZEŻENIE: klient prosi, by nie naruszać ładunku. Otwarcie tej skrzyni zmniejszy wynagrodzenie za misję. Na pewno chcesz ją otworzyć?", "OSTRZEŻENIE!", "Nie") in list("Tak", "Nie")
+    if(choice != "Tak") 
       return
     if(get_dist(user, src) > 1) //Check they are still in range
       return

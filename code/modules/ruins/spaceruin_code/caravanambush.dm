@@ -2,28 +2,28 @@
 
 /obj/item/wrench/caravan
 	color = "#ff0000"
-	desc = "A prototype of a new wrench design, allegedly the red color scheme makes it go faster."
-	name = "experimental wrench"
+	desc = "Prototyp nowego modelu klucza. Podobno czerwony kolor sprawia, że działa szybciej."
+	name = "eksperymentalny klucz"
 	toolspeed = 0.3
 
 /obj/item/screwdriver/caravan
 	color = "#ff0000"
-	desc = "A prototype of a new screwdriver design, allegedly the red color scheme makes it go faster."
-	name = "experimental screwdriver"
+	desc = "Prototyp nowego modelu śrubokręta. Podobno czerwony kolor sprawia, że działa szybciej."
+	name = "eksperymentalny śrubokręt"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/wirecutters/caravan
 	color = "#ff0000"
-	desc = "A prototype of a new wirecutter design, allegedly the red color scheme makes it go faster."
-	name = "experimental wirecutters"
+	desc = "Prototyp nowego modelu przecinaka. Podobno czerwony kolor sprawia, że działa szybciej."
+	name = "eksperymentalny przecinak"
 	toolspeed = 0.3
 	random_color = FALSE
 
 /obj/item/crowbar/red/caravan
 	color = "#ff0000"
-	desc = "A prototype of a new crowbar design, allegedly the red color scheme makes it go faster."
-	name = "experimental crowbar"
+	desc = "Prototyp nowego modelu łomu. Podobno czerwony kolor sprawia, że działa szybciej."
+	name = "eksperymentalny łom"
 	toolspeed = 0.3
 
 /obj/machinery/computer/shuttle_flight/caravan
@@ -47,15 +47,15 @@
 	build_path = /obj/machinery/computer/shuttle_flight/caravan/syndicate3
 
 /obj/machinery/computer/shuttle_flight/caravan/trade1
-	name = "Small Freighter Shuttle Console"
-	desc = "Used to control the Small Freighter."
+	name = "konsola promu małego frachtowca"
+	desc = "Służy do sterowania małym frachtowcem."
 	circuit = /obj/item/circuitboard/computer/shuttle/caravan/trade1
 	shuttleId = "caravantrade1"
 	possible_destinations = "whiteship_away;whiteship_home;whiteship_z4;whiteship_lavaland;caravantrade1_custom;caravantrade1_ambush"
 
 /obj/machinery/computer/shuttle_flight/caravan/pirate
-	name = "Pirate Cutter Shuttle Console"
-	desc = "Used to control the Pirate Cutter."
+	name = "konsola promu pirackiego kutra"
+	desc = "Służy do sterowania pirackim kutrem."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = LIGHT_COLOR_RED
@@ -64,8 +64,8 @@
 	possible_destinations = "caravanpirate_custom;caravanpirate_ambush"
 
 /obj/machinery/computer/shuttle_flight/caravan/syndicate1
-	name = "Syndicate Fighter Shuttle Console"
-	desc = "Used to control the Syndicate Fighter."
+	name = "konsola myśliwca Syndykatu"
+	desc = "Służy do sterowania myśliwcem Syndykatu."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	light_color = LIGHT_COLOR_RED
@@ -75,8 +75,8 @@
 	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost"
 
 /obj/machinery/computer/shuttle_flight/caravan/syndicate2
-	name = "Syndicate Fighter Shuttle Console"
-	desc = "Used to control the Syndicate Fighter."
+	name = "konsola myśliwca Syndykatu"
+	desc = "Służy do sterowania myśliwcem Syndykatu."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	req_access = list(ACCESS_SYNDICATE)
@@ -86,8 +86,8 @@
 	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost"
 
 /obj/machinery/computer/shuttle_flight/caravan/syndicate3
-	name = "Syndicate Drop Ship Console"
-	desc = "Used to control the Syndicate Drop Ship."
+	name = "konsola statku desantowego Syndykatu"
+	desc = "Służy do sterowania statkiem desantowym Syndykatu."
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
 	req_access = list(ACCESS_SYNDICATE)

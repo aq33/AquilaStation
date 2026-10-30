@@ -1,8 +1,8 @@
 // Modular Computer - device that runs various programs and operates with hardware
 // DO NOT SPAWN THIS TYPE. Use /laptop/ or /console/ instead.
 /obj/machinery/modular_computer
-	name = "modular computer"
-	desc = "An advanced computer."
+	name = "komputer modułowy"
+	desc = "Zaawansowany komputer."
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5

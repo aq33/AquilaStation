@@ -1,11 +1,11 @@
 /datum/disease/tuberculosis
-	form = "Disease"
-	name = "Fungal tuberculosis"
+	form = "Choroba"
+	name = "Gruźlica grzybicza"
 	max_stages = 5
-	spread_text = "Airborne"
+	spread_text = "Drogą powietrzną"
 	cure_text = "Spacyklina i salbutamol"
 	cures = list(/datum/reagent/medicine/spaceacillin, /datum/reagent/medicine/salbutamol)
-	agent = "Fungal Tubercle bacillus Cosmosis"
+	agent = "Grzybicze prątki gruźlicy Cosmosis"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	cure_chance = 5//like hell are you getting out of hell
 	desc = "Rzadki, wysoce zakaźny, zjadliwy wirus. Istnieje niewiele próbek, podobno starannie hodowanych przez tajnych specjalistów od broni biologicznej. Powoduje gorączkę, wymioty krwią, uszkodzenie płuc, utratę wagi i zmęczenie."
@@ -38,11 +38,11 @@
 				affected_mob.emote("gasp")
 			if(stage >= 5)
 				if(prob(2))
-					to_chat(affected_mob, "<span class='userdanger'>[pick("You feel your heart slowing.", "You relax and slow your heartbeat.")]</span>")
+					to_chat(affected_mob, "<span class='userdanger'>[pick("Czujesz, jak twoje serce zwalnia.", "Rozluźniasz się i spowalniasz bicie serca.")]</span>")
 					affected_mob.adjustStaminaLoss(70)
 				if(prob(10))
 					affected_mob.adjustStaminaLoss(100)
-					affected_mob.visible_message("<span class='warning'>[affected_mob] faints!</span>", "<span class='userdanger'>Poddajesz się i czujesz spokój.</span>")
+					affected_mob.visible_message("<span class='warning'>[affected_mob] mdleje!</span>", "<span class='userdanger'>Poddajesz się i czujesz spokój.</span>")
 					affected_mob.AdjustSleeping(100)
 				if(prob(2))
 					to_chat(affected_mob, "<span class='userdanger'>Czujesz, jak twój umysł się rozluźnia, a myśli dryfują!</span>")
@@ -50,11 +50,11 @@
 				if(prob(10))
 					affected_mob.vomit(20)
 				if(prob(3))
-					to_chat(affected_mob, "<span class='warning'><i>[pick("Your stomach silently rumbles.", "Your stomach seizes up and falls limp, muscles dead and lifeless.", "You could eat a crayon.")]</i></span>")
+					to_chat(affected_mob, "<span class='warning'><i>[pick("Cicho burczy ci w brzuchu.", "Żołądek ci się zaciska, a potem wiotczeje, mięśnie są martwe i bez życia.", "Zjadłbyś kredkę.")]</i></span>")
 					affected_mob.overeatduration = max(affected_mob.overeatduration - 100, 0)
 					affected_mob.adjust_nutrition(-100)
 				if(prob(15))
-					to_chat(affected_mob, "<span class='danger'>[pick("You feel uncomfortably hot.", "You feel like unzipping your jumpsuit.", "You feel like taking off some clothes.")]</span>")
+					to_chat(affected_mob, "<span class='danger'>[pick("Jest ci nieprzyjemnie gorąco.", "Masz ochotę rozpiąć kombinezon.", "Masz ochotę zdjąć trochę ubrań.")]</span>")
 					affected_mob.adjust_bodytemperature(40)
 	return
 

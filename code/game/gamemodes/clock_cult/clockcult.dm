@@ -193,7 +193,7 @@ GLOBAL_VAR(clockcult_eminence)
 	var/hierophant_message = "[span]"
 	if(sender?.reagents)
 		if(sender.reagents.has_reagent(/datum/reagent/water/holywater, 1))
-			to_chat(sender, "<span class='nezbere'>[pick("You fail to transmit your cries for help.", "Your calls into the void go unanswered.", "You try to transmit your message, but the hierophant network is silent.")]</span>")
+			to_chat(sender, "<span class='nezbere'>[pick("Nie udaje ci się przekazać wołania o pomoc.", "Twoje wołanie w pustkę pozostaje bez odpowiedzi.", "Próbujesz przekazać wiadomość, ale sieć hierofanta milczy.")]</span>")
 			return FALSE
 	if(!msg)
 		if(sender)
@@ -206,44 +206,44 @@ GLOBAL_VAR(clockcult_eminence)
 			sender.say("#[text2ratvar(msg)]")
 		msg = sender.treat_message_min(msg)
 		var/datum/antagonist/servant_of_ratvar/SoR = is_servant_of_ratvar(sender)
-		var/prefix = "Clockbrother"
+		var/prefix = "Brat Zegara"
 		switch(SoR.prefix)
 			if(CLOCKCULT_PREFIX_EMINENCE)
-				prefix = "Master"
+				prefix = "Mistrz"
 			if(CLOCKCULT_PREFIX_MASTER)
 				prefix = sender.gender == MALE\
-					? "Clockfather"\
+					? "Ojciec Zegara"\
 					: sender.gender == FEMALE\
-						? "Clockmother"\
-						: "Clockmaster"
+						? "Matka Zegara"\
+						: "Mistrz Zegara"
 				hierophant_message = "<span class='leader_brass'>"
 			if(CLOCKCULT_PREFIX_RECRUIT)
 				var/role = sender.mind?.assigned_role
 				//Ew, this could be done better with a dictionary list, but this isn't much slower
 				if(role in GLOB.command_positions)
-					prefix = "High Priest"
+					prefix = "Arcykapłan"
 				else if((role in GLOB.engineering_positions) || (role in GLOB.munitions_positions)) // NSV13 - added munitions jobs
-					prefix = "Cogturner"
+					prefix = "Obracacz Zębatek"
 				else if(role in GLOB.medical_positions)
-					prefix = "Rejuvinator"
+					prefix = "Odnowiciel"
 				else if(role in GLOB.science_positions)
-					prefix = "Calculator"
+					prefix = "Rachmistrz"
 				else if(role in GLOB.supply_positions)
-					prefix = "Pathfinder"
+					prefix = "Tropiciel"
 				else if(role in JOB_NAME_ASSISTANT)
-					prefix = "Helper"
+					prefix = "Pomocnik"
 				else if(role in JOB_NAME_MIME)
-					prefix = "Cogwatcher"
+					prefix = "Strażnik Zębatek"
 				else if(role in JOB_NAME_CLOWN)
-					prefix = "Clonker"
+					prefix = "Klekot"
 				else if((role in GLOB.civilian_positions) || (role in GLOB.gimmick_positions))
-					prefix = "Cogworker"
+					prefix = "Robotnik Zębatek"
 				else if(role in GLOB.security_positions)
-					prefix = "Warrior"
+					prefix = "Wojownik"
 				else if(role in GLOB.nonhuman_positions)
-					prefix = "CPU"
-			//Fallthrough is default of "Clockbrother"
-		hierophant_message += "<b>[prefix] [sender.name]</b> transmits, \"[msg]\""
+					prefix = "Procesor"
+			//Fallthrough is default of "Brat Zegara"
+		hierophant_message += "<b>[prefix] [sender.name]</b> przekazuje: „[msg]”"
 	else
 		hierophant_message += msg
 	if(span)

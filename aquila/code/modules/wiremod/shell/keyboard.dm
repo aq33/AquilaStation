@@ -1,5 +1,5 @@
 /obj/item/keyboard_shell
-	name = "Keyboard Shell"
+	name = "obudowa klawiatury"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_small_keyboard"
 	item_state = "electronic"
@@ -18,7 +18,7 @@
 	), SHELL_CAPACITY_SMALL)
 
 /obj/item/circuit_component/keyboard_shell
-	display_name = "Keyboard Shell"
+	display_name = "Obudowa klawiatury"
 	desc = "Ręczna obudowa, która pozwala wpisać tekst. Użyj obudowy w ręce, aby otworzyć panel wprowadzania."
 
 	/// Called when the input window is closed

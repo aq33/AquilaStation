@@ -4,8 +4,8 @@
 //As long as this is working, solar panels on same powernet will track automatically
 
 /obj/machinery/power/tracker
-	name = "solar tracker"
-	desc = "A solar directional tracker."
+	name = "nadążnik słoneczny"
+	desc = "Nadążnik kierunku słońca."
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "tracker"
 	density = TRUE
@@ -90,4 +90,4 @@
 // Tracker Electronic
 
 /obj/item/electronics/tracker
-	name = "tracker electronics"
+	name = "elektronika nadążnika"

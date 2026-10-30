@@ -1,6 +1,6 @@
 /obj/machinery/rnd/production/techfab
-	name = "technology fabricator"
-	desc = "Produces researched prototypes with raw materials and energy."
+	name = "techfab"
+	desc = "Wytwarza zbadane prototypy z surowców i energii."
 	icon_state = "protolathe"
 	circuit = /obj/item/circuitboard/machine/techfab
 	categories = list(

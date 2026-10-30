@@ -1,6 +1,6 @@
 /obj/structure/particle_accelerator/particle_emitter
-	name = "EM Containment Grid"
-	desc = "This launches the Alpha particles, might not want to stand near this end."
+	name = "siatka izolująca EM"
+	desc = "Wystrzeliwuje cząstki alfa. Lepiej nie stać przy tym końcu."
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "none"
 	var/fire_delay = 50
