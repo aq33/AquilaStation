@@ -227,9 +227,9 @@ GLOBAL_LIST_INIT(admin_player_panel_simplemake, list(
 			holder.ui_topic(list("editrights" = (GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey]) ? "rank" : "add", "key" = M.key))
 			return TRUE
 		if("centcomlookup")
-			if(!C)
+			if(!M.ckey) // AQ EDIT - ckey z moba, żeby działało też dla rozłączonych graczy
 				return
-			holder.ui_topic(list("centcomlookup" = C.ckey))
+			holder.ui_topic(list("centcomlookup" = M.ckey))
 			return
 		if("relatedacc")
 			if(!C || !(params["type"] in list("cid", "ip")))
