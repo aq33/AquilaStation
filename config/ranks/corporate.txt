@@ -53,7 +53,7 @@ Pilot=WS
 Psychiatra=WS
 Magik=WS
 Fryzjer=WS
-Cywilne=WS
+Gimmick=WS
 VIP=VIP
 
 SI Statku=CPU

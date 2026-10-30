@@ -54,7 +54,7 @@ Debtor=CIV
 Psychiatra=CIV
 Magik=CIV
 Fryzjer=CIV
-Cywilne=CIV
+Gimmick=CIV
 VIP=VIP
 
 SI Statku=CPU
