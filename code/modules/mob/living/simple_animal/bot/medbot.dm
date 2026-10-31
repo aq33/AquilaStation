@@ -358,10 +358,10 @@ GLOBAL_VAR(medibot_unique_id_gen)
 		return
 
 	if(patient && path.len == 0 && (get_dist(src,patient) > 1))
-		path = get_path_to(src, patient, 30,id=access_card)
+		path = get_path_to(src, patient, 30,id=access_card) || list() // AQ EDIT - poza mapą (loc null) get_path_to zwraca null
 		mode = BOT_MOVING
 		if(!path.len) //try to get closer if you can't reach the patient directly
-			path = get_path_to(src, patient, 30,1,id=access_card)
+			path = get_path_to(src, patient, 30,1,id=access_card) || list() // AQ EDIT - poza mapą (loc null) get_path_to zwraca null
 			if(!path.len) //Do not chase a patient we cannot reach.
 				soft_reset()
 
