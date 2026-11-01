@@ -1,4 +1,4 @@
-// AQUILA - slash and pierce wounds on top of Bee bleeding: gauze only holds them for a while, sutures close them
+// AQUILA - slash and pierce wounds on top of Bee bleeding: a bandage only holds them for a while, sutures close them
 
 /datum/wound/slash
 	wound_type = WOUND_SLASH
@@ -45,7 +45,7 @@
 	name = "Głębokie rozcięcie"
 	desc = "Ostrze rozcina ci głęboko ciało"
 	examine_desc = "głęboką, krwawiącą ranę"
-	treat_text = "Zszyj nićmi albo przypal (operacja kauteryzacji). Gaza tylko na chwilę."
+	treat_text = "Zszyj nićmi albo przypal (operacja kauteryzacji). Bandaż tylko na chwilę."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 50
 
@@ -53,25 +53,10 @@
 	name = "Przerwana tętnica"
 	desc = "Krew tryska z przeciętej tętnicy"
 	examine_desc = "tryskającą krwią ranę"
-	treat_text = "Zszyj nićmi dwa razy albo operacja kauteryzacji. Gaza tylko na chwilę."
+	treat_text = "Zszyj nićmi dwa razy albo operacja kauteryzacji. Bandaż tylko na chwilę."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 80
 	initial_bleed = BLEED_CRITICAL
 	reopen_interval = 20 SECONDS
 	reopen_bleed = BLEED_CUT
 	sutured_into = /datum/wound/slash/deep
-
-/// The cauterization surgery closes every cut on the limb
-/datum/surgery/cauterize/can_start(mob/user, mob/living/carbon/target, target_zone)
-	. = ..()
-	if(!.)
-		var/obj/item/bodypart/limb = target.get_bodypart(check_zone(target_zone))
-		return !!limb?.get_wound(WOUND_SLASH)
-
-/datum/surgery_step/close/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	. = ..()
-	if(!istype(surgery, /datum/surgery/cauterize))
-		return
-	var/obj/item/bodypart/limb = target.get_bodypart(check_zone(target_zone))
-	for(var/datum/wound/slash/cut in limb?.wounds?.Copy())
-		qdel(cut)

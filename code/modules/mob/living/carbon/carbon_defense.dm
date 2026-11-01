@@ -145,11 +145,7 @@
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
 
-	for(var/datum/surgery/S in surgeries)
-		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
-			if(!user.combat_mode)
-				if(S.next_step(user, modifiers))
-					return TRUE
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/
 	return FALSE
 
 

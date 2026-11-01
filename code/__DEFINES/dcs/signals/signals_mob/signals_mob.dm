@@ -65,8 +65,7 @@
 #define COMSIG_MOB_CLIENT_LOGIN "comsig_mob_client_login"
 
 ///NSV13 - Surgery QoL - Start
-/// From /datum/surgery/New(): (datum/surgery/surgery, surgery_location (body zone), obj/item/bodypart/targeted_limb)
-#define COMSIG_MOB_SURGERY_STARTED "mob_surgery_started"
+// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/: usunięte COMSIG_MOB_SURGERY_STARTED
 
 /// From /atom/movable/screen/zone_sel/proc/set_selected_zone.
 /// Fires when the user has changed their selected body target.

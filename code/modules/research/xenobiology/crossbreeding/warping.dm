@@ -225,7 +225,7 @@ put up a rune with bluespace effects, lots of those runes are fluff or act as a 
 
 /obj/effect/warped_rune/purplespace/do_effect(mob/user)
 	var/list/medical = list(
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/bandage, // AQ EDIT - bandage replaces gauze
 		/obj/item/reagent_containers/hypospray/medipen,
 		/obj/item/stack/medical/suture, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh, // AQ EDIT

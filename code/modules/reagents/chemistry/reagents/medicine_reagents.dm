@@ -400,12 +400,7 @@
 			if(show_message)
 				to_chat(M, "<span class='warning'>Twój żołądek jest pusty i dostaje skurczów!</span>")
 		else
-			var/mob/living/carbon/C = M
-			for(var/s in C.surgeries)
-				var/datum/surgery/S = s
-				S.speed_modifier = max(0.1, S.speed_modifier)
-				// +10% surgery speed on each step, useful while operating in less-than-perfect conditions
-
+			// AQ EDIT - modyfikator starej chirurgii usunięty, nowy w aquila/code/modules/surgery_tg/surgery_reagents.dm
 			if(show_message)
 				to_chat(M, "<span class='danger'>Czujesz, jak twoje rany bledną i znikają!</span>" )
 	..()

@@ -923,10 +923,10 @@
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
 
 /datum/crafting_recipe/upgraded_gauze
-	name = "sterylna gaza medyczna"
-	result = /obj/item/stack/medical/gauze/adv/one
+	name = "sterylny bandaż" // AQ EDIT START - bandage replaces gauze
+	result = /obj/item/stack/medical/bandage/sterile/one
 	time = 1
-	reqs = list(/obj/item/stack/medical/gauze = 1,
+	reqs = list(/obj/item/stack/medical/bandage = 1, // AQ EDIT END
 				/datum/reagent/space_cleaner/sterilizine = 10)
 	category = CAT_MISC
 
@@ -934,7 +934,7 @@
 	name = "nici z lekiem" // AQ EDIT - tgstation sutures replace bruise packs
 	result = /obj/item/stack/medical/suture/medicated/one
 	time = 1
-	reqs = list(/obj/item/stack/medical/gauze = 1,
+	reqs = list(/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 				/datum/reagent/medicine/styptic_powder = 40)
 	category = CAT_MISC
 
@@ -942,7 +942,7 @@
 	name = "siatka regeneracyjna" // AQ EDIT - tgstation mesh replaces ointment
 	result = /obj/item/stack/medical/mesh/one
 	time = 1
-	reqs = list(/obj/item/stack/medical/gauze = 1,
+	reqs = list(/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 				/datum/reagent/medicine/silver_sulfadiazine = 40)
 	category = CAT_MISC
 

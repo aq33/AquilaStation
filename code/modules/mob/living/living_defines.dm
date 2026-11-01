@@ -44,7 +44,7 @@
 
 	var/list/roundstart_quirks = list()
 
-	var/list/surgeries = list()	//a list of surgery datums. generally empty, they're added when the player wants them.
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/: usunięte var/list/surgeries
 
 	var/now_pushing = null //used by living/Bump() and living/PushAM() to prevent potential infinite loop.
 

@@ -90,15 +90,16 @@
 /mob/living/carbon/update_damage_overlays()
 	remove_overlay(DAMAGE_LAYER)
 
-	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER)
+	var/mutable_appearance/damage_overlay = mutable_appearance(AQ_DAMAGE_OVERLAY_ICON, "blank", -DAMAGE_LAYER) // AQ EDIT - tg damage overlays
 	overlays_standing[DAMAGE_LAYER] = damage_overlay
 
 	for(var/obj/item/bodypart/BP as() in bodyparts)
 		if(BP.dmg_overlay_type)
 			if(BP.brutestate)
-				var/image/brute_overlay = image('icons/mob/dam_mob.dmi', "[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0")
+				var/image/brute_overlay = image(AQ_DAMAGE_OVERLAY_ICON, "[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0") // AQ EDIT - tg damage overlays
 				brute_overlay.color = BP.damage_color
 				damage_overlay.add_overlay(brute_overlay)
+				damage_overlay.add_overlay("[BP.dmg_overlay_type]_[BP.body_zone]_[BP.brutestate]0_overlay") // AQ EDIT - tg: bruises not tinted with the blood colour
 			if(BP.burnstate)
 				damage_overlay.add_overlay("[BP.dmg_overlay_type]_[BP.body_zone]_0[BP.burnstate]")
 

@@ -1288,6 +1288,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images.Remove(electrocution_skeleton_anim)
 
 /datum/hallucination/shock/proc/shock_drop()
+	if(QDELETED(target)) // AQ EDIT - timer could fire after the target was deleted
+		return
 	target.jitteriness = max(target.jitteriness - 990, 10) //Still jittery, but vastly less
 	target.Paralyze(60)
 

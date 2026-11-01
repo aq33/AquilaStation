@@ -1,4 +1,4 @@
-// AQUILA - burn wounds: dead skin gets infected unless the burn is dressed with mesh or ointment
+// AQUILA - burn wounds: dead skin gets infected unless the burn is dressed with mesh
 
 /datum/wound/burn
 	wound_type = WOUND_BURN
@@ -33,7 +33,7 @@
 		. += " Początki zakażenia."
 
 /datum/wound/burn/can_treat_with(obj/item/item)
-	return !treated && (istype(item, /obj/item/stack/medical/mesh) || istype(item, /obj/item/stack/medical/ointment))
+	return !treated && istype(item, /obj/item/stack/medical/mesh)
 
 /datum/wound/burn/treat(obj/item/stack/medical/dressing, mob/user)
 	var/self = user == victim
@@ -52,7 +52,7 @@
 	name = "Oparzenie drugiego stopnia"
 	desc = "Skóra pokrywa ci się pęcherzami"
 	examine_desc = "poparzoną skórę w pęcherzach"
-	treat_text = "Opatrz siatką albo maścią, spaceacillin hamuje zakażenie."
+	treat_text = "Opatrz siatką, spaceacillin hamuje zakażenie."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 80
 	heal_time = 2 MINUTES

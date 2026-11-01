@@ -140,11 +140,7 @@
 /obj/item/organ/proc/on_eat_from(eater, feeder)
 	useable = FALSE //You bit it, no more using it
 
-/obj/item/organ/proc/check_for_surgery(mob/living/carbon/human/H)
-	for(var/datum/surgery/S in H.surgeries)
-		if(S.location == H.zone_selected)
-			return	TRUE			//no snacks mid surgery
-	return FALSE
+// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/: usunięte nieużywane /obj/item/organ/proc/check_for_surgery()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
 	return //so we don't grant the organ's action to mobs who pick up the organ.

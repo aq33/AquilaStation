@@ -1,63 +1,10 @@
-// AQUILA - port of the tgstation autopsy (coroner, tgstation#75065, #77386, #89094), in its step-based form from before the surgery rework.
-// Differences: own trait instead of TRAIT_DISSECTED, so experimental dissection still works on the same body;
-// no "surgically analyzed" speed bonus, no morbid mood, no operating computer experiment (we don't have them).
+// AQUILA - skaner autopsyjny z tgstation (coroner, tgstation#75065, #77386, #89094). Sama operacja autopsji jest w
+// aquila/code/modules/surgery_tg/operation_autopsy.dm. Własny trait zamiast TRAIT_DISSECTED, więc eksperymentalna sekcja
+// działa na tym samym ciele.
 
 /// The body has been autopsied already (cleared when it is revived)
 #define TRAIT_AUTOPSIED "autopsied"
 #define AUTOPSY_TRAIT "autopsy"
-
-/datum/surgery/autopsy
-	name = "autopsja"
-	ignore_clothes = TRUE
-	possible_locs = list(BODY_ZONE_CHEST)
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
-	steps = list(
-		/datum/surgery_step/incise,
-		/datum/surgery_step/retract_skin,
-		/datum/surgery_step/autopsy,
-		/datum/surgery_step/close,
-	)
-
-/datum/surgery/autopsy/mechanic
-	name = "analiza awarii systemu"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
-	steps = list(
-		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/open_hatch,
-		/datum/surgery_step/autopsy,
-		/datum/surgery_step/mechanic_close,
-	)
-
-/datum/surgery/autopsy/can_start(mob/user, mob/living/patient)
-	if(!..())
-		return FALSE
-	if(patient.stat != DEAD)
-		return FALSE
-	if(HAS_TRAIT(patient, TRAIT_AUTOPSIED))
-		return FALSE
-	return TRUE
-
-/datum/surgery_step/autopsy
-	name = "przeprowadź autopsję (skaner autopsyjny)"
-	implements = list(/obj/item/autopsy_scanner = 100)
-	time = 10 SECONDS
-	success_sound = 'sound/machines/ping.ogg'
-
-/datum/surgery_step/autopsy/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_notice("Zaczynasz autopsję [target]..."),
-		span_notice("[user] przeprowadza autopsję [target] za pomocą [tool]."),
-		span_notice("[user] używa [tool] na klatce piersiowej [target]."))
-
-/datum/surgery_step/autopsy/success(mob/living/user, mob/living/carbon/target, target_zone, obj/item/autopsy_scanner/tool, datum/surgery/surgery, default_display_results = FALSE)
-	ADD_TRAIT(target, TRAIT_AUTOPSIED, AUTOPSY_TRAIT)
-	tool.scan_cadaver(user, target)
-	return ..()
-
-/datum/surgery_step/autopsy/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	display_results(user, target, span_warning("Partaczysz i obijasz klatkę piersiową [target]!"),
-		span_warning("[user] partaczy i obija klatkę piersiową [target]!"),
-		span_warning("[user] partaczy!"))
-	target.adjustBruteLoss(5)
 
 /// A revived body can be autopsied again
 /mob/living/revive(full_heal = 0, admin_revive = 0)

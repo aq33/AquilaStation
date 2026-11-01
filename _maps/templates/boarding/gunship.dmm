@@ -699,7 +699,7 @@
 /area/dropship/generic)
 "MB" = (
 /obj/machinery/vending/wallmed{
-	products = list(/obj/item/reagent_containers/syringe = 3, /obj/item/stack/medical/gauze = 3, /obj/item/reagent_containers/food/drinks/bottle/vodka = 3, /obj/item/reagent_containers/medspray/sterilizine = 3)
+	products = list(/obj/item/reagent_containers/syringe = 3, /obj/item/stack/medical/bandage = 3, /obj/item/reagent_containers/food/drinks/bottle/vodka = 3, /obj/item/reagent_containers/medspray/sterilizine = 3)
 	},
 /turf/closed/indestructible/dropship{
 	icon_state = "18"

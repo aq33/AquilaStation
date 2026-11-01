@@ -50,7 +50,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/stack/medical/gauze/improvised{
+/obj/item/stack/medical/bandage/makeshift{
 	pixel_y = -2
 	},
 /turf/open/floor/plating{
@@ -832,8 +832,8 @@
 	icon_state = "tile_full";
 	color = "#52B4E9"
 	},
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment{
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -889,7 +889,7 @@
 	icon_state = "tile_full";
 	color = "#52B4E9"
 	},
-/obj/item/stack/medical/gauze/improvised,
+/obj/item/stack/medical/bandage/makeshift,
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
 	},
@@ -1154,7 +1154,7 @@
 /obj/effect/turf_decal/siding/blue/end{
 	dir = 1
 	},
-/obj/item/stack/medical/gauze/improvised,
+/obj/item/stack/medical/bandage/makeshift,
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/virtual_domain)
@@ -1424,7 +1424,7 @@
 	color = "#52B4E9"
 	},
 /obj/structure/table/glass,
-/obj/item/stack/medical/gauze{
+/obj/item/stack/medical/bandage{
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/siding/blue{

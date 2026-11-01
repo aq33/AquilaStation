@@ -667,7 +667,7 @@
 /area/virtual_domain)
 "bO" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/medical/ointment{
+/obj/item/stack/medical/mesh{
 	pixel_y = 1;
 	pixel_x = 1
 	},
@@ -828,7 +828,7 @@
 	pixel_y = 1;
 	pixel_x = 18
 	},
-/obj/item/stack/medical/gauze{
+/obj/item/stack/medical/bandage{
 	pixel_x = -15;
 	pixel_y = 10
 	},
@@ -1486,7 +1486,7 @@
 /obj/item/tank/internals/anesthetic{
 	pixel_y = 4
 	},
-/obj/item/stack/medical/gauze{
+/obj/item/stack/medical/bandage{
 	pixel_y = 16;
 	pixel_x = -7
 	},

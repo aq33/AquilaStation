@@ -391,7 +391,7 @@
 	"
 	required_atoms = list(
 		/obj/item/food/grown/poppy = 1,
-		/obj/item/stack/medical/gauze = 4,
+		/obj/item/stack/medical/bandage = 4,
 	)
 	result_atoms = list(/obj/item/food/grown/poppy/blessed)
 	cost = 1
