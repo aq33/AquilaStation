@@ -1132,6 +1132,7 @@
 #include "code\modules\detectivework\ballistics.dm"
 #include "code\modules\detectivework\wound_log.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_heater.dm"
+#include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
 #include "code\__DEFINES\sticker.dm"
