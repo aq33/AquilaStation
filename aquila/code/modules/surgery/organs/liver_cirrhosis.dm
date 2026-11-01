@@ -1,8 +1,10 @@
 // Marskość wątroby: mocny alkohol albo duża ilość alkoholu uszkadzają wątrobę mimo limitu upicia,
 // a długie picie zostawia trwałe zwłóknienie, którego nie da się wyleczyć inaczej niż przeszczepem wątroby.
 
-/// Alcohol tolerance of a normal organic liver (ALCOHOL_RATE), used to scale damage for cybernetic livers
-#define CIRRHOSIS_BASE_TOLERANCE 0.005
+/// Alcohol tolerance of a normal organic liver, used to scale damage for cybernetic livers
+#define CIRRHOSIS_BASE_TOLERANCE 0.002
+/// Mnożnik dodatkowych obrażeń od mocnego i dużej ilości alkoholu
+#define CIRRHOSIS_ABUSE_MULTIPLIER 0.15
 /// Drinks at least this strong count as hard liquor
 #define CIRRHOSIS_STRONG_BOOZEPWR 65
 /// Units of alcohol in the body above which drinking counts as heavy
@@ -14,6 +16,9 @@
 #define CIRRHOSIS_MAX 100
 
 /obj/item/organ/liver
+	// Wątroba obrywa od alkoholu 2,5 raza wolniej niż u Bee (ALCOHOL_RATE): butelka wódki uszkadza ją lekko,
+	// dwie mocno, a niewydolność przychodzi dopiero po trzeciej
+	alcohol_tolerance = CIRRHOSIS_BASE_TOLERANCE
 	/// Permanent scarring from alcohol, 0 to CIRRHOSIS_MAX. Only a new liver gets rid of it.
 	var/cirrhosis = 0
 
@@ -46,7 +51,7 @@
 		abuse_damage *= 0.5
 	if(HAS_TRAIT(drinker, TRAIT_LIGHT_DRINKER))
 		abuse_damage *= 1.5
-	abuse_damage *= alcohol_tolerance / CIRRHOSIS_BASE_TOLERANCE
+	abuse_damage *= CIRRHOSIS_ABUSE_MULTIPLIER * alcohol_tolerance / CIRRHOSIS_BASE_TOLERANCE
 	if(cirrhosis >= CIRRHOSIS_DECOMPENSATED)
 		abuse_damage *= 1.5
 	applyOrganDamage(abuse_damage)
@@ -91,6 +96,7 @@
 	return "\t<span class='alert'>Wykryto marskość wątroby ([stage], [round(liver.cirrhosis)]% zwłóknienia). Zalecane postępowanie: <b>abstynencja i przeszczep wątroby</b>.</span>"
 
 #undef CIRRHOSIS_BASE_TOLERANCE
+#undef CIRRHOSIS_ABUSE_MULTIPLIER
 #undef CIRRHOSIS_STRONG_BOOZEPWR
 #undef CIRRHOSIS_HEAVY_VOLUME
 #undef CIRRHOSIS_COMPENSATED

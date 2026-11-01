@@ -1154,7 +1154,6 @@
 	},
 /obj/machinery/power/apc/auto_name/south,
 /obj/structure/cable,
-/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/freezer,
 /area/chapel/office)
 "ct" = (
@@ -10311,7 +10310,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/slime_extract_requestor,
 /turf/open/floor/monotile/dark,
 /area/science)
 "Bf" = (
@@ -55024,7 +55022,7 @@ mP
 CA
 DV
 mP
-Tj
+mP
 mP
 Te
 mP
@@ -56059,7 +56057,7 @@ If
 rX
 TX
 nw
-mP
+Tj
 Jy
 ff
 eY

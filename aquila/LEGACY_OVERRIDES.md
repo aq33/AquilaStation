@@ -201,6 +201,8 @@ The other ~60 same-type redefinitions in `aquila/` call `..()`, so they are alre
 | Arm lock disables the arm with `disable_limb_temporarily()` | `nsv13/code/modules/jobs/security/martial_art.dm` | MAA used 100 stamina on an arm to disable it, which a pool can't do |
 | `code/__DEFINES/stamina.dm` (new) | `nsv13.dme` | Stamina defines used by the core hooks above |
 | `languages_possible_base.Copy()` instead of `languages_possible_base +=`; `/datum/language/vampiric` and `/datum/language/darkspawn` in `languages_possible_base` | `code/modules/surgery/organs/tongue.dm` | `+=` in the robot/ethereal/golem/slime tongue `Initialize()` added their language to the shared static list, so every tongue could speak it. Aquila antag languages need to be speakable like narsie/ratvar. Egg and squid tongues add their own language in `aquila/` (`eggpeople.dm`, `squidpeople.dm`). Test: `aquila_jezyki_ras` |
+| `\|=` instead of `+=` in the old keybinding loop | `code/__HELPERS/global_lists.dm` (`make_datum_references_lists()`) | `init_keybindings()` (aquila) already registers every keybinding, so the leftover core loop put each default key in `keybinding_list_by_key` twice and the Esc help page listed it twice |
+| `if(!LAZYFIND(gauss_gunners, user))` before granting `off_action` | `nsv13/code/modules/overmap/camera.dm` (`CreateEye()`) | A Gauss gunner got "Stop observing" next to our "Wyjdź z działa" (`aquila/code/modules/munitions/gauss_gunner_actions.dm`); both just left the gun |
 
 Pre-existing single-call hooks that stay in core: `parts += mouse_report()` (`roundend.dm`) and `/datum/admins/proc/reloadwhitelist` in the admin verb list (`admin_verbs.dm`).
 

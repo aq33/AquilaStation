@@ -62,7 +62,11 @@ GLOBAL_VAR(escape_menu_suicide_icon_base64)
 			persistent_menu.select_proc_callback?.Invoke(null)
 		else
 			menu.finished = TRUE
-	if(SStgui.close_user_uis(mob))
+	for(var/datum/tgui/ui in mob?.tgui_open_uis)
+		// Okno lobby nie ma krzyżyka i bez niego nie da się zgłosić gotowości
+		if(isnewplayer(mob) && ui.src_object == mob)
+			continue
+		ui.close()
 		. = TRUE
 
 /// Po otwarciu menu fokus znika z mapy i puszczenie klawisza może nie dotrzeć - zwalniamy wszystkie.

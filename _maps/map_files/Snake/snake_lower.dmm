@@ -97,6 +97,14 @@
 /obj/machinery/holopad,
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"al" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/munition_casts,
+/obj/item/munitions_analyzer,
+/obj/item/forging_hammer,
+/obj/item/forging_hammer,
+/turf/open/floor/engine,
+/area/nsv/weapons/fore)
 "am" = (
 /obj/machinery/door/airlock/ship/security/glass{
 	name = "Labor Shuttle Dock";
@@ -14188,11 +14196,7 @@
 	name = "Executive officer's Office"
 	})
 "Wc" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/munition_casts,
-/obj/item/munitions_analyzer,
-/obj/item/forging_hammer,
-/obj/item/forging_hammer,
+/obj/machinery/munitions_forge/electroplater,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "Wd" = (
@@ -14532,7 +14536,6 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/machinery/munitions_forge/electroplater,
 /turf/open/floor/engine,
 /area/nsv/weapons/fore)
 "XD" = (
@@ -66067,7 +66070,7 @@ lp
 SP
 SP
 Ik
-SP
+al
 SP
 SP
 EC

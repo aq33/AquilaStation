@@ -1,13 +1,13 @@
 // Paleta przycisków akcji w stylu BeeStation, na naszym systemie akcji.
-// Pierwszy rząd mieści ACTION_PALETTE_ROW przycisków, reszta chowa się do palety (pasek pod rzędem),
-// którą kliknięciem rozwija się i zwija. Zastępuje dawny przycisk "Hide Buttons" (ten sam obiekt HUD-u).
+// Pierwszy rząd mieści ACTION_PALETTE_ROW przycisków, reszta stoi w rzędach pod paskiem palety.
+// Domyślnie wszystkie są na ekranie, kliknięcie paska chowa nadmiarowe i pokazuje je z powrotem. Zastępuje dawny przycisk "Hide Buttons" (ten sam obiekt HUD-u).
 
 #define ACTION_PALETTE_ROW 10
 #define ui_action_palette "WEST+0:23,NORTH-1:5"
 
 /datum/hud
 	/// Czy paleta z nadmiarowymi przyciskami akcji jest rozwinięta
-	var/action_palette_expanded = FALSE
+	var/action_palette_expanded = TRUE
 
 /atom/movable/screen/movable/action_button/hide_toggle
 	name = "Paleta przycisków"

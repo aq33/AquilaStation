@@ -200,8 +200,8 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 	icon_keyboard = null
 	light_color = LIGHT_COLOR_LAVENDER
 	circuit = /obj/item/circuitboard/computer/slime_market
-	/// Pad zamówień, z którego załoga zamawia ekstrakty
-	var/obj/machinery/slime_extract_requestor/request_pad
+	/// Pady zamówień, z których załoga zamawia ekstrakty
+	var/list/obj/machinery/slime_extract_requestor/request_pads = list()
 	var/static/list/slime_shop_items
 
 /obj/machinery/computer/slime_market/Initialize(mapload, obj/item/circuitboard/C)
@@ -216,9 +216,9 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 /obj/machinery/computer/slime_market/Destroy()
 	if(GLOB.default_slime_market == src)
 		GLOB.default_slime_market = null
-	if(request_pad?.console == src)
-		request_pad.console = null
-	request_pad = null
+	for(var/obj/machinery/slime_extract_requestor/pad as anything in request_pads)
+		pad.console = null
+	request_pads.Cut()
 	return ..()
 
 /obj/machinery/computer/slime_market/multitool_act(mob/living/user, obj/item/I)
@@ -269,8 +269,8 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 			"ratio" = GLOB.slime_market.get_price_ratio(core),
 		))
 	data["requests"] = list()
-	if(request_pad)
-		for(var/datum/extract_request_data/request as anything in request_pad.current_requests)
+	for(var/obj/machinery/slime_extract_requestor/pad as anything in request_pads)
+		for(var/datum/extract_request_data/request as anything in pad.current_requests)
 			var/obj/item/request_item = request.extract_path
 			data["requests"] += list(list(
 				"name" = request.request_name,
@@ -283,7 +283,7 @@ GLOBAL_DATUM(default_slime_market, /obj/machinery/computer/slime_market)
 				"points" = request.payout * SLIME_REQUEST_POINTS_PER_CREDIT,
 				"ready" = request.ready_for_pickup,
 			))
-	data["has_request_pad"] = !!request_pad
+	data["has_request_pad"] = !!length(request_pads)
 	return data
 
 /obj/machinery/computer/slime_market/ui_act(action, list/params)

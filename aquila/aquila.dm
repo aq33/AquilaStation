@@ -274,6 +274,7 @@
 #include "code\game\objects\items\tools\wrench.dm"
 #include "code\game\objects\structures\barsigns.dm"
 #include "code\game\objects\structures\billboard.dm"
+#include "code\game\objects\structures\catwalk.dm"
 #include "code\game\objects\structures\crate_lockers\closets.dm"
 #include "code\game\objects\structures\crucifix.dm"
 #include "code\game\objects\structures\flags.dm"
@@ -1132,6 +1133,7 @@
 #include "code\modules\detectivework\ballistics.dm"
 #include "code\modules\detectivework\wound_log.dm"
 #include "code\modules\reagents\chemistry\machinery\chem_heater.dm"
+#include "code\modules\reagents\chemistry\machinery\reagentgrinder.dm"
 
 // Ksenoarcheologia z Bee (BeeStation/BeeStation-Hornet#10906) + naklejki
 #include "code\__DEFINES\sticker.dm"
@@ -1653,6 +1655,7 @@
 #include "code\modules\unit_tests\aquila_reagent_name_keys.dm"
 #include "code\modules\unit_tests\aquila_auto_articles.dm"
 #include "code\modules\unit_tests\aquila_pollution.dm"
+#include "code\modules\unit_tests\aquila_pull_click.dm"
 #include "code\modules\unit_tests\hotspot_throttle.dm"
 #include "code\modules\unit_tests\hub_status.dm"
 #include "code\modules\unit_tests\aquila_hygiene.dm"
