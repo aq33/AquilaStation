@@ -25,7 +25,24 @@
 	patient.cauterise_wounds()
 	TEST_ASSERT(!patient.overlays_standing[WOUND_LAYER], "Cauterised bleeding still shows a wound overlay")
 
-	// Walking while bleeding: two steps east leave a full piece on the middle turf and a half piece ahead
+	// An old head wound does not keep bleeding from the head once the bleeding stopped
+	patient.add_bleeding(BLEED_CUT)
+	patient.aq_add_limb_bleed(BODY_ZONE_HEAD, patient.aq_bleed_rate())
+	patient.remove_status_effect(STATUS_EFFECT_BLEED)
+	TEST_ASSERT(!LAZYLEN(patient.aq_limb_bleed), "Stopped bleeding kept the limb shares")
+	patient.add_bleeding(BLEED_DEEP_WOUND)
+	patient.aq_add_limb_bleed(BODY_ZONE_CHEST, patient.aq_bleed_rate())
+	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "chest_2") && !findtext(patient.aq_wound_overlay_key, "head"), "A new chest bleed shows [patient.aq_wound_overlay_key]")
+
+	// A wound bleeds from its own limb
+	patient.cauterise_wounds()
+	var/datum/wound/pierce/open/hole = new()
+	hole.apply_wound(patient.get_bodypart(BODY_ZONE_L_LEG), silent = TRUE)
+	TEST_ASSERT(findtext(patient.aq_wound_overlay_key, "l_leg"), "A pierce wound on the left leg shows [patient.aq_wound_overlay_key]")
+	qdel(hole)
+	patient.cauterise_wounds()
+
+	// Dragged while bleeding: two steps east leave a full piece on the middle turf and a half piece ahead
 	var/turf/start = run_loc_floor_bottom_left
 	var/turf/middle = get_step(start, EAST)
 	var/turf/ahead = get_step(middle, EAST)
@@ -37,7 +54,7 @@
 	patient.make_blood_trail(ahead, middle, EAST, EAST)
 	test_area.has_gravity = old_gravity
 	var/obj/effect/decal/cleanable/blood/trail_holder/middle_trail = locate() in middle
-	TEST_ASSERT(middle_trail, "Walking while bleeding left no trail")
+	TEST_ASSERT(middle_trail, "Dragging a bleeding body left no trail")
 	TEST_ASSERT(LAZYLEN(middle_trail.trail_components) == 1, "The middle trail has [LAZYLEN(middle_trail.trail_components)] pieces instead of one joined piece")
 	var/obj/effect/decal/cleanable/blood/trail/middle_piece = middle_trail.trail_components[middle_trail.trail_components[1]]
 	TEST_ASSERT(!middle_piece.half_piece, "The two half pieces on the middle turf did not join")

@@ -80,7 +80,9 @@
 	if(!silent)
 		to_chat(victim, "<span class='userdanger'>[desc] ([limb.name])!</span>")
 		victim.visible_message("<span class='danger'>[victim] ma [examine_desc] ([limb.name])!</span>", ignored_mobs = victim)
+	var/bleed_before = victim.aq_bleed_rate()
 	on_apply()
+	victim.aq_add_limb_bleed(limb.body_zone, victim.aq_bleed_rate() - bleed_before) // the wound bleeds from its limb
 
 /// Effects that happen once, when the wound appears
 /datum/wound/proc/on_apply()

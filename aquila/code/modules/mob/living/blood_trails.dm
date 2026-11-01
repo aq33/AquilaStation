@@ -6,12 +6,8 @@
 // Trail sprites: our own trails from icons/effects/blood.dmi, in aquila/icons/effects/blood_trails.dmi with the half pieces
 // (*_start, 8 dirs: the half on the side opposite to the dir) cut out of them. tg has 4-dir halves only.
 
-/// Bleeding (our scale) above which walking leaves a trail. tg: get_bleed_rate() > 3
-#define BLOOD_TRAIL_WALK_BLEED BLEED_CUT
-/// Chance per step and point of bleeding to leave a trail while walking. tg: 16 on their bleed scale
-#define BLOOD_TRAIL_WALK_CHANCE 20
 
-/// Called from Move(): leaves a blood trail when dragged/crawling while hurt or walking while bleeding a lot (tg Move())
+/// Called from Move(): leaves a blood trail when dragged or crawling while bleeding or hurt (tg Move()); walking leaves drops only
 /mob/living/proc/aq_try_blood_trail(turf/start, was_facing)
 	var/turf/target_turf = loc
 	var/movement_direction = get_dir(start, target_turf)
@@ -24,9 +20,10 @@
 		if(health_check)
 			makeTrail(target_turf, start, was_facing)
 		return
-	var/blood_flow = aq_trail_bleed_rate()
-	var/bleeding_check = blood_flow > BLOOD_TRAIL_WALK_BLEED && prob(blood_flow * BLOOD_TRAIL_WALK_CHANCE)
-	if(health_check || bleeding_check)
+	// Trails only when dragged or crawling: a bleeding body lying down leaves an unbroken trail, walking leaves drops
+	if(!lying_down)
+		return
+	if(aq_trail_bleed_rate() > 0 || health_check)
 		make_blood_trail(target_turf, start, was_facing, movement_direction)
 
 /// How fast the mob bleeds for trails, held wounds bleed less
@@ -324,5 +321,3 @@
 	turf_loc_check = FALSE
 	leaves_trace = FALSE // the first drop leaves the trace
 
-#undef BLOOD_TRAIL_WALK_BLEED
-#undef BLOOD_TRAIL_WALK_CHANCE

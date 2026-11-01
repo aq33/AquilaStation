@@ -88,7 +88,7 @@
 
 /// Zapisuje nowe krwawienie jako pochodzące z kończyny. Pod opaską od razu je odcina.
 /mob/living/carbon/proc/aq_add_limb_bleed(zone, amount)
-	if(amount <= 0 || !(zone in GLOB.aq_tourniquet_zones))
+	if(amount <= 0 || !(zone in GLOB.aq_bleed_zones))
 		return
 	var/obj/item/tourniquet/tourniquet = LAZYACCESS(aq_tourniquets, zone)
 	if(tourniquet)
@@ -110,7 +110,7 @@
 	var/total = 0
 	for(var/obj/item/bodypart/limb as anything in bodyparts)
 		var/list/before = snapshot[limb]
-		if(!before || !(limb.body_zone in GLOB.aq_tourniquet_zones))
+		if(!before || !(limb.body_zone in GLOB.aq_bleed_zones))
 			continue
 		var/taken = (limb.brute_dam - before[1]) + (limb.burn_dam - before[2])
 		if(taken > 0)
@@ -120,6 +120,8 @@
 		aq_add_limb_bleed(zone, delta * hit_zones[zone] / total)
 
 GLOBAL_LIST_INIT(aq_tourniquet_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD))
+/// Strefy, z których śledzimy krwawienie (nakładki krwawienia na ciele); klatka nie ma opaski
+GLOBAL_LIST_INIT(aq_bleed_zones, list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_HEAD, BODY_ZONE_CHEST))
 
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
 	var/list/snapshot = aq_limb_damage_snapshot()

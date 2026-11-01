@@ -107,10 +107,31 @@
 	if(istype(carbon_owner))
 		carbon_owner.update_wound_overlays()
 
+/// Natural healing of the bleeding (tick) shrinks the limb shares with it; bandaging scales them in aq_scale_limb_bleed()
+/datum/status_effect/bleeding/tick()
+	. = ..()
+	var/mob/living/carbon/carbon_owner = owner
+	if(!QDELETED(src) && istype(carbon_owner))
+		carbon_owner.aq_trim_limb_bleed()
+
+/// Bleeding that heals by itself shrinks the limb shares too, so an old hit does not keep its overlay forever
+/mob/living/carbon/proc/aq_trim_limb_bleed()
+	if(!LAZYLEN(aq_limb_bleed))
+		return
+	var/total = aq_bleed_rate()
+	var/attributed = 0
+	for(var/zone in aq_limb_bleed)
+		attributed += max(0, aq_limb_bleed[zone])
+	if(attributed <= total || attributed <= 0)
+		return
+	for(var/zone in aq_limb_bleed)
+		aq_limb_bleed[zone] *= total / attributed
+
 /datum/status_effect/bleeding/on_remove()
 	var/mob/living/carbon/carbon_owner = owner
 	. = ..()
 	if(istype(carbon_owner))
+		carbon_owner.aq_limb_bleed = null // stopped bleeding: the next bleeding starts from scratch
 		carbon_owner.update_wound_overlays()
 
 /datum/status_effect/bleeding/on_creation(mob/living/new_owner, bleed_rate)
