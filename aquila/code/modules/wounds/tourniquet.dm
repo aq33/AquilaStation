@@ -73,6 +73,7 @@
 		return
 	for(var/zone in aq_limb_bleed)
 		aq_limb_bleed[zone] *= min(1, bleed_after / bleed_before)
+	update_wound_overlays()
 
 /// Przywraca krwawienie zatrzymane wcześniej opaską (bez dźwięku i bez wzoru łączenia z add_bleeding)
 /mob/living/carbon/proc/aq_restore_bleeding(amount)
@@ -98,6 +99,7 @@
 			return
 	LAZYINITLIST(aq_limb_bleed)
 	aq_limb_bleed[zone] += amount
+	update_wound_overlays()
 
 /// Rozdziela przyrost krwawienia na kończyny, które dostały obrażenia od czasu snapshotu
 /mob/living/carbon/proc/aq_attribute_bleed(list/snapshot, bleed_before)

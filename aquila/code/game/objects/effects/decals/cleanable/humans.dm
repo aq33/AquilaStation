@@ -17,7 +17,6 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	icon_state = "hitsplatter1"
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
-	var/turf/prev_loc
 	var/mob/living/blood_source
 	var/skip = FALSE
 	var/amount = 3
@@ -26,7 +25,6 @@
 	. = ..()
 	if(blood)
 		blood_source = blood
-	prev_loc = loc
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range, speed = 1)
 	for(var/i in 1 to range)
@@ -43,9 +41,6 @@
 			skip = TRUE
 			qdel(src)
 			return
-		var/turf/old_loc = prev_loc
-		prev_loc = loc
-		leave_squirt(get_dir(old_loc, loc))
 		for(var/atom/A in get_turf(src))
 			if(istype(A,/obj/item))
 				var/obj/item/I = A

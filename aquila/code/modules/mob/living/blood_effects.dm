@@ -1,5 +1,5 @@
 // AQUILA - blood feedback from shiptest-ss13/Shiptest#3239: drops of blood falling from a bleeding mob,
-// blood trails left by a flying hit splatter, splatters that stick to windows. Our bleeding is one status
+// splatters that stick to windows (the trails left by a flying splatter were dropped for tg blood trails). Our bleeding is one status
 // effect per mob (Bee), not per limb like Shiptest, so the drops follow the status effect.
 
 /particles/droplets
@@ -49,27 +49,6 @@
 	blood_drops.particles.color = owner.get_blood_color()
 	blood_drops.particles.spawning = rate / 2
 	blood_drops.particles.count = max(1, round(rate * 2))
-
-/// Thin trail left where the hit splatter flew, soaked up by bigger blood on the same turf
-/obj/effect/decal/cleanable/blood/squirt
-	name = "smuga krwi"
-	desc = "Krew rozprysła się tu w jednym kierunku."
-	icon = 'aquila/icons/effects/blood_squirt.dmi'
-	icon_state = "squirt"
-	random_icon_states = null
-
-/obj/effect/decal/cleanable/blood/hitsplatter/proc/leave_squirt(direction)
-	var/turf/here = loc
-	if(!isturf(here) || isgroundlessturf(here) || QDELETED(blood_source))
-		return
-	for(var/obj/effect/decal/cleanable/blood/existing in here)
-		if(existing != src)
-			return
-	var/obj/effect/decal/cleanable/blood/squirt/trail = new(here)
-	if(QDELETED(trail))
-		return
-	trail.setDir(direction)
-	trail.add_mob_blood(blood_source)
 
 /// Blood that hit a full tile window from the side, shown in the window's vis_contents
 /obj/effect/decal/cleanable/blood/splatter/over_window

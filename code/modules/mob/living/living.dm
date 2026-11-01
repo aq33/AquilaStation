@@ -744,8 +744,10 @@
 	if(active_storage && !(CanReach(active_storage.parent,view_only = TRUE)))
 		active_storage.close(src)
 
-	if(!(mobility_flags & MOBILITY_STAND) && !buckled && prob(getBruteLoss()*200/maxHealth))
-		makeTrail(newloc, T, old_direction)
+	// AQ EDIT START - tg blood trails, also left by walking while bleeding (aquila/code/modules/mob/living/blood_trails.dm)
+	if(!buckled && !moving_diagonally && loc != T)
+		aq_try_blood_trail(T, old_direction)
+	// AQ EDIT END
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction, spec_color)
 	if(!has_gravity() || (movement_type & THROWN))
