@@ -9,3 +9,7 @@
   - bugfix: Eksport cargo nie dopisuje angielskiego „s” do polskich nazw.
   - code_imp: Słownik tłumaczeń w aquila/SLOWNIK_TLUMACZEN.md i test unikalności kluczy
       reagentów.
+  - bugfix: Reakcje chemiczne w czasie (np. amoniak) nie zostawiają już 0,01–0,02u
+      jednego ze składników.
+  - tweak: Panel „Receptury” w dozowniku chemicznym pokazuje zakres pH, optymalną
+      temperaturę, przegrzanie, ciepło reakcji i minimalną czystość.
