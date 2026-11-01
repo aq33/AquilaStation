@@ -8,8 +8,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump
 	icon_state = "vent_map-3"
 
-	name = "air vent"
-	desc = "Has a valve and pump attached to it."
+	name = "nawiewnik"
+	desc = "Ma zamontowany zawór i pompę."
 
 	use_power = IDLE_POWER_USE
 	can_unwrench = TRUE
@@ -161,7 +161,7 @@
 
 	var/area/A = get_area(src)
 	if(!A.air_vent_names[id_tag])
-		name = "\improper [A.name] vent pump #[A.air_vent_names.len + 1]"
+		name = "\improper nawiewnik #[A.air_vent_names.len + 1] ([A.name])"
 		A.air_vent_names[id_tag] = name
 	A.air_vent_info[id_tag] = signal.data
 
@@ -293,7 +293,7 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume
-	name = "large air vent"
+	name = "duży nawiewnik"
 	power_channel = AREA_USAGE_EQUIP
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/New()
@@ -355,29 +355,29 @@
 	icon_state = "vent_map_siphon_on-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/toxin_output
-	name = "plasma tank output inlet"
+	name = "wylot zbiornika plazmy"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_TOX
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/oxygen_output
-	name = "oxygen tank output inlet"
+	name = "wylot zbiornika tlenu"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_O2
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrogen_output
-	name = "nitrogen tank output inlet"
+	name = "wylot zbiornika azotu"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_N2
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/mix_output
-	name = "mix tank output inlet"
+	name = "wylot zbiornika mieszanki"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_MIX
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/nitrous_output
-	name = "nitrous oxide tank output inlet"
+	name = "wylot zbiornika podtlenku azotu"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_N2O
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/carbon_output
-	name = "carbon dioxide tank output inlet"
+	name = "wylot zbiornika dwutlenku węgla"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_CO2
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/incinerator_output
-	name = "incinerator chamber output inlet"
+	name = "wylot komory spalarni"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_INCINERATOR
 	frequency = FREQ_ATMOS_CONTROL
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/toxins_mixing_output
-	name = "toxins mixing output inlet"
+	name = "wylot mieszania toksyn"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_TOXINS_LAB
 	frequency = FREQ_ATMOS_CONTROL
 
@@ -433,7 +433,7 @@
 	icon_state = "vent_map_siphon_on-3"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/siphon/atmos/air_output
-	name = "air mix tank output inlet"
+	name = "wylot zbiornika powietrza"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_AIR
 
 #undef INT_BOUND

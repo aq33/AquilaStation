@@ -17,15 +17,15 @@
 #define LIGHT_POWER_GAIN 50
 
 /obj/item/wallframe/light_fixture
-	name = "light fixture frame"
-	desc = "Used for building lights."
+	name = "rama oprawy oświetleniowej"
+	desc = "Służy do budowy lamp."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
 	result_path = /obj/structure/light_construct
 	inverse = TRUE
 
 /obj/item/wallframe/light_fixture/small
-	name = "small light fixture frame"
+	name = "rama małej oprawy oświetleniowej"
 	icon_state = "bulb-construct-item"
 	result_path = /obj/structure/light_construct/small
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
@@ -41,8 +41,8 @@
 
 
 /obj/structure/light_construct
-	name = "light fixture frame"
-	desc = "A light fixture under construction."
+	name = "rama oprawy oświetleniowej"
+	desc = "Oprawa oświetleniowa w budowie."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
 	anchored = TRUE
@@ -76,7 +76,7 @@
 		if(1)
 			. += "To pusta rama."
 		if(2)
-			. += "It's wired."
+			. += "Jest okablowana."
 		if(3)
 			. += "Obudowa jest zamknięta."
 	if(cell_connectors)
@@ -131,7 +131,7 @@
 					to_chat(user, "<span class='notice'>Zaczynasz rozbierać [src]...</span>")
 					if (W.use_tool(src, user, 30, volume=50))
 						new /obj/item/stack/sheet/iron(drop_location(), sheets_refunded)
-						user.visible_message("[user.name] deconstructs [src].", \
+						user.visible_message("[user.name] rozbiera [src].", \
 							"<span class='notice'>Rozbierasz [src].</span>", "<span class='italics'>Słyszysz grzechotkę.</span>")
 						playsound(src, 'sound/items/deconstruct.ogg', 75, 1)
 						qdel(src)
@@ -162,7 +162,7 @@
 				return
 
 			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("[user.name] closes [src]'s casing.", \
+				user.visible_message("[user.name] zamyka obudowę [src].", \
 					"<span class='notice'>Zamykasz obudowę [src].</span>", "<span class='italics'>Słyszysz przykręcanie.</span>")
 				W.play_tool_sound(src, 75)
 				switch(fixture_type)
@@ -204,7 +204,7 @@
 		cell = null
 
 /obj/structure/light_construct/small
-	name = "small light fixture frame"
+	name = "rama małej oprawy oświetleniowej"
 	icon_state = "bulb-construct-stage1"
 	fixture_type = "bulb"
 	sheets_refunded = 1
@@ -213,12 +213,12 @@
 
 // the standard tube light fixture
 /obj/machinery/light
-	name = "light fixture"
+	name = "oprawa oświetleniowa"
 	icon = 'icons/obj/lighting.dmi'
 	var/overlayicon = 'icons/obj/lighting_overlay.dmi'
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube"
-	desc = "A lighting fixture."
+	desc = "Oprawa oświetleniowa."
 	layer = WALL_OBJ_LAYER
 	max_integrity = 100
 	use_power = ACTIVE_POWER_USE
@@ -271,7 +271,7 @@
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 6
-	desc = "A small lighting fixture."
+	desc = "Mała oprawa oświetleniowa."
 	bulb_colour = "#FFE6CC" //little less cozy, bit more industrial, but still cozy.. -qwerty
 	light_type = /obj/item/light/bulb
 
@@ -545,7 +545,7 @@
 	else if(status == LIGHT_EMPTY)
 		if(W.tool_behaviour == TOOL_SCREWDRIVER) //If it's a screwdriver open it.
 			W.play_tool_sound(src, 75)
-			user.visible_message("[user.name] opens [src]'s casing.", \
+			user.visible_message("[user.name] otwiera obudowę [src].", \
 				"<span class='notice'>Otwierasz obudowę [src].</span>", "<span class='italics'>Słyszysz hałas.</span>")
 			deconstruct()
 		else
@@ -809,7 +809,7 @@
 		for(var/mob/living/L in range(3, src))
 			L.fire_stacks = max(L.fire_stacks, 3)
 			L.IgniteMob()
-			L.electrocute_act(0, "Tesla Light Zap", tesla_shock = TRUE, stun = TRUE)
+			L.electrocute_act(0, "Wyładowanie z lampy", tesla_shock = TRUE, stun = TRUE)
 		qdel(src)
 	else
 		return ..()
@@ -867,8 +867,8 @@
 		return BRUTELOSS
 
 /obj/item/light/tube
-	name = "light tube"
-	desc = "A replacement light tube."
+	name = "świetlówka"
+	desc = "Zapasowa świetlówka."
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
@@ -878,8 +878,8 @@
 	status = LIGHT_BROKEN
 
 /obj/item/light/bulb
-	name = "light bulb"
-	desc = "A replacement light bulb."
+	name = "żarówka"
+	desc = "Zapasowa żarówka."
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
@@ -900,13 +900,13 @@
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
-			desc = "A replacement [name]."
+			desc = "Zapasowe źródło światła: [name]."
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			desc = "A burnt-out [name]."
+			desc = "Przepalone źródło światła: [name]."
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			desc = "A broken [name]."
+			desc = "Rozbite źródło światła: [name]."
 
 /obj/item/light/Initialize(mapload)
 	. = ..()
@@ -961,7 +961,7 @@
 
 /obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		visible_message("<span class='danger'>[src] shatters.</span>","<span class='italics'>Słyszysz, jak pęka mały szklany przedmiot.</span>")
+		visible_message("<span class='danger'>[src] rozpada się na kawałki.</span>","<span class='italics'>Słyszysz, jak pęka mały szklany przedmiot.</span>")
 		status = LIGHT_BROKEN
 		force = 5
 		playsound(src.loc, 'sound/effects/glasshit.ogg', 75, 1)
@@ -971,7 +971,7 @@
 
 
 /obj/machinery/light/floor
-	name = "floor light"
+	name = "lampa podłogowa"
 	icon = 'icons/obj/lighting.dmi'
 	base_state = "floor"		// base description and icon_state
 	icon_state = "floor"

@@ -1,6 +1,6 @@
 /obj/structure/sign/barsign // All Signs are 64 by 32 pixels, they take two tiles
-	name = "bar sign"
-	desc = "A bar sign which has not been initialized, somehow. Complain at a coder!"
+	name = "szyld baru"
+	desc = "Szyld baru, który jakimś cudem się nie zainicjował. Poskarż się koderowi!"
 	icon = 'icons/obj/barsigns.dmi'
 	icon_state = "empty"
 	req_access = list(ACCESS_BAR)
@@ -145,64 +145,64 @@
 
 /datum/barsign/New()
 	if(!desc)
-		desc = "It displays \"[name]\"."
+		desc = "Wyświetla napis „[name]”."
 
 // Specific bar signs.
 
 /datum/barsign/maltesefalcon
 	name = "Maltese Falcon"
 	icon = "maltesefalcon"
-	desc = "The Maltese Falcon, Space Bar and Grill."
+	desc = "The Maltese Falcon, kosmiczny bar i grill."
 
 /datum/barsign/thebark
 	name = "The Bark"
 	icon = "thebark"
-	desc = "Ian's bar of choice."
+	desc = "Ulubiony bar Iana."
 
 /datum/barsign/harmbaton
 	name = "The Harmbaton"
 	icon = "theharmbaton"
-	desc = "A great dining experience for both security members and assistants."
+	desc = "Świetne doznania kulinarne zarówno dla ochrony, jak i majtków."
 
 /datum/barsign/thesingulo
 	name = "The Singulo"
 	icon = "thesingulo"
-	desc = "Where people go that'd rather not be called by their name."
+	desc = "Tu przychodzą ci, którzy woleliby, żeby nie wołano ich po imieniu."
 
 /datum/barsign/thedrunkcarp
 	name = "The Drunk Carp"
 	icon = "thedrunkcarp"
-	desc = "Don't drink and swim."
+	desc = "Nie pij, kiedy pływasz."
 
 /datum/barsign/scotchservinwill
 	name = "Scotch Servin Willy's"
 	icon = "scotchservinwill"
-	desc = "Willy sure moved up in the world from clown to bartender."
+	desc = "Willy naprawdę awansował z klauna na barmana."
 
 /datum/barsign/officerbeersky
 	name = "Officer Beersky's"
 	icon = "officerbeersky"
-	desc = "Man eat a dong, these drinks are great."
+	desc = "Kurde balans, te drinki są świetne."
 
 /datum/barsign/thecavern
 	name = "The Cavern"
 	icon = "thecavern"
-	desc = "Fine drinks while listening to some fine tunes."
+	desc = "Dobre drinki przy dobrej muzyce."
 
 /datum/barsign/theouterspess
 	name = "The Outer Spess"
 	icon = "theouterspess"
-	desc = "This bar isn't actually located in outer space."
+	desc = "Ten bar wcale nie leży w otwartym kosmosie."
 
 /datum/barsign/slipperyshots
 	name = "Slippery Shots"
 	icon = "slipperyshots"
-	desc = "Slippery slope to drunkeness with our shots!"
+	desc = "Nasze szoty to równia pochyła do pijaństwa!"
 
 /datum/barsign/thegreytide
 	name = "The Grey Tide"
 	icon = "thegreytide"
-	desc = "Abandon your toolboxing ways and enjoy a lazy beer!"
+	desc = "Porzuć okładanie ludzi skrzynką i wypij leniwe piwko!"
 
 /datum/barsign/honkednloaded
 	name = "Honked 'n' Loaded"
@@ -212,82 +212,82 @@
 /datum/barsign/thenest
 	name = "The Nest"
 	icon = "thenest"
-	desc = "A good place to retire for a drink after a long night of crime fighting."
+	desc = "Dobre miejsce, żeby wpaść na drinka po długiej nocy walki z przestępczością."
 
 /datum/barsign/thecoderbus
 	name = "The Coderbus"
 	icon = "thecoderbus"
-	desc = "A very controversial bar known for its wide variety of constantly-changing drinks."
+	desc = "Bardzo kontrowersyjny bar znany z ogromnego wyboru ciągle zmieniających się drinków."
 
 /datum/barsign/theadminbus
 	name = "The Adminbus"
 	icon = "theadminbus"
-	desc = "An establishment visited mainly by space-judges. It isn't bombed nearly as much as court hearings."
+	desc = "Lokal odwiedzany głównie przez kosmicznych sędziów. Wysadzają go znacznie rzadziej niż rozprawy sądowe."
 
 /datum/barsign/oldcockinn
 	name = "The Old Cock Inn"
 	icon = "oldcockinn"
-	desc = "Something about this sign fills you with despair."
+	desc = "Coś w tym szyldzie napawa cię rozpaczą."
 
 /datum/barsign/thewretchedhive
 	name = "The Wretched Hive"
 	icon = "thewretchedhive"
-	desc = "Legally obligated to instruct you to check your drinks for acid before consumption."
+	desc = "Prawnie zobowiązany do przypominania, żeby przed wypiciem sprawdzić, czy w drinku nie ma kwasu."
 
 /datum/barsign/robustacafe
 	name = "The Robusta Cafe"
 	icon = "robustacafe"
-	desc = "Holder of the 'Most Lethal Barfights' record 5 years uncontested."
+	desc = "Od 5 lat niezagrożony rekordzista w kategorii „Najbardziej Śmiercionośne Bójki w Barze”."
 
 /datum/barsign/emergencyrumparty
 	name = "The Emergency Rum Party"
 	icon = "emergencyrumparty"
-	desc = "Recently relicensed after a long closure."
+	desc = "Niedawno odzyskał licencję po długim zamknięciu."
 
 /datum/barsign/combocafe
 	name = "The Combo Cafe"
 	icon = "combocafe"
-	desc = "Renowned system-wide for their utterly uncreative drink combinations."
+	desc = "Słynny w całym układzie ze swoich kompletnie nietwórczych połączeń drinków."
 
 /datum/barsign/vladssaladbar
 	name = "Vlad's Salad Bar"
 	icon = "vladssaladbar"
-	desc = "Under new management. Vlad was always a bit too trigger happy with that shotgun."
+	desc = "Pod nowym zarządem. Vlad zawsze trochę za chętnie sięgał po tę strzelbę."
 
 /datum/barsign/theshaken
 	name = "The Shaken"
 	icon = "theshaken"
-	desc = "This establishment does not serve stirred drinks."
+	desc = "Ten lokal nie serwuje mieszanych drinków."
 
 /datum/barsign/thealenath
 	name = "The Ale' Nath"
 	icon = "thealenath"
-	desc = "All right, buddy. I think you've had EI NATH. Time to get a cab."
+	desc = "Dobra, kolego. Chyba masz już EI NATH. Czas na taksówkę."
 
 /datum/barsign/thealohasnackbar
 	name = "The Aloha Snackbar"
 	icon = "alohasnackbar"
-	desc = "A tasteful, inoffensive tiki bar sign."
+	desc = "Gustowny, nikogo nieobrażający szyld baru tiki."
 
 /datum/barsign/thenet
 	name = "The Net"
 	icon = "thenet"
-	desc = "You just seem to get caught up in it for hours."
+	desc = "Jakoś tak wciąga cię na całe godziny."
 
 /datum/barsign/maidcafe
 	name = "Maid Cafe"
 	icon = "maidcafe"
-	desc = "Welcome back, master!"
+	desc = "Witaj z powrotem, panie!"
 
 /datum/barsign/the_lightbulb
 	name = "The Lightbulb"
 	icon = "the_lightbulb"
-	desc = "A cafe popular among moths and moffs. Once shut down for a week after the bartender used mothballs to protect her spare uniforms."
+	desc = "Kawiarnia popularna wśród ciem i ćmoków. Kiedyś zamknięta na tydzień, bo barmanka zabezpieczyła zapasowe mundurki kulkami na mole."
 
 /datum/barsign/goose
 	name = "The Loose Goose"
 	icon = "goose"
-	desc = "Drink till you puke and/or break the laws of reality!"
+	desc = "Pij, aż zwymiotujesz i/lub złamiesz prawa rzeczywistości!"
 
 /datum/barsign/hiddensigns
 	hidden = TRUE
@@ -300,16 +300,16 @@
 /datum/barsign/hiddensigns/empbarsign
 	name = null
 	icon = "empbarsign"
-	desc = "Something has gone very wrong."
+	desc = "Coś poszło bardzo nie tak."
 	rename_area = FALSE
 
 /datum/barsign/hiddensigns/syndibarsign
 	name = "Syndi Cat"
 	icon = "syndibarsign"
-	desc = "Syndicate or die."
+	desc = "Syndykat albo śmierć."
 
 /datum/barsign/hiddensigns/signoff
 	name = null
 	icon = "empty"
-	desc = "This sign doesn't seem to be on."
+	desc = "Ten szyld chyba nie jest włączony."
 	rename_area = FALSE

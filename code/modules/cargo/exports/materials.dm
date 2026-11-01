@@ -1,6 +1,6 @@
 /datum/export/material
 	cost = 5 // Cost per MINERAL_MATERIAL_AMOUNT, which is 2000cm3 as of April 2016.
-	message = "cm3 of developer's tears. Please, report this on github"
+	message = "cm3 łez programisty. Zgłoś to na GitHubie"
 	var/material_id = null
 	export_types = list(
 		/obj/item/stack/sheet/mineral, /obj/item/stack/tile/mineral,
@@ -32,52 +32,52 @@
 /datum/export/material/bananium
 	cost = 1000
 	material_id = /datum/material/bananium
-	message = "cm3 of bananium"
+	message = "cm3 bananium"
 
 /datum/export/material/diamond
 	cost = 500
 	material_id = /datum/material/diamond
-	message = "cm3 of diamonds"
+	message = "cm3 diamentu"
 
 /datum/export/material/plasma
 	cost = 200
 	k_elasticity = 0
 	material_id = /datum/material/plasma
-	message = "cm3 of plasma"
+	message = "cm3 plazmy"
 
 /datum/export/material/uranium
 	cost = 100
 	material_id = /datum/material/uranium
-	message = "cm3 of uranium"
+	message = "cm3 uranu"
 
 /datum/export/material/gold
 	cost = 125
 	material_id = /datum/material/gold
-	message = "cm3 of gold"
+	message = "cm3 złota"
 
 /datum/export/material/copper
 	cost = 15
 	material_id = /datum/material/copper
-	message = "cm3 of copper"
+	message = "cm3 miedzi"
 
 /datum/export/material/silver
 	cost = 50
 	material_id = /datum/material/silver
-	message = "cm3 of silver"
+	message = "cm3 srebra"
 
 /datum/export/material/titanium
 	cost = 125
 	material_id = /datum/material/titanium
-	message = "cm3 of titanium"
+	message = "cm3 tytanu"
 
 /datum/export/material/plastitanium
 	cost = 325 // plasma + titanium costs
 	material_id = /datum/material/titanium // code can only check for one material_id; plastitanium is half plasma, half titanium
-	message = "cm3 of plastitanium"
+	message = "cm3 plastytanu"
 
 /datum/export/material/iron
 	cost = 5
-	message = "cm3 of metal"
+	message = "cm3 metalu"
 	material_id = /datum/material/iron
 	export_types = list(
 		/obj/item/stack/sheet/iron, /obj/item/stack/tile/plasteel,
@@ -85,7 +85,7 @@
 
 /datum/export/material/glass
 	cost = 5
-	message = "cm3 of glass"
+	message = "cm3 szkła"
 	material_id = /datum/material/glass
 	export_types = list(/obj/item/stack/sheet/glass, /obj/item/stack/ore,
 		/obj/item/shard)

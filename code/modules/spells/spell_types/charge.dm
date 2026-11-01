@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/charge
-	name = "Charge"
-	desc = "This spell can be used to recharge a variety of things in your hands, from magical artifacts to electrical components. A creative wizard can even use it to grant magical power to a fellow magic user."
+	name = "Naładowanie"
+	desc = "To zaklęcie ładuje najróżniejsze rzeczy trzymane w dłoniach, od magicznych artefaktów po podzespoły elektryczne. Pomysłowy czarodziej może nim nawet obdarzyć magiczną mocą innego maga."
 
 	school = "transmutation"
 	charge_max = 600
@@ -35,7 +35,7 @@
 		for(var/obj/item in hand_items)
 			if(istype(item, /obj/item/spellbook))
 				to_chat(L, "<span class='danger'>Na przedniej okładce pojawiają się świecące czerwone litery...</span>")
-				to_chat(L, "<span class='warning'>[pick("NICE TRY BUT NO!","CLEVER BUT NOT CLEVER ENOUGH!", "SUCH FLAGRANT CHEESING IS WHY WE ACCEPTED YOUR APPLICATION!", "CUTE! VERY CUTE!", "YOU DIDN'T THINK IT'D BE THAT EASY, DID YOU?")]</span>")
+				to_chat(L, "<span class='warning'>[pick("NIEZŁA PRÓBA, ALE NIE!","SPRYTNE, ALE NIE DOŚĆ SPRYTNE!", "WŁAŚNIE ZA TAKIE BEZCZELNE KOMBINOWANIE PRZYJĘLIŚMY TWOJE PODANIE!", "SŁODKIE! BARDZO SŁODKIE!", "CHYBA NIE MYŚLAŁEŚ, ŻE TO BĘDZIE TAKIE PROSTE?")]</span>")
 				burnt_out = TRUE
 			else if(istype(item, /obj/item/book/granter/spell))
 				var/obj/item/book/granter/spell/I = item

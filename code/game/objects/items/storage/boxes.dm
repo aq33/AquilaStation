@@ -23,8 +23,8 @@
  */
 
 /obj/item/storage/box
-	name = "box"
-	desc = "It's just an ordinary box."
+	name = "pudełko"
+	desc = "Zwykłe pudełko."
 	icon_state = "box"
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -79,8 +79,8 @@
 
 //Locker overloading issue solving boxes
 /obj/item/storage/box/suitbox
-	name = "compression box of invisible outfits"
-	desc = "a box with bluespace compression technology that nanotrasen has approved, but this is extremely heavy... If you're glued with this box, pull out of the contents and fold the box."
+	name = "kompresyjne pudełko z niewidzialnymi strojami"
+	desc = "Pudełko z zatwierdzoną przez Nanotrasen technologią kompresji bluespace, ale strasznie ciężkie... Jeśli to pudełko przykleiło ci się do ręki, wyjmij zawartość i złóż je."
 	w_class = WEIGHT_CLASS_HUGE
 	item_flags = SLOWS_WHILE_IN_HAND
 	slowdown = 4
@@ -92,7 +92,7 @@
 		examples exist in `closets/secure/security.dm` */
 
 /obj/item/storage/box/suitbox/wardrobe // for `wardrobe.dm`
-	name = "compression box of crew outfits"
+	name = "kompresyjne pudełko ze strojami załogi"
 	var/list/repeated_items = list( // just as a sample
 		/obj/item/clothing/under/color/blue,
 		/obj/item/clothing/under/color/jumpskirt/blue,
@@ -108,8 +108,8 @@
 //Mime spell boxes
 
 /obj/item/storage/box/mime
-	name = "invisible box"
-	desc = "Unfortunately not large enough to trap the mime."
+	name = "niewidzialne pudełko"
+	desc = "Niestety za małe, żeby zamknąć w nim mima."
 	foldable = null
 	icon_state = "box"
 	item_state = null
@@ -128,7 +128,7 @@
 //Disk boxes
 
 /obj/item/storage/box/disks
-	name = "diskette box"
+	name = "pudełko dyskietek"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks/PopulateContents()
@@ -137,7 +137,7 @@
 
 
 /obj/item/storage/box/disks_plantgene
-	name = "plant data disks box"
+	name = "pudełko dysków z danymi roślin"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks_plantgene/PopulateContents()
@@ -145,7 +145,7 @@
 		new /obj/item/disk/plant_disk(src)
 
 /obj/item/storage/box/disks_nanite
-	name = "nanite program disks box"
+	name = "pudełko dysków z programami nanitów"
 	illustration = "disk_kit"
 
 /obj/item/storage/box/disks_nanite/PopulateContents()
@@ -227,8 +227,8 @@
 	new /obj/item/radio/off(src)
 
 /obj/item/storage/box/gloves
-	name = "box of latex gloves"
-	desc = "Contains sterile latex gloves."
+	name = "pudełko rękawiczek lateksowych"
+	desc = "Zawiera sterylne rękawiczki lateksowe."
 	illustration = "latex"
 
 /obj/item/storage/box/gloves/PopulateContents()
@@ -236,8 +236,8 @@
 		new /obj/item/clothing/gloves/color/latex(src)
 
 /obj/item/storage/box/masks
-	name = "box of sterile masks"
-	desc = "This box contains sterile medical masks."
+	name = "pudełko maseczek chirurgicznych"
+	desc = "W tym pudełku są sterylne maseczki medyczne."
 	illustration = "sterile"
 
 /obj/item/storage/box/masks/PopulateContents()
@@ -245,8 +245,8 @@
 		new /obj/item/clothing/mask/surgical(src)
 
 /obj/item/storage/box/syringes
-	name = "box of syringes"
-	desc = "A box full of syringes."
+	name = "pudełko strzykawek"
+	desc = "Pudełko pełne strzykawek."
 	illustration = "syringe"
 
 /obj/item/storage/box/syringes/PopulateContents()
@@ -254,7 +254,7 @@
 		new /obj/item/reagent_containers/syringe(src)
 
 /obj/item/storage/box/syringes/variety
-	name = "syringe variety box"
+	name = "pudełko z różnymi strzykawkami"
 
 /obj/item/storage/box/syringes/variety/PopulateContents()
 	new /obj/item/reagent_containers/syringe(src)
@@ -264,8 +264,8 @@
 	new /obj/item/reagent_containers/syringe/bluespace(src)
 
 /obj/item/storage/box/medipens
-	name = "box of medipens"
-	desc = "A box full of epinephrine MediPens."
+	name = "pudełko medipenów"
+	desc = "Pudełko pełne medipenów z epinefryną."
 	illustration = "syringe"
 
 /obj/item/storage/box/medipens/PopulateContents()
@@ -273,8 +273,8 @@
 		new /obj/item/reagent_containers/hypospray/medipen(src)
 
 /obj/item/storage/box/medipens/utility
-	name = "stimpack value kit"
-	desc = "A box with several stimpack medipens for the economical miner."
+	name = "oszczędnościowy zestaw stymulantów"
+	desc = "Pudełko z kilkoma medipenami ze stymulantem dla oszczędnego górnika."
 	illustration = "syringe"
 
 /obj/item/storage/box/medipens/utility/PopulateContents()
@@ -283,7 +283,7 @@
 		new /obj/item/reagent_containers/hypospray/medipen/stimpack(src)
 
 /obj/item/storage/box/beakers
-	name = "box of beakers"
+	name = "pudełko zlewek"
 	illustration = "beaker"
 
 /obj/item/storage/box/beakers/PopulateContents()
@@ -291,7 +291,7 @@
 		new /obj/item/reagent_containers/glass/beaker( src )
 
 /obj/item/storage/box/beakers/bluespace
-	name = "box of bluespace beakers"
+	name = "pudełko zlewek bluespace"
 	illustration = "bbeaker"
 
 /obj/item/storage/box/beakers/bluespace/PopulateContents()
@@ -299,7 +299,7 @@
 		new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
 /obj/item/storage/box/beakers/variety
-	name = "beaker variety box"
+	name = "pudełko z różnymi zlewkami"
 
 /obj/item/storage/box/beakers/variety/PopulateContents()
 	new /obj/item/reagent_containers/glass/beaker(src)
@@ -310,16 +310,16 @@
 	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
 /obj/item/storage/box/medsprays
-	name = "box of medical sprayers"
-	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."
+	name = "pudełko rozpylaczy medycznych"
+	desc = "Pudełko pełne rozpylaczy medycznych z odkręcanymi nakrętkami i precyzyjnymi dyszami."
 
 /obj/item/storage/box/medsprays/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/medspray( src )
 
 /obj/item/storage/box/injectors
-	name = "box of DNA injectors"
-	desc = "This box contains injectors, it seems."
+	name = "pudełko iniektorów DNA"
+	desc = "W tym pudełku są chyba iniektory."
 	illustration = "dna"
 
 /obj/item/storage/box/injectors/PopulateContents()
@@ -329,8 +329,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/flashbangs
-	name = "box of flashbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
+	name = "pudełko granatów hukowo-błyskowych (UWAGA)"
+	desc = "<B>UWAGA: te urządzenia są bardzo niebezpieczne i przy wielokrotnym użyciu mogą spowodować ślepotę lub głuchotę.</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
 
@@ -339,8 +339,8 @@
 		new /obj/item/grenade/flashbang(src)
 
 /obj/item/storage/box/flashes
-	name = "box of flashbulbs"
-	desc = "<B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
+	name = "pudełko żarówek do flashy"
+	desc = "<B>UWAGA: flashe mogą poważnie uszkodzić wzrok, wymagane są okulary ochronne.</B>"
 	icon_state = "secbox"
 	illustration = "flash"
 
@@ -351,8 +351,8 @@
 		new /obj/item/flashbulb(src)
 
 /obj/item/storage/box/stingbangs
-	name = "box of stingbangs (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause severe injuries or death in repeated use.</B>"
+	name = "pudełko granatów odłamkowo-hukowych (UWAGA)"
+	desc = "<B>UWAGA: te urządzenia są bardzo niebezpieczne i przy wielokrotnym użyciu mogą spowodować ciężkie obrażenia lub śmierć.</B>"
 	icon_state = "secbox"
 	illustration = "flashbang"
 
@@ -361,8 +361,8 @@
 		new /obj/item/grenade/stingbang(src)
 
 /obj/item/storage/box/wall_flash
-	name = "wall-mounted flash kit"
-	desc = "This box contains everything necessary to build a wall-mounted flash. <B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
+	name = "zestaw ściennego flasha"
+	desc = "W tym pudełku jest wszystko, czego potrzebujesz do zbudowania ściennego flasha. <B>UWAGA: flashe mogą poważnie uszkodzić wzrok, wymagane są okulary ochronne.</B>"
 	icon_state = "secbox"
 	illustration = "flash"
 
@@ -381,8 +381,8 @@
 
 
 /obj/item/storage/box/teargas
-	name = "box of tear gas grenades (WARNING)"
-	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness and skin irritation.</B>"
+	name = "pudełko granatów z gazem łzawiącym (UWAGA)"
+	desc = "<B>UWAGA: te urządzenia są bardzo niebezpieczne i mogą spowodować ślepotę oraz podrażnienie skóry.</B>"
 	icon_state = "secbox"
 	illustration = "grenade"
 
@@ -391,8 +391,8 @@
 		new /obj/item/grenade/chem_grenade/teargas(src)
 
 /obj/item/storage/box/emps
-	name = "box of emp grenades"
-	desc = "A box with 5 emp grenades."
+	name = "pudełko granatów EMP"
+	desc = "Pudełko z 5 granatami EMP."
 	illustration = "emp"
 
 /obj/item/storage/box/emps/PopulateContents()
@@ -400,8 +400,8 @@
 		new /obj/item/grenade/empgrenade(src)
 
 /obj/item/storage/box/trackimp
-	name = "boxed tracking implant kit"
-	desc = "Box full of scum-bag tracking utensils."
+	name = "zestaw implantów namierzających"
+	desc = "Pudełko pełne przyborów do namierzania szumowin."
 	icon_state = "secbox"
 	illustration = "implant"
 
@@ -414,8 +414,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/minertracker
-	name = "boxed tracking implant kit"
-	desc = "For finding those who have died on the accursed lavaworld."
+	name = "zestaw implantów namierzających"
+	desc = "Do odnajdywania tych, którzy zginęli na przeklętym świecie lawy."
 	illustration = "implant"
 
 /obj/item/storage/box/minertracker/PopulateContents()
@@ -427,8 +427,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/chemimp
-	name = "boxed chemical implant kit"
-	desc = "Box of stuff used to implant chemicals."
+	name = "zestaw implantów chemicznych"
+	desc = "Pudełko z rzeczami do wszczepiania chemikaliów."
 	illustration = "implant"
 
 /obj/item/storage/box/chemimp/PopulateContents()
@@ -439,7 +439,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/exileimp
-	name = "boxed exile implant kit"
+	name = "zestaw implantów wygnania"
 	desc = "Pudełko implantów wygnania. Na obrazku klaun znika w netpodzie, a z drugiej strony macha z Pętli." // AQ EDIT
 	illustration = "implant"
 
@@ -450,8 +450,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/bodybags
-	name = "body bags"
-	desc = "The label indicates that it contains body bags."
+	name = "worki na zwłoki"
+	desc = "Według etykiety w środku są worki na zwłoki."
 	illustration = "bodybags"
 
 /obj/item/storage/box/bodybags/PopulateContents()
@@ -460,8 +460,8 @@
 		new /obj/item/bodybag(src)
 
 /obj/item/storage/box/rxglasses
-	name = "box of prescription glasses"
-	desc = "This box contains nerd glasses."
+	name = "pudełko okularów korekcyjnych"
+	desc = "W tym pudełku są okulary kujona."
 	illustration = "glasses"
 
 /obj/item/storage/box/rxglasses/PopulateContents()
@@ -469,8 +469,8 @@
 		new /obj/item/clothing/glasses/regular(src)
 
 /obj/item/storage/box/drinkingglasses
-	name = "box of drinking glasses"
-	desc = "It has a picture of drinking glasses on it."
+	name = "pudełko szklanek"
+	desc = "Jest na nim obrazek szklanek."
 	illustration = "drinkglass"
 
 /obj/item/storage/box/drinkingglasses/PopulateContents()
@@ -478,8 +478,8 @@
 		new /obj/item/reagent_containers/food/drinks/drinkingglass(src)
 
 /obj/item/storage/box/condimentbottles
-	name = "box of condiment bottles"
-	desc = "It has a large ketchup smear on it."
+	name = "pudełko butelek na przyprawy"
+	desc = "Ma na sobie dużą smugę ketchupu."
 	illustration = "condiment"
 
 /obj/item/storage/box/condimentbottles/PopulateContents()
@@ -487,8 +487,8 @@
 		new /obj/item/reagent_containers/food/condiment(src)
 
 /obj/item/storage/box/cups
-	name = "box of paper cups"
-	desc = "It has pictures of paper cups on the front."
+	name = "pudełko kubków papierowych"
+	desc = "Z przodu ma obrazki kubków papierowych."
 	illustration = "cup"
 
 /obj/item/storage/box/cups/PopulateContents()
@@ -503,7 +503,7 @@
 
 /obj/item/storage/box/donkpockets //AQUILA EDIT BEGIN
 	name = "karton pierogów"
-	desc = "<B>Instructions:</B> <I>Odgrzej w mikrofalówce. Produkt straci ciepło po siedmiu minutach.</I>"
+	desc = "<B>Instrukcja:</B> <I>Odgrzej w mikrofalówce. Produkt straci ciepło po siedmiu minutach.</I>"
 	icon_state = "donkpocketbox"
 	icon = 'aquila/icons/obj/storage.dmi'
 	illustration=null
@@ -552,8 +552,8 @@
 	donktype = /obj/item/food/donkpocket/honk //AQUILA EDIT END
 
 /obj/item/storage/box/monkeycubes
-	name = "monkey cube box"
-	desc = "Drymate brand monkey cubes. Just add water!"
+	name = "pudełko małpich kostek"
+	desc = "Małpie kostki marki Drymate. Wystarczy dodać wody!"
 	icon_state = "monkeycubebox"
 	illustration = null
 	var/cube_type = /obj/item/food/monkeycube
@@ -569,12 +569,12 @@
 		new cube_type(src)
 
 /obj/item/storage/box/monkeycubes/syndicate
-	desc = "Waffle Co. brand monkey cubes. Just add water and a dash of subterfuge!"
+	desc = "Małpie kostki marki Waffle Co. Wystarczy dodać wody i szczyptę podstępu!"
 	cube_type = /obj/item/food/monkeycube/syndicate
 
 /obj/item/storage/box/gorillacubes
-	name = "gorilla cube box"
-	desc = "Waffle Co. brand gorilla cubes. Do not taunt."
+	name = "pudełko gorylich kostek"
+	desc = "Gorylie kostki marki Waffle Co. Nie drażnić."
 	icon_state = "monkeycubebox"
 	illustration = null
 
@@ -589,8 +589,8 @@
 		new /obj/item/food/monkeycube/gorilla(src)
 
 /obj/item/storage/box/mixedcubes
-	name = "mixed farm animal cube box"
-	desc = "Farm Town's new cubes to make your farming dreams come true. Just add water!"
+	name = "pudełko kostek z mieszanką zwierząt hodowlanych"
+	desc = "Nowe kostki Farm Town, dzięki którym spełnisz swoje rolnicze marzenia. Wystarczy dodać wody!"
 	icon_state = "monkeycubebox"
 	illustration = null
 
@@ -607,8 +607,8 @@
 		new /obj/item/food/monkeycube/cow(src)
 
 /obj/item/storage/box/ids
-	name = "box of spare IDs"
-	desc = "Has so many empty IDs."
+	name = "pudełko zapasowych identyfikatorów"
+	desc = "Jest w nim mnóstwo pustych identyfikatorów."
 	illustration = "id"
 
 /obj/item/storage/box/ids/PopulateContents()
@@ -617,8 +617,8 @@
 
 //Some spare PDAs in a box
 /obj/item/storage/box/PDAs
-	name = "spare PDAs"
-	desc = "A box of spare PDA microcomputers."
+	name = "zapasowe PDA"
+	desc = "Pudełko zapasowych mikrokomputerów PDA."
 	illustration = "pda"
 
 /obj/item/storage/box/PDAs/PopulateContents()
@@ -634,8 +634,8 @@
 	new newcart(src)
 
 /obj/item/storage/box/silver_ids
-	name = "box of spare silver IDs"
-	desc = "Shiny IDs for important people."
+	name = "pudełko zapasowych srebrnych identyfikatorów"
+	desc = "Błyszczące identyfikatory dla ważnych ludzi."
 	illustration = "id"
 
 /obj/item/storage/box/silver_ids/PopulateContents()
@@ -643,8 +643,8 @@
 		new /obj/item/card/id/silver(src)
 
 /obj/item/storage/box/prisoner
-	name = "box of prisoner IDs"
-	desc = "Take away their last shred of dignity, their name."
+	name = "pudełko identyfikatorów więźniów"
+	desc = "Odbierz im ostatni strzęp godności, czyli imię."
 	icon_state = "secbox"
 	illustration = "id"
 
@@ -659,8 +659,8 @@
 	new /obj/item/card/id/gulag/seven(src)
 
 /obj/item/storage/box/seccarts
-	name = "box of PDA security job disks"
-	desc = "A box full of PDA job disks used by Security."
+	name = "pudełko dysków zawodowych PDA ochrony"
+	desc = "Pudełko pełne dysków zawodowych PDA używanych przez ochronę."
 	icon_state = "secbox"
 	illustration = "pda"
 
@@ -670,8 +670,8 @@
 		new /obj/item/computer_hardware/hard_drive/role/security(src)
 
 /obj/item/storage/box/firingpins
-	name = "box of standard firing pins"
-	desc = "A box full of standard firing pins, to allow newly-developed firearms to operate."
+	name = "pudełko standardowych iglic"
+	desc = "Pudełko pełne standardowych iglic, dzięki którym nowo opracowana broń palna może działać."
 	icon_state = "secbox"
 	illustration = "firingpin"
 
@@ -680,8 +680,8 @@
 		new /obj/item/firing_pin(src)
 
 /obj/item/storage/box/firingpins/paywall
-	name = "box of paywall firing pins"
-	desc = "A box full of paywall firing pins, to allow newly-developed firearms to operate behind a custom-set paywall."
+	name = "pudełko płatnych iglic"
+	desc = "Pudełko pełne płatnych iglic, dzięki którym nowo opracowana broń palna działa po wniesieniu ustalonej opłaty."
 	illustration = "firingpin"
 
 /obj/item/storage/box/firingpins/paywall/PopulateContents()
@@ -689,8 +689,8 @@
 		new /obj/item/firing_pin/paywall(src)
 
 /obj/item/storage/box/lasertagpins
-	name = "box of laser tag firing pins"
-	desc = "A box full of laser tag firing pins, to allow newly-developed firearms to require wearing brightly coloured plastic armor before being able to be used."
+	name = "pudełko iglic do laser taga"
+	desc = "Pudełko pełne iglic do laser taga, przez które nowo opracowana broń palna działa tylko w jaskrawym plastikowym pancerzu."
 	illustration = "firingpin"
 
 /obj/item/storage/box/lasertagpins/PopulateContents()
@@ -699,8 +699,8 @@
 		new /obj/item/firing_pin/tag/blue(src)
 
 /obj/item/storage/box/handcuffs
-	name = "box of spare handcuffs"
-	desc = "A box full of handcuffs."
+	name = "pudełko zapasowych kajdanek"
+	desc = "Pudełko pełne kajdanek."
 	icon_state = "secbox"
 	illustration = "handcuff"
 
@@ -709,8 +709,8 @@
 		new /obj/item/restraints/handcuffs(src)
 
 /obj/item/storage/box/zipties
-	name = "box of spare zipties"
-	desc = "A box full of zipties."
+	name = "pudełko zapasowych opasek zaciskowych"
+	desc = "Pudełko pełne opasek zaciskowych."
 	icon_state = "secbox"
 	illustration = "handcuff"
 
@@ -719,8 +719,8 @@
 		new /obj/item/restraints/handcuffs/cable/zipties(src)
 
 /obj/item/storage/box/alienhandcuffs
-	name = "box of spare handcuffs"
-	desc = "A box full of handcuffs."
+	name = "pudełko zapasowych kajdanek"
+	desc = "Pudełko pełne kajdanek."
 	icon_state = "alienbox"
 	illustration = "handcuff"
 
@@ -729,8 +729,8 @@
 		new	/obj/item/restraints/handcuffs/alien(src)
 
 /obj/item/storage/box/fakesyndiesuit
-	name = "boxed space suit and helmet"
-	desc = "A sleek, sturdy box used to hold replica spacesuits."
+	name = "skafander kosmiczny z hełmem w pudełku"
+	desc = "Eleganckie, solidne pudełko na repliki skafandrów kosmicznych."
 	icon_state = "syndiebox"
 	illustration = "syndiesuit"
 
@@ -739,8 +739,8 @@
 	new /obj/item/clothing/suit/syndicatefake(src)
 
 /obj/item/storage/box/mousetraps
-	name = "box of Pest-B-Gon mousetraps"
-	desc = "<span class='alert'>Keep out of reach of children.</span>"
+	name = "pudełko pułapek na myszy Pest-B-Gon"
+	desc = "<span class='alert'>Przechowywać w miejscu niedostępnym dla dzieci.</span>"
 	illustration = "mousetrap"
 
 /obj/item/storage/box/mousetraps/PopulateContents()
@@ -748,8 +748,8 @@
 		new /obj/item/assembly/mousetrap(src)
 
 /obj/item/storage/box/pillbottles
-	name = "box of pill bottles"
-	desc = "It has pictures of pill bottles on its front."
+	name = "pudełko pojemników na pigułki"
+	desc = "Z przodu ma obrazki pojemników na pigułki."
 	illustration = "pillbox"
 
 /obj/item/storage/box/pillbottles/PopulateContents()
@@ -757,8 +757,8 @@
 		new /obj/item/storage/pill_bottle(src)
 
 /obj/item/storage/box/snappops
-	name = "snap pop box"
-	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
+	name = "pudełko strzelających kapiszonów"
+	desc = "Osiem opakowań zabawy! Od 8 lat. Nie nadaje się dla dzieci."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
 
@@ -772,8 +772,8 @@
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/toy/snappop)
 
 /obj/item/storage/box/matches
-	name = "matchbox"
-	desc = "A small box of Almost But Not Quite Plasma Premium Matches."
+	name = "pudełko zapałek"
+	desc = "Małe pudełko zapałek Prawie Ale Nie Całkiem Plazmowych Premium."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
@@ -797,10 +797,10 @@
 		playsound(src.loc, 'sound/items/matchstick_lit.ogg', 100, 1)
 
 /obj/item/storage/box/lights
-	name = "box of replacement bulbs"
+	name = "pudełko zapasowych żarówek"
 	icon = 'icons/obj/storage.dmi'
 	illustration = "light"
-	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
+	desc = "To pudełko jest wyprofilowane w środku tak, że mieszczą się w nim tylko świetlówki i żarówki."
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
@@ -819,7 +819,7 @@
 		new /obj/item/light/bulb(src)
 
 /obj/item/storage/box/lights/tubes
-	name = "box of replacement tubes"
+	name = "pudełko zapasowych świetlówek"
 	illustration = "lighttube"
 
 /obj/item/storage/box/lights/tubes/PopulateContents()
@@ -827,7 +827,7 @@
 		new /obj/item/light/tube(src)
 
 /obj/item/storage/box/lights/mixed
-	name = "box of replacement lights"
+	name = "pudełko zapasowych źródeł światła"
 	illustration = "lightmixed"
 
 /obj/item/storage/box/lights/mixed/PopulateContents()
@@ -837,8 +837,8 @@
 		new /obj/item/light/bulb(src)
 
 /obj/item/storage/box/metalfoam
-	name = "box of metal foam grenades"
-	desc = "To be used to rapidly seal hull breaches."
+	name = "pudełko granatów z pianą metalową"
+	desc = "Do szybkiego uszczelniania wyrw w kadłubie."
 	illustration = "grenade"
 
 /obj/item/storage/box/metalfoam/PopulateContents()
@@ -846,8 +846,8 @@
 		new /obj/item/grenade/chem_grenade/metalfoam(src)
 
 /obj/item/storage/box/smart_metal_foam
-	name = "box of smart metal foam grenades"
-	desc = "Used to rapidly seal hull breaches. This variety conforms to the walls of its area."
+	name = "pudełko granatów z inteligentną pianą metalową"
+	desc = "Do szybkiego uszczelniania wyrw w kadłubie. Ta odmiana dopasowuje się do ścian obszaru."
 	illustration = "grenade"
 
 /obj/item/storage/box/smart_metal_foam/PopulateContents()
@@ -855,8 +855,8 @@
 		new/obj/item/grenade/chem_grenade/smart_metal_foam(src)
 
 /obj/item/storage/box/hug
-	name = "box of hugs"
-	desc = "A special box for sensitive people."
+	name = "pudełko przytulasów"
+	desc = "Specjalne pudełko dla wrażliwych ludzi."
 	icon_state = "hugbox"
 	illustration = "heart"
 	foldable = null
@@ -873,8 +873,8 @@
 
 /////clown box & honkbot assembly
 /obj/item/storage/box/clown
-	name = "clown box"
-	desc = "A colorful cardboard box for the clown"
+	name = "pudełko klauna"
+	desc = "Kolorowe kartonowe pudełko dla klauna"
 	illustration = "clown"
 
 /obj/item/storage/box/clown/attackby(obj/item/I, mob/user, params)
@@ -913,8 +913,8 @@
 		new /obj/item/radio/off(src)
 
 /obj/item/storage/box/rubbershot
-	name = "box of rubber shots"
-	desc = "A box full of rubber shots, designed for riot shotguns."
+	name = "pudełko naboi z gumowym śrutem"
+	desc = "Pudełko pełne naboi z gumowym śrutem do strzelb przeciwzamieszkowych."
 	icon_state = "rubbershot_box"
 	illustration = null
 
@@ -923,8 +923,8 @@
 		new /obj/item/ammo_casing/shotgun/rubbershot(src)
 
 /obj/item/storage/box/lethalshot
-	name = "box of lethal shotgun shots"
-	desc = "A box full of lethal shots, designed for riot shotguns."
+	name = "pudełko śmiercionośnych naboi do strzelby"
+	desc = "Pudełko pełne śmiercionośnych naboi do strzelb przeciwzamieszkowych."
 	icon_state = "lethalshot_box"
 	illustration = null
 
@@ -933,8 +933,8 @@
 		new /obj/item/ammo_casing/shotgun/buckshot(src)
 
 /obj/item/storage/box/beanbag
-	name = "box of beanbags"
-	desc = "A box full of beanbag shells."
+	name = "pudełko naboi z woreczkiem"
+	desc = "Pudełko pełne naboi z woreczkiem."
 	icon_state = "rubbershot_box"
 	illustration = null
 
@@ -943,8 +943,8 @@
 		new /obj/item/ammo_casing/shotgun/beanbag(src)
 
 /obj/item/storage/box/breacherslug
-	name = "box of breaching shotgun shells"
-	desc = "A box full of breaching slugs, designed for rapid entry."
+	name = "pudełko naboi wyważających do strzelby"
+	desc = "Pudełko pełne breneki wyważającej, do szybkiego wejścia."
 	icon_state = "breachershot_box"
 	illustration = null
 
@@ -953,8 +953,8 @@
 		new /obj/item/ammo_casing/shotgun/breacher(src)
 
 /obj/item/storage/box/actionfigure
-	name = "box of action figures"
-	desc = "The latest set of collectable action figures."
+	name = "pudełko figurek"
+	desc = "Najnowszy zestaw kolekcjonerskich figurek."
 	icon_state = "box"
 
 /obj/item/storage/box/actionfigure/PopulateContents()
@@ -969,8 +969,8 @@
 #define SMILEY "SmileyFace"
 
 /obj/item/storage/box/papersack
-	name = "paper sack"
-	desc = "A sack neatly crafted out of paper."
+	name = "papierowa torba"
+	desc = "Starannie zrobiona torba z papieru."
 	icon_state = "paperbag_None"
 	item_state = "paperbag_None"
 	resistance_flags = FLAMMABLE
@@ -988,13 +988,13 @@
 		if(contents.len)
 			to_chat(user, "<span class='warning'>Nie możesz modyfikować [src], gdy są w nim przedmioty!</span>")
 			return
-		var/list/designs = list(NODESIGN, NANOTRASEN, SYNDI, HEART, SMILEY, "Cancel")
-		var/switchDesign = input("Select a Design:", "Paper Sack Design", designs[1]) in sortList(designs)
+		var/list/designs = list(NODESIGN, NANOTRASEN, SYNDI, HEART, SMILEY, "Anuluj")
+		var/switchDesign = input("Wybierz wzór:", "Wzór papierowej torby", designs[1]) in sortList(designs)
 		if(get_dist(usr, src) > 1)
 			to_chat(usr, "<span class='warning'>Oddalasz się za bardzo!</span>")
 			return
 		var/choice = designs.Find(switchDesign)
-		if(design == designs[choice] || designs[choice] == "Cancel")
+		if(design == designs[choice] || designs[choice] == "Anuluj")
 			return 0
 		to_chat(usr, "<span class='notice'>Modyfikujesz [src] długopisem.</span>")
 		design = designs[choice]
@@ -1002,15 +1002,15 @@
 		item_state = "paperbag_[design]"
 		switch(designs[choice])
 			if(NODESIGN)
-				desc = "A sack neatly crafted out of paper."
+				desc = "Starannie zrobiona torba z papieru."
 			if(NANOTRASEN)
-				desc = "A standard Nanotrasen paper lunch sack for loyal employees on the go."
+				desc = "Standardowa papierowa torba śniadaniowa Nanotrasen dla lojalnych pracowników w biegu."
 			if(SYNDI)
-				desc = "The design on this paper sack is a remnant of the notorious 'SyndieSnacks' program."
+				desc = "Wzór na tej papierowej torbie to pozostałość po osławionym programie „SyndieSnacks”."
 			if(HEART)
-				desc = "A paper sack with a heart etched onto the side."
+				desc = "Papierowa torba z sercem wyrytym na boku."
 			if(SMILEY)
-				desc = "A paper sack with a crude smile etched onto the side."
+				desc = "Papierowa torba z prymitywnym uśmiechem wyrytym na boku."
 		return 0
 	else if(W.is_sharp())
 		if(!contents.len)
@@ -1033,7 +1033,7 @@
 #undef SMILEY
 
 /obj/item/storage/box/ingredients //This box is for the randomely chosen version the chef spawns with, it shouldn't actually exist.
-	name = "ingredients box"
+	name = "pudełko składników"
 	illustration = "fruit"
 	var/theme_name
 
@@ -1041,11 +1041,11 @@
 	. = ..()
 	if(theme_name)
 		name = "[name] ([theme_name])"
-		desc = "A box containing supplementary ingredients for the aspiring chef. The box's theme is '[theme_name]'."
+		desc = "Pudełko z dodatkowymi składnikami dla aspirującego kucharza. Motyw pudełka: „[theme_name]”."
 		item_state = "syringe_kit"
 
 /obj/item/storage/box/ingredients/wildcard
-	theme_name = "wildcard"
+	theme_name = "niespodzianka"
 
 /obj/item/storage/box/ingredients/wildcard/PopulateContents()
 	for(var/i in 1 to 7)
@@ -1077,7 +1077,7 @@
 		new /obj/item/food/grown/chili(src)
 
 /obj/item/storage/box/cheese
-	name = "box of advanced cheese bacteria"
+	name = "pudełko zaawansowanych bakterii serowych"
 
 /obj/item/storage/box/cheese/PopulateContents()
 	new /obj/item/reagent_containers/food/condiment/mesophilic(src)
@@ -1086,7 +1086,7 @@
 	new /obj/item/reagent_containers/food/condiment/proqueforti(src)
 
 /obj/item/storage/box/ingredients/italian
-	theme_name = "italian"
+	theme_name = "kuchnia włoska"
 
 /obj/item/storage/box/ingredients/italian/PopulateContents()
 	for(var/i in 1 to 3)
@@ -1095,7 +1095,7 @@
 	new /obj/item/reagent_containers/food/drinks/bottle/wine(src)
 
 /obj/item/storage/box/ingredients/vegetarian
-	theme_name = "vegetarian"
+	theme_name = "wegetariańskie"
 
 /obj/item/storage/box/ingredients/vegetarian/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1107,7 +1107,7 @@
 	new /obj/item/food/grown/tomato(src)
 
 /obj/item/storage/box/ingredients/american
-	theme_name = "american"
+	theme_name = "kuchnia amerykańska"
 
 /obj/item/storage/box/ingredients/american/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1117,7 +1117,7 @@
 	new /obj/item/food/meatball(src)
 
 /obj/item/storage/box/ingredients/fruity
-	theme_name = "fruity"
+	theme_name = "owocowe"
 
 /obj/item/storage/box/ingredients/fruity/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1128,7 +1128,7 @@
 	new /obj/item/food/grown/watermelon(src)
 
 /obj/item/storage/box/ingredients/sweets
-	theme_name = "sweets"
+	theme_name = "słodycze"
 
 /obj/item/storage/box/ingredients/sweets/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1139,7 +1139,7 @@
 	new /obj/item/food/grown/apple(src)
 
 /obj/item/storage/box/ingredients/delights
-	theme_name = "delights"
+	theme_name = "przysmaki"
 
 /obj/item/storage/box/ingredients/delights/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1150,7 +1150,7 @@
 	new /obj/item/food/grown/berries(src)
 
 /obj/item/storage/box/ingredients/grains
-	theme_name = "grains"
+	theme_name = "zboża"
 
 /obj/item/storage/box/ingredients/grains/PopulateContents()
 	for(var/i in 1 to 3)
@@ -1161,7 +1161,7 @@
 	new /obj/item/plant_seeds/preset/poppy(src)
 
 /obj/item/storage/box/ingredients/carnivore
-	theme_name = "carnivore"
+	theme_name = "dla mięsożerców"
 
 /obj/item/storage/box/ingredients/carnivore/PopulateContents()
 	new /obj/item/food/meat/slab/bear(src)
@@ -1173,7 +1173,7 @@
 	new /obj/item/food/meatball(src)
 
 /obj/item/storage/box/ingredients/exotic
-	theme_name = "exotic"
+	theme_name = "egzotyczne"
 
 /obj/item/storage/box/ingredients/exotic/PopulateContents()
 	for(var/i in 1 to 2)
@@ -1183,7 +1183,7 @@
 	new /obj/item/food/grown/chili(src)
 
 /obj/item/storage/box/emptysandbags
-	name = "box of empty sandbags"
+	name = "pudełko pustych worków z piaskiem"
 	illustration = "sandbag"
 
 /obj/item/storage/box/emptysandbags/PopulateContents()
@@ -1191,8 +1191,8 @@
 		new /obj/item/emptysandbag(src)
 
 /obj/item/storage/box/rndboards
-	name = "\proper the liberator's legacy"
-	desc = "A box containing a gift for worthy golems."
+	name = "\proper dziedzictwo Wyzwoliciela"
+	desc = "Pudełko z prezentem dla godnych golemów."
 	illustration = "scicircuit"
 
 /obj/item/storage/box/rndboards/PopulateContents()
@@ -1202,8 +1202,8 @@
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
 /obj/item/storage/box/silver_sulf
-	name = "box of silver sulfadiazine patches"
-	desc = "Contains patches used to treat burns."
+	name = "pudełko plastrów z sulfadiazyną srebra"
+	desc = "Zawiera plastry do leczenia oparzeń."
 	illustration = "firepatch"
 
 /obj/item/storage/box/silver_sulf/PopulateContents()
@@ -1211,7 +1211,7 @@
 		new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
 
 /obj/item/storage/box/fountainpens
-	name = "box of fountain pens"
+	name = "pudełko piór wiecznych"
 	illustration = "fpen"
 
 /obj/item/storage/box/fountainpens/PopulateContents()
@@ -1219,8 +1219,8 @@
 		new /obj/item/pen/fountain(src)
 
 /obj/item/storage/box/holy_grenades
-	name = "box of holy hand grenades"
-	desc = "Contains several grenades used to rapidly purge heresy."
+	name = "pudełko świętych granatów ręcznych"
+	desc = "Zawiera kilka granatów do szybkiego wypleniania herezji."
 	illustration = "grenade"
 
 /obj/item/storage/box/holy_grenades/PopulateContents()
@@ -1228,8 +1228,8 @@
 		new/obj/item/grenade/chem_grenade/holy(src)
 
 /obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible
-	name = "box of stock parts"
-	desc = "Contains a variety of basic stock parts."
+	name = "pudełko części"
+	desc = "Zawiera różne podstawowe części."
 
 /obj/item/storage/box/stockparts/basic/PopulateContents()
 	var/static/items_inside = list(
@@ -1241,8 +1241,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/stockparts/deluxe
-	name = "box of deluxe stock parts"
-	desc = "Contains a variety of deluxe stock parts."
+	name = "pudełko luksusowych części"
+	desc = "Zawiera różne luksusowe części."
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/stockparts/deluxe/PopulateContents()
@@ -1255,8 +1255,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/dishdrive
-	name = "DIY Dish Drive Kit"
-	desc = "Contains everything you need to build your own Dish Drive!"
+	name = "zestaw do samodzielnego złożenia Dish Drive"
+	desc = "Zawiera wszystko, czego potrzebujesz do zbudowania własnego Dish Drive!"
 	custom_premium_price = 200
 
 /obj/item/storage/box/dishdrive/PopulateContents()
@@ -1271,7 +1271,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/material
-	name = "box of materials"
+	name = "pudełko materiałów"
 	illustration = "implant"
 
 /obj/item/storage/box/material/ComponentInitialize()
@@ -1318,7 +1318,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/debugtools
-	name = "box of debug tools"
+	name = "pudełko narzędzi debugowania"
 	icon_state = "syndiebox"
 
 /obj/item/storage/box/debugtools/ComponentInitialize()
@@ -1356,8 +1356,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/box/deputy
-	name = "box of deputy armbands"
-	desc = "To be issued to those authorized to act as deputy of security."
+	name = "pudełko opasek aspiranta"
+	desc = "Do wydania osobom upoważnionym do pełnienia funkcji aspiranta ochrony."
 	icon_state = "secbox"
 	illustration = "depband"
 
@@ -1367,8 +1367,8 @@
 		new /obj/item/card/id/pass/deputy(src)
 
 /obj/item/storage/box/radiokey
-	name = "box of generic radio keys"
-	desc = "You shouldn't be seeing this. Ahelp."
+	name = "pudełko zwykłych kluczy szyfrujących"
+	desc = "Nie powinieneś tego widzieć. Napisz ahelpa."
 	icon_state = "radiobox"
 	var/radio_key = /obj/item/encryptionkey
 
@@ -1377,8 +1377,8 @@
 		new radio_key(src)
 
 /obj/item/storage/box/radiokey/com
-	name = "box of command staff's radio keys"
-	desc = "A spare radio key for each command staff, plus an amplification key and a generic command key."
+	name = "pudełko kluczy szyfrujących dowództwa"
+	desc = "Zapasowy klucz szyfrujący dla każdego członka dowództwa, do tego klucz wzmacniający i ogólny klucz dowództwa."
 	icon_state = "radiobox_gold"
 
 /obj/item/storage/box/radiokey/com/PopulateContents()
@@ -1392,44 +1392,44 @@
 	new /obj/item/encryptionkey/amplification(src)
 
 /obj/item/storage/box/radiokey/sci
-	name = "box of science radio keys"
-	desc = "For SCIENCE!"
+	name = "pudełko kluczy szyfrujących nauki"
+	desc = "Dla NAUKI!"
 	radio_key = /obj/item/encryptionkey/headset_sci
 
 /obj/item/storage/box/radiokey/sec
-	name = "box of security radio keys"
-	desc = "Grants access to the station's security radio."
+	name = "pudełko kluczy szyfrujących ochrony"
+	desc = "Daje dostęp do radia ochrony stacji."
 	radio_key = /obj/item/encryptionkey/headset_sec
 
 /obj/item/storage/box/radiokey/eng
-	name = "box of engineering radio keys"
-	desc = "Dooms you to listen to Poly for all eternity."
+	name = "pudełko kluczy szyfrujących inżynierii"
+	desc = "Skazuje cię na słuchanie Poly'ego przez całą wieczność."
 	radio_key = /obj/item/encryptionkey/headset_eng
 
 /obj/item/storage/box/radiokey/med
-	name = "box of medical radio keys"
-	desc = "9 out of 10 doctors reccomend."
+	name = "pudełko kluczy szyfrujących medycyny"
+	desc = "Polecane przez 9 na 10 lekarzy."
 	radio_key = /obj/item/encryptionkey/headset_med
 
 /obj/item/storage/box/radiokey/srv
-	name = "box of service radio keys"
-	desc = "The channel for servants."
+	name = "pudełko kluczy szyfrujących serwisu"
+	desc = "Kanał dla służby."
 	radio_key = /obj/item/encryptionkey/headset_service
 
 /obj/item/storage/box/radiokey/car
-	name = "box of cargo tech radio keys"  // qm can always buy mining conscript
-	desc = "Slaves you to the quartermaster."
+	name = "pudełko kluczy szyfrujących zaopatrzenia"  // qm can always buy mining conscript
+	desc = "Czyni cię niewolnikiem kwatermistrza."
 	radio_key = /obj/item/encryptionkey/headset_cargo
 
 /obj/item/storage/box/radiokey/cap  // admin spawn
-	name = "glorious box of captain's radio keys"
-	desc = "All-access radio."
+	name = "wspaniałe pudełko kluczy szyfrujących kapitana"
+	desc = "Radio z pełnym dostępem."
 	icon_state = "radiobox_gold"
 	radio_key = /obj/item/encryptionkey/heads/captain
 
 /obj/item/storage/box/radiokey/clown  // honk
-	name = "\improper H.O.N.K. CO fake encryption keys"
-	desc = "Totally prank your friends with these realistic encryption keys!"
+	name = "\improper fałszywe klucze szyfrujące H.O.N.K. CO"
+	desc = "Zrób przyjaciołom totalnego psikusa tymi realistycznymi kluczami szyfrującymi!"
 
 /obj/item/storage/box/radiokey/clown/PopulateContents()
 	new /obj/item/encryptionkey/heads/rd/fake(src)

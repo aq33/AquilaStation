@@ -13,7 +13,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/medical_console_data))
 
 /obj/item/circuit_component/medical_console_data
-	display_name = "Crew Monitoring Data"
+	display_name = "Dane monitorowania załogi"
 	desc = "Wypisuje stan zdrowia osób widocznych na monitorze załogi. Wynik można potem przefiltrować komponentem Select Query."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -182,7 +182,7 @@
 /// Advanced camera component
 
 /obj/item/circuit_component/advanced_camera
-	display_name = "Advanced Camera Console"
+	display_name = "Zaawansowana konsola kamer"
 	desc = "Podaje pozycję, na którą patrzy się przez konsolę."
 
 	var/datum/port/output/eye_x
@@ -235,7 +235,7 @@
 /// Advanced camera target intercept component
 
 /obj/item/circuit_component/advanced_camera_intercept
-	display_name = "Advanced Camera Target Intercept"
+	display_name = "Przechwytywacz celu konsoli kamer"
 	desc = "Pozwala użytkownikowi konsoli wskazać kliknięciem cel albo miejsce."
 
 	var/datum/port/input/enabled
@@ -408,7 +408,7 @@
 		target_station.teleporter_console.update_icon()
 
 /obj/item/circuit_component/teleporter_control_console
-	display_name = "Teleporter Control Console"
+	display_name = "Konsola sterowania teleporterem"
 	desc = "Steruje połączonym hubem i stacją teleportera."
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -510,19 +510,19 @@
 /// Zwraca powód, dla którego teleport się nie uda, albo null (z tg).
 /obj/machinery/launchpad/proc/teleport_checks()
 	if(QDELETED(src) || !isAvailable() || !is_operational)
-		return "ERROR: Launchpad not operative. Make sure the launchpad is ready and powered."
+		return "BŁĄD: wyrzutnia nie działa. Upewnij się, że jest gotowa i ma zasilanie."
 
 	if(teleporting)
-		return "ERROR: Launchpad busy."
+		return "BŁĄD: wyrzutnia jest zajęta."
 
 	var/area/surrounding = get_area(src)
 	if(is_centcom_level(z) || istype(surrounding, /area/shuttle/supply) || istype(surrounding, /area/shuttle/transport))
-		return "ERROR: Launchpad not operative. Heavy area shielding makes teleporting impossible."
+		return "BŁĄD: wyrzutnia nie działa. Silne ekranowanie obszaru uniemożliwia teleportację."
 
 	return null
 
 /obj/item/circuit_component/bluespace_launchpad
-	display_name = "Bluespace Launchpad"
+	display_name = "Wyrzutnia bluespace"
 	desc = "Teleportuje cokolwiek do i z dowolnego miejsca na stacji. Nie używa współrzędnych GPS, tylko przesunięcia względem samej wyrzutni. Zasięg zależy od jej części."
 
 	var/datum/port/input/x_pos
@@ -568,12 +568,12 @@
 
 /obj/item/circuit_component/bluespace_launchpad/input_received(datum/port/input/port)
 	if(!attached_launchpad)
-		why_fail.set_output("Not connected!")
+		why_fail.set_output("Brak połączenia!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
 	if(abs(x_pos.value) > attached_launchpad.range || abs(y_pos.value) > attached_launchpad.range)
-		why_fail.set_output("Out of range!")
+		why_fail.set_output("Poza zasięgiem!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
@@ -610,7 +610,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/bluespace_launchpad/console))
 
 /obj/item/circuit_component/bluespace_launchpad/console
-	display_name = "Bluespace Launchpad Console"
+	display_name = "Konsola sterowania wyrzutnią"
 	desc = "Teleportuje cokolwiek do i z dowolnego miejsca na stacji przez wyrzutnię podłączoną do konsoli. Nie używa współrzędnych GPS, tylko przesunięcia względem wyrzutni. Zasięg zależy od jej części."
 
 	var/datum/port/input/launchpad_id
@@ -632,7 +632,7 @@
 
 /obj/item/circuit_component/bluespace_launchpad/console/input_received(datum/port/input/port)
 	if(!attached_console || !length(attached_console.launchpads))
-		why_fail.set_output("No launchpads connected!")
+		why_fail.set_output("Brak podłączonych wyrzutni!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 
@@ -647,7 +647,7 @@
 
 	if(QDELETED(attached_launchpad))
 		attached_launchpad = null
-		why_fail.set_output("Invalid launchpad selected!")
+		why_fail.set_output("Wybrano nieprawidłową wyrzutnię!")
 		on_fail.set_output(COMPONENT_SIGNAL)
 		return
 	..()
@@ -661,7 +661,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/quantumpad))
 
 /obj/item/circuit_component/quantumpad
-	display_name = "Quantum Pad"
+	display_name = "Pad kwantowy"
 	desc = "Pad teleportacyjny splątany kwantowo, przerzuca obiekty na inne pady kwantowe."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 

@@ -23,8 +23,8 @@
 	var/build_state = 2 // 2 = Fully built.
 
 /obj/structure/peacekeeper_barricade/metal
-	name = "metal barricade"
-	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
+	name = "metalowa barykada"
+	desc = "Solidna i łatwa w montażu barykada z metalowych płyt, często używana do szybkich umocnień. Napraw ją spawarką."
 	icon_state = "metal_0"
 	max_integrity = 200
 	barricade_resistance = 10
@@ -36,8 +36,8 @@
 	can_wire = TRUE
 
 /obj/structure/peacekeeper_barricade/metal/plasteel
-	name = "plasteel barricade"
-	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
+	name = "barykada z plastali"
+	desc = "Bardzo solidna barykada z paneli z plastali, szczyt sztuki fortyfikacji. Napraw ją spawarką. Można ją złożyć, by zrobić przejście."
 	icon_state = "plasteel_closed_0"
 	max_integrity = 400
 	barricade_resistance = 20
@@ -175,7 +175,7 @@
 		M.visible_message("<span class='danger'>[M] rozcina [src]!</span>", \
 		"<span class='danger'>Rozcinasz [src]!</span>", null, 5)
 	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		M.visible_message("<span class='danger'>[M] tnie [src]!</span>", \
 		"<span class='danger'>Tniesz [src]!</span>", null, 5)
 	if(is_wired)
 		M.visible_message("<span class='danger'>Drut kolczasty wcina się w [M]!</span>",
@@ -460,11 +460,11 @@
 	return FALSE
 
 /obj/item/stack/barbed_wire
-	name = "barbed wire"
-	desc = "A spiky length of wire."
+	name = "drut kolczasty"
+	desc = "Kolczasty odcinek drutu."
 	icon = 'nsv13/icons/obj/barricades.dmi'
 	icon_state = "barbed_wire"
-	singular_name = "length"
+	singular_name = "odcinek"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 2
 	throwforce = 5

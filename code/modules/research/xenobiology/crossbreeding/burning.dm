@@ -4,8 +4,8 @@ Burning extracts:
 	filled with 10u plasma and activated in-hand.
 */
 /obj/item/slimecross/burning
-	name = "burning extract"
-	desc = "It's boiling over with barely-contained energy."
+	name = "płonący ekstrakt"
+	desc = "Kipi ledwo powstrzymywaną energią."
 	effect = "burning"
 	icon_state = "burning"
 
@@ -171,7 +171,7 @@ Burning extracts:
 	effect_desc = "Wytwarza miksturę klonującą ekstrakty, która kopiuje ekstrakt wraz z jego dodatkowymi użyciami."
 
 /obj/item/slimecross/burning/cerulean/do_effect(mob/user)
-	user.visible_message("<span class='notice'>[src] produces a potion!</span>")
+	user.visible_message("<span class='notice'>[src] wytwarza miksturę!</span>")
 	new /obj/item/slimepotion/extract_cloner(get_turf(user))
 	..()
 

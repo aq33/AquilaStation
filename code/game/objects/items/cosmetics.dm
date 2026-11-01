@@ -1,6 +1,6 @@
 /obj/item/lipstick
 	gender = PLURAL
-	name = "red lipstick"
+	name = "czerwona szminka"
 	desc = "Szminka zwykłej marki."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "lipstick"
@@ -9,27 +9,28 @@
 	var/open = FALSE
 
 /obj/item/lipstick/purple
-	name = "purple lipstick"
+	name = "fioletowa szminka"
 	colour = "purple"
 
 /obj/item/lipstick/jade
 	//It's still called Jade, but theres no HTML color for jade, so we use lime.
-	name = "jade lipstick"
+	name = "nefrytowa szminka"
 	colour = "lime"
 
 /obj/item/lipstick/black
-	name = "black lipstick"
+	name = "czarna szminka"
 	colour = "black"
 
 /obj/item/lipstick/random
-	name = "lipstick"
+	name = "szminka"
 	icon_state = "random_lipstick"
 
 /obj/item/lipstick/random/Initialize(mapload)
 	. = ..()
 	icon_state = "lipstick"
 	colour = pick("red","purple","lime","black","green","blue","white")
-	name = "[colour] lipstick"
+	var/static/list/colour_pl = list("red" = "czerwona", "purple" = "fioletowa", "lime" = "limonkowa", "black" = "czarna", "green" = "zielona", "blue" = "niebieska", "white" = "biała")
+	name = "[colour_pl[colour]] szminka"
 
 /obj/item/lipstick/attack_self(mob/user)
 	cut_overlays()
@@ -100,8 +101,8 @@
 		..()
 
 /obj/item/razor
-	name = "electric razor"
-	desc = "The latest and greatest power razor born from the science of shaving."
+	name = "elektryczna maszynka do golenia"
+	desc = "Najnowsza i najwspanialsza maszynka elektryczna, owoc nauki o goleniu."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "razor"
 	flags_1 = CONDUCT_1
@@ -210,7 +211,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_style = input(user, "Wybierz fryzurę", "Grooming")  as null|anything in GLOB.hair_styles_list
+	var/new_style = input(user, "Wybierz fryzurę", "Strzyżenie")  as null|anything in GLOB.hair_styles_list
 	if(!get_location_accessible(H, location))
 		to_chat(user, "<span class='warning'>Nakrycie głowy przeszkadza!</span>")
 		return
@@ -227,7 +228,7 @@
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
-	var/new_style = input(user, "Wybierz styl zarostu", "Grooming")  as null|anything in GLOB.facial_hair_styles_list
+	var/new_style = input(user, "Wybierz styl zarostu", "Golenie")  as null|anything in GLOB.facial_hair_styles_list
 	if(!get_location_accessible(H, location))
 		to_chat(user, "<span class='warning'>Maska przeszkadza!</span>")
 		return
@@ -238,9 +239,9 @@
 		H.update_hair()
 
 /obj/item/razor/straightrazor
-	name = "straight razor"
+	name = "brzytwa"
 	icon_state = "straightrazor"
-	desc = "An incredibly sharp razor used to shave chins, make surgical incisions, and slit the throats of unpaying customers"
+	desc = "Niewiarygodnie ostra brzytwa do golenia podbródków, nacięć chirurgicznych i podrzynania gardeł klientom, którzy nie płacą"
 	flags_1 = CONDUCT_1
 	force = 3
 	w_class = WEIGHT_CLASS_TINY
@@ -283,8 +284,8 @@
 		tool_behaviour = null
 
 /obj/item/handmirror
-	name = "hand mirror"
-	desc = "A cheap plastic hand mirror. Useful for shaving and self-diagnoses"
+	name = "lusterko"
+	desc = "Tanie plastikowe lusterko. Przydaje się do golenia i autodiagnozy"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handmirror"
 	w_class = WEIGHT_CLASS_SMALL

@@ -1,6 +1,6 @@
 /obj/machinery/computer/ship/fighter_controller
-	name = "fighter control console"
-	desc = "A computer which allows you to remotely modify fighter system settings. Its power should not be understated."
+	name = "konsola kontroli myśliwców"
+	desc = "Komputer, który pozwala zdalnie zmieniać ustawienia systemów myśliwców. Nie lekceważ jego możliwości."
 	icon_screen = "fighter_control"
 	req_access = list(ACCESS_MAA)
 	circuit = /obj/item/circuitboard/computer/ship/fighter_controller
@@ -65,9 +65,9 @@
 				LAZYADD(current_filters, filter_name)
 			return
 		if(action == "global_eject") //Messy. But oh boy do we fucking NEED IT
-			if(alert(ui.user, "Na pewno chcesz wyrzucić WSZYSTKICH PILOTÓW, KTÓRZY SĄ OBECNIE NA POKŁADZIE?",name,"Yes","No") == "No" || !Adjacent(ui.user))
+			if(alert(ui.user, "Na pewno chcesz wyrzucić WSZYSTKICH PILOTÓW, KTÓRZY SĄ OBECNIE NA POKŁADZIE?",name,"Tak","Nie") == "Nie" || !Adjacent(ui.user))
 				return
-			message_admins("[key_name(ui.user)] ([(ui.user.mind && ui.user.mind.antag_datums) ? "<b>Antagonist</b>" : "Non-Antagonist"]) has force-ejected every pilot from their fighter.")
+			message_admins("[key_name(ui.user)] ([(ui.user.mind && ui.user.mind.antag_datums) ? "<b>Antagonista</b>" : "nie antagonista"]) wymusza katapultowanie wszystkich pilotów z myśliwców.")
 		var/desired_trait = is_station_level(src.z) ? ZTRAIT_STATION : ZTRAIT_BOARDABLE
 		for(var/obj/structure/overmap/small_craft/OM in GLOB.overmap_objects) //Needs to go through global list due to interacting with fighters on the ship z.
 			if(!locate(OM.z) in SSmapping.levels_by_trait(desired_trait))

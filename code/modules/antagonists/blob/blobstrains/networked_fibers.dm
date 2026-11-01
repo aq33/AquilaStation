@@ -27,7 +27,7 @@
 
 //does massive brute and burn damage, but can only expand manually
 /datum/reagent/blob/networked_fibers
-	name = "Networked Fibers"
+	name = "Usieciowane włókna"
 	taste_description = "wydajność"
 	color = "#CDC0B0"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

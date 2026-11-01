@@ -1,6 +1,6 @@
 /datum/overmap_objective/scan
-	name = "Scan anomalies"
-	desc = "Scan a target anomaly_type"
+	name = "Skanuj anomalie"
+	desc = "Zeskanuj docelowy anomaly_type"
 	brief = "Zlokalizujcie i zeskanujcie cel: anomaly_type"
 	binary = FALSE
 	var/anomaly_type
@@ -25,12 +25,12 @@
 			anomaly_type = null
 			anomaly_name = "ERROR"
 	if(!anomaly_type)
-		message_admins("Overmap gamemode failed to locate enough anomalies! Setting to auto-complete.")
+		message_admins("Tryb gry overmapy nie znajduje dość anomalii! Cel zostaje automatycznie zaliczony.")
 		status = 1
 
 /datum/overmap_objective/scan/instance()
 	. = ..()
-	desc = "Scan [target] [anomaly_name]\s"
+	desc = "Zeskanuj anomalie: [anomaly_name] (sztuk: [target])"
 	brief = "Zlokalizujcie i zeskanujcie anomalie: [anomaly_name] (sztuk: [target])"
 	RegisterSignal(SSstar_system.find_main_overmap(), COMSIG_ANOMALY_SCANNED, PROC_REF(register_scan))
 

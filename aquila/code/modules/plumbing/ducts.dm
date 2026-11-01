@@ -1,6 +1,6 @@
 /obj/machinery/duct
-	name = "fluid duct"
-	desc = "A pipe for moving reagents between plumbing machines."
+	name = "rura na płyny"
+	desc = "Rura do przesyłania odczynników między maszynami instalacji."
 	icon = 'aquila/icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "nduct"
 	layer = PLUMBING_PIPE_VISIBILE_LAYER
@@ -260,9 +260,9 @@
 	return TRUE
 
 /obj/item/stack/ducts
-	name = "stack of duct"
-	desc = "A stack of fluid ducts."
-	singular_name = "duct"
+	name = "stos rur na płyny"
+	desc = "Stos rur na płyny."
+	singular_name = "rura na płyny"
 	icon = 'aquila/icons/obj/plumbing/fluid_ducts.dmi'
 	icon_state = "ducts"
 	w_class = WEIGHT_CLASS_TINY

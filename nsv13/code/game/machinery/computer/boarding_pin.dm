@@ -3,8 +3,8 @@ GLOBAL_VAR_INIT(boarding_guns_z_locked, TRUE)
 // Computer controlled
 // Can work either on non-player-ship Z levels, or as a regular firing pin
 /obj/item/firing_pin/boarding
-	name = "boarding firing pin"
-	desc = "This safety firing pin allows weapons to be fired only on enemy ships at the HOS's discretion."
+	name = "iglica abordażowa"
+	desc = "Ta zabezpieczająca iglica pozwala strzelać tylko na wrogich statkach, według uznania Komendanta."
 	fail_message = "<span class='warning'>UŻYCIE NIEAUTORYZOWANE.</span>"
 	pin_removeable = TRUE
 	force_replace = TRUE
@@ -34,8 +34,8 @@ GLOBAL_VAR_INIT(boarding_guns_z_locked, TRUE)
 
 // A box
 /obj/item/storage/box/boardingpins
-        name = "box of boarding firing pins"
-        desc = "A box full of boarding firing pins, to keep uppity grunts from ruining the ship."
+        name = "pudełko iglic abordażowych"
+        desc = "Pudełko pełne iglic abordażowych, żeby krewcy żołnierze nie zdemolowali statku."
         illustration = "id"
 
 /obj/item/storage/box/boardingpins/PopulateContents()
@@ -45,21 +45,21 @@ GLOBAL_VAR_INIT(boarding_guns_z_locked, TRUE)
 // The control computer
 // This not being buildable is a feature, thank you have a nice day
 /obj/machinery/computer/boarding_guns
-	name = "boarding weapons control console"
-	desc = "Used to remotely lockdown or authorize weapons with boarding firing pins installed."
+	name = "konsola kontroli broni abordażowej"
+	desc = "Służy do zdalnego blokowania albo autoryzowania broni z zamontowanymi iglicami abordażowymi."
 	req_access = list(ACCESS_ARMORY)
 	circuit = /obj/item/circuitboard/computer/boarding_guns
 	light_color = LIGHT_COLOR_RED
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/circuitboard/computer/boarding_guns
-	name = "boarding pin authorisation console (computer)"
+	name = "konsola autoryzacji iglic abordażowych (płytka komputera)"
 	build_path = /obj/machinery/computer/boarding_guns
 
 /obj/machinery/computer/boarding_guns/ui_interact(mob/user)
 	. = ..()
 
-	var/dat = "[GLOB.boarding_guns_z_locked ? "Guns are set to Away only." : "Guns are set to General Quarters."]<br>"
+	var/dat = "[GLOB.boarding_guns_z_locked ? "Broń działa tylko poza okrętem." : "Broń działa podczas alarmu bojowego."]<br>"
 	dat += "Obecny poziom alarmu: [get_security_level_pl()]<br>"
 
 	if(!GLOB.boarding_guns_z_locked)
@@ -67,9 +67,9 @@ GLOBAL_VAR_INIT(boarding_guns_z_locked, TRUE)
 	else
 		dat += "<A href='byond://?src=[REF(src)];locked=false'>Odblokuj broń podczas alarmu bojowego.</A><br>"
 
-	dat += "<a href='byond://?src=[REF(user)];mach_close=computer'>Close</a>"
+	dat += "<a href='byond://?src=[REF(user)];mach_close=computer'>Zamknij</a>"
 
-	var/datum/browser/popup = new(user, "computer", "boarding weapon management", 300, 150) //width, height
+	var/datum/browser/popup = new(user, "computer", "Zarządzanie bronią abordażową", 300, 150) //width, height
 	popup.set_content("<center>[dat]</center>")
 	popup.open()
 

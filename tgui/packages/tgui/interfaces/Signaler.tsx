@@ -61,7 +61,7 @@ export const SignalerContent = (props) => {
               })
             }
           >
-            Reset
+            Resetuj
           </Button>
         </Stack.Item>
       </Stack>
@@ -96,7 +96,7 @@ export const SignalerContent = (props) => {
               })
             }
           >
-            Reset
+            Resetuj
           </Button>
         </Stack.Item>
       </Stack>

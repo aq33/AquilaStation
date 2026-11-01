@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(events)
 		event.announceChance = announce ? 100 : 0
 		event.on_admin_trigger()
 		event.processing = TRUE
-	message_admins("[key_name_admin(user)] has triggered an event. ([E.name])")
+	message_admins("[key_name_admin(user)] wywołuje event. ([E.name])")
 	log_admin("[key_name(user)] has triggered an event. ([E.name])")
 
 #undef FORCE_EVENT_CATEGORY_NORMAL
@@ -261,7 +261,7 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/proc/toggleWizardmode()
 	wizardmode = !wizardmode
-	message_admins("Summon Events has been [wizardmode ? "enabled, events will occur every [SSevents.frequency_lower / 600] to [SSevents.frequency_upper / 600] minutes" : "disabled"]!")
+	message_admins("Przywołanie eventów zostaje [wizardmode ? "włączone, eventy będą się zdarzać co [SSevents.frequency_lower / 600]–[SSevents.frequency_upper / 600] min" : "wyłączone"]!")
 	log_game("Summon Events was [wizardmode ? "enabled" : "disabled"]!")
 
 

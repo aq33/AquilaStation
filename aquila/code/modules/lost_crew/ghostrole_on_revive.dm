@@ -61,7 +61,7 @@
 	if(QDELETED(reviving))
 		return
 	if(isobserver(chosen_one) && chosen_one.client && reviving.stat != DEAD)
-		message_admins("[key_name_admin(chosen_one)] has taken control of the revived body of [ADMIN_LOOKUPFLW(reviving)]")
+		message_admins("[key_name_admin(chosen_one)] przejmuje kontrolę nad wskrzeszonym ciałem [ADMIN_LOOKUPFLW(reviving)]")
 		reviving.ghostize(FALSE)
 		reviving.key = chosen_one.key
 		to_chat(reviving, "<span class='boldnotice'>[you_are_text]</span>")

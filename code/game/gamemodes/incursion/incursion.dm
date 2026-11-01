@@ -39,7 +39,7 @@
 	for(var/k = 1 to team_size)
 		var/datum/mind/incursion = antag_pick(antag_candidates, /datum/role_preference/antagonist/incursionist)
 		if(!incursion)
-			message_admins("Ran out of people to put in an incursion team, wanted [team_size] but only got [k-1]")
+			message_admins("Zabrakło ludzi do drużyny inwazji: potrzeba [team_size], jest tylko [k-1]")
 			break
 		antag_candidates -= incursion
 		team.add_member(incursion)

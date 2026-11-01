@@ -7,8 +7,8 @@
 
 // The communications computer
 /obj/machinery/computer/communications
-	name = "communications console"
-	desc = "A console used for high-priority announcements and emergencies."
+	name = "konsola komunikacyjna"
+	desc = "Konsola do ogłoszeń najwyższej wagi i sytuacji awaryjnych."
 	icon_screen = "comm"
 	icon_keyboard = "tech_key"
 	req_access = list(ACCESS_HEADS)
@@ -149,7 +149,7 @@
 
 			// Only notify people if an actual change happened
 			log_game("[key_name(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] zmienia poziom alarmu na [params["newSecurityLevel"]] za pomocą [src] w [AREACOORD(usr)].")
 			deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> zmienia poziom alarmu na [params["newSecurityLevel"]] przy użyciu [src] w <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
 
 			alert_level_tick += 1
@@ -213,8 +213,8 @@
 			SSshuttle.existing_shuttle = SSshuttle.emergency
 			SSshuttle.action_load(shuttle)
 			bank_account.adjust_money(-shuttle.credit_cost)
-			minor_announce("[shuttle.name] został kupiony za [shuttle.credit_cost] kredytów! Zakup zatwierdził(a): [authorize_name] [shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Zakup promu")
-			message_admins("[ADMIN_LOOKUPFLW(usr)] purchased [shuttle.name].")
+			minor_announce("Zakupiono prom: [shuttle.name] za [shuttle.credit_cost] kr.! Zakup zatwierdza: [authorize_name] [shuttle.extra_desc ? " [shuttle.extra_desc]" : ""]" , "Zakup promu")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] kupuje prom: [shuttle.name].")
 			log_game("[key_name(usr)] has purchased [shuttle.name].")
 			SSblackbox.record_feedback("text", "shuttle_purchase", 1, shuttle.name)
 			//state = STATE_MAIN
@@ -267,7 +267,7 @@
 			SStopic.crosscomms_send_async("comms_console", message, station_name())
 			minor_announce(message, title = "Wiadomość wychodząca do sojuszniczej stacji", html_encode = FALSE)
 			usr.log_talk(message, LOG_SAY, tag="message to the other server")
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server.")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] wysyła wiadomość na drugi serwer.")
 			deadchat_broadcast("<span class='deadsay bold'>[usr.real_name] wysyła wiadomość do innych stacji.</span>", usr)
 
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
@@ -290,7 +290,7 @@
 				return
 			var/line_one = reject_bad_text(params["lineOne"] || "", MAX_STATUS_LINE_LENGTH)
 			var/line_two = reject_bad_text(params["lineTwo"] || "", MAX_STATUS_LINE_LENGTH)
-			message_admins("[ADMIN_LOOKUPFLW(usr)] changed the Status Message to - [line_one], [line_two] - From a Communications Console.")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] zmienia komunikat statusu na – [line_one], [line_two] – z konsoli komunikacyjnej.")
 			log_game("[key_name(usr)] changed the Status Message to - [line_one], [line_two] - From a Communications Console.")
 			post_status("alert", "blank")
 			post_status("message", line_one, line_two)
@@ -338,12 +338,12 @@
 			if (GLOB.emergency_access)
 				revoke_maint_all_access()
 				log_game("[key_name(usr)] disabled emergency maintenance access.")
-				message_admins("[ADMIN_LOOKUPFLW(usr)] disabled emergency maintenance access.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] wyłącza awaryjny dostęp do tuneli technicznych.")
 				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> wyłącza awaryjny dostęp do tuneli technicznych w <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
 			else
 				make_maint_all_access()
 				log_game("[key_name(usr)] enabled emergency maintenance access.")
-				message_admins("[ADMIN_LOOKUPFLW(usr)] enabled emergency maintenance access.")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] włącza awaryjny dostęp do tuneli technicznych.")
 				deadchat_broadcast("<span class='deadsay'><span class='name'>[usr.real_name]</span> włącza awaryjny dostęp do tuneli technicznych w <span class='name'>[get_area_name(usr, TRUE)]</span>.</span>", usr)
 		if("checkObjectives") //NSV13 overmap objectives
 			if (!authenticated(usr))

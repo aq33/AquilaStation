@@ -3,8 +3,8 @@
 	Lets you read PDA and request console messages.
 */
 /obj/machinery/computer/message_monitor
-	name = "message monitor console"
-	desc = "Used to monitor the crew's PDA messages, as well as request console messages."
+	name = "konsola monitorowania wiadomości"
+	desc = "Służy do monitorowania wiadomości PDA załogi i wiadomości z konsol zgłoszeń."
 	icon_screen = "comm_logs"
 	circuit = /obj/item/circuitboard/computer/message_monitor
 	light_color = LIGHT_COLOR_GREEN
@@ -180,7 +180,7 @@
 				last = M
 
 			if(length(message_servers) > 1)
-				var/choice = input(usr, "Wybierz serwer.", "Select a server.", null) as null|anything in message_servers
+				var/choice = input(usr, "Wybierz serwer.", "Wybór serwera", null) as null|anything in message_servers
 				if(choice in message_servers)
 					set_linked_server(message_servers[choice])
 				else
@@ -234,7 +234,7 @@
 			to_chat(usr, "<span class='notice'>Konsola wyświetla komunikat: 'UWAGA: wyczyszczono logi.'</span>")
 			var/turf/the_turf = get_turf(src)
 			usr.log_message("cleared [type] logs using [src] at [AREACOORD(the_turf)]", LOG_GAME)
-			message_admins("[ADMIN_FLW(usr)] cleared [type] logs using [src] at [ADMIN_VERBOSEJMP(the_turf)]")
+			message_admins("[ADMIN_FLW(usr)] czyści logi ([type]) za pomocą [src] w [ADMIN_VERBOSEJMP(the_turf)]")
 			return TRUE
 		if("delete_log")
 			var/ref = params["ref"]
@@ -259,7 +259,7 @@
 			to_chat(usr, "<span class='notice'>Konsola wyświetla komunikat: 'UWAGA: usunięto wpis logu.'</span>")
 			var/turf/the_turf = get_turf(src)
 			usr.log_message("cleared [type] log entry \"[msg]\" using [src] at [AREACOORD(the_turf)]", LOG_GAME)
-			message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] deleted [type] log entry \"[msg]\" using [src] at [ADMIN_VERBOSEJMP(the_turf)]")
+			message_admins("[key_name_admin(usr)][ADMIN_FLW(usr)] usuwa wpis logu ([type]) \"[msg]\" za pomocą [src] w [ADMIN_VERBOSEJMP(the_turf)]")
 			return TRUE
 		if("admin_message")
 			if(!usr || !authenticated)
@@ -276,7 +276,7 @@
 		ui.open()
 		ui.set_autoupdate(TRUE)
 /obj/item/paper/monitorkey
-	name = "monitor decryption key"
+	name = "klucz deszyfrujący monitora"
 
 /obj/item/paper/monitorkey/Initialize(mapload, obj/machinery/telecomms/message_server/server)
 	..()

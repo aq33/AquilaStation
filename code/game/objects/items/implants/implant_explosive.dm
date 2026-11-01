@@ -1,6 +1,6 @@
 /obj/item/implant/explosive
-	name = "microbomb implant"
-	desc = "And boom goes the weasel."
+	name = "implant mikrobomby"
+	desc = "I łasica robi bum."
 	icon_state = "explosive"
 	actions_types = list(/datum/action/item_action/explosive_implant)
 	// Explosive implant action is always available.
@@ -25,9 +25,9 @@
 		return FALSE
 	if(cause == "action_button" && !popup)
 		popup = TRUE
-		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Wybuchniesz!", "[name] Confirmation", "Yes", "No")
+		var/response = alert(imp_in, "Na pewno chcesz aktywować [name]? Wybuchniesz!", "Potwierdzenie: [name]", "Tak", "Nie")
 		popup = FALSE
-		if(response != "Yes")
+		if(response != "Tak")
 			return FALSE
 	heavy = round(heavy)
 	medium = round(medium)
@@ -35,7 +35,7 @@
 	to_chat(imp_in, "<span class='notice'>Aktywujesz [name].</span>")
 	active = TRUE
 	var/turf/boomturf = get_turf(imp_in)
-	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
+	message_admins("[ADMIN_LOOKUPFLW(imp_in)] aktywuje swój [name] w [ADMIN_VERBOSEJMP(boomturf)], przyczyna: [cause].")
 //If the delay is short, just blow up already jeez
 	if(delay <= 7)
 		explosion(src,heavy,medium,weak,weak, flame_range = weak)
@@ -77,8 +77,8 @@
 	qdel(src)
 
 /obj/item/implant/explosive/macro
-	name = "macrobomb implant"
-	desc = "And boom goes the weasel. And everything else nearby."
+	name = "implant makrobomby"
+	desc = "I łasica robi bum. I wszystko inne w pobliżu też."
 	icon_state = "explosive"
 	weak = 16
 	medium = 8
@@ -104,14 +104,14 @@
 
 
 /obj/item/implanter/explosive
-	name = "implanter (microbomb)"
+	name = "implanter (mikrobomba)"
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implantcase/explosive
-	name = "implant case - 'Explosive'"
-	desc = "A glass case containing an explosive implant."
+	name = "etui na implant – „Wybuchowy”"
+	desc = "Szklane etui z implantem wybuchowym."
 	imp_type = /obj/item/implant/explosive
 
 /obj/item/implanter/explosive_macro
-	name = "implanter (macrobomb)"
+	name = "implanter (makrobomba)"
 	imp_type = /obj/item/implant/explosive/macro

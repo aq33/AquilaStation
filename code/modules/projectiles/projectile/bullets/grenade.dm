@@ -2,8 +2,8 @@
 
 /obj/item/projectile/bullet/a40mm
 	bleed_force = 0
-	name ="40mm grenade"
-	desc = "USE A WEEL GUN"
+	name ="granat 40mm"
+	desc = "UŻYJ PRAWDZIWEJ SPLUWY"
 	icon_state= "bolter"
 	damage = 60
 

@@ -1,6 +1,6 @@
 /obj/machinery/atmospherics/components/unary/plasma_refiner
-	name = "plasma refinery"
-	desc = "A refinery that burns plasma sheets into plasma gas."
+	name = "rafineria plazmy"
+	desc = "Rafineria, która spala arkusze plazmy na gazową plazmę."
 	icon_state = "plasma_refinery"
 	density = TRUE
 	circuit = /obj/item/circuitboard/machine/plasma_refiner

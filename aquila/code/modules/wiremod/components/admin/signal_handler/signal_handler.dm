@@ -7,7 +7,7 @@
  * A component that registers signals on events and listens for them.
  */
 /obj/item/circuit_component/signal_handler
-	display_name = "Signal Handler"
+	display_name = "Obsługa sygnałów"
 	desc = "Komponent, który nasłuchuje sygnałów na obiekcie."
 	category = "Admin"
 	circuit_flags = CIRCUIT_FLAG_ADMIN|CIRCUIT_FLAG_INSTANT
@@ -208,7 +208,7 @@
 	usr = temp_usr
 
 	if(!output)
-		message_admins("[parent.get_creator_admin()] took too much CPU time trying to handle a signal. Reduce the amount of circuit components attached to your [name] circuit component.")
+		message_admins("[parent.get_creator_admin()] zużywa za dużo czasu CPU na obsługę sygnału. Zmniejsz liczbę komponentów podłączonych do: [name].")
 		return
 
 	return output["bitflag"] || NONE

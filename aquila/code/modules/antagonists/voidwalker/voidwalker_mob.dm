@@ -9,7 +9,7 @@
 #define VOIDWALKER_DEFORM_GLASS_TIME (5 SECONDS)
 
 /mob/living/simple_animal/hostile/voidwalker
-	name = "voidwalker"
+	name = "wędrowiec pustki"
 	real_name = "wędrowiec pustki"
 	desc = "Szklista istota z pustki między gwiazdami. Lepiej się w nią nie wpatrywać."
 	icon = 'aquila/icons/mob/voidwalker.dmi'

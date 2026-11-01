@@ -1,5 +1,5 @@
 /obj/item/grenade/flashbang
-	name = "flashbang"
+	name = "granat hukowo-błyskowy"
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -45,7 +45,7 @@
 	if(M.stat == DEAD)
 		return
 	var/distance = max(0,get_dist(get_turf(src),T))
-	M.show_message("<span class='warning'>BANG</span>", MSG_AUDIBLE)
+	M.show_message("<span class='warning'>BUM</span>", MSG_AUDIBLE)
 	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(100) //NSV13 - made flashbangs stronger
 		M.Knockdown(200)
@@ -60,7 +60,7 @@
 			M.soundbang_act(1, 200 * distance_proportion, rand(0, 5))
 
 /obj/item/grenade/stingbang
-	name = "stingbang"
+	name = "granat kulkowy"
 	icon_state = "timeg"
 	item_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -71,7 +71,7 @@
 	custom_premium_price = 700 // mostly gotten through cargo, but throw in one for the sec vendor ;)
 
 /obj/item/grenade/stingbang/mega
-	name = "mega stingbang"
+	name = "megagranat kulkowy"
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball/mega
 	shrapnel_radius = 12
 
@@ -113,7 +113,7 @@
 /obj/item/grenade/stingbang/proc/pop(turf/T , mob/living/M)
 	if(M.stat == DEAD)	//They're dead!
 		return
-	M.show_message("<span class='warning'>POP</span>")
+	M.show_message("<span class='warning'>PUF</span>")
 	var/distance = max(0,get_dist(get_turf(src),T))
 	if(!distance || loc == M || loc == M.loc)	//Stop allahu akbarring rooms with this.
 		M.Paralyze(20)
@@ -126,8 +126,8 @@
 
 // Grenade that releases more shrapnel the more times you use it in hand between priming and detonation (sorta like the 9bang from MW3), for admin goofs
 /obj/item/grenade/primer
-	name = "rotfrag grenade"
-	desc = "A grenade that generates more shrapnel the more you rotate it in your hand after pulling the pin. This one releases shrapnel shards."
+	name = "granat obrotowo-odłamkowy"
+	desc = "Granat, który wytwarza tym więcej odłamków, im dłużej obracasz go w dłoni po wyciągnięciu zawleczki. Ten wyrzuca ostre odłamki."
 	icon_state = "timeg"
 	item_state = "flashbang"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
@@ -151,8 +151,8 @@
 	qdel(src)
 
 /obj/item/grenade/primer/stingbang
-	name = "rotsting"
-	desc = "A grenade that generates more shrapnel the more you rotate it in your hand after pulling the pin. This one releases stingballs."
+	name = "granat obrotowo-kulkowy"
+	desc = "Granat, który wytwarza tym więcej odłamków, im dłużej obracasz go w dłoni po wyciągnięciu zawleczki. Ten wyrzuca gumowe kulki."
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	rots_per_mag = 2

@@ -1,5 +1,5 @@
 /datum/symptom/undead_adaptation
-	name = "Necrotic Metabolism"
+	name = "Metabolizm nekrotyczny"
 	desc = "Wirus potrafi rozwijać się i działać nawet w martwych nosicielach."
 	stealth = 2
 	resistance = 2
@@ -18,7 +18,7 @@
 	A.infectable_biotypes -= MOB_UNDEAD
 
 /datum/symptom/inorganic_adaptation
-	name = "Inorganic Biology"
+	name = "Nieorganiczna biologia"
 	desc = "Wirus potrafi przetrwać i namnażać się nawet w środowisku nieorganicznym, zwiększając swoją odporność i zaraźliwość."
 	stealth = -1
 	resistance = 4

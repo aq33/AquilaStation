@@ -1,12 +1,12 @@
 /obj/item/organ/heart/gland
-	name = "fleshy mass"
-	desc = "A nausea-inducing hunk of twisting flesh and metal."
+	name = "mięsista masa"
+	desc = "Przyprawiająca o mdłości bryła skręconego mięsa i metalu."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "gland"
 	status = ORGAN_ROBOTIC
 	organ_flags = NONE
 	beating = TRUE
-	var/true_name = "baseline placebo referencer"
+	var/true_name = "bazowy wzorzec placebo"
 	var/cooldown_low = 300
 	var/cooldown_high = 300
 	var/next_activation = 0
@@ -108,7 +108,7 @@
 	return
 
 /obj/item/organ/heart/gland/heals
-	true_name = "coherency harmonizer"
+	true_name = "harmonizator spójności"
 	cooldown_low = 200
 	cooldown_high = 400
 	uses = -1
@@ -123,7 +123,7 @@
 	owner.adjustOxyLoss(-20)
 
 /obj/item/organ/heart/gland/slime
-	true_name = "gastric animation galvanizer"
+	true_name = "galwanizator ożywienia żołądkowego"
 	cooldown_low = 600
 	cooldown_high = 1200
 	uses = -1
@@ -150,7 +150,7 @@
 	Slime.set_leader(owner)
 
 /obj/item/organ/heart/gland/mindshock
-	true_name = "neural crosstalk uninhibitor"
+	true_name = "odhamowywacz przesłuchów neuronowych"
 	cooldown_low = 400
 	cooldown_high = 700
 	uses = -1
@@ -177,7 +177,7 @@
 				H.hallucination += 60
 
 /obj/item/organ/heart/gland/pop
-	true_name = "anthropmorphic translocator"
+	true_name = "translokator antropomorficzny"
 	cooldown_low = 900
 	cooldown_high = 1800
 	uses = -1
@@ -193,7 +193,7 @@
 	owner.set_species(species)
 
 /obj/item/organ/heart/gland/ventcrawling
-	true_name = "pliant cartilage enabler"
+	true_name = "aktywator giętkiej chrząstki"
 	cooldown_low = 1800
 	cooldown_high = 2400
 	uses = 1
@@ -206,7 +206,7 @@
 	owner.ventcrawler = VENTCRAWLER_ALWAYS
 
 /obj/item/organ/heart/gland/viral
-	true_name = "contamination incubator"
+	true_name = "inkubator skażeń"
 	cooldown_low = 1800
 	cooldown_high = 2400
 	uses = 1
@@ -242,7 +242,7 @@
 	return A
 
 /obj/item/organ/heart/gland/trauma
-	true_name = "white matter randomiser"
+	true_name = "randomizator istoty białej"
 	cooldown_low = 800
 	cooldown_high = 1200
 	uses = 5
@@ -261,7 +261,7 @@
 			owner.gain_trauma_type(BRAIN_TRAUMA_MILD, rand(TRAUMA_RESILIENCE_BASIC, TRAUMA_RESILIENCE_LOBOTOMY))
 
 /obj/item/organ/heart/gland/spiderman
-	true_name = "araneae cloister accelerator"
+	true_name = "akcelerator gniazda pajęczaków"
 	cooldown_low = 450
 	cooldown_high = 900
 	uses = -1
@@ -276,7 +276,7 @@
 	S.directive = "Chroń swoje gniazdo w ciele [owner.real_name]."
 
 /obj/item/organ/heart/gland/egg
-	true_name = "roe/enzymatic synthesizer"
+	true_name = "syntezator ikry i enzymów"
 	cooldown_low = 300
 	cooldown_high = 400
 	uses = -1
@@ -292,7 +292,7 @@
 	new /obj/item/food/egg/gland(T)
 
 /obj/item/organ/heart/gland/electric
-	true_name = "electron accumulator/discharger"
+	true_name = "akumulator i rozładowywacz elektronów"
 	cooldown_low = 800
 	cooldown_high = 1200
 	uses = -1
@@ -318,7 +318,7 @@
 	playsound(get_turf(owner), 'sound/magic/lightningshock.ogg', 50, 1)
 
 /obj/item/organ/heart/gland/chem
-	true_name = "intrinsic pharma-provider"
+	true_name = "wewnętrzny dostawca farmaceutyków"
 	cooldown_low = 50
 	cooldown_high = 50
 	uses = -1
@@ -338,7 +338,7 @@
 	..()
 
 /obj/item/organ/heart/gland/plasma
-	true_name = "effluvium sanguine-synonym emitter"
+	true_name = "emiter wyziewów krwiopodobnych"
 	cooldown_low = 1200
 	cooldown_high = 1800
 	uses = -1

@@ -1,6 +1,6 @@
 //detective spyglasses. meant to be an example for map_popups.dm
 /obj/item/clothing/glasses/sunglasses/spy
-	desc = "Made by Nerd. Co's infiltration and surveillance department. Upon closer inspection, there's a small screen in each lens."
+	desc = "Dzieło działu infiltracji i inwigilacji Nerd Co. Przy bliższych oględzinach widać w każdym szkle mały ekranik."
 	actions_types = list(/datum/action/item_action/activate_remote_view)
 	var/obj/item/clothing/accessory/spy_bug/linked_bug
 
@@ -39,10 +39,10 @@
 
 
 /obj/item/clothing/accessory/spy_bug
-	name = "pocket protector"
+	name = "etui na długopisy"
 	icon = 'icons/obj/clothing/accessories.dmi'
 	icon_state = "pocketprotector"
-	desc = "An advanced piece of espionage equipment in the shape of a pocket protector. It has a built in 360 degree camera for all your \"admirable\" needs. Microphone not included."
+	desc = "Zaawansowany sprzęt szpiegowski w kształcie kieszonkowego etui na długopisy. Ma wbudowaną kamerę 360 stopni na wszystkie twoje „godne podziwu” potrzeby. Mikrofon do nabycia osobno."
 	var/obj/item/clothing/glasses/sunglasses/spy/linked_glasses
 	var/atom/movable/screen/map_view/cam_screen
 	var/list/cam_plane_masters
@@ -87,19 +87,19 @@
 
 //it needs to be linked, hence a kit.
 /obj/item/storage/box/rxglasses/spyglasskit
-	name = "spyglass kit"
-	desc = "this box contains <i>cool</i> nerd glasses; with built-in displays to view a linked camera."
+	name = "zestaw okularów szpiegowskich"
+	desc = "W tym pudełku są <i>odjazdowe</i> okulary nerda z wbudowanymi wyświetlaczami do podglądu z połączonej kamery."
 
 /obj/item/paper/fluff/nerddocs
-	name = "Espionage For Dummies"
+	name = "Szpiegostwo dla opornych"
 	color = "#FFFF00"
-	desc = "An eye gougingly yellow pamphlet with a badly designed image of a detective on it. the subtext says \" The Latest Way To Violate Privacy Guidelines!\" "
+	desc = "Oślepiająco żółta broszurka z kiepsko zaprojektowanym obrazkiem detektywa. Podtytuł głosi: „Najnowszy sposób na łamanie zasad ochrony prywatności!” "
 	default_raw_text = @{"
-Thank you for your purchase of the Nerd Co SpySpeks <small>tm</small>, this paper will be your quick-start guide to violating the privacy of your crewmates in three easy steps!<br><br>Step One: Nerd Co SpySpeks <small>tm</small> upon your face. <br>
-Step Two: Place the included "ProfitProtektor <small>tm</small>" camera assembly in a place of your choosing - make sure to make heavy use of it's inconspicous design!
-Step Three: Press the "Activate Remote View" Button on the side of your SpySpeks <small>tm</small> to open a movable camera display in the corner of your vision, it's just that easy!<br><br><br><center><b>TROUBLESHOOTING</b><br></center>
-My SpySpeks <small>tm</small> Make a shrill beep while attempting to use!
-A shrill beep coming from your SpySpeks means that they can't connect to the included ProfitProtektor <small>tm</small>, please make sure your ProfitProtektor is still active, and functional!
+Dziękujemy za zakup Nerd Co SpySpeks <small>tm</small>! Ta kartka to twój szybki przewodnik po łamaniu prywatności współtowarzyszy w trzech prostych krokach!<br><br>Krok pierwszy: załóż Nerd Co SpySpeks <small>tm</small> na twarz. <br>
+Krok drugi: umieść dołączony zespół kamery „ProfitProtektor <small>tm</small>” w wybranym miejscu – koniecznie wykorzystaj jego niepozorny wygląd!
+Krok trzeci: naciśnij przycisk „Aktywuj Zdalny Widok” z boku SpySpeks <small>tm</small>, by otworzyć ruchomy podgląd z kamery w rogu pola widzenia. To takie proste!<br><br><br><center><b>ROZWIĄZYWANIE PROBLEMÓW</b><br></center>
+Moje SpySpeks <small>tm</small> przenikliwie piszczą przy próbie użycia!
+Przenikliwy pisk SpySpeks oznacza, że nie mogą połączyć się z dołączonym ProfitProtektorem <small>tm</small>. Upewnij się, że ProfitProtektor wciąż jest aktywny i sprawny!
 	"}
 
 /obj/item/storage/box/rxglasses/spyglasskit/PopulateContents()

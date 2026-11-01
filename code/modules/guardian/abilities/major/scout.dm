@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/scout
-	name = "Scout"
-	desc = "The guardian can turn near-invisible and invincible and scout the station, although it cannot attack anything."
+	name = "Zwiadowca"
+	desc = "Strażnik może stać się niemal niewidzialny i niezniszczalny, żeby przeczesać stację, choć nie może wtedy niczego atakować."
 	ui_icon = "binoculars"
 	cost = 1
 	has_mode = TRUE

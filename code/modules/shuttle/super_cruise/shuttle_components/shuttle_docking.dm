@@ -79,7 +79,7 @@
 	GrantActions(user)
 	current_user = user
 	eyeobj.eye_user = user
-	eyeobj.name = "Camera Eye ([user.name])"
+	eyeobj.name = "Oko kamery ([user.name])"
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
@@ -164,7 +164,7 @@
 	if(my_port)
 		my_port.delete_after = TRUE
 		my_port.id = null
-		my_port.name = "Old [my_port.name]"
+		my_port.name = "dawny port: [my_port.name]"
 		my_port = null
 
 	if(!my_port)
@@ -333,7 +333,7 @@
 	return TRUE
 
 /datum/action/innate/shuttledocker_rotate
-	name = "Rotate"
+	name = "Obróć"
 	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_cycle_equip_off"
 
@@ -346,7 +346,7 @@
 	origin.rotateLandingSpot()
 
 /datum/action/innate/shuttledocker_place
-	name = "Place"
+	name = "Umieść"
 	icon_icon = 'icons/mob/actions/actions_mecha.dmi'
 	button_icon_state = "mech_zoom_off"
 
@@ -359,7 +359,7 @@
 	origin.placeLandingSpot(target)
 
 /datum/action/innate/camera_jump/shuttle_docker
-	name = "Jump to Location"
+	name = "Skocz do lokalizacji"
 	button_icon_state = "camera_jump"
 
 /datum/action/innate/camera_jump/shuttle_docker/Activate()
@@ -384,7 +384,7 @@
 			L["(L.len)[S.name]"] = S
 
 	playsound(console, 'sound/machines/terminal_prompt.ogg', 25, FALSE)
-	var/selected = input("Wybierz lokalizację, do której chcesz skoczyć", "Locations", null) as null|anything in L
+	var/selected = input("Wybierz lokalizację, do której chcesz skoczyć", "Lokalizacje", null) as null|anything in L
 	if(QDELETED(src) || QDELETED(target) || !isliving(target))
 		return
 	playsound(src, "terminal_type", 25, 0)

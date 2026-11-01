@@ -7,133 +7,133 @@
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/awaymission/snowdin/outside
-	name = "Snowdin Tundra Plains"
+	name = "Równiny Tundry Snowdin"
 	icon_state = "awaycontent25"
 
 /area/awaymission/snowdin/post
-	name = "Snowdin Outpost"
+	name = "Placówka Snowdin"
 	icon_state = "awaycontent2"
 	requires_power = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/snowdin/post/medbay
-	name = "Snowdin Outpost - Medbay"
+	name = "Placówka Snowdin – Placówka Medyczna"
 	icon_state = "awaycontent3"
 
 /area/awaymission/snowdin/post/secpost
-	name = "Snowdin Outpost - Security Checkpoint"
+	name = "Placówka Snowdin – Punkt Kontrolny Ochrony"
 	icon_state = "awaycontent4"
 
 /area/awaymission/snowdin/post/hydro
-	name = "Snowdin Outpost - Hydroponics"
+	name = "Placówka Snowdin – Hydroponika"
 	icon_state = "awaycontent5"
 
 /area/awaymission/snowdin/post/messhall
-	name = "Snowdin Outpost - Mess Hall"
+	name = "Placówka Snowdin – Stołówka"
 	icon_state = "awaycontent6"
 
 /area/awaymission/snowdin/post/gateway
-	name = "Snowdin Outpost - Gateway"
+	name = "Placówka Snowdin – Brama"
 	icon_state = "awaycontent7"
 
 /area/awaymission/snowdin/post/dorm
-	name = "Snowdin Outpost - Dorms"
+	name = "Placówka Snowdin – Kwatery Załogi"
 	icon_state = "awaycontent8"
 
 /area/awaymission/snowdin/post/kitchen
-	name = "Snowdin Outpost - Kitchen"
+	name = "Placówka Snowdin – Kuchnia"
 	icon_state = "awaycontent9"
 
 /area/awaymission/snowdin/post/engineering
-	name = "Snowdin Outpost - Engineering"
+	name = "Placówka Snowdin – Inżynieria"
 	icon_state = "awaycontent10"
 
 /area/awaymission/snowdin/post/custodials
-	name = "Snowdin Outpost - Custodials"
+	name = "Placówka Snowdin – Pomieszczenie Dla Służb Porządkowych"
 	icon_state = "awaycontent11"
 
 /area/awaymission/snowdin/post/research
-	name = "Snowdin Outpost - Research Area"
+	name = "Placówka Snowdin – Strefa Badań"
 	icon_state = "awaycontent12"
 
 /area/awaymission/snowdin/post/garage
-	name = "Snowdin Outpost - Garage"
+	name = "Placówka Snowdin – Garaż"
 	icon_state = "awaycontent13"
 
 /area/awaymission/snowdin/post/minipost
-	name = "Snowdin Outpost - Recon Post"
+	name = "Placówka Snowdin – Posterunek Zwiadowczy"
 	icon_state = "awaycontent19"
 
 /area/awaymission/snowdin/post/mining_main
-	name = "Snowdin Outpost - Mining Post"
+	name = "Placówka Snowdin – Posterunek Górniczy"
 	icon_state = "awaycontent21"
 
 /area/awaymission/snowdin/post/mining_main/mechbay
-	name = "Snowdin Outpost - Mining Post Mechbay"
+	name = "Placówka Snowdin – Warsztat Mechów Posterunku Górniczego"
 	icon_state = "awaycontent25"
 
 /area/awaymission/snowdin/post/mining_main/robotics
-	name = "Snowdin Outpost - Mining Post Robotics"
+	name = "Placówka Snowdin – Robotyka Posterunku Górniczego"
 	icon_state = "awaycontent26"
 
 /area/awaymission/snowdin/post/cavern1
-	name = "Snowdin Outpost - Cavern Outpost 1"
+	name = "Placówka Snowdin – Placówka Jaskiniowa 1"
 	icon_state = "awaycontent27"
 
 /area/awaymission/snowdin/post/cavern2
-	name = "Snowdin Outpost - Cavern Outpost 2"
+	name = "Placówka Snowdin – Placówka Jaskiniowa 2"
 	icon_state = "awaycontent28"
 
 /area/awaymission/snowdin/post/mining_dock
-	name = "Snowdin Outpost - Underground Mine Post"
+	name = "Placówka Snowdin – Podziemny Posterunek Górniczy"
 	icon_state = "awaycontent22"
 
 /area/awaymission/snowdin/post/broken_shuttle
-	name = "Snowdin Outpost - Broken Transit Shuttle"
+	name = "Placówka Snowdin – Uszkodzony Prom Tranzytowy"
 	icon_state = "awaycontent20"
 	requires_power = FALSE
 
 /area/awaymission/snowdin/igloo
-	name = "Snowdin Igloos"
+	name = "Igloo Snowdin"
 	icon_state = "awaycontent14"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/awaymission/snowdin/cave
-	name = "Snowdin Caves"
+	name = "Jaskinie Snowdin"
 	icon_state = "awaycontent15"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/awaymission/snowdin/cave/cavern
-	name = "Snowdin Depths"
+	name = "Głębiny Snowdin"
 	icon_state = "awaycontent23"
 
 /area/awaymission/snowdin/cave/mountain
-	name = "Snowdin Mountains"
+	name = "Góry Snowdin"
 	icon_state = "awaycontent24"
 
 
 /area/awaymission/snowdin/base
-	name = "Snowdin Main Base"
+	name = "Główna Baza Snowdin"
 	icon_state = "awaycontent16"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 
 /area/awaymission/snowdin/dungeon1
-	name = "Snowdin Depths"
+	name = "Głębiny Snowdin"
 	icon_state = "awaycontent17"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/snowdin/sekret
-	name = "Snowdin Operations"
+	name = "Operacje Snowdin"
 	icon_state = "awaycontent18"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
 
 /area/shuttle/snowdin/elevator1
-	name = "Excavation Elevator"
+	name = "Winda Wykopaliskowa"
 
 /area/shuttle/snowdin/elevator2
-	name = "Mining Elevator"
+	name = "Winda Górnicza"
 
 //liquid plasma!!!!!!//
 
@@ -143,8 +143,8 @@
 	initial_temperature = 180
 
 /turf/open/lava/plasma
-	name = "liquid plasma"
-	desc = "A flowing stream of chilled liquid plasma. You probably shouldn't get in."
+	name = "ciekła plazma"
+	desc = "Płynący strumień schłodzonej ciekłej plazmy. Raczej nie powinno się do niego wchodzić."
 	icon_state = "liquidplasma"
 	initial_gas_mix = "n2=82;plasma=24;TEMP=120"
 	baseturfs = /turf/open/lava/plasma
@@ -236,8 +236,8 @@
 
 
 /obj/vehicle/ridden/lavaboat/plasma
-	name = "plasma boat"
-	desc = "A boat used for traversing the streams of plasma without turning into an icecube."
+	name = "łódź plazmowa"
+	desc = "Łódź do przeprawiania się przez strumienie plazmy bez zamieniania się w kostkę lodu."
 	icon_state = "goliath_boat"
 	icon = 'icons/obj/lavaland/dragonboat.dmi'
 	resistance_flags = FREEZE_PROOF
@@ -246,90 +246,90 @@
 
 
 /obj/item/paper/crumpled/ruins/snowdin/foreshadowing
-	name = "scribbled note"
+	name = "nabazgrana notatka"
 	default_raw_text = {"Coś tu poszło BARDZO nie tak. Jouslen w nocy mamrocze w swojej kajucie jakieś dziwne rzeczy i przy pracy zawsze wygląda na zmęczonego. Próbowałem z nim o tym pogadać, a on na mnie wybuchnął,
 	 że mam pilnować własnego nosa. Zgłosiłem go oficerowi, powiedział, że się tym zajmie. Zostały nam tu jeszcze tylko 2 miesiące, zanim przeniosą nas do innego zadania, więc szybciej to nie zleci..."}
 
 /obj/item/paper/crumpled/ruins/snowdin/misc1
-	name = "Mission Prologue"
+	name = "Prolog misji"
 	default_raw_text = {"O kurwa, co za jazda! Te gnoje z Nanotrasen nawet nie wiedziały, co w nie trafiło! Cała piątka zrzuciła się prosto na kapitana, nawet nie zdążył krzyknąć! Weszliśmy i wyszliśmy z dyskiem w parę minut!
 	Załoga nawet nie wiedziała, co się dzieje, dopóki nie odpalił alarm delta, a wtedy już nas nie było. Mamy skrzynkę do picia na drogę powrotną, żeby uczcić, kurewsko dobra robota!"}
 
 /obj/item/paper/crumpled/ruins/snowdin/dontdeadopeninside
-	name = "scribbled note"
+	name = "nabazgrana notatka"
 	default_raw_text = {"Jeśli to czytasz: UCIEKAJ! Wydobycie tutaj odkopało coś, co kiedyś było uwięzione w warstwach lodu tej piekielnej dziury. Nadzorca i Jouslen zaginęli. Oficer
 	 trzyma resztę z nas pod blokadą i przysięgam na Boga, że nocą ciągle słyszę dziwne dźwięki za ścianami. Połączenie przez bramę padło i bez dostaw z Centrali zostaliśmy
 	 tu na śmierć. Od ekipy górniczej też nie mamy żadnych wieści, więc mogę tylko zakładać, że cokolwiek, kurwa, odkopali, dopadło najpierw ich, zanim przyjdzie po nas. Nie chcę tu umierać..."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/saw_usage
-	name = "SAW Usage"
+	name = "Użycie SAW"
 	default_raw_text = "WIDZIAŁEŚ IVAN, JAK TRZYMASZ PIŁA JAK PISTOLET, JESTEŚ SILNIEJSZY OD ODRZUTU ZE STRACHU, ŻE DOSTANIESZ W TWARZ!"
 
 /obj/item/paper/fluff/awaymissions/snowdin/research_feed
-	name = "Research Feed"
+	name = "Kanał badawczy"
 	default_raw_text = {"<i>Kartka pełna wykresów i innych szczegółowych informacji o aktywności sejsmicznej okolicy.</i>"}
 
 //profile of each of the old crewmembers for the outpost
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/overseer
-	name = "Personnel Record AOP#01"
+	name = "Akta personelu AOP#01"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Caleb Reed<br><b>Wiek:</b>38<br><b>Płeć:</b>mężczyzna<br><b>Stanowisko na miejscu:</b>nadzorca placówki<br><br><center><b>Informacje</b></center><br><center>Caleb Reed prowadził kilka ekspedycji
 	 na niezbadane planety w poszukiwaniu plazmy dla Nanotrasen, przeczesując wszystko od gorących sawann po mroźną Arktykę. Przebieg służby w miarę czysty, z jedynym incydentem: utratą dwóch badaczy podczas
 	 ekspedycji <b>_______</b>, gdy niewłaściwe użycie materiałów wybuchowych do drążenia tuneli spowodowało zawał."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/sec1
-	name = "Personnel Record AOP#02"
+	name = "Akta personelu AOP#02"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>James Reed<br><b>Wiek:</b>43<br><b>Płeć:</b>mężczyzna<br><b>Stanowisko na miejscu:</b>ochrona placówki<br><br><center><b>Informacje</b></center><br><center>James Reed należy
 	 do sił ochrony Nanotrasen od ponad 20 lat, wstąpił w 22XX roku. Czysta kartoteka i niezachwiana lojalność wobec korporacji podczas licznych przydziałów w różnych miejscach czynią go cennym nabytkiem Nanotrasen,
 	  gdy trzeba utrzymać spokój, stawiając na pierwszym miejscu prywatność Nanotrasen."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/hydro1
-	name = "Personnel Record AOP#03"
+	name = "Akta personelu AOP#03"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Katherine Esterdeen<br><b>Wiek:</b>27<br><b>Płeć:</b>kobieta<br><b>Stanowisko na miejscu:</b>botaniczka placówki<br><br><center><b>Informacje</b></center><br><center>Katherine Esterdeen to świeża
 	 absolwentka botaniki z doktoratem z ekologii. Z czystą kartoteką i chęcią do pracy wydaje się idealna do utrzymywania roślin pośrodku niczego."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/engi1
-	name = "Personnel Record AOP#04"
+	name = "Akta personelu AOP#04"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Rachel Migro<br><b>Wiek:</b>35<br><b>Płeć:</b>kobieta<br><b>Stanowisko na miejscu:</b>inżynierka placówki<br><br><center><b>Informacje</b></center><br><center>Niedawno uzyskała certyfikat czeladnika na pełen etat; w ciągu ostatnich 5 lat Rachel
 		przydzielano różne projekty budowlane. Kompetentna, bez wcześniejszych wykroczeń, nie powinna sprawiać kłopotów."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/research1
-	name = "Personnel Record AOP#05"
+	name = "Akta personelu AOP#05"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Jacob Ullman<br><b>Wiek:</b>27<br><b>Płeć:</b>mężczyzna<br><b>Stanowisko na miejscu:</b>badacz placówki<br><br><center><b>Informacje</b></center><br><center>"}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/research2
-	name = "Personnel Record AOP#06"
+	name = "Akta personelu AOP#06"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Elizabeth Queef<br><b>Wiek:</b>28<br><b>Płeć:</b>kobieta<br><b>Stanowisko na miejscu:</b>badaczka placówki<br><br><center><b>Informacje</b></center><br><center>"}
 
 /obj/item/paper/fluff/awaymissions/snowdin/profile/research3
-	name = "Personnel Record AOP#07"
+	name = "Akta personelu AOP#07"
 	default_raw_text = {"<b><center>Akta personelu</b></center><br><br><b>Imię i nazwisko:</b>Jouslen McGee<br><b>Wiek:</b>38<br><b>Płeć:</b>mężczyzna<br><b>Stanowisko na miejscu:</b>badacz placówki<br><br><center><b>Informacje</b></center><br><center>"}
 
 /obj/item/paper/fluff/awaymissions/snowdin/secnotice
-	name = "Security Notice"
+	name = "Komunikat ochrony"
 	default_raw_text = {"Przydzielono cię do tej arktycznej placówki, byś chronił mienie Nanotrasen i dbał o bezpieczeństwo kluczowych informacji, podczas gdy stacjonująca tu załoga przestrzega protokołu. Wybrany
 		personel placówki przeszedł wstępną weryfikację i nie ma na koncie żadnych incydentów, ale na wypadek problemów dostajesz jedną celę i instrukcję skontaktowania się z Centralą w celu zlikwidowania
 		winnego członka załogi."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/mining
-	name = "Assignment Notice"
+	name = "Zawiadomienie o przydziale"
 	default_raw_text = {"Ta zimna jak cholera planeta to współczesny odpowiednik trafienia na żyłę złota. Ogromne złoża plazmy i dosłownie strumienie plazmy płyną jaskiniami pod całym tym lodem, a my jesteśmy tu, żeby to wszystko wydobyć.\
 	 Nanotrasen płaci od kilograma, więc do roboty, chłopaki!"}
 
 /obj/item/paper/crumpled/ruins/snowdin/lootstructures
-	name = "scribbled note"
+	name = "nabazgrana notatka"
 	default_raw_text = {"W jaskini są porozrzucane jakieś ruiny, ich ściany wyglądają na zrobione z jakiejś supersprasowanej mieszanki lodu i śniegu. Te, które dotąd znaleźliśmy, już zabarykadowaliśmy,
 	 bo ciągle słyszymy ze środka dziwne odgłosy. Zresztą jaki głupiec lekkomyślnie wbiegałby do starożytnych ruin pełnych potworów dla jakiegoś starego sprzętu?"}
 
 /obj/item/paper/crumpled/ruins/snowdin/shovel
-	name = "shoveling duties"
+	name = "dyżury przy odśnieżaniu"
 	default_raw_text = {"Śnieg zasypuje tu wszystko przez cały rok, a zimą jeszcze gorzej. Stała zmiana przy odśnieżaniu tego gówna sprzed śluz i utrzymywaniu ścieżek w miarę przejezdnych
 	to dobry sposób, żeby nie utknąć w śniegu po kolana."}
 
 //holo disk recording//--
 
 /obj/item/disk/holodisk/snowdin/weregettingpaidright
-	name = "Conversation #AOP#23"
+	name = "Rozmowa #AOP#23"
 	preset_image_type = /datum/preset_holoimage/researcher
 	preset_record_text = {"
 	NAME Jacob Ullman
@@ -361,10 +361,10 @@
 	DELAY 30;"}
 
 /obj/item/disk/holodisk/snowdin/welcometodie
-	name = "Conversation #AOP#1"
+	name = "Rozmowa #AOP#1"
 	preset_image_type = /datum/preset_holoimage/corgi
 	preset_record_text = {"
-	NAME Friendly AI Unit
+	NAME Przyjazna jednostka SI
 	DELAY 10
 	SAY Dzień dobry! Witamy na Placówce Arktycznej *338-3**$$!
 	DELAY 30
@@ -376,7 +376,7 @@
 	DELAY 20;"}
 
 /obj/item/disk/holodisk/snowdin/overrun
-	name = "Conversation #AOP#55"
+	name = "Rozmowa #AOP#55"
 	preset_image_type = /datum/preset_holoimage/nanotrasenprivatesecurity
 	preset_record_text = {"
 	NAME James Reed
@@ -403,11 +403,11 @@
 	NAME Jacob Ullman
 	PRESET /datum/preset_holoimage/researcher.
 	DELAY 15
-	Say I don't have to be told twice! Let's get the fuck out of here.
+	Say Nie trzeba mi dwa razy powtarzać! Spierdalajmy stąd.
 	DELAY 20;"}
 
 /obj/item/disk/holodisk/snowdin/ripjacob
-	name = "Conversation #AOP#62"
+	name = "Rozmowa #AOP#62"
 	preset_image_type = /datum/preset_holoimage/researcher
 	preset_record_text = {"
 	NAME Jacob Ullman
@@ -535,43 +535,43 @@
 //special items//--
 
 /obj/structure/barricade/wooden/snowed
-	name = "crude plank barricade"
-	desc = "This space is blocked off by a wooden barricade. It seems to be covered in a layer of snow."
+	name = "prowizoryczna barykada z desek"
+	desc = "Przejście blokuje drewniana barykada. Wygląda na pokrytą warstwą śniegu."
 	icon_state = "woodenbarricade-snow"
 	max_integrity = 125
 
 /obj/item/clothing/under/syndicate/coldres
-	name = "insulated tactical turtleneck"
-	desc = "A nondescript and slightly suspicious-looking turtleneck with digital camouflage cargo pants. The interior has been padded with special insulation for both warmth and protection."
+	name = "ocieplany golf taktyczny"
+	desc = "Niepozorny i nieco podejrzanie wyglądający golf ze spodniami bojówkami w cyfrowym kamuflażu. Wnętrze wyłożono specjalną izolacją, która grzeje i chroni."
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0,"energy" = 5, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25, "stamina" = 30, "bleed" = 10)
 	cold_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/clothing/shoes/combat/coldres
-	name = "insulated combat boots"
-	desc = "High speed, low drag combat boots, now with an added layer of insulation."
+	name = "ocieplane buty bojowe"
+	desc = "Szybkie, lekkie buty bojowe, teraz z dodatkową warstwą izolacji."
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 
 /obj/item/gun/magic/wand/fireball/inert
-	name = "weakened wand of fireball"
-	desc = "This wand shoots scorching balls of fire that explode into destructive flames. The years of the cold have weakened the magic inside the wand."
+	name = "osłabiona różdżka kuli ognia"
+	desc = "Ta różdżka strzela palącymi kulami ognia, które wybuchają niszczycielskim płomieniem. Lata mrozu osłabiły zaklętą w niej magię."
 	max_charges = 4
 
 /obj/item/gun/magic/wand/resurrection/inert
-	name = "weakened wand of healing"
-	desc = "This wand uses healing magics to heal and revive. The years of the cold have weakened the magic inside the wand."
+	name = "osłabiona różdżka uzdrawiania"
+	desc = "Ta różdżka leczy i wskrzesza magią uzdrawiania. Lata mrozu osłabiły zaklętą w niej magię."
 	max_charges = 5
 
 /obj/effect/mob_spawn/human/syndicatesoldier/coldres
-	name = "Syndicate Snow Operative"
+	name = "Operator Syndykatu ze śniegów"
 	outfit = /datum/outfit/snowsyndie/corpse
 
 /datum/outfit/snowsyndie/corpse
-	name = "Syndicate Snow Operative Corpse"
+	name = "Zwłoki operatora Syndykatu ze śniegów"
 	implants = null
 
 /obj/effect/mob_spawn/human/syndicatesoldier/coldres/alive
-	name = "sleeper"
+	name = "kapsuła snu"
 	mob_name = "Operator Syndykatu ze śniegów"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
@@ -584,7 +584,7 @@
 	use_cooldown = TRUE
 
 /datum/outfit/snowsyndie
-	name = "Syndicate Snow Operative"
+	name = "Operator Syndykatu ze śniegów"
 	uniform = /obj/item/clothing/under/syndicate/coldres
 	shoes = /obj/item/clothing/shoes/combat/coldres
 	ears = /obj/item/radio/headset/syndicate/alt
@@ -603,11 +603,11 @@
 //objs//--
 
 /obj/structure/flora/rock/icy
-	name = "icy rock"
+	name = "oblodzona skała"
 	color = rgb(204,233,235)
 
 /obj/structure/flora/rock/pile/icy
-	name = "icey rocks"
+	name = "oblodzone skały"
 	color = rgb(204,233,235)
 
 //decals//--

@@ -111,29 +111,29 @@
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,PROC_REF(admin_promote))
+	.["Awansuj"] = CALLBACK(src,PROC_REF(admin_promote))
 
 /datum/antagonist/rev/proc/admin_promote(mob/admin)
 	var/datum/mind/O = owner
 	promote()
-	message_admins("[key_name_admin(admin)] has head-rev'ed [O].")
+	message_admins("[key_name_admin(admin)] czyni [O] przywódcą rewolucji.")
 	log_admin("[key_name(admin)] has head-rev'ed [O].")
 
 /datum/antagonist/rev/head/admin_add(datum/mind/new_owner,mob/admin)
 	give_hud = TRUE
 	remove_clumsy = TRUE
 	new_owner.add_antag_datum(src)
-	message_admins("[key_name_admin(admin)] has head-rev'ed [key_name_admin(new_owner)].")
+	message_admins("[key_name_admin(admin)] czyni [key_name_admin(new_owner)] przywódcą rewolucji.")
 	log_admin("[key_name(admin)] has head-rev'ed [key_name(new_owner)].")
 	to_chat(new_owner.current, "<span class='userdanger'>Należysz teraz do przywództwa rewolucji!</span>")
 
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
-	. -= "Promote"
-	.["Demote"] = CALLBACK(src,PROC_REF(admin_demote))
+	. -= "Awansuj"
+	.["Zdegraduj"] = CALLBACK(src,PROC_REF(admin_demote))
 
 /datum/antagonist/rev/head/proc/admin_demote(datum/mind/target,mob/user)
-	message_admins("[key_name_admin(user)] has demoted [key_name_admin(owner)] from head revolutionary.")
+	message_admins("[key_name_admin(user)] degraduje [key_name_admin(owner)] z przywódcy rewolucji.")
 	log_admin("[key_name(user)] has demoted [key_name(owner)] from head revolutionary.")
 	demote()
 
@@ -226,7 +226,7 @@
 /datum/antagonist/rev/proc/remove_revolutionary(borged, deconverter)
 	log_attack("[key_name(owner.current)] has been deconverted from the revolution by [ismob(deconverter) ? key_name(deconverter) : deconverter]!")
 	if(borged)
-		message_admins("[ADMIN_LOOKUPFLW(owner.current)] has been borged while being a [name]")
+		message_admins("[ADMIN_LOOKUPFLW(owner.current)] zostaje cyborgiem jako antagonista: [name]")
 	owner.special_role = null
 	if(iscarbon(owner.current) && deconverter != DECONVERTER_REVS_WIN)
 		var/mob/living/carbon/C = owner.current
@@ -270,7 +270,7 @@
 	return ..()
 
 /datum/team/revolution
-	name = "Revolution"
+	name = "Rewolucja"
 	var/max_headrevs = 3
 	var/list/ex_headrevs = list() // Dynamic removes revs on loss, used to keep a list for the roundend report.
 	var/list/ex_revs = list()

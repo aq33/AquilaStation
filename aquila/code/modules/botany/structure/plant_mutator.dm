@@ -296,7 +296,7 @@
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/manipulator = 2, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/plant_mutator
-	name = "Płytka pieca radiacyjnego"
+	name = "Projekt maszyny (piec radiacyjny)"
 	id = "plant_mutator_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/plant_mutator

@@ -1,81 +1,80 @@
 import { CheckboxInput, FeatureToggle } from '../base';
 
 export const tgui_lock: FeatureToggle = {
-  name: 'Lock tgui to main monitor',
+  name: 'Okna TGUI na głównym monitorze',
   category: 'UI',
   subcategory: 'TGUI',
-  description: 'Locks tgui windows to your main monitor.',
+  description: 'Zatrzymuje okna TGUI na twoim głównym monitorze.',
   component: CheckboxInput,
 };
 
 export const screentips: FeatureToggle = {
-  name: 'Enable Screentips',
+  name: 'Podpowiedzi na ekranie',
   category: 'UI',
   subcategory: 'HUD',
   description:
-    'Enables screentips which give contextual hints about certain items.',
+    'Włącza podpowiedzi na ekranie z kontekstowymi wskazówkami o niektórych przedmiotach.',
   component: CheckboxInput,
 };
 
 export const tgui_say_show_prefix: FeatureToggle = {
-  name: 'Keep Radio Prefix',
+  name: 'Zachowaj prefiks radia',
   category: 'UI',
   subcategory: 'TGUI Say',
-  description:
-    'If radio prefixes should remain in the chatbox after being typed.',
+  description: 'Czy prefiksy radia mają zostawać w polu czatu po wpisaniu.',
   component: CheckboxInput,
 };
 
 export const tgui_input: FeatureToggle = {
-  name: 'Enable TGUI Input',
+  name: 'Okna wprowadzania TGUI',
   category: 'UI',
   subcategory: 'TGUI Input',
   description:
-    'Renders input boxes in TGUI. If this is disabled, legacy input boxes will be uesd.',
+    'Wyświetla okna wprowadzania w TGUI. Po wyłączeniu używane są stare okna.',
   component: CheckboxInput,
 };
 
 export const tgui_input_large: FeatureToggle = {
-  name: 'Large Buttons',
+  name: 'Duże przyciski',
   category: 'UI',
   subcategory: 'TGUI Input',
-  description: 'Makes TGUI buttons fill the size of the box.',
+  description: 'Przyciski TGUI wypełniają całe okno.',
   component: CheckboxInput,
   important: true,
 };
 
 export const tgui_input_swapped: FeatureToggle = {
-  name: 'Swap Submit/Cancel buttons',
+  name: 'Zamień przyciski Zatwierdź/Anuluj',
   category: 'UI',
   subcategory: 'TGUI Input',
   description:
-    'Switches the location of the Submit and Cancel buttons. "On" means Submit will be on the left.',
+    'Zamienia miejscami przyciski Zatwierdź i Anuluj. Po włączeniu Zatwierdź jest po lewej.',
   component: CheckboxInput,
 };
 
 export const tgui_say: FeatureToggle = {
-  name: 'Enable TGUI Say',
+  name: 'TGUI Say',
   category: 'UI',
   subcategory: 'TGUI Say',
   description:
-    'Renders the Say input in TGUI. If disabled, a legacy input box will be used.',
+    'Wyświetla pole mowy w TGUI. Po wyłączeniu używane jest stare okno.',
   component: CheckboxInput,
 };
 
 export const tgui_say_light_mode: FeatureToggle = {
-  name: 'Light Mode',
+  name: 'Jasny motyw',
   category: 'UI',
   subcategory: 'TGUI Say',
-  description: 'Sets TGUI Say to use light mode.',
+  description: 'Włącza jasny motyw w TGUI Say.',
   component: CheckboxInput,
   important: true,
 };
 
 export const tgui_asay: FeatureToggle = {
-  name: 'Enable TGUI ASay/MSay/DSay',
+  name: 'TGUI ASay/MSay/DSay',
   category: 'UI',
   subcategory: 'TGUI Say',
   description:
-    'Renders the ASay/MSay/DSay input in TGUI. If disabled, a legacy input box will be used.',
+    'Wyświetla pole ASay/MSay/DSay w TGUI. Po wyłączeniu używane jest stare okno.',
   component: CheckboxInput,
 };

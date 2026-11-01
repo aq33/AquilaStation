@@ -10,8 +10,8 @@
  */
 
 /obj/item/clothing/under/rank/security/officer
-	name = "security jumpsuit"
-	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	name = "policyjny kombinezon"
+	desc = "Taktyczny policyjny kombinezon dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rsecurity"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "stamina" = 30, "bleed" = 10)
@@ -21,20 +21,20 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/security/officer/white
-	name = "white security jumpsuit"
+	name = "biały policyjny kombinezon"
 	desc = "Taktyczny relikt z dawnych lat, zanim Nanotrasen uznało, że taniej jest farbować stroje na czerwono, niż spierać krew."
 	icon_state = "security"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/officer/corporate
-	name = "corporate security jumpsuit"
-	desc = "A tactical security jumpsuit in black."
+	name = "korporacyjny policyjny kombinezon"
+	desc = "Taktyczny policyjny kombinezon w czerni."
 	icon_state = "sec_corporate_s"
 	item_state = "bl_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/skirt
-	name = "security jumpskirt"
+	name = "policyjna spódnica"
 	desc = "„Taktyczny” kombinezon ochrony, w którym nogawki zastąpiono spódnicą."
 	icon_state = "secskirt"
 	item_state = "r_suit"
@@ -43,22 +43,22 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/officer/blueshirt
-	name = "blue shirt and tie"
+	name = "niebieska koszula z krawatem"
 	desc = "Jestem teraz trochę zajęty, Calhoun."
 	icon_state = "blueshift"
 	item_state = "blueshift"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/formal
-	name = "security officer's formal uniform"
-	desc = "The latest in fashionable security outfits."
+	name = "galowy mundur policjanta"
+	desc = "Ostatni krzyk mody wśród strojów policyjnych."
 	icon_state = "officerblueclothes"
 	item_state = "officerblueclothes"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/warden
-	name = "security suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	name = "policyjny garnitur"
+	desc = "Oficjalny policyjny garnitur dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rwarden"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "stamina" = 30, "bleed" = 10)
@@ -68,8 +68,8 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/security/warden/skirt
-	name = "warden's suitskirt"
-	desc = "A formal security suitskirt for officers complete with Nanotrasen belt buckle."
+	name = "garsonka naczelnika"
+	desc = "Oficjalna policyjna garsonka dla funkcjonariuszy, z klamrą pasa Nanotrasen."
 	icon_state = "rwarden_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -78,8 +78,8 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/warden/white
-	name = "white security suit"
-	desc = "A formal relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	name = "biały policyjny garnitur"
+	desc = "Oficjalna pamiątka z dawnych lat, zanim Nanotrasen uznało, że taniej jest farbować garnitury na czerwono, niż spierać z nich krew."
 	icon_state = "warden"
 	item_state = "gy_suit"
 
@@ -87,8 +87,8 @@
  * Detective
  */
 /obj/item/clothing/under/rank/security/detective
-	name = "hard-worn suit"
-	desc = "Someone who wears this means business."
+	name = "znoszony garnitur"
+	desc = "Kto to nosi, nie żartuje."
 	icon_state = "detective"
 	item_state = "det"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 30, "stamina" = 20, "bleed" = 10)
@@ -98,8 +98,8 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/security/detective/skirt
-	name = "detective's suitskirt"
-	desc = "Someone who wears this means business."
+	name = "garsonka detektywa"
+	desc = "Kto to nosi, nie żartuje."
 	icon_state = "detective_skirt"
 	item_state = "det"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -108,15 +108,15 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/detective/grey
-	name = "noir suit"
-	desc = "A hard-boiled private investigator's grey suit, complete with tie clip."
+	name = "garnitur noir"
+	desc = "Szary garnitur twardego prywatnego detektywa, ze spinką do krawata."
 	icon_state = "greydet"
 	item_state = "greydet"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/detective/grey/skirt
-	name = "noir suitskirt"
-	desc = "A hard-boiled private investigator's grey suitskirt, complete with tie clip."
+	name = "garsonka noir"
+	desc = "Szara garsonka twardego prywatnego detektywa, ze spinką do krawata."
 	icon_state = "greydet_skirt"
 	item_state = "greydet"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -128,8 +128,8 @@
  * Head of Security
  */
 /obj/item/clothing/under/rank/security/head_of_security
-	name = "head of security's jumpsuit"
-	desc = "A security jumpsuit decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "kombinezon komendanta"
+	desc = "Zdobiony policyjny kombinezon dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
 	icon_state = "rhos"
 	item_state = "r_suit"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 10)
@@ -139,8 +139,8 @@
 	random_sensor = FALSE
 
 /obj/item/clothing/under/rank/security/head_of_security/skirt
-	name = "head of security's jumpskirt"
-	desc = "A security jumpskirt decorated for those few with the dedication to achieve the position of Head of Security."
+	name = "spódnica komendanta"
+	desc = "Zdobiona policyjna spódnica dla nielicznych, którzy dzięki oddaniu dosłużyli się stanowiska komendanta."
 	icon_state = "rhos_skirt"
 	item_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -149,20 +149,20 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
 
 /obj/item/clothing/under/rank/security/head_of_security/white
-	name = "head of security's white jumpsuit"
-	desc = "There are old men, and there are bold men, but there are very few old, bold men."
+	name = "biały kombinezon komendanta"
+	desc = "Są starzy ludzie i są odważni ludzie, ale bardzo mało jest starych odważnych ludzi."
 	icon_state = "hos"
 	item_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt
-	name = "head of security's turtleneck"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with tactical pants."
+	name = "golf komendanta"
+	desc = "Stylowa alternatywa dla zwykłego kombinezonu komendanta, z taktycznymi spodniami."
 	icon_state = "hosalt"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/rank/security/head_of_security/alt/skirt
-	name = "head of security's turtleneck skirt"
-	desc = "A stylish alternative to the normal head of security jumpsuit, complete with a tactical skirt."
+	name = "golf ze spódnicą komendanta"
+	desc = "Stylowa alternatywa dla zwykłego kombinezonu komendanta, z taktyczną spódnicą."
 	icon_state = "hosalt_skirt"
 	item_state = "bl_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -175,14 +175,14 @@
 */
 
 /obj/item/clothing/under/rank/brig_physician
-	name = "brig physician's jumpsuit"
-	desc = "A lightly armored jumpsuit worn by Nanotrasen's Asset Protection Medical Corps."
+	name = "kombinezon lekarza więziennego"
+	desc = "Lekko opancerzony kombinezon noszony przez Korpus Medyczny Ochrony Mienia Nanotrasen."
 	icon_state = "brig_phys"
 	item_state = "labcoat_sec"
 
 /obj/item/clothing/under/rank/brig_physician/skirt
-	name = "brig physician's jumpskirt"
-	desc = "A lightly armored jumpskirt worn by Nanotrasen's Asset Protection Medical Corps."
+	name = "spódnica lekarza więziennego"
+	desc = "Lekko opancerzona spódnica noszona przez Korpus Medyczny Ochrony Mienia Nanotrasen."
 	icon_state = "brig_phys_skirt"
 	item_state = "labcoat_sec"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -195,23 +195,23 @@
  */
 
 /obj/item/clothing/under/rank/security/head_of_security/parade/female
-	name = "head of security's parade uniform"
-	desc = "A female head of security's luxury-wear, for special occasions."
+	name = "mundur galowy komendantki"
+	desc = "Luksusowy strój komendantki na specjalne okazje."
 	icon_state = "hos_parade_fem"
 	item_state = "r_suit"
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/warden/formal
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Warden."
-	name = "warden's formal uniform"
+	desc = "Insygnia na tym mundurze mówią ci, że należy do naczelnika."
+	name = "galowy mundur naczelnika"
 	icon_state = "wardenblueclothes"
 	item_state = "wardenblueclothes"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/head_of_security/formal
-	desc = "The insignia on this uniform tells you that this uniform belongs to the Head of Security."
-	name = "head of security's formal uniform"
+	desc = "Insygnia na tym mundurze mówią ci, że należy do komendanta."
+	name = "galowy mundur komendanta"
 	icon_state = "hosblueclothes"
 	item_state = "hosblueclothes"
 	alt_covers_chest = TRUE
@@ -221,15 +221,15 @@
  */
 
 /obj/item/clothing/under/rank/security/officer/spacepol
-	name = "police uniform"
-	desc = "Space not controlled by megacorporations, planets, or pirates is under the jurisdiction of Spacepol."
+	name = "mundur policyjny"
+	desc = "Przestrzeń kosmiczna, której nie kontrolują megakorporacje, planety ani piraci, podlega jurysdykcji Kosmicznej Policji."
 	icon_state = "spacepol"
 	item_state = "spacepol"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/prisoner
-	name = "prison jumpsuit"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	name = "więzienny kombinezon"
+	desc = "Standardowy strój więzienny Nanotrasen. Czujniki kombinezonu zablokowały się w pozycji „w pełni włączone”."
 	icon_state = "jumpsuit"
 	greyscale_colors = "#ff8300"
 	greyscale_config = /datum/greyscale_config/jumpsuit_prison
@@ -246,12 +246,12 @@
 
 
 /obj/item/clothing/under/rank/security/officer/mallcop
-	name = "NT mall cop uniform"
+	name = "mundur ochroniarza z galerii NT"
 	desc = "Radio i odznaka są przyszyte, co za tandetna podróbka. Segway nie wchodzi w zestaw."
 	icon_state = "mallcop"
 	item_state = "gy_suit"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/security/officer/mallcop/deputy
-	name = "deputy uniform"
-	desc = "A lightly armored formal uniform fit for wannabe security members."
+	name = "mundur aspiranta"
+	desc = "Lekko opancerzony oficjalny mundur dla aspirujących członków policji."

@@ -3,9 +3,9 @@
 // *************************************
 
 /obj/item/reagent_containers/spray/weedspray // -- Skie
-	desc = "It's a toxic mixture, in spray form, to kill small weeds."
+	desc = "Toksyczna mieszanina w sprayu do zwalczania drobnych chwastów."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	name = "weed spray"
+	name = "spray na chwasty"
 	icon_state = "weedspray"
 	item_state = "spraycan"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -18,9 +18,9 @@
 	return (TOXLOSS)
 
 /obj/item/reagent_containers/spray/pestspray // -- Skie
-	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
+	desc = "Spray do zwalczania szkodników! <I>Nie wdychać!</I>"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	name = "pest spray"
+	name = "spray na szkodniki"
 	icon_state = "pestspray"
 	item_state = "plantbgone"
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
@@ -33,8 +33,8 @@
 	return (TOXLOSS)
 
 /obj/item/cultivator
-	name = "cultivator"
-	desc = "It's used for removing weeds or scratching your back."
+	name = "pazurki ogrodnicze"
+	desc = "Służą do usuwania chwastów albo drapania się po plecach."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "cultivator"
 	item_state = "cultivator"
@@ -53,8 +53,8 @@
 	return (BRUTELOSS)
 
 /obj/item/hatchet
-	name = "hatchet"
-	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	name = "toporek"
+	desc = "Bardzo ostre ostrze topora na krótkim trzonku z włóknometalu. Ma długą historię rąbania różnych rzeczy, ale teraz służy do rąbania drewna."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "hatchet"
 	item_state = "hatchet"
@@ -85,8 +85,8 @@
 	icon_state = "scythe0"
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	name = "kosa"
+	desc = "Ostre, zakrzywione ostrze na długim trzonku z włóknometalu. Z tym narzędziem łatwo zebrać to, co się zasiało."
 	force = 13
 	throwforce = 5
 	throw_speed = 2
@@ -134,7 +134,7 @@
 
 
 /obj/item/reagent_containers/glass/bottle/nutrient
-	name = "bottle of nutrient"
+	name = "butelka nawozu"
 	volume = 50
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
@@ -146,22 +146,22 @@
 
 
 /obj/item/reagent_containers/glass/bottle/nutrient/ez
-	name = "bottle of E-Z-Nutrient"
-	desc = "Contains a fertilizer that causes mild mutations with each harvest."
+	name = "butelka E-Z-Nutrient"
+	desc = "Zawiera nawóz, który przy każdym zbiorze powoduje łagodne mutacje."
 	list_reagents = list(/datum/reagent/plantnutriment/eznutriment = 50)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z
-	name = "bottle of Left 4 Zed"
-	desc = "Contains a fertilizer that limits plant yields to no more than one and causes significant mutations in plants."
+	name = "butelka Left 4 Zed"
+	desc = "Zawiera nawóz, który ogranicza plon do jednej sztuki i powoduje znaczne mutacje roślin."
 	list_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 50)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/rh
-	name = "bottle of Robust Harvest"
-	desc = "Contains a fertilizer that increases the yield of a plant by 30% while causing no mutations."
+	name = "butelka Robust Harvest"
+	desc = "Zawiera nawóz, który zwiększa plon rośliny o 30% bez wywoływania mutacji."
 	list_reagents = list(/datum/reagent/plantnutriment/robustharvestnutriment = 50)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/empty
-	name = "bottle"
+	name = "butelka"
 
 /obj/item/reagent_containers/glass/bottle/killer
 	volume = 50
@@ -169,11 +169,11 @@
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
 
 /obj/item/reagent_containers/glass/bottle/killer/weedkiller
-	name = "bottle of weed killer"
-	desc = "Contains a herbicide."
+	name = "butelka środka chwastobójczego"
+	desc = "Zawiera herbicyd."
 	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 50)
 
 /obj/item/reagent_containers/glass/bottle/killer/pestkiller
-	name = "bottle of pest spray"
-	desc = "Contains a pesticide."
+	name = "butelka pestycydu"
+	desc = "Zawiera pestycyd."
 	list_reagents = list(/datum/reagent/toxin/pestkiller = 50)

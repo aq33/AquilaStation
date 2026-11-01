@@ -14,7 +14,7 @@
 	return TRUE
 
 /atom/movable/screen/pai/software
-	name = "Software Interface"
+	name = "Interfejs oprogramowania"
 	icon_state = "pai"
 
 /atom/movable/screen/pai/software/Click()
@@ -24,7 +24,7 @@
 	pAI.paiInterface()
 
 /atom/movable/screen/pai/shell
-	name = "Toggle Holoform"
+	name = "Przełącz holoformę"
 	icon_state = "pai_holoform"
 
 /atom/movable/screen/pai/shell/Click()
@@ -37,7 +37,7 @@
 		pAI.fold_out()
 
 /atom/movable/screen/pai/chassis
-	name = "Holochassis Appearance Composite"
+	name = "Wygląd holoobudowy"
 	icon_state = "pai_chassis"
 
 /atom/movable/screen/pai/chassis/Click()
@@ -47,7 +47,7 @@
 	pAI.choose_chassis()
 
 /atom/movable/screen/pai/rest
-	name = "Rest"
+	name = "Odpocznij"
 	icon_state = "pai_rest"
 
 /atom/movable/screen/pai/rest/Click()
@@ -57,7 +57,7 @@
 	pAI.lay_down()
 
 /atom/movable/screen/pai/light
-	name = "Toggle Integrated Lights"
+	name = "Przełącz wbudowane światła"
 	icon_state = "light"
 
 /atom/movable/screen/pai/light/Click()
@@ -67,7 +67,7 @@
 	pAI.toggle_integrated_light()
 
 /atom/movable/screen/pai/newscaster
-	name = "pAI Newscaster"
+	name = "Newscaster pAI"
 	icon_state = "newscaster"
 	required_software = "newscaster"
 
@@ -78,7 +78,7 @@
 	pAI.newscaster.ui_interact(usr)
 
 /atom/movable/screen/pai/host_monitor
-	name = "Host Health Scan"
+	name = "Skan zdrowia nosiciela"
 	icon_state = "host_monitor"
 	required_software = "host scan"
 
@@ -98,7 +98,7 @@
 		return 0
 
 /atom/movable/screen/pai/crew_manifest
-	name = "Crew Manifest"
+	name = "Lista załogi"
 	icon_state = "manifest"
 	required_software = "crew manifest"
 
@@ -109,7 +109,7 @@
 	pAI.ai_roster()
 
 /atom/movable/screen/pai/state_laws
-	name = "State Laws"
+	name = "Wyrecytuj prawa"
 	icon_state = "state_laws"
 
 /atom/movable/screen/pai/state_laws/Click()
@@ -119,7 +119,7 @@
 	pAI.checklaws()
 
 /atom/movable/screen/pai/modpc
-	name = "Messenger"
+	name = "Komunikator"
 	icon_state = "pda_send"
 	var/mob/living/silicon/pai/pAI
 
@@ -134,7 +134,7 @@
 		break
 
 /atom/movable/screen/pai/image_take
-	name = "Take Image"
+	name = "Zrób zdjęcie"
 	icon_state = "take_picture"
 	required_software = "photography module"
 
@@ -145,7 +145,7 @@
 	pAI.aicamera.toggle_camera_mode(usr)
 
 /atom/movable/screen/pai/image_view
-	name = "View Images"
+	name = "Przeglądaj zdjęcia"
 	icon_state = "view_images"
 	required_software = "photography module"
 

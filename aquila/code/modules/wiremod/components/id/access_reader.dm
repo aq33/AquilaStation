@@ -1,5 +1,5 @@
 /obj/item/circuit_component/id_access_reader
-	display_name = "Read ID Access"
+	display_name = "Odczyt dostępów ID"
 	desc = "Komponent, który odczytuje dostępy z karty ID."
 	category = "ID"
 

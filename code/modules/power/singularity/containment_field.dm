@@ -1,8 +1,8 @@
 
 
 /obj/machinery/field/containment
-	name = "containment field"
-	desc = "An energy field."
+	name = "pole izolujące"
+	desc = "Pole energetyczne."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
 	density = FALSE

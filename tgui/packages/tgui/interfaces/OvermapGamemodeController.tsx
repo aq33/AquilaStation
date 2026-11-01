@@ -37,12 +37,12 @@ export const OvermapGamemodeController = (props) => {
   return (
     <Window theme="ntos" width={640} height={800}>
       <Window.Content scrollable>
-        <Section title="Overmap Gamemode Control Panel">
+        <Section title="Panel sterowania trybem overmapy">
           <Flex spacing={1}>
             <Flex.Item width="600px">
               <Section>
                 <LabeledList>
-                  <LabeledList.Item label="Current Gamemode">
+                  <LabeledList.Item label="Obecny tryb">
                     {data.current_gamemode}
                     <br />
                     <br />
@@ -53,19 +53,19 @@ export const OvermapGamemodeController = (props) => {
                       icon="shield-alt"
                       content={
                         data.game_started
-                          ? 'Unable To Change Gamemode'
-                          : 'Change Gamemode'
+                          ? 'Nie można zmienić trybu'
+                          : 'Zmień tryb'
                       }
                       color={data.game_started ? 'grey' : 'green'}
                       onClick={() => act('change_gamemode')}
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Threat">
-                    {'Current threat points: ' + data.threat_elevation}
+                  <LabeledList.Item label="Zagrożenie">
+                    {'Obecne punkty zagrożenia: ' + data.threat_elevation}
                     <br />
-                    {'Points required per fleet size point: ' +
+                    {'Punkty potrzebne na punkt wielkości floty: ' +
                       data.threat_per_size_point +
-                      ' | effective fleet size bonus: ' +
+                      ' | efektywny bonus do wielkości floty: ' +
                       Math.floor(
                         data.threat_elevation / data.threat_per_size_point,
                       )}
@@ -73,25 +73,26 @@ export const OvermapGamemodeController = (props) => {
                     <br />
                     <Button
                       icon="exchange-alt"
-                      content="Adjust threat"
+                      content="Zmień zagrożenie"
                       color="grey"
                       onClick={() => act('adjust_threat')}
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Difficulty">
+                  <LabeledList.Item label="Trudność">
                     <Button
                       icon="skull-crossbones"
                       color={data.hard_mode && 'green'}
                       content={
-                        'HARD MODE ' + (data.hard_mode ? 'ENABLED' : 'DISABLED')
+                        'TRYB TRUDNY: ' +
+                        (data.hard_mode ? 'WŁĄCZONY' : 'WYŁĄCZONY')
                       }
                       onClick={() => act('toggle_hardmode')}
                     />
                     <br />
-                    Current Global Difficulty: {data.current_difficulty}
+                    Obecna globalna trudność: {data.current_difficulty}
                     <br />
                     <br />
-                    Adjust Global Difficulty
+                    Zmień globalną trudność
                     <Slider
                       tickWhileDragging
                       value={data.current_escalation}
@@ -106,47 +107,48 @@ export const OvermapGamemodeController = (props) => {
                       }
                     />
                   </LabeledList.Item>
-                  <LabeledList.Item label="Reminder">
+                  <LabeledList.Item label="Przypomnienie">
                     <Flex spacing={1}>
                       <Flex.Item width="220px">
-                        Next Reminder: {data.reminder_time_remaining} Seconds
+                        Następne przypomnienie za:{' '}
+                        {data.reminder_time_remaining} s
                         <br />
                         <br />
-                        Reminder Interval: {data.reminder_interval} Minutes
+                        Odstęp przypomnień: {data.reminder_interval} min
                         <br />
                         <br />
-                        Reminder Stacks: {data.reminder_stacks}
+                        Liczba przypomnień: {data.reminder_stacks}
                       </Flex.Item>
                       <Flex.Item width="220px">
                         <Button
                           icon={data.toggle_reminder ? 'check' : 'times'}
                           content={
                             data.toggle_reminder
-                              ? 'Enable Reminder'
-                              : 'Disable Reminder'
+                              ? 'Włącz przypomnienie'
+                              : 'Wyłącz przypomnienie'
                           }
                           color={data.toggle_reminder ? 'green' : 'red'}
                           onClick={() => act('toggle_reminder')}
                         />
                         <Button
                           icon="stopwatch"
-                          content="Extend Reminder"
+                          content="Przedłuż przypomnienie"
                           color="green"
                           onClick={() => act('extend_reminder')}
                         />
                         <Button
                           icon="hourglass-start"
-                          content="Reset Stacks"
+                          content="Wyzeruj licznik"
                           color="green"
                           onClick={() => act('reset_stage')}
                         />
                       </Flex.Item>
                     </Flex>
                   </LabeledList.Item>
-                  <LabeledList.Item label="Other">
+                  <LabeledList.Item label="Inne">
                     <Button
                       icon="ghost"
-                      content="Spawn Ghost Ship"
+                      content="Stwórz statek-widmo"
                       color="orange"
                       onClick={() => act('spawn_ghost_ship')}
                     />
@@ -154,8 +156,8 @@ export const OvermapGamemodeController = (props) => {
                       icon={data.toggle_ghost_ships ? 'check' : 'times'}
                       content={
                         data.toggle_ghost_ships
-                          ? 'Enable Ghost Ships'
-                          : 'Disable Ghost Ships'
+                          ? 'Włącz statki-widma'
+                          : 'Wyłącz statki-widma'
                       }
                       color={data.toggle_ghost_ships ? 'green' : 'red'}
                       onClick={() => act('toggle_ghost_ships')}
@@ -164,8 +166,8 @@ export const OvermapGamemodeController = (props) => {
                       icon={data.toggle_ghost_boarders ? 'check' : 'times'}
                       content={
                         data.toggle_ghost_boarders
-                          ? 'Enable Ghost Boarders'
-                          : 'Disable Ghost Boarders'
+                          ? 'Włącz abordażystów-duchy'
+                          : 'Wyłącz abordażystów-duchy'
                       }
                       color={data.toggle_ghost_boarders ? 'green' : 'red'}
                       onClick={() => act('toggle_ghost_boarders')}
@@ -180,13 +182,13 @@ export const OvermapGamemodeController = (props) => {
         <Section>
           <Flex spacing={1}>
             <Flex.Item width="600px">
-              <Section title="Objectives:">
+              <Section title="Cele:">
                 <Button
                   icon={data.toggle_override ? 'check' : 'times'}
                   content={
                     data.toggle_override
-                      ? 'Enable Objective Completion'
-                      : 'Disable Objective Completion'
+                      ? 'Włącz wykonywanie celów'
+                      : 'Wyłącz wykonywanie celów'
                   }
                   color={data.toggle_override ? 'green' : 'red'}
                   onClick={() => act('override_completion')}
@@ -204,7 +206,7 @@ export const OvermapGamemodeController = (props) => {
                           <Box mb={1}>
                             <Button
                               icon="search"
-                              content="View Vars"
+                              content="Pokaż zmienne"
                               color="blue"
                               onClick={() =>
                                 act('view_vars', { target: value.datum })
@@ -212,7 +214,7 @@ export const OvermapGamemodeController = (props) => {
                             />
                             <Button
                               icon="exchange-alt"
-                              content="Change State"
+                              content="Zmień stan"
                               color="green"
                               onClick={() =>
                                 act('change_objective_state', {
@@ -222,7 +224,7 @@ export const OvermapGamemodeController = (props) => {
                             />
                             <Button
                               icon="minus"
-                              content="Remove Objective"
+                              content="Usuń cel"
                               color="red"
                               onClick={() =>
                                 act('remove_objective', { target: value.datum })
@@ -236,13 +238,13 @@ export const OvermapGamemodeController = (props) => {
                 </Section>
                 <Button
                   icon="plus"
-                  content="Add Objective"
+                  content="Dodaj cel"
                   color="green"
                   onClick={() => act('add_objective')}
                 />
                 <Button
                   icon="plus"
-                  content="Add Custom Objective"
+                  content="Dodaj własny cel"
                   color="green"
                   onClick={() => act('add_custom_objective')}
                 />

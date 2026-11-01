@@ -1,6 +1,6 @@
 /obj/structure/statue
-	name = "statue"
-	desc = "Placeholder. Yell at Qwerty if you SOMEHOW see this."
+	name = "posąg"
+	desc = "Zaślepka. Nakrzycz na Qwerty'ego, jeśli JAKIMŚ CUDEM to widzisz."
 	icon = 'icons/obj/statue.dmi'
 	icon_state = ""
 	density = TRUE
@@ -59,13 +59,13 @@
 	var/active = null
 
 /obj/structure/statue/uranium/nuke
-	name = "statue of a nuclear fission explosive"
-	desc = "This is a grand statue of a Nuclear Explosive. It has a sickening green colour."
+	name = "posąg bomby atomowej"
+	desc = "Okazały posąg bomby atomowej. Ma obrzydliwie zielony kolor."
 	icon_state = "nuke"
 
 /obj/structure/statue/uranium/eng
-	name = "Statue of an engineer"
-	desc = "This statue has a sickening green colour."
+	name = "posąg inżyniera"
+	desc = "Ten posąg ma obrzydliwie zielony kolor."
 	icon_state = "eng"
 
 /obj/structure/statue/uranium/attackby(obj/item/W, mob/user, params)
@@ -99,10 +99,10 @@
 /obj/structure/statue/plasma
 	max_integrity = 200
 	material_drop_type = /obj/item/stack/sheet/mineral/plasma
-	desc = "This statue is suitably made from plasma."
+	desc = "Ten posąg jest, jak przystało, z plazmy."
 
 /obj/structure/statue/plasma/scientist
-	name = "statue of a scientist"
+	name = "posąg naukowca"
 	icon_state = "sci"
 
 /obj/structure/statue/plasma/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -117,10 +117,10 @@
 	if(burn)
 		var/turf/T = get_turf(src)
 		if(Proj.firer)
-			message_admins("Plasma statue ignited by [ADMIN_LOOKUPFLW(Proj.firer)] in [ADMIN_VERBOSEJMP(T)]")
+			message_admins("Plazmowy posąg podpalony przez [ADMIN_LOOKUPFLW(Proj.firer)] w [ADMIN_VERBOSEJMP(T)]")
 			log_game("Plasma statue ignited by [key_name(Proj.firer)] in [AREACOORD(T)]")
 		else
-			message_admins("Plasma statue ignited by [Proj]. No known firer, in [ADMIN_VERBOSEJMP(T)]")
+			message_admins("Plazmowy posąg podpalony przez [Proj]. Strzelec nieznany, w [ADMIN_VERBOSEJMP(T)]")
 			log_game("Plasma statue ignited by [Proj] in [AREACOORD(T)]. No known firer.")
 		PlasmaBurn(2500)
 	. = ..()
@@ -128,7 +128,7 @@
 /obj/structure/statue/plasma/attackby(obj/item/W, mob/user, params)
 	if(W.is_hot() > 300 && !QDELETED(src))//If the temperature of the object is over 300, then ignite
 		var/turf/T = get_turf(src)
-		message_admins("Plasma statue ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
+		message_admins("Plazmowy posąg podpalony przez [ADMIN_LOOKUPFLW(user)] w [ADMIN_VERBOSEJMP(T)]")
 		log_game("Plasma statue ignited by [key_name(user)] in [AREACOORD(T)]")
 		ignite(W.is_hot())
 	else
@@ -149,26 +149,26 @@
 /obj/structure/statue/gold
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/gold
-	desc = "This is a highly valuable statue made from gold."
+	desc = "Niezwykle cenny posąg ze złota."
 
 /obj/structure/statue/gold/hos
-	name = "statue of the head of security"
+	name = "posąg Komendanta"
 	icon_state = "hos"
 
 /obj/structure/statue/gold/hop
-	name = "statue of the head of personnel"
+	name = "posąg Starszego Oficera"
 	icon_state = "hop"
 
 /obj/structure/statue/gold/cmo
-	name = "statue of the chief medical officer"
+	name = "posąg Ordynatora"
 	icon_state = "cmo"
 
 /obj/structure/statue/gold/ce
-	name = "statue of the chief engineer"
+	name = "posąg Głównego Inżyniera"
 	icon_state = "ce"
 
 /obj/structure/statue/gold/rd
-	name = "statue of the research director"
+	name = "posąg Dyrektora Naukowego"
 	icon_state = "rd"
 
 //////////////////////////silver///////////////////////////////////////
@@ -176,26 +176,26 @@
 /obj/structure/statue/silver
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/silver
-	desc = "This is a valuable statue made from silver."
+	desc = "Cenny posąg ze srebra."
 
 /obj/structure/statue/silver/md
-	name = "statue of a medical officer"
+	name = "posąg lekarza"
 	icon_state = "md"
 
 /obj/structure/statue/silver/janitor
-	name = "statue of a janitor"
+	name = "posąg woźnego"
 	icon_state = "jani"
 
 /obj/structure/statue/silver/sec
-	name = "statue of a security officer"
+	name = "posąg policjanta"
 	icon_state = "sec"
 
 /obj/structure/statue/silver/secborg
-	name = "statue of a security cyborg"
+	name = "posąg cyborga ochrony"
 	icon_state = "secborg"
 
 /obj/structure/statue/silver/medborg
-	name = "statue of a medical cyborg"
+	name = "posąg cyborga medycznego"
 	icon_state = "medborg"
 
 /////////////////////////diamond/////////////////////////////////////////
@@ -203,18 +203,18 @@
 /obj/structure/statue/diamond
 	max_integrity = 1000
 	material_drop_type = /obj/item/stack/sheet/mineral/diamond
-	desc = "This is a very expensive diamond statue."
+	desc = "Bardzo drogi diamentowy posąg."
 
 /obj/structure/statue/diamond/captain
-	name = "statue of THE captain."
+	name = "posąg TEGO Kapitana."
 	icon_state = "cap"
 
 /obj/structure/statue/diamond/ai1
-	name = "statue of the AI hologram."
+	name = "posąg hologramu SI."
 	icon_state = "ai1"
 
 /obj/structure/statue/diamond/ai2
-	name = "statue of the AI core."
+	name = "posąg rdzenia SI."
 	icon_state = "ai2"
 
 ////////////////////////bananium///////////////////////////////////////
@@ -222,11 +222,11 @@
 /obj/structure/statue/bananium
 	max_integrity = 300
 	material_drop_type = /obj/item/stack/sheet/mineral/bananium
-	desc = "A bananium statue with a small engraving:'HOOOOOOONK'."
+	desc = "Posąg z bananium z małym grawerunkiem: „HOOOOOOONK”."
 	var/spam_flag = FALSE
 
 /obj/structure/statue/bananium/clown
-	name = "statue of a clown"
+	name = "posąg klauna"
 	icon_state = "clown"
 
 /obj/structure/statue/bananium/Bumped(atom/movable/AM)
@@ -258,14 +258,14 @@
 	material_drop_type = /obj/item/stack/sheet/mineral/sandstone
 
 /obj/structure/statue/sandstone/assistant
-	name = "statue of an assistant"
-	desc = "A cheap statue of sandstone for a greyshirt."
+	name = "posąg asystenta"
+	desc = "Tani posąg z piaskowca dla szarego pracownika."
 	icon_state = "assist"
 
 
 /obj/structure/statue/sandstone/venus //call me when we add marble i guess
-	name = "statue of a pure maiden"
-	desc = "An ancient marble statue. The subject is depicted with a floor-length braid and is wielding a toolbox. By Jove, it's easily the most gorgeous depiction of a woman you've ever seen. The artist must truly be a master of his craft. Shame about the broken arm, though."
+	name = "posąg czystej dziewicy"
+	desc = "Starożytny marmurowy posąg. Postać ma warkocz do samej ziemi i dzierży skrzynkę z narzędziami. Na Jowisza, to bez wątpienia najpiękniejsze przedstawienie kobiety, jakie w życiu widziałeś. Artysta musiał być prawdziwym mistrzem swojego fachu. Szkoda tylko tej złamanej ręki."
 	icon = 'icons/obj/statuelarge.dmi'
 	icon_state = "venus"
 
@@ -276,13 +276,13 @@
 	material_drop_type = /obj/item/stack/sheet/mineral/snow
 
 /obj/structure/statue/snow/snowman
-	name = "snowman"
-	desc = "Several lumps of snow put together to form a snowman."
+	name = "bałwan"
+	desc = "Kilka kul śniegu złożonych w bałwana."
 	icon_state = "snowman"
 
 /obj/structure/statue/snow/snowlegion
-    name = "snowlegion"
-    desc = "Looks like that weird kid with the tiger plushie has been round here again."
+    name = "śnieżny legion"
+    desc = "Wygląda na to, że ten dziwny dzieciak z pluszowym tygrysem znów tu był."
     icon_state = "snowlegion"
 
 //////////////////////////copper///////////////////////////////////////
@@ -290,11 +290,11 @@
 /obj/structure/statue/copper
 	max_integrity = 350
 	material_drop_type = /obj/item/stack/sheet/mineral/copper
-	desc = "This is a statue made from copper."
+	desc = "Posąg z miedzi."
 
 /obj/structure/statue/copper/dimas
-	name = "statue of the quartermaster"
-	desc = "This is a statue of the legendary Quartermaster, Lord of Cargonia the land of stolen things. You feel the need to bow before it."
+	name = "posąg Kwatermistrza"
+	desc = "Posąg legendarnego Kwatermistrza, władcy Cargonii, krainy kradzionych rzeczy. Czujesz potrzebę, by się przed nim pokłonić."
 	max_integrity = 400
 	icon_state = "dimas"
 	oreAmount = 10 //dimas b dense
@@ -306,8 +306,8 @@
 	material_drop_type = /obj/item/stack/sheet/cheese
 
 /obj/structure/statue/cheese/cheesus
-	name = "statue of cheesus"
-	desc = "Cheese expertly crafted into a representation of our mighty lord and saviour."
+	name = "posąg Serusa"
+	desc = "Ser mistrzowsko wyrzeźbiony na podobieństwo naszego potężnego pana i zbawiciela."
 	icon_state = "cheesus1"
 
 /obj/structure/statue/cheese/cheesus/attackby(obj/item/W, mob/user, params)

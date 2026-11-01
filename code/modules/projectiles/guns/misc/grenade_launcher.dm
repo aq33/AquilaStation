@@ -1,6 +1,6 @@
 /obj/item/gun/grenadelauncher
-	name = "grenade launcher"
-	desc = "A terrible, terrible thing. It's really awful!"
+	name = "granatnik"
+	desc = "Straszna, straszna rzecz. Naprawdę okropna!"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "riotgun"
 	item_state = "riotgun"
@@ -26,7 +26,7 @@
 				return
 			grenades += I
 			to_chat(user, "<span class='notice'>Wkładasz granat do granatnika.</span>")
-			to_chat(user, "<span class='notice'>[grenades.len] / [max_grenades] Grenades.</span>")
+			to_chat(user, "<span class='notice'>Granaty: [grenades.len] / [max_grenades].</span>")
 		else
 			to_chat(usr, "<span class='danger'>Granatnik nie pomieści więcej granatów.</span>")
 
@@ -34,13 +34,13 @@
 	return grenades.len
 
 /obj/item/gun/grenadelauncher/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
-	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
+	user.visible_message("<span class='danger'>[user] strzela z granatnika!</span>", \
 						"<span class='danger'>Strzelasz z granatnika!</span>")
 	var/obj/item/grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.forceMove(user.loc)
 	F.throw_at(target, 30, 2, user)
-	message_admins("[ADMIN_LOOKUPFLW(user)] fired a grenade ([F.name]) from a grenade launcher ([src]) from [AREACOORD(user)] at [target] [AREACOORD(target)].")
+	message_admins("[ADMIN_LOOKUPFLW(user)] wystrzeliwuje granat ([F.name]) z granatnika ([src]) z [AREACOORD(user)] w [target] [AREACOORD(target)].")
 	log_game("[key_name(user)] fired a grenade ([F.name]) with a grenade launcher ([src]) from [AREACOORD(user)] at [target] [AREACOORD(target)].")
 	F.active = 1
 	F.icon_state = initial(F.icon_state) + "_active"
@@ -48,4 +48,4 @@
 	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/grenade, prime)), 15)
 
 /obj/item/gun/grenadelauncher/security
-	desc = "A terrible, terrible thing. It's really awful! It's been crudely painted blue."
+	desc = "Straszna, straszna rzecz. Naprawdę okropna! Ktoś niedbale pomalował ją na niebiesko."

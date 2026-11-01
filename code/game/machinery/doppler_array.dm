@@ -1,8 +1,8 @@
 #define PRINTER_TIMEOUT 40
 
 /obj/machinery/doppler_array
-	name = "tachyon-doppler array"
-	desc = "A highly precise directional sensor array which measures the release of quants from decaying tachyons. The doppler shifting of the mirror-image formed by these quants can reveal the size, location and temporal affects of energetic disturbances within a large radius ahead of the array.\n"
+	name = "tachionowo-dopplerowski układ czujników"
+	desc = "Niezwykle precyzyjny kierunkowy układ czujników, który mierzy uwalnianie kwantów z rozpadających się tachionów. Dopplerowskie przesunięcie lustrzanego obrazu tych kwantów ujawnia wielkość, położenie i skutki czasowe energetycznych zaburzeń w dużym promieniu przed układem.\n"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "tdoppler"
 	density = TRUE
@@ -28,7 +28,7 @@
 	AddComponent(/datum/component/simple_rotation, AfterRotation = CALLBACK(src, PROC_REF(rot_message)))
 
 /datum/data/tachyon_record
-	name = "Log Recording"
+	name = "zapis logu"
 	var/timestamp
 	var/coordinates = ""
 	var/displacement = 0
@@ -93,26 +93,26 @@
 		to_chat(user, "<span class='warning'>[src] jest teraz zajęty.</span>")
 
 /obj/item/paper/record_printout
-	name = "paper - Log Recording"
+	name = "kartka – zapis logu"
 
 /obj/item/paper/record_printout/Initialize(mapload, datum/data/tachyon_record/record)
 	. = ..()
 
 	if(record)
-		name = "paper - [record.name]"
+		name = "kartka – [record.name]"
 
 		default_raw_text += {"<h2>[record.name]</h2>
-		<ul><li>Timestamp: [record.timestamp]</li>
-		<li>Coordinates: [record.coordinates]</li>
-		<li>Displacement: [record.displacement] seconds</li>
-		<li>Epicenter Radius: [record.factual_radius["epicenter_radius"]]</li>
-		<li>Outer Radius: [record.factual_radius["outer_radius"]]</li>
-		<li>Shockwave Radius: [record.factual_radius["shockwave_radius"]]</li></ul>"}
+		<ul><li>Znacznik czasu: [record.timestamp]</li>
+		<li>Współrzędne: [record.coordinates]</li>
+		<li>Przesunięcie: [record.displacement] s</li>
+		<li>Promień epicentrum: [record.factual_radius["epicenter_radius"]]</li>
+		<li>Promień zewnętrzny: [record.factual_radius["outer_radius"]]</li>
+		<li>Promień fali uderzeniowej: [record.factual_radius["shockwave_radius"]]</li></ul>"}
 
 		if(length(record.theory_radius))
-			default_raw_text += {"<ul><li>Theoretical Epicenter Radius: [record.theory_radius["epicenter_radius"]]</li>
-			<li>Theoretical Outer Radius: [record.theory_radius["outer_radius"]]</li>
-			<li>Theoretical Shockwave Radius: [record.theory_radius["shockwave_radius"]]</li></ul>"}
+			default_raw_text += {"<ul><li>Teoretyczny promień epicentrum: [record.theory_radius["epicenter_radius"]]</li>
+			<li>Teoretyczny promień zewnętrzny: [record.theory_radius["outer_radius"]]</li>
+			<li>Teoretyczny promień fali uderzeniowej: [record.theory_radius["shockwave_radius"]]</li></ul>"}
 
 		update_icon()
 
@@ -157,7 +157,7 @@
 		return FALSE
 
 	var/datum/data/tachyon_record/R = new /datum/data/tachyon_record()
-	R.name = "Log Recording #[record_number]"
+	R.name = "zapis logu nr [record_number]"
 	R.timestamp = station_time_timestamp()
 	R.coordinates = "[epicenter.x], [epicenter.y]"
 	R.displacement = took
@@ -203,14 +203,14 @@
 
 //Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
 /obj/machinery/doppler_array/integrated
-	name = "integrated tachyon-doppler module"
+	name = "zintegrowany moduł tachionowo-dopplerowski"
 	integrated = TRUE
 	max_dist = 21 //Should detect most explosions in hearing range.
 	use_power = NO_POWER_USE
 
 /obj/machinery/doppler_array/research
-	name = "tachyon-doppler research array"
-	desc = "A specialized tachyon-doppler bomb detection array that uses the results of the highest yield of explosions for research."
+	name = "badawczy tachionowo-dopplerowski układ czujników"
+	desc = "Wyspecjalizowany tachionowo-dopplerowski układ wykrywania bomb, który wykorzystuje do badań wyniki najsilniejszych eksplozji."
 	var/datum/techweb/linked_techweb
 
 /obj/machinery/doppler_array/research/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range, light_impact_range,

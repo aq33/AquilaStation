@@ -14,7 +14,7 @@
 	if(!user?.client || user.client != parent)
 		return
 	if(!length(SSjob.occupations))
-		to_chat(user, "<span class='warning'>The job subsystem is still initializing, try again in a moment.</span>")
+		to_chat(user, "<span class='warning'>Podsystem zawodów wciąż się uruchamia, spróbuj za chwilę.</span>")
 		return
 	if(!middleware)
 		middleware = list()
@@ -164,7 +164,7 @@
 			var/datum/preference/color/preference = GLOB.preference_entries_by_key[params["preference"]]
 			if(!istype(preference) || !preference.is_accessible(src))
 				return FALSE
-			var/new_color = input(usr, "Select new color", "Preference Color", preference.serialize(preference.read_value(src))) as color|null
+			var/new_color = input(usr, "Wybierz nowy kolor", "Kolor", preference.serialize(preference.read_value(src))) as color|null
 			if(!new_color || QDELETED(src))
 				return FALSE
 			if(!update_preference(preference, new_color))
@@ -176,7 +176,7 @@
 			var/datum/preference/text/preference = GLOB.preference_entries_by_key[params["preference"]]
 			if(!istype(preference) || !preference.is_accessible(src))
 				return FALSE
-			var/new_text = input(usr, preference.edit_prompt, "Character Preference", preference.read_value(src)) as message|null
+			var/new_text = input(usr, preference.edit_prompt, "Ustawienia postaci", preference.read_value(src)) as message|null
 			if(isnull(new_text) || QDELETED(src))
 				return FALSE
 			return update_preference(preference, new_text)

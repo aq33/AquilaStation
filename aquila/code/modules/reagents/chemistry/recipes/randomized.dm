@@ -196,7 +196,7 @@
 	text2file(json_encode(file_data), RANDOMIZED_RECIPES_FILE)
 
 /datum/chemical_reaction/randomized/secret_sauce
-	name = "Secret Sauce"
+	name = "Sekretny sos"
 	persistence_period = 7
 	possible_containers = list(/obj/item/reagent_containers/glass/bucket) // w wiadrze, żeby nie gryzło się ze zwykłymi reakcjami
 	results = list(/datum/reagent/consumable/secretsauce = 1)
@@ -245,7 +245,7 @@
 
 /// Nadaje metalgenowi materiał: metalgen + ciekła ciemna materia + 40u metalu
 /datum/chemical_reaction/metalgen_imprint
-	name = "Metalgen Imprint"
+	name = "Odcisk metalgenu"
 	required_reagents = list(/datum/reagent/metalgen = 1, /datum/reagent/liquid_dark_matter = 1)
 	results = list(/datum/reagent/metalgen = 1)
 	/// Odczynnik => materiał, jaki odciska
@@ -272,7 +272,7 @@
 		holder.remove_reagent(metal.type, 40)
 		var/atom/container = holder.my_atom
 		var/datum/material/material_ref = getmaterialref(material)
-		message_admins("[metalgen.volume]u metalgenu dostało odcisk materiału [material_ref.name] w [container] [ADMIN_VERBOSEJMP(container)], ostatni odcisk palca: [container?.fingerprintslast || "brak"]")
+		message_admins("[metalgen.volume] j. metalgenu dostało odcisk materiału [material_ref.name] w [container] [ADMIN_VERBOSEJMP(container)], ostatni odcisk palca: [container?.fingerprintslast || "brak"]")
 		log_game("[metalgen.volume]u of Metalgen imprinted with [material_ref.name] in [container] at [AREACOORD(container)], last fingerprint [container?.fingerprintslast || "none"]")
 		break
 
@@ -295,12 +295,12 @@
 	var/datum/reagent/result_type = recipe.results[1]
 	var/list/dat = list("<b>[initial(result_type.name)]</b><ul>")
 	for(var/datum/reagent/reagent_type as anything in recipe.required_reagents)
-		dat += "<li>[recipe.required_reagents[reagent_type]]u [initial(reagent_type.name)]</li>"
+		dat += "<li>[recipe.required_reagents[reagent_type]] j. [initial(reagent_type.name)]</li>"
 	dat += "</ul>"
 	if(length(recipe.required_catalysts))
 		dat += "W obecności:<ul>"
 		for(var/datum/reagent/reagent_type as anything in recipe.required_catalysts)
-			dat += "<li>[recipe.required_catalysts[reagent_type]]u [initial(reagent_type.name)]</li>"
+			dat += "<li>[recipe.required_catalysts[reagent_type]] j. [initial(reagent_type.name)]</li>"
 		dat += "</ul>"
 	dat += "Mieszać powoli<ul>"
 	if(recipe.required_container)

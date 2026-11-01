@@ -2,8 +2,8 @@ GLOBAL_DATUM(ore_silo_default, /obj/machinery/ore_silo)
 GLOBAL_LIST_EMPTY(silo_access_logs)
 
 /obj/machinery/ore_silo
-	name = "ore silo"
-	desc = "An all-in-one bluespace storage and transmission system for the station's mineral distribution needs."
+	name = "silos rudy"
+	desc = "Wszechstronny system magazynowania i przesyłu bluespace, zaspokajający potrzeby stacji w zakresie dystrybucji minerałów."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "silo"
 	density = TRUE
@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 	if(I.item_flags & ABSTRACT)
 		return
 	if(!istype(I) || (I.flags_1 & HOLOGRAM_1) || (I.item_flags & NO_MAT_REDEMPTION))
-		to_chat(user, "<span class='warning'>[M] won't accept [I]!</span>")
+		to_chat(user, "<span class='warning'>[M] nie przyjmuje [I]!</span>")
 		return
 	var/item_mats = I.materials & materials.materials
 	if(!length(item_mats))
@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(silo_access_logs)
 /datum/ore_silo_log/proc/format()
 	name = "[machine_name]: [action] [amount]x [noun]"
 
-	var/list/msg = list("([timestamp]) <b>[machine_name]</b> in [area_name]<br>[action] [abs(amount)]x [noun]<br>")
+	var/list/msg = list("([timestamp]) <b>[machine_name]</b> w: [area_name]<br>[action] [abs(amount)]x [noun]<br>")
 	var/sep = ""
 	for(var/key in materials)
 		var/datum/material/M = key

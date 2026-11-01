@@ -6,28 +6,28 @@
 
 /datum/buildmode_mode/fill/show_help(client/c)
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
-	to_chat(c, "<span class='notice'>Left Mouse Button on turf/obj/mob      = Select corner</span>")
-	to_chat(c, "<span class='notice'>Left Mouse Button + Alt on turf/obj/mob = Delete region</span>")
-	to_chat(c, "<span class='notice'>Right Mouse Button on buildmode button = Select object type</span>")
+	to_chat(c, "<span class='notice'>LPM na turfie/obiekcie/mobie      = Wybierz róg</span>")
+	to_chat(c, "<span class='notice'>LPM + alt na turfie/obiekcie/mobie = Usuń obszar</span>")
+	to_chat(c, "<span class='notice'>PPM na przycisku trybu budowania = Wybierz typ obiektu</span>")
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
 
 /datum/buildmode_mode/fill/change_settings(client/c)
-	var/target_path = input(c, "Enter typepath:" ,"Typepath","/obj/structure/closet")
+	var/target_path = input(c, "Podaj ścieżkę typu:" ,"Ścieżka typu","/obj/structure/closet")
 	objholder = text2path(target_path)
 	if(!ispath(objholder))
 		objholder = pick_closest_path(target_path)
 		if(!objholder)
-			alert("No path has been selected.")
+			alert("Nie wybrano ścieżki.")
 			return
 		else if(ispath(objholder, /area))
 			objholder = null
-			alert("Area paths are not supported for this mode, use the area edit mode instead.")
+			alert("Ten tryb nie obsługuje ścieżek obszarów, użyj trybu edycji obszarów.")
 			return
 	deselect_region()
 
 /datum/buildmode_mode/fill/handle_click(client/c, params, obj/object)
 	if(isnull(objholder))
-		to_chat(c, "<span class='warning'>Select an object type first.</span>")
+		to_chat(c, "<span class='warning'>Najpierw wybierz typ obiektu.</span>")
 		deselect_region()
 		return
 	..()

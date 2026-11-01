@@ -1,8 +1,8 @@
 //Not to be confused with /obj/item/reagent_containers/food/drinks/bottle
 
 /obj/item/reagent_containers/glass/bottle
-	name = "bottle"
-	desc = "A small bottle."
+	name = "butelka"
+	desc = "Mała butelka."
 	icon_state = "bottle"
 	item_state = "atoxinbottle"
 	possible_transfer_amounts = list(5,10,15,25,30)
@@ -16,157 +16,157 @@
 	update_icon()
 
 /obj/item/reagent_containers/glass/bottle/epinephrine
-	name = "epinephrine bottle"
+	name = "butelka: epinefryna"
 	label_name = "epinephrine"
-	desc = "A small bottle. Contains epinephrine - used to stabilize patients."
+	desc = "Mała butelka. Zawiera epinefrynę – służy do stabilizowania pacjentów."
 	list_reagents = list(/datum/reagent/medicine/epinephrine = 30)
 
 /obj/item/reagent_containers/glass/bottle/tricordrazine
-	name = "tricordrazine bottle"
+	name = "butelka: trikordrazyna"
 	label_name = "tricordrazine"
-	desc = "A small bottle of tricordrazine. Used to aid in patient recovery."
+	desc = "Mała butelka trikordrazyny. Wspomaga powrót pacjenta do zdrowia."
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 30)
 
 /obj/item/reagent_containers/glass/bottle/spaceacillin
-	name = "spaceacillin bottle"
+	name = "butelka: spacyklina"
 	label_name = "spaceacillin"
-	desc = "A small bottle of spaceacillin. Used to cure some diseases."
+	desc = "Mała butelka spacykliny. Leczy niektóre choroby."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 30)
 
 /obj/item/reagent_containers/glass/bottle/antitoxin
-	name = "antitoxin bottle"
+	name = "butelka: antytoksyna"
 	label_name = "antitoxin"
-	desc = "A small bottle of anti-toxin. Used to treat toxin damage."
+	desc = "Mała butelka antytoksyny. Leczy uszkodzenia od toksyn."
 	list_reagents = list(/datum/reagent/medicine/antitoxin = 30)
 
 /obj/item/reagent_containers/glass/bottle/toxin/mutagen
-	name = "mutagen toxin bottle"
+	name = "butelka: mutagen"
 	label_name = "mutagen toxin"
-	desc = "A small bottle of mutagen toxins. Do not drink, Might cause unpredictable mutations."
+	desc = "Mała butelka toksycznego mutagenu. Nie pić, może wywołać nieprzewidywalne mutacje."
 	list_reagents = list(/datum/reagent/toxin/mutagen = 30)
 
 /obj/item/reagent_containers/glass/bottle/toxin
-	name = "toxin bottle"
+	name = "butelka: toksyna"
 	label_name = "toxin"
-	desc = "A small bottle of toxins. Do not drink, it is poisonous."
+	desc = "Mała butelka toksyn. Nie pić, to trucizna."
 	list_reagents = list(/datum/reagent/toxin = 30)
 
 /obj/item/reagent_containers/glass/bottle/cyanide
-	name = "cyanide bottle"
+	name = "butelka: cyjanek"
 	label_name = "cyanide"
-	desc = "A small bottle of cyanide. Bitter almonds?"
+	desc = "Mała butelka cyjanku. Gorzkie migdały?"
 	list_reagents = list(/datum/reagent/toxin/cyanide = 30)
 
 /obj/item/reagent_containers/glass/bottle/spewium
-	name = "spewium bottle"
+	name = "butelka: rzygium"
 	label_name = "spewium"
-	desc = "A small bottle of spewium."
+	desc = "Mała butelka rzygium."
 	list_reagents = list(/datum/reagent/toxin/spewium = 30)
 
 /obj/item/reagent_containers/glass/bottle/morphine
-	name = "morphine bottle"
+	name = "butelka: morfina"
 	label_name = "morphine"
-	desc = "A small bottle of morphine."
+	desc = "Mała butelka morfiny."
 	icon = 'icons/obj/chemical.dmi'
 	list_reagents = list(/datum/reagent/medicine/morphine = 30)
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
-	name = "chloral hydrate bottle"
+	name = "butelka: wodzian chloralu"
 	label_name = "chloral hydrate"
-	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
+	desc = "Mała butelka wodzianu chloralu. Ulubieniec Mickeya!"
 	icon_state = "bottle20"
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 30)
 
 /obj/item/reagent_containers/glass/bottle/mannitol
-	name = "mannitol bottle"
+	name = "butelka: mannitol"
 	label_name = "mannitol"
-	desc = "A small bottle of Mannitol. Useful for healing brain damage."
+	desc = "Mała butelka mannitolu. Przydaje się przy leczeniu uszkodzeń mózgu."
 	list_reagents = list(/datum/reagent/medicine/mannitol = 30)
 
 /obj/item/reagent_containers/glass/bottle/charcoal
-	name = "charcoal bottle"
+	name = "butelka: węgiel aktywowany"
 	label_name = "charcoal"
-	desc = "A small bottle of charcoal, which removes toxins and other chemicals from the bloodstream."
+	desc = "Mała butelka węgla aktywowanego, który usuwa z krwiobiegu toksyny i inne chemikalia."
 	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
-	name = "unstable mutagen bottle"
+	name = "butelka: niestabilny mutagen"
 	label_name = "unstable mutagen"
-	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
+	desc = "Mała butelka niestabilnego mutagenu. Losowo zmienia strukturę DNA każdego, kto się z nim zetknie."
 	list_reagents = list(/datum/reagent/toxin/mutagen = 30)
 
 /obj/item/reagent_containers/glass/bottle/plasma
-	name = "liquid plasma bottle"
+	name = "butelka: ciekła plazma"
 	label_name = "liquid plasma"
-	desc = "A small bottle of liquid plasma. Extremely toxic and reacts with micro-organisms inside blood."
+	desc = "Mała butelka ciekłej plazmy. Skrajnie toksyczna, reaguje z mikroorganizmami we krwi."
 	list_reagents = list(/datum/reagent/toxin/plasma = 30)
 
 /obj/item/reagent_containers/glass/bottle/synaptizine
-	name = "synaptizine bottle"
+	name = "butelka: synaptizyna"
 	label_name = "synaptizine"
-	desc = "A small bottle of synaptizine."
+	desc = "Mała butelka synaptizyny."
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 30)
 
 /obj/item/reagent_containers/glass/bottle/formaldehyde
-	name = "formaldehyde bottle"
+	name = "butelka: formaldehyd"
 	label_name = "formaldehyde"
-	desc = "A small bottle of formaldehyde."
+	desc = "Mała butelka formaldehydu."
 	list_reagents = list(/datum/reagent/toxin/formaldehyde = 30)
 
 /obj/item/reagent_containers/glass/bottle/cryostylane
-	name = "cryostylane bottle"
+	name = "butelka: kriostylan"
 	label_name = "cryostylane"
-	desc = "A small bottle of cryostylane. It feels cold to the touch."
+	desc = "Mała butelka kriostylanu. Jest zimna w dotyku."
 	list_reagents = list(/datum/reagent/cryostylane = 30)
 
 /obj/item/reagent_containers/glass/bottle/ammonia
-	name = "ammonia bottle"
+	name = "butelka: amoniak"
 	label_name = "ammonia"
-	desc = "A small bottle of ammonia."
+	desc = "Mała butelka amoniaku."
 	list_reagents = list(/datum/reagent/ammonia = 30)
 
 /obj/item/reagent_containers/glass/bottle/diethylamine
-	name = "diethylamine bottle"
+	name = "butelka: dietyloamina"
 	label_name = "diethylamine"
-	desc = "A small bottle of diethylamine."
+	desc = "Mała butelka dietyloaminy."
 	list_reagents = list(/datum/reagent/diethylamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/facid
-	name = "Fluorosulfuric Acid Bottle"
+	name = "butelka: kwas fluorosulfonowy"
 	label_name = "Fluorosulfuric Acid"
-	desc = "A small bottle. Contains a small amount of fluorosulfuric acid."
+	desc = "Mała butelka. Zawiera niewielką ilość kwasu fluorosulfonowego."
 	list_reagents = list(/datum/reagent/toxin/acid/fluacid = 30)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
-	name = "Adminordrazine Bottle"
+	name = "butelka: adminordrazyna"
 	label_name = "Adminordrazine"
-	desc = "A small bottle. Contains the liquid essence of the gods."
+	desc = "Mała butelka. Zawiera płynną esencję bogów."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 30)
 
 /obj/item/reagent_containers/glass/bottle/viralbase
-	name = "Highly potent Viral Base Bottle"
+	name = "butelka: bardzo silna baza wirusowa"
 	label_name = "Highly potent Viral Base"
-	desc = "A small bottle. Contains a trace amount of a substance found by scientists that can be used to create extremely advanced diseases once exposed to uranium."
+	desc = "Mała butelka. Zawiera śladową ilość odkrytej przez naukowców substancji, z której po wystawieniu na uran da się stworzyć niezwykle zaawansowane choroby."
 	list_reagents = list(/datum/reagent/consumable/virus_food/viralbase = 1)
 
 /obj/item/reagent_containers/glass/bottle/capsaicin
-	name = "Capsaicin Bottle"
+	name = "butelka: olejek kapsaicynowy"
 	label_name = "Capsaicin"
-	desc = "A small bottle. Contains hot sauce."
+	desc = "Mała butelka. Zawiera ostry sos."
 	list_reagents = list(/datum/reagent/consumable/capsaicin = 30)
 
 /obj/item/reagent_containers/glass/bottle/frostoil
-	name = "Frost Oil Bottle"
+	name = "butelka: olej mroźny"
 	label_name = "Frost Oil"
-	desc = "A small bottle. Contains cold sauce."
+	desc = "Mała butelka. Zawiera lodowy sos."
 	list_reagents = list(/datum/reagent/consumable/frostoil = 30)
 
 /obj/item/reagent_containers/glass/bottle/traitor
-	name = "syndicate bottle"
+	name = "butelka Syndykatu"
 	label_name = "syndicate"
-	desc = "A small bottle. Contains a random nasty chemical."
+	desc = "Mała butelka. Zawiera losową paskudną substancję."
 	icon = 'icons/obj/chemical.dmi'
 	var/extra_reagent = null
 
@@ -176,379 +176,379 @@
 	reagents.add_reagent(extra_reagent, 3)
 
 /obj/item/reagent_containers/glass/bottle/polonium
-	name = "polonium bottle"
+	name = "butelka: polon"
 	label_name = "polonium"
-	desc = "A small bottle. Contains Polonium."
+	desc = "Mała butelka. Zawiera polon."
 	list_reagents = list(/datum/reagent/toxin/polonium = 30)
 
 /obj/item/reagent_containers/glass/bottle/magillitis
-	name = "magillitis bottle"
+	name = "butelka: magillitis"
 	label_name = "magillitis"
-	desc = "A small bottle. Contains a serum known only as 'magillitis'."
+	desc = "Mała butelka. Zawiera surowicę znaną tylko jako „magillitis”."
 	list_reagents = list(/datum/reagent/magillitis = 5)
 
 /obj/item/reagent_containers/glass/bottle/venom
-	name = "venom bottle"
+	name = "butelka: jad"
 	label_name = "venom"
-	desc = "A small bottle. Contains Venom."
+	desc = "Mała butelka. Zawiera jad."
 	list_reagents = list(/datum/reagent/toxin/venom = 30)
 
 /obj/item/reagent_containers/glass/bottle/fentanyl
-	name = "fentanyl bottle"
+	name = "butelka: fentanyl"
 	label_name = "fentanyl"
-	desc = "A small bottle. Contains Fentanyl."
+	desc = "Mała butelka. Zawiera fentanyl."
 	list_reagents = list(/datum/reagent/toxin/fentanyl = 30)
 
 /obj/item/reagent_containers/glass/bottle/formaldehyde
-	name = "formaldehyde bottle"
+	name = "butelka: formaldehyd"
 	label_name = "formaldehyde"
-	desc = "A small bottle. Contains Formaldehyde."
+	desc = "Mała butelka. Zawiera formaldehyd."
 	list_reagents = list(/datum/reagent/toxin/formaldehyde = 30)
 
 /obj/item/reagent_containers/glass/bottle/initropidril
-	name = "initropidril bottle"
+	name = "butelka: initropidryl"
 	label_name = "initropidril"
-	desc = "A small bottle. Contains initropidril."
+	desc = "Mała butelka. Zawiera initropidryl."
 	list_reagents = list(/datum/reagent/toxin/initropidril = 30)
 
 /obj/item/reagent_containers/glass/bottle/pancuronium
-	name = "pancuronium bottle"
+	name = "butelka: pankuronium"
 	label_name = "pancuronium"
-	desc = "A small bottle. Contains pancuronium."
+	desc = "Mała butelka. Zawiera pankuronium."
 	list_reagents = list(/datum/reagent/toxin/pancuronium = 30)
 
 /obj/item/reagent_containers/glass/bottle/sodium_thiopental
-	name = "sodium thiopental bottle"
+	name = "butelka: tiopental sodu"
 	label_name = "sodium thiopental"
-	desc = "A small bottle. Contains sodium thiopental."
+	desc = "Mała butelka. Zawiera tiopental sodu."
 	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 30)
 
 /obj/item/reagent_containers/glass/bottle/coniine
-	name = "coniine bottle"
+	name = "butelka: koniina"
 	label_name = "coniine"
-	desc = "A small bottle. Contains coniine."
+	desc = "Mała butelka. Zawiera koniinę."
 	list_reagents = list(/datum/reagent/toxin/coniine = 30)
 
 /obj/item/reagent_containers/glass/bottle/curare
-	name = "curare bottle"
+	name = "butelka: kurara"
 	label_name = "curare"
-	desc = "A small bottle. Contains curare."
+	desc = "Mała butelka. Zawiera kurarę."
 	list_reagents = list(/datum/reagent/toxin/curare = 30)
 
 /obj/item/reagent_containers/glass/bottle/amanitin
-	name = "amanitin bottle"
+	name = "butelka: amanityna"
 	label_name = "amanitin"
-	desc = "A small bottle. Contains amanitin."
+	desc = "Mała butelka. Zawiera amanitynę."
 	list_reagents = list(/datum/reagent/toxin/amanitin = 30)
 
 /obj/item/reagent_containers/glass/bottle/histamine
-	name = "histamine bottle"
+	name = "butelka: histamina"
 	label_name = "histamine"
-	desc = "A small bottle. Contains Histamine."
+	desc = "Mała butelka. Zawiera histaminę."
 	list_reagents = list(/datum/reagent/toxin/histamine = 30)
 
 /obj/item/reagent_containers/glass/bottle/diphenhydramine
-	name = "antihistamine bottle"
+	name = "butelka: lek przeciwhistaminowy"
 	label_name = "antihistamine"
-	desc = "A small bottle of diphenhydramine."
+	desc = "Mała butelka difenhydraminy."
 	list_reagents = list(/datum/reagent/medicine/diphenhydramine = 30)
 
 /obj/item/reagent_containers/glass/bottle/potass_iodide
-	name = "anti-radiation bottle"
+	name = "butelka: lek przeciwradiacyjny"
 	label_name = "anti-radiation"
-	desc = "A small bottle of potassium iodide."
+	desc = "Mała butelka jodku potasu."
 	list_reagents = list(/datum/reagent/medicine/potass_iodide = 30)
 
 /obj/item/reagent_containers/glass/bottle/salglu_solution
-	name = "saline-glucose bottle"
+	name = "butelka: sól fizjologiczna z glukozą"
 	label_name = "saline-glucose"
-	desc = "A small bottle of saline-glucose solution. Useful for patients lacking in blood volume."
+	desc = "Mała butelka soli fizjologicznej z glukozą. Przydaje się pacjentom, którym brakuje krwi."
 	list_reagents = list(/datum/reagent/medicine/salglu_solution = 30)
 
 /obj/item/reagent_containers/glass/bottle/atropine
-	name = "atropine bottle"
+	name = "butelka: atropina"
 	label_name = "atropine"
-	desc = "A small bottle of atropine."
+	desc = "Mała butelka atropiny."
 	list_reagents = list(/datum/reagent/medicine/atropine = 30)
 
 /obj/item/reagent_containers/glass/bottle/romerol
-	name = "romerol bottle"
+	name = "butelka: romerol"
 	label_name = "romerol"
-	desc = "A small bottle of Romerol. The REAL zombie powder."
+	desc = "Mała butelka romerolu. PRAWDZIWY proszek zombie."
 	list_reagents = list(/datum/reagent/romerol = 30)
 
 /obj/item/reagent_containers/glass/bottle/random_virus/minor //for mail only...yet
-	name = "Minor experimental disease culture bottle"
+	name = "butelka z kulturą: słaba eksperymentalna choroba"
 	label_name = "Minor experimental disease culture"
-	desc = "A small bottle. Contains a weak version of an untested viral culture in synthblood medium."
+	desc = "Mała butelka. Zawiera osłabioną wersję nieprzetestowanej kultury wirusa w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/advance/random/minor
 
 /obj/item/reagent_containers/glass/bottle/random_virus
-	name = "Experimental disease culture bottle"
+	name = "butelka z kulturą: eksperymentalna choroba"
 	label_name = "Experimental disease culture"
-	desc = "A small bottle. Contains an untested viral culture in synthblood medium."
+	desc = "Mała butelka. Zawiera nieprzetestowaną kulturę wirusa w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/advance/random
 
 /obj/item/reagent_containers/glass/bottle/pierrot_throat
-	name = "Pierrot's Throat culture bottle"
+	name = "butelka z kulturą: Gardło Pierrota"
 	label_name = "Pierrot's Throat culture"
-	desc = "A small bottle. Contains H0NI<42 virion culture in synthblood medium."
+	desc = "Mała butelka. Zawiera kulturę wirionów H0NI<42 w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/pierrot_throat
 
 /obj/item/reagent_containers/glass/bottle/cold
-	name = "Rhinovirus culture bottle"
+	name = "butelka z kulturą: rinowirus"
 	label_name = "Rhinovirus culture"
-	desc = "A small bottle. Contains XY-rhinovirus culture in synthblood medium."
+	desc = "Mała butelka. Zawiera kulturę rinowirusa XY w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/advance/cold
 
 /obj/item/reagent_containers/glass/bottle/flu_virion
-	name = "Flu virion culture bottle"
+	name = "butelka z kulturą: wiriony grypy"
 	label_name = "Flu virion culture"
-	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
+	desc = "Mała butelka. Zawiera kulturę wirionów grypy H13N1 w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/advance/flu
 
 /obj/item/reagent_containers/glass/bottle/retrovirus
-	name = "Retrovirus culture bottle"
+	name = "butelka z kulturą: retrowirus"
 	label_name = "Retrovirus culture"
-	desc = "A small bottle. Contains a retrovirus culture in a synthblood medium."
+	desc = "Mała butelka. Zawiera kulturę retrowirusa w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/dna_retrovirus
 
 /obj/item/reagent_containers/glass/bottle/gbs
-	name = "GBS culture bottle"
+	name = "butelka z kulturą: GBS"
 	label_name = "GBS culture"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS+ culture in synthblood medium."//Or simply - General BullShit
+	desc = "Mała butelka. Zawiera kulturę grawitokinetycznego dwupotencjałowego SADS+ w pożywce z syntetycznej krwi."//Or simply - General BullShit
 	amount_per_transfer_from_this = 5
 	spawned_disease = /datum/disease/gbs
 
 /obj/item/reagent_containers/glass/bottle/fake_gbs
-	name = "GBS culture bottle"
+	name = "butelka z kulturą: GBS"
 	label_name = "GBS culture"
-	desc = "A small bottle. Contains Gravitokinetic Bipotential SADS- culture in synthblood medium."//Or simply - General BullShit
+	desc = "Mała butelka. Zawiera kulturę grawitokinetycznego dwupotencjałowego SADS- w pożywce z syntetycznej krwi."//Or simply - General BullShit
 	spawned_disease = /datum/disease/fake_gbs
 
 /obj/item/reagent_containers/glass/bottle/brainrot
-	name = "Brainrot culture bottle"
+	name = "butelka z kulturą: gnicie mózgu"
 	label_name = "Brainrot culture"
-	desc = "A small bottle. Contains Cryptococcus Cosmosis culture in synthblood medium."
+	desc = "Mała butelka. Zawiera kulturę Cryptococcus Cosmosis w pożywce z syntetycznej krwi."
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/brainrot
 
 /obj/item/reagent_containers/glass/bottle/magnitis
-	name = "Magnitis culture bottle"
+	name = "butelka z kulturą: magnitis"
 	label_name = "Magnitis culture"
-	desc = "A small bottle. Contains a small dosage of Fukkos Miracos."
+	desc = "Mała butelka. Zawiera niewielką dawkę Fukkos Miracos."
 	spawned_disease = /datum/disease/magnitis
 
 /obj/item/reagent_containers/glass/bottle/wizarditis
-	name = "Wizarditis culture bottle"
+	name = "butelka z kulturą: czarodziejowica"
 	label_name = "Wizarditis culture"
-	desc = "A small bottle. Contains a sample of Rincewindus Vulgaris."
+	desc = "Mała butelka. Zawiera próbkę Rincewindus Vulgaris."
 	spawned_disease = /datum/disease/wizarditis
 
 /obj/item/reagent_containers/glass/bottle/anxiety
-	name = "Severe Anxiety culture bottle"
+	name = "butelka z kulturą: ciężki lęk"
 	label_name = "Severe Anxiety culture"
-	desc = "A small bottle. Contains a sample of Lepidopticides."
+	desc = "Mała butelka. Zawiera próbkę Lepidopticides."
 	spawned_disease = /datum/disease/anxiety
 
 /obj/item/reagent_containers/glass/bottle/beesease
-	name = "Beesease culture bottle"
+	name = "butelka z kulturą: pszczelica"
 	label_name = "Beesease culture"
-	desc = "A small bottle. Contains a sample of invasive Apidae."
+	desc = "Mała butelka. Zawiera próbkę inwazyjnych Apidae."
 	spawned_disease = /datum/disease/beesease
 
 /obj/item/reagent_containers/glass/bottle/fluspanish
-	name = "Spanish flu culture bottle"
+	name = "butelka z kulturą: grypa hiszpańska"
 	label_name = "Spanish flu culture"
-	desc = "A small bottle. Contains a sample of Inquisitius."
+	desc = "Mała butelka. Zawiera próbkę Inquisitius."
 	spawned_disease = /datum/disease/fluspanish
 
 /obj/item/reagent_containers/glass/bottle/tuberculosis
-	name = "Fungal Tuberculosis culture bottle"
+	name = "butelka z kulturą: gruźlica grzybicza"
 	label_name = "Fungal Tuberculosis culture"
-	desc = "A small bottle. Contains a sample of Fungal Tubercle bacillus."
+	desc = "Mała butelka. Zawiera próbkę grzybiczego prątka gruźlicy."
 	spawned_disease = /datum/disease/tuberculosis
 
 /obj/item/reagent_containers/glass/bottle/tuberculosiscure
-	name = "BVAK bottle"
+	name = "butelka BVAK"
 	label_name = "BVAK"
-	desc = "A small bottle containing Bio Virus Antidote Kit."
+	desc = "Mała butelka z zestawem odtrutek na biowirusy (BVAK)."
 	list_reagents = list(/datum/reagent/medicine/atropine = 5, /datum/reagent/medicine/epinephrine = 5, /datum/reagent/medicine/salbutamol = 10, /datum/reagent/medicine/spaceacillin = 10)
 
 /obj/item/reagent_containers/glass/bottle/necropolis_seed
-	name = "bowl of blood"
+	name = "misa krwi"
 	label_name = "blood"
-	desc = "A clay bowl containing a fledgling Necropolis, preserved in blood. A robust virologist may be able to unlock its full potential..."
+	desc = "Gliniana misa z zalążkiem Nekropolii zakonserwowanym we krwi. Krzepki wirolog może zdołać uwolnić jego pełen potencjał..."
 	icon_state = "mortar"
 	spawned_disease = /datum/disease/advance/random/necropolis
 
 /obj/item/reagent_containers/glass/bottle/felinid
-	name = "Nano-Feline Assimilative Toxoplasmosis culture bottle"
+	name = "butelka z kulturą: nanokocia toksoplazmoza asymilacyjna"
 	label_name = "Nano-Feline Assimilative Toxoplasmosis culture"
-	desc = "A small bottle. Contains a sample of nano-feline toxoplasma in synthblood medium."
+	desc = "Mała butelka. Zawiera próbkę nanokociej toksoplazmy w pożywce z syntetycznej krwi."
 	spawned_disease = /datum/disease/transformation/felinid/contagious
 
 /obj/item/reagent_containers/glass/bottle/advanced_felinid
-	name = "Feline Hysteria culture bottle"
+	name = "butelka z kulturą: kocia histeria"
 	label_name = "Feline Hysteria culture"
-	desc = "A small bottle. Contains a sample of a dangerous A.R.C. experimental disease"
+	desc = "Mała butelka. Zawiera próbkę niebezpiecznej eksperymentalnej choroby A.R.C."
 	spawned_disease = /datum/disease/advance/feline_hysteria
 
 //Oldstation.dmm chemical storage bottles
 
 /obj/item/reagent_containers/glass/bottle/hydrogen
-	name = "hydrogen bottle"
+	name = "butelka: wodór"
 	label_name = "hydrogen"
 	list_reagents = list(/datum/reagent/hydrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/lithium
-	name = "lithium bottle"
+	name = "butelka: lit"
 	label_name = "lithium"
 	list_reagents = list(/datum/reagent/lithium = 30)
 
 /obj/item/reagent_containers/glass/bottle/carbon
-	name = "carbon bottle"
+	name = "butelka: węgiel"
 	label_name = "carbon"
 	list_reagents = list(/datum/reagent/carbon = 30)
 
 /obj/item/reagent_containers/glass/bottle/nitrogen
-	name = "nitrogen bottle"
+	name = "butelka: azot"
 	label_name = "nitrogen"
 	list_reagents = list(/datum/reagent/nitrogen = 30)
 
 /obj/item/reagent_containers/glass/bottle/oxygen
-	name = "oxygen bottle"
+	name = "butelka: tlen"
 	label_name = "oxygen"
 	list_reagents = list(/datum/reagent/oxygen = 30)
 
 /obj/item/reagent_containers/glass/bottle/fluorine
-	name = "fluorine bottle"
+	name = "butelka: fluor"
 	label_name = "fluorine"
 	list_reagents = list(/datum/reagent/fluorine = 30)
 
 /obj/item/reagent_containers/glass/bottle/sodium
-	name = "sodium bottle"
+	name = "butelka: sód"
 	label_name = "sodium"
 	list_reagents = list(/datum/reagent/sodium = 30)
 
 /obj/item/reagent_containers/glass/bottle/aluminium
-	name = "aluminium bottle"
+	name = "butelka: aluminium"
 	label_name = "aluminium"
 	list_reagents = list(/datum/reagent/aluminium = 30)
 
 /obj/item/reagent_containers/glass/bottle/silicon
-	name = "silicon bottle"
+	name = "butelka: krzem"
 	label_name = "silicon"
 	list_reagents = list(/datum/reagent/silicon = 30)
 
 /obj/item/reagent_containers/glass/bottle/phosphorus
-	name = "phosphorus bottle"
+	name = "butelka: fosfor"
 	label_name = "phosphorus"
 	list_reagents = list(/datum/reagent/phosphorus = 30)
 
 /obj/item/reagent_containers/glass/bottle/sulfur
-	name = "sulfur bottle"
+	name = "butelka: siarka"
 	label_name = "sulfur"
 	list_reagents = list(/datum/reagent/sulfur = 30)
 
 /obj/item/reagent_containers/glass/bottle/chlorine
-	name = "chlorine bottle"
+	name = "butelka: chlor"
 	label_name = "chlorine"
 	list_reagents = list(/datum/reagent/chlorine = 30)
 
 /obj/item/reagent_containers/glass/bottle/potassium
-	name = "potassium bottle"
+	name = "butelka: potas"
 	label_name = "potassium"
 	list_reagents = list(/datum/reagent/potassium = 30)
 
 /obj/item/reagent_containers/glass/bottle/iron
-	name = "iron bottle"
+	name = "butelka: żelazo"
 	label_name = "iron"
 	list_reagents = list(/datum/reagent/iron = 30)
 
 /obj/item/reagent_containers/glass/bottle/copper
-	name = "copper bottle"
+	name = "butelka: miedź"
 	label_name = "copper"
 	list_reagents = list(/datum/reagent/copper = 30)
 
 /obj/item/reagent_containers/glass/bottle/mercury
-	name = "mercury bottle"
+	name = "butelka: rtęć"
 	label_name = "mercury"
 	list_reagents = list(/datum/reagent/mercury = 30)
 
 /obj/item/reagent_containers/glass/bottle/radium
-	name = "radium bottle"
+	name = "butelka: rad"
 	label_name = "radium"
 	list_reagents = list(/datum/reagent/uranium/radium = 30)
 
 /obj/item/reagent_containers/glass/bottle/water
-	name = "water bottle"
+	name = "butelka: woda"
 	label_name = "water"
 	list_reagents = list(/datum/reagent/water = 30)
 
 /obj/item/reagent_containers/glass/bottle/ethanol
-	name = "ethanol bottle"
+	name = "butelka: etanol"
 	label_name = "ethanol"
 	list_reagents = list(/datum/reagent/consumable/ethanol = 30)
 
 /obj/item/reagent_containers/glass/bottle/sugar
-	name = "sugar bottle"
+	name = "butelka: cukier"
 	label_name = "sugar"
 	list_reagents = list(/datum/reagent/consumable/sugar = 30)
 
 /obj/item/reagent_containers/glass/bottle/sacid
-	name = "sulphuric acid bottle"
+	name = "butelka: kwas siarkowy"
 	label_name = "sulphuric acid"
 	list_reagents = list(/datum/reagent/toxin/acid = 30)
 
 /obj/item/reagent_containers/glass/bottle/welding_fuel
-	name = "welding fuel bottle"
+	name = "butelka: paliwo spawalnicze"
 	label_name = "welding fuel"
 	list_reagents = list(/datum/reagent/fuel = 30)
 
 /obj/item/reagent_containers/glass/bottle/silver
-	name = "silver bottle"
+	name = "butelka: srebro"
 	label_name = "silver"
 	list_reagents = list(/datum/reagent/silver = 30)
 
 /obj/item/reagent_containers/glass/bottle/iodine
-	name = "iodine bottle"
+	name = "butelka: jod"
 	label_name = "iodine"
 	list_reagents = list(/datum/reagent/iodine = 30)
 
 /obj/item/reagent_containers/glass/bottle/bromine
-	name = "bromine bottle"
+	name = "butelka: brom"
 	label_name = "bromine"
 	list_reagents = list(/datum/reagent/bromine = 30)
 
 // Bottles for mail goodies.
 
 /obj/item/reagent_containers/glass/bottle/clownstears
-	name = "bottle of distilled clown misery"
+	name = "butelka destylowanej klauńskiej rozpaczy"
 	label_name = "distilled clown misery"
-	desc = "A small bottle. Contains a mythical liquid used by sublime bartenders; made from the unhappiness of clowns."
+	desc = "Mała butelka. Zawiera mityczny płyn, którego używają wysublimowani barmani; robi się go z nieszczęścia klaunów."
 	list_reagents = list(/datum/reagent/consumable/clownstears = 30)
 
 /obj/item/reagent_containers/glass/bottle/saltpetre
-	name = "saltpetre bottle"
+	name = "butelka: saletra"
 	label_name = "saltpetre"
-	desc = "A small bottle. Contains saltpetre."
+	desc = "Mała butelka. Zawiera saletrę."
 	list_reagents = list(/datum/reagent/saltpetre = 30)
 
 /obj/item/reagent_containers/glass/bottle/flash_powder
-	name = "flash powder bottle"
+	name = "butelka: proszek błyskowy"
 	label_name = "flash powder"
-	desc = "A small bottle. Contains flash powder."
+	desc = "Mała butelka. Zawiera proszek błyskowy."
 	list_reagents = list(/datum/reagent/flash_powder = 30)
 
 /obj/item/reagent_containers/glass/bottle/caramel
-	name = "bottle of caramel"
+	name = "butelka: karmel"
 	label_name = "caramel"
-	desc = "A bottle containing caramalized sugar, also known as caramel. Do not lick."
+	desc = "Butelka skarmelizowanego cukru, czyli karmelu. Nie lizać."
 	list_reagents = list(/datum/reagent/consumable/caramel = 30)
 
 /obj/item/reagent_containers/glass/bottle/ketamine
-	name = "ketamine bottle"
+	name = "butelka: ketamina"
 	label_name = "ketamine"
-	desc = "A small bottle. Contains ketamine, why?"
+	desc = "Mała butelka. Zawiera ketaminę. Po co?"
 	list_reagents = list(/datum/reagent/drug/ketamine = 30)

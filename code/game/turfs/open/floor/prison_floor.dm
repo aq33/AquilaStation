@@ -1,8 +1,8 @@
 #define MAX_PRISON_PLATES 4
 
 /turf/open/floor/prison
-	name = "secure floor"
-	desc = "Prison break-proof!"
+	name = "zabezpieczona podłoga"
+	desc = "Odporna na ucieczki z więzienia!"
 	icon = 'icons/turf/prisonfloor.dmi'
 	icon_state = "prisonfloor4"
 	//max_integrity = 500 //NSV13 Our floors don't have max integrity yet

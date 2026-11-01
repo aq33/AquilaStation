@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hud
 	name = "HUD"
-	desc = "A heads-up display that provides important info in (almost) real time."
+	desc = "Wyświetlacz przezierny, który pokazuje ważne informacje (prawie) w czasie rzeczywistym."
 	flags_1 = null //doesn't protect eyes because it's a monocle, duh
 	var/hud_trait = null //Used for topic calls. Just because you have a HUD display doesn't mean you should be able to interact with stuff. If something uses multiple traits, make it a list.
 	var/hud_type = null	//If something uses multiple huds, make it a list.
@@ -52,7 +52,7 @@
 	if(obj_flags & OBJ_EMPED || . & EMP_PROTECT_SELF)
 		return
 	obj_flags |= OBJ_EMPED
-	desc = "[desc] The display is flickering slightly."
+	desc = "[desc] Wyświetlacz lekko migocze."
 	addtimer(CALLBACK(src, PROC_REF(reset_emp)), rand(1200 / severity, 600 / severity))
 	//If we aren't glitching out already, start glitching
 	if(!(obj_flags & EMAGGED))
@@ -71,7 +71,7 @@
 		return
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
-	desc = "[desc] The display is flickering slightly."
+	desc = "[desc] Wyświetlacz lekko migocze."
 	//If we aren't already glitching out, start glitching
 	if(!(obj_flags & OBJ_EMPED))
 		start_glitch()
@@ -120,16 +120,16 @@
 	glitching_hud.filters = filter(type="motion_blur", x=rand(1, 3))
 
 /obj/item/clothing/glasses/hud/health
-	name = "health scanner HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
+	name = "HUD medyczny"
+	desc = "Wyświetlacz przezierny, który skanuje widocznych ludzi i podaje dokładne dane o ich stanie zdrowia."
 	icon_state = "healthhud"
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	hud_trait = TRAIT_MEDICAL_HUD
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
 
 /obj/item/clothing/glasses/hud/health/night
-	name = "night vision health scanner HUD"
-	desc = "An advanced medical head-up display that allows doctors to find patients in complete darkness."
+	name = "noktowizyjny HUD medyczny"
+	desc = "Zaawansowany medyczny wyświetlacz przezierny, dzięki któremu lekarze znajdują pacjentów nawet w zupełnej ciemności."
 	icon_state = "healthhudnight"
 	item_state = "glasses"
 	darkness_view = 8
@@ -137,8 +137,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/health/sunglasses
-	name = "medical HUDSunglasses"
-	desc = "Sunglasses with a medical HUD."
+	name = "okulary przeciwsłoneczne z HUD-em medycznym"
+	desc = "Okulary przeciwsłoneczne z HUD-em medycznym."
 	icon_state = "sunhudmed"
 	darkness_view = 1
 	flash_protect = 1
@@ -146,26 +146,26 @@
 	glass_colour_type = /datum/client_colour/glass_colour/blue
 
 /obj/item/clothing/glasses/hud/health/prescription
-	name = "prescription medical HUDglasses"
-	desc = "Prescription glasses with a built-in medical HUD."
+	name = "okulary korekcyjne z HUD-em medycznym"
+	desc = "Okulary korekcyjne z wbudowanym HUD-em medycznym."
 	icon_state = "prescmedhud"
 	vision_correction = 1
 
 /obj/item/clothing/glasses/hud/health/sunglasses/degraded
-	name = "degraded medical HUDSunglasses"
-	desc = "Sunglasses with a medical HUD. They do not provide flash protection."
+	name = "zużyte okulary przeciwsłoneczne z HUD-em medycznym"
+	desc = "Okulary przeciwsłoneczne z HUD-em medycznym. Nie chronią przed błyskami."
 	flash_protect = 0
 
 /obj/item/clothing/glasses/hud/diagnostic
-	name = "diagnostic HUD"
-	desc = "A heads-up display capable of analyzing the integrity and status of robotics and exosuits."
+	name = "HUD diagnostyczny"
+	desc = "Wyświetlacz przezierny, który analizuje stan i wytrzymałość robotów i egzoszkieletów."
 	icon_state = "diagnostichud"
 	hud_type = DATA_HUD_DIAGNOSTIC_BASIC
 	glass_colour_type = /datum/client_colour/glass_colour/lightorange
 
 /obj/item/clothing/glasses/hud/diagnostic/night
-	name = "night vision diagnostic HUD"
-	desc = "A robotics diagnostic HUD fitted with a light amplifier."
+	name = "noktowizyjny HUD diagnostyczny"
+	desc = "HUD diagnostyczny dla robotyki ze wzmacniaczem światła."
 	icon_state = "diagnostichudnight"
 	item_state = "glasses"
 	darkness_view = 8
@@ -173,39 +173,39 @@
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses
-	name = "diagnostic sunglasses"
-	desc = "Sunglasses with a diagnostic HUD."
+	name = "okulary przeciwsłoneczne z HUD-em diagnostycznym"
+	desc = "Okulary przeciwsłoneczne z HUD-em diagnostycznym."
 	icon_state = "sunhuddiag"
 	item_state = "glasses"
 	flash_protect = 1
 	tint = 1
 
 /obj/item/clothing/glasses/hud/diagnostic/sunglasses/degraded
-	name = "degraded diagnostic sunglasses"
-	desc = "Sunglasses with a diagnostic HUD. They do not provide flash protection."
+	name = "zużyte okulary przeciwsłoneczne z HUD-em diagnostycznym"
+	desc = "Okulary przeciwsłoneczne z HUD-em diagnostycznym. Nie chronią przed błyskami."
 	flash_protect = 0
 
 /obj/item/clothing/glasses/hud/diagnostic/prescription
-	name = "prescription diagnostic HUDglasses"
-	desc = "Prescription glasses with a built-in diagnostic HUD."
+	name = "okulary korekcyjne z HUD-em diagnostycznym"
+	desc = "Okulary korekcyjne z wbudowanym HUD-em diagnostycznym."
 	icon_state = "prescdiaghud"
 	vision_correction = 1
 
 /obj/item/clothing/glasses/hud/security
-	name = "security HUD"
-	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	name = "HUD ochrony"
+	desc = "Wyświetlacz przezierny, który skanuje widocznych ludzi i podaje dokładne dane o ich identyfikatorach i aktach ochrony."
 	icon_state = "securityhud"
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	hud_trait = TRAIT_SECURITY_HUD
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/hud/security/deputy
-	name = "deputy security HUD"
+	name = "HUD ochrony aspiranta"
 	icon_state = "sunhudtoggle"
 
 /obj/item/clothing/glasses/hud/medsec
-	name = "medsec HUD"
-	desc = "A combination HUD, providing the user the use of a Medical and Security HUD."
+	name = "HUD medyczno-ochronny"
+	desc = "Łączony HUD, który daje noszącemu funkcje HUD-u medycznego i HUD-u ochrony."
 	icon_state = "medsechud"
 	hud_type = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED)
 	hud_trait = list(TRAIT_SECURITY_HUD, TRAIT_MEDICAL_HUD)
@@ -213,8 +213,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/hud/security/chameleon
-	name = "chameleon security HUD"
-	desc = "A stolen security HUD integrated with Syndicate chameleon technology. Provides flash protection."
+	name = "HUD ochrony kameleona"
+	desc = "Skradziony HUD ochrony zintegrowany z technologią kameleona Syndykatu. Chroni przed błyskami."
 	flash_protect = 1
 
 	// Yes this code is the same as normal chameleon glasses, but we don't
@@ -225,7 +225,7 @@
 	. = ..()
 	chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/clothing/glasses
-	chameleon_action.chameleon_name = "Glasses"
+	chameleon_action.chameleon_name = "Okulary"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/clothing/glasses/changeling, only_root_path = TRUE)
 	chameleon_action.initialize_disguises()
 
@@ -237,13 +237,13 @@
 
 
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
-	name = "eyepatch HUD"
-	desc = "A heads-up display that connects directly to the optical nerve of the user, replacing the need for that useless eyeball."
+	name = "przepaska z HUD-em"
+	desc = "Wyświetlacz przezierny podłączony bezpośrednio do nerwu wzrokowego noszącego, który zastępuje tę bezużyteczną gałkę oczną."
 	icon_state = "hudpatch"
 
 /obj/item/clothing/glasses/hud/security/sunglasses
-	name = "security HUDSunglasses"
-	desc = "Sunglasses with a security HUD."
+	name = "okulary przeciwsłoneczne z HUD-em ochrony"
+	desc = "Okulary przeciwsłoneczne z HUD-em ochrony."
 	icon_state = "sunhudsec"
 	darkness_view = 1
 	flash_protect = 1
@@ -251,27 +251,27 @@
 	glass_colour_type = /datum/client_colour/glass_colour/darkred
 
 /obj/item/clothing/glasses/hud/security/sunglasses/degraded
-	name = "degraded security HUDSunglasses"
-	desc = "Sunglasses with a security HUD. They do not provide flash protection."
+	name = "zużyte okulary przeciwsłoneczne z HUD-em ochrony"
+	desc = "Okulary przeciwsłoneczne z HUD-em ochrony. Nie chronią przed błyskami."
 	flash_protect = 0
 
 /obj/item/clothing/glasses/hud/security/night
-	name = "night vision security HUD"
-	desc = "An advanced heads-up display which provides id data and vision in complete darkness."
+	name = "noktowizyjny HUD ochrony"
+	desc = "Zaawansowany wyświetlacz przezierny, który pokazuje dane z identyfikatorów i pozwala widzieć w zupełnej ciemności."
 	icon_state = "securityhudnight"
 	darkness_view = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/green
 
 /obj/item/clothing/glasses/hud/security/prescription
-	name = "prescription security HUDglasses"
-	desc = "Prescription glasses with a built-in security HUD. They do not provide flash protection."
+	name = "okulary korekcyjne z HUD-em ochrony"
+	desc = "Okulary korekcyjne z wbudowanym HUD-em ochrony. Nie chronią przed błyskami."
 	icon_state = "prescsechud"
 	vision_correction = 1
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars
-	name = "\improper HUD gar glasses"
-	desc = "GAR glasses with a HUD."
+	name = "\improper okulary gar z HUD-em"
+	desc = "Okulary GAR z HUD-em."
 	icon_state = "gars"
 	item_state = "garb"
 	force = 10
@@ -283,22 +283,22 @@
 	sharpness = IS_SHARP
 
 /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars
-	name = "giga HUD gar glasses"
-	desc = "GIGA GAR glasses with a HUD."
+	name = "okulary giga gar z HUD-em"
+	desc = "Okulary GIGA GAR z HUD-em."
 	icon_state = "supergars"
 	item_state = "garb"
 	force = 12
 	throwforce = 12
 
 /obj/item/clothing/glasses/hud/toggle
-	name = "Toggle HUD"
-	desc = "A hud with multiple functions."
+	name = "przełączany HUD"
+	desc = "HUD z wieloma funkcjami."
 	icon_state = "togglehud"
 	actions_types = list(/datum/action/item_action/switch_hud)
 
 /obj/item/clothing/glasses/hud/toggle/sunglasses
-	name = "Toggle HUDSunglasses"
-	desc = "Sunglasses with a Toggle HUD."
+	name = "okulary przeciwsłoneczne z przełączanym HUD-em"
+	desc = "Okulary przeciwsłoneczne z przełączanym HUD-em."
 	icon_state = "sunhudtoggle"
 	actions_types = list(/datum/action/item_action/switch_hud)
 
@@ -325,8 +325,8 @@
 		H.add_hud_to(user)
 
 /obj/item/clothing/glasses/hud/toggle/thermal
-	name = "thermal HUD scanner"
-	desc = "Thermal imaging HUD in the shape of glasses."
+	name = "termowizyjny HUD"
+	desc = "HUD termowizyjny w kształcie okularów."
 	icon_state = "thermal"
 	hud_type = DATA_HUD_SECURITY_ADVANCED
 	vision_flags = SEE_MOBS
@@ -355,7 +355,7 @@
 
 /obj/item/clothing/glasses/hud/debug
 	name = "Omni HUD"
-	desc = "Glasses with every function."
+	desc = "Okulary ze wszystkimi funkcjami."
 	icon_state = "doublegodeye"
 	item_state = "doublegodeye"
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS

@@ -1,7 +1,7 @@
 //Floorbot
 /mob/living/simple_animal/bot/floorbot
 	name = "\improper Floorbot"
-	desc = "A little floor repairing robot, he looks so excited!"
+	desc = "Mały robot do naprawy podłóg, wygląda na bardzo podekscytowanego!"
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "floorbot0"
 	density = FALSE

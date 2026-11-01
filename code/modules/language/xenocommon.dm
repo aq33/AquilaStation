@@ -1,6 +1,6 @@
 /datum/language/xenocommon
-	name = "Xenomorph"
-	desc = "The common tongue of the xenomorphs."
+	name = "Ksenomorficzny"
+	desc = "Wspólny język ksenomorfów."
 	speech_verb = "syczy"
 	ask_verb = "syczy"
 	exclaim_verb = "syczy"

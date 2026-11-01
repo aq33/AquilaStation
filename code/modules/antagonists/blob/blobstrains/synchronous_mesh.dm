@@ -25,7 +25,7 @@
 		return damage * 1.25
 
 /datum/reagent/blob/synchronous_mesh
-	name = "Synchronous Mesh"
+	name = "Synchroniczna siatka"
 	taste_description = "toksyczna pleśń"
 	color = "#65ADA2"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

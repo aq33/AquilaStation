@@ -2,8 +2,8 @@
 //Possible todo: make a custom message for directing a penlight/flashlight at the eyes - not sure what would display though.
 
 /datum/action/changeling/augmented_eyesight
-	name = "Augmented Eyesight"
-	desc = "Creates more light sensing rods in our eyes, allowing our vision to penetrate most blocking objects. Protects our vision from flashes while inactive."
+	name = "Wzmocniony wzrok"
+	desc = "Tworzy w naszych oczach więcej pręcików wyczuwających światło, dzięki czemu widzimy przez większość przeszkód. Gdy zdolność jest nieaktywna, chroni nasz wzrok przed błyskami."
 	helptext = "Daje nam widzenie rentgenowskie albo ochronę przed błyskami. Przy aktywnym widzeniu rentgenowskim jesteśmy znacznie bardziej podatni na urządzenia błyskowe."
 	button_icon_state = "augmented_eyesight"
 	chemical_cost = 0

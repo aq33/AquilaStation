@@ -3,8 +3,8 @@
 	bound_x = 96
 
 /obj/structure/fluff/bleepypanel
-	name = "Seegson computational node"
-	desc = "A large mainframe panel which processes data at a transfer speed of 1Kb/s through magnetised tape. These mainframes were made all but obsolete by fibre optic technology, but sufficiently old ships still rely heavily on them for signal processing."
+	name = "węzeł obliczeniowy Seegson"
+	desc = "Duży panel komputera głównego, który przetwarza dane z taśmy magnetycznej z prędkością 1 Kb/s. Światłowody sprawiły, że takie komputery są niemal przestarzałe, ale dostatecznie stare statki wciąż mocno na nich polegają przy przetwarzaniu sygnałów."
 	icon = 'nsv13/icons/obj/computers.dmi'
 	icon_state = "bleepypanel"
 	density = FALSE

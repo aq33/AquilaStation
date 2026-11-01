@@ -1,5 +1,5 @@
 /turf/open/space/transit
-	name = "\proper hyperspace"
+	name = "\proper nadprzestrzeń"
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit

@@ -92,8 +92,8 @@ Control Rods
 //////Stormdrive///////
 
 /obj/machinery/atmospherics/components/binary/stormdrive_reactor
-	name = "class IV nuclear storm drive"
-	desc = "This monstrosity is what we got when nanotrasen engineers decided to inject magnetically constricted plasma into a nuclear reactor. It's able of outputting an ungodly amount of super-heated plasma, radiation, and fire... But god help you if it ever melts down."
+	name = "jądrowy napęd burzowy klasy IV"
+	desc = "Ta potworność powstała, gdy inżynierowie Nanotrasen postanowili wstrzyknąć magnetycznie zwężoną plazmę do reaktora jądrowego. Wyrzuca z siebie bezbożne ilości przegrzanej plazmy, promieniowania i ognia... Ale niech Bóg ma cię w opiece, jeśli kiedyś się stopi."
 	icon = 'nsv13/goonstation/icons/reactor.dmi'
 	icon_state = "reactor_off"
 	pixel_x = -16
@@ -176,8 +176,8 @@ Control Rods
 	engineering_channel = RADIO_CHANNEL_SYNDICATE
 
 /obj/machinery/atmospherics/components/binary/stormdrive_reactor/solgov
-	name = "class V ionic storm drive"
-	desc = "A highly advanced ionic drive used by SolGov to power their space vessels. Through the application of inverse-ions to the endostorm, more efficient matter to energy conversion is achieved."
+	name = "jonowy napęd burzowy klasy V"
+	desc = "Wysoce zaawansowany napęd jonowy, którym SolGov zasila swoje jednostki. Dzięki zastosowaniu odwróconych jonów w endoburzy osiąga wydajniejszą zamianę materii w energię."
 	base_power = 85000 //26% more power than class 4
 	icon = 'nsv13/goonstation/icons/reactor_solgov.dmi'
 	theoretical_maximum_power = 20000000
@@ -1176,7 +1176,7 @@ Control Rods
 			. += "<span class='notice'>Brakuje rdzenia reaktora.</span>"
 
 /obj/effect/countdown/stormdrive
-	name = "stormdrive stability"
+	name = "stabilność napędu burzowego"
 	text_size = 1
 	color = "#00aeff"
 
@@ -1290,8 +1290,8 @@ Control Rods
 //////// Reactor Computer////////
 
 /obj/machinery/computer/ship/reactor_control_computer
-	name = "Seegson model RBMK reactor control console"
-	desc = "A state of the art terminal which is linked to a nuclear storm drive reactor. It has several buttons labelled 'AZ' on the keyboard."
+	name = "konsola sterowania reaktorem RBMK firmy Seegson"
+	desc = "Najnowocześniejszy terminal połączony z reaktorem jądrowego napędu burzowego. Na klawiaturze jest kilka przycisków z napisem „AZ”."
 	icon_screen = "reactor_control"
 	density = TRUE
 	anchored = TRUE
@@ -1372,7 +1372,7 @@ Control Rods
 			reactor.update_icon()
 		if("rods_1")
 			reactor.control_rod_percent = 0
-			message_admins("[key_name(usr)] has fully raised reactor control rods in [get_area(usr)] [ADMIN_JMP(usr)]")
+			message_admins("[key_name(usr)] w pełni podnosi pręty sterujące reaktora w [get_area(usr)] [ADMIN_JMP(usr)]")
 			reactor.update_icon()
 		if("rods_2")
 			reactor.control_rod_percent = 5
@@ -1458,12 +1458,12 @@ Control Rods
 	return data
 
 /obj/item/circuitboard/computer/stormdrive_reactor_control
-	name = "Stormdrive Reactor Control Console (Computer Board)"
+	name = "konsola sterowania reaktorem napędu burzowego (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/reactor_control_computer
 
 /datum/design/board/stormdrive_reactor_control
-	name = "Computer Design (Stormdrive Reactor Control Console)"
-	desc = "Allows for the construction of circuit boards used to build a new stormdrive reactor control console."
+	name = "Projekt komputera (konsola sterowania reaktorem napędu burzowego)"
+	desc = "Pozwala wytwarzać płytki drukowane do budowy nowej konsoli sterowania reaktorem napędu burzowego."
 	id = "sd_r_c_c"
 	build_path = /obj/item/circuitboard/computer/stormdrive_reactor_control
 	category = list("Computer Boards")
@@ -1471,7 +1471,7 @@ Control Rods
 
 /datum/techweb_node/stormdrive_reactor_control
 	id = "sd_rcc+cons"
-	display_name = "Seegson Storm Drive Machinery"
+	display_name = "Maszyny napędu burzowego Seegson"
 	description = "Najnowsze i najlepsze (w twoim budżecie) konstrukcje sterowania reaktorem i zwężania plazmy od Seegson!"
 	prereq_ids = list("adv_engi", "adv_power")
 	design_ids = list("sd_r_c_c", "mag_cons")
@@ -1481,7 +1481,7 @@ Control Rods
 /////// Constricted Plasma///////
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/constricted_plasma
-	name = "constricted plasma filter"
+	name = "filtr zwężonej plazmy"
 	filter_type = "constricted_plasma"
 
 /obj/machinery/atmospherics/components/trinary/filter/atmos/constricted_plasma/flipped
@@ -1493,22 +1493,22 @@ Control Rods
 	flipped = TRUE
 
 /obj/machinery/portable_atmospherics/canister/constricted_plasma
-	name = "constricted plasma canister"
-	desc = "Highly volatile plasma which has been magnetically constricted. The fuel which nuclear storm drives run off of."
+	name = "kanister zwężonej plazmy"
+	desc = "Wysoce lotna plazma zwężona magnetycznie. Paliwo, na którym działają jądrowe napędy burzowe."
 	gas_type = GAS_CONSTRICTED_PLASMA
 	greyscale_config = /datum/greyscale_config/canister/hazard
 	greyscale_colors = "#aa18c7#000000"
 
 /obj/machinery/portable_atmospherics/canister/nucleium
-	name = "nucleium canister"
-	desc = "A waste plasma biproduct produced in the Stormdrive, used in quantum waveform generation."
+	name = "kanister nukleium"
+	desc = "Odpadowy produkt uboczny plazmy powstający w napędzie burzowym, używany do generowania kwantowych przebiegów falowych."
 	gas_type = GAS_NUCLEIUM
 	greyscale_colors = "#66C88F#000000"
 	greyscale_config = /datum/greyscale_config/canister/hazard
 
 /datum/weather/nuclear_fallout
 	name = "nuclear fallout"
-	desc = "Irradiated dust falls down everywhere."
+	desc = "Wszędzie opada napromieniowany pył."
 	telegraph_duration = 50
 	telegraph_message = "<span class='boldwarning'>Powietrze nagle robi się zapylone..</span>"
 	weather_message = "<span class='userdanger'><i>Czujesz, jak spada na ciebie fala gorącego popiołu.</i></span>"
@@ -1557,8 +1557,8 @@ Control Rods
 /////// ANOMALIES ///////
 
 /obj/effect/anomaly/stormdrive //PARENT
-	name = "\improper Stormdrive Anomaly - PARENT "
-	desc = "A mysterious anomaly, unknown in origin."
+	name = "\improper anomalia napędu burzowego - RODZIC "
+	desc = "Tajemnicza anomalia nieznanego pochodzenia."
 	var/freq_shift = null
 	var/code_shift = null
 
@@ -1581,14 +1581,14 @@ Control Rods
 		if(prob(50))
 			var/freq_1 = format_frequency(aSignal.frequency - freq_shift)
 			var/freq_2 = format_frequency(aSignal.frequency + freq_shift)
-			to_chat(user, "<span class='notice'>Analyzing... ERROR: Unable to #%##freq0x000[mem_address] [freq_1] - [freq_2].</span>")
+			to_chat(user, "<span class='notice'>Analizowanie... BŁĄD: nie można #%##freq0x000[mem_address] [freq_1] - [freq_2].</span>")
 		else
 			var/code_1 = aSignal.code - code_shift
 			var/code_2 = aSignal.code + code_shift
 			to_chat(user, "<span class='notice'>Analizowanie... BŁĄD: nie można wykr// ^##e0x000[mem_address] [code_1] - [code_2].</span>")
 
 /obj/effect/anomaly/stormdrive/sheer //Radiation + Plasma
-	name = "storm sheer anomaly"
+	name = "anomalia burzowego ścinania"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
 
@@ -1621,7 +1621,7 @@ Control Rods
 	new /obj/effect/particle_effect/sparks(loc)
 
 /obj/effect/anomaly/stormdrive/surge //EMP + Flux
-	name = "storm surge anomaly"
+	name = "anomalia burzowego przypływu"
 	icon_state = "electricity2"
 	var/canshock = FALSE
 	var/shockdamage = 20
@@ -1671,7 +1671,7 @@ Control Rods
 	do_sparks(10, FALSE, src)
 
 /obj/effect/anomaly/stormdrive/squall //Gravity + Brute
-	name = "storm squall anomaly"
+	name = "anomalia burzowego szkwału"
 	icon_state = "dragnetfield"
 	alpha = 65 //Not exactly easy to see
 
@@ -1773,15 +1773,15 @@ Control Rods
 //////// MISC ///////
 
 /obj/item/book/manual/wiki/stormdrive
-	name = "\improper Stormdrive Class IV SOP"
+	name = "\improper procedury operacyjne napędu burzowego klasy IV"
 	icon_state ="bookEngineering2"
-	author = "CogWerk Engineering Reactor Design Department"
-	title = "Stormdrive Class IV SOP"
+	author = "Dział Projektowania Reaktorów CogWerk Engineering"
+	title = "Procedury operacyjne napędu burzowego klasy IV"
 	page_link = "Guide_to_the_Stormdrive_Engine"
 
 /obj/item/stormdrive_core
-	name = "\improper Class IV Nuclear Storm Drive Reactor Core"
-	desc = "A live reactor core for a class IV nuclear storm drive, packaged and ready for transport by heavy-duty lifting equipment."
+	name = "\improper rdzeń reaktora jądrowego napędu burzowego klasy IV"
+	desc = "Aktywny rdzeń reaktora jądrowego napędu burzowego klasy IV, zapakowany i gotowy do transportu ciężkim sprzętem dźwigowym."
 	icon = 'nsv13/icons/obj/control_rod.dmi'
 	icon_state = "stormdrive_core"
 	w_class = WEIGHT_CLASS_GIGANTIC

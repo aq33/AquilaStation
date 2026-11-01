@@ -81,9 +81,9 @@ Class Procs:
 */
 
 /obj/machinery
-	name = "machinery"
+	name = "maszyna"
 	icon = 'icons/obj/stationobjs.dmi'
-	desc = "Some kind of machine."
+	desc = "Jakaś maszyna."
 	verb_say = "pika"
 	verb_yell = "wyje"
 	pressure_resistance = 15
@@ -124,7 +124,7 @@ Class Procs:
 
 	var/interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_SET_MACHINE
 	var/fair_market_price = 69
-	var/market_verb = "Customer"
+	var/market_verb = "Klient:"
 	var/payment_department = ACCOUNT_ENG
 
 	var/clickvol = 40	// sound volume played on succesful click
@@ -611,7 +611,7 @@ Class Procs:
 	. = list()
 	. += "<span class='notice'>Zawiera następujące części:</span>"
 	for(var/obj/item/C in component_parts)
-		. += "<span class='notice'>[icon2html(C, user)] \A [C].</span>"
+		. += "<span class='notice'>[icon2html(C, user)] [C].</span>"
 	. = jointext(., "")
 
 /obj/machinery/examine(mob/user)

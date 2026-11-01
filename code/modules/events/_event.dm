@@ -85,12 +85,12 @@
 
 	triggering = TRUE
 	if (alert_observers)
-		message_admins("Random Event triggering in [RANDOM_EVENT_ADMIN_INTERVENTION_TIME] seconds: [name] (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>)")
+		message_admins("Losowy event uruchomi się za [RANDOM_EVENT_ADMIN_INTERVENTION_TIME] s: [name] (<a href='byond://?src=[REF(src)];cancel=1'>ANULUJ</a>)")
 		sleep(RANDOM_EVENT_ADMIN_INTERVENTION_TIME SECONDS)
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		if(!canSpawnEvent(players_amt, gamemode))
-			message_admins("Second pre-condition check for [name] failed, skipping...")
+			message_admins("Drugie sprawdzenie warunków dla [name] nie powiodło się, pomijam...")
 			return EVENT_INTERRUPTED
 
 	if(!triggering)
@@ -105,7 +105,7 @@
 			to_chat(usr, "<span class='admin'>Za późno, żeby anulować ten event</span>")
 			return
 		triggering = FALSE
-		message_admins("[key_name_admin(usr)] cancelled event [name].")
+		message_admins("[key_name_admin(usr)] anuluje event [name].")
 		log_admin_private("[key_name(usr)] cancelled event [name].")
 		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 

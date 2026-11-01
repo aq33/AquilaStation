@@ -1,6 +1,6 @@
 /datum/nanite_program/nanojutsu
-	name = "Nanojutsu Teaching Program"
-	desc = "The nanites stimulate host's brain, giving them the ability to use the martial art of Nanojutsu."
+	name = "Program nauki Nanojutsu"
+	desc = "Nanity pobudzają mózg nosiciela, dając mu umiejętność posługiwania się sztuką walki Nanojutsu."
 	use_rate = 3.5
 	rogue_types = list(/datum/nanite_program/brain_decay, /datum/nanite_program/brain_misfire)
 	var/datum/martial_art/nanojutsu/martial
@@ -23,8 +23,8 @@
 	QDEL_NULL(martial)
 
 /datum/nanite_program/camo
-	name = "Adaptive Camouflage"
-	desc = "The nanites coat host with a thin, reflective layer, rendering them almost invisible."
+	name = "Adaptacyjny kamuflaż"
+	desc = "Nanity pokrywają nosiciela cienką, odblaskową warstwą, przez co staje się prawie niewidzialny."
 	use_rate = 2.5
 	rogue_types = list(/datum/nanite_program/skin_decay)
 

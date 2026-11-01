@@ -1,7 +1,7 @@
 
 //Should never actually exist outside of a ship, this is used for ships to have a mob to fire their guns.
 /mob/living/dummy_pilot
-	name = "Dummy AI pilot"
+	name = "fikcyjny pilot SI"
 	mouse_opacity = FALSE
 	alpha = 0
 

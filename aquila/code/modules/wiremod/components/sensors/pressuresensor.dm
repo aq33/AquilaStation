@@ -4,7 +4,7 @@
  * Returns the pressure of the tile
  */
 /obj/item/circuit_component/pressuresensor
-	display_name = "Pressure Sensor"
+	display_name = "Czujnik ciśnienia"
 	desc = "Zwraca obecne ciśnienie na polu."
 	category = "Sensor"
 

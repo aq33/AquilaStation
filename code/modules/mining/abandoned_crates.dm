@@ -1,8 +1,8 @@
 //Originally coded by ISaidNo, later modified by Kelenius. Ported from Baystation12.
 
 /obj/structure/closet/crate/secure/loot
-	name = "abandoned crate"
-	desc = "What could be inside?"
+	name = "porzucona skrzynia"
+	desc = "Co może być w środku?"
 	integrity_failure = 0 //no breaking open the crate
 	var/code = null
 	/// Lista poprzednich prób: list("attempt", "bulls", "cows") - pokazywana w oknie TGUI po użyciu multitoola

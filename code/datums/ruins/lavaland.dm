@@ -60,8 +60,8 @@
 /datum/map_template/ruin/lavaland/free_golem
 	name = "Free Golem Ship"
 	id = "golem-ship"
-	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
-	Seem very intent on research and individual liberty, and also geology based naming?"
+	description = "Po tym statku krążą ociężałe humanoidy z cennych metali. Często wychodzą wydobywać kolejne minerały, z których jakimś cudem robią kolejnych siebie. \
+	Wyglądają na bardzo oddanych badaniom i wolności jednostki, a do tego nazywają się jak skały?"
 	cost = 20
 	suffix = "lavaland_surface_golem_ship.dmm"
 	allow_duplicates = FALSE

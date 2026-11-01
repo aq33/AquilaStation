@@ -1,6 +1,6 @@
 /obj/structure/speaking_tile
-	name = "strange tile"
-	desc = "A weird tile that beckons you towards it. Maybe it can help you get out of this mess..."
+	name = "dziwna płytka"
+	desc = "Dziwna płytka, która cię do siebie przyzywa. Może pomoże ci wyjść z tego bałaganu..."
 	verb_say = "intonuje"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "speaking_tile"
@@ -71,8 +71,8 @@
 		if(251)
 			SpeakPeace(list("W każdym razie, proszę.", "Nie mogę dać ci niczego, co wpłynęłoby na przebieg rundy.","Ale na to przynajmniej zasłużyłeś."))
 			var/obj/item/reagent_containers/food/drinks/trophy/silver_cup/the_ride = new(get_turf(user))
-			the_ride.name = "Overextending The Joke: Second Place"
-			the_ride.desc = "There's a point where this needed to stop, and we've clearly passed it."
+			the_ride.name = "Przeciąganie żartu: drugie miejsce"
+			the_ride.desc = "Był moment, w którym należało przestać, i najwyraźniej już go minęliśmy."
 		if(252)
 			SpeakPeace(list("Wiesz, co to znaczy, prawda?", "Oczywiście, że to nie koniec!", "Pytanie brzmi teraz: czy bardziej imponujące jest brnąć dalej do nieznanego końca, czy mieć dość zdrowego rozsądku, by przestać tutaj?"))
 		if(666)
@@ -82,8 +82,8 @@
 		if(5643)
 			user.client.give_award(/datum/award/achievement/misc/time_waste, user)
 			var/obj/item/reagent_containers/food/drinks/trophy/gold_cup/never_ends = new(get_turf(user))
-			never_ends.name = "Overextending The Joke: First Place"
-			never_ends.desc = "And so we are left alone with our regrets."
+			never_ends.name = "Przeciąganie żartu: pierwsze miejsce"
+			never_ends.desc = "I tak zostajemy sami z naszymi żalami."
 		else
 			y += 2
 	speaking = FALSE
@@ -117,8 +117,8 @@
 			sleep(30)
 
 /obj/item/rupee
-	name = "weird crystal"
-	desc = "Your excitement boils away as you realize it's just colored glass. Why would someone hoard these things?"
+	name = "dziwny kryształ"
+	desc = "Twój entuzjazm wyparowuje, gdy orientujesz się, że to tylko kolorowe szkło. Po co ktoś miałby to zbierać?"
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "rupee"
 	w_class = WEIGHT_CLASS_SMALL

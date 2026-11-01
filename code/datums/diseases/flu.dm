@@ -1,11 +1,11 @@
 /datum/disease/flu
-	name = "The Flu"
+	name = "Grypa"
 	max_stages = 3
-	spread_text = "Airborne"
-	cure_text = "Spaceacillin"
+	spread_text = "Drogą powietrzną"
+	cure_text = "Spacyklina"
 	cures = list(/datum/reagent/medicine/spaceacillin)
 	cure_chance = 10
-	agent = "H13N1 flu virion"
+	agent = "wirion grypy H13N1"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 	permeability_mod = 0.75
 	desc = "Nieleczony chory będzie się czuł dość kiepsko."

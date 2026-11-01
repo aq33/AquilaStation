@@ -1,7 +1,7 @@
 //Santa spells!
 /obj/effect/proc_holder/spell/aoe_turf/conjure/presents
-	name = "Conjure Presents!"
-	desc = "This spell lets you reach into S-space and retrieve presents! Yay!"
+	name = "Wyczaruj prezenty!"
+	desc = "To zaklęcie pozwala ci sięgnąć do przestrzeni S i wyjąć z niej prezenty! Hura!"
 	school = "santa"
 	charge_max = 600
 	clothes_req = FALSE

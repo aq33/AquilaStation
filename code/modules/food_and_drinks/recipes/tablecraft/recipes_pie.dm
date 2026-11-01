@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////PIES////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/bananacreampie
-	name = "Banana cream pie"
+	name = "tort z kremem bananowym"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/obj/item/food/pie/plain = 1,
@@ -14,7 +14,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/meatpie
-	name = "Meat pie"
+	name = "placek z mięsem"
 	reqs = list(
 		/datum/reagent/consumable/blackpepper = 1,
 		/datum/reagent/consumable/sodiumchloride = 1,
@@ -25,7 +25,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/tofupie
-	name = "Tofu pie"
+	name = "placek z tofu"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/tofu = 1
@@ -34,7 +34,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/xenopie
-	name = "Xeno pie"
+	name = "ksenoplacek"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/meat/cutlet/xeno = 1
@@ -43,7 +43,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/cherrypie
-	name = "Cherry pie"
+	name = "placek wiśniowy"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/cherries = 1
@@ -52,7 +52,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/berryclafoutis
-	name = "Berry clafoutis"
+	name = "clafoutis jagodowe"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/berries = 1
@@ -61,7 +61,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/bearypie
-	name = "Beary Pie"
+	name = "placek z niedźwiedziem"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/berries = 1,
@@ -71,7 +71,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/amanitapie
-	name = "Amanita pie"
+	name = "placek z muchomorem"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/mushroom/amanita = 1
@@ -80,7 +80,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/plumppie
-	name = "Plump pie"
+	name = "placek z pulchnym hełmem"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/mushroom/plumphelmet = 1
@@ -89,7 +89,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/applepie
-	name = "Apple pie"
+	name = "szarlotka"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/apple = 1
@@ -98,7 +98,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/pumpkinpie
-	name = "Pumpkin pie"
+	name = "placek dyniowy"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -109,7 +109,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/goldenappletart
-	name = "Golden apple tart"
+	name = "tarta kruszonkowa ze złotym jabłkiem"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -120,7 +120,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/grapetart
-	name = "Grape tart"
+	name = "tarta winogronowa"
 	reqs = list(
             /datum/reagent/consumable/milk = 5,
             /datum/reagent/consumable/sugar = 5,
@@ -131,7 +131,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/mimetart
-	name = "Mime tart"
+	name = "tarta mima"
 	always_available = FALSE
 	reqs = list(
             /datum/reagent/consumable/milk = 5,
@@ -143,7 +143,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/berrytart
-	name = "Berry tart"
+	name = "tarta jagodowa"
 	always_available = FALSE
 	reqs = list(
             /datum/reagent/consumable/milk = 5,
@@ -155,7 +155,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/cocoalavatart
-	name = "Chocolate Lava tart"
+	name = "czekoladowa tarta lawowa"
 	always_available = FALSE
 	reqs = list(
             /datum/reagent/consumable/milk = 5,
@@ -168,7 +168,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/blumpkinpie
-	name = "Blumpkin pie"
+	name = "placek z niebieskiej dyni"
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -179,7 +179,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/dulcedebatata
-	name = "Dulce de batata"
+	name = "dulce de batata"
 	reqs = list(
 		/datum/reagent/consumable/vanilla = 5,
 		/datum/reagent/water = 5,
@@ -189,7 +189,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/frostypie
-	name = "Frosty pie"
+	name = "mroźny placek"
 	reqs = list(
 		/obj/item/food/pie/plain = 1,
 		/obj/item/food/grown/bluecherries = 1
@@ -198,7 +198,7 @@
 	subcategory = CAT_PIE
 
 /datum/crafting_recipe/food/baklava
-	name = "Baklava pie"
+	name = "baklawa"
 	reqs = list(
 		/obj/item/food/butter = 2,
 		/obj/item/food/tortilla = 4,	//Layers

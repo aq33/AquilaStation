@@ -4,8 +4,8 @@
 ///////////////////////////Veil Render//////////////////////
 
 /obj/item/veilrender
-	name = "veil render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast city."
+	name = "rozdzieracz zasłony"
+	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnego miasta."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	item_state = "knife"
@@ -31,8 +31,8 @@
 		to_chat(user, "<span class='danger'>Nieziemskie energie zasilające ostrze teraz uśpiły się.</span>")
 
 /obj/effect/rend
-	name = "tear in the fabric of reality"
-	desc = "You should run now."
+	name = "rozdarcie w tkance rzeczywistości"
+	desc = "Lepiej już uciekaj."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "rift"
 	density = TRUE
@@ -73,16 +73,16 @@
 	return
 
 /obj/item/veilrender/vealrender
-	name = "veal render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast farm."
+	name = "rozdzieracz cielęciny"
+	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnej farmy."
 	spawn_type = /mob/living/simple_animal/cow
 	spawn_amt = 20
 	activate_descriptor = "samemu głodowi"
 	rend_desc = "Rozbrzmiewa odgłosem dziesięciu tysięcy muczeń."
 
 /obj/item/veilrender/honkrender
-	name = "honk render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast circus."
+	name = "rozdzieracz honków"
+	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnego cyrku."
 	spawn_type = /mob/living/simple_animal/hostile/retaliate/clown
 	spawn_amt = 10
 	activate_descriptor = "samej depresji"
@@ -90,8 +90,8 @@
 	icon_state = "clownrender"
 
 /obj/item/veilrender/honkrender/honkhulkrender
-	name = "superior honk render"
-	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast circus. This one gleams with a special light."
+	name = "wyższy rozdzieracz honków"
+	desc = "Złowrogie, zakrzywione ostrze obcego pochodzenia, wydobyte z ruin ogromnego cyrku. To lśni szczególnym światłem."
 	spawn_type = /mob/living/simple_animal/hostile/retaliate/clown/clownhulk
 	spawn_amt = 5
 	activate_descriptor = "samej depresji"
@@ -103,8 +103,8 @@
 
 /// Tear in reality, spawned by the veil render
 /obj/tear_in_reality
-	name = "tear in the fabric of reality"
-	desc = "This isn't right."
+	name = "rozdarcie w tkance rzeczywistości"
+	desc = "To nie jest w porządku."
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "reality"
 	pixel_x = -96
@@ -176,8 +176,8 @@
 /////////////////////////////////////////Scrying///////////////////
 
 /obj/item/scrying
-	name = "scrying orb"
-	desc = "An incandescent orb of otherworldly energy, merely holding it gives you vision and hearing beyond mortal means, and staring into it lets you see the entire universe."
+	name = "kula jasnowidzenia"
+	desc = "Rozżarzona kula nieziemskiej energii. Samo trzymanie jej daje ci wzrok i słuch ponad ludzkie możliwości, a wpatrzenie się w nią pozwala zobaczyć cały wszechświat."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state ="bluespace"
 	throw_speed = 3
@@ -225,8 +225,8 @@
 /////////////////////////////////////////Necromantic Stone///////////////////
 
 /obj/item/necromantic_stone
-	name = "necromantic stone"
-	desc = "A shard capable of resurrecting humans as skeleton thralls."
+	name = "kamień nekromancji"
+	desc = "Odłamek zdolny wskrzeszać ludzi jako szkieletowe sługi."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "necrostone"
 	item_state = "electronic"
@@ -274,7 +274,7 @@
 	
 	log_combat(user, M, "used a necromantic stone to reanimate")
 
-	desc = "A shard capable of resurrecting humans as skeleton thralls[unlimited ? "." : ", [spooky_scaries.len]/3 active thralls."]"
+	desc = "Odłamek zdolny wskrzeszać ludzi jako szkieletowe sługi[unlimited ? "." : ". Aktywne sługi: [spooky_scaries.len]/3."]"
 
 /obj/item/necromantic_stone/proc/check_spooky()
 	if(unlimited) //no point, the list isn't used.
@@ -306,8 +306,8 @@
 
 
 /obj/item/voodoo
-	name = "wicker doll"
-	desc = "Something creepy about it."
+	name = "wiklinowa lalka"
+	desc = "Jest w niej coś niepokojącego."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "voodoo"
 	item_state = "electronic"
@@ -432,8 +432,8 @@
 //Warp Whistle: Provides uncontrolled long distance teleportation.
 
 /obj/item/warpwhistle
-	name = "warp whistle"
-	desc = "One toot on this whistle will send you to a far away land!"
+	name = "gwizdek przenosin"
+	desc = "Jedno dmuchnięcie w ten gwizdek przeniesie cię do dalekiej krainy!"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "whistle"
 	var/on_cooldown = 0 //0: usable, 1: in use, 2: on cooldown
@@ -495,7 +495,7 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "tornado"
 	name = "tornado"
-	desc = "This thing sucks!"
+	desc = "To coś wciąga!"
 	layer = FLY_LAYER
 	randomdir = 0
 	duration = 40

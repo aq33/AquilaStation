@@ -7,8 +7,8 @@
 //Fragile but highly aggressive wanderers that pose a large threat in numbers.
 //They'll attempt to leap at their target from afar using their hatchets.
 /mob/living/simple_animal/hostile/jungle/mook
-	name = "wanderer"
-	desc = "This unhealthy looking primitive is wielding a rudimentary hatchet, swinging it with wild abandon. One isn't much of a threat, but in numbers they can quickly overwhelm a superior opponent."
+	name = "wędrowiec"
+	desc = "Ten chorowicie wyglądający dzikus wymachuje na oślep prymitywnym toporkiem. Pojedynczo nie stanowi większego zagrożenia, ale w grupie szybko przytłoczy nawet silniejszego przeciwnika."
 	icon = 'icons/mob/jungle/mook.dmi'
 	icon_state = "mook"
 	icon_living = "mook"
@@ -42,7 +42,7 @@
 			return TRUE
 
 /mob/living/simple_animal/hostile/jungle/mook/death()
-	desc = "A deceased primitive. Upon closer inspection, it was suffering from severe cellular degeneration and its garments are machine made..."//Can you guess the twist
+	desc = "Martwy dzikus. Po bliższych oględzinach widać, że cierpiał na ciężkie zwyrodnienie komórek, a jego ubranie wykonała maszyna..."//Can you guess the twist
 	return ..()
 
 /mob/living/simple_animal/hostile/jungle/mook/AttackingTarget()
@@ -211,8 +211,8 @@
 				icon_state = "mook"
 
 /obj/effect/temp_visual/mook_dust
-	name = "dust"
-	desc = "It's just a dust cloud!"
+	name = "pył"
+	desc = "To tylko chmura pyłu!"
 	icon = 'icons/mob/jungle/mook.dmi'
 	icon_state = "mook_leap_cloud"
 	layer = BELOW_MOB_LAYER

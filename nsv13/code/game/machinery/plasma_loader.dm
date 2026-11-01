@@ -1,6 +1,6 @@
 /obj/machinery/atmospherics/components/unary/plasma_loader
-	name = "phoron gas regulator"
-	desc = "The gas regulator that pumps gaseous phoron into the Phoron Caster"
+	name = "regulator gazowego foronu"
+	desc = "Regulator gazu, który pompuje gazowy foron do miotacza foronu."
 	icon = 'nsv13/icons/obj/machinery/reactor_parts.dmi'
 	icon_state = "plasma_condenser"
 	circuit = /obj/item/circuitboard/machine/plasma_loader

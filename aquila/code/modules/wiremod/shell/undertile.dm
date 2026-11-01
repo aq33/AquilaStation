@@ -1,5 +1,5 @@
 /obj/item/undertile_circuit
-	name = "circuit panel"
+	name = "panel z układem"
 	desc = "Panel na układ scalony. Aby działał, trzeba go zamontować pod płytką podłogi."
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	item_state = "flashtool"

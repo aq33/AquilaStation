@@ -87,9 +87,9 @@
 	var/bot_type = 0 //The type of bot it is, for radio control.
 	var/data_hud_type = DATA_HUD_DIAGNOSTIC_BASIC //The type of data HUD the bot uses. Diagnostic by default.
 	//This holds text for what the bot is mode doing, reported on the remote bot control interface.
-	var/list/mode_name = list("W pościgu","Przygotowanie do aresztowania", "Arresting", \
-	"Rozpoczynanie patrolu", "Patrolling", "Wezwany przez PDA", \
-	"Cleaning", "Repairing", "W drodze na miejsce pracy", "Healing", \
+	var/list/mode_name = list("W pościgu","Przygotowanie do aresztowania", "Aresztowanie", \
+	"Rozpoczynanie patrolu", "Patrolowanie", "Wezwany przez PDA", \
+	"Sprzątanie", "Naprawianie", "W drodze na miejsce pracy", "Leczenie", \
 	"W drodze do punktu SI", "W drodze do miejsca dostawy", "W drodze do bazy", \
 	"Czekanie na wolną drogę", "Obliczanie trasy", "Odpytywanie sieci nadajników", "Nie można dotrzeć do celu")
 	var/datum/atom_hud/data/bot_path/path_hud = new /datum/atom_hud/data/bot_path()
@@ -107,11 +107,11 @@
 		if(paicard)
 			return "<b>Sterowany przez pAI</b>"
 		else
-			return "<b>Autonomous</b>"
+			return "<b>Autonomiczny</b>"
 	else if(!on)
-		return "<span class='bad'>Inactive</span>"
+		return "<span class='bad'>Nieaktywny</span>"
 	else if(!mode)
-		return "<span class='good'>Idle</span>"
+		return "<span class='good'>Bezczynny</span>"
 	else
 		return "<span class='average'>[mode_name[mode]]</span>"
 
@@ -120,7 +120,7 @@
   */
 /mob/living/simple_animal/bot/proc/get_mode_ui()
 	if(client) //Player bots do not have modes, thus the override. Also an easy way for PDA users/AI to know when a bot is a player.
-		return paicard ? "Sterowany przez pAI" : "Autonomous"
+		return paicard ? "Sterowany przez pAI" : "Autonomiczny"
 	else if(!on)
 		return "Inactive"
 	else if(!mode)
@@ -293,7 +293,7 @@
 		to_chat(user, "Sterowanie jest teraz [locked ? "zablokowane." : "odblokowane."]")
 	else
 		if(emagged)
-			to_chat(user, "<span class='danger'>ERROR</span>")
+			to_chat(user, "<span class='danger'>BŁĄD</span>")
 		if(open)
 			to_chat(user, "<span class='warning'>Zamknij panel dostępu przed zablokowaniem.</span>")
 		else
@@ -331,7 +331,7 @@
 
 			if(W.use_tool(src, user, 0, volume=40))
 				adjustHealth(-10)
-				user.visible_message("[user] repairs [src]!","<span class='notice'>Naprawiasz [src].</span>")
+				user.visible_message("[user] naprawia [src]!","<span class='notice'>Naprawiasz [src].</span>")
 		else
 			if(W.force) //if force is non-zero
 				do_sparks(5, TRUE, src)
@@ -924,7 +924,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 				hacked = TRUE
 				locked = TRUE
 				to_chat(user, "<span class='warning'>[text_hack]</span>")
-				message_admins("Safety lock of [ADMIN_LOOKUPFLW(src)] was disabled by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(src)]")
+				message_admins("[ADMIN_LOOKUPFLW(user)] wyłącza blokadę bezpieczeństwa: [ADMIN_LOOKUPFLW(src)] w [ADMIN_VERBOSEJMP(src)]")
 				log_game("Safety lock of [src] was disabled by [key_name(user)] in [AREACOORD(src)]")
 				bot_reset()
 			else if(!hacked)

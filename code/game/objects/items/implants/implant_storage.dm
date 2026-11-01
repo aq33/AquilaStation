@@ -1,6 +1,6 @@
 /obj/item/implant/storage
-	name = "storage implant"
-	desc = "Stores up to two big items in a bluespace pocket."
+	name = "implant schowka"
+	desc = "Przechowuje do dwóch dużych przedmiotów w kieszeni bluespace."
 	icon_state = "storage"
 	implant_color = "r"
 	var/max_slot_stacking = 4
@@ -42,5 +42,5 @@
 	return ..()
 
 /obj/item/implanter/storage
-	name = "implanter (storage)"
+	name = "implanter (schowek)"
 	imp_type = /obj/item/implant/storage

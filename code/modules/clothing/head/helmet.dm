@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet
-	name = "helmet"
-	desc = "Standard Security gear. Protects the head from impacts."
+	name = "hełm"
+	desc = "Standardowe wyposażenie policji. Chroni głowę przed uderzeniami."
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor = list("melee" = 30, "bullet" = 40, "laser" = 30,"energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 50) //NSV13
@@ -172,29 +172,29 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/alt
-	name = "bulletproof helmet"
-	desc = "A bulletproof combat helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	name = "hełm kuloodporny"
+	desc = "Kuloodporny hełm bojowy, który świetnie chroni przed tradycyjną bronią palną, a w mniejszym stopniu przed wybuchami."
 	icon_state = "helmetalt"
 	item_state = "helmetalt"
 	armor = list("melee" = 15, "bullet" = 60, "laser" = 10, "energy" = 15, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 30, "bleed" = 50)
 	can_flashlight = TRUE
 
 /obj/item/clothing/head/helmet/old
-	name = "degrading helmet"
-	desc = "Standard issue security helmet. Due to degradation the helmet's visor obstructs the users ability to see long distances."
+	name = "zużyty hełm"
+	desc = "Standardowy hełm policyjny. Przez zużycie jego przyłbica utrudnia patrzenie na duże odległości."
 	tint = 2
 
 /obj/item/clothing/head/helmet/blueshirt
-	name = "blue helmet"
-	desc = "A reliable, blue tinted helmet reminding you that you <i>still</i> owe that engineer a beer."
+	name = "niebieski hełm"
+	desc = "Niezawodny hełm w niebieskim odcieniu, który przypomina ci, że <i>wciąż</i> wisisz temu inżynierowi piwo."
 	icon_state = "blueshift"
 	item_state = "blueshift"
 	custom_premium_price = 450
 	armor = list("melee" = 50, "bullet" = 5, "laser" = 5,"energy" = 5, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 40)
 
 /obj/item/clothing/head/helmet/riot
-	name = "riot helmet"
-	desc = "It's a helmet specifically designed to protect against close range attacks."
+	name = "hełm prewencyjny"
+	desc = "Hełm zaprojektowany specjalnie do ochrony przed atakami z bliska."
 	icon_state = "riot"
 	item_state = "helmet"
 	toggle_message = "Opuszczasz przyłbicę:"
@@ -244,8 +244,8 @@
 			attack_self(user)
 
 /obj/item/clothing/head/helmet/justice
-	name = "helmet of justice"
-	desc = "WEEEEOOO. WEEEEEOOO. WEEEEOOOO."
+	name = "hełm sprawiedliwości"
+	desc = "IUUUUIUUU. IUUUUUIUUU. IUUUUIUUUU."
 	icon_state = "justice"
 	toggle_message = "Wyłączasz światła:"
 	alt_toggle_message = "Włączasz światła:"
@@ -272,15 +272,15 @@
 		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/head/helmet/justice/escape
-	name = "alarm helmet"
-	desc = "WEEEEOOO. WEEEEEOOO. STOP THAT MONKEY. WEEEOOOO."
+	name = "hełm alarmowy"
+	desc = "IUUUUIUUU. IUUUUUIUUU. ZATRZYMAĆ TĘ MAŁPĘ. IUUUIUUUU."
 	icon_state = "justice2"
 	toggle_message = "Wyłączasz światło:"
 	alt_toggle_message = "Włączasz światło:"
 
 /obj/item/clothing/head/helmet/swat
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet in a nefarious red and black stripe pattern."
+	name = "\improper hełm SWAT"
+	desc = "Niezwykle wytrzymały hełm, zdatny do użytku w kosmosie, w złowrogie czerwono-czarne pasy."
 	icon_state = "swatsyndie"
 	item_state = "swatsyndie"
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 30,"energy" = 10, "bomb" = 50, "bio" = 90, "rad" = 20, "fire" = 50, "acid" = 50, "stamina" = 50, "bleed" = 70)
@@ -292,20 +292,20 @@
 	strip_delay = 80
 
 /obj/item/clothing/head/helmet/police
-	name = "police officer's hat"
-	desc = "A police officer's Hat. This hat emphasizes that you are THE LAW."
+	name = "czapka policjanta"
+	desc = "Czapka policjanta. Podkreśla, że to ty jesteś PRAWEM."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/head/helmet/swat/nanotrasen
-	name = "\improper SWAT helmet"
-	desc = "An extremely robust, space-worthy helmet with the Nanotrasen logo emblazoned on the top."
+	name = "\improper hełm SWAT"
+	desc = "Niezwykle wytrzymały hełm, zdatny do użytku w kosmosie, z logo Nanotrasen na czubku."
 	icon_state = "swat"
 	item_state = "swat"
 
 /obj/item/clothing/head/helmet/thunderdome
-	name = "\improper Thunderdome helmet"
-	desc = "<i>'Let the battle commence!'</i>"
+	name = "\improper hełm z Thunderdome"
+	desc = "<i>„Niech rozpocznie się bitwa!”</i>"
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "thunderdome"
 	item_state = "thunderdome"
@@ -322,8 +322,8 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
 
 /obj/item/clothing/head/helmet/roman
-	name = "\improper Roman helmet"
-	desc = "An ancient helmet made of bronze and leather."
+	name = "\improper hełm rzymski"
+	desc = "Starożytny hełm z brązu i skóry."
 	flags_inv = HIDEEARS|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	armor = list("melee" = 25, "bullet" = 0, "laser" = 25, "energy" = 30, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 50, "stamina" = 40, "bleed" = 50)
@@ -333,21 +333,21 @@
 	strip_delay = 100
 
 /obj/item/clothing/head/helmet/roman/fake
-	desc = "An ancient helmet made of plastic and leather."
+	desc = "Starożytny hełm z plastiku i skóry."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/roman/legionnaire
-	name = "\improper Roman legionnaire helmet"
-	desc = "An ancient helmet made of bronze and leather. Has a red crest on top of it."
+	name = "\improper hełm rzymskiego legionisty"
+	desc = "Starożytny hełm z brązu i skóry. Na czubku ma czerwony grzebień."
 	icon_state = "roman_c"
 	item_state = "roman_c"
 
 /obj/item/clothing/head/helmet/roman/legionnaire/fake
-	desc = "An ancient helmet made of plastic and leather. Has a red crest on top of it."
+	desc = "Starożytny hełm z plastiku i skóry. Na czubku ma czerwony grzebień."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/gladiator
-	name = "gladiator helmet"
+	name = "hełm gladiatora"
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
@@ -355,24 +355,24 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/head/helmet/redtaghelm
-	name = "red laser tag helmet"
-	desc = "They have chosen their own end."
+	name = "czerwony hełm do laser taga"
+	desc = "Sami wybrali swój koniec."
 	icon_state = "redtaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "redtaghelm"
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50, "stamina" = 10, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/bluetaghelm
-	name = "blue laser tag helmet"
-	desc = "They'll need more men."
+	name = "niebieski hełm do laser taga"
+	desc = "Będą potrzebować więcej ludzi."
 	icon_state = "bluetaghelm"
 	flags_cover = HEADCOVERSEYES
 	item_state = "bluetaghelm"
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 20,"energy" = 30, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50, "stamina" = 10, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/knight
-	name = "medieval helmet"
-	desc = "A classic metal helmet."
+	name = "średniowieczny hełm"
+	desc = "Klasyczny metalowy hełm."
 	icon_state = "knight_green"
 	item_state = "knight_green"
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "stamina" = 50, "bleed" = 10)
@@ -394,8 +394,8 @@
 	item_state = "knight_red"
 
 /obj/item/clothing/head/helmet/skull
-	name = "skull helmet"
-	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
+	name = "hełm z czaszki"
+	desc = "Onieśmielający plemienny hełm. Nie wygląda na zbyt wygodny."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 20, "bleed" = 40)
@@ -404,8 +404,8 @@
 	strip_delay = 100
 
 /obj/item/clothing/head/helmet/durathread
-	name = "durathread helmet"
-	desc = "A helmet made from durathread and leather."
+	name = "hełm z duranici"
+	desc = "Hełm z duranici i skóry."
 	icon_state = "durathread"
 	item_state = "durathread"
 	resistance_flags = FLAMMABLE
@@ -413,16 +413,16 @@
 	strip_delay = 60
 
 /obj/item/clothing/head/helmet/rus_helmet
-	name = "russian helmet"
-	desc = "It can hold a bottle of vodka."
+	name = "rosyjski hełm"
+	desc = "Zmieści się w nim butelka wódki."
 	icon_state = "rus_helmet"
 	item_state = "rus_helmet"
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 20, "fire" = 20, "acid" = 50, "stamina" = 20, "bleed" = 15)
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/helmet
 
 /obj/item/clothing/head/helmet/rus_ushanka
-	name = "battle ushanka"
-	desc = "100% bear."
+	name = "bojowa uszanka"
+	desc = "W 100% niedźwiedź."
 	icon_state = "rus_ushanka"
 	item_state = "rus_ushanka"
 	body_parts_covered = HEAD

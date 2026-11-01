@@ -1,6 +1,6 @@
 /obj/machinery/implantchair
-	name = "mindshield implanter"
-	desc = "Used to implant occupants with mindshield implants."
+	name = "implanter ochrony umysłu"
+	desc = "Wszczepia osobom w środku implanty ochrony umysłu."
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	density = TRUE
@@ -17,7 +17,7 @@
 	var/auto_inject = FALSE
 	var/auto_replenish = TRUE
 	var/special = FALSE
-	var/special_name = "special function"
+	var/special_name = "funkcja specjalna"
 	var/message_cooldown
 	var/breakout_time = 600
 
@@ -157,8 +157,8 @@
 			implant(user,null)
 
 /obj/machinery/implantchair/genepurge
-	name = "Genetic purifier"
-	desc = "Used to purge a human genome of foreign influences."
+	name = "oczyszczacz genetyczny"
+	desc = "Oczyszcza ludzki genom z obcych wpływów."
 	special = TRUE
 	special_name = "Oczyść genom"
 	injection_cooldown = 0
@@ -174,8 +174,8 @@
 
 
 /obj/machinery/implantchair/brainwash
-	name = "Neural Imprinter"
-	desc = "Used to <s>indoctrinate</s> rehabilitate hardened recidivists."
+	name = "wdrukowywacz neuronowy"
+	desc = "Służy do <s>indoktrynacji</s> resocjalizacji zatwardziałych recydywistów."
 	special_name = "Wdrukuj"
 	injection_cooldown = 3000
 	auto_inject = FALSE
@@ -191,7 +191,7 @@
 		if(!user || !user.Adjacent(src))
 			return FALSE
 		objective = stripped_input(usr,"Jaki rozkaz chcesz wdrukować [C]?","Podaj rozkaz","",120)
-		message_admins("[ADMIN_LOOKUPFLW(user)] set brainwash machine objective to '[objective]'.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] ustawia cel maszyny do prania mózgu na „[objective]”.")
 		log_game("[key_name(user)] set brainwash machine objective to '[objective]'.")
 	if(HAS_TRAIT(C, TRAIT_MINDSHIELD))
 		return FALSE
@@ -203,6 +203,6 @@
 			H.emote("scream")
 			return TRUE
 	brainwash(C, objective)
-	message_admins("[ADMIN_LOOKUPFLW(user)] brainwashed [key_name_admin(C)] with objective '[objective]'.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] pierze mózg [key_name_admin(C)] z celem „[objective]”.")
 	log_game("[key_name(user)] brainwashed [key_name(C)] with objective '[objective]'.")
 	return TRUE

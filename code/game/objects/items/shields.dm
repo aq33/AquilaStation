@@ -1,5 +1,5 @@
 /obj/item/shield
-	name = "shield"
+	name = "tarcza"
 	icon = 'icons/obj/shields.dmi'
 	block_level = 1
 	block_upgrade_walk = 1
@@ -9,7 +9,7 @@
 	var/transparent = FALSE	// makes beam projectiles pass through the shield
 	var/durability = TRUE //the shield uses durability instead of stamina
 
-/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
 		return FALSE
 	return ..()
@@ -43,7 +43,7 @@
 			owner.changeNext_move(CLICK_CD_MELEE)
 		if (obj_integrity <= attackforce)
 			var/turf/T = get_turf(owner)
-			T.visible_message("<span class='warning'>[hitby] destroys [src]!</span>")
+			T.visible_message("<span class='warning'>[hitby] niszczy [src]!</span>")
 			obj_integrity = 1
 			shatter(owner)
 			return FALSE
@@ -84,8 +84,8 @@
 	qdel(src)
 
 /obj/item/shield/riot
-	name = "riot shield"
-	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
+	name = "tarcza prewencyjna"
+	desc = "Tarcza, która świetnie chroni tors trzymającego przed uderzeniami tępych przedmiotów."
 	icon_state = "riot"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -119,8 +119,8 @@
 		return ..()
 
 /obj/item/shield/riot/roman
-	name = "\improper Roman shield"
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>."
+	name = "\improper rzymska tarcza"
+	desc = "Po wewnętrznej stronie widnieje napis: <i>\"Romanes venio domus\"</i>."
 	icon_state = "roman_shield"
 	item_state = "roman_shield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
@@ -130,7 +130,7 @@
 	max_integrity = 65
 
 /obj/item/shield/riot/roman/fake
-	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
+	desc = "Po wewnętrznej stronie widnieje napis: <i>\"Romanes venio domus\"</i>. Wygląda na dość lichą."
 	block_upgrade_walk = 1
 	block_power = 0
 	max_integrity = 30
@@ -141,8 +141,8 @@
 	qdel(src)
 
 /obj/item/shield/riot/buckler
-	name = "wooden buckler"
-	desc = "A medieval wooden buckler."
+	name = "drewniany puklerz"
+	desc = "Średniowieczny drewniany puklerz."
 	icon_state = "buckler"
 	item_state = "buckler"
 	block_level = 1
@@ -161,8 +161,8 @@
 	qdel(src)
 
 /obj/item/shield/riot/goliath
-	name = "Goliath shield"
-	desc = "A shield made from interwoven plates of goliath hide."
+	name = "tarcza z goliata"
+	desc = "Tarcza z przeplatanych płatów skóry goliata."
 	icon_state = "goliath_shield"
 	item_state = "goliath_shield"
 	block_level = 1
@@ -182,8 +182,8 @@
 	qdel(src)
 
 /obj/item/shield/riot/flash
-	name = "strobe shield"
-	desc = "A shield with a built in, high intensity light capable of blinding and disorienting suspects. Takes regular handheld flashes as bulbs."
+	name = "tarcza stroboskopowa"
+	desc = "Tarcza z wbudowanym światłem o dużej mocy, które potrafi oślepić i zdezorientować podejrzanych. Jako żarówki przyjmuje zwykłe ręczne flashe."
 	icon_state = "flashshield"
 	item_state = "flashshield"
 	var/obj/item/assembly/flash/handheld/embedded_flash
@@ -200,7 +200,7 @@
 	. = embedded_flash.attack_self(user)
 	update_icon()
 
-/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/flash/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	. = ..()
 	if (. && !embedded_flash.burnt_out)
 		embedded_flash.activate()
@@ -245,8 +245,8 @@
 		. += "<span class='info'>Zamontowana żarówka się przepaliła. Możesz spróbować wymienić ją na nową.</span>"
 
 /obj/item/shield/energy
-	name = "energy combat shield"
-	desc = "An advanced hard-light shield. It can be retracted, expanded, and stored anywhere, but can't take much punishment before needing a reset"
+	name = "bojowa tarcza energetyczna"
+	desc = "Zaawansowana tarcza z twardego światła. Można ją schować, rozłożyć i nosić gdziekolwiek, ale niewiele wytrzyma, zanim będzie wymagać resetu."
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
@@ -282,7 +282,7 @@
 	. = ..()
 	icon_state = "[base_icon_state]0"
 
-/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/energy/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		if(isprojectile(hitby))
 			var/obj/item/projectile/P = hitby
@@ -320,8 +320,8 @@
 	add_fingerprint(user)
 
 /obj/item/shield/riot/tele
-	name = "telescopic shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	name = "tarcza teleskopowa"
+	desc = "Zaawansowana tarcza prewencyjna z lekkich materiałów, którą można złożyć, by łatwo ją przechowywać."
 	icon_state = "teleriot0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
@@ -333,7 +333,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/active = 0
 
-/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/shield/riot/tele/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "atak", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)
 		return ..()
 	return 0

@@ -1,7 +1,7 @@
 /obj/item/organ/eyes
 	name = BODY_ZONE_PRECISE_EYES
 	icon_state = "eyeballs"
-	desc = "I see you!"
+	desc = "Widzę cię!"
 	zone = BODY_ZONE_PRECISE_EYES
 	slot = ORGAN_SLOT_EYES
 	gender = PLURAL
@@ -82,8 +82,8 @@
 
 
 /obj/item/organ/eyes/night_vision
-	name = "shadow eyes"
-	desc = "A spooky set of eyes that can see in the dark."
+	name = "oczy cienia"
+	desc = "Upiorna para oczu, która widzi w ciemności."
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	actions_types = list(/datum/action/item_action/organ_action/use)
@@ -104,29 +104,29 @@
 	owner.update_sight()
 
 /obj/item/organ/eyes/night_vision/alien
-	name = "alien eyes"
-	desc = "It turned out they had them after all!"
+	name = "oczy obcego"
+	desc = "Okazuje się, że jednak je mają!"
 	sight_flags = SEE_MOBS
 
 /obj/item/organ/eyes/night_vision/zombie
-	name = "undead eyes"
-	desc = "Somewhat counterintuitively, these half-rotten eyes actually have superior vision to those of a living human."
+	name = "oczy nieumarłego"
+	desc = "Wbrew intuicji te na wpół zgniłe oczy widzą lepiej niż oczy żywego człowieka."
 
 /obj/item/organ/eyes/night_vision/nightmare
-	name = "burning red eyes"
-	desc = "Even without their shadowy owner, looking at these eyes gives you a sense of dread."
+	name = "płonące czerwone oczy"
+	desc = "Nawet bez swojego mrocznego właściciela te oczy budzą w tobie grozę."
 	icon_state = "burning_eyes"
 
 /obj/item/organ/eyes/night_vision/mushroom
-	name = "fung-eye"
-	desc = "While on the outside they look inert and dead, the eyes of mushroom people are actually very advanced."
+	name = "grzybie oczy"
+	desc = "Z zewnątrz wyglądają na bezwładne i martwe, ale oczy grzybich ludzi są w rzeczywistości bardzo zaawansowane."
 
 ///Robotic
 
 /obj/item/organ/eyes/robotic
-	name = "robotic eyes"
+	name = "robotyczne oczy"
 	icon_state = "cybernetic_eyeballs"
-	desc = "A very basic set of optical sensors with no extra vision modes or functions."
+	desc = "Bardzo prosty zestaw czujników optycznych bez dodatkowych trybów widzenia i funkcji."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 
@@ -140,8 +140,8 @@
 	owner.flash_act(visual = 1)
 
 /obj/item/organ/eyes/robotic/xray
-	name = "\improper X-ray eyes"
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile."
+	name = "\improper oczy rentgenowskie"
+	desc = "Te cybernetyczne oczy dają ci widzenie rentgenowskie. Mruganie nic nie da."
 	eye_color = "000"
 	see_in_dark = 8
 	sight_flags = SEE_MOBS | SEE_OBJS | SEE_TURFS
@@ -149,12 +149,12 @@
 	tint = -INFINITY
 
 /obj/item/organ/eyes/robotic/xray/syndicate
-	desc = "These cybernetic eyes will give you X-ray vision. Blinking is futile. On closer look, they have been modified to protect from sudden bright flashes."
+	desc = "Te cybernetyczne oczy dają ci widzenie rentgenowskie. Mruganie nic nie da. Po bliższym przyjrzeniu się widać, że zmodyfikowano je, by chroniły przed nagłymi jasnymi błyskami."
 	flash_protect = 0
 
 /obj/item/organ/eyes/robotic/thermals
-	name = "thermal eyes"
-	desc = "These cybernetic eye implants will give you thermal vision. Vertical slit pupil included."
+	name = "oczy termowizyjne"
+	desc = "Te cybernetyczne implanty oczu dają ci widzenie termowizyjne. Pionowa źrenica w zestawie."
 	eye_color = "FC0"
 	sight_flags = SEE_MOBS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
@@ -162,8 +162,8 @@
 	see_in_dark = 8
 
 /obj/item/organ/eyes/robotic/flashlight
-	name = "flashlight eyes"
-	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
+	name = "oczy-latarki"
+	desc = "To dwie latarki sklecone razem kawałkiem drutu. Po co ktoś miałby wkładać je komuś do głowy?"
 	eye_color ="fee5a3"
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight_eyes"
@@ -193,8 +193,8 @@
 
 // Welding shield implant
 /obj/item/organ/eyes/robotic/shield
-	name = "shielded robotic eyes"
-	desc = "These reactive micro-shields will protect you from welders and flashes without obscuring your vision."
+	name = "osłonięte robotyczne oczy"
+	desc = "Te reaktywne mikroosłony chronią cię przed spawarkami i flashami, nie zasłaniając ci widoku."
 	flash_protect = 2
 
 /obj/item/organ/eyes/robotic/shield/emp_act(severity)
@@ -203,8 +203,8 @@
 #define RGB2EYECOLORSTRING(definitionvar) ("[copytext_char(definitionvar, 2, 3)][copytext_char(definitionvar, 4, 5)][copytext_char(definitionvar, 6, 7)]")
 
 /obj/item/organ/eyes/robotic/glow
-	name = "High Luminosity Eyes"
-	desc = "Special glowing eyes, used by snowflakes who want to be special."
+	name = "oczy o wysokiej jasności"
+	desc = "Specjalne świecące oczy dla płatków śniegu, które chcą być wyjątkowe."
 	eye_color = "000"
 	actions_types = list(/datum/action/item_action/organ_action/use, /datum/action/item_action/organ_action/toggle)
 	var/current_color_string = "#ffffff"
@@ -263,7 +263,7 @@
 /obj/item/organ/eyes/robotic/glow/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HighLuminosityEyesMenu")
+		ui = new(user, src, "HighLuminosityEyesMenu", "Oczy o wysokiej jasności")
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -437,17 +437,17 @@
 
 
 /obj/item/organ/eyes/moth
-	name = "moth eyes"
-	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
+	name = "oczy ćmy"
+	desc = "Te oczy wydają się bardziej wrażliwe na jasne światło, a w półmroku nie widzą ani trochę lepiej."
 	flash_protect = -1
 
 /obj/item/organ/eyes/snail
-	name = "snail eyes"
-	desc = "These eyes seem to have a large range, but might be cumbersome with glasses."
+	name = "ślimacze oczy"
+	desc = "Te oczy mają chyba duży zasięg, ale z okularami mogą być kłopotliwe."
 	eye_icon_state = "snail_eyes"
 	icon_state = "snail_eyeballs"
 
 /obj/item/organ/eyes/apid
-	name = "apid eyes"
-	desc = "Designed for navigating dark hives, these eyes have improvement to low light vision."
+	name = "oczy apida"
+	desc = "Stworzone do poruszania się po ciemnych ulach, te oczy lepiej widzą w półmroku."
 	see_in_dark = 8

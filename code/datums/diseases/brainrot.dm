@@ -1,5 +1,5 @@
 /datum/disease/brainrot
-	name = "Brainrot"
+	name = "Gnicie mózgu"
 	max_stages = 4
 	spread_text = "Przez kontakt"
 	spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_CONTACT_SKIN | DISEASE_SPREAD_CONTACT_FLUIDS

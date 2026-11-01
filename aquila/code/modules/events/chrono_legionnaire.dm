@@ -36,14 +36,14 @@
 	if(!length(choices))
 		to_chat(usr, "<span class='warning'>Nie ma żadnego żywego gracza, na którego można wysłać legionistę.</span>")
 		return
-	var/choice = tgui_input_list(usr, "Kogo ma ścigać legionista? Brak wyboru = losowy gracz z imieniem z listy albo Klon Paradoksu.", "Chrono Legionnaire", sortList(choices))
+	var/choice = tgui_input_list(usr, "Kogo ma ścigać legionista? Brak wyboru = losowy gracz z imieniem z listy albo Klon Paradoksu.", "Chronolegionista", sortList(choices))
 	var/mob/living/carbon/human/picked = choices[choice]
 	if(picked)
 		forced_target = WEAKREF(picked)
 
 /datum/round_event/ghost_role/aquila_chrono_legionnaire
 	minimum_required = 1
-	role_name = "Chrono Legionnaire"
+	role_name = "Chronolegionista"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/aquila_chrono_legionnaire/spawn_role()
@@ -54,7 +54,7 @@
 	if(forced && !aquila_chrono_valid_target(forced)) // an admin may pick anyone alive
 		forced = null
 	if(!forced && !length(aquila_chrono_find_targets()))
-		message_admins("Chrono Legionnaire event found no target (tyrant name, paradox clone or admin pick), nothing was spawned.")
+		message_admins("Event chronolegionisty nie znajduje celu (imię tyrana, klon paradoksu ani wybór admina), nic się nie pojawia.")
 		return NOT_ENOUGH_PLAYERS
 
 	var/list/candidates = get_candidates(ROLE_CHRONO_LEGIONNAIRE, /datum/role_preference/midround_ghost/chrono_legionnaire)
@@ -68,7 +68,7 @@
 	else
 		var/list/targets = aquila_chrono_find_targets()
 		if(!length(targets))
-			message_admins("Chrono Legionnaire event lost its target during the ghost poll, nothing was spawned.")
+			message_admins("Event chronolegionisty traci cel w trakcie ankiety duchów, nic się nie pojawia.")
 			return NOT_ENOUGH_PLAYERS
 		target = pick(targets)
 
@@ -76,7 +76,7 @@
 	if(!location)
 		location = get_safe_random_station_turfs()
 	if(!location)
-		message_admins("No valid spawn locations found for Chrono Legionnaire event, aborting...")
+		message_admins("Brak miejsc do pojawienia się dla eventu chronolegionisty, przerywam...")
 		return MAP_ERROR
 
 	var/mob/dead/selected = pick(candidates)

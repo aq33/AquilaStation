@@ -1,11 +1,11 @@
 /obj/effect/proc_holder/spell/targeted/lesserlichdom
-	name = "Lesser Bind Soul"
-	desc = "A weak version of the dark necromantic pact that can forever bind your soul to an \
-	item of your choosing. So long as both your body and the item remain \
-	intact and on the same plane you can revive from death for a limited number of times, though the time \
-	between reincarnations grows massively with use, along with the weakness \
-	that the new skeleton body will experience upon 'birth'. Note that \
-	becoming a lesser lich destroys all internal organs except the brain."
+	name = "Pomniejsze związanie duszy"
+	desc = "Słabsza wersja mrocznego paktu nekromantycznego, który na zawsze wiąże twoją duszę z \
+	wybranym przedmiotem. Dopóki zarówno twoje ciało, jak i przedmiot pozostają \
+	nienaruszone i na tym samym planie, możesz ograniczoną liczbę razy powstać z martwych, choć czas \
+	między reinkarnacjami ogromnie rośnie z każdym użyciem, podobnie jak słabość \
+	nowego ciała szkieletu po „narodzinach”. Pamiętaj, że \
+	przemiana w pomniejszego lisza niszczy wszystkie narządy wewnętrzne poza mózgiem."
 	school = "necromancy"
 	charge_max = 10
 	clothes_req = FALSE
@@ -53,7 +53,7 @@
 			to_chat(M, "<span class='warning'>Twoja dusza wraca gwałtownie do ciała, gdy przestajesz przenosić ją do [marked_item]!</span>")
 			return
 
-		marked_item.name = "lesser ensouled [marked_item.name]"
+		marked_item.name = "[marked_item.name] (ze słabszą duszą)"
 		marked_item.desc += "\nTen przedmiot otacza straszliwa aura; samo jego istnienie obraża życie..."
 		marked_item.add_atom_colour("#187918", ADMIN_COLOUR_PRIORITY)
 
@@ -74,8 +74,8 @@
 
 
 /obj/item/lesserphylactery
-	name = "lesser phylactery"
-	desc = "Stores souls. Revives lesser liches. Also repels mosquitos. Can only be used to revive a lich twice."
+	name = "pomniejsza filakteria"
+	desc = "Przechowuje dusze. Ożywia pomniejsze lisze. Odstrasza też komary. Może ożywić lisza tylko dwa razy."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bluespace"
 	color = "#187918"
@@ -92,7 +92,7 @@
 /obj/item/lesserphylactery/Initialize(mapload, datum/mind/newmind)
 	. = ..()
 	mind = newmind
-	name = "lesser phylactery of [mind.name]"
+	name = "pomniejsza filakteria: [mind.name]"
 
 	active_phylacteries++
 	GLOB.poi_list |= src

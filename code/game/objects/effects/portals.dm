@@ -13,7 +13,7 @@
 
 /obj/effect/portal
 	name = "portal"
-	desc = "Looks unstable. Best to test it with the clown."
+	desc = "Wygląda na niestabilny. Najlepiej przetestować go na klaunie."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
 	anchored = TRUE
@@ -33,7 +33,7 @@
 	var/last_effect = 0
 
 /obj/effect/portal/anom
-	name = "wormhole"
+	name = "tunel czasoprzestrzenny"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "anom"
 	layer = RIPPLE_LAYER
@@ -159,7 +159,7 @@
 	if(!force && (!ismecha(M) && !istype(M, /obj/item/projectile) && M.anchored && !allow_anchored))
 		return
 	if(ismegafauna(M))
-		message_admins("[M] has used a portal at [ADMIN_VERBOSEJMP(src)] made by [usr].")
+		message_admins("[M] używa portalu w [ADMIN_VERBOSEJMP(src)], który stworzył: [usr].")
 	var/no_effect = FALSE
 	if(last_effect == world.time)
 		no_effect = TRUE
@@ -188,8 +188,8 @@
 	return real_target
 
 /obj/effect/portal/permanent
-	name = "permanent portal"
-	desc = "An unwavering portal that will never fade."
+	name = "stały portal"
+	desc = "Niezachwiany portal, który nigdy nie zniknie."
 	var/id // var edit or set id in map editor
 	hardlinked = FALSE // dont qdel my portal nerd
 
@@ -220,8 +220,8 @@
 	. = ..()
 
 /obj/effect/portal/permanent/one_way // doesn't have a return portal
-	name = "one-way portal"
-	desc = "You get the feeling that this might not be the safest thing you've ever done."
+	name = "portal jednokierunkowy"
+	desc = "Masz wrażenie, że to może nie być najbezpieczniejsza rzecz, jaką w życiu zrobisz."
 	var/list/possible_exits = list()
 	var/keep // if this is a portal that should be kept
 

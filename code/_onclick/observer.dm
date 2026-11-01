@@ -14,7 +14,7 @@
 		if(istype(A, /obj/structure/overmap))
 			var/obj/structure/overmap/OM = A
 			if(length(OM.linked_areas))
-				if(alert("Wyświetlić mapę wnętrza?", "Wejdź na statek", "Yes", "No") == "Yes")
+				if(alert("Wyświetlić mapę wnętrza?", "Wejdź na statek", "Tak", "Nie") == "Tak")
 					var/atom/newtarget = OM.get_interior_center()
 					forceMove(newtarget)
 					update_parallax_contents()

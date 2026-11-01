@@ -55,7 +55,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	if (istype(back_to))
 		. += back_to.make_link("<b>&lt;&lt;&lt;</b>", null, linear)
 
-	. += "[make_link("Refresh")]<br><br>"
+	. += "[make_link("Odśwież")]<br><br>"
 
 /datum/error_viewer/proc/show_to(user, datum/error_viewer/back_to, linear)
 	// Specific to each child type
@@ -80,7 +80,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	var/list/errors_silenced = list()
 
 /datum/error_viewer/error_cache/proc/show_to_minimal(user, datum/error_viewer/back_to, linear)
-	var/html = "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
+	var/html = "Runtime'y: <b>[GLOB.total_runtimes]</b>, pominięte: <b>[GLOB.total_runtimes_skipped]</b><br><br>"
 	var/datum/error_viewer/error_source/error_source
 	for (var/erroruid in error_sources)
 		error_source = error_sources[erroruid]
@@ -90,16 +90,16 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
 	var/html = build_header()
-	html += "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
+	html += "Runtime'y: <b>[GLOB.total_runtimes]</b>, pominięte: <b>[GLOB.total_runtimes_skipped]</b><br><br>"
 	if (!linear)
-		html += "organized | [make_link("linear", null, 1)]<hr>"
+		html += "pogrupowane | [make_link("liniowo", null, 1)]<hr>"
 		var/datum/error_viewer/error_source/error_source
 		for (var/erroruid in error_sources)
 			error_source = error_sources[erroruid]
 			html += "[error_source.make_link(null, src)]<br>"
 
 	else
-		html += "[make_link("organized", null)] | linear<hr>"
+		html += "[make_link("pogrupowane", null)] | liniowo<hr>"
 		for (var/datum/error_viewer/error_entry/error_entry in errors)
 			html += "[error_entry.make_link(null, src, 1)]<br>"
 
@@ -141,10 +141,10 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_source/New(exception/e)
 	if (!istype(e))
-		name = "\[[time_stamp()]] Uncaught exceptions"
+		name = "\[[time_stamp()]] Nieprzechwycone wyjątki"
 		return
 
-	min_name = "<b>\[[time_stamp()]]</b> Runtime in <b>[e.file]</b>, line <b>[e.line]</b>"
+	min_name = "<b>\[[time_stamp()]]</b> Runtime w <b>[e.file]</b>, linia <b>[e.line]</b>"
 	name = min_name + ": <b>[html_encode(e.name)]</b>"
 
 /datum/error_viewer/error_source/show_to(user, datum/error_viewer/back_to, linear)
@@ -167,15 +167,15 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 
 /datum/error_viewer/error_entry/New(exception/e, list/desclines, skip_count)
 	if (!istype(e))
-		name = "<b>\[[time_stamp()]]</b> Uncaught exception: <b>[html_encode(e.name)]</b>"
+		name = "<b>\[[time_stamp()]]</b> Nieprzechwycony wyjątek: <b>[html_encode(e.name)]</b>"
 		return
 
 	if(skip_count)
-		name = "\[[time_stamp()]] Skipped [skip_count] runtimes in [e.file],[e.line]."
+		name = "\[[time_stamp()]] Pominięte runtime'y ([skip_count]) w [e.file],[e.line]."
 		is_skip_count = TRUE
 		return
 
-	min_name = "<b>\[[time_stamp()]]</b> Runtime in <b>[e.file]</b>, line <b>[e.line]</b>"
+	min_name = "<b>\[[time_stamp()]]</b> Runtime w <b>[e.file]</b>, linia <b>[e.line]</b>"
 	name = min_name + ": <b>[html_encode(e.name)]</b>"
 	exc = e
 	if (istype(desclines))
@@ -196,7 +196,7 @@ GLOBAL_DATUM(error_cache, /datum/error_viewer/error_cache)
 	if (usr_ref)
 		html += "<br><b>usr</b>: <a href='byond://?_src_=vars;[HrefToken()];Vars=[usr_ref]'>VV</a>"
 		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[usr_ref]'>PP</a>"
-		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[usr_ref]'>Follow</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[usr_ref]'>Śledź</a>"
 		if (istype(usr_loc))
 			html += "<br><b>usr.loc</b>: <a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(usr_loc)]'>VV</a>"
 			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[usr_loc.x];Y=[usr_loc.y];Z=[usr_loc.z]'>JMP</a>"

@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////CAKE////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/carrotcake
-	name = "Carrot cake"
+	name = "ciasto marchewkowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/carrot = 2
@@ -13,7 +13,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/cheesecake
-	name = "Cheese cake"
+	name = "sernik"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/cheese/wedge = 2
@@ -22,7 +22,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/applecake
-	name = "Apple cake"
+	name = "ciasto jabłkowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/apple = 2
@@ -31,7 +31,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/orangecake
-	name = "Orange cake"
+	name = "ciasto pomarańczowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/orange = 2
@@ -40,7 +40,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/limecake
-	name = "Lime cake"
+	name = "ciasto limonkowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/lime = 2
@@ -49,7 +49,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/lemoncake
-	name = "Lemon cake"
+	name = "ciasto cytrynowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/citrus/lemon = 2
@@ -58,7 +58,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/chocolatecake
-	name = "Chocolate cake"
+	name = "ciasto czekoladowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/chocolatebar = 2
@@ -67,7 +67,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/birthdaycake
-	name = "Birthday cake"
+	name = "tort urodzinowy"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/candle = 1,
@@ -78,7 +78,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/energycake
-	name = "Energy cake"
+	name = "energetyczny tort"
 	reqs = list(
 		/obj/item/food/cake/birthday = 1,
 		/obj/item/melee/transforming/energy/sword = 1,
@@ -88,7 +88,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/braincake
-	name = "Brain cake"
+	name = "ciasto mózgowe"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/food/cake/plain = 1
@@ -97,7 +97,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/slimecake
-	name = "Slime cake"
+	name = "ciasto ze szlamu"
 	reqs = list(
 		/obj/item/slime_extract = 1,
 		/obj/item/food/cake/plain = 1
@@ -106,7 +106,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/pumpkinspicecake
-	name = "Pumpkin spice cake"
+	name = "ciasto dyniowe z przyprawami"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/pumpkin = 2
@@ -115,7 +115,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/holycake
-	name = "Angel food cake"
+	name = "anielskie ciasto"
 	reqs = list(
 		/datum/reagent/water/holywater = 15,
 		/obj/item/food/cake/plain = 1
@@ -124,7 +124,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/poundcake
-	name = "Pound cake"
+	name = "ciasto funtowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 4
 	)
@@ -132,7 +132,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/hardwarecake
-	name = "Hardware cake"
+	name = "ciasto sprzętowe"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/circuitboard = 2,
@@ -142,7 +142,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/berry_chocolate_cake
-	name = "strawberry chocolate cake"
+	name = "czekoladowe ciasto z truskawkami"
 	result = /obj/item/food/cake/berry_chocolate_cake
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -152,7 +152,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/berry_vanilla_cake
-	name = "blackberry and strawberry vanilla cake"
+	name = "waniliowe ciasto z jeżynami i truskawkami"
 	result = /obj/item/food/cake/berry_vanilla_cake
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -161,7 +161,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/clowncake
-	name = "clown cake"
+	name = "ciasto klauna"
 	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -172,7 +172,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/vanillacake
-	name = "vanilla cake"
+	name = "ciasto waniliowe"
 	always_available = FALSE
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
@@ -182,7 +182,7 @@
 	subcategory = CAT_CAKE
 
 /datum/crafting_recipe/food/trumpetcake
-	name = "Spaceman's Cake"
+	name = "ciasto kosmonauty"
 	reqs = list(
 		/obj/item/food/cake/plain = 1,
 		/obj/item/food/grown/trumpet = 2,
@@ -194,7 +194,7 @@
 
 
 /datum/crafting_recipe/food/cak
-	name = "Living cat/cake hybrid"
+	name = "żywa hybryda kota i ciasta"
 	reqs = list(
 		/obj/item/organ/brain = 1,
 		/obj/item/organ/heart = 1,

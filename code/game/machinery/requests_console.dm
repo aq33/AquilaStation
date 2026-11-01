@@ -26,8 +26,8 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 #define REQ_EMERGENCY_MEDICAL 3
 
 /obj/machinery/requests_console
-	name = "requests console"
-	desc = "A console intended to send requests to different departments on the station."
+	name = "konsola zgłoszeń"
+	desc = "Konsola do wysyłania zgłoszeń do różnych działów stacji."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp_off"
 	layer = ABOVE_WINDOW_LAYER
@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	if(department == "Unknown")
 		var/area/AR = get_area(src)
 		department = AR.name
-	name = "\improper [department] requests console"
+	name = "konsola zgłoszeń ([department])"
 	GLOB.allConsoles += src
 
 	if(departmentType)
@@ -184,11 +184,11 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 			if(REQ_SCREEN_SENT)
 				dat += "<span class='good'>Wiadomość wysłana.</span><BR><BR>"
-				dat += "<A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Back</A><BR>"
+				dat += "<A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Wstecz</A><BR>"
 
 			if(REQ_SCREEN_ERR)
 				dat += "<span class='bad'>Wystąpił błąd.</span><BR><BR>"
-				dat += "<A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Back</A><BR>"
+				dat += "<A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Wstecz</A><BR>"
 
 			if(REQ_SCREEN_VIEW_MSGS)
 				for (var/obj/machinery/requests_console/Console in GLOB.allConsoles)
@@ -219,18 +219,18 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 					dat += "<div class='notice'>Uwierzytelnienie przyjęte</div><BR>"
 				else
 					dat += "<div class='notice'>Przeciągnij kartę, by się uwierzytelnić</div><BR>"
-				dat += "<b>Message: </b>[message ? message : "<i>No Message</i>"]<BR>"
-				dat += "<A href='byond://?src=[REF(src)];writeAnnouncement=1'>[message ? "Edit" : "Write"] Message</A><BR><BR>"
+				dat += "<b>Wiadomość: </b>[message ? message : "<i>Brak wiadomości</i>"]<BR>"
+				dat += "<A href='byond://?src=[REF(src)];writeAnnouncement=1'>[message ? "Edytuj" : "Napisz"] wiadomość</A><BR><BR>"
 				if ((announceAuth || IsAdminGhost(user)) && message)
 					dat += "<A href='byond://?src=[REF(src)];sendAnnouncement=1'>Ogłoś wiadomość</A><BR>"
 				else
 					dat += "<span class='linkOff'>Ogłoś wiadomość</span><BR>"
-				dat += "<BR><A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Back</A><BR>"
+				dat += "<BR><A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Wstecz</A><BR>"
 
 			//NSV13 - squad messaging
 			if(REQ_SCREEN_WRITE_SQUAD)
 				dat += "<B>Wiadomość do drużyn</B><BR><BR>"
-				dat += "<b>Message: </b>[message]<BR><BR>"
+				dat += "<b>Wiadomość: </b>[message]<BR><BR>"
 				dat += "<div class='notice'>Możesz teraz uwierzytelnić wiadomość, skanując kartę ID lub pieczątkę</div><BR>"
 				dat += "<b>Zatwierdzone przez:</b> [msgVerified ? msgVerified : "<i>Niezatwierdzone</i>"]<br>"
 				dat += "<b>Opieczętowane przez:</b> [msgStamped ? msgStamped : "<i>Bez pieczątki</i>"]<br><br>"
@@ -253,11 +253,11 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			dat += "<td width='55%'>[req_dpt]</td>"
 			dat += "<td width='45%'><A href='byond://?src=[REF(src)];write=[ckey(req_dpt)];priority=[REQ_NORMAL_MESSAGE_PRIORITY]'>Normalny</A> <A href='byond://?src=[REF(src)];write=[ckey(req_dpt)];priority=[REQ_HIGH_MESSAGE_PRIORITY]'>Wysoki</A>"
 			if(hackState)
-				dat += "<A href='byond://?src=[REF(src)];write=[ckey(req_dpt)];priority=[REQ_EXTREME_MESSAGE_PRIORITY]'>EXTREME</A>"
+				dat += "<A href='byond://?src=[REF(src)];write=[ckey(req_dpt)];priority=[REQ_EXTREME_MESSAGE_PRIORITY]'>NAJWYŻSZY</A>"
 			dat += "</td>"
 			dat += "</tr>"
 	dat += "</table>"
-	dat += "<BR><A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Back</A><BR>"
+	dat += "<BR><A href='byond://?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Wstecz</A><BR>"
 	return dat
 
 /obj/machinery/requests_console/Topic(href, href_list)
@@ -295,10 +295,10 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			message = L.treat_message(message)
-		minor_announce(message, "[department] Announcement:", from = auth_id, html_encode = FALSE)
+		minor_announce(message, "Ogłoszenie ([department]):", from = auth_id, html_encode = FALSE)
 		GLOB.news_network.submit_article(message, department, "Ogłoszenia stacji", null)
 		usr.log_talk(message, LOG_SAY, tag="station announcement from [src]")
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has made a station announcement from [src] at [AREACOORD(usr)].")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] nadaje ogłoszenie na całą stację z: [src] w [AREACOORD(usr)].")
 		announceAuth = FALSE
 		message = ""
 		screen = REQ_SCREEN_MAIN
@@ -310,15 +310,15 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			switch(text2num(href_list["emergency"]))
 				if(REQ_EMERGENCY_SECURITY) //Security
 					radio_freq = FREQ_SECURITY
-					emergency = "Security"
+					emergency = "ochrona"
 					squad_type = SECURITY_SQUAD //NSV13 - squad alerts
 				if(REQ_EMERGENCY_ENGINEERING) //Engineering
 					radio_freq = FREQ_ENGINEERING
-					emergency = "Engineering"
+					emergency = "inżynieria"
 					squad_type = DC_SQUAD //NSV13 - squad alerts
 				if(REQ_EMERGENCY_MEDICAL) //Medical
 					radio_freq = FREQ_MEDICAL
-					emergency = "Medical"
+					emergency = "medycyna"
 					squad_type = MEDICAL_SQUAD //NSV13 - squad alerts
 			if(radio_freq)
 				Radio.set_frequency(radio_freq)
@@ -418,7 +418,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 /obj/machinery/requests_console/say_mod(input, list/message_mods = list())
 	if(spantext_char(input, "!", -3))
-		return "blares"
+		return "ryczy"
 	else
 		. = ..()
 
@@ -436,9 +436,9 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 	if(msgStamped)
 		sending = "[sending][msgStamped]<br>"
 
-	linkedsender = source_department ? "<a href='byond://?src=[REF(src)];write=[ckey(source_department)]'>[source_department]</a>" : (source || "unknown")
+	linkedsender = source_department ? "<a href='byond://?src=[REF(src)];write=[ckey(source_department)]'>[source_department]</a>" : (source || "nieznany nadawca")
 
-	var/authentic = (msgVerified || msgStamped) && " (Authenticated)"
+	var/authentic = (msgVerified || msgStamped) && " (zweryfikowano)"
 	var/alert = "Wiadomość od [source][authentic]"
 	var/silenced = silent
 	var/header = "<b>Od:</b> [linkedsender] Otrzymano: [station_time_timestamp()]<BR>"

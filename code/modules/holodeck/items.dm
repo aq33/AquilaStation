@@ -11,8 +11,8 @@
 	damtype = STAMINA
 
 /obj/item/holo/esword
-	name = "holographic energy sword"
-	desc = "May the force be with you. Sorta."
+	name = "holograficzny miecz energetyczny"
+	desc = "Niech moc będzie z tobą. Tak jakby."
 	icon = 'icons/obj/transforming_energy.dmi'
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
@@ -69,18 +69,18 @@
 //BASKETBALL OBJECTS
 
 /obj/item/toy/beach_ball/holoball
-	name = "basketball"
+	name = "piłka do koszykówki"
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "basketball"
 	item_state = "basketball"
-	desc = "Here's your chance, do your dance at the Space Jam."
+	desc = "Oto twoja szansa, zatańcz na Kosmicznym Meczu."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
 /obj/item/toy/beach_ball/holoball/dodgeball
-	name = "dodgeball"
+	name = "piłka do zbijaka"
 	icon_state = "dodgeball"
 	item_state = "dodgeball"
-	desc = "Used for playing the most violent and degrading of childhood games."
+	desc = "Służy do najbrutalniejszej i najbardziej poniżającej z dziecięcych gier."
 
 /obj/item/toy/beach_ball/holoball/dodgeball/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
@@ -97,8 +97,8 @@
 //
 
 /obj/structure/holohoop
-	name = "basketball hoop"
-	desc = "Boom, shakalaka!"
+	name = "kosz do koszykówki"
+	desc = "Bum, szakalaka!"
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "hoop"
 	anchored = TRUE
@@ -144,8 +144,8 @@
 //
 
 /obj/machinery/readybutton
-	name = "ready declaration device"
-	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
+	name = "urządzenie do zgłaszania gotowości"
+	desc = "To urządzenie służy do zgłaszania gotowości. Gdy wszystkie urządzenia w obszarze zgłoszą gotowość, wydarzenie się rozpocznie!"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	var/ready = 0
@@ -213,7 +213,7 @@
 			qdel(W)
 
 	for(var/mob/M in currentarea)
-		to_chat(M, "FIGHT!")
+		to_chat(M, "WALCZ!")
 
 /obj/machinery/conveyor/holodeck
 
@@ -222,16 +222,16 @@
 		return ..()
 
 /obj/item/paper/fluff/holodeck/trek_diploma
-	name = "paper - Starfleet Academy Diploma"
+	name = "kartka – dyplom Akademii Gwiezdnej Floty"
 	default_raw_text = {"<h2>Akademia Gwiezdnej Floty</h2></br><p>Oficjalny dyplom</p></br>"}
 
 /obj/item/paper/fluff/holodeck/disclaimer
-	name = "Holodeck Disclaimer"
+	name = "zastrzeżenie holodeku"
 	default_raw_text = "Siniaki zdobyte na holodeku można wyleczyć, po prostu się przesypiając."
 
 /obj/vehicle/ridden/scooter/skateboard/pro/holodeck
-	name = "holographic skateboard"
-	desc = "A holographic copy of the EightO brand professional skateboard."
+	name = "holograficzna deskorolka"
+	desc = "Holograficzna kopia profesjonalnej deskorolki marki EightO."
 	instability = 6
 
 /obj/vehicle/ridden/scooter/skateboard/pro/holodeck/screwdriver_act(mob/living/user, obj/item/I)

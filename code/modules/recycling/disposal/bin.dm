@@ -254,8 +254,8 @@
 // Can hold items and human size things, no other draggables
 
 /obj/machinery/disposal/bin
-	name = "disposal unit"
-	desc = "A pneumatic waste disposal unit."
+	name = "zsyp"
+	desc = "Pneumatyczny zsyp na odpady."
 	icon_state = "disposal"
 
 // attack by item places it in to disposal
@@ -427,8 +427,8 @@
 //Delivery Chute
 
 /obj/machinery/disposal/deliveryChute
-	name = "delivery chute"
-	desc = "A chute for big and small packages alike!"
+	name = "zsyp na przesyłki"
+	desc = "Zsyp na przesyłki duże i małe!"
 	density = TRUE
 	icon_state = "intake"
 	pressure_charging = FALSE // the chute doesn't need charging and always works

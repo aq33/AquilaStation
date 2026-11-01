@@ -6,7 +6,7 @@ import { useRandomToggleState } from '../../useRandomToggleState';
 import { Feature } from './base';
 
 export const body_is_always_random: Feature<RandomSetting> = {
-  name: 'Random Body',
+  name: 'Losowe ciało',
   component: (props) => {
     const [randomToggle, setRandomToggle] = useRandomToggleState();
 
@@ -29,19 +29,19 @@ export const body_is_always_random: Feature<RandomSetting> = {
                   setRandomToggle(false);
                 }}
               >
-                Randomize
+                Losuj
               </Button>
             </Stack.Item>
 
             <Stack.Item>
               <Button color="red" onClick={() => setRandomToggle(false)}>
-                Cancel
+                Anuluj
               </Button>
             </Stack.Item>
           </>
         ) : (
           <Stack.Item>
-            <Button onClick={() => setRandomToggle(true)}>Randomize</Button>
+            <Button onClick={() => setRandomToggle(true)}>Losuj</Button>
           </Stack.Item>
         )}
       </Stack>
@@ -50,7 +50,7 @@ export const body_is_always_random: Feature<RandomSetting> = {
 };
 
 export const name_is_always_random: Feature<RandomSetting> = {
-  name: 'Random Name',
+  name: 'Losowe imię',
   component: (props) => {
     return (
       <RandomizationButton
@@ -62,7 +62,7 @@ export const name_is_always_random: Feature<RandomSetting> = {
 };
 
 export const random_species: Feature<RandomSetting> = {
-  name: 'Random Species',
+  name: 'Losowa rasa',
   component: (props) => {
     const { act, data } = useBackend<PreferencesMenuData>();
 

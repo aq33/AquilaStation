@@ -1,69 +1,69 @@
 /datum/award/achievement/misc/crew_competent
-	name = "Patrolling the border"
-	desc = "Your first successful patrol!"
+	name = "Patrol na granicy"
+	desc = "Twój pierwszy udany patrol!"
 	database_id = MEDAL_CREW_COMPETENT
 	reward = 400
 	achievement_version = 2
 
 /datum/award/achievement/misc/crew_very_competent
-	name = "On the frontlines"
-	desc = "Shore leave? What is that?"
+	name = "Na linii frontu"
+	desc = "Przepustka na ląd? A co to takiego?"
 	database_id = MEDAL_CREW_VERYCOMPETENT
 	reward = 800
 	achievement_version = 2
 
 /datum/award/achievement/misc/crew_extremely_competent
-	name = "Pre-emptive strike"
-	desc = "See a legendary battlefield with your own eyes."
+	name = "Uderzenie wyprzedzające"
+	desc = "Zobacz legendarne pole bitwy na własne oczy."
 	database_id = MEDAL_CREW_EXTREMELYCOMPETENT
 	reward = 1500
 	achievement_version = 2
 
 /datum/award/achievement/misc/crew_hypercompetent
-	name = "Cleared the Abassi Ridge"
-	desc = "Visit a system few have lived to tell the tale of."
+	name = "Oczyszczenie Grzbietu Abassi"
+	desc = "Odwiedź układ, z którego niewielu wróciło, by o nim opowiedzieć."
 	database_id = MEDAL_CREW_HYPERCOMPETENT
 	reward = 3000
 	achievement_version = 2
 
 /datum/award/achievement/misc/pirate_exterminator
-	name = "Pirate Exterminator"
-	desc = "Emerge victorious against a powerful pirate foe."
+	name = "Pogromca piratów"
+	desc = "Pokonaj potężnego pirackiego wroga."
 	database_id = MEDAL_PIRATE_EXTERMINATOR
 	reward = 1000
 
 /datum/award/achievement/misc/fist_breaker
-	name = "Fist Breaker"
-	desc = "Syndicate Battleship? More like Syndicate scrap!"
+	name = "Łamacz Pięści"
+	desc = "Pancernik Syndykatu? Raczej złom Syndykatu!"
 	database_id = MEDAL_FIST_BREAKER
 	reward = 1000
 
 /datum/award/achievement/misc/torp_directhit
-	name = "OW!!!"
-	desc = "Have a face-to-face encounter with a torpedo."
+	name = "AŁA!!!"
+	desc = "Spotkaj się z torpedą twarzą w twarz."
 	database_id = MEDAL_TORP_DIRECTHIT
 	reward = 200
 
 /datum/award/achievement/misc/emergency_repairs
-	name = "Emergency Repairs"
-	desc = "Repair a lot of armor plates during a single patrol."
+	name = "Naprawy awaryjne"
+	desc = "Napraw mnóstwo płyt pancerza w trakcie jednego patrolu."
 	database_id = MEDAL_EMERGENCY_REPAIRS
 	reward = 1000
 
 /datum/award/achievement/misc/blackhole_incident
 	name = "AAAAAAAAAAAAA"
-	desc = "Get a little bit too close to a black hole."
+	desc = "Podleć odrobinę za blisko czarnej dziury."
 	database_id = MEDAL_BLACKHOLE_INCIDENT
 	reward = 200
 
 /datum/award/achievement/misc/illegal_technology
-	name = "Regulation 10124"
-	desc = "Forget something important."
+	name = "Przepis 10124"
+	desc = "Zapomnij o czymś ważnym."
 	database_id = MEDAL_ILLEGAL_TECHNOLOGY
 	reward = 200
 
 /datum/award/score/torpcount
-	name = "Torpedo Technician"
-	desc = "Better get to making those torps!"
+	name = "Technik torpedowy"
+	desc = "Lepiej bierz się za robienie tych torped!"
 	database_id = TORPCOUNT_SCORE
 	announce_highscore = FALSE //Please do not spam the chat if some muni tech is cooking.

@@ -48,7 +48,7 @@
 
 /obj/machinery/rnd/server/master/Initialize(mapload)
 	. = ..()
-	name = "główny [name]"
+	name = "główna jednostka: [name]"
 	source_code_hdd = new(src)
 	SSresearch.master_servers += src
 	SSresearch.master_server_placed = TRUE
@@ -129,7 +129,7 @@
 		if(hdd_wires <= 0)
 			deconstruction_state = HDD_CUT_LOOSE
 			to_chat(user, "<span class='notice'>Przecinasz ostatni kabel i wyjmujesz [source_code_hdd].</span>")
-			message_admins("[ADMIN_LOOKUPFLW(user)] removed the source code HDD from [ADMIN_VERBOSEJMP(src)].")
+			message_admins("[ADMIN_LOOKUPFLW(user)] wyjmuje dysk z kodem źródłowym z [ADMIN_VERBOSEJMP(src)].")
 			log_game("[key_name(user)] removed the source code HDD from [src].")
 			user.put_in_hands(source_code_hdd)
 			source_code_hdd = null
@@ -140,10 +140,10 @@
 	if(source_code_hdd)
 		var/mob/user = usr
 		if(istype(user))
-			message_admins("[ADMIN_LOOKUPFLW(user)] deconstructed [ADMIN_JMP(src)], destroying [source_code_hdd] inside.")
+			message_admins("[ADMIN_LOOKUPFLW(user)] rozbiera [ADMIN_JMP(src)], niszcząc [source_code_hdd] w środku.")
 			log_game("[key_name(user)] deconstructed [src], destroying [source_code_hdd] inside.")
 		else
-			message_admins("[ADMIN_JMP(src)] has been deconstructed by an unknown user, destroying [source_code_hdd] inside.")
+			message_admins("Nieznany użytkownik rozbiera [ADMIN_JMP(src)], niszcząc [source_code_hdd] w środku.")
 			log_game("[src] has been deconstructed by an unknown user, destroying [source_code_hdd] inside.")
 	return ..()
 

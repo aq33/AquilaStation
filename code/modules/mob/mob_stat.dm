@@ -13,7 +13,7 @@
  //33.774 CPU time
 /mob/proc/get_stat(selected_tab)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] attempted to do something weird with the stat tab (Most likely attempting to exploit it to gain privillages).")
+		message_admins("[key_name(usr)] próbuje zrobić coś dziwnego z zakładką statystyk (najpewniej chce to wykorzystać do zdobycia uprawnień).")
 		log_game("[key_name(usr)] attempted to do something weird with the stat tab (Most likely attempting to exploit it to gain privillages).")
 		return list()
 	var/list/tab_data = list()
@@ -46,8 +46,8 @@
 		if("SDQL2")
 			client.stat_update_mode = STAT_MEDIUM_UPDATE
 			requires_holder = TRUE
-			tab_data["Access Global SDQL2 List"] = list(
-				text="VIEW VARIABLES (all)",
+			tab_data["Globalna lista SDQL2"] = list(
+				text="POKAŻ ZMIENNE (wszystkie)",
 				action = "sdql2debug",
 				type=STAT_BUTTON,
 			)
@@ -83,7 +83,7 @@
 				tab_data += get_spell_stat_data(mind.spell_list, selected_tab)
 			tab_data += get_spell_stat_data(mob_spell_list, selected_tab)
 	if(requires_holder && !client.holder)
-		message_admins("[ckey] attempted to access the [selected_tab] tab without sufficient rights.")
+		message_admins("[ckey] próbuje otworzyć zakładkę [selected_tab] bez wystarczających uprawnień.")
 		log_admin("[ckey] attempted to access the [selected_tab] tab without sufficient rights.")
 		return list()
 	return tab_data
@@ -157,11 +157,11 @@
 /mob/proc/get_stat_tab_master_controller()
 	var/list/tab_data = list()
 	var/turf/T = get_turf(client.eye)
-	tab_data["Location"] = GENERATE_STAT_TEXT("[COORD(T)]")
+	tab_data["Lokalizacja"] = GENERATE_STAT_TEXT("[COORD(T)]")
 	tab_data["CPU"] = GENERATE_STAT_TEXT("[world.cpu]")
-	tab_data["Tick Usage"] = GENERATE_STAT_TEXT("[TICK_USAGE] / [Master.current_ticklimit]")
-	tab_data["Instances"] = GENERATE_STAT_TEXT("[num2text(world.contents.len, 10)]")
-	tab_data["World Time"] = GENERATE_STAT_TEXT("[world.time]")
+	tab_data["Użycie ticka"] = GENERATE_STAT_TEXT("[TICK_USAGE] / [Master.current_ticklimit]")
+	tab_data["Instancje"] = GENERATE_STAT_TEXT("[num2text(world.contents.len, 10)]")
+	tab_data["Czas świata"] = GENERATE_STAT_TEXT("[world.time]")
 	tab_data += GLOB.stat_entry()
 	tab_data += config.stat_entry()
 	tab_data["divider_1"] = GENERATE_STAT_DIVIDER
@@ -232,7 +232,7 @@
  */
 /mob/proc/stat_pressed(button_pressed, params)
 	if(IsAdminAdvancedProcCall())
-		message_admins("[key_name(usr)] called stat_pressed to potentially exploit the stat_pressed system.")
+		message_admins("[key_name(usr)] wywołuje stat_pressed, prawdopodobnie próbując wykorzystać system stat_pressed.")
 		log_game("[key_name(usr)] called stat_pressed to potentially exploit the stat_pressed system.")
 		return
 	switch(button_pressed)
@@ -292,14 +292,14 @@
 			var/class = params["class"]
 			var/target = locate(targetRef)
 			if(!usr.client.holder)
-				message_admins("[usr.client] attempted to interact with the MC without sufficient perms.")
+				message_admins("[usr.client] próbuje użyć MC bez wystarczających uprawnień.")
 				return
 			if(!target)
 				to_chat(usr, "<span class='warning'>Nie można znaleźć celu, zgłoś to!</span>")
 				log_runtime("[usr] attempted to interact with a statClickDebug, but was unsuccessful due to the target not existing.")
 				return
 			usr.client.debug_variables(target)
-			message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
+			message_admins("Admin [key_name_admin(usr)] debuguje: [target] [class].")
 		if("verb")
 			var/verb_name = params["verb"]
 			winset(client, null, "command=[replacetext(verb_name, " ", "-")]")

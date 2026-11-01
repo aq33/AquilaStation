@@ -10,8 +10,8 @@ RLD
 */
 
 /obj/item/construction
-	name = "not for ingame use"
-	desc = "A device used to rapidly build and deconstruct. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "nie do użytku w grze"
+	desc = "Urządzenie do szybkiej budowy i rozbiórki. Uzupełnisz je żelazem, plastalą, szkłem albo wkładami ze skompresowaną materią."
 	opacity = 0
 	density = FALSE
 	anchored = FALSE
@@ -187,7 +187,7 @@ RLD
 #define RCD_DESTRUCTIVE_SCAN_COOLDOWN (RCD_HOLOGRAM_FADE_TIME + 1 SECONDS)
 
 /obj/item/construction/rcd
-	name = "rapid-construction-device (RCD)"
+	name = "szybki konstruktor (RCD)"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -311,10 +311,10 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	var/window_type_name
 	if (window_type == /obj/structure/window/fulltile)
 		window_type = /obj/structure/window/reinforced/fulltile/ship/interior //NSV13
-		window_type_name = "reinforced glass"
+		window_type_name = "szkło zbrojone"
 	else
 		window_type = /obj/structure/window/fulltile
-		window_type_name = "glass"
+		window_type_name = "szkło"
 
 	to_chat(user, "<span class='notice'>Zmieniasz tryb okien [src] na: [window_type_name].</span>")
 
@@ -340,22 +340,22 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	if(!user)
 		return
 	var/list/computer_dirs = list(
-		"NORTH" = image(icon = 'icons/mob/radial.dmi', icon_state = "cnorth"),
-		"EAST" = image(icon = 'icons/mob/radial.dmi', icon_state = "ceast"),
-		"SOUTH" = image(icon = 'icons/mob/radial.dmi', icon_state = "csouth"),
-		"WEST" = image(icon = 'icons/mob/radial.dmi', icon_state = "cwest")
+		"PÓŁNOC" = image(icon = 'icons/mob/radial.dmi', icon_state = "cnorth"),
+		"WSCHÓD" = image(icon = 'icons/mob/radial.dmi', icon_state = "ceast"),
+		"POŁUDNIE" = image(icon = 'icons/mob/radial.dmi', icon_state = "csouth"),
+		"ZACHÓD" = image(icon = 'icons/mob/radial.dmi', icon_state = "cwest")
 		)
 	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(computerdirs)
-		if("NORTH")
+		if("PÓŁNOC")
 			computer_dir = 1
-		if("EAST")
+		if("WSCHÓD")
 			computer_dir = 4
-		if("SOUTH")
+		if("POŁUDNIE")
 			computer_dir = 2
-		if("WEST")
+		if("ZACHÓD")
 			computer_dir = 8
 /* NSV13 We don't use these airlocks. See nsv13/code/game/object/items/RCD.dm for NSV airlocks
 /obj/item/construction/rcd/proc/change_airlock_setting(mob/user)
@@ -515,7 +515,7 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 /obj/item/construction/rcd/Initialize(mapload)
 	. = ..()
 	airlock_electronics = new(src)
-	airlock_electronics.name = "Access Control"
+	airlock_electronics.name = "Kontrola dostępu"
 	airlock_electronics.holder = src
 	GLOB.rcd_list += src
 
@@ -708,7 +708,7 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 /obj/item/construction/rcd/borg
 	no_ammo_message = "<span class='warning'>Za mało ładunku.</span>"
-	desc = "A device used to rapidly build walls and floors."
+	desc = "Urządzenie do szybkiej budowy ścian i podłóg."
 	canRturf = TRUE
 	var/energyfactor = 72
 
@@ -748,7 +748,7 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	matter = 160
 
 /obj/item/construction/rcd/combat
-	name = "industrial RCD"
+	name = "przemysłowy RCD"
 	icon_state = "ircd"
 	item_state = "ircd"
 	max_matter = 500
@@ -756,8 +756,8 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	canRturf = TRUE
 
 /obj/item/rcd_ammo
-	name = "compressed matter cartridge"
-	desc = "Highly compressed matter for the RCD."
+	name = "wkład ze skompresowaną materią"
+	desc = "Silnie skompresowana materia do RCD."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "rcd"
 	item_state = "rcdammo"
@@ -773,7 +773,7 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 
 /obj/item/construction/rcd/combat/admin
-	name = "admin RCD"
+	name = "RCD admina"
 	max_matter = INFINITY
 	matter = INFINITY
 	delay_mod = 0.1
@@ -783,8 +783,8 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 
 /obj/item/construction/rcd/arcd
-	name = "advanced rapid-construction-device (ARCD)"
-	desc = "A prototype RCD with ranged capability and extended capacity. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "zaawansowany szybki konstruktor (ARCD)"
+	desc = "Prototypowy RCD działający na odległość i o zwiększonej pojemności. Uzupełnisz go żelazem, plastalą, szkłem albo wkładami ze skompresowaną materią."
 	max_matter = 300
 	matter = 300
 	delay_mod = 0.6
@@ -815,8 +815,8 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 
 
 /obj/item/construction/rld
-	name = "Rapid Lighting Device (RLD)"
-	desc = "A device used to rapidly provide lighting sources to an area. Reload with iron, plasteel, glass or compressed matter cartridges."
+	name = "szybki oświetlacz (RLD)"
+	desc = "Urządzenie do szybkiego rozmieszczania źródeł światła. Uzupełnisz je żelazem, plastalą, szkłem albo wkładami ze skompresowaną materią."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rld-5"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -983,22 +983,22 @@ GLOBAL_VAR_INIT(icon_holographic_window, init_holographic_window())
 	Upgrades
 */
 /obj/item/rcd_upgrade
-	name = "RCD advanced design disk"
-	desc = "It seems to be empty."
+	name = "dysk zaawansowanych projektów RCD"
+	desc = "Wygląda na pusty."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "datadisk3"
 	var/upgrade
 
 /obj/item/rcd_upgrade/frames
-	desc = "It contains the design for machine frames and computer frames."
+	desc = "Zawiera projekty ram maszyn i ram komputerów."
 	upgrade = RCD_UPGRADE_FRAMES
 
 /obj/item/rcd_upgrade/simple_circuits
-	desc = "It contains the design for firelock, air alarm, fire alarm, apc circuits and crap power cells."
+	desc = "Zawiera projekty układów grodzi przeciwpożarowych, alarmów powietrza, alarmów pożarowych, APC i kiepskich ogniw zasilania."
 	upgrade = RCD_UPGRADE_SIMPLE_CIRCUITS
 
 /obj/item/rcd_upgrade/silo_link
-	desc = "It contains direct silo connection RCD upgrade."
+	desc = "Zawiera ulepszenie RCD o bezpośrednie połączenie z silosem."
 	upgrade = RCD_UPGRADE_SILO_LINK
 
 /datum/action/item_action/rcd_scan

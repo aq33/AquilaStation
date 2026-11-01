@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/hive_rally
-	name = "Hive Rythms"
-	desc = "We send out a burst of psionic energy, invigorating us and nearby awakened vessels, removing any stuns."
+	name = "Rytmy roju"
+	desc = "Wysyłamy falę energii psionicznej, która ożywia nas i pobliskie przebudzone naczynia, usuwając wszelkie ogłuszenia."
 	panel = "Hivemind Abilities"
 	charge_max = 3000
 	range = 7

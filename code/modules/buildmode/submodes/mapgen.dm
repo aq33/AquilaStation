@@ -6,8 +6,8 @@
 
 /datum/buildmode_mode/mapgen/show_help(client/c)
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
-	to_chat(c, "<span class='notice'>Left Mouse Button on turf/obj/mob      = Select corner</span>")
-	to_chat(c, "<span class='notice'>Right Mouse Button on buildmode button = Select generator</span>")
+	to_chat(c, "<span class='notice'>LPM na turfie/obiekcie/mobie      = Wybierz róg</span>")
+	to_chat(c, "<span class='notice'>PPM na przycisku trybu budowania = Wybierz generator</span>")
 	to_chat(c, "<span class='notice'>***********************************************************</span>")
 
 /datum/buildmode_mode/mapgen/change_settings(client/c)
@@ -16,7 +16,7 @@
 	for(var/path in gen_paths)
 		var/datum/mapGenerator/MP = path
 		options[initial(MP.buildmode_name)] = path
-	var/type = input(c,"Select Generator Type","Type") as null|anything in options
+	var/type = input(c,"Wybierz typ generatora","Typ") as null|anything in options
 	if(!type)
 		return
 
@@ -25,7 +25,7 @@
 
 /datum/buildmode_mode/mapgen/handle_click(client/c, params, obj/object)
 	if(isnull(generator_path))
-		to_chat(c, "<span class='warning'>Select generator type first.</span>")
+		to_chat(c, "<span class='warning'>Najpierw wybierz typ generatora.</span>")
 		deselect_region()
 		return
 	..()
@@ -37,12 +37,12 @@
 		var/datum/mapGenerator/G = new generator_path
 		if(istype(G, /datum/mapGenerator/repair/reload_station_map))
 			if(GLOB.reloading_map)
-				to_chat(c, "<span class='boldwarning'>You are already reloading an area! Please wait for it to fully finish loading before trying to load another!</span>")
+				to_chat(c, "<span class='boldwarning'>Już przeładowujesz obszar! Zaczekaj, aż skończy się ładować, zanim załadujesz kolejny!</span>")
 				deselect_region()
 				return
 		G.defineRegion(cornerA, cornerB, 1)
 		highlight_region(G.map)
-		var/confirm = alert("Are you sure you want run the map generator?", "Run generator", "Yes", "No")
-		if(confirm == "Yes")
+		var/confirm = alert("Na pewno chcesz uruchomić generator mapy?", "Uruchom generator", "Tak", "Nie")
+		if(confirm == "Tak")
 			G.generate()
 		log_admin("Build Mode: [key_name(c)] ran the map generator '[G.buildmode_name]' in the region from [AREACOORD(cornerA)] to [AREACOORD(cornerB)]")

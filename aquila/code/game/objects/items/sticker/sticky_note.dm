@@ -1,5 +1,5 @@
 /obj/item/sticker/sticky_note
-	name = "office note"
+	name = "karteczka samoprzylepna"
 	desc = "Samoprzylepna karteczka biurowa."
 	icon_state = "sticky_note"
 	sticker_icon_state = "sticky_note_sticker"
@@ -65,7 +65,7 @@
 	Dispenser for sticky notes
 */
 /obj/item/sticky_note_pile
-	name = "office note pad"
+	name = "bloczek karteczek samoprzylepnych"
 	desc = "Bloczek samoprzylepnych karteczek biurowych."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "sticky_note_pile"

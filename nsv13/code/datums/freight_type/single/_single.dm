@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT( blacklisted_paperwork_itemtypes, typecacheof( list(
 	return FALSE
 
 /datum/freight_type/single/get_brief_segment()
-	return "nothing"
+	return "nic"
 
 /datum/freight_type/single/deliver_package()
 	if ( !send_prepackaged_item )

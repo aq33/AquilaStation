@@ -1,6 +1,6 @@
 /obj/item/pushbroom
-	name = "broom"
-	desc = "This is my BROOMSTICK! It can be used manually or braced with two hands to sweep items as you move. It has a telescopic handle for compact storage."
+	name = "miotła"
+	desc = "To moja MIOTŁA! Możesz zamiatać nią ręcznie albo chwycić ją oburącz, by zmiatać przedmioty podczas ruchu. Ma teleskopowy trzonek, więc łatwo ją schować."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "broom0"
 	lefthand_file = 'icons/mob/inhands/equipment/custodial_lefthand.dmi'

@@ -1,7 +1,7 @@
 /**********************Mining Scanners**********************/
 /obj/item/mining_scanner
-	desc = "A scanner that checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations.\nIt has a speaker that can be toggled with <b>alt+click</b>"
-	name = "manual mining scanner"
+	desc = "Skaner, który sprawdza otaczającą skałę pod kątem przydatnych minerałów. Można nim też zatrzymać detonację gibtonitu.\nMa głośnik, który przełączasz <b>Alt-klikiem</b>."
+	name = "ręczny skaner górniczy"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "miningmanual"
 	item_state = "analyzer"
@@ -39,8 +39,8 @@
 	//qdel(src)
 
 /obj/item/t_scanner/adv_mining_scanner
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations. This one has an extended range.\nIt has a speaker that can be toggled with <b>alt+click</b>"
-	name = "advanced automatic mining scanner"
+	desc = "Skaner, który automatycznie sprawdza otaczającą skałę pod kątem przydatnych minerałów. Można nim też zatrzymać detonację gibtonitu. Ten ma zwiększony zasięg.\nMa głośnik, który przełączasz <b>Alt-klikiem</b>."
+	name = "zaawansowany automatyczny skaner górniczy"
 	icon_state = "adv_mining0"
 	item_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -62,9 +62,9 @@
 	toggle_on()
 
 /obj/item/t_scanner/adv_mining_scanner/lesser
-	name = "automatic mining scanner"
+	name = "automatyczny skaner górniczy"
 	icon_state = "mining0"
-	desc = "A scanner that automatically checks surrounding rock for useful minerals; it can also be used to stop gibtonite detonations."
+	desc = "Skaner, który automatycznie sprawdza otaczającą skałę pod kątem przydatnych minerałów. Można nim też zatrzymać detonację gibtonitu."
 	range = 4
 	cooldown = 50
 

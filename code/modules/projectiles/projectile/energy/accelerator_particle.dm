@@ -1,5 +1,5 @@
 /obj/item/projectile/energy/accelerated_particle
-	name = "Accelerated Particles"
+	name = "przyspieszone cząstki"
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "particle"
 	range = 10

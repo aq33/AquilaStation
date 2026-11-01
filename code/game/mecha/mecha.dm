@@ -1,6 +1,6 @@
 /obj/mecha
-	name = "mecha"
-	desc = "Exosuit"
+	name = "mech"
+	desc = "Egzoszkielet."
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE //Dense. To raise the heat.
 	opacity = 1 ///opaque. Menacing.
@@ -275,7 +275,7 @@
 
 /obj/mecha/proc/add_radio()
 	radio = new(src)
-	radio.name = "[src] radio"
+	radio.name = "radio: [src]"
 	radio.icon = icon
 	radio.icon_state = icon_state
 	radio.subspace_transmission = TRUE
@@ -310,7 +310,7 @@
 	if(visible_equipment.len)
 		. += "Jest wyposażony w:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in visible_equipment)
-			. += "[icon2html(ME, user)] \A [ME]."
+			. += "[icon2html(ME, user)] [ME]."
 	if(!enclosed)
 		if(silicon_pilot)
 			. += "Wygląda na to, że [src] pilotuje się sam..."
@@ -608,7 +608,7 @@
 		return 0
 	if(!scanmod || !capacitor)
 		if(world.time - last_message > 20)
-			occupant_message("<span class='warning'>Missing [scanmod? "capacitor" : "scanning module"].</span>")
+			occupant_message("<span class='warning'>Brak: [scanmod? "kondensator" : "moduł skanujący"].</span>")
 			last_message = world.time
 		return 0
 
@@ -1014,7 +1014,7 @@
 		to_chat(user, "<span class='warning'>Rytm beta poniżej dopuszczalnego poziomu!</span>")
 		return FALSE
 	if(!user.transferItemToLoc(mmi_as_oc, src))
-		to_chat(user, "<span class='warning'>\the [mmi_as_oc] is stuck to your hand, you cannot put it in \the [src]!</span>")
+		to_chat(user, "<span class='warning'>[mmi_as_oc] przykleja się do twojej ręki, nie możesz włożyć go do [src]!</span>")
 		return FALSE
 	var/mob/living/brainmob = mmi_as_oc.brainmob
 	mmi_as_oc.mecha = src

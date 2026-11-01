@@ -49,7 +49,7 @@ Adding tasks is easy! Just define a datum for it.
 	var/allow_hidden_systems = FALSE	//Set this to true if you want to allow the fleet to plot courses using hidden systems.
 	var/hide_movements = FALSE
 	var/alignment = "syndicate"
-	var/list/taunts = list("Unidentified vessel, you have entered our airspace. Leave immediately or be destroyed", "Identify yourselves immediately or be destroyed", "Unidentified vessel, leave immediately. You are entering Syndicate territory.", "Hold it right there. Prepare to be boarded, Captain.", "Nanotrasen vessel, surrender immediately or face unnecessary casualties.", "All Nanotrasen crewmen, please prepare for immediate evisceration.", "Unidentified vessel, transmit your credentials now or- Wait a second, that’s the ship we’re looking for! Deploy fighters!", "Nanotrasen? You’ve just made my day, all crafts prepare to engage.", "Unknown vessel, failure to contact Syndicate control on frequency 0.4 is a suspected act of aggression. Prepare for engagement.")
+	var/list/taunts = list("Niezidentyfikowana jednostko, wleciałaś w naszą przestrzeń. Natychmiast się wycofaj albo zostaniesz zniszczona.", "Natychmiast się zidentyfikujcie albo zostaniecie zniszczeni.", "Niezidentyfikowana jednostko, natychmiast odleć. Wkraczasz na terytorium Syndykatu.", "Ani kroku dalej. Szykujcie się na abordaż, kapitanie.", "Okręcie Nanotrasen, natychmiast się poddajcie albo poniesiecie niepotrzebne straty.", "Cała załogo Nanotrasen, prosimy przygotować się do natychmiastowego wypatroszenia.", "Niezidentyfikowana jednostko, natychmiast przekaż swoje dane albo... Chwila, to ten okręt, którego szukamy! Wypuścić myśliwce!", "Nanotrasen? Właśnie umililiście mi dzień. Wszystkie jednostki, przygotować się do walki.", "Nieznana jednostko, brak kontaktu z kontrolą Syndykatu na częstotliwości 0.4 uznajemy za akt agresji. Przygotujcie się do walki.")
 	var/list/greetings = list("IFF potwierdzone, dobrze was widzieć", "Sojuszniczy okręt, IFF potwierdzone.")
 	var/list/recently_visited = list()
 	var/fleet_trait = FLEET_TRAIT_INVASION
@@ -312,7 +312,7 @@ Adding tasks is easy! Just define a datum for it.
 /datum/fleet/proc/defeat()
 	var/datum/star_system/player_system = SSstar_system.find_main_overmap().current_system
 	var/datum/star_system/mining_system = SSstar_system.find_main_miner()?.current_system
-	var/message = "[name] został pokonany [(current_system && !current_system.hidden) ? "podczas walki w systemie [current_system.name]" : "w bitwie"]."
+	var/message = "Pokonano flotę: [name] [(current_system && !current_system.hidden) ? "podczas walki w systemie [current_system.name]" : "w bitwie"]."
 	if(alignment == "nanotrasen" || current_system == player_system || current_system == mining_system)
 		minor_announce(message, "Dowództwo Floty White Rapids")
 	else
@@ -367,7 +367,7 @@ Adding tasks is easy! Just define a datum for it.
 		return FALSE
 	if(!source_ship)
 		return FALSE
-	var/text = stripped_input(user, "Co chcesz powiedzieć?", "Hailing")
+	var/text = stripped_input(user, "Co chcesz powiedzieć?", "Wywołanie")
 	if(text)
 		source_ship.hail(text, name, user.name, TRUE) // Let the crew on the source ship know an Outbound message was sent
 		hail(text, source_ship.name, user.name)
@@ -404,8 +404,8 @@ Adding tasks is easy! Just define a datum for it.
 				to_chat(user, "<span class='warning'>Detektor form życia marki Cargo Shuttle w [launcher] wyświetla błąd: ze względów bezpieczeństwa nie może przewozić niebezpiecznych organizmów, ludzkich szczątków, tajnej broni jądrowej, nadajników naprowadzających ani maszyn zawierających jakąkolwiek formę sztucznej inteligencji.")
 				return FALSE
 
-	var/choice = input("Przekazać ładunek do [src]?", "Potwierdź dostawę", "No") in list("Yes", "No")
-	if(!choice || choice == "No")
+	var/choice = input("Przekazać ładunek do [src]?", "Potwierdź dostawę", "Nie") in list("Tak", "Nie")
+	if(!choice || choice == "Nie")
 		if ( console.linked )
 			try_hail( user, console.linked )
 		return FALSE
@@ -494,7 +494,7 @@ Adding tasks is easy! Just define a datum for it.
 	else
 		final_paper_text += "Zamówienie: brak<br/>Cel: [src]<br/>Przedmiot: niezarejestrowana przesyłka<br/>"
 
-	final_paper_text += "Contents:<br/><ul>"
+	final_paper_text += "Zawartość:<br/><ul>"
 
 	if ( istype( receipt.shipment, /obj/item/ship_weapon/ammunition/torpedo/freight ) )
 		var/obj/item/ship_weapon/ammunition/torpedo/freight/shipment = receipt.shipment
@@ -626,16 +626,16 @@ Adding tasks is easy! Just define a datum for it.
 		player_string = " (Wysłane przez: [player_name])"
 
 	if(outbound)
-		relay('nsv13/sound/effects/ship/freespace2/computer/textdraw.wav', "<h3>Outbound hail to: [ship_name][player_string]</h3><hr><span class='danger'>[text]</span><br>")
+		relay('nsv13/sound/effects/ship/freespace2/computer/textdraw.wav', "<h3>Wywołanie wychodzące do: [ship_name][player_string]</h3><hr><span class='danger'>[text]</span><br>")
 	else
-		relay('nsv13/sound/effects/ship/freespace2/computer/textdraw.wav', "<h1>Incoming hail from: [ship_name][player_string]</h1><hr><span class='userdanger'>[text]</span><br>")
+		relay('nsv13/sound/effects/ship/freespace2/computer/textdraw.wav', "<h1>Wywołanie przychodzące od: [ship_name][player_string]</h1><hr><span class='userdanger'>[text]</span><br>")
 
 /proc/get_internet_sound(web_sound_input)
 	if(!web_sound_input)
 		return
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		message_admins("<span class='boldwarning'>YT-DL not set up! Check your configs and that you've installed it.</span>")
+		message_admins("<span class='boldwarning'>YT-DL nie jest skonfigurowany! Sprawdź konfigurację i czy jest zainstalowany.</span>")
 		return
 	if(istext(web_sound_input))
 		var/web_sound_url = ""
@@ -644,8 +644,8 @@ Adding tasks is easy! Just define a datum for it.
 			if(length(web_sound_input))
 				web_sound_input = trim(web_sound_input)
 			if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-				message_admins("<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>")
-				message_admins("<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
+				message_admins("<span class='boldwarning'>Adresy URI inne niż http(s) są niedozwolone.</span>")
+				message_admins("<span class='warning'>Zamiast skrótów youtube-dl w rodzaju ytsearch: użyj pełnego adresu URL ze strony.</span>")
 				return
 			var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
 			var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
@@ -657,7 +657,7 @@ Adding tasks is easy! Just define a datum for it.
 				try
 					data = json_decode(stdout)
 				catch(var/exception/e)
-					message_admins("<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>")
+					message_admins("<span class='boldwarning'>Parsowanie JSON z youtube-dl NIE POWIODŁO SIĘ:</span>")
 					message_admins("<span class='warning'>[e]: [stdout]</span>")
 					return
 
@@ -666,11 +666,11 @@ Adding tasks is easy! Just define a datum for it.
 					music_extra_data["start"] = data["start_time"]
 					music_extra_data["end"] = data["end_time"]
 				else
-					message_admins("<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>")
+					message_admins("<span class='boldwarning'>Pobranie adresu URL z youtube-dl NIE POWIODŁO SIĘ:</span>")
 					message_admins("<span class='warning'>[stderr]</span>")
 			if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-				message_admins("<span class='boldwarning'>BLOCKED: Content URL not using http(s) protocol</span>")
-				message_admins("<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+				message_admins("<span class='boldwarning'>ZABLOKOWANO: adres treści nie używa protokołu http(s)</span>")
+				message_admins("<span class='warning'>Dostawca mediów zwrócił adres treści, który nie używa protokołu HTTP ani HTTPS</span>")
 				return
 			return list(web_sound_url, music_extra_data)
 
@@ -689,7 +689,7 @@ Adding tasks is easy! Just define a datum for it.
 
 			//Ghost Ship Spawn Here
 			if(SSovermap_mode.override_ghost_ships)
-				message_admins("Failed to spawn ghost ship due to admin override.")
+				message_admins("Nie udało się stworzyć statku widma – zablokowane przez admina.")
 				return
 			if(!prob(20))
 				return
@@ -705,7 +705,7 @@ Adding tasks is easy! Just define a datum for it.
 				ship_list += fighter_types
 
 			else
-				message_admins("Failed to spawn ghost ship due to insufficent players.")
+				message_admins("Nie udało się stworzyć statku widma – za mało graczy.")
 				log_game("Failed to spawn ghost ship due to insufficent players.")
 				return
 
@@ -717,7 +717,7 @@ Adding tasks is easy! Just define a datum for it.
 			var/target_location = locate(rand(round(world.maxx/2) + 10, world.maxx - 39), rand(40, world.maxy - 39), OM.z)
 			var/obj/structure/overmap/selected_ship = pick(ship_list)
 			var/target_ghost
-			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to pilot a [initial(selected_ship.faction)] [initial(selected_ship.name)]?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
+			var/list/mob/dead/observer/candidates = pollGhostCandidates("Chcesz pilotować okręt: [initial(selected_ship.name)] (frakcja: [initial(selected_ship.faction)])?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
 				target_ghost = C
@@ -1753,28 +1753,28 @@ Seek a ship thich we'll station ourselves around
 
 /client/proc/instance_overmap_menu() //Creates a verb for admins to open up the ui
 	set name = "Instance Overmap"
-	set desc = "Load a ship midround."
+	set desc = "Wczytaj okręt w trakcie rundy."
 	set category = "Adminbus"
 
 	if(IsAdminAdvancedProcCall())
 		return FALSE
 
 	var/list/choices = flist("_maps/map_files/Instanced/")
-	var/choice = input(usr, "What ship would you like to load?","Ship Instancing", null) as null|anything in choices
+	var/choice = input(usr, "Który okręt chcesz wczytać?","Wczytywanie okrętu", null) as null|anything in choices
 	if(!choice)
 		return
 	var/ship_file = file("_maps/map_files/Instanced/[choice]")
 	if(instance_ship_from_json(ship_file))
-		message_admins("[key_name(src)] has instanced a copy of [ship_file]!")
+		message_admins("[key_name(src)] wczytuje kopię [ship_file]!")
 	else
-		message_admins("Failed to instance a copy of [ship_file]!")
+		message_admins("Nie udało się wczytać kopii [ship_file]!")
 
 /proc/instance_ship_from_json(ship_file)
 	if(!ship_file)
-		message_admins("Error loading ship, null file passed in.")
+		message_admins("Błąd wczytywania okrętu: przekazano pusty plik.")
 		return
 	if(!isfile(ship_file))
-		message_admins("Error loading ship from JSON. Check that the file exists.")
+		message_admins("Błąd wczytywania okrętu z JSON. Sprawdź, czy plik istnieje.")
 		return
 	var/list/json = json_decode(file2text(ship_file))
 	if(!json)

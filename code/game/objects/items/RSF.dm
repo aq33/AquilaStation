@@ -4,8 +4,8 @@ RSF
 
 */
 /obj/item/rsf
-	name = "\improper Rapid-Service-Fabricator"
-	desc = "A device used to rapidly deploy service items."
+	name = "\improper szybki fabrykator usług (RSF)"
+	desc = "Urządzenie do szybkiego wytwarzania przedmiotów usługowych."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
@@ -121,8 +121,8 @@ RSF
 		to_chat(user, "RSF zawiera teraz [matter]/30 jednostek fabrykacji.")
 
 /obj/item/cookiesynth
-	name = "Cookie Synthesizer"
-	desc = "A self-recharging device used to rapidly deploy cookies."
+	name = "syntezator ciasteczek"
+	desc = "Samoładujące się urządzenie do szybkiego wytwarzania ciasteczek."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'

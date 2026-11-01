@@ -1,7 +1,7 @@
 //CREATOR'S NOTE: DO NOT FUCKING GIVE THIS TO BOTANY!
 /obj/item/hot_potato
-	name = "hot potato"
-	desc = "A label on the side of this potato reads \"Product of DonkCo Service Wing. Activate far away from populated areas. Device will only attach to sapient creatures.\" <span class='boldnotice'>You can attack anyone with it to force it on them instead of yourself!</span>"
+	name = "gorący ziemniak"
+	desc = "Etykieta na boku ziemniaka głosi: „Produkt Działu Usług DonkCo. Aktywować z dala od zaludnionych obszarów. Urządzenie przyczepia się tylko do rozumnych istot”. <span class='boldnotice'>Możesz nim zaatakować kogokolwiek, żeby wcisnąć go jemu zamiast sobie!</span>"
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "potato"
 	item_flags = NOBLUDGEON
@@ -50,7 +50,7 @@
 
 /obj/item/hot_potato/proc/detonate()
 	var/atom/location = loc
-	location.visible_message("<span class='userdanger'>[src] [detonate_explosion? "explodes" : "activates"]!</span>", "<span class='userdanger'>[src] się aktywuje! Skończył ci się czas!</span>")
+	location.visible_message("<span class='userdanger'>[src] [detonate_explosion? "wybucha" : "się aktywuje"]!</span>", "<span class='userdanger'>[src] się aktywuje! Skończył ci się czas!</span>")
 	if(detonate_explosion)
 		explosion(src, detonate_dev_range, detonate_heavy_range, detonate_light_range, detonate_flash_range, flame_range = detonate_fire_range)
 	deactivate()
@@ -137,7 +137,7 @@
 	update_icon()
 	if(sticky)
 		ADD_TRAIT(src, TRAIT_NODROP, HOT_POTATO_TRAIT)
-	name = "primed [name]"
+	name = "[name] (odliczanie)"
 	activation_time = timer + world.time
 	detonation_timerid = addtimer(CALLBACK(src, PROC_REF(detonate)), delay, TIMER_STOPPABLE)
 	START_PROCESSING(SSfastprocess, src)
@@ -168,7 +168,7 @@
 	detonate_explosion = FALSE
 
 /obj/item/hot_potato/harmless/toy
-	desc = "A label on the side of this potato reads \"Product of DonkCo Toys and Recreation department.\" <span class='boldnotice'>You can attack anyone with it to put it on them instead, if they have a free hand to take it!</span>"
+	desc = "Etykieta na boku ziemniaka głosi: „Produkt Działu Zabawek i Rekreacji DonkCo”. <span class='boldnotice'>Możesz nim zaatakować kogokolwiek, żeby mu go wcisnąć, jeśli ma wolną rękę!</span>"
 	sticky = FALSE
 	reusable = TRUE
 	forceful_attachment = FALSE

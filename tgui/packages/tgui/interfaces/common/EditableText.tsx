@@ -54,7 +54,7 @@ export const EditableText = (props: Props) => {
           }}
           onClick={() => setEditing(true)}
         >
-          {!text ? '(none)' : text}
+          {!text ? '(brak)' : text}
         </Box>
       </Stack.Item>
       <Stack.Item>

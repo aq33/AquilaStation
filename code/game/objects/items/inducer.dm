@@ -1,6 +1,6 @@
 /obj/item/inducer
-	name = "heavy-duty inducer"
-	desc = "A tool for inductively charging internal power cells. It is ruggedized for frequent use."
+	name = "wytrzymały induktor"
+	desc = "Narzędzie do indukcyjnego ładowania wewnętrznych ogniw zasilających. Wzmocnione do częstego użytku."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "inducer-engi"
 	item_state = "inducer-engi"
@@ -138,7 +138,7 @@
 			else
 				break
 		if(done_any) // Only show a message if we succeeded at least once
-			user.visible_message("[user] recharged [A]!","<span class='notice'>Ładujesz [A]!</span>")
+			user.visible_message("[user] ładuje [A]!","<span class='notice'>Ładujesz [A]!</span>")
 		recharging = FALSE
 		return TRUE
 	recharging = FALSE
@@ -186,7 +186,7 @@
 
 ///Starts empty for engineering protolathe
 /obj/item/inducer/eng
-	name = "heavy-duty inducer"
+	name = "wytrzymały induktor"
 	cell_type = null
 	opened = TRUE
 
@@ -195,10 +195,10 @@
 	update_icon()
 
 /obj/item/inducer/sci
-	name = "inducer"
+	name = "induktor"
 	icon_state = "inducer-sci"
 	item_state = "inducer-sci"
-	desc = "A tool for inductively charging internal power cells. This one has a science color scheme, and is less potent than its engineering counterpart."
+	desc = "Narzędzie do indukcyjnego ładowania wewnętrznych ogniw zasilających. Ten ma kolorystykę działu naukowego i jest słabszy od inżynieryjnego odpowiednika."
 	cell_type = null
 	powertransfer = 500
 	opened = TRUE

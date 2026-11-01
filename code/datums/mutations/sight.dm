@@ -1,7 +1,7 @@
 //Nearsightedness restricts your vision by several tiles.
 /datum/mutation/nearsight
-	name = "Near Sightness"
-	desc = "The holder of this mutation has poor eyesight."
+	name = "Krótkowzroczność"
+	desc = "Nosiciel tej mutacji słabo widzi."
 	quality = MINOR_NEGATIVE
 	text_gain_indication = "<span class='danger'>Słabo widzisz.</span>"
 
@@ -18,8 +18,8 @@
 
 //Blind makes you blind. Who knew?
 /datum/mutation/blind
-	name = "Blindness"
-	desc = "Renders the subject completely blind."
+	name = "Ślepota"
+	desc = "Całkowicie oślepia."
 	quality = NEGATIVE
 	text_gain_indication = "<span class='danger'>Nic nie widzisz.</span>"
 
@@ -35,8 +35,8 @@
 
 
 /datum/mutation/thermal
-	name = "Thermal Vision"
-	desc = "The user of this genome can visually percieve the unique human thermal signature."
+	name = "Widzenie termiczne"
+	desc = "Nosiciel tego genomu widzi unikalną sygnaturę cieplną ludzi."
 	quality = POSITIVE
 	difficulty = 18
 	text_gain_indication = "<span class='notice'>Widzisz, jak z twojej skóry unosi się ciepło...</span>"
@@ -59,8 +59,8 @@
 
 //X-ray Vision lets you see through walls.
 /datum/mutation/thermal/x_ray
-	name = "X Ray Vision"
-	desc = "A strange genome that allows the user to see between the spaces of walls." //actual x-ray would mean you'd constantly be blasting rads, wich might be fun for later //hmb
+	name = "Wzrok rentgenowski"
+	desc = "Dziwny genom, który pozwala widzieć przez szczeliny w ścianach." //actual x-ray would mean you'd constantly be blasting rads, wich might be fun for later //hmb
 	text_gain_indication = "<span class='notice'>Ściany nagle znikają!</span>"
 	instability = 35
 	locked = TRUE
@@ -68,8 +68,8 @@
 
 //Laser Eyes lets you shoot lasers from your eyes!
 /datum/mutation/laser_eyes
-	name = "Laser Eyes"
-	desc = "Reflects concentrated light back from the eyes."
+	name = "Laserowe oczy"
+	desc = "Odbija z oczu skupione światło."
 	quality = POSITIVE
 	locked = TRUE
 	difficulty = 16

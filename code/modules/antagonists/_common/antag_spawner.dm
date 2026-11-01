@@ -14,7 +14,7 @@
 ///////////WIZARD
 
 /obj/item/antag_spawner/contract
-	name = "contract"
+	name = "kontrakt"
 	desc = "Magiczny kontrakt podpisany wcześniej przez ucznia. W zamian za naukę sztuk magicznych jest zobowiązany odpowiedzieć na twoje wezwanie o pomoc."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state ="scroll2"
@@ -107,7 +107,7 @@
 
 
 /obj/item/antag_spawner/nuke_ops
-	name = "syndicate operative teleporter"
+	name = "teleporter operatora Syndykatu"
 	desc = "Jednorazowy teleporter do szybkiego wzmacniania agentów w terenie."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
@@ -159,7 +159,7 @@
 
 //////CLOWN OP
 /obj/item/antag_spawner/nuke_ops/clown
-	name = "clown operative teleporter"
+	name = "teleporter klauna-operatora"
 	desc = "Jednorazowy teleporter do szybkiego wzmacniania agentów-klaunów w terenie."
 
 /obj/item/antag_spawner/nuke_ops/clown/spawn_antag(client/C, turf/T, kind, datum/mind/user)
@@ -179,21 +179,21 @@
 
 //////SYNDICATE BORG
 /obj/item/antag_spawner/nuke_ops/borg_tele
-	name = "syndicate cyborg teleporter"
+	name = "teleporter cyborga Syndykatu"
 	desc = "Jednorazowy teleporter do szybkiego wzmacniania agentów w terenie."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/assault
-	name = "syndicate assault cyborg teleporter"
+	name = "teleporter szturmowego cyborga Syndykatu"
 	borg_to_spawn = "Assault"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/medical
-	name = "syndicate medical teleporter"
+	name = "teleporter medycznego cyborga Syndykatu"
 	borg_to_spawn = "Medical"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/saboteur
-	name = "syndicate saboteur teleporter"
+	name = "teleporter sabotażowego cyborga Syndykatu"
 	borg_to_spawn = "Saboteur"
 
 /obj/item/antag_spawner/nuke_ops/borg_tele/spawn_antag(client/C, turf/T, kind, datum/mind/user)
@@ -219,7 +219,7 @@
 	var/brainopsname = "[brainfirstname] [brainopslastname]"
 
 	R.mmi.name = "[initial(R.mmi.name)]: [brainopsname]"
-	R.mmi.brain.name = "[brainopsname]'s brain"
+	R.mmi.brain.name = "mózg [brainopsname]"
 	R.mmi.brainmob.real_name = brainopsname
 	R.mmi.brainmob.name = brainopsname
 	R.real_name = R.name
@@ -234,7 +234,7 @@
 ///////////SLAUGHTER DEMON
 
 /obj/item/antag_spawner/slaughter_demon //Warning edgiest item in the game
-	name = "vial of blood"
+	name = "fiolka krwi"
 	desc = "Magicznie nasycona butelka krwi, destylowana z niezliczonych ofiar morderstw. Używana w bezbożnych rytuałach do przywabiania przerażających stworzeń."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
@@ -279,7 +279,7 @@
 	Kliknij z Ctrl kałużę krwi, żeby się zmaterializować.</B>")
 
 /obj/item/antag_spawner/slaughter_demon/laughter
-	name = "vial of tickles"
+	name = "fiolka łaskotek"
 	desc = "Magicznie nasycona butelka klauniej miłości, destylowana z niezliczonych ataków przytulania. Używana w zabawnych rytuałach do przywabiania uroczych stworzeń."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "vial"
@@ -292,7 +292,7 @@
 ///////////GANGSTER REINFORCEMENT SPAWNER
 
 /obj/item/antag_spawner/gangster
-	name = "crook spawner"
+	name = "wzywacz oprychów"
 	desc = "Niech kwatera główna przyśle ci oprycha, który właśnie rzucił liceum i jest gotów na pierwszą linię. Przychodzi w stroju twojej bandy i z farbą w sprayu w ręce."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"

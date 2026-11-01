@@ -43,7 +43,7 @@ class PencilTransaction implements LayerTransaction {
       command: 'transaction',
       transaction: {
         type: 'pencil',
-        name: 'Pencil',
+        name: 'Ołówek',
         layer: this.layer + 1,
         dir: `${this.dir}`,
         color: this.color,

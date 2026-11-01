@@ -4,8 +4,8 @@ Consuming extracts:
 	After consuming enough, produces special cookies.
 */
 /obj/item/slimecross/consuming
-	name = "consuming extract"
-	desc = "It hungers... for <i>more</i>." //My slimecross has finally decided to eat... my buffet!
+	name = "pożerający ekstrakt"
+	desc = "Łaknie... <i>więcej</i>." //My slimecross has finally decided to eat... my buffet!
 	icon_state = "consuming"
 	effect = "consuming"
 	var/nutriment_eaten = 0
@@ -44,8 +44,8 @@ Consuming extracts:
 	return new cookietype(get_turf(src))
 
 /obj/item/slime_cookie //While this technically acts like food, it's so removed from it that I made it its' own type.
-	name = "error cookie"
-	desc = "A weird slime cookie. You shouldn't see this."
+	name = "ciasteczko błędu"
+	desc = "Dziwne szlamowe ciasteczko. Nie powinieneś tego widzieć."
 	icon = 'icons/obj/food/slimecookies.dmi'
 	var/taste = "error"
 	var/nutrition = 5
@@ -62,7 +62,7 @@ Consuming extracts:
 /obj/item/slime_cookie/attack(mob/living/M, mob/user)
 	var/fed = FALSE
 	if(M == user)
-		M.visible_message("<span class='notice'>[user] eats [src]!</span>", "<span class='notice'>Zjadasz [src].</span>")
+		M.visible_message("<span class='notice'>[user] zjada [src]!</span>", "<span class='notice'>Zjadasz [src].</span>")
 		fed = TRUE
 	else
 		M.visible_message("<span class='danger'>[user] próbuje zmusić [M] do zjedzenia [src]!</span>", "<span class='userdanger'>[user] próbuje zmusić cię do zjedzenia [src]!</span>")
@@ -88,10 +88,10 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/grey
 
 /obj/item/slime_cookie/grey
-	name = "slime cookie"
-	desc = "A grey-ish transparent cookie. Nutritious, probably."
+	name = "szlamowe ciasteczko"
+	desc = "Szarawe, przezroczyste ciasteczko. Chyba pożywne."
 	icon_state = "grey"
-	taste = "goo"
+	taste = "maź"
 	nutrition = 15
 
 /obj/item/slimecross/consuming/orange
@@ -100,8 +100,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/orange
 
 /obj/item/slime_cookie/orange
-	name = "fiery cookie"
-	desc = "A orange cookie with a fiery pattern. Feels warm."
+	name = "ogniste ciasteczko"
+	desc = "Pomarańczowe ciasteczko w ogniste wzory. Jest ciepłe."
 	icon_state = "orange"
 	taste = "cynamon i spalenizna"
 
@@ -114,8 +114,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/purple
 
 /obj/item/slime_cookie/purple
-	name = "health cookie"
-	desc = "A purple cookie with a cross pattern. Soothing."
+	name = "zdrowotne ciasteczko"
+	desc = "Fioletowe ciasteczko z krzyżykiem. Kojące."
 	icon_state = "purple"
 	taste = "dżem owocowy i syrop na kaszel"
 
@@ -133,8 +133,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/blue
 
 /obj/item/slime_cookie/blue
-	name = "water cookie"
-	desc = "A transparent blue cookie. Constantly dripping wet."
+	name = "wodne ciasteczko"
+	desc = "Przezroczyste niebieskie ciasteczko. Wciąż z niego kapie."
 	icon_state = "blue"
 	taste = /datum/reagent/water
 
@@ -147,8 +147,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/metal
 
 /obj/item/slime_cookie/metal
-	name = "metallic cookie"
-	desc = "A shiny grey cookie. Hard to the touch."
+	name = "metaliczne ciasteczko"
+	desc = "Lśniące szare ciasteczko. Twarde w dotyku."
 	icon_state = "metal"
 	taste = /datum/reagent/copper
 
@@ -161,8 +161,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/yellow
 
 /obj/item/slime_cookie/yellow
-	name = "sparking cookie"
-	desc = "A yellow cookie with a lightning pattern. Has a rubbery texture."
+	name = "iskrzące ciasteczko"
+	desc = "Żółte ciasteczko z wzorem błyskawicy. Ma gumowatą konsystencję."
 	icon_state = "yellow"
 	taste = "ciasto cytrynowe i gumowe rękawiczki"
 
@@ -175,8 +175,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/darkpurple
 
 /obj/item/slime_cookie/darkpurple
-	name = "toxic cookie"
-	desc = "A dark purple cookie, stinking of plasma."
+	name = "toksyczne ciasteczko"
+	desc = "Ciemnofioletowe ciasteczko cuchnące plazmą."
 	icon_state = "darkpurple"
 	taste = "galareta szlamu i toksyny"
 
@@ -189,8 +189,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/darkblue
 
 /obj/item/slime_cookie/darkblue
-	name = "frosty cookie"
-	desc = "A dark blue cookie with a snowflake pattern. Feels cold."
+	name = "mroźne ciasteczko"
+	desc = "Ciemnoniebieskie ciasteczko ze wzorem płatka śniegu. Jest zimne."
 	icon_state = "darkblue"
 	taste = "mięta i przenikliwe zimno"
 
@@ -204,8 +204,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/silver
 
 /obj/item/slime_cookie/silver
-	name = "waybread cookie"
-	desc = "A warm, crispy cookie, sparkling silver in the light. Smells wonderful."
+	name = "ciasteczko z chleba podróżnego"
+	desc = "Ciepłe, chrupiące ciasteczko, które w świetle mieni się srebrem. Pachnie cudownie."
 	icon_state = "silver"
 	taste = "mistrzowskie elfie wypieki"
 	nutrition = 0 //We don't want normal nutriment
@@ -219,8 +219,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/bluespace
 
 /obj/item/slime_cookie/bluespace
-	name = "space cookie"
-	desc = "A white cookie with green icing. Surprisingly hard to hold."
+	name = "kosmiczne ciasteczko"
+	desc = "Białe ciasteczko z zielonym lukrem. Zaskakująco trudno je utrzymać."
 	icon_state = "bluespace"
 	taste = "cukier i blask gwiazd"
 
@@ -255,8 +255,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/sepia
 
 /obj/item/slime_cookie/sepia
-	name = "time cookie"
-	desc = "A light brown cookie with a clock pattern. Takes some time to chew."
+	name = "ciasteczko czasu"
+	desc = "Jasnobrązowe ciasteczko ze wzorem zegara. Żucie trochę trwa."
 	icon_state = "sepia"
 	taste = "brązowy cukier i metronom"
 
@@ -270,8 +270,8 @@ Consuming extracts:
 	cookies = 3 //You're gonna get more.
 
 /obj/item/slime_cookie/cerulean
-	name = "duplicookie"
-	desc = "A cerulean cookie with strange proportions. It feels like it could break apart easily."
+	name = "duplikasteczko"
+	desc = "Lazurowe ciasteczko o dziwnych proporcjach. Wygląda, jakby łatwo mogło się rozpaść."
 	icon_state = "cerulean"
 	taste = "ciasteczko cukrowe"
 
@@ -287,8 +287,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/pyrite
 
 /obj/item/slime_cookie/pyrite
-	name = "color cookie"
-	desc = "A yellow cookie with rainbow-colored icing. Reflects the light strangely."
+	name = "kolorowe ciasteczko"
+	desc = "Żółte ciasteczko z tęczowym lukrem. Dziwnie odbija światło."
 	icon_state = "pyrite"
 	taste = "wanilia i " //Randomly selected color dye.
 	var/colour = "#FFFFFF"
@@ -329,8 +329,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/red
 
 /obj/item/slime_cookie/red
-	name = "blood cookie"
-	desc = "A red cookie, oozing a thick red fluid. Vampires might enjoy it."
+	name = "krwawe ciasteczko"
+	desc = "Czerwone ciasteczko, z którego sączy się gęsty czerwony płyn. Wampirom może smakować."
 	icon_state = "red"
 	taste = "czerwony aksamit i żelazo"
 
@@ -347,8 +347,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/green
 
 /obj/item/slime_cookie/green
-	name = "gross cookie"
-	desc = "A disgusting green cookie, seeping with pus. You kind of feel ill just looking at it."
+	name = "obrzydliwe ciasteczko"
+	desc = "Ohydne zielone ciasteczko sączące się ropą. Na sam widok robi ci się niedobrze."
 	icon_state = "green"
 	taste = "zawartość twojego żołądka"
 
@@ -364,8 +364,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/pink
 
 /obj/item/slime_cookie/pink
-	name = "love cookie"
-	desc = "A pink cookie with an icing heart. D'aww."
+	name = "ciasteczko miłości"
+	desc = "Różowe ciasteczko z lukrowym serduszkiem. Ojej."
 	icon_state = "pink"
 	taste = "miłość i uściski"
 
@@ -378,8 +378,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/gold
 
 /obj/item/slime_cookie/gold
-	name = "gilded cookie"
-	desc = "A buttery golden cookie, closer to a bread than anything. May good fortune find you."
+	name = "złocone ciasteczko"
+	desc = "Maślane złote ciasteczko, bliższe chlebowi niż czemukolwiek innemu. Niech sprzyja ci szczęście."
 	icon_state = "gold"
 	taste = "słodki chleb kukurydziany i bogactwo"
 
@@ -397,8 +397,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/oil
 
 /obj/item/slime_cookie/oil
-	name = "tar cookie"
-	desc = "An oily black cookie, which sticks to your hands. Smells like chocolate."
+	name = "smoliste ciasteczko"
+	desc = "Oleiste czarne ciasteczko, które klei się do rąk. Pachnie czekoladą."
 	icon_state = "oil"
 	taste = "gęsta roztopiona czekolada i smoła"
 
@@ -411,8 +411,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/black
 
 /obj/item/slime_cookie/black
-	name = "spooky cookie"
-	desc = "A pitch black cookie with an icing ghost on the front. Spooky!"
+	name = "straszne ciasteczko"
+	desc = "Smoliście czarne ciasteczko z lukrowym duszkiem. Strasznie!"
 	icon_state = "black"
 	taste = "duchy i takie tam"
 
@@ -425,8 +425,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/lightpink
 
 /obj/item/slime_cookie/lightpink
-	name = "peace cookie"
-	desc = "A light pink cookie with a peace symbol in the icing. Lovely!"
+	name = "ciasteczko pokoju"
+	desc = "Jasnoróżowe ciasteczko z symbolem pokoju na lukrze. Urocze!"
 	icon_state = "lightpink"
 	taste = "lukier truskawkowy i P.L.U.R" //Literal candy raver.
 
@@ -439,8 +439,8 @@ Consuming extracts:
 	cookietype = /obj/item/slime_cookie/adamantine
 
 /obj/item/slime_cookie/adamantine
-	name = "crystal cookie"
-	desc = "A translucent rock candy in the shape of a cookie. Surprisingly chewy."
+	name = "kryształowe ciasteczko"
+	desc = "Półprzezroczysty cukierek w kształcie ciasteczka. Zaskakująco ciągnący."
 	icon_state = "adamantine"
 	taste = "krystaliczny cukier i metal"
 
@@ -454,7 +454,7 @@ Consuming extracts:
 /obj/item/slimecross/consuming/rainbow/spawncookie()
 	var/cookie_type = pick(subtypesof(/obj/item/slime_cookie))
 	var/obj/item/slime_cookie/S = new cookie_type(get_turf(src))
-	S.name = "rainbow cookie"
-	S.desc = "A beautiful rainbow cookie, constantly shifting colors in the light."
+	S.name = "tęczowe ciasteczko"
+	S.desc = "Piękne tęczowe ciasteczko, które w świetle bez przerwy zmienia kolory."
 	S.icon_state = "rainbow"
 	return S

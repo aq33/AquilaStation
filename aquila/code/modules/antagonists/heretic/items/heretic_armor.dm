@@ -10,7 +10,7 @@
 
 // Eldritch armor. Looks cool, hood lets you cast heretic spells.
 /obj/item/clothing/suit/hooded/cultrobes/eldritch
-	name = "ominous armor"
+	name = "złowieszczy pancerz"
 	desc = "Podarta, zakurzona szata. Od środka wyścielają ją dziwne oczy."
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "eldritch_armor"
@@ -90,7 +90,7 @@
 	hood_up = FALSE
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch
-	name = "ominous hood"
+	name = "złowieszczy kaptur"
 	desc = "Podarty, zakurzony kaptur. Od środka wyścielają go dziwne oczy."
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "eldritch"
@@ -106,7 +106,7 @@
 // Ash
 // Prevents fire from decaying while worn, also passively generates fire via the toggle
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/ash
-	name = "\improper Scorched Mantle"
+	name = "\improper Osmalony Płaszcz"
 	desc = "Pozostawiony, by spłonąć w strzępy, jest dziś ledwie poczerniałym echem płaszcza Straży. \
 		A jednak zadymione fałdy odbijają ostrze i płomień od tego, kto je nosi. Krótka ulga, zanim jego spojrzenie zwróci się do środka."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
@@ -159,7 +159,7 @@
 	limb.dismember(BURN)
 
 /datum/action/item_action/toggle/flames
-	name = "Toggle Flames"
+	name = "Przełącz płomienie"
 	icon_icon = 'aquila/icons/effects/magic.dmi'
 	button_icon_state = "fireball"
 
@@ -195,7 +195,7 @@
 	wearer.ignite_mob(TRUE)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/ash
-	name = "\improper Scorched Mantle"
+	name = "\improper Osmalony Płaszcz"
 	desc = "Pozostawiony, by spłonąć w strzępy, jest dziś ledwie poczerniałym echem płaszcza Straży. \
 		A jednak zadymione fałdy odbijają ostrze i płomień od tego, kto je nosi. Krótka ulga, zanim jego spojrzenie zwróci się do środka."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
@@ -211,7 +211,7 @@
 // Blade
 // Is shock-proof and gives you baton resistance
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/blade
-	name = "\improper Shattered Panoply"
+	name = "\improper Strzaskana Zbroja"
 	desc = "Naostrzone krawędzie tego starożytnego pancerza głoszą prawdę znaną adeptom bitwy: \
 		prawdziwego wojownika nie da się odróżnić od ostrza, którym włada."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
@@ -286,7 +286,7 @@
 /obj/item/kitchen/knife/magic
 	icon = 'aquila/icons/effects/eldritch.dmi'
 	icon_state = "dio_knife"
-	name = "magic knife"
+	name = "magiczny nóż"
 	throwforce = 15
 	// most importantly, this ignores shields
 	armour_penetration = 200
@@ -317,7 +317,7 @@
 	QDEL_IN(knife, delete_delay + appear_delay + throw_delay)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/blade
-	name = "\improper Shattered Panoply"
+	name = "\improper Strzaskana Zbroja"
 	desc = "Naostrzone krawędzie tego starożytnego pancerza głoszą prawdę znaną adeptom bitwy: \
 		prawdziwego wojownika nie da się odróżnić od ostrza, którym włada."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
@@ -329,7 +329,7 @@
 // Cosmic
 // Allows you to toggle gravity for yourself at will
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/cosmic
-	name = "\improper Starwoven Cloak"
+	name = "\improper Płaszcz Tkany z Gwiazd"
 	desc = "Lśniące klejnoty przywołują smugi mocy, które krążą wokół, oświetlając noszącego przyćmionym blaskiem. \
 		Patrząc na tę szatę, nie możesz oprzeć się wrażeniu, że ktoś cię zauważył."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
@@ -361,7 +361,7 @@
 	victim_brain.gain_trauma(/datum/brain_trauma/magic/stalker/cosmic, TRAUMA_RESILIENCE_MAGIC)
 
 /datum/action/item_action/toggle/gravity
-	name = "Toggle Gravity"
+	name = "Przełącz grawitację"
 	icon_icon = 'aquila/icons/effects/magic.dmi'
 	button_icon_state = "magicm"
 
@@ -393,7 +393,7 @@
 	return COMSIG_MOVABLE_STOP_SPACEMOVE
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/cosmic
-	name = "\improper Starwoven Hood"
+	name = "\improper Kaptur Tkany z Gwiazd"
 	desc = "Lśniące klejnoty przywołują smugi mocy, które krążą wokół, oświetlając noszącego przyćmionym blaskiem. \
 		Patrząc na tę szatę, nie możesz oprzeć się wrażeniu, że ktoś cię zauważył."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
@@ -407,7 +407,7 @@
 // Flesh
 // Emits a healing aura that affects any heretic summons (excluding the heretic himself)
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/flesh
-	name = "\improper Writhing Embrace"
+	name = "\improper Wijące się Objęcia"
 	desc = "Gnijące truchło - a może kilka - poskręcane w mięsiste polipy, zasupłane jelita i popękane kości. \
 		Jak można to „nosić”, przekracza rozsądne pojmowanie. Porusza się, gdy myśli, że nikt nie patrzy."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
@@ -458,7 +458,7 @@
 	playsound(victim, 'sound/weapons/bladeslice.ogg', 50, TRUE)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/flesh
-	name = "\improper Writhing Embrace"
+	name = "\improper Wijące się Objęcia"
 	desc = "Gnijące truchło poskręcane w mięsiste polipy. Widać przez nie to, co kryje się pod skórą innych."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'aquila/icons/mob/clothing/head/helmet.dmi'
@@ -485,7 +485,7 @@
 // Lock
 // Gives you digital camo, silences your footsteps and makes you un-examineable
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/lock
-	name = "\improper Shifting Guise"
+	name = "\improper Zmienne Przebranie"
 	desc = "Szata bez stałego kształtu. Patrząc na noszącego, nie potrafisz zapamiętać ani jego twarzy, ani głosu."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
 	worn_icon = 'aquila/icons/mob/clothing/suits/armor.dmi'
@@ -516,7 +516,7 @@
 			to_throw.safe_throw_at(pick(nearby_turfs), 2, 1, spin = TRUE)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/lock
-	name = "\improper Shifting Guise"
+	name = "\improper Zmienne Przebranie"
 	desc = "Kaptur bez stałego kształtu. Rysy twarzy pod nim nieustannie się przesuwają."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'aquila/icons/mob/clothing/head/helmet.dmi'
@@ -527,7 +527,7 @@
 // Moon
 // Converts all damage into brain damage, nullifying the attack in the process
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/moon
-	name = "\improper Resplendant Regalia"
+	name = "\improper Olśniewające Regalia"
 	desc = "Zwodnicza natura tego wystawnego stroju skręca i wykrzywia spojrzenie. \
 		Patrzący musi dojść do mrożącego krew w żyłach wniosku: \
 		to, co widzi, jest równie prawdziwe jak każda inna twarz."
@@ -830,7 +830,7 @@
 	addtimer(CALLBACK(src, PROC_REF(kill_wearer), wearer), 5 SECONDS)
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/moon
-	name = "\improper Resplendant Hood"
+	name = "\improper Olśniewający Kaptur"
 	desc = "Kaptur, który skręca i wykrzywia spojrzenie patrzącego."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
 	worn_icon = 'aquila/icons/mob/clothing/head/helmet.dmi'
@@ -838,7 +838,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
 
 /atom/movable/screen/moon_health
-	name = "Health Level"
+	name = "Poziom zdrowia"
 	icon = 'aquila/icons/hud/moon_health_64x64.dmi'
 	icon_state = "moon_hud_1"
 	base_icon_state = "moon_hud"
@@ -882,7 +882,7 @@
 // Rust
 // Gains more armor while standing on top of rust. Has an animated overlay
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/rust
-	name = "\improper Salvaged Remains"
+	name = "\improper Ocalałe Szczątki"
 	desc = "Dotknięcie fałd tej prostej szaty napełnia niepokojem. \
 		Nawet samo patrzenie przyprawia o zawrót głowy. \
 		Jakiś puls grozi, że wciągnie cię do środka."
@@ -1039,7 +1039,7 @@
 	. += mutable_appearance('aquila/icons/mob/clothing/suits/armor.dmi', "rust_armor_overlay")
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/rust
-	name = "\improper Salvaged Remains"
+	name = "\improper Ocalałe Szczątki"
 	desc = "Dotknięcie fałd tego prostego kaptura napełnia niepokojem. \
 		Nawet samo patrzenie przyprawia o zawrót głowy. \
 		Jakiś puls grozi, że wciągnie cię do środka."
@@ -1051,7 +1051,7 @@
 // Void
 // Gives you a short stealth when you are hit
 /obj/item/clothing/suit/hooded/cultrobes/eldritch/void
-	name = "\improper Hollow Weave"
+	name = "\improper Pusty Splot"
 	desc = "Z początku puste płótno tej szaty zdaje się migotać słabym, zimnym światłem. \
 		Lecz gdy uważniej prześledzić kształt fałd, lepiej opisać je jako brak czegokolwiek."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'
@@ -1097,7 +1097,7 @@
 	animate(owner, time = 1 SECONDS, alpha = initial(owner.alpha))
 
 /obj/item/clothing/head/hooded/cult_hoodie/eldritch/void
-	name = "\improper Hollow Weave"
+	name = "\improper Pusty Splot"
 	desc = "Z początku puste płótno tego kaptura zdaje się migotać słabym, zimnym światłem. \
 		Lecz gdy uważniej prześledzić kształt fałd, lepiej opisać je jako brak czegokolwiek."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
@@ -1107,7 +1107,7 @@
 
 // Void cloak. Turns invisible with the hood up, lets you hide stuff.
 /obj/item/clothing/head/hooded/cult_hoodie/void
-	name = "void hood"
+	name = "kaptur pustki"
 	desc = "Czarny jak smoła, nie odbija żadnego światła. Na zewnątrz biegną runiczne symbole. \
 		Z każdym błyskiem coraz mniej rozumiesz, na co patrzysz."
 	icon = 'aquila/icons/obj/clothing/head/helmet.dmi'
@@ -1123,7 +1123,7 @@
 	add_traits(list(TRAIT_NO_STRIP, TRAIT_EXAMINE_SKIP), INNATE_TRAIT)
 
 /obj/item/clothing/suit/hooded/cultrobes/void
-	name = "void cloak"
+	name = "płaszcz pustki"
 	desc = "Czarny jak smoła, nie odbija żadnego światła. Na zewnątrz biegną runiczne symbole. \
 		Z każdym błyskiem coraz mniej rozumiesz, na co patrzysz."
 	icon = 'aquila/icons/obj/clothing/suits/armor.dmi'

@@ -1,5 +1,5 @@
 /obj/docking_port/mobile/arrivals
-	name = "arrivals shuttle"
+	name = "prom przylotów"
 	id = "arrivals"
 
 	dwidth = 3

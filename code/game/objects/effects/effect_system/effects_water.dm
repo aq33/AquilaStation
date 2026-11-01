@@ -1,7 +1,7 @@
 //WATER EFFECTS
 
 /obj/effect/particle_effect/water
-	name = "water"
+	name = "woda"
 	icon_state = "extinguish"
 	var/life = 15
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -51,7 +51,7 @@ steam.start() -- spawns the effect
 */
 /////////////////////////////////////////////
 /obj/effect/particle_effect/steam
-	name = "steam"
+	name = "para"
 	icon_state = "extinguish"
 	density = FALSE
 

@@ -1,5 +1,5 @@
 /obj/item/clothing/under/ship
-	name = "Placeholder"
+	name = "zastępczy"
 	icon = 'nsv13/icons/obj/clothing/uniforms.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/uniform.dmi'
 	icon_state = "nothing" //References uniforms.dmi
@@ -8,8 +8,8 @@
 	can_adjust = FALSE //Can you roll its sleeves down? Default to no to avoid missing icons
 
 /obj/item/clothing/under/ship/officer
-	name = "Officer's uniform"
-	desc = "A reasonably comfortable piece of clothing made of sweat absorbing materials. This piece of clothing is designed to keep you cool even when sitting at your station for hours on end."
+	name = "mundur oficera"
+	desc = "Dość wygodne ubranie z materiałów pochłaniających pot. Zapewnia chłód nawet wtedy, gdy godzinami siedzisz na stanowisku."
 	icon_state = "officer"
 	worn_icon_state = "officer"
 	item_state = "bl_suit"
@@ -18,7 +18,7 @@
 	can_adjust = TRUE
 
 /obj/item/clothing/under/ship/peacekeeper
-	name = "Space cop uniform"
+	name = "mundur kosmicznego gliny"
 	desc = "Elegancki zestaw koszuli i spodni z naszytymi odznakami: „Chronić i służyć”."
 	icon_state = "peacekeeper"
 	worn_icon_state = "peacekeeper"
@@ -30,49 +30,49 @@
 	can_adjust = TRUE
 
 /obj/item/clothing/under/ship/engineer
-	name = "Engineer's jumpsuit"
-	desc = "A thick jumpsuit made of insulated materials which is worn by NT's engineering corps, it's rare to see one of these that isn't covered in layers of engine grease."
+	name = "kombinezon inżyniera"
+	desc = "Gruby kombinezon z materiałów izolacyjnych, noszony przez korpus inżynieryjny NT. Rzadko widuje się taki, który nie jest pokryty warstwami smaru silnikowego."
 	icon_state = "engine"
 	worn_icon_state = "engine"
 	item_state = "bl_suit"
 	can_adjust = TRUE
 
 /obj/item/clothing/under/ship/medical
-	name = "Doctor's jumpsuit"
-	desc = "A durable jumpsuit made of hydrophobic materials which should help keep the blood off."
+	name = "kombinezon lekarza"
+	desc = "Wytrzymały kombinezon z materiałów hydrofobowych, po których krew powinna spływać."
 	icon_state = "medical"
 	worn_icon_state = "medical"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/ship/assistant
-	name = "Utilitarian coveralls"
+	name = "użytkowy kombinezon roboczy"
 	desc = "Nieco sfatygowany, ale niezawodny kombinezon z wyściółką i kilkoma małymi kieszeniami, zaprojektowany z myślą o oszczędności."
 	icon_state = "assistant"
 	worn_icon_state = "assistant"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/ship/kiryujumpsuit
-	name = "Kiryu jumpsuit"
-	desc = "A jumpsuit for detectives that wish to look more to the mafia side, however the cigar smell is obvious."
+	name = "kombinezon Kiryu"
+	desc = "Kombinezon dla detektywów, którzy chcą wyglądać bardziej mafijnie. Zapach cygar jest jednak wyraźny."
 	icon_state = "kiryujumpsuit"
 	worn_icon_state = "kiryujumpsuit"
 	item_state = "bl_suit"
 	can_adjust = TRUE
 
 /obj/item/clothing/suit/ship
-	name = "Placeholder"
+	name = "zastępczy"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 
 /obj/item/clothing/suit/ship/assistant_jacket
-	name = "Utility jacket"
+	name = "kurtka robocza"
 	icon_state = "assistant_jacket"
 	worn_icon_state = "assistant_jacket"
 	desc = "Stylowa, ale ciężka kurtka, chroniąca noszącego przed typowymi zagrożeniami podczas służby na statku."
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 10, "fire" = 10, "acid" = 10, "bleed" = 5)
 
 /obj/item/clothing/suit/ship/peacekeeper
-	name = "Peacekeeper vest"
+	name = "kamizelka sił pokojowych"
 	icon_state = "peacekeeper_vest"
 	item_state = "peacekeeper_vest"
 	desc = "Kamizelka z nanowłókna, zatrzymująca większość pocisków z broni ręcznej i broń improwizowaną. Nosi logo sił pokojowych Gwiazdy Północnej"
@@ -92,69 +92,69 @@
 	allowed = GLOB.security_vest_allowed
 
 /obj/item/clothing/suit/ship/peacekeeper/jacket
-	name = "Peacekeeper jacket"
+	name = "kurtka sił pokojowych"
 	icon_state = "peacekeeper_jacket"
 	item_state = "peacekeeper_jacket"
-	desc = "A comfortable grey leather jacket. Despite its heavy armour, it's still extremely comfortable to wear."
+	desc = "Wygodna szara skórzana kurtka. Mimo ciężkiego opancerzenia nosi się ją niezwykle wygodnie."
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	armor = list("melee" = 30, "bullet" = 60, "laser" = 15, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 90, "stamina" = 40, "bleed" = 50)
 
 /obj/item/clothing/suit/ship/peacekeeper/detective
-	name = "DET jacket"
-	desc = "A smart blue jacket, identifying the wearer as a forensics expert."
+	name = "kurtka DET"
+	desc = "Elegancka niebieska kurtka, która oznacza noszącego jako eksperta kryminalistyki."
 	icon_state = "det"
 	item_state = "det"
 	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 50, "bleed" = 50)
 	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/suit/ship/peacekeeper/marine
-	name = "NT-4 Marine vest"
+	name = "kamizelka piechoty morskiej NT-4"
 	icon_state = "marine"
 	item_state = "marine"
-	desc = "A bulky vest worn by the colonial peacekeepers. Its nanocarbon mesh fabrics are sure to stop almost any projectile."
+	desc = "Masywna kamizelka noszona przez kolonialne siły pokojowe. Tkanina z siatki nanowęglowej na pewno zatrzyma prawie każdy pocisk."
 	armor = list("melee" = 30, "bullet" = 45, "laser" = 10, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 60, "bleed" = 50)
 
 /obj/item/clothing/suit/ship/officer
-	name = "Officer's dress jacket"
-	desc = "A rather heavy jacket of a reasonable quality. It's not the most comfortable thing you could wear, but it's remained part of an officer's uniform for quite some time."
+	name = "kurtka galowa oficera"
+	desc = "Dość ciężka kurtka przyzwoitej jakości. Nie jest najwygodniejszą rzeczą, jaką możesz założyć, ale od dawna należy do munduru oficera."
 	icon_state = "officer_jacket"
 
 /obj/item/clothing/suit/ship/engineer
-	name = "Engineering webbing"
-	desc = "A basic storage vest which allows you to store a few small tools"
+	name = "oporządzenie inżynieryjne"
+	desc = "Prosta kamizelka z kieszeniami na kilka małych narzędzi."
 	icon_state = "engineer_vest"
 	allowed = list(/obj/item/wrench, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver, /obj/item/extinguisher, /obj/item/crowbar, /obj/item/analyzer, /obj/item/multitool, /obj/item/modular_computer/tablet)
 
 /obj/item/clothing/suit/ship/kiryujacket
-	name = "Kiryu jacket"
-	desc = "A jacket for a detective that wishes to look more to the mafia side, just by looking at it you can smell the cigars that have been smoked with it."
+	name = "kurtka Kiryu"
+	desc = "Kurtka dla detektywa, który chce wyglądać bardziej mafijnie. Już patrząc na nią, czujesz cygara, które w niej wypalono."
 	icon_state = "kiryujacket"
 	item_state = "kiryujacket"
 
 /obj/item/clothing/suit/ship/engineer
-	name = "Engineering webbing"
-	desc = "A basic storage vest which allows you to store a few small tools"
+	name = "oporządzenie inżynieryjne"
+	desc = "Prosta kamizelka z kieszeniami na kilka małych narzędzi."
 	icon_state = "engineer_vest"
 	allowed = list(/obj/item/wrench, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/screwdriver, /obj/item/extinguisher, /obj/item/crowbar, /obj/item/analyzer, /obj/item/multitool, /obj/item/modular_computer/tablet)
 
 /obj/item/clothing/head/ship
-	name = "placeholder"
+	name = "zastępczy"
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "beret"
 	worn_icon_state = null
 
 /obj/item/clothing/head/soft/assistant_soft
-	name = "Utility cap"
-	desc = "A rough and uncomfortable cap worn by the unwashed masses of Nanotrasen's naval forces."
+	name = "czapka robocza"
+	desc = "Szorstka i niewygodna czapka noszona przez niedomyte masy marynarki Nanotrasen."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "assistantsoft"
 	worn_icon_state = "assistant"
 
 /obj/item/clothing/head/ship/marine
-	name = "Nt-4 Marine helmet"
-	desc = "A large helmet made out of damage resistant materials."
+	name = "hełm piechoty morskiej NT-4"
+	desc = "Duży hełm z materiałów odpornych na uszkodzenia."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "marine"
@@ -163,61 +163,61 @@
 
 /obj/item/clothing/head/beret/ship
 	name = "beret"
-	desc = "A beret, a mime's favorite headwear."
+	desc = "Beret, ulubione nakrycie głowy mima."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "beret"
 	worn_icon_state = null
 
 /obj/item/clothing/head/beret/ship/captain
-	name = "captain's beret"
-	desc = "An extremely comfortable cotton beret. It is emblazened with Nanotrasen's insignia and is only worn by those who have proven themselves."
+	name = "beret kapitana"
+	desc = "Niezwykle wygodny bawełniany beret. Zdobi go insygnium Nanotrasen i noszą go tylko ci, którzy się wykazali."
 	icon_state = "captain"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/beret/ship/xo
-	name = "XO's beret"
-	desc = "A very comfortable beret worn by a ship's second in command. If you're seeing this, you should probably salute"
+	name = "beret Starszego Oficera"
+	desc = "Bardzo wygodny beret noszony przez zastępcę dowódcy okrętu. Jeśli go widzisz, chyba wypada zasalutować."
 	icon_state = "xo"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/beret/ship/flight_leader
-	name = "Flight Leader's beret"
-	desc = "A sturdy beret worn by air group commanders, this stunning beret is designed to make flight leaders feel confident in their leadership."
+	name = "beret dowódcy klucza"
+	desc = "Solidny beret noszony przez dowódców grup lotniczych. Ten olśniewający beret ma sprawić, że dowódcy kluczy pewnie czują się w swojej roli."
 	icon_state = "xo"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/beret/ship/engineer
-	name = "engineer's beret"
-	desc = "In parts a fashion statement and a hard hat, this beret has been specially reinforced to protect its wearer against workplace accidents."
+	name = "beret inżyniera"
+	desc = "Po części modny dodatek, po części kask. Ten beret jest specjalnie wzmocniony, by chronić noszącego przed wypadkami przy pracy."
 	icon_state = "engineer"
 	armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 5, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/radiation //CREDIT TO GOON FOR THE SPRITE!
-	name = "hazmat hood"
-	desc = "A lead lined hood which is guaranteed to keep you safe from harmful nuclear emissions. Recommended by 9/10 nuclear engineers."
+	name = "kaptur ochronny"
+	desc = "Kaptur wyłożony ołowiem, który gwarantuje ochronę przed szkodliwym promieniowaniem jądrowym. Polecany przez 9 na 10 inżynierów jądrowych."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 
 /obj/item/clothing/suit/radiation //CREDIT TO GOON FOR THE SPRITE!
-	name = "hazmat suit"
+	name = "kombinezon ochronny"
 	icon = 'nsv13/icons/obj/clothing/suits.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 
 	//Hardsuits
 /obj/item/clothing/head/helmet/space/hardsuit/pilot
-	name = "fighter pilot helmet"
+	name = "hełm pilota myśliwca"
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit0-pilot"
 	item_state = "hardsuit0-pilot"
 	hardsuit_type = "pilot"
-	desc = "A lightweight space-helmet designed to protect fighter pilots in combat situations."
+	desc = "Lekki hełm kosmiczny chroniący pilotów myśliwców w walce."
 	armor = list("melee" = 20, "bullet" = 12, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 75, "bleed" = 70)
 
 /obj/item/clothing/suit/space/hardsuit/pilot
-	name = "fighter pilot flightsuit"
-	desc = "A space-proof flightsuit worn by fighter pilots in the Nanotrasen navy. It has been specially reinforced to protect its wearer against most threats."
+	name = "kombinezon lotniczy pilota myśliwca"
+	desc = "Szczelny kombinezon lotniczy noszony przez pilotów myśliwców marynarki Nanotrasen. Jest specjalnie wzmocniony, by chronić noszącego przed większością zagrożeń."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "pilot"
@@ -227,35 +227,35 @@
 	armor = list("melee" = 20, "bullet" = 12, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 90, "acid" = 75, "bleed" = 70)
 
 /obj/item/clothing/under/ship/pilot
-	name = "Pilot's combat jumpsuit"
-	desc = "A lightweight jumpsuit with harness points and carabiners which is designed to be worn with a pilot's flightsuit."
+	name = "bojowy kombinezon pilota"
+	desc = "Lekki kombinezon z punktami mocowania uprzęży i karabińczykami, przeznaczony do noszenia z kombinezonem lotniczym pilota."
 	icon_state = "pilot"
 	worn_icon_state = "pilot"
 	item_state = "bl_suit"
 
 /obj/item/clothing/under/ship/pilot/transport
-	name = "Pilot's transport jumpsuit"
-	desc = "A comfortable lightweight jumpsuit for non-combat positions."
+	name = "transportowy kombinezon pilota"
+	desc = "Wygodny, lekki kombinezon na niebojowe stanowiska."
 	icon_state = "transport_pilot"
 	worn_icon_state = "transport_pilot"
 	item_state = "transport_pilot"
 
 /obj/item/clothing/head/beret/ship/pilot
-	name = "pilot's beret"
-	desc = "In parts a fashion statement and a hard hat, this beret has been specially reinforced to protect its wearer against workplace accidents."
+	name = "beret pilota"
+	desc = "Po części modny dodatek, po części kask. Ten beret jest specjalnie wzmocniony, by chronić noszącego przed wypadkami przy pracy."
 	icon_state = "pilot"
 	armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 5, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/head/ship/rising_sun
-	name = "headband of the rising sun"
+	name = "opaska wschodzącego słońca"
 	desc = "ŚMIERĆ PRZED HAŃBĄ! BANZAAAAAI!"
 	icon_state = "sun"
 	item_state = "sun"
 	dynamic_hair_suffix = ""
 
 /obj/item/clothing/accessory/bomber_jacket_accessory
-	name = "thin bomber jacket"
-	desc = "A cheap, wafer thin replica of a bomber jacket, this would fit on top of most things."
+	name = "cienka kurtka bomberka"
+	desc = "Tania, cienka jak opłatek replika bomberki. Zmieści się na większości ubrań."
 	icon = 'nsv13/icons/obj/clothing/accessories.dmi'
 	icon_state = "bomberthin"
 	worn_icon_state = "bomberthin"
@@ -263,8 +263,8 @@
 	above_suit = TRUE
 
 /obj/item/clothing/head/helmet/transport_pilot
-	name = "Transport Pilot's Helmet"
-	desc = "A large helmet made for protecting the head and ears."
+	name = "hełm pilota transportowego"
+	desc = "Duży hełm chroniący głowę i uszy."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "transport_pilot"
@@ -274,21 +274,21 @@
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 10,"energy" = 5, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "bleed" = 50)
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/peacekeeper //Ironic type path. We're inheriting the "dual mode" behaviour from the syndie hardsuit.
-	name = "SG-1 Mjolnir Helmet"
+	name = "hełm SG-1 Mjolnir"
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit1-peacekeeper_space"
 	item_state = "peacekeeper_space"
 	hardsuit_type = "peacekeeper_space"
-	desc = "A hardsuit helmet fitted with highly experimental magnetic interlocks, allowing it to create a vacuum seal around the user, permitting usage in a hard vacuum. It is currently in EVA mode."
+	desc = "Hełm hardsuitu z wysoce eksperymentalnymi blokadami magnetycznymi, które tworzą wokół użytkownika szczelne uszczelnienie, pozwalając na pracę w próżni. Jest w trybie EVA."
 	alt_desc = "Hełm skafandra wyposażony w wysoce eksperymentalne blokady magnetyczne, które tworzą próżniowe uszczelnienie wokół użytkownika, pozwalając używać go w próżni. Jest obecnie w trybie IVA."
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 15,"energy" = 30, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "stamina" = 50, "bleed" = 70)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT //we want to see the mask
 
 /obj/item/clothing/suit/space/hardsuit/syndi/peacekeeper
-	name = "SG-1 Mjolnir Armour"
-	desc = "An extremely bulky suit of armour fitted with highly experimental magnetic interlocks, allowing it to create a vacuum seal around the user, permitting usage in a hard vacuum. It is currently in EVA mode."
+	name = "pancerz SG-1 Mjolnir"
+	desc = "Niezwykle masywny pancerz z wysoce eksperymentalnymi blokadami magnetycznymi, które tworzą wokół użytkownika szczelne uszczelnienie, pozwalając na pracę w próżni. Jest w trybie EVA."
 	alt_desc = "Niezwykle masywny pancerz wyposażony w wysoce eksperymentalne blokady magnetyczne, które tworzą próżniowe uszczelnienie wokół użytkownika, pozwalając używać go w próżni. Jest obecnie w trybie IVA."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
@@ -346,8 +346,8 @@
 	storage_type = /obj/item/tank/internals/oxygen
 
 /obj/item/clothing/suit/space/syndicate/odst
-	name = "drop trooper space suit"
-	desc = "A bulky and somewhat primitive space suit with armour plates bolted on. Despite its primitive and jury rigged nature, these suits are worn by Syndicate shock troopers on CQC boarding operations."
+	name = "skafander desantowca"
+	desc = "Masywny i dość prymitywny skafander z przykręconymi płytami pancerza. Mimo prymitywnej, prowizorycznej konstrukcji noszą je oddziały szturmowe Syndykatu podczas abordaży w walce wręcz."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "syndicate-space"
@@ -359,8 +359,8 @@
 	strip_delay = 12
 
 /obj/item/clothing/head/helmet/space/syndicate/odst
-	name = "drop trooper space suit"
-	desc = "An ominous space helmet littered with blood red decals and motifs. Wearers of helmets like this should not be taken lightly."
+	name = "hełm desantowca"
+	desc = "Złowieszczy hełm kosmiczny pokryty krwistoczerwonymi naklejkami i motywami. Noszących takie hełmy nie wolno lekceważyć."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "syndicate-space"
@@ -373,8 +373,8 @@
 	install_camera(faction = "Syndicate")
 
 /obj/item/storage/belt/utility/syndicate
-	name = "syndicate utility belt"
-	desc = "A large, black belt which facilitates tool storage."
+	name = "pas na narzędzia Syndykatu"
+	desc = "Duży czarny pas ułatwiający noszenie narzędzi."
 	icon_state = "assaultbelt"
 	item_state = "security"
 
@@ -392,31 +392,31 @@
 	new /obj/item/multitool(src)
 
 /obj/item/clothing/shoes/ship
-	name = "Placeholder"
+	name = "zastępczy"
 	icon = 'nsv13/icons/obj/clothing/shoes.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/feet.dmi'
 
 /obj/item/clothing/shoes/ship/kiryushoes
-	name = "Kiryu shoes"
-	desc = "A pair of shoes for the detectives that want to look like mafia, there is some sticky substance on the sole that has formed from various crime scenes."
+	name = "buty Kiryu"
+	desc = "Para butów dla detektywów, którzy chcą wyglądać jak mafia. Na podeszwie zebrała się lepka substancja z różnych miejsc zbrodni."
 	icon_state = "kiryushoes"
 	item_state = "kiryushoes"
 
 /obj/item/clothing/shoes/clown_shoes/delinquent
-	name = "Delinquent's shoes"
+	name = "buty chuligana"
 	icon = 'nsv13/icons/obj/clothing/shoes.dmi'
 	icon_state = "clown_shoes"
 	worn_icon = 'nsv13/icons/mob/feet.dmi'
-	desc = "A set of pristine white sneakers. Good grief."
+	desc = "Para nieskazitelnie białych trampek. Yare yare daze."
 
 /obj/item/clothing/suit/ship/delinquent
-	name = "Delinquent's jacket"
-	desc = "A modified and probably stolen Nanotrasen academy jacket, adorned with countless badges and references. Good grief."
+	name = "kurtka chuligana"
+	desc = "Przerobiona i pewnie skradziona kurtka akademii Nanotrasen, ozdobiona niezliczonymi naszywkami i nawiązaniami. Yare yare daze."
 	icon_state = "clown_suit"
 	actions_types = list(/datum/action/item_action/menacing_pose)
 
 /datum/action/item_action/menacing_pose
-	name = "Strike a menacing pose"
+	name = "Przyjmij groźną pozę"
 	button_icon_state = "menacing"
 	icon_icon = 'nsv13/icons/mob/actions/actions.dmi'
 	var/cooldown = FALSE
@@ -453,45 +453,45 @@
 	AddComponent(/datum/component/slippery, 7 SECONDS, NO_SLIP_WHEN_WALKING)
 
 /obj/item/clothing/under/ship/delinquent
-	name = "Delinquent's uniform"
-	desc = "An extremely smart looking uniform consisting of a shirt, jumper and pants. Good grief."
+	name = "mundurek chuligana"
+	desc = "Niezwykle elegancki mundurek z koszuli, swetra i spodni. Yare yare daze."
 	icon_state = "clown_uniform"
 	worn_icon_state = "clown_uniform"
 	item_state = "bl_suit"
 
 /obj/effect/temp_visual/menacing
-	name = "Menacing..."
+	name = "Groźnie..."
 	icon = 'nsv13/icons/overmap/effects.dmi'
 	icon_state = "menacing"
 	randomdir = TRUE
 	duration = 2 SECONDS
 
 /obj/item/clothing/under/rank/munitions_tech
-	name = "camouflage fatigues"
-	desc = "A green military camouflage uniform worn by specialists."
+	name = "mundur maskujący"
+	desc = "Zielony wojskowy mundur maskujący noszony przez specjalistów."
 	icon_state = "camogreen"
 	item_state = "g_suit"
 	worn_icon_state = "camogreen"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/master_at_arms
-	name = "master at arms' jumpsuit"
-	desc = "It's a jumpsuit worn by those with the experience to be \"Master At Arms\". It provides minor fire protection."
+	name = "kombinezon Mistrza Broni"
+	desc = "Kombinezon noszony przez tych, którzy mają doświadczenie godne Mistrza Broni. Zapewnia niewielką ochronę przed ogniem."
 	icon_state = "tactifool" //PLACEHOLDER
 	item_state = "bl_suit"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 0, "bleed" = 10)
 
 /obj/item/clothing/under/ship/decktech
-	name = "munitions tech overalls"
-	desc = "a pair of hard worn overalls worn by those in charge of firing the ship's guns. These wouldn't be complete without a thick layer of grease."
+	name = "ogrodniczki Technika Amunicyjnego"
+	desc = "Mocno znoszone ogrodniczki tych, którzy odpowiadają za strzelanie z dział okrętu. Nie byłyby kompletne bez grubej warstwy smaru."
 	icon_state = "deck_tech"
 	item_state = "bl_suit"
 	worn_icon_state = "deck_tech"
 	can_adjust = TRUE
 
 /obj/item/clothing/head/helmet/decktech
-	name = "Munitions Technician's Helmet"
-	desc = "A welding helmet for protecting technicians in a hazardous environment."
+	name = "hełm Technika Amunicyjnego"
+	desc = "Przyłbica spawalnicza chroniąca techników w niebezpiecznym otoczeniu."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "decktech_helmet"
@@ -508,26 +508,26 @@
 	weldingvisortoggle(user)
 
 /obj/item/clothing/suit/ship/munitions_jacket
-	name = "Munitions technician jacket"
-	desc = "The standard uniform of a Munitions Technician. Contains high vis orange, while remaining black."
+	name = "kurtka Technika Amunicyjnego"
+	desc = "Standardowy mundur Technika Amunicyjnego. Odblaskowy pomarańcz, a jednak wciąż czerń."
 	icon_state = "munitions_jacket"
 	item_state = "munitions_jacket"
 
 /obj/item/clothing/suit/ship/maa_jacket
-	name = "Master-At-Arm's formal jacket"
-	desc = "The formal uniform of the Master-At-Arms. Vibrant high vis orange, sleek stylish black."
+	name = "kurtka galowa Mistrza Broni"
+	desc = "Galowy mundur Mistrza Broni. Żywy odblaskowy pomarańcz i elegancka czerń."
 	icon_state = "maa_jacket"
 	item_state = "maa_jacket"
 
 /obj/item/clothing/head/ship/maa_hat
-	name = "Master-At-Arm's hat"
-	desc = "The Master-At-Arm's authorative hat."
+	name = "czapka Mistrza Broni"
+	desc = "Władcza czapka Mistrza Broni."
 	icon_state = "maa_hat"
 	item_state = "maa_hat"
 
 /obj/item/clothing/head/helmet/space/hardsuit/master_at_arms
-	name = "Master-At-Arm's Bombsuit Helmet"
-	desc = "Use in case of bomb."
+	name = "hełm saperski Mistrza Broni"
+	desc = "Użyj w razie bomby."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "hardsuit0-maa"
@@ -536,8 +536,8 @@
 	min_cold_protection_temperature = EMERGENCY_HELM_MIN_TEMP_PROTECT
 
 /obj/item/clothing/suit/space/hardsuit/master_at_arms
-	name = "Master-At-Arm's Bombsuit"
-	desc = "An advanced suit designed for safety when handling explosives."
+	name = "kombinezon saperski Mistrza Broni"
+	desc = "Zaawansowany kombinezon zapewniający bezpieczeństwo przy pracy z materiałami wybuchowymi."
 	icon = 'nsv13/icons/obj/clothing/suits.dmi'
 	worn_icon = 'nsv13/icons/mob/suit.dmi'
 	icon_state = "maa_bombsuit"
@@ -551,8 +551,8 @@
 
 
 /obj/item/clothing/under/ship/syndicate_tech
-	name = "Syndicate technician jumpsuit"
-	desc = "A jumpsuit worn by Syndicate technicians, it's been armour plated to protect the wearer in combat scenarios."
+	name = "kombinezon technika Syndykatu"
+	desc = "Kombinezon noszony przez techników Syndykatu, opancerzony, by chronić noszącego w walce."
 	icon_state = "syndicate_tech"
 	worn_icon_state = "syndicate_tech"
 	item_state = "bl_suit"
@@ -560,17 +560,17 @@
 	can_adjust = TRUE
 
 /obj/item/clothing/suit/ship/syndicate_crew
-	name = "Syndicate jacket"
-	desc = "A comfortable, but padded jacket worn by elite officers in the Syndicate navy. Where there would likely be medals on its Nanotrasen counterpart, it instead has space for marking kills."
+	name = "kurtka Syndykatu"
+	desc = "Wygodna, ale wyściełana kurtka elitarnych oficerów floty Syndykatu. Tam, gdzie jej odpowiednik z Nanotrasen ma medale, ta ma miejsce na zaznaczanie zabitych."
 	icon_state = "syndicate_officer"
 	worn_icon_state = "syndicate_officer"
 
 /obj/item/clothing/under/ship/pilot/syndicate
-	name = "Syndicate combat jumpsuit"
-	desc = "A set of camoflauged fatigues which make up part of a Syndicate uniform."
+	name = "bojowy kombinezon Syndykatu"
+	desc = "Komplet mundurów maskujących, należący do umundurowania Syndykatu."
 
 /obj/item/clothing/neck/cloak/ship
-	name = "Placeholder"
+	name = "zastępczy"
 	icon = 'nsv13/icons/obj/clothing/neck.dmi' //Placeholder subtype for our own iconsets
 	worn_icon = 'nsv13/icons/mob/neck.dmi'
 	icon_state = "nothing" //References uniforms.dmi
@@ -581,87 +581,87 @@
 
 
 /obj/item/clothing/head/ship/fleet_admiral
-	name = "Admiral's hat"
-	desc = "An imposing cap worn by those who are extremely high-up in Nanotrasen's naval corps."
+	name = "czapka admirała"
+	desc = "Imponująca czapka noszona przez najwyższych rangą w marynarce Nanotrasen."
 	icon_state = "fleet_admiral"
 	worn_icon_state = "fleet_admiral"
 
 /obj/item/clothing/head/beret/ship/admiral
-	name = "Admiral's beret"
-	desc = "A sturdy beret worn by those holding an admiral rank."
+	name = "beret admirała"
+	desc = "Solidny beret noszony przez tych, którzy mają stopień admirała."
 	icon_state = "beret_admiral"
 	item_state = "beret_admiral"
 	armor = list("melee" = 15, "bullet" = 5, "laser" = 0, "energy" = 5, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 5)
 
 /obj/item/clothing/neck/cloak/ship/admiral
-	name = "Grand admiral's cloak"
-	desc = "A flowing cloak worn by fleet admirals. These cloaks are worn by the absolute elite of Nanotrasen's naval corps. Encountering someone with such a rank is both an extreme priviledge, and a bad omen."
+	name = "peleryna wielkiego admirała"
+	desc = "Powłóczysta peleryna admirałów floty. Noszą ją absolutne elity marynarki Nanotrasen. Spotkanie kogoś o takim stopniu to jednocześnie ogromny zaszczyt i zły omen."
 	icon_state = "fleet_admiral"
 	worn_icon_state = "fleet_admiral"
 
 /obj/item/clothing/suit/ship/officer/admiral
-	name = "Admiral's dress jacket"
-	desc = "A hefty and high quality jacket worn by those who bear any admiral rank. It is adorned with countless medals and stamps."
+	name = "kurtka galowa admirała"
+	desc = "Ciężka, wysokiej jakości kurtka noszona przez wszystkich w stopniu admirała. Zdobią ją niezliczone medale i pieczęcie."
 	icon_state = "jacket_admiral"
 
 /obj/item/clothing/suit/ship/officer/admiral/fleet
-	name = "Fleet admiral's dress jacket"
+	name = "kurtka galowa admirała floty"
 	icon_state = "jacket_fleet_admiral"
 
 /obj/item/clothing/suit/ship/officer/admiral/grand
-	name = "Grand admiral's dress jacket"
+	name = "kurtka galowa wielkiego admirała"
 	icon_state = "jacket_grand_admiral"
 
 /obj/item/clothing/under/ship/officer/admiral
-	name = "Admiral's uniform"
+	name = "mundur admirała"
 	icon_state = "admiral"
 	worn_icon_state = "admiral"
 
 /obj/item/clothing/under/ship/officer/admiral/fleet
-	name = "Fleet admiral's uniform"
+	name = "mundur admirała floty"
 	icon_state = "fleet_admiral"
 	worn_icon_state = "fleet_admiral"
 
 /obj/item/clothing/under/ship/officer/admiral/grand
-	name = "Grand admiral's uniform"
+	name = "mundur wielkiego admirała"
 	icon_state = "grand_admiral"
 	worn_icon_state = "grand_admiral"
 
 //Solgov uniforms.
 /obj/item/clothing/under/ship/solgov
-	name = "Solgov cadet uniform"
-	desc = "A comfortable uniform worn by officers serving under SolGov's exploratory corps."
+	name = "mundur kadeta SolGov"
+	desc = "Wygodny mundur oficerów korpusu badawczego SolGov."
 	icon_state = "solgov_cadet"
 	worn_icon_state = "solgov_cadet"
 
 /obj/item/clothing/under/ship/solgov/command
-	name = "Solgov command uniform"
+	name = "mundur dowództwa SolGov"
 	icon_state = "solgov_command"
 	worn_icon_state = "solgov_command"
 
 /obj/item/clothing/under/ship/solgov/engsec
-	name = "Solgov engsec uniform"
+	name = "mundur inżynierii i ochrony SolGov"
 	icon_state = "solgov_engsec"
 	worn_icon_state = "solgov_engsec"
 
 /obj/item/clothing/under/ship/solgov/medsci
-	name = "Solgov medsci uniform"
+	name = "mundur medycyny i nauki SolGov"
 	icon_state = "solgov_medsci"
 	worn_icon_state = "solgov_medsci"
 
 /obj/item/clothing/under/ship/solgov/pilot
-	name = "Solgov pilot uniform"
+	name = "mundur pilota SolGov"
 	icon_state = "solgov_pilot"
 	worn_icon_state = "solgov_pilot"
 
 /obj/item/clothing/under/ship/solgov/admiral
-	name = "Solgov admiral uniform"
+	name = "mundur admirała SolGov"
 	icon_state = "solgov_admiral"
 	worn_icon_state = "solgov_admiral"
 
 /obj/item/clothing/accessory/solgov_jacket
-	name = "uniform jacket"
-	desc = "An extremely comfortable jacket with some storage pockets for tools."
+	name = "kurtka mundurowa"
+	desc = "Niezwykle wygodna kurtka z kilkoma kieszeniami na narzędzia."
 	icon = 'nsv13/icons/obj/clothing/accessories.dmi'
 //	worn_icon = 'nsv13/icons/mob/accessories.dmi' For some reason this doesn't just work :(
 	icon_state = "trekjacket"
@@ -671,43 +671,43 @@
 	var/toggled = TRUE //Starts by displaying your departmental colours
 
 /obj/item/clothing/accessory/solgov_jacket/command
-	name = "uniform jacket"
-	desc = "An extremely comfortable jacket with some storage pockets for tools."
+	name = "kurtka mundurowa"
+	desc = "Niezwykle wygodna kurtka z kilkoma kieszeniami na narzędzia."
 	icon_state = "trekjacket_command"
 	worn_icon_state = "trekjacket_command"
 	item_state = "trekjacket_command"
 
 /obj/item/clothing/accessory/solgov_jacket/engsec
-	name = "uniform jacket"
-	desc = "An extremely comfortable jacket with some storage pockets for tools."
+	name = "kurtka mundurowa"
+	desc = "Niezwykle wygodna kurtka z kilkoma kieszeniami na narzędzia."
 	icon_state = "trekjacket_engsec"
 	worn_icon_state = "trekjacket_engsec"
 	item_state = "trekjacket_engsec"
 
 /obj/item/clothing/accessory/solgov_jacket/medsci
-	name = "uniform jacket"
-	desc = "An extremely comfortable jacket with some storage pockets for tools"
+	name = "kurtka mundurowa"
+	desc = "Niezwykle wygodna kurtka z kilkoma kieszeniami na narzędzia."
 	icon_state = "trekjacket_medsci"
 	worn_icon_state = "trekjacket_medsci"
 	item_state = "trekjacket_medsci"
 
 /obj/item/clothing/accessory/solgov_jacket/formal
-	name = "XO's dress jacket"
-	desc = "An extremely comfortable jacket laced with gold silk, such a piece is usually reserved for diplomatic occasions."
+	name = "kurtka galowa Starszego Oficera"
+	desc = "Niezwykle wygodna kurtka przetykana złotym jedwabiem. Taki strój zwykle zakłada się na okazje dyplomatyczne."
 	icon_state = "trekjacket_captain"
 	worn_icon_state = "trekjacket_captain"
 	item_state = "trekjacket_captain"
 
 /obj/item/clothing/accessory/solgov_jacket/formal/captain
-	name = "captain's dress jacket"
-	desc = "An extremely comfortable jacket laced with gold silk. Reserved for starship captains and above, it's emblazened with Solgov's crest and signifies grace."
+	name = "kurtka galowa kapitana"
+	desc = "Niezwykle wygodna kurtka przetykana złotym jedwabiem. Zarezerwowana dla kapitanów statków kosmicznych i wyższych rangą, zdobi ją herb SolGov i oznacza dostojeństwo."
 	icon_state = "trekjacket_formal"
 	worn_icon_state = "trekjacket_formal"
 	item_state = "trekjacket_formal"
 
 /datum/action/item_action/nsv13_jacket_swap
-	name = "Toggle jacket style"
-	desc = "Display or hide your departmental colours for your suit jacket by reversing its shoulder pads."
+	name = "Zmień styl kurtki"
+	desc = "Pokaż albo ukryj barwy działu na kurtce, odwracając jej naramienniki."
 	button_icon_state = "jacketswap"
 	icon_icon = 'nsv13/icons/mob/actions/actions_spells.dmi'
 
@@ -731,8 +731,8 @@
 		toggled = TRUE
 
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate/admiral
-	name = "syndicate admiral's vest"
-	desc = "A sinister looking vest of advanced armor worn over a black and red fireproof jacket. The gold collar and shoulders denote that this belongs to a high ranking syndicate officer. This one has been modified to be space proof, and highly resistant to Nanotrasen's laser based weapons."
+	name = "kamizelka admirała Syndykatu"
+	desc = "Złowrogo wyglądająca kamizelka z zaawansowanego pancerza, noszona na czarno-czerwonej ognioodpornej kurtce. Złoty kołnierz i naramienniki oznaczają, że należy do wysokiego rangą oficera Syndykatu. Ta jest przerobiona tak, by była szczelna w kosmosie i bardzo odporna na laserową broń Nanotrasen."
 	icon_state = "syndievest_space"
 	worn_icon = 'icons/mob/suit.dmi'
 	armor = list("melee" = 60, "bullet" = 70, "laser" = 40, "energy" = 80, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100, "bleed" = 60)
@@ -743,13 +743,13 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
 
 /obj/item/clothing/head/helmet/space/skinsuit
-	name = "skinsuit helmet"
+	name = "hełm skafandra obcisłego"
 	icon = 'icons/obj/clothing/hats.dmi'
 	w_class = WEIGHT_CLASS_SMALL //Don't question it. We want it to fit back in the box
 	worn_icon = 'icons/mob/head.dmi'
 	icon_state = "skinsuit_helmet"
 	item_state = "skinsuit_helmet"
-	desc = "An airtight helmet meant to protect the wearer during emergency situations."
+	desc = "Szczelny hełm chroniący noszącego w sytuacjach awaryjnych."
 	permeability_coefficient = 0.01
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 20, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 50)
 	min_cold_protection_temperature = EMERGENCY_HELM_MIN_TEMP_PROTECT
@@ -761,8 +761,8 @@
 	max_heat_protection_temperature = 100
 
 /obj/item/clothing/suit/space/skinsuit
-	name = "skinsuit"
-	desc = "A slim, compression-based spacesuit meant to protect the user during emergency situations. It's only a little warmer than your uniform."
+	name = "skafander obcisły"
+	desc = "Smukły skafander uciskowy chroniący użytkownika w sytuacjach awaryjnych. Jest tylko trochę cieplejszy niż twój mundur."
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/suit.dmi'
 	icon_state = "skinsuit_rolled"
@@ -809,16 +809,16 @@
 	rolled_up = !rolled_up
 
 /obj/item/clothing/head/maidheadband/syndicate
-	name = "tactical maid headband"
-	desc = "Tacticute."
+	name = "taktyczna opaska pokojówki"
+	desc = "Taktyuroczo."
 	icon = 'nsv13/icons/obj/clothing/hats.dmi'
 	worn_icon = 'nsv13/icons/mob/head.dmi'
 	icon_state = "syndieheadband"
 	item_state = "syndieheadband"
 
 /obj/item/clothing/under/syndicate/maid
-	name = "tactical maid outfit"
-	desc = "A 'tactical' turtleneck fashioned to the likeness of a maid outfit. Why the Syndicate has these, you'll never know."
+	name = "taktyczny strój pokojówki"
+	desc = "„Taktyczny” golf uszyty na podobieństwo stroju pokojówki. Po co Syndykatowi coś takiego, nigdy się nie dowiesz."
 	icon = 'nsv13/icons/obj/clothing/uniforms.dmi'
 	worn_icon = 'nsv13/icons/mob/uniform.dmi'
 	icon_state = "syndimaid"
@@ -831,8 +831,8 @@
 	attach_accessory(A)
 
 /obj/item/clothing/gloves/combat/maid
-	name = "combat maid sleeves"
-	desc = "These 'tactical' gloves and sleeves are fireproof and electrically insulated. Warm to boot."
+	name = "bojowe rękawy pokojówki"
+	desc = "Te „taktyczne” rękawiczki z rękawami są ognioodporne i izolują elektrycznie. Do tego grzeją."
 	icon = 'nsv13/icons/obj/clothing/gloves.dmi'
 	worn_icon = 'nsv13/icons/mob/hands.dmi'
 	icon_state = "syndimaid_arms"
@@ -840,8 +840,8 @@
 	item_state = "syndimaid_arms"
 
 /obj/item/clothing/accessory/maidapron/syndicate
-	name = "syndicate maid apron"
-	desc = "Practical? No. Tactical? Also no. Cute? Most definitely yes."
+	name = "fartuch pokojówki Syndykatu"
+	desc = "Praktyczny? Nie. Taktyczny? Też nie. Uroczy? Zdecydowanie tak."
 	icon = 'nsv13/icons/mob/accessories.dmi'
 	icon_state = "maidapronsynd"
 	item_state = "maidapronsynd"

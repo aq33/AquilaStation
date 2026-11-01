@@ -1,6 +1,6 @@
 /mob/living/simple_animal/kalo //basically an IC garbage collector for blood tracks and snacks
 	name = "Kalo"
-	desc = "The Janitor's tiny pet lizard." //does the job better than the janitor itself
+	desc = "Malutka jaszczurka woźnego." //does the job better than the janitor itself
 	icon_state = "lizard"
 	icon_living = "lizard"
 	icon_dead = "lizard_dead"
@@ -120,4 +120,4 @@
 	else
 		if(prob(30))
 			//no likey that
-			INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "me", 1, "hisses!")
+			INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "me", 1, "syczy!")

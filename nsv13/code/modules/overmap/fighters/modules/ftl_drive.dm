@@ -1,6 +1,6 @@
 /obj/item/fighter_component/ftl
-	name = "class II torch drive"
-	desc = "The torch drive is a far faster and more safe alternative to traditional FTL travel methods, however it requires either a star to jump to, or a phyically placed jump beacon."
+	name = "napęd pochodniowy klasy II"
+	desc = "Napęd pochodniowy to znacznie szybsza i bezpieczniejsza alternatywa dla tradycyjnych metod podróży FTL, wymaga jednak gwiazdy jako celu skoku albo fizycznie rozmieszczonej radiolatarni skokowej."
 	icon_state = "ftl_drive"
 	slot = HARDPOINT_SLOT_FTL
 	active = FALSE
@@ -51,7 +51,7 @@
 	var/obj/structure/overmap/linked = loc
 	if(!linked)
 		to_chat(usr, "<span class='warning'>Ten napęd nie został prawidłowo zainstalowany.</span>")
-		message_admins("Fighter FTL drive tried to jump but could not find the linked overmap at [ADMIN_VERBOSEJMP(src)]")
+		message_admins("Napęd FTL myśliwca próbuje skoczyć, ale nie może znaleźć powiązanej overmapy w [ADMIN_VERBOSEJMP(src)]")
 		return FALSE
 	if(!target_system || !SSmapping.level_trait(loc.z, ZTRAIT_OVERMAP) || SSmapping.level_trait(loc.z, ZTRAIT_RESERVED))
 		to_chat(usr, "<span class='warning'>Nie można uzyskać danych pozycyjnych do skoku.</span>")
@@ -88,8 +88,8 @@
 
 
 /obj/item/fighter_component/ftl/tier2
-	name = "class III torch drive"
-	desc = "A micro jump drive with an expanded range."
+	name = "napęd pochodniowy klasy III"
+	desc = "Mikronapęd skokowy o zwiększonym zasięgu."
 	max_range = 200
 
 /obj/effect/temp_visual/overmap_ftl

@@ -11,7 +11,7 @@
  * paper and getting rid of that crashing bug
  */
 /obj/item/paper
-	name = "paper"
+	name = "kartka"
 	gender = NEUTER
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
@@ -293,7 +293,7 @@
 			return
 	var/n_name = stripped_input(usr, "Jak chcesz podpisać kartkę?", "Podpisywanie kartki", null, MAX_NAME_LEN)
 	if(((loc == usr || istype(loc, /obj/item/clipboard)) && usr.stat == CONSCIOUS))
-		name = "paper[(n_name ? text("- '[n_name]'") : null)]"
+		name = "kartka[(n_name ? text(" – „[n_name]”") : null)]"
 	add_fingerprint(usr)
 	update_static_data()
 
@@ -729,7 +729,7 @@
 	color = COLOR_OFF_WHITE
 
 /obj/item/paper/crumpled
-	name = "paper scrap"
+	name = "skrawek papieru"
 	icon_state = "scrap"
 	slot_flags = null
 	show_written_words = FALSE
@@ -742,7 +742,7 @@
 	icon_state = "scrap_bloodied"
 
 /obj/item/paper/crumpled/beernuke
-	name = "beer-stained note"
+	name = "notatka poplamiona piwem"
 
 /obj/item/paper/crumpled/beernuke/Initialize(mapload)
 	. = ..()
@@ -754,5 +754,5 @@
 	default_raw_text = "ważne info o imprezie, NIE ZAPOMNIEĆ: <b>[code]</b>"
 
 /obj/item/paper/troll
-	name = "very special note"
+	name = "bardzo wyjątkowa notatka"
 	default_raw_text = "<span style=color:'black';font-family:'Verdana';><p>░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░<br>░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░<br>░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░<br>░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░<br>░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░<br>█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█<br>█░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█<br>░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░<br>░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░<br>░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░<br>░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░<br>░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░<br>░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░<br>░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░<br>░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░</p> </span>"

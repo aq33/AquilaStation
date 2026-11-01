@@ -150,7 +150,7 @@
 			result += "<span class='greentext big'>Wielkie zwycięstwo łowców</span>"
 			result += "<B>Łowcom udało się schwytać wszystkich zbiegów, żywych lub martwych.</B>"
 		if(FUGITIVE_RESULT_HUNTER_VICTORY)
-			result += "<span class='greentext big'>[capitalize(backstory)] Victory</span>"
+			result += "<span class='greentext big'>Zwycięstwo łowców</span>"
 			result += "<B>Łowcom udało się schwytać zbiega, żywego lub martwego.</B>"
 		if(FUGITIVE_RESULT_MINOR_HUNTER)
 			result += "<span class='greentext big'>Małe zwycięstwo łowców</span>"

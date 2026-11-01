@@ -1,8 +1,8 @@
 // AQUILA - port z tgstation (code/datums/mutations/hot.dm), wzorem nasza kriokineza (code/datums/mutations/cold.dm)
 
 /datum/mutation/cindikinesis
-	name = "Cindikinesis"
-	desc = "The subject can draw heat out of the air to produce a pile of ash at will."
+	name = "Popiołokineza"
+	desc = "Pacjent potrafi na zawołanie wyciągnąć z powietrza ciepło i stworzyć kupkę popiołu."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja dłoń wydaje się ciepła.</span>"
 	instability = 10
@@ -12,7 +12,7 @@
 	action_path = /datum/action/cooldown/spell/conjure_item/ash
 
 /datum/action/cooldown/spell/conjure_item/ash
-	name = "Create Ash"
+	name = "Stwórz popiół"
 	desc = "Skupia siły pirokinetyczne, żeby stworzyć popiół. Przydatne do niczego."
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
 	button_icon_state = "ash"
@@ -24,8 +24,8 @@
 
 // Podtyp kriokinezy (tak go używają inne porty), ale z własną zdolnością
 /datum/mutation/cryokinesis/pyrokinesis
-	name = "Pyrokinesis"
-	desc = "The subject can draw positive energy from the environment to fire a bolt of hot energy at will."
+	name = "Pirokineza"
+	desc = "Pacjent potrafi czerpać z otoczenia energię i na zawołanie wystrzelić rozgrzany pocisk."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Twoja dłoń jest gorąca!</span>"
 	instability = 25
@@ -37,7 +37,7 @@
 	action_path = /datum/action/cooldown/spell/pointed/tg_projectile/pyro
 
 /datum/action/cooldown/spell/pointed/tg_projectile/pyro
-	name = "Pyrobeam"
+	name = "Promień ognia"
 	desc = "Wystrzeliwuje rozgrzany pocisk w cel."
 	icon_icon = 'aquila/icons/mutations/tg/actions.dmi'
 	button_icon_state = "firebeam"
@@ -50,7 +50,7 @@
 	projectile_type = /obj/item/projectile/temp/pyro
 
 /obj/item/projectile/temp/pyro
-	name = "hot beam"
+	name = "gorący promień"
 	icon = 'aquila/icons/mutations/tg/projectiles.dmi'
 	icon_state = "firebeam"
 	range = 9

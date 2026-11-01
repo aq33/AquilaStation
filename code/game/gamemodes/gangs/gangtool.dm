@@ -1,7 +1,7 @@
 //gangtool device
 /obj/item/device/gangtool
-	name = "suspicious device"
-	desc = "A strange device of sorts. Hard to really make out what it actually does if you don't know how to operate it."
+	name = "podejrzane urządzenie"
+	desc = "Jakieś dziwne urządzenie. Trudno powiedzieć, do czego służy, jeśli nie wiesz, jak go używać."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool"
 	item_state = "radio"
@@ -87,7 +87,7 @@
 				dat += "<br>"
 			dat += "<br>"
 
-	dat += "<a href='byond://?src=[REF(src)];choice=refresh'>Refresh</a><br>"
+	dat += "<a href='byond://?src=[REF(src)];choice=refresh'>Odśwież</a><br>"
 
 	var/datum/browser/popup = new(user, "gangtool", "Witaj w GangTool v4.0", 340, 625)
 	popup.set_content(dat)
@@ -199,7 +199,7 @@
 		return
 	recalling = FALSE
 	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
-	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
+	message_admins("[key_name_admin(user)] próbuje odwołać prom za pomocą gangtoola.", 1)
 	if(SSshuttle.cancelEvac(user))
 		gang.recalls--
 		return TRUE

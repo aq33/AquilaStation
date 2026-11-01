@@ -1,6 +1,6 @@
 /obj/item/wallframe/shuttlecraft_chair
-	name = "packaged shuttlecraft chair"
-	desc = "A box with all the parts you need to make a wall-mounted shuttlecraft chair."
+	name = "zapakowany fotel promu"
+	desc = "Pudełko ze wszystkimi częściami potrzebnymi do zrobienia naściennego fotela promu."
 	icon = 'nsv13/icons/obj/structures/shuttlecraft_seat.dmi'
 	icon_state = "install_package"
 	materials = list(/datum/material/iron = 10000)
@@ -9,8 +9,8 @@
 	pixel_shift = -10
 
 /obj/structure/chair/shuttlecraft_chair
-	name = "Shuttle Seat"
-	desc = "A wall-mounted seat often found on shuttles and dropships."
+	name = "fotel promu"
+	desc = "Naścienny fotel, często spotykany na promach i statkach desantowych."
 	icon = 'nsv13/icons/obj/structures/shuttlecraft_seat.dmi'
 	icon_state = "shuttle_seat"
 	anchored = TRUE

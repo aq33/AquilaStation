@@ -1,55 +1,55 @@
 ////CIC consoles////
 
 /obj/item/circuitboard/computer/ship/helm
-	name = "helm computer (Computer Board)"
+	name = "komputer steru (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/helm
 
 /obj/item/circuitboard/computer/ship/tactical_computer
-	name = "tactical console (Computer Board)"
+	name = "konsola taktyczna (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/tactical
 
 //Dradis
 /obj/item/circuitboard/computer/ship/dradis
-	name = "Dradis console (Computer Board)"
+	name = "konsola DRADIS (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/dradis
 
 /obj/item/circuitboard/computer/ship/dradis/mining
-	name = "mining Dradis console (Computer Board)"
+	name = "górnicza konsola DRADIS (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/dradis/mining
 
 /obj/item/circuitboard/computer/ship/dradis/cargo
-	name = "cargo Dradis computer (Computer Board)"
+	name = "komputer DRADIS ładunkowego (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/dradis/minor/cargo
 
 //FTL nav
 /obj/item/circuitboard/computer/ship/navigation
-	name = "FTL navigation console (Computer Board)"
+	name = "konsola nawigacji FTL (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/navigation
 
 //Secondary ID console
 /obj/item/circuitboard/computer/card/secondary_ship_id_console
-	name = "secondary ID console (Computer Board)"
+	name = "pomocnicza konsola identyfikatorów (płytka komputera)"
 	build_path = /obj/machinery/computer/secondary_ship_id_console
 
 /obj/item/circuitboard/computer/card/secondary_ship_id_console/syndicate
-	name = "Syndicate ID console (Computer Board)"
+	name = "konsola identyfikatorów Syndykatu (płytka komputera)"
 	build_path = /obj/machinery/computer/secondary_ship_id_console/syndicate
 
 ////Security////
 
 /obj/item/circuitboard/computer/security/syndicate
-	name = "Syndicate camera console (Computer Board)"
+	name = "konsola kamer Syndykatu (płytka komputera)"
 	build_path = /obj/machinery/computer/security/syndicate
 
 ////Science////
 
 /obj/item/circuitboard/computer/astrometrics
-	name = "Astrometrics Computer (Computer Board)"
+	name = "komputer astrometryczny (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/navigation/astrometrics
 
 ////Medical////
 /obj/item/circuitboard/machine/autoinject_printer
-	name = "Autoinjector Printer (Machine Board)"
+	name = "drukarka autoinjektorów (płytka maszyny)"
 	icon_state = "medical"
 	build_path = /obj/machinery/autoinject_printer
 	req_components = list(
@@ -59,15 +59,15 @@
 ////Munitions consoles////
 
 /obj/item/circuitboard/computer/ship/munitions_computer
-	name = "munitions control computer (Computer Board)"
+	name = "komputer kontroli amunicji (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/munitions_computer
 
 /obj/item/circuitboard/computer/ship/ordnance_computer
-	name = "ordnance monitoring console (Computer Board)"
+	name = "konsola monitorowania uzbrojenia (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/ordnance
 
 /obj/item/circuitboard/computer/ams
-	name = "AMS control console (Computer Board)"
+	name = "konsola sterowania AMS (płytka komputera)"
 	build_path = /obj/machinery/computer/ams
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -82,7 +82,7 @@
 	return ..()
 
 /obj/item/circuitboard/computer/anti_air
-	name = "anti-air turret console (Computer Board)"
+	name = "konsola wieżyczek przeciwlotniczych (płytka komputera)"
 	build_path = /obj/machinery/computer/anti_air
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -97,19 +97,19 @@
 	return ..()
 
 /obj/item/circuitboard/computer/ship/fighter_controller
-	name = "fighter control computer (Computer Board)"
+	name = "komputer kontroli myśliwców (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/fighter_controller
 
 //Mag-cat control console
 /obj/item/circuitboard/computer/ship/fighter_launcher
-	name = "mag-cat control console (Computer Board)"
+	name = "konsola sterowania katapultą elektromagnetyczną (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/fighter_launcher
 
 ////SHIP GUNS////
 
 //50 Cal. guns, currently not used
 /obj/item/circuitboard/machine/anti_air
-	name = "PDC turret (Machine Board)"
+	name = "wieżyczka przeciwlotnicza (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 20,
 		/obj/item/stack/sheet/mineral/copper = 10,
@@ -129,7 +129,7 @@
 	return ..()
 
 /obj/item/circuitboard/machine/anti_air/heavy
-	name = "RPDC (Machine Board)"
+	name = "ciężka wieżyczka przeciwlotnicza (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 40,
 		/obj/item/stack/sheet/mineral/copper = 40,
@@ -143,8 +143,8 @@
 #define PATH_FLAK  /obj/machinery/ship_weapon/pdc_mount/flak
 
 /obj/item/circuitboard/machine/pdc_mount
-	name = "PDC loading rack (Machine Board)"
-	desc = "You can use a screwdriver to switch between PDC and flak."
+	name = "stojak ładowania PDC (płytka maszyny)"
+	desc = "Śrubokrętem możesz przełączać między PDC a flakiem."
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 4,
 		/obj/item/stock_parts/capacitor = 2,
@@ -195,7 +195,7 @@
 */
 
 /obj/item/circuitboard/machine/pdc_mount/flak
-	name = "Flak Loading Rack (Machine Board)"
+	name = "stojak ładowania flaku (płytka maszyny)"
 	build_path = PATH_FLAK
 
 #undef PATH_PDC
@@ -203,7 +203,7 @@
 
 //Deck Gun
 /obj/item/circuitboard/machine/deck_turret
-	name = "deck gun turret (Machine Board)"
+	name = "wieżyczka działa pokładowego (płytka maszyny)"
 	req_components = list()
 	build_path = /obj/machinery/ship_weapon/deck_turret
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -222,7 +222,7 @@
 	return ..()
 
 /obj/item/circuitboard/computer/deckgun
-	name = "deck gun loading computer (Machine Board)"
+	name = "konsola sterowania działem pokładowym (płytka komputera)"
 	build_path = /obj/machinery/computer/deckgun
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -230,7 +230,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/deck_gun/core
-	name = "deck gun core (Machine Board)"
+	name = "rdzeń działa pokładowego (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 10,
 		/obj/item/stack/cable_coil = 5)
@@ -238,7 +238,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/item/circuitboard/machine/deck_gun/powder
-	name = "deck gun powder gate (Machine Board)"
+	name = "bramka prochu działa pokładowego (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/iron = 20,
 		/obj/item/stack/sheet/mineral/copper = 20,
@@ -247,7 +247,7 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
 /obj/item/circuitboard/machine/deck_gun/payload
-	name = "deck gun payload gate (Machine Board)"
+	name = "bramka ładunku działa pokładowego (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/iron = 20,
 		/obj/item/stack/sheet/mineral/titanium = 5,
@@ -261,7 +261,7 @@
 // Inertial dampeners
 
 /obj/item/circuitboard/machine/inertial_dampener
-	name = "inertial dampener (Machine Board)"
+	name = "tłumik bezwładności (płytka maszyny)"
 	req_components = list(
 		/obj/item/stock_parts/scanning_module = 2,
 		/obj/item/stack/ore/bluespace_crystal = 2,
@@ -272,7 +272,7 @@
 
 //Upgrades
 /obj/item/circuitboard/machine/deck_gun/autoelevator
-	name = "deck gun auto-elevator (Machine Board)"
+	name = "automatyczny podnośnik działa pokładowego (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 40,
 		/obj/item/stack/sheet/mineral/copper = 20,
@@ -281,7 +281,7 @@
 	build_path = /obj/machinery/deck_turret/autoelevator
 
 /obj/item/circuitboard/machine/deck_gun/autorepair
-	name = "deck gun auto-repair module (Machine Board)"
+	name = "moduł autonaprawy działa pokładowego (płytka maszyny)"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 40,
 		/obj/item/stack/sheet/mineral/copper = 20,
@@ -292,30 +292,30 @@
 
 //Missile factory
 /obj/item/circuitboard/machine/missile_builder
-	name = "Seegson model 'Ford' robotic autowrench (Machine Board)"
+	name = "automatyczny klucz robotyczny Seegson model „Ford” (płytka maszyny)"
 	build_path = /obj/machinery/missile_builder
 	req_components = list()
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/missile_builder/wirer
-	name = "Seegson model 'Ford' robotic autowirer (Machine Board)"
+	name = "automatyczny okablowywacz robotyczny Seegson model „Ford” (płytka maszyny)"
 	build_path = /obj/machinery/missile_builder/wirer
 
 /obj/item/circuitboard/machine/missile_builder/welder
-	name = "Seegson model 'Ford' robotic autowelder (Machine Board)"
+	name = "automatyczna spawarka robotyczna Seegson model „Ford” (płytka maszyny)"
 	build_path = /obj/machinery/missile_builder/welder
 
 /obj/item/circuitboard/machine/missile_builder/screwdriver
-	name = "Seegson model 'Ford' robotic bolt driver (Machine Board)"
+	name = "robotyczna wkrętarka śrub Seegson model „Ford” (płytka maszyny)"
 	build_path = /obj/machinery/missile_builder/screwdriver
 
 /obj/item/circuitboard/machine/missile_builder/assembler
-	name = "Seegson model 'Ford' robotic missile assembly arm (Machine Board)"
+	name = "robotyczne ramię montażu rakiet Seegson model „Ford” (płytka maszyny)"
 	build_path = /obj/machinery/missile_builder/assembler
 
 //Missile system
 /obj/item/circuitboard/machine/vls
-	name = "M14 VLS Tube (Machine Board)"
+	name = "wyrzutnia pionowa VLS M14 (płytka maszyny)"
 	build_path = /obj/machinery/ship_weapon/vls
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 20,
@@ -336,7 +336,7 @@
 
 //Gauss guns
 /obj/item/circuitboard/machine/gauss_turret
-	name = "Gauss gun turret (Machine Board)"
+	name = "wieżyczka Gaussa (płytka maszyny)"
 	build_path = /obj/machinery/ship_weapon/gauss_gun
 	req_components = list()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
@@ -352,12 +352,12 @@
 	return ..()
 
 /obj/item/circuitboard/computer/iff
-	name = "IFF Console (Machine Board)"
+	name = "konsola IFF (płytka maszyny)"
 	build_path = /obj/machinery/computer/iff_console
 
 //Coffee Machine - Navy's Lifeblood
 /obj/item/circuitboard/machine/coffeemaker
-	name = "coffeemaker (Machine Board)"
+	name = "ekspres do kawy (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/coffeemaker
 	req_components = list(
@@ -368,7 +368,7 @@
 	)
 
 /obj/item/circuitboard/machine/coffeemaker/pendulum
-	name = "Pendulum Coffeemaker (Machine Board)"
+	name = "ekspres do kawy Pendulum (płytka maszyny)"
 	icon_state = "service"
 	build_path = /obj/machinery/coffeemaker/pendulum
 	req_components = list(
@@ -382,7 +382,7 @@
 //Plasma Caster and Loader
 
 /obj/item/circuitboard/machine/plasma_loader
-	name = "phoron gas regulator (Machine Board)"
+	name = "regulator gazowego foronu (płytka maszyny)"
 	build_path = /obj/machinery/atmospherics/components/unary/plasma_loader
 	var/pipe_layer = PIPING_LAYER_DEFAULT
 	req_components = list(
@@ -411,8 +411,8 @@
 	. += "<span class='notice'>Ustawiona na warstwę [pipe_layer].</span>"
 
 /obj/item/circuitboard/machine/plasma_caster
-	name = "plasma caster (Machine Board)"
-	desc = "My faithful...stand firm!"
+	name = "miotacz plazmy (płytka maszyny)"
+	desc = "Moi wierni... trwajcie niezłomnie!"
 	req_components = list(
 		/obj/item/stack/sheet/mineral/titanium = 25,
 		/obj/item/stack/sheet/iron = 50,
@@ -438,7 +438,7 @@
 
 // Laser PD console
 /obj/item/circuitboard/computer/laser_pd
-	name = "point defense laser console (Machine Board)"
+	name = "konsola laserów obrony punktowej (płytka maszyny)"
 	build_path = /obj/machinery/computer/laser_pd
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 
@@ -454,7 +454,7 @@
 
 // Laser PD
 /obj/item/circuitboard/machine/laser_pd
-	name = "point defense laser turret (Machine Board)"
+	name = "wieżyczka lasera obrony punktowej (płytka maszyny)"
 	build_path = /obj/machinery/ship_weapon/energy/laser_pd
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	req_components = list(
@@ -464,7 +464,7 @@
 
 // Laser AMS
 /obj/item/circuitboard/machine/laser_ams
-	name = "laser AMS (circuitboard)"
+	name = "laserowy AMS (płytka)"
 	build_path = /obj/machinery/ship_weapon/energy/ams
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	req_components = list(
@@ -476,7 +476,7 @@
 
 // Phase Cannon
 /obj/item/circuitboard/machine/phase_cannon
-	name = "phase cannon (circuitboard)"
+	name = "działo fazowe (płytka)"
 	build_path = /obj/machinery/ship_weapon/energy/beam
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	req_components = list(
@@ -488,7 +488,7 @@
 
 // Burst Phaser
 /obj/item/circuitboard/machine/burst_phaser
-	name = "burst phaser MK2 (circuitboard)"
+	name = "fazer seryjny MK2 (płytka)"
 	build_path = /obj/machinery/ship_weapon/energy
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
 	req_components = list(
@@ -500,8 +500,8 @@
 
 // Smelter and console
 /obj/item/circuitboard/machine/processing_unit
-	name = "furnace (Machine Board)"
-	desc = "It melts and purifies ores."
+	name = "piec (płytka maszyny)"
+	desc = "Topi i oczyszcza rudy."
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stock_parts/matter_bin = 2,
@@ -510,8 +510,8 @@
 	build_path = /obj/machinery/mineral/processing_unit
 
 /obj/item/circuitboard/machine/processing_unit_console
-	name = "furnace console (Machine Board)"
-	desc = "Circuit for a furnace control console."
+	name = "konsola pieca (płytka maszyny)"
+	desc = "Obwód konsoli sterowania piecem."
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stack/cable_coil = 1
@@ -520,7 +520,7 @@
 
 //Non-magic chem dispenser
 /obj/item/circuitboard/machine/refillable_chem_dispenser
-	name = "refillable chem dispenser (Machine Board)"
+	name = "uzupełniany dozownik chemikaliów (płytka maszyny)"
 	icon_state = "medical"
 	build_path = /obj/machinery/refillable_chem_dispenser
 	req_components = list(
@@ -531,12 +531,12 @@
 
 //Atmospheric consoles
 /obj/item/circuitboard/computer/atmos_control/tank/nucleium_tank
-	name = "nucleium supply control (Computer Board)"
+	name = "sterowanie dostawami nukleium (płytka komputera)"
 	build_path = /obj/machinery/computer/atmos_control/tank/nucleium_tank
 
 //Bot navbeacon
 /obj/item/circuitboard/machine/navbeacon
-	name = "Bot Navigational Beacon Machine Board"
+	name = "radiolatarnia nawigacyjna botów (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/navbeacon
 	req_components = list()

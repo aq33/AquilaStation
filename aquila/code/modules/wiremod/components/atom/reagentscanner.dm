@@ -4,7 +4,7 @@
  * Returns the reagentss of an atom
  */
 /obj/item/circuit_component/reagentscanner
-	display_name = "Reagents Scanner"
+	display_name = "Skaner odczynników"
 	desc = "Zwraca odczynniki znajdujące się w podanym obiekcie."
 	category = "Entity"
 

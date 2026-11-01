@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
  * Has a limited amount of power.
  */
 /obj/item/integrated_circuit
-	name = "integrated circuit"
+	name = "układ scalony"
 	desc = "Włóż do niego komponenty i ogniwo, połącz je i zamknij w obudowie, a każdy może udawać programistę."
 	icon = 'aquila/icons/obj/wiremod/circuitry_n_data.dmi'
 	icon_state = "integrated_circuit"
@@ -768,7 +768,7 @@ GLOBAL_LIST_EMPTY_TYPED(integrated_circuits, /obj/item/integrated_circuit)
 	return TRUE
 
 /obj/item/integrated_circuit/admin
-	name = "administrative circuit"
+	name = "układ administracyjny"
 	desc = "Zainstalowane tu komponenty przekraczają twoje pojmowanie."
 
 	admin_only = TRUE

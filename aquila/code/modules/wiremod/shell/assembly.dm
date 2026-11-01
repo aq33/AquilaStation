@@ -4,7 +4,7 @@
  * An assembly that triggers and can be triggered by wires.
  */
 /obj/item/assembly/wiremod
-	name = "circuit assembly"
+	name = "zespół z układem"
 	desc = "Małe urządzenie elektroniczne, w którym można umieścić układ scalony."
 	icon_state = "wiremod"
 	item_state = "electronic"
@@ -36,7 +36,7 @@
 	screwdriver_act(user, tool)
 
 /obj/item/circuit_component/assembly_input
-	display_name = "Assembly Input"
+	display_name = "Wejście zespołu"
 	desc = "Wyzwala się, gdy dostanie impuls z podłączonego przewodu lub urządzenia."
 
 	var/datum/port/output/signal
@@ -55,7 +55,7 @@
 	signal.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/assembly_output
-	display_name = "Assembly Output"
+	display_name = "Wyjście zespołu"
 	desc = "Po wyzwoleniu wysyła impuls do podłączonego przewodu lub urządzenia."
 
 	var/obj/item/assembly/attached_assembly

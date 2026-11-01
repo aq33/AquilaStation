@@ -15,7 +15,7 @@ Difficulty: Medium
 	maxHealth = 800
 	icon_state = "legion"
 	icon_living = "legion"
-	desc = "One of many."
+	desc = "Jeden z wielu."
 	icon = 'icons/mob/lavaland/legion.dmi'
 	attacktext = "chrupie"
 	attack_sound = 'sound/magic/demon_attack1.ogg'
@@ -49,14 +49,14 @@ Difficulty: Medium
 	small_sprite_type = /datum/action/small_sprite/megafauna/legion
 
 /datum/action/innate/megafauna_attack/create_skull
-	name = "Create Legion Skull"
+	name = "Stwórz czaszkę legionu"
 	icon_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_head"
 	chosen_message = "<span class='colossus'>Teraz tworzysz czaszki legionu.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/charge_target
-	name = "Charge Target"
+	name = "Szarżuj na cel"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
 	chosen_message = "<span class='colossus'>Teraz szarżujesz na cel.</span>"
@@ -87,7 +87,7 @@ Difficulty: Medium
 	A.faction = faction
 
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
-	visible_message("<span class='warning'><b>[src] charges!</b></span>")
+	visible_message("<span class='warning'><b>[src] szarżuje!</b></span>")
 	SpinAnimation(speed = 20, loops = 5)
 	ranged = FALSE
 	retreat_distance = 0
@@ -167,8 +167,8 @@ Difficulty: Medium
 //Loot
 
 /obj/item/staff/storm
-	name = "staff of storms"
-	desc = "An ancient staff retrieved from the remains of Legion. The wind stirs as you move it."
+	name = "laska burz"
+	desc = "Pradawna laska wydobyta ze szczątków Legionu. Gdy nią poruszasz, zrywa się wiatr."
 	icon_state = "staffofstorms"
 	item_state = "staffofstorms"
 	icon = 'icons/obj/guns/magic.dmi'
@@ -211,10 +211,10 @@ Difficulty: Medium
 			return
 	else
 		A = new storm_type(list(user_turf.z))
-		A.name = "staff storm"
+		A.name = "burza z laski"
 		log_game("[user] ([key_name(user)]) has summoned [A] at [AREACOORD(user_turf)]")
 		if (is_special_character(user))
-			message_admins("[A] has been summoned in [ADMIN_VERBOSEJMP(user_turf)] by [ADMIN_LOOKUPFLW(user)], a non-antagonist")
+			message_admins("[ADMIN_LOOKUPFLW(user)] (nie jest antagonistą) przywołuje [A] w [ADMIN_VERBOSEJMP(user_turf)]")
 		A.area_type = user_area.type
 		A.telegraph_duration = 100
 		A.end_duration = 100

@@ -2,8 +2,8 @@
 //Boat
 
 /obj/vehicle/ridden/lavaboat
-	name = "lava boat"
-	desc = "A boat used for traversing lava."
+	name = "łódź lawowa"
+	desc = "Łódź do przeprawy przez lawę."
 	icon_state = "goliath_boat"
 	icon = 'icons/obj/lavaland/dragonboat.dmi'
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
@@ -18,27 +18,27 @@
 	D.allowed_turf_typecache = typecacheof(/turf/open/lava)
 
 /obj/item/oar
-	name = "oar"
+	name = "wiosło"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "oar"
 	item_state = "oar"
 	lefthand_file = 'icons/mob/inhands/misc/lavaland_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/lavaland_righthand.dmi'
-	desc = "Not to be confused with the kind Research hassles you for."
+	desc = "Nie myl z tym, o które ciągle męczy cię dział naukowy."
 	force = 12
 	block_upgrade_walk = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 
 /datum/crafting_recipe/oar
-	name = "Goliath Bone Oar"
+	name = "Wiosło z kości goliata"
 	result = /obj/item/oar
 	reqs = list(/obj/item/stack/sheet/bone = 2)
 	time = 15
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/boat
-	name = "Goliath Hide Boat"
+	name = "Łódź ze skóry goliata"
 	result = /obj/vehicle/ridden/lavaboat
 	reqs = list(/obj/item/stack/sheet/animalhide/goliath_hide = 3)
 	time = 50
@@ -48,8 +48,8 @@
 
 
 /obj/item/ship_in_a_bottle
-	name = "ship in a bottle"
-	desc = "A tiny ship inside a bottle."
+	name = "statek w butelce"
+	desc = "Malutki statek w butelce."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "ship_bottle"
 
@@ -60,8 +60,8 @@
 	qdel(src)
 
 /obj/vehicle/ridden/lavaboat/dragon
-	name = "mysterious boat"
-	desc = "This boat moves where you will it, without the need for an oar."
+	name = "tajemnicza łódź"
+	desc = "Ta łódź płynie tam, dokąd zechcesz, bez potrzeby wiosłowania."
 	icon_state = "dragon_boat"
 
 /obj/vehicle/ridden/lavaboat/dragon/Initialize(mapload)

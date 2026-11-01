@@ -5,8 +5,8 @@
 
 
 /obj/machinery/limbgrower
-	name = "limb grower"
-	desc = "It grows new limbs using Synthflesh."
+	name = "hodowla kończyn"
+	desc = "Hoduje nowe kończyny z Syntetycznego ciała."
 	icon = 'icons/obj/machines/limbgrower.dmi'
 	icon_state = "limbgrower_idleoff"
 	density = TRUE
@@ -145,7 +145,7 @@
 	var/obj/item/bodypart/limb
 	limb = new buildpath(loc)
 	limb.icon_state = "[selected_category]_[limb.body_zone]"
-	limb.name = "\improper synthetic [selected_category] [parse_zone(limb.body_zone)]"
+	limb.name = "[strefa_pl(limb.body_zone)] (syntetyczna, [selected_category])"
 	limb.limb_id = selected_category
 	limb.mutation_color = "62A262" //Gets turned into a full color in limb code
 	limb.update_icon_dropped()
@@ -181,7 +181,7 @@
 
 /obj/machinery/limbgrower/proc/category_win(mob/user,selected_category)
 	var/dat = "<A href='byond://?src=[REF(src)];menu=[LIMBGROWER_MAIN_MENU]'>Powrót do menu głównego</A>"
-	dat += "<div class='statusDisplay'><h3>Browsing [selected_category]:</h3><br>"
+	dat += "<div class='statusDisplay'><h3>Przeglądanie kategorii: [selected_category]</h3><br>"
 	dat += materials_printout()
 
 	for(var/v in stored_research.researched_designs)
@@ -205,7 +205,7 @@
 
 	for(var/datum/reagent/R in reagents.reagent_list)
 		dat += "[R.name]: [R.volume]"
-		dat += "<A href='byond://?src=[REF(src)];disposeI=[R]'>Purge</A><BR>"
+		dat += "<A href='byond://?src=[REF(src)];disposeI=[R]'>Usuń</A><BR>"
 
 	dat += "</div>"
 	return dat

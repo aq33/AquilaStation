@@ -1,6 +1,6 @@
 /obj/machinery/ship_weapon/energy/beam/bsa
-	name = "\improper Superliminal Bluespace Artillery"
-	desc = "A massive machine which can accelerate a bolt of concentrated quark-gluon plasma to superliminal speeds, tearing clean through targets and annihilating everything in its path. <b>Ensure it has a clear firing path to space!</b>"
+	name = "\improper nadświetlna artyleria bluespace"
+	desc = "Potężna maszyna, która rozpędza strumień skoncentrowanej plazmy kwarkowo-gluonowej do prędkości nadświetlnych. Przebija cele na wylot i unicestwia wszystko na swojej drodze. <b>Upewnij się, że ma czystą linię strzału w kosmos!</b>"
 	icon = 'nsv13/icons/obj/cannon.dmi'
 	icon_state = "cannon"
 
@@ -50,8 +50,8 @@
 
 //Ship-to-ship BSA control...
 /obj/machinery/computer/sts_bsa_control
-	name = "\improper Superliminal Bluespace Artillery control"
-	desc = "A computer which lets you interface with anti-capital super weapons."
+	name = "\improper sterowanie nadświetlną artylerią bluespace"
+	desc = "Komputer do obsługi superbroni przeciw okrętom liniowym."
 	icon = 'nsv13/goonstation/icons/obj/computer.dmi'
 	icon_state = "computer"
 	icon_screen = "bsa"
@@ -60,7 +60,7 @@
 	var/id = null
 
 /obj/item/circuitboard/computer/sts_bsa_control
-	name = "\improper Superliminal Bluespace Artillery control (circuit)"
+	name = "\improper sterowanie nadświetlną artylerią bluespace (płytka komputera)"
 	build_path = /obj/machinery/computer/sts_bsa_control
 
 /obj/machinery/computer/sts_bsa_control/Initialize(mapload, obj/item/circuitboard/C)
@@ -159,7 +159,7 @@
 		if(WEST)
 			turf_target = get_turf(locate(1, y, z))
 	if(!turf_target)
-		message_admins("Invalid dir setting on [src]. It only fires EAST / WEST. Please remedy this.")
+		message_admins("Nieprawidłowy kierunek [src]. Strzela tylko na WSCHÓD / ZACHÓD. Popraw to.")
 		return FALSE
 	var/atom/movable/blocker
 	for(var/T in getline(get_step(point, dir), turf_target))
@@ -187,18 +187,18 @@
 	linked.relay_to_nearby(linked_overmap_ship_weapon.overmap_select_sound)
 	if(blocker) //We hit something on the ship
 		var/turf/location = get_turf(blocker)
-		var/admin_message = "The ship BSA has hit [blocker] at [ADMIN_VERBOSEJMP(location)]!"
+		var/admin_message = "Okrętowe BSA trafiło [blocker] w [ADMIN_VERBOSEJMP(location)]!"
 		var/log_message = "Okrętowe BSA trafiło [blocker] w [AREACOORD(location)]!"
 		var/firer = linked.pilot //Fired by the pilot
 		if(!firer)
 			firer = src
 			admin_message += " [firer] wystrzelił z BSA!"
 		else
-			admin_message += " BSA fired by [ADMIN_LOOKUPFLW(firer)]!"
+			admin_message += " Z BSA strzela [ADMIN_LOOKUPFLW(firer)]!"
 		if(istype(blocker, /obj/machinery/the_singularitygen)) //What did you do
 			var/evilperson = get_mob_by_ckey(blocker.fingerprintslast)
 			GLOB.bombers += evilperson
-			admin_message += " [blocker] was last touched by [ADMIN_LOOKUPFLW(evilperson)]!"
+			admin_message += " Ostatnio [blocker] dotykał(a): [ADMIN_LOOKUPFLW(evilperson)]!"
 			log_message += " [blocker] was last touched by [key_name_admin(evilperson)]!"
 			new /obj/anomaly/singularity(location, 2500)
 			var/turf/overmaplocation = get_turf(linked)
@@ -211,7 +211,7 @@
 		. = ..() //Then actually fire it.
 
 /obj/item/projectile/beam/laser/heavylaser/bsa
-	name = "bluespace artillery beam"
+	name = "wiązka artylerii bluespace"
 	damage = 1000
 	flag = "overmap_heavy"
 	hitscan = TRUE //Obscenely powerful
@@ -229,11 +229,11 @@
 	alpha = 0
 
 /obj/effect/projectile/tracer/bsa
-	name = "bsa"
+	name = "wiązka BSA"
 	icon_state = "bsa_beam"
 
 /obj/effect/projectile/impact/bsa
-	name = "bsa"
+	name = "trafienie BSA"
 	icon_state = "bsa_impact"
 
 /obj/item/projectile/beam/laser/heavylaser/bsa/relayed

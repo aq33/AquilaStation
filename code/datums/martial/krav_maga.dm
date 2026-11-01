@@ -6,7 +6,7 @@
 	var/datum/action/lung_punch/lungpunch = new/datum/action/lung_punch()
 
 /datum/action/neck_chop
-	name = "Neck Chop - Injures the neck, stopping the victim from speaking for a while."
+	name = "Cios w szyję – uszkadza szyję, przez co ofiara przez chwilę nie może mówić."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "neckchop"
 
@@ -23,7 +23,7 @@
 		H.mind.martial_art.streak = "neck_chop"
 
 /datum/action/leg_sweep
-	name = "Leg Sweep - Trips the victim, knocking them down for a brief moment."
+	name = "Podcięcie – podcina ofiarę i na chwilę ją przewraca."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "legsweep"
 
@@ -40,7 +40,7 @@
 		H.mind.martial_art.streak = "leg_sweep"
 
 /datum/action/lung_punch//referred to internally as 'quick choke'
-	name = "Lung Punch - Delivers a strong punch just above the victim's abdomen, constraining the lungs. The victim will be unable to breathe for a short time."
+	name = "Cios w płuca – mocne uderzenie tuż nad brzuchem ofiary, które ściska płuca. Ofiara przez krótki czas nie może oddychać."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "lungpunch"
 
@@ -155,7 +155,7 @@
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
 	var/armor_block = D.run_armor_check(affecting, "melee")
 	if((D.mobility_flags & MOBILITY_STAND))
-		D.visible_message("<span class='danger'>[A] reprimands [D]!</span>", \
+		D.visible_message("<span class='danger'>[A] karci [D]!</span>", \
 					"<span class='userdanger'>[A] cię policzkuje!</span>", "<span class='hear'>Słyszysz obrzydliwy odgłos uderzenia ciała o ciało!</span>", COMBAT_MESSAGE_RANGE, A)
 		to_chat(A, "<span class='danger'>Dźgasz [D] pięścią!</span>")
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
@@ -163,7 +163,7 @@
 		D.apply_damage(rand(5,10), STAMINA, affecting, armor_block)
 		log_combat(A, D, "punched nonlethally")
 	if(!(D.mobility_flags & MOBILITY_STAND))
-		D.visible_message("<span class='danger'>[A] reprimands [D]!</span>", \
+		D.visible_message("<span class='danger'>[A] karci [D]!</span>", \
 					"<span class='userdanger'>[A] cię poniewiera!</span>", "<span class='hear'>Słyszysz obrzydliwy odgłos uderzenia ciała o ciało!</span>", COMBAT_MESSAGE_RANGE, A)
 		to_chat(A, "<span class='danger'>Depczesz [D]!</span>")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -178,8 +178,8 @@
 //Krav Maga Gloves
 
 /obj/item/clothing/gloves/krav_maga
-	name = "krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+	name = "rękawice krav maga"
+	desc = "Te rękawice za pomocą nanoczipów uczą cię krav magi."
 	icon_state = "fightgloves"
 	item_state = "fightgloves"
 	worn_icon_state = "fightgloves"
@@ -206,8 +206,8 @@
 		style.remove(H)
 
 /obj/item/clothing/gloves/krav_maga/combatglovesplus
-	name = "combat gloves plus"
-	desc = "These tactical gloves are fireproof and shock resistant, and using nanochip technology it teaches you the powers of krav maga."
+	name = "rękawice bojowe plus"
+	desc = "Te taktyczne rękawice są ognioodporne i odporne na porażenie prądem, a dzięki technologii nanoczipów uczą cię krav magi."
 	icon_state = "cgloves"
 	item_state = "combatgloves"
 	worn_icon_state = "combatgloves"

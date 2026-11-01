@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal
-	name = "slimic pylon"
-	desc = "Glassy, pure, transparent. Powerful artifact that relays the slimecore's influence onto space around it."
+	name = "szlamowy pylon"
+	desc = "Szklisty, czysty, przezroczysty. Potężny artefakt, który przenosi wpływ rdzenia szlamu na przestrzeń wokół."
 	max_integrity = 5
 	anchored = TRUE
 	density = TRUE
@@ -27,7 +27,8 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 /obj/structure/slime_crystal/Initialize(mapload)
 	. = ..()
-	name =  "[colour] slimic pylon"
+	var/static/list/colour_pl = list("grey" = "szary", "orange" = "pomarańczowy", "purple" = "fioletowy", "blue" = "niebieski", "metal" = "metalowy", "yellow" = "żółty", "dark purple" = "ciemnofioletowy", "dark blue" = "ciemnoniebieski", "silver" = "srebrny", "bluespace" = "bluespace", "sepia" = "sepiowy", "cerulean" = "lazurowy", "pyrite" = "pirytowy", "red" = "czerwony", "green" = "zielony", "pink" = "różowy", "gold" = "złoty", "oil" = "naftowy", "black" = "czarny", "light pink" = "jasnoróżowy", "adamantine" = "adamantytowy", "rainbow" = "tęczowy")
+	name =  "szlamowy pylon ([colour_pl[colour] || colour])"
 	var/itemcolor = "#FFFFFF"
 
 	switch(colour)
@@ -300,7 +301,7 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 
 	for(var/BSC in local_bs_list)
 		var/area/bsc_area = get_area(BSC)
-		var/name = "[bsc_area.name] bluespace slimic pylon"
+		var/name = "szlamowy pylon bluespace ([bsc_area.name])"
 		var/counter = 0
 
 		do
@@ -339,8 +340,8 @@ GLOBAL_LIST_EMPTY(bluespace_slime_crystals)
 	REMOVE_TRAIT(affected_mob,TRAIT_NOHARDCRIT,type)
 
 /obj/structure/cerulean_slime_crystal
-	name = "Cerulean slime poly-crystal"
-	desc = "Translucent and irregular, it can duplicate matter on a whim"
+	name = "polikryształ lazurowego szlamu"
+	desc = "Półprzezroczysty i nieregularny, potrafi dowolnie powielać materię"
 	anchored = TRUE
 	density = FALSE
 	icon = 'icons/obj/slimecrossing.dmi'

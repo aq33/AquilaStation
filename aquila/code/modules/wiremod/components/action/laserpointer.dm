@@ -4,7 +4,7 @@
  * Points a laser at a tile or mob
  */
 /obj/item/circuit_component/laserpointer
-	display_name = "Laser Pointer"
+	display_name = "Wskaźnik laserowy"
 	desc = "Komponent, który świeci silnym światłem w cel."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

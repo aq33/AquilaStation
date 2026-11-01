@@ -1,5 +1,5 @@
 /obj/item/shrapnel // frag grenades
-	name = "shrapnel shard"
+	name = "odłamek szrapnela"
 	embedding = list(embed_chance=70, ignore_throwspeed_threshold=TRUE, fall_chance=4)
 	custom_materials = list(/datum/material/iron=50)
 	armour_penetration = -20
@@ -9,26 +9,26 @@
 	item_flags = DROPDEL
 
 /obj/item/shrapnel/stingball // stingbang grenades
-	name = "stingball"
+	name = "kulka gumowa"
 	embedding = list(embed_chance=90, fall_chance=3, jostle_chance=7, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.7, pain_mult=5, jostle_pain_mult=6, rip_time=15)
 	icon_state = "tiny"
 
 /obj/item/shrapnel/bullet // bullets
-	name = "bullet"
+	name = "pocisk"
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
 	item_flags = NONE
 
 /obj/item/shrapnel/bullet/c38 // .38 round
-	name = "\improper .38 bullet"
+	name = "\improper pocisk .38"
 
 /obj/item/shrapnel/bullet/c38/dumdum // .38 DumDum round
-	name = "\improper .38 DumDum bullet"
+	name = "\improper pocisk .38 DumDum"
 	embedding = list(embed_chance=70, fall_chance=7, jostle_chance=7, ignore_throwspeed_threshold=TRUE, pain_stam_pct=0.4, pain_mult=5, jostle_pain_mult=6, rip_time=10)
 
 /obj/item/projectile/bullet/shrapnel
 	bleed_force = BLEED_SURFACE
-	name = "flying shrapnel shard"
+	name = "lecący odłamek szrapnela"
 	damage = 9
 	range = 10
 	armour_penetration = -30
@@ -41,7 +41,7 @@
 
 /obj/item/projectile/bullet/shrapnel/mega
 	bleed_force = BLEED_CUT
-	name = "flying shrapnel hunk"
+	name = "lecący kawał szrapnela"
 	range = 25
 	dismemberment = 10
 	ricochets_max = 4
@@ -49,7 +49,7 @@
 	ricochet_decay_chance = 0.9
 
 /obj/item/projectile/bullet/pellet/stingball
-	name = "stingball pellet"
+	name = "śrucina kulki gumowej"
 	damage = 3
 	stamina = 8
 	ricochets_max = 4
@@ -62,7 +62,7 @@
 	shrapnel_type = /obj/item/shrapnel/stingball
 
 /obj/item/projectile/bullet/pellet/stingball/mega
-	name = "megastingball pellet"
+	name = "śrucina megakulki gumowej"
 	ricochets_max = 6
 	ricochet_chance = 110
 

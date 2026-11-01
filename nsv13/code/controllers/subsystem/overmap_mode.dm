@@ -137,11 +137,11 @@ SUBSYSTEM_DEF(overmap_mode)
 				mode = new mode_type
 
 	if(mode)
-		message_admins("[mode.name] has been selected as the overmap gamemode")
+		message_admins("Wybrano tryb gry overmapy: [mode.name]")
 		log_game("[mode.name] has been selected as the overmap gamemode")
 	else
 		mode = new/datum/overmap_gamemode/patrol() //Holding that as the default for now - REPLACE ME LATER
-		message_admins("Error: mode section pool empty - defaulting to PATROL")
+		message_admins("Błąd: pula wyboru trybów jest pusta – domyślnie PATROL")
 		log_game("Error: mode section pool empty - defaulting to PATROL")
 
 	return ..()
@@ -174,7 +174,7 @@ SUBSYSTEM_DEF(overmap_mode)
 				select_objectives -= objective
 		for(var/I = 0, I < mode.random_objective_amount, I++) //We pick from our pool of random objectives
 			if(!length(select_objectives))
-				message_admins("Overmap mode ran out of random objectives to pick!")
+				message_admins("Trybowi overmapy skończyły się losowe cele do wyboru!")
 				break
 			mode.objectives += pick_n_take(select_objectives)
 
@@ -291,7 +291,7 @@ SUBSYSTEM_DEF(overmap_mode)
 	else //Add an extension if this isn't roundstart
 		title += "-Ext."
 
-	text = "[text] <br><br> [mode.brief] <br><br> Objectives:"
+	text = "[text] <br><br> [mode.brief] <br><br> Cele:"
 
 	for(var/datum/overmap_objective/O in mode.objectives)
 		text = "[text] <br> - [O.brief]"
@@ -349,7 +349,7 @@ SUBSYSTEM_DEF(overmap_mode)
 		for(var/datum/faction/F in SSstar_system.factions)
 			F.send_fleet(custom_difficulty = (mode.difficulty + 1)) //Extension is more challenging
 			escalation += 1
-			message_admins("Overmap difficulty has been increased by 1!")
+			message_admins("Poziom trudności overmapy wzrasta o 1!")
 
 	instance_objectives()
 
@@ -509,7 +509,7 @@ SUBSYSTEM_DEF(overmap_mode)
 /datum/overmap_gamemode/proc/victory()
 	SSovermap_mode.objectives_completed = TRUE
 	if(SSovermap_mode.admin_override)
-		message_admins("[GLOB.station_name] has completed its objectives but round end has been overriden by admin intervention")
+		message_admins("[GLOB.station_name] wykonuje swoje cele, ale koniec rundy jest wstrzymany przez admina")
 		return
 	if(istype(SSvote.current_vote, /datum/vote/round_extension)) // We're still voting // AQ EDIT - vote datums
 		return
@@ -560,7 +560,7 @@ SUBSYSTEM_DEF(overmap_mode)
 /datum/overmap_objective/proc/print_objective_report()
 
 /datum/overmap_objective/custom
-	name = "Custom"
+	name = "Własny"
 
 /datum/overmap_objective/custom/New(passed_input) //Receive the string and make it brief/desc
 	.=..()
@@ -571,13 +571,13 @@ SUBSYSTEM_DEF(overmap_mode)
 
 /client/proc/overmap_mode_controller() //Admin Verb for the Overmap Gamemode controller
 	set name = "Overmap Gamemode Controller"
-	set desc = "Manage the Overmap Gamemode"
+	set desc = "Zarządzaj trybem gry overmapy"
 	set category = "Adminbus"
 	var/datum/overmap_mode_controller/omc = new(usr)
 	omc.ui_interact(usr)
 
 /datum/overmap_mode_controller
-	var/name = "Overmap Gamemode Controller"
+	var/name = "Kontroler trybu gry overmapy"
 	var/client/holder = null
 
 /datum/overmap_mode_controller/New(H)
@@ -617,37 +617,37 @@ SUBSYSTEM_DEF(overmap_mode)
 				SSovermap_mode.difficulty_calc()
 			return TRUE
 		if("adjust_threat")
-			var/amount = input("Enter amount of threat to add (or substract if negative)", "Adjust Threat") as num|null
+			var/amount = input("Podaj, ile zagrożenia dodać (ujemna wartość odejmuje)", "Zmień zagrożenie") as num|null
 			SSovermap_mode.modify_threat_elevation(amount)
 			return TRUE
 		if("change_gamemode")
 			if(SSovermap_mode.mode_initialised)
-				message_admins("Mid-round overmap gamemode changes not currently supported") //SoonTM
+				message_admins("Zmiana trybu gry overmapy w trakcie rundy nie jest obecnie obsługiwana") //SoonTM
 				return
 			var/list/gamemode_pool = subtypesof(/datum/overmap_gamemode)
 			gamemode_pool -= /datum/overmap_gamemode/hardmode //Don't include challenge modes
-			var/datum/overmap_gamemode/S = input(usr, "Select Overmap Gamemode", "Change Overmap Gamemode") as null|anything in gamemode_pool
+			var/datum/overmap_gamemode/S = input(usr, "Wybierz tryb gry overmapy", "Zmień tryb gry overmapy") as null|anything in gamemode_pool
 			if(isnull(S))
 				return
 			var/newmode = SSovermap_mode.force_mode(S)
 			if(!newmode)
 				to_chat(usr, "<span class='notice'>Nie możesz teraz zmienić trybu gry!</span>")
 			else
-				message_admins("[key_name_admin(usr)] has changed the overmap gamemode to [newmode]")
+				message_admins("[key_name_admin(usr)] zmienia tryb gry overmapy na [newmode]")
 			return TRUE
 		if("add_objective")
 			var/list/objectives_pool = (subtypesof(/datum/overmap_objective) - /datum/overmap_objective/custom)
-			var/datum/overmap_objective/S = input(usr, "Select objective to add", "Add Objective") as null|anything in objectives_pool
+			var/datum/overmap_objective/S = input(usr, "Wybierz cel do dodania", "Dodaj cel") as null|anything in objectives_pool
 			if(isnull(S))
 				return
 			var/extra
 			if(ispath(S,/datum/overmap_objective/clear_system) || ispath(S,/datum/overmap_objective/board_station))
-				extra = input(usr, "Select a target system", "Select System") as null|anything in SSstar_system.systems
+				extra = input(usr, "Wybierz system docelowy", "Wybierz system") as null|anything in SSstar_system.systems
 			SSovermap_mode.mode.objectives += new S(extra)
 			SSovermap_mode.instance_objectives()
 			return TRUE
 		if("add_custom_objective")
-			var/custom_desc = input("Input Objective Briefing", "Custom Objective") as text|null
+			var/custom_desc = input("Wpisz odprawę celu", "Własny cel") as text|null
 			SSovermap_mode.mode.objectives += new /datum/overmap_objective/custom(custom_desc)
 			return TRUE
 		if("view_vars")
@@ -659,18 +659,18 @@ SUBSYSTEM_DEF(overmap_mode)
 			qdel(O)
 			return TRUE
 		if("change_objective_state")
-			var/list/o_state = list("In-Progress",
-									"Completed",
-									"Failed",
-									"Victory Override")
-			var/new_state = input("Select state to set", "Change Objective State") as null|anything in o_state
-			if(new_state == "In-Progress")
+			var/list/o_state = list("W toku",
+									"Wykonany",
+									"Nieudany",
+									"Wymuszone zwycięstwo")
+			var/new_state = input("Wybierz stan do ustawienia", "Zmień stan celu") as null|anything in o_state
+			if(new_state == "W toku")
 				new_state = STATUS_INPROGRESS
-			else if(new_state == "Completed")
+			else if(new_state == "Wykonany")
 				new_state = STATUS_COMPLETED
-			else if(new_state == "Failed")
+			else if(new_state == "Nieudany")
 				new_state = STATUS_FAILED
-			else if(new_state == "Victory Override")
+			else if(new_state == "Wymuszone zwycięstwo")
 				new_state = STATUS_OVERRIDE
 			var/datum/overmap_objective/O = locate(params["target"])
 			O.status = new_state
@@ -679,7 +679,7 @@ SUBSYSTEM_DEF(overmap_mode)
 			SSovermap_mode.objective_reminder_override = !SSovermap_mode.objective_reminder_override
 			return TRUE
 		if("extend_reminder")
-			var/amount = input("Enter amount to extend by in minutes:", "Extend Reminder") as num|null
+			var/amount = input("Podaj, o ile minut przedłużyć:", "Przedłuż przypomnienie") as num|null
 			SSovermap_mode.next_objective_reminder += amount MINUTES
 			return TRUE
 		if("reset_stage")
@@ -689,10 +689,10 @@ SUBSYSTEM_DEF(overmap_mode)
 			SSovermap_mode.admin_override = !SSovermap_mode.admin_override
 			return TRUE
 		if("toggle_hardmode")
-			var/decision = input("Are you sure you want to [SSovermap_mode.hard_mode_enabled ? "DISABLE" : "ENABLE"] hardmode?","Toggle Hardmode",null) as null|anything in list("yes","no")
-			if(decision == "yes")
+			var/decision = input("Na pewno chcesz [SSovermap_mode.hard_mode_enabled ? "WYŁĄCZYĆ" : "WŁĄCZYĆ"] tryb trudny?","Przełącz tryb trudny",null) as null|anything in list("tak","nie")
+			if(decision == "tak")
 				if(SSovermap_mode.toggle_hardmode())
-					message_admins("[key_name_admin(usr)] has [SSovermap_mode.hard_mode_enabled ? "ENABLED" : "DISABLED"] hardmode!")
+					message_admins("[key_name_admin(usr)] [SSovermap_mode.hard_mode_enabled ? "WŁĄCZA" : "WYŁĄCZA"] tryb trudny!")
 			return TRUE
 		if("spawn_ghost_ship")
 			set waitfor = FALSE
@@ -700,16 +700,16 @@ SUBSYSTEM_DEF(overmap_mode)
 			//Choose spawn location logic
 			var/target_location
 			var/datum/star_system/target_system
-			switch(alert(usr, "Spawn at a random spot in the current mainship Z level or your location?", "Select Spawn Location", "Ship Z", "Current Loc", "Cancel"))
-				if("Cancel")
+			switch(alert(usr, "Stworzyć w losowym miejscu na poziomie Z głównego statku czy w twojej lokalizacji?", "Wybierz miejsce", "Z statku", "Moja lokalizacja", "Anuluj"))
+				if("Anuluj")
 					return
-				if("Ship Z")
+				if("Z statku")
 					var/obj/structure/overmap/MS = SSstar_system.find_main_overmap()
 					if(!MS)
 						return //guh?
 					target_system = MS.current_system
 					target_location = locate(rand(round(world.maxx/2) + 10, world.maxx - 39), rand(40, world.maxy - 39), MS.z)
-				if("Current Loc")
+				if("Moja lokalizacja")
 					target_location = usr.loc
 
 			//Choose ship spawn
@@ -718,21 +718,21 @@ SUBSYSTEM_DEF(overmap_mode)
 			ship_list += typesof(/obj/structure/overmap/spacepirate/ai)
 			ship_list += typesof(/obj/structure/overmap/syndicate/ai)
 			ship_list += typesof(/obj/structure/overmap/nanotrasen/solgov/ai)
-			var/obj/structure/overmap/target_ship = input(usr, "Select which ship to spawn (note: factions will apply):", "Select Ship") as null|anything in ship_list
+			var/obj/structure/overmap/target_ship = input(usr, "Wybierz, jaki okręt stworzyć (uwaga: frakcje obowiązują):", "Wybierz okręt") as null|anything in ship_list
 
 			//Choose ghost logic
 			var/target_ghost
-			switch(alert(usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Open", "Choose", "Cancel"))
-				if("Cancel")
+			switch(alert(usr, "Kto będzie pilotował ten okręt widmo?", "Format wyboru pilota", "Otwarty", "Wybierz", "Anuluj"))
+				if("Anuluj")
 					return
-				if("Open")
-					var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to pilot a [initial(target_ship.faction)] [initial(target_ship.name)]?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
+				if("Otwarty")
+					var/list/mob/dead/observer/candidates = pollGhostCandidates("Chcesz pilotować okręt [initial(target_ship.name)] (frakcja: [initial(target_ship.faction)])?", ROLE_GHOSTSHIP, /datum/role_preference/midround_ghost/ghost_ship, 20 SECONDS, POLL_IGNORE_GHOSTSHIP)
 					if(LAZYLEN(candidates))
 						var/mob/dead/observer/C = pick(candidates)
 						target_ghost = C
 					else
 						return
-				if("Choose")
+				if("Wybierz")
 					target_ghost = input(usr, "Wybierz gracza, który będzie pilotował okręt widmo:", "Wybierz gracza") as null|anything in GLOB.clients
 
 			//Now the actual spawning
@@ -741,16 +741,16 @@ SUBSYSTEM_DEF(overmap_mode)
 				GS.current_system = target_system
 				target_system.system_contents |= GS
 			GS.ghost_ship(target_ghost)
-			message_admins("[key_name_admin(usr)] has spawned a ghost [GS.name]!")
+			message_admins("[key_name_admin(usr)] tworzy okręt widmo: [GS.name]!")
 			log_admin("[key_name_admin(usr)] has spawned a ghost [GS.name]!")
 			return
 		if("toggle_ghost_ships")
 			SSovermap_mode.override_ghost_ships = !SSovermap_mode.override_ghost_ships
-			message_admins("[key_name_admin(usr)] has [SSovermap_mode.override_ghost_ships ? "DISABLED" : "ENABLED"] player ghost ships.")
+			message_admins("[key_name_admin(usr)] [SSovermap_mode.override_ghost_ships ? "WYŁĄCZA" : "WŁĄCZA"] okręty widmo graczy.")
 			return TRUE
 		if("toggle_ghost_boarders")
 			SSovermap_mode.override_ghost_boarders = !SSovermap_mode.override_ghost_boarders
-			message_admins("[key_name_admin(usr)] has [SSovermap_mode.override_ghost_boarders ? "DISABLED" : "ENABLED"] player antag boarders.")
+			message_admins("[key_name_admin(usr)] [SSovermap_mode.override_ghost_boarders ? "WYŁĄCZA" : "WŁĄCZA"] abordażystów-antagonistów graczy.")
 			return TRUE
 
 /datum/overmap_mode_controller/ui_data(mob/user)
@@ -786,13 +786,13 @@ SUBSYSTEM_DEF(overmap_mode)
 		objective_data["desc"] = O.desc
 		switch(O.status)
 			if(STATUS_INPROGRESS)
-				objective_data["status"] = "In-Progress"
+				objective_data["status"] = "W toku"
 			if(STATUS_COMPLETED)
-				objective_data["status"] = "Completed"
+				objective_data["status"] = "Wykonany"
 			if(STATUS_FAILED)
-				objective_data["status"] = "Failed"
+				objective_data["status"] = "Nieudany"
 			if(STATUS_OVERRIDE)
-				objective_data["status"] = "Completed - VICTORY OVERRIDE"
+				objective_data["status"] = "Wykonany – WYMUSZONE ZWYCIĘSTWO"
 		objective_data["datum"] = "\ref[O]"
 		objectives[++objectives.len] = objective_data
 	data["objectives_list"] = objectives

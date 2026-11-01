@@ -3,14 +3,14 @@ Self-sustaining extracts:
 	Produces 4 extracts that do not need reagents.
 */
 /obj/item/slimecross/selfsustaining
-	name = "self-sustaining extract"
+	name = "samowystarczalny ekstrakt"
 	effect = "self-sustaining"
 	icon_state = "selfsustaining"
 	var/extract_type = /obj/item/slime_extract
 
 /obj/item/autoslime
-	name = "autoslime"
-	desc = "It resembles a normal slime extract, but seems filled with a strange, multi-colored fluid."
+	name = "autoszlam"
+	desc = "Przypomina zwykły ekstrakt szlamu, ale wypełnia go dziwny, wielobarwny płyn."
 	var/obj/item/slime_extract/extract
 	var/effect_desc = "Samopodtrzymujący się ekstrakt szlamu. Po użyciu pozwala wybrać, jaką reakcję chcesz."
 
@@ -25,7 +25,7 @@ Self-sustaining extracts:
 		A.icon = icon
 		A.icon_state = icon_state
 		A.color = color
-		A.name = "self-sustaining " + colour + " extract"
+		A.name = "samowystarczalny ekstrakt ([X.name])"
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/autoslime/Initialize(mapload)

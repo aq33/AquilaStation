@@ -2,62 +2,62 @@
 //Academy Areas
 
 /area/awaymission/academy
-	name = "Academy Asteroids"
+	name = "Asteroidy Akademii"
 	icon_state = "away"
 
 /area/awaymission/academy/headmaster
-	name = "Academy Fore Block"
+	name = "Dziobowy Blok Akademii"
 	icon_state = "away1"
 
 /area/awaymission/academy/classrooms
-	name = "Academy Classroom Block"
+	name = "Blok Sal Lekcyjnych Akademii"
 	icon_state = "away2"
 
 /area/awaymission/academy/academyaft
-	name = "Academy Ship Aft Block"
+	name = "Rufowy Blok Statku Akademii"
 	icon_state = "away3"
 
 /area/awaymission/academy/academygate
-	name = "Academy Gateway"
+	name = "Brama Akademii"
 	icon_state = "away4"
 
 /area/awaymission/academy/academycellar
-	name = "Academy Cellar"
+	name = "Piwnica Akademii"
 	icon_state = "away4"
 
 /area/awaymission/academy/academyengine
-	name = "Academy Engine"
+	name = "Silnik Akademii"
 	icon_state = "away4"
 
 //Academy Items
 
 /obj/item/paper/fluff/awaymissions/academy/console_maint
-	name = "Console Maintenance"
+	name = "Konserwacja konsol"
 	default_raw_text = "Przechodzimy na najnowsze komputery główne dla naszych konsol, dostawa powinna dotrzeć przed końcem ferii wiosennych!"
 
 /obj/item/paper/fluff/awaymissions/academy/class/automotive
-	name = "Automotive Repair 101"
+	name = "Naprawa pojazdów 101"
 
 /obj/item/paper/fluff/awaymissions/academy/class/pyromancy
-	name = "Pyromancy 250"
+	name = "Piromancja 250"
 
 /obj/item/paper/fluff/awaymissions/academy/class/biology
-	name = "Biology Lab"
+	name = "Laboratorium biologii"
 
 /obj/item/paper/fluff/awaymissions/academy/grade/aplus
-	name = "Summoning Midterm Exam"
+	name = "Egzamin śródsemestralny z przywoływania"
 	default_raw_text = "Ocena: 5+. Uwagi nauczyciela: doskonała forma."
 
 /obj/item/paper/fluff/awaymissions/academy/grade/bminus
-	name = "Summoning Midterm Exam"
+	name = "Egzamin śródsemestralny z przywoływania"
 	default_raw_text = "Ocena: 4-. Uwagi nauczyciela: pracuj dalej, widać poprawę."
 
 /obj/item/paper/fluff/awaymissions/academy/grade/dminus
-	name = "Summoning Midterm Exam"
+	name = "Egzamin śródsemestralny z przywoływania"
 	default_raw_text = "Ocena: 2-. Uwagi nauczyciela: ZGŁOŚ SIĘ PO ZAJĘCIACH."
 
 /obj/item/paper/fluff/awaymissions/academy/grade/failure
-	name = "Pyromancy Evaluation"
+	name = "Ocena z piromancji"
 	default_raw_text = "Aktualna ocena: 1. Uwagi nauczyciela: brak poprawy mimo wielu prywatnych lekcji. Sugeruję dodatkowe korepetycje."
 
 /// The immobile, close pulling singularity seen in the academy away mission
@@ -74,15 +74,15 @@
 		mezzer()
 
 /obj/item/clothing/glasses/meson/truesight
-	name = "The Lens of Truesight"
-	desc = "I can see forever!"
+	name = "Soczewka Prawdziwego Wzroku"
+	desc = "Widzę w nieskończoność!"
 	icon_state = "monocle"
 	item_state = "headset"
 
 
 /obj/structure/academy_wizard_spawner
-	name = "Academy Defensive System"
-	desc = "Made by Abjuration, Inc."
+	name = "system obronny Akademii"
+	desc = "Wyprodukowano przez Abjuration, Inc."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "forge"
 	anchored = TRUE
@@ -125,11 +125,11 @@
 
 	if(!current_wizard)
 		return
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as Wizard Academy Defender?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 10 SECONDS, current_wizard)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Chcesz zagrać jako obrońca Akademii Czarodziejów?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 10 SECONDS, current_wizard)
 
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
-		message_admins("[ADMIN_LOOKUPFLW(C)] was spawned as Wizard Academy Defender")
+		message_admins("[ADMIN_LOOKUPFLW(C)] odradza się jako obrońca Akademii Czarodziejów")
 		current_wizard.ghostize(FALSE) // on the off chance braindead defender gets back in
 		current_wizard.key = C.key
 	else
@@ -139,7 +139,7 @@
 /obj/structure/academy_wizard_spawner/proc/summon_wizard()
 	var/turf/T = src.loc
 	var/mob/living/carbon/human/wizbody = new(T)
-	wizbody.fully_replace_character_name(wizbody.real_name, "Academy Teacher")
+	wizbody.fully_replace_character_name(wizbody.real_name, "Nauczyciel Akademii")
 	wizbody.mind_initialize()
 	var/datum/mind/wizmind = wizbody.mind
 	wizmind.special_role = "Academy Defender"
@@ -156,7 +156,7 @@
 		STOP_PROCESSING(SSobj, src)
 
 /datum/outfit/wizard/academy
-	name = "Academy Wizard"
+	name = "Czarodziej Akademii"
 	r_pocket = null
 	r_hand = null
 	suit = /obj/item/clothing/suit/wizrobe/red
@@ -164,8 +164,8 @@
 	backpack_contents = list(/obj/item/storage/box/survival = 1)
 
 /obj/item/dice/d20/fate
-	name = "\improper Die of Fate"
-	desc = "A die with twenty sides. You can feel unearthly energies radiating from it. Using this might be VERY risky."
+	name = "\improper kość przeznaczenia"
+	desc = "Dwudziestościenna kość. Czujesz, jak promieniuje z niej nieziemska energia. Użycie jej może być BARDZO ryzykowne."
 	icon_state = "d20"
 	sides = 20
 	microwave_riggable = FALSE
@@ -175,18 +175,18 @@
 
 /obj/item/dice/d20/fate/stealth
 	name = "d20"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+	desc = "Dwudziestościenna kość. Ulubiona kość do rzucania w MG."
 
 /obj/item/dice/d20/fate/one_use
 	reusable = FALSE
 
 /obj/item/dice/d20/fate/one_use/stealth
 	name = "d20"
-	desc = "A die with twenty sides. The preferred die to throw at the GM."
+	desc = "Dwudziestościenna kość. Ulubiona kość do rzucania w MG."
 
 /obj/item/dice/d20/fate/cursed
-	name = "cursed Die of Fate"
-	desc = "A die with twenty sides. You feel that rolling this is a REALLY bad idea."
+	name = "przeklęta kość przeznaczenia"
+	desc = "Dwudziestościenna kość. Czujesz, że rzucenie nią to NAPRAWDĘ zły pomysł."
 	color = "#00BB00"
 
 	rigged = DICE_TOTALLY_RIGGED
@@ -274,7 +274,7 @@
 			T.visible_message("<span class='userdanger'>Z powietrza pojawia się ciastko!</span>")
 			var/obj/item/food/cookie/C = new(drop_location())
 			do_smoke(0, drop_location())
-			C.name = "Cookie of Fate"
+			C.name = "ciasteczko przeznaczenia"
 		if(12)
 			//Healing
 			T.visible_message("<span class='userdanger'>[user] wygląda bardzo zdrowo!</span>")
@@ -314,10 +314,10 @@
 			A.setup_master(user)
 			servant_mind.transfer_to(H)
 
-			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [user.real_name] Servant?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 10 SECONDS, H)
+			var/list/mob/dead/observer/candidates = pollCandidatesForMob("Chcesz zagrać jako sługa [user.real_name]?", ROLE_WIZARD, /datum/role_preference/midround_ghost/wizard, 10 SECONDS, H)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
-				message_admins("[ADMIN_LOOKUPFLW(C)] was spawned as Dice Servant")
+				message_admins("[ADMIN_LOOKUPFLW(C)] odradza się jako sługa z kości")
 				H.key = C.key
 
 			var/obj/effect/proc_holder/spell/targeted/summonmob/S = new
@@ -349,7 +349,7 @@
 
 
 /datum/outfit/butler
-	name = "Butler"
+	name = "Kamerdyner"
 	uniform = /obj/item/clothing/under/suit/black_really
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/bowler
@@ -357,8 +357,8 @@
 	gloves = /obj/item/clothing/gloves/color/white
 
 /obj/effect/proc_holder/spell/targeted/summonmob
-	name = "Summon Servant"
-	desc = "This spell can be used to call your servant, whenever you need it."
+	name = "Przywołaj sługę"
+	desc = "Tym zaklęciem możesz wezwać sługę, kiedy tylko go potrzebujesz."
 	charge_max = 100
 	clothes_req = 0
 	invocation = "JE VES"
@@ -382,8 +382,8 @@
 			target_mob.Move(T)
 
 /obj/structure/ladder/unbreakable/rune
-	name = "\improper Teleportation Rune"
-	desc = "Could lead anywhere."
+	name = "\improper runa teleportacji"
+	desc = "Może prowadzić dokądkolwiek."
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
 	color = rgb(0,0,255)

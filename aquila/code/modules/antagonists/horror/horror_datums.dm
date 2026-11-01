@@ -35,8 +35,8 @@
 	if(!istype(H) || !H.victim)
 		return
 	if(H.host_brain)
-		return ..() + ", controlling [H.host_brain.real_name]"
-	return ..() + ", inside [H.victim.real_name]"
+		return ..() + ", kontroluje: [H.host_brain.real_name]"
+	return ..() + ", w ciele: [H.victim.real_name]"
 
 /datum/antagonist/horror/proc/give_objectives()
 	if(summoner)

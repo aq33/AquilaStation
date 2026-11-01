@@ -67,7 +67,7 @@
 	return info
 
 /obj/item/circuit_component/air_alarm_general
-	display_name = "Air Alarm"
+	display_name = "Alarm powietrza"
 	desc = "Podaje podstawowe informacje zapisane przez alarm powietrza i pozwala zmienić jego tryb."
 
 	var/obj/machinery/airalarm/connected_alarm
@@ -169,7 +169,7 @@
 	connected_alarm.ui_update()
 
 /obj/item/circuit_component/air_alarm
-	display_name = "Air Alarm Core Control"
+	display_name = "Alarm powietrza: sterowanie główne"
 	desc = "Steruje progami gazów i temperatury w pomieszczeniu oraz odczytuje stan powietrza."
 
 	var/datum/port/input/option/air_alarm_options
@@ -240,7 +240,7 @@
 	options_map = component_options
 
 /obj/item/circuit_component/air_alarm/duplicate
-	display_name = "Air Alarm Control"
+	display_name = "Alarm powietrza: sterowanie"
 
 	circuit_size = 0
 	ui_buttons = list()
@@ -312,7 +312,7 @@
 	update_received.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_scrubbers
-	display_name = "Air Alarm Scrubber Core Control"
+	display_name = "Alarm powietrza: główne sterowanie oczyszczaczami"
 	desc = "Steruje scrubberami w pomieszczeniu alarmu powietrza."
 
 	var/datum/port/input/option/scrubbers
@@ -383,7 +383,7 @@
 	update_received = add_output_port("Update Received", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_scrubbers/duplicate
-	display_name = "Air Alarm Scrubber Control"
+	display_name = "Alarm powietrza: sterowanie oczyszczaczem"
 	circuit_size = 0
 	ui_buttons = list()
 
@@ -419,7 +419,7 @@
 
 /obj/item/circuit_component/air_alarm_scrubbers/get_ui_notices()
 	. = ..()
-	. += create_table_notices(GLOB.gas_data.ids, column_name = "Gas", column_name_plural = "Gases")
+	. += create_table_notices(GLOB.gas_data.ids, column_name = "gaz", column_name_plural = "gazy")
 
 /obj/item/circuit_component/air_alarm_scrubbers/proc/can_control()
 	return connected_alarm && !connected_alarm.locked && connected_alarm.buildstage == 2
@@ -475,7 +475,7 @@
 	update_received.set_output(COMPONENT_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_vents
-	display_name = "Air Alarm Vent Core Control"
+	display_name = "Alarm powietrza: główne sterowanie nawiewnikami"
 	desc = "Steruje wentylacją w pomieszczeniu alarmu powietrza."
 
 	var/datum/port/input/option/vents
@@ -556,7 +556,7 @@
 	update_received = add_output_port("Update Received", PORT_TYPE_SIGNAL)
 
 /obj/item/circuit_component/air_alarm_vents/duplicate
-	display_name = "Air Alarm Vent Control"
+	display_name = "Alarm powietrza: sterowanie nawiewnikiem"
 
 	circuit_size = 0
 	ui_buttons = list()
@@ -686,7 +686,7 @@
 	SEND_SIGNAL(src, COMSIG_ATMOS_MACHINE_SET_ON, on)
 
 /obj/item/circuit_component/atmos_pump
-	display_name = "Atmospheric Binary Pump"
+	display_name = "Pompa gazu"
 	desc = "Interfejs do sterowania pompą ciśnieniową."
 
 	///Ustawia docelowe ciśnienie pompy
@@ -785,7 +785,7 @@
 	output_temperature.set_output(air_output.return_temperature())
 
 /obj/item/circuit_component/atmos_volume_pump
-	display_name = "Atmospheric Volume Pump"
+	display_name = "Pompa objętościowa"
 	desc = "Interfejs do sterowania pompą objętościową."
 
 	///Ustawia przepływ pompy
@@ -888,7 +888,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/atmos_meter))
 
 /obj/item/circuit_component/atmos_meter
-	display_name = "Atmospheric Meter"
+	display_name = "Miernik przepływu gazu"
 	desc = "Odczytuje ciśnienie i temperaturę w sieci rur."
 
 	var/datum/port/input/request_data
@@ -946,7 +946,7 @@
 	SEND_SIGNAL(src, fire_now ? COMSIG_FIREALARM_ON_TRIGGER : COMSIG_FIREALARM_ON_RESET)
 
 /obj/item/circuit_component/firealarm
-	display_name = "Fire Alarm"
+	display_name = "Alarm pożarowy"
 	desc = "Pozwala sterować alarmem pożarowym."
 
 	var/datum/port/input/alarm_trigger
@@ -1021,7 +1021,7 @@
 	area.power_change()
 
 /obj/item/circuit_component/light_switch
-	display_name = "Light Switch"
+	display_name = "Włącznik światła"
 	desc = "Pozwala sterować światłami w obszarze."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
@@ -1067,7 +1067,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/status_display))
 
 /obj/item/circuit_component/status_display
-	display_name = "Status Display"
+	display_name = "Wyświetlacz stanu"
 	desc = "Wyświetla tekst i obrazki na wyświetlaczu statusu."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -1167,7 +1167,7 @@
 		SEND_SIGNAL(src, COMSIG_VITALS_SET_PATIENT, old_patient, null)
 
 /obj/item/circuit_component/vitals_monitor
-	display_name = "Vitals Monitor"
+	display_name = "Monitor funkcji życiowych"
 	desc = "Odczytuje stan pacjenta z monitora funkcji życiowych."
 
 	var/obj/machinery/vitals_reader/linked_monitor

@@ -1,8 +1,8 @@
 #define EGG_INCUBATION_TIME 120
 
 /mob/living/simple_animal/hostile/headcrab
-	name = "headspider"
-	desc = "Absolutely not de-beaked or harmless. Keep away from corpses."
+	name = "pająk-głowa"
+	desc = "Absolutnie nie jest pozbawiony dzioba ani niegroźny. Trzymaj go z dala od zwłok."
 	icon_state = "headcrab"
 	icon_living = "headcrab"
 	icon_dead = "headcrab_dead"
@@ -50,8 +50,8 @@
 			addtimer(CALLBACK(src, PROC_REF(death)), 100)
 
 /obj/item/organ/body_egg/changeling_egg
-	name = "changeling egg"
-	desc = "Twitching and disgusting."
+	name = "jajo zmiennokształtnego"
+	desc = "Drgające i obrzydliwe."
 	var/datum/mind/origin
 	var/time
 

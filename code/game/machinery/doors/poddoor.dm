@@ -1,6 +1,6 @@
 /obj/machinery/door/poddoor
-	name = "blast door"
-	desc = "A heavy duty blast door that opens mechanically."
+	name = "drzwi przeciwwybuchowe"
+	desc = "Wytrzymałe drzwi przeciwwybuchowe otwierane mechanicznie."
 	icon = 'icons/obj/doors/blastdoor.dmi'
 	icon_state = "closed"
 	var/id = 1
@@ -22,8 +22,8 @@
 	opacity = 0
 
 /obj/machinery/door/poddoor/ert
-	name = "hardened blast door"
-	desc = "A heavy duty blast door that only opens for dire emergencies."
+	name = "wzmocnione drzwi przeciwwybuchowe"
+	desc = "Wytrzymałe drzwi przeciwwybuchowe, które otwierają się tylko w najpoważniejszych sytuacjach awaryjnych."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 //special poddoors that open when emergency shuttle docks at centcom
@@ -39,23 +39,23 @@
 		INVOKE_ASYNC(src, PROC_REF(close))
 
 /obj/machinery/door/poddoor/incinerator_toxmix
-	name = "combustion chamber vent"
+	name = "wylot komory spalania"
 	id = INCINERATOR_TOXMIX_VENT
 
 /obj/machinery/door/poddoor/incinerator_atmos_main
-	name = "turbine vent"
+	name = "wylot turbiny"
 	id = INCINERATOR_ATMOS_MAINVENT
 
 /obj/machinery/door/poddoor/incinerator_atmos_aux
-	name = "combustion chamber vent"
+	name = "wylot komory spalania"
 	id = INCINERATOR_ATMOS_AUXVENT
 
 /obj/machinery/door/poddoor/incinerator_syndicatelava_main
-	name = "turbine vent"
+	name = "wylot turbiny"
 	id = INCINERATOR_SYNDICATELAVA_MAINVENT
 
 /obj/machinery/door/poddoor/incinerator_syndicatelava_aux
-	name = "combustion chamber vent"
+	name = "wylot komory spalania"
 	id = INCINERATOR_SYNDICATELAVA_AUXVENT
 
 /obj/machinery/door/poddoor/Bumped(atom/movable/AM)

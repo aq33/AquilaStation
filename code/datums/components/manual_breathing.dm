@@ -12,7 +12,7 @@
 	var/datum/action/breathe/button = new
 
 /datum/action/breathe
-	name = "Inhale"
+	name = "Zrób wdech"
 	icon_icon = 'icons/mob/actions/actions_hive.dmi'
 	button_icon_state = "add"									//Feel free to replace
 	var/datum/emote/next_emote = "inhale"
@@ -25,10 +25,10 @@
 /datum/action/breathe/proc/update_status(emote)
 	next_emote = emote
 	if(next_emote == "inhale")
-		name = "Inhale"
+		name = "Zrób wdech"
 		button_icon_state = "add"
 	else
-		name = "Exhale"
+		name = "Zrób wydech"
 		button_icon_state = "remove"
 	UpdateButtonIcon()
 

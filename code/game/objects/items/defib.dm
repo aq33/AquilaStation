@@ -2,8 +2,8 @@
 #define HALFWAYCRITDEATH ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 0.5)
 
 /obj/item/defibrillator
-	name = "defibrillator"
-	desc = "A device that delivers powerful shocks to detachable paddles that resuscitate incapacitated patients."
+	name = "defibrylator"
+	desc = "Urządzenie dostarczające potężne wyładowania do odczepianych elektrod, którymi reanimuje się nieprzytomnych pacjentów."
 	icon = 'icons/obj/defib.dmi'
 	icon_state = "defibunit"
 	item_state = "defibunit"
@@ -239,8 +239,8 @@
 	update_icon()
 
 /obj/item/defibrillator/compact
-	name = "compact defibrillator"
-	desc = "A belt-equipped defibrillator that can be rapidly deployed."
+	name = "kompaktowy defibrylator"
+	desc = "Defibrylator noszony na pasie, gotowy do szybkiego użycia."
 	icon_state = "defibcompact"
 	item_state = "defibcompact"
 	worn_icon_state = "defibcompact"
@@ -258,8 +258,8 @@
 	update_icon()
 
 /obj/item/defibrillator/compact/combat
-	name = "combat defibrillator"
-	desc = "A belt-equipped blood-red defibrillator that can be rapidly deployed. Does not have the restrictions or safeties of conventional defibrillators and can revive through space suits."
+	name = "bojowy defibrylator"
+	desc = "Krwistoczerwony defibrylator noszony na pasie, gotowy do szybkiego użycia. Nie ma ograniczeń ani zabezpieczeń zwykłych defibrylatorów i potrafi reanimować przez skafandry kosmiczne."
 	combat = TRUE
 	safety = FALSE
 	cooldown_duration = 2.5 SECONDS
@@ -285,8 +285,8 @@
 #define SNAP_INTERACT   2
 
 /obj/item/shockpaddles
-	name = "defibrillator paddles"
-	desc = "A pair of plastic-gripped paddles with flat metal surfaces that are used to deliver powerful electric shocks."
+	name = "elektrody defibrylatora"
+	desc = "Para elektrod z plastikowymi uchwytami i płaskimi metalowymi powierzchniami, którymi dostarcza się potężne wyładowania elektryczne."
 	icon = 'icons/obj/defib.dmi'
 	icon_state = "defibpaddles0"
 	item_state = "defibpaddles0"
@@ -672,7 +672,7 @@
 	update_icon()
 
 /obj/item/shockpaddles/cyborg
-	name = "cyborg defibrillator paddles"
+	name = "elektrody defibrylatora cyborga"
 	icon = 'icons/obj/defib.dmi'
 	icon_state = "defibpaddles0"
 	item_state = "defibpaddles0"
@@ -691,8 +691,8 @@
 	. = ..()
 
 /obj/item/shockpaddles/syndicate
-	name = "syndicate defibrillator paddles"
-	desc = "A pair of paddles used to revive deceased operatives. They possess both the ability to penetrate armor and to deliver powerful or disabling shocks offensively."
+	name = "elektrody defibrylatora Syndykatu"
+	desc = "Para elektrod do reanimacji poległych agentów. Przebijają pancerz i mogą też ofensywnie razić potężnymi albo obezwładniającymi wyładowaniami."
 	combat = TRUE
 	icon = 'icons/obj/defib.dmi'
 	icon_state = "defibpaddles0"

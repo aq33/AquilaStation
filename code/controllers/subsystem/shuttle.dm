@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(shuttle)
 					if(GLOB.security_level < SEC_LEVEL_RED)
 						set_security_level(SEC_LEVEL_RED)
 					if(!SSvote.current_vote) // AQ EDIT - port BeeStation #13247: vote datums
-						SSvote.initiate_vote(/datum/vote/transfer, "Crisis Protocols", forced = TRUE)
+						SSvote.initiate_vote(/datum/vote/transfer, "Protokoły kryzysowe", forced = TRUE)
 						msg = "Automatyczne rozpoczęcie głosowania o transfer z powodu śmierci załogi."
 						priority_announce("Wykryto katastrofalne straty w załodze: uruchomiono kryzysowe procedury promu.", sound = SSstation.announcer.get_rand_alert_sound())
 						autoevac_status = AUTOEVAC_STATUS_EVAC_CALLED
@@ -285,7 +285,7 @@ SUBSYSTEM_DEF(shuttle)
 	if(call_reason)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_game("Shuttle call reason: [call_reason]")
-	message_admins("[user ? ADMIN_LOOKUPFLW(user) : "An automated system"] has called the shuttle. (<A HREF='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
+	message_admins("[user ? ADMIN_LOOKUPFLW(user) : "Automatyczny system"] wzywa prom. (<A HREF='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>WYMUŚ ODWOŁANIE PRZEZ CENTRALĘ</A>)")
 
 /datum/controller/subsystem/shuttle/proc/centcom_recall(old_timer, admiral_message)
 	if(emergency.mode != SHUTTLE_CALL || emergency.timer != old_timer)
@@ -308,7 +308,7 @@ SUBSYSTEM_DEF(shuttle)
 	if(canRecall())
 		emergency.cancel(get_area(user))
 		log_game("[key_name(user)] has recalled the shuttle.")
-		message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
+		message_admins("[ADMIN_LOOKUPFLW(user)] odwołuje prom.")
 		deadchat_broadcast("<span class='deadsay'><span class='name'>[user.real_name]</span> odwołuje prom z <span class='name'>[get_area_name(user, TRUE)]</span>.</span>", user)
 		return 1
 
@@ -355,7 +355,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)
 			emergency.request(null, set_coefficient = 2.5)
 			log_game("There is no means of calling the shuttle anymore. Shuttle automatically called.")
-			message_admins("All the communications consoles were destroyed and all AIs are inactive. Shuttle called.")
+			message_admins("Wszystkie konsole komunikacyjne zniszczone, a wszystkie SI nieaktywne. Prom wezwany.")
 
 /datum/controller/subsystem/shuttle/proc/registerHostileEnvironment(datum/bad)
 	hostileEnvironments[bad] = TRUE
@@ -900,7 +900,7 @@ SUBSYSTEM_DEF(shuttle)
 				if(M.id == params["id"] && M.timer && M.timeLeft(1) >= 50)
 					M.setTimer(50)
 					. = TRUE
-					message_admins("[key_name_admin(usr)] fast travelled [M]")
+					message_admins("[key_name_admin(usr)] przyspiesza przelot: [M]")
 					log_admin("[key_name(usr)] fast travelled [M]")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[M.name]")
 					break
@@ -925,7 +925,7 @@ SUBSYSTEM_DEF(shuttle)
 				var/obj/docking_port/mobile/mdp = action_load(S)
 				if(mdp)
 					user.forceMove(get_turf(mdp))
-					message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
+					message_admins("[key_name_admin(usr)] wczytuje [mdp] manipulatorem promów.")
 					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
 

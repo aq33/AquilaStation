@@ -35,8 +35,8 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 )))
 
 /obj/machinery/deepfryer
-	name = "deep fryer"
-	desc = "Deep fried <i>everything</i>."
+	name = "frytkownica"
+	desc = "Smażone w głębokim tłuszczu <i>wszystko</i>."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	if(cook_time >= DEEPFRYER_COOKTIME && !frying_fried)
 		frying_fried = TRUE //frying... frying... fried
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, TRUE)
-		audible_message("<span class='notice'>[src] dings!</span>")
+		audible_message("<span class='notice'>[src] dzwoni!</span>")
 	else if (cook_time >= DEEPFRYER_BURNTIME && !frying_burnt)
 		frying_burnt = TRUE
 		visible_message("<span class='warning'>[src] wydziela gryzący zapach!</span>")

@@ -30,7 +30,7 @@
 
 /datum/weakref/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_WEAKREF_RESOLVE, "Go to reference")
+	VV_DROPDOWN_OPTION(VV_HK_WEAKREF_RESOLVE, "Przejdź do referencji")
 
 /datum/weakref/vv_do_topic(list/href_list)
 	. = ..()

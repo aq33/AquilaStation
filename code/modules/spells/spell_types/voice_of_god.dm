@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/voice_of_god
-	name = "Voice of God"
-	desc = "Speak with an incredibly compelling voice, forcing listeners to obey your commands."
+	name = "Głos Boga"
+	desc = "Mówisz niezwykle przekonującym głosem, zmuszając słuchaczy do wykonywania twoich poleceń."
 	charge_max = 1200 //variable
 	cooldown_min = 0
 	level_max = 1
@@ -23,7 +23,7 @@
 /obj/effect/proc_holder/spell/voice_of_god/choose_targets(mob/user = usr)
 	perform(user=user)
 /obj/effect/proc_holder/spell/voice_of_god/perform(list/targets, recharge = 1, mob/user = usr)
-	command = input(user, "Przemów Głosem Boga", "Command")
+	command = input(user, "Przemów Głosem Boga", "Rozkaz")
 	if(QDELETED(src) || QDELETED(user))
 		return
 	if(!command)
@@ -37,8 +37,8 @@
 	charge_max = (cooldown * cooldown_mod)
 
 /obj/effect/proc_holder/spell/voice_of_god/clown
-	name = "Voice of Clown"
-	desc = "Speak with an incredibly funny voice, startling people into obeying you for a brief moment."
+	name = "Głos Klauna"
+	desc = "Mówisz niezwykle zabawnym głosem, zaskakując ludzi tak, że przez chwilę cię słuchają."
 	power_mod = 0.1
 	cooldown_mod = 0.5
 	spans = list("clown")

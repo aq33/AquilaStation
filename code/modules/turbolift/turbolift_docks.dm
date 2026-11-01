@@ -1,10 +1,10 @@
 /obj/docking_port/stationary/turbolift
-	name = "turbolift"
+	name = "turbowinda"
 	var/bottom_floor = FALSE
 	var/deck = 1
 
 /obj/docking_port/mobile/turbolift
-	name = "turbolift"
+	name = "turbowinda"
 	dir = NORTH
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	var/datum/weakref/turbolift_computer
@@ -26,7 +26,7 @@
 
 	if(!turbolift_computer)
 		log_mapping("TURBOLIFT: [src] failed to find its turbolift computer at [AREACOORD(src)]")
-		message_admins("TURBOLIFT: [src] failed to find its turbolift computer at [AREACOORD(src)]")
+		message_admins("TURBOWINDA: [src] nie znajduje swojego komputera turbowindy na [AREACOORD(src)]")
 		return
 
 	var/obj/docking_port/stationary/turbolift/turbolift_dock
@@ -39,11 +39,11 @@
 			break
 	if(!turbolift_dock)
 		log_mapping("TURBOLIFT: [src] failed to find its dock at [AREACOORD(src)]")
-		message_admins("TURBOLIFT: [src] failed to find its dock at [AREACOORD(src)]")
+		message_admins("TURBOWINDA: [src] nie znajduje swojego doku na [AREACOORD(src)]")
 		return
 	if(!turbolift_dock.bottom_floor)
 		log_mapping("TURBOLIFT: [src] was loaded in somewhere other than the lowest floor at [AREACOORD(src)]")
-		message_admins("TURBOLIFT: [src] was loaded in somewhere other than the lowest floor at [AREACOORD(src)]")
+		message_admins("TURBOWINDA: [src] wczytuje się gdzie indziej niż na najniższym piętrze, na [AREACOORD(src)]")
 		return
 
 	turbolift_dock.locate_floors(src)
@@ -62,11 +62,11 @@
 	var/obj/docking_port/mobile/turbolift/M = SSshuttle.getShuttle(dock.id)
 	if(!M)
 		log_mapping("TURBOLIFT: [src] failed to find mobile dock: [dock.id]")
-		message_admins("TURBOLIFT: [src] failed to find mobile dock: [dock.id]")
+		message_admins("TURBOWINDA: [src] nie znajduje ruchomego doku: [dock.id]")
 	var/obj/machinery/computer/turbolift/turbolift_computer = M.turbolift_computer.resolve()
 	if(!turbolift_computer)
 		log_mapping("TURBOLIFT: [src] failed to find its turbolift computer in locate_floors()")
-		message_admins("TURBOLIFT: [src] failed to find its turbolift computer in locate_floors()")
+		message_admins("TURBOWINDA: [src] nie znajduje swojego komputera turbowindy w locate_floors()")
 		return
 	turbolift_computer.possible_destinations += "[id]"
 

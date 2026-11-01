@@ -1,6 +1,6 @@
 /obj/structure/chair/fancy/bench
-	name = "bench"
-	desc = "You sit in this. Either by will or force, but maybe not alone."
+	name = "ławka"
+	desc = "Siadasz na niej. Z własnej woli albo pod przymusem, ale może nie w pojedynkę."
 	icon = 'icons/obj/beds_chairs/benches.dmi'
 	max_integrity = 250
 	integrity_failure = 25
@@ -15,8 +15,8 @@
 	icon_state = "bench_right"
 
 /obj/structure/chair/fancy/bench/pew
-	name = "wooden pew"
-	desc = "Kneel here and pray."
+	name = "drewniana ławka kościelna"
+	desc = "Uklęknij tu i się pomódl."
 	icon_state = "pewmiddle"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
@@ -29,17 +29,17 @@
 	AddComponent(/datum/component/simple_rotation, ROTATION_REQUIRE_WRENCH|ROTATION_IGNORE_ANCHORED)
 
 /obj/structure/chair/fancy/bench/pew/left
-	name = "left wooden pew end"
+	name = "lewy koniec drewnianej ławki kościelnej"
 	icon_state = "pewend_left"
 
 /obj/structure/chair/fancy/bench/pew/right
-	name = "right wooden pew end"
+	name = "prawy koniec drewnianej ławki kościelnej"
 	icon_state = "pewend_right"
 
 // Bamboo benches
 /obj/structure/chair/fancy/bench/bamboo
-	name = "bamboo bench"
-	desc = "A makeshift bench with a rustic aesthetic."
+	name = "bambusowa ławka"
+	desc = "Prowizoryczna ławka w rustykalnym stylu."
 	icon_state = "bamboo_sofamiddle"
 	resistance_flags = FLAMMABLE
 	max_integrity = 60
@@ -54,8 +54,8 @@
 
 // Ported from tg ported from Skyrat, oh and this version is off Paradise, aka GAGless but almost GAGs!
 /obj/structure/chair/fancy/bench/corporate
-	name = "corporate bench"
-	desc = "Perfectly designed to be comfortable to sit on, and hellish to sleep on."
+	name = "korporacyjna ławka"
+	desc = "Zaprojektowana idealnie: wygodna do siedzenia i piekielna do spania."
 	icon_state = "corporate_bench_middle_mapping"
 	base_icon_state = "corporate_bench_middle"
 	///icon for the cover seat

@@ -1,8 +1,8 @@
 // Closets for specific jobs
 
 /obj/structure/closet/gmcloset
-	name = "formal closet"
-	desc = "It's a storage unit for formal clothing."
+	name = "szafa ze strojami wizytowymi"
+	desc = "Szafa na stroje wizytowe."
 	icon_door = "black"
 
 /obj/structure/closet/gmcloset/PopulateContents()
@@ -25,8 +25,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/chefcloset
-	name = "\proper chef's closet"
-	desc = "It's a storage unit for foodservice garments and mouse traps."
+	name = "\proper szafa Kucharza"
+	desc = "Szafa na odzież gastronomiczną i pułapki na myszy."
 	icon_door = "black"
 
 /obj/structure/closet/chefcloset/PopulateContents()
@@ -46,8 +46,8 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/jcloset
-	name = "custodial closet"
-	desc = "It's a storage unit for janitorial clothes and gear."
+	name = "szafa woźnego"
+	desc = "Szafa na ubrania i sprzęt woźnego."
 	icon_door = "mixed"
 
 /obj/structure/closet/jcloset/PopulateContents()
@@ -71,8 +71,8 @@
 
 
 /obj/structure/closet/lawcloset
-	name = "legal closet"
-	desc = "It's a storage unit for courtroom apparel and items."
+	name = "szafa prawnicza"
+	desc = "Szafa na stroje i przedmioty do sali sądowej."
 	icon_door = "blue"
 
 /obj/structure/closet/lawcloset/PopulateContents()
@@ -92,8 +92,8 @@
 	new /obj/item/clothing/accessory/lawyers_badge(src)
 
 /obj/structure/closet/wardrobe/chaplain_black
-	name = "chapel wardrobe"
-	desc = "It's a storage unit for Nanotrasen-approved religious attire."
+	name = "szafa kaplicy"
+	desc = "Szafa na zatwierdzone przez Nanotrasen stroje religijne."
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/chaplain_black/PopulateContents()
@@ -111,7 +111,7 @@
 	return
 
 /obj/structure/closet/wardrobe/red
-	name = "security wardrobe"
+	name = "szafa z mundurami policyjnymi"
 	icon_door = "red"
 
 /obj/structure/closet/wardrobe/red/PopulateContents()
@@ -130,7 +130,7 @@
 	return
 
 /obj/structure/closet/wardrobe/cargotech
-	name = "cargo wardrobe"
+	name = "szafa na ubrania zaopatrzenia"
 	icon_door = "orange"
 
 /obj/structure/closet/wardrobe/cargotech/PopulateContents()
@@ -145,7 +145,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/wardrobe/atmospherics_yellow
-	name = "atmospherics wardrobe"
+	name = "szafa na ubrania atmosferyki"
 	icon_door = "atmos_wardrobe"
 
 /obj/structure/closet/wardrobe/atmospherics_yellow/PopulateContents()
@@ -162,7 +162,7 @@
 	return
 
 /obj/structure/closet/wardrobe/engineering_yellow
-	name = "engineering wardrobe"
+	name = "szafa na ubrania inżynierii"
 	icon_door = "yellow"
 
 /obj/structure/closet/wardrobe/engineering_yellow/PopulateContents()
@@ -181,7 +181,7 @@
 	return
 
 /obj/structure/closet/wardrobe/white/medical
-	name = "medical doctor's wardrobe"
+	name = "szafa na ubrania lekarza"
 
 /obj/structure/closet/wardrobe/white/medical/PopulateContents()
 	var/static/items_inside = list(
@@ -205,7 +205,7 @@
 	return
 
 /obj/structure/closet/wardrobe/robotics_black
-	name = "robotics wardrobe"
+	name = "szafa na ubrania robotyki"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/robotics_black/PopulateContents()
@@ -226,7 +226,7 @@
 
 
 /obj/structure/closet/wardrobe/chemistry_white
-	name = "chemistry wardrobe"
+	name = "szafa na ubrania chemii"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/chemistry_white/PopulateContents()
@@ -242,7 +242,7 @@
 
 
 /obj/structure/closet/wardrobe/genetics_white
-	name = "genetics wardrobe"
+	name = "szafa na ubrania genetyki"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/genetics_white/PopulateContents()
@@ -257,7 +257,7 @@
 
 
 /obj/structure/closet/wardrobe/virology_white
-	name = "virology wardrobe"
+	name = "szafa na ubrania wirologii"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/virology_white/PopulateContents()
@@ -273,7 +273,7 @@
 	return
 
 /obj/structure/closet/wardrobe/science_white
-	name = "science wardrobe"
+	name = "szafa na ubrania nauki"
 	icon_door = "white"
 
 /obj/structure/closet/wardrobe/science_white/PopulateContents()
@@ -292,7 +292,7 @@
 	return
 
 /obj/structure/closet/wardrobe/botanist
-	name = "botanist wardrobe"
+	name = "szafa na ubrania botanika"
 	icon_door = "green"
 
 /obj/structure/closet/wardrobe/botanist/PopulateContents()
@@ -307,7 +307,7 @@
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/wardrobe/curator
-	name = "treasure hunting wardrobe"
+	name = "szafa łowcy skarbów"
 	icon_door = "black"
 
 /obj/structure/closet/wardrobe/curator/PopulateContents()

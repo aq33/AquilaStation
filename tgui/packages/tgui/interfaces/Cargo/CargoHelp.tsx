@@ -27,14 +27,15 @@ export function CargoHelp(props) {
             <br />
             <b>3.</b> Otwórz PDA.
             <br />
-            <b>4.</b> Wybierz <i>Delivery Bot Control</i>.<br />
-            <b>5.</b> Kliknij <i>Scan for Active Bots</i>.<br />
+            <b>4.</b> Wybierz <i>Zdalny kontroler botów</i>.<br />
+            <b>5.</b> Znajdź swojego MULEbota na liście.
+            <br />
             <b>6.</b> Wybierz swojego MULE.
             <br />
-            <b>7.</b> Kliknij <i>Destination: (set)</i>.<br />
+            <b>7.</b> Kliknij <i>Ustaw cel</i>.<br />
             <b>8.</b> Wybierz cel i zatwierdź.
             <br />
-            <b>9.</b> Kliknij <i>Proceed</i>.
+            <b>9.</b> Kliknij <i>Jedź do celu</i> (przycisk ze strzałką).
           </Section>
           <Section title="Poczta rurowa">
             <Box color="label">{DISPOSAL_TEXT}</Box>

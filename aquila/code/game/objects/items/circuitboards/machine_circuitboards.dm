@@ -1,5 +1,5 @@
 /obj/item/circuitboard/machine/bluespace_miner
-	name = "bluespace miner (Machine Board)"
+	name = "koparka bluespace (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/mineral/bluespace_miner
 	req_components = list(
@@ -12,7 +12,7 @@
 	needs_anchored = FALSE
 
 /obj/item/circuitboard/machine/autodoc
-	name = "Autodoc (Machine Board)"
+	name = "autodoc (płytka maszyny)"
 	build_path = /obj/machinery/autodoc
 	req_components = list(/obj/item/scalpel/advanced = 1,
 		/obj/item/retractor/advanced = 1,
@@ -22,7 +22,7 @@
 		/obj/item/stock_parts/matter_bin = 1)
 
 /obj/item/circuitboard/machine/battery
-	name = "bateria eksportowa (Machine Board)"
+	name = "bateria eksportowa (płytka maszyny)"
 	build_path = /obj/machinery/power/battery
 	req_components = list(
 		/obj/item/stock_parts/capacitor = 5)

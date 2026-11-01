@@ -1,6 +1,6 @@
 /datum/mutation/antenna
-	name = "Antenna"
-	desc = "The affected person sprouts an antenna. This is known to allow them to access common radio channels passively."
+	name = "Antena"
+	desc = "Osobie wyrasta antena. Wiadomo, że pozwala ona biernie odbierać ogólne kanały radiowe."
 	quality = POSITIVE
 	text_gain_indication = "<span class='notice'>Czujesz, jak z twojego czoła wyrasta antena.</span>"
 	text_lose_indication = "<span class='notice'>Twoja antena kurczy się z powrotem.</span>"
@@ -9,14 +9,14 @@
 	var/datum/weakref/radio_weakref
 
 /obj/item/implant/radio/antenna
-	name = "internal antenna organ"
-	desc = "The internal organ part of the antenna. Science has not yet given it a good name."
+	name = "wewnętrzny organ anteny"
+	desc = "Wewnętrzna, organiczna część anteny. Nauka nie wymyśliła jeszcze dla niej dobrej nazwy."
 	icon = 'icons/obj/radio.dmi'//maybe make a unique sprite later. not important
 	icon_state = "walkietalkie"
 
 /obj/item/implant/radio/antenna/Initialize(mapload)
 	. = ..()
-	radio.name = "internal antenna"
+	radio.name = "wewnętrzna antena"
 
 /datum/mutation/antenna/on_acquiring(mob/living/carbon/owner)
 	if(..())

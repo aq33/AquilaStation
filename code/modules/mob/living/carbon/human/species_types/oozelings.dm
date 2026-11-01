@@ -117,7 +117,7 @@
 	H.nutrition += 20
 
 /datum/action/innate/regenerate_limbs
-	name = "Regenerate Limbs"
+	name = "Regeneruj kończyny"
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "slimeheal"
 	icon_icon = 'icons/mob/actions/actions_slime.dmi'

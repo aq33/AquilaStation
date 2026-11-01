@@ -2,8 +2,8 @@
 // !      Sigil of Submission     ! //
 //==================================//
 /datum/clockcult/scripture/create_structure/sigil_submission
-	name = "Sigil of Submission"
-	desc = "Summons a sigil of submission, which will convert anyone placed on top of it to the faith of Rat'var."
+	name = "Pieczęć uległości"
+	desc = "Przywołuje pieczęć uległości, która nawraca na wiarę Rat'vara każdego, kto na niej leży."
 	tip = "Nawraca załogę na sług za pomocą znaku uległości."
 	button_icon_state = "Sigil of Submission"
 	power_cost = 250
@@ -15,8 +15,8 @@
 
 //==========Submission=========
 /obj/structure/destructible/clockwork/sigil/submission
-	name = "sigil of submission"
-	desc = "A strange sigil, with otherworldy drawings on it."
+	name = "pieczęć uległości"
+	desc = "Dziwna pieczęć z nieziemskimi rysunkami."
 	clockwork_desc = "Znak pulsujący wspaniałym światłem. Każdy przytrzymany na nim stanie się lojalnym sługą Rat'vara."
 	icon_state = "sigilsubmission"
 	effect_stand_time = 80

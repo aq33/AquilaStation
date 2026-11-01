@@ -1,7 +1,7 @@
 //Custom Shuttle
 //Crew has to build a custom shuttle
 /datum/station_goal/custom_shuttle
-	name = "Custom Shuttle"
+	name = "Własny prom"
 
 /datum/station_goal/custom_shuttle/get_report()
 	return list(

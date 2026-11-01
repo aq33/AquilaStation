@@ -30,6 +30,6 @@
 /// Antagonistę dodaje finish_setup()
 /datum/dynamic_ruleset/midround/from_ghosts/voidwalker/generate_ruleset_body(mob/applicant)
 	var/mob/living/simple_animal/hostile/voidwalker/walker = create_voidwalker(applicant.key, spawn_loc, give_antag = FALSE)
-	message_admins("[ADMIN_LOOKUPFLW(walker)] has been made into a voidwalker by the midround ruleset.")
+	message_admins("[ADMIN_LOOKUPFLW(walker)] zostaje wędrowcem pustki z reguły midroundowej.")
 	log_game("DYNAMIC: [key_name(walker)] was spawned as a voidwalker by the midround ruleset.")
 	return walker

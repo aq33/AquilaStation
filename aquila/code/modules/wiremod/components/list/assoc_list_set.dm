@@ -4,7 +4,7 @@
  * Sets a string value on an assoc list.
  */
 /obj/item/circuit_component/variable/assoc_list/list_set
-	display_name = "Associative List Set"
+	display_name = "Zapis do listy asocjacyjnej"
 	desc = "Ustawia tekstowy klucz listy asocjacyjnej na podaną wartość."
 	category = "List"
 

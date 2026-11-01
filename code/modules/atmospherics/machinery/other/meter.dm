@@ -1,6 +1,6 @@
 /obj/machinery/meter
-	name = "gas flow meter"
-	desc = "It measures something."
+	name = "miernik przepływu gazu"
+	desc = "Coś mierzy."
 	icon = 'icons/obj/atmospherics/pipes/meter.dmi'
 	icon_state = "meterX"
 	layer = GAS_PUMP_LAYER
@@ -18,11 +18,11 @@
 	frequency = FREQ_ATMOS_STORAGE
 
 /obj/machinery/meter/atmos/atmos_waste_loop
-	name = "waste loop gas flow meter"
+	name = "miernik przepływu gazu pętli odpadów"
 	id_tag = ATMOS_GAS_MONITOR_LOOP_ATMOS_WASTE
 
 /obj/machinery/meter/atmos/distro_loop
-	name = "distribution loop gas flow meter"
+	name = "miernik przepływu gazu pętli dystrybucji"
 	id_tag = ATMOS_GAS_MONITOR_LOOP_DISTRIBUTION
 
 /obj/machinery/meter/Destroy()

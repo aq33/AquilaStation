@@ -14,8 +14,8 @@
  */
 
 /obj/structure/table
-	name = "table"
-	desc = "A square piece of metal standing on four metal legs. It can not move."
+	name = "stół"
+	desc = "Kwadratowy kawał metalu na czterech metalowych nogach. Nie może się ruszać."
 	icon = 'icons/obj/smooth_structures/table.dmi'
 	icon_state = "table"
 	density = TRUE
@@ -260,8 +260,8 @@
  * Glass tables
  */
 /obj/structure/table/glass
-	name = "glass table"
-	desc = "What did I say about leaning on the glass tables? Now you need surgery."
+	name = "szklany stół"
+	desc = "Co mówiłem o opieraniu się o szklane stoły? Teraz potrzebujesz operacji."
 	icon = 'icons/obj/smooth_structures/glass_table.dmi'
 	icon_state = "glass_table"
 	buildstack = /obj/item/stack/sheet/glass
@@ -306,7 +306,7 @@
 		table_shatter(M)
 
 /obj/structure/table/glass/proc/table_shatter(mob/living/L)
-	visible_message("<span class='warning'>[src] breaks!</span>",
+	visible_message("<span class='warning'>[src] pęka!</span>",
 		"<span class='danger'>Słyszysz tłuczone szkło.</span>")
 	var/turf/T = get_turf(src)
 	playsound(T, "shatter", 50, 1)
@@ -342,8 +342,8 @@
  * Plasmaglass tables
  */
 /obj/structure/table/glass/plasma
-    name = "plasmaglass table"
-    desc = "A glass table, but it's pink and more sturdy. What will Nanotrasen design next with plasma?"
+    name = "stół ze szkła plazmowego"
+    desc = "Szklany stół, tylko różowy i wytrzymalszy. Co Nanotrasen wymyśli następnym razem z plazmą?"
     icon = 'icons/obj/smooth_structures/plasmaglass_table.dmi'
     icon_state = "plasmaglass_table"
     buildstack = /obj/item/stack/sheet/plasmaglass
@@ -362,8 +362,8 @@
  */
 
 /obj/structure/table/wood
-	name = "wooden table"
-	desc = "Do not apply fire to this. Rumour says it burns easily."
+	name = "drewniany stół"
+	desc = "Nie przykładaj do niego ognia. Podobno łatwo się pali."
 	icon = 'icons/obj/smooth_structures/wood_table.dmi'
 	icon_state = "wood_table"
 	frame = /obj/structure/table_frame/wood
@@ -380,8 +380,8 @@
 		..()
 
 /obj/structure/table/wood/poker //No specialties, Just a mapping object.
-	name = "gambling table"
-	desc = "A seedy table for seedy dealings in seedy places."
+	name = "stół do gry"
+	desc = "Podejrzany stół do podejrzanych interesów w podejrzanych miejscach."
 	icon = 'icons/obj/smooth_structures/poker_table.dmi'
 	icon_state = "poker_table"
 	buildstack = /obj/item/stack/tile/carpet
@@ -390,8 +390,8 @@
 	..(FALSE)
 
 /obj/structure/table/wood/fancy
-	name = "fancy table"
-	desc = "A standard metal table frame covered with an amazingly fancy, patterned cloth."
+	name = "elegancki stół"
+	desc = "Zwykła metalowa rama stołu nakryta niesamowicie eleganckim, wzorzystym obrusem."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "fancy_table"
 	frame = /obj/structure/table_frame
@@ -466,8 +466,8 @@
  * Reinforced tables
  */
 /obj/structure/table/reinforced
-	name = "reinforced table"
-	desc = "A reinforced version of the four legged table."
+	name = "wzmocniony stół"
+	desc = "Wzmocniona wersja czteronożnego stołu."
 	icon = 'icons/obj/smooth_structures/reinforced_table.dmi'
 	icon_state = "r_table"
 	deconstruction_ready = 0
@@ -501,8 +501,8 @@
 		. = ..()
 
 /obj/structure/table/brass
-	name = "brass table"
-	desc = "A solid, slightly beveled brass table."
+	name = "mosiężny stół"
+	desc = "Solidny, lekko fazowany mosiężny stół."
 	icon = 'icons/obj/smooth_structures/brass_table.dmi'
 	icon_state = "brass_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -529,8 +529,8 @@
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 8)
 
 /obj/structure/table/bronze
-	name = "bronze table"
-	desc = "A solid table made out of bronze."
+	name = "brązowy stół"
+	desc = "Solidny stół z brązu."
 	icon = 'icons/obj/smooth_structures/brass_table.dmi'
 	icon_state = "brass_table"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -546,8 +546,8 @@
  */
 
 /obj/structure/table/optable
-	name = "operating table"
-	desc = "Used for advanced medical procedures."
+	name = "stół operacyjny"
+	desc = "Służy do zaawansowanych zabiegów medycznych."
 	icon = 'nsv13/icons/obj/legacy_surgery.dmi' //NSV13 - recolored sprites
 	icon_state = "optable"
 	buildstack = /obj/item/stack/sheet/mineral/silver
@@ -627,8 +627,8 @@
  * Racks
  */
 /obj/structure/rack
-	name = "rack"
-	desc = "Different from the Middle Ages version."
+	name = "stojak"
+	desc = "Nie ten średniowieczny."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	layer = TABLE_LAYER
@@ -680,7 +680,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
-	user.visible_message("<span class='danger'>[user] kicks [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
+	user.visible_message("<span class='danger'>[user] kopie [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
 	take_damage(rand(4,8), BRUTE, "melee", 1)
 
 /obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
@@ -710,8 +710,8 @@
  */
 
 /obj/item/rack_parts
-	name = "rack parts"
-	desc = "Parts of a rack."
+	name = "części stojaka"
+	desc = "Części stojaka."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "rack_parts"
 	flags_1 = CONDUCT_1
@@ -734,7 +734,7 @@
 		if(!user.temporarilyRemoveItemFromInventory(src))
 			return
 		var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
-		user.visible_message("<span class='notice'>[user] assembles \a [R].\
+		user.visible_message("<span class='notice'>[user] składa [R].\
 			</span>", "<span class='notice'>Składasz [R].</span>")
 		R.add_fingerprint(user)
 		qdel(src)

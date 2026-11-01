@@ -32,15 +32,15 @@ export const RailgunCanisterCharger = (props) => {
   return (
     <Window width={440} height={450}>
       <Window.Content scrollable>
-        <Section title="Canister Statistics">
+        <Section title="Statystyki kanistra">
           <Button
-            content={canister_name ? canister_name : 'Nil Canister Detected'}
+            content={canister_name ? canister_name : 'Nie wykryto kanistra'}
             icon="exclamation-triangle"
             color={canister_name ? 'average' : 'bad'}
             onClick={() => act('eject')}
           />
           <br />
-          Canister Integrity:
+          Integralność kanistra:
           <ProgressBar
             value={canister_integrity / 100}
             minValue={0}
@@ -52,7 +52,7 @@ export const RailgunCanisterCharger = (props) => {
             }}
           />
           <br />
-          Canister Charge:
+          Ładunek kanistra:
           <ProgressBar
             value={canister_charge / 100}
             minValue={0}
@@ -63,8 +63,8 @@ export const RailgunCanisterCharger = (props) => {
             }}
           />
         </Section>
-        <Section title="Charger Settings">
-          Power Allocation (Watts):
+        <Section title="Ustawienia ładowarki">
+          Przydział mocy (W):
           <Slider
             tickWhileDragging
             value={canister_charge_rate}
@@ -79,7 +79,7 @@ export const RailgunCanisterCharger = (props) => {
             }
           />
           <br />
-          Available Power (Watts):
+          Dostępna moc (W):
           <ProgressBar
             value={available_power}
             minValue={0}
@@ -90,13 +90,13 @@ export const RailgunCanisterCharger = (props) => {
           </ProgressBar>
           <br />
           <Button
-            content="Charge"
+            content="Ładuj"
             icon="radiation-alt"
             color={charging && 'yellow'}
             onClick={() => act('toggle_charge')}
           />
           <Button
-            content="Discharge"
+            content="Rozładuj"
             icon="radiation-alt"
             color={discharging && 'yellow'}
             onClick={() => act('toggle_discharge')}

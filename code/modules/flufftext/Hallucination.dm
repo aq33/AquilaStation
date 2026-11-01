@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
-	name = "alien hunter ([rand(1, 1000)])"
+	name = "łowca obcych ([rand(1, 1000)])"
 
 /obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	update_icon("alienh_pounce")
@@ -554,22 +554,22 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				A.name = "..."
 			if("monkey")//Monkey
 				A = image('icons/mob/monkey.dmi',H,"monkey1")
-				A.name = "Monkey ([rand(1,999)])"
+				A.name = "małpa ([rand(1,999)])"
 			if("carp")//Carp
 				A = image('icons/mob/carp.dmi',H,"carp")
-				A.name = "Space Carp"
+				A.name = "kosmiczny karp"
 			if("corgi")//Corgi
 				A = image('icons/mob/pets.dmi',H,"corgi")
-				A.name = "Corgi"
+				A.name = "corgi"
 			if("skeleton")//Skeletons
 				A = image('icons/mob/human.dmi',H,"skeleton")
-				A.name = "Skeleton"
+				A.name = "szkielet"
 			if("zombie")//Zombies
 				A = image('icons/mob/human.dmi',H,"zombie")
-				A.name = "Zombie"
+				A.name = "zombie"
 			if("demon")//Demon
 				A = image('icons/mob/mob.dmi',H,"daemon")
-				A.name = "Demon"
+				A.name = "demon"
 			if("custom")
 				A = image(custom_icon_file, H, custom_icon)
 				A.name = custom_name
@@ -694,14 +694,14 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",\
 		"[pick_list_replacements(HAL_LINES_FILE, "help")]!!",\
 		"[pick_list_replacements(HAL_LINES_FILE, "escape")]",\
-		"I'm infected, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
+		"Jestem zarażony, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
 
-	var/radio_messages = list("[pick_list_replacements(HAL_LINES_FILE, "people")] is [pick_list_replacements(HAL_LINES_FILE, "accusations")]!",\
+	var/radio_messages = list("[pick_list_replacements(HAL_LINES_FILE, "people")] jest [pick_list_replacements(HAL_LINES_FILE, "accusations")]!",\
 		"Pomocy!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "threat")] in [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
+		"[pick_list_replacements(HAL_LINES_FILE, "threat")] – [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
 		"[pick("Gdzie jest [target.first_name()]?", "Ustawcie [target.first_name()] do aresztowania!")]",\
 		"[pick("Wezwijcie prom","SI, wezwij prom","Niech ktoś wezwie prom","Wezwać prom")]!",\
-		"AI [pick("rogue", "is dead")]!!")
+		"SI [pick("zbuntowana", "nie żyje")]!!")
 
 	var/mob/living/carbon/person = null
 	var/datum/language/understood_language = target.get_random_understood_language()
@@ -759,28 +759,28 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(other)
 		if(close_other) //increase the odds
 			for(var/i in 1 to 5)
-				message_pool.Add("<span class='warning'>You feel a tiny prick!</span>")
+				message_pool.Add("<span class='warning'>Czujesz małe ukłucie!</span>")
 		var/obj/item/storage/equipped_backpack = other.get_item_by_slot(ITEM_SLOT_BACK)
 		if(istype(equipped_backpack))
 			for(var/i in 1 to 5) //increase the odds
-				message_pool.Add("<span class='notice'>[other] puts the [pick(\
-					"revolver","energy sword","cryptographic sequencer","power sink","energy bow",\
-					"hybrid taser","stun baton","flash","syringe gun","circular saw","tank transfer valve",\
-					"ritual dagger","clockwork slab","spellbook",\
-					"pulse rifle","captain's spare ID","hand teleporter","hypospray","antique laser gun","X-01 MultiPhase Energy Gun","station's blueprints"\
-					)] into [equipped_backpack].</span>")
+				message_pool.Add("<span class='notice'>[other] wkłada do [equipped_backpack]: [pick(\
+					"rewolwer","miecz energetyczny","sekwencer kryptograficzny","pochłaniacz energii","łuk energetyczny",\
+					"paralizator hybrydowy","pałka ogłuszająca","flash","wyrzutnia strzykawek","piła tarczowa","zawór transferowy butli",\
+					"rytualny sztylet","mechaniczna płyta","księga zaklęć",\
+					"karabin pulsacyjny","zapasowy identyfikator kapitana","ręczny teleporter","hypospray","antyczny pistolet laserowy","wielofazowa broń energetyczna X-01","plany stacji"\
+					)].</span>")
 
-		message_pool.Add("<B>[other]</B> [pick("sneezes","coughs")].")
+		message_pool.Add("<B>[other]</B> [pick("kicha","kaszle")].")
 
-	message_pool.Add("<span class='notice'>You hear something squeezing through the ducts...</span>", \
+	message_pool.Add("<span class='notice'>Słyszysz, jak coś przeciska się przez kanały...</span>", \
 		"<span class='notice'>Swędzi cię [pick("ręka", "noga", "szyja", "głowa")].</span>",\
 		"<span class='warning'>Czujesz się [pick("rozpalony","zmarznięty","wysuszony","przemoczony","oszołomiony","słabo")].</span>",
 		"<span class='warning'>Burczy ci w brzuchu.</span>",
 		"<span class='warning'>Boli cię głowa.</span>",
 		"<span class='warning'>Słyszysz w głowie ciche brzęczenie.</span>",
-		"<B>[target]</B> sneezes.")
+		"<B>[target]</B> kicha.")
 	if(prob(10))
-		message_pool.Add("<span class='warning'>Behind you.</span>",\
+		message_pool.Add("<span class='warning'>Za tobą.</span>",\
 			"<span class='warning'>Słyszysz cichy śmiech.</span>",
 			"<span class='warning'>Widzisz, jak coś się porusza.</span>",
 			"<span class='warning'>Słyszysz drapanie na suficie.</span>",
@@ -1029,7 +1029,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				if(1) //revolver
 					target.halitem.icon = 'icons/obj/guns/projectile.dmi'
 					target.halitem.icon_state = "revolver"
-					target.halitem.name = "Revolver"
+					target.halitem.name = "rewolwer"
 				if(2) //c4
 					target.halitem.icon = 'icons/obj/grenade.dmi'
 					target.halitem.icon_state = "plastic-explosive0"
@@ -1039,19 +1039,19 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				if(3) //sword
 					target.halitem.icon = 'icons/obj/transforming_energy.dmi'
 					target.halitem.icon_state = "sword0"
-					target.halitem.name = "Energy Sword"
+					target.halitem.name = "miecz energetyczny"
 				if(4) //stun baton
 					target.halitem.icon = 'icons/obj/items_and_weapons.dmi'
 					target.halitem.icon_state = "stunbaton"
-					target.halitem.name = "Stun Baton"
+					target.halitem.name = "pałka ogłuszająca"
 				if(5) //emag
 					target.halitem.icon = 'nsv13/icons/obj/card.dmi' //NSV13 - old style
 					target.halitem.icon_state = "emag"
-					target.halitem.name = "Cryptographic Sequencer"
+					target.halitem.name = "sekwencer kryptograficzny"
 				if(6) //flashbang
 					target.halitem.icon = 'icons/obj/grenade.dmi'
 					target.halitem.icon_state = "flashbang1"
-					target.halitem.name = "Flashbang"
+					target.halitem.name = "granat hukowo-błyskowy"
 			feedback_details += "Type: [target.halitem.name]"
 			if(target.client)
 				target.client.screen += target.halitem
@@ -1102,7 +1102,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 
 /obj/effect/hallucination/danger/lava
-	name = "lava"
+	name = "lawa"
 
 /obj/effect/hallucination/danger/lava/Initialize(mapload, _target)
 	. = ..()
@@ -1124,7 +1124,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		new /datum/hallucination/fire(target)
 
 /obj/effect/hallucination/danger/chasm
-	name = "chasm"
+	name = "przepaść"
 
 /obj/effect/hallucination/danger/chasm/Initialize(mapload, _target)
 	. = ..()
@@ -1150,7 +1150,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly
-	name = "flux wave anomaly"
+	name = "anomalia strumienia"
 
 /obj/effect/hallucination/danger/anomaly/Initialize(mapload)
 	. = ..()

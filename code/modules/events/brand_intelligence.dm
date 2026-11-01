@@ -23,13 +23,13 @@
 
 
 /datum/round_event/brand_intelligence/announce(fake)
-	var/source = "unknown machine"
+	var/source = "nieznana maszyna"
 	if(fake)
 		var/obj/machinery/vending/cola/example = /obj/machinery/vending/cola
 		source = initial(example.name)
 	else if(originMachine)
 		source = originMachine.name
-	priority_announce("Agresywna sztuczna inteligencja została wykryta na pokładzie [station_name()]. Za pochodzenie sygnału uważa się  \a [source].", "Alarm: Zagrożenie cybernetyczne", SSstation.announcer.get_rand_alert_sound())
+	priority_announce("Agresywna sztuczna inteligencja została wykryta na pokładzie [station_name()]. Za źródło sygnału uważa się: [source].", "Alarm: Zagrożenie cybernetyczne", SSstation.announcer.get_rand_alert_sound())
 
 /datum/round_event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOB.machines)

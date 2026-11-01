@@ -17,8 +17,8 @@
   */
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother
-	name = "goliath broodmother"
-	desc = "An example of sexual dimorphism, this female goliath looks much different than the males of her species.  She is, however, just as dangerous, if not more."
+	name = "matka goliatów"
+	desc = "Przykład dymorfizmu płciowego: ta samica goliata wygląda zupełnie inaczej niż samce jej gatunku. Jest jednak równie niebezpieczna, jeśli nie bardziej."
 	gender = FEMALE
 	icon_state = "broodmother"
 	icon_living = "broodmother"
@@ -48,25 +48,25 @@
 	var/list/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/children_list = list()
 
 /datum/action/innate/elite_attack/tentacle_patch
-	name = "Tentacle Patch"
+	name = "Plama macek"
 	button_icon_state = "tentacle_patch"
 	chosen_message = "<span class='boldwarning'>Teraz atakujesz kępą macek.</span>"
 	chosen_attack_num = TENTACLE_PATCH
 
 /datum/action/innate/elite_attack/spawn_children
-	name = "Spawn Children"
+	name = "Zrodź potomstwo"
 	button_icon_state = "spawn_children"
 	chosen_message = "<span class='boldwarning'>Przywołasz w swoim miejscu dwoje dzieci, które pomogą ci w walce.  Możesz mieć ich maksymalnie 8.</span>"
 	chosen_attack_num = SPAWN_CHILDREN
 
 /datum/action/innate/elite_attack/rage
-	name = "Rage"
+	name = "Furia"
 	button_icon_state = "rage"
 	chosen_message = "<span class='boldwarning'>Tymczasowo zwiększysz swoją prędkość ruchu.</span>"
 	chosen_attack_num = RAGE
 
 /datum/action/innate/elite_attack/call_children
-	name = "Call Children"
+	name = "Przywołaj potomstwo"
 	button_icon_state = "call_children"
 	chosen_message = "<span class='boldwarning'>Przywołasz swoje dzieci do siebie.</span>"
 	chosen_attack_num = CALL_CHILDREN
@@ -156,8 +156,8 @@
 
 //The goliath's children.  Pretty weak, simple mobs which are able to put a single tentacle under their target when at range.
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child
-	name = "baby goliath"
-	desc = "A young goliath recently born from it's mother.  While they hatch from eggs, said eggs are incubated in the mother until they are ready to be born."
+	name = "młody goliat"
+	desc = "Młody goliat niedawno zrodzony przez matkę. Choć goliaty wykluwają się z jaj, jaja te dojrzewają w matce, aż młode jest gotowe do narodzin."
 	icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	icon_state = "goliath_baby"
 	icon_living = "goliath_baby"
@@ -222,8 +222,8 @@
 
 // Broodmother's loot: Broodmother Tongue
 /obj/item/crusher_trophy/broodmother_tongue
-	name = "broodmother tongue"
-	desc = "The tongue of a broodmother.  If attached a certain way, makes for a suitable crusher trophy."
+	name = "język matki goliatów"
+	desc = "Język matki goliatów. Odpowiednio przymocowany nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "broodmother_tongue"
 	denied_type = /obj/item/crusher_trophy/broodmother_tongue

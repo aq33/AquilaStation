@@ -1,7 +1,7 @@
 /datum/overmap_objective/cargo/transfer/credits
-	name = "Deliver credits"
-	desc = "Deliver credits under the table"
-	crate_name = "Physical Credit Transfer"
+	name = "Dostarcz kredyty"
+	desc = "Dostarcz kredyty pod stołem"
+	crate_name = "Fizyczny transfer kredytów"
 
 /datum/overmap_objective/cargo/transfer/credits/New()
 	var/datum/freight_type/single/object/credits/C = new( rand( 3, 15 ) * 1000 )

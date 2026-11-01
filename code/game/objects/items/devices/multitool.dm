@@ -12,7 +12,7 @@
 
 /obj/item/multitool
 	name = "multitool"
-	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	desc = "Służy do pobudzania przewodów impulsem, by sprawdzić, który przeciąć. Niezalecany przez lekarzy."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "multitool"
 	item_state = "multitool"
@@ -151,13 +151,13 @@
 			detect_state = PROXIMITY_NEAR
 
 /mob/camera/ai_eye/remote/ai_detector
-	name = "AI detector eye"
+	name = "oko wykrywacza SI"
 	ai_detector_visible = FALSE
 	visible_icon = FALSE
 	use_static = FALSE
 
 /datum/action/item_action/toggle_multitool
-	name = "Toggle AI detector HUD"
+	name = "Przełącz HUD wykrywacza SI"
 	check_flags = NONE
 
 /datum/action/item_action/toggle_multitool/Trigger()
@@ -170,12 +170,12 @@
 
 /obj/item/multitool/cyborg
 	name = "multitool"
-	desc = "Optimised and stripped-down version of a regular multitool."
+	desc = "Zoptymalizowana, okrojona wersja zwykłego multitoola."
 	toolspeed = 0.5
 
 /obj/item/multitool/abductor
-	name = "alien multitool"
-	desc = "An omni-technological interface."
+	name = "obcy multitool"
+	desc = "Omnitechnologiczny interfejs."
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1

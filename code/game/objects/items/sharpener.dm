@@ -1,13 +1,13 @@
 /obj/item/sharpener
-	name = "whetstone"
+	name = "osełka"
 	icon = 'icons/obj/service/kitchen.dmi'
 	icon_state = "sharpener"
-	desc = "A block that makes things sharp."
+	desc = "Kamień, dzięki któremu rzeczy stają się ostre."
 	force = 5
 	var/used = 0
 	var/increment = 4
 	var/max = 30
-	var/prefix = "sharpened"
+	var/prefix = "po naostrzeniu"
 	var/requires_sharpness = 1
 
 
@@ -42,16 +42,16 @@
 	I.sharpness = IS_SHARP_ACCURATE
 	I.bleed_force *= 1.1
 	I.throwforce = clamp(I.throwforce + increment, 0, max)
-	I.name = "[prefix] [I.name]"
-	name = "worn out [name]"
-	desc = "[desc] At least, it used to."
+	I.name = "[I.name] [prefix]"
+	name = "zużyta [name]"
+	desc = "[desc] A przynajmniej kiedyś tak było."
 	used = 1
 	update_icon()
 
 /obj/item/sharpener/super
-	name = "super whetstone"
-	desc = "A block that will make your weapon sharper than Einstein on adderall."
+	name = "superosełka"
+	desc = "Kamień, który zrobi twoją broń ostrzejszą niż Einstein na adderallu."
 	increment = 200
 	max = 200
-	prefix = "super-sharpened"
+	prefix = "po supernaostrzeniu"
 	requires_sharpness = 0

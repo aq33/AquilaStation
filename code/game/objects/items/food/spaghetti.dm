@@ -1,6 +1,6 @@
 /obj/item/food/spaghetti
-	name = "Spaghetti Parent"
-	desc = "You either spawned this erroneously, or a coder did. Either way, someone messed up."
+	name = "rodzic spaghetti"
+	desc = "Albo ty zespawnowałeś to przez pomyłkę, albo zrobił to koder. Tak czy siak, ktoś coś zepsuł."
 	icon = 'icons/obj/food/spaghetti.dmi'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	foodtypes = GRAIN
@@ -16,15 +16,15 @@
 
 /obj/item/food/spaghetti/raw
 	name = "spaghetti"
-	desc = "Now that's a nic'e pasta!"
+	desc = "To się nazywa makaron!"
 	icon_state = "spaghetti"
 	tastes = list("makaron" = 1)
 	microwaved_type = /obj/item/food/spaghetti/boiledspaghetti
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/spaghetti/boiledspaghetti
-	name = "boiled spaghetti"
-	desc = "A plain dish of noodles, this needs more ingredients."
+	name = "ugotowane spaghetti"
+	desc = "Zwykła porcja makaronu, przydałoby się więcej składników."
 	icon_state = "spaghettiboiled"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	crafting_complexity = FOOD_COMPLEXITY_1
@@ -35,7 +35,7 @@
 
 /obj/item/food/spaghetti/pastatomato
 	name = "spaghetti"
-	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
+	desc = "Spaghetti z rozgniecionymi pomidorami. Zupełnie jak robił twój przemocowy ojciec!"
 	icon_state = "pastatomato"
 	bite_consumption = 4
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
@@ -44,8 +44,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/copypasta
-	name = "copypasta"
-	desc = "You probably shouldn't try this, you always hear people talking about how bad it is..."
+	name = "kopiopasta"
+	desc = "Chyba nie powinieneś tego próbować, ciągle słyszysz, jakie to okropne..."
 	icon_state = "copypasta"
 	bite_consumption = 4
 	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/tomatojuice = 20, /datum/reagent/consumable/nutriment/vitamin = 8)
@@ -54,8 +54,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/meatballspaghetti
-	name = "spaghetti and meatballs"
-	desc = "Now that's a nic'e meatball!"
+	name = "spaghetti z klopsikami"
+	desc = "To się nazywa klopsik!"
 	icon_state = "meatballspaghetti"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("makaron" = 1, "mięso" = 1)
@@ -63,8 +63,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/spesslaw
-	name = "spesslaw"
-	desc = "A lawyers favourite."
+	name = "kosmoprawnik"
+	desc = "Ulubione danie prawników."
 	icon_state = "spesslaw"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("makaron" = 1, "mięso" = 1)
@@ -72,15 +72,15 @@
 
 /obj/item/food/spaghetti/chowmein
 	name = "chow mein"
-	desc = "A nice mix of noodles and fried vegetables."
+	desc = "Przyjemna mieszanka makaronu i smażonych warzyw."
 	icon_state = "chowmein"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("makaron" = 1, "pomidor" = 1)
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/spaghetti/beefnoodle
-	name = "beef noodle"
-	desc = "Nutritious, beefy and noodly."
+	name = "makaron z wołowiną"
+	desc = "Pożywny, wołowy i makaronowy."
 	icon_state = "beefnoodle"
 	trash_type = /obj/item/reagent_containers/glass/bowl
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/liquidgibs = 3)
@@ -89,8 +89,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/spaghetti/butternoodles
-	name = "butter noodles"
-	desc = "Noodles covered in savory butter. Simple and slippery, but delicious."
+	name = "makaron z masłem"
+	desc = "Makaron w aromatycznym maśle. Prosty i śliski, ale pyszny."
 	icon_state = "butternoodles"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("makaron" = 1, "masło" = 1)
@@ -99,7 +99,7 @@
 
 /obj/item/food/spaghetti/kasespatzle
 	name = "käsespätzle"
-	desc = "A special kind of pasta made with eggs, served with tasty cheese."
+	desc = "Specjalny rodzaj makaronu z jajkami, podawany ze smacznym serem."
 	icon_state = "kasespatzle"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("makaron" = 1, "ser" = 1, "jajko" = 1)
@@ -108,7 +108,7 @@
 
 /obj/item/food/spaghetti/spaghettinapolitan
 	name = "spaghetti napolitan"
-	desc = "The only excuse to ever put ketchup into your spaghetti."
+	desc = "Jedyna wymówka, żeby dodać keczup do spaghetti."
 	icon_state = "spaghettinapolitan"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("makaron" = 1, "keczup" = 1, "kiełbasa" = 1)
@@ -116,8 +116,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spaghetti/lasagna
-	name = "lasagna"
-	desc = "Somewhere, in some different universe, a cat is smoking your pipe."
+	name = "lasagne"
+	desc = "Gdzieś, w jakimś innym wszechświecie, kot pali twoją fajkę."
 	icon_state = "lasagna"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 5, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("makaron" = 1, "pomidor" = 1, "ser" = 1, "poniedziałki" = 1)
@@ -125,8 +125,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/spaghetti/glassnoodles
-	name = "glass noodles"
-	desc = "Noodles so transparent, you can see through them!"
+	name = "makaron szklany"
+	desc = "Makaron tak przezroczysty, że widać przez niego na wylot!"
 	icon_state = "glassnoodles"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("makaron" = 1, "słodycz" = 1, "tofu" = 1)
@@ -135,7 +135,7 @@
 
 /obj/item/food/spaghetti/carbonara
 	name = "spaghetti carbonara"
-	desc = "Silky eggs, crispy pork, cheesy bliss. Mamma mia!"
+	desc = "Jedwabiste jajka, chrupiąca wieprzowina, serowa rozkosz. Mamma mia!"
 	icon_state = "carbonara"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,

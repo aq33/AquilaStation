@@ -1,6 +1,6 @@
 /obj/item/quantum_keycard
-	name = "quantum keycard"
-	desc = "A keycard able to link to a quantum pad's particle signature, allowing other quantum pads to travel there instead of their linked pad."
+	name = "kwantowa karta dostępu"
+	desc = "Karta, którą można połączyć z sygnaturą cząsteczkową pada kwantowego. Inne pady kwantowe przenoszą wtedy w to miejsce zamiast do połączonego z nimi pada."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "quantum_keycard"
 	item_state = "card-id"

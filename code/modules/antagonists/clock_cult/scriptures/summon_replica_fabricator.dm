@@ -3,8 +3,8 @@
 //==================================//
 
 /datum/clockcult/scripture/replica_fabricator
-	name = "Replica Fabricator"
-	desc = "Summons a replica fabricator, which can fabricate brass for building defenses."
+	name = "Fabrykator replik"
+	desc = "Przywołuje fabrykator replik, który wytwarza mosiądz do budowy umocnień."
 	tip = "Wytwarza mosiądz i naprawia struktury"
 	button_icon_state = "Replica Fabricator"
 	power_cost = 400

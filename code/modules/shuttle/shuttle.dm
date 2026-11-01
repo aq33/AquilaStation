@@ -278,7 +278,7 @@ GLOBAL_LIST_INIT(shuttle_turf_blacklist, typecacheof(list(
 		SSshuttle.action_load(roundstart_template, src)
 
 /obj/docking_port/stationary/transit
-	name = "In Transit"
+	name = "W tranzycie"
 	var/datum/turf_reservation/reserved_area
 	var/area/shuttle/transit/assigned_area
 	var/obj/docking_port/mobile/owner
@@ -665,7 +665,7 @@ GLOBAL_LIST_INIT(shuttle_turf_blacklist, typecacheof(list(
 		return FALSE
 
 /obj/docking_port/mobile/proc/transit_failure()
-	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
+	message_admins("Prom [src] wielokrotnie nie zdołał utworzyć strefy tranzytu.")
 
 //call the shuttle to destination S
 /obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
@@ -985,10 +985,10 @@ GLOBAL_LIST_INIT(shuttle_turf_blacklist, typecacheof(list(
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = docked
-	var/docked_at = dockedAt?.name || "unknown"
+	var/docked_at = dockedAt?.name || "nieznane miejsce"
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		if (timeLeft() > 1 HOURS)
-			return "hyperspace"
+			return "nadprzestrzeń"
 		else
 			var/obj/docking_port/stationary/dst
 			if(mode == SHUTTLE_RECALL)
@@ -997,14 +997,14 @@ GLOBAL_LIST_INIT(shuttle_turf_blacklist, typecacheof(list(
 				dst = destination
 			. = "tranzyt do [dst?.name || "nieznanej lokalizacji"] ([getTimerStr()])"
 	else if(mode == SHUTTLE_RECHARGING)
-		return "[docked_at], recharging [getTimerStr()]"
+		return "[docked_at], ładowanie [getTimerStr()]"
 	else
 		return docked_at
 
 
 /obj/docking_port/mobile/proc/getDbgStatusText()
 	var/obj/docking_port/stationary/dockedAt = docked
-	. = (dockedAt && dockedAt.name) ? dockedAt.name : "unknown"
+	. = (dockedAt && dockedAt.name) ? dockedAt.name : "nieznane"
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
 		var/obj/docking_port/stationary/dst
 		if(mode == SHUTTLE_RECALL)
@@ -1018,7 +1018,7 @@ GLOBAL_LIST_INIT(shuttle_turf_blacklist, typecacheof(list(
 	else if(dockedAt)
 		. = dockedAt.name || dockedAt.id
 	else
-		. = "unknown"
+		. = "nieznane"
 
 
 // attempts to locate /obj/machinery/computer/shuttle with matching ID inside the shuttle

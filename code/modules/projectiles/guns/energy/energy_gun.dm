@@ -1,6 +1,6 @@
 /obj/item/gun/energy/e_gun
-	name = "energy gun"
-	desc = "A basic hybrid energy gun with two settings: disable and kill."
+	name = "broń energetyczna"
+	desc = "Podstawowa hybrydowa broń energetyczna z dwoma trybami: obezwładniającym i zabójczym."
 	icon_state = "energy"
 	w_class = WEIGHT_CLASS_BULKY	//powergaming is kill
 	item_state = null	//so the human update icon uses the icon_state instead.
@@ -14,8 +14,8 @@
 	dual_wield_spread = 60
 
 /obj/item/gun/energy/e_gun/mini
-	name = "miniature energy gun"
-	desc = "A small, pistol-sized energy gun with a built-in flashlight. It has two settings: disable and kill."
+	name = "miniaturowa broń energetyczna"
+	desc = "Mała broń energetyczna wielkości pistoletu z wbudowaną latarką. Ma dwa tryby: obezwładniający i zabójczy."
 	icon_state = "mini"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_SMALL
@@ -26,8 +26,8 @@
 	weapon_weight = WEAPON_LIGHT
 
 /obj/item/gun/energy/e_gun/mini/heads
-	name = "Personal Tiny Self Defense Gun"
-	desc = "The PTSD gun has a built-in flashlight and the ability to recharge itself in two minutes. PTSD is standard issue for leadership within Solgov. It has two settings: disable and kill." //NSV13 change Nanotrasen to Solgov
+	name = "Osobisty Tyci Samoobronny Dezintegrator"
+	desc = "OTSD ma wbudowaną latarkę i potrafi sam się naładować w dwie minuty. To standardowe wyposażenie kadry dowódczej Solgovu. Ma dwa tryby: obezwładniający i zabójczy." //NSV13 change Nanotrasen to Solgov
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler/hos, /obj/item/ammo_casing/energy/laser) ///uses the hos disabler rounds to slightly weaken the disabler count and also to avoid encountering a visual bug where the gun is out of charge but displays that it has one enough for another shot.
 	selfcharge = 1
 	charge_delay = 20
@@ -44,28 +44,28 @@
 	return ..()
 
 /obj/item/gun/energy/e_gun/stun
-	name = "tactical energy gun"
-	desc = "Military issue energy gun, is able to fire stun rounds."
+	name = "taktyczna broń energetyczna"
+	desc = "Wojskowa broń energetyczna, która potrafi strzelać pociskami ogłuszającymi."
 	icon_state = "energytac"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/e_gun/old
-	name = "prototype energy gun"
-	desc = "NT-P:01 Prototype Energy Gun. Early stage development of a unique laser rifle that has multifaceted energy lens allowing the gun to alter the form of projectile it fires on command."
+	name = "prototypowa broń energetyczna"
+	desc = "Prototypowa broń energetyczna NT-P:01. Wczesna faza prac nad wyjątkowym karabinem laserowym z wielofasetową soczewką energetyczną, dzięki której broń na rozkaz zmienia rodzaj wystrzeliwanego pocisku."
 	icon_state = "protolaser"
 	ammo_x_offset = 2
 	ammo_type = list(/obj/item/ammo_casing/energy/laser, /obj/item/ammo_casing/energy/electrode/old)
 
 /obj/item/gun/energy/e_gun/mini/practice_phaser
-	name = "practice phaser"
-	desc = "A modified version of the basic phaser gun, this one fires less concentrated energy bolts designed for target practice."
+	name = "treningowy fazer"
+	desc = "Zmodyfikowana wersja podstawowego fazera. Strzela słabiej skupionymi pociskami energii, przeznaczonymi do ćwiczeń strzeleckich."
 	ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser/practice)
 	icon_state = "decloner"
 
 /obj/item/gun/energy/e_gun/hos
-	name = "\improper X-01 MultiPhase Energy Gun"
-	desc = "This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time."
+	name = "\improper wielofazowa broń energetyczna X-01"
+	desc = "Droga, nowoczesna replika zabytkowej broni laserowej. Ma kilka wyjątkowych trybów ognia, ale z czasem sama się nie ładuje."
 	gun_charge = 1200
 	icon_state = "hoslaser"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -80,7 +80,7 @@
 
 /obj/item/gun/energy/e_gun/dragnet
 	name = "\improper DRAGnet"
-	desc = "The \"Dynamic Rapid-Apprehension of the Guilty\" net is a revolution in law enforcement technology."
+	desc = "Sieć „Dynamicznego Rychłego Aresztowania Gagatków” to rewolucja w technologii stróżów prawa."
 	icon_state = "dragnet"
 	item_state = "dragnet"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
@@ -92,13 +92,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/gun/energy/e_gun/dragnet/snare
-	name = "Energy Snare Launcher"
-	desc = "Fires an energy snare that slows the target down."
+	name = "wyrzutnia sideł energetycznych"
+	desc = "Wystrzeliwuje sidła energetyczne, które spowalniają cel."
 	ammo_type = list(/obj/item/ammo_casing/energy/trap)
 
 /obj/item/gun/energy/e_gun/turret
-	name = "hybrid turret gun"
-	desc = "A heavy hybrid energy cannon with two settings: Stun and kill."
+	name = "hybrydowe działko wieżyczki"
+	desc = "Ciężkie hybrydowe działo energetyczne z dwoma trybami: ogłuszającym i zabójczym."
 	icon_state = "turretlaser"
 	item_state = "turretlaser"
 	slot_flags = null
@@ -113,8 +113,8 @@
 	fire_rate = 5
 
 /obj/item/gun/energy/e_gun/nuclear
-	name = "advanced energy gun"
-	desc = "An energy gun with an experimental miniaturized nuclear reactor that automatically charges the internal power cell."
+	name = "zaawansowana broń energetyczna"
+	desc = "Broń energetyczna z eksperymentalnym miniaturowym reaktorem jądrowym, który sam ładuje wewnętrzne ogniwo zasilające."
 	icon_state = "nucgun"
 	item_state = "nucgun"
 	charge_delay = 10

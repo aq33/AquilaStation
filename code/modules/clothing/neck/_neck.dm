@@ -1,5 +1,5 @@
 /obj/item/clothing/neck
-	name = "necklace"
+	name = "naszyjnik"
 	icon = 'icons/obj/clothing/neck.dmi'
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_NECK
@@ -18,7 +18,7 @@
 				. += bloody_neck
 
 /obj/item/clothing/neck/tie
-	name = "tie"
+	name = "krawat"
 	desc = "Krawat na klips z neojedwabiu."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bluetie"
@@ -27,35 +27,35 @@
 	custom_price = 15
 
 /obj/item/clothing/neck/tie/blue
-	name = "blue tie"
+	name = "niebieski krawat"
 	icon_state = "bluetie"
 
 /obj/item/clothing/neck/tie/red
-	name = "red tie"
+	name = "czerwony krawat"
 	icon_state = "redtie"
 
 /obj/item/clothing/neck/tie/black
-	name = "black tie"
+	name = "czarny krawat"
 	icon_state = "blacktie"
 
 /obj/item/clothing/neck/tie/horrible
-	name = "horrible tie"
+	name = "okropny krawat"
 	desc = "Krawat na klips z neojedwabiu. Ten jest obrzydliwy."
 	icon_state = "horribletie"
 
 /obj/item/clothing/neck/tie/detective
-	name = "loose tie"
-	desc = "A loosely tied necktie, a perfect accessory for the over-worked detective."
+	name = "poluzowany krawat"
+	desc = "Luźno zawiązany krawat, idealny dodatek dla przepracowanego detektywa."
 	icon_state = "detective"
 
 /obj/item/clothing/neck/maid
-	name = "maid neck cover"
-	desc = "A neckpiece for a maid costume, it smells faintly of disappointment."
+	name = "kołnierzyk pokojówki"
+	desc = "Kołnierzyk do stroju pokojówki. Pachnie lekko rozczarowaniem."
 	icon_state = "maid_neck"
 
 /obj/item/clothing/neck/stethoscope
-	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	name = "stetoskop"
+	desc = "Przestarzały przyrząd medyczny do osłuchiwania dźwięków ludzkiego ciała. Do tego sprawia, że wyglądasz, jakbyś wiedział, co robisz."
 	icon_state = "stethoscope"
 
 /obj/item/clothing/neck/stethoscope/suicide_act(mob/living/carbon/user)
@@ -96,54 +96,54 @@
 ///////////
 
 /obj/item/clothing/neck/scarf //Default white color, same functionality as beanies.
-	name = "white scarf"
+	name = "biały szalik"
 	icon_state = "scarf"
-	desc = "A stylish scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks."
+	desc = "Stylowy szalik. Idealny zimowy dodatek dla osób z wyczuciem mody i dla tych, którzy po prostu nie znoszą zimnego wiatru na szyi."
 	dog_fashion = /datum/dog_fashion/head
 	custom_price = 10
 
 /obj/item/clothing/neck/scarf/black
-	name = "black scarf"
+	name = "czarny szalik"
 	icon_state = "scarf"
 	color = "#4A4A4B" //Grey but it looks black
 
 /obj/item/clothing/neck/scarf/pink
-	name = "pink scarf"
+	name = "różowy szalik"
 	icon_state = "scarf"
 	color = "#F699CD" //Pink
 
 /obj/item/clothing/neck/scarf/red
-	name = "red scarf"
+	name = "czerwony szalik"
 	icon_state = "scarf"
 	color = "#D91414" //Red
 
 /obj/item/clothing/neck/scarf/green
-	name = "green scarf"
+	name = "zielony szalik"
 	icon_state = "scarf"
 	color = "#5C9E54" //Green
 
 /obj/item/clothing/neck/scarf/darkblue
-	name = "dark blue scarf"
+	name = "granatowy szalik"
 	icon_state = "scarf"
 	color = "#1E85BC" //Blue
 
 /obj/item/clothing/neck/scarf/purple
-	name = "purple scarf"
+	name = "fioletowy szalik"
 	icon_state = "scarf"
 	color = "#9557C5" //Purple
 
 /obj/item/clothing/neck/scarf/yellow
-	name = "yellow scarf"
+	name = "żółty szalik"
 	icon_state = "scarf"
 	color = "#E0C14F" //Yellow
 
 /obj/item/clothing/neck/scarf/orange
-	name = "orange scarf"
+	name = "pomarańczowy szalik"
 	icon_state = "scarf"
 	color = "#C67A4B" //Orange
 
 /obj/item/clothing/neck/scarf/cyan
-	name = "cyan scarf"
+	name = "błękitny szalik"
 	icon_state = "scarf"
 	color = "#54A3CE" //Cyan
 
@@ -151,34 +151,34 @@
 //Striped scarves get their own icons
 
 /obj/item/clothing/neck/scarf/zebra
-	name = "zebra scarf"
+	name = "szalik w zebrę"
 	icon_state = "zebrascarf"
 
 /obj/item/clothing/neck/scarf/christmas
-	name = "christmas scarf"
+	name = "świąteczny szalik"
 	icon_state = "christmasscarf"
 
 //The three following scarves don't have the scarf subtype
 //This is because Ian can equip anything from that subtype
 //However, these 3 don't have corgi versions of their sprites
 /obj/item/clothing/neck/stripedredscarf
-	name = "striped red scarf"
+	name = "szalik w czerwone paski"
 	icon_state = "stripedredscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedgreenscarf
-	name = "striped green scarf"
+	name = "szalik w zielone paski"
 	icon_state = "stripedgreenscarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/stripedbluescarf
-	name = "striped blue scarf"
+	name = "szalik w niebieskie paski"
 	icon_state = "stripedbluescarf"
 	custom_price = 10
 
 /obj/item/clothing/neck/petcollar  // adding an OOC restriction to an IC action, like wearing a collar, is gay.
-	name = "pet collar"
-	desc = "It's for pets. You probably shouldn't wear it yourself unless you want to be ridiculed."
+	name = "obroża dla zwierzaka"
+	desc = "Jest dla zwierzaków. Raczej nie powinno się jej nosić samemu, chyba że chcesz się ośmieszyć."
 	icon_state = "petcollar"
 	var/tagname = null
 
@@ -191,7 +191,7 @@
 //////////////
 
 /obj/item/clothing/neck/necklace/dope
-	name = "gold necklace"
+	name = "złoty naszyjnik"
 	desc = "Kurczę, dobrze być gangsterem."
 	icon = 'icons/obj/clothing/neck.dmi'
 	icon_state = "bling"
@@ -229,11 +229,11 @@
 /////////////////
 
 /obj/item/clothing/neck/bizzarescarf
-	name = "bizzare scarf"
+	name = "dziwaczny szalik"
 	desc = "Twoja następna kwestia brzmi:"
 	icon_state = "bizzare"
 
 /obj/item/clothing/neck/conductivescarf
-	name = "conductive scarf"
+	name = "przewodzący szalik"
 	desc = "Zrobiony z 30 000 skarabeuszy. Używać ostrożnie."
 	icon_state = "conductive"

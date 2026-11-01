@@ -47,11 +47,11 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/item/clothing/under/color/black
-	name = "black jumpsuit"
+	name = "czarny kombinezon"
 	resistance_flags = NONE
 
 /obj/item/clothing/under/color/jumpskirt/black
-	name = "black jumpskirt"
+	name = "czarna spódnica"
 
 /obj/item/clothing/under/color/black/ghost
 	item_flags = DROPDEL
@@ -61,18 +61,18 @@
 	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/clothing/under/color/grey
-	name = "grey jumpsuit"
+	name = "szary kombinezon"
 	desc = "Gustowny szary kombinezon, który przypomina ci stare dobre czasy."
 	greyscale_colors = "#b3b3b3"
 
 /obj/item/clothing/under/color/jumpskirt/grey
-	name = "grey jumpskirt"
-	desc = "A tasteful grey jumpskirt that reminds you of the good old days."
+	name = "szara spódnica"
+	desc = "Gustowna szara spódnica, która przypomina ci stare dobre czasy."
 	greyscale_colors = "#b3b3b3"
 
 /obj/item/clothing/under/color/grey/glorf
-	name = "ancient jumpsuit"
-	desc = "A terribly ragged and frayed grey jumpsuit. It looks like it hasn't been washed in over a decade."
+	name = "prastary kombinezon"
+	desc = "Okropnie podarty i wystrzępiony szary kombinezon. Wygląda, jakby nie był prany od ponad dekady."
 	icon_state = "grey_ancient"
 	item_state = "gy_suit"
 	greyscale_colors = null
@@ -87,136 +87,136 @@
 	return 0
 
 /obj/item/clothing/under/color/blue
-	name = "blue jumpsuit"
+	name = "niebieski kombinezon"
 	greyscale_colors = "#52aecc"
 
 /obj/item/clothing/under/color/jumpskirt/blue
-	name = "blue jumpskirt"
+	name = "niebieska spódnica"
 	greyscale_colors = "#52aecc"
 
 /obj/item/clothing/under/color/green
-	name = "green jumpsuit"
+	name = "zielony kombinezon"
 	greyscale_colors = "#9ed63a"
 
 /obj/item/clothing/under/color/jumpskirt/green
-	name = "green jumpskirt"
+	name = "zielona spódnica"
 	greyscale_colors = "#9ed63a"
 
 /obj/item/clothing/under/color/orange
-	name = "orange jumpsuit"
+	name = "pomarańczowy kombinezon"
 	desc = "Nie noś tego przy paranoicznych policjantach."
 	greyscale_colors = "#ff8c19"
 
 /obj/item/clothing/under/color/jumpskirt/orange
-	name = "orange jumpskirt"
+	name = "pomarańczowa spódnica"
 	greyscale_colors = "#ff8c19"
 
 /obj/item/clothing/under/color/pink
-	name = "pink jumpsuit"
+	name = "różowy kombinezon"
 	desc = "Już samo patrzenie na to sprawia, że czujesz się <i>bajecznie</i>."
 	greyscale_colors = "#ffa69b"
 
 /obj/item/clothing/under/color/jumpskirt/pink
-	name = "pink jumpskirt"
+	name = "różowa spódnica"
 	greyscale_colors = "#ffa69b"
 
 /obj/item/clothing/under/color/red
-	name = "red jumpsuit"
+	name = "czerwony kombinezon"
 	greyscale_colors = "#eb0c07"
 
 /obj/item/clothing/under/color/jumpskirt/red
-	name = "red jumpskirt"
+	name = "czerwona spódnica"
 	greyscale_colors = "#eb0c07"
 
 /obj/item/clothing/under/color/white
-	name = "white jumpsuit"
+	name = "biały kombinezon"
 	greyscale_colors = "#ffffff"
 
 /obj/item/clothing/under/color/jumpskirt/white
-	name = "white jumpskirt"
+	name = "biała spódnica"
 	greyscale_colors = "#ffffff"
 
 /obj/item/clothing/under/color/yellow
-	name = "yellow jumpsuit"
+	name = "żółty kombinezon"
 	greyscale_colors = "#ffe14d"
 
 /obj/item/clothing/under/color/jumpskirt/yellow
-	name = "yellow jumpskirt"
+	name = "żółta spódnica"
 	greyscale_colors = "#ffe14d"
 
 /obj/item/clothing/under/color/darkblue
-	name = "dark blue jumpsuit"
+	name = "ciemnoniebieski kombinezon"
 	greyscale_colors = "#3285ba"
 
 /obj/item/clothing/under/color/jumpskirt/darkblue
-	name = "dark blue jumpskirt"
+	name = "ciemnoniebieska spódnica"
 	greyscale_colors = "#3285ba"
 
 /obj/item/clothing/under/color/teal
-	name = "teal jumpsuit"
+	name = "morski kombinezon"
 	greyscale_colors = "#77f3b7"
 
 /obj/item/clothing/under/color/jumpskirt/teal
-	name = "teal jumpskirt"
+	name = "morska spódnica"
 	greyscale_colors = "#77f3b7"
 
 /obj/item/clothing/under/color/lightpurple
-	name = "light purple jumpsuit"
+	name = "jasnofioletowy kombinezon"
 	greyscale_colors = "#9f70cc"
 
 /obj/item/clothing/under/color/jumpskirt/lightpurple
-	name = "light purple jumpskirt"
+	name = "jasnofioletowa spódnica"
 	greyscale_colors = "#9f70cc"
 
 /obj/item/clothing/under/color/darkgreen
-	name = "dark green jumpsuit"
+	name = "ciemnozielony kombinezon"
 	greyscale_colors = "#6fbc22"
 
 /obj/item/clothing/under/color/jumpskirt/darkgreen
-	name = "dark green jumpskirt"
+	name = "ciemnozielona spódnica"
 	greyscale_colors = "#6fbc22"
 
 /obj/item/clothing/under/color/lightbrown
-	name = "light brown jumpsuit"
+	name = "jasnobrązowy kombinezon"
 	greyscale_colors = "#c59431"
 
 /obj/item/clothing/under/color/jumpskirt/lightbrown
-	name = "light brown jumpskirt"
+	name = "jasnobrązowa spódnica"
 	greyscale_colors = "#c59431"
 
 /obj/item/clothing/under/color/khaki
-	name = "khaki jumpsuit"
+	name = "kombinezon khaki"
 	greyscale_colors = "#af9a43"
 
 /obj/item/clothing/under/color/khaki/buster
-	name = "buster jumpsuit"
-	desc = "There seems to be a large stain in the left pocket. Someone must have squashed a really big twinkie."
+	name = "kombinezon pogromcy"
+	desc = "W lewej kieszeni widać wielką plamę. Ktoś musiał zgnieść naprawdę dużego twinkie."
 
 /obj/item/clothing/under/color/brown
-	name = "brown jumpsuit"
+	name = "brązowy kombinezon"
 	greyscale_colors = "#a17229"
 
 /obj/item/clothing/under/color/jumpskirt/brown
-	name = "brown jumpskirt"
+	name = "brązowa spódnica"
 	greyscale_colors = "#a17229"
 
 /obj/item/clothing/under/color/maroon
-	name = "maroon jumpsuit"
+	name = "bordowy kombinezon"
 	greyscale_colors = "#cc295f"
 
 /obj/item/clothing/under/color/jumpskirt/maroon
-	name = "maroon jumpskirt"
+	name = "bordowa spódnica"
 	greyscale_colors = "#cc295f"
 
 /obj/item/clothing/under/color/durathread
-	name = "durathread jumpsuit"
-	desc = "A jumpsuit made from durathread, its resilient fibres provide some protection to the wearer."
+	name = "kombinezon z duranici"
+	desc = "Kombinezon uszyty z duranici. Wytrzymałe włókna dają noszącemu nieco ochrony."
 	greyscale_colors = "#8291a1"
 	armor = list("melee" = 10, "laser" = 10, "fire" = 40, "acid" = 10, "bomb" = 5, "stamina" = 30, "bleed" = 30)
 
 /obj/item/clothing/under/color/rainbow
-	name = "rainbow jumpsuit"
-	desc = "A multi-colored jumpsuit!"
+	name = "tęczowy kombinezon"
+	desc = "Wielobarwny kombinezon!"
 	icon_state = "rainbow"
 	item_state = "rainbow"
 	can_adjust = FALSE
@@ -226,8 +226,8 @@
 	greyscale_config_worn = null
 
 /obj/item/clothing/under/color/jumpskirt/rainbow
-	name = "rainbow jumpskirt"
-	desc = "A multi-colored jumpskirt!"
+	name = "tęczowa spódnica"
+	desc = "Wielobarwna spódnica!"
 	icon_state = "rainbow_skirt"
 	item_state = "rainbow"
 	greyscale_config = null

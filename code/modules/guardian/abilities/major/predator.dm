@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/predator
-	name = "Predator"
-	desc = "The guardian can track down any living being with just a fingerprint or blood sample."
+	name = "Drapieżnik"
+	desc = "Strażnik może wytropić każdą żywą istotę na podstawie samego odcisku palca albo próbki krwi."
 	ui_icon = "eye"
 	cost = 2
 	spell_type = /obj/effect/proc_holder/spell/self/predator
@@ -52,8 +52,8 @@
 			return TRUE
 
 /obj/effect/proc_holder/spell/self/predator
-	name = "All-Seeing Predator"
-	desc = "Track down a target whose identity you know of."
+	name = "Wszystkowidzący drapieżnik"
+	desc = "Wytrop cel, którego tożsamość znasz."
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "predator"
 	action_background_icon_state = "bg_demon"
@@ -84,7 +84,7 @@
 		status.point_to_target()
 
 /atom/movable/screen/alert/status_effect/agent_pinpointer/predator
-	name = "Predator's All-Seeing Eyes"
+	name = "Wszystkowidzące oczy drapieżnika"
 
 /datum/status_effect/agent_pinpointer/predator
 	id = "predator"

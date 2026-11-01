@@ -1,7 +1,7 @@
 ///A single machine that produces a single chem. Can be placed in unison with others through plumbing to create chemical factories
 /obj/machinery/plumbing/synthesizer
-	name = "chemical synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed. Most effective when working in unison with other chemical synthesizers, heaters and filters."
+	name = "syntezator chemii"
+	desc = "Wytwarza jeden odczynnik w zadanej ilości. Musi być podłączony do rur. Działa najlepiej razem z innymi syntezatorami, podgrzewaczami i filtrami."
 
 	icon_state = "synthesizer"
 	active_power_usage = 500
@@ -160,8 +160,8 @@
 	. += r_overlay
 
 /obj/machinery/plumbing/synthesizer/soda
-	name = "soda synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed."
+	name = "syntezator napojów"
+	desc = "Wytwarza jeden odczynnik w zadanej ilości. Musi być podłączony do rur."
 	icon_state = "synthesizer_soda"
 
 	//Copied from soda dispenser
@@ -196,8 +196,8 @@
 	dispensable_reagents = soda_reagents
 
 /obj/machinery/plumbing/synthesizer/beer
-	name = "beer synthesizer"
-	desc = "Produces a single chemical at a given volume. Must be plumbed."
+	name = "syntezator piwa"
+	desc = "Wytwarza jeden odczynnik w zadanej ilości. Musi być podłączony do rur."
 	icon_state = "synthesizer_booze"
 
 	//Copied from beer dispenser

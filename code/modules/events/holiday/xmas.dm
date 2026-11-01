@@ -1,15 +1,15 @@
 /obj/item/toy/xmas_cracker
-	name = "xmas cracker"
+	name = "świąteczny cracker"
 	icon = 'icons/obj/christmas.dmi'
 	icon_state = "cracker"
-	desc = "Directions for use: Requires two people, one to pull each end."
+	desc = "Sposób użycia: potrzebne są dwie osoby, każda ciągnie za jeden koniec."
 	var/cracked = 0
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
 		target.visible_message("[user] i [target] rozrywają [src]! *pyk*", "<span class='notice'>Rozrywasz [src] razem z [target]! *pyk*</span>", "<span class='italics'>Słyszysz pyknięcie.</span>")
 		var/obj/item/paper/joke_paper = new /obj/item/paper(user.loc)
-		joke_paper.name = "[pick("awful","terrible","unfunny")] joke"
+		joke_paper.name = "[pick("okropny","straszny","nieśmieszny")] żart"
 		joke_paper.add_raw_text(pick("Co powiedział jeden bałwan do drugiego?\n\n<i>„Czy to ja, czy tu czuć marchewkę?”</i>",
 			"Czemu bałwan nie mógł znaleźć dziewczyny?\n\n<i>Bo był oziębły!</i>",
 			"Gdzie kształcą się pomocnicy Mikołaja?\n\n<i>Nigdzie, są ELFabetami.</i>",
@@ -34,9 +34,9 @@
 	return ..()
 
 /obj/item/clothing/head/festive
-	name = "festive paper hat"
+	name = "świąteczna papierowa czapka"
 	icon_state = "xmashat"
-	desc = "A crappy paper hat that you are REQUIRED to wear."
+	desc = "Kiepska papierowa czapka, którą MUSISZ nosić."
 	flags_inv = 0
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "stamina" = 0, "bleed" = 0)
 

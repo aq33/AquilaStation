@@ -1,6 +1,6 @@
 /obj/machinery/button
-	name = "button"
-	desc = "A remote control switch."
+	name = "przycisk"
+	desc = "Przełącznik zdalnego sterowania."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl"
 	var/skin = "doorctrl"
@@ -185,8 +185,8 @@
 
 
 /obj/machinery/button/door
-	name = "door button"
-	desc = "A door remote control switch."
+	name = "przycisk drzwi"
+	desc = "Przełącznik zdalnego sterowania drzwiami."
 	var/normaldoorcontrol = FALSE
 	var/specialfunctions = OPEN // Bitflag, see assembly file
 	var/sync_doors = TRUE
@@ -207,33 +207,33 @@
 	..()
 
 /obj/machinery/button/door/incinerator_vent_toxmix
-	name = "combustion chamber vent control"
+	name = "sterowanie wentylacją komory spalania"
 	id = INCINERATOR_TOXMIX_VENT
 	req_access = list(ACCESS_TOX)
 
 /obj/machinery/button/door/incinerator_vent_atmos_main
-	name = "turbine vent control"
+	name = "sterowanie wentylacją turbiny"
 	id = INCINERATOR_ATMOS_MAINVENT
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/incinerator_vent_atmos_aux
-	name = "combustion chamber vent control"
+	name = "sterowanie wentylacją komory spalania"
 	id = INCINERATOR_ATMOS_AUXVENT
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_main
-	name = "turbine vent control"
+	name = "sterowanie wentylacją turbiny"
 	id = INCINERATOR_SYNDICATELAVA_MAINVENT
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/door/incinerator_vent_syndicatelava_aux
-	name = "combustion chamber vent control"
+	name = "sterowanie wentylacją komory spalania"
 	id = INCINERATOR_SYNDICATELAVA_AUXVENT
 	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/button/massdriver
-	name = "mass driver button"
-	desc = "A remote control switch for a mass driver."
+	name = "przycisk wyrzutni masowej"
+	desc = "Przełącznik zdalnego sterowania wyrzutnią masową."
 	icon_state = "launcher"
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/massdriver
@@ -242,8 +242,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/ignition
-	name = "ignition switch"
-	desc = "A remote control switch for a mounted igniter."
+	name = "przełącznik zapłonu"
+	desc = "Przełącznik zdalnego sterowania zamontowanym zapalnikiem."
 	icon_state = "launcher"
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/igniter
@@ -252,8 +252,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/ignition/incinerator
-	name = "combustion chamber ignition switch"
-	desc = "A remote control switch for the combustion chamber's igniter."
+	name = "przełącznik zapłonu komory spalania"
+	desc = "Przełącznik zdalnego sterowania zapalnikiem komory spalania."
 
 /obj/machinery/button/ignition/incinerator/toxmix
 	id = INCINERATOR_TOXMIX_IGNITER
@@ -265,8 +265,8 @@
 	id = INCINERATOR_SYNDICATELAVA_IGNITER
 
 /obj/machinery/button/flasher
-	name = "flasher button"
-	desc = "A remote control switch for a mounted flasher."
+	name = "przycisk flashera"
+	desc = "Przełącznik zdalnego sterowania zamontowanym flasherem."
 	icon_state = "launcher"
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/flasher
@@ -275,8 +275,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/button/crematorium
-	name = "crematorium igniter"
-	desc = "Burn baby burn!"
+	name = "zapalnik krematorium"
+	desc = "Płoń, maleńka, płoń!"
 	icon_state = "launcher"
 	skin = "launcher"
 	device_type = /obj/item/assembly/control/crematorium
@@ -286,8 +286,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/wallframe/button
-	name = "button frame"
-	desc = "Used for building buttons."
+	name = "rama przycisku"
+	desc = "Służy do budowy przycisków."
 	icon_state = "button"
 	result_path = /obj/machinery/button
 	materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)

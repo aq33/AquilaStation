@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/suit/space/eva/plasmaman
-	name = "EVA plasma envirosuit"
-	desc = "A special plasma containment suit designed to be space-worthy, as well as worn over other clothing. Like its smaller counterpart, it can automatically extinguish the wearer in a crisis, and holds twice as many charges."
+	name = "plazmowy kombinezon środowiskowy EVA"
+	desc = "Specjalny kombinezon izolujący plazmę, który nadaje się do kosmosu i można go nosić na innym ubraniu. Tak jak mniejszy odpowiednik, w razie kryzysu automatycznie gasi noszącego, ale mieści dwa razy więcej ładunków."
 	allowed = list(/obj/item/gun, /obj/item/ammo_casing, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/transforming/energy/sword, /obj/item/restraints/handcuffs, /obj/item/tank)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75, "stamina" = 0, "bleed" = 10)
 	resistance_flags = FIRE_PROOF
@@ -36,8 +36,8 @@
 
 //I just want the light feature of the hardsuit helmet
 /obj/item/clothing/head/helmet/space/plasmaman
-	name = "plasma envirosuit helmet"
-	desc = "A special containment helmet that allows plasma-based lifeforms to exist safely in an oxygenated environment. It is space-worthy, and may be worn in tandem with other EVA gear."
+	name = "plazmowy hełm środowiskowy"
+	desc = "Specjalny hełm izolujący, dzięki któremu plazmowe formy życia mogą bezpiecznie przebywać w środowisku z tlenem. Nadaje się do kosmosu i można go nosić razem z innym sprzętem EVA."
 	icon_state = "helmet"
 	item_state = "helmet"
 	greyscale_colors = "#DF5900#A349A4#DF5900"
@@ -244,95 +244,95 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/space/plasmaman/security
-	name = "security envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for security officers, protecting them from burning alive, along-side other undesirables."
+	name = "policyjny hełm środowiskowy"
+	desc = "Hełm izolujący plazmamana zaprojektowany dla policjantów. Chroni ich przed spłonięciem żywcem i innymi nieprzyjemnościami."
 	greyscale_colors = "#9F2A2E#2D2D2D#7D282D"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75, "stamina" = 10, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/warden
-	name = "warden's envirosuit helmet"
-	desc = "A plasmaman containment helmet designed for the warden, a pair of white stripes being added to differentiate them from other members of security."
+	name = "hełm środowiskowy Naczelnika"
+	desc = "Hełm izolujący plazmamana zaprojektowany dla Naczelnika. Para białych pasków odróżnia go od reszty ochrony."
 	greyscale_colors = "#9F2A2E#C0C0C0#7D282D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/medical
-	name = "medical's envirosuit helmet"
-	desc = "An envirohelmet designed for plasmaman medical doctors, having two stripes down it's length to denote as much"
+	name = "medyczny hełm środowiskowy"
+	desc = "Hełm środowiskowy zaprojektowany dla plazmamanów lekarzy. Na znak tego ma przez całą długość dwa paski"
 	greyscale_colors = "#D2D2D2#498CB4#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/genetics
-	name = "geneticist's envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for geneticists."
+	name = "hełm środowiskowy genetyka"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla genetyków."
 	greyscale_colors = "#D2D2D2#0093C4#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/viro
-	name = "virology envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	name = "hełm środowiskowy wirologii"
+	desc = "Hełm najbezpieczniejszych ludzi na statku – tych, którzy są całkowicie odporni na potworności, które sami tworzą."
 	greyscale_colors = "#D2D2D2#2D8800#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/chemist
-	name = "chemistry envirosuit helmet"
-	desc = "A plasmaman envirosuit designed for chemists, two orange stripes going down it's face."
+	name = "hełm środowiskowy chemii"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla chemików, z dwoma pomarańczowymi paskami biegnącymi przez przód."
 	greyscale_colors = "#D2D2D2#D26F00#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/paramedic
-	name = "paramedic envirosuit helmet"
-	desc = "An envirosuit helmet only for the bravest medical plasmaman."
+	name = "hełm środowiskowy ratownika medycznego"
+	desc = "Hełm środowiskowy tylko dla najodważniejszego plazmamana z medycyny."
 	greyscale_colors = "#2C3A4E#D9D9D9#2C3A4E"
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/secmed
-	name = "brig physician envirosuit helmet"
-	desc = "An envirosuit helmet made for brig physicians."
+	name = "hełm środowiskowy Lekarza Więziennego"
+	desc = "Hełm środowiskowy zrobiony dla lekarzy więziennych."
 	greyscale_colors = "#A5A9B6#B72B2F#A5A9B6"
 
 /obj/item/clothing/head/helmet/space/plasmaman/science
-	name = "science envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for scientists."
+	name = "hełm środowiskowy nauki"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla naukowców."
 	greyscale_colors = "#E6E6E6#9E00EA#E6E6E6"
 
 /obj/item/clothing/head/helmet/space/plasmaman/robotics
-	name = "robotics envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for roboticists."
+	name = "hełm środowiskowy robotyki"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla robotyków."
 	greyscale_colors = "#313131#722BA4#313131"
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering
-	name = "engineering envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for engineer plasmamen, the usual purple stripes being replaced by engineering's orange."
+	name = "inżynieryjny hełm środowiskowy"
+	desc = "Nadający się do kosmosu hełm zaprojektowany specjalnie dla plazmamanów inżynierów. Zwykłe fioletowe paski zastąpiono inżynieryjnym pomarańczem."
 	greyscale_colors = "#F0DE00#D75600#F0DE00"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/atmospherics
-	name = "atmospherics envirosuit helmet"
-	desc = "A space-worthy helmet specially designed for atmos technician plasmamen, the usual purple stripes being replaced by engineering's blue."
+	name = "hełm środowiskowy atmosferyki"
+	desc = "Nadający się do kosmosu hełm zaprojektowany specjalnie dla plazmamanów techników atmosferyki. Zwykłe fioletowe paski zastąpiono inżynieryjnym błękitem."
 	greyscale_colors = "#F0DE00#0098CA#F0DE00"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mailman
-	name = "mailman envirosuit helmet"
-	desc = "<i>'Right-on-time'</i> mail plasmamen service head wear."
+	name = "hełm środowiskowy listonosza"
+	desc = "Nakrycie głowy plazmamanów z poczty <i>„Zawsze na czas”</i>."
 	greyscale_colors = "#091544#e6c447#091544"
 
 /obj/item/clothing/head/helmet/space/plasmaman/cargo
-	name = "cargo envirosuit helmet"
-	desc = "An plasmaman envirohelmet designed for cargo techs and quartermasters."
+	name = "hełm środowiskowy zaopatrzenia"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla magazynierów i kwatermistrzów."
 	greyscale_colors = "#ADADAD#BB9042#ADADAD"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mining
-	name = "mining envirosuit helmet"
-	desc = "A khaki helmet given to plasmamen miners operating on lavaland."
+	name = "górniczy hełm środowiskowy"
+	desc = "Hełm w kolorze khaki wydawany plazmamanom górnikom pracującym na Lavalandzie."
 	greyscale_colors = "#55524A#8A5AE1#55524A"
 
 /obj/item/clothing/head/helmet/space/plasmaman/chaplain
-	name = "chaplain's envirosuit helmet"
-	desc = "An envirohelmet specially designed for only the most pious of plasmamen."
+	name = "hełm środowiskowy kapłana"
+	desc = "Hełm środowiskowy zaprojektowany specjalnie dla najpobożniejszych plazmamanów."
 	greyscale_colors = "#313131#743474#313131"
 
 /obj/item/clothing/head/helmet/space/plasmaman/white
-	name = "white envirosuit helmet"
-	desc = "A generic white envirohelm."
+	name = "biały hełm środowiskowy"
+	desc = "Zwykły biały hełm środowiskowy."
 	greyscale_colors = "#D2D2D2#743474#D2D2D2"
 
 /obj/item/clothing/head/helmet/space/plasmaman/bartender
-	name = "white envirosuit helmet with top hat"
-	desc = "A generic white envirohelm with a top-hat affixed to the top"
+	name = "biały hełm środowiskowy z cylindrem"
+	desc = "Zwykły biały hełm środowiskowy z cylindrem przymocowanym na czubku"
 	greyscale_colors = "#E6E6E6#A349A4#E6E6E6"
 
 /obj/item/clothing/head/helmet/space/plasmaman/bartender/Initialize(mapload)
@@ -344,13 +344,13 @@
 	add_verb(/obj/item/clothing/head/helmet/space/plasmaman/verb/unattach_hat)
 
 /obj/item/clothing/head/helmet/space/plasmaman/gold
-	name = "designer envirosuit helmet"
-	desc = "A Plasmi-Deluxe envirosuit helmet with gold woven into the fabric. A designer model like this is probably worth a pretty penny."
+	name = "designerski hełm środowiskowy"
+	desc = "Hełm środowiskowy Plasmi-Deluxe z wplecionym w tkaninę złotem. Taki designerski model jest pewnie wart sporo kasy."
 	greyscale_colors = "#C47D0C#C47D0C#C47D0C"
 
 /obj/item/clothing/head/helmet/space/plasmaman/curator
-	name = "curator's envirosuit helmet"
-	desc = "A slight modification on a tradiational voidsuit helmet, this helmet was Nano-Trasen's first solution to the *logistical problems* that come with employing plasmamen. Despite their limitations, these helmets still see use by historian and old-styled plasmamen alike."
+	name = "hełm środowiskowy bibliotekarza"
+	desc = "Lekko zmodyfikowany tradycyjny hełm próżniowy. To pierwsze rozwiązanie Nano-Trasen *problemów logistycznych* związanych z zatrudnianiem plazmamanów. Mimo ograniczeń wciąż noszą je historycy i plazmamani starej daty."
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -361,24 +361,24 @@
 	smile_state = "prototype_smile"
 
 /obj/item/clothing/head/helmet/space/plasmaman/botany
-	name = "botany envirosuit helmet"
-	desc = "A green and blue envirohelmet designating it's wearer as a botanist. While not specially designed for it, it would protect against minor planet-related injuries."
+	name = "hełm środowiskowy botaniki"
+	desc = "Zielono-niebieski hełm środowiskowy, który oznacza noszącego jako botanika. Choć nie zaprojektowano go do tego specjalnie, chroni przed drobnymi obrażeniami od roślin."
 	greyscale_colors = "#5FA31E#0D49FF#5FA31E"
 
 /obj/item/clothing/head/helmet/space/plasmaman/janitor
-	name = "janitor's envirosuit helmet"
-	desc = "A grey helmet bearing a pair of purple stripes, designating the wearer as a janitor."
+	name = "hełm środowiskowy woźnego"
+	desc = "Szary hełm z parą fioletowych pasków, które oznaczają noszącego jako woźnego."
 	greyscale_colors = "#ADADAD#7E3391#FCFF00"
 
 /obj/item/clothing/head/helmet/space/plasmaman/exploration
-	name = "exploration envirosuit helmet"
-	desc = "A plasmaman envirohelmet designed for the exploration crew, decked out in their iconic garish turquiose."
+	name = "hełm środowiskowy odkrywcy"
+	desc = "Hełm środowiskowy plazmamana zaprojektowany dla odkrywców, w ich charakterystycznym jaskrawym turkusie."
 	greyscale_colors = "#CFC7B8#50BA5C#CFC7B8"
 
 //mime and clown
 /obj/item/clothing/head/helmet/space/plasmaman/mime
-	name = "mime's envirosuit helmet"
-	desc = "A black and white envirosuit helmet, specially made for the mime. Rattling bones won't stop your silent shenanigans!"
+	name = "hełm środowiskowy mima"
+	desc = "Czarno-biały hełm środowiskowy zrobiony specjalnie dla mima. Grzechoczące kości nie przeszkodzą w twoich cichych wybrykach!"
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -389,8 +389,8 @@
 	visor_state = "mime_visor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/honk
-	name = "clown's envirosuit helmet"
-	desc = "A multicolor helmet that smells of bananium and security's tears."
+	name = "hełm środowiskowy klauna"
+	desc = "Wielobarwny hełm, który pachnie bananium i łzami ochrony."
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -403,55 +403,55 @@
 
 //command helms
 /obj/item/clothing/head/helmet/space/plasmaman/command
-	name = "captain's envirosuit helmet"
-	desc = "A helmet issued to the head of the command staff. Sleak and stylish, as all captains should be."
+	name = "hełm środowiskowy kapitana"
+	desc = "Hełm wydawany szefowi dowództwa. Elegancki i stylowy, jak każdy kapitan powinien być."
 	greyscale_colors = "#005478#D7C73F#005478"
 
 /obj/item/clothing/head/helmet/space/plasmaman/engineering/ce
-	name = "chief engineer's envirohelmet"
-	desc = "An envirohelmet designed for the Chief Engineer. It reeks of Poly and plasma."
+	name = "hełm środowiskowy Głównego Inżyniera"
+	desc = "Hełm środowiskowy zaprojektowany dla Głównego Inżyniera. Cuchnie Poly i plazmą."
 	greyscale_colors = "#D7D7C4#D75600#D7D7C4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/cmo
-	name = "chief medical officer's envirohelmet"
-	desc = "A helmet issued to the chief of the medical staff."
+	name = "hełm środowiskowy Ordynatora"
+	desc = "Hełm wydawany szefowi personelu medycznego."
 	greyscale_colors = "#6FABCE#E6E6E6#6FABCE"
 
 /obj/item/clothing/head/helmet/space/plasmaman/security/hos
-	name = "head of security's helmet"
-	desc = "A reinforced envirohelmet issued to the head of the security staff. You'll need it."
+	name = "hełm środowiskowy Komendanta"
+	desc = "Wzmocniony hełm środowiskowy wydawany szefowi ochrony. Przyda ci się."
 	greyscale_colors = "#2F2E31#C7B83C#2F2E31"
 
 /obj/item/clothing/head/helmet/space/plasmaman/rd
-	name = "research director's envirosuit helmet"
-	desc = "A custom made envirosuit helmet made using advanced nanofibers. Fashionable and easy to wear."
+	name = "hełm środowiskowy Dyrektora Naukowego"
+	desc = "Hełm środowiskowy wykonany na zamówienie z zaawansowanych nanowłókien. Modny i wygodny."
 	greyscale_colors = "#6F5828#A349A4#6F5828"
 
 /obj/item/clothing/head/helmet/space/plasmaman/hop
-	name = "head of personnel's envirosuit helmet"
-	desc = "An envirosuit helmet made for the Head of Personnel. Some corgi hair is stuck to it."
+	name = "hełm środowiskowy Starszego Oficera"
+	desc = "Hełm środowiskowy zrobiony dla Starszego Oficera. Przykleiło się do niego trochę sierści corgiego."
 	greyscale_colors = "#005478#AA1916#005478"
 
 //centcom envirohelms
 /obj/item/clothing/head/helmet/space/plasmaman/commander
-	name = "CentCom commander envirosuit helmet"
-	desc = "A special containment helmet designed for the Higher Central Command Staff. Not many of these exist, as CentCom does not usually employ plasmamen to higher staff positions due to their complications."
+	name = "hełm środowiskowy Komandora Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla wyższych rangą członków Centrali. Niewiele ich istnieje, bo Centrala z powodu komplikacji zwykle nie obsadza plazmamanami wyższych stanowisk."
 	greyscale_colors = "#007F00#E1C709#007F00"
 
 /obj/item/clothing/head/helmet/space/plasmaman/official
-	name = "CentCom official envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. They sure do love their green."
+	name = "hełm środowiskowy przedstawiciela Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. Oni naprawdę kochają ten swój zielony."
 	greyscale_colors = "#099756#C0C0C0#099756"
 
 /obj/item/clothing/head/helmet/space/plasmaman/intern
-	name = "CentCom intern envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. You know, so any coffee spills don't kill the poor sod."
+	name = "hełm środowiskowy stażysty Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. No wiesz, żeby rozlana kawa nie zabiła biedaka."
 	greyscale_colors = "#088756#313131#088756"
 
 // The Mark 2 variants of the standard envirohelms.
 /obj/item/clothing/head/helmet/space/plasmaman/mark2
-	name = "Mk.II envirosuit helmet"
-	desc = "A sleek new plasmaman containment helmet, painted in classic Hazardous Orange."
+	name = "hełm środowiskowy Mk.II"
+	desc = "Elegancki nowy hełm izolujący plazmamana w klasycznym kolorze „ostrzegawczy pomarańcz”."
 	greyscale_colors = "#DF5900#A349A4"
 	greyscale_config = /datum/greyscale_config/plasmaman_helmet_mark2
 	greyscale_config_inhand_left = /datum/greyscale_config/plasmaman_helmet_mark2_inhand_left
@@ -460,166 +460,166 @@
 	visor_state = "mark2_visor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/security
-	name = "security Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for security officers, retaining all the old protections for a new era of fragile law enforcement."
+	name = "policyjny hełm środowiskowy Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla policjantów. Zachowuje całą dawną ochronę na nową erę kruchych stróżów prawa."
 	greyscale_colors = "#9F2A2E#2D2D2D"
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 75, "stamina" = 10, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/security/warden
-	name = "warden's Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for the warden. All the chic of the standard look with the Warden's iconic reflective white stripe."
+	name = "hełm środowiskowy Naczelnika Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla Naczelnika. Cały szyk standardowego wyglądu plus charakterystyczny odblaskowy biały pasek Naczelnika."
 	greyscale_colors = "#9F2A2E#C0C0C0"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/medical
-	name = "medical's Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for medical doctors. Glue your fellow crewmen back together and make a fashion statement while you're at it."
+	name = "medyczny hełm środowiskowy Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla lekarzy. Sklejaj kolegów z załogi i przy okazji pokaż, że masz styl."
 	greyscale_colors = "#E6E6E6#5A96BB"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/genetics
-	name = "geneticist's Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for geneticists. Pushing the boundaries of organic life never looked so good!"
+	name = "hełm środowiskowy genetyka Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla genetyków. Przesuwanie granic życia organicznego jeszcze nigdy nie wyglądało tak dobrze!"
 	greyscale_colors = "#E6E6E6#0097CA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/viro
-	name = "virology Mk.II envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create, including the monstrosities of outdated fashion"
+	name = "hełm środowiskowy wirologii Mk.II"
+	desc = "Hełm najbezpieczniejszych ludzi na statku – tych, którzy są całkowicie odporni na potworności, które sami tworzą, w tym na potworności przestarzałej mody"
 	greyscale_colors = "#E6E6E6#339900"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/chemist
-	name = "chemistry Mk.II envirosuit helmet"
-	desc = "A braced plasmaman containment helmet design for chemists."
+	name = "hełm środowiskowy chemii Mk.II"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla chemików."
 	greyscale_colors = "#E6E6E6#FF8800"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/paramedic
-	name = "paramedic Mk.II envirosuit helmet"
-	desc = "A new and improved envirosuit helmet only for the bravest medical plasmaman."
+	name = "hełm środowiskowy ratownika medycznego Mk.II"
+	desc = "Nowy, ulepszony hełm środowiskowy tylko dla najodważniejszego plazmamana z medycyny."
 	greyscale_colors = "#2C3A4E#D9D9D9"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/security/secmed
-	name = "brig physician Mk.II envirosuit helmet"
-	desc = "A braced plasmaman containment helmet design for brig physicians."
+	name = "hełm środowiskowy Lekarza Więziennego Mk.II"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla lekarzy więziennych."
 	greyscale_colors = "#A5A9B6#B72B2F"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/science
-	name = "science Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for scientists."
+	name = "hełm środowiskowy nauki Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla naukowców."
 	greyscale_colors = "#E6E6E6#9E00EA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/robotics
-	name = "robotics Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for roboticists."
+	name = "hełm środowiskowy robotyki Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla robotyków."
 	greyscale_colors = "#2F2E31#932500"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/engineering
-	name = "engineering Mk.II envirosuit helmet"
-	desc = "A new iteration upon the classic space-worthy design, painted in classic engineering pigments."
+	name = "inżynieryjny hełm środowiskowy Mk.II"
+	desc = "Nowa wersja klasycznego hełmu nadającego się do kosmosu, pomalowana w klasyczne barwy inżynierii."
 	greyscale_colors = "#E8D700#D75600"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/engineering/atmospherics
-	name = "atmospherics Mk.II envirosuit helmet"
-	desc = "A new iteration upon the classic space-worthy design, painted in classic atmosian pigments."
+	name = "hełm środowiskowy atmosferyki Mk.II"
+	desc = "Nowa wersja klasycznego hełmu nadającego się do kosmosu, pomalowana w klasyczne barwy atmosferyki."
 	greyscale_colors = "#E8D700#0098CA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/cargo
-	name = "cargo Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for cargo techs and quartermasters. Neo-liberal grifting has never been this groovy"
+	name = "hełm środowiskowy zaopatrzenia Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla magazynierów i kwatermistrzów. Neoliberalne naciąganie jeszcze nigdy nie było tak odlotowe"
 	greyscale_colors = "#ADADAD#BB9042"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/mailman
-	name = "mailman Mk.II envirosuit helmet"
-	desc = "<i>'Right-on-time'</i> a modernized mail plasmamen service head wear."
+	name = "hełm środowiskowy listonosza Mk.II"
+	desc = "Unowocześnione nakrycie głowy plazmamanów z poczty <i>„Zawsze na czas”</i>."
 	greyscale_colors = "#091544#e6c447"
 
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/mining
-	name = "mining Mk.II envirosuit helmet"
-	desc = "A new styling of the classi khaki helmet given to plasmamen miners."
+	name = "górniczy hełm środowiskowy Mk.II"
+	desc = "Nowa stylizacja klasycznego hełmu w kolorze khaki wydawanego plazmamanom górnikom."
 	greyscale_colors = "#E1D9CA#2BFF92"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/chaplain
-	name = "chaplain's Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for only the most pious of plasmamen. Old age traditions wrapped in a new age shell."
+	name = "hełm środowiskowy kapłana Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego dla najpobożniejszych plazmamanów. Dawne tradycje w nowoczesnej skorupie."
 	greyscale_colors = "#313131#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/white
-	name = "white Mk.II envirosuit helmet"
-	desc = "The generic white envirohelm brought into a new era of fashion."
+	name = "biały hełm środowiskowy Mk.II"
+	desc = "Zwykły biały hełm środowiskowy przeniesiony w nową erę mody."
 	greyscale_colors = "#E6E6E6#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/botany
-	name = "botany Mk.II envirosuit helmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for botanists. Now specially designed against minor planet-related injuries."
+	name = "hełm środowiskowy botaniki Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla botaników. Teraz zaprojektowana specjalnie z myślą o drobnych obrażeniach od roślin."
 	greyscale_colors = "#54911A#0650D7"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/janitor
-	name = "janitor's Mk.II envirosuit helmet"
-	desc = "A new look for the flashy janitor enviro helmet. Get the appreciation you deserve with this cutting edge vogue."
+	name = "hełm środowiskowy woźnego Mk.II"
+	desc = "Nowy wygląd efektownego hełmu środowiskowego woźnego. Zdobądź uznanie, na jakie zasługujesz, dzięki temu krzykowi mody."
 	greyscale_colors = "#ADADAD#FCFF00"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/exploration
-	name = "mining envirosuit helmet"
-	desc = "A new plasmaman envirohelmet designed for the exploration crew, decked out in their iconic garish turquiose."
+	name = "górniczy hełm środowiskowy"
+	desc = "Nowy hełm środowiskowy plazmamana zaprojektowany dla odkrywców, w ich charakterystycznym jaskrawym turkusie."
 	greyscale_colors = "#E1D9CA#2BFF92"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/command
-	name = "captain's Mk.II envirosuit helmet"
-	desc = "A new age helmet issued to the head of the command staff. Sleeker and stylish-er, as all captains should be."
+	name = "hełm środowiskowy kapitana Mk.II"
+	desc = "Nowoczesny hełm wydawany szefowi dowództwa. Jeszcze elegantszy i stylowszy, jak każdy kapitan powinien być."
 	greyscale_colors = "#005478#D7C73F"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/engineering/ce
-	name = "chief engineer's Mk.II envirohelmet"
-	desc = "A stylish new iteration upon the original plasmaman containment helmet design for the Chief Engineer. This one doesn't smell as strongly of bird poo."
+	name = "hełm środowiskowy Głównego Inżyniera Mk.II"
+	desc = "Stylowa nowa wersja oryginalnego hełmu izolującego plazmamana dla Głównego Inżyniera. Ten nie śmierdzi aż tak ptasią kupą."
 	greyscale_colors = "#D7D7C4#D75600"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/cmo
-	name = "chief medical officer's Mk.II envirohelmet"
-	desc = "A sleek new helmet issued to the chief of the medical staff. Show off that big forehead of yours to all the squares in science."
+	name = "hełm środowiskowy Ordynatora Mk.II"
+	desc = "Elegancki nowy hełm wydawany szefowi personelu medycznego. Pochwal się swoim wielkim czołem przed wszystkimi sztywniakami z nauki."
 	greyscale_colors = "#6FABCE#E6E6E6"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/security/hos
-	name = "head of security's Mk.II envirosuit helmet"
-	desc = "A new variant of the head of security's classic reinforced envirohelmet. You'll still need it."
+	name = "hełm środowiskowy Komendanta Mk.II"
+	desc = "Nowy wariant klasycznego wzmocnionego hełmu środowiskowego Komendanta. Wciąż ci się przyda."
 	greyscale_colors = "#232A35#8A0400"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/rd
-	name = "research director's Mk.II envirosuit helmet"
-	desc = "A stylish new helmet issued to the director of the research staff. Show off that big forehead of yours to all the wimps in medical."
+	name = "hełm środowiskowy Dyrektora Naukowego Mk.II"
+	desc = "Stylowy nowy hełm wydawany szefowi personelu naukowego. Pochwal się swoim wielkim czołem przed wszystkimi mięczakami z medycyny."
 	greyscale_colors = "#6F5828#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/hop
-	name = "head of personnel's Mk.II envirosuit helmet"
-	desc = "An new envirosuit helmet made for the Head of Personnel, sprayed with Corgi pheromones."
+	name = "hełm środowiskowy Starszego Oficera Mk.II"
+	desc = "Nowy hełm środowiskowy zrobiony dla Starszego Oficera, spryskany feromonami corgi."
 	greyscale_colors = "#005478#AA1916"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/gold
-	name = "designer's envirosuit helmet Mk.II"
-	desc = "A Plasmi-Deluxe envirosuit helmet with gold woven into the fabric. This one is the newest version."
+	name = "designerski hełm środowiskowy Mk.II"
+	desc = "Hełm środowiskowy Plasmi-Deluxe z wplecionym w tkaninę złotem. To najnowsza wersja."
 	greyscale_colors = "#C47D0C#C47D0C"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/commander
-	name = "CentCom commander Mk.II envirosuit helmet"
-	desc = "A special containment helmet designed for the Higher Central Command Staff. Not many of these exist, as CentCom does not usually employ plasmamen to higher staff positions due to their complications."
+	name = "hełm środowiskowy Komandora Centrali Mk.II"
+	desc = "Specjalny hełm izolujący zaprojektowany dla wyższych rangą członków Centrali. Niewiele ich istnieje, bo Centrala z powodu komplikacji zwykle nie obsadza plazmamanami wyższych stanowisk."
 	greyscale_colors = "#007F00#E1C709"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/official
-	name = "CentCom official Mk.II envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. They sure do love their green."
+	name = "hełm środowiskowy przedstawiciela Centrali Mk.II"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. Oni naprawdę kochają ten swój zielony."
 	greyscale_colors = "#099756#C0C0C0"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/intern
-	name = "CentCom intern envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. You know, so any coffee spills don't kill the poor sod."
+	name = "hełm środowiskowy stażysty Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. No wiesz, żeby rozlana kawa nie zabiła biedaka."
 	greyscale_colors = "#088756#313131"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/bartender
-	name = "white envirosuit helmet with top hat"
-	desc = "A new plasmaman envirohelmet designed for the bartenders, with a top-hat affixed to the top."
+	name = "biały hełm środowiskowy z cylindrem"
+	desc = "Nowy hełm środowiskowy plazmamana zaprojektowany dla barmanów, z cylindrem przymocowanym na czubku."
 	greyscale_colors = "#E6E6E6#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/mime
-	name = "mime's envirosuit helmet"
-	desc = "A new plasmaman envirohelmet designed for the mimes."
+	name = "hełm środowiskowy mima"
+	desc = "Nowy hełm środowiskowy plazmamana zaprojektowany dla mimów."
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -630,8 +630,8 @@
 	visor_state = "mime_visor_mk2"
 
 /obj/item/clothing/head/helmet/space/plasmaman/mark2/clown
-	name = "clown's envirosuit helmet"
-	desc = "A new plasmaman envirohelmet designed for the clowns."
+	name = "hełm środowiskowy klauna"
+	desc = "Nowy hełm środowiskowy plazmamana zaprojektowany dla klaunów."
 	greyscale_colors = null
 	greyscale_config = null
 	greyscale_config_inhand_left = null
@@ -651,8 +651,8 @@
 
 // The Protective helmet variants
 /obj/item/clothing/head/helmet/space/plasmaman/protective
-	name = "protective envirosuit helmet"
-	desc = "This helmet was originally designed for engineering crews on the more ramshackle plasma mining colonies. Now, after several design improvements and class-action lawsuits, this helmet has been distributed once more as a fun cosmetic choice for NTs plasmafolk."
+	name = "wzmocniony hełm środowiskowy"
+	desc = "Ten hełm pierwotnie zaprojektowano dla ekip inżynieryjnych w bardziej rozklekotanych koloniach wydobywających plazmę. Teraz, po kilku poprawkach konstrukcji i pozwach zbiorowych, znów trafił do plazmaludzi z NT jako zabawny dodatek kosmetyczny."
 	greyscale_colors = "#DF5900#A349A4"
 	greyscale_config = /datum/greyscale_config/plasmaman_helmet_protective
 	greyscale_config_inhand_left = /datum/greyscale_config/plasmaman_helmet_protective_inhand_left
@@ -661,159 +661,159 @@
 	visor_state = "protective_visor"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security
-	name = "security protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for security officers."
+	name = "wzmocniony policyjny hełm środowiskowy"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla policjantów."
 	greyscale_colors = "#9F2A2E#2D2D2D"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security/warden
-	name = "warden's protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for the warden."
+	name = "wzmocniony hełm środowiskowy Naczelnika"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla Naczelnika."
 	greyscale_colors = "#9F2A2E#C0C0C0"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/medical
-	name = "medical's protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for medical doctors."
+	name = "wzmocniony medyczny hełm środowiskowy"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla lekarzy."
 	greyscale_colors = "#E6E6E6#5A96BB"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/genetics
-	name = "geneticist's protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for geneticists."
+	name = "wzmocniony hełm środowiskowy genetyka"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla genetyków."
 	greyscale_colors = "#E6E6E6#0097CA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/viro
-	name = "virology protective envirosuit helmet"
-	desc = "The helmet worn by the safest people on the station, those who are completely immune to the monstrosities they create."
+	name = "wzmocniony hełm środowiskowy wirologii"
+	desc = "Hełm najbezpieczniejszych ludzi na statku – tych, którzy są całkowicie odporni na potworności, które sami tworzą."
 	greyscale_colors = "#E6E6E6#339900"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/chemist
-	name = "chemistry protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for chemists."
+	name = "wzmocniony hełm środowiskowy chemii"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla chemików."
 	greyscale_colors = "#E6E6E6#FF8800"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/paramedic
-	name = "paramedic protective envirosuit helmet"
-	desc = "A new and improved envirosuit helmet only for the bravest medical plasmaman."
+	name = "wzmocniony hełm środowiskowy ratownika medycznego"
+	desc = "Nowy, ulepszony hełm środowiskowy tylko dla najodważniejszego plazmamana z medycyny."
 	greyscale_colors = "#2C3A4E#EBEBEB"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security/secmed
-	name = "brig physician protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for brig physicians."
+	name = "wzmocniony hełm środowiskowy Lekarza Więziennego"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla lekarzy więziennych."
 	greyscale_colors = "#A5A9B6#C4373C"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/science
-	name = "science protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for scientists."
+	name = "wzmocniony hełm środowiskowy nauki"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla naukowców."
 	greyscale_colors = "#E6E6E6#9E00EA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/robotics
-	name = "robotics protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for roboticists."
+	name = "wzmocniony hełm środowiskowy robotyki"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla robotyków."
 	greyscale_colors = "#3F3B4C#722BA4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/engineering
-	name = "engineering protective envirosuit helmet"
-	desc = "A safer looking re-imagining of the classic space-worthy design, painted in classic engineering pigments."
+	name = "wzmocniony inżynieryjny hełm środowiskowy"
+	desc = "Bezpieczniej wyglądająca nowa interpretacja klasycznego hełmu nadającego się do kosmosu, pomalowana w klasyczne barwy inżynierii."
 	greyscale_colors = "#E8D700#D75600"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 10, "fire" = 100, "acid" = 75, "stamina" = 0, "bleed" = 10)
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/engineering/atmospherics
-	name = "atmospherics protective envirosuit helmet"
-	desc = "A safer looking re-imagining of the classic space-worthy design, painted in classic atmosian pigments."
+	name = "wzmocniony hełm środowiskowy atmosferyki"
+	desc = "Bezpieczniej wyglądająca nowa interpretacja klasycznego hełmu nadającego się do kosmosu, pomalowana w klasyczne barwy atmosferyki."
 	greyscale_colors = "#E8D700#0098CA"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/cargo
-	name = "cargo protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet design for cargo techs and quartermasters."
+	name = "wzmocniony hełm środowiskowy zaopatrzenia"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla magazynierów i kwatermistrzów."
 	greyscale_colors = "#ADADAD#BB9042"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/mailman
-	name = "mailman Mk.II envirosuit helmet"
-	desc = "<i>'Right-on-time'</i> a braced mail plasmamen service head wear."
+	name = "hełm środowiskowy listonosza Mk.II"
+	desc = "Wzmocnione nakrycie głowy plazmamanów z poczty <i>„Zawsze na czas”</i>."
 	greyscale_colors = "#091544#e6c447"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/mining
-	name = "mining Mk.II envirosuit helmet"
-	desc = "A new styling of the classic khaki helmet given to plasmamen miners."
+	name = "górniczy hełm środowiskowy Mk.II"
+	desc = "Nowa stylizacja klasycznego hełmu w kolorze khaki wydawanego plazmamanom górnikom."
 	greyscale_colors = "#55524A#8A5AE1"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/chaplain
-	name = "chaplain's protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet design for only the most pious of plasmamen."
+	name = "wzmocniony hełm środowiskowy kapłana"
+	desc = "Wzmocniony hełm izolujący zaprojektowany dla najpobożniejszych plazmamanów."
 	greyscale_colors = "#313131#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/white
-	name = "white protective envirosuit helmet"
-	desc = "The generic white envirohelm wrapped in a bulky, possibly more protective shell."
+	name = "wzmocniony biały hełm środowiskowy"
+	desc = "Zwykły biały hełm środowiskowy w masywnej, być może lepiej chroniącej skorupie."
 	greyscale_colors = "#E6E6E6#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/botany
-	name = "botany protective envirosuit helmet"
-	desc = "A braced plasmaman containment helmet designed for botanists."
+	name = "wzmocniony hełm środowiskowy botaniki"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla botaników."
 	greyscale_colors = "#54911A#0650D7"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/janitor
-	name = "janitor's protective envirosuit helmet"
-	desc = "A bulkier variation on the janitor envirohelmet."
+	name = "wzmocniony hełm środowiskowy woźnego"
+	desc = "Masywniejsza wersja hełmu środowiskowego woźnego."
 	greyscale_colors = "#ADADAD#FCFF00"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/exploration
-	name = "mining protective envirosuit helmet"
-	desc = "A new plasmaman envirohelmet designed for the exploration crew, decked out in their iconic garish turquiose."
+	name = "wzmocniony górniczy hełm środowiskowy"
+	desc = "Nowy hełm środowiskowy plazmamana zaprojektowany dla odkrywców, w ich charakterystycznym jaskrawym turkusie."
 	greyscale_colors = "#CFC7B8#0CD46C"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/command
-	name = "captain's protective envirosuit helmet"
-	desc = "A better protected helmet issued to the head of the command staff. This might help. Might."
+	name = "wzmocniony hełm środowiskowy kapitana"
+	desc = "Lepiej chroniący hełm wydawany szefowi dowództwa. Może pomoże. Może."
 	greyscale_colors = "#005478#D7C73F"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/engineering/ce
-	name = "chief engineer's protective envirohelmet"
-	desc = "A braced plasmaman containment helmet designed for the Chief Engineer."
+	name = "wzmocniony hełm środowiskowy Głównego Inżyniera"
+	desc = "Wzmocniony hełm izolujący plazmamana zaprojektowany dla Głównego Inżyniera."
 	greyscale_colors = "#D7D7C3#D75600"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/cmo
-	name = "chief medical officer's protective envirohelmet"
-	desc = "A bulky new helmet issued to the chief of the medical staff."
+	name = "wzmocniony hełm środowiskowy Ordynatora"
+	desc = "Masywny nowy hełm wydawany szefowi personelu medycznego."
 	greyscale_colors = "#6FABCE#E6E6E6"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/security/hos
-	name = "head of security's protective envirosuit helmet"
-	desc = "A better-armoured variant of the head of security's classic reinforced envirohelmet."
+	name = "wzmocniony hełm środowiskowy Komendanta"
+	desc = "Lepiej opancerzony wariant klasycznego wzmocnionego hełmu środowiskowego Komendanta."
 	greyscale_colors = "#232A35#8A0400"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/rd
-	name = "research director's protective envirosuit helmet"
-	desc = "An encumbering new helmet issued to the director of the research staff."
+	name = "wzmocniony hełm środowiskowy Dyrektora Naukowego"
+	desc = "Nieporęczny nowy hełm wydawany szefowi personelu naukowego."
 	greyscale_colors = "#6F5828#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/hop
-	name = "head of personnel's protective envirosuit helmet"
-	desc = "An new, debatably safer envirosuit helmet made for the Head of Personnel."
+	name = "wzmocniony hełm środowiskowy Starszego Oficera"
+	desc = "Nowy, rzekomo bezpieczniejszy hełm środowiskowy zrobiony dla Starszego Oficera."
 	greyscale_colors = "#005478#AA1916"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/gold
-	name = "designer's protective envirosuit helmet"
-	desc = "A Plasmi-Deluxe envirosuit helmet with gold woven into the fabric. This one is the newest version."
+	name = "wzmocniony designerski hełm środowiskowy"
+	desc = "Hełm środowiskowy Plasmi-Deluxe z wplecionym w tkaninę złotem. To najnowsza wersja."
 	greyscale_colors = "#C47D0C#C47D0C"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/commander
-	name = "CentCom commander protective envirosuit helmet"
-	desc = "A special containment helmet designed for the Higher Central Command Staff. Not many of these exist, as CentCom does not usually employ plasmamen to higher staff positions due to their complications."
+	name = "wzmocniony hełm środowiskowy Komandora Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla wyższych rangą członków Centrali. Niewiele ich istnieje, bo Centrala z powodu komplikacji zwykle nie obsadza plazmamanami wyższych stanowisk."
 	greyscale_colors = "#007F00#E1C709"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/official
-	name = "CentCom official protective envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. They sure do love their green."
+	name = "wzmocniony hełm środowiskowy przedstawiciela Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. Oni naprawdę kochają ten swój zielony."
 	greyscale_colors = "#099756#C0C0C0"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/intern
-	name = "CentCom intern protective envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. You know, so any coffee spills don't kill the poor sod."
+	name = "wzmocniony hełm środowiskowy stażysty Centrali"
+	desc = "Specjalny hełm izolujący zaprojektowany dla personelu Centrali. No wiesz, żeby rozlana kawa nie zabiła biedaka."
 	greyscale_colors = "#088756#313131"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/bartender
-	name = "white envirosuit helmet with top hat"
-	desc = "A special containment helmet designed for the bartenders, with a top-hat affixed to the top."
+	name = "biały hełm środowiskowy z cylindrem"
+	desc = "Specjalny hełm izolujący zaprojektowany dla barmanów, z cylindrem przymocowanym na czubku."
 	greyscale_colors = "#E6E6E6#A349A4"
 
 /obj/item/clothing/head/helmet/space/plasmaman/protective/bartender/Initialize(mapload)

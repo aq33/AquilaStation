@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/tesla
-	name = "Tesla Blast"
-	desc = "Charge up a tesla arc and release it at a random nearby target! You can move freely while it charges. The arc jumps between targets and can knock them down."
+	name = "Wybuch tesli"
+	desc = "Ładujesz łuk tesli i uwalniasz go w losowy pobliski cel! Podczas ładowania możesz swobodnie się poruszać. Łuk przeskakuje między celami i może je powalić."
 	charge_type = "recharge"
 	charge_max	= 300
 	clothes_req = TRUE
@@ -69,10 +69,10 @@
 		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
 		current.visible_message("<span class='warning'>[current] pochłania zaklęcie i pozostaje nietknięty!</span>", "<span class='userdanger'>Pochłaniasz zaklęcie i pozostajesz nietknięty!</span>")
 	else if(bounces < 1)
-		current.electrocute_act(bolt_energy,"Lightning Bolt",safety=1)
+		current.electrocute_act(bolt_energy,"Błyskawica",safety=1)
 		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
 	else
-		current.electrocute_act(bolt_energy,"Lightning Bolt",safety=1)
+		current.electrocute_act(bolt_energy,"Błyskawica",safety=1)
 		playsound(get_turf(current), 'sound/magic/lightningshock.ogg', 50, 1, -1)
 		var/list/possible_targets = new
 		for(var/mob/living/M in view_or_range(range,target,"view"))

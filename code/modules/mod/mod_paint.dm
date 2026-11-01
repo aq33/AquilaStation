@@ -6,8 +6,8 @@
 #define MODPAINT_MIN_OVERALL_COLORS 1.5
 
 /obj/item/mod/paint
-	name = "MOD paint kit"
-	desc = "This kit will repaint your MODsuit to something unique."
+	name = "zestaw do malowania MOD"
+	desc = "Ten zestaw przemaluje twój MODsuit na coś niepowtarzalnego."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "paintkit"
 	var/obj/item/mod/control/editing_mod
@@ -20,7 +20,7 @@
 
 /obj/item/mod/paint/examine(mob/user)
 	. = ..()
-	. += span_notice("Use it on a MODsuit to change its skin or recolor it.")
+	. += span_notice("Użyj go na MODsuicie, by zmienić jego skórkę albo kolory.")
 
 // Our pre_attack returns TRUE to continue the attack chain and FALSE to stop it
 /obj/item/mod/paint/pre_attack(atom/attacked_atom, mob/living/user, params)
@@ -28,12 +28,12 @@
 		return ..()
 	var/obj/item/mod/control/mod = attacked_atom
 	if(mod.active || mod.activating)
-		balloon_alert(user, "unit active!")
+		balloon_alert(user, "jednostka aktywna!")
 		return FALSE
-	var/choice = tgui_alert(user, "What do you want to do with [mod]?", name, list("Change skin", "Recolor"))
+	var/choice = tgui_alert(user, "Co chcesz zrobić z: [mod]?", name, list("Zmień skórkę", "Przemaluj"))
 	if(!choice || !user.is_holding(src) || !user.Adjacent(mod) || mod.active || mod.activating)
 		return FALSE
-	if(choice == "Change skin")
+	if(choice == "Zmień skórkę")
 		paint_skin(mod, user)
 		return FALSE
 	if(editing_mod)
@@ -100,50 +100,50 @@
 			var/green_value = current_color[2] + current_color[6] + current_color[10] //rg + gg + bg
 			var/blue_value = current_color[3] + current_color[7] + current_color[11] //rb + gb + bb
 			if(red_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total red too high! ([red_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za dużo czerwieni! ([red_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
 				return
 			else if(red_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total red too low! ([red_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za mało czerwieni! ([red_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
 				return
 			if(green_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total green too high! ([green_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za dużo zieleni! ([green_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
 				return
 			else if(green_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total green too low! ([green_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za mało zieleni! ([green_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
 				return
 			if(blue_value > MODPAINT_MAX_SECTION_COLORS)
-				balloon_alert(usr, "total blue too high! ([blue_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za dużo niebieskiego! ([blue_value*100]%/[MODPAINT_MAX_SECTION_COLORS*100]%)")
 				return
 			else if(blue_value < MODPAINT_MIN_SECTION_COLORS)
-				balloon_alert(usr, "total blue too low! ([blue_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
+				balloon_alert(usr, "za mało niebieskiego! ([blue_value*100]%/[MODPAINT_MIN_SECTION_COLORS*100]%)")
 				return
 			for(var/color_value in total_colors)
 				total_color_value += color_value
 				if(color_value > MODPAINT_MAX_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too high! ([color_value*100]%/[MODPAINT_MAX_COLOR_VALUE*100]%")
+					balloon_alert(usr, "jeden z kolorów za wysoko! ([color_value*100]%/[MODPAINT_MAX_COLOR_VALUE*100]%)")
 					return
 				else if(color_value < MODPAINT_MIN_COLOR_VALUE)
-					balloon_alert(usr, "one of colors too low! ([color_value*100]%/[MODPAINT_MIN_COLOR_VALUE*100]%")
+					balloon_alert(usr, "jeden z kolorów za nisko! ([color_value*100]%/[MODPAINT_MIN_COLOR_VALUE*100]%)")
 					return
 			if(total_color_value > MODPAINT_MAX_OVERALL_COLORS)
-				balloon_alert(usr, "total colors too high! ([total_color_value*100]%/[MODPAINT_MAX_OVERALL_COLORS*100]%)")
+				balloon_alert(usr, "łącznie za dużo koloru! ([total_color_value*100]%/[MODPAINT_MAX_OVERALL_COLORS*100]%)")
 				return
 			else if(total_color_value < MODPAINT_MIN_OVERALL_COLORS)
-				balloon_alert(usr, "total colors too low! ([total_color_value*100]%/[MODPAINT_MIN_OVERALL_COLORS*100]%)")
+				balloon_alert(usr, "łącznie za mało koloru! ([total_color_value*100]%/[MODPAINT_MIN_OVERALL_COLORS*100]%)")
 				return
 			editing_mod.set_mod_color(current_color)
 			SStgui.close_uis(src)
 
 /obj/item/mod/paint/proc/paint_skin(obj/item/mod/control/mod, mob/user)
 	if(length(mod.theme.variants) <= 1)
-		balloon_alert(user, "no alternate skins!")
+		balloon_alert(user, "brak innych skórek!")
 		return
 	var/list/skins = list()
 	for(var/mod_skin in mod.theme.variants)
 		skins[mod_skin] = image(icon = mod.icon, icon_state = "[mod_skin]-control")
 	var/pick = show_radial_menu(user, mod, skins, custom_check = CALLBACK(src, PROC_REF(check_menu), mod, user), require_near = TRUE)
 	if(!pick)
-		balloon_alert(user, "no skin picked!")
+		balloon_alert(user, "nie wybrano skórki!")
 		return
 	mod.theme.set_skin(mod, pick)
 
@@ -160,28 +160,28 @@
 #undef MODPAINT_MIN_OVERALL_COLORS
 
 /obj/item/mod/skin_applier
-	name = "MOD skin applier"
-	desc = "This one-use skin applier will add a skin to MODsuits of a specific type."
+	name = "aplikator skórki MOD"
+	desc = "Ten jednorazowy aplikator nakłada skórkę na MODsuity określonego typu."
 	icon = 'icons/obj/clothing/modsuit/mod_construction.dmi'
 	icon_state = "skinapplier"
 	var/skin = "civilian"
 
 /obj/item/mod/skin_applier/Initialize(mapload)
 	. = ..()
-	name = "MOD [skin] skin applier"
+	name = "aplikator skórki MOD ([skin])"
 
 /obj/item/mod/skin_applier/pre_attack(atom/attacked_atom, mob/living/user, params)
 	if(!istype(attacked_atom, /obj/item/mod/control))
 		return ..()
 	var/obj/item/mod/control/mod = attacked_atom
 	if(mod.active || mod.activating)
-		balloon_alert(user, "unit active!")
+		balloon_alert(user, "jednostka aktywna!")
 		return FALSE
 	if(!(skin in mod.theme.variants))
-		balloon_alert(user, "wrong theme for skin!")
+		balloon_alert(user, "skórka nie pasuje do modelu!")
 		return FALSE
 	mod.theme.set_skin(mod, skin)
-	balloon_alert(user, "skin applied")
+	balloon_alert(user, "skórka nałożona")
 	qdel(src)
 	return FALSE
 

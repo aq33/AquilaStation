@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/target_hive/hive_see
-	name = "Hive Vision"
-	desc = "We use the eyes of one of our vessels. Use again to look through our own eyes once more."
+	name = "Wizja roju"
+	desc = "Patrzymy oczami jednego z naszych naczyń. Użyj ponownie, by znów patrzeć własnymi oczami."
 	action_icon_state = "see"
 	var/mob/living/carbon/vessel
 	var/mob/living/host //Didn't really have any other way to auto-reset the perspective if the other mob got qdeled

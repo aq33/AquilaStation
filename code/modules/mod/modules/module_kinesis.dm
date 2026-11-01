@@ -1,11 +1,11 @@
 ///Kinesis - Gives you the ability to move and launch objects.
 /obj/item/mod/module/anomaly_locked/kinesis
-	name = "MOD kinesis module"
-	desc = "A modular plug-in to the forearm, this module was presumed lost for many years, \
-		despite the suits it used to be mounted on still seeing some circulation. \
-		This piece of technology allows the user to generate precise anti-gravity fields, \
-		letting them move objects as small as a titanium rod to as large as industrial machinery. \
-		Oddly enough, it doesn't seem to work on living creatures."
+	name = "moduł kinezy MOD"
+	desc = "Modułowa nakładka na przedramię; przez wiele lat uważano ten moduł za zaginiony, \
+		choć skafandry, na których go montowano, wciąż są w obiegu. \
+		Ta technologia pozwala generować precyzyjne pola antygrawitacyjne \
+		i przesuwać przedmioty od tytanowego pręta po maszyny przemysłowe. \
+		O dziwo, nie działa chyba na żywe istoty."
 	icon_state = "kinesis"
 	module_type = MODULE_ACTIVE
 	complexity = 3
@@ -57,10 +57,10 @@
 		launch(launched_object)
 		return
 	if(!range_check(target))
-		balloon_alert(mod.wearer, "too far!")
+		balloon_alert(mod.wearer, "za daleko!")
 		return
 	if(!can_grab(target))
-		balloon_alert(mod.wearer, "can't grab!")
+		balloon_alert(mod.wearer, "nie da się chwycić!")
 		return
 	drain_power(use_power_cost)
 	grab_atom(target)
@@ -73,7 +73,7 @@
 		clear_grab()
 		return
 	if(!range_check(grabbed_atom))
-		balloon_alert(mod.wearer, "out of range!")
+		balloon_alert(mod.wearer, "poza zasięgiem!")
 		clear_grab()
 		return
 	drain_power(use_power_cost/10)
@@ -257,27 +257,27 @@
 	prebuilt = TRUE
 
 /obj/item/mod/module/anomaly_locked/kinesis/prototype
-	name = "MOD prototype kinesis module"
+	name = "prototypowy moduł kinezy MOD"
 	prebuilt = TRUE
 	complexity = 0
 	use_power_cost = DEFAULT_CHARGE_DRAIN * 5
 	removable = FALSE
 
 /obj/item/mod/module/anomaly_locked/kinesis/plus
-	name = "MOD kinesis+ module"
-	desc = "A modular plug-in to the forearm, this module was recently redeveloped in secret. \
-		The bane of all ne'er-do-wells, the kinesis+ module is a powerful tool that allows the user \
-		to manipulate the world around them. Like it's older counterpart, it's capable of manipulating \
-		structures, machinery, vehicles, and, thanks to the fruitful efforts of its creators - living beings."
+	name = "moduł kinezy+ MOD"
+	desc = "Modułowa nakładka na przedramię; ten moduł niedawno w tajemnicy opracowano na nowo. \
+		Zmora wszelkich łobuzów: moduł kinezy+ to potężne narzędzie, które pozwala użytkownikowi \
+		manipulować otaczającym go światem. Jak starszy odpowiednik potrafi przesuwać \
+		konstrukcje, maszyny, pojazdy i, dzięki owocnym wysiłkom twórców, żywe istoty."
 	complexity = 0
 	prebuilt = TRUE
 	stat_required = CONSCIOUS
 
 /// Admin suit version of kinesis. Can grab anything at any range, may enable phasing through walls.
 /obj/item/mod/module/anomaly_locked/kinesis/admin
-	name = "MOD kinesis++ module"
-	desc = "A modular plug-in to the forearm, this module was recently reredeveloped in super secret. \
-		This one can force some of the grasped objects to phase through walls. Oh no."
+	name = "moduł kinezy++ MOD"
+	desc = "Modułowa nakładka na przedramię; ten moduł niedawno w supertajemnicy opracowano na nowo po raz drugi. \
+		Ta wersja potrafi przepchnąć niektóre chwycone przedmioty przez ściany. O nie."
 	complexity = 0
 	grab_range = INFINITY
 	use_power_cost = DEFAULT_CHARGE_DRAIN * 0
@@ -327,7 +327,7 @@
 
 /obj/item/mod/module/anomaly_locked/kinesis/admin/get_configuration()
 	. = ..()
-	.["phasing"] = add_ui_configuration("Phasing", "bool", phasing)
+	.["phasing"] = add_ui_configuration("Przenikanie", "bool", phasing)
 
 /obj/item/mod/module/anomaly_locked/kinesis/admin/configure_edit(key, value)
 	switch(key)

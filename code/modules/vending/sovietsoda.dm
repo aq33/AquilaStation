@@ -1,6 +1,6 @@
 /obj/machinery/vending/sovietsoda
 	name = "\improper BODA"
-	desc = "Old sweet water vending machine."
+	desc = "Stary automat ze słodką wodą."
 	icon_state = "sovietsoda"
 	light_color = LIGHT_COLOR_TUNGSTEN
 	product_ads = "Za Cara i kraj.;Czy dzisiaj wypełniłeś swój limit żywieniowy?;Bardzo łądnie!;Jesteśmy prostymi ludźmi, bo jesteśmy tym, co jemy.;Tam gdzie człowiek, tam problem. Tam gdzie nie ma człowieka, tam nie ma problemu."

@@ -83,7 +83,7 @@
 	if(.)
 		return
 	if(malfunctioning && prob(75))
-		balloon_alert(ui.user, "button malfunctions!")
+		balloon_alert(ui.user, "przycisk zawodzi!")
 		return
 	switch(action)
 		if("lock")
@@ -91,15 +91,15 @@
 			if(ai_assistant && isAI(ai_assistant))
 				//Check if the UI user is the AI interacting. Suit pilot cannot toggle lock.
 				if(!isAI(ui.user))
-					balloon_alert(ui.user, "AI permissions required to unlock AI-assisted modsuit.")
+					balloon_alert(ui.user, "Odblokowanie MODsuitu wspomaganego przez SI wymaga uprawnień SI.")
 					return
 				else
-					to_chat(ui.user, "Permission granted, AI Controller.")
+					to_chat(ui.user, "Udzielono zgody, kontrolerze SI.")
 			if(!locked || allowed(ui.user))
 				locked = !locked
-				balloon_alert(ui.user, "[locked ? "locked" : "unlocked"]")
+				balloon_alert(ui.user, "[locked ? "zablokowano" : "odblokowano"]")
 			else
-				balloon_alert(ui.user, "access insufficent!")
+				balloon_alert(ui.user, "brak dostępu!")
 				playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SILENCED_SOUND_EXTRARANGE)
 		/*
 		if("call")

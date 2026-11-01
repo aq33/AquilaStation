@@ -31,8 +31,8 @@
 	wanted_types = list(/obj/item/ship_weapon/parts/missile/warhead)
 
 /datum/bounty/item/munitions/railgun
-	name = "Pociski do railguna"
-	description = "Bateria obrony Centrali wystrzelała zapas. Potrzebne są pociski do railguna."
+	name = "Pociski do działa szynowego"
+	description = "Bateria obrony Centrali wystrzelała zapas. Potrzebne są pociski do działa szynowego."
 	reward = 2500
 	required_count = 4
 	wanted_types = list(/obj/item/ship_weapon/ammunition/railgun_ammo)

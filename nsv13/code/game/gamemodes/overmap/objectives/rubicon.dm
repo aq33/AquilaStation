@@ -1,6 +1,6 @@
 /datum/overmap_objective/clear_system
-	name = "Clear System of Enemies"
-	desc = "Defeat all enemies in the TARGET system"
+	name = "Oczyść układ z wrogów"
+	desc = "Pokonaj wszystkich wrogów w układzie DOCELOWYM"
 	brief = "Pokonajcie wszystkich wrogów w systemie TARGET"
 	binary = FALSE
 	target = 1
@@ -23,7 +23,7 @@
 
 /datum/overmap_objective/clear_system/instance()
 	.=..()
-	desc = "Defeat all enemies in the [system_name] system"
+	desc = "Pokonaj wszystkich wrogów w układzie [system_name]"
 	brief = desc
 	target_system = SSstar_system.system_by_id(system_name)
 	target_system.hidden = FALSE

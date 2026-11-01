@@ -8,7 +8,7 @@
 
 
 /datum/round_event/ghost_role/sentient_disease
-	role_name = "sentient disease"
+	role_name = "świadoma choroba"
 
 /datum/round_event/ghost_role/sentient_disease/spawn_role()
 	var/list/candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
@@ -20,7 +20,7 @@
 	var/mob/camera/disease/virus = new /mob/camera/disease(SSmapping.get_station_center())
 	virus.key = selected.key
 	INVOKE_ASYNC(virus, /mob/camera/disease/proc/pick_name)
-	message_admins("[ADMIN_LOOKUPFLW(virus)] has been made into a sentient disease by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(virus)] zostaje świadomą chorobą (event).")
 	log_game("[key_name(virus)] was spawned as a sentient disease by an event.")
 	spawned_mobs += virus
 	return SUCCESSFUL_SPAWN

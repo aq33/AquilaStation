@@ -53,7 +53,7 @@ export const ProximitySensor = (props) => {
               disabled={scanning}
               onClick={() => act('time')}
             >
-              {timing ? 'Stop' : 'Start'}
+              {timing ? 'Zatrzymaj' : 'Uruchom'}
             </Button>
           }
         >

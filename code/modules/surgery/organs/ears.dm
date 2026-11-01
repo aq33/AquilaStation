@@ -1,7 +1,7 @@
 /obj/item/organ/ears
-	name = "ears"
+	name = "uszy"
 	icon_state = "ears"
-	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
+	desc = "Ucho ma trzy części: wewnętrzną, środkową i zewnętrzną. Normalnie widać tylko jedną z nich."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
 	gender = PLURAL
@@ -92,7 +92,7 @@
 
 
 /obj/item/organ/ears/cat
-	name = "cat ears"
+	name = "kocie uszy"
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "kitty"
 	bang_protect = -1 // NSV13 - Allows felinids to man munitions without requiring earmuffs and the muni helmet
@@ -114,8 +114,8 @@
 		H.update_body()
 
 /obj/item/organ/ears/penguin
-	name = "penguin ears"
-	desc = "The source of a penguin's happy feet."
+	name = "pingwinie uszy"
+	desc = "Źródło wesołych pingwinich stópek."
 	var/datum/component/waddle
 
 /obj/item/organ/ears/penguin/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
@@ -131,15 +131,15 @@
 		QDEL_NULL(waddle)
 
 /obj/item/organ/ears/bronze
-	name = "tin ears"
-	desc = "The robust ears of a bronze golem. "
+	name = "blaszane uszy"
+	desc = "Solidne uszy brązowego golema."
 	damage_multiplier = 0.1 //STRONK
 	bang_protect = 1 //Fear me weaklings.
 
 /obj/item/organ/ears/robot
-	name = "auditory sensors"
+	name = "czujniki słuchowe"
 	icon_state = "robotic_ears"
-	desc = "A pair of microphones intended to be installed in an IPC head, that grant the ability to hear."
+	desc = "Para mikrofonów do zamontowania w głowie IPC, które dają zdolność słyszenia."
 	zone = "head"
 	slot = "ears"
 	gender = PLURAL

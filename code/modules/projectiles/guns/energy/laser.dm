@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
-	name = "laser gun"
-	desc = "A basic energy-based laser gun that fires concentrated beams of light which pass through glass and thin metal."
+	name = "karabin laserowy"
+	desc = "Podstawowa energetyczna broń laserowa, która strzela skupionymi wiązkami światła przenikającymi przez szkło i cienki metal."
 	icon_state = "laser"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_BULKY
@@ -10,31 +10,31 @@
 	shaded_charge = 1
 
 /obj/item/gun/energy/laser/practice
-	name = "practice laser gun"
-	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
+	name = "treningowy karabin laserowy"
+	desc = "Zmodyfikowana wersja podstawowego karabinu laserowego. Strzela słabiej skupionymi pociskami energii, przeznaczonymi do ćwiczeń strzeleckich."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/practice)
 	clumsy_check = 0
 	item_flags = NONE
 
 /obj/item/gun/energy/laser/retro
-	name ="retro laser gun"
+	name ="retro karabin laserowy"
 	icon_state = "retro"
-	desc = "A modern lasergun, used by Solgov's security or military forces. it is quite deadly and easy to maintain, making it a favorite." //NSV13 changed description
+	desc = "Nowoczesna broń laserowa używana przez ochronę i siły zbrojne Solgovu. Jest dość zabójcza i łatwa w utrzymaniu, więc chętnie się po nią sięga." //NSV13 changed description
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/retro/old
-	name ="laser gun"
+	name ="karabin laserowy"
 	icon_state = "retro"
-	desc = "First generation lasergun, designed by Nanotrasen and produced by Solgov. Suffers from ammo issues but its unique ability to recharge its ammo without the need of a magazine helps compensate." //NSV13 changed description
+	desc = "Broń laserowa pierwszej generacji, zaprojektowana przez Nanotrasen i produkowana przez Solgov. Ma kłopoty z amunicją, ale nadrabia je wyjątkową zdolnością ładowania się bez magazynka." //NSV13 changed description
 	ammo_type = list(/obj/item/ammo_casing/energy/lasergun/old)
 	ammo_x_offset = 3
 
 /obj/item/gun/energy/laser/captain
-	name = "antique laser gun"
+	name = "zabytkowy karabin laserowy"
 	icon_state = "caplaser"
 	item_state = "caplaser"
 	w_class = WEIGHT_CLASS_NORMAL
-	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13 with the words NTSSGolden engraved. The station is exploding."
+	desc = "To zabytkowa broń laserowa. Całe wykonanie jest najwyższej jakości. Zdobią ją skóra i chrom. Przedmiot grozi kolcami energii. Na przedmiocie widnieje wizerunek Stacji Kosmicznej 13 z wygrawerowanym napisem NTSSGolden. Stacja wybucha."
 	force = 10
 	ammo_x_offset = 3
 	selfcharge = 1
@@ -45,31 +45,31 @@
 	investigate_flags = ADMIN_INVESTIGATE_TARGET
 
 /obj/item/gun/energy/laser/captain/scattershot
-	name = "scatter shot laser rifle"
+	name = "rozpraszający karabin laserowy"
 	icon_state = "lasercannon"
 	item_state = "laser"
-	desc = "An industrial-grade heavy-duty laser rifle with a modified laser lens to scatter its shot into multiple smaller lasers. The inner-core can self-charge for theoretically infinite use."
+	desc = "Przemysłowy, wytrzymały karabin laserowy ze zmodyfikowaną soczewką, która rozprasza strzał na wiele mniejszych laserów. Wewnętrzny rdzeń sam się ładuje, więc teoretycznie działa w nieskończoność."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/laser/cyborg
 	can_charge = FALSE
-	desc = "An energy-based laser gun that draws power from the cyborg's internal energy cell directly. So this is what freedom looks like?"
+	desc = "Energetyczna broń laserowa, która pobiera energię wprost z wewnętrznego ogniwa cyborga. Więc tak wygląda wolność?"
 	use_cyborg_cell = TRUE
 
 /obj/item/gun/energy/laser/cyborg/emp_act()
 	return
 
 /obj/item/gun/energy/laser/scatter
-	name = "scatter laser gun"
-	desc = "A laser gun equipped with a refraction kit that spreads bolts."
+	name = "laser rozpraszający"
+	desc = "Broń laserowa z zestawem refrakcyjnym, który rozprasza pociski."
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter, /obj/item/ammo_casing/energy/laser)
 
 /obj/item/gun/energy/laser/scatter/shotty
-	name = "energy shotgun"
+	name = "strzelba energetyczna"
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "cshotgun"
 	item_state = "shotgun"
-	desc = "A combat shotgun gutted and refitted with an internal laser system. Can switch between taser and scattered disabler shots."
+	desc = "Wybebeszona strzelba bojowa przerobiona na wewnętrzny system laserowy. Przełącza się między strzałami paralizatora a rozproszonymi strzałami disablera."
 	shaded_charge = 0
 	pin = /obj/item/firing_pin/implant/mindshield
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/scatter/disabler, /obj/item/ammo_casing/energy/electrode)
@@ -77,8 +77,8 @@
 ///Laser Cannon
 
 /obj/item/gun/energy/lasercannon
-	name = "accelerator laser cannon"
-	desc = "An advanced laser cannon that does more damage the farther away the target is."
+	name = "przyspieszające działo laserowe"
+	desc = "Zaawansowane działo laserowe, które zadaje tym większe obrażenia, im dalej jest cel."
 	icon_state = "lasercannon"
 	item_state = "laser"
 	w_class = WEIGHT_CLASS_BULKY
@@ -95,7 +95,7 @@
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/projectile/beam/laser/accelerator
-	name = "accelerator laser"
+	name = "laser przyspieszający"
 	icon_state = "scatterlaser"
 	range = 255
 	damage = 6
@@ -106,8 +106,8 @@
 	transform *= 1 + ((damage/7) * 0.2)//20% larger per tile
 
 /obj/item/gun/energy/xray
-	name = "\improper X-ray laser gun"
-	desc = "A high-power laser gun capable of expelling concentrated X-ray blasts that pass through multiple soft targets and heavier materials."
+	name = "\improper rentgenowski karabin laserowy"
+	desc = "Laser dużej mocy, który wystrzeliwuje skupione impulsy promieniowania rentgenowskiego, przenikające przez wiele miękkich celów i cięższe materiały."
 	icon_state = "xray"
 	item_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/xray)
@@ -118,9 +118,9 @@
 ////////Laser Tag////////////////////
 
 /obj/item/gun/energy/laser/bluetag
-	name = "laser tag gun"
+	name = "pistolet do laser taga"
 	icon_state = "bluetag"
-	desc = "A retro laser gun modified to fire harmless blue beams of light. Sound effects included!"
+	desc = "Retro broń laserowa przerobiona tak, by strzelała nieszkodliwymi niebieskimi wiązkami światła. Efekty dźwiękowe w zestawie!"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag)
 	item_flags = NONE
 	clumsy_check = FALSE
@@ -132,9 +132,9 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag/hitscan)
 
 /obj/item/gun/energy/laser/redtag
-	name = "laser tag gun"
+	name = "pistolet do laser taga"
 	icon_state = "redtag"
-	desc = "A retro laser gun modified to fire harmless beams red of light. Sound effects included!"
+	desc = "Retro broń laserowa przerobiona tak, by strzelała nieszkodliwymi czerwonymi wiązkami światła. Efekty dźwiękowe w zestawie!"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag)
 	item_flags = NONE
 	clumsy_check = FALSE

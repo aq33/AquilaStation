@@ -140,7 +140,7 @@
 // --- Tagger ---
 
 /obj/item/triage_tagger
-	name = "triage tagger"
+	name = "znakownik triage"
 	desc = "Ręczne urządzenie, które drukuje i przykleja tagi triage. Użyj w ręce, by wybrać kategorię."
 	icon = 'aquila/icons/obj/sec_med/sec_med.dmi'
 	icon_state = "triage_tagger"

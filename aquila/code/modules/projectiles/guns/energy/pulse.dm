@@ -8,7 +8,7 @@
 	pin = null
 
 /obj/item/stock_parts/cell/pgun //nie chciało mi się robić kolejnego pliku, jeżeli się nie mylę to będą dodawane magazynki energetyczne w bliskim czasie
-	name = "you should not be seeing this"
+	name = "nie powinieneś tego widzieć"
 	maxcharge = 3000 //15 strzałów, było do wyboru 10, 25 lub 200, wydaję mi się że 15 będzie działać najlepiej
 	materials = list(/datum/material/glass=300)
 	chargerate = 2000

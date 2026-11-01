@@ -5,9 +5,9 @@
 	item_state = "crusher0"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	name = "proto-kinetic crusher"
-	desc = "An early design of the proto-kinetic accelerator, it is little more than a combination of various mining tools cobbled together, forming a high-tech club. \
-	While it is an effective mining tool, it did little to aid any but the most skilled and/or suicidal miners against local fauna."
+	name = "protokinetyczny miażdżyciel"
+	desc = "Wczesny projekt protokinetycznego akceleratora: niewiele więcej niż kilka narzędzi górniczych skleconych w zaawansowaną technicznie pałkę. \
+	Choć to skuteczne narzędzie górnicze, przeciw miejscowej faunie niewiele pomagało komukolwiek poza najbardziej wprawnymi i/lub samobójczymi górnikami."
 	force = 0 //You can't hit stuff unless wielded
 	bleed_force = BLEED_CUT
 	w_class = WEIGHT_CLASS_BULKY
@@ -169,7 +169,7 @@
 
 //destablizing force
 /obj/item/projectile/destabilizer
-	name = "destabilizing force"
+	name = "siła destabilizująca"
 	icon_state = "pulse1"
 	nodamage = TRUE
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
@@ -201,8 +201,8 @@
 
 //trophies
 /obj/item/crusher_trophy
-	name = "tail spike"
-	desc = "A strange spike with no usage."
+	name = "kolec z ogona"
+	desc = "Dziwny kolec bez zastosowania."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "tail_spike"
 	var/bonus_value = 10 //if it has a bonus effect, this is how much that effect is
@@ -210,10 +210,10 @@
 
 /obj/item/crusher_trophy/examine(mob/living/user)
 	. = ..()
-	. += "<span class='notice'>Efekt po przymocowaniu do kinetycznej kruszarki: [effect_desc()].</span>"
+	. += "<span class='notice'>Efekt po przymocowaniu do kinetycznego miażdżyciela: [effect_desc()].</span>"
 
 /obj/item/crusher_trophy/proc/effect_desc()
-	return "errors"
+	return "błędy"
 
 /obj/item/crusher_trophy/attackby(obj/item/A, mob/living/user)
 	if(istype(A, /obj/item/kinetic_crusher))
@@ -245,8 +245,8 @@
 
 //goliath
 /obj/item/crusher_trophy/goliath_tentacle
-	name = "goliath tentacle"
-	desc = "A sliced-off goliath tentacle. Suitable as a trophy for a kinetic crusher."
+	name = "macka goliata"
+	desc = "Odcięta macka goliata. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "goliath_tentacle"
 	denied_type = /obj/item/crusher_trophy/goliath_tentacle
 	bonus_value = 2
@@ -265,8 +265,8 @@
 
 //watcher
 /obj/item/crusher_trophy/watcher_wing
-	name = "watcher wing"
-	desc = "A wing ripped from a watcher. Suitable as a trophy for a kinetic crusher."
+	name = "skrzydło obserwatora"
+	desc = "Skrzydło wyrwane obserwatorowi. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "watcher_wing"
 	denied_type = /obj/item/crusher_trophy/watcher_wing
 	bonus_value = 5
@@ -285,8 +285,8 @@
 
 //magmawing watcher
 /obj/item/crusher_trophy/blaster_tubes/magma_wing
-	name = "magmawing watcher wing"
-	desc = "A still-searing wing from a magmawing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "skrzydło ogniskrzydłego obserwatora"
+	desc = "Wciąż parzące skrzydło ogniskrzydłego obserwatora. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "magma_wing"
 	gender = NEUTER
 	bonus_value = 5
@@ -296,7 +296,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/magma_wing/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
-		marker.name = "heated [marker.name]"
+		marker.name = "rozgrzana [marker.name]"
 		marker.icon_state = "lava"
 		marker.damage = bonus_value
 		marker.nodamage = FALSE
@@ -304,21 +304,21 @@
 
 //icewing watcher
 /obj/item/crusher_trophy/watcher_wing/ice_wing
-	name = "icewing watcher wing"
-	desc = "A carefully preserved frozen wing from an icewing watcher. Suitable as a trophy for a kinetic crusher."
+	name = "skrzydło lodoskrzydłego obserwatora"
+	desc = "Starannie zachowane, zamarznięte skrzydło lodoskrzydłego obserwatora. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "ice_wing"
 	bonus_value = 8
 
 //legion
 /obj/item/crusher_trophy/legion_skull
-	name = "legion skull"
-	desc = "A dead and lifeless legion skull. Suitable as a trophy for a kinetic crusher."
+	name = "czaszka legionu"
+	desc = "Martwa, pozbawiona życia czaszka legionu. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "legion_skull"
 	denied_type = /obj/item/crusher_trophy/legion_skull
 	bonus_value = 3
 
 /obj/item/crusher_trophy/legion_skull/effect_desc()
-	return "kinetyczna kruszarka ładuje się o <b>[bonus_value*0.1]</b> s szybciej"
+	return "kinetyczny miażdżyciel ładuje się o <b>[bonus_value*0.1]</b> s szybciej"
 
 /obj/item/crusher_trophy/legion_skull/add_to(obj/item/kinetic_crusher/H, mob/living/user)
 	. = ..()
@@ -332,8 +332,8 @@
 
 //blood-drunk hunter
 /obj/item/crusher_trophy/miner_eye
-	name = "eye of a blood-drunk hunter"
-	desc = "Its pupil is collapsed and turned to mush. Suitable as a trophy for a kinetic crusher."
+	name = "oko łowcy upojonego krwią"
+	desc = "Źrenica się zapadła i zamieniła w papkę. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "hunter_eye"
 	denied_type = /obj/item/crusher_trophy/miner_eye
 
@@ -345,7 +345,7 @@
 
 //ash drake
 /obj/item/crusher_trophy/tail_spike
-	desc = "A spike taken from an ash drake's tail. Suitable as a trophy for a kinetic crusher."
+	desc = "Kolec wyjęty z ogona popielnego smoka. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	denied_type = /obj/item/crusher_trophy/tail_spike
 	bonus_value = 5
 
@@ -367,8 +367,8 @@
 
 //bubblegum
 /obj/item/crusher_trophy/demon_claws
-	name = "demon claws"
-	desc = "A set of blood-drenched claws from a massive demon's hand. Suitable as a trophy for a kinetic crusher."
+	name = "szpony demona"
+	desc = "Zestaw ociekających krwią szponów z dłoni potężnego demona. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "demon_claws"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/demon_claws
@@ -400,8 +400,8 @@
 
 //colossus
 /obj/item/crusher_trophy/blaster_tubes
-	name = "blaster tubes"
-	desc = "The blaster tubes from a colossus's arm. Suitable as a trophy for a kinetic crusher."
+	name = "lufy blastera"
+	desc = "Lufy blastera z ramienia Kolosa. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "blaster_tubes"
 	gender = PLURAL
 	denied_type = /obj/item/crusher_trophy/blaster_tubes
@@ -413,7 +413,7 @@
 
 /obj/item/crusher_trophy/blaster_tubes/on_projectile_fire(obj/item/projectile/destabilizer/marker, mob/living/user)
 	if(deadly_shot)
-		marker.name = "deadly [marker.name]"
+		marker.name = "zabójcza [marker.name]"
 		marker.icon_state = "chronobolt"
 		marker.damage = bonus_value
 		marker.nodamage = FALSE
@@ -429,8 +429,8 @@
 
 //hierophant
 /obj/item/crusher_trophy/vortex_talisman
-	name = "vortex talisman"
-	desc = "A glowing trinket that was originally the Hierophant's beacon. Suitable as a trophy for a kinetic crusher."
+	name = "talizman wiru"
+	desc = "Świecący drobiazg, który był niegdyś nadajnikiem Hierofanta. Nadaje się na trofeum do kinetycznego miażdżyciela."
 	icon_state = "vortex_talisman"
 	denied_type = /obj/item/crusher_trophy/vortex_talisman
 

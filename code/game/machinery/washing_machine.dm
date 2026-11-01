@@ -109,8 +109,8 @@ GLOBAL_LIST_INIT(dye_registry, list(
 ))
 
 /obj/machinery/washing_machine
-	name = "washing machine"
-	desc = "Gets rid of those pesky bloodstains, or your money back!"
+	name = "pralka"
+	desc = "Pozbywa się tych uciążliwych plam krwi albo zwrot pieniędzy!"
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_1_0"
 	density = TRUE
@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 	inhand_x_dimension = initial(target_type.inhand_x_dimension)
 	inhand_y_dimension = initial(target_type.inhand_y_dimension)
 	name = initial(target_type.name)
-	desc = "[initial(target_type.desc)] The colors look a little dodgy."
+	desc = "[initial(target_type.desc)] Kolory wyglądają trochę podejrzanie."
 	return target_type //successfully "appearance copy" dyed something; returns the target type as a hacky way of extending
 
 //what happens to this object when washed inside a washing machine

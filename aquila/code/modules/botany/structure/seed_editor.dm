@@ -264,7 +264,7 @@
 	req_components = list(/obj/item/stock_parts/matter_bin = 2, /obj/item/stock_parts/manipulator = 2, /obj/item/stock_parts/capacitor = 1, /obj/item/stock_parts/scanning_module = 1)
 
 /datum/design/board/seed_editor
-	name = "Płytka sekwencera nasion"
+	name = "Projekt maszyny (sekwencer nasion)"
 	id = "seed_editor_board"
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 	build_path = /obj/item/circuitboard/machine/seed_editor

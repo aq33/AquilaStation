@@ -2,46 +2,46 @@
 	category = list(WIREMOD_CIRCUITRY, WIREMOD_UTILITY_COMPONENTS)
 
 /datum/design/component/utility/router
-	name = "Router Component"
+	name = "Komponent: router"
 	id = "comp_router"
 	build_path = /obj/item/circuit_component/router
 
 /datum/design/component/utility/multiplexer
-	name = "Multiplexer Component"
+	name = "Komponent: multiplekser"
 	id = "comp_multiplexer"
 	build_path = /obj/item/circuit_component/router/multiplexer
 
 /datum/design/component/utility/typecast
-	name = "Typecast Component"
+	name = "Komponent: rzutowanie typu"
 	id = "comp_typecast"
 	build_path = /obj/item/circuit_component/typecast
 
 /datum/design/component/utility/clock
-	name = "Clock Component"
+	name = "Komponent: zegar"
 	id = "comp_clock"
 	build_path = /obj/item/circuit_component/clock
 
 /datum/design/component/utility/delay
-	name = "Delay Component"
+	name = "Komponent: opóźnienie"
 	id = "comp_delay"
 	build_path = /obj/item/circuit_component/delay
 
 /datum/design/component/utility/timepiece
-	name = "Timepiece Component"
+	name = "Komponent: czasomierz"
 	id = "comp_timepiece"
 	build_path = /obj/item/circuit_component/timepiece
 
 /datum/design/component/utility/typecheck
-	name = "Typecheck Component"
+	name = "Komponent: sprawdzanie typu"
 	id = "comp_typecheck"
 	build_path = /obj/item/circuit_component/compare/typecheck
 
 /datum/design/component/utility/wire_bundle
-	name = "Wire Bundle"
+	name = "Komponent: wiązka przewodów"
 	id = "comp_wire_bundle"
 	build_path = /obj/item/circuit_component/wire_bundle
 
 /datum/design/component/utility/setter_trigger
-	name = "Set Variable Trigger"
+	name = "Komponent: ustawianie zmiennej z wyzwalaczem"
 	id = "comp_setter_trigger"
 	build_path = /obj/item/circuit_component/variable/setter/trigger

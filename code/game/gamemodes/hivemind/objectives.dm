@@ -1,7 +1,7 @@
 /datum/objective/hivemind
 
 /datum/objective/hivemind/hivesize
-	explanation_text = "This is a bug. Error:HIVE2"
+	explanation_text = "To błąd. Błąd:HIVE2"
 	target_amount = 10
 
 /datum/objective/hivemind/hivesize/New()
@@ -18,7 +18,7 @@
 	return (host.hive_size >= target_amount) || ..()
 
 /datum/objective/hivemind/hiveescape
-	explanation_text = "This is a bug. Error:HIVE2"
+	explanation_text = "To błąd. Błąd:HIVE2"
 	target_amount = 10
 
 /datum/objective/hivemind/hiveescape/New()

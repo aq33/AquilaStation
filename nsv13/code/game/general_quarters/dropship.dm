@@ -1,14 +1,14 @@
 //FULL CREDIT FOR THE DROPSHIP INTERIORS GOES TO CM.
 
 /turf/closed/indestructible/dropship
-	name = "dropship"
-	desc = "A piece of a mighty spaceship."
+	name = "statek desantowy"
+	desc = "Fragment potężnego statku kosmicznego."
 	icon = 'nsv13/icons/turf/dropship.dmi'
 	icon_state = "brown_fr"
 
 /turf/open/indestructible/dropship
-	name = "dropship floor"
-	desc = "A piece of a mighty spaceship."
+	name = "podłoga statku desantowego"
+	desc = "Fragment potężnego statku kosmicznego."
 	icon = 'nsv13/icons/turf/dropship_floor.dmi'
 	icon_state = "rasputin1"
 
@@ -17,8 +17,8 @@
 	var/linked = FALSE
 
 /turf/closed/indestructible/dropship/entry
-	name = "Hangar Bay Doors"
-	desc = "Heavyset doors that lock mid-flight."
+	name = "wrota hangaru"
+	desc = "Masywne wrota, które blokują się w trakcie lotu."
 	icon_state = "79"
 
 /turf/closed/indestructible/dropship/entry/Bumped(atom/movable/AM)
@@ -28,8 +28,8 @@
 		OM.exit(AM)
 
 /obj/structure/chair/fancy/dropship
-	name = "acceleration chair"
-	desc = "A seat which clamps down onto its occupant to keep them safe during flight."
+	name = "fotel przeciążeniowy"
+	desc = "Fotel, który zaciska się na siedzącym, żeby był bezpieczny podczas lotu."
 	icon = 'nsv13/icons/obj/chairs.dmi'
 	icon_state = "shuttle_chair"
 	item_chair = null
@@ -68,16 +68,16 @@
 
 //If we ever want to let them build these things..
 /area/dropship/generic
-	name = "dropship"
+	name = "Statek Desantowy"
 
 /area/dropship/generic/syndicate
-	name = "dropship"
+	name = "Statek Desantowy"
 	lighting_colour_tube = "#d34330"
 	lighting_colour_bulb = "#d34330"
 
 /obj/item/fighter_component/fuel_tank/tier2/dropship
-	name = "Dropship Fuel Tank"
-	desc = "A fuel tank large enough for troop transports."
+	name = "zbiornik paliwa statku desantowego"
+	desc = "Zbiornik paliwa na tyle duży, że wystarcza transportowcom wojska."
 	icon_state = "fueltank_tier2"
 	fuel_capacity = 3000
 	tier = 2
@@ -85,7 +85,7 @@
 
 /obj/structure/overmap/small_craft/transport/enter(mob/user)
 	if(!interior_entry_points?.len)
-		message_admins("[src] has no interior or entry points and [user] tried to board it.")
+		message_admins("[src] nie ma wnętrza ani punktów wejścia, a [user] próbuje do niego wejść.")
 		return FALSE
 	var/turf/T = get_turf(pick(interior_entry_points))
 	var/atom/movable/AM
@@ -161,12 +161,12 @@
 			M.hud_used.update_parallax(force=TRUE)
 
 /obj/machinery/computer/ship/helm/console/dropship
-	name = "Dropship Flight Station"
-	desc = "A modified console that allows you to interface with a fighter's systems remotely."
+	name = "stanowisko pilota statku desantowego"
+	desc = "Zmodyfikowana konsola, która pozwala zdalnie obsługiwać systemy myśliwca."
 	circuit = /obj/item/circuitboard/computer/ship/helm/dropship
 
 /obj/item/circuitboard/computer/ship/helm/dropship
-	name = "circuit board (dropship helm computer)"
+	name = "stanowisko pilota statku desantowego (płytka komputera)"
 	build_path = /obj/machinery/computer/ship/helm/console/dropship
 
 /obj/machinery/computer/ship/helm/console/dropship/attack_hand(mob/living/user)
@@ -175,14 +175,14 @@
 	OM?.start_piloting(user, position)
 	ui_interact(user)
 	to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
-	to_chat(user, "<span class='warning'>=Hotkeys=</span>")
+	to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 	to_chat(user, "<span class='notice'>Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
 	to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
 
 /obj/machinery/computer/ship/helm/console/dropship/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "FighterControls")
+		ui = new(user, src, "FighterControls", "Sterowanie statkiem")
 		ui.open()
 		ui.set_autoupdate(TRUE) // Fuel gauge, ammo, etc
 

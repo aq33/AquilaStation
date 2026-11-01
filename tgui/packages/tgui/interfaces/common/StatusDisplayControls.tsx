@@ -33,7 +33,7 @@ export function StatusDisplayControls(props) {
           color="bad"
           onClick={() => act('setStatusPicture', { picture: 'blank' })}
         >
-          Off
+          Wył.
         </Button>
         <Button
           icon="space-shuttle"
@@ -44,7 +44,7 @@ export function StatusDisplayControls(props) {
         </Button>
       </Section>
 
-      <Section title="Graphics">
+      <Section title="Grafika">
         <Button
           icon="flag"
           onClick={() => act('setStatusPicture', { picture: 'default' })}
@@ -56,32 +56,32 @@ export function StatusDisplayControls(props) {
           icon="exclamation"
           onClick={() => act('setStatusPicture', { picture: 'currentalert' })}
         >
-          Security Alert Level
+          Poziom alarmu
         </Button>
 
         <Button
           icon="exclamation-triangle"
           onClick={() => act('setStatusPicture', { picture: 'lockdown' })}
         >
-          Lockdown
+          Blokada
         </Button>
 
         <Button
           icon="biohazard"
           onClick={() => act('setStatusPicture', { picture: 'biohazard' })}
         >
-          Biohazard
+          Zagrożenie biologiczne
         </Button>
 
         <Button
           icon="radiation"
           onClick={() => act('setStatusPicture', { picture: 'radiation' })}
         >
-          Radiation
+          Promieniowanie
         </Button>
       </Section>
 
-      <Section title="Message">
+      <Section title="Wiadomość">
         <Flex direction="column" align="stretch">
           <Flex.Item mb={1}>
             <Input
@@ -106,7 +106,7 @@ export function StatusDisplayControls(props) {
               icon="comment-o"
               onClick={() => act('setStatusMessage', { upperText, lowerText })}
             >
-              Send
+              Wyślij
             </Button>
           </Flex.Item>
         </Flex>

@@ -1,5 +1,5 @@
 /obj/item/projectile/energy/declone
-	name = "radiation beam"
+	name = "wiązka promieniowania"
 	icon_state = "declone"
 	damage = 20
 	damage_type = CLONE
@@ -11,7 +11,7 @@
 	irradiate = 30
 	
 /obj/item/projectile/energy/dart //ninja throwing dart
-	name = "dart"
+	name = "strzałka"
 	icon_state = "toxin"
 	damage = 5
 	damage_type = TOX

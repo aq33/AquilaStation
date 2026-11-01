@@ -7,9 +7,9 @@
 */
 
 /obj/machinery/telecomms/receiver
-	name = "subspace receiver"
+	name = "odbiornik podprzestrzenny"
 	icon_state = "broadcast receiver"
-	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
+	desc = "Maszyna w kształcie czaszy z zielonymi lampkami. Wykrywa i przetwarza aktywność radiową w podprzestrzeni."
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
@@ -64,7 +64,7 @@
 		freq_listening |= i
 
 /obj/machinery/telecomms/receiver/preset_left/birdstation
-	name = "Receiver"
+	name = "odbiornik"
 	freq_listening = list()
 
 /obj/machinery/telecomms/receiver/preset_exploration

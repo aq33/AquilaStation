@@ -90,8 +90,8 @@
 // Wieczny rozrusznik - łup z demona. Zjedzony daje odporność na prąd i ładuje ogniwa przy sobie.
 
 /obj/item/organ/heart/pulse_demon
-	name = "perpetual pacemaker"
-	desc = "It still beats furiously, thousands of bright lights shine within it."
+	name = "wieczny rozrusznik"
+	desc = "Wciąż bije jak szalony, a w środku lśnią tysiące jasnych świateł."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "demon_heart-on"
 	color = COLOR_YELLOW

@@ -13,6 +13,19 @@ import { Window } from '../layouts';
 
 type Data = Record<string, any>;
 
+// Kategorie to klucze z designów nanitów (category[1]) - do DM nic z tego
+// nie wraca, tłumaczymy tylko etykietę zakładki.
+const CATEGORY_PL: Record<string, string> = {
+  'Utility Nanites': 'Użytkowe',
+  'Medical Nanites': 'Medyczne',
+  'Sensor Nanites': 'Czujnikowe',
+  'Augmentation Nanites': 'Wzmacniające',
+  'Suppression Nanites': 'Tłumiące',
+  'Weaponized Nanites': 'Bojowe',
+  'Defective Nanites': 'Wadliwe',
+  Protocols: 'Protokoły',
+};
+
 export const NaniteProgramHub = (props) => {
   const { act, data } = useBackend<Data>();
   const { detail_view, disk, has_disk, has_program, programs = {} } = data;
@@ -25,17 +38,17 @@ export const NaniteProgramHub = (props) => {
     <Window width={500} height={700}>
       <Window.Content scrollable>
         <Section
-          title="Program Disk"
+          title="Dysk z programem"
           buttons={
             <>
               <Button
                 icon="eject"
-                content="Eject"
+                content="Wysuń"
                 onClick={() => act('eject')}
               />
               <Button
                 icon="minus-circle"
-                content="Delete Program"
+                content="Usuń program"
                 onClick={() => act('clear')}
               />
             </>
@@ -44,32 +57,30 @@ export const NaniteProgramHub = (props) => {
           {has_disk ? (
             has_program ? (
               <LabeledList>
-                <LabeledList.Item label="Program Name">
+                <LabeledList.Item label="Nazwa programu">
                   {disk.name}
                 </LabeledList.Item>
-                <LabeledList.Item label="Description">
-                  {disk.desc}
-                </LabeledList.Item>
+                <LabeledList.Item label="Opis">{disk.desc}</LabeledList.Item>
               </LabeledList>
             ) : (
-              <NoticeBox>No Program Installed</NoticeBox>
+              <NoticeBox>Brak zainstalowanego programu</NoticeBox>
             )
           ) : (
-            <NoticeBox>Insert Disk</NoticeBox>
+            <NoticeBox>Włóż dysk</NoticeBox>
           )}
         </Section>
         <Section
-          title="Programs"
+          title="Programy"
           buttons={
             <>
               <Button
                 icon={detail_view ? 'info' : 'list'}
-                content={detail_view ? 'Detailed' : 'Compact'}
+                content={detail_view ? 'Szczegółowy' : 'Zwięzły'}
                 onClick={() => act('toggle_details')}
               />
               <Button
                 icon="sync"
-                content="Sync Research"
+                content="Synchronizuj badania"
                 onClick={() => act('refresh')}
               />
             </>
@@ -81,9 +92,9 @@ export const NaniteProgramHub = (props) => {
                 <Tabs vertical>
                   {map((cat_contents, category) => {
                     const progs = cat_contents || [];
-                    // Backend was sending stupid data that would have been
-                    // annoying to fix
-                    const tabLabel = category.substring(0, category.length - 8);
+                    const tabLabel =
+                      CATEGORY_PL[category] ??
+                      category.replace(/ Nanites$/, '');
                     return (
                       <Tabs.Tab
                         key={category}
@@ -105,7 +116,7 @@ export const NaniteProgramHub = (props) => {
                       buttons={
                         <Button
                           icon="download"
-                          content="Download"
+                          content="Pobierz"
                           disabled={!has_disk}
                           onClick={() =>
                             act('download', {
@@ -127,7 +138,7 @@ export const NaniteProgramHub = (props) => {
                         buttons={
                           <Button
                             icon="download"
-                            content="Download"
+                            content="Pobierz"
                             disabled={!has_disk}
                             onClick={() =>
                               act('download', {
@@ -143,7 +154,9 @@ export const NaniteProgramHub = (props) => {
               </Flex.Item>
             </Flex>
           ) : (
-            <NoticeBox>No nanite programs are currently researched.</NoticeBox>
+            <NoticeBox>
+              Nie zbadano jeszcze żadnych programów nanitów.
+            </NoticeBox>
           )}
         </Section>
       </Window.Content>

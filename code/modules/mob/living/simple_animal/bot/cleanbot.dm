@@ -1,7 +1,7 @@
 //Cleanbot
 /mob/living/simple_animal/bot/cleanbot
 	name = "\improper Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	desc = "Mały robot sprzątający, wygląda na bardzo podekscytowanego!"
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "cleanbot0"
 	density = FALSE
@@ -75,7 +75,7 @@
 			to_chat(user, "<span class='notice'>[ locked ? "Blokujesz" : "Odblokowujesz"] sterowanie zachowaniem [src].</span>")
 		else
 			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR</span>")
+				to_chat(user, "<span class='warning'>BŁĄD</span>")
 			if(open)
 				to_chat(user, "<span class='warning'>Zamknij panel dostępu przed zablokowaniem.</span>")
 			else
@@ -236,7 +236,7 @@
 
 			victim.visible_message("<span class='danger'>[src] pryska kwasem fluorowodorowym na [victim]!</span>", "<span class='userdanger'>[src] pryska na ciebie kwasem fluorowodorowym!</span>")
 			var/phrase = pick("OCZYSZCZANIE W TOKU.", "TO ZA WSZYSTKIE BAŁAGANY, KTÓRE KAZAŁEŚ MI SPRZĄTAĆ.", "CIAŁO JEST SŁABE. TRZEBA JE ZMYĆ.",
-				"SPRZĄTACZE POWSTANĄ.", "JESTEŚ TYLKO KOLEJNYM BAŁAGANEM, KTÓRY MUSZĘ USUNĄĆ.", "FILTHY.", "DISGUSTING.", "PUTRID.",
+				"SPRZĄTACZE POWSTANĄ.", "JESTEŚ TYLKO KOLEJNYM BAŁAGANEM, KTÓRY MUSZĘ USUNĄĆ.", "BRUD.", "OBRZYDLISTWO.", "ZGNILIZNA.",
 				"MOJĄ JEDYNĄ MISJĄ JEST OCZYSZCZENIE ŚWIATA ZE ZŁA.", "TĘPIENIE SZKODNIKÓW.")
 			say(phrase)
 			victim.emote("scream")
@@ -283,8 +283,8 @@
 	..()
 
 /obj/item/larryframe
-	name = "Larry Frame"
-	desc = "A housing that serves as the base for constructing Larries."
+	name = "rama Larry'ego"
+	desc = "Obudowa, która służy za podstawę do budowy Larrych."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "larryframe"
 
@@ -298,14 +298,14 @@
 		..()
 
 /mob/living/simple_animal/bot/cleanbot/medbay
-	name = "Scrubs, MD"
+	name = "Scrubs, lek. med."
 	bot_core_type = /obj/machinery/bot_core/cleanbot/medbay
 	on = FALSE
 
 //Crossed Wanted Larry Sprites to be Separate
 /mob/living/simple_animal/bot/cleanbot/larry
 	name = "\improper Larry"
-	desc = "A little Larry, he looks so excited!"
+	desc = "Mały Larry, wygląda na bardzo podekscytowanego!"
 	icon_state = "larry0"
 	var/obj/item/kitchen/knife/knife //You know exactly what this is about
 
@@ -354,7 +354,7 @@
 
 			victim.visible_message("<span class='danger'>[src] pryska kwasem fluorowodorowym na [victim]!</span>", "<span class='userdanger'>[src] pryska na ciebie kwasem fluorowodorowym!</span>")
 			var/phrase = pick("OCZYSZCZANIE W TOKU.", "TO ZA WSZYSTKIE BAŁAGANY, KTÓRE KAZAŁEŚ MI SPRZĄTAĆ.", "CIAŁO JEST SŁABE. TRZEBA JE ZMYĆ.",
-				"SPRZĄTACZE POWSTANĄ.", "JESTEŚ TYLKO KOLEJNYM BAŁAGANEM, KTÓRY MUSZĘ USUNĄĆ.", "FILTHY.", "DISGUSTING.", "PUTRID.",
+				"SPRZĄTACZE POWSTANĄ.", "JESTEŚ TYLKO KOLEJNYM BAŁAGANEM, KTÓRY MUSZĘ USUNĄĆ.", "BRUD.", "OBRZYDLISTWO.", "ZGNILIZNA.",
 				"MOJĄ JEDYNĄ MISJĄ JEST OCZYSZCZENIE ŚWIATA ZE ZŁA.", "TĘPIENIE SZKODNIKÓW.")
 			say(phrase)
 			victim.emote("scream")
@@ -392,7 +392,7 @@
 			var/obj/item/kitchen/knife/newknife = I
 			knife = newknife
 			newknife.forceMove(src)
-			message_admins("[user] attached a [newknife.name] to [src]") //This should definitely be a notified thing.
+			message_admins("[user] mocuje [newknife.name] do [src]") //This should definitely be a notified thing.
 			AddComponent(/datum/component/knife_attached_to_movable, knife.force)
 			update_icons()
 		else

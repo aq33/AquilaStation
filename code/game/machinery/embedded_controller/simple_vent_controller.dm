@@ -35,7 +35,7 @@
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
 
-	name = "vent controller"
+	name = "sterownik wentylacji"
 	density = FALSE
 	layer = ABOVE_WINDOW_LAYER
 

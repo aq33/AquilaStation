@@ -5,7 +5,7 @@
 
 /obj/machinery/grill
 	name = "grill"
-	desc = "Just like the old days."
+	desc = "Jak za dawnych lat."
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grill_open"
 	density = TRUE

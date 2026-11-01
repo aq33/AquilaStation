@@ -13,7 +13,7 @@ Any flags related to this should start with OSW.
 	//===SECTION - Fluff vars===
 
 	///Name of the weapon.
-	var/name = "Generic ship weapon. You shouldn't see this."
+	var/name = "Ogólna broń okrętowa. Nie powinieneś tego widzieć."
 	///One of these sounds is relayed to internal z levels on fire.
 	var/list/overmap_firing_sounds
 	///IF true, only relays firing sound to the linked overmap. Otherwise, aoe.
@@ -125,7 +125,7 @@ Any flags related to this should start with OSW.
 	var/has_special_action = FALSE
 
 	///AMS modes this weapon can fire in if autonomous but not fully autonomous.
-	var/permitted_ams_modes = list( "Anti-ship" = 1, "Anti-missile countermeasures" = 1 ) // Overwrite the list with a specific firing mode if you want to restrict its targets
+	var/permitted_ams_modes = list( "Przeciwokrętowy" = 1, "Środki przeciwrakietowe" = 1 ) // Overwrite the list with a specific firing mode if you want to restrict its targets
 
 //You can pass link target and weapon list calc override during new.
 /datum/overmap_ship_weapon/New(obj/structure/overmap/link_to, update_role_weapon_lists = TRUE, ...)
@@ -301,16 +301,16 @@ Any flags related to this should start with OSW.
 	if(weapon_control_flags & OSW_CONTROL_PILOT)
 		controller_strings += "Pilot"
 	if(weapon_control_flags & OSW_CONTROL_GUNNER)
-		controller_strings += "Gunner"
+		controller_strings += "Działonowy"
 	if(weapon_control_flags & OSW_CONTROL_MANUAL)
-		controller_strings += "Obsługiwane ręcznie"
+		controller_strings += "Ręcznie"
 	if(weapon_control_flags & OSW_CONTROL_AUTONOMOUS)
 		if(weapon_control_flags & OSW_CONTROL_AI_FULL_AUTONOMY)
 			//This is a blocking case, AI autonomy weapons usually aren't normally autonomous.
 		else if(weapon_control_flags & OSW_CONTROL_FULL_AUTONOMY)
-			controller_strings += "Autonomous"
+			controller_strings += "Autonomicznie"
 		else
-			controller_strings += "AMS Control"
+			controller_strings += "Sterowanie AMS"
 	control_flag_string = controller_strings.Join(", ")
 	cached_control_flags = weapon_control_flags
 	return control_flag_string

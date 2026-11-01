@@ -1,7 +1,7 @@
 
 /turf/open/floor/engine
-	name = "reinforced floor"
-	desc = "Extremely sturdy."
+	name = "wzmocniona podłoga"
+	desc = "Niezwykle wytrzymała."
 	icon_state = "engine"
 	holodeck_compatible = TRUE
 	thermal_conductivity = 0.025
@@ -111,28 +111,28 @@
 
 /turf/open/floor/engine/n2o
 	article = "an"
-	name = "\improper N2O floor"
+	name = "\improper podłoga N2O"
 	initial_gas_mix = ATMOS_TANK_N2O
 
 /turf/open/floor/engine/n2o/light
 	icon_state = "engine_light"
 
 /turf/open/floor/engine/co2
-	name = "\improper CO2 floor"
+	name = "\improper podłoga CO2"
 	initial_gas_mix = ATMOS_TANK_CO2
 
 /turf/open/floor/engine/co2/light
 	icon_state = "engine_light"
 
 /turf/open/floor/engine/plasma
-	name = "plasma floor"
+	name = "podłoga plazmowa"
 	initial_gas_mix = ATMOS_TANK_PLASMA
 
 /turf/open/floor/engine/plasma/light
 	icon_state = "engine_light"
 
 /turf/open/floor/engine/o2
-	name = "\improper O2 floor"
+	name = "\improper podłoga O2"
 	initial_gas_mix = ATMOS_TANK_O2
 
 /turf/open/floor/engine/o2/light
@@ -140,14 +140,14 @@
 
 /turf/open/floor/engine/n2
 	article = "an"
-	name = "\improper N2 floor"
+	name = "\improper podłoga N2"
 	initial_gas_mix = ATMOS_TANK_N2
 
 /turf/open/floor/engine/n2/light
 	icon_state = "engine_light"
 
 /turf/open/floor/engine/air
-	name = "air floor"
+	name = "podłoga powietrzna"
 	initial_gas_mix = ATMOS_TANK_AIRMIX
 
 /turf/open/floor/engine/air/light
@@ -156,8 +156,8 @@
 
 
 /turf/open/floor/engine/cult
-	name = "engraved floor"
-	desc = "The air smells strangely over this sinister flooring."
+	name = "grawerowana podłoga"
+	desc = "Powietrze nad tą złowrogą posadzką dziwnie pachnie."
 	icon_state = "plating"
 	floor_tile = null
 	var/obj/effect/clockwork/overlay/floor/bloodcult/realappearance
@@ -188,7 +188,7 @@
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/engine/vacuum
-	name = "vacuum floor"
+	name = "podłoga próżniowa"
 	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/engine/vacuum/light

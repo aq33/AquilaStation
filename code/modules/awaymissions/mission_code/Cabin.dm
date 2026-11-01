@@ -2,43 +2,43 @@
 /*Cabin areas*/
 
 /area/awaymission/cabin
-	name = "Cabin"
+	name = "Chata"
 	icon_state = "away2"
 	requires_power = TRUE
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 
 /area/awaymission/cabin/snowforest
-	name = "Snow Forest"
+	name = "Śnieżny Las"
 	icon_state = "away"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/awaymission/cabin/snowforest/sovietsurface
-	name = "Snow Forest"
+	name = "Śnieżny Las"
 	icon_state = "awaycontent29"
 	requires_power = FALSE
 
 /area/awaymission/cabin/lumbermill
-	name = "Lumbermill"
+	name = "Tartak"
 	icon_state = "away3"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/awaymission/cabin/caves/sovietcave
-	name = "Soviet Bunker"
+	name = "Sowiecki Bunkier"
 	icon_state = "awaycontent4"
 
 /area/awaymission/cabin/caves
-	name = "North Snowdin Caves"
+	name = "Północne Jaskinie Snowdin"
 	icon_state = "awaycontent15"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/awaymission/cabin/caves/mountain
-	name = "North Snowdin Mountains"
+	name = "Północne Góry Snowdin"
 	icon_state = "awaycontent24"
 
 /obj/structure/firepit
-	name = "firepit"
-	desc = "Warm and toasty."
+	name = "palenisko"
+	desc = "Ciepło i przytulnie."
 	icon = 'icons/obj/fireplace.dmi'
 	icon_state = "firepit-active"
 	density = FALSE
@@ -89,8 +89,8 @@
 //other Cabin Stuff//
 
 /obj/machinery/recycler/lumbermill
-	name = "lumbermill saw"
-	desc = "Faster then the cartoons!"
+	name = "piła tartaczna"
+	desc = "Szybsza niż w kreskówkach!"
 	obj_flags = CAN_BE_HIT | EMAGGED
 	item_recycle_sound = 'sound/weapons/chainsawhit.ogg'
 

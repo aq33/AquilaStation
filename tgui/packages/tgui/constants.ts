@@ -70,57 +70,58 @@ export const CSS_COLORS = [
 
 export const RADIO_CHANNELS = [
   {
-    name: 'Syndicate',
+    name: 'Syndykat',
     freq: 1213,
     color: '#8f4a4b',
   },
   {
-    name: 'Red Team',
+    name: 'Czerwona Drużyna',
     freq: 1215,
     color: '#ff4444',
   },
   {
-    name: 'Blue Team',
+    name: 'Niebieska Drużyna',
     freq: 1217,
     color: '#3434fd',
   },
   {
-    name: 'CentCom',
+    name: 'Centrala',
     freq: 1337,
     color: '#2681a5',
   },
   {
-    name: 'Supply',
+    name: 'Dostawy',
     freq: 1347,
     color: '#b88646',
   },
   {
-    name: 'Service',
+    name: 'Służba',
     freq: 1349,
     color: '#6ca729',
   },
   {
-    name: 'Exploration',
+    // Kanał wyłączony w DM (RADIO_CHANNEL_EXPLORATION zakomentowany); tu tylko etykieta po częstotliwości
+    name: 'Eksploracja',
     freq: 1361,
     color: '#7ed4c2',
   },
   {
-    name: 'Science',
+    name: 'Naukowy',
     freq: 1351,
     color: '#c68cfa',
   },
   {
-    name: 'Command',
+    name: 'Dowództwo',
     freq: 1353,
     color: '#fcdf03',
   },
   {
-    name: 'Medical',
+    name: 'Medyczny',
     freq: 1355,
     color: '#57b8f0',
   },
   {
-    name: 'Engineering',
+    name: 'Inżynieria',
     freq: 1357,
     color: '#f37746',
   },
@@ -130,12 +131,12 @@ export const RADIO_CHANNELS = [
     color: '#7c8be6',
   },
   {
-    name: 'AI Private',
+    name: 'Prywatny AI',
     freq: 1447,
     color: '#d65d95',
   },
   {
-    name: 'Common',
+    name: 'Ogólny',
     freq: 1459,
     color: '#1ecc43',
   },
@@ -145,64 +146,65 @@ const GASES = [
   {
     id: 'o2',
     path: '/datum/gas/oxygen',
-    name: 'Oxygen',
+    name: 'Tlen',
     label: 'O₂',
     color: 'blue',
   },
   {
     id: 'n2',
     path: '/datum/gas/nitrogen',
-    name: 'Nitrogen',
+    name: 'Azot',
     label: 'N₂',
     color: 'yellow',
   },
   {
     id: 'co2',
     path: '/datum/gas/carbon_dioxide',
-    name: 'Carbon Dioxide',
+    name: 'Dwutlenek węgla',
     label: 'CO₂',
     color: 'grey',
   },
   {
     id: 'plasma',
     path: '/datum/gas/plasma',
-    name: 'Plasma',
-    label: 'Plasma',
+    name: 'Plazma',
+    label: 'Plazma',
     color: 'pink',
   },
   {
     id: 'water_vapor',
     path: '/datum/gas/water_vapor',
-    name: 'Water Vapor',
+    name: 'Para wodna',
     label: 'H₂O',
     color: 'lightsteelblue',
   },
   {
     id: 'hypernoblium',
     path: '/datum/gas/hypernoblium',
-    name: 'Hyper-Noblium',
-    label: 'Hyper-Noblium',
+    name: 'Hipernoblium',
+    label: 'Hipernoblium',
     color: 'teal',
   },
   {
     id: 'n2o',
     path: '/datum/gas/nitrous_oxide',
-    name: 'Nitrous Oxide',
+    name: 'Podtlenek azotu',
     label: 'N₂O',
     color: 'bisque',
   },
   {
+    // AQUILA: u nas no2 to dwutlenek azotu (/datum/gas/nitryl), nie nitrium z tg
     id: 'no2',
-    path: '/datum/gas/nitrium',
-    name: 'Nitrium',
-    label: 'Nitrium',
+    path: '/datum/gas/nitryl',
+    name: 'Dwutlenek azotu',
+    label: 'NO₂',
     color: 'brown',
   },
   {
     id: 'tritium',
     path: '/datum/gas/tritium',
-    name: 'Tritium',
-    label: 'Tritium',
+    name: 'Tryt',
+    label: 'Tryt',
     color: 'limegreen',
   },
   {
@@ -215,8 +217,8 @@ const GASES = [
   {
     id: 'pluoxium',
     path: '/datum/gas/pluoxium',
-    name: 'Pluoxium',
-    label: 'Pluoxium',
+    name: 'Pluoksium',
+    label: 'Pluoksium',
     color: 'mediumslateblue',
   },
   {
@@ -229,7 +231,7 @@ const GASES = [
   {
     id: 'hydrogen',
     path: '/datum/gas/hydrogen',
-    name: 'Hydrogen',
+    name: 'Wodór',
     label: 'H₂',
     color: 'white',
   },
@@ -243,8 +245,8 @@ const GASES = [
   {
     id: 'proto_nitrate',
     path: '/datum/gas/proto_nitrate',
-    name: 'Proto Nitrate',
-    label: 'Proto Nitrate',
+    name: 'Protoazotan',
+    label: 'Protoazotan',
     color: 'greenyellow',
   },
   {
@@ -264,15 +266,15 @@ const GASES = [
   {
     id: 'helium',
     path: '/datum/gas/helium',
-    name: 'Helium',
+    name: 'Hel',
     label: 'He',
     color: 'aliceblue',
   },
   {
     id: 'antinoblium',
     path: '/datum/gas/antinoblium',
-    name: 'Anti-Noblium',
-    label: 'Anti-Noblium',
+    name: 'Antynoblium',
+    label: 'Antynoblium',
     color: 'maroon',
   },
   {
@@ -282,11 +284,54 @@ const GASES = [
     label: 'Nitrium',
     color: 'brown',
   },
+  // AQUILA: id gazów z naszego DM (code/__DEFINES/atmospherics.dm), inne niż w tg
+  {
+    id: 'nob',
+    path: '/datum/gas/hypernoblium',
+    name: 'Hipernoblium',
+    label: 'Hipernoblium',
+    color: 'teal',
+  },
+  {
+    id: 'pluox',
+    path: '/datum/gas/pluoxium',
+    name: 'Pluoksium',
+    label: 'Pluoksium',
+    color: 'mediumslateblue',
+  },
+  {
+    id: 'stim',
+    path: '/datum/gas/stimulum',
+    name: 'Stymulum',
+    label: 'Stymulum',
+    color: 'gold',
+  },
+  {
+    id: 'constricted_plasma',
+    path: '/datum/gas/constricted_plasma',
+    name: 'Skondensowana plazma',
+    label: 'Skondensowana plazma',
+    color: 'hotpink',
+  },
+  {
+    id: 'nucleium',
+    path: '/datum/gas/nucleium',
+    name: 'Nukleium',
+    label: 'Nukleium',
+    color: 'olive',
+  },
+  {
+    id: 'miasma',
+    path: '/datum/gas/miasma',
+    name: 'Miazma',
+    label: 'Miazma',
+    color: 'olivedrab',
+  },
 ] as const;
 
 // Returns gas label based on gasId
 export const getGasLabel = (gasId: string, fallbackValue?: string) => {
-  if (!gasId) return fallbackValue || 'None';
+  if (!gasId) return fallbackValue || 'Brak';
 
   const gasSearchString = gasId.toLowerCase();
 
@@ -296,7 +341,7 @@ export const getGasLabel = (gasId: string, fallbackValue?: string) => {
     }
   }
 
-  return fallbackValue || 'None';
+  return fallbackValue || 'Brak';
 };
 
 // Returns gas color based on gasId

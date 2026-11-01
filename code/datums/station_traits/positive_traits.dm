@@ -3,7 +3,7 @@
 
 
 /datum/station_trait/lucky_winner
-	name = "Lucky winner"
+	name = "Szczęśliwy zwycięzca"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 1
 	show_in_report = TRUE
@@ -32,7 +32,7 @@
 	new /obj/effect/pod_landingzone(T, toLaunch)
 
 /datum/station_trait/galactic_grant
-	name = "Galactic grant"
+	name = "Galaktyczny grant"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -43,7 +43,7 @@
 	cargo_bank.adjust_money(rand(2000, 5000))
 
 /datum/station_trait/premium_internals_box
-	name = "Premium internals boxes"
+	name = "Pudełka przetrwania premium"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 10
 	show_in_report = TRUE
@@ -51,7 +51,7 @@
 	trait_to_give = STATION_TRAIT_PREMIUM_INTERNALS
 
 /datum/station_trait/bountiful_bounties
-	name = "Bountiful bounties"
+	name = "Hojne zlecenia"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -61,7 +61,7 @@
 	SSeconomy.bounty_modifier *= 1.2
 
 /datum/station_trait/strong_supply_lines
-	name = "Strong supply lines"
+	name = "Mocne linie zaopatrzenia"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -70,7 +70,7 @@
 	trait_to_give = STATION_TRAIT_STRONG_SUPPLY_LINES
 
 /datum/station_trait/scarves
-	name = "Scarves"
+	name = "Szaliki"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -102,7 +102,7 @@
 	living_mob.equip_to_slot_or_del(new scarf_type(living_mob), ITEM_SLOT_NECK)
 
 /datum/station_trait/filled_maint
-	name = "Filled up maintenance"
+	name = "Zapchane tunele techniczne"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE
@@ -111,7 +111,7 @@
 	trait_to_give = STATION_TRAIT_FILLED_MAINT
 
 /datum/station_trait/quick_shuttle
-	name = "Quick Shuttle"
+	name = "Szybki prom"
 	trait_type = STATION_TRAIT_POSITIVE
 	weight = 5
 	show_in_report = TRUE

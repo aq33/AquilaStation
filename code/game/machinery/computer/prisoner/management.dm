@@ -1,6 +1,6 @@
 /obj/machinery/computer/prisoner/management
-	name = "prisoner management console"
-	desc = "Used to manage tracking implants placed inside criminals."
+	name = "konsola zarządzania więźniami"
+	desc = "Służy do zarządzania implantami śledzącymi wszczepionymi przestępcom."
 	icon_screen = "explosive"
 	icon_keyboard = "security_key"
 	req_access = list(ACCESS_BRIG)
@@ -25,11 +25,11 @@
 		dat += "<H3>Zarządzanie kartami więźniów</H3>"
 		if(contained_id)
 			dat += text("<A href='byond://?src=[REF(src)];id=eject'>[contained_id]</A><br>")
-			dat += text("Collected Points: [contained_id.points]. <A href='byond://?src=[REF(src)];id=reset'>Reset.</A><br>")
-			dat += text("Card goal: [contained_id.goal].  <A href='byond://?src=[REF(src)];id=setgoal'>Set</A> <A href='byond://?src=[REF(src)];id=setpermanent'>Make [contained_id.permanent ? "temporary" : "permanent"].</A><br>")
+			dat += text("Zebrane punkty: [contained_id.points]. <A href='byond://?src=[REF(src)];id=reset'>Wyzeruj.</A><br>")
+			dat += text("Cel karty: [contained_id.goal].  <A href='byond://?src=[REF(src)];id=setgoal'>Ustaw</A> <A href='byond://?src=[REF(src)];id=setpermanent'>Zmień na [contained_id.permanent ? "tymczasową" : "stałą"].</A><br>")
 			dat += text("Prawo kosmiczne zaleca normę 100 punktów za każdą minutę, którą więzień normalnie spędziłby w areszcie.<BR>")
 		else
-			dat += text("<A href='byond://?src=[REF(src)];id=insert'>Insert Prisoner ID.</A><br>")
+			dat += text("<A href='byond://?src=[REF(src)];id=insert'>Włóż kartę więźnia.</A><br>")
 		dat += "<H3>Zarządzanie implantami więźniów</H3>"
 		dat += "<HR>Implanty chemiczne<BR>"
 		var/turf/Tr = null
@@ -40,7 +40,7 @@
 			if(!C.imp_in)
 				continue
 			dat += "ID: [C.imp_in.name] | Pozostało jednostek: [C.reagents.total_volume] <BR>"
-			dat += "| Inject: "
+			dat += "| Wstrzyknij: "
 			dat += "<A href='byond://?src=[REF(src)];inject1=[REF(C)]'>(<font class='bad'>(1)</font>)</A>"
 			dat += "<A href='byond://?src=[REF(src)];inject5=[REF(C)]'>(<font class='bad'>(5)</font>)</A>"
 			dat += "<A href='byond://?src=[REF(src)];inject10=[REF(C)]'>(<font class='bad'>(10)</font>)</A><BR>"
@@ -53,7 +53,7 @@
 			if((Tr) && (Tr.get_virtual_z_level() != src.get_virtual_z_level()))
 				continue//Out of range
 
-			var/loc_display = "Unknown"
+			var/loc_display = "nieznana"
 			var/mob/living/M = T.imp_in
 			if(is_station_level(Tr.z) && !isspaceturf(M.loc))
 				var/turf/mob_loc = get_turf(M)
@@ -125,7 +125,7 @@
 				to_chat(usr, "<span class='danger'>Brak autoryzacji.</span>")
 
 		else if(href_list["warn"])
-			var/warning = stripped_input(usr, "Message:", "Wpisz tu swoją wiadomość!", "", MAX_MESSAGE_LEN)
+			var/warning = stripped_input(usr, "Wiadomość:", "Wpisz tu swoją wiadomość!", "", MAX_MESSAGE_LEN)
 			if(!warning)
 				return
 			if(CHAT_FILTER_CHECK(warning))

@@ -83,7 +83,7 @@
 
 /// Startowa skrzynka klauna: kilka losowych zabawek z puli nagród automatów
 /obj/item/storage/toolbox/clown_toys
-	name = "toolbox of toys"
+	name = "skrzynka z zabawkami"
 	desc = "Zielona skrzynka wypchana zabawkami. Robust i śmieszna zarazem."
 	icon_state = "green"
 	item_state = "artistic_toolbox"

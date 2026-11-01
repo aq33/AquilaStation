@@ -2,8 +2,8 @@
 
 //The ammo/gun is stored in a back slot item
 /obj/item/minigunpack
-	name = "backpack power source"
-	desc = "The massive external power source for the laser gatling gun."
+	name = "plecakowe źródło zasilania"
+	desc = "Masywne zewnętrzne źródło zasilania laserowego gatlinga."
 	icon = 'icons/obj/guns/minigun.dmi'
 	icon_state = "holstered"
 	item_state = "backpack"
@@ -103,13 +103,13 @@
 	overheat_max = 1000
 
 /obj/item/stock_parts/cell/minigun
-	name = "Minigun gun fusion core"
+	name = "rdzeń fuzyjny miniguna"
 	maxcharge = 500000
 	self_recharge = 0
 
 /obj/item/gun/energy/minigun
-	name = "laser gatling gun"
-	desc = "An advanced laser cannon with an incredible rate of fire. Requires a bulky backpack power source to use."
+	name = "laserowy gatling"
+	desc = "Zaawansowane działo laserowe o niesamowitej szybkostrzelności. Do działania potrzebuje nieporęcznego plecakowego źródła zasilania."
 	icon = 'icons/obj/guns/minigun.dmi'
 	icon_state = "minigun_spin"
 	item_state = "minigun"
@@ -192,4 +192,4 @@
 	burst_size = 120
 	fire_delay = 0.2
 	playsound(get_turf(src), 'sound/magic/clockwork/invoke_general.ogg', 30, 0, 0)
-	to_chat(user, "<span class='colossus'>OVERDRIVE.</span>")
+	to_chat(user, "<span class='colossus'>PRZECIĄŻENIE.</span>")

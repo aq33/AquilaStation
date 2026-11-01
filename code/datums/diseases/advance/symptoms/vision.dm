@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/visionloss
 
-	name = "Hyphema"
+	name = "Krwiak komory oka"
 	desc = "Wirus wywołuje zapalenie siatkówki, prowadząc do uszkodzenia oczu, a w końcu do ślepoty."
 	stealth = -1
 	resistance = -3

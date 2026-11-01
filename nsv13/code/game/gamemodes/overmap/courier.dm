@@ -1,7 +1,7 @@
 /datum/overmap_gamemode/courier
-	name = "Courier"
+	name = "Kurier"
 	config_tag = "courier"
-	desc = "Cargo assignment, bring supplies to stations"
+	desc = "Zlecenie transportowe – dostarczaj zaopatrzenie na stacje"
 	brief = "Przydzielono wam służbę transportową w Gromadzie Rosetta. Dostarczcie zaopatrzenie wymienione w odprawie do miejsc przeznaczenia, a potem wróćcie na Posterunek 45."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"
@@ -40,4 +40,4 @@
 			MO.send_supplypod( /obj/item/ship_weapon/ammunition/torpedo/freight )
 		MO.send_supplypod( /obj/item/crowbar )
 
-		message_admins( "Courier gamemode DEBUG is enabled for testing. If this is on the production server, un-testmerge the last branch that touched courier code immediately!" )
+		message_admins( "DEBUG trybu Kurier jest włączony do testów. Jeśli to serwer produkcyjny, natychmiast cofnij test-merge ostatniej gałęzi, która ruszała kod kuriera!" )

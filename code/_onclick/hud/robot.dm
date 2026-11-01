@@ -2,7 +2,7 @@
 	icon = 'icons/mob/screen_cyborg.dmi'
 
 /atom/movable/screen/robot/module
-	name = "cyborg module"
+	name = "moduł cyborga"
 	icon_state = "nomod"
 
 /atom/movable/screen/robot/Click()
@@ -19,7 +19,7 @@
 	R.pick_module()
 
 /atom/movable/screen/robot/module1
-	name = "module1"
+	name = "moduł 1"
 	icon_state = "inv1"
 
 /atom/movable/screen/robot/module1/Click()
@@ -29,7 +29,7 @@
 	R.toggle_module(1)
 
 /atom/movable/screen/robot/module2
-	name = "module2"
+	name = "moduł 2"
 	icon_state = "inv2"
 
 /atom/movable/screen/robot/module2/Click()
@@ -39,7 +39,7 @@
 	R.toggle_module(2)
 
 /atom/movable/screen/robot/module3
-	name = "module3"
+	name = "moduł 3"
 	icon_state = "inv3"
 
 /atom/movable/screen/robot/module3/Click()
@@ -59,7 +59,7 @@
 	R.radio.interact(R)
 
 /atom/movable/screen/robot/store
-	name = "store"
+	name = "odłóż moduł"
 	icon_state = "store"
 
 /atom/movable/screen/robot/store/Click()
@@ -277,7 +277,7 @@
 				screenmob.client.screen -= I
 
 /atom/movable/screen/robot/lamp
-	name = "headlamp"
+	name = "reflektor"
 	icon_state = "lamp_off"
 	var/mob/living/silicon/robot/robot
 
@@ -295,7 +295,7 @@
 		icon_state = "lamp_off"
 
 /atom/movable/screen/robot/modpc
-	name = "Modular Interface"
+	name = "Interfejs modułowy"
 	icon_state = "template"
 	var/mob/living/silicon/robot/robot
 
@@ -306,7 +306,7 @@
 	robot.modularInterface?.interact(robot)
 
 /atom/movable/screen/robot/alerts
-	name = "Alert Panel"
+	name = "Panel alarmów"
 	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "alerts"
 
@@ -318,7 +318,7 @@
 	borgo.robot_alerts()
 
 /* NSV removed /atom/movable/screen/robot/crew_manifest
-	name = "Crew Manifest"
+	name = "Lista załogi"
 	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "manifest"
 

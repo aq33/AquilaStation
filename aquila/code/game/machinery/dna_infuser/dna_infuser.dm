@@ -269,7 +269,7 @@
 #undef INFUSING_TIME
 
 /obj/item/circuitboard/machine/dna_infuser
-	name = "DNA infuser (Machine Board)"
+	name = "DNA infuser (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/dna_infuser
 	req_components = list(
@@ -280,7 +280,7 @@
 	)
 
 /datum/design/board/dnainfuser
-	name = "Machine Design (DNA Infuser)"
+	name = "Projekt maszyny (DNA infuser)"
 	desc = "Płytka do budowy DNA infusera, który miesza DNA zwierząt i ludzi, tworząc hybrydy."
 	id = "dnainfuser"
 	build_path = /obj/item/circuitboard/machine/dna_infuser

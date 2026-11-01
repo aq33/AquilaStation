@@ -9,8 +9,8 @@
 #define OVEN_TRAY_X_OFFSET -2
 
 /obj/machinery/oven
-	name = "oven"
-	desc = "Why do they call it oven when you of in the cold food of out hot eat the food?"
+	name = "piekarnik"
+	desc = "Czemu nazywają to piekarnik, jak ty do środka zimne jedzenie z na zewnątrz gorące zjeść jedzenie?"
 	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "oven_off"
 	density = TRUE
@@ -191,8 +191,8 @@
 
 
 /obj/item/plate/oven_tray
-	name = "oven tray"
-	desc = "Time to bake cookies!"
+	name = "blacha do piekarnika"
+	desc = "Czas upiec ciasteczka!"
 	icon_state = "oven_tray"
 	max_items = 6
 

@@ -4,8 +4,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_map"
-	name = "conveyor belt"
-	desc = "A conveyor belt."
+	name = "taśmociąg"
+	desc = "Taśmociąg."
 	layer = BELOW_OPEN_DOOR_LAYER
 	processing_flags = NONE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
@@ -302,8 +302,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 //
 
 /obj/machinery/conveyor_switch
-	name = "conveyor switch"
-	desc = "A conveyor control switch."
+	name = "przełącznik taśmociągu"
+	desc = "Przełącznik sterujący taśmociągiem."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	processing_flags = START_PROCESSING_MANUALLY
@@ -435,8 +435,8 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		invert_icon = TRUE
 
 /obj/item/conveyor_switch_construct
-	name = "conveyor switch assembly"
-	desc = "A conveyor control switch assembly."
+	name = "zespół przełącznika taśmociągu"
+	desc = "Zespół przełącznika sterującego taśmociągiem."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "switch-off"
 	w_class = WEIGHT_CLASS_BULKY
@@ -501,12 +501,12 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	qdel(src)
 
 /obj/item/stack/conveyor
-	name = "conveyor belt assembly"
-	desc = "A conveyor belt assembly."
+	name = "zespół taśmociągu"
+	desc = "Zespół taśmociągu."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "conveyor_construct"
 	max_amount = 30
-	singular_name = "conveyor belt"
+	singular_name = "taśmociąg"
 	w_class = WEIGHT_CLASS_BULKY
 	merge_type = /obj/item/stack/conveyor
 	///id for linking
@@ -544,6 +544,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	amount = 30
 
 /obj/item/paper/guides/conveyor
-	name = "paper- 'Nano-it-up U-build series, #9: Build your very own conveyor belt, in SPACE'"
+	name = "kartka – „Seria Nano-it-up Zbuduj-sam, nr 9: Zbuduj własny taśmociąg, w KOSMOSIE”"
 	default_raw_text = "<h1>Gratulacje!</h1><p>Jesteś teraz dumnym właścicielem najlepszego zestawu taśmociągów dostępnego w kosmicznej sprzedaży wysyłkowej! My w Nano-it-up wiemy, że uwielbiasz przygotowywać własne konstrukcje bez marnowania czasu, więc opracowaliśmy specjalną, uproszczoną procedurę montażu, która zawstydza wszystkie inne produkty wysyłkowe!</p><p>Najpierw musisz połączyć zespół przełącznika taśmociągu z każdym z zespołów taśmociągu. Potem wystarczy zainstalować zespoły taśm na podłodze i voilà, taśma gotowa. Nasz specjalny inteligentny przełącznik Nano-it-up wykryje wszystkie połączone zespoły, jak okiem sięgnąć! Taką wygodę masz tylko wtedy, gdy wybierzesz Nano-it-up. Bądź nano!</p>"
 #undef MAX_CONVEYOR_ITEMS_MOVE

@@ -279,7 +279,7 @@ GLOBAL_LIST(bad_gremlin_items)
 		G.divide()
 
 /obj/item/grenade/spawnergrenade/gremlin
-	name = "Shitty EMP Grenade"
+	name = "gówniany granat EMP"
 	spawner_type = /mob/living/simple_animal/hostile/gremlin/traitor
 	deliveryamt = 5
 

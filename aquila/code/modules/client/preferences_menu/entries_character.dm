@@ -80,7 +80,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_CLOTHING
 	character_var = "underwear"
-	main_feature_name = "Underwear"
+	main_feature_name = "Bielizna"
 	should_generate_icons = TRUE
 	preference_spritesheet = PREFERENCE_SHEET_LARGE
 	can_randomize = TRUE
@@ -120,7 +120,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_CLOTHING
 	character_var = "undershirt"
-	main_feature_name = "Undershirt"
+	main_feature_name = "Podkoszulek"
 	should_generate_icons = TRUE
 	preference_spritesheet = PREFERENCE_SHEET_LARGE
 	can_randomize = TRUE
@@ -145,7 +145,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_CLOTHING
 	character_var = "socks"
-	main_feature_name = "Socks"
+	main_feature_name = "Skarpetki"
 	should_generate_icons = TRUE
 	preference_spritesheet = PREFERENCE_SHEET_LARGE
 	can_randomize = TRUE
@@ -170,7 +170,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_CLOTHING
 	character_var = "backbag"
-	main_feature_name = "Backpack"
+	main_feature_name = "Plecak"
 	should_generate_icons = TRUE
 	can_randomize = TRUE
 
@@ -200,7 +200,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_CLOTHING
 	character_var = "jumpsuit_style"
-	main_feature_name = "Jumpsuit"
+	main_feature_name = "Kombinezon"
 	should_generate_icons = TRUE
 	can_randomize = TRUE
 
@@ -219,7 +219,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	character_var = "hair_style"
-	main_feature_name = "Hairstyle"
+	main_feature_name = "Fryzura"
 	should_generate_icons = TRUE
 	preference_spritesheet = PREFERENCE_SHEET_HUGE
 	relevant_species_trait = HAIR
@@ -249,7 +249,7 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_FEATURES
 	character_var = "facial_hair_style"
-	main_feature_name = "Facial Hair"
+	main_feature_name = "Zarost"
 	should_generate_icons = TRUE
 	preference_spritesheet = PREFERENCE_SHEET_LARGE
 	relevant_species_trait = FACEHAIR
@@ -455,7 +455,7 @@
 	db_key = "feature_lizard_tail"
 	feature_key = "tail_lizard"
 	relevant_mutant_bodypart = "tail_lizard"
-	main_feature_name = "Tail"
+	main_feature_name = "Ogon"
 	should_generate_icons = TRUE
 	accessory_list = "tails_list_lizard"
 	icon_key = "tail"
@@ -467,7 +467,7 @@
 	db_key = "feature_lizard_snout"
 	feature_key = "snout"
 	relevant_mutant_bodypart = "snout"
-	main_feature_name = "Snout"
+	main_feature_name = "Pysk"
 	should_generate_icons = TRUE
 	accessory_list = "snouts_list"
 	icon_key = "snout"
@@ -477,7 +477,7 @@
 	db_key = "feature_lizard_horns"
 	feature_key = "horns"
 	relevant_mutant_bodypart = "horns"
-	main_feature_name = "Horns"
+	main_feature_name = "Rogi"
 	should_generate_icons = TRUE
 	accessory_list = "horns_list"
 	icon_key = "horns"
@@ -487,7 +487,7 @@
 	db_key = "feature_lizard_frills"
 	feature_key = "frills"
 	relevant_mutant_bodypart = "frills"
-	main_feature_name = "Frills"
+	main_feature_name = "Kryza"
 	should_generate_icons = TRUE
 	accessory_list = "frills_list"
 	icon_key = "frills"
@@ -497,7 +497,7 @@
 	db_key = "feature_lizard_spines"
 	feature_key = "spines"
 	relevant_mutant_bodypart = "spines"
-	main_feature_name = "Spines"
+	main_feature_name = "Kolce"
 	should_generate_icons = TRUE
 	accessory_list = "spines_list"
 	icon_key = "spines"
@@ -509,7 +509,7 @@
 	db_key = "feature_lizard_body_markings"
 	feature_key = "body_markings"
 	relevant_mutant_bodypart = "body_markings"
-	main_feature_name = "Body Markings"
+	main_feature_name = "Znaczenia na ciele"
 	should_generate_icons = TRUE
 	accessory_list = "body_markings_list"
 	icon_key = "body_markings"
@@ -541,7 +541,7 @@
 	db_key = "feature_moth_wings"
 	feature_key = "moth_wings"
 	relevant_mutant_bodypart = "moth_wings"
-	main_feature_name = "Wings"
+	main_feature_name = "Skrzydła"
 	should_generate_icons = TRUE
 	accessory_list = "moth_wings_roundstart_list"
 	icon_key = "moth_wings"
@@ -554,7 +554,7 @@
 	db_key = "feature_moth_antennae"
 	feature_key = "moth_antennae"
 	relevant_mutant_bodypart = "moth_antennae"
-	main_feature_name = "Antennae"
+	main_feature_name = "Czułki"
 	should_generate_icons = TRUE
 	accessory_list = "moth_antennae_roundstart_list"
 	icon_key = "moth_antennae"
@@ -564,7 +564,7 @@
 	db_key = "feature_moth_markings"
 	feature_key = "moth_markings"
 	relevant_mutant_bodypart = "moth_markings"
-	main_feature_name = "Markings"
+	main_feature_name = "Znaczenia"
 	should_generate_icons = TRUE
 	accessory_list = "moth_markings_roundstart_list"
 	icon_key = "moth_markings"
@@ -576,7 +576,7 @@
 	db_key = "feature_ipc_screen"
 	feature_key = "ipc_screen"
 	relevant_mutant_bodypart = "ipc_screen"
-	main_feature_name = "Screen"
+	main_feature_name = "Ekran"
 	should_generate_icons = TRUE
 	accessory_list = "ipc_screens_list"
 	icon_key = "ipc_screen"
@@ -600,7 +600,7 @@
 	db_key = "feature_ipc_antenna"
 	feature_key = "ipc_antenna"
 	relevant_mutant_bodypart = "ipc_antenna"
-	main_feature_name = "Antenna"
+	main_feature_name = "Antena"
 	should_generate_icons = TRUE
 	accessory_list = "ipc_antennas_list"
 	icon_key = "ipc_antenna"
@@ -638,7 +638,7 @@
 	db_key = "feature_apid_antenna"
 	feature_key = "apid_antenna"
 	relevant_mutant_bodypart = "apid_antenna"
-	main_feature_name = "Antenna"
+	main_feature_name = "Antena"
 	should_generate_icons = TRUE
 	accessory_list = "apid_antenna_list"
 	icon_key = "apid_antenna"
@@ -650,7 +650,7 @@
 	db_key = "feature_apid_stripes"
 	feature_key = "apid_stripes"
 	relevant_mutant_bodypart = "apid_stripes"
-	main_feature_name = "Stripes"
+	main_feature_name = "Paski"
 	should_generate_icons = TRUE
 	accessory_list = "apid_stripes_list"
 	icon_key = "apid_stripes"
@@ -663,7 +663,7 @@
 	db_key = "feature_apid_headstripes"
 	feature_key = "apid_headstripes"
 	relevant_mutant_bodypart = "apid_headstripes"
-	main_feature_name = "Head Stripes"
+	main_feature_name = "Paski na głowie"
 	should_generate_icons = TRUE
 	accessory_list = "apid_headstripes_list"
 	icon_key = "apid_headstripes"
@@ -705,7 +705,7 @@
 	if(!..())
 		return FALSE
 	if(CONFIG_GET(keyed_list/paywall_races)[value] && !IS_PATRON(prefs.parent.ckey) && !prefs.parent.holder)
-		to_chat(prefs.parent, "<span class='warning'>This species is only accessible to our patrons.</span>")
+		to_chat(prefs.parent, "<span class='warning'>Ten gatunek jest dostępny tylko dla naszych patronów.</span>")
 		return FALSE
 	return TRUE
 
@@ -890,35 +890,35 @@
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "flavor_text"
-	edit_prompt = "Set the flavor text for your 'examine' verb. No memes, nothing that people can't see at a glance, nothing Out Of Character, nothing that breaks the game."
+	edit_prompt = "Ustaw opis postaci widoczny przy oglądaniu (examine). Bez memów, bez rzeczy, których nie widać na pierwszy rzut oka, bez treści spoza postaci (OOC) i niczego, co psuje grę."
 
 /datum/preference/text/silicon_flavor_text
 	db_key = "silicon_flavor_text"
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "silicon_flavor_text"
-	edit_prompt = "Set the flavor text in your 'examine' verb. This is for describing what people can tell by looking at your character."
+	edit_prompt = "Ustaw opis widoczny przy oglądaniu (examine). Opisz to, co inni mogą stwierdzić, patrząc na twoją postać."
 
 /datum/preference/text/general_record
 	db_key = "general_record"
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "general_record"
-	edit_prompt = "Set your general record. This is more or less public information, available from security, medical and command consoles"
+	edit_prompt = "Ustaw swoją kartotekę ogólną. To mniej więcej publiczne informacje, dostępne z konsol ochrony, medycznych i dowództwa."
 
 /datum/preference/text/security_record
 	db_key = "security_record"
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "security_record"
-	edit_prompt = "Set your security record."
+	edit_prompt = "Ustaw swoją kartotekę ochrony."
 
 /datum/preference/text/medical_record
 	db_key = "medical_record"
 	preference_type = PREFERENCE_CHARACTER
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	character_var = "medical_record"
-	edit_prompt = "Set your medical record."
+	edit_prompt = "Ustaw swoją kartotekę medyczną."
 
 // Imiona
 

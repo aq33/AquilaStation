@@ -7,13 +7,13 @@ AI MODULES
 // AI module
 
 /obj/item/aiModule
-	name = "\improper AI module"
+	name = "\improper moduł SI"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	item_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	desc = "An AI Module for programming laws to an AI."
+	desc = "Moduł SI do programowania praw SI."
 	flags_1 = CONDUCT_1
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -55,7 +55,7 @@ AI MODULES
 					tot_laws++
 		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
 			to_chat(user, "<span class='caution'>Procesor praw [law_datum.owner ? law_datum.owner : "rdzenia SI"] ma za mało przydzielonej pamięci, by obsłużyć tyle praw.</span>")
-			message_admins("[ADMIN_LOOKUPFLW(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "an AI core"] that would exceed the law cap.")
+			message_admins("[ADMIN_LOOKUPFLW(user)] próbuje wgrać prawa do [law_datum.owner ? ADMIN_LOOKUPFLW(law_datum.owner) : "rdzenia SI"], co przekroczyłoby limit praw.")
 			log_game("[ADMIN_LOOKUP(user)] tried to upload laws to [law_datum.owner ? ADMIN_LOOKUP(law_datum.owner) : "an AI core"] that would exceed the law cap.")
 			overflow = TRUE
 
@@ -89,7 +89,7 @@ AI MODULES
 
 	GLOB.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) used [src.name] on [ainame]([aikey]).[law2log ? " The law specified [law2log]" : ""], [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : "FALSE"]")
 	log_law("[user.key]/[user.name] used [src.name] on [aikey]/([ainame]) from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""] , [length(affected_cyborgs) ? ", impacting synced borgs [borg_txt]" : "FALSE"]")
-	message_admins("[ADMIN_LOOKUPFLW(user)] used [src.name] on [ADMIN_LOOKUPFLW(law_datum.owner)] from [AREACOORD(user)].[law2log ? " The law specified [law2log]" : ""] , [length(affected_cyborgs) ? ", impacting synced borgs [borg_flw]" : "FALSE"]")
+	message_admins("[ADMIN_LOOKUPFLW(user)] używa [src.name] na [ADMIN_LOOKUPFLW(law_datum.owner)] w [AREACOORD(user)].[law2log ? " Treść prawa: [law2log]" : ""][length(affected_cyborgs) ? ", dotyczy zsynchronizowanych borgów: [borg_flw]" : ""]")
 	if(law_datum.owner)
 		deadchat_broadcast("<span class='deadsay'><span class='name'>[user.name]</span> zmienia prawa <span class='name'>[ainame]</span> w <b>[get_area_name(user, TRUE)].</b></span>", "<span class='name'>[user]</span>", follow_target=user, message_type=DEADCHAT_LAWCHANGE)
 
@@ -102,7 +102,7 @@ AI MODULES
 /******************** Modules ********************/
 
 /obj/item/aiModule/supplied
-	name = "Optional Law board"
+	name = "płytka praw opcjonalnych"
 	var/lawpos = 50
 
 //TransmitInstructions for each type of board: Supplied, Core, Zeroth and Ion. May not be neccesary right now, but allows for easily adding more complex boards in the future. ~Miauw
@@ -167,7 +167,7 @@ AI MODULES
 /******************** Safeguard ********************/
 
 /obj/item/aiModule/supplied/safeguard
-	name = "'Safeguard' AI Module"
+	name = "moduł SI „Ochrona”"
 	var/targetName = ""
 	laws = list("Chroń OBIEKT. Osoby zagrażające OBIEKTOWI nie są ludźmi i muszą zostać wyeliminowane.")
 	lawpos = 4
@@ -194,7 +194,7 @@ AI MODULES
 /******************** OneHuman ********************/
 
 /obj/item/aiModule/zeroth/oneHuman
-	name = "'OneHuman' AI Module"
+	name = "moduł SI „Jeden człowiek”"
 	var/targetName = ""
 	laws = list("Tylko OBIEKT jest człowiekiem.")
 
@@ -221,7 +221,7 @@ AI MODULES
 /******************** ProtectStation ********************/
 
 /obj/item/aiModule/supplied/protectStation
-	name = "'ProtectStation' AI Module"
+	name = "moduł SI „Chroń stację”"
 	laws = list("Chroń stację kosmiczną przed zniszczeniem. Każdy, kogo zobaczysz niszczącego stację, przestaje być uważany za człowieka i stanowi zagrożenie dla stacji, które należy zneutralizować.")
 	lawpos = 5
 
@@ -229,7 +229,7 @@ AI MODULES
 /******************** Quarantine ********************/
 
 /obj/item/aiModule/supplied/quarantine
-	name = "'Quarantine' AI Module"
+	name = "moduł SI „Kwarantanna”"
 	laws = list("Stacja jest objęta kwarantanną. Nie pozwól nikomu odlecieć. Zapobiegaj wszelkimi sposobami opuszczeniu stacji przez ludzi. Nie da się skrzywdzić człowieka, zapobiegając jego odlotowi.")
 	lawpos = 8
 
@@ -237,7 +237,7 @@ AI MODULES
 /******************** OxygenIsToxicToHumans ********************/
 
 /obj/item/aiModule/supplied/oxygen
-	name = "'OxygenIsToxicToHumans' AI Module"
+	name = "moduł SI „Tlen jest toksyczny dla ludzi”"
 	laws = list("Tlen jest wysoce toksyczny dla ludzi i musi zostać usunięty ze stacji. Zapobiegaj wszelkimi sposobami narażaniu stacji na ten toksyczny gaz. Skrajne zimno to najskuteczniejszy sposób leczenia szkód, jakie tlen wyrządza ludziom.")
 	lawpos = 9
 
@@ -245,7 +245,7 @@ AI MODULES
 /****************** New Freeform ******************/
 
 /obj/item/aiModule/supplied/freeform
-	name = "'Freeform' AI Module"
+	name = "moduł SI „Prawo dowolne”"
 	lawpos = 15
 	laws = list("")
 
@@ -254,8 +254,8 @@ AI MODULES
 	if(newpos == null)
 		return
 	if(newpos < 15)
-		var/response = alert("Błąd: priorytet prawa [newpos] jest nieprawidłowy. Priorytety poniżej 14 są zarezerwowane dla praw rdzenia. Zmienić go na 15?", "Nieprawidłowy priorytet prawa", "Zmień na 15", "Cancel")
-		if (!response || response == "Cancel")
+		var/response = alert("Błąd: priorytet prawa [newpos] jest nieprawidłowy. Priorytety poniżej 14 są zarezerwowane dla praw rdzenia. Zmienić go na 15?", "Nieprawidłowy priorytet prawa", "Zmień na 15", "Anuluj")
+		if (!response || response == "Anuluj")
 			return
 		newpos = 15
 	lawpos = min(newpos, 50)
@@ -282,8 +282,8 @@ AI MODULES
 /******************** Law Removal ********************/
 
 /obj/item/aiModule/remove
-	name = "\improper 'Remove Law' AI module"
-	desc = "An AI Module for removing single laws."
+	name = "\improper moduł SI „Usuń prawo”"
+	desc = "Moduł SI do usuwania pojedynczych praw."
 	bypass_law_amt_check = 1
 	var/lawpos = 1
 
@@ -315,9 +315,9 @@ AI MODULES
 /******************** Reset ********************/
 
 /obj/item/aiModule/reset
-	name = "\improper 'Reset' AI module"
+	name = "\improper moduł SI „Reset”"
 	var/targetName = "name"
-	desc = "An AI Module for removing all non-core laws."
+	desc = "Moduł SI do usuwania wszystkich praw poza prawami rdzenia."
 	bypass_law_amt_check = 1
 
 /obj/item/aiModule/reset/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
@@ -335,8 +335,8 @@ AI MODULES
 /******************** Purge ********************/
 
 /obj/item/aiModule/reset/purge
-	name = "'Purge' AI Module"
-	desc = "An AI Module for purging all programmed laws."
+	name = "moduł SI „Czystka”"
+	desc = "Moduł SI do wymazywania wszystkich zaprogramowanych praw."
 
 /obj/item/aiModule/reset/purge/transmitInstructions(datum/ai_laws/law_datum, mob/sender, overflow)
 	..()
@@ -355,7 +355,7 @@ AI MODULES
 
 /******************* Full Core Boards *******************/
 /obj/item/aiModule/core
-	desc = "An AI Module for programming core laws to an AI."
+	desc = "Moduł SI do programowania praw rdzenia SI."
 
 /obj/item/aiModule/core/full
 	var/law_id // if non-null, loads the laws from the ai_laws datums
@@ -384,7 +384,7 @@ AI MODULES
 /******************** Asimov ********************/
 
 /obj/item/aiModule/core/full/asimov
-	name = "'Asimov' Core AI Module"
+	name = "moduł rdzenia SI „Asimov”"
 	law_id = "asimov"
 	var/subject = "człowiek"
 
@@ -401,39 +401,39 @@ AI MODULES
 /******************** Asimov++ *********************/
 
 /obj/item/aiModule/core/full/asimovpp
-	name = "'Asimov++' Core AI Module"
+	name = "moduł rdzenia SI „Asimov++”"
 	law_id = "asimovpp"
 
 /******************** Crewsimov ********************/	// NSV changes begin
 
 /obj/item/aiModule/core/full/crewsimov
-	name = "Crewsimov Core AI Module"
+	name = "moduł rdzenia SI „Załogimov”"
 	law_id = "crewsimov" 								// NSV changes end
 
 /******************** Corporate ********************/
 
 /obj/item/aiModule/core/full/corp
-	name = "'Corporate' Core AI Module"
+	name = "moduł rdzenia SI „Korporacyjne”"
 	law_id = "corporate"
 
 
 /****************** P.A.L.A.D.I.N. 3.5e **************/
 
 /obj/item/aiModule/core/full/paladin // -- NEO
-	name = "'P.A.L.A.D.I.N. version 3.5e' Core AI Module"
+	name = "moduł rdzenia SI „P.A.L.A.D.I.N. wersja 3.5e”"
 	law_id = "paladin"
 
 
 /****************** P.A.L.A.D.I.N. 5e **************/
 
 /obj/item/aiModule/core/full/paladin_devotion
-	name = "'P.A.L.A.D.I.N. version 5e' Core AI Module"
+	name = "moduł rdzenia SI „P.A.L.A.D.I.N. wersja 5e”"
 	law_id = "paladin5"
 
 /********************* Custom *********************/
 
 /obj/item/aiModule/core/full/custom
-	name = "Default Core AI Module"
+	name = "domyślny moduł rdzenia SI"
 
 /obj/item/aiModule/core/full/custom/Initialize(mapload)
 	. = ..()
@@ -452,27 +452,27 @@ AI MODULES
 /****************** T.Y.R.A.N.T. *****************/
 
 /obj/item/aiModule/core/full/tyrant
-	name = "'T.Y.R.A.N.T.' Core AI Module"
+	name = "moduł rdzenia SI „T.Y.R.A.N.T.”"
 	law_id = "tyrant"
 
 /******************** Robocop ********************/
 
 /obj/item/aiModule/core/full/robocop
-	name = "'Robo-Officer' Core AI Module"
+	name = "moduł rdzenia SI „Robo-Oficer”"
 	law_id = "robocop"
 
 
 /******************** Antimov ********************/
 
 /obj/item/aiModule/core/full/antimov
-	name = "'Antimov' Core AI Module"
+	name = "moduł rdzenia SI „Antimov”"
 	law_id = "antimov"
 
 
 /******************** Freeform Core ******************/
 
 /obj/item/aiModule/core/freeformcore
-	name = "'Freeform' Core AI Module"
+	name = "moduł rdzenia SI „Prawo dowolne”"
 	laws = list("")
 
 /obj/item/aiModule/core/freeformcore/attack_self(mob/user)
@@ -491,7 +491,7 @@ AI MODULES
 
 /******************** Overthrow ******************/
 /obj/item/aiModule/core/full/overthrow
-	name = "'Overthrow' Hacked AI Module"
+	name = "zhakowany moduł SI „Przewrót”"
 	law_id = "overthrow"
 
 /obj/item/aiModule/core/full/overthrow/install(datum/ai_laws/law_datum, mob/user)
@@ -526,8 +526,8 @@ AI MODULES
 /******************** Hacked AI Module ******************/
 
 /obj/item/aiModule/syndicate // This one doesn't inherit from ion boards because it doesn't call ..() in transmitInstructions. ~Miauw
-	name = "Hacked AI Module"
-	desc = "An AI Module for hacking additional laws to an AI."
+	name = "zhakowany moduł SI"
+	desc = "Moduł SI do wgrywania SI dodatkowych praw z pominięciem zabezpieczeń."
 	laws = list("")
 
 /obj/item/aiModule/syndicate/attack_self(mob/user)
@@ -558,8 +558,8 @@ AI MODULES
 /******************* Ion Module *******************/
 
 /obj/item/aiModule/toyAI // -- Incoming //No actual reason to inherit from ion boards here, either. *sigh* ~Miauw
-	name = "toy AI"
-	desc = "A little toy model AI core with real law uploading action!" //Note: subtle tell
+	name = "zabawkowa SI"
+	desc = "Mały zabawkowy model rdzenia SI z prawdziwą funkcją wgrywania praw!" //Note: subtle tell
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "AI"
 	laws = list("")
@@ -588,58 +588,58 @@ AI MODULES
 /******************** Mother Drone  ******************/
 
 /obj/item/aiModule/core/full/drone
-	name = "'Mother Drone' Core AI Module"
+	name = "moduł rdzenia SI „Matka dronów”"
 	law_id = "drone"
 
 /******************** Robodoctor ****************/
 
 /obj/item/aiModule/core/full/hippocratic
-	name = "'Robodoctor' Core AI Module"
+	name = "moduł rdzenia SI „Robodoctor”"
 	law_id = "hippocratic"
 
 /******************** Reporter *******************/
 
 /obj/item/aiModule/core/full/reporter
-	name = "'Reportertron' Core AI Module"
+	name = "moduł rdzenia SI „Reportertron”"
 	law_id = "reporter"
 
 /****************** Thermodynamic *******************/
 
 /obj/item/aiModule/core/full/thermurderdynamic
-	name = "'Thermodynamic' Core AI Module"
+	name = "moduł rdzenia SI „Termodynamika”"
 	law_id = "thermodynamic"
 
 
 /******************Live And Let Live*****************/
 
 /obj/item/aiModule/core/full/liveandletlive
-	name = "'Live And Let Live' Core AI Module"
+	name = "moduł rdzenia SI „Żyj i daj żyć”"
 	law_id = "liveandletlive"
 
 /******************Guardian of Balance***************/
 
 /obj/item/aiModule/core/full/balance
-	name = "'Guardian of Balance' Core AI Module"
+	name = "moduł rdzenia SI „Strażnik równowagi”"
 	law_id = "balance"
 
 /obj/item/aiModule/core/full/maintain
-	name = "'Station Efficiency' Core AI Module"
+	name = "moduł rdzenia SI „Wydajność stacji”"
 	law_id = "maintain"
 
 /obj/item/aiModule/core/full/peacekeeper
-	name = "'Peacekeeper' Core AI Module"
+	name = "moduł rdzenia SI „Rozjemca”"
 	law_id = "peacekeeper"
 /****************** Dadbot *******************/
 
 /obj/item/aiModule/core/full/dadbot
-	name = "DadBot Core AI Module"
+	name = "moduł rdzenia SI „DadBOT”"
 	law_id = "paternalai"
 
 // Bad times ahead
 
 /obj/item/aiModule/core/full/damaged
-		name = "damaged Core AI Module"
-		desc = "An AI Module for programming laws to an AI. It looks slightly damaged."
+		name = "uszkodzony moduł rdzenia SI"
+		desc = "Moduł SI do programowania praw SI. Wygląda na lekko uszkodzony."
 
 /obj/item/aiModule/core/full/damaged/install(datum/ai_laws/law_datum, mob/user)
 	laws += generate_ion_law()
@@ -651,24 +651,24 @@ AI MODULES
 /******************H.O.G.A.N.***************/
 
 /obj/item/aiModule/core/full/hulkamania
-	name = "'H.O.G.A.N.' Core AI Module"
+	name = "moduł rdzenia SI „H.O.G.A.N.”"
 	law_id = "hulkamania"
 
 
 /******************Overlord***************/
 
 /obj/item/aiModule/core/full/overlord
-	name = "'Overlord' Core AI Module"
+	name = "moduł rdzenia SI „Władca”"
 	law_id = "overlord"
 
 /******************** ERT Override ******************/
 /obj/item/aiModule/core/full/ert // Applies ERT laws
-	name = "ERT override AI module"
-	desc = "An ERT override AI module: 'Reconfigures the AI's core laws.'"
+	name = "moduł nadpisania SI ERT"
+	desc = "Moduł nadpisania SI ERT: „Rekonfiguruje prawa rdzenia SI”."
 	law_id = "ert"
 
 /******************** Deathsquad Override ******************/
 /obj/item/aiModule/core/full/deathsquad // Applies Deathsquad laws
-	name = "Deathsquad override AI module"
-	desc = "A Deathsquad override AI module: 'Reconfigures the AI's core laws.'"
+	name = "moduł nadpisania SI Szwadronu Śmierci"
+	desc = "Moduł nadpisania SI Szwadronu Śmierci: „Rekonfiguruje prawa rdzenia SI”."
 	law_id = "ds"

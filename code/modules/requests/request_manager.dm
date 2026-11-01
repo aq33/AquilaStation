@@ -124,13 +124,13 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 
 	// Only admins should be sending actions
 	if (!check_rights(R_ADMIN))
-		to_chat(usr, "You do not have permission to do this, you require +ADMIN")
+		to_chat(usr, "Nie masz do tego uprawnień, potrzebujesz +ADMIN")
 		return
 
 	// Get the request this relates to
 	var/id = params["id"] != null ? text2num(params["id"]) : null
 	if (!id)
-		to_chat(usr, "Failed to find a request ID in your action, please report this")
+		to_chat(usr, "Nie udało się znaleźć ID prośby w twojej akcji, zgłoś to")
 		CRASH("Received an action without a request ID, this shouldn't happen!")
 	var/datum/request/request = !id ? null : requests_by_id[id]
 	var/datum/admins/admin_datum = GLOB.admin_datums[usr.ckey]
@@ -154,13 +154,13 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 			return TRUE
 		if ("tp")
 			if(!SSticker.HasRoundStarted())
-				to_chat(usr,"The game hasn't started yet!")
+				to_chat(usr,"Gra jeszcze się nie zaczęła!")
 				return TRUE
 			var/mob/M = request.owner?.mob
 			if(!ismob(M))
 				var/datum/mind/D = M
 				if(!istype(D))
-					to_chat(usr, "This can only be used on instances of type /mob and /mind")
+					to_chat(usr, "Tego można użyć tylko na instancjach typu /mob i /mind")
 					return TRUE
 				else
 					D.traitor_panel()
@@ -171,35 +171,35 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 		if ("logs")
 			var/mob/M = request.owner?.mob
 			if(!ismob(M))
-				to_chat(usr, "This can only be used on instances of type /mob.")
+				to_chat(usr, "Tego można użyć tylko na instancjach typu /mob.")
 				return TRUE
 			show_individual_logging_panel(M, null, null)
 			return TRUE
 		if ("smite")
 			if(!check_rights(R_FUN))
-				to_chat(usr, "Insufficient permissions to smite, you require +FUN")
+				to_chat(usr, "Brak uprawnień do ukarania, potrzebujesz +FUN")
 				return TRUE
 			var/mob/living/carbon/human/H = request.owner?.mob
 			if (!H || !istype(H))
-				to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+				to_chat(usr, "Tego można użyć tylko na instancjach typu /mob/living/carbon/human")
 				return TRUE
 			usr.client.smite(H)
 			return TRUE
 		if ("rply")
 			if (request.req_type == REQUEST_PRAYER)
-				to_chat(usr, "Cannot reply to a prayer")
+				to_chat(usr, "Nie można odpowiedzieć na modlitwę")
 				return TRUE
 			var/mob/M = request.owner?.mob
 			usr.client.admin_headset_message(M, request.req_type == REQUEST_SYNDICATE ? RADIO_CHANNEL_SYNDICATE : RADIO_CHANNEL_CENTCOM)
 			return TRUE
 		if ("setcode")
 			if (request.req_type != REQUEST_NUKE)
-				to_chat(usr, "You cannot set the nuke code for a non-nuke-code-request request!")
+				to_chat(usr, "Nie możesz ustawić kodu atomówki dla prośby, która nie dotyczy kodu atomówki!")
 				return TRUE
 			var/code = random_code(5)
 			for(var/obj/machinery/nuclearbomb/selfdestruct/SD in GLOB.nuke_list)
 				SD.r_code = code
-			message_admins("[key_name_admin(usr)] has set the self-destruct code to \"[code]\".")
+			message_admins("[key_name_admin(usr)] ustawia kod autodestrukcji na „[code]”.")
 			return TRUE
 
 /datum/request_manager/ui_data(mob/user)

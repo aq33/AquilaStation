@@ -4,7 +4,7 @@
 #define AB_CHECK_CONSCIOUS 8
 
 /datum/action
-	var/name = "Generic Action"
+	var/name = "Ogólna akcja"
 	var/desc = null
 	var/obj/target = null
 	var/check_flags = NONE
@@ -285,7 +285,7 @@
 		H.toggle_welding_screen(owner)
 
 /datum/action/item_action/toggle_headphones
-	name = "Toggle Headphones"
+	name = "Przełącz słuchawki"
 	desc = "UNTZ UNTZ UNTZ"
 
 /datum/action/item_action/toggle_headphones/Trigger()
@@ -315,8 +315,8 @@
 	..()
 
 /datum/action/item_action/vortex_recall
-	name = "Vortex Recall"
-	desc = "Recall yourself, and anyone nearby, to an attuned hierophant beacon at any time.<br>If the beacon is still attached, will detach it."
+	name = "Powrót przez wir"
+	desc = "W każdej chwili przenosi ciebie i wszystkich w pobliżu do dostrojonej radiolatarni hierofanta.<br>Jeśli radiolatarnia jest wciąż przyczepiona, odczepia ją."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "vortex_recall"
 
@@ -328,13 +328,13 @@
 	return ..()
 
 /datum/action/item_action/clock/hierophant
-	name = "Hierophant Network"
-	desc = "Lets you discreetly talk with all other servants. Nearby listeners can hear you whispering, so make sure to do this privately."
+	name = "Sieć hierofanta"
+	desc = "Pozwala dyskretnie rozmawiać ze wszystkimi innymi sługami. Osoby w pobliżu słyszą twój szept, więc rób to na osobności."
 	button_icon_state = "hierophant_slab"
 
 /datum/action/item_action/clock/quickbind
-	name = "Quickbind"
-	desc = "If you're seeing this, file a bug report."
+	name = "Szybkie przypisanie"
+	desc = "Jeśli to widzisz, zgłoś błąd."
 	var/scripture_index = 0 //the index of the scripture we're associated with
 
 /datum/action/item_action/toggle_helmet_flashlight
@@ -365,7 +365,7 @@
 
 /datum/action/item_action/toggle/New(Target)
 	..()
-	name = "Toggle [target.name]"
+	name = "Przełącz: [target.name]"
 	button.name = name
 
 /datum/action/item_action/halt
@@ -378,7 +378,7 @@
 	name = "Zmień"
 
 /datum/action/item_action/nano_picket_sign
-	name = "Retext Nano Picket Sign"
+	name = "Zmień tekst nanotransparentu"
 
 /datum/action/item_action/nano_picket_sign/Trigger()
 	if(!istype(target, /obj/item/picket_sign))
@@ -424,7 +424,7 @@
 	name = "Aktywuj"
 
 /datum/action/item_action/hands_free/shift_nerves
-	name = "Shift Nerves"
+	name = "Przestaw nerwy"
 
 /datum/action/item_action/explosive_implant
 	check_flags = NONE
@@ -465,7 +465,7 @@
 
 /datum/action/item_action/activate_remote_view
 	name = "Aktywuj Zdalny Widok"
-	desc = "Activates the Remote View of your spy sunglasses."
+	desc = "Włącza zdalny widok twoich szpiegowskich okularów przeciwsłonecznych."
 
 /datum/action/item_action/organ_action
 	check_flags = AB_CHECK_CONSCIOUS
@@ -702,14 +702,14 @@
 		H.open_language_menu(usr)
 
 /datum/action/item_action/wheelys
-	name = "Toggle Wheely-Heel's Wheels"
-	desc = "Pops out or in your wheely-heel's wheels."
+	name = "Przełącz kółka butów na kółkach"
+	desc = "Wysuwa albo chowa kółka twoich butów na kółkach."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "wheelys"
 
 /datum/action/item_action/kindleKicks
-	name = "Activate Kindle Kicks"
-	desc = "Kick you feet together, activating the lights in your Kindle Kicks."
+	name = "Włącz Kindle Kicks"
+	desc = "Stuknij stopami o siebie, żeby zapalić światełka w Kindle Kicks."
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "kindleKicks"
 

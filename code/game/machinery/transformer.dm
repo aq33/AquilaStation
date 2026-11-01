@@ -1,8 +1,8 @@
 /obj/machinery/transformer
-	name = "\improper Automatic Robotic Factory 5000"
-	desc = "A large metallic machine with an entrance and an exit. A sign on \
-		the side reads, 'human go in, robot come out'. The human must be \
-		lying down and alive. Has to cooldown between each use."
+	name = "\improper Automatyczna Fabryka Robotów 5000"
+	desc = "Duża metalowa maszyna z wejściem i wyjściem. Napis z boku \
+		głosi: „człowiek wchodzić, robot wychodzić”. Człowiek musi \
+		leżeć i być żywy. Między użyciami musi ostygnąć."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_ALL_MOB_LAYER // Overhead

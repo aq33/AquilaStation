@@ -18,7 +18,7 @@
 /////////////////////////////////////////
 
 /datum/design/mech_foam_extinguisher
-	name = "Exosuit Engineering Equipment (Hull Foam Dispenser)"
+	name = "Inżynieria egzoszkieletu (dozownik piany kadłubowej)"
 	id = "mech_foam_extinguisher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/extinguisher/hull_repair_juice
@@ -27,7 +27,7 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/smart_foam_launcher
-	name = "Exosuit Engineering Equipment (Smart Metal Foam Launcher)"
+	name = "Inżynieria egzoszkieletu (wyrzutnia inteligentnej piany metalowej)"
 	id = "mech_smart_foam_launcher"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/smart_foam
@@ -36,7 +36,7 @@
 	category = list("Exosuit Equipment")
 
 /datum/design/borg_upgrade_muni_app
-	name = "Cyborg Upgrade (Munitions Manipulator)"
+	name = "Ulepszenie cyborga (aparat do obsługi amunicji)"
 	id = "borg_upgrade_muniapp"
 	build_type = MECHFAB
 	build_path = /obj/item/borg/upgrade/munitions

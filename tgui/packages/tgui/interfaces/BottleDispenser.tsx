@@ -21,10 +21,10 @@ export const BottleDispenser = (props) => {
       <Window.Content>
         <Section>
           <LabeledList>
-            <LabeledList.Item label="Bottle Volume">
+            <LabeledList.Item label="Objętość butelki">
               <NumberInput
                 value={bottle_size}
-                unit="u"
+                unit="j."
                 width="43px"
                 minValue={5}
                 maxValue={30}
@@ -37,7 +37,7 @@ export const BottleDispenser = (props) => {
                 }
               />
             </LabeledList.Item>
-            <LabeledList.Item label="Bottle Name">
+            <LabeledList.Item label="Nazwa butelki">
               <Button
                 icon="pencil-alt"
                 content={bottle_name}

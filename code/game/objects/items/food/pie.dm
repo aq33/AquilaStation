@@ -21,7 +21,7 @@
 		AddElement(/datum/element/processable, TOOL_KNIFE, slice_type, yield, table_required = TRUE, screentip_verb = "Pokrój")
 
 /obj/item/food/pieslice
-	name = "pie slice"
+	name = "kawałek placka"
 	icon = 'icons/obj/food/piecake.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
@@ -30,8 +30,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pie/plain
-	name = "plain pie"
-	desc = "A simple pie, still delicious."
+	name = "zwykły placek"
+	desc = "Prosty placek, ale wciąż pyszny."
 	icon_state = "pie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -42,8 +42,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/pie/cream
-	name = "banana cream pie"
-	desc = "Just like back home, on clown planet! HONK!"
+	name = "tort z kremem bananowym"
+	desc = "Zupełnie jak w domu, na planecie klaunów! HONK!"
 	icon_state = "pie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -107,7 +107,7 @@
 			for(var/atom/movable/A in contents)
 				A.forceMove(T)
 				A.throw_at(T, 1, 1)
-				M.visible_message("[src] bursts out of [M]!</span>")
+				M.visible_message("[src] wyrywa się z [M]!</span>")
 			M.emote("scream")
 			M.Knockdown(40)
 			M.adjustBruteLoss(60)
@@ -115,8 +115,8 @@
 */
 
 /obj/item/food/pie/berryclafoutis
-	name = "berry clafoutis"
-	desc = "No black birds, this is a good sign."
+	name = "clafoutis jagodowe"
+	desc = "Żadnych kosów w środku, to dobry znak."
 	icon_state = "berryclafoutis"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -129,16 +129,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/berry
-	name = "berry clafoutis slice"
-	desc = "A slice of berry clafoutis."
+	name = "kawałek clafoutis jagodowego"
+	desc = "Kawałek jagodowego clafoutis."
 	icon_state = "berryclafoutis_slice"
 	tastes = list("placek" = 1, "jeżyny" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/bearypie
-	name = "beary pie"
-	desc = "No brown bears, this is a good sign."
+	name = "placek z niedźwiedziem"
+	desc = "Żadnych niedźwiedzi brunatnych, to dobry znak."
 	icon_state = "bearypie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -151,17 +151,17 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pieslice/beary
-	name = "beary pie slice"
-	desc = "A slice of beary pie."
+	name = "kawałek placka z niedźwiedziem"
+	desc = "Kawałek placka z niedźwiedziem."
 	icon_state = "bearypie_slice"
 	tastes = list("placek" = 1, "mięso" = 1, "łosoś" = 1)
 	foodtypes = GRAIN | SUGAR | MEAT | FRUIT
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pie/meatpie
-	name = "meat-pie"
+	name = "placek z mięsem"
 	icon_state = "meatpie"
-	desc = "An old barber's recipe, very delicious!"
+	desc = "Stary przepis pewnego golibrody, bardzo smaczny!"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 4,
@@ -173,17 +173,17 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/meat
-	name = "meat-pie slice"
-	desc = "Oh nice, meat pie!"
+	name = "kawałek placka z mięsem"
+	desc = "O, super, placek z mięsem!"
 	icon_state = "meatpie_slice"
 	tastes = list("placek" = 1, "mięso" = 1)
 	foodtypes = GRAIN | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/tofupie
-	name = "tofu-pie"
+	name = "placek z tofu"
 	icon_state = "meatpie"
-	desc = "A delicious tofu pie."
+	desc = "Pyszny placek z tofu."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
 		/datum/reagent/consumable/nutriment/protein = 1, // yeah. Theres 'technically' protein in this thing.
@@ -195,16 +195,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/tofu
-	name = "tofu-pie slice"
-	desc = "Oh nice, meat pie- WAIT A MINUTE!!"
+	name = "kawałek placka z tofu"
+	desc = "O, super, placek z mięsem... ZARAZ, CHWILECZKĘ!!"
 	icon_state = "meatpie_slice"
 	tastes = list("placek" = 1, "tofu" = 1)
 	foodtypes = GRAIN | VEGETABLES
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/amanita_pie
-	name = "amanita pie"
-	desc = "Sweet and tasty poison pie."
+	name = "placek z muchomorem"
+	desc = "Słodki i smaczny placek z trucizną."
 	icon_state = "amanita_pie"
 	bite_consumption = 4
 	food_reagents = list(
@@ -218,8 +218,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/plump_pie
-	name = "plump pie"
-	desc = "I bet you love stuff made out of plump helmets!"
+	name = "placek z pulchnym hełmem"
+	desc = "Założę się, że uwielbiasz rzeczy z pulchnych hełmów!"
 	icon_state = "plump_pie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -232,8 +232,8 @@
 /obj/item/food/pie/plump_pie/Initialize(mapload)
 	var/fey = prob(10)
 	if(fey)
-		name = "exceptional plump pie"
-		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
+		name = "wyjątkowy placek z pulchnym hełmem"
+		desc = "Mikrofalówkę ogarnia natchnienie! Upiekła wyjątkowy placek z pulchnym hełmem!"
 		food_reagents = list(
 			/datum/reagent/consumable/nutriment = 11,
 			/datum/reagent/medicine/omnizine = 5,
@@ -242,9 +242,9 @@
 	. = ..()
 
 /obj/item/food/pie/xemeatpie
-	name = "xeno-pie"
+	name = "ksenoplacek"
 	icon_state = "xenomeatpie"
-	desc = "A delicious meatpie. Probably heretical."
+	desc = "Pyszny placek z mięsem. Prawdopodobnie heretycki."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
 		/datum/reagent/consumable/nutriment/protein = 4,
@@ -256,16 +256,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/xeno
-	name = "xeno-pie slice"
-	desc = "Oh god... Is that still moving?"
+	name = "kawałek ksenoplacka"
+	desc = "O Boże... To się jeszcze rusza?"
 	icon_state = "xenopie_slice"
 	tastes = list("placek" = 1, "mięso" = 1, "kwas" = 1)
 	foodtypes = GRAIN | MEAT
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/applepie
-	name = "apple pie"
-	desc = "A pie containing sweet sweet love... or apple."
+	name = "szarlotka"
+	desc = "Placek pełen słodkiej, słodkiej miłości... albo jabłek."
 	icon_state = "applepie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -277,16 +277,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/apple
-	name = "apple pie slice"
-	desc = "A slice of comfy apple pie, warm autumn memories ahead."
+	name = "kawałek szarlotki"
+	desc = "Kawałek przytulnej szarlotki, na horyzoncie ciepłe jesienne wspomnienia."
 	icon_state = "applepie_slice"
 	tastes = list("placek" = 1, "jabłka" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/cherrypie
-	name = "cherry pie"
-	desc = "Taste so good, make a grown man cry."
+	name = "placek wiśniowy"
+	desc = "Tak dobry, że dorosły mężczyzna zapłacze."
 	icon_state = "cherrypie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -298,16 +298,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/cherry
-	name = "cherry pie slice"
-	desc = "A slice of delicious cherry pie, I hope it's morellos!"
+	name = "kawałek placka wiśniowego"
+	desc = "Kawałek pysznego placka wiśniowego, oby z morelli!"
 	icon_state = "cherrypie_slice"
 	tastes = list("placek" = 1, "wiśnie" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/pumpkinpie
-	name = "pumpkin pie"
-	desc = "A delicious treat for the autumn months."
+	name = "placek dyniowy"
+	desc = "Pyszny przysmak na jesienne miesiące."
 	icon_state = "pumpkinpie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 11,
@@ -319,16 +319,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/pumpkin
-	name = "pumpkin pie slice"
-	desc = "A slice of pumpkin pie, with whipped cream on top. Perfection."
+	name = "kawałek placka dyniowego"
+	desc = "Kawałek placka dyniowego z bitą śmietaną na wierzchu. Perfekcja."
 	icon_state = "pumpkinpieslice"
 	tastes = list("placek" = 1, "dynia" = 1)
 	foodtypes = GRAIN | VEGETABLES | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/appletart
-	name = "golden apple streusel tart"
-	desc = "A tasty dessert that won't make it through a metal detector."
+	name = "tarta kruszonkowa ze złotym jabłkiem"
+	desc = "Smaczny deser, który nie przejdzie przez wykrywacz metali."
 	icon_state = "gappletart"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -340,8 +340,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pie/grapetart
-	name = "grape tart"
-	desc = "A tasty dessert that reminds you of the wine you didn't make."
+	name = "tarta winogronowa"
+	desc = "Smaczny deser, który przypomina ci wino, którego nie zrobiłeś."
 	icon_state = "grapetart"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -352,7 +352,7 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pie/mimetart
-	name = "mime tart"
+	name = "tarta mima"
 	desc = "..."
 	icon_state = "mimetart"
 	food_reagents = list(
@@ -365,8 +365,8 @@
 	crafted_food_buff = /datum/status_effect/food/trait/mute
 
 /obj/item/food/pie/berrytart
-	name = "berry tart"
-	desc = "A tasty dessert of many different small barries on a thin pie crust."
+	name = "tarta jagodowa"
+	desc = "Smaczny deser z wieloma różnymi drobnymi jagodami na cienkim kruchym spodzie."
 	icon_state = "berrytart"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
@@ -376,8 +376,8 @@
 	foodtypes = GRAIN | FRUIT
 
 /obj/item/food/pie/cocoalavatart
-	name = "chocolate lava tart"
-	desc = "A tasty dessert made of chocolate, with a liquid core." //But it doesn't even contain chocolate...
+	name = "czekoladowa tarta lawowa"
+	desc = "Smaczny czekoladowy deser z płynnym środkiem." //But it doesn't even contain chocolate...
 	icon_state = "cocolavatart"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 4,
@@ -387,8 +387,8 @@
 	foodtypes = GRAIN | SUGAR
 
 /obj/item/food/pie/blumpkinpie
-	name = "blumpkin pie"
-	desc = "An odd blue pie made with toxic blumpkin."
+	name = "placek z niebieskiej dyni"
+	desc = "Dziwny niebieski placek z toksycznej niebieskiej dyni."
 	icon_state = "blumpkinpie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 13,
@@ -400,8 +400,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/blumpkin
-	name = "blumpkin pie slice"
-	desc = "A slice of blumpkin pie, with whipped cream on top. Is this edible?"
+	name = "kawałek placka z niebieskiej dyni"
+	desc = "Kawałek placka z niebieskiej dyni z bitą śmietaną na wierzchu. To w ogóle jadalne?"
 	icon_state = "blumpkinpieslice"
 	tastes = list("placek" = 1, "haust wody z basenu" = 1)
 	foodtypes = GRAIN | VEGETABLES
@@ -409,7 +409,7 @@
 
 /obj/item/food/pie/dulcedebatata
 	name = "dulce de batata"
-	desc = "A delicious jelly made with sweet potatoes."
+	desc = "Pyszna galaretka z batatów."
 	icon_state = "dulcedebatata"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 14,
@@ -421,16 +421,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/dulcedebatata
-	name = "dulce de batata slice"
-	desc = "A slice of sweet dulce de batata jelly."
+	name = "kawałek dulce de batata"
+	desc = "Kawałek słodkiej galaretki dulce de batata."
 	icon_state = "dulcedebatataslice"
 	tastes = list("galaretka" = 1, "batat" = 1)
 	foodtypes = VEGETABLES | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/frostypie
-	name = "frosty pie"
-	desc = "Tastes like blue and cold."
+	name = "mroźny placek"
+	desc = "Smakuje jak błękit i chłód."
 	icon_state = "frostypie"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 14,
@@ -442,16 +442,16 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pieslice/frosty
-	name = "frosty pie slice"
-	desc = "Tasty blue, like my favourite crayon!"
+	name = "kawałek mroźnego placka"
+	desc = "Smaczny błękit, jak moja ulubiona kredka!"
 	icon_state = "frostypie_slice"
 	tastes = list("placek" = 1, "mięta" = 1)
 	foodtypes = GRAIN | FRUIT | SUGAR
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/pie/baklava
-	name = "baklava"
-	desc = "A delightful healthy snack made of nut layers with thin bread."
+	name = "baklawa"
+	desc = "Przepyszna, zdrowa przekąska z warstw orzechów i cienkiego ciasta."
 	icon_state = "baklava"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 12,
@@ -464,8 +464,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_4
 
 /obj/item/food/pieslice/baklava
-	name = "baklava dish"
-	desc = "A portion of a delightful healthy snack made of nut layers with thin bread"
+	name = "porcja baklawy"
+	desc = "Porcja przepysznej, zdrowej przekąski z warstw orzechów i cienkiego ciasta"
 	icon_state = "baklavaslice"
 	tastes = list("orzechy" = 1, "placek" = 1)
 	foodtypes = /*NUTS | */SUGAR

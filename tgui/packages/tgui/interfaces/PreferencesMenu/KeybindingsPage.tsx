@@ -23,6 +23,26 @@ const CATEGORY_SCALES = {
   CLIENT: '100%',
   COMMUNICATION: '100%',
   ROBOT: '100%',
+  // AQUILA: skale dla polskich nazw kategorii
+  SI: '100%',
+  KLIENT: '100%',
+  KOMUNIKACJA: '100%',
+};
+
+// AQUILA: kategorie przychodzą z DM jako klucze (CATEGORY_*), tłumaczymy tylko napis
+const CATEGORY_NAMES: Record<string, string> = {
+  ADMIN: 'ADMIN',
+  AI: 'SI',
+  CARBON: 'ORGANIZMY',
+  CLIENT: 'KLIENT',
+  COMMUNICATION: 'KOMUNIKACJA',
+  EMOTE: 'EMOTKI',
+  HUMAN: 'CZŁOWIEK',
+  MISC: 'RÓŻNE',
+  MOVEMENT: 'RUCH',
+  OVERMAP: 'OVERMAPA',
+  ROBOT: 'ROBOT',
+  VEHICLE: 'POJAZDY',
 };
 
 type Keybinding = {
@@ -213,7 +233,7 @@ const ResetToDefaultButton = (props: { keybindingId: string }) => {
         });
       }}
     >
-      Reset to Defaults
+      Przywróć domyślne
     </Button>
   );
 };
@@ -427,12 +447,12 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
             fontWeight: 'bold',
           }}
         >
-          Error: Unable to fetch keybinding data.
+          Błąd: nie udało się pobrać danych skrótów klawiszowych.
           <br />
-          Contact a maintainer or create an issue report by pressing Report
-          Issue in the top right of the game window.
+          Skontaktuj się z maintainerem albo zgłoś błąd przyciskiem w prawym
+          górnym rogu okna gry.
           <br />
-          Reconnecting will also likely fix this issue.
+          Ponowne połączenie też najpewniej pomoże.
           <br />
           <Box
             textAlign="left"
@@ -440,7 +460,7 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
             textColor="white"
             style={{ whiteSpace: 'pre-wrap' }}
           >
-            Error Details:{'\n'}
+            Szczegóły błędu:{'\n'}
             {typeof this.state.error === 'object' &&
             Object.keys(this.state.error).includes('stack')
               ? this.state.error.stack
@@ -454,7 +474,7 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
     const keybindings = this.state?.keybindings;
 
     if (!keybindings) {
-      return <Box>Loading keybindings...</Box>;
+      return <Box>Wczytywanie skrótów klawiszowych...</Box>;
     }
 
     const keybindingEntries = sortKeybindingsByCategory(
@@ -478,7 +498,7 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
               categoryEntries={keybindingEntries.map(
                 ([category, keybindings]) => {
                   return [
-                    category,
+                    CATEGORY_NAMES[category] || category,
                     <Stack key={category} vertical fill>
                       {sortKeybindings(Object.entries(keybindings))
                         .filter(([keybindingId, keybinding]) => {
@@ -538,7 +558,8 @@ export class KeybindingsPage extends Component<{}, KeybindingsPageState> {
 
           <Stack.Item align="center">
             <Button.Confirm
-              content="Reset all keybindings"
+              confirmContent="Na pewno?"
+              content="Zresetuj wszystkie skróty"
               onClick={() => act('reset_all_keybinds')}
             />
           </Stack.Item>

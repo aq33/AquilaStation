@@ -132,7 +132,7 @@ export const statReducer = (state = initialState, action) => {
       alert_popup: null,
       alert_br: {
         title: 'Battle Royale',
-        text: 'The round end was delayed, would you like to start Battle Royale?',
+        text: 'Koniec rundy został opóźniony. Chcesz rozpocząć Battle Royale?',
       },
     };
   }

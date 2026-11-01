@@ -3,7 +3,7 @@
 /////////////////////////////////////////
 
 /datum/design/coffeepot
-	name = "Coffeepot"
+	name = "Dzbanek do kawy"
 	id = "coffeepot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/glass = 500, /datum/material/plastic = 500)
@@ -12,7 +12,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/coffeepot_bluespace
-	name = "Bluespace Coffeepot"
+	name = "Bluespace'owy dzbanek do kawy"
 	id = "bluespace_coffeepot"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 1000, /datum/material/plastic = 500, /datum/material/bluespace = 500)
@@ -21,7 +21,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/coffee_cartridge
-	name = "Blank Coffee Cartridge"
+	name = "Pusty wkład na kawę"
 	id = "coffee_cartridge"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 1000)
@@ -30,7 +30,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/syrup_bottle
-	name = "Syrup Bottle"
+	name = "Butelka syropu"
 	id = "syrup_bottle"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/plastic = 1000)

@@ -4,7 +4,7 @@
 /datum/mutation/hulk/var/tg_bodypart_color
 
 /datum/mutation/hulk/wizardly
-	name = "Hulk (Magical)"
+	name = "Hulk (magiczny)"
 	species_allowed = list() // każdy gatunek, także szkielety i jaszczury
 	health_req = 0
 	instability = 0
@@ -14,7 +14,7 @@
 	conflicts = typesof(/datum/mutation/hulk)
 
 /datum/mutation/hulk/superhuman
-	name = "Hulk (Super)"
+	name = "Hulk (super)"
 	health_req = 0
 	instability = 0
 	// Walka do ostatniego tchu
@@ -30,7 +30,7 @@
 
 /datum/mutation/hulk/ork
 	name = "Ork"
-	desc = "A variant of the hulk mutation that is also known to inhibit the subject's brain functions."
+	desc = "Odmiana mutacji hulka, która przy okazji upośledza pracę mózgu pacjenta."
 	text_gain_indication = "<span class='notice'>Czujesz się znacznie głupszy!</span>"
 	tg_bodypart_color = "828163"
 

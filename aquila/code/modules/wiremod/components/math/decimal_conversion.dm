@@ -4,7 +4,7 @@
  * Return a number from an array of binary inputs.
  */
 /obj/item/circuit_component/decimal_conversion
-	display_name = "Decimal Conversion"
+	display_name = "Konwersja na system dziesiętny"
 	desc = "Scala tablicę cyfr binarnych, czyli bitów, zapisanych jako 1 lub 0, często używanych w operacjach logicznych i binarnych, w liczbę dziesiętną."
 	category = "Math"
 

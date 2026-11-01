@@ -211,7 +211,7 @@
 
 /obj/structure/overmap/vv_get_dropdown()
 	. = ..()
-	VV_DROPDOWN_OPTION(VV_HK_FULL_REPAIR, "Full Repair")
+	VV_DROPDOWN_OPTION(VV_HK_FULL_REPAIR, "Pełna naprawa")
 
 /obj/structure/overmap/vv_do_topic(list/href_list)
 	. = ..()
@@ -219,4 +219,4 @@
 		if(!check_rights(R_DEBUG)) //Hmm?
 			return
 		full_repair()
-		message_admins("Admin [key_name_admin(usr)] has fully repaired [src].")
+		message_admins("Admin [key_name_admin(usr)] w pełni naprawia [src].")

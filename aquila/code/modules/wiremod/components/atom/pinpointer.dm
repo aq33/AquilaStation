@@ -4,7 +4,7 @@
  * Return the location of its input.
  */
 /obj/item/circuit_component/pinpointer
-	display_name = "Proximity Pinpointer"
+	display_name = "Pinpointer zbliżeniowy"
 	desc = "Komponent, który zwraca współrzędne xyz podanego obiektu, o ile jest w zasięgu wzroku."
 	category = "Entity"
 

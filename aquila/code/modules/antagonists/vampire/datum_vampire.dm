@@ -1,6 +1,6 @@
 /datum/antagonist/vampire
 	name = "\improper Wampir"
-	roundend_category = "vampires"
+	roundend_category = "wampiry"
 	antagpanel_category = "Vampire"
 	banning_key = ROLE_VAMPIRE
 	required_living_playtime = 4

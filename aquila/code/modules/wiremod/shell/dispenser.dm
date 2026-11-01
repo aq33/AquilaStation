@@ -4,7 +4,7 @@
  * Immobile (but not dense) shell that can receive and dispense items.
  */
 /obj/structure/dispenser_bot
-	name = "dispenser"
+	name = "dystrybutor"
 	icon = 'aquila/icons/obj/wiremod/circuits.dmi'
 	icon_state = "setup_drone_arms"
 
@@ -94,7 +94,7 @@
 	return TRUE
 
 /obj/item/circuit_component/dispenser_bot
-	display_name = "Dispenser"
+	display_name = "Dystrybutor"
 	desc = "Bot-dystrybutor, który potrafi wydawać przedmioty."
 
 	/// The list of items
@@ -172,7 +172,7 @@
 			), PROC_REF(remove_vendor_component))
 
 /obj/item/circuit_component/vendor_component
-	display_name = "Vend"
+	display_name = "Wydawanie"
 	desc = "Komponent do wydawania określonych przedmiotów z bota-dystrybutora."
 
 	circuit_flags = CIRCUIT_FLAG_OUTPUT_SIGNAL

@@ -50,8 +50,8 @@
 	. = ..()
 
 /atom/movable/screen/alert/status_effect/in_love
-	name = "In Love"
-	desc = "You feel so wonderfully in love!"
+	name = "Zakochanie"
+	desc = "Jesteś cudownie zakochany!"
 	icon_state = "in_love"
 
 /datum/status_effect/in_love
@@ -65,7 +65,7 @@
 	. = ..()
 	if(.)
 		date = love_interest
-	linked_alert.desc = "You're in love with [date.real_name]! How lovely."
+	linked_alert.desc = "Kochasz się w: [date.real_name]! Jak uroczo."
 
 /datum/status_effect/in_love/tick()
 	if(date)

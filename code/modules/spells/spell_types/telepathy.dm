@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/telepathy
-	name = "Telepathy"
-	desc = "Telepathically transmits a message to the target."
+	name = "Telepatia"
+	desc = "Telepatycznie przekazuje wiadomość celowi."
 	charge_max = 0
 	clothes_req = 0
 	range = 7
@@ -35,4 +35,4 @@
 				continue
 			var/follow_rev = FOLLOW_LINK(ded, user)
 			var/follow_whispee = FOLLOW_LINK(ded, M)
-			to_chat(ded, "[follow_rev] <span class='[boldnotice]'>[user] [name]:</span> <span class='[notice]'>\"[msg]\" to</span> [follow_whispee] <span class='name'>[M]</span>")
+			to_chat(ded, "[follow_rev] <span class='[boldnotice]'>[user] [name]:</span> <span class='[notice]'>\"[msg]\" do</span> [follow_whispee] <span class='name'>[M]</span>")

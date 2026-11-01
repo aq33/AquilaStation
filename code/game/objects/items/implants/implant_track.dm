@@ -1,6 +1,6 @@
 /obj/item/implant/tracking
-	name = "tracking implant"
-	desc = "Track with this."
+	name = "implant śledzący"
+	desc = "Służy do śledzenia."
 	activated = FALSE
 	///for how many deciseconds after user death will the implant work?
 	var/lifespan_postmortem = 6000
@@ -10,8 +10,8 @@
 	var/timerid
 
 /obj/item/implant/tracking/c38
-	name = "TRAC implant"
-	desc = "A smaller tracking implant that supplies power for only a few minutes."
+	name = "implant TRAC"
+	desc = "Mniejszy implant śledzący, który ma zasilanie tylko na kilka minut."
 	var/lifespan = 3000 //how many deciseconds does the implant last?
 	allow_teleport = FALSE
 

@@ -1,7 +1,7 @@
 // Relays don't handle any actual communication. Global NTNet datum does that, relays only tell the datum if it should or shouldn't work.
 /obj/machinery/ntnet_relay
-	name = "NTNet Quantum Relay"
-	desc = "A very complex router and transmitter capable of connecting electronic devices together. Looks fragile."
+	name = "przekaźnik kwantowy NTNet"
+	desc = "Bardzo złożony router i nadajnik, który łączy ze sobą urządzenia elektroniczne. Wygląda na delikatny."
 	use_power = ACTIVE_POWER_USE
 	active_power_usage = 10000 //10kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational. Used to be 20 but that actually drained the smes one round
 	idle_power_usage = 100
@@ -124,7 +124,7 @@
 			return TRUE
 		if("toggle")
 			set_relay_enabled(!relay_enabled)
-			SSnetworks.add_log("Quantum relay manually [relay_enabled ? "enabled" : "disabled"].")
+			SSnetworks.add_log("Przekaźnik kwantowy ręcznie [relay_enabled ? "włączony" : "wyłączony"].")
 			update_icon()
 			return TRUE
 

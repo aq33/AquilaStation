@@ -12,71 +12,71 @@ const logTextAlways = `
 ----------------------------------------
 `;
 const logTextPrependAlways = `
-Cryptographic Sequence accepted.
+Sekwencja kryptograficzna przyjęta.
 
 
-Receiving key dump...
+Odbieranie zrzutu kluczy...
 
 
-Key dump retrieved.
+Zrzut kluczy pobrany.
 
 
-Initiating brute-force protocols.
+Uruchamianie protokołów brute-force.
 
 
-Syndix uplink established.
+Nawiązano połączenie z Syndix.
 
 
-Remote processing established.
+Zdalne przetwarzanie aktywne.
 
 
-Online!
+Aktywne!
 
 
 
 `;
 const logText = `
 
-Sending rootkit...
+Wysyłanie rootkita...
 
 
-Root privileges established.
-
-
-
-
-
-
-Initiating software link...
-
-
-Online!
-
-
-
-
-
-Enabling self-destruct protocols...
-
-
-Online!
-
-
-
-
-
-Removing packet limits...
-
-
-Done!
+Uzyskano uprawnienia roota.
 
 
 
 
 
 
+Nawiązywanie połączenia programowego...
 
-Cryptographic Sequence complete.
+
+Aktywne!
+
+
+
+
+
+Włączanie protokołów autodestrukcji...
+
+
+Aktywne!
+
+
+
+
+
+Usuwanie limitów pakietów...
+
+
+Gotowe!
+
+
+
+
+
+
+
+Sekwencja kryptograficzna zakończona.
 `;
 
 const FPS = 120;

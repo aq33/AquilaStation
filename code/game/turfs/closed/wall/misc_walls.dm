@@ -1,6 +1,6 @@
 /turf/closed/wall/mineral/cult
-	name = "runed metal wall"
-	desc = "A cold metal wall engraved with indecipherable symbols. Studying them causes your head to pound."
+	name = "runiczna metalowa ściana"
+	desc = "Zimna metalowa ściana pokryta nieczytelnymi symbolami. Gdy się w nie wpatrujesz, łupie cię w głowie."
 	icon = 'icons/turf/walls/cult_wall.dmi'
 	icon_state = "cult"
 	canSmoothWith = null
@@ -30,8 +30,8 @@
 			H.start_pulling(stored_pulling, supress_message = TRUE)
 
 /turf/closed/wall/mineral/cult/artificer
-	name = "runed stone wall"
-	desc = "A cold stone wall engraved with indecipherable symbols. Studying them causes your head to pound."
+	name = "runiczna kamienna ściana"
+	desc = "Zimna kamienna ściana pokryta nieczytelnymi symbolami. Gdy się w nie wpatrujesz, łupie cię w głowie."
 
 /turf/closed/wall/mineral/cult/artificer/break_wall()
 	new /obj/effect/temp_visual/cult/turf(get_turf(src))
@@ -48,7 +48,7 @@
 /turf/closed/wall/ice
 	icon = 'icons/turf/walls/icedmetal_wall.dmi'
 	icon_state = "iced"
-	desc = "A wall covered in a thick sheet of ice."
+	desc = "Ściana pokryta grubą warstwą lodu."
 	canSmoothWith = null
 	rcd_memory = null
 	hardness = 35
@@ -84,8 +84,8 @@
 	AddElement(/datum/element/rust)
 
 /turf/closed/wall/mineral/bronze
-	name = "clockwork wall"
-	desc = "A huge chunk of bronze, decorated like gears and cogs."
+	name = "mechaniczna ściana"
+	desc = "Ogromny blok brązu, zdobiony na kształt kół zębatych i trybików."
 	icon = 'icons/turf/walls/clockwork_wall.dmi'
 	icon_state = "clockwork_wall"
 	sheet_type = /obj/item/stack/tile/bronze
@@ -94,8 +94,8 @@
 
 
 /turf/closed/indestructible/cordon
-	name = "cordon"
-	desc = "The final word in problem solving."
+	name = "kordon"
+	desc = "Ostatnie słowo w rozwiązywaniu problemów."
 	icon_state = "cordon"
 
 //Will this look good? No. Will it work? Probably.

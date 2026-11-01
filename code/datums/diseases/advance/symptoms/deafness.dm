@@ -17,7 +17,7 @@ Bonus
 
 /datum/symptom/deafness
 
-	name = "Deafness"
+	name = "Głuchota"
 	desc = "Wirus powoduje zapalenie błon bębenkowych, prowadząc do okresowej głuchoty."
 	stealth = -1
 	resistance = -1
@@ -52,7 +52,7 @@ Bonus
 	switch(A.stage)
 		if(3, 4)
 			if(prob(base_message_chance) && !suppress_warning)
-				to_chat(M, "<span class='warning'>[pick("You hear a ringing in your ear.", "Your ears pop.")]</span>")
+				to_chat(M, "<span class='warning'>[pick("Dzwoni ci w uchu.", "Strzela ci w uszach.")]</span>")
 		if(5)
 			if(power >= 2)
 				var/obj/item/organ/ears/ears = M.getorganslot(ORGAN_SLOT_EARS)

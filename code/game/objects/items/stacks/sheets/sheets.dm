@@ -1,5 +1,5 @@
 /obj/item/stack/sheet
-	name = "sheet"
+	name = "arkusz"
 	lefthand_file = 'nsv13/icons/mob/inhands/misc/sheets_lefthand.dmi' //NSV13
 	righthand_file = 'nsv13/icons/mob/inhands/misc/sheets_righthand.dmi' //NSV13
 

@@ -21,7 +21,7 @@
 	if(turfs.len) //Pick a turf to spawn at if we can
 		var/turf/T = pick(turfs)
 		new /datum/spacevine_controller(T, list(pick(subtypesof(/datum/spacevine_mutation))), rand(10,100), rand(1,6), src) //spawn a controller at turf with randomized stats and a single random mutation
-		message_admins("Event spacevine has been spawned in [ADMIN_VERBOSEJMP(T)].")
+		message_admins("Event kosmicznych pnączy pojawia się w [ADMIN_VERBOSEJMP(T)].")
 
 /datum/spacevine_mutation
 	var/name = ""
@@ -71,7 +71,7 @@
 
 
 /datum/spacevine_mutation/light
-	name = "light"
+	name = "świecąca"
 	hue = "#ffff00"
 	quality = POSITIVE
 	severity = 4
@@ -81,7 +81,7 @@
 		holder.set_light(severity, 0.3)
 
 /datum/spacevine_mutation/toxicity
-	name = "toxic"
+	name = "toksyczna"
 	hue = "#ff00ff"
 	severity = 10
 	quality = NEGATIVE
@@ -98,7 +98,7 @@
 		eater.adjustToxLoss(5)
 
 /datum/spacevine_mutation/explosive  //OH SHIT IT CAN CHAINREACT RUN!!!
-	name = "explosive"
+	name = "wybuchowa"
 	hue = "#ff0000"
 	quality = NEGATIVE
 	severity = 2
@@ -117,7 +117,7 @@
 	explosion(holder.loc, 0, 0, severity, 0, 0)
 
 /datum/spacevine_mutation/fire_proof
-	name = "fire proof"
+	name = "ognioodporna"
 	hue = "#ff8888"
 	quality = MINOR_NEGATIVE
 
@@ -131,7 +131,7 @@
 		. = expected_damage
 
 /datum/spacevine_mutation/vine_eating
-	name = "vine eating"
+	name = "pożerająca pnącza"
 	hue = "#ff7700"
 	quality = MINOR_NEGATIVE
 
@@ -140,7 +140,7 @@
 		qdel(prey)
 
 /datum/spacevine_mutation/aggressive_spread  //very OP, but im out of other ideas currently
-	name = "aggressive spreading"
+	name = "agresywnie rosnąca"
 	hue = "#333333"
 	severity = 3
 	quality = NEGATIVE
@@ -193,7 +193,7 @@
 		log_combat(S, M, "aggressively spread into") //You aren't being attacked by the vines. You just happen to stand in their way.
 
 /datum/spacevine_mutation/transparency
-	name = "transparent"
+	name = "przezroczysta"
 	hue = ""
 	quality = POSITIVE
 
@@ -202,7 +202,7 @@
 	holder.alpha = 125
 
 /datum/spacevine_mutation/oxy_eater
-	name = "oxygen consuming"
+	name = "pochłaniająca tlen"
 	hue = "#ffff88"
 	severity = 3
 	quality = NEGATIVE
@@ -214,7 +214,7 @@
 		GM.set_moles(GAS_O2, max(GM.get_moles(GAS_O2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/nitro_eater
-	name = "nitrogen consuming"
+	name = "pochłaniająca azot"
 	hue = "#8888ff"
 	severity = 3
 	quality = NEGATIVE
@@ -226,7 +226,7 @@
 		GM.set_moles(GAS_N2, max(GM.get_moles(GAS_N2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/carbondioxide_eater
-	name = "CO2 consuming"
+	name = "pochłaniająca CO2"
 	hue = "#00ffff"
 	severity = 3
 	quality = POSITIVE
@@ -238,7 +238,7 @@
 		GM.set_moles(GAS_CO2, max(GM.get_moles(GAS_CO2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/plasma_eater
-	name = "toxins consuming"
+	name = "pochłaniająca toksyny"
 	hue = "#ffbbff"
 	severity = 3
 	quality = POSITIVE
@@ -251,7 +251,7 @@
 		GM.set_moles(GAS_CONSTRICTED_PLASMA, max(GM.get_moles(GAS_CONSTRICTED_PLASMA) - severity * holder.energy, 0)) //NSV13 - constricted plasma
 
 /datum/spacevine_mutation/thorns
-	name = "thorny"
+	name = "ciernista"
 	hue = "#666666"
 	severity = 10
 	quality = NEGATIVE
@@ -270,7 +270,7 @@
 	. =	expected_damage
 
 /datum/spacevine_mutation/woodening
-	name = "hardened"
+	name = "utwardzona"
 	hue = "#997700"
 	quality = NEGATIVE
 
@@ -287,7 +287,7 @@
 		. = expected_damage
 
 /datum/spacevine_mutation/flowering
-	name = "flowering"
+	name = "kwitnąca"
 	hue = "#0A480D"
 	quality = NEGATIVE
 	severity = 10
@@ -303,8 +303,8 @@
 
 // SPACE VINES (Note that this code is very similar to Biomass code)
 /obj/structure/spacevine
-	name = "space vines"
-	desc = "An extremely expansionistic species of vine."
+	name = "kosmiczne pnącza"
+	desc = "Niezwykle ekspansywny gatunek pnącza."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
 	anchored = TRUE
@@ -327,14 +327,16 @@
 
 /obj/structure/spacevine/examine(mob/user)
 	. = ..()
-	var/text = "This one is a"
+	var/text = "Mutacje tego pnącza:"
 	if(mutations.len)
+		var/first = TRUE
 		for(var/A in mutations)
 			var/datum/spacevine_mutation/SM = A
-			text += " [SM.name]"
+			text += "[first ? "" : ","] [SM.name]"
+			first = FALSE
 	else
-		text += " normal"
-	text += " vine."
+		text += " brak, to zwykłe pnącze"
+	text += "."
 	. += text
 
 /obj/structure/spacevine/Destroy()
@@ -436,7 +438,7 @@
 /datum/spacevine_controller/vv_do_topic(href_list)
 	. = ..()
 	if(href_list[VV_HK_SPACEVINE_PURGE])
-		if(alert(usr, "Czy na pewno chcesz usunąć to skupisko kosmicznych pnączy?", "Delete Vines", "Yes", "No") == "Yes")
+		if(alert(usr, "Czy na pewno chcesz usunąć to skupisko kosmicznych pnączy?", "Usuń pnącza", "Tak", "Nie") == "Tak")
 			DeleteVines()
 
 /datum/spacevine_controller/proc/DeleteVines()	//this is kill

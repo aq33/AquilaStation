@@ -1,7 +1,7 @@
 
 /obj/item/colorizer
-    name = "ERROR Colorizer"
-    desc = "This colorizer will apply a new set of colors to an item."
+    name = "koloryzator BŁĄD"
+    desc = "Ten koloryzator nada przedmiotowi nowy zestaw kolorów."
     icon = 'icons/obj/crayons.dmi'
     icon_state = "rainbowcan"
     var/uses_left = 1

@@ -1,5 +1,5 @@
 /datum/chemical_reaction/methane
-	name = "Methane"
+	name = "Metan"
 	id = /datum/reagent/methane
 	results = list(/datum/reagent/methane = 4)
 	required_reagents = list(/datum/reagent/hydrogen = 4, /datum/reagent/carbon = 1)

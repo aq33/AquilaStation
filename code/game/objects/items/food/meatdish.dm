@@ -4,8 +4,8 @@
 ////////////////////////////////////////////FISH////////////////////////////////////////////
 
 /obj/item/food/cubancarp
-	name = "\improper Cuban carp"
-	desc = "A grifftastic sandwich that burns your tongue and then leaves it numb!"
+	name = "\improper kubański karp"
+	desc = "Grifftastyczna kanapka, która pali język, a potem zostawia go odrętwiałym!"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "cubancarp"
 	bite_consumption = 3
@@ -21,8 +21,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/fishmeat
-	name = "fish fillet"
-	desc = "A fillet of some fish meat."
+	name = "filet rybny"
+	desc = "Filet z jakiejś ryby."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "fishfillet"
 	food_reagents = list(
@@ -37,8 +37,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/fishmeat/carp
-	name = "carp fillet"
-	desc = "A fillet of spess carp meat."
+	name = "filet z karpia"
+	desc = "Filet z mięsa kosmicznego karpia."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 4,
 		/datum/reagent/toxin/carpotoxin = 2,
@@ -46,13 +46,13 @@
 	)
 
 /obj/item/food/fishmeat/carp/imitation
-	name = "imitation carp fillet"
-	desc = "Almost just like the real thing, kinda."
+	name = "imitacja filetu z karpia"
+	desc = "Prawie jak prawdziwy. Tak jakby."
 
 
 /obj/item/food/fishfingers
-	name = "fish fingers"
-	desc = "A finger of fish."
+	name = "paluszki rybne"
+	desc = "Rybny paluszek."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "fishfingers"
 	food_reagents = list(
@@ -67,8 +67,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/fishandchips
-	name = "fish and chips"
-	desc = "I do say so myself chap."
+	name = "ryba z frytkami"
+	desc = "Sam to mówię, mój drogi."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "fishandchips"
 	food_reagents = list(
@@ -82,8 +82,8 @@
 
 /*
 /obj/item/food/fishfry
-	name = "fish fry"
-	desc = "All that and no bag of chips..."
+	name = "smażona ryba"
+	desc = "Tyle zachodu, a frytek brak..."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "fishfry"
 	food_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
@@ -93,8 +93,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/fishtaco
-	name = "fish taco"
-	desc = "A taco with fish, cheese, and cabbage."
+	name = "taco z rybą"
+	desc = "Taco z rybą, serem i kapustą."
 	icon_state = "fishtaco"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("taco" = 4, "ryba" = 2, "ser" = 2, "kapusta" = 1)
@@ -107,7 +107,7 @@
 
 /obj/item/food/tofu
 	name = "tofu"
-	desc = "We all love tofu."
+	desc = "Wszyscy kochamy tofu."
 	icon_state = "tofu"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 2,
@@ -118,15 +118,15 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/tofu/prison
-	name = "soggy tofu"
-	desc = "You refuse to eat this strange bean curd."
+	name = "rozmokłe tofu"
+	desc = "Odmawiasz jedzenia tego dziwnego twarożku sojowego."
 	tastes = list("kwaśna, zgniła woda" = 1)
 	foodtypes = GROSS
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/spiderleg
-	name = "spider leg"
-	desc = "A still twitching leg of a giant spider... you don't really want to eat this, do you?"
+	name = "pajęcza noga"
+	desc = "Wciąż drgająca noga gigantycznego pająka... chyba nie chcesz tego jeść, co?"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spiderleg"
 	food_reagents = list(
@@ -143,8 +143,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/boiledspiderleg, rand(50 SECONDS, 60 SECONDS), TRUE, TRUE)
 
 /obj/item/food/cornedbeef
-	name = "corned beef and cabbage"
-	desc = "Now you can feel like a real tourist vacationing in Ireland."
+	name = "peklowana wołowina z kapustą"
+	desc = "Teraz możesz poczuć się jak prawdziwy turysta na wakacjach w Irlandii."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "cornedbeef"
 	food_reagents = list(
@@ -158,8 +158,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/bearsteak
-	name = "Filet migrawr"
-	desc = "Because eating bear wasn't manly enough."
+	name = "filet migrrrnon"
+	desc = "Bo jedzenie niedźwiedzia nie było dość męskie."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "bearsteak"
 	food_reagents = list(
@@ -175,8 +175,8 @@
 //Raw
 
 /obj/item/food/raw_meatball
-	name = "raw meatball"
-	desc = "A great meal all round. Not a cord of wood. Kinda raw"
+	name = "surowy klopsik"
+	desc = "Świetny posiłek pod każdym względem. Żadna tam kłoda drewna. Trochę surowy."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "raw_meatball"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
@@ -194,35 +194,35 @@
 	AddElement(/datum/element/processable, TOOL_ROLLINGPIN, patty_type, 1, 20)
 
 /obj/item/food/raw_meatball/human
-	name = "strange raw meatball"
+	name = "dziwny surowy klopsik"
 	meatball_type = /obj/item/food/meatball/human
 	patty_type = /obj/item/food/raw_patty/human
 
 /obj/item/food/raw_meatball/corgi
-	name = "raw corgi meatball"
+	name = "surowy klopsik z corgiego"
 	meatball_type = /obj/item/food/meatball/corgi
 	patty_type = /obj/item/food/raw_patty/corgi
 
 /obj/item/food/raw_meatball/xeno
-	name = "raw xeno meatball"
+	name = "surowy klopsik z ksenomorfa"
 	meatball_type = /obj/item/food/meatball/xeno
 	patty_type = /obj/item/food/raw_patty/xeno
 
 /obj/item/food/raw_meatball/bear
-	name = "raw bear meatball"
+	name = "surowy klopsik z niedźwiedzia"
 	meatball_type = /obj/item/food/meatball/bear
 	patty_type = /obj/item/food/raw_patty/bear
 
 /obj/item/food/raw_meatball/chicken
-	name = "raw chicken meatball"
+	name = "surowy klopsik z kurczaka"
 	meatball_type = /obj/item/food/meatball/chicken
 	patty_type = /obj/item/food/raw_patty/chicken
 
 //Cooked
 
 /obj/item/food/meatball
-	name = "meatball"
-	desc = "A great meal all round. Not a cord of wood."
+	name = "klopsik"
+	desc = "Świetny posiłek pod każdym względem. Żadna tam kłoda drewna."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meatball"
 	food_reagents = list(
@@ -235,27 +235,27 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/meatball/human
-	name = "strange meatball"
+	name = "dziwny klopsik"
 
 /obj/item/food/meatball/corgi
-	name = "corgi meatball"
+	name = "klopsik z corgiego"
 
 /obj/item/food/meatball/bear
-	name = "bear meatball"
+	name = "klopsik z niedźwiedzia"
 	tastes = list("mięso" = 1, "łosoś" = 1)
 
 /obj/item/food/meatball/xeno
-	name = "xenomorph meatball"
+	name = "klopsik z ksenomorfa"
 	tastes = list("mięso" = 1, "kwas" = 1)
 
 /obj/item/food/meatball/chicken
-	name = "chicken meatball"
+	name = "klopsik z kurczaka"
 	tastes = list("kurczak" = 1)
 	icon_state = "chicken_meatball"
 
 /obj/item/food/raw_patty
-	name = "raw patty"
-	desc = "I'm.....NOT REAAADDYY."
+	name = "surowy kotlet mielony"
+	desc = "Jeszcze.....NIE JESTEM GOTOOOWYYY."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "raw_patty"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
@@ -269,31 +269,31 @@
 	AddComponent(/datum/component/grillable, patty_type, rand(30 SECONDS, 40 SECONDS), TRUE)
 
 /obj/item/food/raw_patty/human
-	name = "strange raw patty"
+	name = "dziwny surowy kotlet mielony"
 	patty_type = /obj/item/food/patty/human
 
 /obj/item/food/raw_patty/corgi
-	name = "raw corgi patty"
+	name = "surowy kotlet mielony z corgiego"
 	patty_type = /obj/item/food/patty/corgi
 
 /obj/item/food/raw_patty/bear
-	name = "raw bear patty"
+	name = "surowy kotlet mielony z niedźwiedzia"
 	tastes = list("mięso" = 1, "łosoś" = 1)
 	patty_type = /obj/item/food/patty/bear
 
 /obj/item/food/raw_patty/xeno
-	name = "raw xenomorph patty"
+	name = "surowy kotlet mielony z ksenomorfa"
 	tastes = list("mięso" = 1, "kwas" = 1)
 	patty_type = /obj/item/food/patty/xeno
 
 /obj/item/food/raw_patty/chicken
-	name = "raw chicken patty"
+	name = "surowy kotlet mielony z kurczaka"
 	tastes = list("kurczak" = 1)
 	patty_type = /obj/item/food/patty/chicken
 
 /obj/item/food/patty
-	name = "patty"
-	desc = "The nanotrasen patty is the patty for you and me!"
+	name = "kotlet mielony"
+	desc = "Kotlet Nanotrasen to kotlet dla ciebie i dla mnie!"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "patty"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2)
@@ -306,27 +306,27 @@
 /obj/item/food/patty/plain
 
 /obj/item/food/patty/human
-	name = "strange patty"
+	name = "dziwny kotlet mielony"
 
 /obj/item/food/patty/corgi
-	name = "corgi patty"
+	name = "kotlet mielony z corgiego"
 
 /obj/item/food/patty/bear
-	name = "bear patty"
+	name = "kotlet mielony z niedźwiedzia"
 	tastes = list("mięso" = 1, "łosoś" = 1)
 
 /obj/item/food/patty/xeno
-	name = "xenomorph patty"
+	name = "kotlet mielony z ksenomorfa"
 	tastes = list("mięso" = 1, "kwas" = 1)
 
 /obj/item/food/patty/chicken
-	name = "chicken patty"
+	name = "kotlet mielony z kurczaka"
 	tastes = list("kurczak" = 1)
 	icon_state = "chicken_patty"
 
 /obj/item/food/raw_sausage
-	name = "raw sausage"
-	desc = "A piece of mixed, long meat, but then raw"
+	name = "surowa kiełbasa"
+	desc = "Kawałek mieszanego, długiego mięsa, tyle że surowy."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "raw_sausage"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -340,8 +340,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/sausage, rand(60 SECONDS, 75 SECONDS), TRUE)
 
 /obj/item/food/sausage
-	name = "sausage"
-	desc = "A piece of mixed, long meat."
+	name = "kiełbasa"
+	desc = "Kawałek mieszanego, długiego mięsa."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "sausage"
 	food_reagents = list(
@@ -361,8 +361,8 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/sausage/american, 1, 3 SECONDS, table_required = TRUE)
 
 /obj/item/food/sausage/american
-	name = "american sausage"
-	desc = "Snip."
+	name = "amerykańska kiełbasa"
+	desc = "Ciach."
 	icon_state = "american_sausage"
 
 /obj/item/food/sausage/american/make_processable() //or else it would make itself? Lmao
@@ -370,7 +370,7 @@
 
 /obj/item/food/salami
 	name = "salami"
-	desc = "A slice of cured salami. Surely they can have a little..."
+	desc = "Plasterek dojrzewającego salami. Na pewno można dać im trochę..."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "salami"
 	food_reagents = list(
@@ -383,8 +383,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/rawkhinkali
-	name = "raw khinkali"
-	desc = "One hundred khinkalis? Do I look like a pig?"
+	name = "surowe chinkali"
+	desc = "Sto chinkali? Czy ja wyglądam na świnię?"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "khinkali"
 	food_reagents = list(
@@ -402,8 +402,8 @@
 	AddComponent(/datum/component/grillable, /obj/item/food/khinkali, rand(50 SECONDS, 60 SECONDS), TRUE)
 
 /obj/item/food/khinkali
-	name = "khinkali"
-	desc = "One hundred khinkalis? Do I look like a pig?"
+	name = "chinkali"
+	desc = "Sto chinkali? Czy ja wyglądam na świnię?"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "khinkali"
 	food_reagents = list(
@@ -419,8 +419,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/meatbun
-	name = "meat bun"
-	desc = "Has the potential to not be dog."
+	name = "bułka z mięsem"
+	desc = "Istnieje szansa, że to nie pies."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meatbun"
 	food_reagents = list(
@@ -433,8 +433,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/stewedsoymeat
-	name = "stewed soy meat"
-	desc = "Even non-vegetarians will LOVE this!"
+	name = "duszone mięso sojowe"
+	desc = "Nawet niewegetarianie to POKOCHAJĄ!"
 	icon_state = "stewedsoymeat"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 5,
@@ -448,8 +448,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/boiledspiderleg
-	name = "boiled spider leg"
-	desc = "A giant spider's leg that's still twitching after being cooked. Gross!"
+	name = "gotowana pajęcza noga"
+	desc = "Noga gigantycznego pająka, która drga nawet po ugotowaniu. Ohyda!"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spiderlegcooked"
 	food_reagents = list(
@@ -463,8 +463,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/spidereggsham
-	name = "green eggs and ham"
-	desc = "Would you eat them on a train? Would you eat them on a plane? Would you eat them on a state of the art corporate deathtrap floating through space?"
+	name = "zielone jajka i szynka"
+	desc = "Zjadłbyś je w pociągu? Zjadłbyś je w samolocie? Zjadłbyś je w najnowocześniejszej korporacyjnej pułapce śmierci dryfującej przez kosmos?"
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "spidereggsham"
 	food_reagents = list(
@@ -478,8 +478,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/sashimi
-	name = "carp sashimi"
-	desc = "Celebrate surviving attack from hostile alien lifeforms by hospitalising yourself. You sure hope whoever made this is skilled."
+	name = "sashimi z karpia"
+	desc = "Uczcij przetrwanie ataku wrogich obcych form życia, lądując w szpitalu. Oby ten, kto to zrobił, znał się na rzeczy."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "sashimi"
 	food_reagents = list(
@@ -493,14 +493,14 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/nugget
-	name = "chicken nugget"
+	name = "nugget z kurczaka"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 2,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/vitamin = 1
 	)
 	icon = 'icons/obj/food/meat.dmi'
-	tastes = list("\"chicken\"" = 1)
+	tastes = list("„kurczak”" = 1)
 	foodtypes = MEAT
 	food_flags = FOOD_FINGER_FOOD
 	w_class = WEIGHT_CLASS_TINY
@@ -509,12 +509,13 @@
 /obj/item/food/nugget/Initialize(mapload)
 	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
-	desc = "A 'chicken' nugget vaguely shaped like a [shape]."
+	var/static/list/shape_pl = list("lump" = "grudki", "star" = "gwiazdki", "lizard" = "jaszczurki", "corgi" = "corgiego")
+	desc = "Nugget z „kurczaka”, mniej więcej w kształcie [shape_pl[shape]]."
 	icon_state = "nugget_[shape]"
 
 /obj/item/food/pigblanket
-	name = "pig in a blanket"
-	desc = "A tiny sausage wrapped in a flakey, buttery roll. Free this pig from its blanket prison by eating it."
+	name = "parówka w cieście"
+	desc = "Malutka kiełbaska zawinięta w kruche, maślane ciasto. Uwolnij tę świnkę z jej więzienia, zjadając ją."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "pigblanket"
 	food_reagents = list(
@@ -528,8 +529,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_3
 
 /obj/item/food/bbqribs
-	name = "bbq ribs"
-	desc = "BBQ ribs, slathered in a healthy coating of BBQ sauce. The least vegan thing to ever exist."
+	name = "żeberka BBQ"
+	desc = "Żeberka BBQ obficie pokryte zdrową warstwą sosu barbecue. Najmniej wegańska rzecz, jaka kiedykolwiek istniała."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "ribs"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -543,8 +544,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_2
 
 /obj/item/food/meatclown
-	name = "meat clown"
-	desc = "A delicious, round piece of meat clown. How horrifying."
+	name = "mięsny klaun"
+	desc = "Pyszny, okrągły kawałek mięsnego klauna. Jakie to straszne."
 	icon = 'icons/obj/food/meat.dmi'
 	icon_state = "meatclown"
 	food_reagents = list(
@@ -575,8 +576,8 @@
 	crafting_complexity = FOOD_COMPLEXITY_1
 
 /obj/item/food/kebab/human
-	name = "human-kebab"
-	desc = "A human meat, on a stick."
+	name = "ludzki kebab"
+	desc = "Ludzkie mięso na patyku."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 16,
 		/datum/reagent/consumable/nutriment/vitamin = 6
@@ -585,8 +586,8 @@
 	foodtypes = MEAT | GORE
 
 /obj/item/food/kebab/monkey
-	name = "meat-kebab"
-	desc = "Delicious meat, on a stick."
+	name = "kebab mięsny"
+	desc = "Pyszne mięso na patyku."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 16,
 		/datum/reagent/consumable/nutriment/vitamin = 2
@@ -595,15 +596,15 @@
 	foodtypes = MEAT
 
 /obj/item/food/kebab/tofu
-	name = "tofu-kebab"
-	desc = "Vegan meat, on a stick."
+	name = "kebab z tofu"
+	desc = "Wegańskie mięso na patyku."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 15)
 	tastes = list("tofu" = 3, "metal" = 1)
 	foodtypes = VEGETABLES
 
 /obj/item/food/kebab/tail
-	name = "lizard-tail kebab"
-	desc = "Severed lizard tail on a stick."
+	name = "kebab z ogona jaszczura"
+	desc = "Odcięty ogon jaszczura na patyku."
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 30,
 		/datum/reagent/consumable/nutriment/vitamin = 4
@@ -612,8 +613,8 @@
 	foodtypes = MEAT
 
 /obj/item/food/kebab/rat
-	name = "rat-kebab"
-	desc = "Not so delicious rat meat, on a stick."
+	name = "szczurzy kebab"
+	desc = "Niezbyt pyszne szczurze mięso na patyku."
 	icon_state = "ratkebab"
 	w_class = WEIGHT_CLASS_NORMAL
 	trash_type = null
@@ -625,7 +626,7 @@
 	foodtypes = MEAT | GORE
 
 /obj/item/food/kebab/rat/double
-	name = "double rat-kebab"
+	name = "podwójny szczurzy kebab"
 	icon_state = "doubleratkebab"
 	tastes = list("szczurze mięso" = 2, "metal" = 1)
 	food_reagents = list(
@@ -635,7 +636,7 @@
 	)
 
 /obj/item/food/kebab/fiesta
-	name = "fiesta skewer"
+	name = "szaszłyk fiesta"
 	icon_state = "fiestaskewer"
 	tastes = list("tex-mex" = 3, "kmin" = 2)
 	food_reagents = list(

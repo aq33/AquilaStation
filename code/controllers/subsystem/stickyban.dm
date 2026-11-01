@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(stickyban)
 
 		//get_stickyban_from_ckey returned null, aka something broke. Notify admins about it
 		if (!ban)
-			message_admins("Failed to apply stickyban for [bannedkey]. Check the DB for corrupt stickyban entries.")
+			message_admins("Nie udało się nałożyć stickybana na [bannedkey]. Sprawdź w bazie, czy wpisy stickybanów nie są uszkodzone.")
 			log_admin_private ("Failed to apply stickyban for [bannedkey]. Check the DB for corrupt stickyban entries.")
 			continue
 

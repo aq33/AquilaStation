@@ -1,8 +1,8 @@
 /obj/machinery/recharger
-	name = "recharger"
+	name = "ładowarka"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
-	desc = "A charging dock for energy based weaponry."
+	desc = "Stacja dokująca do ładowania broni energetycznej."
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 4
 	active_power_usage = 300
@@ -31,7 +31,7 @@
 
 	if(charging)
 		. += "<span class='notice'>[src] zawiera:</span>\n"+\
-		"<span class='notice'>- \A [charging].</span>"
+		"<span class='notice'>- [charging].</span>"
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
 		. += "<span class='notice'>Wyświetlacz stanu pokazuje:</span>"
@@ -61,7 +61,7 @@
 			return
 		setAnchored(!anchored)
 		power_change()
-		to_chat(user, "<span class='notice'>You [anchored ? "attached" : "detached"] [src].</span>")
+		to_chat(user, "<span class='notice'>[anchored ? "Przykręcasz" : "Odkręcasz"] [src].</span>")
 		G.play_tool_sound(src)
 		return
 

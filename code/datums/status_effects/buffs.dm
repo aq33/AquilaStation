@@ -6,8 +6,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/shadow_mend
 
 /atom/movable/screen/alert/status_effect/shadow_mend
-	name = "Shadow Mend"
-	desc = "Shadowy energies wrap around your wounds, sealing them at a price. After healing, you will slowly lose health every three seconds for thirty seconds."
+	name = "Cieniste zaleczenie"
+	desc = "Cieniste energie oplatają twoje rany i zasklepiają je, ale za swoją cenę. Po uleczeniu przez trzydzieści sekund co trzy sekundy powoli tracisz zdrowie."
 	icon_state = "shadow_mend"
 
 /datum/status_effect/shadow_mend/on_apply()
@@ -32,8 +32,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/void_price
 
 /atom/movable/screen/alert/status_effect/void_price
-	name = "Void Price"
-	desc = "Black tendrils cinch tightly against you, digging wicked barbs into your flesh."
+	name = "Cena pustki"
+	desc = "Czarne macki zaciskają się na tobie i wbijają w twoje ciało okrutne kolce."
 	icon_state = "shadow_mend"
 
 /datum/status_effect/void_price/tick()
@@ -52,8 +52,8 @@
 		power_to_give = new_power_per_tick
 
 /atom/movable/screen/alert/status_effect/power_regen
-	name = "Power Regeneration"
-	desc = "You are quickly regenerating power!"
+	name = "Regeneracja energii"
+	desc = "Szybko odzyskujesz energię!"
 	icon_state = "power_regen"
 
 /datum/status_effect/cyborg_power_regen/tick()
@@ -73,7 +73,7 @@
 
 /atom/movable/screen/alert/status_effect/his_grace
 	name = "His Grace"
-	desc = "His Grace hungers, and you must feed Him."
+	desc = "His Grace jest głodny, a ty musisz Go nakarmić."
 	icon_state = "his_grace"
 	alerttooltipstyle = "hisgrace"
 
@@ -128,8 +128,8 @@
 	owner.update_mobility()
 
 /atom/movable/screen/alert/status_effect/wish_granters_gift
-	name = "Wish Granter's Immortality"
-	desc = "You are being resurrected!"
+	name = "Nieśmiertelność od Wish Grantera"
+	desc = "Wracasz do życia!"
 	icon_state = "wish_granter"
 
 /datum/status_effect/cult_master
@@ -175,8 +175,8 @@
 	var/last_staminaloss = 0
 
 /atom/movable/screen/alert/status_effect/blooddrunk
-	name = "Blood-Drunk"
-	desc = "You are drunk on blood! Your pulse thunders in your ears! Nothing can harm you!" //not true, and the item description mentions its actual effect
+	name = "Upojenie krwią"
+	desc = "Jesteś upojony krwią! Puls dudni ci w uszach! Nic nie może cię zranić!" //not true, and the item description mentions its actual effect
 	icon_state = "blooddrunk"
 
 /datum/status_effect/blooddrunk/on_apply()
@@ -346,8 +346,8 @@
 	owner.adjustCloneLoss(-0.5, TRUE, TRUE)
 
 /atom/movable/screen/alert/status_effect/fleshmend
-	name = "Fleshmend"
-	desc = "Our wounds are rapidly healing. <i>This effect is prevented if we are on fire.</i>"
+	name = "Zrastanie ciała"
+	desc = "Nasze rany szybko się goją. <i>Ten efekt nie działa, gdy płoniemy.</i>"
 	icon_state = "fleshmend"
 
 /datum/status_effect/changeling
@@ -401,8 +401,8 @@
 	owner.alpha = min(owner.alpha + 50, 255)
 
 /atom/movable/screen/alert/status_effect/changeling_camoflague
-	name = "Camoflague"
-	desc = "We have adapted our skin to refract light around us."
+	name = "Kamuflaż"
+	desc = "Przystosowaliśmy skórę tak, by załamywała światło wokół nas."
 	icon_state = "changeling_camo"
 
 //Changeling mindshield
@@ -427,8 +427,8 @@
 	owner.sec_hud_set_implants()
 
 /atom/movable/screen/alert/status_effect/changeling_mindshield
-	name = "Fake Mindshield"
-	desc = "We are emitting a signal, causing us to appear as mindshielded to security HUDs."
+	name = "Fałszywa ochrona umysłu"
+	desc = "Emitujemy sygnał, przez który HUD-y ochrony widzą u nas implant ochrony umysłu."
 	icon_state = "changeling_mindshield"
 
 /datum/status_effect/exercised
@@ -477,9 +477,9 @@
 			var/mob/living/simple_animal/hostile/retaliate/poison/snake/healSnake = new(owner.loc)
 			var/list/chems = list(/datum/reagent/medicine/bicaridine, /datum/reagent/medicine/salbutamol, /datum/reagent/medicine/kelotane, /datum/reagent/medicine/antitoxin)
 			healSnake.poison_type = pick(chems)
-			healSnake.name = "Asclepius's Snake"
-			healSnake.real_name = "Asclepius's Snake"
-			healSnake.desc = "A mystical snake previously trapped upon the Rod of Asclepius, now freed of its burden. Unlike the average snake, its bites contain chemicals with minor healing properties."
+			healSnake.name = "Wąż Asklepiosa"
+			healSnake.real_name = "Wąż Asklepiosa"
+			healSnake.desc = "Mistyczny wąż, niegdyś uwięziony na Lasce Asklepiosa, teraz wolny od swojego brzemienia. W przeciwieństwie do zwykłego węża jego ukąszenia zawierają chemikalia o słabych właściwościach leczniczych."
 			new /obj/effect/decal/cleanable/ash(owner.loc)
 			new /obj/item/rod_of_asclepius(owner.loc)
 			qdel(owner)
@@ -535,8 +535,8 @@
 				SM.adjustHealth(-3.5, forced = TRUE)
 
 /atom/movable/screen/alert/status_effect/regenerative_core
-	name = "Blessing of the Necropolis"
-	desc = "The power of the necropolis flows through you. You could get used to this..."
+	name = "Błogosławieństwo Nekropolii"
+	desc = "Przepływa przez ciebie moc Nekropolii. Można by się do tego przyzwyczaić..."
 	icon_state = "regenerative_core"
 
 /datum/status_effect/regenerative_core

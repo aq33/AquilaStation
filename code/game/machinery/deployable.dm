@@ -1,6 +1,6 @@
-#define SINGLE "single"
-#define VERTICAL "vertical"
-#define HORIZONTAL "horizontal"
+#define SINGLE "pojedynczy"
+#define VERTICAL "pionowy"
+#define HORIZONTAL "poziomy"
 
 #define METAL 1
 #define WOOD 2
@@ -9,8 +9,8 @@
 //Barricades/cover
 
 /obj/structure/barricade
-	name = "chest high wall"
-	desc = "Looks like this would make good cover."
+	name = "murek do piersi"
+	desc = "Wygląda na dobrą osłonę."
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 100
@@ -56,8 +56,8 @@
 /////BARRICADE TYPES///////
 
 /obj/structure/barricade/wooden
-	name = "wooden barricade"
-	desc = "This space is blocked off by a wooden barricade."
+	name = "drewniana barykada"
+	desc = "To miejsce blokuje drewniana barykada."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	bar_material = WOOD
@@ -82,15 +82,15 @@
 
 
 /obj/structure/barricade/wooden/crude
-	name = "crude plank barricade"
-	desc = "This space is blocked off by a crude assortment of planks."
+	name = "prowizoryczna barykada z desek"
+	desc = "To miejsce blokuje prowizoryczna zbieranina desek."
 	icon_state = "woodenbarricade-old"
 	drop_amount = 1
 	max_integrity = 50
 	proj_pass_rate = 65
 
 /obj/structure/barricade/wooden/crude/snow
-	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
+	desc = "To miejsce blokuje prowizoryczna zbieranina desek. Wygląda na to, że pokrywa ją warstwa śniegu."
 	icon_state = "woodenbarricade-snow-old"
 	max_integrity = 75
 
@@ -98,8 +98,8 @@
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
 
 /obj/structure/barricade/sandbags
-	name = "sandbags"
-	desc = "Bags of sand. Self explanatory."
+	name = "worki z piaskiem"
+	desc = "Worki z piaskiem. Nie ma tu nic do tłumaczenia."
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags"
 	max_integrity = 280
@@ -111,8 +111,8 @@
 	canSmoothWith = list(/obj/structure/barricade/sandbags, /turf/closed/wall, /turf/closed/wall/r_wall, /obj/structure/falsewall, /obj/structure/falsewall/reinforced, /turf/closed/wall/rust, /turf/closed/wall/r_wall/rust, /obj/structure/barricade/security)
 
 /obj/structure/barricade/security
-	name = "security barrier"
-	desc = "A deployable barrier. Provides good cover in fire fights."
+	name = "bariera ochrony"
+	desc = "Rozkładana bariera. Daje dobrą osłonę podczas strzelanin."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "barrier0"
 	density = FALSE
@@ -134,12 +134,12 @@
 	density = TRUE
 	anchored = TRUE
 	if(deploy_message)
-		visible_message("<span class='warning'>[src] deploys!</span>")
+		visible_message("<span class='warning'>[src] się rozkłada!</span>")
 
 
 /obj/item/grenade/barrier
-	name = "barrier grenade"
-	desc = "Instant cover."
+	name = "granat barierowy"
+	desc = "Osłona w mgnieniu oka."
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "flashbang"
 	item_state = "flashbang"

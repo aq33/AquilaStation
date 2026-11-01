@@ -4,8 +4,8 @@
 /datum/brain_trauma/special
 
 /datum/brain_trauma/special/godwoken
-	name = "Godwoken Syndrome"
-	desc = "Patient occasionally and uncontrollably channels an eldritch god when speaking."
+	name = "Syndrom przebudzonego boga"
+	desc = "Pacjent czasem w niekontrolowany sposób przemawia głosem pradawnego boga."
 	scan_desc = "urojenie boskości"
 	gain_text = "<span class='notice'>Czujesz w umyśle wyższą moc...</span>"
 	lose_text = "<span class='warning'>Boska obecność opuszcza twoją głowę, już niezainteresowana.</span>"
@@ -48,8 +48,8 @@
 	voice_of_god(message, owner, list("colossus","yell"), 2.5, include_owner, FALSE)
 
 /datum/brain_trauma/special/ghost_control
-	name = "Spiritual Connection"
-	desc = "Patient claims to receive impulses from the supernatural that they feel compelled to follow."
+	name = "Więź duchowa"
+	desc = "Pacjent twierdzi, że otrzymuje od sił nadprzyrodzonych impulsy, za którymi czuje przymus podążać."
 	scan_desc = "duchowy mimowolny skurcz mięśni"
 	gain_text = "<span class='notice'>Słyszysz w głowie głosy mówiące o różnych kierunkach...</span>"
 	lose_text = "<span class='warning'>Głosy w twojej głowie cichną.</span>"
@@ -70,8 +70,8 @@
 
 
 /datum/brain_trauma/special/bluespace_prophet
-	name = "Bluespace Prophecy"
-	desc = "Patient can sense the bob and weave of bluespace around them, showing them passageways no one else can see."
+	name = "Proroctwo bluespace"
+	desc = "Pacjent wyczuwa falowanie bluespace wokół siebie, które pokazuje mu przejścia niewidoczne dla innych."
 	scan_desc = "dostrojenie do bluespace"
 	gain_text = "<span class='notice'>Czujesz pulsowanie bluespace wokół siebie...</span>"
 	lose_text = "<span class='warning'>Ciche pulsowanie bluespace cichnie.</span>"
@@ -113,8 +113,8 @@
 		second.seer = owner
 
 /obj/effect/hallucination/simple/bluespace_stream
-	name = "bluespace stream"
-	desc = "You see a hidden pathway through bluespace..."
+	name = "strumień bluespace"
+	desc = "Widzisz ukrytą ścieżkę przez bluespace..."
 	image_icon = 'icons/effects/effects.dmi'
 	image_state = "bluestream"
 	image_layer = ABOVE_MOB_LAYER
@@ -132,7 +132,7 @@
 	var/slip_in_message = pick("dziwnie przesuwa się w bok i znika", "wskakuje do niewidzialnego wymiaru",\
 		"wystawia prosto jedną nogę, macha stopą i nagle znika", "zatrzymuje się, po czym znika z rzeczywistości", \
 		"zostaje wciągnięty w niewidzialny wir i znika z oczu")
-	var/slip_out_message = pick("bezgłośnie się pojawia", "wyskakuje znikąd","appears", "wychodzi z niewidzialnych drzwi",\
+	var/slip_out_message = pick("bezgłośnie się pojawia", "wyskakuje znikąd","pojawia się", "wychodzi z niewidzialnych drzwi",\
 		"wysuwa się z fałdy czasoprzestrzeni")
 	to_chat(user, "<span class='notice'>Próbujesz zestroić się z nurtem bluespace...</span>")
 	if(do_after(user, 20, target = src))
@@ -143,8 +143,8 @@
 			user.visible_message("<span class='warning'>[user] [slip_out_message].</span>", "<span class='notice'>...i znajdujesz drogę na drugą stronę.</span>")
 
 /datum/brain_trauma/special/tenacity
-	name = "Tenacity"
-	desc = "Patient is psychologically unaffected by pain and injuries, and can remain standing far longer than a normal person."
+	name = "Nieustępliwość"
+	desc = "Ból i obrażenia nie wpływają na psychikę pacjenta, który potrafi ustać na nogach dużo dłużej niż zwykły człowiek."
 	scan_desc = "urazowa neuropatia"
 	gain_text = "<span class='warning'>Nagle przestajesz czuć ból.</span>"
 	lose_text = "<span class='warning'>Uświadamiasz sobie, że znów czujesz ból.</span>"
@@ -160,8 +160,8 @@
 	..()
 
 /datum/brain_trauma/special/death_whispers
-	name = "Functional Cerebral Necrosis"
-	desc = "Patient's brain is stuck in a functional near-death state, causing occasional moments of lucid hallucinations, which are often interpreted as the voices of the dead."
+	name = "Czynnościowa martwica mózgu"
+	desc = "Mózg pacjenta tkwi w czynnościowym stanie bliskim śmierci, co wywołuje chwile wyrazistych halucynacji, często odbieranych jako głosy zmarłych."
 	scan_desc = "przewlekła martwica czynnościowa"
 	gain_text = "<span class='warning'>Czujesz się martwy w środku.</span>"
 	lose_text = "<span class='notice'>Znów czujesz, że żyjesz.</span>"
@@ -187,8 +187,8 @@
 	active = FALSE
 
 /datum/brain_trauma/special/beepsky
-	name = "Criminal"
-	desc = "Patient seems to be a criminal."
+	name = "Przestępca"
+	desc = "Pacjent wygląda na przestępcę."
 	scan_desc = "umysł przestępczy"
 	gain_text = "<span class='warning'>Sprawiedliwość po ciebie idzie.</span>"
 	lose_text = "<span class='notice'>Twoje zbrodnie zostały ci odpuszczone.</span>"
@@ -234,13 +234,13 @@
 
 /obj/effect/hallucination/simple/securitron
 	name = "Securitron"
-	desc = "The LAW is coming."
+	desc = "PRAWO nadchodzi."
 	image_icon = 'icons/mob/aibots.dmi'
 	image_state = "secbot-c"
 	var/victim
 
 /obj/effect/hallucination/simple/securitron/New()
-	name = pick ( "officer Beepsky", "officer Johnson", "officer Pingsky")
+	name = pick ( "oficer Beepsky", "oficer Johnson", "oficer Pingsky")
 	START_PROCESSING(SSfastprocess,src)
 	..()
 

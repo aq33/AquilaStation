@@ -1,8 +1,8 @@
 //Cloaks. No, not THAT kind of cloak.
 
 /obj/item/clothing/neck/cloak
-	name = "brown cloak"
-	desc = "It's a cape that can be worn around your neck."
+	name = "brązowa peleryna"
+	desc = "Peleryna, którą zakładasz na szyję."
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	icon_state = "qmcloak"
 	item_state = "qmcloak"
@@ -16,44 +16,44 @@
 	return(OXYLOSS)
 
 /obj/item/clothing/neck/cloak/hos
-	name = "head of security's cloak"
-	desc = "Worn by Securistan, ruling the station with an iron fist."
+	name = "peleryna Komendanta"
+	desc = "Nosi ją Securistan, który rządzi statkiem żelazną ręką."
 	icon_state = "hoscloak"
 
 /obj/item/clothing/neck/cloak/qm
-	name = "quartermaster's cloak"
-	desc = "Worn by Cargonia, supplying the station with the necessary tools for survival."
+	name = "peleryna Kwatermistrza"
+	desc = "Nosi ją Cargonia, która zaopatruje statek we wszystko, co niezbędne do przetrwania."
 
 /obj/item/clothing/neck/cloak/cmo
-	name = "chief medical officer's cloak"
-	desc = "Worn by Meditopia, the valiant men and women keeping pestilence at bay."
+	name = "peleryna Ordynatora"
+	desc = "Nosi ją Meditopia – dzielni mężczyźni i kobiety, którzy trzymają zarazę na dystans."
 	icon_state = "cmocloak"
 
 /obj/item/clothing/neck/cloak/ce
-	name = "chief engineer's cloak"
-	desc = "Worn by Engitopia, wielders of an unlimited power."
+	name = "peleryna Głównego Inżyniera"
+	desc = "Nosi ją Engitopia, władcy nieograniczonej mocy."
 	icon_state = "cecloak"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/cloak/rd
-	name = "research director's cloak"
-	desc = "Worn by Sciencia, thaumaturges and researchers of the universe."
+	name = "peleryna Dyrektora Naukowego"
+	desc = "Nosi ją Sciencia – cudotwórcy i badacze wszechświata."
 	icon_state = "rdcloak"
 
 /obj/item/clothing/neck/cloak/cap
-	name = "captain's cloak"
-	desc = "Worn by the commander of Space Station 13."
+	name = "peleryna kapitana"
+	desc = "Nosi ją dowódca statku."
 	icon_state = "capcloak"
 
 /obj/item/clothing/neck/cloak/hop
-	name = "head of personnel's cloak"
-	desc = "Worn by the Head of Personnel. It smells faintly of bureaucracy."
+	name = "peleryna Starszego Oficera"
+	desc = "Nosi ją Starszy Oficer. Lekko pachnie biurokracją."
 	icon_state = "hopcloak"
 
 /obj/item/clothing/suit/hooded/cloak/goliath
-	name = "goliath cloak"
+	name = "peleryna z goliata"
 	icon_state = "goliath_cloak"
-	desc = "A staunch, practical cape made out of numerous monster materials, it is coveted amongst exiles & hermits."
+	desc = "Solidna, praktyczna peleryna uszyta z wielu materiałów pozyskanych z potworów. Pożądana wśród wygnańców i pustelników."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/pickaxe, /obj/item/spear, /obj/item/spear/bonespear, /obj/item/organ/regenerative_core/legion, /obj/item/kitchen/knife/combat/bone, /obj/item/kitchen/knife/combat/survival)
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60, "stamina" = 30, "bleed" = 20) //a fair alternative to bone armor, requiring alternative materials and gaining a suit slot
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/goliath
@@ -61,18 +61,18 @@
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/head/hooded/cloakhood/goliath
-	name = "goliath cloak hood"
+	name = "kaptur peleryny z goliata"
 	icon_state = "golhood"
-	desc = "A protective & concealing hood."
+	desc = "Kaptur, który chroni i ukrywa."
 	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60, "stamina" = 30, "bleed" = 30)
 	flags_inv = HIDEEARS|HIDEEYES|HIDEHAIR|HIDEFACIALHAIR
 	transparent_protection = HIDEMASK
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/suit/hooded/cloak/drake
-	name = "drake armour"
+	name = "smocza zbroja"
 	icon_state = "dragon"
-	desc = "A suit of armour fashioned from the remains of an ash drake."
+	desc = "Zbroja wykonana ze szczątków popielnego smoka."
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/spear)
 	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 30, "bleed" = 50)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/drake
@@ -84,9 +84,9 @@
 	high_pressure_multiplier = 0.4
 
 /obj/item/clothing/head/hooded/cloakhood/drake
-	name = "drake helm"
+	name = "smoczy hełm"
 	icon_state = "dragon"
-	desc = "The skull of a dragon."
+	desc = "Czaszka smoka."
 	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 40, "bomb" = 70, "bio" = 60, "rad" = 50, "fire" = 100, "acid" = 100, "stamina" = 30, "bleed" = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -94,9 +94,9 @@
 	high_pressure_multiplier = 0.4
 
 /obj/item/clothing/suit/hooded/cloak/bone
-	name = "Heavy bone armor"
+	name = "ciężki pancerz z kości"
 	icon_state = "hbonearmor"
-	desc = "A tribal armor plate, crafted from animal bone. A heavier variation of standard bone armor."
+	desc = "Plemienny napierśnik wykonany ze zwierzęcych kości. Cięższa wersja zwykłego pancerza z kości."
 	armor = list("melee" = 40, "bullet" = 25, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 20, "bleed" = 70)
 	hoodtype = /obj/item/clothing/head/hooded/cloakhood/bone
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS
@@ -106,9 +106,9 @@
 	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
 
 /obj/item/clothing/head/hooded/cloakhood/bone
-	name = "bone helmet"
+	name = "hełm z kości"
 	icon_state = "hskull"
-	desc = "An intimidating tribal helmet, it doesn't look very comfortable."
+	desc = "Onieśmielający plemienny hełm. Nie wygląda na zbyt wygodny."
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 25, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "stamina" = 20, "bleed" = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_TEMP_PROTECT
@@ -117,22 +117,22 @@
 	flags_cover = HEADCOVERSEYES
 
 /obj/item/clothing/neck/cloak/syndcap //NSV13 - syndicate captain
-	name = "syndicate captain's cloak"
-	desc = "A cloak that inspires fear among Nanotrasen employees, worn by the greatest Syndicate captains."
+	name = "peleryna kapitana Syndykatu"
+	desc = "Peleryna, która budzi strach wśród pracowników Nanotrasen. Noszą ją najwięksi kapitanowie Syndykatu."
 	icon_state = "syndcapt"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 70) //NSV13 - armor stacking clear
 
 /obj/item/clothing/neck/cloak/syndadmiral //NSV13 - syndicate admiral
-	name = "syndicate admiral's cloak"
-	desc = "A deep red cloak, worn by only the greatest of the Syndicate. If you are looking at this, you probably won't be looking at it for much longer."
+	name = "peleryna admirała Syndykatu"
+	desc = "Głęboko czerwona peleryna, którą noszą tylko najwięksi z Syndykatu. Jeśli na nią patrzysz, to raczej niedługo przestaniesz."
 	icon_state = "syndadmiral"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90) //NSV13 - armor stacking clear
 
 /obj/item/clothing/neck/cloak/chap/bishop
-	name = "bishop's cloak"
+	name = "peleryna biskupa"
 	desc = "Zostań kosmicznym papieżem."
 	icon_state = "bishopcloak"
 
 /obj/item/clothing/neck/cloak/chap/bishop/black
-	name = "black bishop's cloak"
+	name = "czarna peleryna biskupa"
 	icon_state = "blackbishopcloak"

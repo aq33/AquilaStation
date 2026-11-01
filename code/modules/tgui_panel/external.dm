@@ -17,8 +17,8 @@
 	nuke_chat()
 
 	// Failed to fix
-	action = alert(src, "Did that work?", "", "Yes", "No, switch to old ui")
-	if (action == "No, switch to old ui")
+	action = alert(src, "Czy to pomogło?", "", "Tak", "Nie, przełącz na stary interfejs")
+	if (action == "Nie, przełącz na stary interfejs")
 		winset(src, "legacy_output_selector", "left=output_legacy")
 		log_tgui(src, "Failed to fix.")
 

@@ -4,27 +4,27 @@
 
 //cheesemix
 /obj/item/food/cheesemix
-	name = "cheese mix"
+	name = "masa serowa"
 	icon_state = "cheesemix"
 	icon = 'icons/obj/food/cheese.dmi'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("gorzkie mleko" = 1)
-	desc = "Cheese mix, ready to be heated."
+	desc = "Masa serowa gotowa do podgrzania."
 	foodtypes = DAIRY
 
 /obj/item/food/cheesemix_heated
-	name = "heated cheese mix"
+	name = "podgrzana masa serowa"
 	icon_state = "cheesemix_heated"
 	icon = 'icons/obj/food/cheese.dmi'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("gorzki ser" = 1)
-	desc = "Heated cheese mix, you can see curds floating."
+	desc = "Podgrzana masa serowa, w której pływają grudki twarogu."
 	foodtypes = DAIRY
 
 //american cheese
 /obj/item/food/cheese/wheel/american
-	name = "american cheese block"
-	desc = "A block of american plastic cheese."
+	name = "blok sera amerykańskiego"
+	desc = "Blok amerykańskiego plastikowego sera."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "american_block"
 	slice_type = /obj/item/food/cheese/wedge/american
@@ -32,8 +32,8 @@
 	tastes = list("plastik" = 1)
 
 /obj/item/food/cheese/wedge/american
-	name = "american cheese slice"
-	desc = "A slice of american plastic cheese. Nothing could be more fake."
+	name = "plaster sera amerykańskiego"
+	desc = "Plaster amerykańskiego plastikowego sera. Nic nie może być bardziej sztuczne."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "american_slice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -41,8 +41,8 @@
 
 //blue
 /obj/item/food/cheese/wheel/blue
-	name = "blue cheese wheel"
-	desc = "A big wheel of blue cheese."
+	name = "krąg sera pleśniowego"
+	desc = "Duży krąg sera pleśniowego."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "blue_wheel"
 	slice_type = /obj/item/food/cheese/wedge/blue
@@ -50,15 +50,15 @@
 	tastes = list("pleśń" = 1)
 
 /obj/item/food/cheesemix/blue
-	name = "blue cheese mix"
+	name = "masa na ser pleśniowy"
 	microwaved_type = /obj/item/food/cheesemix_heated/blue
 
 /obj/item/food/cheesemix_heated/blue
-	name = "heated blue cheese mix"
+	name = "podgrzana masa na ser pleśniowy"
 
 /obj/item/food/cheese/wedge/blue
-	name = "blue cheese wedge"
-	desc = "A wedge of blue cheese. The mold stands out sharply against the white creamy cheese."
+	name = "kawałek sera pleśniowego"
+	desc = "Kawałek sera pleśniowego. Pleśń wyraźnie odcina się od białego, kremowego sera."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "blue_wedge"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
@@ -66,8 +66,8 @@
 
 //brie
 /obj/item/food/cheese/wheel/brie
-	name = "brie wheel"
-	desc = "A big wheel of brie."
+	name = "krąg brie"
+	desc = "Duży krąg brie."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "brie_wheel"
 	slice_type = /obj/item/food/cheese/wedge/brie
@@ -75,15 +75,15 @@
 	tastes = list("kremowa pleśń" = 1)
 
 /obj/item/food/cheesemix/brie
-	name = "brie mix"
+	name = "masa na brie"
 	microwaved_type = /obj/item/food/cheesemix_heated/brie
 
 /obj/item/food/cheesemix_heated/brie
-	name = "heated brie mix"
+	name = "podgrzana masa na brie"
 
 /obj/item/food/cheese/wedge/brie
-	name = "brie wedge"
-	desc = "A wedge of brie. Perfect with a cracker."
+	name = "kawałek brie"
+	desc = "Kawałek brie. Idealny z krakersem."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "brie_wedge"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 3)
@@ -91,8 +91,8 @@
 
 //cheddar
 /obj/item/food/cheese/wheel/cheddar
-	name = "cheddar wheel"
-	desc = "A big wheel of delicious cheddar."
+	name = "krąg cheddara"
+	desc = "Duży krąg pysznego cheddara."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "cheesewheel"
 	slice_type = /obj/item/food/cheese/wedge/cheddar
@@ -116,15 +116,15 @@
 	return TRUE
 
 /obj/item/food/cheesemix/cheddar
-	name = "cheddar mix"
+	name = "masa na cheddar"
 	microwaved_type = /obj/item/food/cheesemix_heated/cheddar
 
 /obj/item/food/cheesemix_heated/cheddar
-	name = "heated cheddar mix"
+	name = "podgrzana masa na cheddar"
 
 /obj/item/food/cheese/wedge/cheddar
-	name = "cheddar wedge"
-	desc = "A wedge of delicious cheddar. The cheese wheel it was cut from can't have gone far."
+	name = "kawałek cheddara"
+	desc = "Kawałek pysznego cheddara. Krąg, z którego go odkrojono, nie mógł uciec daleko."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "cheesewheel_slice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -132,8 +132,8 @@
 
 //feta
 /obj/item/food/cheese/wheel/feta
-	name = "feta cheese block"
-	desc = "A big block of feta cheese."
+	name = "blok fety"
+	desc = "Duży blok fety."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "feta_block"
 	slice_type = /obj/item/food/cheese/wedge/feta
@@ -141,15 +141,15 @@
 	tastes = list("owca" = 1)
 
 /obj/item/food/cheesemix/feta
-	name = "feta cheese mix"
+	name = "masa na fetę"
 	microwaved_type = /obj/item/food/cheesemix_heated/feta
 
 /obj/item/food/cheesemix_heated/feta
-	name = "heated feta cheese mix"
+	name = "podgrzana masa na fetę"
 
 /obj/item/food/cheese/wedge/feta
-	name = "feta cheese slice"
-	desc = "A slice of feta cheese. It crumbles easily in your hands."
+	name = "plaster fety"
+	desc = "Plaster fety. Łatwo kruszy się w dłoniach."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "feta_slice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -157,8 +157,8 @@
 
 //goat
 /obj/item/food/cheese/wheel/goat
-	name = "goat cheese wheel"
-	desc = "A big wheel of goat cheese."
+	name = "krąg koziego sera"
+	desc = "Duży krąg koziego sera."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "goat_wheel"
 	slice_type = /obj/item/food/cheese/wedge/goat
@@ -166,15 +166,15 @@
 	tastes = list("koza" = 1)
 
 /obj/item/food/cheesemix/goat
-	name = "goat cheese mix"
+	name = "masa na kozi ser"
 	microwaved_type = /obj/item/food/cheesemix_heated/goat
 
 /obj/item/food/cheesemix_heated/goat
-	name = "heated goat cheese mix"
+	name = "podgrzana masa na kozi ser"
 
 /obj/item/food/cheese/wedge/goat
-	name = "goat cheese wedge"
-	desc = "A wedge of goat cheese. The aroma of goat is strong."
+	name = "kawałek koziego sera"
+	desc = "Kawałek koziego sera. Mocno pachnie kozą."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "goat_wedge"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -182,8 +182,8 @@
 
 //halloumi
 /obj/item/food/cheese/wheel/halloumi
-	name = "halloumi cheese block"
-	desc = "A big block of halloumi cheese."
+	name = "blok halloumi"
+	desc = "Duży blok sera halloumi."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "halloumi_block"
 	slice_type = /obj/item/food/cheese/wedge/halloumi
@@ -191,15 +191,15 @@
 	tastes = list("mięso" = 1)
 
 /obj/item/food/cheesemix/halloumi
-	name = "halloumi cheese mix"
+	name = "masa na halloumi"
 	microwaved_type = /obj/item/food/cheesemix_heated/halloumi
 
 /obj/item/food/cheesemix_heated/halloumi
-	name = "heated halloumi cheese mix"
+	name = "podgrzana masa na halloumi"
 
 /obj/item/food/cheese/wedge/halloumi
-	name = "halloumi cheese slice"
-	desc = "A slice of halloumi cheese. A meat substitute for vegitarians."
+	name = "plaster halloumi"
+	desc = "Plaster sera halloumi. Zamiennik mięsa dla wegetarian."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "halloumi_slice"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -207,8 +207,8 @@
 
 //mozzarella
 /obj/item/food/cheese/wheel/mozzarella
-	name = "mozzarella cheese ball"
-	desc = "A big ball of mozzarella cheese."
+	name = "kula mozzarelli"
+	desc = "Duża kula mozzarelli."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "mozzarella_ball"
 	slice_type = /obj/item/food/cheese/wedge/mozzarella
@@ -216,15 +216,15 @@
 	tastes = list("śmietana" = 1)
 
 /obj/item/food/cheesemix/mozzarella
-	name = "mozzarella cheese mix"
+	name = "masa na mozzarellę"
 	microwaved_type = /obj/item/food/cheesemix_heated/mozzarella
 
 /obj/item/food/cheesemix_heated/mozzarella
-	name = "heated mozzarella cheese mix"
+	name = "podgrzana masa na mozzarellę"
 
 /obj/item/food/cheese/wedge/mozzarella
-	name = "mozzarella cheese piece"
-	desc = "A piece of mozzarella cheese. It needs to be on a pizza ASAP."
+	name = "kawałek mozzarelli"
+	desc = "Kawałek mozzarelli. Musi jak najszybciej trafić na pizzę."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "mozzarella_piece"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -232,8 +232,8 @@
 
 //parmesan
 /obj/item/food/cheese/wheel/parmesan
-	name = "parmesan cheese wheel"
-	desc = "A big wheel of parmesan cheese."
+	name = "krąg parmezanu"
+	desc = "Duży krąg parmezanu."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "parmesan_wheel"
 	bite_consumption = 5
@@ -243,8 +243,8 @@
 	tastes = list("sól" = 1, "wspaniałość" = 1, "Włochy" = 1)
 
 /obj/item/food/cheese/preparmesan
-	name = "unmatured parmesan cheese wheel"
-	desc = "A big wheel of unmature parmesan cheese."
+	name = "krąg niedojrzałego parmezanu"
+	desc = "Duży krąg niedojrzałego parmezanu."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "preparmesan_wheel"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -260,15 +260,15 @@
 	qdel(src)
 
 /obj/item/food/cheesemix/parmesan
-	name = "parmesan cheese mix"
+	name = "masa na parmezan"
 	microwaved_type = /obj/item/food/cheesemix_heated/parmesan
 
 /obj/item/food/cheesemix_heated/parmesan
-	name = "heated parmesan cheese mix"
+	name = "podgrzana masa na parmezan"
 
 /obj/item/food/cheese/wedge/parmesan
-	name = "parmesan cheese wedge"
-	desc = "A wedge of parmesan cheese. You feel incredibly artisnal holding this."
+	name = "kawałek parmezanu"
+	desc = "Kawałek parmezanu. Trzymając go, czujesz się niesamowicie rzemieślniczo."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "parmesan_wedge"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 6, /datum/reagent/consumable/parmesan_delight = 4)
@@ -276,8 +276,8 @@
 
 //swiss
 /obj/item/food/cheese/wheel/swiss
-	name = "swiss cheese wheel"
-	desc = "A big wheel of swiss cheese."
+	name = "krąg sera szwajcarskiego"
+	desc = "Duży krąg sera szwajcarskiego."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "swiss_wheel"
 	slice_type = /obj/item/food/cheese/wedge/swiss
@@ -285,15 +285,15 @@
 	tastes = list("dziury" = 1)
 
 /obj/item/food/cheesemix/swiss
-	name = "swiss cheese mix"
+	name = "masa na ser szwajcarski"
 	microwaved_type = /obj/item/food/cheesemix_heated/swiss
 
 /obj/item/food/cheesemix_heated/swiss
-	name = "heated swiss cheese mix"
+	name = "podgrzana masa na ser szwajcarski"
 
 /obj/item/food/cheese/wedge/swiss
-	name = "swiss cheese wedge"
-	desc = "A wedge of swiss cheese. The holes echo 'eat me' back to you."
+	name = "kawałek sera szwajcarskiego"
+	desc = "Kawałek sera szwajcarskiego. Dziury odpowiadają ci echem: „zjedz mnie”."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "swiss_wedge"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2)
@@ -301,8 +301,8 @@
 
 //bug cheese
 /obj/item/food/cheese/wheel/bug
-	name = "bug cheese ball"
-	desc = "A big ball of gutlunch \"honey\", with a similar consistency to cheese."
+	name = "kula robaczego sera"
+	desc = "Duża kula „miodu” gutlunchów o konsystencji podobnej do sera."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "bug_ball"
 	foodtypes = SUGAR | MEAT //honey made by a carnivorous scavenging bug
@@ -311,8 +311,8 @@
 	tastes = list("spora porcja cukru" = 1, "mięso" = 1)
 
 /obj/item/food/cheese/wedge/bug
-	name = "bug cheese piece"
-	desc = "A piece of gutlunch \"honey\"."
+	name = "kawałek robaczego sera"
+	desc = "Kawałek „miodu” gutlunchów."
 	icon = 'icons/obj/food/cheese.dmi'
 	icon_state = "bug_piece"
 	foodtypes = SUGAR | MEAT
@@ -321,8 +321,8 @@
 
 //Regal rat cheese
 /obj/item/food/royalcheese
-	name = "royal cheese"
-	desc = "Ascend the throne. Consume the wheel. Feel the POWER."
+	name = "królewski ser"
+	desc = "Wstąp na tron. Pochłoń krąg. Poczuj MOC."
 	icon_state = "royalcheese"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/gold = 20, /datum/reagent/toxin/mutagen = 5)
 	w_class = WEIGHT_CLASS_BULKY

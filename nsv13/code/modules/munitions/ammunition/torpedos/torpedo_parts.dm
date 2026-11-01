@@ -1,55 +1,55 @@
 /obj/item/ship_weapon/parts/missile/warhead/torpedo
-	name = "\improper NTP-2 standard torpedo payload"
+	name = "\improper standardowa głowica torpedy NTP-2"
 	icon_state = "warhead"
-	desc = "An extremely heavy warhead designed to be fitted to a torpedo. This one contains a standard explosive charge."
+	desc = "Wyjątkowo ciężka głowica do zamontowania w torpedzie. Ta zawiera standardowy ładunek wybuchowy."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo
 
 /obj/item/ship_weapon/parts/missile/warhead/decoy
-	name = "\improper NTP-0x 'DCY' electronic countermeasure torpedo payload"
+	name = "\improper głowica torpedy z elektronicznym środkiem przeciwdziałania NTP-0x „DCY”"
 	icon_state = "warhead_decoy"
-	desc = "A simple electronic countermeasure wrapped in a metal casing. While these form inert torpedoes, they can be used to distract enemy defenses to divert their flak away from other targets."
+	desc = "Prosty elektroniczny środek przeciwdziałania w metalowej obudowie. Torpedy z nim są nieszkodliwe, ale odciągają uwagę obrony wroga i ściągają jej flak z innych celów."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/decoy
 
 /obj/item/ship_weapon/parts/missile/warhead/bunker_buster
-	name = "\improper NTP-4 'BNKR' torpedo payload"
+	name = "\improper głowica torpedy NTP-4 „BNKR”"
 	icon_state = "warhead_shredder"
-	desc = "An extremely heavy warhead designed to be fitted to a torpedo. This one has an inbuilt plasma charge to amplify its damage."
+	desc = "Wyjątkowo ciężka głowica do zamontowania w torpedzie. Ta ma wbudowany ładunek plazmowy, który wzmacnia obrażenia."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/hull_shredder
 
 /obj/item/ship_weapon/parts/missile/warhead/probe
-	name = "\improper NTX 'Voyager' astrological probe payload"
-	desc = "An advanced sensor suite specially kitted to collect information about astrological phenomena."
+	name = "\improper ładunek sondy astrologicznej NTX „Voyager”"
+	desc = "Zaawansowany zestaw czujników specjalnie przystosowany do zbierania danych o zjawiskach astrologicznych."
 	icon_state = "warhead_probe"
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/probe
 
 /obj/item/ship_weapon/parts/missile/warhead/freight
-	name = "\improper NTP-F 530mm freight torpedo payload"
+	name = "\improper ładownia torpedy transportowej NTP-F 530 mm"
 	//icon_state = "warhead_freight"
-	desc = "A hollowed out nosecone that allows torpedoes to carry freight instead of an actual payload."
+	desc = "Wydrążony stożek dziobowy, dzięki któremu torpeda zamiast głowicy przenosi ładunek."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/freight
 
 /obj/item/ship_weapon/parts/missile/warhead/hellfire
-	name = "hellfire torpedo warhead"
+	name = "głowica torpedy Hellfire"
 	icon_state = "warhead_nuclear"
-	desc = "An advanced warhead which carries a plasma enriched incendiary device. Torpedoes equipped with these can quickly annihilate targets with extreme prejudice, however they are extremely costly to produce."
+	desc = "Zaawansowana głowica z zapalającym ładunkiem wzbogaconym plazmą. Torpedy z nią bezlitośnie i szybko unicestwiają cele, ale ich produkcja jest wyjątkowo kosztowna."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/hellfire
 
 /obj/item/ship_weapon/parts/missile/warhead/plushtide
-	name = "emotional support torpedo warhead"
+	name = "głowica torpedy wsparcia emocjonalnego"
 	icon_state = "warhead_decoy"
-	desc = "A warhead with several plushies somehow crammed into it. For when what your enemy needs really is just a hug."
+	desc = "Głowica, w którą jakimś cudem wciśnięto kilka pluszaków. Na wypadek, gdyby twój wróg potrzebował tylko przytulasa."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/plushtide
 
 /obj/item/ship_weapon/parts/missile/warhead/proto_disruption
-	name = "prototype disruption torpedo warhead"
+	name = "prototypowa głowica torpedy zakłócającej"
 	icon_state = "warhead_disruption"
-	desc = "A prototype warhead which carries an uranium-iron core EMP payload based on recovered syndicate duds. Causes a significant electromagnetic pulse upon detonation capable of causing havoc in ship systems."
+	desc = "Prototypowa głowica z ładunkiem EMP o rdzeniu uranowo-żelaznym, wzorowana na odzyskanych niewypałach Syndykatu. Po detonacji wywołuje silny impuls elektromagnetyczny, który sieje chaos w systemach okrętu."
 	fits_type = /obj/item/ship_weapon/ammunition/torpedo/torpedo_casing
 	build_path = /obj/item/ship_weapon/ammunition/torpedo/proto_disruption

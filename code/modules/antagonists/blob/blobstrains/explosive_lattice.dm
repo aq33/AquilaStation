@@ -19,7 +19,7 @@
 	return ..()
 
 /datum/reagent/blob/explosive_lattice
-	name = "Explosive Lattice"
+	name = "Wybuchowa krata"
 	taste_description = "bomba"
 	color = "#8B2500"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN

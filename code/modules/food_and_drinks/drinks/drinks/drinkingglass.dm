@@ -1,8 +1,8 @@
 
 
 /obj/item/reagent_containers/food/drinks/drinkingglass
-	name = "drinking glass"
-	desc = "Your standard drinking glass."
+	name = "szklanka"
+	desc = "Zwykła szklanka."
 	custom_price = 5
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 10
@@ -40,8 +40,8 @@
 //  This is on a case-by-case basis, and you can even make a separate sprite for shot glasses if you want. //
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
-	name = "shot glass"
-	desc = "A shot glass - the universal symbol for bad decisions."
+	name = "kieliszek"
+	desc = "Kieliszek – uniwersalny symbol złych decyzji."
 	custom_price = 5
 	icon_state = "shotglass"
 	gulp_size = 15
@@ -57,8 +57,8 @@
 
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/largest_reagent = reagents.get_master_reagent()
-		name = "filled shot glass"
-		desc = "The challenge is not taking as many as you can, but guessing what it is before you pass out."
+		name = "pełny kieliszek"
+		desc = "Wyzwanie nie polega na tym, żeby wypić jak najwięcej, tylko żeby zgadnąć, co to jest, zanim padniesz."
 
 		if(largest_reagent.shot_glass_icon_state)
 			icon_state = largest_reagent.shot_glass_icon_state
@@ -71,8 +71,8 @@
 
 	else
 		icon_state = "shotglass"
-		name = "shot glass"
-		desc = "A shot glass - the universal symbol for bad decisions."
+		name = "kieliszek"
+		desc = "Kieliszek – uniwersalny symbol złych decyzji."
 		return
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/Initialize(mapload)
@@ -80,11 +80,11 @@
 	on_reagent_change(ADD_REAGENT)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/soda
-	name = "Soda Water"
+	name = "woda sodowa"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/cola
-	name = "Space Cola"
+	name = "Kosmiczna Cola"
 	list_reagents = list(/datum/reagent/consumable/space_cola = 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola

@@ -4,16 +4,16 @@
 #define STATE_FINISHED 4
 
 /obj/item/wallframe/camera
-	name = "camera assembly"
-	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
+	name = "zespół kamery"
+	desc = "Podstawowa konstrukcja kamer Nanotrasen-Zawsze-Cię-Obserwuje."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "cameracase"
 	materials = list(/datum/material/iron=400, /datum/material/glass=250)
 	result_path = /obj/structure/camera_assembly
 
 /obj/structure/camera_assembly
-	name = "camera assembly"
-	desc = "The basic construction for Nanotrasen-Always-Watching-You cameras."
+	name = "zespół kamery"
+	desc = "Podstawowa konstrukcja kamer Nanotrasen-Zawsze-Cię-Obserwuje."
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera_assembly"
 	max_integrity = 150

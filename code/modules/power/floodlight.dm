@@ -1,7 +1,7 @@
 
 /obj/structure/floodlight_frame
-	name = "floodlight frame"
-	desc = "A bare metal frame looking vaguely like a floodlight. Requires wrenching down."
+	name = "rama naświetlacza"
+	desc = "Goła metalowa rama, która z grubsza przypomina naświetlacz. Trzeba ją przykręcić kluczem."
 	max_integrity = 100
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight_c1"
@@ -13,13 +13,13 @@
 		to_chat(user, "<span class='notice'>Mocujesz [src].</span>")
 		anchored = TRUE
 		state = FLOODLIGHT_NEEDS_WIRES
-		desc = "A bare metal frame looking vaguely like a floodlight. Requires wiring."
+		desc = "Goła metalowa rama, która z grubsza przypomina naświetlacz. Trzeba ją okablować."
 	else if(istype(O, /obj/item/stack/cable_coil) && (state == FLOODLIGHT_NEEDS_WIRES))
 		var/obj/item/stack/S = O
 		if(S.use(5))
 			to_chat(user, "<span class='notice'>Okablowujesz [src].</span>")
-			name = "wired [name]"
-			desc = "A bare metal frame looking vaguely like a floodlight. Requires securing with a screwdriver."
+			name = "okablowana rama naświetlacza"
+			desc = "Goła metalowa rama, która z grubsza przypomina naświetlacz. Trzeba ją zabezpieczyć śrubokrętem."
 			icon_state = "floodlight_c2"
 			state = FLOODLIGHT_NEEDS_SECURING
 	else if(istype(O, /obj/item/light/tube) && (state == FLOODLIGHT_NEEDS_LIGHTS))
@@ -29,16 +29,16 @@
 			qdel(src)
 	else if(O.tool_behaviour == TOOL_SCREWDRIVER && (state == FLOODLIGHT_NEEDS_SECURING))
 		to_chat(user, "<span class='notice'>Mocujesz okablowanie i elektronikę w [src].</span>")
-		name = "secured [name]"
-		desc = "A bare metal frame that looks like a floodlight. Requires light tubes."
+		name = "zabezpieczona rama naświetlacza"
+		desc = "Goła metalowa rama, która wygląda jak naświetlacz. Brakuje w niej świetlówek."
 		icon_state = "floodlight_c3"
 		state = FLOODLIGHT_NEEDS_LIGHTS
 	else
 		..()
 
 /obj/machinery/power/floodlight
-	name = "floodlight"
-	desc = "A pole with powerful mounted lights on it. Due to its high power draw, it must be powered by a direct connection to a wire node."
+	name = "naświetlacz"
+	desc = "Słup z zamontowanymi mocnymi lampami. Pobiera dużo energii, więc trzeba go zasilać bezpośrednio z węzła kabla."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floodlight"
 	density = TRUE
@@ -72,7 +72,7 @@
 		icon_state = initial(icon_state)
 	switch(val)
 		if(1)
-			setting_text = "OFF"
+			setting_text = "wyłączony"
 		if(2)
 			setting_text = "niska moc"
 		if(3)

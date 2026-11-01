@@ -1,5 +1,5 @@
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
+	desc = "Świat sprzątania nie byłby pełny bez mopa."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
@@ -73,8 +73,8 @@
 	insertable = FALSE
 
 /obj/item/mop/advanced
-	desc = "The most advanced tool in a custodian's arsenal, complete with a condenser for self-wetting! Just think of all the viscera you will clean up with this!"
-	name = "advanced mop"
+	desc = "Najbardziej zaawansowane narzędzie w arsenale woźnego, z kondensatorem do samodzielnego nawilżania! Pomyśl tylko, ile wnętrzności nim posprzątasz!"
+	name = "zaawansowany mop"
 	mopcap = 10
 	icon_state = "advmop"
 	item_state = "mop"
@@ -120,8 +120,8 @@
 	insertable = FALSE
 
 /obj/item/mop/sharp //Basically a slightly worse spear.
-	desc = "A mop with a sharpened handle. Careful!"
-	name = "sharpened mop"
+	desc = "Mop z zaostrzonym trzonkiem. Ostrożnie!"
+	name = "zaostrzony mop"
 	force = 10
 	bleed_force = BLEED_SURFACE
 	throwforce = 18

@@ -5,7 +5,7 @@
  * Alternative to the Concatenate component.
  */
 /obj/item/circuit_component/format
-	display_name = "Format List"
+	display_name = "Formatowanie listy"
 	desc = "Komponent, który formatuje listy, zastępując %n w tekście formatu n-tym elementem listy."
 	category = "List"
 
@@ -66,7 +66,7 @@
  * Alternative to the Concatenate component.
  */
 /obj/item/circuit_component/format/assoc
-	display_name = "Format Associative List"
+	display_name = "Formatowanie listy asocjacyjnej"
 	desc = "Komponent, który formatuje listy asocjacyjne, zastępując %key w tekście formatu elementem list\[key]."
 
 	var/static/regex/format_component/assoc_param_regex = new(@"%([a-zA-Z0-9_]+)", "g")

@@ -4,8 +4,8 @@
 	icon = 'icons/obj/atmospherics/pipes/manifold.dmi'
 	icon_state = "manifold-3"
 
-	name = "pipe manifold"
-	desc = "A manifold composed of regular pipes."
+	name = "rozgałęźnik"
+	desc = "Rozgałęźnik złożony ze zwykłych rur."
 
 	dir = SOUTH
 	initialize_directions = EAST|NORTH|WEST

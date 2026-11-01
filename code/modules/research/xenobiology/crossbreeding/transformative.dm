@@ -3,8 +3,8 @@ transformative extracts:
 	apply a permanent effect to a slime and all of its babies
 */
 /obj/item/slimecross/transformative
-	name = "transformative extract"
-	desc = "It seems to stick to any slime it comes in contact with."
+	name = "przemieniający ekstrakt"
+	desc = "Przykleja się do każdego szlamu, z którym się zetknie."
 	icon_state = "transformative"
 	effect = "transformative"
 	var/effect_applied = SLIME_EFFECT_DEFAULT
@@ -16,7 +16,7 @@ transformative extracts:
 	if(S.stat)
 		to_chat(user, "<span class='warning'>Szlam nie żyje!</span>")
 	if(S.transformeffects & effect_applied)
-		to_chat(user,"<span class='warning'>Na ten szlam nałożono już efekt transformacyjny [colour]!</span>")
+		to_chat(user,"<span class='warning'>Na ten szlam nałożono już efekt: [src]!</span>")
 		return FALSE
 	to_chat(user,"<span class='notice'>Nakładasz [src] na [target].</span>")
 	do_effect(S, user)
@@ -154,7 +154,7 @@ transformative extracts:
 	..()
 	GLOB.poi_list |= S
 	S.make_master(user)
-	LAZYADD(GLOB.mob_spawners["[S.master.real_name]'s slime"], S)
+	LAZYADD(GLOB.mob_spawners["szlam: [S.master.real_name]"], S)
 	SSmobs.update_spawners()
 
 /obj/item/slimecross/transformative/adamantine

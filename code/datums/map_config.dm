@@ -31,10 +31,10 @@
 	var/has_gulag = FALSE // AQ EDIT
 
 	//NSV13 - special mapvote things
-	var/map_description = "No data"
-	var/manufacturer = "No data"
-	var/mapper = "No data"
-	var/commission_date = "No data"
+	var/map_description = "Brak danych"
+	var/manufacturer = "Brak danych"
+	var/mapper = "Brak danych"
+	var/commission_date = "Brak danych"
 	var/list/strengths
 	var/list/weaknesses
 	var/list/equipment

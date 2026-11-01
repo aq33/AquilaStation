@@ -1,17 +1,17 @@
 // AQUILA - drony eksploracyjne: płytki, projekty R&D, węzeł techwebu, paczki cargo, zasoby UI i znak (port z tgstation)
 
 /obj/item/circuitboard/computer/exoscanner_console
-	name = "Scanner Array Control Console (Computer Board)"
+	name = "konsola sterowania skanerami (płytka komputera)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/exoscanner_control
 
 /obj/item/circuitboard/computer/exodrone_console
-	name = "Exploration Drone Control Console (Computer Board)"
+	name = "konsola sterowania dronami eksploracyjnymi (płytka komputera)"
 	icon_state = "science"
 	build_path = /obj/machinery/computer/exodrone_control_console
 
 /obj/item/circuitboard/machine/exoscanner
-	name = "Exoscanner (Machine Board)"
+	name = "antena skanująca (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/exoscanner
 	req_components = list(
@@ -19,7 +19,7 @@
 		/obj/item/stock_parts/scanning_module = 4)
 
 /obj/item/circuitboard/machine/exodrone_launcher
-	name = "Exploration Drone Launcher (Machine Board)"
+	name = "wyrzutnia dronów eksploracyjnych (płytka maszyny)"
 	icon_state = "science"
 	build_path = /obj/machinery/exodrone_launcher
 	req_components = list(
@@ -27,7 +27,7 @@
 		/obj/item/stock_parts/scanning_module = 4)
 
 /datum/design/board/exoscanner_console
-	name = "Computer Design (Scanner Array Control Console)"
+	name = "Projekt komputera (konsola sterowania skanerami)"
 	desc = "Płytka konsoli sterowania skanerami. Operatorzy dronów zarządzają z niej antenami i szukają nowych miejsc do zbadania."
 	id = "exoscanner_console"
 	build_path = /obj/item/circuitboard/computer/exoscanner_console
@@ -35,7 +35,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/exodrone_console
-	name = "Computer Design (Exploration Drone Control Console)"
+	name = "Projekt komputera (konsola sterowania dronami eksploracyjnymi)"
 	desc = "Płytka konsoli sterowania dronami eksploracyjnymi."
 	id = "exodrone_console"
 	build_path = /obj/item/circuitboard/computer/exodrone_console
@@ -43,7 +43,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/exoscanner
-	name = "Machine Design (Scanner Array)"
+	name = "Projekt maszyny (antena skanująca)"
 	desc = "Płytka anteny skanującej. Operatorzy dronów zwiększają nimi zasięg skanów."
 	id = "exoscanner"
 	build_path = /obj/item/circuitboard/machine/exoscanner
@@ -51,7 +51,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
 
 /datum/design/board/exodrone_launcher
-	name = "Machine Design (Exploration Drone Launcher)"
+	name = "Projekt maszyny (wyrzutnia dronów eksploracyjnych)"
 	desc = "Płytka wyrzutni, z której startują drony eksploracyjne."
 	id = "exodrone_launcher"
 	build_path = /obj/item/circuitboard/machine/exodrone_launcher

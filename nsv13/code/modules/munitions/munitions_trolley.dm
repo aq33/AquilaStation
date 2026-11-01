@@ -1,19 +1,19 @@
 //AQ EDIT START
 /obj/structure/munitions_trolley_dummy
-	name = "trolley"
+	name = "wózek"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "trolley"
-	desc = "A large trolley designed for ferrying stuff around."
+	desc = "Duży wózek do przewożenia różnych rzeczy."
 	anchored = TRUE
 	density = TRUE
 	layer = 2.9
 //AQ EDIT STOP
 
 /obj/structure/munitions_trolley
-	name = "munitions trolley"
+	name = "wózek amunicyjny"
 	icon = 'nsv13/icons/obj/munitions.dmi'
 	icon_state = "trolley"
-	desc = "A large trolley designed for ferrying munitions around. It has slots for traditional ammo magazines as well as a rack for loading torpedoes. To load it, click and drag the desired munition onto the rack."
+	desc = "Duży wózek do przewożenia amunicji. Ma przegródki na zwykłe magazynki i stojak na torpedy. Żeby go załadować, kliknij i przeciągnij wybraną amunicję na stojak."
 	anchored = FALSE
 	density = TRUE
 	layer = 2.9

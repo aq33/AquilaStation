@@ -1,6 +1,6 @@
 /obj/item/ship_weapon/ammunition/broadside_shell
-	name = "\improper SNBC Type 1 Shell"
-	desc = "A large packed shell, complete with powder and projectile, ready to be loaded and fired."
+	name = "\improper pocisk burtowy SNBC typu 1"
+	desc = "Duży spakowany pocisk z prochem i pociskiem właściwym, gotowy do załadowania i wystrzału."
 	icon_state = "broadside"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -9,8 +9,8 @@
 	projectile_type = /obj/item/projectile/bullet/broadside
 
 /obj/item/ship_weapon/ammunition/broadside_shell/plasma
-	name = "\improper SNBC Type P Shell"
-	desc = "A large packed shell, complete with plasma and projectile, ready to be loaded and fired."
+	name = "\improper pocisk burtowy SNBC typu P"
+	desc = "Duży spakowany pocisk z plazmą i pociskiem właściwym, gotowy do załadowania i wystrzału."
 	icon_state = "broadside_plasma"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -19,8 +19,8 @@
 	projectile_type = /obj/item/projectile/bullet/broadside/plasma
 
 /obj/item/ship_weapon/ammunition/broadside_shell/uranium
-	name = "\improper SNBC Type N Shell"
-	desc = "A large packed shell, complete with depleted uranium payload, ready to be loaded and fired."
+	name = "\improper pocisk burtowy SNBC typu N"
+	desc = "Duży spakowany pocisk z ładunkiem ze zubożonego uranu, gotowy do załadowania i wystrzału."
 	icon_state = "broadside_uranium"
 	lefthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'nsv13/icons/mob/inhands/weapons/bombs_righthand.dmi'
@@ -32,8 +32,8 @@
 	return TRUE
 
 /obj/item/circuitboard/machine/broadside_shell_packer
-	name = "circuit board (Broadside Shell Packer)"
-	desc = "Pack the shells and get that ice cream ration pack from the kitchen!"
+	name = "pakowarka pocisków burtowych (płytka maszyny)"
+	desc = "Spakuj pociski i odbierz z kuchni porcję lodów!"
 	icon_state = "generic"
 	build_path = /obj/machinery/broadside_shell_packer
 	req_components = list(
@@ -42,8 +42,8 @@
 	)
 
 /obj/machinery/broadside_shell_packer
-	name = "\improper Broadside Shell Packer Bench"
-	desc = "An automated table that packs broadside shell casings, just add components!"
+	name = "\improper stół pakowarki pocisków burtowych"
+	desc = "Zautomatyzowany stół, który pakuje łuski pocisków burtowych. Wystarczy dodać składniki!"
 	icon = 'nsv13/icons/obj/munitions/packing_bench.dmi'
 	icon_state = "packing_bench"
 	density = TRUE

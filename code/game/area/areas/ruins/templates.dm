@@ -1,7 +1,7 @@
 //Template ruin areas
 
 /area/ruin/powered/shuttle
-	name = "Shuttle"
+	name = "Prom"
 
 /area/ruin/powered/shuttle/medium_1
 

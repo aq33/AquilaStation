@@ -4,8 +4,8 @@
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox"
-	name = "ore box"
-	desc = "A heavy wooden box, which can be filled with a lot of ores."
+	name = "skrzynia na rudę"
+	desc = "Ciężka drewniana skrzynia, którą można wypełnić dużą ilością rudy."
 	density = TRUE
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	var/static/list/typecache_to_take

@@ -1,7 +1,7 @@
 //Boxes of ammo
 /obj/item/ammo_box
-	name = "ammo box (null_reference_exception)"
-	desc = "A box of ammo."
+	name = "pojemnik z amunicją (null_reference_exception)"
+	desc = "Pojemnik z amunicją."
 	icon = 'icons/obj/ammo.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
@@ -117,7 +117,7 @@
 			icon_state = "[initial(icon_state)]-[shells_left]"
 		if(2)
 			icon_state = "[initial(icon_state)]-[shells_left ? "[max_ammo]" : "0"]"
-	desc = "[initial(desc)] There [(shells_left == 1) ? "is" : "are"] [shells_left] shell\s left!"
+	desc = "[initial(desc)] Pozostałe naboje: [shells_left]!"
 	for (var/material in bullet_cost)
 		var/material_amount = bullet_cost[material]
 		material_amount = (material_amount*stored_ammo.len) + base_cost[material]

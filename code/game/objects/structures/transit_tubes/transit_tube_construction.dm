@@ -2,10 +2,10 @@
 
 // normal transit tubes
 /obj/structure/c_transit_tube
-	name = "unattached transit tube"
+	name = "niepodłączona rura transportowa"
 	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "straight"
-	desc = "An unattached segment of transit tube."
+	desc = "Niepodłączony odcinek rury transportowej."
 	density = FALSE
 	layer = LOW_ITEM_LAYER //same as the built tube
 	anchored = FALSE
@@ -56,7 +56,7 @@
 
 // transit tube station
 /obj/structure/c_transit_tube/station
-	name = "unattached through station"
+	name = "niepodłączona stacja przelotowa"
 	icon_state = "closed_station0"
 	build_type = /obj/structure/transit_tube/station
 	flipped_build_type = /obj/structure/transit_tube/station/flipped
@@ -71,7 +71,7 @@
 
 // reverser station, used for the terminus
 /obj/structure/c_transit_tube/station/reverse
-	name = "unattached terminus station"
+	name = "niepodłączona stacja końcowa"
 	icon_state = "closed_terminus0"
 	build_type = /obj/structure/transit_tube/station/reverse
 	flipped_build_type = /obj/structure/transit_tube/station/reverse/flipped
@@ -128,9 +128,9 @@
 //transit tube pod
 //see station.dm for the logic
 /obj/structure/c_transit_tube_pod
-	name = "unattached transit tube pod"
+	name = "niepodłączona kapsuła rury transportowej"
 	icon = 'icons/obj/atmospherics/pipes/transit_tube.dmi'
 	icon_state = "pod"
-	desc = "Could probably be <b>dragged</b> into an open Transit Tube."
+	desc = "Pewnie da się ją <b>przeciągnąć</b> do otwartej rury transportowej."
 	anchored = FALSE
 	density = FALSE

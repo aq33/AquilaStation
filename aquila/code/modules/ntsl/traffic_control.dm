@@ -2,12 +2,12 @@
 #define NTSL_DEFAULT_CODE "def process_signal(sig){\n\treturn sig;\n}"
 
 /obj/item/circuitboard/computer/comm_traffic
-	name = "telecommunications traffic control (Computer Board)"
+	name = "konsola kontroli ruchu telekomunikacji (płytka komputera)"
 	icon_state = "engineering"
 	build_path = /obj/machinery/computer/telecomms/traffic
 
 /datum/design/board/traffic
-	name = "Computer Design (Telecommunications Traffic Control Console)"
+	name = "Projekt komputera (konsola kontroli ruchu telekomunikacji)"
 	desc = "Pozwala zbudować konsolę kontroli ruchu, która programuje serwery telekomunikacji w NTSL."
 	id = "s-traffic"
 	build_path = /obj/item/circuitboard/computer/comm_traffic
@@ -19,7 +19,7 @@
 	design_ids += "s-traffic"
 
 /obj/machinery/computer/telecomms/traffic
-	name = "telecommunications traffic control console"
+	name = "konsola kontroli ruchu telekomunikacji"
 	desc = "Konsola do programowania serwerów telekomunikacji w języku NTSL."
 	icon_screen = "generic"
 	req_access = list(ACCESS_TCOMMS_ADMIN)
@@ -110,7 +110,7 @@
 
 	if(action == "admin_reset")
 		if(!user.client?.holder)
-			message_admins("[key_name_admin(user)] has attempted to call \"admin_reset\" on a traffic console without being an admin.")
+			message_admins("[key_name_admin(user)] próbuje wywołać \"admin_reset\" na konsoli kontroli ruchu, nie będąc adminem.")
 			return
 		network = initial(network)
 		refresh_servers()
@@ -149,7 +149,7 @@
 			return TRUE
 		if("compile_code")
 			if(!is_session_owner(user))
-				message_admins("[key_name_admin(user)] attempted compiling NTSL without being logged in.")
+				message_admins("[key_name_admin(user)] próbuje skompilować NTSL bez zalogowania.")
 				return
 			if(istext(params["code"])) // save and compile in one action, so the compile can't run before the save arrives
 				storedcode = params["code"]
@@ -176,7 +176,7 @@
 				return TRUE
 			var/new_name
 			if(issilicon(user) || IsAdminGhost(user))
-				new_name = "System Administrator"
+				new_name = "Administrator systemu"
 			else if(allowed(user))
 				var/obj/item/card/id/user_id = user.get_idcard(TRUE)
 				if(user_id)
@@ -200,7 +200,7 @@
 			return TRUE
 		if("clear_logs")
 			if(!is_session_owner(user))
-				message_admins("[key_name_admin(user)] attempted clearing NTSL logs without being logged in.")
+				message_admins("[key_name_admin(user)] próbuje wyczyścić logi NTSL bez zalogowania.")
 				return
 			access_log.Cut()
 			create_log("wyczyścił log dostępu.")
@@ -242,7 +242,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
-	user_name = "System Administrator"
+	user_name = "Administrator systemu"
 	create_log("zalogował się.")
 	playsound(src, 'sound/effects/sparks4.ogg', 75, TRUE)
 	to_chat(user, "<span class='notice'>Obchodzisz zabezpieczenia konsoli.</span>")

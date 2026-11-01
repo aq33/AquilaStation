@@ -1,6 +1,6 @@
 /obj/structure/window
-	name = "window"
-	desc = "A window."
+	name = "okno"
+	desc = "Okno."
 	icon_state = "window"
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
@@ -397,8 +397,8 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced
-	name = "reinforced window"
-	desc = "A window that is reinforced with iron rods."
+	name = "wzmocnione okno"
+	desc = "Okno wzmocnione żelaznymi prętami."
 	icon_state = "rwindow"
 	reinf = TRUE
 	heat_resistance = 1600
@@ -422,8 +422,8 @@
 	anchored = FALSE
 
 /obj/structure/window/plasma
-	name = "plasma window"
-	desc = "A window made out of a plasma-silicate alloy. It looks insanely tough to break and burn through."
+	name = "okno plazmowe"
+	desc = "Okno ze stopu plazmy i krzemianu. Wygląda na niesamowicie trudne do rozbicia i przepalenia."
 	icon_state = "plasmawindow"
 	reinf = FALSE
 	heat_resistance = 25000
@@ -459,8 +459,8 @@
 	anchored = FALSE
 
 /obj/structure/window/plasma/reinforced
-	name = "reinforced plasma window"
-	desc = "A window made out of a plasma-silicate alloy and a rod matrix. It looks hopelessly tough to break and is most likely nigh fireproof."
+	name = "wzmocnione okno plazmowe"
+	desc = "Okno ze stopu plazmy i krzemianu na siatce prętów. Wygląda na beznadziejnie trudne do rozbicia i najpewniej jest niemal ognioodporne."
 	icon_state = "plasmarwindow"
 	reinf = TRUE
 	heat_resistance = 50000
@@ -482,16 +482,16 @@
 	anchored = FALSE
 
 /obj/structure/window/reinforced/tinted
-	name = "tinted window"
+	name = "okno przyciemniane"
 	icon_state = "twindow"
 	opacity = 1
 /obj/structure/window/reinforced/tinted/frosted
-	name = "frosted window"
+	name = "okno matowe"
 	icon_state = "fwindow"
 
 /obj/structure/window/depleteduranium
-	name = "depleted uranium window"
-	desc = "A window made out of depleted uranium. It looks perfect for radiation shielding!"
+	name = "okno ze zubożonego uranu"
+	desc = "Okno ze zubożonego uranu. Wygląda na idealne do osłony przed promieniowaniem!"
 	icon_state = "duwindow"
 	reinf = TRUE
 	heat_resistance = 50000
@@ -606,8 +606,8 @@
 	glass_amount = 2
 
 /obj/structure/window/shuttle
-	name = "shuttle window"
-	desc = "A reinforced, air-locked pod window."
+	name = "okno promu"
+	desc = "Wzmocnione, hermetyczne okno kapsuły."
 	icon = 'icons/obj/smooth_structures/shuttle_window.dmi'
 	icon_state = "shuttle_window"
 	dir = FULLTILE_WINDOW_DIR
@@ -636,8 +636,8 @@
 	anchored = FALSE
 
 /obj/structure/window/plastitanium
-	name = "plastitanium window"
-	desc = "A durable looking window made of an alloy of of plasma and titanium."
+	name = "okno plastytanowe"
+	desc = "Solidnie wyglądające okno ze stopu plazmy i tytanu."
 	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 	icon_state = "plastitanium_window"
 	dir = FULLTILE_WINDOW_DIR
@@ -659,8 +659,8 @@
 	anchored = FALSE
 
 /obj/structure/window/paperframe
-	name = "paper frame"
-	desc = "A fragile separator made of thin wood and paper."
+	name = "rama papierowa"
+	desc = "Delikatna przegroda z cienkiego drewna i papieru."
 	icon = 'icons/obj/smooth_structures/paperframes.dmi'
 	icon_state = "frame"
 	dir = FULLTILE_WINDOW_DIR
@@ -740,8 +740,8 @@
 	update_icon()
 
 /obj/structure/window/bronze
-	name = "brass window"
-	desc = "A paper-thin pane of translucent yet reinforced brass. Nevermind, this is just weak bronze!"
+	name = "okno mosiężne"
+	desc = "Cieniutka tafla przejrzystego, a jednak wzmocnionego mosiądzu. A nie, to tylko słaby brąz!"
 	icon = 'icons/obj/smooth_structures/clockwork_window.dmi'
 	icon_state = "clockwork_window_single"
 	glass_type = /obj/item/stack/tile/bronze

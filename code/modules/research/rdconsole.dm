@@ -18,8 +18,8 @@ Nothing else in the console has ID requirements.
 
 */
 /obj/machinery/computer/rdconsole
-	name = "R&D Console"
-	desc = "A console used to interface with R&D tools."
+	name = "konsola B+R"
+	desc = "Konsola do obsługi urządzeń B+R."
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	var/datum/techweb/stored_research					//Reference to global science techweb.
@@ -145,18 +145,18 @@ Nothing else in the console has ID requirements.
 			say("Zbadano: [TN.display_name].")
 			var/logname = "Unknown"
 			if(isAI(user))
-				logname = "AI: [user.name]"
+				logname = "SI: [user.name]"
 			if(iscarbon(user))
 				var/obj/item/card/id/idcard = user.get_active_held_item()
 				if(istype(idcard))
-					logname = "User: [idcard.registered_name]"
+					logname = "Użytkownik: [idcard.registered_name]"
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				var/obj/item/I = H.wear_id
 				if(istype(I))
 					var/obj/item/card/id/ID = I.GetID()
 					if(istype(ID))
-						logname = "User: [ID.registered_name]"
+						logname = "Użytkownik: [ID.registered_name]"
 			var/i = stored_research.research_logs.len
 			stored_research.research_logs += null
 			stored_research.research_logs[++i] = list(TN.display_name, price["General Research"], logname, "[get_area(src)] ([src.x],[src.y],[src.z])")
@@ -524,21 +524,21 @@ Nothing else in the console has ID requirements.
 	locked = FALSE
 
 /obj/machinery/computer/rdconsole/robotics
-	name = "Robotics R&D Console"
+	name = "konsola B+R robotyki"
 	req_access = null
 	req_access_txt = "29"
 
 /obj/machinery/computer/rdconsole/robotics/Initialize(mapload)
 	. = ..()
 	if(circuit)
-		circuit.name = "R&D Console - Robotics (Computer Board)"
+		circuit.name = "konsola B+R – robotyka (płytka komputera)"
 		circuit.build_path = /obj/machinery/computer/rdconsole/robotics
 
 /obj/machinery/computer/rdconsole/core
-	name = "Core R&D Console"
+	name = "główna konsola B+R"
 
 /obj/machinery/computer/rdconsole/experiment
-	name = "E.X.P.E.R.I-MENTOR R&D Console"
+	name = "konsola B+R E.X.P.E.R.I-MENTORA"
 
 #undef RND_TECH_DISK
 #undef RND_DESIGN_DISK

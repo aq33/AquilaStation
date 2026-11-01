@@ -10,7 +10,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/conveyor_switch))
 
 /obj/item/circuit_component/conveyor_switch
-	display_name = "Conveyor Switch"
+	display_name = "Przełącznik taśmociągu"
 	desc = "Pozwala sterować podłączonymi taśmociągami."
 
 	/// Direction input ports.
@@ -84,7 +84,7 @@
 	AddComponent(/datum/component/usb_port, list(/obj/item/circuit_component/reflector))
 
 /obj/item/circuit_component/reflector
-	display_name = "Reflector"
+	display_name = "Reflektor"
 	desc = "Pozwala ustawić kąt reflektora."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
 
@@ -169,7 +169,7 @@
 		sbacklogged = FALSE
 
 /obj/item/circuit_component/slime_processor
-	display_name = "Slime Processor"
+	display_name = "Przetwórnia szlamów"
 	desc = "Pozwala uruchomić przetwarzanie i odczytać, ile rzeczy jest w procesorze."
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL
 
@@ -228,7 +228,7 @@
 	return ..()
 
 /obj/item/circuit_component/synth
-	display_name = "Synthesizer"
+	display_name = "Syntezator"
 	desc = "Zaawansowany elektroniczny syntezator, który potrafi udawać różne instrumenty."
 
 	/// The song, represented in latin alphabet A to G, that'll be played when play is triggered.

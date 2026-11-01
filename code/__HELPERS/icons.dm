@@ -1145,7 +1145,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 	if(resistance_flags & FREEZE_PROOF)
 		return
 	if(!(obj_flags & FROZEN))
-		name = "frozen [name]"
+		name = "[name] (zamrożenie)"
 		add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 		alpha -= 25
 		obj_flags |= FROZEN
@@ -1153,7 +1153,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 //Assumes already frozed
 /obj/proc/make_unfrozen()
 	if(obj_flags & FROZEN)
-		name = replacetext(name, "frozen ", "")
+		name = replacetext(name, " (zamrożenie)", "")
 		remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, GLOB.freon_color_matrix)
 		alpha += 25
 		obj_flags &= ~FROZEN

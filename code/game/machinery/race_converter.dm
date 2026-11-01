@@ -1,6 +1,6 @@
 /obj/machinery/species_converter
-	name = "species conversion chamber"
-	desc = "Safely and efficiently converts the species of the occupant, warranty void if exposed to plasma."
+	name = "komora zmiany gatunku"
+	desc = "Bezpiecznie i skutecznie zmienia gatunek osoby w środku. Kontakt z plazmą unieważnia gwarancję."
 	icon = 'icons/obj/machines/fat_sucker.dmi'
 	icon_state = "fat"
 	state_open = FALSE
@@ -14,7 +14,7 @@
 	var/datum/looping_sound/microwave/soundloop
 
 /obj/machinery/species_converter/racewar
-	name = "species hypnosis chamber"
+	name = "komora hipnozy gatunkowej"
 	brainwash = TRUE
 
 /obj/machinery/species_converter/Initialize(mapload)
@@ -36,7 +36,7 @@
 	..()
 	playsound(src, 'sound/machines/click.ogg', 50)
 	if(occupant)
-		to_chat(occupant, "<span class='notice'>Wchodzisz do [src]</span>")
+		to_chat(occupant, "<span class='notice'>Wchodzisz do: [src]</span>")
 		addtimer(CALLBACK(src, PROC_REF(begin_conversion)), 20, TIMER_OVERRIDE|TIMER_UNIQUE)
 		update_icon()
 

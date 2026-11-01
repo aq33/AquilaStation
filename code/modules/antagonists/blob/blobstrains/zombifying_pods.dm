@@ -28,7 +28,7 @@
 		newB.overmind.blob_mobs.Add(BS)
 
 /datum/reagent/blob/zombifying_pods
-	name = "Zombifying Pods"
+	name = "Zombifikujące strąki"
 	color = "#E88D5D"
 	chem_flags = CHEMICAL_NOT_SYNTH | CHEMICAL_RNG_FUN
 

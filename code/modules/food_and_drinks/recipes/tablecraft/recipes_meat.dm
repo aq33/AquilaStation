@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////KEBABS////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/humankebab
-	name = "Human kebab"
+	name = "ludzki kebab"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/meat/steak/plain/human = 2
@@ -12,7 +12,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/kebab
-	name = "Kebab"
+	name = "kebab mięsny"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/meat/steak = 2
@@ -21,7 +21,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/tofukebab
-	name = "Tofu kebab"
+	name = "kebab z tofu"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/tofu = 2
@@ -30,7 +30,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/tailkebab
-	name = "Lizard tail kebab"
+	name = "kebab z ogona jaszczura"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/organ/tail/lizard = 1
@@ -39,7 +39,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/fiestaskewer
-	name = "Fiesta Skewer"
+	name = "szaszłyk fiesta"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/grown/chili = 1,
@@ -53,7 +53,7 @@
 ////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/spidereggsham
-	name = "Spider eggs ham"
+	name = "zielone jajka i szynka"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 1,
 		/obj/item/food/spidereggs = 1,
@@ -65,7 +65,7 @@
 ////////////////////////////////////////////////MISC RECIPE's////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/cornedbeef
-	name = "Corned beef"
+	name = "peklowana wołowina z kapustą"
 	reqs = list(
 		/datum/reagent/consumable/sodiumchloride = 5,
 		/obj/item/food/meat/steak = 1,
@@ -75,7 +75,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/bearsteak
-	name = "Filet migrawr"
+	name = "filet migrrrnon"
 	reqs = list(
 		/datum/reagent/consumable/ethanol/manly_dorf = 5,
 		/obj/item/food/meat/steak/bear = 1,
@@ -85,7 +85,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/stewedsoymeat
-	name = "Stewed soymeat"
+	name = "duszone mięso sojowe"
 	reqs = list(
 		/obj/item/food/soydope = 2,
 		/obj/item/food/grown/carrot = 1,
@@ -95,7 +95,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/sausage
-	name = "Sausage"
+	name = "surowa kiełbasa"
 	reqs = list(
 		/obj/item/food/raw_meatball = 1,
 		/obj/item/food/meat/rawcutlet = 2
@@ -104,7 +104,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/nugget
-	name = "Chicken nugget"
+	name = "nugget z kurczaka"
 	reqs = list(
 		/obj/item/food/meat/cutlet = 1
 	)
@@ -112,7 +112,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/rawkhinkali
-	name = "Raw Khinkali"
+	name = "surowe chinkali"
 	reqs = list(
 		/obj/item/food/doughslice = 1,
 		/obj/item/food/grown/garlic = 1,
@@ -122,7 +122,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/meatbun
-	name = "Meat bun"
+	name = "bułka z mięsem"
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/food/bun = 1,
@@ -133,7 +133,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/pigblanket
-	name = "Pig in a Blanket"
+	name = "parówka w cieście"
 	reqs = list(
 		/obj/item/food/bun = 1,
 		/obj/item/food/butter = 1,
@@ -143,7 +143,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/meatbun
-	name = "Meat bun"
+	name = "bułka z mięsem"
 	reqs = list(
 		/datum/reagent/consumable/soysauce = 5,
 		/obj/item/food/bun = 1,
@@ -154,7 +154,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/ratkebab
-	name = "Rat Kebab"
+	name = "szczurzy kebab"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/deadmouse = 1
@@ -163,7 +163,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/doubleratkebab
-	name = "Double Rat Kebab"
+	name = "podwójny szczurzy kebab"
 	reqs = list(
 		/obj/item/stack/rods = 1,
 		/obj/item/food/deadmouse = 2
@@ -172,7 +172,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/ricepork
-	name = "Rice and Pork"
+	name = "ryż z wieprzowiną"
 	reqs = list(
 		/obj/item/reagent_containers/glass/bowl = 1,
 		/obj/item/food/boiledrice = 1,
@@ -183,7 +183,7 @@
 
 
 /datum/crafting_recipe/food/ashsteak
-	name = "Ashflaked Steak"
+	name = "stek w popiele"
 	reqs = list(
 		/obj/item/food/meat/steak/goliath = 1,
 		/obj/item/food/grown/ash_flora/cactus_fruit = 1,
@@ -194,7 +194,7 @@
 
 
 /datum/crafting_recipe/food/ribs
-	name = "BBQ Ribs"
+	name = "żeberka BBQ"
 	reqs = list(
 		/datum/reagent/consumable/bbqsauce = 5,
 		/obj/item/food/meat/steak/plain = 2,
@@ -204,7 +204,7 @@
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/meatclown
-	name = "Meat Clown"
+	name = "mięsny klaun"
 	reqs = list(
 		/obj/item/food/meat/steak/plain = 1,
 		/obj/item/food/grown/banana = 1

@@ -1,7 +1,7 @@
 
 /obj/item/organ/cyberimp
-	name = "cybernetic implant"
-	desc = "A state-of-the-art implant that improves a baseline's functionality."
+	name = "implant cybernetyczny"
+	desc = "Najnowocześniejszy implant, który usprawnia działanie zwykłego organizmu."
 	status = ORGAN_ROBOTIC
 	organ_flags = ORGAN_SYNTHETIC
 	var/implant_color = "#FFFFFF"
@@ -22,8 +22,8 @@
 //[[[[BRAIN]]]]
 
 /obj/item/organ/cyberimp/brain
-	name = "cybernetic brain implant"
-	desc = "Injectors of extra sub-routines for the brain."
+	name = "cybernetyczny implant mózgu"
+	desc = "Iniektory dodatkowych podprogramów dla mózgu."
 	icon_state = "brain_implant"
 	implant_overlay = "brain_implant_overlay"
 	zone = BODY_ZONE_HEAD
@@ -39,8 +39,8 @@
 
 
 /obj/item/organ/cyberimp/brain/anti_drop
-	name = "anti-drop implant"
-	desc = "This cybernetic brain implant will allow you to force your hand muscles to contract, preventing item dropping. Twitch ear to toggle."
+	name = "implant przeciw upuszczaniu"
+	desc = "Ten cybernetyczny implant mózgu pozwala wymusić skurcz mięśni dłoni, przez co nie upuszczasz przedmiotów. Porusz uchem, by go przełączyć."
 	var/active = 0
 	var/list/stored_items = list()
 	implant_color = "#DE7E00"
@@ -95,8 +95,8 @@
 	..()
 
 /obj/item/organ/cyberimp/brain/anti_stun
-	name = "CNS Rebooter implant"
-	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
+	name = "implant restartu OUN"
+	desc = "Ten implant automatycznie przywraca ci kontrolę nad ośrodkowym układem nerwowym i skraca czas ogłuszenia."
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
 
@@ -145,8 +145,8 @@
 
 
 /obj/item/organ/cyberimp/brain/linkedsurgery
-	name = "surgical serverlink brain implant"
-	desc = "A brain implant with a bluespace technology that lets you perform an advanced surgery through your station research server."
+	name = "implant mózgu z łączem serwera chirurgicznego"
+	desc = "Implant mózgu z technologią bluespace, który pozwala przeprowadzać zaawansowane operacje dzięki serwerowi badawczemu stacji."
 	slot = ORGAN_SLOT_BRAIN_SURGICAL_IMPLANT
 	actions_types = list(/datum/action/item_action/update_linkedsurgery)
 	var/list/advanced_surgeries = list()
@@ -175,7 +175,7 @@
 		to_chat(usr, "<span class='notice'>Nie wykryto nowych programów chirurgicznych.</span>")
 
 /datum/action/item_action/update_linkedsurgery
-	name = "Update Surgical Implant"
+	name = "Zaktualizuj implant chirurgiczny"
 
 /datum/action/item_action/update_linkedsurgery/Trigger()
 	if(istype(target, /obj/item/organ/cyberimp/brain/linkedsurgery))
@@ -189,8 +189,8 @@
 	zone = BODY_ZONE_PRECISE_MOUTH
 
 /obj/item/organ/cyberimp/mouth/breathing_tube
-	name = "breathing tube implant"
-	desc = "This simple implant adds an internals connector to your back, allowing you to use internals without a mask and protecting you from being choked."
+	name = "implant rurki oddechowej"
+	desc = "Ten prosty implant dodaje na plecach złącze do butli, dzięki czemu możesz z niej oddychać bez maski i nikt cię nie udusi."
 	icon_state = "implant_mask"
 	slot = ORGAN_SLOT_BREATHING_TUBE
 	w_class = WEIGHT_CLASS_TINY
@@ -206,8 +206,8 @@
 //BOX O' IMPLANTS
 
 /obj/item/storage/box/cyber_implants
-	name = "boxed cybernetic implants"
-	desc = "A sleek, sturdy box."
+	name = "implanty cybernetyczne w pudełku"
+	desc = "Eleganckie, solidne pudełko."
 	icon_state = "cyber_implants"
 	var/list/boxed = list(
 		/obj/item/autosurgeon/syndicate/thermal_eyes,

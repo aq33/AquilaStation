@@ -1,14 +1,14 @@
 /// Recollects water for sinks, toilets and showers
 /obj/item/stock_parts/water_recycler
-	name = "water recycler"
-	desc = "A chemical reclamation component, which serves to re-accumulate and filter water over time."
+	name = "recykler wody"
+	desc = "Element odzysku chemikaliów, który z czasem na nowo gromadzi i filtruje wodę."
 	icon = 'aquila/icons/obj/plumbing/plumbing_items.dmi'
 	icon_state = "water_recycler"
 	custom_materials = list(/datum/material/plastic = 200, /datum/material/iron = 50)
 
 /datum/design/water_recycler
-	name = "Water Recycler"
-	desc = "A device that slowly reclaims water for sinks, toilets and showers."
+	name = "Recykler wody"
+	desc = "Urządzenie, które powoli odzyskuje wodę do zlewów, toalet i pryszniców."
 	id = "water_recycler"
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(/datum/material/plastic = 200, /datum/material/iron = 50)
@@ -17,7 +17,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE | DEPARTMENTAL_FLAG_ENGINEERING
 
 /datum/design/plumbing_rcd_service
-	name = "Service Plumbing Constructor"
+	name = "Konstruktor instalacji serwisowych"
 	id = "plumbing_rcd_service"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500, /datum/material/plastic = 1000)
@@ -31,8 +31,8 @@
 
 // Plumbed tanks: the water sources for station sinks, toilets and showers
 /obj/structure/reagent_dispensers/plumbed
-	name = "stationary water tank"
-	desc = "A stationary, plumbed, water tank."
+	name = "stacjonarny zbiornik wody"
+	desc = "Stacjonarny zbiornik wody podłączony do rur."
 	icon = 'aquila/icons/obj/plumbing/plumbing_items.dmi'
 	icon_state = "water_stationary"
 
@@ -41,7 +41,7 @@
 	. += "<span class='notice'>Wydaje płyn do rur przez złącze z przodu. Można go odkręcić <b>kluczem</b>.</span>"
 
 /obj/structure/reagent_dispensers/plumbed/storage
-	name = "stationary storage tank"
+	name = "stacjonarny zbiornik magazynowy"
 	icon_state = "tank_stationary"
 
 /obj/structure/reagent_dispensers/plumbed/storage/update_overlays()
@@ -57,8 +57,8 @@
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/reagent_dispensers/plumbed/fuel
-	name = "stationary fuel tank"
-	desc = "A stationary, plumbed, fuel tank."
+	name = "stacjonarny zbiornik paliwa"
+	desc = "Stacjonarny zbiornik paliwa podłączony do rur."
 	icon_state = "fuel_stationary"
 	reagent_id = /datum/reagent/fuel
 

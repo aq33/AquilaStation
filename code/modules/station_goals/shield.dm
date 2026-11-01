@@ -2,7 +2,7 @@
 // A chain of satellites encircles the station
 // Satellites be actived to generate a shield that will block unorganic matter from passing it.
 /datum/station_goal/station_shield
-	name = "Station Shield"
+	name = "Osłona stacji"
 	var/coverage_goal = 500
 
 /datum/station_goal/station_shield/get_report()
@@ -29,8 +29,8 @@
 	return coverage.len
 
 /obj/machinery/computer/sat_control
-	name = "satellite control"
-	desc = "Used to control the satellite network."
+	name = "sterowanie satelitami"
+	desc = "Służy do sterowania siecią satelitów."
 	circuit = /obj/item/circuitboard/computer/sat_control
 
 
@@ -83,7 +83,7 @@
 
 
 /obj/machinery/satellite
-	name = "\improper Defunct Satellite"
+	name = "\improper nieczynny satelita"
 	desc = ""
 	icon = 'icons/obj/machines/satellite.dmi'
 	icon_state = "sat_inactive"
@@ -108,7 +108,7 @@
 			to_chat(user, "<span class='warning'>[src] można aktywować tylko w kosmosie.</span>")
 		return FALSE
 	if(user)
-		to_chat(user, "<span class='notice'>You [active ? "deactivate": "activate"] [src].</span>")
+		to_chat(user, "<span class='notice'>[active ? "Wyłączasz": "Włączasz"] [src].</span>")
 	active = !active
 	if(active)
 		begin_processing()
@@ -128,8 +128,8 @@
 	return TRUE
 
 /obj/machinery/satellite/meteor_shield
-	name = "\improper Meteor Shield Satellite"
-	desc = "A meteor point-defense satellite."
+	name = "\improper satelita osłony przeciwmeteorytowej"
+	desc = "Satelita obrony punktowej przed meteorami."
 	mode = "M-SHIELD"
 	processing_flags = START_PROCESSING_MANUALLY
 	subsystem_type = /datum/controller/subsystem/processing/fastprocess

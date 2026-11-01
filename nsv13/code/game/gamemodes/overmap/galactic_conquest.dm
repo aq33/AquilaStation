@@ -1,9 +1,9 @@
 //Special gamemode used only in PVP. This gamemode should not be used outside of PVP.
 //This is used to prevent other overmap gamemodes (delivery, boarding, shakedown) from getting in the way.
 /datum/overmap_gamemode/galactic_conquest
-	name = "Galactic Conquest"
+	name = "Podbój galaktyki"
 	config_tag = "conquest"
-	desc = "PVP Gamemode - Acquire 700 victory tickets for Nanotrasen or destroy the Syndicate Flagship"
+	desc = "Tryb PVP – zdobądź 700 punktów zwycięstwa dla Nanotrasen albo zniszcz okręt flagowy Syndykatu"
 	brief = "Wywiad sugeruje, że Syndykat szykuje zmasowany atak na sektor Sol. Patrolujcie ten obszar i bezwzględnie eliminujcie siły Syndykatu."
 	starting_system = "Argo"
 	starting_faction = "nanotrasen"

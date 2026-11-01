@@ -1,7 +1,7 @@
 // Billboardy z tg (code/game/objects/structures/billboard.dm), potrzebne w ruinach górniczych.
 /obj/structure/billboard
-	name = "blank billboard"
-	desc = "A blank billboard, with space for all kinds of advertising."
+	name = "pusty billboard"
+	desc = "Pusty billboard z miejscem na wszelkie reklamy."
 	icon = 'aquila/icons/obj/billboard.dmi'
 	icon_state = "billboard_blank"
 	layer = ABOVE_MOB_LAYER
@@ -12,42 +12,42 @@
 	anchored = TRUE
 
 /obj/structure/billboard/donk_n_go
-	name = "\improper Donk-n-Go billboard"
-	desc = "A billboard advertising Donk-n-Go, Donk Co's ever-present and ever-unhealthy fast-food venture: GET IN, GET FED, GET GONE!"
+	name = "\improper billboard Donk-n-Go"
+	desc = "Billboard reklamujący Donk-n-Go, wszechobecny i zawsze niezdrowy fast food firmy Donk Co.: WEJDŹ, ZJEDZ, ZNIKAJ!"
 	icon_state = "billboard_donk_n_go"
 
 /obj/structure/billboard/space_cola
-	name = "\improper Space Cola billboard"
-	desc = "A billboard advertising Space Cola: Relax, have a Spoke."
+	name = "\improper billboard Kosmicznej Coli"
+	desc = "Billboard reklamujący Kosmiczną Colę: Wyluzuj, napij się Spoke'a."
 	icon_state = "billboard_space_cola"
 
 /obj/structure/billboard/nanotrasen
-	name = "\improper Nanotrasen billboard"
-	desc = "A billboard advertising Nanotrasen: A Better Tomorrow, Today."
+	name = "\improper billboard Nanotrasen"
+	desc = "Billboard reklamujący Nanotrasen: Lepsze jutro już dziś."
 	icon_state = "billboard_nanotrasen"
 
 /obj/structure/billboard/nanotrasen/defaced
-	name = "defaced Nanotrasen billboard"
-	desc = "A billboard advertising Nanotrasen. Someone's sprayed a message onto it: Fuck Corpo Pigs."
+	name = "zniszczony billboard Nanotrasen"
+	desc = "Billboard reklamujący Nanotrasen. Ktoś wysprejował na nim napis: Jebać korposwinie."
 	icon_state = "billboard_fuck_corps"
 
 /obj/structure/billboard/azik
-	name = "\improper Azik Interstellar billboard"
-	desc = "A billboard advertising Azik Interstellar and their newest model: the Autocrat Solar Sailer. Azik Interstellar: Tiziran Refinement for Galactic Necessities."
+	name = "\improper billboard Azik Interstellar"
+	desc = "Billboard reklamujący Azik Interstellar i ich najnowszy model: żaglowiec słoneczny Autocrat. Azik Interstellar: tizirańska elegancja na galaktyczne potrzeby."
 	icon_state = "billboard_azik"
 
 /obj/structure/billboard/twenty_four_seven
-	name = "\improper 24-Seven billboard"
-	desc = "A billboard advertising 24-Seven's new range of limited-edition Slushee flavours. 24-Seven: All Day, Every Day."
+	name = "\improper billboard 24-Seven"
+	desc = "Billboard reklamujący nową serię limitowanych smaków Slushee w 24-Seven. 24-Seven: cały dzień, każdego dnia."
 	icon_state = "billboard_twenty_four_seven"
 
 /obj/structure/billboard/starway
-	name = "\improper Starway Transit billboard"
-	desc = "A billboard advertising Starway Transit's direct flight from New Moscow to New York: only 2000 credits for an economy class berth. Starway: Your Ticket to the Stars."
+	name = "\improper billboard Starway Transit"
+	desc = "Billboard reklamujący bezpośredni lot Starway Transit z Nowej Moskwy do Nowego Jorku: koja w klasie ekonomicznej tylko za 2000 kr. Starway: twój bilet do gwiazd."
 	icon_state = "billboard_starway"
 
 /obj/effect/spawner/lootdrop/billboard
-	name = "billboard spawner"
+	name = "spawner billboardu"
 	icon = 'aquila/icons/obj/billboard.dmi'
 	icon_state = "billboard_random"
 	loot = list(

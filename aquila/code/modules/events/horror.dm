@@ -9,7 +9,7 @@
 
 /datum/round_event/ghost_role/horror
 	minimum_required = 1
-	role_name = "horror"
+	role_name = "pradawny horror"
 	fakeable = FALSE
 
 /datum/round_event/ghost_role/horror/spawn_role()
@@ -31,7 +31,7 @@
 	player_mind.add_antag_datum(/datum/antagonist/horror)
 	to_chat(S, S.playstyle_string)
 	SEND_SOUND(S, sound('sound/hallucinations/growl2.ogg'))
-	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into an eldritch horror by an event.")
+	message_admins("[ADMIN_LOOKUPFLW(S)] zostaje pradawnym horrorem w wyniku eventu.")
 	log_game("[key_name(S)] was spawned as an eldritch horror by an event.")
 	spawned_mobs += S
 	return SUCCESSFUL_SPAWN

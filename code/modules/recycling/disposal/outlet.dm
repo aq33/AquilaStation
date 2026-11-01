@@ -1,7 +1,7 @@
 // the disposal outlet machine
 /obj/structure/disposaloutlet
-	name = "disposal outlet"
-	desc = "An outlet for the pneumatic disposal system."
+	name = "wylot zsypu"
+	desc = "Wylot pneumatycznej instalacji zsypowej."
 	icon = 'icons/obj/atmospherics/pipes/disposal.dmi'
 	icon_state = "outlet"
 	density = TRUE

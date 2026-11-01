@@ -11,7 +11,7 @@
 
 /client/proc/openTicketManager()
 	set name = "Ticket Manager"
-	set desc = "Opens the ticket manager"
+	set desc = "Otwiera menedżer zgłoszeń"
 	set category = "Admin"
 	if(!src.holder)
 		to_chat(src, "Tylko administratorzy mogą używać tej komendy.")
@@ -84,7 +84,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	var/datum/admins/admin_datum = GLOB.admin_datums[C.ckey]
 	if(!admin_datum)
-		message_admins("[C.ckey] attempted to browse tickets, but had no admin datum")
+		message_admins("[C.ckey] próbuje przeglądać zgłoszenia, ale nie ma danych admina")
 		return
 	if(!admin_datum.admin_interface)
 		admin_datum.admin_interface = new(user)
@@ -99,7 +99,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		log_admin_private("[user.ckey] opened the ticket panel.")
-		ui = new(user, src, "TicketBrowser", "Ticket Browser")
+		ui = new(user, src, "TicketBrowser", "Przeglądarka zgłoszeń")
 		ui.set_autoupdate(TRUE)
 		ui.open()
 
@@ -107,7 +107,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/datum/admins/admin_datum = GLOB.admin_datums[user.ckey]
 	if(!admin_datum)
 		log_admin_private("[user] sent a request to interact with the ticket browser without sufficient rights.")
-		message_admins("[user] sent a request to interact with the ticket browser without sufficient rights.")
+		message_admins("[user] wysyła żądanie do przeglądarki zgłoszeń bez wystarczających uprawnień.")
 		return
 	var/list/data = list()
 	data["admin_ckey"] = user.ckey
@@ -120,7 +120,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help_ui/ui_act(action, params)
 	var/datum/admins/admin_datum = GLOB.admin_datums[usr.ckey]
 	if(!admin_datum)
-		message_admins("[usr] sent a request to interact with the ticket browser without sufficient rights.")
+		message_admins("[usr] wysyła żądanie do przeglądarki zgłoszeń bez wystarczających uprawnień.")
 		log_admin_private("[usr] sent a request to interact with the ticket browser without sufficient rights.")
 		return
 	var/ticket_id = text2num(params["id"])
@@ -130,8 +130,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	switch(action)
 		if("claim")
 			if(ticket.claimed_admin)
-				var/confirm = alert("To zgłoszenie jest już przejęte, nadpisać przejęcie?",,"Yes", "No")
-				if(confirm == "No")
+				var/confirm = alert("To zgłoszenie jest już przejęte, nadpisać przejęcie?",,"Tak", "Nie")
+				if(confirm == "Nie")
 					return
 			claim_ticket = CLAIM_OVERRIDE
 		if("reject")
@@ -194,12 +194,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //Tickets statpanel
 /datum/admin_help_tickets/proc/stat_entry()
 	var/list/tab_data = list()
-	tab_data["Tickets"] = list(
-		text = "Open Ticket Browser",
+	tab_data["Zgłoszenia"] = list(
+		text = "Otwórz przeglądarkę zgłoszeń",
 		type = STAT_BUTTON,
 		action = "browsetickets",
 	)
-	tab_data["Active Tickets"] = list(
+	tab_data["Aktywne zgłoszenia"] = list(
 		text = "[active_tickets.len]",
 		type = STAT_BUTTON,
 		action = "browsetickets",
@@ -218,7 +218,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					multirow = TRUE,
 					buttons = list(
 						list(
-							"title" = AH.claimed_admin_key_name ? "Claimed by [AH.claimed_admin_key_name]" : "Claim",
+							"title" = AH.claimed_admin_key_name ? "Przejęte przez: [AH.claimed_admin_key_name]" : "Przejmij",
 							"color" = AH.claimed_admin_key_name ? "red" : "green",
 							"action_id" = "claim_ticket",
 							"params" = list("id" = AH.id)
@@ -229,17 +229,17 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			else
 				++num_disconnected
 	if(num_disconnected)
-		tab_data["Disconnected"] = list(
+		tab_data["Rozłączeni"] = list(
 			text = "[num_disconnected]",
 			type = STAT_BUTTON,
 			action = "browsetickets",
 		)
-	tab_data["Closed Tickets"] = list(
+	tab_data["Zamknięte zgłoszenia"] = list(
 		text = "[closed_tickets.len]",
 		type = STAT_BUTTON,
 		action = "browsetickets",
 	)
-	tab_data["Resolved Tickets"] = list(
+	tab_data["Rozwiązane zgłoszenia"] = list(
 		text = "[resolved_tickets.len]",
 		type = STAT_BUTTON,
 		action = "browsetickets",
@@ -251,12 +251,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	C.current_ticket = CKey2ActiveTicket(C.ckey)
 	if(C.current_ticket)
 		C.current_ticket.initiator = C
-		C.current_ticket.AddInteraction("green", "Client reconnected.")
+		C.current_ticket.AddInteraction("green", "Klient połączył się ponownie.")
 
 //Dissasociate ticket
 /datum/admin_help_tickets/proc/ClientLogout(client/C)
 	if(C.current_ticket)
-		C.current_ticket.AddInteraction("red", "Client disconnected.")
+		C.current_ticket.AddInteraction("red", "Klient się rozłączył.")
 		C.current_ticket.initiator = null
 		C.current_ticket = null
 
@@ -331,7 +331,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_ticket)	//This is a bug
 		stack_trace("Multiple ahelp current_tickets")
-		initiator.current_ticket.AddInteraction("red", "Ticket erroneously left open by code")
+		initiator.current_ticket.AddInteraction("red", "Zgłoszenie błędnie pozostawione otwarte przez kod")
 		initiator.current_ticket.Close()
 	initiator.current_ticket = src
 
@@ -342,8 +342,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.unclaimed_tickets += src
 
 	if(is_bwoink)
-		AddInteraction("blue", name, usr.ckey, initiator_key_name, "Administrator", "You")
-		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
+		AddInteraction("blue", name, usr.ckey, initiator_key_name, "Administrator", "Ty")
+		message_admins("<font color='blue'>Utworzono zgłoszenie [TicketHref("#[id]")]</font>")
 		Claim()	//Auto claim bwoinks
 	else
 		MessageNoRecipient(msg)
@@ -421,7 +421,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		log_admin_private("[user.ckey] opened the ticket panel.")
-		ui = new(user, src, "TicketMessenger", "Ticket Messenger")
+		ui = new(user, src, "TicketMessenger", "Komunikator zgłoszeń")
 		ui.set_autoupdate(TRUE)
 		ui.open()
 
@@ -431,7 +431,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/ui_data(mob/user)
 	var/datum/admins/admin_datum = GLOB.admin_datums[user.ckey]
 	if(!admin_datum)
-		message_admins("[user] sent a request to interact with the ticket window without sufficient rights.")
+		message_admins("[user] wysyła żądanie do okna zgłoszenia bez wystarczających uprawnień.")
 		log_admin_private("[user] sent a request to interact with the ticket window without sufficient rights.")
 		return
 	var/list/data = list()
@@ -466,11 +466,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/ui_act(action, params)
 	var/datum/admins/admin_datum = GLOB.admin_datums[usr.ckey]
 	if(!admin_datum)
-		message_admins("[usr] sent a request to interact with the ticket window without sufficient rights.")
+		message_admins("[usr] wysyła żądanie do okna zgłoszenia bez wystarczających uprawnień.")
 		log_admin_private("[usr] sent a request to interact with the ticket window without sufficient rights.")
 		return
 	if(!check_rights(R_ADMIN))
-		message_admins("[usr] sent a request to interact with the ticket window without sufficient rights. (Requires: R_ADMIN)")
+		message_admins("[usr] wysyła żądanie do okna zgłoszenia bez wystarczających uprawnień. (Wymaga: R_ADMIN)")
 		log_admin_private("[usr] sent a request to interact with the ticket window without sufficient rights.")
 		return
 	//Doing action on a ticket claims it
@@ -524,7 +524,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	//Message to be sent to all admins
 	var/admin_msg = "<span class='adminnotice'><span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>"
 
-	AddInteraction("red", msg, initiator_key_name, claimed_admin_key_name, "You", "Administrator")
+	AddInteraction("red", msg, initiator_key_name, claimed_admin_key_name, "Ty", "Administrator")
 	log_admin_private("Ticket #[id]: [key_name(initiator)]: [msg]")
 
 	//send this msg to all admins
@@ -564,7 +564,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.current_ticket = src
 
-	AddInteraction("purple", "Reopened by [key_name_admin(usr)]")
+	AddInteraction("purple", "Ponownie otwarte przez [key_name_admin(usr)]")
 	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
 	message_admins(msg)
 	log_admin_private(msg)
@@ -656,7 +656,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
 
-		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
+		to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp odrzucony! -</b></font>")
 		to_chat(initiator, "<font color='red'><b>Administratorzy nie mogli rozwiązać twojego zgłoszenia.</b> Czasownik adminhelp został ci zwrócony, możesz spróbować ponownie.</font>")
 		to_chat(initiator, "W adminhelpach staraj się pisać spokojnie, jasno i opisowo, nie zakładaj, że admin widział związane z tym wydarzenia, i wyraźnie podawaj imiona osób, które zgłaszasz.")
 
@@ -675,7 +675,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state > AHELP_ACTIVE)
 		return
 
-	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
+	var/msg = "<font color='red' size='4'><b>- Adminhelp oznaczony jako sprawa IC! -</b></font><br>"
 	msg += "<font color='red'>Administrator uznał twoją sprawę za kwestię IC, która obecnie NIE wymaga interwencji administratora. Aby ją rozwiązać, korzystaj z możliwości w grze (IC).</font><br>"
 
 	if(initiator)
@@ -700,7 +700,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
 
-		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
+		to_chat(initiator, "<font color='red' size='4'><b>- Adminhelp odrzucony! -</b></font>")
 		to_chat(initiator, "<font color='red'>To pytanie może dotyczyć <b>mechaniki gry lub poradników</b>. Takie pytania należy zadawać przez <b>Mentorhelp</b>.</font>")
 
 	SSblackbox.record_feedback("tally", "ahelp_stats", 1, "mhelp this")
@@ -713,7 +713,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	Close(silent = TRUE)
 
 /datum/admin_help/proc/Retitle()
-	var/new_title = capped_input(usr, "Podaj tytuł zgłoszenia", "Rename Ticket", name)
+	var/new_title = capped_input(usr, "Podaj tytuł zgłoszenia", "Zmiana tytułu zgłoszenia", name)
 	if(new_title)
 		name = new_title
 		//not saying the original name cause it could be a long ass message
@@ -758,7 +758,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 // Used for methods where input via arg doesn't work
 /client/proc/get_adminhelp()
-	var/msg = capped_multiline_input(src, "Zwięźle opisz swój problem, a admin pomoże, gdy tylko będzie mógł. Jeśli dotyczy, podaj imiona osób, które zgłaszasz.", "Adminhelp contents")
+	var/msg = capped_multiline_input(src, "Zwięźle opisz swój problem, a admin pomoże, gdy tylko będzie mógł. Jeśli dotyczy, podaj imiona osób, które zgłaszasz.", "Treść adminhelpa")
 	adminhelp(msg)
 
 /client/verb/adminhelp(msg as message)
@@ -783,7 +783,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
-		if(alert(usr, "Masz już otwarte zgłoszenie. Czy chodzi o tę samą sprawę?",,"Yes","No") != "No")
+		if(alert(usr, "Masz już otwarte zgłoszenie. Czy chodzi o tę samą sprawę?",,"Tak","Nie") != "Nie")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
 				current_ticket.TimeoutVerb()
@@ -811,7 +811,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		C = what
 	if(istype(C) && C.current_ticket)
 		if(safeSenderLogged)
-			C.current_ticket.AddInteraction(color, message, whofrom, whoto, isSenderAdmin ? "Administrator" : "You", isSenderAdmin ? "You" : "Administrator")
+			C.current_ticket.AddInteraction(color, message, whofrom, whoto, isSenderAdmin ? "Administrator" : "Ty", isSenderAdmin ? "Ty" : "Administrator")
 		else
 			C.current_ticket.AddInteraction(color, message, whofrom, whoto)
 		return C.current_ticket
@@ -819,7 +819,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/admin_help/AH = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
 		if(AH)
 			if(safeSenderLogged)
-				AH.AddInteraction(color, message, whofrom, whoto, isSenderAdmin ? "Administrator" : "You", isSenderAdmin ? "You" : "Administrator")
+				AH.AddInteraction(color, message, whofrom, whoto, isSenderAdmin ? "Administrator" : "Ty", isSenderAdmin ? "Ty" : "Administrator")
 			else
 				AH.AddInteraction(color, message, whofrom, whoto)
 			return AH

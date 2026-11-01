@@ -2,20 +2,20 @@
 // Nasz Shock Touch jest na starym /obj/effect/proc_holder/spell, więc wersja z zasięgiem też.
 
 /datum/mutation/shock/far
-	name = "Extended Shock Touch"
-	desc = "The affected can channel excess electricity through their hands without shocking themselves, allowing them to shock others at range."
+	name = "Porażający dotyk z dystansu"
+	desc = "Pacjent przepuszcza nadmiar prądu przez dłonie bez porażania siebie i może razić innych z odległości."
 	instability = 40
 	text_gain_indication = "<span class='notice'>Czujesz, jak przez twoje dłonie przepływa nieograniczona moc.</span>"
 	power = /obj/effect/proc_holder/spell/targeted/touch/shock/far
 	conflicts = list(/datum/mutation/shock, /datum/mutation/insulated)
 
 /obj/effect/proc_holder/spell/targeted/touch/shock/far
-	name = "Extended Shock Touch"
-	desc = "Channel electricity to your hand to shock people with, even from a distance."
+	name = "Porażający dotyk z dystansu"
+	desc = "Skup prąd w dłoni, żeby razić ludzi, nawet z odległości."
 	hand_path = /obj/item/melee/touch_attack/shock/far
 
 /obj/item/melee/touch_attack/shock/far
-	name = "\improper extended shock touch"
+	name = "\improper porażający dotyk z dystansu"
 	/// Najdalej tyle pól
 	var/shock_range = 5
 

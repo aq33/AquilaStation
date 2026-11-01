@@ -1,5 +1,5 @@
 /obj/item/electronics/airlock
-	name = "airlock electronics"
+	name = "elektronika śluzy"
 	req_access = list(ACCESS_MAINT_TUNNELS)
 	custom_price = 5
 	/// A list of all granted accesses

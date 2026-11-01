@@ -1,8 +1,8 @@
 #define SYNDICATE_CHALLENGE_TIMER 12000 //20 minutes
 
 /obj/machinery/computer/shuttle_flight/syndicate
-	name = "syndicate shuttle terminal"
-	desc = "The terminal used to control the syndicate transport shuttle."
+	name = "terminal promu Syndykatu"
+	desc = "Terminal do sterowania promem transportowym Syndykatu."
 	circuit = /obj/item/circuitboard/computer/syndicate_shuttle
 	icon_screen = "syndishuttle"
 	icon_keyboard = "syndie_key"
@@ -13,8 +13,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/machinery/computer/shuttle_flight/syndicate/recall
-	name = "syndicate shuttle recall terminal"
-	desc = "Use this if your friends left you behind."
+	name = "terminal przywołania promu Syndykatu"
+	desc = "Użyj tego, jeśli przyjaciele zostawili cię w tyle."
 	request_shuttle_message = "Odwołaj infiltratora"
 	recall_docking_port_id = "syndicate_away"
 
@@ -40,8 +40,8 @@
 	return ..()
 
 /obj/machinery/computer/shuttle_flight/syndicate/drop_pod
-	name = "syndicate assault pod control"
-	desc = "Controls the drop pod's launch system."
+	name = "sterowanie kapsułą szturmową Syndykatu"
+	desc = "Steruje systemem startowym kapsuły desantowej."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "dorm_available"
 	light_color = LIGHT_COLOR_BLUE

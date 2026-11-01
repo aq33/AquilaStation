@@ -12,8 +12,8 @@
 GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card
-	name = "identification console"
-	desc = "You can use this to manage jobs and ID access."
+	name = "konsola identyfikacyjna"
+	desc = "Pozwala zarządzać stanowiskami i dostępem kart ID."
 	icon_screen = "id"
 	icon_keyboard = "id_key"
 	req_one_access = list(ACCESS_HEADS, ACCESS_CHANGE_IDS)
@@ -292,7 +292,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 			if (authenticated == 2)
 				var/t1 = href_list["assign_target"]
 				if(t1 == "Custom")
-					var/newJob = reject_bad_text(stripped_input("Podaj własny przydział stanowiska.", "Assignment", inserted_modify_id ? inserted_modify_id.assignment : "Unassigned"), MAX_NAME_LEN)
+					var/newJob = reject_bad_text(stripped_input("Podaj własny przydział stanowiska.", "Przydział", inserted_modify_id ? inserted_modify_id.assignment : "Unassigned"), MAX_NAME_LEN)
 					if(newJob)
 						t1 = newJob
 						log_id("[key_name(usr)] changed [inserted_modify_id] assignment to [newJob] using [inserted_scan_id] at [AREACOORD(usr)].")
@@ -505,7 +505,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 				for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))
 					t1 += t.fields["name"] + " - " + t.fields["rank"] + "<br>"
 				P.default_raw_text = t1
-				P.name = "paper- 'Crew Manifest'"
+				P.name = "kartka – „Manifest załogi”"
 				printing = null
 				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
 	if (inserted_modify_id)
@@ -518,13 +518,13 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 			head_subordinates += job.title
 
 /obj/machinery/computer/card/centcom
-	name = "\improper CentCom identification console"
+	name = "\improper konsola identyfikacyjna Centrali"
 	circuit = /obj/item/circuitboard/computer/card/centcom
 	req_access = list(ACCESS_CENT_CAPTAIN)
 
 /obj/machinery/computer/card/minor
-	name = "department management console"
-	desc = "You can use this to change ID's for specific departments."
+	name = "konsola zarządzania działem"
+	desc = "Pozwala zmieniać karty ID w wybranych działach."
 	icon_screen = "idminor"
 	circuit = /obj/item/circuitboard/computer/card/minor
 
@@ -535,8 +535,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		typed_circuit.target_dept = target_dept
 	else
 		target_dept = typed_circuit.target_dept
-	var/list/dept_list = list("general","security","medical","science","engineering")
-	name = "[dept_list[target_dept]] department console"
+	var/list/dept_list = list("ogólny","ochrona","medyczny","nauka","inżynieria")
+	name = "konsola działu ([dept_list[target_dept]])"
 
 /obj/machinery/computer/card/minor/hos
 	target_dept = DEPT_SEC

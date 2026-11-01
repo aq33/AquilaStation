@@ -1,7 +1,7 @@
 /datum/disease/parrot_possession
-	name = "Parrot Possession"
+	name = "Opętanie przez papugę"
 	max_stages = 1
-	spread_text = "Paranormal"
+	spread_text = "Paranormalne"
 	spread_flags = DISEASE_SPREAD_SPECIAL
 	disease_flags = CURABLE
 	cure_text = "Woda święcona."

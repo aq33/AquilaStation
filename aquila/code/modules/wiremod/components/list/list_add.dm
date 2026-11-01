@@ -4,7 +4,7 @@
  * Adds an element to a list.
  */
 /obj/item/circuit_component/variable/list/listadd
-	display_name = "List Add"
+	display_name = "Dodawanie do listy"
 	desc = "Dodaje element do zmiennej będącej listą."
 	category = "List"
 

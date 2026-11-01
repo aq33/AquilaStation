@@ -21,8 +21,8 @@
  * - Can tear through any type of wall.  This takes 4 seconds for most walls, and 12 seconds for reinforced walls.
  */
 /mob/living/simple_animal/hostile/space_dragon
-	name = "Space Dragon"
-	desc = "A vile, leviathan-esque creature that flies in the most unnatural way. Looks slightly similar to a space carp."
+	name = "Kosmiczny smok"
+	desc = "Ohydna, lewiatanowata istota, która lata w najbardziej nienaturalny sposób. Wygląda trochę jak kosmiczny karp."
 	maxHealth = 350
 	health = 350
 	spacewalk = TRUE
@@ -429,8 +429,8 @@
 			to_chat(S, "[link] [rendered]")
 
 /datum/action/cooldown/gust_attack
-	name = "Gust Attack"
-	desc = "Use your wings to knock back foes with gusts of air, pushing them away and stunning them. Using this too often will leave you vulnerable for longer periods of time."
+	name = "Atak podmuchem"
+	desc = "Podmuchami skrzydeł odrzucasz wrogów, odpychając ich i ogłuszając. Zbyt częste używanie zostawia cię bezbronnym na dłużej."
 	background_icon_state = "bg_default"
 	icon_icon = 'icons/mob/actions/actions_space_dragon.dmi'
 	button_icon_state = "gust_attack"

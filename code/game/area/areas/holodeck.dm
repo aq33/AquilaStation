@@ -1,5 +1,5 @@
 /area/holodeck
-	name = "Holodeck"
+	name = "Holodek"
 	icon_state = "holodeck"
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	flags_1 = NONE
@@ -48,13 +48,13 @@
 	spheres at holes, or bludgeoning people.
 */
 /area/holodeck/rec_center
-	name = "\improper Recreational Holodeck"
+	name = "\improper Holodek Rekreacyjny"
 
 /area/holodeck/rec_center/offstation_one
-	name = "\improper Recreational Holodeck"
+	name = "\improper Holodek Rekreacyjny"
 
 //Prison holodeck will be 4x7
 /area/holodeck/prison
-	name = "\improper Workshop"
+	name = "\improper Warsztat"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 

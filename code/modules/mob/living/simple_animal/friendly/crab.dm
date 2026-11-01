@@ -1,7 +1,7 @@
 //Look Sir, free crabs!
 /mob/living/simple_animal/crab
-	name = "crab"
-	desc = "Free crabs!"
+	name = "krab"
+	desc = "Darmowe kraby!"
 	icon_state = "crab"
 	icon_living = "crab"
 	icon_dead = "crab_dead"
@@ -45,7 +45,7 @@
 /mob/living/simple_animal/crab/Coffee
 	name = "Coffee"
 	real_name = "Coffee"
-	desc = "It's Coffee, the other pet!"
+	desc = "To Coffee, ten drugi zwierzak!"
 	gender = FEMALE
 	response_help  = "głaszcze"
 	response_disarm = "delikatnie odsuwa na bok"
@@ -53,9 +53,9 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/crab/evil
-	name = "Evil Crab"
-	real_name = "Evil Crab"
-	desc = "Unnerving, isn't it? It has to be planning something nefarious..."
+	name = "zły krab"
+	real_name = "zły krab"
+	desc = "Niepokojący, prawda? Na pewno knuje coś nikczemnego..."
 	icon_state = "evilcrab"
 	icon_living = "evilcrab"
 	icon_dead = "evilcrab_dead"
@@ -67,7 +67,7 @@
 
 /mob/living/simple_animal/crab/kreb
 	name = "Kreb"
-	desc = "This is a real crab. The other crabs are simply gubbucks in disguise!"
+	desc = "To prawdziwy krab. Pozostałe kraby to tylko przebrane żarłoczki samce!"
 	real_name = "Kreb"
 	icon_state = "kreb"
 	icon_living = "kreb"
@@ -78,8 +78,8 @@
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/crab/evil/kreb
-	name = "Evil Kreb"
-	real_name = "Evil Kreb"
+	name = "Zły Kreb"
+	real_name = "Zły Kreb"
 	icon_state = "evilkreb"
 	icon_living = "evilkreb"
 	icon_dead = "evilkreb_dead"

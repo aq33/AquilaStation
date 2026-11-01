@@ -32,5 +32,5 @@
 	outfit = /datum/outfit/death_commando/officer
 
 /mob/living/carbon/human/ai_boarder/ert/deathsquad/doomguy
-	name = "The oncoming storm"
+	name = "Nadciągająca burza"
 	outfit = /datum/outfit/death_commando/doomguy

@@ -1,8 +1,8 @@
 #define HOURGLASS_STATES 7 //Remember to update if you change the sprite
 
 /obj/item/hourglass
-	name = "hourglass"
-	desc = "Nanotrasen patented gravity invariant hourglass. Guaranteed to flow perfectly under any conditions."
+	name = "klepsydra"
+	desc = "Opatentowana przez Nanotrasen klepsydra niezależna od grawitacji. Gwarantowany idealny przepływ w każdych warunkach."
 	var/obj/effect/countdown/hourglass/countdown
 	var/time = 1 MINUTES
 	var/finish_time //So countdown doesn't need to fiddle with timers
@@ -57,7 +57,7 @@
 	update_icon()
 
 /obj/item/hourglass/proc/finish()
-	visible_message("<span class='notice'>[src] stops.</span>")
+	visible_message("<span class='notice'>[src] się zatrzymuje.</span>")
 	stop()
 
 /obj/item/hourglass/Destroy()

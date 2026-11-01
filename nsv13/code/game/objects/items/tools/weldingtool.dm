@@ -1,8 +1,8 @@
 // Welding tool upgrade for Cyborgs
 
 /obj/item/weldingtool/experimental/cyborg
-	name = "integrated experimental welding tool"
-	desc = "An experimental welder designed to be used in robotic systems. Custom framework doubles the speed of welding."
+	name = "zintegrowana eksperymentalna spawarka"
+	desc = "Eksperymentalna spawarka do systemów robotycznych. Specjalna konstrukcja podwaja szybkość spawania."
 	icon = 'icons/obj/items_cyborg.dmi'
 	icon_state = "indwelder_cyborg"
 	toolspeed = 0.5

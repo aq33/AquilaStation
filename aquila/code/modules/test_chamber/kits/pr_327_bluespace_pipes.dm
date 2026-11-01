@@ -5,7 +5,7 @@
 	pr = "aq33/AquilaStation#327"
 	description = "Użyj rurki bluespace w ręce, żeby zmienić nazwę sieci (domyślnie default). RPD postaw dwa porty konektora w różnych miejscach areny, \
 	przykręć do każdego rurkę bluespace z tą samą nazwą sieci, podłącz kanister tlenu do jednego i pusty do drugiego - gaz ma przepłynąć (sprawdź analizatorem). \
-	Odkręcona rurka zachowuje nazwę (examine). RPD i dyspenser rur nie mogą jej zniszczyć. W R&D węzeł Bluespace Travel odblokowuje projekt w protolathe."
+	Odkręcona rurka zachowuje nazwę (examine). RPD i dyspenser rur nie mogą jej zniszczyć. W R&D węzeł Bluespace Travel odblokowuje projekt w protolacie."
 	items = list(
 		/obj/item/pipe/bluespace = 3,
 		/obj/item/pipe_dispenser = 1,

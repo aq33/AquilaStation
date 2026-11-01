@@ -1,12 +1,12 @@
 /obj/item/wallframe/clocktrap/lever
-	name = "switch"
-	desc = "A small switch attatched to the wall."
+	name = "przełącznik"
+	desc = "Mały przełącznik przymocowany do ściany."
 	icon_state = "lever"
 	result_path = /obj/structure/destructible/clockwork/trap/lever
 
 /obj/structure/destructible/clockwork/trap/lever
-	name = "switch"
-	desc = "A small switch attatched to the wall."
+	name = "przełącznik"
+	desc = "Mały przełącznik przymocowany do ściany."
 	icon_state = "lever"
 	unwrench_path = /obj/item/wallframe/clocktrap/lever
 	component_datum = /datum/component/clockwork_trap/lever

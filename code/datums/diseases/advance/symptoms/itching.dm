@@ -18,7 +18,7 @@ BONUS
 
 /datum/symptom/itching
 
-	name = "Itching"
+	name = "Swędzenie"
 	desc = "Wirus podrażnia skórę, powodując swędzenie."
 	stealth = 0
 	resistance = 3
@@ -31,8 +31,8 @@ BONUS
 	prefixes = list("Irritant ")
 	bodies = list("Itch")
 	var/scratch = FALSE
-	threshold_desc = "<b>Transmission 6:</b> Increases frequency of itching.<br>\
-					  <b>Stage Speed 7:</b> The host will scrath itself when itching, causing superficial damage."
+	threshold_desc = "<b>Transmisja 6:</b> zwiększa częstotliwość swędzenia.<br>\
+					  <b>Szybkość stadiów 7:</b> nosiciel drapie się, gdy go swędzi, co zadaje powierzchowne obrażenia."
 
 /datum/symptom/itching/Start(datum/disease/advance/A)
 	if(!..())

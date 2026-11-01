@@ -1,9 +1,9 @@
 // AQ EDIT - Smartwires (port BeeStation/BeeStation-Hornet#14275): cable coil moved out of cable.dm and rewritten
 
 /obj/item/stack/cable_coil
-	name = "cable coil"
-	singular_name = "cable piece"
-	desc = "A coil of insulated power cable."
+	name = "zwój kabla"
+	singular_name = "odcinek kabla"
+	desc = "Zwój izolowanego kabla zasilającego."
 
 	icon = 'aquila/icons/obj/cable_coil.dmi'
 	icon_state = "omni-coil"
@@ -127,7 +127,7 @@
 
 /obj/item/stack/cable_coil/update_name(updates)
 	. = ..()
-	name = "[omni ? "omni-" : ""]cable [amount < 3 ? "piece" : "coil"]"
+	name = "[amount < 3 ? "odcinek" : "zwój"] kabla[omni ? " omni" : ""]"
 
 /obj/item/stack/cable_coil/update_icon_state()
 	. = ..()

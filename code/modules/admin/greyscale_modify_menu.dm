@@ -109,8 +109,8 @@
 		if("select_config")
 			var/datum/greyscale_config/new_config = input(
 				usr,
-				"Choose a new greyscale configuration to use",
-				"Greyscale Modification Menu",
+				"Wybierz nową konfigurację greyscale",
+				"Menu modyfikacji greyscale",
 				"[config.type]"
 			) as anything in allowed_configs
 			new_config = allowed_configs[new_config]
@@ -150,8 +150,8 @@
 			var/group = params["color_index"]
 			var/new_color = input(
 				usr,
-				"Choose color for greyscale color group [group]:",
-				"Greyscale Modification Menu",
+				"Wybierz kolor dla grupy kolorów greyscale [group]:",
+				"Menu modyfikacji greyscale",
 				split_colors[group]
 			) as color|null
 			if(new_color)
@@ -184,13 +184,13 @@
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-{"Other players are connected to the server, are you sure you want to refresh all greyscale configurations?\n
-This is highly likely to cause a lag spike for a few seconds."},
-					"Refresh Greyscale Configurations",
-					"Yes",
-					"Cancel"
+{"Na serwerze są inni gracze. Na pewno chcesz odświeżyć wszystkie konfiguracje greyscale?\n
+Niemal na pewno spowoduje to kilkusekundowy skok lagów."},
+					"Odświeżanie konfiguracji greyscale",
+					"Tak",
+					"Anuluj"
 				)
-				if(check != "Yes")
+				if(check != "Tak")
 					return
 			config.Refresh(loadFromDisk=TRUE)
 
@@ -212,13 +212,13 @@ This is highly likely to cause a lag spike for a few seconds."},
 			if(length(GLOB.player_list) > 1)
 				var/check = alert(
 					user,
-{"Other players are connected to the server, are you sure you want to automatically refresh all greyscale configurations?\n
-This is highly likely to cause massive amounts of lag as every object in the game will be iterated over every few seconds."},
-					"Auto-Refresh Greyscale Configurations",
-					"Yes",
-					"Cancel"
+{"Na serwerze są inni gracze. Na pewno chcesz automatycznie odświeżać wszystkie konfiguracje greyscale?\n
+Niemal na pewno spowoduje to ogromne lagi, bo co kilka sekund przechodzone będą wszystkie obiekty w grze."},
+					"Automatyczne odświeżanie konfiguracji greyscale",
+					"Tak",
+					"Anuluj"
 				)
-				if(check != "Yes")
+				if(check != "Tak")
 					return
 			config.EnableAutoRefresh(config_owner_type)
 

@@ -1,6 +1,6 @@
 /obj/item/storage/briefcase
-	name = "briefcase"
-	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
+	name = "aktówka"
+	desc = "Zrobiona z AUTENTYCZNEJ sztucznej skóry, wciąż z przyczepioną metką. Jej właściciel musi być prawdziwym profesjonalistą."
 	icon_state = "briefcase"
 	lefthand_file = 'icons/mob/inhands/equipment/case_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/case_righthand.dmi'
@@ -35,7 +35,7 @@
 	..()
 
 /obj/item/storage/briefcase/sniperbundle
-	desc = "Its label reads \"genuine hardened Captain leather\", but suspiciously has no other tags or branding. Smells like L'Air du Temps."
+	desc = "Na metce widnieje napis „prawdziwa utwardzona skóra kapitańska”, ale podejrzanie brak innych oznaczeń czy logo. Pachnie jak L'Air du Temps."
 	force = 10
 
 /obj/item/storage/briefcase/sniperbundle/PopulateContents()

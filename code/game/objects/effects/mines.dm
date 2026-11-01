@@ -1,29 +1,29 @@
 /obj/item/deployablemine
-	name = "deployable mine"
-	desc = "An unarmed landmine. It can be planted to arm it."
+	name = "mina do rozłożenia"
+	desc = "Nieuzbrojona mina lądowa. Podłóż ją, by ją uzbroić."
 	icon_state = "uglymine"
 	var/mine_type = /obj/effect/mine
 	var/arming_time = 30
 
 /obj/item/deployablemine/stun
-	desc = "An unarmed stun mine. It can be planted to arm it."
+	desc = "Nieuzbrojona mina ogłuszająca. Podłóż ją, by ją uzbroić."
 	mine_type = /obj/effect/mine/stun
 
 /obj/item/deployablemine/smartstun
-	name = "deployable smart mine"
-	desc = "An unarmed smart stun mine. It can be planted to arm it."
+	name = "inteligentna mina do rozłożenia"
+	desc = "Nieuzbrojona inteligentna mina ogłuszająca. Podłóż ją, by ją uzbroić."
 	mine_type = /obj/effect/mine/stun/smart
 
 /obj/item/deployablemine/rapid
-	name = "deployable rapid smart mine"
-	desc = "An unarmed smart stun mine designed to be rapidly placeable."
+	name = "szybka inteligentna mina do rozłożenia"
+	desc = "Nieuzbrojona inteligentna mina ogłuszająca, którą można bardzo szybko podłożyć."
 	mine_type = /obj/effect/mine/stun/smart/adv
 	arming_time = 10
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/deployablemine/heavy
-	name = "deployable sledgehammer smart mine"
-	desc = "An unarmed smart heavy stun mine designed to be hard to disarm."
+	name = "inteligentna mina „Młot” do rozłożenia"
+	desc = "Nieuzbrojona inteligentna ciężka mina ogłuszająca, którą trudno rozbroić."
 	mine_type = /obj/effect/mine/stun/smart/heavy
 	arming_time = 50
 
@@ -31,36 +31,36 @@
 	mine_type = /obj/effect/mine/explosive
 
 /obj/item/deployablemine/honk
-	name = "deployable honkblaster 1000"
-	desc = "An advanced pranking landmine for clowns, honk! Delivers an extra loud HONK to the head when triggered. It can be planted to arm it, or have its sound customised with a sound synthesiser."
+	name = "honkblaster 1000 do rozłożenia"
+	desc = "Zaawansowana żartobliwa mina lądowa dla klaunów, honk! Po uruchomieniu wali w głowę wyjątkowo głośnym HONK. Podłóż ją, by ją uzbroić, albo zmień jej dźwięk syntezatorem dźwięku."
 	mine_type = /obj/effect/mine/sound
 
 /obj/item/deployablemine/traitor
-	name = "exploding rubber duck"
-	desc = "A pressure activated explosive disguised as a rubber duck. Plant it to arm."
+	name = "wybuchowa gumowa kaczka"
+	desc = "Ładunek wybuchowy z zapalnikiem naciskowym przebrany za gumową kaczkę. Podłóż go, by uzbroić."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	mine_type = /obj/effect/mine/explosive/traitor
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/deployablemine/traitor/bigboom
-	name = "high yield exploding rubber duck"
-	desc = "A pressure activated explosive disguised as a rubber duck. Plant it to arm. This version is fitted with high yield X4 for a larger blast."
+	name = "silna wybuchowa gumowa kaczka"
+	desc = "Ładunek wybuchowy z zapalnikiem naciskowym przebrany za gumową kaczkę. Podłóż go, by uzbroić. Ta wersja ma silny ładunek X4, który daje większy wybuch."
 	mine_type = /obj/effect/mine/explosive/traitor/bigboom
 
 /obj/item/deployablemine/gas
-	name = "oxygen gas mine"
-	desc = "An unarmed mine that releases oxygen into the air when triggered. Pretty pointless huh."
+	name = "mina tlenowa"
+	desc = "Nieuzbrojona mina, która po uruchomieniu uwalnia tlen do powietrza. Trochę bez sensu, co?"
 	mine_type = /obj/effect/mine/gas
 
 /obj/item/deployablemine/plasma
-	name = "incendiary mine"
-	desc = "An unarmed mine that releases plasma into the air when triggered, then ignites it."
+	name = "mina zapalająca"
+	desc = "Nieuzbrojona mina, która po uruchomieniu uwalnia plazmę do powietrza, a potem ją zapala."
 	mine_type = /obj/effect/mine/gas/plasma
 
 /obj/item/deployablemine/sleepy
-	name = "knockout mine"
-	desc = "An unarmed mine that releases N2O into the air when triggered. Nighty Night!"
+	name = "mina usypiająca"
+	desc = "Nieuzbrojona mina, która po uruchomieniu uwalnia N2O do powietrza. Dobranoc!"
 	mine_type = /obj/effect/mine/gas/n2o
 
 /obj/item/deployablemine/afterattack(atom/plantspot, mob/user, proximity)
@@ -86,8 +86,8 @@
 		qdel(src)
 
 /obj/effect/mine
-	name = "dummy mine"
-	desc = "Better stay away from that thing."
+	name = "atrapa miny"
+	desc = "Lepiej trzymaj się od tego z daleka."
 	density = FALSE
 	anchored = TRUE
 	icon = 'icons/obj/items_and_weapons.dmi'
@@ -115,7 +115,7 @@
 			qdel(src)
 
 /obj/effect/mine/proc/mineEffect(mob/victim)
-	to_chat(victim, "<span class='danger'>*click*</span>")
+	to_chat(victim, "<span class='danger'>*klik*</span>")
 
 /obj/effect/mine/proc/on_entered(datum/source, atom/movable/AM)
 	SIGNAL_HANDLER
@@ -157,7 +157,7 @@
 	triggermine()
 
 /obj/effect/mine/explosive
-	name = "explosive mine"
+	name = "mina wybuchowa"
 	var/range_devastation = 0
 	var/range_heavy = 1
 	var/range_light = 2
@@ -165,8 +165,8 @@
 	disarm_product = /obj/item/deployablemine/explosive
 
 /obj/effect/mine/explosive/traitor
-	name = "rubber ducky"
-	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"
+	name = "gumowa kaczuszka"
+	desc = "Gumowa kaczuszko, jesteś super, z tobą kąpiel to frajdy suuuuper. Gumowa kaczuszko, kocham cię baaaardzooo~"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	dramatic_sound = 'sound/items/bikehorn.ogg'
@@ -187,25 +187,25 @@
 	explosion(loc, range_devastation, range_heavy, range_light, range_flash)
 
 /obj/effect/mine/stun
-	name = "stun mine"
+	name = "mina ogłuszająca"
 	var/stun_time = 150
 	var/damage = 0
 	disarm_product = /obj/item/deployablemine/stun
 
 /obj/effect/mine/stun/smart
-	name = "smart stun mine"
-	desc = "An advanced mine with IFF features, capable of ignoring people with mindshield implants."
+	name = "inteligentna mina ogłuszająca"
+	desc = "Zaawansowana mina z systemem rozpoznawania swój-obcy, która ignoruje osoby z implantem ochrony umysłu."
 	smartmine = 1
 	disarm_time = 250
 	disarm_product = /obj/item/deployablemine/smartstun
 
 /obj/effect/mine/stun/smart/adv
-	name = "rapid smart mine"
+	name = "szybka inteligentna mina"
 	disarm_time = 120
 	disarm_product = /obj/item/deployablemine/rapid
 
 /obj/effect/mine/stun/smart/heavy
-	name = "sledgehammer smart mine"
+	name = "inteligentna mina „Młot”"
 	disarm_time = 350
 	stun_time = 230
 	damage = 40
@@ -219,7 +219,7 @@
 		victim.adjustBruteLoss(damage)
 
 /obj/effect/mine/shrapnel
-	name = "shrapnel mine"
+	name = "mina odłamkowa"
 	var/shrapnel_type = /obj/item/projectile/bullet/shrapnel
 	var/shrapnel_magnitude = 3
 
@@ -227,11 +227,11 @@
 	AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_magnitude)
 
 /obj/effect/mine/shrapnel/sting
-	name = "stinger mine"
+	name = "mina żądłowa"
 	shrapnel_type = /obj/item/projectile/bullet/pellet/stingball
 
 /obj/effect/mine/kickmine
-	name = "kick mine"
+	name = "mina wykopująca"
 
 /obj/effect/mine/kickmine/mineEffect(mob/victim)
 	if(isliving(victim) && victim.client)
@@ -240,7 +240,7 @@
 
 
 /obj/effect/mine/gas
-	name = "oxygen mine"
+	name = "mina tlenowa"
 	var/gas_amount = 360
 	var/gas_type = "o2"
 	disarm_product = /obj/item/deployablemine/gas
@@ -250,13 +250,13 @@
 
 
 /obj/effect/mine/gas/plasma
-	name = "incendiary mine"
+	name = "mina zapalająca"
 	gas_type = "plasma"
 	disarm_product = /obj/item/deployablemine/plasma
 
 
 /obj/effect/mine/gas/n2o
-	name = "knockout mine"
+	name = "mina usypiająca"
 	gas_type = "n2o"
 	disarm_product = /obj/item/deployablemine/sleepy
 
@@ -277,12 +277,12 @@
 
 
 /obj/effect/mine/sound/bwoink
-	name = "bwoink mine"
+	name = "mina bwoink"
 	sound = 'sound/effects/adminhelp.ogg'
 
 /obj/effect/mine/pickup
-	name = "pickup"
-	desc = "pick me up"
+	name = "znajdźka"
+	desc = "podnieś mnie"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity2"
 	density = FALSE
@@ -302,8 +302,8 @@
 
 
 /obj/effect/mine/pickup/bloodbath
-	name = "Red Orb"
-	desc = "You feel angry just looking at it."
+	name = "Czerwona kula"
+	desc = "Czujesz złość już na sam jej widok."
 	duration = 1200 //2min
 	color = "#FF0000"
 	var/mob/living/doomslayer
@@ -343,8 +343,8 @@
 		qdel(chainsaw)
 
 /obj/effect/mine/pickup/healing
-	name = "Blue Orb"
-	desc = "You feel better just looking at it."
+	name = "Niebieska kula"
+	desc = "Czujesz się lepiej już na sam jej widok."
 	color = "#0000FF"
 
 /obj/effect/mine/pickup/healing/mineEffect(mob/living/carbon/victim)
@@ -354,8 +354,8 @@
 	victim.revive(full_heal = 1, admin_revive = 1)
 
 /obj/effect/mine/pickup/speed
-	name = "Yellow Orb"
-	desc = "You feel faster just looking at it."
+	name = "Żółta kula"
+	desc = "Czujesz się szybszy już na sam jej widok."
 	color = "#FFFF00"
 	duration = 300
 

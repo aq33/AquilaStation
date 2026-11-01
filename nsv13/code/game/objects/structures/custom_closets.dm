@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/master_at_arms
-	name = "\proper master at arms' locker"
+	name = "\proper szafka Mistrza Broni"
 	req_access = list(ACCESS_MAA)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "maa"
@@ -26,7 +26,7 @@
 	new /obj/item/pinpointer/munitions(src)
 
 /obj/structure/closet/secure_closet/munitions_technician
-	name = "munitions technician's locker"
+	name = "szafka Technika Amunicyjnego"
 	req_access = list(ACCESS_MUNITIONS_STORAGE)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "mun"
@@ -42,7 +42,7 @@
 	new /obj/item/storage/belt/utility/full/engi(src)
 
 /obj/structure/closet/secure_closet/deck_technician
-	name = "deck technician's locker"
+	name = "szafka Technika Pokładowego"
 	req_access = list(ACCESS_MUNITIONS_STORAGE)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "deck"
@@ -58,7 +58,7 @@
 	new /obj/item/key/fighter_tug(src)
 
 /obj/structure/closet/secure_closet/atc
-	name = "air traffic controller's locker"
+	name = "szafka Kontrolera Lotów"
 	req_access = list(ACCESS_MUNITIONS)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "atc"
@@ -74,7 +74,7 @@
 	new /obj/item/flashlight/atc_wavy_sticks(src)
 
 /obj/structure/closet/secure_closet/combat_pilot
-	name = "combat pilot's locker"
+	name = "szafka pilota bojowego"
 	req_access = list(ACCESS_COMBAT_PILOT)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "pilot"
@@ -89,7 +89,7 @@
 	new /obj/item/clothing/gloves/color/black(src)
 
 /obj/structure/closet/secure_closet/transport_pilot
-	name = "transport pilot's locker"
+	name = "szafka pilota transportowego"
 	req_access = list(ACCESS_TRANSPORT_PILOT)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_door = "tpilot"
@@ -105,7 +105,7 @@
 	new /obj/item/clothing/glasses/sunglasses(src)
 
 /obj/structure/closet/secure_closet/bridge
-	name = "bridge staff's locker"
+	name = "szafka Oficera Pokładowego"
 	req_access = list(ACCESS_HEADS)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "bridge"
@@ -119,7 +119,7 @@
 	new /obj/item/clothing/glasses/sunglasses(src)
 
 /obj/structure/closet/secure_closet/puce
-	name = "puce closet"
+	name = "szafa koloru puce"
 	req_access = list(ACCESS_CENT_CAPTAIN)
 	icon = 'nsv13/icons/obj/custom_closets.dmi'
 	icon_state = "definitelynotpuce"
@@ -127,7 +127,7 @@
 
 //solgov lockers
 /obj/structure/closet/secure_closet/captains/solgov
-	name = "\proper captain's locker"
+	name = "\proper szafka Kapitana"
 	req_access = list(ACCESS_CAPTAIN)
 	icon_state = "cap"
 
@@ -166,7 +166,7 @@
 	new /obj/item/gun/energy/e_gun/mini/heads(src) //no balistics for solgov
 
 /obj/structure/closet/secure_closet/hop/solgov
-	name = "\proper executive officer's locker"
+	name = "\proper szafka Starszego Oficera"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hop"
 
@@ -197,7 +197,7 @@
 	new /obj/item/gun/energy/e_gun/mini/heads(src)
 
 /obj/structure/closet/secure_closet/hos/solgov
-	name = "\proper head of security's locker"
+	name = "\proper szafka Komendanta"
 	req_access = list(ACCESS_HOS)
 	icon_state = "hos"
 
@@ -237,7 +237,7 @@
 	new /obj/item/pinpointer/nuke(src)
 
 /obj/structure/closet/secure_closet/warden/solgov
-	name = "\proper warden's locker"
+	name = "\proper szafka Naczelnika"
 	req_access = list(ACCESS_ARMORY)
 	icon_state = "warden"
 
@@ -265,7 +265,7 @@
 	new /obj/item/storage/box/deputy(src)
 
 /obj/structure/closet/secure_closet/security/solgov
-	name = "security officer's locker"
+	name = "szafka Policjanta"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "sec"
 

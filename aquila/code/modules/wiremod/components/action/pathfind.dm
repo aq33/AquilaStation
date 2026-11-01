@@ -4,7 +4,7 @@
  * Calcualtes a path, returns a list of entities. Each entity is the next step in the path. Can be used with the direction component to move.
  */
 /obj/item/circuit_component/pathfind
-	display_name = "Pathfinder"
+	display_name = "Wyznaczanie trasy"
 	desc = "Po aktywacji zwraca jako obiekt następny krok w stronę celu. W połączeniu z komponentem kierunku i obudową drona pozwala jej poruszać się samodzielnie. Port karty ID służy do uwzględniania dostępu przy wyznaczaniu trasy, nie daje obudowie faktycznego dostępu."
 	category = "Action"
 	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL|CIRCUIT_FLAG_OUTPUT_SIGNAL

@@ -1,7 +1,7 @@
 // AQUILA - darkspawn: Pełzające cienie, iluzje i Potomek (port z Yogstation)
 
 /mob/living/simple_animal/hostile/crawling_shadows
-	name = "crawling shadows"
+	name = "pełzające cienie"
 	real_name = "pełzające cienie"
 	desc = "Bezkształtna masa nicości z przeszywającymi białymi oczami."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn.dmi'
@@ -152,7 +152,7 @@
 // Potomek po Sakramencie
 
 /mob/living/simple_animal/hostile/darkspawn_progenitor
-	name = "cosmic progenitor"
+	name = "kosmiczny potomek"
 	real_name = "kosmiczny potomek"
 	desc = "..."
 	icon = 'aquila/icons/mob/darkspawn/darkspawn_progenitor.dmi'

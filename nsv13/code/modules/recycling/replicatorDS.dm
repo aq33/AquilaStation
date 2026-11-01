@@ -2,8 +2,8 @@
 #define REPLICATING 2
 
 /obj/machinery/replicator
-	name = "Food Replicator"
-	desc = "An advanced energy to matter synthesizer which is charged by <i>biomatter</i>. Click it to see what's on the menu and simply say what you want to order from it."
+	name = "replikator żywności"
+	desc = "Zaawansowany syntezator zamieniający energię w materię, zasilany <i>biomasą</i>. Kliknij go, żeby zobaczyć menu, i po prostu powiedz, co chcesz zamówić."
 	icon = 'nsv13/icons/obj/machinery/replicator.dmi'
 	icon_state = "replicator"
 	use_power = IDLE_POWER_USE
@@ -62,7 +62,7 @@
 	for(var/obj/machinery/biogenerator/Bio in GLOB.machines)
 		if(Bio.get_virtual_z_level() in SSmapping.levels_by_trait(valid_z))
 			var/area/location = get_area(Bio)
-			if(location.name == "Hydroponics")
+			if(istype(location, /area/hydroponics))
 				biogen = Bio
 				break
 
@@ -370,8 +370,8 @@
 	switch(what)
 		if("tea earl grey")
 			food = new /obj/item/reagent_containers/food/drinks/mug/tea(get_turf(src))
-			food.name = "Earl Grey tea"
-			food.desc = "Just how Captain Picard likes it."
+			food.name = "herbata Earl Grey"
+			food.desc = "Dokładnie taka, jaką lubi kapitan Picard."
 			if(emagged)
 				var/tea = food.reagents.get_reagent_amount(/datum/reagent/consumable/tea)
 				food.reagents.add_reagent(/datum/reagent/consumable/ethanol, tea)
@@ -401,8 +401,8 @@
 				food = new /obj/item/food/soup/mystery(get_turf(src))
 		if("coffee")
 			food = new /obj/item/reagent_containers/food/drinks/coffee(get_turf(src))
-			food.name = "coffee"
-			food.desc = "A wise woman once said that coffee keeps you sane in deep space."
+			food.name = "kawa"
+			food.desc = "Pewna mądra kobieta powiedziała kiedyś, że kawa pozwala zachować zdrowe zmysły w głębokim kosmosie."
 			if(emagged)
 				var/coffee = food.reagents.get_reagent_amount(/datum/reagent/consumable/coffee)
 				food.reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, coffee)
@@ -425,8 +425,8 @@
 		//time to check laser power.
 		if(prob(6-failure_grade)) //Chance to make a burned mess so the chef is still useful.
 			var/obj/item/food/badrecipe/neelixcooking = new /obj/item/food/badrecipe(get_turf(src))
-			neelixcooking.name = "replicator mess"
-			neelixcooking.desc = "perhaps you should invest in some higher quality parts."
+			neelixcooking.name = "breja z replikatora"
+			neelixcooking.desc = "Może warto zainwestować w lepsze części."
 			connection_use(5, decrease = TRUE)
 			qdel(food) //NO FOOD FOR YOU!
 			return
@@ -458,7 +458,7 @@
 		return
 
 /obj/item/circuitboard/machine/replicator
-	name = "Food Replicator (Machine Board)"
+	name = "replikator żywności (płytka maszyny)"
 	icon = 'nsv13/icons/obj/module.dmi'
 	icon_state = "repli_board"
 	build_path = /obj/machinery/replicator
@@ -470,11 +470,11 @@
 
 /mob/living/simple_animal/kalo/leonard
 	name = "Leonard"
-	desc = "A holographic pet lizard. Say 'deactivate iguana' if you're a square."
+	desc = "Holograficzna jaszczurka domowa. Powiedz „deactivate iguana”, jeśli jesteś sztywniakiem."
 
 //Tasteless alternative to lipolicide, less powerful. This has the reverse of the intended effect of a replicator and makes you hungrier.
 /datum/reagent/toxin/munchyserum
-	name = "Metabolism Override Toxin"
+	name = "Toksyna nadpisująca metabolizm"
 	description = "Silna toksyna, która zwiększa apetyt ofiary, jednocześnie osłabiając zdolność przyswajania składników odżywczych, dopóki pozostaje w organizmie."
 	silent_toxin = TRUE
 	reagent_state = LIQUID
@@ -490,8 +490,8 @@
 	return ..()
 
 /obj/item/disk/design_disk/replicator
-	name = "Pattern Upgrade Disk"
-	desc = "You shouldn't be seeing this."
+	name = "dysk ulepszenia wzorów"
+	desc = "Nie powinieneś tego widzieć."
 	icon = 'nsv13/icons/obj/module.dmi'
 	var/subtype
 
@@ -503,20 +503,20 @@
 			blueprints += new new_design
 
 /obj/item/disk/design_disk/replicator/tier2
-	name = "Pattern Upgrade Disk (Tier 2)"
-	desc = "A disk containing the schematics for Tier 2 Replicator Patterns."
+	name = "dysk ulepszenia wzorów (poziom 2)"
+	desc = "Dysk ze schematami wzorów replikatora 2. poziomu."
 	icon_state = "disk_tier2"
 	subtype = /datum/design/replicator/tier2
 
 /obj/item/disk/design_disk/replicator/tier3
-	name = "Pattern Upgrade Disk (Tier 3)"
-	desc = "A disk containing the schematics for Tier 3 Replicator Patterns."
+	name = "dysk ulepszenia wzorów (poziom 3)"
+	desc = "Dysk ze schematami wzorów replikatora 3. poziomu."
 	icon_state = "disk_tier3"
 	subtype = /datum/design/replicator/tier3
 
 /obj/item/disk/design_disk/replicator/tier4
-	name = "Pattern Upgrade Disk (Tier 4)"
-	desc = "A disk containing the schematics for Tier 4 Replicator Patterns."
+	name = "dysk ulepszenia wzorów (poziom 4)"
+	desc = "Dysk ze schematami wzorów replikatora 4. poziomu."
 	icon_state = "disk_tier4"
 	subtype = /datum/design/replicator/tier4
 

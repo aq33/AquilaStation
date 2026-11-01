@@ -1,14 +1,14 @@
 //Metals
 
 GLOBAL_LIST_INIT(duranium_recipes, list ( \
-	new/datum/stack_recipe("railgun rail", /obj/item/ship_weapon/parts/railgun_rail, 1, time = 20, one_per_turf = FALSE, on_floor = TRUE), \
-	new/datum/stack_recipe("mac barrel", /obj/item/ship_weapon/parts/mac_barrel, 1, time = 20, one_per_turf = FALSE, on_floor = TRUE), \
+	new/datum/stack_recipe("szyna działa szynowego",/obj/item/ship_weapon/parts/railgun_rail, 1, time = 20, one_per_turf = FALSE, on_floor = TRUE), \
+	new/datum/stack_recipe("lufa MAC", /obj/item/ship_weapon/parts/mac_barrel, 1, time = 20, one_per_turf = FALSE, on_floor = TRUE), \
 	))
 
 /obj/item/stack/sheet/duranium
 	name = "duranium"
-	singular_name = "duranium sheet"
-	desc = "This sheet is an extra durable alloy of durasteel and plasteel."
+	singular_name = "arkusz duranium"
+	desc = "Ten arkusz to wyjątkowo wytrzymały stop durastali i plastali."
 	icon = 'nsv13/icons/obj/custom_stack_objects.dmi'
 	icon_state = "sheet-duranium"
 	item_state = "sheet-duranium"
@@ -31,25 +31,25 @@ GLOBAL_LIST_INIT(duranium_recipes, list ( \
 	amount = 50
 
 GLOBAL_LIST_INIT(durasteel_recipes, list ( \
-	new/datum/stack_recipe("nanoweave plating", /obj/item/stack/tile/carpet/ship, 1, 4, 20), \
-	new/datum/stack_recipe("durasteel hull plating", /obj/item/stack/tile/durasteel, 1, 4, 20), \
-	new/datum/stack_recipe("durasteel hull plating - alt", /obj/item/stack/tile/durasteel/alt, 1, 4, 20), \
-	new/datum/stack_recipe("riveted hull plating", /obj/item/stack/tile/durasteel/riveted, 1, 4, 20), \
-	new/datum/stack_recipe("padded steel hull plating", /obj/item/stack/tile/durasteel/padded, 1, 4, 20), \
-	new/datum/stack_recipe("embossed hull plating", /obj/item/stack/tile/durasteel/eris_techfloor, 1, 4, 20), \
-	new/datum/stack_recipe("embossed hull plating - alt", /obj/item/stack/tile/durasteel/eris_techfloor_alt, 1, 4, 20), \
-	new/datum/stack_recipe("techfloor", /obj/item/stack/tile/durasteel/techfloor, 1, 4, 20), \
-	new/datum/stack_recipe("tech plating", /obj/item/stack/tile/durasteel/techfloor_grid, 1, 4, 20), \
-	new/datum/stack_recipe("steel monotile", /obj/item/stack/tile/durasteel/mono_steel, 1, 4, 20), \
-	new/datum/stack_recipe("dark monotile", /obj/item/stack/tile/durasteel/mono_dark, 1, 4, 20), \
-	new/datum/stack_recipe("light monotile", /obj/item/stack/tile/durasteel/mono_light, 1, 4, 20), \
-	new/datum/stack_recipe("monofloor", /obj/item/stack/tile/durasteel/monofloor, 1, 4, 20) \
+	new/datum/stack_recipe("poszycie z nanowłókna", /obj/item/stack/tile/carpet/ship, 1, 4, 20), \
+	new/datum/stack_recipe("durastalowe poszycie kadłuba", /obj/item/stack/tile/durasteel, 1, 4, 20), \
+	new/datum/stack_recipe("durastalowe poszycie kadłuba - alt.", /obj/item/stack/tile/durasteel/alt, 1, 4, 20), \
+	new/datum/stack_recipe("nitowane poszycie kadłuba", /obj/item/stack/tile/durasteel/riveted, 1, 4, 20), \
+	new/datum/stack_recipe("wyściełane stalowe poszycie kadłuba", /obj/item/stack/tile/durasteel/padded, 1, 4, 20), \
+	new/datum/stack_recipe("tłoczone poszycie kadłuba", /obj/item/stack/tile/durasteel/eris_techfloor, 1, 4, 20), \
+	new/datum/stack_recipe("tłoczone poszycie kadłuba - alt.", /obj/item/stack/tile/durasteel/eris_techfloor_alt, 1, 4, 20), \
+	new/datum/stack_recipe("podłoga techniczna", /obj/item/stack/tile/durasteel/techfloor, 1, 4, 20), \
+	new/datum/stack_recipe("poszycie techniczne", /obj/item/stack/tile/durasteel/techfloor_grid, 1, 4, 20), \
+	new/datum/stack_recipe("stalowa monopłytka", /obj/item/stack/tile/durasteel/mono_steel, 1, 4, 20), \
+	new/datum/stack_recipe("ciemna monopłytka", /obj/item/stack/tile/durasteel/mono_dark, 1, 4, 20), \
+	new/datum/stack_recipe("jasna monopłytka", /obj/item/stack/tile/durasteel/mono_light, 1, 4, 20), \
+	new/datum/stack_recipe("monopodłoga", /obj/item/stack/tile/durasteel/monofloor, 1, 4, 20) \
 	))
 
 /obj/item/stack/sheet/durasteel
-	name = "durasteel"
-	singular_name = "durasteel sheet"
-	desc = "This sheet is a durable alloy of iron and silver."
+	name = "durastal"
+	singular_name = "arkusz durastali"
+	desc = "Ten arkusz to wytrzymały stop żelaza i srebra."
 	icon = 'nsv13/icons/obj/custom_stack_objects.dmi'
 	icon_state = "sheet-durasteel"
 	item_state = "sheet-durasteel"
@@ -72,13 +72,13 @@ GLOBAL_LIST_INIT(durasteel_recipes, list ( \
 	return ..()
 
 GLOBAL_LIST_INIT(nanocarbon_glass_recipes, list (\
-	new/datum/stack_recipe("nanocarbon reinforced fulltile window", /obj/structure/window/reinforced/fulltile/ship/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
+	new/datum/stack_recipe("pełne okno zbrojone nanowęglem", /obj/structure/window/reinforced/fulltile/ship/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE) \
 	))
 
 /obj/item/stack/sheet/nanocarbon_glass
-	name = "nanocarbon glass"
-	singular_name = "nanocarbon glass sheet"
-	desc = "This glass sheet is reinforced with a nanocarbon weave."
+	name = "szkło nanowęglowe"
+	singular_name = "arkusz szkła nanowęglowego"
+	desc = "Ten arkusz szkła jest wzmocniony splotem nanowęglowym."
 	icon = 'nsv13/icons/obj/custom_stack_objects.dmi'
 	icon_state = "sheet-nanocarbon-glass"
 	item_state = "sheet-nanocarbon-glass"

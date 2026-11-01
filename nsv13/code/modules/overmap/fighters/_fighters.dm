@@ -5,7 +5,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 */
 
 /obj/structure/overmap/small_craft
-	name = "Space Fighter"
+	name = "myśliwiec kosmiczny"
 	icon = 'nsv13/icons/overmap/nanotrasen/fighter.dmi'
 	icon_state = "fighter"
 	anchored = TRUE
@@ -205,7 +205,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			var/list/occupant_info = list()
 			occupant_info["name"] = L.name
 			occupant_info["id"] = "\ref[L]"
-			occupant_info["afk"] = (L.mind) ? "Active" : "Inactive (SSD)"
+			occupant_info["afk"] = (L.mind) ? "Aktywny" : "Nieaktywny (SSD)"
 			occupants_info[++occupants_info.len] = occupant_info
 			continue
 		if(!istype(FC))
@@ -243,7 +243,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			to_chat(usr, "<span class='notice'>Zaczynasz odinstalowywać [target.name] z [src].</span>")
 			if(!do_after(usr, 5 SECONDS, target=src))
 				return
-			to_chat(usr, "<span class='notice>Odinstalowujesz [target.name] z [src].</span>")
+			to_chat(usr, "<span class='notice'>Odinstalowujesz [target.name] z [src].</span>")
 			loadout.remove_hardpoint(FC, FALSE)
 			. = TRUE
 		if("dump_hardpoint")
@@ -255,7 +255,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			to_chat(usr, "<span class='notice'>Zaczynasz wyładowywać zawartość [target.name]...</span>")
 			if(!do_after(usr, 5 SECONDS, target=src))
 				return
-			to_chat(usr, "<span class='notice>Wysypujesz zawartość [target.name].</span>")
+			to_chat(usr, "<span class='notice'>Wysypujesz zawartość [target.name].</span>")
 			loadout.dump_contents(FC)
 			. = TRUE
 		if("kick")
@@ -386,7 +386,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			var/new_name = stripped_input(usr, message="Jak chcesz nazwać swój myśliwiec? Pamiętaj, że szczególnie okropne nazwy mogą zostać odrzucone przez pracodawców.", max_length=MAX_CHARTER_LEN)
 			if(!new_name || length(new_name) <= 0)
 				return
-			message_admins("[key_name_admin(usr)] renamed a fighter to [new_name] [ADMIN_LOOKUPFLW(src)].")
+			message_admins("[key_name_admin(usr)] zmienia nazwę myśliwca na [new_name] [ADMIN_LOOKUPFLW(src)].")
 			name = new_name
 			return TRUE
 		if("toggle_maintenance")
@@ -401,7 +401,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 
 /obj/structure/overmap/small_craft/combat/light
 	name = "Su-818 Rapier"
-	desc = "An Su-818 Rapier space superiorty fighter craft. Designed for high maneuvreability and maximum combat effectiveness against other similar weight classes."
+	desc = "Su-818 Rapier, kosmiczny myśliwiec przewagi powietrznej. Zaprojektowany z myślą o wysokiej zwrotności i maksymalnej skuteczności w walce z maszynami podobnej klasy wagowej."
 	icon = 'nsv13/icons/overmap/nanotrasen/fighter.dmi'
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 30, "bomb" = 30, "bio" = 100, "rad" = 90, "fire" = 90, "acid" = 80, "overmap_light" = 10, "overmap_medium" = 5, "overmap_heavy" = 90)
 	sprite_size = 32
@@ -426,8 +426,8 @@ Been a mess since 2018, we'll fix it someday (probably)
 						/obj/item/fighter_component/primary/cannon)
 
 /obj/structure/overmap/small_craft/combat/solgov
-	name = "Peregrine class attack fighter"
-	desc = "A Peregrine class attack fighter, solgov's only premiere fighter, mounting minature capital grade phasers and a tiny shield generator."
+	name = "myśliwiec szturmowy klasy Peregrine"
+	desc = "Myśliwiec szturmowy klasy Peregrine, jedyny flagowy myśliwiec SolGov. Ma miniaturowe fazery klasy okrętowej i maleńki generator tarczy."
 	icon = 'nsv13/icons/overmap/new/solgov/playablefighter.dmi'
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 30, "bomb" = 30, "bio" = 100, "rad" = 90, "fire" = 90, "acid" = 80, "overmap_light" = 5, "overmap_medium" = 0, "overmap_heavy" = 10)
 	sprite_size = 32
@@ -454,8 +454,8 @@ Been a mess since 2018, we'll fix it someday (probably)
 
 
 /obj/structure/overmap/small_craft/escapepod
-	name = "Escape Pod"
-	desc = "An escape pod launched from a space faring vessel. It only has very limited thrusters and is thus very slow."
+	name = "kapsuła ratunkowa"
+	desc = "Kapsuła ratunkowa wystrzelona z okrętu kosmicznego. Ma tylko bardzo słabe silniki manewrowe, więc jest bardzo wolna."
 	icon = 'nsv13/icons/overmap/nanotrasen/escape_pod.dmi'
 	icon_state = "escape_pod"
 	damage_states = FALSE
@@ -489,7 +489,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 
 /obj/structure/overmap/small_craft/combat/heavy
 	name = "Su-410 Scimitar"
-	desc = "An Su-410 Scimitar heavy attack craft. It's a lot beefier than its Rapier cousin and is designed to take out capital ships, due to the weight of its modules however, it is extremely slow."
+	desc = "Su-410 Scimitar, ciężka maszyna szturmowa. Jest znacznie masywniejsza od swojego kuzyna Rapiera i ma niszczyć okręty liniowe, ale przez ciężar modułów jest wyjątkowo wolna."
 	icon = 'nsv13/icons/overmap/nanotrasen/heavy_fighter.dmi'
 	icon_state = "heavy_fighter"
 	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 90, "acid" = 80, "overmap_light" = 25, "overmap_medium" = 20, "overmap_heavy" = 90)
@@ -519,8 +519,8 @@ Been a mess since 2018, we'll fix it someday (probably)
 
 //Syndie counterparts.
 /obj/structure/overmap/small_craft/combat/light/syndicate //PVP MODE
-	name = "Syndicate Light Fighter"
-	desc = "The Syndicate's answer to Nanotrasen's light fighter craft, this fighter is designed to maintain aerial supremacy."
+	name = "lekki myśliwiec Syndykatu"
+	desc = "Odpowiedź Syndykatu na lekkie myśliwce Nanotrasen. Ma utrzymywać przewagę w powietrzu."
 	icon = 'nsv13/icons/overmap/syndicate/syn_rapier.dmi'
 	req_one_access = ACCESS_SYNDICATE
 	faction = "syndicate"
@@ -576,7 +576,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			playsound(src, ersound, 100, 1)
 			to_chat(user, "<span class='warning'>Odmowa dostępu</span>")
 			return TRUE
-		if(alert("Co chcesz zrobić?",name,"Eject Occupants","Tryb serwisowy") == "Eject Occupants")
+		if(alert("Co chcesz zrobić?",name,"Wyrzuć pasażerów","Tryb serwisowy") == "Wyrzuć pasażerów")
 			if(!Adjacent(user))
 				return TRUE
 			to_chat(user, "<span class='warning'>Wyrzucanie wszystkich obecnych osób z [src] i włączanie tłumików bezwładności...</span>")
@@ -713,7 +713,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	if(!istype(escape_pod))
 		qdel(escape_pod)
 		return
-	escape_pod.name = "[name] - escape pod"
+	escape_pod.name = "[name] - kapsuła ratunkowa"
 	escape_pod.faction = faction
 	escape_pod.last_overmap = last_overmap
 	escape_pod.current_system = current_system
@@ -727,7 +727,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 
 	// Transfer occupants
 	if(length(mobs_in_ship))
-		relay('nsv13/sound/effects/computer/alarm_3.ogg', "<span class=userdanger>EJECT! EJECT! EJECT!</span>")
+		relay('nsv13/sound/effects/computer/alarm_3.ogg', "<span class=userdanger>KATAPULTUJ! KATAPULTUJ! KATAPULTUJ!</span>")
 		visible_message("<span class=userdanger>Włączono sekwencję automatycznego katapultowania! Wystrzelono kapsułę ratunkową!</span>")
 
 		if(last_pilot && !last_pilot.incapacitated())
@@ -763,7 +763,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 			to_chat(user, "<span class='notice'>Wspinasz się do kokpitu [src].</span>")
 			ui_interact(user)
 			to_chat(user, "<span class='notice'>Małymi jednostkami steruje się klawiszami kierunkowymi (WASD w trybie skrótów), przyspieszając lub zwalniając w danym kierunku, a myszą zmienia się kierunek lotu. Lewy przycisk myszy strzela z wybranej broni (jeśli dotyczy).</span>")
-			to_chat(user, "<span class='warning'>=Hotkeys=</span>")
+			to_chat(user, "<span class='warning'>=Skróty klawiszowe=</span>")
 			to_chat(user, "<span class='notice'>Naciśnij <b>tab</b>, by włączyć tryb skrótów, a następnie:</span>")
 			to_chat(user, "<span class='notice'>Użyj <b>Ctrl + kółka myszy</b>, by przybliżyć/oddalić. Naciśnij <b>spację</b>, by przełączać tryby ognia. Naciśnij <b>X</b>, by przełączać tłumiki bezwładności. Naciśnij <b>Alt</b>, by przełączać hamulec ręczny. Naciśnij <b>C</b>, by przełączać swobodny ruch myszą.</span>")
 			return TRUE
@@ -836,7 +836,7 @@ Been a mess since 2018, we'll fix it someday (probably)
 	qdel(C) //Pop off the canopy.
 	update_visuals()
 	sleep(2 SECONDS)
-	relay('nsv13/sound/effects/ship/reactor/gasmask.ogg', "<span class='warning'>The air around you rushes out of the breached canopy!</span>", loop = FALSE, channel = CHANNEL_SHIP_ALERT)
+	relay('nsv13/sound/effects/ship/reactor/gasmask.ogg', "<span class='warning'>Powietrze wokół ciebie ucieka przez rozbitą osłonę kokpitu!</span>", loop = FALSE, channel = CHANNEL_SHIP_ALERT)
 
 /obj/structure/overmap/small_craft/welder_act(mob/living/user, obj/item/I)
 	if(user.combat_mode)
@@ -969,8 +969,8 @@ due_to_damage: Was this called voluntarily (FALSE) or due to damage / external c
 		component?.process(delta_time)
 
 /obj/item/fighter_component
-	name = "fighter component"
-	desc = "It doesn't really do a whole lot"
+	name = "podzespół myśliwca"
+	desc = "Właściwie niewiele robi."
 	icon = 'nsv13/icons/obj/fighter_components.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
 	//Thanks to comxy on Discord for these lovely tiered sprites o7
@@ -1000,7 +1000,7 @@ due_to_damage: Was this called voluntarily (FALSE) or due to damage / external c
 	to_chat(user, "<span class='notice'>Zaczynasz wyładowywać zawartość [src]...</span>")
 	if(!do_after(user, 5 SECONDS, target=src))
 		return
-	to_chat(user, "<span class='notice>Wysypujesz zawartość [src].</span>")
+	to_chat(user, "<span class='notice'>Wysypujesz zawartość [src].</span>")
 	dump_contents()
 
 /obj/item/fighter_component/proc/dump_contents()
@@ -1087,8 +1087,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	return TRUE
 
 /obj/item/fighter_component/armour_plating
-	name = "durasteel armour plates"
-	desc = "A set of armour plates which can afford basic protection to a fighter, however heavier plates may slow you down"
+	name = "płyty pancerza z durastali"
+	desc = "Zestaw płyt pancerza, który zapewnia myśliwcowi podstawową ochronę. Cięższe płyty mogą cię jednak spowolnić."
 	icon_state = "armour_tier1"
 	slot = HARDPOINT_SLOT_ARMOUR
 	weight = 1
@@ -1122,8 +1122,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	busy = FALSE
 
 /obj/item/fighter_component/armour_plating/tier2
-	name = "ultra heavy fighter armour"
-	desc = "An extremely thick and heavy set of armour plates. Guaranteed to weigh you down, but it'll keep you flying through brasil itself."
+	name = "ultraciężki pancerz myśliwca"
+	desc = "Wyjątkowo gruby i ciężki zestaw płyt pancerza. Na pewno cię spowolni, ale dzięki niemu przelecisz nawet przez samą Brazylię."
 	icon_state = "armour_tier2"
 	tier = 2
 	weight = 2
@@ -1131,8 +1131,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	max_integrity = 450
 
 /obj/item/fighter_component/armour_plating/tier3
-	name = "nanocarbon armour plates"
-	desc = "A lightweight set of ablative armour which balances speed and protection at the cost of the average GDP of most third world countries."
+	name = "płyty pancerza z nanowęgla"
+	desc = "Lekki zestaw pancerza ablacyjnego, który godzi szybkość z ochroną kosztem przeciętnego PKB większości krajów trzeciego świata."
 	icon_state = "armour_tier3"
 	tier = 3
 	weight = 1.25
@@ -1140,8 +1140,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	max_integrity = 300
 
 /obj/item/fighter_component/armour_plating/tier6
-	name = "compact shield generator array"
-	desc = "A rather heavy, and highly illegal shield generator, paired with a fine, lightly armored self-applicating emitter mesh. looking at this violates several espionage acts."
+	name = "kompaktowy zespół generatora tarczy"
+	desc = "Dość ciężki i wysoce nielegalny generator tarczy połączony z delikatną, lekko opancerzoną, samonakładającą się siatką emiterów. Samo patrzenie na niego narusza kilka ustaw o szpiegostwie."
 	icon_state = "shield"
 	tier = 6	//it's top tier solgov tech.
 	weight = 1.3
@@ -1169,8 +1169,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 
 
 /obj/item/fighter_component/canopy
-	name = "glass canopy"
-	desc = "A fighter canopy made of standard glass, it's extremely fragile and is so cheaply produced that it serves as little less than a windshield."
+	name = "osłona kokpitu ze szkła"
+	desc = "Osłona kokpitu myśliwca ze zwykłego szkła. Jest wyjątkowo krucha i tak tania w produkcji, że służy niewiele lepiej niż przednia szyba."
 	icon_state = "canopy_tier0.5"
 	obj_integrity = 100 //Pretty fragile, don't break it you dumblet
 	max_integrity = 100
@@ -1179,8 +1179,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	tier = 0.5
 
 /obj/item/fighter_component/canopy/reinforced
-	name = "reinforced glass canopy"
-	desc = "A glass fighter canopy that's designed to maintain atmospheric pressure inside of a fighter, this one's pretty robust."
+	name = "osłona kokpitu ze szkła zbrojonego"
+	desc = "Szklana osłona kokpitu, która utrzymuje ciśnienie atmosferyczne we wnętrzu myśliwca. Ta jest dość wytrzymała."
 	icon_state = "canopy_tier1"
 	obj_integrity = 200
 	max_integrity = 200
@@ -1188,8 +1188,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	weight = 0.5
 
 /obj/item/fighter_component/canopy/tier2
-	name = "nanocarbon glass canopy"
-	desc = "A glass fighter canopy that's designed to maintain atmospheric pressure inside of a fighter, this one's very robust."
+	name = "osłona kokpitu ze szkła nanowęglowego"
+	desc = "Szklana osłona kokpitu, która utrzymuje ciśnienie atmosferyczne we wnętrzu myśliwca. Ta jest bardzo wytrzymała."
 	icon_state = "canopy_tier2"
 	obj_integrity = 350
 	max_integrity = 350
@@ -1197,8 +1197,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	weight = 0.35
 
 /obj/item/fighter_component/canopy/tier3
-	name = "plasma glass canopy"
-	desc = "A glass fighter canopy that's designed to maintain atmospheric pressure inside of a fighter, this one's exceptionally robust."
+	name = "osłona kokpitu ze szkła plazmowego"
+	desc = "Szklana osłona kokpitu, która utrzymuje ciśnienie atmosferyczne we wnętrzu myśliwca. Ta jest wyjątkowo wytrzymała."
 	icon_state = "canopy_tier3"
 	obj_integrity = 450
 	max_integrity = 450
@@ -1206,7 +1206,7 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	weight = 0.55
 
 /obj/item/fighter_component/battery
-	name = "fighter battery"
+	name = "akumulator myśliwca"
 	icon_state = "battery"
 	slot = HARDPOINT_SLOT_BATTERY
 	active = FALSE
@@ -1239,16 +1239,16 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	return charge > 0
 
 /obj/item/fighter_component/battery/tier2
-	name = "upgraded fighter battery"
+	name = "ulepszony akumulator myśliwca"
 	icon_state = "battery_tier2"
 	tier = 2
 	charge = 20000
 	maxcharge = 20000
 
 /obj/item/fighter_component/battery/tier3
-	name = "mega fighter battery"
+	name = "megaakumulator myśliwca"
 	icon_state = "battery_tier3"
-	desc = "An electrochemical cell capable of holding a good amount of charge for keeping the fighter's radio on for longer periods without an engine."
+	desc = "Ogniwo elektrochemiczne mieszczące spory ładunek, dzięki któremu radio myśliwca działa dłużej bez pracującego silnika."
 	tier = 3
 	charge = 40000
 	maxcharge = 40000
@@ -1329,8 +1329,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	return ft.reagents.maximum_volume
 
 /obj/item/fighter_component/fuel_tank
-	name = "Fighter Fuel Tank"
-	desc = "The fuel tank of a fighter, upgrading this lets your fighter hold more fuel."
+	name = "zbiornik paliwa myśliwca"
+	desc = "Zbiornik paliwa myśliwca. Po ulepszeniu twój myśliwiec pomieści więcej paliwa."
 	icon_state = "fueltank_tier1"
 	var/fuel_capacity = 1000
 	slot = HARDPOINT_SLOT_FUEL
@@ -1341,22 +1341,22 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	reagents.chem_temp = 40
 
 /obj/item/fighter_component/fuel_tank/tier2
-	name = "fighter extended fuel tank"
-	desc = "A larger fuel tank which allows fighters to stay in combat for much longer"
+	name = "powiększony zbiornik paliwa myśliwca"
+	desc = "Większy zbiornik paliwa, dzięki któremu myśliwce mogą walczyć znacznie dłużej."
 	icon_state = "fueltank_tier2"
 	fuel_capacity = 2500
 	tier = 2
 
 /obj/item/fighter_component/fuel_tank/tier3
-	name = "massive fighter fuel tank"
-	desc = "A super extended capacity fuel tank, allowing fighters to stay in a warzone for hours on end."
+	name = "ogromny zbiornik paliwa myśliwca"
+	desc = "Zbiornik paliwa o bardzo powiększonej pojemności, dzięki któremu myśliwce mogą godzinami przebywać w strefie walk."
 	icon_state = "fueltank_tier3"
 	fuel_capacity = 4000
 	tier = 3
 
 /obj/item/fighter_component/engine
-	name = "fighter engine"
-	desc = "A mighty engine capable of propelling small spacecraft to high speeds."
+	name = "silnik myśliwca"
+	desc = "Potężny silnik, który rozpędza małe statki kosmiczne do dużych prędkości."
 	icon_state = "engine_tier1"
 	slot = HARDPOINT_SLOT_ENGINE
 	active = FALSE
@@ -1370,7 +1370,7 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 		. += "<span class='notice'>Komora spalania jest <b>zakręcona<b>.</span>"
 
 /obj/item/fighter_component/engine/flooded //made just so I can put it in pilot-specific mail
-	desc = "A mighty engine capable of propelling small spacecraft to high speeds. Something doesn't seem right, though..."
+	desc = "Potężny silnik, który rozpędza małe statki kosmiczne do dużych prędkości. Coś tu jednak nie gra..."
 	flooded = TRUE
 
 /obj/item/fighter_component/engine/screwdriver_act(mob/living/user, obj/item/I)
@@ -1421,7 +1421,7 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 		active = TRUE
 		rpm = ENGINE_RPM_SPUN
 		playsound(loc, 'nsv13/sound/effects/fighters/startup.ogg', 100, FALSE)
-		F.relay('nsv13/sound/effects/fighters/cockpit.ogg', "<span class='warning'>You hear a loud noise as [F]'s engine kicks in.</span>", loop=TRUE, channel = CHANNEL_SHIP_ALERT)
+		F.relay('nsv13/sound/effects/fighters/cockpit.ogg', "<span class='warning'>Słyszysz głośny huk, gdy silnik [F] zaskakuje.</span>", loop=TRUE, channel = CHANNEL_SHIP_ALERT)
 		return
 	else
 		playsound(loc, 'sound/machines/clockcult/steam_whoosh.ogg', 100, TRUE)
@@ -1435,14 +1435,14 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 			active = FALSE
 
 /obj/item/fighter_component/engine/tier2
-	name = "souped up fighter engine"
-	desc = "Born to zoom, forced to oom"
+	name = "podrasowany silnik myśliwca"
+	desc = "Urodzony, by śmigać, zmuszony, by rzęzić"
 	icon_state = "engine_tier2"
 	tier = 2
 
 /obj/item/fighter_component/engine/tier3
-	name = "\improper Boringheed Marty V12 Super Giga Turbofan Space Engine"
-	desc = "An engine which allows a fighter to exceed the legal speed limit in most jurisdictions."
+	name = "\improper silnik kosmiczny Boringheed Marty V12 Super Giga Turbofan"
+	desc = "Silnik, dzięki któremu myśliwiec przekracza dozwoloną prędkość w większości jurysdykcji."
 	icon_state = "engine_tier3"
 	tier = 3
 
@@ -1469,8 +1469,8 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 //Atmos
 
 /obj/item/fighter_component/oxygenator
-	name = "atmospheric regulator"
-	desc = "A device which moderates the conditions inside a fighter, it requires fuel to run."
+	name = "regulator atmosfery"
+	desc = "Urządzenie, które reguluje warunki wewnątrz myśliwca. Do działania potrzebuje paliwa."
 	icon_state = "oxygenator_tier1"
 	var/refill_amount = 1 //Starts off really terrible.
 	slot = HARDPOINT_SLOT_OXYGENATOR
@@ -1478,23 +1478,23 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	power_usage = 200
 
 /obj/item/fighter_component/oxygenator/tier2
-	name = "upgraded atmospheric regulator"
+	name = "ulepszony regulator atmosfery"
 	icon_state = "oxygenator_tier2"
 	tier = 2
 	refill_amount = 3
 	power_usage = 300
 
 /obj/item/fighter_component/oxygenator/tier3
-	name = "super oxygenator"
-	desc = "A finely tuned atmospheric regulator to be fitted into a fighter which seems to be able to almost magically create oxygen out of nowhere."
+	name = "superoksygenator"
+	desc = "Precyzyjnie dostrojony regulator atmosfery do myśliwca, który tworzy tlen z niczego niemal jak za sprawą magii."
 	icon_state = "oxygenator_tier3"
 	tier = 3
 	refill_amount = 10
 	power_usage = 400
 
 /obj/item/fighter_component/oxygenator/plasmaman
-	name = "plasmaman atmospheric regulator"
-	desc = "An atmospheric regulator to be used in fighters, it's been rigged to fill the cabin with a hospitable environment for plasmamen instead of standard oxygen."
+	name = "regulator atmosfery dla plazmaludzi"
+	desc = "Regulator atmosfery do myśliwców, przerobiony tak, by zamiast zwykłego tlenu wypełniać kabinę środowiskiem przyjaznym plazmaludziom."
 	refill_amount = 3
 	tier = 4 //unique! but it has to have a sprite to make it obvious that, yknow, this is for plasmemes.
 
@@ -1527,14 +1527,14 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 //Construction only components
 
 /obj/item/fighter_component/avionics
-	name = "fighter avionics"
-	desc = "Avionics for a fighter"
+	name = "awionika myśliwca"
+	desc = "Awionika do myśliwca"
 	icon_state = "avionics"
 	tier = null
 
 /obj/item/fighter_component/apu
-	name = "fighter auxiliary power unit"
-	desc = "An Auxiliary Power Unit for a fighter"
+	name = "pomocniczy zespół zasilania myśliwca"
+	desc = "Pomocniczy zespół zasilania (APU) do myśliwca"
 	icon_state = "apu_tier1"
 	slot = HARDPOINT_SLOT_APU
 	active = FALSE
@@ -1542,13 +1542,13 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 	var/next_process = 0
 
 /obj/item/fighter_component/apu/tier2
-	name = "upgraded fighter APU"
+	name = "ulepszone APU myśliwca"
 	icon_state = "apu_tier2"
 	tier = 2
 
 /obj/item/fighter_component/apu/tier3
-	name = "super fighter APU"
-	desc = "A small engine capable of rapidly starting a fighter."
+	name = "super APU myśliwca"
+	desc = "Mały silnik, który pozwala szybko uruchomić myśliwiec."
 	icon_state = "apu_tier3"
 	tier = 3
 
@@ -1575,16 +1575,16 @@ due_to_damage: If the removal was caused voluntarily (FALSE), or if it was cause
 
 
 /obj/item/fighter_component/countermeasure_dispenser
-	name = "fighter countermeasure dispenser"
-	desc = "A device which allows a fighter to deploy countermeasures."
+	name = "wyrzutnik flar myśliwca"
+	desc = "Urządzenie, które pozwala myśliwcowi wypuszczać środki przeciwdziałania."
 	icon_state = "countermeasure_tier1"
 	slot = HARDPOINT_SLOT_COUNTERMEASURE
 	var/max_charges = 3
 	var/charges = 3
 
 /obj/item/fighter_component/docking_computer
-	name = "docking computer"
-	desc = "A computer that allows fighters to easily dock to a ship"
+	name = "komputer dokowania"
+	desc = "Komputer, dzięki któremu myśliwce łatwo dokują do okrętu."
 	icon_state = "docking_computer"
 	slot = HARDPOINT_SLOT_DOCKING
 	tier = null //Not upgradable right now.
@@ -1596,7 +1596,7 @@ As a rule of thumb, primaries are small guns that take ammo boxes, secondaries a
 Utility modules can be either one of these types, just ensure you set its slot to HARDPOINT_SLOT_UTILITY
 */
 /obj/item/fighter_component/primary
-	name = "\improper primary weapon"
+	name = "\improper broń główna"
 	slot = HARDPOINT_SLOT_PRIMARY
 	fighter_fire_mode = OSW_FIGHTER_MAIN_WEAPON
 	var/overmap_select_sound = 'nsv13/sound/effects/ship/pdc_start.ogg'
@@ -1733,14 +1733,14 @@ Utility modules can be either one of these types, just ensure you set its slot t
 	ammo = list()
 
 /obj/item/fighter_component/primary/cannon
-	name = "20mm Vulcan Cannon"
+	name = "działko Vulcan 20 mm"
 	icon_state = "lightcannon"
 	accepted_ammo = /obj/item/ammo_box/magazine/nsv/light_cannon
 	burst_size = 2
 	fire_delay = 0.25 SECONDS
 
 /obj/item/fighter_component/primary/cannon/heavy
-	name = "30mm BRRRRTT Cannon"
+	name = "działko BRRRRTT 30 mm"
 	icon_state = "heavycannon"
 	accepted_ammo = /obj/item/ammo_box/magazine/nsv/heavy_cannon
 	weight = 2 //Sloooow down there.
@@ -1750,7 +1750,7 @@ Utility modules can be either one of these types, just ensure you set its slot t
 	fire_delay = 0.5 SECONDS
 
 /obj/item/fighter_component/primary/laser
-	name = "Stinger Class Phaser Cannon"
+	name = "działo fazowe klasy Stinger"
 	icon_state = "lasercannon"
 	weight = 3 //it's a laser. it's light, but the gun is fuckhueg
 	accepted_ammo = null
@@ -1794,7 +1794,7 @@ Utility modules can be either one of these types, just ensure you set its slot t
 
 
 /obj/item/fighter_component/secondary
-	name = "secondary weapon"
+	name = "broń pomocnicza"
 	slot = HARDPOINT_SLOT_SECONDARY
 	fighter_fire_mode = OSW_FIGHTER_SECONDARY_WEAPON
 	var/overmap_firing_sounds = list(
@@ -1840,18 +1840,18 @@ Utility modules can be either one of these types, just ensure you set its slot t
 
 //Todo: make fighters use these.
 /obj/item/fighter_component/secondary/ordnance_launcher
-	name = "fighter missile rack"
-	desc = "A huge fighter missile rack capable of deploying missile based weaponry."
+	name = "wyrzutnia rakiet myśliwca"
+	desc = "Ogromna wyrzutnia rakiet myśliwca, z której można odpalać uzbrojenie rakietowe."
 	icon_state = "missilerack_tier1"
 
 /obj/item/fighter_component/secondary/ordnance_launcher/tier2
-	name = "upgraded fighter missile rack"
+	name = "ulepszona wyrzutnia rakiet myśliwca"
 	icon_state = "missilerack_tier2"
 	tier = 2
 	max_ammo = 10
 
 /obj/item/fighter_component/secondary/ordnance_launcher/tier3
-	name = "\improper A-11 'Spacehog' Cluster-Freedom Launcher"
+	name = "\improper kasetowa wyrzutnia wolności A-11 „Spacehog”"
 	icon_state = "missilerack_tier3"
 	tier = 3
 	max_ammo = 15
@@ -1861,8 +1861,8 @@ Utility modules can be either one of these types, just ensure you set its slot t
 
 //Specialist item for the superiority fighter.
 /obj/item/fighter_component/secondary/ordnance_launcher/railgun
-	name = "fighter railgun"
-	desc = "A scaled down railgun designed for use in fighters."
+	name = "działo szynowe myśliwca"
+	desc = "Pomniejszone działo szynowe przeznaczone do myśliwców."
 	icon_state = "railgun"
 	weight = 1
 	accepted_ammo = /obj/item/ship_weapon/ammunition/railgun_ammo
@@ -1873,23 +1873,23 @@ Utility modules can be either one of these types, just ensure you set its slot t
 	tier = 1
 
 /obj/item/fighter_component/secondary/ordnance_launcher/torpedo
-	name = "fighter torpedo launcher"
-	desc = "A heavy torpedo rack which allows fighters to fire torpedoes at targets"
+	name = "wyrzutnia torped myśliwca"
+	desc = "Ciężka wyrzutnia, z której myśliwce mogą odpalać torpedy w cele."
 	icon_state = "torpedorack"
 	accepted_ammo = /obj/item/ship_weapon/ammunition/torpedo
 	max_ammo = 2
 	weight = 1
 
 /obj/item/fighter_component/secondary/ordnance_launcher/torpedo/tier2
-	name = "enhanced torpedo launcher"
+	name = "wzmocniona wyrzutnia torped"
 	icon_state = "torpedorack_tier2"
 	tier = 2
 	max_ammo = 4
 
 /obj/item/fighter_component/secondary/ordnance_launcher/torpedo/tier3
-	name = "\improper FR33-8IRD torpedo launcher"
+	name = "\improper wyrzutnia torped FR33-8IRD"
 	icon_state = "torpedorack_tier3"
-	desc = "A massive torpedo launcher capable of deploying enough ordnance to level several small, oil-rich nations."
+	desc = "Gigantyczna wyrzutnia torped, która wystrzeliwuje dość uzbrojenia, by zrównać z ziemią kilka małych, bogatych w ropę państw."
 	tier = 3
 	max_ammo = 10
 	weight = 2
@@ -1918,14 +1918,14 @@ Utility modules can be either one of these types, just ensure you set its slot t
 //Utility modules.
 
 /obj/item/fighter_component/primary/utility
-	name = "No :)"
+	name = "Nie :)"
 	slot = HARDPOINT_SLOT_UTILITY_PRIMARY
 
 /obj/item/fighter_component/primary/utility/fire(obj/structure/overmap/target, datum/overmap_ship_weapon/linked_weapon)
 	return FALSE
 
 /obj/item/fighter_component/secondary/utility
-	name = "Utility Module"
+	name = "moduł pomocniczy"
 	slot = HARDPOINT_SLOT_UTILITY_SECONDARY
 	power_usage = 200
 

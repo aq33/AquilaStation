@@ -1,6 +1,6 @@
 /obj/item/food/monkeycube
-	name = "monkey cube"
-	desc = "Just add water!"
+	name = "małpia kostka"
+	desc = "Wystarczy dodać wody!"
 	icon_state = "monkeycube"
 	bite_consumption = 12
 	food_reagents = list(
@@ -23,7 +23,7 @@
 	if(faction)
 		bananas.faction = faction
 	if (!QDELETED(bananas))
-		visible_message("<span class='notice'>[src] expands!</span>")
+		visible_message("<span class='notice'>[src] pęcznieje!</span>")
 		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 	else if (!spammer) // Visible message in case there are no fingerprints
 		visible_message("<span class='notice'>[src] nie udaje się rozwinąć!</span>")
@@ -33,8 +33,8 @@
 	faction = list("neutral", FACTION_SYNDICATE)
 
 /obj/item/food/monkeycube/gorilla
-	name = "gorilla cube"
-	desc = "A Waffle Co. brand gorilla cube. Now with extra molecules!"
+	name = "gorylia kostka"
+	desc = "Gorylia kostka marki Waffle Co. Teraz z dodatkowymi cząsteczkami!"
 	icon_state = "gorillacube"
 	bite_consumption = 20
 	food_reagents = list(
@@ -44,24 +44,24 @@
 	spawned_mob = /mob/living/simple_animal/hostile/gorilla
 
 /obj/item/food/monkeycube/sheep
-	name = "sheep cube"
-	desc = "A Farm Town brand sheep cube."
+	name = "owcza kostka"
+	desc = "Owcza kostka marki Farm Town."
 	bite_consumption = 15
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("puch" = 1, "farma" = 1)
 	spawned_mob = /mob/living/simple_animal/sheep
 
 /obj/item/food/monkeycube/cow
-	name = "cow cube"
-	desc = "A Farm Town brand cow cube."
+	name = "krowia kostka"
+	desc = "Krowia kostka marki Farm Town."
 	bite_consumption = 18
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("mleko" = 1, "farma" = 1)
 	spawned_mob = /mob/living/simple_animal/cow
 
 /obj/item/food/monkeycube/goat
-	name = "goat cube"
-	desc = "A Farm Town brand goat cube."
+	name = "kozia kostka"
+	desc = "Kozia kostka marki Farm Town."
 	bite_consumption = 18
 	food_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	tastes = list("mleko" = 1, "farma" = 1)

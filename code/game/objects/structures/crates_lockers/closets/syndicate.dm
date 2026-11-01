@@ -1,10 +1,10 @@
 /obj/structure/closet/syndicate
-	name = "armory closet"
-	desc = "Why is this here?"
+	name = "szafa zbrojowni"
+	desc = "Co to tu robi?"
 	icon_state = "syndicate"
 
 /obj/structure/closet/syndicate/personal
-	desc = "It's a personal storage unit for operative gear."
+	desc = "Osobista szafka na sprzęt operatora."
 
 /obj/structure/closet/syndicate/personal/PopulateContents()
 	..()
@@ -17,7 +17,7 @@
 	new /obj/item/clothing/glasses/night(src)
 
 /obj/structure/closet/syndicate/nuclear
-	desc = "It's a storage unit for a Syndicate boarding party."
+	desc = "Szafa dla oddziału abordażowego Syndykatu."
 
 /obj/structure/closet/syndicate/nuclear/PopulateContents()
 	for(var/i in 1 to 5)
@@ -28,7 +28,7 @@
 	new /obj/item/modular_computer/tablet/pda/syndicate(src)
 
 /obj/structure/closet/syndicate/resources
-	desc = "An old, dusty locker."
+	desc = "Stara, zakurzona szafka."
 
 /obj/structure/closet/syndicate/resources/PopulateContents()
 	..()
@@ -43,7 +43,7 @@
 	//Sad trombone
 	if(pickednum == 1)
 		var/obj/item/paper/paper = new /obj/item/paper(src)
-		paper.name = "\improper IOU"
+		paper.name = "\improper skrypt dłużny"
 		paper.add_raw_text("Sorki, stary, potrzebowaliśmy kasy, więc sprzedaliśmy twój zapas. Spoko, tym razem na pewno podwoimy kasę!")
 		paper.update_appearance()
 
@@ -92,7 +92,7 @@
 		new /obj/item/tank/jetpack/carbondioxide(src)
 
 /obj/structure/closet/syndicate/resources/everything
-	desc = "It's an emergency storage closet for repairs."
+	desc = "Awaryjna szafa z rzeczami do napraw."
 
 /obj/structure/closet/syndicate/resources/everything/PopulateContents()
 	var/list/resources = list(

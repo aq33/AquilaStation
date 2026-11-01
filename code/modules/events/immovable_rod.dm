@@ -21,8 +21,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	if(!check_rights(R_FUN))
 		return
 
-	var/aimed = alert("Aimed at current location?","Sniperod", "Yes", "No")
-	if(aimed == "Yes")
+	var/aimed = alert("Wycelować w obecną lokalizację?","Snajperski pręt", "Tak", "Nie")
+	if(aimed == "Tak")
 		special_target = get_turf(usr)
 
 /datum/round_event/immovable_rod
@@ -41,8 +41,8 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	announce_to_ghosts(rod)
 
 /obj/effect/immovablerod
-	name = "immovable rod"
-	desc = "What the fuck is that?"
+	name = "nieruchomy pręt"
+	desc = "Co to, kurwa, jest?"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "immrod"
 	throwforce = 100

@@ -1,6 +1,6 @@
 /datum/action/changeling/regenerate
-	name = "Regenerate"
-	desc = "Allows us to regrow and restore missing external limbs and vital internal organs, as well as removing shrapnel and restoring blood volume. Costs 10 chemicals."
+	name = "Regeneracja"
+	desc = "Pozwala nam odtworzyć brakujące kończyny i ważne organy wewnętrzne, usunąć odłamki i uzupełnić krew. Kosztuje 10 chemikaliów."
 	helptext = "Ostrzega pobliską załogę, jeśli odtwarzamy zewnętrzne kończyny. Można użyć w stanie nieprzytomności."
 	button_icon_state = "regenerate"
 	chemical_cost = 10
@@ -42,7 +42,7 @@
 
 /datum/action/changeling/limbsnake
 	name = "Chimera"
-	desc = "We turn our limbs into an autonomous snake. The poison of this creatures can paralyze attackers. Costs 15 chemicals."
+	desc = "Zmieniamy kończynę w samodzielnego węża. Jad tej istoty może sparaliżować napastników. Kosztuje 15 chemikaliów."
 	helptext = "Zmieniamy jedną z kończyn w samodzielną, wężopodobną istotę. Ten groteskowy widok może odstraszyć napastników, a istota wstrzyknie im obezwładniający jad."
 	button_icon_state = "limbsnake"
 	chemical_cost = 15
@@ -81,8 +81,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/poison/limbsnake
-	name = "limb snake"
-	desc = "This is no snake at all! It looks like someone's limb grew fangs out of it's fingers and it's out to bite anyone!"
+	name = "wąż z kończyny"
+	desc = "To wcale nie wąż! Wygląda jak czyjaś kończyna, której z palców wyrosły kły, i chce ugryźć każdego!"
 	icon_state = "snake"
 	icon_living = "snake"
 	del_on_death = TRUE

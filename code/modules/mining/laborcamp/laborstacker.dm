@@ -3,8 +3,8 @@ GLOBAL_LIST(labor_sheet_values)
 /**********************Prisoners' Console**************************/
 
 /obj/machinery/mineral/labor_claim_console
-	name = "point claim console"
-	desc = "A stacking console with an electromagnetic writer, used to track ore mined by prisoners."
+	name = "konsola odbioru punktów"
+	desc = "Konsola stertująca z zapisem elektromagnetycznym, śledzi rudę wydobytą przez więźniów."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 	density = FALSE
@@ -151,8 +151,8 @@ GLOBAL_LIST(labor_sheet_values)
 /**********************Point Lookup Console**************************/
 
 /obj/machinery/mineral/labor_points_checker
-	name = "points checking console"
-	desc = "A console used by prisoners to check the progress on their quotas. Simply swipe a prisoner ID."
+	name = "konsola sprawdzania punktów"
+	desc = "Konsola, na której więźniowie sprawdzają postęp swoich norm. Wystarczy przeciągnąć identyfikator więźnia."
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
 

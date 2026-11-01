@@ -1,6 +1,6 @@
 /turf/closed/wall/r_wall
-	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	name = "wzmocniona ściana"
+	desc = "Ogromny blok wzmocnionego metalu, który oddziela pomieszczenia."
 	icon = 'icons/turf/walls/reinforced_wall.dmi'
 	icon_state = "r_wall"
 	opacity = 1
@@ -231,8 +231,8 @@
 // AQUILA - rdzewienie turfów (rust_heretic_act/rust_turf, siła rdzy z tg) jest w aquila/code/modules/antagonists/heretic/_compat/rustvoid.dm
 
 /turf/closed/wall/r_wall/syndicate
-	name = "hull"
-	desc = "The armored hull of an ominous looking ship."
+	name = "kadłub"
+	desc = "Opancerzony kadłub złowrogo wyglądającego statku."
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
 	icon_state = "map-shuttle"
 	color = null // NSV13 - Fixes missing atom_color runtimes

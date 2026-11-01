@@ -17,8 +17,8 @@
   */
 
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire
-	name = "legionnaire"
-	desc = "A towering skeleton, embodying the terrifying power of Legion."
+	name = "legionista"
+	desc = "Górujący szkielet, ucieleśnienie przerażającej potęgi Legionu."
 	icon_state = "legionnaire"
 	icon_living = "legionnaire"
 	icon_aggro = "legionnaire"
@@ -47,25 +47,25 @@
 	var/has_head = TRUE
 
 /datum/action/innate/elite_attack/legionnaire_charge
-	name = "Legionnaire Charge"
+	name = "Szarża legionisty"
 	button_icon_state = "legionnaire_charge"
 	chosen_message = "<span class='boldwarning'>Spróbujesz złapać przeciwnika i nim rzucić.</span>"
 	chosen_attack_num = LEGIONNAIRE_CHARGE
 
 /datum/action/innate/elite_attack/head_detach
-	name = "Release Head"
+	name = "Uwolnij głowę"
 	button_icon_state = "head_detach"
 	chosen_message = "<span class='boldwarning'>Teraz odczepisz swoją głowę albo ją zabijesz, jeśli jest już uwolniona.</span>"
 	chosen_attack_num = HEAD_DETACH
 
 /datum/action/innate/elite_attack/bonfire_teleport
-	name = "Bonfire Teleport"
+	name = "Teleportacja do ogniska"
 	button_icon_state = "bonfire_teleport"
 	chosen_message = "<span class='boldwarning'>Zostawisz ognisko.  Drugie użycie pozwoli ci zamieniać się z nim miejscami bez ograniczeń.  Użycie tego ruchu na polu z aktywnym ogniskiem usuwa je.</span>"
 	chosen_attack_num = BONFIRE_TELEPORT
 
 /datum/action/innate/elite_attack/spew_smoke
-	name = "Spew Smoke"
+	name = "Wyrzuć dym"
 	button_icon_state = "spew_smoke"
 	chosen_message = "<span class='boldwarning'>Twoja głowa wypuści dym w okolicy, gdziekolwiek jest.</span>"
 	chosen_attack_num = SPEW_SMOKE
@@ -209,8 +209,8 @@
 
 //The legionnaire's head.  Basically the same as any legion head, but we have to tell our creator when we die so they can generate another head.
 /mob/living/simple_animal/hostile/asteroid/elite/legionnairehead
-	name = "legionnaire head"
-	desc = "The legionnaire's head floating by itself.  One shouldn't get too close, though once it sees you, you really don't have a choice."
+	name = "głowa legionisty"
+	desc = "Głowa legionisty unosząca się samodzielnie. Lepiej się do niej nie zbliżać, choć kiedy już cię zobaczy, nie masz wielkiego wyboru."
 	icon_state = "legionnaire_head"
 	icon_living = "legionnaire_head"
 	icon_aggro = "legionnaire_head"
@@ -237,8 +237,8 @@
 
 //The legionnaire's bonfire, which can be swapped positions with.  Also sets flammable living beings on fire when they walk over it.
 /obj/structure/legionnaire_bonfire
-	name = "bone pile"
-	desc = "A pile of bones which seems to occasionally move a little.  It's probably a good idea to smash them."
+	name = "sterta kości"
+	desc = "Sterta kości, która od czasu do czasu lekko się porusza. Chyba warto ją roztrzaskać."
 	icon = 'icons/obj/lavaland/legionnaire_bonfire.dmi'
 	icon_state = "bonfire"
 	max_integrity = 100
@@ -284,8 +284,8 @@
 // Legionnaire's loot: Legionnaire Spine
 
 /obj/item/crusher_trophy/legionnaire_spine
-	name = "legionnaire spine"
-	desc = "The spine of a legionnaire.  It almost feels like it's moving..."
+	name = "kręgosłup legionisty"
+	desc = "Kręgosłup legionisty. Niemal czujesz, jak się porusza..."
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "legionnaire_spine"
 	denied_type = /obj/item/crusher_trophy/legionnaire_spine

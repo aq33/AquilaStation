@@ -6,7 +6,7 @@
 
 
 /obj/item/borg/stun
-	name = "electrically-charged arm"
+	name = "ramię naładowane elektrycznie"
 	icon_state = "elecarm"
 	var/charge_cost = 30
 	COOLDOWN_DECLARE(stun_cooldown) // AQ EDIT - port Bee#14750
@@ -20,7 +20,7 @@
 	var/armor_block = M.run_armor_check(attack_flag = "stamina")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.check_shields(src, 0, "[M]'s [name]", MELEE_ATTACK))
+		if(H.check_shields(src, 0, "[name] ([M])", MELEE_ATTACK))
 			playsound(M, 'sound/weapons/genhit.ogg', 50, 1)
 			return FALSE
 	if(iscyborg(user))
@@ -43,9 +43,9 @@
 	log_combat(user, M, "electrified", src, "(Combat mode: [user.combat_mode ? "On" : "Off"])")
 
 /obj/item/borg/cyborghug
-	name = "hugging module"
+	name = "moduł przytulania"
 	icon_state = "hugmodule"
-	desc = "For when a someone really needs a hug."
+	desc = "Na chwile, gdy ktoś naprawdę potrzebuje przytulenia."
 	var/mode = 0 //0 = Hugs 1 = "Hug" 2 = Shock 3 = CRUSH
 	var/ccooldown = 0
 	var/scooldown = 0
@@ -95,7 +95,7 @@
 					if(M.resting)
 						M.set_resting(FALSE, TRUE)
 				else
-					user.visible_message("<span class='notice'>[user] pets [M]!</span>", \
+					user.visible_message("<span class='notice'>[user] głaszcze [M]!</span>", \
 							"<span class='notice'>Głaszczesz [M]!</span>")
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(1)
@@ -128,7 +128,7 @@
 					else
 						if(!iscyborg(M))
 							M.adjustFireLoss(10)
-							user.visible_message("<span class='userdanger'>[user] shocks [M]!</span>", \
+							user.visible_message("<span class='userdanger'>[user] razi [M] prądem!</span>", \
 								"<span class='danger'>Razisz [M] prądem!</span>")
 						else
 							user.visible_message("<span class='userdanger'>[user] razi [M] prądem. Nie wydaje się to mieć efektu</span>", \
@@ -143,7 +143,7 @@
 						user.visible_message("<span class='userdanger'>[user] miażdży [M] w uścisku!</span>", \
 							"<span class='danger'>Miażdżysz [M] w uścisku!</span>")
 					else
-						user.visible_message("<span class='userdanger'>[user] crushes [M]!</span>", \
+						user.visible_message("<span class='userdanger'>[user] miażdży [M]!</span>", \
 								"<span class='danger'>Miażdżysz [M]!</span>")
 					playsound(loc, 'sound/weapons/smash.ogg', 50, 1, -1)
 					M.adjustBruteLoss(15)
@@ -160,7 +160,7 @@
 #define MODE_CHARGE "charge"
 
 /obj/item/borg/charger
-	name = "power connector"
+	name = "złącze zasilania"
 	icon_state = "charger_draw"
 	item_flags = NOBLUDGEON
 	var/mode = MODE_DRAW
@@ -179,7 +179,7 @@
 		mode = MODE_CHARGE
 	else
 		mode = MODE_DRAW
-	balloon_alert(user, "Przełączasz [src] w tryb: [mode]")
+	balloon_alert(user, "Przełączasz [src] w tryb: [mode == MODE_DRAW ? "pobieranie" : "ładowanie"]")
 	update_icon()
 
 /obj/item/borg/charger/afterattack(obj/item/target, mob/living/silicon/robot/user, proximity_flag)
@@ -372,8 +372,8 @@
 #undef MODE_CHARGE
 
 /obj/item/harmalarm
-	name = "\improper Sonic Harm Prevention Tool"
-	desc = "Releases a harmless blast that confuses most organics. For when the harm is JUST TOO MUCH."
+	name = "\improper dźwiękowe narzędzie zapobiegania krzywdzie"
+	desc = "Wypuszcza nieszkodliwy podmuch, który dezorientuje większość istot organicznych. Na chwile, gdy krzywdy jest PO PROSTU ZA DUŻO."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "megaphone"
 	var/cooldown = 0
@@ -441,8 +441,8 @@
 #define DISPENSE_ICECREAM_MODE 4
 
 /obj/item/borg/lollipop
-	name = "treat fabricator"
-	desc = "Reward humans with various treats. Toggle in-module to switch between dispensing and high velocity ejection modes."
+	name = "fabrykator smakołyków"
+	desc = "Nagradzaj ludzi różnymi smakołykami. Przełączaj w module między wydawaniem a szybkim wystrzeliwaniem."
 	icon_state = "lollipop"
 	var/candy = 30
 	var/candymax = 30
@@ -497,7 +497,7 @@
 			food_item = new /obj/item/food/icecream(T)
 			var/obj/item/food/icecream/I = food_item
 			I.add_ice_cream("vanilla")
-			I.desc = "Eat the ice cream."
+			I.desc = "Zjedz loda."
 
 	var/into_hands = FALSE
 	if(ismob(A))
@@ -510,7 +510,7 @@
 	if(into_hands)
 		user.visible_message("<span class='notice'>[user] wydaje smakołyk do rąk [A].</span>", "<span class='notice'>Wydajesz smakołyk do rąk [A].</span>", "<span class='italics'>Słyszysz kliknięcie.</span>")
 	else
-		user.visible_message("<span class='notice'>[user] dispenses a treat.</span>", "<span class='notice'>Wydajesz smakołyk.</span>", "<span class='italics'>Słyszysz kliknięcie.</span>")
+		user.visible_message("<span class='notice'>[user] wydaje smakołyk.</span>", "<span class='notice'>Wydajesz smakołyk.</span>", "<span class='italics'>Słyszysz kliknięcie.</span>")
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 	return TRUE
@@ -589,15 +589,15 @@
 #undef DISPENSE_ICECREAM_MODE
 
 /obj/item/ammo_casing/caseless/gumball
-	name = "Gumball"
-	desc = "Why are you seeing this?!"
+	name = "guma do żucia"
+	desc = "Czemu to widzisz?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/gumball
 
 
 /obj/item/projectile/bullet/reusable/gumball
 	bleed_force = 0
-	name = "gumball"
-	desc = "Oh noes! A fast-moving gumball!"
+	name = "kulka gumy do żucia"
+	desc = "O nie! Pędząca kulka gumy do żucia!"
 	icon_state = "gumball"
 	ammo_type = /obj/item/food/gumball/cyborg
 	nodamage = TRUE
@@ -610,14 +610,14 @@
 		dropped = TRUE
 
 /obj/item/ammo_casing/caseless/lollipop	//NEEDS RANDOMIZED COLOR LOGIC.
-	name = "Lollipop"
-	desc = "Why are you seeing this?!"
+	name = "lizak"
+	desc = "Czemu to widzisz?!"
 	projectile_type = /obj/item/projectile/bullet/reusable/lollipop
 
 /obj/item/projectile/bullet/reusable/lollipop
 	bleed_force = 0
-	name = "lollipop"
-	desc = "Oh noes! A fast-moving lollipop!"
+	name = "lizak"
+	desc = "O nie! Pędzący lizak!"
 	icon_state = "lollipop_1"
 	ammo_type = /obj/item/food/lollipop/cyborg
 	var/color2 = rgb(0, 0, 0)
@@ -642,8 +642,8 @@
 
 //Peacekeeper Cyborg Projectile Dampenening Field
 /obj/item/borg/projectile_dampen
-	name = "\improper Hyperkinetic Dampening projector"
-	desc = "A device that projects a dampening field that weakens kinetic energy above a certain threshold. <span class='boldnotice'>Projects a field that drains power per second while active, that will weaken and slow damaging projectiles inside its field.</span> Still being a prototype, it tends to induce a charge on ungrounded metallic surfaces."
+	name = "\improper projektor tłumienia hiperkinetycznego"
+	desc = "Urządzenie, które wytwarza pole tłumiące, osłabiające energię kinetyczną powyżej pewnego progu. <span class='boldnotice'>Gdy jest aktywne, wytwarza pole zużywające energię co sekundę, które osłabia i spowalnia szkodliwe pociski w swoim zasięgu.</span> Wciąż jest prototypem, więc ma skłonność do indukowania ładunku na nieuziemionych metalowych powierzchniach."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "shield"
 	var/maxenergy = 1500
@@ -695,7 +695,7 @@
 	else
 		deactivate_field()
 	update_icon()
-	to_chat(user, "<span class='boldnotice'>You [active? "activate":"deactivate"] [src].</span>")
+	to_chat(user, "<span class='boldnotice'>[active? "Aktywujesz":"Dezaktywujesz"] [src].</span>")
 
 /obj/item/borg/projectile_dampen/update_icon()
 	icon_state = "[initial(icon_state)][active]"
@@ -790,29 +790,29 @@
 
 
 /obj/item/borg/sight/xray
-	name = "\proper X-ray vision"
+	name = "\proper widzenie rentgenowskie"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
 	sight_mode = BORGXRAY
 
 /obj/item/borg/sight/xray/truesight_lens
-	name = "truesight lens"
+	name = "soczewka prawdziwego wzroku"
 	icon = 'icons/obj/clockwork_objects.dmi'
 	icon_state = "truesight_lens"
 
 /obj/item/borg/sight/thermal
-	name = "\proper thermal vision"
+	name = "\proper termowizja"
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 
 
 /obj/item/borg/sight/meson
-	name = "\proper meson vision"
+	name = "\proper widzenie mezonowe"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 
 /obj/item/borg/sight/material
-	name = "\proper material vision"
+	name = "\proper widzenie materiałów"
 	sight_mode = BORGMATERIAL
 	icon_state = "material"
 
@@ -822,7 +822,7 @@
 
 
 /obj/item/borg/sight/hud/med
-	name = "medical hud"
+	name = "HUD medyczny"
 	icon_state = "healthhud"
 
 /obj/item/borg/sight/hud/med/Initialize(mapload)
@@ -831,7 +831,7 @@
 
 
 /obj/item/borg/sight/hud/sec
-	name = "security hud"
+	name = "HUD ochrony"
 	icon_state = "securityhud"
 
 /obj/item/borg/sight/hud/sec/Initialize(mapload)
@@ -844,8 +844,8 @@
 //These are tools that can hold only specific items. For example, the mediborg gets one that can only hold beakers and bottles.
 
 /obj/item/borg/apparatus/
-	name = "unknown storage apparatus"
-	desc = "This device seems nonfunctional."
+	name = "nieznany aparat do przechowywania"
+	desc = "To urządzenie wygląda na niedziałające."
 	icon = 'icons/mob/robot_items.dmi'
 	icon_state = "hugmodule"
 	var/obj/item/stored
@@ -926,8 +926,8 @@
 /////////////////
 
 /obj/item/borg/apparatus/beaker
-	name = "beaker storage apparatus"
-	desc = "A special apparatus for carrying beakers without spilling the contents."
+	name = "aparat do przechowywania zlewek"
+	desc = "Specjalny aparat do noszenia zlewek bez rozlewania zawartości."
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/reagent_containers/glass/beaker,
 				/obj/item/reagent_containers/glass/bottle)
@@ -984,16 +984,16 @@
 	. = ..()
 
 /obj/item/borg/apparatus/beaker/extra
-	name = "secondary beaker storage apparatus"
-	desc = "A supplementary beaker storage apparatus."
+	name = "pomocniczy aparat do przechowywania zlewek"
+	desc = "Dodatkowy aparat do przechowywania zlewek."
 
 ////////////////////
 //engi part holder//
 ////////////////////
 
 /obj/item/borg/apparatus/circuit
-	name = "circuit manipulation apparatus"
-	desc = "A special apparatus for carrying and manipulating circuit boards."
+	name = "aparat do manipulacji płytkami"
+	desc = "Specjalny aparat do noszenia płytek drukowanych i manipulowania nimi."
 	icon_state = "borg_hardware_apparatus"
 	storable = list(/obj/item/circuitboard,
 				/obj/item/electronics)
@@ -1037,8 +1037,8 @@
 ////////////////////
 
 /obj/item/borg/apparatus/beaker/service
-	name = "versatile service grasper"
-	desc = "Specially designed for carrying glasses, food and seeds."
+	name = "wszechstronny chwytak usługowy"
+	desc = "Specjalnie zaprojektowany do noszenia szklanek, jedzenia i nasion."
 	storable = list(/obj/item/reagent_containers/food,
 	/obj/item/plant_seeds,
 	/obj/item/storage/fancy/donut_box,

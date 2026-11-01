@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/hard_drive
-	name = "hard disk drive"
-	desc = "A small HDD, for use in basic computers where power efficiency is desired."
+	name = "dysk twardy"
+	desc = "Mały dysk HDD do prostych komputerów, w których liczy się oszczędność energii."
 	power_usage = 25
 	icon_state = "harddisk_mini"
 	critical = 1
@@ -144,24 +144,24 @@
 	return ..()
 
 /obj/item/computer_hardware/hard_drive/advanced
-	name = "advanced hard disk drive"
-	desc = "A hybrid HDD, for use in higher grade computers where balance between power efficiency and capacity is desired."
+	name = "zaawansowany dysk twardy"
+	desc = "Hybrydowy dysk HDD do lepszych komputerów, w których liczy się równowaga między oszczędnością energii a pojemnością."
 	max_capacity = 256
 	power_usage = 50 					// Hybrid, medium capacity and medium power storage
 	icon_state = "harddisk_mini"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/computer_hardware/hard_drive/super
-	name = "super hard disk drive"
-	desc = "A high capacity HDD, for use in cluster storage solutions where capacity is more important than power efficiency."
+	name = "superdysk twardy"
+	desc = "Pojemny dysk HDD do klastrów pamięci masowej, w których pojemność jest ważniejsza od oszczędności energii."
 	max_capacity = 512
 	power_usage = 100					// High-capacity but uses lots of power, shortening battery life. Best used with APC link.
 	icon_state = "harddisk_mini"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/computer_hardware/hard_drive/cluster
-	name = "cluster hard disk drive"
-	desc = "A large storage cluster consisting of multiple HDDs for usage in dedicated storage systems."
+	name = "klaster dysków twardych"
+	desc = "Duży klaster pamięci złożony z wielu dysków HDD, przeznaczony do wyspecjalizowanych systemów przechowywania danych."
 	power_usage = 500
 	max_capacity = 2048
 	icon_state = "harddisk"
@@ -169,8 +169,8 @@
 
 // For tablets, etc. - highly power efficient.
 /obj/item/computer_hardware/hard_drive/small
-	name = "solid state drive"
-	desc = "An efficient SSD for portable devices."
+	name = "dysk SSD"
+	desc = "Wydajny dysk SSD do urządzeń przenośnych."
 	power_usage = 10
 	max_capacity = 64
 	icon_state = "ssd_mini"
@@ -206,7 +206,7 @@
 
 // Syndicate variant - very slight better
 /obj/item/computer_hardware/hard_drive/small/syndicate
-	desc = "An efficient SSD for portable devices developed by a rival organisation."
+	desc = "Wydajny dysk SSD do urządzeń przenośnych, opracowany przez konkurencyjną organizację."
 	power_usage = 8
 	max_capacity = 70
 	var/datum/antagonist/traitor/traitor_data // Syndicate hard drive has the user's data baked directly into it on creation
@@ -227,8 +227,8 @@
 	store_file(new /datum/computer_file/program/borg_monitor/syndicate(src))
 
 /obj/item/computer_hardware/hard_drive/micro
-	name = "micro solid state drive"
-	desc = "A highly efficient SSD chip for portable devices."
+	name = "mikrodysk SSD"
+	desc = "Bardzo wydajny układ SSD do urządzeń przenośnych."
 	power_usage = 2
 	max_capacity = 32
 	icon_state = "ssd_micro"
