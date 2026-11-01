@@ -13,3 +13,10 @@
 	. = ..()
 	if(has_gravity())
 		playsound(src, 'sound/effects/footstep/crawl1.ogg', 30, 0)
+
+/// Alt blokuje i odblokowuje zamek jak w Bee. Prawy przycisk robi to samo, ale bez combat mode otwiera menu BYOND.
+/obj/structure/closet/AltClick(mob/user)
+	. = ..()
+	if(opened || !secure || !user.canUseTopic(src, BE_CLOSE) || !isturf(loc))
+		return
+	togglelock(user)
