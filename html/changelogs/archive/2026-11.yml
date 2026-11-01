@@ -1,0 +1,11 @@
+'2026-11-01':
+  Joker66613:
+  - spellcheck: 'Reszta gry przetłumaczona na polski: opisy, komunikaty, okna, nazwy
+      reagentów, dań i napojów, panele admina.'
+  - spellcheck: Ujednolicone nazwy tych samych rzeczy w opisach, recepturach, projektach
+      i oknach.
+  - bugfix: Opis postaci nie wstawia już angielskich słów przed nazwą przedmiotu,
+      a czas wyświetla się po polsku.
+  - bugfix: Eksport cargo nie dopisuje angielskiego „s” do polskich nazw.
+  - code_imp: Słownik tłumaczeń w aquila/SLOWNIK_TLUMACZEN.md i test unikalności kluczy
+      reagentów.
