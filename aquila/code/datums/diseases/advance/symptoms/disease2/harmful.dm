@@ -124,6 +124,10 @@
 	symptom_delay_max = 15
 	prefixes = list("Acidic ")
 	threshold_desc = "<b>Szybkość stadiów 6:</b> więcej toksyn.<br><b>Szybkość stadiów 9:</b> dużo więcej toksyn."
+	/// Od którego stadium objaw truje
+	var/required_stage = 4
+	/// Ile toksyn na jeden punkt siły
+	var/toxins_per_power = 2
 
 /datum/symptom/toxins/Start(datum/disease/advance/A)
 	if(!..())
@@ -136,9 +140,9 @@
 /datum/symptom/toxins/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	if(A.stage < 4)
+	if(A.stage < required_stage)
 		return
-	A.affected_mob.adjustToxLoss(2 * power)
+	A.affected_mob.adjustToxLoss(toxins_per_power * power)
 
 /datum/symptom/toxins/killer
 	name = "Zespół toksyfikacji"
@@ -151,14 +155,9 @@
 	level = 8
 	severity = 5
 	prefixes = list("Toxic ")
-
-/datum/symptom/toxins/killer/Activate(datum/disease/advance/A)
-	if(neutered || stopped || !A || world.time < next_activation)
-		return
-	next_activation = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
-	if(A.stage < 5)
-		return
-	A.affected_mob.adjustToxLoss(5 * power)
+	threshold_desc = "<b>Szybkość stadiów 6:</b> więcej toksyn.<br><b>Szybkość stadiów 9:</b> dużo więcej toksyn."
+	required_stage = 5
+	toxins_per_power = 5
 
 /datum/symptom/species_change
 	name = "Jaszczurzyca"

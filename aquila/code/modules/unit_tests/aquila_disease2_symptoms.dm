@@ -204,5 +204,3 @@
 
 #undef TEST_ASSERT
 #undef TEST_ASSERT_EQUAL
-
-

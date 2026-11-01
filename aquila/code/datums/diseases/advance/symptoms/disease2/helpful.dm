@@ -238,9 +238,7 @@
 	return TRUE
 
 /datum/symptom/heal/immortal/Activate(datum/disease/advance/A)
-	if(neutered || stopped || !A)
-		return
-	if(A.stage < 5) // u Monke stadium 4 z 4
+	if(A?.stage < 5) // u Monke stadium 4 z 4; resztę strażników robi ..()
 		return
 	return ..()
 
