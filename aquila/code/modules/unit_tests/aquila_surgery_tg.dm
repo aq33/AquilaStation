@@ -18,6 +18,9 @@
 
 	// no randomness and no slowdown from the room
 	ADD_TRAIT(surgeon, TRAIT_IGNORE_SURGERY_MODIFIERS, TRAIT_SOURCE_UNIT_TESTS)
+	// a hallucination (e.g. from a trauma) stunning someone would cut an operation short
+	ADD_TRAIT(surgeon, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
+	ADD_TRAIT(patient, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
 	surgeon.zone_selected = BODY_ZONE_CHEST
 	patient.set_resting(TRUE)
 
@@ -79,6 +82,9 @@
 	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	ADD_TRAIT(surgeon, TRAIT_IGNORE_SURGERY_MODIFIERS, TRAIT_SOURCE_UNIT_TESTS)
+	// a hallucination (e.g. from a trauma) stunning someone would cut an operation short
+	ADD_TRAIT(surgeon, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
+	ADD_TRAIT(patient, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
 	patient.set_resting(TRUE)
 
 	// Amputation cuts off the limb
@@ -173,6 +179,9 @@
 	var/mob/living/carbon/human/surgeon = allocate(/mob/living/carbon/human)
 	var/mob/living/carbon/human/patient = allocate(/mob/living/carbon/human)
 	ADD_TRAIT(surgeon, TRAIT_IGNORE_SURGERY_MODIFIERS, TRAIT_SOURCE_UNIT_TESTS)
+	// a hallucination (e.g. from a trauma) stunning someone would cut an operation short
+	ADD_TRAIT(surgeon, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
+	ADD_TRAIT(patient, TRAIT_STUNIMMUNE, TRAIT_SOURCE_UNIT_TESTS)
 	patient.set_resting(TRUE)
 	var/obj/item/bodypart/head = patient.get_bodypart(BODY_ZONE_HEAD)
 	var/obj/item/bodypart/chest = patient.get_bodypart(BODY_ZONE_CHEST)
