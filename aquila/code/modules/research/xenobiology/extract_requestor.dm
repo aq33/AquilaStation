@@ -39,25 +39,21 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/slime_extract_requestor/LateInitialize()
-	if(GLOB.default_slime_market && !GLOB.default_slime_market.request_pad)
+	if(GLOB.default_slime_market)
 		link_console(GLOB.default_slime_market)
 
 /obj/machinery/slime_extract_requestor/Destroy()
 	for(var/datum/extract_request_data/request as anything in current_requests)
 		request.cancel_request_early(console, drop_location())
 	current_requests.Cut()
-	if(console?.request_pad == src)
-		console.request_pad = null
+	console?.request_pads -= src
 	console = null
 	return ..()
 
 /obj/machinery/slime_extract_requestor/proc/link_console(obj/machinery/computer/slime_market/new_console)
-	if(console?.request_pad == src)
-		console.request_pad = null
+	console?.request_pads -= src
 	console = new_console
-	if(new_console.request_pad && new_console.request_pad != src)
-		new_console.request_pad.console = null
-	new_console.request_pad = src
+	new_console.request_pads |= src
 
 /obj/machinery/slime_extract_requestor/examine(mob/user)
 	. = ..()
@@ -135,7 +131,7 @@
 	var/payout = tgui_input_number(user, "Ile kredytów nagrody dla xenobiologów? Za każdy kredyt rynek doliczy [SLIME_REQUEST_POINTS_PER_CREDIT] xenobio points.", name, 0, card.registered_account.account_balance, 0)
 	if(isnull(payout) || QDELETED(src) || QDELETED(card) || !user.canUseTopic(src, BE_CLOSE) || find_request(card))
 		return
-	if(QDELETED(console) || console.request_pad != src) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
+	if(QDELETED(console) || !(src in console.request_pads)) // konsola mogła zniknąć, gdy gracz wpisywał kwotę
 		to_chat(user, "<span class='warning'>[src] stracił połączenie z konsolą rynku szlamów!</span>")
 		return
 	if(payout && !card.registered_account.adjust_money(-payout))
