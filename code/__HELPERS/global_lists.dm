@@ -73,7 +73,7 @@
 		GLOB.keybindings_by_name[initial(instance.name)] = instance
 		if (!(initial(instance.key) in GLOB.keybinding_list_by_key))
 			GLOB.keybinding_list_by_key[initial(instance.key)] = list()
-		GLOB.keybinding_list_by_key[initial(instance.key)] += instance.name
+		GLOB.keybinding_list_by_key[initial(instance.key)] |= instance.name // AQ EDIT - init_keybindings() wyżej już je dodał, bez dubli
 	// Sort all the keybindings by their weight
 	for(var/key in GLOB.keybinding_list_by_key)
 		GLOB.keybinding_list_by_key[key] = sortList(GLOB.keybinding_list_by_key[key])

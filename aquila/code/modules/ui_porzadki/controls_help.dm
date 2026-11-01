@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(controls_help_categories, list(
 		if(key == "Unbound") // tak zapisywane są skróty bez klawisza
 			continue
 		for(var/kb_name in bindings[key])
-			LAZYADD(keys_by_name[kb_name], key)
+			LAZYOR(keys_by_name[kb_name], key) // zapisane ustawienia mogą mieć ten sam skrót dwa razy
 
 	var/list/entries_by_category = list()
 	for(var/kb_name in keys_by_name)
