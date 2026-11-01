@@ -46,3 +46,8 @@
   - imageadd: Ikony sprzętu medycznego z tg.
   - rscdel: Stary system operacji z listami kroków.
   - rscdel: Gaza, opatrunek na stłuczenia i maść; bandaż przejął funkcje gazy.
+  sh4dow321:
+  - bugfix: Tickety (ahelpy) zapisują się do bazy, więc historia ticketów gracza działa
+      zamiast pokazywać błąd SQL.
+  - server: Gra sama tworzy w bazie tabelę SS13_ticket (wersja schematu 6.7), jeśli
+      jej brakuje.
