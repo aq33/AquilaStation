@@ -616,11 +616,7 @@
 	..()
 
 /datum/reagent/consumable/honey/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	if(iscarbon(M) && (method in list(TOUCH, VAPOR, PATCH)))
-		var/mob/living/carbon/C = M
-		for(var/s in C.surgeries)
-			var/datum/surgery/S = s
-			S.speed_modifier = max(0.6, S.speed_modifier) // +60% surgery speed on each step, compared to bacchus' blessing's ~46%
+	// AQ EDIT - modyfikator starej chirurgii usunięty, nowy w aquila/code/modules/surgery_tg/surgery_reagents.dm
 	..()
 
 /datum/reagent/consumable/honey/special

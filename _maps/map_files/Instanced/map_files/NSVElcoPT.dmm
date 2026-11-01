@@ -1722,13 +1722,13 @@
 /area/space)
 "CZ" = (
 /obj/structure/table/glass,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/bruise_pack{
+/obj/item/stack/medical/mesh,
+/obj/item/stack/medical/mesh,
+/obj/item/stack/medical/suture{
 	pixel_x = 7;
 	pixel_y = 7
 	},
-/obj/item/stack/medical/bruise_pack{
+/obj/item/stack/medical/suture{
 	pixel_x = 7;
 	pixel_y = 7
 	},
@@ -3071,11 +3071,11 @@
 "XN" = (
 /obj/structure/window,
 /obj/structure/table/glass,
-/obj/item/stack/medical/gauze/adv{
+/obj/item/stack/medical/bandage/sterile{
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/obj/item/stack/medical/gauze/adv,
+/obj/item/stack/medical/bandage/sterile,
 /turf/open/floor/monotile/light,
 /area/awaymission/badmiral/dorms)
 "XR" = (

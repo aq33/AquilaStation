@@ -9424,8 +9424,8 @@
 /area/wizard_station)
 "yD" = (
 /obj/structure/table/wood,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
 /turf/open/floor/engine/cult,
 /area/wizard_station)
 "yE" = (

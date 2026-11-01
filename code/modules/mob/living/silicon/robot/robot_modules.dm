@@ -362,7 +362,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/roller/robo,
 		/obj/item/borg/cyborghug/medical,
-		/obj/item/stack/medical/gauze/cyborg,
+		/obj/item/stack/medical/bandage/cyborg, // AQ EDIT - bandage replaces gauze
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop) ///NSV13 - Changed borghypo to borghypo/medical
 	emag_modules = list(/obj/item/reagent_containers/borghypo/medical/hacked) ///NSV13 - Borg Hypospray Update
@@ -748,7 +748,7 @@
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
-		/obj/item/stack/medical/gauze/cyborg,
+		/obj/item/stack/medical/bandage/cyborg, // AQ EDIT - bandage replaces gauze
 		/obj/item/gun/medbeam,
 		/obj/item/organ_storage)
 	cyborg_base_icon = "synd_medical"

@@ -20,7 +20,7 @@
 	filedesc = "Operacje"
 	category = PROGRAM_CATEGORY_CREW
 	program_icon_state = "generic"
-	extended_desc = "Spis wszystkich operacji: do czego służą, jakie mają kroki i jakimi narzędziami je wykonać."
+	extended_desc = "Spis wszystkich operacji podzielony na części ciała: do czego służą, jakie mają wymagania i jakimi narzędziami je wykonać."
 	size = 2
 	tgui_id = "NtosSurgeryLookup"
 	program_icon = "user-md"
@@ -29,6 +29,7 @@
 /datum/computer_file/program/surgery_lookup/ui_static_data(mob/user)
 	. = ..()
 	.["surgeries"] = get_surgery_catalog()
+	.["sections"] = GLOB.surgery_catalog_sections
 
 /datum/computer_file/program/slime_extracts
 	filename = "ekstrakty"

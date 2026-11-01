@@ -6,7 +6,7 @@ import { Window } from '../../layouts';
 import { PatientStateView } from './PatientStateView';
 import { SurgeryProceduresView } from './SurgeryProceduresView';
 import {
-  type CatalogSurgery,
+  type CatalogOperation,
   ComputerTabs,
   type OperatingComputerData,
 } from './types';
@@ -21,10 +21,8 @@ export const OperatingComputer = () => {
   const { query, setQuery, results } = useFuzzySearch({
     searchArray: surgery_catalog,
     matchStrategy: 'aggressive',
-    getSearchString: (item: CatalogSurgery) =>
-      `${item.name} ${item.steps
-        .flatMap((step) => step.tools.map((tool) => tool.name))
-        .join(' ')}`,
+    getSearchString: (item: CatalogOperation) =>
+      `${item.name} ${item.tools.map((tool) => tool.name).join(' ')}`,
   });
 
   const [pinnedOperations, setPinnedOperations] = useSharedState<string[]>(
@@ -58,7 +56,12 @@ export const OperatingComputer = () => {
           </Stack.Item>
           <Stack.Item grow>
             {tab === ComputerTabs.PatientState && (
-              <PatientStateView setTab={setTab} setSearchText={setQuery} />
+              <PatientStateView
+                setTab={setTab}
+                setSearchText={setQuery}
+                pinnedOperations={pinnedOperations}
+                setPinnedOperations={setPinnedOperations}
+              />
             )}
             {tab === ComputerTabs.OperationCatalog && (
               <SurgeryProceduresView

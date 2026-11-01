@@ -1653,7 +1653,7 @@
 					/obj/item/reagent_containers/glass/bottle/toxin,
 					/obj/item/reagent_containers/glass/beaker/large,
 					/obj/item/reagent_containers/pill/insulin,
-					/obj/item/stack/medical/gauze,
+					/obj/item/stack/medical/bandage, // AQ EDIT - bandage replaces gauze
 					/obj/item/storage/box/beakers,
 					/obj/item/storage/box/medsprays,
 					/obj/item/storage/box/syringes,

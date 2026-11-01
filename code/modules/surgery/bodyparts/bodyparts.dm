@@ -424,11 +424,14 @@
 		image_dir = SOUTH
 		if(dmg_overlay_type)
 			if(brutestate)
-				var/image/brute_overlay = image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
+				// AQ EDIT START - tg damage overlays, the bruises are not tinted with the blood colour
+				var/image/brute_overlay = image(AQ_DAMAGE_OVERLAY_ICON, "[dmg_overlay_type]_[body_zone]_[brutestate]0", -DAMAGE_LAYER, image_dir)
 				brute_overlay.color = damage_color
 				. += brute_overlay
+				. += image(AQ_DAMAGE_OVERLAY_ICON, "[dmg_overlay_type]_[body_zone]_[brutestate]0_overlay", -DAMAGE_LAYER, image_dir)
 			if(burnstate)
-				. += image('icons/mob/dam_mob.dmi', "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
+				. += image(AQ_DAMAGE_OVERLAY_ICON, "[dmg_overlay_type]_[body_zone]_0[burnstate]", -DAMAGE_LAYER, image_dir)
+				// AQ EDIT END
 
 	var/image/limb = image(layer = -BODYPARTS_LAYER, dir = image_dir)
 	var/image/aux

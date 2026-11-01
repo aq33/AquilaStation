@@ -3967,7 +3967,7 @@
 /area/ruin/unpowered)
 "Xs" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/suture,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/unpowered)

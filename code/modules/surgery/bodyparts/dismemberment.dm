@@ -98,12 +98,7 @@
 
 	owner = null
 
-	for(var/X in C.surgeries) //if we had an ongoing surgery on that limb, we stop it.
-		var/datum/surgery/S = X
-		if(S.operated_bodypart == src)
-			C.surgeries -= S
-			qdel(S)
-			break
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/
 
 	for(var/obj/item/I in embedded_objects)
 		embedded_objects -= I
@@ -292,14 +287,7 @@
 				hand.update_icon()
 		C.update_inv_gloves()
 
-	if(special) //non conventional limb attachment
-		for(var/X in C.surgeries) //if we had an ongoing surgery to attach a new limb, we stop it.
-			var/datum/surgery/S = X
-			var/surgery_zone = check_zone(S.location)
-			if(surgery_zone == body_zone)
-				C.surgeries -= S
-				qdel(S)
-				break
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/
 
 	for(var/obj/item/organ/O in contents)
 		O.Insert(C)

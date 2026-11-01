@@ -664,34 +664,30 @@
 	id = "surgery_parent"
 	research_icon = 'icons/obj/surgery.dmi'
 	research_icon_state = "surgery_any"
-	var/surgery
+	var/surgery // AQ EDIT - typ operacji (/datum/surgery_operation), wartości w aquila/code/modules/research/designs/medical_designs.dm
 
 /datum/design/surgery/experimental_dissection
 	name = "Eksperymentalna sekcja"
 	desc = "Zabieg chirurgiczny, który dogłębnie analizuje biologię zwłok i automatycznie dodaje nowe odkrycia do bazy danych badań."
 	id = "surgery_exp_dissection"
-	surgery = /datum/surgery/advanced/experimental_dissection
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/lobotomy
 	name = "Lobotomia"
 	desc = "Inwazyjny zabieg chirurgiczny, który gwarantuje usunięcie niemal wszystkich urazów mózgu, ale w zamian może wywołać inny, trwały uraz."
 	id = "surgery_lobotomy"
-	surgery = /datum/surgery/advanced/lobotomy
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/pacify
 	name = "Pacyfikacja"
 	desc = "Zabieg chirurgiczny, który trwale hamuje ośrodek agresji w mózgu, przez co pacjent nie chce nikogo bezpośrednio krzywdzić."
 	id = "surgery_pacify"
-	surgery = /datum/surgery/advanced/pacify
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/viral_bonding
 	name = "Wiązanie wirusowe"
 	desc = "Zabieg chirurgiczny, który wymusza symbiozę między wirusem a nosicielem. Pacjent musi dostać spacyklinę, pożywkę dla wirusów i formaldehyd."
 	id = "surgery_viral_bond"
-	surgery = /datum/surgery/advanced/viral_bonding
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/healing //PLEASE ACCOUNT FOR UNIQUE HEALING BRANCHES IN THE hptech HREF (currently 2 for Brute/Burn; Combo is bonus)
@@ -702,81 +698,68 @@
 
 /datum/design/surgery/healing/brute_upgrade
 	name = "Opatrywanie ran (stłuczenia, zaaw.)"
-	surgery = /datum/surgery/healing/brute/upgraded
 	id = "surgery_heal_brute_upgrade"
 
 /datum/design/surgery/healing/brute_upgrade_2
 	name = "Opatrywanie ran (stłuczenia, eksp.)"
-	surgery = /datum/surgery/healing/brute/upgraded/femto
 	id = "surgery_heal_brute_upgrade_femto"
 
 /datum/design/surgery/healing/burn_upgrade
 	name = "Opatrywanie ran (oparzenia, zaaw.)"
-	surgery = /datum/surgery/healing/burn/upgraded
 	id = "surgery_heal_burn_upgrade"
 
 /datum/design/surgery/healing/burn_upgrade_2
 	name = "Opatrywanie ran (oparzenia, eksp.)"
-	surgery = /datum/surgery/healing/burn/upgraded/femto
 	id = "surgery_heal_burn_upgrade_femto"
 
 /datum/design/surgery/healing/combo
 	name = "Opatrywanie ran (mieszane, podst.)"
 	desc = "Zabieg chirurgiczny, który leczy zarówno stłuczenia, jak i oparzenia. Skuteczność jest niższa niż w osobnych operacjach, ale zabieg trwa krócej."
-	surgery = /datum/surgery/healing/combo
 	id = "surgery_heal_combo"
 
 /datum/design/surgery/healing/combo_upgrade
 	name = "Opatrywanie ran (mieszane, zaaw.)"
-	surgery = /datum/surgery/healing/combo/upgraded
 	id = "surgery_heal_combo_upgrade"
 
 /datum/design/surgery/healing/combo_upgrade_2
 	name = "Opatrywanie ran (mieszane, eksp.)"
 	desc = "Zabieg chirurgiczny, który leczy stłuczenia i oparzenia szybciej niż osobne operacje. Jest skuteczniejszy od każdej z nich."
-	surgery = /datum/surgery/healing/combo/upgraded/femto
 	id = "surgery_heal_combo_upgrade_femto"
 
 /datum/design/surgery/revival
 	name = "Ożywienie"
 	desc = "Eksperymentalny zabieg chirurgiczny, który odbudowuje i ponownie uruchamia mózg pacjenta nawet długo po śmierci. Ciało musi wciąż być zdolne do życia."
 	id = "surgery_revival"
-	surgery = /datum/surgery/advanced/revival
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/brainwashing
 	name = "Pranie mózgu"
 	desc = "Zabieg chirurgiczny, który wszczepia rozkaz bezpośrednio do mózgu pacjenta i czyni go jego najwyższym priorytetem. Można go usunąć implantem ochrony umysłu."
 	id = "surgery_brainwashing"
-	surgery = /datum/surgery/advanced/brainwashing
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/nerve_splicing
 	name = "Łączenie nerwów"
 	desc = "Zabieg chirurgiczny, który łączy nerwy pacjenta, przez co staje się on odporniejszy na ogłuszenia."
 	id = "surgery_nerve_splice"
-	surgery = /datum/surgery/advanced/bioware/nerve_splicing
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/nerve_grounding
 	name = "Uziemienie nerwów"
 	desc = "Zabieg chirurgiczny, po którym nerwy pacjenta działają jak pręty uziemiające i chronią go przed porażeniem prądem."
 	id = "surgery_nerve_ground"
-	surgery = /datum/surgery/advanced/bioware/nerve_grounding
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/vein_threading
 	name = "Przeplatanie żył"
 	desc = "Zabieg chirurgiczny, który znacznie ogranicza utratę krwi w razie zranienia."
 	id = "surgery_vein_thread"
-	surgery = /datum/surgery/advanced/bioware/vein_threading
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/muscled_veins
 	name = "Mięśniowa błona żył"
 	desc = "Zabieg chirurgiczny, który dodaje do naczyń krwionośnych umięśnioną błonę, dzięki czemu pompują krew bez serca."
 	id = "surgery_muscled_veins"
-	surgery = /datum/surgery/advanced/bioware/muscled_veins
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_hook
@@ -784,7 +767,6 @@
 	desc = "Zabieg chirurgiczny, który przekształca połączenia między tułowiem a kończynami, dzięki czemu odcięte kończyny można przyczepić ręcznie. \
 	Osłabia to jednak połączenie, więc kończyny łatwiej też odpadają."
 	id = "surgery_ligament_hook"
-	surgery = /datum/surgery/advanced/bioware/ligament_hook
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/ligament_reinforcement
@@ -792,21 +774,18 @@
 	desc = "Zabieg chirurgiczny, który otacza połączenia między tułowiem a kończynami ochronną klatką z tkanki i kości, co zapobiega odcięciu kończyn. \
 	Przez to jednak połączenia nerwowe łatwiej się przerywają, więc obrażenia łatwiej unieruchamiają kończyny."
 	id = "surgery_ligament_reinforcement"
-	surgery = /datum/surgery/advanced/bioware/ligament_reinforcement
 	research_icon_state = "surgery_chest"
 
 /datum/design/surgery/cortex_imprint
 	name = "Odcisk kory mózgowej"
 	desc = "Zabieg chirurgiczny, który przekształca korę mózgową w nadmiarowy wzorzec neuronowy, dzięki czemu mózg omija uszkodzenia wywołane drobnymi urazami mózgu."
 	id = "surgery_cortex_imprint"
-	surgery = /datum/surgery/advanced/bioware/cortex_imprint
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/cortex_folding
 	name = "Fałdowanie kory mózgowej"
 	desc = "Zabieg chirurgiczny, który układa korę mózgową w złożoną fałdę i robi miejsce na niestandardowe wzorce neuronowe."
 	id = "surgery_cortex_folding"
-	surgery = /datum/surgery/advanced/bioware/cortex_folding
 	research_icon_state = "surgery_head"
 
 
@@ -814,5 +793,4 @@
 	name = "Ożywienie nekrotyczne"
 	desc = "Eksperymentalny zabieg chirurgiczny, który pobudza wzrost guza romerolowego w mózgu pacjenta. Wymaga proszku zombie albo rezadonu."
 	id = "surgery_zombie"
-	surgery = /datum/surgery/advanced/necrotic_revival
 	research_icon_state = "surgery_head"

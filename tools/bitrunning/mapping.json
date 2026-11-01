@@ -690,11 +690,8 @@
     "/obj/item/stack/cannonball": null,
     "/obj/item/stack/cannonball/four": null,
     "/obj/item/stack/cannonball/shellball": null,
-    "/obj/item/stack/medical/bone_gel": "/obj/item/stack/medical/gauze",
-    "/obj/item/stack/medical/mesh": "/obj/item/stack/medical/ointment",
-    "/obj/item/stack/medical/suture": "/obj/item/stack/medical/bruise_pack",
-    "/obj/item/stack/medical/wrap/gauze": "/obj/item/stack/medical/gauze",
-    "/obj/item/stack/medical/wrap/gauze/improvised": "/obj/item/stack/medical/gauze/improvised",
+    "/obj/item/stack/medical/wrap/gauze": "/obj/item/stack/medical/bandage",
+    "/obj/item/stack/medical/wrap/gauze/improvised": "/obj/item/stack/medical/bandage/makeshift",
     "/obj/item/stack/rods/two": {
       "path": "/obj/item/stack/rods",
       "vars": {

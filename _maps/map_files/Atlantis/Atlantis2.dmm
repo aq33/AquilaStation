@@ -5978,7 +5978,7 @@
 	name = "Medbay";
 	req_one_access_txt = "5"
 	},
-/obj/item/stack/medical/gauze/adv/one,
+/obj/item/stack/medical/bandage/sterile/one,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "fLj" = (
@@ -23104,10 +23104,10 @@
 /area/engine/engineering)
 "xjk" = (
 /obj/structure/table/glass,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/bruise_pack,
-/obj/item/stack/medical/ointment,
-/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/suture,
+/obj/item/stack/medical/mesh,
+/obj/item/stack/medical/mesh,
 /turf/open/floor/monotile/light,
 /area/medical/medbay/lobby)
 "xjF" = (

@@ -51,10 +51,7 @@
 		GLOB.species_list[S.id] = spath
 	sortList(GLOB.species_list)
 
-	//Surgeries
-	for(var/path in subtypesof(/datum/surgery))
-		GLOB.surgeries_list += new path()
-	sortList(GLOB.surgeries_list)
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/ (GLOB.operations)
 
 	init_keybindings() // AQ EDIT
 	GLOB.emote_list = init_emote_list()

@@ -30,10 +30,7 @@
 /obj/item/reagent_containers/pill/attack(mob/M, mob/user, obj/item/bodypart/affecting)
 	if(!canconsume(M, user))
 		return FALSE
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(/datum/surgery/dental_implant in C.surgeries)
-			return
+	// AQ EDIT - stara chirurgia (/datum/surgery) usunięta, nowa w aquila/code/modules/surgery_tg/
 	if(M == user)
 		M.visible_message("<span class='notice'>[user] próbuje [apply_method == "apply" ? "nakleić sobie" : "połknąć"] [src].</span>")
 		if(self_delay)

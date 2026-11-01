@@ -532,10 +532,10 @@
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 
-	if(istype(O, /obj/item/stack/medical/gauze))
-		var/obj/item/stack/medical/gauze/G = O
+	if(istype(O, /obj/item/stack/medical/bandage)) // AQ EDIT - bandage replaces gauze
+		var/obj/item/stack/medical/bandage/G = O
 		new /obj/item/reagent_containers/glass/rag(src.loc)
-		to_chat(user, "<span class='notice'>Odrywasz pasek gazy i robisz szmatkę.</span>")
+		to_chat(user, "<span class='notice'>Odrywasz pasek bandaża i robisz szmatkę.</span>")
 		G.use(1)
 		return
 

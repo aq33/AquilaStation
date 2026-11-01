@@ -17,8 +17,6 @@
 /// Szansa, że strzał zostawi ślady prochu na podłodze pod strzelcem
 #define GSR_FLOOR_CHANCE 30
 
-/// Szansa, że pocisk, który zranił człowieka, utknie w ciele jako fragment
-#define BULLET_FRAGMENT_LODGE_CHANCE 30
 /// Szansa, że pocisk trafiający w ścianę lub gęsty obiekt zostawi zdeformowaną kulę na podłodze
 #define BULLET_FRAGMENT_WALL_CHANCE 25
 /// Szansa, że pocisk, który doleciał do końca zasięgu, zostawi kulę na podłodze

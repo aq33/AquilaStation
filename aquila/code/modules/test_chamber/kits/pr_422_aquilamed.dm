@@ -4,7 +4,7 @@
 	name = "PR 422: krwawienie i kolory krwi"
 	pr = "aq33/AquilaStation#422"
 	description = "Człowiek, jaszczur, eteryk i IPC już krwawią. Plamy i ślady ciągnięcia mają kolor krwi (jaszczur turkusowa, eteryk świecąca, IPC jasnoszare chłodziwo). \
-	Krwawiący ma alert - kliknięty uciska ranę (zajmuje rękę). Gaza robi z krwawienia opatrunek, zapalniczka i laser przypalają ranę. IPC cieknie - załataj spawarką. \
+	Krwawiący ma alert - kliknięty uciska ranę (zajmuje rękę). Bandaż robi z krwawienia opatrunek, zapalniczka i laser przypalają ranę. IPC cieknie - załataj spawarką. \
 	Medbot ma bandażować krwawiących. Nóż w kamizelce i bez niej: pancerz zmniejsza krwawienie. Analizator i stetoskop pokazują tempo krwawienia. \
 	Operacje z menu radialnego (serweta): kauteryzacja krwawienia, płukanie żołądka (wymioty, usunięcie 2/3 substancji), rekalibracja tożsamości IPC (karta ID w otwartej klatce zmienia imię). \
 	Wyjęte serce zatrzymuje odnawianie krwi. Kroplówka, monitor, autopsja i odzyskana załoga - zestaw PR 457."
@@ -13,7 +13,7 @@
 		/mob/living/carbon/human/species/lizard = 1,
 		/mob/living/carbon/human/species/ethereal = 1,
 		/mob/living/carbon/human/species/ipc = 1,
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1,
 		/obj/item/lighter = 1,
 		/obj/item/gun/energy/laser = 1,
 		/obj/item/weldingtool/largetank = 1,

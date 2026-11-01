@@ -32,6 +32,14 @@
 	// ślady stóp i ciągnięcia są rysowane nakładkami
 	for(var/overlay in source.overlays)
 		overlays += overlay
+	// kawałki śladów krwi i kolejne krople są w vis_contents, każdy z własnym kolorem
+	for(var/atom/movable/part as anything in source.vis_contents)
+		var/mutable_appearance/part_copy = new(part)
+		part_copy.appearance_flags &= ~RESET_COLOR
+		part_copy.color = null
+		part_copy.layer = FLOAT_LAYER
+		part_copy.plane = FLOAT_PLANE
+		overlays += part_copy
 
 /obj/effect/blood_trace/Destroy()
 	glow = null

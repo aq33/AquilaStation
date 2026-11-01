@@ -95,12 +95,10 @@ type ReagentEntry = {
 };
 
 type SurgeryProgress = {
-  name: string;
   zone: string;
-  step: string;
-  step_number: number;
-  step_count: number;
-  tools: string;
+  state: string[];
+  operation: string | null;
+  next: string[];
 };
 
 type Data = {
@@ -327,11 +325,18 @@ export const HealthAnalyzer = (props) => {
             <Section
               title={data.target}
               buttons={
-                <Button
-                  icon="comment-medical"
-                  tooltip="Wypisz pełny skan na czat"
-                  onClick={() => act('print_chat')}
-                />
+                <>
+                  <Button
+                    icon="comment-medical"
+                    tooltip="Wypisz pełny skan na czat"
+                    onClick={() => act('print_chat')}
+                  />
+                  <Button
+                    icon="align-left"
+                    tooltip="Przełącz na stary tryb tekstowy (Alt+klik na analizatorze przywraca okno)"
+                    onClick={() => act('text_mode')}
+                  />
+                </>
               }
             >
               {!!data.species && <div>Gatunek: {data.species}</div>}
@@ -344,12 +349,21 @@ export const HealthAnalyzer = (props) => {
               <Section title="Trwające operacje">
                 {data.surgeries.map((surgery, index) => (
                   <div key={index} className="surgery_entry">
-                    <b>{surgery.name}</b> ({surgery.zone})
-                    <br />
-                    Następny krok {surgery.step_number}/{surgery.step_count}:{' '}
-                    <b>{surgery.step}</b>
-                    <br />
-                    Narzędzie: {surgery.tools}
+                    <b>{surgery.zone}</b>
+                    {surgery.state.length > 0 &&
+                      `: ${surgery.state.join(', ')}`}
+                    {!!surgery.operation && (
+                      <>
+                        <br />
+                        Trwa: <b>{surgery.operation}</b>
+                      </>
+                    )}
+                    {surgery.next.length > 0 && (
+                      <>
+                        <br />
+                        Dalej: {surgery.next.join(', ')}
+                      </>
+                    )}
                   </div>
                 ))}
               </Section>

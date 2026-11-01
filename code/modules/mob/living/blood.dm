@@ -515,8 +515,7 @@ bleedsuppress has been replaced for is_bandaged(). Note that is_bleeding() retur
 		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
 		if(drop)
 			if(drop.drips < 5)
-				drop.drips++
-				drop.add_overlay(pick(drop.random_icon_states))
+				drop.add_drip(src) // AQ EDIT - each drop is its own decal in vis_contents (tg), see aquila/code/modules/mob/living/blood_trails.dm
 				drop.transfer_mob_blood_dna(src)
 				return
 			else
