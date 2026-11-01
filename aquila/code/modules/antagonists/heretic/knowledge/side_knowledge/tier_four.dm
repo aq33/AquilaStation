@@ -127,7 +127,7 @@
 			selected_atoms += rag
 			return TRUE
 
-	for(var/obj/item/stack/medical/gauze/medwrap in atoms)
+	for(var/obj/item/stack/medical/bandage/medwrap in atoms)
 		if(length(medwrap.return_blood_DNA()))
 			selected_atoms += medwrap
 			return TRUE
@@ -152,7 +152,7 @@
 					container.reagents.del_reagent(reagent_content.type)
 		selected_atoms -= container
 
-	for(var/obj/item/stack/medical/gauze/medwrap in selected_atoms)
+	for(var/obj/item/stack/medical/bandage/medwrap in selected_atoms)
 		medwrap.use(1)
 		selected_atoms -= medwrap
 

@@ -237,7 +237,7 @@
 /turf/open/floor/engine,
 /area/template_noop)
 "y" = (
-/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/bandage,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -313,7 +313,7 @@
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "I" = (
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/suture,
 /turf/open/floor/plasteel/dark,
 /area/template_noop)
 "J" = (

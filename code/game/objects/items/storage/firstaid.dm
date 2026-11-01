@@ -36,7 +36,7 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 		/obj/item/stack/medical/suture = 1, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh = 1, // AQ EDIT
 		/obj/item/reagent_containers/hypospray/medipen = 1,
@@ -112,7 +112,7 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 		/obj/item/stack/medical/suture = 1, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh = 1, // AQ EDIT
 		/obj/item/reagent_containers/hypospray/medipen = 1,
@@ -140,7 +140,7 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 		/obj/item/stack/medical/suture = 2, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh = 2) // AQ EDIT
 	generate_items_inside(items_inside,src)
@@ -283,7 +283,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/styptic = 4,
 		/obj/item/storage/pill_bottle/bicaridine = 1,
-		/obj/item/stack/medical/gauze = 2,
+		/obj/item/stack/medical/bandage = 2, // AQ EDIT - bandage replaces gauze
 		/obj/item/healthanalyzer = 1)
 	generate_items_inside(items_inside,src)
 
@@ -307,7 +307,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/pill/patch/synthflesh = 3,
 		/obj/item/reagent_containers/hypospray/medipen/atropine = 2,
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 		/obj/item/storage/pill_bottle/penacid = 1)
 	generate_items_inside(items_inside,src)
 
@@ -335,7 +335,7 @@
 	if(empty)
 		return
 	var/supplies = list(
-		/obj/item/stack/medical/gauze,
+		/obj/item/stack/medical/bandage, // AQ EDIT - bandage replaces gauze
 		/obj/item/stack/medical/suture, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh, // AQ EDIT
 		/obj/item/reagent_containers/hypospray/medipen,

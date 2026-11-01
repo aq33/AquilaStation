@@ -56,7 +56,7 @@
 		/obj/item/surgical_drapes = 1,
 		/obj/item/stack/medical/suture = 1, // AQ EDIT - tgstation sutures and mesh
 		/obj/item/stack/medical/mesh = 1, // AQ EDIT
-		/obj/item/stack/medical/gauze = 1,
+		/obj/item/stack/medical/bandage = 1, // AQ EDIT - bandage replaces gauze
 		/obj/item/reagent_containers/glass/bottle/epinephrine = 1,
 		/obj/item/reagent_containers/glass/bottle/charcoal = 1,
 		/obj/item/storage/pill_bottle/floorpill/full = 1,

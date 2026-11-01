@@ -143,7 +143,7 @@
 	name = "medkit spawner"
 	},
 /obj/effect/spawner/lootdrop{
-	loot = list(/obj/item/stack/medical/bruise_pack = 333, /obj/item/stack/medical/ointment = 333, /obj/item/stack/medical/gauze = 333);
+	loot = list(/obj/item/stack/medical/suture = 333, /obj/item/stack/medical/mesh = 333, /obj/item/stack/medical/bandage = 333);
 	name = "minor healing spawner"
 	},
 /turf/open/floor/plasteel/freezer,

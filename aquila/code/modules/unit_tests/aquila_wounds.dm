@@ -16,8 +16,22 @@
 	TEST_ASSERT(LAZYACCESS(patient.movespeed_modification, "aq_wounds"), "A broken leg does not slow down")
 	TEST_ASSERT(length(patient.get_wound_scan_lines()) == 1, "The analyzer does not see the fracture")
 
-	var/obj/item/stack/medical/gauze/gauze = allocate(/obj/item/stack/medical/gauze)
-	TEST_ASSERT(patient.get_treatable_wound(leg, gauze) == fracture, "Gauze cannot splint a fracture")
+	var/obj/item/stack/medical/bandage/bandage = allocate(/obj/item/stack/medical/bandage)
+	TEST_ASSERT(patient.get_treatable_wound(leg, bandage) == fracture, "A bandage cannot splint a fracture")
+	var/mob/living/carbon/human/doctor = allocate(/mob/living/carbon/human)
+	var/bandages_before = bandage.get_amount()
+	TEST_ASSERT(fracture.treat(bandage, doctor), "The bandage splint was interrupted")
+	TEST_ASSERT(fracture.treated, "The bandage did not splint the fracture")
+	TEST_ASSERT(bandage.get_amount() == bandages_before - 1, "Splinting did not use one bandage")
+	TEST_ASSERT(!patient.get_treatable_wound(leg, bandage), "A splinted fracture can be splinted again")
+
+	// The bandage took over gauze: it stops bleeding and leaves it bandaged
+	var/mob/living/carbon/human/bleeder = allocate(/mob/living/carbon/human)
+	bleeder.add_bleeding(BLEED_DEEP_WOUND)
+	doctor.zone_selected = BODY_ZONE_CHEST
+	bandage.attack(bleeder, doctor)
+	TEST_ASSERT(!bleeder.is_bleeding(), "A bandage did not stop the bleeding")
+	TEST_ASSERT(bleeder.is_bandaged(), "A bandage did not leave the bleeding bandaged")
 
 	var/datum/wound/compound = patient.check_wounding(leg, 200, WOUND_BLUNT)
 	if(compound)

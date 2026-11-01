@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("torba budowlana",						/obj/item/storage/bag/construction, 4), \
 	new/datum/stack_recipe("łapacz arkuszy",						/obj/item/storage/bag/sheetsnatcher, 6), \
 	null, \
-	new/datum/stack_recipe("prowizoryczna gaza",						/obj/item/stack/medical/gauze/improvised, 1, 2, 6), \
+	new/datum/stack_recipe("prowizoryczny bandaż",						/obj/item/stack/medical/bandage/makeshift, 1, 2, 6), \
 	new/datum/stack_recipe("szmata",									/obj/item/reagent_containers/glass/rag, 1), \
 	new/datum/stack_recipe("prześcieradło",								/obj/item/bedsheet, 3), \
 	new/datum/stack_recipe("podwójne prześcieradło",						/obj/item/bedsheet, 6), \

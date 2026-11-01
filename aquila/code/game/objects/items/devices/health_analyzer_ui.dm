@@ -111,7 +111,7 @@
 	else if(heart && !heart.beating)
 		body += list(aq_injury("Zatrzymanie akcji serca", "Defibrylacja"))
 	if(target.is_bleeding())
-		body += list(aq_injury("Krwawienie", "Gaza, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
+		body += list(aq_injury("Krwawienie", "Bandaż, uciskanie, kauteryzacja", target.get_bleed_rate_string()))
 	else if(target.is_bandaged())
 		body += list(aq_injury("Opatrzone krwawienie", "Goi się samo", null, 1))
 	if(target.blood_volume < BLOOD_VOLUME_SAFE && !HAS_TRAIT(target, TRAIT_NO_BLOOD))

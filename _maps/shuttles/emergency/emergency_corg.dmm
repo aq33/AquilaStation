@@ -186,7 +186,7 @@
 "gl" = (
 /obj/structure/table/glass,
 /obj/item/book/manual/wiki/medicine,
-/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/bandage,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "gL" = (

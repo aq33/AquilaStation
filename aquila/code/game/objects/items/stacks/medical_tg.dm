@@ -1,6 +1,6 @@
 // AQUILA - sutures and regenerative mesh from tgstation, replacing bruise packs and ointment in kits.
 // They heal a little per use and keep going on their own until the limb is healed or the stack runs out.
-// Gauze stays the item that stops bleeding.
+// The bandage (aquila/code/modules/medical/bandage.dm) is the item that stops bleeding.
 
 /obj/item/stack/medical/suture
 	name = "nici chirurgiczne"

@@ -1,4 +1,4 @@
-// AQUILA - slash and pierce wounds on top of Bee bleeding: gauze only holds them for a while, sutures close them
+// AQUILA - slash and pierce wounds on top of Bee bleeding: a bandage only holds them for a while, sutures close them
 
 /datum/wound/slash
 	wound_type = WOUND_SLASH
@@ -45,7 +45,7 @@
 	name = "Głębokie rozcięcie"
 	desc = "Ostrze rozcina ci głęboko ciało"
 	examine_desc = "głęboką, krwawiącą ranę"
-	treat_text = "Zszyj nićmi albo przypal (operacja kauteryzacji). Gaza tylko na chwilę."
+	treat_text = "Zszyj nićmi albo przypal (operacja kauteryzacji). Bandaż tylko na chwilę."
 	severity = WOUND_SEVERITY_SEVERE
 	threshold = 50
 
@@ -53,7 +53,7 @@
 	name = "Przerwana tętnica"
 	desc = "Krew tryska z przeciętej tętnicy"
 	examine_desc = "tryskającą krwią ranę"
-	treat_text = "Zszyj nićmi dwa razy albo operacja kauteryzacji. Gaza tylko na chwilę."
+	treat_text = "Zszyj nićmi dwa razy albo operacja kauteryzacji. Bandaż tylko na chwilę."
 	severity = WOUND_SEVERITY_CRITICAL
 	threshold = 80
 	initial_bleed = BLEED_CRITICAL

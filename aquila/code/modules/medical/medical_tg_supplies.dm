@@ -65,7 +65,7 @@
 	. = ..()
 	new /obj/item/bonesetter(src)
 
-/// One bandage after the box is filled, only if it still fits (the radio and premium internals variants can be full)
+/// A few bandages after the box is filled, only if they still fit (the radio and premium internals variants can be full)
 /obj/item/storage/box/survival/Initialize(mapload)
 	. = ..()
 	var/datum/component/storage/storage = GetComponent(/datum/component/storage)
@@ -76,4 +76,4 @@
 	for(var/obj/item/stored in contents)
 		total_size += stored.w_class
 	if(total_size <= storage.max_combined_w_class)
-		new /obj/item/stack/medical/bandage(src)
+		new /obj/item/stack/medical/bandage(src, 3)
