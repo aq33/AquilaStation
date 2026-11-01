@@ -122,7 +122,8 @@
 	eyeobj.off_action.target = user
 	eyeobj.off_action.user = user
 	eyeobj.off_action.ship = src
-	eyeobj.off_action.Grant(user)
+	if(!LAZYFIND(gauss_gunners, user)) // AQ EDIT - strzelec Gaussa ma własne „Kamera działa” i „Wyjdź z działa”
+		eyeobj.off_action.Grant(user)
 	eyeobj.setLoc(eyeobj.loc)
 	eyeobj.RegisterSignal(src, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/camera/ai_eye/remote/overmap_observer, update))
 	user.reset_perspective(eyeobj)
